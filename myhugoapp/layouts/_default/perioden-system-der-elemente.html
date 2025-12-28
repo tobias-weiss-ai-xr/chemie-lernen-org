@@ -1,0 +1,27 @@
+{{ define "title" }}Periodensystem der Elemente{{ end }}
+
+{{ define "css" }}
+<link rel="stylesheet" href="{{ "/css/perioden-system-der-elemente.css" | relURL }}">
+{{ end }}
+
+{{ define "main" }}
+<div id="menu">
+    <button id="table">TABELLE</button>
+    <button id="sphere">KUGEL</button>
+    <button id="helix">HELIX</button>
+    <button id="grid">GITTER</button>
+</div>
+<div id="container"></div>
+{{ end }}
+
+{{ define "js" }}
+<script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+        }
+    }
+</script>
+<script type="module" src="{{ "/js/perioden-system-der-elemente.js" | relURL }}"></script>
+{{ end }}

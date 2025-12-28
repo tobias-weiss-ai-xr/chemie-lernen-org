@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+  {{ partial "head.html" .}}
+  {{ block "css" . }}{{ end }}
+
+  <body>
+
+    {{ partial "header.html" . }}
+
+    <div class="container">
+      <div class="wrapper">
+        {{ block "main" . }} {{ end }}
+      </div>
+    </div>
+
+    {{ partial "footer.html" . }}    
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+
+  <!-- Custom JS for dark mode -->
+  <script src="/js/dark-mode.js"></script>
+
+  {{ with .Site.Params.analytics }}
+    {{ partial "analytics.html" . }}
+  {{ end }}
+  {{ block "js" . }}{{ end }}
+  </body>
+
+</html>

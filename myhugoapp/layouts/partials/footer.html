@@ -1,0 +1,22 @@
+<footer class="site-footer" style="margin-top: 50px; padding: 30px 0; background-color: #333; color: #fff;" role="contentinfo" aria-label="Website-Fußzeile">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>{{ .Site.Title }}</h4>
+                <p>{{ .Site.Params.footer_description }}</p>
+                <p>
+                    <a href="https://www.patreon.com/c/chemie_lernen_org" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; font-weight: 500;" aria-label="Besuchen Sie unseren Patreon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: text-bottom; margin-right: 5px;">
+                            <path d="M4.231 0C3.281 0 2.4.513 2.4 1.484v20.922c0 .995.881 1.484 1.831 1.484.95 0 1.774-.49 1.774-1.484V1.484C6.005.513 5.181 0 4.231 0zm13.396 4.453c-2.606 0-4.748 2.054-4.748 4.578 0 2.525 2.142 4.579 4.748 4.579s4.748-2.054 4.748-4.579c0-2.524-2.142-4.578-4.748-4.578z"/>
+                        </svg>
+                        Unterstütze uns auf Patreon
+                    </a>
+                </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <p>&copy; {{ now.Format "2006" }} {{ .Site.Title }}. Alle Rechte vorbehalten.</p>
+                <p><small><a href="/imprint/" style="color: #fff;">impressum</a> | <a href="/privacy/" style="color: #fff;">privacy</a></small></p>
+            </div>
+        </div>
+    </div>
+</footer>

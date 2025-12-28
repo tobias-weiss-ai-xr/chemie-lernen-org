@@ -1,0 +1,82 @@
+{{- if .IsHome }}
+<!-- Structured Data for Home Page (WebSite) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.footer_description }}",
+  "inLanguage": "{{ .Site.LanguageCode }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ .Site.BaseURL }}search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Params.meta.keywords | default "Chemie Lernen Team" }}",
+    "url": "{{ .Site.BaseURL }}"
+  }
+}
+</script>
+{{- else if .IsPage }}
+<!-- Structured Data for Content Pages -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{{ if eq .Section "projects" }}Project{{ else }}Article{{ end }}",
+  "headline": "{{ .Title }}",
+  "url": "{{ .Permalink }}",
+  "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.footer_description }}{{ end }}",
+  "inLanguage": "{{ .Site.LanguageCode }}",
+  "datePublished": "{{ .PublishDate.Format "2006-01-02" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+  "author": {
+    "@type": "Organization",
+    "name": "{{ .Site.Params.meta.keywords | default "Chemie Lernen Team" }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Params.meta.keywords | default "Chemie Lernen Team" }}",
+    "url": "{{ .Site.BaseURL }}"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  }
+}
+</script>
+{{- else if .IsSection }}
+<!-- Structured Data for Section Pages -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "url": "{{ .Permalink }}",
+  "name": "{{ .Title }}",
+  "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.footer_description }}{{ end }}",
+  "inLanguage": "{{ .Site.LanguageCode }}"
+}
+</script>
+{{- end }}
+
+<!-- Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Chemie Lernen",
+  "url": "{{ .Site.BaseURL }}",
+  "logo": "{{ .Site.BaseURL }}favicon-192x192.png",
+  "description": "{{ .Site.Params.footer_description }}",
+  "sameAs": [
+    "https://github.com/{{ .Site.Params.github }}"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "url": "{{ .Site.BaseURL }}pages/contact/"
+  }
+}
+</script>

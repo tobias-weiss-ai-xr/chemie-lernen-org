@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Site.Title }}</title>
+</head>
+<body>
+    <h1>{{ .Site.Title }}</h1>
+    {{ range .Paginator.Pages }}
+        <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+        <div>{{ .Summary }}</div>
+    {{ end }}
+</body>
+</html>

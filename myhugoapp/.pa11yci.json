@@ -1,0 +1,56 @@
+{
+  "defaults": {
+    "timeout": 120000,
+    "wait": 3000,
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox"]
+    },
+    "actions": [
+      "wait for element body to be visible"
+    ],
+    "headers": {
+      "User-Agent": "pa11y-ci"
+    },
+    "standard": "WCAG2AA",
+    "level": "A",
+    "runner": "pa11y",
+    "rules": [
+      "WCAG2A.Principle1.Guideline1_4.1_4_3.G18.Abs",
+      "WCAG2A.Principle1.Guideline1_4.1_4_3.G145.Abs",
+      "WCAG2A.Principle1.Guideline1_4.1_4_6.G17.Abs",
+      "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.BgImage",
+      "WCAG2AA.Principle1.Guideline1_4.1_4_6.G11",
+      "WCAG2AA.Principle1.Guideline1_4.1_4_6.G13",
+      "WCAG2AA.Principle1.Guideline1_4.1_4_6.G14",
+      "WCAG2AA.Principle1.Guideline1_4.1_4_6.G145.BgImage"
+    ]
+  },
+  "urls": {
+    "dark-mode-home": {
+      "url": "http://localhost:1313/",
+      "actions": [
+        "navigate to http://localhost:1313/",
+        "wait for element body to be visible",
+        "set field #theme-toggle to checked",
+        "wait for element [data-theme=\"dark\"] to be visible",
+        "wait for 1000"
+      ]
+    },
+    "dark-mode-panel-test": {
+      "url": "http://localhost:1313/molekuel-studio/",
+      "actions": [
+        "navigate to http://localhost:1313/molekuel-studio/",
+        "wait for element body to be visible",
+        "set field #theme-toggle to checked",
+        "wait for element [data-theme=\"dark\"] to be visible",
+        "wait for 1000"
+      ]
+    },
+    "light-mode-home": {
+      "url": "http://localhost:1313/"
+    },
+    "light-mode-panel": {
+      "url": "http://localhost:1313/molekuel-studio/"
+    }
+  }
+}

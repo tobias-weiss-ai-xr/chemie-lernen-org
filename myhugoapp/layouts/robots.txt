@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /.git/
+
+Sitemap: {{ .Site.BaseURL }}sitemap.xml

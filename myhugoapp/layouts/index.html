@@ -1,0 +1,139 @@
+{{ define "main" }}
+
+<div class="home">
+
+  <!-- Featured Image -->
+  <div class="row">
+    <div class="col-md-12">
+      <img src="{{ "/images/recent-article_001.jpg" | relURL }}" alt="chemie-lernen.org teaser" class="img-responsive center-block featured-image">
+    </div>
+  </div>
+
+  <!-- Description only - title already in navbar -->
+  <div class="row">
+    <div class="col-md-12">
+      {{ if .Site.Params.footer_description }}
+      <p class="lead text-center">{{ .Site.Params.footer_description }}</p>
+      {{ end }}
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+    <div class="row pack">
+
+        <!-- Custom Hubs Link Card -->
+        <div class="col-md-4 card">
+             <a href="https://hubs.chemie-lernen.org/" class="index-anchor">
+                <div class="panel panel-default" style="border: 2px solid #007bff;">
+
+                  <div class="panel-body" style="background-color: #f0f8ff;">
+                    <h3 class="panel-title pull-left">🥽 Hubs-Umgebung</h3>
+                  </div>
+
+                  <div class="panel-body"><small>
+                    Hier finden Sie interaktive Lernräume für Chemie (in VR).</small>
+                  </div>
+                </div>
+                </a>
+        </div>
+
+        <!-- Custom Periodic Table Link Card -->
+        <div class="col-md-4 card">
+             <a href="/perioden-system-der-elemente/" class="index-anchor">
+                <div class="panel panel-default" style="border: 2px solid #6f42c1;">
+
+                  <div class="panel-body" style="background-color: #f8f5ff;">
+                    <h3 class="panel-title pull-left">⚛️ Periodensystem</h3>
+                  </div>
+
+                  <div class="panel-body"><small>
+                    Erleben Sie das Periodensystem in 3D mit verschiedenen Ansichten.</small>
+                  </div>
+                </div>
+                </a>
+        </div>
+
+        <!-- Custom Molecule Studio Link Card -->
+        <div class="col-md-4 card">
+             <a href="/molekuel-studio/" class="index-anchor">
+                <div class="panel panel-default" style="border: 2px solid #fd7e14;">
+
+                  <div class="panel-body" style="background-color: #fff8f0;">
+                    <h3 class="panel-title pull-left">🔬 Molekülstudio</h3>
+                  </div>
+
+                  <div class="panel-body"><small>
+                    Visualisieren Sie Moleküle interaktiv in 3D im Browser.</small>
+                  </div>
+                </div>
+                </a>
+        </div>
+
+        {{ $paginator := .Paginate (where .Site.RegularPages "Section" "posts") }}
+        {{ range $paginator.Pages }}   
+            <div class="col-md-4 card">
+             <a href="{{ .Permalink }}" class="index-anchor">    
+                <div class="panel panel-default">
+                  
+                  {{ if .Params.img }}
+                  {{ with .Resources.Match .Params.img }}
+                    {{ range . }}
+                      <img width="100%" src="{{ .RelPermalink }}" alt="{{ .Title }}">
+                    {{ end }}
+                  {{ end }}
+                  {{ else }}
+                  <!-- Fallback image logic if needed -->
+                  {{ end }}
+                  
+                  <div class="panel-body">
+                    <h3 class="panel-title pull-left">{{ .Title | truncate 25 }}</h3><span class="post-meta pull-right"><small>{{ .Date.Format "January 2, 2006" }}</small></span>
+                  </div>
+                  
+                  <div class="panel-body"><small>
+                    {{ .Summary | plainify | truncate 180 }}</small>
+                  </div>
+                </div>
+                </a>
+            </div>
+        
+          {{ end }}
+
+    </div> 
+    
+<div class="row">
+    <div class="col-md-4">  </div>
+    <div class="col-md-4">
+        {{ if gt .Paginator.TotalPages 1 }}
+        <ul class="pagination">
+          {{ if .Paginator.HasPrev }}
+            <li><a href="{{ .Paginator.Prev.URL }}">&laquo; Prev</a></li>
+          {{ else }}
+            <li><span>&laquo; Prev</span></li>
+          {{ end }}
+
+          {{ $scratch := newScratch }}
+          {{ $scratch.Set "current" .Paginator.PageNumber }} 
+
+          {{ range .Paginator.Pagers }}
+            {{ if eq .PageNumber ($scratch.Get "current") }}
+              <li class="active"><span><em>{{ .Number }}</em></span></li>
+            {{ else }}
+            <li><a href="{{ .URL }}">{{ .Number }}</a></li>
+            {{ end }}
+          {{ end }}
+
+          {{ if .Paginator.HasNext }}
+            <li><a href="{{ .Paginator.Next.URL }}">Next &raquo;</a></li>
+          {{ else }}
+            <li><span >Next &raquo;</span></li>
+          {{ end }}
+          </ul>
+        {{ end }}
+
+    </div>
+    <div class="col-md-4">  </div>
+</div>
+</div>
+
+{{ end }}

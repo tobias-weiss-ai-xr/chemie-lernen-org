@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  hugo-chemie-lernen-org:
+    build: .
+    image: hugo-chemie-lernen-org:latest
+    container_name: hugo-chemie-lernen-org
+    restart: unless-stopped
+    command: hugo server --bind 0.0.0.0 --baseURL https://${HUGO_DOMAIN:-chemie-lernen.org} --appendPort=false
+    working_dir: /app/myhugoapp
+    volumes:
+      - ./myhugoapp:/app/myhugoapp
+      - ./public:/app/myhugoapp/public
+    ports:
+      - "1313:1313"
+    environment:
+      - HUGO_BASEURL=https://${HUGO_DOMAIN:-chemie-lernen.org}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-web"
+      # HTTP router with redirect to HTTPS
+      - "traefik.http.routers.hugo-chemie.rule=Host(`${HUGO_DOMAIN:-chemie-lernen.org}`, `www.${HUGO_DOMAIN:-chemie-lernen.org}`)"
+      - "traefik.http.routers.hugo-chemie.entrypoints=web"
+      - "traefik.http.routers.hugo-chemie.middlewares=https-redirect@file"
+      # HTTPS router
+      - "traefik.http.routers.hugo-chemie-secure.rule=Host(`${HUGO_DOMAIN:-chemie-lernen.org}`, `www.${HUGO_DOMAIN:-chemie-lernen.org}`)"
+      - "traefik.http.routers.hugo-chemie-secure.entrypoints=websecure"
+      - "traefik.http.routers.hugo-chemie-secure.tls=true"
+      - "traefik.http.routers.hugo-chemie-secure.tls.certresolver=mytlschallenge"
+      - "traefik.http.routers.hugo-chemie-secure.middlewares=security-headers@file,compression@file"
+      - "traefik.http.services.hugo-chemie.loadbalancer.server.port=1313"
+      # PSE redirect router
+      - "traefik.http.routers.hugo-pse.rule=Host(`pse.${HUGO_DOMAIN:-chemie-lernen.org}`)"
+      - "traefik.http.routers.hugo-pse.entrypoints=websecure"
+      - "traefik.http.routers.hugo-pse.tls.certresolver=mytlschallenge"
+      - "traefik.http.routers.hugo-pse.middlewares=hugo-pse-redirect"
+      # PSE redirect middleware
+      - "traefik.http.middlewares.hugo-pse-redirect.redirectregex.regex=^https://pse\\.${HUGO_DOMAIN:-chemie-lernen.org}/.*"
+      - "traefik.http.middlewares.hugo-pse-redirect.redirectregex.replacement=https://pse.${HUGO_DOMAIN:-chemie-lernen.org}/periodic-table/"
+    networks:
+      - traefik-web
+
+networks:
+  traefik-web:
+    external: true
+    name: traefik-web

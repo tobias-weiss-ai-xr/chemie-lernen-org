@@ -1,0 +1,67 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{{ .Title }}{{ if .IsPage }} - {{ .Site.Title }}{{ end }}</title>
+
+{{ if .Description }}
+<meta name="description" content="{{ .Description }}">
+{{ else if .Site.Params.footer_description }}
+<meta name="description" content="{{ .Site.Params.footer_description }}">
+{{ end }}
+
+{{- with .Site.Params.meta.keywords -}}
+<meta name="keywords" content="{{ . }}">
+{{- end -}}
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{- with .Site.Author }}
+<meta name="author" content="{{ . }}">
+{{- end -}}
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:title" content="{{ .Title }}{{ if .IsPage }} - {{ .Site.Title }}{{ end }}">
+{{- with .Description }}
+<meta property="og:description" content="{{ . }}">
+{{- else }}
+{{- with .Site.Params.footer_description }}
+<meta property="og:description" content="{{ . }}">
+{{- end }}
+{{- end }}
+<meta property="og:image" content="{{ .Site.BaseURL }}{{ with .Params.cover }}{{ . }}{{ else }}{{ .Site.Params.defaultImage }}{{ end }}">
+<meta property="og:locale" content="{{ .Site.LanguageCode }}">
+{{- with .Site.Params.og_site_name }}
+<meta property="og:site_name" content="{{ . }}">
+{{- end }}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="{{ .Permalink }}">
+<meta name="twitter:title" content="{{ .Title }}{{ if .IsPage }} - {{ .Site.Title }}{{ end }}">
+{{- with .Description }}
+<meta name="twitter:description" content="{{ . }}">
+{{- else }}
+{{- with .Site.Params.footer_description }}
+<meta name="twitter:description" content="{{ . }}">
+{{- end }}
+{{- end }}
+<meta name="twitter:image" content="{{ .Site.BaseURL }}{{ with .Params.cover }}{{ . }}{{ else }}{{ .Site.Params.defaultImage }}{{ end }}">
+
+<!-- Bootstrap 3 CDN -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{{ $sass := resources.Get "sass/main.scss" }}
+{{ if $sass }}
+  {{ $main := $sass | toCSS (dict "outputStyle" "compressed") }}
+  <link rel="stylesheet" href="{{ $main.RelPermalink }}">
+{{ end }}
+
+{{ range .Site.Params.custom_css -}}
+    <link rel="stylesheet" href="{{ . | relURL }}">
+{{- end }}

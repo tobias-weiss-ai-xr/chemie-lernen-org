@@ -1,0 +1,18 @@
+# Use Playwright's official Docker image
+FROM mcr.microsoft.com/playwright:v1.48.0-jammy
+
+WORKDIR /app
+
+# Copy test files
+COPY tests/ /app/tests/
+COPY playwright.config.js /app/
+
+# Install dependencies
+RUN npm init -y
+RUN npm install @playwright/test --save-dev
+
+# Set environment variable for base URL
+ENV BASE_URL=https://chemie-lernen.org
+
+# Run tests
+CMD ["npx", "playwright", "test", "--reporter=list", "--reporter=html"]
