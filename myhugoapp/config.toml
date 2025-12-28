@@ -1,6 +1,6 @@
 baseURL = "https://chemie-lernen.org/"
 languageCode = "de-de"
-title = "Chemie Lernen - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte"
+title = "chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte"
 theme = "hugo-cards"
 
 # Disable LiveReload in production
@@ -17,12 +17,12 @@ enableRobotsTXT = true
   custom_css = ["css/custom.css", "css/dark-mode.css"]
   custom_js = ["js/dark-mode.js"]
   defaultImage = "recent-article_001.jpg"
-  footer_description = "Chemie Lernen - Ihre Plattform für innovative Chemie-Lernräume in Virtual Reality. Machen Sie komplexe chemische Konzepte greifbar und erlebbar."
+  footer_description = "chemie-lernen.org - Ihre Plattform für innovative Chemie-Lernräume in Virtual Reality. Machen Sie komplexe chemische Konzepte greifbar und erlebbar."
 
 [params.meta]
   keywords = "Chemie Lernen, VR Chemieunterricht, Virtual Reality Bildung, Chemie lernen online, interaktiver Chemieunterricht, digitale Bildung, VR Lernräume, Chemie studieren, innovative Chemie, immersive Bildung"
 
-author = "Chemie Lernen Team"
+author = "chemie-lernen.org Team"
 
 [[menu.main]]
     name = "Periodensystem"
