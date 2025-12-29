@@ -25,21 +25,31 @@ const MIN_CONTRAST_AA = 4.5;
 const MIN_CONTRAST_AA_LARGE = 3.0;
 const MIN_CONTRAST_AA_UI = 3.0;
 
-// Dark mode color palette from dark-mode.css
+// Light mode color palette for Molekülstudio page
+const lightModeColors = {
+  studioHeader: '#e8f5e9',  // light green background
+  studioTitle: '#0a3d0a',   // dark green text
+  studioText: '#666666',    // gray secondary text
+};
+
+// Dark mode color palette from dark-mode.css (greenish theme)
 const darkModeColors = {
-  bgPrimary: '#0f1419',
-  bgSecondary: '#1a1f2e',
-  bgTertiary: '#242b3d',
-  textPrimary: '#e4e6eb',
-  textSecondary: '#b0b3b8',
-  textMuted: '#71767b',
-  accentColor: '#3b82f6',
-  accentHover: '#60a5fa',
-  successColor: '#10b981',
+  bgPrimary: '#0a1a0f',
+  bgSecondary: '#0d2a1a',
+  bgTertiary: '#123d25',
+  textPrimary: '#c8e6c9',
+  textSecondary: '#81c784',
+  textMuted: '#4caf50',
+  accentColor: '#4caf50',
+  accentHover: '#66bb6a',
+  successColor: '#4caf50',
   warningColor: '#f59e0b',
   dangerColor: '#ef4444',
-  borderColor: '#2d3748',
-  cardBg: '#1a1f2e',
+  borderColor: '#1b5e20',
+  cardBg: '#0d2a1a',
+  navbarBg: '#0a1a0f',
+  studioHeader: '#1a3d2a',
+  studioTitle: '#b2dfdb',
 };
 
 // Helper function to calculate relative luminance
@@ -134,12 +144,49 @@ function testContrastRatios() {
       background: darkModeColors.bgPrimary,
       minimum: MIN_CONTRAST_AA,
     },
+    {
+      name: 'Studio Title on Studio Header',
+      foreground: darkModeColors.studioTitle,
+      background: darkModeColors.studioHeader,
+      minimum: MIN_CONTRAST_AA,
+    },
+    {
+      name: 'Text Secondary on Studio Header',
+      foreground: darkModeColors.textSecondary,
+      background: darkModeColors.studioHeader,
+      minimum: MIN_CONTRAST_AA,
+    },
+    {
+      name: 'Studio Title on Primary Background',
+      foreground: darkModeColors.studioTitle,
+      background: darkModeColors.bgPrimary,
+      minimum: MIN_CONTRAST_AA,
+    },
   ];
+
+  // Light mode tests
+  const lightModeTests = [
+    {
+      name: '[LIGHT] Studio Title on Studio Header',
+      foreground: lightModeColors.studioTitle,
+      background: lightModeColors.studioHeader,
+      minimum: MIN_CONTRAST_AA,
+    },
+    {
+      name: '[LIGHT] Studio Text on Studio Header',
+      foreground: lightModeColors.studioText,
+      background: lightModeColors.studioHeader,
+      minimum: MIN_CONTRAST_AA,
+    },
+  ];
+
+  // Combine all tests
+  const allTests = [...tests, ...lightModeTests];
 
   let passed = 0;
   let failed = 0;
 
-  for (const test of tests) {
+  for (const test of allTests) {
     const ratio = getContrastRatio(test.foreground, test.background);
     const isPass = ratio >= test.minimum;
 

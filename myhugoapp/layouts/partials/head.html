@@ -65,3 +65,11 @@
 {{ range .Site.Params.custom_css -}}
     <link rel="stylesheet" href="{{ . | relURL }}">
 {{- end }}
+
+<!-- Green Color Theme -->
+<link rel="stylesheet" href="{{ "/css/green-theme.css" | relURL }}">
+
+<!-- Quiz System CSS -->
+<link rel="stylesheet" href="{{ "/css/quiz-system.css" | relURL }}">
+<link rel="stylesheet" href="{{ "/css/quiz-user-system.css" | relURL }}">
+<link rel="stylesheet" href="{{ "/css/progress-tracker.css" | relURL }}">

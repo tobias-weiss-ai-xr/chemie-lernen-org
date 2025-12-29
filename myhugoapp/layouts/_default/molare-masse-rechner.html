@@ -1,0 +1,253 @@
+{{ define "main" }}
+
+<div class="molar-mass-calculator-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Calculator Section -->
+  <div class="calculator-section">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="calculator-panel">
+          <h2>Chemische Formel eingeben</h2>
+          <p>Geben Sie die chemische Formel ein (z.B. H2O, NaCl, C6H12O6, Ca(OH)2):</p>
+
+          <div class="input-group-lg">
+            <input type="text" id="formula-input" class="form-control"
+                   placeholder="z.B. H2O, NaCl, C6H12O6"
+                   aria-label="Chemische Formel">
+            <span class="input-group-btn">
+              <button class="btn btn-primary btn-lg" onclick="calculateMolarMass()">
+                <i class="fa fa-calculator"></i> Berechnen
+              </button>
+            </span>
+          </div>
+
+          <!-- Quick Examples -->
+          <div class="quick-examples">
+            <p><strong>Beispiele:</strong></p>
+            <button class="btn btn-sm btn-default example-btn" data-formula="H2O">H₂O (Wasser)</button>
+            <button class="btn btn-sm btn-default example-btn" data-formula="CO2">CO₂ (Kohlenstoffdioxid)</button>
+            <button class="btn btn-sm btn-default example-btn" data-formula="NaCl">NaCl (Kochsalz)</button>
+            <button class="btn btn-sm btn-default example-btn" data-formula="H2SO4">H₂SO₄ (Schwefelsäure)</button>
+            <button class="btn btn-sm btn-default example-btn" data-formula="C6H12O6">C₆H₁₂O₆ (Glucose)</button>
+            <button class="btn btn-sm btn-default example-btn" data-formula="Ca(OH)2">Ca(OH)₂ (Calciumhydroxid)</button>
+            <button class="btn btn-sm btn-default example-btn" data-formula="KMnO4">KMnO₄ (Kaliumpermanganat)</button>
+            <button class="btn btn-sm btn-default example-btn" data-formula="Al2(SO4)3">Al₂(SO₄)₃ (Aluminiumsulfat)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section" style="display:none;">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="result-card main-result">
+            <h3>Molare Masse</h3>
+            <div class="molar-mass-value">
+              <span id="molar-mass" class="big-number">0.00</span>
+              <span class="unit">g/mol</span>
+            </div>
+            <p class="formula-display">
+              Formel: <span id="formatted-formula"></span>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="result-card composition-result">
+            <h3>Elementare Zusammensetzung</h3>
+            <div id="composition-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="result-card details-result">
+            <h3>Berechnungsdetails</h3>
+            <div id="calculation-details"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Section -->
+    <div id="error-section" style="display:none;">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="alert alert-danger">
+            <i class="fa fa-exclamation-triangle"></i>
+            <strong>Fehler:</strong> <span id="error-message"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Educational Section -->
+  <div class="educational-section">
+    <h2>Wissenswertes über molare Masse</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📚 Definition</h3>
+          <p>Die molare Masse M ist die Masse eines Stoffs pro Mol. Sie wird in g/mol angegeben und entspricht der Summe der Atommassen aller Atome in einer chemischen Verbindung.</p>
+          <div class="formula">M = m/n</div>
+          <p>Wobei m = Masse (g) und n = Stoffmenge (mol)</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚛️ Atommassen</h3>
+          <p>Die Atommassen der Elemente finden Sie im Periodensystem. Sie beziehen sich auf das Kohlenstoffisotop ¹²C mit einer Atommasse von genau 12 u.</p>
+          <p><strong>Beispiel:</strong></p>
+          <ul>
+            <li>H (Wasserstoff): 1.008 u</li>
+            <li>C (Kohlenstoff): 12.011 u</li>
+            <li>O (Sauerstoff): 15.999 u</li>
+            <li>Na (Natrium): 22.990 u</li>
+            <li>Cl (Chlor): 35.453 u</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🧮 Berechnungsbeispiel</h3>
+          <p><strong>Wasser (H₂O):</strong></p>
+          <ul>
+            <li>2 × H (1.008) = 2.016 g/mol</li>
+            <li>1 × O (15.999) = 15.999 g/mol</li>
+            <li><strong>Gesamt:</strong> 18.015 g/mol</li>
+          </ul>
+          <p>Das bedeutet, 1 Mol Wasser (18.015 g) enthält 6.022 × 10²³ Wassermoleküle (Avogadro-Konstante).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>🔬 Anwendungen</h3>
+          <ul>
+            <li><strong>Stöchiometrie:</strong> Berechnung von Reaktionsmassen</li>
+            <li><strong>Konzentrationsberechnung:</strong> Molare Lösungen herstellen</li>
+            <li><strong>Gasgesetze:</strong> Ideales Gasgesetz anwenden</li>
+            <li><strong>Qualitative Analyse:</strong> Zusammensetzung bestimmen</li>
+            <li><strong>Präparative Chemie:</strong> Edukte abmessen</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>💡 Tipps</h3>
+          <ul>
+            <li>Verwenden Sie Periodensystem-Werte mit 3 Dezimalstellen für genauere Ergebnisse</li>
+            <li>Klammern gruppieren Atome für die Multiplikation (z.B. Ca(OH)₂)</li>
+            <li>Die Reihenfolge der Elemente in einer Formel ist meist: C, H, dann andere Elemente alphabetisch</li>
+            <li>Beachten Sie Indizes bei Polyatomgruppen (z.B. SO₄²⁻)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Periodic Table Reference -->
+  <div class="periodic-table-reference">
+    <h2>Periodensystem der Elemente (Referenz)</h2>
+    <p>Häufige Elemente mit ihren Atommassen:</p>
+
+    <div class="elements-grid">
+      <div class="element-card" data-symbol="H">
+        <span class="element-symbol">H</span>
+        <span class="element-name">Wasserstoff</span>
+        <span class="element-mass">1.008</span>
+      </div>
+      <div class="element-card" data-symbol="C">
+        <span class="element-symbol">C</span>
+        <span class="element-name">Kohlenstoff</span>
+        <span class="element-mass">12.011</span>
+      </div>
+      <div class="element-card" data-symbol="N">
+        <span class="element-symbol">N</span>
+        <span class="element-name">Stickstoff</span>
+        <span class="element-mass">14.007</span>
+      </div>
+      <div class="element-card" data-symbol="O">
+        <span class="element-symbol">O</span>
+        <span class="element-name">Sauerstoff</span>
+        <span class="element-mass">15.999</span>
+      </div>
+      <div class="element-card" data-symbol="Na">
+        <span class="element-symbol">Na</span>
+        <span class="element-name">Natrium</span>
+        <span class="element-mass">22.990</span>
+      </div>
+      <div class="element-card" data-symbol="Mg">
+        <span class="element-symbol">Mg</span>
+        <span class="element-name">Magnesium</span>
+        <span class="element-mass">24.305</span>
+      </div>
+      <div class="element-card" data-symbol="Al">
+        <span class="element-symbol">Al</span>
+        <span class="element-name">Aluminium</span>
+        <span class="element-mass">26.982</span>
+      </div>
+      <div class="element-card" data-symbol="S">
+        <span class="element-symbol">S</span>
+        <span class="element-name">Schwefel</span>
+        <span class="element-mass">32.06</span>
+      </div>
+      <div class="element-card" data-symbol="Cl">
+        <span class="element-symbol">Cl</span>
+        <span class="element-name">Chlor</span>
+        <span class="element-mass">35.453</span>
+      </div>
+      <div class="element-card" data-symbol="K">
+        <span class="element-symbol">K</span>
+        <span class="element-name">Kalium</span>
+        <span class="element-mass">39.098</span>
+      </div>
+      <div class="element-card" data-symbol="Ca">
+        <span class="element-symbol">Ca</span>
+        <span class="element-name">Calcium</span>
+        <span class="element-mass">40.078</span>
+      </div>
+      <div class="element-card" data-symbol="Fe">
+        <span class="element-symbol">Fe</span>
+        <span class="element-name">Eisen</span>
+        <span class="element-mass">55.845</span>
+      </div>
+      <div class="element-card" data-symbol="Cu">
+        <span class="element-symbol">Cu</span>
+        <span class="element-name">Kupfer</span>
+        <span class="element-mass">63.546</span>
+      </div>
+      <div class="element-card" data-symbol="Zn">
+        <span class="element-symbol">Zn</span>
+        <span class="element-name">Zink</span>
+        <span class="element-mass">65.38</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/molare-masse-rechner.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/molare-masse-rechner.css" | relURL }}">
+
+{{ end }}

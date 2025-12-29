@@ -1,0 +1,33 @@
+{{- $pages := where .Site.RegularPages "Kind" "page" -}}
+{{- $pages = $pages | append (where .Site.Pages "Kind" "section") -}}
+{{- $pages = $pages | uniq -}}
+[
+  {{- range $index, $page := $pages -}}
+  {{- if gt $index 0 }},{{ end }}
+  {
+    "title": {{ $page.Title | jsonify }},
+    "url": {{ $page.Permalink | jsonify }},
+    "permalink": {{ $page.Permalink | jsonify }},
+    {{- with .Params.description }}
+    "description": {{ . | jsonify }},
+    {{- end }}
+    {{- with .Params.summary }}
+    "summary": {{ . | jsonify }},
+    {{- end }}
+    {{- with .Summary }}
+    "summary": {{ . | plainify | jsonify }},
+    {{- end }}
+    "content": {{ $page.Plain | jsonify }},
+    "tags": [
+      {{- range $i, $tag := $page.Params.tags -}}
+      {{- if gt $i 0 }},{{ end }}{{ $tag | jsonify }}
+      {{- end }}
+    ],
+    "categories": [
+      {{- range $i, $cat := $page.Params.categories -}}
+      {{- if gt $i 0 }},{{ end }}{{ $cat | jsonify }}
+      {{- end }}
+    ]
+  }
+  {{- end }}
+]

@@ -1,0 +1,235 @@
+<header class="site-header">
+<div class="container-fluid">
+  <!-- Title row with logo and theme toggle -->
+  <div class="title-row">
+    <div class="navbar-brand-wrapper">
+      <a class="navbar-brand" href="{{ .Site.BaseURL }}">
+        <img src="{{ "/img/chemie-lernen-logo_light.png" | relURL }}" alt="{{ .Site.Title }}" height="120" class="d-inline-block align-top site-logo">
+        {{ .Site.Title }}
+      </a>
+      <!-- Dark mode toggle next to title -->
+      <a href="#" id="theme-toggle" title="Zu dunkel wechseln" class="theme-toggle-header">
+        <i class="fa fa-moon-o"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Navigation row with menu -->
+  <nav class="navbar navbar-default" role="navigation" aria-label="Hauptnavigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Navigation einblenden</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          {{ range .Site.Menus.main.ByWeight }}
+            {{ if .HasChildren }}
+              <!-- Dropdown Menu -->
+              <li class="dropdown{{ if $.IsMenuCurrent "main" . }} active{{ end }}">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" aria-label="{{ .Name }} Menü anzeigen">
+                  {{ .Name }} <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-label="{{ .Name }} Unterseite">
+                  {{ range .Children }}
+                    <li{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }} role="none">
+                      <a href="{{ .URL }}" role="menuitem" aria-label="{{ .Name }}">
+                        {{ .Name }}
+                      </a>
+                    </li>
+                  {{ end }}
+                </ul>
+              </li>
+            {{ else }}
+              <!-- Regular Menu Item -->
+              <li{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }}>
+                <a href="{{ .URL }}" aria-label="{{ .Name }}">
+                  {{ .Name }}
+                </a>
+              </li>
+            {{ end }}
+          {{ end }}
+        </ul>
+
+        <!-- Quick Search -->
+        <form class="navbar-form navbar-right" action="/pages/suche/" method="get" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Themen suchen..." name="q" id="search-input">
+          </div>
+          <button type="submit" class="btn btn-default">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</div>
+</header>
+
+<style>
+/* Dropdown menu styling */
+.dropdown-menu {
+  min-width: 220px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  border: 1px solid rgba(0,0,0,.15);
+}
+
+/* Ensure navbar-collapse content stays on one line on desktop */
+@media (min-width: 768px) {
+  .navbar-collapse {
+    display: flex !important;
+    align-items: center;
+    width: 100%;
+  }
+
+  .navbar-nav {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+}
+
+.dropdown-menu > li > a {
+  padding: 8px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-icon {
+  margin-right: 8px;
+}
+
+.dropdown-menu .label {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+}
+
+/* Active state */
+.navbar-nav > .active > a,
+.navbar-nav > .active > a:hover,
+.navbar-nav > .active > a:focus {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Search form */
+.navbar-form {
+  margin-left: 15px;
+  padding: 0;
+}
+
+.navbar-form .form-control {
+  width: 180px;
+  transition: width 0.3s;
+}
+
+.navbar-form .form-control:focus {
+  width: 250px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .navbar-form {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  .navbar-form .form-control {
+    width: 100%;
+  }
+
+  .navbar-form .form-control:focus {
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    position: static;
+    float: none;
+    width: auto;
+    box-shadow: none;
+    border: none;
+  }
+
+  .navbar-nav .open .dropdown-menu {
+    background-color: #f8f9fa;
+  }
+
+  .navbar-nav .open .dropdown-menu > li > a {
+    color: #333;
+    padding-left: 30px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .dropdown-menu {
+    background-color: #2c2c2c;
+    border-color: #444;
+  }
+
+  .dropdown-menu > li > a {
+    color: #e0e0e0;
+  }
+
+  .dropdown-menu > li > a:hover,
+  .dropdown-menu > li > a:focus {
+    background-color: #3c3c3c;
+    color: #fff;
+  }
+
+  .navbar-nav .open .dropdown-menu {
+    background-color: #2c2c2c;
+  }
+
+  .navbar-nav .open .dropdown-menu > li > a {
+    color: #e0e0e0;
+  }
+
+  .navbar-form .form-control {
+    background-color: #3c3c3c;
+    border-color: #555;
+    color: #e0e0e0;
+  }
+
+  .navbar-form .form-control:focus {
+    background-color: #4c4c4c;
+    border-color: #007bff;
+    color: #fff;
+  }
+
+  .navbar-form .form-control::placeholder {
+    color: #999;
+  }
+}
+</style>
+
+<script>
+// Ensure dropdowns work on mobile
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.innerWidth < 768) {
+    const dropdowns = document.querySelectorAll('.dropdown-toggle');
+    dropdowns.forEach(function(dropdown) {
+      dropdown.addEventListener('click', function(e) {
+        e.preventDefault();
+        const parent = this.parentElement;
+        parent.classList.toggle('open');
+      });
+    });
+  }
+});
+</script>

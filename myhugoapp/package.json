@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test:contrast && npm run test:layout && npm run test:html && npm run test:js && npm run test:seo && npm run test:performance",
+    "test": "npm run test:contrast && npm run test:layout && npm run test:html && npm run test:js && npm run test:seo && npm run test:performance && npm run test:url",
     "test:contrast": "node tests/accessibility/contrast-test.js",
     "test:layout": "node tests/layout/pse-centering-test.js",
     "test:html": "node tests/html/html-validation-test.js",
     "test:js": "node tests/javascript/js-unit-tests.js",
     "test:seo": "node tests/seo/seo-test.js",
     "test:performance": "node tests/performance/performance-test.js",
+    "test:url": "node tests/url/url-validation-test.js",
     "test:pa11y": "pa11y-ci --config .pa11yci.json",
     "test:all": "npm run test && npm run test:pa11y",
     "test:quick": "npm run test:contrast && npm run test:layout && npm run test:js"

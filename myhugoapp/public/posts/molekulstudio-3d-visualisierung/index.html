@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="de" xml:lang="de">
+
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Molekülstudio: Interaktive 3D-Visualisierung von Molekülen - chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title>
+
+
+<meta name="description" content="chemie-lernen.org - Ihre Plattform für innovative Chemie-Lernräume in Virtual Reality. Machen Sie komplexe chemische Konzepte greifbar und erlebbar.">
+<meta name="keywords" content="chemie-lernen.org, VR Chemieunterricht, Virtual Reality Bildung, Chemie lernen online, interaktiver Chemieunterricht, digitale Bildung, VR Lernräume, Chemie studieren, innovative Chemie, immersive Bildung">
+<link rel="canonical" href="https://chemie-lernen.org/posts/molekulstudio-3d-visualisierung/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://chemie-lernen.org/posts/molekulstudio-3d-visualisierung/">
+<meta property="og:title" content="Molekülstudio: Interaktive 3D-Visualisierung von Molekülen - chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte">
+<meta property="og:description" content="chemie-lernen.org - Ihre Plattform für innovative Chemie-Lernräume in Virtual Reality. Machen Sie komplexe chemische Konzepte greifbar und erlebbar.">
+<meta property="og:image" content="https://chemie-lernen.org/recent-article_001.jpg">
+<meta property="og:locale" content="de-de">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://chemie-lernen.org/posts/molekulstudio-3d-visualisierung/">
+<meta name="twitter:title" content="Molekülstudio: Interaktive 3D-Visualisierung von Molekülen - chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte">
+<meta name="twitter:description" content="chemie-lernen.org - Ihre Plattform für innovative Chemie-Lernräume in Virtual Reality. Machen Sie komplexe chemische Konzepte greifbar und erlebbar.">
+<meta name="twitter:image" content="https://chemie-lernen.org/recent-article_001.jpg">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+  
+  <link rel="stylesheet" href="/sass/main.css">
+
+
+<link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/dark-mode.css">
+
+
+<link rel="stylesheet" href="/css/green-theme.css">
+
+
+<link rel="stylesheet" href="/css/quiz-system.css">
+<link rel="stylesheet" href="/css/quiz-user-system.css">
+<link rel="stylesheet" href="/css/progress-tracker.css">
+  
+
+  <body>
+
+    
+    <a href="#main-content" class="sr-only sr-only-focusable">Zum Hauptinhalt springen</a>
+
+    <header class="site-header">
+<div class="container-fluid">
+  
+  <div class="title-row">
+    <div class="navbar-brand-wrapper">
+      <a class="navbar-brand" href="https://chemie-lernen.org/">
+        <img src="/img/chemie-lernen-logo_light.png" alt="chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte" height="120" class="d-inline-block align-top site-logo">
+        chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte
+      </a>
+      
+      <a href="#" id="theme-toggle" title="Zu dunkel wechseln" class="theme-toggle-header">
+        <i class="fa fa-moon-o"></i>
+      </a>
+    </div>
+  </div>
+
+  
+  <nav class="navbar navbar-default" role="navigation" aria-label="Hauptnavigation">
+    <div class="container-fluid">
+      
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Navigation einblenden</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          
+            
+              
+              <li>
+                <a href="/themenbereiche/" aria-label="Themenbereiche">
+                  Themenbereiche
+                </a>
+              </li>
+            
+          
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" aria-label="Interaktiv Menü anzeigen">
+                  Interaktiv <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-label="Interaktiv Unterseite">
+                  
+                    <li role="none">
+                      <a href="/perioden-system-der-elemente/" role="menuitem" aria-label="Periodensystem 3D">
+                        Periodensystem 3D
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/molekuel-studio/" role="menuitem" aria-label="Molekülstudio">
+                        Molekülstudio
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/ph-rechner/" role="menuitem" aria-label="pH-Rechner">
+                        pH-Rechner
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/molare-masse-rechner/" role="menuitem" aria-label="Molare Masse">
+                        Molare Masse
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/reaktionsgleichungen-ausgleichen/" role="menuitem" aria-label="Gleichungen Ausgleichen">
+                        Gleichungen Ausgleichen
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="https://hubs.chemie-lernen.org/" role="menuitem" aria-label="VR Labore">
+                        VR Labore
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+          
+            
+              
+              <li>
+                <a href="/pages/roadmap/" aria-label="Roadmap">
+                  Roadmap
+                </a>
+              </li>
+            
+          
+            
+              
+              <li>
+                <a href="/pages/about/" aria-label="Über uns">
+                  Über uns
+                </a>
+              </li>
+            
+          
+            
+              
+              <li>
+                <a href="/pages/contact/" aria-label="Kontakt">
+                  Kontakt
+                </a>
+              </li>
+            
+          
+            
+              
+              <li>
+                <a href="https://www.patreon.com/c/chemie_lernen_org" aria-label="Patreon">
+                  Patreon
+                </a>
+              </li>
+            
+          
+        </ul>
+
+        
+        <form class="navbar-form navbar-right" action="/pages/suche/" method="get" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Themen suchen..." name="q" id="search-input">
+          </div>
+          <button type="submit" class="btn btn-default">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</div>
+</header>
+
+<style>
+ 
+.dropdown-menu {
+  min-width: 220px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  border: 1px solid rgba(0,0,0,.15);
+}
+
+ 
+@media (min-width: 768px) {
+  .navbar-collapse {
+    display: flex !important;
+    align-items: center;
+    width: 100%;
+  }
+
+  .navbar-nav {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+}
+
+.dropdown-menu > li > a {
+  padding: 8px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-icon {
+  margin-right: 8px;
+}
+
+.dropdown-menu .label {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+}
+
+ 
+.navbar-nav > .active > a,
+.navbar-nav > .active > a:hover,
+.navbar-nav > .active > a:focus {
+  background-color: #007bff;
+  color: #fff;
+}
+
+ 
+.navbar-form {
+  margin-left: 15px;
+  padding: 0;
+}
+
+.navbar-form .form-control {
+  width: 180px;
+  transition: width 0.3s;
+}
+
+.navbar-form .form-control:focus {
+  width: 250px;
+}
+
+ 
+@media (max-width: 767px) {
+  .navbar-form {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  .navbar-form .form-control {
+    width: 100%;
+  }
+
+  .navbar-form .form-control:focus {
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    position: static;
+    float: none;
+    width: auto;
+    box-shadow: none;
+    border: none;
+  }
+
+  .navbar-nav .open .dropdown-menu {
+    background-color: #f8f9fa;
+  }
+
+  .navbar-nav .open .dropdown-menu > li > a {
+    color: #333;
+    padding-left: 30px;
+  }
+}
+
+ 
+@media (prefers-color-scheme: dark) {
+  .dropdown-menu {
+    background-color: #2c2c2c;
+    border-color: #444;
+  }
+
+  .dropdown-menu > li > a {
+    color: #e0e0e0;
+  }
+
+  .dropdown-menu > li > a:hover,
+  .dropdown-menu > li > a:focus {
+    background-color: #3c3c3c;
+    color: #fff;
+  }
+
+  .navbar-nav .open .dropdown-menu {
+    background-color: #2c2c2c;
+  }
+
+  .navbar-nav .open .dropdown-menu > li > a {
+    color: #e0e0e0;
+  }
+
+  .navbar-form .form-control {
+    background-color: #3c3c3c;
+    border-color: #555;
+    color: #e0e0e0;
+  }
+
+  .navbar-form .form-control:focus {
+    background-color: #4c4c4c;
+    border-color: #007bff;
+    color: #fff;
+  }
+
+  .navbar-form .form-control::placeholder {
+    color: #999;
+  }
+}
+</style>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.innerWidth < 768) {
+    const dropdowns = document.querySelectorAll('.dropdown-toggle');
+    dropdowns.forEach(function(dropdown) {
+      dropdown.addEventListener('click', function(e) {
+        e.preventDefault();
+        const parent = this.parentElement;
+        parent.classList.toggle('open');
+      });
+    });
+  }
+});
+</script>
+
+
+    <div class="container">
+      
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="https://chemie-lernen.org/">
+        <i class="fa fa-home" aria-hidden="true"></i> Start
+      </a>
+    </li>
+
+    
+    
+    <li class="breadcrumb-item">
+      <a href="https://chemie-lernen.org/posts/">Posts</a>
+    </li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Molekülstudio: Interaktive 3D-Visualisierung von Molekülen</li>
+    
+    
+  </ol>
+</nav>
+
+
+<style>
+.breadcrumb {
+  background-color: transparent;
+  padding: 8px 0;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "›";
+  color: #6c757d;
+}
+
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+  color: #6c757d;
+}
+
+ 
+@media (prefers-color-scheme: dark) {
+  .breadcrumb-item a {
+    color: #66b0ff;
+  }
+
+  .breadcrumb-item a:hover {
+    color: #3395ff;
+  }
+
+  .breadcrumb-item.active {
+    color: #adb5bd;
+  }
+}
+</style>
+
+      <div class="wrapper">
+        <main id="main-content" role="main">
+          
+
+<div class="thema-container">
+
+  
+  <div class="thema-header">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <h1>Molekülstudio: Interaktive 3D-Visualisierung von Molekülen</h1>
+
+        
+        <div class="thema-metadata">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+  </div>
+
+  
+  <div class="thema-content-layout">
+    <div class="row">
+      
+      <div class="col-md-8">
+        <article class="thema-content">
+          <h2 id="neue-dimensionen-im-chemielernen-das-molekülstudio">Neue Dimensionen im Chemielernen: Das Molekülstudio</h2>
+<p>Wir freuen uns, das <strong>Molekülstudio</strong> als neue Ergänzung zur Chemie-Lernen-Plattform vorstellen zu können. Diese webbasierte Anwendung ermöglicht es Lernenden, Moleküle in Echtzeit zu visualisieren, zu drehen und zu untersuchen.</p>
+<p>Die molekulare Welt ist normalerweise unsichtbar – aber mit dem Molekülstudio wird sie sichtbar, greifbar und verständlich.</p>
+<hr>
+<div style="text-align: center; margin: 20px 0;">
+<a href="/molekuel-studio/" style="display: inline-block; padding: 15px 30px; font-size: 18px; font-weight: bold; color: white; background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); border: none; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 6px rgba(0,123,255,0.3); transition: all 0.3s ease;">
+🧪 Molekülstudio jetzt ausprobieren
+</a>
+</div>
+<p><em>Kostenlos, werbefrei, keine Anmeldung erforderlich</em></p>
+<hr>
+<h2 id="was-ist-das-molekülstudio">Was ist das Molekülstudio?</h2>
+<p>Das Molekülstudio ist ein interaktives 3D-Tool zur Visualisierung molekularer Strukturen. Basierend auf modernen Web-Technologien (Three.js und WebGL) können Schüler und Studierende chemische Moleküle direkt im Browser erkunden – <strong>ohne Installation, Plugins oder VR-Headset</strong>.</p>
+<h3 id="warum-3d-visualisierung-im-chemieunterricht">Warum 3D-Visualisierung im Chemieunterricht?</h3>
+<p>Die Chemie beschreibt eine dreidimensionale Welt, wird aber oft nur in zweidimensionalen Darstellungen gelehrt:</p>
+<ul>
+<li><strong>Lehrbücher</strong> zeigen flache Zeichnungen von Molekülen</li>
+<li><strong>Tafelbilder</strong> können räumliche Anordnungen nur schwer vermitteln</li>
+<li><strong>Modelle</strong> aus Plastik sind teuer, statisch und schwer zu aktualisieren</li>
+</ul>
+<p>Das Molekülstudio schließt diese Lücke: Jede:r Schüler:in kann auf dem eigenen Laptop oder Tablet Moleküle frei drehen, zoomen und aus jeder Perspektive betrachten.</p>
+<hr>
+<h2 id="kernfunktionen">Kernfunktionen</h2>
+<h3 id="interaktive-3d-visualisierung">Interaktive 3D-Visualisierung</h3>
+<p>Das Molekülstudio nutzt die WebGL-Technologie für hardwarebeschleunigtes 3D-Rendering direkt im Browser:</p>
+<ul>
+<li><strong>Echtzeit-Rendering</strong> mit photorealistischer Beleuchtung und Schatten</li>
+<li><strong>CPK-Farbschema</strong> für standardisierte Elementdarstellung (z.B. Sauerstoff = rot, Wasserstoff = weiß, Kohlenstoff = grau)</li>
+<li><strong>Korrekte Bindungsdarstellung</strong>: Einfach-, Doppel- und Dreifachbindungen werden visuell unterscheidbar dargestellt</li>
+</ul>
+<h3 id="intuitive-steuerung">Intuitive Steuerung</h3>
+<p>Die Bedienung ist bewusst einfach gehalten – keine komplexe Menüs, keine Einarbeitungszeit:</p>
+<ul>
+<li><strong>Maus/Touchpad</strong> – Moleküle durch Ziehen drehen</li>
+<li><strong>Mausrad</strong> – Hinein- und herauszoomen</li>
+<li><strong>Automatische Rotation</strong> – Kann ein- und ausgeschaltet werden</li>
+<li><strong>Touch-Unterstützung</strong> – Funktioniert auch auf Smartphones und Tablets</li>
+</ul>
+<h3 id="vordefinierte-moleküle">Vordefinierte Moleküle</h3>
+<p>Das Molekülstudio enthält fünf sorgfältig ausgewählte Moleküle, die wichtige chemische Konzepte veranschaulichen:</p>
+<h4 id="wasser-ho">Wasser (H₂O)</h4>
+<ul>
+<li><strong>Winkel:</strong> ~104.5° (statt idealer 109.5° durch freie Elektronenpaare)</li>
+<li><strong>Polare Bindung</strong> zwischen Sauerstoff und Wasserstoff</li>
+<li><strong>Lehrreich für:</strong> Wasserstoffbrücken, Dipol-Momente, Solvatation</li>
+</ul>
+<h4 id="methan-ch">Methan (CH₄)</h4>
+<ul>
+<li><strong>Geometrie:</strong> Perfekte Tetraederstruktur</li>
+<li><strong>Bindungswinkel:</strong> Exakt 109.5°</li>
+<li><strong>Lehrreich für:</strong> sp³-Hybridisierung, organische Chemie Grundlagen</li>
+</ul>
+<h4 id="ammoniak-nh">Ammoniak (NH₃)</h4>
+<ul>
+<li><strong>Geometrie:</strong> Trigonale Pyramide</li>
+<li><strong>Freies Elektronenpaar</strong> am Stickstoff beeinflusst die Form</li>
+<li><strong>Lehrreich für:</strong> VSEPR-Theorie, Base-Verhalten</li>
+</ul>
+<h4 id="kohlendioxid-co">Kohlendioxid (CO₂)</h4>
+<ul>
+<li><strong>Geometrie:</strong> Linear (O=C=O Winkel: 180°)</li>
+<li><strong>Doppelbindungen</strong> zwischen C und O</li>
+<li><strong>Lehrreich für:</strong> Lineare Moleküle, sp-Hybridisierung, Treibhauseffekt</li>
+</ul>
+<h4 id="ethen-ch">Ethen (C₂H₄)</h4>
+<ul>
+<li><strong>Geometrie:</strong> Planar mit Doppelbindung</li>
+<li><strong>Eingeschränkte Rotation</strong> um die C=C-Doppelbindung</li>
+<li><strong>Lehrreich für:</strong> sp²-Hybridisierung, cis/trans-Isomerie, Alkene</li>
+</ul>
+<hr>
+<h2 id="didaktischer-mehrwert">Didaktischer Mehrwert</h2>
+<h3 id="1-räumliches-vorstellungsvermögen">1. Räumliches Vorstellungsvermögen</h3>
+<p>Viele Schüler haben Schwierigkeiten, 2D-Darstellungen in 3D-Strukturen zu übersetzen:</p>
+<ul>
+<li><strong>Dreidimensionales Sehen</strong> – Die Molekülgeometrie wird unmittelbar erfassbar</li>
+<li><strong>Bindungswinkel</strong> – Werden intuitiv verständlich, nicht nur als Zahl abstrakt</li>
+<li><strong>Stereochemie</strong> – Chirale Zentren und räumliche Anordnungen werden erkennbar</li>
+</ul>
+<h3 id="2-chemisches-verständnis">2. Chemisches Verständnis</h3>
+<p>Zusammenhänge, die in Zeichnungen schwer erkennbar sind, werden in 3D sofort klar:</p>
+<ul>
+<li><strong>Struktur-Eigenschafts-Beziehung</strong> – Warum ist Wasser ein Flüssigkeit, Methan ein Gas?</li>
+<li><strong>VSEPR-Theorie</strong> – Die Abstoßung von Elektronenpaaren wird sichtbar</li>
+<li><strong>Hybridisierung</strong> – sp, sp², sp³ – die Unterschiede werden greifbar</li>
+</ul>
+<h3 id="3-selbstgesteuertes-lernen">3. Selbstgesteuertes Lernen</h3>
+<ul>
+<li><strong>Eigenständiges Erkunden</strong> – Schüler können in ihrem eigenen Tempo navigieren</li>
+<li><strong>Wiederholtes Betrachten</strong> – Aus verschiedenen Perspektiven, jederzeit</li>
+<li><strong>Aktives Lernen</strong> – Durch Interaktion bleibt der Inhalt besser im Gedächtnis</li>
+</ul>
+<h3 id="4-barrierefreiheit">4. Barrierefreiheit</h3>
+<ul>
+<li><strong>Keine Hardware-Kosten</strong> – Funktioniert auf vorhandenen Geräten</li>
+<li><strong>Ortsunabhängig</strong> – Zugriff von überall, auch zu Hause</li>
+<li><strong>Inklusiv</strong> – Keine VR-Kopfschmerzen, kein Schwindel</li>
+</ul>
+<hr>
+<h2 id="technische-details">Technische Details</h2>
+<h3 id="implementierung">Implementierung</h3>
+<p>Das Molekülstudio wurde als moderne Web-Applikation entwickelt:</p>
+<ul>
+<li><strong>Reine Web-basierte Lösung</strong> – Keine Installation erforderlich</li>
+<li><strong>Three.js</strong> – Bewährte JavaScript-Bibliothek für WebGL-basiertes 3D-Rendering</li>
+<li><strong>Responsive Design</strong> – Optimiert für Desktop, Tablet und Smartphone</li>
+<li><strong>Touch-Unterstützung</strong> – Native Touch-Gesten für mobile Geräte</li>
+<li><strong>ResizeObserver</strong> – Automatische Anpassung an Fenstergröße</li>
+</ul>
+<h3 id="leistung">Leistung</h3>
+<ul>
+<li><strong>Hardware-beschleunigtes Rendering</strong> via WebGL</li>
+<li><strong>Optimiert</strong> für moderne Browser (Chrome, Firefox, Safari, Edge)</li>
+<li><strong>Glatte 60 FPS</strong> auch auf Standard-Laptops</li>
+<li><strong>Schnelle Ladezeiten</strong> – Keine großen Downloads, CDNs für Libraries</li>
+</ul>
+<h3 id="browser-kompatibilität">Browser-Kompatibilität</h3>
+<p>Das Molekülstudio funktioniert in allen modernen Browsern, die WebGL unterstützen:</p>
+<ul>
+<li>✅ Chrome/Chromium 90+</li>
+<li>✅ Firefox 88+</li>
+<li>✅ Safari 14+</li>
+<li>✅ Edge 90+</li>
+</ul>
+<hr>
+<h2 id="integration-in-die-lernplattform">Integration in die Lernplattform</h2>
+<p>Das Molekülstudio ist Teil eines integrierten Lernökosystems:</p>
+<table>
+<thead>
+<tr>
+<th>Komponente</th>
+<th>Funktion</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Periodensystem</strong></td>
+<td>Interaktive 3D-Darstellung aller 118 Elemente mit verschiedenen Ansichten (Tabelle, Kugel, Helix, Gitter)</td>
+<td><a href="/perioden-system-der-elemente/">/perioden-system-der-elemente/</a></td>
+</tr>
+<tr>
+<td><strong>Molekülstudio</strong></td>
+<td>Visualisierung von Molekülen und Bindungen in Echtzeit-3D</td>
+<td><a href="/molekuel-studio/">/molekuel-studio/</a></td>
+</tr>
+<tr>
+<td><strong>Hubs</strong></td>
+<td>Kollaborative VR-Lernräume für Gruppenarbeit und Experimente</td>
+<td><a href="https://hubs.chemie-lernen.org/">hubs.chemie-lernen.org</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="synergien">Synergien</h3>
+<p>Die verschiedenen Komponenten ergänzen sich:</p>
+<ol>
+<li>
+<p><strong>Periodensystem → Molekülstudio</strong></p>
+<ul>
+<li>Vom Element zum Molekül: Wie verbinden sich Atome?</li>
+</ul>
+</li>
+<li>
+<p><strong>Molekülstudio → Hubs</strong></p>
+<ul>
+<li>2D-Web → 3D-VR: Vorbereitung auf immersive VR-Erlebnisse</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="anwendung-im-unterricht">Anwendung im Unterricht</h2>
+<h3 id="einsatzmöglichkeiten">Einsatzmöglichkeiten</h3>
+<p>Das Molekülstudio eignet sich für verschiedene Unterrichtsszenarien:</p>
+<h4 id="frontalunterricht">Frontalunterricht</h4>
+<ul>
+<li>Lehrer projiziert das Molekülstudio auf die Leinwand</li>
+<li>Demonstration von Molekülgeometrien und Bindungstypen</li>
+<li>Live-Demonstration mit Drehen und Zoomen</li>
+</ul>
+<h4 id="gruppenarbeit">Gruppenarbeit</h4>
+<ul>
+<li>Kleingruppen erkunden Moleküle auf Tablets/Laptops</li>
+<li>Schülervorträge: &ldquo;Erklären Sie die Geometrie von Ammoniak&rdquo;</li>
+<li>Vergleichende Analyse: &ldquo;Was haben Wasser und Ammoniak gemeinsam?&rdquo;</li>
+</ul>
+<h4 id="hausaufgaben--selbststudium">Hausaufgaben &amp; Selbststudium</h4>
+<ul>
+<li>Schüler:innen erkunden Moleküle zu Hause</li>
+<li>Vorbereitung auf upcoming Themen im Unterricht</li>
+<li>Vertiefung für besonders interessierte Schüler:innen</li>
+</ul>
+<h3 id="didaktische-tipps">Didaktische Tipps</h3>
+<ol>
+<li>
+<p><strong>Vorwissensaktivierung</strong></p>
+<ul>
+<li>&ldquo;Wie stellen Sie sich ein Wassermolekül vor?&rdquo; – Zeichnung an der Tafel</li>
+<li>Dann: confrontation mit der 3D-Realität</li>
+</ul>
+</li>
+<li>
+<p><strong>Geleitete Entdeckung</strong></p>
+<ul>
+<li>&ldquo;Drehen Sie das Molekül so, dass Sie alle Atome sehen&rdquo;</li>
+<li>&ldquo;Zoomen Sie heran – wie sieht eine Wasserstoffbindung aus?&rdquo;</li>
+</ul>
+</li>
+<li>
+<p><strong>Vergleichendes Betrachten</strong></p>
+<ul>
+<li>Wasser vs. Ammoniak – ähnlich, aber nicht gleich</li>
+<li>Methan vs. Kohlendioxid – Warum ist das eine tetraedrisch, das andere linear?</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="ausblick--weiterentwicklung">Ausblick &amp; Weiterentwicklung</h2>
+<p>Das Molekülstudio ist ein weiterer Schritt auf unserer <a href="/pages/roadmap/">Roadmap</a>, VR- und Web-Technologien für den Chemieunterricht nutzbar zu machen.</p>
+<h3 id="geplante-erweiterungen">Geplante Erweiterungen</h3>
+<h4 id="kurzfristig-nächste-3-6-monate">Kurzfristig (nächste 3-6 Monate)</h4>
+<ul>
+<li>
+<p><strong>Erweiterung der Molekül-Datenbank</strong></p>
+<ul>
+<li>Organische Moleküle: Ethanol, Essigsäure, Glucose, Koffein</li>
+<li>Komplexe Ionen: [Fe(CN)₆]³⁻, [Cu(NH₃)₄]²⁺</li>
+<li>Proteine: Aminosäuren, Peptidbindungen</li>
+</ul>
+</li>
+<li>
+<p><strong>Verbesserte Steuerung</strong></p>
+<ul>
+<li>Tastaturkürzel für häufige Aktionen</li>
+<li>Preset-Ansichten (von oben, von der Seite, etc.)</li>
+<li>Animierter Übergang zwischen Molekülen</li>
+</ul>
+</li>
+</ul>
+<h4 id="mittelfristig-6-12-monate">Mittelfristig (6-12 Monate)</h4>
+<ul>
+<li>
+<p><strong>Export-Funktionen</strong></p>
+<ul>
+<li>Screenshot als PNG</li>
+<li>3D-Modell-Export (OBJ, STL) für 3D-Druck</li>
+<li>Einbettbarer iframe für andere Websites</li>
+</ul>
+</li>
+<li>
+<p><strong>Wiki-Integration</strong></p>
+<ul>
+<li>Klick auf ein Atom → Wiki-Artikel zum Element</li>
+<li>Kontextbezogene Informationen zu jedem Molekül</li>
+<li>Querverweise zu verwandten Konzepten</li>
+</ul>
+</li>
+</ul>
+<h4 id="langfristig-12-monate">Langfristig (12+ Monate)</h4>
+<ul>
+<li>
+<p><strong>Quiz-Modi</strong></p>
+<ul>
+<li>&ldquo;Welches Molekül ist das?&rdquo; – Multiple Choice</li>
+<li>&ldquo;Bestimmen Sie den Bindungswinkel&rdquo; – Interaktiv</li>
+<li>&ldquo;Bauen Sie das Molekül&rdquo; – Kreativ-Modus</li>
+</ul>
+</li>
+<li>
+<p><strong>Benutzerdefinierte Moleküle</strong></p>
+<ul>
+<li>Eingabe von SMILES-Strings</li>
+<li>CSV/JSON-Upload für eigene Molekülsammlungen</li>
+<li>Lehrer:innen können klassenspezifische Sets erstellen</li>
+</ul>
+</li>
+<li>
+<p><strong>Erweiterte Analyse</strong></p>
+<ul>
+<li>Messung von Bindungslängen und -winkeln</li>
+<li>Berechnung von Dipolmomenten</li>
+<li>Anzeige von Partialladungen (Electronegativität)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="hintergrund--technologie">Hintergrund &amp; Technologie</h2>
+<h3 id="warum-threejs">Warum Three.js?</h3>
+<p>Three.js ist die beliebteste JavaScript-Bibliothek für 3D-Grafik im Web:</p>
+<ul>
+<li><strong>Reif und stabil</strong> – Seit 2010 in aktiver Entwicklung</li>
+<li><strong>Große Community</strong> – Extensive Dokumentation und Beispiele</li>
+<li><strong>WebGL-basiert</strong> – Hardwarebeschleunigt, keine Plugins nötig</li>
+<li><strong>Cross-Plattform</strong> – Funktioniert überall, wo JavaScript funktioniert</li>
+</ul>
+<h3 id="cpk-farbschema">CPK-Farbschema</h3>
+<p>Das <strong>Corey-Pauling-Koltun (CPK)</strong> Farbschema ist der Standard in der Chemie:</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Farbe</th>
+<th>Hex-Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wasserstoff (H)</td>
+<td>Weiß</td>
+<td>#FFFFFF</td>
+</tr>
+<tr>
+<td>Kohlenstoff (C)</td>
+<td>Grau/Schwarz</td>
+<td>#909090</td>
+</tr>
+<tr>
+<td>Sauerstoff (O)</td>
+<td>Rot</td>
+<td>#FF0D0D</td>
+</tr>
+<tr>
+<td>Stickstoff (N)</td>
+<td>Blau</td>
+<td>#3050F8</td>
+</tr>
+<tr>
+<td>Schwefel (S)</td>
+<td>Gelb</td>
+<td>#FFFF30</td>
+</tr>
+<tr>
+<td>Phosphor (P)</td>
+<td>Orange</td>
+<td>#FF8000</td>
+</tr>
+<tr>
+<td>Chlor (Cl)</td>
+<td>Grün</td>
+<td>#1FF01F</td>
+</tr>
+</tbody>
+</table>
+<p>Diese Farben werden von Chemiker:innen weltweit erkannt und bilden Konsistenz zwischen Lehrbüchern, Software und Modellen.</p>
+<hr>
+<h2 id="jetzt-testen">Jetzt testen</h2>
+<p>Das Molekülstudio ist <strong>kostenlos</strong>, <strong>werbefrei</strong> und <strong>sofort einsatzbereit</strong> – einfach im Browser öffnen und loslegen.</p>
+<div style="text-align: center; margin: 30px 0;">
+<a href="/molekuel-studio/" style="display: inline-block; padding: 15px 30px; font-size: 18px; font-weight: bold; color: white; background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); border: none; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 6px rgba(0,123,255,0.3); transition: all 0.3s ease;">
+🧪 Molekülstudio starten
+</a>
+</div>
+<p><strong>Direkt im Browser – Keine Anmeldung erforderlich, keine persönlichen Daten, keine Installation.</strong></p>
+<hr>
+<h2 id="unterstützen-sie-uns">Unterstützen Sie uns</h2>
+<p>Diese Plattform ist ein Open-Source-Projekt. Wenn Sie das Molekülstudio im Unterricht einsetzen oder Feedback haben:</p>
+<ul>
+<li>📧 <strong>Kontakt:</strong> <a href="/pages/contact/">Kontakt-Seite</a></li>
+<li>🔧 <strong>GitHub:</strong> <a href="https://github.com/tobias-weiss-ai-xr">tobias-weiss-ai-xr</a></li>
+<li>🥽 <strong>VR-Hubs:</strong> <a href="https://hubs.chemie-lernen.org/">hubs.chemie-lernen.org</a></li>
+</ul>
+<hr>
+<p><strong>Verwandte Ressourcen:</strong></p>
+<ul>
+<li><a href="/perioden-system-der-elemente/">Periodensystem der Elemente</a> – 3D-Visualisierung aller 118 Elemente</li>
+<li><a href="/pages/roadmap/">Roadmap: Ausbaustrategie</a> – Unsere Vision für die Zukunft des Chemielernens</li>
+<li><a href="https://hubs.chemie-lernen.org/">Mozilla Hubs</a> – Kollaborative VR-Lernräume</li>
+</ul>
+<p><strong>Weitere Blog-Posts:</strong></p>
+<ul>
+<li><a href="/posts/interdisciplinary-vr-cooperation/">Eine interdisziplinäre Kooperation in der Hochschullehre mit Hilfe der virtuellen Realität</a> – Forschungsartikel zur VR im Chemieunterricht</li>
+</ul>
+
+
+          
+          
+
+          
+          
+        </article>
+      </div>
+
+      
+      <aside class="col-md-4">
+        <div class="thema-sidebar">
+
+          
+          
+
+          
+          
+
+          
+          
+
+          
+          <div class="sidebar-section vr-cta">
+            <h3>🥽 VR erleben</h3>
+            <p>Erleben Sie Chemie in Virtual Reality!</p>
+            <a href="https://hubs.chemie-lernen.org/" class="btn btn-primary btn-block">
+              Zu den VR Laboren
+            </a>
+          </div>
+
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  
+  
+
+</div>
+
+<style>
+ 
+.thema-container {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+ 
+.thema-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.thema-icon {
+  font-size: 4rem;
+  margin-bottom: 15px;
+}
+
+.thema-header h1 {
+  margin-bottom: 15px;
+  font-size: 2.5rem;
+}
+
+.thema-metadata {
+  margin-top: 15px;
+}
+
+.thema-metadata .label {
+  margin: 5px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+}
+
+ 
+.label-difficulty.grundlagen {
+  background-color: #28a745;
+}
+
+.label-difficulty.mittelstufe {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.label-difficulty.fortgeschritten {
+  background-color: #dc3545;
+}
+
+ 
+.thema-content-layout {
+  margin-top: 30px;
+}
+
+.thema-content {
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.thema-content h2 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+ 
+.interactive-section {
+  background-color: #f8f9fa;
+  padding: 25px;
+  border-radius: 8px;
+  margin: 30px 0;
+  border-left: 4px solid #007bff;
+}
+
+.interactive-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.interactive-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+ 
+.tags-section {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #dee2e6;
+}
+
+.tag-label {
+  margin: 5px;
+  font-size: 0.85rem;
+}
+
+ 
+.thema-sidebar {
+  position: sticky;
+  top: 20px;
+}
+
+.sidebar-section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.sidebar-section h3 {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #007bff;
+}
+
+ 
+.related-topics {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.related-topic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.related-topic:hover {
+  background-color: #e9ecef;
+  transform: translateX(5px);
+}
+
+.related-topic a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.interactive-indicator {
+  font-size: 1.2rem;
+}
+
+ 
+.external-links {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.external-links li {
+  margin-bottom: 10px;
+}
+
+.external-links a {
+  color: #007bff;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.external-links a:hover {
+  text-decoration: underline;
+}
+
+ 
+.vr-cta {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.vr-cta h3,
+.vr-cta p {
+  color: white;
+}
+
+.vr-cta .btn {
+  background-color: white;
+  color: #667eea;
+  border: none;
+}
+
+.vr-cta .btn:hover {
+  background-color: #f0f0f0;
+}
+
+ 
+.topic-navigation {
+  margin-top: 40px;
+  padding-top: 20px;
+}
+
+.topic-navigation .btn {
+  margin: 5px;
+}
+
+ 
+@media (prefers-color-scheme: dark) {
+  .thema-content h2 {
+    color: #e0e0e0;
+  }
+
+  .interactive-section {
+    background-color: #2c2c2c;
+    border-left-color: #3395ff;
+  }
+
+  .sidebar-section {
+    background-color: #2c2c2c;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  .sidebar-section h3 {
+    border-bottom-color: #3395ff;
+    color: #e0e0e0;
+  }
+
+  .related-topic {
+    background-color: #3c3c3c;
+  }
+
+  .related-topic:hover {
+    background-color: #4c4c4c;
+  }
+
+  .related-topic a {
+    color: #e0e0e0;
+  }
+
+  .tags-section {
+    border-top-color: #555;
+  }
+
+  .thema-content {
+    color: #e0e0e0;
+  }
+
+  .thema-header h1 {
+    color: #e0e0e0;
+  }
+}
+
+ 
+@media (max-width: 768px) {
+  .thema-icon {
+    font-size: 3rem;
+  }
+
+  .thema-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .interactive-links {
+    flex-direction: column;
+  }
+
+  .interactive-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .thema-sidebar {
+    position: static;
+  }
+
+  .topic-navigation .btn {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+</style>
+
+
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-footer" style="margin-top: 50px; padding: 30px 0; background-color: #333; color: #fff;" role="contentinfo" aria-label="Website-Fußzeile">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</h4>
+                <p>chemie-lernen.org - Ihre Plattform für innovative Chemie-Lernräume in Virtual Reality. Machen Sie komplexe chemische Konzepte greifbar und erlebbar.</p>
+                <p>
+                    <a href="https://www.patreon.com/c/chemie_lernen_org" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; font-weight: 500;" aria-label="Besuchen Sie unseren Patreon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: text-bottom; margin-right: 5px;">
+                            <path d="M4.231 0C3.281 0 2.4.513 2.4 1.484v20.922c0 .995.881 1.484 1.831 1.484.95 0 1.774-.49 1.774-1.484V1.484C6.005.513 5.181 0 4.231 0zm13.396 4.453c-2.606 0-4.748 2.054-4.748 4.578 0 2.525 2.142 4.579 4.748 4.579s4.748-2.054 4.748-4.579c0-2.524-2.142-4.578-4.748-4.578z"/>
+                        </svg>
+                        Unterstütze uns auf Patreon
+                    </a>
+                </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <p>&copy; 2025 chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte. Alle Rechte vorbehalten.</p>
+                <p><small><a href="/imprint/" style="color: #fff;">impressum</a> | <a href="/privacy/" style="color: #fff;">privacy</a></small></p>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+
+  
+  <script src="/js/dark-mode.js"></script>
+
+  
+  <script src="/js/quiz-system.js"></script>
+  <script src="/js/quiz-user-system.js"></script>
+  <script src="/js/progress-tracker.js"></script>
+
+  
+  
+
+  
+  
+  </body>
+
+</html>

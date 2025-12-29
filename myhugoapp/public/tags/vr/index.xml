@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vr on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title>
+    <link>https://chemie-lernen.org/tags/vr/</link>
+    <description>Recent content in vr on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-de</language>
+    <lastBuildDate>Mon, 22 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/tags/vr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chemie Lernen - Offene, Interaktive und immersive Lerninhalte</title>
+      <link>https://chemie-lernen.org/</link>
+      <pubDate>Mon, 22 Dec 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://chemie-lernen.org/</guid>
+      <description>Chemie Lernen Innovative Chemie-Lernräume in Virtual Reality
+Willkommen bei Chemie Lernen – Ihrer Plattform für die nächste Generation des Chemieunterrichts. Durch den Einsatz von Virtual Reality (VR) und interaktiven Lernumgebungen verwandeln wir traditionelle chemische Konzepte in erlebbare Erfahrungen.
+🎯 Unsere Mission Wir machen komplexe chemische Zusammenhänge verständlich und greifbar durch:
+🥽 Virtual Reality Lernräume: Tauchen Sie ein in molekulare Welten 🧪 Interaktive Periodensystem-Erlebnisse: Erkunden Sie Elemente in 3D 👥 Kollaborative Lernumgebungen: Lernen Sie gemeinsam in virtuellen Räumen 🎮 Gamification: Motivation durch spielerische Elemente 📚 Lerninhalte nach Themenbereichen Durchstöbern Sie unsere Chemie-Themen, organisiert nach Schwierigkeitsgrad:</description>
+    </item>
+    
+    <item>
+      <title>Roadmap: Ausbaustrategie</title>
+      <link>https://chemie-lernen.org/pages/roadmap/</link>
+      <pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://chemie-lernen.org/pages/roadmap/</guid>
+      <description>Die aktuelle Plattform nutzt erfolgreich VR (Mozilla Hubs) zur Visualisierung des Periodensystems und grundlegender Experimente. Um sich von einem forschungsorientierten Projekt zu einem umfassenden Lernökosystem zu entwickeln, werden folgende Erweiterungen empfohlen.
+1. Immersive VR-Szenarien 🥽 Während das Periodensystem ein guter Anfang ist, entfaltet VR seine größte Stärke bei der Visualisierung von Dingen, die sonst unsichtbar oder gefährlich sind.
+✓ Molekülstudio (IMPLEMENTIERT): Interaktive 3D-Webanwendung zur Visualisierung von Molekülen mit Echtzeit-Rendering, Maussteuerung und automatischer Rotation.</description>
+    </item>
+    
+  </channel>
+</rss>

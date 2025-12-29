@@ -20,18 +20,85 @@ enableRobotsTXT = true
   footer_description = "chemie-lernen.org - Ihre Plattform für innovative Chemie-Lernräume in Virtual Reality. Machen Sie komplexe chemische Konzepte greifbar und erlebbar."
 
 [params.meta]
-  keywords = "Chemie Lernen, VR Chemieunterricht, Virtual Reality Bildung, Chemie lernen online, interaktiver Chemieunterricht, digitale Bildung, VR Lernräume, Chemie studieren, innovative Chemie, immersive Bildung"
+  keywords = "chemie-lernen.org, VR Chemieunterricht, Virtual Reality Bildung, Chemie lernen online, interaktiver Chemieunterricht, digitale Bildung, VR Lernräume, Chemie studieren, innovative Chemie, immersive Bildung"
 
 author = "chemie-lernen.org Team"
 
+# Search Index Configuration
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
+
+[outputFormats]
+  [outputFormats.JSON]
+    mediaType = "application/json"
+    baseName = "index"
+    isPlainText = true
+    notAlternative = true
+
+[mediaTypes]
+  [mediaTypes."application/json"]
+    suffixes = ["json"]
+
+# Themenbereiche (Subject Areas) Navigation
 [[menu.main]]
-    name = "Periodensystem"
-    url = "/perioden-system-der-elemente/"
+    name = "Themenbereiche"
+    url = "/themenbereiche/"
     weight = 10
+    icon = "📚"
+[[menu.main]]
+    name = "Interaktiv"
+    url = "#"
+    weight = 20
+    identifier = "interaktiv"
+    icon = "🖱️"
+
+# Interactive Elements (submenu)
+[[menu.main]]
+    name = "Periodensystem 3D"
+    url = "/perioden-system-der-elemente/"
+    parent = "interaktiv"
+    weight = 21
+    icon = "⚛️"
+    interaktiv = true
 [[menu.main]]
     name = "Molekülstudio"
     url = "/molekuel-studio/"
-    weight = 30
+    parent = "interaktiv"
+    weight = 22
+    icon = "🔬"
+    interaktiv = true
+[[menu.main]]
+    name = "pH-Rechner"
+    url = "/ph-rechner/"
+    parent = "interaktiv"
+    weight = 23
+    icon = "🧪"
+    interaktiv = true
+[[menu.main]]
+    name = "Molare Masse"
+    url = "/molare-masse-rechner/"
+    parent = "interaktiv"
+    weight = 24
+    icon = "⚗️"
+    interaktiv = true
+[[menu.main]]
+    name = "Gleichungen Ausgleichen"
+    url = "/reaktionsgleichungen-ausgleichen/"
+    parent = "interaktiv"
+    weight = 25
+    icon = "⚖️"
+    interaktiv = true
+[[menu.main]]
+    name = "VR Labore"
+    url = "https://hubs.chemie-lernen.org/"
+    parent = "interaktiv"
+    weight = 26
+    icon = "🥽"
+    interaktiv = true
+
+# General Pages
 [[menu.main]]
     name = "Roadmap"
     url = "/pages/roadmap/"
@@ -44,4 +111,9 @@ author = "chemie-lernen.org Team"
     name = "Kontakt"
     url = "/pages/contact/"
     weight = 60
+[[menu.main]]
+    name = "Patreon"
+    url = "https://www.patreon.com/c/chemie_lernen_org"
+    weight = 70
+    icon = "💜"
 

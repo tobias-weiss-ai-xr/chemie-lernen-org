@@ -1,0 +1,154 @@
+{{ define "main" }}
+
+<div class="equation-balancer-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Calculator Section -->
+  <div class="calculator-section">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="calculator-panel">
+          <h2>Chemische Gleichung eingeben</h2>
+          <p>Geben Sie eine unbalancierte Reaktionsgleichung ein (z.B. H2 + O2 = H2O):</p>
+
+          <div class="input-group-lg">
+            <input type="text" id="equation-input" class="form-control"
+                   placeholder="z.B. H2 + O2 = H2O"
+                   aria-label="Chemische Gleichung">
+            <span class="input-group-btn">
+              <button class="btn btn-primary btn-lg" onclick="balanceEquation()">
+                <i class="fa fa-balance-scale"></i> Ausgleichen
+              </button>
+            </span>
+          </div>
+
+          <!-- Quick Examples -->
+          <div class="quick-examples">
+            <p><strong>Beispiele:</strong></p>
+            <button class="btn btn-sm btn-default example-btn" data-equation="H2 + O2 = H2O">Wasserbildung</button>
+            <button class="btn btn-sm btn-default example-btn" data-equation="Fe + O2 = Fe2O3">Eisenoxidation</button>
+            <button class="btn btn-sm btn-default example-btn" data-equation="CH4 + O2 = CO2 + H2O">Verbrennung Methan</button>
+            <button class="btn btn-sm btn-default example-btn" data-equation="Al + HCl = AlCl3 + H2">Aluminium + Salzsäure</button>
+            <button class="btn btn-sm btn-default example-btn" data-equation="Cu + HNO3 = Cu(NO3)2 + NO + H2O">Kupfer + Salpetersäure</button>
+            <button class="btn btn-sm btn-default example-btn" data-equation="C3H8 + O2 = CO2 + H2O">Propanverbrennung</button>
+            <button class="btn btn-sm btn-default example-btn" data-equation="KMnO4 + HCl = KCl + MnCl2 + H2O + Cl2">Redox</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section" style="display:none;">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="result-card balanced-equation">
+            <h3>Ausgeglichene Gleichung</h3>
+            <div id="balanced-equation" class="equation-display"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="result-card coefficients">
+            <h3>Koeffizienten</h3>
+            <div id="coefficients-list"></div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="result-card verification">
+            <h3>Verifizierung</h3>
+            <div id="verification-table"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Section -->
+    <div id="error-section" style="display:none;">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="alert alert-danger">
+            <i class="fa fa-exclamation-triangle"></i>
+            <strong>Fehler:</strong> <span id="error-message"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Educational Section -->
+  <div class="educational-section">
+    <h2>Wissenswertes über Reaktionsgleichungen</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚖️ Das Gesetz der Erhaltung der Masse</h3>
+          <p>In einer chemischen Reaktion wird keine Masse erzeugt oder vernichtet. Die Anzahl der Atome jedes Elements muss auf beiden Seiten der Gleichung gleich sein.</p>
+          <p><strong>Beispiel:</strong></p>
+          <p class="formula">2H₂ + O₂ → 2H₂O</p>
+          <p>4 H-Atome und 2 O-Atome auf jeder Seite</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🔢 So wird ausgeglichen</h3>
+          <ol>
+            <li>Zählen Sie die Atome jedes Elements auf beiden Seiten</li>
+            <li>Ändern Sie Koeffizienten (Zahlen vor Formeln), nicht Indizes</li>
+            <li>Beginnen Sie mit dem komplexesten Molekül</li>
+            <li>Balancieren Sie zuletzt Elemente, die alleine vorkommen (O₂, H₂, etc.)</li>
+            <li>Überprüfen Sie, ob alle Atomzahlen übereinstimmen</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>💡 Tipps & Tricks</h3>
+          <ul>
+            <li>Behandeln_polyatomare Ionen_als_Einheit (z.B. SO₄²⁻, NO₃⁻)</li>
+            <li>Wenn_polyatomare Gruppen_auftauchen, sparen Sie Zeit</li>
+            <li>Überprüfen Sie Ihre Arbeit durch Abzählen</li>
+            <li>Reine Elemente (O₂, H₂, N₂) sollten Sie zuletzt balancieren</li>
+            <li>Kleine ganze Zahlen bevorzugen (durch 2, 3 etc. teilen wenn möglich)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="info-card">
+          <h3>🎯 Warum ist Ausgleichen wichtig?</h3>
+          <ul>
+            <li><strong>Stöchiometrische Berechnungen:</strong> Erforderlich für Mengenberechnungen bei chemischen Reaktionen</li>
+            <li><strong>Reaktionsausbeute:</strong> Ermöglicht Vorhersage der Produktmengen</li>
+            <li><strong>Laborpraxis:</strong> Bestimmt, wie viel Edukt für eine gewünschte Produktmenge benötigt wird</li>
+            <li><strong>Industrielle Prozesse:</strong> Optimiert Rohstoffnutzung und Kosten</li>
+            <li><strong>Umweltanalyse:</strong> Berechnet Abfallprodukte und Emissionen</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/reaktionsgleichungen-ausgleichen.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/reaktionsgleichungen-ausgleichen.css" | relURL }}">
+
+{{ end }}

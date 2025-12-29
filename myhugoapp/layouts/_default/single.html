@@ -1,0 +1,490 @@
+{{ define "main" }}
+
+<div class="thema-container">
+
+  <!-- Topic Header -->
+  <div class="thema-header">
+    <div class="row">
+      <div class="col-md-12">
+        {{ if .Params.icon }}
+        <div class="thema-icon">{{ .Params.icon }}</div>
+        {{ end }}
+        <h1>{{ .Title }}</h1>
+
+        <!-- Metadata badges -->
+        <div class="thema-metadata">
+          {{ if .Params.schwierigkeit }}
+          <span class="label label-difficulty label-{{ .Params.schwierigkeit }}">
+            {{ if eq .Params.schwierigkeit "grundlagen" }}🌱 Grundlagen
+            {{ else if eq .Params.schwierigkeit "mittelstufe" }}🌿 Mittelstufe
+            {{ else if eq .Params.schwierigkeit "fortgeschritten" }}🌳 Fortgeschritten
+            {{ else }}{{ .Params.schwierigkeit }}
+            {{ end }}
+          </span>
+          {{ end }}
+
+          {{ if .Params.interaktiv }}
+          <span class="label label-primary">🖱️ Enthält interaktive Elemente</span>
+          {{ end }}
+
+          {{ if .Params.teilgebiet }}
+          {{ range .Params.teilgebiet }}
+          <span class="label label-default">{{ . }}</span>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+  </div>
+
+  <!-- Main Content Layout -->
+  <div class="thema-content-layout">
+    <div class="row">
+      <!-- Main Content -->
+      <div class="col-md-8">
+        <article class="thema-content">
+          {{ .Content }}
+
+          <!-- Interactive Elements Section -->
+          {{ if .Params.interaktiv }}
+          {{ if or (eq .Params.teilgebiet "aufbau-materie") (eq .Params.teilgebiet "erdoel-organische-stoffklassen") }}
+          <section class="interactive-section">
+            <h2>Interaktive Elemente</h2>
+            <div class="interactive-links">
+              {{ if eq .Params.teilgebiet "aufbau-materie" }}
+              <a href="/perioden-system-der-elemente/" class="btn btn-primary btn-lg interactive-btn">
+                ⚛️ Periodensystem 3D erkunden
+              </a>
+              <a href="/molekuel-studio/" class="btn btn-primary btn-lg interactive-btn">
+                🔬 Molekülstudio öffnen
+              </a>
+              {{ end }}
+
+              {{ if or (eq .Params.teilgebiet "erdoel-organische-stoffklassen") (eq .Params.teilgebiet "reaktionstypen-organisch") }}
+              <a href="/molekuel-studio/" class="btn btn-primary btn-lg interactive-btn">
+                🔬 Moleküle im Molekülstudio visualisieren
+              </a>
+              {{ end }}
+
+              {{ if eq .Params.teilgebiet "redox-elektrochemie" }}
+              <a href="https://hubs.chemie-lernen.org/" class="btn btn-primary btn-lg interactive-btn" target="_blank">
+                🥽 VR Labor besuchen
+              </a>
+              {{ end }}
+            </div>
+          </section>
+          {{ end }}
+          {{ end }}
+
+          <!-- Tags -->
+          {{ if .Params.tags }}
+          <div class="tags-section">
+            <strong>Schlagworte:</strong>
+            {{ range .Params.tags }}
+            <a href="/tags/{{ . | urlize }}/" class="label label-info tag-label">{{ . }}</a>
+            {{ end }}
+          </div>
+          {{ end }}
+        </article>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="col-md-4">
+        <div class="thema-sidebar">
+
+          <!-- Quick Navigation -->
+          {{ if .Params.teilgebiet }}
+          <div class="sidebar-section">
+            <h3>📍 Themenbereich</h3>
+            <p>Dieses Thema gehört zu: <strong>{{ .Params.teilgebiet }}</strong></p>
+            <a href="/themenbereiche/" class="btn btn-default btn-block">
+              📚 Alle Themenbereiche
+            </a>
+          </div>
+          {{ end }}
+
+          <!-- Related Topics -->
+          {{ if .Params.schwierigkeit }}
+          <div class="sidebar-section">
+            <h3>🔗 Ähnliche Themen</h3>
+            <div class="related-topics">
+              {{ $currentSchwierigkeit := .Params.schwierigkeit }}
+              {{ $currentTeilgebiet := .Params.teilgebiet }}
+              {{ range where .Site.RegularPages "Params.schwierigkeit" $currentSchwierigkeit }}
+              {{ if not (eq .Permalink $.Permalink) }}
+              {{ if or (eq .Params.teilgebiet $currentTeilgebiet) }}
+              <div class="related-topic">
+                <a href="{{ .Permalink }}">
+                  {{ if .Params.icon }}{{ .Params.icon }} {{ end }}{{ .Title }}
+                </a>
+                {{ if .Params.interaktiv }}
+                <span class="interactive-indicator">🖱️</span>
+                {{ end }}
+              </div>
+              {{ end }}
+              {{ end }}
+              {{ end }}
+            </div>
+          </div>
+          {{ end }}
+
+          <!-- External Resources -->
+          {{ if .Params.externe_links }}
+          <div class="sidebar-section">
+            <h3>🌐 Externe Ressourcen</h3>
+            <ul class="external-links">
+              {{ range .Params.externe_links }}
+              <li>
+                <a href="{{ .url }}" target="_blank" rel="noopener">
+                  {{ .title }}
+                  <i class="fa fa-external-link"></i>
+                </a>
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+          {{ end }}
+
+          <!-- VR CTA -->
+          <div class="sidebar-section vr-cta">
+            <h3>🥽 VR erleben</h3>
+            <p>Erleben Sie Chemie in Virtual Reality!</p>
+            <a href="https://hubs.chemie-lernen.org/" class="btn btn-primary btn-block">
+              Zu den VR Laboren
+            </a>
+          </div>
+
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Topic Navigation (Prev/Next) -->
+  {{ if .Params.teilgebiet }}
+  <nav class="topic-navigation">
+    <div class="row">
+      <div class="col-md-12">
+        <hr class="featurette-divider">
+
+        {{ $currentPage := . }}
+        {{ $themebereichePages := where .Site.Pages "Section" "themenbereiche" }}
+        {{ $sortedPages := sort $themebereichePages ".Params.weight" }}
+
+        {{ range $index, $page := $sortedPages }}
+          {{ if eq $page.Permalink $currentPage.Permalink }}
+            {{ if $index }}
+              {{ with index $sortedPages (sub $index 1) }}
+              <a href="{{ .Permalink }}" class="btn btn-default pull-left">
+                <i class="fa fa-arrow-left"></i>
+                {{ .Params.icon }} {{ .Title }}
+              </a>
+              {{ end }}
+            {{ end }}
+
+            {{ if lt $index (sub (len $sortedPages) 1) }}
+              {{ with index $sortedPages (add $index 1) }}
+              <a href="{{ .Permalink }}" class="btn btn-default pull-right">
+                {{ .Params.icon }} {{ .Title }}
+                <i class="fa fa-arrow-right"></i>
+              </a>
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+
+        <div class="text-center">
+          <a href="/themenbereiche/" class="btn btn-primary">
+            <i class="fa fa-list"></i> Alle Themenbereiche
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  {{ end }}
+
+</div>
+
+<style>
+/* Container */
+.thema-container {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+/* Header */
+.thema-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.thema-icon {
+  font-size: 4rem;
+  margin-bottom: 15px;
+}
+
+.thema-header h1 {
+  margin-bottom: 15px;
+  font-size: 2.5rem;
+}
+
+.thema-metadata {
+  margin-top: 15px;
+}
+
+.thema-metadata .label {
+  margin: 5px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+}
+
+/* Difficulty Labels */
+.label-difficulty.grundlagen {
+  background-color: #28a745;
+}
+
+.label-difficulty.mittelstufe {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.label-difficulty.fortgeschritten {
+  background-color: #dc3545;
+}
+
+/* Content Layout */
+.thema-content-layout {
+  margin-top: 30px;
+}
+
+.thema-content {
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.thema-content h2 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Interactive Section */
+.interactive-section {
+  background-color: #f8f9fa;
+  padding: 25px;
+  border-radius: 8px;
+  margin: 30px 0;
+  border-left: 4px solid #007bff;
+}
+
+.interactive-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.interactive-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Tags */
+.tags-section {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #dee2e6;
+}
+
+.tag-label {
+  margin: 5px;
+  font-size: 0.85rem;
+}
+
+/* Sidebar */
+.thema-sidebar {
+  position: sticky;
+  top: 20px;
+}
+
+.sidebar-section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.sidebar-section h3 {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #007bff;
+}
+
+/* Related Topics */
+.related-topics {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.related-topic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.related-topic:hover {
+  background-color: #e9ecef;
+  transform: translateX(5px);
+}
+
+.related-topic a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.interactive-indicator {
+  font-size: 1.2rem;
+}
+
+/* External Links */
+.external-links {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.external-links li {
+  margin-bottom: 10px;
+}
+
+.external-links a {
+  color: #007bff;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.external-links a:hover {
+  text-decoration: underline;
+}
+
+/* VR CTA */
+.vr-cta {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.vr-cta h3,
+.vr-cta p {
+  color: white;
+}
+
+.vr-cta .btn {
+  background-color: white;
+  color: #667eea;
+  border: none;
+}
+
+.vr-cta .btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* Topic Navigation */
+.topic-navigation {
+  margin-top: 40px;
+  padding-top: 20px;
+}
+
+.topic-navigation .btn {
+  margin: 5px;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .thema-content h2 {
+    color: #e0e0e0;
+  }
+
+  .interactive-section {
+    background-color: #2c2c2c;
+    border-left-color: #3395ff;
+  }
+
+  .sidebar-section {
+    background-color: #2c2c2c;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  .sidebar-section h3 {
+    border-bottom-color: #3395ff;
+    color: #e0e0e0;
+  }
+
+  .related-topic {
+    background-color: #3c3c3c;
+  }
+
+  .related-topic:hover {
+    background-color: #4c4c4c;
+  }
+
+  .related-topic a {
+    color: #e0e0e0;
+  }
+
+  .tags-section {
+    border-top-color: #555;
+  }
+
+  .thema-content {
+    color: #e0e0e0;
+  }
+
+  .thema-header h1 {
+    color: #e0e0e0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .thema-icon {
+    font-size: 3rem;
+  }
+
+  .thema-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .interactive-links {
+    flex-direction: column;
+  }
+
+  .interactive-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .thema-sidebar {
+    position: static;
+  }
+
+  .topic-navigation .btn {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+</style>
+
+{{ end }}

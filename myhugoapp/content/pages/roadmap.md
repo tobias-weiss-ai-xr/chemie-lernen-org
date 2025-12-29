@@ -1,6 +1,8 @@
 ---
 title: "Roadmap: Ausbaustrategie"
 date: 2025-12-20
+description: "Die zukünftige Entwicklungsstrategie für chemie-lernen.org"
+tags: ["roadmap", "entwicklung", "vr"]
 ---
 
 Die aktuelle Plattform nutzt erfolgreich VR (Mozilla Hubs) zur Visualisierung des Periodensystems und grundlegender Experimente. Um sich von einem forschungsorientierten Projekt zu einem umfassenden Lernökosystem zu entwickeln, werden folgende Erweiterungen empfohlen.

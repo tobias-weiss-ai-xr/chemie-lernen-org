@@ -1,0 +1,203 @@
+{{ define "main" }}
+
+<div class="ph-calculator-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Calculator Tabs -->
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a href="#hplus" aria-controls="hplus" role="tab" data-toggle="tab">
+            <i class="fa fa-flask"></i> H⁺-Konzentration
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#ohminus" aria-controls="ohminus" role="tab" data-toggle="tab">
+            <i class="fa fa-flask"></i> OH⁻-Konzentration
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#poh" aria-controls="poh" role="tab" data-toggle="tab">
+            <i class="fa fa-flask"></i> pOH-Wert
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <!-- H+ Concentration Tab -->
+    <div class="tab-pane active" id="hplus" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>pH aus H⁺-Konzentration berechnen</h2>
+        <p>Geben Sie die Wasserstoffionenkonzentration ein:</p>
+
+        <div class="input-group">
+          <input type="number" id="hplus-input" class="form-control" placeholder="z.B. 1e-7" step="any" aria-label="Wasserstoffionenkonzentration in mol pro Liter">
+          <span class="input-group-addon">mol/L</span>
+          <span class="input-group-btn">
+            <button class="btn btn-primary" onclick="calculateFromHPlus()">Berechnen</button>
+          </span>
+        </div>
+
+        <div id="hplus-result" class="result-panel" style="display:none;">
+          <h3>Ergebnis:</h3>
+          <div class="result-value">
+            <span class="label">pH-Wert:</span>
+            <span id="hplus-ph" class="ph-value"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OH- Concentration Tab -->
+    <div class="tab-pane" id="ohminus" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>pH aus OH⁻-Konzentration berechnen</h2>
+        <p>Geben Sie die Hydroxidionenkonzentration ein:</p>
+
+        <div class="input-group">
+          <input type="number" id="ohminus-input" class="form-control" placeholder="z.B. 1e-7" step="any" aria-label="Hydroxidionenkonzentration in mol pro Liter">
+          <span class="input-group-addon">mol/L</span>
+          <span class="input-group-btn">
+            <button class="btn btn-primary" onclick="calculateFromOHMinus()">Berechnen</button>
+          </span>
+        </div>
+
+        <div id="ohminus-result" class="result-panel" style="display:none;">
+          <h3>Ergebnis:</h3>
+          <div class="result-value">
+            <span class="label">pH-Wert:</span>
+            <span id="ohminus-ph" class="ph-value"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- pOH Tab -->
+    <div class="tab-pane" id="poh" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>pH aus pOH berechnen</h2>
+        <p>Geben Sie den pOH-Wert ein:</p>
+
+        <div class="input-group">
+          <input type="number" id="poh-input" class="form-control" placeholder="z.B. 7" step="any" min="0" max="14" aria-label="pOH-Wert zwischen 0 und 14">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" onclick="calculateFromPOH()">Berechnen</button>
+          </span>
+        </div>
+
+        <div id="poh-result" class="result-panel" style="display:none;">
+          <h3>Ergebnis:</h3>
+          <div class="result-value">
+            <span class="label">pH-Wert:</span>
+            <span id="poh-ph" class="ph-value"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- pH Scale Visualization -->
+  <div class="ph-scale-section">
+    <h2 class="text-center">pH-Skala</h2>
+    <p class="text-center">Der pH-Wert gibt die Stärke einer Säure oder Base an (0 = sehr stark sauer, 14 = sehr stark basisch)</p>
+
+    <div class="ph-scale" id="ph-scale">
+      <div class="ph-indicator" id="ph-indicator"></div>
+      <div class="ph-marks">
+        <div class="ph-mark" data-ph="0"><span>0</span><small>Sehr stark sauer</small></div>
+        <div class="ph-mark" data-ph="1"><span>1</span></div>
+        <div class="ph-mark" data-ph="2"><span>2</span></div>
+        <div class="ph-mark" data-ph="3"><span>3</span></div>
+        <div class="ph-mark" data-ph="4"><span>4</span><small>Sauer</small></div>
+        <div class="ph-mark" data-ph="5"><span>5</span></div>
+        <div class="ph-mark" data-ph="6"><span>6</span></div>
+        <div class="ph-mark" data-ph="7"><span>7</span><small>Neutral</small></div>
+        <div class="ph-mark" data-ph="8"><span>8</span></div>
+        <div class="ph-mark" data-ph="9"><span>9</span></div>
+        <div class="ph-mark" data-ph="10"><span>10</span><small>Basisch</small></div>
+        <div class="ph-mark" data-ph="11"><span>11</span></div>
+        <div class="ph-mark" data-ph="12"><span>12</span></div>
+        <div class="ph-mark" data-ph="13"><span>13</span></div>
+        <div class="ph-mark" data-ph="14"><span>14</span><small>Sehr stark basisch</small></div>
+      </div>
+    </div>
+
+    <div class="current-ph-display" id="current-ph-display">
+      <h3>Aktueller pH-Wert: <span id="current-ph">7.00</span> - <span id="ph-description">Neutral</span></h3>
+    </div>
+  </div>
+
+  <!-- Educational Info -->
+  <div class="educational-info">
+    <h2>Wissenswertes über pH-Werte</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🧪 Definition</h3>
+          <p>Der pH-Wert ist ein Maß für die Konzentration von Wasserstoffionen (H⁺) in einer Lösung. Er wird berechnet als:</p>
+          <p class="formula">pH = -log₁₀[H⁺]</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚖️ Neutralpunkt</h3>
+          <p>Bei 25°C ist reines Wasser neutral mit einem pH-Wert von 7. In diesem Fall gilt:</p>
+          <p class="formula">pH + pOH = 14</p>
+          <p>[H⁺] = [OH⁻] = 10⁻⁷ mol/L</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🌡️ Temperaturabhängigkeit</h3>
+          <p>Der Neutralpunkt hängt von der Temperatur ab. Bei höheren Temperaturen verschiebt sich der neutrale pH-Wert zu kleineren Werten.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>🔴 Säuren (pH < 7)</h3>
+          <ul>
+            <li><strong>Stark sauer (0-3):</strong> Magensäure, Batteriesäure</li>
+            <li><strong>Sauer (4-6):</strong> Essig, Zitronensaft, Cola</li>
+            <li><strong>Schwach sauer (6-7):</strong> Milch, Regenwasser</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>🔵 Basen (pH > 7)</h3>
+          <ul>
+            <li><strong>Schwach basisch (7-8):</strong> Meerwasser, Blut</li>
+            <li><strong>Basisch (9-11):</strong> Seifenlösung, Backpulver</li>
+            <li><strong>Stark basisch (12-14):</strong> Bleichmittel, Rohrreiniger</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/ph-rechner.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/ph-rechner.css" | relURL }}">
+
+{{ end }}

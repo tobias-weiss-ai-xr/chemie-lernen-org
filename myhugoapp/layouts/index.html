@@ -9,9 +9,10 @@
     </div>
   </div>
 
-  <!-- Description only - title already in navbar -->
+  <!-- Main Heading -->
   <div class="row">
     <div class="col-md-12">
+      <h1 class="text-center">{{ .Site.Title }}</h1>
       {{ if .Site.Params.footer_description }}
       <p class="lead text-center">{{ .Site.Params.footer_description }}</p>
       {{ end }}
@@ -20,14 +21,21 @@
 
   <hr class="featurette-divider">
 
+  <!-- Section Heading -->
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Interaktive Lernplattformen</h2>
+    </div>
+  </div>
+
     <div class="row pack">
 
         <!-- Custom Hubs Link Card -->
         <div class="col-md-4 card">
              <a href="https://hubs.chemie-lernen.org/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #007bff;">
+                <div class="panel panel-default" style="border: 2px solid #4caf50;">
 
-                  <div class="panel-body" style="background-color: #f0f8ff;">
+                  <div class="panel-body" style="background-color: #e8f5e9;">
                     <h3 class="panel-title pull-left">🥽 Hubs-Umgebung</h3>
                   </div>
 
@@ -41,9 +49,9 @@
         <!-- Custom Periodic Table Link Card -->
         <div class="col-md-4 card">
              <a href="/perioden-system-der-elemente/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #6f42c1;">
+                <div class="panel panel-default" style="border: 2px solid #4caf50;">
 
-                  <div class="panel-body" style="background-color: #f8f5ff;">
+                  <div class="panel-body" style="background-color: #e8f5e9;">
                     <h3 class="panel-title pull-left">⚛️ Periodensystem</h3>
                   </div>
 
@@ -57,9 +65,9 @@
         <!-- Custom Molecule Studio Link Card -->
         <div class="col-md-4 card">
              <a href="/molekuel-studio/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #fd7e14;">
+                <div class="panel panel-default" style="border: 2px solid #4caf50;">
 
-                  <div class="panel-body" style="background-color: #fff8f0;">
+                  <div class="panel-body" style="background-color: #e8f5e9;">
                     <h3 class="panel-title pull-left">🔬 Molekülstudio</h3>
                   </div>
 

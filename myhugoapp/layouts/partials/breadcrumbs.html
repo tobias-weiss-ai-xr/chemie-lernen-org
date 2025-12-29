@@ -1,0 +1,109 @@
+{{/* Breadcrumbs Navigation */}}
+{{ if ne .Kind "home" }}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="{{ .Site.BaseURL }}">
+        <i class="fa fa-home" aria-hidden="true"></i> Start
+      </a>
+    </li>
+
+    {{/* Themenbereiche breadcrumb */}}
+    {{ if eq .CurrentSection.Title "Themenbereiche" }}
+    <li class="breadcrumb-item active" aria-current="page">Themenbereiche</li>
+
+    {{/* Individual Themenbereich breadcrumb */}}
+    {{ else if in .CurrentSection.File.Dir "themenbereiche" }}
+    <li class="breadcrumb-item">
+      <a href="/themenbereiche/">Themenbereiche</a>
+    </li>
+    <li class="breadcrumb-item">
+      {{ if eq .Params.schwierigkeit "grundlagen" }}
+        <a href="/themenbereiche/#grundlagen">🌱 Grundlagen</a>
+      {{ else if eq .Params.schwierigkeit "mittelstufe" }}
+        <a href="/themenbereiche/#mittelstufe">🌿 Mittelstufe</a>
+      {{ else if eq .Params.schwierigkeit "fortgeschritten" }}
+        <a href="/themenbereiche/#fortgeschritten">🌳 Fortgeschritten</a>
+      {{ else }}
+        <a href="{{ .CurrentSection.Permalink }}">{{ .CurrentSection.Title }}</a>
+      {{ end }}
+    </li>
+    {{ if ne .Title .CurrentSection.Title }}
+    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+    {{ end }}
+
+    {{/* Interactive pages breadcrumb */}}
+    {{ else if or (eq .Title "Periodensystem der Elemente") (eq .Title "Molekülstudio") }}
+    <li class="breadcrumb-item">
+      <a href="/themenbereiche/">Themenbereiche</a>
+    </li>
+    {{ if eq .Title "Periodensystem der Elemente" }}
+    <li class="breadcrumb-item">
+      <a href="/themenbereiche/aufbau-materie/">Aufbau der Materie</a>
+    </li>
+    {{ else if eq .Title "Molekülstudio" }}
+    <li class="breadcrumb-item">
+      <a href="/themenbereiche/aufbau-materie/">Aufbau der Materie</a>
+    </li>
+    {{ end }}
+    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+
+    {{/* Standard pages (Roadmap, About, Contact) */}}
+    {{ else if in .File.Dir "pages" }}
+    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+
+    {{/* Default breadcrumb */}}
+    {{ else if .CurrentSection.Title }}
+    <li class="breadcrumb-item">
+      <a href="{{ .CurrentSection.Permalink }}">{{ .CurrentSection.Title }}</a>
+    </li>
+    {{ if ne .Title .CurrentSection.Title }}
+    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+    {{ end }}
+    {{ end }}
+  </ol>
+</nav>
+{{ end }}
+
+<style>
+.breadcrumb {
+  background-color: transparent;
+  padding: 8px 0;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "›";
+  color: #6c757d;
+}
+
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+  color: #6c757d;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .breadcrumb-item a {
+    color: #66b0ff;
+  }
+
+  .breadcrumb-item a:hover {
+    color: #3395ff;
+  }
+
+  .breadcrumb-item.active {
+    color: #adb5bd;
+  }
+}
+</style>

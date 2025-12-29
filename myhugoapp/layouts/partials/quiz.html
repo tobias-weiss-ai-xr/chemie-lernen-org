@@ -1,0 +1,127 @@
+{{/*
+  Quiz Component Partial for chemie-lernen.org
+  Usage: {{ partial "quiz.html" (dict "context" . "quizId" "saeuren-basen") }}
+*/}}
+
+{{ $quizId := .quizId }}
+{{ $context := .context }}
+
+<!-- Quiz Container -->
+<div class="quiz-container" id="quiz-{{ $quizId }}" style="display: none;">
+  <div class="quiz-header">
+    <h2 class="quiz-title" id="quiz-title-{{ $quizId }}"></h2>
+    <p class="quiz-subtitle">Testen Sie Ihr Wissen</p>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill-{{ $quizId }}"></div>
+    </div>
+    <div class="progress-text" id="progress-text-{{ $quizId }}">Frage 1 von 10</div>
+  </div>
+
+  <!-- Question Card -->
+  <div class="question-card" id="question-card-{{ $quizId }}">
+    <h3 class="question-text">
+      <span class="question-number" id="question-number-{{ $quizId }}"></span>
+      <span id="question-text-{{ $quizId }}"></span>
+    </h3>
+
+    <!-- Multiple Choice Options -->
+    <div class="answer-options" id="answer-options-{{ $quizId }}"></div>
+
+    <!-- Feedback -->
+    <div class="feedback" id="feedback-{{ $quizId }}">
+      <div class="feedback-title">
+        <span class="feedback-icon" id="feedback-icon-{{ $quizId }}"></span>
+        <span id="feedback-title-{{ $quizId }}"></span>
+      </div>
+      <p id="feedback-text-{{ $quizId }}"></p>
+    </div>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="button-group">
+    <button class="quiz-button quiz-button-secondary" id="prev-button-{{ $quizId }}" style="display: none;">
+      ← Zurück
+    </button>
+    <button class="quiz-button quiz-button-primary" id="next-button-{{ $quizId }}">
+      Weiter →
+    </button>
+    <button class="quiz-button quiz-button-primary" id="submit-button-{{ $quizId }}" style="display: none;">
+      Antworten prüfen
+    </button>
+  </div>
+</div>
+
+<!-- Results Container -->
+<div class="quiz-container" id="results-{{ $quizId }}" style="display: none;">
+  <div class="results-card">
+    <h2 class="quiz-title">Quiz-Ergebnisse</h2>
+    <div class="results-score" id="results-score-{{ $quizId }}"></div>
+    <p class="results-message" id="results-message-{{ $quizId }}"></p>
+
+    <div class="results-details">
+      <div class="detail-card">
+        <div class="detail-value" id="correct-answers-{{ $quizId }}"></div>
+        <div class="detail-label">Richtige Antworten</div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-value" id="total-questions-{{ $quizId }}"></div>
+        <div class="detail-label">Gesamtfragen</div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-value" id="passing-score-{{ $quizId }}"></div>
+        <div class="detail-label">Bestanden (≥70%)</div>
+      </div>
+    </div>
+
+    <!-- Answer Review -->
+    <div class="answer-review" id="answer-review-{{ $quizId }}"></div>
+
+    <!-- Action Buttons -->
+    <div class="button-group">
+      <button class="quiz-button quiz-button-secondary" onclick="window.location.reload()">
+        ↻ Wiederholen
+      </button>
+      <a href="{{ "/themenbereiche/" | relURL }}" class="quiz-button quiz-button-primary">
+        ← Zurück zu den Themenbereichen
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Start Button (shown before quiz) -->
+<div class="quiz-container" id="start-screen-{{ $quizId }}">
+  <div style="text-align: center; padding: 2rem;">
+    <h2 style="margin-bottom: 1rem;">🧪 Wissenstest</h2>
+    <p style="margin-bottom: 2rem; color: var(--text-secondary, #666);">
+      Testen Sie Ihr Wissen mit interaktiven Fragen zu diesem Thema.
+    </p>
+    <button class="quiz-button quiz-button-primary" onclick="startQuiz('{{ $quizId }}')">
+      Quiz starten →
+    </button>
+  </div>
+</div>
+
+<!-- Load quiz data and scripts -->
+<script>
+// Quiz data would be loaded from a JSON file or defined inline
+const quizData_{{ $quizId }} = {
+  title: "{{ .title | default "Quiz" }}",
+  questions: [
+    // Questions loaded from data file or defined inline
+  ]
+};
+
+// Initialize quiz when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  // Quiz initialization logic
+  console.log('Quiz {{ $quizId }} loaded');
+});
+</script>
+
+<!-- Load quiz system CSS and JS -->
+<link rel="stylesheet" href="{{ "/css/quiz-system.css" | relURL }}">
+<script src="{{ "/js/quiz-system.js" | relURL }}"></script>

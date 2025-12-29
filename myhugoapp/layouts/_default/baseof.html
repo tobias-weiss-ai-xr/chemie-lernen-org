@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="de" xml:lang="de">
 
   {{ partial "head.html" .}}
   {{ block "css" . }}{{ end }}
 
   <body>
 
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="sr-only sr-only-focusable">Zum Hauptinhalt springen</a>
+
     {{ partial "header.html" . }}
 
     <div class="container">
+      {{ partial "breadcrumbs.html" . }}
       <div class="wrapper">
-        {{ block "main" . }} {{ end }}
+        <main id="main-content" role="main">
+          {{ block "main" . }} {{ end }}
+        </main>
       </div>
     </div>
 
@@ -21,6 +27,16 @@
 
   <!-- Custom JS for dark mode -->
   <script src="/js/dark-mode.js"></script>
+
+  <!-- Quiz System JS -->
+  <script src="/js/quiz-system.js"></script>
+  <script src="/js/quiz-user-system.js"></script>
+  <script src="/js/progress-tracker.js"></script>
+
+  <!-- Quiz Data Files (conditionally loaded) -->
+  {{ if .Params.quiz }}
+  <script src="/data/quiz-{{ .Params.quiz }}.js"></script>
+  {{ end }}
 
   {{ with .Site.Params.analytics }}
     {{ partial "analytics.html" . }}
