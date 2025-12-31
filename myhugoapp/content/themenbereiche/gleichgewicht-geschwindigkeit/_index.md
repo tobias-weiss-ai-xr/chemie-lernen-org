@@ -18,18 +18,15 @@ Chemische Reaktionen laufen nicht alle mit der gleichen Geschwindigkeit ab. Manc
 
 Die **Reaktionsgeschwindigkeit** beschreibt, wie schnell die Konzentration eines Reaktanden oder Produkts pro Zeiteinheit ändert.
 
-```
-v = -Δc(Reaktand)/Δt = +Δc(Produkt)/Δt
+$$v = -\frac{\Delta c(\text{Reaktand})}{\Delta t} = +\frac{\Delta c(\text{Produkt})}{\Delta t}$$
 
-v = Reaktionsgeschwindigkeit (mol/(L·s))
-Δc = Konzentrationsänderung (mol/L)
-Δt = Zeitänderung (s)
-```
+- $v$ = Reaktionsgeschwindigkeit (mol/(L·s))
+- $\Delta c$ = Konzentrationsänderung (mol/L)
+- $\Delta t$ = Zeitänderung (s)
 
 **Beispiel:** Die Zersetzung von Wasserstoffperoxid
-```
-2H₂O₂ → 2H₂O + O₂
-```
+
+$$\ce{2H2O2 -> 2H2O + O2}$$
 
 ## Messung der Reaktionsgeschwindigkeit
 
@@ -54,9 +51,7 @@ v = Reaktionsgeschwindigkeit (mol/(L·s))
 Je höher die Konzentration, desto schneller die Reaktion (mehr Teilchenkollisionen).
 
 **Gesetz der Massenwirkung:**
-```
-v ~ c(Reaktand₁) · c(Reaktand₂)
-```
+$$v \sim c(\text{Reaktand}_1) \cdot c(\text{Reaktand}_2)$$
 
 ### 2. Temperatur
 
@@ -68,15 +63,13 @@ Eine Erhöhung um 10 K verdoppelt bis vervierfacht die Geschwindigkeit.
 ```
 
 **Arrhenius-Gleichung:**
-```
-k = A · e^(-Ea/(R·T))
+$$k = A \cdot e^{-E_a/(R \cdot T)}$$
 
-k = Geschwindigkeitskonstante
-A = Frequenzfaktor
-Ea = Aktivierungsenergie
-R = Gaskonstante
-T = Temperatur (K)
-```
+- $k$ = Geschwindigkeitskonstante
+- $A$ = Frequenzfaktor
+- $E_a$ = Aktivierungsenergie
+- $R$ = Gaskonstante
+- $T$ = Temperatur (K)
 
 ### 3. Katalysatoren
 
@@ -104,27 +97,19 @@ Höherer Druck → höhere Konzentration → schnellere Reaktion
 Die **Reaktionsordnung** gibt an, wie die Geschwindigkeit von den Konzentrationen abhängt.
 
 **Nullte Ordnung:**
-```
-v = k (unabhängig von Konzentration)
-```
+$$v = k \quad \text{(unabhängig von Konzentration)}$$
 
 **Erste Ordnung:**
-```
-v = k · c(A)
-```
+$$v = k \cdot c(A)$$
 
 **Zweite Ordnung:**
-```
-v = k · c(A) · c(B)
-```
+$$v = k \cdot c(A) \cdot c(B)$$
 
 ### Beispiel: Zersetzung von N₂O₅
 
-```
-2N₂O₅ → 4NO₂ + O₂
+$$\ce{2N2O5 -> 4NO2 + O2}$$
 
-v = k · c(N₂O₅)     (1. Ordnung)
-```
+$$v = k \cdot c(\ce{N2O5}) \quad \text{(1. Ordnung)}$$
 
 ## Aktivierungsenergie
 
@@ -165,11 +150,9 @@ Ea2│   /  \
 Bei **reversiblen Reaktionen** können Reaktanden und Produkte miteinander reagieren. Im Gleichgewicht sind die Geschwindigkeiten von Hin- und Rückreaktion gleich.
 
 **Beispiel:**
-```
-N₂ + 3H₂ ⇌ 2NH₃
+$$\ce{N2 + 3H2 <=> 2NH3}$$
 
-v(hin) = v(rück)
-```
+$$v(\text{hin}) = v(\text{rück})$$
 
 ### Merkmale des Gleichgewichts
 
@@ -183,25 +166,19 @@ v(hin) = v(rück)
 Das **Massenwirkungsgesetz** beschreibt die Beziehung zwischen Konzentrationen im Gleichgewicht.
 
 Für die Reaktion:
-```
-aA + bB ⇌ cC + dD
-```
+$$aA + bB \rightleftharpoons cC + dD$$
 
 Gilt:
-```
-K = [C]^c · [D]^d / [A]^a · [B]^b
+$$K = \frac{[C]^c \cdot [D]^d}{[A]^a \cdot [B]^b}$$
 
-K = Gleichgewichtskonstante
-[] = Gleichgewichtskonzentration
-```
+- $K$ = Gleichgewichtskonstante
+- $[...]$ = Gleichgewichtskonzentration
 
 ### Beispiel: Synthese von HI
 
-```
-H₂ + I₂ ⇌ 2HI
+$$\ce{H2 + I2 <=> 2HI}$$
 
-K = [HI]² / [H₂] · [I₂]
-```
+$$K = \frac{[\ce{HI}]^2}{[\ce{H2}] \cdot [\ce{I2}]}$$
 
 ## Prinzip von Le Chatelier
 
@@ -214,39 +191,33 @@ Das **Prinzip von Le Chatelier** besagt: Wenn ein System im Gleichgewicht gestö
 **Mehr Reaktanden:** Gleichgewicht verschiebt sich zu Produkten
 
 **Beispiel:**
-```
-N₂ + 3H₂ ⇌ 2NH₃
+$$\ce{N2 + 3H2 <=> 2NH3}$$
 
-Mehr H₂ → mehr NH₃ (Produkt)
-```
+Mehr $\ce{H2}$ → mehr $\ce{NH3}$ (Produkt)
 
 #### 2. Druckänderung (bei Gasen)
 
 **Höherer Druck:** Verschiebung zur Seite mit weniger Gasmolekülen
 
 **Beispiel:**
-```
-N₂(g) + 3H₂(g) ⇌ 2NH₃(g)
+$$\ce{N2(g) + 3H2(g) <=> 2NH3(g)}$$
 
-4 Mol Gas → 2 Mol Gas
+$$4 \text{ Mol Gas} \rightarrow 2 \text{ Mol Gas}$$
 
-Höherer Druck → mehr NH₃ (weniger Gasmoleküle)
-```
+Höherer Druck → mehr $\ce{NH3}$ (weniger Gasmoleküle)
 
 #### 3. Temperaturänderung
 
-**Exotherme Reaktion (ΔH < 0):**
+**Exotherme Reaktion ($\Delta H < 0$):**
 - Höhere Temperatur → Verschiebung zu Reaktanden (endotherme Richtung)
 
-**Endotherme Reaktion (ΔH > 0):**
+**Endotherme Reaktion ($\Delta H > 0$):**
 - Höhere Temperatur → Verschiebung zu Produkten (endotherme Richtung)
 
 **Beispiel (exotherm):**
-```
-N₂ + 3H₂ ⇌ 2NH₃      ΔH = -92 kJ/mol
+$$\ce{N2 + 3H2 <=> 2NH3} \quad \Delta H = -92 \text{ kJ/mol}$$
 
-Höhere Temperatur → weniger NH₃
-```
+Höhere Temperatur → weniger $\ce{NH3}$
 
 #### 4. Katalysatoren
 
