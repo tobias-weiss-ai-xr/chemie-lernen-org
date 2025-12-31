@@ -27,9 +27,9 @@ Chemie ist überall in unserem täglichen Leben:
 ## Die Teilchen der Materie
 
 Alle Materie besteht aus kleinen Teilchen, die wir als **Atome** bezeichnen. Atome können sich zu **Molekülen** verbinden, wie zum Beispiel:
-- **H₂O** (Wasser): 2 Wasserstoff-Atome + 1 Sauerstoff-Atom
-- **CO₂** (Kohlenstoffdioxid): 1 Kohlenstoff-Atom + 2 Sauerstoff-Atome
-- **O₂** (Sauerstoff): 2 Sauerstoff-Atome
+- **$\ce{H2O}$** (Wasser): 2 Wasserstoff-Atome + 1 Sauerstoff-Atom
+- **$\ce{CO2}$** (Kohlenstoffdioxid): 1 Kohlenstoff-Atom + 2 Sauerstoff-Atome
+- **$\ce{O2}$** (Sauerstoff): 2 Sauerstoff-Atome
 
 ### Chemische Reaktionen
 
@@ -38,9 +38,8 @@ Bei einer chemischen Reaktion werden Ausgangsstoffe (Edukte) in neue Stoffe (Pro
 - **Neubildung** neuer chemischer Bindungen
 
 Beispiel: Die Verbrennung von Methan
-```
-CH₄ + 2O₂ → CO₂ + 2H₂O
-```
+
+$$\ce{CH4 + 2O2 -> CO2 + 2H2O}$$
 
 ## Arbeitsweisen in der Chemie
 
@@ -145,8 +144,8 @@ Im Chemielabor und im Alltag begegnen wir verschiedenen Gefahrenstoffen, die dur
 - **Gemisch**: Besteht aus mindestens zwei verschiedenen Stoffen (z.B. Luft)
 
 ### Element und Verbindung
-- **Element**: Reinstoff, der aus nur einer Art Atomen besteht (z.B. Sauerstoff O₂)
-- **Verbindung**: Reinstoff aus mindestens zwei verschiedenen Elementen (z.B. Wasser H₂O)
+- **Element**: Reinstoff, der aus nur einer Art Atomen besteht (z.B. Sauerstoff $\ce{O2}$)
+- **Verbindung**: Reinstoff aus mindestens zwei verschiedenen Elementen (z.B. Wasser $\ce{H2O}$)
 
 ### Homogen und Heterogen
 - **Homogen**: Gleichmäßige Verteilung, nicht unterscheidbar (z.B. Salzlösung)
