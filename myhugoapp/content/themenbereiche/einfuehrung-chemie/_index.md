@@ -6,6 +6,7 @@ teilgebiet: "einfuehrung-chemie"
 schwierigkeit: "grundlagen"
 icon: "🔬"
 weight: 10
+quiz: "einfuehrung-chemie"
 ---
 
 # Einführung in die Chemie

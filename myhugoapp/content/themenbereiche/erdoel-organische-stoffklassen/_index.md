@@ -7,6 +7,7 @@ schwierigkeit: "mittelstufe"
 icon: "🛢️"
 weight: 90
 interaktiv: true
+quiz: "erdoel-organische-stoffklassen"
 ---
 
 # Erdöl und organische Stoffklassen

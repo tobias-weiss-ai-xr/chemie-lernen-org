@@ -7,6 +7,7 @@ schwierigkeit: "fortgeschritten"
 icon: "🔍"
 weight: 80
 interaktiv: true
+quiz: "analytische-methoden"
 ---
 
 # Analytische Methoden
