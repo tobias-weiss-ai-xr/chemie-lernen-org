@@ -30,9 +30,8 @@ Die organische Chemie ist überall um uns herum – von der Plastikflasche, aus 
 #### Polyethylen (PE)
 
 **Herstellung:** Polymerisation von Ethen
-```
-n CH₂=CH₂ → -(CH₂-CH₂)ₙ-
-```
+
+$$\ce{n CH2=CH2 -> -(CH2-CH2)_{n}-}$$
 
 **Eigenschaften:**
 - Wachsartig, transparent
@@ -52,9 +51,8 @@ n CH₂=CH₂ → -(CH₂-CH₂)ₙ-
 #### Polypropylen (PP)
 
 **Herstellung:** Polymerisation von Propen
-```
-n CH₂=CH-CH₃ → -(CH₂-CH(CH₃))ₙ-
-```
+
+$$\ce{n CH2=CH-CH3 -> -(CH2-CH(CH3))_{n}-}$$
 
 **Eigenschaften:**
 - Härter als PE
@@ -70,9 +68,8 @@ n CH₂=CH-CH₃ → -(CH₂-CH(CH₃))ₙ-
 #### Polystyrol (PS)
 
 **Herstellung:** Polymerisation von Styrol
-```
-n C₆H₅-CH=CH₂ → -(CH₂-CH(C₆H₅))ₙ-
-```
+
+$$\ce{n C6H5-CH=CH2 -> -(CH2-CH(C6H5))_{n}-}$$
 
 **Eigenschaften:**
 - Transparent, spröde
@@ -92,9 +89,8 @@ n C₆H₅-CH=CH₂ → -(CH₂-CH(C₆H₅))ₙ-
 #### Polyvinylchlorid (PVC)
 
 **Herstellung:** Polymerisation von Vinylchlorid
-```
-n CH₂=CHCl → -(CH₂-CHCl)ₙ-
-```
+
+$$\ce{n CH2=CHCl -> -(CH2-CHCl)_{n}-}$$
 
 **Eigenschaften:**
 - Hart, langlebig
@@ -110,10 +106,10 @@ n CH₂=CHCl → -(CH₂-CHCl)ₙ-
 #### Polyethylenterephthalat (PET)
 
 **Herstellung:** Polykondensation
-```
-n HOCH₂CH₂OH + n HOOCC₆H₄COOH →
-→ -(OCH₂CH₂O-OC-C₆H₄-CO)ₙ- + 2n H₂O
-```
+
+$$\ce{n HOCH2CH2OH + n HOOCC6H4COOH ->}$$
+
+$$\ce{-> -(OCH2CH2O-OC-C6H4-CO)_{n}- + 2n H2O}$$
 
 **Verwendung:**
 - Getränkeflaschen
@@ -185,7 +181,7 @@ n HOCH₂CH₂OH + n HOOCC₆H₄COOH →
 
 **Funktion:** Photosynthese (Lichtabsorption)
 
-**Struktur:** Porphyrin-Ring mit Mg²⁺
+**Struktur:** Porphyrin-Ring mit $\ce{Mg^2+}$
 
 ### Synthetische Farbstoffe
 
@@ -299,7 +295,7 @@ Mangel: Beriberi
 
 ### Terpene
 
-**Definition:** Aus Isopreneinheiten (C₅) aufgebaut
+**Definition:** Aus Isopreneinheiten ($\ce{C5}$) aufgebaut
 
 **Beispiele:**
 - **Menthol:** Kühlend, Lindernd
@@ -342,9 +338,8 @@ Mangel: Beriberi
 ### Biodiesel
 
 **Herstellung:** Umesterung von Pflanzenölen
-```
-Triglycerid + 3 Methanol → 3 Biodiesel + Glycerin
-```
+
+$$\ce{Triglycerid + 3 Methanol -> 3 Biodiesel + Glycerin}$$
 
 **Vorteile:**
 - CO₂-neutral (pflanzen binden CO₂)
@@ -357,10 +352,10 @@ Triglycerid + 3 Methanol → 3 Biodiesel + Glycerin
 ### Bioethanol
 
 **Herstellung:** Fermentation von Zuckern
-```
-C₆H₁₂O₆ → 2 C₂H₅OH + 2 CO₂
-(Glucose)    (Ethanol)
-```
+
+$$\ce{C6H12O6 -> 2 C2H5OH + 2 CO2}$$
+
+(Glucose) → (Ethanol)
 
 **Anwendung:**
 - Biokraftstoff
