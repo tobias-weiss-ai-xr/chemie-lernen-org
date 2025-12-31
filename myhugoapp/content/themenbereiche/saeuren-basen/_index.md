@@ -33,12 +33,11 @@ Die heute gebräuchlichste Definition stammt von den dänischen Chemikern Johann
 
 **Beispiel für eine Säure-Base-Reaktion:**
 
-```
-HCl + H₂O → H₃O⁺ + Cl⁻
-(Säure)  (Base)  (Säure) (Base)
-```
+$$\ce{HCl + H2O -> H3O+ + Cl-}$$
 
-Salzsäure (HCl) gibt ein Proton an Wasser (H₂O) ab und bildet Oxonium-Ionen (H₃O⁺) und Chlorid-Ionen (Cl⁻).
+$$\text{(Säure)} \quad \text{(Base)} \quad \text{(Säure)} \quad \text{(Base)}$$
+
+Salzsäure ($\ce{HCl}$) gibt ein Proton an Wasser ($\ce{H2O}$) ab und bildet Oxonium-Ionen ($\ce{H3O+}$) und Chlorid-Ionen ($\ce{Cl-}$).
 
 ### Säure-Base-Paare
 
@@ -50,12 +49,10 @@ Säure 1 + Base 2 ⇌ Base 1 + Säure 2
 
 **Beispiel: Ammoniak mit Wasser**
 
-```
-NH₃ + H₂O ⇌ NH₄⁺ + OH⁻
-```
+$$\ce{NH3 + H2O <=> NH4+ + OH-}$$
 
-- NH₃ (Base) nimmt ein Proton auf → NH₄⁺ (konjugierte Säure)
-- H₂O (Säure) gibt ein Proton ab → OH⁻ (konjugierte Base)
+- $\ce{NH3}$ (Base) nimmt ein Proton auf → $\ce{NH4+}$ (konjugierte Säure)
+- $\ce{H2O}$ (Säure) gibt ein Proton ab → $\ce{OH-}$ (konjugierte Base)
 
 ## Der pH-Wert
 
@@ -65,11 +62,9 @@ Der pH-Wert ist ein Maß für den sauren oder basischen Charakter einer wässrig
 
 **Formel:**
 
-```
-pH = -log₁₀[H₃O⁺]
-```
+$$\text{pH} = -\log_{10}[\ce{H3O+}]$$
 
-Wobei [H₃O⁺] die Konzentration der Oxonium-Ionen in mol/L ist.
+Wobei $[\ce{H3O+}]$ die Konzentration der Oxonium-Ionen in mol/L ist.
 
 ### Die pH-Skala
 
@@ -90,15 +85,15 @@ Die pH-Skala reicht von **0 bis 14**:
 ### Berechnungsbeispiele
 
 **Beispiel 1: Starke Säure**
-- HCl-Konzentration: 0.01 mol/L
-- [H₃O⁺] = 0.01 mol/L (da HCl vollständig dissoziiert)
-- pH = -log(0.01) = -log(10⁻²) = **2**
+- $\ce{HCl}$-Konzentration: 0.01 mol/L
+- $[\ce{H3O+}]$ = 0.01 mol/L (da $\ce{HCl}$ vollständig dissoziiert)
+- $\text{pH} = -\log(0.01) = -\log(10^{-2}) = \textbf{2}$
 
 **Beispiel 2: Base**
-- NaOH-Konzentration: 0.001 mol/L
-- [OH⁻] = 0.001 mol/L (vollständige Dissoziation)
-- pOH = -log(0.001) = 3
-- pH = 14 - pOH = **11**
+- $\ce{NaOH}$-Konzentration: 0.001 mol/L
+- $[\ce{OH-}]$ = 0.001 mol/L (vollständige Dissoziation)
+- $\text{pOH} = -\log(0.001) = 3$
+- $\text{pH} = 14 - \text{pOH} = \textbf{11}$
 
 🧪 **Probieren Sie es aus:** Verwenden Sie unseren interaktiven **[pH-Rechner](/ph-rechner/)**, um pH-Werte zu berechnen und zu visualisieren!
 
@@ -108,15 +103,11 @@ Die pH-Skala reicht von **0 bis 14**:
 
 Wenn eine Säure mit einer Base reagiert, entstehen Wasser und ein Salz:
 
-```
-Säure + Base → Salz + Wasser
-```
+$$\text{Säure} + \text{Base} \rightarrow \text{Salz} + \text{Wasser}$$
 
 **Beispiel: Salzsäure + Natronlauge**
 
-```
-HCl + NaOH → NaCl + H₂O
-```
+$$\ce{HCl + NaOH -> NaCl + H2O}$$
 
 ### Anwendungen der Neutralisation
 

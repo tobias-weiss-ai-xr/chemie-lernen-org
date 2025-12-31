@@ -99,13 +99,13 @@ Die **Flammenfärbung** ist ein klassischer Nachweis für Metall-Ionen:
 5. Wägung
 
 **Beispiel:** Sulfat-Bestimmung
-```
-Ba²⁺ + SO₄²⁻ → BaSO₄↓
+$$\ce{Ba^2+ + SO4^2- -> BaSO4 v}$$
 
-m(BaSO₄) = 0.2331 g
-n(BaSO₄) = m/M = 0.2331 g / 233.39 g/mol = 0.001 mol
-n(SO₄²⁻) = n(BaSO₄) = 0.001 mol
-```
+$$m(\ce{BaSO4}) = 0.2331 \text{ g}$$
+
+$$n(\ce{BaSO4}) = \frac{m}{M} = \frac{0.2331 \text{ g}}{233.39 \text{ g/mol}} = 0.001 \text{ mol}$$
+
+$$n(\ce{SO4^2-}) = n(\ce{BaSO4}) = 0.001 \text{ mol}$$
 
 ### Maßanalyse (Titration)
 
@@ -118,14 +118,12 @@ n(SO₄²⁻) = n(BaSO₄) = 0.001 mol
 4. Maßlösung zutropfen bis Äquivalenzpunkt
 
 **Berechnung:**
-```
-c₁ · V₁ = c₂ · V₂
+$$c_1 \cdot V_1 = c_2 \cdot V_2$$
 
-c₁ = Konzentration Maßlösung
-V₁ = verbrauchtes Volumen
-c₂ = Konzentration Analyt
-V₂ = Volumen Analyt
-```
+- $c_1$ = Konzentration Maßlösung
+- $V_1$ = verbrauchtes Volumen
+- $c_2$ = Konzentration Analyt
+- $V_2$ = Volumen Analyt
 
 ## Titrationstechniken
 
@@ -133,12 +131,10 @@ V₂ = Volumen Analyt
 
 **Beispiel:** Salzsäure mit Natronlauge
 
-```
-HCl + NaOH → NaCl + H₂O
+$$\ce{HCl + NaOH -> NaCl + H2O}$$
 
 Äquivalenzpunkt: pH = 7 (Neutralisation)
 Indikator: Phenolphthalein (farblos → rot)
-```
 
 **Titrationskurve:**
 
@@ -158,11 +154,9 @@ pH
 
 **Beispiel:** Permanganometrie
 
-```
-MnO₄⁻ + 5Fe²⁺ + 8H⁺ → Mn²⁺ + 5Fe³⁺ + 4H₂O
+$$\ce{MnO4- + 5Fe^2+ + 8H+ -> Mn^2+ + 5Fe^3+ + 4H2O}$$
 
 Selbstindikator: Violett → farblos
-```
 
 **Anwendung:**
 - Eisenbestimmung
@@ -173,12 +167,10 @@ Selbstindikator: Violett → farblos
 
 **Beispiel:** EDTA-Titration (Chelatometrie)
 
-```
-Ca²⁺ + EDTA⁴⁻ → [Ca-EDTA]²⁻
+$$\ce{Ca^2+ + EDTA^4- -> [Ca-EDTA]^2-}$$
 
 Indikator: Eriochromschwarz T
 Farbumschlag: Rot → Blau
-```
 
 **Anwendung:**
 - Wasserhärte-Bestimmung
@@ -188,11 +180,9 @@ Farbumschlag: Rot → Blau
 
 **Beispiel:** Mohr-Methode (Chlorid-Bestimmung)
 
-```
-Cl⁻ + Ag⁺ → AgCl↓
+$$\ce{Cl- + Ag+ -> AgCl v}$$
 
-Indikator: Chromat (Ag₂CrO₄ rotbraun)
-```
+Indikator: Chromat ($\ce{Ag2CrO4}$ rotbraun)
 
 ## Chromatographie
 
@@ -216,18 +206,14 @@ Indikator: Chromat (Ag₂CrO₄ rotbraun)
 4. Visualisierung (UV, Ninhydrin, etc.)
 
 **Rf-Wert (Retentionsfaktor):**
-```
-Rf = Strecke Substanz / Strecke Lösungsmittelfront
+$$R_f = \frac{\text{Strecke Substanz}}{\text{Strecke Lösungsmittelfront}}$$
 
-0 < Rf < 1
-```
+$$0 < R_f < 1$$
 
 **Beispiel:**
-```
 Laufmittelfront: 8 cm
-Substanz A: 4 cm → Rf = 0.5
-Substanz B: 2 cm → Rf = 0.25
-```
+Substanz A: 4 cm → $R_f = 0.5$
+Substanz B: 2 cm → $R_f = 0.25$
 
 ### Gaschromatographie (GC)
 
@@ -259,14 +245,12 @@ Substanz B: 2 cm → Rf = 0.25
 - Proteinkonzentration
 
 **Lambert-Beersches Gesetz:**
-```
-A = ε · c · d
+$$A = \varepsilon \cdot c \cdot d$$
 
-A = Absorption
-ε = Extinktionskoeffizient
-c = Konzentration
-d = Schichtdicke
-```
+- $A$ = Absorption
+- $\varepsilon$ = Extinktionskoeffizient
+- $c$ = Konzentration
+- $d$ = Schichtdicke
 
 ### Infrarotspektroskopie (IR)
 
@@ -309,10 +293,9 @@ d = Schichtdicke
 
 **Beispiel:** pH-Messung mit Glaselektrode
 
-```
-E = E° - (RT/nF) · ln(a(H⁺))
-pH = -log(a(H⁺))
-```
+$$E = E^\circ - \frac{RT}{nF} \cdot \ln(a(\ce{H+}))$$
+
+$$\text{pH} = -\log(a(\ce{H+}))$$
 
 ### Leitfähigkeitsmessung
 
@@ -366,13 +349,12 @@ pH = -log(a(H⁺))
 
 **Bestimmungsgrenze (LOQ):** Kleinste quantifizierbare Konzentration
 
-```
-LOQ = 10 · σ/s
-LOD = 3 · σ/s
+$$\text{LOQ} = \frac{10 \cdot \sigma}{s}$$
 
-σ = Standardabweichung
-s = Steigung der Kalibriergeraden
-```
+$$\text{LOD} = \frac{3 \cdot \sigma}{s}$$
+
+- $\sigma$ = Standardabweichung
+- $s$ = Steigung der Kalibriergeraden
 
 ## Praktische Anwendungen
 
@@ -444,11 +426,11 @@ s = Steigung der Kalibriergeraden
 - Verbrauch: 22.5 mL NaOH (c = 0.1 mol/L)
 
 **Berechnung:**
-```
-c(HCl) · V(HCl) = c(NaOH) · V(NaOH)
-c(HCl) = (0.1 mol/L · 22.5 mL) / 25 mL
-c(HCl) = 0.09 mol/L
-```
+$$c(\ce{HCl}) \cdot V(\ce{HCl}) = c(\ce{NaOH}) \cdot V(\ce{NaOH})$$
+
+$$c(\ce{HCl}) = \frac{0.1 \text{ mol/L} \cdot 22.5 \text{ mL}}{25 \text{ mL}}$$
+
+$$c(\ce{HCl}) = 0.09 \text{ mol/L}$$
 
 ### Beispiel: Gravimetrische Sulfat-Bestimmung
 
@@ -459,13 +441,13 @@ c(HCl) = 0.09 mol/L
 - M(SO₄²⁻) = 96.06 g/mol
 
 **Berechnung:**
-```
-n(BaSO₄) = 0.2331 g / 233.39 g/mol = 0.001 mol
-n(SO₄²⁻) = n(BaSO₄) = 0.001 mol
-m(SO₄²⁻) = 0.001 mol · 96.06 g/mol = 0.09606 g
+$$n(\ce{BaSO4}) = \frac{0.2331 \text{ g}}{233.39 \text{ g/mol}} = 0.001 \text{ mol}$$
 
-w(SO₄²⁻) = (0.09606 g / 0.500 g) · 100% = 19.21%
-```
+$$n(\ce{SO4^2-}) = n(\ce{BaSO4}) = 0.001 \text{ mol}$$
+
+$$m(\ce{SO4^2-}) = 0.001 \text{ mol} \cdot 96.06 \text{ g/mol} = 0.09606 \text{ g}$$
+
+$$w(\ce{SO4^2-}) = \frac{0.09606 \text{ g}}{0.500 \text{ g}} \cdot 100\% = 19.21\%$$
 
 ## Lernziele
 

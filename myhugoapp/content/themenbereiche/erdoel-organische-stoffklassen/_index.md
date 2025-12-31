@@ -65,10 +65,9 @@ Trennung nach Siedepunkten:
 
 Umwandlung langer Kohlenwasserstoffketten in kürzere:
 
-```
-C16H34 → C8H18 + C8H16
-Hexadecan → Octan + Octen
-```
+$$\ce{C16H34 -> C8H18 + C8H16}$$
+
+$$\text{Hexadecan} \rightarrow \text{Octan} + \text{Octen}$$
 
 **Arten:**
 - **Thermisches Cracking**: Hohe Temperatur ohne Katalysator
@@ -82,7 +81,7 @@ Verbesserung der Oktanzahl durch Bildung verzweigter und aromatischer Kohlenwass
 
 ### Alkane (gesättigte Kohlenwasserstoffe)
 
-**Allgemeine Formel:** CnH2n+2
+**Allgemeine Formel:** $\ce{C_nH_{2n+2}}$
 
 **Eigenschaften:**
 - Nur Einfachbindungen
@@ -94,24 +93,24 @@ Verbesserung der Oktanzahl durch Bildung verzweigter und aromatischer Kohlenwass
 
 | Name | Formel | Siedepunkt (°C) |
 |------|--------|-----------------|
-| Methan | CH₄ | -162 |
-| Ethan | C₂H₆ | -89 |
-| Propan | C₃H₈ | -42 |
-| Butan | C₄H₁₀ | -0.5 |
-| Pentan | C₅H₁₂ | 36 |
-| Hexan | C₆H₁₄ | 69 |
-| Heptan | C₇H₁₆ | 98 |
-| Oktan | C₈H₁₈ | 126 |
+| Methan | $\ce{CH4}$ | -162 |
+| Ethan | $\ce{C2H6}$ | -89 |
+| Propan | $\ce{C3H8}$ | -42 |
+| Butan | $\ce{C4H10}$ | -0.5 |
+| Pentan | $\ce{C5H12}$ | 36 |
+| Hexan | $\ce{C6H14}$ | 69 |
+| Heptan | $\ce{C7H16}$ | 98 |
+| Oktan | $\ce{C8H18}$ | 126 |
 
 **Isomerie:**
 - **n-Butan:** CCCC (geradlinig)
 - **Isobutan:** CC(C)C (verzweigt)
 
-**Konstitution:** CH₄, CH₃-CH₃, CH₃-CH₂-CH₃
+**Konstitution:** $\ce{CH4}$, $\ce{CH3-CH3}$, $\ce{CH3-CH2-CH3}$
 
 ### Alkene (ungesättigte Kohlenwasserstoffe)
 
-**Allgemeine Formel:** CnH2n
+**Allgemeine Formel:** $\ce{C_nH_{2n}}$
 
 **Eigenschaften:**
 - Mindestens eine C=C-Doppelbindung
@@ -119,20 +118,19 @@ Verbesserung der Oktanzahl durch Bildung verzweigter und aromatischer Kohlenwass
 - Additionsmöglichkeiten
 
 **Beispiele:**
-- **Ethen:** CH₂=CH₂ (Pflanzenhormon, Reifung)
-- **Propen:** CH₂=CH-CH₃ (Polypropylen)
-- **Buten:** CH₂=CH-CH₂-CH₃ (Kautschuk)
+- **Ethen:** $\ce{CH2=CH2}$ (Pflanzenhormon, Reifung)
+- **Propen:** $\ce{CH2=CH-CH3}$ (Polypropylen)
+- **Buten:** $\ce{CH2=CH-CH2-CH3}$ (Kautschuk)
 
 **Nachweis:** Entfärbung von Bromwasser (Addition)
 
-```
-CH₂=CH₂ + Br₂ → CH₂Br-CH₂Br
+$$\ce{CH2=CH2 + Br2 -> CH2Br-CH2Br}$$
+
 Farblos → Braungelb → Farblos
-```
 
 ### Alkine
 
-**Allgemeine Formel:** CnH2n-2
+**Allgemeine Formel:** $\ce{C_nH_{2n-2}}$
 
 **Eigenschaften:**
 - Dreifachbindung C≡C
@@ -140,8 +138,8 @@ Farblos → Braungelb → Farblos
 - Lineare Geometrie
 
 **Beispiele:**
-- **Ethin (Acetylen):** HC≡CH (Schweißbrenner)
-- **Propin:** HC≡C-CH₃
+- **Ethin (Acetylen):** $\ce{HC#CH}$ (Schweißbrenner)
+- **Propin:** $\ce{HC#C-CH3}$
 
 ## Funktionelle Gruppen
 
@@ -172,9 +170,9 @@ Farblos → Braungelb → Farblos
 
 | Name | Formel | Verwendung |
 |------|--------|------------|
-| Methanol | CH₃OH | Lösungsmittel, Kraftstoff |
-| Ethanol | C₂H₅OH | Alkoholische Getränke, Desinfektion |
-| Glycerin (Glycerol) | C₃H₅(OH)₃ | Kosmetik, Lebensmittel |
+| Methanol | $\ce{CH3OH}$ | Lösungsmittel, Kraftstoff |
+| Ethanol | $\ce{C2H5OH}$ | Alkoholische Getränke, Desinfektion |
+| Glycerin (Glycerol) | $\ce{C3H5(OH)3}$ | Kosmetik, Lebensmittel |
 
 **Nachweis:** Cer(IV)-nitrat (Gelb → Rotbraun)
 
@@ -188,7 +186,7 @@ Farblos → Braungelb → Farblos
 - Relativ stabil
 
 **Beispiele:**
-- **Diethylether:** C₂H₅-O-C₂H₅ (früher Narkosemittel)
+- **Diethylether:** $\ce{C2H5-O-C2H5}$ (früher Narkosemittel)
 - **THF (Tetrahydrofuran):** Lösungsmittel
 
 ## Carbonylverbindungen
@@ -220,8 +218,8 @@ Farblos → Braungelb → Farblos
 - Angenehmer Geruch
 
 **Beispiele:**
-- **Propanon (Aceton):** CH₃-CO-CH₃ (Nagellackentferner)
-- **Butanon:** CH₃-CO-CH₂-CH₃ (Lösungsmittel)
+- **Propanon (Aceton):** $\ce{CH3-CO-CH3}$ (Nagellackentferner)
+- **Butanon:** $\ce{CH3-CO-CH2-CH3}$ (Lösungsmittel)
 
 **Nachweis:** Keine Fehling-Reaktion
 
@@ -240,10 +238,10 @@ Farblos → Braungelb → Farblos
 
 | Name | Formel | pKa | Verwendung |
 |------|--------|-----|------------|
-| Ameisensäure | HCOOH | 3.75 | Konservierung |
-| Essigsäure | CH₃COOH | 4.76 | Essig, Lebensmittel |
-| Propionsäure | C₂H₅COOH | 4.88 | Konservierung |
-| Buttersäure | C₃H₇COOH | 4.82 | Ranziger Geruch |
+| Ameisensäure | $\ce{HCOOH}$ | 3.75 | Konservierung |
+| Essigsäure | $\ce{CH3COOH}$ | 4.76 | Essig, Lebensmittel |
+| Propionsäure | $\ce{C2H5COOH}$ | 4.88 | Konservierung |
+| Buttersäure | $\ce{C3H7COOH}$ | 4.82 | Ranziger Geruch |
 
 **Nachweis:** Lackmus (Rot), Natriumcarbonat (CO₂-Entwicklung)
 
@@ -253,12 +251,11 @@ Farblos → Braungelb → Farblos
 
 **Bildung:** Veresterung aus Carbonsäure + Alkohol
 
-```
-R-COOH + R'-OH ⇌ R-COO-R' + H₂O
-Carbonsäure + Alkohol → Ester + Wasser
+$$\ce{R-COOH + R'-OH <=> R-COO-R' + H2O}$$
 
-Katalysator: Säure (H₂SO₄)
-```
+$$\text{Carbonsäure} + \text{Alkohol} \rightarrow \text{Ester} + \text{Wasser}$$
+
+Katalysator: Säure ($\ce{H2SO4}$)
 
 **Eigenschaften:**
 - Oft angenehmer Geruch (Fruchtessenzen)
@@ -269,15 +266,13 @@ Katalysator: Säure (H₂SO₄)
 
 | Name | Formel | Geruch |
 |------|--------|--------|
-| Essigsäuremethylester | CH₃COOCH₃ | Lösungsmittel, Klebstoff |
-| Essigsäurebutylester | CH₃COOC₄H₉ | Banane |
-| Butansäureethylester | C₃H₇COOC₂H₅ | Ananas |
+| Essigsäuremethylester | $\ce{CH3COOCH3}$ | Lösungsmittel, Klebstoff |
+| Essigsäurebutylester | $\ce{CH3COOC4H9}$ | Banane |
+| Butansäureethylester | $\ce{C3H7COOC2H5}$ | Ananas |
 
 **Verseifung:** Ester-Hydrolyse mit Lauge
 
-```
-R-COO-R' + NaOH → R-COONa + R'-OH
-```
+$$\ce{R-COO-R' + NaOH -> R-COONa + R'-OH}$$
 
 ## Praktische Anwendungen
 
