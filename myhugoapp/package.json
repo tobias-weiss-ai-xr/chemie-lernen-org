@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test:contrast && npm run test:layout && npm run test:html && npm run test:js && npm run test:seo && npm run test:performance && npm run test:url",
+    "test": "npm run test:contrast && npm run test:layout && npm run test:html && npm run test:js && npm run test:seo && npm run test:performance && npm run test:url && npm run test:integration && npm run test:mobile && npm run test:content && npm run test:security",
     "test:contrast": "node tests/accessibility/contrast-test.js",
     "test:layout": "node tests/layout/pse-centering-test.js",
     "test:html": "node tests/html/html-validation-test.js",
@@ -11,11 +11,18 @@
     "test:seo": "node tests/seo/seo-test.js",
     "test:performance": "node tests/performance/performance-test.js",
     "test:url": "node tests/url/url-validation-test.js",
+    "test:integration": "node tests/integration/interactive-tools-integration-test.js",
+    "test:mobile": "node tests/mobile/mobile-responsiveness-test.js",
+    "test:content": "node tests/content/content-quality-test.js",
+    "test:security": "node tests/security/security-validation-test.js",
     "test:pa11y": "pa11y-ci --config .pa11yci.json",
     "test:all": "npm run test && npm run test:pa11y",
-    "test:quick": "npm run test:contrast && npm run test:layout && npm run test:js"
+    "test:quick": "npm run test:contrast && npm run test:layout && npm run test:js",
+    "test:core": "npm run test:contrast && npm run test:layout && npm run test:html && npm run test:js",
+    "test:extended": "npm run test:seo && npm run test:performance && npm run test:integration && npm run test:mobile",
+    "test:quality": "npm run test:content && npm run test:security"
   },
-  "keywords": ["accessibility", "a11y", "dark-mode", "seo", "performance", "testing"],
+  "keywords": ["accessibility", "a11y", "dark-mode", "seo", "performance", "testing", "integration", "mobile", "security", "content-quality"],
   "author": "Chemie Lernen Team",
   "license": "ISC",
   "dependencies": {
