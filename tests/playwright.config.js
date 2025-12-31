@@ -3,7 +3,7 @@
 const { defineConfig, devices } = require('@playwright/test');
 
 module.exports = defineConfig({
-  testDir: './tests',
+  testDir: '.',
 
   // Timeout per test
   timeout: 30000,

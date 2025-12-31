@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+
+# Sitemap
+Sitemap: https://chemie-lernen.org/sitemap.xml
