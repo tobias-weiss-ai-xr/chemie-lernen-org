@@ -32,9 +32,9 @@ Anorganische Verbindungen bilden einen der größten und wichtigsten Bereiche de
 **Säuren** sind Stoffe, die in Wasser Protonen (H⁺) abgeben können.
 
 **Beispiele:**
-- **Salzsäure**: HCl → H⁺ + Cl⁻
-- **Schwefelsäure**: H₂SO₄ → 2H⁺ + SO₄²⁻
-- **Salpetersäure**: HNO₃ → H⁺ + NO₃⁻
+- **Salzsäure:** $\ce{HCl -> H+ + Cl-}$
+- **Schwefelsäure:** $\ce{H2SO4 -> 2H+ + SO4^2-}$
+- **Salpetersäure:** $\ce{HNO3 -> H+ + NO3-}$
 
 **Eigenschaften von Säuren:**
 - Saurer Geschmack (Vorsicht: nie probieren!)
@@ -47,9 +47,9 @@ Anorganische Verbindungen bilden einen der größten und wichtigsten Bereiche de
 **Basen** sind Stoffe, die in Wasser Hydroxid-Ionen (OH⁻) bilden oder Protonen aufnehmen können.
 
 **Beispiele:**
-- **Natronlauge**: NaOH → Na⁺ + OH⁻
-- **Kalilauge**: KOH → K⁺ + OH⁻
-- **Kalkwasser**: Ca(OH)₂ → Ca²⁺ + 2OH⁻
+- **Natronlauge:** $\ce{NaOH -> Na+ + OH-}$
+- **Kalilauge:** $\ce{KOH -> K+ + OH-}$
+- **Kalkwasser:** $\ce{Ca(OH)2 -> Ca^2+ + 2OH-}$
 
 **Eigenschaften von Basen:**
 - Seifiger, glitschiger Geschmack
@@ -63,41 +63,35 @@ Anorganische Verbindungen bilden einen der größten und wichtigsten Bereiche de
 
 Bei der **Neutralisation** reagieren Säuren und Basen zu Salz und Wasser:
 
-```
-Säure + Base → Salz + Wasser
-```
+$$\text{Säure} + \text{Base} \rightarrow \text{Salz} + \text{Wasser}$$
 
 **Beispiele:**
-```
-HCl + NaOH → NaCl + H₂O
+$$\ce{HCl + NaOH -> NaCl + H2O}$$
+
 Salzsäure + Natronlauge → Kochsalz + Wasser
 
-H₂SO₄ + 2KOH → K₂SO₄ + 2H₂O
+$$\ce{H2SO4 + 2KOH -> K2SO4 + 2H2O}$$
+
 Schwefelsäure + Kalilauge → Kaliumsulfat + Wasser
-```
 
 ### Salze aus Metallen und Säuren
 
 Metalle können mit Säuren reagieren:
 
-```
-Metall + Säure → Salz + Wasserstoff
-```
+$$\ce{Metall + Säure -> Salz + Wasserstoff}$$
 
 **Beispiel:**
-```
-Zn + 2HCl → ZnCl₂ + H₂↑
+$$\ce{Zn + 2HCl -> ZnCl2 + H2 ^}$$
+
 Zink + Salzsäure → Zinkchlorid + Wasserstoff
-```
 
 ### Salze aus Carbonaten und Säuren
 
 Carbonate reagieren mit Säuren unter CO₂-Entwicklung:
 
-```
-CaCO₃ + 2HCl → CaCl₂ + H₂O + CO₂↑
+$$\ce{CaCO3 + 2HCl -> CaCl2 + H2O + CO2 ^}$$
+
 Kalkstein + Salzsäure → Calciumchlorid + Wasser + Kohlendioxid
-```
 
 ## Ionenbindung und Kristallgitter
 
@@ -121,11 +115,11 @@ Die **Ionenbindung** entsteht durch die elektrostatische Anziehung zwischen entg
 
 | Salz | Formel | Verwendung |
 |------|--------|------------|
-| Kochsalz | NaCl | Speisesalz, Konservierung |
-| Natriumcarbonat | Na₂CO₃ | Glasherstellung, Wasserenthärtung |
-| Calciumcarbonat | CaCO₃ | Baustoffe, Kalkstein |
-| Kaliumnitrat | KNO₃ | Dünger, Schwarzpulver |
-| Kupfersulfat | CuSO₄ | Pflanzenschutz, Galvanik |
+| Kochsalz | $\ce{NaCl}$ | Speisesalz, Konservierung |
+| Natriumcarbonat | $\ce{Na2CO3}$ | Glasherstellung, Wasserenthärtung |
+| Calciumcarbonat | $\ce{CaCO3}$ | Baustoffe, Kalkstein |
+| Kaliumnitrat | $\ce{KNO3}$ | Dünger, Schwarzpulver |
+| Kupfersulfat | $\ce{CuSO4}$ | Pflanzenschutz, Galvanik |
 
 ## Löslichkeit und Fällungsreaktionen
 
@@ -150,20 +144,20 @@ Nicht alle Salze sind gleich löslich in Wasser:
 Bei **Fällungsreaktionen** bildet sich aus zwei Lösungen ein unlöslicher Niederschlag.
 
 **Beispiel: Silbernitrat + Natriumchlorid**
-```
-AgNO₃(aq) + NaCl(aq) → AgCl(s)↓ + NaNO₃(aq)
+
+$$\ce{AgNO3(aq) + NaCl(aq) -> AgCl(s)v + NaNO3(aq)}$$
+
 Farblos + Farblos → Weißer Niederschlag + Farblos
-```
 
 Der weiße Niederschlag von Silberchlorid (AgCl) ist schwer löslich.
 
 **Beispiel: Bariumchlorid + Natriumsulfat**
-```
-BaCl₂(aq) + Na₂SO₄(aq) → BaSO₄(s)↓ + 2NaCl(aq)
-Farblos + Farblos → Weißer Niederschlag + Farblos
-```
 
-Bariumsulfat (BaSO₄) ist sehr schwer löslich.
+$$\ce{BaCl2(aq) + Na2SO4(aq) -> BaSO4(s)v + 2NaCl(aq)}$$
+
+Farblos + Farblos → Weißer Niederschlag + Farblos
+
+Bariumsulfat ($\ce{BaSO4}$) ist sehr schwer löslich.
 
 ## Nachweisreaktionen
 
@@ -171,9 +165,7 @@ Bariumsulfat (BaSO₄) ist sehr schwer löslich.
 
 **Reaktion:** Mit Silbernitratlösung
 
-```
-NaCl(aq) + AgNO₃(aq) → AgCl(s)↓ + NaNO₃(aq)
-```
+$$\ce{NaCl(aq) + AgNO3(aq) -> AgCl(s)v + NaNO3(aq)}$$
 
 **Beobachtung:** Weißer Niederschlag, der sich in Ammoniak löst.
 
@@ -181,9 +173,7 @@ NaCl(aq) + AgNO₃(aq) → AgCl(s)↓ + NaNO₃(aq)
 
 **Reaktion:** Mit Bariumchloridlösung
 
-```
-Na₂SO₄(aq) + BaCl₂(aq) → BaSO₄(s)↓ + 2NaCl(aq)
-```
+$$\ce{Na2SO4(aq) + BaCl2(aq) -> BaSO4(s)v + 2NaCl(aq)}$$
 
 **Beobachtung:** Weißer Niederschlag, der in Säuren unlöslich ist.
 
@@ -191,9 +181,7 @@ Na₂SO₄(aq) + BaCl₂(aq) → BaSO₄(s)↓ + 2NaCl(aq)
 
 **Reaktion:** Mit Säure
 
-```
-CaCO₃(s) + 2HCl(aq) → CaCl₂(aq) + H₂O(l) + CO₂(g)↑
-```
+$$\ce{CaCO3(s) + 2HCl(aq) -> CaCl2(aq) + H2O(l) + CO2(g)^}$$
 
 **Beobachtung:** Gasentwicklung (CO₂), Kalkwasser trübt sich.
 
@@ -206,10 +194,10 @@ CaCO₃(s) + 2HCl(aq) → CaCl₂(aq) + H₂O(l) + CO₂(g)↑
 - **Reduktion**: Aufnahme von Elektronen
 
 **Beispiel: Reaktion von Kupfer mit Silbernitrat**
-```
-Cu(s) + 2AgNO₃(aq) → Cu(NO₃)₂(aq) + 2Ag(s)↓
+
+$$\ce{Cu(s) + 2AgNO3(aq) -> Cu(NO3)2(aq) + 2Ag(s)v}$$
+
 Kupfer + Silbernitrat → Kupfer(II)-nitrat + Silber
-```
 
 Beobachtung: Kupferdraht überzieht sich mit silbernen Kristallen.
 
@@ -218,9 +206,8 @@ Beobachtung: Kupferdraht überzieht sich mit silbernen Kristallen.
 Bei **Disproportionierungen** wird ein Element gleichzeitig oxidiert und reduziert.
 
 **Beispiel:** Kupfer(I)-oxid
-```
-Cu₂O + H₂SO₄ → Cu + CuSO₄ + H₂O
-```
+
+$$\ce{Cu2O + H2SO4 -> Cu + CuSO4 + H2O}$$
 
 Kupfer wird sowohl zu Cu(0) als auch zu Cu(II) umgewandelt.
 
@@ -231,9 +218,9 @@ Kupfer wird sowohl zu Cu(0) als auch zu Cu(II) umgewandelt.
 **Komplexe** sind Verbindungen, bei denen ein Zentralatom (meist ein Metall) von Molekülen oder Ionen (Liganden) umgeben ist.
 
 **Beispiele:**
-- **Hexaaquakupfer(II)**: [Cu(H₂O)₆]²⁺ (blau)
-- **Tetrachlorocobaltat(II)**: [CoCl₄]²⁻ (blau)
-- **Hexamminecobalt(III)**: [Co(NH₃)₆]³⁺ (gelb-orange)
+- **Hexaaquakupfer(II)**: $\ce{[Cu(H2O)6]^2+}$ (blau)
+- **Tetrachlorocobaltat(II)**: $\ce{[CoCl4]^2-}$ (blau)
+- **Hexamminecobalt(III)**: $\ce{[Co(NH3)6]^3+}$ (gelb-orange)
 
 ### Liganden
 
@@ -241,11 +228,11 @@ Kupfer wird sowohl zu Cu(0) als auch zu Cu(II) umgewandelt.
 
 | Ligand | Abkürzung | Zähnigkeit |
 |--------|-----------|------------|
-| Wasser | H₂O | 1 (neutral) |
-| Ammoniak | NH₃ | 1 (neutral) |
-| Cyanid | CN⁻ | 1 |
+| Wasser | $\ce{H2O}$ | 1 (neutral) |
+| Ammoniak | $\ce{NH3}$ | 1 (neutral) |
+| Cyanid | $\ce{CN-}$ | 1 |
 | Ethylendiamin | en | 2 |
-| EDTA | EDTA⁴⁻ | 6 |
+| EDTA | $\ce{EDTA^4-}$ | 6 |
 
 ### Anwendung von Komplexen
 
@@ -256,19 +243,19 @@ Kupfer wird sowohl zu Cu(0) als auch zu Cu(II) umgewandelt.
 
 ## Ammoniak und Ammoniumverbindungen
 
-### Ammoniak (NH₃)
+### Ammoniak ($\ce{NH3}$)
 
 **Eigenschaften:**
 - Farbloses Gas mit stechendem Geruch
 - Gut wasserlöslich
-- Bildet mit Wasser NH₄⁺ + OH⁻ (schwache Base)
+- Bildet mit Wasser $\ce{NH4+ + OH-}$ (schwache Base)
 - Nachweis mit Nessler-Reagenz (braunrot)
 
 **Herstellung (Haber-Bosch-Verfahren):**
-```
-N₂ + 3H₂ ⇌ 2NH₃      (ΔH = -92 kJ/mol)
+
+$$\ce{N2 + 3H2 <=> 2NH3} \quad (\Delta H = -92 \text{ kJ/mol})$$
+
 Stickstoff + Wasserstoff → Ammoniak
-```
 
 Bedingungen: 400-500°C, 200-300 bar, Eisenkatalysator
 
@@ -276,28 +263,28 @@ Bedingungen: 400-500°C, 200-300 bar, Eisenkatalysator
 
 **Ammoniumsalze** entstehen aus der Reaktion von Ammoniak mit Säuren:
 
-```
-NH₃ + HCl → NH₄Cl
+$$\ce{NH3 + HCl -> NH4Cl}$$
+
 Ammoniak + Salzsäure → Ammoniumchlorid
 
-2NH₃ + H₂SO₄ → (NH₄)₂SO₄
+$$\ce{2NH3 + H2SO4 -> (NH4)2SO4}$$
+
 Ammoniak + Schwefelsäure → Ammoniumsulfat
-```
 
 ## Schwefel und seine Verbindungen
 
-### Schwefelwasserstoff (H₂S)
+### Schwefelwasserstoff ($\ce{H2S}$)
 
 - Farbloses Gas mit charakteristischem Geruch (faulige Eier)
 - Sehr giftig!
 - Nachweis mit Bleiacetat-Papier (schwarzer Fleck)
 
-### Schweflige Säure (H₂SO₃) und Schwefelsäure (H₂SO₄)
+### Schweflige Säure ($\ce{H2SO3}$) und Schwefelsäure ($\ce{H2SO4}$)
 
 **Schweflige Säure:**
-```
-SO₂ + H₂O ⇌ H₂SO₃
-```
+
+$$\ce{SO2 + H2O <=> H2SO3}$$
+
 Unbeständig, schwache Säure
 
 **Schwefelsäure:**
@@ -310,45 +297,44 @@ Unbeständig, schwache Säure
 
 ### Schwefeloxide
 
-- **Schwefeldioxid (SO₂)**: Beißendes Gas, entsteht bei Verbrennung von Schwefel
-- **Schwefeltrioxid (SO₃)**: Reagiert mit Wasser zu Schwefelsäure
+- **Schwefeldioxid ($\ce{SO2}$)**: Beißendes Gas, entsteht bei Verbrennung von Schwefel
+- **Schwefeltrioxid ($\ce{SO3}$)**: Reagiert mit Wasser zu Schwefelsäure
 
 ## Stickstoff und seine Verbindungen
 
 ### Stickstoffoxide
 
-- **Stickstoffmonoxid (NO)**: Farbloses Gas
-- **Stickstoffdioxid (NO₂)**: Braunes Gas, giftig
+- **Stickstoffmonoxid ($\ce{NO}$)**: Farbloses Gas
+- **Stickstoffdioxid ($\ce{NO2}$)**: Braunes Gas, giftig
 
 ### Ammoniak und Ammoniumverbindungen
 
 (siehe oben)
 
-### Salpetersäure (HNO₃)
+### Salpetersäure ($\ce{HNO3}$)
 
 - Starke Säure
 - Oxidierend
-- Konz.: gelbliche Flüssigkeit, gibt braune Dämpfe (NO₂) ab
+- Konz.: gelbliche Flüssigkeit, gibt braune Dämpfe ($\ce{NO2}$) ab
 
 ## Kohlenstoff und seine anorganischen Verbindungen
 
 ### Kohlenstoffoxide
 
-- **Kohlenstoffmonoxid (CO)**: Farblos, geruchlos, sehr giftig
-- **Kohlenstoffdioxid (CO₂)**: Farblos, nicht giftig
+- **Kohlenstoffmonoxid ($\ce{CO}$)**: Farblos, geruchlos, sehr giftig
+- **Kohlenstoffdioxid ($\ce{CO2}$)**: Farblos, nicht giftig
 
 ### Carbonate
 
 **Calciumcarbonat (Kalkstein, Marmor)**
-```
-CaCO₃ → CaO + CO₂      (bei starkem Erhitzen)
+
+$$\ce{CaCO3 -> CaO + CO2} \quad \text{(bei starkem Erhitzen)}$$
+
 Kalkstein → Kalk + Kohlendioxid
-```
 
 **Natriumcarbonat (Soda)**
-```
-Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂↑
-```
+
+$$\ce{Na2CO3 + 2HCl -> 2NaCl + H2O + CO2^}$$
 
 Verwendung: Glasherstellung, Wasserenthärtung, Seifen
 
@@ -356,24 +342,23 @@ Verwendung: Glasherstellung, Wasserenthärtung, Seifen
 
 ### 1. Wasserenthärtung
 
-Hartes Wasser enthält Ca²⁺- und Mg²⁺-Ionen. Diese können durch **Ionenaustausch** entfernt werden:
+Hartes Wasser enthält $\ce{Ca^2+}$- und $\ce{Mg^2+}$-Ionen. Diese können durch **Ionenaustausch** entfernt werden:
 
-```
-Ca²⁺ + Na₂R → CaR + 2Na⁺
+$$\ce{Ca^2+ + Na2R -> CaR + 2Na+}$$
+
 (R = Austauscherharz)
-```
 
 ### 2. Düngemittel
 
 Wichtige anorganische Dünger:
-- **Stickstoff**: Kalksalpeter (Ca(NO₃)₂)
-- **Phosphor**: Superphosphat (Ca(H₂PO₄)₂)
-- **Kalium**: Kaliumsulfat (K₂SO₄)
+- **Stickstoff**: Kalksalpeter ($\ce{Ca(NO3)2}$)
+- **Phosphor**: Superphosphat ($\ce{Ca(H2PO4)2}$)
+- **Kalium**: Kaliumsulfat ($\ce{K2SO4}$)
 
 ### 3. Baustoffe
 
-- **Gips**: CaSO₄·2H₂O (Wandputz, Bauplatten)
-- **Kalk**: CaO, Ca(OH)₂ (Mörtel, Putz)
+- **Gips**: $\ce{CaSO4·2H2O}$ (Wandputz, Bauplatten)
+- **Kalk**: $\ce{CaO, Ca(OH)2}$ (Mörtel, Putz)
 - **Zement**: Mischung aus Kalk, Ton, Sand
 
 ## Experimente
@@ -414,23 +399,21 @@ Wichtige anorganische Dünger:
 Nutzen Sie den **[Molaren Masse Rechner](/molare-masse-rechner/)**, um die molaren Massen anorganischer Verbindungen zu berechnen:
 
 **Beispiele:**
-- **NaCl**: 22.99 + 35.45 = 58.44 g/mol
-- **CaCO₃**: 40.08 + 12.01 + (3 × 16.00) = 100.09 g/mol
-- **H₂SO₄**: (2 × 1.01) + 32.07 + (4 × 16.00) = 98.09 g/mol
+- **$\ce{NaCl}$**: 22.99 + 35.45 = 58.44 g/mol
+- **$\ce{CaCO3}$**: 40.08 + 12.01 + (3 × 16.00) = 100.09 g/mol
+- **$\ce{H2SO4}$**: (2 × 1.01) + 32.07 + (4 × 16.00) = 98.09 g/mol
 
 ### Stoffmengenberechnung
 
-```
-n = m / M
-n = Stoffmenge (mol)
-m = Masse (g)
-M = Molare Masse (g/mol)
-```
+$$n = \frac{m}{M}$$
 
-**Beispiel:** 5 g NaCl
-```
-n = 5 g / 58.44 g/mol = 0.086 mol
-```
+- $n$ = Stoffmenge (mol)
+- $m$ = Masse (g)
+- $M$ = Molare Masse (g/mol)
+
+**Beispiel:** 5 g $\ce{NaCl}$
+
+$$n = \frac{5 \text{ g}}{58.44 \text{ g/mol}} = 0.086 \text{ mol}$$
 
 ## Lernziele
 
