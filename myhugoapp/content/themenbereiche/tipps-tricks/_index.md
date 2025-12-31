@@ -223,8 +223,8 @@ Passives Lesen ist ineffektiv! Nutzen Sie aktive Lernmethoden:
 
 **Einheiten vergessen:**
 
-- ❌ Falsch: n = 5 / 58
-- ✅ Richtig: n = 5 g / 58.44 g/mol = 0.086 mol
+- ❌ Falsch: $n = 5 / 58$
+- ✅ Richtig: $n = \frac{5 \text{ g}}{58.44 \text{ g/mol}} = 0.086 \text{ mol}$
 
 **Umrechnung von mL in L:**
 
@@ -233,8 +233,8 @@ Passives Lesen ist ineffektiv! Nutzen Sie aktive Lernmethoden:
 
 **Nicht angepasste Formeln:**
 
-- pH = -log[H⁺], nicht pH = -log[OH⁻]
-- Für Basen: Erst pOH berechnen, dann pH = 14 - pOH
+- $\text{pH} = -\log[\ce{H+}]$, nicht $\text{pH} = -\log[\ce{OH-}]$
+- Für Basen: Erst pOH berechnen, dann $\text{pH} = 14 - \text{pOH}$
 
 ### Verständnisfehler
 
@@ -302,40 +302,40 @@ Passives Lesen ist ineffektiv! Nutzen Sie aktive Lernmethoden:
 ### Wichtige Formeln
 
 **Stoffmenge:**
-```
-n = m / M
-m = n · M
-M = m / n
-```
+
+$$n = \frac{m}{M}$$
+
+$$m = n \cdot M$$
+
+$$M = \frac{m}{n}$$
 
 **Konzentration:**
-```
-c = n / V
-n = c · V
-V = n / c
-```
+
+$$c = \frac{n}{V}$$
+
+$$n = c \cdot V$$
+
+$$V = \frac{n}{c}$$
 
 **pH-Wert:**
-```
-pH = -log[H₃O⁺]
-[H₃O⁺] = 10^(-pH)
-```
+
+$$\text{pH} = -\log[\ce{H3O+}]$$
+
+$$[\ce{H3O+}] = 10^{-\text{pH}}$$
 
 **Ideal-Gas-Gesetz:**
-```
-p · V = n · R · T
-```
+
+$$p \cdot V = n \cdot R \cdot T$$
 
 **Dichte:**
-```
-ρ = m / V
-```
+
+$$\rho = \frac{m}{V}$$
 
 ### Wichtige Konstanten
 
 - **R** = 8.314 J/(mol·K) (Gaskonstante)
 - **F** = 96485 C/mol (Faraday-Konstante)
-- **NA** = 6.022·10²³ mol⁻¹ (Avogadro-Konstante)
+- **N_A** = $6.022 \cdot 10^{23}$ mol⁻¹ (Avogadro-Konstante)
 
 ## Interaktive Tools nutzen
 
