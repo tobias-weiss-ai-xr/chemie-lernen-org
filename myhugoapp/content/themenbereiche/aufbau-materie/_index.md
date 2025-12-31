@@ -130,7 +130,7 @@ Das Periodensystem ordnet alle **118 bekannten Elemente** nach:
 
 ### Struktur
 
-![Struktur des Periodensystems](/img/atom-struktur.png)
+![Struktur des Periodensystems](/img/pse-erklaerung.png)
 
 **Legende:**
 - **Hauptgruppe (A):** Gruppen 1-2 und 13-18
