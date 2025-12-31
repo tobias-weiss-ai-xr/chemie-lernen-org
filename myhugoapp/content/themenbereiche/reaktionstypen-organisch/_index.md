@@ -29,9 +29,8 @@ Die organische Chemie zeichnet sich durch eine enorme Vielfalt an Reaktionen aus
 Bei **Substitutionsreaktionen** wird ein Atom oder eine Atomgruppe durch ein anderes ersetzt.
 
 **Allgemeines Schema:**
-```
-R-X + Y → R-Y + X
-```
+
+$$\ce{R-X + Y -> R-Y + X}$$
 
 ### Nucleophile Substitution (S_N)
 
@@ -42,13 +41,14 @@ R-X + Y → R-Y + X
 **Eigenschaften:**
 - Einzeitiger Prozess
 - Inversion am Kohlenstoff (Walden-Umkehr)
-- Kinetik: v = k[R-X][Nu⁻]
+- Kinetik: $v = k[\ce{R-X}][\ce{Nu-}]$
 
 **Beispiel:** Hydrolyse von Methyliodid
-```
-CH₃I + OH⁻ → CH₃OH + I⁻
+
+$$\ce{CH3I + OH- -> CH3OH + I-}$$
 
 Übergangszustand:
+```
     H
     |
 H — C — I  +  OH⁻  →  [H₃C---I---OH]‡  →  CH₃OH + I⁻
@@ -66,15 +66,15 @@ H — C — I  +  OH⁻  →  [H₃C---I---OH]‡  →  CH₃OH + I⁻
 **Eigenschaften:**
 - Zweizeitiger Prozess
 - Bildung eines Carbocations (Zwischenstufe)
-- Kinetik: v = k[R-X]
+- Kinetik: $v = k[\ce{R-X}]$
 
 **Beispiel:** Hydrolyse von tert-Butylchlorid
-```
-Schritt 1: (CH₃)₃C-Cl → (CH₃)₃C⁺ + Cl⁻    (langsam)
-Schritt 2: (CH₃)₃C⁺ + OH⁻ → (CH₃)₃C-OH   (schnell)
 
-Gesamt: (CH₃)₃C-Cl + OH⁻ → (CH₃)₃C-OH + Cl⁻
-```
+Schritt 1: $\ce{(CH3)3C-Cl -> (CH3)3C+ + Cl-}$ (langsam)
+
+Schritt 2: $\ce{(CH3)3C+ + OH- -> (CH3)3C-OH}$ (schnell)
+
+Gesamt: $\ce{(CH3)3C-Cl + OH- -> (CH3)3C-OH + Cl-}$
 
 **Faktoren:**
 - Tertiäre Halogenide reagieren bevorzugt
@@ -86,13 +86,13 @@ Gesamt: (CH₃)₃C-Cl + OH⁻ → (CH₃)₃C-OH + Cl⁻
 **Elektrophile Substitution** –typisch für Aromaten
 
 **Beispiel:** Nitrierung von Benzol
-```
-C₆H₆ + HNO₃ → C₆H₅NO₂ + H₂O
+
+$$\ce{C6H6 + HNO3 -> C6H5NO2 + H2O}$$
 
 Mechanismus:
-C₆H₆ + NO₂⁺ → C₆H₆-NO₂⁺ (Komplex)
-C₆H₆-NO₂⁺ → C₆H₅NO₂ + H⁺
-```
+$$\ce{C6H6 + NO2+ -> C6H6-NO2+} \text{ (Komplex)}$$
+
+$$\ce{C6H6-NO2+ -> C6H5NO2 + H+}$$
 
 **Anwendung:**
 - Herstellung von Nitrobenzol
@@ -104,14 +104,18 @@ C₆H₆-NO₂⁺ → C₆H₅NO₂ + H⁺
 **Radikalische Substitution** – Kettenreaktion mit Radikalen
 
 **Beispiel:** Chlorierung von Methan
-```
-Initiierung:  Cl₂ → 2Cl·        (Licht/Hitze)
-Propagation:  CH₄ + Cl· → CH₃· + HCl
-             CH₃· + Cl₂ → CH₃Cl + Cl·
-Terminierung: 2Cl· → Cl₂
-             2CH₃· → C₂H₆
-             CH₃· + Cl· → CH₃Cl
-```
+
+Initiierung: $\ce{Cl2 -> 2Cl^.}$ (Licht/Hitze)
+
+Propagation: $\ce{CH4 + Cl^. -> CH3^. + HCl}$
+
+$\ce{CH3^. + Cl2 -> CH3Cl + Cl^.}$
+
+Terminierung: $\ce{2Cl^. -> Cl2}$
+
+$\ce{2CH3^. -> C2H6}$
+
+$\ce{CH3^. + Cl^. -> CH3Cl}$
 
 ## Additionsreaktionen
 
@@ -120,50 +124,46 @@ Terminierung: 2Cl· → Cl₂
 Bei **Additionsreaktionen** lagern sich Atome oder Moleküle an eine Doppel- oder Dreifachbindung an.
 
 **Allgemeines Schema:**
-```
-R₁-CH=CH-R₂ + A-B → R₁-CH(A)-CH(B)-R₂
-```
+
+$$\ce{R1-CH=CH-R2 + A-B -> R1-CH(A)-CH(B)-R2}$$
 
 ### Elektrophile Addition
 
 **Beispiel:** Addition von Brom an Ethen
-```
-CH₂=CH₂ + Br₂ → CH₂Br-CH₂Br
+
+$$\ce{CH2=CH2 + Br2 -> CH2Br-CH2Br}$$
 
 Mechanismus:
-Schritt 1:  CH₂=CH₂ + Br₂ → CH₂-CH₂-Br⁺ + Br⁻
-Schritt 2:  CH₂-CH₂-Br⁺ + Br⁻ → CH₂Br-CH₂Br
-```
+
+Schritt 1: $\ce{CH2=CH2 + Br2 -> CH2-CH2-Br+ + Br-}$
+
+Schritt 2: $\ce{CH2-CH2-Br+ + Br- -> CH2Br-CH2Br}$
 
 **Markownikow-Regel:**
 
 Bei Addition von HX an unsymmetrische Alkene lagert sich H an das C mit mehr H-Atomen:
 
-```
-CH₃-CH=CH₂ + HBr → CH₃-CHBr-CH₃
-           (Propen)        (2-Brompropan)
-```
+$$\ce{CH3-CH=CH2 + HBr -> CH3-CHBr-CH3}$$
+
+(Propen) → (2-Brompropan)
 
 ### Nucleophile Addition
 
 **Beispiel:** Addition von Wasser an Aldehyde
-```
-R-CHO + H₂O → R-CH(OH)₂
-```
+
+$$\ce{R-CHO + H2O -> R-CH(OH)2}$$
 
 **Beispiel:** Cyanhydrat-Bildung
-```
-R-CHO + HCN → R-CH(OH)-CN
-```
+
+$$\ce{R-CHO + HCN -> R-CH(OH)-CN}$$
 
 ### Katalytische Hydrierung
 
 **Beispiel:** Hydrierung von Ethen
-```
-CH₂=CH₂ + H₂ → CH₃-CH₃
+
+$$\ce{CH2=CH2 + H2 -> CH3-CH3}$$
 
 Katalysator: Pd, Pt, Ni
-```
 
 **Anwendung:**
 - Härtung von Fetten
@@ -176,17 +176,16 @@ Katalysator: Pd, Pt, Ni
 Bei **Eliminierungsreaktionen** werden Atome oder Gruppen aus benachbarten Kohlenstoffatomen abgespalten, wobei eine Doppelbindung entsteht.
 
 **Allgemeines Schema:**
-```
-R-CH₂-CH₂-X → R-CH=CH₂ + HX
-```
+
+$$\ce{R-CH2-CH2-X -> R-CH=CH2 + HX}$$
 
 ### E1-Mechanismus (unimolekular)
 
 **Beispiel:** Elimination aus 2-Brom-2-methylpropan
-```
-Schritt 1:  (CH₃)₃C-Br → (CH₃)₂C=CH₂ + HBr
-Schritt 2:  (CH₃)₂C=CH₂ + Br⁻ → Produkte
-```
+
+Schritt 1: $\ce{(CH3)3C-Br -> (CH3)2C=CH2 + HBr}$
+
+Schritt 2: $\ce{(CH3)2C=CH2 + Br- -> \text{Produkte}}$
 
 **Eigenschaften:**
 - Bildung eines Carbocations
@@ -196,11 +195,10 @@ Schritt 2:  (CH₃)₂C=CH₂ + Br⁻ → Produkte
 ### E2-Mechanismus (bimolekular)
 
 **Beispiel:** Elimination aus 1-Brompropan
-```
-CH₃-CH₂-CH₂-Br + Base → CH₃-CH=CH₂ + HBr
 
-Base (OH⁻) entfernt H, während Br⁻ abspaltet
-```
+$$\ce{CH3-CH2-CH2-Br + Base -> CH3-CH=CH2 + HBr}$$
+
+Base ($\ce{OH-}$) entfernt H, während $\ce{Br-}$ abspaltet
 
 **Eigenschaften:**
 - Einzeitiger Prozess
@@ -218,10 +216,10 @@ Base (OH⁻) entfernt H, während Br⁻ abspaltet
 | Tertiäres Halogenid | S_N1 bei schwachem Nucleophil | E1 bei starker Base, hoher Temperatur |
 
 **Beispiel:** 2-Brombutan
-```
-Mit schwachem Nucleophil (H₂O):  S_N1 → 2-Butanol
-Mit starker Base (OH⁻):           E2 → But-2-en
-```
+
+Mit schwachem Nucleophil ($\ce{H2O}$): S_N1 → 2-Butanol
+
+Mit starker Base ($\ce{OH-}$): E2 → But-2-en
 
 ## Polymerisation
 
@@ -234,11 +232,12 @@ Mit starker Base (OH⁻):           E2 → But-2-en
 **Radikalische Polymerisation**
 
 **Beispiel:** Polyethylen aus Ethen
-```
-Initiierung:  Radikal · + CH₂=CH₂ → ·CH₂-CH₂·
-Wachstum:     ·CH₂-CH₂· + n CH₂=CH₂ → ·(CH₂-CH₂)ₙ·
-Terminierung: 2 ·(CH₂-CH₂)ₙ· → (CH₂-CH₂)₂ₙ
-```
+
+Initiierung: $\ce{Radikal^. + CH2=CH2 -> ^.CH2-CH2^.}$
+
+Wachstum: $\ce{^.CH2-CH2^. + n CH2=CH2 -> ^.(CH2-CH2)_{n}^.}$
+
+Terminierung: $\ce{2 ^.(CH2-CH2)_{n}^. -> (CH2-CH2)_{2n}}$
 
 **Anwendung:**
 - Polyethylen (PE)
@@ -251,10 +250,10 @@ Terminierung: 2 ·(CH₂-CH₂)ₙ· → (CH₂-CH₂)₂ₙ
 **Polykondensation** – Monomere verbinden sich unter Abspaltung kleiner Moleküle.
 
 **Beispiel:** Polyamid (Nylon) aus Hexamethylendiamin und Adipinsäure
-```
-n H₂N-(CH₂)₆-NH₂ + n HOOC-(CH₂)₄-COOH →
-→ -(NH-(CH₂)₆-NH-CO-(CH₂)₄-CO)ₙ- + 2n H₂O
-```
+
+$$\ce{n H2N-(CH2)6-NH2 + n HOOC-(CH2)4-COOH ->}$$
+
+$$\ce{-> -(NH-(CH2)6-NH-CO-(CH2)4-CO)_{n}- + 2n H2O}$$
 
 **Anwendung:**
 - Nylon (Polyamid)
@@ -266,44 +265,40 @@ n H₂N-(CH₂)₆-NH₂ + n HOOC-(CH₂)₄-COOH →
 ### Oxidation und Reduktion
 
 **Oxidation von Alkoholen:**
-```
-Primärer Alkohol:  R-CH₂-OH → R-CHO → R-COOH
-                    (Aldehyd)      (Carbonsäure)
 
-Sekundärer Alkohol: R₂CH-OH → R₂C=O
-                       (Keton)
+Primärer Alkohol: $\ce{R-CH2-OH -> R-CHO -> R-COOH}$
 
-Tertiärer Alkohol:   R₃C-OH → keine Oxidation
-```
+(Aldehyd) → (Carbonsäure)
+
+Sekundärer Alkohol: $\ce{R2CH-OH -> R2C=O}$
+
+(Keton)
+
+Tertiärer Alkohol: $\ce{R3C-OH -> \text{keine Oxidation}}$
 
 **Beispiel:** Oxidation von Ethanol
-```
-CH₃CH₂OH + [O] → CH₃CHO + H₂O
-(Alkohol)        (Aldehyd)
-```
+
+$$\ce{CH3CH2OH + [O] -> CH3CHO + H2O}$$
+
+(Alkohol) → (Aldehyd)
 
 ### Veresterung
 
 **Veresterung** – Carbonsäure + Alkohol reagieren zu Ester + Wasser
 
-```
-R-COOH + R'-OH ⇌ R-COO-R' + H₂O
+$$\ce{R-COOH + R'-OH <=> R-COO-R' + H2O}$$
 
-Katalysator: Säure (H₂SO₄)
-```
+Katalysator: Säure ($\ce{H2SO4}$)
 
 **Beispiel:** Essigsäure + Ethanol → Essigsäureethylester
-```
-CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ + H₂O
-```
+
+$$\ce{CH3COOH + C2H5OH <=> CH3COOC2H5 + H2O}$$
 
 ### Verseifung
 
 **Verseifung** – Ester-Hydrolyse mit Lauge
 
-```
-R-COO-R' + NaOH → R-COONa + R'-OH
-```
+$$\ce{R-COO-R' + NaOH -> R-COONa + R'-OH}$$
 
 **Anwendung:** Herstellung von Seife aus Fetten
 
@@ -346,14 +341,12 @@ Ea │  / \  (Zwischenstufe)
 ### 1. Kunststoffherstellung
 
 **Polyethylen (PE):**
-```
-n CH₂=CH₂ → -(CH₂-CH₂)ₙ-
-```
+
+$$\ce{n CH2=CH2 -> -(CH2-CH2)_{n}-}$$
 
 **Polypropylen (PP):**
-```
-n CH₂=CH-CH₃ → -(CH₂-CH(CH₃))ₙ-
-```
+
+$$\ce{n CH2=CH-CH3 -> -(CH2-CH(CH3))_{n}-}$$
 
 ### 2. Pharmazeutische Industrie
 
