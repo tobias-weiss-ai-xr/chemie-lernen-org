@@ -34,13 +34,13 @@ Bei exothermen Reaktionen wird **Energie abgegeben** – das System verliert Ene
 
 **Merkmale:**
 - Temperaturerhöhung (wird warm)
-- ΔH < 0 (negativ)
+- $\Delta H < 0$ (negativ)
 - Energie wird freigesetzt
 
 **Beispiele:**
-- Verbrennung von Methan: CH₄ + 2O₂ → CO₂ + 2H₂O (ΔH = -890 kJ/mol)
-- Neutralisation: HCl + NaOH → NaCl + H₂O
-- Rosten von Eisen: 4Fe + 3O₂ → 2Fe₂O₃
+- Verbrennung von Methan: $\ce{CH4 + 2O2 -> CO2 + 2H2O}$ ($\Delta H = -890 \text{ kJ/mol}$)
+- Neutralisation: $\ce{HCl + NaOH -> NaCl + H2O}$
+- Rosten von Eisen: $\ce{4Fe + 3O2 -> 2Fe2O3}$
 
 ### Endotherme Reaktionen ❄️
 
@@ -48,12 +48,12 @@ Bei endothermen Reaktionen wird **Energie aufgenommen** – das System nimmt Ene
 
 **Merkmale:**
 - Temperaturerniedrigung (wird kalt)
-- ΔH > 0 (positiv)
+- $\Delta H > 0$ (positiv)
 - Energie wird benötigt
 
 **Beispiele:**
 - Verdunstung von Wasser
-- Fotosynthese: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂ (ΔH = +2808 kJ/mol)
+- Fotosynthese: $\ce{6CO2 + 6H2O -> C6H12O6 + 6O2}$ ($\Delta H = +2808 \text{ kJ/mol}$)
 - Lösen von Ammoniumnitrat in Wasser (Kältemischung)
 
 ## Reaktionsenthalpie (ΔH)
@@ -62,19 +62,15 @@ Die **Reaktionsenthalpie** ΔH (Delta H) beschreibt die Wärmemenge, die bei ein
 
 ### ΔH-Berechnung
 
-```
-ΔH = H(Produkte) - H(Edukte)
-```
+$$\Delta H = H(\text{Produkte}) - H(\text{Edukte})$$
 
-- **ΔH < 0**: Exotherm (Energie wird freigesetzt)
-- **ΔH > 0**: Endotherm (Energie wird aufgenommen)
-- **ΔH = 0**: Keine Energieänderung (thermoneutral)
+- **$\Delta H < 0$**: Exotherm (Energie wird freigesetzt)
+- **$\Delta H > 0$**: Endotherm (Energie wird aufgenommen)
+- **$\Delta H = 0$**: Keine Energieänderung (thermoneutral)
 
 ### Beispiel: Verbrennung von Wasserstoff
 
-```
-2H₂ + O₂ → 2H₂O     ΔH = -572 kJ/mol
-```
+$$\ce{2H2 + O2 -> 2H2O} \quad \Delta H = -572 \text{ kJ/mol}$$
 
 Das bedeutet: 572 kJ Energie werden pro mol umgesetzten Wasserstoffs freigesetzt.
 
@@ -90,13 +86,17 @@ Man kann Reaktionsenthalpien berechnen, indem man bekannte Reaktionen addiert:
 
 **Beispiel: Bildung von CO₂ aus C und O₂**
 
-Reaktion 1: C + O₂ → CO₂          ΔH₁ = -393 kJ/mol
-Reaktion 2: C + ½O₂ → CO         ΔH₂ = -111 kJ/mol
-Reaktion 3: CO + ½O₂ → CO₂       ΔH₃ = ?
+Reaktion 1: $\ce{C + O2 -> CO2}$          $\Delta H_1 = -393 \text{ kJ/mol}$
 
-Laut Hess: ΔH₁ = ΔH₂ + ΔH₃
--393 = -111 + ΔH₃
-ΔH₃ = -282 kJ/mol
+Reaktion 2: $\ce{C + 1/2 O2 -> CO}$         $\Delta H_2 = -111 \text{ kJ/mol}$
+
+Reaktion 3: $\ce{CO + 1/2 O2 -> CO2}$       $\Delta H_3 = \text{?}$
+
+Laut Hess: $\Delta H_1 = \Delta H_2 + \Delta H_3$
+
+$-393 = -111 + \Delta H_3$
+
+$\Delta H_3 = -282 \text{ kJ/mol}$
 
 ## Bindungsenthalpien
 
@@ -115,21 +115,19 @@ Die **Bindungsenthalpie** ist die Energie, die notwendig ist, um eine chemische 
 
 ### Berechnung mit Bindungsenthalpien
 
-```
-ΔH = Σ(Bindungsenthalpien Edukte) - Σ(Bindungsenthalpien Produkte)
-```
+$$\Delta H = \Sigma(\text{Bindungsenthalpien Edukte}) - \Sigma(\text{Bindungsenthalpien Produkte})$$
 
-**Beispiel: H₂ + ½O₂ → H₂O**
+**Beispiel: $\ce{H2 + 1/2 O2 -> H2O}$**
 
 Edukte:
-- 1 × H-H: 436 kJ/mol
-- ½ × O=O: ½ × 498 = 249 kJ/mol
-- Summe: 685 kJ/mol
+- $1 \times \text{H-H}: 436 \text{ kJ/mol}$
+- $\frac{1}{2} \times \text{O=O}: \frac{1}{2} \times 498 = 249 \text{ kJ/mol}$
+- Summe: $685 \text{ kJ/mol}$
 
 Produkte:
-- 2 × O-H: 2 × 463 = 926 kJ/mol
+- $2 \times \text{O-H}: 2 \times 463 = 926 \text{ kJ/mol}$
 
-ΔH = 685 - 926 = **-241 kJ/mol** (exotherm)
+$$\Delta H = 685 - 926 = \textbf{-241 kJ/mol} \quad \text{(exotherm)}$$
 
 ## Aktivierungsenergie
 
