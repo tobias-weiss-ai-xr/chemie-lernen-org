@@ -130,20 +130,13 @@ Das Periodensystem ordnet alle **118 bekannten Elemente** nach:
 
 ### Struktur
 
-```
-     1A  2A      3A  4A  5A  6A  7A  8A
-  +----------------------------------------------------+
- 1 | H  |    |    |    |    |    |    | He |
- 2 | Li | Be |    | B  | C  | N  | O  | F  | Ne |
- 3 | Na | Mg |    | Al | Si | P  | S  | Cl | Ar |
- 4 | K  | Ca | ...| Ga | Ge | As | Se | Br | Kr |
-  +----------------------------------------------------+
-    |    |         |    |
-    |    |         |    +-- Hauptgruppe (A)
-    |    |         +------- Nebengruppe (B)
-    |    +------------------ Periode (Zeile)
-    +----------------------- Gruppe (Spalte)
-```
+![Struktur des Periodensystems](/img/atom-struktur.png)
+
+**Legende:**
+- **Hauptgruppe (A):** Gruppen 1-2 und 13-18
+- **Nebengruppe (B):** Gruppen 3-12 (Übergangsmetalle)
+- **Periode:** Zeilen (1-7)
+- **Gruppe:** Spalten
 
 ### Wichtige Gruppen
 
