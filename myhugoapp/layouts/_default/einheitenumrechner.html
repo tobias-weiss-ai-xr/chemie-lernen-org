@@ -1,0 +1,657 @@
+{{ define "main" }}
+
+<div class="unit-converter-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Converter Tabs -->
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a href="#temperatur" aria-controls="temperatur" role="tab" data-toggle="tab">
+            <i class="fa fa-thermometer-half"></i> Temperatur
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#druck" aria-controls="druck" role="tab" data-toggle="tab">
+            <i class="fa fa-tachometer"></i> Druck
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#volumen" aria-controls="volumen" role="tab" data-toggle="tab">
+            <i class="fa fa-cube"></i> Volumen
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#masse" aria-controls="masse" role="tab" data-toggle="tab">
+            <i class="fa fa-balance-scale"></i> Masse
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#energie" aria-controls="energie" role="tab" data-toggle="tab">
+            <i class="fa fa-bolt"></i> Energie
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <!-- Temperature Tab -->
+    <div class="tab-pane active" id="temperatur" role="tabpanel">
+      <div class="converter-panel">
+        <h2>Temperatur umrechnen</h2>
+        <p>Wählen Sie die Ausgangseinheit und geben Sie den Wert ein:</p>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="number" id="temp-input" class="form-control" placeholder="Wert eingeben" step="any" aria-label="Temperaturwert">
+              <span class="input-group-addon">
+                <select id="temp-from" class="form-control" style="border: none; background: transparent;">
+                  <option value="c">°C</option>
+                  <option value="f">°F</option>
+                  <option value="k">K</option>
+                </select>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="number" id="temp-output" class="form-control" readonly placeholder="Ergebnis" aria-label="Umgerechneter Temperaturwert">
+              <span class="input-group-addon">
+                <select id="temp-to" class="form-control" style="border: none; background: transparent;">
+                  <option value="c">°C</option>
+                  <option value="f" selected>°F</option>
+                  <option value="k">K</option>
+                </select>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" onclick="convertTemperature()" style="margin-top: 20px;">
+          <i class="fa fa-exchange-alt"></i> Umrechnen
+        </button>
+
+        <div id="temp-result" class="result-box" style="display: none; margin-top: 20px;">
+          <h3>Ergebnis:</h3>
+          <p id="temp-formula" class="formula-display"></p>
+        </div>
+
+        <div class="info-box" style="margin-top: 30px;">
+          <h4><i class="fa fa-info-circle"></i> Informationen zur Temperaturskala</h4>
+          <ul>
+            <li><strong>Celsius (°C):</strong> Wasser gefriert bei 0°C und siedet bei 100°C</li>
+            <li><strong>Fahrenheit (°F):</strong> Wasser gefriert bei 32°F und siedet bei 212°F</li>
+            <li><strong>Kelvin (K):</strong> Absolute Nullpunkt bei 0K, Wasser siedet bei 373.15K</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pressure Tab -->
+    <div class="tab-pane" id="druck" role="tabpanel">
+      <div class="converter-panel">
+        <h2>Druck umrechnen</h2>
+        <p>Wählen Sie die Ausgangseinheit und geben Sie den Wert ein:</p>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="number" id="pressure-input" class="form-control" placeholder="Wert eingeben" step="any" aria-label="Druckwert">
+              <span class="input-group-addon">
+                <select id="pressure-from" class="form-control" style="border: none; background: transparent;">
+                  <option value="bar">bar</option>
+                  <option value="pa">Pa</option>
+                  <option value="kpa">kPa</option>
+                  <option value="mpa">MPa</option>
+                  <option value="atm">atm</option>
+                  <option value="torr">Torr</option>
+                  <option value="mmhg">mmHg</option>
+                </select>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="number" id="pressure-output" class="form-control" readonly placeholder="Ergebnis" aria-label="Umgerechneter Druckwert">
+              <span class="input-group-addon">
+                <select id="pressure-to" class="form-control" style="border: none; background: transparent;">
+                  <option value="bar">bar</option>
+                  <option value="kpa" selected>kPa</option>
+                  <option value="pa">Pa</option>
+                  <option value="mpa">MPa</option>
+                  <option value="atm">atm</option>
+                  <option value="torr">Torr</option>
+                  <option value="mmhg">mmHg</option>
+                </select>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" onclick="convertPressure()" style="margin-top: 20px;">
+          <i class="fa fa-exchange-alt"></i> Umrechnen
+        </button>
+
+        <div id="pressure-result" class="result-box" style="display: none; margin-top: 20px;">
+          <h3>Ergebnis:</h3>
+          <p id="pressure-formula" class="formula-display"></p>
+        </div>
+
+        <div class="info-box" style="margin-top: 30px;">
+          <h4><i class="fa fa-info-circle"></i> Informationen zu Druckeinheiten</h4>
+          <ul>
+            <li><strong>bar:</strong> 1 bar = 100.000 Pa, ungefähr atmosphärischer Druck</li>
+            <li><strong>Pascal (Pa):</strong> SI-Einheit, 1 Pa = 1 N/m²</li>
+            <li><strong>atm:</strong> Standardatmosphäre, 1 atm = 101.325 Pa</li>
+            <li><strong>Torr/mmHg:</strong> 1 Torr = 1 mmHg ≈ 133.322 Pa</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Volume Tab -->
+    <div class="tab-pane" id="volumen" role="tabpanel">
+      <div class="converter-panel">
+        <h2>Volumen umrechnen</h2>
+        <p>Wählen Sie die Ausgangseinheit und geben Sie den Wert ein:</p>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="number" id="volume-input" class="form-control" placeholder="Wert eingeben" step="any" aria-label="Volumenwert">
+              <span class="input-group-addon">
+                <select id="volume-from" class="form-control" style="border: none; background: transparent;">
+                  <option value="l">L</option>
+                  <option value="ml">mL</option>
+                  <option value="m3">m³</option>
+                  <option value="cm3">cm³</option>
+                  <option value="dl">dL</option>
+                </select>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="number" id="volume-output" class="form-control" readonly placeholder="Ergebnis" aria-label="Umgerechneter Volumenwert">
+              <span class="input-group-addon">
+                <select id="volume-to" class="form-control" style="border: none; background: transparent;">
+                  <option value="l">L</option>
+                  <option value="ml" selected>mL</option>
+                  <option value="m3">m³</option>
+                  <option value="cm3">cm³</option>
+                  <option value="dl">dL</option>
+                </select>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" onclick="convertVolume()" style="margin-top: 20px;">
+          <i class="fa fa-exchange-alt"></i> Umrechnen
+        </button>
+
+        <div id="volume-result" class="result-box" style="display: none; margin-top: 20px;">
+          <h3>Ergebnis:</h3>
+          <p id="volume-formula" class="formula-display"></p>
+        </div>
+
+        <div class="info-box" style="margin-top: 30px;">
+          <h4><i class="fa fa-info-circle"></i> Informationen zu Volumeneinheiten</h4>
+          <ul>
+            <li><strong>Liter (L):</strong> 1 L = 1 dm³ = 1000 cm³</li>
+            <li><strong>Milliliter (mL):</strong> 1 mL = 1 cm³ = 0.001 L</li>
+            <li><strong>Kubikmeter (m³):</strong> SI-Einheit, 1 m³ = 1000 L</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mass Tab -->
+    <div class="tab-pane" id="masse" role="tabpanel">
+      <div class="converter-panel">
+        <h2>Masse umrechnen</h2>
+        <p>Wählen Sie die Ausgangseinheit und geben Sie den Wert ein:</p>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="number" id="mass-input" class="form-control" placeholder="Wert eingeben" step="any" aria-label="Massenwert">
+              <span class="input-group-addon">
+                <select id="mass-from" class="form-control" style="border: none; background: transparent;">
+                  <option value="g">g</option>
+                  <option value="kg">kg</option>
+                  <option value="mg">mg</option>
+                  <option value="ug">µg</option>
+                  <option value="mol">mol</option>
+                </select>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="number" id="mass-output" class="form-control" readonly placeholder="Ergebnis" aria-label="Umgerechneter Massenwert">
+              <span class="input-group-addon">
+                <select id="mass-to" class="form-control" style="border: none; background: transparent;">
+                  <option value="g">g</option>
+                  <option value="kg" selected>kg</option>
+                  <option value="mg">mg</option>
+                  <option value="ug">µg</option>
+                </select>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 15px;">
+          <label for="molar-mass">Molare Masse (g/mol) für Umrechnung in mol:</label>
+          <input type="number" id="molar-mass" class="form-control" placeholder="z.B. 18.015 für Wasser" step="any" aria-label="Molare Masse in g/mol">
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" onclick="convertMass()" style="margin-top: 20px;">
+          <i class="fa fa-exchange-alt"></i> Umrechnen
+        </button>
+
+        <div id="mass-result" class="result-box" style="display: none; margin-top: 20px;">
+          <h3>Ergebnis:</h3>
+          <p id="mass-formula" class="formula-display"></p>
+        </div>
+
+        <div class="info-box" style="margin-top: 30px;">
+          <h4><i class="fa fa-info-circle"></i> Informationen zu Masseneinheiten</h4>
+          <ul>
+            <li><strong>Gramm (g):</strong> 1 g = 0.001 kg</li>
+            <li><strong>Kilogramm (kg):</strong> SI-Einheit</li>
+            <li><strong>Milligramm (mg):</strong> 1 mg = 0.001 g</li>
+            <li><strong>Mikrogramm (µg):</strong> 1 µg = 0.000001 g</li>
+            <li><strong>Mol:</strong> Stoffmenge, benötigt molare Masse zur Umrechnung</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Energy Tab -->
+    <div class="tab-pane" id="energie" role="tabpanel">
+      <div class="converter-panel">
+        <h2>Energie umrechnen</h2>
+        <p>Wählen Sie die Ausgangseinheit und geben Sie den Wert ein:</p>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="number" id="energy-input" class="form-control" placeholder="Wert eingeben" step="any" aria-label="Energiewert">
+              <span class="input-group-addon">
+                <select id="energy-from" class="form-control" style="border: none; background: transparent;">
+                  <option value="j">J</option>
+                  <option value="kj">kJ</option>
+                  <option value="cal">cal</option>
+                  <option value="kcal">kcal</option>
+                  <option value="ev">eV</option>
+                </select>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="number" id="energy-output" class="form-control" readonly placeholder="Ergebnis" aria-label="Umgerechneter Energiewert">
+              <span class="input-group-addon">
+                <select id="energy-to" class="form-control" style="border: none; background: transparent;">
+                  <option value="j">J</option>
+                  <option value="kj" selected>kJ</option>
+                  <option value="cal">cal</option>
+                  <option value="kcal">kcal</option>
+                  <option value="ev">eV</option>
+                </select>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" onclick="convertEnergy()" style="margin-top: 20px;">
+          <i class="fa fa-exchange-alt"></i> Umrechnen
+        </button>
+
+        <div id="energy-result" class="result-box" style="display: none; margin-top: 20px;">
+          <h3>Ergebnis:</h3>
+          <p id="energy-formula" class="formula-display"></p>
+        </div>
+
+        <div class="info-box" style="margin-top: 30px;">
+          <h4><i class="fa fa-info-circle"></i> Informationen zu Energieeinheiten</h4>
+          <ul>
+            <li><strong>Joule (J):</strong> SI-Einheit, 1 J = 1 kg·m²/s²</li>
+            <li><strong>Kalorie (cal):</strong> 1 cal ≈ 4.184 J</li>
+            <li><strong>Kilokalorie (kcal):</strong> 1 kcal = 1000 cal ≈ 4.184 kJ</li>
+            <li><strong>Elektronenvolt (eV):</strong> 1 eV ≈ 1.602×10⁻¹⁹ J</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Educational Content -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="info-box">
+        <h3><i class="fa fa-graduation-cap"></i> Didaktischer Hinweis</h3>
+        <p>Einheitenumrechnungen sind grundlegende Fähigkeiten im Chemieunterricht. Dieser interaktive Umrechner hilft Schüler:innen, das Verständnis für verschiedene Einheitensysteme zu entwickeln und sichere Umrechnungen durchzuführen.</p>
+
+        <h4>Common Pitfalls (Häufige Fehler):</h4>
+        <ul>
+          <li>Vergessen der Temperaturformel (keine einfache Multiplikation!)</li>
+          <li>Verwechslung von Groß- und Kleinschreibung (m vs M, mg vs Mg)</li>
+          <li>Nicht berücksichtigte Vorfaktoren bei Vorsilben (k = 1000, nicht 1024!)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Temperature conversion
+function convertTemperature() {
+  const input = parseFloat(document.getElementById('temp-input').value);
+  const from = document.getElementById('temp-from').value;
+  const to = document.getElementById('temp-to').value;
+
+  if (isNaN(input)) {
+    alert('Bitte geben Sie einen gültigen Wert ein');
+    return;
+  }
+
+  // Convert to Celsius first
+  let celsius;
+  switch(from) {
+    case 'c': celsius = input; break;
+    case 'f': celsius = (input - 32) * 5/9; break;
+    case 'k': celsius = input - 273.15; break;
+  }
+
+  // Convert from Celsius to target
+  let result;
+  switch(to) {
+    case 'c': result = celsius; break;
+    case 'f': result = celsius * 9/5 + 32; break;
+    case 'k': result = celsius + 273.15; break;
+  }
+
+  document.getElementById('temp-output').value = result.toFixed(2);
+
+  const resultBox = document.getElementById('temp-result');
+  const formulaBox = document.getElementById('temp-formula');
+  resultBox.style.display = 'block';
+  formulaBox.innerHTML = `<strong>${input} ${getTempSymbol(from)}</strong> = <strong>${result.toFixed(2)} ${getTempSymbol(to)}</strong>`;
+}
+
+function getTempSymbol(unit) {
+  const symbols = { c: '°C', f: '°F', k: 'K' };
+  return symbols[unit];
+}
+
+// Pressure conversion
+function convertPressure() {
+  const input = parseFloat(document.getElementById('pressure-input').value);
+  const from = document.getElementById('pressure-from').value;
+  const to = document.getElementById('pressure-to').value;
+
+  if (isNaN(input)) {
+    alert('Bitte geben Sie einen gültigen Wert ein');
+    return;
+  }
+
+  // Conversion factors to Pascal
+  const toPa = {
+    bar: 100000,
+    pa: 1,
+    kpa: 1000,
+    mpa: 1000000,
+    atm: 101325,
+    torr: 133.322,
+    mmhg: 133.322
+  };
+
+  const pascal = input * toPa[from];
+  const result = pascal / toPa[to];
+
+  document.getElementById('pressure-output').value = result.toExponential(4);
+
+  const resultBox = document.getElementById('pressure-result');
+  const formulaBox = document.getElementById('pressure-formula');
+  resultBox.style.display = 'block';
+  formulaBox.innerHTML = `<strong>${input} ${from}</strong> = <strong>${result.toExponential(4)} ${to}</strong>`;
+}
+
+// Volume conversion
+function convertVolume() {
+  const input = parseFloat(document.getElementById('volume-input').value);
+  const from = document.getElementById('volume-from').value;
+  const to = document.getElementById('volume-to').value;
+
+  if (isNaN(input)) {
+    alert('Bitte geben Sie einen gültigen Wert ein');
+    return;
+  }
+
+  // Conversion factors to Liters
+  const toL = {
+    l: 1,
+    ml: 0.001,
+    m3: 1000,
+    cm3: 0.001,
+    dl: 0.1
+  };
+
+  const liters = input * toL[from];
+  const result = liters / toL[to];
+
+  document.getElementById('volume-output').value = result.toFixed(4);
+
+  const resultBox = document.getElementById('volume-result');
+  const formulaBox = document.getElementById('volume-formula');
+  resultBox.style.display = 'block';
+  formulaBox.innerHTML = `<strong>${input} ${from}</strong> = <strong>${result.toFixed(4)} ${to}</strong>`;
+}
+
+// Mass conversion
+function convertMass() {
+  const input = parseFloat(document.getElementById('mass-input').value);
+  const from = document.getElementById('mass-from').value;
+  const to = document.getElementById('mass-to').value;
+  const molarMass = parseFloat(document.getElementById('molar-mass').value);
+
+  if (isNaN(input)) {
+    alert('Bitte geben Sie einen gültigen Wert ein');
+    return;
+  }
+
+  // Conversion factors to grams
+  const toG = {
+    g: 1,
+    kg: 1000,
+    mg: 0.001,
+    ug: 0.000001
+  };
+
+  let grams;
+
+  // Handle mol conversion
+  if (from === 'mol') {
+    if (isNaN(molarMass)) {
+      alert('Bitte geben Sie die molare Masse ein');
+      return;
+    }
+    grams = input * molarMass;
+  } else {
+    grams = input * toG[from];
+  }
+
+  let result;
+  if (to === 'mol') {
+    if (isNaN(molarMass)) {
+      alert('Bitte geben Sie die molare Masse ein');
+      return;
+    }
+    result = grams / molarMass;
+  } else {
+    result = grams / toG[to];
+  }
+
+  document.getElementById('mass-output').value = result.toExponential(4);
+
+  const resultBox = document.getElementById('mass-result');
+  const formulaBox = document.getElementById('mass-formula');
+  resultBox.style.display = 'block';
+  formulaBox.innerHTML = `<strong>${input} ${from}</strong> = <strong>${result.toExponential(4)} ${to}</strong>`;
+}
+
+// Energy conversion
+function convertEnergy() {
+  const input = parseFloat(document.getElementById('energy-input').value);
+  const from = document.getElementById('energy-from').value;
+  const to = document.getElementById('energy-to').value;
+
+  if (isNaN(input)) {
+    alert('Bitte geben Sie einen gültigen Wert ein');
+    return;
+  }
+
+  // Conversion factors to Joules
+  const toJ = {
+    j: 1,
+    kj: 1000,
+    cal: 4.184,
+    kcal: 4184,
+    ev: 1.602176634e-19
+  };
+
+  const joules = input * toJ[from];
+  const result = joules / toJ[to];
+
+  document.getElementById('energy-output').value = result.toExponential(4);
+
+  const resultBox = document.getElementById('energy-result');
+  const formulaBox = document.getElementById('energy-formula');
+  resultBox.style.display = 'block';
+  formulaBox.innerHTML = `<strong>${input} ${from}</strong> = <strong>${result.toExponential(4)} ${to}</strong>`;
+}
+
+// Auto-calculate on Enter key
+document.addEventListener('DOMContentLoaded', function() {
+  const inputs = document.querySelectorAll('input[type="number"]');
+  inputs.forEach(input => {
+    input.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        // Find the active tab and call the appropriate function
+        const activeTab = document.querySelector('.tab-pane.active');
+        if (activeTab) {
+          const tabId = activeTab.id;
+          switch(tabId) {
+            case 'temperatur': convertTemperature(); break;
+            case 'druck': convertPressure(); break;
+            case 'volumen': convertVolume(); break;
+            case 'masse': convertMass(); break;
+            case 'energie': convertEnergy(); break;
+          }
+        }
+      }
+    });
+  });
+});
+</script>
+
+<style>
+.unit-converter-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.converter-panel {
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.converter-panel h2 {
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.result-box {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.result-box h3 {
+  color: #155724;
+  margin-top: 0;
+}
+
+.formula-display {
+  font-size: 1.2em;
+  color: #155724;
+}
+
+.info-box {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.info-box h4 {
+  color: #856404;
+}
+
+@media(prefers-color-scheme: dark) {
+  .converter-panel {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+  }
+
+  .converter-panel h2 {
+    color: #66b0ff;
+  }
+
+  .result-box {
+    background-color: #1b4d3f;
+    border-color: #2d6a4f;
+  }
+
+  .result-box h3,
+  .formula-display {
+    color: #a7f3d0;
+  }
+
+  .info-box {
+    background-color: #423d0f;
+    border-color: #6b5f0f;
+  }
+
+  .info-box h4 {
+    color: #fde68a;
+  }
+}
+</style>
+
+{{ end }}

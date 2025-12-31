@@ -97,10 +97,24 @@ author = "chemie-lernen.org Team"
     icon = "⚖️"
     interaktiv = true
 [[menu.main]]
+    name = "Einheitenumrechner"
+    url = "/einheitenumrechner/"
+    parent = "interaktiv"
+    weight = 26
+    icon = "🔄"
+    interaktiv = true
+[[menu.main]]
+    name = "Lösungsrechner"
+    url = "/loesungsrechner/"
+    parent = "interaktiv"
+    weight = 27
+    icon = "🧪"
+    interaktiv = true
+[[menu.main]]
     name = "VR Labore"
     url = "https://github.com/tobias-weiss-ai-xr/graphwiz-xr"
     parent = "interaktiv"
-    weight = 26
+    weight = 28
     icon = "🥽"
     interaktiv = true
 
