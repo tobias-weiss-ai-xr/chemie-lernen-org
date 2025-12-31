@@ -5,7 +5,8 @@ draft: false
 type: "page"
 ---
 
-# Impressum / Imprint
+
+## Impressum / Imprint
 
 **Angaben gemäß § 5 TMG und § 55 Abs. 2 RStV**
 

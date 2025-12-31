@@ -9,7 +9,8 @@ weight: 30
 quiz: "anorganische-verbindungen"
 ---
 
-# Anorganische Verbindungen
+
+## Anorganische Verbindungen
 
 Anorganische Verbindungen bilden einen der größten und wichtigsten Bereiche der Chemie. Sie umfassen alle Verbindungen, die nicht Kohlenstoff-Wasserstoff-Gerüste enthalten (mit einigen Ausnahmen wie CO₂, Carbonate, etc.).
 

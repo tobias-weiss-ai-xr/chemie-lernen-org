@@ -9,7 +9,8 @@ weight: 10
 quiz: "einfuehrung-chemie"
 ---
 
-# Einführung in die Chemie
+
+## Einführung in die Chemie
 
 Willkommen in der faszinierenden Welt der Chemie! In diesem Themenbereich lernen Sie die grundlegenden Konzepte kennen, die das Verständnis aller chemischen Prozesse bilden.
 

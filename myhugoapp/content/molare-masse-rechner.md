@@ -10,6 +10,7 @@ schwierigkeit: "mittelstufe"
 teilgebiet: "anorganische-verbindungen"
 ---
 
-# Molare Masse Rechner
+
+## Molare Masse Rechner
 
 Berechnen Sie die molare Masse (Molare Masse) von beliebigen chemischen Verbindungen und Elementen.

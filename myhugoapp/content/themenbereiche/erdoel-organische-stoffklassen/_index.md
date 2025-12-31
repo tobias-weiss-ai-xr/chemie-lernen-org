@@ -10,7 +10,8 @@ interaktiv: true
 quiz: "erdoel-organische-stoffklassen"
 ---
 
-# Erdöl und organische Stoffklassen
+
+## Erdöl und organische Stoffklassen
 
 Die organische Chemie ist die Chemie des Kohlenstoffs – des Elements, das die Basis allen Lebens bildet. Aus dem schwarzen Gold Erdöl entstehen unzählige Produkte unseres Alltags: von Kunststoffen über Medikamente bis zu Treibstoffen. Dieser Themenbereich führt Sie in die faszinierende Welt der organischen Moleküle ein.
 

@@ -9,7 +9,8 @@ weight: 100
 interaktiv: true
 ---
 
-# Reaktionstypen der Organischen Chemie
+
+## Reaktionstypen der Organischen Chemie
 
 Die organische Chemie zeichnet sich durch eine enorme Vielfalt an Reaktionen aus. Das Verständnis der grundlegenden Reaktionstypen – Substitution, Addition, Elimination – ist der Schlüssel zum Verständnis komplexer synthetischer Wege in der Forschung und Industrie. Von der Herstellung einfacher Kunststoffe bis zur Synthese komplexer Wirkstoffe – diese Reaktionstypen sind überall.
 

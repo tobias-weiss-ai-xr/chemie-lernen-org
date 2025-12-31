@@ -9,7 +9,8 @@ weight: 110
 interaktiv: true
 ---
 
-# Produkte der Organischen Chemie
+
+## Produkte der Organischen Chemie
 
 Die organische Chemie ist überall um uns herum – von der Plastikflasche, aus der wir trinken, über die Farben unserer Kleidung bis zu den Medikamenten, die uns gesund halten. Dieser Themenbereich zeigt die faszinierenden Anwendungen der organischen Chemie in unserem Alltag, in der Industrie und in der Medizin.
 

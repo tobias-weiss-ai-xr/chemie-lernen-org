@@ -9,7 +9,8 @@ weight: 70
 quiz: "energetik"
 ---
 
-# Energetik
+
+## Energetik
 
 Die Energetik beschäftigt sich mit den Energieveränderungen, die bei chemischen Reaktionen auftreten. Energie spielt eine zentrale Rolle in der Chemie – sie bestimmt, ob eine Reaktion abläuft und wie schnell sie erfolgt.
 

@@ -10,7 +10,8 @@ interaktiv: true
 quiz: "redox-elektrochemie"
 ---
 
-# Redoxreaktionen und Elektrochemie
+
+## Redoxreaktionen und Elektrochemie
 
 Redoxreaktionen gehören zu den wichtigsten und faszinierendsten Reaktionstypen in der Chemie. Sie bilden die Grundlage für die Energieumwandlung in Batterien, ermöglichen Korrosionsprozesse und sind essenziell für das Leben selbst (Atmung, Photosynthese).
 

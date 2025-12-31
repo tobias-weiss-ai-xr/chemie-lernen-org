@@ -4,7 +4,8 @@ date: 2025-12-27
 layout: "search"
 ---
 
-# Suchergebnisse
+
+## Suchergebnisse
 
 <div class="search-container">
   <div class="search-form-wrapper">

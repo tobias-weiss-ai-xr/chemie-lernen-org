@@ -6,7 +6,8 @@ klassenstufe: 6
 bundesland: ["BE", "BB", "HB", "HH", "NI", "NW", "RP", "SL", "SH", "ST", "TH"]
 ---
 
-# 6. Klasse Chemie
+
+## 6. Klasse Chemie
 
 Vertiefung der chemischen Grundlagen!
 

@@ -10,7 +10,8 @@ interaktiv: true
 quiz: "aufbau-materie"
 ---
 
-# Aufbau der Materie
+
+## Aufbau der Materie
 
 Entdecken Sie den faszinierenden mikroskopischen Aufbau unserer Welt! Alles, was wir sehen und berühren können, besteht aus unsichtbaren Teilchen, die auf faszinierende Weise angeordnet sind. Von den kleinsten Atomen bis zu komplexen Molekülen - verstehen Sie den Grundbaustein unseres Universums.
 

@@ -10,7 +10,8 @@ interaktiv: true
 quiz: "gleichgewicht-geschwindigkeit"
 ---
 
-# Gleichgewicht und Geschwindigkeit
+
+## Gleichgewicht und Geschwindigkeit
 
 Chemische Reaktionen laufen nicht alle mit der gleichen Geschwindigkeit ab. Manche sind explosionsartig schnell, andere brauchen Jahre. Zudem erreichen viele reversible Reaktionen ein chemisches Gleichgewicht. Das Verständnis dieser Konzepte ist essenziell für die chemische Industrie, Biochemie und Umweltwissenschaften.
 

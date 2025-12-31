@@ -8,7 +8,7 @@
     - generic [ref=e4]:
       - generic [ref=e6]:
         - link "chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte" [ref=e7] [cursor=pointer]:
-          - /url: https://chemie-lernen.org/
+          - /url: https://chemie-lernen.org
           - img "chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte" [ref=e8]
           - text: chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte
         - link "" [ref=e9] [cursor=pointer]:
@@ -43,7 +43,7 @@
       - list [ref=e35]:
         - listitem [ref=e36]:
           - link "Start" [ref=e37] [cursor=pointer]:
-            - /url: https://chemie-lernen.org/
+            - /url: https://chemie-lernen.org
             - generic [ref=e38]: 
             - text: Start
         - listitem [ref=e39]:

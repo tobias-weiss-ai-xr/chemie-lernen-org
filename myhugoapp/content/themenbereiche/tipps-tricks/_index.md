@@ -8,7 +8,8 @@ icon: "💡"
 weight: 120
 ---
 
-# Tipps und Tricks für den Chemie-Unterricht
+
+## Tipps und Tricks für den Chemie-Unterricht
 
 Erfolg in Chemie ist nicht nur eine Frage des Talents, sondern vor allem der richtigen Lernstrategie und hilfreicher Techniken. In diesem Bereich finden Sie bewährte Methoden, Merkhilfen und praktische Tipps, um Chemie effektiver zu lernen und sich besser auf Prüfungen vorzubereiten.
 

@@ -10,6 +10,7 @@ schwierigkeit: "mittelstufe"
 teilgebiet: "reaktionstypen-organisch"
 ---
 
-# Reaktionsgleichungen Ausgleichen
+
+## Reaktionsgleichungen Ausgleichen
 
 Gleichen Sie chemische Reaktionsgleichungen automatisch aus und verstehen Sie die Stöchiometrie.
