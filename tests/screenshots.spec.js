@@ -35,8 +35,11 @@ test.describe('Screenshot Tests', () => {
         await page.waitForLoadState('networkidle');
         await page.waitForTimeout(1000);
 
+        // Wait for suggestion chips to be visible
+        const wasserChip = page.locator('.suggestion-chip').filter({ hasText: /Wasser/ });
+        await expect(wasserChip).toBeVisible({ timeout: 5000 });
+
         // Click on Wasser button
-        const wasserChip = page.locator('.suggestion-chip').filter({ hasText: 'Wasser' });
         await wasserChip.click();
         await page.waitForTimeout(2000); // Wait for molecule to render
 
