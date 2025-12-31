@@ -111,10 +111,17 @@ author = "chemie-lernen.org Team"
     icon = "🧪"
     interaktiv = true
 [[menu.main]]
+    name = "Stöchiometrie"
+    url = "/stoechiometrie-rechner/"
+    parent = "interaktiv"
+    weight = 28
+    icon = "⚗️"
+    interaktiv = true
+[[menu.main]]
     name = "VR Labore"
     url = "https://github.com/tobias-weiss-ai-xr/graphwiz-xr"
     parent = "interaktiv"
-    weight = 28
+    weight = 29
     icon = "🥽"
     interaktiv = true
 

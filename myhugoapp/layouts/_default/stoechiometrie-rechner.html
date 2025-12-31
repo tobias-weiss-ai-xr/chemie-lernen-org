@@ -1,0 +1,312 @@
+{{ define "main" }}
+
+<div class="stoichiometry-calculator-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Calculator Tabs -->
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a href="#mol-mol" aria-controls="mol-mol" role="tab" data-toggle="tab">
+            <i class="fa fa-exchange"></i> Mol-Mol
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#masse-masse" aria-controls="masse-masse" role="tab" data-toggle="tab">
+            <i class="fa fa-balance-scale"></i> Masse-Masse
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#limitierend" aria-controls="limitierend" role="tab" data-toggle="tab">
+            <i class="fa fa-filter"></i> Limitierendes Reagenz
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#ausbeute" aria-controls="ausbeute" role="tab" data-toggle="tab">
+            <i class="fa fa-chart-line"></i> Ausbeute
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <!-- Mol-Mol Tab -->
+    <div class="tab-pane active" id="mol-mol" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Mol-Mol-Umrechnung</h2>
+        <p>Berechnen Sie Stoffmengen basierend auf der Reaktionsgleichung:</p>
+
+        <div class="form-group">
+          <label for="reaction-1">Reaktionsgleichung:</label>
+          <input type="text" id="reaction-1" class="form-control" value="2H2 + O2 -> 2H2O">
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="well">
+              <h4>Edukt</h4>
+              <div class="form-group">
+                <label>Stoffmenge (mol):</label>
+                <input type="number" id="mol-reactant" class="form-control" placeholder="z.B. 2" step="any">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="well">
+              <h4>Produkt</h4>
+              <div class="form-group">
+                <label>Koeffizient:</label>
+                <input type="number" id="coeff-1" class="form-control" value="2" step="any">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" onclick="calcMolMol()">Berechnen</button>
+
+        <div id="mol-result" class="result-box" style="display:none; margin-top:20px;">
+          <h3>Ergebnis:</h3>
+          <div id="mol-calc"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mass-Mass Tab -->
+    <div class="tab-pane" id="masse-masse" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Masse-Masse-Umrechnung</h2>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="well">
+              <h4>Edukt</h4>
+              <div class="form-group">
+                <label>Masse (g):</label>
+                <input type="number" id="mass-r" class="form-control" step="any">
+              </div>
+              <div class="form-group">
+                <label>Molare Masse (g/mol):</label>
+                <input type="number" id="mm-r" class="form-control" step="any">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="well">
+              <h4>Produkt</h4>
+              <div class="form-group">
+                <label>Molare Masse (g/mol):</label>
+                <input type="number" id="mm-p" class="form-control" step="any">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="well result-well">
+              <h4>Ergebnis</h4>
+              <div id="mass-preview" class="text-center">
+                <p style="font-size:2em; color:#007bff;">--</p>
+                <p>Gramm</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" onclick="calcMassMass()">Berechnen</button>
+
+        <div id="mass-result" style="display:none; margin-top:20px;"></div>
+      </div>
+    </div>
+
+    <!-- Limiting Tab -->
+    <div class="tab-pane" id="limitierend" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Limitierendes Reagenz</h2>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="well">
+              <h4>Reagenz 1</h4>
+              <div class="form-group">
+                <label>Masse (g):</label>
+                <input type="number" id="lim-m1" class="form-control" step="any">
+              </div>
+              <div class="form-group">
+                <label>Molare Masse (g/mol):</label>
+                <input type="number" id="lim-mm1" class="form-control" step="any">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="well">
+              <h4>Reagenz 2</h4>
+              <div class="form-group">
+                <label>Masse (g):</label>
+                <input type="number" id="lim-m2" class="form-control" step="any">
+              </div>
+              <div class="form-group">
+                <label>Molare Masse (g/mol):</label>
+                <input type="number" id="lim-mm2" class="form-control" step="any">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" onclick="calcLimiting()">Bestimmen</button>
+
+        <div id="limit-result" style="display:none; margin-top:20px;"></div>
+      </div>
+    </div>
+
+    <!-- Yield Tab -->
+    <div class="tab-pane" id="ausbeute" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Ausbeute berechnen</h2>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="well">
+              <h4>Theoretisch</h4>
+              <div class="form-group">
+                <label>Masse (g):</label>
+                <input type="number" id="yield-theo" class="form-control" step="any">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="well">
+              <h4>Praktisch</h4>
+              <div class="form-group">
+                <label>Masse (g):</label>
+                <input type="number" id="yield-act" class="form-control" step="any">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" onclick="calcYield()">Berechnen</button>
+
+        <div id="yield-result" style="display:none; margin-top:20px;"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function calcMolMol() {
+  const n1 = parseFloat(document.getElementById('mol-reactant').value);
+  const v2 = parseFloat(document.getElementById('coeff-1').value);
+
+  if (isNaN(n1) || isNaN(v2)) {
+    alert('Bitte geben Sie alle Werte ein');
+    return;
+  }
+
+  const n2 = n1 * v2;
+  document.getElementById('mol-result').style.display = 'block';
+  document.getElementById('mol-calc').innerHTML = `
+    <p><strong>Edukt:</strong> ${n1} mol</p>
+    <p><strong>Produkt:</strong> ${n2.toFixed(4)} mol</p>
+  `;
+}
+
+function calcMassMass() {
+  const m1 = parseFloat(document.getElementById('mass-r').value);
+  const M1 = parseFloat(document.getElementById('mm-r').value);
+  const M2 = parseFloat(document.getElementById('mm-p').value);
+
+  if (isNaN(m1) || isNaN(M1) || isNaN(M2)) {
+    alert('Bitte geben Sie alle Werte ein');
+    return;
+  }
+
+  const n1 = m1 / M1;
+  const n2 = n1;
+  const m2 = n2 * M2;
+
+  document.getElementById('mass-preview').innerHTML = `
+    <p style="font-size:2em; color:#007bff;">${m2.toFixed(2)}</p>
+    <p>Gramm</p>
+  `;
+
+  document.getElementById('mass-result').style.display = 'block';
+  document.getElementById('mass-result').innerHTML = `
+    <div class="result-box">
+      <h3>Berechnung:</h3>
+      <p>n = ${m1} g / ${M1} g/mol = ${n1.toFixed(4)} mol</p>
+      <p>m = ${n2.toFixed(4)} mol × ${M2} g/mol = <strong>${m2.toFixed(2)} g</strong></p>
+    </div>
+  `;
+}
+
+function calcLimiting() {
+  const m1 = parseFloat(document.getElementById('lim-m1').value);
+  const M1 = parseFloat(document.getElementById('lim-mm1').value);
+  const m2 = parseFloat(document.getElementById('lim-m2').value);
+  const M2 = parseFloat(document.getElementById('lim-mm2').value);
+
+  if (isNaN(m1) || isNaN(M1) || isNaN(m2) || isNaN(M2)) {
+    alert('Bitte geben Sie alle Werte ein');
+    return;
+  }
+
+  const n1 = m1 / M1;
+  const n2_2 = m2 / M2;
+
+  const limiting = n1 < n2_2 ? 1 : 2;
+  const name = limiting === 1 ? 'Reagenz 1' : 'Reagenz 2';
+
+  document.getElementById('limit-result').style.display = 'block';
+  document.getElementById('limit-result').innerHTML = `
+    <div class="alert alert-success">
+      <h4>Limitierend: ${name}</h4>
+      <p>Reagenz 1: ${n1.toFixed(4)} mol</p>
+      <p>Reagenz 2: ${n2_2.toFixed(4)} mol</p>
+    </div>
+  `;
+}
+
+function calcYield() {
+  const theo = parseFloat(document.getElementById('yield-theo').value);
+  const act = parseFloat(document.getElementById('yield-act').value);
+
+  if (isNaN(theo) || isNaN(act)) {
+    alert('Bitte geben Sie alle Werte ein');
+    return;
+  }
+
+  const yield_pct = (act / theo) * 100;
+
+  document.getElementById('yield-result').style.display = 'block';
+  document.getElementById('yield-result').innerHTML = `
+    <div class="result-box">
+      <h3>Ausbeute: ${yield_pct.toFixed(2)}%</h3>
+      <p>Theoretisch: ${theo} g</p>
+      <p>Praktisch: ${act} g</p>
+    </div>
+  `;
+}
+</script>
+
+<style>
+.stoichiometry-calculator-container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+.calculator-panel { background-color: #f8f9fa; padding: 30px; border-radius: 8px; margin-bottom: 20px; }
+.calculator-panel h2 { color: #007bff; margin-bottom: 20px; }
+.well { background-color: white; border: 1px solid #ddd; border-radius: 4px; padding: 15px; margin-bottom: 15px; }
+.result-well { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; }
+.result-well p { color: white; }
+.form-group { margin-bottom: 15px; }
+.result-box { background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px; padding: 20px; }
+.result-box h3 { color: #155724; margin-top: 0; }
+</style>
+
+{{ end }}
