@@ -37,11 +37,11 @@ Bei jeder Redoxreaktion laufen immer zwei Teilreaktionen ab:
 - Reaktion mit Sauerstoff (historische Definition)
 
 **Beispiele:**
-```
-Na → Na⁺ + e⁻              (Natrium oxidiert)
-2Cl⁻ → Cl₂ + 2e⁻           (Chlorid oxidiert)
-Fe → Fe²⁺ + 2e⁻            (Eisen oxidiert)
-```
+$$\ce{Na -> Na+ + e-} \quad \text{(Natrium oxidiert)}$$
+
+$$\ce{2Cl- -> Cl2 + 2e-} \quad \text{(Chlorid oxidiert)}$$
+
+$$\ce{Fe -> Fe^2+ + 2e-} \quad \text{(Eisen oxidiert)}$$
 
 ### Reduktion
 
@@ -51,11 +51,11 @@ Fe → Fe²⁺ + 2e⁻            (Eisen oxidiert)
 - Entzug von Sauerstoff (historische Definition)
 
 **Beispiele:**
-```
-Cl₂ + 2e⁻ → 2Cl⁻           (Chlor reduziert)
-Cu²⁺ + 2e⁻ → Cu            (Kupfer reduziert)
-O₂ + 4e⁻ → 2O²⁻            (Sauerstoff reduziert)
-```
+$$\ce{Cl2 + 2e- -> 2Cl-} \quad \text{(Chlor reduziert)}$$
+
+$$\ce{Cu^2+ + 2e- -> Cu} \quad \text{(Kupfer reduziert)}$$
+
+$$\ce{O2 + 4e- -> 2O^2-} \quad \text{(Sauerstoff reduziert)}$$
 
 ### Oxidationszahlen (Oxidationsstufen)
 
@@ -69,9 +69,9 @@ Die **Oxidationszahl** gibt an, wie viele Elektronen ein Atom formal aufgenommen
 5. Summe in Verbindung = Gesamtladung (oft 0)
 
 **Beispiele:**
-- NaCl: Na⁺ (+1), Cl⁻ (-1)
-- H₂O: H (+1), O (-2)
-- H₂SO₄: H (+1), S (+6), O (-2)
+- $\ce{NaCl}$: $\ce{Na+}$ (+1), $\ce{Cl-}$ (-1)
+- $\ce{H2O}$: H (+1), O (-2)
+- $\ce{H2SO4}$: H (+1), S (+6), O (-2)
 
 ## Redoxpaare
 
@@ -115,16 +115,15 @@ Eine **galvanische Zelle** wandelt chemische Energie in elektrische Energie um.
 
 ### Beispiel: Daniell-Element
 
-```
-Zn | ZnSO₄ || CuSO₄ | Cu
+$$\ce{Zn | ZnSO4 || CuSO4 | Cu}$$
 
-Anode:        Zn → Zn²⁺ + 2e⁻        (Oxidation)
-Kathode:      Cu²⁺ + 2e⁻ → Cu        (Reduktion)
-──────────────────────────────────────
-Gesamt:       Zn + Cu²⁺ → Zn²⁺ + Cu
-```
+$$\text{Anode:} \quad \ce{Zn -> Zn^2+ + 2e-} \quad \text{(Oxidation)}$$
 
-**Spannung:** E° = 1.10 V
+$$\text{Kathode:} \quad \ce{Cu^2+ + 2e- -> Cu} \quad \text{(Reduktion)}$$
+
+$$\text{Gesamt:} \quad \ce{Zn + Cu^2+ -> Zn^2+ + Cu}$$
+
+**Spannung:** $E^\circ = 1.10 \text{ V}$
 
 ### Elektroden
 
@@ -144,17 +143,15 @@ Gesamt:       Zn + Cu²⁺ → Zn²⁺ + Cu
 
 Die **Nernst-Gleichung** berechnet die Zellspannung unter Bedingungen:
 
-```
-E = E° - (RT/nF) · ln(Q)
-```
+$$E = E^\circ - \frac{RT}{nF} \cdot \ln(Q)$$
 
-- E = tatsächliche Spannung
-- E° = Standardspannung
-- R = Gaskonstante
-- T = Temperatur (K)
-- n = Anzahl Elektronen
-- F = Faraday-Konstante
-- Q = Reaktionsquotient
+- $E$ = tatsächliche Spannung
+- $E^\circ$ = Standardspannung
+- $R$ = Gaskonstante
+- $T$ = Temperatur (K)
+- $n$ = Anzahl Elektronen
+- $F$ = Faraday-Konstante
+- $Q$ = Reaktionsquotient
 
 ## Elektrolyse
 
@@ -164,12 +161,11 @@ Bei der **Elektrolyse** wird elektrische Energie zugeführt, um eine chemische R
 
 ### Beispiel: Elektrolyse von Wasser
 
-```
-Kathode:  2H₂O + 2e⁻ → H₂ + 2OH⁻      (Reduktion)
-Anode:    2H₂O → O₂ + 4H⁺ + 4e⁻      (Oxidation)
-──────────────────────────────────────────────
-Gesamt:   2H₂O → 2H₂ + O₂              ΔE = -1.23 V
-```
+$$\text{Kathode:} \quad \ce{2H2O + 2e- -> H2 + 2OH-} \quad \text{(Reduktion)}$$
+
+$$\text{Anode:} \quad \ce{2H2O -> O2 + 4H+ + 4e-} \quad \text{(Oxidation)}$$
+
+$$\text{Gesamt:} \quad \ce{2H2O -> 2H2 + O2} \quad \Delta E = -1.23 \text{ V}$$
 
 **Beobachtung:** Gasentwicklung an beiden Elektroden.
 
@@ -193,41 +189,40 @@ Gesamt:   2H₂O → 2H₂ + O₂              ΔE = -1.23 V
 ### Primärbatterien (nicht wiederaufladbar)
 
 **Zink-Kohle-Element:**
-```
-Anode:    Zn → Zn²⁺ + 2e⁻
-Kathode:  2MnO₂ + 2NH₄⁺ + 2e⁻ → Mn₂O₃ + 2NH₃ + H₂O
-Spannung: ~1.5 V
-```
+$$\text{Anode:} \quad \ce{Zn -> Zn^2+ + 2e-}$$
+
+$$\text{Kathode:} \quad \ce{2MnO2 + 2NH4+ + 2e- -> Mn2O3 + 2NH3 + H2O}$$
+
+**Spannung:** $\approx 1.5 \text{ V}$
 
 **Verwendung:** Taschenlampen, Fernbedienungen
 
 ### Sekundärbatterien (wiederaufladbar)
 
 **Blei-Akku:**
-```
-Entladen:  Pb + PbO₂ + 2H₂SO₄ → 2PbSO₄ + 2H₂O      E = 2.05 V
-Laden:     2PbSO₄ + 2H₂O → Pb + PbO₂ + 2H₂SO₄
-```
+$$\text{Entladen:} \quad \ce{Pb + PbO2 + 2H2SO4 -> 2PbSO4 + 2H2O} \quad E = 2.05 \text{ V}$$
+
+$$\text{Laden:} \quad \ce{2PbSO4 + 2H2O -> Pb + PbO2 + 2H2SO4}$$
 
 **Verwendung:** Autobatterien, USV-Anlagen
 
 **Lithium-Ionen-Akku:**
-```
-Kathode:    Li⁺ + e⁻ + Graphit → Li-Graphit
-Anode:      LiC₆ → Li⁺ + C₆ + e⁻
-Spannung: 3.6 - 3.7 V
-```
+$$\text{Kathode:} \quad \ce{Li+ + e- + Graphit -> Li-Graphit}$$
+
+$$\text{Anode:} \quad \ce{LiC6 -> Li+ + C6 + e-}$$
+
+**Spannung:** $3.6 - 3.7 \text{ V}$
 
 **Verwendung:** Handys, Laptops, E-Autos
 
 ### Brennstoffzellen
 
 **Wasserstoff-Brennstoffzelle:**
-```
-Anode:    H₂ → 2H⁺ + 2e⁻
-Kathode:  ½O₂ + 2H⁺ + 2e⁻ → H₂O
-Gesamt:  H₂ + ½O₂ → H₂O
-```
+$$\text{Anode:} \quad \ce{H2 -> 2H+ + 2e-}$$
+
+$$\text{Kathode:} \quad \ce{1/2 O2 + 2H+ + 2e- -> H2O}$$
+
+$$\text{Gesamt:} \quad \ce{H2 + 1/2 O2 -> H2O}$$
 
 **Vorteile:**
 - Hoher Wirkungsgrad
@@ -248,9 +243,7 @@ Gesamt:  H₂ + ½O₂ → H₂O
 ### Rosten von Eisen
 
 **Reaktion:**
-```
-4Fe + 3O₂ → 2Fe₂O₃          (Rost)
-```
+$$\ce{4Fe + 3O2 -> 2Fe2O3} \quad \text{(Rost)}$$
 
 **Bedingungen für Rostbildung:**
 1. Eisen
@@ -293,26 +286,25 @@ Redoxreaktionen müssen elektrisch neutral sein – die Anzahl der abgegebenen u
 
 ### Beispiel: Verbrennung von Ethan
 
-```
-Schritt 1:  Oxidationszahlen bestimmen
-   C₂H₆ + O₂ → CO₂ + H₂O
-   C: -2  → +4  (Änderung: -6)
-   O: 0   → -2  (Änderung: -2)
+**Schritt 1: Oxidationszahlen bestimmen**
+$$\ce{C2H6 + O2 -> CO2 + H2O}$$
+- C: $-2 \rightarrow +4$ (Änderung: $-6$)
+- O: $0 \rightarrow -2$ (Änderung: $-2$)
 
-Schritt 2:  Teilreaktionen
-   Oxidation:  C₂H₆ → 2CO₂
-   Reduktion:  O₂ → 2H₂O
+**Schritt 2: Teilreaktionen**
+- Oxidation: $\ce{C2H6 -> 2CO2}$
+- Reduktion: $\ce{O2 -> 2H2O}$
 
-Schritt 3:  Elektronen ausgleichen
-   C₂H₆ → 2CO₂ + 12e⁻         (6 × 2e⁻ pro C)
-   O₂ + 4e⁻ → 2O²⁻              (nur 2e⁻)
+**Schritt 3: Elektronen ausgleichen**
+$$\ce{C2H6 -> 2CO2 + 12e-} \quad (6 \times 2e^- \text{ pro C})$$
 
-   Multipliziere Reduktion mit 6:
-   6O₂ + 24e⁻ → 12O²⁻
+$$\ce{O2 + 4e- -> 2O^2-} \quad (\text{nur } 2e^-)$$
 
-Schritt 4:  Zusammenfassen
-   C₂H₆ + 6O₂ → 2CO₂ + 3H₂O
-```
+Multipliziere Reduktion mit 6:
+$$\ce{6O2 + 24e- -> 12O^2-}$$
+
+**Schritt 4: Zusammenfassen**
+$$\ce{C2H6 + 6O2 -> 2CO2 + 3H2O}$$
 
 Nutzen Sie den **[Reaktionsgleichungen-Ausgleicher](/reaktionsgleichungen-ausgleichen/)** für komplexe Redoxgleichungen!
 
@@ -321,16 +313,12 @@ Nutzen Sie den **[Reaktionsgleichungen-Ausgleicher](/reaktionsgleichungen-ausgle
 ### Biologische Redoxreaktionen
 
 **Atmung:**
-```
-C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O      (Zelluläre Atmung)
-```
+$$\ce{C6H12O6 + 6O2 -> 6CO2 + 6H2O} \quad \text{(Zelluläre Atmung)}$$
 
 Energie wird freigesetzt (ATP-Synthese).
 
 **Photosynthese:**
-```
-6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂      (Lichtenergie)
-```
+$$\ce{6CO2 + 6H2O -> C6H12O6 + 6O2} \quad \text{(Lichtenergie)}$$
 
 Reduktion von CO₂ zu Glucose.
 
@@ -363,10 +351,8 @@ Viele Redoxreaktionen sind mit Farbänderungen verbunden:
 
 ### Nachweisreaktionen
 
-**Nachweis von Wasserstoffperoxid (H₂O₂):**
-```
-H₂O₂ + 2KI + H₂SO₄ → I₂ + K₂SO₄ + 2H₂O
-```
+**Nachweis von Wasserstoffperoxid ($\ce{H2O2}$):**
+$$\ce{H2O2 + 2KI + H2SO4 -> I2 + K2SO4 + 2H2O}$$
 
 Braune Farbe von Iod (Stärke-Nachweis: blau-schwarz)
 
@@ -380,7 +366,7 @@ Braune Farbe von Iod (Stärke-Nachweis: blau-schwarz)
 2. Farbänderung beobachten (blau → grün)
 3. Kupferbelag auf Eisen beobachten
 
-**Erklärung:** Fe + Cu²⁺ → Fe²⁺ + Cu
+**Erklärung:** $\ce{Fe + Cu^2+ -> Fe^2+ + Cu}$
 
 ### Experiment 2: Knopfzelle
 **Materialien:** Kupfermünze, Zinkblech, Zitrone, Kabel, LED
@@ -400,40 +386,38 @@ Braune Farbe von Iod (Stärke-Nachweis: blau-schwarz)
 2. Strom einschalten
 3. Gasentwicklung an beiden Elektroden beobachten
 
-**Erklärung:** 2NaCl → 2Na + Cl₂ (im geschmolzenen Zustand)
+**Erklärung:** $\ce{2NaCl -> 2Na + Cl2}$ (im geschmolzenen Zustand)
 
 ## Berechnungen
 
 ### Faraday-Konstante
 
-Die **Faraday-Konstante** F ist die Ladung eines Mols Elektronen:
+Die **Faraday-Konstante** $F$ ist die Ladung eines Mols Elektronen:
 
-```
-F = NA · e⁻
-F = 6.022·10²³ mol⁻¹ · 1.602·10⁻¹⁹ C
-F = 96485 C/mol
-```
+$$F = N_A \cdot e^-$$
+
+$$F = 6.022 \times 10^{23} \text{ mol}^{-1} \cdot 1.602 \times 10^{-19} \text{ C}$$
+
+$$F = 96485 \text{ C/mol}$$
 
 ### Stoffmenge aus Elektrizitätsmenge
 
-```
-n = Q / (z · F)
+$$n = \frac{Q}{z \cdot F}$$
 
-n = Stoffmenge (mol)
-Q = Elektrizitätsmenge (C)
-z = Anzahl Elektronen
-F = Faraday-Konstante
-```
+- $n$ = Stoffmenge (mol)
+- $Q$ = Elektrizitätsmenge (C)
+- $z$ = Anzahl Elektronen
+- $F$ = Faraday-Konstante
 
 **Beispiel:** Wie viel Kupfer kann mit 1 A in 1 Stunde abgeschieden werden?
 
-```
-Q = I · t = 1 A · 3600 s = 3600 C
-z = 2 (Cu²⁺ + 2e⁻ → Cu)
+$$Q = I \cdot t = 1 \text{ A} \cdot 3600 \text{ s} = 3600 \text{ C}$$
 
-n = 3600 C / (2 · 96485 C/mol) = 0.0187 mol
-m = n · M = 0.0187 mol · 63.55 g/mol = 1.19 g
-```
+$$z = 2 \quad (\ce{Cu^2+ + 2e- -> Cu})$$
+
+$$n = \frac{3600 \text{ C}}{2 \cdot 96485 \text{ C/mol}} = 0.0187 \text{ mol}$$
+
+$$m = n \cdot M = 0.0187 \text{ mol} \cdot 63.55 \text{ g/mol} = 1.19 \text{ g}$$
 
 ## Lernziele
 

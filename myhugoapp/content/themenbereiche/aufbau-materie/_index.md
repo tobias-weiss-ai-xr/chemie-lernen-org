@@ -62,18 +62,17 @@ Atome bestehen aus drei wichtigsten Teilchen:
 
 ### Struktur des Atoms
 
-```
-        Elektronenhülle (e⁻)
-        ╔═══════════════════╗
-        ║                   ║
-        ║     Atomkern      ║
-        ║  ╔═══════════╗   ║
-        ║  ║ p⁺  n⁰   ║   ║
-        ║  ║ p⁺  n⁰   ║   ║
-        ║  ║  n⁰  p⁺  ║   ║
-        ║  ╚═══════════╝   ║
-        ╚═══════════════════╝
-```
+$$
+\begin{array}{c}
+\text{Elektronenhülle } (e^-) \\
+\downarrow \\
+\boxed{\text{Atomkern}} \\
+\quad \downarrow \\
+\quad \text{Protonen } (p^+) \text{ und Neutronen } (n^0)
+\end{array}
+$$
+
+Das Atom besteht aus einem kompakten Kern mit Protonen und Neutronen, umgeben von einer Elektronenhülle.
 
 **Wichtige Größen:**
 - **Protonenzahl (Z):** Anzahl der Protonen = Ordnungszahl
@@ -194,12 +193,11 @@ Bei der Ionenbindung werden Elektronen **vollständig übertragen**.
 
 **Beispiel: Natriumchlorid (Kochsalz)**
 
-```
-Na → Na⁺ + e⁻      (Natrium gibt 1 Elektron ab)
-Cl + e⁻ → Cl⁻      (Chlor nimmt 1 Elektron auf)
+$$\ce{Na -> Na+ + e-} \quad \text{(Natrium gibt 1 Elektron ab)}$$
 
-Na⁺ + Cl⁻ → NaCl   (Ionenbindung)
-```
+$$\ce{Cl + e- -> Cl-} \quad \text{(Chlor nimmt 1 Elektron auf)}$$
+
+$$\ce{Na+ + Cl- -> NaCl} \quad \text{(Ionenbindung)}$$
 
 **Eigenschaften ionischer Verbindungen:**
 - Hoher Schmelzpunkt (> 300°C)
@@ -218,12 +216,9 @@ Bei der Atombindung werden Elektronen **gemeinsam verwendet**.
 - Ein **Elektronenpaar** wird geteilt (bindend)
 - Jedes Atom erreicht stabile Elektronenkonfiguration
 
-**Beispiel: Wasser (H₂O)**
+**Beispiel: Wasser ($\ce{H2O}$)**
 
-```
-H• + •Ö• + •H → H-Ö-H
-      (8 e⁻)
-```
+$$\ce{H. + .O. + .H -> H-O-H} \quad \text{(8 } e^- \text{)}$$
 
 **Arten der Atombindung:**
 1. **Einfachbindung:** 1 Elektronenpaar (z.B. H-H, H-Cl)
@@ -272,12 +267,12 @@ Schwache Anziehungskräfte zwischen Molekülen:
 ### Bildung von Ionen
 
 **Metalle** geben Elektronen ab → Kationen:
-- Na → Na⁺ + e⁻
-- Mg → Mg²⁺ + 2e⁻
+- $\ce{Na -> Na+ + e-}$
+- $\ce{Mg -> Mg^2+ + 2e-}$
 
 **Nichtmetalle** nehmen Elektronen auf → Anionen:
-- Cl + e⁻ → Cl⁻
-- O + 2e⁻ → O²⁻
+- $\ce{Cl + e- -> Cl-}$
+- $\ce{O + 2e- -> O^2-}$
 
 ### Wichtige Ionen im Alltag
 
@@ -329,9 +324,8 @@ Schwache Anziehungskräfte zwischen Molekülen:
 4. Knallprobe machen
 
 **Ergebnis:**
-```
-Zn + 2HCl → ZnCl₂ + H₂
-```
+$$\ce{Zn + 2HCl -> ZnCl2 + H2}$$
+
 - Gasentwicklung: Wasserstoff
 - Knall bei der Knallprobe
 
