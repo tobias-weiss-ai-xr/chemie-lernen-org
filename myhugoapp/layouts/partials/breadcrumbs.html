@@ -9,58 +9,66 @@
     </li>
 
     {{/* Themenbereiche breadcrumb */}}
-    {{ if eq .CurrentSection.Title "Themenbereiche" }}
+    {{ with .CurrentSection }}
+      {{ if eq .Title "Themenbereiche" }}
     <li class="breadcrumb-item active" aria-current="page">Themenbereiche</li>
 
-    {{/* Individual Themenbereich breadcrumb */}}
-    {{ else if in .CurrentSection.File.Dir "themenbereiche" }}
+      {{/* Individual Themenbereich breadcrumb */}}
+      {{ else if .File }}
+        {{ if in .File.Dir "themenbereiche" }}
     <li class="breadcrumb-item">
       <a href="/themenbereiche/">Themenbereiche</a>
     </li>
     <li class="breadcrumb-item">
-      {{ if eq .Params.schwierigkeit "grundlagen" }}
+      {{ if $.Params.schwierigkeit }}
+        {{ if eq $.Params.schwierigkeit "grundlagen" }}
         <a href="/themenbereiche/#grundlagen">🌱 Grundlagen</a>
-      {{ else if eq .Params.schwierigkeit "mittelstufe" }}
+        {{ else if eq $.Params.schwierigkeit "mittelstufe" }}
         <a href="/themenbereiche/#mittelstufe">🌿 Mittelstufe</a>
-      {{ else if eq .Params.schwierigkeit "fortgeschritten" }}
+        {{ else if eq $.Params.schwierigkeit "fortgeschritten" }}
         <a href="/themenbereiche/#fortgeschritten">🌳 Fortgeschritten</a>
-      {{ else }}
-        <a href="{{ .CurrentSection.Permalink }}">{{ .CurrentSection.Title }}</a>
+        {{ else }}
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+        {{ end }}
       {{ end }}
     </li>
-    {{ if ne .Title .CurrentSection.Title }}
-    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+        {{ end }}
+    {{ if ne $.Title .Title }}
+    <li class="breadcrumb-item active" aria-current="page">{{ $.Title }}</li>
     {{ end }}
 
-    {{/* Interactive pages breadcrumb */}}
-    {{ else if or (eq .Title "Periodensystem der Elemente") (eq .Title "Molekülstudio") }}
+      {{/* Interactive pages breadcrumb */}}
+      {{ else if or (eq $.Title "Periodensystem der Elemente") (eq $.Title "Molekülstudio") }}
     <li class="breadcrumb-item">
       <a href="/themenbereiche/">Themenbereiche</a>
     </li>
-    {{ if eq .Title "Periodensystem der Elemente" }}
+    {{ if eq $.Title "Periodensystem der Elemente" }}
     <li class="breadcrumb-item">
       <a href="/themenbereiche/aufbau-materie/">Aufbau der Materie</a>
     </li>
-    {{ else if eq .Title "Molekülstudio" }}
+    {{ else if eq $.Title "Molekülstudio" }}
     <li class="breadcrumb-item">
       <a href="/themenbereiche/aufbau-materie/">Aufbau der Materie</a>
     </li>
     {{ end }}
-    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+    <li class="breadcrumb-item active" aria-current="page">{{ $.Title }}</li>
 
-    {{/* Standard pages (Roadmap, About, Contact) */}}
-    {{ else if in .File.Dir "pages" }}
-    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
-
-    {{/* Default breadcrumb */}}
-    {{ else if .CurrentSection.Title }}
+      {{/* Standard pages (Roadmap, About, Contact) */}}
+      {{ else if $.File }}
+        {{ if in $.File.Dir "pages" }}
+    <li class="breadcrumb-item active" aria-current="page">{{ $.Title }}</li>
+        {{ else }}
     <li class="breadcrumb-item">
-      <a href="{{ .CurrentSection.Permalink }}">{{ .CurrentSection.Title }}</a>
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
     </li>
-    {{ if ne .Title .CurrentSection.Title }}
-    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+    {{ if ne $.Title .Title }}
+    <li class="breadcrumb-item active" aria-current="page">{{ $.Title }}</li>
+    {{ end }}
+        {{ end }}
+      {{ end }}
     {{ end }}
     {{ end }}
+
   </ol>
 </nav>
 {{ end }}
@@ -92,7 +100,6 @@
   color: #6c757d;
 }
 
-/* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .breadcrumb-item a {
     color: #66b0ff;
