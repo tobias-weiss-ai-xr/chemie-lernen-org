@@ -199,7 +199,12 @@ const quizData_reaktionstypen_organisch = {
   ]
 };
 
-// Export for use in HTML
+// Register quiz if quiz system is loaded
+if (typeof chemieQuiz !== 'undefined') {
+  chemieQuiz.registerQuiz('reaktionstypen-organisch', quizData_reaktionstypen_organisch);
+}
+
+// Export for module systems
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = quizData_reaktionstypen_organisch;
 }

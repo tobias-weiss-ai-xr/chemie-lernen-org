@@ -199,7 +199,12 @@ const quizData_tipps_tricks = {
   ]
 };
 
-// Export for use in HTML
+// Register quiz if quiz system is loaded
+if (typeof chemieQuiz !== 'undefined') {
+  chemieQuiz.registerQuiz('tipps-tricks', quizData_tipps_tricks);
+}
+
+// Export for module systems
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = quizData_tipps_tricks;
 }

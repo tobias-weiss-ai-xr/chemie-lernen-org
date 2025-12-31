@@ -3,6 +3,7 @@ title: "Reaktionstypen der Organischen Chemie"
 description: "Substitution, Addition, Elimination und mehr - Erfahren Sie alles über die wichtigsten Reaktionstypen der organischen Chemie von SN1/SN2 über Polymerisation bis Kondensation"
 date: 2025-12-26
 teilgebiet: "reaktionstypen-organisch"
+quiz: "reaktionstypen-organisch"
 schwierigkeit: "fortgeschritten"
 icon: "🔄"
 weight: 100
