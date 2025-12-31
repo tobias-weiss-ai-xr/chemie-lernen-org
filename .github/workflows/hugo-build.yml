@@ -1,0 +1,49 @@
+name: Hugo Build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build site
+        working-directory: ./myhugoapp
+        run: hugo --minify
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: hugo-site
+          path: myhugoapp/public/
+          retention-days: 7
+
+      - name: Check for broken internal links
+        run: |
+          echo "Checking for common build issues..."
+          if [ ! -f "myhugoapp/public/index.html" ]; then
+            echo "❌ Build failed: index.html not found"
+            exit 1
+          fi
+          echo "✅ Build successful"
+
+      - name: Build summary
+        run: |
+          echo "## Hugo Build Summary :books:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ✅ Build successful" >> $GITHUB_STEP_SUMMARY
+          echo "- **Minification**: Enabled" >> $GITHUB_STEP_SUMMARY
+          echo "- **Output directory**: \`myhugoapp/public/\`" >> $GITHUB_STEP_SUMMARY

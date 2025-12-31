@@ -5,3 +5,6 @@ myhugoapp/resources/
 # Playwright test artifacts
 tests/test-results/
 tests/playwright-report/
+tests/test-results/
+tests/playwright-report/
+tests/screenshots/
