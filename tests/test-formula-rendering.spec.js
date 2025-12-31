@@ -184,12 +184,13 @@ test.describe('Regression Tests - Formula Display', () => {
         await page.waitForLoadState('networkidle');
         await page.waitForTimeout(1000);
 
-        // Check that raw LaTeX delimiters are not visible
-        const pageContent = await page.content();
+        // Check that raw LaTeX delimiters are not visible to users
+        // Use innerText which returns only the visible rendered text
+        const visibleText = await page.innerText('body');
 
         // Raw LaTeX markers should not be visible in rendered output
-        expect(pageContent).not.toContain('\\ce{'); // raw LaTeX
-        expect(pageContent).not.toContain('\\[');   // raw display math start
+        expect(visibleText).not.toContain('\\ce{'); // raw LaTeX
+        expect(visibleText).not.toContain('\\[');   // raw display math start
     });
 
     test('chemical formulas should use proper notation', async ({ page }) => {
@@ -212,8 +213,13 @@ test.describe('Interactive Tools with Formulas', () => {
         await page.waitForLoadState('networkidle');
         await page.waitForTimeout(1000);
 
-        const calculator = page.locator('#ph-calculator, .ph-calculator');
+        // Check for the main calculator container
+        const calculator = page.locator('.ph-calculator-container');
         await expect(calculator).toBeVisible();
+
+        // Verify key interactive elements are present
+        const hplusInput = page.locator('#hplus-input');
+        await expect(hplusInput).toBeVisible();
     });
 
     test('Molare Masse Rechner should load without errors', async ({ page }) => {
@@ -221,8 +227,13 @@ test.describe('Interactive Tools with Formulas', () => {
         await page.waitForLoadState('networkidle');
         await page.waitForTimeout(1000);
 
-        const calculator = page.locator('#molar-mass-calculator, .molar-mass-calculator');
+        // Check for the main calculator container
+        const calculator = page.locator('.molar-mass-calculator-container');
         await expect(calculator).toBeVisible();
+
+        // Verify key interactive elements are present
+        const formulaInput = page.locator('#formula-input');
+        await expect(formulaInput).toBeVisible();
     });
 
     test('Periodensystem 3D should load without errors', async ({ page }) => {
@@ -230,8 +241,16 @@ test.describe('Interactive Tools with Formulas', () => {
         await page.waitForLoadState('networkidle');
         await page.waitForTimeout(2000);
 
-        const periodicTable = page.locator('#periodic-table, .periodic-table');
-        await expect(periodicTable).toBeVisible();
+        // Check for the main container and menu
+        const container = page.locator('#container');
+        await expect(container).toBeVisible();
+
+        const menu = page.locator('#menu');
+        await expect(menu).toBeVisible();
+
+        // Verify interactive buttons are present
+        const tableButton = page.locator('#table');
+        await expect(tableButton).toBeVisible();
     });
 });
 
