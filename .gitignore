@@ -1,0 +1,7 @@
+# Hugo build outputs
+myhugoapp/public/
+myhugoapp/resources/
+
+# Playwright test artifacts
+tests/test-results/
+tests/playwright-report/
