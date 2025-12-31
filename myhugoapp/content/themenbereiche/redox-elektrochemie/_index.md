@@ -438,4 +438,4 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Energetik](/themenbereiche/energetik/) – Energieumsatz bei Reaktionen
 - [Reaktionsgleichungen ausgleichen](/reaktionsgleichungen-ausgleichen/) – Interaktives Tool zum Ausgleichen
 - [Gleichgewicht und Geschwindigkeit](/themenbereiche/gleichgewicht-geschwindigkeit/) – Reaktionskinetik
-- [Galvanische Zelle in VR](https://hubs.chemie-lernen.org/) – 3D-Visualisierung
+- [Galvanische Zelle in VR](https://github.com/tobias-weiss-ai-xr/graphwiz-xr) – 3D-Visualisierung

@@ -317,7 +317,7 @@ $$\ce{Zn + 2HCl -> ZnCl2 + H2}$$
 
 ### VR-Erfahrung: Atombau erleben
 
-🕶️ **[Atombau in VR erleben](https://hubs.chemie-lernen-org/)** - Tauchen Sie virtuell in die Welt der Atome ein!
+🕶️ **[Atombau in VR erleben](https://github.com/tobias-weiss-ai-xr/graphwiz-xr)** - Tauchen Sie virtuell in die Welt der Atome ein!
 
 ## Zusammenfassung
 
@@ -342,7 +342,7 @@ $$\ce{Zn + 2HCl -> ZnCl2 + H2}$$
 
 ⚛️ **[Periodensystem 3D](/perioden-system-der-elemente/)** - Interaktives 3D-Periodensystem mit detaillierten Informationen zu allen 118 Elementen
 
-🕶️ **[VR Atombau](https://hubs.chemie-lernen-org/)** - Erleben Sie den Aufbau von Atomen in Virtual Reality
+🕶️ **[VR Atombau](https://github.com/tobias-weiss-ai-xr/graphwiz-xr)** - Erleben Sie den Aufbau von Atomen in Virtual Reality
 
 ## Testen Sie Ihr Wissen
 

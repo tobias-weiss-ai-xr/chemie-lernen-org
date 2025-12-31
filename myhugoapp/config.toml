@@ -98,7 +98,7 @@ author = "chemie-lernen.org Team"
     interaktiv = true
 [[menu.main]]
     name = "VR Labore"
-    url = "https://hubs.chemie-lernen.org/"
+    url = "https://github.com/tobias-weiss-ai-xr/graphwiz-xr"
     parent = "interaktiv"
     weight = 26
     icon = "🥽"

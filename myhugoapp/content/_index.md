@@ -37,7 +37,7 @@ Durchstöbern Sie unsere Chemie-Themen, organisiert nach Schwierigkeitsgrad:
 - ⚛️ **Periodensystem 3D**: Interaktive 3D-Visualisierung chemischer Elemente
 - 🔬 **Molekülstudio**: Echtzeit-3D-Visualisierung von Molekülen
 
-[VR-Räume erkunden](https://hubs.chemie-lernen.org/) [Periodensystem](/perioden-system-der-elemente/) [Molekülstudio](/molekuel-studio/)
+[GraphWiz-XR auf GitHub](https://github.com/tobias-weiss-ai-xr/graphwiz-xr) [Periodensystem](/perioden-system-der-elemente/) [Molekülstudio](/molekuel-studio/)
 
 ## 🧮 Interaktive Rechner & Tools
 

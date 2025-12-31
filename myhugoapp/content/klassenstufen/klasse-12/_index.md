@@ -26,4 +26,4 @@ Alle Themenbereiche der Oberstufe
 ## Interaktiv
 
 - [Molekülstudio nutzen](/molekuel-studio/)
-- [VR Labore](https://hubs.chemie-lernen.org/)
+- [VR Labore](https://github.com/tobias-weiss-ai-xr/graphwiz-xr)
