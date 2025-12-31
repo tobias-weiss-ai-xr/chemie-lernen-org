@@ -1,22 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>entwicklung on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title>
-    <link>https://chemie-lernen.org/tags/entwicklung/</link>
-    <description>Recent content in entwicklung on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>de-de</language>
-    <lastBuildDate>Sat, 20 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/tags/entwicklung/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Roadmap: Ausbaustrategie</title>
-      <link>https://chemie-lernen.org/pages/roadmap/</link>
-      <pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://chemie-lernen.org/pages/roadmap/</guid>
-      <description>Die aktuelle Plattform nutzt erfolgreich VR (Mozilla Hubs) zur Visualisierung des Periodensystems und grundlegender Experimente. Um sich von einem forschungsorientierten Projekt zu einem umfassenden Lernökosystem zu entwickeln, werden folgende Erweiterungen empfohlen.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>entwicklung on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title><link>https://chemie-lernen.org/tags/entwicklung/</link><description>Recent content in entwicklung on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description><generator>Hugo -- gohugo.io</generator><language>de-de</language><lastBuildDate>Sat, 20 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/tags/entwicklung/index.xml" rel="self" type="application/rss+xml"/><item><title>Roadmap: Ausbaustrategie</title><link>https://chemie-lernen.org/pages/roadmap/</link><pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/roadmap/</guid><description>Die aktuelle Plattform nutzt erfolgreich VR (Mozilla Hubs) zur Visualisierung des Periodensystems und grundlegender Experimente. Um sich von einem forschungsorientierten Projekt zu einem umfassenden Lernökosystem zu entwickeln, werden folgende Erweiterungen empfohlen.
 1. Immersive VR-Szenarien 🥽 Während das Periodensystem ein guter Anfang ist, entfaltet VR seine größte Stärke bei der Visualisierung von Dingen, die sonst unsichtbar oder gefährlich sind.
-✓ Molekülstudio (IMPLEMENTIERT): Interaktive 3D-Webanwendung zur Visualisierung von Molekülen mit Echtzeit-Rendering, Maussteuerung und automatischer Rotation.</description>
-    </item>
-    
-  </channel>
-</rss>
+✓ Molekülstudio (IMPLEMENTIERT): Interaktive 3D-Webanwendung zur Visualisierung von Molekülen mit Echtzeit-Rendering, Maussteuerung und automatischer Rotation.</description></item></channel></rss>

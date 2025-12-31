@@ -465,10 +465,70 @@ function testGermanLanguage() {
 }
 
 /**
- * Test 7: Code Block Formatting
+ * Test 7: Article H1 Check
+ */
+function testArticleH1() {
+  console.log(`${colors.cyan}=== Test 7: Article H1 Check ===${colors.reset}\n`);
+
+  const contentDir = path.join(__dirname, '../../content');
+
+  if (!fs.existsSync(contentDir)) {
+    console.log(`  ${colors.yellow}⚠${colors.reset} Content directory not found\n`);
+    return;
+  }
+
+  const files = findFiles(contentDir, '.md');
+  const startsWithH1 = [];
+
+  for (const file of files) {
+    try {
+      const content = fs.readFileSync(file, 'utf8');
+      const relativePath = path.relative(contentDir, file);
+
+      // Remove frontmatter
+      const bodyContent = content.replace(/^---[\s\S]*?---/m, '').trim();
+
+      // Split into lines and find first non-empty line
+      const lines = bodyContent.split('\n').filter(line => line.trim() !== '');
+
+      if (lines.length > 0) {
+        const firstLine = lines[0].trim();
+
+        // Check if first content line is an h1 (# Title)
+        if (firstLine.match(/^#\s+/)) {
+          startsWithH1.push(`${relativePath}: Starts with h1 ("${firstLine.substring(0, 50)}...")`);
+        }
+      }
+    } catch (e) {
+      // Skip files that can't be read
+    }
+  }
+
+  console.log(`  ${colors.blue}Checked ${files.length} articles${colors.reset}`);
+
+  if (startsWithH1.length === 0) {
+    console.log(`  ${colors.green}✓${colors.reset} No articles start with h1 (good practice)\n`);
+    passedChecks++;
+    totalChecks++;
+  } else {
+    console.log(`  ${colors.red}✗${colors.reset} Found ${startsWithH1.length} article(s) starting with h1:\n`);
+    for (const issue of startsWithH1.slice(0, 10)) {
+      console.log(`    ${colors.yellow}⚠${colors.reset} ${issue}`);
+    }
+    if (startsWithH1.length > 10) {
+      console.log(`    ... and ${startsWithH1.length - 10} more`);
+    }
+    console.log(`\n  ${colors.blue}Tip: Articles should start with h2 (##). Use h1 only for page titles in frontmatter.${colors.reset}\n`);
+    failedChecks++;
+    totalChecks++;
+  }
+}
+
+/**
+ * Test 8: Code Block Formatting
  */
 function testCodeBlocks() {
-  console.log(`${colors.cyan}=== Test 7: Code Block Formatting ===${colors.reset}\n`);
+  console.log(`${colors.cyan}=== Test 8: Code Block Formatting ===${colors.reset}\n`);
 
   const contentDir = path.join(__dirname, '../../content');
 
@@ -546,6 +606,7 @@ function runContentTests() {
   testImageAltText();
   testHeadingStructure();
   testGermanLanguage();
+  testArticleH1();
   testCodeBlocks();
 
   console.log(`${colors.magenta}═════════════════════════════════════════════${colors.reset}\n`);

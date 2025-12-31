@@ -1,0 +1,2556 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Zum Hauptinhalt springen" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e6]:
+        - link "chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte" [ref=e7] [cursor=pointer]:
+          - /url: https://chemie-lernen.org/
+          - img "chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte" [ref=e8]
+          - text: chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte
+        - link "" [ref=e9] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e10]: 
+      - navigation "Hauptnavigation" [ref=e11]:
+        - generic [ref=e13]:
+          - list [ref=e14]:
+            - listitem [ref=e15]:
+              - link "Themenbereiche" [ref=e16] [cursor=pointer]:
+                - /url: /themenbereiche/
+            - listitem [ref=e17]:
+              - button "Interaktiv Menü anzeigen" [ref=e18] [cursor=pointer]: Interaktiv
+            - listitem [ref=e20]:
+              - link "Roadmap" [ref=e21] [cursor=pointer]:
+                - /url: /pages/roadmap/
+            - listitem [ref=e22]:
+              - link "Über uns" [ref=e23] [cursor=pointer]:
+                - /url: /pages/about/
+            - listitem [ref=e24]:
+              - link "Kontakt" [ref=e25] [cursor=pointer]:
+                - /url: /pages/contact/
+            - listitem [ref=e26]:
+              - link "Patreon" [ref=e27] [cursor=pointer]:
+                - /url: https://www.patreon.com/c/chemie_lernen_org
+          - search [ref=e28]:
+            - textbox "Themen suchen..." [ref=e30]
+            - button "" [ref=e31] [cursor=pointer]:
+              - generic [ref=e32]: 
+  - generic [ref=e33]:
+    - navigation "breadcrumb" [ref=e34]:
+      - list [ref=e35]:
+        - listitem [ref=e36]:
+          - link "Start" [ref=e37] [cursor=pointer]:
+            - /url: https://chemie-lernen.org/
+            - generic [ref=e38]: 
+            - text: Start
+        - listitem [ref=e39]:
+          - text: ›
+          - link "Themenbereiche" [ref=e40] [cursor=pointer]:
+            - /url: /themenbereiche/
+        - listitem [ref=e41]:
+          - text: ›
+          - link "🌿 Mittelstufe" [ref=e42] [cursor=pointer]:
+            - /url: /themenbereiche/#mittelstufe
+    - main [ref=e44]:
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - generic [ref=e48]:
+            - generic [ref=e49]: 🧪
+            - heading "Anorganische Verbindungen" [level=1] [ref=e50]
+            - generic [ref=e51]: 🌿 Mittelstufe anorganische-verbindungen
+          - separator [ref=e52]
+        - generic [ref=e54]:
+          - article [ref=e56]:
+            - heading "Anorganische Verbindungen" [level=1] [ref=e57]
+            - paragraph [ref=e58]: Anorganische Verbindungen bilden einen der größten und wichtigsten Bereiche der Chemie. Sie umfassen alle Verbindungen, die nicht Kohlenstoff-Wasserstoff-Gerüste enthalten (mit einigen Ausnahmen wie CO₂, Carbonate, etc.).
+            - heading "Was sind anorganische Verbindungen?" [level=2] [ref=e59]
+            - paragraph [ref=e60]:
+              - strong [ref=e61]: Anorganische Verbindungen
+              - text: sind chemische Verbindungen, die meistens aus Metall- und Nichtmetall-Atomen bestehen. Im Gegensatz zu organischen Verbindungen basieren sie nicht auf Kohlenstoffgerüsten.
+            - heading "Haupttypen anorganischer Verbindungen" [level=3] [ref=e62]
+            - list [ref=e63]:
+              - listitem [ref=e64]:
+                - strong [ref=e65]: Säuren
+                - text: "- Verbindungen, die Protonen (H⁺) abgeben können"
+              - listitem [ref=e66]:
+                - strong [ref=e67]: Basen/Laugen
+                - text: "- Verbindungen, die Protonen aufnehmen können"
+              - listitem [ref=e68]:
+                - strong [ref=e69]: Salze
+                - text: "- Verbindungen aus Kationen und Anionen"
+              - listitem [ref=e70]:
+                - strong [ref=e71]: Oxide
+                - text: "- Verbindungen mit Sauerstoff"
+              - listitem [ref=e72]:
+                - strong [ref=e73]: Hydride
+                - text: "- Verbindungen mit Wasserstoff"
+            - heading "Säuren und Basen" [level=2] [ref=e74]
+            - heading "Säuren (nach Brønsted)" [level=3] [ref=e75]
+            - paragraph [ref=e76]:
+              - strong [ref=e77]: Säuren
+              - text: sind Stoffe, die in Wasser Protonen (H⁺) abgeben können.
+            - paragraph [ref=e78]:
+              - strong [ref=e79]: "Beispiele:"
+            - list [ref=e80]:
+              - listitem [ref=e81]:
+                - strong [ref=e82]: "Salzsäure:"
+                - generic [ref=e84]:
+                  - math [ref=e86]:
+                    - generic [ref=e88]:
+                      - generic [ref=e89]:
+                        - generic [ref=e90]: H
+                        - generic [ref=e91]: C
+                        - generic [ref=e92]: l
+                      - generic [ref=e94]: →
+                      - generic [ref=e95]: H
+                      - generic [ref=e97]: +
+                      - generic [ref=e98]: +
+                      - generic [ref=e99]:
+                        - generic [ref=e100]: C
+                        - generic [ref=e101]: l
+                      - generic [ref=e103]: −
+                  - generic [ref=e106]:
+                    - generic [ref=e107]: HCl
+                    - img [ref=e113]
+                    - text: H
+                    - generic [ref=e118]:
+                      - generic [ref=e120]: X
+                      - generic [ref=e126]: +
+                    - text: +
+                    - generic [ref=e127]: Cl
+                    - generic [ref=e128]:
+                      - generic [ref=e130]: X
+                      - generic [ref=e136]: −
+              - listitem [ref=e137]:
+                - strong [ref=e138]: "Schwefelsäure:"
+                - generic [ref=e140]:
+                  - math [ref=e142]:
+                    - generic [ref=e144]:
+                      - generic [ref=e145]: H
+                      - generic [ref=e147]: "2"
+                      - generic [ref=e148]:
+                        - generic [ref=e149]: S
+                        - generic [ref=e150]: O
+                      - generic [ref=e152]: "4"
+                      - generic [ref=e154]: →
+                      - generic [ref=e155]: "2"
+                      - generic [ref=e156]: H
+                      - generic [ref=e158]: +
+                      - generic [ref=e159]: +
+                      - generic [ref=e160]:
+                        - generic [ref=e161]: S
+                        - generic [ref=e162]: O
+                      - generic [ref=e164]: "4"
+                      - generic [ref=e166]:
+                        - generic [ref=e167]: "2"
+                        - generic [ref=e168]: −
+                  - generic [ref=e171]:
+                    - text: H
+                    - generic [ref=e172]:
+                      - generic [ref=e174]: X
+                      - generic [ref=e183]: "2"
+                    - generic [ref=e187]: SO
+                    - generic [ref=e188]:
+                      - generic [ref=e190]: X
+                      - generic [ref=e199]: "4"
+                    - img [ref=e208]
+                    - text: 2 H
+                    - generic [ref=e213]:
+                      - generic [ref=e215]: X
+                      - generic [ref=e221]: +
+                    - text: +
+                    - generic [ref=e222]: SO
+                    - generic [ref=e223]:
+                      - generic [ref=e225]: X
+                      - generic [ref=e234]: "4"
+                    - generic [ref=e238]:
+                      - generic [ref=e240]: X
+                      - generic [ref=e246]: 2−
+              - listitem [ref=e247]:
+                - strong [ref=e248]: "Salpetersäure:"
+                - generic [ref=e250]:
+                  - math [ref=e252]:
+                    - generic [ref=e254]:
+                      - generic [ref=e255]:
+                        - generic [ref=e256]: H
+                        - generic [ref=e257]: "N"
+                        - generic [ref=e258]: O
+                      - generic [ref=e260]: "3"
+                      - generic [ref=e262]: →
+                      - generic [ref=e263]: H
+                      - generic [ref=e265]: +
+                      - generic [ref=e266]: +
+                      - generic [ref=e267]:
+                        - generic [ref=e268]: "N"
+                        - generic [ref=e269]: O
+                      - generic [ref=e271]: "3"
+                      - generic [ref=e273]: −
+                  - generic [ref=e276]:
+                    - generic [ref=e277]: HNO
+                    - generic [ref=e278]:
+                      - generic [ref=e280]: X
+                      - generic [ref=e289]: "3"
+                    - img [ref=e298]
+                    - text: H
+                    - generic [ref=e303]:
+                      - generic [ref=e305]: X
+                      - generic [ref=e311]: +
+                    - text: +
+                    - generic [ref=e312]: "NO"
+                    - generic [ref=e313]:
+                      - generic [ref=e315]: X
+                      - generic [ref=e324]: "3"
+                    - generic [ref=e328]:
+                      - generic [ref=e330]: X
+                      - generic [ref=e336]: −
+            - paragraph [ref=e337]:
+              - strong [ref=e338]: "Eigenschaften von Säuren:"
+            - list [ref=e339]:
+              - listitem [ref=e340]: "Saurer Geschmack (Vorsicht: nie probieren!)"
+              - listitem [ref=e341]: Farbumschlag von Indikatoren (z.B. Rotkohl)
+              - listitem [ref=e342]: Reagieren mit Metallen unter Wasserstoffentwicklung
+              - listitem [ref=e343]: Reagieren mit Carbonaten unter CO₂-Entwicklung
+            - heading "Basen (Laugen)" [level=3] [ref=e344]
+            - paragraph [ref=e345]:
+              - strong [ref=e346]: Basen
+              - text: sind Stoffe, die in Wasser Hydroxid-Ionen (OH⁻) bilden oder Protonen aufnehmen können.
+            - paragraph [ref=e347]:
+              - strong [ref=e348]: "Beispiele:"
+            - list [ref=e349]:
+              - listitem [ref=e350]:
+                - strong [ref=e351]: "Natronlauge:"
+                - generic [ref=e353]:
+                  - math [ref=e355]:
+                    - generic [ref=e357]:
+                      - generic [ref=e358]:
+                        - generic [ref=e359]: "N"
+                        - generic [ref=e360]: a
+                        - generic [ref=e361]: O
+                        - generic [ref=e362]: H
+                      - generic [ref=e364]: →
+                      - generic [ref=e365]:
+                        - generic [ref=e366]: "N"
+                        - generic [ref=e367]: a
+                      - generic [ref=e369]: +
+                      - generic [ref=e370]: +
+                      - generic [ref=e371]:
+                        - generic [ref=e372]: O
+                        - generic [ref=e373]: H
+                      - generic [ref=e375]: −
+                  - generic [ref=e378]:
+                    - generic [ref=e379]: NaOH
+                    - img [ref=e385]
+                    - generic [ref=e390]: Na
+                    - generic [ref=e391]:
+                      - generic [ref=e393]: X
+                      - generic [ref=e399]: +
+                    - text: +
+                    - generic [ref=e400]: OH
+                    - generic [ref=e401]:
+                      - generic [ref=e403]: X
+                      - generic [ref=e409]: −
+              - listitem [ref=e410]:
+                - strong [ref=e411]: "Kalilauge:"
+                - generic [ref=e413]:
+                  - math [ref=e415]:
+                    - generic [ref=e417]:
+                      - generic [ref=e418]:
+                        - generic [ref=e419]: K
+                        - generic [ref=e420]: O
+                        - generic [ref=e421]: H
+                      - generic [ref=e423]: →
+                      - generic [ref=e424]: K
+                      - generic [ref=e426]: +
+                      - generic [ref=e427]: +
+                      - generic [ref=e428]:
+                        - generic [ref=e429]: O
+                        - generic [ref=e430]: H
+                      - generic [ref=e432]: −
+                  - generic [ref=e435]:
+                    - generic [ref=e436]: KOH
+                    - img [ref=e442]
+                    - text: K
+                    - generic [ref=e447]:
+                      - generic [ref=e449]: X
+                      - generic [ref=e455]: +
+                    - text: +
+                    - generic [ref=e456]: OH
+                    - generic [ref=e457]:
+                      - generic [ref=e459]: X
+                      - generic [ref=e465]: −
+              - listitem [ref=e466]:
+                - strong [ref=e467]: "Kalkwasser:"
+                - generic [ref=e469]:
+                  - math [ref=e471]:
+                    - generic [ref=e473]:
+                      - generic [ref=e474]:
+                        - generic [ref=e475]: C
+                        - generic [ref=e476]: a
+                      - generic [ref=e477]: (
+                      - generic [ref=e478]:
+                        - generic [ref=e479]: O
+                        - generic [ref=e480]: H
+                      - generic [ref=e481]: )
+                      - generic [ref=e483]: "2"
+                      - generic [ref=e485]: →
+                      - generic [ref=e486]:
+                        - generic [ref=e487]: C
+                        - generic [ref=e488]: a
+                      - generic [ref=e490]:
+                        - generic [ref=e491]: "2"
+                        - generic [ref=e492]: +
+                      - generic [ref=e493]: +
+                      - generic [ref=e494]: "2"
+                      - generic [ref=e495]:
+                        - generic [ref=e496]: O
+                        - generic [ref=e497]: H
+                      - generic [ref=e499]: −
+                  - generic [ref=e502]:
+                    - generic [ref=e503]: Ca
+                    - text: (
+                    - generic [ref=e504]: OH
+                    - text: )
+                    - generic [ref=e505]:
+                      - generic [ref=e507]: X
+                      - generic [ref=e516]: "2"
+                    - img [ref=e525]
+                    - generic [ref=e530]: Ca
+                    - generic [ref=e531]:
+                      - generic [ref=e533]: X
+                      - generic [ref=e539]: 2+
+                    - text: + 2
+                    - generic [ref=e540]: OH
+                    - generic [ref=e541]:
+                      - generic [ref=e543]: X
+                      - generic [ref=e549]: −
+            - paragraph [ref=e550]:
+              - strong [ref=e551]: "Eigenschaften von Basen:"
+            - list [ref=e552]:
+              - listitem [ref=e553]: Seifiger, glitschiger Geschmack
+              - listitem [ref=e554]: Ätzend auf Haut und Materialien
+              - listitem [ref=e555]: Farbumschlag von Indikatoren
+              - listitem [ref=e556]: Leiten elektrischen Strom (Elektrolyte)
+            - heading "Salze und ihre Bildung" [level=2] [ref=e557]
+            - heading "Neutralisation" [level=3] [ref=e558]
+            - paragraph [ref=e559]:
+              - text: Bei der
+              - strong [ref=e560]: Neutralisation
+              - text: "reagieren Säuren und Basen zu Salz und Wasser:"
+            - paragraph [ref=e561]:
+              - generic [ref=e564]:
+                - math [ref=e566]:
+                  - generic [ref=e568]:
+                    - generic [ref=e569]:
+                      - generic [ref=e570]: S
+                      - generic [ref=e571]:
+                        - generic [ref=e572]: a
+                        - generic [ref=e573]: ¨
+                      - generic [ref=e574]: ure
+                    - generic [ref=e575]: +
+                    - generic [ref=e576]: Base
+                    - generic [ref=e577]: →
+                    - generic [ref=e578]: Salz
+                    - generic [ref=e579]: +
+                    - generic [ref=e580]: Wasser
+                - generic [ref=e581]:
+                  - generic [ref=e582]:
+                    - generic [ref=e583]:
+                      - text: S
+                      - generic [ref=e587]:
+                        - generic [ref=e588]: a
+                        - text: ¨
+                      - text: ure
+                    - text: +
+                  - generic [ref=e589]:
+                    - generic [ref=e590]: Base
+                    - text: →
+                  - generic [ref=e591]:
+                    - generic [ref=e592]: Salz
+                    - text: +
+                  - generic [ref=e594]: Wasser
+            - paragraph [ref=e595]:
+              - strong [ref=e596]: "Beispiele:"
+              - generic [ref=e599]:
+                - math [ref=e601]:
+                  - generic [ref=e603]:
+                    - generic [ref=e604]:
+                      - generic [ref=e605]: H
+                      - generic [ref=e606]: C
+                      - generic [ref=e607]: l
+                    - generic [ref=e608]: +
+                    - generic [ref=e609]:
+                      - generic [ref=e610]: "N"
+                      - generic [ref=e611]: a
+                      - generic [ref=e612]: O
+                      - generic [ref=e613]: H
+                    - generic [ref=e615]: →
+                    - generic [ref=e616]:
+                      - generic [ref=e617]: "N"
+                      - generic [ref=e618]: a
+                      - generic [ref=e619]: C
+                      - generic [ref=e620]: l
+                    - generic [ref=e621]: +
+                    - generic [ref=e622]: H
+                    - generic [ref=e624]: "2"
+                    - generic [ref=e625]: O
+                - generic [ref=e628]:
+                  - generic [ref=e629]: HCl
+                  - text: +
+                  - generic [ref=e630]: NaOH
+                  - img [ref=e636]
+                  - generic [ref=e641]: NaCl
+                  - text: + H
+                  - generic [ref=e642]:
+                    - generic [ref=e644]: X
+                    - generic [ref=e653]: "2"
+                  - text: O
+            - paragraph [ref=e657]: Salzsäure + Natronlauge → Kochsalz + Wasser
+            - paragraph [ref=e658]:
+              - generic [ref=e661]:
+                - math [ref=e663]:
+                  - generic [ref=e665]:
+                    - generic [ref=e666]: H
+                    - generic [ref=e668]: "2"
+                    - generic [ref=e669]:
+                      - generic [ref=e670]: S
+                      - generic [ref=e671]: O
+                    - generic [ref=e673]: "4"
+                    - generic [ref=e674]: +
+                    - generic [ref=e675]: "2"
+                    - generic [ref=e676]:
+                      - generic [ref=e677]: K
+                      - generic [ref=e678]: O
+                      - generic [ref=e679]: H
+                    - generic [ref=e681]: →
+                    - generic [ref=e682]: K
+                    - generic [ref=e684]: "2"
+                    - generic [ref=e685]:
+                      - generic [ref=e686]: S
+                      - generic [ref=e687]: O
+                    - generic [ref=e689]: "4"
+                    - generic [ref=e690]: +
+                    - generic [ref=e691]: "2"
+                    - generic [ref=e692]: H
+                    - generic [ref=e694]: "2"
+                    - generic [ref=e695]: O
+                - generic [ref=e698]:
+                  - text: H
+                  - generic [ref=e699]:
+                    - generic [ref=e701]: X
+                    - generic [ref=e710]: "2"
+                  - generic [ref=e714]: SO
+                  - generic [ref=e715]:
+                    - generic [ref=e717]: X
+                    - generic [ref=e726]: "4"
+                  - text: + 2
+                  - generic [ref=e730]: KOH
+                  - img [ref=e736]
+                  - text: K
+                  - generic [ref=e741]:
+                    - generic [ref=e743]: X
+                    - generic [ref=e752]: "2"
+                  - generic [ref=e756]: SO
+                  - generic [ref=e757]:
+                    - generic [ref=e759]: X
+                    - generic [ref=e768]: "4"
+                  - text: + 2 H
+                  - generic [ref=e772]:
+                    - generic [ref=e774]: X
+                    - generic [ref=e783]: "2"
+                  - text: O
+            - paragraph [ref=e787]: Schwefelsäure + Kalilauge → Kaliumsulfat + Wasser
+            - heading "Salze aus Metallen und Säuren" [level=3] [ref=e788]
+            - paragraph [ref=e789]: "Metalle können mit Säuren reagieren:"
+            - paragraph [ref=e790]:
+              - generic [ref=e793]:
+                - math [ref=e795]:
+                  - generic [ref=e797]:
+                    - generic [ref=e798]:
+                      - generic [ref=e799]: M
+                      - generic [ref=e800]: e
+                      - generic [ref=e801]: t
+                      - generic [ref=e802]: a
+                      - generic [ref=e803]: l
+                      - generic [ref=e804]: l
+                    - generic [ref=e805]: +
+                    - generic [ref=e806]: S
+                    - generic [ref=e807]:
+                      - generic [ref=e808]: a
+                      - generic [ref=e809]: ¨
+                    - generic [ref=e810]:
+                      - generic [ref=e811]: u
+                      - generic [ref=e812]: r
+                      - generic [ref=e813]: e
+                    - generic [ref=e815]: →
+                    - generic [ref=e816]:
+                      - generic [ref=e817]: S
+                      - generic [ref=e818]: a
+                      - generic [ref=e819]: l
+                      - generic [ref=e820]: z
+                    - generic [ref=e821]: +
+                    - generic [ref=e822]:
+                      - generic [ref=e823]: W
+                      - generic [ref=e824]: a
+                      - generic [ref=e825]: s
+                      - generic [ref=e826]: s
+                      - generic [ref=e827]: e
+                      - generic [ref=e828]: r
+                      - generic [ref=e829]: s
+                      - generic [ref=e830]: t
+                      - generic [ref=e831]: o
+                      - generic [ref=e832]: f
+                      - generic [ref=e833]: f
+                - generic [ref=e836]:
+                  - generic [ref=e837]: Metall
+                  - text: + S
+                  - generic [ref=e841]:
+                    - generic [ref=e842]: a
+                    - text: ¨
+                  - generic [ref=e843]: ure
+                  - img [ref=e849]
+                  - generic [ref=e854]: Salz
+                  - text: +
+                  - generic [ref=e855]: Wasserstoff
+            - paragraph [ref=e856]:
+              - strong [ref=e857]: "Beispiel:"
+              - generic [ref=e860]:
+                - math [ref=e862]:
+                  - generic [ref=e864]:
+                    - generic [ref=e865]:
+                      - generic [ref=e866]: Z
+                      - generic [ref=e867]: "n"
+                    - generic [ref=e868]: +
+                    - generic [ref=e869]: "2"
+                    - generic [ref=e870]:
+                      - generic [ref=e871]: H
+                      - generic [ref=e872]: C
+                      - generic [ref=e873]: l
+                    - generic [ref=e875]: →
+                    - generic [ref=e876]:
+                      - generic [ref=e877]: Z
+                      - generic [ref=e878]: "n"
+                      - generic [ref=e879]: C
+                      - generic [ref=e880]: l
+                    - generic [ref=e882]: "2"
+                    - generic [ref=e883]: +
+                    - generic [ref=e884]: H
+                    - generic [ref=e886]: "2"
+                    - generic [ref=e887]: ↑
+                - generic [ref=e890]:
+                  - generic [ref=e891]: Zn
+                  - text: + 2
+                  - generic [ref=e892]: HCl
+                  - img [ref=e898]
+                  - generic [ref=e903]: ZnCl
+                  - generic [ref=e904]:
+                    - generic [ref=e906]: X
+                    - generic [ref=e915]: "2"
+                  - text: + H
+                  - generic [ref=e919]:
+                    - generic [ref=e921]: X
+                    - generic [ref=e930]: "2"
+                  - text: ↑
+            - paragraph [ref=e934]: Zink + Salzsäure → Zinkchlorid + Wasserstoff
+            - heading "Salze aus Carbonaten und Säuren" [level=3] [ref=e935]
+            - paragraph [ref=e936]: "Carbonate reagieren mit Säuren unter CO₂-Entwicklung:"
+            - paragraph [ref=e937]:
+              - generic [ref=e940]:
+                - math [ref=e942]:
+                  - generic [ref=e944]:
+                    - generic [ref=e945]:
+                      - generic [ref=e946]: C
+                      - generic [ref=e947]: a
+                      - generic [ref=e948]: C
+                      - generic [ref=e949]: O
+                    - generic [ref=e951]: "3"
+                    - generic [ref=e952]: +
+                    - generic [ref=e953]: "2"
+                    - generic [ref=e954]:
+                      - generic [ref=e955]: H
+                      - generic [ref=e956]: C
+                      - generic [ref=e957]: l
+                    - generic [ref=e959]: →
+                    - generic [ref=e960]:
+                      - generic [ref=e961]: C
+                      - generic [ref=e962]: a
+                      - generic [ref=e963]: C
+                      - generic [ref=e964]: l
+                    - generic [ref=e966]: "2"
+                    - generic [ref=e967]: +
+                    - generic [ref=e968]: H
+                    - generic [ref=e970]: "2"
+                    - generic [ref=e971]: O
+                    - generic [ref=e972]: +
+                    - generic [ref=e973]:
+                      - generic [ref=e974]: C
+                      - generic [ref=e975]: O
+                    - generic [ref=e977]: "2"
+                    - generic [ref=e978]: ↑
+                - generic [ref=e981]:
+                  - generic [ref=e982]: CaCO
+                  - generic [ref=e983]:
+                    - generic [ref=e985]: X
+                    - generic [ref=e994]: "3"
+                  - text: + 2
+                  - generic [ref=e998]: HCl
+                  - img [ref=e1004]
+                  - generic [ref=e1009]: CaCl
+                  - generic [ref=e1010]:
+                    - generic [ref=e1012]: X
+                    - generic [ref=e1021]: "2"
+                  - text: + H
+                  - generic [ref=e1025]:
+                    - generic [ref=e1027]: X
+                    - generic [ref=e1036]: "2"
+                  - text: O +
+                  - generic [ref=e1040]: CO
+                  - generic [ref=e1041]:
+                    - generic [ref=e1043]: X
+                    - generic [ref=e1052]: "2"
+                  - text: ↑
+            - paragraph [ref=e1056]: Kalkstein + Salzsäure → Calciumchlorid + Wasser + Kohlendioxid
+            - heading "Ionenbindung und Kristallgitter" [level=2] [ref=e1057]
+            - heading "Struktur von Salzen" [level=3] [ref=e1058]
+            - paragraph [ref=e1059]:
+              - text: Salze bestehen aus
+              - strong [ref=e1060]: Ionen
+              - text: "- geladenen Teilchen:"
+            - list [ref=e1061]:
+              - listitem [ref=e1062]:
+                - strong [ref=e1063]: Kationen
+                - text: ": Positiv geladen (z.B. Na⁺, Ca²⁺, Al³⁺)"
+              - listitem [ref=e1064]:
+                - strong [ref=e1065]: Anionen
+                - text: ": Negativ geladen (z.B. Cl⁻, SO₄²⁻, NO₃⁻)"
+            - heading "Ionenbindung" [level=3] [ref=e1066]
+            - paragraph [ref=e1067]:
+              - text: Die
+              - strong [ref=e1068]: Ionenbindung
+              - text: entsteht durch die elektrostatische Anziehung zwischen entgegengesetzt geladenen Ionen.
+            - paragraph [ref=e1069]:
+              - strong [ref=e1070]: "Eigenschaften:"
+            - list [ref=e1071]:
+              - listitem [ref=e1072]: Kristalline Struktur
+              - listitem [ref=e1073]: Hoher Schmelzpunkt
+              - listitem [ref=e1074]: Spröde
+              - listitem [ref=e1075]: Leiten Strom als Schmelze oder Lösung
+            - heading "Typische Salze" [level=3] [ref=e1076]
+            - table [ref=e1077]:
+              - rowgroup [ref=e1078]:
+                - row "Salz Formel Verwendung" [ref=e1079]:
+                  - columnheader "Salz" [ref=e1080]
+                  - columnheader "Formel" [ref=e1081]
+                  - columnheader "Verwendung" [ref=e1082]
+              - rowgroup [ref=e1083]:
+                - row "Kochsalz Speisesalz, Konservierung" [ref=e1084]:
+                  - cell "Kochsalz" [ref=e1085]
+                  - cell [ref=e1086]:
+                    - generic [ref=e1088]:
+                      - math [ref=e1090]:
+                        - generic [ref=e1092]:
+                          - generic [ref=e1093]: "N"
+                          - generic [ref=e1094]: a
+                          - generic [ref=e1095]: C
+                          - generic [ref=e1096]: l
+                      - generic [ref=e1100]: NaCl
+                  - cell "Speisesalz, Konservierung" [ref=e1101]
+                - row "Natriumcarbonat Glasherstellung, Wasserenthärtung" [ref=e1102]:
+                  - cell "Natriumcarbonat" [ref=e1103]
+                  - cell [ref=e1104]:
+                    - generic [ref=e1106]:
+                      - math [ref=e1108]:
+                        - generic [ref=e1110]:
+                          - generic [ref=e1111]:
+                            - generic [ref=e1112]: "N"
+                            - generic [ref=e1113]: a
+                          - generic [ref=e1115]: "2"
+                          - generic [ref=e1116]:
+                            - generic [ref=e1117]: C
+                            - generic [ref=e1118]: O
+                          - generic [ref=e1120]: "3"
+                      - generic [ref=e1123]:
+                        - generic [ref=e1124]: Na
+                        - generic [ref=e1125]:
+                          - generic [ref=e1127]: X
+                          - generic [ref=e1136]: "2"
+                        - generic [ref=e1140]: CO
+                        - generic [ref=e1141]:
+                          - generic [ref=e1143]: X
+                          - generic [ref=e1152]: "3"
+                  - cell "Glasherstellung, Wasserenthärtung" [ref=e1156]
+                - row "Calciumcarbonat Baustoffe, Kalkstein" [ref=e1157]:
+                  - cell "Calciumcarbonat" [ref=e1158]
+                  - cell [ref=e1159]:
+                    - generic [ref=e1161]:
+                      - math [ref=e1163]:
+                        - generic [ref=e1165]:
+                          - generic [ref=e1166]:
+                            - generic [ref=e1167]: C
+                            - generic [ref=e1168]: a
+                            - generic [ref=e1169]: C
+                            - generic [ref=e1170]: O
+                          - generic [ref=e1172]: "3"
+                      - generic [ref=e1175]:
+                        - generic [ref=e1176]: CaCO
+                        - generic [ref=e1177]:
+                          - generic [ref=e1179]: X
+                          - generic [ref=e1188]: "3"
+                  - cell "Baustoffe, Kalkstein" [ref=e1192]
+                - row "Kaliumnitrat Dünger, Schwarzpulver" [ref=e1193]:
+                  - cell "Kaliumnitrat" [ref=e1194]
+                  - cell [ref=e1195]:
+                    - generic [ref=e1197]:
+                      - math [ref=e1199]:
+                        - generic [ref=e1201]:
+                          - generic [ref=e1202]:
+                            - generic [ref=e1203]: K
+                            - generic [ref=e1204]: "N"
+                            - generic [ref=e1205]: O
+                          - generic [ref=e1207]: "3"
+                      - generic [ref=e1210]:
+                        - generic [ref=e1211]: KNO
+                        - generic [ref=e1212]:
+                          - generic [ref=e1214]: X
+                          - generic [ref=e1223]: "3"
+                  - cell "Dünger, Schwarzpulver" [ref=e1227]
+                - row "Kupfersulfat Pflanzenschutz, Galvanik" [ref=e1228]:
+                  - cell "Kupfersulfat" [ref=e1229]
+                  - cell [ref=e1230]:
+                    - generic [ref=e1232]:
+                      - math [ref=e1234]:
+                        - generic [ref=e1236]:
+                          - generic [ref=e1237]:
+                            - generic [ref=e1238]: C
+                            - generic [ref=e1239]: u
+                            - generic [ref=e1240]: S
+                            - generic [ref=e1241]: O
+                          - generic [ref=e1243]: "4"
+                      - generic [ref=e1246]:
+                        - generic [ref=e1247]: CuSO
+                        - generic [ref=e1248]:
+                          - generic [ref=e1250]: X
+                          - generic [ref=e1259]: "4"
+                  - cell "Pflanzenschutz, Galvanik" [ref=e1263]
+            - heading "Löslichkeit und Fällungsreaktionen" [level=2] [ref=e1264]
+            - heading "Löslichkeit von Salzen" [level=3] [ref=e1265]
+            - paragraph [ref=e1266]: "Nicht alle Salze sind gleich löslich in Wasser:"
+            - paragraph [ref=e1267]:
+              - strong [ref=e1268]: "Gut löslich:"
+            - list [ref=e1269]:
+              - listitem [ref=e1270]: Alle Nitrate (NO₃⁻)
+              - listitem [ref=e1271]: Alle Alkalisalze (Na⁺, K⁺, NH₄⁺)
+              - listitem [ref=e1272]: Alle Chloride (außer AgCl, PbCl₂)
+              - listitem [ref=e1273]: Alle Sulfate (außer BaSO₄, PbSO₄)
+            - paragraph [ref=e1274]:
+              - strong [ref=e1275]: "Schwer löslich:"
+            - list [ref=e1276]:
+              - listitem [ref=e1277]: Carbonate (außer Alkalicarbonate)
+              - listitem [ref=e1278]: Sulfide
+              - listitem [ref=e1279]: Phosphate
+              - listitem [ref=e1280]: Hydroxide (außer Alkalihydroxide, Ba(OH)₂)
+            - heading "Fällungsreaktionen" [level=3] [ref=e1281]
+            - paragraph [ref=e1282]:
+              - text: Bei
+              - strong [ref=e1283]: Fällungsreaktionen
+              - text: bildet sich aus zwei Lösungen ein unlöslicher Niederschlag.
+            - paragraph [ref=e1284]:
+              - strong [ref=e1285]: "Beispiel: Silbernitrat + Natriumchlorid"
+            - paragraph [ref=e1286]:
+              - generic [ref=e1289]:
+                - math [ref=e1291]:
+                  - generic [ref=e1293]:
+                    - generic [ref=e1294]:
+                      - generic [ref=e1295]: A
+                      - generic [ref=e1296]: g
+                      - generic [ref=e1297]: "N"
+                      - generic [ref=e1298]: O
+                    - generic [ref=e1300]: "3"
+                    - generic [ref=e1301]: (
+                    - generic [ref=e1302]:
+                      - generic [ref=e1303]: a
+                      - generic [ref=e1304]: q
+                    - generic [ref=e1305]: )
+                    - generic [ref=e1306]: +
+                    - generic [ref=e1307]:
+                      - generic [ref=e1308]: "N"
+                      - generic [ref=e1309]: a
+                      - generic [ref=e1310]: C
+                      - generic [ref=e1311]: l
+                    - generic [ref=e1312]: (
+                    - generic [ref=e1313]:
+                      - generic [ref=e1314]: a
+                      - generic [ref=e1315]: q
+                    - generic [ref=e1316]: )
+                    - generic [ref=e1318]: →
+                    - generic [ref=e1319]:
+                      - generic [ref=e1320]: A
+                      - generic [ref=e1321]: g
+                      - generic [ref=e1322]: C
+                      - generic [ref=e1323]: l
+                    - generic [ref=e1324]: (
+                    - generic [ref=e1325]: s
+                    - generic [ref=e1326]: )
+                    - generic [ref=e1327]: v
+                    - generic [ref=e1328]: +
+                    - generic [ref=e1329]:
+                      - generic [ref=e1330]: "N"
+                      - generic [ref=e1331]: a
+                      - generic [ref=e1332]: "N"
+                      - generic [ref=e1333]: O
+                    - generic [ref=e1335]: "3"
+                    - generic [ref=e1336]: (
+                    - generic [ref=e1337]:
+                      - generic [ref=e1338]: a
+                      - generic [ref=e1339]: q
+                    - generic [ref=e1340]: )
+                - generic [ref=e1343]:
+                  - generic [ref=e1344]: AgNO
+                  - generic [ref=e1345]:
+                    - generic [ref=e1347]: X
+                    - generic [ref=e1356]: "3"
+                  - text: (
+                  - generic [ref=e1360]: aq
+                  - text: ) +
+                  - generic [ref=e1361]: NaCl
+                  - text: (
+                  - generic [ref=e1362]: aq
+                  - text: )
+                  - img [ref=e1368]
+                  - generic [ref=e1373]: AgCl
+                  - text: (s)v +
+                  - generic [ref=e1374]: NaNO
+                  - generic [ref=e1375]:
+                    - generic [ref=e1377]: X
+                    - generic [ref=e1386]: "3"
+                  - text: (
+                  - generic [ref=e1390]: aq
+                  - text: )
+            - paragraph [ref=e1391]: Farblos + Farblos → Weißer Niederschlag + Farblos
+            - paragraph [ref=e1392]: Der weiße Niederschlag von Silberchlorid (AgCl) ist schwer löslich.
+            - paragraph [ref=e1393]:
+              - strong [ref=e1394]: "Beispiel: Bariumchlorid + Natriumsulfat"
+            - paragraph [ref=e1395]:
+              - generic [ref=e1398]:
+                - math [ref=e1400]:
+                  - generic [ref=e1402]:
+                    - generic [ref=e1403]:
+                      - generic [ref=e1404]: B
+                      - generic [ref=e1405]: a
+                      - generic [ref=e1406]: C
+                      - generic [ref=e1407]: l
+                    - generic [ref=e1409]: "2"
+                    - generic [ref=e1410]: (
+                    - generic [ref=e1411]:
+                      - generic [ref=e1412]: a
+                      - generic [ref=e1413]: q
+                    - generic [ref=e1414]: )
+                    - generic [ref=e1415]: +
+                    - generic [ref=e1416]:
+                      - generic [ref=e1417]: "N"
+                      - generic [ref=e1418]: a
+                    - generic [ref=e1420]: "2"
+                    - generic [ref=e1421]:
+                      - generic [ref=e1422]: S
+                      - generic [ref=e1423]: O
+                    - generic [ref=e1425]: "4"
+                    - generic [ref=e1426]: (
+                    - generic [ref=e1427]:
+                      - generic [ref=e1428]: a
+                      - generic [ref=e1429]: q
+                    - generic [ref=e1430]: )
+                    - generic [ref=e1432]: →
+                    - generic [ref=e1433]:
+                      - generic [ref=e1434]: B
+                      - generic [ref=e1435]: a
+                      - generic [ref=e1436]: S
+                      - generic [ref=e1437]: O
+                    - generic [ref=e1439]: "4"
+                    - generic [ref=e1440]: (
+                    - generic [ref=e1441]: s
+                    - generic [ref=e1442]: )
+                    - generic [ref=e1443]: v
+                    - generic [ref=e1444]: +
+                    - generic [ref=e1445]: "2"
+                    - generic [ref=e1446]:
+                      - generic [ref=e1447]: "N"
+                      - generic [ref=e1448]: a
+                      - generic [ref=e1449]: C
+                      - generic [ref=e1450]: l
+                    - generic [ref=e1451]: (
+                    - generic [ref=e1452]:
+                      - generic [ref=e1453]: a
+                      - generic [ref=e1454]: q
+                    - generic [ref=e1455]: )
+                - generic [ref=e1458]:
+                  - generic [ref=e1459]: BaCl
+                  - generic [ref=e1460]:
+                    - generic [ref=e1462]: X
+                    - generic [ref=e1471]: "2"
+                  - text: (
+                  - generic [ref=e1475]: aq
+                  - text: ) +
+                  - generic [ref=e1476]: Na
+                  - generic [ref=e1477]:
+                    - generic [ref=e1479]: X
+                    - generic [ref=e1488]: "2"
+                  - generic [ref=e1492]: SO
+                  - generic [ref=e1493]:
+                    - generic [ref=e1495]: X
+                    - generic [ref=e1504]: "4"
+                  - text: (
+                  - generic [ref=e1508]: aq
+                  - text: )
+                  - img [ref=e1514]
+                  - generic [ref=e1519]: BaSO
+                  - generic [ref=e1520]:
+                    - generic [ref=e1522]: X
+                    - generic [ref=e1531]: "4"
+                  - text: (s)v + 2
+                  - generic [ref=e1535]: NaCl
+                  - text: (
+                  - generic [ref=e1536]: aq
+                  - text: )
+            - paragraph [ref=e1537]: Farblos + Farblos → Weißer Niederschlag + Farblos
+            - paragraph [ref=e1538]:
+              - text: Bariumsulfat (
+              - generic [ref=e1540]:
+                - math [ref=e1542]:
+                  - generic [ref=e1544]:
+                    - generic [ref=e1545]:
+                      - generic [ref=e1546]: B
+                      - generic [ref=e1547]: a
+                      - generic [ref=e1548]: S
+                      - generic [ref=e1549]: O
+                    - generic [ref=e1551]: "4"
+                - generic [ref=e1554]:
+                  - generic [ref=e1555]: BaSO
+                  - generic [ref=e1556]:
+                    - generic [ref=e1558]: X
+                    - generic [ref=e1567]: "4"
+              - text: ) ist sehr schwer löslich.
+            - heading "Nachweisreaktionen" [level=2] [ref=e1571]
+            - heading "Nachweis von Chlorid-Ionen (Cl⁻)" [level=3] [ref=e1572]
+            - paragraph [ref=e1573]:
+              - strong [ref=e1574]: "Reaktion:"
+              - text: Mit Silbernitratlösung
+            - paragraph [ref=e1575]:
+              - generic [ref=e1578]:
+                - math [ref=e1580]:
+                  - generic [ref=e1582]:
+                    - generic [ref=e1583]:
+                      - generic [ref=e1584]: "N"
+                      - generic [ref=e1585]: a
+                      - generic [ref=e1586]: C
+                      - generic [ref=e1587]: l
+                    - generic [ref=e1588]: (
+                    - generic [ref=e1589]:
+                      - generic [ref=e1590]: a
+                      - generic [ref=e1591]: q
+                    - generic [ref=e1592]: )
+                    - generic [ref=e1593]: +
+                    - generic [ref=e1594]:
+                      - generic [ref=e1595]: A
+                      - generic [ref=e1596]: g
+                      - generic [ref=e1597]: "N"
+                      - generic [ref=e1598]: O
+                    - generic [ref=e1600]: "3"
+                    - generic [ref=e1601]: (
+                    - generic [ref=e1602]:
+                      - generic [ref=e1603]: a
+                      - generic [ref=e1604]: q
+                    - generic [ref=e1605]: )
+                    - generic [ref=e1607]: →
+                    - generic [ref=e1608]:
+                      - generic [ref=e1609]: A
+                      - generic [ref=e1610]: g
+                      - generic [ref=e1611]: C
+                      - generic [ref=e1612]: l
+                    - generic [ref=e1613]: (
+                    - generic [ref=e1614]: s
+                    - generic [ref=e1615]: )
+                    - generic [ref=e1616]: v
+                    - generic [ref=e1617]: +
+                    - generic [ref=e1618]:
+                      - generic [ref=e1619]: "N"
+                      - generic [ref=e1620]: a
+                      - generic [ref=e1621]: "N"
+                      - generic [ref=e1622]: O
+                    - generic [ref=e1624]: "3"
+                    - generic [ref=e1625]: (
+                    - generic [ref=e1626]:
+                      - generic [ref=e1627]: a
+                      - generic [ref=e1628]: q
+                    - generic [ref=e1629]: )
+                - generic [ref=e1632]:
+                  - generic [ref=e1633]: NaCl
+                  - text: (
+                  - generic [ref=e1634]: aq
+                  - text: ) +
+                  - generic [ref=e1635]: AgNO
+                  - generic [ref=e1636]:
+                    - generic [ref=e1638]: X
+                    - generic [ref=e1647]: "3"
+                  - text: (
+                  - generic [ref=e1651]: aq
+                  - text: )
+                  - img [ref=e1657]
+                  - generic [ref=e1662]: AgCl
+                  - text: (s)v +
+                  - generic [ref=e1663]: NaNO
+                  - generic [ref=e1664]:
+                    - generic [ref=e1666]: X
+                    - generic [ref=e1675]: "3"
+                  - text: (
+                  - generic [ref=e1679]: aq
+                  - text: )
+            - paragraph [ref=e1680]:
+              - strong [ref=e1681]: "Beobachtung:"
+              - text: Weißer Niederschlag, der sich in Ammoniak löst.
+            - heading "Nachweis von Sulfat-Ionen (SO₄²⁻)" [level=3] [ref=e1682]
+            - paragraph [ref=e1683]:
+              - strong [ref=e1684]: "Reaktion:"
+              - text: Mit Bariumchloridlösung
+            - paragraph [ref=e1685]:
+              - generic [ref=e1688]:
+                - math [ref=e1690]:
+                  - generic [ref=e1692]:
+                    - generic [ref=e1693]:
+                      - generic [ref=e1694]: "N"
+                      - generic [ref=e1695]: a
+                    - generic [ref=e1697]: "2"
+                    - generic [ref=e1698]:
+                      - generic [ref=e1699]: S
+                      - generic [ref=e1700]: O
+                    - generic [ref=e1702]: "4"
+                    - generic [ref=e1703]: (
+                    - generic [ref=e1704]:
+                      - generic [ref=e1705]: a
+                      - generic [ref=e1706]: q
+                    - generic [ref=e1707]: )
+                    - generic [ref=e1708]: +
+                    - generic [ref=e1709]:
+                      - generic [ref=e1710]: B
+                      - generic [ref=e1711]: a
+                      - generic [ref=e1712]: C
+                      - generic [ref=e1713]: l
+                    - generic [ref=e1715]: "2"
+                    - generic [ref=e1716]: (
+                    - generic [ref=e1717]:
+                      - generic [ref=e1718]: a
+                      - generic [ref=e1719]: q
+                    - generic [ref=e1720]: )
+                    - generic [ref=e1722]: →
+                    - generic [ref=e1723]:
+                      - generic [ref=e1724]: B
+                      - generic [ref=e1725]: a
+                      - generic [ref=e1726]: S
+                      - generic [ref=e1727]: O
+                    - generic [ref=e1729]: "4"
+                    - generic [ref=e1730]: (
+                    - generic [ref=e1731]: s
+                    - generic [ref=e1732]: )
+                    - generic [ref=e1733]: v
+                    - generic [ref=e1734]: +
+                    - generic [ref=e1735]: "2"
+                    - generic [ref=e1736]:
+                      - generic [ref=e1737]: "N"
+                      - generic [ref=e1738]: a
+                      - generic [ref=e1739]: C
+                      - generic [ref=e1740]: l
+                    - generic [ref=e1741]: (
+                    - generic [ref=e1742]:
+                      - generic [ref=e1743]: a
+                      - generic [ref=e1744]: q
+                    - generic [ref=e1745]: )
+                - generic [ref=e1748]:
+                  - generic [ref=e1749]: Na
+                  - generic [ref=e1750]:
+                    - generic [ref=e1752]: X
+                    - generic [ref=e1761]: "2"
+                  - generic [ref=e1765]: SO
+                  - generic [ref=e1766]:
+                    - generic [ref=e1768]: X
+                    - generic [ref=e1777]: "4"
+                  - text: (
+                  - generic [ref=e1781]: aq
+                  - text: ) +
+                  - generic [ref=e1782]: BaCl
+                  - generic [ref=e1783]:
+                    - generic [ref=e1785]: X
+                    - generic [ref=e1794]: "2"
+                  - text: (
+                  - generic [ref=e1798]: aq
+                  - text: )
+                  - img [ref=e1804]
+                  - generic [ref=e1809]: BaSO
+                  - generic [ref=e1810]:
+                    - generic [ref=e1812]: X
+                    - generic [ref=e1821]: "4"
+                  - text: (s)v + 2
+                  - generic [ref=e1825]: NaCl
+                  - text: (
+                  - generic [ref=e1826]: aq
+                  - text: )
+            - paragraph [ref=e1827]:
+              - strong [ref=e1828]: "Beobachtung:"
+              - text: Weißer Niederschlag, der in Säuren unlöslich ist.
+            - heading "Nachweis von Carbonat-Ionen (CO₃²⁻)" [level=3] [ref=e1829]
+            - paragraph [ref=e1830]:
+              - strong [ref=e1831]: "Reaktion:"
+              - text: Mit Säure
+            - paragraph [ref=e1832]:
+              - generic [ref=e1835]:
+                - math [ref=e1837]:
+                  - generic [ref=e1839]:
+                    - generic [ref=e1840]:
+                      - generic [ref=e1841]: C
+                      - generic [ref=e1842]: a
+                      - generic [ref=e1843]: C
+                      - generic [ref=e1844]: O
+                    - generic [ref=e1846]: "3"
+                    - generic [ref=e1847]: (
+                    - generic [ref=e1848]: s
+                    - generic [ref=e1849]: )
+                    - generic [ref=e1850]: +
+                    - generic [ref=e1851]: "2"
+                    - generic [ref=e1852]:
+                      - generic [ref=e1853]: H
+                      - generic [ref=e1854]: C
+                      - generic [ref=e1855]: l
+                    - generic [ref=e1856]: (
+                    - generic [ref=e1857]:
+                      - generic [ref=e1858]: a
+                      - generic [ref=e1859]: q
+                    - generic [ref=e1860]: )
+                    - generic [ref=e1862]: →
+                    - generic [ref=e1863]:
+                      - generic [ref=e1864]: C
+                      - generic [ref=e1865]: a
+                      - generic [ref=e1866]: C
+                      - generic [ref=e1867]: l
+                    - generic [ref=e1869]: "2"
+                    - generic [ref=e1870]: (
+                    - generic [ref=e1871]:
+                      - generic [ref=e1872]: a
+                      - generic [ref=e1873]: q
+                    - generic [ref=e1874]: )
+                    - generic [ref=e1875]: +
+                    - generic [ref=e1876]: H
+                    - generic [ref=e1878]: "2"
+                    - generic [ref=e1879]: O
+                    - generic [ref=e1880]: (
+                    - generic [ref=e1881]: l
+                    - generic [ref=e1882]: )
+                    - generic [ref=e1883]: +
+                    - generic [ref=e1884]:
+                      - generic [ref=e1885]: C
+                      - generic [ref=e1886]: O
+                    - generic [ref=e1888]: "2"
+                    - generic [ref=e1889]: (
+                    - generic [ref=e1890]: g
+                    - generic [ref=e1891]: )
+                - generic [ref=e1894]:
+                  - generic [ref=e1895]: CaCO
+                  - generic [ref=e1896]:
+                    - generic [ref=e1898]: X
+                    - generic [ref=e1907]: "3"
+                  - text: (s) + 2
+                  - generic [ref=e1911]: HCl
+                  - text: (
+                  - generic [ref=e1912]: aq
+                  - text: )
+                  - img [ref=e1918]
+                  - generic [ref=e1923]: CaCl
+                  - generic [ref=e1924]:
+                    - generic [ref=e1926]: X
+                    - generic [ref=e1935]: "2"
+                  - text: (
+                  - generic [ref=e1939]: aq
+                  - text: ) + H
+                  - generic [ref=e1940]:
+                    - generic [ref=e1942]: X
+                    - generic [ref=e1951]: "2"
+                  - text: O (l) +
+                  - generic [ref=e1955]: CO
+                  - generic [ref=e1956]:
+                    - generic [ref=e1958]: X
+                    - generic [ref=e1967]: "2"
+                  - text: (g)
+            - paragraph [ref=e1971]:
+              - strong [ref=e1972]: "Beobachtung:"
+              - text: Gasentwicklung (CO₂), Kalkwasser trübt sich.
+            - heading "Redoxreaktionen anorganischer Verbindungen" [level=2] [ref=e1973]
+            - heading "Redoxreaktionen" [level=3] [ref=e1974]
+            - paragraph [ref=e1975]:
+              - strong [ref=e1976]: Redoxreaktionen
+              - text: "sind Reaktionen mit Elektronenübertragung:"
+            - list [ref=e1977]:
+              - listitem [ref=e1978]:
+                - strong [ref=e1979]: Oxidation
+                - text: ": Abgabe von Elektronen"
+              - listitem [ref=e1980]:
+                - strong [ref=e1981]: Reduktion
+                - text: ": Aufnahme von Elektronen"
+            - paragraph [ref=e1982]:
+              - strong [ref=e1983]: "Beispiel: Reaktion von Kupfer mit Silbernitrat"
+            - paragraph [ref=e1984]:
+              - generic [ref=e1987]:
+                - math [ref=e1989]:
+                  - generic [ref=e1991]:
+                    - generic [ref=e1992]:
+                      - generic [ref=e1993]: C
+                      - generic [ref=e1994]: u
+                    - generic [ref=e1995]: (
+                    - generic [ref=e1996]: s
+                    - generic [ref=e1997]: )
+                    - generic [ref=e1998]: +
+                    - generic [ref=e1999]: "2"
+                    - generic [ref=e2000]:
+                      - generic [ref=e2001]: A
+                      - generic [ref=e2002]: g
+                      - generic [ref=e2003]: "N"
+                      - generic [ref=e2004]: O
+                    - generic [ref=e2006]: "3"
+                    - generic [ref=e2007]: (
+                    - generic [ref=e2008]:
+                      - generic [ref=e2009]: a
+                      - generic [ref=e2010]: q
+                    - generic [ref=e2011]: )
+                    - generic [ref=e2013]: →
+                    - generic [ref=e2014]:
+                      - generic [ref=e2015]: C
+                      - generic [ref=e2016]: u
+                    - generic [ref=e2017]: (
+                    - generic [ref=e2018]:
+                      - generic [ref=e2019]: "N"
+                      - generic [ref=e2020]: O
+                    - generic [ref=e2022]: "3"
+                    - generic [ref=e2023]: )
+                    - generic [ref=e2025]: "2"
+                    - generic [ref=e2026]: (
+                    - generic [ref=e2027]:
+                      - generic [ref=e2028]: a
+                      - generic [ref=e2029]: q
+                    - generic [ref=e2030]: )
+                    - generic [ref=e2031]: +
+                    - generic [ref=e2032]: "2"
+                    - generic [ref=e2033]:
+                      - generic [ref=e2034]: A
+                      - generic [ref=e2035]: g
+                    - generic [ref=e2036]: (
+                    - generic [ref=e2037]: s
+                    - generic [ref=e2038]: )
+                    - generic [ref=e2039]: v
+                - generic [ref=e2042]:
+                  - generic [ref=e2043]: Cu
+                  - text: (s) + 2
+                  - generic [ref=e2044]: AgNO
+                  - generic [ref=e2045]:
+                    - generic [ref=e2047]: X
+                    - generic [ref=e2056]: "3"
+                  - text: (
+                  - generic [ref=e2060]: aq
+                  - text: )
+                  - img [ref=e2066]
+                  - generic [ref=e2071]: Cu
+                  - text: (
+                  - generic [ref=e2072]: "NO"
+                  - generic [ref=e2073]:
+                    - generic [ref=e2075]: X
+                    - generic [ref=e2084]: "3"
+                  - text: )
+                  - generic [ref=e2088]:
+                    - generic [ref=e2090]: X
+                    - generic [ref=e2099]: "2"
+                  - text: (
+                  - generic [ref=e2103]: aq
+                  - text: ) + 2
+                  - generic [ref=e2104]: Ag
+                  - text: (s)v
+            - paragraph [ref=e2105]: Kupfer + Silbernitrat → Kupfer(II)-nitrat + Silber
+            - paragraph [ref=e2106]: "Beobachtung: Kupferdraht überzieht sich mit silbernen Kristallen."
+            - heading "Disproportionierungen" [level=3] [ref=e2107]
+            - paragraph [ref=e2108]:
+              - text: Bei
+              - strong [ref=e2109]: Disproportionierungen
+              - text: wird ein Element gleichzeitig oxidiert und reduziert.
+            - paragraph [ref=e2110]:
+              - strong [ref=e2111]: "Beispiel:"
+              - text: Kupfer(I)-oxid
+            - paragraph [ref=e2112]:
+              - generic [ref=e2115]:
+                - math [ref=e2117]:
+                  - generic [ref=e2119]:
+                    - generic [ref=e2120]:
+                      - generic [ref=e2121]: C
+                      - generic [ref=e2122]: u
+                    - generic [ref=e2124]: "2"
+                    - generic [ref=e2125]: O
+                    - generic [ref=e2126]: +
+                    - generic [ref=e2127]: H
+                    - generic [ref=e2129]: "2"
+                    - generic [ref=e2130]:
+                      - generic [ref=e2131]: S
+                      - generic [ref=e2132]: O
+                    - generic [ref=e2134]: "4"
+                    - generic [ref=e2136]: →
+                    - generic [ref=e2137]:
+                      - generic [ref=e2138]: C
+                      - generic [ref=e2139]: u
+                    - generic [ref=e2140]: +
+                    - generic [ref=e2141]:
+                      - generic [ref=e2142]: C
+                      - generic [ref=e2143]: u
+                      - generic [ref=e2144]: S
+                      - generic [ref=e2145]: O
+                    - generic [ref=e2147]: "4"
+                    - generic [ref=e2148]: +
+                    - generic [ref=e2149]: H
+                    - generic [ref=e2151]: "2"
+                    - generic [ref=e2152]: O
+                - generic [ref=e2155]:
+                  - generic [ref=e2156]: Cu
+                  - generic [ref=e2157]:
+                    - generic [ref=e2159]: X
+                    - generic [ref=e2168]: "2"
+                  - text: O + H
+                  - generic [ref=e2172]:
+                    - generic [ref=e2174]: X
+                    - generic [ref=e2183]: "2"
+                  - generic [ref=e2187]: SO
+                  - generic [ref=e2188]:
+                    - generic [ref=e2190]: X
+                    - generic [ref=e2199]: "4"
+                  - img [ref=e2208]
+                  - generic [ref=e2213]: Cu
+                  - text: +
+                  - generic [ref=e2214]: CuSO
+                  - generic [ref=e2215]:
+                    - generic [ref=e2217]: X
+                    - generic [ref=e2226]: "4"
+                  - text: + H
+                  - generic [ref=e2230]:
+                    - generic [ref=e2232]: X
+                    - generic [ref=e2241]: "2"
+                  - text: O
+            - paragraph [ref=e2245]: Kupfer wird sowohl zu Cu(0) als auch zu Cu(II) umgewandelt.
+            - heading "Komplexe Verbindungen" [level=2] [ref=e2246]
+            - heading "Was sind Komplexe?" [level=3] [ref=e2247]
+            - paragraph [ref=e2248]:
+              - strong [ref=e2249]: Komplexe
+              - text: sind Verbindungen, bei denen ein Zentralatom (meist ein Metall) von Molekülen oder Ionen (Liganden) umgeben ist.
+            - paragraph [ref=e2250]:
+              - strong [ref=e2251]: "Beispiele:"
+            - list [ref=e2252]:
+              - listitem [ref=e2253]:
+                - strong [ref=e2254]: Hexaaquakupfer(II)
+                - text: ":"
+                - generic [ref=e2256]:
+                  - math [ref=e2258]:
+                    - generic [ref=e2260]:
+                      - generic [ref=e2261]: "["
+                      - generic [ref=e2262]:
+                        - generic [ref=e2263]: C
+                        - generic [ref=e2264]: u
+                      - generic [ref=e2265]: (
+                      - generic [ref=e2266]: H
+                      - generic [ref=e2268]: "2"
+                      - generic [ref=e2269]: O
+                      - generic [ref=e2270]: )
+                      - generic [ref=e2272]: "6"
+                      - generic [ref=e2273]: "]"
+                      - generic [ref=e2275]:
+                        - generic [ref=e2276]: "2"
+                        - generic [ref=e2277]: +
+                  - generic [ref=e2280]:
+                    - text: "["
+                    - generic [ref=e2281]: Cu
+                    - text: (H
+                    - generic [ref=e2282]:
+                      - generic [ref=e2284]: X
+                      - generic [ref=e2293]: "2"
+                    - text: O)
+                    - generic [ref=e2297]:
+                      - generic [ref=e2299]: X
+                      - generic [ref=e2308]: "6"
+                    - text: "]"
+                    - generic [ref=e2312]:
+                      - generic [ref=e2314]: X
+                      - generic [ref=e2320]: 2+
+                - text: (blau)
+              - listitem [ref=e2321]:
+                - strong [ref=e2322]: Tetrachlorocobaltat(II)
+                - text: ":"
+                - generic [ref=e2324]:
+                  - math [ref=e2326]:
+                    - generic [ref=e2328]:
+                      - generic [ref=e2329]: "["
+                      - generic [ref=e2330]:
+                        - generic [ref=e2331]: C
+                        - generic [ref=e2332]: o
+                        - generic [ref=e2333]: C
+                        - generic [ref=e2334]: l
+                      - generic [ref=e2336]: "4"
+                      - generic [ref=e2337]: "]"
+                      - generic [ref=e2339]:
+                        - generic [ref=e2340]: "2"
+                        - generic [ref=e2341]: −
+                  - generic [ref=e2344]:
+                    - text: "["
+                    - generic [ref=e2345]: CoCl
+                    - generic [ref=e2346]:
+                      - generic [ref=e2348]: X
+                      - generic [ref=e2357]: "4"
+                    - text: "]"
+                    - generic [ref=e2361]:
+                      - generic [ref=e2363]: X
+                      - generic [ref=e2369]: 2−
+                - text: (blau)
+              - listitem [ref=e2370]:
+                - strong [ref=e2371]: Hexamminecobalt(III)
+                - text: ":"
+                - generic [ref=e2373]:
+                  - math [ref=e2375]:
+                    - generic [ref=e2377]:
+                      - generic [ref=e2378]: "["
+                      - generic [ref=e2379]:
+                        - generic [ref=e2380]: C
+                        - generic [ref=e2381]: o
+                      - generic [ref=e2382]: (
+                      - generic [ref=e2383]:
+                        - generic [ref=e2384]: "N"
+                        - generic [ref=e2385]: H
+                      - generic [ref=e2387]: "3"
+                      - generic [ref=e2388]: )
+                      - generic [ref=e2390]: "6"
+                      - generic [ref=e2391]: "]"
+                      - generic [ref=e2393]:
+                        - generic [ref=e2394]: "3"
+                        - generic [ref=e2395]: +
+                  - generic [ref=e2398]:
+                    - text: "["
+                    - generic [ref=e2399]: Co
+                    - text: (
+                    - generic [ref=e2400]: NH
+                    - generic [ref=e2401]:
+                      - generic [ref=e2403]: X
+                      - generic [ref=e2412]: "3"
+                    - text: )
+                    - generic [ref=e2416]:
+                      - generic [ref=e2418]: X
+                      - generic [ref=e2427]: "6"
+                    - text: "]"
+                    - generic [ref=e2431]:
+                      - generic [ref=e2433]: X
+                      - generic [ref=e2439]: 3+
+                - text: (gelb-orange)
+            - heading "Liganden" [level=3] [ref=e2440]
+            - paragraph [ref=e2441]:
+              - strong [ref=e2442]: Liganden
+              - text: "sind Moleküle oder Ionen, die an das Zentralatom binden:"
+            - table [ref=e2443]:
+              - rowgroup [ref=e2444]:
+                - row "Ligand Abkürzung Zähnigkeit" [ref=e2445]:
+                  - columnheader "Ligand" [ref=e2446]
+                  - columnheader "Abkürzung" [ref=e2447]
+                  - columnheader "Zähnigkeit" [ref=e2448]
+              - rowgroup [ref=e2449]:
+                - row "Wasser 1 (neutral)" [ref=e2450]:
+                  - cell "Wasser" [ref=e2451]
+                  - cell [ref=e2452]:
+                    - generic [ref=e2454]:
+                      - math [ref=e2456]:
+                        - generic [ref=e2458]:
+                          - generic [ref=e2459]: H
+                          - generic [ref=e2461]: "2"
+                          - generic [ref=e2462]: O
+                      - generic [ref=e2465]:
+                        - text: H
+                        - generic [ref=e2466]:
+                          - generic [ref=e2468]: X
+                          - generic [ref=e2477]: "2"
+                        - text: O
+                  - cell "1 (neutral)" [ref=e2481]
+                - row "Ammoniak 1 (neutral)" [ref=e2482]:
+                  - cell "Ammoniak" [ref=e2483]
+                  - cell [ref=e2484]:
+                    - generic [ref=e2486]:
+                      - math [ref=e2488]:
+                        - generic [ref=e2490]:
+                          - generic [ref=e2491]:
+                            - generic [ref=e2492]: "N"
+                            - generic [ref=e2493]: H
+                          - generic [ref=e2495]: "3"
+                      - generic [ref=e2498]:
+                        - generic [ref=e2499]: NH
+                        - generic [ref=e2500]:
+                          - generic [ref=e2502]: X
+                          - generic [ref=e2511]: "3"
+                  - cell "1 (neutral)" [ref=e2515]
+                - row "Cyanid 1" [ref=e2516]:
+                  - cell "Cyanid" [ref=e2517]
+                  - cell [ref=e2518]:
+                    - generic [ref=e2520]:
+                      - math [ref=e2522]:
+                        - generic [ref=e2524]:
+                          - generic [ref=e2525]:
+                            - generic [ref=e2526]: C
+                            - generic [ref=e2527]: "N"
+                          - generic [ref=e2529]: −
+                      - generic [ref=e2532]:
+                        - generic [ref=e2533]: CN
+                        - generic [ref=e2534]:
+                          - generic [ref=e2536]: X
+                          - generic [ref=e2542]: −
+                  - cell "1" [ref=e2543]
+                - row "Ethylendiamin en 2" [ref=e2544]:
+                  - cell "Ethylendiamin" [ref=e2545]
+                  - cell "en" [ref=e2546]
+                  - cell "2" [ref=e2547]
+                - row "EDTA 6" [ref=e2548]:
+                  - cell "EDTA" [ref=e2549]
+                  - cell [ref=e2550]:
+                    - generic [ref=e2552]:
+                      - math [ref=e2554]:
+                        - generic [ref=e2556]:
+                          - generic [ref=e2557]:
+                            - generic [ref=e2558]: E
+                            - generic [ref=e2559]: D
+                            - generic [ref=e2560]: T
+                            - generic [ref=e2561]: A
+                          - generic [ref=e2563]:
+                            - generic [ref=e2564]: "4"
+                            - generic [ref=e2565]: −
+                      - generic [ref=e2568]:
+                        - generic [ref=e2569]: EDTA
+                        - generic [ref=e2570]:
+                          - generic [ref=e2572]: X
+                          - generic [ref=e2578]: 4−
+                  - cell "6" [ref=e2579]
+            - heading "Anwendung von Komplexen" [level=3] [ref=e2580]
+            - list [ref=e2581]:
+              - listitem [ref=e2582]:
+                - strong [ref=e2583]: Färbei
+                - text: ": Komplexfarbstoffe"
+              - listitem [ref=e2584]:
+                - strong [ref=e2585]: Medizin
+                - text: ": Platin-Komplexe in der Chemotherapie"
+              - listitem [ref=e2586]:
+                - strong [ref=e2587]: Analytik
+                - text: ": Nachweis von Metallionen"
+              - listitem [ref=e2588]:
+                - strong [ref=e2589]: Katalyse
+                - text: ": Übergangsmetallkomplexe als Katalysatoren"
+            - heading "Ammoniak und Ammoniumverbindungen" [level=2] [ref=e2590]
+            - heading "Ammoniak ( )" [level=3] [ref=e2591]:
+              - text: Ammoniak (
+              - generic [ref=e2593]:
+                - math [ref=e2595]:
+                  - generic [ref=e2597]:
+                    - generic [ref=e2598]:
+                      - generic [ref=e2599]: "N"
+                      - generic [ref=e2600]: H
+                    - generic [ref=e2602]: "3"
+                - generic [ref=e2605]:
+                  - generic [ref=e2606]: NH
+                  - generic [ref=e2607]:
+                    - generic [ref=e2609]: X
+                    - generic [ref=e2618]: "3"
+              - text: )
+            - paragraph [ref=e2622]:
+              - strong [ref=e2623]: "Eigenschaften:"
+            - list [ref=e2624]:
+              - listitem [ref=e2625]: Farbloses Gas mit stechendem Geruch
+              - listitem [ref=e2626]: Gut wasserlöslich
+              - listitem [ref=e2627]:
+                - text: Bildet mit Wasser
+                - generic [ref=e2629]:
+                  - math [ref=e2631]:
+                    - generic [ref=e2633]:
+                      - generic [ref=e2634]:
+                        - generic [ref=e2635]: "N"
+                        - generic [ref=e2636]: H
+                      - generic [ref=e2638]: "4"
+                      - generic [ref=e2640]: +
+                      - generic [ref=e2641]: +
+                      - generic [ref=e2642]:
+                        - generic [ref=e2643]: O
+                        - generic [ref=e2644]: H
+                      - generic [ref=e2646]: −
+                  - generic [ref=e2649]:
+                    - generic [ref=e2650]: NH
+                    - generic [ref=e2651]:
+                      - generic [ref=e2653]: X
+                      - generic [ref=e2662]: "4"
+                    - generic [ref=e2666]:
+                      - generic [ref=e2668]: X
+                      - generic [ref=e2674]: +
+                    - text: +
+                    - generic [ref=e2675]: OH
+                    - generic [ref=e2676]:
+                      - generic [ref=e2678]: X
+                      - generic [ref=e2684]: −
+                - text: (schwache Base)
+              - listitem [ref=e2685]: Nachweis mit Nessler-Reagenz (braunrot)
+            - paragraph [ref=e2686]:
+              - strong [ref=e2687]: "Herstellung (Haber-Bosch-Verfahren):"
+            - paragraph [ref=e2688]:
+              - generic [ref=e2691]:
+                - math [ref=e2693]:
+                  - generic [ref=e2695]:
+                    - generic [ref=e2696]:
+                      - generic [ref=e2697]: "N"
+                      - generic [ref=e2699]: "2"
+                      - generic [ref=e2700]: +
+                      - generic [ref=e2701]: "3"
+                      - generic [ref=e2702]: H
+                      - generic [ref=e2704]: "2"
+                      - generic [ref=e2706]: ⇌
+                      - generic [ref=e2707]: "2"
+                      - generic [ref=e2708]:
+                        - generic [ref=e2709]: "N"
+                        - generic [ref=e2710]: H
+                      - generic [ref=e2712]: "3"
+                    - generic [ref=e2713]: (
+                    - generic [ref=e2714]: Δ
+                    - generic [ref=e2715]: H
+                    - generic [ref=e2716]: =
+                    - generic [ref=e2717]: −
+                    - generic [ref=e2718]: "92"
+                    - generic [ref=e2719]: kJ/mol
+                    - generic [ref=e2720]: )
+                - generic [ref=e2721]:
+                  - generic [ref=e2722]:
+                    - generic [ref=e2723]:
+                      - text: "N"
+                      - generic [ref=e2724]:
+                        - generic [ref=e2726]: X
+                        - generic [ref=e2735]: "2"
+                      - text: + 3 H
+                      - generic [ref=e2739]:
+                        - generic [ref=e2741]: X
+                        - generic [ref=e2750]: "2"
+                      - generic [ref=e2758]:
+                        - img [ref=e2760]
+                        - img [ref=e2763]
+                      - text: "2"
+                      - generic [ref=e2768]: NH
+                      - generic [ref=e2769]:
+                        - generic [ref=e2771]: X
+                        - generic [ref=e2780]: "3"
+                    - text: (ΔH =
+                  - generic [ref=e2784]:
+                    - text: −92
+                    - generic [ref=e2785]: kJ/mol
+                    - text: )
+            - paragraph [ref=e2786]: Stickstoff + Wasserstoff → Ammoniak
+            - paragraph [ref=e2787]: "Bedingungen: 400-500°C, 200-300 bar, Eisenkatalysator"
+            - heading "Ammoniumverbindungen" [level=3] [ref=e2788]
+            - paragraph [ref=e2789]:
+              - strong [ref=e2790]: Ammoniumsalze
+              - text: "entstehen aus der Reaktion von Ammoniak mit Säuren:"
+            - paragraph [ref=e2791]:
+              - generic [ref=e2794]:
+                - math [ref=e2796]:
+                  - generic [ref=e2798]:
+                    - generic [ref=e2799]:
+                      - generic [ref=e2800]: "N"
+                      - generic [ref=e2801]: H
+                    - generic [ref=e2803]: "3"
+                    - generic [ref=e2804]: +
+                    - generic [ref=e2805]:
+                      - generic [ref=e2806]: H
+                      - generic [ref=e2807]: C
+                      - generic [ref=e2808]: l
+                    - generic [ref=e2810]: →
+                    - generic [ref=e2811]:
+                      - generic [ref=e2812]: "N"
+                      - generic [ref=e2813]: H
+                    - generic [ref=e2815]: "4"
+                    - generic [ref=e2816]:
+                      - generic [ref=e2817]: C
+                      - generic [ref=e2818]: l
+                - generic [ref=e2821]:
+                  - generic [ref=e2822]: NH
+                  - generic [ref=e2823]:
+                    - generic [ref=e2825]: X
+                    - generic [ref=e2834]: "3"
+                  - text: +
+                  - generic [ref=e2838]: HCl
+                  - img [ref=e2844]
+                  - generic [ref=e2849]: NH
+                  - generic [ref=e2850]:
+                    - generic [ref=e2852]: X
+                    - generic [ref=e2861]: "4"
+                  - generic [ref=e2865]: Cl
+            - paragraph [ref=e2866]: Ammoniak + Salzsäure → Ammoniumchlorid
+            - paragraph [ref=e2867]:
+              - generic [ref=e2870]:
+                - math [ref=e2872]:
+                  - generic [ref=e2874]:
+                    - generic [ref=e2875]: "2"
+                    - generic [ref=e2876]:
+                      - generic [ref=e2877]: "N"
+                      - generic [ref=e2878]: H
+                    - generic [ref=e2880]: "3"
+                    - generic [ref=e2881]: +
+                    - generic [ref=e2882]: H
+                    - generic [ref=e2884]: "2"
+                    - generic [ref=e2885]:
+                      - generic [ref=e2886]: S
+                      - generic [ref=e2887]: O
+                    - generic [ref=e2889]: "4"
+                    - generic [ref=e2891]: →
+                    - generic [ref=e2892]: (
+                    - generic [ref=e2893]:
+                      - generic [ref=e2894]: "N"
+                      - generic [ref=e2895]: H
+                    - generic [ref=e2897]: "4"
+                    - generic [ref=e2898]: )
+                    - generic [ref=e2900]: "2"
+                    - generic [ref=e2901]:
+                      - generic [ref=e2902]: S
+                      - generic [ref=e2903]: O
+                    - generic [ref=e2905]: "4"
+                - generic [ref=e2908]:
+                  - text: "2"
+                  - generic [ref=e2909]: NH
+                  - generic [ref=e2910]:
+                    - generic [ref=e2912]: X
+                    - generic [ref=e2921]: "3"
+                  - text: + H
+                  - generic [ref=e2925]:
+                    - generic [ref=e2927]: X
+                    - generic [ref=e2936]: "2"
+                  - generic [ref=e2940]: SO
+                  - generic [ref=e2941]:
+                    - generic [ref=e2943]: X
+                    - generic [ref=e2952]: "4"
+                  - img [ref=e2961]
+                  - text: (
+                  - generic [ref=e2966]: NH
+                  - generic [ref=e2967]:
+                    - generic [ref=e2969]: X
+                    - generic [ref=e2978]: "4"
+                  - text: )
+                  - generic [ref=e2982]:
+                    - generic [ref=e2984]: X
+                    - generic [ref=e2993]: "2"
+                  - generic [ref=e2997]: SO
+                  - generic [ref=e2998]:
+                    - generic [ref=e3000]: X
+                    - generic [ref=e3009]: "4"
+            - paragraph [ref=e3013]: Ammoniak + Schwefelsäure → Ammoniumsulfat
+            - heading "Schwefel und seine Verbindungen" [level=2] [ref=e3014]
+            - heading "Schwefelwasserstoff ( )" [level=3] [ref=e3015]:
+              - text: Schwefelwasserstoff (
+              - generic [ref=e3017]:
+                - math [ref=e3019]:
+                  - generic [ref=e3021]:
+                    - generic [ref=e3022]: H
+                    - generic [ref=e3024]: "2"
+                    - generic [ref=e3025]: S
+                - generic [ref=e3028]:
+                  - text: H
+                  - generic [ref=e3029]:
+                    - generic [ref=e3031]: X
+                    - generic [ref=e3040]: "2"
+                  - text: S
+              - text: )
+            - list [ref=e3044]:
+              - listitem [ref=e3045]: Farbloses Gas mit charakteristischem Geruch (faulige Eier)
+              - listitem [ref=e3046]: Sehr giftig!
+              - listitem [ref=e3047]: Nachweis mit Bleiacetat-Papier (schwarzer Fleck)
+            - heading "Schweflige Säure ( ) und Schwefelsäure ( )" [level=3] [ref=e3048]:
+              - text: Schweflige Säure (
+              - generic [ref=e3050]:
+                - math [ref=e3052]:
+                  - generic [ref=e3054]:
+                    - generic [ref=e3055]: H
+                    - generic [ref=e3057]: "2"
+                    - generic [ref=e3058]:
+                      - generic [ref=e3059]: S
+                      - generic [ref=e3060]: O
+                    - generic [ref=e3062]: "3"
+                - generic [ref=e3065]:
+                  - text: H
+                  - generic [ref=e3066]:
+                    - generic [ref=e3068]: X
+                    - generic [ref=e3077]: "2"
+                  - generic [ref=e3081]: SO
+                  - generic [ref=e3082]:
+                    - generic [ref=e3084]: X
+                    - generic [ref=e3093]: "3"
+              - text: ) und Schwefelsäure (
+              - generic [ref=e3098]:
+                - math [ref=e3100]:
+                  - generic [ref=e3102]:
+                    - generic [ref=e3103]: H
+                    - generic [ref=e3105]: "2"
+                    - generic [ref=e3106]:
+                      - generic [ref=e3107]: S
+                      - generic [ref=e3108]: O
+                    - generic [ref=e3110]: "4"
+                - generic [ref=e3113]:
+                  - text: H
+                  - generic [ref=e3114]:
+                    - generic [ref=e3116]: X
+                    - generic [ref=e3125]: "2"
+                  - generic [ref=e3129]: SO
+                  - generic [ref=e3130]:
+                    - generic [ref=e3132]: X
+                    - generic [ref=e3141]: "4"
+              - text: )
+            - paragraph [ref=e3145]:
+              - strong [ref=e3146]: "Schweflige Säure:"
+            - paragraph [ref=e3147]:
+              - generic [ref=e3150]:
+                - math [ref=e3152]:
+                  - generic [ref=e3154]:
+                    - generic [ref=e3155]:
+                      - generic [ref=e3156]: S
+                      - generic [ref=e3157]: O
+                    - generic [ref=e3159]: "2"
+                    - generic [ref=e3160]: +
+                    - generic [ref=e3161]: H
+                    - generic [ref=e3163]: "2"
+                    - generic [ref=e3164]: O
+                    - generic [ref=e3166]: ⇌
+                    - generic [ref=e3167]: H
+                    - generic [ref=e3169]: "2"
+                    - generic [ref=e3170]:
+                      - generic [ref=e3171]: S
+                      - generic [ref=e3172]: O
+                    - generic [ref=e3174]: "3"
+                - generic [ref=e3177]:
+                  - generic [ref=e3178]: SO
+                  - generic [ref=e3179]:
+                    - generic [ref=e3181]: X
+                    - generic [ref=e3190]: "2"
+                  - text: + H
+                  - generic [ref=e3194]:
+                    - generic [ref=e3196]: X
+                    - generic [ref=e3205]: "2"
+                  - text: O
+                  - generic [ref=e3213]:
+                    - img [ref=e3215]
+                    - img [ref=e3218]
+                  - text: H
+                  - generic [ref=e3223]:
+                    - generic [ref=e3225]: X
+                    - generic [ref=e3234]: "2"
+                  - generic [ref=e3238]: SO
+                  - generic [ref=e3239]:
+                    - generic [ref=e3241]: X
+                    - generic [ref=e3250]: "3"
+            - paragraph [ref=e3254]: Unbeständig, schwache Säure
+            - paragraph [ref=e3255]:
+              - strong [ref=e3256]: "Schwefelsäure:"
+            - list [ref=e3257]:
+              - listitem [ref=e3258]: Starke Säure
+              - listitem [ref=e3259]: Hygroskopisch (wasserziehend)
+              - listitem [ref=e3260]: Dehydratisierungsmittel
+              - listitem [ref=e3261]: ÖligFlüssigkeit
+            - paragraph [ref=e3262]:
+              - strong [ref=e3263]: "Vorsicht:"
+              - text: Säure immer ins Wasser gießen, nie umgekehrt!
+            - heading "Schwefeloxide" [level=3] [ref=e3264]
+            - list [ref=e3265]:
+              - listitem [ref=e3266]:
+                - strong [ref=e3267]:
+                  - text: Schwefeldioxid (
+                  - generic [ref=e3269]:
+                    - math [ref=e3271]:
+                      - generic [ref=e3273]:
+                        - generic [ref=e3274]:
+                          - generic [ref=e3275]: S
+                          - generic [ref=e3276]: O
+                        - generic [ref=e3278]: "2"
+                    - generic [ref=e3281]:
+                      - generic [ref=e3282]: SO
+                      - generic [ref=e3283]:
+                        - generic [ref=e3285]: X
+                        - generic [ref=e3294]: "2"
+                  - text: )
+                - text: ": Beißendes Gas, entsteht bei Verbrennung von Schwefel"
+              - listitem [ref=e3298]:
+                - strong [ref=e3299]:
+                  - text: Schwefeltrioxid (
+                  - generic [ref=e3301]:
+                    - math [ref=e3303]:
+                      - generic [ref=e3305]:
+                        - generic [ref=e3306]:
+                          - generic [ref=e3307]: S
+                          - generic [ref=e3308]: O
+                        - generic [ref=e3310]: "3"
+                    - generic [ref=e3313]:
+                      - generic [ref=e3314]: SO
+                      - generic [ref=e3315]:
+                        - generic [ref=e3317]: X
+                        - generic [ref=e3326]: "3"
+                  - text: )
+                - text: ": Reagiert mit Wasser zu Schwefelsäure"
+            - heading "Stickstoff und seine Verbindungen" [level=2] [ref=e3330]
+            - heading "Stickstoffoxide" [level=3] [ref=e3331]
+            - list [ref=e3332]:
+              - listitem [ref=e3333]:
+                - strong [ref=e3334]:
+                  - text: Stickstoffmonoxid (
+                  - generic [ref=e3336]:
+                    - math [ref=e3338]:
+                      - generic [ref=e3340]:
+                        - generic [ref=e3341]: "N"
+                        - generic [ref=e3342]: O
+                    - generic [ref=e3346]: "NO"
+                  - text: )
+                - text: ": Farbloses Gas"
+              - listitem [ref=e3347]:
+                - strong [ref=e3348]:
+                  - text: Stickstoffdioxid (
+                  - generic [ref=e3350]:
+                    - math [ref=e3352]:
+                      - generic [ref=e3354]:
+                        - generic [ref=e3355]:
+                          - generic [ref=e3356]: "N"
+                          - generic [ref=e3357]: O
+                        - generic [ref=e3359]: "2"
+                    - generic [ref=e3362]:
+                      - generic [ref=e3363]: "NO"
+                      - generic [ref=e3364]:
+                        - generic [ref=e3366]: X
+                        - generic [ref=e3375]: "2"
+                  - text: )
+                - text: ": Braunes Gas, giftig"
+            - heading "Ammoniak und Ammoniumverbindungen" [level=3] [ref=e3379]
+            - paragraph [ref=e3380]: (siehe oben)
+            - heading "Salpetersäure ( )" [level=3] [ref=e3381]:
+              - text: Salpetersäure (
+              - generic [ref=e3383]:
+                - math [ref=e3385]:
+                  - generic [ref=e3387]:
+                    - generic [ref=e3388]:
+                      - generic [ref=e3389]: H
+                      - generic [ref=e3390]: "N"
+                      - generic [ref=e3391]: O
+                    - generic [ref=e3393]: "3"
+                - generic [ref=e3396]:
+                  - generic [ref=e3397]: HNO
+                  - generic [ref=e3398]:
+                    - generic [ref=e3400]: X
+                    - generic [ref=e3409]: "3"
+              - text: )
+            - list [ref=e3413]:
+              - listitem [ref=e3414]: Starke Säure
+              - listitem [ref=e3415]: Oxidierend
+              - listitem [ref=e3416]:
+                - text: "Konz.: gelbliche Flüssigkeit, gibt braune Dämpfe ("
+                - generic [ref=e3418]:
+                  - math [ref=e3420]:
+                    - generic [ref=e3422]:
+                      - generic [ref=e3423]:
+                        - generic [ref=e3424]: "N"
+                        - generic [ref=e3425]: O
+                      - generic [ref=e3427]: "2"
+                  - generic [ref=e3430]:
+                    - generic [ref=e3431]: "NO"
+                    - generic [ref=e3432]:
+                      - generic [ref=e3434]: X
+                      - generic [ref=e3443]: "2"
+                - text: ) ab
+            - heading "Kohlenstoff und seine anorganischen Verbindungen" [level=2] [ref=e3447]
+            - heading "Kohlenstoffoxide" [level=3] [ref=e3448]
+            - list [ref=e3449]:
+              - listitem [ref=e3450]:
+                - strong [ref=e3451]:
+                  - text: Kohlenstoffmonoxid (
+                  - generic [ref=e3453]:
+                    - math [ref=e3455]:
+                      - generic [ref=e3457]:
+                        - generic [ref=e3458]: C
+                        - generic [ref=e3459]: O
+                    - generic [ref=e3463]: CO
+                  - text: )
+                - text: ": Farblos, geruchlos, sehr giftig"
+              - listitem [ref=e3464]:
+                - strong [ref=e3465]:
+                  - text: Kohlenstoffdioxid (
+                  - generic [ref=e3467]:
+                    - math [ref=e3469]:
+                      - generic [ref=e3471]:
+                        - generic [ref=e3472]:
+                          - generic [ref=e3473]: C
+                          - generic [ref=e3474]: O
+                        - generic [ref=e3476]: "2"
+                    - generic [ref=e3479]:
+                      - generic [ref=e3480]: CO
+                      - generic [ref=e3481]:
+                        - generic [ref=e3483]: X
+                        - generic [ref=e3492]: "2"
+                  - text: )
+                - text: ": Farblos, nicht giftig"
+            - heading "Carbonate" [level=3] [ref=e3496]
+            - paragraph [ref=e3497]:
+              - strong [ref=e3498]: Calciumcarbonat (Kalkstein, Marmor)
+            - paragraph [ref=e3499]:
+              - generic [ref=e3502]:
+                - math [ref=e3504]:
+                  - generic [ref=e3506]:
+                    - generic [ref=e3507]:
+                      - generic [ref=e3508]:
+                        - generic [ref=e3509]: C
+                        - generic [ref=e3510]: a
+                        - generic [ref=e3511]: C
+                        - generic [ref=e3512]: O
+                      - generic [ref=e3514]: "3"
+                      - generic [ref=e3516]: →
+                      - generic [ref=e3517]:
+                        - generic [ref=e3518]: C
+                        - generic [ref=e3519]: a
+                        - generic [ref=e3520]: O
+                      - generic [ref=e3521]: +
+                      - generic [ref=e3522]:
+                        - generic [ref=e3523]: C
+                        - generic [ref=e3524]: O
+                      - generic [ref=e3526]: "2"
+                    - generic [ref=e3527]: (bei starkem Erhitzen)
+                - generic [ref=e3529]:
+                  - generic [ref=e3530]:
+                    - generic [ref=e3531]: CaCO
+                    - generic [ref=e3532]:
+                      - generic [ref=e3534]: X
+                      - generic [ref=e3543]: "3"
+                    - img [ref=e3552]
+                    - generic [ref=e3557]: CaO
+                    - text: +
+                    - generic [ref=e3558]: CO
+                    - generic [ref=e3559]:
+                      - generic [ref=e3561]: X
+                      - generic [ref=e3570]: "2"
+                  - generic [ref=e3574]: (bei starkem Erhitzen)
+            - paragraph [ref=e3575]: Kalkstein → Kalk + Kohlendioxid
+            - paragraph [ref=e3576]:
+              - strong [ref=e3577]: Natriumcarbonat (Soda)
+            - paragraph [ref=e3578]:
+              - generic [ref=e3581]:
+                - math [ref=e3583]:
+                  - generic [ref=e3585]:
+                    - generic [ref=e3586]:
+                      - generic [ref=e3587]: "N"
+                      - generic [ref=e3588]: a
+                    - generic [ref=e3590]: "2"
+                    - generic [ref=e3591]:
+                      - generic [ref=e3592]: C
+                      - generic [ref=e3593]: O
+                    - generic [ref=e3595]: "3"
+                    - generic [ref=e3596]: +
+                    - generic [ref=e3597]: "2"
+                    - generic [ref=e3598]:
+                      - generic [ref=e3599]: H
+                      - generic [ref=e3600]: C
+                      - generic [ref=e3601]: l
+                    - generic [ref=e3603]: →
+                    - generic [ref=e3604]: "2"
+                    - generic [ref=e3605]:
+                      - generic [ref=e3606]: "N"
+                      - generic [ref=e3607]: a
+                      - generic [ref=e3608]: C
+                      - generic [ref=e3609]: l
+                    - generic [ref=e3610]: +
+                    - generic [ref=e3611]: H
+                    - generic [ref=e3613]: "2"
+                    - generic [ref=e3614]: O
+                    - generic [ref=e3615]: +
+                    - generic [ref=e3616]:
+                      - generic [ref=e3617]: C
+                      - generic [ref=e3618]: O
+                    - generic [ref=e3620]: "2"
+                - generic [ref=e3623]:
+                  - generic [ref=e3624]: Na
+                  - generic [ref=e3625]:
+                    - generic [ref=e3627]: X
+                    - generic [ref=e3636]: "2"
+                  - generic [ref=e3640]: CO
+                  - generic [ref=e3641]:
+                    - generic [ref=e3643]: X
+                    - generic [ref=e3652]: "3"
+                  - text: + 2
+                  - generic [ref=e3656]: HCl
+                  - img [ref=e3662]
+                  - text: "2"
+                  - generic [ref=e3667]: NaCl
+                  - text: + H
+                  - generic [ref=e3668]:
+                    - generic [ref=e3670]: X
+                    - generic [ref=e3679]: "2"
+                  - text: O +
+                  - generic [ref=e3683]: CO
+                  - generic [ref=e3684]:
+                    - generic [ref=e3686]: X
+                    - generic [ref=e3695]: "2"
+            - paragraph [ref=e3699]: "Verwendung: Glasherstellung, Wasserenthärtung, Seifen"
+            - heading "Praktische Anwendungen" [level=2] [ref=e3700]
+            - heading "1. Wasserenthärtung" [level=3] [ref=e3701]
+            - paragraph [ref=e3702]:
+              - text: Hartes Wasser enthält
+              - generic [ref=e3704]:
+                - math [ref=e3706]:
+                  - generic [ref=e3708]:
+                    - generic [ref=e3709]:
+                      - generic [ref=e3710]: C
+                      - generic [ref=e3711]: a
+                    - generic [ref=e3713]:
+                      - generic [ref=e3714]: "2"
+                      - generic [ref=e3715]: +
+                - generic [ref=e3718]:
+                  - generic [ref=e3719]: Ca
+                  - generic [ref=e3720]:
+                    - generic [ref=e3722]: X
+                    - generic [ref=e3728]: 2+
+              - text: "- und"
+              - generic [ref=e3730]:
+                - math [ref=e3732]:
+                  - generic [ref=e3734]:
+                    - generic [ref=e3735]:
+                      - generic [ref=e3736]: M
+                      - generic [ref=e3737]: g
+                    - generic [ref=e3739]:
+                      - generic [ref=e3740]: "2"
+                      - generic [ref=e3741]: +
+                - generic [ref=e3744]:
+                  - generic [ref=e3745]: Mg
+                  - generic [ref=e3746]:
+                    - generic [ref=e3748]: X
+                    - generic [ref=e3754]: 2+
+              - text: "-Ionen. Diese können durch"
+              - strong [ref=e3755]: Ionenaustausch
+              - text: "entfernt werden:"
+            - paragraph [ref=e3756]:
+              - generic [ref=e3759]:
+                - math [ref=e3761]:
+                  - generic [ref=e3763]:
+                    - generic [ref=e3764]:
+                      - generic [ref=e3765]: C
+                      - generic [ref=e3766]: a
+                    - generic [ref=e3768]:
+                      - generic [ref=e3769]: "2"
+                      - generic [ref=e3770]: +
+                    - generic [ref=e3771]: +
+                    - generic [ref=e3772]:
+                      - generic [ref=e3773]: "N"
+                      - generic [ref=e3774]: a
+                    - generic [ref=e3776]: "2"
+                    - generic [ref=e3777]: R
+                    - generic [ref=e3779]: →
+                    - generic [ref=e3780]:
+                      - generic [ref=e3781]: C
+                      - generic [ref=e3782]: a
+                      - generic [ref=e3783]: R
+                    - generic [ref=e3784]: +
+                    - generic [ref=e3785]: "2"
+                    - generic [ref=e3786]:
+                      - generic [ref=e3787]: "N"
+                      - generic [ref=e3788]: a
+                    - generic [ref=e3790]: +
+                - generic [ref=e3793]:
+                  - generic [ref=e3794]: Ca
+                  - generic [ref=e3795]:
+                    - generic [ref=e3797]: X
+                    - generic [ref=e3803]: 2+
+                  - text: +
+                  - generic [ref=e3804]: Na
+                  - generic [ref=e3805]:
+                    - generic [ref=e3807]: X
+                    - generic [ref=e3816]: "2"
+                  - text: R
+                  - img [ref=e3825]
+                  - generic [ref=e3830]: CaR
+                  - text: + 2
+                  - generic [ref=e3831]: Na
+                  - generic [ref=e3832]:
+                    - generic [ref=e3834]: X
+                    - generic [ref=e3840]: +
+            - paragraph [ref=e3841]: (R = Austauscherharz)
+            - heading "2. Düngemittel" [level=3] [ref=e3842]
+            - paragraph [ref=e3843]: "Wichtige anorganische Dünger:"
+            - list [ref=e3844]:
+              - listitem [ref=e3845]:
+                - strong [ref=e3846]: Stickstoff
+                - text: ": Kalksalpeter ("
+                - generic [ref=e3848]:
+                  - math [ref=e3850]:
+                    - generic [ref=e3852]:
+                      - generic [ref=e3853]:
+                        - generic [ref=e3854]: C
+                        - generic [ref=e3855]: a
+                      - generic [ref=e3856]: (
+                      - generic [ref=e3857]:
+                        - generic [ref=e3858]: "N"
+                        - generic [ref=e3859]: O
+                      - generic [ref=e3861]: "3"
+                      - generic [ref=e3862]: )
+                      - generic [ref=e3864]: "2"
+                  - generic [ref=e3867]:
+                    - generic [ref=e3868]: Ca
+                    - text: (
+                    - generic [ref=e3869]: "NO"
+                    - generic [ref=e3870]:
+                      - generic [ref=e3872]: X
+                      - generic [ref=e3881]: "3"
+                    - text: )
+                    - generic [ref=e3885]:
+                      - generic [ref=e3887]: X
+                      - generic [ref=e3896]: "2"
+                - text: )
+              - listitem [ref=e3900]:
+                - strong [ref=e3901]: Phosphor
+                - text: ": Superphosphat ("
+                - generic [ref=e3903]:
+                  - math [ref=e3905]:
+                    - generic [ref=e3907]:
+                      - generic [ref=e3908]:
+                        - generic [ref=e3909]: C
+                        - generic [ref=e3910]: a
+                      - generic [ref=e3911]: (
+                      - generic [ref=e3912]: H
+                      - generic [ref=e3914]: "2"
+                      - generic [ref=e3915]:
+                        - generic [ref=e3916]: P
+                        - generic [ref=e3917]: O
+                      - generic [ref=e3919]: "4"
+                      - generic [ref=e3920]: )
+                      - generic [ref=e3922]: "2"
+                  - generic [ref=e3925]:
+                    - generic [ref=e3926]: Ca
+                    - text: (H
+                    - generic [ref=e3927]:
+                      - generic [ref=e3929]: X
+                      - generic [ref=e3938]: "2"
+                    - generic [ref=e3942]: PO
+                    - generic [ref=e3943]:
+                      - generic [ref=e3945]: X
+                      - generic [ref=e3954]: "4"
+                    - text: )
+                    - generic [ref=e3958]:
+                      - generic [ref=e3960]: X
+                      - generic [ref=e3969]: "2"
+                - text: )
+              - listitem [ref=e3973]:
+                - strong [ref=e3974]: Kalium
+                - text: ": Kaliumsulfat ("
+                - generic [ref=e3976]:
+                  - math [ref=e3978]:
+                    - generic [ref=e3980]:
+                      - generic [ref=e3981]: K
+                      - generic [ref=e3983]: "2"
+                      - generic [ref=e3984]:
+                        - generic [ref=e3985]: S
+                        - generic [ref=e3986]: O
+                      - generic [ref=e3988]: "4"
+                  - generic [ref=e3991]:
+                    - text: K
+                    - generic [ref=e3992]:
+                      - generic [ref=e3994]: X
+                      - generic [ref=e4003]: "2"
+                    - generic [ref=e4007]: SO
+                    - generic [ref=e4008]:
+                      - generic [ref=e4010]: X
+                      - generic [ref=e4019]: "4"
+                - text: )
+            - heading "3. Baustoffe" [level=3] [ref=e4023]
+            - list [ref=e4024]:
+              - listitem [ref=e4025]:
+                - strong [ref=e4026]: Gips
+                - text: ":"
+                - generic [ref=e4028]:
+                  - math [ref=e4030]:
+                    - generic [ref=e4032]:
+                      - generic [ref=e4033]:
+                        - generic [ref=e4034]: C
+                        - generic [ref=e4035]: a
+                        - generic [ref=e4036]: S
+                        - generic [ref=e4037]: O
+                      - generic [ref=e4039]: "4"
+                      - generic [ref=e4040]: ⋅
+                      - generic [ref=e4041]: "2"
+                      - generic [ref=e4042]: H
+                      - generic [ref=e4044]: "2"
+                      - generic [ref=e4045]: O
+                  - generic [ref=e4048]:
+                    - generic [ref=e4049]: CaSO
+                    - generic [ref=e4050]:
+                      - generic [ref=e4052]: X
+                      - generic [ref=e4061]: "4"
+                    - generic [ref=e4065]: ⋅
+                    - text: 2 H
+                    - generic [ref=e4066]:
+                      - generic [ref=e4068]: X
+                      - generic [ref=e4077]: "2"
+                    - text: O
+                - text: (Wandputz, Bauplatten)
+              - listitem [ref=e4081]:
+                - strong [ref=e4082]: Kalk
+                - text: ":"
+                - generic [ref=e4084]:
+                  - math [ref=e4086]:
+                    - generic [ref=e4088]:
+                      - generic [ref=e4089]:
+                        - generic [ref=e4090]: C
+                        - generic [ref=e4091]: a
+                        - generic [ref=e4092]: O
+                      - generic [ref=e4093]: ","
+                      - generic [ref=e4094]:
+                        - generic [ref=e4095]: C
+                        - generic [ref=e4096]: a
+                      - generic [ref=e4097]: (
+                      - generic [ref=e4098]:
+                        - generic [ref=e4099]: O
+                        - generic [ref=e4100]: H
+                      - generic [ref=e4101]: )
+                      - generic [ref=e4103]: "2"
+                  - generic [ref=e4106]:
+                    - generic [ref=e4107]: CaO
+                    - generic [ref=e4108]: ","
+                    - generic [ref=e4109]: Ca
+                    - text: (
+                    - generic [ref=e4110]: OH
+                    - text: )
+                    - generic [ref=e4111]:
+                      - generic [ref=e4113]: X
+                      - generic [ref=e4122]: "2"
+                - text: (Mörtel, Putz)
+              - listitem [ref=e4126]:
+                - strong [ref=e4127]: Zement
+                - text: ": Mischung aus Kalk, Ton, Sand"
+            - heading "Experimente" [level=2] [ref=e4128]
+            - 'heading "Experiment 1: Säure-Base-Reaktion" [level=3] [ref=e4129]'
+            - paragraph [ref=e4130]:
+              - strong [ref=e4131]: "Materialien:"
+              - text: Natronlauge, Salzsäure, Indikator (Rotkohl)
+            - paragraph [ref=e4132]:
+              - strong [ref=e4133]: "Durchführung:"
+            - list [ref=e4134]:
+              - listitem [ref=e4135]: Natronlauge mit Indikator versetzen (rot → blau)
+              - listitem [ref=e4136]: Salzsäure zugeben
+              - listitem [ref=e4137]: Farbumschlag beobachten
+            - paragraph [ref=e4138]:
+              - strong [ref=e4139]: "Erklärung:"
+              - text: Neutralisation von Säure und Base
+            - 'heading "Experiment 2: Fällungsreaktion" [level=3] [ref=e4140]'
+            - paragraph [ref=e4141]:
+              - strong [ref=e4142]: "Materialien:"
+              - text: Silbernitratlösung, Natriumchloridlösung
+            - paragraph [ref=e4143]:
+              - strong [ref=e4144]: "Durchführung:"
+            - list [ref=e4145]:
+              - listitem [ref=e4146]: Beide Lösungen mischen
+              - listitem [ref=e4147]: Weißen Niederschlag beobachten
+            - paragraph [ref=e4148]:
+              - strong [ref=e4149]: "Erklärung:"
+              - text: Bildung von schwerlöslichem AgCl
+            - 'heading "Experiment 3: Kupferfällung" [level=3] [ref=e4150]'
+            - paragraph [ref=e4151]:
+              - strong [ref=e4152]: "Materialien:"
+              - text: Kupfersulfatlösung, Eisenfeiln
+            - paragraph [ref=e4153]:
+              - strong [ref=e4154]: "Durchführung:"
+            - list [ref=e4155]:
+              - listitem [ref=e4156]: Eisenfeiln in Kupfersulfatlösung geben
+              - listitem [ref=e4157]: Farbänderung beobachten (blau → grün)
+              - listitem [ref=e4158]: Kupferniederschlag sammeln
+            - paragraph [ref=e4159]:
+              - strong [ref=e4160]: "Erklärung:"
+              - text: Redoxreaktion, Eisen verdrängt Kupfer
+            - heading "Berechnungen mit dem Molaren Masse Rechner" [level=2] [ref=e4161]
+            - heading "Molare Masse berechnen" [level=3] [ref=e4162]
+            - paragraph [ref=e4163]:
+              - text: Nutzen Sie den
+              - strong [ref=e4164]:
+                - link "Molaren Masse Rechner" [ref=e4165] [cursor=pointer]:
+                  - /url: /molare-masse-rechner/
+              - text: ", um die molaren Massen anorganischer Verbindungen zu berechnen:"
+            - paragraph [ref=e4166]:
+              - strong [ref=e4167]: "Beispiele:"
+            - list [ref=e4168]:
+              - listitem [ref=e4169]:
+                - strong [ref=e4170]:
+                  - generic [ref=e4172]:
+                    - math [ref=e4174]:
+                      - generic [ref=e4176]:
+                        - generic [ref=e4177]: "N"
+                        - generic [ref=e4178]: a
+                        - generic [ref=e4179]: C
+                        - generic [ref=e4180]: l
+                    - generic [ref=e4184]: NaCl
+                - text: ": 22.99 + 35.45 = 58.44 g/mol"
+              - listitem [ref=e4185]:
+                - strong [ref=e4186]:
+                  - generic [ref=e4188]:
+                    - math [ref=e4190]:
+                      - generic [ref=e4192]:
+                        - generic [ref=e4193]:
+                          - generic [ref=e4194]: C
+                          - generic [ref=e4195]: a
+                          - generic [ref=e4196]: C
+                          - generic [ref=e4197]: O
+                        - generic [ref=e4199]: "3"
+                    - generic [ref=e4202]:
+                      - generic [ref=e4203]: CaCO
+                      - generic [ref=e4204]:
+                        - generic [ref=e4206]: X
+                        - generic [ref=e4215]: "3"
+                - text: ": 40.08 + 12.01 + (3 × 16.00) = 100.09 g/mol"
+              - listitem [ref=e4219]:
+                - strong [ref=e4220]:
+                  - generic [ref=e4222]:
+                    - math [ref=e4224]:
+                      - generic [ref=e4226]:
+                        - generic [ref=e4227]: H
+                        - generic [ref=e4229]: "2"
+                        - generic [ref=e4230]:
+                          - generic [ref=e4231]: S
+                          - generic [ref=e4232]: O
+                        - generic [ref=e4234]: "4"
+                    - generic [ref=e4237]:
+                      - text: H
+                      - generic [ref=e4238]:
+                        - generic [ref=e4240]: X
+                        - generic [ref=e4249]: "2"
+                      - generic [ref=e4253]: SO
+                      - generic [ref=e4254]:
+                        - generic [ref=e4256]: X
+                        - generic [ref=e4265]: "4"
+                - text: ": (2 × 1.01) + 32.07 + (4 × 16.00) = 98.09 g/mol"
+            - heading "Stoffmengenberechnung" [level=3] [ref=e4269]
+            - paragraph [ref=e4270]:
+              - generic [ref=e4273]:
+                - math [ref=e4275]:
+                  - generic [ref=e4277]:
+                    - generic [ref=e4278]: "n"
+                    - generic [ref=e4279]: =
+                    - generic [ref=e4280]:
+                      - generic [ref=e4281]: m
+                      - generic [ref=e4282]: M
+                - generic [ref=e4283]:
+                  - generic [ref=e4284]: n =
+                  - generic [ref=e4290]:
+                    - generic [ref=e4291]: M
+                    - generic [ref=e4293]: m
+            - list [ref=e4297]:
+              - listitem [ref=e4298]:
+                - generic [ref=e4300]:
+                  - math [ref=e4302]:
+                    - generic [ref=e4305]: "n"
+                  - generic [ref=e4307]: "n"
+                - text: = Stoffmenge (mol)
+              - listitem [ref=e4308]:
+                - generic [ref=e4310]:
+                  - math [ref=e4312]:
+                    - generic [ref=e4315]: m
+                  - generic [ref=e4317]: m
+                - text: = Masse (g)
+              - listitem [ref=e4318]:
+                - generic [ref=e4320]:
+                  - math [ref=e4322]:
+                    - generic [ref=e4325]: M
+                  - generic [ref=e4327]: M
+                - text: = Molare Masse (g/mol)
+            - paragraph [ref=e4328]:
+              - strong [ref=e4329]: "Beispiel:"
+              - text: 5 g
+              - generic [ref=e4331]:
+                - math [ref=e4333]:
+                  - generic [ref=e4335]:
+                    - generic [ref=e4336]: "N"
+                    - generic [ref=e4337]: a
+                    - generic [ref=e4338]: C
+                    - generic [ref=e4339]: l
+                - generic [ref=e4343]: NaCl
+            - paragraph [ref=e4344]:
+              - generic [ref=e4347]:
+                - math [ref=e4349]:
+                  - generic [ref=e4351]:
+                    - generic [ref=e4352]: "n"
+                    - generic [ref=e4353]: =
+                    - generic [ref=e4354]:
+                      - generic [ref=e4355]:
+                        - generic [ref=e4356]: "5"
+                        - generic [ref=e4357]: g
+                      - generic [ref=e4358]:
+                        - generic [ref=e4359]: "58.44"
+                        - generic [ref=e4360]: g/mol
+                    - generic [ref=e4361]: =
+                    - generic [ref=e4362]: "0.086"
+                    - generic [ref=e4363]: mol
+                - generic [ref=e4364]:
+                  - generic [ref=e4365]: n =
+                  - generic [ref=e4366]:
+                    - generic [ref=e4371]:
+                      - generic [ref=e4372]:
+                        - text: "58.44"
+                        - generic [ref=e4373]: g/mol
+                      - generic [ref=e4375]:
+                        - text: "5"
+                        - generic [ref=e4376]: g
+                    - text: =
+                  - generic [ref=e4380]:
+                    - text: "0.086"
+                    - generic [ref=e4381]: mol
+            - heading "Lernziele" [level=2] [ref=e4382]
+            - paragraph [ref=e4383]: "Nach Abschluss dieses Themenbereichs sollten Sie:"
+            - list [ref=e4384]:
+              - listitem [ref=e4385]: ✅ Den Unterschied zwischen Säuren und Basen erklären können
+              - listitem [ref=e4386]: ✅ Neutralisationsreaktionen durchführen können
+              - listitem [ref=e4387]: ✅ Die Bildung von Salzen beschreiben können
+              - listitem [ref=e4388]: ✅ Fällungsreaktionen vorhersagen können
+              - listitem [ref=e4389]: ✅ Nachweisreaktionen für wichtige Ionen kennen
+              - listitem [ref=e4390]: ✅ Die Struktur von Salzen (Ionenbindung) erklären können
+              - listitem [ref=e4391]: ✅ Komplexe Verbindungen verstehen können
+              - listitem [ref=e4392]: ✅ Molare Massen berechnen können
+            - heading "Weiterführende Themen" [level=2] [ref=e4393]
+            - list [ref=e4394]:
+              - listitem [ref=e4395]:
+                - link "Säuren und Basen" [ref=e4396] [cursor=pointer]:
+                  - /url: /themenbereiche/saeuren-basen/
+                - text: – Ausführliche Behandlung des Säure-Base-Konzepts
+              - listitem [ref=e4397]:
+                - link "Redoxreaktionen und Elektrochemie" [ref=e4398] [cursor=pointer]:
+                  - /url: /themenbereiche/redox-elektrochemie/
+                - text: – Redoxreaktionen im Detail
+              - listitem [ref=e4399]:
+                - link "Aufbau der Materie" [ref=e4400] [cursor=pointer]:
+                  - /url: /themenbereiche/aufbau-materie/
+                - text: – Ionenbindung und Kristallgitter
+              - listitem [ref=e4401]:
+                - link "pH-Rechner" [ref=e4402] [cursor=pointer]:
+                  - /url: /ph-rechner/
+                - text: – pH-Werte berechnen und visualisieren
+          - complementary [ref=e4404]:
+            - generic [ref=e4405]:
+              - heading " Zurück" [level=4] [ref=e4407]:
+                - generic [ref=e4408]: 
+                - text: Zurück
+              - link "Alle Themenbereiche" [ref=e4410] [cursor=pointer]:
+                - /url: /themenbereiche/
+  - contentinfo "Website-Fußzeile" [ref=e4411]:
+    - generic [ref=e4413]:
+      - generic [ref=e4414]:
+        - heading "chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte" [level=4] [ref=e4415]
+        - paragraph [ref=e4416]: chemie-lernen.org - Ihre Plattform für innovative Chemie-Lernräume in Virtual Reality. Machen Sie komplexe chemische Konzepte greifbar und erlebbar.
+        - paragraph [ref=e4417]:
+          - link "Besuchen Sie unseren Patreon" [ref=e4418] [cursor=pointer]:
+            - /url: https://www.patreon.com/c/chemie_lernen_org
+            - img [ref=e4419]
+            - text: Unterstütze uns auf Patreon
+      - generic [ref=e4421]:
+        - paragraph [ref=e4422]: © 2025 chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte. Alle Rechte vorbehalten.
+        - paragraph [ref=e4423]:
+          - generic [ref=e4424]:
+            - link "impressum" [ref=e4425] [cursor=pointer]:
+              - /url: /impressum/
+            - text: "|"
+            - link "datenschutz" [ref=e4426] [cursor=pointer]:
+              - /url: /datenschutz/
+```

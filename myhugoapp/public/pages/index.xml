@@ -1,52 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Pages on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title>
-    <link>https://chemie-lernen.org/pages/</link>
-    <description>Recent content in Pages on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>de-de</language>
-    <lastBuildDate>Sat, 27 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/pages/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Suche</title>
-      <link>https://chemie-lernen.org/pages/suche/</link>
-      <pubDate>Sat, 27 Dec 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://chemie-lernen.org/pages/suche/</guid>
-      <description>Suchergebnisse Suchen Lade Suchindex...</description>
-    </item>
-    
-    <item>
-      <title>Roadmap: Ausbaustrategie</title>
-      <link>https://chemie-lernen.org/pages/roadmap/</link>
-      <pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://chemie-lernen.org/pages/roadmap/</guid>
-      <description>Die aktuelle Plattform nutzt erfolgreich VR (Mozilla Hubs) zur Visualisierung des Periodensystems und grundlegender Experimente. Um sich von einem forschungsorientierten Projekt zu einem umfassenden Lernökosystem zu entwickeln, werden folgende Erweiterungen empfohlen.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title><link>https://chemie-lernen.org/pages/</link><description>Recent content in Pages on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description><generator>Hugo -- gohugo.io</generator><language>de-de</language><lastBuildDate>Sat, 27 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/pages/index.xml" rel="self" type="application/rss+xml"/><item><title>Suche</title><link>https://chemie-lernen.org/pages/suche/</link><pubDate>Sat, 27 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/suche/</guid><description>Suchergebnisse Suchen Lade Suchindex...</description></item><item><title>Roadmap: Ausbaustrategie</title><link>https://chemie-lernen.org/pages/roadmap/</link><pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/roadmap/</guid><description>Die aktuelle Plattform nutzt erfolgreich VR (Mozilla Hubs) zur Visualisierung des Periodensystems und grundlegender Experimente. Um sich von einem forschungsorientierten Projekt zu einem umfassenden Lernökosystem zu entwickeln, werden folgende Erweiterungen empfohlen.
 1. Immersive VR-Szenarien 🥽 Während das Periodensystem ein guter Anfang ist, entfaltet VR seine größte Stärke bei der Visualisierung von Dingen, die sonst unsichtbar oder gefährlich sind.
-✓ Molekülstudio (IMPLEMENTIERT): Interaktive 3D-Webanwendung zur Visualisierung von Molekülen mit Echtzeit-Rendering, Maussteuerung und automatischer Rotation.</description>
-    </item>
-    
-    <item>
-      <title>Kontakt</title>
-      <link>https://chemie-lernen.org/pages/contact/</link>
-      <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://chemie-lernen.org/pages/contact/</guid>
-      <description>Haben Sie Fragen oder Anregungen? Wir freuen uns über Ihre Nachricht!
-Name: E-Mail: Betreff: Nachricht: Absenden 💡 Hinweis: Ihre Nachricht wird sicher über Formsubmit.co versendet. Sie erhalten eine Bestätigung per E-Mail. </description>
-    </item>
-    
-    <item>
-      <title>Über uns</title>
-      <link>https://chemie-lernen.org/pages/about/</link>
-      <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://chemie-lernen.org/pages/about/</guid>
-      <description>Willkommen bei Chemie Lernen Wir sind ein Projekt, das sich der innovativen Vermittlung von chemischem Wissen widmet. Durch den Einsatz von Virtual Reality (VR) und Plattformen wie Mozilla Hubs ermöglichen wir interaktive Lernerfahrungen, die über traditionelle Lehrmethoden hinausgehen.
+✓ Molekülstudio (IMPLEMENTIERT): Interaktive 3D-Webanwendung zur Visualisierung von Molekülen mit Echtzeit-Rendering, Maussteuerung und automatischer Rotation.</description></item><item><title>Kontakt</title><link>https://chemie-lernen.org/pages/contact/</link><pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/contact/</guid><description>Haben Sie Fragen oder Anregungen? Wir freuen uns über Ihre Nachricht!
+Name: E-Mail: Betreff: Nachricht: Absenden 💡 Hinweis: Ihre Nachricht wird sicher über Formsubmit.co versendet. Sie erhalten eine Bestätigung per E-Mail.</description></item><item><title>Über uns</title><link>https://chemie-lernen.org/pages/about/</link><pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/about/</guid><description>Willkommen bei Chemie Lernen Wir sind ein Projekt, das sich der innovativen Vermittlung von chemischem Wissen widmet. Durch den Einsatz von Virtual Reality (VR) und Plattformen wie Mozilla Hubs ermöglichen wir interaktive Lernerfahrungen, die über traditionelle Lehrmethoden hinausgehen.
 Unsere Mission ist es, komplexe Konzepte wie das Periodensystem der Elemente greifbar und erlebbar zu machen.
-Über den Gründer Dieses Projekt wurde von Tobias Weiß ins Leben gerufen, einem leidenschaftlichen Entwickler und Pädagogen mit einem Hintergrund in Informatik und Didaktik.</description>
-    </item>
-    
-  </channel>
-</rss>
+Über den Gründer Dieses Projekt wurde von Tobias Weiß ins Leben gerufen, einem leidenschaftlichen Entwickler und Pädagogen mit einem Hintergrund in Informatik und Didaktik.</description></item></channel></rss>

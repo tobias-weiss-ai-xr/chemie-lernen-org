@@ -1,0 +1,997 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Zum Hauptinhalt springen" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - text:  
+  - generic [ref=e3]:
+    - navigation "breadcrumb" [ref=e4]:
+      - list [ref=e5]:
+        - listitem [ref=e6]:
+          - link "Start" [ref=e7] [cursor=pointer]:
+            - /url: https://chemie-lernen.org/
+            - generic [ref=e8]: 
+            - text: Start
+        - listitem [ref=e9]:
+          - text: ›
+          - link "Themenbereiche" [ref=e10] [cursor=pointer]:
+            - /url: /themenbereiche/
+        - listitem [ref=e11]:
+          - text: ›
+          - link "Aufbau der Materie" [ref=e12] [cursor=pointer]:
+            - /url: /themenbereiche/aufbau-materie/
+        - listitem [ref=e13]: ›Periodensystem der Elemente
+    - main [ref=e15]:
+      - generic [ref=e16]:
+        - button "TABELLE" [ref=e17] [cursor=pointer]
+        - button "KUGEL" [ref=e18] [cursor=pointer]
+        - button "HELIX" [ref=e19] [cursor=pointer]
+        - button "GITTER" [ref=e20] [cursor=pointer]
+      - generic [ref=e22]:
+        - generic:
+          - generic:
+            - generic [ref=e23] [cursor=pointer]:
+              - generic [ref=e24]: "1"
+              - generic [ref=e25]: H
+              - link "💧" [ref=e26]:
+                - /url: https://de.wikipedia.org/wiki/Hydrogen
+              - generic [ref=e27]:
+                - text: Hydrogen
+                - text: "1.00794"
+            - generic [ref=e28] [cursor=pointer]:
+              - generic [ref=e29]: "2"
+              - generic [ref=e30]: He
+              - link "🎈" [ref=e31]:
+                - /url: https://de.wikipedia.org/wiki/Helium
+              - generic [ref=e32]:
+                - text: Helium
+                - text: "4.002602"
+            - generic [ref=e33] [cursor=pointer]:
+              - generic [ref=e34]: "3"
+              - generic [ref=e35]: Li
+              - link "🔋" [ref=e36]:
+                - /url: https://de.wikipedia.org/wiki/Lithium
+              - generic [ref=e37]:
+                - text: Lithium
+                - text: "6.941"
+            - generic [ref=e38] [cursor=pointer]:
+              - generic [ref=e39]: "4"
+              - generic [ref=e40]: Be
+              - link "💎" [ref=e41]:
+                - /url: https://de.wikipedia.org/wiki/Beryllium
+              - generic [ref=e42]:
+                - text: Beryllium
+                - text: "9.012182"
+            - generic [ref=e43] [cursor=pointer]:
+              - generic [ref=e44]: "5"
+              - generic [ref=e45]: B
+              - link "💠" [ref=e46]:
+                - /url: https://de.wikipedia.org/wiki/Boron
+              - generic [ref=e47]:
+                - text: Boron
+                - text: "10.811"
+            - generic [ref=e48] [cursor=pointer]:
+              - generic [ref=e49]: "6"
+              - generic [ref=e50]: C
+              - link "💎" [ref=e51]:
+                - /url: https://de.wikipedia.org/wiki/Carbon
+              - generic [ref=e52]:
+                - text: Carbon
+                - text: "12.0107"
+            - generic [ref=e53] [cursor=pointer]:
+              - generic [ref=e54]: "7"
+              - generic [ref=e55]: "N"
+              - link "💨" [ref=e56]:
+                - /url: https://de.wikipedia.org/wiki/Nitrogen
+              - generic [ref=e57]:
+                - text: Nitrogen
+                - text: "14.0067"
+            - generic [ref=e58] [cursor=pointer]:
+              - generic [ref=e59]: "8"
+              - generic [ref=e60]: O
+              - link "🌬️" [ref=e61]:
+                - /url: https://de.wikipedia.org/wiki/Oxygen
+              - generic [ref=e62]:
+                - text: Oxygen
+                - text: "15.9994"
+            - generic [ref=e63] [cursor=pointer]:
+              - generic [ref=e64]: "9"
+              - generic [ref=e65]: F
+              - link "🦷" [ref=e66]:
+                - /url: https://de.wikipedia.org/wiki/Fluorine
+              - generic [ref=e67]:
+                - text: Fluorine
+                - text: "18.9984032"
+            - generic [ref=e68] [cursor=pointer]:
+              - generic [ref=e69]: "10"
+              - generic [ref=e70]: Ne
+              - link "💡" [ref=e71]:
+                - /url: https://de.wikipedia.org/wiki/Neon
+              - generic [ref=e72]:
+                - text: Neon
+                - text: "20.1797"
+            - generic [ref=e73] [cursor=pointer]:
+              - generic [ref=e74]: "11"
+              - generic [ref=e75]: Na
+              - link "🧂" [ref=e76]:
+                - /url: https://de.wikipedia.org/wiki/Sodium
+              - generic [ref=e77]:
+                - text: Sodium
+                - text: 22.98976...
+            - generic [ref=e78] [cursor=pointer]:
+              - generic [ref=e79]: "12"
+              - generic [ref=e80]: Mg
+              - link "🔥" [ref=e81]:
+                - /url: https://de.wikipedia.org/wiki/Magnesium
+              - generic [ref=e82]:
+                - text: Magnesium
+                - text: "24.305"
+            - generic [ref=e83] [cursor=pointer]:
+              - generic [ref=e84]: "13"
+              - generic [ref=e85]: Al
+              - link "✈️" [ref=e86]:
+                - /url: https://de.wikipedia.org/wiki/Aluminium
+              - generic [ref=e87]:
+                - text: Aluminium
+                - text: "26.9815386"
+            - generic [ref=e88] [cursor=pointer]:
+              - generic [ref=e89]: "14"
+              - generic [ref=e90]: Si
+              - link "💻" [ref=e91]:
+                - /url: https://de.wikipedia.org/wiki/Silicon
+              - generic [ref=e92]:
+                - text: Silicon
+                - text: "28.0855"
+            - generic [ref=e93] [cursor=pointer]:
+              - generic [ref=e94]: "15"
+              - generic [ref=e95]: P
+              - link "⚡" [ref=e96]:
+                - /url: https://de.wikipedia.org/wiki/Phosphorus
+              - generic [ref=e97]:
+                - text: Phosphorus
+                - text: "30.973762"
+            - generic [ref=e98] [cursor=pointer]:
+              - generic [ref=e99]: "16"
+              - generic [ref=e100]: S
+              - link "🟡" [ref=e101]:
+                - /url: https://de.wikipedia.org/wiki/Sulfur
+              - generic [ref=e102]:
+                - text: Sulfur
+                - text: "32.065"
+            - generic [ref=e103] [cursor=pointer]:
+              - generic [ref=e104]: "17"
+              - generic [ref=e105]: Cl
+              - link "🧼" [ref=e106]:
+                - /url: https://de.wikipedia.org/wiki/Chlorine
+              - generic [ref=e107]:
+                - text: Chlorine
+                - text: "35.453"
+            - generic [ref=e108] [cursor=pointer]:
+              - generic [ref=e109]: "18"
+              - generic [ref=e110]: Ar
+              - link "🌬️" [ref=e111]:
+                - /url: https://de.wikipedia.org/wiki/Argon
+              - generic [ref=e112]:
+                - text: Argon
+                - text: "39.948"
+            - generic [ref=e113] [cursor=pointer]:
+              - generic [ref=e114]: "19"
+              - generic [ref=e115]: K
+              - link "🍌" [ref=e116]:
+                - /url: https://de.wikipedia.org/wiki/Potassium
+              - generic [ref=e117]:
+                - text: Potassium
+                - text: "39.948"
+            - generic [ref=e118] [cursor=pointer]:
+              - generic [ref=e119]: "20"
+              - generic [ref=e120]: Ca
+              - link "🦴" [ref=e121]:
+                - /url: https://de.wikipedia.org/wiki/Calcium
+              - generic [ref=e122]:
+                - text: Calcium
+                - text: "40.078"
+            - generic [ref=e123] [cursor=pointer]:
+              - generic [ref=e124]: "21"
+              - generic [ref=e125]: Sc
+              - link "⚔️" [ref=e126]:
+                - /url: https://de.wikipedia.org/wiki/Scandium
+              - generic [ref=e127]:
+                - text: Scandium
+                - text: "44.955912"
+            - generic [ref=e128] [cursor=pointer]:
+              - generic [ref=e129]: "22"
+              - generic [ref=e130]: Ti
+              - link "🛡️" [ref=e131]:
+                - /url: https://de.wikipedia.org/wiki/Titanium
+              - generic [ref=e132]:
+                - text: Titanium
+                - text: "47.867"
+            - generic [ref=e133] [cursor=pointer]:
+              - generic [ref=e134]: "23"
+              - generic [ref=e135]: V
+              - link "⚡" [ref=e136]:
+                - /url: https://de.wikipedia.org/wiki/Vanadium
+              - generic [ref=e137]:
+                - text: Vanadium
+                - text: "50.9415"
+            - generic [ref=e138] [cursor=pointer]:
+              - generic [ref=e139]: "24"
+              - generic [ref=e140]: Cr
+              - link "🔧" [ref=e141]:
+                - /url: https://de.wikipedia.org/wiki/Chromium
+              - generic [ref=e142]:
+                - text: Chromium
+                - text: "51.9961"
+            - generic [ref=e143] [cursor=pointer]:
+              - generic [ref=e144]: "25"
+              - generic [ref=e145]: Mn
+              - link "⛏️" [ref=e146]:
+                - /url: https://de.wikipedia.org/wiki/Manganese
+              - generic [ref=e147]:
+                - text: Manganese
+                - text: "54.938045"
+            - generic [ref=e148] [cursor=pointer]:
+              - generic [ref=e149]: "26"
+              - generic [ref=e150]: Fe
+              - link "🔩" [ref=e151]:
+                - /url: https://de.wikipedia.org/wiki/Iron
+              - generic [ref=e152]:
+                - text: Iron
+                - text: "55.845"
+            - generic [ref=e153] [cursor=pointer]:
+              - generic [ref=e154]: "27"
+              - generic [ref=e155]: Co
+              - link "🔵" [ref=e156]:
+                - /url: https://de.wikipedia.org/wiki/Cobalt
+              - generic [ref=e157]:
+                - text: Cobalt
+                - text: "58.933195"
+            - generic [ref=e158] [cursor=pointer]:
+              - generic [ref=e159]: "28"
+              - generic [ref=e160]: Ni
+              - link "🪙" [ref=e161]:
+                - /url: https://de.wikipedia.org/wiki/Nickel
+              - generic [ref=e162]:
+                - text: Nickel
+                - text: "58.6934"
+            - generic [ref=e163] [cursor=pointer]:
+              - generic [ref=e164]: "29"
+              - generic [ref=e165]: Cu
+              - link "🥉" [ref=e166]:
+                - /url: https://de.wikipedia.org/wiki/Copper
+              - generic [ref=e167]:
+                - text: Copper
+                - text: "63.546"
+            - generic [ref=e168] [cursor=pointer]:
+              - generic [ref=e169]: "30"
+              - generic [ref=e170]: Zn
+              - link "🔩" [ref=e171]:
+                - /url: https://de.wikipedia.org/wiki/Zinc
+              - generic [ref=e172]:
+                - text: Zinc
+                - text: "65.38"
+            - generic [ref=e173] [cursor=pointer]:
+              - generic [ref=e174]: "31"
+              - generic [ref=e175]: Ga
+              - link "💡" [ref=e176]:
+                - /url: https://de.wikipedia.org/wiki/Gallium
+              - generic [ref=e177]:
+                - text: Gallium
+                - text: "69.723"
+            - generic [ref=e178] [cursor=pointer]:
+              - generic [ref=e179]: "32"
+              - generic [ref=e180]: Ge
+              - link "💾" [ref=e181]:
+                - /url: https://de.wikipedia.org/wiki/Germanium
+              - generic [ref=e182]:
+                - text: Germanium
+                - text: "72.63"
+            - generic [ref=e183] [cursor=pointer]:
+              - generic [ref=e184]: "33"
+              - generic [ref=e185]: As
+              - link "☠️" [ref=e186]:
+                - /url: https://de.wikipedia.org/wiki/Arsenic
+              - generic [ref=e187]:
+                - text: Arsenic
+                - text: "74.9216"
+            - generic [ref=e188] [cursor=pointer]:
+              - generic [ref=e189]: "34"
+              - generic [ref=e190]: Se
+              - link "🌙" [ref=e191]:
+                - /url: https://de.wikipedia.org/wiki/Selenium
+              - generic [ref=e192]:
+                - text: Selenium
+                - text: "78.96"
+            - generic [ref=e193] [cursor=pointer]:
+              - generic [ref=e194]: "35"
+              - generic [ref=e195]: Br
+              - link "🟤" [ref=e196]:
+                - /url: https://de.wikipedia.org/wiki/Bromine
+              - generic [ref=e197]:
+                - text: Bromine
+                - text: "79.904"
+            - generic [ref=e198] [cursor=pointer]:
+              - generic [ref=e199]: "36"
+              - generic [ref=e200]: Kr
+              - link "👻" [ref=e201]:
+                - /url: https://de.wikipedia.org/wiki/Krypton
+              - generic [ref=e202]:
+                - text: Krypton
+                - text: "83.798"
+            - generic [ref=e203] [cursor=pointer]:
+              - generic [ref=e204]: "37"
+              - generic [ref=e205]: Rb
+              - link "🔮" [ref=e206]:
+                - /url: https://de.wikipedia.org/wiki/Rubidium
+              - generic [ref=e207]:
+                - text: Rubidium
+                - text: "85.4678"
+            - generic [ref=e208] [cursor=pointer]:
+              - generic [ref=e209]: "38"
+              - generic [ref=e210]: Sr
+              - link "🔴" [ref=e211]:
+                - /url: https://de.wikipedia.org/wiki/Strontium
+              - generic [ref=e212]:
+                - text: Strontium
+                - text: "87.62"
+            - generic [ref=e213] [cursor=pointer]:
+              - generic [ref=e214]: "39"
+              - generic [ref=e215]: "Y"
+              - link "💛" [ref=e216]:
+                - /url: https://de.wikipedia.org/wiki/Yttrium
+              - generic [ref=e217]:
+                - text: Yttrium
+                - text: "88.90585"
+            - generic [ref=e218] [cursor=pointer]:
+              - generic [ref=e219]: "40"
+              - generic [ref=e220]: Zr
+              - link "⚪" [ref=e221]:
+                - /url: https://de.wikipedia.org/wiki/Zirconium
+              - generic [ref=e222]:
+                - text: Zirconium
+                - text: "91.224"
+            - generic [ref=e223] [cursor=pointer]:
+              - generic [ref=e224]: "41"
+              - generic [ref=e225]: Nb
+              - link "🔵" [ref=e226]:
+                - /url: https://de.wikipedia.org/wiki/Niobium
+              - generic [ref=e227]:
+                - text: Niobium
+                - text: "92.90628"
+            - generic [ref=e228] [cursor=pointer]:
+              - generic [ref=e229]: "42"
+              - generic [ref=e230]: Mo
+              - link "⚫" [ref=e231]:
+                - /url: https://de.wikipedia.org/wiki/Molybdenum
+              - generic [ref=e232]:
+                - text: Molybdenum
+                - text: "95.96"
+            - generic [ref=e233] [cursor=pointer]:
+              - generic [ref=e234]: "43"
+              - generic [ref=e235]: Tc
+              - link "☢️" [ref=e236]:
+                - /url: https://de.wikipedia.org/wiki/Technetium
+              - generic [ref=e237]:
+                - text: Technetium
+                - text: (98)
+            - generic [ref=e238] [cursor=pointer]:
+              - generic [ref=e239]: "44"
+              - generic [ref=e240]: Ru
+              - link "👑" [ref=e241]:
+                - /url: https://de.wikipedia.org/wiki/Ruthenium
+              - generic [ref=e242]:
+                - text: Ruthenium
+                - text: "101.07"
+            - generic [ref=e243] [cursor=pointer]:
+              - generic [ref=e244]: "45"
+              - generic [ref=e245]: Rh
+              - link "🌟" [ref=e246]:
+                - /url: https://de.wikipedia.org/wiki/Rhodium
+              - generic [ref=e247]:
+                - text: Rhodium
+                - text: "102.9055"
+            - generic [ref=e248] [cursor=pointer]:
+              - generic [ref=e249]: "46"
+              - generic [ref=e250]: Pd
+              - link "🪐" [ref=e251]:
+                - /url: https://de.wikipedia.org/wiki/Palladium
+              - generic [ref=e252]:
+                - text: Palladium
+                - text: "106.42"
+            - generic [ref=e253] [cursor=pointer]:
+              - generic [ref=e254]: "47"
+              - generic [ref=e255]: Ag
+              - link "🥈" [ref=e256]:
+                - /url: https://de.wikipedia.org/wiki/Silver
+              - generic [ref=e257]:
+                - text: Silver
+                - text: "107.8682"
+            - generic [ref=e258] [cursor=pointer]:
+              - generic [ref=e259]: "48"
+              - generic [ref=e260]: Cd
+              - link "🎸" [ref=e261]:
+                - /url: https://de.wikipedia.org/wiki/Cadmium
+              - generic [ref=e262]:
+                - text: Cadmium
+                - text: "112.411"
+            - generic [ref=e263] [cursor=pointer]:
+              - generic [ref=e264]: "49"
+              - generic [ref=e265]: In
+              - link "📱" [ref=e266]:
+                - /url: https://de.wikipedia.org/wiki/Indium
+              - generic [ref=e267]:
+                - text: Indium
+                - text: "114.818"
+            - generic [ref=e268] [cursor=pointer]:
+              - generic [ref=e269]: "50"
+              - generic [ref=e270]: Sn
+              - link "🥫" [ref=e271]:
+                - /url: https://de.wikipedia.org/wiki/Tin
+              - generic [ref=e272]:
+                - text: Tin
+                - text: "118.71"
+            - generic [ref=e273] [cursor=pointer]:
+              - generic [ref=e274]: "51"
+              - generic [ref=e275]: Sb
+              - link "🗡️" [ref=e276]:
+                - /url: https://de.wikipedia.org/wiki/Antimony
+              - generic [ref=e277]:
+                - text: Antimony
+                - text: "121.76"
+            - generic [ref=e278] [cursor=pointer]:
+              - generic [ref=e279]: "52"
+              - generic [ref=e280]: Te
+              - link "🌕" [ref=e281]:
+                - /url: https://de.wikipedia.org/wiki/Tellurium
+              - generic [ref=e282]:
+                - text: Tellurium
+                - text: "127.6"
+            - generic [ref=e283] [cursor=pointer]:
+              - generic [ref=e284]: "53"
+              - generic [ref=e285]: I
+              - link "🟣" [ref=e286]:
+                - /url: https://de.wikipedia.org/wiki/Iodine
+              - generic [ref=e287]:
+                - text: Iodine
+                - text: "126.90447"
+            - generic [ref=e288] [cursor=pointer]:
+              - generic [ref=e289]: "54"
+              - generic [ref=e290]: Xe
+              - link "💨" [ref=e291]:
+                - /url: https://de.wikipedia.org/wiki/Xenon
+              - generic [ref=e292]:
+                - text: Xenon
+                - text: "131.293"
+            - generic [ref=e293] [cursor=pointer]:
+              - generic [ref=e294]: "55"
+              - generic [ref=e295]: Cs
+              - link "⏰" [ref=e296]:
+                - /url: https://de.wikipedia.org/wiki/Caesium
+              - generic [ref=e297]:
+                - text: Caesium
+                - text: "132.9054"
+            - generic [ref=e298] [cursor=pointer]:
+              - generic [ref=e299]: "56"
+              - generic [ref=e300]: Ba
+              - link "🏺" [ref=e301]:
+                - /url: https://de.wikipedia.org/wiki/Barium
+              - generic [ref=e302]:
+                - text: Barium
+                - text: "132.9054"
+            - generic [ref=e303] [cursor=pointer]:
+              - generic [ref=e304]: "57"
+              - generic [ref=e305]: La
+              - link "🌿" [ref=e306]:
+                - /url: https://de.wikipedia.org/wiki/Lanthanum
+              - generic [ref=e307]:
+                - text: Lanthanum
+                - text: "138.90547"
+            - generic [ref=e308] [cursor=pointer]:
+              - generic [ref=e309]: "58"
+              - generic [ref=e310]: Ce
+              - link "🌱" [ref=e311]:
+                - /url: https://de.wikipedia.org/wiki/Cerium
+              - generic [ref=e312]:
+                - text: Cerium
+                - text: "140.116"
+            - generic [ref=e313] [cursor=pointer]:
+              - generic [ref=e314]: "59"
+              - generic [ref=e315]: Pr
+              - link "🟢" [ref=e316]:
+                - /url: https://de.wikipedia.org/wiki/Praseodymium
+              - generic [ref=e317]:
+                - text: Praseodymium
+                - text: "140.90765"
+            - generic [ref=e318] [cursor=pointer]:
+              - generic [ref=e319]: "60"
+              - generic [ref=e320]: Nd
+              - link "🔷" [ref=e321]:
+                - /url: https://de.wikipedia.org/wiki/Neodymium
+              - generic [ref=e322]:
+                - text: Neodymium
+                - text: "144.242"
+            - generic [ref=e323] [cursor=pointer]:
+              - generic [ref=e324]: "61"
+              - generic [ref=e325]: Pm
+              - link "☢️" [ref=e326]:
+                - /url: https://de.wikipedia.org/wiki/Promethium
+              - generic [ref=e327]:
+                - text: Promethium
+                - text: (145)
+            - generic [ref=e328] [cursor=pointer]:
+              - generic [ref=e329]: "62"
+              - generic [ref=e330]: Sm
+              - link "🟨" [ref=e331]:
+                - /url: https://de.wikipedia.org/wiki/Samarium
+              - generic [ref=e332]:
+                - text: Samarium
+                - text: "150.36"
+            - generic [ref=e333] [cursor=pointer]:
+              - generic [ref=e334]: "63"
+              - generic [ref=e335]: Eu
+              - link "🟥" [ref=e336]:
+                - /url: https://de.wikipedia.org/wiki/Europium
+              - generic [ref=e337]:
+                - text: Europium
+                - text: "151.964"
+            - generic [ref=e338] [cursor=pointer]:
+              - generic [ref=e339]: "64"
+              - generic [ref=e340]: Gd
+              - link "⬜" [ref=e341]:
+                - /url: https://de.wikipedia.org/wiki/Gadolinium
+              - generic [ref=e342]:
+                - text: Gadolinium
+                - text: "157.25"
+            - generic [ref=e343] [cursor=pointer]:
+              - generic [ref=e344]: "65"
+              - generic [ref=e345]: Tb
+              - link "🟩" [ref=e346]:
+                - /url: https://de.wikipedia.org/wiki/Terbium
+              - generic [ref=e347]:
+                - text: Terbium
+                - text: "158.92535"
+            - generic [ref=e348] [cursor=pointer]:
+              - generic [ref=e349]: "66"
+              - generic [ref=e350]: Dy
+              - link "🟦" [ref=e351]:
+                - /url: https://de.wikipedia.org/wiki/Dysprosium
+              - generic [ref=e352]:
+                - text: Dysprosium
+                - text: "162.5"
+            - generic [ref=e353] [cursor=pointer]:
+              - generic [ref=e354]: "67"
+              - generic [ref=e355]: Ho
+              - link "🟪" [ref=e356]:
+                - /url: https://de.wikipedia.org/wiki/Holmium
+              - generic [ref=e357]:
+                - text: Holmium
+                - text: "164.93032"
+            - generic [ref=e358] [cursor=pointer]:
+              - generic [ref=e359]: "68"
+              - generic [ref=e360]: Er
+              - link "🟥" [ref=e361]:
+                - /url: https://de.wikipedia.org/wiki/Erbium
+              - generic [ref=e362]:
+                - text: Erbium
+                - text: "167.259"
+            - generic [ref=e363] [cursor=pointer]:
+              - generic [ref=e364]: "69"
+              - generic [ref=e365]: Tm
+              - link "🟧" [ref=e366]:
+                - /url: https://de.wikipedia.org/wiki/Thulium
+              - generic [ref=e367]:
+                - text: Thulium
+                - text: "168.93421"
+            - generic [ref=e368] [cursor=pointer]:
+              - generic [ref=e369]: "70"
+              - generic [ref=e370]: Yb
+              - link "🟫" [ref=e371]:
+                - /url: https://de.wikipedia.org/wiki/Ytterbium
+              - generic [ref=e372]:
+                - text: Ytterbium
+                - text: "173.054"
+            - generic [ref=e373] [cursor=pointer]:
+              - generic [ref=e374]: "71"
+              - generic [ref=e375]: Lu
+              - link "🌸" [ref=e376]:
+                - /url: https://de.wikipedia.org/wiki/Lutetium
+              - generic [ref=e377]:
+                - text: Lutetium
+                - text: "174.9668"
+            - generic [ref=e378] [cursor=pointer]:
+              - generic [ref=e379]: "72"
+              - generic [ref=e380]: Hf
+              - link "🔶" [ref=e381]:
+                - /url: https://de.wikipedia.org/wiki/Hafnium
+              - generic [ref=e382]:
+                - text: Hafnium
+                - text: "178.49"
+            - generic [ref=e383] [cursor=pointer]:
+              - generic [ref=e384]: "73"
+              - generic [ref=e385]: Ta
+              - link "🔷" [ref=e386]:
+                - /url: https://de.wikipedia.org/wiki/Tantalum
+              - generic [ref=e387]:
+                - text: Tantalum
+                - text: "180.94788"
+            - generic [ref=e388] [cursor=pointer]:
+              - generic [ref=e389]: "74"
+              - generic [ref=e390]: W
+              - link "💡" [ref=e391]:
+                - /url: https://de.wikipedia.org/wiki/Tungsten
+              - generic [ref=e392]:
+                - text: Tungsten
+                - text: "183.84"
+            - generic [ref=e393] [cursor=pointer]:
+              - generic [ref=e394]: "75"
+              - generic [ref=e395]: Re
+              - link "⚙️" [ref=e396]:
+                - /url: https://de.wikipedia.org/wiki/Rhenium
+              - generic [ref=e397]:
+                - text: Rhenium
+                - text: "186.207"
+            - generic [ref=e398] [cursor=pointer]:
+              - generic [ref=e399]: "76"
+              - generic [ref=e400]: Os
+              - link "🔵" [ref=e401]:
+                - /url: https://de.wikipedia.org/wiki/Osmium
+              - generic [ref=e402]:
+                - text: Osmium
+                - text: "190.23"
+            - generic [ref=e403] [cursor=pointer]:
+              - generic [ref=e404]: "77"
+              - generic [ref=e405]: Ir
+              - link "⚪" [ref=e406]:
+                - /url: https://de.wikipedia.org/wiki/Iridium
+              - generic [ref=e407]:
+                - text: Iridium
+                - text: "192.217"
+            - generic [ref=e408] [cursor=pointer]:
+              - generic [ref=e409]: "78"
+              - generic [ref=e410]: Pt
+              - link "🥇" [ref=e411]:
+                - /url: https://de.wikipedia.org/wiki/Platinum
+              - generic [ref=e412]:
+                - text: Platinum
+                - text: "195.084"
+            - generic [ref=e413] [cursor=pointer]:
+              - generic [ref=e414]: "79"
+              - generic [ref=e415]: Au
+              - link "🏆" [ref=e416]:
+                - /url: https://de.wikipedia.org/wiki/Gold
+              - generic [ref=e417]:
+                - text: Gold
+                - text: "196.966569"
+            - generic [ref=e418] [cursor=pointer]:
+              - generic [ref=e419]: "80"
+              - generic [ref=e420]: Hg
+              - link "🌡️" [ref=e421]:
+                - /url: https://de.wikipedia.org/wiki/Mercury
+              - generic [ref=e422]:
+                - text: Mercury
+                - text: "200.59"
+            - generic [ref=e423] [cursor=pointer]:
+              - generic [ref=e424]: "81"
+              - generic [ref=e425]: Tl
+              - link "📊" [ref=e426]:
+                - /url: https://de.wikipedia.org/wiki/Thallium
+              - generic [ref=e427]:
+                - text: Thallium
+                - text: "204.3833"
+            - generic [ref=e428] [cursor=pointer]:
+              - generic [ref=e429]: "82"
+              - generic [ref=e430]: Pb
+              - link "🔋" [ref=e431]:
+                - /url: https://de.wikipedia.org/wiki/Lead
+              - generic [ref=e432]:
+                - text: Lead
+                - text: "207.2"
+            - generic [ref=e433] [cursor=pointer]:
+              - generic [ref=e434]: "83"
+              - generic [ref=e435]: Bi
+              - link "💜" [ref=e436]:
+                - /url: https://de.wikipedia.org/wiki/Bismuth
+              - generic [ref=e437]:
+                - text: Bismuth
+                - text: "208.9804"
+            - generic [ref=e438] [cursor=pointer]:
+              - generic [ref=e439]: "84"
+              - generic [ref=e440]: Po
+              - link "☢️" [ref=e441]:
+                - /url: https://de.wikipedia.org/wiki/Polonium
+              - generic [ref=e442]:
+                - text: Polonium
+                - text: (209)
+            - generic [ref=e443] [cursor=pointer]:
+              - generic [ref=e444]: "85"
+              - generic [ref=e445]: At
+              - link "⚛️" [ref=e446]:
+                - /url: https://de.wikipedia.org/wiki/Astatine
+              - generic [ref=e447]:
+                - text: Astatine
+                - text: (210)
+            - generic [ref=e448] [cursor=pointer]:
+              - generic [ref=e449]: "86"
+              - generic [ref=e450]: Rn
+              - link "💨" [ref=e451]:
+                - /url: https://de.wikipedia.org/wiki/Radon
+              - generic [ref=e452]:
+                - text: Radon
+                - text: (222)
+            - generic [ref=e453] [cursor=pointer]:
+              - generic [ref=e454]: "87"
+              - generic [ref=e455]: Fr
+              - link "🌹" [ref=e456]:
+                - /url: https://de.wikipedia.org/wiki/Francium
+              - generic [ref=e457]:
+                - text: Francium
+                - text: (223)
+            - generic [ref=e458] [cursor=pointer]:
+              - generic [ref=e459]: "88"
+              - generic [ref=e460]: Ra
+              - link "💀" [ref=e461]:
+                - /url: https://de.wikipedia.org/wiki/Radium
+              - generic [ref=e462]:
+                - text: Radium
+                - text: (226)
+            - generic [ref=e463] [cursor=pointer]:
+              - generic [ref=e464]: "89"
+              - generic [ref=e465]: Ac
+              - link "🌟" [ref=e466]:
+                - /url: https://de.wikipedia.org/wiki/Actinium
+              - generic [ref=e467]:
+                - text: Actinium
+                - text: (227)
+            - generic [ref=e468] [cursor=pointer]:
+              - generic [ref=e469]: "90"
+              - generic [ref=e470]: Th
+              - link "☢️" [ref=e471]:
+                - /url: https://de.wikipedia.org/wiki/Thorium
+              - generic [ref=e472]:
+                - text: Thorium
+                - text: "232.03806"
+            - generic [ref=e473] [cursor=pointer]:
+              - generic [ref=e474]: "91"
+              - generic [ref=e475]: Pa
+              - link "⚡" [ref=e476]:
+                - /url: https://de.wikipedia.org/wiki/Protactinium
+              - generic [ref=e477]:
+                - text: Protactinium
+                - text: "231.0588"
+            - generic [ref=e478] [cursor=pointer]:
+              - generic [ref=e479]: "92"
+              - generic [ref=e480]: U
+              - link "☢️" [ref=e481]:
+                - /url: https://de.wikipedia.org/wiki/Uranium
+              - generic [ref=e482]:
+                - text: Uranium
+                - text: "238.02891"
+            - generic [ref=e483] [cursor=pointer]:
+              - generic [ref=e484]: "93"
+              - generic [ref=e485]: Np
+              - link "☢️" [ref=e486]:
+                - /url: https://de.wikipedia.org/wiki/Neptunium
+              - generic [ref=e487]:
+                - text: Neptunium
+                - text: (237)
+            - generic [ref=e488] [cursor=pointer]:
+              - generic [ref=e489]: "94"
+              - generic [ref=e490]: Pu
+              - link "☢️" [ref=e491]:
+                - /url: https://de.wikipedia.org/wiki/Plutonium
+              - generic [ref=e492]:
+                - text: Plutonium
+                - text: (244)
+            - generic [ref=e493] [cursor=pointer]:
+              - generic [ref=e494]: "95"
+              - generic [ref=e495]: Am
+              - link "☢️" [ref=e496]:
+                - /url: https://de.wikipedia.org/wiki/Americium
+              - generic [ref=e497]:
+                - text: Americium
+                - text: (243)
+            - generic [ref=e498] [cursor=pointer]:
+              - generic [ref=e499]: "96"
+              - generic [ref=e500]: Cm
+              - link "☢️" [ref=e501]:
+                - /url: https://de.wikipedia.org/wiki/Curium
+              - generic [ref=e502]:
+                - text: Curium
+                - text: (247)
+            - generic [ref=e503] [cursor=pointer]:
+              - generic [ref=e504]: "97"
+              - generic [ref=e505]: Bk
+              - link "☢️" [ref=e506]:
+                - /url: https://de.wikipedia.org/wiki/Berkelium
+              - generic [ref=e507]:
+                - text: Berkelium
+                - text: (247)
+            - generic [ref=e508] [cursor=pointer]:
+              - generic [ref=e509]: "98"
+              - generic [ref=e510]: Cf
+              - link "☢️" [ref=e511]:
+                - /url: https://de.wikipedia.org/wiki/Californium
+              - generic [ref=e512]:
+                - text: Californium
+                - text: (251)
+            - generic [ref=e513] [cursor=pointer]:
+              - generic [ref=e514]: "99"
+              - generic [ref=e515]: Es
+              - link "☢️" [ref=e516]:
+                - /url: https://de.wikipedia.org/wiki/Einstenium
+              - generic [ref=e517]:
+                - text: Einstenium
+                - text: (252)
+            - generic [ref=e518] [cursor=pointer]:
+              - generic [ref=e519]: "100"
+              - generic [ref=e520]: Fm
+              - link "☢️" [ref=e521]:
+                - /url: https://de.wikipedia.org/wiki/Fermium
+              - generic [ref=e522]:
+                - text: Fermium
+                - text: (257)
+            - generic [ref=e523] [cursor=pointer]:
+              - generic [ref=e524]: "101"
+              - generic [ref=e525]: Md
+              - link "☢️" [ref=e526]:
+                - /url: https://de.wikipedia.org/wiki/Mendelevium
+              - generic [ref=e527]:
+                - text: Mendelevium
+                - text: (258)
+            - generic [ref=e528] [cursor=pointer]:
+              - generic [ref=e529]: "102"
+              - generic [ref=e530]: "No"
+              - link "☢️" [ref=e531]:
+                - /url: https://de.wikipedia.org/wiki/Nobelium
+              - generic [ref=e532]:
+                - text: Nobelium
+                - text: (259)
+            - generic [ref=e533] [cursor=pointer]:
+              - generic [ref=e534]: "103"
+              - generic [ref=e535]: Lr
+              - link "☢️" [ref=e536]:
+                - /url: https://de.wikipedia.org/wiki/Lawrencium
+              - generic [ref=e537]:
+                - text: Lawrencium
+                - text: (262)
+            - generic [ref=e538] [cursor=pointer]:
+              - generic [ref=e539]: "104"
+              - generic [ref=e540]: Rf
+              - link "⚛️" [ref=e541]:
+                - /url: https://de.wikipedia.org/wiki/Rutherfordium
+              - generic [ref=e542]:
+                - text: Rutherfordium
+                - text: (267)
+            - generic [ref=e543] [cursor=pointer]:
+              - generic [ref=e544]: "105"
+              - generic [ref=e545]: Db
+              - link "⚛️" [ref=e546]:
+                - /url: https://de.wikipedia.org/wiki/Dubnium
+              - generic [ref=e547]:
+                - text: Dubnium
+                - text: (268)
+            - generic [ref=e548] [cursor=pointer]:
+              - generic [ref=e549]: "106"
+              - generic [ref=e550]: Sg
+              - link "⚛️" [ref=e551]:
+                - /url: https://de.wikipedia.org/wiki/Seaborgium
+              - generic [ref=e552]:
+                - text: Seaborgium
+                - text: (271)
+            - generic [ref=e553] [cursor=pointer]:
+              - generic [ref=e554]: "107"
+              - generic [ref=e555]: Bh
+              - link "⚛️" [ref=e556]:
+                - /url: https://de.wikipedia.org/wiki/Bohrium
+              - generic [ref=e557]:
+                - text: Bohrium
+                - text: (272)
+            - generic [ref=e558] [cursor=pointer]:
+              - generic [ref=e559]: "108"
+              - generic [ref=e560]: Hs
+              - link "⚛️" [ref=e561]:
+                - /url: https://de.wikipedia.org/wiki/Hassium
+              - generic [ref=e562]:
+                - text: Hassium
+                - text: (270)
+            - generic [ref=e563] [cursor=pointer]:
+              - generic [ref=e564]: "109"
+              - generic [ref=e565]: Mt
+              - link "⚛️" [ref=e566]:
+                - /url: https://de.wikipedia.org/wiki/Meitnerium
+              - generic [ref=e567]:
+                - text: Meitnerium
+                - text: (276)
+            - generic [ref=e568] [cursor=pointer]:
+              - generic [ref=e569]: "110"
+              - generic [ref=e570]: Ds
+              - link "⚛️" [ref=e571]:
+                - /url: https://de.wikipedia.org/wiki/Darmstadium
+              - generic [ref=e572]:
+                - text: Darmstadium
+                - text: (281)
+            - generic [ref=e573] [cursor=pointer]:
+              - generic [ref=e574]: "111"
+              - generic [ref=e575]: Rg
+              - link "⚛️" [ref=e576]:
+                - /url: https://de.wikipedia.org/wiki/Roentgenium
+              - generic [ref=e577]:
+                - text: Roentgenium
+                - text: (280)
+            - generic [ref=e578] [cursor=pointer]:
+              - generic [ref=e579]: "112"
+              - generic [ref=e580]: Cn
+              - link "⚛️" [ref=e581]:
+                - /url: https://de.wikipedia.org/wiki/Copernicium
+              - generic [ref=e582]:
+                - text: Copernicium
+                - text: (285)
+            - generic [ref=e583] [cursor=pointer]:
+              - generic [ref=e584]: "113"
+              - generic [ref=e585]: Nh
+              - link "⚛️" [ref=e586]:
+                - /url: https://de.wikipedia.org/wiki/Nihonium
+              - generic [ref=e587]:
+                - text: Nihonium
+                - text: (286)
+            - generic [ref=e588] [cursor=pointer]:
+              - generic [ref=e589]: "114"
+              - generic [ref=e590]: Fl
+              - link "⚛️" [ref=e591]:
+                - /url: https://de.wikipedia.org/wiki/Flerovium
+              - generic [ref=e592]:
+                - text: Flerovium
+                - text: (289)
+            - generic [ref=e593] [cursor=pointer]:
+              - generic [ref=e594]: "115"
+              - generic [ref=e595]: Mc
+              - link "⚛️" [ref=e596]:
+                - /url: https://de.wikipedia.org/wiki/Moscovium
+              - generic [ref=e597]:
+                - text: Moscovium
+                - text: (290)
+            - generic [ref=e598] [cursor=pointer]:
+              - generic [ref=e599]: "116"
+              - generic [ref=e600]: Lv
+              - link "⚛️" [ref=e601]:
+                - /url: https://de.wikipedia.org/wiki/Livermorium
+              - generic [ref=e602]:
+                - text: Livermorium
+                - text: (293)
+            - generic [ref=e603] [cursor=pointer]:
+              - generic [ref=e604]: "117"
+              - generic [ref=e605]: Ts
+              - link "⚛️" [ref=e606]:
+                - /url: https://de.wikipedia.org/wiki/Tennessine
+              - generic [ref=e607]:
+                - text: Tennessine
+                - text: (294)
+            - generic [ref=e608] [cursor=pointer]:
+              - generic [ref=e609]: "118"
+              - generic [ref=e610]: Og
+              - link "⚛️" [ref=e611]:
+                - /url: https://de.wikipedia.org/wiki/Oganesson
+              - generic [ref=e612]:
+                - text: Oganesson
+                - text: (294)
+  - contentinfo "Website-Fußzeile" [ref=e613]:
+    - generic [ref=e615]:
+      - generic [ref=e616]:
+        - heading "chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte" [level=4] [ref=e617]
+        - paragraph [ref=e618]: chemie-lernen.org - Ihre Plattform für innovative Chemie-Lernräume in Virtual Reality. Machen Sie komplexe chemische Konzepte greifbar und erlebbar.
+        - paragraph [ref=e619]:
+          - link "Besuchen Sie unseren Patreon" [ref=e620] [cursor=pointer]:
+            - /url: https://www.patreon.com/c/chemie_lernen_org
+            - img [ref=e621]
+            - text: Unterstütze uns auf Patreon
+      - generic [ref=e623]:
+        - paragraph [ref=e624]: © 2025 chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte. Alle Rechte vorbehalten.
+        - paragraph [ref=e625]:
+          - generic [ref=e626]:
+            - link "impressum" [ref=e627] [cursor=pointer]:
+              - /url: /impressum/
+            - text: "|"
+            - link "datenschutz" [ref=e628] [cursor=pointer]:
+              - /url: /datenschutz/
+```
