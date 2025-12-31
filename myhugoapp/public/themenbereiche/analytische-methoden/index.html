@@ -45,6 +45,12 @@
 <link rel="stylesheet" href="/css/quiz-system.css">
 <link rel="stylesheet" href="/css/quiz-user-system.css">
 <link rel="stylesheet" href="/css/progress-tracker.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css">
   
 
   <body>
@@ -695,13 +701,12 @@ document.addEventListener('DOMContentLoaded', function() {
 <li>Trocknen/Glühen</li>
 <li>Wägung</li>
 </ol>
-<p><strong>Beispiel:</strong> Sulfat-Bestimmung</p>
-<pre tabindex="0"><code>Ba²⁺ + SO₄²⁻ → BaSO₄↓
-
-m(BaSO₄) = 0.2331 g
-n(BaSO₄) = m/M = 0.2331 g / 233.39 g/mol = 0.001 mol
-n(SO₄²⁻) = n(BaSO₄) = 0.001 mol
-</code></pre><h3 id="maßanalyse-titration">Maßanalyse (Titration)</h3>
+<p><strong>Beispiel:</strong> Sulfat-Bestimmung
+$$\ce{Ba^2+ + SO4^2- -&gt; BaSO4 v}$$</p>
+<p>$$m(\ce{BaSO4}) = 0.2331 \text{ g}$$</p>
+<p>$$n(\ce{BaSO4}) = \frac{m}{M} = \frac{0.2331 \text{ g}}{233.39 \text{ g/mol}} = 0.001 \text{ mol}$$</p>
+<p>$$n(\ce{SO4^2-}) = n(\ce{BaSO4}) = 0.001 \text{ mol}$$</p>
+<h3 id="maßanalyse-titration">Maßanalyse (Titration)</h3>
 <p><strong>Titration</strong> ist die quantitative Bestimmung durch Reaktion mit einer Lösung bekannter Konzentration.</p>
 <p><strong>Arbeitsweise:</strong></p>
 <ol>
@@ -710,21 +715,21 @@ n(SO₄²⁻) = n(BaSO₄) = 0.001 mol
 <li>Indikator zusetzen</li>
 <li>Maßlösung zutropfen bis Äquivalenzpunkt</li>
 </ol>
-<p><strong>Berechnung:</strong></p>
-<pre tabindex="0"><code>c₁ · V₁ = c₂ · V₂
-
-c₁ = Konzentration Maßlösung
-V₁ = verbrauchtes Volumen
-c₂ = Konzentration Analyt
-V₂ = Volumen Analyt
-</code></pre><h2 id="titrationstechniken">Titrationstechniken</h2>
+<p><strong>Berechnung:</strong>
+$$c_1 \cdot V_1 = c_2 \cdot V_2$$</p>
+<ul>
+<li>$c_1$ = Konzentration Maßlösung</li>
+<li>$V_1$ = verbrauchtes Volumen</li>
+<li>$c_2$ = Konzentration Analyt</li>
+<li>$V_2$ = Volumen Analyt</li>
+</ul>
+<h2 id="titrationstechniken">Titrationstechniken</h2>
 <h3 id="säure-base-titration">Säure-Base-Titration</h3>
 <p><strong>Beispiel:</strong> Salzsäure mit Natronlauge</p>
-<pre tabindex="0"><code>HCl + NaOH → NaCl + H₂O
-
-Äquivalenzpunkt: pH = 7 (Neutralisation)
-Indikator: Phenolphthalein (farblos → rot)
-</code></pre><p><strong>Titrationskurve:</strong></p>
+<p>$$\ce{HCl + NaOH -&gt; NaCl + H2O}$$</p>
+<p>Äquivalenzpunkt: pH = 7 (Neutralisation)
+Indikator: Phenolphthalein (farblos → rot)</p>
+<p><strong>Titrationskurve:</strong></p>
 <pre tabindex="0"><code>pH
 14 │             ┌────────
    │            /
@@ -736,10 +741,9 @@ Indikator: Phenolphthalein (farblos → rot)
    0       V(NaOH)
 </code></pre><h3 id="redoxtitration">Redoxtitration</h3>
 <p><strong>Beispiel:</strong> Permanganometrie</p>
-<pre tabindex="0"><code>MnO₄⁻ + 5Fe²⁺ + 8H⁺ → Mn²⁺ + 5Fe³⁺ + 4H₂O
-
-Selbstindikator: Violett → farblos
-</code></pre><p><strong>Anwendung:</strong></p>
+<p>$$\ce{MnO4- + 5Fe^2+ + 8H+ -&gt; Mn^2+ + 5Fe^3+ + 4H2O}$$</p>
+<p>Selbstindikator: Violett → farblos</p>
+<p><strong>Anwendung:</strong></p>
 <ul>
 <li>Eisenbestimmung</li>
 <li>Wasserstoffperoxid-Bestimmung</li>
@@ -747,21 +751,19 @@ Selbstindikator: Violett → farblos
 </ul>
 <h3 id="komplexometrie">Komplexometrie</h3>
 <p><strong>Beispiel:</strong> EDTA-Titration (Chelatometrie)</p>
-<pre tabindex="0"><code>Ca²⁺ + EDTA⁴⁻ → [Ca-EDTA]²⁻
-
-Indikator: Eriochromschwarz T
-Farbumschlag: Rot → Blau
-</code></pre><p><strong>Anwendung:</strong></p>
+<p>$$\ce{Ca^2+ + EDTA^4- -&gt; [Ca-EDTA]^2-}$$</p>
+<p>Indikator: Eriochromschwarz T
+Farbumschlag: Rot → Blau</p>
+<p><strong>Anwendung:</strong></p>
 <ul>
 <li>Wasserhärte-Bestimmung</li>
 <li>Metallspuren-Bestimmung</li>
 </ul>
 <h3 id="fällungstitration">Fällungstitration</h3>
 <p><strong>Beispiel:</strong> Mohr-Methode (Chlorid-Bestimmung)</p>
-<pre tabindex="0"><code>Cl⁻ + Ag⁺ → AgCl↓
-
-Indikator: Chromat (Ag₂CrO₄ rotbraun)
-</code></pre><h2 id="chromatographie">Chromatographie</h2>
+<p>$$\ce{Cl- + Ag+ -&gt; AgCl v}$$</p>
+<p>Indikator: Chromat ($\ce{Ag2CrO4}$ rotbraun)</p>
+<h2 id="chromatographie">Chromatographie</h2>
 <h3 id="prinzip-der-chromatographie">Prinzip der Chromatographie</h3>
 <p><strong>Chromatographie</strong> trennt Substanzen basierend auf unterschiedlicher Verteilung zwischen einer stationären und einer mobilen Phase.</p>
 <p><strong>Grundtypen:</strong></p>
@@ -779,15 +781,14 @@ Indikator: Chromat (Ag₂CrO₄ rotbraun)
 <li>Entwickeln im Fließmittel (Laufmittel)</li>
 <li>Visualisierung (UV, Ninhydrin, etc.)</li>
 </ol>
-<p><strong>Rf-Wert (Retentionsfaktor):</strong></p>
-<pre tabindex="0"><code>Rf = Strecke Substanz / Strecke Lösungsmittelfront
-
-0 &lt; Rf &lt; 1
-</code></pre><p><strong>Beispiel:</strong></p>
-<pre tabindex="0"><code>Laufmittelfront: 8 cm
-Substanz A: 4 cm → Rf = 0.5
-Substanz B: 2 cm → Rf = 0.25
-</code></pre><h3 id="gaschromatographie-gc">Gaschromatographie (GC)</h3>
+<p><strong>Rf-Wert (Retentionsfaktor):</strong>
+$$R_f = \frac{\text{Strecke Substanz}}{\text{Strecke Lösungsmittelfront}}$$</p>
+<p>$$0 &lt; R_f &lt; 1$$</p>
+<p><strong>Beispiel:</strong>
+Laufmittelfront: 8 cm
+Substanz A: 4 cm → $R_f = 0.5$
+Substanz B: 2 cm → $R_f = 0.25$</p>
+<h3 id="gaschromatographie-gc">Gaschromatographie (GC)</h3>
 <p><strong>Prinzip:</strong> Verdampfte Probe wird durch Trägergas durch Trennsäule geschickt.</p>
 <p><strong>Anwendung:</strong></p>
 <ul>
@@ -812,14 +813,15 @@ Substanz B: 2 cm → Rf = 0.25
 <li>Farbstoff-Analyse</li>
 <li>Proteinkonzentration</li>
 </ul>
-<p><strong>Lambert-Beersches Gesetz:</strong></p>
-<pre tabindex="0"><code>A = ε · c · d
-
-A = Absorption
-ε = Extinktionskoeffizient
-c = Konzentration
-d = Schichtdicke
-</code></pre><h3 id="infrarotspektroskopie-ir">Infrarotspektroskopie (IR)</h3>
+<p><strong>Lambert-Beersches Gesetz:</strong>
+$$A = \varepsilon \cdot c \cdot d$$</p>
+<ul>
+<li>$A$ = Absorption</li>
+<li>$\varepsilon$ = Extinktionskoeffizient</li>
+<li>$c$ = Konzentration</li>
+<li>$d$ = Schichtdicke</li>
+</ul>
+<h3 id="infrarotspektroskopie-ir">Infrarotspektroskopie (IR)</h3>
 <p><strong>Prinzip:</strong> Absorption von Infrarotstrahlung durch molekulare Schwingungen.</p>
 <p><strong>Anwendung:</strong></p>
 <ul>
@@ -884,9 +886,9 @@ d = Schichtdicke
 <h3 id="potentiometrie">Potentiometrie</h3>
 <p><strong>Prinzip:</strong> Messung der Potentialdifferenz zwischen zwei Elektroden.</p>
 <p><strong>Beispiel:</strong> pH-Messung mit Glaselektrode</p>
-<pre tabindex="0"><code>E = E° - (RT/nF) · ln(a(H⁺))
-pH = -log(a(H⁺))
-</code></pre><h3 id="leitfähigkeitsmessung">Leitfähigkeitsmessung</h3>
+<p>$$E = E^\circ - \frac{RT}{nF} \cdot \ln(a(\ce{H+}))$$</p>
+<p>$$\text{pH} = -\log(a(\ce{H+}))$$</p>
+<h3 id="leitfähigkeitsmessung">Leitfähigkeitsmessung</h3>
 <p><strong>Prinzip:</strong> Messung des elektrischen Widerstands einer Lösung.</p>
 <p><strong>Anwendung:</strong></p>
 <ul>
@@ -930,12 +932,13 @@ pH = -log(a(H⁺))
 <p><strong>Präzision:</strong> Wiederholbarkeit</p>
 <p><strong>Nachweisgrenze (LOD):</strong> Kleinste nachweisbare Konzentration</p>
 <p><strong>Bestimmungsgrenze (LOQ):</strong> Kleinste quantifizierbare Konzentration</p>
-<pre tabindex="0"><code>LOQ = 10 · σ/s
-LOD = 3 · σ/s
-
-σ = Standardabweichung
-s = Steigung der Kalibriergeraden
-</code></pre><h2 id="praktische-anwendungen">Praktische Anwendungen</h2>
+<p>$$\text{LOQ} = \frac{10 \cdot \sigma}{s}$$</p>
+<p>$$\text{LOD} = \frac{3 \cdot \sigma}{s}$$</p>
+<ul>
+<li>$\sigma$ = Standardabweichung</li>
+<li>$s$ = Steigung der Kalibriergeraden</li>
+</ul>
+<h2 id="praktische-anwendungen">Praktische Anwendungen</h2>
 <h3 id="1-wasseranalyse">1. Wasseranalyse</h3>
 <p><strong>Parameter:</strong></p>
 <ul>
@@ -998,11 +1001,11 @@ s = Steigung der Kalibriergeraden
 <li>25 mL Salzsäure</li>
 <li>Verbrauch: 22.5 mL NaOH (c = 0.1 mol/L)</li>
 </ul>
-<p><strong>Berechnung:</strong></p>
-<pre tabindex="0"><code>c(HCl) · V(HCl) = c(NaOH) · V(NaOH)
-c(HCl) = (0.1 mol/L · 22.5 mL) / 25 mL
-c(HCl) = 0.09 mol/L
-</code></pre><h3 id="beispiel-gravimetrische-sulfat-bestimmung">Beispiel: Gravimetrische Sulfat-Bestimmung</h3>
+<p><strong>Berechnung:</strong>
+$$c(\ce{HCl}) \cdot V(\ce{HCl}) = c(\ce{NaOH}) \cdot V(\ce{NaOH})$$</p>
+<p>$$c(\ce{HCl}) = \frac{0.1 \text{ mol/L} \cdot 22.5 \text{ mL}}{25 \text{ mL}}$$</p>
+<p>$$c(\ce{HCl}) = 0.09 \text{ mol/L}$$</p>
+<h3 id="beispiel-gravimetrische-sulfat-bestimmung">Beispiel: Gravimetrische Sulfat-Bestimmung</h3>
 <p><strong>Gegeben:</strong></p>
 <ul>
 <li>Einwaage Probe: 0.500 g</li>
@@ -1010,13 +1013,12 @@ c(HCl) = 0.09 mol/L
 <li>M(BaSO₄) = 233.39 g/mol</li>
 <li>M(SO₄²⁻) = 96.06 g/mol</li>
 </ul>
-<p><strong>Berechnung:</strong></p>
-<pre tabindex="0"><code>n(BaSO₄) = 0.2331 g / 233.39 g/mol = 0.001 mol
-n(SO₄²⁻) = n(BaSO₄) = 0.001 mol
-m(SO₄²⁻) = 0.001 mol · 96.06 g/mol = 0.09606 g
-
-w(SO₄²⁻) = (0.09606 g / 0.500 g) · 100% = 19.21%
-</code></pre><h2 id="lernziele">Lernziele</h2>
+<p><strong>Berechnung:</strong>
+$$n(\ce{BaSO4}) = \frac{0.2331 \text{ g}}{233.39 \text{ g/mol}} = 0.001 \text{ mol}$$</p>
+<p>$$n(\ce{SO4^2-}) = n(\ce{BaSO4}) = 0.001 \text{ mol}$$</p>
+<p>$$m(\ce{SO4^2-}) = 0.001 \text{ mol} \cdot 96.06 \text{ g/mol} = 0.09606 \text{ g}$$</p>
+<p>$$w(\ce{SO4^2-}) = \frac{0.09606 \text{ g}}{0.500 \text{ g}} \cdot 100% = 19.21%$$</p>
+<h2 id="lernziele">Lernziele</h2>
 <p>Nach Abschluss dieses Themenbereichs sollten Sie:</p>
 <ul>
 <li>✅ Qualitative von quantitativer Analyse unterscheiden können</li>
@@ -1454,7 +1456,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="col-md-6 text-right">
                 <p>&copy; 2025 chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte. Alle Rechte vorbehalten.</p>
-                <p><small><a href="/imprint/" style="color: #fff;">impressum</a> | <a href="/privacy/" style="color: #fff;">privacy</a></small></p>
+                <p><small><a href="/impressum/" style="color: #fff;">impressum</a> | <a href="/datenschutz/" style="color: #fff;">datenschutz</a></small></p>
             </div>
         </div>
     </div>
@@ -1474,6 +1476,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
   
+  <script src="/data/quiz-analytische-methoden.js"></script>
+  
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
+        ]
+      });
+    });
+  </script>
 
   
   

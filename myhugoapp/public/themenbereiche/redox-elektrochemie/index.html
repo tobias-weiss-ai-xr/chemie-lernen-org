@@ -45,6 +45,12 @@
 <link rel="stylesheet" href="/css/quiz-system.css">
 <link rel="stylesheet" href="/css/quiz-user-system.css">
 <link rel="stylesheet" href="/css/progress-tracker.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css">
   
 
   <body>
@@ -497,22 +503,22 @@ document.addEventListener('DOMContentLoaded', function() {
 <li>Erhöhung der Oxidationszahl</li>
 <li>Reaktion mit Sauerstoff (historische Definition)</li>
 </ul>
-<p><strong>Beispiele:</strong></p>
-<pre tabindex="0"><code>Na → Na⁺ + e⁻              (Natrium oxidiert)
-2Cl⁻ → Cl₂ + 2e⁻           (Chlorid oxidiert)
-Fe → Fe²⁺ + 2e⁻            (Eisen oxidiert)
-</code></pre><h3 id="reduktion">Reduktion</h3>
+<p><strong>Beispiele:</strong>
+$$\ce{Na -&gt; Na+ + e-} \quad \text{(Natrium oxidiert)}$$</p>
+<p>$$\ce{2Cl- -&gt; Cl2 + 2e-} \quad \text{(Chlorid oxidiert)}$$</p>
+<p>$$\ce{Fe -&gt; Fe^2+ + 2e-} \quad \text{(Eisen oxidiert)}$$</p>
+<h3 id="reduktion">Reduktion</h3>
 <p><strong>Reduktion</strong> bedeutet:</p>
 <ul>
 <li>Aufnahme von Elektronen</li>
 <li>Erniedrigung der Oxidationszahl</li>
 <li>Entzug von Sauerstoff (historische Definition)</li>
 </ul>
-<p><strong>Beispiele:</strong></p>
-<pre tabindex="0"><code>Cl₂ + 2e⁻ → 2Cl⁻           (Chlor reduziert)
-Cu²⁺ + 2e⁻ → Cu            (Kupfer reduziert)
-O₂ + 4e⁻ → 2O²⁻            (Sauerstoff reduziert)
-</code></pre><h3 id="oxidationszahlen-oxidationsstufen">Oxidationszahlen (Oxidationsstufen)</h3>
+<p><strong>Beispiele:</strong>
+$$\ce{Cl2 + 2e- -&gt; 2Cl-} \quad \text{(Chlor reduziert)}$$</p>
+<p>$$\ce{Cu^2+ + 2e- -&gt; Cu} \quad \text{(Kupfer reduziert)}$$</p>
+<p>$$\ce{O2 + 4e- -&gt; 2O^2-} \quad \text{(Sauerstoff reduziert)}$$</p>
+<h3 id="oxidationszahlen-oxidationsstufen">Oxidationszahlen (Oxidationsstufen)</h3>
 <p>Die <strong>Oxidationszahl</strong> gibt an, wie viele Elektronen ein Atom formal aufgenommen oder abgegeben hat.</p>
 <p><strong>Regeln für Oxidationszahlen:</strong></p>
 <ol>
@@ -524,9 +530,9 @@ O₂ + 4e⁻ → 2O²⁻            (Sauerstoff reduziert)
 </ol>
 <p><strong>Beispiele:</strong></p>
 <ul>
-<li>NaCl: Na⁺ (+1), Cl⁻ (-1)</li>
-<li>H₂O: H (+1), O (-2)</li>
-<li>H₂SO₄: H (+1), S (+6), O (-2)</li>
+<li>$\ce{NaCl}$: $\ce{Na+}$ (+1), $\ce{Cl-}$ (-1)</li>
+<li>$\ce{H2O}$: H (+1), O (-2)</li>
+<li>$\ce{H2SO4}$: H (+1), S (+6), O (-2)</li>
 </ul>
 <h2 id="redoxpaare">Redoxpaare</h2>
 <h3 id="redoxpaare-1">Redoxpaare</h3>
@@ -578,13 +584,11 @@ starkes Reduktionsmittel ╌╌╌╌╌╌ starkes Oxidationsmittel
 <li><strong>Elektrolytbrücke</strong> (Ionenleitung zwischen Halbzellen)</li>
 </ol>
 <h3 id="beispiel-daniell-element">Beispiel: Daniell-Element</h3>
-<pre tabindex="0"><code>Zn | ZnSO₄ || CuSO₄ | Cu
-
-Anode:        Zn → Zn²⁺ + 2e⁻        (Oxidation)
-Kathode:      Cu²⁺ + 2e⁻ → Cu        (Reduktion)
-──────────────────────────────────────
-Gesamt:       Zn + Cu²⁺ → Zn²⁺ + Cu
-</code></pre><p><strong>Spannung:</strong> E° = 1.10 V</p>
+<p>$$\ce{Zn | ZnSO4 || CuSO4 | Cu}$$</p>
+<p>$$\text{Anode:} \quad \ce{Zn -&gt; Zn^2+ + 2e-} \quad \text{(Oxidation)}$$</p>
+<p>$$\text{Kathode:} \quad \ce{Cu^2+ + 2e- -&gt; Cu} \quad \text{(Reduktion)}$$</p>
+<p>$$\text{Gesamt:} \quad \ce{Zn + Cu^2+ -&gt; Zn^2+ + Cu}$$</p>
+<p><strong>Spannung:</strong> $E^\circ = 1.10 \text{ V}$</p>
 <h3 id="elektroden">Elektroden</h3>
 <p><strong>Anode:</strong></p>
 <ul>
@@ -601,25 +605,24 @@ Gesamt:       Zn + Cu²⁺ → Zn²⁺ + Cu
 <p><strong>Merkhilfe:</strong> &ldquo;Anode Oxidation&rdquo; (beide starten mit A, O)</p>
 <h3 id="nernst-gleichung">Nernst-Gleichung</h3>
 <p>Die <strong>Nernst-Gleichung</strong> berechnet die Zellspannung unter Bedingungen:</p>
-<pre tabindex="0"><code>E = E° - (RT/nF) · ln(Q)
-</code></pre><ul>
-<li>E = tatsächliche Spannung</li>
-<li>E° = Standardspannung</li>
-<li>R = Gaskonstante</li>
-<li>T = Temperatur (K)</li>
-<li>n = Anzahl Elektronen</li>
-<li>F = Faraday-Konstante</li>
-<li>Q = Reaktionsquotient</li>
+<p>$$E = E^\circ - \frac{RT}{nF} \cdot \ln(Q)$$</p>
+<ul>
+<li>$E$ = tatsächliche Spannung</li>
+<li>$E^\circ$ = Standardspannung</li>
+<li>$R$ = Gaskonstante</li>
+<li>$T$ = Temperatur (K)</li>
+<li>$n$ = Anzahl Elektronen</li>
+<li>$F$ = Faraday-Konstante</li>
+<li>$Q$ = Reaktionsquotient</li>
 </ul>
 <h2 id="elektrolyse">Elektrolyse</h2>
 <h3 id="was-ist-elektrolyse">Was ist Elektrolyse?</h3>
 <p>Bei der <strong>Elektrolyse</strong> wird elektrische Energie zugeführt, um eine chemische Reaktion zu erzwingen, die nicht spontan abläuft.</p>
 <h3 id="beispiel-elektrolyse-von-wasser">Beispiel: Elektrolyse von Wasser</h3>
-<pre tabindex="0"><code>Kathode:  2H₂O + 2e⁻ → H₂ + 2OH⁻      (Reduktion)
-Anode:    2H₂O → O₂ + 4H⁺ + 4e⁻      (Oxidation)
-──────────────────────────────────────────────
-Gesamt:   2H₂O → 2H₂ + O₂              ΔE = -1.23 V
-</code></pre><p><strong>Beobachtung:</strong> Gasentwicklung an beiden Elektroden.</p>
+<p>$$\text{Kathode:} \quad \ce{2H2O + 2e- -&gt; H2 + 2OH-} \quad \text{(Reduktion)}$$</p>
+<p>$$\text{Anode:} \quad \ce{2H2O -&gt; O2 + 4H+ + 4e-} \quad \text{(Oxidation)}$$</p>
+<p>$$\text{Gesamt:} \quad \ce{2H2O -&gt; 2H2 + O2} \quad \Delta E = -1.23 \text{ V}$$</p>
+<p><strong>Beobachtung:</strong> Gasentwicklung an beiden Elektroden.</p>
 <h3 id="anwendungen-der-elektrolyse">Anwendungen der Elektrolyse</h3>
 <ol>
 <li>
@@ -647,27 +650,27 @@ Gesamt:   2H₂O → 2H₂ + O₂              ΔE = -1.23 V
 </ol>
 <h2 id="batterien-und-akkumulatoren">Batterien und Akkumulatoren</h2>
 <h3 id="primärbatterien-nicht-wiederaufladbar">Primärbatterien (nicht wiederaufladbar)</h3>
-<p><strong>Zink-Kohle-Element:</strong></p>
-<pre tabindex="0"><code>Anode:    Zn → Zn²⁺ + 2e⁻
-Kathode:  2MnO₂ + 2NH₄⁺ + 2e⁻ → Mn₂O₃ + 2NH₃ + H₂O
-Spannung: ~1.5 V
-</code></pre><p><strong>Verwendung:</strong> Taschenlampen, Fernbedienungen</p>
+<p><strong>Zink-Kohle-Element:</strong>
+$$\text{Anode:} \quad \ce{Zn -&gt; Zn^2+ + 2e-}$$</p>
+<p>$$\text{Kathode:} \quad \ce{2MnO2 + 2NH4+ + 2e- -&gt; Mn2O3 + 2NH3 + H2O}$$</p>
+<p><strong>Spannung:</strong> $\approx 1.5 \text{ V}$</p>
+<p><strong>Verwendung:</strong> Taschenlampen, Fernbedienungen</p>
 <h3 id="sekundärbatterien-wiederaufladbar">Sekundärbatterien (wiederaufladbar)</h3>
-<p><strong>Blei-Akku:</strong></p>
-<pre tabindex="0"><code>Entladen:  Pb + PbO₂ + 2H₂SO₄ → 2PbSO₄ + 2H₂O      E = 2.05 V
-Laden:     2PbSO₄ + 2H₂O → Pb + PbO₂ + 2H₂SO₄
-</code></pre><p><strong>Verwendung:</strong> Autobatterien, USV-Anlagen</p>
-<p><strong>Lithium-Ionen-Akku:</strong></p>
-<pre tabindex="0"><code>Kathode:    Li⁺ + e⁻ + Graphit → Li-Graphit
-Anode:      LiC₆ → Li⁺ + C₆ + e⁻
-Spannung: 3.6 - 3.7 V
-</code></pre><p><strong>Verwendung:</strong> Handys, Laptops, E-Autos</p>
+<p><strong>Blei-Akku:</strong>
+$$\text{Entladen:} \quad \ce{Pb + PbO2 + 2H2SO4 -&gt; 2PbSO4 + 2H2O} \quad E = 2.05 \text{ V}$$</p>
+<p>$$\text{Laden:} \quad \ce{2PbSO4 + 2H2O -&gt; Pb + PbO2 + 2H2SO4}$$</p>
+<p><strong>Verwendung:</strong> Autobatterien, USV-Anlagen</p>
+<p><strong>Lithium-Ionen-Akku:</strong>
+$$\text{Kathode:} \quad \ce{Li+ + e- + Graphit -&gt; Li-Graphit}$$</p>
+<p>$$\text{Anode:} \quad \ce{LiC6 -&gt; Li+ + C6 + e-}$$</p>
+<p><strong>Spannung:</strong> $3.6 - 3.7 \text{ V}$</p>
+<p><strong>Verwendung:</strong> Handys, Laptops, E-Autos</p>
 <h3 id="brennstoffzellen">Brennstoffzellen</h3>
-<p><strong>Wasserstoff-Brennstoffzelle:</strong></p>
-<pre tabindex="0"><code>Anode:    H₂ → 2H⁺ + 2e⁻
-Kathode:  ½O₂ + 2H⁺ + 2e⁻ → H₂O
-Gesamt:  H₂ + ½O₂ → H₂O
-</code></pre><p><strong>Vorteile:</strong></p>
+<p><strong>Wasserstoff-Brennstoffzelle:</strong>
+$$\text{Anode:} \quad \ce{H2 -&gt; 2H+ + 2e-}$$</p>
+<p>$$\text{Kathode:} \quad \ce{1/2 O2 + 2H+ + 2e- -&gt; H2O}$$</p>
+<p>$$\text{Gesamt:} \quad \ce{H2 + 1/2 O2 -&gt; H2O}$$</p>
+<p><strong>Vorteile:</strong></p>
 <ul>
 <li>Hoher Wirkungsgrad</li>
 <li>Keine direkten Emissionen (nur Wasser)</li>
@@ -683,9 +686,9 @@ Gesamt:  H₂ + ½O₂ → H₂O
 <h3 id="was-ist-korrosion">Was ist Korrosion?</h3>
 <p><strong>Korrosion</strong> ist die ungewollte Zerstörung von metallischen Werkstoffen durch chemische oder elektrochemische Reaktion mit der Umgebung.</p>
 <h3 id="rosten-von-eisen">Rosten von Eisen</h3>
-<p><strong>Reaktion:</strong></p>
-<pre tabindex="0"><code>4Fe + 3O₂ → 2Fe₂O₃          (Rost)
-</code></pre><p><strong>Bedingungen für Rostbildung:</strong></p>
+<p><strong>Reaktion:</strong>
+$$\ce{4Fe + 3O2 -&gt; 2Fe2O3} \quad \text{(Rost)}$$</p>
+<p><strong>Bedingungen für Rostbildung:</strong></p>
 <ol>
 <li>Eisen</li>
 <li>Sauerstoff</li>
@@ -734,33 +737,33 @@ Gesamt:  H₂ + ½O₂ → H₂O
 <li><strong>Kontrollieren</strong></li>
 </ol>
 <h3 id="beispiel-verbrennung-von-ethan">Beispiel: Verbrennung von Ethan</h3>
-<pre tabindex="0"><code>Schritt 1:  Oxidationszahlen bestimmen
-   C₂H₆ + O₂ → CO₂ + H₂O
-   C: -2  → +4  (Änderung: -6)
-   O: 0   → -2  (Änderung: -2)
-
-Schritt 2:  Teilreaktionen
-   Oxidation:  C₂H₆ → 2CO₂
-   Reduktion:  O₂ → 2H₂O
-
-Schritt 3:  Elektronen ausgleichen
-   C₂H₆ → 2CO₂ + 12e⁻         (6 × 2e⁻ pro C)
-   O₂ + 4e⁻ → 2O²⁻              (nur 2e⁻)
-
-   Multipliziere Reduktion mit 6:
-   6O₂ + 24e⁻ → 12O²⁻
-
-Schritt 4:  Zusammenfassen
-   C₂H₆ + 6O₂ → 2CO₂ + 3H₂O
-</code></pre><p>Nutzen Sie den <strong><a href="/reaktionsgleichungen-ausgleichen/">Reaktionsgleichungen-Ausgleicher</a></strong> für komplexe Redoxgleichungen!</p>
+<p><strong>Schritt 1: Oxidationszahlen bestimmen</strong>
+$$\ce{C2H6 + O2 -&gt; CO2 + H2O}$$</p>
+<ul>
+<li>C: $-2 \rightarrow +4$ (Änderung: $-6$)</li>
+<li>O: $0 \rightarrow -2$ (Änderung: $-2$)</li>
+</ul>
+<p><strong>Schritt 2: Teilreaktionen</strong></p>
+<ul>
+<li>Oxidation: $\ce{C2H6 -&gt; 2CO2}$</li>
+<li>Reduktion: $\ce{O2 -&gt; 2H2O}$</li>
+</ul>
+<p><strong>Schritt 3: Elektronen ausgleichen</strong>
+$$\ce{C2H6 -&gt; 2CO2 + 12e-} \quad (6 \times 2e^- \text{ pro C})$$</p>
+<p>$$\ce{O2 + 4e- -&gt; 2O^2-} \quad (\text{nur } 2e^-)$$</p>
+<p>Multipliziere Reduktion mit 6:
+$$\ce{6O2 + 24e- -&gt; 12O^2-}$$</p>
+<p><strong>Schritt 4: Zusammenfassen</strong>
+$$\ce{C2H6 + 6O2 -&gt; 2CO2 + 3H2O}$$</p>
+<p>Nutzen Sie den <strong><a href="/reaktionsgleichungen-ausgleichen/">Reaktionsgleichungen-Ausgleicher</a></strong> für komplexe Redoxgleichungen!</p>
 <h2 id="alltag-und-technik">Alltag und Technik</h2>
 <h3 id="biologische-redoxreaktionen">Biologische Redoxreaktionen</h3>
-<p><strong>Atmung:</strong></p>
-<pre tabindex="0"><code>C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O      (Zelluläre Atmung)
-</code></pre><p>Energie wird freigesetzt (ATP-Synthese).</p>
-<p><strong>Photosynthese:</strong></p>
-<pre tabindex="0"><code>6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂      (Lichtenergie)
-</code></pre><p>Reduktion von CO₂ zu Glucose.</p>
+<p><strong>Atmung:</strong>
+$$\ce{C6H12O6 + 6O2 -&gt; 6CO2 + 6H2O} \quad \text{(Zelluläre Atmung)}$$</p>
+<p>Energie wird freigesetzt (ATP-Synthese).</p>
+<p><strong>Photosynthese:</strong>
+$$\ce{6CO2 + 6H2O -&gt; C6H12O6 + 6O2} \quad \text{(Lichtenergie)}$$</p>
+<p>Reduktion von CO₂ zu Glucose.</p>
 <h3 id="technische-anwendungen">Technische Anwendungen</h3>
 <ol>
 <li>
@@ -798,9 +801,9 @@ Schritt 4:  Zusammenfassen
 <li>Fe²⁺ (hellgrün) → Fe³⁺ (gelbbraun)</li>
 </ul>
 <h3 id="nachweisreaktionen">Nachweisreaktionen</h3>
-<p><strong>Nachweis von Wasserstoffperoxid (H₂O₂):</strong></p>
-<pre tabindex="0"><code>H₂O₂ + 2KI + H₂SO₄ → I₂ + K₂SO₄ + 2H₂O
-</code></pre><p>Braune Farbe von Iod (Stärke-Nachweis: blau-schwarz)</p>
+<p><strong>Nachweis von Wasserstoffperoxid ($\ce{H2O2}$):</strong>
+$$\ce{H2O2 + 2KI + H2SO4 -&gt; I2 + K2SO4 + 2H2O}$$</p>
+<p>Braune Farbe von Iod (Stärke-Nachweis: blau-schwarz)</p>
 <h2 id="experimente">Experimente</h2>
 <h3 id="experiment-1-kupferabscheidung">Experiment 1: Kupferabscheidung</h3>
 <p><strong>Materialien:</strong> Kupfersulfatlösung, Eisenfeiln, Becher</p>
@@ -810,7 +813,7 @@ Schritt 4:  Zusammenfassen
 <li>Farbänderung beobachten (blau → grün)</li>
 <li>Kupferbelag auf Eisen beobachten</li>
 </ol>
-<p><strong>Erklärung:</strong> Fe + Cu²⁺ → Fe²⁺ + Cu</p>
+<p><strong>Erklärung:</strong> $\ce{Fe + Cu^2+ -&gt; Fe^2+ + Cu}$</p>
 <h3 id="experiment-2-knopfzelle">Experiment 2: Knopfzelle</h3>
 <p><strong>Materialien:</strong> Kupfermünze, Zinkblech, Zitrone, Kabel, LED</p>
 <p><strong>Durchführung:</strong></p>
@@ -828,27 +831,27 @@ Schritt 4:  Zusammenfassen
 <li>Strom einschalten</li>
 <li>Gasentwicklung an beiden Elektroden beobachten</li>
 </ol>
-<p><strong>Erklärung:</strong> 2NaCl → 2Na + Cl₂ (im geschmolzenen Zustand)</p>
+<p><strong>Erklärung:</strong> $\ce{2NaCl -&gt; 2Na + Cl2}$ (im geschmolzenen Zustand)</p>
 <h2 id="berechnungen">Berechnungen</h2>
 <h3 id="faraday-konstante">Faraday-Konstante</h3>
-<p>Die <strong>Faraday-Konstante</strong> F ist die Ladung eines Mols Elektronen:</p>
-<pre tabindex="0"><code>F = NA · e⁻
-F = 6.022·10²³ mol⁻¹ · 1.602·10⁻¹⁹ C
-F = 96485 C/mol
-</code></pre><h3 id="stoffmenge-aus-elektrizitätsmenge">Stoffmenge aus Elektrizitätsmenge</h3>
-<pre tabindex="0"><code>n = Q / (z · F)
-
-n = Stoffmenge (mol)
-Q = Elektrizitätsmenge (C)
-z = Anzahl Elektronen
-F = Faraday-Konstante
-</code></pre><p><strong>Beispiel:</strong> Wie viel Kupfer kann mit 1 A in 1 Stunde abgeschieden werden?</p>
-<pre tabindex="0"><code>Q = I · t = 1 A · 3600 s = 3600 C
-z = 2 (Cu²⁺ + 2e⁻ → Cu)
-
-n = 3600 C / (2 · 96485 C/mol) = 0.0187 mol
-m = n · M = 0.0187 mol · 63.55 g/mol = 1.19 g
-</code></pre><h2 id="lernziele">Lernziele</h2>
+<p>Die <strong>Faraday-Konstante</strong> $F$ ist die Ladung eines Mols Elektronen:</p>
+<p>$$F = N_A \cdot e^-$$</p>
+<p>$$F = 6.022 \times 10^{23} \text{ mol}^{-1} \cdot 1.602 \times 10^{-19} \text{ C}$$</p>
+<p>$$F = 96485 \text{ C/mol}$$</p>
+<h3 id="stoffmenge-aus-elektrizitätsmenge">Stoffmenge aus Elektrizitätsmenge</h3>
+<p>$$n = \frac{Q}{z \cdot F}$$</p>
+<ul>
+<li>$n$ = Stoffmenge (mol)</li>
+<li>$Q$ = Elektrizitätsmenge (C)</li>
+<li>$z$ = Anzahl Elektronen</li>
+<li>$F$ = Faraday-Konstante</li>
+</ul>
+<p><strong>Beispiel:</strong> Wie viel Kupfer kann mit 1 A in 1 Stunde abgeschieden werden?</p>
+<p>$$Q = I \cdot t = 1 \text{ A} \cdot 3600 \text{ s} = 3600 \text{ C}$$</p>
+<p>$$z = 2 \quad (\ce{Cu^2+ + 2e- -&gt; Cu})$$</p>
+<p>$$n = \frac{3600 \text{ C}}{2 \cdot 96485 \text{ C/mol}} = 0.0187 \text{ mol}$$</p>
+<p>$$m = n \cdot M = 0.0187 \text{ mol} \cdot 63.55 \text{ g/mol} = 1.19 \text{ g}$$</p>
+<h2 id="lernziele">Lernziele</h2>
 <p>Nach Abschluss dieses Themenbereichs sollten Sie:</p>
 <ul>
 <li>✅ Oxidation und Reduktion unterscheiden können</li>
@@ -1287,7 +1290,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="col-md-6 text-right">
                 <p>&copy; 2025 chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte. Alle Rechte vorbehalten.</p>
-                <p><small><a href="/imprint/" style="color: #fff;">impressum</a> | <a href="/privacy/" style="color: #fff;">privacy</a></small></p>
+                <p><small><a href="/impressum/" style="color: #fff;">impressum</a> | <a href="/datenschutz/" style="color: #fff;">datenschutz</a></small></p>
             </div>
         </div>
     </div>
@@ -1309,6 +1312,23 @@ document.addEventListener('DOMContentLoaded', function() {
   
   <script src="/data/quiz-redox-elektrochemie.js"></script>
   
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
+        ]
+      });
+    });
+  </script>
 
   
   

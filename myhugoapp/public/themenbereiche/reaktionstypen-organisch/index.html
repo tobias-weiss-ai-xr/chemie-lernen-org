@@ -45,6 +45,12 @@
 <link rel="stylesheet" href="/css/quiz-system.css">
 <link rel="stylesheet" href="/css/quiz-user-system.css">
 <link rel="stylesheet" href="/css/progress-tracker.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css">
   
 
   <body>
@@ -492,21 +498,20 @@ document.addEventListener('DOMContentLoaded', function() {
 <h3 id="was-ist-eine-substitution">Was ist eine Substitution?</h3>
 <p>Bei <strong>Substitutionsreaktionen</strong> wird ein Atom oder eine Atomgruppe durch ein anderes ersetzt.</p>
 <p><strong>Allgemeines Schema:</strong></p>
-<pre tabindex="0"><code>R-X + Y → R-Y + X
-</code></pre><h3 id="nucleophile-substitution-s_n">Nucleophile Substitution (S_N)</h3>
+<p>$$\ce{R-X + Y -&gt; R-Y + X}$$</p>
+<h3 id="nucleophile-substitution-s_n">Nucleophile Substitution (S_N)</h3>
 <p><strong>Nucleophile Substitution</strong> – Angreifer (Nucleophil) ersetzt eine Abgangsgruppe.</p>
 <h4 id="s_n2-mechanismus-bimolekular">S_N2-Mechanismus (bimolekular)</h4>
 <p><strong>Eigenschaften:</strong></p>
 <ul>
 <li>Einzeitiger Prozess</li>
 <li>Inversion am Kohlenstoff (Walden-Umkehr)</li>
-<li>Kinetik: v = k[R-X][Nu⁻]</li>
+<li>Kinetik: $v = k[\ce{R-X}][\ce{Nu-}]$</li>
 </ul>
 <p><strong>Beispiel:</strong> Hydrolyse von Methyliodid</p>
-<pre tabindex="0"><code>CH₃I + OH⁻ → CH₃OH + I⁻
-
-Übergangszustand:
-    H
+<p>$$\ce{CH3I + OH- -&gt; CH3OH + I-}$$</p>
+<p>Übergangszustand:</p>
+<pre tabindex="0"><code>    H
     |
 H — C — I  +  OH⁻  →  [H₃C---I---OH]‡  →  CH₃OH + I⁻
     |
@@ -522,14 +527,13 @@ H — C — I  +  OH⁻  →  [H₃C---I---OH]‡  →  CH₃OH + I⁻
 <ul>
 <li>Zweizeitiger Prozess</li>
 <li>Bildung eines Carbocations (Zwischenstufe)</li>
-<li>Kinetik: v = k[R-X]</li>
+<li>Kinetik: $v = k[\ce{R-X}]$</li>
 </ul>
 <p><strong>Beispiel:</strong> Hydrolyse von tert-Butylchlorid</p>
-<pre tabindex="0"><code>Schritt 1: (CH₃)₃C-Cl → (CH₃)₃C⁺ + Cl⁻    (langsam)
-Schritt 2: (CH₃)₃C⁺ + OH⁻ → (CH₃)₃C-OH   (schnell)
-
-Gesamt: (CH₃)₃C-Cl + OH⁻ → (CH₃)₃C-OH + Cl⁻
-</code></pre><p><strong>Faktoren:</strong></p>
+<p>Schritt 1: $\ce{(CH3)3C-Cl -&gt; (CH3)3C+ + Cl-}$ (langsam)</p>
+<p>Schritt 2: $\ce{(CH3)3C+ + OH- -&gt; (CH3)3C-OH}$ (schnell)</p>
+<p>Gesamt: $\ce{(CH3)3C-Cl + OH- -&gt; (CH3)3C-OH + Cl-}$</p>
+<p><strong>Faktoren:</strong></p>
 <ul>
 <li>Tertiäre Halogenide reagieren bevorzugt</li>
 <li>Stabile Carbikationen fördern Reaktion</li>
@@ -538,12 +542,11 @@ Gesamt: (CH₃)₃C-Cl + OH⁻ → (CH₃)₃C-OH + Cl⁻
 <h3 id="elektrophile-substitution-s_e">Elektrophile Substitution (S_E)</h3>
 <p><strong>Elektrophile Substitution</strong> –typisch für Aromaten</p>
 <p><strong>Beispiel:</strong> Nitrierung von Benzol</p>
-<pre tabindex="0"><code>C₆H₆ + HNO₃ → C₆H₅NO₂ + H₂O
-
-Mechanismus:
-C₆H₆ + NO₂⁺ → C₆H₆-NO₂⁺ (Komplex)
-C₆H₆-NO₂⁺ → C₆H₅NO₂ + H⁺
-</code></pre><p><strong>Anwendung:</strong></p>
+<p>$$\ce{C6H6 + HNO3 -&gt; C6H5NO2 + H2O}$$</p>
+<p>Mechanismus:
+$$\ce{C6H6 + NO2+ -&gt; C6H6-NO2+} \text{ (Komplex)}$$</p>
+<p>$$\ce{C6H6-NO2+ -&gt; C6H5NO2 + H+}$$</p>
+<p><strong>Anwendung:</strong></p>
 <ul>
 <li>Herstellung von Nitrobenzol</li>
 <li>Sulfonierung</li>
@@ -552,39 +555,37 @@ C₆H₆-NO₂⁺ → C₆H₅NO₂ + H⁺
 <h3 id="radikalische-substitution">Radikalische Substitution</h3>
 <p><strong>Radikalische Substitution</strong> – Kettenreaktion mit Radikalen</p>
 <p><strong>Beispiel:</strong> Chlorierung von Methan</p>
-<pre tabindex="0"><code>Initiierung:  Cl₂ → 2Cl·        (Licht/Hitze)
-Propagation:  CH₄ + Cl· → CH₃· + HCl
-             CH₃· + Cl₂ → CH₃Cl + Cl·
-Terminierung: 2Cl· → Cl₂
-             2CH₃· → C₂H₆
-             CH₃· + Cl· → CH₃Cl
-</code></pre><h2 id="additionsreaktionen">Additionsreaktionen</h2>
+<p>Initiierung: $\ce{Cl2 -&gt; 2Cl^.}$ (Licht/Hitze)</p>
+<p>Propagation: $\ce{CH4 + Cl^. -&gt; CH3^. + HCl}$</p>
+<p>$\ce{CH3^. + Cl2 -&gt; CH3Cl + Cl^.}$</p>
+<p>Terminierung: $\ce{2Cl^. -&gt; Cl2}$</p>
+<p>$\ce{2CH3^. -&gt; C2H6}$</p>
+<p>$\ce{CH3^. + Cl^. -&gt; CH3Cl}$</p>
+<h2 id="additionsreaktionen">Additionsreaktionen</h2>
 <h3 id="was-ist-eine-addition">Was ist eine Addition?</h3>
 <p>Bei <strong>Additionsreaktionen</strong> lagern sich Atome oder Moleküle an eine Doppel- oder Dreifachbindung an.</p>
 <p><strong>Allgemeines Schema:</strong></p>
-<pre tabindex="0"><code>R₁-CH=CH-R₂ + A-B → R₁-CH(A)-CH(B)-R₂
-</code></pre><h3 id="elektrophile-addition">Elektrophile Addition</h3>
+<p>$$\ce{R1-CH=CH-R2 + A-B -&gt; R1-CH(A)-CH(B)-R2}$$</p>
+<h3 id="elektrophile-addition">Elektrophile Addition</h3>
 <p><strong>Beispiel:</strong> Addition von Brom an Ethen</p>
-<pre tabindex="0"><code>CH₂=CH₂ + Br₂ → CH₂Br-CH₂Br
-
-Mechanismus:
-Schritt 1:  CH₂=CH₂ + Br₂ → CH₂-CH₂-Br⁺ + Br⁻
-Schritt 2:  CH₂-CH₂-Br⁺ + Br⁻ → CH₂Br-CH₂Br
-</code></pre><p><strong>Markownikow-Regel:</strong></p>
+<p>$$\ce{CH2=CH2 + Br2 -&gt; CH2Br-CH2Br}$$</p>
+<p>Mechanismus:</p>
+<p>Schritt 1: $\ce{CH2=CH2 + Br2 -&gt; CH2-CH2-Br+ + Br-}$</p>
+<p>Schritt 2: $\ce{CH2-CH2-Br+ + Br- -&gt; CH2Br-CH2Br}$</p>
+<p><strong>Markownikow-Regel:</strong></p>
 <p>Bei Addition von HX an unsymmetrische Alkene lagert sich H an das C mit mehr H-Atomen:</p>
-<pre tabindex="0"><code>CH₃-CH=CH₂ + HBr → CH₃-CHBr-CH₃
-           (Propen)        (2-Brompropan)
-</code></pre><h3 id="nucleophile-addition">Nucleophile Addition</h3>
+<p>$$\ce{CH3-CH=CH2 + HBr -&gt; CH3-CHBr-CH3}$$</p>
+<p>(Propen) → (2-Brompropan)</p>
+<h3 id="nucleophile-addition">Nucleophile Addition</h3>
 <p><strong>Beispiel:</strong> Addition von Wasser an Aldehyde</p>
-<pre tabindex="0"><code>R-CHO + H₂O → R-CH(OH)₂
-</code></pre><p><strong>Beispiel:</strong> Cyanhydrat-Bildung</p>
-<pre tabindex="0"><code>R-CHO + HCN → R-CH(OH)-CN
-</code></pre><h3 id="katalytische-hydrierung">Katalytische Hydrierung</h3>
+<p>$$\ce{R-CHO + H2O -&gt; R-CH(OH)2}$$</p>
+<p><strong>Beispiel:</strong> Cyanhydrat-Bildung</p>
+<p>$$\ce{R-CHO + HCN -&gt; R-CH(OH)-CN}$$</p>
+<h3 id="katalytische-hydrierung">Katalytische Hydrierung</h3>
 <p><strong>Beispiel:</strong> Hydrierung von Ethen</p>
-<pre tabindex="0"><code>CH₂=CH₂ + H₂ → CH₃-CH₃
-
-Katalysator: Pd, Pt, Ni
-</code></pre><p><strong>Anwendung:</strong></p>
+<p>$$\ce{CH2=CH2 + H2 -&gt; CH3-CH3}$$</p>
+<p>Katalysator: Pd, Pt, Ni</p>
+<p><strong>Anwendung:</strong></p>
 <ul>
 <li>Härtung von Fetten</li>
 <li>Reduktion von Alkenen zu Alkanen</li>
@@ -593,12 +594,12 @@ Katalysator: Pd, Pt, Ni
 <h3 id="was-ist-eine-elimination">Was ist eine Elimination?</h3>
 <p>Bei <strong>Eliminierungsreaktionen</strong> werden Atome oder Gruppen aus benachbarten Kohlenstoffatomen abgespalten, wobei eine Doppelbindung entsteht.</p>
 <p><strong>Allgemeines Schema:</strong></p>
-<pre tabindex="0"><code>R-CH₂-CH₂-X → R-CH=CH₂ + HX
-</code></pre><h3 id="e1-mechanismus-unimolekular">E1-Mechanismus (unimolekular)</h3>
+<p>$$\ce{R-CH2-CH2-X -&gt; R-CH=CH2 + HX}$$</p>
+<h3 id="e1-mechanismus-unimolekular">E1-Mechanismus (unimolekular)</h3>
 <p><strong>Beispiel:</strong> Elimination aus 2-Brom-2-methylpropan</p>
-<pre tabindex="0"><code>Schritt 1:  (CH₃)₃C-Br → (CH₃)₂C=CH₂ + HBr
-Schritt 2:  (CH₃)₂C=CH₂ + Br⁻ → Produkte
-</code></pre><p><strong>Eigenschaften:</strong></p>
+<p>Schritt 1: $\ce{(CH3)3C-Br -&gt; (CH3)2C=CH2 + HBr}$</p>
+<p>Schritt 2: $\ce{(CH3)2C=CH2 + Br- -&gt; \text{Produkte}}$</p>
+<p><strong>Eigenschaften:</strong></p>
 <ul>
 <li>Bildung eines Carbocations</li>
 <li>Konkurrenz mit S_N1</li>
@@ -606,10 +607,9 @@ Schritt 2:  (CH₃)₂C=CH₂ + Br⁻ → Produkte
 </ul>
 <h3 id="e2-mechanismus-bimolekular">E2-Mechanismus (bimolekular)</h3>
 <p><strong>Beispiel:</strong> Elimination aus 1-Brompropan</p>
-<pre tabindex="0"><code>CH₃-CH₂-CH₂-Br + Base → CH₃-CH=CH₂ + HBr
-
-Base (OH⁻) entfernt H, während Br⁻ abspaltet
-</code></pre><p><strong>Eigenschaften:</strong></p>
+<p>$$\ce{CH3-CH2-CH2-Br + Base -&gt; CH3-CH=CH2 + HBr}$$</p>
+<p>Base ($\ce{OH-}$) entfernt H, während $\ce{Br-}$ abspaltet</p>
+<p><strong>Eigenschaften:</strong></p>
 <ul>
 <li>Einzeitiger Prozess</li>
 <li>Anti-periplanare Anordnung von H und Abgangsgruppe</li>
@@ -644,18 +644,18 @@ Base (OH⁻) entfernt H, während Br⁻ abspaltet
 </tbody>
 </table>
 <p><strong>Beispiel:</strong> 2-Brombutan</p>
-<pre tabindex="0"><code>Mit schwachem Nucleophil (H₂O):  S_N1 → 2-Butanol
-Mit starker Base (OH⁻):           E2 → But-2-en
-</code></pre><h2 id="polymerisation">Polymerisation</h2>
+<p>Mit schwachem Nucleophil ($\ce{H2O}$): S_N1 → 2-Butanol</p>
+<p>Mit starker Base ($\ce{OH-}$): E2 → But-2-en</p>
+<h2 id="polymerisation">Polymerisation</h2>
 <h3 id="was-ist-polymerisation">Was ist Polymerisation?</h3>
 <p><strong>Polymerisation</strong> ist die Verknüpfung vieler kleiner Moleküle (Monomere) zu großen Molekülen (Polymeren).</p>
 <h3 id="kettenpolymerisation-additionspolymerisation">Kettenpolymerisation (Additionspolymerisation)</h3>
 <p><strong>Radikalische Polymerisation</strong></p>
 <p><strong>Beispiel:</strong> Polyethylen aus Ethen</p>
-<pre tabindex="0"><code>Initiierung:  Radikal · + CH₂=CH₂ → ·CH₂-CH₂·
-Wachstum:     ·CH₂-CH₂· + n CH₂=CH₂ → ·(CH₂-CH₂)ₙ·
-Terminierung: 2 ·(CH₂-CH₂)ₙ· → (CH₂-CH₂)₂ₙ
-</code></pre><p><strong>Anwendung:</strong></p>
+<p>Initiierung: $\ce{Radikal^. + CH2=CH2 -&gt; ^.CH2-CH2^.}$</p>
+<p>Wachstum: $\ce{^.CH2-CH2^. + n CH2=CH2 -&gt; ^.(CH2-CH2)_{n}^.}$</p>
+<p>Terminierung: $\ce{2 ^.(CH2-CH2)<em>{n}^. -&gt; (CH2-CH2)</em>{2n}}$</p>
+<p><strong>Anwendung:</strong></p>
 <ul>
 <li>Polyethylen (PE)</li>
 <li>Polypropylen (PP)</li>
@@ -665,9 +665,9 @@ Terminierung: 2 ·(CH₂-CH₂)ₙ· → (CH₂-CH₂)₂ₙ
 <h3 id="polykondensation">Polykondensation</h3>
 <p><strong>Polykondensation</strong> – Monomere verbinden sich unter Abspaltung kleiner Moleküle.</p>
 <p><strong>Beispiel:</strong> Polyamid (Nylon) aus Hexamethylendiamin und Adipinsäure</p>
-<pre tabindex="0"><code>n H₂N-(CH₂)₆-NH₂ + n HOOC-(CH₂)₄-COOH →
-→ -(NH-(CH₂)₆-NH-CO-(CH₂)₄-CO)ₙ- + 2n H₂O
-</code></pre><p><strong>Anwendung:</strong></p>
+<p>$$\ce{n H2N-(CH2)6-NH2 + n HOOC-(CH2)4-COOH -&gt;}$$</p>
+<p>$$\ce{-&gt; -(NH-(CH2)6-NH-CO-(CH2)4-CO)_{n}- + 2n H2O}$$</p>
+<p><strong>Anwendung:</strong></p>
 <ul>
 <li>Nylon (Polyamid)</li>
 <li>PET (Polyethylenterephthalat)</li>
@@ -676,27 +676,24 @@ Terminierung: 2 ·(CH₂-CH₂)ₙ· → (CH₂-CH₂)₂ₙ
 <h2 id="weitere-wichtige-reaktionstypen">Weitere wichtige Reaktionstypen</h2>
 <h3 id="oxidation-und-reduktion">Oxidation und Reduktion</h3>
 <p><strong>Oxidation von Alkoholen:</strong></p>
-<pre tabindex="0"><code>Primärer Alkohol:  R-CH₂-OH → R-CHO → R-COOH
-                    (Aldehyd)      (Carbonsäure)
-
-Sekundärer Alkohol: R₂CH-OH → R₂C=O
-                       (Keton)
-
-Tertiärer Alkohol:   R₃C-OH → keine Oxidation
-</code></pre><p><strong>Beispiel:</strong> Oxidation von Ethanol</p>
-<pre tabindex="0"><code>CH₃CH₂OH + [O] → CH₃CHO + H₂O
-(Alkohol)        (Aldehyd)
-</code></pre><h3 id="veresterung">Veresterung</h3>
+<p>Primärer Alkohol: $\ce{R-CH2-OH -&gt; R-CHO -&gt; R-COOH}$</p>
+<p>(Aldehyd) → (Carbonsäure)</p>
+<p>Sekundärer Alkohol: $\ce{R2CH-OH -&gt; R2C=O}$</p>
+<p>(Keton)</p>
+<p>Tertiärer Alkohol: $\ce{R3C-OH -&gt; \text{keine Oxidation}}$</p>
+<p><strong>Beispiel:</strong> Oxidation von Ethanol</p>
+<p>$$\ce{CH3CH2OH + [O] -&gt; CH3CHO + H2O}$$</p>
+<p>(Alkohol) → (Aldehyd)</p>
+<h3 id="veresterung">Veresterung</h3>
 <p><strong>Veresterung</strong> – Carbonsäure + Alkohol reagieren zu Ester + Wasser</p>
-<pre tabindex="0"><code>R-COOH + R&#39;-OH ⇌ R-COO-R&#39; + H₂O
-
-Katalysator: Säure (H₂SO₄)
-</code></pre><p><strong>Beispiel:</strong> Essigsäure + Ethanol → Essigsäureethylester</p>
-<pre tabindex="0"><code>CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ + H₂O
-</code></pre><h3 id="verseifung">Verseifung</h3>
+<p>$$\ce{R-COOH + R&rsquo;-OH &lt;=&gt; R-COO-R&rsquo; + H2O}$$</p>
+<p>Katalysator: Säure ($\ce{H2SO4}$)</p>
+<p><strong>Beispiel:</strong> Essigsäure + Ethanol → Essigsäureethylester</p>
+<p>$$\ce{CH3COOH + C2H5OH &lt;=&gt; CH3COOC2H5 + H2O}$$</p>
+<h3 id="verseifung">Verseifung</h3>
 <p><strong>Verseifung</strong> – Ester-Hydrolyse mit Lauge</p>
-<pre tabindex="0"><code>R-COO-R&#39; + NaOH → R-COONa + R&#39;-OH
-</code></pre><p><strong>Anwendung:</strong> Herstellung von Seife aus Fetten</p>
+<p>$$\ce{R-COO-R&rsquo; + NaOH -&gt; R-COONa + R&rsquo;-OH}$$</p>
+<p><strong>Anwendung:</strong> Herstellung von Seife aus Fetten</p>
 <h2 id="reaktionsmechanismen-verstehen">Reaktionsmechanismen verstehen</h2>
 <h3 id="energieprofile">Energieprofile</h3>
 <p><strong>S_N2:</strong></p>
@@ -723,10 +720,10 @@ Ea │  / \  (Zwischenstufe)
 <h2 id="praktische-anwendungen">Praktische Anwendungen</h2>
 <h3 id="1-kunststoffherstellung">1. Kunststoffherstellung</h3>
 <p><strong>Polyethylen (PE):</strong></p>
-<pre tabindex="0"><code>n CH₂=CH₂ → -(CH₂-CH₂)ₙ-
-</code></pre><p><strong>Polypropylen (PP):</strong></p>
-<pre tabindex="0"><code>n CH₂=CH-CH₃ → -(CH₂-CH(CH₃))ₙ-
-</code></pre><h3 id="2-pharmazeutische-industrie">2. Pharmazeutische Industrie</h3>
+<p>$$\ce{n CH2=CH2 -&gt; -(CH2-CH2)_{n}-}$$</p>
+<p><strong>Polypropylen (PP):</strong></p>
+<p>$$\ce{n CH2=CH-CH3 -&gt; -(CH2-CH(CH3))_{n}-}$$</p>
+<h3 id="2-pharmazeutische-industrie">2. Pharmazeutische Industrie</h3>
 <p><strong>Aspirin-Synthese:</strong></p>
 <pre tabindex="0"><code>Salicylsäure + Essigsäureanhydrid → Acetylsalicylsäure + Essigsäure
 </code></pre><h3 id="3-lebensmittelchemie">3. Lebensmittelchemie</h3>
@@ -1239,7 +1236,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="col-md-6 text-right">
                 <p>&copy; 2025 chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte. Alle Rechte vorbehalten.</p>
-                <p><small><a href="/imprint/" style="color: #fff;">impressum</a> | <a href="/privacy/" style="color: #fff;">privacy</a></small></p>
+                <p><small><a href="/impressum/" style="color: #fff;">impressum</a> | <a href="/datenschutz/" style="color: #fff;">datenschutz</a></small></p>
             </div>
         </div>
     </div>
@@ -1259,6 +1256,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
   
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
+        ]
+      });
+    });
+  </script>
 
   
   

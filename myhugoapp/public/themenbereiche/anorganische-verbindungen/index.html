@@ -45,6 +45,12 @@
 <link rel="stylesheet" href="/css/quiz-system.css">
 <link rel="stylesheet" href="/css/quiz-user-system.css">
 <link rel="stylesheet" href="/css/progress-tracker.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css">
   
 
   <body>
@@ -493,9 +499,9 @@ document.addEventListener('DOMContentLoaded', function() {
 <p><strong>Säuren</strong> sind Stoffe, die in Wasser Protonen (H⁺) abgeben können.</p>
 <p><strong>Beispiele:</strong></p>
 <ul>
-<li><strong>Salzsäure</strong>: HCl → H⁺ + Cl⁻</li>
-<li><strong>Schwefelsäure</strong>: H₂SO₄ → 2H⁺ + SO₄²⁻</li>
-<li><strong>Salpetersäure</strong>: HNO₃ → H⁺ + NO₃⁻</li>
+<li><strong>Salzsäure:</strong> $\ce{HCl -&gt; H+ + Cl-}$</li>
+<li><strong>Schwefelsäure:</strong> $\ce{H2SO4 -&gt; 2H+ + SO4^2-}$</li>
+<li><strong>Salpetersäure:</strong> $\ce{HNO3 -&gt; H+ + NO3-}$</li>
 </ul>
 <p><strong>Eigenschaften von Säuren:</strong></p>
 <ul>
@@ -508,9 +514,9 @@ document.addEventListener('DOMContentLoaded', function() {
 <p><strong>Basen</strong> sind Stoffe, die in Wasser Hydroxid-Ionen (OH⁻) bilden oder Protonen aufnehmen können.</p>
 <p><strong>Beispiele:</strong></p>
 <ul>
-<li><strong>Natronlauge</strong>: NaOH → Na⁺ + OH⁻</li>
-<li><strong>Kalilauge</strong>: KOH → K⁺ + OH⁻</li>
-<li><strong>Kalkwasser</strong>: Ca(OH)₂ → Ca²⁺ + 2OH⁻</li>
+<li><strong>Natronlauge:</strong> $\ce{NaOH -&gt; Na+ + OH-}$</li>
+<li><strong>Kalilauge:</strong> $\ce{KOH -&gt; K+ + OH-}$</li>
+<li><strong>Kalkwasser:</strong> $\ce{Ca(OH)2 -&gt; Ca^2+ + 2OH-}$</li>
 </ul>
 <p><strong>Eigenschaften von Basen:</strong></p>
 <ul>
@@ -522,24 +528,23 @@ document.addEventListener('DOMContentLoaded', function() {
 <h2 id="salze-und-ihre-bildung">Salze und ihre Bildung</h2>
 <h3 id="neutralisation">Neutralisation</h3>
 <p>Bei der <strong>Neutralisation</strong> reagieren Säuren und Basen zu Salz und Wasser:</p>
-<pre tabindex="0"><code>Säure + Base → Salz + Wasser
-</code></pre><p><strong>Beispiele:</strong></p>
-<pre tabindex="0"><code>HCl + NaOH → NaCl + H₂O
-Salzsäure + Natronlauge → Kochsalz + Wasser
-
-H₂SO₄ + 2KOH → K₂SO₄ + 2H₂O
-Schwefelsäure + Kalilauge → Kaliumsulfat + Wasser
-</code></pre><h3 id="salze-aus-metallen-und-säuren">Salze aus Metallen und Säuren</h3>
+<p>$$\text{Säure} + \text{Base} \rightarrow \text{Salz} + \text{Wasser}$$</p>
+<p><strong>Beispiele:</strong>
+$$\ce{HCl + NaOH -&gt; NaCl + H2O}$$</p>
+<p>Salzsäure + Natronlauge → Kochsalz + Wasser</p>
+<p>$$\ce{H2SO4 + 2KOH -&gt; K2SO4 + 2H2O}$$</p>
+<p>Schwefelsäure + Kalilauge → Kaliumsulfat + Wasser</p>
+<h3 id="salze-aus-metallen-und-säuren">Salze aus Metallen und Säuren</h3>
 <p>Metalle können mit Säuren reagieren:</p>
-<pre tabindex="0"><code>Metall + Säure → Salz + Wasserstoff
-</code></pre><p><strong>Beispiel:</strong></p>
-<pre tabindex="0"><code>Zn + 2HCl → ZnCl₂ + H₂↑
-Zink + Salzsäure → Zinkchlorid + Wasserstoff
-</code></pre><h3 id="salze-aus-carbonaten-und-säuren">Salze aus Carbonaten und Säuren</h3>
+<p>$$\ce{Metall + Säure -&gt; Salz + Wasserstoff}$$</p>
+<p><strong>Beispiel:</strong>
+$$\ce{Zn + 2HCl -&gt; ZnCl2 + H2 ^}$$</p>
+<p>Zink + Salzsäure → Zinkchlorid + Wasserstoff</p>
+<h3 id="salze-aus-carbonaten-und-säuren">Salze aus Carbonaten und Säuren</h3>
 <p>Carbonate reagieren mit Säuren unter CO₂-Entwicklung:</p>
-<pre tabindex="0"><code>CaCO₃ + 2HCl → CaCl₂ + H₂O + CO₂↑
-Kalkstein + Salzsäure → Calciumchlorid + Wasser + Kohlendioxid
-</code></pre><h2 id="ionenbindung-und-kristallgitter">Ionenbindung und Kristallgitter</h2>
+<p>$$\ce{CaCO3 + 2HCl -&gt; CaCl2 + H2O + CO2 ^}$$</p>
+<p>Kalkstein + Salzsäure → Calciumchlorid + Wasser + Kohlendioxid</p>
+<h2 id="ionenbindung-und-kristallgitter">Ionenbindung und Kristallgitter</h2>
 <h3 id="struktur-von-salzen">Struktur von Salzen</h3>
 <p>Salze bestehen aus <strong>Ionen</strong> - geladenen Teilchen:</p>
 <ul>
@@ -567,27 +572,27 @@ Kalkstein + Salzsäure → Calciumchlorid + Wasser + Kohlendioxid
 <tbody>
 <tr>
 <td>Kochsalz</td>
-<td>NaCl</td>
+<td>$\ce{NaCl}$</td>
 <td>Speisesalz, Konservierung</td>
 </tr>
 <tr>
 <td>Natriumcarbonat</td>
-<td>Na₂CO₃</td>
+<td>$\ce{Na2CO3}$</td>
 <td>Glasherstellung, Wasserenthärtung</td>
 </tr>
 <tr>
 <td>Calciumcarbonat</td>
-<td>CaCO₃</td>
+<td>$\ce{CaCO3}$</td>
 <td>Baustoffe, Kalkstein</td>
 </tr>
 <tr>
 <td>Kaliumnitrat</td>
-<td>KNO₃</td>
+<td>$\ce{KNO3}$</td>
 <td>Dünger, Schwarzpulver</td>
 </tr>
 <tr>
 <td>Kupfersulfat</td>
-<td>CuSO₄</td>
+<td>$\ce{CuSO4}$</td>
 <td>Pflanzenschutz, Galvanik</td>
 </tr>
 </tbody>
@@ -612,26 +617,26 @@ Kalkstein + Salzsäure → Calciumchlorid + Wasser + Kohlendioxid
 <h3 id="fällungsreaktionen">Fällungsreaktionen</h3>
 <p>Bei <strong>Fällungsreaktionen</strong> bildet sich aus zwei Lösungen ein unlöslicher Niederschlag.</p>
 <p><strong>Beispiel: Silbernitrat + Natriumchlorid</strong></p>
-<pre tabindex="0"><code>AgNO₃(aq) + NaCl(aq) → AgCl(s)↓ + NaNO₃(aq)
-Farblos + Farblos → Weißer Niederschlag + Farblos
-</code></pre><p>Der weiße Niederschlag von Silberchlorid (AgCl) ist schwer löslich.</p>
+<p>$$\ce{AgNO3(aq) + NaCl(aq) -&gt; AgCl(s)v + NaNO3(aq)}$$</p>
+<p>Farblos + Farblos → Weißer Niederschlag + Farblos</p>
+<p>Der weiße Niederschlag von Silberchlorid (AgCl) ist schwer löslich.</p>
 <p><strong>Beispiel: Bariumchlorid + Natriumsulfat</strong></p>
-<pre tabindex="0"><code>BaCl₂(aq) + Na₂SO₄(aq) → BaSO₄(s)↓ + 2NaCl(aq)
-Farblos + Farblos → Weißer Niederschlag + Farblos
-</code></pre><p>Bariumsulfat (BaSO₄) ist sehr schwer löslich.</p>
+<p>$$\ce{BaCl2(aq) + Na2SO4(aq) -&gt; BaSO4(s)v + 2NaCl(aq)}$$</p>
+<p>Farblos + Farblos → Weißer Niederschlag + Farblos</p>
+<p>Bariumsulfat ($\ce{BaSO4}$) ist sehr schwer löslich.</p>
 <h2 id="nachweisreaktionen">Nachweisreaktionen</h2>
 <h3 id="nachweis-von-chlorid-ionen-cl">Nachweis von Chlorid-Ionen (Cl⁻)</h3>
 <p><strong>Reaktion:</strong> Mit Silbernitratlösung</p>
-<pre tabindex="0"><code>NaCl(aq) + AgNO₃(aq) → AgCl(s)↓ + NaNO₃(aq)
-</code></pre><p><strong>Beobachtung:</strong> Weißer Niederschlag, der sich in Ammoniak löst.</p>
+<p>$$\ce{NaCl(aq) + AgNO3(aq) -&gt; AgCl(s)v + NaNO3(aq)}$$</p>
+<p><strong>Beobachtung:</strong> Weißer Niederschlag, der sich in Ammoniak löst.</p>
 <h3 id="nachweis-von-sulfat-ionen-so">Nachweis von Sulfat-Ionen (SO₄²⁻)</h3>
 <p><strong>Reaktion:</strong> Mit Bariumchloridlösung</p>
-<pre tabindex="0"><code>Na₂SO₄(aq) + BaCl₂(aq) → BaSO₄(s)↓ + 2NaCl(aq)
-</code></pre><p><strong>Beobachtung:</strong> Weißer Niederschlag, der in Säuren unlöslich ist.</p>
+<p>$$\ce{Na2SO4(aq) + BaCl2(aq) -&gt; BaSO4(s)v + 2NaCl(aq)}$$</p>
+<p><strong>Beobachtung:</strong> Weißer Niederschlag, der in Säuren unlöslich ist.</p>
 <h3 id="nachweis-von-carbonat-ionen-co">Nachweis von Carbonat-Ionen (CO₃²⁻)</h3>
 <p><strong>Reaktion:</strong> Mit Säure</p>
-<pre tabindex="0"><code>CaCO₃(s) + 2HCl(aq) → CaCl₂(aq) + H₂O(l) + CO₂(g)↑
-</code></pre><p><strong>Beobachtung:</strong> Gasentwicklung (CO₂), Kalkwasser trübt sich.</p>
+<p>$$\ce{CaCO3(s) + 2HCl(aq) -&gt; CaCl2(aq) + H2O(l) + CO2(g)^}$$</p>
+<p><strong>Beobachtung:</strong> Gasentwicklung (CO₂), Kalkwasser trübt sich.</p>
 <h2 id="redoxreaktionen-anorganischer-verbindungen">Redoxreaktionen anorganischer Verbindungen</h2>
 <h3 id="redoxreaktionen">Redoxreaktionen</h3>
 <p><strong>Redoxreaktionen</strong> sind Reaktionen mit Elektronenübertragung:</p>
@@ -640,22 +645,22 @@ Farblos + Farblos → Weißer Niederschlag + Farblos
 <li><strong>Reduktion</strong>: Aufnahme von Elektronen</li>
 </ul>
 <p><strong>Beispiel: Reaktion von Kupfer mit Silbernitrat</strong></p>
-<pre tabindex="0"><code>Cu(s) + 2AgNO₃(aq) → Cu(NO₃)₂(aq) + 2Ag(s)↓
-Kupfer + Silbernitrat → Kupfer(II)-nitrat + Silber
-</code></pre><p>Beobachtung: Kupferdraht überzieht sich mit silbernen Kristallen.</p>
+<p>$$\ce{Cu(s) + 2AgNO3(aq) -&gt; Cu(NO3)2(aq) + 2Ag(s)v}$$</p>
+<p>Kupfer + Silbernitrat → Kupfer(II)-nitrat + Silber</p>
+<p>Beobachtung: Kupferdraht überzieht sich mit silbernen Kristallen.</p>
 <h3 id="disproportionierungen">Disproportionierungen</h3>
 <p>Bei <strong>Disproportionierungen</strong> wird ein Element gleichzeitig oxidiert und reduziert.</p>
 <p><strong>Beispiel:</strong> Kupfer(I)-oxid</p>
-<pre tabindex="0"><code>Cu₂O + H₂SO₄ → Cu + CuSO₄ + H₂O
-</code></pre><p>Kupfer wird sowohl zu Cu(0) als auch zu Cu(II) umgewandelt.</p>
+<p>$$\ce{Cu2O + H2SO4 -&gt; Cu + CuSO4 + H2O}$$</p>
+<p>Kupfer wird sowohl zu Cu(0) als auch zu Cu(II) umgewandelt.</p>
 <h2 id="komplexe-verbindungen">Komplexe Verbindungen</h2>
 <h3 id="was-sind-komplexe">Was sind Komplexe?</h3>
 <p><strong>Komplexe</strong> sind Verbindungen, bei denen ein Zentralatom (meist ein Metall) von Molekülen oder Ionen (Liganden) umgeben ist.</p>
 <p><strong>Beispiele:</strong></p>
 <ul>
-<li><strong>Hexaaquakupfer(II)</strong>: [Cu(H₂O)₆]²⁺ (blau)</li>
-<li><strong>Tetrachlorocobaltat(II)</strong>: [CoCl₄]²⁻ (blau)</li>
-<li><strong>Hexamminecobalt(III)</strong>: [Co(NH₃)₆]³⁺ (gelb-orange)</li>
+<li><strong>Hexaaquakupfer(II)</strong>: $\ce{[Cu(H2O)6]^2+}$ (blau)</li>
+<li><strong>Tetrachlorocobaltat(II)</strong>: $\ce{[CoCl4]^2-}$ (blau)</li>
+<li><strong>Hexamminecobalt(III)</strong>: $\ce{[Co(NH3)6]^3+}$ (gelb-orange)</li>
 </ul>
 <h3 id="liganden">Liganden</h3>
 <p><strong>Liganden</strong> sind Moleküle oder Ionen, die an das Zentralatom binden:</p>
@@ -670,17 +675,17 @@ Kupfer + Silbernitrat → Kupfer(II)-nitrat + Silber
 <tbody>
 <tr>
 <td>Wasser</td>
-<td>H₂O</td>
+<td>$\ce{H2O}$</td>
 <td>1 (neutral)</td>
 </tr>
 <tr>
 <td>Ammoniak</td>
-<td>NH₃</td>
+<td>$\ce{NH3}$</td>
 <td>1 (neutral)</td>
 </tr>
 <tr>
 <td>Cyanid</td>
-<td>CN⁻</td>
+<td>$\ce{CN-}$</td>
 <td>1</td>
 </tr>
 <tr>
@@ -690,7 +695,7 @@ Kupfer + Silbernitrat → Kupfer(II)-nitrat + Silber
 </tr>
 <tr>
 <td>EDTA</td>
-<td>EDTA⁴⁻</td>
+<td>$\ce{EDTA^4-}$</td>
 <td>6</td>
 </tr>
 </tbody>
@@ -703,36 +708,35 @@ Kupfer + Silbernitrat → Kupfer(II)-nitrat + Silber
 <li><strong>Katalyse</strong>: Übergangsmetallkomplexe als Katalysatoren</li>
 </ul>
 <h2 id="ammoniak-und-ammoniumverbindungen">Ammoniak und Ammoniumverbindungen</h2>
-<h3 id="ammoniak-nh">Ammoniak (NH₃)</h3>
+<h3 id="ammoniak-cenh3">Ammoniak ($\ce{NH3}$)</h3>
 <p><strong>Eigenschaften:</strong></p>
 <ul>
 <li>Farbloses Gas mit stechendem Geruch</li>
 <li>Gut wasserlöslich</li>
-<li>Bildet mit Wasser NH₄⁺ + OH⁻ (schwache Base)</li>
+<li>Bildet mit Wasser $\ce{NH4+ + OH-}$ (schwache Base)</li>
 <li>Nachweis mit Nessler-Reagenz (braunrot)</li>
 </ul>
 <p><strong>Herstellung (Haber-Bosch-Verfahren):</strong></p>
-<pre tabindex="0"><code>N₂ + 3H₂ ⇌ 2NH₃      (ΔH = -92 kJ/mol)
-Stickstoff + Wasserstoff → Ammoniak
-</code></pre><p>Bedingungen: 400-500°C, 200-300 bar, Eisenkatalysator</p>
+<p>$$\ce{N2 + 3H2 &lt;=&gt; 2NH3} \quad (\Delta H = -92 \text{ kJ/mol})$$</p>
+<p>Stickstoff + Wasserstoff → Ammoniak</p>
+<p>Bedingungen: 400-500°C, 200-300 bar, Eisenkatalysator</p>
 <h3 id="ammoniumverbindungen">Ammoniumverbindungen</h3>
 <p><strong>Ammoniumsalze</strong> entstehen aus der Reaktion von Ammoniak mit Säuren:</p>
-<pre tabindex="0"><code>NH₃ + HCl → NH₄Cl
-Ammoniak + Salzsäure → Ammoniumchlorid
-
-2NH₃ + H₂SO₄ → (NH₄)₂SO₄
-Ammoniak + Schwefelsäure → Ammoniumsulfat
-</code></pre><h2 id="schwefel-und-seine-verbindungen">Schwefel und seine Verbindungen</h2>
-<h3 id="schwefelwasserstoff-hs">Schwefelwasserstoff (H₂S)</h3>
+<p>$$\ce{NH3 + HCl -&gt; NH4Cl}$$</p>
+<p>Ammoniak + Salzsäure → Ammoniumchlorid</p>
+<p>$$\ce{2NH3 + H2SO4 -&gt; (NH4)2SO4}$$</p>
+<p>Ammoniak + Schwefelsäure → Ammoniumsulfat</p>
+<h2 id="schwefel-und-seine-verbindungen">Schwefel und seine Verbindungen</h2>
+<h3 id="schwefelwasserstoff-ceh2s">Schwefelwasserstoff ($\ce{H2S}$)</h3>
 <ul>
 <li>Farbloses Gas mit charakteristischem Geruch (faulige Eier)</li>
 <li>Sehr giftig!</li>
 <li>Nachweis mit Bleiacetat-Papier (schwarzer Fleck)</li>
 </ul>
-<h3 id="schweflige-säure-hso-und-schwefelsäure-hso">Schweflige Säure (H₂SO₃) und Schwefelsäure (H₂SO₄)</h3>
+<h3 id="schweflige-säure-ceh2so3-und-schwefelsäure-ceh2so4">Schweflige Säure ($\ce{H2SO3}$) und Schwefelsäure ($\ce{H2SO4}$)</h3>
 <p><strong>Schweflige Säure:</strong></p>
-<pre tabindex="0"><code>SO₂ + H₂O ⇌ H₂SO₃
-</code></pre><p>Unbeständig, schwache Säure</p>
+<p>$$\ce{SO2 + H2O &lt;=&gt; H2SO3}$$</p>
+<p>Unbeständig, schwache Säure</p>
 <p><strong>Schwefelsäure:</strong></p>
 <ul>
 <li>Starke Säure</li>
@@ -743,52 +747,52 @@ Ammoniak + Schwefelsäure → Ammoniumsulfat
 <p><strong>Vorsicht:</strong> Säure immer ins Wasser gießen, nie umgekehrt!</p>
 <h3 id="schwefeloxide">Schwefeloxide</h3>
 <ul>
-<li><strong>Schwefeldioxid (SO₂)</strong>: Beißendes Gas, entsteht bei Verbrennung von Schwefel</li>
-<li><strong>Schwefeltrioxid (SO₃)</strong>: Reagiert mit Wasser zu Schwefelsäure</li>
+<li><strong>Schwefeldioxid ($\ce{SO2}$)</strong>: Beißendes Gas, entsteht bei Verbrennung von Schwefel</li>
+<li><strong>Schwefeltrioxid ($\ce{SO3}$)</strong>: Reagiert mit Wasser zu Schwefelsäure</li>
 </ul>
 <h2 id="stickstoff-und-seine-verbindungen">Stickstoff und seine Verbindungen</h2>
 <h3 id="stickstoffoxide">Stickstoffoxide</h3>
 <ul>
-<li><strong>Stickstoffmonoxid (NO)</strong>: Farbloses Gas</li>
-<li><strong>Stickstoffdioxid (NO₂)</strong>: Braunes Gas, giftig</li>
+<li><strong>Stickstoffmonoxid ($\ce{NO}$)</strong>: Farbloses Gas</li>
+<li><strong>Stickstoffdioxid ($\ce{NO2}$)</strong>: Braunes Gas, giftig</li>
 </ul>
 <h3 id="ammoniak-und-ammoniumverbindungen-1">Ammoniak und Ammoniumverbindungen</h3>
 <p>(siehe oben)</p>
-<h3 id="salpetersäure-hno">Salpetersäure (HNO₃)</h3>
+<h3 id="salpetersäure-cehno3">Salpetersäure ($\ce{HNO3}$)</h3>
 <ul>
 <li>Starke Säure</li>
 <li>Oxidierend</li>
-<li>Konz.: gelbliche Flüssigkeit, gibt braune Dämpfe (NO₂) ab</li>
+<li>Konz.: gelbliche Flüssigkeit, gibt braune Dämpfe ($\ce{NO2}$) ab</li>
 </ul>
 <h2 id="kohlenstoff-und-seine-anorganischen-verbindungen">Kohlenstoff und seine anorganischen Verbindungen</h2>
 <h3 id="kohlenstoffoxide">Kohlenstoffoxide</h3>
 <ul>
-<li><strong>Kohlenstoffmonoxid (CO)</strong>: Farblos, geruchlos, sehr giftig</li>
-<li><strong>Kohlenstoffdioxid (CO₂)</strong>: Farblos, nicht giftig</li>
+<li><strong>Kohlenstoffmonoxid ($\ce{CO}$)</strong>: Farblos, geruchlos, sehr giftig</li>
+<li><strong>Kohlenstoffdioxid ($\ce{CO2}$)</strong>: Farblos, nicht giftig</li>
 </ul>
 <h3 id="carbonate">Carbonate</h3>
 <p><strong>Calciumcarbonat (Kalkstein, Marmor)</strong></p>
-<pre tabindex="0"><code>CaCO₃ → CaO + CO₂      (bei starkem Erhitzen)
-Kalkstein → Kalk + Kohlendioxid
-</code></pre><p><strong>Natriumcarbonat (Soda)</strong></p>
-<pre tabindex="0"><code>Na₂CO₃ + 2HCl → 2NaCl + H₂O + CO₂↑
-</code></pre><p>Verwendung: Glasherstellung, Wasserenthärtung, Seifen</p>
+<p>$$\ce{CaCO3 -&gt; CaO + CO2} \quad \text{(bei starkem Erhitzen)}$$</p>
+<p>Kalkstein → Kalk + Kohlendioxid</p>
+<p><strong>Natriumcarbonat (Soda)</strong></p>
+<p>$$\ce{Na2CO3 + 2HCl -&gt; 2NaCl + H2O + CO2^}$$</p>
+<p>Verwendung: Glasherstellung, Wasserenthärtung, Seifen</p>
 <h2 id="praktische-anwendungen">Praktische Anwendungen</h2>
 <h3 id="1-wasserenthärtung">1. Wasserenthärtung</h3>
-<p>Hartes Wasser enthält Ca²⁺- und Mg²⁺-Ionen. Diese können durch <strong>Ionenaustausch</strong> entfernt werden:</p>
-<pre tabindex="0"><code>Ca²⁺ + Na₂R → CaR + 2Na⁺
-(R = Austauscherharz)
-</code></pre><h3 id="2-düngemittel">2. Düngemittel</h3>
+<p>Hartes Wasser enthält $\ce{Ca^2+}$- und $\ce{Mg^2+}$-Ionen. Diese können durch <strong>Ionenaustausch</strong> entfernt werden:</p>
+<p>$$\ce{Ca^2+ + Na2R -&gt; CaR + 2Na+}$$</p>
+<p>(R = Austauscherharz)</p>
+<h3 id="2-düngemittel">2. Düngemittel</h3>
 <p>Wichtige anorganische Dünger:</p>
 <ul>
-<li><strong>Stickstoff</strong>: Kalksalpeter (Ca(NO₃)₂)</li>
-<li><strong>Phosphor</strong>: Superphosphat (Ca(H₂PO₄)₂)</li>
-<li><strong>Kalium</strong>: Kaliumsulfat (K₂SO₄)</li>
+<li><strong>Stickstoff</strong>: Kalksalpeter ($\ce{Ca(NO3)2}$)</li>
+<li><strong>Phosphor</strong>: Superphosphat ($\ce{Ca(H2PO4)2}$)</li>
+<li><strong>Kalium</strong>: Kaliumsulfat ($\ce{K2SO4}$)</li>
 </ul>
 <h3 id="3-baustoffe">3. Baustoffe</h3>
 <ul>
-<li><strong>Gips</strong>: CaSO₄·2H₂O (Wandputz, Bauplatten)</li>
-<li><strong>Kalk</strong>: CaO, Ca(OH)₂ (Mörtel, Putz)</li>
+<li><strong>Gips</strong>: $\ce{CaSO4·2H2O}$ (Wandputz, Bauplatten)</li>
+<li><strong>Kalk</strong>: $\ce{CaO, Ca(OH)2}$ (Mörtel, Putz)</li>
 <li><strong>Zement</strong>: Mischung aus Kalk, Ton, Sand</li>
 </ul>
 <h2 id="experimente">Experimente</h2>
@@ -823,18 +827,20 @@ Kalkstein → Kalk + Kohlendioxid
 <p>Nutzen Sie den <strong><a href="/molare-masse-rechner/">Molaren Masse Rechner</a></strong>, um die molaren Massen anorganischer Verbindungen zu berechnen:</p>
 <p><strong>Beispiele:</strong></p>
 <ul>
-<li><strong>NaCl</strong>: 22.99 + 35.45 = 58.44 g/mol</li>
-<li><strong>CaCO₃</strong>: 40.08 + 12.01 + (3 × 16.00) = 100.09 g/mol</li>
-<li><strong>H₂SO₄</strong>: (2 × 1.01) + 32.07 + (4 × 16.00) = 98.09 g/mol</li>
+<li><strong>$\ce{NaCl}$</strong>: 22.99 + 35.45 = 58.44 g/mol</li>
+<li><strong>$\ce{CaCO3}$</strong>: 40.08 + 12.01 + (3 × 16.00) = 100.09 g/mol</li>
+<li><strong>$\ce{H2SO4}$</strong>: (2 × 1.01) + 32.07 + (4 × 16.00) = 98.09 g/mol</li>
 </ul>
 <h3 id="stoffmengenberechnung">Stoffmengenberechnung</h3>
-<pre tabindex="0"><code>n = m / M
-n = Stoffmenge (mol)
-m = Masse (g)
-M = Molare Masse (g/mol)
-</code></pre><p><strong>Beispiel:</strong> 5 g NaCl</p>
-<pre tabindex="0"><code>n = 5 g / 58.44 g/mol = 0.086 mol
-</code></pre><h2 id="lernziele">Lernziele</h2>
+<p>$$n = \frac{m}{M}$$</p>
+<ul>
+<li>$n$ = Stoffmenge (mol)</li>
+<li>$m$ = Masse (g)</li>
+<li>$M$ = Molare Masse (g/mol)</li>
+</ul>
+<p><strong>Beispiel:</strong> 5 g $\ce{NaCl}$</p>
+<p>$$n = \frac{5 \text{ g}}{58.44 \text{ g/mol}} = 0.086 \text{ mol}$$</p>
+<h2 id="lernziele">Lernziele</h2>
 <p>Nach Abschluss dieses Themenbereichs sollten Sie:</p>
 <ul>
 <li>✅ Den Unterschied zwischen Säuren und Basen erklären können</li>
@@ -1272,7 +1278,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="col-md-6 text-right">
                 <p>&copy; 2025 chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte. Alle Rechte vorbehalten.</p>
-                <p><small><a href="/imprint/" style="color: #fff;">impressum</a> | <a href="/privacy/" style="color: #fff;">privacy</a></small></p>
+                <p><small><a href="/impressum/" style="color: #fff;">impressum</a> | <a href="/datenschutz/" style="color: #fff;">datenschutz</a></small></p>
             </div>
         </div>
     </div>
@@ -1294,6 +1300,23 @@ document.addEventListener('DOMContentLoaded', function() {
   
   <script src="/data/quiz-anorganische-verbindungen.js"></script>
   
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
+        ]
+      });
+    });
+  </script>
 
   
   

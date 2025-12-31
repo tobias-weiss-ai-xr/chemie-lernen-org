@@ -45,6 +45,12 @@
 <link rel="stylesheet" href="/css/quiz-system.css">
 <link rel="stylesheet" href="/css/quiz-user-system.css">
 <link rel="stylesheet" href="/css/progress-tracker.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css">
   
 
   <body>
@@ -491,9 +497,9 @@ document.addEventListener('DOMContentLoaded', function() {
 <h2 id="die-teilchen-der-materie">Die Teilchen der Materie</h2>
 <p>Alle Materie besteht aus kleinen Teilchen, die wir als <strong>Atome</strong> bezeichnen. Atome können sich zu <strong>Molekülen</strong> verbinden, wie zum Beispiel:</p>
 <ul>
-<li><strong>H₂O</strong> (Wasser): 2 Wasserstoff-Atome + 1 Sauerstoff-Atom</li>
-<li><strong>CO₂</strong> (Kohlenstoffdioxid): 1 Kohlenstoff-Atom + 2 Sauerstoff-Atome</li>
-<li><strong>O₂</strong> (Sauerstoff): 2 Sauerstoff-Atome</li>
+<li><strong>$\ce{H2O}$</strong> (Wasser): 2 Wasserstoff-Atome + 1 Sauerstoff-Atom</li>
+<li><strong>$\ce{CO2}$</strong> (Kohlenstoffdioxid): 1 Kohlenstoff-Atom + 2 Sauerstoff-Atome</li>
+<li><strong>$\ce{O2}$</strong> (Sauerstoff): 2 Sauerstoff-Atome</li>
 </ul>
 <h3 id="chemische-reaktionen">Chemische Reaktionen</h3>
 <p>Bei einer chemischen Reaktion werden Ausgangsstoffe (Edukte) in neue Stoffe (Produkte) umgewandelt. Dies geschieht durch:</p>
@@ -502,8 +508,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <li><strong>Neubildung</strong> neuer chemischer Bindungen</li>
 </ul>
 <p>Beispiel: Die Verbrennung von Methan</p>
-<pre tabindex="0"><code>CH₄ + 2O₂ → CO₂ + 2H₂O
-</code></pre><h2 id="arbeitsweisen-in-der-chemie">Arbeitsweisen in der Chemie</h2>
+<p>$$\ce{CH4 + 2O2 -&gt; CO2 + 2H2O}$$</p>
+<h2 id="arbeitsweisen-in-der-chemie">Arbeitsweisen in der Chemie</h2>
 <h3 id="beobachten-und-beschreiben">Beobachten und Beschreiben</h3>
 <p>Chemiker beobachten Phänomene genau und beschreiben sie systematisch:</p>
 <ul>
@@ -641,8 +647,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </ul>
 <h3 id="element-und-verbindung">Element und Verbindung</h3>
 <ul>
-<li><strong>Element</strong>: Reinstoff, der aus nur einer Art Atomen besteht (z.B. Sauerstoff O₂)</li>
-<li><strong>Verbindung</strong>: Reinstoff aus mindestens zwei verschiedenen Elementen (z.B. Wasser H₂O)</li>
+<li><strong>Element</strong>: Reinstoff, der aus nur einer Art Atomen besteht (z.B. Sauerstoff $\ce{O2}$)</li>
+<li><strong>Verbindung</strong>: Reinstoff aus mindestens zwei verschiedenen Elementen (z.B. Wasser $\ce{H2O}$)</li>
 </ul>
 <h3 id="homogen-und-heterogen">Homogen und Heterogen</h3>
 <ul>
@@ -1085,7 +1091,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="col-md-6 text-right">
                 <p>&copy; 2025 chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte. Alle Rechte vorbehalten.</p>
-                <p><small><a href="/imprint/" style="color: #fff;">impressum</a> | <a href="/privacy/" style="color: #fff;">privacy</a></small></p>
+                <p><small><a href="/impressum/" style="color: #fff;">impressum</a> | <a href="/datenschutz/" style="color: #fff;">datenschutz</a></small></p>
             </div>
         </div>
     </div>
@@ -1105,6 +1111,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
   
+  <script src="/data/quiz-einfuehrung-chemie.js"></script>
+  
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
+        ]
+      });
+    });
+  </script>
 
   
   

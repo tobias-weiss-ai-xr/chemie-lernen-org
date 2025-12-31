@@ -45,6 +45,12 @@
 <link rel="stylesheet" href="/css/quiz-system.css">
 <link rel="stylesheet" href="/css/quiz-user-system.css">
 <link rel="stylesheet" href="/css/progress-tracker.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css">
   
 
   <body>
@@ -482,14 +488,15 @@ document.addEventListener('DOMContentLoaded', function() {
 <p>Chemische Reaktionen laufen nicht alle mit der gleichen Geschwindigkeit ab. Manche sind explosionsartig schnell, andere brauchen Jahre. Zudem erreichen viele reversible Reaktionen ein chemisches Gleichgewicht. Das Verständnis dieser Konzepte ist essenziell für die chemische Industrie, Biochemie und Umweltwissenschaften.</p>
 <h2 id="was-ist-die-reaktionsgeschwindigkeit">Was ist die Reaktionsgeschwindigkeit?</h2>
 <p>Die <strong>Reaktionsgeschwindigkeit</strong> beschreibt, wie schnell die Konzentration eines Reaktanden oder Produkts pro Zeiteinheit ändert.</p>
-<pre tabindex="0"><code>v = -Δc(Reaktand)/Δt = +Δc(Produkt)/Δt
-
-v = Reaktionsgeschwindigkeit (mol/(L·s))
-Δc = Konzentrationsänderung (mol/L)
-Δt = Zeitänderung (s)
-</code></pre><p><strong>Beispiel:</strong> Die Zersetzung von Wasserstoffperoxid</p>
-<pre tabindex="0"><code>2H₂O₂ → 2H₂O + O₂
-</code></pre><h2 id="messung-der-reaktionsgeschwindigkeit">Messung der Reaktionsgeschwindigkeit</h2>
+<p>$$v = -\frac{\Delta c(\text{Reaktand})}{\Delta t} = +\frac{\Delta c(\text{Produkt})}{\Delta t}$$</p>
+<ul>
+<li>$v$ = Reaktionsgeschwindigkeit (mol/(L·s))</li>
+<li>$\Delta c$ = Konzentrationsänderung (mol/L)</li>
+<li>$\Delta t$ = Zeitänderung (s)</li>
+</ul>
+<p><strong>Beispiel:</strong> Die Zersetzung von Wasserstoffperoxid</p>
+<p>$$\ce{2H2O2 -&gt; 2H2O + O2}$$</p>
+<h2 id="messung-der-reaktionsgeschwindigkeit">Messung der Reaktionsgeschwindigkeit</h2>
 <h3 id="methoden-zur-geschwindigkeitsbestimmung">Methoden zur Geschwindigkeitsbestimmung</h3>
 <ol>
 <li>
@@ -520,21 +527,22 @@ v = Reaktionsgeschwindigkeit (mol/(L·s))
 <h2 id="faktoren-influencing-die-reaktionsgeschwindigkeit">Faktoren influencing die Reaktionsgeschwindigkeit</h2>
 <h3 id="1-konzentration-der-reaktanden">1. Konzentration der Reaktanden</h3>
 <p>Je höher die Konzentration, desto schneller die Reaktion (mehr Teilchenkollisionen).</p>
-<p><strong>Gesetz der Massenwirkung:</strong></p>
-<pre tabindex="0"><code>v ~ c(Reaktand₁) · c(Reaktand₂)
-</code></pre><h3 id="2-temperatur">2. Temperatur</h3>
+<p><strong>Gesetz der Massenwirkung:</strong>
+$$v \sim c(\text{Reaktand}_1) \cdot c(\text{Reaktand}_2)$$</p>
+<h3 id="2-temperatur">2. Temperatur</h3>
 <p>Höhere Temperatur → schnellere Reaktion (mehr Teilchen mit ausreichender Energie).</p>
 <p><strong>RGT-Regel (Raoult-Guldberg- van&rsquo;t Hoff):</strong></p>
 <pre tabindex="0"><code>Eine Erhöhung um 10 K verdoppelt bis vervierfacht die Geschwindigkeit.
-</code></pre><p><strong>Arrhenius-Gleichung:</strong></p>
-<pre tabindex="0"><code>k = A · e^(-Ea/(R·T))
-
-k = Geschwindigkeitskonstante
-A = Frequenzfaktor
-Ea = Aktivierungsenergie
-R = Gaskonstante
-T = Temperatur (K)
-</code></pre><h3 id="3-katalysatoren">3. Katalysatoren</h3>
+</code></pre><p><strong>Arrhenius-Gleichung:</strong>
+$$k = A \cdot e^{-E_a/(R \cdot T)}$$</p>
+<ul>
+<li>$k$ = Geschwindigkeitskonstante</li>
+<li>$A$ = Frequenzfaktor</li>
+<li>$E_a$ = Aktivierungsenergie</li>
+<li>$R$ = Gaskonstante</li>
+<li>$T$ = Temperatur (K)</li>
+</ul>
+<h3 id="3-katalysatoren">3. Katalysatoren</h3>
 <p><strong>Katalysatoren</strong> senken die Aktivierungsenergie und beschleunigen Reaktionen, ohne selbst verbraucht zu werden.</p>
 <p><strong>Beispiele:</strong></p>
 <ul>
@@ -550,17 +558,16 @@ T = Temperatur (K)
 <h2 id="geschwindigkeitsgesetze">Geschwindigkeitsgesetze</h2>
 <h3 id="reaktionsordnung">Reaktionsordnung</h3>
 <p>Die <strong>Reaktionsordnung</strong> gibt an, wie die Geschwindigkeit von den Konzentrationen abhängt.</p>
-<p><strong>Nullte Ordnung:</strong></p>
-<pre tabindex="0"><code>v = k (unabhängig von Konzentration)
-</code></pre><p><strong>Erste Ordnung:</strong></p>
-<pre tabindex="0"><code>v = k · c(A)
-</code></pre><p><strong>Zweite Ordnung:</strong></p>
-<pre tabindex="0"><code>v = k · c(A) · c(B)
-</code></pre><h3 id="beispiel-zersetzung-von-no">Beispiel: Zersetzung von N₂O₅</h3>
-<pre tabindex="0"><code>2N₂O₅ → 4NO₂ + O₂
-
-v = k · c(N₂O₅)     (1. Ordnung)
-</code></pre><h2 id="aktivierungsenergie">Aktivierungsenergie</h2>
+<p><strong>Nullte Ordnung:</strong>
+$$v = k \quad \text{(unabhängig von Konzentration)}$$</p>
+<p><strong>Erste Ordnung:</strong>
+$$v = k \cdot c(A)$$</p>
+<p><strong>Zweite Ordnung:</strong>
+$$v = k \cdot c(A) \cdot c(B)$$</p>
+<h3 id="beispiel-zersetzung-von-no">Beispiel: Zersetzung von N₂O₅</h3>
+<p>$$\ce{2N2O5 -&gt; 4NO2 + O2}$$</p>
+<p>$$v = k \cdot c(\ce{N2O5}) \quad \text{(1. Ordnung)}$$</p>
+<h2 id="aktivierungsenergie">Aktivierungsenergie</h2>
 <p>Die <strong>Aktivierungsenergie (Ea)</strong> ist die minimale Energie, die Teilchen benötigen, um zu reagieren.</p>
 <p><strong>Energieprofil:</strong></p>
 <pre tabindex="0"><code>Energie
@@ -586,11 +593,10 @@ Ea2│   /  \
 </code></pre><h2 id="chemisches-gleichgewicht">Chemisches Gleichgewicht</h2>
 <h3 id="was-ist-ein-chemisches-gleichgewicht">Was ist ein chemisches Gleichgewicht?</h3>
 <p>Bei <strong>reversiblen Reaktionen</strong> können Reaktanden und Produkte miteinander reagieren. Im Gleichgewicht sind die Geschwindigkeiten von Hin- und Rückreaktion gleich.</p>
-<p><strong>Beispiel:</strong></p>
-<pre tabindex="0"><code>N₂ + 3H₂ ⇌ 2NH₃
-
-v(hin) = v(rück)
-</code></pre><h3 id="merkmale-des-gleichgewichts">Merkmale des Gleichgewichts</h3>
+<p><strong>Beispiel:</strong>
+$$\ce{N2 + 3H2 &lt;=&gt; 2NH3}$$</p>
+<p>$$v(\text{hin}) = v(\text{rück})$$</p>
+<h3 id="merkmale-des-gleichgewichts">Merkmale des Gleichgewichts</h3>
 <ul>
 <li><strong>Dynamisch:</strong> Reaktion läuft weiter, aber keine netto-Änderung</li>
 <li><strong>Mikroskopisch:</strong> Einzelne Teilchen reagieren weiter</li>
@@ -599,48 +605,44 @@ v(hin) = v(rück)
 </ul>
 <h2 id="massenwirkungsgesetz">Massenwirkungsgesetz</h2>
 <p>Das <strong>Massenwirkungsgesetz</strong> beschreibt die Beziehung zwischen Konzentrationen im Gleichgewicht.</p>
-<p>Für die Reaktion:</p>
-<pre tabindex="0"><code>aA + bB ⇌ cC + dD
-</code></pre><p>Gilt:</p>
-<pre tabindex="0"><code>K = [C]^c · [D]^d / [A]^a · [B]^b
-
-K = Gleichgewichtskonstante
-[] = Gleichgewichtskonzentration
-</code></pre><h3 id="beispiel-synthese-von-hi">Beispiel: Synthese von HI</h3>
-<pre tabindex="0"><code>H₂ + I₂ ⇌ 2HI
-
-K = [HI]² / [H₂] · [I₂]
-</code></pre><h2 id="prinzip-von-le-chatelier">Prinzip von Le Chatelier</h2>
+<p>Für die Reaktion:
+$$aA + bB \rightleftharpoons cC + dD$$</p>
+<p>Gilt:
+$$K = \frac{[C]^c \cdot [D]^d}{[A]^a \cdot [B]^b}$$</p>
+<ul>
+<li>$K$ = Gleichgewichtskonstante</li>
+<li>$[&hellip;]$ = Gleichgewichtskonzentration</li>
+</ul>
+<h3 id="beispiel-synthese-von-hi">Beispiel: Synthese von HI</h3>
+<p>$$\ce{H2 + I2 &lt;=&gt; 2HI}$$</p>
+<p>$$K = \frac{[\ce{HI}]^2}{[\ce{H2}] \cdot [\ce{I2}]}$$</p>
+<h2 id="prinzip-von-le-chatelier">Prinzip von Le Chatelier</h2>
 <p>Das <strong>Prinzip von Le Chatelier</strong> besagt: Wenn ein System im Gleichgewicht gestört wird, verschiebt sich das Gleichgewicht, um die Störung zu kompensieren.</p>
 <h3 id="einflussfaktoren-auf-das-gleichgewicht">Einflussfaktoren auf das Gleichgewicht</h3>
 <h4 id="1-konzentrationsänderung">1. Konzentrationsänderung</h4>
 <p><strong>Mehr Reaktanden:</strong> Gleichgewicht verschiebt sich zu Produkten</p>
-<p><strong>Beispiel:</strong></p>
-<pre tabindex="0"><code>N₂ + 3H₂ ⇌ 2NH₃
-
-Mehr H₂ → mehr NH₃ (Produkt)
-</code></pre><h4 id="2-druckänderung-bei-gasen">2. Druckänderung (bei Gasen)</h4>
+<p><strong>Beispiel:</strong>
+$$\ce{N2 + 3H2 &lt;=&gt; 2NH3}$$</p>
+<p>Mehr $\ce{H2}$ → mehr $\ce{NH3}$ (Produkt)</p>
+<h4 id="2-druckänderung-bei-gasen">2. Druckänderung (bei Gasen)</h4>
 <p><strong>Höherer Druck:</strong> Verschiebung zur Seite mit weniger Gasmolekülen</p>
-<p><strong>Beispiel:</strong></p>
-<pre tabindex="0"><code>N₂(g) + 3H₂(g) ⇌ 2NH₃(g)
-
-4 Mol Gas → 2 Mol Gas
-
-Höherer Druck → mehr NH₃ (weniger Gasmoleküle)
-</code></pre><h4 id="3-temperaturänderung">3. Temperaturänderung</h4>
-<p><strong>Exotherme Reaktion (ΔH &lt; 0):</strong></p>
+<p><strong>Beispiel:</strong>
+$$\ce{N2(g) + 3H2(g) &lt;=&gt; 2NH3(g)}$$</p>
+<p>$$4 \text{ Mol Gas} \rightarrow 2 \text{ Mol Gas}$$</p>
+<p>Höherer Druck → mehr $\ce{NH3}$ (weniger Gasmoleküle)</p>
+<h4 id="3-temperaturänderung">3. Temperaturänderung</h4>
+<p><strong>Exotherme Reaktion ($\Delta H &lt; 0$):</strong></p>
 <ul>
 <li>Höhere Temperatur → Verschiebung zu Reaktanden (endotherme Richtung)</li>
 </ul>
-<p><strong>Endotherme Reaktion (ΔH &gt; 0):</strong></p>
+<p><strong>Endotherme Reaktion ($\Delta H &gt; 0$):</strong></p>
 <ul>
 <li>Höhere Temperatur → Verschiebung zu Produkten (endotherme Richtung)</li>
 </ul>
-<p><strong>Beispiel (exotherm):</strong></p>
-<pre tabindex="0"><code>N₂ + 3H₂ ⇌ 2NH₃      ΔH = -92 kJ/mol
-
-Höhere Temperatur → weniger NH₃
-</code></pre><h4 id="4-katalysatoren">4. Katalysatoren</h4>
+<p><strong>Beispiel (exotherm):</strong>
+$$\ce{N2 + 3H2 &lt;=&gt; 2NH3} \quad \Delta H = -92 \text{ kJ/mol}$$</p>
+<p>Höhere Temperatur → weniger $\ce{NH3}$</p>
+<h4 id="4-katalysatoren">4. Katalysatoren</h4>
 <p>Katalysatoren beschleunigen Hin- und Rückreaktion gleichmäßig → <strong>keine Verschiebung</strong> des Gleichgewichts, nur schnellere Einstellung.</p>
 <h2 id="praktische-anwendungen">Praktische Anwendungen</h2>
 <h3 id="haber-bosch-verfahren-ammoniak-synthese">Haber-Bosch-Verfahren (Ammoniak-Synthese)</h3>
@@ -1155,7 +1157,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="col-md-6 text-right">
                 <p>&copy; 2025 chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte. Alle Rechte vorbehalten.</p>
-                <p><small><a href="/imprint/" style="color: #fff;">impressum</a> | <a href="/privacy/" style="color: #fff;">privacy</a></small></p>
+                <p><small><a href="/impressum/" style="color: #fff;">impressum</a> | <a href="/datenschutz/" style="color: #fff;">datenschutz</a></small></p>
             </div>
         </div>
     </div>
@@ -1177,6 +1179,23 @@ document.addEventListener('DOMContentLoaded', function() {
   
   <script src="/data/quiz-gleichgewicht-geschwindigkeit.js"></script>
   
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
+        ]
+      });
+    });
+  </script>
 
   
   

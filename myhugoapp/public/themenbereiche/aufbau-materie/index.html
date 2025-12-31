@@ -45,6 +45,12 @@
 <link rel="stylesheet" href="/css/quiz-system.css">
 <link rel="stylesheet" href="/css/quiz-user-system.css">
 <link rel="stylesheet" href="/css/progress-tracker.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css">
   
 
   <body>
@@ -546,17 +552,17 @@ document.addEventListener('DOMContentLoaded', function() {
 <li><strong>Anzahl:</strong> Gleich der Protonenzahl (bei neutralen Atomen)</li>
 </ul>
 <h3 id="struktur-des-atoms">Struktur des Atoms</h3>
-<pre tabindex="0"><code>        Elektronenhülle (e⁻)
-        ╔═══════════════════╗
-        ║                   ║
-        ║     Atomkern      ║
-        ║  ╔═══════════╗   ║
-        ║  ║ p⁺  n⁰   ║   ║
-        ║  ║ p⁺  n⁰   ║   ║
-        ║  ║  n⁰  p⁺  ║   ║
-        ║  ╚═══════════╝   ║
-        ╚═══════════════════╝
-</code></pre><p><strong>Wichtige Größen:</strong></p>
+<p>$$
+\begin{array}{c}
+\text{Elektronenhülle } (e^-) \
+\downarrow \
+\boxed{\text{Atomkern}} \
+\quad \downarrow \
+\quad \text{Protonen } (p^+) \text{ und Neutronen } (n^0)
+\end{array}
+$$</p>
+<p>Das Atom besteht aus einem kompakten Kern mit Protonen und Neutronen, umgeben von einer Elektronenhülle.</p>
+<p><strong>Wichtige Größen:</strong></p>
 <ul>
 <li><strong>Protonenzahl (Z):</strong> Anzahl der Protonen = Ordnungszahl</li>
 <li><strong>Massenzahl (A):</strong> Protonen + Neutronen</li>
@@ -673,11 +679,10 @@ document.addEventListener('DOMContentLoaded', function() {
 <li>Elektrostatische Anziehung zwischen Ionen</li>
 </ol>
 <p><strong>Beispiel: Natriumchlorid (Kochsalz)</strong></p>
-<pre tabindex="0"><code>Na → Na⁺ + e⁻      (Natrium gibt 1 Elektron ab)
-Cl + e⁻ → Cl⁻      (Chlor nimmt 1 Elektron auf)
-
-Na⁺ + Cl⁻ → NaCl   (Ionenbindung)
-</code></pre><p><strong>Eigenschaften ionischer Verbindungen:</strong></p>
+<p>$$\ce{Na -&gt; Na+ + e-} \quad \text{(Natrium gibt 1 Elektron ab)}$$</p>
+<p>$$\ce{Cl + e- -&gt; Cl-} \quad \text{(Chlor nimmt 1 Elektron auf)}$$</p>
+<p>$$\ce{Na+ + Cl- -&gt; NaCl} \quad \text{(Ionenbindung)}$$</p>
+<p><strong>Eigenschaften ionischer Verbindungen:</strong></p>
 <ul>
 <li>Hoher Schmelzpunkt (&gt; 300°C)</li>
 <li>Hart und spröde</li>
@@ -693,10 +698,9 @@ Na⁺ + Cl⁻ → NaCl   (Ionenbindung)
 <li>Ein <strong>Elektronenpaar</strong> wird geteilt (bindend)</li>
 <li>Jedes Atom erreicht stabile Elektronenkonfiguration</li>
 </ul>
-<p><strong>Beispiel: Wasser (H₂O)</strong></p>
-<pre tabindex="0"><code>H• + •Ö• + •H → H-Ö-H
-      (8 e⁻)
-</code></pre><p><strong>Arten der Atombindung:</strong></p>
+<p><strong>Beispiel: Wasser ($\ce{H2O}$)</strong></p>
+<p>$$\ce{H. + .O. + .H -&gt; H-O-H} \quad \text{(8 } e^- \text{)}$$</p>
+<p><strong>Arten der Atombindung:</strong></p>
 <ol>
 <li><strong>Einfachbindung:</strong> 1 Elektronenpaar (z.B. H-H, H-Cl)</li>
 <li><strong>Doppelbindung:</strong> 2 Elektronenpaare (z.B. O=O, C=O)</li>
@@ -742,13 +746,13 @@ Na⁺ + Cl⁻ → NaCl   (Ionenbindung)
 <h3 id="bildung-von-ionen">Bildung von Ionen</h3>
 <p><strong>Metalle</strong> geben Elektronen ab → Kationen:</p>
 <ul>
-<li>Na → Na⁺ + e⁻</li>
-<li>Mg → Mg²⁺ + 2e⁻</li>
+<li>$\ce{Na -&gt; Na+ + e-}$</li>
+<li>$\ce{Mg -&gt; Mg^2+ + 2e-}$</li>
 </ul>
 <p><strong>Nichtmetalle</strong> nehmen Elektronen auf → Anionen:</p>
 <ul>
-<li>Cl + e⁻ → Cl⁻</li>
-<li>O + 2e⁻ → O²⁻</li>
+<li>$\ce{Cl + e- -&gt; Cl-}$</li>
+<li>$\ce{O + 2e- -&gt; O^2-}$</li>
 </ul>
 <h3 id="wichtige-ionen-im-alltag">Wichtige Ionen im Alltag</h3>
 <table>
@@ -843,9 +847,9 @@ Na⁺ + Cl⁻ → NaCl   (Ionenbindung)
 <li>Glimmspan an das Ableitungsrohr halten</li>
 <li>Knallprobe machen</li>
 </ol>
-<p><strong>Ergebnis:</strong></p>
-<pre tabindex="0"><code>Zn + 2HCl → ZnCl₂ + H₂
-</code></pre><ul>
+<p><strong>Ergebnis:</strong>
+$$\ce{Zn + 2HCl -&gt; ZnCl2 + H2}$$</p>
+<ul>
 <li>Gasentwicklung: Wasserstoff</li>
 <li>Knall bei der Knallprobe</li>
 </ul>
@@ -1302,7 +1306,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="col-md-6 text-right">
                 <p>&copy; 2025 chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte. Alle Rechte vorbehalten.</p>
-                <p><small><a href="/imprint/" style="color: #fff;">impressum</a> | <a href="/privacy/" style="color: #fff;">privacy</a></small></p>
+                <p><small><a href="/impressum/" style="color: #fff;">impressum</a> | <a href="/datenschutz/" style="color: #fff;">datenschutz</a></small></p>
             </div>
         </div>
     </div>
@@ -1324,6 +1328,23 @@ document.addEventListener('DOMContentLoaded', function() {
   
   <script src="/data/quiz-aufbau-materie.js"></script>
   
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
+        ]
+      });
+    });
+  </script>
 
   
   

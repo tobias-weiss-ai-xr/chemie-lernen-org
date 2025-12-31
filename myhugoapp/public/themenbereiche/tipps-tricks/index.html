@@ -45,6 +45,12 @@
 <link rel="stylesheet" href="/css/quiz-system.css">
 <link rel="stylesheet" href="/css/quiz-user-system.css">
 <link rel="stylesheet" href="/css/progress-tracker.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css">
   
 
   <body>
@@ -685,8 +691,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <h3 id="rechenfehler">Rechenfehler</h3>
 <p><strong>Einheiten vergessen:</strong></p>
 <ul>
-<li>❌ Falsch: n = 5 / 58</li>
-<li>✅ Richtig: n = 5 g / 58.44 g/mol = 0.086 mol</li>
+<li>❌ Falsch: $n = 5 / 58$</li>
+<li>✅ Richtig: $n = \frac{5 \text{ g}}{58.44 \text{ g/mol}} = 0.086 \text{ mol}$</li>
 </ul>
 <p><strong>Umrechnung von mL in L:</strong></p>
 <ul>
@@ -695,8 +701,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </ul>
 <p><strong>Nicht angepasste Formeln:</strong></p>
 <ul>
-<li>pH = -log[H⁺], nicht pH = -log[OH⁻]</li>
-<li>Für Basen: Erst pOH berechnen, dann pH = 14 - pOH</li>
+<li>$\text{pH} = -\log[\ce{H+}]$, nicht $\text{pH} = -\log[\ce{OH-}]$</li>
+<li>Für Basen: Erst pOH berechnen, dann $\text{pH} = 14 - \text{pOH}$</li>
 </ul>
 <h3 id="verständnisfehler">Verständnisfehler</h3>
 <p><strong>Oxidationszahlen:</strong></p>
@@ -761,25 +767,25 @@ document.addEventListener('DOMContentLoaded', function() {
 <h2 id="formel-merkhilfen">Formel-Merkhilfen</h2>
 <h3 id="wichtige-formeln">Wichtige Formeln</h3>
 <p><strong>Stoffmenge:</strong></p>
-<pre tabindex="0"><code>n = m / M
-m = n · M
-M = m / n
-</code></pre><p><strong>Konzentration:</strong></p>
-<pre tabindex="0"><code>c = n / V
-n = c · V
-V = n / c
-</code></pre><p><strong>pH-Wert:</strong></p>
-<pre tabindex="0"><code>pH = -log[H₃O⁺]
-[H₃O⁺] = 10^(-pH)
-</code></pre><p><strong>Ideal-Gas-Gesetz:</strong></p>
-<pre tabindex="0"><code>p · V = n · R · T
-</code></pre><p><strong>Dichte:</strong></p>
-<pre tabindex="0"><code>ρ = m / V
-</code></pre><h3 id="wichtige-konstanten">Wichtige Konstanten</h3>
+<p>$$n = \frac{m}{M}$$</p>
+<p>$$m = n \cdot M$$</p>
+<p>$$M = \frac{m}{n}$$</p>
+<p><strong>Konzentration:</strong></p>
+<p>$$c = \frac{n}{V}$$</p>
+<p>$$n = c \cdot V$$</p>
+<p>$$V = \frac{n}{c}$$</p>
+<p><strong>pH-Wert:</strong></p>
+<p>$$\text{pH} = -\log[\ce{H3O+}]$$</p>
+<p>$$[\ce{H3O+}] = 10^{-\text{pH}}$$</p>
+<p><strong>Ideal-Gas-Gesetz:</strong></p>
+<p>$$p \cdot V = n \cdot R \cdot T$$</p>
+<p><strong>Dichte:</strong></p>
+<p>$$\rho = \frac{m}{V}$$</p>
+<h3 id="wichtige-konstanten">Wichtige Konstanten</h3>
 <ul>
 <li><strong>R</strong> = 8.314 J/(mol·K) (Gaskonstante)</li>
 <li><strong>F</strong> = 96485 C/mol (Faraday-Konstante)</li>
-<li><strong>NA</strong> = 6.022·10²³ mol⁻¹ (Avogadro-Konstante)</li>
+<li><strong>N_A</strong> = $6.022 \cdot 10^{23}$ mol⁻¹ (Avogadro-Konstante)</li>
 </ul>
 <h2 id="interaktive-tools-nutzen">Interaktive Tools nutzen</h2>
 <p>Die Plattform bietet verschiedene Tools zum Lernen und Üben:</p>
@@ -1303,7 +1309,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="col-md-6 text-right">
                 <p>&copy; 2025 chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte. Alle Rechte vorbehalten.</p>
-                <p><small><a href="/imprint/" style="color: #fff;">impressum</a> | <a href="/privacy/" style="color: #fff;">privacy</a></small></p>
+                <p><small><a href="/impressum/" style="color: #fff;">impressum</a> | <a href="/datenschutz/" style="color: #fff;">datenschutz</a></small></p>
             </div>
         </div>
     </div>
@@ -1323,6 +1329,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
   
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
+        ]
+      });
+    });
+  </script>
 
   
   

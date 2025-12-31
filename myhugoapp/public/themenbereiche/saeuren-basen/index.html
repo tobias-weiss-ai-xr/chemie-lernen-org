@@ -45,6 +45,12 @@
 <link rel="stylesheet" href="/css/quiz-system.css">
 <link rel="stylesheet" href="/css/quiz-user-system.css">
 <link rel="stylesheet" href="/css/progress-tracker.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css">
   
 
   <body>
@@ -495,24 +501,24 @@ document.addEventListener('DOMContentLoaded', function() {
 <li><strong>Base (Lauge):</strong> Ein Stoff, der Protonen (H⁺-Ionen) aufnehmen kann</li>
 </ul>
 <p><strong>Beispiel für eine Säure-Base-Reaktion:</strong></p>
-<pre tabindex="0"><code>HCl + H₂O → H₃O⁺ + Cl⁻
-(Säure)  (Base)  (Säure) (Base)
-</code></pre><p>Salzsäure (HCl) gibt ein Proton an Wasser (H₂O) ab und bildet Oxonium-Ionen (H₃O⁺) und Chlorid-Ionen (Cl⁻).</p>
+<p>$$\ce{HCl + H2O -&gt; H3O+ + Cl-}$$</p>
+<p>$$\text{(Säure)} \quad \text{(Base)} \quad \text{(Säure)} \quad \text{(Base)}$$</p>
+<p>Salzsäure ($\ce{HCl}$) gibt ein Proton an Wasser ($\ce{H2O}$) ab und bildet Oxonium-Ionen ($\ce{H3O+}$) und Chlorid-Ionen ($\ce{Cl-}$).</p>
 <h3 id="säure-base-paare">Säure-Base-Paare</h3>
 <p>Bei jeder Säure-Base-Reaktion entstehen zwei konjugierte Säure-Base-Paare:</p>
 <pre tabindex="0"><code>Säure 1 + Base 2 ⇌ Base 1 + Säure 2
 </code></pre><p><strong>Beispiel: Ammoniak mit Wasser</strong></p>
-<pre tabindex="0"><code>NH₃ + H₂O ⇌ NH₄⁺ + OH⁻
-</code></pre><ul>
-<li>NH₃ (Base) nimmt ein Proton auf → NH₄⁺ (konjugierte Säure)</li>
-<li>H₂O (Säure) gibt ein Proton ab → OH⁻ (konjugierte Base)</li>
+<p>$$\ce{NH3 + H2O &lt;=&gt; NH4+ + OH-}$$</p>
+<ul>
+<li>$\ce{NH3}$ (Base) nimmt ein Proton auf → $\ce{NH4+}$ (konjugierte Säure)</li>
+<li>$\ce{H2O}$ (Säure) gibt ein Proton ab → $\ce{OH-}$ (konjugierte Base)</li>
 </ul>
 <h2 id="der-ph-wert">Der pH-Wert</h2>
 <h3 id="definition-und-berechnung">Definition und Berechnung</h3>
 <p>Der pH-Wert ist ein Maß für den sauren oder basischen Charakter einer wässrigen Lösung. Er wurde 1909 von dem dänischen Chemiker Søren Sørensen eingeführt.</p>
 <p><strong>Formel:</strong></p>
-<pre tabindex="0"><code>pH = -log₁₀[H₃O⁺]
-</code></pre><p>Wobei [H₃O⁺] die Konzentration der Oxonium-Ionen in mol/L ist.</p>
+<p>$$\text{pH} = -\log_{10}[\ce{H3O+}]$$</p>
+<p>Wobei $[\ce{H3O+}]$ die Konzentration der Oxonium-Ionen in mol/L ist.</p>
 <h3 id="die-ph-skala">Die pH-Skala</h3>
 <p>Die pH-Skala reicht von <strong>0 bis 14</strong>:</p>
 <table>
@@ -565,25 +571,25 @@ document.addEventListener('DOMContentLoaded', function() {
 <h3 id="berechnungsbeispiele">Berechnungsbeispiele</h3>
 <p><strong>Beispiel 1: Starke Säure</strong></p>
 <ul>
-<li>HCl-Konzentration: 0.01 mol/L</li>
-<li>[H₃O⁺] = 0.01 mol/L (da HCl vollständig dissoziiert)</li>
-<li>pH = -log(0.01) = -log(10⁻²) = <strong>2</strong></li>
+<li>$\ce{HCl}$-Konzentration: 0.01 mol/L</li>
+<li>$[\ce{H3O+}]$ = 0.01 mol/L (da $\ce{HCl}$ vollständig dissoziiert)</li>
+<li>$\text{pH} = -\log(0.01) = -\log(10^{-2}) = \textbf{2}$</li>
 </ul>
 <p><strong>Beispiel 2: Base</strong></p>
 <ul>
-<li>NaOH-Konzentration: 0.001 mol/L</li>
-<li>[OH⁻] = 0.001 mol/L (vollständige Dissoziation)</li>
-<li>pOH = -log(0.001) = 3</li>
-<li>pH = 14 - pOH = <strong>11</strong></li>
+<li>$\ce{NaOH}$-Konzentration: 0.001 mol/L</li>
+<li>$[\ce{OH-}]$ = 0.001 mol/L (vollständige Dissoziation)</li>
+<li>$\text{pOH} = -\log(0.001) = 3$</li>
+<li>$\text{pH} = 14 - \text{pOH} = \textbf{11}$</li>
 </ul>
 <p>🧪 <strong>Probieren Sie es aus:</strong> Verwenden Sie unseren interaktiven <strong><a href="/ph-rechner/">pH-Rechner</a></strong>, um pH-Werte zu berechnen und zu visualisieren!</p>
 <h2 id="neutralisation">Neutralisation</h2>
 <h3 id="die-neutralisationsreaktion">Die Neutralisationsreaktion</h3>
 <p>Wenn eine Säure mit einer Base reagiert, entstehen Wasser und ein Salz:</p>
-<pre tabindex="0"><code>Säure + Base → Salz + Wasser
-</code></pre><p><strong>Beispiel: Salzsäure + Natronlauge</strong></p>
-<pre tabindex="0"><code>HCl + NaOH → NaCl + H₂O
-</code></pre><h3 id="anwendungen-der-neutralisation">Anwendungen der Neutralisation</h3>
+<p>$$\text{Säure} + \text{Base} \rightarrow \text{Salz} + \text{Wasser}$$</p>
+<p><strong>Beispiel: Salzsäure + Natronlauge</strong></p>
+<p>$$\ce{HCl + NaOH -&gt; NaCl + H2O}$$</p>
+<h3 id="anwendungen-der-neutralisation">Anwendungen der Neutralisation</h3>
 <ol>
 <li>
 <p><strong>Im menschlichen Körper:</strong></p>
@@ -1261,7 +1267,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="col-md-6 text-right">
                 <p>&copy; 2025 chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte. Alle Rechte vorbehalten.</p>
-                <p><small><a href="/imprint/" style="color: #fff;">impressum</a> | <a href="/privacy/" style="color: #fff;">privacy</a></small></p>
+                <p><small><a href="/impressum/" style="color: #fff;">impressum</a> | <a href="/datenschutz/" style="color: #fff;">datenschutz</a></small></p>
             </div>
         </div>
     </div>
@@ -1283,6 +1289,23 @@ document.addEventListener('DOMContentLoaded', function() {
   
   <script src="/data/quiz-saeuren-basen.js"></script>
   
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
+        ]
+      });
+    });
+  </script>
 
   
   
