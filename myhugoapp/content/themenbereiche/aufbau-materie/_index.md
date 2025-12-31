@@ -62,15 +62,7 @@ Atome bestehen aus drei wichtigsten Teilchen:
 
 ### Struktur des Atoms
 
-$$
-\begin{array}{c}
-\text{Elektronenhülle } (e^-) \\
-\downarrow \\
-\boxed{\text{Atomkern}} \\
-\quad \downarrow \\
-\quad \text{Protonen } (p^+) \text{ und Neutronen } (n^0)
-\end{array}
-$$
+![Struktur des Atoms](/img/atom-struktur.png)
 
 Das Atom besteht aus einem kompakten Kern mit Protonen und Neutronen, umgeben von einer Elektronenhülle.
 
