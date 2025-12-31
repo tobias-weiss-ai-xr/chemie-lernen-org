@@ -1,16 +1,16 @@
 ---
-title: "Chemie Lernen - Offene, Interaktive und immersive Lerninhalte"
+title: "chemie-lernen.org - Offene, Interaktive und immersive Lerninhalte"
 date: 2025-12-22
 description: "Entdecken Sie innovative Chemie-Lernmethoden durch Virtual Reality und interaktive Plattformen. Machen Sie komplexe chemische Konzepte greifbar und erlebbar."
 tags: ["startseite", "chemie", "vr", "3d"]
 ---
 
 
-## Chemie Lernen
+## chemie-lernen.org
 
 **Innovative Chemie-Lernräume in Virtual Reality**
 
-Willkommen bei Chemie Lernen – Ihrer Plattform für die nächste Generation des Chemieunterrichts. Durch den Einsatz von Virtual Reality (VR) und interaktiven Lernumgebungen verwandeln wir traditionelle chemische Konzepte in erlebbare Erfahrungen.
+Willkommen bei chemie-lernen.org – Ihrer Plattform für die nächste Generation des Chemieunterrichts. Durch den Einsatz von Virtual Reality (VR) und interaktiven Lernumgebungen verwandeln wir traditionelle chemische Konzepte in erlebbare Erfahrungen.
 
 ## 🎯 Unsere Mission
 
@@ -49,3 +49,24 @@ Unsere kostenlosen interaktiven Tools unterstützen Sie beim Lernen und Rechnen:
 - 📊 **Stöchiometrie-Rechner**: (Coming Soon) Führen Sie stöchiometrische Berechnungen durch
 
 [pH-Rechner](/ph-rechner/) [Molare Masse](/molare-masse-rechner/) [Gleichungen ausgleichen](/reaktionsgleichungen-ausgleichen/)
+
+## 📖 Featured: Mayers Prinzipien des Multimedialen Lernens
+
+**Wie wir effektive digitale Lernumgebungen gestalten**
+
+Entdecken Sie die wissenschaftlichen Grundlagen hinter unserer Lernplattform! Richard E. Mayers 12 Prinzipien des multimedialen Lernens bilden das Fundament für die Entwicklung unserer interaktiven Chemie-Lernräume.
+
+### Was Sie erwartet:
+
+- 🧠 **Kognitive Psychologie**: Wie das Gehirn visuelle und auditive Informationen verarbeitet
+- 🎯 **Design-Prinzipien**: 12 evidenzbasierte Prinzipien für effektives Lernen
+- 💡 **Praktische Anwendung**: Konkrete Beispiele aus unserer Chemie-Lernplattform
+- 📊 **Checklisten**: Handlungsanleitungen zur Umsetzung in eigenen Projekten
+
+### Für wen ist dieser Artikel?
+
+- 🎓 Lehrende und Instructional Designer
+- 💻 Entwickler von Lernplattformen und E-Learning
+- 📚 Alle, die sich für effektives Wissensdesign interessieren
+
+[Mayers 12 Prinzipien lesen →](/pages/mayers-multimedia-lernen/)
