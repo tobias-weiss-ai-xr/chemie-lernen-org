@@ -17,6 +17,12 @@
     "analyze:bundle": "node scripts/analyze-bundle.js",
     "performance:check": "node scripts/analyze-bundle.js",
     "optimize": "npm run minify && npm run performance:check",
+    "audit": "npm audit --audit-level=moderate",
+    "audit:fix": "npm audit fix",
+    "audit:dev": "npm audit --audit-level=moderate --only=dev",
+    "check:updates": "npm outdated",
+    "update:dependencies": "npm update",
+    "security:check": "npm run audit && npm run check:updates",
     "build": "docker run --rm -v \"$(pwd)/myhugoapp:/src\" -w /src hugomods/hugo:exts hugo --minify --baseURL https://chemie-lernen.org"
   },
   "lint-staged": {

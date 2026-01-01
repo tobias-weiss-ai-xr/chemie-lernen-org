@@ -1,35 +1,54 @@
 version: 2
 updates:
-  # GitHub Actions
+  # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "monday"
+    open-pull-requests-limit: 5
     commit-message:
       prefix: "ci"
       include: "scope"
-    labels:
-      - "dependencies"
-      - "github-actions"
-    groups:
-      github-actions:
-        patterns:
-          - "*"
 
-  # npm (Hugo modules)
+  # Maintain dependencies for npm
   - package-ecosystem: "npm"
-    directory: "/myhugoapp"
+    directory: "/"
     schedule:
       interval: "weekly"
       day: "monday"
+    open-pull-requests-limit: 10
+    versioning-strategy: "increase"
     commit-message:
       prefix: "deps"
       include: "scope"
+    groups:
+      production-dependencies:
+        excludes:
+          dependency-type: "development"
+      development-dependencies:
+        excludes:
+          dependency-type: "production"
+      test-dependencies:
+        includes:
+          dependency-type: "development"
+        patterns:
+          - "jest*"
+          - "@types/*"
+          - "eslint*"
+          - "prettier*"
+      linter-dependencies:
+        patterns:
+          - "eslint*"
+          - "prettier*"
+          - "husky*"
+          - "lint-staged*"
     labels:
       - "dependencies"
       - "javascript"
-    groups:
-      dependencies:
-        patterns:
-          - "*"
+    ignore:
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@playwright/test"
+        update-types: ["version-update:semver-major"]
+    rebase-strategy: "auto"
