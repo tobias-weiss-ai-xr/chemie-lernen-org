@@ -1,5 +1,8 @@
 {{ define "main" }}
 
+<!-- jsPDF Library for PDF export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <div class="stoichiometry-calculator-container">
 
   <div class="row">
@@ -119,6 +122,9 @@
         <div id="mol-result" class="result-box" style="display:none; margin-top:20px;">
           <h3>Ergebnis:</h3>
           <div id="mol-calc"></div>
+          <button class="btn btn-success btn-sm" onclick="exportMolMolToPDF()" style="margin-top:15px;">
+            <i class="fa fa-file-pdf-o"></i> Als PDF exportieren
+          </button>
         </div>
       </div>
     </div>
@@ -529,6 +535,9 @@ function calcMassMass() {
       <p><strong>Schritt 1:</strong> n₁ = m₁/M₁ = ${m1} g / ${M1} g/mol = ${n1.toFixed(4)} mol</p>
       <p><strong>Schritt 2:</strong> n₂ = n₁ × (ν₂/ν₁) = ${n1.toFixed(4)} mol × (${v2}/${v1}) = ${n2.toFixed(4)} mol</p>
       <p><strong>Schritt 3:</strong> m₂ = n₂ × M₂ = ${n2.toFixed(4)} mol × ${M2} g/mol = <strong>${m2.toFixed(2)} g</strong></p>
+      <button class="btn btn-success btn-sm" onclick="exportMassMassToPDF()" style="margin-top:15px;">
+        <i class="fa fa-file-pdf-o"></i> Als PDF exportieren
+      </button>
     </div>
   `;
 
@@ -559,6 +568,9 @@ function calcLimiting() {
       <h4>Limitierend: ${name}</h4>
       <p>Reagenz 1: ${n1.toFixed(4)} mol</p>
       <p>Reagenz 2: ${n2_2.toFixed(4)} mol</p>
+      <button class="btn btn-success btn-sm" onclick="exportLimitingToPDF()" style="margin-top:15px;">
+        <i class="fa fa-file-pdf-o"></i> Als PDF exportieren
+      </button>
     </div>
   `;
 
@@ -583,11 +595,286 @@ function calcYield() {
       <h3>Ausbeute: ${yield_pct.toFixed(2)}%</h3>
       <p>Theoretisch: ${theo} g</p>
       <p>Praktisch: ${act} g</p>
+      <button class="btn btn-success btn-sm" onclick="exportYieldToPDF()" style="margin-top:15px;">
+        <i class="fa fa-file-pdf-o"></i> Als PDF exportieren
+      </button>
     </div>
   `;
 
   // Save to history
   saveToHistory('Ausbeute', `${yield_pct.toFixed(2)}% (${act}g / ${theo}g)`);
+}
+
+// ===== PDF EXPORT FUNCTIONS =====
+
+// Export Mol-Mol calculation to PDF
+function exportMolMolToPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const v1 = document.getElementById('mol-coeff-r').value;
+  const v2 = document.getElementById('mol-coeff-p').value;
+  const n1 = document.getElementById('mol-reactant').value;
+  const n2 = (parseFloat(n1) * (parseFloat(v2) / parseFloat(v1))).toFixed(4);
+
+  // PDF Header
+  doc.setFontSize(20);
+  doc.setTextColor(0, 123, 255);
+  doc.text('Stöchiometrie-Rechner', 105, 20, { align: 'center' });
+
+  doc.setFontSize(16);
+  doc.setTextColor(0, 0, 0);
+  doc.text('Mol-Mol Umrechnung', 105, 35, { align: 'center' });
+
+  // Line
+  doc.setDrawColor(200, 200, 200);
+  doc.line(20, 45, 190, 45);
+
+  // Content
+  doc.setFontSize(12);
+  let y = 60;
+
+  doc.setTextColor(100, 100, 100);
+  doc.text(`Datum: ${new Date().toLocaleDateString('de-DE')}`, 20, y);
+  y += 15;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(14);
+  doc.text('Eingabewerte:', 20, y);
+  y += 10;
+
+  doc.setFontSize(12);
+  doc.text(`Stoffmenge (n₁): ${n1} mol`, 25, y); y += 8;
+  doc.text(`Koeffizient Edukt (ν₁): ${v1}`, 25, y); y += 8;
+  doc.text(`Koeffizient Produkt (ν₂): ${v2}`, 25, y); y += 15;
+
+  doc.setFontSize(14);
+  doc.text('Ergebnis:', 20, y);
+  y += 10;
+
+  doc.setFontSize(12);
+  doc.text(`Produktstoffmenge (n₂): ${n2} mol`, 25, y); y += 8;
+  y += 5;
+
+  doc.setTextColor(0, 123, 255);
+  doc.text(`Formel: n₂ = n₁ × (ν₂/ν₁) = ${n1} × (${v2}/${v1}) = ${n2} mol`, 20, y); y += 20;
+
+  // Footer
+  doc.setFontSize(10);
+  doc.setTextColor(150, 150, 150);
+  doc.text('Erstellt mit chemie-lernen.org/stoechiometrie-rechner/', 105, 280, { align: 'center' });
+
+  // Save PDF
+  doc.save(`stoechiometrie-mol-mol-${Date.now()}.pdf`);
+}
+
+// Export Mass-Mass calculation to PDF
+function exportMassMassToPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const m1 = document.getElementById('mass-r').value;
+  const M1 = document.getElementById('mm-r').value;
+  const M2 = document.getElementById('mm-p').value;
+  const v1 = document.getElementById('mass-coeff-r').value;
+  const v2 = document.getElementById('mass-coeff-p').value;
+
+  const n1 = (parseFloat(m1) / parseFloat(M1)).toFixed(4);
+  const n2 = (parseFloat(n1) * (parseFloat(v2) / parseFloat(v1))).toFixed(4);
+  const m2 = (parseFloat(n2) * parseFloat(M2)).toFixed(2);
+
+  // PDF Header
+  doc.setFontSize(20);
+  doc.setTextColor(0, 123, 255);
+  doc.text('Stöchiometrie-Rechner', 105, 20, { align: 'center' });
+
+  doc.setFontSize(16);
+  doc.setTextColor(0, 0, 0);
+  doc.text('Masse-Masse Umrechnung', 105, 35, { align: 'center' });
+
+  // Line
+  doc.setDrawColor(200, 200, 200);
+  doc.line(20, 45, 190, 45);
+
+  // Content
+  doc.setFontSize(12);
+  let y = 60;
+
+  doc.setTextColor(100, 100, 100);
+  doc.text(`Datum: ${new Date().toLocaleDateString('de-DE')}`, 20, y);
+  y += 15;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(14);
+  doc.text('Eingabewerte:', 20, y);
+  y += 10;
+
+  doc.setFontSize(12);
+  doc.text(`Masse Edukt (m₁): ${m1} g`, 25, y); y += 8;
+  doc.text(`Molare Masse Edukt (M₁): ${M1} g/mol`, 25, y); y += 8;
+  doc.text(`Molare Masse Produkt (M₂): ${M2} g/mol`, 25, y); y += 8;
+  doc.text(`Koeffizient Edukt (ν₁): ${v1}`, 25, y); y += 8;
+  doc.text(`Koeffizient Produkt (ν₂): ${v2}`, 25, y); y += 15;
+
+  doc.setFontSize(14);
+  doc.text('Berechnungsschritte:', 20, y);
+  y += 10;
+
+  doc.setFontSize(12);
+  doc.text(`Schritt 1: n₁ = m₁/M₁ = ${m1} / ${M1} = ${n1} mol`, 25, y); y += 8;
+  doc.text(`Schritt 2: n₂ = n₁ × (ν₂/ν₁) = ${n1} × (${v2}/${v1}) = ${n2} mol`, 25, y); y += 8;
+  doc.text(`Schritt 3: m₂ = n₂ × M₂ = ${n2} × ${M2} = ${m2} g`, 25, y); y += 15;
+
+  doc.setFontSize(14);
+  doc.text('Ergebnis:', 20, y);
+  y += 10;
+
+  doc.setFontSize(12);
+  doc.setTextColor(0, 123, 255);
+  doc.text(`Produktmasse: ${m2} g`, 25, y); y += 20;
+
+  // Footer
+  doc.setFontSize(10);
+  doc.setTextColor(150, 150, 150);
+  doc.text('Erstellt mit chemie-lernen.org/stoechiometrie-rechner/', 105, 280, { align: 'center' });
+
+  // Save PDF
+  doc.save(`stoechiometrie-masse-masse-${Date.now()}.pdf`);
+}
+
+// Export Limiting Reactant calculation to PDF
+function exportLimitingToPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const m1 = document.getElementById('lim-m1').value;
+  const M1 = document.getElementById('lim-mm1').value;
+  const m2 = document.getElementById('lim-m2').value;
+  const M2 = document.getElementById('lim-mm2').value;
+
+  const n1 = (parseFloat(m1) / parseFloat(M1)).toFixed(4);
+  const n2 = (parseFloat(m2) / parseFloat(M2)).toFixed(4);
+  const limiting = parseFloat(n1) < parseFloat(n2) ? 'Reagenz 1' : 'Reagenz 2';
+
+  // PDF Header
+  doc.setFontSize(20);
+  doc.setTextColor(0, 123, 255);
+  doc.text('Stöchiometrie-Rechner', 105, 20, { align: 'center' });
+
+  doc.setFontSize(16);
+  doc.setTextColor(0, 0, 0);
+  doc.text('Limitierendes Reagenz', 105, 35, { align: 'center' });
+
+  // Line
+  doc.setDrawColor(200, 200, 200);
+  doc.line(20, 45, 190, 45);
+
+  // Content
+  doc.setFontSize(12);
+  let y = 60;
+
+  doc.setTextColor(100, 100, 100);
+  doc.text(`Datum: ${new Date().toLocaleDateString('de-DE')}`, 20, y);
+  y += 15;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(14);
+  doc.text('Reagenz 1:', 20, y);
+  y += 10;
+
+  doc.setFontSize(12);
+  doc.text(`Masse: ${m1} g`, 25, y); y += 8;
+  doc.text(`Molare Masse: ${M1} g/mol`, 25, y); y += 8;
+  doc.text(`Stoffmenge: ${n1} mol`, 25, y); y += 15;
+
+  doc.setFontSize(14);
+  doc.text('Reagenz 2:', 20, y);
+  y += 10;
+
+  doc.setFontSize(12);
+  doc.text(`Masse: ${m2} g`, 25, y); y += 8;
+  doc.text(`Molare Masse: ${M2} g/mol`, 25, y); y += 8;
+  doc.text(`Stoffmenge: ${n2} mol`, 25, y); y += 15;
+
+  doc.setFontSize(14);
+  doc.text('Ergebnis:', 20, y);
+  y += 10;
+
+  doc.setFontSize(12);
+  doc.setTextColor(0, 123, 255);
+  doc.text(`Limitierend: ${limiting}`, 25, y); y += 8;
+  doc.setTextColor(0, 0, 0);
+  doc.text(`Vergleich: ${n1} mol vs ${n2} mol`, 25, y); y += 20;
+
+  // Footer
+  doc.setFontSize(10);
+  doc.setTextColor(150, 150, 150);
+  doc.text('Erstellt mit chemie-lernen.org/stoechiometrie-rechner/', 105, 280, { align: 'center' });
+
+  // Save PDF
+  doc.save(`stoechiometrie-limitierend-${Date.now()}.pdf`);
+}
+
+// Export Yield calculation to PDF
+function exportYieldToPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const theo = document.getElementById('yield-theo').value;
+  const act = document.getElementById('yield-act').value;
+  const yield_pct = ((parseFloat(act) / parseFloat(theo)) * 100).toFixed(2);
+
+  // PDF Header
+  doc.setFontSize(20);
+  doc.setTextColor(0, 123, 255);
+  doc.text('Stöchiometrie-Rechner', 105, 20, { align: 'center' });
+
+  doc.setFontSize(16);
+  doc.setTextColor(0, 0, 0);
+  doc.text('Ausbeute Berechnung', 105, 35, { align: 'center' });
+
+  // Line
+  doc.setDrawColor(200, 200, 200);
+  doc.line(20, 45, 190, 45);
+
+  // Content
+  doc.setFontSize(12);
+  let y = 60;
+
+  doc.setTextColor(100, 100, 100);
+  doc.text(`Datum: ${new Date().toLocaleDateString('de-DE')}`, 20, y);
+  y += 15;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(14);
+  doc.text('Eingabewerte:', 20, y);
+  y += 10;
+
+  doc.setFontSize(12);
+  doc.text(`Theoretische Masse: ${theo} g`, 25, y); y += 8;
+  doc.text(`Praktische Masse: ${act} g`, 25, y); y += 15;
+
+  doc.setFontSize(14);
+  doc.text('Ergebnis:', 20, y);
+  y += 10;
+
+  doc.setFontSize(12);
+  doc.text('Prozentuale Ausbeute:', 25, y); y += 8;
+  doc.setTextColor(0, 123, 255);
+  doc.setFontSize(16);
+  doc.text(`${yield_pct}%`, 25, y); y += 8;
+
+  doc.setFontSize(12);
+  doc.setTextColor(0, 0, 0);
+  doc.text(`Berechnung: (${act} g / ${theo} g) × 100 = ${yield_pct}%`, 25, y); y += 20;
+
+  // Footer
+  doc.setFontSize(10);
+  doc.setTextColor(150, 150, 150);
+  doc.text('Erstellt mit chemie-lernen.org/stoechiometrie-rechner/', 105, 280, { align: 'center' });
+
+  // Save PDF
+  doc.save(`stoechiometrie-ausbeute-${Date.now()}.pdf`);
 }
 
 // Initialize history on page load
