@@ -14,6 +14,33 @@
 
   <hr class="featurette-divider">
 
+  <!-- Equation Parser -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="parser-section" style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 2px solid #2196F3;">
+        <h3 style="color: #1976D2; margin-top: 0;">
+          <i class="fa fa-flask"></i> Reaktionsgleichung automatisch analysieren
+        </h3>
+        <p>Geben Sie eine Reaktionsgleichung ein, um die Koeffizienten automatisch zu extrahieren:</p>
+        <div class="form-group">
+          <input type="text" id="equation-parser-input" class="form-control"
+                 placeholder="z.B. 2H2 + O2 -> 2H2O oder CH4 + 2O2 -> CO2 + 2H2O"
+                 style="font-size: 16px; padding: 12px;">
+        </div>
+        <button class="btn btn-primary" onclick="parseEquation()">
+          <i class="fa fa-cogs"></i> Gleichung analysieren
+        </button>
+        <div id="parser-result" style="display:none; margin-top: 15px;">
+          <div class="result-box">
+            <h4>Erkannte Koeffizienten:</h4>
+            <div id="parsed-coefficients"></div>
+            <div id="apply-buttons" style="margin-top: 15px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Calculation History -->
   <div class="row">
     <div class="col-md-12">
@@ -383,6 +410,184 @@ function loadMassPreset(presetKey) {
   // Hide previous results
   document.getElementById('mass-result').style.display = 'none';
   document.getElementById('mass-preview').innerHTML = '<p style="font-size:2em; color:#007bff;">--</p><p>Gramm</p>';
+}
+
+// ===== EQUATION PARSER =====
+
+// Parse chemical equation and extract coefficients
+function parseEquation() {
+  const equation = document.getElementById('equation-parser-input').value.trim();
+
+  if (!equation) {
+    alert('Bitte geben Sie eine Reaktionsgleichung ein.');
+    return;
+  }
+
+  try {
+    const result = parseChemicalEquation(equation);
+    displayParsedCoefficients(result);
+  } catch (error) {
+    alert('Fehler beim Parsen: ' + error.message);
+    console.error('Parse error:', error);
+  }
+}
+
+// Main parsing function
+function parseChemicalEquation(equation) {
+  // Support different arrow types
+  const arrowMatch = equation.match(/(->|→|=)/);
+  if (!arrowMatch) {
+    throw new Error('Kein Reaktionspfeil gefunden. Verwenden Sie ->, → oder =');
+  }
+
+  const [reactantsStr, productsStr] = equation.split(arrowMatch[1]).map(s => s.trim());
+
+  const reactants = parseSide(reactantsStr);
+  const products = parseSide(productsStr);
+
+  return {
+    reactants: reactants,
+    products: products,
+    totalReactants: reactants.length,
+    totalProducts: products.length
+  };
+}
+
+// Parse one side of the equation (reactants or products)
+function parseSide(sideStr) {
+  if (!sideStr) {
+    throw new Error('Leere Seite der Gleichung');
+  }
+
+  // Split by + and trim whitespace
+  const compounds = sideStr.split('+').map(s => s.trim()).filter(s => s.length > 0);
+
+  if (compounds.length === 0) {
+    throw new Error('Keine Verbindungen gefunden');
+  }
+
+  return compounds.map(compound => parseCompound(compound));
+}
+
+// Parse a single compound to extract coefficient and formula
+function parseCompound(compoundStr) {
+  // Match coefficient at the beginning (can be decimal like 0.5, 1.5, etc.)
+  const coeffMatch = compoundStr.match(/^(\d*\.?\d+)?\s*([A-Za-z0-9\(\)]+)$/);
+
+  if (!coeffMatch) {
+    // If no coefficient found, assume 1
+    return {
+      coefficient: 1,
+      formula: compoundStr.trim(),
+      hasExplicitCoefficient: false
+    };
+  }
+
+  const coefficient = coeffMatch[1] ? parseFloat(coeffMatch[1]) : 1;
+  const formula = coeffMatch[2];
+
+  return {
+    coefficient: coefficient,
+    formula: formula,
+    hasExplicitCoefficient: !!coeffMatch[1]
+  };
+}
+
+// Display parsed coefficients in the UI
+function displayParsedCoefficients(result) {
+  const container = document.getElementById('parsed-coefficients');
+  const buttonsContainer = document.getElementById('apply-buttons');
+  const resultPanel = document.getElementById('parser-result');
+
+  let html = '<div class="row">';
+
+  // Reactants
+  html += '<div class="col-md-6">';
+  html += '<h5>Edukte:</h5>';
+  html += '<ul class="list-group">';
+  result.reactants.forEach((reactant, index) => {
+    html += `
+      <li class="list-group-item">
+        <strong>${reactant.formula}</strong>
+        <span class="badge" style="margin-left: 10px;">ν₁ = ${reactant.coefficient}</span>
+      </li>
+    `;
+  });
+  html += '</ul></div>';
+
+  // Products
+  html += '<div class="col-md-6">';
+  html += '<h5>Produkte:</h5>';
+  html += '<ul class="list-group">';
+  result.products.forEach((product, index) => {
+    html += `
+      <li class="list-group-item">
+        <strong>${product.formula}</strong>
+        <span class="badge" style="margin-left: 10px;">ν₂ = ${product.coefficient}</span>
+      </li>
+    `;
+  });
+  html += '</ul></div>';
+
+  html += '</div>';
+  container.innerHTML = html;
+
+  // Generate apply buttons based on what makes sense
+  let buttonsHtml = '<p style="margin-bottom: 10px;"><strong>Koeffizienten übernehmen:</strong></p>';
+  buttonsHtml += '<div class="btn-group">';
+
+  // For Mol-Mol calculator (simple 2-compound case)
+  if (result.reactants.length === 1 && result.products.length === 1) {
+    const rCoeff = result.reactants[0].coefficient;
+    const pCoeff = result.products[0].coefficient;
+    buttonsHtml += `<button class="btn btn-success" onclick="applyCoefficientsToMolMol(${rCoeff}, ${pCoeff})">
+      <i class="fa fa-check"></i> Mol-Mol-Rechner
+    </button>`;
+  }
+
+  // For Mass-Mass calculator
+  if (result.reactants.length === 1 && result.products.length === 1) {
+    const rCoeff = result.reactants[0].coefficient;
+    const pCoeff = result.products[0].coefficient;
+    buttonsHtml += `<button class="btn btn-success" onclick="applyCoefficientsToMassMass(${rCoeff}, ${pCoeff})">
+      <i class="fa fa-check"></i> Masse-Masse-Rechner
+    </button>`;
+  }
+
+  buttonsHtml += '</div>';
+  buttonsContainer.innerHTML = buttonsHtml;
+
+  resultPanel.style.display = 'block';
+}
+
+// Apply parsed coefficients to Mol-Mol calculator
+function applyCoefficientsToMolMol(v1, v2) {
+  document.getElementById('mol-coeff-r').value = v1;
+  document.getElementById('mol-coeff-p').value = v2;
+
+  // Switch to Mol-Mol tab
+  document.querySelector('a[href="#mol-mol"]').click();
+
+  // Scroll to calculator
+  document.querySelector('.calculator-panel').scrollIntoView({ behavior: 'smooth' });
+
+  // Show confirmation
+  alert(`Koeffizienten übernommen: Edukt ν₁=${v1}, Produkt ν₂=${v2}`);
+}
+
+// Apply parsed coefficients to Mass-Mass calculator
+function applyCoefficientsToMassMass(v1, v2) {
+  document.getElementById('mass-coeff-r').value = v1;
+  document.getElementById('mass-coeff-p').value = v2;
+
+  // Switch to Mass-Mass tab
+  document.querySelector('a[href="#masse-masse"]').click();
+
+  // Scroll to calculator
+  document.querySelectorAll('.calculator-panel')[1].scrollIntoView({ behavior: 'smooth' });
+
+  // Show confirmation
+  alert(`Koeffizienten übernommen: Edukt ν₁=${v1}, Produkt ν₂=${v2}`);
 }
 
 // ===== HISTORY MANAGEMENT =====
