@@ -110,6 +110,87 @@
     </div>
   </div>
 
+  <!-- Practice Mode Section -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="practice-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 8px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <h3 style="color: white; margin-top: 0;">
+              <i class="fa fa-graduation-cap"></i> Übungsmodus
+            </h3>
+            <p style="color: rgba(255,255,255,0.9); margin-bottom: 0;">
+              Teste dein Wissen mit zufälligen Stöchiometrie-Aufgaben!
+            </p>
+          </div>
+          <div style="text-align: right; color: white;">
+            <p style="font-size: 14px; margin-bottom: 5px;">Punkte: <strong id="practice-score" style="font-size: 24px;">0</strong></p>
+            <p style="font-size: 14px; margin: 0;">Richtig: <span id="correct-count">0</span> | Falsch: <span id="incorrect-count">0</span></p>
+          </div>
+        </div>
+
+        <div id="practice-setup" style="background: white; padding: 20px; border-radius: 8px; margin-top: 15px;">
+          <div class="row">
+            <div class="col-md-4">
+              <label>Aufgabentyp:</label>
+              <select id="practice-type" class="form-control">
+                <option value="mol-mol">Mol-Mol Umrechnung</option>
+                <option value="mass-mass">Masse-Masse Umrechnung</option>
+                <option value="limiting">Limitierendes Reagenz</option>
+                <option value="yield">Ausbeute berechnen</option>
+                <option value="random">Zufällig</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label>Schwierigkeit:</label>
+              <select id="practice-difficulty" class="form-control">
+                <option value="easy">Einfach (ganze Zahlen)</option>
+                <option value="medium">Mittel (Dezimalzahlen)</option>
+                <option value="hard">Schwer (komplexe Reaktionen)</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label>&nbsp;</label>
+              <button class="btn btn-success btn-block" onclick="startPractice()">
+                <i class="fa fa-play"></i> Aufgabe starten
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="practice-problem" style="display:none; background: white; padding: 20px; border-radius: 8px; margin-top: 15px;">
+          <h4 style="color: #667eea; margin-top: 0;">Aufgabe <span id="problem-number">1</span></h4>
+          <div id="problem-content"></div>
+
+          <div id="answer-section" style="margin-top: 20px;">
+            <label>Deine Antwort:</label>
+            <div class="row">
+              <div class="col-md-8">
+                <input type="number" id="practice-answer" class="form-control" step="any" placeholder="Ergebnis eingeben...">
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-primary btn-block" onclick="checkAnswer()">
+                  <i class="fa fa-check"></i> Prüfen
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="feedback-section" style="display:none; margin-top: 20px;"></div>
+
+          <div style="margin-top: 20px; text-align: center;">
+            <button class="btn btn-default" onclick="skipProblem()">
+              <i class="fa fa-forward"></i> Überspringen
+            </button>
+            <button class="btn btn-warning" onclick="resetPractice()" style="margin-left: 10px;">
+              <i class="fa fa-refresh"></i> Neustart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Calculation History -->
   <div class="row">
     <div class="col-md-12">
@@ -2467,6 +2548,437 @@ document.addEventListener('DOMContentLoaded', function() {
     tempUnit.addEventListener('change', convertTemperatureToKelvin);
   }
 });
+
+// ===== PRACTICE MODE FUNCTIONS =====
+
+// Practice state
+let practiceState = {
+  score: 0,
+  correct: 0,
+  incorrect: 0,
+  currentProblem: null,
+  problemNumber: 1,
+  active: false
+};
+
+// Start practice mode
+function startPractice() {
+  const type = document.getElementById('practice-type').value;
+  const difficulty = document.getElementById('practice-difficulty').value;
+
+  practiceState.active = true;
+  practiceState.problemNumber = 1;
+
+  document.getElementById('practice-setup').style.display = 'none';
+  document.getElementById('practice-problem').style.display = 'block';
+
+  generateProblem(type, difficulty);
+}
+
+// Generate a problem
+function generateProblem(type, difficulty) {
+  let problemType = type;
+
+  if (type === 'random') {
+    const types = ['mol-mol', 'mass-mass', 'limiting', 'yield'];
+    problemType = types[Math.floor(Math.random() * types.length)];
+  }
+
+  switch(problemType) {
+    case 'mol-mol':
+      generateMolMolProblem(difficulty);
+      break;
+    case 'mass-mass':
+      generateMassMassProblem(difficulty);
+      break;
+    case 'limiting':
+      generateLimitingProblem(difficulty);
+      break;
+    case 'yield':
+      generateYieldProblem(difficulty);
+      break;
+  }
+}
+
+// Generate Mol-Mol problem
+function generateMolMolProblem(difficulty) {
+  let n1, v1, v2;
+
+  if (difficulty === 'easy') {
+    v1 = Math.floor(Math.random() * 3) + 1; // 1-3
+    v2 = Math.floor(Math.random() * 3) + 1; // 1-3
+    n1 = Math.floor(Math.random() * 10) + 1; // 1-10 mol
+  } else if (difficulty === 'medium') {
+    v1 = Math.floor(Math.random() * 5) + 1;
+    v2 = Math.floor(Math.random() * 5) + 1;
+    n1 = (Math.floor(Math.random() * 50) + 1) / 2; // 0.5-25.5 mol
+  } else { // hard
+    v1 = Math.floor(Math.random() * 6) + 2; // 2-7
+    v2 = Math.floor(Math.random() * 6) + 2;
+    n1 = (Math.floor(Math.random() * 200) + 10) / 10; // 1-21 mol
+  }
+
+  const answer = n1 * (v2 / v1);
+
+  practiceState.currentProblem = {
+    type: 'mol-mol',
+    n1: n1,
+    v1: v1,
+    v2: v2,
+    answer: answer,
+    tolerance: 0.01 // 1% tolerance
+  };
+
+  const problemHTML = `
+    <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; border-left: 4px solid #2196F3;">
+      <p><strong>Aufgabe:</strong> Berechne die Stoffmenge des Produkts.</p>
+      <p style="font-size: 18px; margin: 15px 0;">
+        Gegeben: ${n1} mol Edukt (Koeffizient: ${v1})<br>
+        Koeffizient des Produkts: ${v2}
+      </p>
+      <p><strong>Frage:</strong> Wie viel Mol Produkt werden gebildet?</p>
+      <p style="color: #666; font-size: 14px; margin-top: 10px;">
+        <i class="fa fa-lightbulb-o"></i> Tipp: Verwende die Formel n₂ = n₁ × (ν₂/ν₁)
+      </p>
+    </div>
+  `;
+
+  document.getElementById('problem-content').innerHTML = problemHTML;
+  document.getElementById('problem-number').textContent = practiceState.problemNumber;
+  document.getElementById('practice-answer').value = '';
+  document.getElementById('feedback-section').style.display = 'none';
+}
+
+// Generate Mass-Mass problem
+function generateMassMassProblem(difficulty) {
+  let m1, M1, M2, v1, v2;
+
+  const elements = [
+    { symbol: 'H₂', M: 2.016 },
+    { symbol: 'O₂', M: 32.00 },
+    { symbol: 'N₂', M: 28.02 },
+    { symbol: 'Cl₂', M: 70.90 },
+    { symbol: 'CO₂', M: 44.01 },
+    { symbol: 'H₂O', M: 18.02 },
+    { symbol: 'NH₃', M: 17.03 },
+    { symbol: 'CH₄', M: 16.04 },
+    { symbol: 'NaCl', M: 58.44 },
+    { symbol: 'CaCO₃', M: 100.09 }
+  ];
+
+  if (difficulty === 'easy') {
+    v1 = v2 = 1;
+    M1 = elements[Math.floor(Math.random() * 5)].M;
+    M2 = elements[Math.floor(Math.random() * 5)].M;
+    m1 = Math.floor(Math.random() * 10) + 1; // 1-10 g
+  } else if (difficulty === 'medium') {
+    v1 = Math.floor(Math.random() * 2) + 1;
+    v2 = Math.floor(Math.random() * 2) + 1;
+    M1 = elements[Math.floor(Math.random() * 7)].M;
+    M2 = elements[Math.floor(Math.random() * 7)].M;
+    m1 = (Math.floor(Math.random() * 50) + 5) / 2; // 2.5-27.5 g
+  } else { // hard
+    v1 = Math.floor(Math.random() * 3) + 1;
+    v2 = Math.floor(Math.random() * 3) + 1;
+    M1 = elements[Math.floor(Math.random() * 10)].M;
+    M2 = elements[Math.floor(Math.random() * 10)].M;
+    m1 = (Math.floor(Math.random() * 200) + 10) / 4; // 2.5-52.5 g
+  }
+
+  const n1 = m1 / M1;
+  const n2 = n1 * (v2 / v1);
+  const answer = n2 * M2;
+
+  practiceState.currentProblem = {
+    type: 'mass-mass',
+    m1: m1,
+    M1: M1,
+    M2: M2,
+    v1: v1,
+    v2: v2,
+    answer: answer,
+    tolerance: 0.02 // 2% tolerance
+  };
+
+  const problemHTML = `
+    <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; border-left: 4px solid #4CAF50;">
+      <p><strong>Aufgabe:</strong> Berechne die Masse des Produkts.</p>
+      <p style="font-size: 16px; margin: 15px 0;">
+        Edukt: ${m1.toFixed(2)} g (molare Masse: ${M1.toFixed(2)} g/mol, Koeffizient: ${v1})<br>
+        Produkt: molare Masse = ${M2.toFixed(2)} g/mol (Koeffizient: ${v2})
+      </p>
+      <p><strong>Frage:</strong> Wie viel Gramm Produkt werden gebildet?</p>
+      <p style="color: #666; font-size: 14px; margin-top: 10px;">
+        <i class="fa fa-lightbulb-o"></i> Tipp: Gehe in 3 Schritten vor (Masse → Mol → Mol → Masse)
+      </p>
+    </div>
+  `;
+
+  document.getElementById('problem-content').innerHTML = problemHTML;
+  document.getElementById('problem-number').textContent = practiceState.problemNumber;
+  document.getElementById('practice-answer').value = '';
+  document.getElementById('feedback-section').style.display = 'none';
+}
+
+// Generate Limiting Reactant problem
+function generateLimitingProblem(difficulty) {
+  let m1, M1, m2, M2;
+
+  const elements = [
+    { symbol: 'H₂', M: 2.016 },
+    { symbol: 'O₂', M: 32.00 },
+    { symbol: 'N₂', M: 28.02 },
+    { symbol: 'Na', M: 22.99 },
+    { symbol: 'K', M: 39.10 }
+  ];
+
+  M1 = elements[Math.floor(Math.random() * elements.length)].M;
+  M2 = elements[Math.floor(Math.random() * elements.length)].M;
+
+  if (difficulty === 'easy') {
+    m1 = Math.floor(Math.random() * 20) + 5;
+    m2 = Math.floor(Math.random() * 20) + 5;
+  } else if (difficulty === 'medium') {
+    m1 = (Math.floor(Math.random() * 100) + 10) / 2;
+    m2 = (Math.floor(Math.random() * 100) + 10) / 2;
+  } else { // hard
+    m1 = (Math.floor(Math.random() * 200) + 10) / 4;
+    m2 = (Math.floor(Math.random() * 200) + 10) / 4;
+  }
+
+  const n1 = m1 / M1;
+  const n2_2 = m2 / M2;
+  const answer = n1 < n2_2 ? 1 : 2;
+
+  practiceState.currentProblem = {
+    type: 'limiting',
+    m1: m1,
+    M1: M1,
+    m2: m2,
+    M2: M2,
+    answer: answer,
+    tolerance: 0
+  };
+
+  const problemHTML = `
+    <div style="background: #fff3e0; padding: 15px; border-radius: 8px; border-left: 4px solid #FF9800;">
+      <p><strong>Aufgabe:</strong> Bestimme das limitierende Reagenz.</p>
+      <p style="font-size: 16px; margin: 15px 0;">
+        Reagenz 1: ${m1.toFixed(2)} g (molare Masse: ${M1.toFixed(2)} g/mol)<br>
+        Reagenz 2: ${m2.toFixed(2)} g (molare Masse: ${M2.toFixed(2)} g/mol)<br>
+        <small>Beide Reagenzien reagieren im 1:1 Verhältnis</small>
+      </p>
+      <p><strong>Frage:</strong> Welches Reagenz ist limitierend? (Antworte mit 1 oder 2)</p>
+      <p style="color: #666; font-size: 14px; margin-top: 10px;">
+        <i class="fa fa-lightbulb-o"></i> Tipp: Vergleiche die Stoffmengen in Mol
+      </p>
+    </div>
+  `;
+
+  document.getElementById('problem-content').innerHTML = problemHTML;
+  document.getElementById('problem-number').textContent = practiceState.problemNumber;
+  document.getElementById('practice-answer').value = '';
+  document.getElementById('feedback-section').style.display = 'none';
+}
+
+// Generate Yield problem
+function generateYieldProblem(difficulty) {
+  let theoretical, actual, yieldPct;
+
+  if (difficulty === 'easy') {
+    yieldPct = Math.floor(Math.random() * 30) + 70; // 70-100%
+    theoretical = Math.floor(Math.random() * 20) + 10;
+  } else if (difficulty === 'medium') {
+    yieldPct = (Math.floor(Math.random() * 50) + 50) / 2; // 25-75%
+    theoretical = (Math.floor(Math.random() * 100) + 10) / 2;
+  } else { // hard
+    yieldPct = (Math.floor(Math.random() * 80) + 10) / 2; // 5-45%
+    theoretical = (Math.floor(Math.random() * 150) + 5) / 4;
+  }
+
+  actual = (theoretical * yieldPct) / 100;
+  const answer = yieldPct;
+
+  practiceState.currentProblem = {
+    type: 'yield',
+    theoretical: theoretical,
+    actual: actual,
+    answer: answer,
+    tolerance: 1 // 1% tolerance
+  };
+
+  const problemHTML = `
+    <div style="background: #f3e5f5; padding: 15px; border-radius: 8px; border-left: 4px solid #9C27B0;">
+      <p><strong>Aufgabe:</strong> Berechne die prozentuale Ausbeute.</p>
+      <p style="font-size: 16px; margin: 15px 0;">
+        Theoretische Ausbeute: ${theoretical.toFixed(2)} g<br>
+        Praktische Ausbeute: ${actual.toFixed(2)} g
+      </p>
+      <p><strong>Frage:</strong> Wie hoch ist die prozentuale Ausbeute?</p>
+      <p style="color: #666; font-size: 14px; margin-top: 10px;">
+        <i class="fa fa-lightbulb-o"></i> Tipp: Ausbeute = (Praktisch / Theoretisch) × 100%
+      </p>
+    </div>
+  `;
+
+  document.getElementById('problem-content').innerHTML = problemHTML;
+  document.getElementById('problem-number').textContent = practiceState.problemNumber;
+  document.getElementById('practice-answer').value = '';
+  document.getElementById('feedback-section').style.display = 'none';
+}
+
+// Check answer
+function checkAnswer() {
+  const userAnswer = parseFloat(document.getElementById('practice-answer').value);
+
+  if (isNaN(userAnswer)) {
+    alert('Bitte gib eine Zahl ein');
+    return;
+  }
+
+  const problem = practiceState.currentProblem;
+  const correctAnswer = problem.answer;
+  const tolerance = problem.tolerance || 0.01;
+
+  const isCorrect = Math.abs((userAnswer - correctAnswer) / correctAnswer) <= tolerance;
+
+  showFeedback(isCorrect, correctAnswer, userAnswer, tolerance);
+  updateScore(isCorrect);
+}
+
+// Show feedback
+function showFeedback(isCorrect, correctAnswer, userAnswer, tolerance) {
+  const feedbackDiv = document.getElementById('feedback-section');
+  feedbackDiv.style.display = 'block';
+
+  if (isCorrect) {
+    feedbackDiv.innerHTML = `
+      <div style="background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 15px; border-radius: 4px;">
+        <h4 style="margin-top: 0;"><i class="fa fa-check-circle"></i> Richtig! 🎉</h4>
+        <p>Deine Antwort (${userAnswer.toFixed(4)}) ist korrekt!</p>
+        ${problemDetailHTML(correctAnswer)}
+      </div>
+    `;
+  } else {
+    const diffPercent = ((userAnswer - correctAnswer) / correctAnswer * 100).toFixed(1);
+    feedbackDiv.innerHTML = `
+      <div style="background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; padding: 15px; border-radius: 4px;">
+        <h4 style="margin-top: 0;"><i class="fa fa-times-circle"></i> Leider falsch</h4>
+        <p>Deine Antwort: ${userAnswer.toFixed(4)}</p>
+        <p>Korrekte Antwort: <strong>${correctAnswer.toFixed(4)}</strong></p>
+        <p>Abweichung: ${diffPercent}%</p>
+        ${problemDetailHTML(correctAnswer)}
+      </div>
+    `;
+  }
+
+  // Auto-load next problem after delay
+  setTimeout(() => {
+    if (isCorrect) {
+      practiceState.problemNumber++;
+      const type = document.getElementById('practice-type').value;
+      const difficulty = document.getElementById('practice-difficulty').value;
+      generateProblem(type, difficulty);
+    }
+  }, 2000);
+}
+
+// Generate problem detail HTML
+function problemDetailHTML(answer) {
+  const problem = practiceState.currentProblem;
+
+  switch(problem.type) {
+    case 'mol-mol':
+      return `
+        <div style="margin-top: 10px; padding: 10px; background: rgba(255,255,255,0.5); border-radius: 4px;">
+          <strong>Lösungsweg:</strong><br>
+          n₂ = ${problem.n1} × (${problem.v2}/${problem.v1}) = ${answer.toFixed(4)} mol
+        </div>
+      `;
+    case 'mass-mass':
+      const n1 = problem.m1 / problem.M1;
+      const n2 = n1 * (problem.v2 / problem.v1);
+      return `
+        <div style="margin-top: 10px; padding: 10px; background: rgba(255,255,255,0.5); border-radius: 4px;">
+          <strong>Lösungsweg:</strong><br>
+          Schritt 1: n₁ = ${problem.m1.toFixed(2)} / ${problem.M1.toFixed(2)} = ${n1.toFixed(4)} mol<br>
+          Schritt 2: n₂ = ${n1.toFixed(4)} × (${problem.v2}/${problem.v1}) = ${n2.toFixed(4)} mol<br>
+          Schritt 3: m₂ = ${n2.toFixed(4)} × ${problem.M2.toFixed(2)} = ${answer.toFixed(2)} g
+        </div>
+      `;
+    case 'limiting':
+      const n1_limiting = problem.m1 / problem.M1;
+      const n2_limiting = problem.m2 / problem.M2;
+      const name = answer === 1 ? 'Reagenz 1' : 'Reagenz 2';
+      return `
+        <div style="margin-top: 10px; padding: 10px; background: rgba(255,255,255,0.5); border-radius: 4px;">
+          <strong>Lösungsweg:</strong><br>
+          Reagenz 1: ${n1_limiting.toFixed(4)} mol<br>
+          Reagenz 2: ${n2_limiting.toFixed(4)} mol<br>
+          ${name} hat weniger Mol und ist daher limitierend.
+        </div>
+      `;
+    case 'yield':
+      return `
+        <div style="margin-top: 10px; padding: 10px; background: rgba(255,255,255,0.5); border-radius: 4px;">
+          <strong>Lösungsweg:</strong><br>
+          Ausbeute = (${problem.actual.toFixed(2)} / ${problem.theoretical.toFixed(2)}) × 100% = ${answer.toFixed(1)}%
+        </div>
+      `;
+    default:
+      return '';
+  }
+}
+
+// Update score
+function updateScore(isCorrect) {
+  if (isCorrect) {
+    practiceState.correct++;
+    practiceState.score += 10;
+  } else {
+    practiceState.incorrect++;
+    practiceState.score = Math.max(0, practiceState.score - 5);
+  }
+
+  document.getElementById('practice-score').textContent = practiceState.score;
+  document.getElementById('correct-count').textContent = practiceState.correct;
+  document.getElementById('incorrect-count').textContent = practiceState.incorrect;
+}
+
+// Skip problem
+function skipProblem() {
+  practiceState.incorrect++;
+  practiceState.score = Math.max(0, practiceState.score - 2);
+
+  document.getElementById('practice-score').textContent = practiceState.score;
+  document.getElementById('correct-count').textContent = practiceState.correct;
+  document.getElementById('incorrect-count').textContent = practiceState.incorrect;
+
+  practiceState.problemNumber++;
+  const type = document.getElementById('practice-type').value;
+  const difficulty = document.getElementById('practice-difficulty').value;
+  generateProblem(type, difficulty);
+}
+
+// Reset practice
+function resetPractice() {
+  if (confirm('Möchtest du den Übungsmodus wirklich neustarten? Dein Punktestand wird zurückgesetzt.')) {
+    practiceState = {
+      score: 0,
+      correct: 0,
+      incorrect: 0,
+      currentProblem: null,
+      problemNumber: 1,
+      active: false
+    };
+
+    document.getElementById('practice-score').textContent = '0';
+    document.getElementById('correct-count').textContent = '0';
+    document.getElementById('incorrect-count').textContent = '0';
+    document.getElementById('practice-setup').style.display = 'block';
+    document.getElementById('practice-problem').style.display = 'none';
+  }
+}
 
 // ===== PDF EXPORT FUNCTIONS =====
 
