@@ -56,6 +56,11 @@
             <div class="well">
               <h4>Edukt</h4>
               <div class="form-group">
+                <label>Koeffizient (ν₁):</label>
+                <input type="number" id="mol-coeff-r" class="form-control" value="2" step="any">
+                <small class="text-muted">Stöchiometrischer Koeffizient des Edukts</small>
+              </div>
+              <div class="form-group">
                 <label>Stoffmenge (mol):</label>
                 <input type="number" id="mol-reactant" class="form-control" placeholder="z.B. 2" step="any">
               </div>
@@ -65,8 +70,9 @@
             <div class="well">
               <h4>Produkt</h4>
               <div class="form-group">
-                <label>Koeffizient:</label>
-                <input type="number" id="coeff-1" class="form-control" value="2" step="any">
+                <label>Koeffizient (ν₂):</label>
+                <input type="number" id="mol-coeff-p" class="form-control" value="2" step="any">
+                <small class="text-muted">Stöchiometrischer Koeffizient des Produkts</small>
               </div>
             </div>
           </div>
@@ -91,6 +97,11 @@
             <div class="well">
               <h4>Edukt</h4>
               <div class="form-group">
+                <label>Koeffizient (ν₁):</label>
+                <input type="number" id="mass-coeff-r" class="form-control" value="1" step="any">
+                <small class="text-muted">Stöchiometrischer Koeffizient</small>
+              </div>
+              <div class="form-group">
                 <label>Masse (g):</label>
                 <input type="number" id="mass-r" class="form-control" step="any">
               </div>
@@ -103,6 +114,11 @@
           <div class="col-md-4">
             <div class="well">
               <h4>Produkt</h4>
+              <div class="form-group">
+                <label>Koeffizient (ν₂):</label>
+                <input type="number" id="mass-coeff-p" class="form-control" value="1" step="any">
+                <small class="text-muted">Stöchiometrischer Koeffizient</small>
+              </div>
               <div class="form-group">
                 <label>Molare Masse (g/mol):</label>
                 <input type="number" id="mm-p" class="form-control" step="any">
@@ -204,18 +220,20 @@
 <script>
 function calcMolMol() {
   const n1 = parseFloat(document.getElementById('mol-reactant').value);
-  const v2 = parseFloat(document.getElementById('coeff-1').value);
+  const v1 = parseFloat(document.getElementById('mol-coeff-r').value);
+  const v2 = parseFloat(document.getElementById('mol-coeff-p').value);
 
-  if (isNaN(n1) || isNaN(v2)) {
+  if (isNaN(n1) || isNaN(v1) || isNaN(v2)) {
     alert('Bitte geben Sie alle Werte ein');
     return;
   }
 
-  const n2 = n1 * v2;
+  const n2 = n1 * (v2 / v1);
   document.getElementById('mol-result').style.display = 'block';
   document.getElementById('mol-calc').innerHTML = `
-    <p><strong>Edukt:</strong> ${n1} mol</p>
-    <p><strong>Produkt:</strong> ${n2.toFixed(4)} mol</p>
+    <p><strong>Edukt (ν₁=${v1}):</strong> ${n1} mol</p>
+    <p><strong>Produkt (ν₂=${v2}):</strong> ${n2.toFixed(4)} mol</p>
+    <p class="text-muted"><small>Formel: n₂ = n₁ × (ν₂/ν₁) = ${n1} × (${v2}/${v1}) = ${n2.toFixed(4)} mol</small></p>
   `;
 }
 
@@ -223,14 +241,16 @@ function calcMassMass() {
   const m1 = parseFloat(document.getElementById('mass-r').value);
   const M1 = parseFloat(document.getElementById('mm-r').value);
   const M2 = parseFloat(document.getElementById('mm-p').value);
+  const v1 = parseFloat(document.getElementById('mass-coeff-r').value);
+  const v2 = parseFloat(document.getElementById('mass-coeff-p').value);
 
-  if (isNaN(m1) || isNaN(M1) || isNaN(M2)) {
+  if (isNaN(m1) || isNaN(M1) || isNaN(M2) || isNaN(v1) || isNaN(v2)) {
     alert('Bitte geben Sie alle Werte ein');
     return;
   }
 
   const n1 = m1 / M1;
-  const n2 = n1;
+  const n2 = n1 * (v2 / v1);
   const m2 = n2 * M2;
 
   document.getElementById('mass-preview').innerHTML = `
@@ -242,8 +262,9 @@ function calcMassMass() {
   document.getElementById('mass-result').innerHTML = `
     <div class="result-box">
       <h3>Berechnung:</h3>
-      <p>n = ${m1} g / ${M1} g/mol = ${n1.toFixed(4)} mol</p>
-      <p>m = ${n2.toFixed(4)} mol × ${M2} g/mol = <strong>${m2.toFixed(2)} g</strong></p>
+      <p><strong>Schritt 1:</strong> n₁ = m₁/M₁ = ${m1} g / ${M1} g/mol = ${n1.toFixed(4)} mol</p>
+      <p><strong>Schritt 2:</strong> n₂ = n₁ × (ν₂/ν₁) = ${n1.toFixed(4)} mol × (${v2}/${v1}) = ${n2.toFixed(4)} mol</p>
+      <p><strong>Schritt 3:</strong> m₂ = n₂ × M₂ = ${n2.toFixed(4)} mol × ${M2} g/mol = <strong>${m2.toFixed(2)} g</strong></p>
     </div>
   `;
 }
