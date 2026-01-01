@@ -11,6 +11,30 @@
 
   <hr class="featurette-divider">
 
+  <!-- Calculation History -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="history-section">
+        <button class="btn btn-info btn-sm" onclick="toggleHistory()" type="button">
+          <i class="fa fa-history"></i> Berechnungsverlauf
+          <span id="history-count" class="badge">(0)</span>
+        </button>
+        <button class="btn btn-default btn-sm" onclick="clearHistory()" type="button" style="margin-left: 10px;">
+          <i class="fa fa-trash"></i> Verlauf löschen
+        </button>
+
+        <div id="history-panel" style="display:none; margin-top: 15px;">
+          <div class="well">
+            <h4>Letzte Berechnungen</h4>
+            <div id="history-list" class="history-list">
+              <p class="text-muted"><small>Noch keine Berechnungen durchgeführt.</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Calculator Tabs -->
   <div class="row">
     <div class="col-md-12">
@@ -355,6 +379,106 @@ function loadMassPreset(presetKey) {
   document.getElementById('mass-preview').innerHTML = '<p style="font-size:2em; color:#007bff;">--</p><p>Gramm</p>';
 }
 
+// ===== HISTORY MANAGEMENT =====
+
+// Save calculation to history
+function saveToHistory(type, data) {
+  try {
+    const history = JSON.parse(localStorage.getItem('stoichHistory') || '[]');
+
+    const entry = {
+      id: Date.now(),
+      timestamp: new Date().toLocaleString('de-DE'),
+      type: type,
+      data: data
+    };
+
+    // Add to beginning of array (most recent first)
+    history.unshift(entry);
+
+    // Keep only last 20 entries
+    if (history.length > 20) {
+      history.splice(20);
+    }
+
+    localStorage.setItem('stoichHistory', JSON.stringify(history));
+    updateHistoryCount();
+    displayHistory();
+  } catch (e) {
+    console.error('Error saving to history:', e);
+  }
+}
+
+// Load and display history
+function loadHistory() {
+  displayHistory();
+  updateHistoryCount();
+}
+
+// Display history in the UI
+function displayHistory() {
+  try {
+    const history = JSON.parse(localStorage.getItem('stoichHistory') || '[]');
+    const historyList = document.getElementById('history-list');
+
+    if (history.length === 0) {
+      historyList.innerHTML = '<p class="text-muted"><small>Noch keine Berechnungen durchgeführt.</small></p>';
+      return;
+    }
+
+    let html = '<div class="history-items">';
+    history.forEach((entry, index) => {
+      html += `
+        <div class="history-item" style="padding: 10px; margin-bottom: 8px; background: #f5f5f5; border-radius: 4px; border-left: 3px solid #007bff;">
+          <div style="display: flex; justify-content: space-between; align-items: start;">
+            <div style="flex: 1;">
+              <strong>${entry.type}</strong>
+              <span class="text-muted" style="font-size: 0.85em; margin-left: 10px;">${entry.timestamp}</span>
+              <div style="margin-top: 5px; font-size: 0.9em;">${entry.data}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    html += '</div>';
+
+    historyList.innerHTML = html;
+  } catch (e) {
+    console.error('Error displaying history:', e);
+  }
+}
+
+// Toggle history panel visibility
+function toggleHistory() {
+  const panel = document.getElementById('history-panel');
+  if (panel.style.display === 'none') {
+    panel.style.display = 'block';
+    displayHistory();
+  } else {
+    panel.style.display = 'none';
+  }
+}
+
+// Update history count badge
+function updateHistoryCount() {
+  try {
+    const history = JSON.parse(localStorage.getItem('stoichHistory') || '[]');
+    const countBadge = document.getElementById('history-count');
+    countBadge.textContent = `(${history.length})`;
+  } catch (e) {
+    console.error('Error updating history count:', e);
+  }
+}
+
+// Clear all history
+function clearHistory() {
+  if (confirm('Möchten Sie wirklich den gesamten Berechnungsverlauf löschen?')) {
+    localStorage.removeItem('stoichHistory');
+    displayHistory();
+    updateHistoryCount();
+  }
+}
+
 function calcMolMol() {
   const n1 = parseFloat(document.getElementById('mol-reactant').value);
   const v1 = parseFloat(document.getElementById('mol-coeff-r').value);
@@ -372,6 +496,9 @@ function calcMolMol() {
     <p><strong>Produkt (ν₂=${v2}):</strong> ${n2.toFixed(4)} mol</p>
     <p class="text-muted"><small>Formel: n₂ = n₁ × (ν₂/ν₁) = ${n1} × (${v2}/${v1}) = ${n2.toFixed(4)} mol</small></p>
   `;
+
+  // Save to history
+  saveToHistory('Mol-Mol', `ν₁=${v1}, ν₂=${v2}: ${n1} mol → ${n2.toFixed(4)} mol`);
 }
 
 function calcMassMass() {
@@ -404,6 +531,9 @@ function calcMassMass() {
       <p><strong>Schritt 3:</strong> m₂ = n₂ × M₂ = ${n2.toFixed(4)} mol × ${M2} g/mol = <strong>${m2.toFixed(2)} g</strong></p>
     </div>
   `;
+
+  // Save to history
+  saveToHistory('Masse-Masse', `${m1} g → ${m2.toFixed(2)} g (ν₁=${v1}, ν₂=${v2})`);
 }
 
 function calcLimiting() {
@@ -431,6 +561,9 @@ function calcLimiting() {
       <p>Reagenz 2: ${n2_2.toFixed(4)} mol</p>
     </div>
   `;
+
+  // Save to history
+  saveToHistory('Limitierendes Reagenz', `${name} (${n1.toFixed(4)} vs ${n2_2.toFixed(4)} mol)`);
 }
 
 function calcYield() {
@@ -452,7 +585,15 @@ function calcYield() {
       <p>Praktisch: ${act} g</p>
     </div>
   `;
+
+  // Save to history
+  saveToHistory('Ausbeute', `${yield_pct.toFixed(2)}% (${act}g / ${theo}g)`);
 }
+
+// Initialize history on page load
+document.addEventListener('DOMContentLoaded', function() {
+  loadHistory();
+});
 </script>
 
 <style>
@@ -495,6 +636,40 @@ function calcYield() {
 .preset-buttons button:active {
   transform: translateY(0);
   box-shadow: none;
+}
+
+/* History section styling */
+.history-section {
+  margin-bottom: 20px;
+}
+
+.history-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.history-item {
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.badge {
+  background-color: #2196F3;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 12px;
+  margin-left: 5px;
 }
 </style>
 
