@@ -1249,14 +1249,85 @@ function calcMolMol() {
 
   const n2 = n1 * (v2 / v1);
   document.getElementById('mol-result').style.display = 'block';
+
+  // Basic result
   document.getElementById('mol-calc').innerHTML = `
     <p><strong>Edukt (ν₁=${v1}):</strong> ${n1} mol</p>
     <p><strong>Produkt (ν₂=${v2}):</strong> ${n2.toFixed(4)} mol</p>
     <p class="text-muted"><small>Formel: n₂ = n₁ × (ν₂/ν₁) = ${n1} × (${v2}/${v1}) = ${n2.toFixed(4)} mol</small></p>
+    <button class="btn btn-info btn-sm" onclick="toggleMolMolExplanation()" style="margin-top:10px;">
+      <i class="fa fa-info-circle"></i> Schritt-für-Schritt Erklärung
+    </button>
+    <div id="mol-mol-explanation" style="display:none; margin-top:15px; padding:15px; background:#e3f2fd; border-radius:4px; border-left:4px solid #2196F3;">
+      <h4 style="color:#1976D2; margin-top:0;"><i class="fa fa-graduation-cap"></i> Ausführliche Erklärung</h4>
+
+      <div style="margin-bottom:15px;">
+        <h5 style="color:#0D47A1;">📚 Das Konzept</h5>
+        <p>Bei chemischen Reaktionen reagieren Edukte und Produkte in festen Stoffmengenverhältnissen, die durch die stöchiometrischen Koeffizienten bestimmt werden. Diese Verhältnisse ermöglichen es uns, die Stoffmenge eines Produkts aus der Stoffmenge eines Edukts zu berechnen.</p>
+      </div>
+
+      <div style="margin-bottom:15px;">
+        <h5 style="color:#0D47A1;">📐 Die Formel</h5>
+        <p style="font-size:18px; font-weight:bold; color:#1976D2;">n₂ = n₁ × (ν₂/ν₁)</p>
+        <p><strong>Wo:</strong></p>
+        <ul>
+          <li><strong>n₁</strong> = Stoffmenge des Edukts (gegeben)</li>
+          <li><strong>ν₁</strong> = Koeffizient des Edukts in der Reaktionsgleichung</li>
+          <li><strong>ν₂</strong> = Koeffizient des Produkts in der Reaktionsgleichung</li>
+          <li><strong>n₂</strong> = Stoffmenge des Produkts (berechnet)</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom:15px;">
+        <h5 style="color:#0D47A1;">🔢 Schritt-für-Schritt Berechnung</h5>
+        <div style="background:white; padding:10px; border-radius:4px; margin-bottom:10px;">
+          <p><strong>Schritt 1:</strong> Koeffizientenverhältnis bestimmen</p>
+          <p style="font-family:monospace; color:#1976D2;">Verhältnis = ν₂/ν₁ = ${v2}/${v1} = ${(v2/v1).toFixed(4)}</p>
+          <p><small>Das bedeutet: Für jedes ${v1} Mol Edukt entstehen ${v2} Mol Produkt.</small></p>
+        </div>
+
+        <div style="background:white; padding:10px; border-radius:4px; margin-bottom:10px;">
+          <p><strong>Schritt 2:</strong> Stoffmenge des Produkts berechnen</p>
+          <p style="font-family:monospace; color:#1976D2;">n₂ = ${n1} mol × ${(v2/v1).toFixed(4)} = ${n2.toFixed(4)} mol</p>
+          <p><small>Multipliziere die gegebene Stoffmenge mit dem Koeffizientenverhältnis.</small></p>
+        </div>
+
+        <div style="background:white; padding:10px; border-radius:4px;">
+          <p><strong>Schritt 3:</strong> Ergebnis überprüfen</p>
+          <p><strong>Ergebnis:</strong> ${n2.toFixed(4)} mol Produkt werden aus ${n1} mol Edukt gebildet.</p>
+        </div>
+      </div>
+
+      <div style="margin-bottom:15px;">
+        <h5 style="color:#0D47A1;">💡 Einheiten-Analyse</h5>
+        <p style="font-family:monospace; background:white; padding:10px; border-radius:4px;">
+          mol × (mol/mol) = mol
+        </p>
+        <p><small>Die Koeffizienten sind einheitenlos (Verhältnis von Mol zu Mol), daher bleibt die Einheit "mol" erhalten.</small></p>
+      </div>
+
+      <div style="background:#fff3e0; padding:12px; border-radius:4px; border-left:4px solid #FF9800;">
+        <h5 style="color:#E65100; margin-top:0;"><i class="fa fa-lightbulb-o"></i> Tipps & Häufige Fehler</h5>
+        <ul style="margin-bottom:0;">
+          <li>✅ <strong>Richtig:</strong> Immer die Koeffizienten aus der <em>ausglichenen</em> Reaktionsgleichung verwenden</li>
+          <li>✅ <strong>Richtig:</strong> Das Koeffizientenverhältnis als Bruch schreiben (ν₂/ν₁)</li>
+          <li>❌ <strong>Falsch:</strong> Koeffizienten vergessen und annehmen, das Verhältnis sei 1:1</li>
+          <li>❌ <strong>Falsch:</strong> Das Verhältnis umgekehrt (ν₁/ν₂ statt ν₂/ν₁)</li>
+        </ul>
+      </div>
+    </div>
   `;
 
   // Save to history
   saveToHistory('Mol-Mol', `ν₁=${v1}, ν₂=${v2}: ${n1} mol → ${n2.toFixed(4)} mol`);
+}
+
+// Toggle explanation visibility
+function toggleMolMolExplanation() {
+  const explanation = document.getElementById('mol-mol-explanation');
+  if (explanation) {
+    explanation.style.display = explanation.style.display === 'none' ? 'block' : 'none';
+  }
 }
 
 function calcMassMass() {
@@ -1287,6 +1358,78 @@ function calcMassMass() {
       <p><strong>Schritt 1:</strong> n₁ = m₁/M₁ = ${m1} g / ${M1} g/mol = ${n1.toFixed(4)} mol</p>
       <p><strong>Schritt 2:</strong> n₂ = n₁ × (ν₂/ν₁) = ${n1.toFixed(4)} mol × (${v2}/${v1}) = ${n2.toFixed(4)} mol</p>
       <p><strong>Schritt 3:</strong> m₂ = n₂ × M₂ = ${n2.toFixed(4)} mol × ${M2} g/mol = <strong>${m2.toFixed(2)} g</strong></p>
+      <button class="btn btn-info btn-sm" onclick="toggleMassMassExplanation()" style="margin-top:10px;">
+        <i class="fa fa-info-circle"></i> Schritt-für-Schritt Erklärung
+      </button>
+      <div id="mass-mass-explanation" style="display:none; margin-top:15px; padding:15px; background:#e8f5e9; border-radius:4px; border-left:4px solid #4CAF50;">
+        <h4 style="color:#2E7D32; margin-top:0;"><i class="fa fa-graduation-cap"></i> Ausführliche Erklärung</h4>
+
+        <div style="margin-bottom:15px;">
+          <h5 style="color:#1B5E20;">📚 Das Konzept</h5>
+          <p>Die Umrechnung von Masse zu Masse erfordert drei Schritte: Masse → Mol (Stoffmenge) → Mol (Stoffmenge) → Masse. Dies ist notwendig, weil die stöchiometrischen Koeffizienten das Verhältnis der <strong>Stoffmengen</strong> (in Mol), nicht der Massen angeben.</p>
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h5 style="color:#1B5E20;">📐 Die Formeln</h5>
+          <p style="font-size:16px; font-weight:bold; color:#2E7D32;">Schritt 1: n = m/M</p>
+          <p style="font-size:16px; font-weight:bold; color:#2E7D32;">Schritt 2: n₂ = n₁ × (ν₂/ν₁)</p>
+          <p style="font-size:16px; font-weight:bold; color:#2E7D32;">Schritt 3: m = n × M</p>
+          <p><strong>Wo:</strong></p>
+          <ul>
+            <li><strong>m</strong> = Masse (in Gramm)</li>
+            <li><strong>M</strong> = Molare Masse (in g/mol)</li>
+            <li><strong>n</strong> = Stoffmenge (in mol)</li>
+            <li><strong>ν</strong> = Stöchiometrischer Koeffizient</li>
+          </ul>
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h5 style="color:#1B5E20;">🔢 Detaillierte Berechnung</h5>
+          <div style="background:white; padding:10px; border-radius:4px; margin-bottom:10px;">
+            <p><strong>Schritt 1:</strong> Masse des Edukts in Stoffmenge umrechnen</p>
+            <p style="font-family:monospace; color:#2E7D32;">n₁ = m₁ / M₁ = ${m1} g / ${M1} g/mol</p>
+            <p style="font-family:monospace; color:#2E7D32;">n₁ = ${n1.toFixed(4)} mol</p>
+            <p><small>Teile die Masse durch die molare Masse, um die Stoffmenge in Mol zu erhalten.</small></p>
+          </div>
+
+          <div style="background:white; padding:10px; border-radius:4px; margin-bottom:10px;">
+            <p><strong>Schritt 2:</strong> Stoffmenge des Produkts berechnen (unter Verwendung der Koeffizienten)</p>
+            <p style="font-family:monospace; color:#2E7D32;">Verhältnis = ν₂/ν₁ = ${v2}/${v1} = ${(v2/v1).toFixed(4)}</p>
+            <p style="font-family:monospace; color:#2E7D32;">n₂ = ${n1.toFixed(4)} mol × ${(v2/v1).toFixed(4)} = ${n2.toFixed(4)} mol</p>
+            <p><small>Multipliziere die Stoffmenge des Edukts mit dem Koeffizientenverhältnis.</small></p>
+          </div>
+
+          <div style="background:white; padding:10px; border-radius:4px;">
+            <p><strong>Schritt 3:</strong> Stoffmenge des Produkts in Masse umrechnen</p>
+            <p style="font-family:monospace; color:#2E7D32;">m₂ = n₂ × M₂ = ${n2.toFixed(4)} mol × ${M2} g/mol</p>
+            <p style="font-family:monospace; color:#2E7D32;">m₂ = ${m2.toFixed(2)} g</p>
+            <p><small>Multipliziere die Stoffmenge mit der molaren Masse, um die Masse zu erhalten.</small></p>
+          </div>
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h5 style="color:#1B5E20;">💡 Einheiten-Analyse</h5>
+          <p style="font-family:monospace; background:white; padding:10px; border-radius:4px;">
+            Schritt 1: g ÷ (g/mol) = mol
+          </p>
+          <p style="font-family:monospace; background:white; padding:10px; border-radius:4px;">
+            Schritt 2: mol × (mol/mol) = mol
+          </p>
+          <p style="font-family:monospace; background:white; padding:10px; border-radius:4px;">
+            Schritt 3: mol × (g/mol) = g
+          </p>
+        </div>
+
+        <div style="background:#fff3e0; padding:12px; border-radius:4px; border-left:4px solid #FF9800;">
+          <h5 style="color:#E65100; margin-top:0;"><i class="fa fa-lightbulb-o"></i> Tipps & Häufige Fehler</h5>
+          <ul style="margin-bottom:0;">
+            <li>✅ <strong>Richtig:</strong> Immer über Mol (Stoffmenge) umrechnen, nicht direkt von Masse zu Masse</li>
+            <li>✅ <strong>Richtig:</strong> Die molare Masse aus dem Periodensystem bestimmen (Summe der Atommassen)</li>
+            <li>❌ <strong>Falsch:</strong> Masse₁ × (Masse₂/Masse₁) - Die molaren Massen sind nicht proportional!</li>
+            <li>❌ <strong>Falsch:</strong> Vergessen, die Koeffizienten zu berücksichtigen</li>
+          </ul>
+        </div>
+      </div>
       <button class="btn btn-success btn-sm" onclick="exportMassMassToPDF()" style="margin-top:15px;">
         <i class="fa fa-file-pdf-o"></i> Als PDF exportieren
       </button>
@@ -1295,6 +1438,14 @@ function calcMassMass() {
 
   // Save to history
   saveToHistory('Masse-Masse', `${m1} g → ${m2.toFixed(2)} g (ν₁=${v1}, ν₂=${v2})`);
+}
+
+// Toggle mass-mass explanation visibility
+function toggleMassMassExplanation() {
+  const explanation = document.getElementById('mass-mass-explanation');
+  if (explanation) {
+    explanation.style.display = explanation.style.display === 'none' ? 'block' : 'none';
+  }
 }
 
 function calcLimiting() {
@@ -1313,6 +1464,7 @@ function calcLimiting() {
 
   const limiting = n1 < n2_2 ? 1 : 2;
   const name = limiting === 1 ? 'Reagenz 1' : 'Reagenz 2';
+  const other = limiting === 1 ? n2_2 - n1 : n1 - n2_2;
 
   document.getElementById('limit-result').style.display = 'block';
   document.getElementById('limit-result').innerHTML = `
@@ -1320,6 +1472,61 @@ function calcLimiting() {
       <h4>Limitierend: ${name}</h4>
       <p>Reagenz 1: ${n1.toFixed(4)} mol</p>
       <p>Reagenz 2: ${n2_2.toFixed(4)} mol</p>
+      <button class="btn btn-info btn-sm" onclick="toggleLimitingExplanation()" style="margin-top:10px;">
+        <i class="fa fa-info-circle"></i> Schritt-für-Schritt Erklärung
+      </button>
+      <div id="limiting-explanation" style="display:none; margin-top:15px; padding:15px; background:#fff3e0; border-radius:4px; border-left:4px solid #FF9800;">
+        <h4 style="color:#E65100; margin-top:0;"><i class="fa fa-graduation-cap"></i> Ausführliche Erklärung</h4>
+
+        <div style="margin-bottom:15px;">
+          <h5 style="color:#BF360C;">📚 Das Konzept</h5>
+          <p>Das <strong>limitierende Reagenz</strong> (Limiting Reagent) ist der Stoff, der zuerst verbraucht wird und damit die Menge an Produkt bestimmt, die gebildet werden kann. Der andere Stoff ist im Überschuss vorhanden und wird nicht vollständig verbraucht.</p>
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h5 style="color:#BF360C;">📐 Die Logik</h5>
+          <p>Vergleiche die Stoffmengen (in Mol) der beiden Reagenzien:</p>
+          <ul>
+            <li>Wenn beide Reagenzien im 1:1-Verhältnis reagieren: Das Reagenz mit der <strong>geringeren Stoffmenge</strong> ist limitierend</li>
+            <li>Das Reagenz mit der größeren Stoffmenge ist im <strong>Überschuss</strong></li>
+          </ul>
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h5 style="color:#BF360C;">🔢 Schritt-für-Schritt Berechnung</h5>
+          <div style="background:white; padding:10px; border-radius:4px; margin-bottom:10px;">
+            <p><strong>Schritt 1:</strong> Stoffmenge von Reagenz 1 berechnen</p>
+            <p style="font-family:monospace; color:#E65100;">n₁ = m₁ / M₁ = ${m1} g / ${M1} g/mol = ${n1.toFixed(4)} mol</p>
+          </div>
+
+          <div style="background:white; padding:10px; border-radius:4px; margin-bottom:10px;">
+            <p><strong>Schritt 2:</strong> Stoffmenge von Reagenz 2 berechnen</p>
+            <p style="font-family:monospace; color:#E65100;">n₂ = m₂ / M₂ = ${m2} g / ${M2} g/mol = ${n2_2.toFixed(4)} mol</p>
+          </div>
+
+          <div style="background:white; padding:10px; border-radius:4px; margin-bottom:10px;">
+            <p><strong>Schritt 3:</strong> Stoffmengen vergleichen</p>
+            <p style="font-family:monospace; color:#E65100;">${n1.toFixed(4)} mol ${n1 < n2_2 ? '<' : '>'} ${n2_2.toFixed(4)} mol</p>
+            <p><strong>Ergebnis:</strong> ${name} hat weniger Mol und ist daher limitierend.</p>
+          </div>
+
+          <div style="background:white; padding:10px; border-radius:4px;">
+            <p><strong>Schritt 4:</strong> Überschuss berechnen (optional)</p>
+            <p style="font-family:monospace; color:#E65100;">Überschuss = ${other.toFixed(4)} mol</p>
+            <p><small>Dies ist die Menge an ${limiting === 1 ? 'Reagenz 2' : 'Reagenz 1'}, die <strong>nicht</strong> reagieren wird.</small></p>
+          </div>
+        </div>
+
+        <div style="background:#e1f5fe; padding:12px; border-radius:4px; border-left:4px solid #03A9F4;">
+          <h5 style="color:#0277BD; margin-top:0;"><i class="fa fa-lightbulb-o"></i> Tipps & Häufige Fehler</h5>
+          <ul style="margin-bottom:0;">
+            <li>✅ <strong>Richtig:</strong> Immer die Stoffmengen (in Mol) vergleichen, nicht die Massen!</li>
+            <li>✅ <strong>Richtig:</strong> Auf die Koeffizienten der Reaktionsgleichung achten (z.B. 2A + B → C bedeutet 2:1 Verhältnis)</li>
+            <li>❌ <strong>Falsch:</strong> Die Massen direkt vergleichen - das funktioniert nur bei gleichen molaren Massen!</li>
+            <li>❌ <strong>Falsch:</strong> Annehmen, das Reagenz mit der kleineren Masse sei immer limitierend</li>
+          </ul>
+        </div>
+      </div>
       <button class="btn btn-success btn-sm" onclick="exportLimitingToPDF()" style="margin-top:15px;">
         <i class="fa fa-file-pdf-o"></i> Als PDF exportieren
       </button>
@@ -1328,6 +1535,14 @@ function calcLimiting() {
 
   // Save to history
   saveToHistory('Limitierendes Reagenz', `${name} (${n1.toFixed(4)} vs ${n2_2.toFixed(4)} mol)`);
+}
+
+// Toggle limiting explanation visibility
+function toggleLimitingExplanation() {
+  const explanation = document.getElementById('limiting-explanation');
+  if (explanation) {
+    explanation.style.display = explanation.style.display === 'none' ? 'block' : 'none';
+  }
 }
 
 function calcYield() {
@@ -1347,6 +1562,76 @@ function calcYield() {
       <h3>Ausbeute: ${yield_pct.toFixed(2)}%</h3>
       <p>Theoretisch: ${theo} g</p>
       <p>Praktisch: ${act} g</p>
+      <button class="btn btn-info btn-sm" onclick="toggleYieldExplanation()" style="margin-top:10px;">
+        <i class="fa fa-info-circle"></i> Schritt-für-Schritt Erklärung
+      </button>
+      <div id="yield-explanation" style="display:none; margin-top:15px; padding:15px; background:#f3e5f5; border-radius:4px; border-left:4px solid #9C27B0;">
+        <h4 style="color:#7B1FA2; margin-top:0;"><i class="fa fa-graduation-cap"></i> Ausführliche Erklärung</h4>
+
+        <div style="margin-bottom:15px;">
+          <h5 style="color:#4A148C;">📚 Das Konzept</h5>
+          <p>Die <strong>Reaktionsausbeute</strong> (Percent Yield) gibt an, wie effizient eine chemische Reaktion ist. Sie vergleicht die tatsächlich erhaltene Produktmenge mit der theoretisch möglichen Menge.</p>
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h5 style="color:#4A148C;">📐 Die Formel</h5>
+          <p style="font-size:18px; font-weight:bold; color:#7B1FA2;">Ausbeute (%) = (Praktische Masse / Theoretische Masse) × 100%</p>
+          <p><strong>Wo:</strong></p>
+          <ul>
+            <li><strong>Theoretische Masse:</strong> Maximale Produktmenge, die basierend auf der Stöchiometrie berechnet wurde</li>
+            <li><strong>Praktische Masse:</strong> Tatsächlich im Labor erhaltene Produktmenge</li>
+            <li><strong>Ausbeute:</strong> Prozentuales Verhältnis von praktisch zu theoretisch</li>
+          </ul>
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h5 style="color:#4A148C;">🔢 Schritt-für-Schritt Berechnung</h5>
+          <div style="background:white; padding:10px; border-radius:4px; margin-bottom:10px;">
+            <p><strong>Schritt 1:</strong> Werte identifizieren</p>
+            <p style="font-family:monospace; color:#7B1FA2;">Theoretisch = ${theo} g</p>
+            <p style="font-family:monospace; color:#7B1FA2;">Praktisch = ${act} g</p>
+          </div>
+
+          <div style="background:white; padding:10px; border-radius:4px; margin-bottom:10px;">
+            <p><strong>Schritt 2:</strong> Ausbeute berechnen</p>
+            <p style="font-family:monospace; color:#7B1FA2;">Ausbeute = (${act} / ${theo}) × 100%</p>
+            <p style="font-family:monospace; color:#7B1FA2;">Ausbeute = ${(act/theo).toFixed(4)} × 100%</p>
+            <p style="font-family:monospace; color:#7B1FA2;">Ausbeute = ${yield_pct.toFixed(2)}%</p>
+          </div>
+
+          <div style="background:white; padding:10px; border-radius:4px;">
+            <p><strong>Schritt 3:</strong> Ergebnis interpretieren</p>
+            <p><strong>${yield_pct.toFixed(2)}%</strong> Ausbeute bedeutet, dass ${yield_pct.toFixed(1)}% der theoretisch möglichen Produktmenge tatsächlich erhalten wurden.</p>
+            ${yield_pct < 50 ? '<p style="color:#c62828;"><small>⚠️ <strong>Niedrige Ausbeute:</strong> Es könnten Probleme mit der Reaktion aufgetreten sein (Verunreinigungen, Nebenreaktionen, Verluste bei der Aufarbeitung).</small></p>' : ''}
+            ${yield_pct > 100 ? '<p style="color:#c62828;"><small>⚠️ <strong>Ausbeute > 100%:</strong> Dies ist physikalisch unmöglich! Mögliche Ursachen: Verunreinigungen im Produkt, Feuchtigkeit, Messfehler.</small></p>' : ''}
+            ${yield_pct >= 80 && yield_pct <= 100 ? '<p style="color:#2e7d32;"><small>✅ <strong>Gute Ausbeute:</strong> Die Reaktion verlief effizient.</small></p>' : ''}
+          </div>
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <h5 style="color:#4A148C;">💡 Warum ist die Ausbeute nie 100%?</h5>
+          <div style="background:white; padding:12px; border-radius:4px;">
+            <p><strong>Typische Gründe für niedrigere Ausbeuten:</strong></p>
+            <ul>
+              <li>💧 <strong>Verluste bei der Aufarbeitung:</strong> Produkt geht beim Filtern, Waschen oder Umkristallisieren verloren</li>
+              <li>⚠️ <strong>Nebenreaktionen:</strong> Edukte reagieren zu unerwünschten Nebenprodukten</li>
+              <li>🔄 <strong>Reversible Reaktionen:</strong> Die Reaktion erreicht nicht das vollständige Gleichgewicht</li>
+              <li>🧪 <strong>Ungünstige Bedingungen:</strong> Temperatur, Druck oder Katalysator nicht optimal</li>
+              <li>📏 <strong>Messungenauigkeit:</strong> Waagen, Messzylinder und andere Geräte haben Ungenauigkeiten</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="background:#e1f5fe; padding:12px; border-radius:4px; border-left:4px solid #03A9F4;">
+          <h5 style="color:#0277BD; margin-top:0;"><i class="fa fa-lightbulb-o"></i> Tipps & Häufige Fehler</h5>
+          <ul style="margin-bottom:0;">
+            <li>✅ <strong>Richtig:</strong> Die praktische Masse kann nie größer als die theoretische sein (außer bei Messfehlern)</li>
+            <li>✅ <strong>Richtig:</strong> Die Ausbeute wird als Prozentsatz angegeben, nicht als Dezimalzahl</li>
+            <li>❌ <strong>Falsch:</strong> Theoretische und praktische Masse vertauschen</li>
+            <li>❌ <strong>Falsch:</strong> Das "×100%" vergessen und als Dezimalzahl angeben</li>
+          </ul>
+        </div>
+      </div>
       <button class="btn btn-success btn-sm" onclick="exportYieldToPDF()" style="margin-top:15px;">
         <i class="fa fa-file-pdf-o"></i> Als PDF exportieren
       </button>
@@ -1355,6 +1640,14 @@ function calcYield() {
 
   // Save to history
   saveToHistory('Ausbeute', `${yield_pct.toFixed(2)}% (${act}g / ${theo}g)`);
+}
+
+// Toggle yield explanation visibility
+function toggleYieldExplanation() {
+  const explanation = document.getElementById('yield-explanation');
+  if (explanation) {
+    explanation.style.display = explanation.style.display === 'none' ? 'block' : 'none';
+  }
 }
 
 // ===== MULTI-STEP REACTIONS =====
