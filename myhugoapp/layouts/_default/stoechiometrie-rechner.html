@@ -41,6 +41,75 @@
     </div>
   </div>
 
+  <!-- Periodic Table / Molar Mass Lookup -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="periodic-table-section" style="background: #f3e5f5; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 2px solid #9C27B0;">
+        <h3 style="color: #7B1FA2; margin-top: 0;">
+          <i class="fa fa-table"></i> Molare Massen nachschlagen
+        </h3>
+        <p>Suchen Sie nach einem Element, um die molare Masse automatisch in den Rechner zu übertragen:</p>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-8">
+              <select id="element-selector" class="form-control" style="font-size: 16px; padding: 12px;">
+                <option value="">-- Element auswählen --</option>
+                <optgroup label="Nichtmetalle">
+                  <option value="H:1.008">H - Wasserstoff (1.008 g/mol)</option>
+                  <option value="C:12.011">C - Kohlenstoff (12.011 g/mol)</option>
+                  <option value="N:14.007">N - Stickstoff (14.007 g/mol)</option>
+                  <option value="O:15.999">O - Sauerstoff (15.999 g/mol)</option>
+                  <option value="F:18.998">F - Fluor (18.998 g/mol)</option>
+                  <option value="P:30.974">P - Phosphor (30.974 g/mol)</option>
+                  <option value="S:32.06">S - Schwefel (32.06 g/mol)</option>
+                  <option value="Cl:35.45">Cl - Chlor (35.45 g/mol)</option>
+                  <option value="I:126.90">I - Iod (126.90 g/mol)</option>
+                </optgroup>
+                <optgroup label="Metalle (Hauptgruppe)">
+                  <option value="Li:6.941">Li - Lithium (6.941 g/mol)</option>
+                  <option value="Na:22.990">Na - Natrium (22.990 g/mol)</option>
+                  <option value="K:39.098">K - Kalium (39.098 g/mol)</option>
+                  <option value="Be:9.012">Be - Beryllium (9.012 g/mol)</option>
+                  <option value="Mg:24.305">Mg - Magnesium (24.305 g/mol)</option>
+                  <option value="Ca:40.078">Ca - Calcium (40.078 g/mol)</option>
+                  <option value="Al:26.982">Al - Aluminium (26.982 g/mol)</option>
+                  <option value="Fe:55.845">Fe - Eisen (55.845 g/mol)</option>
+                  <option value="Cu:63.546">Cu - Kupfer (63.546 g/mol)</option>
+                  <option value="Zn:65.38">Zn - Zink (65.38 g/mol)</option>
+                  <option value="Ag:107.87">Ag - Silber (107.87 g/mol)</option>
+                  <option value="Au:196.97">Au - Gold (196.97 g/mol)</option>
+                </optgroup>
+                <optgroup label="Übergangsmetalle">
+                  <option value="Cr:51.996">Cr - Chrom (51.996 g/mol)</option>
+                  <option value="Mn:54.938">Mn - Mangan (54.938 g/mol)</option>
+                  <option value="Ni:58.693">Ni - Nickel (58.693 g/mol)</option>
+                  <option value="Pt:195.08">Pt - Platin (195.08 g/mol)</option>
+                </optgroup>
+                <optgroup label="Edelgase">
+                  <option value="He:4.0026">He - Helium (4.0026 g/mol)</option>
+                  <option value="Ne:20.180">Ne - Neon (20.180 g/mol)</option>
+                  <option value="Ar:39.948">Ar - Argon (39.948 g/mol)</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <button class="btn btn-primary btn-block" onclick="applyMolarMass()">
+                <i class="fa fa-check-circle"></i> Übernehmen
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="molar-mass-info" style="display:none; margin-top: 15px;">
+          <div class="alert alert-info">
+            <div id="molar-mass-details"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Calculation History -->
   <div class="row">
     <div class="col-md-12">
@@ -588,6 +657,126 @@ function applyCoefficientsToMassMass(v1, v2) {
 
   // Show confirmation
   alert(`Koeffizienten übernommen: Edukt ν₁=${v1}, Produkt ν₂=${v2}`);
+}
+
+// ===== PERIODIC TABLE / MOLAR MASS LOOKUP =====
+
+// Comprehensive element database with molar masses
+const elementDatabase = {
+  // Non-metals
+  'H': { symbol: 'H', name: 'Wasserstoff', mass: 1.008, number: 1 },
+  'C': { symbol: 'C', name: 'Kohlenstoff', mass: 12.011, number: 6 },
+  'N': { symbol: 'N', name: 'Stickstoff', mass: 14.007, number: 7 },
+  'O': { symbol: 'O', name: 'Sauerstoff', mass: 15.999, number: 8 },
+  'F': { symbol: 'F', name: 'Fluor', mass: 18.998, number: 9 },
+  'P': { symbol: 'P', name: 'Phosphor', mass: 30.974, number: 15 },
+  'S': { symbol: 'S', name: 'Schwefel', mass: 32.06, number: 16 },
+  'Cl': { symbol: 'Cl', name: 'Chlor', mass: 35.45, number: 17 },
+  'I': { symbol: 'I', name: 'Iod', mass: 126.90, number: 53 },
+
+  // Metals (Main Group)
+  'Li': { symbol: 'Li', name: 'Lithium', mass: 6.941, number: 3 },
+  'Na': { symbol: 'Na', name: 'Natrium', mass: 22.990, number: 11 },
+  'K': { symbol: 'K', name: 'Kalium', mass: 39.098, number: 19 },
+  'Be': { symbol: 'Be', name: 'Beryllium', mass: 9.012, number: 4 },
+  'Mg': { symbol: 'Mg', name: 'Magnesium', mass: 24.305, number: 12 },
+  'Ca': { symbol: 'Ca', name: 'Calcium', mass: 40.078, number: 20 },
+  'Al': { symbol: 'Al', name: 'Aluminium', mass: 26.982, number: 13 },
+  'Fe': { symbol: 'Fe', name: 'Eisen', mass: 55.845, number: 26 },
+  'Cu': { symbol: 'Cu', name: 'Kupfer', mass: 63.546, number: 29 },
+  'Zn': { symbol: 'Zn', name: 'Zink', mass: 65.38, number: 30 },
+  'Ag': { symbol: 'Ag', name: 'Silber', mass: 107.87, number: 47 },
+  'Au': { symbol: 'Au', name: 'Gold', mass: 196.97, number: 79 },
+
+  // Transition Metals
+  'Cr': { symbol: 'Cr', name: 'Chrom', mass: 51.996, number: 24 },
+  'Mn': { symbol: 'Mn', name: 'Mangan', mass: 54.938, number: 25 },
+  'Ni': { symbol: 'Ni', name: 'Nickel', mass: 58.693, number: 28 },
+  'Pt': { symbol: 'Pt', name: 'Platin', mass: 195.08, number: 78 },
+
+  // Noble Gases
+  'He': { symbol: 'He', name: 'Helium', mass: 4.0026, number: 2 },
+  'Ne': { symbol: 'Ne', name: 'Neon', mass: 20.180, number: 10 },
+  'Ar': { symbol: 'Ar', name: 'Argon', mass: 39.948, number: 18 }
+};
+
+// Apply selected element's molar mass to calculator
+function applyMolarMass() {
+  const selector = document.getElementById('element-selector');
+  const selectedValue = selector.value;
+
+  if (!selectedValue) {
+    alert('Bitte wählen Sie ein Element aus.');
+    return;
+  }
+
+  const [symbol, mass] = selectedValue.split(':');
+  const element = elementDatabase[symbol];
+
+  if (!element) {
+    alert('Element nicht gefunden: ' + symbol);
+    return;
+  }
+
+  // Show element info
+  showElementInfo(element);
+
+  // Apply to Mass-Mass calculator
+  applyMolarMassToCalculator(element);
+
+  // Switch to Mass-Mass tab
+  setTimeout(() => {
+    document.querySelector('a[href="#masse-masse"]').click();
+    document.querySelectorAll('.calculator-panel')[1].scrollIntoView({ behavior: 'smooth' });
+  }, 300);
+}
+
+// Display element information
+function showElementInfo(element) {
+  const infoContainer = document.getElementById('molar-mass-info');
+  const detailsContainer = document.getElementById('molar-mass-details');
+
+  detailsContainer.innerHTML = `
+    <strong>${element.symbol}</strong> - ${element.name}<br>
+    <span style="font-size: 1.2em; color: #9C27B0;">
+      <strong>M = ${element.mass} g/mol</strong>
+    </span><br>
+    <small class="text-muted">Ordnungszahl: ${element.number}</small>
+  `;
+
+  infoContainer.style.display = 'block';
+}
+
+// Apply molar mass to Mass-Mass calculator fields
+function applyMolarMassToCalculator(element) {
+  // Check which field to fill (reactant or product)
+  const reactantField = document.getElementById('mm-r');
+  const productField = document.getElementById('mm-p');
+
+  // Simple logic: fill the field that's empty or has default value
+  if (!reactantField.value || parseFloat(reactantField.value) === 0) {
+    reactantField.value = element.mass;
+    alert(`${element.symbol} (${element.name}) molare Masse ${element.mass} g/mol als Edukt übernommen`);
+  } else if (!productField.value || parseFloat(productField.value) === 0) {
+    productField.value = element.mass;
+    alert(`${element.symbol} (${element.name}) molare Masse ${element.mass} g/mol als Produkt übernommen`);
+  } else {
+    // Both filled, ask user which to replace
+    const choice = confirm(
+      `${element.symbol} (${element.name}) - M = ${element.mass} g/mol\n\n` +
+      `Beide Felder sind ausgefüllt:\n` +
+      `Edukt: ${reactantField.value} g/mol\n` +
+      `Produkt: ${productField.value} g/mol\n\n` +
+      `Klicken Sie OK, um das Edukt-Feld zu ersetzen,\n` +
+      `oder Abbrechen, um das Produkt-Feld zu ersetzen.`
+    );
+
+    if (choice) {
+      reactantField.value = element.mass;
+    } else {
+      productField.value = element.mass;
+    }
+  }
 }
 
 // ===== HISTORY MANAGEMENT =====
