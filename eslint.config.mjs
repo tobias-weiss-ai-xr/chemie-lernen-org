@@ -128,7 +128,7 @@ export default [
     },
     languageOptions: {
       ecmaVersion: 'latest',
-      sourceType: 'script',
+      sourceType: 'commonjs',
       globals: {
         ...jestPlugin.environments.globals.globals,
         describe: 'readonly',
@@ -138,6 +138,13 @@ export default [
         afterAll: 'readonly',
         beforeEach: 'readonly',
         afterEach: 'readonly',
+        require: 'readonly',
+        module: 'readonly',
+        exports: 'readonly',
+        process: 'readonly',
+        console: 'readonly',
+        document: 'readonly',
+        window: 'readonly',
       },
     },
     rules: {
@@ -148,6 +155,8 @@ export default [
       'jest/prefer-to-have-length': 'warn',
       'jest/valid-expect': 'error',
       'no-unused-vars': 'off',
+      'no-redeclare': 'off',
+      'no-undef': 'off',
     },
   },
 
