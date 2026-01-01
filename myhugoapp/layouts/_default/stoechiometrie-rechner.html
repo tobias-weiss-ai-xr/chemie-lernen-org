@@ -163,6 +163,11 @@
             <i class="fa fa-list-ol"></i> Mehrstufige Reaktionen
           </a>
         </li>
+        <li role="presentation">
+          <a href="#gasgesetz" aria-controls="gasgesetz" role="tab" data-toggle="tab">
+            <i class="fa fa-cloud"></i> Gasgesetze (PV=nRT)
+          </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -431,6 +436,189 @@
           <div class="well result-well">
             <h3><i class="fa fa-check-circle"></i> Ergebnisse der mehrstufigen Reaktion</h3>
             <div id="multistep-results-content"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gas Laws Tab -->
+    <div class="tab-pane" id="gasgesetz" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Ideales Gasgesetz (PV=nRT)</h2>
+        <p>Berechnen Sie Beziehungen zwischen Druck, Volumen, Stoffmenge und Temperatur von Gasen:</p>
+
+        <!-- Quick STP Reference -->
+        <div style="margin-bottom: 20px;">
+          <button class="btn btn-info btn-sm" onclick="loadSTP()">
+            <i class="fa fa-thermometer-half"></i> STPbedingungen (0°C, 1 atm)
+          </button>
+          <button class="btn btn-info btn-sm" onclick="loadSATP()">
+            <i class="fa fa-flask"></i> SATPbedingungen (25°C, 1 bar)
+          </button>
+          <button class="btn btn-default btn-sm" onclick="loadGasExample()">
+            <i class="fa fa-flask"></i> Beispiel laden
+          </button>
+        </div>
+
+        <!-- Variable Selection -->
+        <div class="well" style="background: #e1f5fe; border: 2px solid #03A9F4;">
+          <h4 style="color: #0277BD; margin-top: 0;">
+            <i class="fa fa-calculator"></i> Was möchten Sie berechnen?
+          </h4>
+          <div class="form-group">
+            <label>Wähle die Variable:</label>
+            <select id="gas-calculate-variable" class="form-control" onchange="updateGasInputs()">
+              <option value="n">Stoffmenge (n) - Druck, Volumen, Temperatur bekannt</option>
+              <option value="P">Druck (P) - Volumen, Stoffmenge, Temperatur bekannt</option>
+              <option value="V">Volumen (V) - Druck, Stoffmenge, Temperatur bekannt</option>
+              <option value="T">Temperatur (T) - Druck, Volumen, Stoffmenge bekannt</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Gas Constant Selection -->
+        <div class="well" style="background: #f3e5f5; border: 2px solid #9C27B0; margin-bottom: 20px;">
+          <h4 style="color: #7B1FA2; margin-top: 0;">
+            <i class="fa fa-cog"></i> Gaskonstante (R)
+          </h4>
+          <div class="form-group">
+            <label>Wähle die Einheiten:</label>
+            <select id="gas-constant-select" class="form-control">
+              <option value="0.08206">R = 0.08206 L·atm/(mol·K) [Druck in atm, Volumen in L]</option>
+              <option value="8.314">R = 8.314 J/(mol·K) [Druck in Pa, Volumen in m³]</option>
+              <option value="0.08314">R = 0.08314 L·bar/(mol·K) [Druck in bar, Volumen in L]</option>
+              <option value="62.364">R = 62.364 L·Torr/(mol·K) [Druck in Torr, Volumen in L]</option>
+              <option value="8.2057">R = 8.2057×10⁻⁵ m³·atm/(mol·K) [Druck in atm, Volumen in m³]</option>
+            </select>
+          </div>
+          <p style="font-size: 14px; color: #666;">
+            <strong>Wichtige Hinweise:</strong>
+            <br>• Temperatur muss immer in Kelvin (K) angegeben werden
+            <br>• K = °C + 273.15
+          </p>
+        </div>
+
+        <!-- Input Fields -->
+        <div class="row">
+          <!-- Pressure Input -->
+          <div class="col-md-3">
+            <div class="well">
+              <h4>Druck (P)</h4>
+              <div class="form-group">
+                <label>Wert:</label>
+                <input type="number" id="gas-pressure" class="form-control" step="any" placeholder="z.B. 1">
+              </div>
+              <div class="form-group">
+                <label>Einheit:</label>
+                <select id="gas-pressure-unit" class="form-control">
+                  <option value="atm">atm</option>
+                  <option value="bar">bar</option>
+                  <option value="Pa">Pascal (Pa)</option>
+                  <option value="kPa">Kilopascal (kPa)</option>
+                  <option value="Torr">Torr</option>
+                  <option value="mmHg">mm Hg</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Volume Input -->
+          <div class="col-md-3">
+            <div class="well">
+              <h4>Volumen (V)</h4>
+              <div class="form-group">
+                <label>Wert:</label>
+                <input type="number" id="gas-volume" class="form-control" step="any" placeholder="z.B. 22.4">
+              </div>
+              <div class="form-group">
+                <label>Einheit:</label>
+                <select id="gas-volume-unit" class="form-control">
+                  <option value="L">Liter (L)</option>
+                  <option value="mL">Milliliter (mL)</option>
+                  <option value="m3">Kubikmeter (m³)</option>
+                  <option value="cm3">Kubikzentimeter (cm³)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Amount Input -->
+          <div class="col-md-3">
+            <div class="well">
+              <h4>Stoffmenge (n)</h4>
+              <div class="form-group">
+                <label>Wert:</label>
+                <input type="number" id="gas-amount" class="form-control" step="any" placeholder="z.B. 1">
+              </div>
+              <div class="form-group">
+                <label>Einheit:</label>
+                <select id="gas-amount-unit" class="form-control">
+                  <option value="mol">Mol (mol)</option>
+                  <option value="mmol">Millimol (mmol)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Temperature Input -->
+          <div class="col-md-3">
+            <div class="well">
+              <h4>Temperatur (T)</h4>
+              <div class="form-group">
+                <label>Wert:</label>
+                <input type="number" id="gas-temperature" class="form-control" step="any" placeholder="z.B. 273.15">
+              </div>
+              <div class="form-group">
+                <label>Einheit:</label>
+                <select id="gas-temperature-unit" class="form-control" onchange="convertTemperatureToKelvin()">
+                  <option value="K">Kelvin (K)</option>
+                  <option value="C">Celsius (°C)</option>
+                  <option value="F">Fahrenheit (°F)</option>
+                </select>
+              </div>
+              <div id="kelvin-display" style="margin-top: 10px; padding: 8px; background: #fff3e0; border-radius: 4px; font-size: 13px;">
+                <strong>In Kelvin:</strong> <span id="kelvin-value">-</span> K
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculate Button -->
+        <div style="margin-top: 20px;">
+          <button class="btn btn-primary btn-lg btn-block" onclick="calculateGasLaw()">
+            <i class="fa fa-calculator"></i> Berechnen
+          </button>
+        </div>
+
+        <!-- Results Display -->
+        <div id="gas-result" style="display:none; margin-top:20px;">
+          <div class="well result-well">
+            <h3><i class="fa fa-check-circle"></i> Ergebnis der Gasberechnung</h3>
+            <div id="gas-result-content"></div>
+            <div style="margin-top: 15px; text-align: center;">
+              <button class="btn btn-success" onclick="exportGasToPDF()" style="color: white;">
+                <i class="fa fa-file-pdf-o"></i> Als PDF exportieren
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Molar Volume Reference -->
+        <div style="margin-top: 30px; padding: 20px; background: #e8f5e9; border-radius: 8px; border: 2px solid #4CAF50;">
+          <h4 style="color: #2E7D32; margin-top: 0;">
+            <i class="fa fa-info-circle"></i> Molares Volumen bei Standardbedingungen
+          </h4>
+          <div class="row">
+            <div class="col-md-6">
+              <p><strong>STP (0°C, 1 atm):</strong></p>
+              <p style="font-size: 18px; color: #2E7D32;">Vₘ = 22.414 L/mol</p>
+              <p style="font-size: 13px; color: #666;">Ideales Gas bei Standardbedingungen für Temperatur und Druck</p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>SATP (25°C, 1 bar):</strong></p>
+              <p style="font-size: 18px; color: #2E7D32;">Vₘ = 24.789 L/mol</p>
+              <p style="font-size: 13px; color: #666;">Ideales Gas bei Standardambienter Temperatur und Druck</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1582,6 +1770,408 @@ document.addEventListener('DOMContentLoaded', function() {
   if (initialAmount && initialMolarMass) {
     initialAmount.addEventListener('input', updateInitialMass);
     initialMolarMass.addEventListener('input', updateInitialMass);
+  }
+});
+
+// ===== GAS LAW FUNCTIONS =====
+
+// Load STP conditions (0°C, 1 atm)
+function loadSTP() {
+  document.getElementById('gas-pressure').value = 1;
+  document.getElementById('gas-pressure-unit').value = 'atm';
+  document.getElementById('gas-volume').value = 22.414;
+  document.getElementById('gas-volume-unit').value = 'L';
+  document.getElementById('gas-amount').value = 1;
+  document.getElementById('gas-amount-unit').value = 'mol';
+  document.getElementById('gas-temperature').value = 0;
+  document.getElementById('gas-temperature-unit').value = 'C';
+  document.getElementById('gas-constant-select').value = '0.08206';
+  document.getElementById('gas-calculate-variable').value = 'V';
+
+  convertTemperatureToKelvin();
+}
+
+// Load SATP conditions (25°C, 1 bar)
+function loadSATP() {
+  document.getElementById('gas-pressure').value = 1;
+  document.getElementById('gas-pressure-unit').value = 'bar';
+  document.getElementById('gas-volume').value = 24.789;
+  document.getElementById('gas-volume-unit').value = 'L';
+  document.getElementById('gas-amount').value = 1;
+  document.getElementById('gas-amount-unit').value = 'mol';
+  document.getElementById('gas-temperature').value = 25;
+  document.getElementById('gas-temperature-unit').value = 'C';
+  document.getElementById('gas-constant-select').value = '0.08314';
+  document.getElementById('gas-calculate-variable').value = 'V';
+
+  convertTemperatureToKelvin();
+}
+
+// Load gas example
+function loadGasExample() {
+  document.getElementById('gas-pressure').value = 2.5;
+  document.getElementById('gas-pressure-unit').value = 'atm';
+  document.getElementById('gas-volume').value = 10;
+  document.getElementById('gas-volume-unit').value = 'L';
+  document.getElementById('gas-temperature').value = 25;
+  document.getElementById('gas-temperature-unit').value = 'C';
+  document.getElementById('gas-constant-select').value = '0.08206';
+  document.getElementById('gas-calculate-variable').value = 'n';
+
+  convertTemperatureToKelvin();
+}
+
+// Convert temperature to Kelvin for display
+function convertTemperatureToKelvin() {
+  const temp = parseFloat(document.getElementById('gas-temperature').value);
+  const unit = document.getElementById('gas-temperature-unit').value;
+  const display = document.getElementById('kelvin-value');
+
+  if (isNaN(temp)) {
+    display.textContent = '-';
+    return;
+  }
+
+  let kelvin;
+  switch(unit) {
+    case 'K':
+      kelvin = temp;
+      break;
+    case 'C':
+      kelvin = temp + 273.15;
+      break;
+    case 'F':
+      kelvin = (temp - 32) * 5/9 + 273.15;
+      break;
+  }
+
+  display.textContent = kelvin.toFixed(2);
+}
+
+// Update input fields based on what to calculate
+function updateGasInputs() {
+  const variable = document.getElementById('gas-calculate-variable').value;
+  const pressureInput = document.getElementById('gas-pressure');
+  const volumeInput = document.getElementById('gas-volume');
+  const amountInput = document.getElementById('gas-amount');
+  const temperatureInput = document.getElementById('gas-temperature');
+
+  // Reset all
+  pressureInput.disabled = false;
+  volumeInput.disabled = false;
+  amountInput.disabled = false;
+  temperatureInput.disabled = false;
+
+  // Disable the variable being calculated
+  switch(variable) {
+    case 'P':
+      pressureInput.disabled = true;
+      pressureInput.placeholder = "Wird berechnet...";
+      volumeInput.placeholder = "z.B. 22.4";
+      amountInput.placeholder = "z.B. 1";
+      temperatureInput.placeholder = "z.B. 273.15";
+      break;
+    case 'V':
+      volumeInput.disabled = true;
+      volumeInput.placeholder = "Wird berechnet...";
+      pressureInput.placeholder = "z.B. 1";
+      amountInput.placeholder = "z.B. 1";
+      temperatureInput.placeholder = "z.B. 273.15";
+      break;
+    case 'n':
+      amountInput.disabled = true;
+      amountInput.placeholder = "Wird berechnet...";
+      pressureInput.placeholder = "z.B. 1";
+      volumeInput.placeholder = "z.B. 22.4";
+      temperatureInput.placeholder = "z.B. 273.15";
+      break;
+    case 'T':
+      temperatureInput.disabled = true;
+      temperatureInput.placeholder = "Wird berechnet...";
+      pressureInput.placeholder = "z.B. 1";
+      volumeInput.placeholder = "z.B. 22.4";
+      amountInput.placeholder = "z.B. 1";
+      break;
+  }
+
+  // Clear disabled field
+  if (variable === 'P') pressureInput.value = '';
+  if (variable === 'V') volumeInput.value = '';
+  if (variable === 'n') amountInput.value = '';
+  if (variable === 'T') temperatureInput.value = '';
+}
+
+// Convert pressure to atm (base unit for R = 0.08206)
+function convertPressureToAtm(pressure, unit) {
+  switch(unit) {
+    case 'atm': return pressure;
+    case 'bar': return pressure * 0.986923;
+    case 'Pa': return pressure / 101325;
+    case 'kPa': return pressure / 101.325;
+    case 'Torr': return pressure / 760;
+    case 'mmHg': return pressure / 760;
+    default: return pressure;
+  }
+}
+
+// Convert volume to liters (base unit for R = 0.08206)
+function convertVolumeToLiters(volume, unit) {
+  switch(unit) {
+    case 'L': return volume;
+    case 'mL': return volume / 1000;
+    case 'm3': return volume * 1000;
+    case 'cm3': return volume / 1000;
+    default: return volume;
+  }
+}
+
+// Convert amount to moles (base unit)
+function convertAmountToMoles(amount, unit) {
+  switch(unit) {
+    case 'mol': return amount;
+    case 'mmol': return amount / 1000;
+    default: return amount;
+  }
+}
+
+// Convert temperature to Kelvin
+function convertToKelvin(temp, unit) {
+  switch(unit) {
+    case 'K': return temp;
+    case 'C': return temp + 273.15;
+    case 'F': return (temp - 32) * 5/9 + 273.15;
+    default: return temp;
+  }
+}
+
+// Calculate gas law
+function calculateGasLaw() {
+  const calculateVariable = document.getElementById('gas-calculate-variable').value;
+  const R = parseFloat(document.getElementById('gas-constant-select').value);
+
+  // Get input values
+  const pressureValue = parseFloat(document.getElementById('gas-pressure').value);
+  const pressureUnit = document.getElementById('gas-pressure-unit').value;
+  const volumeValue = parseFloat(document.getElementById('gas-volume').value);
+  const volumeUnit = document.getElementById('gas-volume-unit').value;
+  const amountValue = parseFloat(document.getElementById('gas-amount').value);
+  const amountUnit = document.getElementById('gas-amount-unit').value;
+  const temperatureValue = parseFloat(document.getElementById('gas-temperature').value);
+  const temperatureUnit = document.getElementById('gas-temperature-unit').value;
+
+  // Convert all to standard units (atm, L, mol, K) for calculation
+  let P_atm, V_L, n_mol, T_K;
+
+  try {
+    P_atm = calculateVariable !== 'P' ? convertPressureToAtm(pressureValue, pressureUnit) : null;
+    V_L = calculateVariable !== 'V' ? convertVolumeToLiters(volumeValue, volumeUnit) : null;
+    n_mol = calculateVariable !== 'n' ? convertAmountToMoles(amountValue, amountUnit) : null;
+    T_K = calculateVariable !== 'T' ? convertToKelvin(temperatureValue, temperatureUnit) : null;
+
+    // Validate
+    if (calculateVariable !== 'P' && (isNaN(P_atm) || P_atm <= 0)) {
+      throw new Error('Ungültiger Druckwert');
+    }
+    if (calculateVariable !== 'V' && (isNaN(V_L) || V_L <= 0)) {
+      throw new Error('Ungültiger Volumenwert');
+    }
+    if (calculateVariable !== 'n' && (isNaN(n_mol) || n_mol <= 0)) {
+      throw new Error('Ungültige Stoffmenge');
+    }
+    if (calculateVariable !== 'T' && (isNaN(T_K) || T_K <= 0)) {
+      throw new Error('Ungültige Temperatur (muss > 0 K sein)');
+    }
+
+    // Calculate unknown variable
+    let result;
+    let resultUnit;
+
+    switch(calculateVariable) {
+      case 'n':
+        result = (P_atm * V_L) / (R * T_K);
+        resultUnit = 'mol';
+        break;
+      case 'P':
+        result = (n_mol * R * T_K) / V_L;
+        resultUnit = pressureUnit;
+        break;
+      case 'V':
+        result = (n_mol * R * T_K) / P_atm;
+        resultUnit = volumeUnit;
+        break;
+      case 'T':
+        result = (P_atm * V_L) / (n_mol * R);
+        resultUnit = 'K';
+        break;
+    }
+
+    displayGasResult(calculateVariable, result, resultUnit, P_atm, V_L, n_mol, T_K, R);
+
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+// Display gas calculation result
+function displayGasResult(variable, result, unit, P, V, n, T, R) {
+  const resultDiv = document.getElementById('gas-result');
+  const contentDiv = document.getElementById('gas-result-content');
+
+  const variableNames = {
+    'P': 'Druck',
+    'V': 'Volumen',
+    'n': 'Stoffmenge',
+    'T': 'Temperatur'
+  };
+
+  let html = '<div style="background: white; padding: 20px; border-radius: 8px;">';
+
+  // Formula display
+  html += '<div style="margin-bottom: 20px; padding: 15px; background: #e3f2fd; border-radius: 4px; text-align: center;">';
+  html += '<h4 style="color: #1976D2; margin-top: 0;">Ideales Gasgesetz</h4>';
+  html += '<p style="font-size: 24px; font-weight: bold; color: #0D47A1;">PV = nRT</p>';
+
+  let formulaText = '';
+  switch(variable) {
+    case 'n':
+      formulaText = `n = PV ÷ RT = ${(P).toFixed(4)} × ${(V).toFixed(4)} ÷ (${R} × ${(T).toFixed(2)})`;
+      break;
+    case 'P':
+      formulaText = `P = nRT ÷ V = ${(n).toFixed(4)} × ${R} × ${(T).toFixed(2)} ÷ ${(V).toFixed(4)}`;
+      break;
+    case 'V':
+      formulaText = `V = nRT ÷ P = ${(n).toFixed(4)} × ${R} × ${(T).toFixed(2)} ÷ ${(P).toFixed(4)}`;
+      break;
+    case 'T':
+      formulaText = `T = PV ÷ nR = ${(P).toFixed(4)} × ${(V).toFixed(4)} ÷ (${(n).toFixed(4)} × ${R})`;
+      break;
+  }
+  html += `<p style="font-size: 16px; color: #1976D2;">${formulaText}</p>`;
+  html += '</div>';
+
+  // Known values
+  html += '<div style="margin-bottom: 20px;">';
+  html += '<h4>Bekannte Werte:</h4>';
+  html += '<table class="table table-bordered" style="background: white;">';
+  if (variable !== 'P') html += `<tr><td><strong>Druck (P)</strong></td><td>${P.toFixed(4)} atm</td></tr>`;
+  if (variable !== 'V') html += `<tr><td><strong>Volumen (V)</strong></td><td>${V.toFixed(4)} L</td></tr>`;
+  if (variable !== 'n') html += `<tr><td><strong>Stoffmenge (n)</strong></td><td>${n.toFixed(4)} mol</td></tr>`;
+  if (variable !== 'T') html += `<tr><td><strong>Temperatur (T)</strong></td><td>${T.toFixed(2)} K (${convertFromKelvin(T).toFixed(1)}°C)</td></tr>`;
+  html += `<tr><td><strong>Gaskonstante (R)</strong></td><td>${R} L·atm/(mol·K)</td></tr>`;
+  html += '</table>';
+  html += '</div>';
+
+  // Result
+  html += '<div style="padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; text-align: center;">';
+  html += `<h3 style="margin-top: 0;">${variableNames[variable]}</h3>`;
+  html += `<p style="font-size: 32px; font-weight: bold;">${result.toFixed(4)} ${unit}</p>`;
+
+  if (variable === 'T') {
+    html += `<p style="font-size: 18px;">(${convertFromKelvin(result).toFixed(1)}°C)</p>`;
+  }
+
+  // Additional calculations
+  html += '<div style="margin-top: 20px; text-align: left;">';
+  if (variable === 'n') {
+    const molarVolume = V / result;
+    html += `<p><strong>Molares Volumen:</strong> ${molarVolume.toFixed(4)} L/mol</p>`;
+    const massExample = result * 2.016; // H2 example
+    html += `<p><strong>Beispiel (H₂):</strong> ${massExample.toFixed(4)} g</p>`;
+  }
+  if (variable === 'V' && n > 0) {
+    const molarVolume = result / n;
+    html += `<p><strong>Molares Volumen:</strong> ${molarVolume.toFixed(4)} L/mol</p>`;
+  }
+  html += '</div>';
+  html += '</div>';
+
+  html += '</div>';
+
+  contentDiv.innerHTML = html;
+  resultDiv.style.display = 'block';
+
+  // Save to history
+  const historyData = `${variableNames[variable]}: ${result.toFixed(4)} ${unit}`;
+  saveToHistory('Gasgesetz (PV=nRT)', historyData);
+}
+
+// Convert from Kelvin to Celsius
+function convertFromKelvin(kelvin) {
+  return kelvin - 273.15;
+}
+
+// Export gas calculation to PDF
+function exportGasToPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  // Header
+  doc.setFontSize(20);
+  doc.setTextColor(102, 126, 234);
+  doc.text('Stöchiometrie-Rechner', 105, 20, { align: 'center' });
+
+  doc.setFontSize(16);
+  doc.setTextColor(0, 0, 0);
+  doc.text('Ideales Gasgesetz (PV=nRT)', 105, 35, { align: 'center' });
+
+  // Line
+  doc.setDrawColor(200, 200, 200);
+  doc.line(20, 45, 190, 45);
+
+  let y = 60;
+
+  // Get data
+  const calculateVariable = document.getElementById('gas-calculate-variable').value;
+  const R = document.getElementById('gas-constant-select').value;
+  const pressure = document.getElementById('gas-pressure').value;
+  const pressureUnit = document.getElementById('gas-pressure-unit').value;
+  const volume = document.getElementById('gas-volume').value;
+  const volumeUnit = document.getElementById('gas-volume-unit').value;
+  const amount = document.getElementById('gas-amount').value;
+  const amountUnit = document.getElementById('gas-amount-unit').value;
+  const temperature = document.getElementById('gas-temperature').value;
+  const temperatureUnit = document.getElementById('gas-temperature-unit').value;
+
+  // Title
+  doc.setFontSize(14);
+  doc.setTextColor(0, 0, 0);
+  doc.text('Berechnung: ' + calculateVariable, 20, y);
+  y += 15;
+
+  // Input values
+  doc.setFontSize(12);
+  doc.text('Eingabewerte:', 20, y); y += 10;
+
+  if (calculateVariable !== 'P') doc.text(`Druck: ${pressure} ${pressureUnit}`, 25, y); y += 8;
+  if (calculateVariable !== 'V') doc.text(`Volumen: ${volume} ${volumeUnit}`, 25, y); y += 8;
+  if (calculateVariable !== 'n') doc.text(`Stoffmenge: ${amount} ${amountUnit}`, 25, y); y += 8;
+  if (calculateVariable !== 'T') doc.text(`Temperatur: ${temperature} ${temperatureUnit}`, 25, y); y += 8;
+  doc.text(`Gaskonstante: R = ${R}`, 25, y); y += 15;
+
+  // Formula
+  doc.setFontSize(14);
+  doc.setTextColor(0, 123, 255);
+  doc.text('Formel: PV = nRT', 20, y); y += 15;
+
+  // Footer
+  doc.setFontSize(10);
+  doc.setTextColor(150, 150, 150);
+  doc.text(`Datum: ${new Date().toLocaleDateString('de-DE')}`, 20, 285);
+  doc.text('chemie-lernen.org', 105, 285, { align: 'center' });
+
+  // Save
+  doc.save(`gasgesetz-${calculateVariable}-${Date.now()}.pdf`);
+}
+
+// Initialize gas inputs on page load
+document.addEventListener('DOMContentLoaded', function() {
+  updateGasInputs();
+  const tempInput = document.getElementById('gas-temperature');
+  const tempUnit = document.getElementById('gas-temperature-unit');
+
+  if (tempInput && tempUnit) {
+    tempInput.addEventListener('input', convertTemperatureToKelvin);
+    tempUnit.addEventListener('change', convertTemperatureToKelvin);
   }
 });
 
