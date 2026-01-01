@@ -278,6 +278,51 @@ function showError(message) {
   document.getElementById('error-message').textContent = message;
 }
 
+// Transfer balanced equation to Stoichiometry Calculator
+function transferToStoichiometry() {
+  try {
+    // Get the balanced equation data
+    const equationDisplay = document.getElementById('balanced-equation');
+    const coeffsList = document.querySelectorAll('.coefficient-item');
+
+    if (!equationDisplay || coeffsList.length === 0) {
+      alert('Keine ausgeglichene Gleichung gefunden. Bitte gleichen Sie zuerst eine Gleichung aus.');
+      return;
+    }
+
+    // Extract coefficients from the display
+    const transferData = {
+      reactants: [],
+      products: [],
+      coefficients: []
+    };
+
+    coeffsList.forEach((item, index) => {
+      const formula = item.querySelector('.compound-formula').textContent;
+      const coefficient = parseFloat(item.querySelector('.coefficient-value').textContent);
+
+      transferData.coefficients.push(coefficient);
+
+      // Split into reactants and products
+      const reactantCount = Math.floor(coeffsList.length / 2);
+      if (index < reactantCount) {
+        transferData.reactants.push({ formula, coefficient });
+      } else {
+        transferData.products.push({ formula, coefficient });
+      }
+    });
+
+    // Store in sessionStorage
+    sessionStorage.setItem('balancedEquation', JSON.stringify(transferData));
+
+    // Navigate to stoichiometry calculator
+    window.location.href = '/stoechiometrie-rechner/';
+
+  } catch (error) {
+    alert('Fehler beim Übertragen der Daten: ' + error.message);
+  }
+}
+
 // Event listeners
 document.addEventListener('DOMContentLoaded', function() {
   // Example button clicks

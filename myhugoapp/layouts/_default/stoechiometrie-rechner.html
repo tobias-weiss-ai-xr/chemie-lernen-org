@@ -879,6 +879,104 @@ function clearHistory() {
   }
 }
 
+// ===== INTEGRATION WITH EQUATION BALANCER =====
+
+// Check for and apply balanced equation data from Equation Balancer
+function checkForBalancedEquation() {
+  try {
+    const balancedData = sessionStorage.getItem('balancedEquation');
+
+    if (!balancedData) {
+      return; // No data to import
+    }
+
+    const data = JSON.parse(balancedData);
+
+    // Validate data structure
+    if (!data.reactants || !data.products || data.reactants.length === 0 || data.products.length === 0) {
+      console.warn('Invalid balanced equation data structure');
+      return;
+    }
+
+    // Show notification
+    showImportNotification(data);
+
+    // Apply coefficients to calculators
+    // For simplicity, we'll use the first reactant-product pair
+    const firstReactant = data.reactants[0];
+    const firstProduct = data.products[0];
+
+    // Apply to Mol-Mol calculator
+    const molCoeffR = document.getElementById('mol-coeff-r');
+    const molCoeffP = document.getElementById('mol-coeff-p');
+
+    if (molCoeffR && molCoeffP) {
+      molCoeffR.value = firstReactant.coefficient;
+      molCoeffP.value = firstProduct.coefficient;
+    }
+
+    // Apply to Mass-Mass calculator
+    const massCoeffR = document.getElementById('mass-coeff-r');
+    const massCoeffP = document.getElementById('mass-coeff-p');
+
+    if (massCoeffR && massCoeffP) {
+      massCoeffR.value = firstReactant.coefficient;
+      massCoeffP.value = firstProduct.coefficient;
+    }
+
+    // Clear the sessionStorage to prevent re-import on refresh
+    sessionStorage.removeItem('balancedEquation');
+
+  } catch (e) {
+    console.error('Error importing balanced equation:', e);
+  }
+}
+
+// Show notification when data is imported
+function showImportNotification(data) {
+  // Create notification element
+  const notification = document.createElement('div');
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+    max-width: 400px;
+    animation: slideIn 0.5s ease;
+  `;
+
+  const equationStr = data.reactants.map(r => `${r.coefficient > 1 ? r.coefficient : ''}${r.formula}`).join(' + ') +
+                      ' → ' +
+                      data.products.map(p => `${p.coefficient > 1 ? p.coefficient : ''}${p.formula}`).join(' + ');
+
+  notification.innerHTML = `
+    <div style="display: flex; align-items: start;">
+      <i class="fa fa-check-circle" style="font-size: 24px; margin-right: 12px; flex-shrink: 0;"></i>
+      <div>
+        <h4 style="margin: 0 0 10px 0;">Gleichung übertragen!</h4>
+        <p style="margin: 0 0 10px 0; font-size: 14px;">Die ausgeglichene Gleichung wurde automatisch in den Stöchiometrie-Rechner übertragen.</p>
+        <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 4px; font-size: 13px;">
+          <strong style="display: block; margin-bottom: 5px;">Übertragene Koeffizienten:</strong>
+          <div style="font-family: monospace;">${equationStr}</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(notification);
+
+  // Auto-remove after 5 seconds
+  setTimeout(() => {
+    notification.style.animation = 'slideOut 0.5s ease';
+    setTimeout(() => notification.remove(), 500);
+  }, 5000);
+}
+
 function calcMolMol() {
   const n1 = parseFloat(document.getElementById('mol-reactant').value);
   const v1 = parseFloat(document.getElementById('mol-coeff-r').value);
@@ -1274,6 +1372,8 @@ function exportYieldToPDF() {
 // Initialize history on page load
 document.addEventListener('DOMContentLoaded', function() {
   loadHistory();
+  // Check for balanced equation data from Equation Balancer
+  checkForBalancedEquation();
 });
 </script>
 
@@ -1341,6 +1441,17 @@ document.addEventListener('DOMContentLoaded', function() {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100px);
   }
 }
 
