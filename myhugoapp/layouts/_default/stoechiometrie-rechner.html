@@ -51,6 +51,18 @@
           <input type="text" id="reaction-1" class="form-control" value="2H2 + O2 -> 2H2O">
         </div>
 
+        <div class="form-group">
+          <label>Vordefinierte Reaktionen:</label>
+          <div class="preset-buttons">
+            <button type="button" class="btn btn-default btn-sm" onclick="loadPreset('water')">💧 Wasserbildung</button>
+            <button type="button" class="btn btn-default btn-sm" onclick="loadPreset('methane')">🔥 Methan-Verbrennung</button>
+            <button type="button" class="btn btn-default btn-sm" onclick="loadPreset('ammonia')">🌿 Haber-Verfahren</button>
+            <button type="button" class="btn btn-default btn-sm" onclick="loadPreset('sodium')">⚡ Natrium + Wasser</button>
+            <button type="button" class="btn btn-default btn-sm" onclick="loadPreset('photosynthesis')">🌱 Fotosynthese</button>
+          </div>
+          <small class="text-muted">Klicken Sie auf eine Reaktion, um die Koeffizienten automatisch einzufügen</small>
+        </div>
+
         <div class="row">
           <div class="col-md-6">
             <div class="well">
@@ -91,6 +103,18 @@
     <div class="tab-pane" id="masse-masse" role="tabpanel">
       <div class="calculator-panel">
         <h2>Masse-Masse-Umrechnung</h2>
+
+        <div class="form-group">
+          <label>Vordefinierte Reaktionen:</label>
+          <div class="preset-buttons">
+            <button type="button" class="btn btn-default btn-sm" onclick="loadMassPreset('water')">💧 Wasserbildung</button>
+            <button type="button" class="btn btn-default btn-sm" onclick="loadMassPreset('methane')">🔥 Methan-Verbrennung</button>
+            <button type="button" class="btn btn-default btn-sm" onclick="loadMassPreset('ammonia')">🌿 Haber-Verfahren</button>
+            <button type="button" class="btn btn-default btn-sm" onclick="loadMassPreset('sodium')">⚡ Natrium + Wasser</button>
+            <button type="button" class="btn btn-default btn-sm" onclick="loadMassPreset('photosynthesis')">🌱 Fotosynthese</button>
+          </div>
+          <small class="text-muted">Klicken Sie auf eine Reaktion, um Koeffizienten und Molmassen automatisch einzufügen</small>
+        </div>
 
         <div class="row">
           <div class="col-md-4">
@@ -218,6 +242,119 @@
 </div>
 
 <script>
+// Preset reactions data
+const presets = {
+  water: {
+    name: "Wasserbildung",
+    equation: "2H2 + O2 -> 2H2O",
+    v1: 2,
+    v2: 2,
+    example: 4
+  },
+  methane: {
+    name: "Methan-Verbrennung",
+    equation: "CH4 + 2O2 -> CO2 + 2H2O",
+    v1: 1,
+    v2: 1,
+    example: 2
+  },
+  ammonia: {
+    name: "Haber-Verfahren (Ammoniak)",
+    equation: "N2 + 3H2 -> 2NH3",
+    v1: 1,
+    v2: 2,
+    example: 3
+  },
+  sodium: {
+    name: "Natrium + Wasser",
+    equation: "2Na + 2H2O -> 2NaOH + H2",
+    v1: 2,
+    v2: 2,
+    example: 4
+  },
+  photosynthesis: {
+    name: "Fotosynthese",
+    equation: "6CO2 + 6H2O -> C6H12O6 + 6O2",
+    v1: 6,
+    v2: 1,
+    example: 6
+  }
+};
+
+const massPresets = {
+  water: {
+    name: "Wasserbildung",
+    v1: 2,
+    v2: 2,
+    m1: 4,
+    M1: 2,  // H2
+    M2: 18  // H2O
+  },
+  methane: {
+    name: "Methan-Verbrennung",
+    v1: 1,
+    v2: 1,
+    m1: 16,
+    M1: 16,  // CH4
+    M2: 44   // CO2
+  },
+  ammonia: {
+    name: "Haber-Verfahren",
+    v1: 1,
+    v2: 2,
+    m1: 28,
+    M1: 28,  // N2
+    M2: 17   // NH3
+  },
+  sodium: {
+    name: "Natrium + Wasser",
+    v1: 2,
+    v2: 2,
+    m1: 46,
+    M1: 23,  // Na
+    M2: 40   // NaOH
+  },
+  photosynthesis: {
+    name: "Fotosynthese",
+    v1: 6,
+    v2: 1,
+    m1: 264,
+    M1: 44,  // CO2
+    M2: 180  // C6H12O6
+  }
+};
+
+// Load preset for Mol-Mol calculator
+function loadPreset(presetKey) {
+  const preset = presets[presetKey];
+  if (!preset) return;
+
+  document.getElementById('reaction-1').value = preset.equation;
+  document.getElementById('mol-coeff-r').value = preset.v1;
+  document.getElementById('mol-coeff-p').value = preset.v2;
+  document.getElementById('mol-reactant').value = preset.example;
+  document.getElementById('mol-reactant').placeholder = preset.example;
+
+  // Hide previous results
+  document.getElementById('mol-result').style.display = 'none';
+}
+
+// Load preset for Mass-Mass calculator
+function loadMassPreset(presetKey) {
+  const preset = massPresets[presetKey];
+  if (!preset) return;
+
+  document.getElementById('mass-coeff-r').value = preset.v1;
+  document.getElementById('mass-coeff-p').value = preset.v2;
+  document.getElementById('mass-r').value = preset.m1;
+  document.getElementById('mm-r').value = preset.M1;
+  document.getElementById('mm-p').value = preset.M2;
+
+  // Hide previous results
+  document.getElementById('mass-result').style.display = 'none';
+  document.getElementById('mass-preview').innerHTML = '<p style="font-size:2em; color:#007bff;">--</p><p>Gramm</p>';
+}
+
 function calcMolMol() {
   const n1 = parseFloat(document.getElementById('mol-reactant').value);
   const v1 = parseFloat(document.getElementById('mol-coeff-r').value);
@@ -328,6 +465,37 @@ function calcYield() {
 .form-group { margin-bottom: 15px; }
 .result-box { background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px; padding: 20px; }
 .result-box h3 { color: #155724; margin-top: 0; }
+
+/* Preset buttons styling */
+.preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.preset-buttons button {
+  background-color: #e3f2fd;
+  border: 1px solid #2196F3;
+  color: #1976D2;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.preset-buttons button:hover {
+  background-color: #2196F3;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(33, 150, 243, 0.3);
+}
+
+.preset-buttons button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
 </style>
 
 {{ end }}
