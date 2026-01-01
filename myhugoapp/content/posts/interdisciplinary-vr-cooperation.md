@@ -22,4 +22,4 @@ Dieses Projekt repräsentiert den aktuellen Stand (Status Quo) einer innovativen
 
 ---
 
-**Vollständige Publikation**: Verfügbar auf [ResearchGate](https://www.researchgate.net/publication/385576780_Eine_interdisziplinare_Kooperation_in_der_Hochschullehre_mit_Hilfe_der_virtuellen_Realitat_Status_Quo_eines_Lernraum_Projekts_das_mittels_Mozilla_Hubs_das_Periodensystem_der_Elemente_sowie_experimente)
+**Hinweis**: Die vollständige Publikation ist auf ResearchGate verfügbar (DOI-Nummer wird in Kürze hinzugefügt).
