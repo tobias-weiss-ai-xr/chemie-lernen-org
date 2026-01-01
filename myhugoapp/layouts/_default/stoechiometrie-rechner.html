@@ -321,6 +321,159 @@
     </div>
   </div>
 
+  <!-- Student Progress Tracking -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="progress-tracking-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 8px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <h3 style="color: white; margin-top: 0;">
+              <i class="fa fa-line-chart"></i> Mein Fortschritt
+            </h3>
+            <p style="color: rgba(255,255,255,0.9); margin-bottom: 0;">
+              Verfolge deinen Lernfortschritt und erringe Erfolge!
+            </p>
+          </div>
+          <button class="btn btn-default" onclick="toggleProgressDashboard()" style="background: white;">
+            <i class="fa fa-expand"></i> Dashboard anzeigen
+          </button>
+        </div>
+
+        <!-- Quick Stats -->
+        <div id="quick-stats" style="background: white; padding: 20px; border-radius: 8px; margin-top: 15px;">
+          <div class="row">
+            <div class="col-md-3 col-sm-6" style="text-align: center; margin-bottom: 15px;">
+              <div style="background: #e3f2fd; padding: 15px; border-radius: 8px;">
+                <i class="fa fa-graduation-cap" style="font-size: 24px; color: #2196F3;"></i>
+                <p style="font-size: 28px; font-weight: bold; margin: 10px 0 5px 0; color: #1565c0;" id="stat-tutorials">0/5</p>
+                <p style="margin: 0; color: #666;">Tutorials</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6" style="text-align: center; margin-bottom: 15px;">
+              <div style="background: #fff3e0; padding: 15px; border-radius: 8px;">
+                <i class="fa fa-pencil" style="font-size: 24px; color: #FF9800;"></i>
+                <p style="font-size: 28px; font-weight: bold; margin: 10px 0 5px 0; color: #e65100;" id="stat-practice">0</p>
+                <p style="margin: 0; color: #666;">Praxisaufgaben</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6" style="text-align: center; margin-bottom: 15px;">
+              <div style="background: #e8f5e9; padding: 15px; border-radius: 8px;">
+                <i class="fa fa-calculator" style="font-size: 24px; color: #4CAF50;"></i>
+                <p style="font-size: 28px; font-weight: bold; margin: 10px 0 5px 0; color: #2e7d32;" id="stat-calculations">0</p>
+                <p style="margin: 0; color: #666;">Berechnungen</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6" style="text-align: center; margin-bottom: 15px;">
+              <div style="background: #fce4ec; padding: 15px; border-radius: 8px;">
+                <i class="fa fa-trophy" style="font-size: 24px; color: #E91E63;"></i>
+                <p style="font-size: 28px; font-weight: bold; margin: 10px 0 5px 0; color: #c2185b;" id="stat-achievements">0</p>
+                <p style="margin: 0; color: #666;">Erfolge</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Full Progress Dashboard -->
+        <div id="progress-dashboard" style="display: none; background: white; padding: 30px; border-radius: 8px; margin-top: 15px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="color: #667eea; margin: 0;">Dein Lernfortschritt</h3>
+            <div>
+              <button class="btn btn-default btn-sm" onclick="exportProgressReport()">
+                <i class="fa fa-download"></i> Bericht exportieren
+              </button>
+              <button class="btn btn-default btn-sm" onclick="resetProgress()" style="margin-left: 10px;">
+                <i class="fa fa-refresh"></i> Zurücksetzen
+              </button>
+            </div>
+          </div>
+
+          <!-- Tabs -->
+          <ul class="nav nav-tabs" role="tablist" style="margin-bottom: 20px;">
+            <li class="active" role="presentation">
+              <a href="#progress-overview" aria-controls="progress-overview" role="tab" data-toggle="tab">
+                <i class="fa fa-bar-chart"></i> Übersicht
+              </a>
+            </li>
+            <li role="presentation">
+              <a href="#achievements-tab" aria-controls="achievements-tab" role="tab" data-toggle="tab">
+                <i class="fa fa-trophy"></i> Erfolge
+              </a>
+            </li>
+            <li role="presentation">
+              <a href="#activity-log" aria-controls="activity-log" role="tab" data-toggle="tab">
+                <i class="fa fa-list"></i> Aktivitäten
+              </a>
+            </li>
+            <li role="presentation">
+              <a href="#performance-tab" aria-controls="performance-tab" role="tab" data-toggle="tab">
+                <i class="fa fa-line-chart"></i> Leistung
+              </a>
+            </li>
+          </ul>
+
+          <!-- Tab Content -->
+          <div class="tab-content">
+            <!-- Overview Tab -->
+            <div role="tabpanel" class="tab-pane active" id="progress-overview">
+              <div class="row">
+                <div class="col-md-6">
+                  <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 style="margin-top: 0;"><i class="fa fa-graduation-cap"></i> Tutorial-Fortschritt</h4>
+                    <div id="tutorial-progress-bars"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 style="margin-top: 0;"><i class="fa fa-puzzle-piece"></i> Praxis-Statistiken</h4>
+                    <div id="practice-stats"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
+                    <h4 style="margin-top: 0;"><i class="fa fa-fire"></i> Lernserie</h4>
+                    <div id="streak-info"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Achievements Tab -->
+            <div role="tabpanel" class="tab-pane" id="achievements-tab">
+              <div id="achievements-grid"></div>
+            </div>
+
+            <!-- Activity Log Tab -->
+            <div role="tabpanel" class="tab-pane" id="activity-log">
+              <div style="max-height: 400px; overflow-y: auto;">
+                <div id="activity-list"></div>
+              </div>
+            </div>
+
+            <!-- Performance Tab -->
+            <div role="tabpanel" class="tab-pane" id="performance-tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 style="margin-top: 0;"><i class="fa fa-bullseye"></i> Praxis-Genauigkeit</h4>
+                    <div id="accuracy-chart"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 style="margin-top: 0;"><i class="fa fa-clock-o"></i> Zeit in Tutorials</h4>
+                    <div id="time-spent"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Calculation History -->
   <div class="row">
     <div class="col-md-12">
@@ -4361,6 +4514,651 @@ function updateTutorialProgress() {
 // Initialize tutorial progress on page load
 document.addEventListener('DOMContentLoaded', function() {
   updateTutorialProgress();
+});
+
+// ===== STUDENT PROGRESS TRACKING SYSTEM =====
+
+// Progress data structure
+let studentProgress = {
+  // Tutorial progress
+  completedTutorials: [],
+  tutorialStartTime: null,
+  timeInTutorials: 0, // in seconds
+
+  // Practice statistics
+  practiceProblems: {
+    total: 0,
+    correct: 0,
+    incorrect: 0,
+    skipped: 0,
+    byType: {
+      'mol-mol': { total: 0, correct: 0 },
+      'mass-mass': { total: 0, correct: 0 },
+      'limiting': { total: 0, correct: 0 },
+      'yield': { total: 0, correct: 0 }
+    }
+  },
+
+  // Calculator usage
+  calculations: {
+    molMol: 0,
+    massMass: 0,
+    limiting: 0,
+    yield: 0
+  },
+
+  // Achievements
+  achievements: [],
+
+  // Activity log
+  activities: [],
+
+  // Streak tracking
+  streak: {
+    current: 0,
+    longest: 0,
+    lastActiveDate: null
+  },
+
+  // First visit
+  firstVisit: null,
+  lastVisit: null,
+  totalSessions: 0
+};
+
+// Achievement definitions
+const achievementDefinitions = [
+  {
+    id: 'first-tutorial',
+    name: 'Erste Schritte',
+    description: 'Absolviere dein erstes Tutorial',
+    icon: 'fa-graduation-cap',
+    color: '#4CAF50',
+    condition: (progress) => progress.completedTutorials.length >= 1
+  },
+  {
+    id: 'tutorial-master',
+    name: 'Tutorial-Meister',
+    description: 'Absolviere alle 5 Tutorials',
+    icon: 'fa-star',
+    color: '#FFD700',
+    condition: (progress) => progress.completedTutorials.length >= 5
+  },
+  {
+    id: 'first-practice',
+    name: 'Praxis-Start',
+    description: 'Löse deine erste Praxisaufgabe',
+    icon: 'fa-pencil',
+    color: '#2196F3',
+    condition: (progress) => progress.practiceProblems.total >= 1
+  },
+  {
+    id: 'practice-10',
+    name: 'Übung macht den Meister',
+    description: 'Löse 10 Praxisaufgaben',
+    icon: 'fa-trophy',
+    color: '#FF9800',
+    condition: (progress) => progress.practiceProblems.total >= 10
+  },
+  {
+    id: 'practice-50',
+    name: 'Stöchiometrie-Experte',
+    description: 'Löse 50 Praxisaufgaben',
+    icon: 'fa-gem',
+    color: '#9C27B0',
+    condition: (progress) => progress.practiceProblems.total >= 50
+  },
+  {
+    id: 'perfect-10',
+    name: 'Perfekte 10',
+    description: 'Löse 10 Aufgaben hintereinander richtig',
+    icon: 'fa-bolt',
+    color: '#F44336',
+    condition: (progress) => progress.practiceProblems.correct >= 10 &&
+                          progress.practiceProblems.correct === progress.practiceProblems.total
+  },
+  {
+    id: 'first-calculation',
+    name: 'Rechner-Nutzer',
+    description: 'Führe deine erste Berechnung durch',
+    icon: 'fa-calculator',
+    color: '#00BCD4',
+    condition: (progress) => Object.values(progress.calculations).reduce((a, b) => a + b, 0) >= 1
+  },
+  {
+    id: 'calculation-20',
+    name: 'Berechnungs-Profi',
+    description: 'Führe 20 Berechnungen durch',
+    icon: 'fa-cogs',
+    color: '#3F51B5',
+    condition: (progress) => Object.values(progress.calculations).reduce((a, b) => a + b, 0) >= 20
+  },
+  {
+    id: 'streak-3',
+    name: '3-Tage-Serie',
+    description: 'Lerne an 3 aufeinanderfolgenden Tagen',
+    icon: 'fa-fire',
+    color: '#FF5722',
+    condition: (progress) => progress.streak.current >= 3
+  },
+  {
+    id: 'streak-7',
+    name: 'Wochen-Champion',
+    description: 'Lerne an 7 aufeinanderfolgenden Tagen',
+    icon: 'fa-fire',
+    color: '#E91E63',
+    condition: (progress) => progress.streak.current >= 7
+  },
+  {
+    id: 'all-calculators',
+    name: 'Alleskönner',
+    description: 'Nutze alle 4 Rechner mindestens einmal',
+    icon: 'fa-th',
+    color: '#8BC34A',
+    condition: (progress) => progress.calculations.molMol > 0 &&
+                          progress.calculations.massMass > 0 &&
+                          progress.calculations.limiting > 0 &&
+                          progress.calculations.yield > 0
+  },
+  {
+    id: 'accuracy-90',
+    name: 'Präzision',
+    description: 'Erziele eine Genauigkeit von 90% in mindestens 20 Aufgaben',
+    icon: 'fa-bullseye',
+    color: '#673AB7',
+    condition: (progress) => progress.practiceProblems.total >= 20 &&
+                          (progress.practiceProblems.correct / progress.practiceProblems.total) >= 0.9
+  }
+];
+
+// Initialize progress from localStorage
+function initializeProgress() {
+  const saved = localStorage.getItem('studentProgress');
+  if (saved) {
+    studentProgress = { ...studentProgress, ...JSON.parse(saved) };
+  } else {
+    studentProgress.firstVisit = new Date().toISOString();
+    saveProgress();
+  }
+
+  // Update session tracking
+  studentProgress.lastVisit = new Date().toISOString();
+  studentProgress.totalSessions++;
+  updateStreak();
+  saveProgress();
+
+  // Update UI
+  updateQuickStats();
+  checkAchievements();
+}
+
+// Save progress to localStorage
+function saveProgress() {
+  localStorage.setItem('studentProgress', JSON.stringify(studentProgress));
+}
+
+// Update streak
+function updateStreak() {
+  const today = new Date().toDateString();
+  const lastActive = studentProgress.streak.lastActiveDate;
+
+  if (lastActive) {
+    const lastDate = new Date(lastActive);
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    if (lastDate.toDateString() === yesterday.toDateString()) {
+      // Continue streak
+      studentProgress.streak.current++;
+    } else if (lastDate.toDateString() !== today) {
+      // Streak broken
+      studentProgress.streak.longest = Math.max(studentProgress.streak.longest, studentProgress.streak.current);
+      studentProgress.streak.current = 1;
+    }
+  } else {
+    studentProgress.streak.current = 1;
+  }
+
+  studentProgress.streak.lastActiveDate = today;
+  studentProgress.streak.longest = Math.max(studentProgress.streak.longest, studentProgress.streak.current);
+}
+
+// Log activity
+function logActivity(type, description, data = {}) {
+  const activity = {
+    timestamp: new Date().toISOString(),
+    type: type,
+    description: description,
+    data: data
+  };
+
+  studentProgress.activities.unshift(activity);
+
+  // Keep only last 100 activities
+  if (studentProgress.activities.length > 100) {
+    studentProgress.activities = studentProgress.activities.slice(0, 100);
+  }
+
+  saveProgress();
+}
+
+// Update quick stats display
+function updateQuickStats() {
+  // Tutorials
+  document.getElementById('stat-tutorials').textContent =
+    `${studentProgress.completedTutorials.length}/5`;
+
+  // Practice
+  document.getElementById('stat-practice').textContent =
+    studentProgress.practiceProblems.total;
+
+  // Calculations
+  const totalCalculations = Object.values(studentProgress.calculations).reduce((a, b) => a + b, 0);
+  document.getElementById('stat-calculations').textContent = totalCalculations;
+
+  // Achievements
+  document.getElementById('stat-achievements').textContent =
+    studentProgress.achievements.length;
+}
+
+// Check and award achievements
+function checkAchievements() {
+  let newAchievements = false;
+
+  achievementDefinitions.forEach(achievement => {
+    if (!studentProgress.achievements.includes(achievement.id)) {
+      if (achievement.condition(studentProgress)) {
+        studentProgress.achievements.push(achievement.id);
+        newAchievements = true;
+
+        // Show notification
+        showAchievementNotification(achievement);
+
+        // Log activity
+        logActivity('achievement', `Erfolg freigeschaltet: ${achievement.name}`, {
+          achievementId: achievement.id
+        });
+      }
+    }
+  });
+
+  if (newAchievements) {
+    saveProgress();
+    updateQuickStats();
+  }
+}
+
+// Show achievement notification
+function showAchievementNotification(achievement) {
+  const notification = document.createElement('div');
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 9999;
+    min-width: 300px;
+    animation: slideInRight 0.5s ease;
+  `;
+
+  notification.innerHTML = `
+    <div style="display: flex; align-items: center;">
+      <i class="fa ${achievement.icon}" style="font-size: 32px; margin-right: 15px;"></i>
+      <div>
+        <h4 style="margin: 0 0 5px 0;">🏆 Erfolg freigeschaltet!</h4>
+        <p style="margin: 0; font-weight: bold;">${achievement.name}</p>
+        <p style="margin: 5px 0 0 0; font-size: 14px; opacity: 0.9;">${achievement.description}</p>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(notification);
+
+  // Auto-remove after 5 seconds
+  setTimeout(() => {
+    notification.style.animation = 'slideOutRight 0.5s ease';
+    setTimeout(() => notification.remove(), 500);
+  }, 5000);
+}
+
+// Toggle progress dashboard
+function toggleProgressDashboard() {
+  const dashboard = document.getElementById('progress-dashboard');
+  dashboard.style.display = dashboard.style.display === 'none' ? 'block' : 'none';
+
+  if (dashboard.style.display === 'block') {
+    loadDashboardContent();
+  }
+}
+
+// Load dashboard content
+function loadDashboardContent() {
+  loadOverviewTab();
+  loadAchievementsTab();
+  loadActivityTab();
+  loadPerformanceTab();
+}
+
+// Load overview tab
+function loadOverviewTab() {
+  // Tutorial progress bars
+  const tutorialNames = {
+    1: 'Was ist Stöchiometrie?',
+    2: 'Mol-Mol Umrechnung',
+    3: 'Masse-Masse Umrechnung',
+    4: 'Limitierendes Reagenz',
+    5: 'Ausbeute berechnen'
+  };
+
+  let progressHTML = '';
+  for (let i = 1; i <= 5; i++) {
+    const completed = studentProgress.completedTutorials.includes(i);
+    const percentage = completed ? 100 : 0;
+
+    progressHTML += `
+      <div style="margin-bottom: 15px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+          <span>${tutorialNames[i]}</span>
+          <span>${completed ? '✅ Abgeschlossen' : '⏳ Nicht begonnen'}</span>
+        </div>
+        <div style="background: #e0e0e0; height: 20px; border-radius: 10px; overflow: hidden;">
+          <div style="background: ${completed ? '#4CAF50' : '#9E9E9E'}; width: ${percentage}%; height: 100%; transition: width 0.3s ease;"></div>
+        </div>
+      </div>
+    `;
+  }
+  document.getElementById('tutorial-progress-bars').innerHTML = progressHTML;
+
+  // Practice statistics
+  const accuracy = studentProgress.practiceProblems.total > 0
+    ? ((studentProgress.practiceProblems.correct / studentProgress.practiceProblems.total) * 100).toFixed(1)
+    : 0;
+
+  let statsHTML = `
+    <div style="margin-bottom: 10px;">
+      <strong>Gelöste Aufgaben:</strong> ${studentProgress.practiceProblems.total}
+    </div>
+    <div style="margin-bottom: 10px;">
+      <strong>Richtig:</strong> ${studentProgress.practiceProblems.correct} (${accuracy}%)
+    </div>
+    <div style="margin-bottom: 10px;">
+      <strong>Falsch:</strong> ${studentProgress.practiceProblems.incorrect}
+    </div>
+    <div>
+      <strong>Übersprungen:</strong> ${studentProgress.practiceProblems.skipped}
+    </div>
+  `;
+  document.getElementById('practice-stats').innerHTML = statsHTML;
+
+  // Streak info
+  const streakInfo = `
+    <div style="display: flex; justify-content: space-around; text-align: center;">
+      <div>
+        <p style="font-size: 32px; font-weight: bold; margin: 0; color: #FF5722;">
+          ${studentProgress.streak.current}
+        </p>
+        <p style="margin: 5px 0 0 0;">Aktuelle Serie (Tage)</p>
+      </div>
+      <div>
+        <p style="font-size: 32px; font-weight: bold; margin: 0; color: #E91E63;">
+          ${studentProgress.streak.longest}
+        </p>
+        <p style="margin: 5px 0 0 0;">Längste Serie (Tage)</p>
+      </div>
+      <div>
+        <p style="font-size: 32px; font-weight: bold; margin: 0; color: #9C27B0;">
+          ${studentProgress.totalSessions}
+        </p>
+        <p style="margin: 5px 0 0 0;">Gesamtsitzungen</p>
+      </div>
+    </div>
+  `;
+  document.getElementById('streak-info').innerHTML = streakInfo;
+}
+
+// Load achievements tab
+function loadAchievementsTab() {
+  let gridHTML = '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;">';
+
+  achievementDefinitions.forEach(achievement => {
+    const unlocked = studentProgress.achievements.includes(achievement.id);
+
+    gridHTML += `
+      <div style="background: ${unlocked ? 'white' : '#f5f5f5'}; padding: 15px; border-radius: 8px; border-left: 4px solid ${achievement.color}; opacity: ${unlocked ? 1 : 0.6};">
+        <div style="display: flex; align-items: center;">
+          <i class="fa ${achievement.icon}" style="font-size: 32px; color: ${achievement.color}; margin-right: 15px; ${unlocked ? '' : 'filter: grayscale(100%);'}"></i>
+          <div>
+            <h5 style="margin: 0 0 5px 0;">${achievement.name}</h5>
+            <p style="margin: 0; font-size: 13px; color: #666;">${achievement.description}</p>
+            ${unlocked ? '<p style="margin: 5px 0 0 0; color: #4CAF50; font-size: 12px;">✅ Freigeschaltet</p>' : '<p style="margin: 5px 0 0 0; color: #999; font-size: 12px;">🔒 Gesperrt</p>'}
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  gridHTML += '</div>';
+  document.getElementById('achievements-grid').innerHTML = gridHTML;
+}
+
+// Load activity tab
+function loadActivityTab() {
+  if (studentProgress.activities.length === 0) {
+    document.getElementById('activity-list').innerHTML = '<p class="text-muted">Noch keine Aktivitäten.</p>';
+    return;
+  }
+
+  const typeIcons = {
+    'tutorial': 'fa-graduation-cap',
+    'practice': 'fa-pencil',
+    'calculation': 'fa-calculator',
+    'achievement': 'fa-trophy'
+  };
+
+  const typeColors = {
+    'tutorial': '#4CAF50',
+    'practice': '#FF9800',
+    'calculation': '#2196F3',
+    'achievement': '#E91E63'
+  };
+
+  let listHTML = '';
+  studentProgress.activities.slice(0, 50).forEach(activity => {
+    const date = new Date(activity.timestamp);
+    const formattedDate = date.toLocaleDateString('de-DE') + ' ' + date.toLocaleTimeString('de-DE');
+
+    listHTML += `
+      <div style="padding: 10px; border-bottom: 1px solid #eee;">
+        <div style="display: flex; align-items: center;">
+          <i class="fa ${typeIcons[activity.type] || 'fa-circle'}" style="color: ${typeColors[activity.type] || '#999'}; margin-right: 10px;"></i>
+          <div style="flex: 1;">
+            <p style="margin: 0;">${activity.description}</p>
+            <small style="color: #999;">${formattedDate}</small>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  document.getElementById('activity-list').innerHTML = listHTML;
+}
+
+// Load performance tab
+function loadPerformanceTab() {
+  // Accuracy by problem type
+  const accuracyHTML = `
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Aufgabentyp</th>
+          <th>Gelöst</th>
+          <th>Richtig</th>
+          <th>Genauigkeit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mol-Mol</td>
+          <td>${studentProgress.practiceProblems.byType['mol-mol'].total}</td>
+          <td>${studentProgress.practiceProblems.byType['mol-mol'].correct}</td>
+          <td>${studentProgress.practiceProblems.byType['mol-mol'].total > 0
+            ? ((studentProgress.practiceProblems.byType['mol-mol'].correct / studentProgress.practiceProblems.byType['mol-mol'].total) * 100).toFixed(1)
+            : 0}%</td>
+        </tr>
+        <tr>
+          <td>Masse-Masse</td>
+          <td>${studentProgress.practiceProblems.byType['mass-mass'].total}</td>
+          <td>${studentProgress.practiceProblems.byType['mass-mass'].correct}</td>
+          <td>${studentProgress.practiceProblems.byType['mass-mass'].total > 0
+            ? ((studentProgress.practiceProblems.byType['mass-mass'].correct / studentProgress.practiceProblems.byType['mass-mass'].total) * 100).toFixed(1)
+            : 0}%</td>
+        </tr>
+        <tr>
+          <td>Limitierend</td>
+          <td>${studentProgress.practiceProblems.byType['limiting'].total}</td>
+          <td>${studentProgress.practiceProblems.byType['limiting'].correct}</td>
+          <td>${studentProgress.practiceProblems.byType['limiting'].total > 0
+            ? ((studentProgress.practiceProblems.byType['limiting'].correct / studentProgress.practiceProblems.byType['limiting'].total) * 100).toFixed(1)
+            : 0}%</td>
+        </tr>
+        <tr>
+          <td>Ausbeute</td>
+          <td>${studentProgress.practiceProblems.byType['yield'].total}</td>
+          <td>${studentProgress.practiceProblems.byType['yield'].correct}</td>
+          <td>${studentProgress.practiceProblems.byType['yield'].total > 0
+            ? ((studentProgress.practiceProblems.byType['yield'].correct / studentProgress.practiceProblems.byType['yield'].total) * 100).toFixed(1)
+            : 0}%</td>
+        </tr>
+      </tbody>
+    </table>
+  `;
+  document.getElementById('accuracy-chart').innerHTML = accuracyHTML;
+
+  // Time spent in tutorials (minutes)
+  const minutesSpent = Math.floor(studentProgress.timeInTutorials / 60);
+  const timeHTML = `
+    <p style="font-size: 24px; font-weight: bold; text-align: center; color: #9C27B0;">
+      ${minutesSpent} Minuten
+    </p>
+    <p class="text-muted text-center">in Tutorials verbracht</p>
+  `;
+  document.getElementById('time-spent').innerHTML = timeHTML;
+}
+
+// Export progress report
+function exportProgressReport() {
+  const report = {
+    generated: new Date().toISOString(),
+    summary: {
+      totalSessions: studentProgress.totalSessions,
+      firstVisit: studentProgress.firstVisit,
+      lastVisit: studentProgress.lastVisit,
+      streak: studentProgress.streak
+    },
+    tutorials: {
+      completed: studentProgress.completedTutorials.length,
+      total: 5,
+      list: studentProgress.completedTutorials
+    },
+    practice: studentProgress.practiceProblems,
+    calculations: studentProgress.calculations,
+    achievements: studentProgress.achievements.map(id => {
+      const achievement = achievementDefinitions.find(a => a.id === id);
+      return achievement ? achievement.name : id;
+    }),
+    recentActivities: studentProgress.activities.slice(0, 20)
+  };
+
+  const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `stoechiometrie-fortschritt-${new Date().toISOString().split('T')[0]}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  logActivity('export', 'Fortschrittsbericht exportiert');
+}
+
+// Reset progress
+function resetProgress() {
+  if (!confirm('Möchtest du wirklich deinen gesamten Fortschritt zurücksetzen? Diese Aktion kann nicht rückgängig gemacht werden!')) {
+    return;
+  }
+
+  if (!confirm('Bist du wirklich sicher? Alle Erfolge, Statistiken und Aktivitäten werden gelöscht.')) {
+    return;
+  }
+
+  localStorage.removeItem('studentProgress');
+  location.reload();
+}
+
+// Integration hooks - called from other functions
+
+// Called when tutorial is completed
+function onTutorialCompleted(tutorialId, timeSpent) {
+  if (!studentProgress.completedTutorials.includes(tutorialId)) {
+    studentProgress.completedTutorials.push(tutorialId);
+    studentProgress.timeInTutorials += timeSpent;
+    logActivity('tutorial', `Tutorial ${tutorialId} abgeschlossen`, { tutorialId, timeSpent });
+    saveProgress();
+    checkAchievements();
+    updateQuickStats();
+  }
+}
+
+// Called when practice problem is attempted
+function onPracticeProblemAttempt(type, correct) {
+  studentProgress.practiceProblems.total++;
+  studentProgress.practiceProblems.byType[type].total++;
+
+  if (correct) {
+    studentProgress.practiceProblems.correct++;
+    studentProgress.practiceProblems.byType[type].correct++;
+  } else {
+    studentProgress.practiceProblems.incorrect++;
+  }
+
+  logActivity('practice', `Praxisaufgabe ${correct ? 'richtig' : 'falsch'} gelöst`, { type, correct });
+  saveProgress();
+  checkAchievements();
+  updateQuickStats();
+}
+
+// Called when calculator is used
+function onCalculatorUsed(type) {
+  studentProgress.calculations[type]++;
+  logActivity('calculation', `${type} Rechner verwendet`, { type });
+  saveProgress();
+  checkAchievements();
+  updateQuickStats();
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  initializeProgress();
+  updateTutorialProgress();
+
+  // Hook into practice mode
+  const originalCheckAnswer = window.checkAnswer;
+  if (originalCheckAnswer) {
+    window.checkAnswer = function() {
+      const result = originalCheckAnswer.apply(this, arguments);
+      // The practice state will have the current problem type
+      if (practiceState && practiceState.currentProblem) {
+        const isCorrect = result !== false; // Adapt based on actual implementation
+        onPracticeProblemAttempt(practiceState.currentProblem.type, isCorrect);
+      }
+      return result;
+    };
+  }
 });
 
 // ===== PDF EXPORT FUNCTIONS =====
