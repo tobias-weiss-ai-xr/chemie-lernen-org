@@ -13,9 +13,9 @@ function parseFormula(formula) {
   const regex = /([A-Z][a-z]?)(\d*)/g;
 
   // Handle parentheses recursively
-  formula = formula.replace(/\(([^()]+)\)(\d*)/g, function(match, group, multiplier) {
+  formula = formula.replace(/\(([^()]+)\)(\d*)/g, (match, group, multiplier) => {
     const mult = multiplier ? parseInt(multiplier) : 1;
-    let processedGroup = group.replace(/([A-Z][a-z]?)(\d*)/g, function(m, element, count) {
+    const processedGroup = group.replace(/([A-Z][a-z]?)(\d*)/g, (m, element, count) => {
       const c = count ? parseInt(count) : 1;
       return element + (c * mult);
     });
@@ -27,7 +27,7 @@ function parseFormula(formula) {
     const element = match[1];
     const count = match[2] ? parseInt(match[2]) : 1;
 
-    if (composition.hasOwnProperty(element)) {
+    if (Object.prototype.hasOwnProperty.call(composition, element)) {
       composition[element] += count;
     } else {
       composition[element] = count;
@@ -85,9 +85,9 @@ function calcMassToMass(m1, M1, M2, v1, v2) {
   const m2 = n2 * M2;
 
   return {
-    n1: n1,
-    n2: n2,
-    m2: m2
+    n1,
+    n2,
+    m2
   };
 }
 
@@ -121,11 +121,11 @@ function calcLimitingReactant(m1, M1, v1, m2, M2, v2) {
   const limitingReactant = ratio1 < ratio2 ? 1 : 2;
 
   return {
-    limitingReactant: limitingReactant,
+    limitingReactant,
     n1: n1_moles,
     n2: n2_moles,
-    ratio1: ratio1,
-    ratio2: ratio2
+    ratio1,
+    ratio2
   };
 }
 

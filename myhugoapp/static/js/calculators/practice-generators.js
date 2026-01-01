@@ -47,10 +47,10 @@ function generateMolMolProblem(difficulty, seed = null) {
 
   return {
     type: 'mol-mol',
-    n1: n1,
-    v1: v1,
-    v2: v2,
-    answer: answer,
+    n1,
+    v1,
+    v2,
+    answer,
     tolerance: 0.01 // 1% tolerance
   };
 }
@@ -94,14 +94,14 @@ function generateMassMassProblem(difficulty, seed = null) {
 
   return {
     type: 'mass-mass',
-    m1: m1,
-    M1: M1,
-    M2: M2,
-    v1: v1,
-    v2: v2,
+    m1,
+    M1,
+    M2,
+    v1,
+    v2,
     elem1: elem1.symbol,
     elem2: elem2.symbol,
-    answer: answer,
+    answer,
     tolerance: 0.02 // 2% tolerance
   };
 }
@@ -149,15 +149,15 @@ function generateLimitingProblem(difficulty, seed = null) {
 
   return {
     type: 'limiting',
-    m1: m1,
-    M1: M1,
-    v1: v1,
-    m2: m2,
-    M2: M2,
-    v2: v2,
+    m1,
+    M1,
+    v1,
+    m2,
+    M2,
+    v2,
     elem1: elem1.symbol,
     elem2: elem2.symbol,
-    answer: answer,
+    answer,
     tolerance: 0.02 // 2% tolerance
   };
 }
@@ -171,7 +171,7 @@ function generateLimitingProblem(difficulty, seed = null) {
 function generateYieldProblem(difficulty, seed = null) {
   const getRandom = seed ? () => seededRandom(seed++) : Math.random;
 
-  let theoretical, actual, targetYield;
+  let theoretical, targetYield;
 
   if (difficulty === 'easy') {
     theoretical = (Math.floor(getRandom() * 10) + 1) * 10; // 10-100 g
@@ -184,14 +184,14 @@ function generateYieldProblem(difficulty, seed = null) {
     targetYield = (Math.floor(getRandom() * 60) + 30); // 30-90%
   }
 
-  actual = (theoretical * targetYield) / 100;
+  const actual = (theoretical * targetYield) / 100;
   const answer = targetYield;
 
   return {
     type: 'yield',
-    theoretical: theoretical,
-    actual: actual,
-    answer: answer,
+    theoretical,
+    actual,
+    answer,
     tolerance: 0.5 // 0.5% tolerance for percentage
   };
 }
