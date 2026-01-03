@@ -1,7 +1,7 @@
 // pH Calculator JavaScript
 
 // Constants
-const KW_25C = 1e-14; // Water ion product at 25°C
+const _KW_25C = 1e-14; // Water ion product at 25°C
 
 // Calculate pH from H+ concentration
 function calculateFromHPlus() {

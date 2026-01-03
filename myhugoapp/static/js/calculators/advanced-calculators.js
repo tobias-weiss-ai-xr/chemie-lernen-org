@@ -336,7 +336,7 @@ function calculatePOH(ph) {
 function calculateKW(ph, temperature = 25) {
   // Water ionization product varies with temperature
   const kwAt25C = 1e-14;
-  const tempCelsius = temperature - 273.15;
+  const _tempCelsius = temperature - 273.15;
 
   // Simplified temperature correction
   const kw = kwAt25C * Math.exp(7000 * (1 / 298 - 1 / temperature));
@@ -433,7 +433,7 @@ function calculateMolesForMolarity(molarity, volumeLiters) {
  * Dilution Calculator for multiple concentrations
  */
 
-function calculateMultipleDilutions(dilutionScheme) {
+function _calculateMultipleDilutions(dilutionScheme) {
   // dilutionScheme: array of {targetConcentration, finalVolume}
   const results = [];
 

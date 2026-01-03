@@ -81,6 +81,7 @@ const massPresets = {
 };
 
 // Load preset for Mol-Mol calculator
+// eslint-disable-next-line no-unused-vars
 function loadPreset(presetKey) {
   const preset = presets[presetKey];
   if (!preset) {return;}
@@ -96,6 +97,7 @@ function loadPreset(presetKey) {
 }
 
 // Load preset for Mass-Mass calculator
+// eslint-disable-next-line no-unused-vars
 function loadMassPreset(presetKey) {
   const preset = massPresets[presetKey];
   if (!preset) {return;}
@@ -114,6 +116,7 @@ function loadMassPreset(presetKey) {
 // ===== EQUATION PARSER =====
 
 // Parse chemical equation and extract coefficients
+// eslint-disable-next-line no-unused-vars
 function parseEquation() {
   const equation = document.getElementById('equation-parser-input').value.trim();
 
@@ -260,6 +263,7 @@ function displayParsedCoefficients(result) {
 }
 
 // Apply parsed coefficients to Mol-Mol calculator
+// eslint-disable-next-line no-unused-vars
 function applyCoefficientsToMolMol(v1, v2) {
   document.getElementById('mol-coeff-r').value = v1;
   document.getElementById('mol-coeff-p').value = v2;
@@ -275,6 +279,7 @@ function applyCoefficientsToMolMol(v1, v2) {
 }
 
 // Apply parsed coefficients to Mass-Mass calculator
+// eslint-disable-next-line no-unused-vars
 function applyCoefficientsToMassMass(v1, v2) {
   document.getElementById('mass-coeff-r').value = v1;
   document.getElementById('mass-coeff-p').value = v2;
@@ -331,6 +336,7 @@ const elementDatabase = {
 };
 
 // Apply selected element's molar mass to calculator
+// eslint-disable-next-line no-unused-vars
 function applyMolarMass() {
   const selector = document.getElementById('element-selector');
   const selectedValue = selector.value;
@@ -479,6 +485,7 @@ function displayHistory() {
 }
 
 // Toggle history panel visibility
+// eslint-disable-next-line no-unused-vars
 function toggleHistory() {
   const panel = document.getElementById('history-panel');
   if (panel.style.display === 'none') {
@@ -501,6 +508,7 @@ function updateHistoryCount() {
 }
 
 // Clear all history
+// eslint-disable-next-line no-unused-vars
 function clearHistory() {
   if (confirm('Möchten Sie wirklich den gesamten Berechnungsverlauf löschen?')) {
     localStorage.removeItem('stoichHistory');
@@ -607,6 +615,7 @@ function showImportNotification(data) {
   }, 5000);
 }
 
+// eslint-disable-next-line no-unused-vars
 function calcMolMol() {
   const n1 = parseFloat(document.getElementById('mol-reactant').value);
   const v1 = parseFloat(document.getElementById('mol-coeff-r').value);
@@ -693,6 +702,7 @@ function calcMolMol() {
 }
 
 // Toggle explanation visibility
+// eslint-disable-next-line no-unused-vars
 function toggleMolMolExplanation() {
   const explanation = document.getElementById('mol-mol-explanation');
   if (explanation) {
@@ -700,6 +710,7 @@ function toggleMolMolExplanation() {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 function calcMassMass() {
   const m1 = parseFloat(document.getElementById('mass-r').value);
   const M1 = parseFloat(document.getElementById('mm-r').value);
@@ -811,6 +822,7 @@ function calcMassMass() {
 }
 
 // Toggle mass-mass explanation visibility
+// eslint-disable-next-line no-unused-vars
 function toggleMassMassExplanation() {
   const explanation = document.getElementById('mass-mass-explanation');
   if (explanation) {
@@ -818,6 +830,7 @@ function toggleMassMassExplanation() {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 function calcLimiting() {
   const m1 = parseFloat(document.getElementById('lim-m1').value);
   const M1 = parseFloat(document.getElementById('lim-mm1').value);
@@ -908,6 +921,7 @@ function calcLimiting() {
 }
 
 // Toggle limiting explanation visibility
+// eslint-disable-next-line no-unused-vars
 function toggleLimitingExplanation() {
   const explanation = document.getElementById('limiting-explanation');
   if (explanation) {
@@ -915,6 +929,7 @@ function toggleLimitingExplanation() {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 function calcYield() {
   const theo = parseFloat(document.getElementById('yield-theo').value);
   const act = parseFloat(document.getElementById('yield-act').value);
@@ -1013,6 +1028,7 @@ function calcYield() {
 }
 
 // Toggle yield explanation visibility
+// eslint-disable-next-line no-unused-vars
 function toggleYieldExplanation() {
   const explanation = document.getElementById('yield-explanation');
   if (explanation) {
@@ -1086,6 +1102,7 @@ function addReactionStep() {
 }
 
 // Remove a reaction step
+// eslint-disable-next-line no-unused-vars
 function removeStep(stepId) {
   const stepElement = document.getElementById(`step-${stepId}`);
   if (stepElement) {
@@ -1115,6 +1132,7 @@ function clearAllSteps() {
 }
 
 // Load example multi-step reaction (Iron to Iron(III) oxide)
+// eslint-disable-next-line no-unused-vars
 function loadMultiStepExample() {
   // Clear existing steps
   clearAllSteps();
@@ -1161,6 +1179,7 @@ function updateInitialMass() {
 }
 
 // Calculate multi-step reaction
+// eslint-disable-next-line no-unused-vars
 function calculateMultiStep() {
   // Get initial reactant data
   const initialAmount = parseFloat(document.getElementById('initial-amount').value);

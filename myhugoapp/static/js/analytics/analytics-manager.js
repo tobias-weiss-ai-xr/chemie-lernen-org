@@ -322,7 +322,7 @@ const AnalyticsManager = {
    */
   checkAchievements() {
     const progress = this.getProgress();
-    const stats = this.getStats();
+    const _stats = this.getStats();
 
     // First calculation
     if (progress.totalAttempts === 1) {

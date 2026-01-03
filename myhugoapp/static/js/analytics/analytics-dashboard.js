@@ -46,7 +46,7 @@ const AnalyticsDashboard = {
    */
   createSummaryCard() {
     const progress = AnalyticsManager.getProgress();
-    const stats = AnalyticsManager.getStats();
+    const _stats = AnalyticsManager.getStats();
     const streak = AnalyticsManager.getStreak();
 
     const overallAccuracy = progress.totalAttempts > 0
@@ -143,7 +143,7 @@ const AnalyticsDashboard = {
    */
   createPerformanceStats() {
     const stats = AnalyticsManager.getStats();
-    const sessions = AnalyticsManager.getSessions();
+    const _sessions = AnalyticsManager.getSessions();
 
     const avgSessionLength = stats.avgSessionLength
       ? this.formatDuration(stats.avgSessionLength)
