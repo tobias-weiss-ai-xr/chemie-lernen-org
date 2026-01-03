@@ -1,0 +1,496 @@
+{{ define "main" }}
+
+<div class="gas-law-calculator-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Calculator Section -->
+  <div class="calculator-section">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="calculator-panel">
+
+          <!-- Tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+              <a href="#ideal-gas" aria-controls="ideal-gas" role="tab" data-toggle="tab">Ideales Gasgesetz</a>
+            </li>
+            <li role="presentation">
+              <a href="#boyle-mariotte" aria-controls="boyle-mariotte" role="tab" data-toggle="tab">Boyle-Mariotte</a>
+            </li>
+            <li role="presentation">
+              <a href="#gay-lussac" aria-controls="gay-lussac" role="tab" data-toggle="tab">Gay-Lussac</a>
+            </li>
+            <li role="presentation">
+              <a href="#combined" aria-controls="combined" role="tab" data-toggle="tab">Kombiniertes Gesetz</a>
+            </li>
+          </ul>
+
+          <!-- Tab Content -->
+          <div class="tab-content">
+
+            <!-- Ideal Gas Law Tab -->
+            <div role="tabpanel" class="tab-pane active" id="ideal-gas">
+              <div class="panel-section">
+                <h3>Ideales Gasgesetz (pV = nRT)</h3>
+                <p class="help-block">Berechnen Sie eine unbekannte Größe aus den Gaszustandsgrößen</p>
+
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="ig-pressure">Druck p:</label>
+                      <input type="text" id="ig-pressure" class="form-control"
+                             placeholder="z.B. 1.013"
+                               aria-label="Druck">
+                      <select id="ig-pressure-unit" class="form-control">
+                        <option value="bar">bar</option>
+                        <option value="Pa">Pa</option>
+                        <option value="kPa">kPa</option>
+                        <option value="atm">atm</option>
+                        <option value="mmHg">mmHg (Torr)</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="ig-volume">Volumen V:</label>
+                      <input type="text" id="ig-volume" class="form-control"
+                             placeholder="z.B. 22.4"
+                               aria-label="Volumen">
+                      <select id="ig-volume-unit" class="form-control">
+                        <option value="L">L</option>
+                        <option value="m3">m³</option>
+                        <option value="mL">mL</option>
+                        <option value="cm3">cm³</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="ig-amount">Stoffmenge n:</label>
+                      <input type="text" id="ig-amount" class="form-control"
+                             placeholder="z.B. 1"
+                               aria-label="Stoffmenge">
+                      <select id="ig-amount-unit" class="form-control">
+                        <option value="mol">mol</option>
+                        <option value="mmol">mmol</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="ig-temperature">Temperatur T:</label>
+                      <input type="text" id="ig-temperature" class="form-control"
+                             placeholder="z.B. 273.15"
+                               value="273.15"
+                               aria-label="Temperatur">
+                      <select id="ig-temp-unit" class="form-control">
+                        <option value="K">Kelvin (K)</option>
+                        <option value="C">Celsius (°C)</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Berechnen:</label>
+                  <div class="btn-group" style="width: 100%;">
+                    <button class="btn btn-primary" onclick="calculateIdealGas('pressure')" style="width: 25%;">Druck p</button>
+                    <button class="btn btn-primary" onclick="calculateIdealGas('volume')" style="width: 25%;">Volumen V</button>
+                    <button class="btn btn-primary" onclick="calculateIdealGas('amount')" style="width: 25%;">Stoffmenge n</button>
+                    <button class="btn btn-primary" onclick="calculateIdealGas('temperature')" style="width: 25%;">Temp. T</button>
+                  </div>
+                </div>
+
+                <div class="quick-examples">
+                  <p><strong>Beispiele:</strong></p>
+                  <button class="btn btn-sm btn-default example-btn" data-type="stp">
+                    Normbedingungen (STP)
+                  </button>
+                  <button class="btn btn-sm btn-default example-btn" data-type="room">
+                    Raumbedingungen
+                  </button>
+                  <button class="btn btn-sm btn-default example-btn" data-type="high-pressure">
+                    Hochdruck
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Boyle-Mariotte Tab -->
+            <div role="tabpanel" class="tab-pane" id="boyle-mariotte">
+              <div class="panel-section">
+                <h3>Boyle-Mariotte-Gesetz (p₁V₁ = p₂V₂ bei T = konst.)</h3>
+                <p class="help-block">Isotherme Zustandsänderung: Temperatur bleibt konstant</p>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <h4>Ausgangszustand (1)</h4>
+                    <div class="form-group">
+                      <label>Druck p₁:</label>
+                      <div class="input-group">
+                        <input type="text" id="bm-p1" class="form-control"
+                               placeholder="z.B. 1" aria-label="Druck p1">
+                        <span class="input-group-addon">bar</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Volumen V₁:</label>
+                      <div class="input-group">
+                        <input type="text" id="bm-v1" class="form-control"
+                               placeholder="z.B. 10" aria-label="Volumen V1">
+                        <span class="input-group-addon">L</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <h4>Endzustand (2)</h4>
+                    <div class="form-group">
+                      <label>Druck p₂:</label>
+                      <div class="input-group">
+                        <input type="text" id="bm-p2" class="form-control"
+                               placeholder="Berechnet oder eingeben" aria-label="Druck p2">
+                        <span class="input-group-addon">bar</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Volumen V₂:</label>
+                      <div class="input-group">
+                        <input type="text" id="bm-v2" class="form-control"
+                               placeholder="Berechnet oder eingeben" aria-label="Volumen V2">
+                        <span class="input-group-addon">L</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Berechnen:</label>
+                  <button class="btn btn-primary btn-block" onclick="calculateBoyleMariotte()">
+                    <i class="fa fa-calculator"></i> Berechnen
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gay-Lussac Tab -->
+            <div role="tabpanel" class="tab-pane" id="gay-lussac">
+              <div class="panel-section">
+                <h3>Gay-Lussac-Gesetze</h3>
+                <p class="help-block">Isobare (p = konst.) oder isochore (V = konst.) Zustandsänderung</p>
+
+                <div class="form-group">
+                  <label>Gesetz wählen:</label>
+                  <select id="gl-law-type" class="form-control">
+                    <option value="isobar">Isobares Gesetz (V₁/T₁ = V₂/T₂ bei p = konst.)</option>
+                    <option value="isochor">Ichores Gesetz (p₁/T₁ = p₂/T₂ bei V = konst.)</option>
+                  </select>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <h4>Ausgangszustand (1)</h4>
+                    <div class="form-group">
+                      <label id="gl-v1-label">Volumen V₁ / Druck p₁:</label>
+                      <input type="text" id="gl-v1" class="form-control"
+                             placeholder="z.B. 10" aria-label="Größe 1">
+                      <p class="help-block" id="gl-v1-unit">L / bar</p>
+                    </div>
+                    <div class="form-group">
+                      <label>Temperatur T₁:</label>
+                      <input type="text" id="gl-t1" class="form-control"
+                             placeholder="z.B. 273" aria-label="Temperatur T1">
+                      <p class="help-block">Kelvin</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <h4>Endzustand (2)</h4>
+                    <div class="form-group">
+                      <label id="gl-v2-label">Volumen V₂ / Druck p₂:</label>
+                      <input type="text" id="gl-v2" class="form-control"
+                             placeholder="Berechnet oder eingeben" aria-label="Größe 2">
+                      <p class="help-block" id="gl-v2-unit">L / bar</p>
+                    </div>
+                    <div class="form-group">
+                      <label>Temperatur T₂:</label>
+                      <input type="text" id="gl-t2" class="form-control"
+                             placeholder="Berechnet oder eingeben" aria-label="Temperatur T2">
+                      <p class="help-block">Kelvin</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Berechnen:</label>
+                  <button class="btn btn-primary btn-block" onclick="calculateGayLussac()">
+                    <i class="fa fa-calculator"></i> Berechnen
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Combined Gas Law Tab -->
+            <div role="tabpanel" class="tab-pane" id="combined">
+              <div class="panel-section">
+                <h3>Kombiniertes Gasgesetz (p₁V₁/T₁ = p₂V₂/T₂)</h3>
+                <p class="help-block">Allgemeine Zustandsänderung mit Druck, Volumen und Temperatur</p>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <h4>Ausgangszustand (1)</h4>
+                    <div class="form-group">
+                      <label>Druck p₁:</label>
+                      <input type="text" id="cg-p1" class="form-control"
+                             placeholder="z.B. 1" aria-label="Druck p1">
+                      <p class="help-block">bar</p>
+                    </div>
+                    <div class="form-group">
+                      <label>Volumen V₁:</label>
+                      <input type="text" id="cg-v1" class="form-control"
+                             placeholder="z.B. 10" aria-label="Volumen V1">
+                      <p class="help-block">L</p>
+                    </div>
+                    <div class="form-group">
+                      <label>Temperatur T₁:</label>
+                      <input type="text" id="cg-t1" class="form-control"
+                             placeholder="z.B. 273" aria-label="Temperatur T1">
+                      <p class="help-block">Kelvin</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <h4>Endzustand (2)</h4>
+                    <div class="form-group">
+                      <label>Druck p₂:</label>
+                      <input type="text" id="cg-p2" class="form-control"
+                             placeholder="Berechnet oder eingeben" aria-label="Druck p2">
+                      <p class="help-block">bar</p>
+                    </div>
+                    <div class="form-group">
+                      <label>Volumen V₂:</label>
+                      <input type="text" id="cg-v2" class="form-control"
+                             placeholder="Berechnet oder eingeben" aria-label="Volumen V2">
+                      <p class="help-block">L</p>
+                    </div>
+                    <div class="form-group">
+                      <label>Temperatur T₂:</label>
+                      <input type="text" id="cg-t2" class="form-control"
+                             placeholder="Berechnet oder eingeben" aria-label="Temperatur T2">
+                      <p class="help-block">Kelvin</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Berechnen:</label>
+                  <button class="btn btn-primary btn-block" onclick="calculateCombinedGasLaw()">
+                    <i class="fa fa-calculator"></i> Berechnen
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section" style="display:none;">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="result-card main-result">
+            <h3>Ergebnis</h3>
+            <div id="calculation-result"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="result-card details-result">
+            <h3>Berechnungsdetails</h3>
+            <div id="calculation-details"></div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="result-card comparison-result">
+            <h3>Anwendung</h3>
+            <div id="application-info"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Section -->
+    <div id="error-section" style="display:none;">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="alert alert-danger">
+            <i class="fa fa-exclamation-triangle"></i>
+            <strong>Fehler:</strong> <span id="error-message"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Educational Section -->
+  <div class="educational-section">
+    <h2>Wissenswertes über Gasgesetze</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📚 Ideales Gasgesetz</h3>
+          <p><strong>Allgemeine Gasgleichung:</strong></p>
+          <p class="formula">pV = nRT</p>
+          <p>Wobei:</p>
+          <ul>
+            <li>p = Druck (in Pa oder bar)</li>
+            <li>V = Volumen (in m³ oder L)</li>
+            <li>n = Stoffmenge (in mol)</li>
+            <li>R = Universelle Gaskonstante = 8.314 J/(mol·K)</li>
+            <li>T = Absolute Temperatur (in Kelvin)</li>
+          </ul>
+          <p><strong>Normbedingungen (STP):</strong></p>
+          <p class="formula">T = 273.15 K (0°C), p = 1.013 bar</p>
+          <p class="formula">V_m = 22.414 L/mol</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🌡️ Boyle-Mariotte & Gay-Lussac</h3>
+          <p><strong>Boyle-Mariotte (Isotherm):</strong></p>
+          <p class="formula">p₁V₁ = p₂V₂ (T = konst.)</p>
+          <p>Druck und Volumen sind umgekehrt proportional</p>
+          <p><strong>Gay-Lussac Isobar (p = konst.):</strong></p>
+          <p class="formula">V₁/T₁ = V₂/T₂</p>
+          <p>Volumen und Temperatur sind direkt proportional</p>
+          <p><strong>Gay-Lussac Isochor (V = konst.):</strong></p>
+          <p class="formula">p₁/T₁ = p₂/T₂</p>
+          <p>Druck und Temperatur sind direkt proportional</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🔧 Gaskonstante R</h3>
+          <p>Die universelle Gaskonstante in verschiedenen Einheiten:</p>
+          <ul>
+            <li><strong>SI:</strong> R = 8.314 J/(mol·K)</li>
+            <li><strong>L·bar:</strong> R = 0.08314 L·bar/(mol·K)</li>
+            <li><strong>L·atm:</strong> R = 0.08206 L·atm/(mol·K)</li>
+            <li><strong>cal:</strong> R = 1.987 cal/(mol·K)</li>
+            <li><strong>m³·Pa:</strong> R = 8.314 m³·Pa/(mol·K)</li>
+          </ul>
+          <p><strong>Normvolumen:</strong></p>
+          <p>1 Mol eines idealen Gases nimmt bei STP 22.414 L ein.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="info-card">
+          <h3>📊 Typische Anwendungen der Gasgesetze</h3>
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>Anwendung</th>
+                  <th>Gesetz</th>
+                  <th>Beispiel</th>
+                  <th>Praktische Bedeutung</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Gasmessung</td>
+                  <td>Boyle-Mariotte</td>
+                  <td>Volumenänderung bei Kompression</td>
+                  <td>Gaszähler, Kompressoren</td>
+                </tr>
+                <tr>
+                  <td>Heißluftballon</td>
+                  <td>Gay-Lussac (isobar)</td>
+                  <td>Volumenausdehnung bei Erwärmung</td>
+                  <td>Auftrieb, Thermik</td>
+                </tr>
+                <tr>
+                  <td>Autoreifen</td>
+                  <td>Gay-Lussac (isochor)</td>
+                  <td>Druckerhöhung bei Erwärmung</td>
+                  <td>Reifenfüllung, Sicherheit</td>
+                </tr>
+                <tr>
+                  <td>Chemische Reaktionen</td>
+                  <td>Ideales Gasgesetz</td>
+                  <td>Gasvolumen aus Stoffmenge</td>
+                  <td>Stöchiometrie, Ausbeute</td>
+                </tr>
+                <tr>
+                  <td>Scuba-Tauchen</td>
+                  <td>Kombiniertes Gesetz</td>
+                  <td>Druck, Volumen, Temperatur</td>
+                  <td>Atemgasvolumen, Dekompression</td>
+                </tr>
+                <tr>
+                  <td>Lagerung Gase</td>
+                  <td>Boyle-Mariotte</td>
+                  <td>Druckgasflaschen</td>
+                  <td>Kapazität, Füllstand</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>💡 Berechnungsbeispiele</h3>
+          <p><strong>Beispiel 1: Ideales Gasgesetz</strong></p>
+          <p>Welches Volumen nehmen 2 mol Gas bei 25°C und 1 bar ein?</p>
+          <p class="formula">V = nRT/p = (2 mol × 0.08314 L·bar/(mol·K) × 298.15 K) / 1 bar = 49.6 L</p>
+
+          <p><strong>Beispiel 2: Boyle-Mariotte</strong></p>
+          <p>Ein Gas (10 L, 1 bar) wird auf 5 bar komprimiert. Neues Volumen?</p>
+          <p class="formula">V₂ = p₁V₁/p₂ = (1 bar × 10 L) / 5 bar = 2 L</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>⚠️ Grenzen der Idealgastheorie</h3>
+          <p>Die Gasgesetze gelten exakt nur für <strong>ideale Gase</strong>. Reale Gase zeigen Abweichungen bei:</p>
+          <ul>
+            <li><strong>Hoher Druck:</strong> Moleküle haben Eigenvolumen</li>
+            <li><strong>Niedrige Temperatur:</strong> Van der Waals-Kräfte werden relevant</li>
+            <li><strong>Verflüssigung:</strong> In der Nähe des Taupunktes</li>
+          </ul>
+          <p><strong>Korrektur (Van der Waals):</strong></p>
+          <p class="formula">(p + a·n²/V²)(V - n·b) = nRT</p>
+          <p>Für die meisten Anwendungen bei Normalbedingungen ist die Idealgasnäherung jedoch ausreichend genau.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/utils/chemistry-utils.js" | relURL }}"></script><script src="{{ "js/gasgesetz-rechner.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/gasgesetz-rechner.css" | relURL }}">
+{{ end }}
