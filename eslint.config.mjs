@@ -24,53 +24,7 @@ export default [
   // Global defaults
   js.configs.recommended,
 
-  // Calculator files
-  {
-    files: ['myhugoapp/static/js/calculators/**/*.js'],
-    languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'script',
-      globals: {
-        document: 'readonly',
-        window: 'readonly',
-        console: 'readonly',
-        localStorage: 'readonly',
-        sessionStorage: 'readonly',
-        navigator: 'readonly',
-        module: 'readonly',
-        exports: 'readonly',
-        require: 'readonly',
-      },
-    },
-    rules: {
-      'no-console': 'off',
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-      'no-undef': 'error',
-      'no-redeclare': 'error',
-      'no-dupe-keys': 'error',
-      'no-duplicate-case': 'error',
-      'no-empty': ['warn', { allowEmptyCatch: true }],
-      'no-extra-semi': 'error',
-      'no-irregular-whitespace': 'error',
-      'no-trailing-spaces': 'error',
-      'no-unsafe-negation': 'error',
-      'valid-typeof': 'error',
-      'curly': ['error', 'all'],
-      'eqeqeq': ['error', 'always', { null: 'ignore' }],
-      'no-eval': 'error',
-      'no-implied-eval': 'error',
-      'no-return-await': 'warn',
-      'require-await': 'warn',
-      'no-throw-literal': 'error',
-      'prefer-promise-reject-errors': 'error',
-      'no-var': 'warn',
-      'prefer-const': 'warn',
-      'object-shorthand': ['warn', 'always'],
-      'prefer-arrow-callback': 'warn',
-    },
-  },
-
-  // All other static JS files
+  // All static JS files - base configuration (script type)
   {
     files: ['myhugoapp/static/js/**/*.js'],
     languageOptions: {
@@ -102,6 +56,13 @@ export default [
         KeyboardEvent: 'readonly',
         TouchEvent: 'readonly',
         FormData: 'readonly',
+        fetch: 'readonly',
+        btoa: 'readonly',
+        atob: 'readonly',
+        crypto: 'readonly',
+        TextEncoder: 'readonly',
+        TextDecoder: 'readonly',
+        performance: 'readonly',
       },
     },
     rules: {
@@ -117,6 +78,80 @@ export default [
       'no-trailing-spaces': 'error',
       'no-unsafe-negation': 'error',
       'valid-typeof': 'error',
+    },
+  },
+
+  // Calculator files - additional rules
+  {
+    files: ['myhugoapp/static/js/calculators/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: {
+        module: 'readonly',
+        exports: 'readonly',
+        require: 'readonly',
+      },
+    },
+    rules: {
+      'curly': ['error', 'all'],
+      'eqeqeq': ['error', 'always', { null: 'ignore' }],
+      'no-eval': 'error',
+      'no-implied-eval': 'error',
+      'no-return-await': 'warn',
+      'require-await': 'warn',
+      'no-throw-literal': 'error',
+      'prefer-promise-reject-errors': 'error',
+      'no-var': 'warn',
+      'prefer-const': 'warn',
+      'object-shorthand': ['warn', 'always'],
+      'prefer-arrow-callback': 'warn',
+    },
+  },
+
+  // I18n files - module/exports globals
+  {
+    files: ['myhugoapp/static/js/i18n/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: {
+        module: 'readonly',
+        exports: 'readonly',
+        require: 'readonly',
+        I18nManager: 'readonly',
+      },
+    },
+  },
+
+  // Analytics files - module/exports globals
+  {
+    files: ['myhugoapp/static/js/analytics/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: {
+        module: 'readonly',
+        exports: 'readonly',
+        require: 'readonly',
+        AnalyticsManager: 'readonly',
+      },
+    },
+  },
+
+  // ES Module files - override with module type
+  {
+    files: [
+      'myhugoapp/static/js/perioden-system-der-elemente.js',
+      'myhugoapp/static/js/three/**/*.js',
+      'myhugoapp/static/js/**/*.module.js',
+    ],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        performance: 'readonly',
+      },
     },
   },
 

@@ -211,7 +211,7 @@ const AnalyticsDashboard = {
         <div class="breakdown-item">
           <div class="breakdown-header">
             <span class="breakdown-category">${this.formatCategoryName(category)}</span>
-            <span class="breakdown-accuracy">${((data.correctAttempts / data.totalAttempts * 100).toFixed(1)}%</span>
+            <span class="breakdown-accuracy">${((data.correctAttempts / data.totalAttempts * 100)).toFixed(1)}%</span>
           </div>
           <div class="breakdown-stats">
             <span>${data.totalAttempts} attempts</span>
