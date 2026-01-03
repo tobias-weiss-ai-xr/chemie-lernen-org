@@ -1,0 +1,502 @@
+/* Redox Potential Calculator Styles */
+
+.redox-calculator-container {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+/* Calculator Section */
+.calculator-section {
+  margin: 20px 0;
+}
+
+.calculator-panel {
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.calculator-panel h2 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.calculator-panel h3 {
+  color: #495057;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.calculator-panel p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Tabs */
+.nav-tabs {
+  border-bottom: 2px solid #dee2e6;
+  margin-bottom: 25px;
+}
+
+.nav-tabs > li {
+  margin-right: 5px;
+  margin-bottom: -2px;
+}
+
+.nav-tabs > li > a {
+  color: #495057;
+  padding: 12px 20px;
+  border: 2px solid transparent;
+  border-radius: 8px 8px 0 0;
+  transition: all 0.2s;
+}
+
+.nav-tabs > li > a:hover {
+  background-color: #e9ecef;
+  border-color: #dee2e6 #dee2e6 #dee2e6;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: #007bff;
+  background-color: #fff;
+  border: 2px solid #dee2e6;
+  border-bottom-color: #fff;
+  font-weight: 600;
+}
+
+.tab-content {
+  padding-top: 20px;
+}
+
+.tab-pane {
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  color: #495057;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.form-control {
+  padding: 12px 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.help-block {
+  color: #6c757d;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+}
+
+.btn-lg {
+  padding: 15px 30px;
+  font-size: 18px;
+}
+
+/* Quick Examples */
+.quick-examples {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #dee2e6;
+}
+
+.quick-examples p {
+  margin-bottom: 15px;
+  color: #495057;
+  font-weight: 600;
+}
+
+.example-btn,
+.example-btn-nernst,
+.example-btn-gibbs {
+  margin: 5px;
+  padding: 8px 15px;
+  background-color: #fff;
+  border: 1px solid #007bff;
+  color: #007bff;
+  border-radius: 5px;
+  transition: all 0.2s;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.example-btn:hover,
+.example-btn-nernst:hover,
+.example-btn-gibbs:hover {
+  background-color: #007bff;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+}
+
+/* Result Cards */
+.result-card {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.result-card h3 {
+  color: #007bff;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+/* Main Result */
+.main-result {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+}
+
+.main-result h3 {
+  color: #fff;
+}
+
+.result-value-large {
+  text-align: center;
+  padding: 20px;
+}
+
+.result-number {
+  font-size: 48px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.result-number.positive {
+  color: #28a745;
+}
+
+.result-number.negative {
+  color: #dc3545;
+}
+
+.result-number.neutral {
+  color: #ffc107;
+}
+
+.result-label {
+  text-align: center;
+  margin: 15px 0 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Spontaneity Indicator */
+.spontaneity-indicator {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.spontaneity-indicator.success {
+  background-color: rgba(40, 167, 69, 0.2);
+  color: #28a745;
+  border: 2px solid #28a745;
+}
+
+.spontaneity-indicator.danger {
+  background-color: rgba(220, 53, 69, 0.2);
+  color: #dc3545;
+  border: 2px solid #dc3545;
+}
+
+.spontaneity-indicator.warning {
+  background-color: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+  border: 2px solid #ffc107;
+}
+
+/* Additional Result */
+.additional-result {
+  background-color: #f8f9fa;
+}
+
+.additional-result h3 {
+  color: #495057;
+}
+
+.additional-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+  transition: transform 0.2s;
+}
+
+.additional-item:hover {
+  transform: translateX(5px);
+}
+
+.additional-label {
+  color: #495057;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.additional-value {
+  color: #007bff;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.k-note {
+  margin-top: 10px;
+  padding: 8px;
+  background-color: #fff3cd;
+  border-left: 3px solid #ffc107;
+  border-radius: 4px;
+}
+
+/* Calculation Details */
+.details-result {
+  background-color: #f8f9fa;
+}
+
+.calculation-step {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  border-left: 4px solid #28a745;
+}
+
+.calculation-step h4 {
+  color: #28a745;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.calculation-step .formula {
+  font-family: 'Courier New', monospace;
+  background-color: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin: 5px 0;
+  color: #495057;
+  font-size: 15px;
+  display: block;
+}
+
+/* Educational Section */
+.educational-section {
+  margin: 40px 0;
+}
+
+.educational-section h2 {
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.info-card {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.info-card h3 {
+  color: #007bff;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.info-card p {
+  color: #495057;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.info-card ul {
+  color: #495057;
+  line-height: 1.8;
+}
+
+.info-card li {
+  margin-bottom: 8px;
+}
+
+.info-card .formula {
+  font-family: 'Courier New', monospace;
+  background-color: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin: 10px 0;
+  color: #495057;
+  text-align: center;
+}
+
+/* Tables */
+.table-responsive {
+  margin-top: 15px;
+}
+
+.table {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table thead {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.table th {
+  font-weight: 600;
+  border: none;
+  padding: 12px;
+}
+
+.table td {
+  padding: 12px;
+  vertical-align: middle;
+}
+
+.table tbody tr {
+  transition: background-color 0.2s;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* Potential value styling */
+.potential-positive {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.potential-negative {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.potential-neutral {
+  color: #6c757d;
+  font-weight: 600;
+}
+
+/* Error Section */
+.alert {
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.alert i {
+  margin-right: 10px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .calculator-panel {
+    padding: 20px;
+  }
+
+  .result-number {
+    font-size: 36px;
+  }
+
+  .additional-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .example-btn,
+  .example-btn-nernst,
+  .example-btn-gibbs {
+    display: block;
+    margin: 10px auto;
+    width: 90%;
+  }
+
+  .table {
+    font-size: 14px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px 6px;
+  }
+
+  .formula {
+    font-size: 13px !important;
+  }
+}
