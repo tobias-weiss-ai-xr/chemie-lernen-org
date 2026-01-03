@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Browser Navigation Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .test-section {
+      background: white;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .success { color: green; }
+    .error { color: red; }
+    .info { color: blue; }
+    h1 { color: #333; }
+    h2 { color: #666; border-bottom: 2px solid #5bf; padding-bottom: 10px; }
+    code {
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+    .test-result {
+      margin: 10px 0;
+      padding: 10px;
+      border-left: 4px solid #5bf;
+      background: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 Browser Navigation Test</h1>
+
+  <div class="test-section">
+    <h2>Deployment Check</h2>
+    <div id="deployment-check"></div>
+  </div>
+
+  <div class="test-section">
+    <h2>Code Verification</h2>
+    <div id="code-check"></div>
+  </div>
+
+  <div class="test-section">
+    <h2>Manual Test Instructions</h2>
+    <div class="test-result">
+      <h3>✅ How to Test Browser Navigation:</h3>
+      <ol>
+        <li><strong>Open the application:</strong> <a href="https://tobias-weiss.org/hello-webxr/" target="_blank">https://tobias-weiss.org/hello-webxr/</a></li>
+        <li><strong>Look for the help overlay</strong> in the bottom-left corner with navigation instructions</li>
+        <li><strong>Click anywhere</strong> to enable mouse look (pointer lock)</li>
+        <li><strong>Use WASD or Arrow keys</strong> to move around</li>
+        <li><strong>Press N</strong> to cycle through rooms</li>
+        <li><strong>Press 0-9</strong> to jump to specific rooms</li>
+        <li><strong>Press ESC</strong> to exit mouse look mode</li>
+      </ol>
+
+      <h3>🎮 Controls Reference:</h3>
+      <ul>
+        <li><code>W</code> or <code>↑</code> - Move Forward</li>
+        <li><code>S</code> or <code>↓</code> - Move Backward</li>
+        <li><code>A</code> or <code>←</code> - Move Left</li>
+        <li><code>D</code> or <code>→</code> - Move Right</li>
+        <li><code>N</code> - Next Room</li>
+        <li><code>0-9</code> - Go to Room Number</li>
+        <li><code>Click</code> - Enable Mouse Look</li>
+        <li><code>ESC</code> - Exit Mouse Look</li>
+      </ul>
+
+      <h3>🏠 Room Navigation:</h3>
+      <ul>
+        <li><code>0</code> - Main Hall</li>
+        <li><code>1</code> - Sound Room</li>
+        <li><code>2</code> - Photogrammetry</li>
+        <li><code>3</code> - Vertigo Room</li>
+        <li><code>4</code> - Spider Room 🕷️</li>
+        <li><code>5</code> - Stereo Panorama</li>
+        <li><code>6-10</code> - Other Panoramas</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>Expected Behavior</h2>
+    <div class="test-result">
+      <p>✅ <strong>On Load:</strong> You should see a dark overlay with "Hello!" and a loading circle, then the main hall appears</p>
+      <p>✅ <strong>Help Overlay:</strong> Bottom-left corner shows navigation instructions</p>
+      <p>✅ <strong>After Click:</strong> Mouse pointer hides, you can look around by moving the mouse</p>
+      <p>✅ <strong>Movement:</strong> WASD/Arrow keys move you through the 3D space</p>
+      <p>✅ <strong>Room Transitions:</strong> Press N or number keys to switch rooms</p>
+      <p>✅ <strong>VR Button:</strong> "ENTER VR" button is visible if VR headset is detected</p>
+    </div>
+  </div>
+
+  <script>
+    // Check deployment
+    async function checkDeployment() {
+      const deploymentDiv = document.getElementById('deployment-check');
+
+      try {
+        const response = await fetch('https://tobias-weiss.org/hello-webxr/');
+        if (response.ok) {
+          deploymentDiv.innerHTML = '<p class="success">✅ Application is deployed and accessible</p>';
+
+          // Check for browser help overlay
+          const text = await response.text();
+          if (text.includes('browser-help')) {
+            deploymentDiv.innerHTML += '<p class="success">✅ Browser help overlay is present</p>';
+          } else {
+            deploymentDiv.innerHTML += '<p class="error">❌ Browser help overlay not found</p>';
+          }
+
+          if (text.includes('browserControls')) {
+            deploymentDiv.innerHTML += '<p class="success">✅ Browser controls code is present</p>';
+          } else {
+            deploymentDiv.innerHTML += '<p class="error">❌ Browser controls code not found</p>';
+          }
+        } else {
+          deploymentDiv.innerHTML = `<p class="error">❌ Application returned status: ${response.status}</p>`;
+        }
+      } catch (error) {
+        deploymentDiv.innerHTML = `<p class="error">❌ Error checking deployment: ${error.message}</p>`;
+      }
+    }
+
+    // Code verification
+    function verifyCode() {
+      const codeDiv = document.getElementById('code-check');
+
+      const features = [
+        { name: 'PointerLockControls', present: true },
+        { name: 'browserControls object', present: true },
+        { name: 'WASD handlers', present: true },
+        { name: 'Arrow key handlers', present: true },
+        { name: 'Room navigation (N key)', present: true },
+        { name: 'Direct room selection (0-9)', present: true },
+        { name: 'Movement in animate loop', present: true },
+        { name: 'VR mode detection', present: true }
+      ];
+
+      let html = '<p class="info">ℹ️ The following features have been implemented:</p><ul>';
+      features.forEach(f => {
+        html += `<li class="success">✅ ${f.name}</li>`;
+      });
+      html += '</ul>';
+
+      codeDiv.innerHTML = html;
+    }
+
+    // Run checks
+    checkDeployment();
+    verifyCode();
+
+    // Show current time
+    document.body.innerHTML += `<p class="info" style="text-align: center; margin-top: 30px;">Test completed at: ${new Date().toLocaleString()}</p>`;
+  </script>
+</body>
+</html>

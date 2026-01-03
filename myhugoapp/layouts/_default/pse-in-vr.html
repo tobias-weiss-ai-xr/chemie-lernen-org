@@ -1,0 +1,534 @@
+{{ define "main" }}
+
+<style>
+/* VR Page Styles */
+.vr-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 0 0 50% 50% / 40px;
+  margin-bottom: 40px;
+}
+
+.vr-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.vr-hero p {
+  font-size: 1.3rem;
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto 30px;
+}
+
+.vr-cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.vr-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  background: white;
+  color: #667eea;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.vr-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  color: #667eea;
+  text-decoration: none;
+}
+
+.vr-button-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.vr-button-secondary:hover {
+  background: white;
+  color: #667eea;
+}
+
+.vr-iframe-container {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  min-height: 600px;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  margin: 40px 0;
+}
+
+.vr-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.vr-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: white;
+  z-index: 10;
+}
+
+.vr-loading.hidden {
+  display: none;
+}
+
+.vr-loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 60px 0;
+}
+
+.feature-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.feature-card h3 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.feature-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.requirements-section {
+  background: #f8f9fa;
+  padding: 40px;
+  border-radius: 12px;
+  margin: 60px 0;
+}
+
+.requirements-section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.requirements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.requirement-item {
+  text-align: center;
+}
+
+.requirement-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.requirement-item h4 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.requirement-item p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.tutorial-section {
+  margin: 60px 0;
+}
+
+.tutorial-steps {
+  counter-reset: step-counter;
+  display: grid;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.tutorial-step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.tutorial-step::before {
+  counter-increment: step-counter;
+  content: counter(step-counter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.tutorial-step h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.tutorial-step p {
+  margin: 0;
+  color: #666;
+  line-height: 1.6;
+}
+
+.browser-compatibility {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.browser-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 25px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.browser-badge.supported {
+  border-left: 4px solid #28a745;
+}
+
+.browser-badge.partial {
+  border-left: 4px solid #ffc107;
+}
+
+@media (max-width: 768px) {
+  .vr-hero h1 {
+    font-size: 2rem;
+  }
+
+  .vr-hero p {
+    font-size: 1.1rem;
+  }
+
+  .vr-cta-buttons {
+    flex-direction: column;
+  }
+
+  .vr-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .vr-iframe-container {
+    height: 60vh;
+    min-height: 400px;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tutorial-step {
+    flex-direction: column;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .feature-card,
+  .tutorial-step {
+    background: #2c2c2c;
+  }
+
+  .feature-card h3,
+  .tutorial-step h4,
+  .requirements-section h2,
+  .requirement-item h4 {
+    color: #e0e0e0;
+  }
+
+  .feature-card p,
+  .tutorial-step p,
+  .requirement-item p {
+    color: #b0b0b0;
+  }
+
+  .requirements-section {
+    background: #1c1c1c;
+  }
+
+  .browser-badge {
+    background: #2c2c2c;
+  }
+}
+</style>
+
+<!-- Hero Section -->
+<div class="vr-hero">
+  <h1>🥽 PSE in VR</h1>
+  <p>Erleben Sie das Periodensystem der Elemente in einer immersiven virtuellen Realität. Eine revolutionäre Art, Chemie zu lernen.</p>
+  <div class="vr-cta-buttons">
+    <a href="#vr-experience" class="vr-button" onclick="startVRExperience()">
+      <span>▶️</span> VR starten
+    </a>
+    <a href="#tutorial" class="vr-button vr-button-secondary">
+      <span>📖</span> Anleitung
+    </a>
+  </div>
+</div>
+
+<!-- VR Experience Container -->
+<section id="vr-experience" class="vr-iframe-container">
+  <div class="vr-loading" id="vrLoading">
+    <div class="vr-loading-spinner"></div>
+    <h2>VR-Umgebung wird geladen...</h2>
+    <p>Bitte haben Sie einen Moment Geduld</p>
+  </div>
+  <iframe
+    id="vrIframe"
+    class="vr-iframe"
+    src="/pse-in-vr/index.html"
+    allow="xr-spatial-tracking; vr; camera; microphone"
+    allowfullscreen
+    onload="hideLoading()">
+  </iframe>
+</section>
+
+<!-- Features Section -->
+<section class="feature-grid">
+  <div class="feature-card">
+    <div class="feature-icon">🔬</div>
+    <h3>3D-Periodensystem</h3>
+    <p>Erkunden Sie alle 118 Elemente in einem immersiven 3D-Raum. Greifen Sie auf Elemente zu, drehen Sie die Ansicht und verstehen Sie die Zusammenhänge.</p>
+  </div>
+
+  <div class="feature-card">
+    <div class="feature-icon">🎮</div>
+    <h3>Intuitive Steuerung</h3>
+    <p>Nutzen Sie VR-Controller oder Ihre Maus und Tastatur. Die WebXR-Technologie macht VR im Browser einfach und zugänglich.</p>
+  </div>
+
+  <div class="feature-card">
+    <div class="feature-icon">👥</div>
+    <h3>Multiplayer-Lernen</h3>
+    <p>Lernen Sie gemeinsam mit anderen in virtuellen Räumen. Diskutieren Sie, entdecken Sie together und lösen Sie Quizze.</p>
+  </div>
+
+  <div class="feature-card">
+    <div class="feature-icon">⚗️</div>
+    <h3>Gefahrfreie Experimente</h3>
+    <p>Führen Sie virtuelle Experimente durch, die zu gefährlich für echte Labore wären - sicher und wiederholbar.</p>
+  </div>
+
+  <div class="feature-card">
+    <div class="feature-icon">🌐</div>
+    <h3>Browser-basiert</h3>
+    <p>Keine Installation erforderlich. Öffnen Sie einfach die Webseite in einem kompatiblen Browser und starten Sie die VR-Erfahrung.</p>
+  </div>
+
+  <div class="feature-card">
+    <div class="feature-icon">📚</div>
+    <h3>Pädagogisch wertvoll</h3>
+    <p>Entwickelt in Zusammenarbeit mit Bildungsexperten. Verbessern Sie Ihr räumliches Verständnis chemischer Konzepte.</p>
+  </div>
+</section>
+
+<!-- Requirements Section -->
+<section class="requirements-section">
+  <h2>🎯 Systemanforderungen</h2>
+  <div class="requirements-grid">
+    <div class="requirement-item">
+      <div class="requirement-icon">💻</div>
+      <h4>Browser</h4>
+      <p>Chrome 90+, Firefox 88+, Edge 90+ mit WebXR-Unterstützung</p>
+    </div>
+
+    <div class="requirement-item">
+      <div class="requirement-icon">🎧</div>
+      <h4>VR-Headset (optional)</h4>
+      <p>Meta Quest, HTC Vive, Valve Index oder WebXR-kompatible Geräte</p>
+    </div>
+
+    <div class="requirement-item">
+      <div class="requirement-icon">⚡</div>
+      <h4>Hardware</h4>
+      <p>Dedizierte GPU empfohlen, 4GB+ RAM, WebGL-Unterstützung</p>
+    </div>
+
+    <div class="requirement-item">
+      <div class="requirement-icon">🌐</div>
+      <h4>Internet</h4>
+      <p>Stabile Verbindung für das Laden von 3D-Assets und Texturen</p>
+    </div>
+  </div>
+
+  <div class="browser-compatibility">
+    <div class="browser-badge supported">
+      <span>✅</span>
+      <strong>Chrome 90+</strong>
+    </div>
+    <div class="browser-badge supported">
+      <span>✅</span>
+      <strong>Edge 90+</strong>
+    </div>
+    <div class="browser-badge partial">
+      <span>⚠️</span>
+      <strong>Firefox 88+</strong>
+    </div>
+    <div class="browser-badge partial">
+      <span>⚠️</span>
+      <strong>Safari (Experimental)</strong>
+    </div>
+  </div>
+</section>
+
+<!-- Tutorial Section -->
+<section id="tutorial" class="tutorial-section">
+  <h2 style="text-align: center; margin-bottom: 20px;">📖 Kurzanleitung</h2>
+  <p style="text-align: center; max-width: 800px; margin: 0 auto 40px; color: #666;">
+    Folgen Sie diesen einfachen Schritten, um Ihre VR-Erfahrung zu starten
+  </p>
+
+  <div class="tutorial-steps">
+    <div class="tutorial-step">
+      <div>
+        <h4>Vorbereitung</h4>
+        <p>Stellen Sie sicher, dass Sie einen kompatiblen Browser verwenden. Verbinden Sie Ihr VR-Headset (optional) oder bereiten Sie Ihre Maus und Tastatur vor.</p>
+      </div>
+    </div>
+
+    <div class="tutorial-step">
+      <div>
+        <h4>VR starten</h4>
+        <p>Klicken Sie auf "VR starten" above. Die Anwendung lädt im iframe. Bei VR-Headsets erscheint ein Button zum Aktivieren der VR-Session.</p>
+      </div>
+    </div>
+
+    <div class="tutorial-step">
+      <div>
+        <h4>Navigation</h4>
+        <p><strong>Mit VR:</strong> Nutzen Sie Ihre Controller zum Bewegen und Interagieren.<br><strong>Ohne VR:</strong> Klicken Sie für Maussteuerung, WASD/Pfeiltasten zum Bewegen.</p>
+      </div>
+    </div>
+
+    <div class="tutorial-step">
+      <div>
+        <h4>Interaktion</h4>
+        <p>Wählen Sie Elemente aus, um Informationen zu erhalten. Drücken Sie N oder nutzen Sie Portale, um zwischen Räumen zu wechseln.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<div class="container" style="max-width: 900px; margin: 60px auto; padding: 0 20px;">
+  {{ .Content }}
+</div>
+
+<script>
+function hideLoading() {
+  setTimeout(() => {
+    const loading = document.getElementById('vrLoading');
+    if (loading) {
+      loading.classList.add('hidden');
+    }
+  }, 1000);
+}
+
+function startVRExperience() {
+  const iframe = document.getElementById('vrIframe');
+  const vrSection = document.getElementById('vr-experience');
+
+  if (iframe && vrSection) {
+    vrSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Focus iframe for keyboard events
+    setTimeout(() => {
+      iframe.focus();
+    }, 500);
+  }
+}
+
+// Auto-hide loading after 10 seconds (fallback)
+setTimeout(hideLoading, 10000);
+
+// Handle iframe errors
+document.addEventListener('DOMContentLoaded', function() {
+  const iframe = document.getElementById('vrIframe');
+  if (iframe) {
+    iframe.addEventListener('error', function() {
+      console.error('Failed to load VR experience');
+      const loading = document.getElementById('vrLoading');
+      if (loading) {
+        loading.innerHTML = `
+          <div class="vr-loading-spinner" style="border-top-color: #dc3545;"></div>
+          <h2>Fehler beim Laden</h2>
+          <p>Die VR-Umgebung konnte nicht geladen werden. Bitte versuchen Sie es später erneut.</p>
+        `;
+      }
+    });
+  }
+});
+</script>
+
+{{ end }}
