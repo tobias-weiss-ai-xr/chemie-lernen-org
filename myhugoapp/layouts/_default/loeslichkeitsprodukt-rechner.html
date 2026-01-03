@@ -1,0 +1,364 @@
+{{ define "main" }}
+
+<div class="ksp-calculator-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Calculator Section -->
+  <div class="calculator-section">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="calculator-panel">
+          <h2>Berechnungsart wählen</h2>
+
+          <!-- Calculation Type Tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="active" role="presentation">
+              <a href="#ksp-to-solubility" id="ksp-to-solubility-tab" role="tab" data-toggle="tab" aria-controls="ksp-to-solubility" aria-selected="true">
+                Ksp → Löslichkeit
+              </a>
+            </li>
+            <li role="presentation">
+              <a href="#solubility-to-ksp" id="solubility-to-ksp-tab" role="tab" data-toggle="tab" aria-controls="solubility-to-ksp" aria-selected="false">
+                Löslichkeit → Ksp
+              </a>
+            </li>
+            <li role="presentation">
+              <a href="#precipitation" id="precipitation-tab" role="tab" data-toggle="tab" aria-controls="precipitation" aria-selected="false">
+                Fällungsprüfung
+              </a>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <!-- Ksp to Solubility Tab -->
+            <div role="tabpanel" class="tab-pane active" id="ksp-to-solubility" aria-labelledby="ksp-to-solubility-tab">
+              <h3>Löslichkeit aus Ksp berechnen</h3>
+              <p>Geben Sie das Löslichkeitsprodukt (Ksp) und die Salzformel ein:</p>
+
+              <div class="form-group">
+                <label for="formula-ksp">Salzformel (z.B. AgCl, Ca(OH)2, Ag2CrO4):</label>
+                <input type="text" id="formula-ksp" class="form-control"
+                       placeholder="z.B. AgCl, Ca(OH)2, Ag2CrO4"
+                       aria-label="Salzformel für Ksp-Berechnung">
+              </div>
+
+              <div class="form-group">
+                <label for="ksp-value">Löslichkeitsprodukt (Ksp):</label>
+                <input type="text" id="ksp-value" class="form-control"
+                       placeholder="z.B. 1.8e-10 oder 1.8 × 10⁻¹⁰"
+                       aria-label="Löslichkeitsprodukt Ksp">
+                <p class="help-block">Verwenden Sie wissenschaftliche Notation (z.B. 1.8e-10)</p>
+              </div>
+
+              <button class="btn btn-primary btn-lg" onclick="calculateSolubilityFromKsp()">
+                <i class="fa fa-calculator"></i> Löslichkeit berechnen
+              </button>
+
+              <!-- Quick Examples -->
+              <div class="quick-examples">
+                <p><strong>Beispiele:</strong></p>
+                <button class="btn btn-sm btn-default example-btn" data-formula="AgCl" data-ksp="1.8e-10">AgCl (Silberchlorid)</button>
+                <button class="btn btn-sm btn-default example-btn" data-formula="Ca(OH)2" data-ksp="5.5e-6">Ca(OH)₂ (Calciumhydroxid)</button>
+                <button class="btn btn-sm btn-default example-btn" data-formula="Ag2CrO4" data-ksp="1.1e-12">Ag₂CrO₄ (Silberchromat)</button>
+                <button class="btn btn-sm btn-default example-btn" data-formula="PbCl2" data-ksp="1.7e-5">PbCl₂ (Bleichlorid)</button>
+                <button class="btn btn-sm btn-default example-btn" data-formula="BaSO4" data-ksp="1.1e-10">BaSO₄ (Bariumsulfat)</button>
+              </div>
+            </div>
+
+            <!-- Solubility to Ksp Tab -->
+            <div role="tabpanel" class="tab-pane" id="solubility-to-ksp" aria-labelledby="solubility-to-ksp-tab">
+              <h3>Ksp aus Löslichkeit berechnen</h3>
+              <p>Geben Sie die molare Löslichkeit und die Salzformel ein:</p>
+
+              <div class="form-group">
+                <label for="formula-solubility">Salzformel (z.B. AgCl, Ca(OH)2, Ag2CrO4):</label>
+                <input type="text" id="formula-solubility" class="form-control"
+                       placeholder="z.B. AgCl, Ca(OH)2, Ag2CrO4"
+                       aria-label="Salzformel für Löslichkeits-Berechnung">
+              </div>
+
+              <div class="form-group">
+                <label for="solubility-value">Molare Löslichkeit (mol/L):</label>
+                <input type="text" id="solubility-value" class="form-control"
+                       placeholder="z.B. 1.34e-5"
+                       aria-label="Molare Löslichkeit">
+                <p class="help-block">Verwenden Sie wissenschaftliche Notation (z.B. 1.34e-5)</p>
+              </div>
+
+              <button class="btn btn-primary btn-lg" onclick="calculateKspFromSolubility()">
+                <i class="fa fa-calculator"></i> Ksp berechnen
+              </button>
+
+              <!-- Quick Examples -->
+              <div class="quick-examples">
+                <p><strong>Beispiele:</strong></p>
+                <button class="btn btn-sm btn-default example-btn-sol" data-formula="AgCl" data-solubility="1.34e-5">AgCl bei 25°C</button>
+                <button class="btn btn-sm btn-default example-btn-sol" data-formula="NaCl" data-solubility="6.1">NaCl bei 25°C</button>
+                <button class="btn btn-sm btn-default example-btn-sol" data-formula="CaF2" data-solubility="2.1e-4">CaF₂ bei 25°C</button>
+              </div>
+            </div>
+
+            <!-- Precipitation Tab -->
+            <div role="tabpanel" class="tab-pane" id="precipitation" aria-labelledby="precipitation-tab">
+              <h3>Fällungsprüfung (Q vs Ksp)</h3>
+              <p>Prüfen Sie, ob eine Fällung auftritt, wenn zwei Lösungen gemischt werden:</p>
+
+              <div class="form-group">
+                <label for="precip-formula">Salzformel (z.B. AgCl, BaSO4, Ca(OH)2):</label>
+                <input type="text" id="precip-formula" class="form-control"
+                       placeholder="z.B. AgCl, BaSO4, Ca(OH)2"
+                       aria-label="Salzformel für Fällungsprüfung">
+              </div>
+
+              <div class="form-group">
+                <label for="precip-ksp">Löslichkeitsprodukt (Ksp):</label>
+                <input type="text" id="precip-ksp" class="form-control"
+                       placeholder="z.B. 1.8e-10"
+                       aria-label="Ksp für Fällungsprüfung">
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="cation-conc">Kationenkonzentration (mol/L):</label>
+                    <input type="text" id="cation-conc" class="form-control"
+                           placeholder="z.B. 1.0e-3"
+                           aria-label="Kationenkonzentration">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="anion-conc">Anionenkonzentration (mol/L):</label>
+                    <input type="text" id="anion-conc" class="form-control"
+                           placeholder="z.B. 1.0e-3"
+                           aria-label="Anionenkonzentration">
+                  </div>
+                </div>
+              </div>
+
+              <button class="btn btn-primary btn-lg" onclick="checkPrecipitation()">
+                <i class="fa fa-check-circle"></i> Fällung prüfen
+              </button>
+
+              <!-- Quick Examples -->
+              <div class="quick-examples">
+                <p><strong>Beispiele:</strong></p>
+                <button class="btn btn-sm btn-default example-btn-precip"
+                        data-formula="AgCl" data-ksp="1.8e-10" data-cation="1.0e-3" data-anion="1.0e-3">
+                  AgCl: gleiche Konzentrationen
+                </button>
+                <button class="btn btn-sm btn-default example-btn-precip"
+                        data-formula="AgCl" data-ksp="1.8e-10" data-cation="1.0e-4" data-anion="1.0e-3">
+                  AgCl: untersch. Konzentrationen
+                </button>
+                <button class="btn btn-sm btn-default example-btn-precip"
+                        data-formula="BaSO4" data-ksp="1.1e-10" data-cation="1.0e-3" data-anion="1.0e-3">
+                  BaSO₄: Fällung
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section" style="display:none;">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="result-card main-result">
+            <h3 id="result-title">Ergebnis</h3>
+            <div id="main-result" class="result-value"></div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="result-card ion-concentrations">
+            <h3>Ionenkonzentrationen</h3>
+            <div id="ion-concentrations"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="result-card details-result">
+            <h3>Berechnungsdetails</h3>
+            <div id="calculation-details"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Section -->
+    <div id="error-section" style="display:none;">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="alert alert-danger">
+            <i class="fa fa-exclamation-triangle"></i>
+            <strong>Fehler:</strong> <span id="error-message"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Educational Section -->
+  <div class="educational-section">
+    <h2>Wissenswertes über Löslichkeitsprodukte</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📚 Definition</h3>
+          <p>Das Löslichkeitsprodukt (Ksp) ist die Gleichgewichtskonstante für die Auflösung eines festen Salzes in Wasser. Es beschreibt das Verhältnis der Konzentrationen der Ionen in einer gesättigten Lösung.</p>
+          <p><strong>Beispiel für AgCl:</strong></p>
+          <p class="formula">AgCl(s) ⇌ Ag⁺(aq) + Cl⁻(aq)</p>
+          <p class="formula">Ksp = [Ag⁺][Cl⁻]</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚗️ Salztypen und Ksp</h3>
+          <p>Die Beziehung zwischen Ksp und Löslichkeit hängt vom Salztyp ab:</p>
+          <ul>
+            <li><strong>1:1 Salze (z.B. AgCl):</strong> Ksp = s²</li>
+            <li><strong>1:2 oder 2:1 Salze (z.B. CaF₂, PbCl₂):</strong> Ksp = 4s³</li>
+            <li><strong>2:3 oder 3:2 Salze (z.B. Ca₃(PO₄)₂):</strong> Ksp = 108s⁵</li>
+            <li><strong>Generell:</strong> Ksp = (ν₁⁺¹ν₂)ᵐ · s^(ν₁+ν₂)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚖️ Fällungsprüfung</h3>
+          <p>Um zu prüfen, ob eine Fällung auftritt, vergleichen Sie das Ionenprodukt (Q) mit dem Ksp:</p>
+          <ul>
+            <li><strong>Q < Ksp:</strong> Lösung ist ungesättigt, keine Fällung</li>
+            <li><strong>Q = Ksp:</strong> Lösung ist gesättigt, Gleichgewicht</li>
+            <li><strong>Q > Ksp:</strong> Lösung ist übersättigt, Fällung erfolgt</li>
+          </ul>
+          <p><strong>Q berechnen:</strong></p>
+          <p class="formula">Q = [Kation]^ν₁ · [Anion]^ν₂</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="info-card">
+          <h3>📊 Häufige Ksp-Werte (bei 25°C)</h3>
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>Verbindung</th>
+                  <th>Formel</th>
+                  <th>Ksp</th>
+                  <th>Löslichkeit (mol/L)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Silberchlorid</td>
+                  <td>AgCl</td>
+                  <td>1.8 × 10⁻¹⁰</td>
+                  <td>1.34 × 10⁻⁵</td>
+                </tr>
+                <tr>
+                  <td>Bromsilber</td>
+                  <td>AgBr</td>
+                  <td>5.4 × 10⁻¹³</td>
+                  <td>7.35 × 10⁻⁷</td>
+                </tr>
+                <tr>
+                  <td>Iodsilber</td>
+                  <td>AgI</td>
+                  <td>8.5 × 10⁻¹⁷</td>
+                  <td>9.22 × 10⁻⁹</td>
+                </tr>
+                <tr>
+                  <td>Calciumhydroxid</td>
+                  <td>Ca(OH)₂</td>
+                  <td>5.5 × 10⁻⁶</td>
+                  <td>1.11 × 10⁻²</td>
+                </tr>
+                <tr>
+                  <td>Calciumfluorid</td>
+                  <td>CaF₂</td>
+                  <td>3.9 × 10⁻¹¹</td>
+                  <td>2.14 × 10⁻⁴</td>
+                </tr>
+                <tr>
+                  <td>Bariumsulfat</td>
+                  <td>BaSO₄</td>
+                  <td>1.1 × 10⁻¹⁰</td>
+                  <td>1.05 × 10⁻⁵</td>
+                </tr>
+                <tr>
+                  <td>Bleichlorid</td>
+                  <td>PbCl₂</td>
+                  <td>1.7 × 10⁻⁵</td>
+                  <td>1.62 × 10⁻²</td>
+                </tr>
+                <tr>
+                  <td>Bleisulfat</td>
+                  <td>PbSO₄</td>
+                  <td>6.3 × 10⁻⁷</td>
+                  <td>7.94 × 10⁻⁴</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>🔬 Anwendungen</h3>
+          <ul>
+            <li><strong>Qualitative Analyse:</strong> Trennung von Ionen durch selektive Fällung</li>
+            <li><strong>Wasseraufbereitung:</strong> Entfernung von Schwermetallen durch Fällung</li>
+            <li><strong>Medizin:</strong> Nierensteinbildung verstehen</li>
+            <li><strong>Industrie:</strong> Herstellung von Pigmenten und Pharmazeutika</li>
+            <li><strong>Umweltanalytik:</strong> Schwermetallbelastung in Gewässern bestimmen</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>💡 Tipps</h3>
+          <ul>
+            <li>Ksp ist temperaturabhängig - die meisten Salze sind bei höherer Temperatur löslicher</li>
+            <li>Ein kleinerer Ksp bedeutet geringere Löslichkeit</li>
+            <li>Bei Salzen mit gemeinsamen Ionen ("Common Ion Effect") wird die Löslichkeit weiter reduziert</li>
+            <li>Die pH-Wert-Änderung kann die Löslichkeit beeinflussen (besonders bei Hydroxiden und Carbonaten)</li>
+            <li>Komplexbildner können die Löslichkeit erhöhen (z.B. AgCl in NH₃-Lösung)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/utils/chemistry-utils.js" | relURL }}"></script>
+<script src="{{ "js/loeslichkeitsprodukt-rechner.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/loeslichkeitsprodukt-rechner.css" | relURL }}">
+
+{{ end }}
