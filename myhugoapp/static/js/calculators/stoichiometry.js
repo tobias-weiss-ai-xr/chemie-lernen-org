@@ -3,39 +3,18 @@
  * Core calculation logic extracted for testing
  */
 
-/**
- * Parse chemical formula and return element composition
- * @param {string} formula - Chemical formula (e.g., "H2O", "CO2")
- * @returns {Object} Element counts (e.g., {H: 2, O: 1})
- */
-function parseFormula(formula) {
-  const composition = {};
-  const regex = /([A-Z][a-z]?)(\d*)/g;
-
-  // Handle parentheses recursively
-  formula = formula.replace(/\(([^()]+)\)(\d*)/g, (match, group, multiplier) => {
-    const mult = multiplier ? parseInt(multiplier) : 1;
-    const processedGroup = group.replace(/([A-Z][a-z]?)(\d*)/g, (m, element, count) => {
-      const c = count ? parseInt(count) : 1;
-      return element + (c * mult);
-    });
-    return processedGroup;
-  });
-
-  let match;
-  while ((match = regex.exec(formula)) !== null) {
-    const element = match[1];
-    const count = match[2] ? parseInt(match[2]) : 1;
-
-    if (Object.prototype.hasOwnProperty.call(composition, element)) {
-      composition[element] += count;
-    } else {
-      composition[element] = count;
-    }
-  }
-
-  return composition;
+// Import shared chemistry utilities
+// In Node.js test environment, require from utils
+// In browser environment, use window.ChemistryUtils
+let ChemistryUtils;
+if (typeof require !== 'undefined') {
+  ChemistryUtils = require('../utils/chemistry-utils.js');
+} else if (typeof window !== 'undefined' && window.ChemistryUtils) {
+  ChemistryUtils = window.ChemistryUtils;
 }
+
+// Re-export parseFormula for backwards compatibility with tests
+const parseFormula = ChemistryUtils ? ChemistryUtils.parseFormula : null;
 
 /**
  * Calculate product amount using mole-to-mole conversion

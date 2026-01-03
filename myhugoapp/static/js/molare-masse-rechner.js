@@ -90,43 +90,8 @@ const ATOMIC_MASSES = {
   'U': 238.03
 };
 
-// Parse chemical formula and return element composition
-function parseFormula(formula) {
-  const composition = {};
-
-  // Regular expression to match elements and their counts
-  // Matches: (element symbol)(optional number)
-  const regex = /([A-Z][a-z]?)(\d*)/g;
-
-  // Handle parentheses by recursively processing them
-  formula = formula.replace(/\(([^()]+)\)(\d*)/g, function(match, group, multiplier) {
-    const mult = multiplier ? parseInt(multiplier) : 1;
-    let processedGroup = group.replace(/([A-Z][a-z]?)(\d*)/g, function(m, element, count) {
-      const c = count ? parseInt(count) : 1;
-      return element + (c * mult);
-    });
-    return processedGroup;
-  });
-
-  // Process the formula (now without parentheses)
-  let match;
-  while ((match = regex.exec(formula)) !== null) {
-    const element = match[1];
-    const count = match[2] ? parseInt(match[2]) : 1;
-
-    if (!Object.prototype.hasOwnProperty.call(ATOMIC_MASSES, element)) {
-      throw new Error(`Unbekanntes Element: ${element}`);
-    }
-
-    if (Object.prototype.hasOwnProperty.call(composition, element)) {
-      composition[element] += count;
-    } else {
-      composition[element] = count;
-    }
-  }
-
-  return composition;
-}
+// Parse chemical formula using shared utility from ChemistryUtils
+// See utils/chemistry-utils.js for implementation
 
 // Calculate molar mass
 function calculateMolarMass() {
@@ -138,29 +103,14 @@ function calculateMolarMass() {
   }
 
   try {
-    // Parse the formula
-    const composition = parseFormula(input);
+    // Parse the formula using shared utility with element validation
+    const composition = window.ChemistryUtils.parseFormula(input, {
+      validElements: ATOMIC_MASSES
+    });
 
-    // Calculate total molar mass
-    let totalMass = 0;
-    const details = [];
-
-    for (const element in composition) {
-      const count = composition[element];
-      const mass = ATOMIC_MASSES[element];
-      const contribution = count * mass;
-      totalMass += contribution;
-
-      details.push({
-        element: element,
-        count: count,
-        mass: mass,
-        contribution: contribution
-      });
-    }
-
-    // Sort details by element symbol
-    details.sort((a, b) => a.element.localeCompare(b.element));
+    // Get composition details using shared utility
+    const totalMass = window.ChemistryUtils.calculateMolarMass(composition, ATOMIC_MASSES);
+    const details = window.ChemistryUtils.getCompositionDetails(composition, ATOMIC_MASSES, totalMass);
 
     // Display results
     displayResults(input, totalMass, composition, details);
@@ -181,8 +131,8 @@ function displayResults(formula, totalMass, composition, details) {
   // Display molar mass
   document.getElementById('molar-mass').textContent = totalMass.toFixed(3);
 
-  // Format and display formula
-  const formattedFormula = formatFormula(formula);
+  // Format and display formula using shared utility
+  const formattedFormula = window.ChemistryUtils.formatFormula(formula);
   document.getElementById('formatted-formula').innerHTML = formattedFormula;
 
   // Display composition
@@ -236,11 +186,6 @@ function displayResults(formula, totalMass, composition, details) {
     <strong>Gesamt:</strong> <span class="total-mass">${totalMass.toFixed(3)} g/mol</span>
   `;
   detailsDiv.appendChild(totalDiv);
-}
-
-// Format formula with subscript numbers
-function formatFormula(formula) {
-  return formula.replace(/(\d+)/g, '<sub>$1</sub>');
 }
 
 // Show error message
