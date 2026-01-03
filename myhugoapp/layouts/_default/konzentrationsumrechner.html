@@ -1,0 +1,335 @@
+{{ define "main" }}
+
+<div class="concentration-converter-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Calculator Section -->
+  <div class="calculator-section">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="calculator-panel">
+          <h2>Konzentration eingeben</h2>
+
+          <!-- Solute Information -->
+          <div class="panel-section">
+            <h3>Stoffinformationen</h3>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="solute-name">Name des Stoffes (optional):</label>
+                  <input type="text" id="solute-name" class="form-control"
+                         placeholder="z.B. Natriumchlorid">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="molar-mass">Molare Masse (g/mol):</label>
+                  <input type="text" id="molar-mass" class="form-control"
+                         placeholder="z.B. 58.44"
+                           aria-label="Molare Masse">
+                  <p class="help-block">Erforderlich für Umrechnungen</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="density">Dichte der Lösung (g/mL):</label>
+                  <input type="text" id="density" class="form-control"
+                         placeholder="z.B. 1.05"
+                           value="1.00"
+                           aria-label="Dichte">
+                  <p class="help-block">Für wässrige Lösungen ≈ 1.00 g/mL</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="temperature">Temperatur (°C):</label>
+                  <input type="text" id="temperature" class="form-control"
+                         placeholder="z.B. 20"
+                           value="20"
+                           aria-label="Temperatur">
+                  <p class="help-block">Standard: 20°C</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Concentration Input -->
+          <div class="panel-section">
+            <h3>Konzentrationswert eingeben</h3>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label for="concentration-value">Konzentrationswert:</label>
+                  <input type="text" id="concentration-value" class="form-control input-lg"
+                           placeholder="z.B. 0.1 oder 1.5e-3"
+                           aria-label="Konzentrationswert">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="concentration-unit">Einheit:</label>
+                  <select id="concentration-unit" class="form-control input-lg"
+                          aria-label="Konzentrationseinheit">
+                    <option value="M">Molar (M)</option>
+                    <option value="m">Molal (m)</option>
+                    <option value="percent_ww">Massenprozent (% w/w)</option>
+                    <option value="percent_vv">Volumenprozent (% v/v)</option>
+                    <option value="percent_wv">Massen-/Volumenprozent (% w/v)</option>
+                    <option value="ppm">ppm</option>
+                    <option value="ppb">ppb</option>
+                    <option value="g_L">g/L</option>
+                    <option value="mg_L">mg/L</option>
+                    <option value="mole_fraction">Molenbruch (X)</option>
+                    <option value="normality">Normalität (N)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-lg btn-block" onclick="convertConcentration()">
+              <i class="fa fa-exchange-alt"></i> Umrechnen
+            </button>
+
+            <!-- Quick Examples -->
+            <div class="quick-examples">
+              <p><strong>Beispiele:</strong></p>
+              <button class="btn btn-sm btn-default example-btn"
+                      data-value="0.1" data-unit="M" data-mmass="58.44">
+                0.1 M NaCl
+              </button>
+              <button class="btn btn-sm btn-default example-btn"
+                      data-value="0.9" data-unit="percent_ww" data-mmass="58.44">
+                0.9 % NaCl (physiologisch)
+              </button>
+              <button class="btn btn-sm btn-default example-btn"
+                      data-value="37" data-unit="percent_ww" data-mmass="36.46">
+                37 % HCl (konzentriert)
+              </button>
+              <button class="btn btn-sm btn-default example-btn"
+                      data-value="98" data-unit="percent_ww" data-mmass="98.08">
+                98 % H₂SO₄ (konzentriert)
+              </button>
+              <button class="btn btn-sm btn-default example-btn"
+                      data-value="10" data-unit="ppm" data-mmass="58.44">
+                10 ppm NaCl
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section" style="display:none;">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="result-card main-result">
+            <h3>Alle Konzentrationseinheiten</h3>
+            <div id="all-concentrations"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="result-card calculation-result">
+            <h3>Umrechnungsdetails</h3>
+            <div id="calculation-details"></div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="result-card comparison-result">
+            <h3>Vergleichswerte</h3>
+            <div id="comparison-values"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Section -->
+    <div id="error-section" style="display:none;">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="alert alert-danger">
+            <i class="fa fa-exclamation-triangle"></i>
+            <strong>Fehler:</strong> <span id="error-message"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Educational Section -->
+  <div class="educational-section">
+    <h2>Wissenswertes über Konzentrationseinheiten</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📚 Häufige Einheiten</h3>
+          <p><strong>Molar (M):</strong> Mol pro Liter Lösung</p>
+          <p class="formula">M = n / V_Lösung</p>
+          <p><strong>Molal (m):</strong> Mol pro kg Lösungsmittel</p>
+          <p class="formula">m = n / m_Lösungsmittel</p>
+          <p><strong>Massenprozent (% w/w):</strong> g Stoff pro 100 g Lösung</p>
+          <p class="formula">% = (m_Stoff / m_Lösung) × 100</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚖️ Spurenelemente</h3>
+          <p><strong>ppm:</strong> Parts per Million (mg/kg oder mg/L)</p>
+          <p class="formula">1 ppm = 1 mg/kg = 0.0001%</p>
+          <p><strong>ppb:</strong> Parts per Billion (µg/kg oder µg/L)</p>
+          <p class="formula">1 ppb = 0.001 ppm = 0.0000001%</p>
+          <p>Verwendung in Wasseranalytik, Umweltchemie, Spurenelementbestimmung</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🔬 Normalität</h3>
+          <p><strong>Normalität (N):</strong> Äquivalent pro Liter</p>
+          <p class="formula">N = n × val / V</p>
+          <p>Wobei val = Wertigkeit (z.B. H⁺ in Säuren)</p>
+          <p><strong>Beispiel:</strong> 1 M H₂SO₄ = 2 N H₂SO₄</p>
+          <p>Wichtig für Titrationsberechnungen</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="info-card">
+          <h3>📊 Typische Konzentrationen</h3>
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>Anwendung</th>
+                  <th>Stoff</th>
+                  <th>Konzentration</th>
+                  <th>Einheit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Physiologische Kochsalzlösung</td>
+                  <td>NaCl</td>
+                  <td>0.9</td>
+                  <td>% w/w</td>
+                </tr>
+                <tr>
+                  <td>Blutplasma (NaCl)</td>
+                  <td>NaCl</td>
+                  <td>0.154</td>
+                  <td>M</td>
+                </tr>
+                <tr>
+                  <td>Trinkwasser (Nitrat-Grenzwert)</td>
+                  <td>NO₃⁻</td>
+                  <td>50</td>
+                  <td>mg/L (ppm)</td>
+                </tr>
+                <tr>
+                  <td>Konzentrierte Salzsäure</td>
+                  <td>HCl</td>
+                  <td>37</td>
+                  <td>% w/w</td>
+                </tr>
+                <tr>
+                  <td>Konzentrierte Schwefelsäure</td>
+                  <td>H₂SO₄</td>
+                  <td>98</td>
+                  <td>% w/w</td>
+                </tr>
+                <tr>
+                  <td>Essigessenz</td>
+                  <td>CH₃COOH</td>
+                  <td>25</td>
+                  <td>% w/w</td>
+                </tr>
+                <tr>
+                  <td>Trinkwasser (Calcium)</td>
+                  <td>Ca²⁺</td>
+                  <td>40 - 80</td>
+                  <td>mg/L (ppm)</td>
+                </tr>
+                <tr>
+                  <td>Meerwasser (Salinität)</td>
+                  <td>NaCl (Gesamtsalze)</td>
+                  <td>35000</td>
+                  <td>ppm</td>
+                </tr>
+                <tr>
+                  <td>Luft (CO₂)</td>
+                  <td>CO₂</td>
+                  <td>~400</td>
+                  <td>ppm</td>
+                </tr>
+                <tr>
+                  <td>Labor (Eisen-Spur)</td>
+                  <td>Fe³⁺</td>
+                  <td>1</td>
+                  <td>ppm</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>💡 Umrechnungsformeln</h3>
+          <p><strong>Molar → Masse:</strong></p>
+          <p class="formula">c (g/L) = M (mol/L) × MM (g/mol)</p>
+          <p><strong>Massenprozent → Molar:</strong></p>
+          <p class="formula">M = (% × ρ × 10) / MM</p>
+          <p><strong>ppm → %:</strong></p>
+          <p class="formula">% = ppm / 10000</p>
+          <p><strong>ppm → Molar:</strong></p>
+          <p class="formula">M ≈ ppm / MM (für verdünnte Lösungen)</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>⚠️ Wichtige Hinweise</h3>
+          <ul>
+            <li><strong>Dichte beachten:</strong> Für genaue Umrechnungen ist die Dichte der Lösung erforderlich</li>
+            <li><strong>Temperaturabhängigkeit:</strong> Dichte und Volumen ändern sich mit der Temperatur</li>
+            <li><strong>Verdünnung:</strong> Bei verdünnten Lösungen (< 0.1 M) sind Molarität und Molalität näherungsweise gleich</li>
+            <li><strong>Molenbruch:</strong> Verhältnis der Molzahlen, dimensionslos</li>
+            <li><strong>Normalität:</strong> Hängt von der Reaktion ab (Äquivalenz)</li>
+            <li><strong>Wässrige Lösungen:</strong> Dichte ≈ 1.00 g/mL für verdünnte Lösungen</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/utils/chemistry-utils.js" | relURL }}"></script>
+<script src="{{ "js/konzentrationsumrechner.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/konzentrationsumrechner.css" | relURL }}">
+
+{{ end }}
