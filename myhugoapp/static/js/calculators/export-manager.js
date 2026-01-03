@@ -240,7 +240,9 @@ const ExportManager = {
 
       if (Array.isArray(data)) {
         // Array of objects
-        if (data.length === 0) return false;
+        if (data.length === 0) {
+          return false;
+        }
 
         // Headers
         const headers = Object.keys(data[0]);
@@ -250,8 +252,12 @@ const ExportManager = {
         data.forEach(row => {
           const values = headers.map(header => {
             const value = row[header];
-            if (value === null || value === undefined) return '';
-            if (typeof value === 'number') return value.toString();
+            if (value === null || value === undefined) {
+              return '';
+            }
+            if (typeof value === 'number') {
+              return value.toString();
+            }
             // Escape quotes and wrap in quotes
             const stringValue = String(value).replace(/"/g, '""');
             return `"${stringValue}"`;
@@ -262,8 +268,12 @@ const ExportManager = {
         // Single object
         const headers = Object.keys(data);
         const values = Object.values(data).map(value => {
-          if (value === null || value === undefined) return '';
-          if (typeof value === 'number') return value.toString();
+          if (value === null || value === undefined) {
+            return '';
+          }
+          if (typeof value === 'number') {
+            return value.toString();
+          }
           const stringValue = String(value).replace(/"/g, '""');
           return `"${stringValue}"`;
         });
@@ -406,7 +416,7 @@ const ExportManager = {
       exportDate: new Date().toISOString(),
       totalEntries: history.length,
       calculator: 'chemistry-calculator',
-      history: history
+      history
     };
 
     return this.exportToJSON(exportData, filename, true);
@@ -480,7 +490,7 @@ const ExportManager = {
     try {
       const storageKey = `calc_${id}`;
       const record = {
-        data: data,
+        data,
         savedAt: new Date().toISOString()
       };
       localStorage.setItem(storageKey, JSON.stringify(record));

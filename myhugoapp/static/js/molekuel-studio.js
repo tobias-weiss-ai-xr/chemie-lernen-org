@@ -1386,7 +1386,7 @@ if (document.readyState === 'loading') {
 setTimeout(() => {
     if (window.moleculeStudioQueue && window.moleculeStudioQueue.length > 0) {
         console.log('Processing queued molecules:', window.moleculeStudioQueue);
-        
+
         // Process each queued molecule
         window.moleculeStudioQueue.forEach(molecule => {
             if (moleculeData[molecule]) {
@@ -1394,7 +1394,7 @@ setTimeout(() => {
                 visualizeMolecule(molecule);
             }
         });
-        
+
         // Clear the queue
         window.moleculeStudioQueue = [];
     }
@@ -1410,7 +1410,7 @@ window.moleculeData = moleculeData;
 function processQueue() {
     if (window.moleculeStudioQueue && window.moleculeStudioQueue.length > 0) {
         console.log('Processing queued molecules:', window.moleculeStudioQueue);
-        
+
         // Process each queued molecule
         while (window.moleculeStudioQueue.length > 0) {
             const molecule = window.moleculeStudioQueue.shift();

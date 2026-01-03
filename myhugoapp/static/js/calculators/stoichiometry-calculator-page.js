@@ -83,7 +83,7 @@ const massPresets = {
 // Load preset for Mol-Mol calculator
 function loadPreset(presetKey) {
   const preset = presets[presetKey];
-  if (!preset) return;
+  if (!preset) {return;}
 
   document.getElementById('reaction-1').value = preset.equation;
   document.getElementById('mol-coeff-r').value = preset.v1;
@@ -98,7 +98,7 @@ function loadPreset(presetKey) {
 // Load preset for Mass-Mass calculator
 function loadMassPreset(presetKey) {
   const preset = massPresets[presetKey];
-  if (!preset) return;
+  if (!preset) {return;}
 
   document.getElementById('mass-coeff-r').value = preset.v1;
   document.getElementById('mass-coeff-p').value = preset.v2;
@@ -145,8 +145,8 @@ function parseChemicalEquation(equation) {
   const products = parseSide(productsStr);
 
   return {
-    reactants: reactants,
-    products: products,
+    reactants,
+    products,
     totalReactants: reactants.length,
     totalProducts: products.length
   };
@@ -186,8 +186,8 @@ function parseCompound(compoundStr) {
   const formula = coeffMatch[2];
 
   return {
-    coefficient: coefficient,
-    formula: formula,
+    coefficient,
+    formula,
     hasExplicitCoefficient: !!coeffMatch[1]
   };
 }
@@ -419,8 +419,8 @@ function saveToHistory(type, data) {
     const entry = {
       id: Date.now(),
       timestamp: new Date().toLocaleString('de-DE'),
-      type: type,
-      data: data
+      type,
+      data
     };
 
     // Add to beginning of array (most recent first)
@@ -1182,8 +1182,8 @@ function calculateMultiStep() {
   }
 
   let currentAmount = initialAmount;
-  let currentMass = null;
-  let results = [];
+  const currentMass = null;
+  const results = [];
   let hasError = false;
 
   // Process each step
@@ -1214,13 +1214,13 @@ function calculateMultiStep() {
     results.push({
       stepNumber: index + 1,
       reactantAmount: currentAmount,
-      coeffR: coeffR,
-      coeffP: coeffP,
-      productAmount: productAmount,
-      molarMass: molarMass,
-      productMass: productMass,
-      product: product,
-      equation: equation
+      coeffR,
+      coeffP,
+      productAmount,
+      molarMass,
+      productMass,
+      product,
+      equation
     });
 
     // This product becomes the reactant for the next step
@@ -1426,7 +1426,7 @@ function exportMultiStepToPDF() {
 }
 
 // Event listener for initial mass calculation
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   const initialAmount = document.getElementById('initial-amount');
   const initialMolarMass = document.getElementById('initial-molar-mass');
 
@@ -1558,10 +1558,10 @@ function updateGasInputs() {
   }
 
   // Clear disabled field
-  if (variable === 'P') pressureInput.value = '';
-  if (variable === 'V') volumeInput.value = '';
-  if (variable === 'n') amountInput.value = '';
-  if (variable === 'T') temperatureInput.value = '';
+  if (variable === 'P') {pressureInput.value = '';}
+  if (variable === 'V') {volumeInput.value = '';}
+  if (variable === 'n') {amountInput.value = '';}
+  if (variable === 'T') {temperatureInput.value = '';}
 }
 
 // Convert pressure to atm (base unit for R = 0.08206)
@@ -1716,10 +1716,10 @@ function displayGasResult(variable, result, unit, P, V, n, T, R) {
   html += '<div style="margin-bottom: 20px;">';
   html += '<h4>Bekannte Werte:</h4>';
   html += '<table class="table table-bordered" style="background: white;">';
-  if (variable !== 'P') html += `<tr><td><strong>Druck (P)</strong></td><td>${P.toFixed(4)} atm</td></tr>`;
-  if (variable !== 'V') html += `<tr><td><strong>Volumen (V)</strong></td><td>${V.toFixed(4)} L</td></tr>`;
-  if (variable !== 'n') html += `<tr><td><strong>Stoffmenge (n)</strong></td><td>${n.toFixed(4)} mol</td></tr>`;
-  if (variable !== 'T') html += `<tr><td><strong>Temperatur (T)</strong></td><td>${T.toFixed(2)} K (${convertFromKelvin(T).toFixed(1)}°C)</td></tr>`;
+  if (variable !== 'P') {html += `<tr><td><strong>Druck (P)</strong></td><td>${P.toFixed(4)} atm</td></tr>`;}
+  if (variable !== 'V') {html += `<tr><td><strong>Volumen (V)</strong></td><td>${V.toFixed(4)} L</td></tr>`;}
+  if (variable !== 'n') {html += `<tr><td><strong>Stoffmenge (n)</strong></td><td>${n.toFixed(4)} mol</td></tr>`;}
+  if (variable !== 'T') {html += `<tr><td><strong>Temperatur (T)</strong></td><td>${T.toFixed(2)} K (${convertFromKelvin(T).toFixed(1)}°C)</td></tr>`;}
   html += `<tr><td><strong>Gaskonstante (R)</strong></td><td>${R} L·atm/(mol·K)</td></tr>`;
   html += '</table>';
   html += '</div>';
@@ -1805,10 +1805,10 @@ function exportGasToPDF() {
   doc.setFontSize(12);
   doc.text('Eingabewerte:', 20, y); y += 10;
 
-  if (calculateVariable !== 'P') doc.text(`Druck: ${pressure} ${pressureUnit}`, 25, y); y += 8;
-  if (calculateVariable !== 'V') doc.text(`Volumen: ${volume} ${volumeUnit}`, 25, y); y += 8;
-  if (calculateVariable !== 'n') doc.text(`Stoffmenge: ${amount} ${amountUnit}`, 25, y); y += 8;
-  if (calculateVariable !== 'T') doc.text(`Temperatur: ${temperature} ${temperatureUnit}`, 25, y); y += 8;
+  if (calculateVariable !== 'P') {doc.text(`Druck: ${pressure} ${pressureUnit}`, 25, y);} y += 8;
+  if (calculateVariable !== 'V') {doc.text(`Volumen: ${volume} ${volumeUnit}`, 25, y);} y += 8;
+  if (calculateVariable !== 'n') {doc.text(`Stoffmenge: ${amount} ${amountUnit}`, 25, y);} y += 8;
+  if (calculateVariable !== 'T') {doc.text(`Temperatur: ${temperature} ${temperatureUnit}`, 25, y);} y += 8;
   doc.text(`Gaskonstante: R = ${R}`, 25, y); y += 15;
 
   // Formula
@@ -1827,7 +1827,7 @@ function exportGasToPDF() {
 }
 
 // Initialize gas inputs on page load
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   updateGasInputs();
   const tempInput = document.getElementById('gas-temperature');
   const tempUnit = document.getElementById('gas-temperature-unit');
@@ -1911,10 +1911,10 @@ function generateMolMolProblem(difficulty) {
 
   practiceState.currentProblem = {
     type: 'mol-mol',
-    n1: n1,
-    v1: v1,
-    v2: v2,
-    answer: answer,
+    n1,
+    v1,
+    v2,
+    answer,
     tolerance: 0.01 // 1% tolerance
   };
 
@@ -1980,12 +1980,12 @@ function generateMassMassProblem(difficulty) {
 
   practiceState.currentProblem = {
     type: 'mass-mass',
-    m1: m1,
-    M1: M1,
-    M2: M2,
-    v1: v1,
-    v2: v2,
-    answer: answer,
+    m1,
+    M1,
+    M2,
+    v1,
+    v2,
+    answer,
     tolerance: 0.02 // 2% tolerance
   };
 
@@ -2041,11 +2041,11 @@ function generateLimitingProblem(difficulty) {
 
   practiceState.currentProblem = {
     type: 'limiting',
-    m1: m1,
-    M1: M1,
-    m2: m2,
-    M2: M2,
-    answer: answer,
+    m1,
+    M1,
+    m2,
+    M2,
+    answer,
     tolerance: 0
   };
 
@@ -2090,9 +2090,9 @@ function generateYieldProblem(difficulty) {
 
   practiceState.currentProblem = {
     type: 'yield',
-    theoretical: theoretical,
-    actual: actual,
-    answer: answer,
+    theoretical,
+    actual,
+    answer,
     tolerance: 1 // 1% tolerance
   };
 
@@ -2184,7 +2184,7 @@ function problemDetailHTML(answer) {
           n₂ = ${problem.n1} × (${problem.v2}/${problem.v1}) = ${answer.toFixed(4)} mol
         </div>
       `;
-    case 'mass-mass':
+    case 'mass-mass': {
       const n1 = problem.m1 / problem.M1;
       const n2 = n1 * (problem.v2 / problem.v1);
       return `
@@ -2195,7 +2195,8 @@ function problemDetailHTML(answer) {
           Schritt 3: m₂ = ${n2.toFixed(4)} × ${problem.M2.toFixed(2)} = ${answer.toFixed(2)} g
         </div>
       `;
-    case 'limiting':
+    }
+    case 'limiting': {
       const n1_limiting = problem.m1 / problem.M1;
       const n2_limiting = problem.m2 / problem.M2;
       const name = answer === 1 ? 'Reagenz 1' : 'Reagenz 2';
@@ -2207,6 +2208,7 @@ function problemDetailHTML(answer) {
           ${name} hat weniger Mol und ist daher limitierend.
         </div>
       `;
+    }
     case 'yield':
       return `
         <div style="margin-top: 10px; padding: 10px; background: rgba(255,255,255,0.5); border-radius: 4px;">
@@ -2272,7 +2274,7 @@ function resetPractice() {
 // ===== INTERACTIVE TUTORIAL SYSTEM =====
 
 // Tutorial state management
-let tutorialState = {
+const tutorialState = {
   currentTutorial: null,
   currentStep: 0,
   completedTutorials: JSON.parse(localStorage.getItem('completedTutorials') || '[]')
@@ -3416,7 +3418,7 @@ function startTutorial(tutorialId) {
 function updateTutorialView() {
   const tutorial = tutorials[tutorialState.currentTutorial];
 
-  if (!tutorial) return;
+  if (!tutorial) {return;}
 
   const step = tutorial.steps[tutorialState.currentStep];
 
@@ -3499,7 +3501,7 @@ function updateTutorialProgress() {
   // Update tutorial cards
   for (let i = 1; i <= 5; i++) {
     const statusEl = document.getElementById(`status-tutorial-${i}`);
-    if (!statusEl) continue;
+    if (!statusEl) {continue;}
 
     if (tutorialState.completedTutorials.includes(i)) {
       statusEl.innerHTML = '<i class="fa fa-check-circle"></i> Abgeschlossen';
@@ -3518,7 +3520,7 @@ function updateTutorialProgress() {
 }
 
 // Initialize tutorial progress on page load
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   updateTutorialProgress();
 });
 
@@ -3733,9 +3735,9 @@ function updateStreak() {
 function logActivity(type, description, data = {}) {
   const activity = {
     timestamp: new Date().toISOString(),
-    type: type,
-    description: description,
-    data: data
+    type,
+    description,
+    data
   };
 
   studentProgress.activities.unshift(activity);
@@ -3884,7 +3886,7 @@ function loadOverviewTab() {
     ? ((studentProgress.practiceProblems.correct / studentProgress.practiceProblems.total) * 100).toFixed(1)
     : 0;
 
-  let statsHTML = `
+  const statsHTML = `
     <div style="margin-bottom: 10px;">
       <strong>Gelöste Aufgaben:</strong> ${studentProgress.practiceProblems.total}
     </div>
@@ -4148,7 +4150,7 @@ function onCalculatorUsed(type) {
 }
 
 // Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   initializeProgress();
   updateTutorialProgress();
 
@@ -4440,9 +4442,8 @@ function exportYieldToPDF() {
 }
 
 // Initialize history on page load
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   loadHistory();
   // Check for balanced equation data from Equation Balancer
   checkForBalancedEquation();
 });
-</script>

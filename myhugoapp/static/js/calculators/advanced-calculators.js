@@ -49,9 +49,9 @@ function calculateSerialDilution(options) {
     results.push({
       step: i,
       concentration: currentConcentration / dilutionFactorPerStep,
-      volumeOfStock: volumeOfStock,
-      volumeOfDiluent: volumeOfDiluent,
-      finalVolume: finalVolume,
+      volumeOfStock,
+      volumeOfDiluent,
+      finalVolume,
       dilutionFactor: dilutionFactorPerStep
     });
 

@@ -114,11 +114,11 @@ function parseFormula(formula) {
     const element = match[1];
     const count = match[2] ? parseInt(match[2]) : 1;
 
-    if (!ATOMIC_MASSES.hasOwnProperty(element)) {
+    if (!Object.prototype.hasOwnProperty.call(ATOMIC_MASSES, element)) {
       throw new Error(`Unbekanntes Element: ${element}`);
     }
 
-    if (composition.hasOwnProperty(element)) {
+    if (Object.prototype.hasOwnProperty.call(composition, element)) {
       composition[element] += count;
     } else {
       composition[element] = count;

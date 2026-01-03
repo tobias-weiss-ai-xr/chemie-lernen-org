@@ -395,7 +395,7 @@ var Tween = /** @class */ (function () {
         this._startTime = 0;
         this._easingFunction = Easing.Linear.None;
         this._interpolationFunction = Interpolation.Linear;
-        // eslint-disable-next-line
+
         this._chainedTweens = [];
         this._onStartCallbackFired = false;
         this._onEveryStartCallbackFired = false;
@@ -441,7 +441,7 @@ var Tween = /** @class */ (function () {
         if (this._isPlaying) {
             return this;
         }
-        // eslint-disable-next-line
+
         this._group && this._group.add(this);
         this._repeat = this._initialRepeat;
         if (this._reversed) {
@@ -536,12 +536,12 @@ var Tween = /** @class */ (function () {
                     _valuesStart[property] = startValue;
                 }
                 if (!startValueIsArray) {
-                    // eslint-disable-next-line
+
                     // @ts-ignore FIXME?
                     _valuesStart[property] *= 1.0; // Ensures we're using numbers, not strings
                 }
                 if (isInterpolationList) {
-                    // eslint-disable-next-line
+
                     // @ts-ignore FIXME?
                     _valuesStartRepeat[property] = _valuesEnd[property].slice().reverse();
                 }
@@ -559,7 +559,7 @@ var Tween = /** @class */ (function () {
         if (!this._isPlaying) {
             return this;
         }
-        // eslint-disable-next-line
+
         this._group && this._group.remove(this);
         this._isPlaying = false;
         this._isPaused = false;
@@ -580,7 +580,7 @@ var Tween = /** @class */ (function () {
         }
         this._isPaused = true;
         this._pauseStart = time;
-        // eslint-disable-next-line
+
         this._group && this._group.remove(this);
         return this;
     };
@@ -592,7 +592,7 @@ var Tween = /** @class */ (function () {
         this._isPaused = false;
         this._startTime += time - this._pauseStart;
         this._pauseStart = 0;
-        // eslint-disable-next-line
+
         this._group && this._group.add(this);
         return this;
     };
@@ -637,7 +637,7 @@ var Tween = /** @class */ (function () {
         this._interpolationFunction = interpolationFunction;
         return this;
     };
-    // eslint-disable-next-line
+
     Tween.prototype.chain = function () {
         var tweens = [];
         for (var _i = 0; _i < arguments.length; _i++) {
@@ -742,7 +742,7 @@ var Tween = /** @class */ (function () {
                 for (property in this._valuesStartRepeat) {
                     if (!this._yoyo && typeof this._valuesEnd[property] === 'string') {
                         this._valuesStartRepeat[property] =
-                            // eslint-disable-next-line
+
                             // @ts-ignore FIXME?
                             this._valuesStartRepeat[property] + parseFloat(this._valuesEnd[property]);
                     }
@@ -791,7 +791,7 @@ var Tween = /** @class */ (function () {
                 _object[property] = this._interpolationFunction(end, value);
             }
             else if (typeof end === 'object' && end) {
-                // eslint-disable-next-line
+
                 // @ts-ignore FIXME?
                 this._updateProperties(_object[property], start, end, value);
             }
@@ -800,7 +800,7 @@ var Tween = /** @class */ (function () {
                 end = this._handleRelativeValue(start, end);
                 // Protect against non numeric properties.
                 if (typeof end === 'number') {
-                    // eslint-disable-next-line
+
                     // @ts-ignore FIXME?
                     _object[property] = start + (end - start) * value;
                 }

@@ -218,7 +218,7 @@ const SecurityUtils = {
       }
 
       // Remove old requests
-      data.requests = data.requests.filter(function(time) { return now - time < windowMs; });
+      data.requests = data.requests.filter((time) => { return now - time < windowMs; });
 
       // Check limit
       if (data.requests.length >= limit) {
@@ -243,7 +243,7 @@ const SecurityUtils = {
    */
   generateCSRFToken() {
     const token = Array.from(crypto.getRandomValues(new Uint8Array(32)))
-      .map(function(b) { return b.toString(16).padStart(2, '0'); })
+      .map((b) => { return b.toString(16).padStart(2, '0'); })
       .join('');
 
     try {

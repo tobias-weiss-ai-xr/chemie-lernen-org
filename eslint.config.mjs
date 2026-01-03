@@ -15,6 +15,8 @@ export default [
       'myhugoapp/static/js/vendor/**',
       '*.min.js',
       'myhugoapp/static/js/three.module.js',
+      'myhugoapp/static/js/three/three.core.js',
+      'myhugoapp/static/js/three/TrackballControls.js',
       'myhugoapp/static/js/addons/**',
       '*.generated.js',
       '.hugo_build.lock',
@@ -63,6 +65,19 @@ export default [
         TextEncoder: 'readonly',
         TextDecoder: 'readonly',
         performance: 'readonly',
+        alert: 'readonly',
+        confirm: 'readonly',
+        prompt: 'readonly',
+        HTMLCanvasElement: 'readonly',
+        HTMLImageElement: 'readonly',
+        HTMLVideoElement: 'readonly',
+        HTMLAudioElement: 'readonly',
+        ImageData: 'readonly',
+        CanvasRenderingContext2D: 'readonly',
+        WebGLRenderingContext: 'readonly',
+        location: 'readonly',
+        AnalyticsManager: 'writable',
+        I18nManager: 'writable',
       },
     },
     rules: {
@@ -78,6 +93,7 @@ export default [
       'no-trailing-spaces': 'error',
       'no-unsafe-negation': 'error',
       'valid-typeof': 'error',
+      'no-useless-escape': 'off',
     },
   },
 
@@ -119,7 +135,6 @@ export default [
         module: 'readonly',
         exports: 'readonly',
         require: 'readonly',
-        I18nManager: 'readonly',
       },
     },
   },
@@ -134,7 +149,20 @@ export default [
         module: 'readonly',
         exports: 'readonly',
         require: 'readonly',
-        AnalyticsManager: 'readonly',
+      },
+    },
+  },
+
+  // Visualization files - module/exports globals
+  {
+    files: ['myhugoapp/static/js/visualization/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: {
+        module: 'readonly',
+        exports: 'readonly',
+        require: 'readonly',
       },
     },
   },
@@ -143,6 +171,7 @@ export default [
   {
     files: [
       'myhugoapp/static/js/perioden-system-der-elemente.js',
+      'myhugoapp/static/js/molekuel-studio.js',
       'myhugoapp/static/js/three/**/*.js',
       'myhugoapp/static/js/**/*.module.js',
     ],
