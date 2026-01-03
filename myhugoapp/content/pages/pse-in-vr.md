@@ -247,8 +247,6 @@ Basierend auf unserer [Roadmap](/pages/roadmap/) planen wir:
 Haben Sie Fragen oder Anregungen? Wir freuen uns über Ihr Feedback!
 
 - [Kontaktformular](/pages/contact/)
-- [GitHub Repository](https://github.com/your-org/hugo-chemie-lernen-org)
-- [Problem melden](https://github.com/your-org/hugo-chemie-lernen-org/issues)
 
 ---
 
