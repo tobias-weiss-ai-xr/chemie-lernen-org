@@ -205,6 +205,7 @@ export default [
       'myhugoapp/static/js/redox-potenzial-rechner.js',
       'myhugoapp/static/js/konzentrationsumrechner.js',
       'myhugoapp/static/js/verbrennungsrechner.js',
+      'myhugoapp/static/js/gasgesetz-rechner.js',
     ],
     languageOptions: {
       ecmaVersion: 'latest',
@@ -216,6 +217,26 @@ export default [
         formatScientificNotation: 'readonly',
         getElementCount: 'readonly',
         validateFormula: 'readonly',
+      },
+    },
+  },
+
+  // Titration simulator - with Chart.js global
+  {
+    files: [
+      'myhugoapp/static/js/titrations-simulator.js',
+    ],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: {
+        parseFormula: 'readonly',
+        parseScientificNotation: 'readonly',
+        getMolarMass: 'readonly',
+        formatScientificNotation: 'readonly',
+        getElementCount: 'readonly',
+        validateFormula: 'readonly',
+        Chart: 'readonly',
       },
     },
   },
