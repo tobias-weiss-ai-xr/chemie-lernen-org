@@ -520,11 +520,11 @@ var Tween = /** @class */ (function () {
                 }
                 // TODO? repeat nested values? And yoyo? And array values?
                 _valuesStartRepeat[property] = startValueIsArray ? [] : {};
-                var endValues = _valuesEnd[property];
+                endValues = _valuesEnd[property];
                 // If dynamic is not enabled, clone the end values instead of using the passed-in end values.
                 if (!this._isDynamic) {
                     var tmp = {};
-                    for (var prop in endValues)
+                    for (prop in endValues)
                         tmp[prop] = endValues[prop];
                     _valuesEnd[property] = endValues = tmp;
                 }

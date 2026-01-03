@@ -3,6 +3,7 @@
  * Tracks user learning progress and provides insights
  */
 
+// eslint-disable-next-line no-redeclare
 const AnalyticsManager = {
   // Storage keys
   STORAGE_KEYS: {

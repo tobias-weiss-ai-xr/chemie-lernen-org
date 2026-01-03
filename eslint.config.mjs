@@ -76,8 +76,16 @@ export default [
         CanvasRenderingContext2D: 'readonly',
         WebGLRenderingContext: 'readonly',
         location: 'readonly',
+        self: 'readonly',
+        OffscreenCanvas: 'readonly',
+        ImageBitmap: 'readonly',
+        VideoFrame: 'readonly',
+        XRWebGLBinding: 'readonly',
+        XRWebGLLayer: 'readonly',
         AnalyticsManager: 'writable',
         I18nManager: 'writable',
+        THREE: 'writable',
+        __THREE_DEVTOOLS__: 'writable',
       },
     },
     rules: {
@@ -156,6 +164,26 @@ export default [
   // Visualization files - module/exports globals
   {
     files: ['myhugoapp/static/js/visualization/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: {
+        module: 'readonly',
+        exports: 'readonly',
+        require: 'readonly',
+        THREE: 'readonly',
+      },
+    },
+  },
+
+  // Other files with module/exports - quiz, progress tracker, etc.
+  {
+    files: [
+      'myhugoapp/static/js/lazy-loader.js',
+      'myhugoapp/static/js/progress-tracker.js',
+      'myhugoapp/static/js/quiz-system.js',
+      'myhugoapp/static/js/quiz-user-system.js',
+    ],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'script',

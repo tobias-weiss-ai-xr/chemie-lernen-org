@@ -3,6 +3,7 @@
  * Handles multi-language support for the chemistry education platform
  */
 
+// eslint-disable-next-line no-redeclare
 const I18nManager = {
   // Current language
   currentLocale: 'de',

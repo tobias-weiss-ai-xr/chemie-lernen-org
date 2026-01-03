@@ -171,12 +171,13 @@ const PeriodicTableViz = {
           <span class="pt-trend">${this.calculateTrendValue(data)}</span>
         `;
 
-      case 'electronegativity':
+      case 'electronegativity': {
         const en = this.getElectronegativity(data.symbol);
         return `
           <span class="pt-symbol">${data.symbol}</span>
           <span class="pt-en">${en !== null ? en.toFixed(2) : 'N/A'}</span>
         `;
+      }
 
       default:
         return baseContent;
