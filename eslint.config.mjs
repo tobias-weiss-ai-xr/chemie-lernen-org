@@ -195,6 +195,31 @@ export default [
     },
   },
 
+  // Chemistry calculator files - with chemistry-utils globals
+  {
+    files: [
+      'myhugoapp/static/js/molare-masse-rechner.js',
+      'myhugoapp/static/js/reaktionsgleichungen-ausgleichen.js',
+      'myhugoapp/static/js/stoichiometry.js',
+      'myhugoapp/static/js/loeslichkeitsprodukt-rechner.js',
+      'myhugoapp/static/js/redox-potenzial-rechner.js',
+      'myhugoapp/static/js/konzentrationsumrechner.js',
+      'myhugoapp/static/js/verbrennungsrechner.js',
+    ],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: {
+        parseFormula: 'readonly',
+        parseScientificNotation: 'readonly',
+        getMolarMass: 'readonly',
+        formatScientificNotation: 'readonly',
+        getElementCount: 'readonly',
+        validateFormula: 'readonly',
+      },
+    },
+  },
+
   // ES Module files - override with module type
   {
     files: [
