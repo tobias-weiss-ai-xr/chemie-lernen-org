@@ -1,0 +1,225 @@
+// Molar Mass Calculator JavaScript
+
+// Atomic masses of common elements (in g/mol)
+const ATOMIC_MASSES = {
+  'H': 1.008,
+  'He': 4.003,
+  'Li': 6.941,
+  'Be': 9.012,
+  'B': 10.81,
+  'C': 12.011,
+  'N': 14.007,
+  'O': 15.999,
+  'F': 19.00,
+  'Ne': 20.180,
+  'Na': 22.990,
+  'Mg': 24.305,
+  'Al': 26.982,
+  'Si': 28.085,
+  'P': 30.974,
+  'S': 32.06,
+  'Cl': 35.453,
+  'Ar': 39.948,
+  'K': 39.098,
+  'Ca': 40.078,
+  'Sc': 44.956,
+  'Ti': 47.867,
+  'V': 50.942,
+  'Cr': 51.996,
+  'Mn': 54.938,
+  'Fe': 55.845,
+  'Co': 58.933,
+  'Ni': 58.693,
+  'Cu': 63.546,
+  'Zn': 65.38,
+  'Ga': 69.723,
+  'Ge': 72.630,
+  'As': 74.922,
+  'Se': 78.971,
+  'Br': 79.904,
+  'Kr': 83.798,
+  'Rb': 85.468,
+  'Sr': 87.62,
+  'Y': 88.906,
+  'Zr': 91.224,
+  'Nb': 92.906,
+  'Mo': 95.95,
+  'Tc': 98.0,
+  'Ru': 101.07,
+  'Rh': 102.91,
+  'Pd': 106.42,
+  'Ag': 107.87,
+  'Cd': 112.41,
+  'In': 114.82,
+  'Sn': 118.71,
+  'Sb': 121.76,
+  'Te': 127.60,
+  'I': 126.90,
+  'Xe': 131.29,
+  'Cs': 132.91,
+  'Ba': 137.33,
+  'La': 138.91,
+  'Ce': 140.12,
+  'Pr': 140.91,
+  'Nd': 144.24,
+  'Pm': 145.0,
+  'Sm': 150.36,
+  'Eu': 151.96,
+  'Gd': 157.25,
+  'Tb': 158.93,
+  'Dy': 162.50,
+  'Ho': 164.93,
+  'Er': 167.26,
+  'Tm': 168.93,
+  'Yb': 173.05,
+  'Lu': 174.97,
+  'Hf': 178.49,
+  'Ta': 180.95,
+  'W': 183.84,
+  'Re': 186.21,
+  'Os': 190.23,
+  'Ir': 192.22,
+  'Pt': 195.08,
+  'Au': 196.97,
+  'Hg': 200.59,
+  'Tl': 204.38,
+  'Pb': 207.2,
+  'Bi': 208.98,
+  'Th': 232.04,
+  'Pa': 231.04,
+  'U': 238.03
+};
+
+// Parse chemical formula using shared utility from ChemistryUtils
+// See utils/chemistry-utils.js for implementation
+
+// Calculate molar mass
+function calculateMolarMass() {
+  const input = document.getElementById('formula-input').value.trim();
+
+  if (!input) {
+    showError('Bitte geben Sie eine chemische Formel ein.');
+    return;
+  }
+
+  try {
+    // Parse the formula using shared utility with element validation
+    const composition = window.ChemistryUtils.parseFormula(input, {
+      validElements: ATOMIC_MASSES
+    });
+
+    // Get composition details using shared utility
+    const totalMass = window.ChemistryUtils.calculateMolarMass(composition, ATOMIC_MASSES);
+    const details = window.ChemistryUtils.getCompositionDetails(composition, ATOMIC_MASSES, totalMass);
+
+    // Display results
+    displayResults(input, totalMass, composition, details);
+
+  } catch (error) {
+    showError(error.message);
+  }
+}
+
+// Display results
+function displayResults(formula, totalMass, composition, details) {
+  // Hide error section
+  document.getElementById('error-section').style.display = 'none';
+
+  // Show results section
+  document.getElementById('results-section').style.display = 'block';
+
+  // Display molar mass
+  document.getElementById('molar-mass').textContent = totalMass.toFixed(3);
+
+  // Format and display formula using shared utility
+  const formattedFormula = window.ChemistryUtils.formatFormula(formula);
+  document.getElementById('formatted-formula').innerHTML = formattedFormula;
+
+  // Display composition
+  const compositionList = document.getElementById('composition-list');
+  compositionList.innerHTML = '';
+
+  for (const element in composition) {
+    const count = composition[element];
+    const mass = ATOMIC_MASSES[element];
+    const contribution = count * mass;
+    const percentage = (contribution / totalMass * 100).toFixed(1);
+
+    const div = document.createElement('div');
+    div.className = 'composition-item';
+    div.innerHTML = `
+      <div class="element-info">
+        <span class="element-symbol">${element}</span>
+        <span class="element-count">×${count}</span>
+      </div>
+      <div class="contribution-info">
+        <span class="contribution-mass">${contribution.toFixed(3)} g/mol</span>
+        <span class="contribution-percent">(${percentage}%)</span>
+      </div>
+    `;
+    compositionList.appendChild(div);
+  }
+
+  // Display calculation details
+  const detailsDiv = document.getElementById('calculation-details');
+  detailsDiv.innerHTML = '';
+
+  details.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'calculation-step';
+    const countText = item.count > 1 ? ` × ${item.count}` : '';
+    div.innerHTML = `
+      <span class="detail-element">${item.element}${countText}</span>
+      <span class="detail-operator">=</span>
+      <span class="detail-calculation">${item.mass.toFixed(3)}${countText}</span>
+      <span class="detail-operator">=</span>
+      <span class="detail-result">${item.contribution.toFixed(3)} g/mol</span>
+    `;
+    detailsDiv.appendChild(div);
+  });
+
+  // Add total
+  const totalDiv = document.createElement('div');
+  totalDiv.className = 'calculation-total';
+  totalDiv.innerHTML = `
+    <hr>
+    <strong>Gesamt:</strong> <span class="total-mass">${totalMass.toFixed(3)} g/mol</span>
+  `;
+  detailsDiv.appendChild(totalDiv);
+}
+
+// Show error message
+function showError(message) {
+  document.getElementById('results-section').style.display = 'none';
+  document.getElementById('error-section').style.display = 'block';
+  document.getElementById('error-message').textContent = message;
+}
+
+// Event listeners for example buttons
+document.addEventListener('DOMContentLoaded', function() {
+  // Example button clicks
+  document.querySelectorAll('.example-btn').forEach(button => {
+    button.addEventListener('click', function() {
+      const formula = this.dataset.formula;
+      document.getElementById('formula-input').value = formula;
+      calculateMolarMass();
+    });
+  });
+
+  // Enter key support
+  document.getElementById('formula-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      calculateMolarMass();
+    }
+  });
+
+  // Element card clicks
+  document.querySelectorAll('.element-card').forEach(card => {
+    card.addEventListener('click', function() {
+      const symbol = this.dataset.symbol;
+      const input = document.getElementById('formula-input');
+      input.value += symbol;
+      input.focus();
+    });
+  });
+});

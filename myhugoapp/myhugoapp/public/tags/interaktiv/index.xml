@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Interaktiv on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title><link>https://chemie-lernen.org/tags/interaktiv/</link><description>Recent content in Interaktiv on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description><generator>Hugo</generator><language>de-de</language><lastBuildDate>Sat, 03 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/tags/interaktiv/index.xml" rel="self" type="application/rss+xml"/><item><title>Gasgesetz-Rechner</title><link>https://chemie-lernen.org/gasgesetz-rechner/</link><pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/gasgesetz-rechner/</guid><description>&lt;h2 id="gasgesetz-rechner">Gasgesetz-Rechner&lt;/h2>
+&lt;p>Berechnen Sie Zustandsänderungen von Gasen mit den klassischen Gasgesetzen und dem IdealGas-Gesetz.&lt;/p>
+&lt;h3 id="funktionen">Funktionen&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Boyle-Mariotte-Gesetz&lt;/strong>: Isotherme Zustandsänderung (p₁V₁ = p₂V₂ bei T = konst.)&lt;/li>
+&lt;li>&lt;strong>Gay-Lussac-Gesetz&lt;/strong>: Isobare und isochore Zustandsänderungen (V/T = konst., p/T = konst.)&lt;/li>
+&lt;li>&lt;strong>Kombiniertes Gasgesetz&lt;/strong>: p₁V₁/T₁ = p₂V₂/T₂ (allgemeine Zustandsänderung)&lt;/li>
+&lt;li>&lt;strong>Ideales Gasgesetz&lt;/strong>: pV = nRT (Berechnung aller Zustandsgrößen)&lt;/li>
+&lt;li>&lt;strong>Stoffmenge-Berechnung&lt;/strong>: Umrechnung zwischen Masse, Mol und Volumen&lt;/li>
+&lt;li>&lt;strong>Einheiten-Umrechnung&lt;/strong>: Automatische Konvertierung zwischen verschiedenen Druck- und Volumeneinheiten&lt;/li>
+&lt;li>&lt;strong>Normbedingungen&lt;/strong>: Automatische Berechnung von Normvolumen (22.414 L/mol bei STP)&lt;/li>
+&lt;/ul>
+&lt;p>Unterstützt alle Gase (ideale Näherung) mit verschiedenen Einheiten für Druck, Volumen, Temperatur und Stoffmenge.&lt;/p></description></item><item><title>Konzentrationsumrechner</title><link>https://chemie-lernen.org/konzentrationsumrechner/</link><pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/konzentrationsumrechner/</guid><description>&lt;h2 id="konzentrationsumrechner">Konzentrationsumrechner&lt;/h2>
+&lt;p>Rechnen Sie einfach und schnell zwischen verschiedenen Konzentrationseinheiten um.&lt;/p>
+&lt;h3 id="funktionen">Funktionen&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>11 Konzentrationseinheiten&lt;/strong>: Molar (M), Molal (m), Massenprozent, Volumenprozent, Massen-/Volumenprozent, ppm, ppb, g/L, mg/L, Molenbruch, Normalität&lt;/li>
+&lt;li>&lt;strong>Bidirektionale Umrechnung&lt;/strong>: Geben Sie einen Wert in einer beliebigen Einheit ein&lt;/li>
+&lt;li>&lt;strong>Automatische Berechnung&lt;/strong>: Alle 11 Einheiten werden gleichzeitig angezeigt&lt;/li>
+&lt;li>&lt;strong>Praktische Beispiele&lt;/strong>: Physiologische Kochsalzlösung, konzentrierte Säuren, Spurenelemente&lt;/li>
+&lt;li>&lt;strong>Intelligente Formatierung&lt;/strong>: Automatische Auswahl der optimalen Dezimalstellen&lt;/li>
+&lt;/ul>
+&lt;p>Unterstützt alle gängigen Konzentrationseinheiten für Chemie, Biologie, Umweltanalytik und Laboranwendungen.&lt;/p></description></item><item><title>Löslichkeitsprodukt Rechner</title><link>https://chemie-lernen.org/loeslichkeitsprodukt-rechner/</link><pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/loeslichkeitsprodukt-rechner/</guid><description>&lt;h2 id="löslichkeitsprodukt-rechner">Löslichkeitsprodukt Rechner&lt;/h2>
+&lt;p>Berechnen Sie das Löslichkeitsprodukt (Ksp) von Salzen und bestimmen Sie, ob eine Fällung auftritt.&lt;/p>
+&lt;h3 id="funktionen">Funktionen&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Ksp → Löslichkeit&lt;/strong>: Berechnen Sie die molare Löslichkeit aus dem Löslichkeitsprodukt&lt;/li>
+&lt;li>&lt;strong>Löslichkeit → Ksp&lt;/strong>: Berechnen Sie das Löslichkeitsprodukt aus der molaren Löslichkeit&lt;/li>
+&lt;li>&lt;strong>Fällungsprüfung&lt;/strong>: Prüfen Sie mit dem Ionenprodukt (Q), ob eine Fällung auftritt&lt;/li>
+&lt;/ul>
+&lt;p>Unterstützt verschiedene Salztypen wie 1:1 (AgCl), 1:2 (CaF₂), 2:1 (Ag₂CrO₄) und mehr.&lt;/p></description></item><item><title>Redoxpotential Rechner</title><link>https://chemie-lernen.org/redox-potenzial-rechner/</link><pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/redox-potenzial-rechner/</guid><description>&lt;h2 id="redoxpotential-rechner">Redoxpotential Rechner&lt;/h2>
+&lt;p>Berechnen Sie Zellpotentiale, Gibbs-Energie und Gleichgewichtskonstanten für Redoxreaktionen.&lt;/p>
+&lt;h3 id="funktionen">Funktionen&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Standard-Zellpotential&lt;/strong>: Berechnen Sie E°zelle aus Standard-Reduktionspotentialen&lt;/li>
+&lt;li>&lt;strong>Nernst-Gleichung&lt;/strong>: Berücksichtigen Sie Nicht-Standard-Bedingungen (Konzentration, Temperatur)&lt;/li>
+&lt;li>&lt;strong>Gibbs-Energie &amp;amp; K&lt;/strong>: Berechnen Sie ΔG° und Gleichgewichtskonstante K aus dem Zellpotential&lt;/li>
+&lt;/ul>
+&lt;p>Unterstützt die Analyse von elektrochemischen Zellen, Batterien, Korrosionsprozessen und mehr.&lt;/p></description></item><item><title>Titrationssimulator</title><link>https://chemie-lernen.org/titrations-simulator/</link><pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/titrations-simulator/</guid><description>&lt;h2 id="titrationssimulator">Titrationssimulator&lt;/h2>
+&lt;p>Simulieren Sie Säure-Base-Titrationen mit visueller Kurvenzeichnung und detaillierter Analyse des Äquivalenzpunktes.&lt;/p>
+&lt;h3 id="funktionen">Funktionen&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Interaktive Titration&lt;/strong>: Schrittweise Zugabe von Titrationsmittel mit Echtzeit-pH-Berechnung&lt;/li>
+&lt;li>&lt;strong>Kurvenzeichnung&lt;/strong>: Automatische Erstellung von pH-Titrationskurven mit markiertem Äquivalenzpunkt&lt;/li>
+&lt;li>&lt;strong>Indikatorwahl&lt;/strong>: Empfehlung des optimalen Indikators basierend auf dem Äquivalenzpunkt&lt;/li>
+&lt;li>&lt;strong>Stärke-Säure/Base-Optionen&lt;/strong>: Unterstützt starke und schwache Säuren und Basen&lt;/li>
+&lt;li>&lt;strong>Pufferbereiche&lt;/strong>: Visualisierung von Pufferwirkung und halbe Äquivalenzpunkte&lt;/li>
+&lt;li>&lt;strong>Detaillierte Analyse&lt;/strong>: pH-Werte, Konzentrationsänderungen, Neutralisationsgrad&lt;/li>
+&lt;/ul>
+&lt;p>Unterstützt alle gängigen Titrationstypen: stark-schwach, schwach-stark, stark-stark und schwach-schwach.&lt;/p></description></item><item><title>Verbrennungsrechner</title><link>https://chemie-lernen.org/verbrennungsrechner/</link><pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/verbrennungsrechner/</guid><description>&lt;h2 id="verbrennungsrechner">Verbrennungsrechner&lt;/h2>
+&lt;p>Analysieren Sie Verbrennungsreaktionen von organischen Verbindungen mit detaillierten stöchiometrischen und energetischen Berechnungen.&lt;/p>
+&lt;h3 id="funktionen">Funktionen&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Vollständige Verbrennungsanalyse&lt;/strong>: Berechnung der allgemeinen Verbrennungsgleichung&lt;/li>
+&lt;li>&lt;strong>Luftbedarf&lt;/strong>: Theoretischer und praktischer Luftbedarf für die Verbrennung&lt;/li>
+&lt;li>&lt;strong>Abgasanalyse&lt;/strong>: CO₂- und H₂O-Gehalt im Abgas&lt;/li>
+&lt;li>&lt;strong>Energetische Analyse&lt;/strong>: Heizwert und Brennwert basierend auf Bildungsenthalpien&lt;/li>
+&lt;li>&lt;strong>Stöchiometrische Verhältnisse&lt;/strong>: Luftüberschuss und Luftverhältnis&lt;/li>
+&lt;li>&lt;strong>Umweltkennwerte&lt;/strong>: CO₂-Emissionen pro kg Brennstoff&lt;/li>
+&lt;/ul>
+&lt;p>Unterstützt alle organischen Verbindungen mit C, H, O, N, S (z.B. Kohlenwasserstoffe, Alkohole, Biomasse, fossile Brennstoffe).&lt;/p></description></item><item><title>PSE in VR - Virtuelles Periodensystem</title><link>https://chemie-lernen.org/pages/pse-in-vr/</link><pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/pse-in-vr/</guid><description>&lt;p>Tauchen Sie ein in eine immersive virtuelle Realität und erkunden Sie das Periodensystem der Elemente wie nie zuvor. Diese WebXR-basierte Anwendung bietet ein einzigartiges Lernerlebnis für Schüler, Lehrer und Chemie-Enthusiasten.&lt;/p>
+&lt;h2 id="-was-ist-das-pse-in-vr">🔬 Was ist das PSE in VR?&lt;/h2>
+&lt;p>Das PSE in VR ist eine interaktive WebXR-Anwendung, die das Periodensystem der Elemente in einem dreidimensionalen virtuellen Raum präsentiert. Nutzer können:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Immersive Erkundung:&lt;/strong> Durch das Periodensystem &amp;ldquo;wandern&amp;rdquo; und Elemente aus verschiedenen Perspektiven betrachten&lt;/li>
+&lt;li>&lt;strong>Interaktive Elemente:&lt;/strong> Informationen zu jedem Element durch Berührung oder Auswahl abrufen&lt;/li>
+&lt;li>&lt;strong>Virtuelle Experimente:&lt;/strong> Sichere Simulation von chemischen Reaktionen in VR&lt;/li>
+&lt;li>&lt;strong>Multiplayer-Lernen:&lt;/strong> Zusammen mit anderen in virtuellen Räumen lernen&lt;/li>
+&lt;/ul>
+&lt;h2 id="-features">🎮 Features&lt;/h2>
+&lt;h3 id="1-webxr-basierte-technologie">1. &lt;strong>WebXR-basierte Technologie&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>Kompatibel mit modernen VR-Headsets (Meta Quest, HTC Vive, etc.)&lt;/li>
+&lt;li>Browser-basiert - keine zusätzliche Software erforderlich&lt;/li>
+&lt;li>Unterstützt auch Desktop-Navigation ohne VR-Headset&lt;/li>
+&lt;/ul>
+&lt;h3 id="2-interaktive-lernumgebung">2. &lt;strong>Interaktive Lernumgebung&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>3D-Periodensystem:&lt;/strong> Räumliche Anordnung aller 118 Elemente&lt;/li>
+&lt;li>&lt;strong>Element-Informationen:&lt;/strong> Detaillierte Daten zu jedem Element auf Abruf&lt;/li>
+&lt;li>&lt;strong>Gruppierung nach Elementfamilien:&lt;/strong> Farbcodierte Darstellung der Hauptgruppen&lt;/li>
+&lt;li>&lt;strong>Automatische Rotation:&lt;/strong> Optional für bessere Sichtbarkeit&lt;/li>
+&lt;/ul>
+&lt;h3 id="3-gefahrfreie-experimente">3. &lt;strong>Gefahrfreie Experimente&lt;/strong>&lt;/h3>
+&lt;p>Führen Sie virtuelle Experimente durch, die zu gefährlich für ein echtes Labor wären:&lt;/p></description></item><item><title>Periodensystem der Elemente</title><link>https://chemie-lernen.org/perioden-system-der-elemente/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/perioden-system-der-elemente/</guid><description/></item></channel></rss>
