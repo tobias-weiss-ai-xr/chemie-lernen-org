@@ -1,11 +1,27 @@
 ---
 title: "Roadmap: Ausbaustrategie"
-date: 2025-12-20
+date: 2026-01-03
 description: "Die zukünftige Entwicklungsstrategie für chemie-lernen.org"
 tags: ["roadmap", "entwicklung", "vr"]
 ---
 
 Die aktuelle Plattform nutzt erfolgreich VR (Mozilla Hubs) zur Visualisierung des Periodensystems und grundlegender Experimente. Um sich von einem forschungsorientierten Projekt zu einem umfassenden Lernökosystem zu entwickeln, werden folgende Erweiterungen empfohlen.
+
+## 0. Kürzliche Verbesserungen ✨ (Januar 2026)
+
+### Codequalität & Wartbarkeit
+
+*   **✓ Shared Utility Modules (IMPLEMENTIERT):** Zentrale Bibliothek für chemische Formel-Parsing und Berechnungen. Eliminierung von ~160 Zeilen doppeltem Code über 3 Dateien. Verbesserte Wartbarkeit und Konsistenz.
+*   **✓ Performance-Optimierung (IMPLEMENTIERT):** Screenshots von PNG zu WebP konvertiert. Ersparnis von 14.19 MB (80% Reduktion) bei verbesserter Bildqualität durch modernere Kompression.
+*   **✓ Test-Infrastruktur (IMPLEMENTIERT):** Jest-Test-Suite für Stöchiometrie-Rechner, Export-Manager und Visualisierungskomponenten. 53+ Tests mit automatisierter Coverage-Berichterstattung.
+*   **✓ ESLint & Prettier (IMPLEMENTIERT):** Automatische Code-Formatierung und Linting mit Pre-Commit-Hooks. Konsistenter Codestil über das gesamte Projekt.
+
+### Berechner & Werkzeuge
+
+*   **✓ Stöchiometrie-Rechner (IMPLEMENTIERT):** Umfassender Rechner für Mol-Mol-Umrechnungen, Masse-Masse-Berechnungen, limitierende Reagenzien, prozentuale Ausbeute und Gasgesetze.
+*   **✓ pH-Rechner (IMPLEMENTIERT):** Interaktiver Rechner für pH- und pOH-Werte mit starker und schwacher Säuren/Basen.
+*   **✓ Molare-Masse-Rechner (IMPLEMENTIERT):** Automatische Berechnung der molaren Masse aus chemischen Formeln mit detaillierter Elementaranalyse.
+*   **✓ Reaktionsgleichungen-Ausgleicher (IMPLEMENTIERT):** Automatisches Ausgleichen chemischer Reaktionsgleichungen mit Matrix-Methode und Verifizierung.
 
 ## 1. Immersive VR-Szenarioen 🥽
 
@@ -42,7 +58,18 @@ Um die Einführung an Schulen und Universitäten zu erhöhen:
 *   **Hybrides Lernen (WebGL):** Sicherstellen, dass jeder VR-Raum einen leistungsstarken "2D/Browser"-Modus für Schüler ohne VR-Headsets oder langsame Verbindungen bietet.
 *   **Wiki-Erweiterung:** Das Wiki sollte als "Lehrbuch" zum "Labor" des Hubs dienen. Jedes VR-Experiment sollte einen entsprechenden vertiefenden Artikel haben, der die Mathematik und Theorie dahinter erklärt.
 
-## 5. Community & Zusammenarbeit 🤝
+## 5. Erweiterte Berechner & Werkzeuge 🔬
+
+Geplante Erweiterungen für die bestehende Suite an chemischen Rechnern:
+
+*   **Löslichkeitsprodukt-Rechner:** Berechnung von Ksp-Werten und Vorhersage von Fällungsreaktionen.
+*   **Redox-Potenzial-Rechner:** Bestimmung von Zellspannungen und Redox-Gleichgewichten.
+*   **Konzentrationsumrechner:** Umrechnung zwischen verschiedenen Konzentrationseinheiten (Molar, Molal, %, ppm, ppb).
+*   **Verbrennungsrechnungen:** Vollständige Analyse von Verbrennungsreaktionen mit Luftbedarf und CO2-Ausstoß.
+*   **Titrationssimulator:** Interaktive Simulation von Säure-Base-Titrationen mit Kurvenzeichnung.
+*   **Gasesetz-Rechner:** Kombinierte Berechnungen mit Boyle-Mariotte, Gay-Lussac und Ideal-Gas-Gesetz.
+
+## 6. Community & Zusammenarbeit 🤝
 
 *   **Benutzergenerierte Hubs:** Fortgeschrittene Schüler oder Lehrer können ihre eigenen Hub-Layouts oder experimentellen Aufstellungen einreichen.
 *   **Forschungsblog:** Regelmäßige Updates zum "Status Quo" des Projekts, teilen Sie Erkenntnisse darüber, wie VR die Behaltensrate von Chemiestudenten im Vergleich zu herkömmlichen Methoden beeinflusst.
