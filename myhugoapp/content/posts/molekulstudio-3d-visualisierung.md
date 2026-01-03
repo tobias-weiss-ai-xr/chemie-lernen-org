@@ -158,7 +158,6 @@ Das Molekülstudio ist Teil eines integrierten Lernökosystems:
 |------------|----------|-----|
 | **Periodensystem** | Interaktive 3D-Darstellung aller 118 Elemente mit verschiedenen Ansichten (Tabelle, Kugel, Helix, Gitter) | [/perioden-system-der-elemente/](/perioden-system-der-elemente/) |
 | **Molekülstudio** | Visualisierung von Molekülen und Bindungen in Echtzeit-3D | [/molekuel-studio/](/molekuel-studio/) |
-| **Hubs** | Kollaborative VR-Lernräume für Gruppenarbeit und Experimente | [hubs.chemie-lernen.org](https://github.com/tobias-weiss-ai-xr/graphwiz-xr) |
 
 ### Synergien
 
@@ -167,8 +166,6 @@ Die verschiedenen Komponenten ergänzen sich:
 1. **Periodensystem → Molekülstudio**
    - Vom Element zum Molekül: Wie verbinden sich Atome?
 
-2. **Molekülstudio → Hubs**
-   - 2D-Web → 3D-VR: Vorbereitung auf immersive VR-Erlebnisse
 
 ---
 
@@ -304,14 +301,12 @@ Diese Plattform ist ein Open-Source-Projekt. Wenn Sie das Molekülstudio im Unte
 
 - 📧 **Kontakt:** [Kontakt-Seite](/pages/contact/)
 - 🔧 **GitHub:** [tobias-weiss-ai-xr](https://github.com/tobias-weiss-ai-xr)
-- 🥽 **VR-Hubs:** [hubs.chemie-lernen.org](https://github.com/tobias-weiss-ai-xr/graphwiz-xr)
 
 ---
 
 **Verwandte Ressourcen:**
 - [Periodensystem der Elemente](/perioden-system-der-elemente/) – 3D-Visualisierung aller 118 Elemente
 - [Roadmap: Ausbaustrategie](/pages/roadmap/) – Unsere Vision für die Zukunft des Chemielernens
-- [Mozilla Hubs](https://github.com/tobias-weiss-ai-xr/graphwiz-xr) – Kollaborative VR-Lernräume
 
 **Weitere Blog-Posts:**
 - [Eine interdisziplinäre Kooperation in der Hochschullehre mit Hilfe der virtuellen Realität](/posts/interdisciplinary-vr-cooperation/) – Forschungsartikel zur VR im Chemieunterricht

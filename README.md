@@ -140,7 +140,6 @@ Siehe [LICENSE](LICENSE) für Details.
 ## Kontakt
 
 - **Website**: https://chemie-lernen.org
-- **VR Labore**: https://hubs.chemie-lernen.org
 - **Issues**: https://github.com/tobias-weiss-ai-xr/hugo-chemie-lernen-org/issues
 
 ## Danksagung
