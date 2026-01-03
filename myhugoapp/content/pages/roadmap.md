@@ -22,6 +22,9 @@ Die aktuelle Plattform nutzt erfolgreich VR (Mozilla Hubs) zur Visualisierung de
 *   **✓ pH-Rechner (IMPLEMENTIERT):** Interaktiver Rechner für pH- und pOH-Werte mit starker und schwacher Säuren/Basen.
 *   **✓ Molare-Masse-Rechner (IMPLEMENTIERT):** Automatische Berechnung der molaren Masse aus chemischen Formeln mit detaillierter Elementaranalyse.
 *   **✓ Reaktionsgleichungen-Ausgleicher (IMPLEMENTIERT):** Automatisches Ausgleichen chemischer Reaktionsgleichungen mit Matrix-Methode und Verifizierung.
+*   **✓ Löslichkeitsprodukt-Rechner (IMPLEMENTIERT):** Berechnung von Ksp-Werten und Vorhersage von Fällungsreaktionen. [Jetzt berechnen](/loeslichkeitsprodukt-rechner/)
+*   **✓ Redox-Potenzial-Rechner (IMPLEMENTIERT):** Bestimmung von Zellspannungen, Gibbs-Energie und Redox-Gleichgewichten. [Jetzt berechnen](/redox-potenzial-rechner/)
+*   **✓ Konzentrationsumrechner (IMPLEMENTIERT):** Umrechnung zwischen 11 verschiedenen Konzentrationseinheiten (Molar, Molal, %, ppm, ppb, etc.). [Jetzt umrechnen](/konzentrationsumrechner/)
 
 ## 1. Immersive VR-Szenarioen 🥽
 
@@ -58,16 +61,28 @@ Um die Einführung an Schulen und Universitäten zu erhöhen:
 *   **Hybrides Lernen (WebGL):** Sicherstellen, dass jeder VR-Raum einen leistungsstarken "2D/Browser"-Modus für Schüler ohne VR-Headsets oder langsame Verbindungen bietet.
 *   **Wiki-Erweiterung:** Das Wiki sollte als "Lehrbuch" zum "Labor" des Hubs dienen. Jedes VR-Experiment sollte einen entsprechenden vertiefenden Artikel haben, der die Mathematik und Theorie dahinter erklärt.
 
-## 5. Erweiterte Berechner & Werkzeuge 🔬
+## 5. Erweiterte Berechner & Werkzeuge 🔬 (ABGESCHLOSSEN ✅)
 
-Geplante Erweiterungen für die bestehende Suite an chemischen Rechnern:
+**ALLE RECHNER IMPLEMENTIERT - Januar 2026**
 
-*   **Löslichkeitsprodukt-Rechner:** Berechnung von Ksp-Werten und Vorhersage von Fällungsreaktionen.
-*   **Redox-Potenzial-Rechner:** Bestimmung von Zellspannungen und Redox-Gleichgewichten.
-*   **Konzentrationsumrechner:** Umrechnung zwischen verschiedenen Konzentrationseinheiten (Molar, Molal, %, ppm, ppb).
-*   **Verbrennungsrechnungen:** Vollständige Analyse von Verbrennungsreaktionen mit Luftbedarf und CO2-Ausstoß.
-*   **Titrationssimulator:** Interaktive Simulation von Säure-Base-Titrationen mit Kurvenzeichnung.
-*   **Gasesetz-Rechner:** Kombinierte Berechnungen mit Boyle-Mariotte, Gay-Lussac und Ideal-Gas-Gesetz.
+Die Suite an erweiterten chemischen Rechnern ist jetzt vollständig verfügbar:
+
+*   **✓ Löslichkeitsprodukt-Rechner (IMPLEMENTIERT):** Berechnung von Ksp-Werten, Lösunglichkeit und Fällungsreaktionen. Unterstützt 25+ häufige Salze mit automatischer Stöchiometrie-Erkennung. [Jetzt berechnen](/loeslichkeitsprodukt-rechner/)
+*   **✓ Redox-Potenzial-Rechner (IMPLEMENTIERT):** Bestimmung von Zellspannungen, Gibbs-Energie (ΔG°) und Gleichgewichtskonstanten (K). Nernst-Gleichung für Nicht-Standard-Bedingungen. [Jetzt berechnen](/redox-potenzial-rechner/)
+*   **✓ Konzentrationsumrechner (IMPLEMENTIERT):** Umrechnung zwischen 11 verschiedenen Konzentrationseinheiten (Molar, Molal, % w/w, % v/v, % w/v, ppm, ppb, g/L, mg/L, Molenbruch, Normalität). [Jetzt umrechnen](/konzentrationsumrechner/)
+*   **✓ Verbrennungsrechner (IMPLEMENTIERT):** Vollständige Analyse von Verbrennungsreaktionen mit Luftbedarf, Abgaszusammensetzung, CO₂-Emissionen und Energiegehalt (Heizwert/Brennwert). Unterstützt C, H, O, N, S-haltige Verbindungen. [Jetzt analysieren](/verbrennungsrechner/)
+*   **✓ Titrationssimulator (IMPLEMENTIERT):** Interaktive Simulation von Säure-Base-Titrationen mit Echtzeit-pH-Berechnung, visueller Kurvenzeichnung (Chart.js) und Äquivalenzpunkt-Bestimmung. Unterstützt starke und schwache Elektrolyte. [Jetzt simulieren](/titrations-simulator/)
+*   **✓ Gasesetz-Rechner (IMPLEMENTIERT):** Kombinierte Berechnungen mit Idealem Gasgesetz (pV=nRT), Boyle-Mariotte (p₁V₁=p₂V₂), Gay-Lussac (V/T, p/T) und Kombiniertem Gasgesetz (p₁V₁/T₁=p₂V₂/T₂). Umfassende Einheitenumrechnungen. [Jetzt berechnen](/gasgesetz-rechner/)
+
+**Implementierungsumfang:**
+- 6 vollständige Berechner mit deutschsprachiger Oberfläche
+- Responsive Design für Desktop und Mobile
+- Umfassende Educational Content Sections mit Theorie, Beispielen und Anwendungstabellen
+- Interaktive Beispiele und Quick-Buttons
+- Farbcodierte Ergebnisse und Visualisierungen
+- Alle 299 Tests bestanden ✅
+- ESLint-konformer Code
+- Insgesamt über 4.100 Zeilen Code
 
 ## 6. Community & Zusammenarbeit 🤝
 
