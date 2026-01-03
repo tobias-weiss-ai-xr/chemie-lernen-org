@@ -11,7 +11,7 @@
  * @returns {Object} Element counts (e.g., {H: 2, O: 1})
  * @throws {Error} If formula contains invalid elements (when validElements is provided)
  */
-export function parseFormula(formula, options = {}) {
+function parseFormula(formula, options = {}) {
   const { validElements = null } = options;
   const composition = {};
   const regex = /([A-Z][a-z]?)(\d*)/g;
@@ -53,7 +53,7 @@ export function parseFormula(formula, options = {}) {
  * @param {string} formula - Chemical formula (e.g., "H2O")
  * @returns {string} HTML formatted formula (e.g., "H<sub>2</sub>O")
  */
-export function formatFormula(formula) {
+function formatFormula(formula) {
   return formula.replace(/(\d+)/g, '<sub>$1</sub>');
 }
 
@@ -63,7 +63,7 @@ export function formatFormula(formula) {
  * @param {Object} atomicMasses - Object mapping element symbols to atomic masses
  * @returns {number} Total molar mass in g/mol
  */
-export function calculateMolarMass(composition, atomicMasses) {
+function calculateMolarMass(composition, atomicMasses) {
   let totalMass = 0;
 
   for (const element in composition) {
@@ -82,7 +82,7 @@ export function calculateMolarMass(composition, atomicMasses) {
  * @param {number} totalMass - Total molar mass for percentage calculation
  * @returns {Array} Array of element detail objects
  */
-export function getCompositionDetails(composition, atomicMasses, totalMass) {
+function getCompositionDetails(composition, atomicMasses, totalMass) {
   const details = [];
 
   for (const element in composition) {
@@ -109,7 +109,7 @@ export function getCompositionDetails(composition, atomicMasses, totalMass) {
  * @param {string} formula - Chemical formula to validate
  * @returns {boolean} True if formula format is valid
  */
-export function isValidFormula(formula) {
+function isValidFormula(formula) {
   if (!formula || typeof formula !== 'string') {
     return false;
   }
@@ -124,7 +124,7 @@ export function isValidFormula(formula) {
  * @param {Array} formulas - Array of chemical formulas
  * @returns {Set} Set of unique element symbols
  */
-export function extractElements(formulas) {
+function extractElements(formulas) {
   const elements = new Set();
 
   formulas.forEach(formula => {

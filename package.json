@@ -56,10 +56,14 @@
       "**/tests/**/*.test.js"
     ],
     "collectCoverageFrom": [
-      "myhugoapp/static/js/calculators/**/*.js"
+      "myhugoapp/static/js/calculators/**/*.js",
+      "myhugoapp/static/js/utils/**/*.js"
     ],
     "coveragePathIgnorePatterns": [
       "/node_modules/"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(three|three-orbitcontrols|three-js-camera)/)"
     ],
     "coverageThreshold": {
       "global": {
