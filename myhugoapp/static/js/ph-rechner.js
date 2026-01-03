@@ -3,9 +3,33 @@
 // Constants
 const _KW_25C = 1e-14; // Water ion product at 25°C
 
+// DOM element cache for performance
+let domCache = null;
+
+// Initialize DOM cache
+function initDOMCache() {
+  if (domCache) return;
+
+  domCache = {
+    hplusInput: document.getElementById('hplus-input'),
+    hplusPH: document.getElementById('hplus-ph'),
+    hplusResult: document.getElementById('hplus-result'),
+    ohminusInput: document.getElementById('ohminus-input'),
+    ohminusPH: document.getElementById('ohminus-ph'),
+    ohminusResult: document.getElementById('ohminus-result'),
+    pohInput: document.getElementById('poh-input'),
+    pohPH: document.getElementById('poh-ph'),
+    pohResult: document.getElementById('poh-result'),
+    phIndicator: document.getElementById('ph-indicator'),
+    currentPHDisplay: document.getElementById('current-ph'),
+    phValue: document.getElementById('current-ph'),
+    phDescription: document.getElementById('ph-description')
+  };
+}
+
 // Calculate pH from H+ concentration
 function calculateFromHPlus() {
-  const input = document.getElementById('hplus-input').value;
+  const input = domCache.hplusInput.value;
   const hplus = parseFloat(input);
 
   if (isNaN(hplus) || hplus <= 0) {
@@ -21,8 +45,8 @@ function calculateFromHPlus() {
 
   // Display result
   const phDisplay = clampedPH.toFixed(2);
-  document.getElementById('hplus-ph').textContent = phDisplay;
-  document.getElementById('hplus-result').style.display = 'block';
+  domCache.hplusPH.textContent = phDisplay;
+  domCache.hplusResult.style.display = 'block';
 
   // Update scale visualization
   updatePHScale(clampedPH);
@@ -30,7 +54,7 @@ function calculateFromHPlus() {
 
 // Calculate pH from OH- concentration
 function calculateFromOHMinus() {
-  const input = document.getElementById('ohminus-input').value;
+  const input = domCache.ohminusInput.value;
   const ohminus = parseFloat(input);
 
   if (isNaN(ohminus) || ohminus <= 0) {
@@ -49,8 +73,8 @@ function calculateFromOHMinus() {
 
   // Display result
   const phDisplay = clampedPH.toFixed(2);
-  document.getElementById('ohminus-ph').textContent = phDisplay;
-  document.getElementById('ohminus-result').style.display = 'block';
+  domCache.ohminusPH.textContent = phDisplay;
+  domCache.ohminusResult.style.display = 'block';
 
   // Update scale visualization
   updatePHScale(clampedPH);
@@ -58,7 +82,7 @@ function calculateFromOHMinus() {
 
 // Calculate pH from pOH
 function calculateFromPOH() {
-  const input = document.getElementById('poh-input').value;
+  const input = domCache.pohInput.value;
   const poh = parseFloat(input);
 
   if (isNaN(poh) || poh < 0 || poh > 14) {
@@ -71,8 +95,8 @@ function calculateFromPOH() {
 
   // Display result
   const phDisplay = ph.toFixed(2);
-  document.getElementById('poh-ph').textContent = phDisplay;
-  document.getElementById('poh-result').style.display = 'block';
+  domCache.pohPH.textContent = phDisplay;
+  domCache.pohResult.style.display = 'block';
 
   // Update scale visualization
   updatePHScale(ph);
@@ -80,10 +104,10 @@ function calculateFromPOH() {
 
 // Update pH scale visualization
 function updatePHScale(ph) {
-  const indicator = document.getElementById('ph-indicator');
-  const currentPHDisplay = document.getElementById('current-ph');
-  const phValueSpan = document.getElementById('current-ph');
-  const phDescription = document.getElementById('ph-description');
+  const indicator = domCache.phIndicator;
+  const currentPHDisplay = domCache.currentPHDisplay;
+  const phValueSpan = domCache.phValue;
+  const phDescription = domCache.phDescription;
 
   // Update indicator position (0-14 scale)
   const percentage = (ph / 14) * 100;
@@ -133,18 +157,20 @@ function updatePHScale(ph) {
 
 // Initialize: Set indicator to neutral (pH 7)
 document.addEventListener('DOMContentLoaded', function() {
+  initDOMCache();
   updatePHScale(7);
 
   // Add enter key support for inputs
-  document.getElementById('hplus-input').addEventListener('keypress', function(e) {
+  domCache.hplusInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') calculateFromHPlus();
   });
 
-  document.getElementById('ohminus-input').addEventListener('keypress', function(e) {
+  domCache.ohminusInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') calculateFromOHMinus();
   });
 
-  document.getElementById('poh-input').addEventListener('keypress', function(e) {
+  domCache.pohInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') calculateFromPOH();
   });
 });
+

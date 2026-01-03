@@ -1438,3 +1438,8 @@ let queueChecker = setInterval(() => {
 setTimeout(() => {
     clearInterval(queueChecker);
 }, 5000);
+
+// Cleanup on page navigation to prevent memory leaks
+window.addEventListener('beforeunload', () => {
+    clearInterval(queueChecker);
+});
