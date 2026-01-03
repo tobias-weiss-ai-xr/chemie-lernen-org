@@ -8,9 +8,9 @@ draft: false
 
 Tauchen Sie ein in eine immersive virtuelle Realität und erkunden Sie das Periodensystem der Elemente wie nie zuvor. Diese WebXR-basierte Anwendung bietet ein einzigartiges Lernerlebnis für Schüler, Lehrer und Chemie-Enthusiasten.
 
-## 🔬 Was ist PSE in VR?
+## 🔬 Was ist das PSE in VR?
 
-PSE in VR ist eine interaktive WebXR-Anwendung, die das Periodensystem der Elemente in einem dreidimensionalen virtuellen Raum präsentiert. Nutzer können:
+Das PSE in VR ist eine interaktive WebXR-Anwendung, die das Periodensystem der Elemente in einem dreidimensionalen virtuellen Raum präsentiert. Nutzer können:
 
 - **Immersive Erkundung:** Durch das Periodensystem "wandern" und Elemente aus verschiedenen Perspektiven betrachten
 - **Interaktive Elemente:** Informationen zu jedem Element durch Berührung oder Auswahl abrufen
@@ -205,7 +205,7 @@ Die VR-Anwendung basiert auf dem Konzept des **experientiellen Lernens**:
 
 ## 🎯 Lernziele
 
-Nach der Nutzung von PSE in VR können Schüler:
+Nach der Nutzung des PSE in VR können Schüler:
 - Das Periodensystem räumlich visualisieren
 - Elementgruppen und -perioden identifizieren
 - Eigenschaften von Elementen besser verstehen

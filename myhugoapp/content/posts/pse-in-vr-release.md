@@ -8,11 +8,11 @@ categories: ["entwicklung"]
 
 # PSE in VR: Eine revolutionäre Art, Chemie zu lernen
 
-Wir freuen uns, die Veröffentlichung von **PSE in VR** ankündigen zu können - eine vollständige WebXR-basierte virtuelle Realität-Erfahrung für das Periodensystem der Elemente. Diese Innovation repräsentiert einen bedeutenden Schritt forward in der digitalen Chemiebildung.
+Wir freuen uns, die Veröffentlichung von **dem PSE in VR** ankündigen zu können - eine vollständige WebXR-basierte virtuelle Realität-Erfahrung für das Periodensystem der Elemente. Diese Innovation repräsentiert einen bedeutenden Schritt forward in der digitalen Chemiebildung.
 
 ## 🌟 Was ist neu?
 
-PSE in VR ist eine browserbasierte Virtual Reality-Anwendung, die das Periodensystem der Elemente in einem immersiven 3D-Raum präsentiert. Die Anwendung nutzt modernste WebXR-Technologie und bietet:
+Das PSE in VR ist eine browserbasierte Virtual Reality-Anwendung, die das Periodensystem der Elemente in einem immersiven 3D-Raum präsentiert. Die Anwendung nutzt modernste WebXR-Technologie und bietet:
 
 ### Kernfunktionen
 
@@ -230,7 +230,7 @@ Haben Sie Fragen oder Anregungen?
 
 ## 🎯 Fazit
 
-PSE in VR repräsentiert einen Paradigmenwechsel in der Chemiebildung. Durch die Kombination von modernster WebXR-Technologie mit soliden pädagogischen Prinzipien bieten wir eine Lernerfahrung, die:
+Das PSE in VR repräsentiert einen Paradigmenwechsel in der Chemiebildung. Durch die Kombination von modernster WebXR-Technologie mit soliden pädagogischen Prinzipien bieten wir eine Lernerfahrung, die:
 
 - **Zugänglich:** Funktioniert im Browser, keine teure Software erforderlich
 - **Sicher:** Gefährliche Experimente können virtuell durchgeführt werden
