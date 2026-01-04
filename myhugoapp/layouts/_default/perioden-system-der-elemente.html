@@ -5,13 +5,14 @@
 {{ end }}
 
 {{ define "main" }}
+<h1 class="sr-only">Periodensystem der Elemente - Interaktive 3D-Visualisierung</h1>
 <div id="menu">
-    <button id="table">TABELLE</button>
-    <button id="sphere">KUGEL</button>
-    <button id="helix">HELIX</button>
-    <button id="grid">GITTER</button>
+    <button id="table" aria-label="Tabellenansicht anzeigen">TABELLE</button>
+    <button id="sphere" aria-label="Kugelansicht anzeigen">KUGEL</button>
+    <button id="helix" aria-label="Helixansicht anzeigen">HELIX</button>
+    <button id="grid" aria-label="Gitteransicht anzeigen">GITTER</button>
 </div>
-<div id="container"></div>
+<div id="container" role="region" aria-label="Periodensystem der Elemente Visualisierung"></div>
 {{ end }}
 
 {{ define "js" }}
