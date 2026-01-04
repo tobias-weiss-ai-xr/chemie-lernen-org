@@ -7,25 +7,6 @@ tags: ['roadmap', 'entwicklung', 'vr']
 
 Die aktuelle Plattform nutzt erfolgreich VR (Mozilla Hubs) zur Visualisierung des Periodensystems und grundlegender Experimente. Um sich von einem forschungsorientierten Projekt zu einem umfassenden Lernökosystem zu entwickeln, werden folgende Erweiterungen empfohlen.
 
-## 0. Kürzliche Verbesserungen ✨ (Januar 2026)
-
-### Codequalität & Wartbarkeit
-
-- **✓ Shared Utility Modules (IMPLEMENTIERT):** Zentrale Bibliothek für chemische Formel-Parsing und Berechnungen. Eliminierung von ~160 Zeilen doppeltem Code über 3 Dateien. Verbesserte Wartbarkeit und Konsistenz.
-- **✓ Performance-Optimierung (IMPLEMENTIERT):** Screenshots von PNG zu WebP konvertiert. Ersparnis von 14.19 MB (80% Reduktion) bei verbesserter Bildqualität durch modernere Kompression.
-- **✓ Test-Infrastruktur (IMPLEMENTIERT):** Jest-Test-Suite für Stöchiometrie-Rechner, Export-Manager und Visualisierungskomponenten. 53+ Tests mit automatisierter Coverage-Berichterstattung.
-- **✓ ESLint & Prettier (IMPLEMENTIERT):** Automatische Code-Formatierung und Linting mit Pre-Commit-Hooks. Konsistenter Codestil über das gesamte Projekt.
-
-### Berechner & Werkzeuge
-
-- **✓ Stöchiometrie-Rechner (IMPLEMENTIERT):** Umfassender Rechner für Mol-Mol-Umrechnungen, Masse-Masse-Berechnungen, limitierende Reagenzien, prozentuale Ausbeute und Gasgesetze.
-- **✓ pH-Rechner (IMPLEMENTIERT):** Interaktiver Rechner für pH- und pOH-Werte mit starker und schwacher Säuren/Basen.
-- **✓ Molare-Masse-Rechner (IMPLEMENTIERT):** Automatische Berechnung der molaren Masse aus chemischen Formeln mit detaillierter Elementaranalyse.
-- **✓ Reaktionsgleichungen-Ausgleicher (IMPLEMENTIERT):** Automatisches Ausgleichen chemischer Reaktionsgleichungen mit Matrix-Methode und Verifizierung.
-- **✓ Löslichkeitsprodukt-Rechner (IMPLEMENTIERT):** Berechnung von Ksp-Werten und Vorhersage von Fällungsreaktionen. [Jetzt berechnen](/loeslichkeitsprodukt-rechner/)
-- **✓ Redox-Potenzial-Rechner (IMPLEMENTIERT):** Bestimmung von Zellspannungen, Gibbs-Energie und Redox-Gleichgewichten. [Jetzt berechnen](/redox-potenzial-rechner/)
-- **✓ Konzentrationsumrechner (IMPLEMENTIERT):** Umrechnung zwischen 11 verschiedenen Konzentrationseinheiten (Molar, Molal, %, ppm, ppb, etc.). [Jetzt umrechnen](/konzentrationsumrechner/)
-
 ## 1. Immersive VR-Szenarioen 🥽
 
 Während das Periodensystem ein guter Anfang ist, entfaltet VR seine größte Stärke bei der Visualisierung von Dingen, die sonst unsichtbar oder gefährlich sind.
@@ -424,6 +405,27 @@ Diese Sektion enthält eine detaillierte Analyse und Planung für die Erweiterun
 - ✅ Export-Funktionen (PDF, CSV)
 - ✅ Unit Tests (Jest, >70% Coverage)
 - ✅ E2E Tests (Playwright)
+
+---
+
+## 0. Kürzliche Verbesserungen ✨ (Januar 2026)
+
+### Codequalität & Wartbarkeit
+
+- **✓ Shared Utility Modules (IMPLEMENTIERT):** Zentrale Bibliothek für chemische Formel-Parsing und Berechnungen. Eliminierung von ~160 Zeilen doppeltem Code über 3 Dateien. Verbesserte Wartbarkeit und Konsistenz.
+- **✓ Performance-Optimierung (IMPLEMENTIERT):** Screenshots von PNG zu WebP konvertiert. Ersparnis von 14.19 MB (80% Reduktion) bei verbesserter Bildqualität durch modernere Kompression.
+- **✓ Test-Infrastruktur (IMPLEMENTIERT):** Jest-Test-Suite für Stöchiometrie-Rechner, Export-Manager und Visualisierungskomponenten. 53+ Tests mit automatisierter Coverage-Berichterstattung.
+- **✓ ESLint & Prettier (IMPLEMENTIERT):** Automatische Code-Formatierung und Linting mit Pre-Commit-Hooks. Konsistenter Codestil über das gesamte Projekt.
+
+### Berechner & Werkzeuge
+
+- **✓ Stöchiometrie-Rechner (IMPLEMENTIERT):** Umfassender Rechner für Mol-Mol-Umrechnungen, Masse-Masse-Berechnungen, limitierende Reagenzien, prozentuale Ausbeute und Gasgesetze.
+- **✓ pH-Rechner (IMPLEMENTIERT):** Interaktiver Rechner für pH- und pOH-Werte mit starker und schwacher Säuren/Basen.
+- **✓ Molare-Masse-Rechner (IMPLEMENTIERT):** Automatische Berechnung der molaren Masse aus chemischen Formeln mit detaillierter Elementaranalyse.
+- **✓ Reaktionsgleichungen-Ausgleicher (IMPLEMENTIERT):** Automatisches Ausgleichen chemischer Reaktionsgleichungen mit Matrix-Methode und Verifizierung.
+- **✓ Löslichkeitsprodukt-Rechner (IMPLEMENTIERT):** Berechnung von Ksp-Werten und Vorhersage von Fällungsreaktionen. [Jetzt berechnen](/loeslichkeitsprodukt-rechner/)
+- **✓ Redox-Potenzial-Rechner (IMPLEMENTIERT):** Bestimmung von Zellspannungen, Gibbs-Energie und Redox-Gleichgewichten. [Jetzt berechnen](/redox-potenzial-rechner/)
+- **✓ Konzentrationsumrechner (IMPLEMENTIERT):** Umrechnung zwischen 11 verschiedenen Konzentrationseinheiten (Molar, Molal, %, ppm, ppb, etc.). [Jetzt umrechnen](/konzentrationsumrechner/)
 
 ---
 
