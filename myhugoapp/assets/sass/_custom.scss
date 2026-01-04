@@ -110,3 +110,135 @@ img {
     height: auto;
     max-width: 100%;
 }
+
+/* ===================== */
+/* TOUCH TARGET IMPROVEMENTS */
+/* ===================== */
+
+@media (max-width: 768px) {
+    /* Ensure minimum touch target size of 44x44px for interactive elements */
+
+    /* Links in navigation */
+    .navbar-nav > li > a,
+    .dropdown-menu > li > a {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 12px 16px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    /* Buttons */
+    button,
+    .btn,
+    input[type="submit"],
+    input[type="button"],
+    input[type="reset"] {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+
+    /* Calculator buttons */
+    .calc-button,
+    input[type="number"] ~ button,
+    .calculator button,
+    .calculator input[type="button"] {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    /* Form inputs */
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"],
+    select,
+    textarea {
+        min-height: 44px;
+        font-size: 16px; /* Prevents iOS zoom on focus */
+        padding: 10px;
+    }
+
+    /* Pagination links */
+    .pagination a,
+    .pagination span {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 10px 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Panel links/cards */
+    .panel a,
+    .card a {
+        min-height: 44px;
+        padding: 12px 0;
+        display: inline-block;
+    }
+
+    /* Footer links */
+    footer a {
+        display: inline-block;
+        min-height: 44px;
+        padding: 8px 12px;
+        line-height: 1.5;
+    }
+
+    /* Navigation menu toggle */
+    .navbar-toggle {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 10px;
+    }
+
+    /* Search button */
+    .search-button,
+    input[type="submit"].search-button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Ensure clickable elements have adequate spacing */
+    a,
+    button,
+    input[type="submit"],
+    input[type="button"],
+    [role="button"] {
+        position: relative;
+    }
+
+    /* Add padding to inline links */
+    a:not(.btn) {
+        padding: 8px 4px;
+        margin: -8px -4px;
+    }
+
+    /* Make sure nav links are large enough */
+    .nav a,
+    .navbar-nav a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+    }
+
+    /* Calculator-specific improvements */
+    .calculator-input {
+        min-height: 48px !important;
+        font-size: 16px !important;
+        padding: 12px !important;
+    }
+
+    .calculator-btn {
+        min-height: 48px !important;
+        min-width: 48px !important;
+        font-size: 16px !important;
+    }
+}
