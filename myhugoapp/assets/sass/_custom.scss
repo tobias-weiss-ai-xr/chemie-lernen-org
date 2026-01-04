@@ -2,3 +2,111 @@
         display: flex;
         justify-content: center;
 }
+
+/* Mobile Responsiveness Fixes */
+
+/* Prevent horizontal scroll on body */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* Wrap tables for responsive scrolling - use wrapper div approach */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+}
+
+/* Make tables responsive */
+.table {
+    width: 100%;
+    max-width: 100%;
+    table-layout: auto;
+}
+
+@media (max-width: 768px) {
+    /* Simple table overflow fix */
+    .table {
+        max-width: 100%;
+        table-layout: auto;
+        font-size: 14px; /* Slightly smaller font on mobile */
+    }
+
+    .table td,
+    .table th {
+        word-break: break-word;
+        hyphens: auto;
+        padding: 8px 4px; /* Reduce padding on mobile */
+    }
+
+    /* Wrap tables in panels with overflow */
+    .panel {
+        overflow-x: hidden; /* Prevent panel from causing page scroll */
+    }
+}
+
+/* Make pre/code blocks responsive */
+pre {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+code {
+    max-width: 100%;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Highlight code blocks responsive */
+.highlight {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+}
+
+/* Fix any fixed-width containers */
+.container,
+.row,
+[class*="col-"] {
+    overflow-x: hidden;
+}
+
+/* Make panels responsive */
+.panel {
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+/* Responsive iframe embeds */
+iframe,
+embed,
+object,
+video {
+    max-width: 100%;
+}
+
+/* Fix for long URLs and unbreakable text */
+body,
+p,
+li,
+td,
+th {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Special handling for links to prevent them from overflowing */
+a {
+    word-break: break-word;
+    hyphens: auto;
+}
+
+/* Make sure images don't overflow */
+img {
+    height: auto;
+    max-width: 100%;
+}
