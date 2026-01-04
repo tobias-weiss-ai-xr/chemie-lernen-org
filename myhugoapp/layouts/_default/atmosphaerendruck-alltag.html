@@ -270,13 +270,13 @@
 
               <div class="control-group">
                 <label>Atmosphärendruck:</label>
-                <input type="range" id="saugnapf-air-pressure" min="0" max="100" value="101" oninput="updateSugnapfSimulation()">
+                <input type="range" id="saugnapf-air-pressure" min="0" max="100" value="101" oninput="updateSaugnapfSimulation()">
                 <span id="saugnapf-pressure-value">101.3 kPa</span>
               </div>
 
               <div class="control-group">
                 <label>Oberfläche:</label>
-                <select id="saugnapf-surface" onchange="updateSugnapfSimulation()">
+                <select id="saugnapf-surface" onchange="updateSaugnapfSimulation()">
                   <option value="glass">Glas (sehr glatt)</option>
                   <option value="wood" selected>Holz (mittelmäßig)</option>
                   <option value="concrete">Beton (rau)</option>
