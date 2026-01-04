@@ -40,6 +40,12 @@ jobs:
         working-directory: ./myhugoapp
         run: hugo --minify --baseURL https://chemie-lernen.org
 
+      - name: Fix file permissions
+        working-directory: ./myhugoapp
+        run: |
+          find public -type f -exec chmod 644 {} \;
+          find public -type d -exec chmod 755 {} \;
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
@@ -50,6 +56,10 @@ jobs:
             cd /home/weiss/git/hugo-chemie-lernen-org
             docker compose pull
             docker compose up -d --force-recreate
+            # Fix permissions for nginx
+            find myhugoapp/public -type f -exec chmod 644 {} \;
+            find myhugoapp/public -type d -exec chmod 755 {} \;
+            docker compose restart
 
       - name: Health check
         run: |
