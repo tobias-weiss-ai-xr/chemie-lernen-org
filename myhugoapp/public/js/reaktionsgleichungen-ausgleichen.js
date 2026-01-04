@@ -1,34 +1,7 @@
 // Chemical Equation Balancer JavaScript
 
-// Parse chemical formula and return element composition
-function parseFormula(formula) {
-  const composition = {};
-  const regex = /([A-Z][a-z]?)(\d*)/g;
-
-  // Handle parentheses recursively
-  formula = formula.replace(/\(([^()]+)\)(\d*)/g, function(match, group, multiplier) {
-    const mult = multiplier ? parseInt(multiplier) : 1;
-    let processedGroup = group.replace(/([A-Z][a-z]?)(\d*)/g, function(m, element, count) {
-      const c = count ? parseInt(count) : 1;
-      return element + (c * mult);
-    });
-    return processedGroup;
-  });
-
-  let match;
-  while ((match = regex.exec(formula)) !== null) {
-    const element = match[1];
-    const count = match[2] ? parseInt(match[2]) : 1;
-
-    if (composition.hasOwnProperty(element)) {
-      composition[element] += count;
-    } else {
-      composition[element] = count;
-    }
-  }
-
-  return composition;
-}
+// Parse chemical formula using shared utility from ChemistryUtils
+// See utils/chemistry-utils.js for implementation
 
 // Parse equation into reactants and products
 function parseEquation(equation) {
@@ -53,7 +26,7 @@ function getAllElements(reactants, products) {
   const elements = new Set();
 
   [...reactants, ...products].forEach(formula => {
-    const composition = parseFormula(formula);
+    const composition = window.ChemistryUtils.parseFormula(formula);
     Object.keys(composition).forEach(element => elements.add(element));
   });
 
@@ -86,13 +59,13 @@ function balanceEquation() {
 
       // Reactants (positive coefficients)
       for (const formula of reactants) {
-        const composition = parseFormula(formula);
+        const composition = window.ChemistryUtils.parseFormula(formula);
         row.push(composition[element] || 0);
       }
 
       // Products (negative coefficients)
       for (const formula of products) {
-        const composition = parseFormula(formula);
+        const composition = window.ChemistryUtils.parseFormula(formula);
         row.push(-(composition[element] || 0));
       }
 
@@ -247,12 +220,12 @@ function displayResults(reactants, products, coefficients, elements) {
     let productCount = 0;
 
     for (let i = 0; i < reactants.length; i++) {
-      const composition = parseFormula(reactants[i]);
+      const composition = window.ChemistryUtils.parseFormula(reactants[i]);
       reactantCount += (composition[element] || 0) * coefficients[i];
     }
 
     for (let i = 0; i < products.length; i++) {
-      const composition = parseFormula(products[i]);
+      const composition = window.ChemistryUtils.parseFormula(products[i]);
       productCount += (composition[element] || 0) * coefficients[reactants.length + i];
     }
 

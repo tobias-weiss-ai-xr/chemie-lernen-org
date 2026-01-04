@@ -1,13 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Gasgesetze on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title><link>https://chemie-lernen.org/tags/gasgesetze/</link><description>Recent content in Gasgesetze on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description><generator>Hugo</generator><language>de-de</language><lastBuildDate>Sat, 03 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/tags/gasgesetze/index.xml" rel="self" type="application/rss+xml"/><item><title>Gasgesetz-Rechner</title><link>https://chemie-lernen.org/gasgesetz-rechner/</link><pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/gasgesetz-rechner/</guid><description>&lt;h2 id="gasgesetz-rechner">Gasgesetz-Rechner&lt;/h2>
-&lt;p>Berechnen Sie Zustandsänderungen von Gasen mit den klassischen Gasgesetzen und dem IdealGas-Gesetz.&lt;/p>
-&lt;h3 id="funktionen">Funktionen&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>Boyle-Mariotte-Gesetz&lt;/strong>: Isotherme Zustandsänderung (p₁V₁ = p₂V₂ bei T = konst.)&lt;/li>
-&lt;li>&lt;strong>Gay-Lussac-Gesetz&lt;/strong>: Isobare und isochore Zustandsänderungen (V/T = konst., p/T = konst.)&lt;/li>
-&lt;li>&lt;strong>Kombiniertes Gasgesetz&lt;/strong>: p₁V₁/T₁ = p₂V₂/T₂ (allgemeine Zustandsänderung)&lt;/li>
-&lt;li>&lt;strong>Ideales Gasgesetz&lt;/strong>: pV = nRT (Berechnung aller Zustandsgrößen)&lt;/li>
-&lt;li>&lt;strong>Stoffmenge-Berechnung&lt;/strong>: Umrechnung zwischen Masse, Mol und Volumen&lt;/li>
-&lt;li>&lt;strong>Einheiten-Umrechnung&lt;/strong>: Automatische Konvertierung zwischen verschiedenen Druck- und Volumeneinheiten&lt;/li>
-&lt;li>&lt;strong>Normbedingungen&lt;/strong>: Automatische Berechnung von Normvolumen (22.414 L/mol bei STP)&lt;/li>
-&lt;/ul>
-&lt;p>Unterstützt alle Gase (ideale Näherung) mit verschiedenen Einheiten für Druck, Volumen, Temperatur und Stoffmenge.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Gasgesetze on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title><link>https://chemie-lernen.org/tags/gasgesetze/</link><description>Recent content in Gasgesetze on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description><generator>Hugo</generator><language>de-de</language><lastBuildDate>Sun, 04 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/tags/gasgesetze/index.xml" rel="self" type="application/rss+xml"/><item><title>Torricelli-Versuch - Atmosphärischer Druck</title><link>https://chemie-lernen.org/torricelli-versuch/</link><pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/torricelli-versuch/</guid><description>&lt;h2 id="torricelli-versuch-die-entdeckung-des-luftdrucks"&gt;Torricelli-Versuch: Die Entdeckung des Luftdrucks&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Evangelista Torricellis (1608-1647) revolutionäres Experiment&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Im Jahr 1643 führte der italienische Physiker Evangelista Torricelli ein Experiment durch, das die Existenz des atmosphärischen Drucks bewies und das erste Barometer erfand.&lt;/p&gt;
+&lt;h3 id="-das-experiment"&gt;🎯 Das Experiment&lt;/h3&gt;
+&lt;p&gt;Torricelli füllte eine etwa 1 Meter lange Glasröhre mit Quecksilber (Hg), verschloss sie an einem Ende und stellte sie upside-down in ein Quecksilbergefäß.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Das Ergebnis:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Das Quecksilber in der Röhre sank nicht vollständig ab&lt;/li&gt;
+&lt;li&gt;Es blieb eine Säule von etwa 76 cm Höhe stehen&lt;/li&gt;
+&lt;li&gt;Über dem Quecksilber entstand ein leerer Raum (Vakuum)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;┌─────────────────┐
+│ Vakuum │ ← &amp;#34;Torricelli-Leere Raum&amp;#34;
+├─────────────────┤
+│ Hg - Hg - Hg │ ← Quecksilbersäule (~760 mm)
+│ Hg - Hg - Hg │
+├─────────────────┤
+│ Hg - Hg - Hg │ ← Quecksilber im Gefäß
+│ Hg - Hg - Hg │
+└─────────────────┘
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="-die-erklärung"&gt;💡 Die Erklärung&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Warum fällt das Quecksilber nicht vollständig?&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Gasgesetz-Rechner</title><link>https://chemie-lernen.org/gasgesetz-rechner/</link><pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/gasgesetz-rechner/</guid><description>&lt;h2 id="gasgesetz-rechner"&gt;Gasgesetz-Rechner&lt;/h2&gt;
+&lt;p&gt;Berechnen Sie Zustandsänderungen von Gasen mit den klassischen Gasgesetzen und dem IdealGas-Gesetz.&lt;/p&gt;
+&lt;h3 id="funktionen"&gt;Funktionen&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Boyle-Mariotte-Gesetz&lt;/strong&gt;: Isotherme Zustandsänderung (p₁V₁ = p₂V₂ bei T = konst.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Gay-Lussac-Gesetz&lt;/strong&gt;: Isobare und isochore Zustandsänderungen (V/T = konst., p/T = konst.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Kombiniertes Gasgesetz&lt;/strong&gt;: p₁V₁/T₁ = p₂V₂/T₂ (allgemeine Zustandsänderung)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ideales Gasgesetz&lt;/strong&gt;: pV = nRT (Berechnung aller Zustandsgrößen)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stoffmenge-Berechnung&lt;/strong&gt;: Umrechnung zwischen Masse, Mol und Volumen&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Einheiten-Umrechnung&lt;/strong&gt;: Automatische Konvertierung zwischen verschiedenen Druck- und Volumeneinheiten&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Normbedingungen&lt;/strong&gt;: Automatische Berechnung von Normvolumen (22.414 L/mol bei STP)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Unterstützt alle Gase (ideale Näherung) mit verschiedenen Einheiten für Druck, Volumen, Temperatur und Stoffmenge.&lt;/p&gt;</description></item></channel></rss>

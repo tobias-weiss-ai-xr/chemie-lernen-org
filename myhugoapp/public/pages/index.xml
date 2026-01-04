@@ -1,66 +1,66 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title><link>https://chemie-lernen.org/pages/</link><description>Recent content in Pages on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description><generator>Hugo</generator><language>de-de</language><lastBuildDate>Sat, 03 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/pages/index.xml" rel="self" type="application/rss+xml"/><item><title>Roadmap: Ausbaustrategie</title><link>https://chemie-lernen.org/pages/roadmap/</link><pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/roadmap/</guid><description>&lt;p>Die aktuelle Plattform nutzt erfolgreich VR (Mozilla Hubs) zur Visualisierung des Periodensystems und grundlegender Experimente. Um sich von einem forschungsorientierten Projekt zu einem umfassenden Lernökosystem zu entwickeln, werden folgende Erweiterungen empfohlen.&lt;/p>
-&lt;h2 id="0-kürzliche-verbesserungen--januar-2026">0. Kürzliche Verbesserungen ✨ (Januar 2026)&lt;/h2>
-&lt;h3 id="codequalität--wartbarkeit">Codequalität &amp;amp; Wartbarkeit&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>✓ Shared Utility Modules (IMPLEMENTIERT):&lt;/strong> Zentrale Bibliothek für chemische Formel-Parsing und Berechnungen. Eliminierung von ~160 Zeilen doppeltem Code über 3 Dateien. Verbesserte Wartbarkeit und Konsistenz.&lt;/li>
-&lt;li>&lt;strong>✓ Performance-Optimierung (IMPLEMENTIERT):&lt;/strong> Screenshots von PNG zu WebP konvertiert. Ersparnis von 14.19 MB (80% Reduktion) bei verbesserter Bildqualität durch modernere Kompression.&lt;/li>
-&lt;li>&lt;strong>✓ Test-Infrastruktur (IMPLEMENTIERT):&lt;/strong> Jest-Test-Suite für Stöchiometrie-Rechner, Export-Manager und Visualisierungskomponenten. 53+ Tests mit automatisierter Coverage-Berichterstattung.&lt;/li>
-&lt;li>&lt;strong>✓ ESLint &amp;amp; Prettier (IMPLEMENTIERT):&lt;/strong> Automatische Code-Formatierung und Linting mit Pre-Commit-Hooks. Konsistenter Codestil über das gesamte Projekt.&lt;/li>
-&lt;/ul>
-&lt;h3 id="berechner--werkzeuge">Berechner &amp;amp; Werkzeuge&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>✓ Stöchiometrie-Rechner (IMPLEMENTIERT):&lt;/strong> Umfassender Rechner für Mol-Mol-Umrechnungen, Masse-Masse-Berechnungen, limitierende Reagenzien, prozentuale Ausbeute und Gasgesetze.&lt;/li>
-&lt;li>&lt;strong>✓ pH-Rechner (IMPLEMENTIERT):&lt;/strong> Interaktiver Rechner für pH- und pOH-Werte mit starker und schwacher Säuren/Basen.&lt;/li>
-&lt;li>&lt;strong>✓ Molare-Masse-Rechner (IMPLEMENTIERT):&lt;/strong> Automatische Berechnung der molaren Masse aus chemischen Formeln mit detaillierter Elementaranalyse.&lt;/li>
-&lt;li>&lt;strong>✓ Reaktionsgleichungen-Ausgleicher (IMPLEMENTIERT):&lt;/strong> Automatisches Ausgleichen chemischer Reaktionsgleichungen mit Matrix-Methode und Verifizierung.&lt;/li>
-&lt;li>&lt;strong>✓ Löslichkeitsprodukt-Rechner (IMPLEMENTIERT):&lt;/strong> Berechnung von Ksp-Werten und Vorhersage von Fällungsreaktionen. &lt;a href="https://chemie-lernen.org/loeslichkeitsprodukt-rechner/">Jetzt berechnen&lt;/a>&lt;/li>
-&lt;li>&lt;strong>✓ Redox-Potenzial-Rechner (IMPLEMENTIERT):&lt;/strong> Bestimmung von Zellspannungen, Gibbs-Energie und Redox-Gleichgewichten. &lt;a href="https://chemie-lernen.org/redox-potenzial-rechner/">Jetzt berechnen&lt;/a>&lt;/li>
-&lt;li>&lt;strong>✓ Konzentrationsumrechner (IMPLEMENTIERT):&lt;/strong> Umrechnung zwischen 11 verschiedenen Konzentrationseinheiten (Molar, Molal, %, ppm, ppb, etc.). &lt;a href="https://chemie-lernen.org/konzentrationsumrechner/">Jetzt umrechnen&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h2 id="1-immersive-vr-szenarioen-">1. Immersive VR-Szenarioen 🥽&lt;/h2>
-&lt;p>Während das Periodensystem ein guter Anfang ist, entfaltet VR seine größte Stärke bei der Visualisierung von Dingen, die sonst unsichtbar oder gefährlich sind.&lt;/p></description></item><item><title>PSE in VR - Virtuelles Periodensystem</title><link>https://chemie-lernen.org/pages/pse-in-vr/</link><pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/pse-in-vr/</guid><description>&lt;p>Tauchen Sie ein in eine immersive virtuelle Realität und erkunden Sie das Periodensystem der Elemente wie nie zuvor. Diese WebXR-basierte Anwendung bietet ein einzigartiges Lernerlebnis für Schüler, Lehrer und Chemie-Enthusiasten.&lt;/p>
-&lt;h2 id="-was-ist-das-pse-in-vr">🔬 Was ist das PSE in VR?&lt;/h2>
-&lt;p>Das PSE in VR ist eine interaktive WebXR-Anwendung, die das Periodensystem der Elemente in einem dreidimensionalen virtuellen Raum präsentiert. Nutzer können:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Immersive Erkundung:&lt;/strong> Durch das Periodensystem &amp;ldquo;wandern&amp;rdquo; und Elemente aus verschiedenen Perspektiven betrachten&lt;/li>
-&lt;li>&lt;strong>Interaktive Elemente:&lt;/strong> Informationen zu jedem Element durch Berührung oder Auswahl abrufen&lt;/li>
-&lt;li>&lt;strong>Virtuelle Experimente:&lt;/strong> Sichere Simulation von chemischen Reaktionen in VR&lt;/li>
-&lt;li>&lt;strong>Multiplayer-Lernen:&lt;/strong> Zusammen mit anderen in virtuellen Räumen lernen&lt;/li>
-&lt;/ul>
-&lt;h2 id="-features">🎮 Features&lt;/h2>
-&lt;h3 id="1-webxr-basierte-technologie">1. &lt;strong>WebXR-basierte Technologie&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>Kompatibel mit modernen VR-Headsets (Meta Quest, HTC Vive, etc.)&lt;/li>
-&lt;li>Browser-basiert - keine zusätzliche Software erforderlich&lt;/li>
-&lt;li>Unterstützt auch Desktop-Navigation ohne VR-Headset&lt;/li>
-&lt;/ul>
-&lt;h3 id="2-interaktive-lernumgebung">2. &lt;strong>Interaktive Lernumgebung&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>3D-Periodensystem:&lt;/strong> Räumliche Anordnung aller 118 Elemente&lt;/li>
-&lt;li>&lt;strong>Element-Informationen:&lt;/strong> Detaillierte Daten zu jedem Element auf Abruf&lt;/li>
-&lt;li>&lt;strong>Gruppierung nach Elementfamilien:&lt;/strong> Farbcodierte Darstellung der Hauptgruppen&lt;/li>
-&lt;li>&lt;strong>Automatische Rotation:&lt;/strong> Optional für bessere Sichtbarkeit&lt;/li>
-&lt;/ul>
-&lt;h3 id="3-gefahrfreie-experimente">3. &lt;strong>Gefahrfreie Experimente&lt;/strong>&lt;/h3>
-&lt;p>Führen Sie virtuelle Experimente durch, die zu gefährlich für ein echtes Labor wären:&lt;/p></description></item><item><title>Mayers 12 Prinzipien des Multimedialen Lernens</title><link>https://chemie-lernen.org/pages/mayers-multimedia-lernen/</link><pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/mayers-multimedia-lernen/</guid><description>&lt;h1 id="mayers-12-prinzipien-des-multimedialen-lernens">Mayers 12 Prinzipien des Multimedialen Lernens&lt;/h1>
-&lt;h2 id="einleitung">Einleitung&lt;/h2>
-&lt;p>&lt;strong>Richard E. Mayer&lt;/strong>, Professor für Psychologie an der University of California, Santa Barbara, ist einer der führenden Experten auf dem Gebiet des multimedialen Lernens. Seine Forschung hat gezeigt, wie wir effektive Lernumgebungen gestalten können, die das menschliche Arbeitsgedächtnis optimal nutzen.&lt;/p>
-&lt;p>Diese Prinzipien sind besonders relevant für die Gestaltung von &lt;strong>digitalen Lernräumen für chemische Elemente&lt;/strong>, interaktive Periodensysteme und VR-basierte Lernumgebungen wie sie auf chemie-lernen.org entwickelt werden.&lt;/p></description></item><item><title>Suche</title><link>https://chemie-lernen.org/pages/suche/</link><pubDate>Sat, 27 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/suche/</guid><description>&lt;h2 id="suchergebnisse">Suchergebnisse&lt;/h2>
-&lt;div class="search-container">
- &lt;div class="search-form-wrapper">
- &lt;div class="input-group">
- &lt;input type="text" id="search-input" class="form-control" placeholder="Thema suchen..." value="">
- &lt;span class="input-group-btn">
- &lt;button class="btn btn-default" type="button" onclick="performSearch(); return false;">Suchen&lt;/button>
- &lt;/span>
- &lt;/div>
- &lt;/div>
- &lt;div id="search-results">
- &lt;p class="search-loading">Lade Suchindex...&lt;/p>
- &lt;/div>
- &lt;div id="search-stats" class="search-stats">&lt;/div>
-&lt;/div>
-&lt;style>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title><link>https://chemie-lernen.org/pages/</link><description>Recent content in Pages on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description><generator>Hugo</generator><language>de-de</language><lastBuildDate>Sat, 03 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/pages/index.xml" rel="self" type="application/rss+xml"/><item><title>Roadmap: Ausbaustrategie</title><link>https://chemie-lernen.org/pages/roadmap/</link><pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/roadmap/</guid><description>&lt;p&gt;Die aktuelle Plattform nutzt erfolgreich VR (Mozilla Hubs) zur Visualisierung des Periodensystems und grundlegender Experimente. Um sich von einem forschungsorientierten Projekt zu einem umfassenden Lernökosystem zu entwickeln, werden folgende Erweiterungen empfohlen.&lt;/p&gt;
+&lt;h2 id="0-kürzliche-verbesserungen--januar-2026"&gt;0. Kürzliche Verbesserungen ✨ (Januar 2026)&lt;/h2&gt;
+&lt;h3 id="codequalität--wartbarkeit"&gt;Codequalität &amp;amp; Wartbarkeit&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;✓ Shared Utility Modules (IMPLEMENTIERT):&lt;/strong&gt; Zentrale Bibliothek für chemische Formel-Parsing und Berechnungen. Eliminierung von ~160 Zeilen doppeltem Code über 3 Dateien. Verbesserte Wartbarkeit und Konsistenz.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;✓ Performance-Optimierung (IMPLEMENTIERT):&lt;/strong&gt; Screenshots von PNG zu WebP konvertiert. Ersparnis von 14.19 MB (80% Reduktion) bei verbesserter Bildqualität durch modernere Kompression.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;✓ Test-Infrastruktur (IMPLEMENTIERT):&lt;/strong&gt; Jest-Test-Suite für Stöchiometrie-Rechner, Export-Manager und Visualisierungskomponenten. 53+ Tests mit automatisierter Coverage-Berichterstattung.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;✓ ESLint &amp;amp; Prettier (IMPLEMENTIERT):&lt;/strong&gt; Automatische Code-Formatierung und Linting mit Pre-Commit-Hooks. Konsistenter Codestil über das gesamte Projekt.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="berechner--werkzeuge"&gt;Berechner &amp;amp; Werkzeuge&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;✓ Stöchiometrie-Rechner (IMPLEMENTIERT):&lt;/strong&gt; Umfassender Rechner für Mol-Mol-Umrechnungen, Masse-Masse-Berechnungen, limitierende Reagenzien, prozentuale Ausbeute und Gasgesetze.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;✓ pH-Rechner (IMPLEMENTIERT):&lt;/strong&gt; Interaktiver Rechner für pH- und pOH-Werte mit starker und schwacher Säuren/Basen.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;✓ Molare-Masse-Rechner (IMPLEMENTIERT):&lt;/strong&gt; Automatische Berechnung der molaren Masse aus chemischen Formeln mit detaillierter Elementaranalyse.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;✓ Reaktionsgleichungen-Ausgleicher (IMPLEMENTIERT):&lt;/strong&gt; Automatisches Ausgleichen chemischer Reaktionsgleichungen mit Matrix-Methode und Verifizierung.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;✓ Löslichkeitsprodukt-Rechner (IMPLEMENTIERT):&lt;/strong&gt; Berechnung von Ksp-Werten und Vorhersage von Fällungsreaktionen. &lt;a href="https://chemie-lernen.org/loeslichkeitsprodukt-rechner/"&gt;Jetzt berechnen&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;✓ Redox-Potenzial-Rechner (IMPLEMENTIERT):&lt;/strong&gt; Bestimmung von Zellspannungen, Gibbs-Energie und Redox-Gleichgewichten. &lt;a href="https://chemie-lernen.org/redox-potenzial-rechner/"&gt;Jetzt berechnen&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;✓ Konzentrationsumrechner (IMPLEMENTIERT):&lt;/strong&gt; Umrechnung zwischen 11 verschiedenen Konzentrationseinheiten (Molar, Molal, %, ppm, ppb, etc.). &lt;a href="https://chemie-lernen.org/konzentrationsumrechner/"&gt;Jetzt umrechnen&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="1-immersive-vr-szenarioen-"&gt;1. Immersive VR-Szenarioen 🥽&lt;/h2&gt;
+&lt;p&gt;Während das Periodensystem ein guter Anfang ist, entfaltet VR seine größte Stärke bei der Visualisierung von Dingen, die sonst unsichtbar oder gefährlich sind.&lt;/p&gt;</description></item><item><title>PSE in VR - Virtuelles Periodensystem</title><link>https://chemie-lernen.org/pages/pse-in-vr/</link><pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/pse-in-vr/</guid><description>&lt;p&gt;Tauchen Sie ein in eine immersive virtuelle Realität und erkunden Sie das Periodensystem der Elemente wie nie zuvor. Diese WebXR-basierte Anwendung bietet ein einzigartiges Lernerlebnis für Schüler, Lehrer und Chemie-Enthusiasten.&lt;/p&gt;
+&lt;h2 id="-was-ist-das-pse-in-vr"&gt;🔬 Was ist das PSE in VR?&lt;/h2&gt;
+&lt;p&gt;Das PSE in VR ist eine interaktive WebXR-Anwendung, die das Periodensystem der Elemente in einem dreidimensionalen virtuellen Raum präsentiert. Nutzer können:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Immersive Erkundung:&lt;/strong&gt; Durch das Periodensystem &amp;ldquo;wandern&amp;rdquo; und Elemente aus verschiedenen Perspektiven betrachten&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Interaktive Elemente:&lt;/strong&gt; Informationen zu jedem Element durch Berührung oder Auswahl abrufen&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Virtuelle Experimente:&lt;/strong&gt; Sichere Simulation von chemischen Reaktionen in VR&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multiplayer-Lernen:&lt;/strong&gt; Zusammen mit anderen in virtuellen Räumen lernen&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="-features"&gt;🎮 Features&lt;/h2&gt;
+&lt;h3 id="1-webxr-basierte-technologie"&gt;1. &lt;strong&gt;WebXR-basierte Technologie&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Kompatibel mit modernen VR-Headsets (Meta Quest, HTC Vive, etc.)&lt;/li&gt;
+&lt;li&gt;Browser-basiert - keine zusätzliche Software erforderlich&lt;/li&gt;
+&lt;li&gt;Unterstützt auch Desktop-Navigation ohne VR-Headset&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="2-interaktive-lernumgebung"&gt;2. &lt;strong&gt;Interaktive Lernumgebung&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;3D-Periodensystem:&lt;/strong&gt; Räumliche Anordnung aller 118 Elemente&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Element-Informationen:&lt;/strong&gt; Detaillierte Daten zu jedem Element auf Abruf&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Gruppierung nach Elementfamilien:&lt;/strong&gt; Farbcodierte Darstellung der Hauptgruppen&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatische Rotation:&lt;/strong&gt; Optional für bessere Sichtbarkeit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="3-gefahrfreie-experimente"&gt;3. &lt;strong&gt;Gefahrfreie Experimente&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Führen Sie virtuelle Experimente durch, die zu gefährlich für ein echtes Labor wären:&lt;/p&gt;</description></item><item><title>Mayers 12 Prinzipien des Multimedialen Lernens</title><link>https://chemie-lernen.org/pages/mayers-multimedia-lernen/</link><pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/mayers-multimedia-lernen/</guid><description>&lt;h1 id="mayers-12-prinzipien-des-multimedialen-lernens"&gt;Mayers 12 Prinzipien des Multimedialen Lernens&lt;/h1&gt;
+&lt;h2 id="einleitung"&gt;Einleitung&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Richard E. Mayer&lt;/strong&gt;, Professor für Psychologie an der University of California, Santa Barbara, ist einer der führenden Experten auf dem Gebiet des multimedialen Lernens. Seine Forschung hat gezeigt, wie wir effektive Lernumgebungen gestalten können, die das menschliche Arbeitsgedächtnis optimal nutzen.&lt;/p&gt;
+&lt;p&gt;Diese Prinzipien sind besonders relevant für die Gestaltung von &lt;strong&gt;digitalen Lernräumen für chemische Elemente&lt;/strong&gt;, interaktive Periodensysteme und VR-basierte Lernumgebungen wie sie auf chemie-lernen.org entwickelt werden.&lt;/p&gt;</description></item><item><title>Suche</title><link>https://chemie-lernen.org/pages/suche/</link><pubDate>Sat, 27 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/suche/</guid><description>&lt;h2 id="suchergebnisse"&gt;Suchergebnisse&lt;/h2&gt;
+&lt;div class="search-container"&gt;
+ &lt;div class="search-form-wrapper"&gt;
+ &lt;div class="input-group"&gt;
+ &lt;input type="text" id="search-input" class="form-control" placeholder="Thema suchen..." value=""&gt;
+ &lt;span class="input-group-btn"&gt;
+ &lt;button class="btn btn-default" type="button" onclick="performSearch(); return false;"&gt;Suchen&lt;/button&gt;
+ &lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div id="search-results"&gt;
+ &lt;p class="search-loading"&gt;Lade Suchindex...&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;div id="search-stats" class="search-stats"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;style&gt;
 .search-container {
  max-width: 800px;
  margin: 40px auto;
@@ -168,8 +168,8 @@
  color: #adb5bd;
  }
 }
-&lt;/style>
-&lt;script>
+&lt;/style&gt;
+&lt;script&gt;
 // Get search query from URL parameter
 const urlParams = new URLSearchParams(window.location.search);
 const searchQuery = urlParams.get('q') || '';
@@ -202,35 +202,35 @@ async function performSearch() {
  const statsContainer = document.getElementById('search-stats');
 
  if (!query) {
- resultsContainer.innerHTML = '&lt;p class="no-results">Bitte geben Sie einen Suchbegriff ein.&lt;/p></description></item><item><title>Kontakt</title><link>https://chemie-lernen.org/pages/contact/</link><pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/contact/</guid><description>&lt;p>Haben Sie Fragen oder Anregungen? Wir freuen uns über Ihre Nachricht!&lt;/p>
-&lt;form action="https://formsubmit.co/spam@tobias-weiss.org" method="POST" style="max-width: 500px; margin-top: 20px;">
- &lt;div class="form-group">
- &lt;label for="name">Name:&lt;/label>
- &lt;input type="text" id="name" name="name" class="form-control" required>
- &lt;/div>
- &lt;div class="form-group">
- &lt;label for="email">E-Mail:&lt;/label>
- &lt;input type="email" id="email" name="email" class="form-control" required>
- &lt;/div>
- &lt;div class="form-group">
- &lt;label for="subject">Betreff:&lt;/label>
- &lt;input type="text" id="subject" name="subject" class="form-control" required>
- &lt;/div>
- &lt;div class="form-group">
- &lt;label for="message">Nachricht:&lt;/label>
- &lt;textarea id="message" name="message" class="form-control" rows="5" required>&lt;/textarea>
- &lt;/div>
- &lt;!-- Honeypot to prevent spam -->
- &lt;input type="text" name="_honey" style="display:none">
- &lt;!-- Captcha will be shown by Formsubmit.co on first submission -->
- &lt;button type="submit" class="btn btn-primary">Absenden&lt;/button>
-&lt;/form>
-&lt;div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #007bff;">
- &lt;p style="margin: 0; font-size: 0.9rem; color: #495057;">
- &lt;strong>💡 Hinweis:&lt;/strong> Ihre Nachricht wird sicher über Formsubmit.co versendet. Sie erhalten eine Bestätigung per E-Mail.
- &lt;/p>
-&lt;/div>
-&lt;script>
+ resultsContainer.innerHTML = '&lt;p class="no-results"&gt;Bitte geben Sie einen Suchbegriff ein.&lt;/p&gt;</description></item><item><title>Kontakt</title><link>https://chemie-lernen.org/pages/contact/</link><pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/contact/</guid><description>&lt;p&gt;Haben Sie Fragen oder Anregungen? Wir freuen uns über Ihre Nachricht!&lt;/p&gt;
+&lt;form action="https://formsubmit.co/spam@tobias-weiss.org" method="POST" style="max-width: 500px; margin-top: 20px;"&gt;
+ &lt;div class="form-group"&gt;
+ &lt;label for="name"&gt;Name:&lt;/label&gt;
+ &lt;input type="text" id="name" name="name" class="form-control" required&gt;
+ &lt;/div&gt;
+ &lt;div class="form-group"&gt;
+ &lt;label for="email"&gt;E-Mail:&lt;/label&gt;
+ &lt;input type="email" id="email" name="email" class="form-control" required&gt;
+ &lt;/div&gt;
+ &lt;div class="form-group"&gt;
+ &lt;label for="subject"&gt;Betreff:&lt;/label&gt;
+ &lt;input type="text" id="subject" name="subject" class="form-control" required&gt;
+ &lt;/div&gt;
+ &lt;div class="form-group"&gt;
+ &lt;label for="message"&gt;Nachricht:&lt;/label&gt;
+ &lt;textarea id="message" name="message" class="form-control" rows="5" required&gt;&lt;/textarea&gt;
+ &lt;/div&gt;
+ &lt;!-- Honeypot to prevent spam --&gt;
+ &lt;input type="text" name="_honey" style="display:none"&gt;
+ &lt;!-- Captcha will be shown by Formsubmit.co on first submission --&gt;
+ &lt;button type="submit" class="btn btn-primary"&gt;Absenden&lt;/button&gt;
+&lt;/form&gt;
+&lt;div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #007bff;"&gt;
+ &lt;p style="margin: 0; font-size: 0.9rem; color: #495057;"&gt;
+ &lt;strong&gt;💡 Hinweis:&lt;/strong&gt; Ihre Nachricht wird sicher über Formsubmit.co versendet. Sie erhalten eine Bestätigung per E-Mail.
+ &lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt;
 // Optional: Client-side form validation enhancement
 document.addEventListener('DOMContentLoaded', function() {
  const form = document.querySelector('form[action*="formsubmit.co"]');
@@ -252,8 +252,8 @@ document.addEventListener('DOMContentLoaded', function() {
  });
  }
 });
-&lt;/script></description></item><item><title>Über uns</title><link>https://chemie-lernen.org/pages/about/</link><pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/about/</guid><description>&lt;h2 id="willkommen-bei-chemie-lernenorg">Willkommen bei chemie-lernen.org&lt;/h2>
-&lt;p>Wir sind ein Projekt, das sich der innovativen Vermittlung von chemischem Wissen widmet. Durch den Einsatz von Virtual Reality (VR) und Plattformen wie Mozilla Hubs ermöglichen wir interaktive Lernerfahrungen, die über traditionelle Lehrmethoden hinausgehen.&lt;/p>
-&lt;p>Unsere Mission ist es, komplexe Konzepte wie das Periodensystem der Elemente greifbar und erlebbar zu machen.&lt;/p>
-&lt;h2 id="über-den-gründer">Über den Gründer&lt;/h2>
-&lt;p>Dieses Projekt wurde von &lt;strong>Tobias Weiß&lt;/strong> ins Leben gerufen, einem leidenschaftlichen Entwickler und Pädagogen mit einem Hintergrund in Informatik und Didaktik. Tobias kombiniert technisches Expertise in Full-Stack-Entwicklung, Künstlicher Intelligenz und Web-Technologien mit pädagogischem Engagement, um innovative Lernplattformen zu schaffen.&lt;/p></description></item></channel></rss>
+&lt;/script&gt;</description></item><item><title>Über uns</title><link>https://chemie-lernen.org/pages/about/</link><pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/about/</guid><description>&lt;h2 id="willkommen-bei-chemie-lernenorg"&gt;Willkommen bei chemie-lernen.org&lt;/h2&gt;
+&lt;p&gt;Wir sind ein Projekt, das sich der innovativen Vermittlung von chemischem Wissen widmet. Durch den Einsatz von Virtual Reality (VR) und Plattformen wie Mozilla Hubs ermöglichen wir interaktive Lernerfahrungen, die über traditionelle Lehrmethoden hinausgehen.&lt;/p&gt;
+&lt;p&gt;Unsere Mission ist es, komplexe Konzepte wie das Periodensystem der Elemente greifbar und erlebbar zu machen.&lt;/p&gt;
+&lt;h2 id="über-den-gründer"&gt;Über den Gründer&lt;/h2&gt;
+&lt;p&gt;Dieses Projekt wurde von &lt;strong&gt;Tobias Weiß&lt;/strong&gt; ins Leben gerufen, einem leidenschaftlichen Entwickler und Pädagogen mit einem Hintergrund in Informatik und Didaktik. Tobias kombiniert technisches Expertise in Full-Stack-Entwicklung, Künstlicher Intelligenz und Web-Technologien mit pädagogischem Engagement, um innovative Lernplattformen zu schaffen.&lt;/p&gt;</description></item></channel></rss>
