@@ -49,7 +49,7 @@
                       <input type="text" id="ig-pressure" class="form-control"
                              placeholder="z.B. 1.013"
                                aria-label="Druck">
-                      <select id="ig-pressure-unit" class="form-control">
+                      <select id="ig-pressure-unit" class="form-control" aria-label="Druckeinheit">
                         <option value="bar">bar</option>
                         <option value="Pa">Pa</option>
                         <option value="kPa">kPa</option>
@@ -64,7 +64,7 @@
                       <input type="text" id="ig-volume" class="form-control"
                              placeholder="z.B. 22.4"
                                aria-label="Volumen">
-                      <select id="ig-volume-unit" class="form-control">
+                      <select id="ig-volume-unit" class="form-control" aria-label="Volumeneinheit">
                         <option value="L">L</option>
                         <option value="m3">m³</option>
                         <option value="mL">mL</option>
@@ -78,7 +78,7 @@
                       <input type="text" id="ig-amount" class="form-control"
                              placeholder="z.B. 1"
                                aria-label="Stoffmenge">
-                      <select id="ig-amount-unit" class="form-control">
+                      <select id="ig-amount-unit" class="form-control" aria-label="Stoffmengeneinheit">
                         <option value="mol">mol</option>
                         <option value="mmol">mmol</option>
                       </select>
@@ -91,7 +91,7 @@
                              placeholder="z.B. 273.15"
                                value="273.15"
                                aria-label="Temperatur">
-                      <select id="ig-temp-unit" class="form-control">
+                      <select id="ig-temp-unit" class="form-control" aria-label="Temperatureinheit">
                         <option value="K">Kelvin (K)</option>
                         <option value="C">Celsius (°C)</option>
                       </select>
@@ -188,7 +188,7 @@
 
                 <div class="form-group">
                   <label>Gesetz wählen:</label>
-                  <select id="gl-law-type" class="form-control">
+                  <select id="gl-law-type" class="form-control" aria-label="Gesetzwahl">
                     <option value="isobar">Isobares Gesetz (V₁/T₁ = V₂/T₂ bei p = konst.)</option>
                     <option value="isochor">Ichores Gesetz (p₁/T₁ = p₂/T₂ bei V = konst.)</option>
                   </select>
