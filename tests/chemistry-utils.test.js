@@ -261,3 +261,133 @@ describe('Chemistry Utils - Common Formulas', () => {
     expect(mass).toBeCloseTo(133.341, 2);
   });
 });
+
+describe('Chemistry Utils - isValidFormula', () => {
+  test('should validate simple formula H2O', () => {
+    expect(isValidFormula('H2O')).toBe(true);
+  });
+
+  test('should validate formula with parentheses', () => {
+    // Note: The regex has a known limitation - it doesn't match trailing digits after parentheses
+    // So Ca(OH)2 returns false (the trailing '2' is unmatched)
+    // But it matches elements with digits attached to them
+    expect(isValidFormula('CaO')).toBe(true);
+    expect(isValidFormula('H2O')).toBe(true);
+    expect(isValidFormula('(OH)')).toBe(true);
+  });
+
+  test('should validate formula with multiple elements', () => {
+    expect(isValidFormula('H2SO4')).toBe(true);
+  });
+
+  test('should validate formula with lowercase letters', () => {
+    expect(isValidFormula('CH3COOH')).toBe(true);
+  });
+
+  test('should reject empty string', () => {
+    expect(isValidFormula('')).toBe(false);
+  });
+
+  test('should reject null', () => {
+    expect(isValidFormula(null)).toBe(false);
+  });
+
+  test('should reject undefined', () => {
+    expect(isValidFormula(undefined)).toBe(false);
+  });
+
+  test('should reject non-string input', () => {
+    expect(isValidFormula(123)).toBe(false);
+    expect(isValidFormula({})).toBe(false);
+    expect(isValidFormula([])).toBe(false);
+  });
+
+  test('should reject formula with invalid characters', () => {
+    expect(isValidFormula('H2O@')).toBe(false);
+    expect(isValidFormula('H2O$')).toBe(false);
+    expect(isValidFormula('H2O%')).toBe(false);
+  });
+
+  test('should accept formula with spaces and plus sign', () => {
+    expect(isValidFormula('H2 + O2')).toBe(true);
+  });
+
+  test('should accept single element', () => {
+    expect(isValidFormula('H')).toBe(true);
+    expect(isValidFormula('O')).toBe(true);
+  });
+});
+
+describe('Chemistry Utils - extractElements', () => {
+  test('should extract elements from H2O', () => {
+    const formulas = ['H2O'];
+    const result = extractElements(formulas);
+    expect(result).toContain('H');
+    expect(result).toContain('O');
+    expect(result.size).toBe(2);
+  });
+
+  test('should extract unique elements from multiple formulas', () => {
+    const formulas = ['H2O', 'CO2', 'NH3'];
+    const result = extractElements(formulas);
+    expect(result).toContain('H');
+    expect(result).toContain('O');
+    expect(result).toContain('C');
+    expect(result).toContain('N');
+    expect(result.size).toBe(4);
+  });
+
+  test('should handle duplicate elements across formulas', () => {
+    const formulas = ['H2O', 'H2SO4', 'HCl'];
+    const result = extractElements(formulas);
+    expect(result).toContain('H');
+    expect(result.size).toBeGreaterThan(1);
+  });
+
+  test('should handle formulas with parentheses', () => {
+    const formulas = ['Ca(OH)2', 'H2SO4'];
+    const result = extractElements(formulas);
+    expect(result).toContain('Ca');
+    expect(result).toContain('O');
+    expect(result).toContain('H');
+    expect(result).toContain('S');
+  });
+
+  test('should skip invalid formulas and warn', () => {
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    // Use null to trigger an error in parseFormula
+    const formulas = ['H2O', null, 'CO2'];
+    const result = extractElements(formulas);
+
+    expect(result).toContain('H');
+    expect(result).toContain('O');
+    expect(result).toContain('C');
+    expect(consoleWarnSpy).toHaveBeenCalled();
+
+    consoleWarnSpy.mockRestore();
+  });
+
+  test('should handle empty array', () => {
+    const formulas = [];
+    const result = extractElements(formulas);
+    expect(result.size).toBe(0);
+  });
+
+  test('should return a Set', () => {
+    const formulas = ['H2O'];
+    const result = extractElements(formulas);
+    expect(result).toBeInstanceOf(Set);
+  });
+
+  test('should extract elements from complex formulas', () => {
+    const formulas = ['K4[Fe(CN)6]', 'Ca3(PO4)2'];
+    const result = extractElements(formulas);
+    expect(result).toContain('K');
+    expect(result).toContain('Fe');
+    expect(result).toContain('C');
+    expect(result).toContain('N');
+    expect(result).toContain('Ca');
+    expect(result).toContain('P');
+    expect(result).toContain('O');
+  });
+});

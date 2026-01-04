@@ -10,11 +10,12 @@ const {
   calculatePHFromConcentration,
   calculateHConcentrationFromPH,
   calculatePOH,
+  calculateKW,
   calculateSolutionParameters,
   calculateMolarity,
   calculateMolesForMolarity,
   convertConcentration,
-  ConcentrationUnits
+  ConcentrationUnits,
 } = require('../myhugoapp/static/js/calculators/advanced-calculators.js');
 
 describe('Serial Dilution Calculator', () => {
@@ -24,7 +25,7 @@ describe('Serial Dilution Calculator', () => {
         initialConcentration: 1.0,
         targetConcentration: 0.1,
         finalVolume: 100,
-        numberOfDilutions: 1
+        numberOfDilutions: 1,
       });
 
       expect(result.initialConcentration).toBe(1.0);
@@ -40,7 +41,7 @@ describe('Serial Dilution Calculator', () => {
         initialConcentration: 1.0,
         targetConcentration: 0.25,
         finalVolume: 100,
-        numberOfDilutions: 2
+        numberOfDilutions: 2,
       });
 
       expect(result.numberOfDilutions).toBe(2);
@@ -55,7 +56,7 @@ describe('Serial Dilution Calculator', () => {
         initialConcentration: 1.0,
         targetConcentration: 0.001,
         finalVolume: 50,
-        numberOfDilutions: 3
+        numberOfDilutions: 3,
       });
 
       expect(result.totalDilutionFactor).toBe(1000);
@@ -68,7 +69,7 @@ describe('Serial Dilution Calculator', () => {
         calculateSerialDilution({
           initialConcentration: 0,
           targetConcentration: 0.1,
-          finalVolume: 100
+          finalVolume: 100,
         });
       }).toThrow('Initial concentration must be positive');
     });
@@ -78,7 +79,7 @@ describe('Serial Dilution Calculator', () => {
         calculateSerialDilution({
           initialConcentration: 0.1,
           targetConcentration: 0.5,
-          finalVolume: 100
+          finalVolume: 100,
         });
       }).toThrow('Target concentration must be less than initial concentration');
     });
@@ -88,9 +89,20 @@ describe('Serial Dilution Calculator', () => {
         calculateSerialDilution({
           initialConcentration: 1.0,
           targetConcentration: 0.1,
-          finalVolume: 0
+          finalVolume: 0,
         });
       }).toThrow('Final volume must be positive');
+    });
+
+    test('throws error for numberOfDilutions < 1', () => {
+      expect(() => {
+        calculateSerialDilution({
+          initialConcentration: 1.0,
+          targetConcentration: 0.1,
+          finalVolume: 100,
+          numberOfDilutions: 0,
+        });
+      }).toThrow('Number of dilutions must be at least 1');
     });
   });
 
@@ -133,7 +145,7 @@ describe('Titration Calculator', () => {
         titrantConcentration: 0.1,
         analyteConcentration: 0.1,
         analyteVolume: 50,
-        stoichiometryRatio: 1
+        stoichiometryRatio: 1,
       });
 
       expect(result.molesOfAnalyte).toBeCloseTo(0.005, 6);
@@ -147,7 +159,7 @@ describe('Titration Calculator', () => {
       const result = calculateTitration({
         titrantConcentration: 0.2,
         analyteConcentration: 0.1,
-        analyteVolume: 25
+        analyteVolume: 25,
       });
 
       expect(result.volumeOfTitrant).toBeCloseTo(12.5, 1);
@@ -159,7 +171,7 @@ describe('Titration Calculator', () => {
         titrantConcentration: 0.1,
         analyteConcentration: 0.1,
         analyteVolume: 50,
-        stoichiometryRatio: 2
+        stoichiometryRatio: 2,
       });
 
       expect(result.volumeOfTitrant).toBeCloseTo(100, 1);
@@ -169,7 +181,7 @@ describe('Titration Calculator', () => {
       const result = calculateTitration({
         titrantConcentration: 0.1,
         analyteConcentration: 0.1,
-        analyteVolume: 50
+        analyteVolume: 50,
       });
 
       expect(result.titrationCurve).toBeDefined();
@@ -184,7 +196,7 @@ describe('Titration Calculator', () => {
         calculateTitration({
           titrantConcentration: 0,
           analyteConcentration: 0.1,
-          analyteVolume: 50
+          analyteVolume: 50,
         });
       }).toThrow('Titrant concentration must be positive');
     });
@@ -194,9 +206,58 @@ describe('Titration Calculator', () => {
         calculateTitration({
           titrantConcentration: 0.1,
           analyteConcentration: 0,
-          analyteVolume: 50
+          analyteVolume: 50,
         });
       }).toThrow('Analyte concentration must be positive');
+    });
+
+    test('throws error for invalid analyte volume', () => {
+      expect(() => {
+        calculateTitration({
+          titrantConcentration: 0.1,
+          analyteConcentration: 0.1,
+          analyteVolume: 0,
+        });
+      }).toThrow('Analyte volume must be positive');
+    });
+
+    test('throws error for invalid stoichiometry ratio', () => {
+      expect(() => {
+        calculateTitration({
+          titrantConcentration: 0.1,
+          analyteConcentration: 0.1,
+          analyteVolume: 50,
+          stoichiometryRatio: 0,
+        });
+      }).toThrow('Stoichiometry ratio must be positive');
+    });
+  });
+
+  describe('generateTitrationCurve - weak/strong combinations', () => {
+    test('generates curve for weak acid-strong base', () => {
+      const result = calculateTitration({
+        titrantConcentration: 0.1,
+        analyteConcentration: 0.1,
+        analyteVolume: 50,
+        acidStrength: 'weak',
+        baseStrength: 'strong',
+      });
+
+      expect(result.titrationCurve).toBeDefined();
+      expect(result.titrationCurve.length).toBeGreaterThan(20);
+    });
+
+    test('generates curve for strong acid-weak base', () => {
+      const result = calculateTitration({
+        titrantConcentration: 0.1,
+        analyteConcentration: 0.1,
+        analyteVolume: 50,
+        acidStrength: 'strong',
+        baseStrength: 'weak',
+      });
+
+      expect(result.titrationCurve).toBeDefined();
+      expect(result.titrationCurve.length).toBeGreaterThan(20);
     });
   });
 });
@@ -250,44 +311,138 @@ describe('Concentration Unit Conversion', () => {
     const molecularWeight = 58.44; // NaCl
 
     test('converts molar to millimolar', () => {
-      expect(convertConcentration(1, ConcentrationUnits.MOLAR, ConcentrationUnits.MILLIMOLAR))
-        .toBe(1000);
+      expect(convertConcentration(1, ConcentrationUnits.MOLAR, ConcentrationUnits.MILLIMOLAR)).toBe(
+        1000
+      );
     });
 
     test('converts millimolar to molar', () => {
-      expect(convertConcentration(1000, ConcentrationUnits.MILLIMOLAR, ConcentrationUnits.MOLAR))
-        .toBe(1);
+      expect(
+        convertConcentration(1000, ConcentrationUnits.MILLIMOLAR, ConcentrationUnits.MOLAR)
+      ).toBe(1);
     });
 
     test('converts molar to micromolar', () => {
-      expect(convertConcentration(0.001, ConcentrationUnits.MOLAR, ConcentrationUnits.MICROMOLAR))
-        .toBe(1000);
+      expect(
+        convertConcentration(0.001, ConcentrationUnits.MOLAR, ConcentrationUnits.MICROMOLAR)
+      ).toBe(1000);
     });
 
     test('converts PPM to molar with molecular weight', () => {
-      const result = convertConcentration(5844, ConcentrationUnits.PPM, ConcentrationUnits.MOLAR, molecularWeight);
+      const result = convertConcentration(
+        5844,
+        ConcentrationUnits.PPM,
+        ConcentrationUnits.MOLAR,
+        molecularWeight
+      );
       expect(result).toBeCloseTo(0.1, 6);
     });
 
     test('converts molar to PPM', () => {
-      const result = convertConcentration(0.1, ConcentrationUnits.MOLAR, ConcentrationUnits.PPM, molecularWeight);
+      const result = convertConcentration(
+        0.1,
+        ConcentrationUnits.MOLAR,
+        ConcentrationUnits.PPM,
+        molecularWeight
+      );
       expect(result).toBeCloseTo(5844, 0);
     });
 
     test('converts percent to molar', () => {
-      const result = convertConcentration(1, ConcentrationUnits.PERCENT, ConcentrationUnits.MOLAR, molecularWeight);
+      const result = convertConcentration(
+        1,
+        ConcentrationUnits.PERCENT,
+        ConcentrationUnits.MOLAR,
+        molecularWeight
+      );
       expect(result).toBeCloseTo(0.171, 2);
     });
 
     test('converts between small units', () => {
-      expect(convertConcentration(1, ConcentrationUnits.MICROMOLAR, ConcentrationUnits.NANOMOLAR))
-        .toBe(1000);
+      expect(
+        convertConcentration(1, ConcentrationUnits.MICROMOLAR, ConcentrationUnits.NANOMOLAR)
+      ).toBe(1000);
     });
 
     test('throws error for unknown unit', () => {
       expect(() => {
         convertConcentration(1, 'invalid', ConcentrationUnits.MOLAR);
       }).toThrow();
+    });
+
+    test('converts molar to nanomolar', () => {
+      expect(
+        convertConcentration(0.001, ConcentrationUnits.MOLAR, ConcentrationUnits.NANOMOLAR)
+      ).toBe(1000000);
+    });
+
+    test('converts nanomolar to molar', () => {
+      expect(
+        convertConcentration(1000000, ConcentrationUnits.NANOMOLAR, ConcentrationUnits.MOLAR)
+      ).toBe(0.001);
+    });
+
+    test('converts PPB to molar', () => {
+      const result = convertConcentration(
+        5.844,
+        ConcentrationUnits.PPB,
+        ConcentrationUnits.MOLAR,
+        58.44
+      );
+      expect(result).toBeCloseTo(1e-7, 10);
+    });
+
+    test('converts molar to PPB', () => {
+      const result = convertConcentration(
+        0.001,
+        ConcentrationUnits.MOLAR,
+        ConcentrationUnits.PPB,
+        58.44
+      );
+      expect(result).toBeCloseTo(58440, 0);
+    });
+
+    test('converts molar to percent', () => {
+      const result = convertConcentration(
+        1,
+        ConcentrationUnits.MOLAR,
+        ConcentrationUnits.PERCENT,
+        100
+      );
+      expect(result).toBe(10);
+    });
+
+    test('throws error for unknown target unit', () => {
+      expect(() => {
+        convertConcentration(1, ConcentrationUnits.MOLAR, 'invalid');
+      }).toThrow('Unknown target unit');
+    });
+  });
+});
+
+describe('Water Ionization Constant (Kw)', () => {
+  describe('calculateKW', () => {
+    test('calculates Kw at 25°C (298.15K)', () => {
+      const kw = calculateKW(7, 298.15);
+      // The formula gives approximately 1e-14 at 298.15K
+      expect(kw).toBeCloseTo(1e-14, 14);
+    });
+
+    test('calculates Kw at higher temperature', () => {
+      const kw = calculateKW(7, 323.15); // 50°C
+      expect(kw).toBeGreaterThan(1e-14);
+      expect(kw).toBeLessThan(1e-12);
+    });
+
+    test('calculates Kw at lower temperature', () => {
+      const kw = calculateKW(7, 273.15); // 0°C
+      expect(kw).toBeLessThan(1e-14);
+    });
+
+    test('temperature affects Kw value', () => {
+      const kw25 = calculateKW(7, 298.15);
+      const kw50 = calculateKW(7, 323.15);
+      expect(kw50).toBeGreaterThan(kw25);
     });
   });
 });
@@ -300,7 +455,7 @@ describe('Solution Calculations', () => {
       const result = calculateSolutionParameters({
         mass: 5.844,
         molecularWeight,
-        volume: 1
+        volume: 1,
       });
 
       expect(result.moles).toBeCloseTo(0.1, 6);
@@ -312,7 +467,7 @@ describe('Solution Calculations', () => {
       const result = calculateSolutionParameters({
         moles: 0.5,
         molecularWeight,
-        volume: 2
+        volume: 2,
       });
 
       expect(result.moles).toBe(0.5);
@@ -324,7 +479,7 @@ describe('Solution Calculations', () => {
       const result = calculateSolutionParameters({
         concentration: 0.1,
         molecularWeight,
-        volume: 1
+        volume: 1,
       });
 
       expect(result.moles).toBe(0.1);
@@ -335,7 +490,7 @@ describe('Solution Calculations', () => {
       const result = calculateSolutionParameters({
         mass: 11.688,
         molecularWeight,
-        concentration: 0.1
+        concentration: 0.1,
       });
 
       expect(result.moles).toBeCloseTo(0.2, 6);
@@ -347,7 +502,7 @@ describe('Solution Calculations', () => {
         calculateSolutionParameters({
           mass: 10,
           molecularWeight: 0,
-          volume: 1
+          volume: 1,
         });
       }).toThrow('Molecular weight must be positive');
     });
