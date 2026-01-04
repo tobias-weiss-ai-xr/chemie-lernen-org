@@ -1,0 +1,540 @@
+{{ define "main" }}
+
+<div class="atmosphaerendruck-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Introduction -->
+  <div class="intro-section">
+    <h2>Was ist Atmosphärendruck?</h2>
+    <p>Der Atmosphärendruck (Luftdruck) ist der Druck, den die Gewichtskraft der Luftsäule der Atmosphäre auf die Erdoberfläche und alle Gegenstände ausübt. Auf Meereshöhe beträgt er durchschnittlich <strong>101.325 Pa (1.013,25 hPa)</strong>.</p>
+
+    <div class="pressure-fact-box">
+      <div class="fact-icon">🌍</div>
+      <div class="fact-content">
+        <h3>Wussten Sie?</h3>
+        <p>Der Luftdruck auf Meereshöhe entspricht etwa dem Gewicht einer 10 Meter hohen Wassersäule oder 1 kg pro cm²! Er ist stark genug, um uns am Leben zu erhalten, aber wir spüren ihn nicht, weil er von innen und außen auf unseren Körper wirkt.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Experiment Tabs -->
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a href="#strohhalm" aria-controls="strohhalm" role="tab" data-toggle="tab">
+            <i class="fa fa-coffee"></i> Strohhalm-Experiment
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#ballon" aria-controls="ballon" role="tab" data-toggle="tab">
+            <i class="fa fa-circle"></i> Ballon-Druck
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#saugnapf" aria-controls="saugnapf" role="tab" data-toggle="tab">
+            <i class="fa fa-compress"></i> Saugnapf-Physik
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <!-- Strohhalm Experiment -->
+    <div class="tab-pane active" id="strohhalm" role="tabpanel">
+      <div class="experiment-panel">
+        <h2>🥤 Strohhalm-Experiment</h2>
+        <p>Warum können wir durch einen Strohhalm trinken? Die Antwort liegt im Luftdruck!</p>
+
+        <div class="experiment-explanation">
+          <h3>Das Prinzip</h3>
+          <p>Wenn Sie an einem Strohhalm saugen, verringern Sie den Luftdruck im Strohhalm. Der höhere Atmosphärendruck außen drückt dann die Flüssigkeit den Strohhalm hinauf.</p>
+          <ul class="key-points">
+            <li><strong>Ohne Saugen:</strong> Luftdruck ist im Mund und im Glas gleich</li>
+            <li><strong>Mit Saugen:</strong> Luftdruck im Sinkt im Mund</li>
+            <li><strong>Ergebnis:</strong> Atmosphärendruck drückt Flüssigkeit nach oben</li>
+          </ul>
+        </div>
+
+        <div class="simulation-container">
+          <h3>Interaktive Simulation</h3>
+          <div class="strohhalm-demo">
+            <canvas id="strohhalm-canvas" width="500" height="400"></canvas>
+
+            <div class="simulation-controls">
+              <div class="control-group">
+                <label>Saugstärke:</label>
+                <input type="range" id="strohhalm-suction" min="0" max="100" value="0" oninput="updateStrohhalmSimulation()">
+                <span id="strohhalm-suction-value">0%</span>
+              </div>
+
+              <div class="control-group">
+                <label>Flüssigkeitshöhe (cm):</label>
+                <input type="range" id="strohhalm-liquid-height" min="5" max="20" value="10" oninput="updateStrohhalmSimulation()">
+                <span id="strohhalm-height-value">10 cm</span>
+              </div>
+
+              <div class="control-group">
+                <label>Flüssigkeit:</label>
+                <select id="strohhalm-liquid" onchange="updateStrohhalmSimulation()">
+                  <option value="water">Wasser (ρ = 1.000 kg/m³)</option>
+                  <option value="juice">Saft (ρ = 1.050 kg/m³)</option>
+                  <option value="oil">Öl (ρ = 920 kg/m³)</option>
+                  <option value="honey">Honig (ρ = 1.420 kg/m³)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="pressure-display">
+              <div class="pressure-value">
+                <span class="label">Druck im Mund:</span>
+                <span id="strohhalm-mouth-pressure" class="value">101.3 kPa</span>
+              </div>
+              <div class="pressure-value">
+                <span class="label">Außenluftdruck:</span>
+                <span id="strohhalm-outside-pressure" class="value">101.3 kPa</span>
+              </div>
+              <div class="pressure-value">
+                <span class="label">Druckdifferenz:</span>
+                <span id="strohhalm-pressure-diff" class="value highlight">0.0 kPa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="experiment-info">
+          <h3>💡 Anwendungen im Alltag</h3>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="info-card">
+                <h4>Getränke trinken</h4>
+                <p>Ob Wasser, Saft oder Milch - der Luftdruck hilft uns bei jedem Schluck aus einem Glas oder einer Flasche.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="info-card">
+                <h4>Medizin</h4>
+                <p>Infusionen und Tropf hängen ebenfalls vom Atmosphärendruck ab, damit die Flüssigkeit in die Vene fließt.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="info-card">
+                <h4>Begrenzung</h4>
+                <p>Mit einem Strohhalm kann man maximal ca. 10 Meter hoch saugen - das ist die physikalische Grenze durch den Atmosphärendruck!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ballon Druck -->
+    <div class="tab-pane" id="ballon" role="tabpanel">
+      <div class="experiment-panel">
+        <h2>🎈 Ballon-Druck-Demonstration</h2>
+        <p>Warum wird ein Ballon größer, wenn man ihn aufbläst? Und warum platzt er bei zu viel Druck?</p>
+
+        <div class="experiment-explanation">
+          <h3>Das Prinzip</h3>
+          <p>Wenn Sie einen Ballon aufblasen, erhöhen Sie den Luftdruck im Inneren. Die elastische Gummiwand dehnt sich aus, bis der Innendruck dem Außendruck plus der Spannung des Gummis entspricht.</p>
+          <ul class="key-points">
+            <li><strong>Kalter Luftdruck:</strong> Normale Luftdruckverhältnisse</li>
+            <li><strong>Erwärmung:</strong> Luft dehnt sich aus → höherer Druck</li>
+            <li><strong>Platzen:</strong> Wenn die Gummispannung zu groß wird</li>
+          </ul>
+        </div>
+
+        <div class="simulation-container">
+          <h3>Interaktive Simulation</h3>
+          <div class="ballon-demo">
+            <canvas id="ballon-canvas" width="500" height="400"></canvas>
+
+            <div class="simulation-controls">
+              <div class="control-group">
+                <label>Luftmenge (Pumps):</label>
+                <input type="range" id="ballon-air" min="0" max="50" value="10" oninput="updateBallonSimulation()">
+                <span id="ballon-air-value">10</span>
+              </div>
+
+              <div class="control-group">
+                <label>Temperatur (°C):</label>
+                <input type="range" id="ballon-temperature" min="-20" max="60" value="20" oninput="updateBallonSimulation()">
+                <span id="ballon-temperature-value">20°C</span>
+              </div>
+
+              <div class="control-group">
+                <label>Gummispannung:</label>
+                <select id="ballon-tension" onchange="updateBallonSimulation()">
+                  <option value="low">Niedrig (dünner Ballon)</option>
+                  <option value="medium" selected>Mittel (normaler Ballon)</option>
+                  <option value="high">Hoch (fester Ballon)</option>
+                </select>
+              </div>
+
+              <button class="btn btn-warning" onclick="resetBallon()">
+                <i class="fa fa-refresh"></i> Ballon entleeren
+              </button>
+            </div>
+
+            <div class="pressure-display">
+              <div class="pressure-value">
+                <span class="label">Innendruck:</span>
+                <span id="ballon-inside-pressure" class="value">103.0 kPa</span>
+              </div>
+              <div class="pressure-value">
+                <span class="label">Außendruck:</span>
+                <span id="ballon-outside-pressure" class="value">101.3 kPa</span>
+              </div>
+              <div class="pressure-value">
+                <span class="label">Ballonvolumen:</span>
+                <span id="ballon-volume" class="value">2.5 L</span>
+              </div>
+              <div class="pressure-value">
+                <span class="label">Platzgefahr:</span>
+                <span id="ballon-danger" class="value safe">Sicher</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="experiment-info">
+          <h3>🔬 Physik hinter dem Ballon</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="info-card">
+                <h4>Gay-Lussac'sches Gesetz</h4>
+                <p>Bei konstantem Volumen steigt der Druck proportional zur Temperatur:</p>
+                <p class="formula-text">p₁/T₁ = p₂/T₂</p>
+                <p>Erwärmt sich die Luft im Ballon, dehnt er sich aus (bei flexiblem Ballon).</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="info-card">
+                <h4>Spannung des Gummis</h4>
+                <p>Die Gummiwand übt einen zurückerichtenden Druck aus (Oberflächenspannung). Der Ballon platzt, wenn:</p>
+                <ul>
+                  <li>Der Innendruck zu hoch wird</li>
+                  <li>Die Gummiwand zu dünn ist</li>
+                  <li>Temperaturunterschiede zu groß sind</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-info">
+            <h4>💡 Praxistipp</h4>
+            <p>Ballons halten bei warmem Wetter länger, weil das Gummi durch die Wärme elastischer wird. Bei Kälte wird das Gummi spröde und die Platzegefahr steigt!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Saugnapf Physik -->
+    <div class="tab-pane" id="saugnapf" role="tabpanel">
+      <div class="experiment-panel">
+        <h2>🧲 Saugnapf-Physik</h2>
+        <p>Wie hält ein Saugnapf an der Wand? Und warum können sie im Vakuum nicht funktionieren?</p>
+
+        <div class="experiment-explanation">
+          <h3>Das Prinzip</h3>
+          <p>Ein Saugnapf haftet durch den Unterschied zwischen Atmosphärendruck und dem verminderten Druck im Inneren des Napfs. Der Luftdruck drückt den Saugnapf gegen die Oberfläche.</p>
+          <ul class="key-points">
+            <li><strong>Anpressdruck:</strong> Luft drückt Saugnapf gegen die Wand</li>
+            <li><strong>Kraft:</strong> Haftkraft = Druckdifferenz × Fläche</li>
+            <li><strong>Vakuum:</strong> Im Vakuum kein Außendruck = keine Haftkraft</li>
+          </ul>
+        </div>
+
+        <div class="simulation-container">
+          <h3>Interaktive Simulation</h3>
+          <div class="saugnapf-demo">
+            <canvas id="saugnapf-canvas" width="500" height="400"></canvas>
+
+            <div class="simulation-controls">
+              <div class="control-group">
+                <label>Saugnapf-Größe:</label>
+                <input type="range" id="saugnapf-size" min="5" max="20" value="10" oninput="updateSaugnapfSimulation()">
+                <span id="saugnapf-size-value">10 cm Durchmesser</span>
+              </div>
+
+              <div class="control-group">
+                <label>Atmosphärendruck:</label>
+                <input type="range" id="saugnapf-air-pressure" min="0" max="100" value="101" oninput="updateSugnapfSimulation()">
+                <span id="saugnapf-pressure-value">101.3 kPa</span>
+              </div>
+
+              <div class="control-group">
+                <label>Oberfläche:</label>
+                <select id="saugnapf-surface" onchange="updateSugnapfSimulation()">
+                  <option value="glass">Glas (sehr glatt)</option>
+                  <option value="wood" selected>Holz (mittelmäßig)</option>
+                  <option value="concrete">Beton (rau)</option>
+                  <option value="tile">Fliese (glatt)</option>
+                </select>
+              </div>
+
+              <button class="btn btn-info" onclick="toggleSaugnapf()">
+                <i class="fa fa-play"></i> Ansaugen/Lösen
+              </button>
+            </div>
+
+            <div class="pressure-display">
+              <div class="pressure-value">
+                <span class="label">Innendruck:</span>
+                <span id="saugnapf-inside-pressure" class="value">50.7 kPa</span>
+              </div>
+              <div class="pressure-value">
+                <span class="label">Außendruck:</span>
+                <span id="saugnapf-outside-pressure" class="value">101.3 kPa</span>
+              </div>
+              <div class="pressure-value">
+                <span class="label">Haltekraft:</span>
+                <span id="saugnapf-holding-force" class="value highlight">400 N</span>
+              </div>
+              <div class="pressure-value">
+                <span class="label">Tragkraft:</span>
+                <span id="saugnapf-load-capacity" class="value">~40 kg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="experiment-info">
+          <h3>🏗️ Anwendungen im Alltag</h3>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="info-card">
+                <h4>Küchenhalter</h4>
+                <p>Saugnäpfe halten Geschirrtücher, Löffel und andere Utensilien an senkrechten Wänden. Die Haftkraft hängt von der Größe und dem Luftdruck ab.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="info-card">
+                <h4>Glasmontage</h4>
+                <p>Professionelle Glas-Saugnäpfe können sehr große und schwere Glasscheiben tragen. Sie benötigen oft Vakuumpumpen für maximale Haftkraft.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="info-card">
+                <h4>Medizin</h4>
+                <p>In der Medizin werden Saugnäpfe für die Blutentnahme (Saugnäpfe zur Venenpunktion) und in der Traditionellen Chinesischen Medizin verwendet.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-warning">
+            <h4>⚠️ Wichtige Hinweise</h4>
+            <ul>
+              <li><strong>Vakuum:</strong> Im Weltraum (Vakuum) funktionieren Saugnäpfe nicht, da kein Außendruck existiert!</li>
+              <li><strong>Temperatur:</strong> Hitze kann das Gummi beschädigen und die Dichtung beeinträchtigen</li>
+              <li><strong>Oberfläche:</strong> Auf rauen oder porösen Oberflächen hält der Saugnapf schlechter</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="experiment-info">
+          <h3>📊 Berechnungsformel</h3>
+          <div class="formula-card">
+            <p>Die Haltekraft F berechnet sich aus:</p>
+            <p class="formula-text">F = (p_außen - p_innen) × A</p>
+            <p>Wobei:</p>
+            <ul>
+              <li><strong>p_außen</strong> = Atmosphärendruck (ca. 101.325 Pa)</li>
+              <li><strong>p_innen</strong> = Druck im Saugnapf</li>
+              <li><strong>A</strong> = Wirksame Fläche des Saugnapfs</li>
+            </ul>
+            <p><strong>Beispiel:</strong> Ein 10 cm Saugnapf bei 50% Vakuum:</p>
+            <p>F = 50.700 Pa × 0,00785 m² ≈ <strong>398 N</strong> (~40 kg Tragkraft)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Comparison Table -->
+  <div class="comparison-section">
+    <h2 class="text-center">Atmosphärendruck in verschiedenen Höhen</h2>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Höhe</th>
+            <th>Ort/Beispiel</th>
+            <th>Luftdruck</th>
+            <th>% von Normal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0 m</td>
+            <td>Meeresspiegel (Normalnull)</td>
+            <td>101.325 Pa</td>
+            <td>100%</td>
+          </tr>
+          <tr>
+            <td>500 m</td>
+            <td>Mittelgebirge</td>
+            <td>95.500 Pa</td>
+            <td>94%</td>
+          </tr>
+          <tr>
+            <td>1.000 m</td>
+            <td>Hochgebirge</td>
+            <td>90.000 Pa</td>
+            <td>89%</td>
+          </tr>
+          <tr>
+            <td>3.000 m</td>
+            <td>Mount Everest Basislager</td>
+            <td>70.000 Pa</td>
+            <td>69%</td>
+          </tr>
+          <tr>
+            <td>8.848 m</td>
+            <td>Mount Everest Gipfel</td>
+            <td>33.000 Pa</td>
+            <td>33%</td>
+          </tr>
+          <tr>
+            <td>10.000 m</td>
+            <td>Flugzeug (cruising altitude)</td>
+            <td>26.500 Pa</td>
+            <td>26%</td>
+          </tr>
+          <tr>
+            <td>100.000 m</td>
+            <td>Grenze zum Weltraum (Kármán-Linie)</td>
+            <td>0,0003 Pa</td>
+            <td>~0%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Educational Info -->
+  <div class="educational-info">
+    <h2 class="text-center">Wissenswertes über Luftdruck</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📐 Definition</h3>
+          <p>Atmosphärendruck ist der Druck, den die Erdatmosphäre auf die Erdoberfläche ausübt. Er entsteht durch die Gewichtskraft der Luftschichten.</p>
+          <p><strong>Messung:</strong> Barometer oder Manometer</p>
+          <p><strong>Normale Bedingungen:</strong> 101.325 Pa bei 0°C auf Meereshöhe</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🌡️ Temperaturabhängigkeit</h3>
+          <p>Der Luftdruck schwankt mit dem Wetter:</p>
+          <ul>
+            <li><strong>Hochdruck:</strong> Schönes Wetter (bis 1.040 hPa)</li>
+            <li><strong>Tiefdruck:</strong> Regen/Wetter (bis 980 hPa)</li>
+            <li><strong>Extrem:</strong> Orkane (bis 870 hPa)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📖 Historisches</h3>
+          <p><strong>1643:</strong> Evangelista Torricelli erfindet das Quecksilberbarometer</p>
+          <p><strong>1648:</strong> Blaise Pascal zeigt, dass Luftdruck mit der Höhe abnimmt</p>
+          <p><strong>1654:</strong> Otto von Guericke erfindet die Magdeburger Halbkugeln</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>🔬 Magdeburger Halbkugeln</h3>
+          <p>Eines der berühmtesten Experimente zum Luftdruck (1654):</p>
+          <ul>
+            <li>Zwei riesige Kupferhalbkugeln (je 60 cm Durchmesser)</li>
+            <li>16 Pferde konnten sie nicht auseinanderziehen</li>
+            <li>Nach Öffnen eines Ventils fielen sie sofort auseinander</li>
+            <li>Beweis für die gewaltige Kraft des Atmosphärendrucks</li>
+          </ul>
+          <p><strong>Kraft:</strong> Etwa 20.000 N (entspricht 2.000 kg!) auf jede Halbkugel</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>⚗️ Druckeinheiten im Vergleich</h3>
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th>Einheit</th>
+                <th>Wert</th>
+                <th>Verwendung</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Pascal (Pa)</td>
+                <td>1 Pa</td>
+                <td>SI-Einheit</td>
+              </tr>
+              <tr>
+                <td>Hektopascal (hPa)</td>
+                <td>100 Pa</td>
+                <td>Meteorologie</td>
+              </tr>
+              <tr>
+                <td>Millibar (mbar)</td>
+                <td>100 Pa</td>
+                <td>Historisch</td>
+              </tr>
+              <tr>
+                <td>bar</td>
+                <td>100.000 Pa</td>
+                <td>Technik</td>
+              </tr>
+              <tr>
+                <td>atm</td>
+                <td>101.325 Pa</td>
+                <td>Physik</td>
+              </tr>
+              <tr>
+                <td>Torr</td>
+                <td>133,322 Pa</td>
+                <td>Vakuumtechnik</td>
+              </tr>
+              <tr>
+                <td>mmHg</td>
+                <td>133,322 Pa</td>
+                <td>Medizin</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/atmosphaerendruck-alltag.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/atmosphaerendruck-alltag.css" | relURL }}">
+
+{{ end }}
