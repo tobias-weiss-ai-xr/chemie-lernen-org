@@ -11,6 +11,10 @@ coverage/
 test-results/
 .playwright-artifacts/
 
+# Hugo templates (Prettier doesn't handle Hugo template syntax)
+myhugoapp/layouts/
+myhugoapp/themes/
+
 # Hugo
 .hugo_build.lock
 

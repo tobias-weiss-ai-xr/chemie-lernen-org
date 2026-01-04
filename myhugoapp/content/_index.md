@@ -1,10 +1,9 @@
 ---
-title: "chemie-lernen.org - Offene, Interaktive und immersive Lerninhalte"
+title: 'chemie-lernen.org - Offene, Interaktive und immersive Lerninhalte'
 date: 2025-12-22
-description: "Entdecken Sie innovative Chemie-Lernmethoden durch Virtual Reality und interaktive Plattformen. Machen Sie komplexe chemische Konzepte greifbar und erlebbar."
-tags: ["startseite", "chemie", "vr", "3d"]
+description: 'Entdecken Sie innovative Chemie-Lernmethoden durch Virtual Reality und interaktive Plattformen. Machen Sie komplexe chemische Konzepte greifbar und erlebbar.'
+tags: ['startseite', 'chemie', 'vr', '3d']
 ---
-
 
 ## chemie-lernen.org
 
@@ -31,24 +30,69 @@ Durchstöbern Sie unsere Chemie-Themen, organisiert nach Schwierigkeitsgrad:
 
 [Alle Themenbereiche erkunden →](/themenbereiche/)
 
-## 🚀 Unsere Interaktiven Plattformen
+## 🚀 Interaktive Lerninhalte
 
-- 🥽 **VR Labore**: Soziale VR-Lernräume für Zusammenarbeit
-- ⚛️ **Periodensystem 3D**: Interaktive 3D-Visualisierung chemischer Elemente
-- 🔬 **Molekülstudio**: Echtzeit-3D-Visualisierung von Molekülen
+### 🎨 3D-Visualisierungen
 
-[GraphWiz-XR auf GitHub](https://github.com/tobias-weiss-ai-xr/graphwiz-xr) [Periodensystem](/perioden-system-der-elemente/) [Molekülstudio](/molekuel-studio/)
+**Periodensystem der Elemente**
+Interaktives 3D-Periodensystem mit detaillierten Elementinformationen, Gruppeneinteilung und Suche.
+[Periodensystem erkunden →](/perioden-system-der-elemente/)
 
-## 🧮 Interaktive Rechner & Tools
+**Molekülstudio**
+Echtzeit-3D-Visualisierung von Molekülen mit Rotationsfunktion und Molekülsuche.
+[Molekülstudio öffnen →](/molekuel-studio/)
 
-Unsere kostenlosen interaktiven Tools unterstützen Sie beim Lernen und Rechnen:
+### 🧮 Chemie-Rechner
 
-- 🧪 **pH-Rechner**: Berechnen und visualisieren Sie pH-Werte von Säuren und Basen
-- ⚗️ **Molare Masse Rechner**: Berechnen Sie die molare Masse von chemischen Verbindungen
-- ⚖️ **Reaktionsgleichungen Ausgleichen**: Gleichen Sie chemische Gleichungen automatisch aus
-- 📊 **Stöchiometrie-Rechner**: (Coming Soon) Führen Sie stöchiometrische Berechnungen durch
+**pH-Rechner**
+Berechnen und visualisieren Sie pH-Werte von Säuren, Basen und Puffern.
+[pH-Rechner starten →](/ph-rechner/)
 
-[pH-Rechner](/ph-rechner/) [Molare Masse](/molare-masse-rechner/) [Gleichungen ausgleichen](/reaktionsgleichungen-ausgleichen/)
+**Molare Masse Rechner**
+Berechnen Sie die molare Masse von chemischen Verbindungen und Formeln.
+[Molare Masse berechnen →](/molare-masse-rechner/)
+
+**Reaktionsgleichungen Ausgleichen**
+Gleichen Sie chemische Reaktionsgleichungen automatisch aus.
+[Gleichungen ausgleichen →](/reaktionsgleichungen-ausgleichen/)
+
+**Stöchiometrie-Rechner**
+Führen Sie stöchiometrische Berechnungen durch und analysieren Sie Reaktionen.
+[Stöchiometrie berechnen →](/stoechiometrie-rechner/)
+
+### 🔬 Spezialrechner
+
+**Titrations-Simulator**
+Simulieren Sie Titrationen mit verschiedenen Säure-Base-Paaren und visualisieren Sie die Kurvenverläufe.
+[Titrations-Simulator starten →](/titrations-simulator/)
+
+**Gasgesetz-Rechner**
+Berechnen Sie Gasgesetze (ideales Gasgesetz, Boyle-Mariotte, Gay-Lussac).
+[Gasgesetz-Rechner öffnen →](/gasgesetz-rechner/)
+
+**Verbrennungsrechner**
+Analysieren Sie Verbrennungsreaktionen und berechnen Sie Energieumsätze und CO₂-Emissionen.
+[Verbrennungsrechner nutzen →](/verbrennungsrechner/)
+
+**Löslichkeitsprodukt-Rechner**
+Berechnen Sie Löslichkeiten und Löslichkeitsprodukte von Salzen.
+[Löslichkeitsprodukt berechnen →](/loeslichkeitsprodukt-rechner/)
+
+**Redox-Potenzial-Rechner**
+Berechnen Sie Redoxpotenziale und analysieren Sie Redoxreaktionen.
+[Redox-Potenzial berechnen →](/redox-potenzial-rechner/)
+
+**Konzentrationsumrechner**
+Konvertieren Sie zwischen verschiedenen Konzentrationseinheiten (Molar, Prozent, ppm).
+[Konzentration umrechnen →](/konzentrationsumrechner/)
+
+**Lösungsrechner**
+Bereiten Sie Lösungen mit genauer Konzentration durch Verdünnung oder Einwaage.
+[Lösungen berechnen →](/loesungsrechner/)
+
+**Einheitenumrechner**
+Konvertieren Sie verschiedene physikalische und chemische Einheiten.
+[Einheiten umrechnen →](/einheitenumrechner/)
 
 ## 📖 Featured: Mayers Prinzipien des Multimedialen Lernens
 
