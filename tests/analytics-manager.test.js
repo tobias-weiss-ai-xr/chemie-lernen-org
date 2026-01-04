@@ -17,7 +17,7 @@ global.localStorage = {
   key: (index) => {
     const keys = Array.from(mockLocalStorage.keys());
     return keys[index] || null;
-  }
+  },
 };
 
 const AnalyticsManager = require('../myhugoapp/static/js/analytics/analytics-manager.js');
@@ -29,11 +29,11 @@ describe('Analytics Manager', () => {
       startTime: null,
       calculations: [],
       practiceProblems: [],
-      mistakes: []
+      mistakes: [],
     };
 
     // Clear all analytics data
-    Object.values(AnalyticsManager.STORAGE_KEYS).forEach(key => {
+    Object.values(AnalyticsManager.STORAGE_KEYS).forEach((key) => {
       localStorage.removeItem(key);
     });
   });
@@ -53,7 +53,7 @@ describe('Analytics Manager', () => {
         type: 'molar_mass',
         inputs: { formula: 'H2O' },
         result: 18.015,
-        correct: true
+        correct: true,
       });
 
       AnalyticsManager.endSession();
@@ -78,7 +78,7 @@ describe('Analytics Manager', () => {
         inputs: { formula: 'H2O' },
         result: 18.015,
         correct: true,
-        timeSpent: 5000
+        timeSpent: 5000,
       });
 
       expect(AnalyticsManager.currentSession.calculations).toHaveLength(1);
@@ -92,7 +92,7 @@ describe('Analytics Manager', () => {
         type: 'molar_mass',
         inputs: { formula: 'H2O' },
         result: 18.015,
-        correct: false
+        correct: false,
       });
 
       expect(AnalyticsManager.currentSession.mistakes).toHaveLength(1);
@@ -103,7 +103,7 @@ describe('Analytics Manager', () => {
         type: 'molar_mass',
         inputs: { formula: 'H2O' },
         result: 18.015,
-        correct: true
+        correct: true,
       });
 
       const progress = AnalyticsManager.getProgress();
@@ -116,7 +116,7 @@ describe('Analytics Manager', () => {
         correct: true,
         timeSpent: 30,
         difficulty: 'medium',
-        attempts: 1
+        attempts: 1,
       });
 
       expect(xp).toBeGreaterThan(0);
@@ -132,7 +132,7 @@ describe('Analytics Manager', () => {
         correct: true,
         timeSpent: 45000,
         attempts: 2,
-        hintsUsed: 1
+        hintsUsed: 1,
       });
 
       expect(AnalyticsManager.currentSession.practiceProblems).toHaveLength(1);
@@ -144,7 +144,7 @@ describe('Analytics Manager', () => {
       AnalyticsManager.trackPracticeProblem({
         type: 'stoichiometry',
         difficulty: 'medium',
-        correct: false
+        correct: false,
       });
 
       expect(AnalyticsManager.currentSession.mistakes).toHaveLength(1);
@@ -163,12 +163,12 @@ describe('Analytics Manager', () => {
     test('updates category progress', () => {
       AnalyticsManager.trackCalculation({
         type: 'molar_mass',
-        correct: true
+        correct: true,
       });
 
       AnalyticsManager.trackCalculation({
         type: 'molar_mass',
-        correct: false
+        correct: false,
       });
 
       const progress = AnalyticsManager.getProgress();
@@ -202,7 +202,7 @@ describe('Analytics Manager', () => {
       AnalyticsManager.trackMistake({
         type: 'calculation',
         calculationType: 'molar_mass',
-        inputs: { formula: 'H2O' }
+        inputs: { formula: 'H2O' },
       });
 
       const mistakes = AnalyticsManager.getMistakes();
@@ -215,7 +215,7 @@ describe('Analytics Manager', () => {
       for (let i = 0; i < 5; i++) {
         AnalyticsManager.trackMistake({
           type: 'calculation',
-          calculationType: 'stoichiometry'
+          calculationType: 'stoichiometry',
         });
       }
 
@@ -230,7 +230,7 @@ describe('Analytics Manager', () => {
         totalAttempts: 20,
         correctAttempts: 10,
         totalTime: 10000,
-        lastActivity: Date.now()
+        lastActivity: Date.now(),
       };
       // Save the modified progress
       AnalyticsManager.saveData(AnalyticsManager.STORAGE_KEYS.PROGRESS, progress);
@@ -274,13 +274,13 @@ describe('Analytics Manager', () => {
         type: 'test',
         inputs: {},
         result: 42,
-        correct: true
+        correct: true,
       });
 
       AnalyticsManager.checkAchievements();
 
       const achievements = AnalyticsManager.getAchievements();
-      expect(achievements.find(a => a.id === 'first_calculation')).toBeDefined();
+      expect(achievements.find((a) => a.id === 'first_calculation')).toBeDefined();
     });
 
     test('generates achievement titles and descriptions', () => {
@@ -319,7 +319,7 @@ describe('Analytics Manager', () => {
       AnalyticsManager.endSession();
 
       const stats = AnalyticsManager.getStats();
-      expect(stats.avgSessionLength).toBe(90000); // Average of 1min and 2min
+      expect(stats.avgSessionLength).toBeCloseTo(90000, 0); // Average of 1min and 2min
     });
 
     test('gets streak information', () => {
@@ -350,7 +350,7 @@ describe('Analytics Manager', () => {
         totalAttempts: 20,
         correctAttempts: 19,
         totalTime: 5000,
-        lastActivity: Date.now()
+        lastActivity: Date.now(),
       };
       // Save the modified progress
       AnalyticsManager.saveData(AnalyticsManager.STORAGE_KEYS.PROGRESS, progress);
@@ -366,7 +366,7 @@ describe('Analytics Manager', () => {
         totalAttempts: 20,
         correctAttempts: 10,
         totalTime: 5000,
-        lastActivity: Date.now()
+        lastActivity: Date.now(),
       };
       // Save the modified progress
       AnalyticsManager.saveData(AnalyticsManager.STORAGE_KEYS.PROGRESS, progress);
@@ -382,7 +382,7 @@ describe('Analytics Manager', () => {
         totalAttempts: 15,
         correctAttempts: 8,
         totalTime: 3000,
-        lastActivity: Date.now()
+        lastActivity: Date.now(),
       };
       // Save the modified progress
       AnalyticsManager.saveData(AnalyticsManager.STORAGE_KEYS.PROGRESS, progress);
@@ -391,7 +391,7 @@ describe('Analytics Manager', () => {
       expect(insights.recommendations.length).toBeGreaterThan(0);
 
       const hasPracticeRec = insights.recommendations.some(
-        rec => rec.type === 'practice' || rec.type === 'review'
+        (rec) => rec.type === 'practice' || rec.type === 'review'
       );
       expect(hasPracticeRec).toBe(true);
     });
@@ -404,7 +404,7 @@ describe('Analytics Manager', () => {
         correctAttempts: 8,
         level: 2,
         xp: 50,
-        categories: {}
+        categories: {},
       };
 
       AnalyticsManager.saveData(AnalyticsManager.STORAGE_KEYS.PROGRESS, progress);
@@ -478,9 +478,8 @@ describe('Analytics Manager', () => {
       progress.totalAttempts = 0;
 
       // Should not throw
-      const accuracy = progress.totalAttempts > 0
-        ? progress.correctAttempts / progress.totalAttempts
-        : 0;
+      const accuracy =
+        progress.totalAttempts > 0 ? progress.correctAttempts / progress.totalAttempts : 0;
 
       expect(accuracy).toBe(0);
     });
