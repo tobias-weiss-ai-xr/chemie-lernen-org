@@ -1,8 +1,19 @@
 {{ define "main" }}
 
 <div class="home">
- 
-  
+
+  <!-- Tag Heading for Accessibility -->
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      {{ with .Description }}
+      <p class="lead text-center">{{ . }}</p>
+      {{ end }}
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
     <div class="row pack">
 
         {{ $paginator := .Paginate .Data.Pages }}

@@ -1,12 +1,10 @@
 ---
-title: "PSE in VR: Eine revolutionäre Art, Chemie zu lernen"
+title: 'PSE in VR: Eine revolutionäre Art, Chemie zu lernen'
 date: 2026-01-02T10:00:00+01:00
 draft: false
-tags: ["vr", "periodensystem", "webxr", "entwicklung", "3d"]
-categories: ["entwicklung"]
+tags: ['vr', 'periodensystem', 'webxr', 'entwicklung', '3d']
+categories: ['entwicklung']
 ---
-
-# PSE in VR: Eine revolutionäre Art, Chemie zu lernen
 
 Wir freuen uns, die Veröffentlichung von **dem PSE in VR** ankündigen zu können - eine vollständige WebXR-basierte virtuelle Realität-Erfahrung für das Periodensystem der Elemente. Diese Innovation repräsentiert einen bedeutenden Schritt forward in der digitalen Chemiebildung.
 
@@ -36,7 +34,7 @@ Die Anwendung wurde mit folgenden Technologien entwickelt:
 ```javascript
 // WebXR-Session-Initialisierung
 if ('xr' in navigator) {
-  navigator.xr.isSessionSupported('immersive-vr').then(supported => {
+  navigator.xr.isSessionSupported('immersive-vr').then((supported) => {
     if (supported) {
       // VR ist verfügbar - Button anzeigen
     }
@@ -74,12 +72,14 @@ Die Anwendung basiert auf dem **Konstruktivismus** und **Experientiellen Lernen*
 ### Voraussetzungen
 
 **Minimale Anforderungen:**
+
 - Prozessor: Dual-Core 2.0 GHz
 - RAM: 4 GB
 - Grafikkarte: Integrated GPU mit WebGL-Unterstützung
 - Browser: Chrome 90+, Firefox 88+, Edge 90+
 
 **Empfohlene Anforderungen:**
+
 - Prozessor: Quad-Core 3.0 GHz
 - RAM: 8 GB
 - Grafikkarte: Dedicated GPU (GTX 1060 oder besser)
@@ -95,11 +95,13 @@ Die Anwendung basiert auf dem **Konstruktivismus** und **Experientiellen Lernen*
 ### Steuerung
 
 **VR-Controller:**
+
 - Trigger: Elemente auswählen
 - Griff-Taste: Objekte greifen
 - Joystick: Fortbewegung
 
 **Desktop:**
+
 - Maus: Umsehen
 - W/A/S/D oder Pfeiltasten: Bewegen
 - N: Nächster Raum
@@ -139,12 +141,14 @@ Die Anwendung basiert auf dem **Konstruktivismus** und **Experientiellen Lernen*
 ### 1. Adaptive UI
 
 Das Interface passt sich automatisch an:
+
 - Im VR-Modus: Große, gut lesbare Texte in 3D-Raum
 - Im Desktop-Modus: Klassische 2D-Overlay-Elemente
 
 ### 2. Interaktive Elemente
 
 Jedes Element im Periodensystem ist interaktiv:
+
 - Klicken/Trigger: Zeigt detaillierte Informationen
 - Farbcodierung: Nach Elementgruppen (Alkalimetalle, Edelgase, etc.)
 - 3D-Modelle: Räumliche Darstellung der Atomstruktur
@@ -152,6 +156,7 @@ Jedes Element im Periodensystem ist interaktiv:
 ### 3. Multiplayer-Räume
 
 Lernen Sie zusammen mit:
+
 - Chat-Funktion für Kommunikation
 - Gemeinsames Erkunden von Elementen
 - Kollaboratives Problemlösen
@@ -159,6 +164,7 @@ Lernen Sie zusammen mit:
 ### 4. Gefahrfreie Experimente
 
 Virtuelle Labore für:
+
 - Alkalimetalle in Wasser
 - Reaktive Nichtmetalle
 - Radioaktive Zerfallsprozesse
@@ -168,16 +174,19 @@ Virtuelle Labore für:
 Basierend auf unserer [Roadmap](/pages/roadmap/) planen wir folgende Erweiterungen:
 
 ### Phase 1: Q1 2026
+
 - [ ] Erweiterte Molekülvisualisierung in VR
 - [ ] Sprachführung durch virtuelle Tutoren
 - [ ] Quiz-System mit Gamification
 
 ### Phase 2: Q2 2026
+
 - [ ] Integration mit LMS (Learning Management Systems)
 - [ ] Erweiterte Experiment-Simulationen
 - [ ] Benutzergenerierte Inhalte
 
 ### Phase 3: Q3-Q4 2026
+
 - [ ] KI-gestützte adaptive Lernpfade
 - [ ] VR-Chemie-Escape-Rooms
 - [ ] Mobile AR-Unterstützung
@@ -245,6 +254,6 @@ Das PSE in VR repräsentiert einen Paradigmenwechsel in der Chemiebildung. Durch
 
 ---
 
-*Veröffentlicht: 2. Januar 2026*
-*Autor: Entwicklungsteam chemie-lernen.org*
-*Version: 1.0.0*
+_Veröffentlicht: 2. Januar 2026_
+_Autor: Entwicklungsteam chemie-lernen.org_
+_Version: 1.0.0_
