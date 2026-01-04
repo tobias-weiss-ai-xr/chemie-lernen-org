@@ -29,12 +29,101 @@ let aktuellerDruckPa = 0;
 let aktuelleKraftN = 0;
 let aktuelleFlaecheM2 = 0;
 
+// ===== DOM ELEMENT CACHING =====
+const domCache = {
+  druck: {
+    kraft: null,
+    kraftEinheit: null,
+    flaeche: null,
+    flaecheEinheit: null,
+    ergebnisEinheit: null,
+    wert: null,
+    result: null,
+    vergleich: null,
+  },
+  kraft: {
+    druck: null,
+    druckEinheit: null,
+    flaeche: null,
+    flaecheEinheit: null,
+    ergebnisEinheit: null,
+    wert: null,
+    result: null,
+    vergleich: null,
+  },
+  flaeche: {
+    kraft: null,
+    kraftEinheit: null,
+    druck: null,
+    druckEinheit: null,
+    ergebnisEinheit: null,
+    wert: null,
+    result: null,
+    visualization: null,
+  },
+  piston: {
+    kraftSlider: null,
+    flaecheSlider: null,
+    kraftDisplay: null,
+    flaecheDisplay: null,
+    visualPressure: null,
+    pressureFill: null,
+    canvas: null,
+  },
+};
+
+// Initialize DOM cache
+function initDOMCache() {
+  // Druck elements
+  domCache.druck.kraft = document.getElementById('druck-kraft');
+  domCache.druck.kraftEinheit = document.getElementById('druck-kraft-einheit');
+  domCache.druck.flaeche = document.getElementById('druck-flaeche');
+  domCache.druck.flaecheEinheit = document.getElementById('druck-flaeche-einheit');
+  domCache.druck.ergebnisEinheit = document.getElementById('druck-ergebnis-einheit');
+  domCache.druck.wert = document.getElementById('druck-wert');
+  domCache.druck.result = document.getElementById('druck-result');
+  domCache.druck.vergleich = document.getElementById('druck-vergleich');
+
+  // Kraft elements
+  domCache.kraft.druck = document.getElementById('kraft-druck');
+  domCache.kraft.druckEinheit = document.getElementById('kraft-druck-einheit');
+  domCache.kraft.flaeche = document.getElementById('kraft-flaeche');
+  domCache.kraft.flaecheEinheit = document.getElementById('kraft-flaeche-einheit');
+  domCache.kraft.ergebnisEinheit = document.getElementById('kraft-ergebnis-einheit');
+  domCache.kraft.wert = document.getElementById('kraft-wert');
+  domCache.kraft.result = document.getElementById('kraft-result');
+  domCache.kraft.vergleich = document.getElementById('kraft-vergleich');
+
+  // Fläche elements
+  domCache.flaeche.kraft = document.getElementById('flaeche-kraft');
+  domCache.flaeche.kraftEinheit = document.getElementById('flaeche-kraft-einheit');
+  domCache.flaeche.druck = document.getElementById('flaeche-druck');
+  domCache.flaeche.druckEinheit = document.getElementById('flaeche-druck-einheit');
+  domCache.flaeche.ergebnisEinheit = document.getElementById('flaeche-ergebnis-einheit');
+  domCache.flaeche.wert = document.getElementById('flaeche-wert');
+  domCache.flaeche.result = document.getElementById('flaeche-result');
+  domCache.flaeche.visualization = document.getElementById('area-visualization');
+
+  // Piston elements
+  domCache.piston.kraftSlider = document.getElementById('kraft-slider');
+  domCache.piston.flaecheSlider = document.getElementById('flaeche-slider');
+  domCache.piston.kraftDisplay = document.getElementById('kraft-display');
+  domCache.piston.flaecheDisplay = document.getElementById('flaeche-display');
+  domCache.piston.visualPressure = document.getElementById('visual-pressure');
+  domCache.piston.pressureFill = document.getElementById('pressure-fill');
+  domCache.piston.canvas = document.getElementById('piston-canvas');
+}
+
 // ===== Druck berechnen (p = F / A) =====
 function berechneDruck() {
-  const kraft = parseFloat(document.getElementById('druck-kraft').value);
-  const kraftEinheit = document.getElementById('druck-kraft-einheit').value;
-  const flaeche = parseFloat(document.getElementById('druck-flaeche').value);
-  const flaecheEinheit = document.getElementById('druck-flaeche-einheit').value;
+  if (!domCache.druck.kraft) {
+    initDOMCache();
+  }
+
+  const kraft = parseFloat(domCache.druck.kraft.value);
+  const kraftEinheit = domCache.druck.kraftEinheit.value;
+  const flaeche = parseFloat(domCache.druck.flaeche.value);
+  const flaecheEinheit = domCache.druck.flaecheEinheit.value;
 
   if (isNaN(kraft) || isNaN(flaeche) || kraft < 0 || flaeche <= 0) {
     alert('Bitte geben Sie gültige Werte ein (Kraft ≥ 0, Fläche > 0).');
@@ -56,32 +145,36 @@ function berechneDruck() {
 }
 
 function zeigeDruckErgebnis(druckPa) {
-  const ergebnisEinheit = document.getElementById('druck-ergebnis-einheit').value;
+  const ergebnisEinheit = domCache.druck.ergebnisEinheit.value;
   const druckKonvertiert = druckPa / DRUCK_EINHEITEN[ergebnisEinheit];
 
-  document.getElementById('druck-wert').textContent = formatiereZahl(druckKonvertiert);
-  document.getElementById('druck-result').style.display = 'block';
+  domCache.druck.wert.textContent = formatiereZahl(druckKonvertiert);
+  domCache.druck.result.style.display = 'block';
 
   // Show comparison
   const vergleich = getDruckVergleich(druckPa);
-  document.getElementById('druck-vergleich').innerHTML = vergleich;
+  domCache.druck.vergleich.innerHTML = vergleich;
 }
 
 function konvertiereDruck() {
   if (aktuellerDruckPa === 0) return;
 
-  const ergebnisEinheit = document.getElementById('druck-ergebnis-einheit').value;
+  const ergebnisEinheit = domCache.druck.ergebnisEinheit.value;
   const druckKonvertiert = aktuellerDruckPa / DRUCK_EINHEITEN[ergebnisEinheit];
 
-  document.getElementById('druck-wert').textContent = formatiereZahl(druckKonvertiert);
+  domCache.druck.wert.textContent = formatiereZahl(druckKonvertiert);
 }
 
 // ===== Kraft berechnen (F = p × A) =====
 function berechneKraft() {
-  const druck = parseFloat(document.getElementById('kraft-druck').value);
-  const druckEinheit = document.getElementById('kraft-druck-einheit').value;
-  const flaeche = parseFloat(document.getElementById('kraft-flaeche').value);
-  const flaecheEinheit = document.getElementById('kraft-flaeche-einheit').value;
+  if (!domCache.kraft.druck) {
+    initDOMCache();
+  }
+
+  const druck = parseFloat(domCache.kraft.druck.value);
+  const druckEinheit = domCache.kraft.druckEinheit.value;
+  const flaeche = parseFloat(domCache.kraft.flaeche.value);
+  const flaecheEinheit = domCache.kraft.flaecheEinheit.value;
 
   if (isNaN(druck) || isNaN(flaeche) || druck < 0 || flaeche < 0) {
     alert('Bitte geben Sie gültige Werte ein (Druck ≥ 0, Fläche ≥ 0).');
@@ -103,32 +196,36 @@ function berechneKraft() {
 }
 
 function zeigeKraftErgebnis(kraftN) {
-  const ergebnisEinheit = document.getElementById('kraft-ergebnis-einheit').value;
+  const ergebnisEinheit = domCache.kraft.ergebnisEinheit.value;
   const kraftKonvertiert = kraftN / KRAFT_EINHEITEN[ergebnisEinheit];
 
-  document.getElementById('kraft-wert').textContent = formatiereZahl(kraftKonvertiert);
-  document.getElementById('kraft-result').style.display = 'block';
+  domCache.kraft.wert.textContent = formatiereZahl(kraftKonvertiert);
+  domCache.kraft.result.style.display = 'block';
 
   // Show comparison
   const vergleich = getKraftVergleich(kraftN);
-  document.getElementById('kraft-vergleich').innerHTML = vergleich;
+  domCache.kraft.vergleich.innerHTML = vergleich;
 }
 
 function konvertiereKraft() {
   if (aktuelleKraftN === 0) return;
 
-  const ergebnisEinheit = document.getElementById('kraft-ergebnis-einheit').value;
+  const ergebnisEinheit = domCache.kraft.ergebnisEinheit.value;
   const kraftKonvertiert = aktuelleKraftN / KRAFT_EINHEITEN[ergebnisEinheit];
 
-  document.getElementById('kraft-wert').textContent = formatiereZahl(kraftKonvertiert);
+  domCache.kraft.wert.textContent = formatiereZahl(kraftKonvertiert);
 }
 
 // ===== Fläche berechnen (A = F / p) =====
 function berechneFlaeche() {
-  const kraft = parseFloat(document.getElementById('flaeche-kraft').value);
-  const kraftEinheit = document.getElementById('flaeche-kraft-einheit').value;
-  const druck = parseFloat(document.getElementById('flaeche-druck').value);
-  const druckEinheit = document.getElementById('flaeche-druck-einheit').value;
+  if (!domCache.flaeche.kraft) {
+    initDOMCache();
+  }
+
+  const kraft = parseFloat(domCache.flaeche.kraft.value);
+  const kraftEinheit = domCache.flaeche.kraftEinheit.value;
+  const druck = parseFloat(domCache.flaeche.druck.value);
+  const druckEinheit = domCache.flaeche.druckEinheit.value;
 
   if (isNaN(kraft) || isNaN(druck) || kraft < 0 || druck <= 0) {
     alert('Bitte geben Sie gültige Werte ein (Kraft ≥ 0, Druck > 0).');
@@ -150,11 +247,11 @@ function berechneFlaeche() {
 }
 
 function zeigeFlaecheErgebnis(flaecheM2) {
-  const ergebnisEinheit = document.getElementById('flaeche-ergebnis-einheit').value;
+  const ergebnisEinheit = domCache.flaeche.ergebnisEinheit.value;
   const flaecheKonvertiert = flaecheM2 / FLAECHE_EINHEITEN[ergebnisEinheit];
 
-  document.getElementById('flaeche-wert').textContent = formatiereZahl(flaecheKonvertiert);
-  document.getElementById('flaeche-result').style.display = 'block';
+  domCache.flaeche.wert.textContent = formatiereZahl(flaecheKonvertiert);
+  domCache.flaeche.result.style.display = 'block';
 
   // Show area visualization
   visualisiereFlaeche(flaecheM2);
@@ -163,10 +260,10 @@ function zeigeFlaecheErgebnis(flaecheM2) {
 function konvertiereFlaeche() {
   if (aktuelleFlaecheM2 === 0) return;
 
-  const ergebnisEinheit = document.getElementById('flaeche-ergebnis-einheit').value;
+  const ergebnisEinheit = domCache.flaeche.ergebnisEinheit.value;
   const flaecheKonvertiert = aktuelleFlaecheM2 / FLAECHE_EINHEITEN[ergebnisEinheit];
 
-  document.getElementById('flaeche-wert').textContent = formatiereZahl(flaecheKonvertiert);
+  domCache.flaeche.wert.textContent = formatiereZahl(flaecheKonvertiert);
 
   // Update visualization
   visualisiereFlaeche(aktuelleFlaecheM2);
@@ -174,33 +271,38 @@ function konvertiereFlaeche() {
 
 // ===== Visual Piston Demonstration =====
 function initPistonDemo() {
+  if (!domCache.piston.kraftSlider) {
+    initDOMCache();
+  }
   updatePiston();
 }
 
 function updatePiston() {
-  const kraft = parseInt(document.getElementById('kraft-slider').value);
-  const flaeche = parseInt(document.getElementById('flaeche-slider').value);
+  const kraft = parseInt(domCache.piston.kraftSlider.value);
+  const flaeche = parseInt(domCache.piston.flaecheSlider.value);
 
-  document.getElementById('kraft-display').textContent = `${kraft} N`;
-  document.getElementById('flaeche-display').textContent = `${flaeche} cm²`;
+  domCache.piston.kraftDisplay.textContent = `${kraft} N`;
+  domCache.piston.flaecheDisplay.textContent = `${flaeche} cm²`;
 
   // Calculate pressure
   const flaecheM2 = flaeche * FLAECHE_EINHEITEN.cm2;
   const druckPa = kraft / flaecheM2;
   const druckKPa = druckPa / 1000;
 
-  document.getElementById('visual-pressure').textContent = formatiereZahl(druckKPa);
+  domCache.piston.visualPressure.textContent = formatiereZahl(druckKPa);
 
   // Update pressure bar (max 1000 kPa for visualization)
   const prozent = Math.min((druckKPa / 1000) * 100, 100);
-  document.getElementById('pressure-fill').style.width = `${prozent}%`;
+  domCache.piston.pressureFill.style.width = `${prozent}%`;
 
   // Draw piston
-  drawPiston(kraft, flaeche, druckKPa);
+  requestAnimationFrame(() => drawPiston(kraft, flaeche, druckKPa));
 }
 
 function drawPiston(kraft, flaeche, druckKPa) {
-  const canvas = document.getElementById('piston-canvas');
+  const canvas = domCache.piston.canvas;
+  if (!canvas) return;
+
   const ctx = canvas.getContext('2d');
 
   // Clear canvas
@@ -262,7 +364,8 @@ function drawPiston(kraft, flaeche, druckKPa) {
 
 // ===== Area Visualization =====
 function visualisiereFlaeche(flaecheM2) {
-  const container = document.getElementById('area-visualization');
+  const container = domCache.flaeche.visualization;
+  if (!container) return;
 
   // Calculate dimensions for a square with that area
   const seitenlaengeM = Math.sqrt(flaecheM2);

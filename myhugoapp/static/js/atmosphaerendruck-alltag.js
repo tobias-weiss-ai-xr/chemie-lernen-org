@@ -1,6 +1,7 @@
 /**
  * Atmosphärendruck im Alltag - Interactive Simulations
  * Demonstrates atmospheric pressure in everyday situations
+ * Optimized version with DOM caching and improved performance
  */
 
 // Constants
@@ -23,6 +24,45 @@ const SURFACE_FRICTION = {
   tile: 0.9,
 };
 
+// ===== DOM ELEMENT CACHING =====
+const domElements = {
+  strohhalm: {
+    suction: null,
+    liquidHeight: null,
+    liquid: null,
+    suctionValue: null,
+    heightValue: null,
+    mouthPressure: null,
+    outsidePressure: null,
+    pressureDiff: null,
+    canvas: null,
+  },
+  ballon: {
+    air: null,
+    temperature: null,
+    tension: null,
+    airValue: null,
+    temperatureValue: null,
+    insidePressure: null,
+    outsidePressure: null,
+    volume: null,
+    danger: null,
+    canvas: null,
+  },
+  saugnapf: {
+    size: null,
+    airPressure: null,
+    surface: null,
+    sizeValue: null,
+    pressureValue: null,
+    insidePressure: null,
+    outsidePressure: null,
+    holdingForce: null,
+    loadCapacity: null,
+    canvas: null,
+  },
+};
+
 // ===== STROHHALM SIMULATION =====
 let strohhalmState = {
   suctionPercent: 0,
@@ -31,39 +71,52 @@ let strohhalmState = {
   mouthPressure: NORMAL_ATMOSPHERIC_PRESSURE,
 };
 
+function initStrohhalmDOM() {
+  domElements.strohhalm.suction = document.getElementById('strohhalm-suction');
+  domElements.strohhalm.liquidHeight = document.getElementById('strohhalm-liquid-height');
+  domElements.strohhalm.liquid = document.getElementById('strohhalm-liquid');
+  domElements.strohhalm.suctionValue = document.getElementById('strohhalm-suction-value');
+  domElements.strohhalm.heightValue = document.getElementById('strohhalm-height-value');
+  domElements.strohhalm.mouthPressure = document.getElementById('strohhalm-mouth-pressure');
+  domElements.strohhalm.outsidePressure = document.getElementById('strohhalm-outside-pressure');
+  domElements.strohhalm.pressureDiff = document.getElementById('strohhalm-pressure-diff');
+  domElements.strohhalm.canvas = document.getElementById('strohhalm-canvas');
+}
+
 function updateStrohhalmSimulation() {
-  strohhalmState.suctionPercent = parseInt(document.getElementById('strohhalm-suction').value);
-  strohhalmState.liquidHeight =
-    parseInt(document.getElementById('strohhalm-liquid-height').value) / 100;
-  strohhalmState.liquidType = document.getElementById('strohhalm-liquid').value;
+  if (!domElements.strohhalm.suction) {
+    initStrohhalmDOM();
+  }
+
+  strohhalmState.suctionPercent = parseInt(domElements.strohhalm.suction.value);
+  strohhalmState.liquidHeight = parseInt(domElements.strohhalm.liquidHeight.value) / 100;
+  strohhalmState.liquidType = domElements.strohhalm.liquid.value;
 
   // Calculate pressure reduction in mouth
   const pressureReduction = (strohhalmState.suctionPercent / 100) * 50000; // max 50 kPa reduction
   strohhalmState.mouthPressure = NORMAL_ATMOSPHERIC_PRESSURE - pressureReduction;
 
   // Update display values
-  document.getElementById('strohhalm-suction-value').textContent =
-    strohhalmState.suctionPercent + '%';
-  document.getElementById('strohhalm-height-value').textContent =
+  domElements.strohhalm.suctionValue.textContent = strohhalmState.suctionPercent + '%';
+  domElements.strohhalm.heightValue.textContent =
     (strohhalmState.liquidHeight * 100).toFixed(0) + ' cm';
 
   const mouthPressureKPa = strohhalmState.mouthPressure / 1000;
   const outsidePressureKPa = NORMAL_ATMOSPHERIC_PRESSURE / 1000;
   const pressureDiffKPa = pressureReduction / 1000;
 
-  document.getElementById('strohhalm-mouth-pressure').textContent =
-    mouthPressureKPa.toFixed(1) + ' kPa';
-  document.getElementById('strohhalm-outside-pressure').textContent =
-    outsidePressureKPa.toFixed(1) + ' kPa';
-  document.getElementById('strohhalm-pressure-diff').textContent =
-    pressureDiffKPa.toFixed(1) + ' kPa';
+  domElements.strohhalm.mouthPressure.textContent = mouthPressureKPa.toFixed(1) + ' kPa';
+  domElements.strohhalm.outsidePressure.textContent = outsidePressureKPa.toFixed(1) + ' kPa';
+  domElements.strohhalm.pressureDiff.textContent = pressureDiffKPa.toFixed(1) + ' kPa';
 
   // Draw simulation
-  drawStrohhalmSimulation();
+  requestAnimationFrame(() => drawStrohhalmSimulation());
 }
 
 function drawStrohhalmSimulation() {
-  const canvas = document.getElementById('strohhalm-canvas');
+  const canvas = domElements.strohhalm.canvas;
+  if (!canvas) return;
+
   const ctx = canvas.getContext('2d');
 
   // Clear canvas
@@ -196,10 +249,27 @@ let ballonState = {
   isPopped: false,
 };
 
+function initBallonDOM() {
+  domElements.ballon.air = document.getElementById('ballon-air');
+  domElements.ballon.temperature = document.getElementById('ballon-temperature');
+  domElements.ballon.tension = document.getElementById('ballon-tension');
+  domElements.ballon.airValue = document.getElementById('ballon-air-value');
+  domElements.ballon.temperatureValue = document.getElementById('ballon-temperature-value');
+  domElements.ballon.insidePressure = document.getElementById('ballon-inside-pressure');
+  domElements.ballon.outsidePressure = document.getElementById('ballon-outside-pressure');
+  domElements.ballon.volume = document.getElementById('ballon-volume');
+  domElements.ballon.danger = document.getElementById('ballon-danger');
+  domElements.ballon.canvas = document.getElementById('ballon-canvas');
+}
+
 function updateBallonSimulation() {
-  ballonState.airAmount = parseInt(document.getElementById('ballon-air').value);
-  ballonState.temperature = parseInt(document.getElementById('ballon-temperature').value);
-  ballonState.tension = document.getElementById('ballon-tension').value;
+  if (!domElements.ballon.air) {
+    initBallonDOM();
+  }
+
+  ballonState.airAmount = parseInt(domElements.ballon.air.value);
+  ballonState.temperature = parseInt(domElements.ballon.temperature.value);
+  ballonState.tension = domElements.ballon.tension.value;
 
   // Calculate volume based on air amount and temperature
   const baseVolume = 0.5; // minimum volume
@@ -221,17 +291,15 @@ function updateBallonSimulation() {
     temperaturePressureEffect;
 
   // Update display
-  document.getElementById('ballon-air-value').textContent = ballonState.airAmount;
-  document.getElementById('ballon-temperature-value').textContent = ballonState.temperature + '°C';
+  domElements.ballon.airValue.textContent = ballonState.airAmount;
+  domElements.ballon.temperatureValue.textContent = ballonState.temperature + '°C';
 
   const insidePressureKPa = ballonState.internalPressure / 1000;
   const outsidePressureKPa = NORMAL_ATMOSPHERIC_PRESSURE / 1000;
 
-  document.getElementById('ballon-inside-pressure').textContent =
-    insidePressureKPa.toFixed(1) + ' kPa';
-  document.getElementById('ballon-outside-pressure').textContent =
-    outsidePressureKPa.toFixed(1) + ' kPa';
-  document.getElementById('ballon-volume').textContent = ballonState.volume.toFixed(1) + ' L';
+  domElements.ballon.insidePressure.textContent = insidePressureKPa.toFixed(1) + ' kPa';
+  domElements.ballon.outsidePressure.textContent = outsidePressureKPa.toFixed(1) + ' kPa';
+  domElements.ballon.volume.textContent = ballonState.volume.toFixed(1) + ' L';
 
   // Check for pop
   const popThreshold = {
@@ -240,7 +308,7 @@ function updateBallonSimulation() {
     high: 160000,
   };
 
-  const dangerElement = document.getElementById('ballon-danger');
+  const dangerElement = domElements.ballon.danger;
   if (ballonState.internalPressure > popThreshold[ballonState.tension]) {
     dangerElement.textContent = 'GEFÄHR - Platzt!';
     dangerElement.className = 'value danger';
@@ -260,7 +328,7 @@ function updateBallonSimulation() {
     ballonState.isPopped = false;
   }
 
-  drawBallonSimulation();
+  requestAnimationFrame(() => drawBallonSimulation());
 }
 
 function resetBallon() {
@@ -270,7 +338,9 @@ function resetBallon() {
 }
 
 function drawBallonSimulation() {
-  const canvas = document.getElementById('ballon-canvas');
+  const canvas = domElements.ballon.canvas;
+  if (!canvas) return;
+
   const ctx = canvas.getContext('2d');
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -422,11 +492,28 @@ let saugnapfState = {
   isAttached: false,
 };
 
+function initSaugnapfDOM() {
+  domElements.saugnapf.size = document.getElementById('saugnapf-size');
+  domElements.saugnapf.airPressure = document.getElementById('saugnapf-air-pressure');
+  domElements.saugnapf.surface = document.getElementById('saugnapf-surface');
+  domElements.saugnapf.sizeValue = document.getElementById('saugnapf-size-value');
+  domElements.saugnapf.pressureValue = document.getElementById('saugnapf-pressure-value');
+  domElements.saugnapf.insidePressure = document.getElementById('saugnapf-inside-pressure');
+  domElements.saugnapf.outsidePressure = document.getElementById('saugnapf-outside-pressure');
+  domElements.saugnapf.holdingForce = document.getElementById('saugnapf-holding-force');
+  domElements.saugnapf.loadCapacity = document.getElementById('saugnapf-load-capacity');
+  domElements.saugnapf.canvas = document.getElementById('saugnapf-canvas');
+}
+
 function updateSaugnapfSimulation() {
-  saugnapfState.diameter = parseInt(document.getElementById('saugnapf-size').value) / 100;
-  const pressurePercent = parseInt(document.getElementById('saugnapf-air-pressure').value);
+  if (!domElements.saugnapf.size) {
+    initSaugnapfDOM();
+  }
+
+  saugnapfState.diameter = parseInt(domElements.saugnapf.size.value) / 100;
+  const pressurePercent = parseInt(domElements.saugnapf.airPressure.value);
   saugnapfState.outsidePressure = (pressurePercent / 100) * NORMAL_ATMOSPHERIC_PRESSURE;
-  saugnapfState.surfaceType = document.getElementById('saugnapf-surface').value;
+  saugnapfState.surfaceType = domElements.saugnapf.surface.value;
 
   // Calculate inside pressure (vacuum effect)
   saugnapfState.insidePressure = saugnapfState.outsidePressure * 0.5;
@@ -438,24 +525,21 @@ function updateSaugnapfSimulation() {
   const loadCapacity = holdingForce / GRAVITY;
 
   // Update display
-  document.getElementById('saugnapf-size-value').textContent =
+  domElements.saugnapf.sizeValue.textContent =
     (saugnapfState.diameter * 100).toFixed(0) + ' cm Durchmesser';
 
   const outsidePressureKPa = saugnapfState.outsidePressure / 1000;
-  document.getElementById('saugnapf-pressure-value').textContent =
-    outsidePressureKPa.toFixed(1) + ' kPa';
+  domElements.saugnapf.pressureValue.textContent = outsidePressureKPa.toFixed(1) + ' kPa';
 
   const insidePressureKPa = saugnapfState.insidePressure / 1000;
-  document.getElementById('saugnapf-inside-pressure').textContent =
-    insidePressureKPa.toFixed(1) + ' kPa';
+  domElements.saugnapf.insidePressure.textContent = insidePressureKPa.toFixed(1) + ' kPa';
 
-  document.getElementById('saugnapf-holding-force').textContent = Math.round(holdingForce) + ' N';
-  document.getElementById('saugnapf-load-capacity').textContent =
-    '~' + Math.round(loadCapacity) + ' kg';
+  domElements.saugnapf.holdingForce.textContent = Math.round(holdingForce) + ' N';
+  domElements.saugnapf.loadCapacity.textContent = '~' + Math.round(loadCapacity) + ' kg';
 
   saugnapfState.isAttached = pressurePercent > 10;
 
-  drawSaugnapfSimulation();
+  requestAnimationFrame(() => drawSaugnapfSimulation());
 }
 
 function toggleSaugnapf() {
@@ -471,7 +555,9 @@ function toggleSaugnapf() {
 }
 
 function drawSaugnapfSimulation() {
-  const canvas = document.getElementById('saugnapf-canvas');
+  const canvas = domElements.saugnapf.canvas;
+  if (!canvas) return;
+
   const ctx = canvas.getContext('2d');
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
