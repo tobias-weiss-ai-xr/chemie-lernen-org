@@ -220,4 +220,3 @@ Wir danken folgenden Organisationen und Projekten für ihre Ressourcen zur Barri
 
 **Stand:** 4. Januar 2026
 **Version:** 1.0
-**Nächste Aktualisierung:** Quartal 2026
