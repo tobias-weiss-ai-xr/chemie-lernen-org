@@ -1,8 +1,8 @@
 ---
-title: "PSE in VR - Virtuelles Periodensystem"
+title: 'PSE in VR - Virtuelles Periodensystem'
 date: 2026-01-02
-description: "Erleben Sie das Periodensystem der Elemente in virtueller Realität. Eine immersive Lernumgebung für Chemie."
-tags: ["vr", "periodensystem", "3d", "interaktiv", "webxr"]
+description: 'Erleben Sie das Periodensystem der Elemente in virtueller Realität. Eine immersive Lernumgebung für Chemie.'
+tags: ['vr', 'periodensystem', '3d', 'interaktiv', 'webxr']
 draft: false
 ---
 
@@ -20,79 +20,25 @@ Das PSE in VR ist eine interaktive WebXR-Anwendung, die das Periodensystem der E
 ## 🎮 Features
 
 ### 1. **WebXR-basierte Technologie**
+
 - Kompatibel mit modernen VR-Headsets (Meta Quest, HTC Vive, etc.)
 - Browser-basiert - keine zusätzliche Software erforderlich
 - Unterstützt auch Desktop-Navigation ohne VR-Headset
 
 ### 2. **Interaktive Lernumgebung**
+
 - **3D-Periodensystem:** Räumliche Anordnung aller 118 Elemente
 - **Element-Informationen:** Detaillierte Daten zu jedem Element auf Abruf
 - **Gruppierung nach Elementfamilien:** Farbcodierte Darstellung der Hauptgruppen
 - **Automatische Rotation:** Optional für bessere Sichtbarkeit
 
 ### 3. **Gefahrfreie Experimente**
+
 Führen Sie virtuelle Experimente durch, die zu gefährlich für ein echtes Labor wären:
+
 - Alkalimetalle in Wasser
 - Reaktive Nichtmetalle
 - Radioaktive Zerfallsprozesse
-
-## 📸 Screenshots der VR-Erfahrung
-
-### Immersive 3D-Umgebung
-
-<div style="text-align: center; margin: 30px 0;">
-  <img src="/screenshots/vr/vr-hero-screenshot.png"
-       alt="PSE in VR - Immersive 3D-Umgebung"
-       style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);"
-       onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-  <div style="display: none; padding: 40px; background: #f8f9fa; border-radius: 12px; text-align: center;">
-    <span style="font-size: 3rem;">🥽</span>
-    <p style="margin: 20px 0 10px; color: #666;"><em>Screenshot: Immersive 3D-Umgebung mit Periodensystem</em></p>
-    <p style="color: #999; font-size: 0.9rem;">Erleben Sie alle 118 Elemente in einem virtuellen Raum</p>
-  </div>
-</div>
-
-### Desktop- und VR-Modus
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; margin: 40px 0;">
-  <div>
-    <img src="/screenshots/vr/vr-desktop-mode.png"
-         alt="PSE in VR - Desktop-Modus"
-         style="width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);"
-         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-    <div style="display: none; padding: 30px; background: #f8f9fa; border-radius: 12px; text-align: center;">
-      <span style="font-size: 2.5rem;">💻</span>
-      <p style="margin: 15px 0 10px; color: #666;"><em>Desktop-Modus</em></p>
-      <p style="color: #999; font-size: 0.9rem;">Browser-basierte Navigation mit Maus und Tastatur</p>
-    </div>
-  </div>
-
-  <div>
-    <img src="/screenshots/vr/vr-headset-view.png"
-         alt="PSE in VR - Headset-Ansicht"
-         style="width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);"
-         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-    <div style="display: none; padding: 30px; background: #f8f9fa; border-radius: 12px; text-align: center;">
-      <span style="font-size: 2.5rem;">🥽</span>
-      <p style="margin: 15px 0 10px; color: #666;"><em>VR-Headset-Ansicht</em></p>
-      <p style="color: #999; font-size: 0.9rem;">Immersives Erlebnis mit VR-Controllern</p>
-    </div>
-  </div>
-</div>
-
-### Interaktive Element-Details
-
-<div style="text-align: center; margin: 30px 0;">
-  <img src="/screenshots/vr/vr-element-detail.png"
-       alt="PSE in VR - Element-Details"
-       style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);"
-       onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-  <div style="display: none; padding: 40px; background: #f8f9fa; border-radius: 12px; text-align: center;">
-    <span style="font-size: 3rem;">⚛️</span>
-    <p style="margin: 20px 0 10px; color: #666;"><em>Screenshot: Interaktive Element-Informationen</em></p>
-    <p style="color: #999; font-size: 0.9rem;">Detaillierte Daten zu jedem Element auf Abruf</p>
-  </div>
-</div>
 
 ## 🚀 Technologie-Stack
 
@@ -104,6 +50,7 @@ Führen Sie virtuelle Experimente durch, die zu gefährlich für ein echtes Labo
 ## 📱 Kompatibilität
 
 ### VR-Headsets
+
 - Meta Quest 2/3
 - HTC Vive Series
 - Valve Index
@@ -111,6 +58,7 @@ Führen Sie virtuelle Experimente durch, die zu gefährlich für ein echtes Labo
 - Alle WebXR-kompatiblen Geräte
 
 ### Desktop-Browser
+
 - Chrome 90+ (mit WebXR)
 - Firefox 88+ (mit WebXR)
 - Edge 90+
@@ -119,11 +67,13 @@ Führen Sie virtuelle Experimente durch, die zu gefährlich für ein echtes Labo
 ## 🎓 Pädagogischer Nutzen
 
 ### Für Schüler
+
 - **Visuelles Lernen:** 3D-Darstellung fördert das räumliche Verständnis
 - **Interaktiver Ansatz:** Aktives Erkunden statt passivem Konsum
 - **Motivierend:** Gamification-Elemente machen Chemie-Lernen spannend
 
 ### Für Lehrer
+
 - **Innovative Unterrichtsmethoden:** Integration modernster Technologie
 - **Sichere Experimente:** Gefährliche Reaktionen ohne Risiko simulieren
 - **Kollaboratives Lernen:** Mehrere Schüler können gemeinsam im VR-Raum arbeiten
@@ -131,12 +81,15 @@ Führen Sie virtuelle Experimente durch, die zu gefährlich für ein echtes Labo
 ## 🔧 Installation und Nutzung
 
 ### Schritt 1: Vorbereitung
+
 Stellen Sie sicher, dass Sie:
+
 - Einen kompatiblen Browser verwenden
 - Ein VR-Headset verbunden haben (optional)
 - Ausreichend Speicherplatz und Arbeitsspeicher haben
 
 ### Schritt 2: Starten
+
 Klicken Sie auf den Button unten, um die VR-Erfahrung zu starten:
 
 <div style="text-align: center; margin: 2rem 0;">
@@ -156,6 +109,7 @@ Klicken Sie auf den Button unten, um die VR-Erfahrung zu starten:
 </div>
 
 ### Schritt 3: Navigation
+
 - **Mit VR-Headset:** Nutzen Sie Ihre Controller zur Navigation und Interaktion
 - **Ohne VR-Headset:**
   - Klicken Sie, um die Maussteuerung zu aktivieren
@@ -166,11 +120,13 @@ Klicken Sie auf den Button unten, um die VR-Erfahrung zu starten:
 ## 🎮 Steuerung
 
 ### VR-Controller
+
 - **Trigger:** Elemente auswählen und interagieren
 - **Griff-Taste:** Objekte greifen und bewegen
 - **Joystick:** Fortbewegung im Raum
 
 ### Desktop-Steuerung
+
 - **Maus:** Umsehen
 - **W/↑:** Vorwärts bewegen
 - **S/↓:** Rückwärts bewegen
@@ -182,12 +138,14 @@ Klicken Sie auf den Button unten, um die VR-Erfahrung zu starten:
 ## 📊 Technische Anforderungen
 
 ### Minimale Anforderungen
+
 - Prozessor: Dual-Core 2.0 GHz
 - RAM: 4 GB
 - Grafikkarte: Integrated GPU mit WebGL-Unterstützung
 - Browser: Chrome 90+, Firefox 88+, Edge 90+
 
 ### Empfohlene Anforderungen
+
 - Prozessor: Quad-Core 3.0 GHz
 - RAM: 8 GB
 - Grafikkarte: Dedicated GPU (GTX 1060 oder besser)
@@ -206,6 +164,7 @@ Die VR-Anwendung basiert auf dem Konzept des **experientiellen Lernens**:
 ## 🎯 Lernziele
 
 Nach der Nutzung des PSE in VR können Schüler:
+
 - Das Periodensystem räumlich visualisieren
 - Elementgruppen und -perioden identifizieren
 - Eigenschaften von Elementen besser verstehen
@@ -234,6 +193,7 @@ Dieses Projekt ist Teil einer interdisziplinären Forschungskooperation zur Unte
 ## 🔄 Zukünftige Entwicklungen
 
 Basierend auf unserer [Roadmap](/pages/roadmap/) planen wir:
+
 - [ ] Erweiterte Molekülvisualisierung
 - [ ] Gamification-Elemente (Quiz, Challenges)
 - [ ] Sprachführung durch virtuelle Tutoren
@@ -248,4 +208,4 @@ Haben Sie Fragen oder Anregungen? Wir freuen uns über Ihr Feedback!
 
 ---
 
-*Zuletzt aktualisiert: 2. Januar 2026*
+_Zuletzt aktualisiert: 2. Januar 2026_

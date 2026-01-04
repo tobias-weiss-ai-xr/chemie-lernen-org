@@ -33,7 +33,7 @@ body > .container > .wrapper {
 #container {
     position: relative !important;
     width: 100% !important;
-    height: calc(100vh - 300px) !important; /* Leave room for menu and footer */
+    height: calc(100vh - 400px) !important; /* Leave more room for menu and footer */
     min-height: 400px !important;
     margin: 0 !important;
     padding: 0 !important;
