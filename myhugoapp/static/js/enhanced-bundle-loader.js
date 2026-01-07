@@ -1,0 +1,253 @@
+class BundleManager {
+  constructor() {
+    this.bundles = new Map();
+    this.loadedBundles = new Set();
+    this.loadingPromises = new Map();
+    this.performanceMetrics = {
+      bundleLoads: 0,
+      totalLoadTime: 0,
+      cacheHits: 0,
+    };
+
+    this.bundleConfig = {
+      core: ['/js/chemistry-calculator-framework.optimized.js', '/js/dark-mode.optimized.js'],
+
+      vendor: [
+        'https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js',
+        'https://code.jquery.com/jquery-3.6.0.min.js',
+      ],
+
+      calculators: {
+        'ph-calculator': '/js/ph-rechner-framework.optimized.js',
+        'pressure-calculator': '/js/druck-flaechen-rechner-framework.optimized.js',
+        'molar-mass': '/js/molare-masse-rechner.optimized.js',
+        concentration: '/js/konzentrationsumrechner.optimized.js',
+        'gas-laws': '/js/gasgesetz-rechner.optimized.js',
+        redox: '/js/redox-potenzial-rechner.optimized.js',
+        titration: '/js/titrations-simulator.optimized.js',
+        combustion: '/js/verbrennungsrechner.optimized.js',
+        solubility: '/js/loeslichkeitsprodukt-rechner.optimized.js',
+      },
+
+      visualizations: {
+        'molecular-studio': '/js/molekuel-studio.optimized.js',
+        'periodic-table': '/js/perioden-system-der-elemente.optimized.js',
+        'ph-visualization': '/js/enhanced-ph-visualization.js',
+        'gas-simulation': '/js/gas-law-simulator.js',
+        'molar-visualizer': '/js/molar-mass-visualizer.js',
+      },
+
+      interactive: {
+        'quiz-system': '/js/quiz-system.optimized.js',
+        'progress-tracker': '/js/progress-tracker.optimized.js',
+        'user-system': '/js/quiz-user-system.optimized.js',
+      },
+    };
+
+    this.initializeBundleLoader();
+    this.setupIntersectionObserver();
+  }
+
+  initializeBundleLoader() {
+    this.loadBundle('core');
+
+    setTimeout(() => this.loadBundle('vendor'), 100);
+
+    this.setupBundleCaching();
+
+    console.log('📦 Bundle Manager initialized');
+  }
+
+  async loadBundle(bundleName) {
+    if (typeof bundleName === 'string' && this.loadedBundles.has(bundleName)) {
+      this.performanceMetrics.cacheHits++;
+      return Promise.resolve();
+    }
+
+    const startTime = performance.now();
+
+    try {
+      if (bundleName === 'core' || bundleName === 'vendor') {
+        const bundles = this.bundleConfig[bundleName];
+        await Promise.all(bundles.map((url) => this.loadScript(url)));
+        this.loadedBundles.add(bundleName);
+      } else if (typeof this.bundleConfig[bundleName] === 'object') {
+        const bundleUrl = this.bundleConfig[bundleName];
+        if (bundleUrl) {
+          await this.loadScript(bundleUrl);
+          this.loadedBundles.add(bundleName);
+        }
+      }
+
+      this.performanceMetrics.bundleLoads++;
+      this.performanceMetrics.totalLoadTime += performance.now() - startTime;
+
+      console.log(
+        `✅ Bundle loaded: ${bundleName} (${(performance.now() - startTime).toFixed(2)}ms)`
+      );
+    } catch (error) {
+      console.error(`❌ Failed to load bundle: ${bundleName}`, error);
+    }
+  }
+
+  loadScript(url) {
+    if (this.loadingPromises.has(url)) {
+      return this.loadingPromises.get(url);
+    }
+
+    const promise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = url;
+      script.async = true;
+      script.defer = true;
+
+      script.onload = () => {
+        this.loadingPromises.delete(url);
+        resolve();
+      };
+
+      script.onerror = () => {
+        this.loadingPromises.delete(url);
+        reject(new Error(`Failed to load script: ${url}`));
+      };
+
+      document.head.appendChild(script);
+    });
+
+    this.loadingPromises.set(url, promise);
+    return promise;
+  }
+
+  setupIntersectionObserver() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const calculatorType = entry.target.dataset.calculator;
+            if (calculatorType && this.bundleConfig.calculators[calculatorType]) {
+              this.loadBundle(calculatorType);
+              observer.unobserve(entry.target);
+            }
+          }
+        });
+      },
+      {
+        rootMargin: '50px',
+      }
+    );
+
+    document.querySelectorAll('[data-calculator]').forEach((el) => {
+      observer.observe(el);
+    });
+  }
+
+  setupBundleCaching() {
+    if ('serviceWorker' in navigator && 'caches' in window) {
+      caches.open('bundle-cache').then((cache) => {
+        this.bundleConfig.core.forEach((url) => {
+          cache.add(url).catch(() => {});
+        });
+      });
+    }
+  }
+
+  preloadBundles(bundleNames) {
+    bundleNames.forEach((bundleName) => {
+      if (this.bundleConfig[bundleName] && !this.loadedBundles.has(bundleName)) {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'script';
+        link.href = this.bundleConfig[bundleName];
+        document.head.appendChild(link);
+      }
+    });
+  }
+
+  getPerformanceMetrics() {
+    const avgLoadTime =
+      this.performanceMetrics.bundleLoads > 0
+        ? this.performanceMetrics.totalLoadTime / this.performanceMetrics.bundleLoads
+        : 0;
+
+    return {
+      ...this.performanceMetrics,
+      averageLoadTime: avgLoadTime,
+      cacheHitRate:
+        this.performanceMetrics.cacheHits /
+          (this.performanceMetrics.bundleLoads + this.performanceMetrics.cacheHits) || 0,
+    };
+  }
+
+  generateLoadingHTML() {
+    return `
+<!-- Enhanced Bundle Loading Strategy -->
+<script>
+window.BundleManager = new BundleManager();
+</script>
+
+<!-- Critical CSS (inline) -->
+<style>
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+  .calculator-panel { padding: 20px; min-height: 400px; }
+  .loading-spinner { 
+    border: 3px solid #f3f3f3; border-top: 3px solid #007bff; 
+    border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; 
+  }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+</style>
+
+<script>
+  if (window.location.pathname.includes('/ph-rechner')) {
+    window.BundleManager.preloadBundles(['ph-calculator', 'ph-visualization']);
+  }
+  if (window.location.pathname.includes('/perioden-system')) {
+    window.BundleManager.preloadBundles(['periodic-table']);
+  }
+  if (window.location.pathname.includes('/molekuel-studio')) {
+    window.BundleManager.preloadBundles(['molecular-studio']);
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        window.BundleManager.loadBundle('interactive');
+      }, 500);
+    });
+  } else {
+    setTimeout(() => {
+      window.BundleManager.loadBundle('interactive');
+    }, 500);
+  }
+</script>
+
+<noscript>
+  <style>
+    .calculator-panel { 
+      border: 2px solid #dc3545; padding: 20px; 
+      background: #f8d7da; color: #721c24; 
+    }
+  </style>
+  <div class="calculator-panel">
+    <h2>JavaScript Required</h2>
+    <p>This calculator requires JavaScript to function. Please enable JavaScript in your browser settings.</p>
+  </div>
+</noscript>
+    `;
+  }
+}
+
+if (typeof window !== 'undefined') {
+  window.BundleManager = BundleManager;
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new BundleManager();
+    });
+  } else {
+    new BundleManager();
+  }
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = BundleManager;
+}
