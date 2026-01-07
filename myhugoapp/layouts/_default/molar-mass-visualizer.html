@@ -1,0 +1,117 @@
+{{ define "main" }}
+
+<div class="molar-mass-visualizer-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="molar-mass-visualizer">
+        
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="educational-content">
+    <h2>Molare Masse verstehen</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚗️ Definition</h3>
+          <p>Die molare Masse ist die Masse eines Stoffes pro Mol (6.022 × 10²³ Teilchen):</p>
+          <p class="formula">M = m/n (g/mol)</p>
+          <p>Ein Mol enthält genau so viele Teilchen wie 12g Kohlenstoff-12.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📊 Berechnung</h3>
+          <p>Die molare Masse wird aus den Atomassen der Elemente berechnet:</p>
+          <p class="formula">M(Verbindung) = Σ(Elementaremasse × Atomzahl)</p>
+          <p><strong>Beispiel Wasser (H₂O):</strong><br>
+             M = 2 × 1.008 + 15.999 = 18.015 g/mol</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚖️ Avogadro-Konstante</h3>
+          <p>Die Anzahl der Teilchen pro Mol:</p>
+          <p class="formula">Nₐ = 6.02214076 × 10²³ mol⁻¹</p>
+          <p>Dies ist eine fundamentale Naturkonstante der Chemie.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="info-card">
+          <h3>🧪 Praktische Bedeutung</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <h4>Stöchiometrische Berechnungen</h4>
+              <ul>
+                <li>Umsatzfaktoren für chemische Reaktionen</li>
+                <li>Massenverhältnisse bei Synthesen</li>
+                <li>Ausbeuteberechnungen</li>
+                <li>Löslichkeitsberechnungen</li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h4>Laborpraktische Anwendungen</h4>
+              <ul>
+                <li>Herstellung von Lösungen bestimmter Konzentration</li>
+                <li>Volumen- und Massenberechnungen</li>
+                <li>Normbedingungen-Umrechnungen</li>
+                <li>Gasgesetze-Anwendungen</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="info-card">
+          <h3>📚 Beispiele aus der Praxis</h3>
+          <div class="example-grid">
+            <div class="example-item">
+              <h5>Pharmazie</h5>
+              <p>Genauigkeit der Wirkstoffdosierung hängt von exakter Molenberechnung ab.</p>
+            </div>
+            <div class="example-item">
+              <h5>Lebensmittelchemie</h5>
+              <p>Nährwertangaben und Inhaltsstoffe basieren auf molaren Massen.</p>
+            </div>
+            <div class="example-item">
+              <h5>Materialwissenschaft</h5>
+              <p>Legierungsberechnungen und Polymerchemie benötigen präzise Molzahlen.</p>
+            </div>
+            <div class="example-item">
+              <h5>Umweltchemie</h5>
+              <p>Schadstoffkonzentrationen in ppm/ppb basieren auf molaren Berechnungen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/molar-mass-visualizer.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/molar-mass-visualizer.css" | relURL }}">
+
+{{ end }}

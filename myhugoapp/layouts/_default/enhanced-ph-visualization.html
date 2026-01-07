@@ -1,0 +1,149 @@
+{{ define "main" }}
+
+<div class="enhanced-ph-viz-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="enhanced-ph-viz">
+        
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="educational-content">
+    <h2>pH-Indikatoren und Titration</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🧪 pH-Skala</h3>
+          <p>Die pH-Skala reicht von 0 (stark sauer) bis 14 (stark basisch):</p>
+          <div class="ph-scale-info">
+            <div><strong>0-3:</strong> Sehr stark sauer</div>
+            <div><strong>4-6:</strong> Sauer</div>
+            <div><strong>7:</strong> Neutral</div>
+            <div><strong>8-11:</strong> Basisch</div>
+            <div><strong>12-14:</strong> Sehr stark basisch</div>
+          </div>
+          <p class="formula">pH = -log₁₀[H⁺]</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🎨 Indikatoren</h3>
+          <p>Farbindikatoren ändern ihre Farbe bei bestimmten pH-Bereichen:</p>
+          <ul>
+            <li><strong>Phenolphthalein:</strong> Farblos → Rot (pH 8.2-10)</li>
+            <li><strong>Bromthymolblau:</strong> Gel → Blau (pH 6.0-7.6)</li>
+            <li><strong>Methylorange:</strong> Rot → Gelb (pH 3.1-4.4)</li>
+            <li><strong>Lackmus:</strong> Rot → Blau (pH 4.5-8.3)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📈 Titration</h3>
+          <p>Neutralisation durch langsame Zugabe einer Gegensubstanz:</p>
+          <p><strong>Äquivalenzpunkt:</strong> Punkte mit steelem pH-Anstieg</p>
+          <p><strong>Indikatorwahl:</strong> Muss am Äquivalenzpunkt umschlagen</p>
+          <div class="titration-types">
+            <small>
+              <div>Säure-Base: Stark-schwach Kombinationen</div>
+              <div>Kurvenform zeigt Säure/Base-Stärke</div>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="info-card">
+          <h3>⚗️ Mathematische Grundlagen</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <h4>Wasserstoffionenkonzentration</h4>
+              <p class="formula">[H⁺] = 10⁻ᵖᴴ mol/L</p>
+              <p>Bei pH 7: [H⁺] = 10⁻⁷ = 0.0000001 mol/L</p>
+              <p>Bei pH 1: [H⁺] = 10⁻¹ = 0.1 mol/L</p>
+            </div>
+            <div class="col-md-6">
+              <h4>pOH-Beziehung</h4>
+              <p class="formula">pH + pOH = 14 (bei 25°C)</p>
+              <p>pOH = -log₁₀[OH⁻]</p>
+              <p>In neutralem Wasser: pH = pOH = 7</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="info-card">
+          <h3>🔬 Praktische Anwendungen</h3>
+          <div class="application-grid">
+            <div class="app-item">
+              <h5>Wasseranalyse</h5>
+              <p>pH-Wert als Wasserqualitätsindikator</p>
+              <ul>
+                <li>Trinkwasser: pH 6.5-8.5</li>
+                <li>Regenwasser: pH 5.6-6.0 (saurer Regen)</li>
+                <li>Meerwasser: pH 8.0-8.3</li>
+              </ul>
+            </div>
+            <div class="app-item">
+              <h5>Lebensmittelkontrolle</h5>
+              <p>pH-Wert für Konservierung und Geschmack</p>
+              <ul>
+                <li>Milch: pH 6.5-6.7</li>
+                <li>Joghurt: pH 4.0-4.5</li>
+                <li>Brot: pH 5.5-6.0</li>
+                <li>Wein: pH 3.0-4.0</li>
+              </ul>
+            </div>
+            <div class="app-item">
+              <h5>Medizin & Biologie</h5>
+              <p>pH-Regulation in biologischen Systemen</p>
+              <ul>
+                <li>Blut: pH 7.35-7.45</li>
+                <li>Magensaft: pH 1.5-3.5</li>
+                <li>Urin: pH 4.5-8.0</li>
+                <li>Zellzyklus-Pufferung</li>
+              </ul>
+            </div>
+            <div class="app-item">
+              <h5>Industrie & Landwirtschaft</h5>
+              <p>pH-Kontrolle für Prozesse und Böden</p>
+              <ul>
+                <li>Böden: pH 5.5-7.0 optimal</li>
+                <li>Abwasseraufbereitung</li>
+                <li>Farbstoffherstellung</li>
+                <li>Kunstdüngeranpassung</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/enhanced-ph-visualization.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/enhanced-ph-visualization.css" | relURL }}">
+
+{{ end }}

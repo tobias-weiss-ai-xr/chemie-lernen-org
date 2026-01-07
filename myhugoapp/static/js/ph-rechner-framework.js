@@ -1,0 +1,74 @@
+// pH Calculator using ChemistryCalculator Framework
+// Demonstrates standardized calculator implementation
+
+// Calculator configuration
+const pHCalculator = new ChemistryCalculator({
+  title: 'pH-Rechner',
+  inputFields: [
+    {
+      id: 'hplus-input',
+      label: 'H⁺ Konzentration (Mol/L)',
+      type: 'number',
+      validation: {
+        min: 0,
+        max: 14,
+        errorMessage: 'Bitte geben Sie einen gültigen H⁺-Wert (0-14 Mol/L) ein.'
+      }
+    },
+    {
+      id: 'ohminus-input',
+      label: 'OH⁻ Konzentration (Mol/L)',
+      type: 'number',
+      validation: {
+        min: 0,
+        max: 14,
+        errorMessage: 'Bitte geben Sie einen gültigen OH⁻-Platz-Wert (0-14 Mol/L) ein.'
+      }
+    }
+  ],
+  resultFields: [
+    {
+      id: 'hplus-result',
+      label: 'pH-Wert',
+      format: value => `${value} pH`
+    },
+    {
+      id: 'ohminus-result',
+      label: 'pH-Wert',
+      format: value => `${value} pH`
+    }
+  ],
+  calculations: {
+    calculateFromInputs: (inputs) => {
+      const hplus = inputs['hplus'];
+      const ohminus = inputs['ohminus'];
+      
+      // H+ calculation
+      if (hplus !== undefined && hplus > 0) {
+        const h = -Math.log10(hplus);
+        const ph = -h;
+        return {
+          result: ph,
+          explanation: `pH = -log₁₀(${h}) = ${(-ph).toFixed(2)}`
+        };
+      }
+      
+      // OH- calculation
+      if (ohminus !== undefined && ohminus > 0 && ohminus <= 14) {
+        const poh = -Math.log10(ohminus);
+        const ph = 14 - poh;
+        return {
+          result: ph,
+          explanation: `pH = 14 - log₁₀(${poh}) = ${ph.toFixed(2)}`
+        };
+      }
+      
+      return null;
+    }
+  }
+});
+
+// Initialize calculator when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  pHCalculator.init();
+});

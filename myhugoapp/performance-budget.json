@@ -1,0 +1,14 @@
+{
+  "budget": {
+    "totalJS": 307200,
+    "totalCSS": 102400,
+    "totalImages": 512000,
+    "maxSingleJS": 102400,
+    "maxSingleCSS": 25600,
+    "maxSingleImage": 204800
+  },
+  "thresholds": {
+    "warnings": 0.8,
+    "errors": 1
+  }
+}

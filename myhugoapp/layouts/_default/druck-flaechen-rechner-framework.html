@@ -1,0 +1,373 @@
+{{ define "main" }}
+
+<div class="druck-flaeche-calculator-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a href="#druck-berechnen" aria-controls="druck-berechnen" role="tab" data-toggle="tab">
+            <i class="fa fa-calculator"></i> Druck berechnen (p = F/A)
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#kraft-berechnen" aria-controls="kraft-berechnen" role="tab" data-toggle="tab">
+            <i class="fa fa-hand-rock-o"></i> Kraft berechnen (F = p × A)
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#flaeche-berechnen" aria-controls="flaeche-berechnen" role="tab" data-toggle="tab">
+            <i class="fa fa-square-o"></i> Fläche berechnen (A = F/p)
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="druck-berechnen" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Druck aus Kraft und Fläche berechnen</h2>
+        <p>Der Druck p ergibt sich aus der Kraft F, die auf eine Fläche A wirkt:</p>
+        <p class="formula-text">p = F / A</p>
+
+        <div class="input-section">
+          <div class="form-group">
+            <label for="druck-kraft">Kraft (F):</label>
+            <div class="input-group">
+              <input type="number" id="druck-kraft" class="form-control" placeholder="z.B. 1000" step="any" min="0" aria-label="Kraft in Newton">
+              <select class="input-group-addon" id="druck-kraft-einheit">
+                <option value="N">Newton (N)</option>
+                <option value="kN">Kilonewton (kN)</option>
+                <option value="MN">Meganewton (MN)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="druck-flaeche">Fläche (A):</label>
+            <div class="input-group">
+              <input type="number" id="druck-flaeche" class="form-control" placeholder="z.B. 0.01" step="any" min="0" aria-label="Fläche in Quadratmetern">
+              <select class="input-group-addon" id="druck-flaeche-einheit">
+                <option value="m2">m²</option>
+                <option value="cm2">cm²</option>
+                <option value="mm2">mm²</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block calculate-btn" data-calculator="druck">
+            <i class="fa fa-calculator"></i> Druck berechnen
+          </button>
+        </div>
+
+        <div id="druck-result" class="result-panel" style="display:none;">
+          <h3>Ergebnis:</h3>
+          <div class="result-value">
+            <span class="label">Druck (p):</span>
+            <span id="druck-wert" class="value-highlight"></span>
+            <select id="druck-ergebnis-einheit">
+              <option value="Pa">Pascal (Pa)</option>
+              <option value="kPa">Kilopascal (kPa)</option>
+              <option value="MPa">Megapascal (MPa)</option>
+              <option value="bar">bar</option>
+              <option value="mbar">millibar (mbar)</option>
+            </select>
+          </div>
+          <div class="comparison-info" id="druck-vergleich"></div>
+        </div>
+      </div>
+
+      <div class="visual-demo">
+        <h3>Visuelle Demonstration: Kolben</h3>
+        <div class="piston-container">
+          <canvas id="piston-canvas" width="400" height="300"></canvas>
+          <div class="piston-controls">
+            <label>Kraft anpassen: <input type="range" id="kraft-slider" min="100" max="10000" value="1000"></label>
+            <span id="kraft-display">1000 N</span>
+          </div>
+          <div class="piston-controls">
+            <label>Fläche anpassen: <input type="range" id="flaeche-slider" min="1" max="100" value="10"></label>
+            <span id="flaeche-display">10 cm²</span>
+          </div>
+        </div>
+        <div class="pressure-indicator">
+          <div class="pressure-bar">
+            <div class="pressure-fill" id="pressure-fill"></div>
+          </div>
+          <p>Druck: <span id="visual-pressure">100.00</span> kPa</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="kraft-berechnen" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Kraft aus Druck und Fläche berechnen</h2>
+        <p>Die Kraft F ergibt sich aus dem Druck p und der Fläche A:</p>
+        <p class="formula-text">F = p × A</p>
+
+        <div class="input-section">
+          <div class="form-group">
+            <label for="kraft-druck">Druck (p):</label>
+            <div class="input-group">
+              <input type="number" id="kraft-druck" class="form-control" placeholder="z.B. 100000" step="any" min="0" aria-label="Druck in Pascal">
+              <select class="input-group-addon" id="kraft-druck-einheit">
+                <option value="Pa">Pascal (Pa)</option>
+                <option value="kPa">Kilopascal (kPa)</option>
+                <option value="MPa">Megapascal (MPa)</option>
+                <option value="bar">bar</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="kraft-flaeche">Fläche (A):</label>
+            <div class="input-group">
+              <input type="number" id="kraft-flaeche" class="form-control" placeholder="z.B. 0.01" step="any" min="0" aria-label="Fläche in Quadratmetern">
+              <select class="input-group-addon" id="kraft-flaeche-einheit">
+                <option value="m2">m²</option>
+                <option value="cm2">cm²</option>
+                <option value="mm2">mm²</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block calculate-btn" data-calculator="kraft">
+            <i class="fa fa-calculator"></i> Kraft berechnen
+          </button>
+        </div>
+
+        <div id="kraft-result" class="result-panel" style="display:none;">
+          <h3>Ergebnis:</h3>
+          <div class="result-value">
+            <span class="label">Kraft (F):</span>
+            <span id="kraft-wert" class="value-highlight"></span>
+            <select id="kraft-ergebnis-einheit">
+              <option value="N">Newton (N)</option>
+              <option value="kN">Kilonewton (kN)</option>
+              <option value="MN">Meganewton (MN)</option>
+            </select>
+          </div>
+          <div class="comparison-info" id="kraft-vergleich"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="flaeche-berechnen" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Fläche aus Druck und Kraft berechnen</h2>
+        <p>Die Fläche A ergibt sich aus der Kraft F und dem Druck p:</p>
+        <p class="formula-text">A = F / p</p>
+
+        <div class="input-section">
+          <div class="form-group">
+            <label for="flaeche-kraft">Kraft (F):</label>
+            <div class="input-group">
+              <input type="number" id="flaeche-kraft" class="form-control" placeholder="z.B. 1000" step="any" min="0" aria-label="Kraft in Newton">
+              <select class="input-group-addon" id="flaeche-kraft-einheit">
+                <option value="N">Newton (N)</option>
+                <option value="kN">Kilonewton (kN)</option>
+                <option value="MN">Meganewton (MN)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="flaeche-druck">Druck (p):</label>
+            <div class="input-group">
+              <input type="number" id="flaeche-druck" class="form-control" placeholder="z.B. 100000" step="any" min="0" aria-label="Druck in Pascal">
+              <select class="input-group-addon" id="flaeche-druck-einheit">
+                <option value="Pa">Pascal (Pa)</option>
+                <option value="kPa">Kilopascal (kPa)</option>
+                <option value="MPa">Megapascal (MPa)</option>
+                <option value="bar">bar</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block calculate-btn" data-calculator="flaeche">
+            <i class="fa fa-calculator"></i> Fläche berechnen
+          </button>
+        </div>
+
+        <div id="flaeche-result" class="result-panel" style="display:none;">
+          <h3>Ergebnis:</h3>
+          <div class="result-value">
+            <span class="label">Fläche (A):</span>
+            <span id="flaeche-wert" class="value-highlight"></span>
+            <select id="flaeche-ergebnis-einheit">
+              <option value="m2">m²</option>
+              <option value="cm2">cm²</option>
+              <option value="mm2">mm²</option>
+            </select>
+          </div>
+          <div class="area-visualization" id="area-visualization"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="hydraulic-examples">
+    <h2 class="text-center">Hydraulik im Alltag</h2>
+    <p class="text-center">Anwendungsbeispiele für den Zusammenhang zwischen Druck, Kraft und Fläche</p>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="example-card">
+          <h3>🚗 Autobremse</h3>
+          <p>Bei einer Autobremse wird eine kleine Kraft auf das Bremspedal ausgeübt. Durch hydraulische Übertragung wird diese Kraft auf eine größere Fläche an den Bremszylindern übertragen, was eine stark erhöhte Kraft auf die Bremsbeläge ergibt.</p>
+          <div class="example-values">
+            <p><strong>Pedalkraft:</strong> ~200 N</p>
+            <p><strong>Erreichbare Bremskraft:</strong> ~20.000 N</p>
+            <p><strong>Kraftverstärkung:</strong> 100:1</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="example-card">
+          <h3>🔧 Wagenheber</h3>
+          <p>Ein hydraulischer Wagenheber nutzt den gleichen Druck auf zwei unterschiedlich große Kolben. Die kleine Kolbenfläche wird mit wenig Kraft betätigt, auf der großen Kolbenfläche entsteht eine viel größere Kraft zum Heben des Autos.</p>
+          <div class="example-values">
+            <p><strong>Kraft auf kleinen Kolben:</strong> ~100 N</p>
+            <p><strong>Hebekraft (großer Kolben):</strong> ~10.000 N</p>
+            <p><strong>Flächenverhältnis:</strong> 1:100</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="example-card">
+          <h3>💉 Spritze</h3>
+          <p>Eine Spritze zeigt, wie eine kleine Kraft auf den Kolben einen hohen Druck erzeugt, der durch die sehr kleine Öffnung der Nadel wirkt. Dieser Druck drückt die Flüssigkeit durch die Nadel.</p>
+          <div class="example-values">
+            <p><strong>Kraft auf Kolben:</strong> ~10 N</p>
+            <p><strong>Kolbenfläche:</strong> ~1 cm²</p>
+            <p><strong>Druck in Spritze:</strong> ~100 kPa</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="example-card">
+          <h3>🏋️ Hydraulische Presse</h3>
+          <p>Das Prinzip der hydraulischen Presse basiert auf dem Gesetz von Pascal: Der Druck in einer ruhenden Flüssigkeit ist überall gleich. Durch unterschiedlich große Kolbenflächen lässt sich die Kraft verstärken:</p>
+          <p class="formula-text">F₂ = F₁ × (A₂/A₁)</p>
+          <p>Beispiel: Bei einem Flächenverhältnis von 1:100 wird eine Kraft von 100 N zu einer Kraft von 10.000 N verstärkt.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="example-card">
+          <h3>🔨 Nagel und Stift</h3>
+          <p>Warum dringt ein Nagel leicht in Holz ein, während ein breiter Stift es nicht tut? Beide üben die gleiche Kraft aus, aber der Nagel hat eine viel kleinere Fläche:</p>
+          <ul>
+            <li><strong>Nagelspitze:</strong> ~0.1 mm² → sehr hoher Druck</li>
+            <li><strong>Stiftspitze:</strong> ~1 mm² → 10× kleinerer Druck</li>
+          </ul>
+          <p>Kleinere Fläche = höherer Druck = leichteres Eindringen!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="educational-info">
+    <h2>Wissenswertes über Druck</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📐 Definition</h3>
+          <p>Druck p ist definiert als Kraft F pro Fläche A, auf die diese Kraft senkrecht wirkt:</p>
+          <p class="formula-text">p = F / A</p>
+          <p><strong>SI-Einheit:</strong> Pascal (Pa) = N/m²</p>
+          <p><strong>Andere Einheiten:</strong> bar, mbar, atm, Torr</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🌍 Atmosphärendruck</h3>
+          <p>Der Luftdruck auf Meereshöhe beträgt etwa:</p>
+          <ul>
+            <li>101.325 Pa = 101,325 kPa</li>
+            <li>1.013,25 mbar = 1,01325 bar</li>
+            <li>1 atm (Standardatmosphäre)</li>
+          </ul>
+          <p>Dies entspricht etwa 1 kg pro cm² oder einer 10 m hohen Wassersäule!</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚖️ Pascal'sches Gesetz</h3>
+          <p>In einer ruhenden Flüssigkeit breitet sich der Druck nach allen Richtungen gleichmäßig aus. Dies ist das Grundprinzip der Hydraulik:</p>
+          <p class="formula-text">p = F₁/A₁ = F₂/A₂</p>
+          <p>Daraus folgt: F₂ = F₁ × (A₂/A₁)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>📊 Druckvergleich</h3>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Beispiel</th>
+                <th>Druck</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Vakuum im Weltall</td><td>~0 Pa</td></tr>
+              <tr><td>Atmosphärendruck</td><td>~101.325 Pa</td></tr>
+              <tr><td>Autoreifen</td><td>~200.000 Pa (2 bar)</td></tr>
+              <tr><td>Flaschenöffnung</td><td>~300.000 Pa (3 bar)</td></tr>
+              <tr><td>Hydraulische Presse</td><td>~1.000.000 Pa (10 bar)</td></tr>
+              <tr><td>Tiefsee (10.000 m)</td><td>~1.000 bar</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>🔬 Umrechnungen</h3>
+          <p>Wichtige Umrechnungsfaktoren:</p>
+          <ul>
+            <li><strong>1 Pascal (Pa)</strong> = 1 N/m²</li>
+            <li><strong>1 Kilopascal (kPa)</strong> = 1.000 Pa</li>
+            <li><strong>1 Megapascal (MPa)</strong> = 1.000.000 Pa</li>
+            <li><strong>1 bar</strong> = 100.000 Pa = 100 kPa</li>
+            <li><strong>1 millibar (mbar)</strong> = 100 Pa</li>
+            <li><strong>1 atm</strong> = 101.325 Pa = 1,01325 bar</li>
+            <li><strong>1 Torr</strong> = 133,322 Pa</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/chemistry-calculator-framework.js" | relURL }}"></script>
+<script src="{{ "js/druck-flaechen-rechner-framework.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/druck-flaechen-rechner.css" | relURL }}">
+
+{{ end }}

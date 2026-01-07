@@ -1,0 +1,107 @@
+{{ define "main" }}
+
+<div class="gas-law-simulator-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="gas-law-simulator">
+        
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="educational-content">
+    <h2>Gasgesetze verstehen</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🌡️ Boyle-Mariotte-Gesetz</h3>
+          <p>Bei konstanter Temperatur sind Druck und Volumen eines Gases umgekehrt proportional:</p>
+          <p class="formula">p₁V₁ = p₂V₂</p>
+          <p><strong>Anwendung:</strong> Druckluftreifen, Sprühdosen</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📈 Gay-Lussac-Gesetz</h3>
+          <p>Bei konstantem Druck sind Volumen und Temperatur direkt proportional:</p>
+          <p class="formula">V/T = konstant</p>
+          <p><strong>Anwendung:</strong> Heißluftballons, Thermometer</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚗️ Ideales Gasgesetz</h3>
+          <p>Verbindet alle Zustandsgrößen eines idealen Gases:</p>
+          <p class="formula">pV = nRT</p>
+          <p><strong>Anwendung:</strong> Alle Gasberechnungen, chemische Reaktionen</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="info-card">
+          <h3>🔬 Realgase vs. Ideale Gase</h3>
+          <p>Das ideale Gasgesetz gilt streng genommen nur für ideale Gase ohne Wechselwirkungen. Reale Gase zeigen Abweichungen:</p>
+          <ul>
+            <li><strong>Bei hohem Druck:</strong> Moleküle haben Eigenvolumen</li>
+            <li><strong>Bei niedriger Temperatur:</strong> Anziehungskräfte zwischen Molekülen</li>
+            <li><strong>Korrekturfaktoren:</strong> Van-der-Waals-Gleichung berücksichtigt diese Effekte</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>📊 Praktische Anwendungen</h3>
+          <ul>
+            <li><strong>Autoreifen:</strong> Druckänderung bei Temperaturschwankungen</li>
+            <li><strong>Luftballons:</strong> Volumenänderung mit Temperatur</li>
+            <li><strong> chemische Reaktionen:</strong> Gasvolumenberechnungen</li>
+            <li><strong>Atmosphärenphysik:</strong> Druck- und Höhenberechnungen</li>
+            <li><strong>Industrielle Prozesse:</strong> Gasbehälterauslegung</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>🧮 Berechnungsbeispiele</h3>
+          <div class="example-calculation">
+            <h5>Beispiel: Boyle-Mariotte</h5>
+            <p>Ein Gas hat V₁ = 10 L bei p₁ = 1 atm. Wie groß ist V₂ bei p₂ = 2 atm?</p>
+            <p class="formula">V₂ = p₁V₁/p₂ = (1 atm × 10 L)/(2 atm) = 5 L</p>
+          </div>
+          <div class="example-calculation">
+            <h5>Beispiel: Ideales Gasgesetz</h5>
+            <p>2 mol Gas bei 300 K und 1 atm. Welches Volumen?</p>
+            <p class="formula">V = nRT/p = (2 mol × 0.0821 L·atm/(mol·K) × 300 K)/(1 atm) = 49.3 L</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/gas-law-simulator.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/gas-law-simulator.css" | relURL }}">
+
+{{ end }}
