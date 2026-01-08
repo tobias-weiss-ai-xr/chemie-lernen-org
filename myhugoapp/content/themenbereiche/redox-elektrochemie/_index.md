@@ -1,15 +1,14 @@
 ---
-title: "Redoxreaktionen und Elektrochemie"
-description: "Elektronenübertragungen und Strom aus chemischen Reaktionen - Erfahren Sie alles über Oxidation, Reduktion, galvanische Zellen, Elektrolyse und moderne Batterietechnologie"
+title: 'Redoxreaktionen und Elektrochemie'
+description: 'Elektronenübertragungen und Strom aus chemischen Reaktionen - Erfahren Sie alles über Oxidation, Reduktion, galvanische Zellen, Elektrolyse und moderne Batterietechnologie'
 date: 2025-12-26
-teilgebiet: "redox-elektrochemie"
-schwierigkeit: "mittelstufe"
-icon: "⚡"
+teilgebiet: 'redox-elektrochemie'
+schwierigkeit: 'mittelstufe'
+icon: '⚡'
 weight: 60
 interaktiv: true
-quiz: "redox-elektrochemie"
+quiz: 'redox-elektrochemie'
 ---
-
 
 ## Redoxreaktionen und Elektrochemie
 
@@ -33,6 +32,7 @@ Bei jeder Redoxreaktion laufen immer zwei Teilreaktionen ab:
 ### Oxidation
 
 **Oxidation** bedeutet:
+
 - Abgabe von Elektronen
 - Erhöhung der Oxidationszahl
 - Reaktion mit Sauerstoff (historische Definition)
@@ -47,6 +47,7 @@ $$\ce{Fe -> Fe^2+ + 2e-} \quad \text{(Eisen oxidiert)}$$
 ### Reduktion
 
 **Reduktion** bedeutet:
+
 - Aufnahme von Elektronen
 - Erniedrigung der Oxidationszahl
 - Entzug von Sauerstoff (historische Definition)
@@ -63,6 +64,7 @@ $$\ce{O2 + 4e- -> 2O^2-} \quad \text{(Sauerstoff reduziert)}$$
 Die **Oxidationszahl** gibt an, wie viele Elektronen ein Atom formal aufgenommen oder abgegeben hat.
 
 **Regeln für Oxidationszahlen:**
+
 1. Elemente haben Oxidationszahl 0
 2. Einfache Ionen: Oxidationszahl = Ladung
 3. Wasserstoff ist meistens +1
@@ -70,6 +72,7 @@ Die **Oxidationszahl** gibt an, wie viele Elektronen ein Atom formal aufgenommen
 5. Summe in Verbindung = Gesamtladung (oft 0)
 
 **Beispiele:**
+
 - $\ce{NaCl}$: $\ce{Na+}$ (+1), $\ce{Cl-}$ (-1)
 - $\ce{H2O}$: H (+1), O (-2)
 - $\ce{H2SO4}$: H (+1), S (+6), O (-2)
@@ -79,23 +82,25 @@ Die **Oxidationszahl** gibt an, wie viele Elektronen ein Atom formal aufgenommen
 ### Redoxpaare
 
 Ein **Redoxpaar** besteht aus:
+
 - **Oxidationsmittel** (Oxidans): Nimmt Elektronen auf (wird selbst reduziert)
 - **Reduktionsmittel** (Reduktans): Gibt Elektronen ab (wird selbst oxidiert)
 
 ### Beispiele für Redoxpaare
 
-| Oxidationsmittel | Reduktionsmittel |
-|-----------------|------------------|
-| Sauerstoff (O₂) | Wasserstoff (H₂) |
-| Chlor (Cl₂) | Natrium (Na) |
-| Kaliumpermanganat (KMnO₄) | Eisen(II)-salze |
-| Schwefelsäure (H₂SO₄) | Kupfer (Cu) |
+| Oxidationsmittel          | Reduktionsmittel |
+| ------------------------- | ---------------- |
+| Sauerstoff (O₂)           | Wasserstoff (H₂) |
+| Chlor (Cl₂)               | Natrium (Na)     |
+| Kaliumpermanganat (KMnO₄) | Eisen(II)-salze  |
+| Schwefelsäure (H₂SO₄)     | Kupfer (Cu)      |
 
 ### Redoxreihe
 
 Die **elektrochemische Spannungsreihe** ordnet Metalle nach ihrer Tendenz, Elektronen abzugeben.
 
 **Ausschnitt:**
+
 ```
 Li → K → Ca → Na → Mg → Al → Zn → Fe → Sn → Pb → H → Cu → Ag → Au
 starkes Reduktionsmittel ╌╌╌╌╌╌ starkes Oxidationsmittel
@@ -110,6 +115,7 @@ Je weiter links, desto stärker das Reduktionsmittel.
 Eine **galvanische Zelle** wandelt chemische Energie in elektrische Energie um.
 
 **Bestandteile:**
+
 1. **Zwei Elektroden** (Leiter, meist Metalle)
 2. **Zwei Elektrolyte** (Ionenleiter)
 3. **Elektrolytbrücke** (Ionenleitung zwischen Halbzellen)
@@ -129,11 +135,13 @@ $$\text{Gesamt:} \quad \ce{Zn + Cu^2+ -> Zn^2+ + Cu}$$
 ### Elektroden
 
 **Anode:**
+
 - Electrode, an der Oxidation stattfindet
 - Elektronen fließen ins Lösungsmittel
 - Negativer Pol in galvanischen Zellen
 
 **Kathode:**
+
 - Elektrode, an der Reduktion stattfindet
 - Elektronen werden aus dem Lösungsmittel aufgenommen
 - Positiver Pol in galvanischen Zellen
@@ -226,11 +234,13 @@ $$\text{Kathode:} \quad \ce{1/2 O2 + 2H+ + 2e- -> H2O}$$
 $$\text{Gesamt:} \quad \ce{H2 + 1/2 O2 -> H2O}$$
 
 **Vorteile:**
+
 - Hoher Wirkungsgrad
 - Keine direkten Emissionen (nur Wasser)
 - Leiser Betrieb
 
 **Anwendungen:**
+
 - E-Autos (Toyota Mirai, Hyundai Nexo)
 - Stationäre Stromversorgung
 - Raumfahrt (Apollo-Programm)
@@ -247,6 +257,7 @@ $$\text{Gesamt:} \quad \ce{H2 + 1/2 O2 -> H2O}$$
 $$\ce{4Fe + 3O2 -> 2Fe2O3} \quad \text{(Rost)}$$
 
 **Bedingungen für Rostbildung:**
+
 1. Eisen
 2. Sauerstoff
 3. Wasser (als Elektrolyt)
@@ -289,10 +300,12 @@ Redoxreaktionen müssen elektrisch neutral sein – die Anzahl der abgegebenen u
 
 **Schritt 1: Oxidationszahlen bestimmen**
 $$\ce{C2H6 + O2 -> CO2 + H2O}$$
+
 - C: $-2 \rightarrow +4$ (Änderung: $-6$)
 - O: $0 \rightarrow -2$ (Änderung: $-2$)
 
 **Schritt 2: Teilreaktionen**
+
 - Oxidation: $\ce{C2H6 -> 2CO2}$
 - Reduktion: $\ce{O2 -> 2H2O}$
 
@@ -344,10 +357,12 @@ Reduktion von CO₂ zu Glucose.
 Viele Redoxreaktionen sind mit Farbänderungen verbunden:
 
 **Kaliumpermanganat (KMnO₄):**
+
 - Oxidierend: violett → farblos
 - In saurer Lösung: violett → farblos
 
 **Eisen(II)- zu Eisen(III)-Ionen:**
+
 - Fe²⁺ (hellgrün) → Fe³⁺ (gelbbraun)
 
 ### Nachweisreaktionen
@@ -360,9 +375,11 @@ Braune Farbe von Iod (Stärke-Nachweis: blau-schwarz)
 ## Experimente
 
 ### Experiment 1: Kupferabscheidung
+
 **Materialien:** Kupfersulfatlösung, Eisenfeiln, Becher
 
 **Durchführung:**
+
 1. Eisenfeiln in Kupfersulfatlösung geben
 2. Farbänderung beobachten (blau → grün)
 3. Kupferbelag auf Eisen beobachten
@@ -370,9 +387,11 @@ Braune Farbe von Iod (Stärke-Nachweis: blau-schwarz)
 **Erklärung:** $\ce{Fe + Cu^2+ -> Fe^2+ + Cu}$
 
 ### Experiment 2: Knopfzelle
+
 **Materialien:** Kupfermünze, Zinkblech, Zitrone, Kabel, LED
 
 **Durchführung:**
+
 1. Kupfermünze und Zinkblech in Zitrone legen
 2. Mit Kabeln und LED verbinden
 3. Leuchten der LED beobachten
@@ -380,9 +399,11 @@ Braune Farbe von Iod (Stärke-Nachweis: blau-schwarz)
 **Erklärung:** Galvanische Zelle aus Cu und Zn
 
 ### Experiment 3: Elektrolyse
+
 **Materialien:** Elektrolyse-Apparat, Stromquelle, Elektroden, Salzlösung
 
 **Durchführung:**
+
 1. Salzlösung in Elektrolyse-Apparat füllen
 2. Strom einschalten
 3. Gasentwicklung an beiden Elektroden beobachten
@@ -423,6 +444,7 @@ $$m = n \cdot M = 0.0187 \text{ mol} \cdot 63.55 \text{ g/mol} = 1.19 \text{ g}$
 ## Lernziele
 
 Nach Abschluss dieses Themenbereichs sollten Sie:
+
 - ✅ Oxidation und Reduktion unterscheiden können
 - ✅ Redoxpaare identifizieren können
 - ✅ Oxidationszahlen bestimmen können
@@ -438,4 +460,4 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Energetik](/themenbereiche/energetik/) – Energieumsatz bei Reaktionen
 - [Reaktionsgleichungen ausgleichen](/reaktionsgleichungen-ausgleichen/) – Interaktives Tool zum Ausgleichen
 - [Gleichgewicht und Geschwindigkeit](/themenbereiche/gleichgewicht-geschwindigkeit/) – Reaktionskinetik
-- [Galvanische Zelle in VR](https://github.com/tobias-weiss-ai-xr/graphwiz-xr) – 3D-Visualisierung
+- [PSE in VR](https://chemie-lernen.org/pse-in-vr/) – 3D-Visualisierung

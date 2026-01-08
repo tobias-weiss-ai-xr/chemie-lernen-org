@@ -1,0 +1,372 @@
+{{ define "main" }}
+
+<div class="chemisches-gleichgewicht-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a href="#gleichgewicht" aria-controls="gleichgewicht" role="tab" data-toggle="tab">
+            <i class="fa fa-balance-scale"></i> Gleichgewicht
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#chatelier" aria-controls="chatelier" role="tab" data-toggle="tab">
+            <i class="fa fa-random"></i> Le Chatelier
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#konzentration" aria-controls="konzentration" role="tab" data-toggle="tab">
+            <i class="fa fa-flask"></i> Konzentration
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="gleichgewicht" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Chemisches Gleichgewicht</h2>
+        <p>A + B ⇌ C + D - Reaktion im dynamischen Gleichgewicht.</p>
+
+        <div class="simulation-container">
+          <div class="simulation-canvas">
+            <canvas id="equilibrium-canvas" width="700" height="400"></canvas>
+          </div>
+
+          <div class="equilibrium-display">
+            <div class="equation-display">
+              <p class="formula-text">A + B ⇌ C + D</p>
+            </div>
+
+            <div class="concentrations">
+              <div class="conc-panel">
+                <h4><i class="fa fa-flask"></i> Ausgangsstoffe</h4>
+                <div class="conc-inputs">
+                  <div class="conc-input">
+                    <label>[A]:</label>
+                    <input type="number" id="conc-a" class="form-control" value="1.0" step="0.1" min="0" oninput="updateEquilibrium()">
+                  </div>
+                  <div class="conc-input">
+                    <label>[B]:</label>
+                    <input type="number" id="conc-b" class="form-control" value="1.0" step="0.1" min="0" oninput="updateEquilibrium()">
+                  </div>
+                </div>
+              </div>
+
+              <div class="arrow">→</div>
+
+              <div class="conc-panel">
+                <h4><i class="fa fa-flask"></i> Produkte</h4>
+                <div class="conc-inputs">
+                  <div class="conc-input">
+                    <label>[C]:</label>
+                    <input type="number" id="conc-c" class="form-control" value="1.0" step="0.1" min="0" oninput="updateEquilibrium()">
+                  </div>
+                  <div class="conc-input">
+                    <label>[D]:</label>
+                    <input type="number" id="conc-d" class="form-control" value="1.0" step="0.1" min="0" oninput="updateEquilibrium()">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="equilibrium-results">
+              <div class="result-box">
+                <h4>Gleichgewichtskonstante Kc</h4>
+                <div class="equation">
+                  <p class="formula-text">Kc = [C][D] / [A][B]</p>
+                </div>
+                <div class="value-display">
+                  <span id="kc-value" class="value large highlight">1.00</span>
+                </div>
+              </div>
+
+              <div class="direction-info">
+                <div class="direction">
+                  <span class="direction-label">Reaktionsrichtung:</span>
+                  <span id="reaction-direction" class="badge equilibrium">Gleichgewicht</span>
+                </div>
+              </div>
+
+              <button class="btn btn-primary" onclick="startEquilibriumSimulation()">
+                <i class="fa fa-play"></i> Simulation starten
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="chatelier" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Le Chatelier'sches Prinzip</h2>
+        <p>Wenn ein System im Gleichgewicht gestört wird, reagiert es, um das Gleichgewicht wiederherzustellen.</p>
+
+        <div class="principle-examples">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="example-card">
+                <h4>🌡️ Temperaturerhöhung</h4>
+                <p>Erhöhung der Temperatur verschiebt das Gleichgewicht zur Seite der endothermen Reaktion.</p>
+                <div class="button-group">
+                  <button class="btn btn-info" onclick="applyChatelier('temp-increase')">
+                    <i class="fa fa-thermometer-full"></i> Temperatur erhöhen
+                  </button>
+                </div>
+                <div class="effect-display">
+                  <span class="label">Neue Konzentrationen:</span>
+                  <span id="temp-effect" class="value">A: 0.8, B: 0.8, C: 1.2, D: 1.2</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="example-card">
+                <h4>🧪 Druckerhöhung</h4>
+                <p>Erhöhung des Drucks verschiebt das Gleichgewicht zur Seite mit weniger Gasvolumen.</p>
+                <div class="button-group">
+                  <button class="btn btn-info" onclick="applyChatelier('pressure-increase')">
+                    <i class="fa fa-compress-arrows-alt"></i> Druck erhöhen
+                  </button>
+                </div>
+                <div class="effect-display">
+                  <span class="label">Neue Konzentrationen:</span>
+                  <span id="pressure-effect" class="value">A: 1.2, B: 1.2, C: 0.8, D: 0.8</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="example-card">
+                <h4>📉 Konzentrationserhöhung</h4>
+                <p>Erhöhung der Konzentration eines Eduktes verschiebt das Gleichgewicht zur Seite der Produkte.</p>
+                <div class="button-group">
+                  <button class="btn btn-info" onclick="applyChatelier('conc-increase')">
+                    <i class="fa fa-flask"></i> [A] erhöhen
+                  </button>
+                </div>
+                <div class="effect-display">
+                  <span class="label">Neue Konzentrationen:</span>
+                  <span id="conc-effect" class="value">A: 1.5, B: 1.5, C: 1.0, D: 1.0</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="example-card">
+                <h4>💉 Entfernen eines Produktes</h4>
+                <p>Entfernen eines Produktes verschiebt das Gleichgewicht zur Reaktionsseite.</p>
+                <div class="button-group">
+                  <button class="btn btn-warning" onclick="removeProduct()">
+                    <i class="fa fa-trash"></i> [D] entfernen
+                  </button>
+                </div>
+                <div class="effect-display">
+                  <span class="label">Neue Konzentrationen:</span>
+                  <span id="remove-effect" class="value">A: 2.0, B: 2.0, C: 0.0, D: 0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="konzentration" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Konzentrationseffekte</h2>
+        <p>Untersuchen Sie, wie Konzentrationsänderungen das Gleichgewicht beeinflussen.</p>
+
+        <div class="simulation-controls">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="control-group">
+                <label for="kc-initial">Gleichgewichtskonstante Kc:</label>
+                <input type="number" id="kc-initial" class="form-control" value="1.0" step="0.1" min="0" oninput="updateConcentrationEffect()">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="control-group">
+                <label for="reaction-quotient">Stöchiometrischer Faktor (n):</label>
+                <input type="number" id="reaction-quotient" class="form-control" value="1" step="1" min="1" max="4" oninput="updateConcentrationEffect()">
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-success btn-lg btn-block" onclick="updateConcentrationEffect()">
+            <i class="fa fa-chart-line"></i> Effekte aktualisieren
+          </button>
+        </div>
+
+        <div class="concentration-graph">
+          <h3>Reaktionsfortschritt vs. Kc</h3>
+          <div class="plot-wrapper">
+            <canvas id="concentration-plot-canvas" width="600" height="350"></canvas>
+          </div>
+          <div class="graph-legend">
+            <div class="legend-item">
+              <div class="legend-line" style="background: #3498db;"></div>
+              <span>Gleichgewichtskonstante</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-line" style="background: #e74c3c;"></div>
+              <span>Reaktionsfortschritt (ξ)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="educational-content">
+    <h2 class="text-center">Gleichgewicht verstehen</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚖️ Dynamisches Gleichgewicht</h3>
+          <p>Ein chemisches Gleichgewicht ist dynamisch, wenn die Hinreaktionsgeschwindigkeit gleich der Rückreaktionsgeschwindigkeit ist:</p>
+          <ul>
+            <li>v<sub>hin</sub> = v<sub>rück</sub></li>
+            <li>Die Konzentrationen aller Reaktionspartner bleiben konstant</li>
+            <li>Kc = [Produkte]/[Edukte]</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📐 Le Chatelier'sches Prinzip</h3>
+          <p>Wenn ein System im Gleichgewicht gestört wird, reagiert es, um das Gleichgewicht wiederherzustellen:</p>
+          <div class="principle-summary">
+            <h4>Einflüsse auf das Gleichgewicht:</h4>
+            <ul>
+              <li><strong>Temperaturerhöhung:</strong> Favors endotherme Reaktion</li>
+              <li><strong>Druckerhöhung:</strong> Favors Seite mit weniger Gasvolumen</li>
+              <li><strong>Konzentrationserhöhung:</strong> Favors Produkte</li>
+              <li><strong>Konzentrationserniedrigung:</strong> Favors Edukte</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🔬 Gleichgewichtskonstante</h3>
+          <p>Die Gleichgewichtskonstante Kc gibt die Position des Gleichgewichts an:</p>
+          <ul>
+            <li><strong>Kc >> 1:</strong> Gleichgewicht liegt auf Produktseite</li>
+            <li><strong>Kc << 1:</strong> Gleichgewicht liegt auf Eduktseite</li>
+            <li><strong>Kc = 1:</strong> Edukte und Produkte im gleichen Verhältnis</li>
+          </ul>
+          <div class="example">
+            <h5>Beispiel: A + B → C + D</h5>
+            <p><strong>Kc = 1:</strong> Wenn [A] = [B] = [C] = [D] = 1.0 M, dann ist das System im Gleichgewicht.</p>
+            <p><strong>Kc = 10:</strong> Bei Konzentration [C] = [D] = 10.0 M, verschiebt sich das Gleichgewicht stark zu Produkten.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="example-card">
+          <h3>📊 Reaktionsquotient ξ</h3>
+          <p>Der Reaktionsfortschritt ξ gibt an, wie weit die Reaktion fortgeschritten ist:</p>
+          <p class="formula-text">ξ = ([Produkte] / [Edukte])<sup>1/n</sup> - 1</p>
+          <ul>
+            <li><strong>ξ = 0:</strong> Reaktion noch nicht gestartet</li>
+            <li><strong>0 < ξ < 1:</strong> Reaktion läuft, aber noch nicht im Gleichgewicht</li>
+            <li><strong>ξ = 1:</strong> Reaktion abgeschlossen, maximale Ausbeute erreicht</li>
+          </ul>
+          <div class="example">
+            <h5>Beispielrechnung:</h5>
+            <p>Für A + B → C + D mit Kc = 1:</p>
+            <p class="calculation-steps">
+              <span>Schritt 1: ξ₀ = ([A]₀/[B]₀) - 1 = 1/1 - 1 = 0</span><br>
+              <span>Schritt 2: ξ₀ × (1 - ξ₀) = 0 × (1 - 0) = 0</span><br>
+              <span>Schritt 3: ξ = ξ₀ × exp(-kt) = 0 × exp(-0) = 0</span><br>
+              <span>Ergebnis: Die Reaktion befindet sich noch am Startpunkt.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="example-card">
+          <h3>🔬 Gibbs-Energie</h3>
+          <p>Die Gibbs-Energie ΔG bestimmt, ob eine Reaktion spontan abläuft:</p>
+          <p class="formula-text">ΔG = ΔH - T × ΔS</p>
+          <ul>
+            <li><strong>ΔG < 0:</strong> Reaktion ist exotherm (spontan)</li>
+            <li><strong>ΔG > 0:</strong> Reaktion ist endotherm (nicht spontan)</li>
+            <li><strong>ΔG = 0:</strong> Reaktion ist im Gleichgewicht</li>
+          </ul>
+          <div class="formula-box">
+            <p><strong>Bei Gleichgewicht:</strong></p>
+            <p class="formula-text">ΔG = 0</p>
+            <p>Da ΔH = -TΔS (enthalpische Änderung kompensiert Entropieänderung)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="example-card">
+            <h3>⚗️ Industrielle Anwendungen</h3>
+          <p>Praktische Beispiele für Gleichgewichte in der Industrie:</p>
+          <ul>
+            <li><strong>Ammoniak-Synthese (Haber-Bosch):</strong> N₂ + 3H₂ → 2NH₃, Kc ~ 10⁴ bis 10⁵</li>
+            <li><strong>Wassergas-Gleichgewicht:</strong> H₂ + I₂ ⇌ 2HI, Kc ~ 50 bis 70</li>
+            <li><strong>Eisenoxid-Reduktion:</strong> Fe₂O₃ + 3CO → 2Fe + 3CO₂, Hochtemperatur-Anwendung</li>
+            <li><strong>Photosynthese in Pflanzen:</strong> CO₂ + H₂O ⇌ C₆H₁₂O₆ + O₂, Lichtabhängig</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="example-card">
+          <h3>🧪 Biochemische Gleichgewichte</h3>
+          <p>Gleichgewichte in biologischen Systemen:</p>
+          <ul>
+            <li><strong>Blut-Puffer:</strong> H₂CO₃/HCO₃⁻-System, pH-Regulation</li>
+            <li><strong>ATP-Synthese:</strong> Adenosintriphosphat + Pyrophosphat → ATP + PPi, Zelluläres Gleichgewicht</li>
+            <li><strong>Hämoglobin-Dissoziation:</strong> Hb + O₂ ⇌ HbO₂ + O₂, Sauerstofftransport</li>
+            <li><strong>Enzym-Katalyse:</strong> Michaelis-Menten-Gleichgewicht, Enzymsättigung</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="example-card">
+          <h3>🌍️ Umweltchemie</h3>
+          <p>Gleichgewichte in Atmosphäre und Ozeanen:</p>
+          <ul>
+            <li><strong>CO₂-Absorption:</strong> CO₂ + H₂O ⇌ H₂CO₃, Ozeanischer Kohlenstoffkreislauf</li>
+            <li><strong>NOₓ/NO₂-Gleichgewicht:</strong> N₂ + O₂ ⇌ 2NO, Smog-Bildung, Autoabgase</li>
+            <li><strong>O₃/O₂-Gleichgewicht:</strong> 2O₃ ⇌ 3O₂, Ozonzerstörung und Schutzschicht</li>
+            <li><strong>Ozeanversauerung:</strong> 2H₂O + O₂ ⇌ 2H₂O + O₂, Photosynthese</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/chemisches-gleichgewicht.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/chemisches-gleichgewicht.css" | relURL }}">
+
+{{ end }}

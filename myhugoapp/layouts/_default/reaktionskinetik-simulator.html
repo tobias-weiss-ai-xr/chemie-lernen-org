@@ -1,0 +1,337 @@
+{{ define "main" }}
+
+<div class="reaktionskinetik-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a href="#temperatur" aria-controls="temperatur" role="tab" data-toggle="tab">
+            <i class="fa fa-thermometer-half"></i> Temperatur
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#kollision" aria-controls="kollision" role="tab" data-toggle="tab">
+            <i class="fa fa-exchange-alt"></i> Kollisionstheorie
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#arrhenius" aria-controls="arrhenius" role="tab" data-toggle="tab">
+            <i class="fa fa-chart-line"></i> Arrhenius-Gleichung
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="temperatur" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Temperatur und Teilchengeschwindigkeit</h2>
+        <p>Untersuchen Sie, wie die Temperatur die durchschnittliche Geschwindigkeit der Teilchen beeinflusst.</p>
+
+        <div class="simulation-container">
+          <div class="simulation-canvas">
+            <canvas id="temperature-canvas" width="700" height="400"></canvas>
+          </div>
+
+          <div class="simulation-controls">
+            <div class="control-group">
+              <label>Temperatur (K):</label>
+              <input type="range" id="temperature-slider" min="100" max="1000" value="300" oninput="updateTemperatureSimulation()">
+              <span id="temp-kinetics-display">300 K</span>
+            </div>
+
+            <div class="control-group">
+              <label>Anzahl Teilchen:</label>
+              <input type="range" id="particle-count" min="50" max="500" value="200" oninput="updateTemperatureSimulation()">
+              <span id="particle-count-display">200</span>
+            </div>
+
+            <div class="control-group">
+              <label>Simulation starten:</label>
+              <button class="btn btn-primary" id="start-kinetics" onclick="toggleKineticsAnimation()">
+                <i class="fa fa-play"></i> <span id="kinetics-btn-text">Start</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="kinetics-info">
+            <div class="info-row">
+              <span class="label">Mittlere Geschwindigkeit:</span>
+              <span id="avg-velocity" class="value">580 m/s</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Stöfrequenz:</span>
+              <span id="collision-frequency" class="value">2.3 × 10⁹ s⁻¹</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Maxwell-Boltzmann Verteilung:</span>
+              <span class="badge">Aktiv</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="kollision" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Kollisionstheorie</h2>
+        <p>Visualisieren Sie erfolgreiche und unvollständige Stöe zwischen Teilchen.</p>
+
+        <div class="simulation-container">
+          <div class="simulation-canvas">
+            <canvas id="collision-canvas" width="700" height="400"></canvas>
+          </div>
+
+          <div class="simulation-controls">
+            <div class="control-group">
+              <label>Stöquerschnitt:</label>
+              <input type="range" id="collision-threshold" min="0.1" max="1.0" value="0.5" step="0.1" oninput="updateCollisionSimulation()">
+              <span id="collision-threshold-display">0.5</span>
+            </div>
+
+            <div class="control-group">
+              <label>Konzentration (mol/L):</label>
+              <input type="range" id="concentration-slider" min="0.1" max="10.0" value="1.0" step="0.1" oninput="updateCollisionSimulation()">
+              <span id="concentration-display">1.0 mol/L</span>
+            </div>
+
+            <div class="control-group">
+              <label>Effektiver Querschnitt (Å²):</label>
+              <input type="range" id="cross-section-slider" min="0.1" max="5.0" value="1.0" step="0.1" oninput="updateCollisionSimulation()">
+              <span id="cross-section-display">1.0 Å²</span>
+            </div>
+
+            <div class="control-group">
+              <label>Reaktion starten:</label>
+              <button class="btn btn-success" id="start-collision" onclick="toggleCollisionAnimation()">
+                <i class="fa fa-bolt"></i> <span id="collision-btn-text">Start</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="collision-stats">
+            <div class="stats-grid">
+              <div class="stat-card">
+                <h5>Gesamte Stöe</h5>
+                <span id="total-collisions" class="value large">0</span>
+              </div>
+              <div class="stat-card">
+                <h5>Effektive Stöe</h5>
+                <span id="effective-collisions" class="value">0</span>
+              </div>
+              <div class="stat-card">
+                <h5>Reaktionsgeschwindigkeit</h5>
+                <span id="reaction-rate" class="value highlight">0.0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="arrhenius" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Arrhenius-Gleichung</h2>
+        <p>k = A × e<sup>-E<sub>a</sub>/RT</sup> - Bestimmen Sie die Temperaturabhängigkeit der Reaktionsgeschwindigkeitskonstante.</p>
+
+        <div class="formula-box">
+          <p class="formula-text">k = A × e<sup>-E<sub>a</sub> / (R × T)</sup></p>
+          <div class="formula-explanation">
+            <p><strong>k:</strong> Reaktionsgeschwindigkeitskonstante</p>
+            <p><strong>A:</strong> Stoßfaktor (Präexponentialfaktor)</p>
+            <p><strong>E<sub>a</sub>:</strong> Aktivierungsenergie (J/mol)</p>
+            <p><strong>R:</strong> Gaskonstante (8.314 J/mol·K)</p>
+            <p><strong>T:</strong> Temperatur (K)</p>
+          </div>
+        </div>
+
+        <div class="input-section">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="arrhenius-ea">Aktivierungsenergie (kJ/mol):</label>
+                <input type="number" id="arrhenius-ea" class="form-control" value="75" min="10" max="300" step="1" oninput="updateArrheniusPlot()">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="arrhenius-preexp">Präexponentialfaktor (log A):</label>
+                <input type="number" id="arrhenius-preexp" class="form-control" value="12" min="0" max="20" step="0.5" oninput="updateArrheniusPlot()">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="arrhenius-temp-range">Temperaturbereich (K):</label>
+                <div class="temp-range-inputs">
+                  <div>
+                    <label>Min:</label>
+                    <input type="number" id="temp-min" class="form-control" value="200" oninput="updateArrheniusPlot()">
+                  </div>
+                  <div>
+                    <label>Max:</label>
+                    <input type="number" id="temp-max" class="form-control" value="800" oninput="updateArrheniusPlot()">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="arrhenius-steps">Anzahl Temperaturpunkte:</label>
+                <input type="number" id="temp-steps" class="form-control" value="10" min="5" max="30" oninput="updateArrheniusPlot()">
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block" onclick="updateArrheniusPlot()">
+            <i class="fa fa-chart-line"></i> Arrhenius-Plot aktualisieren
+          </button>
+        </div>
+
+        <div class="plot-container">
+          <h3>Arrhenius-Plot</h3>
+          <div class="plot-wrapper">
+            <canvas id="arrhenius-plot-canvas" width="600" height="400"></canvas>
+          </div>
+          <div class="plot-legend">
+            <div class="legend-item">
+              <div class="legend-line" style="background: #3498db;"></div>
+              <span>ln(k)</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-line" style="background: #e74c3c;"></div>
+              <span>1/T</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="arrhenius-results">
+          <div class="result-box">
+            <h4>Berechnete Werte</h4>
+            <div class="calculation-summary">
+              <div class="calc-row">
+                <span class="label">Bei 300 K:</span>
+                <span id="arrhenius-k-300" class="value">1.2 × 10⁻⁴ s⁻¹</span>
+              </div>
+              <div class="calc-row">
+                <span class="label">Bei 600 K:</span>
+                <span id="arrhenius-k-600" class="value highlight">2.8 × 10⁻² s⁻¹</span>
+              </div>
+              <div class="calc-row">
+                <span class="label">Erhöhungsfaktor:</span>
+                <span id="arrhenius-factor" class="value">233×</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="educational-content">
+    <h2 class="text-center">Reaktionskinetik verstehen</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚡ Kinetische Gastheorie</h3>
+          <p>Die durchschnittliche Geschwindigkeit von Gasmolekülen ist:</p>
+          <p class="formula-text">v<sub>avg</sub> = √(8RT / πm)</p>
+          <ul>
+            <li><strong>R:</strong> Gaskonstante (8.314 J/mol·K)</li>
+            <li><strong>T:</strong> Temperatur (K)</li>
+            <li><strong>m:</strong> Molmasse (kg/mol)</li>
+          </ul>
+          <p>Bei höherer Temperatur bewegen sich Teilchen schneller → mehr Stöe → höhere Reaktionsgeschwindigkeit.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>💥 Stöfrequenz</h3>
+          <p>Die Stöfrequenz Z<sub>A</sub> ist:</p>
+          <p class="formula-text">Z<sub>A</sub> = √2 × N<sub>A</sub> × N<sub>B</sub> × σ × v<sub>avg</sub></p>
+          <ul>
+            <li><strong>N<sub>A</sub>, N<sub>B</sub>:</strong> Teilchenkonzentrationen</li>
+            <li><strong>σ:</strong> Stoßquerschnitt</li>
+            <li><strong>v<sub>avg</sub>:</strong> Mittlere Geschwindigkeit</li>
+          </ul>
+          <p>Nur Stöe mit ausreichender Energie E > E<sub>a</sub> führen zur Reaktion.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📊 Arrhenius-Gleichung</h3>
+          <p>Verknüpft Reaktionsgeschwindigkeit mit Temperatur:</p>
+          <p class="formula-text">k = A × e<sup>-E<sub>a</sub>/RT</sup></p>
+          <div class="arrhenius-examples">
+            <h5>Typische Werte:</h5>
+            <ul>
+              <li><strong>Schnelle Reaktionen:</strong> A ≈ 10¹³, E<sub>a</sub> ≈ 50 kJ/mol</li>
+              <li><strong>Mittlere Reaktionen:</strong> A ≈ 10¹⁰, E<sub>a</sub> ≈ 100 kJ/mol</li>
+              <li><strong>Langsame Reaktionen:</strong> A ≈ 10⁻³, E<sub>a</sub> ≈ 200 kJ/mol</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="example-card">
+          <h3>🌡️ Temperaturabhängigkeit</h3>
+          <p>Die Arrhenius-Gleichung zeigt, dass die Reaktionsgeschwindigkeit exponentiell mit der Temperatur steigt.</p>
+          <div class="rule-of-thumb">
+            <h4>RGT-Regel (van't Hoff)</h4>
+            <p><strong>Regel:</strong> Bei Temperaturerhöhung um 10 K verdoppelt sich die Reaktionsgeschwindigkeit in etwa.</p>
+            <p><strong>Mathematik:</strong> k(T+10K) / k(T) ≈ 2 - 4</p>
+            <p class="small">Gilt für viele Reaktionen bei Raumtemperatur</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="example-card">
+          <h3>🔬 Katalyse</h3>
+          <p>Ein Katalysator senkt die Aktivierungsenergie und erhöht die Reaktionsgeschwindigkeit drastisch.</p>
+          <div class="catalyst-info">
+            <h4>Wirkungsweise:</h4>
+            <ul>
+              <li><strong>Alternative Aktivierungsenergie:</strong> E<sub>a</sub> wird auf E'<sub>a</sub> gesenkt</li>
+              <li><strong>Stöfrequenz:</strong> Nimmt zu bei gleichbleibender Temperatur</li>
+              <li><strong>Exponentieller Faktor:</strong> k' / k > 1</li>
+            </ul>
+            <div class="example">
+              <h5>Beispiel:</h5>
+              <p>Ohne Katalysator: E<sub>a</sub> = 100 kJ/mol, k = 1 × 10⁻⁴ s⁻¹ bei 300 K</p>
+              <p>Mit Katalysator: E'<sub>a</sub> = 50 kJ/mol, k = 5 × 10⁻³ s⁻¹ bei 300 K</p>
+              <p class="text-success">Faktor: 5000×</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/reaktionskinetik-simulator.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/reaktionskinetik-simulator.css" | relURL }}">
+
+{{ end }}

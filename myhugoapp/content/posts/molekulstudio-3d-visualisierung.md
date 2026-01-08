@@ -1,5 +1,5 @@
 ---
-title: "Molekülstudio: Interaktive 3D-Visualisierung von Molekülen"
+title: 'Molekülstudio: Interaktive 3D-Visualisierung von Molekülen'
 date: 2025-12-24T10:00:00+01:00
 draft: false
 ---
@@ -18,7 +18,7 @@ Die molekulare Welt ist normalerweise unsichtbar – aber mit dem Molekülstudio
 </a>
 </div>
 
-*Kostenlos, werbefrei, keine Anmeldung erforderlich*
+_Kostenlos, werbefrei, keine Anmeldung erforderlich_
 
 ---
 
@@ -62,26 +62,31 @@ Die Bedienung ist bewusst einfach gehalten – keine komplexe Menüs, keine Eina
 Das Molekülstudio enthält fünf sorgfältig ausgewählte Moleküle, die wichtige chemische Konzepte veranschaulichen:
 
 #### Wasser (H₂O)
+
 - **Winkel:** ~104.5° (statt idealer 109.5° durch freie Elektronenpaare)
 - **Polare Bindung** zwischen Sauerstoff und Wasserstoff
 - **Lehrreich für:** Wasserstoffbrücken, Dipol-Momente, Solvatation
 
 #### Methan (CH₄)
+
 - **Geometrie:** Perfekte Tetraederstruktur
 - **Bindungswinkel:** Exakt 109.5°
 - **Lehrreich für:** sp³-Hybridisierung, organische Chemie Grundlagen
 
 #### Ammoniak (NH₃)
+
 - **Geometrie:** Trigonale Pyramide
 - **Freies Elektronenpaar** am Stickstoff beeinflusst die Form
 - **Lehrreich für:** VSEPR-Theorie, Base-Verhalten
 
 #### Kohlendioxid (CO₂)
+
 - **Geometrie:** Linear (O=C=O Winkel: 180°)
 - **Doppelbindungen** zwischen C und O
 - **Lehrreich für:** Lineare Moleküle, sp-Hybridisierung, Treibhauseffekt
 
 #### Ethen (C₂H₄)
+
 - **Geometrie:** Planar mit Doppelbindung
 - **Eingeschränkte Rotation** um die C=C-Doppelbindung
 - **Lehrreich für:** sp²-Hybridisierung, cis/trans-Isomerie, Alkene
@@ -154,10 +159,10 @@ Das Molekülstudio funktioniert in allen modernen Browsern, die WebGL unterstüt
 
 Das Molekülstudio ist Teil eines integrierten Lernökosystems:
 
-| Komponente | Funktion | URL |
-|------------|----------|-----|
+| Komponente         | Funktion                                                                                                  | URL                                                              |
+| ------------------ | --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | **Periodensystem** | Interaktive 3D-Darstellung aller 118 Elemente mit verschiedenen Ansichten (Tabelle, Kugel, Helix, Gitter) | [/perioden-system-der-elemente/](/perioden-system-der-elemente/) |
-| **Molekülstudio** | Visualisierung von Molekülen und Bindungen in Echtzeit-3D | [/molekuel-studio/](/molekuel-studio/) |
+| **Molekülstudio**  | Visualisierung von Molekülen und Bindungen in Echtzeit-3D                                                 | [/molekuel-studio/](/molekuel-studio/)                           |
 
 ### Synergien
 
@@ -165,7 +170,6 @@ Die verschiedenen Komponenten ergänzen sich:
 
 1. **Periodensystem → Molekülstudio**
    - Vom Element zum Molekül: Wie verbinden sich Atome?
-
 
 ---
 
@@ -176,16 +180,19 @@ Die verschiedenen Komponenten ergänzen sich:
 Das Molekülstudio eignet sich für verschiedene Unterrichtsszenarien:
 
 #### Frontalunterricht
+
 - Lehrer projiziert das Molekülstudio auf die Leinwand
 - Demonstration von Molekülgeometrien und Bindungstypen
 - Live-Demonstration mit Drehen und Zoomen
 
 #### Gruppenarbeit
+
 - Kleingruppen erkunden Moleküle auf Tablets/Laptops
 - Schülervorträge: "Erklären Sie die Geometrie von Ammoniak"
 - Vergleichende Analyse: "Was haben Wasser und Ammoniak gemeinsam?"
 
 #### Hausaufgaben & Selbststudium
+
 - Schüler:innen erkunden Moleküle zu Hause
 - Vorbereitung auf upcoming Themen im Unterricht
 - Vertiefung für besonders interessierte Schüler:innen
@@ -213,6 +220,7 @@ Das Molekülstudio ist ein weiterer Schritt auf unserer [Roadmap](/pages/roadmap
 ### Geplante Erweiterungen
 
 #### Kurzfristig (nächste 3-6 Monate)
+
 - **Erweiterung der Molekül-Datenbank**
   - Organische Moleküle: Ethanol, Essigsäure, Glucose, Koffein
   - Komplexe Ionen: [Fe(CN)₆]³⁻, [Cu(NH₃)₄]²⁺
@@ -224,6 +232,7 @@ Das Molekülstudio ist ein weiterer Schritt auf unserer [Roadmap](/pages/roadmap
   - Animierter Übergang zwischen Molekülen
 
 #### Mittelfristig (6-12 Monate)
+
 - **Export-Funktionen**
   - Screenshot als PNG
   - 3D-Modell-Export (OBJ, STL) für 3D-Druck
@@ -235,6 +244,7 @@ Das Molekülstudio ist ein weiterer Schritt auf unserer [Roadmap](/pages/roadmap
   - Querverweise zu verwandten Konzepten
 
 #### Langfristig (12+ Monate)
+
 - **Quiz-Modi**
   - "Welches Molekül ist das?" – Multiple Choice
   - "Bestimmen Sie den Bindungswinkel" – Interaktiv
@@ -267,15 +277,15 @@ Three.js ist die beliebteste JavaScript-Bibliothek für 3D-Grafik im Web:
 
 Das **Corey-Pauling-Koltun (CPK)** Farbschema ist der Standard in der Chemie:
 
-| Element | Farbe | Hex-Code |
-|---------|-------|----------|
-| Wasserstoff (H) | Weiß | #FFFFFF |
-| Kohlenstoff (C) | Grau/Schwarz | #909090 |
-| Sauerstoff (O) | Rot | #FF0D0D |
-| Stickstoff (N) | Blau | #3050F8 |
-| Schwefel (S) | Gelb | #FFFF30 |
-| Phosphor (P) | Orange | #FF8000 |
-| Chlor (Cl) | Grün | #1FF01F |
+| Element         | Farbe        | Hex-Code |
+| --------------- | ------------ | -------- |
+| Wasserstoff (H) | Weiß         | #FFFFFF  |
+| Kohlenstoff (C) | Grau/Schwarz | #909090  |
+| Sauerstoff (O)  | Rot          | #FF0D0D  |
+| Stickstoff (N)  | Blau         | #3050F8  |
+| Schwefel (S)    | Gelb         | #FFFF30  |
+| Phosphor (P)    | Orange       | #FF8000  |
+| Chlor (Cl)      | Grün         | #1FF01F  |
 
 Diese Farben werden von Chemiker:innen weltweit erkannt und bilden Konsistenz zwischen Lehrbüchern, Software und Modellen.
 
@@ -300,13 +310,15 @@ Das Molekülstudio ist **kostenlos**, **werbefrei** und **sofort einsatzbereit**
 Diese Plattform ist ein Open-Source-Projekt. Wenn Sie das Molekülstudio im Unterricht einsetzen oder Feedback haben:
 
 - 📧 **Kontakt:** [Kontakt-Seite](/pages/contact/)
-- 🔧 **GitHub:** [tobias-weiss-ai-xr](https://github.com/tobias-weiss-ai-xr)
+- 🔧 **GitHub:** [tobias-weiss-ai-xr](https://github.com/tobias-weiss-ai-xr) | 🥽 **PSE in VR:** [/pages/pse-in-vr/](/pages/pse-in-vr/)
 
 ---
 
 **Verwandte Ressourcen:**
+
 - [Periodensystem der Elemente](/perioden-system-der-elemente/) – 3D-Visualisierung aller 118 Elemente
 - [Roadmap: Ausbaustrategie](/pages/roadmap/) – Unsere Vision für die Zukunft des Chemielernens
 
 **Weitere Blog-Posts:**
+
 - [Eine interdisziplinäre Kooperation in der Hochschullehre mit Hilfe der virtuellen Realität](/posts/interdisciplinary-vr-cooperation/) – Forschungsartikel zur VR im Chemieunterricht

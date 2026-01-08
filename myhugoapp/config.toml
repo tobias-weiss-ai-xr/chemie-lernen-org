@@ -125,8 +125,8 @@ author = "chemie-lernen.org Team"
     icon = "🥽"
     interaktiv = true
 [[menu.main]]
-    name = "VR Labore (GitHub)"
-    url = "https://github.com/tobias-weiss-ai-xr/graphwiz-xr"
+    name = "PSE in VR"
+    url = "/pages/pse-in-vr/"
     parent = "interaktiv"
     weight = 30
     icon = "🧠"
