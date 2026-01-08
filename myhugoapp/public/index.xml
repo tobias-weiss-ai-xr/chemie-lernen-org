@@ -1,4 +1,44 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>chemie-lernen.org - Offene, Interaktive und immersive Lerninhalte on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title><link>https://chemie-lernen.org/</link><description>Recent content in chemie-lernen.org - Offene, Interaktive und immersive Lerninhalte on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description><generator>Hugo</generator><language>de-de</language><lastBuildDate>Sun, 04 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/index.xml" rel="self" type="application/rss+xml"/><item><title>Atmosphärendruck im Alltag</title><link>https://chemie-lernen.org/atmosphaerendruck-alltag/</link><pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/atmosphaerendruck-alltag/</guid><description>&lt;h2 id="atmosphärendruck-im-alltag"&gt;Atmosphärendruck im Alltag&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>chemie-lernen.org - Offene, Interaktive und immersive Lerninhalte on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title><link>https://chemie-lernen.org/</link><description>Recent content in chemie-lernen.org - Offene, Interaktive und immersive Lerninhalte on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description><generator>Hugo</generator><language>de-de</language><lastBuildDate>Wed, 07 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/index.xml" rel="self" type="application/rss+xml"/><item><title>Bindungspotential Rechner</title><link>https://chemie-lernen.org/bindungspotential/</link><pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/bindungspotential/</guid><description>&lt;h2 id="bindungspotential-rechner"&gt;Bindungspotential Rechner&lt;/h2&gt;
+&lt;p&gt;Erforschen Sie interaktive Energie-Diagramme für chemische Bindungen. Berechnen Sie Bindungsenthalpien, visualisieren Sie Aktivierungsenergien und verstehen Sie die Energetik chemischer Reaktionen.&lt;/p&gt;</description></item><item><title>Chemisches Gleichgewicht Rechner</title><link>https://chemie-lernen.org/chemisches-gleichgewicht/</link><pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/chemisches-gleichgewicht/</guid><description>&lt;h2 id="chemisches-gleichgewicht-rechner"&gt;Chemisches Gleichgewicht Rechner&lt;/h2&gt;
+&lt;p&gt;Erforschen Sie interaktiviv das chemische Gleichgewicht und verstehen Sie, wie das Le Chatelier-sche Prinzip die Gleichgewichtslage beeinflusst. Visualisieren Sie dynamische Prozesse und Konzentrationsänderungen.&lt;/p&gt;</description></item><item><title>Enhanced pH-Visualisierung</title><link>https://chemie-lernen.org/enhanced-ph-visualization/</link><pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/enhanced-ph-visualization/</guid><description>&lt;h2 id="enhanced-ph-visualisierung"&gt;Enhanced pH-Visualisierung&lt;/h2&gt;
+&lt;p&gt;Erkunden Sie pH-Werte durch interaktive Skalen, Indikatorfarben und animierte Titrationskurven.&lt;/p&gt;
+&lt;h3 id="funktionen"&gt;Funktionen&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;pH-Skala Visualisierung&lt;/strong&gt;: Farbabhängige Skala von 0-14 mit实时-Beschreibung&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Indikatoranalyse&lt;/strong&gt;: Automatische Anzeige geeigneter pH-Indikatoren&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Titrationskurven&lt;/strong&gt;: Vier verschiedene Titrationstypen mit animierten Kurven&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flüssigkeitsfarben&lt;/strong&gt;: Echtzeit-Darstellung der Lösungsfarbe&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Substanzbeispiele&lt;/strong&gt;: pH-Werte alltäglicher Substanzen&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Äquivalenzpunkt&lt;/strong&gt;: Automatische Erkennung von Wendepunkten&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Educational Content&lt;/strong&gt;: Umfassende Erklärungen und praktische Anwendungen&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Die Visualisierung zeigt nicht nur die pH-Werte, sondern erklärt auch, wie Indikatoren funktionieren und wie Titrationen analytisch durchgeführt werden.&lt;/p&gt;</description></item><item><title>Gasgesetz-Simulator</title><link>https://chemie-lernen.org/gasgesetz-simulator/</link><pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/gasgesetz-simulator/</guid><description>&lt;h2 id="gasgesetz-simulator"&gt;Gasgesetz-Simulator&lt;/h2&gt;
+&lt;p&gt;Erkunden Sie die fundamentalen Gasgesetze durch interaktive Partikelanimationen und Echtzeitberechnungen.&lt;/p&gt;
+&lt;h3 id="funktionen"&gt;Funktionen&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Boyle-Mariotte-Gesetz&lt;/strong&gt;: Isotherme Zustandsänderungen (p₁V₁ = p₂V₂)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Gay-Lussac-Gesetz&lt;/strong&gt;: Isobare und isochore Zustandsänderungen (V/T = konst.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ideales Gasgesetz&lt;/strong&gt;: pV = nRT für vollständige Zustandsberechnungen&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Partikel-Animation&lt;/strong&gt;: Echtzeit-Visualisierung von Gasteilchen&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Temperaturabhängige Farben&lt;/strong&gt;: Blau (kalt) bis Rot (heiß)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Interaktive Steuerung&lt;/strong&gt;: Einstellung von Druck, Volumen und Temperatur&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatische Berechnungen&lt;/strong&gt;: Live-Anpassung an gewähltes Gasgesetz&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Die Simulation zeigt wie sich Gasteilchen bei verschiedenen Zustandsbedingungen verhalten und macht die abstrakten Gasgesetze begreifbar.&lt;/p&gt;</description></item><item><title>Hess-Gesetz Rechner</title><link>https://chemie-lernen.org/hess-gesetz/</link><pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/hess-gesetz/</guid><description>&lt;h2 id="hess-gesetz-rechner"&gt;Hess-Gesetz Rechner&lt;/h2&gt;
+&lt;p&gt;Erforschen Sie das Hess&amp;rsquo;sche Gesetz und berechnen Sie Reaktionsenthalpien über verschiedene Reaktionswege. Verstehen Sie, wie Enthalpien zustandsabhängig aber wegunabhängig sind.&lt;/p&gt;</description></item><item><title>Molare Masse Visualizer</title><link>https://chemie-lernen.org/molar-mass-visualizer/</link><pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/molar-mass-visualizer/</guid><description>&lt;h2 id="molare-masse-visualizer"&gt;Molare Masse Visualizer&lt;/h2&gt;
+&lt;p&gt;Berechnen und visualisieren Sie die molare Masse beliebiger chemischer Verbindungen durch interaktive Elementauswahl und Formeleingabe.&lt;/p&gt;
+&lt;h3 id="funktionen"&gt;Funktionen&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Interaktives Periodensystem&lt;/strong&gt;: Klicken Sie Elemente an, um Ihre Formel zu erstellen&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Formelparsing&lt;/strong&gt;: Automatische Erkennung chemischer Notation (z.B. H2O, C6H12O6)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Massenanalyse&lt;/strong&gt;: Detaillierte Aufschlüsselung der Elementbeiträge&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Visualisierung&lt;/strong&gt;: Graphische Darstellung der molekularen Zusammensetzung&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prozentuale Anteile&lt;/strong&gt;: Prozentuale Verteilung der Elementmassen&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Schnellformeln&lt;/strong&gt;: Direkter Zugriff auf häufige Verbindungen&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Validierung&lt;/strong&gt;: Echtzeit-Überprüfung der chemischen Syntax&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Unterstützt alle Elemente des Periodensystems mit präzisen Atomassen und automatisch berechneten prozentualen Anteilen.&lt;/p&gt;</description></item><item><title>Reaktionskinetik Simulator</title><link>https://chemie-lernen.org/reaktionskinetik-simulator/</link><pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/reaktionskinetik-simulator/</guid><description>&lt;h2 id="reaktionskinetik-simulator"&gt;Reaktionskinetik Simulator&lt;/h2&gt;
+&lt;p&gt;Erforschen Sie interaktiviv die Faktoren, die die Reaktionsgeschwindigkeit beeinflussen: Temperatur, Konzentration und Aktivierungsenergie. Visualisieren Sie Teilchenbewegung und Stöe.&lt;/p&gt;</description></item><item><title>Atmosphärendruck im Alltag</title><link>https://chemie-lernen.org/atmosphaerendruck-alltag/</link><pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/atmosphaerendruck-alltag/</guid><description>&lt;h2 id="atmosphärendruck-im-alltag"&gt;Atmosphärendruck im Alltag&lt;/h2&gt;
 &lt;p&gt;Erkunden Sie interaktive Simulationen und Experimente zum Luftdruck in unserem täglichen Leben. Verstehen Sie, wie atmosphärischer Druck Strohhalme, Ballons und Saugnäpfe beeinflusst.&lt;/p&gt;</description></item><item><title>Barrierefreiheitserklärung</title><link>https://chemie-lernen.org/pages/barrierefreiheit/</link><pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/pages/barrierefreiheit/</guid><description>&lt;h2 id="barrierefreiheitserklärung"&gt;Barrierefreiheitserklärung&lt;/h2&gt;
 &lt;p&gt;Wir sind bestrebt, chemie-lernen.org für alle Nutzer zugänglich zu machen. Diese Erklärung beschreibt den aktuellen Stand der Barrierefreiheit unserer Website und unsere Maßnahmen zur Einhaltung der WCAG 2.1 Level AA Richtlinien.&lt;/p&gt;
 &lt;h3 id="konformitätsstatus"&gt;Konformitätsstatus&lt;/h3&gt;
@@ -296,8 +336,7 @@ async function performSearch() {
 
  if (!query) {
  resultsContainer.innerHTML = '&lt;p class="no-results"&gt;Bitte geben Sie einen Suchbegriff ein.&lt;/p&gt;</description></item><item><title>Molare Masse Rechner</title><link>https://chemie-lernen.org/molare-masse-rechner/</link><pubDate>Fri, 26 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/molare-masse-rechner/</guid><description>&lt;h2 id="molare-masse-rechner"&gt;Molare Masse Rechner&lt;/h2&gt;
-&lt;p&gt;Berechnen Sie die molare Masse (Molare Masse) von beliebigen chemischen Verbindungen und Elementen.&lt;/p&gt;</description></item><item><title>pH-Rechner</title><link>https://chemie-lernen.org/ph-rechner/</link><pubDate>Fri, 26 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/ph-rechner/</guid><description>&lt;h2 id="ph-rechner"&gt;pH-Rechner&lt;/h2&gt;
-&lt;p&gt;Berechnen und visualisieren Sie pH-Werte von Säuren und Basen interaktiv.&lt;/p&gt;</description></item><item><title>Reaktionsgleichungen Ausgleichen</title><link>https://chemie-lernen.org/reaktionsgleichungen-ausgleichen/</link><pubDate>Fri, 26 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/reaktionsgleichungen-ausgleichen/</guid><description>&lt;h2 id="reaktionsgleichungen-ausgleichen"&gt;Reaktionsgleichungen Ausgleichen&lt;/h2&gt;
+&lt;p&gt;Berechnen Sie die molare Masse (Molare Masse) von beliebigen chemischen Verbindungen und Elementen.&lt;/p&gt;</description></item><item><title>Reaktionsgleichungen Ausgleichen</title><link>https://chemie-lernen.org/reaktionsgleichungen-ausgleichen/</link><pubDate>Fri, 26 Dec 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/reaktionsgleichungen-ausgleichen/</guid><description>&lt;h2 id="reaktionsgleichungen-ausgleichen"&gt;Reaktionsgleichungen Ausgleichen&lt;/h2&gt;
 &lt;p&gt;Gleichen Sie chemische Reaktionsgleichungen automatisch aus und verstehen Sie die Stöchiometrie.&lt;/p&gt;</description></item><item><title>Molekülstudio: Interaktive 3D-Visualisierung von Molekülen</title><link>https://chemie-lernen.org/posts/molekulstudio-3d-visualisierung/</link><pubDate>Wed, 24 Dec 2025 10:00:00 +0100</pubDate><guid>https://chemie-lernen.org/posts/molekulstudio-3d-visualisierung/</guid><description>&lt;h2 id="neue-dimensionen-im-chemielernen-das-molekülstudio"&gt;Neue Dimensionen im Chemielernen: Das Molekülstudio&lt;/h2&gt;
 &lt;p&gt;Wir freuen uns, das &lt;strong&gt;Molekülstudio&lt;/strong&gt; als neue Ergänzung zur Chemie-Lernen-Plattform vorstellen zu können. Diese webbasierte Anwendung ermöglicht es Lernenden, Moleküle in Echtzeit zu visualisieren, zu drehen und zu untersuchen.&lt;/p&gt;
 &lt;p&gt;Die molekulare Welt ist normalerweise unsichtbar – aber mit dem Molekülstudio wird sie sichtbar, greifbar und verständlich.&lt;/p&gt;
@@ -395,4 +434,181 @@ document.addEventListener('DOMContentLoaded', function() {
 &lt;h2 id="über-den-gründer"&gt;Über den Gründer&lt;/h2&gt;
 &lt;p&gt;Dieses Projekt wurde von &lt;strong&gt;Tobias Weiß&lt;/strong&gt; ins Leben gerufen, einem leidenschaftlichen Entwickler und Pädagogen mit einem Hintergrund in Informatik und Didaktik. Tobias kombiniert technisches Expertise in Full-Stack-Entwicklung, Künstlicher Intelligenz und Web-Technologien mit pädagogischem Engagement, um innovative Lernplattformen zu schaffen.&lt;/p&gt;</description></item><item><title>Einheitenumrechner</title><link>https://chemie-lernen.org/einheitenumrechner/</link><pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/einheitenumrechner/</guid><description>&lt;h2 id="einheitenumrechner"&gt;Einheitenumrechner&lt;/h2&gt;
 &lt;p&gt;Rechnen Sie verschiedene Einheiten um, die in der Chemie häufig verwendet werden.&lt;/p&gt;</description></item><item><title>Lösungsrechner</title><link>https://chemie-lernen.org/loesungsrechner/</link><pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/loesungsrechner/</guid><description>&lt;h2 id="lösungsrechner"&gt;Lösungsrechner&lt;/h2&gt;
-&lt;p&gt;Berechnen Sie Konzentration, Masse und Volumen von Lösungen interaktiv.&lt;/p&gt;</description></item><item><title>Molekülstudio</title><link>https://chemie-lernen.org/molekuel-studio/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/molekuel-studio/</guid><description/></item><item><title>Periodensystem der Elemente</title><link>https://chemie-lernen.org/perioden-system-der-elemente/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/perioden-system-der-elemente/</guid><description/></item></channel></rss>
+&lt;p&gt;Berechnen Sie Konzentration, Masse und Volumen von Lösungen interaktiv.&lt;/p&gt;</description></item><item><title>Molekülstudio</title><link>https://chemie-lernen.org/molekuel-studio/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/molekuel-studio/</guid><description/></item><item><title>Periodensystem der Elemente</title><link>https://chemie-lernen.org/perioden-system-der-elemente/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/perioden-system-der-elemente/</guid><description/></item><item><title>pH-Rechner</title><link>https://chemie-lernen.org/ph-rechner/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/ph-rechner/</guid><description>&lt;script src="https://chemie-lernen.org/js/chemistry-calculator-framework.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+// Initialize pH calculator using framework
+const phCalculator = new ChemistryCalculator({
+ title: 'pH-Rechner',
+ inputFields: [
+ {
+ id: 'hplus-input',
+ label: 'H⁺-Konzentration (Mol/L)',
+ type: 'number',
+ validation: {
+ min: 0,
+ max: 14,
+ errorMessage: 'Bitte geben Sie einen gültigen H⁺-Platz-Wert (0-14 Mol/L) ein.'
+ }
+ },
+ {
+ id: 'ohminus-input',
+ label: 'OH⁻-Platz (Mol/L)',
+ type: 'number',
+ validation: {
+ min: 0,
+ max: 14,
+ errorMessage: 'Bitte geben Sie einen gültigen OH⁻-Platz-Wert (0-14 Mol/L) ein.'
+ }
+ }
+ ],
+ resultFields: [
+ {
+ id: 'hplus-result',
+ label: 'pH-Wert',
+ format: value =&gt; `${value} pH`
+ },
+ {
+ id: 'ohminus-result',
+ label: 'pH-Wert',
+ format: value =&gt; `${value} pH`
+ }
+ ]
+ },
+ calculations: {
+ calculateFromInputs: (inputs) =&gt; {
+ // H+ calculation
+ const hplus = inputs['hplus-input'];
+ if (hplus !== undefined &amp;&amp; hplus &gt; 0) {
+ const h = -Math.log10(hplus);
+ const ph = -h;
+ return {
+ result: ph,
+ explanation: `pH = -log₁₀(${h}) = ${(-h).toFixed(2)}`
+ };
+ }
+ 
+ // OH- calculation
+ const ohminus = inputs['ohminus-input'];
+ if (ohminus !== undefined &amp;&amp; ohminus &gt; 0 &amp;&amp; ohminus &lt;= 14) {
+ const poh = -Math.log10(ohminus);
+ const ph = 14 - poh;
+ return {
+ result: ph,
+ explanation: `pH = 14 - pOH = ${ph.toFixed(2)}`
+ };
+ }
+ 
+ // Return null for pOH calculation (not implemented yet)
+ return null;
+ }
+ }
+});
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+ phCalculator.init();
+});
+&lt;/script&gt;
+&lt;style&gt;
+/* pH Calculator specific styles */
+.ph-scale {
+ width: 100%;
+ height: 6px;
+ background: linear-gradient(to right, #4CAF50, #45a049);
+ border-radius: 3px;
+ margin-bottom: 10px;
+}
+
+.ph-indicator {
+ width: 8px;
+ height: 8px;
+ background: #007bff;
+ border-radius: 50%;
+ display: flex;
+ align-items: center;
+ position: absolute;
+ left: calc(50%);
+ transform: translateX(-50%);
+}
+
+.ph-value {
+ font-size: 1.2rem;
+ font-weight: bold;
+ color: #007bff;
+ min-height: 1.5rem;
+}
+
+.result-panel {
+ background: #f8f9fa;
+ border: 1px solid #e1f5e3;
+ border-radius: 8px;
+ padding: 20px;
+ margin: 15px 0;
+ box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+ transition: all 0.3s ease;
+}
+
+.result-value {
+ font-size: 2rem;
+ font-weight: bold;
+ color: #2c3e50;
+}
+
+.calculation-details {
+ background: #e3f2fd;
+ border: 1px solid #d1e3f2;
+ border-radius: 8px;
+ padding: 15px;
+ margin: 10px 0;
+}
+
+.educational-info {
+ background: #e8f5e9;
+ border-left: 4px solid #007bff;
+ padding: 15px;
+ margin: 10px 0;
+ font-size: 0.9rem;
+ line-height: 1.4;
+}
+
+.tab-pane {
+ background: white;
+ border: 1px solid #dee2e6;
+ border-radius: 8px;
+}
+
+.tab-pane.active {
+ background: #f8f9fa;
+}
+
+/* Override framework defaults for this specific calculator */
+.chemistry-calculator .input-group {
+ background: #f8f9fa;
+}
+
+.chemistry-calculator .result-panel {
+ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.chemistry-calculator .tab-content {
+ background: #f8f9fa;
+}
+
+/* Update framework default results styling */
+.result-panel {
+ border-color: #2c3e50 !important;
+ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.result-value {
+ color: #2c3e50 !important;
+}
+
+.educational-info {
+ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+&lt;/style&gt;
+&lt;script src="https://chemie-lernen.org/js/chemistry-utils.js"&gt;&lt;/script&gt;
+&lt;script src="https://chemie-lernen.org/js/ph-rechner.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</description></item></channel></rss>

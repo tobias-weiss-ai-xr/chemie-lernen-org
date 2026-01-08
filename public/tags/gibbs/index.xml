@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Gibbs on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title><link>https://chemie-lernen.org/tags/gibbs/</link><description>Recent content in Gibbs on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description><generator>Hugo</generator><language>de-de</language><lastBuildDate>Sat, 03 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/tags/gibbs/index.xml" rel="self" type="application/rss+xml"/><item><title>Redoxpotential Rechner</title><link>https://chemie-lernen.org/redox-potenzial-rechner/</link><pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/redox-potenzial-rechner/</guid><description>&lt;h2 id="redoxpotential-rechner">Redoxpotential Rechner&lt;/h2>
-&lt;p>Berechnen Sie Zellpotentiale, Gibbs-Energie und Gleichgewichtskonstanten für Redoxreaktionen.&lt;/p>
-&lt;h3 id="funktionen">Funktionen&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>Standard-Zellpotential&lt;/strong>: Berechnen Sie E°zelle aus Standard-Reduktionspotentialen&lt;/li>
-&lt;li>&lt;strong>Nernst-Gleichung&lt;/strong>: Berücksichtigen Sie Nicht-Standard-Bedingungen (Konzentration, Temperatur)&lt;/li>
-&lt;li>&lt;strong>Gibbs-Energie &amp;amp; K&lt;/strong>: Berechnen Sie ΔG° und Gleichgewichtskonstante K aus dem Zellpotential&lt;/li>
-&lt;/ul>
-&lt;p>Unterstützt die Analyse von elektrochemischen Zellen, Batterien, Korrosionsprozessen und mehr.&lt;/p></description></item></channel></rss>

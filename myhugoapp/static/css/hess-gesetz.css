@@ -1,0 +1,923 @@
+/**
+ * Hess-Gesetz Rechner Styles
+ * WCAG 2.1 AA Compliant - Optimized for accessibility
+ */
+
+.hess-gesetz-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.calculator-panel {
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e0e0e0;
+}
+
+.calculator-panel h2 {
+  color: #1a1a1a;
+  margin-bottom: 15px;
+}
+
+.input-section {
+  margin: 20px 0;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.form-control {
+  padding: 10px;
+  border: 2px solid #8b95a3;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #1a1a1a;
+  background: white;
+  width: 100%;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #1565c0;
+  box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
+}
+
+.steps-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border: 2px solid #e0e0e0;
+}
+
+.steps-container h3 {
+  color: #1565c0;
+  margin-bottom: 15px;
+}
+
+.step-input {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #1565c0;
+}
+
+.step-number {
+  background: #1565c0;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.step-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.step-content label {
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 3px;
+}
+
+.step-formula {
+  font-size: 14px;
+}
+
+.step-delta-h {
+  width: 120px;
+}
+
+.result-section {
+  margin: 20px 0;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: #1565c0;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #0d47a1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:focus-visible {
+  outline: 3px solid #ffc107;
+  outline-offset: 2px;
+}
+
+.btn-success {
+  background: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background: #218838;
+}
+
+.btn-default {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-default:hover {
+  background: #5a6268;
+}
+
+.btn-lg {
+  padding: 15px 30px;
+  font-size: 18px;
+}
+
+.btn-block {
+  width: 100%;
+  display: block;
+}
+
+.result-panel {
+  margin-top: 30px;
+  padding: 20px;
+  background: #e3f2fd;
+  border-left: 5px solid #1565c0;
+  border-radius: 8px;
+  border: 2px solid #90caf9;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-panel h3 {
+  color: #1565c0;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.calculation-display {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border: 2px solid #e0e0e0;
+}
+
+.calculation-row {
+  text-align: center;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.calculation-row:last-child {
+  border-bottom: none;
+}
+
+.formula {
+  font-family: 'Courier New', monospace;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #1565c0;
+  background: #f8f9fa;
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: inline-block;
+  border: 2px solid #1565c0;
+  margin: 10px 0;
+}
+
+.calculation-details {
+  font-size: 1.2em;
+  color: #1a1a1a;
+  text-align: center;
+  margin: 15px 0;
+  font-weight: 600;
+}
+
+.final-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-top: 15px;
+  border-top: 2px solid #e0e0e0;
+}
+
+.final-result .label {
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 1.1em;
+}
+
+.final-result .value {
+  font-size: 2em;
+  color: #1565c0;
+  font-weight: 700;
+}
+
+.final-result .value.large {
+  font-size: 2.5em;
+  color: #e74c3c;
+}
+
+.final-result .value.highlight {
+  text-shadow: 0 2px 4px rgba(231, 76, 60, 0.3);
+}
+
+.path-selector {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 2px solid #e0e0e0;
+}
+
+.path-selector h3 {
+  color: #1565c0;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.path-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.path-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.path-step label {
+  font-weight: 600;
+  color: #1a1a1a;
+  flex: 1;
+}
+
+.path-step input {
+  flex: 2;
+  font-size: 14px;
+}
+
+.enhalpy-inputs {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border: 2px solid #e0e0e0;
+}
+
+.path-enthalpies h4 {
+  color: #1565c0;
+  margin-bottom: 10px;
+}
+
+.enthalpy-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.enthalpy-row label {
+  font-weight: 600;
+  color: #1a1a1a;
+  min-width: 40px;
+}
+
+.enthalpy-row input {
+  flex: 1;
+}
+
+.enthalpy-total {
+  text-align: right;
+  padding-top: 10px;
+  border-top: 2px solid #e0e0e0;
+  font-weight: 700;
+  color: #1565c0;
+}
+
+.comparison-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.path-comparison {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+}
+
+.path-comparison h4 {
+  color: #1565c0;
+  margin-bottom: 10px;
+}
+
+.path-details {
+  min-height: 80px;
+}
+
+.path-details .formula {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.path-details p {
+  color: #1a1a1a;
+  margin: 10px 0;
+}
+
+.conclusion {
+  grid-column: 1 / -1;
+  margin-top: 20px;
+}
+
+.elements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.element-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 5px;
+  border: 2px solid #e0e0e0;
+}
+
+.element-checkbox input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.element-checkbox input[type='checkbox']:focus {
+  outline: 3px solid #ffc107;
+  outline-offset: 2px;
+}
+
+.element-checkbox label {
+  flex: 1;
+  cursor: pointer;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.formation-enthalpy {
+  font-size: 0.9em;
+  color: #666;
+  margin-left: 5px;
+}
+
+.calculation-method {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border: 2px solid #e0e0e0;
+}
+
+.calculation-method h3 {
+  color: #1565c0;
+  margin-bottom: 15px;
+}
+
+.formula-box {
+  text-align: center;
+}
+
+.formation-display {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  margin: 20px 0;
+}
+
+.calculation-steps {
+  margin-bottom: 20px;
+}
+
+.calculation-steps h4 {
+  color: #1565c0;
+  margin-bottom: 10px;
+}
+
+.calculation-steps p {
+  color: #1a1a1a;
+  margin: 8px 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95em;
+}
+
+.reaction-type {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.badge {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+
+.badge.exothermic {
+  background: #28a745;
+  color: white;
+}
+
+.badge.endothermic {
+  background: #dc3545;
+  color: white;
+}
+
+.badge.neutral {
+  background: #6c757d;
+  color: white;
+}
+
+.educational-content {
+  margin: 40px 0;
+}
+
+.educational-content h2 {
+  text-align: center;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+}
+
+.info-card {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border-left: 5px solid #2e7d32;
+  border: 2px solid #e0e0e0;
+  height: 100%;
+}
+
+.info-card h3 {
+  color: #2e7d32;
+  margin-bottom: 15px;
+}
+
+.info-card h4,
+.info-card h5 {
+  color: #1565c0;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.info-card p {
+  margin: 10px 0;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+.info-card ul,
+.info-card ol {
+  margin: 15px 0;
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+.info-card li {
+  margin: 8px 0;
+  color: #1a1a1a;
+}
+
+.info-card .formula-text {
+  font-size: 1em;
+  margin: 15px 0;
+  background: #e3f2fd;
+  border-color: #90caf9;
+}
+
+.example-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border-left: 5px solid #1565c0;
+  border: 2px solid #e0e0e0;
+}
+
+.example-card h3 {
+  color: #1565c0;
+  margin-bottom: 15px;
+}
+
+.reaction-examples {
+  margin-top: 20px;
+}
+
+.reaction-examples h4 {
+  color: #1565c0;
+  margin-bottom: 15px;
+}
+
+.reaction-path {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 2px solid #e0e0e0;
+}
+
+.path-step {
+  padding: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.path-step:last-child {
+  border-bottom: none;
+}
+
+.enthalpy-value {
+  text-align: right;
+  font-weight: 600;
+  color: #1565c0;
+  margin-top: 10px;
+}
+
+.enthalpy-total {
+  text-align: center;
+  font-weight: 700;
+  color: #e74c3c;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 2px solid #e0e0e0;
+}
+
+.conclusion {
+  padding: 15px;
+  margin-top: 15px;
+  background: white;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+}
+
+.text-success {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.table {
+  background: white;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 2px solid #e0e0e0;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.table thead {
+  background: #1565c0;
+  color: white;
+}
+
+.table th {
+  font-weight: 600;
+  padding: 12px;
+  border: 2px solid #0d47a1;
+  text-align: left;
+}
+
+.table td {
+  padding: 10px 12px;
+  border-top: 2px solid #e0e0e0;
+  color: #1a1a1a;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background: rgba(21, 101, 192, 0.05);
+}
+
+.table tbody tr:hover {
+  background: rgba(21, 101, 192, 0.1);
+}
+
+.table tbody tr:focus {
+  outline: 2px solid #1565c0;
+  outline-offset: -2px;
+}
+
+.small {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.sub {
+  vertical-align: sub;
+  font-size: 0.7em;
+}
+
+.alert {
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border: 2px solid;
+}
+
+.alert-info {
+  background: #d1ecf1;
+  border-color: #bee5eb;
+  color: #0c5460;
+}
+
+.alert-success {
+  background: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.alert-warning {
+  background: #fff3cd;
+  border-color: #ffeaa7;
+  color: #856404;
+}
+
+.alert h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.alert p,
+.alert ul {
+  margin: 8px 0;
+  color: inherit;
+}
+
+.alert li {
+  margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+  .hess-gesetz-container {
+    padding: 10px;
+  }
+
+  .calculator-panel,
+  .info-card,
+  .example-card {
+    padding: 15px;
+  }
+
+  .comparison-display {
+    grid-template-columns: 1fr;
+  }
+
+  .elements-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reaction-examples {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .hess-gesetz-container {
+    color: #e0e0e0;
+  }
+
+  .calculator-panel,
+  .info-card {
+    background: #1a1a1a;
+    border-color: #404040;
+  }
+
+  .calculator-panel h2,
+  .educational-content h2 {
+    color: #e0e0e0;
+  }
+
+  .form-group label {
+    color: #e0e0e0;
+  }
+
+  .form-control {
+    background: #2c2c2c;
+    color: #e0e0e0;
+    border-color: #555;
+  }
+
+  .steps-container,
+  .path-selector,
+  .enthalpy-inputs,
+  .calculation-method,
+  .formation-display {
+    background: #1a1a1a;
+    border-color: #404040;
+  }
+
+  .steps-container h3,
+  .path-selector h3,
+  .calculation-method h3 {
+    color: #64b5f6;
+  }
+
+  .step-input {
+    background: #2c2c2c;
+    border-left-color: #64b5f6;
+  }
+
+  .result-panel {
+    background: #1a3c5e;
+    border-left-color: #64b5f6;
+    border-color: #0d47a1;
+  }
+
+  .result-panel h3 {
+    color: #64b5f6;
+  }
+
+  .calculation-display,
+  .reaction-path {
+    background: #2c2c2c;
+    border-color: #404040;
+  }
+
+  .formula {
+    background: #2c2c2c;
+    color: #64b5f6;
+    border-color: #0d47a1;
+  }
+
+  .calculation-details,
+  .path-details p,
+  .calculation-steps p {
+    color: #e0e0e0;
+  }
+
+  .final-result .label {
+    color: #c0c0c0;
+  }
+
+  .final-result .value {
+    color: #64b5f6;
+  }
+
+  .final-result .value.highlight {
+    text-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+  }
+
+  .path-comparison {
+    background: #1a1a1a;
+    border-color: #404040;
+  }
+
+  .path-comparison h4 {
+    color: #64b5f6;
+  }
+
+  .path-details .formula {
+    background: #2c2c2c;
+    color: #64b5f6;
+    border-color: #0d47a1;
+  }
+
+  .example-card,
+  .conclusion {
+    background: #1a1a1a;
+    border-color: #404040;
+  }
+
+  .example-card h3 {
+    color: #64b5f6;
+  }
+
+  .reaction-path {
+    background: #2c2c2c;
+    border-color: #404040;
+  }
+
+  .enthalpy-value {
+    color: #64b5f6;
+  }
+
+  .enthalpy-total {
+    color: #ff6b6b;
+  }
+
+  .element-checkbox {
+    background: #2c2c2c;
+    border-color: #404040;
+  }
+
+  .element-checkbox label {
+    color: #e0e0e0;
+  }
+
+  .formation-enthalpy {
+    color: #999;
+  }
+
+  .table {
+    background: #1a1a1a;
+    border-color: #404040;
+    color: #e0e0e0;
+  }
+
+  .table thead {
+    background: #0d47a1;
+  }
+
+  .table th {
+    border-color: #0d47a1;
+  }
+
+  .table td {
+    border-color: #404040;
+    color: #e0e0e0;
+  }
+
+  .table-striped tbody tr:nth-of-type(odd) {
+    background: rgba(100, 181, 246, 0.1);
+  }
+
+  .table tbody tr:hover {
+    background: rgba(100, 181, 246, 0.15);
+  }
+
+  .alert-info {
+    background: #1a3c5e;
+    border-color: #0d47a1;
+    color: #b8daff;
+  }
+
+  .alert-success {
+    background: #1a3c5e;
+    border-color: #0d47a1;
+    color: #90caf9;
+  }
+
+  .alert-warning {
+    background: #1a3c5e;
+    border-color: #0d47a1;
+    color: #ffc107;
+  }
+
+  .text-success {
+    color: #90caf9;
+  }
+}
