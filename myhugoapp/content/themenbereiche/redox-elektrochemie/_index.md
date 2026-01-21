@@ -460,4 +460,4 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Energetik](/themenbereiche/energetik/) – Energieumsatz bei Reaktionen
 - [Reaktionsgleichungen ausgleichen](/reaktionsgleichungen-ausgleichen/) – Interaktives Tool zum Ausgleichen
 - [Gleichgewicht und Geschwindigkeit](/themenbereiche/gleichgewicht-geschwindigkeit/) – Reaktionskinetik
-- [PSE in VR](https://chemie-lernen.org/pse-in-vr/) – 3D-Visualisierung
+- [PSE in VR](https://pse-in-vr.chemie-lernen.org/) – 3D-Visualisierung

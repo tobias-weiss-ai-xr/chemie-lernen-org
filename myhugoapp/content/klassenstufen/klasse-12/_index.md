@@ -26,4 +26,4 @@ Alle Themenbereiche der Oberstufe
 ## Interaktiv
 
 - [Molekülstudio nutzen](/molekuel-studio/)
-- [PSE in VR](https://chemie-lernen.org/pse-in-vr/)
+- [PSE in VR](https://pse-in-vr.chemie-lernen.org/)

@@ -8,3 +8,11 @@ tests/playwright-report/
 tests/test-results/
 tests/playwright-report/
 tests/screenshots/
+
+# Temporary and backup files
+*.tmp
+*.bak
+*.old
+*.backup
+*.swp
+*~

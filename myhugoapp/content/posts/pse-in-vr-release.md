@@ -87,7 +87,7 @@ Die Anwendung basiert auf dem **Konstruktivismus** und **Experientiellen Lernen*
 
 ### Schnellstart
 
-1. Besuchen Sie [chemie-lernen.org/pse-in-vr/](/pages/pse-in-vr/)
+1. Besuchen Sie [pse-in-vr.chemie-lernen.org](https://pse-in-vr.chemie-lernen.org/)
 2. Klicken Sie auf "VR starten"
 3. Bei VR-Headset: Klicken Sie auf "Enter VR"
 4. Ohne VR-Headset: Klicken Sie für Maussteuerung, nutzen Sie WASD zum Bewegen
@@ -248,7 +248,7 @@ Das PSE in VR repräsentiert einen Paradigmenwechsel in der Chemiebildung. Durch
 
 ### Nächste Schritte
 
-1. **Testen Sie die Anwendung:** [chemie-lernen.org/pse-in-vr/](/pages/pse-in-vr/)
+1. **Testen Sie die Anwendung:** [pse-in-vr.chemie-lernen.org](https://pse-in-vr.chemie-lernen.org/)
 2. **Geben Sie Feedback:** Helfen Sie uns, die Anwendung zu verbessern
 3. **Teilen Sie Ihre Erfahrungen:** Wie nutzen Sie VR im Unterricht?
 
