@@ -1,0 +1,21 @@
+
+<!-- Critical CSS (inline) -->
+<style>
+  /* Critical above-the-fold styles */
+  body { margin: 0; font-family: Arial, sans-serif; }
+  .calculator-panel { padding: 20px; }
+</style>
+
+<!-- Framework bundle (high priority) -->
+<script src="/js/chemistry-calculator-framework.optimized.js" defer></script>
+
+<!-- Vendor bundle (separate) -->
+<script src="/js/bootstrap.min.js" defer></script>
+
+<!-- Calculator bundles (lazy loaded) -->
+<script>
+  // Lazy load calculator bundles when needed
+  function loadCalculator(name) {
+    return import(`/js/calculators/${name}.js`);
+  }
+</script>

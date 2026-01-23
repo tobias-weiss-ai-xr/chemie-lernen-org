@@ -1,12 +1,35 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Simulation on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title><link>https://chemie-lernen.org/tags/simulation/</link><description>Recent content in Simulation on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description><generator>Hugo</generator><language>de-de</language><lastBuildDate>Sat, 03 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/tags/simulation/index.xml" rel="self" type="application/rss+xml"/><item><title>Titrationssimulator</title><link>https://chemie-lernen.org/titrations-simulator/</link><pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/titrations-simulator/</guid><description>&lt;h2 id="titrationssimulator">Titrationssimulator&lt;/h2>
-&lt;p>Simulieren Sie Säure-Base-Titrationen mit visueller Kurvenzeichnung und detaillierter Analyse des Äquivalenzpunktes.&lt;/p>
-&lt;h3 id="funktionen">Funktionen&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>Interaktive Titration&lt;/strong>: Schrittweise Zugabe von Titrationsmittel mit Echtzeit-pH-Berechnung&lt;/li>
-&lt;li>&lt;strong>Kurvenzeichnung&lt;/strong>: Automatische Erstellung von pH-Titrationskurven mit markiertem Äquivalenzpunkt&lt;/li>
-&lt;li>&lt;strong>Indikatorwahl&lt;/strong>: Empfehlung des optimalen Indikators basierend auf dem Äquivalenzpunkt&lt;/li>
-&lt;li>&lt;strong>Stärke-Säure/Base-Optionen&lt;/strong>: Unterstützt starke und schwache Säuren und Basen&lt;/li>
-&lt;li>&lt;strong>Pufferbereiche&lt;/strong>: Visualisierung von Pufferwirkung und halbe Äquivalenzpunkte&lt;/li>
-&lt;li>&lt;strong>Detaillierte Analyse&lt;/strong>: pH-Werte, Konzentrationsänderungen, Neutralisationsgrad&lt;/li>
-&lt;/ul>
-&lt;p>Unterstützt alle gängigen Titrationstypen: stark-schwach, schwach-stark, stark-stark und schwach-schwach.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>simulation on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title>
+    <link>https://chemie-lernen.org/tags/simulation/</link>
+    <description>Recent content in simulation on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-de</language>
+    <lastBuildDate>Wed, 07 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://chemie-lernen.org/tags/simulation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gasgesetz-Simulator</title>
+      <link>https://chemie-lernen.org/gasgesetz-simulator/</link>
+      <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://chemie-lernen.org/gasgesetz-simulator/</guid>
+      <description>Gasgesetz-Simulator Erkunden Sie die fundamentalen Gasgesetze durch interaktive Partikelanimationen und Echtzeitberechnungen.
+Funktionen Boyle-Mariotte-Gesetz: Isotherme Zustandsänderungen (p₁V₁ = p₂V₂) Gay-Lussac-Gesetz: Isobare und isochore Zustandsänderungen (V/T = konst.) Ideales Gasgesetz: pV = nRT für vollständige Zustandsberechnungen Partikel-Animation: Echtzeit-Visualisierung von Gasteilchen Temperaturabhängige Farben: Blau (kalt) bis Rot (heiß) Interaktive Steuerung: Einstellung von Druck, Volumen und Temperatur Automatische Berechnungen: Live-Anpassung an gewähltes Gasgesetz Die Simulation zeigt wie sich Gasteilchen bei verschiedenen Zustandsbedingungen verhalten und macht die abstrakten Gasgesetze begreifbar.</description>
+    </item>
+    <item>
+      <title>Atmosphärendruck im Alltag</title>
+      <link>https://chemie-lernen.org/atmosphaerendruck-alltag/</link>
+      <pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://chemie-lernen.org/atmosphaerendruck-alltag/</guid>
+      <description>Atmosphärendruck im Alltag Erkunden Sie interaktive Simulationen und Experimente zum Luftdruck in unserem täglichen Leben. Verstehen Sie, wie atmosphärischer Druck Strohhalme, Ballons und Saugnäpfe beeinflusst.</description>
+    </item>
+    <item>
+      <title>Titrationssimulator</title>
+      <link>https://chemie-lernen.org/titrations-simulator/</link>
+      <pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://chemie-lernen.org/titrations-simulator/</guid>
+      <description>Titrationssimulator Simulieren Sie Säure-Base-Titrationen mit visueller Kurvenzeichnung und detaillierter Analyse des Äquivalenzpunktes.
+Funktionen Interaktive Titration: Schrittweise Zugabe von Titrationsmittel mit Echtzeit-pH-Berechnung Kurvenzeichnung: Automatische Erstellung von pH-Titrationskurven mit markiertem Äquivalenzpunkt Indikatorwahl: Empfehlung des optimalen Indikators basierend auf dem Äquivalenzpunkt Stärke-Säure/Base-Optionen: Unterstützt starke und schwache Säuren und Basen Pufferbereiche: Visualisierung von Pufferwirkung und halbe Äquivalenzpunkte Detaillierte Analyse: pH-Werte, Konzentrationsänderungen, Neutralisationsgrad Unterstützt alle gängigen Titrationstypen: stark-schwach, schwach-stark, stark-stark und schwach-schwach.</description>
+    </item>
+  </channel>
+</rss>

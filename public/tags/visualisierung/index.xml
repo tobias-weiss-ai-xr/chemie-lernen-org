@@ -1,1 +1,43 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Visualisierung on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title><link>https://chemie-lernen.org/tags/visualisierung/</link><description>Recent content in Visualisierung on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description><generator>Hugo</generator><language>de-de</language><atom:link href="https://chemie-lernen.org/tags/visualisierung/index.xml" rel="self" type="application/rss+xml"/><item><title>Molekülstudio</title><link>https://chemie-lernen.org/molekuel-studio/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/molekuel-studio/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>visualisierung on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title>
+    <link>https://chemie-lernen.org/tags/visualisierung/</link>
+    <description>Recent content in visualisierung on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-de</language>
+    <lastBuildDate>Wed, 07 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://chemie-lernen.org/tags/visualisierung/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Enhanced pH-Visualisierung</title>
+      <link>https://chemie-lernen.org/enhanced-ph-visualization/</link>
+      <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://chemie-lernen.org/enhanced-ph-visualization/</guid>
+      <description>Enhanced pH-Visualisierung Erkunden Sie pH-Werte durch interaktive Skalen, Indikatorfarben und animierte Titrationskurven.
+Funktionen pH-Skala Visualisierung: Farbabhängige Skala von 0-14 mit实时-Beschreibung Indikatoranalyse: Automatische Anzeige geeigneter pH-Indikatoren Titrationskurven: Vier verschiedene Titrationstypen mit animierten Kurven Flüssigkeitsfarben: Echtzeit-Darstellung der Lösungsfarbe Substanzbeispiele: pH-Werte alltäglicher Substanzen Äquivalenzpunkt: Automatische Erkennung von Wendepunkten Educational Content: Umfassende Erklärungen und praktische Anwendungen Die Visualisierung zeigt nicht nur die pH-Werte, sondern erklärt auch, wie Indikatoren funktionieren und wie Titrationen analytisch durchgeführt werden.</description>
+    </item>
+    <item>
+      <title>Gasgesetz-Simulator</title>
+      <link>https://chemie-lernen.org/gasgesetz-simulator/</link>
+      <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://chemie-lernen.org/gasgesetz-simulator/</guid>
+      <description>Gasgesetz-Simulator Erkunden Sie die fundamentalen Gasgesetze durch interaktive Partikelanimationen und Echtzeitberechnungen.
+Funktionen Boyle-Mariotte-Gesetz: Isotherme Zustandsänderungen (p₁V₁ = p₂V₂) Gay-Lussac-Gesetz: Isobare und isochore Zustandsänderungen (V/T = konst.) Ideales Gasgesetz: pV = nRT für vollständige Zustandsberechnungen Partikel-Animation: Echtzeit-Visualisierung von Gasteilchen Temperaturabhängige Farben: Blau (kalt) bis Rot (heiß) Interaktive Steuerung: Einstellung von Druck, Volumen und Temperatur Automatische Berechnungen: Live-Anpassung an gewähltes Gasgesetz Die Simulation zeigt wie sich Gasteilchen bei verschiedenen Zustandsbedingungen verhalten und macht die abstrakten Gasgesetze begreifbar.</description>
+    </item>
+    <item>
+      <title>Molare Masse Visualizer</title>
+      <link>https://chemie-lernen.org/molar-mass-visualizer/</link>
+      <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://chemie-lernen.org/molar-mass-visualizer/</guid>
+      <description>Molare Masse Visualizer Berechnen und visualisieren Sie die molare Masse beliebiger chemischer Verbindungen durch interaktive Elementauswahl und Formeleingabe.
+Funktionen Interaktives Periodensystem: Klicken Sie Elemente an, um Ihre Formel zu erstellen Formelparsing: Automatische Erkennung chemischer Notation (z.B. H2O, C6H12O6) Massenanalyse: Detaillierte Aufschlüsselung der Elementbeiträge Visualisierung: Graphische Darstellung der molekularen Zusammensetzung Prozentuale Anteile: Prozentuale Verteilung der Elementmassen Schnellformeln: Direkter Zugriff auf häufige Verbindungen Validierung: Echtzeit-Überprüfung der chemischen Syntax Unterstützt alle Elemente des Periodensystems mit präzisen Atomassen und automatisch berechneten prozentualen Anteilen.</description>
+    </item>
+    <item>
+      <title>Molekülstudio</title>
+      <link>https://chemie-lernen.org/molekuel-studio/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://chemie-lernen.org/molekuel-studio/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

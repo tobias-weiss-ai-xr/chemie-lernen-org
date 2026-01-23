@@ -1,13 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Gay-Lussac on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title><link>https://chemie-lernen.org/tags/gay-lussac/</link><description>Recent content in Gay-Lussac on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description><generator>Hugo</generator><language>de-de</language><lastBuildDate>Sat, 03 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/tags/gay-lussac/index.xml" rel="self" type="application/rss+xml"/><item><title>Gasgesetz-Rechner</title><link>https://chemie-lernen.org/gasgesetz-rechner/</link><pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/gasgesetz-rechner/</guid><description>&lt;h2 id="gasgesetz-rechner">Gasgesetz-Rechner&lt;/h2>
-&lt;p>Berechnen Sie Zustandsänderungen von Gasen mit den klassischen Gasgesetzen und dem IdealGas-Gesetz.&lt;/p>
-&lt;h3 id="funktionen">Funktionen&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>Boyle-Mariotte-Gesetz&lt;/strong>: Isotherme Zustandsänderung (p₁V₁ = p₂V₂ bei T = konst.)&lt;/li>
-&lt;li>&lt;strong>Gay-Lussac-Gesetz&lt;/strong>: Isobare und isochore Zustandsänderungen (V/T = konst., p/T = konst.)&lt;/li>
-&lt;li>&lt;strong>Kombiniertes Gasgesetz&lt;/strong>: p₁V₁/T₁ = p₂V₂/T₂ (allgemeine Zustandsänderung)&lt;/li>
-&lt;li>&lt;strong>Ideales Gasgesetz&lt;/strong>: pV = nRT (Berechnung aller Zustandsgrößen)&lt;/li>
-&lt;li>&lt;strong>Stoffmenge-Berechnung&lt;/strong>: Umrechnung zwischen Masse, Mol und Volumen&lt;/li>
-&lt;li>&lt;strong>Einheiten-Umrechnung&lt;/strong>: Automatische Konvertierung zwischen verschiedenen Druck- und Volumeneinheiten&lt;/li>
-&lt;li>&lt;strong>Normbedingungen&lt;/strong>: Automatische Berechnung von Normvolumen (22.414 L/mol bei STP)&lt;/li>
-&lt;/ul>
-&lt;p>Unterstützt alle Gase (ideale Näherung) mit verschiedenen Einheiten für Druck, Volumen, Temperatur und Stoffmenge.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gay-lussac on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title>
+    <link>https://chemie-lernen.org/tags/gay-lussac/</link>
+    <description>Recent content in gay-lussac on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-de</language>
+    <lastBuildDate>Wed, 07 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://chemie-lernen.org/tags/gay-lussac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gasgesetz-Simulator</title>
+      <link>https://chemie-lernen.org/gasgesetz-simulator/</link>
+      <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://chemie-lernen.org/gasgesetz-simulator/</guid>
+      <description>Gasgesetz-Simulator Erkunden Sie die fundamentalen Gasgesetze durch interaktive Partikelanimationen und Echtzeitberechnungen.
+Funktionen Boyle-Mariotte-Gesetz: Isotherme Zustandsänderungen (p₁V₁ = p₂V₂) Gay-Lussac-Gesetz: Isobare und isochore Zustandsänderungen (V/T = konst.) Ideales Gasgesetz: pV = nRT für vollständige Zustandsberechnungen Partikel-Animation: Echtzeit-Visualisierung von Gasteilchen Temperaturabhängige Farben: Blau (kalt) bis Rot (heiß) Interaktive Steuerung: Einstellung von Druck, Volumen und Temperatur Automatische Berechnungen: Live-Anpassung an gewähltes Gasgesetz Die Simulation zeigt wie sich Gasteilchen bei verschiedenen Zustandsbedingungen verhalten und macht die abstrakten Gasgesetze begreifbar.</description>
+    </item>
+    <item>
+      <title>Gasgesetz-Rechner</title>
+      <link>https://chemie-lernen.org/gasgesetz-rechner/</link>
+      <pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://chemie-lernen.org/gasgesetz-rechner/</guid>
+      <description>Gasgesetz-Rechner Berechnen Sie Zustandsänderungen von Gasen mit den klassischen Gasgesetzen und dem IdealGas-Gesetz.
+Funktionen Boyle-Mariotte-Gesetz: Isotherme Zustandsänderung (p₁V₁ = p₂V₂ bei T = konst.) Gay-Lussac-Gesetz: Isobare und isochore Zustandsänderungen (V/T = konst., p/T = konst.) Kombiniertes Gasgesetz: p₁V₁/T₁ = p₂V₂/T₂ (allgemeine Zustandsänderung) Ideales Gasgesetz: pV = nRT (Berechnung aller Zustandsgrößen) Stoffmenge-Berechnung: Umrechnung zwischen Masse, Mol und Volumen Einheiten-Umrechnung: Automatische Konvertierung zwischen verschiedenen Druck- und Volumeneinheiten Normbedingungen: Automatische Berechnung von Normvolumen (22.</description>
+    </item>
+  </channel>
+</rss>

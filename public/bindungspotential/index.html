@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="de" xml:lang="de">
+
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-adsense-account" content="ca-pub-8452353139685392">
+
+<title>Bindungspotential Rechner - chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title>
+
+
+<meta name="description" content="Interaktive Energie-Diagramme für chemische Bindungen - Berechnen und visualisieren Sie Bindungsenthalpien und Aktivierungsenergien">
+<meta name="keywords" content="chemie-lernen.org, VR Chemieunterricht, Virtual Reality Bildung, Chemie lernen online, interaktiver Chemieunterricht, digitale Bildung, VR Lernräume, Chemie studieren, innovative Chemie, immersive Bildung">
+<link rel="canonical" href="https://chemie-lernen.org/bindungspotential/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://chemie-lernen.org/bindungspotential/">
+<meta property="og:title" content="Bindungspotential Rechner - chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte">
+<meta property="og:description" content="Interaktive Energie-Diagramme für chemische Bindungen - Berechnen und visualisieren Sie Bindungsenthalpien und Aktivierungsenergien">
+<meta property="og:image" content="https://chemie-lernen.org/recent-article_001.jpg">
+<meta property="og:locale" content="de-de">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://chemie-lernen.org/bindungspotential/">
+<meta name="twitter:title" content="Bindungspotential Rechner - chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte">
+<meta name="twitter:description" content="Interaktive Energie-Diagramme für chemische Bindungen - Berechnen und visualisieren Sie Bindungsenthalpien und Aktivierungsenergien">
+<meta name="twitter:image" content="https://chemie-lernen.org/recent-article_001.jpg">
+
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+  
+  <link rel="stylesheet" href="/sass/main.css">
+
+
+<link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/dark-mode.css">
+
+
+<link rel="stylesheet" href="/css/green-theme.css">
+
+
+<link rel="stylesheet" href="/css/quiz-system.css">
+<link rel="stylesheet" href="/css/quiz-user-system.css">
+<link rel="stylesheet" href="/css/progress-tracker.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css">
+
+<script src="/js/enhanced-bundle-loader.js"></script>
+
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js')
+      .then(function(registration) {
+        console.log('SW registered: ', registration);
+        registration.update();
+      })
+      .catch(function(registrationError) {
+        console.log('SW registration failed: ', registrationError);
+      });
+  });
+}
+</script>
+  
+
+  <body>
+
+    
+    <a href="#main-content" class="sr-only sr-only-focusable">Zum Hauptinhalt springen</a>
+
+    <header class="site-header">
+<div class="container-fluid">
+  
+  <div class="title-row">
+    <div class="navbar-brand-wrapper">
+      <a class="navbar-brand" href="https://chemie-lernen.org/">
+        <img src="/img/chemie-lernen-logo_light.png" alt="chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte" height="75" class="d-inline-block align-top site-logo">
+        chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte
+      </a>
+      
+      <a href="#" id="theme-toggle" title="Zu dunkel wechseln" class="theme-toggle-header" aria-label="Dark Mode umschalten" role="button">
+        <i class="fa fa-moon-o" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+
+  
+  <nav class="navbar navbar-default" role="navigation" aria-label="Hauptnavigation">
+    <div class="container-fluid">
+      
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Navigation einblenden">
+          <span class="sr-only">Navigation einblenden</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          
+            
+              
+              <li>
+                <a href="/themenbereiche/" aria-label="Themenbereiche">
+                  Themenbereiche
+                </a>
+              </li>
+            
+          
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" aria-label="Interaktiv Menü anzeigen">
+                  Interaktiv <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-label="Interaktiv Unterseite">
+                  
+                    <li role="none">
+                      <a href="/perioden-system-der-elemente/" role="menuitem" aria-label="Periodensystem 3D">
+                        Periodensystem 3D
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/molekuel-studio/" role="menuitem" aria-label="Molekülstudio">
+                        Molekülstudio
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/molare-masse-rechner/" role="menuitem" aria-label="Molare Masse">
+                        Molare Masse
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/reaktionsgleichungen-ausgleichen/" role="menuitem" aria-label="Gleichungen Ausgleichen">
+                        Gleichungen Ausgleichen
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/einheitenumrechner/" role="menuitem" aria-label="Einheitenumrechner">
+                        Einheitenumrechner
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/loesungsrechner/" role="menuitem" aria-label="Lösungsrechner">
+                        Lösungsrechner
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/stoechiometrie-rechner/" role="menuitem" aria-label="Stöchiometrie">
+                        Stöchiometrie
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/pages/pse-in-vr/" role="menuitem" aria-label="PSE in VR">
+                        PSE in VR
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+          
+            
+              
+              <li>
+                <a href="/pages/roadmap/" aria-label="Roadmap">
+                  Roadmap
+                </a>
+              </li>
+            
+          
+            
+              
+              <li>
+                <a href="/pages/about/" aria-label="Über uns">
+                  Über uns
+                </a>
+              </li>
+            
+          
+            
+              
+              <li>
+                <a href="/pages/contact/" aria-label="Kontakt">
+                  Kontakt
+                </a>
+              </li>
+            
+          
+            
+              
+              <li>
+                <a href="https://www.patreon.com/c/chemie_lernen_org" aria-label="Patreon">
+                  Patreon
+                </a>
+              </li>
+            
+          
+        </ul>
+
+        
+        <form class="navbar-form navbar-right" action="/pages/suche/" method="get" role="search">
+          <div class="form-group">
+            <label for="search-input" class="sr-only">Themen suchen</label>
+            <input type="text" class="form-control" placeholder="Themen suchen..." name="q" id="search-input" aria-label="Themen suchen">
+          </div>
+          <button type="submit" class="btn btn-default" aria-label="Suchen">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</div>
+</header>
+
+<style>
+ 
+.dropdown-menu {
+  min-width: 220px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  border: 1px solid rgba(0,0,0,.15);
+}
+
+ 
+@media (min-width: 768px) {
+  .navbar-collapse {
+    display: flex !important;
+    align-items: center;
+    width: 100%;
+  }
+
+  .navbar-nav {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+}
+
+.dropdown-menu > li > a {
+  padding: 8px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-icon {
+  margin-right: 8px;
+}
+
+.dropdown-menu .label {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+}
+
+ 
+.navbar-nav > .active > a,
+.navbar-nav > .active > a:hover,
+.navbar-nav > .active > a:focus {
+  background-color: #007bff;
+  color: #fff;
+}
+
+ 
+.navbar-form {
+  margin-left: 15px;
+  padding: 0;
+}
+
+.navbar-form .form-control {
+  width: 180px;
+  transition: width 0.3s;
+}
+
+.navbar-form .form-control:focus {
+  width: 250px;
+}
+
+ 
+@media (max-width: 767px) {
+  .navbar-form {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  .navbar-form .form-control {
+    width: 100%;
+  }
+
+  .navbar-form .form-control:focus {
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    position: static;
+    float: none;
+    width: auto;
+    box-shadow: none;
+    border: none;
+  }
+
+  .navbar-nav .open .dropdown-menu {
+    background-color: #f8f9fa;
+  }
+
+  .navbar-nav .open .dropdown-menu > li > a {
+    color: #333;
+    padding-left: 30px;
+  }
+}
+
+ 
+.site-logo {
+  height: 75px !important;
+  width: auto;
+  object-fit: contain;
+  transition: height 0.3s ease;
+}
+
+@media (max-width: 992px) {
+  .site-logo { height: 70px !important; }
+}
+
+@media (max-width: 768px) {
+  .site-logo { height: 60px !important; }
+}
+
+@media (max-width: 576px) {
+  .site-logo { height: 45px !important; }
+}
+
+ 
+@media (prefers-color-scheme: dark) {
+  .dropdown-menu {
+    background-color: #2c2c2c;
+    border-color: #444;
+  }
+
+  .dropdown-menu > li > a {
+    color: #e0e0e0;
+  }
+
+  .dropdown-menu > li > a:hover,
+  .dropdown-menu > li > a:focus {
+    background-color: #3c3c3c;
+    color: #fff;
+  }
+
+  .navbar-nav .open .dropdown-menu {
+    background-color: #2c2c2c;
+  }
+
+  .navbar-nav .open .dropdown-menu > li > a {
+    color: #e0e0e0;
+  }
+
+  .navbar-form .form-control {
+    background-color: #3c3c3c;
+    border-color: #555;
+    color: #e0e0e0;
+  }
+
+  .navbar-form .form-control:focus {
+    background-color: #4c4c4c;
+    border-color: #007bff;
+    color: #fff;
+  }
+
+  .navbar-form .form-control::placeholder {
+    color: #999;
+  }
+}
+</style>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.innerWidth < 768) {
+    const dropdowns = document.querySelectorAll('.dropdown-toggle');
+    dropdowns.forEach(function(dropdown) {
+      dropdown.addEventListener('click', function(e) {
+        e.preventDefault();
+        const parent = this.parentElement;
+        parent.classList.toggle('open');
+      });
+    });
+  }
+});
+</script>
+
+
+    <div class="container">
+      
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="https://chemie-lernen.org/">
+        <i class="fa fa-home" aria-hidden="true"></i> Start
+      </a>
+    </li>
+
+    
+    
+      
+        
+    
+    <li class="breadcrumb-item active" aria-current="page">Bindungspotential Rechner</li>
+    
+
+      
+      
+    
+
+  </ol>
+</nav>
+
+
+<style>
+.breadcrumb {
+  background-color: transparent;
+  padding: 8px 0;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "›";
+  color: #6c757d;
+}
+
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+  color: #6c757d;
+}
+
+@media (prefers-color-scheme: dark) {
+  .breadcrumb-item a {
+    color: #66b0ff;
+  }
+
+  .breadcrumb-item a:hover {
+    color: #3395ff;
+  }
+
+  .breadcrumb-item.active {
+    color: #adb5bd;
+  }
+}
+</style>
+
+      <div class="wrapper">
+        <main id="main-content" role="main">
+          
+
+<div class="bindungspotential-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">Bindungspotential Rechner</h1>
+      <p class="lead text-center">Interaktive Energie-Diagramme für chemische Bindungen - Berechnen und visualisieren Sie Bindungsenthalpien und Aktivierungsenergien</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a href="#einfache-bindung" aria-controls="einfache-bindung" role="tab" data-toggle="tab">
+            <i class="fa fa-link"></i> Einfache Bindung
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#reaktions-energetik" aria-controls="reaktions-energetik" role="tab" data-toggle="tab">
+            <i class="fa fa-exchange"></i> Reaktions-Energetik
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#aktivierungsenergie" aria-controls="aktivierungsenergie" role="tab" data-toggle="tab">
+            <i class="fa fa-bolt"></i> Aktivierungsenergie
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="einfache-bindung" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Einfache chemische Bindung</h2>
+        <p>Untersuchen Sie die energetischen Verhältnisse bei der Bildung und Spaltung einer chemischen Bindung.</p>
+
+        <div class="input-section">
+          <div class="form-group">
+            <label for="bindungstyp">Bindungstyp:</label>
+            <select id="bindungstyp" class="form-control" onchange="updateBindingData()">
+              <option value="h-h">H-H (Wasserstoff)</option>
+              <option value="h-cl">H-Cl (Chlorwasserstoff)</option>
+              <option value="c-h">C-H (Kohlenstoff-Wasserstoff)</option>
+              <option value="c-c">C-C (Einfachbindung)</option>
+              <option value="c=c">C=C (Doppelbindung)</option>
+              <option value="c-c">C≡C (Dreifachbindung)</option>
+              <option value="o-h">O-H (Sauerstoff-Wasserstoff)</option>
+              <option value="n-h">N-H (Stickstoff-Wasserstoff)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="atomabstand">Atomabstand (Å):</label>
+            <div class="input-group">
+              <input type="range" id="atomabstand" min="0.5" max="4.0" step="0.1" value="2.5" oninput="updateBindingDiagram()">
+              <span class="input-group-addon" id="abstand-display">2.5 Å</span>
+            </div>
+          </div>
+
+          <div class="bond-info">
+            <div class="info-row">
+              <span class="label">Bindungsenergie:</span>
+              <span id="bindungsenergie" class="value">436 kJ/mol</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Gleichgewichtsabstand:</span>
+              <span id="gleichgewichtsabstand" class="value">0.74 Å</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Aktuelle potentielle Energie:</span>
+              <span id="aktuelle-energie" class="value highlight">-50 kJ/mol</span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block" onclick="animateBondFormation()">
+            <i class="fa fa-play"></i> Bindungsbildung animieren
+          </button>
+        </div>
+
+        <div class="diagram-container">
+          <h3>Bindungspotential-Diagramm</h3>
+          <canvas id="binding-canvas" width="600" height="400"></canvas>
+          <div class="diagram-controls">
+            <button class="btn btn-sm btn-default" onclick="resetBindingDiagram()">
+              <i class="fa fa-refresh"></i> Zurücksetzen
+            </button>
+            <button class="btn btn-sm btn-info" onclick="toggleGrid()">
+              <i class="fa fa-th"></i> Gitter ein/aus
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="reaktions-energetik" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Reaktions-Energetik</h2>
+        <p>Analysieren Sie die Energieänderungen bei chemischen Reaktionen.</p>
+
+        <div class="input-section">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="reaktions-typ">Reaktionstyp:</label>
+                <select id="reaktions-typ" class="form-control" onchange="updateReactionData()">
+                  <option value="exotherm">Exotherme Reaktion</option>
+                  <option value="endotherm">Endotherme Reaktion</option>
+                  <option value="neutral">Thermoneutrale Reaktion</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="beispiel-reaktion">Beispielreaktion:</label>
+                <select id="beispiel-reaktion" class="form-control" onchange="loadExampleReaction()">
+                  <option value="ch4-combustion">CH₄ + 2O₂ → CO₂ + 2H₂O</option>
+                  <option value="nh3-synthesis">N₂ + 3H₂ → 2NH₃</option>
+                  <option value="photosynthesis">6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</option>
+                  <option value="decomposition">2H₂O → 2H₂ + O₂</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="reaction-equation" id="reaktions-gleichung">
+            <h4>Reaktionsgleichung:</h4>
+            <p class="formula-text" id="reaktion-formel">CH₄ + 2O₂ → CO₂ + 2H₂O</p>
+          </div>
+
+          <div class="energy-values">
+            <div class="energy-card">
+              <h5>Edukte (Ausgangsstoffe)</h5>
+              <div class="energy-value">
+                <span class="label">Gesamtenergie:</span>
+                <span id="edukt-energie" class="value">-1652 kJ/mol</span>
+              </div>
+            </div>
+            
+            <div class="energy-arrow">→</div>
+            
+            <div class="energy-card">
+              <h5>Produkte (Endstoffe)</h5>
+              <div class="energy-value">
+                <span class="label">Gesamtenergie:</span>
+                <span id="produkt-energie" class="value">-2422 kJ/mol</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="reaction-result">
+            <div class="result-box">
+              <h4>Reaktionsenthalpie (ΔH):</h4>
+              <span id="reaktionsenthalpie" class="value large highlight">-770 kJ/mol</span>
+              <p id="reaktionstyp-text" class="explanation">Exotherm - Energie wird freigesetzt</p>
+            </div>
+          </div>
+
+          <div class="simulation-controls">
+            <button class="btn btn-success" onclick="animateReaction()">
+              <i class="fa fa-play"></i> Reaktion animieren
+            </button>
+            <button class="btn btn-warning" onclick="reverseReaction()">
+              <i class="fa fa-undo"></i> Reaktion umkehren
+            </button>
+          </div>
+        </div>
+
+        <div class="diagram-container">
+          <h3>Energie-Profil-Diagramm</h3>
+          <canvas id="reaction-canvas" width="600" height="400"></canvas>
+          <div class="diagram-legend">
+            <div class="legend-item">
+              <div class="legend-color" style="background: #ff6b6b;"></div>
+              <span>Edukte</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #4ecdc4;"></div>
+              <span>Produkte</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #ffe66d;"></div>
+              <span>Übergangszustand</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="aktivierungsenergie" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Aktivierungsenergie</h2>
+        <p>Untersuchen Sie die Energieschwelle, die für eine chemische Reaktion überwunden werden muss.</p>
+
+        <div class="input-section">
+          <div class="form-group">
+            <label for="temperatur">Temperatur (K):</label>
+            <div class="input-group">
+              <input type="range" id="temperatur" min="200" max="1000" value="298" oninput="updateActivationDiagram()">
+              <span class="input-group-addon" id="temp-display">298 K (25°C)</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="aktivierungsenergie-input">Aktivierungsenergie (kJ/mol):</label>
+            <div class="input-group">
+              <input type="number" id="aktivierungsenergie-input" class="form-control" value="150" min="10" max="500" oninput="updateActivationDiagram()">
+              <span class="input-group-addon">kJ/mol</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reaktionsenthalpie-input">Reaktionsenthalpie (kJ/mol):</label>
+            <div class="input-group">
+              <input type="number" id="reaktionsenthalpie-input" class="form-control" value="-80" min="-200" max="200" oninput="updateActivationDiagram()">
+              <span class="input-group-addon">kJ/mol</span>
+            </div>
+          </div>
+
+          <div class="kinetics-info">
+            <div class="info-row">
+              <span class="label">Arrhenius-Faktor:</span>
+              <span id="arrhenius-faktor" class="value">2.5 × 10⁻⁸</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Reaktionsgeschwindigkeit (relativ):</span>
+              <span id="reaktionsgeschwindigkeit" class="value highlight">1.00</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Halbwertszeit:</span>
+              <span id="halbwertszeit" class="value">2.8 × 10⁷ s</span>
+            </div>
+          </div>
+
+          <div class="temperature-comparison">
+            <h4>Temperaturabhängigkeit</h4>
+            <canvas id="temp-canvas" width="600" height="300"></canvas>
+          </div>
+        </div>
+
+        <div class="diagram-container">
+          <h3>Aktivierungsenergie-Diagramm</h3>
+          <canvas id="activation-canvas" width="600" height="400"></canvas>
+          <div class="diagram-annotations">
+            <div class="annotation-item">
+              <div class="annotation-line" style="left: 20%;"></div>
+              <div class="annotation-text">E<sub>a</sub> = <span id="ea-display">150</span> kJ/mol</div>
+            </div>
+            <div class="annotation-item">
+              <div class="annotation-line" style="left: 80%;"></div>
+              <div class="annotation-text">ΔH = <span id="dh-display">-80</span> kJ/mol</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="educational-content">
+    <h2 class="text-center">Grundlagen der Bindungsenergetik</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚡ Bindungsenthalpie</h3>
+          <p>Die Bindungsenthalpie ist die Energie, die erforderlich ist, um eine chemische Bindung zu spalten, oder die Energie, die bei der Bildung einer Bindung freigesetzt wird.</p>
+          <ul>
+            <li><strong>Exotherm:</strong> ΔH &lt; 0 (Energie wird freigesetzt)</li>
+            <li><strong>Endotherm:</strong> ΔH > 0 (Energie wird aufgenommen)</li>
+            <li><strong>Stärkste Bindung:</strong> N≡N (945 kJ/mol)</li>
+            <li><strong>Schwächste Bindung:</strong> I-I (151 kJ/mol)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🔥 Aktivierungsenergie</h3>
+          <p>Die Aktivierungsenergie E<sub>a</sub> ist die minimale Energie, die Reaktanten benötigen, um in den Übergangszustand überzugehen.</p>
+          <p class="formula-text">k = A × e<sup>-E<sub>a</sub>/RT</sup></p>
+          <ul>
+            <li><strong>k:</strong> Reaktionsgeschwindigkeitskonstante</li>
+            <li><strong>A:</strong> Stoßfaktor</li>
+            <li><strong>R:</strong> Gaskonstante (8.314 J/mol·K)</li>
+            <li><strong>T:</strong> Temperatur (K)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📊 Energetische Gesetze</h3>
+          <p><strong>Hess'sches Gesetz:</strong> Die Reaktionsenthalpie ist unabhängig vom Reaktionsweg.</p>
+          <p class="formula-text">ΔH = ΣΔH<sub>Bildung</sub> - ΣΔH<sub>Spaltung</sub></p>
+          <p><strong>Born-Haber-Kreisprozess:</strong> Berechnung von Gitterenergien aus thermodynamischen Daten.</p>
+          <p><strong>Lattice Energy:</strong> Energie bei der Bildung eines Ionengitters aus gasförmigen Ionen.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="example-card">
+          <h3>🧪 Typische Bindungsenergien</h3>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Bindung</th>
+                <th>Energie (kJ/mol)</th>
+                <th>Bemerkung</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>H-H</td><td>436</td><td>Normale Einfachbindung</td></tr>
+              <tr><td>C-H</td><td>413</td><td>Organische Chemie</td></tr>
+              <tr><td>C-C</td><td>347</td><td>Einfachbindung</td></tr>
+              <tr><td>C=C</td><td>614</td><td>Doppelbindung</td></tr>
+              <tr><td>C≡C</td><td>839</td><td>Dreifachbindung</td></tr>
+              <tr><td>O-H</td><td>463</td><td>Wasser, Alkohole</td></tr>
+              <tr><td>N-H</td><td>391</td><td>Amine, Ammoniak</td></tr>
+              <tr><td>N≡N</td><td>945</td><td>Sehr starke Bindung</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="example-card">
+          <h3>🌡️ Temperaturabhängigkeit</h3>
+          <p>Die Reaktionsgeschwindigkeit verdoppelt sich in etwa bei einer Temperaturerhöhung um 10°C (RGT-Regel).</p>
+          <div class="rule-of-thumb">
+            <h4>RGT-Regel:</h4>
+            <p>k(T+10K) ≈ 2 × k(T)</p>
+            <p class="small">Gilt für viele Reaktionen bei Raumtemperatur</p>
+          </div>
+          
+          <div class="application-examples">
+            <h5>Praktische Anwendungen:</h5>
+            <ul>
+              <li><strong>Kochsalzlösung:</strong> Erhitzen beschleunigt Lösungsvorgang</li>
+              <li><strong>Essigherstellung:</strong> Temperaturkontrolle für optimale Gärung</li>
+              <li><strong>Metallbearbeitung:</strong> Glühen zur Aktivierung von Reaktionen</li>
+              <li><strong>Biologie:</strong> Körpertemperatur für optimale Enzymaktivität</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="examples-section">
+    <h2 class="text-center">Interaktive Beispiele</h2>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="interactive-example">
+          <h3>🔬 Katalyse</h3>
+          <p>Ein Katalysator senkt die Aktivierungsenergie ohne die Reaktionsenthalpie zu ändern.</p>
+          
+          <div class="catalyst-demo">
+            <div class="demo-controls">
+              <label>
+                <input type="checkbox" id="katalysator-aktiv" onchange="updateCatalystDemo()">
+                Katalysator hinzufügen
+              </label>
+              <label>EA-Reduktion: <span id="ea-reduction">0</span>%</label>
+            </div>
+            <canvas id="catalyst-canvas" width="500" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="interactive-example">
+          <h3>⚗️ Reaktionskoordinate</h3>
+          <p>Verfolgen Sie den Energieverlauf entlang der Reaktionskoordinate.</p>
+          
+          <div class="coordinate-demo">
+            <div class="demo-controls">
+              <label>Fortschritt: <span id="reaktion-fortschritt">0</span>%</label>
+              <input type="range" id="reaktion-slider" min="0" max="100" value="0" oninput="updateReactionCoordinate()">
+            </div>
+            <canvas id="coordinate-canvas" width="500" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="/js/bindungspotential.js"></script>
+<link rel="stylesheet" href="/css/bindungspotential.css">
+
+
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-footer" style="margin-top: 50px; padding: 30px 0; background-color: #333; color: #fff;" role="contentinfo" aria-label="Website-Fußzeile">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</h4>
+                <p>chemie-lernen.org - Ihre Plattform für innovative Chemie-Lernräume in Virtual Reality. Machen Sie komplexe chemische Konzepte greifbar und erlebbar.</p>
+                <p>
+                    <a href="https://www.patreon.com/c/chemie_lernen_org" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; font-weight: 500;" aria-label="Besuchen Sie unseren Patreon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: text-bottom; margin-right: 5px;">
+                            <path d="M4.231 0C3.281 0 2.4.513 2.4 1.484v20.922c0 .995.881 1.484 1.831 1.484.95 0 1.774-.49 1.774-1.484V1.484C6.005.513 5.181 0 4.231 0zm13.396 4.453c-2.606 0-4.748 2.054-4.748 4.578 0 2.525 2.142 4.579 4.748 4.579s4.748-2.054 4.748-4.579c0-2.524-2.142-4.578-4.748-4.578z"/>
+                        </svg>
+                        Unterstütze uns auf Patreon
+                    </a>
+                </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <p>&copy; 2026 chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte. Alle Rechte vorbehalten.</p>
+                <p><small><a href="/impressum/" style="color: #fff;">impressum</a> | <a href="/datenschutz/" style="color: #fff;">datenschutz</a> | <a href="/pages/barrierefreiheit/" style="color: #fff;">barrierefreiheit</a></small></p>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+
+  
+  <script src="/js/dark-mode.js"></script>
+
+  
+  <script src="/js/quiz-system.js"></script>
+  <script src="/js/quiz-user-system.js"></script>
+  <script src="/js/progress-tracker.js"></script>
+
+  
+  
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
+        ]
+      });
+    });
+  </script>
+
+  
+
+
+  <script>
+    $(document).ready(function() {
+      
+      $('.dropdown-toggle').each(function() {
+        $(this).dropdown({
+          html: true,
+          container: 'body'
+        });
+      });
+      
+      
+      $('.dropdown-toggle').on('click', function(e) {
+        
+        if (window.innerWidth < 768) {
+          e.preventDefault();
+          var parent = $(this).parent();
+          
+          
+          $('.dropdown.open').not(parent).removeClass('open');
+          
+          
+          parent.toggleClass('open');
+        }
+      });
+      
+      
+      $(document).on('click', function(e) {
+        if (!$(e.target).is('.dropdown-toggle')) {
+          $('.dropdown.open').removeClass('open');
+        }
+      });
+    });
+  </script>
+  </body>
+
+</html>

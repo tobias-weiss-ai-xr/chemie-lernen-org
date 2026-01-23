@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>perioden-system on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title>
+    <link>https://chemie-lernen.org/tags/perioden-system/</link>
+    <description>Recent content in perioden-system on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-de</language>
+    <lastBuildDate>Wed, 07 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://chemie-lernen.org/tags/perioden-system/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Molare Masse Visualizer</title>
+      <link>https://chemie-lernen.org/molar-mass-visualizer/</link>
+      <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://chemie-lernen.org/molar-mass-visualizer/</guid>
+      <description>Molare Masse Visualizer Berechnen und visualisieren Sie die molare Masse beliebiger chemischer Verbindungen durch interaktive Elementauswahl und Formeleingabe.
+Funktionen Interaktives Periodensystem: Klicken Sie Elemente an, um Ihre Formel zu erstellen Formelparsing: Automatische Erkennung chemischer Notation (z.B. H2O, C6H12O6) Massenanalyse: Detaillierte Aufschlüsselung der Elementbeiträge Visualisierung: Graphische Darstellung der molekularen Zusammensetzung Prozentuale Anteile: Prozentuale Verteilung der Elementmassen Schnellformeln: Direkter Zugriff auf häufige Verbindungen Validierung: Echtzeit-Überprüfung der chemischen Syntax Unterstützt alle Elemente des Periodensystems mit präzisen Atomassen und automatisch berechneten prozentualen Anteilen.</description>
+    </item>
+  </channel>
+</rss>

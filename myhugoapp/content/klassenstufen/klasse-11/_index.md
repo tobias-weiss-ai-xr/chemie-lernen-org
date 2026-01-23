@@ -1,11 +1,11 @@
 ---
-title: "11. Klasse"
-description: "Fortgeschrittene organische und physikalische Chemie"
+title: '11. Klasse'
+description: 'Fortgeschrittene organische und physikalische Chemie'
 date: 2025-12-26
 klassenstufe: 11
-bundesland: ["BY", "BE", "BB", "HB", "HH", "HE", "MV", "NI", "NW", "RP", "SL", "SN", "ST", "SH", "TH"]
+bundesland:
+  ['BY', 'BE', 'BB', 'HB', 'HH', 'HE', 'MV', 'NI', 'NW', 'RP', 'SL', 'SN', 'ST', 'SH', 'TH']
 ---
-
 
 ## 11. Klasse Chemie
 
@@ -29,4 +29,4 @@ Vertiefung der organischen und physikalischen Chemie!
 ## Interaktiv
 
 - [Molekülstudio nutzen](/molekuel-studio/)
-- [VR Labore](https://github.com/tobias-weiss-ai-xr/graphwiz-xr)
+- [PSE in VR](https://pse-in-vr.chemie-lernen.org/)

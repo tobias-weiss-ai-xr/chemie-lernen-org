@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>basen on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title>
+    <link>https://chemie-lernen.org/tags/basen/</link>
+    <description>Recent content in basen on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-de</language>
+    <lastBuildDate>Wed, 07 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://chemie-lernen.org/tags/basen/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Enhanced pH-Visualisierung</title>
+      <link>https://chemie-lernen.org/enhanced-ph-visualization/</link>
+      <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://chemie-lernen.org/enhanced-ph-visualization/</guid>
+      <description>Enhanced pH-Visualisierung Erkunden Sie pH-Werte durch interaktive Skalen, Indikatorfarben und animierte Titrationskurven.
+Funktionen pH-Skala Visualisierung: Farbabhängige Skala von 0-14 mit实时-Beschreibung Indikatoranalyse: Automatische Anzeige geeigneter pH-Indikatoren Titrationskurven: Vier verschiedene Titrationstypen mit animierten Kurven Flüssigkeitsfarben: Echtzeit-Darstellung der Lösungsfarbe Substanzbeispiele: pH-Werte alltäglicher Substanzen Äquivalenzpunkt: Automatische Erkennung von Wendepunkten Educational Content: Umfassende Erklärungen und praktische Anwendungen Die Visualisierung zeigt nicht nur die pH-Werte, sondern erklärt auch, wie Indikatoren funktionieren und wie Titrationen analytisch durchgeführt werden.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>atmosphaere on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title>
+    <link>https://chemie-lernen.org/tags/atmosphaere/</link>
+    <description>Recent content in atmosphaere on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-de</language>
+    <lastBuildDate>Sun, 04 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://chemie-lernen.org/tags/atmosphaere/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Atmosphärendruck im Alltag</title>
+      <link>https://chemie-lernen.org/atmosphaerendruck-alltag/</link>
+      <pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://chemie-lernen.org/atmosphaerendruck-alltag/</guid>
+      <description>Atmosphärendruck im Alltag Erkunden Sie interaktive Simulationen und Experimente zum Luftdruck in unserem täglichen Leben. Verstehen Sie, wie atmosphärischer Druck Strohhalme, Ballons und Saugnäpfe beeinflusst.</description>
+    </item>
+    <item>
+      <title>Torricelli-Versuch - Atmosphärischer Druck</title>
+      <link>https://chemie-lernen.org/torricelli-versuch/</link>
+      <pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://chemie-lernen.org/torricelli-versuch/</guid>
+      <description>Torricelli-Versuch: Die Entdeckung des Luftdrucks Evangelista Torricellis (1608-1647) revolutionäres Experiment
+Im Jahr 1643 führte der italienische Physiker Evangelista Torricelli ein Experiment durch, das die Existenz des atmosphärischen Drucks bewies und das erste Barometer erfand.
+🎯 Das Experiment Torricelli füllte eine etwa 1 Meter lange Glasröhre mit Quecksilber (Hg), verschloss sie an einem Ende und stellte sie upside-down in ein Quecksilbergefäß.
+Das Ergebnis:
+Das Quecksilber in der Röhre sank nicht vollständig ab Es blieb eine Säule von etwa 76 cm Höhe stehen Über dem Quecksilber entstand ein leerer Raum (Vakuum) ┌─────────────────┐ │ Vakuum │ ← &amp;#34;Torricelli-Leere Raum&amp;#34; ├─────────────────┤ │ Hg - Hg - Hg │ ← Quecksilbersäule (~760 mm) │ Hg - Hg - Hg │ ├─────────────────┤ │ Hg - Hg - Hg │ ← Quecksilber im Gefäß │ Hg - Hg - Hg │ └─────────────────┘ 💡 Die Erklärung Warum fällt das Quecksilber nicht vollständig?</description>
+    </item>
+  </channel>
+</rss>

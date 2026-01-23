@@ -1,15 +1,14 @@
 ---
-title: "Aufbau der Materie"
-description: "Vom Atom bis zum Molekül - Wie Materie aufgebaut ist. Erfahren Sie alles über Atommodelle, Elementarteilchen, das Periodensystem und chemische Bindungen mit interaktiven Tools."
+title: 'Aufbau der Materie'
+description: 'Vom Atom bis zum Molekül - Wie Materie aufgebaut ist. Erfahren Sie alles über Atommodelle, Elementarteilchen, das Periodensystem und chemische Bindungen mit interaktiven Tools.'
 date: 2025-12-27
-teilgebiet: "aufbau-materie"
-schwierigkeit: "grundlagen"
-icon: "⚛️"
+teilgebiet: 'aufbau-materie'
+schwierigkeit: 'grundlagen'
+icon: '⚛️'
 weight: 20
 interaktiv: true
-quiz: "aufbau-materie"
+quiz: 'aufbau-materie'
 ---
-
 
 ## Aufbau der Materie
 
@@ -18,6 +17,7 @@ Entdecken Sie den faszinierenden mikroskopischen Aufbau unserer Welt! Alles, was
 ## Lernziele
 
 Nach diesem Themenbereich können Sie:
+
 - Die Entwicklung der Atommodelle beschreiben
 - Aufbau und Eigenschaften von Elementarteilchen erklären
 - Das Periodensystem der Elemente lesen und interpretieren
@@ -30,11 +30,11 @@ Nach diesem Themenbereich können Sie:
 
 ### Die Aggregatzustände der Materie
 
-| Aggregatzustand | Anordnung der Teilchen | Bewegung | Beispiel |
-|----------------|----------------------|----------|----------|
-| **fest** | Regelmäßig, dicht gepackt | Schwingen am Platz | Eis, Eisen |
-| **flüssig** | Unregelmäßig, nah beieinander | Bewegen sich aneinander | Wasser, Quecksilber |
-| **gasförmig** | Große Abstände, regellos | Schnell, frei beweglich | Sauerstoff, Wasserdampf |
+| Aggregatzustand | Anordnung der Teilchen        | Bewegung                | Beispiel                |
+| --------------- | ----------------------------- | ----------------------- | ----------------------- |
+| **fest**        | Regelmäßig, dicht gepackt     | Schwingen am Platz      | Eis, Eisen              |
+| **flüssig**     | Unregelmäßig, nah beieinander | Bewegen sich aneinander | Wasser, Quecksilber     |
+| **gasförmig**   | Große Abstände, regellos      | Schnell, frei beweglich | Sauerstoff, Wasserdampf |
 
 ## Die Elementarteilchen des Atoms
 
@@ -68,11 +68,13 @@ Atome bestehen aus drei wichtigsten Teilchen:
 Das Atom besteht aus einem kompakten Kern mit Protonen und Neutronen, umgeben von einer Elektronenhülle.
 
 **Wichtige Größen:**
+
 - **Protonenzahl (Z):** Anzahl der Protonen = Ordnungszahl
 - **Massenzahl (A):** Protonen + Neutronen
 - **Elektronenzahl:** Bei neutralen Atomen = Protonenzahl
 
 **Beispiel: Kohlenstoff-12 (¹²C)**
+
 - Protonenzahl Z = 6
 - Neutronenzahl N = 6
 - Massenzahl A = 12
@@ -83,6 +85,7 @@ Das Atom besteht aus einem kompakten Kern mit Protonen und Neutronen, umgeben vo
 ### 1. Daltons Atommodell (1803)
 
 John Dalton stellte die Atomhypothese auf:
+
 - Materie besteht aus unteilbaren Teilchen (Atomen)
 - Atome eines Elements sind identisch
 - Atome verschiedener Elemente haben unterschiedliche Massen
@@ -91,6 +94,7 @@ John Dalton stellte die Atomhypothese auf:
 ### 2. Thomsons Atommodell (1904) - "Rosinenkuchenmodell"
 
 J.J. Thomson entdeckte das Elektron:
+
 - Positive Masse gleichmäßig verteilt ("Kuchenteig")
 - Negative Elektronen eingebettet ("Rosinen")
 - Atom ist elektrisch neutral
@@ -98,6 +102,7 @@ J.J. Thomson entdeckte das Elektron:
 ### 3. Rutherfords Atommodell (1911) - "Kern-Hülle-Modell"
 
 Ernest Rutherford führte das berühmte Streuexperiment durch:
+
 - Positiver Kern im Zentrum (winzig, aber schwer)
 - Große leere Hülle mit Elektronen
 - Vergleich: Wie eine Fliege (Elektron) in einer Kathedrale (Atom)
@@ -105,11 +110,13 @@ Ernest Rutherford führte das berühmte Streuexperiment durch:
 ### 4. Bohrsches Atommodell (1913)
 
 Niels Bohr erweiterte das Modell:
+
 - Elektronen bewegen sich auf definierten Bahnen (Schalen)
 - Jede Schale hat eine bestimmte Energie
 - Elektronen können zwischen Schalen springen (Energieabgabe/ -aufnahme)
 
 **Bohrsche Postulate:**
+
 1. Elektronen kreisen auf diskreten Bahnen um den Kern
 2. Auf diesen Bahnen strahlen sie keine Energie ab
 3. Energie wird nur bei Quantensprüngen abgegeben/absorbiert
@@ -117,6 +124,7 @@ Niels Bohr erweiterte das Modell:
 ### 5. Orbitalmodell (heute gültig)
 
 Das moderne quantenmechanische Modell:
+
 - Keine genauen Bahnen, sondern **Orbitale** (Aufenthaltswahrscheinlichkeiten)
 - Elektronenwolke um den Kern
 - Vier Quantenzahlen beschreiben den Zustand eines Elektrons
@@ -126,6 +134,7 @@ Das moderne quantenmechanische Modell:
 ### Aufbau des Periodensystems
 
 Das Periodensystem ordnet alle **118 bekannten Elemente** nach:
+
 1. **Ordnungszahl (Protonenzahl)** - von oben nach unten
 2. **Ähnlichen Eigenschaften** - in Gruppen (senkrecht)
 
@@ -134,6 +143,7 @@ Das Periodensystem ordnet alle **118 bekannten Elemente** nach:
 ![Struktur des Periodensystems](/img/pse-erklaerung.png)
 
 **Legende:**
+
 - **Hauptgruppe (A):** Gruppen 1-2 und 13-18
 - **Nebengruppe (B):** Gruppen 3-12 (Übergangsmetalle)
 - **Periode:** Zeilen (1-7)
@@ -159,6 +169,7 @@ Das Periodensystem ordnet alle **118 bekannten Elemente** nach:
 ### Informationen im Periodensystem
 
 Für jedes Element können Sie ablesen:
+
 - **Ordnungszahl:** Anzahl der Protonen
 - **Symbol:** Abkürzung (z.B. C für Kohlenstoff)
 - **Atommasse:** Durchschnittsmasse aller Isotope
@@ -173,6 +184,7 @@ Für jedes Element können Sie ablesen:
 Bei der Ionenbindung werden Elektronen **vollständig übertragen**.
 
 **Vorgang:**
+
 1. Metall gibt Elektronen ab → **Kation** (positiv geladen)
 2. Nichtmetall nimmt Elektronen auf → **Anion** (negativ geladen)
 3. Elektrostatische Anziehung zwischen Ionen
@@ -186,6 +198,7 @@ $$\ce{Cl + e- -> Cl-} \quad \text{(Chlor nimmt 1 Elektron auf)}$$
 $$\ce{Na+ + Cl- -> NaCl} \quad \text{(Ionenbindung)}$$
 
 **Eigenschaften ionischer Verbindungen:**
+
 - Hoher Schmelzpunkt (> 300°C)
 - Hart und spröde
 - Leiten Strom als Schmelze oder Lösung
@@ -198,6 +211,7 @@ $$\ce{Na+ + Cl- -> NaCl} \quad \text{(Ionenbindung)}$$
 Bei der Atombindung werden Elektronen **gemeinsam verwendet**.
 
 **Vorgang:**
+
 - Beide Atome stellen Elektronen zur Verfügung
 - Ein **Elektronenpaar** wird geteilt (bindend)
 - Jedes Atom erreicht stabile Elektronenkonfiguration
@@ -207,11 +221,13 @@ Bei der Atombindung werden Elektronen **gemeinsam verwendet**.
 $$\ce{H. + .O. + .H -> H-O-H} \quad \text{(8 } e^- \text{)}$$
 
 **Arten der Atombindung:**
+
 1. **Einfachbindung:** 1 Elektronenpaar (z.B. H-H, H-Cl)
 2. **Doppelbindung:** 2 Elektronenpaare (z.B. O=O, C=O)
 3. **Dreifachbindung:** 3 Elektronenpaare (z.B. N≡N, C≡C)
 
 **Eigenschaften kovalenter Verbindungen:**
+
 - Niedriger Schmelzpunkt (< 300°C)
 - Oft flüssig oder gasförmig bei Raumtemperatur
 - Leiten keinen Strom
@@ -224,11 +240,13 @@ $$\ce{H. + .O. + .H -> H-O-H} \quad \text{(8 } e^- \text{)}$$
 Bei Metallen sind die Atome durch **"Elektronengas"** verbunden.
 
 **Vorgang:**
+
 - Metallatome geben Elektronen ab
 - Elektronen bewegen sich frei zwischen allen Kationen
 - Anziehung zwischen Elektronengas und Metallkationen
 
 **Eigenschaften:**
+
 - Gute elektrische Leitfähigkeit
 - Gute Wärmeleitfähigkeit
 - Verformbar (duktil)
@@ -239,6 +257,7 @@ Bei Metallen sind die Atome durch **"Elektronengas"** verbunden.
 ### Van-der-Waals-Kräfte
 
 Schwache Anziehungskräfte zwischen Molekülen:
+
 - **Dipol-Dipol-Kräfte:** Zwischen polaren Molekülen
 - **London-Kräfte:** Zwischen allen Molekülen (temporäre Dipole)
 
@@ -247,29 +266,32 @@ Schwache Anziehungskräfte zwischen Molekülen:
 ### Was sind Ionen?
 
 **Ionen** sind geladene Teilchen:
+
 - **Kationen:** Positiv geladen (weniger Elektronen als Protonen)
 - **Anionen:** Negativ geladen (mehr Elektronen als Protonen)
 
 ### Bildung von Ionen
 
 **Metalle** geben Elektronen ab → Kationen:
+
 - $\ce{Na -> Na+ + e-}$
 - $\ce{Mg -> Mg^2+ + 2e-}$
 
 **Nichtmetalle** nehmen Elektronen auf → Anionen:
+
 - $\ce{Cl + e- -> Cl-}$
 - $\ce{O + 2e- -> O^2-}$
 
 ### Wichtige Ionen im Alltag
 
-| Kation | Name | Anion | Name |
-|--------|------|-------|------|
-| Na⁺ | Natrium | Cl⁻ | Chlorid |
-| K⁺ | Kalium | Br⁻ | Bromid |
-| Ca²⁺ | Calcium | O²⁻ | Oxid |
-| Mg²⁺ | Magnesium | OH⁻ | Hydroxid |
-| Fe²⁺ | Eisen(II) | SO₄²⁻ | Sulfat |
-| Fe³⁺ | Eisen(III) | CO₃²⁻ | Carbonat |
+| Kation | Name       | Anion | Name     |
+| ------ | ---------- | ----- | -------- |
+| Na⁺    | Natrium    | Cl⁻   | Chlorid  |
+| K⁺     | Kalium     | Br⁻   | Bromid   |
+| Ca²⁺   | Calcium    | O²⁻   | Oxid     |
+| Mg²⁺   | Magnesium  | OH⁻   | Hydroxid |
+| Fe²⁺   | Eisen(II)  | SO₄²⁻ | Sulfat   |
+| Fe³⁺   | Eisen(III) | CO₃²⁻ | Carbonat |
 
 ### Bedeutung von Ionen
 
@@ -288,6 +310,7 @@ Schwache Anziehungskräfte zwischen Molekülen:
 **Isotope** sind Atome desselben Elements mit unterschiedlicher Neutronenzahl.
 
 **Beispiel: Kohlenstoff-Isotope**
+
 - ¹²C: 6 Protonen, 6 Neutronen (98.9%)
 - ¹³C: 6 Protonen, 7 Neutronen (1.1%)
 - ¹⁴C: 6 Protonen, 8 Neutronen (radioaktiv, für Altersbestimmung)
@@ -297,6 +320,7 @@ Schwache Anziehungskräfte zwischen Molekülen:
 ### Experiment: Wasserstoff-Eigenherstellung
 
 **Material:**
+
 - Zink
 - Salzsäure (verdünnt)
 - Reagenzglas
@@ -304,6 +328,7 @@ Schwache Anziehungskräfte zwischen Molekülen:
 - Glimmspan
 
 **Durchführung:**
+
 1. Zink in Reagenzglas geben
 2. Salzsäure hinzufügen
 3. Glimmspan an das Ableitungsrohr halten
@@ -317,7 +342,7 @@ $$\ce{Zn + 2HCl -> ZnCl2 + H2}$$
 
 ### VR-Erfahrung: Atombau erleben
 
-🕶️ **[Atombau in VR erleben](https://github.com/tobias-weiss-ai-xr/graphwiz-xr)** - Tauchen Sie virtuell in die Welt der Atome ein!
+🕶️ **[PSE in VR](https://pse-in-vr.chemie-lernen.org/)** - Tauchen Sie virtuell in die Welt der Atome ein!
 
 ## Zusammenfassung
 
@@ -342,7 +367,7 @@ $$\ce{Zn + 2HCl -> ZnCl2 + H2}$$
 
 ⚛️ **[Periodensystem 3D](/perioden-system-der-elemente/)** - Interaktives 3D-Periodensystem mit detaillierten Informationen zu allen 118 Elementen
 
-🕶️ **[VR Atombau](https://github.com/tobias-weiss-ai-xr/graphwiz-xr)** - Erleben Sie den Aufbau von Atomen in Virtual Reality
+🕶️ **[VR Atombau](/pages/pse-in-vr/)** - Erleben Sie den Aufbau von Atomen in Virtual Reality
 
 ## Testen Sie Ihr Wissen
 

@@ -58,7 +58,41 @@
   {{ with .Site.Params.analytics }}
     {{ partial "analytics.html" . }}
   {{ end }}
-  {{ block "js" . }}{{ end }}
+{{ block "js" . }}{{ end }}
+
+  <script>
+    $(document).ready(function() {
+      // Initialize Bootstrap dropdowns with proper configuration
+      $('.dropdown-toggle').each(function() {
+        $(this).dropdown({
+          html: true,
+          container: 'body'
+        });
+      });
+      
+      // Add custom mobile behavior
+      $('.dropdown-toggle').on('click', function(e) {
+        // Only prevent default on mobile for custom behavior
+        if (window.innerWidth < 768) {
+          e.preventDefault();
+          var parent = $(this).parent();
+          
+          // Close all other open dropdowns
+          $('.dropdown.open').not(parent).removeClass('open');
+          
+          // Toggle the current dropdown
+          parent.toggleClass('open');
+        }
+      });
+      
+      // Close dropdowns when clicking outside
+      $(document).on('click', function(e) {
+        if (!$(e.target).is('.dropdown-toggle')) {
+          $('.dropdown.open').removeClass('open');
+        }
+      });
+    });
+  </script>
   </body>
 
 </html>

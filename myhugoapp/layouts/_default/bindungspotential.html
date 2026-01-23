@@ -1,0 +1,403 @@
+{{ define "main" }}
+
+<div class="bindungspotential-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a href="#einfache-bindung" aria-controls="einfache-bindung" role="tab" data-toggle="tab">
+            <i class="fa fa-link"></i> Einfache Bindung
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#reaktions-energetik" aria-controls="reaktions-energetik" role="tab" data-toggle="tab">
+            <i class="fa fa-exchange"></i> Reaktions-Energetik
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#aktivierungsenergie" aria-controls="aktivierungsenergie" role="tab" data-toggle="tab">
+            <i class="fa fa-bolt"></i> Aktivierungsenergie
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="einfache-bindung" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Einfache chemische Bindung</h2>
+        <p>Untersuchen Sie die energetischen Verhältnisse bei der Bildung und Spaltung einer chemischen Bindung.</p>
+
+        <div class="input-section">
+          <div class="form-group">
+            <label for="bindungstyp">Bindungstyp:</label>
+            <select id="bindungstyp" class="form-control" onchange="updateBindingData()">
+              <option value="h-h">H-H (Wasserstoff)</option>
+              <option value="h-cl">H-Cl (Chlorwasserstoff)</option>
+              <option value="c-h">C-H (Kohlenstoff-Wasserstoff)</option>
+              <option value="c-c">C-C (Einfachbindung)</option>
+              <option value="c=c">C=C (Doppelbindung)</option>
+              <option value="c-c">C≡C (Dreifachbindung)</option>
+              <option value="o-h">O-H (Sauerstoff-Wasserstoff)</option>
+              <option value="n-h">N-H (Stickstoff-Wasserstoff)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="atomabstand">Atomabstand (Å):</label>
+            <div class="input-group">
+              <input type="range" id="atomabstand" min="0.5" max="4.0" step="0.1" value="2.5" oninput="updateBindingDiagram()">
+              <span class="input-group-addon" id="abstand-display">2.5 Å</span>
+            </div>
+          </div>
+
+          <div class="bond-info">
+            <div class="info-row">
+              <span class="label">Bindungsenergie:</span>
+              <span id="bindungsenergie" class="value">436 kJ/mol</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Gleichgewichtsabstand:</span>
+              <span id="gleichgewichtsabstand" class="value">0.74 Å</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Aktuelle potentielle Energie:</span>
+              <span id="aktuelle-energie" class="value highlight">-50 kJ/mol</span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block" onclick="animateBondFormation()">
+            <i class="fa fa-play"></i> Bindungsbildung animieren
+          </button>
+        </div>
+
+        <div class="diagram-container">
+          <h3>Bindungspotential-Diagramm</h3>
+          <canvas id="binding-canvas" width="600" height="400"></canvas>
+          <div class="diagram-controls">
+            <button class="btn btn-sm btn-default" onclick="resetBindingDiagram()">
+              <i class="fa fa-refresh"></i> Zurücksetzen
+            </button>
+            <button class="btn btn-sm btn-info" onclick="toggleGrid()">
+              <i class="fa fa-th"></i> Gitter ein/aus
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="reaktions-energetik" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Reaktions-Energetik</h2>
+        <p>Analysieren Sie die Energieänderungen bei chemischen Reaktionen.</p>
+
+        <div class="input-section">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="reaktions-typ">Reaktionstyp:</label>
+                <select id="reaktions-typ" class="form-control" onchange="updateReactionData()">
+                  <option value="exotherm">Exotherme Reaktion</option>
+                  <option value="endotherm">Endotherme Reaktion</option>
+                  <option value="neutral">Thermoneutrale Reaktion</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="beispiel-reaktion">Beispielreaktion:</label>
+                <select id="beispiel-reaktion" class="form-control" onchange="loadExampleReaction()">
+                  <option value="ch4-combustion">CH₄ + 2O₂ → CO₂ + 2H₂O</option>
+                  <option value="nh3-synthesis">N₂ + 3H₂ → 2NH₃</option>
+                  <option value="photosynthesis">6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</option>
+                  <option value="decomposition">2H₂O → 2H₂ + O₂</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="reaction-equation" id="reaktions-gleichung">
+            <h4>Reaktionsgleichung:</h4>
+            <p class="formula-text" id="reaktion-formel">CH₄ + 2O₂ → CO₂ + 2H₂O</p>
+          </div>
+
+          <div class="energy-values">
+            <div class="energy-card">
+              <h5>Edukte (Ausgangsstoffe)</h5>
+              <div class="energy-value">
+                <span class="label">Gesamtenergie:</span>
+                <span id="edukt-energie" class="value">-1652 kJ/mol</span>
+              </div>
+            </div>
+            
+            <div class="energy-arrow">→</div>
+            
+            <div class="energy-card">
+              <h5>Produkte (Endstoffe)</h5>
+              <div class="energy-value">
+                <span class="label">Gesamtenergie:</span>
+                <span id="produkt-energie" class="value">-2422 kJ/mol</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="reaction-result">
+            <div class="result-box">
+              <h4>Reaktionsenthalpie (ΔH):</h4>
+              <span id="reaktionsenthalpie" class="value large highlight">-770 kJ/mol</span>
+              <p id="reaktionstyp-text" class="explanation">Exotherm - Energie wird freigesetzt</p>
+            </div>
+          </div>
+
+          <div class="simulation-controls">
+            <button class="btn btn-success" onclick="animateReaction()">
+              <i class="fa fa-play"></i> Reaktion animieren
+            </button>
+            <button class="btn btn-warning" onclick="reverseReaction()">
+              <i class="fa fa-undo"></i> Reaktion umkehren
+            </button>
+          </div>
+        </div>
+
+        <div class="diagram-container">
+          <h3>Energie-Profil-Diagramm</h3>
+          <canvas id="reaction-canvas" width="600" height="400"></canvas>
+          <div class="diagram-legend">
+            <div class="legend-item">
+              <div class="legend-color" style="background: #ff6b6b;"></div>
+              <span>Edukte</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #4ecdc4;"></div>
+              <span>Produkte</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #ffe66d;"></div>
+              <span>Übergangszustand</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="aktivierungsenergie" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Aktivierungsenergie</h2>
+        <p>Untersuchen Sie die Energieschwelle, die für eine chemische Reaktion überwunden werden muss.</p>
+
+        <div class="input-section">
+          <div class="form-group">
+            <label for="temperatur">Temperatur (K):</label>
+            <div class="input-group">
+              <input type="range" id="temperatur" min="200" max="1000" value="298" oninput="updateActivationDiagram()">
+              <span class="input-group-addon" id="temp-display">298 K (25°C)</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="aktivierungsenergie-input">Aktivierungsenergie (kJ/mol):</label>
+            <div class="input-group">
+              <input type="number" id="aktivierungsenergie-input" class="form-control" value="150" min="10" max="500" oninput="updateActivationDiagram()">
+              <span class="input-group-addon">kJ/mol</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reaktionsenthalpie-input">Reaktionsenthalpie (kJ/mol):</label>
+            <div class="input-group">
+              <input type="number" id="reaktionsenthalpie-input" class="form-control" value="-80" min="-200" max="200" oninput="updateActivationDiagram()">
+              <span class="input-group-addon">kJ/mol</span>
+            </div>
+          </div>
+
+          <div class="kinetics-info">
+            <div class="info-row">
+              <span class="label">Arrhenius-Faktor:</span>
+              <span id="arrhenius-faktor" class="value">2.5 × 10⁻⁸</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Reaktionsgeschwindigkeit (relativ):</span>
+              <span id="reaktionsgeschwindigkeit" class="value highlight">1.00</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Halbwertszeit:</span>
+              <span id="halbwertszeit" class="value">2.8 × 10⁷ s</span>
+            </div>
+          </div>
+
+          <div class="temperature-comparison">
+            <h4>Temperaturabhängigkeit</h4>
+            <canvas id="temp-canvas" width="600" height="300"></canvas>
+          </div>
+        </div>
+
+        <div class="diagram-container">
+          <h3>Aktivierungsenergie-Diagramm</h3>
+          <canvas id="activation-canvas" width="600" height="400"></canvas>
+          <div class="diagram-annotations">
+            <div class="annotation-item">
+              <div class="annotation-line" style="left: 20%;"></div>
+              <div class="annotation-text">E<sub>a</sub> = <span id="ea-display">150</span> kJ/mol</div>
+            </div>
+            <div class="annotation-item">
+              <div class="annotation-line" style="left: 80%;"></div>
+              <div class="annotation-text">ΔH = <span id="dh-display">-80</span> kJ/mol</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="educational-content">
+    <h2 class="text-center">Grundlagen der Bindungsenergetik</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚡ Bindungsenthalpie</h3>
+          <p>Die Bindungsenthalpie ist die Energie, die erforderlich ist, um eine chemische Bindung zu spalten, oder die Energie, die bei der Bildung einer Bindung freigesetzt wird.</p>
+          <ul>
+            <li><strong>Exotherm:</strong> ΔH < 0 (Energie wird freigesetzt)</li>
+            <li><strong>Endotherm:</strong> ΔH > 0 (Energie wird aufgenommen)</li>
+            <li><strong>Stärkste Bindung:</strong> N≡N (945 kJ/mol)</li>
+            <li><strong>Schwächste Bindung:</strong> I-I (151 kJ/mol)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🔥 Aktivierungsenergie</h3>
+          <p>Die Aktivierungsenergie E<sub>a</sub> ist die minimale Energie, die Reaktanten benötigen, um in den Übergangszustand überzugehen.</p>
+          <p class="formula-text">k = A × e<sup>-E<sub>a</sub>/RT</sup></p>
+          <ul>
+            <li><strong>k:</strong> Reaktionsgeschwindigkeitskonstante</li>
+            <li><strong>A:</strong> Stoßfaktor</li>
+            <li><strong>R:</strong> Gaskonstante (8.314 J/mol·K)</li>
+            <li><strong>T:</strong> Temperatur (K)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📊 Energetische Gesetze</h3>
+          <p><strong>Hess'sches Gesetz:</strong> Die Reaktionsenthalpie ist unabhängig vom Reaktionsweg.</p>
+          <p class="formula-text">ΔH = ΣΔH<sub>Bildung</sub> - ΣΔH<sub>Spaltung</sub></p>
+          <p><strong>Born-Haber-Kreisprozess:</strong> Berechnung von Gitterenergien aus thermodynamischen Daten.</p>
+          <p><strong>Lattice Energy:</strong> Energie bei der Bildung eines Ionengitters aus gasförmigen Ionen.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="example-card">
+          <h3>🧪 Typische Bindungsenergien</h3>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Bindung</th>
+                <th>Energie (kJ/mol)</th>
+                <th>Bemerkung</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>H-H</td><td>436</td><td>Normale Einfachbindung</td></tr>
+              <tr><td>C-H</td><td>413</td><td>Organische Chemie</td></tr>
+              <tr><td>C-C</td><td>347</td><td>Einfachbindung</td></tr>
+              <tr><td>C=C</td><td>614</td><td>Doppelbindung</td></tr>
+              <tr><td>C≡C</td><td>839</td><td>Dreifachbindung</td></tr>
+              <tr><td>O-H</td><td>463</td><td>Wasser, Alkohole</td></tr>
+              <tr><td>N-H</td><td>391</td><td>Amine, Ammoniak</td></tr>
+              <tr><td>N≡N</td><td>945</td><td>Sehr starke Bindung</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="example-card">
+          <h3>🌡️ Temperaturabhängigkeit</h3>
+          <p>Die Reaktionsgeschwindigkeit verdoppelt sich in etwa bei einer Temperaturerhöhung um 10°C (RGT-Regel).</p>
+          <div class="rule-of-thumb">
+            <h4>RGT-Regel:</h4>
+            <p>k(T+10K) ≈ 2 × k(T)</p>
+            <p class="small">Gilt für viele Reaktionen bei Raumtemperatur</p>
+          </div>
+          
+          <div class="application-examples">
+            <h5>Praktische Anwendungen:</h5>
+            <ul>
+              <li><strong>Kochsalzlösung:</strong> Erhitzen beschleunigt Lösungsvorgang</li>
+              <li><strong>Essigherstellung:</strong> Temperaturkontrolle für optimale Gärung</li>
+              <li><strong>Metallbearbeitung:</strong> Glühen zur Aktivierung von Reaktionen</li>
+              <li><strong>Biologie:</strong> Körpertemperatur für optimale Enzymaktivität</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="examples-section">
+    <h2 class="text-center">Interaktive Beispiele</h2>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="interactive-example">
+          <h3>🔬 Katalyse</h3>
+          <p>Ein Katalysator senkt die Aktivierungsenergie ohne die Reaktionsenthalpie zu ändern.</p>
+          
+          <div class="catalyst-demo">
+            <div class="demo-controls">
+              <label>
+                <input type="checkbox" id="katalysator-aktiv" onchange="updateCatalystDemo()">
+                Katalysator hinzufügen
+              </label>
+              <label>EA-Reduktion: <span id="ea-reduction">0</span>%</label>
+            </div>
+            <canvas id="catalyst-canvas" width="500" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="interactive-example">
+          <h3>⚗️ Reaktionskoordinate</h3>
+          <p>Verfolgen Sie den Energieverlauf entlang der Reaktionskoordinate.</p>
+          
+          <div class="coordinate-demo">
+            <div class="demo-controls">
+              <label>Fortschritt: <span id="reaktion-fortschritt">0</span>%</label>
+              <input type="range" id="reaktion-slider" min="0" max="100" value="0" oninput="updateReactionCoordinate()">
+            </div>
+            <canvas id="coordinate-canvas" width="500" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/bindungspotential.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/bindungspotential.css" | relURL }}">
+
+{{ end }}

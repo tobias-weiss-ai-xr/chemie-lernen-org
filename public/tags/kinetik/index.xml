@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kinetik on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title>
+    <link>https://chemie-lernen.org/tags/kinetik/</link>
+    <description>Recent content in kinetik on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-de</language>
+    <lastBuildDate>Wed, 07 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://chemie-lernen.org/tags/kinetik/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reaktionskinetik Simulator</title>
+      <link>https://chemie-lernen.org/reaktionskinetik-simulator/</link>
+      <pubDate>Wed, 07 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://chemie-lernen.org/reaktionskinetik-simulator/</guid>
+      <description>Reaktionskinetik Simulator Erforschen Sie interaktiviv die Faktoren, die die Reaktionsgeschwindigkeit beeinflussen: Temperatur, Konzentration und Aktivierungsenergie. Visualisieren Sie Teilchenbewegung und Stöe.</description>
+    </item>
+  </channel>
+</rss>

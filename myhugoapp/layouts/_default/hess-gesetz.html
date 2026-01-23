@@ -1,0 +1,414 @@
+{{ define "main" }}
+
+<div class="hess-gesetz-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a href="#einfach" aria-controls="einfach" role="tab" data-toggle="tab">
+            <i class="fa fa-calculator"></i> Einfach
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#mehrschrittig" aria-controls="mehrschrittig" role="tab" data-toggle="tab">
+            <i class="fa fa-list-ol"></i> Mehrschrittig
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#bildungsentalpien" aria-controls="bildungsentalpien" role="tab" data-toggle="tab">
+            <i class="fa fa-database"></i> Bildungsenthalpien
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="einfach" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Einfaches Hess-Gesetz</h2>
+        <p>Berechnen Sie die Gesamtenthalpie einer Reaktion aus den Enthalpien der Reaktionsstufen.</p>
+
+        <div class="input-section">
+          <div class="form-group">
+            <label for="reaktionsgleichung">Reaktionsgleichung:</label>
+            <input type="text" id="reaktionsgleichung" class="form-control" placeholder="z.B. C + O₂ → CO₂" value="C + O₂ → CO₂">
+          </div>
+
+          <div class="steps-container">
+            <h3>Reaktionsstufen</h3>
+            <div id="reaction-steps">
+              <div class="step-input">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <label>Stufe 1:</label>
+                  <input type="text" class="form-control step-formula" placeholder="z.B. C + ½O₂ → CO" value="C + ½O₂ → CO">
+                  <label>ΔH₁ (kJ/mol):</label>
+                  <input type="number" class="form-control step-delta-h" value="-110.5" step="0.1">
+                </div>
+              </div>
+              <div class="step-input">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <label>Stufe 2:</label>
+                  <input type="text" class="form-control step-formula" placeholder="z.B. CO + ½O₂ → CO₂" value="CO + ½O₂ → CO₂">
+                  <label>ΔH₂ (kJ/mol):</label>
+                  <input type="number" class="form-control step-delta-h" value="-283.0" step="0.1">
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-default" onclick="addReactionStep()">
+              <i class="fa fa-plus"></i> Stufe hinzufügen
+            </button>
+          </div>
+
+          <div class="result-section">
+            <button class="btn btn-primary btn-lg btn-block" onclick="calculateHessSimple()">
+              <i class="fa fa-calculator"></i> Gesamtenthalpie berechnen
+            </button>
+          </div>
+
+          <div id="hess-simple-result" class="result-panel" style="display:none;">
+            <h3>Ergebnis</h3>
+            <div class="calculation-display">
+              <div class="calculation-row">
+                <span class="formula">ΔH = ΔH₁ + ΔH₂ + ...</span>
+              </div>
+              <div class="calculation-details" id="hess-simple-calculation">
+                ΔH = -110.5 + (-283.0) = -393.5 kJ/mol
+              </div>
+              <div class="final-result">
+                <span class="label">Gesamtenthalpie ΔH:</span>
+                <span id="hess-simple-delta-h" class="value large highlight">-393.5 kJ/mol</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="mehrschrittig" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Mehrschrittiges Hess-Gesetz</h2>
+        <p>Wählen Sie verschiedene Reaktionswege und vergleichen Sie die Ergebnisse.</p>
+
+        <div class="input-section">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="path-selector">
+                <h3><i class="fa fa-road"></i> Weg A</h3>
+                <div class="path-steps">
+                  <div class="path-step">
+                    <label>Zwischenprodukt 1:</label>
+                    <input type="text" id="path-a-step1" class="form-control" value="C + H₂O → CO + H₂">
+                  </div>
+                  <div class="path-step">
+                    <label>Zwischenprodukt 2:</label>
+                    <input type="text" id="path-a-step2" class="form-control" value="CO + H₂O → CO + H₂O">
+                  </div>
+                  <div class="path-step">
+                    <label>Endprodukt:</label>
+                    <input type="text" id="path-a-final" class="form-control" value="CO₂ + 2H₂">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="path-selector">
+                <h3><i class="fa fa-road"></i> Weg B</h3>
+                <div class="path-steps">
+                  <div class="path-step">
+                    <label>Zwischenprodukt 1:</label>
+                    <input type="text" id="path-b-step1" class="form-control" value="C + O₂ → CO₂">
+                  </div>
+                  <div class="path-step">
+                    <label>Zwischenprodukt 2:</label>
+                    <input type="text" id="path-b-step2" class="form-control" value="CO₂ + 2H₂ → 2CO + 2H₂O">
+                  </div>
+                  <div class="path-step">
+                    <label>Endprodukt:</label>
+                    <input type="text" id="path-b-final" class="form-control" value="CO₂ + 2H₂O">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="enthalpy-inputs">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="path-enthalpies">
+                  <h4>Weg A - Enthalpien (kJ/mol)</h4>
+                  <div class="enthalpy-row">
+                    <label>ΔH₁:</label>
+                    <input type="number" id="path-a-dh1" class="form-control" value="-131.3" step="0.1">
+                  </div>
+                  <div class="enthalpy-row">
+                    <label>ΔH₂:</label>
+                    <input type="number" id="path-a-dh2" class="form-control" value="-285.8" step="0.1">
+                  </div>
+                  <div class="enthalpy-total">
+                    <strong>Summe Weg A:</strong>
+                    <span id="path-a-total" class="value">-417.1 kJ/mol</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="path-enthalpies">
+                  <h4>Weg B - Enthalpien (kJ/mol)</h4>
+                  <div class="enthalpy-row">
+                    <label>ΔH₁:</label>
+                    <input type="number" id="path-b-dh1" class="form-control" value="-393.5" step="0.1">
+                  </div>
+                  <div class="enthalpy-row">
+                    <label>ΔH₂:</label>
+                    <input type="number" id="path-b-dh2" class="form-control" value="-571.6" step="0.1">
+                  </div>
+                  <div class="enthalpy-total">
+                    <strong>Summe Weg B:</strong>
+                    <span id="path-b-total" class="value">-965.1 kJ/mol</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-section">
+            <button class="btn btn-primary btn-lg btn-block" onclick="calculateHessMultiPath()">
+              <i class="fa fa-calculator"></i> Wege vergleichen
+            </button>
+          </div>
+
+          <div id="hess-multipath-result" class="result-panel" style="display:none;">
+            <h3>Ergebnis</h3>
+            <div class="comparison-display">
+              <div class="path-comparison">
+                <h4>Weg A:</h4>
+                <div class="path-details">
+                  <span class="formula">ΔH = ΣΔH<sub>Stufen</sub></span>
+                  <p id="path-a-calculation">ΔH = -131.3 + (-285.8) = -417.1 kJ/mol</p>
+                </div>
+              </div>
+
+              <div class="path-comparison">
+                <h4>Weg B:</h4>
+                <div class="path-details">
+                  <span class="formula">ΔH = ΣΔH<sub>Stufen</sub></span>
+                  <p id="path-b-calculation">ΔH = -393.5 + (-571.6) = -965.1 kJ/mol</p>
+                </div>
+              </div>
+
+              <div class="conclusion">
+                <div id="hess-conclusion" class="alert alert-info">
+                  <h4>⚠️ Diskrepanz festgestellt!</h4>
+                  <p>Die beiden Wege ergeben unterschiedliche Werte. Bitte überprüfen Sie Ihre Eingaben.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="bildungsentalpien" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Bildungsenthalpien-Datenbank</h2>
+        <p>Berechnen Sie Reaktionsenthalpien aus Standardbildungsenthalpien.</p>
+
+        <div class="input-section">
+          <div class="form-group">
+            <label for="bildungsreaktion">Reaktion:</label>
+            <textarea id="bildungsreaktion" class="form-control" rows="3" placeholder="Geben Sie die Reaktionsgleichung ein, z.B. CH₄ + 2O₂ → CO₂ + 2H₂O">CH₄ + 2O₂ → CO₂ + 2H₂O</textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="elements-selector">Elemente auswählen:</label>
+            <div class="elements-grid">
+              <div class="element-checkbox">
+                <label><input type="checkbox" id="el-C" value="C" checked> C (Kohlenstoff)</label>
+                <span class="formation-enthalpy" data-element="C">0 kJ/mol</span>
+              </div>
+              <div class="element-checkbox">
+                <label><input type="checkbox" id="el-H" value="H" checked> H (Wasserstoff)</label>
+                <span class="formation-enthalpy" data-element="H">0 kJ/mol</span>
+              </div>
+              <div class="element-checkbox">
+                <label><input type="checkbox" id="el-O" value="O" checked> O (Sauerstoff)</label>
+                <span class="formation-enthalpy" data-element="O">0 kJ/mol</span>
+              </div>
+              <div class="element-checkbox">
+                <label><input type="checkbox" id="el-N" value="N"> N (Stickstoff)</label>
+                <span class="formation-enthalpy" data-element="N">0 kJ/mol</span>
+              </div>
+              <div class="element-checkbox">
+                <label><input type="checkbox" id="el-S" value="S"> S (Schwefel)</label>
+                <span class="formation-enthalpy" data-element="S">0 kJ/mol</span>
+              </div>
+              <div class="element-checkbox">
+                <label><input type="checkbox" id="el-Cl" value="Cl"> Cl (Chlor)</label>
+                <span class="formation-enthalpy" data-element="Cl">0 kJ/mol</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="calculation-method">
+            <h3>Berechnungsmethode</h3>
+            <div class="formula-box">
+              <p class="formula-text">ΔH<sub>Rxn</sub> = Σ ΔH<sub>f</sub>(Produkte) - Σ ΔH<sub>f</sub>(Edukte)</p>
+              <p class="small">Dabei ist ΔH<sub>f</sub> die Standardbildungsenthalpie.</p>
+            </div>
+          </div>
+
+          <div class="result-section">
+            <button class="btn btn-success btn-lg btn-block" onclick="calculateFromFormationEnthalpies()">
+              <i class="fa fa-flask"></i> Aus Bildungsenthalpien berechnen
+            </button>
+          </div>
+
+          <div id="hess-formation-result" class="result-panel" style="display:none;">
+            <h3>Ergebnis</h3>
+            <div class="formation-display">
+              <div class="calculation-steps">
+                <h4>Berechnungsschritte:</h4>
+                <div id="formation-calculation-steps">
+                  <p>Σ ΔH<sub>f</sub>(Produkte) = (-393.5) + 2 × (-285.8) = -965.1 kJ/mol</p>
+                  <p>Σ ΔH<sub>f</sub>(Edukte) = (-74.8) + 2 × 0 = -74.8 kJ/mol</p>
+                  <p class="formula">ΔH<sub>Rxn</sub> = (-965.1) - (-74.8) = -890.3 kJ/mol</p>
+                </div>
+              </div>
+
+              <div class="final-result">
+                <span class="label">Reaktionsenthalpie:</span>
+                <span id="formation-delta-h" class="value large highlight">-890.3 kJ/mol</span>
+              </div>
+
+              <div class="reaction-type">
+                <span id="formation-reaction-type" class="badge exothermic">Exotherm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="educational-content">
+    <h2 class="text-center">Hess-Gesetz verstehen</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📐 Grundprinzip</h3>
+          <p>Das Hess-Gesetz (1840) besagt, dass die Enthalpieänderung einer chemischen Reaktion unabhängig vom Reaktionsweg ist.</p>
+          <p class="formula-text">ΔH = Σ ΔH<sub>Reaktionen</sub></p>
+          <ul>
+            <li>Die Enthalpie ist eine Zustandsgröße</li>
+            <li>Nur der Anfangs- und Endzustand sind relevant</li>
+            <li>Der gewählte Reaktionsweg spielt keine Rolle</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🔄 Anwendungen</h3>
+          <p>Hess-Gesetz wird verwendet, wenn:</p>
+          <ul>
+            <li><strong>Direkte Messung unmöglich:</strong> Reaktion ist zu schnell oder gefährlich</li>
+            <li><strong>Zwischenprodukte unbekannt:</strong> Keine experimentellen Daten verfügbar</li>
+            <li><strong>Theoretische Werte:</strong> Berechnung aus Bildungsenthalpien</li>
+          </ul>
+          <p><strong>Beispiel:</strong> Kohlenstoffverbrennung kann über verschiedene Zwischenstufen berechnet werden.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚗️ Born-Haber-Kreisprozess</h3>
+          <p>Ein spezielles Anwendungsbeispiel des Hess-Gesetzes:</p>
+          <ul>
+            <li>Berechnung der Gitterenergie von Salzen</li>
+            <li>Kombination von thermochemischen Daten</li>
+            <li>Zyklischer Prozess aus mehreren Schritten</li>
+          </ul>
+          <p class="formula-text">ΔH<sub>Latt</sub> = ΣΔH<sub>Schritte</sub></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="example-card">
+          <h3>🔬 Methanverbrennung</h3>
+          <p>Beispiel: CH₄ + 2O₂ → CO₂ + 2H₂O</p>
+          <div class="reaction-examples">
+            <h4>Weg A (direkt):</h4>
+            <div class="reaction-path">
+              <div class="path-step">CH₄ + 2O₂ → CO₂ + 2H₂O</div>
+              <div class="enthalpy-value">ΔH = -890.3 kJ/mol</div>
+            </div>
+
+            <h4>Weg B (über Zwischenprodukte):</h4>
+            <div class="reaction-path">
+              <div class="path-step">CH₄ → C + 2H₂, ΔH₁ = +74.8 kJ/mol</div>
+              <div class="path-step">C + O₂ → CO₂, ΔH₂ = -393.5 kJ/mol</div>
+              <div class="path-step">2H₂ + O₂ → 2H₂O, ΔH₃ = -571.6 kJ/mol</div>
+              <div class="enthalpy-total">ΣΔH = 74.8 - 393.5 - 571.6 = -890.3 kJ/mol</div>
+            </div>
+          </div>
+          <div class="conclusion">
+            <p><strong>Ergebnis:</strong> Beide Wege ergeben das gleiche Ergebnis (ΔH = -890.3 kJ/mol)</p>
+            <p class="text-success">✅ Bestätigt das Hess-Gesetz</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="example-card">
+          <h3>📊 Standardbildungsenthalpien</h3>
+          <p>Ausgewählte Bildungsenthalpien (ΔH<sub>f</sub>⁰) bei 298 K:</p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Verbindung</th>
+                <th>ΔH<sub>f</sub> (kJ/mol)</th>
+                <th>Bemerkung</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>CO₂ (g)</td><td>-393.5</td><td>Standardzustand</td></tr>
+              <tr><td>H₂O (l)</td><td>-285.8</td><td>Kondensiert</td></tr>
+              <tr><td>H₂O (g)</td><td>-241.8</td><td>Gasförmig</td></tr>
+              <tr><td>CH₄ (g)</td><td>-74.8</td><td>Standardzustand</td></tr>
+              <tr><td>CO (g)</td><td>-110.5</td><td>Zwischenprodukt</td></tr>
+              <tr><td>NO₂ (g)</td><td>+33.2</td><td>Exotherm</td></tr>
+              <tr><td>NH₃ (g)</td><td>-45.9</td><td>Ammoniak</td></tr>
+            </tbody>
+          </table>
+          <p class="small"><em>Anmerkung: Negative Werte bedeuten exotherme Bildung.</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/hess-gesetz.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/hess-gesetz.css" | relURL }}">
+
+{{ end }}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kraft on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title>
+    <link>https://chemie-lernen.org/tags/kraft/</link>
+    <description>Recent content in kraft on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-de</language>
+    <lastBuildDate>Sun, 04 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://chemie-lernen.org/tags/kraft/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Druck und Fläche Rechner</title>
+      <link>https://chemie-lernen.org/druck-flaechen-rechner/</link>
+      <pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://chemie-lernen.org/druck-flaechen-rechner/</guid>
+      <description>Druck und Fläche Rechner Berechnen Sie die Zusammenhänge zwischen Druck, Kraft und Fläche interaktiv mit visuellen Demonstrationen.</description>
+    </item>
+  </channel>
+</rss>

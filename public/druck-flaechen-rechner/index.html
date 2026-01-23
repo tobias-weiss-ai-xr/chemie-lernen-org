@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="de" xml:lang="de">
+
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-adsense-account" content="ca-pub-8452353139685392">
+
+<title>Druck und Fläche Rechner - chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title>
+
+
+<meta name="description" content="Interaktiver Rechner für Druck, Kraft und Fläche - Berechnen Sie physikalische Zusammenhänge mit visuellen Demonstrationen">
+<meta name="keywords" content="chemie-lernen.org, VR Chemieunterricht, Virtual Reality Bildung, Chemie lernen online, interaktiver Chemieunterricht, digitale Bildung, VR Lernräume, Chemie studieren, innovative Chemie, immersive Bildung">
+<link rel="canonical" href="https://chemie-lernen.org/druck-flaechen-rechner/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://chemie-lernen.org/druck-flaechen-rechner/">
+<meta property="og:title" content="Druck und Fläche Rechner - chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte">
+<meta property="og:description" content="Interaktiver Rechner für Druck, Kraft und Fläche - Berechnen Sie physikalische Zusammenhänge mit visuellen Demonstrationen">
+<meta property="og:image" content="https://chemie-lernen.org/recent-article_001.jpg">
+<meta property="og:locale" content="de-de">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://chemie-lernen.org/druck-flaechen-rechner/">
+<meta name="twitter:title" content="Druck und Fläche Rechner - chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte">
+<meta name="twitter:description" content="Interaktiver Rechner für Druck, Kraft und Fläche - Berechnen Sie physikalische Zusammenhänge mit visuellen Demonstrationen">
+<meta name="twitter:image" content="https://chemie-lernen.org/recent-article_001.jpg">
+
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+  
+  <link rel="stylesheet" href="/sass/main.css">
+
+
+<link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/dark-mode.css">
+
+
+<link rel="stylesheet" href="/css/green-theme.css">
+
+
+<link rel="stylesheet" href="/css/quiz-system.css">
+<link rel="stylesheet" href="/css/quiz-user-system.css">
+<link rel="stylesheet" href="/css/progress-tracker.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css">
+
+<script src="/js/enhanced-bundle-loader.js"></script>
+
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js')
+      .then(function(registration) {
+        console.log('SW registered: ', registration);
+        registration.update();
+      })
+      .catch(function(registrationError) {
+        console.log('SW registration failed: ', registrationError);
+      });
+  });
+}
+</script>
+  
+
+  <body>
+
+    
+    <a href="#main-content" class="sr-only sr-only-focusable">Zum Hauptinhalt springen</a>
+
+    <header class="site-header">
+<div class="container-fluid">
+  
+  <div class="title-row">
+    <div class="navbar-brand-wrapper">
+      <a class="navbar-brand" href="https://chemie-lernen.org/">
+        <img src="/img/chemie-lernen-logo_light.png" alt="chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte" height="75" class="d-inline-block align-top site-logo">
+        chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte
+      </a>
+      
+      <a href="#" id="theme-toggle" title="Zu dunkel wechseln" class="theme-toggle-header" aria-label="Dark Mode umschalten" role="button">
+        <i class="fa fa-moon-o" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+
+  
+  <nav class="navbar navbar-default" role="navigation" aria-label="Hauptnavigation">
+    <div class="container-fluid">
+      
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Navigation einblenden">
+          <span class="sr-only">Navigation einblenden</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          
+            
+              
+              <li>
+                <a href="/themenbereiche/" aria-label="Themenbereiche">
+                  Themenbereiche
+                </a>
+              </li>
+            
+          
+            
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" aria-label="Interaktiv Menü anzeigen">
+                  Interaktiv <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-label="Interaktiv Unterseite">
+                  
+                    <li role="none">
+                      <a href="/perioden-system-der-elemente/" role="menuitem" aria-label="Periodensystem 3D">
+                        Periodensystem 3D
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/molekuel-studio/" role="menuitem" aria-label="Molekülstudio">
+                        Molekülstudio
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/molare-masse-rechner/" role="menuitem" aria-label="Molare Masse">
+                        Molare Masse
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/reaktionsgleichungen-ausgleichen/" role="menuitem" aria-label="Gleichungen Ausgleichen">
+                        Gleichungen Ausgleichen
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/einheitenumrechner/" role="menuitem" aria-label="Einheitenumrechner">
+                        Einheitenumrechner
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/loesungsrechner/" role="menuitem" aria-label="Lösungsrechner">
+                        Lösungsrechner
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/stoechiometrie-rechner/" role="menuitem" aria-label="Stöchiometrie">
+                        Stöchiometrie
+                      </a>
+                    </li>
+                  
+                    <li role="none">
+                      <a href="/pages/pse-in-vr/" role="menuitem" aria-label="PSE in VR">
+                        PSE in VR
+                      </a>
+                    </li>
+                  
+                </ul>
+              </li>
+            
+          
+            
+              
+              <li>
+                <a href="/pages/roadmap/" aria-label="Roadmap">
+                  Roadmap
+                </a>
+              </li>
+            
+          
+            
+              
+              <li>
+                <a href="/pages/about/" aria-label="Über uns">
+                  Über uns
+                </a>
+              </li>
+            
+          
+            
+              
+              <li>
+                <a href="/pages/contact/" aria-label="Kontakt">
+                  Kontakt
+                </a>
+              </li>
+            
+          
+            
+              
+              <li>
+                <a href="https://www.patreon.com/c/chemie_lernen_org" aria-label="Patreon">
+                  Patreon
+                </a>
+              </li>
+            
+          
+        </ul>
+
+        
+        <form class="navbar-form navbar-right" action="/pages/suche/" method="get" role="search">
+          <div class="form-group">
+            <label for="search-input" class="sr-only">Themen suchen</label>
+            <input type="text" class="form-control" placeholder="Themen suchen..." name="q" id="search-input" aria-label="Themen suchen">
+          </div>
+          <button type="submit" class="btn btn-default" aria-label="Suchen">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</div>
+</header>
+
+<style>
+ 
+.dropdown-menu {
+  min-width: 220px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  border: 1px solid rgba(0,0,0,.15);
+}
+
+ 
+@media (min-width: 768px) {
+  .navbar-collapse {
+    display: flex !important;
+    align-items: center;
+    width: 100%;
+  }
+
+  .navbar-nav {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+}
+
+.dropdown-menu > li > a {
+  padding: 8px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-icon {
+  margin-right: 8px;
+}
+
+.dropdown-menu .label {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+}
+
+ 
+.navbar-nav > .active > a,
+.navbar-nav > .active > a:hover,
+.navbar-nav > .active > a:focus {
+  background-color: #007bff;
+  color: #fff;
+}
+
+ 
+.navbar-form {
+  margin-left: 15px;
+  padding: 0;
+}
+
+.navbar-form .form-control {
+  width: 180px;
+  transition: width 0.3s;
+}
+
+.navbar-form .form-control:focus {
+  width: 250px;
+}
+
+ 
+@media (max-width: 767px) {
+  .navbar-form {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  .navbar-form .form-control {
+    width: 100%;
+  }
+
+  .navbar-form .form-control:focus {
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    position: static;
+    float: none;
+    width: auto;
+    box-shadow: none;
+    border: none;
+  }
+
+  .navbar-nav .open .dropdown-menu {
+    background-color: #f8f9fa;
+  }
+
+  .navbar-nav .open .dropdown-menu > li > a {
+    color: #333;
+    padding-left: 30px;
+  }
+}
+
+ 
+.site-logo {
+  height: 75px !important;
+  width: auto;
+  object-fit: contain;
+  transition: height 0.3s ease;
+}
+
+@media (max-width: 992px) {
+  .site-logo { height: 70px !important; }
+}
+
+@media (max-width: 768px) {
+  .site-logo { height: 60px !important; }
+}
+
+@media (max-width: 576px) {
+  .site-logo { height: 45px !important; }
+}
+
+ 
+@media (prefers-color-scheme: dark) {
+  .dropdown-menu {
+    background-color: #2c2c2c;
+    border-color: #444;
+  }
+
+  .dropdown-menu > li > a {
+    color: #e0e0e0;
+  }
+
+  .dropdown-menu > li > a:hover,
+  .dropdown-menu > li > a:focus {
+    background-color: #3c3c3c;
+    color: #fff;
+  }
+
+  .navbar-nav .open .dropdown-menu {
+    background-color: #2c2c2c;
+  }
+
+  .navbar-nav .open .dropdown-menu > li > a {
+    color: #e0e0e0;
+  }
+
+  .navbar-form .form-control {
+    background-color: #3c3c3c;
+    border-color: #555;
+    color: #e0e0e0;
+  }
+
+  .navbar-form .form-control:focus {
+    background-color: #4c4c4c;
+    border-color: #007bff;
+    color: #fff;
+  }
+
+  .navbar-form .form-control::placeholder {
+    color: #999;
+  }
+}
+</style>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.innerWidth < 768) {
+    const dropdowns = document.querySelectorAll('.dropdown-toggle');
+    dropdowns.forEach(function(dropdown) {
+      dropdown.addEventListener('click', function(e) {
+        e.preventDefault();
+        const parent = this.parentElement;
+        parent.classList.toggle('open');
+      });
+    });
+  }
+});
+</script>
+
+
+    <div class="container">
+      
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="https://chemie-lernen.org/">
+        <i class="fa fa-home" aria-hidden="true"></i> Start
+      </a>
+    </li>
+
+    
+    
+      
+        
+    
+    <li class="breadcrumb-item active" aria-current="page">Druck und Fläche Rechner</li>
+    
+
+      
+      
+    
+
+  </ol>
+</nav>
+
+
+<style>
+.breadcrumb {
+  background-color: transparent;
+  padding: 8px 0;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "›";
+  color: #6c757d;
+}
+
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+  color: #6c757d;
+}
+
+@media (prefers-color-scheme: dark) {
+  .breadcrumb-item a {
+    color: #66b0ff;
+  }
+
+  .breadcrumb-item a:hover {
+    color: #3395ff;
+  }
+
+  .breadcrumb-item.active {
+    color: #adb5bd;
+  }
+}
+</style>
+
+      <div class="wrapper">
+        <main id="main-content" role="main">
+          
+
+<div class="druck-flaeche-calculator-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">Druck und Fläche Rechner</h1>
+      <p class="lead text-center">Interaktiver Rechner für Druck, Kraft und Fläche - Berechnen Sie physikalische Zusammenhänge mit visuellen Demonstrationen</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a href="#druck-berechnen" aria-controls="druck-berechnen" role="tab" data-toggle="tab">
+            <i class="fa fa-calculator"></i> Druck berechnen (p = F/A)
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#kraft-berechnen" aria-controls="kraft-berechnen" role="tab" data-toggle="tab">
+            <i class="fa fa-hand-rock-o"></i> Kraft berechnen (F = p × A)
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#flaeche-berechnen" aria-controls="flaeche-berechnen" role="tab" data-toggle="tab">
+            <i class="fa fa-square-o"></i> Fläche berechnen (A = F/p)
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    
+    <div class="tab-pane active" id="druck-berechnen" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Druck aus Kraft und Fläche berechnen</h2>
+        <p>Der Druck p ergibt sich aus der Kraft F, die auf eine Fläche A wirkt:</p>
+        <p class="formula-text">p = F / A</p>
+
+        <div class="input-section">
+          <div class="form-group">
+            <label for="druck-kraft">Kraft (F):</label>
+            <div class="input-group">
+              <input type="number" id="druck-kraft" class="form-control" placeholder="z.B. 1000" step="any" min="0" aria-label="Kraft in Newton">
+              <select class="input-group-addon" id="druck-kraft-einheit">
+                <option value="N">Newton (N)</option>
+                <option value="kN">Kilonewton (kN)</option>
+                <option value="MN">Meganewton (MN)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="druck-flaeche">Fläche (A):</label>
+            <div class="input-group">
+              <input type="number" id="druck-flaeche" class="form-control" placeholder="z.B. 0.01" step="any" min="0" aria-label="Fläche in Quadratmetern">
+              <select class="input-group-addon" id="druck-flaeche-einheit">
+                <option value="m2">m²</option>
+                <option value="cm2">cm²</option>
+                <option value="mm2">mm²</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block" onclick="berechneDruck()">
+            <i class="fa fa-calculator"></i> Druck berechnen
+          </button>
+        </div>
+
+        <div id="druck-result" class="result-panel" style="display:none;">
+          <h3>Ergebnis:</h3>
+          <div class="result-value">
+            <span class="label">Druck (p):</span>
+            <span id="druck-wert" class="value-highlight"></span>
+            <select id="druck-ergebnis-einheit" onchange="konvertiereDruck()">
+              <option value="Pa">Pascal (Pa)</option>
+              <option value="kPa">Kilopascal (kPa)</option>
+              <option value="MPa">Megapascal (MPa)</option>
+              <option value="bar">bar</option>
+              <option value="mbar">millibar (mbar)</option>
+            </select>
+          </div>
+          <div class="comparison-info" id="druck-vergleich"></div>
+        </div>
+      </div>
+
+      
+      <div class="visual-demo">
+        <h3>Visuelle Demonstration: Kolben</h3>
+        <div class="piston-container">
+          <canvas id="piston-canvas" width="400" height="300"></canvas>
+          <div class="piston-controls">
+            <label>Kraft anpassen: <input type="range" id="kraft-slider" min="100" max="10000" value="1000" oninput="updatePiston()"></label>
+            <span id="kraft-display">1000 N</span>
+          </div>
+          <div class="piston-controls">
+            <label>Fläche anpassen: <input type="range" id="flaeche-slider" min="1" max="100" value="10" oninput="updatePiston()"></label>
+            <span id="flaeche-display">10 cm²</span>
+          </div>
+        </div>
+        <div class="pressure-indicator">
+          <div class="pressure-bar">
+            <div class="pressure-fill" id="pressure-fill"></div>
+          </div>
+          <p>Druck: <span id="visual-pressure">100.00</span> kPa</p>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="tab-pane" id="kraft-berechnen" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Kraft aus Druck und Fläche berechnen</h2>
+        <p>Die Kraft F ergibt sich aus dem Druck p und der Fläche A:</p>
+        <p class="formula-text">F = p × A</p>
+
+        <div class="input-section">
+          <div class="form-group">
+            <label for="kraft-druck">Druck (p):</label>
+            <div class="input-group">
+              <input type="number" id="kraft-druck" class="form-control" placeholder="z.B. 100000" step="any" min="0" aria-label="Druck in Pascal">
+              <select class="input-group-addon" id="kraft-druck-einheit">
+                <option value="Pa">Pascal (Pa)</option>
+                <option value="kPa">Kilopascal (kPa)</option>
+                <option value="MPa">Megapascal (MPa)</option>
+                <option value="bar">bar</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="kraft-flaeche">Fläche (A):</label>
+            <div class="input-group">
+              <input type="number" id="kraft-flaeche" class="form-control" placeholder="z.B. 0.01" step="any" min="0" aria-label="Fläche in Quadratmetern">
+              <select class="input-group-addon" id="kraft-flaeche-einheit">
+                <option value="m2">m²</option>
+                <option value="cm2">cm²</option>
+                <option value="mm2">mm²</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block" onclick="berechneKraft()">
+            <i class="fa fa-calculator"></i> Kraft berechnen
+          </button>
+        </div>
+
+        <div id="kraft-result" class="result-panel" style="display:none;">
+          <h3>Ergebnis:</h3>
+          <div class="result-value">
+            <span class="label">Kraft (F):</span>
+            <span id="kraft-wert" class="value-highlight"></span>
+            <select id="kraft-ergebnis-einheit" onchange="konvertiereKraft()">
+              <option value="N">Newton (N)</option>
+              <option value="kN">Kilonewton (kN)</option>
+              <option value="MN">Meganewton (MN)</option>
+            </select>
+          </div>
+          <div class="comparison-info" id="kraft-vergleich"></div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="tab-pane" id="flaeche-berechnen" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Fläche aus Druck und Kraft berechnen</h2>
+        <p>Die Fläche A ergibt sich aus der Kraft F und dem Druck p:</p>
+        <p class="formula-text">A = F / p</p>
+
+        <div class="input-section">
+          <div class="form-group">
+            <label for="flaeche-kraft">Kraft (F):</label>
+            <div class="input-group">
+              <input type="number" id="flaeche-kraft" class="form-control" placeholder="z.B. 1000" step="any" min="0" aria-label="Kraft in Newton">
+              <select class="input-group-addon" id="flaeche-kraft-einheit">
+                <option value="N">Newton (N)</option>
+                <option value="kN">Kilonewton (kN)</option>
+                <option value="MN">Meganewton (MN)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="flaeche-druck">Druck (p):</label>
+            <div class="input-group">
+              <input type="number" id="flaeche-druck" class="form-control" placeholder="z.B. 100000" step="any" min="0" aria-label="Druck in Pascal">
+              <select class="input-group-addon" id="flaeche-druck-einheit">
+                <option value="Pa">Pascal (Pa)</option>
+                <option value="kPa">Kilopascal (kPa)</option>
+                <option value="MPa">Megapascal (MPa)</option>
+                <option value="bar">bar</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block" onclick="berechneFlaeche()">
+            <i class="fa fa-calculator"></i> Fläche berechnen
+          </button>
+        </div>
+
+        <div id="flaeche-result" class="result-panel" style="display:none;">
+          <h3>Ergebnis:</h3>
+          <div class="result-value">
+            <span class="label">Fläche (A):</span>
+            <span id="flaeche-wert" class="value-highlight"></span>
+            <select id="flaeche-ergebnis-einheit" onchange="konvertiereFlaeche()">
+              <option value="m2">m²</option>
+              <option value="cm2">cm²</option>
+              <option value="mm2">mm²</option>
+            </select>
+          </div>
+          <div class="area-visualization" id="area-visualization"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  
+  <div class="hydraulic-examples">
+    <h2 class="text-center">Hydraulik im Alltag</h2>
+    <p class="text-center">Anwendungsbeispiele für den Zusammenhang zwischen Druck, Kraft und Fläche</p>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="example-card">
+          <h3>🚗 Autobremse</h3>
+          <p>Bei einer Autobremse wird eine kleine Kraft auf das Bremspedal ausgeübt. Durch hydraulische Übertragung wird diese Kraft auf eine größere Fläche an den Bremszylindern übertragen, was eine stark erhöhte Kraft auf die Bremsbeläge ergibt.</p>
+          <div class="example-values">
+            <p><strong>Pedalkraft:</strong> ~200 N</p>
+            <p><strong>Erreichbare Bremskraft:</strong> ~20.000 N</p>
+            <p><strong>Kraftverstärkung:</strong> 100:1</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="example-card">
+          <h3>🔧 Wagenheber</h3>
+          <p>Ein hydraulischer Wagenheber nutzt den gleichen Druck auf zwei unterschiedlich große Kolben. Die kleine Kolbenfläche wird mit wenig Kraft betätigt, auf der großen Kolbenfläche entsteht eine viel größere Kraft zum Heben des Autos.</p>
+          <div class="example-values">
+            <p><strong>Kraft auf kleinen Kolben:</strong> ~100 N</p>
+            <p><strong>Hebekraft (großer Kolben):</strong> ~10.000 N</p>
+            <p><strong>Flächenverhältnis:</strong> 1:100</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="example-card">
+          <h3>💉 Spritze</h3>
+          <p>Eine Spritze zeigt, wie eine kleine Kraft auf den Kolben einen hohen Druck erzeugt, der durch die sehr kleine Öffnung der Nadel wirkt. Dieser Druck drückt die Flüssigkeit durch die Nadel.</p>
+          <div class="example-values">
+            <p><strong>Kraft auf Kolben:</strong> ~10 N</p>
+            <p><strong>Kolbenfläche:</strong> ~1 cm²</p>
+            <p><strong>Druck in Spritze:</strong> ~100 kPa</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="example-card">
+          <h3>🏋️ Hydraulische Presse</h3>
+          <p>Das Prinzip der hydraulischen Presse basiert auf dem Gesetz von Pascal: Der Druck in einer ruhenden Flüssigkeit ist überall gleich. Durch unterschiedlich große Kolbenflächen lässt sich die Kraft verstärken:</p>
+          <p class="formula-text">F₂ = F₁ × (A₂/A₁)</p>
+          <p>Beispiel: Bei einem Flächenverhältnis von 1:100 wird eine Kraft von 100 N zu einer Kraft von 10.000 N verstärkt.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="example-card">
+          <h3>🔨 Nagel und Stift</h3>
+          <p>Warum dringt ein Nagel leicht in Holz ein, während ein breiter Stift es nicht tut? Beide üben die gleiche Kraft aus, aber der Nagel hat eine viel kleinere Fläche:</p>
+          <ul>
+            <li><strong>Nagelspitze:</strong> ~0.1 mm² → sehr hoher Druck</li>
+            <li><strong>Stiftspitze:</strong> ~1 mm² → 10× kleinerer Druck</li>
+          </ul>
+          <p>Kleinere Fläche = höherer Druck = leichteres Eindringen!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  
+  <div class="educational-info">
+    <h2>Wissenswertes über Druck</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📐 Definition</h3>
+          <p>Druck p ist definiert als Kraft F pro Fläche A, auf die diese Kraft senkrecht wirkt:</p>
+          <p class="formula-text">p = F / A</p>
+          <p><strong>SI-Einheit:</strong> Pascal (Pa) = N/m²</p>
+          <p><strong>Andere Einheiten:</strong> bar, mbar, atm, Torr</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🌍 Atmosphärendruck</h3>
+          <p>Der Luftdruck auf Meereshöhe beträgt etwa:</p>
+          <ul>
+            <li>101.325 Pa = 101,325 kPa</li>
+            <li>1.013,25 mbar = 1,01325 bar</li>
+            <li>1 atm (Standardatmosphäre)</li>
+          </ul>
+          <p>Dies entspricht etwa 1 kg pro cm² oder einer 10 m hohen Wassersäule!</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚖️ Pascal'sches Gesetz</h3>
+          <p>In einer ruhenden Flüssigkeit breitet sich der Druck nach allen Richtungen gleichmäßig aus. Dies ist das Grundprinzip der Hydraulik:</p>
+          <p class="formula-text">p = F₁/A₁ = F₂/A₂</p>
+          <p>Daraus folgt: F₂ = F₁ × (A₂/A₁)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>📊 Druckvergleich</h3>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Beispiel</th>
+                <th>Druck</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Vakuum im Weltall</td><td>~0 Pa</td></tr>
+              <tr><td>Atmosphärendruck</td><td>~101.325 Pa</td></tr>
+              <tr><td>Autoreifen</td><td>~200.000 Pa (2 bar)</td></tr>
+              <tr><td>Flaschenöffnung</td><td>~300.000 Pa (3 bar)</td></tr>
+              <tr><td>Hydraulische Presse</td><td>~1.000.000 Pa (10 bar)</td></tr>
+              <tr><td>Tiefsee (10.000 m)</td><td>~1.000 bar</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>🔬 Umrechnungen</h3>
+          <p>Wichtige Umrechnungsfaktoren:</p>
+          <ul>
+            <li><strong>1 Pascal (Pa)</strong> = 1 N/m²</li>
+            <li><strong>1 Kilopascal (kPa)</strong> = 1.000 Pa</li>
+            <li><strong>1 Megapascal (MPa)</strong> = 1.000.000 Pa</li>
+            <li><strong>1 bar</strong> = 100.000 Pa = 100 kPa</li>
+            <li><strong>1 millibar (mbar)</strong> = 100 Pa</li>
+            <li><strong>1 atm</strong> = 101.325 Pa = 1,01325 bar</li>
+            <li><strong>1 Torr</strong> = 133,322 Pa</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="/js/druck-flaechen-rechner.js"></script>
+<link rel="stylesheet" href="/css/druck-flaechen-rechner.css">
+
+
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-footer" style="margin-top: 50px; padding: 30px 0; background-color: #333; color: #fff;" role="contentinfo" aria-label="Website-Fußzeile">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</h4>
+                <p>chemie-lernen.org - Ihre Plattform für innovative Chemie-Lernräume in Virtual Reality. Machen Sie komplexe chemische Konzepte greifbar und erlebbar.</p>
+                <p>
+                    <a href="https://www.patreon.com/c/chemie_lernen_org" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; font-weight: 500;" aria-label="Besuchen Sie unseren Patreon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: text-bottom; margin-right: 5px;">
+                            <path d="M4.231 0C3.281 0 2.4.513 2.4 1.484v20.922c0 .995.881 1.484 1.831 1.484.95 0 1.774-.49 1.774-1.484V1.484C6.005.513 5.181 0 4.231 0zm13.396 4.453c-2.606 0-4.748 2.054-4.748 4.578 0 2.525 2.142 4.579 4.748 4.579s4.748-2.054 4.748-4.579c0-2.524-2.142-4.578-4.748-4.578z"/>
+                        </svg>
+                        Unterstütze uns auf Patreon
+                    </a>
+                </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <p>&copy; 2026 chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte. Alle Rechte vorbehalten.</p>
+                <p><small><a href="/impressum/" style="color: #fff;">impressum</a> | <a href="/datenschutz/" style="color: #fff;">datenschutz</a> | <a href="/pages/barrierefreiheit/" style="color: #fff;">barrierefreiheit</a></small></p>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+
+  
+  <script src="/js/dark-mode.js"></script>
+
+  
+  <script src="/js/quiz-system.js"></script>
+  <script src="/js/quiz-user-system.js"></script>
+  <script src="/js/progress-tracker.js"></script>
+
+  
+  
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '\\(', right: '\\)', display: false}
+        ]
+      });
+    });
+  </script>
+
+  
+
+
+  <script>
+    $(document).ready(function() {
+      
+      $('.dropdown-toggle').each(function() {
+        $(this).dropdown({
+          html: true,
+          container: 'body'
+        });
+      });
+      
+      
+      $('.dropdown-toggle').on('click', function(e) {
+        
+        if (window.innerWidth < 768) {
+          e.preventDefault();
+          var parent = $(this).parent();
+          
+          
+          $('.dropdown.open').not(parent).removeClass('open');
+          
+          
+          parent.toggleClass('open');
+        }
+      });
+      
+      
+      $(document).on('click', function(e) {
+        if (!$(e.target).is('.dropdown-toggle')) {
+          $('.dropdown.open').removeClass('open');
+        }
+      });
+    });
+  </script>
+  </body>
+
+</html>
