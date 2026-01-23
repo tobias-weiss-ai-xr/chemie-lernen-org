@@ -1,9 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ksp on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title><link>https://chemie-lernen.org/tags/ksp/</link><description>Recent content in Ksp on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description><generator>Hugo</generator><language>de-de</language><lastBuildDate>Sat, 03 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/tags/ksp/index.xml" rel="self" type="application/rss+xml"/><item><title>Löslichkeitsprodukt Rechner</title><link>https://chemie-lernen.org/loeslichkeitsprodukt-rechner/</link><pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/loeslichkeitsprodukt-rechner/</guid><description>&lt;h2 id="löslichkeitsprodukt-rechner"&gt;Löslichkeitsprodukt Rechner&lt;/h2&gt;
-&lt;p&gt;Berechnen Sie das Löslichkeitsprodukt (Ksp) von Salzen und bestimmen Sie, ob eine Fällung auftritt.&lt;/p&gt;
-&lt;h3 id="funktionen"&gt;Funktionen&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Ksp → Löslichkeit&lt;/strong&gt;: Berechnen Sie die molare Löslichkeit aus dem Löslichkeitsprodukt&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Löslichkeit → Ksp&lt;/strong&gt;: Berechnen Sie das Löslichkeitsprodukt aus der molaren Löslichkeit&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Fällungsprüfung&lt;/strong&gt;: Prüfen Sie mit dem Ionenprodukt (Q), ob eine Fällung auftritt&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Unterstützt verschiedene Salztypen wie 1:1 (AgCl), 1:2 (CaF₂), 2:1 (Ag₂CrO₄) und mehr.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ksp on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title>
+    <link>https://chemie-lernen.org/tags/ksp/</link>
+    <description>Recent content in ksp on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-de</language>
+    <lastBuildDate>Sat, 03 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://chemie-lernen.org/tags/ksp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Löslichkeitsprodukt Rechner</title>
+      <link>https://chemie-lernen.org/loeslichkeitsprodukt-rechner/</link>
+      <pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://chemie-lernen.org/loeslichkeitsprodukt-rechner/</guid>
+      <description>Löslichkeitsprodukt Rechner Berechnen Sie das Löslichkeitsprodukt (Ksp) von Salzen und bestimmen Sie, ob eine Fällung auftritt.
+Funktionen Ksp → Löslichkeit: Berechnen Sie die molare Löslichkeit aus dem Löslichkeitsprodukt Löslichkeit → Ksp: Berechnen Sie das Löslichkeitsprodukt aus der molaren Löslichkeit Fällungsprüfung: Prüfen Sie mit dem Ionenprodukt (Q), ob eine Fällung auftritt Unterstützt verschiedene Salztypen wie 1:1 (AgCl), 1:2 (CaF₂), 2:1 (Ag₂CrO₄) und mehr.</description>
+    </item>
+  </channel>
+</rss>

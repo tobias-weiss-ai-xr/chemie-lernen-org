@@ -1,38 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title><link>https://chemie-lernen.org/posts/</link><description>Recent content in Posts on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description><generator>Hugo</generator><language>de-de</language><lastBuildDate>Fri, 02 Jan 2026 10:00:00 +0100</lastBuildDate><atom:link href="https://chemie-lernen.org/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>PSE in VR: Eine revolutionäre Art, Chemie zu lernen</title><link>https://chemie-lernen.org/posts/pse-in-vr-release/</link><pubDate>Fri, 02 Jan 2026 10:00:00 +0100</pubDate><guid>https://chemie-lernen.org/posts/pse-in-vr-release/</guid><description>&lt;p&gt;Wir freuen uns, die Veröffentlichung von &lt;strong&gt;dem PSE in VR&lt;/strong&gt; ankündigen zu können - eine vollständige WebXR-basierte virtuelle Realität-Erfahrung für das Periodensystem der Elemente. Diese Innovation repräsentiert einen bedeutenden Schritt forward in der digitalen Chemiebildung.&lt;/p&gt;
-&lt;h2 id="-was-ist-neu"&gt;🌟 Was ist neu?&lt;/h2&gt;
-&lt;p&gt;Das PSE in VR ist eine browserbasierte Virtual Reality-Anwendung, die das Periodensystem der Elemente in einem immersiven 3D-Raum präsentiert. Die Anwendung nutzt modernste WebXR-Technologie und bietet:&lt;/p&gt;
-&lt;h3 id="kernfunktionen"&gt;Kernfunktionen&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;🥽 Immersive 3D-Umgebung:&lt;/strong&gt; Erkunden Sie alle 118 Elemente in einem virtuellen Raum&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;🎮 Dual-Modus-Steuerung:&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;VR-Modus für Headsets wie Meta Quest, HTC Vive, Valve Index&lt;/li&gt;
-&lt;li&gt;Desktop-Modus mit Maus und Tastatur (WASD/Pfeiltasten)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;👥 Multiplayer-Unterstützung:&lt;/strong&gt; Lernen Sie gemeinsam mit anderen in virtuellen Räumen&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;⚗️ Gefahrfreie Experimente:&lt;/strong&gt; Simulieren Sie gefährliche chemische Reaktionen sicher&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;📱 Browser-basiert:&lt;/strong&gt; Keine Installation erforderlich - funktioniert direkt im Webbrowser&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="-technologie-stack"&gt;🔬 Technologie-Stack&lt;/h2&gt;
-&lt;p&gt;Die Anwendung wurde mit folgenden Technologien entwickelt:&lt;/p&gt;</description></item><item><title>Molekülstudio: Interaktive 3D-Visualisierung von Molekülen</title><link>https://chemie-lernen.org/posts/molekulstudio-3d-visualisierung/</link><pubDate>Wed, 24 Dec 2025 10:00:00 +0100</pubDate><guid>https://chemie-lernen.org/posts/molekulstudio-3d-visualisierung/</guid><description>&lt;h2 id="neue-dimensionen-im-chemielernen-das-molekülstudio"&gt;Neue Dimensionen im Chemielernen: Das Molekülstudio&lt;/h2&gt;
-&lt;p&gt;Wir freuen uns, das &lt;strong&gt;Molekülstudio&lt;/strong&gt; als neue Ergänzung zur Chemie-Lernen-Plattform vorstellen zu können. Diese webbasierte Anwendung ermöglicht es Lernenden, Moleküle in Echtzeit zu visualisieren, zu drehen und zu untersuchen.&lt;/p&gt;
-&lt;p&gt;Die molekulare Welt ist normalerweise unsichtbar – aber mit dem Molekülstudio wird sie sichtbar, greifbar und verständlich.&lt;/p&gt;
-&lt;hr&gt;
-&lt;div style="text-align: center; margin: 20px 0;"&gt;
-&lt;a href="https://chemie-lernen.org/molekuel-studio/" style="display: inline-block; padding: 15px 30px; font-size: 18px; font-weight: bold; color: white; background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); border: none; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 6px rgba(0,123,255,0.3); transition: all 0.3s ease;"&gt;
-🧪 Molekülstudio jetzt ausprobieren
-&lt;/a&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;em&gt;Kostenlos, werbefrei, keine Anmeldung erforderlich&lt;/em&gt;&lt;/p&gt;</description></item><item><title>Eine interdisziplinäre Kooperation in der Hochschullehre mit Hilfe der virtuellen Realität</title><link>https://chemie-lernen.org/posts/interdisciplinary-vr-cooperation/</link><pubDate>Thu, 18 Dec 2025 02:00:00 +0100</pubDate><guid>https://chemie-lernen.org/posts/interdisciplinary-vr-cooperation/</guid><description>&lt;h2 id="status-quo-eines-lernraum-projekts-das-mittels-mozilla-hubs-das-periodensystem-der-elemente-sowie-experimente"&gt;Status Quo eines Lernraum-Projekts das mittels Mozilla Hubs das Periodensystem der Elemente sowie Experimente&lt;/h2&gt;
-&lt;p&gt;Dieser Forschungsartikel untersucht eine interdisziplinäre Zusammenarbeit in der Hochschullehre unter Verwendung von virtueller Realität. Das Projekt nutzt Mozilla Hubs, um eine interaktive Lernumgebung für das Periodensystem der Elemente und chemische Experimente zu schaffen.&lt;/p&gt;
-&lt;h3 id="kernthemen"&gt;Kernthemen&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Virtuelle Realität in der Bildung&lt;/strong&gt;: Einsatz von VR-Technologie zur Verbesserung des Lernerlebnisses in der Chemie&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Mozilla Hubs Plattform&lt;/strong&gt;: Nutzung von Mozilla Hubs zur Erstellung zugänglicher, webbasierter VR-Lernräume&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Interdisziplinäre Zusammenarbeit&lt;/strong&gt;: Zusammenführung verschiedener akademischer Disziplinen für innovative Lehrmethoden&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Interaktives Periodensystem&lt;/strong&gt;: Eine VR-basierte Erkundung chemischer Elemente&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Virtuelle Experimente&lt;/strong&gt;: Durchführung von Chemieexperimenten in einer sicheren, virtuellen Umgebung&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="über-das-projekt"&gt;Über das Projekt&lt;/h3&gt;
-&lt;p&gt;Dieses Projekt repräsentiert den aktuellen Stand (Status Quo) einer innovativen Lernraum-Initiative, die virtuelle Realität mit Chemiebildung verbindet. Durch die Nutzung von Mozilla Hubs können Studierende das Periodensystem erkunden und Experimente in einer immersiven, interaktiven Umgebung durchführen.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title>
+    <link>https://chemie-lernen.org/posts/</link>
+    <description>Recent content in Posts on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-de</language>
+    <lastBuildDate>Fri, 02 Jan 2026 10:00:00 +0100</lastBuildDate>
+    <atom:link href="https://chemie-lernen.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PSE in VR: Eine revolutionäre Art, Chemie zu lernen</title>
+      <link>https://chemie-lernen.org/posts/pse-in-vr-release/</link>
+      <pubDate>Fri, 02 Jan 2026 10:00:00 +0100</pubDate>
+      <guid>https://chemie-lernen.org/posts/pse-in-vr-release/</guid>
+      <description>Wir freuen uns, die Veröffentlichung von dem PSE in VR ankündigen zu können - eine vollständige WebXR-basierte virtuelle Realität-Erfahrung für das Periodensystem der Elemente. Diese Innovation repräsentiert einen bedeutenden Schritt forward in der digitalen Chemiebildung.
+🌟 Was ist neu? Das PSE in VR ist eine browserbasierte Virtual Reality-Anwendung, die das Periodensystem der Elemente in einem immersiven 3D-Raum präsentiert. Die Anwendung nutzt modernste WebXR-Technologie und bietet:
+Kernfunktionen 🥽 Immersive 3D-Umgebung: Erkunden Sie alle 118 Elemente in einem virtuellen Raum 🎮 Dual-Modus-Steuerung: VR-Modus für Headsets wie Meta Quest, HTC Vive, Valve Index Desktop-Modus mit Maus und Tastatur (WASD/Pfeiltasten) 👥 Multiplayer-Unterstützung: Lernen Sie gemeinsam mit anderen in virtuellen Räumen ⚗️ Gefahrfreie Experimente: Simulieren Sie gefährliche chemische Reaktionen sicher 📱 Browser-basiert: Keine Installation erforderlich - funktioniert direkt im Webbrowser 🔬 Technologie-Stack Die Anwendung wurde mit folgenden Technologien entwickelt:</description>
+    </item>
+    <item>
+      <title>Molekülstudio: Interaktive 3D-Visualisierung von Molekülen</title>
+      <link>https://chemie-lernen.org/posts/molekulstudio-3d-visualisierung/</link>
+      <pubDate>Wed, 24 Dec 2025 10:00:00 +0100</pubDate>
+      <guid>https://chemie-lernen.org/posts/molekulstudio-3d-visualisierung/</guid>
+      <description>Neue Dimensionen im Chemielernen: Das Molekülstudio Wir freuen uns, das Molekülstudio als neue Ergänzung zur Chemie-Lernen-Plattform vorstellen zu können. Diese webbasierte Anwendung ermöglicht es Lernenden, Moleküle in Echtzeit zu visualisieren, zu drehen und zu untersuchen.
+Die molekulare Welt ist normalerweise unsichtbar – aber mit dem Molekülstudio wird sie sichtbar, greifbar und verständlich.
+🧪 Molekülstudio jetzt ausprobieren Kostenlos, werbefrei, keine Anmeldung erforderlich
+Was ist das Molekülstudio? Das Molekülstudio ist ein interaktives 3D-Tool zur Visualisierung molekularer Strukturen.</description>
+    </item>
+    <item>
+      <title>Eine interdisziplinäre Kooperation in der Hochschullehre mit Hilfe der virtuellen Realität</title>
+      <link>https://chemie-lernen.org/posts/interdisciplinary-vr-cooperation/</link>
+      <pubDate>Thu, 18 Dec 2025 02:00:00 +0100</pubDate>
+      <guid>https://chemie-lernen.org/posts/interdisciplinary-vr-cooperation/</guid>
+      <description>Status Quo eines Lernraum-Projekts das mittels Mozilla Hubs das Periodensystem der Elemente sowie Experimente Dieser Forschungsartikel untersucht eine interdisziplinäre Zusammenarbeit in der Hochschullehre unter Verwendung von virtueller Realität. Das Projekt nutzt Mozilla Hubs, um eine interaktive Lernumgebung für das Periodensystem der Elemente und chemische Experimente zu schaffen.
+Kernthemen Virtuelle Realität in der Bildung: Einsatz von VR-Technologie zur Verbesserung des Lernerlebnisses in der Chemie Mozilla Hubs Plattform: Nutzung von Mozilla Hubs zur Erstellung zugänglicher, webbasierter VR-Lernräume Interdisziplinäre Zusammenarbeit: Zusammenführung verschiedener akademischer Disziplinen für innovative Lehrmethoden Interaktives Periodensystem: Eine VR-basierte Erkundung chemischer Elemente Virtuelle Experimente: Durchführung von Chemieexperimenten in einer sicheren, virtuellen Umgebung Über das Projekt Dieses Projekt repräsentiert den aktuellen Stand (Status Quo) einer innovativen Lernraum-Initiative, die virtuelle Realität mit Chemiebildung verbindet.</description>
+    </item>
+  </channel>
+</rss>

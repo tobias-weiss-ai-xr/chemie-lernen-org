@@ -75,13 +75,7 @@ author = "chemie-lernen.org Team"
     weight = 22
     icon = "🔬"
     interaktiv = true
-[[menu.main]]
-    name = "pH-Rechner"
-    url = "/ph-rechner/"
-    parent = "interaktiv"
-    weight = 23
-    icon = "🧪"
-    interaktiv = true
+
 [[menu.main]]
     name = "Molare Masse"
     url = "/molare-masse-rechner/"
@@ -117,13 +111,14 @@ author = "chemie-lernen.org Team"
     weight = 28
     icon = "⚗️"
     interaktiv = true
-[[menu.main]]
-    name = "PSE in VR"
-    url = "/pages/pse-in-vr/"
-    parent = "interaktiv"
-    weight = 29
-    icon = "🥽"
-    interaktiv = true
+# REMOVED: PSE in VR feature (2026-01-23)
+# [[menu.main]]
+#     name = "PSE in VR"
+#     url = "/pages/pse-in-vr/"
+#     parent = "interaktiv"
+#     weight = 29
+#     icon = "🥽"
+#     interaktiv = true
 [[menu.main]]
     name = "VR Labore (GitHub)"
     url = "https://github.com/tobias-weiss-ai-xr/graphwiz-xr"
