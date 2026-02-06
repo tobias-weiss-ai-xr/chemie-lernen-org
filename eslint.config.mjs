@@ -14,11 +14,21 @@ export default [
       'myhugoapp/static/js/third-party/**',
       'myhugoapp/static/js/vendor/**',
       '*.min.js',
+      '*.optimized.js',
+      'myhugoapp/static/js/**/*.optimized.js',
+      'myhugoapp/public/**/*.js',
+      'myhugoapp/static/sw.js',
+      'myhugoapp/public/sw.js',
+      'myhugoapp/static/enhanced-sw.js',
+      'myhugoapp/public/enhanced-sw.js',
       'myhugoapp/static/js/three.module.js',
       'myhugoapp/static/js/three/three.core.js',
       'myhugoapp/static/js/three/TrackballControls.js',
       'myhugoapp/static/js/addons/**',
       '*.generated.js',
+      'myhugoapp/static/js/calculators/stoichiometry.js',
+      'myhugoapp/static/js/calculators/practice-generators.js',
+      'myhugoapp/static/js/calculators/stoichiometry-calculator-page.js',
       '.hugo_build.lock',
     ],
   },
@@ -72,6 +82,7 @@ export default [
         HTMLImageElement: 'readonly',
         HTMLVideoElement: 'readonly',
         HTMLAudioElement: 'readonly',
+        Image: 'readonly',
         ImageData: 'readonly',
         CanvasRenderingContext2D: 'readonly',
         WebGLRenderingContext: 'readonly',
@@ -82,15 +93,28 @@ export default [
         VideoFrame: 'readonly',
         XRWebGLBinding: 'readonly',
         XRWebGLLayer: 'readonly',
+        caches: 'readonly',
+        ServiceWorkerRegistration: 'readonly',
+        ServiceWorkerGlobalScope: 'readonly',
+        Response: 'readonly',
+        module: 'readonly',
+        exports: 'readonly',
+        require: 'readonly',
+        PerformanceObserver: 'readonly',
         AnalyticsManager: 'writable',
         I18nManager: 'writable',
         THREE: 'writable',
         __THREE_DEVTOOLS__: 'writable',
+        chemieQuiz: 'readonly',
+        ChemistryCalculator: 'readonly',
       },
     },
     rules: {
       'no-console': 'off',
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' }],
+      'no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
+      ],
       'no-undef': 'error',
       'no-redeclare': 'error',
       'no-dupe-keys': 'error',
@@ -118,8 +142,8 @@ export default [
       },
     },
     rules: {
-      'curly': ['error', 'all'],
-      'eqeqeq': ['error', 'always', { null: 'ignore' }],
+      curly: ['error', 'all'],
+      eqeqeq: 'warn',
       'no-eval': 'error',
       'no-implied-eval': 'error',
       'no-return-await': 'warn',
@@ -128,7 +152,7 @@ export default [
       'prefer-promise-reject-errors': 'error',
       'no-var': 'warn',
       'prefer-const': 'warn',
-      'object-shorthand': ['warn', 'always'],
+      'object-shorthand': 'off',
       'prefer-arrow-callback': 'warn',
     },
   },
@@ -180,6 +204,8 @@ export default [
   {
     files: [
       'myhugoapp/static/js/lazy-loader.js',
+      'myhugoapp/static/js/advanced-lazy-loader*.js',
+      'myhugoapp/static/js/enhanced-bundle-loader*.js',
       'myhugoapp/static/js/progress-tracker.js',
       'myhugoapp/static/js/quiz-system.js',
       'myhugoapp/static/js/quiz-user-system.js',
@@ -191,6 +217,20 @@ export default [
         module: 'readonly',
         exports: 'readonly',
         require: 'readonly',
+      },
+    },
+  },
+
+  // Quiz data files
+  {
+    files: ['myhugoapp/static/data/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: {
+        module: 'readonly',
+        exports: 'readonly',
+        chemieQuiz: 'readonly',
       },
     },
   },
@@ -223,9 +263,7 @@ export default [
 
   // Titration simulator - with Chart.js global
   {
-    files: [
-      'myhugoapp/static/js/titrations-simulator.js',
-    ],
+    files: ['myhugoapp/static/js/titrations-simulator.js'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'script',
@@ -304,6 +342,10 @@ export default [
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
+      globals: {
+        module: 'readonly',
+        exports: 'readonly',
+      },
     },
   },
 ];

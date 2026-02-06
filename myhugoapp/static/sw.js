@@ -88,22 +88,22 @@ self.addEventListener('fetch', (event) => {
       'fonts.googleapis.com',  // Google Fonts
       'fonts.gstatic.com'  // Google Fonts
     ];
-    
+
     if (allowedOrigins.includes(url.hostname)) {
       return; // Let these pass through
     }
-    
+
     // Allow analytics but don't cache
     if (url.hostname.includes('googletagmanager.com') || url.hostname.includes('google-analytics.com')) {
       return;
     }
-    
+
     return; // Skip other cross-origin requests
   }
 
   // Cache First strategy for static assets
-  if (url.pathname.includes('/css/') || 
-      url.pathname.includes('/js/') || 
+  if (url.pathname.includes('/css/') ||
+      url.pathname.includes('/js/') ||
       url.pathname.includes('/favicons/') ||
       url.pathname.includes('/img/') ||
       url.pathname.endsWith('.png') ||
@@ -112,7 +112,7 @@ self.addEventListener('fetch', (event) => {
       url.pathname.endsWith('.gif') ||
       url.pathname.endsWith('.svg') ||
       url.pathname.endsWith('.webmanifest')) {
-    
+
     event.respondWith(
       caches.open(ASSETS_CACHE).then((cache) => {
         return cache.match(request).then((response) => {
@@ -133,7 +133,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   // Network First strategy for HTML pages
-  if (url.pathname.endsWith('.html') || 
+  if (url.pathname.endsWith('.html') ||
       url.pathname === '/' ||
       url.pathname.includes('/themenbereiche/') ||
       url.pathname.includes('/pages/') ||
@@ -145,7 +145,7 @@ self.addEventListener('fetch', (event) => {
       url.pathname.includes('/einheitenumrechner/') ||
       url.pathname.includes('/loesungsrechner/') ||
       url.pathname.includes('/stoechiometrie-rechner/')) {
-    
+
     event.respondWith(
       fetch(request).then((response) => {
         if (response && response.status === 200) {
@@ -173,10 +173,10 @@ self.addEventListener('fetch', (event) => {
   }
 
   // Stale While Revalidate for API calls and dynamic content
-  if (url.pathname.includes('/api/') || 
+  if (url.pathname.includes('/api/') ||
       url.pathname.includes('.json') ||
       url.pathname.includes('.xml')) {
-    
+
     event.respondWith(
       caches.open(STATIC_CACHE).then((cache) => {
         return cache.match(request).then((cachedResponse) => {
@@ -186,7 +186,7 @@ self.addEventListener('fetch', (event) => {
             }
             return networkResponse;
           });
-          
+
           // Return cached response immediately if available
           return cachedResponse || fetchPromise;
         });
@@ -208,11 +208,11 @@ self.addEventListener('fetch', (event) => {
 // Background sync for offline functionality
 self.addEventListener('sync', (event) => {
   console.log('[SW] Background sync triggered:', event.tag);
-  
+
   if (event.tag === 'sync-quiz-progress') {
     event.waitUntil(syncQuizProgress());
   }
-  
+
   if (event.tag === 'sync-user-data') {
     event.waitUntil(syncUserData());
   }
@@ -221,7 +221,7 @@ self.addEventListener('sync', (event) => {
 // Push notification handling
 self.addEventListener('push', (event) => {
   console.log('[SW] Push notification received');
-  
+
   if (event.data) {
     const options = {
       body: event.data.text(),
@@ -245,7 +245,7 @@ self.addEventListener('push', (event) => {
         }
       ]
     };
-    
+
     event.waitUntil(
       self.registration.showNotification('Chemie Lernen', options)
     );
@@ -255,9 +255,9 @@ self.addEventListener('push', (event) => {
 // Notification click handling
 self.addEventListener('notificationclick', (event) => {
   console.log('[SW] Notification click received');
-  
+
   event.notification.close();
-  
+
   if (event.action === 'explore') {
     event.waitUntil(
       clients.openWindow('https://chemie-lernen.org/themenbereiche/')

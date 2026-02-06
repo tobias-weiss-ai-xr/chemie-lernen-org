@@ -14,7 +14,7 @@ const BOND_DATA = {
   'c-h': { energy: 413, equilibrium: 1.09, color: '#e74c3c' },
   'c-c': { energy: 347, equilibrium: 1.54, color: '#9b59b6' },
   'c=c': { energy: 614, equilibrium: 1.34, color: '#f39c12' },
-  'c-c': { energy: 839, equilibrium: 1.2, color: '#e67e22' },
+  'c≡c': { energy: 839, equilibrium: 1.2, color: '#e67e22' },
   'o-h': { energy: 463, equilibrium: 0.96, color: '#1abc9c' },
   'n-h': { energy: 391, equilibrium: 1.01, color: '#e84393' },
 };
@@ -631,6 +631,114 @@ function drawTemperatureComparison() {
   ctx.rotate(-Math.PI / 2);
   ctx.fillText('log(k)', 0, 0);
   ctx.restore();
+}
+
+function calculateRateConstant(T, Ea) {
+  const A = 1e13;
+  const R = 8.314;
+  const EaJoules = Ea * 1000;
+  return A * Math.exp(-EaJoules / (R * T));
+}
+
+function updateActivationDiagram() {
+  const canvas = domCache.activation.activationCanvas;
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  const width = canvas.width;
+  const height = canvas.height;
+
+  ctx.clearRect(0, 0, width, height);
+
+  const padding = 50;
+  const graphWidth = width - 2 * padding;
+  const graphHeight = height - 2 * padding;
+
+  const ea = parseFloat(domCache.activation.eaInput.value);
+  const deltaH = parseFloat(domCache.activation.deltaHInput.value);
+
+  const reactantEnergy = 0;
+  const productEnergy = deltaH;
+  const transitionEnergy = ea;
+
+  const maxEnergy = Math.max(reactantEnergy, productEnergy, transitionEnergy) + 50;
+  const minEnergy = Math.min(reactantEnergy, productEnergy) - 50;
+
+  function toCanvasY(E) {
+    return height - padding - ((E - minEnergy) / (maxEnergy - minEnergy)) * graphHeight;
+  }
+
+  if (showGrid) {
+    ctx.strokeStyle = '#e0e0e0';
+    ctx.lineWidth = 1;
+
+    for (let i = 0; i <= 5; i++) {
+      const y = padding + (i / 5) * graphHeight;
+      ctx.beginPath();
+      ctx.moveTo(padding, y);
+      ctx.lineTo(width - padding, y);
+      ctx.stroke();
+    }
+  }
+
+  const reactantX = padding + graphWidth * 0.25;
+  const productX = padding + graphWidth * 0.75;
+  const transitionX = width / 2;
+
+  const reactantY = toCanvasY(reactantEnergy);
+  const productY = toCanvasY(productEnergy);
+  const transitionY = toCanvasY(transitionEnergy);
+
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([5, 5]);
+
+  ctx.beginPath();
+  ctx.moveTo(reactantX, reactantY);
+  ctx.quadraticCurveTo(reactantX + 30, transitionY, transitionX, transitionY);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(transitionX, transitionY);
+  ctx.quadraticCurveTo(productX - 30, transitionY, productX, productY);
+  ctx.stroke();
+
+  ctx.setLineDash([]);
+
+  ctx.fillStyle = '#ff6b6b';
+  ctx.fillRect(reactantX - 25, reactantY - 15, 50, 30);
+  ctx.fillStyle = '#fff';
+  ctx.font = '12px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText('Edukte', reactantX, reactantY + 5);
+
+  ctx.fillStyle = '#4ecdc4';
+  ctx.fillRect(productX - 25, productY - 15, 50, 30);
+  ctx.fillStyle = '#fff';
+  ctx.fillText('Produkte', productX, productY + 5);
+
+  ctx.fillStyle = '#ffe66d';
+  ctx.beginPath();
+  ctx.arc(transitionX, transitionY, 12, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.fillStyle = '#333';
+  ctx.fillText('TS', transitionX, transitionY + 5);
+
+  ctx.strokeStyle = '#e74c3c';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([]);
+
+  ctx.beginPath();
+  ctx.moveTo(transitionX, transitionY);
+  ctx.lineTo(transitionX, toCanvasY(0));
+  ctx.stroke();
+
+  ctx.font = '12px Arial';
+  ctx.fillStyle = '#e74c3c';
+  ctx.fillText('Ea', transitionX + 15, toCanvasY(transitionEnergy / 2));
+
+  ctx.fillStyle = '#666';
+  ctx.fillText('Energie (kJ/mol)', width / 2, height - 15);
 }
 
 function updateCatalystDemo() {

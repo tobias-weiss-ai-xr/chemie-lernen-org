@@ -110,26 +110,26 @@ class ServiceWorkerManager {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Offline - Chemie Lernen</title>
   <style>
-    body { 
+    body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      display: flex; align-items: center; justify-content: center; 
+      display: flex; align-items: center; justify-content: center;
       min-height: 100vh; margin: 0; background: #f8f9fa;
       text-align: center; padding: 20px;
     }
-    .offline-container { 
-      max-width: 500px; padding: 40px; 
+    .offline-container {
+      max-width: 500px; padding: 40px;
       background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     .offline-icon { font-size: 4rem; color: #6c757d; margin-bottom: 20px; }
     .offline-title { color: #343a40; margin-bottom: 10px; }
     .offline-message { color: #6c757d; margin-bottom: 20px; line-height: 1.6; }
-    .retry-button { 
-      background: #007bff; color: white; border: none; padding: 12px 24px; 
+    .retry-button {
+      background: #007bff; color: white; border: none; padding: 12px 24px;
       border-radius: 5px; cursor: pointer; font-size: 16px;
     }
     .retry-button:hover { background: #0056b3; }
-    .cache-info { 
-      margin-top: 30px; padding: 20px; background: #e9ecef; 
+    .cache-info {
+      margin-top: 30px; padding: 20px; background: #e9ecef;
       border-radius: 5px; font-size: 14px; color: #495057;
     }
   </style>
