@@ -1,9 +1,8 @@
 ---
-title: "Suche"
+title: 'Suche'
 date: 2025-12-27
-layout: "search"
+layout: 'search'
 ---
-
 
 ## Suchergebnisse
 
@@ -11,9 +10,9 @@ layout: "search"
   <div class="search-form-wrapper">
     <div class="input-group">
       <input type="text" id="search-input" class="form-control" placeholder="Thema suchen..." value="">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button" onclick="performSearch(); return false;">Suchen</button>
-      </span>
+       <span class="input-group-btn">
+         <button class="btn btn-default" type="button" onclick="javascript:void(performSearch())">Suchen</button>
+       </span>
     </div>
   </div>
 
