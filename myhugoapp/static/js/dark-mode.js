@@ -1,10 +1,17 @@
 // Dark Mode Toggle Script
-(function() {
+(function () {
   'use strict';
+
+  console.log('Dark mode script starting...');
 
   const THEME_KEY = 'theme';
   const DARK_THEME = 'dark';
   const LIGHT_THEME = 'light';
+
+  // Error handler
+  window.addEventListener('error', function (e) {
+    console.error('Dark mode script error:', e.message);
+  });
 
   // Check for saved theme preference or default to dark
   const getPreferredTheme = () => {
@@ -16,7 +23,7 @@
     return DARK_THEME;
   };
 
-  // Set the theme
+  // Set theme
   const setTheme = (theme) => {
     if (theme === DARK_THEME) {
       document.documentElement.setAttribute('data-theme', DARK_THEME);
@@ -58,6 +65,7 @@
   // Initialize theme on page load
   const initTheme = () => {
     const preferredTheme = getPreferredTheme();
+    console.log('initTheme called, preferredTheme:', preferredTheme);
     if (preferredTheme === DARK_THEME) {
       document.documentElement.setAttribute('data-theme', DARK_THEME);
     }
@@ -65,32 +73,41 @@
   };
 
   // Wait for DOM to be ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      initTheme();
-
-      // Add event listener to theme toggle button
-      const toggleBtn = document.getElementById('theme-toggle');
-      if (toggleBtn) {
-        toggleBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          toggleTheme();
-        });
-      }
-    });
-  } else {
+  const setupThemeToggle = () => {
+    console.log('setupThemeToggle called');
     initTheme();
 
-    // Add event listener to theme toggle button
     const toggleBtn = document.getElementById('theme-toggle');
+    console.log('toggleBtn element:', toggleBtn);
     if (toggleBtn) {
-      toggleBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        toggleTheme();
-      });
+      toggleBtn.addEventListener(
+        'click',
+        (e) => {
+          console.log('Button clicked!');
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          toggleTheme();
+          console.log('Theme toggled:', document.documentElement.getAttribute('data-theme'));
+        },
+        { capture: true }
+      );
+      console.log('Dark mode event listener attached');
+    } else {
+      console.warn('Theme toggle button not found');
     }
+  };
+
+  console.log('document.readyState:', document.readyState);
+  if (document.readyState === 'loading') {
+    console.log('Waiting for DOMContentLoaded');
+    document.addEventListener('DOMContentLoaded', setupThemeToggle);
+  } else {
+    console.log('Calling setupThemeToggle immediately');
+    setupThemeToggle();
   }
 
   // Expose toggleTheme globally for inline onclick handlers
   window.toggleTheme = toggleTheme;
+  console.log('Dark mode script loaded');
 })();
