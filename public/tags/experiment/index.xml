@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Experiment on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</title><link>https://chemie-lernen.org/tags/experiment/</link><description>Recent content in Experiment on chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte</description><generator>Hugo</generator><language>de-de</language><lastBuildDate>Sun, 04 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://chemie-lernen.org/tags/experiment/index.xml" rel="self" type="application/rss+xml"/><item><title>Torricelli-Versuch - Atmosphärischer Druck</title><link>https://chemie-lernen.org/torricelli-versuch/</link><pubDate>Sun, 04 Jan 2026 00:00:00 +0000</pubDate><guid>https://chemie-lernen.org/torricelli-versuch/</guid><description>&lt;h2 id="torricelli-versuch-die-entdeckung-des-luftdrucks"&gt;Torricelli-Versuch: Die Entdeckung des Luftdrucks&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Evangelista Torricellis (1608-1647) revolutionäres Experiment&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Im Jahr 1643 führte der italienische Physiker Evangelista Torricelli ein Experiment durch, das die Existenz des atmosphärischen Drucks bewies und das erste Barometer erfand.&lt;/p&gt;
+&lt;h3 id="-das-experiment"&gt;🎯 Das Experiment&lt;/h3&gt;
+&lt;p&gt;Torricelli füllte eine etwa 1 Meter lange Glasröhre mit Quecksilber (Hg), verschloss sie an einem Ende und stellte sie upside-down in ein Quecksilbergefäß.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Das Ergebnis:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Das Quecksilber in der Röhre sank nicht vollständig ab&lt;/li&gt;
+&lt;li&gt;Es blieb eine Säule von etwa 76 cm Höhe stehen&lt;/li&gt;
+&lt;li&gt;Über dem Quecksilber entstand ein leerer Raum (Vakuum)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;┌─────────────────┐
+│ Vakuum │ ← &amp;#34;Torricelli-Leere Raum&amp;#34;
+├─────────────────┤
+│ Hg - Hg - Hg │ ← Quecksilbersäule (~760 mm)
+│ Hg - Hg - Hg │
+├─────────────────┤
+│ Hg - Hg - Hg │ ← Quecksilber im Gefäß
+│ Hg - Hg - Hg │
+└─────────────────┘
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="-die-erklärung"&gt;💡 Die Erklärung&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Warum fällt das Quecksilber nicht vollständig?&lt;/strong&gt;&lt;/p&gt;</description></item></channel></rss>
