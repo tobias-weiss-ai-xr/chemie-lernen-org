@@ -20,10 +20,10 @@ enableRobotsTXT = true
 
 [params]
   github = "tobias-weiss-ai-xr"
-  custom_css = ["css/custom.css", "css/dark-mode.css"]
+  custom_css = ["css/custom.css", "css/dark-mode.css", "css/pse-in-vr.css"]
   custom_js = ["js/dark-mode.js"]
   defaultImage = "recent-article_001.jpg"
-  footer_description = "chemie-lernen.org - Ihre Plattform für innovative Chemie-Lernräume in Virtual Reality. Machen Sie komplexe chemische Konzepte greifbar und erlebbar."
+  footer_description = "chemie-lernen.org - Ihre Plattform für innovative Chemie-Lernräume in Virtual Reality. Erleben Sie das Periodensystem in VR mit 118 einzigartigen Element-Räumen."
 
 [params.meta]
   keywords = "chemie-lernen.org, VR Chemieunterricht, Virtual Reality Bildung, Chemie lernen online, interaktiver Chemieunterricht, digitale Bildung, VR Lernräume, Chemie studieren, innovative Chemie, immersive Bildung"
@@ -46,6 +46,14 @@ author = "chemie-lernen.org Team"
 [mediaTypes]
   [mediaTypes."application/json"]
     suffixes = ["json"]
+
+# PSE in VR - MOST PROMINENT Navigation
+[[menu.main]]
+    name = "🥽 PSE in VR"
+    url = "https://pse.chemie-lernen.org/"
+    weight = 5
+    icon = "🥽"
+    pre = "<span style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold;'>NEU</span>"
 
 # Themenbereiche (Subject Areas) Navigation
 [[menu.main]]
@@ -118,15 +126,15 @@ author = "chemie-lernen.org Team"
     icon = "⚗️"
     interaktiv = true
 [[menu.main]]
-    name = "PSE in VR"
-    url = "/pages/pse-in-vr/"
+    name = "PSE in VR Info"
+    url = "/pages/pse-vr-showcase/"
     parent = "interaktiv"
     weight = 29
     icon = "🥽"
     interaktiv = true
 [[menu.main]]
-    name = "PSE in VR"
-    url = "/pages/pse-in-vr/"
+    name = "Mayers Lernprinzipien"
+    url = "/pages/mayers-multimedia-lernen/"
     parent = "interaktiv"
     weight = 30
     icon = "🧠"

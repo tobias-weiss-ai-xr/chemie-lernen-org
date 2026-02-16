@@ -1,15 +1,28 @@
 ---
 title: 'chemie-lernen.org - Offene, Interaktive und immersive Lerninhalte'
 date: 2025-12-22
-description: 'Entdecken Sie innovative Chemie-Lernmethoden durch Virtual Reality und interaktive Plattformen. Machen Sie komplexe chemische Konzepte greifbar und erlebbar.'
+description: 'Entdecken Sie innovative Chemie-Lernmethoden durch Virtual Reality und interaktive Plattformen. Erleben Sie das Periodensystem in VR mit 118 Element-Räumen.'
 tags: ['startseite', 'chemie', 'vr', '3d']
 ---
 
-## chemie-lernen.org
+## 🥽 PSE in VR - Die Zukunft des Chemie-Lernens
 
-**Innovative Chemie-Lernräume in Virtual Reality**
+**[pse.chemie-lernen.org](https://pse.chemie-lernen.org/)** - Erleben Sie das Periodensystem wie nie zuvor!
 
-Willkommen bei chemie-lernen.org – Ihrer Plattform für die nächste Generation des Chemieunterrichts. Durch den Einsatz von Virtual Reality (VR) und interaktiven Lernumgebungen verwandeln wir traditionelle chemische Konzepte in erlebbare Erfahrungen.
+Tauchen Sie ein in eine immersive virtuelle Realität mit **118 einzigartigen Element-Räumen**. Jedes Element hat seinen eigenen thematisch gestalteten Raum mit interaktiven Experimenten und 3D-Atommodellen.
+
+### 🎯 Kernfeatures
+
+- **🥽 Immersive VR-Erfahrung** - WebXR-basiert, keine Installation nötig
+- **🖥️ Desktop-Modus** - Auch ohne VR-Headset nutzbar (Maus + Tastatur)
+- **⚛️ 118 Element-Räume** - Jedes Element mit individuellem Design
+- **🔬 10 Experimentierräume** - Von der Alchemistenwerkstatt bis zur Nano-Welt
+- **👥 Multiplayer** - Gemeinsam lernen in virtuellen Räumen
+- **🧪 Gefahrfreie Experimente** - Sichere Simulationen gefährlicher Reaktionen
+
+[🚀 PSE in VR jetzt starten →](https://pse.chemie-lernen.org/) | [📸 Element-Räume ansehen →](/pages/pse-vr-showcase/)
+
+---
 
 ## 🎯 Unsere Mission
 

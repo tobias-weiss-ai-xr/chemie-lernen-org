@@ -1,0 +1,402 @@
+/**
+ * PSE in VR - Showcase and Hero Styles
+ * For chemie-lernen.org
+ */
+
+/* ===== PSE Hero Section ===== */
+.pse-hero-section {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.pse-hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* ===== Atom Animation ===== */
+.atom-container {
+  width: 280px;
+  height: 280px;
+  position: relative;
+}
+
+.nucleus {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  box-shadow:
+    0 0 30px rgba(102, 126, 234, 0.6),
+    0 0 60px rgba(102, 126, 234, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 30px rgba(102, 126, 234, 0.6);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 0 40px rgba(102, 126, 234, 0.8);
+  }
+}
+
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+
+.orbit-1 {
+  width: 180px;
+  height: 180px;
+  margin-left: -90px;
+  margin-top: -90px;
+  animation: orbit1 4s linear infinite;
+}
+
+.orbit-2 {
+  width: 240px;
+  height: 240px;
+  margin-left: -120px;
+  margin-top: -120px;
+  border-color: rgba(255, 255, 255, 0.15);
+  animation: orbit2 6s linear infinite;
+}
+
+.orbit-3 {
+  width: 280px;
+  height: 280px;
+  margin-left: -140px;
+  margin-top: -140px;
+  border-color: rgba(255, 255, 255, 0.1);
+  animation: orbit3 8s linear infinite;
+}
+
+.orbit::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow:
+    0 0 10px rgba(102, 126, 234, 0.8),
+    0 0 20px rgba(102, 126, 234, 0.4);
+}
+
+@keyframes orbit1 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit2 {
+  from {
+    transform: rotate(120deg);
+  }
+  to {
+    transform: rotate(480deg);
+  }
+}
+
+@keyframes orbit3 {
+  from {
+    transform: rotate(240deg);
+  }
+  to {
+    transform: rotate(600deg);
+  }
+}
+
+/* ===== Floating Elements ===== */
+.floating-element {
+  position: absolute;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+@keyframes float1 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(100px, -50px) rotate(90deg);
+  }
+  50% {
+    transform: translate(50px, 100px) rotate(180deg);
+  }
+  75% {
+    transform: translate(-50px, 50px) rotate(270deg);
+  }
+}
+
+@keyframes float2 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-80px, -100px);
+  }
+}
+
+@keyframes float3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(100px, -50px) scale(1.2);
+  }
+}
+
+/* ===== Element Room Preview Cards ===== */
+.element-rooms-preview {
+  margin-bottom: 40px;
+}
+
+.element-room-card {
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.element-room-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.element-room-image {
+  height: 150px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+}
+
+.element-room-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 5px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.85rem;
+}
+
+.element-room-content {
+  padding: 15px;
+  color: white;
+}
+
+.element-room-title {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+}
+
+.element-room-description {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* ===== CTA Buttons ===== */
+.vr-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
+  transition: all 0.3s ease;
+}
+
+.vr-cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+  color: white;
+  text-decoration: none;
+}
+
+.vr-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  background: transparent;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.vr-cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.6);
+  color: white;
+  text-decoration: none;
+}
+
+/* ===== PSE Card Highlight ===== */
+.pse-card-highlight {
+  border: 3px solid #667eea !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.pse-card-highlight .panel-body:first-child {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+}
+
+.pse-card-new-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff5722;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  z-index: 10;
+}
+
+/* ===== Showcase Page Styles ===== */
+.vr-showcase-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 0 0 50% 50% / 40px;
+  margin-bottom: 40px;
+}
+
+.vr-showcase-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.vr-showcase-hero p {
+  font-size: 1.3rem;
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto 30px;
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 992px) {
+  .pse-hero-section h1 {
+    font-size: 2.4rem !important;
+  }
+
+  .pse-hero-section .col-md-5 {
+    display: none;
+  }
+
+  .atom-container {
+    width: 220px;
+    height: 220px;
+  }
+
+  .orbit-1 {
+    width: 140px;
+    height: 140px;
+    margin-left: -70px;
+    margin-top: -70px;
+  }
+
+  .orbit-2 {
+    width: 180px;
+    height: 180px;
+    margin-left: -90px;
+    margin-top: -90px;
+  }
+
+  .orbit-3 {
+    width: 220px;
+    height: 220px;
+    margin-left: -110px;
+    margin-top: -110px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pse-hero-section h1 {
+    font-size: 2rem !important;
+  }
+
+  .pse-hero-section .container {
+    padding: 40px 15px !important;
+  }
+
+  .vr-cta-primary,
+  .vr-cta-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+    font-size: 1rem;
+  }
+
+  .element-room-card {
+    margin-bottom: 15px;
+  }
+
+  .vr-showcase-hero {
+    padding: 40px 15px;
+  }
+
+  .vr-showcase-hero h1 {
+    font-size: 2rem;
+  }
+}
+
+/* ===== Dark Mode Compatibility ===== */
+@media (prefers-color-scheme: dark) {
+  .element-room-card {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  }
+
+  .element-room-card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  }
+}

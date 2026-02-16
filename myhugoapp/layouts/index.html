@@ -2,72 +2,213 @@
 
 <div class="home">
 
-  <!-- Featured Image -->
-  <div class="row">
-    <div class="col-md-12">
-      <img src="{{ "/images/recent-article_001.jpg" | relURL }}" alt="chemie-lernen.org teaser" class="img-responsive center-block featured-image" />
+  <!-- PSE in VR HERO SECTION - Most Prominent -->
+  <div class="pse-hero-section" style="position: relative; overflow: hidden; margin: -20px -15px 40px -15px;">
+    <!-- Animated Background -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); z-index: 0;"></div>
+    
+    <!-- Floating Elements Animation -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; z-index: 1;">
+      <div class="floating-element" style="position: absolute; font-size: 4rem; opacity: 0.1; animation: float1 15s ease-in-out infinite;">⚛️</div>
+      <div class="floating-element" style="position: absolute; font-size: 3rem; opacity: 0.08; right: 10%; animation: float2 18s ease-in-out infinite;">🧪</div>
+      <div class="floating-element" style="position: absolute; font-size: 3.5rem; opacity: 0.1; left: 5%; bottom: 20%; animation: float3 20s ease-in-out infinite;">🔬</div>
     </div>
-  </div>
 
-  <!-- Main Heading -->
-  <div class="row">
-    <div class="col-md-12">
-      <h1 class="text-center">{{ .Site.Title }}</h1>
-      {{ if .Site.Params.footer_description }}
-      <p class="lead text-center">{{ .Site.Params.footer_description }}</p>
-      {{ end }}
-    </div>
-  </div>
+    <div class="container" style="position: relative; z-index: 2; padding: 60px 20px;">
+      <div class="row" style="align-items: center;">
+        <div class="col-md-7">
+          <div style="color: white;">
+            <span style="display: inline-block; background: rgba(255,255,255,0.15); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; margin-bottom: 20px;">
+              🚀 NEU: WebXR-basierte VR-Erfahrung
+            </span>
+            <h1 style="font-size: 3.2rem; font-weight: 800; margin-bottom: 20px; line-height: 1.2; color: white;">
+              PSE in VR
+              <span style="display: block; font-size: 1.5rem; font-weight: 400; opacity: 0.9; margin-top: 10px;">
+                Das Periodensystem in virtueller Realität
+              </span>
+            </h1>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 30px; line-height: 1.7; color: white;">
+              Erleben Sie <strong>118 einzigartige Element-Räume</strong> in einer immersiven 3D-Umgebung. 
+              Erkunden Sie Atome, führen Sie virtuelle Experimente durch und lernen Sie Chemie wie nie zuvor – 
+              direkt im Browser, ohne Installation.
+            </p>
 
-  <hr class="featurette-divider">
-    <!-- Featured VR Section -->
-    <hr class="featurette-divider">
-
-    <div class="row">
-      <div class="col-md-12">
-        <div class="featured-vr" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 12px; margin-bottom: 30px; position: relative; overflow: hidden;">
-          <!-- Background decoration -->
-          <div style="position: absolute; top: -50px; right: -50px; font-size: 20rem; opacity: 0.1; transform: rotate(15deg);">🥽</div>
-
-          <div class="row">
-            <div class="col-md-8">
-              <span style="font-size: 2rem;">🚀</span>
-              <h2 style="color: white; margin-top: 10px;">NEU: PSE in VR - Virtuelles Periodensystem</h2>
-              <p style="font-size: 1.1rem; margin: 15px 0;">
-                <strong>Erleben Sie Chemie in einer ganz neuen Dimension!</strong><br>
-                Tauchen Sie ein in eine immersive 3D-Umgebung und erkunden Sie alle 118 Elemente des Periodensystems in Virtual Reality. Die Zukunft des Chemie-Lernens ist da!
-              </p>
-              <ul style="list-style: none; padding-left: 0; margin-bottom: 20px;">
-                <li style="margin-bottom: 8px;">🥽 <strong>Immersive VR-Erfahrung:</strong> WebXR-basierte Anwendung ohne Installation</li>
-                <li style="margin-bottom: 8px;">🖥️ <strong>Desktop-Modus:</strong> Mit Maus und Tastatur ohne VR-Headset nutzbar</li>
-                <li style="margin-bottom: 8px;">⚛️ <strong>Alle 118 Elemente:</strong> Interaktive 3D-Darstellung mit Detailinformationen</li>
-                <li style="margin-bottom: 8px;">👥 <strong>Multiplayer:</strong> Gemeinsam im virtuellen Raum lernen und experimentieren</li>
-                <li style="margin-bottom: 8px;">🧪 <strong>Sichere Experimente:</strong> Gefahrlose Simulation von chemischen Reaktionen</li>
-              </ul>
-              <a href="/pages/pse-in-vr/" class="btn btn-default btn-lg" style="background-color: white; color: #667eea; border: none; font-weight: 600; margin-right: 10px;">
-                🥽 PSE in VR starten →
-              </a>
-              <a href="/posts/pse-in-vr-release/" class="btn btn-default btn-lg" style="background-color: rgba(255,255,255,0.2); color: white; border: 2px solid white; font-weight: 600;">
-                Mehr erfahren
-              </a>
-            </div>
-            <div class="col-md-4 text-center" style="display: flex; align-items: center; justify-content: center; position: relative; z-index: 1;">
-              <div>
-                <div style="font-size: 6rem; margin-bottom: 10px; animation: float 3s ease-in-out infinite;">⚛️</div>
-                <p style="font-size: 0.9rem; opacity: 0.9; font-weight: 500;">Jetzt verfügbar - Kostenlos & Browserbasiert</p>
+            <!-- Key Features -->
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 35px;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 1.5rem;">🥽</span>
+                <span style="color: white;">Immersive VR-Erfahrung</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 1.5rem;">🖥️</span>
+                <span style="color: white;">Desktop-Modus verfügbar</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 1.5rem;">⚛️</span>
+                <span style="color: white;">118 Element-Räume</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 1.5rem;">🧪</span>
+                <span style="color: white;">Gefahrfreie Experimente</span>
               </div>
             </div>
+
+            <!-- CTA Buttons -->
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+              <a href="https://pse.chemie-lernen.org/" target="_blank" 
+                 style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5); transition: all 0.3s;">
+                🥽 VR-Erfahrung starten →
+              </a>
+              <a href="/pages/pse-vr-showcase/" 
+                 style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px; background: transparent; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; border: 2px solid rgba(255,255,255,0.4); transition: all 0.3s;">
+                📸 Element-Räume ansehen
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-5 text-center" style="display: flex; align-items: center; justify-content: center;">
+          <div style="position: relative;">
+            <!-- Animated Atom -->
+            <div class="atom-container" style="width: 280px; height: 280px; position: relative;">
+              <div class="nucleus" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; box-shadow: 0 0 30px rgba(102, 126, 234, 0.6);"></div>
+              <div class="orbit orbit-1" style="position: absolute; top: 50%; left: 50%; width: 180px; height: 180px; margin-left: -90px; margin-top: -90px; border: 2px solid rgba(255,255,255,0.2); border-radius: 50%; animation: orbit1 4s linear infinite;"></div>
+              <div class="orbit orbit-2" style="position: absolute; top: 50%; left: 50%; width: 240px; height: 240px; margin-left: -120px; margin-top: -120px; border: 2px solid rgba(255,255,255,0.15); border-radius: 50%; animation: orbit2 6s linear infinite;"></div>
+              <div class="orbit orbit-3" style="position: absolute; top: 50%; left: 50%; width: 280px; height: 280px; margin-left: -140px; margin-top: -140px; border: 2px solid rgba(255,255,255,0.1); border-radius: 50%; animation: orbit3 8s linear infinite;"></div>
+            </div>
+            <p style="color: rgba(255,255,255,0.7); margin-top: 30px; font-size: 0.95rem;">
+              Kostenlos & Browserbasiert
+            </p>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <style>
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
+  <style>
+    @keyframes float1 {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(100px, -50px) rotate(90deg); }
+      50% { transform: translate(50px, 100px) rotate(180deg); }
+      75% { transform: translate(-50px, 50px) rotate(270deg); }
     }
-    </style>
+    @keyframes float2 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-80px, -100px); }
+    }
+    @keyframes float3 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(100px, -50px) scale(1.2); }
+    }
+    @keyframes orbit1 {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes orbit2 {
+      from { transform: rotate(120deg); }
+      to { transform: rotate(480deg); }
+    }
+    @keyframes orbit3 {
+      from { transform: rotate(240deg); }
+      to { transform: rotate(600deg); }
+    }
+    
+    .orbit::after {
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #667eea;
+      border-radius: 50%;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px rgba(102, 126, 234, 0.8);
+    }
+    
+    @media (max-width: 992px) {
+      .pse-hero-section h1 { font-size: 2.4rem !important; }
+      .pse-hero-section .col-md-5 { display: none; }
+    }
+    @media (max-width: 768px) {
+      .pse-hero-section h1 { font-size: 2rem !important; }
+      .pse-hero-section .container { padding: 40px 15px !important; }
+    }
+  </style>
+
+  <!-- Element Room Previews -->
+  <div class="element-rooms-preview" style="margin-bottom: 40px;">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 style="margin-bottom: 25px;">🔬 Entdecken Sie die Element-Räume</h2>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Hydrogen Room -->
+      <div class="col-md-4 col-sm-6" style="margin-bottom: 20px;">
+        <a href="https://pse.chemie-lernen.org/" target="_blank" style="display: block; text-decoration: none;">
+          <div style="background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: transform 0.3s;">
+            <div style="height: 150px; background: linear-gradient(135deg, #0f3460 0%, #16213e 100%); position: relative; display: flex; align-items: center; justify-content: center;">
+              <span style="font-size: 4rem;">🌌</span>
+              <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); padding: 5px 12px; border-radius: 20px; color: white; font-size: 0.85rem;">
+                H - Wasserstoff
+              </div>
+            </div>
+            <div style="padding: 15px; color: white;">
+              <h4 style="margin: 0 0 8px 0; font-size: 1.1rem;">🚀 Kosmischer Ursprung</h4>
+              <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Urknall-Animation, Wasserstoffwolken, Sternentstehung</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Iron Room -->
+      <div class="col-md-4 col-sm-6" style="margin-bottom: 20px;">
+        <a href="https://pse.chemie-lernen.org/" target="_blank" style="display: block; text-decoration: none;">
+          <div style="background: linear-gradient(135deg, #2c2c2c 0%, #4a4a4a 100%); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: transform 0.3s;">
+            <div style="height: 150px; background: linear-gradient(135deg, #8B4513 0%, #CD7F32 100%); position: relative; display: flex; align-items: center; justify-content: center;">
+              <span style="font-size: 4rem;">⚒️</span>
+              <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); padding: 5px 12px; border-radius: 20px; color: white; font-size: 0.85rem;">
+                Fe - Eisen
+              </div>
+            </div>
+            <div style="padding: 15px; color: white;">
+              <h4 style="margin: 0 0 8px 0; font-size: 1.1rem;">⚒️ Die Schmiede</h4>
+              <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Hochofen, Hämoglobin, Erdkern-Visualisierung</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Gold Room -->
+      <div class="col-md-4 col-sm-6" style="margin-bottom: 20px;">
+        <a href="https://pse.chemie-lernen.org/" target="_blank" style="display: block; text-decoration: none;">
+          <div style="background: linear-gradient(135deg, #1a1a0e 0%, #3d3d0f 100%); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: transform 0.3s;">
+            <div style="height: 150px; background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); position: relative; display: flex; align-items: center; justify-content: center;">
+              <span style="font-size: 4rem;">👑</span>
+              <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); padding: 5px 12px; border-radius: 20px; color: white; font-size: 0.85rem;">
+                Au - Gold
+              </div>
+            </div>
+            <div style="padding: 15px; color: white;">
+              <h4 style="margin: 0 0 8px 0; font-size: 1.1rem;">👑 Schatzkammer</h4>
+              <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">Pharaonengrab, Tutanchamun, Relativistische Effekte</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    <div class="row" style="margin-top: 10px;">
+      <div class="col-md-12 text-center">
+        <a href="/pages/pse-vr-showcase/" style="display: inline-block; padding: 12px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 25px; font-weight: 600; transition: transform 0.3s;">
+          📸 Alle Element-Räume ansehen →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
 
   <!-- Section Heading -->
   <div class="row">
@@ -126,17 +267,18 @@
                 </a>
         </div>
 
-        <!-- PSE in VR Card -->
+        <!-- PSE in VR Card - MOST PROMINENT -->
         <div class="col-md-4 card">
-             <a href="/pages/pse-in-vr/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #667eea;">
+             <a href="https://pse.chemie-lernen.org/" target="_blank" class="index-anchor">
+                <div class="panel panel-default" style="border: 3px solid #667eea; position: relative; overflow: hidden;">
 
                   <div class="panel-body" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <span style="position: absolute; top: 10px; right: 10px; background: #FF5722; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: bold;">NEU</span>
                     <h3 class="panel-title pull-left">🥽 PSE in VR</h3>
                   </div>
 
                   <div class="panel-body"><small>
-                    Erleben Sie das Periodensystem in virtueller Realität - immersive 3D-Lernumgebung mit WebXR.</small>
+                    <strong>118 Element-Räume in VR!</strong> Immersive 3D-Erfahrung mit WebXR - direkt im Browser ohne Installation.</small>
                   </div>
                 </div>
                 </a>
