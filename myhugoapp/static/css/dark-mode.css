@@ -1,7 +1,7 @@
 /* Dark Mode Styles for Chemie Lernen */
 
 /* CSS Variables for Dark Mode - Greenish Theme */
-[data-theme="dark"] {
+[data-theme='dark'] {
   --bg-primary: #0a1a0f;
   --bg-secondary: #0d2a1a;
   --bg-tertiary: #123d25;
@@ -25,459 +25,687 @@
 }
 
 /* Logo switching for dark mode - use dark version of logo */
-[data-theme="dark"] .navbar-brand img.site-logo {
-  content: url("/img/chemie-lernen-logo_dark.png");
+[data-theme='dark'] .navbar-brand img.site-logo {
+  content: url('/img/chemie-lernen-logo_dark.png');
 }
 
 /* Global Dark Mode Styles */
-[data-theme="dark"] body {
+[data-theme='dark'] body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   color-scheme: dark;
 }
 
 /* Typography */
-[data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3,
-[data-theme="dark"] h4, [data-theme="dark"] h5, [data-theme="dark"] h6 {
+[data-theme='dark'] h1,
+[data-theme='dark'] h2,
+[data-theme='dark'] h3,
+[data-theme='dark'] h4,
+[data-theme='dark'] h5,
+[data-theme='dark'] h6 {
   color: var(--text-primary);
 }
 
-[data-theme="dark"] p, [data-theme="dark"] li, [data-theme="dark"] td {
+[data-theme='dark'] p,
+[data-theme='dark'] li,
+[data-theme='dark'] td {
   color: var(--text-secondary);
 }
 
 /* Links */
-[data-theme="dark"] a {
+[data-theme='dark'] a {
   color: var(--accent-color);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-[data-theme="dark"] a:hover {
+[data-theme='dark'] a:hover {
   color: var(--accent-hover);
   text-decoration: underline;
 }
 
 /* Navigation */
-[data-theme="dark"] .navbar-default {
+[data-theme='dark'] .navbar-default {
   background-color: var(--navbar-bg);
   border-color: var(--border-color);
 }
 
-[data-theme="dark"] .navbar-brand {
+[data-theme='dark'] .navbar-brand {
   color: var(--text-primary) !important;
 }
 
-[data-theme="dark"] .navbar-nav > li > a {
+[data-theme='dark'] .navbar-nav > li > a {
   color: #a5d6a7 !important;
 }
 
-[data-theme="dark"] .navbar-nav > li > a:hover {
+[data-theme='dark'] .navbar-nav > li > a:hover {
   color: var(--text-primary);
   background-color: var(--bg-tertiary);
 }
 
-[data-theme="dark"] .navbar-toggle {
+[data-theme='dark'] .navbar-toggle {
   border-color: var(--border-color);
 }
 
-[data-theme="dark"] .navbar-toggle .icon-bar {
+[data-theme='dark'] .navbar-toggle .icon-bar {
   background-color: var(--text-secondary);
 }
 
-[data-theme="dark"] .navbar-collapse {
+[data-theme='dark'] .navbar-collapse {
   border-color: var(--border-color);
 }
 
 /* Theme toggle in header - make it lighter in dark mode */
-[data-theme="dark"] .theme-toggle-header {
+[data-theme='dark'] .theme-toggle-header {
   color: var(--text-primary) !important;
 }
 
-[data-theme="dark"] .theme-toggle-header:hover {
+[data-theme='dark'] .theme-toggle-header:hover {
   color: var(--accent-color) !important;
 }
 
 /* Header */
-[data-theme="dark"] .site-header {
+[data-theme='dark'] .site-header {
   background-color: var(--navbar-bg);
   border-bottom: 1px solid var(--border-color);
 }
 
-[data-theme="dark"] .title-row {
+[data-theme='dark'] .title-row {
   background-color: var(--navbar-bg);
   border-bottom: 1px solid var(--border-color);
 }
 
-[data-theme="dark"] .site-main-heading {
+[data-theme='dark'] .site-main-heading {
   color: var(--text-primary);
 }
 
 /* Main Content */
-[data-theme="dark"] .site-main {
+[data-theme='dark'] .site-main {
   background-color: var(--bg-primary);
 }
 
 /* Cards and Containers */
-[data-theme="dark"] .card,
-[data-theme="dark"] .featurette,
-[data-theme="dark"] .blog-post,
-[data-theme="dark"] .container {
+[data-theme='dark'] .card,
+[data-theme='dark'] .featurette,
+[data-theme='dark'] .blog-post,
+[data-theme='dark'] .container {
   background-color: var(--card-bg);
   border-color: var(--border-color);
 }
 
-[data-theme="dark"] .card {
+[data-theme='dark'] .card {
   background-color: var(--card-bg);
   border: 1px solid var(--border-color);
   box-shadow: 0 2px 8px var(--shadow);
 }
 
-[data-theme="dark"] .card:hover {
+[data-theme='dark'] .card:hover {
   border-color: var(--accent-color);
 }
 
 /* Buttons */
-[data-theme="dark"] .btn-primary {
+[data-theme='dark'] .btn-primary {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
   color: white;
 }
 
-[data-theme="dark"] .btn-primary:hover {
+[data-theme='dark'] .btn-primary:hover {
   background-color: var(--accent-hover);
   border-color: var(--accent-hover);
 }
 
-[data-theme="dark"] .btn-default {
+[data-theme='dark'] .btn-default {
   background-color: var(--bg-tertiary);
   border-color: var(--border-color);
   color: var(--text-primary);
 }
 
-[data-theme="dark"] .btn-default:hover {
+[data-theme='dark'] .btn-default:hover {
   background-color: var(--border-color);
   color: var(--text-primary);
 }
 
 /* Forms */
-[data-theme="dark"] input,
-[data-theme="dark"] textarea,
-[data-theme="dark"] select {
+[data-theme='dark'] input,
+[data-theme='dark'] textarea,
+[data-theme='dark'] select {
   background-color: var(--input-bg);
   border-color: var(--border-color);
   color: var(--text-primary);
 }
 
-[data-theme="dark"] input:focus,
-[data-theme="dark"] textarea:focus,
-[data-theme="dark"] select:focus {
+[data-theme='dark'] input:focus,
+[data-theme='dark'] textarea:focus,
+[data-theme='dark'] select:focus {
   background-color: var(--bg-secondary);
   border-color: var(--accent-color);
   color: var(--text-primary);
   outline: none;
 }
 
-[data-theme="dark"] .form-control {
+[data-theme='dark'] .form-control {
   background-color: var(--input-bg);
   border-color: var(--border-color);
   color: var(--text-primary);
 }
 
 /* Tables */
-[data-theme="dark"] table {
+[data-theme='dark'] table {
   background-color: var(--table-bg);
   color: var(--text-secondary);
 }
 
-[data-theme="dark"] th {
+[data-theme='dark'] th {
   background-color: var(--bg-tertiary);
   color: var(--text-primary);
   border-color: var(--border-color);
 }
 
-[data-theme="dark"] td {
+[data-theme='dark'] td {
   border-color: var(--border-color);
 }
 
-[data-theme="dark"] tr:hover {
+[data-theme='dark'] tr:hover {
   background-color: var(--table-hover);
 }
 
 /* Code Blocks */
-[data-theme="dark"] pre,
-[data-theme="dark"] code {
+[data-theme='dark'] pre,
+[data-theme='dark'] code {
   background-color: var(--code-bg);
   color: var(--text-primary);
   border-color: var(--border-color);
 }
 
-[data-theme="dark"] pre {
+[data-theme='dark'] pre {
   border: 1px solid var(--border-color);
 }
 
-[data-theme="dark"] code {
+[data-theme='dark'] code {
   background-color: var(--code-bg);
   padding: 2px 6px;
   border-radius: 3px;
 }
 
 /* Syntax Highlighting for Dark Mode */
-[data-theme="dark"] .highlight {
+[data-theme='dark'] .highlight {
   background-color: var(--code-bg);
 }
 
-[data-theme="dark"] .highlight .c { color: #6a9955; } /* Comment */
-[data-theme="dark"] .highlight .k { color: #569cd6; } /* Keyword */
-[data-theme="dark"] .highlight .s { color: #ce9178; } /* String */
-[data-theme="dark"] .highlight .nf { color: #dcdcaa; } /* Function */
-[data-theme="dark"] .highlight .nc { color: #4ec9b0; } /* Class */
-[data-theme="dark"] .highlight .mi { color: #b5cea8; } /* Number */
-[data-theme="dark"] .highlight .nb { color: #569cd6; } /* Name Builtin */
+[data-theme='dark'] .highlight .c {
+  color: #6a9955;
+} /* Comment */
+[data-theme='dark'] .highlight .k {
+  color: #569cd6;
+} /* Keyword */
+[data-theme='dark'] .highlight .s {
+  color: #ce9178;
+} /* String */
+[data-theme='dark'] .highlight .nf {
+  color: #dcdcaa;
+} /* Function */
+[data-theme='dark'] .highlight .nc {
+  color: #4ec9b0;
+} /* Class */
+[data-theme='dark'] .highlight .mi {
+  color: #b5cea8;
+} /* Number */
+[data-theme='dark'] .highlight .nb {
+  color: #569cd6;
+} /* Name Builtin */
 
 /* Footer */
-[data-theme="dark"] footer {
+[data-theme='dark'] footer {
   background-color: var(--footer-bg);
   border-top: 1px solid var(--border-color);
   color: var(--text-muted);
 }
 
-[data-theme="dark"] footer a {
+[data-theme='dark'] footer a {
   color: var(--text-secondary);
 }
 
-[data-theme="dark"] footer a:hover {
+[data-theme='dark'] footer a:hover {
   color: var(--accent-color);
 }
 
 /* Sidebar */
-[data-theme="dark"] .sidebar {
+[data-theme='dark'] .sidebar {
   background-color: var(--bg-secondary);
   border-right: 1px solid var(--border-color);
 }
 
 /* Lead paragraphs */
-[data-theme="dark"] .lead {
+[data-theme='dark'] .lead {
   color: var(--text-secondary);
 }
 
 /* Dividers */
-[data-theme="dark"] hr {
+[data-theme='dark'] hr {
   border-color: var(--border-color);
 }
 
-[data-theme="dark"] .featurette-divider {
+[data-theme='dark'] .featurette-divider {
   border-color: var(--border-color);
 }
 
 /* Blog posts */
-[data-theme="dark"] .blog-post-meta {
+[data-theme='dark'] .blog-post-meta {
   color: var(--text-muted);
 }
 
-[data-theme="dark"] .blog-post-title {
+[data-theme='dark'] .blog-post-title {
   color: var(--text-primary);
 }
 
-[data-theme="dark"] .blog-post-title a {
+[data-theme='dark'] .blog-post-title a {
   color: var(--text-primary);
 }
 
-[data-theme="dark"] .blog-post-title a:hover {
+[data-theme='dark'] .blog-post-title a:hover {
   color: var(--accent-color);
 }
 
 /* Pagination */
-[data-theme="dark"] .pagination > li > a,
-[data-theme="dark"] .pagination > li > span {
+[data-theme='dark'] .pagination > li > a,
+[data-theme='dark'] .pagination > li > span {
   background-color: var(--bg-secondary);
   border-color: var(--border-color);
   color: var(--text-secondary);
 }
 
-[data-theme="dark"] .pagination > li > a:hover,
-[data-theme="dark"] .pagination > li > span:hover {
+[data-theme='dark'] .pagination > li > a:hover,
+[data-theme='dark'] .pagination > li > span:hover {
   background-color: var(--bg-tertiary);
   color: var(--text-primary);
 }
 
-[data-theme="dark"] .pagination > .active > a,
-[data-theme="dark"] .pagination > .active > span {
+[data-theme='dark'] .pagination > .active > a,
+[data-theme='dark'] .pagination > .active > span {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
   color: white;
 }
 
 /* Badges and Labels */
-[data-theme="dark"] .badge,
-[data-theme="dark"] .label {
+[data-theme='dark'] .badge,
+[data-theme='dark'] .label {
   background-color: var(--bg-tertiary);
   color: var(--text-secondary);
 }
 
-[data-theme="dark"] .badge-primary {
+[data-theme='dark'] .badge-primary {
   background-color: var(--accent-color);
   color: white;
 }
 
 /* Alerts */
-[data-theme="dark"] .alert {
+[data-theme='dark'] .alert {
   background-color: var(--bg-secondary);
   border-color: var(--border-color);
   color: var(--text-secondary);
 }
 
-[data-theme="dark"] .alert-success {
+[data-theme='dark'] .alert-success {
   background-color: rgba(16, 185, 129, 0.1);
   border-color: var(--success-color);
   color: var(--success-color);
 }
 
-[data-theme="dark"] .alert-warning {
+[data-theme='dark'] .alert-warning {
   background-color: rgba(245, 158, 11, 0.1);
   border-color: var(--warning-color);
   color: var(--warning-color);
 }
 
-[data-theme="dark"] .alert-danger {
+[data-theme='dark'] .alert-danger {
   background-color: rgba(239, 68, 68, 0.1);
   border-color: var(--danger-color);
   color: var(--danger-color);
 }
 
 /* Panels (Bootstrap 3) - FIX for white panels */
-[data-theme="dark"] .panel {
+[data-theme='dark'] .panel {
   background-color: var(--card-bg) !important;
   border-color: var(--border-color) !important;
 }
 
-[data-theme="dark"] .panel-default {
+[data-theme='dark'] .panel-default {
   background-color: var(--card-bg) !important;
   border-color: var(--border-color) !important;
 }
 
-[data-theme="dark"] .panel-heading {
+[data-theme='dark'] .panel-heading {
   background-color: var(--bg-tertiary) !important;
   border-color: var(--border-color) !important;
   color: var(--text-primary) !important;
 }
 
-[data-theme="dark"] .panel-title {
+[data-theme='dark'] .panel-title {
   color: var(--text-primary) !important;
 }
 
-[data-theme="dark"] .panel-body {
+[data-theme='dark'] .panel-body {
   background-color: var(--card-bg) !important;
   color: var(--text-secondary) !important;
 }
 
-[data-theme="dark"] .panel-footer {
+[data-theme='dark'] .panel-footer {
   background-color: var(--bg-tertiary) !important;
   border-color: var(--border-color) !important;
 }
 
 /* Wells (Bootstrap 3) */
-[data-theme="dark"] .well {
+[data-theme='dark'] .well {
   background-color: var(--bg-tertiary);
   border-color: var(--border-color);
   color: var(--text-secondary);
 }
 
 /* List groups */
-[data-theme="dark"] .list-group-item {
+[data-theme='dark'] .list-group-item {
   background-color: var(--card-bg);
   border-color: var(--border-color);
   color: var(--text-secondary);
 }
 
-[data-theme="dark"] .list-group-item:hover,
-[data-theme="dark"] .list-group-item:focus {
+[data-theme='dark'] .list-group-item:hover,
+[data-theme='dark'] .list-group-item:focus {
   background-color: var(--bg-tertiary);
   color: var(--text-primary);
 }
 
 /* Media objects */
-[data-theme="dark"] .media-heading {
+[data-theme='dark'] .media-heading {
   color: var(--text-primary);
 }
 
-[data-theme="dark"] .media-body {
+[data-theme='dark'] .media-body {
   color: var(--text-secondary);
 }
 
 /* Small text */
-[data-theme="dark"] small {
+[data-theme='dark'] small {
   color: var(--text-secondary);
 }
 
 /* Smooth transitions for theme switching */
-[data-theme="dark"] body,
-[data-theme="dark"] .navbar,
-[data-theme="dark"] .card,
-[data-theme="dark"] .panel,
-[data-theme="dark"] .btn,
-[data-theme="dark"] input,
-[data-theme="dark"] textarea {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+[data-theme='dark'] body,
+[data-theme='dark'] .navbar,
+[data-theme='dark'] .card,
+[data-theme='dark'] .panel,
+[data-theme='dark'] .btn,
+[data-theme='dark'] input,
+[data-theme='dark'] textarea {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 /* Molekülstudio page - Dark mode */
-[data-theme="dark"] .studio-header {
+[data-theme='dark'] .studio-header {
   background: #1a3d2a !important;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
 }
 
-[data-theme="dark"] .studio-title {
+[data-theme='dark'] .studio-title {
   color: #b2dfdb !important;
 }
 
-[data-theme="dark"] #molecule-studio-container {
+[data-theme='dark'] #molecule-studio-container {
   background: #1a3d2a !important;
 }
 
-[data-theme="dark"] .studio-header p {
+[data-theme='dark'] .studio-header p {
   color: var(--text-secondary) !important;
 }
 
-[data-theme="dark"] .controls-info {
+[data-theme='dark'] .controls-info {
   background: rgba(20, 40, 25, 0.9) !important;
   color: var(--text-secondary) !important;
 }
 
-[data-theme="dark"] .welcome-screen h3 {
+[data-theme='dark'] .welcome-screen h3 {
   color: #2d5a30 !important;
 }
 
-[data-theme="dark"] .welcome-screen p {
+[data-theme='dark'] .welcome-screen p {
   color: var(--text-secondary) !important;
 }
 
 /* Molekülstudio button and form fixes for accessibility */
-[data-theme="dark"] #visualize-btn {
+[data-theme='dark'] #visualize-btn {
   background: #4caf50 !important;
   color: #ffffff !important;
 }
 
-[data-theme="dark"] #visualize-btn:hover:not(:disabled) {
+[data-theme='dark'] #visualize-btn:hover:not(:disabled) {
   background: #388e3c !important;
 }
 
-[data-theme="dark"] .auto-rotate-toggle {
+[data-theme='dark'] .auto-rotate-toggle {
   color: #a5d6a7 !important;
 }
 
-[data-theme="dark"] .auto-rotate-toggle label {
+[data-theme='dark'] .auto-rotate-toggle label {
   color: #a5d6a7 !important;
 }
 
-[data-theme="dark"] .suggestion-chip {
+[data-theme='dark'] .suggestion-chip {
   background: #66bb6a !important;
   color: #ffffff !important;
 }
 
-[data-theme="dark"] .suggestion-chip:hover {
+[data-theme='dark'] .suggestion-chip:hover {
   background: #4caf50 !important;
+}
+
+/* ========================================
+   LIGHT MODE STYLES (Explicit)
+   ======================================== */
+
+/* Light mode is the default - these ensure proper light mode display */
+html:not([data-theme='dark']) {
+  color-scheme: light;
+}
+
+html:not([data-theme='dark']) body {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+/* Logo - use light version for light mode */
+html:not([data-theme='dark']) .navbar-brand img.site-logo {
+  content: url('/img/chemie-lernen-logo_light.png');
+}
+
+/* Title row */
+html:not([data-theme='dark']) .title-row {
+  background-color: #f1f8f4;
+  border-bottom: 1px solid #c8e6c9;
+}
+
+/* Panels - Light Mode Fix */
+html:not([data-theme='dark']) .panel {
+  background-color: #ffffff !important;
+  border-color: #dddddd !important;
+}
+
+html:not([data-theme='dark']) .panel-body {
+  background-color: #ffffff !important;
+  color: #333333 !important;
+}
+
+html:not([data-theme='dark']) .panel-heading {
+  background-color: #f5f5f5 !important;
+  color: #333333 !important;
+}
+
+html:not([data-theme='dark']) .panel-footer {
+  background-color: #f5f5f5 !important;
+}
+
+/* Cards */
+html:not([data-theme='dark']) .card {
+  background-color: #ffffff;
+  border-color: #dddddd;
+}
+
+/* Navigation */
+html:not([data-theme='dark']) .navbar-default {
+  background-color: #f8f9fa;
+  border-color: #e7e7e7;
+}
+
+html:not([data-theme='dark']) .navbar-nav > li > a {
+  color: #2e7d32 !important;
+}
+
+/* Theme toggle in light mode */
+html:not([data-theme='dark']) .theme-toggle-header {
+  color: #333 !important;
+}
+
+html:not([data-theme='dark']) .theme-toggle-header:hover {
+  color: #4caf50 !important;
+}
+
+/* Footer - Light Mode */
+html:not([data-theme='dark']) footer {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+/* Sidebar sections */
+html:not([data-theme='dark']) .sidebar-section {
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+html:not([data-theme='dark']) .sidebar-section h3 {
+  color: #333333;
+  border-bottom-color: #007bff;
+}
+
+/* Interactive section */
+html:not([data-theme='dark']) .interactive-section {
+  background-color: #f8f9fa;
+  border-left-color: #007bff;
+}
+
+/* Related topics */
+html:not([data-theme='dark']) .related-topic {
+  background-color: #f8f9fa;
+}
+
+html:not([data-theme='dark']) .related-topic:hover {
+  background-color: #e9ecef;
+}
+
+html:not([data-theme='dark']) .related-topic a {
+  color: #333333;
+}
+
+/* Typography */
+html:not([data-theme='dark']) h1,
+html:not([data-theme='dark']) h2,
+html:not([data-theme='dark']) h3 {
+  color: #1b5e20;
+}
+
+html:not([data-theme='dark']) .lead {
+  color: #2e7d32;
+}
+
+/* Tables */
+html:not([data-theme='dark']) table {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+html:not([data-theme='dark']) th {
+  background-color: #f5f5f5;
+  color: #333333;
+}
+
+/* Forms */
+html:not([data-theme='dark']) input,
+html:not([data-theme='dark']) textarea,
+html:not([data-theme='dark']) select {
+  background-color: #ffffff;
+  border-color: #cccccc;
+  color: #333333;
+}
+
+/* Code blocks */
+html:not([data-theme='dark']) pre,
+html:not([data-theme='dark']) code {
+  background-color: #f5f5f5;
+  color: #333333;
+}
+
+/* Buttons */
+html:not([data-theme='dark']) .btn-default {
+  background-color: #ffffff;
+  border-color: #cccccc;
+  color: #333333;
+}
+
+/* ========================================
+   THEME TRANSITION ANIMATIONS
+   ======================================== */
+
+/* Smooth transitions for theme switching */
+html {
+  transition: background-color 0.3s ease;
+}
+
+body,
+.navbar,
+.card,
+.panel,
+.panel-body,
+.panel-heading,
+.btn,
+input,
+textarea,
+select,
+.sidebar-section,
+.interactive-section,
+.related-topic,
+footer {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* ========================================
+   PSE VR PROMO - Dark Mode Support
+   ======================================== */
+
+[data-theme='dark'] .pse-vr-banner {
+  background: linear-gradient(135deg, #4a5568 0%, #553c9a 100%) !important;
+}
+
+[data-theme='dark'] .pse-vr-promo-banner {
+  background: linear-gradient(135deg, #4a5568 0%, #553c9a 100%) !important;
+}
+
+[data-theme='dark'] .floating-vr-button {
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3) !important;
+}
+
+/* Light mode PSE VR elements */
+html:not([data-theme='dark']) .pse-vr-banner {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+html:not([data-theme='dark']) .floating-vr-button {
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
 }
