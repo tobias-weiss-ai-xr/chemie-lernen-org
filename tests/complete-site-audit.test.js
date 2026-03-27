@@ -86,7 +86,7 @@ const allPages = [
   { name: 'Contact Page', url: 'https://chemie-lernen.org/pages/contact/' },
   { name: 'Roadmap', url: 'https://chemie-lernen.org/pages/roadmap/' },
   { name: 'Suche', url: 'https://chemie-lernen.org/pages/suche/' },
-  { name: 'PSE in VR', url: 'https://chemie-lernen.org/pages/pse-in-vr/' },
+  { name: 'PSE in VR', url: 'https://chemie-lernen.org/pse-vr/' },
   {
     name: 'Mayers Multimedia Lernen',
     url: 'https://chemie-lernen.org/pages/mayers-multimedia-lernen/',

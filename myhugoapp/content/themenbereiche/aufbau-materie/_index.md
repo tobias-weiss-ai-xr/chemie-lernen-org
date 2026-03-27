@@ -367,7 +367,7 @@ $$\ce{Zn + 2HCl -> ZnCl2 + H2}$$
 
 ⚛️ **[Periodensystem 3D](/perioden-system-der-elemente/)** - Interaktives 3D-Periodensystem mit detaillierten Informationen zu allen 118 Elementen
 
-🕶️ **[VR Atombau](/pages/pse-in-vr/)** - Erleben Sie den Aufbau von Atomen in Virtual Reality
+🕶️ **[VR Atombau](/pse-vr/)** - Erleben Sie den Aufbau von Atomen in Virtual Reality
 
 ## Testen Sie Ihr Wissen
 
