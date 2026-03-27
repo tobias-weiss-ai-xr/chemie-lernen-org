@@ -9,14 +9,14 @@ class EnhancedPHVisualization {
     this.animationId = null;
     this.titrationData = [];
     this.currentPoint = 0;
-    
+
     this.indicatorColors = [
       { name: 'Phenolphthalein', range: [8.2, 10], color: '#ff69b4' },
       { name: 'Bromthymolblau', range: [6.0, 7.6], color: '#1e90ff' },
       { name: 'Methylorange', range: [3.1, 4.4], color: '#ffa500' },
       { name: 'Lackmus', range: [4.5, 8.3], color: '#9370db' }
     ];
-    
+
     this.init();
   }
 
@@ -35,7 +35,7 @@ class EnhancedPHVisualization {
     }
 
     this.container = container;
-    
+
     const vizContainer = document.createElement('div');
     vizContainer.className = 'enhanced-ph-container';
     vizContainer.style.cssText = `
@@ -44,27 +44,27 @@ class EnhancedPHVisualization {
       gap: 20px;
       margin: 20px 0;
     `;
-    
+
     const phScaleDiv = document.createElement('div');
     phScaleDiv.className = 'ph-scale-viz';
     phScaleDiv.innerHTML = `
       <h4>pH-Skala Visualisierung</h4>
-      <canvas id="ph-scale-canvas" width="600" height="400" 
+      <canvas id="ph-scale-canvas" width="600" height="400"
               style="border: 2px solid #28a745; border-radius: 8px; background: #f8f9fa; width: 100%; height: auto;"></canvas>
       <div class="ph-scale-controls" style="margin-top: 15px;">
-        <input type="range" id="ph-slider" min="0" max="14" step="0.1" value="7" 
+        <input type="range" id="ph-slider" min="0" max="14" step="0.1" value="7"
                style="width: 100%; margin: 10px 0;">
         <div style="text-align: center;">
           <strong>Aktueller pH: <span id="ph-value">7.0</span></strong>
         </div>
       </div>
     `;
-    
+
     const titrationDiv = document.createElement('div');
     titrationDiv.className = 'titration-curve-viz';
     titrationDiv.innerHTML = `
       <h4>Titrationkurven</h4>
-      <canvas id="titration-canvas" width="600" height="400" 
+      <canvas id="titration-canvas" width="600" height="400"
               style="border: 2px solid #28a745; border-radius: 8px; background: #f8f9fa; width: 100%; height: auto;"></canvas>
       <div class="titration-controls" style="margin-top: 15px;">
         <select id="titration-type" class="form-control" style="margin: 10px 0;">
@@ -82,11 +82,11 @@ class EnhancedPHVisualization {
         </div>
       </div>
     `;
-    
+
     vizContainer.appendChild(phScaleDiv);
     vizContainer.appendChild(titrationDiv);
     container.appendChild(vizContainer);
-    
+
     this.canvas = document.getElementById('ph-scale-canvas');
     this.ctx = this.canvas.getContext('2d');
     this.titrationCanvas = document.getElementById('titration-canvas');
@@ -103,7 +103,7 @@ class EnhancedPHVisualization {
       margin: 20px 0;
       border: 1px solid #dee2e6;
     `;
-    
+
     controlsDiv.innerHTML = `
       <h4>pH-Indikatoren</h4>
       <div class="indicator-grid" id="indicator-grid">
@@ -124,7 +124,7 @@ class EnhancedPHVisualization {
         </div>
       </div>
     `;
-    
+
     this.container.appendChild(controlsDiv);
   }
 
@@ -132,14 +132,14 @@ class EnhancedPHVisualization {
     const phSlider = document.getElementById('ph-slider');
     const phValue = document.getElementById('ph-value');
     const indicatorGrid = document.getElementById('indicator-grid');
-    
+
     phSlider.addEventListener('input', () => {
       this.currentPH = parseFloat(phSlider.value);
       phValue.textContent = this.currentPH.toFixed(1);
       this.updateVisualization();
       this.updateIndicators();
     });
-    
+
     const phExamples = document.querySelectorAll('.ph-example');
     phExamples.forEach(button => {
       button.addEventListener('click', () => {
@@ -147,23 +147,23 @@ class EnhancedPHVisualization {
         this.animateToPH(targetPH);
       });
     });
-    
+
     const startBtn = document.getElementById('start-titration');
     const resetBtn = document.getElementById('reset-titration');
     const titrationType = document.getElementById('titration-type');
-    
+
     startBtn.addEventListener('click', () => {
       this.startTitration(titrationType.value);
     });
-    
+
     resetBtn.addEventListener('click', () => {
       this.resetTitration();
     });
-    
+
     titrationType.addEventListener('change', () => {
       this.resetTitration();
     });
-    
+
     this.updateVisualization();
     this.updateIndicators();
   }
@@ -173,9 +173,9 @@ class EnhancedPHVisualization {
     const ctx = this.ctx;
     const width = canvas.width;
     const height = canvas.height;
-    
+
     ctx.clearRect(0, 0, width, height);
-    
+
     this.drawPHScale(ctx, width, height);
     this.drawPHIndicator(ctx, width, height);
     this.drawSubstances(ctx, width, height);
@@ -186,7 +186,7 @@ class EnhancedPHVisualization {
     const scaleHeight = height - 120;
     const scaleWidth = width - 100;
     const startX = 50;
-    
+
     const gradient = ctx.createLinearGradient(startX, startY, startX + scaleWidth, startY);
     gradient.addColorStop(0, '#ff0000');
     gradient.addColorStop(0.2, '#ff3300');
@@ -198,28 +198,28 @@ class EnhancedPHVisualization {
     gradient.addColorStop(0.8, '#00ffcc');
     gradient.addColorStop(0.9, '#0099ff');
     gradient.addColorStop(1, '#0066ff');
-    
+
     ctx.fillStyle = gradient;
     ctx.fillRect(startX, startY, scaleWidth, 40);
-    
+
     ctx.strokeStyle = '#333';
     ctx.lineWidth = 2;
     ctx.strokeRect(startX, startY, scaleWidth, 40);
-    
+
     ctx.font = '12px Arial';
     ctx.fillStyle = '#333';
     ctx.textAlign = 'center';
-    
+
     for (let i = 0; i <= 14; i++) {
       const x = startX + (i / 14) * scaleWidth;
-      
+
       ctx.beginPath();
       ctx.moveTo(x, startY + 40);
       ctx.lineTo(x, startY + 45);
       ctx.stroke();
-      
+
       ctx.fillText(i.toString(), x, startY + 60);
-      
+
       if (i === 7) {
         ctx.strokeStyle = '#28a745';
         ctx.lineWidth = 3;
@@ -227,7 +227,7 @@ class EnhancedPHVisualization {
         ctx.moveTo(x, startY - 10);
         ctx.lineTo(x, startY + 50);
         ctx.stroke();
-        
+
         ctx.fillStyle = '#28a745';
         ctx.font = 'bold 14px Arial';
         ctx.fillText('NEUTRAL', x, startY - 15);
@@ -235,7 +235,7 @@ class EnhancedPHVisualization {
         ctx.font = '12px Arial';
       }
     }
-    
+
     const markerX = startX + (this.currentPH / 14) * scaleWidth;
     ctx.strokeStyle = '#dc3545';
     ctx.lineWidth = 4;
@@ -245,7 +245,7 @@ class EnhancedPHVisualization {
     ctx.lineTo(markerX, startY + 50);
     ctx.stroke();
     ctx.setLineDash([]);
-    
+
     ctx.fillStyle = '#dc3545';
     ctx.font = 'bold 16px Arial';
     ctx.fillText(`pH = ${this.currentPH.toFixed(1)}`, markerX, startY - 25);
@@ -255,7 +255,7 @@ class EnhancedPHVisualization {
     const centerX = width / 2;
     const centerY = height - 40;
     const radius = 25;
-    
+
     ctx.strokeStyle = '#666';
     ctx.lineWidth = 2;
     ctx.beginPath();
@@ -264,12 +264,12 @@ class EnhancedPHVisualization {
     ctx.lineTo(centerX + 25, centerY - 60);
     ctx.lineTo(centerX + 30, centerY);
     ctx.stroke();
-    
+
     const solutionHeight = 55;
     const solutionColor = this.getSolutionColor(this.currentPH);
     ctx.fillStyle = solutionColor;
     ctx.fillRect(centerX - 24, centerY - solutionHeight, 48, solutionHeight);
-    
+
     ctx.strokeStyle = solutionColor;
     ctx.lineWidth = 2;
     ctx.beginPath();
@@ -287,16 +287,16 @@ class EnhancedPHVisualization {
       { name: 'Seife', ph: 10, color: '#00ffcc', x: 480, y: height - 140 },
       { name: 'Bleichmittel', ph: 13, color: '#0066ff', x: 580, y: height - 140 }
     ];
-    
+
     substances.forEach(substance => {
       ctx.fillStyle = '#f0f0f0';
       ctx.fillRect(substance.x - 20, substance.y - 30, 40, 35);
       ctx.strokeStyle = '#666';
       ctx.strokeRect(substance.x - 20, substance.y - 30, 40, 35);
-      
+
       ctx.fillStyle = substance.color;
       ctx.fillRect(substance.x - 18, substance.y - 15, 36, 20);
-      
+
       ctx.fillStyle = '#333';
       ctx.font = '10px Arial';
       ctx.textAlign = 'center';
@@ -318,17 +318,17 @@ class EnhancedPHVisualization {
 
   updateIndicators() {
     const indicatorGrid = document.getElementById('indicator-grid');
-    
-    const suitableIndicators = this.indicatorColors.filter(indicator => 
+
+    const suitableIndicators = this.indicatorColors.filter(indicator =>
       this.currentPH >= indicator.range[0] && this.currentPH <= indicator.range[1]
     );
-    
+
     let html = '';
     if (suitableIndicators.length > 0) {
       html = '<div class="suitable-indicators">';
       suitableIndicators.forEach(indicator => {
         html += `
-          <div class="indicator-item" style="background: ${indicator.color}20; 
+          <div class="indicator-item" style="background: ${indicator.color}20;
                     border-left: 4px solid ${indicator.color}; padding: 10px; margin: 5px 0;">
             <strong>${indicator.name}</strong>
             <div style="font-size: 12px; color: #666;">
@@ -346,7 +346,7 @@ class EnhancedPHVisualization {
         </div>
       `;
     }
-    
+
     indicatorGrid.innerHTML = html;
   }
 
@@ -355,24 +355,24 @@ class EnhancedPHVisualization {
     const endPH = targetPH;
     const duration = 1000;
     const startTime = performance.now();
-    
+
     const animate = () => {
       const elapsed = performance.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const currentPH = startPH + (endPH - startPH) * progress;
-      
+
       this.currentPH = currentPH;
       document.getElementById('ph-slider').value = currentPH;
       document.getElementById('ph-value').textContent = currentPH.toFixed(1);
-      
+
       this.updateVisualization();
       this.updateIndicators();
-      
+
       if (progress < 1) {
         requestAnimationFrame(animate);
       }
     };
-    
+
     requestAnimationFrame(animate);
   }
 
@@ -385,7 +385,7 @@ class EnhancedPHVisualization {
   generateTitrationData(type) {
     const data = [];
     const points = 100;
-    
+
     switch(type) {
       case 'strong-strong':
         for (let i = 0; i < points; i++) {
@@ -394,7 +394,7 @@ class EnhancedPHVisualization {
           data.push({ volume, ph });
         }
         break;
-        
+
       case 'strong-weak':
         for (let i = 0; i < points; i++) {
           const volume = (i / points) * 50;
@@ -402,7 +402,7 @@ class EnhancedPHVisualization {
           data.push({ volume, ph });
         }
         break;
-        
+
       case 'weak-strong':
         for (let i = 0; i < points; i++) {
           const volume = (i / points) * 50;
@@ -410,7 +410,7 @@ class EnhancedPHVisualization {
           data.push({ volume, ph });
         }
         break;
-        
+
       case 'weak-weak':
         for (let i = 0; i < points; i++) {
           const volume = (i / points) * 50;
@@ -419,20 +419,20 @@ class EnhancedPHVisualization {
         }
         break;
     }
-    
+
     return data;
   }
 
   animateTitration() {
     if (this.currentPoint >= this.titrationData.length) {
-      document.getElementById('equivalence-point').textContent = 
+      document.getElementById('equivalence-point').textContent =
         this.titrationData[Math.floor(this.titrationData.length * 0.5)].volume.toFixed(1);
       return;
     }
-    
+
     this.drawTitrationCurve();
     this.currentPoint += 2;
-    
+
     requestAnimationFrame(() => this.animateTitration());
   }
 
@@ -440,9 +440,9 @@ class EnhancedPHVisualization {
     const ctx = this.titrationCtx;
     const width = this.titrationCanvas.width;
     const height = this.titrationCanvas.height;
-    
+
     ctx.clearRect(0, 0, width, height);
-    
+
     ctx.strokeStyle = '#333';
     ctx.lineWidth = 2;
     ctx.beginPath();
@@ -451,46 +451,46 @@ class EnhancedPHVisualization {
     ctx.moveTo(50, height - 50);
     ctx.lineTo(50, 30);
     ctx.stroke();
-    
+
     ctx.fillStyle = '#333';
     ctx.font = '14px Arial';
     ctx.textAlign = 'center';
     ctx.fillText('Volumen Titrant (mL)', width / 2, height - 20);
-    
+
     ctx.save();
     ctx.translate(20, height / 2);
     ctx.rotate(-Math.PI / 2);
     ctx.fillText('pH-Wert', 0, 0);
     ctx.restore();
-    
+
     ctx.strokeStyle = '#28a745';
     ctx.lineWidth = 3;
     ctx.beginPath();
-    
+
     this.titrationData.slice(0, this.currentPoint).forEach((point, index) => {
       const x = 50 + (point.volume / 50) * (width - 80);
       const y = height - 50 - (point.ph / 14) * (height - 100);
-      
+
       if (index === 0) {
         ctx.moveTo(x, y);
       } else {
         ctx.lineTo(x, y);
       }
     });
-    
+
     ctx.stroke();
-    
+
     ctx.strokeStyle = '#e0e0e0';
     ctx.lineWidth = 1;
     ctx.setLineDash([2, 2]);
-    
+
     for (let i = 0; i <= 14; i++) {
       const y = height - 50 - (i / 14) * (height - 100);
       ctx.beginPath();
       ctx.moveTo(50, y);
       ctx.lineTo(width - 30, y);
       ctx.stroke();
-      
+
       if (i % 2 === 0) {
         ctx.fillStyle = '#666';
         ctx.font = '10px Arial';
@@ -498,7 +498,7 @@ class EnhancedPHVisualization {
         ctx.fillText(i.toString(), 45, y + 3);
       }
     }
-    
+
     ctx.setLineDash([]);
   }
 

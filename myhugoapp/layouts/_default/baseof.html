@@ -58,7 +58,26 @@
   {{ with .Site.Params.analytics }}
     {{ partial "analytics.html" . }}
   {{ end }}
-{{ block "js" . }}{{ end }}
+{{ block "js" . }}
+<script src="/js/lazy-loader.js"></script>
+{{ end }}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const path = window.location.pathname;
+  if (path.includes('/stoechiometrie-rechner/')) {
+    if (typeof LazyLoader !== 'undefined') {
+      LazyLoader.loadCalculator('stoichiometry').then(() => {
+        console.log('Stoichiometry calculator loaded successfully');
+      }).catch(err => {
+        console.error('Failed to load calculator:', err);
+      });
+    } else {
+      console.error('LazyLoader not available');
+    }
+  }
+});
+</script>
 
   <script>
     $(document).ready(function() {

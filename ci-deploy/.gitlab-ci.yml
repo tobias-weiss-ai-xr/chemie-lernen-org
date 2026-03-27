@@ -16,4 +16,6 @@ deploy:
   script:
     - hugo --destination "$BUILD_DIR"
     - minify -r -o $BUILD_DIR/ $BUILD_DIR/
+    - chmod -R 644 "$BUILD_DIR"/css/*.css "$BUILD_DIR"/js/*.js "$BUILD_DIR"/js/**/*.js
+    - find "$BUILD_DIR" -type d -exec chmod 755 {} \;
     - rsync -rv -e "ssh -p $SSH_PORT" "$BUILD_DIR"/ "$SSH_HOSTDEST" --checksum

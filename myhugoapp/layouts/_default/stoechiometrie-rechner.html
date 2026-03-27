@@ -3,6 +3,9 @@
 <!-- jsPDF Library for PDF export -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
+<!-- Lazy Loader for Calculator Scripts - Load early to avoid reference errors -->
+<script src="/js/lazy-loader.js"></script>
+
 <div class="stoichiometry-calculator-container">
 
   <div class="row">
@@ -992,17 +995,14 @@
 
 </div>
 
+{{ end }}
 
-<!-- Lazy Loader for Calculator Scripts -->
-<script src="/static/js/lazy-loader.js"></script>
 <script>
 // Initialize calculator when page is ready
 document.addEventListener('DOMContentLoaded', function() {
-  // Load calculator scripts lazily
   if (typeof LazyLoader !== 'undefined') {
     LazyLoader.loadCalculator('stoichiometry').then(() => {
-      // After calculator scripts load, load the page-specific script
-      LazyLoader.loadScript('/static/js/calculators/stoichiometry-calculator-page.js', 'calculator-page');
+      console.log('Stoichiometry calculator loaded successfully');
     }).catch(err => {
       console.error('Failed to load calculator:', err);
     });
@@ -1011,7 +1011,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
-
 
 <style>
 .stoichiometry-calculator-container { max-width: 1100px; margin: 0 auto; padding: 20px; }
@@ -1099,6 +1098,31 @@ document.addEventListener('DOMContentLoaded', function() {
   font-size: 12px;
   margin-left: 5px;
 }
-</style>
 
-{{ end }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof LazyLoader !== 'undefined') {
+    LazyLoader.loadCalculator('stoichiometry').then(() => {
+      console.log('Stoichiometry calculator loaded successfully');
+    }).catch(err => {
+      console.error('Failed to load calculator:', err);
+    });
+  } else {
+    console.error('LazyLoader not available');
+  }
+});
+</script>
+</style>
+</div>
+  if (typeof LazyLoader !== 'undefined') {
+    LazyLoader.loadCalculator('stoichiometry').then(() => {
+      console.log('Stoichiometry calculator loaded successfully');
+    }).catch(err => {
+      console.error('Failed to load calculator:', err);
+    });
+  } else {
+    console.error('LazyLoader not available');
+  }
+});
+</script>
+

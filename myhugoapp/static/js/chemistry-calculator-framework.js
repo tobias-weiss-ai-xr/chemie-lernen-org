@@ -16,11 +16,11 @@ class ChemistryCalculator {
       validation: config.validation || {},
       units: config.units || {}
     };
-    
+
     // DOM cache
     this.elements = {};
     this.results = {};
-    
+
     // Initialize calculator
     this.init();
   }
@@ -34,10 +34,10 @@ class ChemistryCalculator {
       const element = document.getElementById(field.id);
       if (element) {
         this.elements[field.id] = element;
-        
+
         // Add input validation
         element.addEventListener('input', (e) => this.validateInput(field.id, e.target.value));
-        
+
         // Add Enter key support
         element.addEventListener('keypress', (e) => {
           if (e.key === 'Enter') {
@@ -83,12 +83,12 @@ class ChemistryCalculator {
         this.showValidationError(fieldId, 'Bitte geben Sie eine gültige Zahl ein.');
         return false;
       }
-      
+
       if (validation.min !== undefined && numValue < validation.min) {
         this.showValidationError(fieldId, `Wert muss größer als ${validation.min} sein.`);
         return false;
       }
-      
+
       if (validation.max !== undefined && numValue > validation.max) {
         this.showValidationError(fieldId, `Wert muss kleiner als ${validation.max} sein.`);
         return false;
@@ -124,7 +124,7 @@ class ChemistryCalculator {
     const field = this.elements[fieldId];
     if (field) {
       field.classList.add('error');
-      
+
       // Find or create error message container
       let errorContainer = field.parentNode.querySelector('.error-message');
       if (!errorContainer) {
@@ -132,10 +132,10 @@ class ChemistryCalculator {
         errorContainer.className = 'error-message';
         field.parentNode.appendChild(errorContainer);
       }
-      
+
       errorContainer.textContent = message;
       errorContainer.style.display = 'block';
-      
+
       // Auto-hide after 5 seconds
       setTimeout(() => {
         errorContainer.style.display = 'none';
@@ -152,7 +152,7 @@ class ChemistryCalculator {
     const field = this.elements[fieldId];
     if (field) {
       field.classList.remove('error');
-      
+
       const errorContainer = field.parentNode.querySelector('.error-message');
       if (errorContainer) {
         errorContainer.style.display = 'none';
@@ -168,7 +168,7 @@ class ChemistryCalculator {
     for (const fieldConfig of this.config.inputFields) {
       const element = this.elements[fieldConfig.id];
       const value = element ? element.value : '';
-      
+
       if (!this.validateInput(fieldConfig.id, value)) {
         return false;
       }
@@ -196,21 +196,21 @@ class ChemistryCalculator {
     try {
       // Execute calculation function
       const results = this.config.calculations.calculate(inputs);
-      
+
       // Display results
       this.displayResults(results);
-      
+
       // Clear any validation errors
       for (const fieldId of Object.keys(this.elements)) {
         this.clearValidationError(fieldId);
       }
-      
+
     } catch (error) {
       // Show error message
       const errorContainer = document.querySelector('.calculator-error') || this.createErrorContainer();
       errorContainer.textContent = `Berechnungsfehler: ${error.message}`;
       errorContainer.style.display = 'block';
-      
+
       console.error('Calculation error:', error);
     }
   }
@@ -225,13 +225,13 @@ class ChemistryCalculator {
     switch (type) {
       case 'number':
         return parseFloat(value) || 0;
-      
+
       case 'select':
       return value;
-      
+
       case 'checkbox':
         return value === 'on' || value === 'true';
-      
+
       case 'text':
       default:
         return value.toString().trim();
@@ -248,7 +248,7 @@ class ChemistryCalculator {
       if (resultElement) {
         resultElement.textContent = value;
         resultElement.style.display = 'block';
-        
+
         // Add animation for result appearance
         resultElement.classList.add('result-updated');
         setTimeout(() => {

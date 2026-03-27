@@ -222,26 +222,26 @@ class AdvancedLazyLoader {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
-  
+
   .lazy-loaded {
     opacity: 1;
   }
-  
+
   .lazy-placeholder {
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background-size: 200% 100%;
     animation: loading 1.5s infinite;
   }
-  
+
   @keyframes loading {
     0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }
   }
-  
+
   .loaded {
     animation: fadeIn 0.5s ease-in-out;
   }
-  
+
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -257,15 +257,15 @@ function convertImagesToLazy() {
       img.dataset.src = img.src;
       img.src = '';
       img.classList.add('lazy-loading');
-      
+
       const placeholder = document.createElement('div');
       placeholder.className = 'lazy-placeholder';
       placeholder.style.width = img.width + 'px';
       placeholder.style.height = img.height + 'px';
-      
+
       img.parentNode.insertBefore(placeholder, img);
       img.style.display = 'none';
-      
+
       setTimeout(() => {
         placeholder.remove();
         img.style.display = '';

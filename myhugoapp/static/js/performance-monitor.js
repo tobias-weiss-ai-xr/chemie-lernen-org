@@ -16,7 +16,7 @@ class PerformanceMonitor {
       navigation: {},
       userInteractions: []
     };
-    
+
     this.thresholds = {
       LCP: 2500,
       FID: 100,
@@ -96,12 +96,12 @@ class PerformanceMonitor {
 
   observeUserInteractions() {
     let lastInteractionTime = 0;
-    
+
     ['click', 'touchstart', 'keydown'].forEach(eventType => {
       document.addEventListener(eventType, (event) => {
         const now = performance.now();
         const responseTime = now - lastInteractionTime;
-        
+
         if (lastInteractionTime > 0 && responseTime < 1000) {
           this.metrics.userInteractions.push({
             type: eventType,
@@ -110,7 +110,7 @@ class PerformanceMonitor {
             element: event.target.tagName
           });
         }
-        
+
         lastInteractionTime = now;
       }, { passive: true });
     });
@@ -141,7 +141,7 @@ class PerformanceMonitor {
     };
 
     this.metrics.resources.push(resource);
-    
+
     if (resource.duration > 1000) {
       this.resourceWarning(resource);
     }
@@ -160,7 +160,7 @@ class PerformanceMonitor {
       'woff': 'font',
       'woff2': 'font'
     };
-    
+
     return typeMap[extension] || 'other';
   }
 
@@ -216,7 +216,7 @@ class PerformanceMonitor {
 
   checkNavigationPerformance() {
     const { navigation } = this.metrics;
-    
+
     Object.entries(this.thresholds).forEach(([metric, threshold]) => {
       const value = navigation[metric.toLowerCase().replace(/([A-Z])/g, '-$1').toLowerCase()];
       if (value && value > threshold) {
@@ -237,23 +237,23 @@ class PerformanceMonitor {
 
   calculateAverageLoadTime() {
     if (this.metrics.resources.length === 0) return 0;
-    
+
     const totalTime = this.metrics.resources.reduce((sum, resource) => sum + resource.duration, 0);
     return totalTime / this.metrics.resources.length;
   }
 
   calculateInteractionResponsiveness() {
     if (this.metrics.userInteractions.length === 0) return 0;
-    
+
     const recentInteractions = this.metrics.userInteractions.slice(-20);
     const averageResponseTime = recentInteractions.reduce((sum, interaction) => sum + interaction.responseTime, 0) / recentInteractions.length;
-    
+
     return averageResponseTime;
   }
 
   generateReport() {
     const metrics = this.getCurrentMetrics();
-    
+
     return {
       timestamp: new Date().toISOString(),
       summary: {
@@ -275,7 +275,7 @@ class PerformanceMonitor {
 
   generateRecommendations(metrics) {
     const recommendations = [];
-    
+
     if (metrics.averageLoadTime > 2000) {
       recommendations.push({
         type: 'performance',
@@ -284,7 +284,7 @@ class PerformanceMonitor {
         action: 'Use WebP images and enable gzip/brotli compression'
       });
     }
-    
+
     if (metrics.slowResources > 5) {
       recommendations.push({
         type: 'resources',
@@ -293,7 +293,7 @@ class PerformanceMonitor {
         action: 'Implement CDN for static assets'
       });
     }
-    
+
     if (metrics.interactionScore > 200) {
       recommendations.push({
         type: 'interactivity',
@@ -302,17 +302,17 @@ class PerformanceMonitor {
         action: 'Reduce main thread blocking operations'
       });
     }
-    
+
     return recommendations;
   }
 
   saveReport() {
     const report = this.generateReport();
     const reportPath = path.join(__dirname, '../../performance-report.json');
-    
+
     fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
     console.log('Performance report saved to performance-report.json');
-    
+
     return report;
   }
 
@@ -330,7 +330,7 @@ class PerformanceMonitor {
 if (typeof window !== 'undefined') {
   const monitor = new PerformanceMonitor();
   window.PerformanceMonitor = PerformanceMonitor;
-  
+
   // Save report every 5 minutes
   setInterval(() => {
     monitor.saveReport();

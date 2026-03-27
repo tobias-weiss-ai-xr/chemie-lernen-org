@@ -15,5 +15,6 @@ pipelines:
         name: Deploy with rsync to remote server
         deployment: production
         script:
+          - chmod -R 644 public/css/*.css public/js/*.js public/js/**/*.js
+          - find public -type d -exec chmod 755 {} \;
           - rsync -rv -e "ssh -p $SSH_PORT" public/ "$SSH_HOSTDEST" --checksum
-

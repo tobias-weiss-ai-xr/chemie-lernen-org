@@ -9,18 +9,15 @@ class LazyLoader {
     this.loadingPromises = new Map();
     this.cache = new Map();
     this.observers = [];
-    
+
     this.preloadCriticalModules();
     this.setupIntersectionObserver();
   }
 
   preloadCriticalModules() {
-    const criticalModules = [
-      '/js/chemistry-calculator-framework.js',
-      '/js/dark-mode.js'
-    ];
+    const criticalModules = ['/js/chemistry-calculator-framework.js', '/js/dark-mode.js'];
 
-    criticalModules.forEach(module => {
+    criticalModules.forEach((module) => {
       this.preloadModule(module);
     });
   }
@@ -30,21 +27,24 @@ class LazyLoader {
       return;
     }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const calculatorType = entry.target.dataset.calculator;
-          if (calculatorType) {
-            this.loadCalculator(calculatorType);
-            observer.unobserve(entry.target);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const calculatorType = entry.target.dataset.calculator;
+            if (calculatorType) {
+              this.loadCalculator(calculatorType);
+              observer.unobserve(entry.target);
+            }
           }
-        }
-      });
-    }, {
-      rootMargin: '50px 0px -50px 0px'
-    });
+        });
+      },
+      {
+        rootMargin: '50px 0px -50px 0px',
+      }
+    );
 
-    document.querySelectorAll('[data-calculator]').forEach(element => {
+    document.querySelectorAll('[data-calculator]').forEach((element) => {
       observer.observe(element);
     });
 
@@ -61,12 +61,13 @@ class LazyLoader {
     }
 
     const moduleMap = {
-      'ph': '/js/ph-rechner-framework.js',
-      'druck': '/js/druck-flaechen-rechner-framework.js',
-      'molmasse': '/js/molare-masse-rechner.js',
-      'konzentration': '/js/konzentrationsumrechner.js',
-      'gasgesetz': '/js/gasgesetz-rechner.js',
-      'titration': '/js/titrations-simulator.js'
+      ph: '/js/ph-rechner-framework.js',
+      druck: '/js/druck-flaechen-rechner-framework.js',
+      molmasse: '/js/molare-masse-rechner.js',
+      konzentration: '/js/konzentrationsumrechner.js',
+      gasgesetz: '/js/gasgesetz-rechner.js',
+      titration: '/js/titrations-simulator.js',
+      stoichiometry: '/js/calculators/stoichiometry-calculator-page.js',
     };
 
     const modulePath = moduleMap[calculatorType];
@@ -82,11 +83,13 @@ class LazyLoader {
       this.loadedModules.add(calculatorType);
       this.cache.set(calculatorType, module);
       this.loadingPromises.delete(calculatorType);
-      
-      window.dispatchEvent(new CustomEvent('calculatorLoaded', {
-        detail: { type: calculatorType, module }
-      }));
-      
+
+      window.dispatchEvent(
+        new CustomEvent('calculatorLoaded', {
+          detail: { type: calculatorType, module },
+        })
+      );
+
       return module;
     } catch (error) {
       this.loadingPromises.delete(calculatorType);
@@ -108,22 +111,22 @@ class LazyLoader {
       const script = document.createElement('script');
       script.src = modulePath;
       script.async = true;
-      
+
       script.onload = () => {
         const moduleName = modulePath.split('/').pop().replace('.js', '');
         const module = window[moduleName] || window.default;
-        
+
         if (module) {
           resolve(module);
         } else {
           reject(new Error(`Module ${moduleName} not found after load`));
         }
       };
-      
+
       script.onerror = () => {
         reject(new Error(`Failed to load module: ${modulePath}`));
       };
-      
+
       document.head.appendChild(script);
     });
   }
@@ -137,17 +140,19 @@ class LazyLoader {
   }
 
   async loadModules(moduleTypes) {
-    const loadPromises = moduleTypes.map(type => this.loadCalculator(type));
+    const loadPromises = moduleTypes.map((type) => this.loadCalculator(type));
     return Promise.allSettled(loadPromises);
   }
 
   unloadModule(calculatorType) {
     this.loadedModules.delete(calculatorType);
     this.cache.delete(calculatorType);
-    
-    window.dispatchEvent(new CustomEvent('calculatorUnloaded', {
-      detail: { type: calculatorType }
-    }));
+
+    window.dispatchEvent(
+      new CustomEvent('calculatorUnloaded', {
+        detail: { type: calculatorType },
+      })
+    );
   }
 
   getStats() {
@@ -155,7 +160,7 @@ class LazyLoader {
       loadedModules: Array.from(this.loadedModules),
       loadingCount: this.loadingPromises.size,
       cacheSize: this.cache.size,
-      activeObservers: this.observers.length
+      activeObservers: this.observers.length,
     };
   }
 
@@ -163,17 +168,18 @@ class LazyLoader {
     this.loadedModules.clear();
     this.loadingPromises.clear();
     this.cache.clear();
-    this.observers.forEach(observer => observer.disconnect());
+    this.observers.forEach((observer) => observer.disconnect());
     this.observers = [];
   }
 
   setupServiceWorker() {
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js')
-        .then(registration => {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then((registration) => {
           console.log('Service Worker registered');
         })
-        .catch(error => {
+        .catch((error) => {
           console.log('Service Worker registration failed:', error);
         });
     }

@@ -27,6 +27,7 @@ class BundleManager {
         titration: '/js/titrations-simulator.optimized.js',
         combustion: '/js/verbrennungsrechner.optimized.js',
         solubility: '/js/loeslichkeitsprodukt-rechner.optimized.js',
+        stoichiometry: '/js/calculators/stoichiometry-calculator-page.js',
       },
 
       visualizations: {
@@ -189,9 +190,9 @@ window.BundleManager = new BundleManager();
 <style>
   body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
   .calculator-panel { padding: 20px; min-height: 400px; }
-  .loading-spinner { 
-    border: 3px solid #f3f3f3; border-top: 3px solid #007bff; 
-    border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; 
+  .loading-spinner {
+    border: 3px solid #f3f3f3; border-top: 3px solid #007bff;
+    border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;
   }
   @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 </style>
@@ -206,7 +207,7 @@ window.BundleManager = new BundleManager();
   if (window.location.pathname.includes('/molekuel-studio')) {
     window.BundleManager.preloadBundles(['molecular-studio']);
   }
-  
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
@@ -222,9 +223,9 @@ window.BundleManager = new BundleManager();
 
 <noscript>
   <style>
-    .calculator-panel { 
-      border: 2px solid #dc3545; padding: 20px; 
-      background: #f8d7da; color: #721c24; 
+    .calculator-panel {
+      border: 2px solid #dc3545; padding: 20px;
+      background: #f8d7da; color: #721c24;
     }
   </style>
   <div class="calculator-panel">
