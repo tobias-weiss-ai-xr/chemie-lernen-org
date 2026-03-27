@@ -1,9 +1,11 @@
 {
   "scripts": {
-    "test": "jest",
+    "test": "jest --forceExit",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "test:verbose": "jest --verbose",
+    "test:coverage": "jest --coverage --forceExit",
+    "test:verbose": "jest --verbose --forceExit",
+    "test:integration": "jest --forceExit --testPathIgnorePatterns='node_modules'",
+    "test:unit": "jest --forceExit --testPathIgnorePatterns='complete-site-audit|site-accessibility-audit|mobile-responsiveness|interactive-experiments'",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",

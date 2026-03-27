@@ -5,12 +5,15 @@ const { defineConfig, devices } = require('@playwright/test');
 module.exports = defineConfig({
   testDir: '.',
 
+  // Only run Playwright spec files — .test.js files are Jest-only
+  testMatch: '**/*.spec.{js,ts}',
+
   // Timeout per test
   timeout: 30000,
 
   // Expect timeout
   expect: {
-    timeout: 5000
+    timeout: 5000,
   },
 
   // Fail the build on CI if you accidentally left test.only in the source code
@@ -26,7 +29,7 @@ module.exports = defineConfig({
   reporter: [
     ['html', { outputFolder: 'playwright-report', open: 'never' }],
     ['json', { outputFile: 'test-results/playwright-results.json' }],
-    ['list']
+    ['list'],
   ],
 
   // Shared settings for all tests

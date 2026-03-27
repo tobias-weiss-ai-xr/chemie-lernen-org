@@ -9,6 +9,16 @@ const BASE_URL = process.env.BASE_URL || 'https://chemie-lernen.org';
 
 test.describe('Dark Mode Toggle', () => {
   test.beforeEach(async ({ page }) => {
+    // Capture console logs
+    page.on('console', (msg) => {
+      console.log('Browser console:', msg.type(), msg.text());
+    });
+
+    // Capture page errors
+    page.on('pageerror', (error) => {
+      console.log('Browser error:', error.message);
+    });
+
     // Clear localStorage before each test
     await page.goto(BASE_URL);
     await page.evaluate(() => localStorage.clear());
@@ -19,6 +29,31 @@ test.describe('Dark Mode Toggle', () => {
 
     const toggleBtn = page.locator('#theme-toggle');
     await expect(toggleBtn).toBeVisible();
+
+    // Debug: Check if window.toggleTheme exists
+    const hasToggleTheme = await page.evaluate(() => typeof window.toggleTheme === 'function');
+    console.log('window.toggleTheme exists:', hasToggleTheme);
+
+    // Debug: Check document.readyState when script loads
+    const readyState = await page.evaluate(() => document.readyState);
+    console.log('document.readyState:', readyState);
+
+    // Debug: Manually trigger theme toggle
+    const themeBefore = await page.evaluate(() =>
+      document.documentElement.getAttribute('data-theme')
+    );
+    console.log('Theme before manual toggle:', themeBefore);
+
+    await page.evaluate(() => {
+      if (typeof window.toggleTheme === 'function') {
+        window.toggleTheme();
+      }
+    });
+
+    const themeAfter = await page.evaluate(() =>
+      document.documentElement.getAttribute('data-theme')
+    );
+    console.log('Theme after manual toggle:', themeAfter);
   });
 
   test('should default to dark theme', async ({ page }) => {
