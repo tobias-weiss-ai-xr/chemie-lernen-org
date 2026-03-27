@@ -29,4 +29,4 @@ Vertiefung der organischen und physikalischen Chemie!
 ## Interaktiv
 
 - [Molekülstudio nutzen](/molekuel-studio/)
-- [PSE in VR](https://pse-in-vr.chemie-lernen.org/)
+- [PSE in VR](https://pse.chemie-lernen.org/)

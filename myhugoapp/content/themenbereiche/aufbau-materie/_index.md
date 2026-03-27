@@ -342,7 +342,7 @@ $$\ce{Zn + 2HCl -> ZnCl2 + H2}$$
 
 ### VR-Erfahrung: Atombau erleben
 
-🕶️ **[PSE in VR](https://pse-in-vr.chemie-lernen.org/)** - Tauchen Sie virtuell in die Welt der Atome ein!
+🕶️ **[PSE in VR](https://pse.chemie-lernen.org/)** - Tauchen Sie virtuell in die Welt der Atome ein!
 
 ## Zusammenfassung
 
