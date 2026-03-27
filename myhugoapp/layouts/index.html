@@ -11,309 +11,136 @@
 
    <!-- Main Heading -->
    <div class="row">
-     <div class="col-md-12">
-       <h1 class="text-center">{{ .Site.Title }}</h1>
-       {{ if .Site.Params.footer_description }}
-       <p class="lead text-center">{{ .Site.Params.footer_description }}</p>
-       {{ end }}
-     </div>
-   </div> 
+      <div class="col-md-12">
+        <h1 class="text-center">{{ .Site.Title }}</h1>
+        {{ if .Site.Params.footer_description }}
+        <p class="lead text-center">{{ .Site.Params.footer_description }}</p>
+        {{ end }}
+      </div>
+   </div>
 
    <!-- Section Heading -->
-  <div class="row">
+   <div class="row">
     <div class="col-md-12">
       <h2>Interaktive Lerninhalte</h2>
     </div>
   </div>
 
-     <div class="row pack">
- 
-         <!-- Custom Periodic Table Link Card -->
-        <div class="col-md-4 card">
-             <a href="/perioden-system-der-elemente/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #4caf50;">
+    <div id="card-grid">
 
-                  <div class="panel-body" style="background-color: #e8f5e9;">
-                    <h3 class="panel-title pull-left">⚛️ Periodensystem</h3>
-                  </div>
-
-                  <div class="panel-body"><small>
-                    Erleben Sie das Periodensystem in 3D mit verschiedenen Ansichten.</small>
-                  </div>
+      <!-- 3D-Visualisierungen Card -->
+      <div class="card">
+           <a href="/rechner/visualisierungen/" class="index-anchor">
+              <div class="panel panel-default" style="border: 2px solid #4caf50;">
+                <div class="panel-body" style="background-color: #e8f5e9;">
+                  <h3 class="panel-title pull-left">🎨 3D-Visualisierungen</h3>
                 </div>
-                </a>
-        </div>
-
-         <!-- Custom Molecule Studio Link Card -->
-         <div class="col-md-4 card">
-              <a href="/molekuel-studio/" class="index-anchor">
-                 <div class="panel panel-default" style="border: 2px solid #4caf50;">
- 
-                   <div class="panel-body" style="background-color: #e8f5e9;">
-                     <h3 class="panel-title pull-left">🔬 Molekülstudio</h3>
-                   </div> 
-   
-                   <div class="panel-body"><small>
-                     Visualisieren Sie Moleküle interaktiv in 3D im Browser.</small>
-                   </div>
-                 </div>
-                 </a>
-         </div> 
-   
-         <!-- pH-Rechner Card -->
-        <div class="col-md-4 card">
-             <a href="/ph-rechner/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #2196F3;">
-                  <div class="panel-body" style="background-color: #E3F2FD;">
-                    <h3 class="panel-title pull-left">🧪 pH-Rechner</h3>
-                  </div>
-                  <div class="panel-body"><small>
-                    Berechnen und visualisieren Sie pH-Werte von Säuren, Basen und Puffern.</small>
-                  </div>
+                <div class="panel-body"><small>
+                  Periodensystem und Molekülstudio: Interaktive 3D-Darstellungen chemischer Strukturen.</small>
                 </div>
-                </a>
-        </div>
-
-        <!-- Molare Masse Rechner Card -->
-        <div class="col-md-4 card">
-             <a href="/molare-masse-rechner/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #2196F3;">
-                  <div class="panel-body" style="background-color: #E3F2FD;">
-                    <h3 class="panel-title pull-left">⚗️ Molare Masse</h3>
-                  </div>
-                  <div class="panel-body"><small>
-                    Berechnen Sie die molare Masse von chemischen Verbindungen und Formeln.</small>
-                  </div>
-                </div>
-                </a>
-        </div>
-
-        <!-- Reaktionsgleichungen Ausgleichen Card -->
-        <div class="col-md-4 card">
-             <a href="/reaktionsgleichungen-ausgleichen/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #2196F3;">
-                  <div class="panel-body" style="background-color: #E3F2FD;">
-                    <h3 class="panel-title pull-left">⚖️ Gleichungen Ausgleichen</h3>
-                  </div>
-                  <div class="panel-body"><small>
-                    Gleichen Sie chemische Reaktionsgleichungen automatisch aus.</small>
-                  </div>
-                </div>
-                </a>
-        </div>
-
-        <!-- Stöchiometrie-Rechner Card -->
-        <div class="col-md-4 card">
-             <a href="/stoechiometrie-rechner/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #2196F3;">
-                  <div class="panel-body" style="background-color: #E3F2FD;">
-                    <h3 class="panel-title pull-left">📊 Stöchiometrie-Rechner</h3>
-                  </div>
-                  <div class="panel-body"><small>
-                    Führen Sie stöchiometrische Berechnungen durch und analysieren Sie Reaktionen.</small>
-                  </div>
-                </div>
-                </a>
-        </div>
-
-        <!-- Titrations-Simulator Card -->
-        <div class="col-md-4 card">
-             <a href="/titrations-simulator/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #FF9800;">
-                  <div class="panel-body" style="background-color: #FFF3E0;">
-                    <h3 class="panel-title pull-left">🔬 Titrations-Simulator</h3>
-                  </div>
-                  <div class="panel-body"><small>
-                    Simulieren Sie Titrationen mit verschiedenen Säure-Base-Paaren und visualisieren Sie die Kurvenverläufe.</small>
-                  </div>
-                </div>
-                </a>
-        </div>
-
-        <!-- Gasgesetz-Rechner Card -->
-        <div class="col-md-4 card">
-             <a href="/gasgesetz-rechner/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #FF9800;">
-                  <div class="panel-body" style="background-color: #FFF3E0;">
-                    <h3 class="panel-title pull-left">💨 Gasgesetz-Rechner</h3>
-                  </div>
-                  <div class="panel-body"><small>
-                    Berechnen Sie Gasgesetze (ideales Gasgesetz, Boyle-Mariotte, Gay-Lussac).</small>
-                  </div>
-                </div>
-                </a>
-        </div>
-
-        <!-- Torricelli-Versuch Card -->
-        <div class="col-md-4 card">
-             <a href="/torricelli-versuch/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #9C27B0;">
-                  <div class="panel-body" style="background-color: #F3E5F5;">
-                    <h3 class="panel-title pull-left">🔬 Torricelli-Versuch</h3>
-                  </div>
-                  <div class="panel-body"><small>
-                    Interaktive Simulation des historischen Experiments zur Messung des Luftdrucks mit Quecksilbersäule.
-                  </div>
-                </div>
-                </a>
-        </div>
-
-        <!-- Verbrennungsrechner Card -->
-        <div class="col-md-4 card">
-             <a href="/verbrennungsrechner/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #FF9800;">
-                  <div class="panel-body" style="background-color: #FFF3E0;">
-                    <h3 class="panel-title pull-left">🔥 Verbrennungsrechner</h3>
-                  </div>
-                  <div class="panel-body"><small>
-                    Analysieren Sie Verbrennungsreaktionen und berechnen Sie Energieumsätze und CO₂-Emissionen.</small>
-                  </div>
-                </div>
-                </a>
-        </div>
-
-        <!-- Löslichkeitsprodukt-Rechner Card -->
-        <div class="col-md-4 card">
-             <a href="/loeslichkeitsprodukt-rechner/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #FF9800;">
-                  <div class="panel-body" style="background-color: #FFF3E0;">
-                    <h3 class="panel-title pull-left">💧 Löslichkeitsprodukt</h3>
-                  </div>
-                  <div class="panel-body"><small>
-                    Berechnen Sie Löslichkeiten und Löslichkeitsprodukte von Salzen.</small>
-                  </div>
-                </div>
-                </a>
-        </div>
-
-        <!-- Redox-Potenzial-Rechner Card -->
-        <div class="col-md-4 card">
-             <a href="/redox-potenzial-rechner/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #FF9800;">
-                  <div class="panel-body" style="background-color: #FFF3E0;">
-                    <h3 class="panel-title pull-left">⚡ Redox-Potenzial</h3>
-                  </div>
-                  <div class="panel-body"><small>
-                    Berechnen Sie Redoxpotenziale und analysieren Sie Redoxreaktionen.</small>
-                  </div>
-                </div>
-                </a>
-        </div>
-
-        <!-- Konzentrationsumrechner Card -->
-        <div class="col-md-4 card">
-             <a href="/konzentrationsumrechner/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #9C27B0;">
-                  <div class="panel-body" style="background-color: #F3E5F5;">
-                    <h3 class="panel-title pull-left">🔄 Konzentrationsumrechner</h3>
-                  </div>
-                  <div class="panel-body"><small>
-                    Konvertieren Sie zwischen verschiedenen Konzentrationseinheiten (Molar, Prozent, ppm).</small>
-                  </div>
-                </div>
-                </a>
-        </div>
-
-        <!-- Lösungsrechner Card -->
-        <div class="col-md-4 card">
-             <a href="/loesungsrechner/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #9C27B0;">
-                  <div class="panel-body" style="background-color: #F3E5F5;">
-                    <h3 class="panel-title pull-left">🧫 Lösungsrechner</h3>
-                  </div>
-                  <div class="panel-body"><small>
-                    Bereiten Sie Lösungen mit genauer Konzentration durch Verdünnung oder Einwaage.</small>
-                  </div>
-                </div>
-                </a>
-        </div>
-
-        <!-- Einheitenumrechner Card -->
-        <div class="col-md-4 card">
-             <a href="/einheitenumrechner/" class="index-anchor">
-                <div class="panel panel-default" style="border: 2px solid #9C27B0;">
-                  <div class="panel-body" style="background-color: #F3E5F5;">
-                    <h3 class="panel-title pull-left">📏 Einheitenumrechner</h3>
-                  </div>
-                  <div class="panel-body"><small>
-                    Konvertieren Sie verschiedene physikalische und chemische Einheiten.</small>
-                  </div>
-                </div>
-                </a>
-        </div>
-
-    </div>
-
-
-    <!-- Featured Article Section: Mayers Principles -->
-    <hr class="featurette-divider">
-
-    <div class="row">
-      <div class="col-md-12">
-        <div class="featured-article" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 12px; margin-bottom: 30px;">
-          <div class="row">
-            <div class="col-md-8">
-              <span style="font-size: 2rem;">📖</span>
-              <h2 style="color: white; margin-top: 10px;">Featured: Mayers Prinzipien des Multimedialen Lernens</h2>
-              <p style="font-size: 1.1rem; margin: 15px 0;">
-                <strong>Wie wir effektive digitale Lernumgebungen gestalten</strong><br>
-                Entdecken Sie die wissenschaftlichen Grundlagen hinter unserer Lernplattform! Richard E. Mayers 12 Prinzipien des multimedialen Lernens bilden das Fundament für die Entwicklung unserer interaktiven Chemie-Lernräume.
-              </p>
-              <ul style="list-style: none; padding-left: 0; margin-bottom: 20px;">
-                <li style="margin-bottom: 8px;">🧠 <strong>Kognitive Psychologie:</strong> Wie das Gehirn visuelle und auditive Informationen verarbeitet</li>
-                <li style="margin-bottom: 8px;">🎯 <strong>Design-Prinzipien:</strong> 12 evidenzbasierte Prinzipien für effektives Lernen</li>
-                <li style="margin-bottom: 8px;">💡 <strong>Praktische Anwendung:</strong> Konkrete Beispiele aus unserer Chemie-Lernplattform</li>
-                <li style="margin-bottom: 8px;">📊 <strong>Checklisten:</strong> Handlungsanleitungen zur Umsetzung in eigenen Projekten</li>
-              </ul>
-              <a href="/pages/mayers-multimedia-lernen/" class="btn btn-default btn-lg" style="background-color: white; color: #667eea; border: none; font-weight: 600;">
-                Mayers 12 Prinzipien lesen →
-              </a>
-            </div>
-            <div class="col-md-4 text-center" style="display: flex; align-items: center; justify-content: center;">
-              <div>
-                <div style="font-size: 4rem; margin-bottom: 10px;">🎓</div>
-                <p style="font-size: 0.9rem; opacity: 0.9;">Für Lehrende, Instructional Designer und E-Learning-Entwickler</p>
               </div>
-            </div>
-          </div>
-        </div>
+              </a>
       </div>
+
+      <!-- Chemie-Rechner Card -->
+      <div class="card">
+           <a href="/rechner/chemie-rechner/" class="index-anchor">
+              <div class="panel panel-default" style="border: 2px solid #2196F3;">
+                <div class="panel-body" style="background-color: #E3F2FD;">
+                  <h3 class="panel-title pull-left">🧪 Chemie-Rechner</h3>
+                </div>
+                <div class="panel-body"><small>
+                  pH, Molare Masse, Gleichungen, Stöchiometrie: Essentielle Chemie-Berechnungen.</small>
+                </div>
+              </div>
+              </a>
+      </div>
+
+      <!-- Spezialrechner Card -->
+      <div class="card">
+           <a href="/rechner/spezialrechner/" class="index-anchor">
+              <div class="panel panel-default" style="border: 2px solid #FF9800;">
+                <div class="panel-body" style="background-color: #FFF3E0;">
+                  <h3 class="panel-title pull-left">🔬 Spezialrechner</h3>
+                </div>
+                <div class="panel-body"><small>
+                  Titrationen, Gasgesetze, Verbrennung, Umrechner: Fortschrittliche chemische Tools.</small>
+                </div>
+              </div>
+              </a>
+      </div>
+
     </div>
 
-    <!-- Blog Posts Section -->
-    <div class="row pack">
+   <!-- Featured Article Section: Mayers Principles -->
+   <hr class="featurette-divider">
 
-        {{ $paginator := .Paginate (where .Site.RegularPages "Section" "posts") }}
-        {{ range $paginator.Pages }}   
-            <div class="col-md-4 card">
-             <a href="{{ .Permalink }}" class="index-anchor">    
-                <div class="panel panel-default">
-                  
-                  {{ if .Params.img }}
-                  {{ with .Resources.Match .Params.img }}
-                    {{ range . }}
-                      <img width="100%" src="{{ .RelPermalink }}" alt="{{ .Title }}">
-                    {{ end }}
-                  {{ end }}
-                  {{ else }}
-                  <!-- Fallback image logic if needed -->
-                  {{ end }}
-                  
-                  <div class="panel-body">
-                    <h3 class="panel-title pull-left">{{ .Title | truncate 25 }}</h3><span class="post-meta pull-right"><small>{{ .Date.Format "January 2, 2006" }}</small></span>
-                  </div>
-                  
-                  <div class="panel-body"><small>
-                    {{ .Summary | plainify | truncate 180 }}</small>
-                  </div>
-                </div>
-                </a>
-            </div>
-        
-          {{ end }}
+   <div class="row">
+     <div class="col-md-12">
+       <div class="featured-article" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 12px; margin-bottom: 30px;">
+         <div class="row">
+           <div class="col-md-8">
+             <span style="font-size: 2rem;">📖</span>
+             <h2 style="color: white; margin-top: 10px;">Featured: Mayers Prinzipien des Multimedialen Lernens</h2>
+             <p style="font-size: 1.1rem; margin: 15px 0;">
+               <strong>Wie wir effektive digitale Lernumgebungen gestalten</strong><br>
+               Entdecken Sie die wissenschaftlichen Grundlagen hinter unserer Lernplattform! Richard E. Mayers 12 Prinzipien des multimedialen Lernens bilden das Fundament für die Entwicklung unserer interaktiven Chemie-Lernräume.
+             </p>
+             <ul style="list-style: none; padding-left: 0; margin-bottom: 20px;">
+               <li style="margin-bottom: 8px;">🧠 <strong>Kognitive Psychologie:</strong> Wie das Gehirn visuelle und auditive Informationen verarbeitet</li>
+               <li style="margin-bottom: 8px;">🎯 <strong>Design-Prinzipien:</strong> 12 evidenzbasierte Prinzipien für effektives Lernen</li>
+               <li style="margin-bottom: 8px;">💡 <strong>Praktische Anwendung:</strong> Konkrete Beispiele aus unserer Chemie-Lernplattform</li>
+               <li style="margin-bottom: 8px;">📊 <strong>Checklisten:</strong> Handlungsanleitungen zur Umsetzung in eigenen Projekten</li>
+             </ul>
+             <a href="/pages/mayers-multimedia-lernen/" class="btn btn-default btn-lg" style="background-color: white; color: #667eea; border: none; font-weight: 600;">
+               Mayers 12 Prinzipien lesen →
+             </a>
+           </div>
+           <div class="col-md-4 text-center" style="display: flex; align-items: center; justify-content: center;">
+             <div>
+               <div style="font-size: 4rem; margin-bottom: 10px;">🎓</div>
+               <p style="font-size: 0.9rem; opacity: 0.9;">Für Lehrende, Instructional Designer und E-Learning-Entwickler</p>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
 
-    </div> 
-    
+   <!-- Blog Posts Section -->
+   <div class="row pack">
+
+       {{ $paginator := .Paginate (where .Site.RegularPages "Section" "posts") }}
+       {{ range $paginator.Pages }}   
+           <div class="col-md-4 card">
+            <a href="{{ .Permalink }}" class="index-anchor">    
+               <div class="panel panel-default">
+                 
+                 {{ if .Params.img }}
+                 {{ with .Resources.Match .Params.img }}
+                   {{ range . }}
+                     <img width="100%" src="{{ .RelPermalink }}" alt="{{ .Title }}">
+                   {{ end }}
+                 {{ end }}
+                 {{ else }}
+                 <!-- Fallback image logic if needed -->
+                 {{ end }}
+                 
+                 <div class="panel-body">
+                   <h3 class="panel-title pull-left">{{ .Title | truncate 25 }}</h3><span class="post-meta pull-right"><small>{{ .Date.Format "January 2, 2006" }}</small></span>
+                 </div>
+                 
+                 <div class="panel-body"><small>
+                   {{ .Summary | plainify | truncate 180 }}</small>
+                 </div>
+               </div>
+               </a>
+           </div>
+       
+         {{ end }}
+
+   </div>
+   
 <div class="row">
     <div class="col-md-4">  </div>
     <div class="col-md-4">
