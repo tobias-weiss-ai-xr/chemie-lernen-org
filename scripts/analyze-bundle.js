@@ -7,7 +7,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
 
 // Performance budget configuration
 const BUDGETS = {
@@ -60,13 +59,17 @@ function getColor(status) {
   }
 }
 
-function checkBudget(size, budget, type) {
+function checkBudget(size, budget) {
   const percentage = (size / budget.maxSize) * 100;
 
   if (percentage <= 70) {
     return { status: 'pass', percentage, message: `✓ Within budget (${percentage.toFixed(1)}%)` };
   } else if (percentage <= 90) {
-    return { status: 'warning', percentage, message: `⚠ Approaching budget (${percentage.toFixed(1)}%)` };
+    return {
+      status: 'warning',
+      percentage,
+      message: `⚠ Approaching budget (${percentage.toFixed(1)}%)`,
+    };
   } else {
     return { status: 'fail', percentage, message: `✗ Over budget (${percentage.toFixed(1)}%)` };
   }
@@ -85,7 +88,7 @@ function analyzeFile(filePath, budgetType) {
       budget: budget.maxSize,
       ...result,
     };
-  } catch (error) {
+  } catch {
     return null;
   }
 }
@@ -101,9 +104,7 @@ function analyzeDirectory(directory, extensions, budgetType) {
 
       if (entry.isDirectory()) {
         // Skip node_modules and other ignored dirs
-        if (
-          !['node_modules', '.git', 'public', 'resources', 'test-results'].includes(entry.name)
-        ) {
+        if (!['node_modules', '.git', 'public', 'resources', 'test-results'].includes(entry.name)) {
           walkDir(fullPath);
         }
       } else if (entry.isFile()) {
@@ -118,11 +119,10 @@ function analyzeDirectory(directory, extensions, budgetType) {
   walkDir(directory);
 
   const results = files
-    .map(file => analyzeFile(file, budgetType))
-    .filter(result => result !== null);
+    .map((file) => analyzeFile(file, budgetType))
+    .filter((result) => result !== null);
 
   const totalSize = results.reduce((sum, r) => sum + r.size, 0);
-  const totalBudget = results.length * budgetType === 'javascript' ? BUDGETS.javascript.maxSize : BUDGETS.css.maxSize;
 
   return {
     files: results,
@@ -138,7 +138,7 @@ function analyzeCalculatorFiles() {
   const calculatorsDir = path.join(__dirname, '../myhugoapp/static/js/calculators');
   const results = analyzeDirectory(calculatorsDir, ['.js'], 'javascript');
 
-  results.files.forEach(result => {
+  results.files.forEach((result) => {
     const color = getColor(result.status);
     const fileName = path.basename(result.file);
     console.log(
@@ -160,11 +160,11 @@ function analyzeStaticJS() {
   const staticDir = path.join(__dirname, '../myhugoapp/static/js');
   const results = analyzeDirectory(staticDir, ['.js'], 'javascript');
 
-  const largeFiles = results.files.filter(f => f.size > 50 * 1024); // Files > 50KB
+  const largeFiles = results.files.filter((f) => f.size > 50 * 1024); // Files > 50KB
 
   if (largeFiles.length > 0) {
     console.log(`\n${colors.yellow}Large files (>50KB):${colors.reset}`);
-    largeFiles.forEach(result => {
+    largeFiles.forEach((result) => {
       const fileName = path.basename(result.file);
       console.log(`  ${fileName}: ${formatBytes(result.size)}`);
     });
@@ -214,7 +214,9 @@ function checkBuildArtifacts() {
     const size = fs.statSync(calculatorPage).size;
     const result = checkBudget(size, BUDGETS.html, 'html');
     const color = getColor(result.status);
-    console.log(`\n  Calculator page: ${color}${result.message}${colors.reset} (${formatBytes(size)})`);
+    console.log(
+      `\n  Calculator page: ${color}${result.message}${colors.reset} (${formatBytes(size)})`
+    );
   }
 
   return { htmlFiles, htmlTotalSize };
@@ -239,7 +241,7 @@ function generatePerformanceReport() {
   // Check for issues
   const issues = [];
 
-  const largeCalcFiles = calcResults.files.filter(f => f.size > 20 * 1024);
+  const largeCalcFiles = calcResults.files.filter((f) => f.size > 20 * 1024);
   if (largeCalcFiles.length > 0) {
     issues.push('Consider splitting large calculator files (>20KB)');
   }
@@ -253,9 +255,11 @@ function generatePerformanceReport() {
   }
 
   if (issues.length === 0) {
-    console.log(`${colors.green}✓ All performance metrics within acceptable ranges!${colors.reset}`);
+    console.log(
+      `${colors.green}✓ All performance metrics within acceptable ranges!${colors.reset}`
+    );
   } else {
-    issues.forEach(issue => {
+    issues.forEach((issue) => {
       console.log(`${colors.yellow}• ${issue}${colors.reset}`);
     });
   }
@@ -274,7 +278,7 @@ function generatePerformanceReport() {
       htmlTotalSize: buildResults.htmlTotalSize,
     },
     budgetStatus: {
-      calculators: calcResults.files.every(f => f.status !== 'fail'),
+      calculators: calcResults.files.every((f) => f.status !== 'fail'),
       static: staticResults.totalSize <= BUDGETS.javascript.totalSize,
       html: buildResults.htmlTotalSize / buildResults.htmlFiles.length <= BUDGETS.html.maxSize,
     },
@@ -293,7 +297,11 @@ function generatePerformanceReport() {
 if (require.main === module) {
   try {
     const report = generatePerformanceReport();
-    process.exit(report.budgetStatus.calculators && report.budgetStatus.static && report.budgetStatus.html ? 0 : 1);
+    process.exit(
+      report.budgetStatus.calculators && report.budgetStatus.static && report.budgetStatus.html
+        ? 0
+        : 1
+    );
   } catch (error) {
     console.error(`${colors.red}Error:${colors.reset}`, error.message);
     process.exit(1);

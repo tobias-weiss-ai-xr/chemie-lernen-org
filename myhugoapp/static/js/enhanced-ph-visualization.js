@@ -14,7 +14,7 @@ class EnhancedPHVisualization {
       { name: 'Phenolphthalein', range: [8.2, 10], color: '#ff69b4' },
       { name: 'Bromthymolblau', range: [6.0, 7.6], color: '#1e90ff' },
       { name: 'Methylorange', range: [3.1, 4.4], color: '#ffa500' },
-      { name: 'Lackmus', range: [4.5, 8.3], color: '#9370db' }
+      { name: 'Lackmus', range: [4.5, 8.3], color: '#9370db' },
     ];
 
     this.init();
@@ -141,7 +141,7 @@ class EnhancedPHVisualization {
     });
 
     const phExamples = document.querySelectorAll('.ph-example');
-    phExamples.forEach(button => {
+    phExamples.forEach((button) => {
       button.addEventListener('click', () => {
         const targetPH = parseFloat(button.dataset.ph);
         this.animateToPH(targetPH);
@@ -187,7 +187,7 @@ class EnhancedPHVisualization {
     const scaleWidth = width - 100;
     const startX = 50;
 
-    const gradient = ctx.createLinearGradient(startX, startY, startX + scaleWidth, startY);
+    const gradient = ctx.createLinearGradient(startX, scaleY, startX + scaleWidth, scaleY);
     gradient.addColorStop(0, '#ff0000');
     gradient.addColorStop(0.2, '#ff3300');
     gradient.addColorStop(0.3, '#ff6600');
@@ -200,11 +200,11 @@ class EnhancedPHVisualization {
     gradient.addColorStop(1, '#0066ff');
 
     ctx.fillStyle = gradient;
-    ctx.fillRect(startX, startY, scaleWidth, 40);
+    ctx.fillRect(startX, scaleY, scaleWidth, 40);
 
     ctx.strokeStyle = '#333';
     ctx.lineWidth = 2;
-    ctx.strokeRect(startX, startY, scaleWidth, 40);
+    ctx.strokeRect(startX, scaleY, scaleWidth, 40);
 
     ctx.font = '12px Arial';
     ctx.fillStyle = '#333';
@@ -214,23 +214,23 @@ class EnhancedPHVisualization {
       const x = startX + (i / 14) * scaleWidth;
 
       ctx.beginPath();
-      ctx.moveTo(x, startY + 40);
-      ctx.lineTo(x, startY + 45);
+      ctx.moveTo(x, scaleY + 40);
+      ctx.lineTo(x, scaleY + 45);
       ctx.stroke();
 
-      ctx.fillText(i.toString(), x, startY + 60);
+      ctx.fillText(i.toString(), x, scaleY + 60);
 
       if (i === 7) {
         ctx.strokeStyle = '#28a745';
         ctx.lineWidth = 3;
         ctx.beginPath();
-        ctx.moveTo(x, startY - 10);
-        ctx.lineTo(x, startY + 50);
+        ctx.moveTo(x, scaleY - 10);
+        ctx.lineTo(x, scaleY + 50);
         ctx.stroke();
 
         ctx.fillStyle = '#28a745';
         ctx.font = 'bold 14px Arial';
-        ctx.fillText('NEUTRAL', x, startY - 15);
+        ctx.fillText('NEUTRAL', x, scaleY - 15);
         ctx.fillStyle = '#333';
         ctx.font = '12px Arial';
       }
@@ -241,14 +241,14 @@ class EnhancedPHVisualization {
     ctx.lineWidth = 4;
     ctx.setLineDash([5, 5]);
     ctx.beginPath();
-    ctx.moveTo(markerX, startY - 20);
-    ctx.lineTo(markerX, startY + 50);
+    ctx.moveTo(markerX, scaleY - 20);
+    ctx.lineTo(markerX, scaleY + 50);
     ctx.stroke();
     ctx.setLineDash([]);
 
     ctx.fillStyle = '#dc3545';
     ctx.font = 'bold 16px Arial';
-    ctx.fillText(`pH = ${this.currentPH.toFixed(1)}`, markerX, startY - 25);
+    ctx.fillText(`pH = ${this.currentPH.toFixed(1)}`, markerX, scaleY - 25);
   }
 
   drawPHIndicator(ctx, width, height) {
@@ -274,7 +274,12 @@ class EnhancedPHVisualization {
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(centerX - 24, centerY - solutionHeight);
-    ctx.quadraticCurveTo(centerX, centerY - solutionHeight - 3, centerX + 24, centerY - solutionHeight);
+    ctx.quadraticCurveTo(
+      centerX,
+      centerY - solutionHeight - 3,
+      centerX + 24,
+      centerY - solutionHeight
+    );
     ctx.stroke();
   }
 
@@ -285,10 +290,10 @@ class EnhancedPHVisualization {
       { name: 'Kaffee', ph: 5, color: '#ffcc00', x: 280, y: height - 140 },
       { name: 'Wasser', ph: 7, color: '#66ff00', x: 380, y: height - 140 },
       { name: 'Seife', ph: 10, color: '#00ffcc', x: 480, y: height - 140 },
-      { name: 'Bleichmittel', ph: 13, color: '#0066ff', x: 580, y: height - 140 }
+      { name: 'Bleichmittel', ph: 13, color: '#0066ff', x: 580, y: height - 140 },
     ];
 
-    substances.forEach(substance => {
+    substances.forEach((substance) => {
       ctx.fillStyle = '#f0f0f0';
       ctx.fillRect(substance.x - 20, substance.y - 30, 40, 35);
       ctx.strokeStyle = '#666';
@@ -319,14 +324,14 @@ class EnhancedPHVisualization {
   updateIndicators() {
     const indicatorGrid = document.getElementById('indicator-grid');
 
-    const suitableIndicators = this.indicatorColors.filter(indicator =>
-      this.currentPH >= indicator.range[0] && this.currentPH <= indicator.range[1]
+    const suitableIndicators = this.indicatorColors.filter(
+      (indicator) => this.currentPH >= indicator.range[0] && this.currentPH <= indicator.range[1]
     );
 
     let html = '';
     if (suitableIndicators.length > 0) {
       html = '<div class="suitable-indicators">';
-      suitableIndicators.forEach(indicator => {
+      suitableIndicators.forEach((indicator) => {
         html += `
           <div class="indicator-item" style="background: ${indicator.color}20;
                     border-left: 4px solid ${indicator.color}; padding: 10px; margin: 5px 0;">
@@ -386,7 +391,7 @@ class EnhancedPHVisualization {
     const data = [];
     const points = 100;
 
-    switch(type) {
+    switch (type) {
       case 'strong-strong':
         for (let i = 0; i < points; i++) {
           const volume = (i / points) * 50;
@@ -525,7 +530,7 @@ class EnhancedPHVisualization {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.enhanced-ph-viz')) {
     const enhancedPHViz = new EnhancedPHVisualization();
     window.enhancedPHViz = enhancedPHViz;

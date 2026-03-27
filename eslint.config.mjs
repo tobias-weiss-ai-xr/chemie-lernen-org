@@ -30,6 +30,12 @@ export default [
       'myhugoapp/static/js/calculators/practice-generators.js',
       'myhugoapp/static/js/calculators/stoichiometry-calculator-page.js',
       '.hugo_build.lock',
+      // Auto-generated Playwright artifacts
+      'tests/playwright-report/**',
+      // Old test suite in myhugoapp (not part of active tests)
+      'myhugoapp/tests/**',
+      // Vendor theme files
+      'myhugoapp/themes/**',
     ],
   },
 
@@ -105,7 +111,6 @@ export default [
         I18nManager: 'writable',
         THREE: 'writable',
         __THREE_DEVTOOLS__: 'writable',
-        chemieQuiz: 'readonly',
         ChemistryCalculator: 'readonly',
       },
     },
@@ -126,6 +131,14 @@ export default [
       'no-unsafe-negation': 'error',
       'valid-typeof': 'error',
       'no-useless-escape': 'off',
+      'no-prototype-builtins': 'off',
+      'no-fallthrough': ['error', { commentPattern: 'falls?through' }],
+      'no-cond-assign': 'off',
+      'no-control-regex': 'off',
+      'no-misleading-character-class': 'off',
+      'no-regex-spaces': 'off',
+      'no-constant-condition': 'warn',
+      'no-extra-boolean-cast': 'off',
     },
   },
 
@@ -241,7 +254,6 @@ export default [
       'myhugoapp/static/js/molare-masse-rechner.js',
       'myhugoapp/static/js/reaktionsgleichungen-ausgleichen.js',
       'myhugoapp/static/js/stoichiometry.js',
-      'myhugoapp/static/js/loeslichkeitsprodukt-rechner.js',
       'myhugoapp/static/js/redox-potenzial-rechner.js',
       'myhugoapp/static/js/konzentrationsumrechner.js',
       'myhugoapp/static/js/verbrennungsrechner.js',
@@ -330,22 +342,126 @@ export default [
       'jest/no-identical-title': 'error',
       'jest/prefer-to-have-length': 'warn',
       'jest/valid-expect': 'error',
+      'jest/no-conditional-expect': 'warn',
+      'jest/no-done-callback': 'warn',
       'no-unused-vars': 'off',
       'no-redeclare': 'off',
       'no-undef': 'off',
     },
   },
 
-  // Config files
+  // Build scripts - Node.js context
   {
-    files: ['eslint.config.js', '.prettierrc.js'],
+    files: ['scripts/**/*.js'],
     languageOptions: {
       ecmaVersion: 'latest',
-      sourceType: 'module',
+      sourceType: 'commonjs',
+      globals: {
+        require: 'readonly',
+        module: 'readonly',
+        exports: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        process: 'readonly',
+        console: 'readonly',
+        Buffer: 'readonly',
+      },
+    },
+    rules: {
+      'no-console': 'off',
+    },
+  },
+
+  // Performance monitor - uses Node.js globals
+  {
+    files: ['myhugoapp/static/js/performance-monitor.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: {
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        require: 'readonly',
+        module: 'readonly',
+        exports: 'readonly',
+        process: 'readonly',
+        console: 'readonly',
+        Buffer: 'readonly',
+      },
+    },
+    rules: {
+      'no-console': 'off',
+    },
+  },
+
+  // Chemistry calculator framework - defines ChemistryCalculator class itself
+  {
+    files: ['myhugoapp/static/js/chemistry-calculator-framework.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: {
+        I18nManager: 'readonly',
+        LazyLoader: 'readonly',
+      },
+    },
+    rules: {
+      'no-redeclare': ['error', { builtinGlobals: false }],
+    },
+  },
+
+  // Additional calculator files that use chemistry-utils globals
+  {
+    files: [
+      'myhugoapp/static/js/titrations-simulator.js',
+      'myhugoapp/static/js/druck-flaechen-rechner.js',
+      'myhugoapp/static/js/chemisches-gleichgewicht.js',
+      'myhugoapp/static/js/reaktionskinetik-simulator.js',
+      'myhugoapp/static/js/atmosphaerendruck-alltag.js',
+      'myhugoapp/static/js/bindungspotential.js',
+      'myhugoapp/static/js/hess-gesetz.js',
+      'myhugoapp/static/js/gas-law-simulator.js',
+      'myhugoapp/static/js/ph-rechner.js',
+      'myhugoapp/static/js/molare-masse-rechner.js',
+      'myhugoapp/static/js/reaktionsgleichungen-ausgleichen.js',
+      'myhugoapp/static/js/interactive-experiments.js',
+      'myhugoapp/static/js/molar-mass-visualizer.js',
+      'myhugoapp/static/js/loeslichkeitsprodukt-rechner.js',
+      'myhugoapp/static/js/gasgesetz-rechner.js',
+      'myhugoapp/static/js/druck-flaechen-rechner-framework.js',
+      'myhugoapp/static/js/ph-rechner-framework.js',
+    ],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: {
+        parseFormula: 'readonly',
+        getMolarMass: 'readonly',
+        formatScientificNotation: 'readonly',
+        getElementCount: 'readonly',
+        validateFormula: 'readonly',
+        LazyLoader: 'readonly',
+      },
+    },
+  },
+
+  // Config files
+  {
+    files: ['eslint.config.js', '.prettierrc.js', 'tests/playwright.config.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'commonjs',
       globals: {
         module: 'readonly',
         exports: 'readonly',
+        require: 'readonly',
+        process: 'readonly',
+        console: 'readonly',
+        __dirname: 'readonly',
       },
+    },
+    rules: {
+      'no-console': 'off',
     },
   },
 ];

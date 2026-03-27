@@ -249,7 +249,7 @@ class InteractiveGasLawSimulator {
     let html = '';
 
     switch (this.selectedLaw) {
-      case 'boyle':
+      case 'boyle': {
         const p1V1 = this.pressure * this.volume;
         const newPressure1 = p1V1 / (this.volume * 0.8);
         const newPressure2 = p1V1 / (this.volume * 1.2);
@@ -268,8 +268,9 @@ class InteractiveGasLawSimulator {
           </div>
         `;
         break;
+      }
 
-      case 'gaylussac':
+      case 'gaylussac': {
         const constVT = this.volume / this.temperature;
         const constPT = this.pressure / this.temperature;
         const newVolume1 = constVT * (this.temperature + 50);
@@ -287,8 +288,9 @@ class InteractiveGasLawSimulator {
           </div>
         `;
         break;
+      }
 
-      case 'ideal':
+      case 'ideal': {
         const pv = this.pressure * this.volume;
         const nrt = this.n * this.R * this.temperature;
         const nCalculated = pv / (this.R * this.temperature);
@@ -305,6 +307,7 @@ class InteractiveGasLawSimulator {
           </div>
         `;
         break;
+      }
     }
 
     resultsDiv.innerHTML = html;
