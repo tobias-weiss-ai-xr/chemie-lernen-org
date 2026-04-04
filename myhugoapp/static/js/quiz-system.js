@@ -18,12 +18,17 @@ class QuizSystem {
     this.hintsUsed = 0;
     this.quizSettings = {
       timedMode: false,
-      timePerQuestion: null,  // seconds
-      totalTime: null,        // seconds
+      timePerQuestion: null, // seconds
+      totalTime: null, // seconds
       allowHints: true,
       randomizeQuestions: false,
-      showExplanations: true
+      showExplanations: true,
+      // Difficulty scaling
+      difficulty: 'medium', // easy, medium, hard
+      scoreMultiplier: 1.5, // medium default
+      timeMultiplier: 1, // medium default
     };
+    this.fallbackData = null; // In-memory fallback when localStorage fails
   }
 
   /**
@@ -36,7 +41,7 @@ class QuizSystem {
       questions: quizData.questions,
       passingScore: quizData.passingScore || 70,
       defaultTimePerQuestion: quizData.timePerQuestion || null,
-      defaultTotalTime: quizData.totalTime || null
+      defaultTotalTime: quizData.totalTime || null,
     };
   }
 
@@ -45,12 +50,132 @@ class QuizSystem {
    */
   configureQuiz(settings = {}) {
     this.quizSettings = {
-      timedMode: settings.timedMode !== undefined ? settings.timedMode : this.quizSettings.timedMode,
+      timedMode:
+        settings.timedMode !== undefined ? settings.timedMode : this.quizSettings.timedMode,
       timePerQuestion: settings.timePerQuestion || this.quizSettings.timePerQuestion,
       totalTime: settings.totalTime || this.quizSettings.totalTime,
-      allowHints: settings.allowHints !== undefined ? settings.allowHints : this.quizSettings.allowHints,
-      randomizeQuestions: settings.randomizeQuestions !== undefined ? settings.randomizeQuestions : this.quizSettings.randomizeQuestions,
-      showExplanations: settings.showExplanations !== undefined ? settings.showExplanations : this.quizSettings.showExplanations
+      allowHints:
+        settings.allowHints !== undefined ? settings.allowHints : this.quizSettings.allowHints,
+      randomizeQuestions:
+        settings.randomizeQuestions !== undefined
+          ? settings.randomizeQuestions
+          : this.quizSettings.randomizeQuestions,
+      showExplanations:
+        settings.showExplanations !== undefined
+          ? settings.showExplanations
+          : this.quizSettings.showExplanations,
+      difficulty: settings.difficulty || this.quizSettings.difficulty,
+      scoreMultiplier:
+        settings.scoreMultiplier !== undefined
+          ? settings.scoreMultiplier
+          : this.quizSettings.scoreMultiplier,
+      timeMultiplier:
+        settings.timeMultiplier !== undefined
+          ? settings.timeMultiplier
+          : this.quizSettings.timeMultiplier,
+    };
+
+    // Validate difficulty level
+    if (!['easy', 'medium', 'hard'].includes(this.quizSettings.difficulty)) {
+      this.quizSettings.difficulty = 'medium';
+      this.quizSettings.scoreMultiplier = 1.5;
+      this.quizSettings.timeMultiplier = 1;
+    }
+
+    return this.quizSettings;
+  }
+
+  /**
+   * Set difficulty level with pre-defined configurations
+   */
+  setDifficulty(difficulty) {
+    const difficultyConfig = {
+      easy: {
+        label: '🌱 Grundlagen',
+        scoreMultiplier: 1,
+        timeMultiplier: 1.25, // +25% time
+        description: 'Einfache Fragen, mehr Zeit',
+      },
+      medium: {
+        label: '🌿 Mittelstufe',
+        scoreMultiplier: 1.5,
+        timeMultiplier: 1, // standard time
+        description: 'Ausgewogene Fragen, normale Zeit',
+      },
+      hard: {
+        label: '🌳 Fortgeschritten',
+        scoreMultiplier: 2,
+        timeMultiplier: 0.75, // -25% time
+        description: 'Komplexe Fragen, weniger Zeit',
+      },
+    };
+
+    const config = difficultyConfig[difficulty];
+    if (!config) {
+      console.error(`Invalid difficulty level: ${difficulty}`);
+      return null;
+    }
+
+    this.quizSettings.difficulty = difficulty;
+    this.quizSettings.scoreMultiplier = config.scoreMultiplier;
+    this.quizSettings.timeMultiplier = config.timeMultiplier;
+
+    return {
+      ...config,
+      multiplier: config.scoreMultiplier,
+      timeAdjustment:
+        config.timeMultiplier === 1.25 ? '+25%' : config.timeMultiplier === 0.75 ? '-25%' : '0%',
+    };
+  }
+
+  /**
+   * Get current difficulty info
+   */
+  getCurrentDifficulty() {
+    return {
+      level: this.quizSettings.difficulty,
+      label: this.getDifficultyLabel(this.quizSettings.difficulty),
+      multiplier: this.quizSettings.scoreMultiplier,
+      timeMultiplier: this.quizSettings.timeMultiplier,
+    };
+  }
+
+  /**
+   * Get difficulty label
+   */
+  getDifficultyLabel(level) {
+    const labels = {
+      easy: '🌱 Grundlage',
+      medium: '🌿 Mittelstufe',
+      hard: '🌳 Fortgeschritten',
+    };
+    return labels[level] || '🌿 Mittelstufe';
+  }
+
+  /**
+   * Apply difficulty time adjustment to timer
+   */
+  applyDifficultyTimeAdjustment(baseTime) {
+    const adjustedTime = Math.round(baseTime * this.quizSettings.timeMultiplier);
+    return {
+      original: baseTime,
+      adjusted: adjustedTime,
+      adjustment: this.quizSettings.timeMultiplier,
+    };
+  }
+
+  /**
+   * Get timer display with difficulty indicator
+   */
+  getTimerDisplay(includeDifficulty = true) {
+    if (!this.quizSettings.timedMode) return { display: 'Off' };
+
+    const timeDisplay = this.getFormattedTime(this.timeRemaining);
+    const difficultyDisplay = includeDifficulty ? ` (${this.getCurrentDifficulty().label})` : '';
+
+    return {
+      display: `${timeDisplay}${difficultyDisplay}`,
+      timeRemaining: this.timeRemaining,
     };
   }
 
@@ -86,7 +211,7 @@ class QuizSystem {
 
     this.currentQuiz = {
       ...quiz,
-      questions: questions
+      questions: questions,
     };
     this.currentQuestionIndex = 0;
     this.score = 0;
@@ -117,9 +242,11 @@ class QuizSystem {
       this.timeRemaining--;
 
       // Dispatch custom event for UI updates
-      window.dispatchEvent(new CustomEvent('quizTimerUpdate', {
-        detail: { timeRemaining: this.timeRemaining }
-      }));
+      window.dispatchEvent(
+        new CustomEvent('quizTimerUpdate', {
+          detail: { timeRemaining: this.timeRemaining },
+        })
+      );
 
       if (this.timeRemaining <= 0) {
         this.stopTimer();
@@ -175,7 +302,7 @@ class QuizSystem {
     return {
       success: true,
       hint: question.hint,
-      hintsUsed: this.hintsUsed
+      hintsUsed: this.hintsUsed,
     };
   }
 
@@ -198,17 +325,38 @@ class QuizSystem {
     this.answers.push({
       question: question,
       userAnswer: answer,
-      correct: isCorrect
+      correct: isCorrect,
     });
 
     if (isCorrect) {
       this.score++;
     }
 
+    // Apply difficulty score multiplier
+    const adjustedScore = this.calculateAdjustedScore();
+
     return {
       correct: isCorrect,
       correctAnswer: question.correctAnswer,
-      explanation: question.explanation
+      explanation: question.explanation,
+      scoreMultiplier: this.quizSettings.scoreMultiplier,
+      adjustedScore: adjustedScore,
+      difficulty: this.quizSettings.difficulty,
+    };
+  }
+
+  /**
+   * Calculate adjusted score with difficulty multiplier
+   */
+  calculateAdjustedScore() {
+    // Base score is number of correct answers
+    // Adjusted score applies difficulty multiplier for display/reporting
+    const baseScore = this.score;
+    const adjusted = Math.round(baseScore * this.quizSettings.scoreMultiplier);
+    return {
+      base: baseScore,
+      adjusted: adjusted,
+      multiplier: this.quizSettings.scoreMultiplier,
     };
   }
 
@@ -230,8 +378,10 @@ class QuizSystem {
       return userAnswer === question.correctAnswer;
     } else if (question.type === 'fill-blank') {
       // Case-insensitive comparison, trim whitespace
-      return userAnswer.toString().toLowerCase().trim() ===
-             question.correctAnswer.toString().toLowerCase().trim();
+      return (
+        userAnswer.toString().toLowerCase().trim() ===
+        question.correctAnswer.toString().toLowerCase().trim()
+      );
     }
     return false;
   }
@@ -283,8 +433,9 @@ class QuizSystem {
       passingScore: this.currentQuiz.passingScore,
       hintsUsed: this.hintsUsed,
       timeSpent: this.quizSettings.timedMode
-        ? (this.quizSettings.totalTime || this.quizSettings.timePerQuestion || 0) - this.timeRemaining
-        : null
+        ? (this.quizSettings.totalTime || this.quizSettings.timePerQuestion || 0) -
+          this.timeRemaining
+        : null,
     };
   }
 
@@ -297,7 +448,7 @@ class QuizSystem {
         attempts: 0,
         bestScore: 0,
         lastAttempt: null,
-        completed: false
+        completed: false,
       };
     }
 
@@ -319,12 +470,14 @@ class QuizSystem {
    * Get progress for a topic
    */
   getProgress(topicId) {
-    return this.progress[topicId] || {
-      attempts: 0,
-      bestScore: 0,
-      lastAttempt: null,
-      completed: false
-    };
+    return (
+      this.progress[topicId] || {
+        attempts: 0,
+        bestScore: 0,
+        lastAttempt: null,
+        completed: false,
+      }
+    );
   }
 
   /**
@@ -332,22 +485,18 @@ class QuizSystem {
    */
   getOverallProgress() {
     const totalTopics = Object.keys(this.quizzes).length;
-    const completedTopics = Object.values(this.progress)
-      .filter(p => p.completed).length;
-    const totalAttempts = Object.values(this.progress)
-      .reduce((sum, p) => sum + p.attempts, 0);
+    const completedTopics = Object.values(this.progress).filter((p) => p.completed).length;
+    const totalAttempts = Object.values(this.progress).reduce((sum, p) => sum + p.attempts, 0);
     const averageScore = Object.values(this.progress)
-      .filter(p => p.bestScore > 0)
+      .filter((p) => p.bestScore > 0)
       .reduce((sum, p, _, arr) => sum + p.bestScore / arr.length, 0);
 
     return {
       totalTopics: totalTopics,
       completedTopics: completedTopics,
-      completionPercentage: totalTopics > 0
-        ? Math.round((completedTopics / totalTopics) * 100)
-        : 0,
+      completionPercentage: totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0,
       totalAttempts: totalAttempts,
-      averageScore: Math.round(averageScore)
+      averageScore: Math.round(averageScore),
     };
   }
 
@@ -355,11 +504,30 @@ class QuizSystem {
    * Load progress from localStorage
    */
   loadProgress() {
+    // Check if localStorage is available (Node.js compatibility)
+    if (typeof localStorage === 'undefined') {
+      console.warn('localStorage not available, using in-memory fallback');
+      return this.fallbackData || {};
+    }
+
     try {
       const data = localStorage.getItem(this.storageKey);
       return data ? JSON.parse(data) : {};
-    } catch (e) {
-      console.error('Error loading progress:', e);
+    } catch (error) {
+      if (error.name === 'QuotaExceededError') {
+        console.error('Storage quota exceeded:', error);
+        if (this.fallbackData) {
+          console.warn('Using saved fallback data due to quota exceeded');
+          return this.fallbackData;
+        }
+      } else if (error.name === 'SecurityError') {
+        console.error('Storage access blocked (privacy mode or iframe restrictions):', error);
+        if (this.fallbackData) {
+          return this.fallbackData;
+        }
+      } else {
+        console.error('Error loading progress:', error);
+      }
       return {};
     }
   }
@@ -368,19 +536,25 @@ class QuizSystem {
    * Save progress to localStorage
    */
   saveToStorage() {
+    if (typeof localStorage === 'undefined') {
+      console.warn('localStorage not available, saving to in-memory fallback');
+      this.fallbackData = { ...this.progress };
+      return;
+    }
+
     try {
       localStorage.setItem(this.storageKey, JSON.stringify(this.progress));
-    } catch (e) {
-      console.error('Error saving progress:', e);
+      this.fallbackData = JSON.parse(JSON.stringify(this.progress));
+    } catch (error) {
+      if (error.name === 'QuotaExceededError') {
+        console.error('Storage quota exceeded. Using in-memory fallback:', error);
+      } else if (error.name === 'SecurityError') {
+        console.error('Storage access blocked (privacy mode or iframe restrictions):', error);
+      } else {
+        console.error('Error saving quiz progress:', error);
+      }
+      this.fallbackData = { ...this.progress };
     }
-  }
-
-  /**
-   * Reset progress for a topic
-   */
-  resetProgress(topicId) {
-    delete this.progress[topicId];
-    this.saveToStorage();
   }
 
   /**
@@ -394,7 +568,7 @@ class QuizSystem {
 
 // Global quiz instance
 const chemieQuiz = new QuizSystem({
-  storageKey: 'chemie-lernen-quiz-progress'
+  storageKey: 'chemie-lernen-quiz-progress',
 });
 
 // Export for use in other scripts
