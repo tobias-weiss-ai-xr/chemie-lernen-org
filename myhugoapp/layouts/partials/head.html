@@ -53,11 +53,11 @@
 <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ with .Params.cover }}{{ . }}{{ else }}{{ .Site.Params.defaultImage }}{{ end }}">
 
 <!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="{{ "/favicon.ico" | relURL }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ "/favicons/favicon-32x32.png" | relURL }}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ "/favicons/favicon-16x16.png" | relURL }}">
-<link rel="apple-touch-icon" sizes="180x180" href="{{ "/favicons/apple-touch-icon.png" | relURL }}">
-<link rel="manifest" href="{{ "/site.webmanifest" | relURL }}">
+<link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicons/favicon-32x32.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "favicons/favicon-16x16.png" | relURL }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "favicons/apple-touch-icon.png" | relURL }}">
+<link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
 
 <!-- Bootstrap 3 CDN -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -75,12 +75,12 @@
 {{- end }}
 
 <!-- Green Color Theme -->
-<link rel="stylesheet" href="{{ "/css/green-theme.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/green-theme.css" | relURL }}">
 
 <!-- Quiz System CSS -->
-<link rel="stylesheet" href="{{ "/css/quiz-system.css" | relURL }}">
-<link rel="stylesheet" href="{{ "/css/quiz-user-system.css" | relURL }}">
-<link rel="stylesheet" href="{{ "/css/progress-tracker.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/quiz-system.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/quiz-user-system.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/progress-tracker.css" | relURL }}">
 
 <!-- KaTeX CSS for Chemical Formulas -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -88,13 +88,13 @@
 <!-- mhchem Extension for Chemical Formulas -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css">
 
-<script src="{{ "/js/enhanced-bundle-loader.js" | relURL }}"></script>
+<script src="{{ "js/enhanced-bundle-loader.js" | relURL }}"></script>
 
 <!-- PWA Service Worker Registration -->
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register('{{ "sw.js" | relURL }}')
       .then(function(registration) {
         console.log('SW registered: ', registration);
         registration.update();

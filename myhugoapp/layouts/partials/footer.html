@@ -11,7 +11,7 @@
                     <a href="https://pse.chemie-lernen.org/" target="_blank" style="display: inline-block; padding: 15px 35px; background: white; color: #667eea; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
                         🚀 VR-Erfahrung starten
                     </a>
-                    <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;"><a href="/pages/pse-vr-showcase/" style="color: white;">Element-Räume ansehen →</a></p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;"><a href="{{ "pages/pse-vr-showcase/" | relURL }}" style="color: white;">Element-Räume ansehen →</a></p>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-md-6 text-right">
                     <p>&copy; {{ now.Format "2006" }} {{ .Site.Title }}. Alle Rechte vorbehalten.</p>
-                    <p><small><a href="/impressum/" style="color: #fff;">impressum</a> | <a href="/datenschutz/" style="color: #fff;">datenschutz</a> | <a href="/pages/barrierefreiheit/" style="color: #fff;">barrierefreiheit</a></small></p>
+                    <p><small><a href="{{ "impressum/" | relURL }}" style="color: #fff;">impressum</a> | <a href="{{ "datenschutz/" | relURL }}" style="color: #fff;">datenschutz</a> | <a href="{{ "pages/barrierefreiheit/" | relURL }}" style="color: #fff;">barrierefreiheit</a></small></p>
                 </div>
             </div>
         </div>

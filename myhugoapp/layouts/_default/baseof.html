@@ -23,19 +23,19 @@
     {{ partial "footer.html" . }}    
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
+  <script src="{{ "js/bootstrap.min.js" | relURL }}"></script>
 
   <!-- Custom JS for dark mode -->
-  <script src="/js/dark-mode.js"></script>
+  <script src="{{ "js/dark-mode.js" | relURL }}"></script>
 
   <!-- Quiz System JS -->
-  <script src="/js/quiz-system.js"></script>
-  <script src="/js/quiz-user-system.js"></script>
-  <script src="/js/progress-tracker.js"></script>
+  <script src="{{ "js/quiz-system.js" | relURL }}"></script>
+  <script src="{{ "js/quiz-user-system.js" | relURL }}"></script>
+  <script src="{{ "js/progress-tracker.js" | relURL }}"></script>
 
   <!-- Quiz Data Files (conditionally loaded) -->
   {{ if .Params.quiz }}
-  <script src="/data/quiz-{{ .Params.quiz }}.js"></script>
+  <script src="{{ printf "data/quiz-%s.js" .Params.quiz | relURL }}"></script>
   {{ end }}
 
   <!-- KaTeX for Chemical Formula Rendering -->
