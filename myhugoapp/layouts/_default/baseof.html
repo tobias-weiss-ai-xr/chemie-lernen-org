@@ -2,6 +2,7 @@
 <html lang="de" xml:lang="de">
 
   {{ partial "head.html" .}}
+  {{ partial "seo-jsonld.html" . }}
   {{ block "css" . }}{{ end }}
 
   <body>
@@ -38,6 +39,9 @@
 
 <!-- Step-by-Step Solver JS -->
 <script src="{{ "js/step-by-step-solver.js" | relURL }}"></script>
+
+<!-- Flashcards System JS -->
+<script src="{{ "js/flashcards-system.js" | relURL }}"></script>
 
 <!-- Quiz Data Files (conditionally loaded) -->
   {{ if .Params.quiz }}

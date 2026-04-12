@@ -7,6 +7,11 @@ theme = "hugo-cards"
 disableLiveReload = true
 enableRobotsTXT = true
 
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.8
+  filename = "sitemap.xml"
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
@@ -23,7 +28,7 @@ enableRobotsTXT = true
   custom_css = ["css/custom.css", "css/dark-mode.css", "css/pse-in-vr.css"]
   custom_js = ["js/dark-mode.js"]
   defaultImage = "img/chemie-lernen-banner.png"
-  footer_description = "chemie-lernen.org - Ihre Plattform für innovative Chemie-Lernräume in Virtual Reality. Erleben Sie das Periodensystem in VR mit 118 einzigartigen Element-Räumen."
+  footer_description = "chemie-lernen.org – Kostenlose interaktive Chemie-Lernplattform mit pH-Rechner, Molmasse-Rechner, 3D-Periodensystem (118 Elemente), VR-Element-Räumen, Quiz, Karteikarten und Lernpfaden für Schüler, Studenten und Lehrer. Säuren-Basen, Stöchiometrie, Redox, organische Chemie und mehr."
 
 [params.meta]
   keywords = "chemie-lernen.org, VR Chemieunterricht, Virtual Reality Bildung, Chemie lernen online, interaktiver Chemieunterricht, digitale Bildung, VR Lernräume, Chemie studieren, innovative Chemie, immersive Bildung"
