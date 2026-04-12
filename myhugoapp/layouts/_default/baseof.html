@@ -28,12 +28,18 @@
   <!-- Custom JS for dark mode -->
   <script src="{{ "js/dark-mode.js" | relURL }}"></script>
 
-  <!-- Quiz System JS -->
-  <script src="{{ "js/quiz-system.js" | relURL }}"></script>
-  <script src="{{ "js/quiz-user-system.js" | relURL }}"></script>
-  <script src="{{ "js/progress-tracker.js" | relURL }}"></script>
+<!-- Quiz System JS -->
+<script src="{{ "js/quiz-system.js" | relURL }}"></script>
+<script src="{{ "js/quiz-user-system.js" | relURL }}"></script>
+<script src="{{ "js/progress-tracker.js" | relURL }}"></script>
 
-  <!-- Quiz Data Files (conditionally loaded) -->
+<!-- Badges System JS -->
+<script src="{{ "js/badges-system.js" | relURL }}"></script>
+
+<!-- Step-by-Step Solver JS -->
+<script src="{{ "js/step-by-step-solver.js" | relURL }}"></script>
+
+<!-- Quiz Data Files (conditionally loaded) -->
   {{ if .Params.quiz }}
   <script src="{{ printf "data/quiz-%s.js" .Params.quiz | relURL }}"></script>
   {{ end }}
