@@ -1,0 +1,272 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640">
+  <defs>
+    <!-- Background: deep space -->
+    <radialGradient id="bgGrad" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#0f1428"/>
+      <stop offset="60%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#060810"/>
+    </radialGradient>
+    <!-- Glow filter -->
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Strong glow -->
+    <filter id="glowStrong" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Card shadow -->
+    <filter id="cardGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Text glow -->
+    <filter id="textGlow" x="-5%" y="-20%" width="110%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Particle glow -->
+    <filter id="particleGlow" x="-200%" y="-200%" width="500%" height="500%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Vignette -->
+    <radialGradient id="vignette" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.65"/>
+    </radialGradient>
+    <!-- Molecule line glow -->
+    <filter id="molGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="640" fill="url(#bgGrad)"/>
+
+  <!-- === BACKGROUND STARS / PARTICLES === -->
+  <g opacity="0.4">
+    <circle cx="80" cy="60" r="0.8" fill="#ffffff"/>
+    <circle cx="200" cy="120" r="0.5" fill="#4ecdc4"/>
+    <circle cx="350" cy="40" r="0.6" fill="#ffffff"/>
+    <circle cx="500" cy="90" r="0.7" fill="#ffd93d"/>
+    <circle cx="650" cy="30" r="0.5" fill="#ffffff"/>
+    <circle cx="800" cy="70" r="0.8" fill="#4ecdc4"/>
+    <circle cx="950" cy="50" r="0.6" fill="#ffffff"/>
+    <circle cx="1100" cy="100" r="0.5" fill="#6c5ce7"/>
+    <circle cx="1200" cy="40" r="0.7" fill="#ffffff"/>
+    <circle cx="150" cy="580" r="0.6" fill="#ffffff"/>
+    <circle cx="400" cy="600" r="0.5" fill="#4ecdc4"/>
+    <circle cx="700" cy="590" r="0.7" fill="#ffffff"/>
+    <circle cx="1000" cy="580" r="0.6" fill="#ffd93d"/>
+    <circle cx="1180" cy="560" r="0.5" fill="#ffffff"/>
+    <circle cx="50" cy="350" r="0.5" fill="#6c5ce7"/>
+    <circle cx="1250" cy="300" r="0.6" fill="#ffffff"/>
+    <circle cx="300" cy="500" r="0.4" fill="#ffffff"/>
+    <circle cx="900" cy="560" r="0.5" fill="#ffffff"/>
+  </g>
+
+  <!-- === FLOATING ELEMENT CARDS === -->
+  <!-- Card style: rounded rect with element symbol + number + name -->
+
+  <!-- Hydrogen - prominent, upper left area -->
+  <g transform="translate(100, 120) rotate(-8)" filter="url(#cardGlow)">
+    <rect width="72" height="85" rx="6" fill="#0d1525" stroke="#00d4ff" stroke-width="1" opacity="0.85"/>
+    <text x="10" y="18" font-family="'Courier New', monospace" font-size="10" fill="#00d4ff" opacity="0.7">1</text>
+    <text x="36" y="55" font-family="'Segoe UI', system-ui, sans-serif" font-size="32" font-weight="700" fill="#00d4ff" text-anchor="middle">H</text>
+    <text x="36" y="72" font-family="'Segoe UI', system-ui, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">Hydrogen</text>
+  </g>
+
+  <!-- Gold - upper right, slightly tilted -->
+  <g transform="translate(1020, 90) rotate(5)" filter="url(#cardGlow)">
+    <rect width="72" height="85" rx="6" fill="#0d1525" stroke="#ffd93d" stroke-width="1" opacity="0.85"/>
+    <text x="10" y="18" font-family="'Courier New', monospace" font-size="10" fill="#ffd93d" opacity="0.7">79</text>
+    <text x="36" y="55" font-family="'Segoe UI', system-ui, sans-serif" font-size="32" font-weight="700" fill="#ffd93d" text-anchor="middle">Au</text>
+    <text x="36" y="72" font-family="'Segoe UI', system-ui, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">Gold</text>
+  </g>
+
+  <!-- Iron - left side -->
+  <g transform="translate(60, 380) rotate(-3)" filter="url(#cardGlow)">
+    <rect width="72" height="85" rx="6" fill="#0d1525" stroke="#e17055" stroke-width="1" opacity="0.8"/>
+    <text x="10" y="18" font-family="'Courier New', monospace" font-size="10" fill="#e17055" opacity="0.7">26</text>
+    <text x="36" y="55" font-family="'Segoe UI', system-ui, sans-serif" font-size="32" font-weight="700" fill="#e17055" text-anchor="middle">Fe</text>
+    <text x="36" y="72" font-family="'Segoe UI', system-ui, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">Eisen</text>
+  </g>
+
+  <!-- Carbon - floating upper middle -->
+  <g transform="translate(450, 80) rotate(3)" filter="url(#cardGlow)">
+    <rect width="72" height="85" rx="6" fill="#0d1525" stroke="#a0aec0" stroke-width="1" opacity="0.75"/>
+    <text x="10" y="18" font-family="'Courier New', monospace" font-size="10" fill="#a0aec0" opacity="0.7">6</text>
+    <text x="36" y="55" font-family="'Segoe UI', system-ui, sans-serif" font-size="32" font-weight="700" fill="#a0aec0" text-anchor="middle">C</text>
+    <text x="36" y="72" font-family="'Segoe UI', system-ui, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">Carbon</text>
+  </g>
+
+  <!-- Oxygen - right side -->
+  <g transform="translate(1100, 350) rotate(6)" filter="url(#cardGlow)">
+    <rect width="72" height="85" rx="6" fill="#0d1525" stroke="#ff6b6b" stroke-width="1" opacity="0.8"/>
+    <text x="10" y="18" font-family="'Courier New', monospace" font-size="10" fill="#ff6b6b" opacity="0.7">8</text>
+    <text x="36" y="55" font-family="'Segoe UI', system-ui, sans-serif" font-size="32" font-weight="700" fill="#ff6b6b" text-anchor="middle">O</text>
+    <text x="36" y="72" font-family="'Segoe UI', system-ui, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">Sauerstoff</text>
+  </g>
+
+  <!-- Nitrogen - lower left -->
+  <g transform="translate(250, 490) rotate(-5)" filter="url(#cardGlow)">
+    <rect width="72" height="85" rx="6" fill="#0d1525" stroke="#58a6ff" stroke-width="1" opacity="0.75"/>
+    <text x="10" y="18" font-family="'Courier New', monospace" font-size="10" fill="#58a6ff" opacity="0.7">7</text>
+    <text x="36" y="55" font-family="'Segoe UI', system-ui, sans-serif" font-size="32" font-weight="700" fill="#58a6ff" text-anchor="middle">N</text>
+    <text x="36" y="72" font-family="'Segoe UI', system-ui, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">Stickstoff</text>
+  </g>
+
+  <!-- Helium - upper far right -->
+  <g transform="translate(1140, 130) rotate(-4)" filter="url(#cardGlow)">
+    <rect width="65" height="78" rx="5" fill="#0d1525" stroke="#ffd93d" stroke-width="0.8" opacity="0.6"/>
+    <text x="8" y="16" font-family="'Courier New', monospace" font-size="9" fill="#ffd93d" opacity="0.6">2</text>
+    <text x="32" y="50" font-family="'Segoe UI', system-ui, sans-serif" font-size="28" font-weight="700" fill="#ffd93d" text-anchor="middle">He</text>
+    <text x="32" y="66" font-family="'Segoe UI', system-ui, sans-serif" font-size="8" fill="#8b949e" text-anchor="middle">Helium</text>
+  </g>
+
+  <!-- Sodium - lower right -->
+  <g transform="translate(950, 460) rotate(4)" filter="url(#cardGlow)">
+    <rect width="72" height="85" rx="6" fill="#0d1525" stroke="#e17055" stroke-width="0.8" opacity="0.7"/>
+    <text x="10" y="18" font-family="'Courier New', monospace" font-size="10" fill="#e17055" opacity="0.6">11</text>
+    <text x="36" y="55" font-family="'Segoe UI', system-ui, sans-serif" font-size="32" font-weight="700" fill="#e17055" text-anchor="middle">Na</text>
+    <text x="36" y="72" font-family="'Segoe UI', system-ui, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">Natrium</text>
+  </g>
+
+  <!-- Chlorine - middle right -->
+  <g transform="translate(1050, 240) rotate(-2)" filter="url(#cardGlow)">
+    <rect width="72" height="85" rx="6" fill="#0d1525" stroke="#00b894" stroke-width="0.8" opacity="0.65"/>
+    <text x="10" y="18" font-family="'Courier New', monospace" font-size="10" fill="#00b894" opacity="0.6">17</text>
+    <text x="36" y="55" font-family="'Segoe UI', system-ui, sans-serif" font-size="32" font-weight="700" fill="#00b894" text-anchor="middle">Cl</text>
+    <text x="36" y="72" font-family="'Segoe UI', system-ui, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">Chlor</text>
+  </g>
+
+  <!-- Small background cards (further away, more transparent) -->
+  <g transform="translate(200, 220) rotate(7)" opacity="0.35">
+    <rect width="58" height="68" rx="4" fill="#0d1525" stroke="#6c5ce7" stroke-width="0.6"/>
+    <text x="29" y="42" font-family="'Segoe UI', system-ui, sans-serif" font-size="24" font-weight="700" fill="#6c5ce7" text-anchor="middle">Ca</text>
+  </g>
+  <g transform="translate(780, 100) rotate(-6)" opacity="0.3">
+    <rect width="58" height="68" rx="4" fill="#0d1525" stroke="#4ecdc4" stroke-width="0.6"/>
+    <text x="29" y="42" font-family="'Segoe UI', system-ui, sans-serif" font-size="24" font-weight="700" fill="#4ecdc4" text-anchor="middle">Ti</text>
+  </g>
+  <g transform="translate(700, 500) rotate(2)" opacity="0.3">
+    <rect width="58" height="68" rx="4" fill="#0d1525" stroke="#ff6b6b" stroke-width="0.6"/>
+    <text x="29" y="42" font-family="'Segoe UI', system-ui, sans-serif" font-size="24" font-weight="700" fill="#ff6b6b" text-anchor="middle">Li</text>
+  </g>
+
+  <!-- === MOLECULE WIREFRAMES === -->
+
+  <!-- Water molecule (H2O) - left side -->
+  <g transform="translate(280, 300)" filter="url(#molGlow)" opacity="0.4">
+    <!-- O center -->
+    <circle cx="0" cy="0" r="5" fill="none" stroke="#ff6b6b" stroke-width="1"/>
+    <!-- H atoms -->
+    <circle cx="-30" cy="20" r="3.5" fill="none" stroke="#00d4ff" stroke-width="1"/>
+    <circle cx="30" cy="20" r="3.5" fill="none" stroke="#00d4ff" stroke-width="1"/>
+    <!-- Bonds -->
+    <line x1="-3" y1="3" x2="-27" y2="18" stroke="#4ecdc4" stroke-width="0.8"/>
+    <line x1="3" y1="3" x2="27" y2="18" stroke="#4ecdc4" stroke-width="0.8"/>
+    <!-- Labels -->
+    <text x="0" y="3" font-family="'Segoe UI', sans-serif" font-size="7" fill="#ff6b6b" text-anchor="middle">O</text>
+    <text x="-30" y="23" font-family="'Segoe UI', sans-serif" font-size="6" fill="#00d4ff" text-anchor="middle">H</text>
+    <text x="30" y="23" font-family="'Segoe UI', sans-serif" font-size="6" fill="#00d4ff" text-anchor="middle">H</text>
+  </g>
+
+  <!-- Benzene ring - right side -->
+  <g transform="translate(900, 380)" filter="url(#molGlow)" opacity="0.35">
+    <!-- Hexagonal ring -->
+    <polygon points="0,-28 24,-14 24,14 0,28 -24,14 -24,-14" fill="none" stroke="#4ecdc4" stroke-width="0.8"/>
+    <!-- Inner circle (aromatic) -->
+    <circle cx="0" cy="0" r="14" fill="none" stroke="#4ecdc4" stroke-width="0.5" stroke-dasharray="3 2"/>
+    <!-- C labels at vertices -->
+    <text x="0" y="-31" font-family="'Segoe UI', sans-serif" font-size="6" fill="#a0aec0" text-anchor="middle">C</text>
+    <text x="28" y="-12" font-family="'Segoe UI', sans-serif" font-size="6" fill="#a0aec0" text-anchor="middle">C</text>
+    <text x="28" y="17" font-family="'Segoe UI', sans-serif" font-size="6" fill="#a0aec0" text-anchor="middle">C</text>
+    <text x="0" y="38" font-family="'Segoe UI', sans-serif" font-size="6" fill="#a0aec0" text-anchor="middle">C</text>
+    <text x="-28" y="17" font-family="'Segoe UI', sans-serif" font-size="6" fill="#a0aec0" text-anchor="middle">C</text>
+    <text x="-28" y="-12" font-family="'Segoe UI', sans-serif" font-size="6" fill="#a0aec0" text-anchor="middle">C</text>
+  </g>
+
+  <!-- === ORBITAL PATHS (decorative) === -->
+  <g opacity="0.12">
+    <ellipse cx="640" cy="150" rx="120" ry="40" fill="none" stroke="#4ecdc4" stroke-width="0.6" transform="rotate(-20 640 150)"/>
+    <ellipse cx="640" cy="150" rx="120" ry="40" fill="none" stroke="#4ecdc4" stroke-width="0.6" transform="rotate(20 640 150)"/>
+    <ellipse cx="640" cy="150" rx="120" ry="40" fill="none" stroke="#4ecdc4" stroke-width="0.6" transform="rotate(80 640 150)"/>
+    <circle cx="640" cy="150" r="6" fill="#4ecdc4" opacity="0.5"/>
+  </g>
+
+  <!-- === SPARK / REACTION PARTICLES === -->
+  <g filter="url(#particleGlow)">
+    <circle cx="340" cy="160" r="1.5" fill="#ffd93d" opacity="0.7"/>
+    <circle cx="350" cy="155" r="1" fill="#ffffff" opacity="0.5"/>
+    <circle cx="335" cy="168" r="0.8" fill="#ffd93d" opacity="0.4"/>
+    <circle cx="580" cy="480" r="1.2" fill="#00d4ff" opacity="0.5"/>
+    <circle cx="590" cy="475" r="0.8" fill="#ffffff" opacity="0.4"/>
+    <circle cx="820" cy="200" r="1.5" fill="#ff6b6b" opacity="0.5"/>
+    <circle cx="815" cy="195" r="1" fill="#ffffff" opacity="0.3"/>
+    <circle cx="450" cy="350" r="1" fill="#00b894" opacity="0.5"/>
+    <circle cx="640" cy="250" r="1.2" fill="#6c5ce7" opacity="0.4"/>
+  </g>
+
+  <!-- === VR HEADSET ICON (subtle, bottom-right) === -->
+  <g transform="translate(1180, 560) scale(0.8)" opacity="0.2">
+    <rect x="-20" y="-10" width="40" height="22" rx="8" fill="none" stroke="#ffffff" stroke-width="1"/>
+    <line x1="-20" y1="-2" x2="-28" y2="-2" stroke="#ffffff" stroke-width="1"/>
+    <line x1="-28" y1="-2" x2="-28" y2="4" stroke="#ffffff" stroke-width="1"/>
+    <line x1="20" y1="-2" x2="28" y2="-2" stroke="#ffffff" stroke-width="1"/>
+    <line x1="28" y1="-2" x2="28" y2="4" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="-8" cy="2" r="5" fill="none" stroke="#ffffff" stroke-width="0.8"/>
+    <circle cx="8" cy="2" r="5" fill="none" stroke="#ffffff" stroke-width="0.8"/>
+  </g>
+
+  <!-- === TYPOGRAPHY === -->
+  <!-- Title -->
+  <text x="640" y="320" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="58" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="-0.5" filter="url(#textGlow)">
+    chemie-lernen<tspan fill="#4ecdc4">.org</tspan>
+  </text>
+
+  <!-- Subtitle -->
+  <text x="640" y="365" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="15" font-weight="400" fill="#a0aec0" text-anchor="middle" letter-spacing="2">
+    Open · Interactive · Immersive Chemistry Education
+  </text>
+
+  <!-- Accent line -->
+  <line x1="520" y1="378" x2="760" y2="378" stroke="url(#chemAccent)" stroke-width="1" opacity="0.4"/>
+  <linearGradient id="chemAccent" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#ff6b6b"/>
+    <stop offset="25%" stop-color="#ffd93d"/>
+    <stop offset="50%" stop-color="#00b894"/>
+    <stop offset="75%" stop-color="#4ecdc4"/>
+    <stop offset="100%" stop-color="#6c5ce7"/>
+  </linearGradient>
+
+  <!-- VR badge -->
+  <g transform="translate(640, 410)" opacity="0.5">
+    <rect x="-55" y="-12" width="110" height="24" rx="12" fill="none" stroke="#4ecdc4" stroke-width="0.8" opacity="0.5"/>
+    <text x="0" y="4" font-family="'Segoe UI', system-ui, sans-serif" font-size="11" fill="#4ecdc4" text-anchor="middle" letter-spacing="1">118 VR-Elemente</text>
+  </g>
+
+  <!-- === VIGNETTE === -->
+  <rect width="1280" height="640" fill="url(#vignette)"/>
+</svg>

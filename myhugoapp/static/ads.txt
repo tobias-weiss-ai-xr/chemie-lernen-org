@@ -1,0 +1,4 @@
+# AdSense ads.txt for chemie-lernen.org
+# Format: google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+
+google.com, pub-8452353139685392, DIRECT, f08c47fec0942fa0

@@ -1,0 +1,846 @@
+/**
+ * Step-by-Step Solver CSS
+ * Styles the StepByStepSolver component for chemistry calculators
+ * BEM naming convention with CSS custom properties
+ */
+
+/* ==========================================================================
+   CSS CUSTOM PROPERTIES
+   ========================================================================== */
+
+/* Base CSS variables for step-by-step solver */
+:root {
+  /**
+   * Step-by-Step Solver colors
+   */
+  --sbs-primary: #28a745;
+  --sbs-primary-dark: #218838;
+  --sbs-primary-light: #48c765;
+  --sbs-gradient-start: #28a745;
+  --sbs-gradient-end: #34dcb3;
+  --sbs-success: #28a745;
+  --sbs-success-light: #e8f5e9;
+  --sbs-warn: #ffc107;
+  --sbs-warn-light: #fff8e1;
+  --sbs-error: #dc3545;
+  --sbs-error-light: #fde8e8;
+  --sbs-info: #17a2b8;
+  --sbs-info-light: #e0f7fa;
+
+  /**
+   * Text colors
+   */
+  --sbs-text-primary: #212529;
+  --sbs-text-secondary: #6c757d;
+  --sbs-text-muted: #adb5bd;
+  --sbs-text-inverse: #ffffff;
+
+  /**
+   * Background colors
+   */
+  --sbs-bg-primary: #ffffff;
+  --sbs-bg-secondary: #f8f9fa;
+  --sbs-bg-tertiary: #e9ecef;
+  --sbs-bg-light: #fdfdfd;
+  --sbs-bg-shadow: rgba(0, 0, 0, 0.1);
+
+  /**
+   * Border colors
+   */
+  --sbs-border-light: #dee2e6;
+  --sbs-border-medium: #ced4da;
+  --sbs-border-dark: #868e96;
+  --sbs-border-focus: #80bdff;
+
+  /**
+   * Spacing tokens
+   */
+  --sbs-spacing-xs: 0.25rem;
+  --sbs-spacing-sm: 0.5rem;
+  --sbs-spacing-md: 1rem;
+  --sbs-spacing-lg: 1.5rem;
+  --sbs-spacing-xl: 2rem;
+  --sbs-spacing-2xl: 3rem;
+
+  /**
+   * Border radius
+   */
+  --sbs-radius-sm: 0.25rem;
+  --sbs-radius-md: 0.5rem;
+  --sbs-radius-lg: 1rem;
+  --sbs-radius-xl: 1.5rem;
+  --sbs-radius-full: 9999px;
+
+  /**
+   * Shadows
+   */
+  --sbs-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --sbs-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --sbs-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --sbs-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --sbs-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /**
+   * Typography
+   */
+  --sbs-font-family-base:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --sbs-font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  --sbs-font-size-xs: 0.75rem;
+  --sbs-font-size-sm: 0.875rem;
+  --sbs-font-size-base: 1rem;
+  --sbs-font-size-lg: 1.125rem;
+  --sbs-font-size-xl: 1.25rem;
+  --sbs-font-size-2xl: 1.5rem;
+  --sbs-font-size-3xl: 1.875rem;
+  --sbs-line-height-tight: 1.25;
+  --sbs-line-height-base: 1.5;
+  --sbs-line-height-relaxed: 1.625;
+
+  /**
+   * Transitions
+   */
+  --sbs-transition-fast: 150ms ease;
+  --sbs-transition-base: 200ms ease;
+  --sbs-transition-slow: 300ms ease;
+
+  /**
+   * Z-index layers
+   */
+  --sbs-z-index-base: 1;
+  --sbs-z-index-dropdown: 1000;
+  --sbs-z-index-sticky: 1020;
+  --sbs-z-index-fixed: 1030;
+  --sbs-z-index-modal-backdrop: 1040;
+  --sbs-z-index-modal: 1050;
+  --sbs-z-index-popover: 1060;
+  --sbs-z-index-tooltip: 1070;
+}
+
+/* ==========================================================================
+   DARK MODE SUPPORT
+   Use CSS variables for theming
+   ========================================================================== */
+
+/* Dark mode override */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sbs-text-primary: #f8f9fa;
+    --sbs-text-secondary: #adb5bd;
+    --sbs-text-muted: #6c757d;
+    --sbs-text-inverse: #212529;
+
+    --sbs-bg-primary: #1a1a2e;
+    --sbs-bg-secondary: #16213e;
+    --sbs-bg-tertiary: #0f3460;
+    --sbs-bg-light: #1a1a2e;
+    --sbs-bg-shadow: rgba(0, 0, 0, 0.3);
+
+    --sbs-border-light: #3d3d5c;
+    --sbs-border-medium: #4a4a6a;
+    --sbs-border-dark: #6c6c8c;
+    --sbs-border-focus: #5c9eff;
+
+    --sbs-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --sbs-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Manual dark mode toggle support */
+[data-theme='dark'] {
+  --sbs-text-primary: #f8f9fa;
+  --sbs-text-secondary: #adb5bd;
+  --sbs-text-muted: #6c757d;
+  --sbs-text-inverse: #212529;
+
+  --sbs-bg-primary: #1a1a2e;
+  --sbs-bg-secondary: #16213e;
+  --sbs-bg-tertiary: #0f3460;
+  --sbs-bg-light: #1a1a2e;
+  --sbs-bg-shadow: rgba(0, 0, 0, 0.3);
+
+  --sbs-border-light: #3d3d5c;
+  --sbs-border-medium: #4a4a6a;
+  --sbs-border-dark: #6c6c8c;
+  --sbs-border-focus: #5c9eff;
+
+  --sbs-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --sbs-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   STEP-BY-STEP SOLVER STYLES
+   BEM naming convention
+   ========================================================================== */
+
+/**
+ * Main container
+ * .step-by-step-solver
+ */
+.step-by-step-solver {
+  margin: var(--sbs-spacing-lg) 0;
+  border-radius: var(--sbs-radius-lg);
+  background: var(--sbs-bg-primary);
+  box-shadow: var(--sbs-shadow-lg);
+  overflow: hidden;
+  animation: sbsFadeIn var(--sbs-transition-slow) ease-out;
+  border: 1px solid var(--sbs-border-light);
+}
+
+/**
+ * Header section
+ * .step-by-step-solver__header
+ */
+.step-by-step-solver__header {
+  background: linear-gradient(135deg, var(--sbs-gradient-start), var(--sbs-gradient-end));
+  color: var(--sbs-text-inverse);
+  padding: var(--sbs-spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sbs-spacing-md);
+}
+
+.step-by-step-solver__header h3 {
+  margin: 0;
+  font-size: var(--sbs-font-size-xl);
+  font-weight: 600;
+  line-height: var(--sbs-line-height-tight);
+  display: flex;
+  align-items: center;
+  gap: var(--sbs-spacing-sm);
+}
+
+.step-by-step-solver__header h3::before {
+  content: '📝';
+  font-size: 1.2em;
+}
+
+/**
+ * Step count badge
+ * .step-by-step-solver__count
+ */
+.step-count {
+  background: rgba(255, 255, 255, 0.25);
+  color: var(--sbs-text-inverse);
+  padding: var(--sbs-spacing-xs) var(--sbs-spacing-sm);
+  border-radius: var(--sbs-radius-full);
+  font-size: var(--sbs-font-size-sm);
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+}
+
+/**
+ * Toggle button
+ * .step-by-step-solver__toggle-solver
+ */
+.toggle-solver {
+  background: rgba(255, 255, 255, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: var(--sbs-text-inverse);
+  padding: var(--sbs-spacing-xs) var(--sbs-spacing-md);
+  border-radius: var(--sbs-radius-full);
+  font-size: var(--sbs-font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--sbs-transition-fast);
+  display: flex;
+  align-items: center;
+  gap: var(--sbs-spacing-xs);
+  background-clip: padding-box;
+  backdrop-filter: blur(10px);
+}
+
+.toggle-solver:hover,
+.toggle-solver:focus {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.75);
+  transform: translateY(-1px);
+  box-shadow: var(--sbs-shadow-sm);
+  outline: none;
+}
+
+.toggle-solver:focus-visible {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.toggle-solver::after {
+  content: '▼';
+  font-size: 0.8em;
+  transition: transform var(--sbs-transition-fast);
+}
+
+.toggle-solver[aria-expanded='false']::after {
+  transform: rotate(-90deg);
+}
+
+/**
+ * Content area
+ * .step-by-step-solver__content
+ */
+.step-by-step-solver__content {
+  padding: var(--sbs-spacing-lg);
+  background: var(--sbs-bg-secondary);
+}
+
+/**
+ * No steps message
+ * .step-by-step-solver__no-steps-msg
+ */
+.no-steps-msg {
+  margin: 0;
+  color: var(--sbs-text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: var(--sbs-spacing-xl) 0;
+  font-size: var(--sbs-font-size-base);
+  animation: pulseText var(--sbs-transition-slow) infinite alternate;
+}
+
+/**
+ * Individual step card
+ * .step
+ */
+.step {
+  background: var(--sbs-bg-primary);
+  border: 1px solid var(--sbs-border-light);
+  border-radius: var(--sbs-radius-md);
+  margin-bottom: var(--sbs-spacing-md);
+  overflow: hidden;
+  transition: all var(--sbs-transition-base);
+  animation: stepSlideIn var(--sbs-transition-slow) ease-out backwards;
+  animation-fill-mode: both;
+}
+
+.step:nth-child(1) {
+  animation-delay: 50ms;
+}
+.step:nth-child(2) {
+  animation-delay: 150ms;
+}
+.step:nth-child(3) {
+  animation-delay: 250ms;
+}
+.step:nth-child(4) {
+  animation-delay: 350ms;
+}
+.step:nth-child(5) {
+  animation-delay: 450ms;
+}
+
+.step:hover {
+  transform: translateX(4px);
+  box-shadow: var(--sbs-shadow-md);
+  border-color: var(--sbs-primary-light);
+}
+
+.step:focus-within {
+  box-shadow:
+    var(--sbs-shadow-md),
+    0 0 0 3px var(--sbs-border-focus);
+  border-color: var(--sbs-primary);
+}
+
+/**
+ * Step header bar
+ * .step__header
+ */
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: var(--sbs-spacing-md);
+  padding: var(--sbs-spacing-md);
+  background: linear-gradient(90deg, var(--sbs-bg-secondary), transparent);
+  border-bottom: 1px solid var(--sbs-border-light);
+}
+
+/**
+ * Step number badge
+ * .step__number
+ */
+.step-number {
+  min-width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--sbs-primary), var(--sbs-primary-dark));
+  color: var(--sbs-text-inverse);
+  border-radius: var(--sbs-radius-full);
+  font-size: var(--sbs-font-size-sm);
+  font-weight: 700;
+  box-shadow: var(--sbs-shadow-sm);
+}
+
+/**
+ * Step description text
+ * .step__description
+ */
+.step-description {
+  flex: 1;
+  font-size: var(--sbs-font-size-base);
+  font-weight: 500;
+  color: var(--sbs-text-primary);
+  line-height: var(--sbs-line-height-tight);
+  margin: 0;
+}
+
+/**
+ * Calculation content area
+ * .step__calculation
+ */
+.step-calculation {
+  padding: var(--sbs-spacing-md);
+  background: var(--sbs-bg-light);
+  border-top: 1px solid var(--sbs-border-light);
+}
+
+/**
+ * Formula display
+ * .calculation__info
+ */
+.calculation-info {
+  margin-bottom: var(--sbs-spacing-sm);
+  padding: var(--sbs-spacing-sm) var(--sbs-spacing-md);
+  background: var(--sbs-bg-secondary);
+  border-left: 4px solid var(--sbs-primary);
+  border-radius: var(--sbs-radius-sm);
+}
+
+.formula {
+  font-family: var(--sbs-font-family-mono);
+  font-size: var(--sbs-font-size-sm);
+  color: var(--sbs-text-secondary);
+}
+
+.formula strong {
+  font-weight: 600;
+  color: var(--sbs-text-primary);
+}
+
+.formula code {
+  background: var(--sbs-bg-tertiary);
+  padding: 2px 6px;
+  border-radius: var(--sbs-radius-sm);
+  font-size: 0.9em;
+  color: var(--sbs-primary);
+  margin-left: 4px;
+}
+
+/**
+ * Inputs display section
+ * .calculation__inputs
+ */
+.calculation-inputs {
+  margin-bottom: var(--sbs-spacing-md);
+}
+
+.inputs-label {
+  display: block;
+  font-size: var(--sbs-font-size-xs);
+  font-weight: 600;
+  color: var(--sbs-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--sbs-spacing-xs);
+}
+
+.input-item {
+  display: inline-block;
+  margin: 0 var(--sbs-spacing-xs) var(--sbs-spacing-xs) 0;
+  padding: 4px 8px;
+  background: var(--sbs-bg-tertiary);
+  border-radius: var(--sbs-radius-sm);
+  font-size: var(--sbs-font-size-sm);
+  color: var(--sbs-text-primary);
+}
+
+.input-item strong {
+  font-weight: 600;
+  color: var(--sbs-primary-dark);
+}
+
+/**
+ * Result display section
+ * .calculation__result
+ */
+.calculation-result {
+  padding: var(--sbs-spacing-md);
+  background: linear-gradient(135deg, var(--sbs-success-light), transparent);
+  border-radius: var(--sbs-radius-md);
+  display: flex;
+  align-items: center;
+  gap: var(--sbs-spacing-sm);
+}
+
+.result-label {
+  font-size: var(--sbs-font-size-sm);
+  font-weight: 600;
+  color: var(--sbs-primary-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.result-value {
+  font-size: var(--sbs-font-size-xl);
+  font-weight: 700;
+  color: var(--sbs-primary);
+  font-family: var(--sbs-font-family-mono);
+  letter-spacing: -0.5px;
+}
+
+.result-unit {
+  font-size: var(--sbs-font-size-base);
+  color: var(--sbs-text-secondary);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+
+/**
+ * Fade in animation
+ */
+@keyframes sbsFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/**
+ * Slide in animation for steps
+ */
+@keyframes stepSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * Pulse animation for emphasis
+ */
+@keyframes pulseText {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/**
+ * Pulse animation for result values
+ */
+@keyframes resultPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/**
+ * Bounce animation for new steps
+ */
+@keyframes stepBounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-4px);
+  }
+}
+
+/**
+ * Shine animation for headers
+ */
+@keyframes headerShine {
+  from {
+    background-position: 200% center;
+  }
+  to {
+    background-position: -200% center;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+/**
+ * Mobile devices (280px+)
+ */
+@media screen and (min-width: 280px) {
+  .step-by-step-solver__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .step-count {
+    align-self: flex-start;
+  }
+
+  .calculation-result {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sbs-spacing-xs);
+  }
+}
+
+/**
+ * Tablets and small laptops (768px+)
+ */
+@media screen and (min-width: 768px) {
+  .step-by-step-solver__header {
+    flex-direction: row;
+  }
+
+  .toggle-solver {
+    align-self: center;
+  }
+
+  .step {
+    margin-bottom: var(--sbs-spacing-lg);
+  }
+
+  .step-header {
+    padding: var(--sbs-spacing-md) var(--sbs-spacing-lg);
+  }
+
+  .step-calculation {
+    padding: var(--sbs-spacing-lg);
+  }
+
+  .calculation-inputs .input-item {
+    margin-right: var(--sbs-spacing-md);
+  }
+}
+
+/**
+ * Desktop and large screens (1024px+)
+ */
+@media screen and (min-width: 1024px) {
+  .step-by-step-solver {
+    max-width: 800px;
+    margin: var(--sbs-spacing-xl) auto;
+  }
+
+  .step-by-step-solver__header h3 {
+    font-size: var(--sbs-font-size-2xl);
+  }
+
+  .step {
+    transform: none;
+  }
+
+  .step:hover {
+    transform: translateX(8px);
+  }
+
+  .step-description {
+    font-size: var(--sbs-font-size-lg);
+  }
+
+  .step-number {
+    min-width: 44px;
+    height: 44px;
+    font-size: var(--sbs-font-size-base);
+  }
+
+  .result-value {
+    font-size: var(--sbs-font-size-2xl);
+  }
+
+  .toggle-solver {
+    padding: var(--sbs-spacing-sm) var(--sbs-spacing-lg);
+    font-size: var(--sbs-font-size-base);
+  }
+}
+
+/**
+ * High resolution displays
+ */
+@media screen and (min-resolution: 2dppx), screen and (min-resolution: 192dpi) {
+  .step-by-step-solver {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .step-number {
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+  .step-by-step-solver {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  .step-by-step-solver__header {
+    background: #f0f0f0 !important;
+    color: #000 !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .step {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .toggle-solver,
+  .step-count {
+    display: none;
+  }
+
+  .step-number {
+    background: #333 !important;
+    color: #fff !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   Respects user's motion preferences
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .step-by-step-solver,
+  .step,
+  .no-steps-msg {
+    animation: none;
+    transition: none;
+  }
+
+  .step:hover,
+  .toggle-solver:hover {
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   HIGH CONTRAST MODE
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+  :root {
+    --sbs-border-light: #000000;
+    --sbs-border-medium: #333333;
+  }
+
+  .step-number {
+    border: 2px solid currentColor;
+  }
+
+  .calculation-info {
+    border-left-width: 6px;
+  }
+
+  .calculation-result {
+    border: 2px solid var(--sbs-success);
+  }
+}
+
+/* ==========================================================================
+   COLOUR BLINDNESS SUPPORT
+   ========================================================================== */
+
+/* For users with deuteranopia/protanopia, add icons/text to ensure colour isn't the only indicator */
+.calculation-result::before {
+  content: '✓ ';
+  margin-right: var(--sbs-spacing-xs);
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+/* Visibility utilities */
+.sbs-hidden {
+  display: none !important;
+}
+
+.sbs-visible {
+  display: block !important;
+}
+
+/* Text utilities */
+.sbs-text-center {
+  text-align: center;
+}
+
+.sbs-text-right {
+  text-align: right;
+}
+
+/* Spacing utilities */
+.sbs-mt-0 {
+  margin-top: 0;
+}
+.sbs-mt-1 {
+  margin-top: var(--sbs-spacing-xs);
+}
+.sbs-mt-2 {
+  margin-top: var(--sbs-spacing-sm);
+}
+.sbs-mt-3 {
+  margin-top: var(--sbs-spacing-md);
+}
+.sbs-mt-4 {
+  margin-top: var(--sbs-spacing-lg);
+}
+.sbs-mt-5 {
+  margin-top: var(--sbs-spacing-xl);
+}
+
+.sbs-mb-0 {
+  margin-bottom: 0;
+}
+.sbs-mb-1 {
+  margin-bottom: var(--sbs-spacing-xs);
+}
+.sbs-mb-2 {
+  margin-bottom: var(--sbs-spacing-sm);
+}
+.sbs-mb-3 {
+  margin-bottom: var(--sbs-spacing-md);
+}
+.sbs-mb-4 {
+  margin-bottom: var(--sbs-spacing-lg);
+}
+.sbs-mb-5 {
+  margin-bottom: var(--sbs-spacing-xl);
+}
+
+/* ==========================================================================
+   END OF STYLES
+   ========================================================================== */

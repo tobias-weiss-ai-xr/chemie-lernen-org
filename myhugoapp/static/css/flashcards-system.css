@@ -1,0 +1,696 @@
+/**
+ * Flashcards System CSS
+ * 3D Card flip animation with spaced repetition UI
+ */
+
+/* ==========================================================================
+   CSS CUSTOM PROPERTIES
+   ========================================================================== */
+
+:root {
+  /**
+   * Flashcard colors
+   */
+  --fc-primary: #28a745;
+  --fc-primary-dark: #218838;
+  --fc-primary-light: #48c765;
+  --fc-accent: #17a2b8;
+  --fc-accent-light: #5cdbdf;
+  --fc-warning: #ffc107;
+  --fc-warning-dark: #e0a800;
+  --fc-error: #dc3545;
+  --fc-success: #28a745;
+  --fc-info: #17a2b8;
+
+  /**
+   * Text colors
+   */
+  --fc-text-primary: #212529;
+  --fc-text-secondary: #6c757d;
+  --fc-text-muted: #adb5bd;
+  --fc-text-inverse: #ffffff;
+
+  /**
+   * Background colors
+   */
+  --fc-bg-primary: #ffffff;
+  --fc-bg-secondary: #f8f9fa;
+  --fc-bg-tertiary: #e9ecef;
+  --fc-bg-card: #ffffff;
+  --fc-bg-shadow: rgba(0, 0, 0, 0.1);
+  --fc-gradient-start: #28a745;
+  --fc-gradient-end: #34dcb3;
+
+  /**
+   * Border colors
+   */
+  --fc-border-light: #dee2e6;
+  --fc-border-medium: #ced4da;
+  --fc-border-dark: #868e96;
+  --fc-border-focus: #80bdff;
+
+  /**
+   * Spacing tokens
+   */
+  --fc-spacing-xs: 0.25rem;
+  --fc-spacing-sm: 0.5rem;
+  --fc-spacing-md: 1rem;
+  --fc-spacing-lg: 1.5rem;
+  --fc-spacing-xl: 2rem;
+  --fc-spacing-2xl: 3rem;
+
+  /**
+   * Border radius
+   */
+  --fc-radius-sm: 0.25rem;
+  --fc-radius-md: 0.5rem;
+  --fc-radius-lg: 1rem;
+  --fc-radius-xl: 1.5rem;
+  --fc-radius-full: 9999px;
+
+  /**
+   * Shadows
+   */
+  --fc-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --fc-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --fc-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --fc-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.25);
+
+  /**
+   * Typography
+   */
+  --fc-font-family-base:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --fc-font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  --fc-font-size-xs: 0.75rem;
+  --fc-font-size-sm: 0.875rem;
+  --fc-font-size-base: 1rem;
+  --fc-font-size-lg: 1.125rem;
+  --fc-font-size-xl: 1.25rem;
+  --fc-font-size-2xl: 1.5rem;
+  --fc-font-size-3xl: 1.875rem;
+
+  /**
+   * Transitions
+   */
+  --fc-transition-fast: 150ms ease;
+  --fc-transition-base: 200ms ease;
+  --fc-transition-slow: 300ms ease;
+
+  /**
+   * 3D transform
+   */
+  --fc-preserve-3d: preserve-3d;
+  --fc-backface-hidden: hidden;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fc-text-primary: #f8f9fa;
+    --fc-text-secondary: #adb5bd;
+    --fc-text-muted: #6c757d;
+    --fc-text-inverse: #212529;
+
+    --fc-bg-primary: #1a1a2e;
+    --fc-bg-secondary: #16213e;
+    --fc-bg-tertiary: #0f3460;
+    --fc-bg-card: #1a1a2e;
+    --fc-bg-shadow: rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* ==========================================================================
+   FLASHCARD CONTAINER
+   ========================================================================== */
+
+/**
+ * Main container
+ * .flashcard__container
+ */
+.flashcard-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--fc-spacing-xl);
+  perspective: 1000px;
+  animation: fadeIn var(--fc-transition-slow) ease-out;
+}
+
+/**
+ * Deck selection
+ * .flashcard__deck-selector
+ */
+.flashcard-deck-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--fc-spacing-md);
+  margin-bottom: var(--fc-spacing-xl);
+}
+
+/**
+ * Deck card
+ * .flashcard__deck-card
+ */
+.flashcard-deck-card {
+  background: var(--fc-bg-card);
+  border: 1px solid var(--fc-border-light);
+  border-radius: var(--fc-radius-lg);
+  padding: var(--fc-spacing-lg);
+  cursor: pointer;
+  transition: all var(--fc-transition-base);
+  box-shadow: var(--fc-shadow-sm);
+}
+
+.flashcard-deck-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--fc-shadow-md);
+  border-color: var(--fc-primary);
+}
+
+.flashcard-deck-card.active {
+  border-color: var(--fc-primary);
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+}
+
+/**
+ * Card flip area
+ * .flashcard__area
+ */
+.flashcard-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--fc-spacing-lg);
+}
+
+/**
+ * Flip container (3D)
+ * .flashcard__flip-container
+ */
+.flashcard-flip-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/2;
+  max-height: 400px;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+/**
+ * Inner flip wrapper
+ * .flashcard__flip-inner
+ */
+.flashcard-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform var(--fc-transition-slow);
+  transform-style: var(--fc-preserve-3d);
+}
+
+.flashcard-flip-container.flipped .flashcard-flip-inner {
+  transform: rotateY(180deg);
+}
+
+/**
+ * Card faces
+ * .flashcard__face
+ */
+.flashcard-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: var(--fc-backface-hidden);
+  -webkit-backface-visibility: var(--fc-backface-hidden);
+  border-radius: var(--fc-radius-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--fc-spacing-xl);
+  box-shadow: var(--fc-shadow-md);
+  background: linear-gradient(135deg, var(--fc-bg-card), var(--fc-bg-secondary));
+  border: 2px solid var(--fc-border-light);
+}
+
+/**
+ * Front face (question)
+ * .flashcard__face--front
+ */
+.flashcard-face--front {
+  transform: rotateY(0deg);
+}
+
+/**
+ * Back face (answer)
+ * .flashcard__face--back
+ */
+.flashcard-face--back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, var(--fc-gradient-start), var(--fc-gradient-end));
+  color: var(--fc-text-inverse);
+  border-color: var(--fc-primary);
+}
+
+/**
+ * Face content
+ * .flashcard__face-content
+ */
+.flashcard-face-content {
+  font-size: var(--fc-font-size-xl);
+  line-height: 1.6;
+  color: var(--fc-text-primary);
+}
+
+.flashcard-face--back .flashcard-face-content {
+  color: var(--fc-text-inverse);
+}
+
+/* ==========================================================================
+   CARD STATUS INDICATORS
+   ========================================================================== */
+
+/**
+ * Progress bar
+ * .flashcard__progress-bar
+ */
+.flashcard-progress-bar {
+  width: 100%;
+  max-width: 400px;
+  height: 8px;
+  background: var(--fc-bg-tertiary);
+  border-radius: var(--fc-radius-full);
+  overflow: hidden;
+}
+
+.flashcard-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--fc-primary), var(--fc-accent));
+  transition: width var(--fc-transition-slow);
+}
+
+/**
+ * Progress indicators
+ * .flashcard__stats
+ */
+.flashcard-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fc-spacing-md);
+  justify-content: center;
+  font-size: var(--fc-font-size-sm);
+}
+
+.flashcard-stat {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-spacing-xs);
+  background: var(--fc-bg-secondary);
+  padding: var(--fc-spacing-xs) var(--fc-spacing-sm);
+  border-radius: var(--fc-radius-full);
+  color: var(--fc-text-secondary);
+}
+
+.flashcard-stat--mastered {
+  color: var(--fc-success);
+}
+
+.flashcard-stat--due {
+  color: var(--fc-warning-dark);
+}
+
+.flashcard-stat--new {
+  color: var(--fc-info);
+}
+
+/* ==========================================================================
+   NAVIGATION CONTROLS
+   ========================================================================== */
+
+/**
+ * Navigation buttons
+ * .flashcard__nav-controls
+ */
+.flashcard-nav-controls {
+  display: flex;
+  justify-content: center;
+  gap: var(--fc-spacing-md);
+  flex-wrap: wrap;
+}
+
+/**
+ * Navigation buttons
+ * .flashcard__nav-btn
+ */
+.flashcard-nav-btn {
+  padding: var(--fc-spacing-md) var(--fc-spacing-xl);
+  font-size: var(--fc-font-size-base);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--fc-radius-full);
+  cursor: pointer;
+  transition: all var(--fc-transition-fast);
+  background: var(--fc-bg-tertiary);
+  color: var(--fc-text-primary);
+}
+
+.flashcard-nav-btn:hover {
+  background: var(--fc-primary);
+  color: var(--fc-text-inverse);
+  transform: translateY(-2px);
+  box-shadow: var(--fc-shadow-sm);
+}
+
+.flashcard-nav-btn:active {
+  transform: translateY(0);
+}
+
+.flashcard-nav-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--fc-border-focus);
+}
+
+.flashcard-nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/**
+ * Primary action buttons
+ * .flashcard__action-btn
+ */
+.flashcard-action-btn {
+  padding: var(--fc-spacing-md) var(--fc-spacing-xl);
+  font-size: var(--fc-font-size-base);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--fc-radius-full);
+  cursor: pointer;
+  transition: all var(--fc-transition-fast);
+  background: var(--fc-primary);
+  color: var(--fc-text-inverse);
+}
+
+.flashcard-action-btn:hover {
+  background: var(--fc-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--fc-shadow-md);
+}
+
+.flashcard-action-btn:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   RATINGS (spaced repetition)
+   ========================================================================== */
+
+/**
+ * Rating section
+ * .flashcard__ratings
+ */
+.flashcard-ratings {
+  display: flex;
+  justify-content: center;
+  gap: var(--fc-spacing-md);
+  flex-wrap: wrap;
+}
+
+/**
+ * Rating buttons
+ * .flashcard__rating-btn
+ */
+.flashcard-rating-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--fc-spacing-md);
+  border: 2px solid var(--fc-border-light);
+  border-radius: var(--fc-radius-lg);
+  cursor: pointer;
+  transition: all var(--fc-transition-fast);
+  background: var(--fc-bg-card);
+  min-width: 100px;
+}
+
+.flashcard-rating-btn:hover {
+  border-color: var(--fc-primary);
+  transform: translateY(-4px);
+  box-shadow: var(--fc-shadow-md);
+}
+
+.flashcard-rating-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--fc-border-focus);
+}
+
+/**
+ * Rating emoji icon
+ * .flashcard__rating-icon
+ */
+.flashcard-rating-icon {
+  font-size: var(--fc-font-size-2xl);
+  margin-bottom: var(--fc-spacing-xs);
+}
+
+/**
+ * Rating label
+ * .flashcard__rating-label
+ */
+.flashcard-rating-label {
+  font-size: var(--fc-font-size-xs);
+  font-weight: 600;
+  color: var(--fc-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Easy */
+.flashcard-rating-btn[data-quality='0'] .flashcard-rating-icon {
+  content: 💀;
+}
+
+/* Medium */
+.flashcard-rating-btn[data-quality='1'] .flashcard-rating-icon {
+  content: 😐;
+}
+
+/* Good */
+.flashcard-rating-btn[data-quality='2'] .flashcard-rating-icon {
+  content: 🙂;
+}
+
+/* ==========================================================================
+   KEYBOARD HINTS
+   ========================================================================== */
+
+/**
+ * Keyboard hint
+ * .flashcard__keyboard-hint
+ */
+.flashcard-keyboard-hint {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-text-muted);
+  text-align: center;
+  padding: var(--fc-spacing-sm);
+  background: var(--fc-bg-secondary);
+  border-radius: var(--fc-radius-sm);
+}
+
+/**
+ * Keyboard key
+ * .flashcard__key
+ */
+.flashcard-key {
+  display: inline-block;
+  padding: 0 var(--fc-spacing-xs);
+  padding: calc(var(--fc-spacing-xs) / 2) var(--fc-spacing-sm);
+  border: 1px solid var(--fc-border-medium);
+  border-radius: var(--fc-radius-sm);
+  font-family: var(--fc-font-family-mono);
+  font-size: var(--fc-font-size-xs);
+  background: var(--fc-bg-tertiary);
+  margin: 0 var(--fc-spacing-xs);
+}
+
+/* ==========================================================================
+   EMPTY STATE
+   ========================================================================== */
+
+/**
+ * Empty state
+ * .flashcard__empty-state
+ */
+.flashcard-empty-state {
+  text-align: center;
+  padding: var(--fc-spacing-2xl);
+}
+
+.flashcard-empty-icon {
+  font-size: 4rem;
+  margin-bottom: var(--fc-spacing-lg);
+}
+
+.flashcard-empty-title {
+  font-size: var(--fc-font-size-2xl);
+  color: var(--fc-text-primary);
+  margin-bottom: var(--fc-spacing-md);
+}
+
+.flashcard-empty-text {
+  font-size: var(--fc-font-size-base);
+  color: var(--fc-text-secondary);
+  margin-bottom: var(--fc-spacing-lg);
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+
+/**
+ * Fade in
+ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/**
+ * Slide up
+ */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/**
+ * Card flip animation
+ */
+@keyframes flipCard {
+  0% {
+    transform: rotateX(0);
+  }
+  50% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0);
+  }
+}
+
+/**
+ * Pulse animation
+ */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/**
+ * Shake animation (for incorrect)
+ */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+/**
+ * Mobile (280px+)
+ */
+@media screen and (min-width: 280px) {
+  .flashcard-container {
+    padding: var(--fc-spacing-lg);
+  }
+
+  .flashcard-stats {
+    justify-content: center;
+  }
+
+  .flashcard-ratings {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+/**
+ * Tablet (768px+)
+ */
+@media screen and (min-width: 768px) {
+  .flashcard-area {
+    gap: var(--fc-spacing-xl);
+  }
+
+  .flashcard-stats {
+    justify-content: flex-start;
+  }
+
+  .flashcard-nav-controls {
+    justify-content: space-between;
+  }
+}
+
+/**
+ * Desktop (1024px+)
+ */
+@media screen and (min-width: 1024px) {
+  .flashcard-container {
+    padding: var(--fc-spacing-2xl);
+  }
+
+  .flashcard-flip-container {
+    max-height: 500px;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .flashcard-flip-inner,
+  .flashcard-deck-card,
+  .flashcard-action-btn,
+  .flashcard-rating-btn {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   END OF STYLES
+   ========================================================================== */
