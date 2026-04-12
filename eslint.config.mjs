@@ -14,11 +14,14 @@ export default [
       'myhugoapp/static/js/third-party/**',
       'myhugoapp/static/js/vendor/**',
       '*.min.js',
+      '**/*.optimized.js',
       'myhugoapp/static/js/three.module.js',
       'myhugoapp/static/js/three/three.core.js',
       'myhugoapp/static/js/three/TrackballControls.js',
       'myhugoapp/static/js/addons/**',
       '*.generated.js',
+      'myhugoapp/static/js/performance-monitor.js',
+      'myhugoapp/static/js/chemistry-calculator-framework.js',
       '.hugo_build.lock',
     ],
   },
@@ -86,11 +89,20 @@ export default [
         I18nManager: 'writable',
         THREE: 'writable',
         __THREE_DEVTOOLS__: 'writable',
+        Image: 'readonly',
+        caches: 'readonly',
+        ChemistryCalculator: 'writable',
+        PerformanceObserver: 'readonly',
+        Worker: 'readonly',
+        Chart: 'readonly',
       },
     },
     rules: {
       'no-console': 'off',
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' }],
+      'no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
+      ],
       'no-undef': 'error',
       'no-redeclare': 'error',
       'no-dupe-keys': 'error',
@@ -118,8 +130,8 @@ export default [
       },
     },
     rules: {
-      'curly': ['error', 'all'],
-      'eqeqeq': ['error', 'always', { null: 'ignore' }],
+      curly: ['error', 'all'],
+      eqeqeq: ['error', 'always', { null: 'ignore' }],
       'no-eval': 'error',
       'no-implied-eval': 'error',
       'no-return-await': 'warn',
@@ -195,6 +207,29 @@ export default [
     },
   },
 
+  // Non-calculator root JS files that use module.exports pattern
+  {
+    files: [
+      'myhugoapp/static/js/**/*.js',
+      '!myhugoapp/static/js/calculators/**',
+      '!myhugoapp/static/js/three/**',
+      '!myhugoapp/static/js/i18n/**',
+      '!myhugoapp/static/js/analytics/**',
+      '!myhugoapp/static/js/visualization/**',
+      '!myhugoapp/static/js/addons/**',
+      '!myhugoapp/static/js/utils/**',
+    ],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: {
+        module: 'readonly',
+        exports: 'readonly',
+        require: 'readonly',
+      },
+    },
+  },
+
   // Chemistry calculator files - with chemistry-utils globals
   {
     files: [
@@ -223,9 +258,7 @@ export default [
 
   // Titration simulator - with Chart.js global
   {
-    files: [
-      'myhugoapp/static/js/titrations-simulator.js',
-    ],
+    files: ['myhugoapp/static/js/titrations-simulator.js'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'script',

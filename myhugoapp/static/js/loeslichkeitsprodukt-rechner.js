@@ -3,14 +3,28 @@
  * Calculates solubility from Ksp and vice versa for various salt types
  */
 
-// Scientific notation parser
-function parseScientificNotation(value) {
+// Scientific notation parser (enhanced version with Unicode superscript support)
+function parseSciNotation(value) {
   // Clean up the input
-  value = value.trim().replace(/×/g, 'e').replace(/·/g, 'e').replace(/⁰¹²³⁴⁵⁶⁷⁸⁹/g, (match) => {
-    const superscriptMap = {'⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4',
-                             '⁵': '5', '⁶': '6', '⁷': '7', '⁸': '8', '⁹': '9'};
-    return superscriptMap[match] || '';
-  });
+  value = value
+    .trim()
+    .replace(/×/g, 'e')
+    .replace(/·/g, 'e')
+    .replace(/⁰¹²³⁴⁵⁶⁷⁸⁹/g, (match) => {
+      const superscriptMap = {
+        '⁰': '0',
+        '¹': '1',
+        '²': '2',
+        '³': '3',
+        '⁴': '4',
+        '⁵': '5',
+        '⁶': '6',
+        '⁷': '7',
+        '⁸': '8',
+        '⁹': '9',
+      };
+      return superscriptMap[match] || '';
+    });
 
   // Parse as float
   const num = parseFloat(value);
@@ -26,7 +40,10 @@ function formatScientific(value, significantFigures = 3) {
 
   // For very large or very small numbers, use scientific notation
   if (Math.abs(value) < 0.01 || Math.abs(value) >= 10000) {
-    return value.toExponential(significantFigures - 1).replace('e', ' × 10^').replace(/\^(-?\d)/g, '^{$1}');
+    return value
+      .toExponential(significantFigures - 1)
+      .replace('e', ' × 10^')
+      .replace(/\^(-?\d)/g, '^{$1}');
   }
 
   // For normal numbers, use appropriate precision
@@ -49,28 +66,28 @@ function parseSaltStoichiometry(formula) {
 
   // For now, we'll use a lookup table for common salt types
   const commonSalts = {
-    'AgCl': {cations: 1, anions: 1},
-    'AgBr': {cations: 1, anions: 1},
-    'AgI': {cations: 1, anions: 1},
-    'Ag2CrO4': {cations: 2, anions: 1},
-    'Ag2CO3': {cations: 2, anions: 1},
-    'Ag3PO4': {cations: 3, anions: 1},
-    'Ca(OH)2': {cations: 1, anions: 2},
-    'CaF2': {cations: 1, anions: 2},
-    'CaCO3': {cations: 1, anions: 1},
-    'CaSO4': {cations: 1, anions: 1},
-    'Ca3(PO4)2': {cations: 3, anions: 2},
-    'BaSO4': {cations: 1, anions: 1},
-    'BaCO3': {cations: 1, anions: 1},
-    'PbCl2': {cations: 1, anions: 2},
-    'PbSO4': {cations: 1, anions: 1},
-    'PbI2': {cations: 1, anions: 2},
-    'Mg(OH)2': {cations: 1, anions: 2},
-    'Fe(OH)2': {cations: 1, anions: 2},
-    'Fe(OH)3': {cations: 1, anions: 3},
-    'Al(OH)3': {cations: 1, anions: 3},
-    'NaCl': {cations: 1, anions: 1},
-    'KCl': {cations: 1, anions: 1},
+    AgCl: { cations: 1, anions: 1 },
+    AgBr: { cations: 1, anions: 1 },
+    AgI: { cations: 1, anions: 1 },
+    Ag2CrO4: { cations: 2, anions: 1 },
+    Ag2CO3: { cations: 2, anions: 1 },
+    Ag3PO4: { cations: 3, anions: 1 },
+    'Ca(OH)2': { cations: 1, anions: 2 },
+    CaF2: { cations: 1, anions: 2 },
+    CaCO3: { cations: 1, anions: 1 },
+    CaSO4: { cations: 1, anions: 1 },
+    'Ca3(PO4)2': { cations: 3, anions: 2 },
+    BaSO4: { cations: 1, anions: 1 },
+    BaCO3: { cations: 1, anions: 1 },
+    PbCl2: { cations: 1, anions: 2 },
+    PbSO4: { cations: 1, anions: 1 },
+    PbI2: { cations: 1, anions: 2 },
+    'Mg(OH)2': { cations: 1, anions: 2 },
+    'Fe(OH)2': { cations: 1, anions: 2 },
+    'Fe(OH)3': { cations: 1, anions: 3 },
+    'Al(OH)3': { cations: 1, anions: 3 },
+    NaCl: { cations: 1, anions: 1 },
+    KCl: { cations: 1, anions: 1 },
   };
 
   if (commonSalts[formula]) {
@@ -90,22 +107,50 @@ function parseSaltStoichiometry(formula) {
 
     // Determine which is cation (metal) and which is anion (nonmetal)
     // Metals are typically on the left side of periodic table
-    const metals = ['Li', 'Na', 'K', 'Rb', 'Cs', 'Fr',
-                    'Be', 'Mg', 'Ca', 'Sr', 'Ba', 'Ra',
-                    'Al', 'Ga', 'In', 'Sn', 'Tl', 'Pb', 'Bi',
-                    'Ag', 'Zn', 'Cd', 'Hg', 'Cu', 'Fe', 'Ni', 'Co',
-                    'Cr', 'Mn', 'V', 'Ti'];
+    const metals = [
+      'Li',
+      'Na',
+      'K',
+      'Rb',
+      'Cs',
+      'Fr',
+      'Be',
+      'Mg',
+      'Ca',
+      'Sr',
+      'Ba',
+      'Ra',
+      'Al',
+      'Ga',
+      'In',
+      'Sn',
+      'Tl',
+      'Pb',
+      'Bi',
+      'Ag',
+      'Zn',
+      'Cd',
+      'Hg',
+      'Cu',
+      'Fe',
+      'Ni',
+      'Co',
+      'Cr',
+      'Mn',
+      'V',
+      'Ti',
+    ];
 
     if (metals.includes(elem1)) {
-      return {cations: count1, anions: count2};
+      return { cations: count1, anions: count2 };
     } else if (metals.includes(elem2)) {
-      return {cations: count2, anions: count1};
+      return { cations: count2, anions: count1 };
     }
   }
 
   // Default to 1:1 if we can't determine
   console.warn('Could not determine stoichiometry for ' + formula + ', assuming 1:1');
-  return {cations: 1, anions: 1};
+  return { cations: 1, anions: 1 };
 }
 
 // Calculate solubility from Ksp
@@ -119,7 +164,7 @@ function calculateSolubilityFromKsp() {
   }
 
   try {
-    const ksp = parseScientificNotation(kspInput);
+    const ksp = parseSciNotation(kspInput);
     const stoichiometry = parseSaltStoichiometry(formula);
 
     // Calculate solubility based on salt type
@@ -139,7 +184,6 @@ function calculateSolubilityFromKsp() {
 
     // Display results
     displaySolubilityResults(formula, ksp, solubility, cationConc, anionConc, stoichiometry);
-
   } catch (error) {
     showError(error.message);
   }
@@ -156,7 +200,7 @@ function calculateKspFromSolubility() {
   }
 
   try {
-    const solubility = parseScientificNotation(solInput);
+    const solubility = parseSciNotation(solInput);
     const stoichiometry = parseSaltStoichiometry(formula);
 
     // Calculate Ksp based on salt type
@@ -175,7 +219,6 @@ function calculateKspFromSolubility() {
 
     // Display results
     displayKspResults(formula, solubility, ksp, cationConc, anionConc, stoichiometry);
-
   } catch (error) {
     showError(error.message);
   }
@@ -194,9 +237,9 @@ function checkPrecipitation() {
   }
 
   try {
-    const ksp = parseScientificNotation(kspInput);
-    const cationConc = parseScientificNotation(cationInput);
-    const anionConc = parseScientificNotation(anionInput);
+    const ksp = parseSciNotation(kspInput);
+    const cationConc = parseSciNotation(cationInput);
+    const anionConc = parseSciNotation(anionInput);
     const stoichiometry = parseSaltStoichiometry(formula);
 
     // Calculate reaction quotient Q
@@ -222,8 +265,17 @@ function checkPrecipitation() {
     }
 
     // Display results
-    displayPrecipitationResults(formula, ksp, cationConc, anionConc, Q, status, message, statusClass, stoichiometry);
-
+    displayPrecipitationResults(
+      formula,
+      ksp,
+      cationConc,
+      anionConc,
+      Q,
+      status,
+      message,
+      statusClass,
+      stoichiometry
+    );
   } catch (error) {
     showError(error.message);
   }
@@ -350,7 +402,17 @@ function displayKspResults(formula, solubility, ksp, cationConc, anionConc, stoi
 }
 
 // Display precipitation check results
-function displayPrecipitationResults(formula, ksp, cationConc, anionConc, Q, status, message, statusClass, stoichiometry) {
+function displayPrecipitationResults(
+  formula,
+  ksp,
+  cationConc,
+  anionConc,
+  Q,
+  status,
+  message,
+  statusClass,
+  stoichiometry
+) {
   const mainResult = document.getElementById('main-result');
   const ionConcentrations = document.getElementById('ion-concentrations');
   const details = document.getElementById('calculation-details');
@@ -433,26 +495,26 @@ function showError(message) {
 }
 
 // Setup example button handlers
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Ksp to Solubility examples
-  document.querySelectorAll('.example-btn').forEach(button => {
-    button.addEventListener('click', function() {
+  document.querySelectorAll('.example-btn').forEach((button) => {
+    button.addEventListener('click', function () {
       document.getElementById('formula-ksp').value = this.dataset.formula;
       document.getElementById('ksp-value').value = this.dataset.ksp;
     });
   });
 
   // Solubility to Ksp examples
-  document.querySelectorAll('.example-btn-sol').forEach(button => {
-    button.addEventListener('click', function() {
+  document.querySelectorAll('.example-btn-sol').forEach((button) => {
+    button.addEventListener('click', function () {
       document.getElementById('formula-solubility').value = this.dataset.formula;
       document.getElementById('solubility-value').value = this.dataset.solubility;
     });
   });
 
   // Precipitation examples
-  document.querySelectorAll('.example-btn-precip').forEach(button => {
-    button.addEventListener('click', function() {
+  document.querySelectorAll('.example-btn-precip').forEach((button) => {
+    button.addEventListener('click', function () {
       document.getElementById('precip-formula').value = this.dataset.formula;
       document.getElementById('precip-ksp').value = this.dataset.ksp;
       document.getElementById('cation-conc').value = this.dataset.cation;
@@ -462,8 +524,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Enable Enter key for inputs
   const inputs = document.querySelectorAll('input[type="text"]');
-  inputs.forEach(input => {
-    input.addEventListener('keypress', function(e) {
+  inputs.forEach((input) => {
+    input.addEventListener('keypress', function (e) {
       if (e.key === 'Enter') {
         const section = this.closest('.tab-pane');
         if (section.id === 'ksp-to-solubility') {

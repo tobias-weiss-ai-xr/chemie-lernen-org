@@ -14,7 +14,7 @@ const BOND_DATA = {
   'c-h': { energy: 413, equilibrium: 1.09, color: '#e74c3c' },
   'c-c': { energy: 347, equilibrium: 1.54, color: '#9b59b6' },
   'c=c': { energy: 614, equilibrium: 1.34, color: '#f39c12' },
-  'c-c': { energy: 839, equilibrium: 1.2, color: '#e67e22' },
+  'c≡c': { energy: 839, equilibrium: 1.2, color: '#e67e22' },
   'o-h': { energy: 463, equilibrium: 0.96, color: '#1abc9c' },
   'n-h': { energy: 391, equilibrium: 1.01, color: '#e84393' },
 };
@@ -816,6 +816,19 @@ function calculateEnergyAtProgress(p, Ea, deltaH) {
     const p2 = 1 - p;
     return deltaH + 4 * Ea * p2 * (1 - p2);
   }
+}
+
+// Arrhenius equation: k = A * exp(-Ea / (R * T))
+function calculateRateConstant(temperature, activationEnergy) {
+  const A = 1e10; // Pre-exponential factor (simplified)
+  const R = 8.314; // Gas constant J/(mol·K)
+  const Ea = activationEnergy * 1000; // Convert kJ to J
+  return A * Math.exp(-Ea / (R * temperature));
+}
+
+// Update the activation energy diagram on the canvas
+function updateActivationDiagram() {
+  drawActivationDiagram();
 }
 
 // Initialize on page load
