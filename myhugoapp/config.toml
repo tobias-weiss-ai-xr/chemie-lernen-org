@@ -22,7 +22,7 @@ enableRobotsTXT = true
   github = "tobias-weiss-ai-xr"
   custom_css = ["css/custom.css", "css/dark-mode.css", "css/pse-in-vr.css"]
   custom_js = ["js/dark-mode.js"]
-  defaultImage = "recent-article_001.jpg"
+  defaultImage = "img/chemie-lernen-banner.png"
   footer_description = "chemie-lernen.org - Ihre Plattform für innovative Chemie-Lernräume in Virtual Reality. Erleben Sie das Periodensystem in VR mit 118 einzigartigen Element-Räumen."
 
 [params.meta]
