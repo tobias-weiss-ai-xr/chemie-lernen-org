@@ -4,7 +4,7 @@
    ==================================================================== */}}
 
 {{/* ── Schema 1: WebSite + SearchAction (ALL pages) ──────────────────── */}}
-{{ $logoURL := printf "%simg/chemie-lernen-logo_light.png" .Site.BaseURL }}
+{{ $logoURL := printf "%simg/logo.svg" .Site.BaseURL }}
 {{ $searchTarget := printf "%spages/suche/?q={search_term_string}" .Site.BaseURL }}
 {{ $ws := dict "@context" "https://schema.org" "@type" "WebSite" "name" .Site.Title "url" .Site.BaseURL "description" .Site.Params.footer_description "inLanguage" .Site.Language.Lang }}
 {{ $ws = dict "publisher" (dict "@type" "Organization" "name" "chemie-lernen.org" "url" .Site.BaseURL) | merge $ws }}

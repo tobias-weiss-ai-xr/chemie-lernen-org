@@ -26,7 +26,7 @@
 
 /* Logo switching for dark mode - use dark version of logo */
 [data-theme='dark'] .navbar-brand img.site-logo {
-  content: url('/img/chemie-lernen-logo_dark.png');
+  content: url('/img/logo-dark.svg');
 }
 
 /* Global Dark Mode Styles */
@@ -521,7 +521,7 @@ html:not([data-theme='dark']) body {
 
 /* Logo - use light version for light mode */
 html:not([data-theme='dark']) .navbar-brand img.site-logo {
-  content: url('/img/chemie-lernen-logo_light.png');
+  content: url('/img/logo.svg');
 }
 
 /* Title row */
