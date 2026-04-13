@@ -42,7 +42,7 @@ const pHCalculator = new ChemistryCalculator({
     calculateFromInputs: (inputs) => {
       const hplus = inputs['hplus'];
       const ohminus = inputs['ohminus'];
-      
+
       // H+ calculation
       if (hplus !== undefined && hplus > 0) {
         const h = -Math.log10(hplus);
@@ -52,7 +52,7 @@ const pHCalculator = new ChemistryCalculator({
           explanation: `pH = -log₁₀(${h}) = ${(-ph).toFixed(2)}`
         };
       }
-      
+
       // OH- calculation
       if (ohminus !== undefined && ohminus > 0 && ohminus <= 14) {
         const poh = -Math.log10(ohminus);
@@ -62,7 +62,7 @@ const pHCalculator = new ChemistryCalculator({
           explanation: `pH = 14 - log₁₀(${poh}) = ${ph.toFixed(2)}`
         };
       }
-      
+
       return null;
     }
   }

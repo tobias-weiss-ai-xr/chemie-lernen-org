@@ -6,7 +6,7 @@ class InteractiveMolarMassVisualizer {
     this.molarMass = 0;
     this.selectedElements = [];
     this.particleAnimation = null;
-    
+
     this.init();
   }
 
@@ -53,7 +53,7 @@ class InteractiveMolarMassVisualizer {
     }
 
     this.container = container;
-    
+
     const vizDiv = document.createElement('div');
     vizDiv.className = 'molar-viz-container';
     vizDiv.style.cssText = `
@@ -62,11 +62,11 @@ class InteractiveMolarMassVisualizer {
       gap: 20px;
       margin: 20px 0;
     `;
-    
+
     const periodicTableDiv = document.createElement('div');
     periodicTableDiv.className = 'periodic-table-mini';
     periodicTableDiv.innerHTML = this.createMiniPeriodicTable();
-    
+
     const moleculeDiv = document.createElement('div');
     moleculeDiv.className = 'molecule-visualization';
     moleculeDiv.innerHTML = `
@@ -77,22 +77,22 @@ class InteractiveMolarMassVisualizer {
         </div>
       </div>
     `;
-    
+
     vizDiv.appendChild(periodicTableDiv);
     vizDiv.appendChild(moleculeDiv);
     container.appendChild(vizDiv);
-    
+
     this.addPeriodicTableStyles();
   }
 
   createMiniPeriodicTable() {
     let html = '<h4>Elemente auswählen</h4>';
     html += '<div class="element-grid" style="display: grid; grid-template-columns: repeat(9, 1fr); gap: 5px;">';
-    
-    const commonElements = ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 
+
+    const commonElements = ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne',
                          'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca',
                          'Fe', 'Cu', 'Zn', 'Ag', 'Au'];
-    
+
     commonElements.forEach(symbol => {
       const element = this.elements.get(symbol);
       if (element) {
@@ -107,7 +107,7 @@ class InteractiveMolarMassVisualizer {
         `;
       }
     });
-    
+
     html += '</div>';
     return html;
   }
@@ -122,7 +122,7 @@ class InteractiveMolarMassVisualizer {
       margin: 20px 0;
       border: 1px solid #dee2e6;
     `;
-    
+
     controlsDiv.innerHTML = `
       <div class="row">
         <div class="col-md-6">
@@ -169,7 +169,7 @@ class InteractiveMolarMassVisualizer {
         </div>
       </div>
     `;
-    
+
     this.container.appendChild(controlsDiv);
   }
 
@@ -178,24 +178,24 @@ class InteractiveMolarMassVisualizer {
     const calculateBtn = document.getElementById('calculate-btn');
     const elementBtns = document.querySelectorAll('.element-btn');
     const formulaBtns = document.querySelectorAll('.formula-btn');
-    
+
     formulaInput.addEventListener('input', () => this.parseFormulaInput());
-    
+
     calculateBtn.addEventListener('click', () => this.calculateMolarMass());
-    
+
     formulaInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
         this.calculateMolarMass();
       }
     });
-    
+
     elementBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         const element = btn.dataset.element;
         this.addToFormula(element);
       });
     });
-    
+
     formulaBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         const formula = btn.dataset.formula;
@@ -203,13 +203,13 @@ class InteractiveMolarMassVisualizer {
         this.calculateMolarMass();
       });
     });
-    
+
     elementBtns.forEach(btn => {
       btn.addEventListener('mouseenter', () => {
         btn.style.transform = 'scale(1.1)';
         btn.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
       });
-      
+
       btn.addEventListener('mouseleave', () => {
         btn.style.transform = 'scale(1)';
         btn.style.boxShadow = 'none';
@@ -229,7 +229,7 @@ class InteractiveMolarMassVisualizer {
       this.clearResult();
       return;
     }
-    
+
     this.formula = input;
     this.selectedElements = this.parseChemicalFormula(input);
     this.updateMoleculeDisplay();
@@ -239,43 +239,43 @@ class InteractiveMolarMassVisualizer {
     const elements = new Map();
     const regex = /([A-Z][a-z]?)(\d*)/g;
     let match;
-    
+
     while ((match = regex.exec(formula)) !== null) {
       const element = match[1];
       const count = parseInt(match[2]) || 1;
-      
+
       if (this.elements.has(element)) {
         elements.set(element, (elements.get(element) || 0) + count);
       } else {
         throw new Error(`Unbekanntes Element: ${element}`);
       }
     }
-    
+
     return elements;
   }
 
   calculateMolarMass() {
     const input = document.getElementById('formula-input').value;
     const errorDiv = document.getElementById('formula-error');
-    
+
     if (!input.trim()) {
       this.showError('Bitte geben Sie eine chemische Formel ein.');
       return;
     }
-    
+
     try {
       this.selectedElements = this.parseChemicalFormula(input);
       this.formula = input;
-      
+
       this.molarMass = 0;
       this.selectedElements.forEach((count, element) => {
         const elementData = this.elements.get(element);
         this.molarMass += elementData.mass * count;
       });
-      
+
       this.displayResult();
       errorDiv.style.display = 'none';
-      
+
     } catch (error) {
       this.showError(error.message);
     }
@@ -286,17 +286,17 @@ class InteractiveMolarMassVisualizer {
     const resultFormula = document.getElementById('result-formula');
     const resultMass = document.getElementById('result-mass');
     const breakdownContent = document.getElementById('breakdown-content');
-    
+
     resultFormula.textContent = this.formula;
     resultMass.textContent = this.molarMass.toFixed(3);
-    
+
     let breakdownHTML = '<div class="element-breakdown-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">';
-    
+
     this.selectedElements.forEach((count, element) => {
       const elementData = this.elements.get(element);
       const contribution = elementData.mass * count;
       const percentage = (contribution / this.molarMass) * 100;
-      
+
       breakdownHTML += `
         <div class="element-breakdown-item" style="background: #e9ecef; padding: 10px; border-radius: 5px; border-left: 4px solid ${elementData.color};">
           <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -310,10 +310,10 @@ class InteractiveMolarMassVisualizer {
         </div>
       `;
     });
-    
+
     breakdownHTML += '</div>';
     breakdownContent.innerHTML = breakdownHTML;
-    
+
     resultDiv.style.display = 'block';
     this.animateResult();
   }
@@ -329,7 +329,7 @@ class InteractiveMolarMassVisualizer {
       display.innerHTML = 'Geben Sie eine Formel ein';
       return;
     }
-    
+
     let moleculeHTML = '<div style="text-align: center;">';
     this.selectedElements.forEach((count, element) => {
       const elementData = this.elements.get(element);
@@ -347,7 +347,7 @@ class InteractiveMolarMassVisualizer {
       `;
     });
     moleculeHTML += '</div>';
-    
+
     display.innerHTML = moleculeHTML;
   }
 
@@ -367,7 +367,7 @@ class InteractiveMolarMassVisualizer {
     const resultDiv = document.getElementById('calculation-result');
     resultDiv.style.opacity = '0';
     resultDiv.style.transform = 'translateY(20px)';
-    
+
     setTimeout(() => {
       resultDiv.style.transition = 'all 0.5s ease';
       resultDiv.style.opacity = '1';
@@ -408,7 +408,7 @@ class InteractiveMolarMassVisualizer {
   }
 
   destroy() {
-    
+
   }
 }
 

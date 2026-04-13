@@ -9,7 +9,7 @@ class LazyLoader {
     this.loadingPromises = new Map();
     this.cache = new Map();
     this.observers = [];
-    
+
     this.preloadCriticalModules();
     this.setupIntersectionObserver();
   }
@@ -82,11 +82,11 @@ class LazyLoader {
       this.loadedModules.add(calculatorType);
       this.cache.set(calculatorType, module);
       this.loadingPromises.delete(calculatorType);
-      
+
       window.dispatchEvent(new CustomEvent('calculatorLoaded', {
         detail: { type: calculatorType, module }
       }));
-      
+
       return module;
     } catch (error) {
       this.loadingPromises.delete(calculatorType);
@@ -108,22 +108,22 @@ class LazyLoader {
       const script = document.createElement('script');
       script.src = modulePath;
       script.async = true;
-      
+
       script.onload = () => {
         const moduleName = modulePath.split('/').pop().replace('.js', '');
         const module = window[moduleName] || window.default;
-        
+
         if (module) {
           resolve(module);
         } else {
           reject(new Error(`Module ${moduleName} not found after load`));
         }
       };
-      
+
       script.onerror = () => {
         reject(new Error(`Failed to load module: ${modulePath}`));
       };
-      
+
       document.head.appendChild(script);
     });
   }
@@ -144,7 +144,7 @@ class LazyLoader {
   unloadModule(calculatorType) {
     this.loadedModules.delete(calculatorType);
     this.cache.delete(calculatorType);
-    
+
     window.dispatchEvent(new CustomEvent('calculatorUnloaded', {
       detail: { type: calculatorType }
     }));

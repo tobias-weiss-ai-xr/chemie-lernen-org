@@ -318,7 +318,7 @@ const flaecheCalculatorConfig = {
 
 document.addEventListener('DOMContentLoaded', function() {
   let druckCalculator, kraftCalculator, flaecheCalculator;
-  
+
   try {
     druckCalculator = new ChemistryCalculator(druckCalculatorConfig);
     kraftCalculator = new ChemistryCalculator(kraftCalculatorConfig);
@@ -388,7 +388,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initPistonDemo() {
   const kraftSlider = document.getElementById('kraft-slider');
   const flaecheSlider = document.getElementById('flaeche-slider');
-  
+
   if (kraftSlider && flaecheSlider) {
     kraftSlider.addEventListener('input', updatePiston);
     flaecheSlider.addEventListener('input', updatePiston);

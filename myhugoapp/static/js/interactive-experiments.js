@@ -13,14 +13,14 @@ class InteractivePHVisualization {
     this.targetPH = 7;
     this.isAnimating = false;
     this.colorCache = new Map();
-    
+
     this.phColors = {
       acid: { r: 255, g: 0, b: 147 },
       neutral: { r: 128, g: 128, b: 128 },
       base: { r: 0, g: 255, b: 0 },
       alkaline: { r: 0, g: 255, b: 255 }
     };
-    
+
     this.init();
   }
 
@@ -38,7 +38,7 @@ class InteractivePHVisualization {
     }
 
     this.container = container;
-    
+
     const canvas = document.createElement('canvas');
     canvas.width = 800;
     canvas.height = 400;
@@ -47,7 +47,7 @@ class InteractivePHVisualization {
     canvas.style.border = '1px solid #ddd';
     canvas.style.borderRadius = '8px';
     canvas.style.background = '#fff';
-    
+
     const phScale = document.createElement('div');
     phScale.className = 'ph-scale-visual';
     phScale.style.cssText = `
@@ -60,7 +60,7 @@ class InteractivePHVisualization {
       display: inline-block;
       vertical-align: middle;
     `;
-    
+
     const infoPanel = document.createElement('div');
     infoPanel.className = 'ph-info-panel';
     infoPanel.innerHTML = `
@@ -88,14 +88,14 @@ class InteractivePHVisualization {
         </div>
       </div>
     `;
-    
+
     container.appendChild(canvas);
     container.appendChild(phScale);
     container.appendChild(infoPanel);
-    
+
     this.canvas = canvas.getContext('2d');
     this.phScale = phScale;
-    
+
     this.drawVisualization();
   }
 
@@ -120,13 +120,13 @@ class InteractivePHVisualization {
     const phSlider = document.getElementById('ph-slider');
     const currentDisplay = document.getElementById('current-ph-display');
     const colorIndicator = document.getElementById('ph-color-indicator');
-    
+
     if (phSlider && currentDisplay && colorIndicator) {
       const ph = parseFloat(phSlider.value);
       this.currentPH = ph;
-      
+
       currentDisplay.textContent = ph.toFixed(1);
-      
+
       this.updateColorIndicator(ph);
       this.animateToPH(ph);
     }
@@ -134,21 +134,21 @@ class InteractivePHVisualization {
 
   animateToPH(targetPH) {
     if (this.isAnimating) return;
-    
+
     this.isAnimating = true;
     const startPH = this.currentPH;
     const endPH = targetPH;
     const duration = 1000;
     const startTime = performance.now();
-    
+
     const animate = () => {
       const elapsed = performance.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const currentPH = startPH + (endPH - startPH) * progress;
-      
+
       this.currentPH = currentPH;
       this.updateVisualization(currentPH);
-      
+
       if (progress < 1) {
         requestAnimationFrame(animate);
       } else {
@@ -157,7 +157,7 @@ class InteractivePHVisualization {
         this.isAnimating = false;
       }
     };
-    
+
     requestAnimationFrame(animate);
   }
 
@@ -170,9 +170,9 @@ class InteractivePHVisualization {
   updateColorIndicator(ph) {
     const colorIndicator = document.getElementById('ph-color-indicator');
     if (!colorIndicator) return;
-    
+
     let color;
-    
+
     if (ph < 3) {
       color = this.phColors.acid;
     } else if (ph < 7) {
@@ -182,7 +182,7 @@ class InteractivePHVisualization {
     } else {
       color = this.phColors.alkaline;
     }
-    
+
     colorIndicator.style.backgroundColor = color;
     colorIndicator.className = `ph-color-indicator ph-${color}`;
   }
@@ -191,62 +191,62 @@ class InteractivePHVisualization {
     const ctx = this.canvas;
     const width = this.canvas.width;
     const height = this.canvas.height;
-    
+
     ctx.clearRect(0, 0, width, height);
-    
+
     const scaleWidth = width - 100;
     const scaleHeight = height;
     const scaleStartX = 50;
     const scaleStartY = 50;
-    
+
     ctx.fillStyle = '#f0f0f0';
     ctx.strokeStyle = '#333';
     ctx.lineWidth = 2;
-    
+
     ctx.fillRect(scaleStartX, scaleStartY, scaleWidth, scaleHeight);
     ctx.strokeRect(scaleStartX, scaleStartY, scaleWidth, scaleHeight);
-    
+
     ctx.font = '14px Arial';
     ctx.textAlign = 'center';
     ctx.fillText('pH Skala', scaleStartX + scaleWidth / 2, scaleStartY - 15);
-    
+
     for (let i = 0; i <= 14; i++) {
       const x = scaleStartX + (i / 14) * scaleWidth;
       const phValue = i;
       const ph = Math.round(this.mapPHToColor(phValue) * 10);
       const y = scaleStartY + scaleHeight;
-      
+
       ctx.fillStyle = this.getColorForPH(phValue);
       ctx.fillRect(x, y - 10, scaleWidth / 14, 20);
-      
+
       ctx.fillStyle = '#666';
       ctx.font = '12px Arial';
       ctx.textAlign = 'center';
       ctx.fillText(ph, x + scaleWidth / 28, y);
-      
+
       if (i === 7) {
         ctx.strokeStyle = '#ff6b6b';
         ctx.beginPath();
         ctx.moveTo(x + scaleWidth / 14, y);
         ctx.lineTo(x + scaleWidth / 14, y + scaleHeight);
         ctx.stroke();
-        
+
         ctx.fillStyle = '#ff6b6b';
         ctx.font = 'bold 12px Arial';
         ctx.textAlign = 'center';
         ctx.fillText('Neutral', x + 3 * scaleWidth / 14, y + scaleHeight / 2);
       }
     }
-    
+
     const markY = scaleStartY + scaleHeight + 20;
     ctx.font = '12px Arial';
     ctx.textAlign = 'center';
     ctx.fillStyle = '#333';
     ctx.fillText('Aktuell: ' + ph.toFixed(1), scaleStartX, markY);
-    
+
     const targetMark = Math.round(this.mapPHToPosition(ph) * scaleWidth / 14);
     const targetX = scaleStartX + targetMark;
-    
+
     ctx.strokeStyle = '#ff3333';
     ctx.lineWidth = 3;
     ctx.setLineDash([5, 5]);
@@ -274,7 +274,7 @@ class InteractivePHVisualization {
     if (ph <= 12) return this.interpolateColor('#66ff66', '#ffcc66', 0.5);
     if (ph <= 13) return this.interpolateColor('#ffcc66', '#ff3333', 0.5);
     if (ph <= 14) return this.interpolateColor('#ff3333', '#cc0066', 0.5);
-    
+
     return this.interpolateColor('#cc0066', '#99cc00', 1);
   }
 
@@ -299,11 +299,11 @@ class InteractivePHVisualization {
   interpolateColor(color1, color2, factor) {
     const rgb1 = this.hexToRgb(color1);
     const rgb2 = this.hexToRgb(color2);
-    
+
     const r = Math.round(rgb1.r + (rgb2.r - rgb1.r) * factor);
     const g = Math.round(rgb1.g + (rgb2.g - rgb1.g) * factor);
     const b = Math.round(rgb1.b + (rgb2.b - rgb1.b) * factor);
-    
+
     return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
   }
 
