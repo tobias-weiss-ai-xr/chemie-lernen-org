@@ -1,0 +1,17 @@
+{{ if .IsTranslated }}
+<li class="dropdown language-switcher">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    {{ .Site.Language.LanguageName }} <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    {{ range .Translations }}
+    <li{{ if eq .Lang $.Lang }} class="active"{{ end }}>
+      <a href="{{ .Permalink }}" hreflang="{{ .Lang }}">{{ .Language.LanguageName }}</a>
+    </li>
+    {{ end }}
+    <li{{ if eq .Lang $.Site.Language.Lang }} class="active"{{ end }}>
+      <a href="{{ .Permalink }}" hreflang="{{ .Lang }}">{{ .Language.LanguageName }}</a>
+    </li>
+  </ul>
+</li>
+{{ end }}

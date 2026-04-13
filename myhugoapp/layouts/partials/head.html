@@ -18,6 +18,13 @@
 <!-- Canonical URL -->
 <link rel="canonical" href="{{ .Permalink }}">
 
+{{- if .IsTranslated -}}
+{{- range .Translations -}}
+<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+{{- end -}}
+<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+{{- end -}}
+
 {{- with .Site.Author }}
 <meta name="author" content="{{ . }}">
 {{- end -}}

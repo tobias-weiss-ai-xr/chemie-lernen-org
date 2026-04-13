@@ -4,8 +4,8 @@
         <div class="container">
             <div class="row" style="align-items: center;">
                 <div class="col-md-8">
-                    <h2 style="margin: 0 0 10px 0; font-size: 1.8rem;">🥽 PSE in VR - Das Periodensystem in Virtual Reality</h2>
-                    <p style="margin: 0; font-size: 1.1rem; opacity: 0.9;">Erleben Sie 118 einzigartige Element-Räume in einer immersiven 3D-Umgebung – kostenlos und direkt im Browser!</p>
+                    <h2 style="margin: 0 0 10px 0; font-size: 1.8rem;">{{ T "vr_footer_title" }}</h2>
+                    <p style="margin: 0; font-size: 1.1rem; opacity: 0.9;">{{ T "vr_footer_text" }}</p>
                 </div>
                 <div class="col-md-4 text-center" style="margin-top: 15px;">
                     <a href="https://pse.chemie-lernen.org/" target="_blank" style="display: inline-block; padding: 15px 35px; background: white; color: #667eea; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
@@ -23,19 +23,19 @@
             <div class="row">
                 <div class="col-md-6">
                     <h4>{{ .Site.Title }}</h4>
-                    <p>{{ .Site.Params.footer_description }}</p>
+                    <p>{{ .Site.Language.Params.footer_description | default (T "footer_description") }}</p>
                     <p>
                         <a href="https://www.patreon.com/c/chemie_lernen_org" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; font-weight: 500;" aria-label="Besuchen Sie unseren Patreon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: text-bottom; margin-right: 5px;">
                                 <path d="M4.231 0C3.281 0 2.4.513 2.4 1.484v20.922c0 .995.881 1.484 1.831 1.484.95 0 1.774-.49 1.774-1.484V1.484C6.005.513 5.181 0 4.231 0zm13.396 4.453c-2.606 0-4.748 2.054-4.748 4.578 0 2.525 2.142 4.579 4.748 4.579s4.748-2.054 4.748-4.579c0-2.524-2.142-4.578-4.748-4.578z"/>
                             </svg>
-                            Unterstütze uns auf Patreon
+                            {{ T "footer_patreon" }}
                         </a>
                     </p>
                 </div>
                 <div class="col-md-6 text-right">
                     <p>&copy; {{ now.Format "2006" }} {{ .Site.Title }}. Alle Rechte vorbehalten.</p>
-                    <p><small><a href="{{ "impressum/" | relURL }}" style="color: #fff;">impressum</a> | <a href="{{ "datenschutz/" | relURL }}" style="color: #fff;">datenschutz</a> | <a href="{{ "pages/barrierefreiheit/" | relURL }}" style="color: #fff;">barrierefreiheit</a></small></p>
+                    <p><small><a href="{{ "impressum/" | relURL }}" style="color: #fff;">{{ T "footer_impressum" }}</a> | <a href="{{ "datenschutz/" | relURL }}" style="color: #fff;">{{ T "footer_datenschutz" }}</a> | <a href="{{ "pages/barrierefreiheit/" | relURL }}" style="color: #fff;">{{ T "footer_barrierefreiheit" }}</a></small></p>
                 </div>
             </div>
         </div>

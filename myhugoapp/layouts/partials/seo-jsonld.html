@@ -6,34 +6,40 @@
 {{/* ── Schema 1: WebSite + SearchAction (ALL pages) ──────────────────── */}}
 {{ $logoURL := printf "%simg/chemie-lernen-logo_light.png" .Site.BaseURL }}
 {{ $searchTarget := printf "%spages/suche/?q={search_term_string}" .Site.BaseURL }}
-{{ $ws := dict "@context" "https://schema.org" "@type" "WebSite" "name" .Site.Title "url" .Site.BaseURL "description" .Site.Params.footer_description "inLanguage" "de" }}
+{{ $ws := dict "@context" "https://schema.org" "@type" "WebSite" "name" .Site.Title "url" .Site.BaseURL "description" .Site.Params.footer_description "inLanguage" .Site.Language.Lang }}
 {{ $ws = dict "publisher" (dict "@type" "Organization" "name" "chemie-lernen.org" "url" .Site.BaseURL) | merge $ws }}
 {{ $ws = dict "potentialAction" (dict "@type" "SearchAction" "target" $searchTarget "query-input" "required name=search_term_string") | merge $ws }}
 <script type="application/ld+json">{{ $ws | jsonify | safeJS }}</script>
 
 {{/* ── Schema 2: Organization (ALL pages) ────────────────────────────── */}}
 {{ $contactURL := printf "%spages/contact/" .Site.BaseURL }}
-{{ $org := dict "@context" "https://schema.org" "@type" "Organization" "name" "chemie-lernen.org" "url" .Site.BaseURL "logo" $logoURL "description" "Innovative Chemie-Lernplattform mit Virtual Reality und interaktiven Tools" "sameAs" (slice "https://github.com/tobias-weiss-ai-xr" "https://www.patreon.com/c/chemie_lernen_org") }}
-{{ $org = dict "contactPoint" (dict "@type" "ContactPoint" "contactType" "customer support" "url" $contactURL "availableLanguage" "German") | merge $org }}
+{{ $org := dict "@context" "https://schema.org" "@type" "Organization" "name" "chemie-lernen.org" "url" .Site.BaseURL "logo" $logoURL "description" (T "footer_description") "sameAs" (slice "https://github.com/tobias-weiss-ai-xr" "https://www.patreon.com/c/chemie_lernen_org") }}
+{{ $org = dict "contactPoint" (dict "@type" "ContactPoint" "contactType" "customer support" "url" $contactURL "availableLanguage" .Site.Language.LanguageName) | merge $org }}
 <script type="application/ld+json">{{ $org | jsonify | safeJS }}</script>
 
 {{/* ── Schema 3: BreadcrumbList (non-home pages only) ────────────────── */}}
 {{ if ne .Kind "home" }}
 {{ $bc := dict }}
+{{ $bcKlassenstufenName := T "breadcrumb_klassenstufen" }}
 {{ $items := slice }}
-{{ $items = $items | append (dict "@type" "ListItem" "position" 1 "name" "Start" "item" .Site.BaseURL) }}
+{{ $bcHomeName := T "breadcrumb_home" }}
+{{ $bcThemenName := T "breadcrumb_themenbereiche" }}
+{{ $bcGrundlagenName := T "breadcrumb_grundlagen" }}
+{{ $bcMittelstufeName := T "breadcrumb_mittelstufe" }}
+{{ $bcFortgeschrittenName := T "breadcrumb_fortgeschritten" }}
+{{ $items = $items | append (dict "@type" "ListItem" "position" 1 "name" $bcHomeName "item" .Site.BaseURL) }}
 
 {{ with .CurrentSection }}
   {{ if eq .Title "Themenbereiche" }}
-    {{ $items = $items | append (dict "@type" "ListItem" "position" 2 "name" "Themenbereiche" "item" .Permalink) }}
+    {{ $items = $items | append (dict "@type" "ListItem" "position" 2 "name" $bcThemenName "item" .Permalink) }}
   {{ else if .File }}
     {{ if in .File.Dir "themenbereiche" }}
-      {{ $items = $items | append (dict "@type" "ListItem" "position" 2 "name" "Themenbereiche" "item" (printf "%sthemenbereiche/" $.Site.BaseURL)) }}
+      {{ $items = $items | append (dict "@type" "ListItem" "position" 2 "name" $bcThemenName "item" (printf "%sthemenbereiche/" $.Site.BaseURL)) }}
       {{ if $.Params.schwierigkeit }}
         {{ $diffName := "Allgemein" }}
-        {{ if eq $.Params.schwierigkeit "grundlagen" }}{{ $diffName = "Grundlagen" }}{{ end }}
-        {{ if eq $.Params.schwierigkeit "mittelstufe" }}{{ $diffName = "Mittelstufe" }}{{ end }}
-        {{ if eq $.Params.schwierigkeit "fortgeschritten" }}{{ $diffName = "Fortgeschritten" }}{{ end }}
+        {{ if eq $.Params.schwierigkeit "grundlagen" }}{{ $diffName = $bcGrundlagenName }}{{ end }}
+        {{ if eq $.Params.schwierigkeit "mittelstufe" }}{{ $diffName = $bcMittelstufeName }}{{ end }}
+        {{ if eq $.Params.schwierigkeit "fortgeschritten" }}{{ $diffName = $bcFortgeschrittenName }}{{ end }}
         {{ $items = $items | append (dict "@type" "ListItem" "position" 3 "name" $diffName "item" (printf "%sthemenbereiche/#%s" $.Site.BaseURL $.Params.schwierigkeit)) }}
       {{ end }}
       {{ if ne $.Title .Title }}
@@ -42,7 +48,7 @@
         {{ $items = $items | append (dict "@type" "ListItem" "position" $pos "name" $.Title "item" $.Permalink) }}
       {{ end }}
     {{ else if or (eq $.Title "Periodensystem der Elemente") (eq $.Title "Molekülstudio") }}
-      {{ $items = $items | append (dict "@type" "ListItem" "position" 2 "name" "Themenbereiche" "item" (printf "%sthemenbereiche/" $.Site.BaseURL)) }}
+      {{ $items = $items | append (dict "@type" "ListItem" "position" 2 "name" $bcThemenName "item" (printf "%sthemenbereiche/" $.Site.BaseURL)) }}
       {{ $items = $items | append (dict "@type" "ListItem" "position" 3 "name" "Aufbau der Materie" "item" (printf "%sthemenbereiche/aufbau-materie/" $.Site.BaseURL)) }}
       {{ $items = $items | append (dict "@type" "ListItem" "position" 4 "name" $.Title "item" $.Permalink) }}
     {{ else if $.File }}
@@ -58,10 +64,10 @@
   {{ end }}
 
   {{ if eq .Title "Klassenstufen" }}
-    {{ $items = $items | append (dict "@type" "ListItem" "position" 2 "name" "Klassenstufen" "item" (printf "%sklassenstufen/" .Site.BaseURL)) }}
+    {{ $items = $items | append (dict "@type" "ListItem" "position" 2 "name" $bcKlassenstufenName "item" (printf "%sklassenstufen/" .Site.BaseURL)) }}
   {{ else if .File }}
     {{ if in .File.Dir "klassenstufen" }}
-      {{ $items = $items | append (dict "@type" "ListItem" "position" 2 "name" "Klassenstufen" "item" (printf "%sklassenstufen/" $.Site.BaseURL)) }}
+      {{ $items = $items | append (dict "@type" "ListItem" "position" 2 "name" $bcKlassenstufenName "item" (printf "%sklassenstufen/" $.Site.BaseURL)) }}
       {{ $items = $items | append (dict "@type" "ListItem" "position" 3 "name" $.Title "item" $.Permalink) }}
     {{ end }}
   {{ end }}
@@ -77,7 +83,7 @@
 {{/* ── Schema 4: Article (pages with .Date only) ─────────────────────── */}}
 {{ if and .Date (ne .Kind "home") }}
 {{ $artDesc := cond (ne .Description "") .Description .Site.Params.footer_description }}
-{{ $art := dict "@context" "https://schema.org" "@type" "Article" "headline" .Title "description" $artDesc "datePublished" (.Date.Format "2006-01-02") "dateModified" (.Lastmod.Format "2006-01-02") "inLanguage" "de" }}
+{{ $art := dict "@context" "https://schema.org" "@type" "Article" "headline" .Title "description" $artDesc "datePublished" (.Date.Format "2006-01-02") "dateModified" (.Lastmod.Format "2006-01-02") "inLanguage" .Site.Language.Lang }}
 {{ $art = dict "author" (dict "@type" "Organization" "name" "chemie-lernen.org Team") | merge $art }}
 {{ $art = dict "publisher" (dict "@type" "Organization" "name" "chemie-lernen.org" "logo" (dict "@type" "ImageObject" "url" $logoURL)) | merge $art }}
 {{ $art = dict "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) | merge $art }}
@@ -90,7 +96,7 @@
 {{ if eq .Params.schwierigkeit "grundlagen" }}{{ $eduLevel = "https://schema.org/Beginner" }}{{ end }}
 {{ if eq .Params.schwierigkeit "mittelstufe" }}{{ $eduLevel = "https://schema.org/Intermediate" }}{{ end }}
 {{ if eq .Params.schwierigkeit "fortgeschritten" }}{{ $eduLevel = "https://schema.org/Advanced" }}{{ end }}
-{{ $edu := dict "@context" "https://schema.org" "@type" "EducationalResource" "name" .Title "url" .Permalink "educationalLevel" $eduLevel "educationalFramework" "Lehrplan Chemie (Deutschland)" "inLanguage" "de" }}
+{{ $edu := dict "@context" "https://schema.org" "@type" "EducationalResource" "name" .Title "url" .Permalink "educationalLevel" $eduLevel "educationalFramework" "Lehrplan Chemie (Deutschland)" "inLanguage" .Site.Language.Lang }}
 {{ with .Description }}{{ $edu = dict "description" . | merge $edu }}{{ else }}{{ $edu = dict "description" $.Site.Params.footer_description | merge $edu }}{{ end }}
 {{ $edu = dict "author" (dict "@type" "Organization" "name" "chemie-lernen.org") | merge $edu }}
 {{ $edu = dict "publisher" (dict "@type" "Organization" "name" "chemie-lernen.org" "logo" (dict "@type" "ImageObject" "url" $logoURL)) | merge $edu }}
@@ -102,7 +108,7 @@
 {{/* ── Schema 6: WebApplication (pages with interaktiv = true) ──────── */}}
 {{ if .Params.interaktiv }}
 {{ $appDesc := cond (ne .Description "") .Description .Site.Params.footer_description }}
-{{ $app := dict "@context" "https://schema.org" "@type" "WebApplication" "name" .Title "description" $appDesc "url" .Permalink "applicationCategory" "EducationalApplication" "operatingSystem" "Any" "inLanguage" "de" }}
+{{ $app := dict "@context" "https://schema.org" "@type" "WebApplication" "name" .Title "description" $appDesc "url" .Permalink "applicationCategory" "EducationalApplication" "operatingSystem" "Any" "inLanguage" .Site.Language.Lang }}
 {{ $app = dict "offers" (dict "@type" "Offer" "price" "0" "priceCurrency" "EUR") | merge $app }}
 {{ $app = dict "author" (dict "@type" "Organization" "name" "chemie-lernen.org") | merge $app }}
 <script type="application/ld+json">{{ $app | jsonify | safeJS }}</script>

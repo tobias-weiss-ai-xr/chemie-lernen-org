@@ -4,29 +4,29 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item">
       <a href="{{ .Site.BaseURL }}">
-        <i class="fa fa-home" aria-hidden="true"></i> Start
+        <i class="fa fa-home" aria-hidden="true"></i> {{ T "breadcrumb_home" }}
       </a>
     </li>
 
     {{/* Themenbereiche breadcrumb */}}
     {{ with .CurrentSection }}
       {{ if eq .Title "Themenbereiche" }}
-    <li class="breadcrumb-item active" aria-current="page">Themenbereiche</li>
+    <li class="breadcrumb-item active" aria-current="page">{{ T "breadcrumb_themenbereiche" }}</li>
 
       {{/* Individual Themenbereich breadcrumb */}}
       {{ else if .File }}
         {{ if in .File.Dir "themenbereiche" }}
     <li class="breadcrumb-item">
-      <a href="/themenbereiche/">Themenbereiche</a>
+      <a href="/themenbereiche/">{{ T "breadcrumb_themenbereiche" }}</a>
     </li>
     <li class="breadcrumb-item">
       {{ if $.Params.schwierigkeit }}
         {{ if eq $.Params.schwierigkeit "grundlagen" }}
-        <a href="/themenbereiche/#grundlagen">🌱 Grundlagen</a>
+        <a href="/themenbereiche/#grundlagen">🌱 {{ T "breadcrumb_grundlagen" }}</a>
         {{ else if eq $.Params.schwierigkeit "mittelstufe" }}
-        <a href="/themenbereiche/#mittelstufe">🌿 Mittelstufe</a>
+        <a href="/themenbereiche/#mittelstufe">🌿 {{ T "breadcrumb_mittelstufe" }}</a>
         {{ else if eq $.Params.schwierigkeit "fortgeschritten" }}
-        <a href="/themenbereiche/#fortgeschritten">🌳 Fortgeschritten</a>
+        <a href="/themenbereiche/#fortgeschritten">🌳 {{ T "breadcrumb_fortgeschritten" }}</a>
         {{ else }}
         <a href="{{ .Permalink }}">{{ .Title }}</a>
         {{ end }}
@@ -40,7 +40,7 @@
       {{/* Interactive pages breadcrumb */}}
       {{ else if or (eq $.Title "Periodensystem der Elemente") (eq $.Title "Molekülstudio") }}
     <li class="breadcrumb-item">
-      <a href="/themenbereiche/">Themenbereiche</a>
+      <a href="/themenbereiche/">{{ T "breadcrumb_themenbereiche" }}</a>
     </li>
     {{ if eq $.Title "Periodensystem der Elemente" }}
     <li class="breadcrumb-item">

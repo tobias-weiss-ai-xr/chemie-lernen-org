@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" xml:lang="de">
+<html lang="{{ .Site.Language.Lang }}" xml:lang="{{ .Site.Language.Lang }}">
 
   {{ partial "head.html" .}}
   {{ partial "seo-jsonld.html" . }}
@@ -8,7 +8,7 @@
   <body>
 
     <!-- Skip Link for Accessibility -->
-    <a href="#main-content" class="sr-only sr-only-focusable">Zum Hauptinhalt springen</a>
+    <a href="#main-content" class="sr-only sr-only-focusable">{{ T "skip_to_content" }}</a>
 
     {{ partial "header.html" . }}
 

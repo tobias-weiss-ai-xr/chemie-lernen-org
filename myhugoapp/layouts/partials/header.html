@@ -4,8 +4,8 @@
   <div class="pse-vr-banner" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 10px 15px; text-align: center; color: white;">
     <a href="https://pse.chemie-lernen.org/" target="_blank" style="color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
       <span style="font-size: 1.5rem;">🥽</span>
-      <span style="font-weight: 600; font-size: 1rem;"><strong>PSE in VR</strong> – 118 Element-Räume in Virtual Reality erleben!</span>
-      <span style="background: white; color: #667eea; padding: 4px 16px; border-radius: 20px; font-weight: bold; font-size: 0.85rem;">JETZT STARTEN →</span>
+      <span style="font-weight: 600; font-size: 1rem;"><strong>PSE in VR</strong> – {{ T "vr_banner_text" }}</span>
+      <span style="background: white; color: #667eea; padding: 4px 16px; border-radius: 20px; font-weight: bold; font-size: 0.85rem;">{{ T "vr_banner_button" }} →</span>
     </a>
     <button onclick="this.parentElement.style.display='none'" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: white; cursor: pointer; font-size: 1.2rem; opacity: 0.7;" title="Schließen">×</button>
   </div>
@@ -70,13 +70,14 @@
               </li>
             {{ end }}
           {{ end }}
+          {{ partial "language-switcher.html" . }}
         </ul>
 
         <!-- Quick Search -->
         <form class="navbar-form navbar-right" action="/pages/suche/" method="get" role="search">
           <div class="form-group">
-            <label for="search-input" class="sr-only">Themen suchen</label>
-            <input type="text" class="form-control" placeholder="Themen suchen..." name="q" id="search-input" aria-label="Themen suchen">
+            <label for="search-input" class="sr-only">{{ T "search_placeholder" }}</label>
+            <input type="text" class="form-control" placeholder="{{ T `search_placeholder` }}" name="q" id="search-input" aria-label="{{ T `search_placeholder` }}">
           </div>
           <button type="submit" class="btn btn-default" aria-label="Suchen">
             <i class="fa fa-search"></i>
