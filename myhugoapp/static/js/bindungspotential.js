@@ -4,7 +4,9 @@
  */
 
 // Constants
+// eslint-disable-next-line no-unused-vars
 const GAS_CONSTANT = 8.314; // J/mol·K
+// eslint-disable-next-line no-unused-vars
 const AVOGADRO = 6.022e23; // molecules/mol
 
 // Bond energy data (kJ/mol)
@@ -150,6 +152,7 @@ function morsePotential(r, De, re) {
 }
 
 // Simple Lennard-Jones potential approximation
+// eslint-disable-next-line no-unused-vars
 function lennardJonesPotential(r, epsilon, sigma) {
   const r6 = Math.pow(sigma / r, 6);
   const r12 = r6 * r6;
@@ -289,6 +292,7 @@ function drawBindingDiagram() {
 }
 
 // Animate bond formation
+// eslint-disable-next-line no-unused-vars
 function animateBondFormation() {
   if (animationId) {
     cancelAnimationFrame(animationId);
@@ -317,16 +321,19 @@ function animateBondFormation() {
   animationId = requestAnimationFrame(animate);
 }
 
+// eslint-disable-next-line no-unused-vars
 function resetBindingDiagram() {
   domCache.binding.abstand.value = 2.5;
   updateBindingDiagram();
 }
 
+// eslint-disable-next-line no-unused-vars
 function toggleGrid() {
   showGrid = !showGrid;
   drawBindingDiagram();
 }
 
+// eslint-disable-next-line no-unused-vars
 function updateReactionData() {
   const reactionType = domCache.reaktion.typ.value;
 
@@ -383,7 +390,6 @@ function drawReactionDiagram() {
 
   const reactantEnergy = reaction.reactants;
   const productEnergy = reaction.products;
-  const deltaH = reaction.deltaH;
 
   const maxEnergy = Math.max(reactantEnergy, productEnergy) + 200;
   const minEnergy = Math.min(reactantEnergy, productEnergy) - 200;
@@ -561,6 +567,7 @@ function drawActivationDiagram() {
   ctx.fillText('Energie (kJ/mol)', width / 2, height - 15);
 }
 
+// eslint-disable-next-line no-unused-vars
 function drawTemperatureComparison() {
   const canvas = domCache.activation.tempCanvas;
   if (!canvas) return;

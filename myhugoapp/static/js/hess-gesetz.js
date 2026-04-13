@@ -3,6 +3,7 @@
  * Interactive enthalpy calculations with reaction pathway comparisons
  */
 
+// eslint-disable-next-line no-unused-vars
 const FORMATION_ENTHALPIES = {
   C: 0,
   H: 0,
@@ -104,6 +105,7 @@ function initDOMCache() {
   });
 }
 
+// eslint-disable-next-line no-unused-vars
 function addReactionStep() {
   stepCounter++;
 
@@ -122,12 +124,13 @@ function addReactionStep() {
   domCache.simple.stepsContainer.appendChild(stepDiv);
 }
 
+// eslint-disable-next-line no-unused-vars
 function calculateHessSimple() {
   const steps = document.querySelectorAll('.step-input');
   let totalDeltaH = 0;
   let calculationSteps = [];
 
-  steps.forEach((step, index) => {
+  steps.forEach((step, _index) => {
     const formula = step.querySelector('.step-formula').value;
     const deltaH = parseFloat(step.querySelector('.step-delta-h').value);
 
@@ -143,8 +146,8 @@ function calculateHessSimple() {
   }
 
   const calculationText = calculationSteps
-    .map((step, i) => {
-      const sign = step.deltaH >= 0 ? '+' : '';
+    .map((step, _i) => {
+      const _sign = step.deltaH >= 0 ? '+' : '';
       return `${step.deltaH.toFixed(1)} kJ/mol`;
     })
     .join(' + ');
@@ -154,6 +157,7 @@ function calculateHessSimple() {
   domCache.simple.resultPanel.style.display = 'block';
 }
 
+// eslint-disable-next-line no-unused-vars
 function calculateHessMultiPath() {
   const pathA_DH1 = parseFloat(domCache.multiPath.pathA.dh1.value) || 0;
   const pathA_DH2 = parseFloat(domCache.multiPath.pathA.dh2.value) || 0;
@@ -198,6 +202,7 @@ function calculateHessMultiPath() {
   domCache.multiPath.resultPanel.style.display = 'block';
 }
 
+// eslint-disable-next-line no-unused-vars
 function calculateFromFormationEnthalpies() {
   const reactionEquation = domCache.formation.reaktion.value.trim();
 
@@ -273,7 +278,7 @@ function parseReactionElements(reactionEquation) {
       const inReactants = reactants.includes(elementName);
       const inProducts = products.includes(elementName);
 
-      const count =
+      const _count =
         (reactants.match(new RegExp(elementName, 'g')) || []).length +
         (products.match(new RegExp(elementName, 'g')) || []).length;
 

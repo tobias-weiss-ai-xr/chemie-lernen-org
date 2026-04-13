@@ -14,11 +14,11 @@ const ReactionPathway = {
         reactants: [],
         products: [],
         intermediates: [],
-        steps: []
+        steps: [],
       },
       showEnergy = true,
       showMechanism = true,
-      animated = true
+      animated = true,
     } = options;
 
     const container = document.getElementById(containerId);
@@ -149,7 +149,7 @@ const ReactionPathway = {
     const steps = reaction.steps || [
       { name: 'Edukte', type: 'reactant' },
       { name: 'Übergangszustand', type: 'transition' },
-      { name: 'Produkte', type: 'product' }
+      { name: 'Produkte', type: 'product' },
     ];
 
     steps.forEach((step, index) => {
@@ -178,11 +178,7 @@ const ReactionPathway = {
       ctx.fillStyle = '#F44336';
       ctx.font = 'bold 12px sans-serif';
       ctx.textAlign = 'left';
-      ctx.fillText(
-        `Ea = ${activationEnergy.toFixed(1)} kJ/mol`,
-        padding + 20,
-        padding + 40
-      );
+      ctx.fillText(`Ea = ${activationEnergy.toFixed(1)} kJ/mol`, padding + 20, padding + 40);
     }
   },
 
@@ -197,7 +193,7 @@ const ReactionPathway = {
       return [0, 50, -20]; // Reactant, TS, Product
     }
 
-    return steps.map((step, index) => {
+    return steps.map((step, _index) => {
       if (step.energy !== undefined) {
         return step.energy;
       }
@@ -258,7 +254,7 @@ const ReactionPathway = {
     const steps = reaction.steps || [
       { name: 'Edukte', formula: 'A + B' },
       { name: 'Übergangszustand', formula: '[AB]‡' },
-      { name: 'Produkte', formula: 'C + D' }
+      { name: 'Produkte', formula: 'C + D' },
     ];
 
     const stepWidth = (width - padding * 2) / (steps.length - 1);
@@ -343,7 +339,7 @@ const ReactionPathway = {
     const steps = diagram.querySelectorAll('.mechanism-diagram canvas');
     // Animation would be implemented here using requestAnimationFrame
     // For now, we just add a visual indicator
-    steps.forEach(canvas => {
+    steps.forEach((canvas) => {
       canvas.style.opacity = '0';
       canvas.style.transition = 'opacity 0.5s ease';
 
@@ -357,10 +353,7 @@ const ReactionPathway = {
    * Create interactive reaction explorer
    */
   createExplorer(options = {}) {
-    const {
-      containerId,
-      reactions = []
-    } = options;
+    const { containerId, reactions = [] } = options;
 
     const container = document.getElementById(containerId);
     if (!container) {
@@ -379,9 +372,13 @@ const ReactionPathway = {
     select.className = 'reaction-select';
     select.innerHTML = `
       <option value="">Reaktion auswählen...</option>
-      ${reactions.map((r, i) => `
+      ${reactions
+        .map(
+          (r, i) => `
         <option value="${i}">${r.name}</option>
-      `).join('')}
+      `
+        )
+        .join('')}
     `;
 
     controls.appendChild(select);
@@ -404,7 +401,7 @@ const ReactionPathway = {
           reaction: reactions[index],
           showEnergy: true,
           showMechanism: true,
-          animated: true
+          animated: true,
         });
       }
     });
@@ -517,7 +514,7 @@ const ReactionPathway = {
     `;
 
     document.head.appendChild(style);
-  }
+  },
 };
 
 // Export for use in other modules

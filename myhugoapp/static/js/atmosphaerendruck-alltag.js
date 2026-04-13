@@ -8,7 +8,8 @@
 const NORMAL_ATMOSPHERIC_PRESSURE = 101325; // Pa
 const GRAVITY = 9.81; // m/s²
 
-// Liquid densities (kg/m³)
+// Liquid densities (kg/m³) - used by submersible simulation
+// eslint-disable-next-line no-unused-vars
 const LIQUID_DENSITIES = {
   water: 1000,
   juice: 1050,
@@ -331,6 +332,7 @@ function updateBallonSimulation() {
   requestAnimationFrame(() => drawBallonSimulation());
 }
 
+// eslint-disable-next-line no-unused-vars
 function resetBallon() {
   document.getElementById('ballon-air').value = 0;
   document.getElementById('ballon-temperature').value = 20;
@@ -542,6 +544,7 @@ function updateSaugnapfSimulation() {
   requestAnimationFrame(() => drawSaugnapfSimulation());
 }
 
+// eslint-disable-next-line no-unused-vars
 function toggleSaugnapf() {
   if (saugnapfState.isAttached) {
     // Release

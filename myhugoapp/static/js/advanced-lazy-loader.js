@@ -15,12 +15,9 @@ class LazyLoader {
   }
 
   preloadCriticalModules() {
-    const criticalModules = [
-      '/js/chemistry-calculator-framework.js',
-      '/js/dark-mode.js'
-    ];
+    const criticalModules = ['/js/chemistry-calculator-framework.js', '/js/dark-mode.js'];
 
-    criticalModules.forEach(module => {
+    criticalModules.forEach((module) => {
       this.preloadModule(module);
     });
   }
@@ -30,21 +27,24 @@ class LazyLoader {
       return;
     }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const calculatorType = entry.target.dataset.calculator;
-          if (calculatorType) {
-            this.loadCalculator(calculatorType);
-            observer.unobserve(entry.target);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const calculatorType = entry.target.dataset.calculator;
+            if (calculatorType) {
+              this.loadCalculator(calculatorType);
+              observer.unobserve(entry.target);
+            }
           }
-        }
-      });
-    }, {
-      rootMargin: '50px 0px -50px 0px'
-    });
+        });
+      },
+      {
+        rootMargin: '50px 0px -50px 0px',
+      }
+    );
 
-    document.querySelectorAll('[data-calculator]').forEach(element => {
+    document.querySelectorAll('[data-calculator]').forEach((element) => {
       observer.observe(element);
     });
 
@@ -61,12 +61,12 @@ class LazyLoader {
     }
 
     const moduleMap = {
-      'ph': '/js/ph-rechner-framework.js',
-      'druck': '/js/druck-flaechen-rechner-framework.js',
-      'molmasse': '/js/molare-masse-rechner.js',
-      'konzentration': '/js/konzentrationsumrechner.js',
-      'gasgesetz': '/js/gasgesetz-rechner.js',
-      'titration': '/js/titrations-simulator.js'
+      ph: '/js/ph-rechner-framework.js',
+      druck: '/js/druck-flaechen-rechner-framework.js',
+      molmasse: '/js/molare-masse-rechner.js',
+      konzentration: '/js/konzentrationsumrechner.js',
+      gasgesetz: '/js/gasgesetz-rechner.js',
+      titration: '/js/titrations-simulator.js',
     };
 
     const modulePath = moduleMap[calculatorType];
@@ -83,9 +83,11 @@ class LazyLoader {
       this.cache.set(calculatorType, module);
       this.loadingPromises.delete(calculatorType);
 
-      window.dispatchEvent(new CustomEvent('calculatorLoaded', {
-        detail: { type: calculatorType, module }
-      }));
+      window.dispatchEvent(
+        new CustomEvent('calculatorLoaded', {
+          detail: { type: calculatorType, module },
+        })
+      );
 
       return module;
     } catch (error) {
@@ -98,7 +100,7 @@ class LazyLoader {
   async dynamicImportWithFallback(modulePath) {
     try {
       return await import(modulePath);
-    } catch (error) {
+    } catch (_error) {
       return this.scriptInjectionFallback(modulePath);
     }
   }
@@ -137,7 +139,7 @@ class LazyLoader {
   }
 
   async loadModules(moduleTypes) {
-    const loadPromises = moduleTypes.map(type => this.loadCalculator(type));
+    const loadPromises = moduleTypes.map((type) => this.loadCalculator(type));
     return Promise.allSettled(loadPromises);
   }
 
@@ -145,9 +147,11 @@ class LazyLoader {
     this.loadedModules.delete(calculatorType);
     this.cache.delete(calculatorType);
 
-    window.dispatchEvent(new CustomEvent('calculatorUnloaded', {
-      detail: { type: calculatorType }
-    }));
+    window.dispatchEvent(
+      new CustomEvent('calculatorUnloaded', {
+        detail: { type: calculatorType },
+      })
+    );
   }
 
   getStats() {
@@ -155,7 +159,7 @@ class LazyLoader {
       loadedModules: Array.from(this.loadedModules),
       loadingCount: this.loadingPromises.size,
       cacheSize: this.cache.size,
-      activeObservers: this.observers.length
+      activeObservers: this.observers.length,
     };
   }
 
@@ -163,17 +167,18 @@ class LazyLoader {
     this.loadedModules.clear();
     this.loadingPromises.clear();
     this.cache.clear();
-    this.observers.forEach(observer => observer.disconnect());
+    this.observers.forEach((observer) => observer.disconnect());
     this.observers = [];
   }
 
   setupServiceWorker() {
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js')
-        .then(registration => {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then((_registration) => {
           console.log('Service Worker registered');
         })
-        .catch(error => {
+        .catch((error) => {
           console.log('Service Worker registration failed:', error);
         });
     }

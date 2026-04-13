@@ -1,90 +1,92 @@
 // Preset reactions data
 const presets = {
   water: {
-    name: "Wasserbildung",
-    equation: "2H2 + O2 -> 2H2O",
+    name: 'Wasserbildung',
+    equation: '2H2 + O2 -> 2H2O',
     v1: 2,
     v2: 2,
-    example: 4
+    example: 4,
   },
   methane: {
-    name: "Methan-Verbrennung",
-    equation: "CH4 + 2O2 -> CO2 + 2H2O",
+    name: 'Methan-Verbrennung',
+    equation: 'CH4 + 2O2 -> CO2 + 2H2O',
     v1: 1,
     v2: 1,
-    example: 2
+    example: 2,
   },
   ammonia: {
-    name: "Haber-Verfahren (Ammoniak)",
-    equation: "N2 + 3H2 -> 2NH3",
+    name: 'Haber-Verfahren (Ammoniak)',
+    equation: 'N2 + 3H2 -> 2NH3',
     v1: 1,
     v2: 2,
-    example: 3
+    example: 3,
   },
   sodium: {
-    name: "Natrium + Wasser",
-    equation: "2Na + 2H2O -> 2NaOH + H2",
+    name: 'Natrium + Wasser',
+    equation: '2Na + 2H2O -> 2NaOH + H2',
     v1: 2,
     v2: 2,
-    example: 4
+    example: 4,
   },
   photosynthesis: {
-    name: "Fotosynthese",
-    equation: "6CO2 + 6H2O -> C6H12O6 + 6O2",
+    name: 'Fotosynthese',
+    equation: '6CO2 + 6H2O -> C6H12O6 + 6O2',
     v1: 6,
     v2: 1,
-    example: 6
-  }
+    example: 6,
+  },
 };
 
 const massPresets = {
   water: {
-    name: "Wasserbildung",
+    name: 'Wasserbildung',
     v1: 2,
     v2: 2,
     m1: 4,
-    M1: 2,  // H2
-    M2: 18  // H2O
+    M1: 2, // H2
+    M2: 18, // H2O
   },
   methane: {
-    name: "Methan-Verbrennung",
+    name: 'Methan-Verbrennung',
     v1: 1,
     v2: 1,
     m1: 16,
-    M1: 16,  // CH4
-    M2: 44   // CO2
+    M1: 16, // CH4
+    M2: 44, // CO2
   },
   ammonia: {
-    name: "Haber-Verfahren",
+    name: 'Haber-Verfahren',
     v1: 1,
     v2: 2,
     m1: 28,
-    M1: 28,  // N2
-    M2: 17   // NH3
+    M1: 28, // N2
+    M2: 17, // NH3
   },
   sodium: {
-    name: "Natrium + Wasser",
+    name: 'Natrium + Wasser',
     v1: 2,
     v2: 2,
     m1: 46,
-    M1: 23,  // Na
-    M2: 40   // NaOH
+    M1: 23, // Na
+    M2: 40, // NaOH
   },
   photosynthesis: {
-    name: "Fotosynthese",
+    name: 'Fotosynthese',
     v1: 6,
     v2: 1,
     m1: 264,
-    M1: 44,  // CO2
-    M2: 180  // C6H12O6
-  }
+    M1: 44, // CO2
+    M2: 180, // C6H12O6
+  },
 };
 
 // Load preset for Mol-Mol calculator
 // eslint-disable-next-line no-unused-vars
 function loadPreset(presetKey) {
   const preset = presets[presetKey];
-  if (!preset) {return;}
+  if (!preset) {
+    return;
+  }
 
   document.getElementById('reaction-1').value = preset.equation;
   document.getElementById('mol-coeff-r').value = preset.v1;
@@ -100,7 +102,9 @@ function loadPreset(presetKey) {
 // eslint-disable-next-line no-unused-vars
 function loadMassPreset(presetKey) {
   const preset = massPresets[presetKey];
-  if (!preset) {return;}
+  if (!preset) {
+    return;
+  }
 
   document.getElementById('mass-coeff-r').value = preset.v1;
   document.getElementById('mass-coeff-p').value = preset.v2;
@@ -110,7 +114,8 @@ function loadMassPreset(presetKey) {
 
   // Hide previous results
   document.getElementById('mass-result').style.display = 'none';
-  document.getElementById('mass-preview').innerHTML = '<p style="font-size:2em; color:#007bff;">--</p><p>Gramm</p>';
+  document.getElementById('mass-preview').innerHTML =
+    '<p style="font-size:2em; color:#007bff;">--</p><p>Gramm</p>';
 }
 
 // ===== EQUATION PARSER =====
@@ -142,7 +147,7 @@ function parseChemicalEquation(equation) {
     throw new Error('Kein Reaktionspfeil gefunden. Verwenden Sie ->, → oder =');
   }
 
-  const [reactantsStr, productsStr] = equation.split(arrowMatch[1]).map(s => s.trim());
+  const [reactantsStr, productsStr] = equation.split(arrowMatch[1]).map((s) => s.trim());
 
   const reactants = parseSide(reactantsStr);
   const products = parseSide(productsStr);
@@ -151,7 +156,7 @@ function parseChemicalEquation(equation) {
     reactants,
     products,
     totalReactants: reactants.length,
-    totalProducts: products.length
+    totalProducts: products.length,
   };
 }
 
@@ -162,13 +167,16 @@ function parseSide(sideStr) {
   }
 
   // Split by + and trim whitespace
-  const compounds = sideStr.split('+').map(s => s.trim()).filter(s => s.length > 0);
+  const compounds = sideStr
+    .split('+')
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0);
 
   if (compounds.length === 0) {
     throw new Error('Keine Verbindungen gefunden');
   }
 
-  return compounds.map(compound => parseCompound(compound));
+  return compounds.map((compound) => parseCompound(compound));
 }
 
 // Parse a single compound to extract coefficient and formula
@@ -181,7 +189,7 @@ function parseCompound(compoundStr) {
     return {
       coefficient: 1,
       formula: compoundStr.trim(),
-      hasExplicitCoefficient: false
+      hasExplicitCoefficient: false,
     };
   }
 
@@ -191,7 +199,7 @@ function parseCompound(compoundStr) {
   return {
     coefficient,
     formula,
-    hasExplicitCoefficient: !!coeffMatch[1]
+    hasExplicitCoefficient: !!coeffMatch[1],
   };
 }
 
@@ -207,7 +215,7 @@ function displayParsedCoefficients(result) {
   html += '<div class="col-md-6">';
   html += '<h5>Edukte:</h5>';
   html += '<ul class="list-group">';
-  result.reactants.forEach((reactant, index) => {
+  result.reactants.forEach((reactant, _index) => {
     html += `
       <li class="list-group-item">
         <strong>${reactant.formula}</strong>
@@ -221,7 +229,7 @@ function displayParsedCoefficients(result) {
   html += '<div class="col-md-6">';
   html += '<h5>Produkte:</h5>';
   html += '<ul class="list-group">';
-  result.products.forEach((product, index) => {
+  result.products.forEach((product, _index) => {
     html += `
       <li class="list-group-item">
         <strong>${product.formula}</strong>
@@ -235,7 +243,8 @@ function displayParsedCoefficients(result) {
   container.innerHTML = html;
 
   // Generate apply buttons based on what makes sense
-  let buttonsHtml = '<p style="margin-bottom: 10px;"><strong>Koeffizienten übernehmen:</strong></p>';
+  let buttonsHtml =
+    '<p style="margin-bottom: 10px;"><strong>Koeffizienten übernehmen:</strong></p>';
   buttonsHtml += '<div class="btn-group">';
 
   // For Mol-Mol calculator (simple 2-compound case)
@@ -299,40 +308,40 @@ function applyCoefficientsToMassMass(v1, v2) {
 // Comprehensive element database with molar masses
 const elementDatabase = {
   // Non-metals
-  'H': { symbol: 'H', name: 'Wasserstoff', mass: 1.008, number: 1 },
-  'C': { symbol: 'C', name: 'Kohlenstoff', mass: 12.011, number: 6 },
-  'N': { symbol: 'N', name: 'Stickstoff', mass: 14.007, number: 7 },
-  'O': { symbol: 'O', name: 'Sauerstoff', mass: 15.999, number: 8 },
-  'F': { symbol: 'F', name: 'Fluor', mass: 18.998, number: 9 },
-  'P': { symbol: 'P', name: 'Phosphor', mass: 30.974, number: 15 },
-  'S': { symbol: 'S', name: 'Schwefel', mass: 32.06, number: 16 },
-  'Cl': { symbol: 'Cl', name: 'Chlor', mass: 35.45, number: 17 },
-  'I': { symbol: 'I', name: 'Iod', mass: 126.90, number: 53 },
+  H: { symbol: 'H', name: 'Wasserstoff', mass: 1.008, number: 1 },
+  C: { symbol: 'C', name: 'Kohlenstoff', mass: 12.011, number: 6 },
+  N: { symbol: 'N', name: 'Stickstoff', mass: 14.007, number: 7 },
+  O: { symbol: 'O', name: 'Sauerstoff', mass: 15.999, number: 8 },
+  F: { symbol: 'F', name: 'Fluor', mass: 18.998, number: 9 },
+  P: { symbol: 'P', name: 'Phosphor', mass: 30.974, number: 15 },
+  S: { symbol: 'S', name: 'Schwefel', mass: 32.06, number: 16 },
+  Cl: { symbol: 'Cl', name: 'Chlor', mass: 35.45, number: 17 },
+  I: { symbol: 'I', name: 'Iod', mass: 126.9, number: 53 },
 
   // Metals (Main Group)
-  'Li': { symbol: 'Li', name: 'Lithium', mass: 6.941, number: 3 },
-  'Na': { symbol: 'Na', name: 'Natrium', mass: 22.990, number: 11 },
-  'K': { symbol: 'K', name: 'Kalium', mass: 39.098, number: 19 },
-  'Be': { symbol: 'Be', name: 'Beryllium', mass: 9.012, number: 4 },
-  'Mg': { symbol: 'Mg', name: 'Magnesium', mass: 24.305, number: 12 },
-  'Ca': { symbol: 'Ca', name: 'Calcium', mass: 40.078, number: 20 },
-  'Al': { symbol: 'Al', name: 'Aluminium', mass: 26.982, number: 13 },
-  'Fe': { symbol: 'Fe', name: 'Eisen', mass: 55.845, number: 26 },
-  'Cu': { symbol: 'Cu', name: 'Kupfer', mass: 63.546, number: 29 },
-  'Zn': { symbol: 'Zn', name: 'Zink', mass: 65.38, number: 30 },
-  'Ag': { symbol: 'Ag', name: 'Silber', mass: 107.87, number: 47 },
-  'Au': { symbol: 'Au', name: 'Gold', mass: 196.97, number: 79 },
+  Li: { symbol: 'Li', name: 'Lithium', mass: 6.941, number: 3 },
+  Na: { symbol: 'Na', name: 'Natrium', mass: 22.99, number: 11 },
+  K: { symbol: 'K', name: 'Kalium', mass: 39.098, number: 19 },
+  Be: { symbol: 'Be', name: 'Beryllium', mass: 9.012, number: 4 },
+  Mg: { symbol: 'Mg', name: 'Magnesium', mass: 24.305, number: 12 },
+  Ca: { symbol: 'Ca', name: 'Calcium', mass: 40.078, number: 20 },
+  Al: { symbol: 'Al', name: 'Aluminium', mass: 26.982, number: 13 },
+  Fe: { symbol: 'Fe', name: 'Eisen', mass: 55.845, number: 26 },
+  Cu: { symbol: 'Cu', name: 'Kupfer', mass: 63.546, number: 29 },
+  Zn: { symbol: 'Zn', name: 'Zink', mass: 65.38, number: 30 },
+  Ag: { symbol: 'Ag', name: 'Silber', mass: 107.87, number: 47 },
+  Au: { symbol: 'Au', name: 'Gold', mass: 196.97, number: 79 },
 
   // Transition Metals
-  'Cr': { symbol: 'Cr', name: 'Chrom', mass: 51.996, number: 24 },
-  'Mn': { symbol: 'Mn', name: 'Mangan', mass: 54.938, number: 25 },
-  'Ni': { symbol: 'Ni', name: 'Nickel', mass: 58.693, number: 28 },
-  'Pt': { symbol: 'Pt', name: 'Platin', mass: 195.08, number: 78 },
+  Cr: { symbol: 'Cr', name: 'Chrom', mass: 51.996, number: 24 },
+  Mn: { symbol: 'Mn', name: 'Mangan', mass: 54.938, number: 25 },
+  Ni: { symbol: 'Ni', name: 'Nickel', mass: 58.693, number: 28 },
+  Pt: { symbol: 'Pt', name: 'Platin', mass: 195.08, number: 78 },
 
   // Noble Gases
-  'He': { symbol: 'He', name: 'Helium', mass: 4.0026, number: 2 },
-  'Ne': { symbol: 'Ne', name: 'Neon', mass: 20.180, number: 10 },
-  'Ar': { symbol: 'Ar', name: 'Argon', mass: 39.948, number: 18 }
+  He: { symbol: 'He', name: 'Helium', mass: 4.0026, number: 2 },
+  Ne: { symbol: 'Ne', name: 'Neon', mass: 20.18, number: 10 },
+  Ar: { symbol: 'Ar', name: 'Argon', mass: 39.948, number: 18 },
 };
 
 // Apply selected element's molar mass to calculator
@@ -346,7 +355,7 @@ function applyMolarMass() {
     return;
   }
 
-  const [symbol, mass] = selectedValue.split(':');
+  const [symbol, _mass] = selectedValue.split(':');
   const element = elementDatabase[symbol];
 
   if (!element) {
@@ -392,19 +401,23 @@ function applyMolarMassToCalculator(element) {
   // Simple logic: fill the field that's empty or has default value
   if (!reactantField.value || parseFloat(reactantField.value) === 0) {
     reactantField.value = element.mass;
-    alert(`${element.symbol} (${element.name}) molare Masse ${element.mass} g/mol als Edukt übernommen`);
+    alert(
+      `${element.symbol} (${element.name}) molare Masse ${element.mass} g/mol als Edukt übernommen`
+    );
   } else if (!productField.value || parseFloat(productField.value) === 0) {
     productField.value = element.mass;
-    alert(`${element.symbol} (${element.name}) molare Masse ${element.mass} g/mol als Produkt übernommen`);
+    alert(
+      `${element.symbol} (${element.name}) molare Masse ${element.mass} g/mol als Produkt übernommen`
+    );
   } else {
     // Both filled, ask user which to replace
     const choice = confirm(
       `${element.symbol} (${element.name}) - M = ${element.mass} g/mol\n\n` +
-      `Beide Felder sind ausgefüllt:\n` +
-      `Edukt: ${reactantField.value} g/mol\n` +
-      `Produkt: ${productField.value} g/mol\n\n` +
-      `Klicken Sie OK, um das Edukt-Feld zu ersetzen,\n` +
-      `oder Abbrechen, um das Produkt-Feld zu ersetzen.`
+        `Beide Felder sind ausgefüllt:\n` +
+        `Edukt: ${reactantField.value} g/mol\n` +
+        `Produkt: ${productField.value} g/mol\n\n` +
+        `Klicken Sie OK, um das Edukt-Feld zu ersetzen,\n` +
+        `oder Abbrechen, um das Produkt-Feld zu ersetzen.`
     );
 
     if (choice) {
@@ -426,7 +439,7 @@ function saveToHistory(type, data) {
       id: Date.now(),
       timestamp: new Date().toLocaleString('de-DE'),
       type,
-      data
+      data,
     };
 
     // Add to beginning of array (most recent first)
@@ -458,12 +471,13 @@ function displayHistory() {
     const historyList = document.getElementById('history-list');
 
     if (history.length === 0) {
-      historyList.innerHTML = '<p class="text-muted"><small>Noch keine Berechnungen durchgeführt.</small></p>';
+      historyList.innerHTML =
+        '<p class="text-muted"><small>Noch keine Berechnungen durchgeführt.</small></p>';
       return;
     }
 
     let html = '<div class="history-items">';
-    history.forEach((entry, index) => {
+    history.forEach((entry, _index) => {
       html += `
         <div class="history-item" style="padding: 10px; margin-bottom: 8px; background: #f5f5f5; border-radius: 4px; border-left: 3px solid #007bff;">
           <div style="display: flex; justify-content: space-between; align-items: start;">
@@ -531,7 +545,12 @@ function checkForBalancedEquation() {
     const data = JSON.parse(balancedData);
 
     // Validate data structure
-    if (!data.reactants || !data.products || data.reactants.length === 0 || data.products.length === 0) {
+    if (
+      !data.reactants ||
+      !data.products ||
+      data.reactants.length === 0 ||
+      data.products.length === 0
+    ) {
       console.warn('Invalid balanced equation data structure');
       return;
     }
@@ -564,7 +583,6 @@ function checkForBalancedEquation() {
 
     // Clear the sessionStorage to prevent re-import on refresh
     sessionStorage.removeItem('balancedEquation');
-
   } catch (e) {
     console.error('Error importing balanced equation:', e);
   }
@@ -588,9 +606,10 @@ function showImportNotification(data) {
     animation: slideIn 0.5s ease;
   `;
 
-  const equationStr = data.reactants.map(r => `${r.coefficient > 1 ? r.coefficient : ''}${r.formula}`).join(' + ') +
-                      ' → ' +
-                      data.products.map(p => `${p.coefficient > 1 ? p.coefficient : ''}${p.formula}`).join(' + ');
+  const equationStr =
+    data.reactants.map((r) => `${r.coefficient > 1 ? r.coefficient : ''}${r.formula}`).join(' + ') +
+    ' → ' +
+    data.products.map((p) => `${p.coefficient > 1 ? p.coefficient : ''}${p.formula}`).join(' + ');
 
   notification.innerHTML = `
     <div style="display: flex; align-items: start;">
@@ -661,13 +680,13 @@ function calcMolMol() {
         <h5 style="color:#0D47A1;">🔢 Schritt-für-Schritt Berechnung</h5>
         <div style="background:white; padding:10px; border-radius:4px; margin-bottom:10px;">
           <p><strong>Schritt 1:</strong> Koeffizientenverhältnis bestimmen</p>
-          <p style="font-family:monospace; color:#1976D2;">Verhältnis = ν₂/ν₁ = ${v2}/${v1} = ${(v2/v1).toFixed(4)}</p>
+          <p style="font-family:monospace; color:#1976D2;">Verhältnis = ν₂/ν₁ = ${v2}/${v1} = ${(v2 / v1).toFixed(4)}</p>
           <p><small>Das bedeutet: Für jedes ${v1} Mol Edukt entstehen ${v2} Mol Produkt.</small></p>
         </div>
 
         <div style="background:white; padding:10px; border-radius:4px; margin-bottom:10px;">
           <p><strong>Schritt 2:</strong> Stoffmenge des Produkts berechnen</p>
-          <p style="font-family:monospace; color:#1976D2;">n₂ = ${n1} mol × ${(v2/v1).toFixed(4)} = ${n2.toFixed(4)} mol</p>
+          <p style="font-family:monospace; color:#1976D2;">n₂ = ${n1} mol × ${(v2 / v1).toFixed(4)} = ${n2.toFixed(4)} mol</p>
           <p><small>Multipliziere die gegebene Stoffmenge mit dem Koeffizientenverhältnis.</small></p>
         </div>
 
@@ -775,8 +794,8 @@ function calcMassMass() {
 
           <div style="background:white; padding:10px; border-radius:4px; margin-bottom:10px;">
             <p><strong>Schritt 2:</strong> Stoffmenge des Produkts berechnen (unter Verwendung der Koeffizienten)</p>
-            <p style="font-family:monospace; color:#2E7D32;">Verhältnis = ν₂/ν₁ = ${v2}/${v1} = ${(v2/v1).toFixed(4)}</p>
-            <p style="font-family:monospace; color:#2E7D32;">n₂ = ${n1.toFixed(4)} mol × ${(v2/v1).toFixed(4)} = ${n2.toFixed(4)} mol</p>
+            <p style="font-family:monospace; color:#2E7D32;">Verhältnis = ν₂/ν₁ = ${v2}/${v1} = ${(v2 / v1).toFixed(4)}</p>
+            <p style="font-family:monospace; color:#2E7D32;">n₂ = ${n1.toFixed(4)} mol × ${(v2 / v1).toFixed(4)} = ${n2.toFixed(4)} mol</p>
             <p><small>Multipliziere die Stoffmenge des Edukts mit dem Koeffizientenverhältnis.</small></p>
           </div>
 
@@ -980,7 +999,7 @@ function calcYield() {
           <div style="background:white; padding:10px; border-radius:4px; margin-bottom:10px;">
             <p><strong>Schritt 2:</strong> Ausbeute berechnen</p>
             <p style="font-family:monospace; color:#7B1FA2;">Ausbeute = (${act} / ${theo}) × 100%</p>
-            <p style="font-family:monospace; color:#7B1FA2;">Ausbeute = ${(act/theo).toFixed(4)} × 100%</p>
+            <p style="font-family:monospace; color:#7B1FA2;">Ausbeute = ${(act / theo).toFixed(4)} × 100%</p>
             <p style="font-family:monospace; color:#7B1FA2;">Ausbeute = ${yield_pct.toFixed(2)}%</p>
           </div>
 
@@ -1192,7 +1211,6 @@ function calculateMultiStep() {
   }
 
   // Get all reaction steps
-  const steps = [];
   const stepElements = document.querySelectorAll('.reaction-step');
 
   if (stepElements.length === 0) {
@@ -1201,7 +1219,6 @@ function calculateMultiStep() {
   }
 
   let currentAmount = initialAmount;
-  const currentMass = null;
   const results = [];
   let hasError = false;
 
@@ -1239,7 +1256,7 @@ function calculateMultiStep() {
       molarMass,
       productMass,
       product,
-      equation
+      equation,
     });
 
     // This product becomes the reactant for the next step
@@ -1262,7 +1279,8 @@ function displayMultiStepResults(initialAmount, initialMolarMass, initialCompoun
   let html = '<div style="background: white; padding: 20px; border-radius: 8px;">';
 
   // Initial reactant summary
-  html += '<div style="margin-bottom: 20px; padding: 15px; background: #e8f5e9; border-radius: 4px;">';
+  html +=
+    '<div style="margin-bottom: 20px; padding: 15px; background: #e8f5e9; border-radius: 4px;">';
   html += `<h4 style="color: #2E7D32; margin-top: 0;"><i class="fa fa-play-circle"></i> Ausgangsstoff</h4>`;
   html += `<p><strong>Verbindung:</strong> ${initialCompound}</p>`;
   html += `<p><strong>Stoffmenge:</strong> ${initialAmount.toFixed(4)} mol</p>`;
@@ -1340,6 +1358,7 @@ function displayMultiStepResults(initialAmount, initialMolarMass, initialCompoun
 }
 
 // Export multi-step results to PDF
+// eslint-disable-next-line no-unused-vars
 function exportMultiStepToPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -1371,12 +1390,16 @@ function exportMultiStepToPDF() {
   y += 10;
 
   doc.setFontSize(12);
-  doc.text(`Verbindung: ${initialCompound}`, 25, y); y += 8;
-  doc.text(`Stoffmenge: ${initialAmount} mol`, 25, y); y += 8;
+  doc.text(`Verbindung: ${initialCompound}`, 25, y);
+  y += 8;
+  doc.text(`Stoffmenge: ${initialAmount} mol`, 25, y);
+  y += 8;
   if (initialMolarMass) {
     const mass = (parseFloat(initialAmount) * parseFloat(initialMolarMass)).toFixed(4);
-    doc.text(`Molare Masse: ${initialMolarMass} g/mol`, 25, y); y += 8;
-    doc.text(`Masse: ${mass} g`, 25, y); y += 8;
+    doc.text(`Molare Masse: ${initialMolarMass} g/mol`, 25, y);
+    y += 8;
+    doc.text(`Masse: ${mass} g`, 25, y);
+    y += 8;
   }
   y += 10;
 
@@ -1405,17 +1428,23 @@ function exportMultiStepToPDF() {
 
     doc.setTextColor(0, 0, 0);
     if (equation) {
-      doc.text(`Gleichung: ${equation}`, 25, y); y += 8;
+      doc.text(`Gleichung: ${equation}`, 25, y);
+      y += 8;
     }
-    doc.text(`Edukt: ${currentAmount.toFixed(4)} mol`, 25, y); y += 8;
-    doc.text(`Koeffizienten: ν₁ = ${coeffR}, ν₂ = ${coeffP}`, 25, y); y += 8;
-    doc.text(`Produkt: ${product}`, 25, y); y += 8;
+    doc.text(`Edukt: ${currentAmount.toFixed(4)} mol`, 25, y);
+    y += 8;
+    doc.text(`Koeffizienten: ν₁ = ${coeffR}, ν₂ = ${coeffP}`, 25, y);
+    y += 8;
+    doc.text(`Produkt: ${product}`, 25, y);
+    y += 8;
     doc.setTextColor(0, 123, 255);
-    doc.text(`Stoffmenge: ${productAmount} mol`, 25, y); y += 8;
+    doc.text(`Stoffmenge: ${productAmount} mol`, 25, y);
+    y += 8;
 
     if (molarMass) {
       const productMass = (parseFloat(productAmount) * parseFloat(molarMass)).toFixed(4);
-      doc.text(`Masse: ${productMass} g (${molarMass} g/mol)`, 25, y); y += 8;
+      doc.text(`Masse: ${productMass} g (${molarMass} g/mol)`, 25, y);
+      y += 8;
     }
 
     currentAmount = parseFloat(productAmount);
@@ -1458,6 +1487,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ===== GAS LAW FUNCTIONS =====
 
 // Load STP conditions (0°C, 1 atm)
+// eslint-disable-next-line no-unused-vars
 function loadSTP() {
   document.getElementById('gas-pressure').value = 1;
   document.getElementById('gas-pressure-unit').value = 'atm';
@@ -1474,6 +1504,7 @@ function loadSTP() {
 }
 
 // Load SATP conditions (25°C, 1 bar)
+// eslint-disable-next-line no-unused-vars
 function loadSATP() {
   document.getElementById('gas-pressure').value = 1;
   document.getElementById('gas-pressure-unit').value = 'bar';
@@ -1490,6 +1521,7 @@ function loadSATP() {
 }
 
 // Load gas example
+// eslint-disable-next-line no-unused-vars
 function loadGasExample() {
   document.getElementById('gas-pressure').value = 2.5;
   document.getElementById('gas-pressure-unit').value = 'atm';
@@ -1515,7 +1547,7 @@ function convertTemperatureToKelvin() {
   }
 
   let kelvin;
-  switch(unit) {
+  switch (unit) {
     case 'K':
       kelvin = temp;
       break;
@@ -1523,7 +1555,7 @@ function convertTemperatureToKelvin() {
       kelvin = temp + 273.15;
       break;
     case 'F':
-      kelvin = (temp - 32) * 5/9 + 273.15;
+      kelvin = ((temp - 32) * 5) / 9 + 273.15;
       break;
   }
 
@@ -1545,88 +1577,116 @@ function updateGasInputs() {
   temperatureInput.disabled = false;
 
   // Disable the variable being calculated
-  switch(variable) {
+  switch (variable) {
     case 'P':
       pressureInput.disabled = true;
-      pressureInput.placeholder = "Wird berechnet...";
-      volumeInput.placeholder = "z.B. 22.4";
-      amountInput.placeholder = "z.B. 1";
-      temperatureInput.placeholder = "z.B. 273.15";
+      pressureInput.placeholder = 'Wird berechnet...';
+      volumeInput.placeholder = 'z.B. 22.4';
+      amountInput.placeholder = 'z.B. 1';
+      temperatureInput.placeholder = 'z.B. 273.15';
       break;
     case 'V':
       volumeInput.disabled = true;
-      volumeInput.placeholder = "Wird berechnet...";
-      pressureInput.placeholder = "z.B. 1";
-      amountInput.placeholder = "z.B. 1";
-      temperatureInput.placeholder = "z.B. 273.15";
+      volumeInput.placeholder = 'Wird berechnet...';
+      pressureInput.placeholder = 'z.B. 1';
+      amountInput.placeholder = 'z.B. 1';
+      temperatureInput.placeholder = 'z.B. 273.15';
       break;
     case 'n':
       amountInput.disabled = true;
-      amountInput.placeholder = "Wird berechnet...";
-      pressureInput.placeholder = "z.B. 1";
-      volumeInput.placeholder = "z.B. 22.4";
-      temperatureInput.placeholder = "z.B. 273.15";
+      amountInput.placeholder = 'Wird berechnet...';
+      pressureInput.placeholder = 'z.B. 1';
+      volumeInput.placeholder = 'z.B. 22.4';
+      temperatureInput.placeholder = 'z.B. 273.15';
       break;
     case 'T':
       temperatureInput.disabled = true;
-      temperatureInput.placeholder = "Wird berechnet...";
-      pressureInput.placeholder = "z.B. 1";
-      volumeInput.placeholder = "z.B. 22.4";
-      amountInput.placeholder = "z.B. 1";
+      temperatureInput.placeholder = 'Wird berechnet...';
+      pressureInput.placeholder = 'z.B. 1';
+      volumeInput.placeholder = 'z.B. 22.4';
+      amountInput.placeholder = 'z.B. 1';
       break;
   }
 
   // Clear disabled field
-  if (variable === 'P') {pressureInput.value = '';}
-  if (variable === 'V') {volumeInput.value = '';}
-  if (variable === 'n') {amountInput.value = '';}
-  if (variable === 'T') {temperatureInput.value = '';}
+  if (variable === 'P') {
+    pressureInput.value = '';
+  }
+  if (variable === 'V') {
+    volumeInput.value = '';
+  }
+  if (variable === 'n') {
+    amountInput.value = '';
+  }
+  if (variable === 'T') {
+    temperatureInput.value = '';
+  }
 }
 
 // Convert pressure to atm (base unit for R = 0.08206)
 function convertPressureToAtm(pressure, unit) {
-  switch(unit) {
-    case 'atm': return pressure;
-    case 'bar': return pressure * 0.986923;
-    case 'Pa': return pressure / 101325;
-    case 'kPa': return pressure / 101.325;
-    case 'Torr': return pressure / 760;
-    case 'mmHg': return pressure / 760;
-    default: return pressure;
+  switch (unit) {
+    case 'atm':
+      return pressure;
+    case 'bar':
+      return pressure * 0.986923;
+    case 'Pa':
+      return pressure / 101325;
+    case 'kPa':
+      return pressure / 101.325;
+    case 'Torr':
+      return pressure / 760;
+    case 'mmHg':
+      return pressure / 760;
+    default:
+      return pressure;
   }
 }
 
 // Convert volume to liters (base unit for R = 0.08206)
 function convertVolumeToLiters(volume, unit) {
-  switch(unit) {
-    case 'L': return volume;
-    case 'mL': return volume / 1000;
-    case 'm3': return volume * 1000;
-    case 'cm3': return volume / 1000;
-    default: return volume;
+  switch (unit) {
+    case 'L':
+      return volume;
+    case 'mL':
+      return volume / 1000;
+    case 'm3':
+      return volume * 1000;
+    case 'cm3':
+      return volume / 1000;
+    default:
+      return volume;
   }
 }
 
 // Convert amount to moles (base unit)
 function convertAmountToMoles(amount, unit) {
-  switch(unit) {
-    case 'mol': return amount;
-    case 'mmol': return amount / 1000;
-    default: return amount;
+  switch (unit) {
+    case 'mol':
+      return amount;
+    case 'mmol':
+      return amount / 1000;
+    default:
+      return amount;
   }
 }
 
 // Convert temperature to Kelvin
 function convertToKelvin(temp, unit) {
-  switch(unit) {
-    case 'K': return temp;
-    case 'C': return temp + 273.15;
-    case 'F': return (temp - 32) * 5/9 + 273.15;
-    default: return temp;
+  switch (unit) {
+    case 'K':
+      return temp;
+    case 'C':
+      return temp + 273.15;
+    case 'F':
+      return ((temp - 32) * 5) / 9 + 273.15;
+    default:
+      return temp;
   }
 }
 
 // Calculate gas law
+// eslint-disable-next-line no-unused-vars
 function calculateGasLaw() {
   const calculateVariable = document.getElementById('gas-calculate-variable').value;
   const R = parseFloat(document.getElementById('gas-constant-select').value);
@@ -1668,7 +1728,7 @@ function calculateGasLaw() {
     let result;
     let resultUnit;
 
-    switch(calculateVariable) {
+    switch (calculateVariable) {
       case 'n':
         result = (P_atm * V_L) / (R * T_K);
         resultUnit = 'mol';
@@ -1688,7 +1748,6 @@ function calculateGasLaw() {
     }
 
     displayGasResult(calculateVariable, result, resultUnit, P_atm, V_L, n_mol, T_K, R);
-
   } catch (error) {
     alert(error.message);
   }
@@ -1700,32 +1759,33 @@ function displayGasResult(variable, result, unit, P, V, n, T, R) {
   const contentDiv = document.getElementById('gas-result-content');
 
   const variableNames = {
-    'P': 'Druck',
-    'V': 'Volumen',
-    'n': 'Stoffmenge',
-    'T': 'Temperatur'
+    P: 'Druck',
+    V: 'Volumen',
+    n: 'Stoffmenge',
+    T: 'Temperatur',
   };
 
   let html = '<div style="background: white; padding: 20px; border-radius: 8px;">';
 
   // Formula display
-  html += '<div style="margin-bottom: 20px; padding: 15px; background: #e3f2fd; border-radius: 4px; text-align: center;">';
+  html +=
+    '<div style="margin-bottom: 20px; padding: 15px; background: #e3f2fd; border-radius: 4px; text-align: center;">';
   html += '<h4 style="color: #1976D2; margin-top: 0;">Ideales Gasgesetz</h4>';
   html += '<p style="font-size: 24px; font-weight: bold; color: #0D47A1;">PV = nRT</p>';
 
   let formulaText = '';
-  switch(variable) {
+  switch (variable) {
     case 'n':
-      formulaText = `n = PV ÷ RT = ${(P).toFixed(4)} × ${(V).toFixed(4)} ÷ (${R} × ${(T).toFixed(2)})`;
+      formulaText = `n = PV ÷ RT = ${P.toFixed(4)} × ${V.toFixed(4)} ÷ (${R} × ${T.toFixed(2)})`;
       break;
     case 'P':
-      formulaText = `P = nRT ÷ V = ${(n).toFixed(4)} × ${R} × ${(T).toFixed(2)} ÷ ${(V).toFixed(4)}`;
+      formulaText = `P = nRT ÷ V = ${n.toFixed(4)} × ${R} × ${T.toFixed(2)} ÷ ${V.toFixed(4)}`;
       break;
     case 'V':
-      formulaText = `V = nRT ÷ P = ${(n).toFixed(4)} × ${R} × ${(T).toFixed(2)} ÷ ${(P).toFixed(4)}`;
+      formulaText = `V = nRT ÷ P = ${n.toFixed(4)} × ${R} × ${T.toFixed(2)} ÷ ${P.toFixed(4)}`;
       break;
     case 'T':
-      formulaText = `T = PV ÷ nR = ${(P).toFixed(4)} × ${(V).toFixed(4)} ÷ (${(n).toFixed(4)} × ${R})`;
+      formulaText = `T = PV ÷ nR = ${P.toFixed(4)} × ${V.toFixed(4)} ÷ (${n.toFixed(4)} × ${R})`;
       break;
   }
   html += `<p style="font-size: 16px; color: #1976D2;">${formulaText}</p>`;
@@ -1735,16 +1795,25 @@ function displayGasResult(variable, result, unit, P, V, n, T, R) {
   html += '<div style="margin-bottom: 20px;">';
   html += '<h4>Bekannte Werte:</h4>';
   html += '<table class="table table-bordered" style="background: white;">';
-  if (variable !== 'P') {html += `<tr><td><strong>Druck (P)</strong></td><td>${P.toFixed(4)} atm</td></tr>`;}
-  if (variable !== 'V') {html += `<tr><td><strong>Volumen (V)</strong></td><td>${V.toFixed(4)} L</td></tr>`;}
-  if (variable !== 'n') {html += `<tr><td><strong>Stoffmenge (n)</strong></td><td>${n.toFixed(4)} mol</td></tr>`;}
-  if (variable !== 'T') {html += `<tr><td><strong>Temperatur (T)</strong></td><td>${T.toFixed(2)} K (${convertFromKelvin(T).toFixed(1)}°C)</td></tr>`;}
+  if (variable !== 'P') {
+    html += `<tr><td><strong>Druck (P)</strong></td><td>${P.toFixed(4)} atm</td></tr>`;
+  }
+  if (variable !== 'V') {
+    html += `<tr><td><strong>Volumen (V)</strong></td><td>${V.toFixed(4)} L</td></tr>`;
+  }
+  if (variable !== 'n') {
+    html += `<tr><td><strong>Stoffmenge (n)</strong></td><td>${n.toFixed(4)} mol</td></tr>`;
+  }
+  if (variable !== 'T') {
+    html += `<tr><td><strong>Temperatur (T)</strong></td><td>${T.toFixed(2)} K (${convertFromKelvin(T).toFixed(1)}°C)</td></tr>`;
+  }
   html += `<tr><td><strong>Gaskonstante (R)</strong></td><td>${R} L·atm/(mol·K)</td></tr>`;
   html += '</table>';
   html += '</div>';
 
   // Result
-  html += '<div style="padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; text-align: center;">';
+  html +=
+    '<div style="padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; text-align: center;">';
   html += `<h3 style="margin-top: 0;">${variableNames[variable]}</h3>`;
   html += `<p style="font-size: 32px; font-weight: bold;">${result.toFixed(4)} ${unit}</p>`;
 
@@ -1783,6 +1852,7 @@ function convertFromKelvin(kelvin) {
 }
 
 // Export gas calculation to PDF
+// eslint-disable-next-line no-unused-vars
 function exportGasToPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -1822,18 +1892,33 @@ function exportGasToPDF() {
 
   // Input values
   doc.setFontSize(12);
-  doc.text('Eingabewerte:', 20, y); y += 10;
+  doc.text('Eingabewerte:', 20, y);
+  y += 10;
 
-  if (calculateVariable !== 'P') {doc.text(`Druck: ${pressure} ${pressureUnit}`, 25, y);} y += 8;
-  if (calculateVariable !== 'V') {doc.text(`Volumen: ${volume} ${volumeUnit}`, 25, y);} y += 8;
-  if (calculateVariable !== 'n') {doc.text(`Stoffmenge: ${amount} ${amountUnit}`, 25, y);} y += 8;
-  if (calculateVariable !== 'T') {doc.text(`Temperatur: ${temperature} ${temperatureUnit}`, 25, y);} y += 8;
-  doc.text(`Gaskonstante: R = ${R}`, 25, y); y += 15;
+  if (calculateVariable !== 'P') {
+    doc.text(`Druck: ${pressure} ${pressureUnit}`, 25, y);
+  }
+  y += 8;
+  if (calculateVariable !== 'V') {
+    doc.text(`Volumen: ${volume} ${volumeUnit}`, 25, y);
+  }
+  y += 8;
+  if (calculateVariable !== 'n') {
+    doc.text(`Stoffmenge: ${amount} ${amountUnit}`, 25, y);
+  }
+  y += 8;
+  if (calculateVariable !== 'T') {
+    doc.text(`Temperatur: ${temperature} ${temperatureUnit}`, 25, y);
+  }
+  y += 8;
+  doc.text(`Gaskonstante: R = ${R}`, 25, y);
+  y += 15;
 
   // Formula
   doc.setFontSize(14);
   doc.setTextColor(0, 123, 255);
-  doc.text('Formel: PV = nRT', 20, y); y += 15;
+  doc.text('Formel: PV = nRT', 20, y);
+  y += 15;
 
   // Footer
   doc.setFontSize(10);
@@ -1866,10 +1951,11 @@ let practiceState = {
   incorrect: 0,
   currentProblem: null,
   problemNumber: 1,
-  active: false
+  active: false,
 };
 
 // Start practice mode
+// eslint-disable-next-line no-unused-vars
 function startPractice() {
   const type = document.getElementById('practice-type').value;
   const difficulty = document.getElementById('practice-difficulty').value;
@@ -1892,7 +1978,7 @@ function generateProblem(type, difficulty) {
     problemType = types[Math.floor(Math.random() * types.length)];
   }
 
-  switch(problemType) {
+  switch (problemType) {
     case 'mol-mol':
       generateMolMolProblem(difficulty);
       break;
@@ -1920,7 +2006,8 @@ function generateMolMolProblem(difficulty) {
     v1 = Math.floor(Math.random() * 5) + 1;
     v2 = Math.floor(Math.random() * 5) + 1;
     n1 = (Math.floor(Math.random() * 50) + 1) / 2; // 0.5-25.5 mol
-  } else { // hard
+  } else {
+    // hard
     v1 = Math.floor(Math.random() * 6) + 2; // 2-7
     v2 = Math.floor(Math.random() * 6) + 2;
     n1 = (Math.floor(Math.random() * 200) + 10) / 10; // 1-21 mol
@@ -1934,7 +2021,7 @@ function generateMolMolProblem(difficulty) {
     v1,
     v2,
     answer,
-    tolerance: 0.01 // 1% tolerance
+    tolerance: 0.01, // 1% tolerance
   };
 
   const problemHTML = `
@@ -1958,20 +2045,21 @@ function generateMolMolProblem(difficulty) {
 }
 
 // Generate Mass-Mass problem
+/* eslint-disable prefer-const */
 function generateMassMassProblem(difficulty) {
   let m1, M1, M2, v1, v2;
 
   const elements = [
     { symbol: 'H₂', M: 2.016 },
-    { symbol: 'O₂', M: 32.00 },
+    { symbol: 'O₂', M: 32.0 },
     { symbol: 'N₂', M: 28.02 },
-    { symbol: 'Cl₂', M: 70.90 },
+    { symbol: 'Cl₂', M: 70.9 },
     { symbol: 'CO₂', M: 44.01 },
     { symbol: 'H₂O', M: 18.02 },
     { symbol: 'NH₃', M: 17.03 },
     { symbol: 'CH₄', M: 16.04 },
     { symbol: 'NaCl', M: 58.44 },
-    { symbol: 'CaCO₃', M: 100.09 }
+    { symbol: 'CaCO₃', M: 100.09 },
   ];
 
   if (difficulty === 'easy') {
@@ -1985,7 +2073,8 @@ function generateMassMassProblem(difficulty) {
     M1 = elements[Math.floor(Math.random() * 7)].M;
     M2 = elements[Math.floor(Math.random() * 7)].M;
     m1 = (Math.floor(Math.random() * 50) + 5) / 2; // 2.5-27.5 g
-  } else { // hard
+  } else {
+    // hard
     v1 = Math.floor(Math.random() * 3) + 1;
     v2 = Math.floor(Math.random() * 3) + 1;
     M1 = elements[Math.floor(Math.random() * 10)].M;
@@ -2005,7 +2094,7 @@ function generateMassMassProblem(difficulty) {
     v1,
     v2,
     answer,
-    tolerance: 0.02 // 2% tolerance
+    tolerance: 0.02, // 2% tolerance
   };
 
   const problemHTML = `
@@ -2034,10 +2123,10 @@ function generateLimitingProblem(difficulty) {
 
   const elements = [
     { symbol: 'H₂', M: 2.016 },
-    { symbol: 'O₂', M: 32.00 },
+    { symbol: 'O₂', M: 32.0 },
     { symbol: 'N₂', M: 28.02 },
     { symbol: 'Na', M: 22.99 },
-    { symbol: 'K', M: 39.10 }
+    { symbol: 'K', M: 39.1 },
   ];
 
   M1 = elements[Math.floor(Math.random() * elements.length)].M;
@@ -2049,7 +2138,8 @@ function generateLimitingProblem(difficulty) {
   } else if (difficulty === 'medium') {
     m1 = (Math.floor(Math.random() * 100) + 10) / 2;
     m2 = (Math.floor(Math.random() * 100) + 10) / 2;
-  } else { // hard
+  } else {
+    // hard
     m1 = (Math.floor(Math.random() * 200) + 10) / 4;
     m2 = (Math.floor(Math.random() * 200) + 10) / 4;
   }
@@ -2065,7 +2155,7 @@ function generateLimitingProblem(difficulty) {
     m2,
     M2,
     answer,
-    tolerance: 0
+    tolerance: 0,
   };
 
   const problemHTML = `
@@ -2089,7 +2179,10 @@ function generateLimitingProblem(difficulty) {
   document.getElementById('feedback-section').style.display = 'none';
 }
 
+/* eslint-enable prefer-const */
+
 // Generate Yield problem
+/* eslint-disable prefer-const */
 function generateYieldProblem(difficulty) {
   let theoretical, actual, yieldPct;
 
@@ -2099,7 +2192,8 @@ function generateYieldProblem(difficulty) {
   } else if (difficulty === 'medium') {
     yieldPct = (Math.floor(Math.random() * 50) + 50) / 2; // 25-75%
     theoretical = (Math.floor(Math.random() * 100) + 10) / 2;
-  } else { // hard
+  } else {
+    // hard
     yieldPct = (Math.floor(Math.random() * 80) + 10) / 2; // 5-45%
     theoretical = (Math.floor(Math.random() * 150) + 5) / 4;
   }
@@ -2112,7 +2206,7 @@ function generateYieldProblem(difficulty) {
     theoretical,
     actual,
     answer,
-    tolerance: 1 // 1% tolerance
+    tolerance: 1, // 1% tolerance
   };
 
   const problemHTML = `
@@ -2135,7 +2229,10 @@ function generateYieldProblem(difficulty) {
   document.getElementById('feedback-section').style.display = 'none';
 }
 
+/* eslint-enable prefer-const */
+
 // Check answer
+// eslint-disable-next-line no-unused-vars
 function checkAnswer() {
   const userAnswer = parseFloat(document.getElementById('practice-answer').value);
 
@@ -2155,7 +2252,7 @@ function checkAnswer() {
 }
 
 // Show feedback
-function showFeedback(isCorrect, correctAnswer, userAnswer, tolerance) {
+function showFeedback(isCorrect, correctAnswer, userAnswer, _tolerance) {
   const feedbackDiv = document.getElementById('feedback-section');
   feedbackDiv.style.display = 'block';
 
@@ -2168,7 +2265,7 @@ function showFeedback(isCorrect, correctAnswer, userAnswer, tolerance) {
       </div>
     `;
   } else {
-    const diffPercent = ((userAnswer - correctAnswer) / correctAnswer * 100).toFixed(1);
+    const diffPercent = (((userAnswer - correctAnswer) / correctAnswer) * 100).toFixed(1);
     feedbackDiv.innerHTML = `
       <div style="background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; padding: 15px; border-radius: 4px;">
         <h4 style="margin-top: 0;"><i class="fa fa-times-circle"></i> Leider falsch</h4>
@@ -2195,7 +2292,7 @@ function showFeedback(isCorrect, correctAnswer, userAnswer, tolerance) {
 function problemDetailHTML(answer) {
   const problem = practiceState.currentProblem;
 
-  switch(problem.type) {
+  switch (problem.type) {
     case 'mol-mol':
       return `
         <div style="margin-top: 10px; padding: 10px; background: rgba(255,255,255,0.5); border-radius: 4px;">
@@ -2256,6 +2353,7 @@ function updateScore(isCorrect) {
 }
 
 // Skip problem
+// eslint-disable-next-line no-unused-vars
 function skipProblem() {
   practiceState.incorrect++;
   practiceState.score = Math.max(0, practiceState.score - 2);
@@ -2271,15 +2369,18 @@ function skipProblem() {
 }
 
 // Reset practice
+// eslint-disable-next-line no-unused-vars
 function resetPractice() {
-  if (confirm('Möchtest du den Übungsmodus wirklich neustarten? Dein Punktestand wird zurückgesetzt.')) {
+  if (
+    confirm('Möchtest du den Übungsmodus wirklich neustarten? Dein Punktestand wird zurückgesetzt.')
+  ) {
     practiceState = {
       score: 0,
       correct: 0,
       incorrect: 0,
       currentProblem: null,
       problemNumber: 1,
-      active: false
+      active: false,
     };
 
     document.getElementById('practice-score').textContent = '0';
@@ -2296,7 +2397,7 @@ function resetPractice() {
 const tutorialState = {
   currentTutorial: null,
   currentStep: 0,
-  completedTutorials: JSON.parse(localStorage.getItem('completedTutorials') || '[]')
+  completedTutorials: JSON.parse(localStorage.getItem('completedTutorials') || '[]'),
 };
 
 // Tutorial content database
@@ -2327,7 +2428,7 @@ const tutorials = {
             </ul>
             <p>Stöchiometrie ist also das <strong"Messen von Elementen</strong> - die Berechnung der Mengenverhältnisse bei chemischen Reaktionen.</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Das Mol - Die Grundlage 📊',
@@ -2365,7 +2466,7 @@ const tutorials = {
             </ul>
             <p><strong>Formel:</strong> n = m / M (Stoffmenge = Masse / molare Masse)</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Chemische Gleichungen als Rezepte 📝',
@@ -2406,7 +2507,7 @@ const tutorials = {
             </p>
             <p>Daraus folgt: <strong>n(A) / ν₁ = n(B) / ν₂ = n(C) / ν₃ = n(D) / ν₄</strong></p>
           </div>
-        `
+        `,
       },
       {
         title: 'Warum ist Stöchiometrie wichtig? 🎯',
@@ -2449,7 +2550,7 @@ const tutorials = {
               <li>Photosynthese: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</li>
             </ul>
           </div>
-        `
+        `,
       },
       {
         title: 'Zusammenfassung & Quiz 📝',
@@ -2493,9 +2594,9 @@ const tutorials = {
           <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 20px;">
             <p style="margin: 0;"><strong>🎉 Gratulation!</strong> Du hast Tutorial 1 abgeschlossen! Klicke auf "Weiter", um fortzufahren.</p>
           </div>
-        `
-      }
-    ]
+        `,
+      },
+    ],
   },
   2: {
     title: 'Mol-Mol Umrechnung',
@@ -2524,7 +2625,7 @@ const tutorials = {
               <li>Reaktionspartner im richtigen Verhältnis mischen willst</li>
             </ul>
           </div>
-        `
+        `,
       },
       {
         title: 'Die Grundformel 📐',
@@ -2583,7 +2684,7 @@ const tutorials = {
               n₂ = n₁ × (ν₂/ν₁)
             </p>
           </div>
-        `
+        `,
       },
       {
         title: 'Beispiel 1: Wasserbildung 💧',
@@ -2634,7 +2735,7 @@ const tutorials = {
             <h5 style="color: #f57f17;"><i class="fa fa-eye"></i> Beobachtung</h5>
             <p>Weil beide Koeffizienten gleich sind (2 und 2), ist das Verhältnis 1:1. Die Stoffmenge bleibt gleich!</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Beispiel 2: Methanverbrennung 🔥',
@@ -2681,7 +2782,7 @@ const tutorials = {
             <p>Hier ist ν(H₂O) = 2:</p>
             <p style="font-size: 18px; text-align: center;">n(H₂O) = 3 mol × (2/1) = <strong>6 mol</strong></p>
           </div>
-        `
+        `,
       },
       {
         title: 'Praxis & Zusammenfassung ✅',
@@ -2720,9 +2821,9 @@ const tutorials = {
             <p style="margin: 0;"><strong>🎉 Super!</strong> Du kennst jetzt die Grundlage aller stöchiometrischen Berechnungen!</p>
             <p style="margin: 10px 0 0 0;">Als nächstes lernst du, wie man Massen umrechnet (Tutorial 3).</p>
           </div>
-        `
-      }
-    ]
+        `,
+      },
+    ],
   },
   3: {
     title: 'Masse-Masse Umrechnung',
@@ -2757,7 +2858,7 @@ const tutorials = {
           <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 20px;">
             <p><strong>💡 Merke:</strong> Mol ist die "Brücke" zwischen Massen verschiedener Stoffe!</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Die drei Schritte im Detail 📝',
@@ -2806,7 +2907,7 @@ const tutorials = {
               <li><strong>M</strong> = Molare Masse in g/mol</li>
             </ul>
           </div>
-        `
+        `,
       },
       {
         title: 'Beispiel: Wasserbildung berechnen 💧',
@@ -2857,7 +2958,7 @@ const tutorials = {
             <h5 style="color: #f57f17;"><i class="fa fa-eye"></i> Beobachtung</h5>
             <p>Die Masse hat sich fast verzehnffacht! Das liegt an der unterschiedlichen molaren Masse.</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Tipps & Tricks 💡',
@@ -2901,7 +3002,7 @@ const tutorials = {
               </ul>
             </div>
           </div>
-        `
+        `,
       },
       {
         title: 'Zusammenfassung & Praxis ✅',
@@ -2936,9 +3037,9 @@ const tutorials = {
           <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 20px;">
             <p style="margin: 0;"><strong>🎉 Ausgezeichnet!</strong> Du kannst jetzt Massen stöchiometrisch umrechnen!</p>
           </div>
-        `
-      }
-    ]
+        `,
+      },
+    ],
   },
   4: {
     title: 'Limitierendes Reagenz',
@@ -2980,7 +3081,7 @@ const tutorials = {
           <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin-top: 20px;">
             <p><strong>💡 Erkenntnis:</strong> Das Reagenz, das weniger Produkt erzeugen kann, bestimmt die Reaktion!</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Wie man das limitierende Reagenz findet 🔍',
@@ -3022,7 +3123,7 @@ const tutorials = {
             <p>Vergleiche <strong>immer n/ν</strong>, nicht nur n oder m!</p>
             <p>Ein Reagenz mit kleinerer Masse kann trotzdem im Überschuss sein, wenn sein Koeffizient klein ist.</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Beispiel: Ammoniaksynthese 🌿',
@@ -3075,7 +3176,7 @@ const tutorials = {
               </div>
             </details>
           </div>
-        `
+        `,
       },
       {
         title: 'Überschuss berechnen ➗',
@@ -3112,7 +3213,7 @@ const tutorials = {
               <li>Der Überschuss kann recycelt werden</li>
             </ul>
           </div>
-        `
+        `,
       },
       {
         title: 'Zusammenfassung ✅',
@@ -3149,9 +3250,9 @@ const tutorials = {
           <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 20px;">
             <p style="margin: 0;"><strong>🎉 Perfekt!</strong> Du kannst jetzt limitierende Reagenzien finden und berechnen!</p>
           </div>
-        `
-      }
-    ]
+        `,
+      },
+    ],
   },
   5: {
     title: 'Ausbeute berechnen',
@@ -3193,7 +3294,7 @@ const tutorials = {
             <h5 style="color: #6a1b9a;"><i class="fa fa-lightbulb-o"></i> Wichtig zu wissen</h5>
             <p>Die praktische Ausbeute ist <strong>immer kleiner</strong> als die theoretische (oder in Ausnahmefällen gleich, aber nie größer).</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Die Ausbeute-Formel 📐',
@@ -3247,7 +3348,7 @@ const tutorials = {
           <div style="background: #fff9c4; padding: 15px; border-radius: 8px; margin-top: 20px;">
             <p><strong>⚠️ Achtung:</strong> Du kannst die praktische Ausbeute nicht berechnen - sie muss <strong>gemessen</strong> werden!</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Beispiel: Kupferfällung 🧪',
@@ -3293,7 +3394,7 @@ const tutorials = {
           <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 20px;">
             <p><strong>💡 Bewertung:</strong> 83% ist eine gute Ausbeute für eine Fällungsreaktion!</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Warum nie 100% Ausbeute? 🤔',
@@ -3353,7 +3454,7 @@ const tutorials = {
               <li>Komplexe mehrstufige Synthesen: 10-40% (pro Schritt)</li>
             </ul>
           </div>
-        `
+        `,
       },
       {
         title: 'Zusammenfassung & Abschluss ✅',
@@ -3402,13 +3503,14 @@ const tutorials = {
             </ul>
             <p style="color: white; margin-top: 15px;"><strong>Nutze den Übungsmodus, um dein Wissen zu festigen!</strong></p>
           </div>
-        `
-      }
-    ]
-  }
+        `,
+      },
+    ],
+  },
 };
 
 // Start a tutorial
+// eslint-disable-next-line no-unused-vars
 function startTutorial(tutorialId) {
   const tutorial = tutorials[tutorialId];
 
@@ -3437,7 +3539,9 @@ function startTutorial(tutorialId) {
 function updateTutorialView() {
   const tutorial = tutorials[tutorialState.currentTutorial];
 
-  if (!tutorial) {return;}
+  if (!tutorial) {
+    return;
+  }
 
   const step = tutorial.steps[tutorialState.currentStep];
 
@@ -3464,6 +3568,7 @@ function updateTutorialView() {
 }
 
 // Navigate to next step
+// eslint-disable-next-line no-unused-vars
 function nextStep() {
   const tutorial = tutorials[tutorialState.currentTutorial];
 
@@ -3477,6 +3582,7 @@ function nextStep() {
 }
 
 // Navigate to previous step
+// eslint-disable-next-line no-unused-vars
 function previousStep() {
   if (tutorialState.currentStep > 0) {
     tutorialState.currentStep--;
@@ -3520,7 +3626,9 @@ function updateTutorialProgress() {
   // Update tutorial cards
   for (let i = 1; i <= 5; i++) {
     const statusEl = document.getElementById(`status-tutorial-${i}`);
-    if (!statusEl) {continue;}
+    if (!statusEl) {
+      continue;
+    }
 
     if (tutorialState.completedTutorials.includes(i)) {
       statusEl.innerHTML = '<i class="fa fa-check-circle"></i> Abgeschlossen';
@@ -3561,9 +3669,9 @@ let studentProgress = {
     byType: {
       'mol-mol': { total: 0, correct: 0 },
       'mass-mass': { total: 0, correct: 0 },
-      'limiting': { total: 0, correct: 0 },
-      'yield': { total: 0, correct: 0 }
-    }
+      limiting: { total: 0, correct: 0 },
+      yield: { total: 0, correct: 0 },
+    },
   },
 
   // Calculator usage
@@ -3571,7 +3679,7 @@ let studentProgress = {
     molMol: 0,
     massMass: 0,
     limiting: 0,
-    yield: 0
+    yield: 0,
   },
 
   // Achievements
@@ -3584,13 +3692,13 @@ let studentProgress = {
   streak: {
     current: 0,
     longest: 0,
-    lastActiveDate: null
+    lastActiveDate: null,
   },
 
   // First visit
   firstVisit: null,
   lastVisit: null,
-  totalSessions: 0
+  totalSessions: 0,
 };
 
 // Achievement definitions
@@ -3601,7 +3709,7 @@ const achievementDefinitions = [
     description: 'Absolviere dein erstes Tutorial',
     icon: 'fa-graduation-cap',
     color: '#4CAF50',
-    condition: (progress) => progress.completedTutorials.length >= 1
+    condition: (progress) => progress.completedTutorials.length >= 1,
   },
   {
     id: 'tutorial-master',
@@ -3609,7 +3717,7 @@ const achievementDefinitions = [
     description: 'Absolviere alle 5 Tutorials',
     icon: 'fa-star',
     color: '#FFD700',
-    condition: (progress) => progress.completedTutorials.length >= 5
+    condition: (progress) => progress.completedTutorials.length >= 5,
   },
   {
     id: 'first-practice',
@@ -3617,7 +3725,7 @@ const achievementDefinitions = [
     description: 'Löse deine erste Praxisaufgabe',
     icon: 'fa-pencil',
     color: '#2196F3',
-    condition: (progress) => progress.practiceProblems.total >= 1
+    condition: (progress) => progress.practiceProblems.total >= 1,
   },
   {
     id: 'practice-10',
@@ -3625,7 +3733,7 @@ const achievementDefinitions = [
     description: 'Löse 10 Praxisaufgaben',
     icon: 'fa-trophy',
     color: '#FF9800',
-    condition: (progress) => progress.practiceProblems.total >= 10
+    condition: (progress) => progress.practiceProblems.total >= 10,
   },
   {
     id: 'practice-50',
@@ -3633,7 +3741,7 @@ const achievementDefinitions = [
     description: 'Löse 50 Praxisaufgaben',
     icon: 'fa-gem',
     color: '#9C27B0',
-    condition: (progress) => progress.practiceProblems.total >= 50
+    condition: (progress) => progress.practiceProblems.total >= 50,
   },
   {
     id: 'perfect-10',
@@ -3641,8 +3749,9 @@ const achievementDefinitions = [
     description: 'Löse 10 Aufgaben hintereinander richtig',
     icon: 'fa-bolt',
     color: '#F44336',
-    condition: (progress) => progress.practiceProblems.correct >= 10 &&
-                          progress.practiceProblems.correct === progress.practiceProblems.total
+    condition: (progress) =>
+      progress.practiceProblems.correct >= 10 &&
+      progress.practiceProblems.correct === progress.practiceProblems.total,
   },
   {
     id: 'first-calculation',
@@ -3650,7 +3759,7 @@ const achievementDefinitions = [
     description: 'Führe deine erste Berechnung durch',
     icon: 'fa-calculator',
     color: '#00BCD4',
-    condition: (progress) => Object.values(progress.calculations).reduce((a, b) => a + b, 0) >= 1
+    condition: (progress) => Object.values(progress.calculations).reduce((a, b) => a + b, 0) >= 1,
   },
   {
     id: 'calculation-20',
@@ -3658,7 +3767,7 @@ const achievementDefinitions = [
     description: 'Führe 20 Berechnungen durch',
     icon: 'fa-cogs',
     color: '#3F51B5',
-    condition: (progress) => Object.values(progress.calculations).reduce((a, b) => a + b, 0) >= 20
+    condition: (progress) => Object.values(progress.calculations).reduce((a, b) => a + b, 0) >= 20,
   },
   {
     id: 'streak-3',
@@ -3666,7 +3775,7 @@ const achievementDefinitions = [
     description: 'Lerne an 3 aufeinanderfolgenden Tagen',
     icon: 'fa-fire',
     color: '#FF5722',
-    condition: (progress) => progress.streak.current >= 3
+    condition: (progress) => progress.streak.current >= 3,
   },
   {
     id: 'streak-7',
@@ -3674,7 +3783,7 @@ const achievementDefinitions = [
     description: 'Lerne an 7 aufeinanderfolgenden Tagen',
     icon: 'fa-fire',
     color: '#E91E63',
-    condition: (progress) => progress.streak.current >= 7
+    condition: (progress) => progress.streak.current >= 7,
   },
   {
     id: 'all-calculators',
@@ -3682,10 +3791,11 @@ const achievementDefinitions = [
     description: 'Nutze alle 4 Rechner mindestens einmal',
     icon: 'fa-th',
     color: '#8BC34A',
-    condition: (progress) => progress.calculations.molMol > 0 &&
-                          progress.calculations.massMass > 0 &&
-                          progress.calculations.limiting > 0 &&
-                          progress.calculations.yield > 0
+    condition: (progress) =>
+      progress.calculations.molMol > 0 &&
+      progress.calculations.massMass > 0 &&
+      progress.calculations.limiting > 0 &&
+      progress.calculations.yield > 0,
   },
   {
     id: 'accuracy-90',
@@ -3693,9 +3803,10 @@ const achievementDefinitions = [
     description: 'Erziele eine Genauigkeit von 90% in mindestens 20 Aufgaben',
     icon: 'fa-bullseye',
     color: '#673AB7',
-    condition: (progress) => progress.practiceProblems.total >= 20 &&
-                          (progress.practiceProblems.correct / progress.practiceProblems.total) >= 0.9
-  }
+    condition: (progress) =>
+      progress.practiceProblems.total >= 20 &&
+      progress.practiceProblems.correct / progress.practiceProblems.total >= 0.9,
+  },
 ];
 
 // Initialize progress from localStorage
@@ -3739,7 +3850,10 @@ function updateStreak() {
       studentProgress.streak.current++;
     } else if (lastDate.toDateString() !== today) {
       // Streak broken
-      studentProgress.streak.longest = Math.max(studentProgress.streak.longest, studentProgress.streak.current);
+      studentProgress.streak.longest = Math.max(
+        studentProgress.streak.longest,
+        studentProgress.streak.current
+      );
       studentProgress.streak.current = 1;
     }
   } else {
@@ -3747,7 +3861,10 @@ function updateStreak() {
   }
 
   studentProgress.streak.lastActiveDate = today;
-  studentProgress.streak.longest = Math.max(studentProgress.streak.longest, studentProgress.streak.current);
+  studentProgress.streak.longest = Math.max(
+    studentProgress.streak.longest,
+    studentProgress.streak.current
+  );
 }
 
 // Log activity
@@ -3756,7 +3873,7 @@ function logActivity(type, description, data = {}) {
     timestamp: new Date().toISOString(),
     type,
     description,
-    data
+    data,
   };
 
   studentProgress.activities.unshift(activity);
@@ -3776,23 +3893,21 @@ function updateQuickStats() {
     `${studentProgress.completedTutorials.length}/5`;
 
   // Practice
-  document.getElementById('stat-practice').textContent =
-    studentProgress.practiceProblems.total;
+  document.getElementById('stat-practice').textContent = studentProgress.practiceProblems.total;
 
   // Calculations
   const totalCalculations = Object.values(studentProgress.calculations).reduce((a, b) => a + b, 0);
   document.getElementById('stat-calculations').textContent = totalCalculations;
 
   // Achievements
-  document.getElementById('stat-achievements').textContent =
-    studentProgress.achievements.length;
+  document.getElementById('stat-achievements').textContent = studentProgress.achievements.length;
 }
 
 // Check and award achievements
 function checkAchievements() {
   let newAchievements = false;
 
-  achievementDefinitions.forEach(achievement => {
+  achievementDefinitions.forEach((achievement) => {
     if (!studentProgress.achievements.includes(achievement.id)) {
       if (achievement.condition(studentProgress)) {
         studentProgress.achievements.push(achievement.id);
@@ -3803,7 +3918,7 @@ function checkAchievements() {
 
         // Log activity
         logActivity('achievement', `Erfolg freigeschaltet: ${achievement.name}`, {
-          achievementId: achievement.id
+          achievementId: achievement.id,
         });
       }
     }
@@ -3853,6 +3968,7 @@ function showAchievementNotification(achievement) {
 }
 
 // Toggle progress dashboard
+// eslint-disable-next-line no-unused-vars
 function toggleProgressDashboard() {
   const dashboard = document.getElementById('progress-dashboard');
   dashboard.style.display = dashboard.style.display === 'none' ? 'block' : 'none';
@@ -3878,7 +3994,7 @@ function loadOverviewTab() {
     2: 'Mol-Mol Umrechnung',
     3: 'Masse-Masse Umrechnung',
     4: 'Limitierendes Reagenz',
-    5: 'Ausbeute berechnen'
+    5: 'Ausbeute berechnen',
   };
 
   let progressHTML = '';
@@ -3901,9 +4017,13 @@ function loadOverviewTab() {
   document.getElementById('tutorial-progress-bars').innerHTML = progressHTML;
 
   // Practice statistics
-  const accuracy = studentProgress.practiceProblems.total > 0
-    ? ((studentProgress.practiceProblems.correct / studentProgress.practiceProblems.total) * 100).toFixed(1)
-    : 0;
+  const accuracy =
+    studentProgress.practiceProblems.total > 0
+      ? (
+          (studentProgress.practiceProblems.correct / studentProgress.practiceProblems.total) *
+          100
+        ).toFixed(1)
+      : 0;
 
   const statsHTML = `
     <div style="margin-bottom: 10px;">
@@ -3949,9 +4069,10 @@ function loadOverviewTab() {
 
 // Load achievements tab
 function loadAchievementsTab() {
-  let gridHTML = '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;">';
+  let gridHTML =
+    '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;">';
 
-  achievementDefinitions.forEach(achievement => {
+  achievementDefinitions.forEach((achievement) => {
     const unlocked = studentProgress.achievements.includes(achievement.id);
 
     gridHTML += `
@@ -3975,26 +4096,27 @@ function loadAchievementsTab() {
 // Load activity tab
 function loadActivityTab() {
   if (studentProgress.activities.length === 0) {
-    document.getElementById('activity-list').innerHTML = '<p class="text-muted">Noch keine Aktivitäten.</p>';
+    document.getElementById('activity-list').innerHTML =
+      '<p class="text-muted">Noch keine Aktivitäten.</p>';
     return;
   }
 
   const typeIcons = {
-    'tutorial': 'fa-graduation-cap',
-    'practice': 'fa-pencil',
-    'calculation': 'fa-calculator',
-    'achievement': 'fa-trophy'
+    tutorial: 'fa-graduation-cap',
+    practice: 'fa-pencil',
+    calculation: 'fa-calculator',
+    achievement: 'fa-trophy',
   };
 
   const typeColors = {
-    'tutorial': '#4CAF50',
-    'practice': '#FF9800',
-    'calculation': '#2196F3',
-    'achievement': '#E91E63'
+    tutorial: '#4CAF50',
+    practice: '#FF9800',
+    calculation: '#2196F3',
+    achievement: '#E91E63',
   };
 
   let listHTML = '';
-  studentProgress.activities.slice(0, 50).forEach(activity => {
+  studentProgress.activities.slice(0, 50).forEach((activity) => {
     const date = new Date(activity.timestamp);
     const formattedDate = date.toLocaleDateString('de-DE') + ' ' + date.toLocaleTimeString('de-DE');
 
@@ -4032,33 +4154,57 @@ function loadPerformanceTab() {
           <td>Mol-Mol</td>
           <td>${studentProgress.practiceProblems.byType['mol-mol'].total}</td>
           <td>${studentProgress.practiceProblems.byType['mol-mol'].correct}</td>
-          <td>${studentProgress.practiceProblems.byType['mol-mol'].total > 0
-            ? ((studentProgress.practiceProblems.byType['mol-mol'].correct / studentProgress.practiceProblems.byType['mol-mol'].total) * 100).toFixed(1)
-            : 0}%</td>
+          <td>${
+            studentProgress.practiceProblems.byType['mol-mol'].total > 0
+              ? (
+                  (studentProgress.practiceProblems.byType['mol-mol'].correct /
+                    studentProgress.practiceProblems.byType['mol-mol'].total) *
+                  100
+                ).toFixed(1)
+              : 0
+          }%</td>
         </tr>
         <tr>
           <td>Masse-Masse</td>
           <td>${studentProgress.practiceProblems.byType['mass-mass'].total}</td>
           <td>${studentProgress.practiceProblems.byType['mass-mass'].correct}</td>
-          <td>${studentProgress.practiceProblems.byType['mass-mass'].total > 0
-            ? ((studentProgress.practiceProblems.byType['mass-mass'].correct / studentProgress.practiceProblems.byType['mass-mass'].total) * 100).toFixed(1)
-            : 0}%</td>
+          <td>${
+            studentProgress.practiceProblems.byType['mass-mass'].total > 0
+              ? (
+                  (studentProgress.practiceProblems.byType['mass-mass'].correct /
+                    studentProgress.practiceProblems.byType['mass-mass'].total) *
+                  100
+                ).toFixed(1)
+              : 0
+          }%</td>
         </tr>
         <tr>
           <td>Limitierend</td>
           <td>${studentProgress.practiceProblems.byType['limiting'].total}</td>
           <td>${studentProgress.practiceProblems.byType['limiting'].correct}</td>
-          <td>${studentProgress.practiceProblems.byType['limiting'].total > 0
-            ? ((studentProgress.practiceProblems.byType['limiting'].correct / studentProgress.practiceProblems.byType['limiting'].total) * 100).toFixed(1)
-            : 0}%</td>
+          <td>${
+            studentProgress.practiceProblems.byType['limiting'].total > 0
+              ? (
+                  (studentProgress.practiceProblems.byType['limiting'].correct /
+                    studentProgress.practiceProblems.byType['limiting'].total) *
+                  100
+                ).toFixed(1)
+              : 0
+          }%</td>
         </tr>
         <tr>
           <td>Ausbeute</td>
           <td>${studentProgress.practiceProblems.byType['yield'].total}</td>
           <td>${studentProgress.practiceProblems.byType['yield'].correct}</td>
-          <td>${studentProgress.practiceProblems.byType['yield'].total > 0
-            ? ((studentProgress.practiceProblems.byType['yield'].correct / studentProgress.practiceProblems.byType['yield'].total) * 100).toFixed(1)
-            : 0}%</td>
+          <td>${
+            studentProgress.practiceProblems.byType['yield'].total > 0
+              ? (
+                  (studentProgress.practiceProblems.byType['yield'].correct /
+                    studentProgress.practiceProblems.byType['yield'].total) *
+                  100
+                ).toFixed(1)
+              : 0
+          }%</td>
         </tr>
       </tbody>
     </table>
@@ -4077,6 +4223,7 @@ function loadPerformanceTab() {
 }
 
 // Export progress report
+// eslint-disable-next-line no-unused-vars
 function exportProgressReport() {
   const report = {
     generated: new Date().toISOString(),
@@ -4084,20 +4231,20 @@ function exportProgressReport() {
       totalSessions: studentProgress.totalSessions,
       firstVisit: studentProgress.firstVisit,
       lastVisit: studentProgress.lastVisit,
-      streak: studentProgress.streak
+      streak: studentProgress.streak,
     },
     tutorials: {
       completed: studentProgress.completedTutorials.length,
       total: 5,
-      list: studentProgress.completedTutorials
+      list: studentProgress.completedTutorials,
     },
     practice: studentProgress.practiceProblems,
     calculations: studentProgress.calculations,
-    achievements: studentProgress.achievements.map(id => {
-      const achievement = achievementDefinitions.find(a => a.id === id);
+    achievements: studentProgress.achievements.map((id) => {
+      const achievement = achievementDefinitions.find((a) => a.id === id);
       return achievement ? achievement.name : id;
     }),
-    recentActivities: studentProgress.activities.slice(0, 20)
+    recentActivities: studentProgress.activities.slice(0, 20),
   };
 
   const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
@@ -4114,12 +4261,19 @@ function exportProgressReport() {
 }
 
 // Reset progress
+// eslint-disable-next-line no-unused-vars
 function resetProgress() {
-  if (!confirm('Möchtest du wirklich deinen gesamten Fortschritt zurücksetzen? Diese Aktion kann nicht rückgängig gemacht werden!')) {
+  if (
+    !confirm(
+      'Möchtest du wirklich deinen gesamten Fortschritt zurücksetzen? Diese Aktion kann nicht rückgängig gemacht werden!'
+    )
+  ) {
     return;
   }
 
-  if (!confirm('Bist du wirklich sicher? Alle Erfolge, Statistiken und Aktivitäten werden gelöscht.')) {
+  if (
+    !confirm('Bist du wirklich sicher? Alle Erfolge, Statistiken und Aktivitäten werden gelöscht.')
+  ) {
     return;
   }
 
@@ -4130,6 +4284,7 @@ function resetProgress() {
 // Integration hooks - called from other functions
 
 // Called when tutorial is completed
+// eslint-disable-next-line no-unused-vars
 function onTutorialCompleted(tutorialId, timeSpent) {
   if (!studentProgress.completedTutorials.includes(tutorialId)) {
     studentProgress.completedTutorials.push(tutorialId);
@@ -4153,13 +4308,17 @@ function onPracticeProblemAttempt(type, correct) {
     studentProgress.practiceProblems.incorrect++;
   }
 
-  logActivity('practice', `Praxisaufgabe ${correct ? 'richtig' : 'falsch'} gelöst`, { type, correct });
+  logActivity('practice', `Praxisaufgabe ${correct ? 'richtig' : 'falsch'} gelöst`, {
+    type,
+    correct,
+  });
   saveProgress();
   checkAchievements();
   updateQuickStats();
 }
 
 // Called when calculator is used
+// eslint-disable-next-line no-unused-vars
 function onCalculatorUsed(type) {
   studentProgress.calculations[type]++;
   logActivity('calculation', `${type} Rechner verwendet`, { type });
@@ -4176,7 +4335,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Hook into practice mode
   const originalCheckAnswer = window.checkAnswer;
   if (originalCheckAnswer) {
-    window.checkAnswer = function() {
+    window.checkAnswer = function () {
       const result = originalCheckAnswer.apply(this, arguments);
       // The practice state will have the current problem type
       if (practiceState && practiceState.currentProblem) {
@@ -4191,6 +4350,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ===== PDF EXPORT FUNCTIONS =====
 
 // Export Mol-Mol calculation to PDF
+// eslint-disable-next-line no-unused-vars
 function exportMolMolToPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -4227,20 +4387,25 @@ function exportMolMolToPDF() {
   y += 10;
 
   doc.setFontSize(12);
-  doc.text(`Stoffmenge (n₁): ${n1} mol`, 25, y); y += 8;
-  doc.text(`Koeffizient Edukt (ν₁): ${v1}`, 25, y); y += 8;
-  doc.text(`Koeffizient Produkt (ν₂): ${v2}`, 25, y); y += 15;
+  doc.text(`Stoffmenge (n₁): ${n1} mol`, 25, y);
+  y += 8;
+  doc.text(`Koeffizient Edukt (ν₁): ${v1}`, 25, y);
+  y += 8;
+  doc.text(`Koeffizient Produkt (ν₂): ${v2}`, 25, y);
+  y += 15;
 
   doc.setFontSize(14);
   doc.text('Ergebnis:', 20, y);
   y += 10;
 
   doc.setFontSize(12);
-  doc.text(`Produktstoffmenge (n₂): ${n2} mol`, 25, y); y += 8;
+  doc.text(`Produktstoffmenge (n₂): ${n2} mol`, 25, y);
+  y += 8;
   y += 5;
 
   doc.setTextColor(0, 123, 255);
-  doc.text(`Formel: n₂ = n₁ × (ν₂/ν₁) = ${n1} × (${v2}/${v1}) = ${n2} mol`, 20, y); y += 20;
+  doc.text(`Formel: n₂ = n₁ × (ν₂/ν₁) = ${n1} × (${v2}/${v1}) = ${n2} mol`, 20, y);
+  y += 20;
 
   // Footer
   doc.setFontSize(10);
@@ -4252,6 +4417,7 @@ function exportMolMolToPDF() {
 }
 
 // Export Mass-Mass calculation to PDF
+// eslint-disable-next-line no-unused-vars
 function exportMassMassToPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -4293,20 +4459,28 @@ function exportMassMassToPDF() {
   y += 10;
 
   doc.setFontSize(12);
-  doc.text(`Masse Edukt (m₁): ${m1} g`, 25, y); y += 8;
-  doc.text(`Molare Masse Edukt (M₁): ${M1} g/mol`, 25, y); y += 8;
-  doc.text(`Molare Masse Produkt (M₂): ${M2} g/mol`, 25, y); y += 8;
-  doc.text(`Koeffizient Edukt (ν₁): ${v1}`, 25, y); y += 8;
-  doc.text(`Koeffizient Produkt (ν₂): ${v2}`, 25, y); y += 15;
+  doc.text(`Masse Edukt (m₁): ${m1} g`, 25, y);
+  y += 8;
+  doc.text(`Molare Masse Edukt (M₁): ${M1} g/mol`, 25, y);
+  y += 8;
+  doc.text(`Molare Masse Produkt (M₂): ${M2} g/mol`, 25, y);
+  y += 8;
+  doc.text(`Koeffizient Edukt (ν₁): ${v1}`, 25, y);
+  y += 8;
+  doc.text(`Koeffizient Produkt (ν₂): ${v2}`, 25, y);
+  y += 15;
 
   doc.setFontSize(14);
   doc.text('Berechnungsschritte:', 20, y);
   y += 10;
 
   doc.setFontSize(12);
-  doc.text(`Schritt 1: n₁ = m₁/M₁ = ${m1} / ${M1} = ${n1} mol`, 25, y); y += 8;
-  doc.text(`Schritt 2: n₂ = n₁ × (ν₂/ν₁) = ${n1} × (${v2}/${v1}) = ${n2} mol`, 25, y); y += 8;
-  doc.text(`Schritt 3: m₂ = n₂ × M₂ = ${n2} × ${M2} = ${m2} g`, 25, y); y += 15;
+  doc.text(`Schritt 1: n₁ = m₁/M₁ = ${m1} / ${M1} = ${n1} mol`, 25, y);
+  y += 8;
+  doc.text(`Schritt 2: n₂ = n₁ × (ν₂/ν₁) = ${n1} × (${v2}/${v1}) = ${n2} mol`, 25, y);
+  y += 8;
+  doc.text(`Schritt 3: m₂ = n₂ × M₂ = ${n2} × ${M2} = ${m2} g`, 25, y);
+  y += 15;
 
   doc.setFontSize(14);
   doc.text('Ergebnis:', 20, y);
@@ -4314,7 +4488,8 @@ function exportMassMassToPDF() {
 
   doc.setFontSize(12);
   doc.setTextColor(0, 123, 255);
-  doc.text(`Produktmasse: ${m2} g`, 25, y); y += 20;
+  doc.text(`Produktmasse: ${m2} g`, 25, y);
+  y += 20;
 
   // Footer
   doc.setFontSize(10);
@@ -4326,6 +4501,7 @@ function exportMassMassToPDF() {
 }
 
 // Export Limiting Reactant calculation to PDF
+// eslint-disable-next-line no-unused-vars
 function exportLimitingToPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -4366,18 +4542,24 @@ function exportLimitingToPDF() {
   y += 10;
 
   doc.setFontSize(12);
-  doc.text(`Masse: ${m1} g`, 25, y); y += 8;
-  doc.text(`Molare Masse: ${M1} g/mol`, 25, y); y += 8;
-  doc.text(`Stoffmenge: ${n1} mol`, 25, y); y += 15;
+  doc.text(`Masse: ${m1} g`, 25, y);
+  y += 8;
+  doc.text(`Molare Masse: ${M1} g/mol`, 25, y);
+  y += 8;
+  doc.text(`Stoffmenge: ${n1} mol`, 25, y);
+  y += 15;
 
   doc.setFontSize(14);
   doc.text('Reagenz 2:', 20, y);
   y += 10;
 
   doc.setFontSize(12);
-  doc.text(`Masse: ${m2} g`, 25, y); y += 8;
-  doc.text(`Molare Masse: ${M2} g/mol`, 25, y); y += 8;
-  doc.text(`Stoffmenge: ${n2} mol`, 25, y); y += 15;
+  doc.text(`Masse: ${m2} g`, 25, y);
+  y += 8;
+  doc.text(`Molare Masse: ${M2} g/mol`, 25, y);
+  y += 8;
+  doc.text(`Stoffmenge: ${n2} mol`, 25, y);
+  y += 15;
 
   doc.setFontSize(14);
   doc.text('Ergebnis:', 20, y);
@@ -4385,9 +4567,11 @@ function exportLimitingToPDF() {
 
   doc.setFontSize(12);
   doc.setTextColor(0, 123, 255);
-  doc.text(`Limitierend: ${limiting}`, 25, y); y += 8;
+  doc.text(`Limitierend: ${limiting}`, 25, y);
+  y += 8;
   doc.setTextColor(0, 0, 0);
-  doc.text(`Vergleich: ${n1} mol vs ${n2} mol`, 25, y); y += 20;
+  doc.text(`Vergleich: ${n1} mol vs ${n2} mol`, 25, y);
+  y += 20;
 
   // Footer
   doc.setFontSize(10);
@@ -4399,6 +4583,7 @@ function exportLimitingToPDF() {
 }
 
 // Export Yield calculation to PDF
+// eslint-disable-next-line no-unused-vars
 function exportYieldToPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -4434,22 +4619,27 @@ function exportYieldToPDF() {
   y += 10;
 
   doc.setFontSize(12);
-  doc.text(`Theoretische Masse: ${theo} g`, 25, y); y += 8;
-  doc.text(`Praktische Masse: ${act} g`, 25, y); y += 15;
+  doc.text(`Theoretische Masse: ${theo} g`, 25, y);
+  y += 8;
+  doc.text(`Praktische Masse: ${act} g`, 25, y);
+  y += 15;
 
   doc.setFontSize(14);
   doc.text('Ergebnis:', 20, y);
   y += 10;
 
   doc.setFontSize(12);
-  doc.text('Prozentuale Ausbeute:', 25, y); y += 8;
+  doc.text('Prozentuale Ausbeute:', 25, y);
+  y += 8;
   doc.setTextColor(0, 123, 255);
   doc.setFontSize(16);
-  doc.text(`${yield_pct}%`, 25, y); y += 8;
+  doc.text(`${yield_pct}%`, 25, y);
+  y += 8;
 
   doc.setFontSize(12);
   doc.setTextColor(0, 0, 0);
-  doc.text(`Berechnung: (${act} g / ${theo} g) × 100 = ${yield_pct}%`, 25, y); y += 20;
+  doc.text(`Berechnung: (${act} g / ${theo} g) × 100 = ${yield_pct}%`, 25, y);
+  y += 20;
 
   // Footer
   doc.setFontSize(10);

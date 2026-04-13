@@ -4,6 +4,7 @@
  */
 
 const GAS_CONSTANT = 8.314;
+// eslint-disable-next-line no-unused-vars
 const BOLTZMANN = 1.380649e-23;
 const MASS_AMU = 1.660539e-27;
 
@@ -54,6 +55,7 @@ const domCache = {
 };
 
 const particles = [];
+// eslint-disable-next-line no-unused-vars
 const MAX_PARTICLES = 500;
 
 class Particle {
@@ -80,7 +82,7 @@ class Particle {
     this.vy = Math.sin(angle) * speed;
   }
 
-  draw(ctx, width, height) {
+  draw(ctx, _width, _height) {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     ctx.fillStyle = this.color;
@@ -186,7 +188,7 @@ function drawTemperatureCanvas() {
 
   ctx.clearRect(0, 0, width, height);
 
-  const speedScale = Math.sqrt(temperature / 300);
+  const _speedScale = Math.sqrt(temperature / 300);
 
   particles.forEach((particle) => {
     particle.update(temperature);
@@ -203,6 +205,7 @@ function drawTemperatureCanvas() {
   ctx.fillText(`Temperatur: ${temperature} K (${temperature - 273}°C)`, 10, 70);
 }
 
+// eslint-disable-next-line no-unused-vars
 function toggleKineticsAnimation() {
   isKineticsAnimating = !isKineticsAnimating;
 
@@ -222,7 +225,7 @@ function animateTemperature() {
   function animate() {
     if (!isKineticsAnimating) return;
 
-    const time = Date.now() * 0.001;
+    const _time = Date.now() * 0.001;
 
     particles.forEach((particle) => {
       particle.update(temperature);
@@ -263,7 +266,7 @@ function drawCollisionCanvas() {
   ctx.clearRect(0, 0, width, height);
 
   const effectiveThreshold = collisionThreshold;
-  const velocityScale = Math.sqrt(temperature / 300);
+  const _velocityScale = Math.sqrt(temperature / 300);
 
   particles.forEach((particle) => {
     particle.update(temperature);
@@ -304,6 +307,7 @@ function drawCollisionCanvas() {
   domCache.collision.reactionRate.textContent = rateDisplay;
 }
 
+// eslint-disable-next-line no-unused-vars
 function toggleCollisionAnimation() {
   isCollisionAnimating = !isCollisionAnimating;
 
@@ -323,7 +327,7 @@ function animateCollision() {
   function animate() {
     if (!isCollisionAnimating) return;
 
-    particles.forEach((particle, i) => {
+    particles.forEach((particle, _i) => {
       particle.x += particle.vx;
       particle.y += particle.vy;
 
@@ -441,7 +445,7 @@ function drawArrheniusPlot(Ea, A, tempMin, tempMax, steps) {
   dataPoints.sort((a, b) => a.T - b.T);
 
   let firstPoint = true;
-  dataPoints.forEach((point, index) => {
+  dataPoints.forEach((point, _index) => {
     const x = toCanvasX(point.T);
     const y = toCanvasY(point.k);
 

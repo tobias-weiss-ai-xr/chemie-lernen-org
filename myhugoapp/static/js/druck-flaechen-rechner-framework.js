@@ -125,43 +125,43 @@ const druckCalculatorConfig = {
       id: 'druck-kraft',
       type: 'number',
       label: 'Kraft',
-      placeholder: 'z.B. 100'
+      placeholder: 'z.B. 100',
     },
     {
       id: 'druck-kraft-einheit',
       type: 'select',
-      label: 'Krafteinheit'
+      label: 'Krafteinheit',
     },
     {
       id: 'druck-flaeche',
       type: 'number',
       label: 'Fläche',
-      placeholder: 'z.B. 0.01'
+      placeholder: 'z.B. 0.01',
     },
     {
       id: 'druck-flaeche-einheit',
       type: 'select',
-      label: 'Flächeneinheit'
-    }
+      label: 'Flächeneinheit',
+    },
   ],
   resultFields: [
     { id: 'druck-wert', label: 'Druck' },
-    { id: 'druck-vergleich', label: 'Vergleich' }
+    { id: 'druck-vergleich', label: 'Vergleich' },
   ],
   validation: {
     'druck-kraft': {
       type: 'number',
       min: 0,
-      errorMessage: 'Bitte geben Sie eine gültige Kraft ≥ 0 ein.'
+      errorMessage: 'Bitte geben Sie eine gültige Kraft ≥ 0 ein.',
     },
     'druck-flaeche': {
       type: 'number',
       min: 0.000001,
-      errorMessage: 'Bitte geben Sie eine gültige Fläche > 0 ein.'
-    }
+      errorMessage: 'Bitte geben Sie eine gültige Fläche > 0 ein.',
+    },
   },
   calculations: {
-    calculate: function(inputs) {
+    calculate: function (inputs) {
       const kraft = inputs['druck-kraft'];
       const kraftEinheit = inputs['druck-kraft-einheit'];
       const flaeche = inputs['druck-flaeche'];
@@ -178,10 +178,10 @@ const druckCalculatorConfig = {
 
       return {
         'druck-wert': `${formatiereZahl(druckKonvertiert)} ${ergebnisEinheit}`,
-        'druck-vergleich': getDruckVergleich(druckPa)
+        'druck-vergleich': getDruckVergleich(druckPa),
       };
-    }
-  }
+    },
+  },
 };
 
 const kraftCalculatorConfig = {
@@ -191,43 +191,43 @@ const kraftCalculatorConfig = {
       id: 'kraft-druck',
       type: 'number',
       label: 'Druck',
-      placeholder: 'z.B. 100000'
+      placeholder: 'z.B. 100000',
     },
     {
       id: 'kraft-druck-einheit',
       type: 'select',
-      label: 'Druckeinheit'
+      label: 'Druckeinheit',
     },
     {
       id: 'kraft-flaeche',
       type: 'number',
       label: 'Fläche',
-      placeholder: 'z.B. 0.01'
+      placeholder: 'z.B. 0.01',
     },
     {
       id: 'kraft-flaeche-einheit',
       type: 'select',
-      label: 'Flächeneinheit'
-    }
+      label: 'Flächeneinheit',
+    },
   ],
   resultFields: [
     { id: 'kraft-wert', label: 'Kraft' },
-    { id: 'kraft-vergleich', label: 'Vergleich' }
+    { id: 'kraft-vergleich', label: 'Vergleich' },
   ],
   validation: {
     'kraft-druck': {
       type: 'number',
       min: 0,
-      errorMessage: 'Bitte geben Sie einen gültigen Druck ≥ 0 ein.'
+      errorMessage: 'Bitte geben Sie einen gültigen Druck ≥ 0 ein.',
     },
     'kraft-flaeche': {
       type: 'number',
       min: 0.000001,
-      errorMessage: 'Bitte geben Sie eine gültige Fläche ≥ 0 ein.'
-    }
+      errorMessage: 'Bitte geben Sie eine gültige Fläche ≥ 0 ein.',
+    },
   },
   calculations: {
-    calculate: function(inputs) {
+    calculate: function (inputs) {
       const druck = inputs['kraft-druck'];
       const druckEinheit = inputs['kraft-druck-einheit'];
       const flaeche = inputs['kraft-flaeche'];
@@ -244,10 +244,10 @@ const kraftCalculatorConfig = {
 
       return {
         'kraft-wert': `${formatiereZahl(kraftKonvertiert)} ${ergebnisEinheit}`,
-        'kraft-vergleich': getKraftVergleich(kraftN)
+        'kraft-vergleich': getKraftVergleich(kraftN),
       };
-    }
-  }
+    },
+  },
 };
 
 const flaecheCalculatorConfig = {
@@ -257,42 +257,40 @@ const flaecheCalculatorConfig = {
       id: 'flaeche-kraft',
       type: 'number',
       label: 'Kraft',
-      placeholder: 'z.B. 100'
+      placeholder: 'z.B. 100',
     },
     {
       id: 'flaeche-kraft-einheit',
       type: 'select',
-      label: 'Krafteinheit'
+      label: 'Krafteinheit',
     },
     {
       id: 'flaeche-druck',
       type: 'number',
       label: 'Druck',
-      placeholder: 'z.B. 100000'
+      placeholder: 'z.B. 100000',
     },
     {
       id: 'flaeche-druck-einheit',
       type: 'select',
-      label: 'Druckeinheit'
-    }
+      label: 'Druckeinheit',
+    },
   ],
-  resultFields: [
-    { id: 'flaeche-wert', label: 'Fläche' }
-  ],
+  resultFields: [{ id: 'flaeche-wert', label: 'Fläche' }],
   validation: {
     'flaeche-kraft': {
       type: 'number',
       min: 0,
-      errorMessage: 'Bitte geben Sie eine gültige Kraft ≥ 0 ein.'
+      errorMessage: 'Bitte geben Sie eine gültige Kraft ≥ 0 ein.',
     },
     'flaeche-druck': {
       type: 'number',
       min: 0.000001,
-      errorMessage: 'Bitte geben Sie einen gültigen Druck > 0 ein.'
-    }
+      errorMessage: 'Bitte geben Sie einen gültigen Druck > 0 ein.',
+    },
   },
   calculations: {
-    calculate: function(inputs) {
+    calculate: function (inputs) {
       const kraft = inputs['flaeche-kraft'];
       const kraftEinheit = inputs['flaeche-kraft-einheit'];
       const druck = inputs['flaeche-druck'];
@@ -310,18 +308,21 @@ const flaecheCalculatorConfig = {
       visualisiereFlaeche(flaecheM2);
 
       return {
-        'flaeche-wert': `${formatiereZahl(flaecheKonvertiert)} ${ergebnisEinheit}`
+        'flaeche-wert': `${formatiereZahl(flaecheKonvertiert)} ${ergebnisEinheit}`,
       };
-    }
-  }
+    },
+  },
 };
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   let druckCalculator, kraftCalculator, flaecheCalculator;
 
   try {
+    // eslint-disable-next-line no-unused-vars
     druckCalculator = new ChemistryCalculator(druckCalculatorConfig);
+    // eslint-disable-next-line no-unused-vars
     kraftCalculator = new ChemistryCalculator(kraftCalculatorConfig);
+    // eslint-disable-next-line no-unused-vars
     flaecheCalculator = new ChemistryCalculator(flaecheCalculatorConfig);
   } catch (error) {
     console.error('Error initializing calculators:', error);
@@ -405,7 +406,15 @@ function updatePiston() {
   const pressureFill = document.getElementById('pressure-fill');
   const canvas = document.getElementById('piston-canvas');
 
-  if (!kraftSlider || !flaecheSlider || !kraftDisplay || !flaecheDisplay || !visualPressure || !pressureFill || !canvas) {
+  if (
+    !kraftSlider ||
+    !flaecheSlider ||
+    !kraftDisplay ||
+    !flaecheDisplay ||
+    !visualPressure ||
+    !pressureFill ||
+    !canvas
+  ) {
     return;
   }
 

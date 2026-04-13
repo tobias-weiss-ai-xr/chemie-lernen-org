@@ -8,23 +8,23 @@ const R_BAR = 0.08314; // L·bar/(mol·K)
 
 // Unit conversion factors
 const pressureConversions = {
-  'bar': { toBar: 1, toAtm: 0.986923, toPa: 100000, toMmHg: 750.062 },
-  'Pa': { toBar: 0.00001, toAtm: 0.00000987, toPa: 1, toMmHg: 0.00750062 },
-  'kPa': { toBar: 0.01, toAtm: 0.00986923, toPa: 1000, toMmHg: 7.50062 },
-  'atm': { toBar: 1.01325, toAtm: 1, toPa: 101325, toMmHg: 760 },
-  'mmHg': { toBar: 0.00133322, toAtm: 0.00131579, toPa: 133.322, toMmHg: 1 }
+  bar: { toBar: 1, toAtm: 0.986923, toPa: 100000, toMmHg: 750.062 },
+  Pa: { toBar: 0.00001, toAtm: 0.00000987, toPa: 1, toMmHg: 0.00750062 },
+  kPa: { toBar: 0.01, toAtm: 0.00986923, toPa: 1000, toMmHg: 7.50062 },
+  atm: { toBar: 1.01325, toAtm: 1, toPa: 101325, toMmHg: 760 },
+  mmHg: { toBar: 0.00133322, toAtm: 0.00131579, toPa: 133.322, toMmHg: 1 },
 };
 
 const volumeConversions = {
-  'L': { toL: 1, toM3: 0.001, toML: 1000 },
-  'm3': { toL: 1000, toM3: 1, toML: 1000000 },
-  'mL': { toL: 0.001, toM3: 0.000001, toML: 1 },
-  'cm3': { toL: 0.001, toM3: 0.000001, toML: 1 }
+  L: { toL: 1, toM3: 0.001, toML: 1000 },
+  m3: { toL: 1000, toM3: 1, toML: 1000000 },
+  mL: { toL: 0.001, toM3: 0.000001, toML: 1 },
+  cm3: { toL: 0.001, toM3: 0.000001, toML: 1 },
 };
 
 const amountConversions = {
-  'mol': { toMol: 1, toMmol: 1000 },
-  'mmol': { toMol: 0.001, toMmol: 1 }
+  mol: { toMol: 1, toMmol: 1000 },
+  mmol: { toMol: 0.001, toMmol: 1 },
 };
 
 // Convert pressure to bar
@@ -56,6 +56,7 @@ function formatNumber(value, decimals = 3) {
 }
 
 // Ideal Gas Law Calculator
+// eslint-disable-next-line no-unused-vars
 function calculateIdealGas(calculateWhat) {
   const pressureInput = document.getElementById('ig-pressure').value.trim();
   const pressureUnit = document.getElementById('ig-pressure-unit').value;
@@ -137,8 +138,16 @@ function calculateIdealGas(calculateWhat) {
         break;
     }
 
-    displayIdealGasResult(calculateWhat, result, resultUnit, formula, pressure, volume, amount, temperature);
-
+    displayIdealGasResult(
+      calculateWhat,
+      result,
+      resultUnit,
+      formula,
+      pressure,
+      volume,
+      amount,
+      temperature
+    );
   } catch (error) {
     showError(error.message);
   }
@@ -187,7 +196,6 @@ function calculateBoyleMariotte() {
     }
 
     displayBoyleMariotteResult(resultType, result, formula, p1, v1, p2, v2);
-
   } catch (error) {
     showError(error.message);
   }
@@ -248,7 +256,6 @@ function calculateGayLussac() {
     }
 
     displayGayLussacResult(lawType, resultType, result, formula, v1, t1, v2, t2);
-
   } catch (error) {
     showError(error.message);
   }
@@ -306,7 +313,6 @@ function calculateCombinedGasLaw() {
     }
 
     displayCombinedGasLawResult(resultType, result, formula, p1, v1, t1, p2, v2, t2);
-
   } catch (error) {
     showError(error.message);
   }
@@ -315,10 +321,10 @@ function calculateCombinedGasLaw() {
 // Display functions
 function displayIdealGasResult(calculateWhat, result, unit, formula, p, V, n, T) {
   const labels = {
-    'pressure': 'Druck p',
-    'volume': 'Volumen V',
-    'amount': 'Stoffmenge n',
-    'temperature': 'Temperatur T'
+    pressure: 'Druck p',
+    volume: 'Volumen V',
+    amount: 'Stoffmenge n',
+    temperature: 'Temperatur T',
   };
 
   const resultHtml = `
@@ -406,7 +412,8 @@ function displayBoyleMariotteResult(resultType, result, formula, p1, v1, p2, v2)
 
 function displayGayLussacResult(lawType, resultType, result, formula, v1, t1, v2, t2) {
   const lawName = lawType === 'isobar' ? 'Isobares Gesetz' : 'Ichores Gesetz';
-  const lawFormula = lawType === 'isobar' ? 'V₁/T₁ = V₂/T₂ (p = konst.)' : 'p₁/T₁ = p₂/T₂ (V = konst.)';
+  const lawFormula =
+    lawType === 'isobar' ? 'V₁/T₁ = V₂/T₂ (p = konst.)' : 'p₁/T₁ = p₂/T₂ (V = konst.)';
   const quantity = lawType === 'isobar' ? 'Volumen' : 'Druck';
 
   const resultHtml = `
@@ -495,10 +502,10 @@ function displayCombinedGasLawResult(resultType, result, formula, p1, v1, t1, p2
 
 function getApplicationForGas(type) {
   const applications = {
-    'pressure': 'Druckmessung, Kompressoren, Druckbehälter',
-    'volume': 'Gaszähler, Atemvolumen, Ballons',
-    'amount': 'Stoffmengenberechnung, chemische Synthese',
-    'temperature': 'Temperaturmessung, Thermodynamik, Wärmekraftmaschinen'
+    pressure: 'Druckmessung, Kompressoren, Druckbehälter',
+    volume: 'Gaszähler, Atemvolumen, Ballons',
+    amount: 'Stoffmengenberechnung, chemische Synthese',
+    temperature: 'Temperaturmessung, Thermodynamik, Wärmekraftmaschinen',
   };
   return applications[type] || 'Allgemeine Gasanwendungen';
 }
@@ -520,10 +527,10 @@ function showError(message) {
 }
 
 // Setup event handlers
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Example buttons
-  document.querySelectorAll('.example-btn').forEach(button => {
-    button.addEventListener('click', function() {
+  document.querySelectorAll('.example-btn').forEach((button) => {
+    button.addEventListener('click', function () {
       const type = this.dataset.type;
 
       if (type === 'stp') {
@@ -555,7 +562,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Gay-Lussac law type change
-  document.getElementById('gl-law-type').addEventListener('change', function() {
+  document.getElementById('gl-law-type').addEventListener('change', function () {
     const isIsobar = this.value === 'isobar';
     document.getElementById('gl-v1-label').textContent = isIsobar ? 'Volumen V₁:' : 'Druck p₁:';
     document.getElementById('gl-v2-label').textContent = isIsobar ? 'Volumen V₂:' : 'Druck p₂:';
@@ -565,8 +572,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Enable Enter key for inputs
   const inputs = document.querySelectorAll('.form-control');
-  inputs.forEach(input => {
-    input.addEventListener('keypress', function(e) {
+  inputs.forEach((input) => {
+    input.addEventListener('keypress', function (e) {
       if (e.key === 'Enter') {
         // Determine which tab is active and call appropriate function
         const activeTab = document.querySelector('.nav-tabs li.active a').getAttribute('href');

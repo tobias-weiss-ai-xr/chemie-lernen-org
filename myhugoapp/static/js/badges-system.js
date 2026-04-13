@@ -62,7 +62,7 @@ class BadgesSystem {
    * @param {string} badgeId - Badge identifier
    * @param {Object} criteria - Badge criteria
    */
-  checkBadge(badgeId, criteria) {
+  checkBadge(badgeId, _criteria) {
     const badge = this.getBadgeDefinition(badgeId);
     if (!badge) return false;
 

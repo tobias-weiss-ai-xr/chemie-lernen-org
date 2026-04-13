@@ -3,6 +3,7 @@
  * Dynamic equilibrium and Le Chatelier's principle visualization
  */
 
+// eslint-disable-next-line no-unused-vars
 const AS_CONSTANT = 8.314;
 
 let equilibriumState = {
@@ -118,6 +119,7 @@ function drawEquilibriumCanvas() {
   ctx.fillText('Reaktionsfortschritt: 0%', centerX, height - 30);
 }
 
+// eslint-disable-next-line no-unused-vars
 function startEquilibriumSimulation() {
   if (isAnimating) {
     isAnimating = false;
@@ -136,6 +138,7 @@ function startEquilibriumSimulation() {
 function animateEquilibrium() {
   if (!isAnimating) return;
 
+  // eslint-disable-next-line no-unused-vars
   const duration = 10000;
   const steps = 200;
   let step = 0;

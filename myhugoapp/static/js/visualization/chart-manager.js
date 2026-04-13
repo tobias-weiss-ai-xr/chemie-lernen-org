@@ -17,7 +17,7 @@ const ChartManager = {
       colorScheme = 'default',
       interactive = true,
       showValues = true,
-      horizontal = false
+      horizontal = false,
     } = options;
 
     const container = document.getElementById(containerId);
@@ -70,7 +70,7 @@ const ChartManager = {
       colorScheme,
       interactive,
       showValues,
-      horizontal
+      horizontal,
     });
 
     this.addStyles();
@@ -95,7 +95,7 @@ const ChartManager = {
     const chartHeight = canvas.height - padding * 2;
 
     // Find max value for scaling
-    const maxValue = Math.max(...data.map(d => d.value)) * 1.1;
+    const maxValue = Math.max(...data.map((d) => d.value)) * 1.1;
 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -105,6 +105,7 @@ const ChartManager = {
 
     // Draw bars
     const barWidth = horizontal ? chartHeight / data.length - 10 : chartWidth / data.length - 10;
+    // eslint-disable-next-line no-unused-vars
     const maxBarWidth = horizontal ? chartHeight : chartWidth;
 
     data.forEach((item, index) => {
@@ -112,7 +113,9 @@ const ChartManager = {
 
       // Position
       const x = horizontal ? padding : padding + index * (barWidth + 10);
-      const y = horizontal ? padding + index * (barWidth + 10) : canvas.height - padding - barLength;
+      const y = horizontal
+        ? padding + index * (barWidth + 10)
+        : canvas.height - padding - barLength;
 
       // Draw bar
       ctx.fillStyle = colors[index % colors.length];
@@ -184,7 +187,7 @@ const ChartManager = {
       title = '',
       colorScheme = 'default',
       showPoints = true,
-      smooth = false
+      smooth = false,
     } = options;
 
     const container = document.getElementById(containerId);
@@ -231,7 +234,7 @@ const ChartManager = {
     this.drawLineChart(canvas, data, {
       colorScheme,
       showPoints,
-      smooth
+      smooth,
     });
 
     this.addStyles();
@@ -254,8 +257,8 @@ const ChartManager = {
     const chartWidth = canvas.width - padding * 2;
     const chartHeight = canvas.height - padding * 2;
 
-    const maxValue = Math.max(...data.map(d => d.value)) * 1.1;
-    const minValue = Math.min(...data.map(d => d.value));
+    const maxValue = Math.max(...data.map((d) => d.value)) * 1.1;
+    const minValue = Math.min(...data.map((d) => d.value));
     const valueRange = maxValue - minValue;
 
     // Clear canvas
@@ -269,7 +272,7 @@ const ChartManager = {
       x: padding + (index / (data.length - 1)) * chartWidth,
       y: canvas.height - padding - ((item.value - minValue) / valueRange) * chartHeight,
       value: item.value,
-      label: item.label
+      label: item.label,
     }));
 
     // Draw line
@@ -303,7 +306,7 @@ const ChartManager = {
 
     // Draw points
     if (showPoints) {
-      points.forEach(point => {
+      points.forEach((point) => {
         ctx.fillStyle = '#fff';
         ctx.strokeStyle = primaryColor;
         ctx.lineWidth = 2;
@@ -354,7 +357,7 @@ const ChartManager = {
       title = '',
       colorScheme = 'default',
       showPercentages = true,
-      showLegend = true
+      showLegend = true,
     } = options;
 
     const container = document.getElementById(containerId);
@@ -392,7 +395,7 @@ const ChartManager = {
     // Draw the chart
     this.drawPieChart(canvas, data, {
       colorScheme,
-      showPercentages
+      showPercentages,
     });
 
     // Add legend
@@ -481,7 +484,7 @@ const ChartManager = {
       yAxisLabel = '',
       title = '',
       colorScheme = 'default',
-      showTrendline = false
+      showTrendline = false,
     } = options;
 
     const container = document.getElementById(containerId);
@@ -527,7 +530,7 @@ const ChartManager = {
     // Draw the plot
     this.drawScatterPlot(canvas, data, {
       colorScheme,
-      showTrendline
+      showTrendline,
     });
 
     this.addStyles();
@@ -550,8 +553,8 @@ const ChartManager = {
     const chartWidth = canvas.width - padding * 2;
     const chartHeight = canvas.height - padding * 2;
 
-    const xValues = data.map(d => d.x);
-    const yValues = data.map(d => d.y);
+    const xValues = data.map((d) => d.x);
+    const yValues = data.map((d) => d.y);
 
     const xMin = Math.min(...xValues);
     const xMax = Math.max(...xValues);
@@ -628,7 +631,7 @@ const ChartManager = {
       chemistry: ['#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#03A9F4'],
       thermal: ['#F44336', '#FF9800', '#FFEB3B', '#8BC34A', '#4CAF50', '#00BCD4'],
       monochrome: ['#424242', '#616161', '#757575', '#9E9E9E', '#BDBDBD', '#E0E0E0'],
-      pastel: ['#FFCDD2', '#F8BBD0', '#E1BEE7', '#D1C4E9', '#C5CAE9', '#BBDEFB']
+      pastel: ['#FFCDD2', '#F8BBD0', '#E1BEE7', '#D1C4E9', '#C5CAE9', '#BBDEFB'],
     };
 
     return schemes[scheme] || schemes.default;
@@ -741,7 +744,7 @@ const ChartManager = {
     `;
 
     document.head.appendChild(style);
-  }
+  },
 };
 
 // Export for use in other modules

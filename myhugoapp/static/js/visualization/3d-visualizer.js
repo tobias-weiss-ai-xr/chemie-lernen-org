@@ -17,7 +17,7 @@ const Visualizer3D = {
       autoRotate = true,
       showLabels = true,
       showBonds = true,
-      colorScheme = 'cpk'
+      colorScheme = 'cpk',
     } = options;
 
     const container = document.getElementById(containerId);
@@ -72,7 +72,7 @@ const Visualizer3D = {
     const moleculeGroup = this.createMolecule(moleculeData, {
       showLabels,
       showBonds,
-      colorScheme
+      colorScheme,
     });
     scene.add(moleculeGroup);
 
@@ -90,7 +90,7 @@ const Visualizer3D = {
       renderer,
       controls,
       moleculeGroup,
-      autoRotate
+      autoRotate,
     });
 
     // Animation loop
@@ -135,7 +135,7 @@ const Visualizer3D = {
         if (sceneData) {
           sceneData.controls.autoRotate = !sceneData.controls.autoRotate;
         }
-      }
+      },
     };
   },
 
@@ -155,14 +155,14 @@ const Visualizer3D = {
       for (let i = 0; i < count; i++) {
         elements.push({
           symbol: element,
-          position: this.generatePosition(elements.length)
+          position: this.generatePosition(elements.length),
         });
       }
     }
 
     return {
       atoms: elements,
-      bonds: this.generateBonds(elements)
+      bonds: this.generateBonds(elements),
     };
   },
 
@@ -178,7 +178,7 @@ const Visualizer3D = {
     return {
       x: Math.cos(angle) * radius,
       y: height - 20,
-      z: Math.sin(angle) * radius
+      z: Math.sin(angle) * radius,
     };
   },
 
@@ -197,7 +197,7 @@ const Visualizer3D = {
           bonds.push({
             from: i,
             to: j,
-            order: 1
+            order: 1,
           });
         }
       }
@@ -225,7 +225,7 @@ const Visualizer3D = {
 
     // Add bonds first
     if (showBonds && data.bonds) {
-      data.bonds.forEach(bond => {
+      data.bonds.forEach((bond) => {
         const bondMesh = this.createBond(
           data.atoms[bond.from].position,
           data.atoms[bond.to].position,
@@ -238,22 +238,14 @@ const Visualizer3D = {
     // Add atoms
     data.atoms.forEach((atom, index) => {
       const atomMesh = this.createAtom(atom.symbol, colorScheme);
-      atomMesh.position.set(
-        atom.position.x,
-        atom.position.y,
-        atom.position.z
-      );
+      atomMesh.position.set(atom.position.x, atom.position.y, atom.position.z);
       atomMesh.userData = { symbol: atom.symbol, index };
       group.add(atomMesh);
 
       // Add label
       if (showLabels) {
         const label = this.createAtomLabel(atom.symbol);
-        label.position.set(
-          atom.position.x,
-          atom.position.y + 3,
-          atom.position.z
-        );
+        label.position.set(atom.position.x, atom.position.y + 3, atom.position.z);
         group.add(label);
       }
     });
@@ -272,7 +264,7 @@ const Visualizer3D = {
     const material = new THREE.MeshPhongMaterial({
       color: color,
       shininess: 100,
-      specular: 0x444444
+      specular: 0x444444,
     });
 
     const mesh = new THREE.Mesh(geometry, material);
@@ -285,7 +277,7 @@ const Visualizer3D = {
   /**
    * Create bond cylinder
    */
-  createBond(pos1, pos2, order = 1) {
+  createBond(pos1, pos2, _order = 1) {
     const start = new THREE.Vector3(pos1.x, pos1.y, pos1.z);
     const end = new THREE.Vector3(pos2.x, pos2.y, pos2.z);
 
@@ -295,7 +287,7 @@ const Visualizer3D = {
     const geometry = new THREE.CylinderGeometry(0.3, 0.3, length, 8);
     const material = new THREE.MeshPhongMaterial({
       color: 0x888888,
-      shininess: 50
+      shininess: 50,
     });
 
     const cylinder = new THREE.Mesh(geometry, material);
@@ -303,10 +295,7 @@ const Visualizer3D = {
     // Position and orient cylinder
     const midpoint = new THREE.Vector3().addVectors(start, end).multiplyScalar(0.5);
     cylinder.position.copy(midpoint);
-    cylinder.quaternion.setFromUnitVectors(
-      new THREE.Vector3(0, 1, 0),
-      direction.normalize()
-    );
+    cylinder.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction.normalize());
 
     return cylinder;
   },
@@ -332,7 +321,7 @@ const Visualizer3D = {
     const texture = new THREE.CanvasTexture(canvas);
     const material = new THREE.SpriteMaterial({
       map: texture,
-      transparent: true
+      transparent: true,
     });
 
     const sprite = new THREE.Sprite(material);
@@ -347,22 +336,44 @@ const Visualizer3D = {
   getAtomColor(symbol, scheme = 'cpk') {
     const colors = {
       cpk: {
-        H: 0xFFFFFF, C: 0x333333, N: 0x3050F8, O: 0xFF0D0D,
-        F: 0x90E050, Cl: 0x1FF01F, Br: 0xA62929, I: 0x940094,
-        S: 0xFFFF30, P: 0xFF8000, Fe: 0xE06633, Na: 0xAB5CF2,
-        Mg: 0x8AFF00, Ca: 0x3DFF00
+        H: 0xffffff,
+        C: 0x333333,
+        N: 0x3050f8,
+        O: 0xff0d0d,
+        F: 0x90e050,
+        Cl: 0x1ff01f,
+        Br: 0xa62929,
+        I: 0x940094,
+        S: 0xffff30,
+        P: 0xff8000,
+        Fe: 0xe06633,
+        Na: 0xab5cf2,
+        Mg: 0x8aff00,
+        Ca: 0x3dff00,
       },
       jmol: {
-        H: 0xFFFFFF, C: 0x909090, N: 0x3050F8, O: 0xFF0D0D,
-        F: 0x90E050, Cl: 0x1FF01F, Br: 0xA62929, I: 0x940094
+        H: 0xffffff,
+        C: 0x909090,
+        N: 0x3050f8,
+        O: 0xff0d0d,
+        F: 0x90e050,
+        Cl: 0x1ff01f,
+        Br: 0xa62929,
+        I: 0x940094,
       },
       rasmol: {
-        H: 0xFFFFFF, C: 0xAAAAAA, N: 0x0000FF, O: 0xFF0000,
-        F: 0x00FF00, Cl: 0x00FF00, Br: 0xA52A2A, I: 0x800080
-      }
+        H: 0xffffff,
+        C: 0xaaaaaa,
+        N: 0x0000ff,
+        O: 0xff0000,
+        F: 0x00ff00,
+        Cl: 0x00ff00,
+        Br: 0xa52a2a,
+        I: 0x800080,
+      },
     };
 
-    return colors[scheme]?.[symbol] || 0xFF69B4;
+    return colors[scheme]?.[symbol] || 0xff69b4;
   },
 
   /**
@@ -370,9 +381,20 @@ const Visualizer3D = {
    */
   getAtomRadius(symbol) {
     const radii = {
-      H: 1.2, C: 1.7, N: 1.55, O: 1.52, F: 1.47,
-      Cl: 1.75, Br: 1.85, I: 1.98, S: 1.8, P: 1.8,
-      Fe: 1.8, Na: 2.27, Mg: 1.73, Ca: 2.0
+      H: 1.2,
+      C: 1.7,
+      N: 1.55,
+      O: 1.52,
+      F: 1.47,
+      Cl: 1.75,
+      Br: 1.85,
+      I: 1.98,
+      S: 1.8,
+      P: 1.8,
+      Fe: 1.8,
+      Na: 2.27,
+      Mg: 1.73,
+      Ca: 2.0,
     };
 
     return radii[symbol] || 1.5;
@@ -385,7 +407,7 @@ const Visualizer3D = {
     const sceneData = this.scenes.get(containerId);
     if (!sceneData) return;
 
-    sceneData.moleculeGroup.children.forEach(child => {
+    sceneData.moleculeGroup.children.forEach((child) => {
       if (child.userData.symbol) {
         const newColor = this.getAtomColor(child.userData.symbol, colorScheme);
         child.material.color.setHex(newColor);
@@ -397,13 +419,7 @@ const Visualizer3D = {
    * Create orbital visualization
    */
   createOrbitalVisualization(options = {}) {
-    const {
-      containerId,
-      orbitalType = 's',
-      principal = 1,
-      azimuthal = 0,
-      magnetic = 0
-    } = options;
+    const { containerId, orbitalType = 's', principal = 1, azimuthal = 0, magnetic = 0 } = options;
 
     const container = document.getElementById(containerId);
     if (!container) {
@@ -472,14 +488,14 @@ const Visualizer3D = {
   /**
    * Create orbital shape
    */
-  createOrbital(type, n, l, m) {
+  createOrbital(type, n, _l, _m) {
     const group = new THREE.Group();
 
     const material = new THREE.MeshPhongMaterial({
-      color: 0x4CAF50,
+      color: 0x4caf50,
       transparent: true,
       opacity: 0.3,
-      side: THREE.DoubleSide
+      side: THREE.DoubleSide,
     });
 
     if (type === 's') {
@@ -502,11 +518,13 @@ const Visualizer3D = {
       const geometry = new THREE.SphereGeometry(n * 1.5, 32, 32);
 
       const positions = [
-        [n * 3, 0, 0], [-n * 3, 0, 0],
-        [0, n * 3, 0], [0, -n * 3, 0]
+        [n * 3, 0, 0],
+        [-n * 3, 0, 0],
+        [0, n * 3, 0],
+        [0, -n * 3, 0],
       ];
 
-      positions.forEach(pos => {
+      positions.forEach((pos) => {
         const lobe = new THREE.Mesh(geometry, material);
         lobe.position.set(...pos);
         group.add(lobe);
@@ -581,7 +599,7 @@ const Visualizer3D = {
     `;
 
     document.head.appendChild(style);
-  }
+  },
 };
 
 // Export for use in other modules

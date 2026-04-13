@@ -115,6 +115,7 @@ function initDOMCache() {
 }
 
 // ===== Druck berechnen (p = F / A) =====
+// eslint-disable-next-line no-unused-vars
 function berechneDruck() {
   if (!domCache.druck.kraft) {
     initDOMCache();
@@ -156,6 +157,7 @@ function zeigeDruckErgebnis(druckPa) {
   domCache.druck.vergleich.innerHTML = vergleich;
 }
 
+// eslint-disable-next-line no-unused-vars
 function konvertiereDruck() {
   if (aktuellerDruckPa === 0) return;
 
@@ -166,6 +168,7 @@ function konvertiereDruck() {
 }
 
 // ===== Kraft berechnen (F = p × A) =====
+// eslint-disable-next-line no-unused-vars
 function berechneKraft() {
   if (!domCache.kraft.druck) {
     initDOMCache();
@@ -207,6 +210,7 @@ function zeigeKraftErgebnis(kraftN) {
   domCache.kraft.vergleich.innerHTML = vergleich;
 }
 
+// eslint-disable-next-line no-unused-vars
 function konvertiereKraft() {
   if (aktuelleKraftN === 0) return;
 
@@ -217,6 +221,7 @@ function konvertiereKraft() {
 }
 
 // ===== Fläche berechnen (A = F / p) =====
+// eslint-disable-next-line no-unused-vars
 function berechneFlaeche() {
   if (!domCache.flaeche.kraft) {
     initDOMCache();
@@ -257,6 +262,7 @@ function zeigeFlaecheErgebnis(flaecheM2) {
   visualisiereFlaeche(flaecheM2);
 }
 
+// eslint-disable-next-line no-unused-vars
 function konvertiereFlaeche() {
   if (aktuelleFlaecheM2 === 0) return;
 
