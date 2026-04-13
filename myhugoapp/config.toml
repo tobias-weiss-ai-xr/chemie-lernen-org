@@ -1,11 +1,67 @@
 baseURL = "https://chemie-lernen.org/"
-languageCode = "de-de"
-title = "chemie-lernen.org - 📖 Offene, 🖱️ Interaktive und 🥽 Immersive Lerninhalte"
+defaultContentLanguage = "de"
+defaultContentLanguageInSubdir = false
 theme = "hugo-cards"
 
 # Disable LiveReload in production
 disableLiveReload = true
 enableRobotsTXT = true
+
+[languages]
+[languages.de]
+    languageCode = "de-de"
+    languageName = "Deutsch"
+    weight = 1
+    title = "chemie-lernen.org - Offene, Interaktive und Immersive Lerninhalte"
+    contentDir = "content/de"
+    [languages.de.params]
+        footer_description = "chemie-lernen.org – Kostenlose interaktive Chemie-Lernplattform mit pH-Rechner, Molmasse-Rechner, 3D-Periodensystem (118 Elemente), VR-Element-Räumen, Quiz, Karteikarten und Lernpfaden für Schüler, Studenten und Lehrer."
+        search_placeholder = "Themen suchen..."
+        skip_to_content = "Zum Hauptinhalt springen"
+
+[languages.en]
+    languageCode = "en"
+    languageName = "English"
+    weight = 2
+    title = "learn-chemistry.org - Open, Interactive and Immersive Learning"
+    contentDir = "content/en"
+    [languages.en.params]
+        footer_description = "learn-chemistry.org – Free interactive chemistry learning platform with pH calculator, molar mass calculator, 3D periodic table (118 elements), VR element rooms, quizzes, flashcards and learning paths for students and teachers."
+        search_placeholder = "Search topics..."
+        skip_to_content = "Skip to main content"
+
+[languages.fr]
+    languageCode = "fr"
+    languageName = "Français"
+    weight = 3
+    title = "learn-chemistry.org - Apprentissage Ouvert, Interactif et Immersif"
+    contentDir = "content/fr"
+    [languages.fr.params]
+        footer_description = "learn-chemistry.org – Plateforme gratuite d'apprentissage interactif de la chimie avec calculateur de pH, calculateur de masse molaire, tableau périodique 3D (118 éléments), salles VR, quiz, flashcards et parcours d'apprentissage."
+        search_placeholder = "Rechercher des sujets..."
+        skip_to_content = "Aller au contenu principal"
+
+[languages.zh]
+    languageCode = "zh"
+    languageName = "中文"
+    weight = 4
+    title = "learn-chemistry.org - 开放、互动、沉浸式学习"
+    contentDir = "content/zh"
+    [languages.zh.params]
+        footer_description = "learn-chemistry.org – 免费互动化学学习平台，配备pH计算器、摩尔质量计算器、3D元素周期表（118个元素）、VR元素室、测验、抽认卡和学习路径。"
+        search_placeholder = "搜索主题..."
+        skip_to_content = "跳转到主要内容"
+
+[languages.sv]
+    languageCode = "sv"
+    languageName = "Svenska"
+    weight = 5
+    title = "learn-chemistry.org - Öppen, Interaktiv och Immersiv Inlärning"
+    contentDir = "content/sv"
+    [languages.sv.params]
+        footer_description = "learn-chemistry.org – Gratis interaktiv plattform för kemilärning med pH-kalkylator, molmasskalkylator, 3D-periodiska systemet (118 element), VR-elementrum, quiz, flashcards och inlärningsvägar."
+        search_placeholder = "Sök ämnen..."
+        skip_to_content = "Hoppa till huvudinnehållet"
 
 [sitemap]
   changefreq = "weekly"
@@ -52,8 +108,12 @@ author = "chemie-lernen.org Team"
   [mediaTypes."application/json"]
     suffixes = ["json"]
 
+# =============================================================================
+# German Menus (default language)
+# =============================================================================
+
 # PSE in VR - MOST PROMINENT Navigation
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "🥽 PSE in VR"
     url = "https://pse.chemie-lernen.org/"
     weight = 5
@@ -61,12 +121,12 @@ author = "chemie-lernen.org Team"
     pre = "<span style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold;'>NEU</span>"
 
 # Themenbereiche (Subject Areas) Navigation
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "Themenbereiche"
     url = "/themenbereiche/"
     weight = 10
     icon = "📚"
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "Interaktiv"
     url = "#"
     weight = 20
@@ -74,70 +134,70 @@ author = "chemie-lernen.org Team"
     icon = "🖱️"
 
 # Interactive Elements (submenu)
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "Periodensystem 3D"
     url = "/perioden-system-der-elemente/"
     parent = "interaktiv"
     weight = 21
     icon = "⚛️"
     interaktiv = true
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "Molekülstudio"
     url = "/molekuel-studio/"
     parent = "interaktiv"
     weight = 22
     icon = "🔬"
     interaktiv = true
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "pH-Rechner"
     url = "/ph-rechner/"
     parent = "interaktiv"
     weight = 23
     icon = "🧪"
     interaktiv = true
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "Molare Masse"
     url = "/molare-masse-rechner/"
     parent = "interaktiv"
     weight = 24
     icon = "⚗️"
     interaktiv = true
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "Gleichungen Ausgleichen"
     url = "/reaktionsgleichungen-ausgleichen/"
     parent = "interaktiv"
     weight = 25
     icon = "⚖️"
     interaktiv = true
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "Einheitenumrechner"
     url = "/einheitenumrechner/"
     parent = "interaktiv"
     weight = 26
     icon = "🔄"
     interaktiv = true
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "Lösungsrechner"
     url = "/loesungsrechner/"
     parent = "interaktiv"
     weight = 27
     icon = "🧪"
     interaktiv = true
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "Stöchiometrie"
     url = "/stoechiometrie-rechner/"
     parent = "interaktiv"
     weight = 28
     icon = "⚗️"
     interaktiv = true
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "PSE in VR Info"
     url = "/pages/pse-vr-showcase/"
     parent = "interaktiv"
     weight = 29
     icon = "🥽"
     interaktiv = true
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "Mayers Lernprinzipien"
     url = "/pages/mayers-multimedia-lernen/"
     parent = "interaktiv"
@@ -146,21 +206,362 @@ author = "chemie-lernen.org Team"
     interaktiv = true
 
 # General Pages
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "Roadmap"
     url = "/pages/roadmap/"
     weight = 40
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "Über uns"
     url = "/pages/about/"
     weight = 50
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "Kontakt"
     url = "/pages/contact/"
     weight = 60
-[[menu.main]]
+[[languages.de.menu.main]]
     name = "Patreon"
     url = "https://www.patreon.com/c/chemie_lernen_org"
     weight = 70
     icon = "💜"
 
+# Fortgeschrittene Themen (Advanced Topics) - German
+[[languages.de.menu.main]]
+    name = "🔬 Fortgeschritten"
+    url = "/fortgeschrittene-themen/"
+    weight = 11
+
+# =============================================================================
+# English Menus
+# =============================================================================
+
+[[languages.en.menu.main]]
+    name = "🥽 PSE in VR"
+    url = "https://pse.chemie-lernen.org/"
+    weight = 5
+[[languages.en.menu.main]]
+    name = "Subject Areas"
+    url = "/themenbereiche/"
+    weight = 10
+[[languages.en.menu.main]]
+    name = "Advanced"
+    url = "/advanced-topics/"
+    weight = 11
+[[languages.en.menu.main]]
+    name = "Interactive"
+    url = "#"
+    weight = 20
+    identifier = "interaktiv"
+[[languages.en.menu.main]]
+    name = "Periodic Table 3D"
+    url = "/perioden-system-der-elemente/"
+    parent = "interaktiv"
+    weight = 21
+    interaktiv = true
+[[languages.en.menu.main]]
+    name = "Molecule Studio"
+    url = "/molekuel-studio/"
+    parent = "interaktiv"
+    weight = 22
+    interaktiv = true
+[[languages.en.menu.main]]
+    name = "pH Calculator"
+    url = "/ph-rechner/"
+    parent = "interaktiv"
+    weight = 23
+    interaktiv = true
+[[languages.en.menu.main]]
+    name = "Molar Mass"
+    url = "/molare-masse-rechner/"
+    parent = "interaktiv"
+    weight = 24
+    interaktiv = true
+[[languages.en.menu.main]]
+    name = "Equation Balancer"
+    url = "/reaktionsgleichungen-ausgleichen/"
+    parent = "interaktiv"
+    weight = 25
+    interaktiv = true
+[[languages.en.menu.main]]
+    name = "Unit Converter"
+    url = "/einheitenumrechner/"
+    parent = "interaktiv"
+    weight = 26
+    interaktiv = true
+[[languages.en.menu.main]]
+    name = "Solution Calculator"
+    url = "/loesungsrechner/"
+    parent = "interaktiv"
+    weight = 27
+    interaktiv = true
+[[languages.en.menu.main]]
+    name = "Stoichiometry"
+    url = "/stoechiometrie-rechner/"
+    parent = "interaktiv"
+    weight = 28
+    interaktiv = true
+[[languages.en.menu.main]]
+    name = "PSE in VR Info"
+    url = "/pages/pse-vr-showcase/"
+    parent = "interaktiv"
+    weight = 29
+    interaktiv = true
+[[languages.en.menu.main]]
+    name = "About"
+    url = "/pages/about/"
+    weight = 50
+[[languages.en.menu.main]]
+    name = "Contact"
+    url = "/pages/contact/"
+    weight = 60
+
+# =============================================================================
+# French Menus
+# =============================================================================
+
+[[languages.fr.menu.main]]
+    name = "🥽 PSE en RV"
+    url = "https://pse.chemie-lernen.org/"
+    weight = 5
+[[languages.fr.menu.main]]
+    name = "Domaines"
+    url = "/themenbereiche/"
+    weight = 10
+[[languages.fr.menu.main]]
+    name = "Avancé"
+    url = "/advanced-topics/"
+    weight = 11
+[[languages.fr.menu.main]]
+    name = "Interactif"
+    url = "#"
+    weight = 20
+    identifier = "interaktiv"
+[[languages.fr.menu.main]]
+    name = "Tableau Périodique 3D"
+    url = "/perioden-system-der-elemente/"
+    parent = "interaktiv"
+    weight = 21
+    interaktiv = true
+[[languages.fr.menu.main]]
+    name = "Studio Moléculaire"
+    url = "/molekuel-studio/"
+    parent = "interaktiv"
+    weight = 22
+    interaktiv = true
+[[languages.fr.menu.main]]
+    name = "Calculateur de pH"
+    url = "/ph-rechner/"
+    parent = "interaktiv"
+    weight = 23
+    interaktiv = true
+[[languages.fr.menu.main]]
+    name = "Masse Molaire"
+    url = "/molare-masse-rechner/"
+    parent = "interaktiv"
+    weight = 24
+    interaktiv = true
+[[languages.fr.menu.main]]
+    name = "Équilibrer les Équations"
+    url = "/reaktionsgleichungen-ausgleichen/"
+    parent = "interaktiv"
+    weight = 25
+    interaktiv = true
+[[languages.fr.menu.main]]
+    name = "Convertisseur d'Unités"
+    url = "/einheitenumrechner/"
+    parent = "interaktiv"
+    weight = 26
+    interaktiv = true
+[[languages.fr.menu.main]]
+    name = "Calculateur de Solutions"
+    url = "/loesungsrechner/"
+    parent = "interaktiv"
+    weight = 27
+    interaktiv = true
+[[languages.fr.menu.main]]
+    name = "Stœchiométrie"
+    url = "/stoechiometrie-rechner/"
+    parent = "interaktiv"
+    weight = 28
+    interaktiv = true
+[[languages.fr.menu.main]]
+    name = "PSE en RV Info"
+    url = "/pages/pse-vr-showcase/"
+    parent = "interaktiv"
+    weight = 29
+    interaktiv = true
+[[languages.fr.menu.main]]
+    name = "À propos"
+    url = "/pages/about/"
+    weight = 50
+[[languages.fr.menu.main]]
+    name = "Contact"
+    url = "/pages/contact/"
+    weight = 60
+
+# =============================================================================
+# Chinese Menus
+# =============================================================================
+
+[[languages.zh.menu.main]]
+    name = "🥽 VR元素周期表"
+    url = "https://pse.chemie-lernen.org/"
+    weight = 5
+[[languages.zh.menu.main]]
+    name = "主题领域"
+    url = "/themenbereiche/"
+    weight = 10
+[[languages.zh.menu.main]]
+    name = "进阶"
+    url = "/advanced-topics/"
+    weight = 11
+[[languages.zh.menu.main]]
+    name = "互动工具"
+    url = "#"
+    weight = 20
+    identifier = "interaktiv"
+[[languages.zh.menu.main]]
+    name = "3D元素周期表"
+    url = "/perioden-system-der-elemente/"
+    parent = "interaktiv"
+    weight = 21
+    interaktiv = true
+[[languages.zh.menu.main]]
+    name = "分子工作室"
+    url = "/molekuel-studio/"
+    parent = "interaktiv"
+    weight = 22
+    interaktiv = true
+[[languages.zh.menu.main]]
+    name = "pH计算器"
+    url = "/ph-rechner/"
+    parent = "interaktiv"
+    weight = 23
+    interaktiv = true
+[[languages.zh.menu.main]]
+    name = "摩尔质量"
+    url = "/molare-masse-rechner/"
+    parent = "interaktiv"
+    weight = 24
+    interaktiv = true
+[[languages.zh.menu.main]]
+    name = "方程配平"
+    url = "/reaktionsgleichungen-ausgleichen/"
+    parent = "interaktiv"
+    weight = 25
+    interaktiv = true
+[[languages.zh.menu.main]]
+    name = "单位换算"
+    url = "/einheitenumrechner/"
+    parent = "interaktiv"
+    weight = 26
+    interaktiv = true
+[[languages.zh.menu.main]]
+    name = "溶液计算器"
+    url = "/loesungsrechner/"
+    parent = "interaktiv"
+    weight = 27
+    interaktiv = true
+[[languages.zh.menu.main]]
+    name = "化学计量学"
+    url = "/stoechiometrie-rechner/"
+    parent = "interaktiv"
+    weight = 28
+    interaktiv = true
+[[languages.zh.menu.main]]
+    name = "VR元素周期表信息"
+    url = "/pages/pse-vr-showcase/"
+    parent = "interaktiv"
+    weight = 29
+    interaktiv = true
+[[languages.zh.menu.main]]
+    name = "关于我们"
+    url = "/pages/about/"
+    weight = 50
+[[languages.zh.menu.main]]
+    name = "联系我们"
+    url = "/pages/contact/"
+    weight = 60
+
+# =============================================================================
+# Swedish Menus
+# =============================================================================
+
+[[languages.sv.menu.main]]
+    name = "🥽 PSE i VR"
+    url = "https://pse.chemie-lernen.org/"
+    weight = 5
+[[languages.sv.menu.main]]
+    name = "Ämnesområden"
+    url = "/themenbereiche/"
+    weight = 10
+[[languages.sv.menu.main]]
+    name = "Avancerat"
+    url = "/advanced-topics/"
+    weight = 11
+[[languages.sv.menu.main]]
+    name = "Interaktivt"
+    url = "#"
+    weight = 20
+    identifier = "interaktiv"
+[[languages.sv.menu.main]]
+    name = "Periodiska Systemet 3D"
+    url = "/perioden-system-der-elemente/"
+    parent = "interaktiv"
+    weight = 21
+    interaktiv = true
+[[languages.sv.menu.main]]
+    name = "Molekylstudio"
+    url = "/molekuel-studio/"
+    parent = "interaktiv"
+    weight = 22
+    interaktiv = true
+[[languages.sv.menu.main]]
+    name = "pH-kalkylator"
+    url = "/ph-rechner/"
+    parent = "interaktiv"
+    weight = 23
+    interaktiv = true
+[[languages.sv.menu.main]]
+    name = "Molmassa"
+    url = "/molare-masse-rechner/"
+    parent = "interaktiv"
+    weight = 24
+    interaktiv = true
+[[languages.sv.menu.main]]
+    name = "Ekvationsbalansering"
+    url = "/reaktionsgleichungen-ausgleichen/"
+    parent = "interaktiv"
+    weight = 25
+    interaktiv = true
+[[languages.sv.menu.main]]
+    name = "Enhetsomvandlare"
+    url = "/einheitenumrechner/"
+    parent = "interaktiv"
+    weight = 26
+    interaktiv = true
+[[languages.sv.menu.main]]
+    name = "Lösningskalkylator"
+    url = "/loesungsrechner/"
+    parent = "interaktiv"
+    weight = 27
+    interaktiv = true
+[[languages.sv.menu.main]]
+    name = "Stökiometri"
+    url = "/stoechiometrie-rechner/"
+    parent = "interaktiv"
+    weight = 28
+    interaktiv = true
+[[languages.sv.menu.main]]
+    name = "PSE i VR Info"
+    url = "/pages/pse-vr-showcase/"
+    parent = "interaktiv"
+    weight = 29
+    interaktiv = true
+[[languages.sv.menu.main]]
+    name = "Om oss"
+    url = "/pages/about/"
+    weight = 50
+[[languages.sv.menu.main]]
+    name = "Kontakt"
+    url = "/pages/contact/"
+    weight = 60

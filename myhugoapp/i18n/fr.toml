@@ -1,0 +1,119 @@
+[nav_home]
+other = "Accueil"
+
+[nav_themenbereiche]
+other = "Domaines thématiques"
+
+[nav_interactive]
+other = "Interactif"
+
+[nav_advanced]
+other = "Avancé"
+
+[nav_roadmap]
+other = "Feuille de route"
+
+[nav_about]
+other = "À propos"
+
+[nav_contact]
+other = "Contact"
+
+[nav_patreon]
+other = "Patreon"
+
+[search_placeholder]
+other = "Rechercher des sujets..."
+
+[skip_to_content]
+other = "Aller au contenu principal"
+
+[breadcrumb_home]
+other = "Accueil"
+
+[breadcrumb_themenbereiche]
+other = "Domaines thématiques"
+
+[breadcrumb_grundlagen]
+other = "Fondamentaux"
+
+[breadcrumb_mittelstufe]
+other = "Intermédiaire"
+
+[breadcrumb_fortgeschritten]
+other = "Avancé"
+
+[breadcrumb_interactive]
+other = "Outils interactifs"
+
+[footer_description]
+other = "learn-chemistry.org – Plateforme gratuite d'apprentissage interactif de la chimie"
+
+[footer_patreon]
+other = "Soutenez-nous sur Patreon"
+
+[footer_impressum]
+other = "Mentions légales"
+
+[footer_datenschutz]
+other = "Politique de confidentialité"
+
+[footer_barrierefreiheit]
+other = "Accessibilité"
+
+[vr_banner_title]
+other = "🥽 Découvrez le tableau périodique en RV"
+
+[vr_banner_text]
+other = "Explorez 118 éléments sous forme de salles 3D immersives"
+
+[vr_banner_button]
+other = "Démarrer"
+
+[vr_footer_title]
+other = "🥽 PSE en RV — Découvrez chaque élément"
+
+[vr_footer_text]
+other = "Plongez dans le monde des atomes"
+
+[language_label]
+other = "Langue"
+
+[advanced_topics_title]
+other = "Sujets avancés"
+
+[advanced_topics_subtitle]
+other = "Recherche actuelle et chimie moderne"
+
+[topic_ai_chemistry]
+other = "IA en chimie"
+
+[topic_quantum_chemistry]
+other = "Chimie quantique"
+
+[topic_green_chemistry]
+other = "Chimie verte"
+
+[topic_mofs]
+other = "Réseaux Métallo-Organiques (MOFs)"
+
+[topic_battery_chemistry]
+other = "Chimie des batteries"
+
+[topic_photocatalysis]
+other = "Photocatalyse"
+
+[topic_nanomaterials]
+other = "Nanomatériaux"
+
+[topic_co2_utilization]
+other = "Valorisation du CO₂"
+
+[read_more]
+other = "Lire la suite"
+
+[all_topics]
+other = "Voir tous les sujets"
+
+[breadcrumb_klassenstufen]
+other = "Niveaux scolaires"

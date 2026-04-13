@@ -1,0 +1,119 @@
+[nav_home]
+other = "Home"
+
+[nav_themenbereiche]
+other = "Subject Areas"
+
+[nav_interactive]
+other = "Interactive"
+
+[nav_advanced]
+other = "Advanced"
+
+[nav_roadmap]
+other = "Roadmap"
+
+[nav_about]
+other = "About"
+
+[nav_contact]
+other = "Contact"
+
+[nav_patreon]
+other = "Patreon"
+
+[search_placeholder]
+other = "Search topics..."
+
+[skip_to_content]
+other = "Skip to main content"
+
+[breadcrumb_home]
+other = "Home"
+
+[breadcrumb_themenbereiche]
+other = "Subject Areas"
+
+[breadcrumb_grundlagen]
+other = "Fundamentals"
+
+[breadcrumb_mittelstufe]
+other = "Intermediate"
+
+[breadcrumb_fortgeschritten]
+other = "Advanced"
+
+[breadcrumb_interactive]
+other = "Interactive Tools"
+
+[footer_description]
+other = "learn-chemistry.org – Free interactive chemistry learning platform"
+
+[footer_patreon]
+other = "Support us on Patreon"
+
+[footer_impressum]
+other = "Legal Notice"
+
+[footer_datenschutz]
+other = "Privacy Policy"
+
+[footer_barrierefreiheit]
+other = "Accessibility"
+
+[vr_banner_title]
+other = "🥽 Experience the Periodic Table in VR"
+
+[vr_banner_text]
+other = "Explore 118 elements as immersive 3D rooms"
+
+[vr_banner_button]
+other = "Launch Now"
+
+[vr_footer_title]
+other = "🥽 PSE in VR — Discover Every Element"
+
+[vr_footer_text]
+other = "Immerse yourself in the world of atoms"
+
+[language_label]
+other = "Language"
+
+[advanced_topics_title]
+other = "Advanced Topics"
+
+[advanced_topics_subtitle]
+other = "Current research and modern chemistry"
+
+[topic_ai_chemistry]
+other = "AI in Chemistry"
+
+[topic_quantum_chemistry]
+other = "Quantum Chemistry"
+
+[topic_green_chemistry]
+other = "Green Chemistry"
+
+[topic_mofs]
+other = "Metal-Organic Frameworks (MOFs)"
+
+[topic_battery_chemistry]
+other = "Battery Chemistry"
+
+[topic_photocatalysis]
+other = "Photocatalysis"
+
+[topic_nanomaterials]
+other = "Nanomaterials"
+
+[topic_co2_utilization]
+other = "CO₂ Utilization"
+
+[read_more]
+other = "Read more"
+
+[all_topics]
+other = "View all topics"
+
+[breadcrumb_klassenstufen]
+other = "Grade Levels"

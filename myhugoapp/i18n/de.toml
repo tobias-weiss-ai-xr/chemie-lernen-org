@@ -1,0 +1,119 @@
+[nav_home]
+other = "Start"
+
+[nav_themenbereiche]
+other = "Themenbereiche"
+
+[nav_interactive]
+other = "Interaktiv"
+
+[nav_advanced]
+other = "Fortgeschritten"
+
+[nav_roadmap]
+other = "Roadmap"
+
+[nav_about]
+other = "Über uns"
+
+[nav_contact]
+other = "Kontakt"
+
+[nav_patreon]
+other = "Patreon"
+
+[search_placeholder]
+other = "Themen suchen..."
+
+[skip_to_content]
+other = "Zum Hauptinhalt springen"
+
+[breadcrumb_home]
+other = "Start"
+
+[breadcrumb_themenbereiche]
+other = "Themenbereiche"
+
+[breadcrumb_grundlagen]
+other = "Grundlagen"
+
+[breadcrumb_mittelstufe]
+other = "Mittelstufe"
+
+[breadcrumb_fortgeschritten]
+other = "Fortgeschritten"
+
+[breadcrumb_interactive]
+other = "Interaktive Tools"
+
+[footer_description]
+other = "chemie-lernen.org – Kostenlose interaktive Chemie-Lernplattform"
+
+[footer_patreon]
+other = "Unterstütze uns auf Patreon"
+
+[footer_impressum]
+other = "Impressum"
+
+[footer_datenschutz]
+other = "Datenschutz"
+
+[footer_barrierefreiheit]
+other = "Barrierefreiheit"
+
+[vr_banner_title]
+other = "🥽 Periodensystem in VR erleben"
+
+[vr_banner_text]
+other = "118 Elemente als immersive 3D-Räume erkunden"
+
+[vr_banner_button]
+other = "Jetzt starten"
+
+[vr_footer_title]
+other = "🥽 PSE in VR — Entdecke jedes Element"
+
+[vr_footer_text]
+other = "Immersion in die Welt der Atome"
+
+[language_label]
+other = "Sprache"
+
+[advanced_topics_title]
+other = "Fortgeschrittene Themen"
+
+[advanced_topics_subtitle]
+other = "Aktuelle Forschung und moderne Chemie"
+
+[topic_ai_chemistry]
+other = "KI in der Chemie"
+
+[topic_quantum_chemistry]
+other = "Quantenchemie"
+
+[topic_green_chemistry]
+other = "Grüne Chemie"
+
+[topic_mofs]
+other = "Metallorganische Gerüstverbindungen (MOFs)"
+
+[topic_battery_chemistry]
+other = "Batteriechemie"
+
+[topic_photocatalysis]
+other = "Photokatalyse"
+
+[topic_nanomaterials]
+other = "Nanomaterialien"
+
+[topic_co2_utilization]
+other = "CO₂-Nutzung"
+
+[read_more]
+other = "Weiterlesen"
+
+[all_topics]
+other = "Alle Themen anzeigen"
+
+[breadcrumb_klassenstufen]
+other = "Klassenstufen"

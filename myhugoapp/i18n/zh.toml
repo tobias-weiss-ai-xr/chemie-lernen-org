@@ -1,0 +1,119 @@
+[nav_home]
+other = "首页"
+
+[nav_themenbereiche]
+other = "主题领域"
+
+[nav_interactive]
+other = "互动工具"
+
+[nav_advanced]
+other = "进阶"
+
+[nav_roadmap]
+other = "路线图"
+
+[nav_about]
+other = "关于我们"
+
+[nav_contact]
+other = "联系我们"
+
+[nav_patreon]
+other = "Patreon"
+
+[search_placeholder]
+other = "搜索主题..."
+
+[skip_to_content]
+other = "跳转到主要内容"
+
+[breadcrumb_home]
+other = "首页"
+
+[breadcrumb_themenbereiche]
+other = "主题领域"
+
+[breadcrumb_grundlagen]
+other = "基础知识"
+
+[breadcrumb_mittelstufe]
+other = "中级"
+
+[breadcrumb_fortgeschritten]
+other = "进阶"
+
+[breadcrumb_interactive]
+other = "互动工具"
+
+[footer_description]
+other = "learn-chemistry.org – 免费互动化学学习平台"
+
+[footer_patreon]
+other = "在Patreon上支持我们"
+
+[footer_impressum]
+other = "法律声明"
+
+[footer_datenschutz]
+other = "隐私政策"
+
+[footer_barrierefreiheit]
+other = "无障碍"
+
+[vr_banner_title]
+other = "🥽 在VR中体验元素周期表"
+
+[vr_banner_text]
+other = "以沉浸式3D空间探索118个元素"
+
+[vr_banner_button]
+other = "立即开始"
+
+[vr_footer_title]
+other = "🥽 VR元素周期表 — 发现每个元素"
+
+[vr_footer_text]
+other = "沉浸在原子的世界中"
+
+[language_label]
+other = "语言"
+
+[advanced_topics_title]
+other = "进阶主题"
+
+[advanced_topics_subtitle]
+other = "前沿研究与现代化学"
+
+[topic_ai_chemistry]
+other = "化学中的AI"
+
+[topic_quantum_chemistry]
+other = "量子化学"
+
+[topic_green_chemistry]
+other = "绿色化学"
+
+[topic_mofs]
+other = "金属有机框架 (MOFs)"
+
+[topic_battery_chemistry]
+other = "电池化学"
+
+[topic_photocatalysis]
+other = "光催化"
+
+[topic_nanomaterials]
+other = "纳米材料"
+
+[topic_co2_utilization]
+other = "CO₂利用"
+
+[read_more]
+other = "阅读更多"
+
+[all_topics]
+other = "查看所有主题"
+
+[breadcrumb_klassenstufen]
+other = "年级"

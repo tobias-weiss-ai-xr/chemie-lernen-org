@@ -1,0 +1,119 @@
+[nav_home]
+other = "Hem"
+
+[nav_themenbereiche]
+other = "Ämnesområden"
+
+[nav_interactive]
+other = "Interaktivt"
+
+[nav_advanced]
+other = "Avancerat"
+
+[nav_roadmap]
+other = "Färdplan"
+
+[nav_about]
+other = "Om oss"
+
+[nav_contact]
+other = "Kontakt"
+
+[nav_patreon]
+other = "Patreon"
+
+[search_placeholder]
+other = "Sök ämnen..."
+
+[skip_to_content]
+other = "Hoppa till huvudinnehållet"
+
+[breadcrumb_home]
+other = "Hem"
+
+[breadcrumb_themenbereiche]
+other = "Ämnesområden"
+
+[breadcrumb_grundlagen]
+other = "Grunder"
+
+[breadcrumb_mittelstufe]
+other = "Mellanstadiet"
+
+[breadcrumb_fortgeschritten]
+other = "Avancerat"
+
+[breadcrumb_interactive]
+other = "Interaktiva verktyg"
+
+[footer_description]
+other = "learn-chemistry.org – Gratis interaktiv plattform för kemilärning"
+
+[footer_patreon]
+other = "Stöd oss på Patreon"
+
+[footer_impressum]
+other = "Juridiskt meddelande"
+
+[footer_datenschutz]
+other = "Integritetspolicy"
+
+[footer_barrierefreiheit]
+other = "Tillgänglighet"
+
+[vr_banner_title]
+other = "🥽 Upplev det periodiska systemet i VR"
+
+[vr_banner_text]
+other = "Utforska 118 element som immersiva 3D-rum"
+
+[vr_banner_button]
+other = "Starta nu"
+
+[vr_footer_title]
+other = "🥽 PSE i VR — Upptäck varje element"
+
+[vr_footer_text]
+other = "Fördjupa dig i atomernas värld"
+
+[language_label]
+other = "Språk"
+
+[advanced_topics_title]
+other = "Avancerade ämnen"
+
+[advanced_topics_subtitle]
+other = "Aktuell forskning och modern kemi"
+
+[topic_ai_chemistry]
+other = "AI i kemin"
+
+[topic_quantum_chemistry]
+other = "Kvantskemi"
+
+[topic_green_chemistry]
+other = "Grön kemi"
+
+[topic_mofs]
+other = "Metallorganiska ramverk (MOFs)"
+
+[topic_battery_chemistry]
+other = "Batterikemi"
+
+[topic_photocatalysis]
+other = "Fotokatalys"
+
+[topic_nanomaterials]
+other = "Nanomaterial"
+
+[topic_co2_utilization]
+other = "CO₂-användning"
+
+[read_more]
+other = "Läs mer"
+
+[all_topics]
+other = "Visa alla ämnen"
+
+[breadcrumb_klassenstufen]
+other = "Klassnivåer"
