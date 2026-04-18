@@ -400,3 +400,88 @@
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
   }
 }
+
+/* === PSE VR Embedded Container === */
+.vr-embed-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  border: 2px solid #333;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.vr-container-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.vr-container-inner canvas {
+  outline: none;
+  touch-action: none;
+}
+
+/* Dark mode support */
+.dark .vr-embed-wrapper {
+  border-color: #555;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Loading state */
+.vr-loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  color: #888;
+  font-family: system-ui, sans-serif;
+  z-index: 10;
+}
+
+.vr-loading-overlay.hidden {
+  display: none;
+}
+
+/* VR Controls Bar */
+.vr-controls-bar {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 6px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+}
+
+.vr-control-btn {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 14px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: system-ui, sans-serif;
+  transition: background 0.2s;
+}
+
+.vr-control-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.vr-status-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  font-family: system-ui, sans-serif;
+}

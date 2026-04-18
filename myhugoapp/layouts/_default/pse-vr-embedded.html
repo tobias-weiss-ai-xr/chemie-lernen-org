@@ -1,0 +1,93 @@
+{{ define "title" }}PSE in VR — Interaktives Periodensystem{{ end }}
+
+{{ define "main" }}
+<h1 class="sr-only">PSE in VR — Interaktives Periodensystem der Elemente</h1>
+
+<div class="vr-embed-wrapper" id="vr-wrapper">
+  <div id="vr-container" class="vr-container-inner"></div>
+
+  <div class="vr-loading-overlay" id="vr-loading">
+    <div style="text-align:center">
+      <div style="font-size:2rem;margin-bottom:12px">🥽</div>
+      <div>VR-Umgebung wird geladen...</div>
+    </div>
+  </div>
+
+  <div class="vr-controls-bar" id="vr-controls">
+    <button id="vr-enter-btn" class="vr-control-btn" title="VR-Modus starten">
+      🥽 VR-Modus starten
+    </button>
+    <button id="vr-fullscreen-btn" class="vr-control-btn" title="Vollbild">
+      ⛶
+    </button>
+    <span id="vr-status" class="vr-status-text">Desktop</span>
+  </div>
+
+  <noscript>
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#111;color:#ccc;font-family:system-ui,sans-serif;z-index:20">
+      JavaScript ist erforderlich um die 3D-Visualisierung zu laden.
+    </div>
+  </noscript>
+</div>
+
+{{ .Content }}
+{{ end }}
+
+{{ define "js" }}
+<script type="module">
+  import { mount, unmount } from '{{ "/vr/assets/pse-vr.mjs" | relURL }}';
+
+  const container = document.getElementById('vr-container');
+  const wrapper = document.getElementById('vr-wrapper');
+  const loading = document.getElementById('vr-loading');
+  const statusEl = document.getElementById('vr-status');
+  const enterBtn = document.getElementById('vr-enter-btn');
+  const fullscreenBtn = document.getElementById('vr-fullscreen-btn');
+
+  if (!container) {
+    console.error('[PSE VR] #vr-container not found');
+  }
+
+  const locale = document.documentElement.lang || '{{ .Site.Language.Lang }}';
+
+  let cleanup = null;
+
+  try {
+    cleanup = mount({
+      container,
+      locale,
+      startRoom: 'lobby',
+      onReady() {
+        loading.classList.add('hidden');
+      },
+      onVREnter() {
+        statusEl.textContent = 'VR-Modus';
+        enterBtn.textContent = '🥽 VR beenden';
+      },
+      onVRExit() {
+        statusEl.textContent = 'Desktop';
+        enterBtn.textContent = '🥽 VR-Modus starten';
+      }
+    });
+  } catch (err) {
+    console.error('[PSE VR] mount() failed:', err);
+    loading.innerHTML = '<div style="color:#f66;text-align:center">Fehler beim Laden der VR-Umgebung</div>';
+  }
+
+  // Fullscreen toggle
+  fullscreenBtn.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      wrapper.requestFullscreen?.();
+    } else {
+      document.exitFullscreen?.();
+    }
+  });
+
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', () => {
+    if (cleanup) {
+      try { cleanup(); } catch (_) { /* ignore */ }
+    }
+  });
+</script>
+{{ end }}

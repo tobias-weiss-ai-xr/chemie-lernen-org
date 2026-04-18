@@ -115,7 +115,7 @@ author = "chemie-lernen.org Team"
 # PSE in VR - MOST PROMINENT Navigation
 [[languages.de.menu.main]]
     name = "🥽 PSE in VR"
-    url = "https://pse.chemie-lernen.org/"
+    url = "/pages/pse-vr-embedded/"
     weight = 5
     icon = "🥽"
     pre = "<span style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold;'>NEU</span>"
@@ -236,7 +236,7 @@ author = "chemie-lernen.org Team"
 
 [[languages.en.menu.main]]
     name = "🥽 PSE in VR"
-    url = "https://pse.chemie-lernen.org/"
+    url = "/pages/pse-vr-embedded/"
     weight = 5
 [[languages.en.menu.main]]
     name = "Subject Areas"
@@ -320,7 +320,7 @@ author = "chemie-lernen.org Team"
 
 [[languages.fr.menu.main]]
     name = "🥽 PSE en RV"
-    url = "https://pse.chemie-lernen.org/"
+    url = "/pages/pse-vr-embedded/"
     weight = 5
 [[languages.fr.menu.main]]
     name = "Domaines"
@@ -404,7 +404,7 @@ author = "chemie-lernen.org Team"
 
 [[languages.zh.menu.main]]
     name = "🥽 VR元素周期表"
-    url = "https://pse.chemie-lernen.org/"
+    url = "/pages/pse-vr-embedded/"
     weight = 5
 [[languages.zh.menu.main]]
     name = "主题领域"
@@ -488,7 +488,7 @@ author = "chemie-lernen.org Team"
 
 [[languages.sv.menu.main]]
     name = "🥽 PSE i VR"
-    url = "https://pse.chemie-lernen.org/"
+    url = "/pages/pse-vr-embedded/"
     weight = 5
 [[languages.sv.menu.main]]
     name = "Ämnesområden"
