@@ -1,0 +1,35 @@
+import { n as e } from "./typeStore-Bwo5hkCf.js";
+import { f as t } from "./flowGraphBlock-CtJfM_SU.js";
+import { t as n } from "./flowGraphExecutionBlockWithOutSignal-y8yifvjc.js";
+//#region node_modules/@babylonjs/core/FlowGraph/Blocks/Execution/ControlFlow/flowGraphThrottleBlock.js
+var r = class extends n {
+	constructor(e) {
+		super(e), this.reset = this._registerSignalInput("reset"), this.duration = this.registerDataInput("duration", t), this.lastRemainingTime = this.registerDataOutput("lastRemainingTime", t, NaN);
+	}
+	_execute(e, t) {
+		if (t === this.reset) {
+			this.lastRemainingTime.setValue(NaN, e), e._setExecutionVariable(this, "lastRemainingTime", NaN), e._setExecutionVariable(this, "timestamp", 0);
+			return;
+		}
+		let n = this.duration.getValue(e);
+		if (n <= 0 || isNaN(n) || !isFinite(n)) return this._reportError(e, "Invalid duration in Throttle block");
+		let r = e._getExecutionVariable(this, "lastRemainingTime", NaN), i = Date.now();
+		if (isNaN(r)) return this.lastRemainingTime.setValue(0, e), e._setExecutionVariable(this, "lastRemainingTime", 0), e._setExecutionVariable(this, "timestamp", i), this.out._activateSignal(e);
+		{
+			let t = i - e._getExecutionVariable(this, "timestamp", 0), r = n * 1e3;
+			if (r <= t) return this.lastRemainingTime.setValue(0, e), e._setExecutionVariable(this, "lastRemainingTime", 0), e._setExecutionVariable(this, "timestamp", i), this.out._activateSignal(e);
+			{
+				let n = r - t;
+				this.lastRemainingTime.setValue(n / 1e3, e), e._setExecutionVariable(this, "lastRemainingTime", n);
+			}
+		}
+	}
+	getClassName() {
+		return "FlowGraphThrottleBlock";
+	}
+};
+e("FlowGraphThrottleBlock", r);
+//#endregion
+export { r as FlowGraphThrottleBlock };
+
+//# sourceMappingURL=flowGraphThrottleBlock-nzA6Fs7J.js.map
