@@ -37,10 +37,8 @@
       "prettier --write"
     ]
   },
-  "dependencies": {
-    "@playwright/test": "^1.57.0"
-  },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@types/jest": "^29.5.12",
     "axe-core": "^4.11.0",
     "axios": "^1.13.2",

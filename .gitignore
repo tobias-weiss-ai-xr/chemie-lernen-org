@@ -8,6 +8,31 @@ tests/playwright-report/
 tests/test-results/
 tests/playwright-report/
 tests/screenshots/
+tests/dark-mode-debug.html
+
+# Dependency directories
+node_modules/
+
+# Sisyphus configuration
+.sisyphus/
+
+# Debug and test scripts
+debug-*.js
+diagnose-*.js
+*-test.js
+mock-test.js
+file-test.js
+function-test.js
+icon-test.js
+investigate-click.js
+embedded-test.js
+direct-test.js
+test-live-toggle.js
+test-site-js.js
+test-timing.js
+
+# Build and analysis artifacts
+eslint-results.json
 
 # Temporary and backup files
 *.tmp
