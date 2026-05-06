@@ -119,13 +119,7 @@ author = "chemie-lernen.org Team"
 #     weight = 29
 #     icon = "🥽"
 #     interaktiv = true
-[[menu.main]]
-    name = "PSE in VR"
-    url = "/pages/pse-in-vr/"
-    parent = "interaktiv"
-    weight = 30
-    icon = "🧠"
-    interaktiv = true
+
 
 # General Pages
 [[menu.main]]

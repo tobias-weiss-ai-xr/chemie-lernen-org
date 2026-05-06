@@ -433,21 +433,7 @@ Superheavy Element Lab: Teilchenbeschleuniger, Millisekunden-Halbwertszeiten, No
 
 ## 🚀 Starten Sie die VR-Erfahrung
 
-<div style="text-align: center; margin: 2rem 0;">
-<a href="https://pse.chemie-lernen.org/" class="vr-button"
-      style="display: inline-block;
-             padding: 1rem 2rem;
-             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-             color: white;
-             text-decoration: none;
-             border-radius: 8px;
-             font-weight: bold;
-             font-size: 1.2rem;
-             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-             transition: transform 0.2s, box-shadow 0.2s;">
-    🥽 VR-Erfahrung starten
-  </a>
-</div>
+
 
 ## 📚 Weiterführende Ressourcen
 
@@ -455,7 +441,7 @@ Superheavy Element Lab: Teilchenbeschleuniger, Millisekunden-Halbwertszeiten, No
 - [Molekülstudio](/molekuel-studio/)
 - [Artikel: Interdisziplinäre VR-Kooperation](/posts/interdisciplinary-vr-cooperation/)
 - [Roadmap](/pages/roadmap/)
-- [PSE in VR Release Ankündigung](/posts/pse-in-vr-release/)
+
 
 ## 💡 Tipps für die erste Nutzung
 

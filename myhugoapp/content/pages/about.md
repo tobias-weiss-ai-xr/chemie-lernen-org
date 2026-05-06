@@ -19,5 +19,5 @@ Sein Fokus liegt auf der Entwicklung interaktiver und immersiver Lernumgebungen,
 
 Entdecken Sie weitere Projekte von Tobias Weiß:
 
-- [GraphWiz AI](https://graphwiz.ai) - KI-gestützte Wissensgraphen und Analyseplattform
+
 - [Tobias Weiß](https://tobias-weiss.org) - Persönliche Website und Portfolio

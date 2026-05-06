@@ -4,7 +4,7 @@ This document describes the integration of the PSE (Periodensystem der Elemente)
 
 ## Overview
 
-PSE in VR is a WebXR-based virtual reality experience that allows users to explore the periodic table of elements in an immersive 3D environment. The integration replaces the external xr.graphwiz.ai reference with a local implementation.
+PSE in VR is a WebXR-based virtual reality experience that allows users to explore the periodic table of elements in an immersive 3D environment.
 
 ## File Structure
 
