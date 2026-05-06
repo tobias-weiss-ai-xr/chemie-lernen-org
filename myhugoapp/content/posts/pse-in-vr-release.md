@@ -1,7 +1,7 @@
 ---
 title: 'PSE in VR: Eine revolutionäre Art, Chemie zu lernen'
 date: 2026-01-02T10:00:00+01:00
-draft: false
+draft: true
 tags: ['vr', 'periodensystem', 'webxr', 'entwicklung', '3d']
 categories: ['entwicklung']
 ---

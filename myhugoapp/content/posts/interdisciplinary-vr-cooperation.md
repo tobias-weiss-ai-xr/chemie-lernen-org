@@ -1,7 +1,7 @@
 ---
 title: "Eine interdisziplinäre Kooperation in der Hochschullehre mit Hilfe der virtuellen Realität"
 date: 2025-12-18T02:00:00+01:00
-draft: false
+draft: true
 ---
 
 ## Status Quo eines Lernraum-Projekts das mittels Mozilla Hubs das Periodensystem der Elemente sowie Experimente

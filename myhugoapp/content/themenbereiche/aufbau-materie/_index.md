@@ -340,10 +340,6 @@ $$\ce{Zn + 2HCl -> ZnCl2 + H2}$$
 - Gasentwicklung: Wasserstoff
 - Knall bei der Knallprobe
 
-### VR-Erfahrung: Atombau erleben
-
-🕶️ **[PSE in VR](https://pse.chemie-lernen.org/)** - Tauchen Sie virtuell in die Welt der Atome ein!
-
 ## Zusammenfassung
 
 - **Atome** bestehen aus Protonen, Neutronen und Elektronen
