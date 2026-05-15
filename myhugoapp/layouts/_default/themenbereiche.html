@@ -313,6 +313,7 @@
 </style>
 {{ end }}
 
+{{ define "css" }}
 <style>
 /* Container */
 .themenbereiche-container {
@@ -535,7 +536,9 @@
   }
 }
 </style>
+{{ end }}
 
+{{ define "js" }}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const topicCards = document.querySelectorAll('.topic-card');

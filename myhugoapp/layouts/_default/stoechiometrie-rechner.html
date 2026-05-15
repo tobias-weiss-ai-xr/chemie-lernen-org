@@ -997,21 +997,7 @@
 
 {{ end }}
 
-<script>
-// Initialize calculator when page is ready
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof LazyLoader !== 'undefined') {
-    LazyLoader.loadCalculator('stoichiometry').then(() => {
-      console.log('Stoichiometry calculator loaded successfully');
-    }).catch(err => {
-      console.error('Failed to load calculator:', err);
-    });
-  } else {
-    console.error('LazyLoader not available');
-  }
-});
-</script>
-
+{{ define "css" }}
 <style>
 .stoichiometry-calculator-container { max-width: 1100px; margin: 0 auto; padding: 20px; }
 .calculator-panel { background-color: #f8f9fa; padding: 30px; border-radius: 8px; margin-bottom: 20px; }
@@ -1098,8 +1084,12 @@ document.addEventListener('DOMContentLoaded', function() {
   font-size: 12px;
   margin-left: 5px;
 }
+</style>
+{{ end }}
 
+{{ define "js" }}
 <script>
+// Initialize calculator when page is ready
 document.addEventListener('DOMContentLoaded', function() {
   if (typeof LazyLoader !== 'undefined') {
     LazyLoader.loadCalculator('stoichiometry').then(() => {
@@ -1112,17 +1102,5 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
-</style>
-</div>
-  if (typeof LazyLoader !== 'undefined') {
-    LazyLoader.loadCalculator('stoichiometry').then(() => {
-      console.log('Stoichiometry calculator loaded successfully');
-    }).catch(err => {
-      console.error('Failed to load calculator:', err);
-    });
-  } else {
-    console.error('LazyLoader not available');
-  }
-});
-</script>
+{{ end }}
 
