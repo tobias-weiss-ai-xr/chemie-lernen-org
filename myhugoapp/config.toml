@@ -130,10 +130,10 @@ author = "chemie-lernen.org Team"
     name = "Über uns"
     url = "/pages/about/"
     weight = 50
-[[menu.main]]
-    name = "Kontakt"
-    url = "/pages/contact/"
-    weight = 60
+#[[menu.main]]
+#    name = "Kontakt"
+#    url = "/pages/contact/"
+#    weight = 60
 [[menu.main]]
     name = "Patreon"
     url = "https://www.patreon.com/c/chemie_lernen_org"
