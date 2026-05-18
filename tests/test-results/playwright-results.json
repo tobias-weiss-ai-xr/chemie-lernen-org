@@ -2,7 +2,7 @@
   "config": {
     "configFile": "/opt/git/hugo-chemie-lernen-org/tests/playwright.config.js",
     "rootDir": "/opt/git/hugo-chemie-lernen-org/tests",
-    "forbidOnly": false,
+    "forbidOnly": true,
     "fullyParallel": false,
     "globalSetup": null,
     "globalTeardown": null,
@@ -10,9 +10,7 @@
     "grep": {},
     "grepInvert": null,
     "maxFailures": 0,
-    "metadata": {
-      "actualWorkers": 3
-    },
+    "metadata": {},
     "preserveOutput": "always",
     "reporter": [
       [
@@ -42,80 +40,70 @@
       {
         "outputDir": "/opt/git/hugo-chemie-lernen-org/test-results",
         "repeatEach": 1,
-        "retries": 0,
-        "metadata": {
-          "actualWorkers": 3
-        },
+        "retries": 2,
+        "metadata": {},
         "id": "chromium",
         "name": "chromium",
         "testDir": "/opt/git/hugo-chemie-lernen-org/tests",
         "testIgnore": [],
         "testMatch": [
-          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+          "**/*.spec.{js,ts}"
         ],
         "timeout": 30000
       },
       {
         "outputDir": "/opt/git/hugo-chemie-lernen-org/test-results",
         "repeatEach": 1,
-        "retries": 0,
-        "metadata": {
-          "actualWorkers": 3
-        },
+        "retries": 2,
+        "metadata": {},
         "id": "firefox",
         "name": "firefox",
         "testDir": "/opt/git/hugo-chemie-lernen-org/tests",
         "testIgnore": [],
         "testMatch": [
-          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+          "**/*.spec.{js,ts}"
         ],
         "timeout": 30000
       },
       {
         "outputDir": "/opt/git/hugo-chemie-lernen-org/test-results",
         "repeatEach": 1,
-        "retries": 0,
-        "metadata": {
-          "actualWorkers": 3
-        },
+        "retries": 2,
+        "metadata": {},
         "id": "webkit",
         "name": "webkit",
         "testDir": "/opt/git/hugo-chemie-lernen-org/tests",
         "testIgnore": [],
         "testMatch": [
-          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+          "**/*.spec.{js,ts}"
         ],
         "timeout": 30000
       },
       {
         "outputDir": "/opt/git/hugo-chemie-lernen-org/test-results",
         "repeatEach": 1,
-        "retries": 0,
-        "metadata": {
-          "actualWorkers": 3
-        },
+        "retries": 2,
+        "metadata": {},
         "id": "Mobile Chrome",
         "name": "Mobile Chrome",
         "testDir": "/opt/git/hugo-chemie-lernen-org/tests",
         "testIgnore": [],
         "testMatch": [
-          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+          "**/*.spec.{js,ts}"
         ],
         "timeout": 30000
       },
       {
         "outputDir": "/opt/git/hugo-chemie-lernen-org/test-results",
         "repeatEach": 1,
-        "retries": 0,
-        "metadata": {
-          "actualWorkers": 3
-        },
+        "retries": 2,
+        "metadata": {},
         "id": "Mobile Safari",
         "name": "Mobile Safari",
         "testDir": "/opt/git/hugo-chemie-lernen-org/tests",
         "testIgnore": [],
         "testMatch": [
-          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+          "**/*.spec.{js,ts}"
         ],
         "timeout": 30000
       }
@@ -125,25 +113,25 @@
     "updateSnapshots": "missing",
     "updateSourceMethod": "patch",
     "version": "1.57.0",
-    "workers": 3,
+    "workers": 1,
     "webServer": null
   },
   "suites": [
     {
-      "title": "screenshots.spec.js",
-      "file": "screenshots.spec.js",
+      "title": "test-visualizations.spec.js",
+      "file": "test-visualizations.spec.js",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Screenshot Tests",
-          "file": "screenshots.spec.js",
+          "title": "Reaction Pathway Visualization",
+          "file": "test-visualizations.spec.js",
           "line": 10,
           "column": 6,
           "specs": [
             {
-              "title": "Homepage - full page screenshot",
+              "title": "should load reaction pathway visualization",
               "ok": true,
               "tags": [],
               "tests": [
@@ -151,33 +139,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 6229,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:01:59.971Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "53bacfe0c91763a7148e-1d3177913f2ac5026732",
-              "file": "screenshots.spec.js",
-              "line": 12,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-d6e77c48de469ab0ebc3",
+              "file": "test-visualizations.spec.js",
+              "line": 11,
+              "column": 3
             },
             {
-              "title": "Periodensystem - full page screenshot",
+              "title": "should have interactive elements",
               "ok": true,
               "tags": [],
               "tests": [
@@ -185,33 +159,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 6469,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:06.517Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "53bacfe0c91763a7148e-5541fc2cb4d3e7efed17",
-              "file": "screenshots.spec.js",
-              "line": 19,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-a463e93bfa4e99cc777d",
+              "file": "test-visualizations.spec.js",
+              "line": 22,
+              "column": 3
             },
             {
-              "title": "Molekülstudio - full page screenshot",
+              "title": "should display reaction steps",
               "ok": true,
               "tags": [],
               "tests": [
@@ -219,33 +179,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 4988,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:13.008Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "53bacfe0c91763a7148e-ab3420602498ddac8fc6",
-              "file": "screenshots.spec.js",
-              "line": 26,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-66f14acc7e98fca48b92",
+              "file": "test-visualizations.spec.js",
+              "line": 35,
+              "column": 3
             },
             {
-              "title": "Molekülstudio - with molecule loaded",
+              "title": "should support zoom and pan controls",
               "ok": true,
               "tags": [],
               "tests": [
@@ -253,33 +199,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 7491,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:18.018Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "53bacfe0c91763a7148e-5c4a88b2ed4f6a3cd5f4",
-              "file": "screenshots.spec.js",
-              "line": 33,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-35e1a3c4967d32b4fc50",
+              "file": "test-visualizations.spec.js",
+              "line": 46,
+              "column": 3
             },
             {
-              "title": "Periodensystem - dark mode",
+              "title": "should show molecule structures",
               "ok": true,
               "tags": [],
               "tests": [
@@ -287,296 +219,27 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 6774,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:25.535Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "53bacfe0c91763a7148e-2db0c9580b127102568a",
-              "file": "screenshots.spec.js",
-              "line": 49,
-              "column": 5
-            },
-            {
-              "title": "Mobile view - homepage",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 4430,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:32.324Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "53bacfe0c91763a7148e-7d60692e9f0ed278f3e0",
-              "file": "screenshots.spec.js",
-              "line": 63,
-              "column": 5
-            },
-            {
-              "title": "Mobile view - Periodensystem",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 5881,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:36.767Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "53bacfe0c91763a7148e-6045d88cbcbec173b503",
-              "file": "screenshots.spec.js",
-              "line": 71,
-              "column": 5
-            },
-            {
-              "title": "Mobile view - Molekülstudio",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 5357,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:42.662Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "53bacfe0c91763a7148e-0d5b8c7a786969914ee4",
-              "file": "screenshots.spec.js",
-              "line": 79,
-              "column": 5
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "test-formula-rendering.spec.js",
-      "file": "test-formula-rendering.spec.js",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "KaTeX Assets Loading",
-          "file": "test-formula-rendering.spec.js",
-          "line": 21,
-          "column": 6,
-          "specs": [
-            {
-              "title": "KaTeX CSS should be loaded",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 2796,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:00.207Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-d082d88b5e733aae291f",
-              "file": "test-formula-rendering.spec.js",
-              "line": 23,
-              "column": 5
-            },
-            {
-              "title": "KaTeX JavaScript should be loaded",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 2729,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:03.260Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-75cb2b193cce73d0dd21",
-              "file": "test-formula-rendering.spec.js",
-              "line": 30,
-              "column": 5
-            },
-            {
-              "title": "mhchem extension should be loaded",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 3627,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:06.011Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-d99d0a97e1121188962d",
-              "file": "test-formula-rendering.spec.js",
-              "line": 37,
-              "column": 5
-            },
-            {
-              "title": "auto-render should be configured",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 3608,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:09.653Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-2c7ecfcab432f6f44fee",
-              "file": "test-formula-rendering.spec.js",
-              "line": 44,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-428213be1d407921c789",
+              "file": "test-visualizations.spec.js",
+              "line": 57,
+              "column": 3
             }
           ]
         },
         {
-          "title": "Formula Rendering - Aufbau der Materie",
-          "file": "test-formula-rendering.spec.js",
-          "line": 52,
+          "title": "3D Visualizer",
+          "file": "test-visualizations.spec.js",
+          "line": 69,
           "column": 6,
           "specs": [
             {
-              "title": "should render ion formation formulas",
+              "title": "should load 3D visualization",
               "ok": true,
               "tags": [],
               "tests": [
@@ -584,33 +247,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 4932,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:13.321Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "1c4278dcb60b4531b3d0-96329da8822a1ffba52c",
-              "file": "test-formula-rendering.spec.js",
-              "line": 54,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-2cadf6ead2ea571d015c",
+              "file": "test-visualizations.spec.js",
+              "line": 70,
+              "column": 3
             },
             {
-              "title": "should display atom structure image",
+              "title": "should have Three.js canvas",
               "ok": true,
               "tags": [],
               "tests": [
@@ -618,75 +267,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 3807,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:18.272Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "1c4278dcb60b4531b3d0-ba46acfc74434a985bce",
-              "file": "test-formula-rendering.spec.js",
-              "line": 66,
-              "column": 5
-            }
-          ]
-        },
-        {
-          "title": "PSE Image Display",
-          "file": "test-formula-rendering.spec.js",
-          "line": 76,
-          "column": 6,
-          "specs": [
-            {
-              "title": "should display PSE explanation image",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 5496,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:22.147Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-2cc309a08a39a6443f75",
-              "file": "test-formula-rendering.spec.js",
-              "line": 78,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-c4a94b9a2b7ed4c15fb6",
+              "file": "test-visualizations.spec.js",
+              "line": 81,
+              "column": 3
             },
             {
-              "title": "PSE image should load successfully",
+              "title": "should support camera controls",
               "ok": true,
               "tags": [],
               "tests": [
@@ -694,75 +287,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 1387,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:27.658Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "1c4278dcb60b4531b3d0-db07e357675f88976677",
-              "file": "test-formula-rendering.spec.js",
-              "line": 87,
-              "column": 5
-            }
-          ]
-        },
-        {
-          "title": "Chemical Formula Rendering",
-          "file": "test-formula-rendering.spec.js",
-          "line": 94,
-          "column": 6,
-          "specs": [
-            {
-              "title": "anorganische-verbindungen should render acid-base formulas",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 6332,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:29.059Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-fd5d57aeef8c41ff34e7",
-              "file": "test-formula-rendering.spec.js",
-              "line": 96,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-c85744901bde74fd2287",
+              "file": "test-visualizations.spec.js",
+              "line": 88,
+              "column": 3
             },
             {
-              "title": "energetik should render enthalpy formulas",
+              "title": "should have fullscreen option",
               "ok": true,
               "tags": [],
               "tests": [
@@ -770,1057 +307,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 4940,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:35.403Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "1c4278dcb60b4531b3d0-5be6e24bbb7babce0f7b",
-              "file": "test-formula-rendering.spec.js",
-              "line": 108,
-              "column": 5
-            },
-            {
-              "title": "gleichgewicht-geschwindigkeit should render kinetic equations",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 6153,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:40.361Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-bc57736cf7ea9fca5359",
-              "file": "test-formula-rendering.spec.js",
-              "line": 118,
-              "column": 5
-            }
-          ]
-        },
-        {
-          "title": "Mathematical Formula Rendering",
-          "file": "test-formula-rendering.spec.js",
-          "line": 131,
-          "column": 6,
-          "specs": [
-            {
-              "title": "tipps-tricks should render calculation formulas",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 4993,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:46.540Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-632cfb49b1388fc9dd9f",
-              "file": "test-formula-rendering.spec.js",
-              "line": 133,
-              "column": 5
-            },
-            {
-              "title": "should render fractions correctly",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 4842,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:51.565Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-ea20917b4d13e16e9559",
-              "file": "test-formula-rendering.spec.js",
-              "line": 145,
-              "column": 5
-            }
-          ]
-        },
-        {
-          "title": "All Formula Sections Load Correctly",
-          "file": "test-formula-rendering.spec.js",
-          "line": 156,
-          "column": 6,
-          "specs": [
-            {
-              "title": "all formula sections should return 200 status",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 1382,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:56.423Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-aeec685e480bb000f772",
-              "file": "test-formula-rendering.spec.js",
-              "line": 158,
-              "column": 5
-            },
-            {
-              "title": "all formula sections should have KaTeX content",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 19232,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:57.825Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-8f9e304f9cdc330115a7",
-              "file": "test-formula-rendering.spec.js",
-              "line": 165,
-              "column": 5
-            }
-          ]
-        },
-        {
-          "title": "Regression Tests - Formula Display",
-          "file": "test-formula-rendering.spec.js",
-          "line": 180,
-          "column": 6,
-          "specs": [
-            {
-              "title": "formulas should not show raw LaTeX code",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 5801,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:03:17.069Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-bfb0c8421bc96f81508b",
-              "file": "test-formula-rendering.spec.js",
-              "line": 182,
-              "column": 5
-            },
-            {
-              "title": "chemical formulas should use proper notation",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 5990,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:03:22.882Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-c9bcc035a31aed26a178",
-              "file": "test-formula-rendering.spec.js",
-              "line": 196,
-              "column": 5
-            }
-          ]
-        },
-        {
-          "title": "Interactive Tools with Formulas",
-          "file": "test-formula-rendering.spec.js",
-          "line": 209,
-          "column": 6,
-          "specs": [
-            {
-              "title": "pH-Rechner should load without errors",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 3992,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:03:28.887Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-d78205a9757e30937b76",
-              "file": "test-formula-rendering.spec.js",
-              "line": 211,
-              "column": 5
-            },
-            {
-              "title": "Molare Masse Rechner should load without errors",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 3890,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:03:32.925Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-c44b874dd7a845ceb60d",
-              "file": "test-formula-rendering.spec.js",
-              "line": 225,
-              "column": 5
-            },
-            {
-              "title": "Periodensystem 3D should load without errors",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 5109,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:03:36.833Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-0a2e2678467e070de930",
-              "file": "test-formula-rendering.spec.js",
-              "line": 239,
-              "column": 5
-            }
-          ]
-        },
-        {
-          "title": "Performance - Formula Rendering",
-          "file": "test-formula-rendering.spec.js",
-          "line": 257,
-          "column": 6,
-          "specs": [
-            {
-              "title": "formulas should render within reasonable time",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 6084,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:03:41.957Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-409c7c6af199797f0489",
-              "file": "test-formula-rendering.spec.js",
-              "line": 259,
-              "column": 5
-            },
-            {
-              "title": "no JavaScript errors related to KaTeX",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 5077,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:03:48.061Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "1c4278dcb60b4531b3d0-39beff1d97775e35f8d2",
-              "file": "test-formula-rendering.spec.js",
-              "line": 276,
-              "column": 5
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "test-green-colors.spec.js",
-      "file": "test-green-colors.spec.js",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "Molekülstudio - Green Color Tests",
-          "file": "test-green-colors.spec.js",
-          "line": 27,
-          "column": 6,
-          "specs": [
-            {
-              "title": "Visualisieren button should be green",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 4493,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:00.290Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "f709eb98621c9a6ca88b-910463a1e8801264d3bc",
-              "file": "test-green-colors.spec.js",
-              "line": 29,
-              "column": 5
-            }
-          ]
-        },
-        {
-          "title": "Periodensystem - Green Color Tests",
-          "file": "test-green-colors.spec.js",
-          "line": 45,
-          "column": 6,
-          "specs": [
-            {
-              "title": "Active button should be green",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 5617,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:05.098Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "f709eb98621c9a6ca88b-4fb76bccbf2a5a34d0f2",
-              "file": "test-green-colors.spec.js",
-              "line": 47,
-              "column": 5
-            },
-            {
-              "title": "Element cards should have green shadows",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 7812,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:10.748Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "f709eb98621c9a6ca88b-f630d65a417aaf844662",
-              "file": "test-green-colors.spec.js",
-              "line": 74,
-              "column": 5
-            }
-          ]
-        },
-        {
-          "title": "Navigation - Green Color Tests",
-          "file": "test-green-colors.spec.js",
-          "line": 96,
-          "column": 6,
-          "specs": [
-            {
-              "title": "Navigation links should be green",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 5021,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:18.595Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "f709eb98621c9a6ca88b-fec7798ee6a72db68d80",
-              "file": "test-green-colors.spec.js",
-              "line": 98,
-              "column": 5
-            },
-            {
-              "title": "Site title should be dark green",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 5712,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:23.634Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "f709eb98621c9a6ca88b-90b78a2557a621bb3245",
-              "file": "test-green-colors.spec.js",
-              "line": 123,
-              "column": 5
-            }
-          ]
-        },
-        {
-          "title": "Dark Mode - Green Color Tests",
-          "file": "test-green-colors.spec.js",
-          "line": 137,
-          "column": 6,
-          "specs": [
-            {
-              "title": "Dark mode should use green text colors",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 4655,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:29.360Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "f709eb98621c9a6ca88b-2343a9870355233b24e6",
-              "file": "test-green-colors.spec.js",
-              "line": 139,
-              "column": 5
-            },
-            {
-              "title": "Periodensystem dark mode should have green background",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 5647,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:34.049Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "f709eb98621c9a6ca88b-59a4b58b0264b4f3d4ed",
-              "file": "test-green-colors.spec.js",
-              "line": 159,
-              "column": 5
-            },
-            {
-              "title": "Molekülstudio dark mode buttons should be green",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 5022,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:39.719Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "f709eb98621c9a6ca88b-e6e0cc71ad8d28a5baca",
-              "file": "test-green-colors.spec.js",
-              "line": 191,
-              "column": 5
-            }
-          ]
-        },
-        {
-          "title": "Regression Tests - No Blue Colors",
-          "file": "test-green-colors.spec.js",
-          "line": 211,
-          "column": 6,
-          "specs": [
-            {
-              "title": "Homepage should not have blue buttons",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 4975,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:44.760Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "f709eb98621c9a6ca88b-1c787224197372fbd1e2",
-              "file": "test-green-colors.spec.js",
-              "line": 213,
-              "column": 5
-            },
-            {
-              "title": "Molekülstudio should not have blue interactive elements",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 7166,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:49.793Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "f709eb98621c9a6ca88b-6180d3d1f5f911bf4230",
-              "file": "test-green-colors.spec.js",
-              "line": 234,
-              "column": 5
-            },
-            {
-              "title": "Periodensystem buttons should not be blue",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 4713,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:56.973Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "f709eb98621c9a6ca88b-d227bda2ca58616d75cd",
-              "file": "test-green-colors.spec.js",
-              "line": 255,
-              "column": 5
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "test-molecule-studio-visual.spec.js",
-      "file": "test-molecule-studio-visual.spec.js",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "Molecule Studio - Visual Button Tests",
-          "file": "test-molecule-studio-visual.spec.js",
-          "line": 13,
-          "column": 6,
-          "specs": [
-            {
-              "title": "page loads successfully with all UI elements",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 6351,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:48.091Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-6d9a969928366c4803d0",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 23,
-              "column": 5
-            },
-            {
-              "title": "Visualize button - invalid input shows error",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 7448,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:02:54.467Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-c7632cbbf86f9f321eeb",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 53,
-              "column": 5
-            },
-            {
-              "title": "Suggestion chip - Wasser (H2O)",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 6051,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:03:01.934Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-160fe48736cd7e382b22",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 72,
-              "column": 5
-            },
-            {
-              "title": "Suggestion chip - Methan (CH4)",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 7583,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:03:08.038Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-3d5957620d0e04c5b4a1",
-              "file": "test-molecule-studio-visual.spec.js",
+              "id": "78f5b49ba4b602260f65-4801422930914cf09bf6",
+              "file": "test-visualizations.spec.js",
               "line": 99,
-              "column": 5
+              "column": 3
             },
             {
-              "title": "Suggestion chip - Ammoniak (NH3)",
+              "title": "should load 3D models",
               "ok": true,
               "tags": [],
               "tests": [
@@ -1828,33 +327,39 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 6138,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:03:15.658Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-0290e373049038257bb1",
-              "file": "test-molecule-studio-visual.spec.js",
+              "id": "78f5b49ba4b602260f65-f0d22b53018ca52c7d06",
+              "file": "test-visualizations.spec.js",
+              "line": 110,
+              "column": 3
+            },
+            {
+              "title": "should support object rotation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78f5b49ba4b602260f65-3f5c1b4a426189a581e5",
+              "file": "test-visualizations.spec.js",
               "line": 120,
-              "column": 5
+              "column": 3
             },
             {
-              "title": "Suggestion chip - Kohlendioxid (CO2)",
+              "title": "should have lighting controls",
               "ok": true,
               "tags": [],
               "tests": [
@@ -1862,33 +367,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 6296,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:03:21.836Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-b48c04c6389fd0444090",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 141,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-79eb42120bd67f1d3665",
+              "file": "test-visualizations.spec.js",
+              "line": 137,
+              "column": 3
             },
             {
-              "title": "Suggestion chip - Ethen (C2H4)",
+              "title": "should display legend or labels",
               "ok": true,
               "tags": [],
               "tests": [
@@ -1896,33 +387,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 6080,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:03:28.176Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-f15792b1d4d3b97e53e9",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 162,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-fc1a4b07d8993ded2142",
+              "file": "test-visualizations.spec.js",
+              "line": 148,
+              "column": 3
             },
             {
-              "title": "Visualize button with input field - Enter key",
+              "title": "should support animation toggle",
               "ok": true,
               "tags": [],
               "tests": [
@@ -1930,33 +407,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 8368,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:03:34.269Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-220eae95a56b659c6187",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 183,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-c5187f2192aa4f732a5f",
+              "file": "test-visualizations.spec.js",
+              "line": 159,
+              "column": 3
             },
             {
-              "title": "Visualize button - Click button after typing",
+              "title": "should have loading indicator",
               "ok": true,
               "tags": [],
               "tests": [
@@ -1964,33 +427,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 6448,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:03:42.649Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-3f2f972f7597061f6dca",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 204,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-d63cf43b9608b66d0dff",
+              "file": "test-visualizations.spec.js",
+              "line": 172,
+              "column": 3
             },
             {
-              "title": "Auto-rotate toggle - Disable rotation",
+              "title": "should handle window resize",
               "ok": true,
               "tags": [],
               "tests": [
@@ -1998,33 +447,27 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 6678,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:03:49.123Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-55c9bf6da8530995b5f6",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 223,
-              "column": 5
-            },
+              "id": "78f5b49ba4b602260f65-53635c42bd11f78ec577",
+              "file": "test-visualizations.spec.js",
+              "line": 184,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "Chart Manager",
+          "file": "test-visualizations.spec.js",
+          "line": 199,
+          "column": 6,
+          "specs": [
             {
-              "title": "Auto-rotate toggle - Re-enable rotation",
+              "title": "should load chart library",
               "ok": true,
               "tags": [],
               "tests": [
@@ -2032,33 +475,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 6972,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:03:55.817Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-1b8dd811f23ed9b1c8e1",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 241,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-bbcd1428ba87d1473c35",
+              "file": "test-visualizations.spec.js",
+              "line": 200,
+              "column": 3
             },
             {
-              "title": "Mouse drag - Manual rotation stops auto-rotate",
+              "title": "should display data charts",
               "ok": true,
               "tags": [],
               "tests": [
@@ -2066,37 +495,99 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 6995,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "Auto-rotate checkbox after drag: unchecked\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:04:02.804Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-969c8a68917dbe06d550",
-              "file": "test-molecule-studio-visual.spec.js",
+              "id": "78f5b49ba4b602260f65-d7b54e56621cdbb0b981",
+              "file": "test-visualizations.spec.js",
+              "line": 208,
+              "column": 3
+            },
+            {
+              "title": "should have chart tooltips",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78f5b49ba4b602260f65-c4ad9ec6dcaa62936635",
+              "file": "test-visualizations.spec.js",
+              "line": 219,
+              "column": 3
+            },
+            {
+              "title": "should support chart legend",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78f5b49ba4b602260f65-5070702a2060452334a2",
+              "file": "test-visualizations.spec.js",
+              "line": 238,
+              "column": 3
+            },
+            {
+              "title": "should have chart type selector",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78f5b49ba4b602260f65-6bc6daec4c00310cac7a",
+              "file": "test-visualizations.spec.js",
+              "line": 249,
+              "column": 3
+            },
+            {
+              "title": "should export chart data",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "78f5b49ba4b602260f65-99a675a25ce2eab6e774",
+              "file": "test-visualizations.spec.js",
               "line": 260,
-              "column": 5
+              "column": 3
             },
             {
-              "title": "Mouse wheel - Zoom in and out",
+              "title": "should update chart dynamically",
               "ok": true,
               "tags": [],
               "tests": [
@@ -2104,33 +595,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 7679,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:04:09.827Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-3a1310ab8c1348e011be",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 300,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-fd7852c91f761c3a525c",
+              "file": "test-visualizations.spec.js",
+              "line": 273,
+              "column": 3
             },
             {
-              "title": "All suggestion chips have correct labels",
+              "title": "should support chart animations",
               "ok": true,
               "tags": [],
               "tests": [
@@ -2138,33 +615,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3835,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:04:17.529Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-c0b20494c73c987f2057",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 324,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-fd4e730dd51c56a80109",
+              "file": "test-visualizations.spec.js",
+              "line": 285,
+              "column": 3
             },
             {
-              "title": "Switching between molecules",
+              "title": "should have responsive charts",
               "ok": true,
               "tags": [],
               "tests": [
@@ -2172,279 +635,27 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 9956,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:04:21.377Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-990c2e895e798b3e6c3f",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 341,
-              "column": 5
-            },
-            {
-              "title": "Loading screen appears during molecule loading",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 5579,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:04:31.350Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-5c913256e6857f05b084",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 367,
-              "column": 5
-            },
-            {
-              "title": "Controls info displays correct text",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 4587,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:04:36.953Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-ea1dc111735de50727dc",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 387,
-              "column": 5
-            },
-            {
-              "title": "Input field placeholder text",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3722,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:04:41.562Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-829aa977e4fa930a95f9",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 403,
-              "column": 5
-            },
-            {
-              "title": "Button states - disabled during loading",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 4519,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:04:45.302Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-a64650292b9f764abf60",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 409,
-              "column": 5
-            },
-            {
-              "title": "Responsive layout - mobile viewport",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 6450,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:04:49.847Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-6c15dbff14ecd4d37068",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 424,
-              "column": 5
-            },
-            {
-              "title": "Welcome screen content",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 5299,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:04:56.311Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-ec55f7bb5f29173e9811",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 444,
-              "column": 5
-            },
-            {
-              "title": "Canvas touch action is set correctly",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 4571,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:05:01.627Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-2972174b5a65d455d4b6",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 454,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-8dbd8cf8688331468006",
+              "file": "test-visualizations.spec.js",
+              "line": 298,
+              "column": 3
             }
           ]
         },
         {
-          "title": "Molecule Studio - Accessibility Tests",
-          "file": "test-molecule-studio-visual.spec.js",
-          "line": 465,
+          "title": "Periodic Table Visualization",
+          "file": "test-visualizations.spec.js",
+          "line": 313,
           "column": 6,
           "specs": [
             {
-              "title": "All buttons have accessible text",
+              "title": "should load periodic table visualization",
               "ok": true,
               "tags": [],
               "tests": [
@@ -2452,33 +663,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2928,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:05:06.232Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-457b88856bdddee66bea",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 472,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-d0cfe509685fdbf7097f",
+              "file": "test-visualizations.spec.js",
+              "line": 314,
+              "column": 3
             },
             {
-              "title": "Form input has proper label association",
+              "title": "should have element tooltips",
               "ok": true,
               "tags": [],
               "tests": [
@@ -2486,33 +683,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2509,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:05:09.180Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-469e22850d75fd86e2ed",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 488,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-c3e56d9b76979c61de3e",
+              "file": "test-visualizations.spec.js",
+              "line": 321,
+              "column": 3
             },
             {
-              "title": "Keyboard navigation - Tab order",
+              "title": "should filter elements by category",
               "ok": true,
               "tags": [],
               "tests": [
@@ -2520,33 +703,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2954,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:05:11.707Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-0eb34d0d2c257d80aa0d",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 501,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-0d3961ee04b11b5aa8d2",
+              "file": "test-visualizations.spec.js",
+              "line": 339,
+              "column": 3
             },
             {
-              "title": "Auto-rotate checkbox has label",
+              "title": "should highlight selected element",
               "ok": true,
               "tags": [],
               "tests": [
@@ -2554,117 +723,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 2362,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:05:14.674Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-714c5c76e00212667f6a",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 517,
-              "column": 5
-            }
-          ]
-        },
-        {
-          "title": "Molecule Studio - Visual Regression",
-          "file": "test-molecule-studio-visual.spec.js",
-          "line": 525,
-          "column": 6,
-          "specs": [
-            {
-              "title": "Compare all molecule renders",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 18423,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:05:17.049Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-3ff4ca18b8364c386d63",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 527,
-              "column": 5
-            }
-          ]
-        },
-        {
-          "title": "Periodensystem - Layout Tests",
-          "file": "test-molecule-studio-visual.spec.js",
-          "line": 548,
-          "column": 6,
-          "specs": [
-            {
-              "title": "No overlap between menu and PSE container",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3694,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:05:35.488Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-db82323c5ffecca5f0e1",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 556,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-668dd7f6ff46a9eeb6cf",
+              "file": "test-visualizations.spec.js",
+              "line": 350,
+              "column": 3
             },
             {
-              "title": "Header is hidden on PSE page",
+              "title": "should show element details panel",
               "ok": true,
               "tags": [],
               "tests": [
@@ -2672,33 +743,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3829,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:05:39.199Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-0f7cea75b2b5ee978d53",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 579,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-62cdae37abc076e62ff7",
+              "file": "test-visualizations.spec.js",
+              "line": 373,
+              "column": 3
             },
             {
-              "title": "PSE container fills available space",
+              "title": "should have color coding by element groups",
               "ok": true,
               "tags": [],
               "tests": [
@@ -2706,33 +763,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3479,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:05:43.046Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-b113fac91cbec3034760",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 590,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-bfc29720db9148e29c3c",
+              "file": "test-visualizations.spec.js",
+              "line": 391,
+              "column": 3
             },
             {
-              "title": "Menu buttons are clickable and not overlapped",
+              "title": "should support search for elements",
               "ok": true,
               "tags": [],
               "tests": [
@@ -2740,33 +783,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3890,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:05:46.541Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-031e82857e2801d7d7bf",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 608,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-76eb7edb8cb3b5bdd878",
+              "file": "test-visualizations.spec.js",
+              "line": 406,
+              "column": 3
             },
             {
-              "title": "Footer is visible below menu",
+              "title": "should display element properties",
               "ok": true,
               "tags": [],
               "tests": [
@@ -2774,33 +803,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3629,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:05:50.443Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-0076c9e120601e71ef8f",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 625,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-f6d070acb957988e5cb3",
+              "file": "test-visualizations.spec.js",
+              "line": 419,
+              "column": 3
             },
             {
-              "title": "Footer does not overlay PSE container",
+              "title": "should have zoom controls for periodic table",
               "ok": true,
               "tags": [],
               "tests": [
@@ -2808,420 +823,16 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3690,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:05:54.083Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
-              "id": "691813478e4d2d163561-901a17243b676f55821b",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 645,
-              "column": 5
-            },
-            {
-              "title": "PSE elements remain clickable with footer present",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 6401,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:05:57.785Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-e372af5010e00fffc8a8",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 672,
-              "column": 5
-            },
-            {
-              "title": "Dark mode - no white stripe on PSE page",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 4225,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:06:04.203Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-bf005b644c3bc25a53ec",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 693,
-              "column": 5
-            }
-          ]
-        },
-        {
-          "title": "Periodensystem - Mobile View Tests",
-          "file": "test-molecule-studio-visual.spec.js",
-          "line": 728,
-          "column": 6,
-          "specs": [
-            {
-              "title": "Mobile viewport - buttons are accessible",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 4724,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:06:08.445Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-3a8865c0a814cfea9101",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 730,
-              "column": 5
-            },
-            {
-              "title": "Mobile viewport - container fills available space",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3969,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:06:13.184Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-a33fa141f6c65d976e01",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 757,
-              "column": 5
-            },
-            {
-              "title": "Mobile viewport - mode switching works",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 14826,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:06:17.185Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-bdc9366693fb96919b98",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 774,
-              "column": 5
-            },
-            {
-              "title": "Mobile viewport - footer visible below menu",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3977,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:06:32.029Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-82f84c046a14dad6145f",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 801,
-              "column": 5
-            },
-            {
-              "title": "Mobile dark mode - no white stripe",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 3331,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:06:36.019Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-3f2f2d68c68ac6c0dfe3",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 822,
-              "column": 5
-            },
-            {
-              "title": "Tablet viewport - proper layout",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 4302,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:06:39.361Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-7b90c047658741300430",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 851,
-              "column": 5
-            }
-          ]
-        },
-        {
-          "title": "Periodensystem - Active Button Tests",
-          "file": "test-molecule-studio-visual.spec.js",
-          "line": 873,
-          "column": 6,
-          "specs": [
-            {
-              "title": "Grid button is active on page load",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 4662,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:06:43.677Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-3fd35f7e560f0258a029",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 881,
-              "column": 5
-            },
-            {
-              "title": "Active button changes when clicking different modes",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 16496,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:06:48.353Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-f584830aa89e75573cd5",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 899,
-              "column": 5
-            },
-            {
-              "title": "Active button has different visual style",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 4514,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-12-31T22:07:04.867Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "691813478e4d2d163561-8df04f1f2094ef7cb5b9",
-              "file": "test-molecule-studio-visual.spec.js",
-              "line": 929,
-              "column": 5
+              "id": "78f5b49ba4b602260f65-0070b5e607fa69999d8f",
+              "file": "test-visualizations.spec.js",
+              "line": 430,
+              "column": 3
             }
           ]
         }
@@ -3230,10 +841,10 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-12-31T22:01:59.046Z",
-    "duration": 311062.164,
-    "expected": 85,
-    "skipped": 0,
+    "startTime": "2026-03-27T22:47:39.879Z",
+    "duration": 59.778999999999996,
+    "expected": 0,
+    "skipped": 34,
     "unexpected": 0,
     "flaky": 0
   }
