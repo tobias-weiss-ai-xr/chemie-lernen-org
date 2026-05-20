@@ -21,8 +21,8 @@ RUN mkdir -p /usr/local/src \
     && curl -L https://github.com/tdewolff/minify/releases/download/v2.24.8/minify_linux_amd64.tar.gz | tar -xz \
     && mv minify /usr/local/bin/ \
 
-    && addgroup -Sg 1000 hugo \
-    && adduser -SG hugo -u 1000 -h /src hugo
+    && addgroup -Sg 1001 hugo \
+    && adduser -SG hugo -u 1001 -h /src hugo
 
 WORKDIR /src
 

@@ -17,8 +17,6 @@ Grundstraße 69<br>
 78628 Rottweil<br>
 Germany
 
-(Einzelunternehmer / Sole Proprietorship)
-
 ## Kontakt / Contact
 
 **E-Mail:** spam@tobias-weiss.org
@@ -76,4 +74,4 @@ Unless otherwise noted, all images and graphics on this website are the property
 
 ---
 
-**Letzte Aktualisierung:** 22. Dezember 2025
+**Letzte Aktualisierung:** 18. Mai 2026
