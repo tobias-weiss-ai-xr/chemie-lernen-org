@@ -126,10 +126,11 @@ author = "chemie-lernen.org Team"
     name = "Roadmap"
     url = "/pages/roadmap/"
     weight = 40
-[[menu.main]]
-    name = "Über uns"
-    url = "/pages/about/"
-    weight = 50
+# REMOVED: about page (2026-05-20)
+# [[menu.main]]
+#     name = "Über uns"
+#     url = "/pages/about/"
+#     weight = 50
 #[[menu.main]]
 #    name = "Kontakt"
 #    url = "/pages/contact/"
