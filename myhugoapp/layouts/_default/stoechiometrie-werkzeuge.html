@@ -1,0 +1,168 @@
+{{ define "main" }}
+
+<script src="/js/lazy-loader.js"></script>
+
+<div class="stoichiometry-calculator-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Equation Parser -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="parser-section" style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 2px solid #2196F3;">
+        <h3 style="color: #1976D2; margin-top: 0;">
+          <i class="fa fa-flask"></i> Reaktionsgleichung automatisch analysieren
+        </h3>
+        <p>Geben Sie eine Reaktionsgleichung ein, um die Koeffizienten automatisch zu extrahieren:</p>
+        <div class="form-group">
+          <input type="text" id="equation-parser-input" class="form-control"
+                 placeholder="z.B. 2H2 + O2 -> 2H2O oder CH4 + 2O2 -> CO2 + 2H2O"
+                 style="font-size: 16px; padding: 12px;"
+                 aria-label="Reaktionsgleichung eingeben">
+        </div>
+        <button class="btn btn-primary" onclick="parseEquation()">
+          <i class="fa fa-cogs"></i> Gleichung analysieren
+        </button>
+        <div id="parser-result" style="display:none; margin-top: 15px;">
+          <div class="result-box">
+            <h4>Erkannte Koeffizienten:</h4>
+            <div id="parsed-coefficients"></div>
+            <div id="apply-buttons" style="margin-top: 15px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Periodic Table / Molar Mass Lookup -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="periodic-table-section" style="background: #f3e5f5; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 2px solid #9C27B0;">
+        <h3 style="color: #7B1FA2; margin-top: 0;">
+          <i class="fa fa-table"></i> Molare Massen nachschlagen
+        </h3>
+        <p>Suchen Sie nach einem Element, um die molare Masse anzuzeigen:</p>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-8">
+              <select id="element-selector" class="form-control" style="font-size: 16px; padding: 12px;" aria-label="Element auswählen">
+                <option value="">-- Element auswählen --</option>
+                <optgroup label="Nichtmetalle">
+                  <option value="H:1.008">H - Wasserstoff (1.008 g/mol)</option>
+                  <option value="C:12.011">C - Kohlenstoff (12.011 g/mol)</option>
+                  <option value="N:14.007">N - Stickstoff (14.007 g/mol)</option>
+                  <option value="O:15.999">O - Sauerstoff (15.999 g/mol)</option>
+                  <option value="F:18.998">F - Fluor (18.998 g/mol)</option>
+                  <option value="P:30.974">P - Phosphor (30.974 g/mol)</option>
+                  <option value="S:32.06">S - Schwefel (32.06 g/mol)</option>
+                  <option value="Cl:35.45">Cl - Chlor (35.45 g/mol)</option>
+                  <option value="I:126.90">I - Iod (126.90 g/mol)</option>
+                </optgroup>
+                <optgroup label="Metalle (Hauptgruppe)">
+                  <option value="Li:6.941">Li - Lithium (6.941 g/mol)</option>
+                  <option value="Na:22.990">Na - Natrium (22.990 g/mol)</option>
+                  <option value="K:39.098">K - Kalium (39.098 g/mol)</option>
+                  <option value="Be:9.012">Be - Beryllium (9.012 g/mol)</option>
+                  <option value="Mg:24.305">Mg - Magnesium (24.305 g/mol)</option>
+                  <option value="Ca:40.078">Ca - Calcium (40.078 g/mol)</option>
+                  <option value="Al:26.982">Al - Aluminium (26.982 g/mol)</option>
+                  <option value="Fe:55.845">Fe - Eisen (55.845 g/mol)</option>
+                  <option value="Cu:63.546">Cu - Kupfer (63.546 g/mol)</option>
+                  <option value="Zn:65.38">Zn - Zink (65.38 g/mol)</option>
+                  <option value="Ag:107.87">Ag - Silber (107.87 g/mol)</option>
+                  <option value="Au:196.97">Au - Gold (196.97 g/mol)</option>
+                </optgroup>
+                <optgroup label="Übergangsmetalle">
+                  <option value="Cr:51.996">Cr - Chrom (51.996 g/mol)</option>
+                  <option value="Mn:54.938">Mn - Mangan (54.938 g/mol)</option>
+                  <option value="Ni:58.693">Ni - Nickel (58.693 g/mol)</option>
+                  <option value="Pt:195.08">Pt - Platin (195.08 g/mol)</option>
+                </optgroup>
+                <optgroup label="Edelgase">
+                  <option value="He:4.0026">He - Helium (4.0026 g/mol)</option>
+                  <option value="Ne:20.180">Ne - Neon (20.180 g/mol)</option>
+                  <option value="Ar:39.948">Ar - Argon (39.948 g/mol)</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <p class="text-muted" style="margin-top: 25px;">Wählen Sie ein Element, um die molare Masse anzuzeigen</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="molar-mass-info" style="display:none; margin-top: 15px;">
+          <div class="alert alert-info">
+            <div id="molar-mass-details"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calculation History -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="history-section">
+        <button class="btn btn-info btn-sm" onclick="toggleHistory()" type="button">
+          <i class="fa fa-history"></i> Berechnungsverlauf
+          <span id="history-count" class="badge">(0)</span>
+        </button>
+        <button class="btn btn-default btn-sm" onclick="clearHistory()" type="button" style="margin-left: 10px;">
+          <i class="fa fa-trash"></i> Verlauf löschen
+        </button>
+
+        <div id="history-panel" style="display:none; margin-top: 15px;">
+          <div class="well">
+            <h4>Letzte Berechnungen</h4>
+            <div id="history-list" class="history-list">
+              <p class="text-muted"><small>Noch keine Berechnungen durchgeführt.</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{{ end }}
+
+{{ define "css" }}
+<style>
+.stoichiometry-calculator-container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+.result-box { background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px; padding: 20px; }
+.result-box h3 { color: #155724; margin-top: 0; }
+.history-section { margin-bottom: 20px; }
+.history-list { max-height: 400px; overflow-y: auto; }
+.history-item { animation: slideIn 0.3s ease; }
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.badge { background-color: #2196F3; color: white; padding: 2px 6px; border-radius: 10px; font-size: 12px; margin-left: 5px; }
+</style>
+{{ end }}
+
+{{ define "js" }}
+<script src="/js/lazy-loader.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof LazyLoader !== 'undefined') {
+    LazyLoader.loadCalculator('werkzeuge').catch(function(err) {
+      console.error('Failed to load tools:', err);
+    });
+  } else {
+    console.error('LazyLoader not available');
+  }
+});
+</script>
+{{ end }}

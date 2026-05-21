@@ -1,0 +1,120 @@
+{{ define "main" }}
+
+<script src="/js/lazy-loader.js"></script>
+
+<div class="stoichiometry-calculator-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Practice Mode Section -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="practice-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 8px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <h3 style="color: white; margin-top: 0;">
+              <i class="fa fa-graduation-cap"></i> Übungsmodus
+            </h3>
+            <p style="color: rgba(255,255,255,0.9); margin-bottom: 0;">
+              Teste dein Wissen mit zufälligen Stöchiometrie-Aufgaben!
+            </p>
+          </div>
+          <div style="text-align: right; color: white;">
+            <p style="font-size: 14px; margin-bottom: 5px;">Punkte: <strong id="practice-score" style="font-size: 24px;">0</strong></p>
+            <p style="font-size: 14px; margin: 0;">Richtig: <span id="correct-count">0</span> | Falsch: <span id="incorrect-count">0</span></p>
+          </div>
+        </div>
+
+        <div id="practice-setup" style="background: white; padding: 20px; border-radius: 8px; margin-top: 15px;">
+          <div class="row">
+            <div class="col-md-4">
+              <label>Aufgabentyp:</label>
+              <select id="practice-type" class="form-control" aria-label="Aufgabentyp wählen">
+                <option value="mol-mol">Mol-Mol Umrechnung</option>
+                <option value="mass-mass">Masse-Masse Umrechnung</option>
+                <option value="limiting">Limitierendes Reagenz</option>
+                <option value="yield">Ausbeute berechnen</option>
+                <option value="random">Zufällig</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label>Schwierigkeit:</label>
+              <select id="practice-difficulty" class="form-control" aria-label="Schwierigkeit wählen">
+                <option value="easy">Einfach (ganze Zahlen)</option>
+                <option value="medium">Mittel (Dezimalzahlen)</option>
+                <option value="hard">Schwer (komplexe Reaktionen)</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label>&nbsp;</label>
+              <button class="btn btn-success btn-block" onclick="startPractice()">
+                <i class="fa fa-play"></i> Aufgabe starten
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="practice-problem" style="display:none; background: white; padding: 20px; border-radius: 8px; margin-top: 15px;">
+          <h4 style="color: #667eea; margin-top: 0;">Aufgabe <span id="problem-number">1</span></h4>
+          <div id="problem-content"></div>
+
+          <div id="answer-section" style="margin-top: 20px;">
+            <label>Deine Antwort:</label>
+            <div class="row">
+              <div class="col-md-8">
+                <input type="number" id="practice-answer" class="form-control" step="any" placeholder="Ergebnis eingeben..." aria-label="Deine Antwort eingeben">
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-primary btn-block" onclick="checkAnswer()">
+                  <i class="fa fa-check"></i> Prüfen
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="feedback-section" style="display:none; margin-top: 20px;"></div>
+
+          <div style="margin-top: 20px; text-align: center;">
+            <button class="btn btn-default" onclick="skipProblem()">
+              <i class="fa fa-forward"></i> Überspringen
+            </button>
+            <button class="btn btn-warning" onclick="resetPractice()" style="margin-left: 10px;">
+              <i class="fa fa-refresh"></i> Neustart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{{ end }}
+
+{{ define "css" }}
+<style>
+.stoichiometry-calculator-container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+</style>
+{{ end }}
+
+{{ define "js" }}
+<script src="/js/lazy-loader.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof LazyLoader !== 'undefined') {
+    LazyLoader.loadCalculator('uebungen').catch(function(err) {
+      console.error('Failed to load practice:', err);
+    });
+  } else {
+    console.error('LazyLoader not available');
+  }
+});
+</script>
+{{ end }}
