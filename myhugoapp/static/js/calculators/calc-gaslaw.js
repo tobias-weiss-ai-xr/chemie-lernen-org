@@ -1,0 +1,367 @@
+/* global saveToHistory */
+
+function loadSTP() {
+  document.getElementById('gas-pressure').value = 1;
+  document.getElementById('gas-pressure-unit').value = 'atm';
+  document.getElementById('gas-volume').value = 22.414;
+  document.getElementById('gas-volume-unit').value = 'L';
+  document.getElementById('gas-amount').value = 1;
+  document.getElementById('gas-amount-unit').value = 'mol';
+  document.getElementById('gas-temperature').value = 0;
+  document.getElementById('gas-temperature-unit').value = 'C';
+  document.getElementById('gas-constant-select').value = '0.08206';
+  document.getElementById('gas-calculate-variable').value = 'V';
+
+  convertTemperatureToKelvin();
+}
+
+function loadSATP() {
+  document.getElementById('gas-pressure').value = 1;
+  document.getElementById('gas-pressure-unit').value = 'bar';
+  document.getElementById('gas-volume').value = 24.789;
+  document.getElementById('gas-volume-unit').value = 'L';
+  document.getElementById('gas-amount').value = 1;
+  document.getElementById('gas-amount-unit').value = 'mol';
+  document.getElementById('gas-temperature').value = 25;
+  document.getElementById('gas-temperature-unit').value = 'C';
+  document.getElementById('gas-constant-select').value = '0.08314';
+  document.getElementById('gas-calculate-variable').value = 'V';
+
+  convertTemperatureToKelvin();
+}
+
+function loadGasExample() {
+  document.getElementById('gas-pressure').value = 2.5;
+  document.getElementById('gas-pressure-unit').value = 'atm';
+  document.getElementById('gas-volume').value = 10;
+  document.getElementById('gas-volume-unit').value = 'L';
+  document.getElementById('gas-temperature').value = 25;
+  document.getElementById('gas-temperature-unit').value = 'C';
+  document.getElementById('gas-constant-select').value = '0.08206';
+  document.getElementById('gas-calculate-variable').value = 'n';
+
+  convertTemperatureToKelvin();
+}
+
+function convertTemperatureToKelvin() {
+  var temp = parseFloat(document.getElementById('gas-temperature').value);
+  var unit = document.getElementById('gas-temperature-unit').value;
+  var display = document.getElementById('kelvin-value');
+
+  if (isNaN(temp)) {
+    display.textContent = '-';
+    return;
+  }
+
+  var kelvin;
+  switch(unit) {
+    case 'K':
+      kelvin = temp;
+      break;
+    case 'C':
+      kelvin = temp + 273.15;
+      break;
+    case 'F':
+      kelvin = (temp - 32) * 5/9 + 273.15;
+      break;
+  }
+
+  display.textContent = kelvin.toFixed(2);
+}
+
+function updateGasInputs() {
+  var variable = document.getElementById('gas-calculate-variable').value;
+  var pressureInput = document.getElementById('gas-pressure');
+  var volumeInput = document.getElementById('gas-volume');
+  var amountInput = document.getElementById('gas-amount');
+  var temperatureInput = document.getElementById('gas-temperature');
+
+  pressureInput.disabled = false;
+  volumeInput.disabled = false;
+  amountInput.disabled = false;
+  temperatureInput.disabled = false;
+
+  switch(variable) {
+    case 'P':
+      pressureInput.disabled = true;
+      pressureInput.placeholder = 'Wird berechnet...';
+      volumeInput.placeholder = 'z.B. 22.4';
+      amountInput.placeholder = 'z.B. 1';
+      temperatureInput.placeholder = 'z.B. 273.15';
+      break;
+    case 'V':
+      volumeInput.disabled = true;
+      volumeInput.placeholder = 'Wird berechnet...';
+      pressureInput.placeholder = 'z.B. 1';
+      amountInput.placeholder = 'z.B. 1';
+      temperatureInput.placeholder = 'z.B. 273.15';
+      break;
+    case 'n':
+      amountInput.disabled = true;
+      amountInput.placeholder = 'Wird berechnet...';
+      pressureInput.placeholder = 'z.B. 1';
+      volumeInput.placeholder = 'z.B. 22.4';
+      temperatureInput.placeholder = 'z.B. 273.15';
+      break;
+    case 'T':
+      temperatureInput.disabled = true;
+      temperatureInput.placeholder = 'Wird berechnet...';
+      pressureInput.placeholder = 'z.B. 1';
+      volumeInput.placeholder = 'z.B. 22.4';
+      amountInput.placeholder = 'z.B. 1';
+      break;
+  }
+
+  if (variable === 'P') {pressureInput.value = '';}
+  if (variable === 'V') {volumeInput.value = '';}
+  if (variable === 'n') {amountInput.value = '';}
+  if (variable === 'T') {temperatureInput.value = '';}
+}
+
+function convertPressureToAtm(pressure, unit) {
+  switch(unit) {
+    case 'atm': return pressure;
+    case 'bar': return pressure * 0.986923;
+    case 'Pa': return pressure / 101325;
+    case 'kPa': return pressure / 101.325;
+    case 'Torr': return pressure / 760;
+    case 'mmHg': return pressure / 760;
+    default: return pressure;
+  }
+}
+
+function convertVolumeToLiters(volume, unit) {
+  switch(unit) {
+    case 'L': return volume;
+    case 'mL': return volume / 1000;
+    case 'm3': return volume * 1000;
+    case 'cm3': return volume / 1000;
+    default: return volume;
+  }
+}
+
+function convertAmountToMoles(amount, unit) {
+  switch(unit) {
+    case 'mol': return amount;
+    case 'mmol': return amount / 1000;
+    default: return amount;
+  }
+}
+
+function convertToKelvin(temp, unit) {
+  switch(unit) {
+    case 'K': return temp;
+    case 'C': return temp + 273.15;
+    case 'F': return (temp - 32) * 5/9 + 273.15;
+    default: return temp;
+  }
+}
+
+function calculateGasLaw() {
+  var calculateVariable = document.getElementById('gas-calculate-variable').value;
+  var R = parseFloat(document.getElementById('gas-constant-select').value);
+
+  var pressureValue = parseFloat(document.getElementById('gas-pressure').value);
+  var pressureUnit = document.getElementById('gas-pressure-unit').value;
+  var volumeValue = parseFloat(document.getElementById('gas-volume').value);
+  var volumeUnit = document.getElementById('gas-volume-unit').value;
+  var amountValue = parseFloat(document.getElementById('gas-amount').value);
+  var amountUnit = document.getElementById('gas-amount-unit').value;
+  var temperatureValue = parseFloat(document.getElementById('gas-temperature').value);
+  var temperatureUnit = document.getElementById('gas-temperature-unit').value;
+
+  var P_atm, V_L, n_mol, T_K;
+
+  try {
+    P_atm = calculateVariable !== 'P' ? convertPressureToAtm(pressureValue, pressureUnit) : null;
+    V_L = calculateVariable !== 'V' ? convertVolumeToLiters(volumeValue, volumeUnit) : null;
+    n_mol = calculateVariable !== 'n' ? convertAmountToMoles(amountValue, amountUnit) : null;
+    T_K = calculateVariable !== 'T' ? convertToKelvin(temperatureValue, temperatureUnit) : null;
+
+    if (calculateVariable !== 'P' && (isNaN(P_atm) || P_atm <= 0)) {
+      throw new Error('Ung\u00fcltiger Druckwert');
+    }
+    if (calculateVariable !== 'V' && (isNaN(V_L) || V_L <= 0)) {
+      throw new Error('Ung\u00fcltiges Volumenwert');
+    }
+    if (calculateVariable !== 'n' && (isNaN(n_mol) || n_mol <= 0)) {
+      throw new Error('Ung\u00fcltige Stoffmenge');
+    }
+    if (calculateVariable !== 'T' && (isNaN(T_K) || T_K <= 0)) {
+      throw new Error('Ung\u00fcltige Temperatur (muss > 0 K sein)');
+    }
+
+    var result;
+    var resultUnit;
+
+    switch(calculateVariable) {
+      case 'n':
+        result = (P_atm * V_L) / (R * T_K);
+        resultUnit = 'mol';
+        break;
+      case 'P':
+        result = (n_mol * R * T_K) / V_L;
+        resultUnit = pressureUnit;
+        break;
+      case 'V':
+        result = (n_mol * R * T_K) / P_atm;
+        resultUnit = volumeUnit;
+        break;
+      case 'T':
+        result = (P_atm * V_L) / (n_mol * R);
+        resultUnit = 'K';
+        break;
+    }
+
+    displayGasResult(calculateVariable, result, resultUnit, P_atm, V_L, n_mol, T_K, R);
+
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+function displayGasResult(variable, result, unit, P, V, n, T, R) {
+  var resultDiv = document.getElementById('gas-result');
+  var contentDiv = document.getElementById('gas-result-content');
+
+  var variableNames = {
+    'P': 'Druck',
+    'V': 'Volumen',
+    'n': 'Stoffmenge',
+    'T': 'Temperatur'
+  };
+
+  var html = '<div style="background: white; padding: 20px; border-radius: 8px;">';
+
+  html += '<div style="margin-bottom: 20px; padding: 15px; background: #e3f2fd; border-radius: 4px; text-align: center;">';
+  html += '<h4 style="color: #1976D2; margin-top: 0;">Ideales Gasgesetz</h4>';
+  html += '<p style="font-size: 24px; font-weight: bold; color: #0D47A1;">PV = nRT</p>';
+
+  var formulaText = '';
+  switch(variable) {
+    case 'n':
+      formulaText = 'n = PV \u00f7 RT = ' + P.toFixed(4) + ' \u00d7 ' + V.toFixed(4) + ' \u00f7 (' + R + ' \u00d7 ' + T.toFixed(2) + ')';
+      break;
+    case 'P':
+      formulaText = 'P = nRT \u00f7 V = ' + n.toFixed(4) + ' \u00d7 ' + R + ' \u00d7 ' + T.toFixed(2) + ' \u00f7 ' + V.toFixed(4);
+      break;
+    case 'V':
+      formulaText = 'V = nRT \u00f7 P = ' + n.toFixed(4) + ' \u00d7 ' + R + ' \u00d7 ' + T.toFixed(2) + ' \u00f7 ' + P.toFixed(4);
+      break;
+    case 'T':
+      formulaText = 'T = PV \u00f7 nR = ' + P.toFixed(4) + ' \u00d7 ' + V.toFixed(4) + ' \u00f7 (' + n.toFixed(4) + ' \u00d7 ' + R + ')';
+      break;
+  }
+  html += '<p style="font-size: 16px; color: #1976D2;">' + formulaText + '</p>';
+  html += '</div>';
+
+  html += '<div style="margin-bottom: 20px;">';
+  html += '<h4>Bekannte Werte:</h4>';
+  html += '<table class="table table-bordered" style="background: white;">';
+  if (variable !== 'P') {html += '<tr><td><strong>Druck (P)</strong></td><td>' + P.toFixed(4) + ' atm</td></tr>';}
+  if (variable !== 'V') {html += '<tr><td><strong>Volumen (V)</strong></td><td>' + V.toFixed(4) + ' L</td></tr>';}
+  if (variable !== 'n') {html += '<tr><td><strong>Stoffmenge (n)</strong></td><td>' + n.toFixed(4) + ' mol</td></tr>';}
+  if (variable !== 'T') {html += '<tr><td><strong>Temperatur (T)</strong></td><td>' + T.toFixed(2) + ' K (' + convertFromKelvin(T).toFixed(1) + '\u00b0C)</td></tr>';}
+  html += '<tr><td><strong>Gaskonstante (R)</strong></td><td>' + R + ' L\u00b7atm/(mol\u00b7K)</td></tr>';
+  html += '</table>';
+  html += '</div>';
+
+  html += '<div style="padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; text-align: center;">';
+  html += '<h3 style="margin-top: 0;">' + variableNames[variable] + '</h3>';
+  html += '<p style="font-size: 32px; font-weight: bold;">' + result.toFixed(4) + ' ' + unit + '</p>';
+
+  if (variable === 'T') {
+    html += '<p style="font-size: 18px;">(' + convertFromKelvin(result).toFixed(1) + '\u00b0C)</p>';
+  }
+
+  html += '<div style="margin-top: 20px; text-align: left;">';
+  if (variable === 'n') {
+    var molarVolume = V / result;
+    html += '<p><strong>Molares Volumen:</strong> ' + molarVolume.toFixed(4) + ' L/mol</p>';
+    var massExample = result * 2.016;
+    html += '<p><strong>Beispiel (H\u2082):</strong> ' + massExample.toFixed(4) + ' g</p>';
+  }
+  if (variable === 'V' && n > 0) {
+    var molarVolumeV = result / n;
+    html += '<p><strong>Molares Volumen:</strong> ' + molarVolumeV.toFixed(4) + ' L/mol</p>';
+  }
+  html += '</div>';
+  html += '</div>';
+
+  html += '</div>';
+
+  contentDiv.innerHTML = html;
+  resultDiv.style.display = 'block';
+
+  var historyData = variableNames[variable] + ': ' + result.toFixed(4) + ' ' + unit;
+  saveToHistory('Gasgesetz (PV=nRT)', historyData);
+}
+
+function convertFromKelvin(kelvin) {
+  return kelvin - 273.15;
+}
+
+function exportGasToPDF() {
+  var jsPDF = window.jspdf;
+  var doc = new jsPDF();
+
+  doc.setFontSize(20);
+  doc.setTextColor(102, 126, 234);
+  doc.text('St\u00f6chiometrie-Rechner', 105, 20, { align: 'center' });
+
+  doc.setFontSize(16);
+  doc.setTextColor(0, 0, 0);
+  doc.text('Ideales Gasgesetz (PV=nRT)', 105, 35, { align: 'center' });
+
+  doc.setDrawColor(200, 200, 200);
+  doc.line(20, 45, 190, 45);
+
+  var y = 60;
+
+  var calculateVariable = document.getElementById('gas-calculate-variable').value;
+  var R = document.getElementById('gas-constant-select').value;
+  var pressure = document.getElementById('gas-pressure').value;
+  var pressureUnit = document.getElementById('gas-pressure-unit').value;
+  var volume = document.getElementById('gas-volume').value;
+  var volumeUnit = document.getElementById('gas-volume-unit').value;
+  var amount = document.getElementById('gas-amount').value;
+  var amountUnit = document.getElementById('gas-amount-unit').value;
+  var temperature = document.getElementById('gas-temperature').value;
+  var temperatureUnit = document.getElementById('gas-temperature-unit').value;
+
+  doc.setFontSize(14);
+  doc.setTextColor(0, 0, 0);
+  doc.text('Berechnung: ' + calculateVariable, 20, y);
+  y += 15;
+
+  doc.setFontSize(12);
+  doc.text('Eingabewerte:', 20, y); y += 10;
+
+  if (calculateVariable !== 'P') {doc.text('Druck: ' + pressure + ' ' + pressureUnit, 25, y); y += 8;}
+  if (calculateVariable !== 'V') {doc.text('Volumen: ' + volume + ' ' + volumeUnit, 25, y); y += 8;}
+  if (calculateVariable !== 'n') {doc.text('Stoffmenge: ' + amount + ' ' + amountUnit, 25, y); y += 8;}
+  if (calculateVariable !== 'T') {doc.text('Temperatur: ' + temperature + ' ' + temperatureUnit, 25, y); y += 8;}
+  doc.text('Gaskonstante: R = ' + R, 25, y); y += 15;
+
+  doc.setFontSize(14);
+  doc.setTextColor(0, 123, 255);
+  doc.text('Formel: PV = nRT', 20, y); y += 15;
+
+  doc.setFontSize(10);
+  doc.setTextColor(150, 150, 150);
+  doc.text('Datum: ' + new Date().toLocaleDateString('de-DE'), 20, 285);
+  doc.text('chemie-lernen.org', 105, 285, { align: 'center' });
+
+  doc.save('gasgesetz-' + calculateVariable + '-' + Date.now() + '.pdf');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateGasInputs();
+  var tempInput = document.getElementById('gas-temperature');
+  var tempUnit = document.getElementById('gas-temperature-unit');
+
+  if (tempInput && tempUnit) {
+    tempInput.addEventListener('input', convertTemperatureToKelvin);
+    tempUnit.addEventListener('change', convertTemperatureToKelvin);
+  }
+});
