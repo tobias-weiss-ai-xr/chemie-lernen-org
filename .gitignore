@@ -14,3 +14,6 @@ tests/screenshots/
 
 # Git worktrees
 .worktrees/
+
+# Article pipeline seen-URLs database
+myhugoapp/content/posts/.urls.json
