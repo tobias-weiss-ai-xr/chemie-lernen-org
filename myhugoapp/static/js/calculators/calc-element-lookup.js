@@ -1,4 +1,4 @@
-var elementDatabase = {
+const elementDatabase = {
   'H': { symbol: 'H', name: 'Wasserstoff', mass: 1.008, number: 1 },
   'C': { symbol: 'C', name: 'Kohlenstoff', mass: 12.011, number: 6 },
   'N': { symbol: 'N', name: 'Stickstoff', mass: 14.007, number: 7 },
@@ -29,20 +29,20 @@ var elementDatabase = {
   'Ar': { symbol: 'Ar', name: 'Argon', mass: 39.948, number: 18 }
 };
 
-// eslint-disable-next-line no-unused-vars
+
 function applyMolarMass() {
-  var selector = document.getElementById('element-selector');
-  var selectedValue = selector.value;
+  const selector = document.getElementById('element-selector');
+  const selectedValue = selector.value;
 
   if (!selectedValue) {
     alert('Bitte wählen Sie ein Element aus.');
     return;
   }
 
-  var parts = selectedValue.split(':');
-  var symbol = parts[0];
-  var mass = parts[1];
-  var element = elementDatabase[symbol];
+  const parts = selectedValue.split(':');
+  const symbol = parts[0];
+  const mass = parts[1];
+  const element = elementDatabase[symbol];
 
   if (!element) {
     alert('Element nicht gefunden: ' + symbol);
@@ -53,15 +53,15 @@ function applyMolarMass() {
 
   applyMolarMassToCalculator(element);
 
-  setTimeout(function() {
+  setTimeout(() => {
     document.querySelector('a[href="#masse-masse"]').click();
     document.querySelectorAll('.calculator-panel')[1].scrollIntoView({ behavior: 'smooth' });
   }, 300);
 }
 
 function showElementInfo(element) {
-  var infoContainer = document.getElementById('molar-mass-info');
-  var detailsContainer = document.getElementById('molar-mass-details');
+  const infoContainer = document.getElementById('molar-mass-info');
+  const detailsContainer = document.getElementById('molar-mass-details');
 
   detailsContainer.innerHTML =
     '<strong>' + element.symbol + '</strong> - ' + element.name + '<br>' +
@@ -74,8 +74,8 @@ function showElementInfo(element) {
 }
 
 function applyMolarMassToCalculator(element) {
-  var reactantField = document.getElementById('mm-r');
-  var productField = document.getElementById('mm-p');
+  const reactantField = document.getElementById('mm-r');
+  const productField = document.getElementById('mm-p');
 
   if (!reactantField.value || parseFloat(reactantField.value) === 0) {
     reactantField.value = element.mass;
@@ -84,7 +84,7 @@ function applyMolarMassToCalculator(element) {
     productField.value = element.mass;
     alert(element.symbol + ' (' + element.name + ') molare Masse ' + element.mass + ' g/mol als Produkt übernommen');
   } else {
-    var choice = confirm(
+    const choice = confirm(
       element.symbol + ' (' + element.name + ') - M = ' + element.mass + ' g/mol\n\n' +
       'Beide Felder sind ausgefüllt:\n' +
       'Edukt: ' + reactantField.value + ' g/mol\n' +

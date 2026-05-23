@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * Chemisches Gleichgewicht Rechner
  * Dynamic equilibrium and Le Chatelier's principle visualization

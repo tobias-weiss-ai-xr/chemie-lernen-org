@@ -1,4 +1,4 @@
-var practiceState = {
+let practiceState = {
   score: 0,
   correct: 0,
   incorrect: 0,
@@ -161,7 +161,7 @@ function generateMassMassProblem(difficulty) {
 }
 
 function generateLimitingProblem(difficulty) {
-  let m1, M1, m2, M2;
+  let m1, m2;
 
   const elements = [
     { symbol: 'H\u2082', M: 2.016 },
@@ -171,8 +171,8 @@ function generateLimitingProblem(difficulty) {
     { symbol: 'K', M: 39.10 }
   ];
 
-  M1 = elements[Math.floor(Math.random() * elements.length)].M;
-  M2 = elements[Math.floor(Math.random() * elements.length)].M;
+  const M1 = elements[Math.floor(Math.random() * elements.length)].M;
+  const M2 = elements[Math.floor(Math.random() * elements.length)].M;
 
   if (difficulty === 'easy') {
     m1 = Math.floor(Math.random() * 20) + 5;
@@ -220,7 +220,7 @@ function generateLimitingProblem(difficulty) {
 }
 
 function generateYieldProblem(difficulty) {
-  let theoretical, actual, yieldPct;
+  let theoretical, yieldPct;
 
   if (difficulty === 'easy') {
     yieldPct = Math.floor(Math.random() * 30) + 70;
@@ -233,7 +233,7 @@ function generateYieldProblem(difficulty) {
     theoretical = (Math.floor(Math.random() * 150) + 5) / 4;
   }
 
-  actual = (theoretical * yieldPct) / 100;
+  const actual = (theoretical * yieldPct) / 100;
   const answer = yieldPct;
 
   practiceState.currentProblem = {

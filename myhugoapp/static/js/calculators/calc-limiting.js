@@ -1,23 +1,23 @@
 /* global saveToHistory */
 
-// eslint-disable-next-line no-unused-vars
+
 function calcLimiting() {
-  var m1 = parseFloat(document.getElementById('lim-m1').value);
-  var M1 = parseFloat(document.getElementById('lim-mm1').value);
-  var m2 = parseFloat(document.getElementById('lim-m2').value);
-  var M2 = parseFloat(document.getElementById('lim-mm2').value);
+  const m1 = parseFloat(document.getElementById('lim-m1').value);
+  const M1 = parseFloat(document.getElementById('lim-mm1').value);
+  const m2 = parseFloat(document.getElementById('lim-m2').value);
+  const M2 = parseFloat(document.getElementById('lim-mm2').value);
 
   if (isNaN(m1) || isNaN(M1) || isNaN(m2) || isNaN(M2)) {
     alert('Bitte geben Sie alle Werte ein');
     return;
   }
 
-  var n1 = m1 / M1;
-  var n2_2 = m2 / M2;
+  const n1 = m1 / M1;
+  const n2_2 = m2 / M2;
 
-  var limiting = n1 < n2_2 ? 1 : 2;
-  var name = limiting === 1 ? 'Reagenz 1' : 'Reagenz 2';
-  var other = limiting === 1 ? n2_2 - n1 : n1 - n2_2;
+  const limiting = n1 < n2_2 ? 1 : 2;
+  const name = limiting === 1 ? 'Reagenz 1' : 'Reagenz 2';
+  const other = limiting === 1 ? n2_2 - n1 : n1 - n2_2;
 
   document.getElementById('limit-result').style.display = 'block';
   document.getElementById('limit-result').innerHTML =
@@ -88,9 +88,9 @@ function calcLimiting() {
   saveToHistory('Limitierendes Reagenz', name + ' (' + n1.toFixed(4) + ' vs ' + n2_2.toFixed(4) + ' mol)');
 }
 
-// eslint-disable-next-line no-unused-vars
+
 function toggleLimitingExplanation() {
-  var explanation = document.getElementById('limiting-explanation');
+  const explanation = document.getElementById('limiting-explanation');
   if (explanation) {
     explanation.style.display = explanation.style.display === 'none' ? 'block' : 'none';
   }

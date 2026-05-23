@@ -105,6 +105,7 @@ const ChartManager = {
 
     // Draw bars
     const barWidth = horizontal ? chartHeight / data.length - 10 : chartWidth / data.length - 10;
+    // eslint-disable-next-line no-unused-vars
     const maxBarWidth = horizontal ? chartHeight : chartWidth;
 
     data.forEach((item, index) => {

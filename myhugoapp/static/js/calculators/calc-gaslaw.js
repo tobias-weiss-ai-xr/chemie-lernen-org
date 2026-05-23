@@ -44,16 +44,16 @@ function loadGasExample() {
 }
 
 function convertTemperatureToKelvin() {
-  var temp = parseFloat(document.getElementById('gas-temperature').value);
-  var unit = document.getElementById('gas-temperature-unit').value;
-  var display = document.getElementById('kelvin-value');
+  const temp = parseFloat(document.getElementById('gas-temperature').value);
+  const unit = document.getElementById('gas-temperature-unit').value;
+  const display = document.getElementById('kelvin-value');
 
   if (isNaN(temp)) {
     display.textContent = '-';
     return;
   }
 
-  var kelvin;
+  let kelvin;
   switch(unit) {
     case 'K':
       kelvin = temp;
@@ -70,11 +70,11 @@ function convertTemperatureToKelvin() {
 }
 
 function updateGasInputs() {
-  var variable = document.getElementById('gas-calculate-variable').value;
-  var pressureInput = document.getElementById('gas-pressure');
-  var volumeInput = document.getElementById('gas-volume');
-  var amountInput = document.getElementById('gas-amount');
-  var temperatureInput = document.getElementById('gas-temperature');
+  const variable = document.getElementById('gas-calculate-variable').value;
+  const pressureInput = document.getElementById('gas-pressure');
+  const volumeInput = document.getElementById('gas-volume');
+  const amountInput = document.getElementById('gas-amount');
+  const temperatureInput = document.getElementById('gas-temperature');
 
   pressureInput.disabled = false;
   volumeInput.disabled = false;
@@ -158,19 +158,19 @@ function convertToKelvin(temp, unit) {
 }
 
 function calculateGasLaw() {
-  var calculateVariable = document.getElementById('gas-calculate-variable').value;
-  var R = parseFloat(document.getElementById('gas-constant-select').value);
+  const calculateVariable = document.getElementById('gas-calculate-variable').value;
+  const R = parseFloat(document.getElementById('gas-constant-select').value);
 
-  var pressureValue = parseFloat(document.getElementById('gas-pressure').value);
-  var pressureUnit = document.getElementById('gas-pressure-unit').value;
-  var volumeValue = parseFloat(document.getElementById('gas-volume').value);
-  var volumeUnit = document.getElementById('gas-volume-unit').value;
-  var amountValue = parseFloat(document.getElementById('gas-amount').value);
-  var amountUnit = document.getElementById('gas-amount-unit').value;
-  var temperatureValue = parseFloat(document.getElementById('gas-temperature').value);
-  var temperatureUnit = document.getElementById('gas-temperature-unit').value;
+  const pressureValue = parseFloat(document.getElementById('gas-pressure').value);
+  const pressureUnit = document.getElementById('gas-pressure-unit').value;
+  const volumeValue = parseFloat(document.getElementById('gas-volume').value);
+  const volumeUnit = document.getElementById('gas-volume-unit').value;
+  const amountValue = parseFloat(document.getElementById('gas-amount').value);
+  const amountUnit = document.getElementById('gas-amount-unit').value;
+  const temperatureValue = parseFloat(document.getElementById('gas-temperature').value);
+  const temperatureUnit = document.getElementById('gas-temperature-unit').value;
 
-  var P_atm, V_L, n_mol, T_K;
+  let P_atm, V_L, n_mol, T_K;
 
   try {
     P_atm = calculateVariable !== 'P' ? convertPressureToAtm(pressureValue, pressureUnit) : null;
@@ -191,8 +191,8 @@ function calculateGasLaw() {
       throw new Error('Ung\u00fcltige Temperatur (muss > 0 K sein)');
     }
 
-    var result;
-    var resultUnit;
+    let result;
+    let resultUnit;
 
     switch(calculateVariable) {
       case 'n':
@@ -221,23 +221,23 @@ function calculateGasLaw() {
 }
 
 function displayGasResult(variable, result, unit, P, V, n, T, R) {
-  var resultDiv = document.getElementById('gas-result');
-  var contentDiv = document.getElementById('gas-result-content');
+  const resultDiv = document.getElementById('gas-result');
+  const contentDiv = document.getElementById('gas-result-content');
 
-  var variableNames = {
+  const variableNames = {
     'P': 'Druck',
     'V': 'Volumen',
     'n': 'Stoffmenge',
     'T': 'Temperatur'
   };
 
-  var html = '<div style="background: white; padding: 20px; border-radius: 8px;">';
+  let html = '<div style="background: white; padding: 20px; border-radius: 8px;">';
 
   html += '<div style="margin-bottom: 20px; padding: 15px; background: #e3f2fd; border-radius: 4px; text-align: center;">';
   html += '<h4 style="color: #1976D2; margin-top: 0;">Ideales Gasgesetz</h4>';
   html += '<p style="font-size: 24px; font-weight: bold; color: #0D47A1;">PV = nRT</p>';
 
-  var formulaText = '';
+  let formulaText = '';
   switch(variable) {
     case 'n':
       formulaText = 'n = PV \u00f7 RT = ' + P.toFixed(4) + ' \u00d7 ' + V.toFixed(4) + ' \u00f7 (' + R + ' \u00d7 ' + T.toFixed(2) + ')';
@@ -276,13 +276,13 @@ function displayGasResult(variable, result, unit, P, V, n, T, R) {
 
   html += '<div style="margin-top: 20px; text-align: left;">';
   if (variable === 'n') {
-    var molarVolume = V / result;
+    const molarVolume = V / result;
     html += '<p><strong>Molares Volumen:</strong> ' + molarVolume.toFixed(4) + ' L/mol</p>';
-    var massExample = result * 2.016;
+    const massExample = result * 2.016;
     html += '<p><strong>Beispiel (H\u2082):</strong> ' + massExample.toFixed(4) + ' g</p>';
   }
   if (variable === 'V' && n > 0) {
-    var molarVolumeV = result / n;
+    const molarVolumeV = result / n;
     html += '<p><strong>Molares Volumen:</strong> ' + molarVolumeV.toFixed(4) + ' L/mol</p>';
   }
   html += '</div>';
@@ -293,7 +293,7 @@ function displayGasResult(variable, result, unit, P, V, n, T, R) {
   contentDiv.innerHTML = html;
   resultDiv.style.display = 'block';
 
-  var historyData = variableNames[variable] + ': ' + result.toFixed(4) + ' ' + unit;
+  const historyData = variableNames[variable] + ': ' + result.toFixed(4) + ' ' + unit;
   saveToHistory('Gasgesetz (PV=nRT)', historyData);
 }
 
@@ -302,8 +302,8 @@ function convertFromKelvin(kelvin) {
 }
 
 function exportGasToPDF() {
-  var jsPDF = window.jspdf;
-  var doc = new jsPDF();
+  const jsPDF = window.jspdf;
+  const doc = new jsPDF();
 
   doc.setFontSize(20);
   doc.setTextColor(102, 126, 234);
@@ -316,18 +316,18 @@ function exportGasToPDF() {
   doc.setDrawColor(200, 200, 200);
   doc.line(20, 45, 190, 45);
 
-  var y = 60;
+  let y = 60;
 
-  var calculateVariable = document.getElementById('gas-calculate-variable').value;
-  var R = document.getElementById('gas-constant-select').value;
-  var pressure = document.getElementById('gas-pressure').value;
-  var pressureUnit = document.getElementById('gas-pressure-unit').value;
-  var volume = document.getElementById('gas-volume').value;
-  var volumeUnit = document.getElementById('gas-volume-unit').value;
-  var amount = document.getElementById('gas-amount').value;
-  var amountUnit = document.getElementById('gas-amount-unit').value;
-  var temperature = document.getElementById('gas-temperature').value;
-  var temperatureUnit = document.getElementById('gas-temperature-unit').value;
+  const calculateVariable = document.getElementById('gas-calculate-variable').value;
+  const R = document.getElementById('gas-constant-select').value;
+  const pressure = document.getElementById('gas-pressure').value;
+  const pressureUnit = document.getElementById('gas-pressure-unit').value;
+  const volume = document.getElementById('gas-volume').value;
+  const volumeUnit = document.getElementById('gas-volume-unit').value;
+  const amount = document.getElementById('gas-amount').value;
+  const amountUnit = document.getElementById('gas-amount-unit').value;
+  const temperature = document.getElementById('gas-temperature').value;
+  const temperatureUnit = document.getElementById('gas-temperature-unit').value;
 
   doc.setFontSize(14);
   doc.setTextColor(0, 0, 0);
@@ -355,10 +355,10 @@ function exportGasToPDF() {
   doc.save('gasgesetz-' + calculateVariable + '-' + Date.now() + '.pdf');
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   updateGasInputs();
-  var tempInput = document.getElementById('gas-temperature');
-  var tempUnit = document.getElementById('gas-temperature-unit');
+  const tempInput = document.getElementById('gas-temperature');
+  const tempUnit = document.getElementById('gas-temperature-unit');
 
   if (tempInput && tempUnit) {
     tempInput.addEventListener('input', convertTemperatureToKelvin);

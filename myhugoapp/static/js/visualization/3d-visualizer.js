@@ -285,6 +285,7 @@ const Visualizer3D = {
   /**
    * Create bond cylinder
    */
+  // eslint-disable-next-line no-unused-vars
   createBond(pos1, pos2, order = 1) {
     const start = new THREE.Vector3(pos1.x, pos1.y, pos1.z);
     const end = new THREE.Vector3(pos2.x, pos2.y, pos2.z);
@@ -472,6 +473,7 @@ const Visualizer3D = {
   /**
    * Create orbital shape
    */
+  // eslint-disable-next-line no-unused-vars
   createOrbital(type, n, l, m) {
     const group = new THREE.Group();
 

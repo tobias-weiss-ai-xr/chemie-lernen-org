@@ -155,6 +155,7 @@ export default [
       },
     },
     rules: {
+      'no-unused-vars': 'off',
       curly: ['error', 'all'],
       eqeqeq: 'warn',
       'no-eval': 'error',

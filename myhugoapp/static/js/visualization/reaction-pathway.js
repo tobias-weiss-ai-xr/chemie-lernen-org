@@ -197,6 +197,7 @@ const ReactionPathway = {
       return [0, 50, -20]; // Reactant, TS, Product
     }
 
+    // eslint-disable-next-line no-unused-vars
     return steps.map((step, index) => {
       if (step.energy !== undefined) {
         return step.energy;

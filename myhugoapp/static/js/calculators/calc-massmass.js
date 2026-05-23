@@ -1,21 +1,21 @@
 /* global saveToHistory */
 
-// eslint-disable-next-line no-unused-vars
+
 function calcMassMass() {
-  var m1 = parseFloat(document.getElementById('mass-r').value);
-  var M1 = parseFloat(document.getElementById('mm-r').value);
-  var M2 = parseFloat(document.getElementById('mm-p').value);
-  var v1 = parseFloat(document.getElementById('mass-coeff-r').value);
-  var v2 = parseFloat(document.getElementById('mass-coeff-p').value);
+  const m1 = parseFloat(document.getElementById('mass-r').value);
+  const M1 = parseFloat(document.getElementById('mm-r').value);
+  const M2 = parseFloat(document.getElementById('mm-p').value);
+  const v1 = parseFloat(document.getElementById('mass-coeff-r').value);
+  const v2 = parseFloat(document.getElementById('mass-coeff-p').value);
 
   if (isNaN(m1) || isNaN(M1) || isNaN(M2) || isNaN(v1) || isNaN(v2)) {
     alert('Bitte geben Sie alle Werte ein');
     return;
   }
 
-  var n1 = m1 / M1;
-  var n2 = n1 * (v2 / v1);
-  var m2 = n2 * M2;
+  const n1 = m1 / M1;
+  const n2 = n1 * (v2 / v1);
+  const m2 = n2 * M2;
 
   document.getElementById('mass-preview').innerHTML =
     '<p style="font-size:2em; color:#007bff;">' + m2.toFixed(2) + '</p>' +
@@ -108,9 +108,9 @@ function calcMassMass() {
   saveToHistory('Masse-Masse', m1 + ' g \u2192 ' + m2.toFixed(2) + ' g (\u03bd\u2081=' + v1 + ', \u03bd\u2082=' + v2 + ')');
 }
 
-// eslint-disable-next-line no-unused-vars
+
 function toggleMassMassExplanation() {
-  var explanation = document.getElementById('mass-mass-explanation');
+  const explanation = document.getElementById('mass-mass-explanation');
   if (explanation) {
     explanation.style.display = explanation.style.display === 'none' ? 'block' : 'none';
   }

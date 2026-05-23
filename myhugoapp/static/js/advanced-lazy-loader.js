@@ -101,7 +101,7 @@ class LazyLoader {
   async dynamicImportWithFallback(modulePath) {
     try {
       return await import(modulePath);
-    } catch (error) {
+    } catch (_error) {
       return this.scriptInjectionFallback(modulePath);
     }
   }
@@ -176,7 +176,7 @@ class LazyLoader {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
         .register('/sw.js')
-        .then((registration) => {
+        .then((_registration) => {
           console.log('Service Worker registered');
         })
         .catch((error) => {

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Chemical Equation Balancer JavaScript
 
 // Parse chemical formula using shared utility from ChemistryUtils

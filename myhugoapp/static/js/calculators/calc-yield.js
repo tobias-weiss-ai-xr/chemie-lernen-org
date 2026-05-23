@@ -1,16 +1,16 @@
 /* global saveToHistory */
 
-// eslint-disable-next-line no-unused-vars
+
 function calcYield() {
-  var theo = parseFloat(document.getElementById('yield-theo').value);
-  var act = parseFloat(document.getElementById('yield-act').value);
+  const theo = parseFloat(document.getElementById('yield-theo').value);
+  const act = parseFloat(document.getElementById('yield-act').value);
 
   if (isNaN(theo) || isNaN(act)) {
     alert('Bitte geben Sie alle Werte ein');
     return;
   }
 
-  var yield_pct = (act / theo) * 100;
+  const yield_pct = (act / theo) * 100;
 
   document.getElementById('yield-result').style.display = 'block';
   document.getElementById('yield-result').innerHTML =
@@ -96,9 +96,9 @@ function calcYield() {
   saveToHistory('Ausbeute', yield_pct.toFixed(2) + '% (' + act + 'g / ' + theo + 'g)');
 }
 
-// eslint-disable-next-line no-unused-vars
+
 function toggleYieldExplanation() {
-  var explanation = document.getElementById('yield-explanation');
+  const explanation = document.getElementById('yield-explanation');
   if (explanation) {
     explanation.style.display = explanation.style.display === 'none' ? 'block' : 'none';
   }

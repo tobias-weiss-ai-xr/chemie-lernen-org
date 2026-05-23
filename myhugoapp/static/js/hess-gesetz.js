@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * Hess-Gesetz Rechner
  * Interactive enthalpy calculations with reaction pathway comparisons

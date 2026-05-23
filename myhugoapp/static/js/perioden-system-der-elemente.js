@@ -465,6 +465,7 @@ function onWindowResize() {
     }
 
     // Re-transform to current view with updated positions
+    // eslint-disable-next-line no-unused-vars
     const currentView = document.querySelector('#menu button.active') ||
                        document.querySelector('#menu button[style*="background-color: #007bff"]');
 

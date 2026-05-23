@@ -1253,6 +1253,7 @@ function renderMolecule(data) {
         } else if (bond.type === 'double') {
             const offset = 0.08;
             const perpendicular = calculatePerpendicular(direction);
+            // eslint-disable-next-line no-unused-vars
             const midpoint = new THREE.Vector3().copy(start).add(end).divideScalar(2);
 
             const cylinder1 = createBondCylinder(

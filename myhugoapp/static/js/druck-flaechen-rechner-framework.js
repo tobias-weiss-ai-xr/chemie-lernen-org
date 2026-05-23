@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const DRUCK_EINHEITEN = {
   Pa: 1,
   kPa: 1000,

@@ -1,17 +1,17 @@
 /* global saveToHistory */
 
-// eslint-disable-next-line no-unused-vars
+
 function calcMolMol() {
-  var n1 = parseFloat(document.getElementById('mol-reactant').value);
-  var v1 = parseFloat(document.getElementById('mol-coeff-r').value);
-  var v2 = parseFloat(document.getElementById('mol-coeff-p').value);
+  const n1 = parseFloat(document.getElementById('mol-reactant').value);
+  const v1 = parseFloat(document.getElementById('mol-coeff-r').value);
+  const v2 = parseFloat(document.getElementById('mol-coeff-p').value);
 
   if (isNaN(n1) || isNaN(v1) || isNaN(v2)) {
     alert('Bitte geben Sie alle Werte ein');
     return;
   }
 
-  var n2 = n1 * (v2 / v1);
+  const n2 = n1 * (v2 / v1);
   document.getElementById('mol-result').style.display = 'block';
 
   document.getElementById('mol-calc').innerHTML =
@@ -83,9 +83,9 @@ function calcMolMol() {
   saveToHistory('Mol-Mol', '\u03bd\u2081=' + v1 + ', \u03bd\u2082=' + v2 + ': ' + n1 + ' mol \u2192 ' + n2.toFixed(4) + ' mol');
 }
 
-// eslint-disable-next-line no-unused-vars
+
 function toggleMolMolExplanation() {
-  var explanation = document.getElementById('mol-mol-explanation');
+  const explanation = document.getElementById('mol-mol-explanation');
   if (explanation) {
     explanation.style.display = explanation.style.display === 'none' ? 'block' : 'none';
   }

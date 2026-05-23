@@ -1,5 +1,5 @@
 // Preset reactions data
-var presets = {
+const presets = {
   water: {
     name: 'Wasserbildung',
     equation: '2H2 + O2 -> 2H2O',
@@ -37,7 +37,7 @@ var presets = {
   }
 };
 
-var massPresets = {
+const massPresets = {
   water: {
     name: 'Wasserbildung',
     v1: 2,
@@ -80,9 +80,9 @@ var massPresets = {
   }
 };
 
-// eslint-disable-next-line no-unused-vars
+
 function loadPreset(presetKey) {
-  var preset = presets[presetKey];
+  const preset = presets[presetKey];
   if (!preset) {return;}
 
   document.getElementById('reaction-1').value = preset.equation;
@@ -94,9 +94,9 @@ function loadPreset(presetKey) {
   document.getElementById('mol-result').style.display = 'none';
 }
 
-// eslint-disable-next-line no-unused-vars
+
 function loadMassPreset(presetKey) {
-  var preset = massPresets[presetKey];
+  const preset = massPresets[presetKey];
   if (!preset) {return;}
 
   document.getElementById('mass-coeff-r').value = preset.v1;

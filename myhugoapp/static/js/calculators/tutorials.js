@@ -1,10 +1,10 @@
-var tutorialState = {
+const tutorialState = {
   currentTutorial: null,
   currentStep: 0,
   completedTutorials: JSON.parse(localStorage.getItem('completedTutorials') || '[]')
 };
 
-var tutorials = {
+const tutorials = {
   1: {
     title: 'Was ist Stöchiometrie?',
     color: '#4CAF50',

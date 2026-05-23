@@ -2,9 +2,9 @@
 
 function saveToHistory(type, data) {
   try {
-    var history = JSON.parse(localStorage.getItem('stoichHistory') || '[]');
+    const history = JSON.parse(localStorage.getItem('stoichHistory') || '[]');
 
-    var entry = {
+    const entry = {
       id: Date.now(),
       timestamp: new Date().toLocaleString('de-DE'),
       type: type,
@@ -32,16 +32,16 @@ function loadHistory() {
 
 function displayHistory() {
   try {
-    var history = JSON.parse(localStorage.getItem('stoichHistory') || '[]');
-    var historyList = document.getElementById('history-list');
+    const history = JSON.parse(localStorage.getItem('stoichHistory') || '[]');
+    const historyList = document.getElementById('history-list');
 
     if (history.length === 0) {
       historyList.innerHTML = '<p class="text-muted"><small>Noch keine Berechnungen durchgeführt.</small></p>';
       return;
     }
 
-    var html = '<div class="history-items">';
-    history.forEach(function(entry) {
+    let html = '<div class="history-items">';
+    history.forEach((entry) => {
       html +=
         '<div class="history-item" style="padding: 10px; margin-bottom: 8px; background: #f5f5f5; border-radius: 4px; border-left: 3px solid #007bff;">' +
           '<div style="display: flex; justify-content: space-between; align-items: start;">' +
@@ -61,9 +61,9 @@ function displayHistory() {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
+
 function toggleHistory() {
-  var panel = document.getElementById('history-panel');
+  const panel = document.getElementById('history-panel');
   if (panel.style.display === 'none') {
     panel.style.display = 'block';
     displayHistory();
@@ -74,15 +74,15 @@ function toggleHistory() {
 
 function updateHistoryCount() {
   try {
-    var history = JSON.parse(localStorage.getItem('stoichHistory') || '[]');
-    var countBadge = document.getElementById('history-count');
+    const history = JSON.parse(localStorage.getItem('stoichHistory') || '[]');
+    const countBadge = document.getElementById('history-count');
     countBadge.textContent = '(' + history.length + ')';
   } catch (e) {
     console.error('Error updating history count:', e);
   }
 }
 
-// eslint-disable-next-line no-unused-vars
+
 function clearHistory() {
   if (confirm('Möchten Sie wirklich den gesamten Berechnungsverlauf löschen?')) {
     localStorage.removeItem('stoichHistory');
@@ -95,13 +95,13 @@ function clearHistory() {
 
 function checkForBalancedEquation() {
   try {
-    var balancedData = sessionStorage.getItem('balancedEquation');
+    const balancedData = sessionStorage.getItem('balancedEquation');
 
     if (!balancedData) {
       return;
     }
 
-    var data = JSON.parse(balancedData);
+    const data = JSON.parse(balancedData);
 
     if (!data.reactants || !data.products || data.reactants.length === 0 || data.products.length === 0) {
       console.warn('Invalid balanced equation data structure');
@@ -110,19 +110,19 @@ function checkForBalancedEquation() {
 
     showImportNotification(data);
 
-    var firstReactant = data.reactants[0];
-    var firstProduct = data.products[0];
+    const firstReactant = data.reactants[0];
+    const firstProduct = data.products[0];
 
-    var molCoeffR = document.getElementById('mol-coeff-r');
-    var molCoeffP = document.getElementById('mol-coeff-p');
+    const molCoeffR = document.getElementById('mol-coeff-r');
+    const molCoeffP = document.getElementById('mol-coeff-p');
 
     if (molCoeffR && molCoeffP) {
       molCoeffR.value = firstReactant.coefficient;
       molCoeffP.value = firstProduct.coefficient;
     }
 
-    var massCoeffR = document.getElementById('mass-coeff-r');
-    var massCoeffP = document.getElementById('mass-coeff-p');
+    const massCoeffR = document.getElementById('mass-coeff-r');
+    const massCoeffP = document.getElementById('mass-coeff-p');
 
     if (massCoeffR && massCoeffP) {
       massCoeffR.value = firstReactant.coefficient;
@@ -137,7 +137,7 @@ function checkForBalancedEquation() {
 }
 
 function showImportNotification(data) {
-  var notification = document.createElement('div');
+  const notification = document.createElement('div');
   notification.style.cssText =
     'position: fixed;' +
     'top: 20px;' +
@@ -151,9 +151,9 @@ function showImportNotification(data) {
     'max-width: 400px;' +
     'animation: slideIn 0.5s ease;';
 
-  var equationStr = data.reactants.map(function(r) { return (r.coefficient > 1 ? r.coefficient : '') + r.formula; }).join(' + ') +
+  const equationStr = data.reactants.map((r) => { return (r.coefficient > 1 ? r.coefficient : '') + r.formula; }).join(' + ') +
     ' → ' +
-    data.products.map(function(p) { return (p.coefficient > 1 ? p.coefficient : '') + p.formula; }).join(' + ');
+    data.products.map((p) => { return (p.coefficient > 1 ? p.coefficient : '') + p.formula; }).join(' + ');
 
   notification.innerHTML =
     '<div style="display: flex; align-items: start;">' +
@@ -170,8 +170,8 @@ function showImportNotification(data) {
 
   document.body.appendChild(notification);
 
-  setTimeout(function() {
+  setTimeout(() => {
     notification.style.animation = 'slideOut 0.5s ease';
-    setTimeout(function() { notification.remove(); }, 500);
+    setTimeout(() => { notification.remove(); }, 500);
   }, 5000);
 }
