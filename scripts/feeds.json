@@ -1,0 +1,37 @@
+[
+  {
+    "url": "https://rss.arxiv.org/rss/cs.CE",
+    "lang": "en",
+    "category": "forschung"
+  },
+  {
+    "url": "https://www.chemistryworld.com/rss",
+    "lang": "en",
+    "category": "news"
+  },
+  {
+    "url": "https://www.spektrum.de/rss/chemie/",
+    "lang": "de",
+    "category": "news"
+  },
+  {
+    "url": "https://phys.org/rss-feed/chemistry-news/",
+    "lang": "en",
+    "category": "news"
+  },
+  {
+    "url": "https://cen.acs.org/rss",
+    "lang": "en",
+    "category": "news"
+  },
+  {
+    "url": "https://www.nature.com/chem.rss",
+    "lang": "en",
+    "category": "forschung"
+  },
+  {
+    "url": "https://www.gdch.de/rss",
+    "lang": "de",
+    "category": "news"
+  }
+]
