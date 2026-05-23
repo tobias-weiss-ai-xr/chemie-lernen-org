@@ -11,3 +11,6 @@ tests/screenshots/
 
 # Build artifacts
 *.optimized.js
+
+# Git worktrees
+.worktrees/
