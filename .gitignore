@@ -8,3 +8,6 @@ tests/playwright-report/
 tests/test-results/
 tests/playwright-report/
 tests/screenshots/
+
+# Build artifacts
+*.optimized.js

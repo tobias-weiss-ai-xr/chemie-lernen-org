@@ -13,7 +13,6 @@ const filesToMinify = [
   'myhugoapp/static/js/calculators/stoichiometry.js',
   'myhugoapp/static/js/calculators/practice-generators.js',
   'myhugoapp/static/js/lazy-loader.js',
-  // Note: stoichiometry-calculator-page.js contains HTML templates and is skipped
 ];
 
 const colors = {

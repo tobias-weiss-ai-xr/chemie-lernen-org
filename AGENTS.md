@@ -25,7 +25,7 @@ npm run lint:fix
 npm run format
 npm run validate              # lint + format:check + test
 
-# Build (Docker-based, uses Hugo extended 0.57.0)
+# Build (Docker-based)
 npm run build                  # docker run hugo --minify
 
 # Optimize (⚠️ minify OVERWRITES source files in-place)
@@ -76,22 +76,18 @@ Most JS files use `sourceType: 'script'` (global scope, `<script>` tags). Only T
 
 ## Testing
 
-### Two separate Playwright configs
+### Playwright config
 
-- `playwright.config.js` (root) — used by CI GitHub Actions workflow
-- `tests/playwright.config.js` (tests dir) — used for local/manual runs; includes mobile projects
-
-Both test against the **live production site** (`BASE_URL` defaults to `https://chemie-lernen.org`). There is no local webServer config — E2E tests require the site to be deployed.
+`tests/playwright.config.js` — the canonical config. Tests against the **live production site** (`BASE_URL` defaults to `https://chemie-lernen.org`). There is no local webServer config — E2E tests require the site to be deployed.
 
 ### Test file naming
 
 - `*.test.js` → Jest unit tests (jsdom environment, match `**/tests/**/*.test.js`)
 - `*.spec.js` → Playwright E2E tests (match `**/*.spec.js`)
 
-### CI (GitHub Actions)
+### CI
 
-- `jest-tests.yml` — Node 20, `npm ci`, `npx jest --coverage`
-- `playwright-tests.yml` — matrix: chromium/firefox/webkit + Mobile Chrome/Mobile Safari; scheduled weekly (Monday 06:00); 2 retries on CI; artifacts retained 30 days
+Self-hosted systemd timer triggers pull, build, and deploy on push to master.
 
 ## Conventions
 
@@ -114,6 +110,3 @@ Husky runs `npx lint-staged` — eslint + prettier on staged JS, JSON, MD, HTML,
 ## Deployment
 
 - **Production**: `docker-compose.yml` serves `myhugoapp/public/` via nginx behind Traefik (HTTPS via Let's Encrypt)
-- **Docker build**: Hugo extended 0.57.0 + minify tool (Alpine-based `Dockerfile`)
-- **Alternative CI**: GitLab CI and Bitbucket Pipelines configs in `ci-deploy/` (rsync-based deploy)
-- **Dependabot**: Weekly npm + GitHub Actions updates (config in `.github/dependabot.yml`)
