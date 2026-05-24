@@ -1,0 +1,345 @@
+{{ define "main" }}
+
+<div class="saeuren-basen-gleichgewicht-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a href="#ice-tabelle" aria-controls="ice-tabelle" role="tab" data-toggle="tab">
+            <i class="fa fa-table"></i> ICE-Tabelle
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#buffersysteme" aria-controls="buffersysteme" role="tab" data-toggle="tab">
+            <i class="fa fa-flask"></i> Puffersysteme
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#massenwirkung" aria-controls="massenwirkung" role="tab" data-toggle="tab">
+            <i class="fa fa-balance-scale"></i> MWG
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <!-- ICE Table Tab -->
+    <div class="tab-pane active" id="ice-tabelle" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>ICE-Tabelle (Initial-Change-Equilibrium)</h2>
+        <p>Berechnen Sie das Gleichgewicht einer schwachen Säure/Base mit der ICE-Methode.</p>
+
+        <div class="form-group">
+          <label for="reaction-type">Reaktionstyp:</label>
+          <select id="reaction-type" class="form-control" onchange="updateICETable()">
+            <option value="weak-acid">Schwache Säure-Dissoziation (HA ⇌ H⁺ + A⁻)</option>
+            <option value="weak-base">Schwache Base-Protonierung (B + H₂O ⇌ BH⁺ + OH⁻)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="ka-value">Kₐ oder K_b-Wert:</label>
+          <input type="number" id="ka-value" class="form-control" value="1.8e-5" step="any" min="0" placeholder="z.B. 1.8e-5 für Essigsäure">
+          <p class="help-block">Essigsäure: 1.8e-5, Ameisensäure: 1.8e-4, Blausäure: 6.2e-10</p>
+        </div>
+
+        <div class="form-group">
+          <label for="initial-concentration">Anfangskonzentration (mol/L):</label>
+          <input type="number" id="initial-concentration" class="form-control" value="0.1" step="any" min="0">
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" onclick="calculateICE()">
+          <i class="fa fa-calculator"></i> ICE berechnen
+        </button>
+
+        <div id="ice-result" class="result-panel" style="display:none;">
+          <h3>ICE-Tabelle:</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Spezies</th>
+                <th>I (Initial)</th>
+                <th>C (Change)</th>
+                <th>E (Equilibrium)</th>
+              </tr>
+            </thead>
+            <tbody id="ice-table-body">
+            </tbody>
+          </table>
+
+          <div class="equilibrium-results">
+            <h4>Gleichgewichtsergebnisse:</h4>
+            <div id="equilibrium-display"></div>
+          </div>
+
+          <div class="approximation-check">
+            <h4>Näherungsprüfung:</h4>
+            <div id="approximation-result"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buffer Systems Tab -->
+    <div class="tab-pane" id="buffersysteme" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Puffersysteme</h2>
+        <p>Berechnen Sie den pH eines Puffers mit der Henderson-Hasselbalch-Gleichung.</p>
+
+        <div class="formula-display">
+          <p class="formula-text">pH = pKₐ + log₁₀([A⁻]/[HA])</p>
+        </div>
+
+        <div class="form-group">
+          <label for="buffer-pka">pKₐ-Wert der Säure:</label>
+          <input type="number" id="buffer-pka" class="form-control" value="4.76" step="0.01" placeholder="z.B. 4.76 für Essigsäure">
+          <p class="help-block">Essigsäure: 4.76, Ameisensäure: 3.75, Blausäure: 9.21</p>
+        </div>
+
+        <div class="form-group">
+          <label for="acid-concentration">Konzentration [HA] (mol/L):</label>
+          <input type="number" id="acid-concentration" class="form-control" value="0.1" step="any" min="0">
+        </div>
+
+        <div class="form-group">
+          <label for="base-concentration">Konzentration [A⁻] (mol/L):</label>
+          <input type="number" id="base-concentration" class="form-control" value="0.1" step="any" min="0">
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" onclick="calculateBufferpH()">
+          <i class="fa fa-calculator"></i> pH berechnen
+        </button>
+
+        <div id="buffer-result" class="result-panel" style="display:none;">
+          <h3>Ergebnis:</h3>
+          <div class="result-value">
+            <span class="label">pH-Wert:</span>
+            <span id="buffer-ph" class="value-highlight"></span>
+          </div>
+          <div class="calculation-steps">
+            <h4>Berechnung:</h4>
+            <div id="buffer-calculation"></div>
+          </div>
+          <div class="buffer-capacity">
+            <h4>Pufferkapazität:</h4>
+            <div id="buffer-capacity-result"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buffer Examples -->
+      <div class="buffer-examples">
+        <h3>Gängige Puffer</h3>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="example-card">
+              <h4>Acetatpuffer</h4>
+              <p><strong>Säure:</strong> Essigsäure (CH₃COOH)</p>
+              <p><strong>Base:</strong> Acetat (CH₃COO⁻)</p>
+              <p><strong>pKₐ:</strong> 4.76</p>
+              <p><strong>Bereich:</strong> pH 3.76 - 5.76</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="example-card">
+              <h4>Phosphatpuffer</h4>
+              <p><strong>Säure/Base:</strong> H₂PO₄⁻/HPO₄²⁻</p>
+              <p><strong>pKₐ:</strong> 7.21</p>
+              <p><strong>Bereich:</strong> pH 6.21 - 8.21</p>
+              <p><strong>Anwendung:</strong> Physiologischer Bereich</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="example-card">
+              <h4>Ammoniumpuffer</h4>
+              <p><strong>Säure:</strong> Ammonium (NH₄⁺)</p>
+              <p><strong>Base:</strong> Ammoniak (NH₃)</p>
+              <p><strong>pKₐ:</strong> 9.25</p>
+              <p><strong>Bereich:</strong> pH 8.25 - 10.25</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mass Action Law Tab -->
+    <div class="tab-pane" id="massenwirkung" role="tabpanel">
+      <div class="calculator-panel">
+        <h2>Massenwirkungsgesetz (MWG)</h2>
+        <p>Berechnen Sie die Gleichgewichtskonstante und Reaktionsrichtung.</p>
+
+        <div class="formula-display">
+          <p class="formula-text">Kₐ = [H⁺][A⁻] / [HA]</p>
+          <p class="formula-text">K_b = [BH⁺][OH⁻] / [B]</p>
+        </div>
+
+        <h3>Reaktion eingeben:</h3>
+        <p>Beispiel: HA ⇌ H⁺ + A⁻</p>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="product1">Produkt 1-Konzentration:</label>
+              <input type="number" id="product1" class="form-control" value="0.001" step="any" min="0">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="product2">Produkt 2-Konzentration:</label>
+              <input type="number" id="product2" class="form-control" value="0.001" step="any" min="0">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="reactant1">Edukt 1-Konzentration:</label>
+              <input type="number" id="reactant1" class="form-control" value="0.1" step="any" min="0">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="ka-comparison">Vergleichs-Kₐ:</label>
+              <input type="number" id="ka-comparison" class="form-control" value="1.8e-5" step="any" min="0">
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" onclick="calculateMWG()">
+          <i class="fa fa-calculator"></i> Kₐ und Reaktionsrichtung berechnen
+        </button>
+
+        <div id="mwg-result" class="result-panel" style="display:none;">
+          <h3>Ergebnis:</h3>
+          <div class="result-value">
+            <span class="label">Q (Reaktionsquotient):</span>
+            <span id="quotient-value" class="value-highlight"></span>
+          </div>
+          <div class="direction-badge">
+            <span class="label">Reaktionsrichtung:</span>
+            <span id="reaction-direction-badge" class="badge"></span>
+          </div>
+          <div class="explanation">
+            <h4>Erklärung:</h4>
+            <div id="mwg-explanation"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MWG Examples -->
+      <div class="mwg-examples">
+        <h3>Beispiele für Gleichgewichte</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="example-card">
+              <h4>Starke Säure (HCl)</h4>
+              <p>HCl ⇌ H⁺ + Cl⁻</p>
+              <p><strong>Kₐ:</strong> Sehr groß (≈ 10⁷)</p>
+              <p><strong>Dissoziationsgrad:</strong> α ≈ 100%</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="example-card">
+              <h4>Schwache Säure (CH₃COOH)</h4>
+              <p>CH₃COOH ⇌ H⁺ + CH₃COO⁻</p>
+              <p><strong>Kₐ:</strong> 1.8 × 10⁻⁵</p>
+              <p><strong>Dissoziationsgrad:</strong> α ≈ 1.3%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Educational Content -->
+  <div class="educational-content">
+    <h2>Theoretische Grundlagen</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📊 ICE-Tabelle</h3>
+          <p>Die ICE-Tabelle (Initial-Change-Equilibrium) ist eine Methode zur systematischen Lösung von Gleichgewichtsproblemen:</p>
+          <ul>
+            <li><strong>I (Initial):</strong> Ausgangskonzentrationen vor Reaktion</li>
+            <li><strong>C (Change):</strong> Änderung bis zum Gleichgewicht (angezeigt als x)</li>
+            <li><strong>E (Equilibrium):</strong> Endkonzentrationen im Gleichgewicht</li>
+          </ul>
+          <p class="formula-text">[HA]₀ = x</p>
+          <p class="formula-text">[HA]eq = [HA]₀ - x</p>
+          <p class="formula-text">[H⁺] = [A⁻] = x</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🧪 Henderson-Hasselbalch</h3>
+          <p>Die Henderson-Hasselbalch-Gleichung verbindet pH, pKₐ und die Konzentrationen von Säure und Base:</p>
+          <p class="formula-text">pH = pKₐ + log₁₀([A⁻]/[HA])</p>
+          <p><strong>Anwendung:</strong> pH von Puffern berechnen</p>
+          <p><strong>Bedingung:</strong> [A⁻] = [HA] → pH = pKₐ</p>
+          <p><strong>Bedingung:</strong> [A⁻] = 10[HA] → pH = pKₐ + 1</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚖️ Reaktionsquotient Q</h3>
+          <p>Der Reaktionsquotient Q bestimmt die Reaktionsrichtung:</p>
+          <p class="formula-text">Q = [Produkte]/[Edukte]</p>
+          <ul>
+            <li><strong>Q < Kₐ:</strong> Reaktion läuft in Richtung Produkte →</li>
+            <li><strong>Q = Kₐ:</strong> Gleichgewicht erreicht ⇌</li>
+            <li><strong>Q > Kₐ:</strong> Reaktion läuft in Richtung Edukte ←</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>📐 Näherungsmethoden</h3>
+          <p>Wenn x sehr klein ist gegenüber der Anfangskonzentration:</p>
+          <p class="formula-text">Kₐ ≈ x²/([HA]₀)</p>
+          <p class="formula-text">x ≈ √(Kₐ × [HA]₀)</p>
+          <p><strong>Gültigkeitskriterium:</strong> x < 5% von [HA]₀</p>
+          <p>Wenn nicht erfüllt, muss die quadratische Gleichung gelöst werden:</p>
+          <p class="formula-text">Kₐ = x²/([HA]₀ - x)</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>💧 Pufferkapazität</h3>
+          <p>Die Pufferkapazität gibt an, wie viel Säure oder Base ein Puffer ohne signifikante pH-Änderung aufnehmen kann:</p>
+          <p><strong>Optimal:</strong> [A⁻] = [HA]</p>
+          <p><strong>Effektiver Bereich:</strong> pKₐ ± 1</p>
+          <p><strong>Berechnung:</strong></p>
+          <p class="formula-text">β = 2.303 × C × ([HA][A⁻]/([HA] + [A⁻]))²</p>
+          <p>Wobei C = Gesamtkonzentration</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/saeuren-basen-gleichgewicht.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/saeuren-basen-gleichgewicht.css" | relURL }}">
+
+{{ end }}
