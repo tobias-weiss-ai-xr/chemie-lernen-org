@@ -5,33 +5,28 @@
     "category": "forschung"
   },
   {
-    "url": "https://www.chemistryworld.com/rss",
-    "lang": "en",
-    "category": "news"
-  },
-  {
-    "url": "https://www.spektrum.de/rss/chemie/",
-    "lang": "de",
-    "category": "news"
-  },
-  {
     "url": "https://phys.org/rss-feed/chemistry-news/",
     "lang": "en",
     "category": "news"
   },
   {
-    "url": "https://cen.acs.org/rss",
-    "lang": "en",
-    "category": "news"
-  },
-  {
-    "url": "https://www.nature.com/chem.rss",
+    "url": "https://www.nature.com/nchem.rss",
     "lang": "en",
     "category": "forschung"
   },
   {
-    "url": "https://www.gdch.de/rss",
-    "lang": "de",
+    "url": "https://cen.acs.org/feeds/rss/latestnews.xml",
+    "lang": "en",
+    "category": "news"
+  },
+  {
+    "url": "https://www.sciencedaily.com/rss/matter_energy/chemistry.xml",
+    "lang": "en",
+    "category": "news"
+  },
+  {
+    "url": "https://feeds.newscientist.com/chemistry",
+    "lang": "en",
     "category": "news"
   }
 ]

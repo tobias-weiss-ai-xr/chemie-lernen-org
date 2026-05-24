@@ -12,11 +12,15 @@ const POSTS_DIR = join(REPO_ROOT, 'myhugoapp', 'content', 'posts');
 const URLS_DB = join(POSTS_DIR, '.urls.json');
 const MAX_ARTICLES = 3;
 const LITELLM_URL = 'http://localhost:4000/chat/completions';
+const LITELLM_API_KEY = process.env.LITELLM_API_KEY || '';
+const LITELLM_MODEL = process.env.LITELLM_MODEL || 'saia/qwen3.5-397b-a17b';
+
+const FEED_UA = 'Mozilla/5.0 (compatible; chemie-lernen-article-bot/1.0)';
 
 const parser = new XMLParser({
   ignoreAttributes: false,
   attributeNamePrefix: '@_',
-  textNodeName: '#text',
+  maxDepth: 0,
 });
 
 const SYSTEM_PROMPT = `Du bist ein Chemie-Redakteur für chemie-lernen.org.
@@ -49,7 +53,10 @@ function isoDateStr() {
 }
 
 async function fetchFeed(url) {
-  const res = await fetch(url, { signal: AbortSignal.timeout(15000) });
+  const res = await fetch(url, {
+    signal: AbortSignal.timeout(15000),
+    headers: { 'User-Agent': FEED_UA },
+  });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return parser.parse(await res.text());
 }
@@ -62,6 +69,10 @@ function extractItems(parsed) {
   const feed = parsed.feed || parsed['feed'] || null;
   if (feed?.entry) {
     return Array.isArray(feed.entry) ? feed.entry : [feed.entry];
+  }
+  const rdf = parsed['rdf:RDF'] || null;
+  if (rdf?.item) {
+    return Array.isArray(rdf.item) ? rdf.item : [rdf.item];
   }
   return [];
 }
@@ -102,11 +113,13 @@ function extractDescription(item) {
 }
 
 async function generateArticle(title, description, sourceUrl) {
+  const headers = { 'Content-Type': 'application/json' };
+  if (LITELLM_API_KEY) headers['Authorization'] = `Bearer ${LITELLM_API_KEY}`;
   const res = await fetch(LITELLM_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers,
     body: JSON.stringify({
-      model: 'gpt-4o-mini',
+      model: LITELLM_MODEL,
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
         {
