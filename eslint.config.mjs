@@ -351,7 +351,7 @@ export default [
     },
   },
 
-  // Build scripts - Node.js context (CommonJS)
+  // Build scripts - Node.js context
   {
     files: ['scripts/**/*.js'],
     languageOptions: {
@@ -366,27 +366,6 @@ export default [
         process: 'readonly',
         console: 'readonly',
         Buffer: 'readonly',
-      },
-    },
-    rules: {
-      'no-console': 'off',
-    },
-  },
-
-  // Build scripts - Node.js context (ESM)
-  {
-    files: ['scripts/**/*.mjs'],
-    languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-      globals: {
-        process: 'readonly',
-        console: 'readonly',
-        fetch: 'readonly',
-        AbortSignal: 'readonly',
-        Response: 'readonly',
-        Request: 'readonly',
-        Headers: 'readonly',
       },
     },
     rules: {
