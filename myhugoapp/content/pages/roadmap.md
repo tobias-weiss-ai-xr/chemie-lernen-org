@@ -184,7 +184,7 @@ Diese Sektion enthält eine detaillierte Analyse und Planung für die Erweiterun
 #### 3.1 Säuredissoziation auf molekularer Ebene
 
 - **Thema:** Dissoziation starker und schwacher Säuren
-- **Status:** IN PROGRESS (Teilweise in pH-Rechner)
+- **Status:** ✅ BESTEHT (Teilweise in pH-Rechner [Jetzt testen](/ph-rechner/))
 - **Merkmale:**
   - Partikel-Animation der Dissoziation
   - Dissoziationsgrad α visualisieren
@@ -194,12 +194,12 @@ Diese Sektion enthält eine detaillierte Analyse und Planung für die Erweiterun
 #### 3.2 Säuren-Basen-Gleichgewichte vorhersagen
 
 - **Thema:** Gleichgewichtsposition prognostizieren
-- **Status:** TODO
+- **Status:** ✅ BESTEHT
 - **Merkmale:**
   - ICE-Tabellen (Initial-Change-Equilibrium)
   - Massenwirkungsgesetz visualisiert
   - Henderson-Hasselbalch-Gleichung
-- **Zielseite:** `/saeuren-basen-gleichgewicht/`
+- **Zielseite:** `/saeuren-basen-gleichgewicht/` [Jetzt berechnen](/saeuren-basen-gleichgewicht/)
 
 #### 3.3 Puffer herstellen
 
@@ -223,7 +223,7 @@ Diese Sektion enthält eine detaillierte Analyse und Planung für die Erweiterun
 #### 4.1 Atomenergieniveaus und Linienspektren
 
 - **Thema:** Bohr'sches Atommodell und Spektren
-- **Status:** TODO
+- **Status:** ✅ BESTEHT [Jetzt erkunden](/atomenergieniveaus/)
 - **Merkmale:**
   - Energieniveaus interaktiv (n=1,2,3...)
   - Elektronenübergänge animieren
@@ -337,16 +337,16 @@ Diese Sektion enthält eine detaillierte Analyse und Planung für die Erweiterun
 
 - ✅ pH-Rechner
 - ✅ Titrations-Simulator
-- 🔲 Säuredissoziation (molekular)
-- 🔲 Säuren-Basen-Gleichgewichte
-- 🔲 Puffer-Systeme (erweitert)
+- ✅ Säuredissoziation (molekular)
+- ✅ Säuren-Basen-Gleichgewichte
+- 🔄 Puffer-Systeme (erweitert, in pH-Rechner)
 
 **⚛️ Atombau & Bindung:**
 
 - ✅ Periodensystem
 - ✅ Molekülstudio
-- 🔲 Atomenergieniveaus
-- 🔲 Periodische Trends (erweitert)
+- ✅ Atomenergieniveaus
+- 🔄 Periodische Trends (erweitert, in Periodensystem)
 - 🔲 Molekülorbitale
 
 **⚡ Redox & Elektrochemie:**
@@ -429,5 +429,5 @@ Diese Sektion enthält eine detaillierte Analyse und Planung für die Erweiterun
 
 ---
 
-_Letzte Aktualisierung: Januar 2026_
-_Nächste Überprüfung: Nach Abschluss von Phase 1 (Q1 2026)_
+_Letzte Aktualisierung: Mai 2026_
+_Nächste Überprüfung: Nach Abschluss von Phase 4 (Q4 2026)_
