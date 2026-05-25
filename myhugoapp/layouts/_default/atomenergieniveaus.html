@@ -1,0 +1,295 @@
+{{ define "main" }}
+
+<div class="atomenergieniveaus-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a href="#energieschema" aria-controls="energieschema" role="tab" data-toggle="tab">
+            <i class="fa fa-layer-group"></i> Energieschema
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#uebergaenge" aria-controls="uebergaenge" role="tab" data-toggle="tab">
+            <i class="fa fa-exchange-alt"></i> Übergänge
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#spektren" aria-controls="spektren" role="tab" data-toggle="tab">
+            <i class="fa fa-rainbow"></i> Spektren
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <!-- Energy Schema Tab -->
+    <div class="tab-pane active" id="energieschema" role="tabpanel">
+      <div class="energy-schema-panel">
+        <h2>Bohrsches Atommodell - Energieniveaus</h2>
+        <p>Interaktive Visualisierung der Energieniveaus n=1 bis n=6 des Wasserstoffatoms.</p>
+
+        <div class="canvas-container">
+          <canvas id="energy-level-canvas" width="700" height="500"></canvas>
+        </div>
+
+        <div class="controls">
+          <div class="control-group">
+            <label for="max-n">Höchstes Energieniveau:</label>
+            <select id="max-n" class="form-control" onchange="drawEnergyLevels()">
+              <option value="6">n = 1 bis 6</option>
+              <option value="5">n = 1 bis 5</option>
+              <option value="4">n = 1 bis 4</option>
+              <option value="3">n = 1 bis 3</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <button class="btn btn-primary" onclick="drawEnergyLevels()">
+              <i class="fa fa-sync"></i> Neu zeichnen
+            </button>
+          </div>
+        </div>
+
+        <div class="energy-display">
+          <h3>Energiewerte (in eV)</h3>
+          <div id="energy-values"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transitions Tab -->
+    <div class="tab-pane" id="uebergaenge" role="tabpanel">
+      <div class="transitions-panel">
+        <h2>Elektronenübergänge simulieren</h2>
+        <p>Auswahl von Anfangs- und Endniveau, um einen Übergang zu simulieren.</p>
+
+        <div class="form-group">
+          <label for="initial-n">Anfangsniveau (n_i):</label>
+          <select id="initial-n" class="form-control">
+            <option value="1">n = 1 (Grundzustand)</option>
+            <option value="2">n = 2</option>
+            <option value="3" selected>n = 3</option>
+            <option value="4">n = 4</option>
+            <option value="5">n = 5</option>
+            <option value="6">n = 6</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="final-n">Endniveau (n_f):</label>
+          <select id="final-n" class="form-control">
+            <option value="1" selected>n = 1 (Grundzustand)</option>
+            <option value="2">n = 2</option>
+            <option value="3">n = 3</option>
+            <option value="4">n = 4</option>
+            <option value="5">n = 5</option>
+            <option value="6">n = 6</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" onclick="simulateTransition()">
+          <i class="fa fa-play"></i> Übergang simulieren
+        </button>
+
+        <div id="transition-result" class="result-panel" style="display:none;">
+          <h3>Übergangsergebnis:</h3>
+          <div class="transition-details">
+            <div class="detail-row">
+              <span class="label">Transition:</span>
+              <span id="transition-arrow" class="value"></span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Energieänderung ΔE:</span>
+              <span id="energy-change" class="value"></span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Wellenlänge λ:</span>
+              <span id="wavelength" class="value"></span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Frequenz ν:</span>
+              <span id="frequency" class="value"></span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Typ:</span>
+              <span id="transition-type" class="value"></span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Serienzuordnung:</span>
+              <span id="series-assignment" class="value"></span>
+            </div>
+          </div>
+
+          <div class="spectrum-color">
+            <h4>Spektralfarbe:</h4>
+            <div id="color-block" class="color-preview"></div>
+            <p id="color-name"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spectra Tab -->
+    <div class="tab-pane" id="spektren" role="tabpanel">
+      <div class="spectra-panel">
+        <h2>Linienspektren</h2>
+        <p>Visualisierung der Spektralserien des Wasserstoffatoms.</p>
+
+        <div class="spectrum-selector">
+          <label for="spectrum-series">Spektralserie:</label>
+          <select id="spectrum-series" class="form-control" onchange="drawSpectrum()">
+            <option value="lyman">Lyman-Serie (UV, n = 1)</option>
+            <option value="balmer">Balmer-Serie (sichtbar, n = 2)</option>
+            <option value="paschen">Paschen-Serie (IR, n = 3)</option>
+            <option value="bracket">Bracket-Serie (IR, n = 4)</option>
+            <option value="pfund">Pfund-Serie (IR, n = 5)</option>
+          </select>
+        </div>
+
+        <div class="canvas-container">
+          <canvas id="spectrum-canvas" width="800" height="400"></canvas>
+        </div>
+
+        <div class="spectrum-info">
+          <h4>Spektralserien-Information:</h4>
+          <div id="spectrum-details"></div>
+        </div>
+
+        <div class="spectrum-wavelengths">
+          <h4>Wellenlängen in dieser Serie:</h4>
+          <div id="wavelength-table"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Educational Content -->
+  <div class="educational-content">
+    <h2>Physikalische Grundlagen</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📐 Bohrsche Quantenbedingung</h3>
+          <p>Elektronen bewegen sich nur in quantisierten Bahnen:</p>
+          <p class="formula-text">m_e × v × r = n × h/(2π)</p>
+          <p>Wobei n = 1, 2, 3, ... (Quantenzahl)</p>
+          <p>h = Planck-Konstante = 6.626 × 10⁻³⁴ J·s</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚡ Energieniveaus</h3>
+          <p>Die Energie des Elektrons im Wasserstoffatom:</p>
+          <p class="formula-text">E_n = -13.6 eV / n²</p>
+          <p><strong>Grundzustand (n=1):</strong> E₁ = -13.6 eV</p>
+          <p><strong>Erster angeregter Zustand (n=2):</strong> E₂ = -3.4 eV</p>
+          <p><strong>Ionisationsenergie:</strong> 13.6 eV</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🌈 Rydberg-Formel</h3>
+          <p>Berechnung der Wellenlänge für Übergänge:</p>
+          <p class="formula-text">1/λ = R_H × (1/n_f² - 1/n_i²)</p>
+          <p>Wobei R_H = 1.097 × 10⁷ m⁻¹</p>
+          <p><strong>Vereinfacht:</strong></p>
+          <p class="formula-text">λ (nm) = 91.16 / (1/n_f² - 1/n_i²)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>💡 Emission vs Absorption</h3>
+          <div class="emission-absorption">
+            <h4>Emission:</h4>
+            <p>Elektron springt von höherem zu tieferem Niveau → Photon wird EMITTIERT</p>
+            <p class="formula-text">ΔE = E_i - E_f > 0</p>
+            <p>Beispiel: n=3 → n=2 (rotes Licht, 656 nm)</p>
+            
+            <h4>Absorption:</h4>
+            <p>Elektron springt von tieferem zu höherem Niveau → Photon wird ABSORBIERT</p>
+            <p class="formula-text">ΔE = E_f - E_i > 0</p>
+            <p>Beispiel: n=2 → n=3 (rotes Licht absorbiert)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>📚 Spektralserien</h3>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Serie</th>
+                <th>Übergänge</th>
+                <th>Spektralbereich</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Lyman</strong></td>
+                <td>n → 1</td>
+                <td>Ultraviolett (UV)</td>
+              </tr>
+              <tr>
+                <td><strong>Balmer</strong></td>
+                <td>n → 2</td>
+                <td>Sichtbar</td>
+              </tr>
+              <tr>
+                <td><strong>Paschen</strong></td>
+                <td>n → 3</td>
+                <td>Infrarot (IR)</td>
+              </tr>
+              <tr>
+                <td><strong>Bracket</strong></td>
+                <td>n → 4</td>
+                <td>Infrarot (IR)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="info-card">
+          <h3>🔬 Historische Bedeutung</h3>
+          <ul>
+            <li><strong>1885:</strong> Johann Balmer entdeckt die Balmer-Formel für sichtbare Spektrallinien</li>
+            <li><strong>1913:</strong> Niels Bohr entwickelt das quantisierte Atommodell und erklärt die Spektrallinien</li>
+            <li><strong>1914:</strong> Theodore Lyman entdeckt die Lyman-Serie (UV)</li>
+            <li><strong>1915:</strong> Friedrich Paschen entdeckt die Paschen-Serie (IR)</li>
+            <li><strong>1925:</strong> Werner Heisenberg und Erwin Schrödinger entwickeln die Quantenmechanik</li>
+          </ul>
+          <p><strong> Schlüsselerkenntnis:</strong> Die Quantisierung der Energieniveaus war der erste Beweis für die Quantennatur der Materie und führte zur modernen Quantenmechanik.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/atomenergieniveaus.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/atomenergieniveaus.css" | relURL }}">
+
+{{ end }}

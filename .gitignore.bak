@@ -1,0 +1,19 @@
+# Hugo build outputs
+myhugoapp/public/
+myhugoapp/resources/
+
+# Playwright test artifacts
+tests/test-results/
+tests/playwright-report/
+tests/test-results/
+tests/playwright-report/
+tests/screenshots/
+
+# Build artifacts
+*.optimized.js
+
+# Git worktrees
+.worktrees/
+
+# Article pipeline seen-URLs database
+myhugoapp/content/posts/.urls.json
