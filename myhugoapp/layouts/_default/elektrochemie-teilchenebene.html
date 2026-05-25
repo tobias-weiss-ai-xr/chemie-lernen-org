@@ -1,0 +1,381 @@
+{{ define "main" }}
+
+<div class="elektrochemie-teilchenebene-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a href="#galvanische-zelle" aria-controls="galvanische-zelle" role="tab" data-toggle="tab">
+            <i class="fa fa-battery-full"></i> Galvanische Zelle
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#elektrolyse" aria-controls="elektrolyse" role="tab" data-toggle="tab">
+            <i class="fa fa-car-battery"></i> Elektrolyse
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#elektronen" aria-controls="elektronen" role="tab" data-toggle="tab">
+            <i class="fa fa-exchange-alt"></i> Elektronenübergänge
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#nernst" aria-controls="nernst" role="tab" data-toggle="tab">
+            <i class="fa fa-chart-line"></i> Nernst-Gleichung
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <!-- Galvanic Cell Tab -->
+    <div class="tab-pane active" id="galvanische-zelle" role="tabpanel">
+      <div class="cell-visualization">
+        <h2>Galvanische Zelle (Daniell-Element)</h2>
+        <p>Visuelle Darstellung einer galvanischen Zelle mit Elektronen- und Ionenflüssen.</p>
+
+        <div class="canvas-container">
+          <canvas id="galvanic-cell-canvas" width="800" height="500"></canvas>
+        </div>
+
+        <div class="cell-controls">
+          <button class="btn btn-primary btn-lg" onclick="startGalvanicAnimation()">
+            <i class="fa fa-play"></i> Animation starten
+          </button>
+          <button class="btn btn-secondary btn-lg" onclick="stopGalvanicAnimation()">
+            <i class="fa fa-pause"></i> Animation stoppen
+          </button>
+        </div>
+
+        <div class="cell-parameters">
+          <h3>Zellenparameter:</h3>
+          <div class="half-reactions">
+            <div class="anode">
+              <h4>Anode (Oxidation)</h4>
+              <p class="formula-text">Zn → Zn²⁺ + 2e⁻</p>
+              <p><strong>E° = -0.76 V</strong></p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="cathode">
+              <h4>Kathode (Reduktion)</h4>
+              <p class="formula-text">Cu²⁺ + 2e⁻ → Cu</p>
+              <p><strong>E° = +0.34 V</strong></p>
+            </div>
+          </div>
+          <div class="cell-potential">
+            <p><span class="label">Zellpotential E°:</span> 
+               <span class="value">E° = E°kathode - E°anode</span></p>
+            <p><span class="label">Berechnung:</span> 
+               <span class="value">E° = +0.34 V - (-0.76 V) = <span class="highlight">+1.10 V</span></span></p>
+          </div>
+        </div>
+
+        <div class="cell-legend">
+          <h4>Legende:</h4>
+          <div class="legend-item">
+            <span class="legend-mark electron"></span>
+            <span>Elektronen (außenleitung)</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-mark cation"></span>
+            <span>Kationen (Ionenbrücke, Lösung)</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-mark anion"></span>
+            <span>Anionen (Ionenbrücke, Lösung)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Electrolysis Tab -->
+    <div class="tab-pane" id="elektrolyse" role="tabpanel">
+      <div class="electrolysis-visualization">
+        <h2>Elektrolyse</h2>
+        <p>Visuelle Darstellung der Elektrolyse mit externer Spannungsquelle.</p>
+
+        <div class="canvas-container">
+          <canvas id="electrolysis-canvas" width="800" height="500"></canvas>
+        </div>
+
+        <div class="electrolysis-controls">
+          <button class="btn btn-primary btn-lg" onclick="startElectrolysisAnimation()">
+            <i class="fa fa-play"></i> Elektrolyse starten
+          </button>
+          <button class="btn btn-secondary btn-lg" onclick="stopElectrolysisAnimation()">
+            <i class="fa fa-pause"></i> Elekrolyse stoppen
+          </button>
+          <div class="voltage-control">
+            <label for="electrolysis-voltage">Spannung:</label>
+            <input type="range" id="electrolysis-voltage" min="0" max="10" value="5" step="0.1" onchange="updateElectrolysisVoltage()">
+            <span id="voltage-display">5.0 V</span>
+          </div>
+        </div>
+
+        <div class="electrolysis-reactions">
+          <h3>Elektrodenreaktionen:</h3>
+          <div class="reactions">
+            <div class="anode-anode">
+              <h4>Anode (Oxidation)</h4>
+              <p class="formula-text">2Cl⁻ → Cl₂ + 2e⁻</p>
+              <p><strong>Wichtig:</strong> Oxidation erfolgt an der Anode (positiv)</p>
+              <p>Cl⁻-Ionen verlieren Elektronen an die positive Anode</p>
+            </div>
+            <div class=" electrolysis-cathode">
+              <h4>Kathode (Reduktion)</h4>
+              <p class="formula-text">2H₂O + 2e⁻ → H₂ + 2OH⁻</p>
+              <p><strong>Wichtig:</strong> Reduktion erfolgt an der Kathode (negativ)</p>
+              <p>Wassermoleküle nehmen Elektronen von der negativen Kathode auf</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="electrolysis-info">
+          <h3>Unterschied Galvanische Zelle vs. Elektrolyse:</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Merkmal</th>
+                <th>Galvanische Zelle</th>
+                <th>Elektrolyse</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Energiefluss</td>
+                <td>Chemisch → Elektrisch (spontan)</td>
+                <td>Elektrisch → Chemisch (extern)</td>
+              </tr>
+              <tr>
+                <td>Anode</td>
+                <td>Negativ, Oxidation</td>
+                <td>Positiv, Oxidation</td>
+              </tr>
+              <tr>
+                <td>Kathode</td>
+                <td>Positiv, Reduktion</td>
+                <td>Negativ, Reduktion</td>
+              </tr>
+              <tr>
+                <td>Anwendung</td>
+                <td>Batterien, Brennstoffzellen</td>
+                <td>Metallgewinnung, Galvanik</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Electron Transitions Tab -->
+    <div class="tab-pane" id="elektronen" role="tabpanel">
+      <div class="electron-transitions">
+        <h2>Elektronenübergänge</h2>
+        <p>Animierte Darstellung von Oxidations- und Reduktionsreaktionen auf Teilchenebene.</p>
+
+        <div class="reaction-selector">
+          <label for="half-reaction">Halbreaktion:</label>
+          <select id="half-reaction" class="form-control" onchange="updateElectronTransition()">
+            <option value="zn-oxidation">Zn → Zn²⁺ + 2e⁻ (Oxidation)</option>
+            <option value="cu-reduction">Cu²⁺ + 2e⁻ → Cu (Reduktion)</option>
+            <option value="na-oxidation">Na → Na⁺ + e⁻ (Oxidation)</option>
+            <option value="fe-reduction">Fe³⁺ + 3e⁻ → Fe (Reduktion)</option>
+          </select>
+        </div>
+
+        <div class="canvas-container">
+          <canvas id="electron-canvas" width="800" height="400"></canvas>
+        </div>
+
+        <div class="transition-controls">
+          <button class="btn btn-primary btn-lg" onclick="playElectronTransition()">
+            <i class="fa fa-play"></i> Übergang abspielen
+          </button>
+        </div>
+
+        <div class="transition-info">
+          <h3>Elektronenübergang erklärt:</h3>
+          <div id="transition-explanation">
+            <p><strong>Oxidation:</strong> Ein Atom/Molekül gibt Elektronen ab → Zahl oxidierter</p>
+            <p><strong>Reduktion:</strong> Ein Atom/Molekül nimmt Elektronen auf -> Zahl reduziert</p>
+            <p><strong>Elektronenübergang:</strong> Elektronen bewegen sich vom Reduktionsmittel zum Oxidationsmittel</p>
+            <p><strong>Charge Balance:</strong> Die Gesamtladung bleibt immer erhalten (Ladungserhaltung)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nernst Equation Tab -->
+    <div class="tab-pane" id="nernst" role="tabpanel">
+      <div class="nernst-visualization">
+        <h2>Nernst-Gleichung</h2>
+        <p>Interaktive Visualisierung der Nernst-Gleichung für Nicht-Standard-Bedingungen.</p>
+
+        <div class="formula-display">
+          <p class="formula-text">E = E° - (0.0592 V / n) × log₁₀(Q)</p>
+          <p><small>Bei 25°C (298 K) mit n = Anzahl der Elektronen</small></p>
+          <p><strong>Q = [Produkte] / [Edukte]</strong></p>
+        </div>
+
+        <div class="nernst-calculator">
+          <div class="form-group">
+            <label for="standard-potential">Standardpotential E° (V):</label>
+            <input type="number" id="standard-potential" class="form-control" value="1.10" step="0.01" onchange="calculateNernst()">
+            <p class="help-block">Beispiel: Daniell-Element E° = +1.10 V</p>
+          </div>
+
+          <div class="form-group">
+            <label for="electrons-n">Anzahl Elektronen n:</label>
+            <input type="number" id="electrons-n" class="form-control" value="2" min="1" max="10" onchange="calculateNernst()">
+          </div>
+
+          <div class="form-group">
+            <label for="quotient-q">Reaktionsquotient Q:</label>
+            <input type="number" id="quotient-q" class="form-control" value="1" step="any" min="0" onchange="calculateNernst()">
+            <p class="help-block">Q = [Produkte]/[Edukte]; Q = 1 → Standardbedingungen</p>
+          </div>
+
+          <button class="btn btn-primary btn-lg" onclick="calculateNernst()">
+            <i class="fa fa-calculator"></i> Nernst-Gleichung berechnen
+          </button>
+        </div>
+
+        <div id="nernst-result" class="result-panel" style="display:none;">
+          <h3>Ergebnis:</h3>
+          <div class="result-value">
+            <span class="label">Zellpotential E:</span>
+            <span id="nernst-potential" class="value"></span>
+          </div>
+          <div class="nernst-calculation">
+            <h4>Berechnungsschritte:</h4>
+            <div id="nernst-steps"></div>
+          </div>
+          <div class="nernst-interpretation">
+            <h4>Interpretation:</h4>
+            <div id="nernst-interpretation-text"></div>
+          </div>
+        </div>
+
+        <div class="nernst-examples">
+          <h3>Beispiele für Q-Werte:</h3>
+          <div class="example-grid">
+            <div class="example-card">
+              <h4>Q = 1</h4>
+              <p>Standardbedingungen</p>
+              <p class="formula-text">E = E°</p>
+              <p>Zellpotential gleich Standardpotential</p>
+            </div>
+            <div class="example-card">
+              <h4>Q < 1</h4>
+              <p>Mehr Edukte</p>
+              <p class="formula-text">E < E°</p>
+              <p>Angetriebene, spontan</p>
+            </div>
+            <div class="example-card">
+              <h4>Q > 1</h4>
+              <p>Mehr Produkte</p>
+              <p class="formula-text">E > E°</p>
+              <p>Weniger angetrieben</p>
+            </div>
+            <div class="example-card">
+              <h4>Q = K</h4>
+              <p>Gleichgewicht</p>
+              <p class="formula-text">E = 0 V</p>
+              <p>Keine treibende Kraft</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Educational Content -->
+  <div class="educational-content">
+    <h2>Elektrochemische Grundlagen</h2>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>⚡ Oxidation und Reduktion</h3>
+          <p><strong>Oxidation:</strong> Elektronenabgabe, Oxidationszahl erhöht</p>
+          <p><strong>Reduktion:</strong> Elektronenaufnahme, Oxidationszahl verringert</p>
+          <p><strong>Merkhilfe:</strong> OIL RIG (Oxidation Is Loss, Reduction Is Gain)</p>
+          <p><strong>Redox-Reaktion:</strong> Oxidation und Reduktion erfolgen gleichzeitig, Elektronenfluss außen</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>📊 Galvanische Zelle</h3>
+          <p>Galvanische Zelle wandelt chemische Energie in elektrische Energie um:</p>
+          <ul>
+            <li><strong>Anode:</strong> Oxidation (Elektronenabgabe), negativ</li>
+            <li><strong>Kathode:</strong> Reduktion (Elektronenaufnahme), positiv</li>
+            <li><strong>Salzbrücke:</strong> Ionenfluss zum Ladungsausgleich</li>
+            <li><strong>Elektronenflüsse:</strong> Durch den Leiter, nicht durch Elektrolyt</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="info-card">
+          <h3>🔋 Elektrolyse</h3>
+          <p>Elektrolyse wandelt elektrische Energie in chemische Energie um:</p>
+          <ul>
+            <li><strong>Äußere Spannung:</strong> Elektromotorische Kraft emf</li>
+            <li><strong>Anreicherung:</strong> Anodenprodukte an der Anode, Kathodenprodukte an der Kathode</li>
+            <li><strong>Faradaysche Gesetze:</strong> Masse m = (I × t × M) / (n × F)</li>
+            <li><strong>Anwendung:</strong> Aluminiumherstellung, Galvanik, Wasserstoffproduktion</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="info-card">
+          <h3>⚛️ Standard-Reduktionspotentiale</h3>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Halbreaktion</th>
+                <th>E° (V)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>F₂ + 2e⁻ → 2F⁻</td><td>+2.87</td></tr>
+              <tr><td>O₂ + 4H⁺ + 4e⁻ → 2H₂O</td><td>+1.23</td></tr>
+              <tr><td>Cu²⁺ + 2e⁻ → Cu</td><td>+0.34</td></tr>
+              <tr><td>2H⁺ + 2e⁻ → H₂</td><td>0.00</td></tr>
+              <tr><td>Zn²⁺ + 2e⁻ → Zn</td><td>-0.76</td></tr>
+              <tr><td>Na⁺ + e⁻ → Na</td><td>-2.71</td></tr>
+            </tbody>
+          </table>
+          <p><strong>Weitere E-Werte:</strong> Je positiver E°, desto stärker die Tendenz zur Reduktion (starkes Oxidationsmittel)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/elektrochemie-teilchenebene.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/elektrochemie-teilchenebene.css" | relURL }}">
+
+{{ end }}
