@@ -58,7 +58,8 @@ async function loadModuleProgress() {
   const moduleNames = {
     uebungsgenerator: '\u00dcbungsgenerator',
     lueckentexte: 'L\u00fcckentexte',
-    practice: '\u00dcbungen'
+    practice: '\u00dcbungen',
+    lernpfad: 'Lernpfade'
   };
 
   container.innerHTML = Object.entries(stats).map(([mod, data]) => {
@@ -82,33 +83,131 @@ async function loadModuleProgress() {
 }
 
 async function loadAchievements() {
-  const achievements = await ProgressTracker.getAchievements();
-  const container = document.getElementById('achievements-grid');
+  const earned = await ProgressTracker.getAchievements();
+  const allData = await ProgressTracker.getAllProgress();
+  const stats = await ProgressTracker.getModuleStats();
+  const streak = await ProgressTracker.getStreak();
+  const earnedIds = new Set(earned.map((a) => a.id));
 
   const allAchievements = [
-    { id: 'first_exercise', name: 'Erste Schritte', description: 'Erste \u00dcbung abgeschlossen', icon: 'fa-star' },
-    { id: 'ten_exercises', name: 'Flei\u00dfig', description: '10 \u00dcbungen gel\u00f6st', icon: 'fa-certificate' },
-    { id: 'fifty_exercises', name: 'Chemie-Fuchs', description: '50 \u00dcbungen gel\u00f6st', icon: 'fa-graduation-cap' },
-    { id: 'perfect_score', name: 'Perfektion', description: '100 % in einer \u00dcbung', icon: 'fa-trophy' },
-    { id: 'streak_3', name: 'Dranbleiben', description: '3 Tage Lernserie', icon: 'fa-fire' },
-    { id: 'streak_7', name: 'Woche voll', description: '7 Tage Lernserie', icon: 'fa-calendar-check-o' },
-    { id: 'all_modules', name: 'Entdecker', description: 'Alle Module ausprobiert', icon: 'fa-cubes' },
-    { id: 'high_accuracy', name: 'Genauigkeit', description: '90 %+ Genauigkeit bei 20+ \u00dcbungen', icon: 'fa-bullseye' },
-    { id: 'night_owl', name: 'Nachtarbeiter', description: 'Nach 22 Uhr gelernt', icon: 'fa-moon-o' },
-    { id: 'collector', name: 'Sammler', description: '5 Erfolge freigeschaltet', icon: 'fa-diamond' },
-    { id: 'speed_demon', name: 'Tempomacher', description: 'erste \u00dcbung eines Tages in 5 Min.', icon: 'fa-rocket' },
-    { id: 'grandmaster', name: 'Allesk\u00f6nner', description: 'Alle Erfolge freigeschaltet', icon: 'fa-star-o' }
+    {
+      id: 'first_exercise', name: 'Erste Schritte', icon: 'fa-star',
+      desc: 'Erste \u00dcbung abgeschlossen',
+      progress: () => Math.min(100, allData.length * 100),
+      max: 100, current: () => allData.length >= 1 ? 1 : 0, of: 1
+    },
+    {
+      id: 'ten_exercises', name: 'Flei\u00dfig', icon: 'fa-certificate',
+      desc: '10 \u00dcbungen gel\u00f6st',
+      progress: () => Math.min(100, (allData.length / 10) * 100),
+      max: 100, current: () => Math.min(10, allData.length), of: 10
+    },
+    {
+      id: 'fifty_exercises', name: 'Chemie-Fuchs', icon: 'fa-graduation-cap',
+      desc: '50 \u00dcbungen gel\u00f6st',
+      progress: () => Math.min(100, (allData.length / 50) * 100),
+      max: 100, current: () => Math.min(50, allData.length), of: 50
+    },
+    {
+      id: 'perfect_score', name: 'Perfektion', icon: 'fa-trophy',
+      desc: '100 % in einer \u00dcbung',
+      progress: () => {
+        const p = allData.some(e => e.total > 0 && e.correct === e.total) ? 100 : 30;
+        return p;
+      },
+      max: 100, current: () => allData.some(e => e.total > 0 && e.correct === e.total) ? 1 : 0, of: 1
+    },
+    {
+      id: 'streak_3', name: 'Dranbleiben', icon: 'fa-fire',
+      desc: '3 Tage Lernserie',
+      progress: () => Math.min(100, (streak / 3) * 100),
+      max: 100, current: () => Math.min(3, streak), of: 3
+    },
+    {
+      id: 'streak_7', name: 'Woche voll', icon: 'fa-calendar-check-o',
+      desc: '7 Tage Lernserie',
+      progress: () => Math.min(100, (streak / 7) * 100),
+      max: 100, current: () => Math.min(7, streak), of: 7
+    },
+    {
+      id: 'all_modules', name: 'Entdecker', icon: 'fa-cubes',
+      desc: 'Alle Module ausprobiert',
+      progress: () => {
+        const mods = new Set(allData.map(e => e.module));
+        return Math.min(100, (mods.size / 3) * 100);
+      },
+      max: 100, current: () => {
+        const mods = new Set(allData.map(e => e.module));
+        return Math.min(3, mods.size);
+      }, of: 3
+    },
+    {
+      id: 'high_accuracy', name: 'Genauigkeit', icon: 'fa-bullseye',
+      desc: '90 %+ bei 20+ \u00dcbungen',
+      progress: () => {
+        if (allData.length < 20) return (allData.length / 20) * 50;
+        let total = 0, correct = 0;
+        Object.values(stats).forEach(s => { total += s.total || 0; correct += s.correct || 0; });
+        if (total === 0) return 0;
+        const acc = correct / total;
+        return acc >= 0.9 ? 100 : 50 + (acc / 0.9) * 50;
+      },
+      max: 100, current: () => Math.min(20, allData.length), of: 20
+    },
+    {
+      id: 'night_owl', name: 'Nachtarbeiter', icon: 'fa-moon-o',
+      desc: 'Nach 22 Uhr gelernt',
+      progress: () => {
+        return allData.some(e => { const h = new Date(e.lastAttempt).getHours(); return h >= 22 || h < 5; }) ? 100 : 30;
+      },
+      max: 100, current: () => allData.some(e => { const h = new Date(e.lastAttempt).getHours(); return h >= 22 || h < 5; }) ? 1 : 0, of: 1
+    },
+    {
+      id: 'collector', name: 'Sammler', icon: 'fa-diamond',
+      desc: '5 Erfolge freigeschaltet',
+      progress: () => Math.min(100, (earned.length / 5) * 100),
+      max: 100, current: () => Math.min(5, earned.length), of: 5
+    },
+    {
+      id: 'speed_demon', name: 'Tempomacher', icon: 'fa-rocket',
+      desc: 'Erste \u00dcbung in 5 Min.',
+      progress: () => {
+        if (allData.length === 0) return 0;
+        const today = new Date().toISOString().split('T')[0];
+        const firstToday = allData
+          .filter(e => e.lastAttempt && e.lastAttempt.startsWith(today))
+          .sort((a, b) => a.lastAttempt.localeCompare(b.lastAttempt));
+        if (firstToday.length === 0) return 40;
+        return firstToday.some(e => { const t = new Date(e.lastAttempt); return t.getHours() === 0 && t.getMinutes() <= 5; }) ? 100 : 60;
+      },
+      max: 100, current: () => 0, of: 1,
+      hideProgress: true
+    },
+    {
+      id: 'grandmaster', name: 'Allesk\u00f6nner', icon: 'fa-star-o',
+      desc: 'Alle Erfolge freigeschaltet',
+      progress: () => Math.min(100, (earned.length / 11) * 100),
+      max: 100, current: () => Math.min(11, earned.length), of: 11
+    }
   ];
 
-  const earnedIds = new Set(achievements.map((a) => a.id));
+  const container = document.getElementById('achievements-grid');
 
   container.innerHTML = allAchievements.map((ach) => {
     const earned = earnedIds.has(ach.id);
+    const pct = ach.progress();
+    const cur = ach.current();
     return `
       <div class="achievement-card ${earned ? 'earned' : 'locked'}">
         <div class="achievement-icon"><i class="fa ${ach.icon}"></i></div>
         <div class="achievement-name">${ach.name}</div>
-        <div class="achievement-desc">${ach.description}</div>
+        <div class="achievement-desc">${ach.desc}</div>
+        ${!earned && !ach.hideProgress ? `
+          <div class="achievement-progress-container">
+            <div class="achievement-progress-bar" style="width: ${pct}%"></div>
+          </div>
+          <div class="achievement-progress-text">${cur}/${ach.of}</div>
+        ` : ''}
         ${earned ? '<div class="achievement-badge"><i class="fa fa-check-circle"></i></div>' : '<div class="achievement-badge locked"><i class="fa fa-lock"></i></div>'}
       </div>
     `;

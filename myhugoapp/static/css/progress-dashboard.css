@@ -116,6 +116,30 @@
   color: #bdc3c7;
 }
 
+.achievement-progress-container {
+  background: #ecf0f1;
+  border-radius: 8px;
+  height: 6px;
+  margin: 8px 0 4px;
+  overflow: hidden;
+}
+
+.achievement-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #f39c12, #e67e22);
+  border-radius: 8px;
+  transition: width 0.5s ease;
+}
+
+.achievement-card.locked .achievement-progress-bar {
+  background: #bdc3c7;
+}
+
+.achievement-progress-text {
+  font-size: 0.75rem;
+  color: #95a5a6;
+}
+
 .achievement-name {
   font-weight: bold;
   font-size: 0.95rem;
