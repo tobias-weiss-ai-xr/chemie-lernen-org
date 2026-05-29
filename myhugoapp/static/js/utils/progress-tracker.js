@@ -52,7 +52,17 @@ const ProgressTracker = {
     store.put(record);
     await this.updateDailyStats();
     return new Promise((resolve, reject) => {
-      tx.oncomplete = () => resolve(record);
+      tx.oncomplete = () => {
+        resolve(record);
+        // Notify gamification engine if available
+        if (typeof GamificationEngine !== 'undefined') {
+          const correct = data.correct || 0;
+          const total = data.total || 0;
+          setTimeout(() => {
+            GamificationEngine.processExerciseResult(module, exerciseId, correct, total);
+          }, 100);
+        }
+      };
       tx.onerror = () => reject(tx.error);
     });
   },

@@ -13,21 +13,31 @@
 
   <!-- Streak & Stats Overview -->
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
+      <div class="stat-card xp-card">
+        <div class="stat-icon"><i class="fa fa-star"></i></div>
+        <div class="stat-value"><span id="xp-display">0</span> <small>XP</small></div>
+        <div class="stat-label" id="level-display">Level 1 — Chemie-Anfänger</div>
+        <div class="xp-bar-container">
+          <div class="xp-bar" id="xp-bar" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
       <div class="stat-card streak-card">
         <div class="stat-icon"><i class="fa fa-fire"></i></div>
         <div class="stat-value"><span id="streak-count">0</span></div>
         <div class="stat-label">Tage Lernserie</div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="stat-card total-card">
         <div class="stat-icon"><i class="fa fa-check-circle"></i></div>
         <div class="stat-value"><span id="total-exercises">0</span></div>
         <div class="stat-label">Aufgaben gelöst</div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="stat-card accuracy-card">
         <div class="stat-icon"><i class="fa fa-bullseye"></i></div>
         <div class="stat-value"><span id="accuracy-pct">0%</span></div>
@@ -81,6 +91,7 @@
 </div>
 
 <script src="/js/utils/progress-tracker.js"></script>
+<script src="/js/gamification-engine.js"></script>
 <script src="/js/fortschritt-dashboard.js"></script>
 <link rel="stylesheet" href="/css/progress-dashboard.css">
 

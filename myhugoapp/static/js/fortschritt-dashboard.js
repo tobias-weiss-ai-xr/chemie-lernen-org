@@ -1,8 +1,9 @@
-/* fortschritt-dashboard.js — Progress dashboard UI */
+/* fortschritt-dashboard.js — Progress dashboard UI with gamification */
 
 async function loadDashboard() {
   try {
     await Promise.all([
+      loadXPAndLevel(),
       loadStreakAndStats(),
       loadModuleProgress(),
       loadAchievements(),
@@ -11,6 +12,21 @@ async function loadDashboard() {
   } catch (e) {
     console.error('Dashboard load error:', e);
   }
+}
+
+async function loadXPAndLevel() {
+  const xp = await GamificationEngine.getXP();
+  const level = GamificationEngine.getLevel(xp);
+  const nextXP = GamificationEngine.getNextLevelXP(xp);
+  const xpInLevel = xp - (level.xp || 0);
+  const xpNeeded = nextXP - (level.xp || 0);
+  const pct = xpNeeded > 0 ? Math.min(100, Math.round((xpInLevel / xpNeeded) * 100)) : 100;
+
+  document.getElementById('xp-display').textContent = xp;
+  document.getElementById('level-display').textContent =
+    'Level ' + level.level + ' \u2014 ' + level.title;
+  const bar = document.getElementById('xp-bar');
+  if (bar) bar.style.width = pct + '%';
 }
 
 async function loadStreakAndStats() {
@@ -35,14 +51,14 @@ async function loadModuleProgress() {
   const container = document.getElementById('module-progress-list');
 
   if (Object.keys(stats).length === 0) {
-    container.innerHTML = '<p class="text-muted">Noch keine Daten vorhanden. Beginne mit Übungen, um deinen Fortschritt zu sehen.</p>';
+    container.innerHTML = '<p class="text-muted">Noch keine Daten vorhanden. Beginne mit \u00dcbungen, um deinen Fortschritt zu sehen.</p>';
     return;
   }
 
   const moduleNames = {
-    uebungsgenerator: 'Übungsgenerator',
-    lueckentexte: 'Lückentexte',
-    practice: 'Übungen'
+    uebungsgenerator: '\u00dcbungsgenerator',
+    lueckentexte: 'L\u00fcckentexte',
+    practice: '\u00dcbungen'
   };
 
   container.innerHTML = Object.entries(stats).map(([mod, data]) => {
@@ -70,12 +86,18 @@ async function loadAchievements() {
   const container = document.getElementById('achievements-grid');
 
   const allAchievements = [
-    { id: 'first_exercise', name: 'Erste Schritte', description: 'Erste Übung abgeschlossen', icon: 'fa-star' },
-    { id: 'ten_exercises', name: 'Fleißig', description: '10 Übungen gelöst', icon: 'fa-certificate' },
-    { id: 'perfect_score', name: 'Perfektion', description: '100% in einer Übung', icon: 'fa-trophy' },
+    { id: 'first_exercise', name: 'Erste Schritte', description: 'Erste \u00dcbung abgeschlossen', icon: 'fa-star' },
+    { id: 'ten_exercises', name: 'Flei\u00dfig', description: '10 \u00dcbungen gel\u00f6st', icon: 'fa-certificate' },
+    { id: 'fifty_exercises', name: 'Chemie-Fuchs', description: '50 \u00dcbungen gel\u00f6st', icon: 'fa-graduation-cap' },
+    { id: 'perfect_score', name: 'Perfektion', description: '100 % in einer \u00dcbung', icon: 'fa-trophy' },
     { id: 'streak_3', name: 'Dranbleiben', description: '3 Tage Lernserie', icon: 'fa-fire' },
     { id: 'streak_7', name: 'Woche voll', description: '7 Tage Lernserie', icon: 'fa-calendar-check-o' },
-    { id: 'all_modules', name: 'Entdecker', description: 'Alle Module ausprobiert', icon: 'fa-cubes' }
+    { id: 'all_modules', name: 'Entdecker', description: 'Alle Module ausprobiert', icon: 'fa-cubes' },
+    { id: 'high_accuracy', name: 'Genauigkeit', description: '90 %+ Genauigkeit bei 20+ \u00dcbungen', icon: 'fa-bullseye' },
+    { id: 'night_owl', name: 'Nachtarbeiter', description: 'Nach 22 Uhr gelernt', icon: 'fa-moon-o' },
+    { id: 'collector', name: 'Sammler', description: '5 Erfolge freigeschaltet', icon: 'fa-diamond' },
+    { id: 'speed_demon', name: 'Tempomacher', description: 'erste \u00dcbung eines Tages in 5 Min.', icon: 'fa-rocket' },
+    { id: 'grandmaster', name: 'Allesk\u00f6nner', description: 'Alle Erfolge freigeschaltet', icon: 'fa-star-o' }
   ];
 
   const earnedIds = new Set(achievements.map((a) => a.id));
@@ -98,7 +120,7 @@ async function loadRecentActivity() {
   const container = document.getElementById('recent-activity');
 
   if (all.length === 0) {
-    container.innerHTML = '<p class="text-muted">Noch keine Aktivitäten.</p>';
+    container.innerHTML = '<p class="text-muted">Noch keine Aktivit\u00e4ten.</p>';
     return;
   }
 
@@ -109,11 +131,11 @@ async function loadRecentActivity() {
       const date = new Date(entry.lastAttempt).toLocaleDateString('de-DE', {
         day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'
       });
-      const mName = entry.module === 'uebungsgenerator' ? 'Übungsgenerator' : entry.module;
+      const mName = entry.module === 'uebungsgenerator' ? '\u00dcbungsgenerator' : entry.module;
       const result = entry.completed ? '<span class="label label-success">Erledigt</span>' : '<span class="label label-warning">In Bearbeitung</span>';
       return `<li class="list-group-item">
         <span class="badge">${date}</span>
-        <strong>${mName}:</strong> ${entry.exerciseId || 'Übung'}
+        <strong>${mName}:</strong> ${entry.exerciseId || '\u00dcbung'}
         ${result}
         <span class="text-muted" style="margin-left: 10px;">${entry.correct || 0}/${entry.total || 0}</span>
       </li>`;
@@ -121,8 +143,9 @@ async function loadRecentActivity() {
 }
 
 async function resetProgressData() {
-  if (!confirm('Wirklich alle Fortschrittsdaten löschen?')) return;
+  if (!confirm('Wirklich alle Fortschrittsdaten l\u00f6schen?')) return;
   await ProgressTracker.resetProgress();
+  localStorage.removeItem('chemie-lernen-xp');
   loadDashboard();
 }
 
