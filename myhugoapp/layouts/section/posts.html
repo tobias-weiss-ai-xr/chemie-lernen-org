@@ -1,0 +1,56 @@
+{{ define "main" }}
+
+<div class="home">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">Aktuelle Forschung</h1>
+      <p class="lead text-center">KI-generierte Zusammenfassungen aktueller chemischer Forschung — automatisch aus wissenschaftlichen Publikationen extrahiert.</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row pack">
+
+    {{ $posts := where .Site.RegularPages "Section" "posts" }}
+    {{ $sortedPosts := $posts.ByDate.Reverse }}
+    {{ range $sortedPosts }}
+        <div class="col-md-4 card">
+         <a href="{{ .Permalink }}" class="index-anchor">
+            <div class="panel panel-default">
+
+              {{ if .Params.img }}
+              {{ with .Resources.Match .Params.img }}
+                {{ range . }}
+                  <img width="100%" src="{{ .RelPermalink }}" alt="{{ .Title }}">
+                {{ end }}
+              {{ end }}
+              {{ else }}
+              <img width="100%" src="{{ .Site.BaseURL }}images/{{ .Site.Params.defaultImage }}" alt="{{ .Site.Title }}">
+              {{ end }}
+
+              <div class="panel-body">
+                <h3 class="panel-title pull-left">{{ .Title | truncate 40 }}</h3><span class="post-meta pull-right"><small>{{ .Date.Format "2. January 2006" }}</small></span>
+              </div>
+
+              <div class="panel-body"><small>
+                {{ .Summary | plainify | truncate 200 }}</small>
+              </div>
+            </div>
+            </a>
+        </div>
+      {{ end }}
+
+  </div>
+
+  <!-- Back to homepage -->
+  <div class="row text-center" style="margin-top: 20px;">
+    <div class="col-md-12">
+      <a href="/" class="btn btn-default">← Zurück zur Startseite</a>
+    </div>
+  </div>
+
+</div>
+
+{{ end }}

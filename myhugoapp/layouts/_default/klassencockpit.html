@@ -1,0 +1,103 @@
+{{ define "main" }}
+
+<script src="/js/utils/progress-tracker.js"></script>
+
+<div class="klassencockpit-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Student Management -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-users"></i> Schülerverwaltung</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-inline">
+                <div class="form-group">
+                  <input type="text" id="student-name-input" class="form-control" placeholder="Schülername">
+                </div>
+                <button id="add-student-btn" class="btn btn-primary"><i class="fa fa-plus"></i> Hinzufügen</button>
+              </div>
+            </div>
+            <div class="col-md-4 text-right">
+              <button id="export-data-btn" class="btn btn-success"><i class="fa fa-download"></i> Export CSV</button>
+              <button id="reset-data-btn" class="btn btn-danger"><i class="fa fa-trash"></i> Zurücksetzen</button>
+            </div>
+          </div>
+          <div id="student-list" class="student-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Overview -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="stat-card">
+        <h3><i class="fa fa-user"></i> Schüler</h3>
+        <p id="stat-students" class="stat-value">0</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card">
+        <h3><i class="fa fa-check-circle"></i> Aufgaben gelöst</h3>
+        <p id="stat-tasks" class="stat-value">0</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card">
+        <h3><i class="fa fa-trophy"></i> Durchschnitt</h3>
+        <p id="stat-average" class="stat-value">0%</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Class Progress -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-bar-chart"></i> Klassenfortschritt</h3>
+        </div>
+        <div class="panel-body">
+          <div id="class-progress-table"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Individual Detail -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-user-circle"></i> Detailansicht</h3>
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="detail-student-select">Schüler auswählen:</label>
+            <select id="detail-student-select" class="form-control"></select>
+          </div>
+          <div id="student-detail"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="/js/klassencockpit.js"></script>
+<link rel="stylesheet" href="/css/klassencockpit.css">
+
+{{ end }}

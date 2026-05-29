@@ -1,0 +1,87 @@
+{{ define "main" }}
+
+<script src="/js/lazy-loader.js"></script>
+
+<div class="cloze-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Topic Selection -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="control-section" style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div class="row">
+          <div class="col-md-4">
+            <label for="topic-select"><strong>Themenbereich:</strong></label>
+            <select id="topic-select" class="form-control" aria-label="Themenbereich wählen">
+              <option value="atom">Atommodelle und Kernchemie</option>
+              <option value="bindungen">Chemische Bindungen</option>
+              <option value="saeuren-basen">Säuren und Basen</option>
+              <option value="redox">Redoxreaktionen</option>
+              <option value="stoechiometrie">Stöchiometrie</option>
+              <option value="organik">Organische Chemie</option>
+              <option value="pse">Periodensystem</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="difficulty-select"><strong>Schwierigkeitsgrad:</strong></label>
+            <select id="difficulty-select" class="form-control" aria-label="Schwierigkeitsgrad wählen">
+              <option value="leicht">Leicht</option>
+              <option value="mittel" selected>Mittel</option>
+              <option value="schwer">Schwer</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label>&nbsp;</label>
+            <button class="btn btn-primary btn-block" onclick="loadClozeExercises()">
+              <i class="fa fa-refresh"></i> Übungen laden
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Score Section -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="score-section" style="background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; color: white;">
+          <div>
+            <strong><i class="fa fa-check-circle"></i> Deine Punktzahl</strong>
+          </div>
+          <div style="text-align: right;">
+            Richtig: <span id="cloze-correct" style="font-weight: bold;">0</span>
+            | Falsch: <span id="cloze-incorrect" style="font-weight: bold;">0</span>
+            | Offen: <span id="cloze-open" style="font-weight: bold;">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise Area -->
+  <div class="row">
+    <div class="col-md-12">
+      <div id="cloze-exercise-area">
+        <div class="alert alert-info">
+          <i class="fa fa-info-circle"></i> Wähle ein Thema und klicke auf "Übungen laden", um zu beginnen.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="/js/utils/progress-tracker.js"></script>
+<script src="/js/cloze-exercises.js"></script>
+<link rel="stylesheet" href="/css/cloze-exercises.css">
+
+{{ end }}

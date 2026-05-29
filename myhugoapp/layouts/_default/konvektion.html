@@ -1,0 +1,190 @@
+{{ define "main" }}
+
+<div class="konvektion-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="simulation-controls">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="fluid-selector">Fluid-Material:</label>
+          <select id="fluid-selector" class="form-control" onchange="changeFluid()">
+            <option value="water">Wasser (Dichte=1.0, Viskosität=mittel)</option>
+            <option value="air">Luft (Dichte=0.0012, Viskosität=niedrig)</option>
+            <option value="oil">Öl (Dichte=0.9, Viskosität=hoch)</option>
+            <option value="glycerin">Glycerin (Dichte=1.26, Viskosität=sehr hoch)</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="temperature-source">Quellentemperatur (°C):</label>
+          <input type="range" id="temperature-source" class="form-control" value="80" min="20" max="100" step="5" oninput="updateTemperature()">
+          <span id="temp-source-display" class="text-muted">80°C</span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="convection-speed">Viskositätseffekt:</label>
+          <input type="range" id="convection-speed" class="form-control" value="50" min="10" max="100" step="10" oninput="updateSpeed()">
+          <span id="speed-display" class="text-muted">Normal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 15px;">
+      <div class="col-md-12 text-center">
+        <button class="btn btn-primary btn-lg" onclick="startSimulation()">
+          <i class="fa fa-play"></i> Konvektion starten
+        </button>
+        <button class="btn btn-secondary btn-lg" onclick="stopSimulation()">
+          <i class="fa fa-pause"></i> Pause
+        </button>
+        <button class="btn btn-info btn-lg" onclick="resetSimulation()">
+          <i class="fa fa-redo"></i> Zurücksetzen
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="simulation-area">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="info-card">
+          <h4>Konvektions-Simulation</h4>
+          <div id="convection-simulation" class="convection-simulation">
+            <canvas id="convection-canvas" width="700" height="500"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="info-card">
+          <h4>Parameter</h4>
+          <div id="parameters-panel">
+            <p><strong>Material:</strong> <span id="param-material">Wasser</span></p>
+            <p><strong>Dichte bei 20°C:</strong> <span id="param-density">1.0</span> g/cm³</p>
+            <p><strong>Viskosität:</strong> <span id="param-viscosity">mittel</span></p>
+            <p><strong>Quellentemperatur:</strong> <span id="param-source"></span>°C</p>
+            <p><strong>Ambienttemperatur:</strong> <span id="param-ambient">20</span>°C</p>
+            <p><strong>Verstrichene Zeit:</strong> <span id="param-time">0</span> s</p>
+          </div>
+        </div>
+
+        <div class="info-card" style="margin-top: 20px;">
+          <h4>Formeln</h4>
+          <div class="formula-display">
+            <p>Auftriebskraft (Archimedes):</p>
+            <p class="formula-text">F_A = (ρ_umgebend - ρ_fluid) · g · V</p>
+            <p>Dichte-Temperatur:</p>
+            <p class="formula-text">ρ = ρ₀ · (1 - β · (T - T₀))</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="educational-content">
+    <h2>Konvektionsmechanismen</h2>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>🔥 Freie Konvektion</h3>
+          <p><strong>Ursache:</strong> Dichteunterschied erzeugt Auftrieb</p>
+          <p><strong>Mechanismus:</strong></p>
+          <ul>
+            <li>Heiße Partikel expandieren → ρ sinkt</li>
+            <li>Leichtere Partikel driften nach oben</li>
+            <li>Falschere Partikel sinken nach unten</li>
+            <li>Zirkulationsströmung entsteht</li>
+          </ul>
+          <p><strong>Beispiele:</strong> Heizgebläse, Kamine, Warmfront</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>🌪️ Erzwungene Konvektion</h3>
+          <p><strong>Ursache:</strong> Pumpen/Ventilatoren erzwingen Fluss</p>
+          <p><strong>Mechanismus:</strong></p>
+          <ul>
+            <li>externe Kraft bewegt Fluid</li>
+            <li>Wärmeübergangskoeffizient h steigt</li>
+            <li>Weitere Konvektionswärmeübertragung</li>
+            <li>Wirksam: Klimaanlagen, Lüfter</li>
+          </ul>
+          <p><strong>Beispiele:</strong> Wasserpumpe, Lüfter, Blutkreislauf</li>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h3>📊 Materialvergleich - Auftriebskrafteinwirkung</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Material</th>
+            <th>ρ bei 20°C</th>
+            <th>ρ bei 80°C</th>
+            <th>Auftriebsfaktor</th>
+            <th>Konvektionsstärke</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Wasser</strong></td>
+            <td>1.00 g/cm³</td>
+            <td>0.97 g/cm³</td>
+            <td>Mittel (ca. 3% Dichteänderung)</td>
+            <td>Mittel-Stark</td>
+          </tr>
+          <tr>
+            <td><strong>Luft</strong></td>
+            <td>0.00120 g/cm³</td>
+            <td>0.00100 g/cm³</td>
+            <td>Mittel (ca. 17% Dichteänderung)</td>
+            <td>Mittel</td>
+          </tr>
+          <tr>
+            <td><strong>Öl</strong></td>
+            <td>0.90 g/cm³</td>
+            <td>0.87 g/cm³</td>
+            <td>Mittel (ca. 3% Dichteänderung)</td>
+            <td>Mit Hemmung (Viskosität)</td>
+          </tr>
+          <tr>
+            <td><strong>Glycerin</strong></td>
+            <td>1.26 g/cm³</td>
+            <td>1.21 g/cm³</td>
+            <td>Niedrig (ca. 4% Dichteänderung)</td>
+            <td>Langsam (hohe Viskosität)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Prinzipien verstehen</h4>
+      <ul>
+        <li><strong>Dichteabnahme:</strong> Bei Erwärmung: Volumen expandiert (Gay-Lussac-Gesetz), Dichte sinkt proportional</li>
+        <li><strong>Auftrieb:</strong> F_A = Δρ · g · V (Archimedes: leichteres Fluid steigt)</li>
+        <li><strong>Viskosität und Kondition:</strong> Höhere Viskosität → mehr Reibung → Konvektionsgeschwindigkeit büsst</li>
+        <li><strong>Boussinesq-Aproximation:</strong> Temperaturabhängige Dichte wirkt nur im auftriebsbezogenen Term</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/konvektion.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/konvektion.css" | relURL }}">
+
+{{ end }}

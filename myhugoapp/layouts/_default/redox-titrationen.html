@@ -1,0 +1,445 @@
+{{ define "main" }}
+
+<div class="redox-titration-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a href="#permanganat" aria-controls="permanganat" role="tab" data-toggle="tab">
+            <i class="fa fa-mortar-board"></i> Permanganat
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#cer" aria-controls="cer" role="tab" data-toggle="tab">
+            <i class="fa fa-vial"></i> Cer(IV)
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#iod-thiosulfat" aria-controls="iod-thiosulfat" role="tab" data-toggle="tab">
+            <i class="fa fa-eye-dropper"></i> Iod-Thiosulfat
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#potentiometrie" aria-controls="potentiometrie" role="tab" data-toggle="tab">
+            <i class="fa fa-chart-line"></i> Potentiometrie
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="permanganat" role="tabpanel">
+      <div class="titration-calculator">
+        <h2>Permanganat-Titration (KMnO₄)</h2>
+        <p>Klassische Redox-Titration mit Permanganat als Selbstindikator: MnO₄⁻ violett → farblos</p>
+
+        <div class="reaction-display">
+          <h3>Reaktionsgleichung:</h3>
+          <p class="formula-text">2MnO₄⁻ + 5C₂O₄²⁻ + 16H⁺ → 2Mn²⁺ + 10CO₂ + 8H₂O</p>
+          <p><strong>Farbwechsel:</strong> Rotviolett (KMnO₄) → farblos (Mn²⁺)</p>
+          <p><strong>Indikator:</strong> Selbstanzeigend (KMnO₄ dient als Indikator)</p>
+        </div>
+
+        <div class="form-group">
+          <label for="permanganat-target-analyte">Zielanalyt:</label>
+          <select id="permanganat-target-analyte" class="form-control" onchange="updatePermanganatSetup()">
+            <option value="oxalate">Oxalsäure (C₂O₄²⁻)</option>
+            <option value="peroxide">Wasserstoffperoxid (H₂O₂)</option>
+            <option value="iron(II)">Eisen(II) (Fe²⁺)</option>
+            <option value="nitrite">Nitrit (NO₂⁻)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="permanganat-analyte-conc">Konzentration des Analyten (mol/L):</label>
+          <input type="number" id="permanganat-analyte-conc" class="form-control" value="0.1" step="any" min="0">
+        </div>
+
+        <div class="form-group">
+          <label for="permanganat-analyte-volume">Volumen des Analyten (mL):</label>
+          <input type="number" id="permanganat-analyte-volume" class="form-control" value="50.0" step="any" min="0">
+        </div>
+
+        <div class="form-group">
+          <label for="permanganat-titrant-conc">Konzentration KMnO₄ (mol/L):</label>
+          <input type="number" id="permanganat-titrant-conc" class="form-control" value="0.02" step="any" min="0">
+        </div>
+
+        <div class="form-group">
+          <label for="permanganat-stepsize">Schrittweite (mL):</label>
+          <input type="number" id="permanganat-stepsize" class="form-control" value="1.0" step="any" min="0.1">
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" onclick="simulatePermanganatTitration()">
+          <i class="fa fa-play"></i> Titration simulieren
+        </button>
+
+        <div id="permanganat-result" class="result-panel" style="display:none;">
+          <h3>Ergebnis:</h3>
+          <div class="titration-plot">
+            <canvas id="permanganat-plot" width="600" height="400"></canvas>
+          </div>
+          <div class="equivalence-point">
+            <h4>Redox-Äquivalenzpunkt:</h4>
+            <div class="result-display">
+              <p><span class="label">Äquivalenzvolumen:</span>
+                 <span id="permanganat-equiv-vol" class="value"></span></p>
+              <p><span class="label">Farbe bei Äquivalenz:</span>
+                 <span id="permanganat-color" class="value"></span></p>
+              <p><span class="label">Steigung dE/dV:</span>
+                 <span id="permanganat-derivative" class="value"></span></p>
+            </div>
+          </div>
+          <div class="titration-details">
+            <h4>Titrationsdetails:</h4>
+            <div id="permanganat-details"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="indicator-demo">
+        <h3>Indikator-Demo: Permanganat</h3>
+        <div class="test-tube">
+          <div id="permanganat-tube-color" class="tube-liquid"></div>
+          <div class="tube-bubble"></div>
+        </div>
+        <div class="color-controls">
+          <p><strong>Vorher:</strong> KMnO₄ violett</p>
+          <p><strong>Nachher:</strong> Mn²⁺ farblos</p>
+          <button class="btn btn-secondary" onclick="animatePermanganatSwap()">Farbwechsel anzeigen</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="cer" role="tabpanel">
+      <div class="titration-calculator">
+        <h2>Cer(IV)-Sulfat-Titration (Ce⁴⁺/Ce³⁺)</h2>
+        <p>Potentiometrische Redox-Titration als Primärstandard</p>
+
+        <div class="reaction-display">
+          <h3>Redox-Reaktion:</h3>
+          <p class="formula-text">Ce⁴⁺ + e⁻ → Ce³⁺</p>
+          <p><strong>Standardpotential:</strong> E°(Ce⁴⁺/Ce³⁺) = +1.44 V</p>
+          <p><strong>Indikator:</strong> Potentiometrisch (Pt-Elektrode)</p>
+        </div>
+
+        <div class="form-group">
+          <label for="cers4-target-analyte">Zielanalyt:</label>
+          <select id="cers4-target-analyte" class="form-control">
+            <option value="fe2+">Eisen(II)-Ionen (Fe²⁺)</option>
+            <option value="as3+">Arsen(III) (As³⁺)</option>
+            <option value="hydroquinon">Hydrochinon (C₆H₆(OH)₂)</option>
+            <option value="antimony">Antimon (Sb)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="cers4-analyte-conc">Konzentration (mol/L):</label>
+          <input type="number" id="cers4-analyte-conc" class="form-control" value="0.01" step="any" min="0">
+        </div>
+
+        <div class="form-group">
+          <label for="cers4-analyte-volume">Volumen (mL):</label>
+          <input type="number" id="cers4-analyte-volume" class="form-control" value="25.0" step="any" min="0">
+        </div>
+
+        <div class="form-group">
+          <label for="cers4-strength">Konzentration Ce⁴⁺ (mol/L):</label>
+          <select id="cers4-strength" class="form-control">
+            <option value="0.01">0.01 M</option>
+            <option value="0.001">0.001 M</option>
+            <option value="standard">Standard</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="cers4-stepsize">Schrittweite (mL):</label>
+          <input type="number" id="cers4-stepsize" class="form-control" value="0.5" step="any" min="0.1">
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" onclick="simulateCerS4Titration()">
+          <i class="fa fa-play"></i> Titration simulieren
+        </button>
+
+        <div id="cer-result" class="result-panel" style="display:none;">
+          <h3>Ergebnis:</h3>
+          <div class="titration-plot">
+            <canvas id="cer-plot" width="600" height="400"></canvas>
+          </div>
+          <div class="equivalence-point">
+            <h4>Potentiometrischer Äquivalenzpunkt:</h4>
+            <div class="result-display">
+              <p><span class="label">Äquivalenzvolumen:</span>
+                 <span id="cers4-equiv-vol" class="value"></span></p>
+              <p><span class="label">E° (Standard):</span>
+                 <span id="cers4-potential" class="value"></span></p>
+              <p><span class="label">Potential bei Äquivalenz:</span>
+                 <span id="cers4-after-equilibrium" class="value"></span></p>
+            </div>
+          </div>
+          <div class="potentiometric-details">
+            <h4>Erste Ableitung (dE/dV):</h4>
+            <div id="cers4-first-derivative"></div>
+            <h4>Zweite Ableitung (d²E/dV²):</h4>
+            <div id="cers4-second-derivative"></div>
+            <h4>Peak-Zuordnung:</h4>
+            <div id="cers4-peak-assignment"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="iod-thiosulfat" role="tabpanel">
+      <div class="titration-calculator">
+        <h2>Iod-Thiosulfat-Titration</h2>
+        <p>Indirekte iodometrische Bestimmung mit Stärke als Indikator</p>
+
+        <div class="reaction-display">
+          <h3>Reaktionsschema:</h3>
+          <p><strong>Primärreaktion (Iod-Freisetzung):</strong></p>
+          <p class="formula-text">5I⁻ + IO₃⁻ + 6H⁺ → 3I₂ + 3H₂O</p>
+          <p><strong>Titrationsreaktion:</strong></p>
+          <p class="formula-text">I₂ + 2S₂O₃²⁻ → 2I⁻ + S₄O₆²⁻</p>
+          <p><strong>Stöchiometrie:</strong> 1 mol KIO₃ : 3 mol I₂ : 6 mol S₂O₃²⁻</p>
+          <p><strong>Indikator:</strong> Stärke (I₂-Stärke-Komplex: tiefblau → farblos)</p>
+        </div>
+
+        <div class="form-group">
+          <label for="iod-thio-sample-vol">Probenvolumen (mL):</label>
+          <input type="number" id="iod-thio-sample-vol" class="form-control" value="25.0" step="any" min="1">
+        </div>
+
+        <div class="form-group">
+          <label for="iod-thio-kio3-cn">KIO₃-Konzentration (mol/L):</label>
+          <input type="number" id="iod-thio-kio3-cn" class="form-control" value="0.1" step="any" min="0">
+        </div>
+
+        <div class="form-group">
+          <label for="iod-thio-concentration">Na₂S₂O₃-Konzentration (mol/L):</label>
+          <input type="number" id="iod-thio-concentration" class="form-control" value="0.1" step="any" min="0">
+        </div>
+
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="simulateIodThiosulfat()">
+          <i class="fa fa-play"></i> Berechnung starten
+        </button>
+
+        <div id="iod-thio-result" class="result-panel" style="display:none;">
+          <h3>Ergebnis der iodometrischen Bestimmung:</h3>
+
+          <div class="indicators">
+            <div class="indicator-item">
+              <span class="indicator-mark" style="background: #1a5276; display:inline-block;width:20px;height:20px;border-radius:4px;"></span>
+              <span>Iod-Stärke-Komplex (tiefblau) vor Äquivalenz</span>
+            </div>
+            <div class="indicator-item">
+              <span class="indicator-mark" style="background: #f5f5f5; border:1px solid #ccc; display:inline-block;width:20px;height:20px;border-radius:4px;"></span>
+              <span>Farblos nach Äquivalenz (Iod reduziert)</span>
+            </div>
+          </div>
+
+          <div class="iod-response">
+            <h4>Kennzeichnungs-Äquivalenzpunkt:</h4>
+            <p>Der Äquivalenzpunkt ist erreicht, wenn die Blaufärbung der Iod-Stärke vollständig verschwindet.</p>
+            <div id="iod-thio-details"></div>
+          </div>
+        </div>
+
+        <div class="starch-notes">
+          <h3>Stärke als Indikator:</h3>
+          <p>Stärke wird erst kurz vor dem Äquivalenzpunkt zugegeben, da der Iod-Stärke-Komplex sonst irreversibel ausfallen kann. Der Farbwechsel erfolgt von tiefblau (I₂-Stärke) nach farblos (I⁻).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="potentiometrie" role="tabpanel">
+      <div class="titration-calculator">
+        <h2>Potentiometrische Redox-Titration</h2>
+        <p>Messung des Potentialverlaufs E(V) mit Pt-Elektrode — indikatorfreie Methode</p>
+
+        <div class="form-group">
+          <label for="potentiometry-redox-pair">Redox-Paar:</label>
+          <select id="potentiometry-redox-pair" class="form-control" onchange="updatePotentiometrySetup()">
+            <option value="ce">Ce⁴⁺/Ce³⁺ (E° = +1.44 V)</option>
+            <option value="fe2+">Fe²⁺/Fe³⁺ (E° = +0.77 V)</option>
+            <option value="i2/i-">I₂/I⁻ (E° = +0.54 V)</option>
+            <option value="ag/ag+">Ag/Ag⁺ (E° = +0.80 V)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="potentiometry-analyte-conc">Konzentration des Analyten (mol/L):</label>
+          <input type="number" id="potentiometry-analyte-conc" class="form-control" value="0.01" step="any" min="0">
+        </div>
+
+        <div class="form-group">
+          <label for="potentiometry-analyte-volume">Volumen des Analyten (mL):</label>
+          <input type="number" id="potentiometry-analyte-volume" class="form-control" value="25.0" step="any" min="0">
+        </div>
+
+        <div class="form-group">
+          <label for="potentiometry-titrant-conc">Konzentration des Titrants (mol/L):</label>
+          <input type="number" id="potentiometry-titrant-conc" class="form-control" value="0.01" step="any" min="0">
+        </div>
+
+        <div class="form-group">
+          <label for="potentiometry-stepsize">Schrittweite (mL):</label>
+          <input type="number" id="potentiometry-stepsize" class="form-control" value="0.5" step="any" min="0.1">
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" onclick="simulatePotentiometricTitration()">
+          <i class="fa fa-play"></i> Titration simulieren
+        </button>
+
+        <div id="potentiometry-result" class="result-panel" style="display:none;">
+          <h3>Ergebnis:</h3>
+          <div class="titration-plot">
+            <canvas id="potentiometry-plot" width="600" height="400"></canvas>
+          </div>
+          <div class="potentiometry-analysis">
+            <h4>Potentiometrische Analyse:</h4>
+            <div id="potentiometry-analysis"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="educational-content">
+    <h2>Grundlagen der Redox-Titration</h2>
+    <p>Redox-Titrationen beruhen auf Oxidations-Reduktions-Reaktionen zwischen Titrant und Analyt. Der Reaktionsfortschritt wird über das elektrische Potential (Nernst-Gleichung) verfolgt.</p>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>Nernst-Gleichung</h3>
+          <p>Das Potential einer Redox-Titration folgt der Nernst-Gleichung:</p>
+          <p class="formula-text">E = E° + (0,0592 / n) · log([Ox]/[Red])</p>
+          <p>Der <strong>Äquivalenzpunkt</strong> ist der Wendepunkt der E(V)-Kurve. Er wird durch die erste oder zweite Ableitung der Kurve bestimmt.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>Schärfe des Potentialsprungs</h3>
+          <p>Symmetrische Redox-Paare (gleiche Elektronenzahl) zeigen einen scharfen Sprung am Äquivalenzpunkt:</p>
+          <ul>
+            <li>Ce⁴⁺/Ce³⁺ (scharf, ΔE ≈ 0.03 V)</li>
+            <li>Fe²⁺/Fe³⁺ (mittel, ΔE ≈ 0.40 V)</li>
+            <li>I₂/I⁻ (flacher, ΔE ≈ 0.10 V)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="info-card">
+          <h3>Methoden zur Äquivalenzpunktbestimmung</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Methode</th>
+                <th>Beschreibung</th>
+                <th>Genauigkeit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Graphisch (Tangenten)</td>
+                <td>Wendepunkt der E(V)-Kurve durch Tangenten bestimmen</td>
+                <td>Mittel</td>
+              </tr>
+              <tr>
+                <td>1. Ableitung (dE/dV)</td>
+                <td>Maximum der ersten Ableitung = Äquivalenzpunkt</td>
+                <td>Hoch</td>
+              </tr>
+              <tr>
+                <td>2. Ableitung (d²E/dV²)</td>
+                <td>Nulldurchgang der zweiten Ableitung</td>
+                <td>Sehr hoch</td>
+              </tr>
+              <tr>
+                <td>Gran-Plot</td>
+                <td>Linearisierung der Kurve vor/nach Äquivalenz</td>
+                <td>Sehr hoch</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>Redox-Indikatoren</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Indikator</th>
+                <th>Farbwechsel (ox/red)</th>
+                <th>E°' (V)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>KMnO₄</td>
+                <td>violett → farblos</td>
+                <td>+1.51</td>
+              </tr>
+              <tr>
+                <td>Ce⁴⁺</td>
+                <td>gelb → farblos</td>
+                <td>+1.44</td>
+              </tr>
+              <tr>
+                <td>Stärke (I₂)</td>
+                <td>blau → farblos</td>
+                <td>+0.54</td>
+              </tr>
+              <tr>
+                <td>Ferroin</td>
+                <td>blassblau → rot</td>
+                <td>+1.06</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>Praktische Hinweise</h3>
+          <ul>
+            <li>KMnO₄-Lösungen müssen vor Gebrauch filtriert werden (MnO₂-Abscheidung)</li>
+            <li>Ce⁴⁺-Lösungen sind als Primärstandard geeignet (lange stabil)</li>
+            <li>Stärke-Indikator erst kurz vor Äquivalenz zugeben (sonst Ausflockung)</li>
+            <li>Pt-Elektroden vor potentiometrischen Messungen reinigen</li>
+            <li>Temperatur konstant halten (Nernst-Gleichung temperaturabhängig)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="{{ "js/redox-titrationen.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/redox-titrationen.css" | relURL }}">
+
+{{ end }}

@@ -1,0 +1,176 @@
+/* Arbeitsblatt-Generator */
+
+.arbeitsblatt-generator-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.config-panel {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.config-panel h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.config-panel .form-group {
+  margin-bottom: 15px;
+}
+
+.config-panel label {
+  font-weight: 600;
+  color: #34495e;
+}
+
+/* Worksheet Preview */
+
+.ws-preview {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 40px;
+  margin-bottom: 20px;
+  min-height: 500px;
+}
+
+.ws-header {
+  border-bottom: 2px solid #2c3e50;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+}
+
+.ws-header h2 {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+}
+
+.ws-header p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.ws-problem {
+  margin-bottom: 30px;
+  page-break-inside: avoid;
+}
+
+.ws-problem h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ws-question {
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.ws-answer-space {
+  height: 60px;
+  border-bottom: 2px dashed #ccc;
+  margin-top: 10px;
+}
+
+/* Solutions */
+
+.ws-solutions {
+  background: #f0f7ff;
+  border: 1px solid #b8d4f0;
+  border-radius: 8px;
+  padding: 30px;
+  margin-top: 30px;
+}
+
+.ws-solutions h2 {
+  margin-top: 0;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.ws-solution {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: white;
+  border-radius: 4px;
+  border-left: 4px solid #3498db;
+}
+
+.ws-solution h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #2980b9;
+}
+
+.ws-solution .ws-steps {
+  font-size: 13px;
+  color: #555;
+  font-family: 'Courier New', monospace;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* Print Styles */
+
+@media print {
+  body {
+    background: white;
+    font-size: 12pt;
+  }
+
+  .config-panel,
+  #generate-ws-btn,
+  #print-ws-btn,
+  .navbar,
+  .footer,
+  .site-header,
+  .site-footer {
+    display: none !important;
+  }
+
+  .arbeitsblatt-generator-container {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ws-preview {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ws-problem {
+    page-break-inside: avoid;
+  }
+
+  .ws-answer-space {
+    height: 40px;
+  }
+
+  .ws-solutions {
+    page-break-before: always;
+    background: white;
+    border: none;
+    padding: 0;
+  }
+
+  .ws-solution {
+    border-left: 2px solid #3498db;
+    background: white;
+    padding: 10px;
+  }
+}

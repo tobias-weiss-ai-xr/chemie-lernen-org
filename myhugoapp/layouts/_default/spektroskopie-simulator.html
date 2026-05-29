@@ -1,0 +1,97 @@
+{{ define "main" }}
+
+<div class="spektroskopie-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="active" role="presentation">
+      <a href="#ir" aria-controls="ir" role="tab" data-toggle="tab"><i class="fa fa-wave-square"></i> IR-Spektrum</a>
+    </li>
+    <li role="presentation">
+      <a href="#nmr" aria-controls="nmr" role="tab" data-toggle="tab"><i class="fa fa-signal"></i> ¹H-NMR</a>
+    </li>
+    <li role="presentation">
+      <a href="#ms" aria-controls="ms" role="tab" data-toggle="tab"><i class="fa fa-bar-chart"></i> Massenspektrum</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <!-- IR Tab -->
+    <div class="tab-pane active" id="ir" role="tabpanel">
+      <div class="spektroskopie-panel">
+        <h3>IR-Spektrum</h3>
+        <div class="form-group">
+          <label for="ir-compound">Verbindung auswählen:</label>
+          <select id="ir-compound" class="form-control">
+            <option value="ethanol">Ethanol</option>
+            <option value="acetone">Aceton</option>
+            <option value="acetic-acid">Essigsäure</option>
+            <option value="benzene">Benzen</option>
+            <option value="toluene">Toluol</option>
+            <option value="cyclohexane">Cyclohexan</option>
+          </select>
+        </div>
+        <div class="spektrum-plot">
+          <canvas id="ir-plot" width="700" height="400"></canvas>
+        </div>
+        <div id="ir-peak-table"></div>
+      </div>
+    </div>
+
+    <!-- NMR Tab -->
+    <div class="tab-pane" id="nmr" role="tabpanel">
+      <div class="spektroskopie-panel">
+        <h3>¹H-NMR-Spektrum</h3>
+        <div class="form-group">
+          <label for="nmr-compound">Verbindung auswählen:</label>
+          <select id="nmr-compound" class="form-control">
+            <option value="ethanol">Ethanol</option>
+            <option value="acetone">Aceton</option>
+            <option value="ethyl-acetate">Essigsäureethylester</option>
+            <option value="toluene">Toluol</option>
+            <option value="benzene">Benzen</option>
+          </select>
+        </div>
+        <div class="spektrum-plot">
+          <canvas id="nmr-plot" width="700" height="400"></canvas>
+        </div>
+        <div id="nmr-peak-table"></div>
+      </div>
+    </div>
+
+    <!-- MS Tab -->
+    <div class="tab-pane" id="ms" role="tabpanel">
+      <div class="spektroskopie-panel">
+        <h3>Massenspektrum (EI-MS)</h3>
+        <div class="form-group">
+          <label for="ms-compound">Verbindung auswählen:</label>
+          <select id="ms-compound" class="form-control">
+            <option value="ethanol">Ethanol</option>
+            <option value="acetone">Aceton</option>
+            <option value="toluene">Toluol</option>
+            <option value="benzene">Benzen</option>
+            <option value="ethyl-acetate">Essigsäureethylester</option>
+          </select>
+        </div>
+        <div class="spektrum-plot">
+          <canvas id="ms-plot" width="700" height="400"></canvas>
+        </div>
+        <div id="ms-peak-table"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="/js/spektroskopie-simulator.js"></script>
+<link rel="stylesheet" href="/css/spektroskopie-simulator.css">
+
+{{ end }}

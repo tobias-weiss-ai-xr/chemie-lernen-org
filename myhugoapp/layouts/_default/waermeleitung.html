@@ -1,0 +1,213 @@
+{{ define "main" }}
+
+<div class="waermeleitung-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="simulation-controls">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="material-selector">Material auswählen:</label>
+          <select id="material-selector" class="form-control" onchange="changeMaterial()">
+            <option value="copper">Kupfer (Metall, λ=400 W/m·K)</option>
+            <option value="iron">Eisen (Metall, λ=80 W/m·K)</option>
+            <option value="silicon">Silizium (Halbleiter, λ=150 W/m·K)</option>
+            <option value="glass">Glas (Isolator, λ=1 W/m·K)</option>
+            <option value="wood">Holz (Isolator, λ=0.15 W/m·K)</option>
+            <option value="air">Luft (Gas, λ=0.025 W/m·K)</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="temperature-diff">Temperaturdifferenz (K):</label>
+          <input type="range" id="temperature-diff" class="form-control" value="100" min="10" max="200" step="10" oninput="updateTemperature()">
+          <span id="temp-display" class="text-muted">100 K</span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="animation-speed">Geschwindigkeit:</label>
+          <input type="range" id="animation-speed" class="form-control" value="50" min="10" max="100" step="10" oninput="updateSpeed()">
+          <span id="speed-display" class="text-muted">50%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 15px;">
+      <div class="col-md-12 text-center">
+        <button class="btn btn-primary btn-lg" onclick="startSimulation()">
+          <i class="fa fa-play"></i> Simulation starten
+        </button>
+        <button class="btn btn-secondary btn-lg" onclick="stopSimulation()">
+          <i class="fa fa-pause"></i>
+          Pause
+        </button>
+        <button class="btn btn-info btn-lg" onclick="resetSimulation()">
+          <i class="fa fa-redo"></i>
+          Zurücksetzen
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="simulation-area">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="info-card">
+          <h4>Wärmefluss-Visualisierung</h4>
+          <div id="conduction-simulation" class="conduction-simulation">
+            <canvas id="simulation-canvas" width="700" height="400"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="info-card">
+          <h4>Parameter</h4>
+          <div id="parameters-panel">
+            <p><strong>Material:</strong> <span id="param-material">Kupfer</span></p>
+            <p><strong>Wärmeleitfähigkeit:</strong> <span id="param-conductivity">400</span> W/m·K</p>
+            <p><strong>Raumtemperatur:</strong> <span id="param-temperature"></span> K</p>
+            <p><strong>Quellentemperatur:</strong> <span id="param-source"></span> K</p>
+            <p><strong>Verstrichene Zeit:</strong> <span id="param-time">0</span> s</p>
+          </div>
+        </div>
+
+        <div class="info-card" style="margin-top: 20px;">
+          <h4>Formel</h4>
+          <div class="formula-display">
+            <p>Fouriersches Gesetz:</p>
+            <p class="formula-text">q = -k · dT/dx</p>
+            <p><small>q = Wärmestrom, k = Wärmeleitfähigkeit, dT/dx = Temperaturgradient</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Educational Content -->
+  <div class="educational-content">
+    <h2>Mechanismen der Wärmeleitung</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚡ Elektronenleitung</h3>
+          <p><strong>Materialien:</strong> Metalle</p>
+          <p><strong>Träger:</strong> Freie Elektronen</p>
+          <p><strong>Vorgang:</strong> Wärmende Elektronen besitzen höhere kinetische Energie, stoßen an langsameren Elektronen, übertragen Energie rasch</p>
+          <p><strong>Resultat:</strong> Hohe Wärmeleitfähigkeit (400+ W/m·K)</p>
+          <ul>
+            <li>Kupfer: 400 W/m·K (exzellent)</li>
+            <li>Silber: 430 W/m·K (bestes Metall)</li>
+            <li>Aluminium: 235 W/m·K (sehr gut)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🔊 Phononenleitung</h3>
+          <p><strong>Materialien:</strong> Halbleiter, Isolatoren</p>
+          <p><strong>Träger:</strong> Gitschwingungen (Quant: Phononen)</p>
+          <p><strong>Vorgang:</strong> Atome schwingen, übergeben Schwingungsenergie durch Gitterwellen</p>
+          <p><strong>Resultat:</strong> Mittlere bis niedrige Wärmeleitfähigkeit</p>
+          <ul>
+            <li>Silizium: 150 W/m·K (temperaturabhängig)</li>
+            <li>Glas: 1 W/m·K (langsam)</li>
+            <li>Ziegel: 1 W/m·K, Holz: 0.15 W/m·K (langsamer)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>💨 Gase (Molekülstöße)</h3>
+          <p><strong>Materialien:</strong> Luft, andere Gase</p>
+          <p><strong>Träger:</strong> Moleküle (translationale kinetische Energie)</p>
+          <p><strong>Warum langsamer:</strong> Kristallgitter existiert nicht, intermolekulare Wechselwirkungen schwach, große Molekularabstände</p>
+          <p><strong>Werte:</strong> Luft ~0.025 W/m·K (sehr gering)</p>
+          <p>Anwendung: Wärmeisolatoren (Akkuline) nutzen Luft bzw. Edelgase als isolierende Poren.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h3>📊 Wärmeleitfähigkeit (λ, Thermal Conductivity) - Zusammenfassung</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Material</th>
+            <th>λ (W/m·K)</th>
+            <th>Klassifizierung</th>
+            <th>Anwendung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Kupfer</strong></td>
+            <td>400</td>
+            <td>Grün: Exzellenter Leiter</td>
+            <td>Kühlkörper, Kupferrohre</td>
+          </tr>
+          <tr>
+            <td><strong>Eisen</strong></td>
+            <td>80</td>
+            <td>Guter Leiter</td>
+            <td>Kochutensilien</td>
+          </tr>
+          <tr>
+            <td><strong>Silizium</strong></td>
+            <td>150</td>
+            <td>Sehr gut (Halbleiter)</td>
+            <td>Elektronik</td>
+          </tr>
+          <tr>
+            <td><strong>Glas</strong></td>
+            <td>1</td>
+            <td>Schmal: Isolator</td>
+            <td>Fenster</td>
+          </tr>
+          <tr>
+            <td><strong>Holz</strong></td>
+            <td>0.15</td>
+            <td>Langsam: Isolator</td>
+            <td>Bau (Wärmedämmung)</td>
+          </tr>
+          <tr>
+            <td><strong>Luft</strong></td>
+            <td>0.025</td>
+            <td>Sehr langsam</td>
+            <td>Isoliermaterialien, Polsterung</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-card">
+      <h3>⚠️ Wichtige Prinzipien</h3>
+      <ul>
+        <li><strong>Temperaturgradient:</strong> Je größer der Temperaturunterschied (dT), desto höher der Wärmestrom (q)</li>
+        <li><strong>Wärmeleitfähigkeit:</strong> Bestimmt, wie schnell ein Material Wärme transferiert; Metall > Glasteile > Holz</li>
+        <li><strong>Querschnitt-Fläche (A):</strong> Greater Area, larger heat flux: $q \cdot A = \text{Watt}$</li>
+        <li><strong>Dämpfung:</strong> Über We groundwork 最终到达 Glniungen equilibrieren</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/waermeleitung.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/waermeleitung.css" | relURL }}">
+
+{{ end }}

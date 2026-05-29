@@ -1,0 +1,140 @@
+.progress-dashboard-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 16px;
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+.streak-card .stat-icon { color: #e67e22; }
+.total-card .stat-icon { color: #2ecc71; }
+.accuracy-card .stat-icon { color: #3498db; }
+
+.stat-value {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-top: 4px;
+}
+
+.module-progress-item {
+  margin-bottom: 16px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.progress {
+  height: 24px;
+  border-radius: 12px;
+  background: #ecf0f1;
+}
+
+.progress-bar {
+  line-height: 24px;
+  font-size: 0.85rem;
+  border-radius: 12px;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.achievement-card {
+  background: #fff;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.achievement-card.earned {
+  border-color: #f1c40f;
+  background: #fffef5;
+}
+
+.achievement-card.locked {
+  opacity: 0.6;
+}
+
+.achievement-icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  color: #f1c40f;
+}
+
+.achievement-card.locked .achievement-icon {
+  color: #bdc3c7;
+}
+
+.achievement-name {
+  font-weight: bold;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.achievement-desc {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+}
+
+.achievement-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: #27ae60;
+  font-size: 1.1rem;
+}
+
+.achievement-badge.locked {
+  color: #bdc3c7;
+}
+
+#recent-activity .list-group {
+  margin-bottom: 0;
+}
+
+#recent-activity .list-group-item {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .stat-card {
+    padding: 16px;
+  }
+  .stat-value {
+    font-size: 1.6rem;
+  }
+  .achievements-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

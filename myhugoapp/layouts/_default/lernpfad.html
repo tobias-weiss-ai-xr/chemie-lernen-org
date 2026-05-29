@@ -1,0 +1,45 @@
+{{ define "main" }}
+
+<div class="lernpfad-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Path Selection -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong><i class="fa fa-list"></i> Lernpfade</strong></div>
+        <div class="list-group" id="path-list">
+        </div>
+      </div>
+      <div class="progress-info" id="path-progress-summary">
+        <p class="text-muted text-center">Wähle einen Pfad aus</p>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong><i class="fa fa-road"></i> <span id="path-title">Pfad auswählen</span></strong>
+          <span class="pull-right" id="path-meta"></span>
+        </div>
+        <div class="panel-body" id="path-detail">
+          <p class="text-muted">Wähle einen Lernpfad aus der Liste links, um die Schritte zu sehen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="/js/utils/progress-tracker.js"></script>
+<script src="/js/lernpfad.js"></script>
+<link rel="stylesheet" href="/css/lernpfad.css">
+
+{{ end }}

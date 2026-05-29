@@ -1,0 +1,75 @@
+/* Laborgeräte-Explorer */
+
+.laborgeraete-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#equipment-categories {
+  margin-bottom: 25px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+#equipment-categories .btn {
+  margin-bottom: 5px;
+}
+
+.equipment-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  min-height: 220px;
+  transition: box-shadow 0.2s;
+}
+
+.equipment-card:hover {
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.equipment-card .equipment-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: #3498db;
+}
+
+.equipment-card h4 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.equipment-card p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.equipment-usage {
+  font-style: italic;
+  color: #777;
+}
+
+.equipment-cat-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.badge-cat-glas { background: #d5f5e3; color: #1a7a3a; }
+.badge-cat-mess { background: #d4efdf; color: #1a5a7a; }
+.badge-cat-heiz { background: #fdebd0; color: #a05a1a; }
+.badge-cat-sicherheit { background: #fadbd8; color: #a01a1a; }

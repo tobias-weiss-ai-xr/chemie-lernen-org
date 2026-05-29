@@ -111,15 +111,108 @@ author = "chemie-lernen.org Team"
     weight = 28
     icon = "⚗️"
     interaktiv = true
-# REMOVED: PSE in VR feature (2026-01-23)
-# [[menu.main]]
-#     name = "PSE in VR"
-#     url = "/pages/pse-in-vr/"
-#     parent = "interaktiv"
-#     weight = 29
-#     icon = "🥽"
-#     interaktiv = true
+# Phase 7-10 Interactive Features
+[[menu.main]]
+    name = "Übungsgenerator"
+    url = "/uebungsgenerator/"
+    parent = "interaktiv"
+    weight = 29
+    icon = "📝"
+    interaktiv = true
+[[menu.main]]
+    name = "Lückentexte"
+    url = "/lueckentexte/"
+    parent = "interaktiv"
+    weight = 30
+    icon = "✏️"
+    interaktiv = true
+[[menu.main]]
+    name = "Lernpfad"
+    url = "/lernpfad/"
+    parent = "interaktiv"
+    weight = 31
+    icon = "🗺️"
+    interaktiv = true
+[[menu.main]]
+    name = "Fortschritt"
+    url = "/fortschritt/"
+    parent = "interaktiv"
+    weight = 32
+    icon = "📊"
+    interaktiv = true
+[[menu.main]]
+    name = "Arbeitsblatt"
+    url = "/arbeitsblatt-generator/"
+    parent = "interaktiv"
+    weight = 33
+    icon = "📋"
+    interaktiv = true
+[[menu.main]]
+    name = "Aufgabensammlung"
+    url = "/aufgabensammlung/"
+    parent = "interaktiv"
+    weight = 34
+    icon = "📚"
+    interaktiv = true
+[[menu.main]]
+    name = "Klassencockpit"
+    url = "/klassencockpit/"
+    parent = "interaktiv"
+    weight = 35
+    icon = "📈"
+    interaktiv = true
+[[menu.main]]
+    name = "Redox-Titrationen"
+    url = "/redox-titrationen/"
+    parent = "interaktiv"
+    weight = 36
+    icon = "⚡"
+    interaktiv = true
+[[menu.main]]
+    name = "Periodische Trends"
+    url = "/periodische-trends/"
+    parent = "interaktiv"
+    weight = 37
+    icon = "📈"
+    interaktiv = true
+[[menu.main]]
+    name = "Spektroskopie"
+    url = "/spektroskopie-simulator/"
+    parent = "interaktiv"
+    weight = 38
+    icon = "📉"
+    interaktiv = true
+[[menu.main]]
+    name = "Gefahrstoffe"
+    url = "/gefahrstoffkennzeichnung/"
+    parent = "interaktiv"
+    weight = 39
+    icon = "⚠️"
+    interaktiv = true
+[[menu.main]]
+    name = "Laborgeräte"
+    url = "/laborgeraete-explorer/"
+    parent = "interaktiv"
+    weight = 40
+    icon = "🔬"
+    interaktiv = true
+[[menu.main]]
+    name = "KI-Assistent"
+    url = "/ki-assistent/"
+    parent = "interaktiv"
+    weight = 41
+    icon = "🤖"
+    interaktiv = true
 
+[[menu.main]]
+    name = "Lehrende"
+    url = "/lehrende/"
+    weight = 45
+
+[[menu.main]]
+    name = "Neueste Forschung"
+    url = "/pages/neueste-forschung/"
+    weight = 48
 
 # General Pages
 [[menu.main]]

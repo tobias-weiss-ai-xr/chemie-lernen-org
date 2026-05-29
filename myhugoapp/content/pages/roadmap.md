@@ -235,24 +235,23 @@ Diese Sektion enthält eine detaillierte Analyse und Planung für die Erweiterun
 #### 4.2 Periodische Trends
 
 - **Thema:** Trends durch atomare Energieniveaus
-- **Status:** PARTIELL (Periodensystem vorhanden)
+- **Status:** BESTEHT
 - **Merkmale:**
-  - Atomradius, Ionisierungsenergie, Elektronegativität
-  - Interaktive Trend-Linien im PSE
-  - Erklärung durch Orbitale
-- **Zielseite:** Erweitern `/perioden-system-der-elemente/`
+  - Atomradius, Ionisierungsenergie, Elektronegativität mit Heatmaps
+  - Interaktives Trends-PSE mit Klick-Details pro Element
+  - Detaillierte Trend-Erklärungen (Kernladung, Schale, Abschirmung)
+- **Zielseite:** [Periodische Trends](/periodische-trends/)
 
 #### 4.3 Molekülorbitale
 
 - **Thema:** MO-Theorie und andere Bindungskonzepte
-- **Status:** TODO
+- **Status:** BESTEHT
 - **Merkmale:**
   - σ- und π-Bindungen visualisieren
-  - S- und p-Orbital-Überlappung animieren
-  - Hybridsierung (sp, sp2, sp3)
+  - S- und p-Orbital-Überlappung animieren (Three.js 3D)
+  - Hybridsierung (sp, sp², sp³) mit Beispielmolekülen
   - VB- vs MO-Theorie vergleichen
-- **Zielseite:** `/molekuelorbitale/`
-- **Technik:** Three.js 3D-Orbitale
+- **Zielseite:** [Molekülorbitale](/molekuelorbitale/)
 
 ---
 
@@ -261,23 +260,24 @@ Diese Sektion enthält eine detaillierte Analyse und Planung für die Erweiterun
 #### 5.1 Elektrochemie auf Teilchenebene
 
 - **Thema:** Redoxreaktionen auf molekularer Ebene
-- **Status:** PARTIELL (Redox-Potenzial-Rechner vorhanden)
+- **Status:** BESTEHT
 - **Merkmale:**
   - Elektronenübergänge animieren
   - Galvanische Zellen visualisieren
   - Elektrolyse demonstrieren
   - Nernst-Gleichung interaktiv
-- **Zielseite:** Erweitern `/redox-potenzial-rechner/`
+- **Zielseite:** [Elektrochemie auf Teilchenebene](/elektrochemie-teilchenebene/)
 
 #### 5.2 Redox-Titrationen
 
 - **Thema:** Redox-Titrationen visualisieren
-- **Status:** TODO
+- **Status:** BESTEHT
 - **Merkmale:**
-  - Permanganat-Titration (MnO₄⁻)
-  - Cer(IV)-Sulfat-Titration
-  - Potentiometrische Indikation
-- **Zielseite:** Erweitern `/titrations-simulator/`
+  - Permanganat-Titration (MnO₄⁻) - Selbstindikator (violett → farblos)
+  - Cer(IV)-Sulfat-Titration - Potentiometrischer Standard (E°=1.44 V)
+  - Iod-Thiosulfat-Titration - Stärke-Indikator (blau → farblos)
+  - Generalisiertes Potentiometrie-Tab - Alle Redox-Paare mit Nernst-Gleichung
+- **Zielseite:** [Redox-Titrationen](/redox-titrationen/)
 
 ---
 
@@ -286,33 +286,32 @@ Diese Sektion enthält eine detaillierte Analyse und Planung für die Erweiterun
 #### 6.1 Wärmeleitung
 
 - **Thema:** Wärmeübertragung durch Konduktion
-- **Status:** TODO
+- **Status:** BESTEHT
 - **Merkmale:**
   - Wärmeleitung in Metallen vs. Isolatoren
   - Wärmefluss-Diagramm animiert
   - Fourier'sches Gesetz visualisiert
-- **Zielseite:** `/waermeleitung/`
-- **Integration:** Energetik Themenbereich
+- **Zielseite:** [Wärmeleitung](/waermeleitung/)
 
 #### 6.2 Konvektion
 
 - **Thema:** Konvektionsströmungen in Fluiden
-- **Status:** TODO
+- **Status:** BESTEHT
 - **Merkmale:**
   - Konvektionszellen animieren
   - Auftrieb und Dichte
   - Natürliche vs. erzwungene Konvektion
-- **Zielseite:** `/konvektion/`
+- **Zielseite:** [Konvektion](/konvektion/)
 
 #### 6.3 Temperatur und Teilchenbewegung
 
 - **Thema:** Temperatur als kinetische Energie
-- **Status:** TODO
+- **Status:** BESTEHT
 - **Merkmale:**
   - Partikelgeschwindigkeit vs. Temperatur
   - Maxwell-Boltzmann-Verteilung
-  - Phasenübergänge animieren
-- **Zielseite:** `/temperatur-bewegung/`
+  - Kollisionen und Druck
+- **Zielseite:** [Temperatur & Teilchenbewegung](/temperatur-teilchenbewegung/)
 
 ---
 

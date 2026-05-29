@@ -1,0 +1,184 @@
+{{ define "main" }}
+
+<div class="periodische-trends-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="trend-controls">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="trend-selector">Trend auswählen:</label>
+          <select id="trend-selector" class="form-control" onchange="loadTrend()">
+            <option value="atomradius">Atomradius (pm) - Größe der Atome</option>
+            <option value="ionisation">1. Ionisationsenergie (kJ/mol) - Energiedefizit</option>
+            <option value="electronegativity">Elektronegativität (Pauling) - Elektronenaffinität</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info-panel" id="trend-info">
+          <h4>Atomradius</h4>
+          <p><strong>Definition:</strong> Abstand vom Atomkern bis zum Valenzelektron</p>
+          <p><strong>Einheit:</strong> Picometer (pm)</p>
+          <p><strong>Trend:</strong> Abnimmt links→rechts, nimmt zu oben→unten</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="periodic-table-container">
+    <div id="periodic-table" class="periodic-table">
+    </div>
+  </div>
+
+  <div class="element-details">
+    <div class="info-card">
+      <h4>Element-Details</h4>
+      <div id="element-info" class="element-info">
+        <p class="text-muted">Klicken Sie auf ein Element für Details</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="trend-legend">
+    <h4>Legende (Heatmap)</h4>
+    <div id="heat-legend" class="heat-legend">
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Educational Content -->
+  <div class="educational-content">
+    <h2>Periodische Trends erklärt</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card trend-card">
+          <h3>📏 Atomradius</h3>
+          <p><strong>Definition:</strong> Der Atomradius ist der halbe Abstand zwischen den Kernen zweier benachbarter Atome gleicher Sorte.</p>
+          <p><strong>Tendenz:</strong></p>
+          <ul>
+            <li><strong>Über eine Periode (links→rechts):</strong> <span class="text-danger">nimmt ab ↓</span></li>
+            <li>Grund: Kernladung nimmt bei gleicher Schale zu → stärkere Anziehung</li>
+            <li><strong>Über eine Gruppe (oben→unten):</strong> <span class="text-success">nimmt zu ↑</span></li>
+            <li>Grund: Elektronenschalen (Hauptquantenzahl n) steigt → Radius wächst</li>
+          </ul>
+          <p><strong>Einheit:</strong> 1 pm = 10⁻¹² m</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card trend-card">
+          <h3>⚡ Ionisationsenergie</h3>
+          <p><strong>Definition:</strong> Die Energie, die benötigt wird, um das am schwächsten gebundene Elektron eines neutralen Atoms in der Gasphase zu entfernen.</p>
+          <p><strong>Equation:</strong> $X(g) + I_1 → X^+(g) + e^-$</p>
+          <p><strong>Tendenz:</strong></p>
+          <ul>
+            <li><strong>Über eine Periode (links→rechts):</strong> <span class="text-success">nimmt zu ↑</span></li>
+            <li>Grund: Stärkere Kernladung (Z*), geringerer Radius → Elektron schwerer zu entfernen</li>
+            <li><strong>Über eine Gruppe (oben→unten):</strong> <span class="text-danger">nimmt ab ↓</span></li>
+            <li>Grund: Größerer Radius, stärkere Abschirmung → Elektron leichter zu entfernen</li>
+          </ul>
+          <p><strong>Exceptions:</strong> Gruppen 2, 15 - Stabilität halbgefüllter/ganz gefüllter Schalen</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card trend-card">
+          <h3>🔮 Elektronegativität</h3>
+          <p><strong>Definition:</strong> Tendenz eines Atoms,bindungsfähige Elektronenpaare anzuziehen (Pauling-Skala)</p>
+          <p><strong>Skala:</strong> F = 3.98 (höchst), Cs = 0.79 (niedrigst)</p>
+          <p><strong>Tendenz:</strong></p>
+          <ul>
+            <li><strong>Über eine Periode (links→rechts):</strong> <span class="text-success">nimmt zu ↑</span></li>
+            <li>Grund: Stärkere effektive Kernladung, kleinerer Radius</li>
+            <li><strong>Über eine Gruppe (oben→unten):</strong> <span class="text-danger">nimmt ab ↓</span></li>
+            <li>Grund: Größerer Radius, stärkere Abschirmung</li>
+          </ul>
+          <p><strong>Anwendung:</strong> Bindungsart prädizieren (Ionen vs. kovalent)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h3>📊 Zusammenfassung der Trends</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Trend</th>
+            <th>Über eine Periode ←→</th>
+            <th>Über eine Gruppe ↑↓</th>
+            <th>Kritische Determinanten</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Atomradius</strong></td>
+            <td>Abnimmt ↓</td>
+            <td>Zunimmt ↑</td>
+            <td>Kernladung (Z) + Elektronabschirmung</td>
+          </tr>
+          <tr>
+            <td><strong>Ionisationsenergie (I₁)</strong></td>
+            <td>Zunimmt ↑</td>
+            <td>Abnimmt ↓</td>
+            <td>Effektive Kernladung (Z*) / Radius (r)</td>
+          </tr>
+          <tr>
+            <td><strong>Elektronegativität (χ)</strong></td>
+            <td>Zunimmt ↑</td>
+            <td>Abnimmt ↓</td>
+            <td>Z* / r (wie Ionisationsenergie)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Warum treten diese Tendenzen auf?</h4>
+      <p>Die Periodentrends beinhalten Wechselwirkungen zwischen <strong>Kernladung (Z)</strong>, <strong>Elektronenzahl (n)</strong>, <strong>Schale-Struktur</strong>, und <strong>Elektronenabschirmung</strong>. Wahrscheinlich:</p>
+      <ul>
+        <li><strong>Kernladung ($Z$):</strong> Je mehr Protonen, desto stärker werden Elektronen angezogen</li>
+        <li><strong>Hauptquantenzahl ($n$):</strong> Höhere Schalen (größeres n) weiter vom Kern</li>
+        <li><strong>Abschirmung:</strong> Innere Eletronen schirmen die effektive Kernladung ab</li>
+        <li><strong>Effektive Kernladung ($Z^*$):</strong> Z * - Abschirmung, treibt alle Trends</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h3>⚠️ Ausnahmen und Anomalien</h3>
+      <div class="exceptions">
+        <div class="exception-item">
+          <h4>Gruppe 2 (Erdalkalimetalle)</h4>
+          <p>Halbgefüllte s-Orbitale → leichte Abnahme von $I_1$ im Vergleich zu Gruppe 1</p>
+        </div>
+        <div class="exception-item">
+          <h4>Gruppe 15 (Pnicogene)</h4>
+          <p>Halbgefüllte p-Orbitale (stabil) → $I_1$ leicht höher</p>
+        </div>
+        <div class="exception-item">
+          <h4>D-Block-Übergangsmetalle</h4>
+          <p>Trends sind schwächer ausgeprägt aufgrund d-Elektronen-Teilabschirmung</li>
+        </div>
+        <div class="exception-item">
+          <h4>Lanthanoide</h4>
+          <p>Kontraktion (Lanthanoidenkontraktion) resultiert aus schlechter Abschirmung f-Elektronen</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="{{ "js/periodische-trends.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/periodische-trends.css" | relURL }}">
+
+{{ end }}

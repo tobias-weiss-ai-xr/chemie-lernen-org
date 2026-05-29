@@ -1,0 +1,123 @@
+{{ define "main" }}
+
+<script src="/js/lazy-loader.js"></script>
+
+<div class="arbeitsblatt-generator-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Configuration Panel -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="config-panel">
+        <h3><i class="fa fa-cog"></i> Arbeitsblatt konfigurieren</h3>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="ws-theme">Thema:</label>
+              <select id="ws-theme" class="form-control">
+                <option value="stoichiometry">Stöchiometrie</option>
+                <option value="balancing">Reaktionsgleichungen</option>
+                <option value="molar-mass">Molare Massen</option>
+                <option value="ph">pH-Berechnungen</option>
+                <option value="redox">Redox-Gleichungen</option>
+                <option value="mixed">Gemischt</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="ws-difficulty">Schwierigkeitsgrad:</label>
+              <select id="ws-difficulty" class="form-control">
+                <option value="1">Leicht</option>
+                <option value="2" selected>Mittel</option>
+                <option value="3">Schwer</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="ws-count">Anzahl Aufgaben:</label>
+              <select id="ws-count" class="form-control">
+                <option value="5">5 Aufgaben</option>
+                <option value="10" selected>10 Aufgaben</option>
+                <option value="15">15 Aufgaben</option>
+                <option value="20">20 Aufgaben</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="ws-type">Aufgabentyp:</label>
+              <select id="ws-type" class="form-control">
+                <option value="mixed">Gemischt</option>
+                <option value="calculation">Rechnungen</option>
+                <option value="equations">Gleichungen aufstellen</option>
+                <option value="multiple-choice">Multiple Choice</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="ws-solution">Lösungsblatt:</label>
+              <select id="ws-solution" class="form-control">
+                <option value="separate">Separates Lösungsblatt</option>
+                <option value="inline">Lösungen direkt</option>
+                <option value="none">Ohne Lösungen</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <button id="generate-ws-btn" class="btn btn-primary btn-lg">
+              <i class="fa fa-file-text-o"></i> Arbeitsblatt erstellen
+            </button>
+            <button id="print-ws-btn" class="btn btn-success btn-lg" style="display:none;" onclick="window.print()">
+              <i class="fa fa-print"></i> Drucken / PDF
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Worksheet Preview -->
+  <div class="row">
+    <div class="col-md-12">
+      <div id="ws-preview" class="ws-preview" style="display:none;">
+        <div class="ws-header">
+          <h2 id="ws-title" class="text-center">Arbeitsblatt: Chemie</h2>
+          <p id="ws-meta" class="text-center text-muted"></p>
+        </div>
+        <div id="ws-problems"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Solutions Preview -->
+  <div class="row">
+    <div class="col-md-12">
+      <div id="ws-solutions" class="ws-solutions" style="display:none;">
+        <hr>
+        <h2 class="text-center">Lösungsblatt</h2>
+        <div id="ws-answer-key"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="/js/arbeitsblatt-generator.js"></script>
+<link rel="stylesheet" href="/css/arbeitsblatt-generator.css">
+
+{{ end }}

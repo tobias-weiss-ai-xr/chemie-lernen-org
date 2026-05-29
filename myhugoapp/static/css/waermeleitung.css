@@ -1,0 +1,208 @@
+.waermeleitung-container {
+  padding: 20px;
+}
+
+.simulation-controls {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.simulation-area {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.conduction-simulation {
+  background: #f8f9fa;
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#simulation-canvas {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  max-width: 100%;
+}
+
+.parameters-panel {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+}
+
+.parameters-panel p {
+  margin: 10px 0;
+  color: #495057;
+}
+
+.parameters-panel span {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.formula-display {
+  background: #e3f2fd;
+  border-left: 4px solid #007bff;
+  padding: 15px;
+  margin: 15px 0;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.formula-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin: 10px 0;
+  font-family: 'Times New Roman', serif;
+}
+
+.educational-content {
+  margin-top: 40px;
+}
+
+.educational-content h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.educational-content h3 {
+  color: #007bff;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.info-card {
+  background: white;
+  border-left: 4px solid #007bff;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.info-card h3,
+.info-card h4 {
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+.info-card h4 {
+  font-size: 1.1rem;
+}
+
+.info-card p {
+  margin: 10px 0;
+}
+
+.info-card ul {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.info-card li {
+  margin: 8px 0;
+}
+
+.table-bordered {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #dee2e6;
+  padding: 12px;
+  text-align: left;
+}
+
+.table-bordered th {
+  background: #f8f9fa;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.table-bordered tbody tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+.featurette-divider {
+  margin: 40px 0;
+  border-top: 1px solid #e9ecef;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+.text-primary {
+  color: #007bff !important;
+}
+
+.text-success {
+  color: #28a745 !important;
+}
+
+.text-warning {
+  color: #ffc107 !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+
+.bg-info {
+  background-color: #17a2b8 !important;
+}
+
+.bg-success {
+  background-color: #28a745 !important;
+}
+
+.bg-warning {
+  background-color: #ffc107 !important;
+}
+
+.bg-danger {
+  background-color: #dc3545 !important;
+}
+
+@media (max-width: 768px) {
+  .simulation-controls {
+    padding: 15px;
+  }
+
+  #simulation-canvas {
+    width: 100%;
+    height: auto;
+  }
+
+  .formula-text {
+    font-size: 1.2rem;
+  }
+
+  .parameters-panel {
+    padding: 10px;
+  }
+}

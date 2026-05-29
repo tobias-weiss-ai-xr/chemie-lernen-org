@@ -1,0 +1,47 @@
+{{ define "main" }}
+
+<div class="ki-assistent-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="chat-container">
+        <div class="chat-header">
+          <i class="fa fa-robot"></i> Chemie-KI-Assistent
+          <span class="chat-status">Online</span>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+          <div class="message bot">
+            <div class="message-content">
+              Hallo! Ich bin der Chemie-KI-Assistent. Stelle mir eine Frage zur Chemie, z.B.:
+              <ul class="suggestions">
+                <li>"Was ist die molare Masse von Wasser?"</li>
+                <li>"Wie gleiche ich eine Redoxgleichung aus?"</li>
+                <li>"Was ist der Unterschied zwischen Säuren und Basen?"</li>
+                <li>"Wie funktioniert ein Periodensystem?"</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" id="chat-input" class="form-control" placeholder="Frage eingeben..." autocomplete="off">
+          <button id="chat-send-btn" class="btn btn-primary"><i class="fa fa-send"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="/js/ki-assistent.js"></script>
+<link rel="stylesheet" href="/css/ki-assistent.css">
+
+{{ end }}

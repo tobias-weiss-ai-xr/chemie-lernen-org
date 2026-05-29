@@ -1,0 +1,85 @@
+/* Aufgabensammlung */
+
+.aufgabensammlung-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.search-panel {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.search-panel .form-group {
+  margin-bottom: 0;
+}
+
+#result-count {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.task-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 12px;
+  transition: box-shadow 0.2s;
+}
+
+.task-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.task-meta {
+  margin-bottom: 10px;
+}
+
+.task-meta .badge {
+  margin-right: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.badge-theme {
+  background-color: #3498db;
+}
+
+.badge-difficulty[data-difficulty="1"] { background-color: #27ae60; }
+.badge-difficulty[data-difficulty="2"] { background-color: #f39c12; }
+.badge-difficulty[data-difficulty="3"] { background-color: #e74c3c; }
+
+.badge-type[data-type="calculation"] { background-color: #9b59b6; }
+.badge-type[data-type="equation"] { background-color: #1abc9c; }
+.badge-type[data-type="multiple-choice"] { background-color: #e67e22; }
+
+.task-text {
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.task-answer {
+  background: #e8f6ef;
+  border-left: 3px solid #27ae60;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+}
+
+.task-answer p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.toggle-answer {
+  font-size: 13px;
+  padding: 3px 10px;
+}

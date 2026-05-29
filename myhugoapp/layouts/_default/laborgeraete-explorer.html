@@ -1,0 +1,36 @@
+{{ define "main" }}
+
+<div class="laborgeraete-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Category Navigation -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="btn-group" role="group" id="equipment-categories">
+        <button class="btn btn-default active" data-cat="all">Alle</button>
+        <button class="btn btn-default" data-cat="glas">Glasgeräte</button>
+        <button class="btn btn-default" data-cat="mess">Messgeräte</button>
+        <button class="btn btn-default" data-cat="heiz">Heiz- & Kühlgeräte</button>
+        <button class="btn btn-default" data-cat="sicherheit">Sicherheit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Equipment Grid -->
+  <div class="row" id="equipment-grid">
+  </div>
+
+</div>
+
+<script src="/js/laborgeraete-explorer.js"></script>
+<link rel="stylesheet" href="/css/laborgeraete-explorer.css">
+
+{{ end }}

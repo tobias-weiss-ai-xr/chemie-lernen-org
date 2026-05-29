@@ -1,0 +1,72 @@
+{{ define "main" }}
+
+<div class="aufgabensammlung-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="search-panel">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" id="task-search" class="form-control input-lg" placeholder="Suche nach Stichwort...">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <select id="filter-theme" class="form-control">
+                <option value="all">Alle Themen</option>
+                <option value="stoichiometry">Stöchiometrie</option>
+                <option value="balancing">Reaktionsgleichungen</option>
+                <option value="molar-mass">Molare Massen</option>
+                <option value="ph">pH-Berechnungen</option>
+                <option value="redox">Redox-Gleichungen</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <select id="filter-difficulty" class="form-control">
+                <option value="all">Alle Stufen</option>
+                <option value="1">Leicht</option>
+                <option value="2">Mittel</option>
+                <option value="3">Schwer</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <select id="filter-type" class="form-control">
+                <option value="all">Alle Typen</option>
+                <option value="calculation">Rechnung</option>
+                <option value="equation">Gleichung</option>
+                <option value="multiple-choice">Multiple Choice</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <p id="result-count" class="text-muted"></p>
+      <div id="task-list"></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="/js/aufgabensammlung.js"></script>
+<link rel="stylesheet" href="/css/aufgabensammlung.css">
+
+{{ end }}

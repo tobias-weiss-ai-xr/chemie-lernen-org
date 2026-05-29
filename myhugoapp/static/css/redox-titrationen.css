@@ -1,0 +1,295 @@
+.redox-titration-container {
+  padding: 20px;
+}
+
+.titration-calculator {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.formula-text {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin: 10px 0;
+  font-family: 'Times New Roman', serif;
+  text-align: center;
+}
+
+.reaction-display {
+  background: #e3f2fd;
+  border-left: 4px solid #007bff;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+
+.reaction-display h3 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  margin-top: 15px;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.result-panel {
+  background: #f8f9fa;
+  border: 1px solid #e3f2fd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.titration-plot {
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  height: 400px;
+}
+
+.equivalence-point h4 {
+  color: #28a745;
+  margin-bottom: 15px;
+}
+
+.result-display {
+  background: white;
+  border-left: 4px solid #28a745;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 4px;
+}
+
+.result-display .label {
+  display: inline-block;
+  width: 220px;
+  font-weight: 600;
+  color: #495057;
+}
+
+.result-display .value {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.titration-details h4 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.indicator-demo {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.indicator-demo h3 {
+  color: #856404;
+  margin-bottom: 15px;
+}
+
+.test-tube {
+  display: inline-block;
+  vertical-align: middle;
+  width: 60px;
+  height: 200px;
+  background: #fff;
+  border: 3px solid #333;
+  border-radius: 0 0 30px 30px;
+  margin-right: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tube-liquid {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  right: 5px;
+  height: 150px;
+  background-color: rgb(137, 43, 66);
+  border-radius: 0 0 20px 20px;
+  transition: background-color 0.5s ease;
+}
+
+.color-controls p {
+  margin: 8px 0;
+  color: #856404;
+}
+
+.color-controls button {
+  margin-top: 10px;
+}
+
+.potentiometric-details h4 {
+  color: #9b59b6;
+  margin-bottom: 10px;
+}
+
+.indicators {
+  display: flex;
+  gap: 30px;
+  margin: 20px 0;
+}
+
+.indicator-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.indicator-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #333;
+}
+
+.iod-response h4 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.starch-notes {
+  background: #fff9c4;
+  border: 1px solid #c6a700;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.starch-notes h3 {
+  color: #856404;
+  margin-bottom: 10px;
+}
+
+.educational-content {
+  margin-top: 40px;
+}
+
+.educational-content h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.info-card {
+  background: white;
+  border-left: 4px solid #007bff;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.info-card h3 {
+  color: #007bff;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.info-card h4 {
+  color: #2c3e50;
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+.info-card ul {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.info-card li {
+  margin: 5px 0;
+}
+
+.table-bordered {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #dee2e6;
+  padding: 12px;
+  text-align: left;
+}
+
+.table-bordered th {
+  background: #f8f9fa;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.table-bordered tbody tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+.text-info {
+  color: #17a2b8 !important;
+}
+
+.text-success {
+  color: #28a745 !important;
+}
+
+.text-warning {
+  color: #ffc107 !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+
+.featurette-divider {
+  margin: 40px 0;
+  border-top: 1px solid #e9ecef;
+}
+
+@media (max-width: 768px) {
+  .titration-calculator {
+    padding: 15px;
+  }
+
+  .indicators {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .titration-plot {
+    height: 300px;
+  }
+
+  .formula-text {
+    font-size: 1.1rem;
+  }
+}

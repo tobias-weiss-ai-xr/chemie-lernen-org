@@ -144,7 +144,19 @@ self.addEventListener('fetch', (event) => {
       url.pathname.includes('/reaktionsgleichungen-ausgleichen/') ||
       url.pathname.includes('/einheitenumrechner/') ||
       url.pathname.includes('/loesungsrechner/') ||
-      url.pathname.includes('/stoechiometrie-rechner/')) {
+      url.pathname.includes('/stoechiometrie-rechner/') ||
+      // Phase 7-10 pages
+      url.pathname.includes('/uebungsgenerator/') ||
+      url.pathname.includes('/lueckentexte/') ||
+      url.pathname.includes('/fortschritt/') ||
+      url.pathname.includes('/lernpfad/') ||
+      url.pathname.includes('/arbeitsblatt-generator/') ||
+      url.pathname.includes('/aufgabensammlung/') ||
+      url.pathname.includes('/klassencockpit/') ||
+      url.pathname.includes('/gefahrstoffkennzeichnung/') ||
+      url.pathname.includes('/spektroskopie-simulator/') ||
+      url.pathname.includes('/laborgeraete-explorer/') ||
+      url.pathname.includes('/ki-assistent/')) {
 
     event.respondWith(
       fetch(request).then((response) => {

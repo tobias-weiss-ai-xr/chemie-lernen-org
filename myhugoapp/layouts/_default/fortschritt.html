@@ -1,0 +1,87 @@
+{{ define "main" }}
+
+<div class="progress-dashboard-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Streak & Stats Overview -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="stat-card streak-card">
+        <div class="stat-icon"><i class="fa fa-fire"></i></div>
+        <div class="stat-value"><span id="streak-count">0</span></div>
+        <div class="stat-label">Tage Lernserie</div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card total-card">
+        <div class="stat-icon"><i class="fa fa-check-circle"></i></div>
+        <div class="stat-value"><span id="total-exercises">0</span></div>
+        <div class="stat-label">Aufgaben gelöst</div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card accuracy-card">
+        <div class="stat-icon"><i class="fa fa-bullseye"></i></div>
+        <div class="stat-value"><span id="accuracy-pct">0%</span></div>
+        <div class="stat-label">Genauigkeit</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Module Progress -->
+  <div class="row" style="margin-top: 30px;">
+    <div class="col-md-12">
+      <h2><i class="fa fa-cubes"></i> Modul-Fortschritt</h2>
+      <div id="module-progress-list">
+        <p class="text-muted"><i class="fa fa-spinner fa-spin"></i> Lade Daten...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Achievements -->
+  <div class="row" style="margin-top: 30px;">
+    <div class="col-md-12">
+      <h2><i class="fa fa-trophy"></i> Erfolge</h2>
+      <div id="achievements-grid">
+        <p class="text-muted"><i class="fa fa-spinner fa-spin"></i> Lade Daten...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="row" style="margin-top: 30px;">
+    <div class="col-md-12">
+      <h2><i class="fa fa-clock-o"></i> Letzte Aktivitäten</h2>
+      <div id="recent-activity">
+        <p class="text-muted"><i class="fa fa-spinner fa-spin"></i> Lade Daten...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="row" style="margin-top: 30px;">
+    <div class="col-md-12 text-center">
+      <button class="btn btn-danger" onclick="resetProgressData()">
+        <i class="fa fa-trash"></i> Alle Daten zurücksetzen
+      </button>
+      <button class="btn btn-success" onclick="loadDashboard()" style="margin-left: 10px;">
+        <i class="fa fa-refresh"></i> Aktualisieren
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script src="/js/utils/progress-tracker.js"></script>
+<script src="/js/fortschritt-dashboard.js"></script>
+<link rel="stylesheet" href="/css/progress-dashboard.css">
+
+{{ end }}

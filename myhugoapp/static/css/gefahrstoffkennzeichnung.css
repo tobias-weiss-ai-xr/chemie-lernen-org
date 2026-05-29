@@ -1,0 +1,107 @@
+/* Gefahrstoffkennzeichnung */
+
+.ghs-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Pictogram Grid */
+
+.ghs-pictogram {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 20px;
+  min-height: 160px;
+}
+
+.ghs-pictogram:hover {
+  border-color: #e74c3c;
+  box-shadow: 0 4px 16px rgba(231,76,60,0.2);
+  transform: translateY(-2px);
+}
+
+.pictogram-symbol {
+  font-size: 48px;
+  line-height: 1.2;
+  color: #e74c3c;
+  margin-bottom: 10px;
+}
+
+.pictogram-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 4px;
+}
+
+.pictogram-code {
+  font-size: 13px;
+  color: #888;
+  font-family: monospace;
+}
+
+/* Pictogram Detail */
+
+.pictogram-detail {
+  margin-bottom: 30px;
+}
+
+.ghs-detail-card {
+  background: #fff5f5;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.ghs-detail-symbol {
+  font-size: 64px;
+  color: #e74c3c;
+}
+
+.ghs-detail-card h3 {
+  margin-top: 0;
+  color: #c0392b;
+}
+
+.ghs-detail-card h4 {
+  margin: 15px 0 8px 0;
+  color: #555;
+}
+
+.ghs-detail-card ul {
+  padding-left: 20px;
+}
+
+.ghs-detail-card li {
+  margin-bottom: 3px;
+}
+
+/* H/P Phrases Tables */
+
+#h-phrases-table th,
+#p-phrases-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #555;
+}
+
+#h-phrases-table td,
+#p-phrases-table td {
+  font-size: 14px;
+}
+
+#h-category,
+#h-search,
+#p-search {
+  margin-bottom: 15px;
+}
+
+@media print {
+  .navbar, .footer, .site-header, .site-footer { display: none; }
+}

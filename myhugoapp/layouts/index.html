@@ -70,49 +70,23 @@
               </a>
       </div>
 
+</div>
+
+    <!-- Forschungsnews Section -->
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Aktuelle Forschung</h2>
+        <p class="lead">KI-generierte Zusammenfassungen aktueller chemischer Forschung — automatisch aus wissenschaftlichen Publikationen extrahiert.</p>
+      </div>
     </div>
 
-   <!-- Featured Article Section: Mayers Principles -->
-   <hr class="featurette-divider">
+    <!-- Blog Posts Section -->
+    <div class="row pack" style="background-color: #f9f9f9; padding: 20px; border: 1px solid #e0e0e0; border-radius: 5px; margin-top: 20px;">
 
-   <div class="row">
-     <div class="col-md-12">
-       <div class="featured-article" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 12px; margin-bottom: 30px;">
-         <div class="row">
-           <div class="col-md-8">
-             <span style="font-size: 2rem;">📖</span>
-             <h2 style="color: white; margin-top: 10px;">Featured: Mayers Prinzipien des Multimedialen Lernens</h2>
-             <p style="font-size: 1.1rem; margin: 15px 0;">
-               <strong>Wie wir effektive digitale Lernumgebungen gestalten</strong><br>
-               Entdecken Sie die wissenschaftlichen Grundlagen hinter unserer Lernplattform! Richard E. Mayers 12 Prinzipien des multimedialen Lernens bilden das Fundament für die Entwicklung unserer interaktiven Chemie-Lernräume.
-             </p>
-             <ul style="list-style: none; padding-left: 0; margin-bottom: 20px;">
-               <li style="margin-bottom: 8px;">🧠 <strong>Kognitive Psychologie:</strong> Wie das Gehirn visuelle und auditive Informationen verarbeitet</li>
-               <li style="margin-bottom: 8px;">🎯 <strong>Design-Prinzipien:</strong> 12 evidenzbasierte Prinzipien für effektives Lernen</li>
-               <li style="margin-bottom: 8px;">💡 <strong>Praktische Anwendung:</strong> Konkrete Beispiele aus unserer Chemie-Lernplattform</li>
-               <li style="margin-bottom: 8px;">📊 <strong>Checklisten:</strong> Handlungsanleitungen zur Umsetzung in eigenen Projekten</li>
-             </ul>
-             <a href="/pages/mayers-multimedia-lernen/" class="btn btn-default btn-lg" style="background-color: white; color: #667eea; border: none; font-weight: 600;">
-               Mayers 12 Prinzipien lesen →
-             </a>
-           </div>
-           <div class="col-md-4 text-center" style="display: flex; align-items: center; justify-content: center;">
-             <div>
-               <div style="font-size: 4rem; margin-bottom: 10px;">🎓</div>
-               <p style="font-size: 0.9rem; opacity: 0.9;">Für Lehrende, Instructional Designer und E-Learning-Entwickler</p>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
-
-   <!-- Blog Posts Section -->
-   <div class="row pack">
-
-       {{ $paginator := .Paginate (where .Site.RegularPages "Section" "posts") }}
-       {{ range $paginator.Pages }}   
-           <div class="col-md-4 card">
+        {{ $posts := where .Site.RegularPages "Section" "posts" }}
+        {{ $lastPosts := first 4 $posts.ByDate.Reverse }}
+        {{ range $lastPosts }}
+            <div class="col-md-4 card">
             <a href="{{ .Permalink }}" class="index-anchor">    
                <div class="panel panel-default">
                  
@@ -139,41 +113,13 @@
        
          {{ end }}
 
+   <!-- "Alle anzeigen" Link -->
+   <div class="row text-center" style="margin-top: 20px;">
+     <div class="col-md-12">
+       <a href="/posts/" class="btn btn-primary">Alle Forschungsnews anzeigen →</a>
+     </div>
    </div>
-   
-<div class="row">
-    <div class="col-md-4">  </div>
-    <div class="col-md-4">
-        {{ if gt .Paginator.TotalPages 1 }}
-        <ul class="pagination">
-          {{ if .Paginator.HasPrev }}
-            <li><a href="{{ .Paginator.Prev.URL }}">&laquo; Prev</a></li>
-          {{ else }}
-            <li><span>&laquo; Prev</span></li>
-          {{ end }}
 
-          {{ $scratch := newScratch }}
-          {{ $scratch.Set "current" .Paginator.PageNumber }} 
-
-          {{ range .Paginator.Pagers }}
-            {{ if eq .PageNumber ($scratch.Get "current") }}
-              <li class="active"><span><em>{{ .Number }}</em></span></li>
-            {{ else }}
-            <li><a href="{{ .URL }}">{{ .Number }}</a></li>
-            {{ end }}
-          {{ end }}
-
-          {{ if .Paginator.HasNext }}
-            <li><a href="{{ .Paginator.Next.URL }}">Next &raquo;</a></li>
-          {{ else }}
-            <li><span >Next &raquo;</span></li>
-          {{ end }}
-          </ul>
-        {{ end }}
-
-    </div>
-    <div class="col-md-4">  </div>
-</div>
 </div>
 
 {{ end }}

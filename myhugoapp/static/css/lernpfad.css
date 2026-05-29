@@ -1,0 +1,111 @@
+.lernpfad-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.lernpfad-container .panel {
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+#path-list .list-group-item {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#path-list .list-group-item:hover {
+  background: #f5f5f5;
+}
+
+.path-step {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.path-step.step-done {
+  background: #f0fff0;
+  border-color: #b2dfb2;
+  opacity: 0.85;
+}
+
+.path-step.step-current {
+  background: #f0f8ff;
+  border-color: #5bc0de;
+  border-width: 2px;
+}
+
+.path-step.step-pending {
+  background: #fff;
+}
+
+.step-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 48px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #95a5a6;
+  padding-top: 4px;
+}
+
+.step-done .step-marker {
+  color: #27ae60;
+}
+
+.step-current .step-marker {
+  color: #5bc0de;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-content h4 {
+  margin: 0 0 4px 0;
+  font-size: 1.05rem;
+}
+
+.step-content p {
+  margin: 0 0 8px 0;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.step-meta {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.step-meta .btn {
+  margin-left: auto;
+}
+
+#path-progress-summary .panel {
+  margin-bottom: 0;
+}
+
+#path-progress-summary h2 {
+  margin: 8px 0;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+@media (max-width: 768px) {
+  .path-step {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .step-marker {
+    flex-direction: row;
+    gap: 8px;
+    min-width: auto;
+  }
+}

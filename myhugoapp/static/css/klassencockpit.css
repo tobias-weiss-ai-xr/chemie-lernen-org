@@ -1,0 +1,89 @@
+/* Klassencockpit */
+
+.klassencockpit-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.stat-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.stat-value {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.student-list {
+  margin-top: 15px;
+}
+
+.student-list .table {
+  margin-bottom: 0;
+}
+
+.student-list .table th {
+  border-top: none;
+  color: #555;
+  font-weight: 600;
+}
+
+.student-detail-card {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.student-detail-card h4 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.student-detail-card h5 {
+  margin: 15px 0 10px 0;
+  color: #555;
+}
+
+.student-detail-card ul {
+  padding-left: 20px;
+}
+
+.student-detail-card li {
+  margin-bottom: 5px;
+}
+
+#class-progress-table .table th {
+  font-weight: 600;
+  color: #555;
+}
+
+#class-progress-table .fa-check {
+  color: #27ae60;
+}
+
+#class-progress-table .fa-minus {
+  color: #bbb;
+}
+
+.panel-heading .panel-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.panel-heading .panel-title .fa {
+  margin-right: 6px;
+}

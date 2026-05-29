@@ -1,0 +1,106 @@
+{{ define "main" }}
+
+<div class="ghs-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Pictogram Grid -->
+  <div class="row">
+    <div class="col-md-12">
+      <h2>GHS-Gefahrenpiktogramme</h2>
+      <p>Klicken Sie auf ein Piktogramm für Details.</p>
+    </div>
+  </div>
+
+  <div class="row" id="pictogram-grid">
+    <!-- Populated by JS -->
+  </div>
+
+  <!-- Pictogram Detail -->
+  <div class="row">
+    <div class="col-md-12">
+      <div id="pictogram-detail" class="pictogram-detail" style="display:none;"></div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- H-Phrases -->
+  <div class="row">
+    <div class="col-md-12">
+      <h2>H-Sätze (Gefahrenhinweise)</h2>
+      <p>Die H-Sätze beschreiben die Art und Schwere der Gefahr.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <select id="h-category" class="form-control">
+          <option value="all">Alle Kategorien</option>
+          <option value="physical">Physikalische Gefahren (H2xx)</option>
+          <option value="health">Gesundheitsgefahren (H3xx)</option>
+          <option value="environment">Umweltgefahren (H4xx)</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="form-group">
+        <input type="text" id="h-search" class="form-control" placeholder="H-Satz durchsuchen...">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped" id="h-phrases-table">
+        <thead>
+          <tr><th>Code</th><th>Gefahrenhinweis</th><th>Kategorie</th><th>Piktogramm</th></tr>
+        </thead>
+        <tbody id="h-phrases-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- P-Phrases -->
+  <div class="row">
+    <div class="col-md-12">
+      <h2>P-Sätze (Sicherheitshinweise)</h2>
+      <p>Die P-Sätze geben Sicherheitsmaßnahmen im Umgang mit Gefahrstoffen.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <input type="text" id="p-search" class="form-control" placeholder="P-Satz durchsuchen...">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped" id="p-phrases-table">
+        <thead>
+          <tr><th>Code</th><th>Sicherheitshinweis</th></tr>
+        </thead>
+        <tbody id="p-phrases-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script src="/js/gefahrstoffkennzeichnung.js"></script>
+<link rel="stylesheet" href="/css/gefahrstoffkennzeichnung.css">
+
+{{ end }}

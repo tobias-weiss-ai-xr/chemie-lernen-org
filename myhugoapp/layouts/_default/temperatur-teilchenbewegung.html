@@ -1,0 +1,201 @@
+{{ define "main" }}
+
+<div class="temperatur-teilchen-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="simulation-controls">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="temperature-slider">Temperatur (°C):</label>
+          <input type="range" id="temperature-slider" class="form-control" value="20" min="-100" max="500" step="10" oninput="updateTemperature()">
+          <div class="temperature-display">
+            <span id="temp-display-celsius" class="temp-value">20°C</span>
+            <span id="temp-display-kelvin" class="temp-value">293K</span>
+            <span id="temp-display-class" class="temp-class">Raumtemperatur</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="particle-count">Teilchenzahl:</label>
+          <input type="number" id="particle-count" class="form-control" value="100" min="10" max="300" step="10" oninput="updateParticleCount()">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="gas-mass">Molekültyp:</label>
+          <select id="gas-mass" class="form-control" onchange="updateGasType()">
+            <option value="light">Helium (m=4 u)</option>
+            <option value="medium">Stickstoff (m=28 u)</option>
+            <option value="heavy" selected>Sauerstoff (m=32 u)</option>
+            <option value="xheavy">Xenon (m=131 u)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 15px;">
+      <div class="col-md-12 text-center">
+        <button class="btn btn-primary btn-lg" onclick="startSimulation()">
+          <i class="fa fa-play"></i> Simulation starten
+        </button>
+        <button class="btn btn-secondary btn-lg" onclick="stopSimulation()">
+          <i class="fa fa-pause"></i> Pause
+        </button>
+        <button class="btn btn-info btn-lg" onclick="resetSimulation()">
+          <i class="fa fa-redo"></i> Zurücksetzen
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="simulation-area">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="info-card">
+          <h4>Gas-Behälter-Simulation</h4>
+          <div id="particle-simulation" class="particle-simulation">
+            <canvas id="particle-canvas" width="700" height="400"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="info-card">
+          <h4>Thermodynamische Parameter</h4>
+          <div id="thermo-parameters">
+            <p><strong>Temperatur (T):</strong> <span id="param-temp">20</span>°C</p>
+            <p><strong>Absolut (T):</strong> <span id="param-abs-temp">293</span>K</p>
+            <p><strong>Moleküle:</strong> <span id="param-particles">100</span></p>
+            <p><strong>Molekularmasse:</strong> <span id="param-mass">32</span> u</p>
+            <p><strong>Ø-Geschwindigkeit:</strong> <span id="param-velocity">482</span> m/s</p>
+            <p><strong>Kin.Energie pro Mol:</strong> <span id="param-energy">3660</span> J/mol</p>
+            <p><strong>Kollisionen/s:</strong> <span id="param-collisions">1.2e9</span></p>
+          </div>
+        </div>
+
+        <div class="info-card" style="margin-top: 20px;">
+          <h4>Maxwell-Boltzmann-Verteilung</h4>
+          <canvas id="distribution-canvas" width="280" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="educational-content">
+    <h2>Kinetische Theorie der Materie</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🌡️ Temperatur & Geschwindigkeit</h3>
+          <p><strong>Kernkonzept:</strong> Temperatur ∝ dies. kinetische Energie der Teilchen</p>
+          <p>$\overline{E_k} = \frac{3}{2}k_BT$</p>
+          <p>Bei doppelter Temperatur (T↑×2) steigt die mittlere Geschwindigkeit um √2</p>
+          <ul>
+            <li>20°C (293K): v̅ ≈ 482 m/s (N₂)</li>
+            <li>100°C (373K): v̅ ≈ 545 m/s (N₂)</li>
+            <li>-100°C (173K): v̅ ≈ 371 m/s (N₂)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>💥 Kollisionen & Druck</h3>
+          <p><strong>Druck:** Kraft pro Fläche (N/m² = Pa)</p>
+          <p>Kollisionen üben Impulse auf Behälterwände aus:</p>
+          <p>$F = \frac{Δp}{Δt} = \frac{2mv}{Δt}$</p>
+          <ul>
+            <li>Jede Kollision = Kraft auf Wand</li>
+            <li>Schnellere T: mehr Kollisionen → höhere F → höherer p</li>
+            <li>Bei T↑ (bei konstant V) steigt Druck linear</li>
+          </ul>
+          <p><strong>Ideales Gas:</strong> $pV = nRT$</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📊 Maxwell-Boltzmann-Vert.</h3>
+          <p><strong>Geschwindigkeitsverteilung</strong></p>
+          <p>Nicht alle Teilchen haben gleiche Geschwindigkeit:</p>
+          <ul>
+            <li>Meerwert (v̅) = √(8RT/πM)</li>
+            <li>Höchstwahrscheinlich (vp) = √(2RT/M)</li>
+            <li>Wahrscheinlich > 0 = ∞, aber siebal schnell abfällt</li>
+          </ul>
+          <p>Bei T↑ → Verteilung verbreitert, Peak verschiebt nach rechts</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h3>🧪 Experimentalvergleich: Gas-Typen</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Gas</th>
+            <th>M (u)</th>
+            <th>v̅ bei 20°C (m/s)</th>
+            <th>v̅ bei 100°C (m/s)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Helium</strong></td>
+            <td>4</td>
+            <td>1260</td>
+            <td>1425</td>
+          </tr>
+          <tr>
+            <td><strong>Stickstoff</strong></td>
+            <td>28</td>
+            <td>476</td>
+            <td>538</td>
+          </tr>
+          <tr>
+            <td><strong>Sauerstoff</strong></td>
+            <td>32</td>
+            <td>445</td>
+            <td>503</td>
+          </tr>
+          <tr>
+            <td><strong>Xenon</strong></td>
+            <td>131</td>
+            <td>220</td>
+            <td>249</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Beobachtung: Bei gleicher T, schwerere Moleküle bewegen sich langsamer.</h4>
+    </div>
+
+    <div class="info-card">
+      <h3>⚠️ Theoretische Grenze: Absoluter Nullpunkt</h3>
+      <p><ul>
+        <li>Bei 0 K (-273,15°C): Alle thermische Bewegung theoretisch auf null reduziert</li>
+        <li>Kinetische Energie Ek = 0</li>
+        <li>Praktisch: 0 K kann experimentell nicht erreicht sein (unserem Uns)</li>
+        <li>Endgültig: Helium bei 4K→supraflüssig (ç"Heisenberg'scher Impulsaustausch")</li>
+      </ul></p>
+    </div>
+  </div>
+
+</div>
+
+<script src="{{ "js/temperatur-teilchenbewegung.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/temperatur-teilchenbewegung.css" | relURL }}">
+
+{{ end }}

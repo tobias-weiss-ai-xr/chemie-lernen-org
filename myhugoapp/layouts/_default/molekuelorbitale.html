@@ -1,0 +1,257 @@
+{{ define "main" }}
+
+<div class="molekülorbitale-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="simulation-controls">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="molecule-selector">Molekül auswählen:</label>
+          <select id="molecule-selector" class="form-control" onchange="changeMolecule()">
+            <option value="methane">Methan (CH₄) - sp³-Hybridisierung</option>
+            <option value="ethene">Ethen (C₂H₄) - sp²-Hybridisierung</option>
+            <option value="acetylene">Acetylen (C₂H₂) - sp-Hybridisierung</option>
+            <option value="water">Wasser (H₂O) - sp³-Nichtinvaluat</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="orbital-type">Orbital-Typ:</label>
+          <select id="orbital-type" class="form-control" onchange="changeOrbitalType()">
+            <option value="sigma">σ-Bindungen (Kopf-zu-Kopf)</option>
+            <option value="pi">π-Bindungen (Seitenaustausch)</option>
+            <option value="bonding">Gebundende MOs</option>
+            <option value="antibonding">Antibindende MOs (π*)</option>
+            <option value="atomic">Atomorbitale (AOs)</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="view-angle">Betrachtungswinkel:</label>
+          <select id="view-angle" class="form-control" onchange="changeViewAngle()">
+            <option value="default">Standardansicht</option>
+            <option value="top">Schräg-Oben</option>
+            <option value="side">Seitlich</option>
+            <option value="end">Endansicht (entlang der Bindungsachse)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 15px;">
+      <div class="col-md-12 text-center">
+        <button class="btn btn-primary btn-lg" onclick="toggleRotation()" id="rotation-therapy" data-playing="false">
+          <i class="fa fa-sync"></i> Rotation aktivieren
+        </button>
+        <button class="btn btn-secondary btn-lg" onclick="showOrbitals()">
+          <i class="fa fa-toggle-on"></i> Orbitale ein/aus
+        </button>
+        <button class="btn btn-info btn-lg" onclick="showBondOrder()">
+          <i class="fa fa-link"></i> Bindungsordnung
+        </button>
+        <button class="btn btn-warning btn-lg" onclick="resetView()">
+          <i class="fa fa-redo"></i> Zurücksetzen
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="simulation-area">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="info-card">
+          <h4>3D-Orbital-Visualisierung</h4>
+          <div id="orbital-3d" class="orbital-3d-container">
+            <div id="three-container" style="width: 100%; height: 500px;"></div>
+          </div>
+          <div class="controls">
+            <p><strong>&#8592; Klicken & ziehen und drehe das Modell</strong></p>
+            <p><strong>Rollen:</strong> Linksklick → Rotation, Rechtsklick → Pan, Scroll → Zoom</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="info-card">
+          <h4>Molekül-Information</h4>
+          <div id="molecule-info">
+            <p><strong>Formel:</strong> <span id="mol-formula">CH₄</span></p>
+            <p><strong>Struktur:</strong> <span id="mol-structure">Tetraedrisch</span></p>
+            <p><strong>Hybridisierung:</strong> <span id="mol-hybrid">sp³</span></p>
+            <p><strong>Bindungswinkel:</strong> <span id="mol-angle">109.5°</span></p>
+            <p><strong>σ-Bindungen:</strong> <span id="mol-sigma">4</span></p>
+            <p><strong>π-Bindungen:</strong> <span id="mol-pi">0</span></p>
+            <p><strong>Gesamtordnung:</strong> <span id="mol-bond-order">1</span></p>
+          </div>
+        </div>
+
+        <div class="info-card" style="margin-top: 20px;">
+          <h4>Orbital-Legende</h4>
+          <div id="orbital-legend">
+            <div class="legend-item">
+              <span class="orbital-symbol sigma">σ</span>
+              <span>σ-Orbital (Kopf-zu-Kopf)</span>
+            </div>
+            <div class="legend-item">
+              <span class="orbital-symbol pi">π</span>
+              <span>π-Orbital (Seitenaustausch)</span>
+            </div>
+            <div class="legend-item">
+              <span class="orbital-color phase-pos"></span>
+              <span>Phase + (Rot)</span>
+            </div>
+            <div class="legend-item">
+              <span class="orbital-color phase-neg"></span>
+              <span>Phase - (Blau)</span>
+            </div>
+            <div class="legend-item">
+              <span class="orbital-color nodal"></span>
+              <span>Knotenfläche (ψ=0)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card" style="margin-top: 20px;">
+          <h4>Theorie-Details</h4>
+          <div id="theory-details">
+            <h5>LCAO-Methode:</h5>
+            <p class="formula-text">ψ<sub>MO</sub> = c₁φ₁ + c₂φ₂</p>
+            <p><small>Lineare Kombination von zwei Atomorbitalen</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="educational-content">
+    <h2>Theoretische Vergleiche: MO vs VB</h2>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>🧪 Molekülorbitaltheorie (MO)</h3>
+          <p><strong>Überblick:</strong> Molekülorbitale = delokalisiert über ganze Molekül</p>
+          <p><strong>Grundprinzip:</strong> Orbital-Überlapp kombiniert Atomorbitale (AOs) linear zu Molekülorbitalen (MOs)</p>
+          <p><strong>Energieniveauschema:</strong></p>
+          <ul>
+            <li>Gebundende MOs: Energieniedrig, stabilisieren Molekül</li>
+            <li>Antibindende MOs: Energiereich, destabilisieren Molekül</li>
+            <li>Elektronen besitzen die niedrigste Energie MOs zuerst</li>
+          </ul>
+          <p><strong>Vorteile:</strong></p>
+          <ul>
+            <li>Anorganische Komplexe (z.B. Koordinationsverbindungen) besser erklärt</li>
+            <li>Delokalisierung in π-Systemen (Aromaten, Konjugation) verständlich</li>
+            <li>Einfacher aus Symmetriegruppen heraus Informationen ableiten</li>
+          </ul>
+          <p><strong>Nachteile:</strong></p>
+          <ul>
+            <li>Klassische organische Mechanismen intuitiv schwerer zu verstehen</li>
+            <li>Geometriebedingungen (109.5° vs linear) sind keine direkten Ausgangspunkte</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card">
+          <h3>🧠 Valenzbindungs-Theorie (VB)</h3>
+          <p><strong>Überblick:</strong> Lokalisierte Bindung zwischen zwei Atomkernen</p>
+          <p><strong>Grundprinzip:</strong> Hybridisierung (mischen s, p, d) → neue Hybridorbitale, die binden</p>
+          <p><strong>Hybridisierungstypen:</strong></p>
+          <ul>
+            <li><strong>sp:</strong> Linear, 180° (z.B. Acetylen)</li>
+            <li><strong>sp²:</strong> Trigonal planar, 120° (z.B. Ethen)</li>
+            <li><strong>sp³:</strong> Tetraedrisch, 109.5° (z.B. Methan, Wasser)</li>
+            <li><strong>sp³d:</strong> Trigonal-bipyramidal (z.B. PCl₅)</li>
+          </ul>
+          <p><strong>Vorteile:</strong></p>
+          <ul>
+            <li>Klassische organische Geometrie ist leichter zu verstehen</li>
+            <li>Stereochemie basiert auf hybridisierter Geometrie</li>
+            <li>Bindungsordnung (einfach, doppelt, dreifach) direkt ablesbar</li>
+          </ul>
+          <p><strong>Nachteile:</strong></p>
+          <ul>
+            <li>Delokalisierung (Aromaten, Konjugation) schwierig zu erklären</li>
+            <li>Anorganische Komplexe sind weniger gut beschreibbar</li>
+            <li>Antibindende Orbitale sind nicht realistisch gegeben</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h3>📊 σ vs π Bindungen: Tabellarischer Vergleich</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Eigenschaft</th>
+            <th>σ-Bond</th>
+            <th>π-Bond</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Überlapp</strong></td>
+            <td>Kopf-zu-Kopf entlang der Bindungsachse</td>
+            <td>Seitlich / parallel senkrecht zur Bindungsachse</td>
+          </tr>
+          <tr>
+            <td><strong>Relative Stärke</strong></td>
+            <td>Stark (meistens die stärkste Bindung im Molekül)</td>
+            <td>Schwächer als σ</td>
+          </tr>
+          <tr>
+            <td><strong>Rotation</strong></td>
+            <td>Drehung um Bindungsachse möglich (Einfachbindungen)</td>
+            <td>Keine freie Drehung (sperre Rotation)</td>
+          </tr>
+          <tr>
+            <td><strong>Bindungsordnung</strong></td>
+            <td>In jeder Bindung enthalten</td>
+            <td>Nur in Doppel- und Dreifachbindungen enthalten</td>
+          </tr>
+          <tr>
+            <td><strong>Überlappungstyp</strong></td>
+            <td>Lineare Überlappung (entlang der Bindungsachse, wie H₂)</td>
+            <td>Seitliche Überlappung (wie in C=C) - parallele p-Orbitale senkrecht zur Achse</td>
+          </tr>
+          <tr>
+            <td><strong>Beispiele</strong></td>
+            <td>H-H, C-H, C-C in jedem Molekül</td>
+            <td>C=C, C≡C, Phosphat-Bindungen in organischen Chemie</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Vorbemerkung: Elektronenkonfiguration in Molekülorbitalen</h4>
+      <ul>
+        <li>Bindende MOs < 0 (negativer Wert) → stabil</li>
+        <li>Antibindende MOs > 0 (positiver Wert) → destabilisiert</li>
+        <li>Elektronen besetzen zuerst die niedrigste Energie MOs</li>
+        <li>In Molekülen sind die bindenden MOs am stabilsten und werden zuerst besetzt</li>
+        <li>In Doppel- und Dreifachbindungen (z.B. C=C, C≡C) sind zusätzliche π-Bindungen vorhanden</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="{{ "js/molekuelorbitale.js" | relURL }}"></script>
+<link rel="stylesheet" href="{{ "css/molekuelorbitale.css" | relURL }}">
+
+{{ end }}
