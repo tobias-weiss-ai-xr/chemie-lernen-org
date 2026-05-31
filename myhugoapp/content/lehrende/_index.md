@@ -140,4 +140,15 @@ Die 12 Prinzipien des multimedialen Lernens bieten eine wissenschaftlich fundier
 
 ---
 
-*Letzte Aktualisierung: 27. Mai 2026*
+## Seiten in diesem Bereich
+
+| Bereich | Beschreibung |
+|---------|-------------|
+| [📐 Didaktische Methoden](/lehrende/didaktische-methoden/) | Unterrichtsmethoden für den Chemieunterricht — kompetenzorientiert, handlungsorientiert, experimentell, kollaborativ |
+| [💻 Medien-Didaktik](/lehrende/medien-didaktik/) | Digitale Werkzeuge, Simulationen, VR/AR und Gamification im Chemieunterricht |
+| [🎯 Lernziele und Kompetenzen](/lehrende/lernziele-und-kompetenzen/) | Bildungsstandards, Kompetenzorientierung, Lernlandkarten und Binnendifferenzierung |
+| [📋 Materialien und Vorbereitung](/lehrende/materialien-und-vorbereitung/) | Checklisten, Versuchsprotokolle, Sicherheitshinweise, Vorlagen |
+
+---
+
+*Letzte Aktualisierung: 30. Mai 2026*
