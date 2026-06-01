@@ -74,7 +74,7 @@ Falls Sie bereits Patreon nutzen, können Sie mich auch dort unterstützen:
 Auch wenn Sie nicht finanziell unterstützen möchten, können Sie helfen:
 
 - **Weitersagen** – Empfehlen Sie chemie-lernen.org in Ihrer Schule oder Ihrem Kollegium
-- **Feedback geben** – Schreiben Sie mir über [Kontakt](/pages/kontakt/), wenn Sie Fehler finden oder Verbesserungsvorschläge haben
+- **Feedback geben** – Melden Sie Fehler oder Verbesserungsvorschläge über [GitHub Issues](https://github.com/tobias-weiss-ai-xr/chemie-lernen-org/issues)
 - **Inhalte beitragen** – Haben Sie Ideen für neue Rechner, Übungen oder Themenbereiche? Ich freue mich über Anregungen!
 - **Übersetzen helfen** – Falls Sie chemie-lernen.org in einer anderen Sprache nutzen möchten
 

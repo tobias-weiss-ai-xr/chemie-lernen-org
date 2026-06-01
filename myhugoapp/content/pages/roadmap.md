@@ -20,11 +20,13 @@ Während das Periodensystem ein guter Anfang ist, entfaltet VR seine größte St
 
 ## 2. Bildungsinhalte und gamifiziertes Lernen 🎮
 
-Verwandlung der "Räume" in aktive Lernerfahrungen.
+Die Plattform bietet gamifizierte Lernerfahrungen:
 
-- **Chemie-Escape-Rooms:** Nutzer müssen stöchiometrische Rätsel lösen oder unbekannte Substanzen mithilfe chemischer Tests identifizieren, um den nächsten VR-Raum freizuschalten.
-- **Schnitzjagden:** Finden Sie alle Elemente einer bestimmten Gruppe (z. B. Halogene), die in einer virtuellen Landschaft versteckt sind, um "Element-Abzeichen" zu verdienen.
-- **Geführte Erzählungen:** Stimmengeführte Touren, bei denen ein virtuelles "Marie Curie" oder "Linus Pauling" die Geschichte und Chemie einer bestimmten Ära oder Entdeckung erklärt.
+- **✓ Übungsgenerator (IMPLEMENTIERT):** Dynamische Aufgaben mit Zufallsparametern, Schwierigkeitsgraden und sofortiger Rückmeldung. [Jetzt testen](/uebungsgenerator/)
+- **✓ Lernpfad (IMPLEMENTIERT):** Geführte Touren durch Themenbereiche mit Fortschrittsanzeige. [Jetzt erkunden](/lernpfad/)
+- **✓ Lückentexte (IMPLEMENTIERT):** Interaktive Cloze-Übungen mit Drag-and-Drop und Texteingabe. [Jetzt üben](/lueckentexte/)
+- **✓ Fortschritt & Gamification (IMPLEMENTIERT):** XP-System mit 10 Levels und 12 Erfolgen. [Zum Dashboard](/fortschritt/)
+- **✓ Escape-Room-ähnliche Aufgaben:** Kombinierte Übungen mit mehreren Lösungsschritten (im Übungsgenerator)
 
 ## 3. Ressourcen für Lehrer und Institutionen 📚
 
@@ -108,74 +110,72 @@ Diese Sektion enthält eine detaillierte Analyse und Planung für die Erweiterun
 
 ---
 
-### Phase 1: Hochpriotität - Sofortige Implementierung (Q1 2026)
+### Phase 1: Hochpriotität - Sofortige Implementierung (Q1 2026) ✅ ABGESCHLOSSEN
 
-#### 1.1 Druck und Fläche
+#### 1.1 Druck und Fläche ✅
 
 - **Thema:** Druck = Kraft / Fläche (p = F/A)
-- **Status:** TODO
+- **Status:** ✅ IMPLEMENTIERT
 - **Merkmale:**
-  - Interaktiver Druckrechner
-  - Visuelle Demonstrationen mit Kolben/Spritzen
+  - Interaktiver Druckrechner mit Einheitenumrechnung (Pa, kPa, MPa, bar, atm, Torr, mmHg)
+  - Visuelle Kolben-Demonstration live
   - Hydraulik-Beispiele aus dem Alltag
-- **Zielseite:** `/druck-flaechen-rechner/`
+  - Drei Modi: Druck, Kraft oder Fläche berechnen
+- **Zielseite:** [Druck & Fläche Rechner](/druck-flaechen-rechner/)
 
-#### 1.2 Atmosphärendruck im Alltag
+#### 1.2 Atmosphärendruck im Alltag ✅
 
 - **Thema:** Alltägliche Phänomene des Luftdrucks
-- **Status:** TODO
+- **Status:** ✅ IMPLEMENTIERT
 - **Merkmale:**
   - Strohhalm-Experiment-Simulation
   - Ballon-Druck-Demo
   - Saugnapf-Physik
-- **Zielseite:** `/atmosphaerendruck-alltag/`
+- **Zielseite:** [Atmosphärendruck im Alltag](/atmosphaerendruck-alltag/)
 
 ---
 
-### Phase 2: Thermodynamik & Kinetik (Q2-Q3 2026)
+### Phase 2: Thermodynamik & Kinetik (Q2-Q3 2026) ✅ ABGESCHLOSSEN
 
-#### 2.1 Bindungspotential
+#### 2.1 Bindungspotential ✅
 
 - **Thema:** Energieprofil bei chemischen Bindungen
-- **Status:** TODO
+- **Status:** ✅ IMPLEMENTIERT
 - **Merkmale:**
-  - Interaktives Energie-Diagramm
+  - Interaktives Energie-Diagramm mit Canvas 2D
   - Bindungsenthalpie visualisieren
   - Aktivierungsenergie demonstrieren
-- **Zielseite:** `/bindungspotential/`
-- **Technik:** Canvas 2D Animation
+- **Zielseite:** [Bindungspotential](/bindungspotential/)
 
-#### 2.2 Hess'sches Gesetz
+#### 2.2 Hess'sches Gesetz ✅
 
 - **Thema:** Energieerhaltungssatz in der Thermochemie
-- **Status:** TODO
+- **Status:** ✅ IMPLEMENTIERT
 - **Merkmale:**
   - Reaktionswege vergleichen
   - Bildungsenthalpien berechnen
   - Verbundenes Diagramm interaktiv
-- **Zielseite:** `/hess-gesetz/`
-- **Integration:** Erweitert Verbrennungsrechner
+- **Zielseite:** [Hess'sches Gesetz](/hess-gesetz/)
 
-#### 2.3 Teilchen und Reaktionsgeschwindigkeit
+#### 2.3 Teilchen und Reaktionsgeschwindigkeit ✅
 
 - **Thema:** Kinetische Gastheorie und Reaktionskinetik
-- **Status:** TODO
+- **Status:** ✅ IMPLEMENTIERT
 - **Merkmale:**
   - Partikel-Simulation (Temperatur, Geschwindigkeit)
   - Stoßtheorie visualisieren
   - Arrhenius-Gleichung demonstrieren
-- **Zielseite:** `/reaktionskinetik-simulator/`
-- **Technik:** Three.js Partikel-System
+- **Zielseite:** [Reaktionskinetik-Simulator](/reaktionskinetik-simulator/)
 
-#### 2.4 Chemisches Gleichgewicht
+#### 2.4 Chemisches Gleichgewicht ✅
 
 - **Thema:** Dynamisches Gleichgewicht bei Reaktionen
-- **Status:** TODO
+- **Status:** ✅ IMPLEMENTIERT
 - **Merkmale:**
   - Hin- und Rückreaktion visualisieren
   - Gleichgewichtskonstante Kc interaktiv
   - Le Chatelier'sches Prinzip demonstrieren
-- **Zielseite:** `/chemisches-gleichgewicht/`
+- **Zielseite:** [Chemisches Gleichgewicht](/chemisches-gleichgewicht/)
 
 ---
 
@@ -321,16 +321,16 @@ Diese Sektion enthält eine detaillierte Analyse und Planung für die Erweiterun
 
 - ✅ Torricelli-Versuch
 - ✅ Gasgesetz-Rechner
-- 🔲 Druck- und Flächenrechner
-- 🔲 Atmosphärendruck im Alltag
+- ✅ Druck- und Flächenrechner
+- ✅ Atmosphärendruck im Alltag
 
 **🌡️ Thermodynamik & Kinetik:**
 
 - ✅ Verbrennungsrechner (Enthalpie)
-- 🔲 Bindungspotential
-- 🔲 Hess'sches Gesetz
-- 🔲 Reaktionskinetik-Simulator
-- 🔲 Chemisches Gleichgewicht
+- ✅ Bindungspotential
+- ✅ Hess'sches Gesetz
+- ✅ Reaktionskinetik-Simulator
+- ✅ Chemisches Gleichgewicht
 
 **⚗️ Säuren & Basen:**
 
@@ -345,41 +345,72 @@ Diese Sektion enthält eine detaillierte Analyse und Planung für die Erweiterun
 - ✅ Periodensystem
 - ✅ Molekülstudio
 - ✅ Atomenergieniveaus
-- 🔄 Periodische Trends (erweitert, in Periodensystem)
-- 🔲 Molekülorbitale
+- ✅ Periodische Trends
+- ✅ Molekülorbitale
 
 **⚡ Redox & Elektrochemie:**
 
 - ✅ Redox-Potenzial-Rechner
-- 🔲 Elektrochemie (Teilchenebene)
-- 🔲 Redox-Titrationen
+- ✅ Elektrochemie (Teilchenebene)
+- ✅ Redox-Titrationen
 
 **🔥 Wärmelehre:**
 
-- 🔲 Wärmeleitung
-- 🔲 Konvektion
-- 🔲 Temperatur & Teilchenbewegung
+- ✅ Wärmeleitung
+- ✅ Konvektion
+- ✅ Temperatur & Teilchenbewegung
+
+**🎮 Gamification & Lernwerkzeuge:**
+
+- ✅ Übungsgenerator
+- ✅ Lernpfad
+- ✅ Lückentexte
+- ✅ Fortschritt & Gamification (XP, Levels, Achievements)
+- ✅ Arbeitsblatt-Generator
+- ✅ Aufgabensammlung
+- ✅ Klassencockpit
+
+**🧪 Erweiterte Visualisierungen:**
+
+- ✅ Gefahrstoffkennzeichnung
+- ✅ Laborgeräte-Explorer
+- ✅ Spektroskopie-Simulator
+
+**🤖 Plattform-Reife:**
+
+- ✅ KI-Assistent
+- ✅ PWA-Offline-Modus
+- ✅ Lehrendenbereich mit Unterrichtsbausteinen
 
 ---
 
-### Prioritäten-Matrix
+### Umsetzungsstand (Juni 2026)
 
-| Thema                    | Didaktischer Wert | Technische Komplexität | Zielgruppe   | Priorität    |
-| ------------------------ | ----------------- | ---------------------- | ------------ | ------------ |
-| Bindungspotential        | Hoch              | Mittel                 | Klasse 10-13 | 🟡 Hoch      |
-| Hess'sches Gesetz        | Hoch              | Mittel                 | Klasse 11-13 | 🟡 Hoch      |
-| Reaktionskinetik         | Sehr Hoch         | Hoch                   | Klasse 10-13 | 🔴 Sehr Hoch |
-| Chemisches Gleichgewicht | Sehr Hoch         | Mittel                 | Klasse 10-13 | 🔴 Sehr Hoch |
-| Atomenergieniveaus       | Hoch              | Mittel                 | Klasse 9-11  | 🟡 Hoch      |
-| Molekülorbitale          | Mittel            | Sehr Hoch              | Klasse 11-13 | 🟢 Mittel    |
-| Wärmeleitung             | Mittel            | Mittel                 | Klasse 8-10  | 🟢 Mittel    |
-| Druck & Fläche           | Mittel            | Niedrig                | Klasse 7-9   | 🟡 Hoch      |
+| Thema | Status | Klasse |
+|-------|--------|--------|
+| Druck & Fläche | ✅ Implementiert | 7-9 |
+| Atmosphärendruck im Alltag | ✅ Implementiert | 7-9 |
+| Bindungspotential | ✅ Implementiert | 10-13 |
+| Hess'sches Gesetz | ✅ Implementiert | 11-13 |
+| Reaktionskinetik-Simulator | ✅ Implementiert | 10-13 |
+| Chemisches Gleichgewicht | ✅ Implementiert | 10-13 |
+| Atomenergieniveaus | ✅ Implementiert | 9-11 |
+| Molekülorbitale | ✅ Implementiert | 11-13 |
+| Wärmeleitung, Konvektion, Teilchen | ✅ Implementiert | 8-10 |
+| Übungsgenerator, Lernpfad, Lückentexte | ✅ Implementiert | 8-13 |
+| Gamification (XP, Levels, Achievements) | ✅ Implementiert | Alle |
+| KI-Assistent & PWA | ✅ Implementiert | Alle |
+| Lehrendenbereich | ✅ Implementiert | Lehrer |
 
-**Legende:**
+### Nächste geplante Entwicklungsschwerpunkte
 
-- 🔴 Sehr Hoch (Q2 2026)
-- 🟡 Hoch (Q3-Q4 2026)
-- 🟢 Mittel (2027)
+| Bereich | Beschreibung |
+|---------|-------------|
+| **Forschungsnews-Automatisierung** | KI-gestützte Extraktion und Aufbereitung chemiedidaktischer Publikationen aus RSS-Feeds (arXiv, Nature, ScienceDaily) |
+| **KI-Assistent Erweiterung** | Integration mit dem plattformeigenen Wissensgraph für kontextbezogene Antworten |
+| **PWA-Optimierung** | Verbesserung des Offline-Modus und der Service-Worker-Strategien |
+| **Barrierefreiheit** | WCAG 2.1 AA-konforme Überarbeitung aller interaktiven Komponenten |
+| **Mehrsprachigkeit** | Englischsprachige Version ausgewählter Inhalte (in Evaluation) |
 
 ---
 
@@ -428,5 +459,5 @@ Diese Sektion enthält eine detaillierte Analyse und Planung für die Erweiterun
 
 ---
 
-_Letzte Aktualisierung: Mai 2026_
-_Nächste Überprüfung: Nach Abschluss von Phase 4 (Q4 2026)_
+_Letzte Aktualisierung: Juni 2026_
+_Nächste Überprüfung: Nach Abschluss der Plattform-Stabilisierung (Q3 2026)_

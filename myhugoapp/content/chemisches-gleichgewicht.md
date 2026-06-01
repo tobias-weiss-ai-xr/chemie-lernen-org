@@ -13,4 +13,4 @@ tags: ['chemie', 'gleichgewicht', 'le-chatelier', 'konzentration', 'kc']
 
 ## Chemisches Gleichgewicht Rechner
 
-Erforschen Sie interaktiviv das chemische Gleichgewicht und verstehen Sie, wie das Le Chatelier-sche Prinzip die Gleichgewichtslage beeinflusst. Visualisieren Sie dynamische Prozesse und Konzentrationsänderungen.
+Erforschen Sie interaktiv das chemische Gleichgewicht und verstehen Sie, wie das Le Chatelier-sche Prinzip die Gleichgewichtslage beeinflusst. Visualisieren Sie dynamische Prozesse und Konzentrationsänderungen.

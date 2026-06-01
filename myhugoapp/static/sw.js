@@ -156,7 +156,34 @@ self.addEventListener('fetch', (event) => {
       url.pathname.includes('/gefahrstoffkennzeichnung/') ||
       url.pathname.includes('/spektroskopie-simulator/') ||
       url.pathname.includes('/laborgeraete-explorer/') ||
-      url.pathname.includes('/ki-assistent/')) {
+      url.pathname.includes('/ki-assistent/') ||
+      // Phase 1-2 calculators
+      url.pathname.includes('/druck-flaechen-rechner/') ||
+      url.pathname.includes('/atmosphaerendruck-alltag/') ||
+      url.pathname.includes('/bindungspotential/') ||
+      url.pathname.includes('/hess-gesetz/') ||
+      url.pathname.includes('/reaktionskinetik-simulator/') ||
+      url.pathname.includes('/chemisches-gleichgewicht/') ||
+      // Phase 3-6 calculators
+      url.pathname.includes('/gasgesetz-rechner/') ||
+      url.pathname.includes('/verbrennungsrechner/') ||
+      url.pathname.includes('/loeslichkeitsprodukt-rechner/') ||
+      url.pathname.includes('/redox-potenzial-rechner/') ||
+      url.pathname.includes('/konzentrationsumrechner/') ||
+      url.pathname.includes('/titrations-simulator/') ||
+      url.pathname.includes('/atomenergieniveaus/') ||
+      url.pathname.includes('/periodische-trends/') ||
+      url.pathname.includes('/molekuelorbitale/') ||
+      url.pathname.includes('/elektrochemie-teilchenebene/') ||
+      url.pathname.includes('/redox-titrationen/') ||
+      url.pathname.includes('/saeuren-basen-gleichgewicht/') ||
+      url.pathname.includes('/waermeleitung/') ||
+      url.pathname.includes('/konvektion/') ||
+      url.pathname.includes('/temperatur-teilchenbewegung/') ||
+      url.pathname.includes('/torricelli-versuch/') ||
+      url.pathname.includes('/enhanced-ph-visualization/') ||
+      url.pathname.includes('/pwa-offline-modus/') ||
+      url.pathname.includes('/unterstuetzen/')) {
 
     event.respondWith(
       fetch(request).then((response) => {

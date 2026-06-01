@@ -14,6 +14,23 @@ Hier finden Sie aktuelle Forschungsergebnisse, Publikationen und Neuigkeiten aus
 
 ---
 
+### 🤖 KI-gestützte Forschungsnews
+
+Die Plattform nutzt eine automatisierte KI-Pipeline, die täglich chemische Forschung aus arXiv, Nature Chemistry, Chemistry World und Spektrum.de auf Deutsch zusammenfasst und als Artikel veröffentlicht.
+
+**Letzte Artikel:**
+
+- [Ladungswanderung ermöglicht präzise C-H-Bindungsaktivierung](/posts/2026-05-25-ladungswanderung-ermoeglicht-praezise-c-h-bindungsaktivierung/) — 25. Mai 2026
+- [Neue Methode: Sonnenlicht effizient in Brennstoffe umwandeln](/posts/2026-05-25-neue-methode-sonnenlicht-effizient-in-brennstoffe-umwandeln/) — 25. Mai 2026
+- [Kontrollierte Kristallisation verbessert Perowskit-Transistoren](/posts/2026-05-25-kontrollierte-kristallisation-verbessert-perowskit-transistoren/) — 25. Mai 2026
+- [Neue Methode beschleunigt Suche nach Sonnenlicht-Katalysatoren](/posts/2026-05-24-neue-methode-beschleunigt-suche-nach-sonnenlicht-katalysatoren/) — 24. Mai 2026
+- [Neue Methode für präzise C-H-Bindungsaktivierung](/posts/2026-05-24-neue-methode-fuer-praezise-c-h-bindungsaktivierung/) — 24. Mai 2026
+- [Gesteuerte Kristallisation verbessert Perowskit-Transistoren](/posts/2026-05-24-gesteuerte-kristallisation-verbessert-perowskit-transistoren/) — 24. Mai 2026
+- [PSE in VR: Periodensystem in virtueller Realität](/posts/pse-in-vr-release/) — Mai 2026
+- [Molekülstudio 3D-Visualisierung](/posts/molekulstudio-3d-visualisierung/) — Mai 2026
+
+---
+
 ### 🔬 Plattform-Entwicklung
 
 #### 29. Mai 2026 — Phasen 7–10 abgeschlossen: 18 neue interaktive Lernwerkzeuge
@@ -98,9 +115,9 @@ Ein auf dem plattformeigenen Wissensgraphen basierender Chat-Assistent, der Chem
 
 | Projekt | Beschreibung | Status |
 |---------|-------------|--------|
-| **KI-gestützte Forschungsnews** | Automatische Extraktion und Aufbereitung chemiedidaktischer Publikationen aus Fachdatenbanken | In Planung |
+| **KI-gestützte Forschungsnews** | Automatische Extraktion und Aufbereitung chemiedidaktischer Publikationen aus Fachdatenbanken | ✅ Implementiert (Mai 2026) |
 | **Interaktive 3D-Visualisierungen** | Erweiterung des Molekülstudios um Reaktionsmechanismen und Übergangszustände | In Entwicklung |
-| **Gamification-Module** | Punkte, Abzeichen und Ranglisten für Übungsaufgaben zur Steigerung der Lernmotivation | Geplant (Phase 11) |
+| **Gamification-Module** | Punkte, Abzeichen und Ranglisten für Übungsaufgaben zur Steigerung der Lernmotivation | ✅ Implementiert (Mai 2026) |
 | **Mehrsprachigkeit** | Englischsprachige Version ausgewählter Inhalte für den internationalen Einsatz | Evaluation |
 | **Barrierefreiheit** | WCAG 2.1 AA-konforme Überarbeitung aller interaktiven Komponenten | Kontinuierlich |
 

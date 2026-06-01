@@ -62,10 +62,24 @@ author = "chemie-lernen.org Team"
 
 # Interactive Elements (submenu)
 [[menu.main]]
+    name = "Druck & Fläche"
+    url = "/druck-flaechen-rechner/"
+    parent = "interaktiv"
+    weight = 21
+    icon = "⚖️"
+    interaktiv = true
+[[menu.main]]
+    name = "Atmosphärendruck"
+    url = "/atmosphaerendruck-alltag/"
+    parent = "interaktiv"
+    weight = 22
+    icon = "🌡️"
+    interaktiv = true
+[[menu.main]]
     name = "Periodensystem 3D"
     url = "/perioden-system-der-elemente/"
     parent = "interaktiv"
-    weight = 21
+    weight = 23
     icon = "⚛️"
     interaktiv = true
 [[menu.main]]
@@ -80,7 +94,7 @@ author = "chemie-lernen.org Team"
     name = "Molare Masse"
     url = "/molare-masse-rechner/"
     parent = "interaktiv"
-    weight = 24
+    weight = 23
     icon = "⚗️"
     interaktiv = true
 [[menu.main]]
@@ -105,10 +119,59 @@ author = "chemie-lernen.org Team"
     icon = "🧪"
     interaktiv = true
 [[menu.main]]
+    name = "pH-Rechner"
+    url = "/ph-rechner/"
+    parent = "interaktiv"
+    weight = 28
+    icon = "🧪"
+    interaktiv = true
+[[menu.main]]
+    name = "Konzentration"
+    url = "/konzentrationsumrechner/"
+    parent = "interaktiv"
+    weight = 29
+    icon = "📏"
+    interaktiv = true
+[[menu.main]]
+    name = "Gasgesetze"
+    url = "/gasgesetz-rechner/"
+    parent = "interaktiv"
+    weight = 30
+    icon = "🌡️"
+    interaktiv = true
+[[menu.main]]
+    name = "Verbrennung"
+    url = "/verbrennungsrechner/"
+    parent = "interaktiv"
+    weight = 31
+    icon = "🔥"
+    interaktiv = true
+[[menu.main]]
+    name = "Löslichkeit"
+    url = "/loeslichkeitsprodukt-rechner/"
+    parent = "interaktiv"
+    weight = 32
+    icon = "💧"
+    interaktiv = true
+[[menu.main]]
+    name = "Redox-Potenzial"
+    url = "/redox-potenzial-rechner/"
+    parent = "interaktiv"
+    weight = 33
+    icon = "⚡"
+    interaktiv = true
+[[menu.main]]
+    name = "Titration"
+    url = "/titrations-simulator/"
+    parent = "interaktiv"
+    weight = 34
+    icon = "📊"
+    interaktiv = true
+[[menu.main]]
     name = "Stöchiometrie"
     url = "/stoechiometrie-rechner/"
     parent = "interaktiv"
-    weight = 28
+    weight = 35
     icon = "⚗️"
     interaktiv = true
 # Phase 7-10 Interactive Features
@@ -203,11 +266,90 @@ author = "chemie-lernen.org Team"
     weight = 41
     icon = "🤖"
     interaktiv = true
+# Phase 1-6 Calculators
+[[menu.main]]
+    name = "Bindungspotential"
+    url = "/bindungspotential/"
+    parent = "interaktiv"
+    weight = 42
+    icon = "⚡"
+    interaktiv = true
+[[menu.main]]
+    name = "Chemisches Gleichgewicht"
+    url = "/chemisches-gleichgewicht/"
+    parent = "interaktiv"
+    weight = 43
+    icon = "⚖️"
+    interaktiv = true
+[[menu.main]]
+    name = "Hess'sches Gesetz"
+    url = "/hess-gesetz/"
+    parent = "interaktiv"
+    weight = 44
+    icon = "🔥"
+    interaktiv = true
+[[menu.main]]
+    name = "Reaktionskinetik"
+    url = "/reaktionskinetik-simulator/"
+    parent = "interaktiv"
+    weight = 45
+    icon = "🔬"
+    interaktiv = true
+[[menu.main]]
+    name = "Atomenergieniveaus"
+    url = "/atomenergieniveaus/"
+    parent = "interaktiv"
+    weight = 46
+    icon = "⚛️"
+    interaktiv = true
+[[menu.main]]
+    name = "Wärmeleitung"
+    url = "/waermeleitung/"
+    parent = "interaktiv"
+    weight = 47
+    icon = "🔥"
+    interaktiv = true
+[[menu.main]]
+    name = "Konvektion"
+    url = "/konvektion/"
+    parent = "interaktiv"
+    weight = 48
+    icon = "🌊"
+    interaktiv = true
+[[menu.main]]
+    name = "Teilchenbewegung"
+    url = "/temperatur-teilchenbewegung/"
+    parent = "interaktiv"
+    weight = 49
+    icon = "⚡"
+    interaktiv = true
+[[menu.main]]
+    name = "Molekülorbitale"
+    url = "/molekuelorbitale/"
+    parent = "interaktiv"
+    weight = 50
+    icon = "🔬"
+    interaktiv = true
+[[menu.main]]
+    name = "Elektrochemie"
+    url = "/elektrochemie-teilchenebene/"
+    parent = "interaktiv"
+    weight = 51
+    icon = "🔋"
+    interaktiv = true
+[[menu.main]]
+    name = "Säuren-Basen-Gleichgewicht"
+    url = "/saeuren-basen-gleichgewicht/"
+    parent = "interaktiv"
+    weight = 52
+    icon = "⚗️"
+    interaktiv = true
 
 [[menu.main]]
     name = "Lehrende"
     url = "/lehrende/"
-    weight = 45
+    weight = 60
+    icon = "👨‍🏫"
 
 [[menu.main]]
     name = "Neueste Forschung"

@@ -11,6 +11,10 @@ tests/screenshots/
 
 # Build artifacts
 *.optimized.js
+*.optimized.css
+
+# Hermes agent config
+.hermes/
 
 # Git worktrees
 .worktrees/
