@@ -128,12 +128,13 @@ async function generateArticle(title, description, sourceUrl) {
         },
       ],
       temperature: 0.5,
-      max_tokens: 600,
+      max_tokens: 4096,
     }),
-    signal: AbortSignal.timeout(120000),
+    signal: AbortSignal.timeout(180000),
   });
   if (!res.ok) throw new Error(`litellm HTTP ${res.status}`);
-  return (await res.json()).choices[0].message.content;
+  const msg = (await res.json()).choices[0].message;
+  return (msg.content || msg.reasoning_content || '').trim();
 }
 
 function parseGeneratedText(text) {
