@@ -141,7 +141,7 @@ Wir arbeiten kontinuierlich an der Verbesserung der Barrierefreiheit. Wenn Sie B
 
 **Kontaktieren Sie uns bitte:**
 
-- 📧 Email: [Kontakt Formular](/pages/contact/)
+- 📧 Email: [GitHub Issues](https://github.com/tobias-weiss-ai-xr/chemie-lernen-org/issues)
 - 🌐 Website: [chemie-lernen.org](https://chemie-lernen.org)
 
 **Bitte geben Sie an:**

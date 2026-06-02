@@ -15,7 +15,41 @@ const LITELLM_URL = 'http://localhost:4000/chat/completions';
 const LITELLM_API_KEY = process.env.LITELLM_API_KEY || '';
 const LITELLM_MODEL = process.env.LITELLM_MODEL || 'saia/qwen3.5-397b-a17b';
 
-// Chemistry relevance scoring — prefer articles directly about chemistry
+// ===== CALCULATOR AUTO-LINKING =====
+const CALCULATOR_MAP = [
+  { path: '/ph-rechner/', keywords: ['ph', 'säure', 'base', 'wasserstoffionen', 'ph-wert', 'acid', 'alkalisch'] },
+  { path: '/stoechiometrie-rechner/', keywords: ['stöchiometrie', 'stoffmenge', 'mol', 'reaktionsgleichung', ' stoichiometr', 'molverhältnis'] },
+  { path: '/molare-masse-rechner/', keywords: ['molare masse', 'molekulargewicht', 'molmasse', 'molekülmasse', 'molar mass'] },
+  { path: '/konzentrationsumrechner/', keywords: ['konzentration', 'molar', 'verdünnung', 'einheiten', 'concentration', 'dilution'] },
+  { path: '/titrations-simulator/', keywords: ['titration', 'äquivalenzpunkt', 'neutralisation', 'titrieren', 'titrimetrie'] },
+  { path: '/redox-potenzial-rechner/', keywords: ['redox', 'oxidation', 'reduktion', 'spannung', 'nernst', 'potential', 'oxidat'] },
+  { path: '/loeslichkeitsprodukt-rechner/', keywords: ['löslichkeit', 'ksp', 'fällung', 'löslichkeitsprodukt', 'solubility', 'precipitate'] },
+  { path: '/gasgesetz-rechner/', keywords: ['gasgesetz', 'pvnrt', 'boyle', 'gay-lussac', 'ideales gas', 'gas law', 'pressure'] },
+  { path: '/gasgesetz-simulator/', keywords: ['gasgesetz', 'pvnrt', 'boyle', 'gay-lussac', 'ideales gas'] },
+  { path: '/verbrennungsrechner/', keywords: ['verbrennung', 'heizwert', 'brennwert', 'co2', 'emission', 'combustion'] },
+  { path: '/sauren-basen-gleichgewicht/', keywords: ['säure-base', 'gleichgewicht', 'henderson', 'hasselbalch', 'puffer', 'puffersystem', 'buffer'] },
+  { path: '/bindungspotential/', keywords: ['bindung', 'potential', 'energieprofil', 'aktivierungsenergie', 'morse', 'binding'] },
+  { path: '/hess-gesetz/', keywords: ['hess', 'enthalpie', 'thermochemie', 'reaktionswärme', 'energieerhaltung'] },
+  { path: '/reaktionskinetik-simulator/', keywords: ['kinetik', 'reaktionsgeschwindigkeit', 'arrhenius', 'reaction rate', 'kinetic'] },
+  { path: '/chemisches-gleichgewicht/', keywords: ['gleichgewicht', 'massenwirkungsgesetz', 'le chatelier', 'equilibrium', 'mwg'] },
+  { path: '/perioden-system-der-elemente/', keywords: ['periodensystem', 'pse', 'element', 'gruppen', 'perioden', 'periodic table'] },
+  { path: '/periodische-trends/', keywords: ['trends', 'atomradius', 'ionisierungsenergie', 'elektronegativität', 'periodic trends'] },
+  { path: '/molekuelorbitale/', keywords: ['orbital', 'molekülorbital', 'mo-theorie', 'hybridisierung', 'molecular orbital'] },
+  { path: '/elektrochemie-teilchenebene/', keywords: ['elektrochemie', 'elektrolyse', 'galvanisch', 'elektrode', 'electrochem'] },
+  { path: '/molekuel-studio/', keywords: ['molekül', 'molekülgeometrie', '3d', 'vsepr', 'molecular', 'molecule'] },
+  { path: '/atomenergieniveaus/', keywords: ['atom', 'energieniveau', 'bohr', 'spektrum', 'atommodell', 'electron config'] },
+  { path: '/temperatur-teilchenbewegung/', keywords: ['temperatur', 'teilchenbewegung', 'kinetisch', 'thermisch', 'wärme'] },
+  { path: '/waermeleitung/', keywords: ['wärmeleitung', 'konduktion', 'wärmeübertragung', 'thermal conduction'] },
+  { path: '/konvektion/', keywords: ['konvektion', 'strömung', 'wärmeübertragung', 'convection'] },
+  { path: '/druck-flaechen-rechner/', keywords: ['druck', 'kraft', 'fläche', 'pascal', 'pressure', 'force'] },
+  { path: '/atmosphaerendruck-alltag/', keywords: ['luftdruck', 'atmosphärendruck', 'barometer', 'atmospheric pressure'] },
+  { path: '/saeuren-basen-gleichgewicht/', keywords: ['säure', 'base', 'gleichgewicht', 'henderson', 'hasselbalch', 'puffer'] },
+  { path: '/uebungsgenerator/', keywords: ['übung', 'aufgabe', 'quiz', 'test', 'practice', 'exercise'] },
+  { path: '/lernpfad/', keywords: ['lernpfad', 'lernweg', 'guided', 'tour', 'tutorial'] },
+  { path: '/lueckentexte/', keywords: ['lückentext', 'cloze', 'drag', 'drop', 'fill'] },
+];
+
+// Chemistry relevance scoring
 const CHEMISTRY_KEYWORDS = [
   'chem', 'molecul', 'atom', 'bond', 'reaction', 'cataly', 'synthesis',
   'compound', 'element', 'periodic', 'electron', 'proton', 'neutron',
@@ -52,6 +86,38 @@ function chemistryScore(title, description) {
     if (text.includes(kw.toLowerCase())) score -= 3;
   }
   return score;
+}
+
+// Map article text to relevant calculators
+function findRelatedCalculators(title, description, tags) {
+  const text = `${title} ${description} ${tags.join(' ')}`.toLowerCase();
+  const matched = [];
+  for (const calc of CALCULATOR_MAP) {
+    for (const kw of calc.keywords) {
+      if (text.includes(kw.toLowerCase())) {
+        matched.push(calc);
+        break; // One match per calculator is enough
+      }
+    }
+  }
+  return matched;
+}
+
+function buildRelatedSection(calculators) {
+  if (calculators.length === 0) return '';
+  // Deduplicate by path
+  const seen = new Set();
+  const unique = [];
+  for (const c of calculators) {
+    if (!seen.has(c.path)) {
+      seen.add(c.path);
+      unique.push(c);
+    }
+  }
+  // Limit to 4
+  const items = unique.slice(0, 4);
+  const links = items.map((c) => `🔬 [${c.path.replace(/\//g, ' ').trim()} →](${c.path})`).join('\n');
+  return `\n\n---\n\n### 🧪 Verwandte Rechner\n\nMit diesen interaktiven Werkzeugen können Sie das Thema vertiefen:\n\n${links}\n`;
 }
 
 const FEED_UA = 'Mozilla/5.0 (compatible; chemie-lernen-article-bot/1.0)';
@@ -101,10 +167,17 @@ function isoDateStr() {
   return new Date().toISOString().replace(/\.\d{3}Z/, '+02:00');
 }
 
-async function fetchFeed(url) {
+async function fetchFeed(url, feedErrors) {
+  const headers = { 'User-Agent': FEED_UA };
+  // If feed errored in last hour, skip
+  const errorState = feedErrors.get(url);
+  if (errorState && (Date.now() - errorState.ts) < 3600000) {
+    console.log(`[pipeline]  Skipping ${url} (had error ${errorState.diff}s ago)`);
+    return null;
+  }
   const res = await fetch(url, {
     signal: AbortSignal.timeout(15000),
-    headers: { 'User-Agent': FEED_UA },
+    headers,
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return parser.parse(await res.text());
@@ -205,7 +278,7 @@ function parseGeneratedText(text) {
 
   if (!title) {
     const firstLine = text.split('\n').find((l) => l.trim());
-    title = (firstLine || '').replace(/^#\s*/, '').replace(/[*"]/g, '').trim().slice(0, 80);
+    title = (firstLine || '').replace(/^#\s*/, '').replace(/[*\"]/g, '').trim().slice(0, 80);
   }
 
   return { title, tags: tags.length ? tags : ['chemie', 'forschung'] };
@@ -224,13 +297,13 @@ draft: false
 ---`;
 }
 
-function buildMarkdown(frontmatter, bodyContent) {
+function buildMarkdown(frontmatter, bodyContent, relatedSection) {
   const body = bodyContent
     .split('\n')
     .filter((l) => !l.match(/^(Titel|Tags?):/i) && !l.match(/^#\s+.+/))
     .join('\n')
     .trim();
-  return `${frontmatter}\n\n${body}\n`;
+  return `${frontmatter}\n\n${body}\n${relatedSection}\n`;
 }
 
 async function loadSeenUrls() {
@@ -252,29 +325,37 @@ async function run() {
 
   const feeds = JSON.parse(await readFile(FEEDS_PATH, 'utf-8'));
   const seenUrls = await loadSeenUrls();
+  const feedErrors = new Map();
   const candidates = [];
 
-  for (const feed of feeds) {
-    try {
-      console.log(`[pipeline] Fetching ${feed.url}`);
-      const parsed = await fetchFeed(feed.url);
-      const items = extractItems(parsed);
-      console.log(`[pipeline]   Got ${items.length} items`);
-
-      for (const item of items) {
-        const url = extractLink(item);
-        if (!url || seenUrls.has(url)) continue;
-        const description = extractDescription(item);
-        if (description.length < 100) continue;
-        candidates.push({
+  // Parallel feed fetching
+  const feedResults = await Promise.allSettled(
+    feeds.map(async (feed) => {
+      try {
+        console.log(`[pipeline] Fetching ${feed.url}`);
+        const parsed = await fetchFeed(feed.url, feedErrors);
+        if (!parsed) return [];
+        const items = extractItems(parsed);
+        console.log(`[pipeline]   Got ${items.length} items from ${feed.url}`);
+        return items.map((item) => ({
           title: extractTitle(item),
-          description,
-          url,
+          description: extractDescription(item),
+          url: extractLink(item),
           lang: feed.lang,
-        });
+        }));
+      } catch (err) {
+        feedErrors.set(feed.url, { ts: Date.now(), err: err.message });
+        console.error(`[pipeline] Error fetching ${feed.url}: ${err.message}`);
+        return [];
       }
-    } catch (err) {
-      console.error(`[pipeline] Error fetching ${feed.url}: ${err.message}`);
+    })
+  );
+
+  for (const result of feedResults) {
+    for (const item of result.status === 'fulfilled' ? result.value : []) {
+      if (!item.url || seenUrls.has(item.url)) continue;
+      if (item.description.length < 100) continue;
+      candidates.push(item);
     }
   }
 
@@ -285,7 +366,7 @@ async function run() {
     return b.description.length - a.description.length;
   });
   const selected = candidates.slice(0, MAX_ARTICLES);
-  console.log(`[pipeline] Selected ${selected.length} articles to generate`);
+  console.log(`[pipeline] Selected ${selected.length} articles to generate (${candidates.length} total candidates)`);
 
   if (!existsSync(POSTS_DIR)) {
     await mkdir(POSTS_DIR, { recursive: true });
@@ -295,11 +376,19 @@ async function run() {
     try {
       console.log(`[pipeline] Generating: ${article.title}`);
       const generated = await generateArticle(article.title, article.description, article.url);
-      const { title, tags } = parseGeneratedText(generated);
+      const { title, tags } = parseGeneratedText(generated);      
       const slug = slugify(title);
       const filename = `${dateStr()}-${slug}.md`;
+
+      // Append related calculators
+      const relatedCalcs = findRelatedCalculators(title, article.description, tags);
+      const relatedSection = buildRelatedSection(relatedCalcs);
+      if (relatedCalcs.length > 0) {
+        console.log(`[pipeline]   Linked ${relatedCalcs.length} calculator(s) for "${title}"`);
+      }
+
       const frontmatter = buildFrontmatter(title, isoDateStr(), tags);
-      const markdown = buildMarkdown(frontmatter, generated);
+      const markdown = buildMarkdown(frontmatter, generated, relatedSection);
       await writeFile(join(POSTS_DIR, filename), markdown);
       await saveSeenUrl(article.url);
       console.log(`[pipeline] Wrote ${filename}`);

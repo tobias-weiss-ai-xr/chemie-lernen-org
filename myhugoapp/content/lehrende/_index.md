@@ -47,9 +47,9 @@ Die 12 Prinzipien des multimedialen Lernens bieten eine wissenschaftlich fundier
 | Phase | Zeit | Inhalt | Methode | Material |
 |-------|------|--------|---------|----------|
 | Einstieg | 5 min | Rätsel: "Ordnung im Chaos der Elemente" | Schülervortrag, Mindmap | Bildkarten der Elemente |
-| Erarbeitung | 20 min | Schalenmodell, Elektronenkonfiguration, Periodizität | Interaktive Erkundung mit [Periodensystem](/pse/) | Tablets/PCs mit 3D-PSE |
+| Erarbeitung | 20 min | Schalenmodell, Elektronenkonfiguration, Periodizität | Interaktive Erkundung mit [Periodensystem](/perioden-system-der-elemente/) | Tablets/PCs mit 3D-PSE |
 | Vertiefung | 12 min | Periodische Trends (Atomradius, Ionisierungsenergie) | Partnerarbeit mit [Periodische-Trends-Rechner](/periodische-trends/) | Arbeitsblatt |
-| Sicherung | 8 min | Zusammenfassung: "Das PSE als Landkarte der Elemente" | Tafelbild, Kurztest mit [Quiz](/pse/quiz) | Quiz-Vorlage |
+| Sicherung | 8 min | Zusammenfassung: "Das PSE als Landkarte der Elemente" | Tafelbild, Kurztest mit dem [Übungsgenerator](/uebungsgenerator/) | Quiz-Vorlage |
 
 ### Unterrichtseinheit: Chemisches Gleichgewicht (90 Minuten)
 
@@ -125,9 +125,9 @@ Die 12 Prinzipien des multimedialen Lernens bieten eine wissenschaftlich fundier
 
 ### Digitale Werkzeuge im Chemieunterricht
 
-- ⚛️ **3D-Molekülvisualisierung**: Nutzung des [Molekülstudios](/molekuelstudio/) zur Veranschaulichung von Molekülgeometrien
-- 🧪 **Interaktive Simulationen**: [Titration](/titrations-simulator/), [Gasgesetze](/gasgesetze/), [Verbrennung](/verbrennungsrechner/)
-- 📈 **Rechner und Toolbox**: [pH-Rechner](/ph-rechner/), [Molmasse-Rechner](/molmasse/), [Stöchiometrie](/stoechiometrie-rechner/)
+- ⚛️ **3D-Molekülvisualisierung**: Nutzung des [Molekülstudios](/molekuel-studio/) zur Veranschaulichung von Molekülgeometrien
+- 🧪 **Interaktive Simulationen**: [Titration](/titrations-simulator/), [Gasgesetze](/gasgesetz-simulator/), [Verbrennung](/verbrennungsrechner/)
+- 📈 **Rechner und Toolbox**: [pH-Rechner](/ph-rechner/), [Molmasse-Rechner](/molare-masse-rechner/), [Stöchiometrie](/stoechiometrie-rechner/)
 - 🎮 **Gamification**: Quizmodule und interaktive Übungen zu allen Themenbereichen
 
 ---
@@ -136,7 +136,7 @@ Die 12 Prinzipien des multimedialen Lernens bieten eine wissenschaftlich fundier
 
 - [Hauptseite - Alle Themenbereiche](/themenbereiche/) — Inhalte für Lernende
 - [Roadmap - In Entwicklung](/pages/roadmap/) — Geplante Features
-- [Kontakt](/pages/kontakt/) — Feedback und Fragen
+- [GitHub Issues](https://github.com/tobias-weiss-ai-xr/chemie-lernen-org/issues) — Feedback und Fragen
 
 ---
 

@@ -65,4 +65,4 @@ Fortschrittliche Rechner für spezifische Anwendungen.
 ## Hilfe & Feedback
 
 Haben Sie Fragen zu unseren Rechnern oder Wünsche für neue Tools?
-[→ Kontaktformular](/pages/contact/)
+[→ Feedback via GitHub Issues](https://github.com/tobias-weiss-ai-xr/chemie-lernen-org/issues)

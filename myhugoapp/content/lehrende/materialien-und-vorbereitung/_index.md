@@ -148,8 +148,8 @@ Verschiedene Metalle färben die Brennerflamme charakteristisch:
 |---------|--------|-------------|
 | [pH-Rechner](/ph-rechner/) | Säuren, Basen, Puffer | Klasse 10-12 |
 | [Titrations-Simulator](/titrations-simulator/) | Neutralisation, Äquivalenzpunkt | Klasse 10-12 |
-| [Periodensystem 3D](/pse/) | Atombau, Periodizität | Klasse 8-12 |
-| [Molekülstudio](/molekuelstudio/) | Molekülgeometrie, Hybridisierung | Klasse 10-13 |
+| [Periodensystem 3D](/perioden-system-der-elemente/) | Atombau, Periodizität | Klasse 8-12 |
+| [Molekülstudio](/molekuel-studio/) | Molekülgeometrie, Hybridisierung | Klasse 10-13 |
 | [Bindungspotential](/bindungspotential/) | Energieprofile, Aktivierungsenergie | Klasse 11-13 |
 | [Chemisches Gleichgewicht](/chemisches-gleichgewicht/) | MWG, Le Chatelier | Klasse 11-13 |
 | [Stöchiometrie-Rechner](/stoechiometrie-rechner/) | Stoffmengen, Reaktionsgleichungen | Klasse 9-12 |

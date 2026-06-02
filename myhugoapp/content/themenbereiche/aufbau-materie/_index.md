@@ -63,7 +63,11 @@ Atome bestehen aus drei wichtigsten Teilchen:
 
 ### Struktur des Atoms
 
-![Struktur des Atoms](/img/atom-struktur.png)
+| Bestandteil | Ladung | Masse | Ort |
+|------------|--------|-------|-----|
+| Proton | +1 | ~1 u | Kern |
+| Neutron | 0 | ~1 u | Kern |
+| Elektron | −1 | ~0 u | Hülle |
 
 Das Atom besteht aus einem kompakten Kern mit Protonen und Neutronen, umgeben von einer Elektronenhülle.
 
@@ -140,7 +144,10 @@ Das Periodensystem ordnet alle **118 bekannten Elemente** nach:
 
 ### Struktur
 
-![Struktur des Periodensystems](/img/pse-erklaerung.png)
+| Achse | Bedeutung | Einteilung |
+|-------|-----------|------------|
+| Waagrecht (Perioden) | Anzahl der Elektronenschalen | 7 Perioden |
+| Senkrecht (Gruppen) | Anzahl der Außenelektronen | 18 Gruppen |
 
 **Legende:**
 

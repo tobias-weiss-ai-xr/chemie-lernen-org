@@ -113,4 +113,4 @@ Entdecken Sie die wissenschaftlichen Grundlagen hinter unserer Lernplattform! Ri
 - 💻 Entwickler von Lernplattformen und E-Learning
 - 📚 Alle, die sich für effektives Wissensdesign interessieren
 
-[Mayers 12 Prinzipien lesen →](/pages/mayers-multimedia-lernen/)
+[Mayers 12 Prinzipien lesen →](/lehrende/mayers-prinzipien/)

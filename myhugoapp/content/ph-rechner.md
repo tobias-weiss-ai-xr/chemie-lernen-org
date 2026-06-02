@@ -81,6 +81,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<div class="related-tools">
+  🧪 <strong>Erweiterte Werkzeuge:</strong>
+  <a href="/sauren-basen-gleichgewicht/">Säuren-Basen-Gleichgewicht</a>
+  <a href="/titrations-simulator/">Titration</a>
+  <a href="/konzentrationsumrechner/">Konzentration umrechnen</a>
+</div>
+
 <style>
 /* pH Calculator specific styles */
 .ph-scale {
@@ -141,6 +148,29 @@ document.addEventListener('DOMContentLoaded', function() {
   margin: 10px 0;
   font-size: 0.9rem;
   line-height: 1.4;
+}
+
+.related-tools {
+  margin-top: 30px;
+  padding: 15px;
+  background: #e8f5e9;
+  border-left: 4px solid #27ae60;
+  border-radius: 4px;
+}
+
+.related-tools a {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 6px 12px;
+  background: #27ae60;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.related-tools a:hover {
+  background: #219a52;
 }
 
 .tab-pane {

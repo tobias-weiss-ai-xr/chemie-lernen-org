@@ -455,7 +455,7 @@ Superheavy Element Lab: Teilchenbeschleuniger, Millisekunden-Halbwertszeiten, No
 
 Haben Sie Fragen oder Anregungen? Wir freuen uns über Ihr Feedback!
 
-- [Kontaktformular](/pages/contact/)
+- [GitHub Issues](https://github.com/tobias-weiss-ai-xr/chemie-lernen-org/issues) — Feedback
 
 ---
 

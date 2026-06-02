@@ -102,6 +102,21 @@
         </div>
 
         <div class="form-group">
+          <label for="buffer-preset">Puffer-Vorlage:</label>
+          <select id="buffer-preset" class="form-control" onchange="loadBufferPreset()">
+            <option value="custom">Benutzerdefiniert</option>
+            <option value="acetate" selected>Acetatpuffer (CH₃COOH/CH₃COO⁻, pKₐ 4.76)</option>
+            <option value="phosphate">Phosphatpuffer (H₂PO₄⁻/HPO₄²⁻, pKₐ 7.21)</option>
+            <option value="ammonium">Ammoniumpuffer (NH₄⁺/NH₃, pKₐ 9.25)</option>
+            <option value="carbonate">Carbonatpuffer (HCO₃⁻/CO₃²⁻, pKₐ 10.33)</option>
+            <option value="tris">TRIS-Puffer (C₄H₁₁NO₃, pKₐ 8.07)</option>
+            <option value="hepes">HEPES-Puffer (C₈H₁₈N₂O₄S, pKₐ 7.55)</option>
+            <option value="citrate">Citratpuffer (H₃C₆H₅O₇/H₂C₆H₅O₇⁻, pKₐ 3.13)</option>
+            <option value="formate">Formiatpuffer (HCOOH/HCOO⁻, pKₐ 3.75)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
           <label for="buffer-pka">pKₐ-Wert der Säure:</label>
           <input type="number" id="buffer-pka" class="form-control" value="4.76" step="0.01" placeholder="z.B. 4.76 für Essigsäure">
           <p class="help-block">Essigsäure: 4.76, Ameisensäure: 3.75, Blausäure: 9.21</p>
@@ -135,6 +150,53 @@
             <h4>Pufferkapazität:</h4>
             <div id="buffer-capacity-result"></div>
           </div>
+          <div class="buffer-range-visual" style="margin-top: 20px;">
+            <h4>Pufferbereich:</h4>
+            <div id="buffer-range-bar" class="buffer-range-bar" style="height:30px;background:linear-gradient(to right,#e74c3c 0%,#f39c12 20%,#27ae60 40%,#2ecc71 60%,#27ae60 80%,#f39c12 95%,#e74c3c 100%);border-radius:4px;position:relative;">
+              <div id="buffer-current-marker" style="position:absolute;top:-4px;width:4px;height:38px;background:#2c3e50;border-radius:2px;transition:left 0.3s;display:none;"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:12px;color:#666;">
+              <span id="buffer-range-min">pH 0</span>
+              <span id="buffer-range-max">pH 14</span>
+            </div>
+            <p class="help-block">Der effektive Pufferbereich liegt bei pKₐ ± 1. Dunkelgrün = optimal (pKₐ ± 0.5).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buffer Preparation -->
+      <div class="buffer-preparation panel panel-default" style="margin-top:20px;">
+        <div class="panel-heading">
+          <h3 class="panel-title">🧪 Puffer-Ansatz: Gewünschten pH einstellen</h3>
+        </div>
+        <div class="panel-body">
+          <p>Berechnen Sie das benötigte Verhältnis [A⁻]/[HA], um einen Puffer mit einem bestimmten pH-Wert herzustellen.</p>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="target-ph">Gewünschter pH-Wert:</label>
+                <input type="number" id="target-ph" class="form-control" value="5.0" step="0.1" min="0" max="14">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="prep-pka">pKₐ der Säure:</label>
+                <input type="number" id="prep-pka" class="form-control" value="4.76" step="0.01">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>&nbsp;</label>
+                <button class="btn btn-info btn-block" onclick="calculateBufferPreparation()">
+                  <i class="fa fa-flask"></i> Ansatz berechnen
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="buffer-prep-result" style="display:none;" class="alert alert-success">
+            <strong>Ergebnis:</strong>
+            <p id="buffer-prep-text"></p>
+          </div>
         </div>
       </div>
 
@@ -167,6 +229,38 @@
               <p><strong>Base:</strong> Ammoniak (NH₃)</p>
               <p><strong>pKₐ:</strong> 9.25</p>
               <p><strong>Bereich:</strong> pH 8.25 - 10.25</p>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+          <div class="col-md-4">
+            <div class="example-card">
+              <h4>Carbonatpuffer</h4>
+              <p><strong>Säure:</strong> Hydrogencarbonat (HCO₃⁻)</p>
+              <p><strong>Base:</strong> Carbonat (CO₃²⁻)</p>
+              <p><strong>pKₐ:</strong> 10.33</p>
+              <p><strong>Bereich:</strong> pH 9.33 - 11.33</p>
+              <p><strong>Anwendung:</strong> Meerwasserpuffer</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="example-card">
+              <h4>TRIS-Puffer</h4>
+              <p><strong>Säure:</strong> TRIS·H⁺ (C₄H₁₁NO₃)</p>
+              <p><strong>Base:</strong> TRIS (C₄H₁₁NO₃)</p>
+              <p><strong>pKₐ:</strong> 8.07</p>
+              <p><strong>Bereich:</strong> pH 7.07 - 9.07</p>
+              <p><strong>Anwendung:</strong> Molekularbiologie</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="example-card">
+              <h4>Formiatpuffer</h4>
+              <p><strong>Säure:</strong> Ameisensäure (HCOOH)</p>
+              <p><strong>Base:</strong> Formiat (HCOO⁻)</p>
+              <p><strong>pKₐ:</strong> 3.75</p>
+              <p><strong>Bereich:</strong> pH 2.75 - 4.75</p>
+              <p><strong>Anwendung:</strong> HPLC-Puffer</p>
             </div>
           </div>
         </div>

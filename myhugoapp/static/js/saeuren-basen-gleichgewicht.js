@@ -137,6 +137,63 @@ function checkApproximation(iceTable, ka, initialConc) {
 
 // ===== BUFFER pH CALCULATION =====
 
+const BUFFER_PRESETS = {
+  acetate: { name: 'Acetatpuffer', pka: 4.76, acid: 'CH₃COOH', base: 'CH₃COO⁻' },
+  phosphate: { name: 'Phosphatpuffer', pka: 7.21, acid: 'H₂PO₄⁻', base: 'HPO₄²⁻' },
+  ammonium: { name: 'Ammoniumpuffer', pka: 9.25, acid: 'NH₄⁺', base: 'NH₃' },
+  carbonate: { name: 'Carbonatpuffer', pka: 10.33, acid: 'HCO₃⁻', base: 'CO₃²⁻' },
+  tris: { name: 'TRIS-Puffer', pka: 8.07, acid: 'C₄H₁₁NO₃·H⁺', base: 'C₄H₁₁NO₃' },
+  hepes: { name: 'HEPES-Puffer', pka: 7.55, acid: 'HEPES·H⁺', base: 'HEPES' },
+  citrate: { name: 'Citratpuffer', pka: 3.13, acid: 'H₃Cit', base: 'H₂Cit⁻' },
+  formate: { name: 'Formiatpuffer', pka: 3.75, acid: 'HCOOH', base: 'HCOO⁻' },
+};
+
+function loadBufferPreset() {
+  const select = document.getElementById('buffer-preset');
+  const key = select.value;
+  const resultDiv = document.getElementById('buffer-result');
+  if (resultDiv) resultDiv.style.display = 'none';
+  if (key === 'custom') return;
+  const preset = BUFFER_PRESETS[key];
+  if (!preset) return;
+  document.getElementById('buffer-pka').value = preset.pka;
+  document.getElementById('acid-concentration').value = 0.1;
+  document.getElementById('base-concentration').value = 0.1;
+}
+
+function updateBufferRangeVisual(pka, currentPh) {
+  const marker = document.getElementById('buffer-current-marker');
+  const bar = document.getElementById('buffer-range-bar');
+  if (!marker || !bar) return;
+  // pKa ± 1 is the effective buffer range → on 0-14 scale
+  const phMin = 0;
+  const phMax = 14;
+  const range = phMax - phMin;
+  const effectiveStart = Math.max(phMin, pka - 1);
+  const effectiveEnd = Math.min(phMax, pka + 1);
+
+  // Position of current pH
+  const pos = ((currentPh - phMin) / range) * 100;
+  marker.style.left = `calc(${pos}% - 2px)`;
+  marker.style.display = 'block';
+
+  // Label
+  let label = document.getElementById('buffer-range-label');
+  if (!label) {
+    label = document.createElement('div');
+    label.id = 'buffer-range-label';
+    label.style.cssText = 'text-align:center;margin-top:8px;font-weight:bold;';
+    document.querySelector('.buffer-range-visual')?.appendChild(label);
+  }
+  if (currentPh >= effectiveStart && currentPh <= effectiveEnd) {
+    label.innerHTML = `✅ pH ${currentPh.toFixed(2)} — im effektiven Pufferbereich (pKₐ = ${pka.toFixed(2)} ± 1)`;
+    label.style.color = '#27ae60';
+  } else {
+    label.innerHTML = `⚠️ pH ${currentPh.toFixed(2)} — außerhalb des effektiven Pufferbereichs (pKₐ = ${pka.toFixed(2)} ± 1)`;
+    label.style.color = '#e74c3c';
+  }
+}
+
 function calculateBufferpH() {
   const pka = parseFloat(document.getElementById('buffer-pka').value);
   const acidConc = parseFloat(document.getElementById('acid-concentration').value);
@@ -155,6 +212,7 @@ function calculateBufferpH() {
 
   displayBufferCalculation(pka, acidConc, baseConc, ratio);
   determineBufferCapacity(ratio, acidConc + baseConc);
+  updateBufferRangeVisual(pka, ph);
 }
 
 function displayBufferCalculation(pka, acidConc, baseConc, ratio) {
@@ -260,6 +318,38 @@ function displayMWGExplanation(Q, ka, direction) {
 }
 
 // ===== UTILITY FUNCTIONS =====
+
+function calculateBufferPreparation() {
+  const targetPh = parseFloat(document.getElementById('target-ph').value);
+  const pka = parseFloat(document.getElementById('prep-pka').value);
+
+  if (isNaN(targetPh) || isNaN(pka) || targetPh < 0 || targetPh > 14) {
+    alert('Bitte geben Sie gültige Werte ein.');
+    return;
+  }
+
+  const ratio = Math.pow(10, targetPh - pka);
+  const resultDiv = document.getElementById('buffer-prep-result');
+  const textDiv = document.getElementById('buffer-prep-text');
+
+  let html = '';
+  if (ratio >= 0.01 && ratio <= 100) {
+    html += `Benötigtes Verhältnis [A⁻]/[HA] = <strong>${ratio.toFixed(3)}</strong><br>`;
+    html += `Das heißt: Auf <strong>1 mol HA</strong> kommen <strong>${ratio.toFixed(3)} mol A⁻</strong>.<br>`;
+    if (ratio >= 0.1 && ratio <= 10) {
+      html += '<span class="text-success">✅ Dieser pH liegt im effektiven Pufferbereich (pKₐ ± 1).</span>';
+    } else {
+      html += '<span class="text-warning">⚠️ Dieser pH liegt außerhalb des effektiven Pufferbereichs. Die Pufferkapazität ist gering.</span>';
+    }
+  } else {
+    html += `Benötigtes Verhältnis [A⁻]/[HA] = <strong>${ratio.toExponential(2)}</strong><br>`;
+    html += '<span class="text-danger">⚠️ Dieses extreme Verhältnis ist praktisch nicht realisierbar. Wählen Sie einen anderen Puffer mit passendem pKₐ.</span>';
+  }
+  html += '<hr><p class="help-block">Formel: [A⁻]/[HA] = 10<sup>(pH − pKₐ)</sup></p>';
+
+  textDiv.innerHTML = html;
+  resultDiv.style.display = 'block';
+}
 
 function scientificNotation(value, variable = null) {
   if (variable) {

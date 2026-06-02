@@ -309,7 +309,7 @@ Das Molekülstudio ist **kostenlos**, **werbefrei** und **sofort einsatzbereit**
 
 Diese Plattform ist ein Open-Source-Projekt. Wenn Sie das Molekülstudio im Unterricht einsetzen oder Feedback haben:
 
-- 📧 **Kontakt:** [Kontakt-Seite](/pages/contact/)
+- 📧 **Kontakt:** [GitHub Issues](https://github.com/tobias-weiss-ai-xr/chemie-lernen-org/issues)
 - 🔧 **GitHub:** [tobias-weiss-ai-xr](https://github.com/tobias-weiss-ai-xr)
 
 ---
