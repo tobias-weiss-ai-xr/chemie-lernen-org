@@ -84,9 +84,7 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== location.origin) {
     // Allow specific external resources (CDNs, APIs)
     const allowedOrigins = [
-      'cdn.jsdelivr.net',          // KaTeX
-      'maxcdn.bootstrapcdn.com',   // Bootstrap
-      'stackpath.bootstrapcdn.com',// Font Awesome
+      'cdn.jsdelivr.net',          // KaTeX, Charts
       'fonts.googleapis.com',      // Google Fonts
       'fonts.gstatic.com'          // Google Fonts
     ];

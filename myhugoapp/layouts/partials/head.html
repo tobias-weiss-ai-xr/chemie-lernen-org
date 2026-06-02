@@ -67,12 +67,13 @@
 <link rel="apple-touch-icon" sizes="180x180" href="{{ "/favicons/apple-touch-icon.png" | relURL }}">
 <link rel="manifest" href="{{ "/site.webmanifest" | relURL }}">
 
-<!-- Bootstrap 3 CDN -->
-<link rel="preload" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></noscript>
+<!-- Bootstrap CSS (local) -->
+<link rel="preload" href="{{ "/css/bootstrap.min.css" | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ "/css/bootstrap.min.css" | relURL }}"></noscript>
 
-<link rel="preload" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></noscript>
+<!-- Font Awesome CSS (local) -->
+<link rel="preload" href="{{ "/css/font-awesome.min.css" | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ "/css/font-awesome.min.css" | relURL }}"></noscript>
 
 {{ $sass := resources.Get "sass/main.scss" }}
 {{ if $sass }}
@@ -120,11 +121,8 @@ if ('serviceWorker' in navigator) {
 </script>
 
 <!-- Preconnect hints for performance -->
-<link rel="preconnect" href="https://maxcdn.bootstrapcdn.com">
-<link rel="preconnect" href="https://stackpath.bootstrapcdn.com">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="dns-prefetch" href="https://maxcdn.bootstrapcdn.com">
 <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
 <!-- JSON-LD Structured Data -->
