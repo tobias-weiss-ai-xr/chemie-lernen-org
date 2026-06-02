@@ -1,8 +1,8 @@
 {{ $url := .Permalink }}
 {{ $title := .Title }}
 {{ $description := .Description | default .Site.Params.footer_description }}
-{{ $encodedUrl := $url | querify "" | strings.TrimPrefix "=" }}
-{{ $encodedTitle := $title | querify "" | strings.TrimPrefix "=" }}
+{{ $encodedUrl := querify "q" $url | strings.TrimPrefix "q=" }}
+{{ $encodedTitle := querify "q" $title | strings.TrimPrefix "q=" }}
 
 <div class="social-share-bar" style="margin: 2em 0; padding-top: 1em; border-top: 1px solid #ddd;">
   <p><strong>Diesen Beitrag teilen:</strong></p>
