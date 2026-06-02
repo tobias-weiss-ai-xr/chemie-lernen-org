@@ -3,6 +3,10 @@ services:
     image: nginx:alpine
     container_name: hugo-chemie-lernen-org
     restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 256M
     networks:
       - traefik-web
       - traefik-public

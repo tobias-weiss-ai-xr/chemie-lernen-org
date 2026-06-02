@@ -17,6 +17,7 @@
         <main id="main-content" role="main">
           {{ block "main" . }} {{ end }}
         </main>
+        {{ if .IsPage }}{{ partial "social-share.html" . }}{{ end }}
       </div>
     </div>
 
