@@ -1,6 +1,6 @@
 ---
 title: "8. Klasse"
-description: "Chemische Bindungen und erste Reaktionen"
+description: "Chemische Bindungen und erste Reaktionen in Klasse 8 – Ionenbindung, Elektronenpaarbindung und einfache Reaktionsgleichungen."
 date: 2025-12-26
 klassenstufe: 8
 bundesland: ["BY", "BE", "BB", "HB", "HH", "MV", "NI", "NW", "RP", "SL", "SN", "ST", "SH", "TH"]

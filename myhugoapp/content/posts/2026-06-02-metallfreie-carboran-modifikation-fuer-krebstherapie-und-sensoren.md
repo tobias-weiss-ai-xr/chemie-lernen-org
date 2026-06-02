@@ -1,5 +1,6 @@
 ---
 title: "Metallfreie Carboran-Modifikation für Krebstherapie und Sensoren"
+description: "Metallfreie Carboran-Modifikation für Anwendungen in der Krebstherapie und chemischen Sensorik – orbitalgesteuerte Funktionalisierung."
 date: "2026-06-02T03:38:46+02:00"
 tags:
   - "carborane"

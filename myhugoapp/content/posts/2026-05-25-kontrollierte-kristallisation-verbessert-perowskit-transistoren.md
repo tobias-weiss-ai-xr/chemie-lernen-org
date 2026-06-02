@@ -1,5 +1,6 @@
 ---
 title: "Kontrollierte Kristallisation verbessert Perowskit-Transistoren"
+description: "Kontrollierte Kristallisation verbessert Perowskit-Transistoren für flexible Elektronik und effizientere Halbleiterbauteile."
 date: "2026-05-25T02:42:05+02:00"
 tags:
   - "chemie"

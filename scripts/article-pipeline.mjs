@@ -262,6 +262,7 @@ async function generateArticle(title, description, sourceUrl) {
 function parseGeneratedText(text) {
   let title = '';
   let tags = [];
+  let description = '';
 
   const titleMatch = text.match(/^Titel:\s*(.+)/m);
   if (titleMatch) {
@@ -275,21 +276,33 @@ function parseGeneratedText(text) {
       .map((t) => t.trim().replace(/^[*#\s]+|[*#]+$/g, '').toLowerCase())
       .filter(Boolean);
   }
+  
+  // Extract first meaningful sentence as description
+  const bodyLines = text.split('\n').filter(l => !l.match(/^(Titel|Tags?|Hintergrund):/i) && l.trim());
+  for (const line of bodyLines) {
+    const clean = line.replace(/[*#$]/g, '').trim();
+    if (clean.length > 30) {
+      description = clean.slice(0, 200);
+      break;
+    }
+  }
 
   if (!title) {
     const firstLine = text.split('\n').find((l) => l.trim());
     title = (firstLine || '').replace(/^#\s*/, '').replace(/[*\"]/g, '').trim().slice(0, 80);
   }
 
-  return { title, tags: tags.length ? tags : ['chemie', 'forschung'] };
+  return { title, tags: tags.length ? tags : ['chemie', 'forschung'], description };
 }
 
-function buildFrontmatter(title, date, tags) {
+function buildFrontmatter(title, date, tags, description) {
   const escapedTitle = title.replace(/"/g, '\\"');
+  const escapedDesc = (description || '').replace(/"/g, '\\"').slice(0, 200);
   const tagLines = tags.map((t) => `  - "${t}"`).join('\n');
   return `---
 title: "${escapedTitle}"
 date: "${date}"
+description: "${escapedDesc}"
 tags:
 ${tagLines}
 categories: ["forschung"]
@@ -376,7 +389,7 @@ async function run() {
     try {
       console.log(`[pipeline] Generating: ${article.title}`);
       const generated = await generateArticle(article.title, article.description, article.url);
-      const { title, tags } = parseGeneratedText(generated);      
+      const { title, tags, description } = parseGeneratedText(generated);      
       const slug = slugify(title);
       const filename = `${dateStr()}-${slug}.md`;
 
@@ -387,7 +400,7 @@ async function run() {
         console.log(`[pipeline]   Linked ${relatedCalcs.length} calculator(s) for "${title}"`);
       }
 
-      const frontmatter = buildFrontmatter(title, isoDateStr(), tags);
+      const frontmatter = buildFrontmatter(title, isoDateStr(), tags, description);
       const markdown = buildMarkdown(frontmatter, generated, relatedSection);
       await writeFile(join(POSTS_DIR, filename), markdown);
       await saveSeenUrl(article.url);

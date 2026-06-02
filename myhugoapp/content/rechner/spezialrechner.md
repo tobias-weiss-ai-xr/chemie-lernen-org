@@ -1,5 +1,6 @@
 ---
 title: 'Übersicht: Spezialrechner'
+description: "Spezialrechner für fortgeschrittene Chemie – Löslichkeitsprodukt, Redox-Potential, Verbrennungsanalyse und Gasgesetze."
 date: 2026-02-06
 draft: false
 tags: ['spezialrechner', 'uebersicht']

@@ -1,5 +1,6 @@
 ---
 title: 'PSE in VR: Eine revolutionäre Art, Chemie zu lernen'
+description: "Periodensystem in VR – Erleben Sie das Periodensystem der Elemente in Virtual Reality mit interaktiven 3D-Ansichten."
 date: 2026-01-02T10:00:00+01:00
 draft: true
 tags: ['vr', 'periodensystem', 'webxr', 'entwicklung', '3d']

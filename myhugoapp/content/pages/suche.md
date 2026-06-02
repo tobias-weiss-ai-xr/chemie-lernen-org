@@ -1,5 +1,6 @@
 ---
 title: 'Suche'
+description: "Volltext-Suche auf chemie-lernen.org – Finden Sie Chemie-Rechner, Simulationen und Lerninhalte."
 date: 2025-12-27
 layout: 'search'
 ---

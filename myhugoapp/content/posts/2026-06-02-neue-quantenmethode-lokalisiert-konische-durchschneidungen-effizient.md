@@ -1,5 +1,6 @@
 ---
 title: "Neue Quantenmethode lokalisiert konische Durchschneidungen effizient"
+description: "Neue Quantenmethode zur Lokalisierung konischer Durchschneidungen in Molekülen – Effizientere Berechnung von Nichtgleichgewichts-Prozessen."
 date: "2026-06-02T03:39:22+02:00"
 tags:
   - "quantenchemie"

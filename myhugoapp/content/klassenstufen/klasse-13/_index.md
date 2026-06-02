@@ -1,6 +1,6 @@
 ---
 title: "13. Klasse"
-description: "Abiturvorbereitung und Vertiefung"
+description: "Abiturvorbereitung und Vertiefung in Klasse 13 – Wiederholung aller Themen mit komplexen Übungen und Abituraufgaben."
 date: 2025-12-26
 klassenstufe: 13
 bundesland: ["BY", "HE", "NI", "NW", "RP", "SH", "TH"]

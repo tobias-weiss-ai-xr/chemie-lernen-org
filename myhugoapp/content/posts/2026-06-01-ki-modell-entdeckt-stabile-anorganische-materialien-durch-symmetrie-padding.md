@@ -1,5 +1,6 @@
 ---
 title: "KI-Modell entdeckt stabile anorganische Materialien durch Symmetrie-Padding"
+description: "KI-Modell entdeckt stabile anorganische Materialien durch Symmetrie-Padding – Beschleunigte Materialforschung durch maschinelles Lernen."
 date: "2026-06-01T20:17:00+02:00"
 tags:
   - "** chemie"

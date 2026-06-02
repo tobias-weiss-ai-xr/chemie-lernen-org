@@ -1,5 +1,6 @@
 ---
 title: 'Rechner Übersicht'
+description: "Interaktive Chemie-Rechner für Schule und Studium – pH-Rechner, Stöchiometrie, Titration, Redox und mehr."
 date: 2026-02-06
 draft: false
 tags: ['rechner', 'uebersicht']

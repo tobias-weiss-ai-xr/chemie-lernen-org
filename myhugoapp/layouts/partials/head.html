@@ -60,9 +60,11 @@
 <link rel="manifest" href="{{ "/site.webmanifest" | relURL }}">
 
 <!-- Bootstrap 3 CDN -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="preload" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></noscript>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="preload" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></noscript>
 
 {{ $sass := resources.Get "sass/main.scss" }}
 {{ if $sass }}
@@ -77,16 +79,21 @@
 <!-- Green Color Theme -->
 <link rel="stylesheet" href="{{ "/css/green-theme.css" | relURL }}">
 
-<!-- Quiz System CSS -->
-<link rel="stylesheet" href="{{ "/css/quiz-system.css" | relURL }}">
-<link rel="stylesheet" href="{{ "/css/quiz-user-system.css" | relURL }}">
-<link rel="stylesheet" href="{{ "/css/progress-tracker.css" | relURL }}">
+<!-- Quiz System CSS (deferred, only used on specific pages) -->
+<link rel="preload" href="{{ "/css/quiz-system.css" | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ "/css/quiz-system.css" | relURL }}"></noscript>
+<link rel="preload" href="{{ "/css/quiz-user-system.css" | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ "/css/quiz-user-system.css" | relURL }}"></noscript>
+<link rel="preload" href="{{ "/css/progress-tracker.css" | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ "/css/progress-tracker.css" | relURL }}"></noscript>
 
-<!-- KaTeX CSS for Chemical Formulas -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<!-- KaTeX CSS for Chemical Formulas (deferred) -->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"></noscript>
 
-<!-- mhchem Extension for Chemical Formulas -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css">
+<!-- mhchem Extension for Chemical Formulas (deferred) -->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css"></noscript>
 
 <script src="{{ "/js/enhanced-bundle-loader.js" | relURL }}"></script>
 
@@ -105,3 +112,63 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+
+<!-- Preconnect hints for performance -->
+<link rel="preconnect" href="https://maxcdn.bootstrapcdn.com">
+<link rel="preconnect" href="https://stackpath.bootstrapcdn.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://maxcdn.bootstrapcdn.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.footer_description }}",
+   "inLanguage": "de-DE",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "{{ .Site.BaseURL }}pages/suche/?q={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+ }
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.footer_description }}",
+  "foundingDate": "2025",
+  "inLanguage": "de-DE"
+}
+</script>
+
+{{ if .IsPage }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{{ if or (in .Params.categories "forschung") (in .Params.tags "forschung") }}ScholarlyArticle{{ else }}Article{{ end }}",
+  "headline": "{{ .Title }}",
+  "description": "{{ .Description }}",
+  "url": "{{ .Permalink }}",
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  "inLanguage": "de-DE",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Title }}",
+    "url": "{{ .Site.BaseURL }}"
+  }
+}
+</script>
+{{ end }}

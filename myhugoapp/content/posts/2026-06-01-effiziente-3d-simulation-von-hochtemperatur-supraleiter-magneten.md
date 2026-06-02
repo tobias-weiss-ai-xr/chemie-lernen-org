@@ -1,5 +1,6 @@
 ---
 title: "Effiziente 3D-Simulation von Hochtemperatur-Supraleiter-Magneten"
+description: "Effiziente 3D-Simulation von Hochtemperatur-Supraleiter-Magneten mit optimierten Rechenmethoden für die Materialwissenschaft."
 date: "2026-06-01T20:16:28+02:00"
 tags:
   - "** supraleitung"

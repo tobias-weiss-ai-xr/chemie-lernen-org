@@ -1,5 +1,6 @@
 ---
 title: "Neue Methode: Sonnenlicht effizient in Brennstoffe umwandeln"
+description: "Neue Methode wandelt Sonnenlicht effizienter in chemische Brennstoffe um – Photokatalytische Verfahren für nachhaltige Energie."
 date: "2026-05-25T02:42:11+02:00"
 tags:
   - "** photokatalyse"

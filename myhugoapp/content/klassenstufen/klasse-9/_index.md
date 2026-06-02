@@ -1,6 +1,6 @@
 ---
 title: "9. Klasse"
-description: "Säuren, Basen und Redoxreaktionen"
+description: "Säuren, Basen und Redoxreaktionen in Klasse 9 – pH-Wert, Neutralisation und Oxidationszahlen mit interaktiven Rechnern."
 date: 2025-12-26
 klassenstufe: 9
 bundesland: ["BY", "BE", "BB", "HB", "HH", "HE", "MV", "NI", "NW", "RP", "SL", "SN", "ST", "SH", "TH"]

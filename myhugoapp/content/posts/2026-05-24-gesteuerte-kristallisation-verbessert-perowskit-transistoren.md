@@ -1,5 +1,6 @@
 ---
 title: 'Gesteuerte Kristallisation verbessert Perowskit-Transistoren'
+description: "Gesteuerte Kristallisation verbessert Perowskit-Transistoren – Neue Ansätze für stabile und leistungsfähige Halbleiter."
 date: '2026-05-24T02:42:26+02:00'
 tags:
   - 'chemie'

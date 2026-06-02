@@ -1,5 +1,6 @@
 ---
 title: "KI-Prognose für Turbinen: Lebensdauer und Temperaturüberwachung"
+description: "KI-gestützte Prognose von Turbinen-Lebensdauer und Temperaturüberwachung in chemischen Kraftwerken für vorausschauende Wartung."
 date: "2026-06-01T20:17:30+02:00"
 tags:
   - "** machine-learning"

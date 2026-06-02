@@ -1,6 +1,6 @@
 ---
 title: '12. Klasse'
-description: 'Komplexe chemische Zusammenhänge'
+description: "Komplexe chemische Zusammenhänge in Klasse 12 – Gleichgewichtsreaktionen, Energetik, Kinetik und organische Synthesen."
 date: 2025-12-26
 klassenstufe: 12
 bundesland:
