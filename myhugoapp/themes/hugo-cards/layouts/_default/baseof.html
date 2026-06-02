@@ -16,11 +16,8 @@
 
     {{ partial "footer.html" . }}    
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
-
-  <!-- Custom JS for dark mode -->
-  <script src="/js/dark-mode.js"></script>
+  <!-- JS bundles are loaded via enhanced-bundle-loader.js in head.html -->
+  <!-- Dark mode JS is bundled in the core bundle -->
 
   {{ with .Site.Params.analytics }}
     {{ partial "analytics.html" . }}

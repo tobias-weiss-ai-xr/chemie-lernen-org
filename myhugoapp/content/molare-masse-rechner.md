@@ -10,7 +10,12 @@ schwierigkeit: "mittelstufe"
 teilgebiet: "anorganische-verbindungen"
 ---
 
-
 ## Molare Masse Rechner
 
-Berechnen Sie die molare Masse (Molare Masse) von beliebigen chemischen Verbindungen und Elementen.
+Berechnen Sie die molare Masse (Formelmasse) von beliebigen chemischen Verbindungen und Elementen.
+
+**Eingabe:** Geben Sie eine chemische Formel ein (z. B. H₂SO₄, CaCO₃, C₆H₁₂O₆) — der Rechner ermittelt sofort die molare Masse in g/mol und zeigt die Beitrag jedes Elements an.
+
+**Für Stöchiometrie:** Die molare Masse ist die Brücke zwischen Masse und Stoffmenge (n = m/M). Unverzichtbar für das Berechnen von Stoffmengen, Reaktionsausbeuten und Konzentrationen.
+
+**Datenbasis:** Alle Elemente mit ihren standardisierten Atommassen (gerundete Werte nach IUPAC) sind hinterlegt — inklusive seltenerer Elemente für fortgeschrittene Anwendungen.

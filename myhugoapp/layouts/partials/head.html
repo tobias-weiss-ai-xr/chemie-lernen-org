@@ -91,9 +91,7 @@
 <link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"></noscript>
 
-<!-- mhchem Extension for Chemical Formulas (deferred) -->
-<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.css"></noscript>
+<!-- mhchem extension is JS-only — CSS is bundled with KaTeX. No separate mhchem CSS file exists. -->
 
 <script src="{{ "/js/enhanced-bundle-loader.js" | relURL }}"></script>
 

@@ -14,3 +14,12 @@ tags: ['chemie', 'gleichgewicht', 'le-chatelier', 'konzentration', 'kc']
 ## Chemisches Gleichgewicht Rechner
 
 Erforschen Sie interaktiv das chemische Gleichgewicht und verstehen Sie, wie das Le Chatelier-sche Prinzip die Gleichgewichtslage beeinflusst. Visualisieren Sie dynamische Prozesse und Konzentrationsänderungen.
+
+**Massenwirkungsgesetz:** K_c = [Produkte]^Koeffizient / [Edukte]^Koeffizient. Geben Sie die Reaktionsgleichung und Startkonzentrationen ein — der Rechner ermittelt die Gleichgewichtskonzentrationen aller beteiligten Stoffe.
+
+**Le Chatelier-Prinzip:** Simulieren Sie, wie sich eine Gleichgewichtsreaktion bei Störungen verhält:
+- **Konzentrationsänderung:** Zugabe oder Entfernung eines Reaktionspartners.
+- **Druckänderung:** Einfluss auf Gasphasenreaktionen (Anzahl der Gas-Moleküle).
+- **Temperaturänderung:** Exotherme vs. endotherme Reaktionen.
+
+**Anschauliche Diagramme:** Die Konzentrations-Zeit-Verläufe aller beteiligten Stoffe werden in Echtzeit dargestellt — machen Sie das dynamische Gleichgewicht sichtbar.
