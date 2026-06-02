@@ -1,5 +1,10 @@
 [
   {
+    "url": "https://www.chemie.de/news/rss/",
+    "lang": "de",
+    "category": "news"
+  },
+  {
     "url": "https://rss.arxiv.org/rss/cs.CE",
     "lang": "en",
     "category": "forschung"

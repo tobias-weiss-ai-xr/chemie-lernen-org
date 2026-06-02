@@ -97,7 +97,7 @@
                    {{ end }}
                  {{ end }}
                  {{ else }}
-                 <!-- Fallback image logic if needed -->
+                 <div style="width:100%; height:140px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display:flex; align-items:center; justify-content:center; color:white; font-size:48px;">🔬</div>
                  {{ end }}
                  
                  <div class="panel-body">
@@ -105,7 +105,7 @@
                  </div>
                  
                  <div class="panel-body"><small>
-                   {{ .Summary | plainify | truncate 180 }}</small>
+                   {{ .Summary | plainify | replaceRE `\$[^$]+\$` "" | truncate 180 }}</small>
                  </div>
                </div>
                </a>
