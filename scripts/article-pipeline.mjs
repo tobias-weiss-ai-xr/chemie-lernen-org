@@ -15,6 +15,45 @@ const LITELLM_URL = 'http://localhost:4000/chat/completions';
 const LITELLM_API_KEY = process.env.LITELLM_API_KEY || '';
 const LITELLM_MODEL = process.env.LITELLM_MODEL || 'saia/qwen3.5-397b-a17b';
 
+// Chemistry relevance scoring — prefer articles directly about chemistry
+const CHEMISTRY_KEYWORDS = [
+  'chem', 'molecul', 'atom', 'bond', 'reaction', 'cataly', 'synthesis',
+  'compound', 'element', 'periodic', 'electron', 'proton', 'neutron',
+  'ph ', 'acid', 'base', 'buffer', 'titration', 'redox', 'oxidation',
+  'reduction', 'equilibrium', 'kinetic', 'thermodynam', 'enthalpy',
+  'entropy', 'gibbs', 'gas law', 'solution', 'concentration', 'molar',
+  'spectroscop', 'nmr', 'ir ', 'mass spec', 'crystal', 'solid state',
+  'organic', 'inorganic', 'polymer', 'nanomater', 'electrochem',
+  'photochem', 'biochem', 'protein', 'enzyme', 'catalyst', 'ligand',
+  'coordination', 'ionic', 'covalent', 'metallic', 'hybrid', 'orbital',
+  'quantum chem', 'materials sci', 'battery', 'fuel cell', 'solar',
+  'perovskite', 'superconduct', 'zeolite', 'metal org',
+  'wasserstoff', 'saeure', 'base', 'salz', 'metall', 'oxid',
+  'katalys', 'synthese', 'reaktion', 'loesung', 'gleichgewicht',
+  'thermodynamik', 'kinetik', 'spektroskop', 'elektrochem',
+];
+
+const NON_CHEMISTRY_KEYWORDS = [
+  'machine learning', 'deep learning', 'neural network', 'ai ',
+  'artificial intelligence', 'llm', 'large language model',
+  'transformer', 'reinforcement learning', 'computer vision',
+  'nlp', 'natural language', 'autonomous', 'robot',
+  'software', 'algorithm', 'data science', 'big data',
+  'cloud', 'blockchain', 'cryptocurrenc',
+];
+
+function chemistryScore(title, description) {
+  const text = `${title} ${description}`.toLowerCase();
+  let score = 0;
+  for (const kw of CHEMISTRY_KEYWORDS) {
+    if (text.includes(kw.toLowerCase())) score += 2;
+  }
+  for (const kw of NON_CHEMISTRY_KEYWORDS) {
+    if (text.includes(kw.toLowerCase())) score -= 3;
+  }
+  return score;
+}
+
 const FEED_UA = 'Mozilla/5.0 (compatible; chemie-lernen-article-bot/1.0)';
 
 const parser = new XMLParser({
@@ -27,8 +66,18 @@ const SYSTEM_PROMPT = `Du bist ein Chemie-Redakteur für chemie-lernen.org.
 Fasse den folgenden Artikel auf Deutsch zusammen (max. 300 Wörter).
 Ergänze Hintergrundwissen wenn relevant.
 Formatiere chemische Formeln mit KaTeX ($...$ oder $$...$$).
-Titel: max. 80 Zeichen, aussagekräftig.
-Füge 3-5 relevante Tags hinzu (z.B. chemie, forschung, [spezifisches Thema]).`;
+
+Antworte GENAU in diesem Format:
+
+Titel: <max 80 Zeichen, aussagekräftig>
+
+<Deutsche Zusammenfassung, max 300 Wörter>
+
+Hintergrund: <optional, 1-2 Sätze Hintergrundwissen>
+
+Tags: <3-5 tags, kommagetrennt, z.B. chemie, bindung, quantenchemie>
+
+Wichtig: Tags nur Kleinschreibung, keine Sternchen oder Formatierung.`;
 
 function slugify(text) {
   return text
@@ -146,11 +195,11 @@ function parseGeneratedText(text) {
     title = titleMatch[1].replace(/[*#]/g, '').trim();
   }
 
-  const tagMatch = text.match(/Tags?:\s*(.+)/i);
+  const tagMatch = text.match(/Tags?:?\s*(.+)/i);
   if (tagMatch) {
     tags = tagMatch[1]
       .split(',')
-      .map((t) => t.trim().replace(/^#/, '').toLowerCase())
+      .map((t) => t.trim().replace(/^[*#\s]+|[*#]+$/g, '').toLowerCase())
       .filter(Boolean);
   }
 
@@ -178,7 +227,7 @@ draft: false
 function buildMarkdown(frontmatter, bodyContent) {
   const body = bodyContent
     .split('\n')
-    .filter((l) => !l.match(/^(Titel|Tags?):/i))
+    .filter((l) => !l.match(/^(Titel|Tags?):/i) && !l.match(/^#\s+.+/))
     .join('\n')
     .trim();
   return `${frontmatter}\n\n${body}\n`;
@@ -229,7 +278,12 @@ async function run() {
     }
   }
 
-  candidates.sort((a, b) => b.description.length - a.description.length);
+  // Sort by chemistry relevance, then description length as tiebreaker
+  candidates.sort((a, b) => {
+    const scoreDiff = chemistryScore(b.title, b.description) - chemistryScore(a.title, a.description);
+    if (scoreDiff !== 0) return scoreDiff;
+    return b.description.length - a.description.length;
+  });
   const selected = candidates.slice(0, MAX_ARTICLES);
   console.log(`[pipeline] Selected ${selected.length} articles to generate`);
 

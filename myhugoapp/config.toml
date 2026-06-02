@@ -358,6 +358,11 @@ author = "chemie-lernen.org Team"
 
 # General Pages
 [[menu.main]]
+    name = "Aktuelle Forschung"
+    url = "/posts/"
+    weight = 42
+    icon = "📰"
+[[menu.main]]
     name = "Roadmap"
     url = "/pages/roadmap/"
     weight = 40
