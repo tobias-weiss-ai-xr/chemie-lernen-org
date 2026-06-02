@@ -41,9 +41,9 @@
 
 /* Primary color variables */
 :root {
-  --green-primary: #4caf50;
-  --green-dark: #388e3c;
-  --green-darker: #2e7d32;
+  --green-primary: #388e3c;
+  --green-dark: #2e7d32;
+  --green-darker: #1b5e20;
   --green-light: #66bb6a;
   --green-lighter: #c8e6c9;
 }
