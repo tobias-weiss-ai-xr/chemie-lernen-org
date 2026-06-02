@@ -1,11 +1,12 @@
-const CACHE_NAME = 'chemie-lernen-v1';
-const STATIC_CACHE = 'static-v1';
-const ASSETS_CACHE = 'assets-v1';
+const CACHE_NAME = 'chemie-lernen-v2';
+const STATIC_CACHE = 'static-v2';
+const ASSETS_CACHE = 'assets-v2';
 
 // Files to cache immediately for the chemistry learning platform
 const STATIC_FILES = [
   '/',
   '/index.html',
+  '/offline/',
   '/site.webmanifest',
   '/favicons/favicon-16x16.png',
   '/favicons/favicon-32x32.png',
@@ -18,7 +19,8 @@ const STATIC_FILES = [
   '/css/quiz-system.css',
   '/js/dark-mode.js',
   '/js/chemistry-calculator-framework.js',
-  '/js/advanced-lazy-loader.js'
+  '/js/advanced-lazy-loader.js',
+  '/images/recent-article_001.jpg'
 ];
 
 const PERFORMANCE_CRITICAL = [
@@ -34,7 +36,7 @@ const LAZY_LOADED = [
 
 // Install event - cache static files
 self.addEventListener('install', (event) => {
-  console.log('[SW] Installing service worker');
+  console.log('[SW] Installing service worker v2');
   event.waitUntil(
     caches.open(STATIC_CACHE).then((cache) => {
       console.log('[SW] Caching static files');
@@ -50,7 +52,7 @@ self.addEventListener('install', (event) => {
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-  console.log('[SW] Activating service worker');
+  console.log('[SW] Activating service worker v2');
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
@@ -82,11 +84,11 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== location.origin) {
     // Allow specific external resources (CDNs, APIs)
     const allowedOrigins = [
-      'cdn.jsdelivr.net',  // KaTeX
-      'maxcdn.bootstrapcdn.com',  // Bootstrap
-      'stackpath.bootstrapcdn.com',  // Font Awesome
-      'fonts.googleapis.com',  // Google Fonts
-      'fonts.gstatic.com'  // Google Fonts
+      'cdn.jsdelivr.net',          // KaTeX
+      'maxcdn.bootstrapcdn.com',   // Bootstrap
+      'stackpath.bootstrapcdn.com',// Font Awesome
+      'fonts.googleapis.com',      // Google Fonts
+      'fonts.gstatic.com'          // Google Fonts
     ];
 
     if (allowedOrigins.includes(url.hostname)) {
@@ -105,13 +107,17 @@ self.addEventListener('fetch', (event) => {
   if (url.pathname.includes('/css/') ||
       url.pathname.includes('/js/') ||
       url.pathname.includes('/favicons/') ||
+      url.pathname.includes('/images/') ||
       url.pathname.includes('/img/') ||
       url.pathname.endsWith('.png') ||
       url.pathname.endsWith('.jpg') ||
       url.pathname.endsWith('.jpeg') ||
       url.pathname.endsWith('.gif') ||
       url.pathname.endsWith('.svg') ||
-      url.pathname.endsWith('.webmanifest')) {
+      url.pathname.endsWith('.webmanifest') ||
+      url.pathname.endsWith('.woff2') ||
+      url.pathname.endsWith('.woff') ||
+      url.pathname.endsWith('.ttf')) {
 
     event.respondWith(
       caches.open(ASSETS_CACHE).then((cache) => {
@@ -135,8 +141,13 @@ self.addEventListener('fetch', (event) => {
   // Network First strategy for HTML pages
   if (url.pathname.endsWith('.html') ||
       url.pathname === '/' ||
+      url.pathname === '/offline/' ||
+      // Section pages
+      url.pathname.includes('/posts/') ||
       url.pathname.includes('/themenbereiche/') ||
+      url.pathname.includes('/klassenstufen/') ||
       url.pathname.includes('/pages/') ||
+      // Interactive tools & calculators
       url.pathname.includes('/perioden-system-der-elemente/') ||
       url.pathname.includes('/molekuel-studio/') ||
       url.pathname.includes('/ph-rechner/') ||
@@ -201,7 +212,7 @@ self.addEventListener('fetch', (event) => {
             return response;
           }
           // Return offline page if available
-          return caches.match('/') || new Response('Offline', {
+          return caches.match('/offline/') || new Response('Offline', {
             status: 503,
             statusText: 'Service Unavailable'
           });
