@@ -13,8 +13,7 @@ class BundleManager {
       core: ['/js/chemistry-calculator-framework.optimized.js', '/js/dark-mode.optimized.js'],
 
       vendor: [
-        'https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js',
-        'https://code.jquery.com/jquery-3.6.0.min.js',
+        // Bootstrap and jQuery are loaded synchronously via baseof.html. No CDN duplicates needed.
       ],
 
       calculators: {

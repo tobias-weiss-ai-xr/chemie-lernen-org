@@ -22,22 +22,15 @@
 
     {{ partial "footer.html" . }}    
 
+  <!-- jQuery — needed synchronously for inline code below -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+  <!-- Bootstrap JS (local copy) -->
   <script src="/js/bootstrap.min.js"></script>
 
-  <!-- Custom JS for dark mode -->
-  <script src="/js/dark-mode.js"></script>
-
-  <!-- Quiz System JS -->
-  <script src="/js/quiz-system.js"></script>
-  <script src="/js/quiz-user-system.js"></script>
-  <script src="/js/progress-tracker.js"></script>
+  <!-- Loaded via enhanced-bundle-loader (optimized versions): dark-mode, quiz-system, quiz-user-system, progress-tracker -->
+  <!-- Gamification engine (only available in unoptimized form) -->
   <script src="/js/gamification-engine.js"></script>
-
-  <!-- Quiz Data Files (conditionally loaded) -->
-  {{ if .Params.quiz }}
-  <script src="/data/quiz-{{ .Params.quiz }}.js"></script>
-  {{ end }}
 
   <!-- KaTeX for Chemical Formula Rendering -->
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
