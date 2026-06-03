@@ -291,20 +291,20 @@
   gap: 10px;
 }
 
-.path-step {
+.path-selector .path-step {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 8px;
 }
 
-.path-step label {
+.path-selector .path-step label {
   font-weight: 600;
   color: #1a1a1a;
   flex: 1;
 }
 
-.path-step input {
+.path-selector .path-step input {
   flex: 2;
   font-size: 14px;
 }
@@ -582,13 +582,13 @@
   border: 2px solid #e0e0e0;
 }
 
-.path-step {
+.reaction-path .path-step {
   padding: 8px;
   margin-bottom: 8px;
   border-bottom: 1px solid #e0e0e0;
 }
 
-.path-step:last-child {
+.reaction-path .path-step:last-child {
   border-bottom: none;
 }
 
@@ -599,7 +599,7 @@
   margin-top: 10px;
 }
 
-.enthalpy-total {
+.reaction-path .enthalpy-total {
   text-align: center;
   font-weight: 700;
   color: #e74c3c;
@@ -608,7 +608,7 @@
   border-top: 2px solid #e0e0e0;
 }
 
-.conclusion {
+.reaction-path .conclusion {
   padding: 15px;
   margin-top: 15px;
   background: white;
