@@ -107,6 +107,20 @@ Husky runs `npx lint-staged` — eslint + prettier on staged JS, JSON, MD, HTML,
 
 `npm run minify` (via `scripts/minify-calculators.js`) **overwrites source files in-place** with terser output. Only targets: `stoichiometry.js`, `practice-generators.js`, `lazy-loader.js`. The `LazyLoader` name is preserved during mangling.
 
+## Safety Rules
+
+### Neo4j — NEVER mass-delete
+
+The Neo4j knowledge graph at `knowledge-neo4j:7687` stores a **general knowledge base** — not only chemistry content. The following Cypher patterns are **blacklisted** and must NEVER be executed:
+
+```
+DETACH DELETE         — mass-deletes nodes and all their relationships
+MATCH (d:Document) DELETE d — deletes documents
+MATCH (d:Document) DETACH DELETE d — deletes documents with relationships
+```
+
+These commands caused irreversible data loss (~22,979 documents deleted). If cleanup is needed, always ask the user first and use targeted, scoped queries (e.g., with `WHERE d.url CONTAINS "specific-domain"`).
+
 ## Deployment
 
 - **Production**: `docker-compose.yml` serves `myhugoapp/public/` via nginx behind Traefik (HTTPS via Let's Encrypt)
