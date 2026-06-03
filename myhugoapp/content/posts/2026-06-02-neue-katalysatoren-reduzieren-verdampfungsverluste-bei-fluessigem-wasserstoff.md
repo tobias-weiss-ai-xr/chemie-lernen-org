@@ -9,6 +9,8 @@ tags:
   - "energiespeicher"
   - "chemie"
 categories: ["forschung"]
+
+source: "https://phys.org/news/2026-05-catalysts-losses-liquid-hydrogen-production.html"
 draft: false
 ---
 
@@ -17,3 +19,10 @@ Ein Forschungsteam hat hochleistungsfähige Katalysatoren entwickelt, die Verdam
 Im Vergleich zu konventionellen Katalysatoren auf Eisenoxid-Basis demonstrieren diese Komposite eine überlegene katalytische Aktivität. Sie ermöglichen eine effizientere Umwandlung während der Verflüssigung von Wasserstoff ($\text{H}_2$), wodurch thermische Verluste reduziert werden. Da die Materialien auf günstigen Trägeroxiden basieren, ist eine skalierbare industrielle Anwendung vielversprechend. Die Minimierung von Verlusten in der Lieferkette erhöht die Gesamtenergieeffizienz von Wasserstoff als Energieträger erheblich.
 
 Hintergrund: Flüssiger Wasserstoff besteht bei Siedetemperatur überwiegend aus Para-Wasserstoff. Die langsame Umwandlung von Ortho- zu Para-Wasserstoff setzt Wärme frei, was ohne Katalysator zum Verdampfen des kryogenen $\text{H}_2$ führt.
+
+
+---
+
+### 📄 Quelle
+
+[Original-Artikel](https://phys.org/news/2026-05-catalysts-losses-liquid-hydrogen-production.html)

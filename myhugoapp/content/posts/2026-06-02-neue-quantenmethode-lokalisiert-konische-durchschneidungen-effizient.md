@@ -9,6 +9,7 @@ tags:
   - "simulation"
   - "energietransfer"
 categories: ["forschung"]
+source: "https://phys.org/news/2026-06-method-uncovers-conical-intersections-driven.html"
 draft: false
 ---
 
@@ -17,3 +18,10 @@ Konische Durchschneidungen sind entscheidende Schaltstellen in lichtgetriebenen 
 Der neue Ansatz reproduziert Benchmark-Geometrien mit hoher Genauigkeit. Dies ermöglicht praktische Simulationen photochemischer Prozesse, die zuvor zu rechenaufwendig waren. Die Methode eröffnet neue Perspektiven für Anwendungen in der Photokatalyse, der Entwicklung von Solarzellen sowie bei biologischen Lichtreaktionen. Durch die geringen Rechenkosten können nun auch größere Molekülsysteme untersucht werden, was das Verständnis von Energieumwandlungsprozessen nach Lichtabsorption verbessert.
 
 Hintergrund: Konische Durchschneidungen entstehen, wenn sich die Potentialhyperflächen zweier elektronischer Zustände, wie des Grundzustands $S_0$ und des angeregten Zustands $S_1$, berühren. Sie fungieren als Trichter für strahlungslose Übergänge zwischen diesen Zuständen.
+
+
+---
+
+### 📄 Quelle
+
+[Original-Artikel](https://phys.org/news/2026-05-metal-free-method-carborane-cancer.html)
