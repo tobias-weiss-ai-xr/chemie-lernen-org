@@ -9,6 +9,7 @@ tags:
   - "materialforschung"
   - "dft-berechnungen"
 categories: ["forschung"]
+source: "https://phys.org/news/2026-05-metal-free-method-carborane-cancer.html"
 draft: false
 ---
 
@@ -33,3 +34,10 @@ Die Methode beschleunigt die Materialentwicklung für **nachhaltige Energietechn
 - **Dezentrale $H_2O_2$-Produktion** (für Medizin oder Abwasserreinigung).
 
 **Tags:** Photokatalyse, erneuerbare Energien, Kohlenstoffnitride, Materialforschung, DFT-Berechnungen
+
+
+---
+
+### 📄 Quelle
+
+[Original-Artikel](https://phys.org/news/2026-05-metal-free-method-carborane-cancer.html)

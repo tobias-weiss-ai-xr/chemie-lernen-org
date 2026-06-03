@@ -6,6 +6,8 @@ tags:
   - "chemie"
   - "forschung"
 categories: ["forschung"]
+
+source: "unbekannt"
 draft: false
 ---
 
@@ -21,3 +23,10 @@ Perowskite kombinieren hohe Ladungsträgermobilität mit kostengünstiger Herste
 **Anwendungen**: Bessere Transistoren, effizientere Solarzellen (aktuell bis ~26 % Wirkungsgrad) und langlebigere LEDs.
 
 **Tags**: Perowskit, Kristallisation, Transistoren, Optoelektronik, Materialforschung
+
+
+---
+
+### 📄 Quelle
+
+*Quelle nicht verfügbar*
