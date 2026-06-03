@@ -6,6 +6,8 @@ tags:
   - 'chemie'
   - 'forschung'
 categories: ['forschung']
+
+source: "unbekannt"
 draft: false
 ---
 
@@ -20,3 +22,10 @@ Ein internationales Team um Tomasz Marszalek vom **Max-Planck-Institut für Poly
 Die Ergebnisse, veröffentlicht im _Journal of the American Chemical Society_, ebnen den Weg für günstigere und effizientere Perowskit-Transistoren – ein wichtiger Schritt für flexible Elektronik und Photovoltaik.
 
 **Tags**: Perowskit, Kristallisation, Transistoren, Optoelektronik, Materialforschung
+
+
+---
+
+### 📄 Quelle
+
+*Quelle nicht verfügbar*

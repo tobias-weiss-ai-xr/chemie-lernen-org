@@ -9,6 +9,7 @@ tags:
   - 'synthesemethoden'
   - 'forschung*'
 categories: ['forschung']
+source: "unbekannt"
 draft: false
 ---
 
@@ -28,4 +29,6 @@ Durch den Einsatz von Ketonen als "Ladungsleiter" gelingt es, Reaktionen an sons
 
 ---
 
-_Quelle: Journal of the American Chemical Society (2026), Universität Wien._
+### 📄 Quelle
+
+*Quelle nicht verfügbar*
