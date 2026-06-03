@@ -295,7 +295,64 @@ function parseGeneratedText(text) {
   return { title, tags: tags.length ? tags : ['chemie', 'forschung'], description };
 }
 
-function buildFrontmatter(title, date, tags, description) {
+// ===== SOURCE VERIFICATION =====
+
+async function verifySource(sourceUrl) {
+  const result = { available: false, statusCode: 0, paperLinks: [] };
+  try {
+    const res = await fetch(sourceUrl, {
+      method: 'HEAD',
+      signal: AbortSignal.timeout(10000),
+      headers: { 'User-Agent': FEED_UA },
+    });
+    result.statusCode = res.status;
+    result.available = res.ok;
+
+    // Only fetch body if we got a 200
+    if (res.ok) {
+      const body = await (await fetch(sourceUrl, {
+        signal: AbortSignal.timeout(15000),
+        headers: { 'User-Agent': FEED_UA },
+      })).text();
+
+      // Normalize DOI URL to canonical form
+      const normalizeDoiUrl = (url) => {
+        const doiMatch = url.match(/10\.\d{4,}\/[^\s"<>?]+/);
+        return doiMatch ? `https://doi.org/${doiMatch[0].replace(/["'.]+$/, '')}` : url;
+      };
+      const linkSet = new Set();
+      const patterns = [
+        /https?:\/\/(?:dx\.)?doi\.org\/[^\s"<>]+/gi,
+        /https?:\/\/arxiv\.org\/(?:abs|pdf)\/[^\s"<>]+/gi,
+        /https?:\/\/pubs\.acs\.org\/doi\/[^\s"<>]+/gi,
+        /https?:\/\/(?:www\.)?nature\.com\/articles\/[^\s"<>]+/gi,
+        /https?:\/\/(?:www\.)?science\.org\/doi\/[^\s"<>]+/gi,
+        /https?:\/\/pubs\.rsc\.org\/[^\s"<>]+/gi,
+        /https?:\/\/onlinelibrary\.wiley\.com\/doi\/[^\s"<>]+/gi,
+      ];
+      for (const pat of patterns) {
+        for (const m of body.matchAll(pat)) {
+          linkSet.add(normalizeDoiUrl(m[0].replace(/["']$/, '')));
+        }
+      }
+      // Also extract bare DOIs (without https://doi.org/)
+      const bareDoiPat = /\b(10\.\d{4,}\/[^\s"<>]+)/gi;
+      for (const m of body.matchAll(bareDoiPat)) {
+        const doi = m[1].replace(/["']/g, '').replace(/\.$/, '');
+        if (doi.length > 5 && doi.length < 100) {
+          linkSet.add(`https://doi.org/${doi}`);
+        }
+      }
+      result.paperLinks = [...linkSet].slice(0, 3);
+    }
+  } catch (err) {
+    result.statusCode = 0;
+    result.available = false;
+  }
+  return result;
+}
+
+function buildFrontmatter(title, date, tags, description, sourceUrl) {
   const escapedTitle = title.replace(/"/g, '\\"');
   const escapedDesc = (description || '').replace(/"/g, '\\"').slice(0, 200);
   const tagLines = tags.map((t) => `  - "${t}"`).join('\n');
@@ -303,6 +360,7 @@ function buildFrontmatter(title, date, tags, description) {
 title: "${escapedTitle}"
 date: "${date}"
 description: "${escapedDesc}"
+source: "${sourceUrl}"
 tags:
 ${tagLines}
 categories: ["forschung"]
@@ -310,13 +368,28 @@ draft: false
 ---`;
 }
 
-function buildMarkdown(frontmatter, bodyContent, relatedSection) {
+function buildMarkdown(frontmatter, bodyContent, relatedSection, sourceUrl, verification) {
   const body = bodyContent
     .split('\n')
     .filter((l) => !l.match(/^(Titel|Tags?):/i) && !l.match(/^#\s+.+/))
     .join('\n')
     .trim();
-  return `${frontmatter}\n\n${body}\n${relatedSection}\n`;
+
+  let sourceSection = `\n\n---\n\n### 📄 Quelle\n\n[Nachrichten-Artikel](${sourceUrl})`;
+
+  if (verification) {
+    if (!verification.available) {
+      sourceSection += ` ⚠️ (Status ${verification.statusCode || 'nicht erreichbar'})`;
+    }
+    if (verification.paperLinks && verification.paperLinks.length > 0) {
+      sourceSection += '\n\n' + verification.paperLinks
+        .map((link) => `📄 [Original-Publikation](${link})`)
+        .join('\n');
+    }
+  }
+
+  sourceSection += '\n';
+  return `${frontmatter}\n\n${body}\n${sourceSection}\n${relatedSection}\n`;
 }
 
 async function loadSeenUrls() {
@@ -400,8 +473,20 @@ async function run() {
         console.log(`[pipeline]   Linked ${relatedCalcs.length} calculator(s) for "${title}"`);
       }
 
-      const frontmatter = buildFrontmatter(title, isoDateStr(), tags, description);
-      const markdown = buildMarkdown(frontmatter, generated, relatedSection);
+      // Verify source and extract paper links
+      console.log(`[pipeline]   Verifying source: ${article.url}`);
+      const verification = await verifySource(article.url);
+      if (verification.available) {
+        console.log(`[pipeline]   Source is available (HTTP ${verification.statusCode})`);
+        if (verification.paperLinks.length > 0) {
+          console.log(`[pipeline]   Found ${verification.paperLinks.length} paper link(s): ${verification.paperLinks.join(', ')}`);
+        }
+      } else {
+        console.log(`[pipeline]   Source status: ${verification.statusCode || 'unreachable'}`);
+      }
+
+      const frontmatter = buildFrontmatter(title, isoDateStr(), tags, description, article.url);
+      const markdown = buildMarkdown(frontmatter, generated, relatedSection, article.url, verification);
       await writeFile(join(POSTS_DIR, filename), markdown);
       await saveSeenUrl(article.url);
       console.log(`[pipeline] Wrote ${filename}`);
