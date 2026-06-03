@@ -39,7 +39,7 @@
 <meta property="og:image" content="{{ .Site.BaseURL }}images/{{ with .Params.cover }}{{ . }}{{ else }}{{ .Site.Params.defaultImage }}{{ end }}">
 <meta property="og:image:width" content="1024">
 <meta property="og:image:height" content="559">
-<meta property="og:locale" content="{{ .Site.LanguageCode }}">
+<meta property="og:locale" content="{{ replace .Site.LanguageCode "-" "_" }}">
 {{- with .Site.Params.og_site_name }}
 <meta property="og:site_name" content="{{ . }}">
 {{- else }}
