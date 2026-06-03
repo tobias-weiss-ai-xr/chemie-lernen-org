@@ -123,22 +123,38 @@
   border-radius: 4px;
 }
 
-/* Print Styles */
+/* Print Styles — Branded PDF */
+
+@page {
+  size: A4;
+  margin: 0;
+}
 
 @media print {
-  body {
-    background: white;
-    font-size: 12pt;
-  }
 
+  /* Hide non-printable elements */
   .config-panel,
   #generate-ws-btn,
   #print-ws-btn,
   .navbar,
   .footer,
   .site-header,
-  .site-footer {
+  .site-footer,
+  .breadcrumb,
+  aside,
+  .sidebar {
     display: none !important;
+  }
+
+  /* Reset page layout */
+  body {
+    background: white !important;
+    color: #1a1a1a !important;
+    font-size: 10.5pt;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.45;
+    margin: 0;
+    padding: 0;
   }
 
   .arbeitsblatt-generator-container {
@@ -147,30 +163,345 @@
     margin: 0;
   }
 
+  /* Make room for fixed header and footer */
   .ws-preview {
-    border: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .ws-problem {
-    page-break-inside: avoid;
-  }
-
-  .ws-answer-space {
-    height: 40px;
+    padding-top: 52mm !important;
+    padding-bottom: 35mm !important;
   }
 
   .ws-solutions {
-    page-break-before: always;
+    padding-top: 52mm !important;
+    padding-bottom: 35mm !important;
+  }
+
+  /* ===== Branded Header (positioned in @page top margin) ===== */
+  #ws-print-branding {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  .ws-print-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 42mm;
+    padding: 8mm 20mm;
+    box-sizing: border-box;
+    z-index: 9999;
+    background: linear-gradient(135deg, #1a5276 0%, #2e86c1 50%, #1abc9c 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 8mm 20mm;
+    margin: 0;
+    border-bottom: 3px solid #0e6655;
+    box-sizing: border-box;
+  }
+
+  .ws-print-header-left {
+    flex: 0 0 auto;
+    margin-right: 8mm;
+  }
+
+  .ws-print-logo {
+    display: block;
+    width: auto;
+    height: 18mm;
+  }
+
+  .ws-print-header-center {
+    flex: 1;
+  }
+
+  .ws-print-site-name {
+    font-size: 16pt;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .ws-print-subtitle {
+    font-size: 9pt;
+    opacity: 0.85;
+    margin-top: 1mm;
+  }
+
+  .ws-print-header-right {
+    flex: 0 0 auto;
+    text-align: right;
+  }
+
+  .ws-print-date {
+    font-size: 8pt;
+    opacity: 0.8;
+  }
+
+  /* ===== Branded Footer ===== */
+  .ws-print-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25mm;
+    padding: 5mm 20mm;
+    box-sizing: border-box;
+    z-index: 9999;
+    border-top: 1px solid #2e86c1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5mm 20mm;
+    font-size: 7.5pt;
+    color: #5a6a7a;
     background: white;
-    border: none;
-    padding: 0;
+  }
+
+  .ws-print-footer-left {
+    text-align: left;
+  }
+
+  .ws-print-footer-right {
+    text-align: right;
+  }
+
+  .ws-page-number:after {
+    content: counter(page);
+  }
+
+  /* ===== Watermark ===== */
+  .ws-print-watermark {
+    display: none;
+  }
+
+  /* ===== Worksheet Content ===== */
+  .ws-preview {
+    border: none !important;
+    margin: 0 !important;
+    background: white !important;
+    box-shadow: none !important;
+  }
+
+  .ws-header {
+    border-bottom: 2.5px solid #1a5276;
+    margin-bottom: 6mm;
+    padding-bottom: 3mm;
+  }
+
+  .ws-header h2 {
+    margin: 0 0 2mm 0;
+    font-size: 16pt;
+    color: #1a5276;
+  }
+
+  .ws-header p {
+    margin: 0;
+    font-size: 9pt;
+    color: #5a6a7a;
+  }
+
+  .ws-problem {
+    margin-bottom: 8mm;
+    page-break-inside: avoid;
+    border-left: 3px solid #1abc9c;
+    padding-left: 4mm;
+    padding-top: 1mm;
+    padding-bottom: 1mm;
+  }
+
+  .ws-problem h4 {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #1a5276;
+    margin: 0 0 2mm 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .ws-question {
+    font-size: 10pt;
+    line-height: 1.5;
+    margin-bottom: 3mm;
+    color: #1a1a1a;
+  }
+
+  .ws-answer-space {
+    height: 12mm;
+    border-bottom: 1.5px dashed #bdc3c7;
+    margin-top: 2mm;
+  }
+
+  /* ===== Solutions Page ===== */
+  .ws-solutions {
+    page-break-before: always;
+    background: white !important;
+    border: none !important;
+    margin: 0 !important;
+  }
+
+  .ws-solutions h2 {
+    margin-top: 0;
+    color: #1a5276;
+    font-size: 14pt;
+    border-bottom: 2px solid #1abc9c;
+    padding-bottom: 3mm;
   }
 
   .ws-solution {
-    border-left: 2px solid #3498db;
-    background: white;
-    padding: 10px;
+    margin-bottom: 5mm;
+    padding: 2mm 0 2mm 4mm;
+    background: white !important;
+    border-left: 3px solid #2e86c1;
+    page-break-inside: avoid;
+  }
+
+  .ws-solution h4 {
+    margin: 0 0 1mm 0;
+    font-size: 9pt;
+    color: #2e86c1;
+  }
+
+  .ws-solution p {
+    font-size: 9pt;
+    margin: 0 0 1mm 0;
+  }
+
+  .ws-solution .ws-steps {
+    font-size: 8pt;
+    color: #444;
+    font-family: "Courier New", monospace;
+    background: #f5f6fa;
+    padding: 1.5mm;
+    border-radius: 2px;
+    margin-top: 1mm;
+  }
+
+  /* ===== Print Enhancement Round 2 - Optimized & Polished ===== */
+
+  /* Typography - print-optimized */
+  .ws-preview p,
+  .ws-solution p,
+  .ws-question {
+    text-align: justify !important;
+    hyphens: auto;
+    color: #111 !important;
+    text-indent: 4mm !important;
+    margin-bottom: 3mm !important;
+  }
+
+  /* Better question numbering - more prominent */
+  .ws-problem h4 {
+    font-size: 11pt !important;
+    border-left-width: 4px !important;
+    margin-top: 4mm !important;
+    margin-bottom: 3mm !important;
+  }
+
+  /* Answer space - cleaner */
+  .ws-answer-space {
+    border-bottom: 1px solid #ccc !important;
+  }
+
+  /* Choices - styled like answer boxes */
+  .ws-choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2mm;
+    margin-bottom: 4mm;
+  }
+  .ws-choice-label {
+    display: inline-block;
+    padding: 2mm 3mm;
+    background: white !important;
+    border: 1px solid #444 !important;
+    border-radius: 3px;
+    font-size: 9.5pt;
+  }
+
+  /* Solutions page - more professional */
+  .ws-solutions h2 {
+    border-bottom-width: 3px !important;
+    padding: 3mm 0 3mm 4mm !important;
+    font-size: 15pt !important;
+  }
+
+  .ws-solution {
+    border-left-width: 4px !important;
+    padding: 2mm 0 2mm 4mm !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+    margin-bottom: 4mm !important;
+  }
+
+  /* Footer enhancement */
+  .ws-print-footer::after {
+    content: "";
+  }
+  .ws-print-footer-left::after {
+    content: " – Alle Rechte vorbehalten";
+    opacity: 0.7;
+    margin-left: 3mm;
+  }
+
+  /* Page numbers: total alongside current */
+  @page {
+    @page:left {
+      @bottom-center { content: counter(page) " / " counter(pages); }
+    }
+    @page:right {
+      @bottom-center { content: counter(page) " / " counter(pages); }
+  }
+  @page {
+    @bottom-center {
+      content: counter(page) " / " counter(pages);
+    }
+  }
+
+  /* Print-specific link handling */
+  a[href^="http"],
+  a[href^="https"] {
+    text-decoration: none !important;
+    color: #1a5276 !important;
+  }
+  a[href^="http"]::after,
+  a[href^="https"]::after {
+    content: "";
+  }
+  a[href^="mailto"]::after {
+    content: " (E-Mail)";
+    font-size: 8pt !important;
+  }
+
+  /* B&W contrast optimization */
+  .ws-problem h4,
+  .ws-solution h4 {
+    color: #000 !important;
+  }
+
+  /* Watermark - subtle but visible (optional) */
+  .watermark-active .ws-print-watermark {
+    display: block !important;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-size: 140pt;
+    font-weight: 700;
+    color: rgba(26, 82, 118, 0.25);
+    z-index: 1;
+    white-space: nowrap;
+    letter-spacing: 3mm;
+    opacity: 1 !important;
+  }
+
+  /* Print document structure */
+  @page {
+    size: A4;
+    margin: 10mm 10mm 20mm 15mm !important;
+    bleed: 3mm;
   }
 }

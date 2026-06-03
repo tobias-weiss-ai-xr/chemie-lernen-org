@@ -296,14 +296,64 @@
     container.style.display = 'block';
   }
 
+
+  // --- Print Branding ---
+
+  function addPrintBranding() {
+    var existing = document.getElementById('ws-print-branding');
+    if (existing) return;
+
+    var branding = document.createElement('div');
+    branding.id = 'ws-print-branding';
+    branding.innerHTML = [
+      '<div class="ws-print-header">',
+      '  <div class="ws-print-header-left">',
+      '    <img src="/img/chemie-lernen-logo_dark.png" alt="chemie-lernen.org" class="ws-print-logo" height="40">',
+      '  </div>',
+      '  <div class="ws-print-header-center">',
+      '    <div class="ws-print-site-name">chemie-lernen.org</div>',
+      '    <div class="ws-print-subtitle">Chemie interaktiv lernen und ueben</div>',
+      '  </div>',
+      '  <div class="ws-print-header-right">',
+      '    <div class="ws-print-date" id="ws-print-date"></div>',
+      '  </div>',
+      '</div>',
+      '<div class="ws-print-footer">',
+      '  <div class="ws-print-footer-left">chemie-lernen.org - Arbeitsblatt-Generator</div>',
+      '  <div class="ws-print-footer-right">Seite <span class="ws-page-number"></span></div>',
+      '</div>',
+      '<div class="ws-print-watermark">chemie-lernen.org</div>',
+    ].join('\n');
+
+    document.getElementById('ws-print-date').textContent = new Date().toLocaleDateString('de-DE');
+    document.body.appendChild(branding);
+  }
+
+  function removePrintBranding() {
+    var branding = document.getElementById('ws-print-branding');
+    if (branding) {
+      branding.parentNode.removeChild(branding);
+    }
+  }
   // --- Init ---
 
   function init() {
     document.getElementById('generate-ws-btn').addEventListener('click', generateWorksheet);
 
     document.getElementById('print-ws-btn').addEventListener('click', function () {
-      window.print();
+      addPrintBranding();
+      setTimeout(function() { window.print(); }, 100);
     });
+
+    if (window.matchMedia) {
+      var mediaQuery = window.matchMedia('print');
+      mediaQuery.addListener(function(mql) {
+        if (!mql.matches) {
+          removePrintBranding();
+        }
+      });
+    }
+    window.addEventListener('afterprint', removePrintBranding);
   }
 
   if (document.getElementById('generate-ws-btn')) {
