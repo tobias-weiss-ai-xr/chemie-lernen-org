@@ -137,6 +137,23 @@
           </div>
           {{ end }}
 
+          <!-- Related Articles from KG (posts only) -->
+          {{ if eq .Section "posts" }}
+          {{ $relatedPosts := .Site.RegularPages.Related . | first 4 }}
+          {{ if gt (len $relatedPosts) 0 }}
+          <div class="sidebar-section">
+            <h3>📚 Verwandte Artikel</h3>
+            <div class="related-topics">
+              {{ range $relatedPosts }}
+              <div class="related-topic">
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+              </div>
+              {{ end }}
+            </div>
+          </div>
+          {{ end }}
+          {{ end }}
+
           <!-- External Resources -->
           {{ if .Params.externe_links }}
           <div class="sidebar-section">

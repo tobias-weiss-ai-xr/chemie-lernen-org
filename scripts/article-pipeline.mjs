@@ -537,8 +537,20 @@ async function run() {
   try {
     const kgDataDir = join(REPO_ROOT, 'myhugoapp', 'data');
     await mkdir(kgDataDir, { recursive: true });
+    // Build unique entity index from all articles
+    const entityMap = new Map();
+    for (const a of kgDumpArticles) {
+      for (const e of (a.entities || [])) {
+        if (!entityMap.has(e)) {
+          entityMap.set(e, { name: e, articleCount: 0, articles: [] });
+        }
+        entityMap.get(e).articleCount++;
+        entityMap.get(e).articles.push(a.title);
+      }
+    }
     const kgDump = {
       articles: kgDumpArticles,
+      entities: [...entityMap.values()].sort((a, b) => b.articleCount - a.articleCount),
       updatedAt: isoDateStr(),
     };
     await writeFile(join(kgDataDir, 'kg-data.json'), JSON.stringify(kgDump, null, 2));

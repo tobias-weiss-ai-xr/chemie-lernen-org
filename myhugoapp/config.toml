@@ -59,6 +59,11 @@ author = "chemie-lernen.org Team"
     weight = 15
     icon = "🤖"
 [[menu.main]]
+    name = "Wissensnetz"
+    url = "/entity/"
+    weight = 16
+    icon = "🕸️"
+[[menu.main]]
     name = "Interaktiv"
     url = "#"
     weight = 20
