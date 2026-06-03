@@ -45,6 +45,18 @@
       <!-- Main Content -->
       <div class="col-md-8">
         <article class="thema-content">
+          {{ $headingCount := len (findRE `<h[2-3]` .Content) }}
+          {{ if ge $headingCount 3 }}
+          <div class="toc-wrapper">
+            <details class="toc-details" open>
+              <summary class="toc-summary">📑 Inhaltsverzeichnis</summary>
+              <div class="toc-content">
+                {{ .TableOfContents }}
+              </div>
+            </details>
+          </div>
+          {{ end }}
+
           {{ .Content }}
 
           <!-- Interactive Elements Section -->
@@ -194,6 +206,86 @@
 </div>
 
 <style>
+/* Table of Contents */
+.toc-wrapper {
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-left: 4px solid #667eea;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  padding: 5px 20px 15px;
+}
+
+.toc-summary {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  padding: 10px 0;
+  user-select: none;
+}
+
+.toc-summary:hover {
+  color: #667eea;
+}
+
+.toc-content nav ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 10px 0 10px 0;
+}
+
+.toc-content nav ul li {
+  margin: 5px 0;
+}
+
+.toc-content nav ul li a {
+  color: #555;
+  text-decoration: none;
+  font-size: 0.95rem;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+  display: inline-block;
+  line-height: 1.6;
+}
+
+.toc-content nav ul li a:hover {
+  color: #667eea;
+  border-bottom-color: #667eea;
+}
+
+.toc-content nav ul ul {
+  padding-left: 20px;
+}
+
+.toc-content nav ul ul li a {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+@media (prefers-color-scheme: dark) {
+  .toc-wrapper {
+    background: #2c2c2c;
+    border-color: #444;
+    border-left-color: #667eea;
+  }
+  .toc-summary {
+    color: #e0e0e0;
+  }
+  .toc-summary:hover {
+    color: #8899ff;
+  }
+  .toc-content nav ul li a {
+    color: #bbb;
+  }
+  .toc-content nav ul li a:hover {
+    color: #8899ff;
+  }
+  .toc-content nav ul ul li a {
+    color: #999;
+  }
+}
+
 /* Container */
 .thema-container {
   margin-top: 20px;
