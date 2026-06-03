@@ -4,7 +4,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { XMLParser } from 'fast-xml-parser';
 import { execSync } from 'node:child_process';
-import { storeArticle, close as closeKg } from './knowledge-graph.mjs';
+import { storeArticleWithEntities, close as closeKg } from './knowledge-graph.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, '..');
@@ -144,7 +144,9 @@ Hintergrund: <optional, 1-2 Sätze Hintergrundwissen>
 
 Tags: <3-5 tags, kommagetrennt, z.B. chemie, bindung, quantenchemie>
 
-Wichtig: Tags nur Kleinschreibung, keine Sternchen oder Formatierung.`;
+Entitäten: <kommaseparierte Liste der wichtigsten chemischen Konzepte, Verbindungen, Reaktionen oder Personen aus dem Artikel, z.B. Methan, Photokatalyse, Eisen-Katalysator, C-H-Aktivierung>
+
+Wichtig: Tags und Entitäten nur Kleinschreibung, keine Sternchen oder Formatierung.`;
 
 function slugify(text) {
   return text
@@ -263,6 +265,7 @@ async function generateArticle(title, description, sourceUrl) {
 function parseGeneratedText(text) {
   let title = '';
   let tags = [];
+  let entities = [];
   let description = '';
 
   const titleMatch = text.match(/^Titel:\s*(.+)/m);
@@ -277,9 +280,17 @@ function parseGeneratedText(text) {
       .map((t) => t.trim().replace(/^[*#\s]+|[*#]+$/g, '').toLowerCase())
       .filter(Boolean);
   }
+
+  const entityMatch = text.match(/Entitäten?:?\s*(.+)/i);
+  if (entityMatch) {
+    entities = entityMatch[1]
+      .split(',')
+      .map((e) => e.trim().replace(/^[*#\s]+|[*#]+$/g, '').toLowerCase())
+      .filter((e) => e.length > 0);
+  }
   
   // Extract first meaningful sentence as description
-  const bodyLines = text.split('\n').filter(l => !l.match(/^(Titel|Tags?|Hintergrund):/i) && l.trim());
+  const bodyLines = text.split('\n').filter(l => !l.match(/^(Titel|Tags?|Hintergrund|Entitäten?):/i) && l.trim());
   for (const line of bodyLines) {
     const clean = line.replace(/[*#$]/g, '').trim();
     if (clean.length > 30) {
@@ -293,7 +304,7 @@ function parseGeneratedText(text) {
     title = (firstLine || '').replace(/^#\s*/, '').replace(/[*\"]/g, '').trim().slice(0, 80);
   }
 
-  return { title, tags: tags.length ? tags : ['chemie', 'forschung'], description };
+  return { title, tags: tags.length ? tags : ['chemie', 'forschung'], entities, description };
 }
 
 // ===== SOURCE VERIFICATION =====
@@ -492,17 +503,23 @@ async function run() {
       await saveSeenUrl(article.url);
       console.log(`[pipeline] Wrote ${filename}`);
 
-      // Store in Knowledge Graph
+      // Store in Knowledge Graph (article + tags + entities)
       try {
-        const kgResult = await storeArticle({
+        const kgUrl = `https://chemie-lernen.org/posts/${filename.replace(/\.md$/, '/')}`;
+        const kgResult = await storeArticleWithEntities({
           title,
           source: article.url,
           date: isoDateStr(),
           description,
           tags,
-          url: `https://chemie-lernen.org/posts/${filename.replace(/\.md$/, '/')}`,
+          entities,
+          url: kgUrl,
         });
-        console.log(`[pipeline]   Stored in Knowledge Graph: ${kgResult}`);
+        if (entities.length > 0) {
+          console.log(`[pipeline]   Stored in KG with ${entities.length} entit(ies): ${entities.join(', ')}`);
+        } else {
+          console.log(`[pipeline]   Stored in KG (no entities extracted)`);
+        }
       } catch (kgErr) {
         console.error(`[pipeline]   KG store error: ${kgErr.message}`);
       }

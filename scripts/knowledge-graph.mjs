@@ -111,7 +111,7 @@ export async function findEntities(keywords, limit = 10) {
     const result = await session.run(
       `
       MATCH (e:Entity)
-      WHERE any(kw IN $keywords TO lower(e.name) CONTAINS kw)
+      WHERE any(kw IN $keywords WHERE toLower(e.name) CONTAINS kw)
       RETURN e.name as name, labels(e) as labels, e.description as description
       LIMIT $limit
       `,
@@ -153,4 +153,82 @@ export async function getPopularTags(limit = 20) {
   }
 }
 
-export default { storeArticle, findRelatedByTags, findEntities, getPopularTags, close };
+/**
+ * Store entities mentioned in an article.
+ * Creates Entity nodes (if new) and :MENTIONS relationships.
+ * Links via article URL to find the Document node.
+ */
+export async function storeEntities(articleUrl, entityNames) {
+  if (!entityNames || entityNames.length === 0) return [];
+  const d = getDriver();
+  const session = d.session();
+  try {
+    const result = await session.run(
+      `
+      MATCH (d:Document {url: $url})
+      UNWIND $names AS entityName
+        MERGE (e:Entity {name: toLower(entityName)})
+        ON CREATE SET
+          e.created = timestamp(),
+          e.lastMentioned = timestamp()
+        ON MATCH SET
+          e.lastMentioned = timestamp()
+        MERGE (d)-[:MENTIONS]->(e)
+      RETURN collect(distinct e.name) as entities
+      `,
+      { url: articleUrl, names: entityNames.map((e) => e.toLowerCase()) }
+    );
+    return result.records[0]?.get('entities') || [];
+  } finally {
+    await session.close();
+  }
+}
+
+/**
+ * Combination: store article + its entities + tags in one go.
+ */
+export async function storeArticleWithEntities({ title, source, date, description, tags, entities, url }) {
+  const d = getDriver();
+  const session = d.session();
+  try {
+    const result = await session.run(
+      `
+      MERGE (d:Document {url: $url})
+      ON CREATE SET
+        d.title = $title,
+        d.source = $source,
+        d.date = $date,
+        d.description = $description,
+        d.tags = $tags,
+        d.type = 'article',
+        d.created = timestamp()
+      ON MATCH SET
+        d.title = $title,
+        d.date = $date,
+        d.description = $description,
+        d.tags = $tags,
+        d.updated = timestamp()
+      WITH d
+      UNWIND $tags AS tagName
+        MERGE (t:Tag {name: toLower(tagName)})
+        MERGE (d)-[:HAS_TAG]->(t)
+      WITH d
+      UNWIND $entities AS entityName
+        MERGE (e:Entity {name: toLower(entityName)})
+        ON CREATE SET
+          e.created = timestamp(),
+          e.lastMentioned = timestamp()
+        ON MATCH SET
+          e.lastMentioned = timestamp()
+        MERGE (d)-[:MENTIONS]->(e)
+      RETURN d.title as title, d.url as url
+      `,
+      { title, source: source || 'article-pipeline', date, description, tags: tags || [], entities: (entities || []).map((e) => e.toLowerCase()), url }
+    );
+    return result.records[0]?.get('url');
+  } finally {
+    await session.close();
+  }
+}
+
+export default { storeArticle, storeEntities, storeArticleWithEntities, findRelatedByTags, findEntities, getPopularTags, close };
