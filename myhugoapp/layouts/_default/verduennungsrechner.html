@@ -1,0 +1,283 @@
+{{ define "main" }}
+
+<div class="dilution-calculator-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Calculator Section -->
+  <div class="calculator-section">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="calculator-panel">
+          <h2>Verdünnung berechnen</h2>
+          <p>Geben Sie drei der vier Größen ein (z. B. c1, c2, V2 – der Rechner findet V1):</p>
+
+          <div class="form-group">
+            <label for="c1-input">Anfangskonzentration (c₁)</label>
+            <div class="input-group">
+              <input type="number" id="c1-input" class="form-control" placeholder="z.B. 0.1" step="any" min="0" aria-label="Anfangskonzentration">
+              <span class="input-group-addon">mol/L</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="c2-input">Endkonzentration (c₂)</label>
+            <div class="input-group">
+              <input type="number" id="c2-input" class="form-control" placeholder="z.B. 0.01" step="any" min="0" aria-label="Endkonzentration">
+              <span class="input-group-addon">mol/L</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="v1-input">Anfangsvolumen (V₁)</label>
+            <div class="input-group">
+              <input type="number" id="v1-input" class="form-control" placeholder="leer lassen zum Berechnen" step="any" min="0" aria-label="Anfangsvolumen">
+              <span class="input-group-addon">mL</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="v2-input">Endvolumen (V₂)</label>
+            <div class="input-group">
+              <input type="number" id="v2-input" class="form-control" placeholder="z.B. 500" step="any" min="0" aria-label="Endvolumen">
+              <span class="input-group-addon">mL</span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block" onclick="calculateDilution()">
+            <i class="fa fa-calculator"></i> Berechnen
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section" style="display:none;">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="result-card">
+            <h3>Ergebnis</h3>
+            <div class="dilution-result">
+              <div id="missing-variable-result" class="missing-result"></div>
+              <div id="verification-result" class="verification-result"></div>
+            </div>
+            <div id="calculation-details" class="calculation-details"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Section -->
+    <div id="error-section" style="display:none;">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="alert alert-danger">
+            <i class="fa fa-exclamation-triangle"></i>
+            <strong>Fehler:</strong> <span id="error-message"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Educational Section -->
+  <div class="educational-section">
+    <h2>Wissenswertes über Verdünnungen</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📚 Verdünnungsgesetz</h3>
+          <p>Das Verdünnungsgesetz $c_1V_1 = c_2V_2$ besagt, dass die Stoffmenge $n$ in einer Lösung konstant bleibt, wenn man sie verdünnt. Die Anzahl der gelösten Teilchen ändert sich nicht, nur ihr Abstand zueinander.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚗️ Praktische Durchführung</h3>
+          <p>Die Anfangslösung ($V_1$) wird in ein Messgefäß gegeben, dann mit Lösungsmittel (meist Wasser) auf das Endvolumen $V_2$ aufgefüllt. Nicht mischen und dann messen – das Volumen erhöht sich durch die Zugabe!</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📊 Wichtige Anwendungen</h3>
+          <ul>
+            <li>Labortitrationen: Konzentrationen anpassen</li>
+            <li>Pharma: Wirkstoffkonzentrationen einstellen</li>
+            <li>Lebensmittel: Aromastoffe verdünnen</li>
+            <li>Umwelt: Schadstoffkonzentrationen messen</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="info-card">
+          <h3>Typische Verdünnungsfaktoren</h3>
+          <div class="dilution-examples">
+            <div class="example-item"><strong>1:10:</strong> von konzentriert auf 1/10 der Konzentration (oft in Lab)</div>
+            <div class="example-item"><strong>1:100:</strong> von konzentriert auf 1/100 (für präzise Messungen)</div>
+            <div class="example-item"><strong>1:1000:</strong> von konzentriert auf 1/1000 (für ICP-MS, AAS)</div>
+            <div class="example-item"><strong>1:10⁴:</strong> Verdünnungsreihen für Kalibrierkurven</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+/* Dilution Calculator Styles */
+.dilution-calculator-container {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.calculator-panel {
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.calculator-panel h2 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.result-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.dilution-result {
+  margin: 20px 0;
+}
+
+.missing-result {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.verification-result {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 15px;
+  margin-top: 15px;
+  font-size: 1.1rem;
+}
+
+.calculation-details {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 15px;
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+.educational-section {
+  margin-top: 40px;
+}
+
+.info-card {
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.info-card h3 {
+  color: #667eea;
+  margin-bottom: 12px;
+}
+
+.info-card ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.info-card li {
+  margin-bottom: 5px;
+}
+
+.dilution-examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.example-item {
+  background: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  border-left: 3px solid #667eea;
+}
+
+@media (prefers-color-scheme: dark) {
+  .calculator-panel {
+    background: #2c2c2c;
+    border-color: #444;
+    color: #e0e0e0;
+  }
+
+  .calculator-panel h2 {
+    color: #e0e0e0;
+  }
+
+  .form-group label {
+    color: #bbb;
+  }
+
+  .info-card {
+    background: #2c2c2c;
+    border-color: #444;
+    color: #e0e0e0;
+  }
+
+  .info-card h3 {
+    color: #8899ff;
+  }
+
+  .example-item {
+    background: #3c3c3c;
+    color: #e0e0e0;
+  }
+}
+</style>
+
+<script src="/js/verduennungsrechner.js"></script>
+
+{{ end }}

@@ -1,0 +1,251 @@
+{{ define "main" }}
+
+<div class="density-calculator-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Calculator Section -->
+  <div class="calculator-section">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="calculator-panel">
+          <h2>Dichte berechnen</h2>
+          <p>Geben Sie Masse und Volumen ein (oder lassen Sie ein Feld leer, um die fehlende Größe zu finden):</p>
+
+          <div class="form-group">
+            <label for="mass-input">Masse (m)</label>
+            <div class="input-group">
+              <input type="number" id="mass-input" class="form-control" placeholder="z.B. 10.0" step="any" min="0" aria-label="Masse in Gramm">
+              <span class="input-group-addon">g</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="volume-input">Volumen (V)</label>
+            <div class="input-group">
+              <input type="number" id="volume-input" class="form-control" placeholder="z.B. 10.0" step="any" min="0" aria-label="Volumen in Milliliter">
+              <span class="input-group-addon">mL</span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block" onclick="calculateDensity()">
+            <i class="fa fa-calculator"></i> Berechnen
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section" style="display:none;">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="result-card">
+            <h3>Ergebnis</h3>
+            <div class="density-value">
+              <span id="density-value" class="big-number">0.00</span>
+              <span class="unit">g/mL</span>
+            </div>
+            <div id="calculation-details" class="calculation-details"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Section -->
+    <div id="error-section" style="display:none;">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="alert alert-danger">
+            <i class="fa fa-exclamation-triangle"></i>
+            <strong>Fehler:</strong> <span id="error-message"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Educational Section -->
+  <div class="educational-section">
+    <h2>Wissenswertes über Dichte</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>📚 Definition</h3>
+          <p>Die Dichte $\rho$ ist das Verhältnis von Masse zu Volumen: $\rho = m/V$. Sie beschreibt, wie viel Masse pro Volumeneinheit ein Stoff hat.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>🌡️ Temperaturabhängigkeit</h3>
+          <p>Dichte ist temperaturabhängig. Bei Flüssigkeiten sinkt die Dichte meist bei steigender Temperatur (Ausnahmen: Wasser bei 0-4°C).</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <h3>⚗️ Messmethoden</h3>
+          <p>Dichte wird gemessen mit: Aräometer (Auftriebsverfahren), Pyknometer (präzise Methode), oder durch Wiegen und Volumenmessung.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="info-card">
+          <h3>Typische Dichtewerte bei 20°C</h3>
+          <div class="density-examples">
+            <div class="example-item"><strong>Wasser:</strong> 0.998 g/mL</div>
+            <div class="example-item"><strong>Ethanol:</strong> 0.789 g/mL</div>
+            <div class="example-item"><strong>Öl:</strong> 0.8-0.95 g/mL (je nach Typ)</div>
+            <div class="example-item"><strong>Blei:</strong> 11.34 g/mL</div>
+            <div class="example-item"><strong>Gold:</strong> 19.32 g/mL</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+/* Density Calculator Styles */
+.density-calculator-container {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.calculator-panel {
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.calculator-panel h2 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.result-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.density-value {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.big-number {
+  color: white;
+}
+
+.unit {
+  font-size: 1.5rem;
+  margin-left: 10px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.calculation-details {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 15px;
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+.educational-section {
+  margin-top: 40px;
+}
+
+.info-card {
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.info-card h3 {
+  color: #667eea;
+  margin-bottom: 12px;
+}
+
+.density-examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.example-item {
+  background: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  border-left: 3px solid #667eea;
+}
+
+@media (prefers-color-scheme: dark) {
+  .calculator-panel {
+    background: #2c2c2c;
+    border-color: #444;
+    color: #e0e0e0;
+  }
+
+  .calculator-panel h2 {
+    color: #e0e0e0;
+  }
+
+  .form-group label {
+    color: #bbb;
+  }
+
+  .info-card {
+    background: #2c2c2c;
+    border-color: #444;
+    color: #e0e0e0;
+  }
+
+  .info-card h3 {
+    color: #8899ff;
+  }
+
+  .example-item {
+    background: #3c3c3c;
+    color: #e0e0e0;
+  }
+}
+</style>
+
+<script src="/js/dichte-rechner.js"></script>
+
+{{ end }}
