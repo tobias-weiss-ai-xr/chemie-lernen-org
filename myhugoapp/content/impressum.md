@@ -13,6 +13,8 @@ type: "page"
 
 ## Anbieter / Provider
 
+**Tobias Weiss IT-Services**
+
 **Tobias Weiß**<br>
 Grundstraße 69<br>
 78628 Rottweil<br>
@@ -24,7 +26,7 @@ Germany
 **Website:** https://tobias-weiss.org
 
 
-## Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV / Responsible for Content
+## Verantwortlich für den Inhalt / Responsible for Content
 
 **Tobias Weiß**<br>
 Grundstraße 69<br>
@@ -40,6 +42,23 @@ Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer 
 The European Commission provides a platform for online dispute resolution (OS): https://ec.europa.eu/consumers/odr
 
 We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.
+
+## Umsatzsteuer / VAT
+
+Kleinunternehmerregelung gemäß § 19 UStG - Es wird keine Umsatzsteuer auf Rechnungen ausgewiesen.
+
+Small business regulation according to § 19 UStG - No VAT is shown on invoices.
+
+## Berufshaftpflichtversicherung / Professional Liability Insurance
+
+**Vermögensschaden- und Betriebs-Haftpflichtversicherung:**
+exali GmbH (Markel Insurance SE)<br>
+Vermögensschaden-Haftpflichtversicherung: 1.000.000 €<br>
+Betriebs-Haftpflichtversicherung: 3.000.000 €<br>
+Selbstbeteiligung: 500 €<br>
+Geltungsbereich: Weltweit
+
+Professional Indemnity and Business Liability Insurance with worldwide coverage.
 
 ## Haftungsausschluss / Liability Disclaimer
 
@@ -75,4 +94,8 @@ Unless otherwise noted, all images and graphics on this website are the property
 
 ---
 
+<<<<<<< HEAD:myhugoapp/content/impressum.md
 **Letzte Aktualisierung:** 18. Mai 2026
+=======
+**Letzte Aktualisierung:** 03. Juni 2026
+>>>>>>> af95d676 (docs: update imprint and privacy policy with new business info):myhugoapp/content/de/impressum.md

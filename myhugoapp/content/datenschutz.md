@@ -5,7 +5,19 @@ date: 2025-12-22T12:00:00+01:00
 draft: false
 type: "page"
 ---
-**Stand / Last Updated:** 22. Dezember 2025
+**Stand / Last Updated:** 03. Juni 2026
+
+## Verantwortlicher / Controller
+
+**Tobias Weiss IT-Services**
+
+Inhaber: Tobias Weiß<br>
+Grundstraße 69<br>
+78628 Rottweil<br>
+Germany
+
+E-Mail: spam@tobias-weiss.org
+Website: https://chemie-lernen.org
 
 ## Allgemeines / General Information
 
