@@ -54,6 +54,11 @@ author = "chemie-lernen.org Team"
     weight = 10
     icon = "📚"
 [[menu.main]]
+    name = "KI-Assistent"
+    url = "/ki-assistent/"
+    weight = 15
+    icon = "🤖"
+[[menu.main]]
     name = "Interaktiv"
     url = "#"
     weight = 20
@@ -206,22 +211,20 @@ author = "chemie-lernen.org Team"
 [[menu.main]]
     name = "Arbeitsblatt"
     url = "/arbeitsblatt-generator/"
-    parent = "interaktiv"
-    weight = 33
+    parent = "Lehrende"
+    weight = 61
     icon = "📋"
-    interaktiv = true
 [[menu.main]]
     name = "Aufgabensammlung"
     url = "/aufgabensammlung/"
-    parent = "interaktiv"
-    weight = 34
+    parent = "Lehrende"
+    weight = 62
     icon = "📚"
-    interaktiv = true
 [[menu.main]]
     name = "Klassencockpit"
     url = "/klassencockpit/"
-    parent = "interaktiv"
-    weight = 35
+    parent = "Lehrende"
+    weight = 63
     icon = "📈"
     interaktiv = true
 [[menu.main]]
@@ -258,13 +261,6 @@ author = "chemie-lernen.org Team"
     parent = "interaktiv"
     weight = 40
     icon = "🔬"
-    interaktiv = true
-[[menu.main]]
-    name = "KI-Assistent"
-    url = "/ki-assistent/"
-    parent = "interaktiv"
-    weight = 41
-    icon = "🤖"
     interaktiv = true
 # Phase 1-6 Calculators
 [[menu.main]]
