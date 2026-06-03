@@ -4,6 +4,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { XMLParser } from 'fast-xml-parser';
 import { execSync } from 'node:child_process';
+import { storeArticle, close as closeKg } from './knowledge-graph.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, '..');
@@ -490,6 +491,21 @@ async function run() {
       await writeFile(join(POSTS_DIR, filename), markdown);
       await saveSeenUrl(article.url);
       console.log(`[pipeline] Wrote ${filename}`);
+
+      // Store in Knowledge Graph
+      try {
+        const kgResult = await storeArticle({
+          title,
+          source: article.url,
+          date: isoDateStr(),
+          description,
+          tags,
+          url: `https://chemie-lernen.org/posts/${filename.replace(/\.md$/, '/')}`,
+        });
+        console.log(`[pipeline]   Stored in Knowledge Graph: ${kgResult}`);
+      } catch (kgErr) {
+        console.error(`[pipeline]   KG store error: ${kgErr.message}`);
+      }
     } catch (err) {
       console.error(`[pipeline] Error generating "${article.title}": ${err.message}`);
     }
@@ -506,6 +522,9 @@ async function run() {
       console.error(`[pipeline] Git error: ${err.message}`);
     }
   }
+
+  // Close KG connection
+  try { await closeKg(); } catch { /* ignore */ }
 
   console.log(`[pipeline] Done`);
 }
