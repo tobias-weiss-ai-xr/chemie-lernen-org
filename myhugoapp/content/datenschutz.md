@@ -16,7 +16,7 @@ Grundstraße 69<br>
 78628 Rottweil<br>
 Germany
 
-E-Mail: spam@tobias-weiss.org
+E-Mail: info@chemie-lernen.org
 Website: https://chemie-lernen.org
 
 ## Allgemeines / General Information

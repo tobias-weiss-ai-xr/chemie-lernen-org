@@ -22,8 +22,8 @@ Germany
 
 ## Kontakt / Contact
 
-**E-Mail:** spam@tobias-weiss.org
-**Website:** https://tobias-weiss.org
+**E-Mail:** info@chemie-lernen.org
+**Website:** https://chemie-lernen.org
 
 
 ## Verantwortlich für den Inhalt / Responsible for Content
@@ -94,8 +94,4 @@ Unless otherwise noted, all images and graphics on this website are the property
 
 ---
 
-<<<<<<< HEAD:myhugoapp/content/impressum.md
-**Letzte Aktualisierung:** 18. Mai 2026
-=======
 **Letzte Aktualisierung:** 03. Juni 2026
->>>>>>> af95d676 (docs: update imprint and privacy policy with new business info):myhugoapp/content/de/impressum.md
