@@ -1,4 +1,4 @@
 ---
-title: "Aktuelle Forschung"
+title: "Forschung"
 description: "KI-generierte Zusammenfassungen aktueller chemischer Forschung — automatisch aus wissenschaftlichen Publikationen extrahiert und täglich aktualisiert."
 ---

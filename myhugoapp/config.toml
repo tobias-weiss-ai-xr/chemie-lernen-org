@@ -351,16 +351,11 @@ author = "chemie-lernen.org Team"
     weight = 60
     icon = "👨‍🏫"
 
-[[menu.main]]
-    name = "Neueste Forschung"
-    url = "/pages/neueste-forschung/"
-    weight = 48
-
 # General Pages
 [[menu.main]]
-    name = "Aktuelle Forschung"
+    name = "Forschung"
     url = "/posts/"
-    weight = 42
+    weight = 48
     icon = "📰"
 [[menu.main]]
     name = "Roadmap"
