@@ -9,6 +9,8 @@ tags:
   - "photokatalyse"
   - "pharmazie"
 categories: ["forschung"]
+
+source: "https://www.sciencedaily.com/releases/2026/02/260227071916.htm"
 draft: false
 ---
 
@@ -16,6 +18,13 @@ Wissenschaftler haben eine bahnbrechende Methode entwickelt, um Erdgas statt als
 
 Hintergrund: Die Aktivierung von Methan ist chemisch anspruchsvoll, da die C-H-Bindungen sehr stabil sind. Herkömmliche Verfahren benötigen oft hohe Temperaturen und Druck.
 
+
+
+---
+
+### 📄 Quelle
+
+[Original-Artikel](https://www.sciencedaily.com/releases/2026/02/260227071916.htm)
 
 ---
 

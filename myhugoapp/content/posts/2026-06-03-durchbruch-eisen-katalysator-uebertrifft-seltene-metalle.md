@@ -9,6 +9,7 @@ tags:
   - "nachhaltige chemie"
   - "liganden"
 categories: ["forschung"]
+source: "https://phys.org/news/2026-05-metal-free-method-carborane-cancer.html"
 draft: false
 ---
 
@@ -20,6 +21,13 @@ Die Reduktion teurer Liganden macht den Prozess nicht nur ökologischer, sondern
 
 Hintergrund: Photokatalyse nutzt Licht zur Aktivierung von Katalysatoren, oft basierend auf seltenen Metallen wie Ruthenium ($Ru$) oder Iridium ($Ir$). Eisen gilt als nachhaltige Alternative, ist jedoch schwerer für asymmetrische Synthesen zu nutzen.
 
+
+
+---
+
+### 📄 Quelle
+
+[Original-Artikel](https://phys.org/news/2026-05-metal-free-method-carborane-cancer.html)
 
 ---
 

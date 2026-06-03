@@ -9,6 +9,8 @@ tags:
   - "co2"
   - "materialwissenschaft"
 categories: ["forschung"]
+
+source: "https://www.sciencedaily.com/releases/2026/01/260124003806.htm"
 draft: false
 ---
 
@@ -16,6 +18,13 @@ Wissenschaftler haben einen neuen Katalysator entwickelt, der das teure und selt
 
 Hintergrund: Platin ist ein Edelmetall der Platingruppe, während Wolframcarbid ($WC$) eine keramische Verbindung ist. Katalysatoren senken die Aktivierungsenergie von Reaktionen, ohne selbst verbraucht zu werden.
 
+
+
+---
+
+### 📄 Quelle
+
+[Original-Artikel](https://www.sciencedaily.com/releases/2026/01/260124003806.htm)
 
 ---
 
