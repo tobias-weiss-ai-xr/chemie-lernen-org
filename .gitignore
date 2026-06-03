@@ -21,3 +21,10 @@ tests/screenshots/
 
 # Article pipeline seen-URLs database
 myhugoapp/content/posts/.urls.json
+
+# Dependencies
+node_modules/
+
+# Development artifacts
+.sisyphus/
+.playwright-mcp/
