@@ -272,7 +272,7 @@
 
     const dot = new THREE.Mesh(
       new THREE.SphereGeometry(0.05, 16, 16),
-      new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+      new THREE.MeshPhongMaterial({ color: 0x00ff00, emissive: 0x00ff00 })
     );
     dot.position.copy(midPoint);
     moleculeGroup.add(dot);
@@ -420,7 +420,7 @@
     orbitalsVisible = !orbitalsVisible;
 
     orbitalMeshes.forEach(mesh => {
-      mesh.material.opacity = orbitalsVisible ? (mesh.material.emissive.getHex() === '#004400' ? 0.6 : 0.5) : 0;
+      mesh.material.opacity = orbitalsVisible ? (mesh.material.emissive.getHex() === 0x004400 ? 0.6 : 0.5) : 0;
     });
   };
 
