@@ -470,11 +470,13 @@ async function run() {
     await mkdir(POSTS_DIR, { recursive: true });
   }
 
+  const kgDumpArticles = [];
+
   for (const article of selected) {
     try {
       console.log(`[pipeline] Generating: ${article.title}`);
       const generated = await generateArticle(article.title, article.description, article.url);
-      const { title, tags, description } = parseGeneratedText(generated);      
+      const { title, tags, entities, description } = parseGeneratedText(generated);
       const slug = slugify(title);
       const filename = `${dateStr()}-${slug}.md`;
 
@@ -520,12 +522,29 @@ async function run() {
         } else {
           console.log(`[pipeline]   Stored in KG (no entities extracted)`);
         }
+
+        // Accumulate for KG data dump
+        kgDumpArticles.push({ title, url: kgUrl, description, tags, entities, date: isoDateStr() });
       } catch (kgErr) {
         console.error(`[pipeline]   KG store error: ${kgErr.message}`);
       }
     } catch (err) {
       console.error(`[pipeline] Error generating "${article.title}": ${err.message}`);
     }
+  }
+
+  // Write KG data dump for Hugo frontend
+  try {
+    const kgDataDir = join(REPO_ROOT, 'myhugoapp', 'data');
+    await mkdir(kgDataDir, { recursive: true });
+    const kgDump = {
+      articles: kgDumpArticles,
+      updatedAt: isoDateStr(),
+    };
+    await writeFile(join(kgDataDir, 'kg-data.json'), JSON.stringify(kgDump, null, 2));
+    console.log(`[pipeline] Wrote kg-data.json (${kgDumpArticles.length} articles)`);
+  } catch (dumpErr) {
+    console.error(`[pipeline] KG dump error: ${dumpErr.message}`);
   }
 
   if (selected.length > 0) {

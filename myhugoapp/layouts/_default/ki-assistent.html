@@ -41,6 +41,14 @@
 
 </div>
 
+<script id="kg-data" type="application/json">
+{{- if .Site.Data.kg_data -}}
+{{ .Site.Data.kg_data | jsonify }}
+{{- else -}}
+{"articles":[],"updatedAt":""}
+{{- end -}}
+</script>
+
 <script src="/js/ki-assistent.js"></script>
 <link rel="stylesheet" href="/css/ki-assistent.css">
 
