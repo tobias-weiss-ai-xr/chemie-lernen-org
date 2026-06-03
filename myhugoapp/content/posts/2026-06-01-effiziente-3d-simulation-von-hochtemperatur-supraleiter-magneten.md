@@ -9,6 +9,8 @@ tags:
   - "physik"
   - "forschung"
 categories: ["forschung"]
+
+source: "unbekannt"
 draft: false
 ---
 
@@ -24,3 +26,10 @@ In Benchmarks reproduzierte die Methode AC-Verluste und Temperaturverteilungen e
 HTS-Materialien wie YBCO bleiben auch bei höheren Temperaturen supraleitend, sind jedoch empfindlich gegenüber lokalen Hotspots. Präzise Simulationen sind daher für das Sicherheitsmanagement und das Design zukünftiger Magnete essenziell.
 
 **Tags:** supraleitung, materialwissenschaft, simulation, physik, forschung
+
+
+---
+
+### 📄 Quelle
+
+*Quelle nicht verfügbar*

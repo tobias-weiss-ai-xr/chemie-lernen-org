@@ -9,6 +9,8 @@ tags:
   - "kristallographie"
   - "forschung"
 categories: ["forschung"]
+
+source: "unbekannt"
 draft: false
 ---
 
@@ -23,3 +25,10 @@ Kernstück des Ansatzes ist eine neuartige Padding-Technik, die Kristallsymmetri
 Das vorgestellte End-to-End-System kombiniert generative Modelle mit Machine-Learning-Potentialen zur Stabilitätsanalyse. So können selbst im Training ungesehene, stabile Strukturen validiert werden. Die Ergebnisse zeigen eine Steigerung der Rekonstruktionsgenauigkeit um 5,3 % bei Protonenleitern. Im Perowskit-Datensatz (allgemeine Formel $ABO_3$) wurden 63,5 % mehr neuartige stabile Materialien im Vergleich zum Basismodell generiert. Diese Methode markiert einen bedeutenden Schritt zur automatisierten Entwicklung nächster Generationen anorganischer Werkstoffe mit hoher computativer Effizienz.
 
 **Tags:** chemie, materialwissenschaft, ki, kristallographie, forschung
+
+
+---
+
+### 📄 Quelle
+
+*Quelle nicht verfügbar*

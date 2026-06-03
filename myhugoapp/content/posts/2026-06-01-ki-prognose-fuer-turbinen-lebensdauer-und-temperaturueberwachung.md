@@ -9,6 +9,8 @@ tags:
   - "verbrennung"
   - "prognose"
 categories: ["forschung"]
+
+source: "unbekannt"
 draft: false
 ---
 
@@ -21,3 +23,10 @@ Für Chemiker ist der Kontext relevant: Die Lebensdauer von Turbinen wird maßge
 Das vorgestellte Multi-Task-Modell nutzt einen gemeinsamen Encoder (CNN, BiLSTM, Attention) und liefert Unsicherheitsquantifizierungen via Vorhersageintervalle. Dies ermöglicht risikobewusste Wartungsentscheidungen statt einfacher Punktvorhersagen. Die Evaluation erfolgte mittels MAE, PICP und MPIW, stratifiziert nach Flugphasen. Das System ist durch practitioner-facing Parameter an betriebliche Richtlinien anpassbar.
 
 **Tags:** machine-learning, ingenieurwesen, materialwissenschaft, verbrennung, prognose
+
+
+---
+
+### 📄 Quelle
+
+*Quelle nicht verfügbar*
