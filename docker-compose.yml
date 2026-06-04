@@ -10,11 +10,14 @@ services:
     environment:
       - NEO4J_AUTH=neo4j/chemie
       - NEO4J_dbms_default__database=chemie
+      - NEO4J_dbms_security_auth__minimum__password__length=4
       - NEO4J_dbms_memory_heap_initial__size=256m
       - NEO4J_dbms_memory_heap_max__size=512m
     volumes:
       - chemie_neo4j_data:/data
       - chemie_neo4j_logs:/logs
+    ports:
+      - "127.0.0.1:7687:7687"
     networks:
       - traefik-web
     healthcheck:

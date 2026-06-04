@@ -8,11 +8,16 @@
  */
 
 import neo4j from 'neo4j-driver';
+import { existsSync } from 'fs';
 
 const { int } = neo4j;
-const NEO4J_URI = process.env.NEO4J_URI || 'bolt://chemie-neo4j:7687';
-const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
-const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || 'chemie';
+
+// Detect container context by /.dockerenv marker
+const IN_DOCKER = existsSync('/.dockerenv');
+const DEFAULT_URI = IN_DOCKER ? 'bolt://chemie-neo4j:7687' : 'bolt://localhost:7687';
+const NEO4J_URI = process.env.NEO4J_URI || DEFAULT_URI;
+const NEO4J_USER = 'neo4j';
+const NEO4J_PASSWORD = 'chemie';
 
 let driver = null;
 
@@ -37,7 +42,7 @@ export async function close() {
  */
 export async function storeArticle({ title, source, date, description, tags, url }) {
   const d = getDriver();
-  const session = d.session();
+  const session = d.session({ database: 'chemie' });
   try {
     const result = await session.run(
       `
@@ -76,7 +81,7 @@ export async function storeArticle({ title, source, date, description, tags, url
  */
 export async function findRelatedByTags(tags, limit = 5) {
   const d = getDriver();
-  const session = d.session();
+  const session = d.session({ database: 'chemie' });
   try {
     const result = await session.run(
       `
@@ -106,7 +111,7 @@ export async function findRelatedByTags(tags, limit = 5) {
  */
 export async function findEntities(keywords, limit = 10) {
   const d = getDriver();
-  const session = d.session();
+  const session = d.session({ database: 'chemie' });
   try {
     const result = await session.run(
       `
@@ -132,7 +137,7 @@ export async function findEntities(keywords, limit = 10) {
  */
 export async function getPopularTags(limit = 20) {
   const d = getDriver();
-  const session = d.session();
+  const session = d.session({ database: 'chemie' });
   try {
     const result = await session.run(
       `
@@ -161,7 +166,7 @@ export async function getPopularTags(limit = 20) {
 export async function storeEntities(articleUrl, entityNames) {
   if (!entityNames || entityNames.length === 0) return [];
   const d = getDriver();
-  const session = d.session();
+  const session = d.session({ database: 'chemie' });
   try {
     const result = await session.run(
       `
@@ -189,7 +194,7 @@ export async function storeEntities(articleUrl, entityNames) {
  */
 export async function storeArticleWithEntities({ title, source, date, description, tags, entities, url }) {
   const d = getDriver();
-  const session = d.session();
+  const session = d.session({ database: 'chemie' });
   try {
     const result = await session.run(
       `
