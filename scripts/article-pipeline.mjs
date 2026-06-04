@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { XMLParser } from 'fast-xml-parser';
 import { execSync } from 'node:child_process';
 import { storeArticleWithEntities, close as closeKg } from './knowledge-graph.mjs';
+import { setTimeout } from 'node:timers/promises';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, '..');
@@ -87,6 +88,20 @@ function chemistryScore(title, description) {
     if (text.includes(kw.toLowerCase())) score -= 3;
   }
   return score;
+}
+
+// ===== RETRY UTILITY =====
+async function withRetry(fn, label, maxRetries = 3) {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      if (attempt === maxRetries) throw err;
+      const delay = Math.min(2000 * Math.pow(2, attempt - 1), 10000);
+      console.log(`[pipeline] Retry ${attempt}/${maxRetries} for "${label}" in ${delay}ms: ${err.message}`);
+      await setTimeout(delay);
+    }
+  }
 }
 
 // Map article text to relevant calculators
@@ -237,7 +252,7 @@ function extractDescription(item) {
   return '';
 }
 
-async function generateArticle(title, description, sourceUrl) {
+async function _generateArticleRaw(title, description, sourceUrl) {
   const headers = { 'Content-Type': 'application/json' };
   if (LITELLM_API_KEY) headers['Authorization'] = `Bearer ${LITELLM_API_KEY}`;
   const res = await fetch(LITELLM_URL, {
@@ -260,6 +275,15 @@ async function generateArticle(title, description, sourceUrl) {
   if (!res.ok) throw new Error(`litellm HTTP ${res.status}`);
   const msg = (await res.json()).choices[0].message;
   return (msg.content || msg.reasoning_content || '').trim();
+}
+
+// Wrapper with retry
+async function generateArticle(title, description, sourceUrl) {
+  return withRetry(
+    () => _generateArticleRaw(title, description, sourceUrl),
+    `generate "${title.slice(0, 50)}"`,
+    3
+  );
 }
 
 function parseGeneratedText(text) {
@@ -419,7 +443,10 @@ async function saveSeenUrl(url) {
 }
 
 async function run() {
+  const startTime = Date.now();
   console.log(`[pipeline] Starting at ${new Date().toISOString()}`);
+
+  const metrics = { startedAt: new Date().toISOString(), articlesGenerated: 0, articlesFailed: 0, feedErrors: 0, kgErrors: 0, durationMs: 0 };
 
   const feeds = JSON.parse(await readFile(FEEDS_PATH, 'utf-8'));
   const seenUrls = await loadSeenUrls();
@@ -443,6 +470,7 @@ async function run() {
         }));
       } catch (err) {
         feedErrors.set(feed.url, { ts: Date.now(), err: err.message });
+        metrics.feedErrors++;
         console.error(`[pipeline] Error fetching ${feed.url}: ${err.message}`);
         return [];
       }
@@ -525,10 +553,13 @@ async function run() {
 
         // Accumulate for KG data dump
         kgDumpArticles.push({ title, url: kgUrl, description, tags, entities, date: isoDateStr() });
+        metrics.articlesGenerated++;
       } catch (kgErr) {
+        metrics.kgErrors++;
         console.error(`[pipeline]   KG store error: ${kgErr.message}`);
       }
     } catch (err) {
+      metrics.articlesFailed++;
       console.error(`[pipeline] Error generating "${article.title}": ${err.message}`);
     }
   }
@@ -557,6 +588,18 @@ async function run() {
     console.log(`[pipeline] Wrote kg-data.json (${kgDumpArticles.length} articles)`);
   } catch (dumpErr) {
     console.error(`[pipeline] KG dump error: ${dumpErr.message}`);
+  }
+
+  // Write pipeline status for monitoring
+  metrics.durationMs = Date.now() - startTime;
+  metrics.durationMin = (metrics.durationMs / 60000).toFixed(1);
+  try {
+    const statusPath = join(REPO_ROOT, 'myhugoapp', 'static', 'data');
+    await mkdir(statusPath, { recursive: true });
+    await writeFile(join(statusPath, 'pipeline-status.json'), JSON.stringify(metrics, null, 2));
+    console.log(`[pipeline] Pipeline status: ${metrics.articlesGenerated} OK, ${metrics.articlesFailed} failed, ${metrics.feedErrors} feed errs, ${metrics.durationMin}min`);
+  } catch (statusErr) {
+    console.error(`[pipeline] Status write error: ${statusErr.message}`);
   }
 
   if (selected.length > 0) {
