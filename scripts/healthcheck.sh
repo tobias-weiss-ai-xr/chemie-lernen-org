@@ -29,6 +29,13 @@ DISK_USAGE=$(df -h / | awk 'NR==2 {print $5}' | sed 's/%//')
 # Memory
 MEM_FREE=$(free -m | awk '/Mem:/ {print int($7/$2 * 100)}')
 
+# Neo4j check (chemie-neo4j container)
+NEO4J_OK="false"
+if docker inspect chemie-neo4j >/dev/null 2>&1; then
+  NEO4J_RESULT=$(docker exec chemie-neo4j cypher-shell -u neo4j -p chemie "RETURN 1" 2>/dev/null || echo "FAIL")
+  [ "$NEO4J_RESULT" = "1" ] && NEO4J_OK="true"
+fi
+
 cat > "$OUTPUT" <<EOF
 {
   "status": "$([ "$HTTP_STATUS" = "200" ] && echo "ok" || echo "degraded")",
@@ -36,7 +43,8 @@ cat > "$OUTPUT" <<EOF
   "checks": {
     "http": {"status": ${HTTP_STATUS}, "healthy": $([ "$HTTP_STATUS" = "200" ] && echo "true" || echo "false")},
     "disk": {"usage_pct": ${DISK_USAGE}, "healthy": $([ "$DISK_USAGE" -lt 90 ] && echo "true" || echo "false")},
-    "memory": {"free_pct": ${MEM_FREE}, "healthy": $([ "$MEM_FREE" -gt 10 ] && echo "true" || echo "false")}
+    "memory": {"free_pct": ${MEM_FREE}, "healthy": $([ "$MEM_FREE" -gt 10 ] && echo "true" || echo "false")},
+    "neo4j": {"status": ${NEO4J_OK}, "healthy": ${NEO4J_OK}}
   },
   "last_deploy": "${LAST_DEPLOY}",
   "last_pipeline": "${LAST_PIPELINE}"

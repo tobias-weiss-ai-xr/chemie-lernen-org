@@ -1,4 +1,29 @@
 services:
+  chemie-neo4j:
+    image: neo4j:5.26-community
+    container_name: chemie-neo4j
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+    environment:
+      - NEO4J_AUTH=neo4j/chemie
+      - NEO4J_dbms_default__database=chemie
+      - NEO4J_dbms_memory_heap_initial__size=256m
+      - NEO4J_dbms_memory_heap_max__size=512m
+    volumes:
+      - chemie_neo4j_data:/data
+      - chemie_neo4j_logs:/logs
+    networks:
+      - traefik-web
+    healthcheck:
+      test: ['CMD-SHELL', 'cypher-shell -u neo4j -p chemie "RETURN 1" || exit 1']
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
   hugo-chemie-lernen-org:
     image: nginx:alpine
     container_name: hugo-chemie-lernen-org
@@ -20,3 +45,7 @@ networks:
     driver: bridge
   traefik-public:
     external: true
+
+volumes:
+  chemie_neo4j_data:
+  chemie_neo4j_logs:
