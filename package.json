@@ -28,7 +28,7 @@
     "check:updates": "npm outdated",
     "update:dependencies": "npm update",
     "security:check": "npm run audit && npm run check:updates",
-    "build": "docker run --rm -v \"$(pwd)/myhugoapp:/src\" -w /src hugomods/hugo:exts hugo --minify --baseURL https://chemie-lernen.org"
+    "build": "docker run --rm -v \"$(pwd)/myhugoapp:/src\" -w /src hugomods/hugo:exts hugo --minify --baseURL https://chemie-lernen.org && npx pagefind --site myhugoapp/public"
   },
   "lint-staged": {
     "*.js": [
@@ -56,6 +56,7 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^16.2.7",
+    "pagefind": "^1.5.2",
     "prettier": "^3.7.4",
     "terser": "^5.44.1"
   },

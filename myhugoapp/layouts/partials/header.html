@@ -12,6 +12,26 @@
         <i class="fa fa-moon-o" aria-hidden="true"></i>
       </button>
     </div>
+
+    <!-- Pagefind search libraries -->
+    <script src="https://unpkg.com/pagefind@latest/pagefind.js"></script>
+
+    <!-- Search form in header -->
+    <div class="search-wrapper">
+      <form id="search-form" class="search-form" role="search" autocomplete="off">
+        <input type="search" id="search-input" class="search-input" placeholder="Suche durch 685 Seiten..." aria-label="Seite durchsuchen">
+        <button type="submit" class="search-submit" aria-label="Suche starten">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="search-clear hidden" id="search-clear" aria-label="Suche leeren">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- Search results display -->
+    <div id="search-results" class="search-results hidden"></div>
+    <div id="search-overlay" class="search-overlay hidden"></div>
   </div>
 
   <!-- Navigation row with menu -->
@@ -237,6 +257,158 @@
     color: #999;
   }
 }
+
+/* Search form styling */
+.search-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 8px 40px 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px 0 0 4px;
+  font-size: 14px;
+  background-color: #fff;
+  color: #333;
+  transition: all 0.3s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.search-submit {
+  padding: 8px 15px;
+  background-color: var(--green-primary);
+  color: #fff;
+  border: 1px solid var(--green-primary);
+  border-radius: 0 4px 4px 0;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.search-submit:hover {
+  background-color: var(--green-dark);
+  border-color: var(--green-dark);
+}
+
+.search-clear {
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.search-clear:hover {
+  color: #333;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Search results display */
+#search-results {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 600px;
+  max-height: 500px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  padding: 15px;
+  margin-top: 5px;
+}
+
+.search-result-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.search-result-link:hover {
+  background-color: #f8f9fa;
+  margin: -10px;
+  padding: 10px;
+}
+
+.search-result-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--blue-primary);
+  margin-bottom: 5px;
+}
+
+.search-result-excerpt {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.search-no-results,
+.search-error {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-style: italic;
+}
+
+#search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+/* Search mobile adjustments */
+@media (max-width: 768px) {
+  #search-results {
+    left: 0;
+    right: 0;
+    width: auto;
+    max-height: 400px;
+  }
+
+  .search-form {
+    max-width: 100%;
+  }
+}
 </style>
 
 <script>
@@ -253,4 +425,114 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+</script>
+
+<!-- Search functionality -->
+<script>
+(function() {
+  async function initSearch() {
+    const searchInput = document.getElementById('search-input');
+    const searchForm = document.getElementById('search-form');
+    const searchClear = document.getElementById('search-clear');
+    const searchResults = document.getElementById('search-results');
+    const searchOverlay = document.getElementById('search-overlay');
+
+    if (!searchInput || !searchResults) return;
+
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+
+    async function performSearch(query) {
+      if (!query.trim()) {
+        hideResults();
+        searchClear.classList.add('hidden');
+        return;
+      }
+
+      searchClear.classList.remove('hidden');
+
+      try {
+        const pagefind = await window.pagefind;
+        const results = await pagefind.search(query);
+
+        displayResults(results);
+      } catch (error) {
+        console.error('Search error:', error);
+        searchResults.innerHTML = '<div class="search-error">Fehler bei der Suche</div>';
+        showResults();
+      }
+    }
+
+    const debouncedSearch = debounce(performSearch, 300);
+
+    function displayResults(results) {
+      if (!results || !results.results || results.results.length === 0) {
+        searchResults.innerHTML = '<div class="search-no-results">Keine Ergebnisse gefunden</div>';
+      } else {
+        let html = '';
+        results.results.forEach(result => {
+          html += '<div class="search-result-item">';
+          html += '  <a href="' + result.url + '" class="search-result-link">';
+          html += '    <div class="search-result-title">' + result.meta.title + '</div>';
+          html += '    <div class="search-result-excerpt">' + result.excerpt + '</div>';
+          html += '  </a>';
+          html += '</div>';
+        });
+        searchResults.innerHTML = html;
+      }
+      showResults();
+    }
+
+    function showResults() {
+      searchResults.classList.remove('hidden');
+      searchOverlay.classList.remove('hidden');
+    }
+
+    function hideResults() {
+      searchResults.classList.add('hidden');
+      searchOverlay.classList.add('hidden');
+    }
+
+    searchInput.addEventListener('input', function() {
+      debouncedSearch(this.value);
+    });
+
+    searchForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      performSearch(searchInput.value);
+    });
+
+    searchClear.addEventListener('click', function() {
+      searchInput.value = '';
+      hideResults();
+      searchClear.classList.add('hidden');
+      searchInput.focus();
+    });
+
+    searchOverlay.addEventListener('click', function() {
+      hideResults();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        hideResults();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSearch);
+  } else {
+    initSearch();
+  }
+})();
 </script>
