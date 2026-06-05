@@ -1,0 +1,94 @@
+{{ partial "head.html" . }}
+
+<div class="calculator-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1 class="text-center">{{ .Title }}</h1>
+        <p class="lead text-center">{{ .Description }}</p>
+
+        {{ .Content }}
+
+        <hr>
+
+        <form id="dampfdruck-form" class="calculator-form">
+          <div class="form-group">
+            <label for="temperature">Temperatur (°C):</label>
+            <input type="number" id="temperature" class="form-control" placeholder="25" step="0.1" required>
+          </div>
+
+          <div class="form-group">
+            <label for="normal-pressure">Normaldruck (bar):</label>
+            <input type="number" id="normal-pressure" class="form-control" placeholder="1.013" step="0.001" required>
+          </div>
+
+          <div class="form-group">
+            <label for="boiling-point">Siedetemperatur (°C):</label>
+            <input type="number" id="boiling-point" class="form-control" placeholder="100" step="0.1" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Berechnen</button>
+        </form>
+
+        <div id="result" class="result-box hidden">
+          <h3>Ergebnis</h3>
+          <p><strong>Dampfdruck:</strong> <span id="pressure-bar">0</span> bar</p>
+          <p><strong>oder</strong> <span id="pressure-pa">0</span> Pa</p>
+          <p><strong>oder</strong> <span id="pressure-kpa">0</span> kPa</p>
+          <p id="comparison" class="comparison-text"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.calculator-form {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.result-box {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border: 2px solid var(--green-primary);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.result-box h3 {
+  margin-top: 0;
+  color: var(--blue-primary);
+}
+
+.comparison-text {
+  margin-top: 15px;
+  font-style: italic;
+  color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  .result-box {
+    background-color: #2c2c2c;
+    border-color: var(--green-primary);
+  }
+
+  .comparison-text {
+    color: #bbb;
+  }
+}
+</style>
+
+<script src="/js/calculators/dampfdruck-rechner.js"></script>
+
+{{ partial "footer.html" . }}

@@ -1,1 +1,180 @@
-{"articles":[],"updatedAt":""}
+{
+  "articles": [
+    {
+      "title": "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure",
+      "url": "https://chemie-lernen.org/posts/2026-06-05-50-jahre-raetsel-proteine-verlieren-hydrathuelle-durch-saeure/",
+      "description": "Forschende der Martin Luther Universität Halle-Wittenberg (MLU) haben ein 50 Jahre altes Rätsel der Biochemie gelöst. Sie konnten erstmals direkt beobachten, wie Proteine in saurer Umgebung ihre schüt",
+      "tags": [
+        "biochemie",
+        "proteine",
+        "hydrathülle",
+        "ph-wert",
+        "bildgebung"
+      ],
+      "entities": [
+        "proteine",
+        "wasser",
+        "martin luther universität halle-wittenberg",
+        "hydrathülle",
+        "protonen"
+      ],
+      "date": "2026-06-05T02:42:40+02:00"
+    },
+    {
+      "title": "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert",
+      "url": "https://chemie-lernen.org/posts/2026-06-05-durchbruch-erster-stabiler-siliziumbasierter-aromat-synthetisiert/",
+      "description": "Chemiker der Universität des Saarlandes haben einen bahnbrechenden Erfolg erzielt: Nach fast 50 Jahren erfolgloser Versuche gelang die Synthese eines stabilen siliziumbasierten Aromaten. Diese Verbind",
+      "tags": [
+        "chemie",
+        "synthese",
+        "aromaten",
+        "silizium",
+        "anorganische chemie"
+      ],
+      "entities": [
+        "universität des saarlandes",
+        "pentasilacyclopentadienid",
+        "science",
+        "silizium",
+        "kohlenstoff",
+        "cyclopentadienid"
+      ],
+      "date": "2026-06-05T02:43:12+02:00"
+    },
+    {
+      "title": "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion",
+      "url": "https://chemie-lernen.org/posts/2026-06-05-kupferoxid-katalysatoren-steigern-gruene-ammoniakproduktion/",
+      "description": "Forschende haben einen entscheidenden Mechanismus bei der Herstellung von grünem Ammoniak entdeckt. Dabei wandeln sich Kupferoxid-Katalysatoren während der Reaktion in metallisches Kupfer um. Dieser s",
+      "tags": [
+        "katalyse",
+        "ammoniak",
+        "kupfer",
+        "nachhaltige chemie",
+        "elektrochemie"
+      ],
+      "entities": [
+        "kupferoxid",
+        "metallisches kupfer",
+        "ammoniak",
+        "stickstoffreduktion",
+        "katalysator"
+      ],
+      "date": "2026-06-05T02:43:33+02:00"
+    }
+  ],
+  "entities": [
+    {
+      "name": "proteine",
+      "articleCount": 1,
+      "articles": [
+        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+      ]
+    },
+    {
+      "name": "wasser",
+      "articleCount": 1,
+      "articles": [
+        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+      ]
+    },
+    {
+      "name": "martin luther universität halle-wittenberg",
+      "articleCount": 1,
+      "articles": [
+        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+      ]
+    },
+    {
+      "name": "hydrathülle",
+      "articleCount": 1,
+      "articles": [
+        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+      ]
+    },
+    {
+      "name": "protonen",
+      "articleCount": 1,
+      "articles": [
+        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+      ]
+    },
+    {
+      "name": "universität des saarlandes",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+      ]
+    },
+    {
+      "name": "pentasilacyclopentadienid",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+      ]
+    },
+    {
+      "name": "science",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+      ]
+    },
+    {
+      "name": "silizium",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+      ]
+    },
+    {
+      "name": "kohlenstoff",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+      ]
+    },
+    {
+      "name": "cyclopentadienid",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+      ]
+    },
+    {
+      "name": "kupferoxid",
+      "articleCount": 1,
+      "articles": [
+        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
+      ]
+    },
+    {
+      "name": "metallisches kupfer",
+      "articleCount": 1,
+      "articles": [
+        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
+      ]
+    },
+    {
+      "name": "ammoniak",
+      "articleCount": 1,
+      "articles": [
+        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
+      ]
+    },
+    {
+      "name": "stickstoffreduktion",
+      "articleCount": 1,
+      "articles": [
+        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
+      ]
+    },
+    {
+      "name": "katalysator",
+      "articleCount": 1,
+      "articles": [
+        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
+      ]
+    }
+  ],
+  "updatedAt": "2026-06-05T02:43:33+02:00"
+}
