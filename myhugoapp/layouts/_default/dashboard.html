@@ -1,0 +1,144 @@
+{{ define "main" }}
+<div class="container dashboard-container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div id="dashboard-loading" class="text-center">
+        <p><i class="fa fa-spinner fa-spin fa-3x"></i></p>
+        <p>Lade Pipeline-Status...</p>
+      </div>
+
+      <div id="dashboard-content" style="display:none;">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="stat-card">
+              <div class="stat-value" id="stat-articles">—</div>
+              <div class="stat-label">Artikel generiert</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="stat-card">
+              <div class="stat-value" id="stat-duration">—</div>
+              <div class="stat-label">Laufzeit (Min.)</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="stat-card">
+              <div class="stat-value" id="stat-failures">—</div>
+              <div class="stat-label">Fehler</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:30px;">
+          <div class="col-md-12">
+            <div class="detail-card">
+              <h3>Letzter Durchlauf</h3>
+              <table class="table table-striped">
+                <tr><td>Gestartet</td><td id="detail-started">—</td></tr>
+                <tr><td>Artikel generiert</td><td id="detail-generated">—</td></tr>
+                <tr><td>Artikel fehlgeschlagen</td><td id="detail-failed">—</td></tr>
+                <tr><td>Feed-Fehler</td><td id="detail-feed-errors">—</td></tr>
+                <tr><td>KG-Fehler</td><td id="detail-kg-errors">—</td></tr>
+                <tr><td>Dauer</td><td id="detail-duration">—</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="dashboard-no-data" style="display:none;">
+          <div class="alert alert-info text-center">
+            Noch keine Pipeline-Daten vorhanden. Der erste Durchlauf erzeugt diese automatisch.
+          </div>
+        </div>
+      </div>
+
+      <div id="dashboard-error" style="display:none;">
+        <div class="alert alert-danger text-center" id="dashboard-error-msg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.dashboard-container { margin: 20px 0 40px; }
+.stat-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 25px 15px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  height: 100%;
+}
+.stat-value { font-size: 2.5rem; font-weight: 700; color: #1a5276; }
+.stat-label { font-size: 0.9rem; color: #666; margin-top: 5px; }
+.detail-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+@media (prefers-color-scheme: dark) {
+  .stat-card, .detail-card { background: #2c2c2c; border-color: #444; }
+  .stat-label { color: #bbb; }
+}
+</style>
+
+<script>
+(function() {
+  var loading = document.getElementById('dashboard-loading');
+  var content = document.getElementById('dashboard-content');
+  var errorDiv = document.getElementById('dashboard-error');
+  var errorMsg = document.getElementById('dashboard-error-msg');
+
+  fetch('/data/pipeline-status.json')
+    .then(function(r) {
+      if (!r.ok) throw new Error('Status nicht gefunden (HTTP ' + r.status + ')');
+      return r.json();
+    })
+    .then(function(data) {
+      loading.style.display = 'none';
+
+      if (!data || !data.startedAt) {
+        document.getElementById('dashboard-no-data').style.display = 'block';
+        content.style.display = 'block';
+        return;
+      }
+
+      document.getElementById('stat-articles').textContent = data.articlesGenerated || 0;
+      document.getElementById('stat-duration').textContent = data.durationMin || (data.durationMs ? (data.durationMs/60000).toFixed(1) : '-');
+      var failures = (data.articlesFailed || 0) + (data.feedErrors || 0) + (data.kgErrors || 0);
+      document.getElementById('stat-failures').textContent = failures;
+
+      document.getElementById('detail-started').textContent = new Date(data.startedAt).toLocaleString('de-DE');
+      document.getElementById('detail-generated').textContent = data.articlesGenerated || 0;
+      document.getElementById('detail-failed').textContent = data.articlesFailed || 0;
+      document.getElementById('detail-feed-errors').textContent = data.feedErrors || 0;
+      document.getElementById('detail-kg-errors').textContent = data.kgErrors || 0;
+      document.getElementById('detail-duration').textContent = (data.durationMs ? (data.durationMs/1000).toFixed(0) + 's' : '-');
+
+      content.style.display = 'block';
+    })
+    .catch(function(err) {
+      loading.style.display = 'none';
+      if (err.message.indexOf('404') !== -1 || err.message.indexOf('not found') !== -1) {
+        document.getElementById('dashboard-no-data').style.display = 'block';
+        content.style.display = 'block';
+      } else {
+        errorMsg.textContent = err.message;
+        errorDiv.style.display = 'block';
+      }
+    });
+})();
+</script>
+{{ end }}
