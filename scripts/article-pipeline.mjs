@@ -584,8 +584,8 @@ async function run() {
       entities: [...entityMap.values()].sort((a, b) => b.articleCount - a.articleCount),
       updatedAt: isoDateStr(),
     };
-    await writeFile(join(kgDataDir, 'kg-data.json'), JSON.stringify(kgDump, null, 2));
-    console.log(`[pipeline] Wrote kg-data.json (${kgDumpArticles.length} articles)`);
+    await writeFile(join(kgDataDir, 'kg_data.json'), JSON.stringify(kgDump, null, 2));
+    console.log(`[pipeline] Wrote kg_data.json (${kgDumpArticles.length} articles)`);
   } catch (dumpErr) {
     console.error(`[pipeline] KG dump error: ${dumpErr.message}`);
   }
