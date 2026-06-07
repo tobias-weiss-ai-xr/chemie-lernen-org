@@ -107,6 +107,7 @@ self.addEventListener('fetch', (event) => {
       url.pathname.includes('/favicons/') ||
       url.pathname.includes('/images/') ||
       url.pathname.includes('/img/') ||
+      url.pathname.includes('/pagefind/') ||
       url.pathname.endsWith('.png') ||
       url.pathname.endsWith('.jpg') ||
       url.pathname.endsWith('.jpeg') ||
@@ -192,7 +193,12 @@ self.addEventListener('fetch', (event) => {
       url.pathname.includes('/torricelli-versuch/') ||
       url.pathname.includes('/enhanced-ph-visualization/') ||
       url.pathname.includes('/pwa-offline-modus/') ||
-      url.pathname.includes('/unterstuetzen/')) {
+      url.pathname.includes('/unterstuetzen/') ||
+      // New calculators (Sprints D, 2)
+      url.pathname.includes('/dampfdruck-rechner/') ||
+      url.pathname.includes('/verduennungsreihen-rechner/') ||
+      url.pathname.includes('/dichte-rechner/') ||
+      url.pathname.includes('/entity/')) {
 
     event.respondWith(
       fetch(request).then((response) => {

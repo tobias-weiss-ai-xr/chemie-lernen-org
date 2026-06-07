@@ -133,7 +133,15 @@
 
     loadMolecule('methane');
 
-    window.addEventListener('resize', onWindowResize, false);
+    // Responsive: use ResizeObserver instead of just window resize
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver(function () {
+        onWindowResize();
+      });
+      ro.observe(container);
+    } else {
+      window.addEventListener('resize', onWindowResize, false);
+    }
 
     animate();
   }
