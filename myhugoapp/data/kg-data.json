@@ -1,180 +1,180 @@
 {
   "articles": [
     {
-      "title": "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure",
-      "url": "https://chemie-lernen.org/posts/2026-06-05-50-jahre-raetsel-proteine-verlieren-hydrathuelle-durch-saeure/",
-      "description": "Forschende der Martin Luther Universität Halle-Wittenberg (MLU) haben ein 50 Jahre altes Rätsel der Biochemie gelöst. Sie konnten erstmals direkt beobachten, wie Proteine in saurer Umgebung ihre schüt",
+      "title": "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse",
+      "url": "https://chemie-lernen.org/posts/2026-06-07-luftstabiles-eisen-i-durch-sandwichliganden-fuer-nachhaltige-katalyse/",
+      "description": "Forscher haben eine bahnbrechende Methode entwickelt, um Eisen in der Oxidationsstufe +1 (Fe(I)) an Luft stabil zu halten. Bisher waren Fe(I)-Spezies extrem luftempfindlich, was ihren Einsatz in der K",
       "tags": [
-        "biochemie",
-        "proteine",
-        "hydrathülle",
-        "ph-wert",
-        "bildgebung"
+        "eisen",
+        "katalyse",
+        "organometallchemie",
+        "liganden",
+        "oxidationszustand"
       ],
       "entities": [
-        "proteine",
-        "wasser",
-        "martin luther universität halle-wittenberg",
-        "hydrathülle",
-        "protonen"
+        "eisen(i)",
+        "sandwichliganden",
+        "organometallkatalysator",
+        "luftstabilität",
+        "palladium",
+        "platin"
       ],
-      "date": "2026-06-05T02:42:40+02:00"
+      "date": "2026-06-07T02:43:25+02:00"
     },
     {
-      "title": "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert",
-      "url": "https://chemie-lernen.org/posts/2026-06-05-durchbruch-erster-stabiler-siliziumbasierter-aromat-synthetisiert/",
-      "description": "Chemiker der Universität des Saarlandes haben einen bahnbrechenden Erfolg erzielt: Nach fast 50 Jahren erfolgloser Versuche gelang die Synthese eines stabilen siliziumbasierten Aromaten. Diese Verbind",
+      "title": "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe",
+      "url": "https://chemie-lernen.org/posts/2026-06-07-computergestuetzte-suche-nach-effizienten-photokatalysatoren-fuer-solare-brennst/",
+      "description": "Wissenschaftler haben eine leistungsstarke neue computergestützte Methode entwickelt, welche die Suche nach Materialien der nächsten Generation beschleunigen könnte, die Sonnenlicht in nutzbare chemis",
       "tags": [
         "chemie",
-        "synthese",
-        "aromaten",
-        "silizium",
-        "anorganische chemie"
+        "photokatalyse",
+        "materialwissenschaft",
+        "sonnenenergie",
+        "berechnung"
       ],
       "entities": [
-        "universität des saarlandes",
-        "pentasilacyclopentadienid",
-        "science",
-        "silizium",
-        "kohlenstoff",
-        "cyclopentadienid"
+        "polyheptazin-imide",
+        "kohlenstoffnitrid",
+        "metallionen",
+        "wasserstoffproduktion",
+        "co2-umwandlung"
       ],
-      "date": "2026-06-05T02:43:12+02:00"
+      "date": "2026-06-07T02:43:51+02:00"
     },
     {
-      "title": "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion",
-      "url": "https://chemie-lernen.org/posts/2026-06-05-kupferoxid-katalysatoren-steigern-gruene-ammoniakproduktion/",
-      "description": "Forschende haben einen entscheidenden Mechanismus bei der Herstellung von grünem Ammoniak entdeckt. Dabei wandeln sich Kupferoxid-Katalysatoren während der Reaktion in metallisches Kupfer um. Dieser s",
+      "title": "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse",
+      "url": "https://chemie-lernen.org/posts/2026-06-07-magnetfeld-verdreifacht-ammoniakausbeute-bei-elektrokatalyse/",
+      "description": "Ein Forschungsteam unter Leitung von Marcel Risch (HZB) und Sanjay Mathur (Universität zu Köln) hat eine innovative Methode zur Verbesserung von Elektrokatalysatoren entwickelt. Wie in der Zeitschrift",
       "tags": [
-        "katalyse",
+        "elektrokatalyse",
         "ammoniak",
-        "kupfer",
-        "nachhaltige chemie",
-        "elektrochemie"
+        "magnetfeld",
+        "materialwissenschaft",
+        "nachhaltige chemie"
       ],
       "entities": [
-        "kupferoxid",
-        "metallisches kupfer",
+        "cobaltferrit",
         "ammoniak",
-        "stickstoffreduktion",
-        "katalysator"
+        "elektrokatalyse",
+        "magnetfeld",
+        "spinelloxid"
       ],
-      "date": "2026-06-05T02:43:33+02:00"
+      "date": "2026-06-07T02:44:22+02:00"
     }
   ],
   "entities": [
     {
-      "name": "proteine",
+      "name": "eisen(i)",
       "articleCount": 1,
       "articles": [
-        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
       ]
     },
     {
-      "name": "wasser",
+      "name": "sandwichliganden",
       "articleCount": 1,
       "articles": [
-        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
       ]
     },
     {
-      "name": "martin luther universität halle-wittenberg",
+      "name": "organometallkatalysator",
       "articleCount": 1,
       "articles": [
-        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
       ]
     },
     {
-      "name": "hydrathülle",
+      "name": "luftstabilität",
       "articleCount": 1,
       "articles": [
-        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
       ]
     },
     {
-      "name": "protonen",
+      "name": "palladium",
       "articleCount": 1,
       "articles": [
-        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
       ]
     },
     {
-      "name": "universität des saarlandes",
+      "name": "platin",
       "articleCount": 1,
       "articles": [
-        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
       ]
     },
     {
-      "name": "pentasilacyclopentadienid",
+      "name": "polyheptazin-imide",
       "articleCount": 1,
       "articles": [
-        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
       ]
     },
     {
-      "name": "science",
+      "name": "kohlenstoffnitrid",
       "articleCount": 1,
       "articles": [
-        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
       ]
     },
     {
-      "name": "silizium",
+      "name": "metallionen",
       "articleCount": 1,
       "articles": [
-        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
       ]
     },
     {
-      "name": "kohlenstoff",
+      "name": "wasserstoffproduktion",
       "articleCount": 1,
       "articles": [
-        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
       ]
     },
     {
-      "name": "cyclopentadienid",
+      "name": "co2-umwandlung",
       "articleCount": 1,
       "articles": [
-        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
       ]
     },
     {
-      "name": "kupferoxid",
+      "name": "cobaltferrit",
       "articleCount": 1,
       "articles": [
-        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
-      ]
-    },
-    {
-      "name": "metallisches kupfer",
-      "articleCount": 1,
-      "articles": [
-        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
+        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
       ]
     },
     {
       "name": "ammoniak",
       "articleCount": 1,
       "articles": [
-        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
+        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
       ]
     },
     {
-      "name": "stickstoffreduktion",
+      "name": "elektrokatalyse",
       "articleCount": 1,
       "articles": [
-        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
+        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
       ]
     },
     {
-      "name": "katalysator",
+      "name": "magnetfeld",
       "articleCount": 1,
       "articles": [
-        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
+        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
+      ]
+    },
+    {
+      "name": "spinelloxid",
+      "articleCount": 1,
+      "articles": [
+        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
       ]
     }
   ],
-  "updatedAt": "2026-06-05T02:43:33+02:00"
+  "updatedAt": "2026-06-07T02:44:22+02:00"
 }
