@@ -159,6 +159,37 @@
     return html;
   }
 
+  /**
+   * Call the chat API with a timeout.
+   */
+  function askAI(query, timeoutMs) {
+    timeoutMs = timeoutMs || 8000;
+    return new Promise(function (resolve) {
+      var controller = new AbortController();
+      var timer = setTimeout(function () { controller.abort(); }, timeoutMs);
+
+      fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: query }),
+        signal: controller.signal,
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          clearTimeout(timer);
+          if (data.reply) {
+            resolve({ reply: data.reply, remaining: data.remaining });
+          } else {
+            resolve(null);
+          }
+        })
+        .catch(function () {
+          clearTimeout(timer);
+          resolve(null);
+        });
+    });
+  }
+
   function handleQuery(query) {
     query = query.trim();
     if (!query) return;
@@ -167,10 +198,20 @@
     document.getElementById('chat-input').value = '';
     showTyping();
 
-    setTimeout(function () {
+    askAI(query).then(function (apiResult) {
       hideTyping();
 
-      // Try KG data first
+      if (apiResult) {
+        var remaining = apiResult.remaining;
+        var remainingHtml = '';
+        if (remaining !== undefined) {
+          remainingHtml = '<br><br><small style="color:#888;">Noch ' + remaining + ' KI-Anfragen heute übrig.</small>';
+        }
+        addMessage(apiResult.reply + remainingHtml, false);
+        addMessage('Hast du noch weitere Fragen?', false);
+        return;
+      }
+
       var matches = findBestMatches(query);
       var answer = null;
 
@@ -184,7 +225,7 @@
 
       addMessage(answer, false);
       addMessage('Hast du noch weitere Fragen?', false);
-    }, 600);
+    });
   }
 
   // --- Chat UI (unchanged) ---

@@ -27,6 +27,31 @@ services:
       retries: 5
       start_period: 60s
 
+  chemie-chat-api:
+    image: node:20-alpine
+    container_name: chemie-chat-api
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+    working_dir: /app
+    volumes:
+      - ./api:/app:ro
+    environment:
+      - LITELLM_URL=http://litellm-proxy:4000
+      - LITELLM_MODEL=gemini-2.5-flash
+      - PORT=3001
+    command: sh -c "npm install --omit=dev && node server.js"
+    networks:
+      - traefik-public
+      - litellm-internal
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.chat.rule=Host(`chemie-lernen.org`) && PathPrefix(`/api/chat`) || Host(`chemie-lernen.org`) && PathPrefix(`/api/health`)"
+      - "traefik.http.routers.chat.priority=100"
+      - "traefik.http.services.chat.loadbalancer.server.port=3001"
+
   hugo-chemie-lernen-org:
     image: nginx:alpine
     container_name: hugo-chemie-lernen-org
@@ -48,6 +73,9 @@ networks:
     driver: bridge
   traefik-public:
     external: true
+  litellm-internal:
+    external: true
+    name: litellm-compose_litellm-internal
 
 volumes:
   chemie_neo4j_data:

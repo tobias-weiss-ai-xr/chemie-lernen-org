@@ -112,6 +112,8 @@ export default [
         THREE: 'writable',
         __THREE_DEVTOOLS__: 'writable',
         ChemistryCalculator: 'readonly',
+        AbortController: 'readonly',
+        AbortSignal: 'readonly',
       },
     },
     rules: {
