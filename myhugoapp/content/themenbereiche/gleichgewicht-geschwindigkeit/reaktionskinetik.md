@@ -4,7 +4,7 @@ description: "Die Reaktionskinetik beschreibt die Geschwindigkeit, mit der chemi
 date: "2026-06-03"
 tags: ["chemie", "kinetik", "reaktionsgeschwindigkeit", "arrhenius"]
 interaktiv: false
-schwerigkeit: "montelstufe"
+schwerigkeit: "oberstufe"
 teilgebiet: ["gleichgewicht-geschwindigkeit"]
 icon: "⏱️"
 ---
