@@ -4,7 +4,7 @@ description: "Die wichtigsten Reaktionstypen in der organischen Chemie: Addition
 date: "2026-06-03"
 tags: ["chemie", "reaktionstypen", "organik", "addition", "substitution"]
 interaktiv: false
-schwerigkeit: "mittelstufe"
+schwierigkeit: "mittelstufe"
 teilgebiet: ["reaktionstypen-organisch"]
 icon: "🔧"
 ---

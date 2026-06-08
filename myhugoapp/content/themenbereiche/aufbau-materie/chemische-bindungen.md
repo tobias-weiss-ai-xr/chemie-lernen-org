@@ -4,7 +4,7 @@ description: "Atome gehen durch Abgabe, Aufnahme oder gemeinsame Nutzung von Ele
 date: "2026-06-08"
 tags: ["chemie", "bindungen", "ionen", "moleküle"]
 interaktiv: false
-schwerigkeit: "grundlagen"
+schwierigkeit: "grundlagen"
 teilgebiet: ["aufbau-materie"]
 icon: "⚛️"
 ---

@@ -4,7 +4,7 @@ description: "Merksätze und Strategien, um Chemie effizient zu lernen: Formeln 
 date: "2026-06-03"
 tags: ["chemie", "lernen", "tipps", "merksätze"]
 interaktiv: false
-schwerigkeit: "leicht"
+schwierigkeit: "leicht"
 teilgebiet: ["tipps-tricks"]
 icon: "📚"
 ---

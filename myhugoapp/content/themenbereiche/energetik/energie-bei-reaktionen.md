@@ -4,7 +4,7 @@ description: "Chemische Reaktionen speichern oder geben Energie frei. Exotherm â
 date: "2026-06-03"
 tags: ["chemie", "energie", "thermodynamik", "enthalpie"]
 interaktiv: false
-schwerigkeit: "mittelstufe"
+schwierigkeit: "mittelstufe"
 teilgebiet: ["energetik"]
 icon: "ğŸ”¥"
 ---

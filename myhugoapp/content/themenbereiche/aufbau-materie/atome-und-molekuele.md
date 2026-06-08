@@ -4,7 +4,7 @@ description: "Atome sind die kleinsten Bausteine der Materie. Moleküle sind Ato
 date: "2026-06-03"
 tags: ["chemie", "atome", "moleküle", "bindungen"]
 interaktiv: false
-schwerigkeit: "grundlagen"
+schwierigkeit: "grundlagen"
 teilgebiet: ["aufbau-materie"]
 icon: "⚛️"
 ---

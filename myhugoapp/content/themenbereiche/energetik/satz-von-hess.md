@@ -4,7 +4,7 @@ description: "Die Reaktionsenthalpie ist unabhängig vom Reaktionsweg. Sie kann 
 date: "2026-06-08"
 tags: ["chemie", "hess", "enthalpie", "thermochemie"]
 interaktiv: false
-schwerigkeit: "oberstufe"
+schwierigkeit: "oberstufe"
 teilgebiet: ["energetik"]
 icon: "🔥"
 ---

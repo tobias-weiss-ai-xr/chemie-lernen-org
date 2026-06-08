@@ -4,7 +4,7 @@ description: "Der pH-Wert gibt die Konzentration von $H^+$-Ionen in einer Lösun
 date: "2026-06-03"
 tags: ["chemie", "ph-wert", "saeuren", "basen"]
 interaktiv: false
-schwerigkeit: "mittelstufe"
+schwierigkeit: "mittelstufe"
 teilgebiet: ["saeuren-basen"]
 icon: "⚗️"
 ---

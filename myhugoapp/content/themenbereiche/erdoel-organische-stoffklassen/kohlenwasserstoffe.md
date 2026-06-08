@@ -4,7 +4,7 @@ description: "Kohlenwasserstoffe sind organische Verbindungen aus Kohlenstoff un
 date: "2026-06-03"
 tags: ["chemie", "kohlenwasserstoffe", "organik"]
 interaktiv: false
-schwerigkeit: "mittelstufe"
+schwierigkeit: "mittelstufe"
 teilgebiet: ["erdoel-organische-stoffklassen"]
 icon: "🛢️"
 ---

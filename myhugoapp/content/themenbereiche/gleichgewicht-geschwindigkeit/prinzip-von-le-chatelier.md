@@ -4,7 +4,7 @@ description: "Das Prinzip des kleinsten Zwanges: Ein System im Gleichgewicht rea
 date: "2026-06-08"
 tags: ["chemie", "gleichgewicht", "le-chatelier", "prinzip"]
 interaktiv: false
-schwerigkeit: "mittelstufe"
+schwierigkeit: "mittelstufe"
 teilgebiet: ["gleichgewicht-geschwindigkeit"]
 icon: "⚖️"
 ---

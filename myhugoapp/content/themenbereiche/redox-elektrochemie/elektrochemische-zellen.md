@@ -4,7 +4,7 @@ description: "Galvanische Zellen wandeln chemische Energie in elektrische um (Ba
 date: "2026-06-03"
 tags: ["chemie", "elektrochemie", "galvanisch", "elektrolyse"]
 interaktiv: false
-schwerigkeit: "mittelstufe"
+schwierigkeit: "mittelstufe"
 teilgebiet: ["redox-elektrochemie"]
 icon: "🔋"
 ---

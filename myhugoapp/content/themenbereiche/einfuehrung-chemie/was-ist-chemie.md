@@ -4,7 +4,7 @@ description: "Chemie ist die Lehre von den Stoffen und deren Umwandlungen. Sie e
 date: "2026-06-03"
 tags: ["chemie", "einführung", "stoffe"]
 interaktiv: false
-schwerigkeit: "grundlagen"
+schwierigkeit: "grundlagen"
 teilgebiet: ["einfuehrung-chemie"]
 icon: "⚛️"
 ---

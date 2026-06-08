@@ -4,7 +4,7 @@ description: "Polymere sind Makromoleküle aus vielen gleichen Bausteinen (Monom
 date: "2026-06-03"
 tags: ["chemie", "kunststoffe", "polymere", "materialien"]
 interaktiv: false
-schwerigkeit: "mittelstufe"
+schwierigkeit: "mittelstufe"
 teilgebiet: ["produkte-organisch"]
 icon: "🧶"
 ---

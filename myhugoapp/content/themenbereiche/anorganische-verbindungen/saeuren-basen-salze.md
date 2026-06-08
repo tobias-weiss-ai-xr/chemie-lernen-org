@@ -4,7 +4,7 @@ description: "Säuren bilden in Wasser $H^+$-Ionen, Basen bilden $OH^-$-Ionen. S
 date: "2026-06-03"
 tags: ["chemie", "säuren", "basen", "salze"]
 interaktiv: false
-schwerigkeit: "grundlagen"
+schwierigkeit: "grundlagen"
 teilgebiet: ["anorganische-verbindungen"]
 icon: "⚗️"
 ---

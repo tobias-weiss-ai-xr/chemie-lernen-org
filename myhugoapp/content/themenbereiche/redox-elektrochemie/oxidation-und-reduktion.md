@@ -4,7 +4,7 @@ description: "Oxidation = Elektronenabgabe, Reduktion = Elektronenaufnahme. Redo
 date: "2026-06-03"
 tags: ["chemie", "redox", "elektronen", "redox-reaktionen"]
 interaktiv: false
-schwerigkeit: "mittelstufe"
+schwierigkeit: "mittelstufe"
 teilgebiet: ["redox-elektrochemie"]
 icon: "⚡"
 ---

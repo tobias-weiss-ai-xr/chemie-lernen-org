@@ -4,7 +4,7 @@ description: "Wenn Hin- und Rückreaktion gleich schnell ablaufen, stellt sich e
 date: "2026-06-03"
 tags: ["chemie", "gleichgewicht", "mwg", "le-chatelier"]
 interaktiv: false
-schwerigkeit: "oberstufe"
+schwierigkeit: "oberstufe"
 teilgebiet: ["gleichgewicht-geschwindigkeit"]
 icon: "⚖️"
 ---

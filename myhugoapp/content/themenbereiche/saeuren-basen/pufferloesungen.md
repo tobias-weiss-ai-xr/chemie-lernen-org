@@ -4,7 +4,7 @@ description: "Pufferlösungen halten den pH-Wert auch bei Zugabe von Säure oder
 date: "2026-06-08"
 tags: ["chemie", "puffer", "ph-wert", "gleichgewicht"]
 interaktiv: false
-schwerigkeit: "mittelstufe"
+schwierigkeit: "mittelstufe"
 teilgebiet: ["saeuren-basen"]
 icon: "⚗️"
 ---

@@ -4,7 +4,7 @@ description: "Nachweisreaktionen zeigen anhand charakteristischer Farbumschläge
 date: "2026-06-03"
 tags: ["chemie", "nachweis", "analytik", "labor"]
 interaktiv: false
-schwerigkeit: "mittelstufe"
+schwierigkeit: "mittelstufe"
 teilgebiet: ["analytische-methoden"]
 icon: "🔬"
 ---

@@ -4,7 +4,7 @@ description: "Stoffgemische enthalten mehrere Reinstoffe. Trennverfahren nutzen 
 date: "2026-06-08"
 tags: ["chemie", "stoffe", "trennverfahren", "gemische"]
 interaktiv: false
-schwerigkeit: "grundlagen"
+schwierigkeit: "grundlagen"
 teilgebiet: ["einfuehrung-chemie"]
 icon: "🔬"
 ---

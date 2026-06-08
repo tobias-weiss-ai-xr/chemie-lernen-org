@@ -4,7 +4,7 @@ description: "Die Spannungsreihe ordnet Metalle nach ihrer Fähigkeit, Elektrone
 date: "2026-06-08"
 tags: ["chemie", "spannungsreihe", "redox", "metalle"]
 interaktiv: false
-schwerigkeit: "mittelstufe"
+schwierigkeit: "mittelstufe"
 teilgebiet: ["redox-elektrochemie"]
 icon: "⚡"
 ---
