@@ -4,6 +4,9 @@
   {{ partial "head.html" .}}
   {{ block "css" . }}{{ end }}
 
+  <!-- Global Error Handler (load early to catch all errors) -->
+  <script defer src="/js/utils/error-handler.js"></script>
+
   <body>
 
     <!-- Skip Link for Accessibility -->
