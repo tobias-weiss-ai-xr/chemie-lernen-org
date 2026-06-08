@@ -1,180 +1,196 @@
 {
   "articles": [
     {
-      "title": "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse",
-      "url": "https://chemie-lernen.org/posts/2026-06-07-luftstabiles-eisen-i-durch-sandwichliganden-fuer-nachhaltige-katalyse/",
-      "description": "Forscher haben eine bahnbrechende Methode entwickelt, um Eisen in der Oxidationsstufe +1 (Fe(I)) an Luft stabil zu halten. Bisher waren Fe(I)-Spezies extrem luftempfindlich, was ihren Einsatz in der K",
+      "title": "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz",
+      "url": "https://chemie-lernen.org/posts/2026-06-08-neue-kristallsaatkerne-steigern-perowskit-solarzellen-auf-23-effizienz/",
+      "description": "Forschende haben eine neue Methode zur Herstellung invertierter Perowskit-Solarzellen entwickelt, die deren Effizienz und Stabilität显著 verbessert. Bisher limitierte eine versteckte Grenzfläche im Inne",
       "tags": [
-        "eisen",
-        "katalyse",
-        "organometallchemie",
-        "liganden",
-        "oxidationszustand"
+        "perowskit",
+        "solarzellen",
+        "kristallisation",
+        "materialwissenschaft",
+        "erneuerbare energien"
       ],
       "entities": [
-        "eisen(i)",
-        "sandwichliganden",
-        "organometallkatalysator",
-        "luftstabilität",
-        "palladium",
-        "platin"
+        "perowskit-solarzellen",
+        "kristall-solvat-nanosaatkerne",
+        "mini-modul",
+        "buried layer",
+        "invertierte perowskit-solarzellen"
       ],
-      "date": "2026-06-07T02:43:25+02:00"
+      "date": "2026-06-08T02:42:35+02:00"
     },
     {
-      "title": "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe",
-      "url": "https://chemie-lernen.org/posts/2026-06-07-computergestuetzte-suche-nach-effizienten-photokatalysatoren-fuer-solare-brennst/",
-      "description": "Wissenschaftler haben eine leistungsstarke neue computergestützte Methode entwickelt, welche die Suche nach Materialien der nächsten Generation beschleunigen könnte, die Sonnenlicht in nutzbare chemis",
+      "title": "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen",
+      "url": "https://chemie-lernen.org/posts/2026-06-08-neuer-kristall-erzeugt-magnetische-skyrmionen-strukturen/",
+      "description": "Wissenschaftler der Florida State University haben einen neuen Kristall entwickelt, der atomare Magnete zu komplexen, sich wiederholenden Mustern zwingt. Durch das Mischen zweier nahezu identischer Ve",
       "tags": [
-        "chemie",
-        "photokatalyse",
+        "festkörperchemie",
+        "magnetismus",
+        "skyrmionen",
         "materialwissenschaft",
-        "sonnenenergie",
-        "berechnung"
+        "spintronik"
       ],
       "entities": [
-        "polyheptazin-imide",
-        "kohlenstoffnitrid",
-        "metallionen",
-        "wasserstoffproduktion",
-        "co2-umwandlung"
+        "florida state university",
+        "skyrmionen",
+        "kristallstruktur",
+        "datenspeicherung",
+        "quantencomputing",
+        "magnetische ordnung"
       ],
-      "date": "2026-06-07T02:43:51+02:00"
+      "date": "2026-06-08T02:43:06+02:00"
     },
     {
-      "title": "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse",
-      "url": "https://chemie-lernen.org/posts/2026-06-07-magnetfeld-verdreifacht-ammoniakausbeute-bei-elektrokatalyse/",
-      "description": "Ein Forschungsteam unter Leitung von Marcel Risch (HZB) und Sanjay Mathur (Universität zu Köln) hat eine innovative Methode zur Verbesserung von Elektrokatalysatoren entwickelt. Wie in der Zeitschrift",
+      "title": "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung",
+      "url": "https://chemie-lernen.org/posts/2026-06-08-energetische-bauplaene-diversifizieren-proteinfunktion-bei-konservierter-faltung/",
+      "description": "Proteine mit ähnlicher Struktur können völlig unterschiedliche Funktionen erfüllen. Bisher war unklar, welche energetischen Mechanismen dieser funktionellen Diversität zugrunde liegen. Eine neue Studi",
       "tags": [
-        "elektrokatalyse",
-        "ammoniak",
-        "magnetfeld",
-        "materialwissenschaft",
-        "nachhaltige chemie"
+        "proteinchemie",
+        "allosterie",
+        "massenspektrometrie",
+        "proteinengineering",
+        "biophysik"
       ],
       "entities": [
-        "cobaltferrit",
-        "ammoniak",
-        "elektrokatalyse",
-        "magnetfeld",
-        "spinelloxid"
+        "venusfliegenfallen-domänen",
+        "transkriptionsfaktoren",
+        "transportproteine",
+        "hdx-ms",
+        "allosterie",
+        "ligandenempfindlichkeit",
+        "nature chemistry"
       ],
-      "date": "2026-06-07T02:44:22+02:00"
+      "date": "2026-06-08T02:43:40+02:00"
     }
   ],
   "entities": [
     {
-      "name": "eisen(i)",
+      "name": "perowskit-solarzellen",
       "articleCount": 1,
       "articles": [
-        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
+        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
       ]
     },
     {
-      "name": "sandwichliganden",
+      "name": "kristall-solvat-nanosaatkerne",
       "articleCount": 1,
       "articles": [
-        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
+        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
       ]
     },
     {
-      "name": "organometallkatalysator",
+      "name": "mini-modul",
       "articleCount": 1,
       "articles": [
-        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
+        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
       ]
     },
     {
-      "name": "luftstabilität",
+      "name": "buried layer",
       "articleCount": 1,
       "articles": [
-        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
+        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
       ]
     },
     {
-      "name": "palladium",
+      "name": "invertierte perowskit-solarzellen",
       "articleCount": 1,
       "articles": [
-        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
+        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
       ]
     },
     {
-      "name": "platin",
+      "name": "florida state university",
       "articleCount": 1,
       "articles": [
-        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
+        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
       ]
     },
     {
-      "name": "polyheptazin-imide",
+      "name": "skyrmionen",
       "articleCount": 1,
       "articles": [
-        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
+        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
       ]
     },
     {
-      "name": "kohlenstoffnitrid",
+      "name": "kristallstruktur",
       "articleCount": 1,
       "articles": [
-        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
+        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
       ]
     },
     {
-      "name": "metallionen",
+      "name": "datenspeicherung",
       "articleCount": 1,
       "articles": [
-        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
+        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
       ]
     },
     {
-      "name": "wasserstoffproduktion",
+      "name": "quantencomputing",
       "articleCount": 1,
       "articles": [
-        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
+        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
       ]
     },
     {
-      "name": "co2-umwandlung",
+      "name": "magnetische ordnung",
       "articleCount": 1,
       "articles": [
-        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
+        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
       ]
     },
     {
-      "name": "cobaltferrit",
+      "name": "venusfliegenfallen-domänen",
       "articleCount": 1,
       "articles": [
-        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
+        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
       ]
     },
     {
-      "name": "ammoniak",
+      "name": "transkriptionsfaktoren",
       "articleCount": 1,
       "articles": [
-        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
+        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
       ]
     },
     {
-      "name": "elektrokatalyse",
+      "name": "transportproteine",
       "articleCount": 1,
       "articles": [
-        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
+        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
       ]
     },
     {
-      "name": "magnetfeld",
+      "name": "hdx-ms",
       "articleCount": 1,
       "articles": [
-        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
+        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
       ]
     },
     {
-      "name": "spinelloxid",
+      "name": "allosterie",
       "articleCount": 1,
       "articles": [
-        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
+        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
+      ]
+    },
+    {
+      "name": "ligandenempfindlichkeit",
+      "articleCount": 1,
+      "articles": [
+        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
+      ]
+    },
+    {
+      "name": "nature chemistry",
+      "articleCount": 1,
+      "articles": [
+        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
       ]
     }
   ],
-  "updatedAt": "2026-06-07T02:44:22+02:00"
+  "updatedAt": "2026-06-08T02:43:40+02:00"
 }
