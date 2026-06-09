@@ -402,17 +402,81 @@ Diese Sektion enthält eine detaillierte Analyse und Planung für die Erweiterun
 | KI-Assistent & PWA | ✅ Implementiert | Alle |
 | Lehrendenbereich | ✅ Implementiert | Lehrer |
 
-### Nächste geplante Entwicklungsschwerpunkte
+### 8. Knowledge Graph & Wissensnetz 🕸️ (Q2 2026 ✅ ABGESCHLOSSEN)
 
-| Bereich | Beschreibung |
-|---------|-------------|
-| **Forschungsnews-Automatisierung** | KI-gestützte Extraktion und Aufbereitung chemiedidaktischer Publikationen aus RSS-Feeds (arXiv, Nature, ScienceDaily) |
-| **KI-Assistent Erweiterung** | Integration mit dem plattformeigenen Wissensgraph für kontextbezogene Antworten |
-| **PWA-Optimierung** | Verbesserung des Offline-Modus und der Service-Worker-Strategien |
-| **Barrierefreiheit** | WCAG 2.1 AA-konforme Überarbeitung aller interaktiven Komponenten |
-| **Mehrsprachigkeit** | Englischsprachige Version ausgewählter Inhalte (in Evaluation) |
+| Feature | Status | Details |
+|---------|--------|---------|
+| **Neo4j-Datenbank** | ✅ | Dedizierter chemie-neo4j Container, getrennt von allg. Knowledge Base |
+| **Entity-Extraktion** | ✅ | LLM-basierte Extraktion chemischer Fachbegriffe aus Artikeln (5-10 pro Artikel) |
+| **Backfill (48 Artikel)** | ✅ | Alle bestehenden Artikel in den Knowledge Graph eingefügt |
+| **Entity-Detailseiten** | ✅ | 54 automatisch generierte Seiten unter /entity/{slug}/ mit Artikellisten |
+| **Relations-Graph** | ✅ | Interaktive D3.js-Visualisierung auf /entity/graph/ (Knoten: Entitäten/Artikel, Kanten: MENTIONS) |
+| **KG-Daten-Dump** | ✅ | kg_data.json wird nach jedem Pipeline-Durchlauf aktualisiert (.Site.Data.kg_data) |
+| **Verwandte Artikel** | ✅ | Hugo .Related im Post-Sidebar (tag-basiert) |
+
+### 9. KI-Assistent & Chat 💬 (Q2 2026 ✅ ABGESCHLOSSEN)
+
+| Feature | Status | Details |
+|---------|--------|---------|
+| **Chat API** | ✅ | Express-Server in Docker, POST /api/chat, Rate-Limiting 10/IP/Tag |
+| **KG-Suche** | ✅ | Dynamische Suche in kg_data.json, keine hartcodierten Antworten mehr |
+| **Fallback-Antworten** | ✅ | Kuratierte thematische Antworten (15 Kategorien) bei fehlenden KG-Treffern |
+| **Fehlertoleranz** | ✅ | Fallback auf KG-Suche bei API-Fehlern oder Rate-Limit (8s Timeout) |
+
+### 10. Pipeline & Automatisierung 🤖 (Q2 2026 ✅ ABGESCHLOSSEN)
+
+| Feature | Status | Details |
+|---------|--------|---------|
+| **RSS-Feed-Integration** | ✅ | Automatische Artikel-Generierung aus wissenschaftlichen Feeds |
+| **Retry-Logik** | ✅ | Exponentielles Backoff (2s/4s/10s, 3 Versuche) bei API-Fehlern |
+| **Monitoring** | ✅ | pipeline-status.json mit Metriken, Laufzeit, Fehlerzählern |
+| **KG-Dump** | ✅ | Automatischer Export nach jedem Durchlauf |
+| **Git-Commit/Push** | ✅ | Automatisches Committen neuer Artikel |
+
+### 11. Test-Infrastruktur 🧪 (Q2 2026 ✅ ABGESCHLOSSEN)
+
+| Feature | Status | Details |
+|---------|--------|---------|
+| **Unit Tests** | ✅ | 26 Suiten, 897 Tests pass, Core-Calculator-Tests |
+| **E2E Tests** | ✅ | 54 Playwright-Tests (alle Seiten, PWA, Barrierefreiheit, Suche) |
+| **Error Tracking** | ✅ | Globales Error-Handling (error-handler.js) in baseof.html |
+
+### 12. Neue Rechner 🔬 (Q1-Q2 2026 ✅ ABGESCHLOSSEN)
+
+| Rechner | Status | Details |
+|---------|--------|---------|
+| **Dichte-Rechner** | ✅ | ρ=m/V mit Einheitenumrechnung |
+| **Dampfdruck-Rechner** | ✅ | Clausius-Clapeyron-Gleichung |
+| **Verdünnungsrechner** | ✅ | c₁V₁ = c₂V₂ |
+| **Verdünnungsreihen-Rechner** | ✅ | 1:2-Verdünnungsserien |
+| **Löslichkeitsprodukt-Rechner** | ✅ | Ksp-Werte, Ionenprodukte |
+
+### 13. Plattform-Reife ⚙️ (Q1-Q2 2026 ✅ ABGESCHLOSSEN)
+
+| Feature | Status | Details |
+|---------|--------|---------|
+| **Pagefind-Suche** | ✅ | Volltext-Suche über 512 indizierte Seiten |
+| **Menü-Restrukturierung** | ✅ | 49 Einträge in 5 logische Gruppen (Rechner, Simulationen, Visualisierungen, Lehrende, Allgemein) |
+| **PWA / Service Worker** | ✅ | Offline-Support, Cache-First für Statics, alle neuen Rechner eingebunden |
+| **Themenbereiche** | ✅ | 12 Fachbereiche mit je 1-3 Einführungsartikeln (KaTeX, Rechner-Links) |
 
 ---
+
+### Nächste geplante Entwicklungsschwerpunkte (Q3-Q4 2026)
+
+| Priorität | Bereich | Beschreibung |
+|-----------|---------|-------------|
+| 🔴 Hoch | **KI-Assistent Deepening** | Echten LLM-Chat aktivieren (statt nur KG-Suche), Kontext über mehrere Fragen |
+| 🔴 Hoch | **Inhalts-Tiefe** | Themenbereiche von 1 auf 3-5 Artikel erweitern, Übungen zu jedem Bereich |
+| 🔴 Hoch | **Pipeline-Qualität** | Bessere Filterung, Deduplizierung, Quellen-Verifikation, Qualitäts-Scoring |
+| 🟡 Mittel | **SEO-Optimierung** | Schema.org/Microdata für Rechner, strukturierte Artikel-Metadaten, Core Web Vitals |
+| 🟡 Mittel | **Barrierefreiheit** | WCAG 2.1 AA-Audit und Überarbeitung aller interaktiven Komponenten |
+| 🟡 Mittel | **Backup/DR** | Automatisierte Neo4j-Backups, Docker-Volumes-Backup, Wiederherstellungsplan |
+| 🟢 Niedrig | **Mehrsprachigkeit** | Englischsprachige Version ausgewählter Inhalte |
+| 🟢 Niedrig | **Dashboard-Ausbau** | Pipeline-Status historisieren, Fehlertrends, Content-Wachstum visualisieren |
+| 🟢 Niedrig | **Lernpfad-KI** | KG-gestützte adaptive Lernpfad-Empfehlungen (entity-basiert) |
+
+------
 
 ### Technische Anforderungen
 
@@ -459,5 +523,5 @@ Diese Sektion enthält eine detaillierte Analyse und Planung für die Erweiterun
 
 ---
 
-_Letzte Aktualisierung: Juni 2026_
-_Nächste Überprüfung: Nach Abschluss der Plattform-Stabilisierung (Q3 2026)_
+_Letzte Aktualisierung: Juni 2026 (H1-Update: KG, Chat, Pipeline, E2E, Suche, Rechner, Themenbereiche)_
+_Nächste Überprüfung: Q4 2026_
