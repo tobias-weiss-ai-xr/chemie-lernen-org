@@ -159,7 +159,18 @@ Hintergrund: <optional, 1-2 Sätze Hintergrundwissen>
 
 Tags: <3-5 tags, kommagetrennt, z.B. chemie, bindung, quantenchemie>
 
-Entitäten: <kommaseparierte Liste der wichtigsten chemischen Konzepte, Verbindungen, Reaktionen oder Personen aus dem Artikel, z.B. Methan, Photokatalyse, Eisen-Katalysator, C-H-Aktivierung>
+Entitäten: <pro Zeile eine Entität im Format: name | kategorie>
+Mögliche Kategorien: stoff, konzept, methode, person, reaktion
+
+Die Entitäten-Liste sollte 5-10 Einträge umfassen. Wähle die für den Artikel spezifischsten und wichtigsten Begriffe aus — vermeide sehr allgemeine Begriffe wie "wasser", "sauerstoff", "kohlenstoff" oder "chemie". Bevorzuge spezifische Fachbegriffe, Verbindungsnamen, Reaktionstypen, Katalysatoren, Analysemethoden oder beteiligte Forschungseinrichtungen.
+
+Beispiel:
+Entitäten:
+ammoniak | stoff
+photokatalyse | konzept
+hdx-massenspektrometrie | methode
+martin-luther-universität | person
+kunststoffabbau | reaktion
 
 Wichtig: Tags und Entitäten nur Kleinschreibung, keine Sternchen oder Formatierung.`;
 
@@ -305,12 +316,27 @@ function parseGeneratedText(text) {
       .filter(Boolean);
   }
 
-  const entityMatch = text.match(/Entitäten?:?\s*(.+)/i);
-  if (entityMatch) {
-    entities = entityMatch[1]
-      .split(',')
-      .map((e) => e.trim().replace(/^[*#\s]+|[*#]+$/g, '').toLowerCase())
-      .filter((e) => e.length > 0);
+  // Parse entities — supports multi-line "name | category" or comma-separated
+  const entitySection = text.match(/Entitäten?:?\s*([\s\S]*?)(?:\n\s*\n|\n(?=Tags?:|Titel:|Hintergrund:|$))/i);
+  if (entitySection) {
+    const raw = entitySection[1].trim();
+    entities = raw
+      .split('\n')
+      .map((line) => {
+        // Extract name before optional "|" separator
+        let name = line.split('|')[0].trim();
+        // Remove bullet points, asterisks, dashes
+        name = name.replace(/^[-*•\s]+|[-*]+$/g, '').trim();
+        return name.toLowerCase();
+      })
+      .filter((e) => e.length > 2 && !e.match(/^[,;\s]+$/));
+    // Fallback: if no newlines, try comma-separated
+    if (entities.length <= 1 && raw.indexOf('\n') === -1) {
+      entities = raw
+        .split(',')
+        .map((e) => e.trim().replace(/^[*#\s]+|[*#]+$/g, '').toLowerCase())
+        .filter((e) => e.length > 2);
+    }
   }
   
   // Extract first meaningful sentence as description
