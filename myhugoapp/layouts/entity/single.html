@@ -1,0 +1,94 @@
+{{ define "main" }}
+{{ $entityName := lower .Title }}
+{{ $entityData := where $.Site.Data.kg_data.entities "name" $entityName }}
+{{ $entity := index $entityData 0 }}
+
+<div class="entity-detail-container">
+  <div class="row">
+    <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Start</a></li>
+          <li class="breadcrumb-item"><a href="/entity/">Wissensnetz</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+        </ol>
+      </nav>
+
+      <h1>{{ .Title }}</h1>
+      <p class="lead">{{ .Description }}</p>
+    </div>
+  </div>
+
+  {{ if $entity }}
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Artikel zu „{{ $entity.name }}“</h3>
+        </div>
+        <div class="panel-body">
+          {{ $articles := $.Site.Data.kg_data.articles }}
+          {{ $articleTitles := $entity.articles }}
+          <ul class="list-group">
+          {{ range $articleTitles }}
+            {{ $title := . }}
+            {{ $article := where $articles "title" $title }}
+            {{ if $article }}
+            {{ $a := index $article 0 }}
+            <li class="list-group-item">
+              <a href="{{ $a.url }}">{{ $a.title }}</a>
+              {{ if $a.tags }}
+              <br><small class="text-muted">🏷️ {{ delimit $a.tags ", " }}</small>
+              {{ end }}
+            </li>
+            {{ else }}
+            <li class="list-group-item">
+              {{ $title }} <small class="text-muted">(Artikel nicht im Datensatz)</small>
+            </li>
+            {{ end }}
+          {{ end }}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Statistik</h3>
+        </div>
+        <div class="panel-body">
+          <p><strong>Artikelanzahl:</strong> {{ $entity.articleCount }}</p>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Verwandte Entitäten</h3>
+        </div>
+        <div class="panel-body">
+          {{ $relatedEntities := where $.Site.Data.kg_data.entities "name" "ne" $entityName }}
+          {{ $limit := 10 }}
+          <ul class="list-unstyled">
+          {{ range $i, $e := first $limit $relatedEntities }}
+            <li><a href="/entity/{{ $e.name | urlize }}/">{{ $e.name }}</a></li>
+          {{ end }}
+          </ul>
+          <p class="text-muted"><small><a href="/entity/">→ Alle Fachbegriffe im Wissensnetz</a></small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ else }}
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-warning">
+        <strong>Hinweis:</strong> Keine Daten zu „{{ .Title }}“ im Wissensnetz gefunden.
+      </div>
+      <p><a href="/entity/">Zurück zur Übersicht</a></p>
+    </div>
+  </div>
+  {{ end }}
+</div>
+
+{{ end }}
