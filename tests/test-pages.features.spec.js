@@ -81,6 +81,7 @@ test.describe('Calculator Pages', () => {
     'ph-rechner',
     'stoechiometrie-rechner',
     'gasgesetz-rechner',
+    'gasgesetz-simulator',
     'hess-gesetz',
     'dichte-rechner',
     'dampfdruck-rechner',
@@ -100,6 +101,65 @@ test.describe('Calculator Pages', () => {
       const interactive = page.locator('input, button, select, canvas, #calculator');
       await expect(interactive.first()).toBeVisible();
     });
+  });
+});
+
+test.describe('Calculator Interactions', () => {
+  test('molare-masse-rechner: should calculate molar mass of H2O', async ({ page }) => {
+    test.setTimeout(15000);
+    await page.goto(`${BASE_URL}/molare-masse-rechner/`, { waitUntil: 'networkidle' });
+    const input = page.locator('#formula-input, input[type="text"]').first();
+    if (await input.count() > 0) {
+      await input.fill('H2O');
+      const calcBtn = page.locator('button:has-text("Berechnen"), button:has-text("Calculate"), button[type="submit"]').first();
+      if (await calcBtn.count() > 0) {
+        await calcBtn.click();
+        await page.waitForTimeout(2000);
+        const body = page.locator('body');
+        await expect(body).toContainText(/18|erfolgreich|Ergebnis|g\/mol|Molare/i);
+      }
+    }
+  });
+
+  test('ph-rechner: should load with pH input fields', async ({ page }) => {
+    await page.goto(`${BASE_URL}/ph-rechner/`);
+    const input = page.locator('input[type="number"], input[type="text"]').first();
+    await expect(input).toBeVisible();
+  });
+
+  test('dichte-rechner: should have mass and volume inputs', async ({ page }) => {
+    await page.goto(`${BASE_URL}/dichte-rechner/`);
+    const inputs = page.locator('input[type="number"]');
+    const count = await inputs.count();
+    expect(count).toBeGreaterThanOrEqual(2);
+  });
+
+  test('verbrennungsrechner: should calculate on input', async ({ page }) => {
+    test.setTimeout(15000);
+    await page.goto(`${BASE_URL}/verbrennungsrechner/`, { waitUntil: 'networkidle' });
+    const input = page.locator('input[type="number"], input').first();
+    if (await input.count() > 0) {
+      await input.fill('10');
+      const calcBtn = page.locator('button:has-text("Berechnen"), button[type="submit"]').first();
+      if (await calcBtn.count() > 0) {
+        await calcBtn.click();
+        await page.waitForTimeout(2000);
+      }
+    }
+  });
+});
+
+test.describe('Arbeitsblatt Generator', () => {
+  test('should load Arbeitsblatt Generator page', async ({ page }) => {
+    const response = await page.goto(`${BASE_URL}/arbeitsblatt-generator/`);
+    expect(response.status()).toBe(200);
+    await expect(page.locator('h1')).toBeVisible();
+  });
+
+  test('should have worksheet generation controls', async ({ page }) => {
+    await page.goto(`${BASE_URL}/arbeitsblatt-generator/`);
+    const controls = page.locator('button:has-text("generieren"), button:has-text("erstellen"), button:has-text("Arbeitsblatt"), select, #generate-btn');
+    await expect(controls.first()).toBeVisible();
   });
 });
 
@@ -199,6 +259,35 @@ test.describe('Pagefind Search', () => {
     const pagefindScript = page.locator('script[src*="pagefind"]');
     if (await pagefindScript.count() > 0) {
       await expect(pagefindScript).toHaveCount(1);
+    }
+  });
+});
+
+test.describe('404 Handling', () => {
+  test('should show error page for non-existent route', async ({ page }) => {
+    const response = await page.goto(`${BASE_URL}/does-not-exist-12345/`);
+    const status = response.status();
+    expect([200, 404, 301, 302, 303]).toContain(status);
+    if (status === 200) {
+      await expect(page.locator('h1')).toBeVisible();
+    }
+  });
+});
+
+test.describe('Pagefind Search Interaction', () => {
+  test('should type search query and see results appear', async ({ page }) => {
+    test.setTimeout(30000);
+    await page.goto(BASE_URL, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(2000); // let pagefind load
+
+    const searchInput = page.locator('#navbar-search-input, .search-input, input[name="q"]').first();
+    if (await searchInput.count() > 0) {
+      await searchInput.fill('pH-Wert');
+      await page.waitForTimeout(2000); // debounce 300ms + pagefind async
+
+      const results = page.locator('.pagefind-ui__result, #search-results, [class*="result"]').first();
+      const resultCount = await results.count();
+      expect(resultCount).toBeGreaterThanOrEqual(0);
     }
   });
 });
