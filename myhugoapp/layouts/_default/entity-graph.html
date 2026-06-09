@@ -1,0 +1,231 @@
+{{ define "main" }}
+{{ $data := $.Site.Data.kg_data }}
+{{ $articles := $data.articles | default slice }}
+{{ $entities := $data.entities | default slice }}
+
+<div class="entity-graph-container">
+  <div class="row">
+    <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Start</a></li>
+          <li class="breadcrumb-item"><a href="/entity/">Wissensnetz</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Graph</li>
+        </ol>
+      </nav>
+
+      <h1>Wissensnetz-Graph</h1>
+      <p class="lead">Interaktive Visualisierung der Verbindungen zwischen <strong>{{ len $entities }}</strong> Fachbegriffen und <strong>{{ len $articles }}</strong> Artikeln.</p>
+      <p class="text-muted">Jeder <span style="color:#667eea;">● blaue Knoten</span> ist ein Fachbegriff (Größe = Anzahl Artikel). <span style="color:#f093fb;">● Rosa Knoten</span> sind Artikel. Kanten zeigen, welche Artikel einen Begriff behandeln.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div id="knowledge-graph" style="width:100%; height:650px; border:1px solid #ddd; border-radius:8px; background:#fafafa;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Inline graph data as JSON -->
+<script id="graph-data" type="application/json">
+{
+  "articles": [
+    {{ range $i, $a := $articles }}
+    { "id": "a{{ $i }}", "title": {{ $a.title | jsonify }}, "url": {{ $a.url | jsonify }}, "tags": {{ $a.tags | jsonify }} }{{ if lt (add $i 1) (len $articles) }},{{ end }}
+    {{ end }}
+  ],
+  "entities": [
+    {{ range $i, $e := $entities }}
+    { "id": "e{{ $i }}", "name": {{ $e.name | jsonify }}, "count": {{ $e.articleCount }}, "articles": {{ $e.articles | jsonify }} }{{ if lt (add $i 1) (len $entities) }},{{ end }}
+    {{ end }}
+  ]
+}
+</script>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+(function() {
+  var dataEl = document.getElementById('graph-data');
+  if (!dataEl) return;
+  var data;
+  try { data = JSON.parse(dataEl.textContent); } catch(e) { return; }
+
+  var width = document.getElementById('knowledge-graph').clientWidth;
+  var height = 650;
+
+  // Build nodes and links
+  var nodes = [];
+  var links = [];
+  var nodeMap = {};
+
+  // Add entity nodes
+  data.entities.forEach(function(e) {
+    var n = { id: e.id, label: e.name, type: 'entity', size: Math.max(8, Math.min(30, e.count * 5)), count: e.count };
+    nodes.push(n);
+    nodeMap[e.id] = n;
+  });
+
+  // Add article nodes and links to entities
+  data.articles.forEach(function(a) {
+    var n = { id: a.id, label: a.title, type: 'article', size: 5, url: a.url };
+    nodes.push(n);
+    nodeMap[a.id] = n;
+  });
+
+  // Create links: entity → article based on entity article titles
+  data.entities.forEach(function(e) {
+    e.articles.forEach(function(articleTitle) {
+      // Find matching article node
+      for (var i = 0; i < data.articles.length; i++) {
+        if (data.articles[i].title === articleTitle) {
+          links.push({ source: e.id, target: data.articles[i].id });
+          break;
+        }
+      }
+    });
+  });
+
+  // D3 force simulation
+  var svg = d3.select('#knowledge-graph')
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height)
+    .style('cursor', 'grab');
+
+  var defs = svg.append('defs');
+  var filter = defs.append('filter').attr('id', 'glow');
+  filter.append('feGaussianBlur').attr('stdDeviation', '3').attr('result', 'coloredBlur');
+  var feMerge = filter.append('feMerge');
+  feMerge.append('feMergeNode').attr('in', 'coloredBlur');
+  feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+
+  // Zoom
+  var g = svg.append('g');
+  svg.call(d3.zoom().scaleExtent([0.2, 4]).on('zoom', function(event) {
+    g.attr('transform', event.transform);
+  }));
+
+  // Tooltip
+  var tooltip = d3.select('#knowledge-graph')
+    .append('div')
+    .style('position', 'absolute')
+    .style('visibility', 'hidden')
+    .style('background', '#fff')
+    .style('border', '1px solid #ddd')
+    .style('border-radius', '6px')
+    .style('padding', '8px 12px')
+    .style('font-size', '13px')
+    .style('box-shadow', '0 2px 8px rgba(0,0,0,0.15)')
+    .style('pointer-events', 'none')
+    .style('max-width', '300px');
+
+  // Link line
+  var link = g.append('g')
+    .selectAll('line')
+    .data(links)
+    .enter().append('line')
+    .attr('stroke', '#ccc')
+    .attr('stroke-width', 1)
+    .attr('stroke-opacity', 0.6);
+
+  // Node groups
+  var node = g.append('g')
+    .selectAll('circle')
+    .data(nodes)
+    .enter().append('circle')
+    .attr('r', function(d) { return d.size; })
+    .attr('fill', function(d) { return d.type === 'entity' ? '#667eea' : '#f093fb'; })
+    .attr('stroke', '#fff')
+    .attr('stroke-width', 1.5)
+    .style('cursor', 'pointer')
+    .on('mouseover', function(event, d) {
+      d3.select(this).attr('filter', 'url(#glow)');
+      var html = '<strong>' + d.label + '</strong>';
+      if (d.type === 'entity') {
+        html += '<br><small>Fachbegriff · ' + d.count + ' Artikel</small>';
+      } else {
+        html += '<br><small>Artikel</small>';
+      }
+      tooltip.style('visibility', 'visible')
+        .html(html)
+        .style('left', (event.offsetX + 15) + 'px')
+        .style('top', (event.offsetY - 10) + 'px');
+    })
+    .on('mouseout', function() {
+      d3.select(this).attr('filter', null);
+      tooltip.style('visibility', 'hidden');
+    })
+    .on('click', function(event, d) {
+      if (d.type === 'article' && d.url) {
+        window.open(d.url, '_blank');
+      } else if (d.type === 'entity') {
+        var slug = d.label.toLowerCase()
+          .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
+          .replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+        window.open('/entity/' + slug + '/', '_blank');
+      }
+    });
+
+  // Labels
+  var labels = g.append('g')
+    .selectAll('text')
+    .data(nodes)
+    .enter().append('text')
+    .text(function(d) { return d.type === 'entity' ? d.label : ''; })
+    .attr('font-size', '11px')
+    .attr('dx', function(d) { return d.size + 4; })
+    .attr('dy', 4)
+    .attr('fill', '#555')
+    .style('pointer-events', 'none');
+
+  // Force simulation
+  var simulation = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).id(function(d) { return d.id; }).distance(80))
+    .force('charge', d3.forceManyBody().strength(-200))
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .force('collision', d3.forceCollide(10))
+    .on('tick', function() {
+      link
+        .attr('x1', function(d) { return d.source.x; })
+        .attr('y1', function(d) { return d.source.y; })
+        .attr('x2', function(d) { return d.target.x; })
+        .attr('y2', function(d) { return d.target.y; });
+
+      node
+        .attr('cx', function(d) { return d.x; })
+        .attr('cy', function(d) { return d.y; });
+
+      labels
+        .attr('x', function(d) { return d.x; })
+        .attr('y', function(d) { return d.y; });
+    });
+})();
+</script>
+
+<style>
+.entity-graph-container {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+#knowledge-graph {
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  #knowledge-graph {
+    height: 400px !important;
+  }
+  #knowledge-graph svg {
+    height: 400px !important;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  #knowledge-graph {
+    background: #1e1e1e !important;
+    border-color: #444 !important;
+  }
+}
+</style>
+
+{{ end }}
