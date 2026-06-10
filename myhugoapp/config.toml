@@ -365,17 +365,27 @@ author = "chemie-lernen.org Team"
 
 # ── Allgemeine Seiten ────────────────────────────────
 [[menu.main]]
+    name = "Mehr"
+    url = "#"
+    weight = 90
+    identifier = "mehr"
+    icon = "📌"
+
+[[menu.main]]
     name = "Forschung"
     url = "/posts/"
-    weight = 90
+    parent = "mehr"
+    weight = 91
     icon = "📰"
 [[menu.main]]
     name = "Roadmap"
     url = "/pages/roadmap/"
-    weight = 95
+    parent = "mehr"
+    weight = 92
 [[menu.main]]
     name = "Unterstützen"
     url = "/unterstuetzen/"
-    weight = 100
+    parent = "mehr"
+    weight = 93
     icon = "❤️"
 

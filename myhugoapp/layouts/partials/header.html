@@ -95,6 +95,18 @@
 </header>
 
 <style>
+/* Responsive: reduce font/padding on medium screens */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .navbar-nav > li > a {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 13px;
+  }
+  .navbar-form .form-control {
+    width: 140px;
+  }
+}
+
 /* Dropdown menu styling */
 .dropdown-menu {
   min-width: 220px;
@@ -114,6 +126,10 @@
     flex: 1;
     display: flex;
     align-items: center;
+  }
+
+  .navbar-nav > li > a {
+    white-space: nowrap;
   }
 
   .navbar-form {
