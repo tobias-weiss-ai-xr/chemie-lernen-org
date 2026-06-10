@@ -525,6 +525,7 @@ async function run() {
   }
 
   const kgDumpArticles = [];
+  const aggregatedEntityCategories = new Map();
 
   for (const article of selected) {
     try {
@@ -562,6 +563,21 @@ async function run() {
       // Store in Knowledge Graph (article + tags + entities)
       try {
         const kgUrl = `https://chemie-lernen.org/posts/${filename.replace(/\.md$/, '/')}`;
+
+        // Extract entity categories from raw LLM output (format: "name|kategorie")
+        const entityCategories = {};
+        const entitySection = generated.match(/Entitäten?:?\s*([\s\S]*?)(?:\n\s*\n|\n(?=Tags?:|Titel:|Hintergrund:|$))/i);
+        if (entitySection) {
+          entitySection[1].trim().split('\n').forEach((line) => {
+            const parts = line.split('|');
+            if (parts.length >= 2) {
+              const name = parts[0].trim().replace(/^[-*•\s]+|[-*]+$/g, '').trim().toLowerCase();
+              const category = parts[1].trim();
+              if (name.length > 2) entityCategories[name] = category;
+            }
+          });
+        }
+
         const kgResult = await storeArticleWithEntities({
           title,
           source: article.url,
@@ -570,7 +586,15 @@ async function run() {
           tags,
           entities,
           url: kgUrl,
+          entityCategories: Object.keys(entityCategories).length ? entityCategories : undefined,
         });
+
+        // Aggregate categories for the dump
+        for (const [name, cat] of Object.entries(entityCategories)) {
+          if (!aggregatedEntityCategories.has(name)) {
+            aggregatedEntityCategories.set(name, cat);
+          }
+        }
         if (entities.length > 0) {
           console.log(`[pipeline]   Stored in KG with ${entities.length} entit(ies): ${entities.join(', ')}`);
         } else {
@@ -599,12 +623,34 @@ async function run() {
     for (const a of kgDumpArticles) {
       for (const e of (a.entities || [])) {
         if (!entityMap.has(e)) {
-          entityMap.set(e, { name: e, articleCount: 0, articles: [] });
+          entityMap.set(e, { name: e, articleCount: 0, articles: [], category: null, relatedEntities: [] });
         }
         entityMap.get(e).articleCount++;
         entityMap.get(e).articles.push(a.title);
       }
     }
+
+    // Compute co-occurrence (related entities) from article entity lists
+    for (const a of kgDumpArticles) {
+      const artEntities = a.entities || [];
+      for (let i = 0; i < artEntities.length; i++) {
+        for (let j = i + 1; j < artEntities.length; j++) {
+          const e1 = entityMap.get(artEntities[i]);
+          const e2 = entityMap.get(artEntities[j]);
+          if (e1 && e2) {
+            if (!e1.relatedEntities.includes(artEntities[j])) e1.relatedEntities.push(artEntities[j]);
+            if (!e2.relatedEntities.includes(artEntities[i])) e2.relatedEntities.push(artEntities[i]);
+          }
+        }
+      }
+    }
+
+    // Apply aggregated categories
+    for (const [name, category] of aggregatedEntityCategories) {
+      const entry = entityMap.get(name);
+      if (entry) entry.category = category;
+    }
+
     const kgDump = {
       articles: kgDumpArticles,
       entities: [...entityMap.values()].sort((a, b) => b.articleCount - a.articleCount),

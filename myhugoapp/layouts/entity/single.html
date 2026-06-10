@@ -22,6 +22,12 @@
   {{ if $entity }}
   <div class="row">
     <div class="col-md-8">
+      {{ if $entity.category }}
+      <p class="text-muted"><strong>Kategorie:</strong> 
+        <span class="label label-primary">{{ $entity.category }}</span>
+      </p>
+      {{ end }}
+
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Artikel zu „{{ $entity.name }}“</h3>
@@ -59,22 +65,41 @@
         </div>
         <div class="panel-body">
           <p><strong>Artikelanzahl:</strong> {{ $entity.articleCount }}</p>
+          {{ if $entity.relatedEntities }}
+          <p><strong>Verknüpfte Begriffe:</strong> {{ len $entity.relatedEntities }}</p>
+          {{ end }}
         </div>
       </div>
 
+      {{ if $entity.relatedEntities }}
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Verwandte Entitäten</h3>
+          <h3 class="panel-title">Verwandte Begriffe</h3>
         </div>
         <div class="panel-body">
-          {{ $relatedEntities := where $.Site.Data.kg_data.entities "name" "ne" $entityName }}
-          {{ $limit := 10 }}
-          <ul class="list-unstyled">
-          {{ range $i, $e := first $limit $relatedEntities }}
-            <li><a href="/entity/{{ $e.name | urlize }}/">{{ $e.name }}</a></li>
+          <div class="related-entity-tags">
+          {{ $allEntities := $.Site.Data.kg_data.entities }}
+          {{ range $entity.relatedEntities }}
+            {{ $rel := where $allEntities "name" . }}
+            {{ if $rel }}
+            {{ $re := index $rel 0 }}
+            <a href="/entity/{{ $re.name | urlize }}/" class="related-entity-tag">
+              {{ $re.name }}{{ if $re.category }} <small>({{ $re.category }})</small>{{ end }}
+            </a>
+            {{ end }}
           {{ end }}
-          </ul>
-          <p class="text-muted"><small><a href="/entity/">→ Alle Fachbegriffe im Wissensnetz</a></small></p>
+          </div>
+          <p class="text-muted" style="margin-top:10px;"><small><a href="/entity/graph/">→ Interaktiver Graph</a></small></p>
+        </div>
+      </div>
+      {{ end }}
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Alle Fachbegriffe</h3>
+        </div>
+        <div class="panel-body">
+          <p class="text-muted"><small><a href="/entity/">→ Zurück zur Übersicht</a></small></p>
         </div>
       </div>
     </div>

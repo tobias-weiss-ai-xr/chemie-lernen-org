@@ -1,384 +1,18 @@
 {
   "articles": [
     {
-      "title": "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure",
-      "url": "https://chemie-lernen.org/posts/2026-06-05-50-jahre-raetsel-proteine-verlieren-hydrathuelle-durch-saeure/",
-      "description": "Forschende der Martin Luther Universität Halle-Wittenberg (MLU) haben ein 50 Jahre altes Rätsel der Biochemie gelöst. Sie konnten erstmals direkt beobachten, wie Proteine in saurer Umgebung ihre schüt",
+      "title": "Sekundäres Silylium-Ion ermöglicht effiziente Eintopf-Sulfonamidierung von Ketonen",
+      "url": "https://chemie-lernen.org/posts/2026-06-10-sekundaeres-silylium-ion-ermoeglicht-effiziente-eintopf-sulfonamidierung-von-ket/",
+      "description": "Forschende haben einen neuartigen Organokatalysator auf Basis eines sekundären Silylium-Ions entwickelt. Der Katalysator besteht aus einem Diethylsilylium-Ion kombiniert mit einem schwach koordinieren",
       "tags": [
-        "hydrathülle",
-        "proteine",
-        "ph-wert",
-        "bildgebung",
-        "biochemie"
-      ],
-      "entities": [
-        "hydrathülle",
-        "proteine",
-        "martin luther universität halle-wittenberg",
-        "protonen",
-        "wasser"
-      ],
-      "date": "2026-06-05T02:42:39+02:00"
-    },
-    {
-      "title": "Gesteuerte Kristallisation verbessert Perowskit-Transistoren",
-      "url": "https://chemie-lernen.org/posts/2026-05-24-gesteuerte-kristallisation-verbessert-perowskit-transistoren/",
-      "description": "Gesteuerte Kristallisation verbessert Perowskit-Transistoren – Neue Ansätze für stabile und leistungsfähige Halbleiter.",
-      "tags": [
-        "forschung",
-        "chemie"
+        "organokatalyse",
+        "silylium",
+        "lewis-säure",
+        "ketone",
+        "sulfonamidierung"
       ],
       "entities": [],
-      "date": "2026-05-24T02:42:26+02:00"
-    },
-    {
-      "title": "Neue Methode beschleunigt Suche nach Sonnenlicht-Katalysatoren",
-      "url": "https://chemie-lernen.org/posts/2026-05-24-neue-methode-beschleunigt-suche-nach-sonnenlicht-katalysatoren/",
-      "description": "Neue Methode beschleunigt Suche nach Sonnenlicht-Katalysatoren – Hochdurchsatz-Screening für photokatalytische Materialien.",
-      "tags": [
-        "forschung",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-05-24T02:42:30+02:00"
-    },
-    {
-      "title": "Neue Methode für präzise C-H-Bindungsaktivierung",
-      "url": "https://chemie-lernen.org/posts/2026-05-24-neue-methode-fuer-praezise-c-h-bindungsaktivierung/",
-      "description": "Präzise C-H-Bindungsaktivierung durch neue Synthesemethode – Effizientere Wege zu komplexen organischen Molekülen.",
-      "tags": [
-        "forschung",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-05-24T02:42:33+02:00"
-    },
-    {
-      "title": "Kontrollierte Kristallisation verbessert Perowskit-Transistoren",
-      "url": "https://chemie-lernen.org/posts/2026-05-25-kontrollierte-kristallisation-verbessert-perowskit-transistoren/",
-      "description": "Kontrollierte Kristallisation verbessert Perowskit-Transistoren für flexible Elektronik und effizientere Halbleiterbauteile.",
-      "tags": [
-        "forschung",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-05-25T02:42:05+02:00"
-    },
-    {
-      "title": "Ladungswanderung ermöglicht präzise C-H-Bindungsaktivierung",
-      "url": "https://chemie-lernen.org/posts/2026-05-25-ladungswanderung-ermoeglicht-praezise-c-h-bindungsaktivierung/",
-      "description": "Ladungswanderung ermöglicht präzise C-H-Bindungsaktivierung – Durchbruch in der metallorganischen Chemie für gezielte Molekülmodifikation.",
-      "tags": [
-        "forschung",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-05-25T02:42:15+02:00"
-    },
-    {
-      "title": "Neue Methode: Sonnenlicht effizient in Brennstoffe umwandeln",
-      "url": "https://chemie-lernen.org/posts/2026-05-25-neue-methode-sonnenlicht-effizient-in-brennstoffe-umwandeln/",
-      "description": "Neue Methode wandelt Sonnenlicht effizienter in chemische Brennstoffe um – Photokatalytische Verfahren für nachhaltige Energie.",
-      "tags": [
-        "forschung",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-05-25T02:42:11+02:00"
-    },
-    {
-      "title": "Effiziente 3D-Simulation von Hochtemperatur-Supraleiter-Magneten",
-      "url": "https://chemie-lernen.org/posts/2026-06-01-effiziente-3d-simulation-von-hochtemperatur-supraleiter-magneten/",
-      "description": "Effiziente 3D-Simulation von Hochtemperatur-Supraleiter-Magneten mit optimierten Rechenmethoden für die Materialwissenschaft.",
-      "tags": [
-        "forschung",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-06-01T20:16:28+02:00"
-    },
-    {
-      "title": "KI-Modell entdeckt stabile anorganische Materialien durch Symmetrie-Padding",
-      "url": "https://chemie-lernen.org/posts/2026-06-01-ki-modell-entdeckt-stabile-anorganische-materialien-durch-symmetrie-padding/",
-      "description": "KI-Modell entdeckt stabile anorganische Materialien durch Symmetrie-Padding – Beschleunigte Materialforschung durch maschinelles Lernen.",
-      "tags": [
-        "forschung",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-06-01T20:17:00+02:00"
-    },
-    {
-      "title": "KI-Prognose für Turbinen: Lebensdauer und Temperaturüberwachung",
-      "url": "https://chemie-lernen.org/posts/2026-06-01-ki-prognose-fuer-turbinen-lebensdauer-und-temperaturueberwachung/",
-      "description": "KI-gestützte Prognose von Turbinen-Lebensdauer und Temperaturüberwachung in chemischen Kraftwerken für vorausschauende Wartung.",
-      "tags": [
-        "forschung",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-06-01T20:17:30+02:00"
-    },
-    {
-      "title": "Metallfreie Carboran-Modifikation für Krebstherapie und Sensoren",
-      "url": "https://chemie-lernen.org/posts/2026-06-02-metallfreie-carboran-modifikation-fuer-krebstherapie-und-sensoren/",
-      "description": "Metallfreie Carboran-Modifikation für Anwendungen in der Krebstherapie und chemischen Sensorik – orbitalgesteuerte Funktionalisierung.",
-      "tags": [
-        "forschung",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-06-02T03:38:46+02:00"
-    },
-    {
-      "title": "Neue Katalysatoren reduzieren Verdampfungsverluste bei flüssigem Wasserstoff",
-      "url": "https://chemie-lernen.org/posts/2026-06-02-neue-katalysatoren-reduzieren-verdampfungsverluste-bei-fluessigem-wasserstoff/",
-      "description": "Forschung an neuen Katalysatoren zur Reduzierung von Verdampfungsverlusten bei flüssigem Wasserstoff für effizientere Energiespeicherung.",
-      "tags": [
-        "forschung",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-06-02T03:40:06+02:00"
-    },
-    {
-      "title": "Neue Quantenmethode lokalisiert konische Durchschneidungen effizient",
-      "url": "https://chemie-lernen.org/posts/2026-06-02-neue-quantenmethode-lokalisiert-konische-durchschneidungen-effizient/",
-      "description": "Neue Quantenmethode zur Lokalisierung konischer Durchschneidungen in Molekülen – Effizientere Berechnung von Nichtgleichgewichts-Prozessen.",
-      "tags": [
-        "forschung",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-06-02T03:39:22+02:00"
-    },
-    {
-      "title": "Durchbruch: Eisen-Katalysator übertrifft seltene Metalle",
-      "url": "https://chemie-lernen.org/posts/2026-06-03-durchbruch-eisen-katalysator-uebertrifft-seltene-metalle/",
-      "description": "Forscher der Universität Nagoya haben einen effizienten Photokatalysator auf Eisenbasis entwickelt. Dieser Durchbruch könnte den Bedarf an seltenen und teuren Edelmetallen in der fortschrittlichen Che",
-      "tags": [
-        "forschung",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-06-03T02:43:14+02:00"
-    },
-    {
-      "title": "Durchbruch: Methan wird mit Licht und Eisen zu Medizin umgewandelt",
-      "url": "https://chemie-lernen.org/posts/2026-06-03-durchbruch-methan-wird-mit-licht-und-eisen-zu-medizin-umgewandelt/",
-      "description": "Wissenschaftler haben eine bahnbrechende Methode entwickelt, um Erdgas statt als Brennstoff als chemischen Baustein für Medikamente zu nutzen. Ein neuartiger Katalysator auf Eisenbasis, angetrieben du",
-      "tags": [
-        "forschung",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-06-03T02:42:41+02:00"
-    },
-    {
-      "title": "Wolframcarbid-Katalysator übertrifft Platin beim Plastik-Recycling",
-      "url": "https://chemie-lernen.org/posts/2026-06-03-wolframcarbid-katalysator-uebertrifft-platin-beim-plastik-recycling/",
-      "description": "Wissenschaftler haben einen neuen Katalysator entwickelt, der das teure und seltene Platin durch das häufigere Wolframcarbid ersetzt. Durch präzise Steuerung der Atomanordnung bei extrem hohen Tempera",
-      "tags": [
-        "forschung",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-06-03T02:43:49+02:00"
-    },
-    {
-      "title": "Eine interdisziplinäre Kooperation in der Hochschullehre mit Hilfe der virtuellen Realität",
-      "url": "https://chemie-lernen.org/posts/interdisciplinary-vr-cooperation/",
-      "description": "Interdisziplinäre VR-Kooperation im Chemieunterricht – Virtuelle Labore und 3D-Molekülvisualisierung für innovative Lernkonzepte.",
-      "tags": [
-        "forschung",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2025-12-18T02:00:00+01:00"
-    },
-    {
-      "title": "Molekülstudio: Interaktive 3D-Visualisierung von Molekülen",
-      "url": "https://chemie-lernen.org/posts/molekulstudio-3d-visualisierung/",
-      "description": "Molekülstudio 3D – Interaktive 3D-Visualisierung von Molekülstrukturen für den Chemieunterricht mit WebGL-Technologie.",
-      "tags": [
-        "forschung",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2025-12-24T10:00:00+01:00"
-    },
-    {
-      "title": "PSE in VR: Eine revolutionäre Art, Chemie zu lernen",
-      "url": "https://chemie-lernen.org/posts/pse-in-vr-release/",
-      "description": "Periodensystem in VR – Erleben Sie das Periodensystem der Elemente in Virtual Reality mit interaktiven 3D-Ansichten.",
-      "tags": [
-        "['vr', 'periodensystem', 'webxr', 'entwicklung', '3d']"
-      ],
-      "entities": [],
-      "date": "2026-01-02T10:00:00+01:00"
-    },
-    {
-      "title": "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert",
-      "url": "https://chemie-lernen.org/posts/2026-06-05-durchbruch-erster-stabiler-siliziumbasierter-aromat-synthetisiert/",
-      "description": "Chemiker der Universität des Saarlandes haben einen bahnbrechenden Erfolg erzielt: Nach fast 50 Jahren erfolgloser Versuche gelang die Synthese eines stabilen siliziumbasierten Aromaten. Diese Verbind",
-      "tags": [
-        "anorganische chemie",
-        "silizium",
-        "aromaten",
-        "chemie",
-        "synthese"
-      ],
-      "entities": [
-        "pentasilacyclopentadienid",
-        "cyclopentadienid",
-        "silizium",
-        "universität des saarlandes",
-        "kohlenstoff",
-        "science"
-      ],
-      "date": "2026-06-05T02:43:12+02:00"
-    },
-    {
-      "title": "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion",
-      "url": "https://chemie-lernen.org/posts/2026-06-05-kupferoxid-katalysatoren-steigern-gruene-ammoniakproduktion/",
-      "description": "Forschende haben einen entscheidenden Mechanismus bei der Herstellung von grünem Ammoniak entdeckt. Dabei wandeln sich Kupferoxid-Katalysatoren während der Reaktion in metallisches Kupfer um. Dieser s",
-      "tags": [
-        "ammoniak",
-        "elektrochemie",
-        "katalyse",
-        "kupfer",
-        "nachhaltige chemie"
-      ],
-      "entities": [
-        "ammoniak",
-        "metallisches kupfer",
-        "katalysator",
-        "stickstoffreduktion",
-        "kupferoxid"
-      ],
-      "date": "2026-06-05T02:43:33+02:00"
-    },
-    {
-      "title": "Asymmetrisches Alloying für neuartige lumineszente Metallcluster",
-      "url": "https://chemie-lernen.org/posts/2026-06-06-asymmetrisches-alloying-fuer-neuartige-lumineszente-metallcluster/",
-      "description": "Metallcluster-Moleküle bestehen aus mehreren Metallatomen, die durch Metall-Metall- und Metall-Ligand-Bindungen zusammengehalten werden, oft dargestellt als [M_nL_m]. Sie sind vielversprechend für Kat",
-      "tags": [
-        "materialwissenschaft",
-        "nanotechnologie",
-        "metallcluster",
-        "asymmetrisches alloying",
-        "lumineszenz"
-      ],
-      "entities": [
-        "katalyse",
-        "photolumineszenz",
-        "biosensoren",
-        "nir",
-        "metallcluster-moleküle"
-      ],
-      "date": "2026-06-06T02:42:32+02:00"
-    },
-    {
-      "title": "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse",
-      "url": "https://chemie-lernen.org/posts/2026-06-07-luftstabiles-eisen-i-durch-sandwichliganden-fuer-nachhaltige-katalyse/",
-      "description": "Forscher haben eine bahnbrechende Methode entwickelt, um Eisen in der Oxidationsstufe +1 (Fe(I)) an Luft stabil zu halten. Bisher waren Fe(I)-Spezies extrem luftempfindlich, was ihren Einsatz in der K",
-      "tags": [
-        "liganden",
-        "organometallchemie",
-        "eisen",
-        "oxidationszustand",
-        "katalyse"
-      ],
-      "entities": [
-        "palladium",
-        "platin",
-        "sandwichliganden",
-        "luftstabilität",
-        "organometallkatalysator",
-        "eisen(i)"
-      ],
-      "date": "2026-06-07T02:43:24+02:00"
-    },
-    {
-      "title": "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe",
-      "url": "https://chemie-lernen.org/posts/2026-06-07-computergestuetzte-suche-nach-effizienten-photokatalysatoren-fuer-solare-brennst/",
-      "description": "Wissenschaftler haben eine leistungsstarke neue computergestützte Methode entwickelt, welche die Suche nach Materialien der nächsten Generation beschleunigen könnte, die Sonnenlicht in nutzbare chemis",
-      "tags": [
-        "sonnenenergie",
-        "chemie",
-        "materialwissenschaft",
-        "berechnung",
-        "photokatalyse"
-      ],
-      "entities": [
-        "kohlenstoffnitrid",
-        "metallionen",
-        "co2-umwandlung",
-        "polyheptazin-imide",
-        "wasserstoffproduktion"
-      ],
-      "date": "2026-06-07T02:43:51+02:00"
-    },
-    {
-      "title": "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse",
-      "url": "https://chemie-lernen.org/posts/2026-06-07-magnetfeld-verdreifacht-ammoniakausbeute-bei-elektrokatalyse/",
-      "description": "Ein Forschungsteam unter Leitung von Marcel Risch (HZB) und Sanjay Mathur (Universität zu Köln) hat eine innovative Methode zur Verbesserung von Elektrokatalysatoren entwickelt. Wie in der Zeitschrift",
-      "tags": [
-        "ammoniak",
-        "nachhaltige chemie",
-        "materialwissenschaft",
-        "magnetfeld",
-        "elektrokatalyse"
-      ],
-      "entities": [
-        "ammoniak",
-        "magnetfeld",
-        "cobaltferrit",
-        "elektrokatalyse",
-        "spinelloxid"
-      ],
-      "date": "2026-06-07T02:44:22+02:00"
-    },
-    {
-      "title": "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz",
-      "url": "https://chemie-lernen.org/posts/2026-06-08-neue-kristallsaatkerne-steigern-perowskit-solarzellen-auf-23-effizienz/",
-      "description": "Forschende haben eine neue Methode zur Herstellung invertierter Perowskit-Solarzellen entwickelt, die deren Effizienz und Stabilität显著 verbessert. Bisher limitierte eine versteckte Grenzfläche im Inne",
-      "tags": [
-        "solarzellen",
-        "materialwissenschaft",
-        "erneuerbare energien",
-        "perowskit",
-        "kristallisation"
-      ],
-      "entities": [
-        "perowskit-solarzellen",
-        "invertierte perowskit-solarzellen",
-        "kristall-solvat-nanosaatkerne",
-        "buried layer",
-        "mini-modul"
-      ],
-      "date": "2026-06-08T02:42:34+02:00"
-    },
-    {
-      "title": "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen",
-      "url": "https://chemie-lernen.org/posts/2026-06-08-neuer-kristall-erzeugt-magnetische-skyrmionen-strukturen/",
-      "description": "Wissenschaftler der Florida State University haben einen neuen Kristall entwickelt, der atomare Magnete zu komplexen, sich wiederholenden Mustern zwingt. Durch das Mischen zweier nahezu identischer Ve",
-      "tags": [
-        "festkörperchemie",
-        "skyrmionen",
-        "magnetismus",
-        "spintronik",
-        "materialwissenschaft"
-      ],
-      "entities": [
-        "kristallstruktur",
-        "florida state university",
-        "quantencomputing",
-        "skyrmionen",
-        "magnetische ordnung",
-        "datenspeicherung"
-      ],
-      "date": "2026-06-08T02:43:06+02:00"
+      "date": "2026-06-10T02:43:49+02:00"
     },
     {
       "title": "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung",
@@ -386,9 +20,9 @@
       "description": "Proteine mit ähnlicher Struktur können völlig unterschiedliche Funktionen erfüllen. Bisher war unklar, welche energetischen Mechanismen dieser funktionellen Diversität zugrunde liegen. Eine neue Studi",
       "tags": [
         "proteinchemie",
+        "allosterie",
         "massenspektrometrie",
         "proteinengineering",
-        "allosterie",
         "biophysik"
       ],
       "entities": [
@@ -403,53 +37,55 @@
       "date": "2026-06-08T02:43:40+02:00"
     },
     {
-      "title": "Nachweisreaktionen",
-      "url": "https://chemie-lernen.org/themenbereiche/analytische-methoden/nachweisreaktionen/",
-      "description": "Nachweisreaktionen zeigen anhand charakteristischer Farbumschläge, ob bestimmte Ionen oder Moleküle in einer Probe enthalten sind. Verwendung in Laboranalytik und Qualitätskontrolle.",
+      "title": "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen",
+      "url": "https://chemie-lernen.org/posts/2026-06-08-neuer-kristall-erzeugt-magnetische-skyrmionen-strukturen/",
+      "description": "Wissenschaftler der Florida State University haben einen neuen Kristall entwickelt, der atomare Magnete zu komplexen, sich wiederholenden Mustern zwingt. Durch das Mischen zweier nahezu identischer Ve",
       "tags": [
-        "labor",
-        "analytik",
-        "nachweis",
-        "chemie"
+        "festkörperchemie",
+        "magnetismus",
+        "skyrmionen",
+        "materialwissenschaft",
+        "spintronik"
       ],
-      "entities": [],
-      "date": "2026-06-03"
+      "entities": [
+        "kristallstruktur",
+        "florida state university",
+        "quantencomputing",
+        "skyrmionen",
+        "magnetische ordnung",
+        "datenspeicherung"
+      ],
+      "date": "2026-06-08T02:43:06+02:00"
     },
     {
-      "title": "Säuren, Basen und Salze",
-      "url": "https://chemie-lernen.org/themenbereiche/anorganische-verbindungen/saeuren-basen-salze/",
-      "description": "Säuren bilden in Wasser $H^+$-Ionen, Basen bilden $OH^-$-Ionen. Salze entstehen aus der Neutralisation.",
+      "title": "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz",
+      "url": "https://chemie-lernen.org/posts/2026-06-08-neue-kristallsaatkerne-steigern-perowskit-solarzellen-auf-23-effizienz/",
+      "description": "Forschende haben eine neue Methode zur Herstellung invertierter Perowskit-Solarzellen entwickelt, die deren Effizienz und Stabilität显著 verbessert. Bisher limitierte eine versteckte Grenzfläche im Inne",
       "tags": [
-        "salze",
-        "basen",
-        "säuren",
-        "chemie"
+        "perowskit",
+        "solarzellen",
+        "kristallisation",
+        "materialwissenschaft",
+        "erneuerbare energien"
       ],
-      "entities": [],
-      "date": "2026-06-03"
-    },
-    {
-      "title": "Atome und Moleküle",
-      "url": "https://chemie-lernen.org/themenbereiche/aufbau-materie/atome-und-molekuele/",
-      "description": "Atome sind die kleinsten Bausteine der Materie. Moleküle sind Atome, die durch chemische Bindungen verbunden sind.",
-      "tags": [
-        "bindungen",
-        "moleküle",
-        "atome",
-        "chemie"
+      "entities": [
+        "perowskit-solarzellen",
+        "invertierte perowskit-solarzellen",
+        "kristall-solvat-nanosaatkerne",
+        "buried layer",
+        "mini-modul"
       ],
-      "entities": [],
-      "date": "2026-06-03"
+      "date": "2026-06-08T02:42:34+02:00"
     },
     {
       "title": "Chemische Bindungen",
       "url": "https://chemie-lernen.org/themenbereiche/aufbau-materie/chemische-bindungen/",
       "description": "Atome gehen durch Abgabe, Aufnahme oder gemeinsame Nutzung von Elektronen Bindungen ein. Drei Haupttypen: Ionenbindung, Atombindung, Metallbindung.",
       "tags": [
-        "moleküle",
-        "ionen",
+        "chemie",
         "bindungen",
-        "chemie"
+        "ionen",
+        "moleküle"
       ],
       "entities": [],
       "date": "2026-06-08"
@@ -459,22 +95,288 @@
       "url": "https://chemie-lernen.org/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
       "description": "Stoffgemische enthalten mehrere Reinstoffe. Trennverfahren nutzen unterschiedliche physikalische Eigenschaften zur Trennung.",
       "tags": [
-        "gemische",
-        "trennverfahren",
+        "chemie",
         "stoffe",
-        "chemie"
+        "trennverfahren",
+        "gemische"
       ],
       "entities": [],
       "date": "2026-06-08"
+    },
+    {
+      "title": "Der Satz von Hess",
+      "url": "https://chemie-lernen.org/themenbereiche/energetik/satz-von-hess/",
+      "description": "Die Reaktionsenthalpie ist unabhängig vom Reaktionsweg. Sie kann aus den Bildungsenthalpien der Produkte und Edukte berechnet werden.",
+      "tags": [
+        "chemie",
+        "hess",
+        "enthalpie",
+        "thermochemie"
+      ],
+      "entities": [],
+      "date": "2026-06-08"
+    },
+    {
+      "title": "Prinzip von Le Chatelier",
+      "url": "https://chemie-lernen.org/themenbereiche/gleichgewicht-geschwindigkeit/prinzip-von-le-chatelier/",
+      "description": "Das Prinzip des kleinsten Zwanges: Ein System im Gleichgewicht reagiert auf äußere Änderungen so, dass diese teilweise rückgängig gemacht werden.",
+      "tags": [
+        "chemie",
+        "gleichgewicht",
+        "le-chatelier",
+        "prinzip"
+      ],
+      "entities": [],
+      "date": "2026-06-08"
+    },
+    {
+      "title": "Spannungsreihe der Elemente",
+      "url": "https://chemie-lernen.org/themenbereiche/redox-elektrochemie/spannungsreihe/",
+      "description": "Die Spannungsreihe ordnet Metalle nach ihrer Fähigkeit, Elektronen abzugeben. Edle Metalle geben schwer, unedle leicht Elektronen ab.",
+      "tags": [
+        "chemie",
+        "spannungsreihe",
+        "redox",
+        "metalle"
+      ],
+      "entities": [],
+      "date": "2026-06-08"
+    },
+    {
+      "title": "Pufferlösungen",
+      "url": "https://chemie-lernen.org/themenbereiche/saeuren-basen/pufferloesungen/",
+      "description": "Pufferlösungen halten den pH-Wert auch bei Zugabe von Säure oder Base nahezu konstant. Sie bestehen aus einem schwachen Säure-Base-Paar.",
+      "tags": [
+        "chemie",
+        "puffer",
+        "ph-wert",
+        "gleichgewicht"
+      ],
+      "entities": [],
+      "date": "2026-06-08"
+    },
+    {
+      "title": "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse",
+      "url": "https://chemie-lernen.org/posts/2026-06-07-magnetfeld-verdreifacht-ammoniakausbeute-bei-elektrokatalyse/",
+      "description": "Ein Forschungsteam unter Leitung von Marcel Risch (HZB) und Sanjay Mathur (Universität zu Köln) hat eine innovative Methode zur Verbesserung von Elektrokatalysatoren entwickelt. Wie in der Zeitschrift",
+      "tags": [
+        "elektrokatalyse",
+        "ammoniak",
+        "magnetfeld",
+        "materialwissenschaft",
+        "nachhaltige chemie"
+      ],
+      "entities": [
+        "ammoniak",
+        "magnetfeld",
+        "cobaltferrit",
+        "elektrokatalyse",
+        "spinelloxid"
+      ],
+      "date": "2026-06-07T02:44:22+02:00"
+    },
+    {
+      "title": "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe",
+      "url": "https://chemie-lernen.org/posts/2026-06-07-computergestuetzte-suche-nach-effizienten-photokatalysatoren-fuer-solare-brennst/",
+      "description": "Wissenschaftler haben eine leistungsstarke neue computergestützte Methode entwickelt, welche die Suche nach Materialien der nächsten Generation beschleunigen könnte, die Sonnenlicht in nutzbare chemis",
+      "tags": [
+        "chemie",
+        "photokatalyse",
+        "materialwissenschaft",
+        "sonnenenergie",
+        "berechnung"
+      ],
+      "entities": [
+        "kohlenstoffnitrid",
+        "metallionen",
+        "co2-umwandlung",
+        "polyheptazin-imide",
+        "wasserstoffproduktion"
+      ],
+      "date": "2026-06-07T02:43:51+02:00"
+    },
+    {
+      "title": "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse",
+      "url": "https://chemie-lernen.org/posts/2026-06-07-luftstabiles-eisen-i-durch-sandwichliganden-fuer-nachhaltige-katalyse/",
+      "description": "Forscher haben eine bahnbrechende Methode entwickelt, um Eisen in der Oxidationsstufe +1 (Fe(I)) an Luft stabil zu halten. Bisher waren Fe(I)-Spezies extrem luftempfindlich, was ihren Einsatz in der K",
+      "tags": [
+        "eisen",
+        "katalyse",
+        "organometallchemie",
+        "liganden",
+        "oxidationszustand"
+      ],
+      "entities": [
+        "palladium",
+        "platin",
+        "sandwichliganden",
+        "luftstabilität",
+        "organometallkatalysator",
+        "eisen(i)"
+      ],
+      "date": "2026-06-07T02:43:24+02:00"
+    },
+    {
+      "title": "Asymmetrisches Alloying für neuartige lumineszente Metallcluster",
+      "url": "https://chemie-lernen.org/posts/2026-06-06-asymmetrisches-alloying-fuer-neuartige-lumineszente-metallcluster/",
+      "description": "Metallcluster-Moleküle bestehen aus mehreren Metallatomen, die durch Metall-Metall- und Metall-Ligand-Bindungen zusammengehalten werden, oft dargestellt als [M_nL_m]. Sie sind vielversprechend für Kat",
+      "tags": [
+        "metallcluster",
+        "lumineszenz",
+        "materialwissenschaft",
+        "asymmetrisches alloying",
+        "nanotechnologie"
+      ],
+      "entities": [
+        "katalyse",
+        "photolumineszenz",
+        "biosensoren",
+        "nir",
+        "metallcluster-moleküle"
+      ],
+      "date": "2026-06-06T02:42:32+02:00"
+    },
+    {
+      "title": "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion",
+      "url": "https://chemie-lernen.org/posts/2026-06-05-kupferoxid-katalysatoren-steigern-gruene-ammoniakproduktion/",
+      "description": "Forschende haben einen entscheidenden Mechanismus bei der Herstellung von grünem Ammoniak entdeckt. Dabei wandeln sich Kupferoxid-Katalysatoren während der Reaktion in metallisches Kupfer um. Dieser s",
+      "tags": [
+        "katalyse",
+        "ammoniak",
+        "kupfer",
+        "nachhaltige chemie",
+        "elektrochemie"
+      ],
+      "entities": [
+        "ammoniak",
+        "metallisches kupfer",
+        "katalysator",
+        "stickstoffreduktion",
+        "kupferoxid"
+      ],
+      "date": "2026-06-05T02:43:33+02:00"
+    },
+    {
+      "title": "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert",
+      "url": "https://chemie-lernen.org/posts/2026-06-05-durchbruch-erster-stabiler-siliziumbasierter-aromat-synthetisiert/",
+      "description": "Chemiker der Universität des Saarlandes haben einen bahnbrechenden Erfolg erzielt: Nach fast 50 Jahren erfolgloser Versuche gelang die Synthese eines stabilen siliziumbasierten Aromaten. Diese Verbind",
+      "tags": [
+        "chemie",
+        "synthese",
+        "aromaten",
+        "silizium",
+        "anorganische chemie"
+      ],
+      "entities": [
+        "pentasilacyclopentadienid",
+        "cyclopentadienid",
+        "silizium",
+        "universität des saarlandes",
+        "kohlenstoff",
+        "science"
+      ],
+      "date": "2026-06-05T02:43:12+02:00"
+    },
+    {
+      "title": "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure",
+      "url": "https://chemie-lernen.org/posts/2026-06-05-50-jahre-raetsel-proteine-verlieren-hydrathuelle-durch-saeure/",
+      "description": "Forschende der Martin Luther Universität Halle-Wittenberg (MLU) haben ein 50 Jahre altes Rätsel der Biochemie gelöst. Sie konnten erstmals direkt beobachten, wie Proteine in saurer Umgebung ihre schüt",
+      "tags": [
+        "biochemie",
+        "proteine",
+        "hydrathülle",
+        "ph-wert",
+        "bildgebung"
+      ],
+      "entities": [
+        "hydrathülle",
+        "proteine",
+        "martin luther universität halle-wittenberg",
+        "protonen",
+        "wasser"
+      ],
+      "date": "2026-06-05T02:42:39+02:00"
+    },
+    {
+      "title": "Wolframcarbid-Katalysator übertrifft Platin beim Plastik-Recycling",
+      "url": "https://chemie-lernen.org/posts/2026-06-03-wolframcarbid-katalysator-uebertrifft-platin-beim-plastik-recycling/",
+      "description": "Wissenschaftler haben einen neuen Katalysator entwickelt, der das teure und seltene Platin durch das häufigere Wolframcarbid ersetzt. Durch präzise Steuerung der Atomanordnung bei extrem hohen Tempera",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2026-06-03T02:43:49+02:00"
+    },
+    {
+      "title": "Durchbruch: Eisen-Katalysator übertrifft seltene Metalle",
+      "url": "https://chemie-lernen.org/posts/2026-06-03-durchbruch-eisen-katalysator-uebertrifft-seltene-metalle/",
+      "description": "Forscher der Universität Nagoya haben einen effizienten Photokatalysator auf Eisenbasis entwickelt. Dieser Durchbruch könnte den Bedarf an seltenen und teuren Edelmetallen in der fortschrittlichen Che",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2026-06-03T02:43:14+02:00"
+    },
+    {
+      "title": "Durchbruch: Methan wird mit Licht und Eisen zu Medizin umgewandelt",
+      "url": "https://chemie-lernen.org/posts/2026-06-03-durchbruch-methan-wird-mit-licht-und-eisen-zu-medizin-umgewandelt/",
+      "description": "Wissenschaftler haben eine bahnbrechende Methode entwickelt, um Erdgas statt als Brennstoff als chemischen Baustein für Medikamente zu nutzen. Ein neuartiger Katalysator auf Eisenbasis, angetrieben du",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2026-06-03T02:42:41+02:00"
+    },
+    {
+      "title": "Nachweisreaktionen",
+      "url": "https://chemie-lernen.org/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "description": "Nachweisreaktionen zeigen anhand charakteristischer Farbumschläge, ob bestimmte Ionen oder Moleküle in einer Probe enthalten sind. Verwendung in Laboranalytik und Qualitätskontrolle.",
+      "tags": [
+        "chemie",
+        "nachweis",
+        "analytik",
+        "labor"
+      ],
+      "entities": [],
+      "date": "2026-06-03"
+    },
+    {
+      "title": "Säuren, Basen und Salze",
+      "url": "https://chemie-lernen.org/themenbereiche/anorganische-verbindungen/saeuren-basen-salze/",
+      "description": "Säuren bilden in Wasser $H^+$-Ionen, Basen bilden $OH^-$-Ionen. Salze entstehen aus der Neutralisation.",
+      "tags": [
+        "chemie",
+        "säuren",
+        "basen",
+        "salze"
+      ],
+      "entities": [],
+      "date": "2026-06-03"
+    },
+    {
+      "title": "Atome und Moleküle",
+      "url": "https://chemie-lernen.org/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "description": "Atome sind die kleinsten Bausteine der Materie. Moleküle sind Atome, die durch chemische Bindungen verbunden sind.",
+      "tags": [
+        "chemie",
+        "atome",
+        "moleküle",
+        "bindungen"
+      ],
+      "entities": [],
+      "date": "2026-06-03"
     },
     {
       "title": "Was ist Chemie?",
       "url": "https://chemie-lernen.org/themenbereiche/einfuehrung-chemie/was-ist-chemie/",
       "description": "Chemie ist die Lehre von den Stoffen und deren Umwandlungen. Sie erklärt, warum Stoffe so reagieren, wie sie reagieren.",
       "tags": [
-        "stoffe",
+        "chemie",
         "einführung",
-        "chemie"
+        "stoffe"
       ],
       "entities": [],
       "date": "2026-06-03"
@@ -484,35 +386,22 @@
       "url": "https://chemie-lernen.org/themenbereiche/energetik/energie-bei-reaktionen/",
       "description": "Chemische Reaktionen speichern oder geben Energie frei. Exotherm → Wärmefreigabe, Endotherm → Wärmeaufnahme.",
       "tags": [
-        "enthalpie",
-        "thermodynamik",
+        "chemie",
         "energie",
-        "chemie"
+        "thermodynamik",
+        "enthalpie"
       ],
       "entities": [],
       "date": "2026-06-03"
-    },
-    {
-      "title": "Der Satz von Hess",
-      "url": "https://chemie-lernen.org/themenbereiche/energetik/satz-von-hess/",
-      "description": "Die Reaktionsenthalpie ist unabhängig vom Reaktionsweg. Sie kann aus den Bildungsenthalpien der Produkte und Edukte berechnet werden.",
-      "tags": [
-        "thermochemie",
-        "enthalpie",
-        "hess",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-06-08"
     },
     {
       "title": "Kohlenwasserstoffe",
       "url": "https://chemie-lernen.org/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/",
       "description": "Kohlenwasserstoffe sind organische Verbindungen aus Kohlenstoff und Wasserstoff. Einteilung: gesättigte (Alkane), ungesättigte (Alkene, Alkine), aromatisch.",
       "tags": [
-        "organik",
+        "chemie",
         "kohlenwasserstoffe",
-        "chemie"
+        "organik"
       ],
       "entities": [],
       "date": "2026-06-03"
@@ -522,36 +411,23 @@
       "url": "https://chemie-lernen.org/themenbereiche/gleichgewicht-geschwindigkeit/chemisches-gleichgewicht/",
       "description": "Wenn Hin- und Rückreaktion gleich schnell ablaufen, stellt sich ein Gleichgewicht ein. MWG beschreibt das Konzentrationsverhältnis.",
       "tags": [
-        "le-chatelier",
-        "mwg",
+        "chemie",
         "gleichgewicht",
-        "chemie"
+        "mwg",
+        "le-chatelier"
       ],
       "entities": [],
       "date": "2026-06-03"
-    },
-    {
-      "title": "Prinzip von Le Chatelier",
-      "url": "https://chemie-lernen.org/themenbereiche/gleichgewicht-geschwindigkeit/prinzip-von-le-chatelier/",
-      "description": "Das Prinzip des kleinsten Zwanges: Ein System im Gleichgewicht reagiert auf äußere Änderungen so, dass diese teilweise rückgängig gemacht werden.",
-      "tags": [
-        "prinzip",
-        "le-chatelier",
-        "gleichgewicht",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-06-08"
     },
     {
       "title": "Reaktionskinetik",
       "url": "https://chemie-lernen.org/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
       "description": "Die Reaktionskinetik beschreibt die Geschwindigkeit, mit der chemische Reaktionen ablaufen. Faktoren: Konzentration, Temperatur, Katalysator.",
       "tags": [
-        "arrhenius",
-        "reaktionsgeschwindigkeit",
+        "chemie",
         "kinetik",
-        "chemie"
+        "reaktionsgeschwindigkeit",
+        "arrhenius"
       ],
       "entities": [],
       "date": "2026-06-03"
@@ -561,10 +437,10 @@
       "url": "https://chemie-lernen.org/themenbereiche/produkte-organisch/kunststoffe-und-polymere/",
       "description": "Polymere sind Makromoleküle aus vielen gleichen Bausteinen (Monomeren). Kunststoffe sind synthetische Polymere mit vielseitigen Anwendungen.",
       "tags": [
-        "materialien",
-        "polymere",
+        "chemie",
         "kunststoffe",
-        "chemie"
+        "polymere",
+        "materialien"
       ],
       "entities": [],
       "date": "2026-06-03"
@@ -574,11 +450,11 @@
       "url": "https://chemie-lernen.org/themenbereiche/reaktionstypen-organisch/substitution-und-addition/",
       "description": "Die wichtigsten Reaktionstypen in der organischen Chemie: Addition (ungebundene C=C-Doppelbindung öffnen) und Substitution (ein Atom wird ersetzt).",
       "tags": [
-        "substitution",
-        "addition",
-        "organik",
+        "chemie",
         "reaktionstypen",
-        "chemie"
+        "organik",
+        "addition",
+        "substitution"
       ],
       "entities": [],
       "date": "2026-06-03"
@@ -588,10 +464,10 @@
       "url": "https://chemie-lernen.org/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
       "description": "Galvanische Zellen wandeln chemische Energie in elektrische um (Batterien). Elektrolysezellen wandeln elektrische Energie in chemische um (z. B. Metallgewinnung).",
       "tags": [
-        "elektrolyse",
-        "galvanisch",
+        "chemie",
         "elektrochemie",
-        "chemie"
+        "galvanisch",
+        "elektrolyse"
       ],
       "entities": [],
       "date": "2026-06-03"
@@ -601,447 +477,2522 @@
       "url": "https://chemie-lernen.org/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/",
       "description": "Oxidation = Elektronenabgabe, Reduktion = Elektronenaufnahme. Redox-Reaktionen stehen immer zusammen (Redox-Paar).",
       "tags": [
-        "redox-reaktionen",
-        "elektronen",
+        "chemie",
         "redox",
-        "chemie"
+        "elektronen",
+        "redox-reaktionen"
       ],
       "entities": [],
       "date": "2026-06-03"
-    },
-    {
-      "title": "Spannungsreihe der Elemente",
-      "url": "https://chemie-lernen.org/themenbereiche/redox-elektrochemie/spannungsreihe/",
-      "description": "Die Spannungsreihe ordnet Metalle nach ihrer Fähigkeit, Elektronen abzugeben. Edle Metalle geben schwer, unedle leicht Elektronen ab.",
-      "tags": [
-        "metalle",
-        "redox",
-        "spannungsreihe",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-06-08"
     },
     {
       "title": "pH-Wert und Indikatoren",
       "url": "https://chemie-lernen.org/themenbereiche/saeuren-basen/ph-wert-und-indikatoren/",
       "description": "Der pH-Wert gibt die Konzentration von $H^+$-Ionen in einer Lösung an. Indikatoren zeigen durch Farbumschlag an, ob sauer oder basisch.",
       "tags": [
-        "basen",
-        "saeuren",
+        "chemie",
         "ph-wert",
-        "chemie"
+        "saeuren",
+        "basen"
       ],
       "entities": [],
       "date": "2026-06-03"
-    },
-    {
-      "title": "Pufferlösungen",
-      "url": "https://chemie-lernen.org/themenbereiche/saeuren-basen/pufferloesungen/",
-      "description": "Pufferlösungen halten den pH-Wert auch bei Zugabe von Säure oder Base nahezu konstant. Sie bestehen aus einem schwachen Säure-Base-Paar.",
-      "tags": [
-        "gleichgewicht",
-        "ph-wert",
-        "puffer",
-        "chemie"
-      ],
-      "entities": [],
-      "date": "2026-06-08"
     },
     {
       "title": "Effektiv Chemie lernen",
       "url": "https://chemie-lernen.org/themenbereiche/tipps-tricks/effektiv-lernen/",
       "description": "Merksätze und Strategien, um Chemie effizient zu lernen: Formeln nicht auswendig, sondern mit Verständnis. Regelmäßiges Üben der Rechnungen.",
       "tags": [
-        "merksätze",
-        "tipps",
+        "chemie",
         "lernen",
-        "chemie"
+        "tipps",
+        "merksätze"
       ],
       "entities": [],
       "date": "2026-06-03"
+    },
+    {
+      "title": "Neue Katalysatoren reduzieren Verdampfungsverluste bei flüssigem Wasserstoff",
+      "url": "https://chemie-lernen.org/posts/2026-06-02-neue-katalysatoren-reduzieren-verdampfungsverluste-bei-fluessigem-wasserstoff/",
+      "description": "Forschung an neuen Katalysatoren zur Reduzierung von Verdampfungsverlusten bei flüssigem Wasserstoff für effizientere Energiespeicherung.",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2026-06-02T03:40:06+02:00"
+    },
+    {
+      "title": "Neue Quantenmethode lokalisiert konische Durchschneidungen effizient",
+      "url": "https://chemie-lernen.org/posts/2026-06-02-neue-quantenmethode-lokalisiert-konische-durchschneidungen-effizient/",
+      "description": "Neue Quantenmethode zur Lokalisierung konischer Durchschneidungen in Molekülen – Effizientere Berechnung von Nichtgleichgewichts-Prozessen.",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2026-06-02T03:39:22+02:00"
+    },
+    {
+      "title": "Metallfreie Carboran-Modifikation für Krebstherapie und Sensoren",
+      "url": "https://chemie-lernen.org/posts/2026-06-02-metallfreie-carboran-modifikation-fuer-krebstherapie-und-sensoren/",
+      "description": "Metallfreie Carboran-Modifikation für Anwendungen in der Krebstherapie und chemischen Sensorik – orbitalgesteuerte Funktionalisierung.",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2026-06-02T03:38:46+02:00"
+    },
+    {
+      "title": "KI-Prognose für Turbinen: Lebensdauer und Temperaturüberwachung",
+      "url": "https://chemie-lernen.org/posts/2026-06-01-ki-prognose-fuer-turbinen-lebensdauer-und-temperaturueberwachung/",
+      "description": "KI-gestützte Prognose von Turbinen-Lebensdauer und Temperaturüberwachung in chemischen Kraftwerken für vorausschauende Wartung.",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2026-06-01T20:17:30+02:00"
+    },
+    {
+      "title": "KI-Modell entdeckt stabile anorganische Materialien durch Symmetrie-Padding",
+      "url": "https://chemie-lernen.org/posts/2026-06-01-ki-modell-entdeckt-stabile-anorganische-materialien-durch-symmetrie-padding/",
+      "description": "KI-Modell entdeckt stabile anorganische Materialien durch Symmetrie-Padding – Beschleunigte Materialforschung durch maschinelles Lernen.",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2026-06-01T20:17:00+02:00"
+    },
+    {
+      "title": "Effiziente 3D-Simulation von Hochtemperatur-Supraleiter-Magneten",
+      "url": "https://chemie-lernen.org/posts/2026-06-01-effiziente-3d-simulation-von-hochtemperatur-supraleiter-magneten/",
+      "description": "Effiziente 3D-Simulation von Hochtemperatur-Supraleiter-Magneten mit optimierten Rechenmethoden für die Materialwissenschaft.",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2026-06-01T20:16:28+02:00"
+    },
+    {
+      "title": "Ladungswanderung ermöglicht präzise C-H-Bindungsaktivierung",
+      "url": "https://chemie-lernen.org/posts/2026-05-25-ladungswanderung-ermoeglicht-praezise-c-h-bindungsaktivierung/",
+      "description": "Ladungswanderung ermöglicht präzise C-H-Bindungsaktivierung – Durchbruch in der metallorganischen Chemie für gezielte Molekülmodifikation.",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2026-05-25T02:42:15+02:00"
+    },
+    {
+      "title": "Neue Methode: Sonnenlicht effizient in Brennstoffe umwandeln",
+      "url": "https://chemie-lernen.org/posts/2026-05-25-neue-methode-sonnenlicht-effizient-in-brennstoffe-umwandeln/",
+      "description": "Neue Methode wandelt Sonnenlicht effizienter in chemische Brennstoffe um – Photokatalytische Verfahren für nachhaltige Energie.",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2026-05-25T02:42:11+02:00"
+    },
+    {
+      "title": "Kontrollierte Kristallisation verbessert Perowskit-Transistoren",
+      "url": "https://chemie-lernen.org/posts/2026-05-25-kontrollierte-kristallisation-verbessert-perowskit-transistoren/",
+      "description": "Kontrollierte Kristallisation verbessert Perowskit-Transistoren für flexible Elektronik und effizientere Halbleiterbauteile.",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2026-05-25T02:42:05+02:00"
+    },
+    {
+      "title": "Neue Methode für präzise C-H-Bindungsaktivierung",
+      "url": "https://chemie-lernen.org/posts/2026-05-24-neue-methode-fuer-praezise-c-h-bindungsaktivierung/",
+      "description": "Präzise C-H-Bindungsaktivierung durch neue Synthesemethode – Effizientere Wege zu komplexen organischen Molekülen.",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2026-05-24T02:42:33+02:00"
+    },
+    {
+      "title": "Neue Methode beschleunigt Suche nach Sonnenlicht-Katalysatoren",
+      "url": "https://chemie-lernen.org/posts/2026-05-24-neue-methode-beschleunigt-suche-nach-sonnenlicht-katalysatoren/",
+      "description": "Neue Methode beschleunigt Suche nach Sonnenlicht-Katalysatoren – Hochdurchsatz-Screening für photokatalytische Materialien.",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2026-05-24T02:42:30+02:00"
+    },
+    {
+      "title": "Gesteuerte Kristallisation verbessert Perowskit-Transistoren",
+      "url": "https://chemie-lernen.org/posts/2026-05-24-gesteuerte-kristallisation-verbessert-perowskit-transistoren/",
+      "description": "Gesteuerte Kristallisation verbessert Perowskit-Transistoren – Neue Ansätze für stabile und leistungsfähige Halbleiter.",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2026-05-24T02:42:26+02:00"
+    },
+    {
+      "title": "PSE in VR: Eine revolutionäre Art, Chemie zu lernen",
+      "url": "https://chemie-lernen.org/posts/pse-in-vr-release/",
+      "description": "Periodensystem in VR – Erleben Sie das Periodensystem der Elemente in Virtual Reality mit interaktiven 3D-Ansichten.",
+      "tags": [
+        "['vr', 'periodensystem', 'webxr', 'entwicklung', '3d']"
+      ],
+      "entities": [],
+      "date": "2026-01-02T10:00:00+01:00"
+    },
+    {
+      "title": "Molekülstudio: Interaktive 3D-Visualisierung von Molekülen",
+      "url": "https://chemie-lernen.org/posts/molekulstudio-3d-visualisierung/",
+      "description": "Molekülstudio 3D – Interaktive 3D-Visualisierung von Molekülstrukturen für den Chemieunterricht mit WebGL-Technologie.",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2025-12-24T10:00:00+01:00"
+    },
+    {
+      "title": "Eine interdisziplinäre Kooperation in der Hochschullehre mit Hilfe der virtuellen Realität",
+      "url": "https://chemie-lernen.org/posts/interdisciplinary-vr-cooperation/",
+      "description": "Interdisziplinäre VR-Kooperation im Chemieunterricht – Virtuelle Labore und 3D-Molekülvisualisierung für innovative Lernkonzepte.",
+      "tags": [
+        "chemie",
+        "forschung"
+      ],
+      "entities": [],
+      "date": "2025-12-18T02:00:00+01:00"
     }
   ],
   "entities": [
     {
-      "name": "ammoniak",
-      "articleCount": 2,
-      "articles": [
-        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion",
-        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
+      "name": "Aluminium",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Ammoniak (NH3)",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [
+        {
+          "name": "Stickstoff",
+          "weight": 1
+        },
+        {
+          "name": "Wasserstoff",
+          "weight": 3
+        }
+      ],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Blei",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Calcium",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Chemisches Gleichgewicht",
+      "kategorie": "konzept",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Chlor",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": [
+        {
+          "name": "Salzsäure (HCl)",
+          "weight": 1
+        },
+        {
+          "name": "Natriumchlorid (NaCl)",
+          "weight": 1
+        }
       ]
     },
     {
-      "name": "hydrathülle",
-      "articleCount": 1,
-      "articles": [
-        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+      "name": "Chromatographie",
+      "kategorie": "methode",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Eisen",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Elektrolyse",
+      "kategorie": "reaktion",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Ethanol (C2H5OH)",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Fluor",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Fällungsreaktion",
+      "kategorie": "reaktion",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Glucose (C6H12O6)",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Gold",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Helium",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Kalium",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Katalyse",
+      "kategorie": "konzept",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Kernspinresonanz (NMR)",
+      "kategorie": "methode",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Kinetik",
+      "kategorie": "konzept",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Kohlendioxid (CO2)",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [
+        {
+          "name": "Kohlenstoff",
+          "weight": 1
+        },
+        {
+          "name": "Sauerstoff",
+          "weight": 2
+        }
+      ],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Kohlenstoff",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": [
+        {
+          "name": "Kohlendioxid (CO2)",
+          "weight": 1
+        },
+        {
+          "name": "Methan (CH4)",
+          "weight": 1
+        }
       ]
     },
     {
-      "name": "proteine",
-      "articleCount": 1,
-      "articles": [
-        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+      "name": "Komplexbildung",
+      "kategorie": "reaktion",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Kupfer",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Löslichkeit",
+      "kategorie": "konzept",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Magnesium",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Massenspektrometrie",
+      "kategorie": "methode",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Methan (CH4)",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [
+        {
+          "name": "Wasserstoff",
+          "weight": 4
+        },
+        {
+          "name": "Kohlenstoff",
+          "weight": 1
+        }
+      ],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Natrium",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": [
+        {
+          "name": "Natronlauge (NaOH)",
+          "weight": 1
+        },
+        {
+          "name": "Natriumchlorid (NaCl)",
+          "weight": 1
+        }
       ]
     },
     {
-      "name": "martin luther universität halle-wittenberg",
-      "articleCount": 1,
-      "articles": [
-        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+      "name": "Natriumchlorid (NaCl)",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [
+        {
+          "name": "Chlor",
+          "weight": 1
+        },
+        {
+          "name": "Natrium",
+          "weight": 1
+        }
+      ],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Natronlauge (NaOH)",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [
+        {
+          "name": "Wasserstoff",
+          "weight": 1
+        },
+        {
+          "name": "Natrium",
+          "weight": 1
+        },
+        {
+          "name": "Sauerstoff",
+          "weight": 1
+        }
+      ],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Neon",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Neutralisation",
+      "kategorie": "reaktion",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Oxidation",
+      "kategorie": "reaktion",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Phosphor",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Platin",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Polymerisation",
+      "kategorie": "reaktion",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Quecksilber",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Reduktion",
+      "kategorie": "reaktion",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Röntgendiffraktion",
+      "kategorie": "methode",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Salpetersäure (HNO3)",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Salzsäure (HCl)",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [
+        {
+          "name": "Chlor",
+          "weight": 1
+        },
+        {
+          "name": "Wasserstoff",
+          "weight": 1
+        }
+      ],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Sauerstoff",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": [
+        {
+          "name": "Schwefelsäure (H2SO4)",
+          "weight": 4
+        },
+        {
+          "name": "Kohlendioxid (CO2)",
+          "weight": 2
+        },
+        {
+          "name": "Natronlauge (NaOH)",
+          "weight": 1
+        },
+        {
+          "name": "Wasser (H2O)",
+          "weight": 1
+        }
       ]
     },
     {
-      "name": "protonen",
-      "articleCount": 1,
-      "articles": [
-        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+      "name": "Schwefel",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": [
+        {
+          "name": "Schwefelsäure (H2SO4)",
+          "weight": 1
+        }
       ]
     },
     {
-      "name": "wasser",
-      "articleCount": 1,
-      "articles": [
-        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+      "name": "Schwefelsäure (H2SO4)",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [
+        {
+          "name": "Sauerstoff",
+          "weight": 4
+        },
+        {
+          "name": "Schwefel",
+          "weight": 1
+        },
+        {
+          "name": "Wasserstoff",
+          "weight": 2
+        }
+      ],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Silber",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Silizium",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Spektroskopie",
+      "kategorie": "methode",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Stickstoff",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": [
+        {
+          "name": "Ammoniak (NH3)",
+          "weight": 1
+        }
       ]
     },
     {
-      "name": "pentasilacyclopentadienid",
-      "articleCount": 1,
-      "articles": [
-        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+      "name": "Säure-Base-Titration",
+      "kategorie": "methode",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Thermodynamik",
+      "kategorie": "konzept",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Uran",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Verbrennung",
+      "kategorie": "reaktion",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Wasser (H2O)",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [
+        {
+          "name": "Wasserstoff",
+          "weight": 2
+        },
+        {
+          "name": "Sauerstoff",
+          "weight": 1
+        }
+      ],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "Wasserstoff",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": [
+        {
+          "name": "Natronlauge (NaOH)",
+          "weight": 1
+        },
+        {
+          "name": "Wasser (H2O)",
+          "weight": 2
+        },
+        {
+          "name": "Ammoniak (NH3)",
+          "weight": 3
+        },
+        {
+          "name": "Salzsäure (HCl)",
+          "weight": 1
+        },
+        {
+          "name": "Schwefelsäure (H2SO4)",
+          "weight": 2
+        }
       ]
     },
     {
-      "name": "cyclopentadienid",
-      "articleCount": 1,
-      "articles": [
-        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
-      ]
-    },
-    {
-      "name": "silizium",
-      "articleCount": 1,
-      "articles": [
-        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
-      ]
-    },
-    {
-      "name": "universität des saarlandes",
-      "articleCount": 1,
-      "articles": [
-        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
-      ]
-    },
-    {
-      "name": "kohlenstoff",
-      "articleCount": 1,
-      "articles": [
-        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
-      ]
-    },
-    {
-      "name": "science",
-      "articleCount": 1,
-      "articles": [
-        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
-      ]
-    },
-    {
-      "name": "metallisches kupfer",
-      "articleCount": 1,
-      "articles": [
-        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
-      ]
-    },
-    {
-      "name": "katalysator",
-      "articleCount": 1,
-      "articles": [
-        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
-      ]
-    },
-    {
-      "name": "stickstoffreduktion",
-      "articleCount": 1,
-      "articles": [
-        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
-      ]
-    },
-    {
-      "name": "kupferoxid",
-      "articleCount": 1,
-      "articles": [
-        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
-      ]
-    },
-    {
-      "name": "katalyse",
-      "articleCount": 1,
-      "articles": [
-        "Asymmetrisches Alloying für neuartige lumineszente Metallcluster"
-      ]
-    },
-    {
-      "name": "photolumineszenz",
-      "articleCount": 1,
-      "articles": [
-        "Asymmetrisches Alloying für neuartige lumineszente Metallcluster"
-      ]
-    },
-    {
-      "name": "biosensoren",
-      "articleCount": 1,
-      "articles": [
-        "Asymmetrisches Alloying für neuartige lumineszente Metallcluster"
-      ]
-    },
-    {
-      "name": "nir",
-      "articleCount": 1,
-      "articles": [
-        "Asymmetrisches Alloying für neuartige lumineszente Metallcluster"
-      ]
-    },
-    {
-      "name": "metallcluster-moleküle",
-      "articleCount": 1,
-      "articles": [
-        "Asymmetrisches Alloying für neuartige lumineszente Metallcluster"
-      ]
-    },
-    {
-      "name": "palladium",
-      "articleCount": 1,
-      "articles": [
-        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
-      ]
-    },
-    {
-      "name": "platin",
-      "articleCount": 1,
-      "articles": [
-        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
-      ]
-    },
-    {
-      "name": "sandwichliganden",
-      "articleCount": 1,
-      "articles": [
-        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
-      ]
-    },
-    {
-      "name": "luftstabilität",
-      "articleCount": 1,
-      "articles": [
-        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
-      ]
-    },
-    {
-      "name": "organometallkatalysator",
-      "articleCount": 1,
-      "articles": [
-        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
-      ]
-    },
-    {
-      "name": "eisen(i)",
-      "articleCount": 1,
-      "articles": [
-        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
-      ]
-    },
-    {
-      "name": "kohlenstoffnitrid",
-      "articleCount": 1,
-      "articles": [
-        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
-      ]
-    },
-    {
-      "name": "metallionen",
-      "articleCount": 1,
-      "articles": [
-        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
-      ]
-    },
-    {
-      "name": "co2-umwandlung",
-      "articleCount": 1,
-      "articles": [
-        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
-      ]
-    },
-    {
-      "name": "polyheptazin-imide",
-      "articleCount": 1,
-      "articles": [
-        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
-      ]
-    },
-    {
-      "name": "wasserstoffproduktion",
-      "articleCount": 1,
-      "articles": [
-        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
-      ]
-    },
-    {
-      "name": "magnetfeld",
-      "articleCount": 1,
-      "articles": [
-        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
-      ]
-    },
-    {
-      "name": "cobaltferrit",
-      "articleCount": 1,
-      "articles": [
-        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
-      ]
-    },
-    {
-      "name": "elektrokatalyse",
-      "articleCount": 1,
-      "articles": [
-        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
-      ]
-    },
-    {
-      "name": "spinelloxid",
-      "articleCount": 1,
-      "articles": [
-        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
-      ]
-    },
-    {
-      "name": "perowskit-solarzellen",
-      "articleCount": 1,
-      "articles": [
-        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
-      ]
-    },
-    {
-      "name": "invertierte perowskit-solarzellen",
-      "articleCount": 1,
-      "articles": [
-        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
-      ]
-    },
-    {
-      "name": "kristall-solvat-nanosaatkerne",
-      "articleCount": 1,
-      "articles": [
-        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
-      ]
-    },
-    {
-      "name": "buried layer",
-      "articleCount": 1,
-      "articles": [
-        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
-      ]
-    },
-    {
-      "name": "mini-modul",
-      "articleCount": 1,
-      "articles": [
-        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
-      ]
-    },
-    {
-      "name": "kristallstruktur",
-      "articleCount": 1,
-      "articles": [
-        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
-      ]
-    },
-    {
-      "name": "florida state university",
-      "articleCount": 1,
-      "articles": [
-        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
-      ]
-    },
-    {
-      "name": "quantencomputing",
-      "articleCount": 1,
-      "articles": [
-        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
-      ]
-    },
-    {
-      "name": "skyrmionen",
-      "articleCount": 1,
-      "articles": [
-        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
-      ]
-    },
-    {
-      "name": "magnetische ordnung",
-      "articleCount": 1,
-      "articles": [
-        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
-      ]
-    },
-    {
-      "name": "datenspeicherung",
-      "articleCount": 1,
-      "articles": [
-        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
-      ]
-    },
-    {
-      "name": "ligandenempfindlichkeit",
-      "articleCount": 1,
-      "articles": [
-        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
-      ]
-    },
-    {
-      "name": "transportproteine",
-      "articleCount": 1,
-      "articles": [
-        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
-      ]
-    },
-    {
-      "name": "nature chemistry",
-      "articleCount": 1,
-      "articles": [
-        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
-      ]
-    },
-    {
-      "name": "venusfliegenfallen-domänen",
-      "articleCount": 1,
-      "articles": [
-        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
-      ]
-    },
-    {
-      "name": "hdx-ms",
-      "articleCount": 1,
-      "articles": [
-        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
-      ]
-    },
-    {
-      "name": "transkriptionsfaktoren",
-      "articleCount": 1,
-      "articles": [
-        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
-      ]
+      "name": "Zink",
+      "kategorie": "stoff",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
     },
     {
       "name": "allosterie",
+      "kategorie": "konzept",
       "articleCount": 1,
       "articles": [
         "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
-      ]
+      ],
+      "relatedEntities": [
+        {
+          "name": "transportproteine",
+          "weight": 1
+        },
+        {
+          "name": "nature chemistry",
+          "weight": 1
+        },
+        {
+          "name": "ligandenempfindlichkeit",
+          "weight": 1
+        },
+        {
+          "name": "venusfliegenfallen-domänen",
+          "weight": 1
+        },
+        {
+          "name": "hdx-ms",
+          "weight": 1
+        },
+        {
+          "name": "transkriptionsfaktoren",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "ammoniak",
+      "kategorie": "stoff",
+      "articleCount": 2,
+      "articles": [
+        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse",
+        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
+      ],
+      "relatedEntities": [
+        {
+          "name": "elektrokatalyse",
+          "weight": 1
+        },
+        {
+          "name": "magnetfeld",
+          "weight": 1
+        },
+        {
+          "name": "cobaltferrit",
+          "weight": 1
+        },
+        {
+          "name": "spinelloxid",
+          "weight": 1
+        },
+        {
+          "name": "stickstoffreduktion",
+          "weight": 1
+        },
+        {
+          "name": "kupferoxid",
+          "weight": 1
+        },
+        {
+          "name": "metallisches kupfer",
+          "weight": 1
+        },
+        {
+          "name": "katalysator",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "biosensoren",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Asymmetrisches Alloying für neuartige lumineszente Metallcluster"
+      ],
+      "relatedEntities": [
+        {
+          "name": "metallcluster-moleküle",
+          "weight": 1
+        },
+        {
+          "name": "nir",
+          "weight": 1
+        },
+        {
+          "name": "photolumineszenz",
+          "weight": 1
+        },
+        {
+          "name": "katalyse",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "buried layer",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
+      ],
+      "relatedEntities": [
+        {
+          "name": "mini-modul",
+          "weight": 1
+        },
+        {
+          "name": "invertierte perowskit-solarzellen",
+          "weight": 1
+        },
+        {
+          "name": "perowskit-solarzellen",
+          "weight": 1
+        },
+        {
+          "name": "kristall-solvat-nanosaatkerne",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "co2-umwandlung",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
+      ],
+      "relatedEntities": [
+        {
+          "name": "kohlenstoffnitrid",
+          "weight": 1
+        },
+        {
+          "name": "wasserstoffproduktion",
+          "weight": 1
+        },
+        {
+          "name": "polyheptazin-imide",
+          "weight": 1
+        },
+        {
+          "name": "metallionen",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "cobaltferrit",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
+      ],
+      "relatedEntities": [
+        {
+          "name": "magnetfeld",
+          "weight": 1
+        },
+        {
+          "name": "elektrokatalyse",
+          "weight": 1
+        },
+        {
+          "name": "ammoniak",
+          "weight": 1
+        },
+        {
+          "name": "spinelloxid",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "cyclopentadienid",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+      ],
+      "relatedEntities": [
+        {
+          "name": "pentasilacyclopentadienid",
+          "weight": 1
+        },
+        {
+          "name": "kohlenstoff",
+          "weight": 1
+        },
+        {
+          "name": "science",
+          "weight": 1
+        },
+        {
+          "name": "universität des saarlandes",
+          "weight": 1
+        },
+        {
+          "name": "silizium",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "datenspeicherung",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
+      ],
+      "relatedEntities": [
+        {
+          "name": "kristallstruktur",
+          "weight": 1
+        },
+        {
+          "name": "skyrmionen",
+          "weight": 1
+        },
+        {
+          "name": "magnetische ordnung",
+          "weight": 1
+        },
+        {
+          "name": "quantencomputing",
+          "weight": 1
+        },
+        {
+          "name": "florida state university",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "eisen(i)",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
+      ],
+      "relatedEntities": [
+        {
+          "name": "palladium",
+          "weight": 1
+        },
+        {
+          "name": "sandwichliganden",
+          "weight": 1
+        },
+        {
+          "name": "organometallkatalysator",
+          "weight": 1
+        },
+        {
+          "name": "luftstabilität",
+          "weight": 1
+        },
+        {
+          "name": "platin",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "elektrokatalyse",
+      "kategorie": "reaktion",
+      "articleCount": 1,
+      "articles": [
+        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
+      ],
+      "relatedEntities": [
+        {
+          "name": "ammoniak",
+          "weight": 1
+        },
+        {
+          "name": "magnetfeld",
+          "weight": 1
+        },
+        {
+          "name": "cobaltferrit",
+          "weight": 1
+        },
+        {
+          "name": "spinelloxid",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "florida state university",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
+      ],
+      "relatedEntities": [
+        {
+          "name": "kristallstruktur",
+          "weight": 1
+        },
+        {
+          "name": "quantencomputing",
+          "weight": 1
+        },
+        {
+          "name": "magnetische ordnung",
+          "weight": 1
+        },
+        {
+          "name": "skyrmionen",
+          "weight": 1
+        },
+        {
+          "name": "datenspeicherung",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "hdx-ms",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
+      ],
+      "relatedEntities": [
+        {
+          "name": "ligandenempfindlichkeit",
+          "weight": 1
+        },
+        {
+          "name": "transkriptionsfaktoren",
+          "weight": 1
+        },
+        {
+          "name": "venusfliegenfallen-domänen",
+          "weight": 1
+        },
+        {
+          "name": "allosterie",
+          "weight": 1
+        },
+        {
+          "name": "nature chemistry",
+          "weight": 1
+        },
+        {
+          "name": "transportproteine",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "hydrathülle",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+      ],
+      "relatedEntities": [
+        {
+          "name": "proteine",
+          "weight": 1
+        },
+        {
+          "name": "wasser",
+          "weight": 1
+        },
+        {
+          "name": "protonen",
+          "weight": 1
+        },
+        {
+          "name": "martin luther universität halle-wittenberg",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "invertierte perowskit-solarzellen",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
+      ],
+      "relatedEntities": [
+        {
+          "name": "mini-modul",
+          "weight": 1
+        },
+        {
+          "name": "kristall-solvat-nanosaatkerne",
+          "weight": 1
+        },
+        {
+          "name": "buried layer",
+          "weight": 1
+        },
+        {
+          "name": "perowskit-solarzellen",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "katalysator",
+      "kategorie": "stoff",
+      "articleCount": 1,
+      "articles": [
+        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
+      ],
+      "relatedEntities": [
+        {
+          "name": "kupferoxid",
+          "weight": 1
+        },
+        {
+          "name": "stickstoffreduktion",
+          "weight": 1
+        },
+        {
+          "name": "metallisches kupfer",
+          "weight": 1
+        },
+        {
+          "name": "ammoniak",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "katalyse",
+      "kategorie": "reaktion",
+      "articleCount": 1,
+      "articles": [
+        "Asymmetrisches Alloying für neuartige lumineszente Metallcluster"
+      ],
+      "relatedEntities": [
+        {
+          "name": "photolumineszenz",
+          "weight": 1
+        },
+        {
+          "name": "nir",
+          "weight": 1
+        },
+        {
+          "name": "metallcluster-moleküle",
+          "weight": 1
+        },
+        {
+          "name": "biosensoren",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "kohlenstoff",
+      "kategorie": "stoff",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+      ],
+      "relatedEntities": [
+        {
+          "name": "silizium",
+          "weight": 1
+        },
+        {
+          "name": "pentasilacyclopentadienid",
+          "weight": 1
+        },
+        {
+          "name": "science",
+          "weight": 1
+        },
+        {
+          "name": "cyclopentadienid",
+          "weight": 1
+        },
+        {
+          "name": "universität des saarlandes",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "kohlenstoffnitrid",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
+      ],
+      "relatedEntities": [
+        {
+          "name": "wasserstoffproduktion",
+          "weight": 1
+        },
+        {
+          "name": "co2-umwandlung",
+          "weight": 1
+        },
+        {
+          "name": "metallionen",
+          "weight": 1
+        },
+        {
+          "name": "polyheptazin-imide",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "kristall-solvat-nanosaatkerne",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
+      ],
+      "relatedEntities": [
+        {
+          "name": "perowskit-solarzellen",
+          "weight": 1
+        },
+        {
+          "name": "invertierte perowskit-solarzellen",
+          "weight": 1
+        },
+        {
+          "name": "mini-modul",
+          "weight": 1
+        },
+        {
+          "name": "buried layer",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "kristallstruktur",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
+      ],
+      "relatedEntities": [
+        {
+          "name": "florida state university",
+          "weight": 1
+        },
+        {
+          "name": "magnetische ordnung",
+          "weight": 1
+        },
+        {
+          "name": "datenspeicherung",
+          "weight": 1
+        },
+        {
+          "name": "skyrmionen",
+          "weight": 1
+        },
+        {
+          "name": "quantencomputing",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "kupferoxid",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
+      ],
+      "relatedEntities": [
+        {
+          "name": "katalysator",
+          "weight": 1
+        },
+        {
+          "name": "stickstoffreduktion",
+          "weight": 1
+        },
+        {
+          "name": "ammoniak",
+          "weight": 1
+        },
+        {
+          "name": "metallisches kupfer",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "ligandenempfindlichkeit",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
+      ],
+      "relatedEntities": [
+        {
+          "name": "venusfliegenfallen-domänen",
+          "weight": 1
+        },
+        {
+          "name": "hdx-ms",
+          "weight": 1
+        },
+        {
+          "name": "transportproteine",
+          "weight": 1
+        },
+        {
+          "name": "transkriptionsfaktoren",
+          "weight": 1
+        },
+        {
+          "name": "allosterie",
+          "weight": 1
+        },
+        {
+          "name": "nature chemistry",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "luftstabilität",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
+      ],
+      "relatedEntities": [
+        {
+          "name": "platin",
+          "weight": 1
+        },
+        {
+          "name": "organometallkatalysator",
+          "weight": 1
+        },
+        {
+          "name": "palladium",
+          "weight": 1
+        },
+        {
+          "name": "sandwichliganden",
+          "weight": 1
+        },
+        {
+          "name": "eisen(i)",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "magnetfeld",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
+      ],
+      "relatedEntities": [
+        {
+          "name": "elektrokatalyse",
+          "weight": 1
+        },
+        {
+          "name": "cobaltferrit",
+          "weight": 1
+        },
+        {
+          "name": "ammoniak",
+          "weight": 1
+        },
+        {
+          "name": "spinelloxid",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "magnetische ordnung",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
+      ],
+      "relatedEntities": [
+        {
+          "name": "kristallstruktur",
+          "weight": 1
+        },
+        {
+          "name": "florida state university",
+          "weight": 1
+        },
+        {
+          "name": "skyrmionen",
+          "weight": 1
+        },
+        {
+          "name": "datenspeicherung",
+          "weight": 1
+        },
+        {
+          "name": "quantencomputing",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "martin luther universität halle-wittenberg",
+      "kategorie": "person",
+      "articleCount": 1,
+      "articles": [
+        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+      ],
+      "relatedEntities": [
+        {
+          "name": "proteine",
+          "weight": 1
+        },
+        {
+          "name": "protonen",
+          "weight": 1
+        },
+        {
+          "name": "wasser",
+          "weight": 1
+        },
+        {
+          "name": "hydrathülle",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "metallcluster-moleküle",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Asymmetrisches Alloying für neuartige lumineszente Metallcluster"
+      ],
+      "relatedEntities": [
+        {
+          "name": "nir",
+          "weight": 1
+        },
+        {
+          "name": "photolumineszenz",
+          "weight": 1
+        },
+        {
+          "name": "biosensoren",
+          "weight": 1
+        },
+        {
+          "name": "katalyse",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "metallionen",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
+      ],
+      "relatedEntities": [
+        {
+          "name": "polyheptazin-imide",
+          "weight": 1
+        },
+        {
+          "name": "kohlenstoffnitrid",
+          "weight": 1
+        },
+        {
+          "name": "wasserstoffproduktion",
+          "weight": 1
+        },
+        {
+          "name": "co2-umwandlung",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "metallisches kupfer",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
+      ],
+      "relatedEntities": [
+        {
+          "name": "stickstoffreduktion",
+          "weight": 1
+        },
+        {
+          "name": "ammoniak",
+          "weight": 1
+        },
+        {
+          "name": "katalysator",
+          "weight": 1
+        },
+        {
+          "name": "kupferoxid",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "mini-modul",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
+      ],
+      "relatedEntities": [
+        {
+          "name": "perowskit-solarzellen",
+          "weight": 1
+        },
+        {
+          "name": "buried layer",
+          "weight": 1
+        },
+        {
+          "name": "invertierte perowskit-solarzellen",
+          "weight": 1
+        },
+        {
+          "name": "kristall-solvat-nanosaatkerne",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "nature chemistry",
+      "kategorie": "quelle",
+      "articleCount": 1,
+      "articles": [
+        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
+      ],
+      "relatedEntities": [
+        {
+          "name": "transportproteine",
+          "weight": 1
+        },
+        {
+          "name": "venusfliegenfallen-domänen",
+          "weight": 1
+        },
+        {
+          "name": "allosterie",
+          "weight": 1
+        },
+        {
+          "name": "ligandenempfindlichkeit",
+          "weight": 1
+        },
+        {
+          "name": "transkriptionsfaktoren",
+          "weight": 1
+        },
+        {
+          "name": "hdx-ms",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "nir",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Asymmetrisches Alloying für neuartige lumineszente Metallcluster"
+      ],
+      "relatedEntities": [
+        {
+          "name": "metallcluster-moleküle",
+          "weight": 1
+        },
+        {
+          "name": "katalyse",
+          "weight": 1
+        },
+        {
+          "name": "biosensoren",
+          "weight": 1
+        },
+        {
+          "name": "photolumineszenz",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "organometallkatalysator",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
+      ],
+      "relatedEntities": [
+        {
+          "name": "palladium",
+          "weight": 1
+        },
+        {
+          "name": "eisen(i)",
+          "weight": 1
+        },
+        {
+          "name": "luftstabilität",
+          "weight": 1
+        },
+        {
+          "name": "platin",
+          "weight": 1
+        },
+        {
+          "name": "sandwichliganden",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "pH-Wert",
+      "kategorie": "konzept",
+      "articleCount": 0,
+      "articles": [],
+      "relatedEntities": [],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "palladium",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
+      ],
+      "relatedEntities": [
+        {
+          "name": "eisen(i)",
+          "weight": 1
+        },
+        {
+          "name": "platin",
+          "weight": 1
+        },
+        {
+          "name": "organometallkatalysator",
+          "weight": 1
+        },
+        {
+          "name": "luftstabilität",
+          "weight": 1
+        },
+        {
+          "name": "sandwichliganden",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "pentasilacyclopentadienid",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+      ],
+      "relatedEntities": [
+        {
+          "name": "universität des saarlandes",
+          "weight": 1
+        },
+        {
+          "name": "cyclopentadienid",
+          "weight": 1
+        },
+        {
+          "name": "kohlenstoff",
+          "weight": 1
+        },
+        {
+          "name": "silizium",
+          "weight": 1
+        },
+        {
+          "name": "science",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "perowskit-solarzellen",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
+      ],
+      "relatedEntities": [
+        {
+          "name": "mini-modul",
+          "weight": 1
+        },
+        {
+          "name": "kristall-solvat-nanosaatkerne",
+          "weight": 1
+        },
+        {
+          "name": "invertierte perowskit-solarzellen",
+          "weight": 1
+        },
+        {
+          "name": "buried layer",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "photolumineszenz",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Asymmetrisches Alloying für neuartige lumineszente Metallcluster"
+      ],
+      "relatedEntities": [
+        {
+          "name": "katalyse",
+          "weight": 1
+        },
+        {
+          "name": "metallcluster-moleküle",
+          "weight": 1
+        },
+        {
+          "name": "biosensoren",
+          "weight": 1
+        },
+        {
+          "name": "nir",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "platin",
+      "kategorie": "stoff",
+      "articleCount": 1,
+      "articles": [
+        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
+      ],
+      "relatedEntities": [
+        {
+          "name": "luftstabilität",
+          "weight": 1
+        },
+        {
+          "name": "palladium",
+          "weight": 1
+        },
+        {
+          "name": "organometallkatalysator",
+          "weight": 1
+        },
+        {
+          "name": "sandwichliganden",
+          "weight": 1
+        },
+        {
+          "name": "eisen(i)",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "polyheptazin-imide",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
+      ],
+      "relatedEntities": [
+        {
+          "name": "co2-umwandlung",
+          "weight": 1
+        },
+        {
+          "name": "wasserstoffproduktion",
+          "weight": 1
+        },
+        {
+          "name": "metallionen",
+          "weight": 1
+        },
+        {
+          "name": "kohlenstoffnitrid",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "proteine",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+      ],
+      "relatedEntities": [
+        {
+          "name": "protonen",
+          "weight": 1
+        },
+        {
+          "name": "hydrathülle",
+          "weight": 1
+        },
+        {
+          "name": "martin luther universität halle-wittenberg",
+          "weight": 1
+        },
+        {
+          "name": "wasser",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "protonen",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+      ],
+      "relatedEntities": [
+        {
+          "name": "proteine",
+          "weight": 1
+        },
+        {
+          "name": "wasser",
+          "weight": 1
+        },
+        {
+          "name": "hydrathülle",
+          "weight": 1
+        },
+        {
+          "name": "martin luther universität halle-wittenberg",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "quantencomputing",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
+      ],
+      "relatedEntities": [
+        {
+          "name": "florida state university",
+          "weight": 1
+        },
+        {
+          "name": "skyrmionen",
+          "weight": 1
+        },
+        {
+          "name": "kristallstruktur",
+          "weight": 1
+        },
+        {
+          "name": "magnetische ordnung",
+          "weight": 1
+        },
+        {
+          "name": "datenspeicherung",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "sandwichliganden",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
+      ],
+      "relatedEntities": [
+        {
+          "name": "eisen(i)",
+          "weight": 1
+        },
+        {
+          "name": "organometallkatalysator",
+          "weight": 1
+        },
+        {
+          "name": "luftstabilität",
+          "weight": 1
+        },
+        {
+          "name": "palladium",
+          "weight": 1
+        },
+        {
+          "name": "platin",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "science",
+      "kategorie": "quelle",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+      ],
+      "relatedEntities": [
+        {
+          "name": "silizium",
+          "weight": 1
+        },
+        {
+          "name": "kohlenstoff",
+          "weight": 1
+        },
+        {
+          "name": "pentasilacyclopentadienid",
+          "weight": 1
+        },
+        {
+          "name": "cyclopentadienid",
+          "weight": 1
+        },
+        {
+          "name": "universität des saarlandes",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "silizium",
+      "kategorie": "stoff",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+      ],
+      "relatedEntities": [
+        {
+          "name": "kohlenstoff",
+          "weight": 1
+        },
+        {
+          "name": "universität des saarlandes",
+          "weight": 1
+        },
+        {
+          "name": "science",
+          "weight": 1
+        },
+        {
+          "name": "pentasilacyclopentadienid",
+          "weight": 1
+        },
+        {
+          "name": "cyclopentadienid",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "skyrmionen",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
+      ],
+      "relatedEntities": [
+        {
+          "name": "kristallstruktur",
+          "weight": 1
+        },
+        {
+          "name": "quantencomputing",
+          "weight": 1
+        },
+        {
+          "name": "datenspeicherung",
+          "weight": 1
+        },
+        {
+          "name": "magnetische ordnung",
+          "weight": 1
+        },
+        {
+          "name": "florida state university",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "spinelloxid",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
+      ],
+      "relatedEntities": [
+        {
+          "name": "elektrokatalyse",
+          "weight": 1
+        },
+        {
+          "name": "ammoniak",
+          "weight": 1
+        },
+        {
+          "name": "magnetfeld",
+          "weight": 1
+        },
+        {
+          "name": "cobaltferrit",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "stickstoffreduktion",
+      "kategorie": "reaktion",
+      "articleCount": 1,
+      "articles": [
+        "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
+      ],
+      "relatedEntities": [
+        {
+          "name": "metallisches kupfer",
+          "weight": 1
+        },
+        {
+          "name": "katalysator",
+          "weight": 1
+        },
+        {
+          "name": "kupferoxid",
+          "weight": 1
+        },
+        {
+          "name": "ammoniak",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "transkriptionsfaktoren",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
+      ],
+      "relatedEntities": [
+        {
+          "name": "transportproteine",
+          "weight": 1
+        },
+        {
+          "name": "ligandenempfindlichkeit",
+          "weight": 1
+        },
+        {
+          "name": "hdx-ms",
+          "weight": 1
+        },
+        {
+          "name": "nature chemistry",
+          "weight": 1
+        },
+        {
+          "name": "venusfliegenfallen-domänen",
+          "weight": 1
+        },
+        {
+          "name": "allosterie",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "transportproteine",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
+      ],
+      "relatedEntities": [
+        {
+          "name": "nature chemistry",
+          "weight": 1
+        },
+        {
+          "name": "transkriptionsfaktoren",
+          "weight": 1
+        },
+        {
+          "name": "allosterie",
+          "weight": 1
+        },
+        {
+          "name": "ligandenempfindlichkeit",
+          "weight": 1
+        },
+        {
+          "name": "venusfliegenfallen-domänen",
+          "weight": 1
+        },
+        {
+          "name": "hdx-ms",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "universität des saarlandes",
+      "kategorie": "person",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
+      ],
+      "relatedEntities": [
+        {
+          "name": "pentasilacyclopentadienid",
+          "weight": 1
+        },
+        {
+          "name": "silizium",
+          "weight": 1
+        },
+        {
+          "name": "kohlenstoff",
+          "weight": 1
+        },
+        {
+          "name": "cyclopentadienid",
+          "weight": 1
+        },
+        {
+          "name": "science",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "venusfliegenfallen-domänen",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
+      ],
+      "relatedEntities": [
+        {
+          "name": "nature chemistry",
+          "weight": 1
+        },
+        {
+          "name": "ligandenempfindlichkeit",
+          "weight": 1
+        },
+        {
+          "name": "transportproteine",
+          "weight": 1
+        },
+        {
+          "name": "hdx-ms",
+          "weight": 1
+        },
+        {
+          "name": "allosterie",
+          "weight": 1
+        },
+        {
+          "name": "transkriptionsfaktoren",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "wasser",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+      ],
+      "relatedEntities": [
+        {
+          "name": "protonen",
+          "weight": 1
+        },
+        {
+          "name": "hydrathülle",
+          "weight": 1
+        },
+        {
+          "name": "martin luther universität halle-wittenberg",
+          "weight": 1
+        },
+        {
+          "name": "proteine",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
+    },
+    {
+      "name": "wasserstoffproduktion",
+      "kategorie": "konzept",
+      "articleCount": 1,
+      "articles": [
+        "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
+      ],
+      "relatedEntities": [
+        {
+          "name": "kohlenstoffnitrid",
+          "weight": 1
+        },
+        {
+          "name": "co2-umwandlung",
+          "weight": 1
+        },
+        {
+          "name": "polyheptazin-imide",
+          "weight": 1
+        },
+        {
+          "name": "metallionen",
+          "weight": 1
+        }
+      ],
+      "bestehtAus": [],
+      "istBestandteilVon": []
     }
   ],
-  "updatedAt": "2026-06-09T07:55:15.576Z"
+  "updatedAt": "2026-06-10T07:21:44.724Z"
 }

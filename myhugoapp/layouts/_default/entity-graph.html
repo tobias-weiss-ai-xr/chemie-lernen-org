@@ -16,7 +16,7 @@
 
       <h1>Wissensnetz-Graph</h1>
       <p class="lead">Interaktive Visualisierung der Verbindungen zwischen <strong>{{ len $entities }}</strong> Fachbegriffen und <strong>{{ len $articles }}</strong> Artikeln.</p>
-      <p class="text-muted">Jeder <span style="color:#667eea;">● blaue Knoten</span> ist ein Fachbegriff (Größe = Anzahl Artikel). <span style="color:#f093fb;">● Rosa Knoten</span> sind Artikel. Kanten zeigen, welche Artikel einen Begriff behandeln.</p>
+      <p class="text-muted">Jeder <span style="color:#667eea;">● blaue Knoten</span> ist ein Fachbegriff (Größe = Anzahl Artikel). <span style="color:#f093fb;">● Rosa Knoten</span> sind Artikel. <span style="color:#ccc;">— Graue Kanten</span> verbinden Fachbegriffe mit Artikeln. <span style="color:#85d69e;">·· Grüne, gepunktete Kanten</span> zeigen Verwandtschaft zwischen Fachbegriffen (Ko-Vorkommen).</p>
     </div>
   </div>
 
@@ -37,7 +37,7 @@
   ],
   "entities": [
     {{ range $i, $e := $entities }}
-    { "id": "e{{ $i }}", "name": {{ $e.name | jsonify }}, "count": {{ $e.articleCount }}, "articles": {{ $e.articles | jsonify }} }{{ if lt (add $i 1) (len $entities) }},{{ end }}
+    { "id": "e{{ $i }}", "name": {{ $e.name | jsonify }}, "count": {{ $e.articleCount }}, "articles": {{ $e.articles | jsonify }}, "category": {{ $e.category | jsonify }}, "relatedEntities": {{ $e.relatedEntities | default slice | jsonify }} }{{ if lt (add $i 1) (len $entities) }},{{ end }}
     {{ end }}
   ]
 }
@@ -76,12 +76,23 @@
   // Create links: entity → article based on entity article titles
   data.entities.forEach(function(e) {
     e.articles.forEach(function(articleTitle) {
-      // Find matching article node
       for (var i = 0; i < data.articles.length; i++) {
         if (data.articles[i].title === articleTitle) {
-          links.push({ source: e.id, target: data.articles[i].id });
+          links.push({ source: e.id, target: data.articles[i].id, type: 'entity-article' });
           break;
         }
+      }
+    });
+  });
+
+  // Create links: entity → entity based on co-occurrence
+  var entityIdMap = {};
+  data.entities.forEach(function(e) { entityIdMap[e.name] = e.id; });
+  data.entities.forEach(function(e) {
+    (e.relatedEntities || []).forEach(function(rel) {
+      var targetId = entityIdMap[rel.name];
+      if (targetId && e.id < targetId) { // each pair once
+        links.push({ source: e.id, target: targetId, type: 'entity-entity', weight: rel.weight });
       }
     });
   });
@@ -125,9 +136,10 @@
     .selectAll('line')
     .data(links)
     .enter().append('line')
-    .attr('stroke', '#ccc')
-    .attr('stroke-width', 1)
-    .attr('stroke-opacity', 0.6);
+    .attr('stroke', function(d) { return d.type === 'entity-entity' ? '#85d69e' : '#ccc'; })
+    .attr('stroke-width', function(d) { return d.type === 'entity-entity' ? Math.max(1, Math.min(4, d.weight || 1)) : 1; })
+    .attr('stroke-opacity', function(d) { return d.type === 'entity-entity' ? 0.5 : 0.6; })
+    .attr('stroke-dasharray', function(d) { return d.type === 'entity-entity' ? '4,3' : null; });
 
   // Node groups
   var node = g.append('g')
@@ -179,9 +191,11 @@
     .attr('fill', '#555')
     .style('pointer-events', 'none');
 
-  // Force simulation
+  // Force simulation: entity→entity links cluster closer together
   var simulation = d3.forceSimulation(nodes)
-    .force('link', d3.forceLink(links).id(function(d) { return d.id; }).distance(80))
+    .force('link', d3.forceLink(links).id(function(d) { return d.id; }).distance(function(d) {
+      return d.type === 'entity-entity' ? 40 : 80;
+    }))
     .force('charge', d3.forceManyBody().strength(-200))
     .force('center', d3.forceCenter(width / 2, height / 2))
     .force('collision', d3.forceCollide(10))

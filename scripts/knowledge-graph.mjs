@@ -190,9 +190,59 @@ export async function storeEntities(articleUrl, entityNames) {
 }
 
 /**
- * Combination: store article + its entities + tags in one go.
+ * Ensure entity→entity co-occurrence relationships.
+ * Creates RELATED_TO between all entity pairs mentioned in the same document.
  */
-export async function storeArticleWithEntities({ title, source, date, description, tags, entities, url }) {
+async function createEntityRelationships(session, entities) {
+  if (!entities || entities.length < 2) return;
+  await session.run(
+    `
+    UNWIND $entities AS e1Name
+    UNWIND $entities AS e2Name
+    WITH e1Name, e2Name WHERE e1Name < e2Name
+      MERGE (e1:Entity {name: e1Name})
+      MERGE (e2:Entity {name: e2Name})
+      MERGE (e1)-[r:RELATED_TO]-(e2)
+      ON CREATE SET r.weight = 1, r.created = timestamp()
+      ON MATCH SET r.weight = r.weight + 1
+    `,
+    { entities: entities.map((e) => e.toLowerCase()) }
+  );
+}
+
+/**
+ * Set entity categories (kategorie) extracted from LLM output.
+ * entityCategories: { entityName: category }
+ */
+export async function setEntityCategories(entityCategories) {
+  if (!entityCategories || Object.keys(entityCategories).length === 0) return;
+  const d = getDriver();
+  const session = d.session({ database: 'chemie' });
+  try {
+    await session.run(
+      `
+      UNWIND $cats AS cat
+        MATCH (e:Entity {name: cat.name})
+        SET e.kategorie = cat.category
+      `,
+      {
+        cats: Object.entries(entityCategories).map(([name, category]) => ({
+          name: name.toLowerCase(),
+          category: category.toLowerCase(),
+        })),
+      }
+    );
+  } finally {
+    await session.close();
+  }
+}
+
+/**
+ * Combination: store article + its entities + tags in one go.
+ * Also creates entity→entity co-occurrence (RELATED_TO) relationships
+ * between entities mentioned in the same article.
+ */
+export async function storeArticleWithEntities({ title, source, date, description, tags, entities, url, entityCategories }) {
   const d = getDriver();
   const session = d.session({ database: 'chemie' });
   try {
@@ -230,6 +280,29 @@ export async function storeArticleWithEntities({ title, source, date, descriptio
       `,
       { title, source: source || 'article-pipeline', date, description, tags: tags || [], entities: (entities || []).map((e) => e.toLowerCase()), url }
     );
+
+    // Create entity→entity co-occurrence relationships
+    if (entities && entities.length >= 2) {
+      await createEntityRelationships(session, entities);
+    }
+
+    // Set entity categories if provided
+    if (entityCategories && Object.keys(entityCategories).length > 0) {
+      await session.run(
+        `
+        UNWIND $cats AS cat
+          MATCH (e:Entity {name: cat.name})
+          SET e.kategorie = cat.category
+        `,
+        {
+          cats: Object.entries(entityCategories).map(([name, category]) => ({
+            name: name.toLowerCase(),
+            category: category.toLowerCase(),
+          })),
+        }
+      );
+    }
+
     return result.records[0]?.get('url');
   } finally {
     await session.close();
