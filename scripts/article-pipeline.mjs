@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { XMLParser } from 'fast-xml-parser';
 import { execSync } from 'node:child_process';
 import { storeArticleWithEntities, close as closeKg } from './knowledge-graph.mjs';
+import { buildEntityGraph } from '@graphwiz/builder';
 import { setTimeout } from 'node:timers/promises';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -630,19 +631,13 @@ async function run() {
       }
     }
 
-    // Compute co-occurrence (related entities) from article entity lists
-    for (const a of kgDumpArticles) {
-      const artEntities = a.entities || [];
-      for (let i = 0; i < artEntities.length; i++) {
-        for (let j = i + 1; j < artEntities.length; j++) {
-          const e1 = entityMap.get(artEntities[i]);
-          const e2 = entityMap.get(artEntities[j]);
-          if (e1 && e2) {
-            if (!e1.relatedEntities.includes(artEntities[j])) e1.relatedEntities.push(artEntities[j]);
-            if (!e2.relatedEntities.includes(artEntities[i])) e2.relatedEntities.push(artEntities[i]);
-          }
-        }
-      }
+    // Compute co-occurrence (related entities) via @graphwiz/builder
+    const coGraph = buildEntityGraph(kgDumpArticles);
+    for (const edge of coGraph.edges) {
+      const e1 = entityMap.get(edge.source);
+      const e2 = entityMap.get(edge.target);
+      if (e1 && !e1.relatedEntities.includes(edge.target)) e1.relatedEntities.push(edge.target);
+      if (e2 && !e2.relatedEntities.includes(edge.source)) e2.relatedEntities.push(edge.source);
     }
 
     // Apply aggregated categories

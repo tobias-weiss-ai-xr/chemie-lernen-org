@@ -3,17 +3,21 @@
  * Bootstrap the chemistry Knowledge Graph.
  * 1. Categorizes existing entities + creates RELATED_TO from article co-occurrence
  * 2. Seeds fundamental chemistry knowledge: elements, compounds, reaction types, concepts
+ *
+ * Neo4j driver lifecycle managed by @graphwiz/neo4j.
  */
-import neo4j from 'neo4j-driver';
+import { createDriver, getDriver, closeDriver } from '@graphwiz/neo4j';
 
 const URI = process.env.NEO4J_URI || 'bolt://localhost:7687';
 const USER = process.env.NEO4J_USER || 'neo4j';
 const PASS = process.env.NEO4J_PASSWORD || 'chemie';
 
-const driver = neo4j.driver(URI, neo4j.auth.basic(USER, PASS), { database: 'chemie' });
-const session = driver.session();
+const config = { uri: URI, username: USER, password: PASS, database: 'chemie' };
 
 async function run() {
+  const d = getDriver(config);
+  const session = d.session({ database: config.database });
+
   console.log('=== Phase 1: Categorize existing entities ===');
 
   const categoryRules = [
@@ -249,7 +253,7 @@ async function run() {
   console.log(`  ├── BESTEHT_AUS: ${finalBestAus.records[0].get('c').toNumber()}`);
 
   await session.close();
-  await driver.close();
+  await closeDriver();
   console.log('\n✓ Knowledge Graph bootstrap complete!');
 }
 

@@ -5,34 +5,26 @@
  *  - Storing generated articles as Document nodes
  *  - Cross-referencing articles with chemistry entities
  *  - Retrieving context for richer article generation
+ *
+ * Neo4j driver lifecycle managed by @graphwiz/neo4j.
  */
 
-import neo4j from 'neo4j-driver';
 import { existsSync } from 'fs';
+import { createDriver, getDriver, closeDriver } from '@graphwiz/neo4j';
 
-const { int } = neo4j;
+const { int } = (await import('neo4j-driver')).default;
 
 // Detect container context by /.dockerenv marker
 const IN_DOCKER = existsSync('/.dockerenv');
 const DEFAULT_URI = IN_DOCKER ? 'bolt://chemie-neo4j:7687' : 'bolt://localhost:7687';
 const NEO4J_URI = process.env.NEO4J_URI || DEFAULT_URI;
-const NEO4J_USER = 'neo4j';
-const NEO4J_PASSWORD = 'chemie';
+const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
+const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || 'chemie';
 
-let driver = null;
-
-function getDriver() {
-  if (!driver) {
-    driver = neo4j.driver(NEO4J_URI, neo4j.auth.basic(NEO4J_USER, NEO4J_PASSWORD));
-  }
-  return driver;
-}
+const config = { uri: NEO4J_URI, username: NEO4J_USER, password: NEO4J_PASSWORD, database: 'chemie' };
 
 export async function close() {
-  if (driver) {
-    await driver.close();
-    driver = null;
-  }
+  closeDriver();
 }
 
 /**
@@ -41,8 +33,8 @@ export async function close() {
  * Links to existing Tag nodes via :HAS_TAG
  */
 export async function storeArticle({ title, source, date, description, tags, url }) {
-  const d = getDriver();
-  const session = d.session({ database: 'chemie' });
+  const d = getDriver(config);
+  const session = d.session({ database: config.database });
   try {
     const result = await session.run(
       `
@@ -80,8 +72,8 @@ export async function storeArticle({ title, source, date, description, tags, url
  * Returns articles that share at least one tag with the input.
  */
 export async function findRelatedByTags(tags, limit = 5) {
-  const d = getDriver();
-  const session = d.session({ database: 'chemie' });
+  const d = getDriver(config);
+  const session = d.session({ database: config.database });
   try {
     const result = await session.run(
       `
@@ -110,8 +102,8 @@ export async function findRelatedByTags(tags, limit = 5) {
  * Returns entities whose name contains any keyword.
  */
 export async function findEntities(keywords, limit = 10) {
-  const d = getDriver();
-  const session = d.session({ database: 'chemie' });
+  const d = getDriver(config);
+  const session = d.session({ database: config.database });
   try {
     const result = await session.run(
       `
@@ -136,8 +128,8 @@ export async function findEntities(keywords, limit = 10) {
  * Get popular/recent tags (for dashboard or trending topics).
  */
 export async function getPopularTags(limit = 20) {
-  const d = getDriver();
-  const session = d.session({ database: 'chemie' });
+  const d = getDriver(config);
+  const session = d.session({ database: config.database });
   try {
     const result = await session.run(
       `
@@ -165,8 +157,8 @@ export async function getPopularTags(limit = 20) {
  */
 export async function storeEntities(articleUrl, entityNames) {
   if (!entityNames || entityNames.length === 0) return [];
-  const d = getDriver();
-  const session = d.session({ database: 'chemie' });
+  const d = getDriver(config);
+  const session = d.session({ database: config.database });
   try {
     const result = await session.run(
       `
@@ -216,8 +208,8 @@ async function createEntityRelationships(session, entities) {
  */
 export async function setEntityCategories(entityCategories) {
   if (!entityCategories || Object.keys(entityCategories).length === 0) return;
-  const d = getDriver();
-  const session = d.session({ database: 'chemie' });
+  const d = getDriver(config);
+  const session = d.session({ database: config.database });
   try {
     await session.run(
       `
@@ -243,8 +235,8 @@ export async function setEntityCategories(entityCategories) {
  * between entities mentioned in the same article.
  */
 export async function storeArticleWithEntities({ title, source, date, description, tags, entities, url, entityCategories }) {
-  const d = getDriver();
-  const session = d.session({ database: 'chemie' });
+  const d = getDriver(config);
+  const session = d.session({ database: config.database });
   try {
     const result = await session.run(
       `

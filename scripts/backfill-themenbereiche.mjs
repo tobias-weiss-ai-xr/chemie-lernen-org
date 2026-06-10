@@ -2,11 +2,13 @@
  * Backfill themenbereiche articles into chemie-neo4j.
  * Reads all .md files from themenbereiche/, extracts frontmatter,
  * stores Document + Tag nodes with HAS_TAG relationships.
+ *
+ * Neo4j driver lifecycle managed by @graphwiz/neo4j.
  */
 import { readFileSync, readdirSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import neo4j from 'neo4j-driver';
+import { createDriver, getDriver, closeDriver } from '@graphwiz/neo4j';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, '..');
@@ -16,6 +18,8 @@ const BASE_URL = 'https://chemie-lernen.org';
 const NEO4J_URI = process.env.NEO4J_URI || 'bolt://localhost:7687';
 const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
 const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || 'chemie';
+
+const config = { uri: NEO4J_URI, username: NEO4J_USER, password: NEO4J_PASSWORD, database: 'chemie' };
 
 function parseFrontmatter(content) {
   const match = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
@@ -40,8 +44,8 @@ function parseFrontmatter(content) {
 }
 
 async function main() {
-  const driver = neo4j.driver(NEO4J_URI, neo4j.auth.basic(NEO4J_USER, NEO4J_PASSWORD));
-  const session = driver.session({ database: 'chemie' });
+  const d = getDriver(config);
+  const session = d.session({ database: config.database });
 
   try {
     const themenDir = join(REPO_ROOT, 'myhugoapp', 'content', 'themenbereiche');
@@ -123,7 +127,7 @@ async function main() {
     console.log(`\nDone: ${stored}/${total} articles stored in chemie-neo4j`);
   } finally {
     await session.close();
-    await driver.close();
+    await closeDriver();
   }
 }
 
