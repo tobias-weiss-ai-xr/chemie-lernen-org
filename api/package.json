@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "express": "^4.21.0"
+    "cookie-parser": "^1.4.6",
+    "express": "^4.21.0",
+    "neo4j-driver": "^5.15.0"
   }
 }

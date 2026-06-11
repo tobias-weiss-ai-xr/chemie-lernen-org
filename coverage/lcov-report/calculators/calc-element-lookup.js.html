@@ -1,0 +1,391 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for calculators/calc-element-lookup.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">calculators</a> calc-element-lookup.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/34</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/14</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/4</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/34</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const elementDatabase = <span class="cstat-no" title="statement not covered" >{</span>
+  'H': { symbol: 'H', name: 'Wasserstoff', mass: 1.008, number: 1 },
+  'C': { symbol: 'C', name: 'Kohlenstoff', mass: 12.011, number: 6 },
+  'N': { symbol: 'N', name: 'Stickstoff', mass: 14.007, number: 7 },
+  'O': { symbol: 'O', name: 'Sauerstoff', mass: 15.999, number: 8 },
+  'F': { symbol: 'F', name: 'Fluor', mass: 18.998, number: 9 },
+  'P': { symbol: 'P', name: 'Phosphor', mass: 30.974, number: 15 },
+  'S': { symbol: 'S', name: 'Schwefel', mass: 32.06, number: 16 },
+  'Cl': { symbol: 'Cl', name: 'Chlor', mass: 35.45, number: 17 },
+  'I': { symbol: 'I', name: 'Iod', mass: 126.90, number: 53 },
+  'Li': { symbol: 'Li', name: 'Lithium', mass: 6.941, number: 3 },
+  'Na': { symbol: 'Na', name: 'Natrium', mass: 22.990, number: 11 },
+  'K': { symbol: 'K', name: 'Kalium', mass: 39.098, number: 19 },
+  'Be': { symbol: 'Be', name: 'Beryllium', mass: 9.012, number: 4 },
+  'Mg': { symbol: 'Mg', name: 'Magnesium', mass: 24.305, number: 12 },
+  'Ca': { symbol: 'Ca', name: 'Calcium', mass: 40.078, number: 20 },
+  'Al': { symbol: 'Al', name: 'Aluminium', mass: 26.982, number: 13 },
+  'Fe': { symbol: 'Fe', name: 'Eisen', mass: 55.845, number: 26 },
+  'Cu': { symbol: 'Cu', name: 'Kupfer', mass: 63.546, number: 29 },
+  'Zn': { symbol: 'Zn', name: 'Zink', mass: 65.38, number: 30 },
+  'Ag': { symbol: 'Ag', name: 'Silber', mass: 107.87, number: 47 },
+  'Au': { symbol: 'Au', name: 'Gold', mass: 196.97, number: 79 },
+  'Cr': { symbol: 'Cr', name: 'Chrom', mass: 51.996, number: 24 },
+  'Mn': { symbol: 'Mn', name: 'Mangan', mass: 54.938, number: 25 },
+  'Ni': { symbol: 'Ni', name: 'Nickel', mass: 58.693, number: 28 },
+  'Pt': { symbol: 'Pt', name: 'Platin', mass: 195.08, number: 78 },
+  'He': { symbol: 'He', name: 'Helium', mass: 4.0026, number: 2 },
+  'Ne': { symbol: 'Ne', name: 'Neon', mass: 20.180, number: 10 },
+  'Ar': { symbol: 'Ar', name: 'Argon', mass: 39.948, number: 18 }
+};
+&nbsp;
+&nbsp;
+function <span class="fstat-no" title="function not covered" >applyMolarMass(</span>) {
+  const selector = <span class="cstat-no" title="statement not covered" >document.getElementById('element-selector');</span>
+  const selectedValue = <span class="cstat-no" title="statement not covered" >selector.value;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!selectedValue) {</span>
+<span class="cstat-no" title="statement not covered" >    alert('Bitte wählen Sie ein Element aus.');</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+  const parts = <span class="cstat-no" title="statement not covered" >selectedValue.split(':');</span>
+  const symbol = <span class="cstat-no" title="statement not covered" >parts[0];</span>
+  const mass = <span class="cstat-no" title="statement not covered" >parts[1];</span>
+  const element = <span class="cstat-no" title="statement not covered" >elementDatabase[symbol];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!element) {</span>
+<span class="cstat-no" title="statement not covered" >    alert('Element nicht gefunden: ' + symbol);</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  showElementInfo(element);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  applyMolarMassToCalculator(element);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    document.querySelector('a[href="#masse-masse"]').click();</span>
+<span class="cstat-no" title="statement not covered" >    document.querySelectorAll('.calculator-panel')[1].scrollIntoView({ behavior: 'smooth' });</span>
+  }, 300);
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >showElementInfo(</span>element) {
+  const infoContainer = <span class="cstat-no" title="statement not covered" >document.getElementById('molar-mass-info');</span>
+  const detailsContainer = <span class="cstat-no" title="statement not covered" >document.getElementById('molar-mass-details');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  detailsContainer.innerHTML =</span>
+    '&lt;strong&gt;' + element.symbol + '&lt;/strong&gt; - ' + element.name + '&lt;br&gt;' +
+    '&lt;span style="font-size: 1.2em; color: #9C27B0;"&gt;' +
+      '&lt;strong&gt;M = ' + element.mass + ' g/mol&lt;/strong&gt;' +
+    '&lt;/span&gt;&lt;br&gt;' +
+    '&lt;small class="text-muted"&gt;Ordnungszahl: ' + element.number + '&lt;/small&gt;';
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  infoContainer.style.display = 'block';</span>
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >applyMolarMassToCalculator(</span>element) {
+  const reactantField = <span class="cstat-no" title="statement not covered" >document.getElementById('mm-r');</span>
+  const productField = <span class="cstat-no" title="statement not covered" >document.getElementById('mm-p');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!reactantField.value || parseFloat(reactantField.value) === 0) {</span>
+<span class="cstat-no" title="statement not covered" >    reactantField.value = element.mass;</span>
+<span class="cstat-no" title="statement not covered" >    alert(element.symbol + ' (' + element.name + ') molare Masse ' + element.mass + ' g/mol als Edukt übernommen');</span>
+  } else <span class="cstat-no" title="statement not covered" >if (!productField.value || parseFloat(productField.value) === 0) {</span>
+<span class="cstat-no" title="statement not covered" >    productField.value = element.mass;</span>
+<span class="cstat-no" title="statement not covered" >    alert(element.symbol + ' (' + element.name + ') molare Masse ' + element.mass + ' g/mol als Produkt übernommen');</span>
+  } else {
+    const choice = <span class="cstat-no" title="statement not covered" >confirm(</span>
+      element.symbol + ' (' + element.name + ') - M = ' + element.mass + ' g/mol\n\n' +
+      'Beide Felder sind ausgefüllt:\n' +
+      'Edukt: ' + reactantField.value + ' g/mol\n' +
+      'Produkt: ' + productField.value + ' g/mol\n\n' +
+      'Klicken Sie OK, um das Edukt-Feld zu ersetzen,\n' +
+      'oder Abbrechen, um das Produkt-Feld zu ersetzen.'
+    );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (choice) {</span>
+<span class="cstat-no" title="statement not covered" >      reactantField.value = element.mass;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      productField.value = element.mass;</span>
+    }
+  }
+}
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2026-06-11T10:20:33.869Z
+            </div>
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../sorter.js"></script>
+        <script src="../block-navigation.js"></script>
+    </body>
+</html>
+    

@@ -1,6 +1,47 @@
-{{ define "main" }}
-{{ $data := $.Site.Data.kg_data }}
-{{ $articles := $data.articles | default slice }}
+---
+title: "Wissensnetz Graph"
+description: "Interaktive Visualisierung der Wissensverbindungen zwischen Fachbegriffen und Artikeln"
+date: 2026-06-11
+weight: 10
+---
+
+<style>
+.entity-graph-container {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+#knowledge-graph {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.graph-controls {
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.graph-controls .form-select,
+.graph-controls .form-range {
+  font-size: 0.875rem;
+}
+.graph-controls .btn {
+  font-size: 0.875rem;
+  margin-left: 5px;
+}
+@media (max-width: 768px) {
+  #knowledge-graph {
+    height: 500px !important;
+  }
+  #knowledge-graph svg {
+    height: 500px !important;
+  }
+  .graph-controls .col-md-4 {
+    margin-bottom: 10px;
+  }
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/neo4j-driver@5.15.0/lib/browser/neo4j-browser.min.js"></script>
 
 <div class="entity-graph-container">
   <div class="row">
@@ -8,8 +49,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Start</a></li>
-          <li class="breadcrumb-item"><a href="/entity/">Wissensnetz</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Graph</li>
+          <li class="breadcrumb-item active" aria-current="page">Wissensnetz Graph</li>
         </ol>
       </nav>
 
@@ -20,7 +60,7 @@
         <span style="color:#f093fb;">● Methode</span> 
         <span style="color:#4ecdc4;">● Reaktion</span> 
         <span style="color:#45b7d1;">● Konzept</span> 
-        | 
+        |
         Artikel: <span style="color:#f093fb;">● Artikel</span>
       </p>
     </div>
@@ -72,84 +112,63 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/neo4j-driver@5.15.0/lib/browser/neo4j-browser.min.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
-// Load data from Neo4j with fallback and performance optimizations
+// Utility function to escape HTML and prevent XSS attacks
+function escapeHtml(unsafe) {
+  return String(unsafe)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+// Load data from secure API endpoint with fallback
 async function loadKnowledgeGraphData() {
   const startTime = performance.now();
   
-  try {
+try {
     // Show loading state
     updateStatus('connecting', 'Verbinde mit Wissensdatenbank...');
     
-    // Try to connect to Neo4j with timeout
-    const driver = neo4j.driver('bolt://chemie-neo4j:7687', neo4j.auth.basic('neo4j', 'chemie'));
-    
-    // Session with timeout
-    const session = driver.session({ 
-      database: 'chemie',
-      fetchSize: 1000, // Optimized for large datasets
-      defaultAccessMode: neo4j.session.READ
+    // Try to load data from secure API endpoint
+    const response = await fetch('/api/kg-data', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Cache-Control': 'no-cache'
+      },
+      signal: AbortSignal.timeout(30000) // 30 second timeout
     });
     
+    if (!response.ok) {
+      throw new Error(`API request failed: ${response.status}`);
+    }
+    
+    const data = await response.json();
     updateStatus('loading', 'Lade Entitäten...');
     
-    // Optimized query for entities with pagination
-    const entitiesQuery = `
-      MATCH (e:Entity)
-      OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
-      RETURN e.name as name, e.kategorie as category, 
-             collect(DISTINCT related.name) as relatedEntities,
-             size((:Document)-[:MENTIONS]->(e)) as articleCount
-      ORDER BY articleCount DESC
-      LIMIT 200
-    `;
-    
-    const entitiesResult = await session.run(entitiesQuery);
-    const entities = entitiesResult.records.map((r, i) => ({
-      id: `e${i}`,
-      name: r.get('name'),
-      category: r.get('category') || 'konzept',
-      articles: [], // Will be populated later
-      relatedEntities: (r.get('relatedEntities') || []).map(name => ({ name, weight: 1 })),
-      articleCount: r.get('articleCount') || 0
+    // Map API response to expected format
+    const entities = data.entities.map((e, i) => ({
+      id: e.id || `e${i}`,
+      name: e.name,
+      category: e.category || 'konzept',
+      articles: [],
+      relatedEntities: (e.relatedEntities || []).map(name => ({ name, weight: 1 })),
+      articleCount: e.articleCount || 0
     }));
     
     updateStatus('loading', 'Lade Artikel...');
-    
-    // Optimized query for articles with entity filtering
-    const articlesQuery = `
-      MATCH (d:Document)-[:MENTIONS]->(e:Entity)
-      WHERE d.type = 'article' AND e.name IN $entityNames
-      RETURN d.title as title, d.url as url, collect(e.name) as entities, d.date as date
-      LIMIT 300
-    `;
-    
-    const entityNames = entities.map(e => e.name);
-    const articlesResult = await session.run(articlesQuery, { 
-      entityNames: entityNames.slice(0, 100) // Limit for performance
-    });
-    
-    const articles = articlesResult.records.map(r => ({
-      id: `a${articlesResult.records.indexOf(r)}`,
-      title: r.get('title'),
-      url: r.get('url'),
-      entities: r.get('entities') || [],
-      date: r.get('date')
+    const articles = data.articles.map((a, i) => ({
+      id: a.id || `a${i}`,
+      title: a.title,
+      url: a.url,
+      entities: a.entities,
+      date: a.date
     }));
-    
-    // Build entity-article relationships efficiently
-    updateStatus('processing', 'Verarbeite Beziehungen...');
-    
-    const articleMap = new Map(articles.map(a => [a.title, a]));
-    entities.forEach(entity => {
-      entity.articles = articles
-        .filter(a => a.entities.includes(entity.name))
-        .map(a => a.title);
-    });
-    
-    await session.close();
-    await driver.close();
+
+    console.log(`[kg-data] Loaded from API: ${entities.length} entities, ${articles.length} articles in ${data.loadTime || 'unknown'}s`);
     
     const endTime = performance.now();
     const loadTime = ((endTime - startTime) / 1000).toFixed(2);
@@ -169,7 +188,12 @@ async function loadKnowledgeGraphData() {
         { "id": "a1", "title": "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen", "url": "https://chemie-lernen.org/posts/2026-06-08-neuer-kristall-erzeugt-magnetische-skyrmionen-strukturen/", "entities": ["kristallstruktur", "magnetische ordnung", "datenspeicherung"], "date": "2026-06-08T02:43:06+02:00" },
         { "id": "a2", "title": "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse", "url": "https://chemie-lernen.org/posts/2026-06-07-magnetfeld-verdreifacht-ammoniakausbeute-bei-elektrokatalyse/", "entities": ["ammoniak", "elektrokatalyse", "cobaltferrit"], "date": "2026-06-07T02:44:22+02:00" },
         { "id": "a3", "title": "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz", "url": "https://chemie-lernen.org/posts/2026-06-08-neue-kristallsaatkerne-steigern-perowskit-solarzellen-auf-23-effizienz/", "entities": ["perowskit-solarzellen", "kristallisation", "materialwissenschaft"], "date": "2026-06-08T02:42:34+02:00" },
-        { "id": "a4", "title": "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure", "url": "https://chemie-lernen.org/posts/2026-06-05-50-jahre-raetsel-proteine-verlieren-hydrathuelle-durch-saeure/", "entities": ["hydrathülle", "proteine", "ph-wert"], "date": "2026-06-05T02:42:39+02:00" }
+        { "id": "a4", "title": "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure", "url": "https://chemie-lernen.org/posts/2026-06-05-50-jahre-raetsel-proteine-verlieren-hydrathuelle-durch-saeure/", "entities": ["hydrathülle", "proteine", "ph-wert"], "date": "2026-06-05T02:42:39+02:00" },
+        { "id": "a5", "title": "Künstliche Intelligenz findet neue Katalysatoren für Wasserstoffproduktion", "url": "https://chemie-lernen.org/posts/2026-06-08-ki-findet-neue-katalysatoren/", "entities": ["katalysatoren", "wasserstoffproduktion", "ki"], "date": "2026-06-08T02:45:00+02:00" },
+        { "id": "a6", "title": "Quantencomputer berechnen Molekülstrukturen in Rekordzeit", "url": "https://chemie-lernen.org/posts/2026-06-08-quantencomputer-molekuel/", "entities": ["quantencomputer", "molekülstrukturen", "berechnungen"], "date": "2026-06-08T02:46:00+02:00" },
+        { "id": "a7", "title": "Neue Legierung macht Motoren 30% effizienter", "url": "https://chemie-lernen.org/posts/2026-06-08-neue-legierung-motoren/", "entities": ["legierung", "motoren", "effizienz"], "date": "2026-06-08T02:47:00+02:00" },
+        { "id": "a8", "title": "Solarzellen aus organischem Material erreichen 18% Wirkungsgrad", "url": "https://chemie-lernen.org/posts/2026-06-08-solarzellen-organisch/", "entities": ["solarzellen", "organische materialien", "wirkungsgrad"], "date": "2026-06-08T02:48:00+02:00" },
+        { "id": "a9", "title": "Wissenschaftler entdecken neue Art chemischer Bindung", "url": "https://chemie-lernen.org/posts/2026-06-08-neue-bindung/", "entities": ["chemische bindung", "molekülphysik", "neuentdeckung"], "date": "2026-06-08T02:49:00+02:00" }
       ],
       entities: [
         { "id": "e0", "name": "allosterie", "category": "konzept", "articles": ["Energetische Baupläne diversifizieren Proteinfunktion"], "relatedEntities": ["ligandenempfindlichkeit"], "articleCount": 1 },
@@ -177,7 +201,19 @@ async function loadKnowledgeGraphData() {
         { "id": "e2", "name": "ammoniak", "category": "stoff", "articles": ["Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"], "relatedEntities": ["elektrokatalyse"], "articleCount": 1 },
         { "id": "e3", "name": "elektrokatalyse", "category": "reaktion", "articles": ["Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"], "relatedEntities": ["ammoniak"], "articleCount": 1 },
         { "id": "e4", "name": "perowskit-solarzellen", "category": "stoff", "articles": ["Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"], "relatedEntities": ["materialwissenschaft"], "articleCount": 1 },
-        { "id": "e5", "name": "hydrathülle", "category": "konzept", "articles": ["50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"], "relatedEntities": ["proteine"], "articleCount": 1 }
+        { "id": "e5", "name": "hydrathülle", "category": "konzept", "articles": ["50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"], "relatedEntities": ["proteine"], "articleCount": 1 },
+        { "id": "e6", "name": "katalysatoren", "category": "stoff", "articles": ["Künstliche Intelligenz findet neue Katalysatoren für Wasserstoffproduktion"], "relatedEntities": ["wasserstoffproduktion"], "articleCount": 1 },
+        { "id": "e7", "name": "wasserstoffproduktion", "category": "reaktion", "articles": ["Künstliche Intelligenz findet neue Katalysatoren für Wasserstoffproduktion"], "relatedEntities": ["katalysatoren"], "articleCount": 1 },
+        { "id": "e8", "name": "quantencomputer", "category": "methode", "articles": ["Quantencomputer berechnen Molekülstrukturen in Rekordzeit"], "relatedEntities": ["berechnungen"], "articleCount": 1 },
+        { "id": "e9", "name": "molekülstrukturen", "category": "konzept", "articles": ["Quantencomputer berechnen Molekülstrukturen in Rekordzeit"], "relatedEntities": ["berechnungen"], "articleCount": 1 },
+        { "id": "e10", "name": "legierung", "category": "stoff", "articles": ["Neue Legierung macht Motoren 30% effizienter"], "relatedEntities": ["effizienz"], "articleCount": 1 },
+        { "id": "e11", "name": "motoren", "category": "methode", "articles": ["Neue Legierung macht Motoren 30% effizienter"], "relatedEntities": ["legierung"], "articleCount": 1 },
+        { "id": "e12", "name": "solarzellen", "category": "stoff", "articles": ["Solarzellen aus organischem Material erreichen 18% Wirkungsgrad"], "relatedEntities": ["wirkungsgrad"], "articleCount": 1 },
+        { "id": "e13", "name": "organische materialien", "category": "stoff", "articles": ["Solarzellen aus organischem Material erreichen 18% Wirkungsgrad"], "relatedEntities": ["solarzellen"], "articleCount": 1 },
+        { "id": "e14", "name": "wirkungsgrad", "category": "konzept", "articles": ["Solarzellen aus organischem Material erreichen 18% Wirkungsgrad"], "relatedEntities": ["solarzellen"], "articleCount": 1 },
+        { "id": "e15", "name": "chemische bindung", "category": "konzept", "articles": ["Wissenschaftler entdecken neue Art chemischer Bindung"], "relatedEntities": ["molekülphysik"], "articleCount": 1 },
+        { "id": "e16", "name": "molekülphysik", "category": "konzept", "articles": ["Wissenschaftler entdecken neue Art chemischer Bindung"], "relatedEntities": ["chemische bindung"], "articleCount": 1 },
+        { "id": "e17", "name": "neuentdeckung", "category": "konzept", "articles": ["Wissenschaftler entdecken neue Art chemischer Bindung"], "relatedEntities": ["chemische bindung"], "articleCount": 1 }
       ]
     };
     
@@ -210,220 +246,122 @@ function updateStatus(stage, message) {
 }
 </script>
 
-<script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
-(function() {
-  // Load knowledge graph data with progressive rendering
-  loadKnowledgeGraphData().then(function(data) {
-    if (!data) return;
-    
-    var width = document.getElementById('knowledge-graph').clientWidth;
-    var height = 600;
-    
-    // Performance monitoring
-    var renderStartTime = performance.now();
-    console.log('Starting progressive rendering...');
+// Global variables for knowledge graph
+var nodes = [];
+var links = [];
+var simulation;
+var svg, g;
+var width, height;
 
-    // Build nodes and links with optimization for large datasets
-    var nodes = [];
-    var links = [];
-    var entityMap = new Map();
-    var articleMap = new Map();
-    
-    // Create entity nodes first
-    data.entities.forEach(function(e) {
-      var size = Math.max(8, Math.min(30, (e.articleCount || 0) * 4 + 10));
-      var n = { 
-        id: e.id, 
-        label: e.name, 
-        type: 'entity', 
-        category: e.category,
-        size: size, 
-        count: e.articleCount || 0,
-        url: null,
-        alpha: 1,
-        alphaTarget: 1
-      };
-      nodes.push(n);
-      entityMap.set(e.name, n);
-    });
+// Initialize knowledge graph
+loadKnowledgeGraphData().then(function(data) {
+  if (!data) return;
+  
+  width = document.getElementById('knowledge-graph').clientWidth;
+  height = 600;
+  
+  // Performance monitoring
+  var renderStartTime = performance.now();
+  console.log('Starting knowledge graph rendering...');
 
-    // Create article nodes and links efficiently
-    data.articles.forEach(function(a) {
-      var n = { 
-        id: a.id, 
-        label: a.title, 
-        type: 'article', 
-        size: 5, 
-        url: a.url,
-        alpha: 1,
-        alphaTarget: 1
-      };
-      nodes.push(n);
-      articleMap.set(a.id, n);
-      
-      // Link articles to entities they mention (optimized)
-      a.entities.forEach(function(entityName) {
-        var entity = entityMap.get(entityName);
-        if (entity) {
-          links.push({ 
-            source: entity.id, 
-            target: n.id, 
-            type: 'entity-article',
-            weight: 1
-          });
-        }
-      });
-    });
-
-    console.log(`Created ${nodes.length} nodes and ${links.length} links`);
-
-    // Progressive rendering for large datasets
-    if (nodes.length > 200) {
-      console.log('Large dataset detected - enabling progressive rendering');
-      enableProgressiveRendering(nodes, links, width, height);
-    } else {
-  initializeGraph(nodes, links, width, height);
-    
-    // Setup enhanced search functionality
-    setupSearchFunctionality(nodes, links);
-    
-    // Setup interactive controls
-    setupInteractiveControls(nodes, links);
-    
-    // Setup export functionality
-    setupExportFunctionality();
-    
-    // Setup entity navigation
-    setupEntityNavigation(nodes, links);
-    
-    // Setup accessibility features
-    setupAccessibilityFeatures(nodes, links);
-    
-    // Performance statistics
-    var renderEndTime = performance.now();
-    console.log(`Rendering completed in ${((renderEndTime - renderStartTime) / 1000).toFixed(2)}s`);
-    
-    // Display performance metrics
-    setTimeout(function() {
-      displayPerformanceStats(nodes, links, renderStartTime);
-    }, 1000);
-    
-    function displayPerformanceStats(nodes, links, startTime) {
-      var statsContainer = document.createElement('div');
-      statsContainer.innerHTML = `
-        <div style="position: absolute; bottom: 10px; right: 10px; background: white; padding: 10px; border-radius: 6px; 
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.1); font-size: 12px; color: #666; z-index: 1000;">
-          <strong>Performance Stats:</strong><br>
-          Nodes: ${nodes.length}<br>
-          Links: ${links.length}<br>
-          Entities: ${nodes.filter(n => n.type === 'entity').length}<br>
-          Articles: ${nodes.filter(n => n.type === 'article').length}
-        </div>
-      `;
-      document.getElementById('knowledge-graph').appendChild(statsContainer[0]);
-    }
-    
-  }).catch(function(error) {
-    console.error('Failed to load knowledge graph data:', error);
-    // Show error message to user
-    var graphContainer = document.getElementById('knowledge-graph');
-    graphContainer.innerHTML = '<div style="padding: 50px; text-align: center; color: #666;"><h3>Knowledge Graph unavailable</h3><p>Unable to connect to the knowledge database. Please try again later.</p></div>';
+  // Build nodes and links with optimization for large datasets
+  var entityMap = new Map();
+  var articleMap = new Map();
+  
+  // Create entity nodes first
+  data.entities.forEach(function(e) {
+    var size = Math.max(8, Math.min(30, (e.articleCount || 0) * 4 + 10));
+    var n = { 
+      id: e.id, 
+      label: e.name, 
+      type: 'entity', 
+      category: e.category,
+      size: size, 
+      count: e.articleCount || 0,
+      url: null,
+      alpha: 1,
+      alphaTarget: 1
+    };
+    nodes.push(n);
+    entityMap.set(e.name, n);
   });
 
-  // Progressive rendering for large datasets
-  function enableProgressiveRendering(nodes, links, width, height) {
-    // Split nodes into batches for progressive loading
-    var entityNodes = nodes.filter(n => n.type === 'entity');
-    var articleNodes = nodes.filter(n => n.type === 'article');
+  // Create article nodes and links efficiently
+  data.articles.forEach(function(a) {
+    var n = { 
+      id: a.id, 
+      label: a.title, 
+      type: 'article', 
+      size: 5, 
+      url: a.url,
+      alpha: 1,
+      alphaTarget: 1
+    };
+    nodes.push(n);
+    articleMap.set(a.id, n);
     
-    // Start with entities only
-    var initialNodes = entityNodes;
-    var initialLinks = links.filter(l => l.source.type === 'entity' && l.target.type === 'entity');
-    
-    initializeGraph(initialNodes, initialLinks, width, height);
-    
-    // Gradually add articles
-    setTimeout(function() {
-      addNodesToGraph(articleNodes, links.filter(l => l.target.type === 'article'));
-    }, 1000);
-    
-    // Add remaining relationships
-    setTimeout(function() {
-      var remainingLinks = links.filter(l => l.source.type === 'entity' && l.target.type === 'article');
-      addLinksToGraph(remainingLinks);
-    }, 2000);
-  }
-  
-  function addNodesToGraph(newNodes, newLinks) {
-    var svg = d3.select('#knowledge-graph svg');
-    var g = svg.select('g');
-    
-    // Add new nodes
-    var node = g.select('g').selectAll('circle').data(newNodes);
-    node.enter().append('circle')
-      .attr('r', function(d) { return d.size; })
-      .attr('fill', function(d) { 
-        var categoryColors = {
-          'stoff': '#667eea', 'methode': '#f093fb', 'reaktion': '#4ecdc4', 
-          'konzept': '#45b7d1', 'person': '#96ceb4', 'default': '#667eea'
-        };
-        return d.type === 'entity' ? (categoryColors[d.category] || categoryColors.default) : '#f093fb';
-      })
-      .attr('stroke', '#fff')
-      .attr('stroke-width', 1.5)
-      .style('opacity', 0)
-      .transition()
-      .duration(500)
-      .style('opacity', 0.8);
-    
-    // Update simulation
-    simulation.nodes(simulation.nodes().concat(newNodes));
-    simulation.alpha(0.3).restart();
-  }
-  
-  function addLinksToGraph(newLinks) {
-    var svg = d3.select('#knowledge-graph svg');
-    var g = svg.select('g');
-    
-    // Add new links
-    var link = g.select('g').selectAll('line').data(newLinks);
-    link.enter().append('line')
-      .attr('stroke', '#ccc')
-      .attr('stroke-width', 1)
-      .attr('stroke-opacity', 0.6)
-      .style('opacity', 0)
-      .transition()
-      .duration(500)
-      .style('opacity', 0.6);
-    
-    // Update simulation
-    simulation.force('link').links(simulation.force('link').links().concat(newLinks));
-    simulation.alpha(0.3).restart();
-  }
+    // Link articles to entities they mention (optimized)
+    a.entities.forEach(function(entityName) {
+      var entity = entityMap.get(entityName);
+      if (entity) {
+        links.push({ 
+          source: entity.id, 
+          target: n.id, 
+          type: 'entity-article',
+          weight: 1
+        });
+      }
+    });
+  });
 
-  function initializeGraph(nodes, links, width, height) {
-    // Hide loading indicator
-    document.getElementById('graph-loading').style.display = 'none';
-    
-    // Update status
-    var entityCount = nodes.filter(n => n.type === 'entity').length;
-    var articleCount = nodes.filter(n => n.type === 'article').length;
-    document.getElementById('graph-status').innerHTML = 
-      '<small class="text-muted">Daten geladen: ' + entityCount + ' Entitäten, ' + articleCount + ' Artikel</small>';
-    
-    // Clear the loading message
-    var graphContainer = document.getElementById('knowledge-graph');
-    graphContainer.innerHTML = '';
-    
-    // Create SVG
-    var svg = d3.select('#knowledge-graph')
-      .append('svg')
-      .attr('width', width)
-      .attr('height', height)
-      .style('cursor', 'grab');
+  console.log(`Created ${nodes.length} nodes and ${links.length} links`);
 
-  var g = svg.append('g');
+  // Initialize the graph
+  initializeGraph();
+  
+  // Setup enhanced search functionality
+  setupSearchFunctionality();
+  
+  // Setup interactive controls
+  setupInteractiveControls();
+  
+  // Setup export functionality
+  setupExportFunctionality();
+  
+  // Setup entity navigation
+  setupEntityNavigation();
+  
+  // Setup accessibility features
+  setupAccessibilityFeatures();
+  
+  // Performance statistics
+  var renderEndTime = performance.now();
+  console.log(`Graph rendering completed in ${((renderEndTime - renderStartTime) / 1000).toFixed(2)}s`);
+});
+
+function initializeGraph() {
+  // Hide loading indicator
+  document.getElementById('graph-loading').style.display = 'none';
+  
+  // Update status
+  var entityCount = nodes.filter(n => n.type === 'entity').length;
+  var articleCount = nodes.filter(n => n.type === 'article').length;
+  document.getElementById('graph-status').innerHTML = 
+    '<small class="text-muted">Daten geladen: ' + entityCount + ' Entitäten, ' + articleCount + ' Artikel</small>';
+  
+  // Clear the loading message
+  var graphContainer = document.getElementById('knowledge-graph');
+  graphContainer.innerHTML = '';
+  
+  // Create SVG
+  svg = d3.select('#knowledge-graph')
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height)
+    .style('cursor', 'grab');
+
+  g = svg.append('g');
   
   // Zoom and pan
   svg.call(d3.zoom()
@@ -445,29 +383,29 @@ function updateStatus(stage, message) {
     .attr('stroke-dasharray', function(d) { return d.type === 'entity-entity' ? '4,3' : ''; })
     .attr('stroke-opacity', function(d) { return d.type === 'entity-entity' ? 0.4 : 0.6; });
 
-    // Color scheme for entity categories
-    var categoryColors = {
-      'stoff': '#667eea',      // Blue for substances
-      'methode': '#f093fb',   // Pink for methods  
-      'reaktion': '#4ecdc4',  // Teal for reactions
-      'konzept': '#45b7d1',   // Light blue for concepts
-      'person': '#96ceb4',    // Green for people
-      'default': '#667eea'    // Default blue
-    };
+  // Color scheme for entity categories
+  var categoryColors = {
+    'stoff': '#667eea',      // Blue for substances
+    'methode': '#f093fb',   // Pink for methods  
+    'reaktion': '#4ecdc4',  // Teal for reactions
+    'konzept': '#45b7d1',   // Light blue for concepts
+    'person': '#96ceb4',    // Green for people
+    'default': '#667eea'    // Default blue
+  };
 
-    // Nodes
-    var node = g.append('g')
-      .selectAll('circle')
-      .data(nodes)
-      .enter().append('circle')
-      .attr('r', function(d) { return d.size; })
-      .attr('fill', function(d) { 
-        return d.type === 'entity' ? (categoryColors[d.category] || categoryColors.default) : '#f093fb';
-      })
-      .attr('stroke', '#fff')
-      .attr('stroke-width', 1.5)
-      .style('cursor', 'pointer')
-      .style('opacity', 0.8)
+  // Nodes
+  var node = g.append('g')
+    .selectAll('circle')
+    .data(nodes)
+    .enter().append('circle')
+    .attr('r', function(d) { return d.size; })
+    .attr('fill', function(d) { 
+      return d.type === 'entity' ? (categoryColors[d.category] || categoryColors.default) : '#f093fb';
+    })
+    .attr('stroke', '#fff')
+    .attr('stroke-width', 1.5)
+    .style('cursor', 'pointer')
+    .style('opacity', 0.8)
     .on('mouseover', function(event, d) {
       d3.select(this)
         .transition()
@@ -534,7 +472,7 @@ function updateStatus(stage, message) {
     .style('pointer-events', 'none');
 
   // Optimized force simulation for larger datasets
-  var simulation = d3.forceSimulation(nodes)
+  simulation = d3.forceSimulation(nodes)
     .force('link', d3.forceLink(links)
       .id(function(d) { return d.id; })
       .distance(function(d) {
@@ -553,21 +491,32 @@ function updateStatus(stage, message) {
       .radius(function(d) {
         return d.size + 2; // Add small buffer
       }))
-    .force('cluster', d3.forceCluster()
-      .centers(function(d) {
+    // Manual clustering by category instead of d3.forceCluster (not available in d3.v7)
+      .force('charge', d3.forceManyBody().strength(-100))
+      .force('x', d3.forceX().x(function(d) {
         if (d.type === 'entity') {
-          var colors = {
-            'stoff': [width/4, height/4],
-            'methode': [3*width/4, height/4], 
-            'reaktion': [width/4, 3*height/4],
-            'konzept': [3*width/4, 3*height/4],
-            'default': [width/2, height/2]
+          var positions = {
+            'stoff': width/4,
+            'methode': width/2,
+            'reaktion': 3*width/4,
+            'konzept': width/2
           };
-          return colors[d.category] || colors.default;
+          return positions[d.category] || positions.default;
         }
-        return [width/2, height/2]; // Articles in center
-      })
-      .strength(0.5))
+        return width/2; // Articles center
+      }))
+      .force('y', d3.forceY().y(function(d) {
+        if (d.type === 'entity') {
+          var yPositions = {
+            'stoff': height/4,
+            'methode': height/2,
+            'reaktion': 3*height/4,
+            'konzept': height/2
+          };
+          return yPositions[d.category] || height/2;
+        }
+        return height/2; // Articles center
+      }))
     .alphaDecay(0.02) // Slower convergence for better layout
     .velocityDecay(0.4) // Damping for stability
     .on('tick', function() {
@@ -643,45 +592,133 @@ function updateStatus(stage, message) {
   });
 }
 
-// Close initializeGraph function body
-})();
-</script>
+// Enhanced features: Search functionality
+function setupSearchFunctionality() {
+  var searchInput = document.createElement('div');
+  searchInput.innerHTML = `
+    <div style="position: absolute; top: 10px; left: 10px; z-index: 1000; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <input type="text" id="graph-search" placeholder="Suche nach Entitäten oder Artikeln..." 
+               style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; width: 250px; font-size: 14px;">
+        <button id="clear-search" title="Clear search" style="padding: 8px 12px; background: #f8f9fa; border: 1px solid #ddd; border-radius: 6px; cursor: pointer;">✖</button>
+      </div>
+      <div id="search-results" style="margin-top: 8px; max-height: 150px; overflow-y: auto;"></div>
+    </div>
+  `;
+  document.getElementById('knowledge-graph').appendChild(searchInput);
 
-<style>
-.entity-graph-container {
-  margin-top: 20px;
-  margin-bottom: 40px;
-}
-#knowledge-graph {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-.graph-controls {
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-.graph-controls .form-select,
-.graph-controls .form-range {
-  font-size: 0.875rem;
-}
-.graph-controls .btn {
-  font-size: 0.875rem;
-  margin-left: 5px;
-}
-@media (max-width: 768px) {
-  #knowledge-graph {
-    height: 500px !important;
+  var searchResults = document.getElementById('search-results');
+  var searchInputEl = document.getElementById('graph-search');
+  var clearBtn = document.getElementById('clear-search');
+
+  searchInputEl.addEventListener('input', function(e) {
+    clearTimeout(searchTimeout);
+    var query = e.target.value.toLowerCase().trim();
+    
+    if (query.length === 0) {
+      searchResults.innerHTML = '';
+      resetHighlight();
+      return;
+    }
+
+    searchTimeout = setTimeout(function() {
+      var results = nodes.filter(function(node) {
+        return node.label.toLowerCase().includes(query);
+      });
+
+      displaySearchResults(results, query);
+      highlightSearchResults(results);
+    }, 300);
+  });
+
+  clearBtn.addEventListener('click', function() {
+    searchInputEl.value = '';
+    searchResults.innerHTML = '';
+    resetHighlight();
+  });
+
+  function displaySearchResults(results, query) {
+    if (results.length === 0) {
+      searchResults.innerHTML = `<div style="padding: 8px; color: #666; font-size: 14px;">Keine Ergebnisse für "${escapeHtml(query)}"</div>`;
+      return;
+    }
+
+    var html = results.slice(0, 10).map(function(node, i) {
+      var info = node.type === 'entity' 
+        ? ` (${categoryLabels[node.category] || 'Kategorie'}, ${node.count || 0} Artikel)`
+        : ` (Artikel)`;
+      return `<div style="padding: 6px 8px; cursor: pointer; border-radius: 4px; font-size: 13px; color: #333;"
+               onmouseover="this.style.background='#f0f0f0'" 
+               onmouseout="this.style.background='transparent'"
+               onclick="focusNode('${escapeHtml(node.id)}')">
+               ${escapeHtml(node.label)}${escapeHtml(info)}
+             </div>`;
+    }).join('');
+
+    searchResults.innerHTML = html;
   }
-  #knowledge-graph svg {
-    height: 500px !important;
+
+  function highlightSearchResults(results) {
+    // Clear existing highlights
+    d3.selectAll('circle')
+      .style('opacity', function(d) {
+        var highlighted = results.some(r => r.id === d.id);
+        return highlighted ? 1 : 0.3;
+      })
+      .style('stroke-width', function(d) {
+        var highlighted = results.some(r => r.id === d.id);
+        return highlighted ? 3 : 1.5;
+      });
+
+    d3.selectAll('line')
+      .style('opacity', function(d) {
+        var sourceHighlighted = results.some(r => r.id === d.source.id);
+        var targetHighlighted = results.some(r => r.id === d.target.id);
+        return (sourceHighlighted && targetHighlighted) ? 0.8 : 0.2;
+      });
+
+    // Highlight connected nodes too
+    d3.selectAll('circle')
+      .style('stroke', function(d) {
+        if (results.some(r => r.id === d.id)) {
+          return '#ff6b6b';
+        } else if (isConnectedToHighlighted(d)) {
+          return '#ffa726';
+        }
+        return '#fff';
+      });
   }
-  .graph-controls .col-md-4 {
-    margin-bottom: 10px;
+
+  function isConnectedToHighlighted(node) {
+    return links.some(function(link) {
+      return (link.source.id === node.id && results.some(r => r.id === link.target.id)) ||
+             (link.target.id === node.id && results.some(r => r.id === link.source.id));
+    });
   }
+
+  function resetHighlight() {
+    d3.selectAll('circle')
+      .style('opacity', 0.8)
+      .style('stroke-width', 1.5)
+      .style('stroke', '#fff');
+
+    d3.selectAll('line')
+      .style('opacity', 0.6);
+  }
+
+  // Make focusNode available globally
+  window.focusNode = function(nodeId) {
+    var node = nodes.find(n => n.id === nodeId);
+    if (node) {
+      var scale = 1.5;
+      var translate = [width / 2 - node.x * scale, height / 2 - node.y * scale];
+      
+      svg.transition()
+        .duration(750)
+        .call(zoom.transform, d3.zoomIdentity.translate(translate[0], translate[1]).scale(scale));
+    }
+  };
 }
-</style>
 
 // Enhanced features: Export functionality
 function setupExportFunctionality() {
@@ -706,7 +743,7 @@ function setupExportFunctionality() {
       </div>
     </div>
   `;
-  document.getElementById('knowledge-graph').appendChild(exportContainer[0]);
+  document.getElementById('knowledge-graph').appendChild(exportContainer);
 
   // Export as SVG
   document.getElementById('export-svg').addEventListener('click', function() {
@@ -825,7 +862,7 @@ function setupExportFunctionality() {
 }
 
 // Interactive features: Node expansion and category filtering
-function setupInteractiveControls(nodes, links) {
+function setupInteractiveControls() {
   var controlsContainer = document.createElement('div');
   controlsContainer.innerHTML = `
     <div style="position: absolute; top: 10px; right: 10px; z-index: 1000; background: white; padding: 12px; 
@@ -845,16 +882,6 @@ function setupInteractiveControls(nodes, links) {
                   background: #f8f9fa; cursor: pointer; font-size: 11px; border-left: 3px solid #45b7d1;">Konzept</button>
         </div>
       </div>
-      <div>
-        <button id="toggle-articles" style="padding: 6px 12px; background: #f8f9fa; border: 1px solid #ddd; 
-                border-radius: 6px; cursor: pointer; font-size: 12px; width: 100%; margin-bottom: 5px;">
-          🔍 Artikel einblenden
-        </button>
-        <button id="expand-all" style="padding: 6px 12px; background: #f8f9fa; border: 1px solid #ddd; 
-                border-radius: 6px; cursor: pointer; font-size: 12px; width: 100%;">
-          ⤢ Alle erweitern
-        </button>
-      </div>
     </div>
   `;
   document.getElementById('knowledge-graph').appendChild(controlsContainer[0]);
@@ -869,65 +896,27 @@ function setupInteractiveControls(nodes, links) {
     });
   });
 
-  // Article toggle
-  var articlesVisible = true;
-  document.getElementById('toggle-articles').addEventListener('click', function() {
-    articlesVisible = !articlesVisible;
-    this.innerHTML = articlesVisible ? '🔍 Artikel ausblenden' : '🔍 Artikel einblenden';
-    toggleArticlesVisibility(articlesVisible);
-  });
-
-  // Expand all
-  document.getElementById('expand-all').addEventListener('click', function() {
-    expandAllNodes();
-  });
-
   function filterByCategory(category) {
     var entitiesToShow = category === 'all' ? nodes.filter(n => n.type === 'entity') :
                        nodes.filter(n => n.type === 'entity' && n.category === category);
     
     d3.selectAll('circle')
       .style('opacity', function(d) {
-        var show = entitiesToShow.some(e => e.id === d.id) || (d.type === 'article' && articlesVisible);
-        return show ? (d.type === 'entity' ? 1 : 0.8) : 0.1;
+        var show = entitiesToShow.some(e => e.id === d.id);
+        return show ? 1 : 0.1;
       });
 
     d3.selectAll('line')
       .style('opacity', function(d) {
         var sourceVisible = entitiesToShow.some(e => e.id === d.source.id);
-        var targetVisible = d.target.type === 'article' ? articlesVisible : entitiesToShow.some(e => e.id === d.target.id);
+        var targetVisible = d.target.type === 'article' ? true : entitiesToShow.some(e => e.id === d.target.id);
         return (sourceVisible && targetVisible) ? 0.6 : 0.1;
       });
-  }
-
-  function toggleArticlesVisibility(visible) {
-    d3.selectAll('circle')
-      .style('opacity', function(d) {
-        return d.type === 'entity' ? 1 : (visible ? 0.8 : 0.1);
-      });
-
-    d3.selectAll('text')
-      .style('display', function(d) {
-        return d.type === 'entity' || visible ? 'block' : 'none';
-      });
-  }
-
-  function expandAllNodes() {
-    nodes.forEach(function(node) {
-      if (node.collapsed) {
-        node.collapsed = false;
-        node.alpha = 1;
-        node.alphaTarget = 1;
-      }
-    });
-    simulation.alpha(0.3).restart();
   }
 }
 
 // Integration with entity detail pages and navigation
-function setupEntityNavigation(nodes, links) {
-  var entityNodes = nodes.filter(n => n.type === 'entity');
-  
+function setupEntityNavigation() {
   // Add click handlers to entity nodes for navigation
   d3.selectAll('circle')
     .filter(function(d) { return d.type === 'entity'; })
@@ -940,120 +929,11 @@ function setupEntityNavigation(nodes, links) {
         var entityUrl = `/entity/${entityName}`;
         window.open(entityUrl, '_blank');
       }
-    })
-    .on('contextmenu', function(event, d) {
-      event.preventDefault();
-      showEntityContextMenu(event, d);
     });
-
-  function showEntityContextMenu(event, d) {
-    var menu = document.createElement('div');
-    menu.innerHTML = `
-      <div style="position: fixed; top: ${event.pageY}px; left: ${event.pageX}px; 
-                  background: white; border: 1px solid #ddd; border-radius: 6px; 
-                  box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 10000; 
-                  min-width: 200px; padding: 8px 0;">
-        <div style="padding: 8px 16px; cursor: pointer; border-bottom: 1px solid #eee;" 
-             onclick="window.open('${d.url || '/entity/' + encodeURIComponent(d.label)}', '_blank')">
-          📄 Detailansicht
-        </div>
-        <div style="padding: 8px 16px; cursor: pointer; border-bottom: 1px solid #eee;" 
-             onclick="copyEntityInfo('${d.label}', '${d.category}', ${d.count})">
-          📋 Kopieren
-        </div>
-        <div style="padding: 8px 16px; cursor: pointer; border-bottom: 1px solid #eee;" 
-             onclick="highlightRelatedEntities('${d.id}')">
-          🔗 Verwandte hervorheben
-        </div>
-        <div style="padding: 8px 16px; cursor: pointer;" 
-             onclick="centerOnEntity('${d.id}')">
-          🎯 Zentrieren
-        </div>
-      </div>
-    `;
-    
-    document.body.appendChild(menu);
-    
-    // Auto-remove menu after 3 seconds or on click outside
-    setTimeout(function() {
-      if (menu.parentNode) menu.parentNode.removeChild(menu);
-    }, 3000);
-    
-    document.addEventListener('click', function removeMenu() {
-      if (menu.parentNode) menu.parentNode.removeChild(menu);
-      document.removeEventListener('click', removeMenu);
-    });
-  }
-
-  // Global functions for entity navigation
-  window.copyEntityInfo = function(name, category, count) {
-    var info = `Entität: ${name}\nKategorie: ${category}\nArtikel: ${count}`;
-    navigator.clipboard.writeText(info).then(function() {
-      alert('Entitätsinformation kopiert!');
-    });
-  };
-
-  window.highlightRelatedEntities = function(entityId) {
-    var entity = nodes.find(n => n.id === entityId);
-    if (!entity) return;
-
-    var relatedEntities = links
-      .filter(l => l.source.id === entityId || l.target.id === entityId)
-      .map(l => l.source.id === entityId ? l.target.id : l.source.id);
-
-    // Highlight related entities
-    d3.selectAll('circle')
-      .style('stroke', function(d) {
-        if (d.id === entityId) return '#ff6b6b';
-        if (relatedEntities.includes(d.id)) return '#ffa726';
-        return '#fff';
-      })
-      .style('stroke-width', function(d) {
-        if (d.id === entityId || relatedEntities.includes(d.id)) return 3;
-        return 1.5;
-      });
-
-    // Highlight related connections
-    d3.selectAll('line')
-      .style('stroke-width', function(d) {
-        if ((d.source.id === entityId && relatedEntities.includes(d.target.id)) ||
-            (d.target.id === entityId && relatedEntities.includes(d.source.id))) {
-          return 3;
-        }
-        return 1;
-      });
-
-    // Highlight fades after 3 seconds
-    setTimeout(function() {
-      resetHighlights();
-    }, 3000);
-  };
-
-  window.centerOnEntity = function(entityId) {
-    var entity = nodes.find(n => n.id === entityId);
-    if (!entity) return;
-
-    var transform = d3.zoomTransform(svg.node());
-    var scale = 1.5;
-    var translate = [width / 2 - entity.x * scale, height / 2 - entity.y * scale];
-    
-    svg.transition()
-      .duration(750)
-      .call(zoom.transform, d3.zoomIdentity.translate(translate[0], translate[1]).scale(scale));
-  };
-
-  function resetHighlights() {
-    d3.selectAll('circle')
-      .style('stroke', '#fff')
-      .style('stroke-width', 1.5);
-
-    d3.selectAll('line')
-      .style('stroke-width', 1);
-  }
 }
 
 // Accessibility features: Keyboard navigation and screen reader support
-function setupAccessibilityFeatures(nodes, links) {
+function setupAccessibilityFeatures() {
   var focusedElement = null;
   
   // Add keyboard navigation
@@ -1116,12 +996,6 @@ function setupAccessibilityFeatures(nodes, links) {
     
     focusedElement = elements[currentIndex];
     focusedElement.focus();
-    
-    // Center view on focused element
-    if (focusedElement && focusedElement.__data__) {
-      var data = focusedElement.__data__;
-      centerOnEntity(data.id);
-    }
   }
 
   function navigateWithArrows(direction) {
@@ -1137,7 +1011,6 @@ function setupAccessibilityFeatures(nodes, links) {
       if (nextElement) {
         focusedElement = nextElement;
         nextElement.focus();
-        centerOnEntity(next.id);
       }
     }
   }
@@ -1150,134 +1023,13 @@ function setupAccessibilityFeatures(nodes, links) {
   }
 }
 
-// Enhanced features: Search functionality
-var searchTimeout;
-function setupSearchFunctionality(nodes, links) {
-  var searchInput = document.createElement('div');
-  searchInput.innerHTML = `
-    <div style="position: absolute; top: 10px; left: 10px; z-index: 1000; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-      <div style="display: flex; gap: 10px; align-items: center;">
-        <input type="text" id="graph-search" placeholder="Suche nach Entitäten oder Artikeln..." 
-               style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; width: 250px; font-size: 14px;">
-        <button id="clear-search" title="Clear search" style="padding: 8px 12px; background: #f8f9fa; border: 1px solid #ddd; border-radius: 6px; cursor: pointer;">✖</button>
-      </div>
-      <div id="search-results" style="margin-top: 8px; max-height: 150px; overflow-y: auto;"></div>
-    </div>
-  `;
-  document.getElementById('knowledge-graph').appendChild(searchInput[0]);
-
-  var searchResults = document.getElementById('search-results');
-  var searchInputEl = document.getElementById('graph-search');
-  var clearBtn = document.getElementById('clear-search');
-
-  searchInputEl.addEventListener('input', function(e) {
-    clearTimeout(searchTimeout);
-    var query = e.target.value.toLowerCase().trim();
-    
-    if (query.length === 0) {
-      searchResults.innerHTML = '';
-      resetHighlight();
-      return;
-    }
-
-    searchTimeout = setTimeout(function() {
-      var results = nodes.filter(function(node) {
-        return node.label.toLowerCase().includes(query);
-      });
-
-      displaySearchResults(results, query);
-      highlightSearchResults(results);
-    }, 300);
-  });
-
-  clearBtn.addEventListener('click', function() {
-    searchInputEl.value = '';
-    searchResults.innerHTML = '';
-    resetHighlight();
-  });
-
-  function displaySearchResults(results, query) {
-    if (results.length === 0) {
-      searchResults.innerHTML = `<div style="padding: 8px; color: #666; font-size: 14px;">Keine Ergebnisse für "${query}"</div>`;
-      return;
-    }
-
-    var html = results.slice(0, 10).map(function(node, i) {
-      var info = node.type === 'entity' 
-        ? ` (${categoryLabels[node.category] || 'Kategorie'}, ${node.count || 0} Artikel)`
-        : ` (Artikel)`;
-      return `<div style="padding: 6px 8px; cursor: pointer; border-radius: 4px; font-size: 13px; color: #333;"
-               onmouseover="this.style.background='#f0f0f0'" 
-               onmouseout="this.style.background='transparent'"
-               onclick="focusNode('${node.id}')">
-               ${node.label}${info}
-             </div>`;
-    }).join('');
-
-    searchResults.innerHTML = html;
-  }
-
-  function highlightSearchResults(results) {
-    // Clear existing highlights
-    d3.selectAll('circle')
-      .style('opacity', function(d) {
-        var highlighted = results.some(r => r.id === d.id);
-        return highlighted ? 1 : 0.3;
-      })
-      .style('stroke-width', function(d) {
-        var highlighted = results.some(r => r.id === d.id);
-        return highlighted ? 3 : 1.5;
-      });
-
-    d3.selectAll('line')
-      .style('opacity', function(d) {
-        var sourceHighlighted = results.some(r => r.id === d.source.id);
-        var targetHighlighted = results.some(r => r.id === d.target.id);
-        return (sourceHighlighted && targetHighlighted) ? 0.8 : 0.2;
-      });
-
-    // Highlight connected nodes too
-    d3.selectAll('circle')
-      .style('stroke', function(d) {
-        if (results.some(r => r.id === d.id)) {
-          return '#ff6b6b';
-        } else if (isConnectedToHighlighted(d)) {
-          return '#ffa726';
-        }
-        return '#fff';
-      });
-  }
-
-  function isConnectedToHighlighted(node) {
-    return links.some(function(link) {
-      return (link.source.id === node.id && results.some(r => r.id === link.target.id)) ||
-             (link.target.id === node.id && results.some(r => r.id === link.source.id));
-    });
-  }
-
-  function resetHighlight() {
-    d3.selectAll('circle')
-      .style('opacity', 0.8)
-      .style('stroke-width', 1.5)
-      .style('stroke', '#fff');
-
-    d3.selectAll('line')
-      .style('opacity', 0.6);
-  }
-
-  // Make focusNode available globally
-  window.focusNode = function(nodeId) {
-    var node = nodes.find(n => n.id === nodeId);
-    if (node) {
-      var transform = d3.zoomTransform(svg.node());
-      var scale = 1.5;
-      var translate = [width / 2 - node.x * scale, height / 2 - node.y * scale];
-      
-      svg.transition()
-        .duration(750)
-        .call(zoom.transform, d3.zoomIdentity.translate(translate[0], translate[1]).scale(scale));
-    }
-  };
-}
-
-{{ end }}
+// Helper function for category labels
+var categoryLabels = {
+  'stoff': 'Stoff',
+  'methode': 'Methode', 
+  'reaktion': 'Reaktion',
+  'konzept': 'Konzept',
+  'person': 'Person',
+  'default': 'Kategorie'
+};
+</script>

@@ -19,7 +19,7 @@ const STATIC_FILES = [
   '/css/quiz-system.css',
   '/js/dark-mode.js',
   '/js/chemistry-calculator-framework.js',
-  '/js/advanced-lazy-loader.js',
+  '/js/lazy-loader.js',
   '/images/recent-article_001.jpg'
 ];
 

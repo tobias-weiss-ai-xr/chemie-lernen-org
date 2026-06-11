@@ -1,0 +1,144 @@
+- generic [active] [ref=e1]:
+  - link "Zum Hauptinhalt springen" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - link "chemie-lernen.org - interaktiv und quelloffen chemie-lernen.org - interaktiv und quelloffen" [ref=e7] [cursor=pointer]:
+            - /url: https://chemie-lernen.org/
+            - img "chemie-lernen.org - interaktiv und quelloffen" [ref=e8]
+            - text: chemie-lernen.org - interaktiv und quelloffen
+          - button "Dark Mode umschalten" [ref=e9] [cursor=pointer]:
+            - generic [ref=e10]: 
+        - search [ref=e12]:
+          - searchbox "Seite durchsuchen" [ref=e13]
+          - button "Suche starten" [ref=e14] [cursor=pointer]:
+            - generic [ref=e15]: 
+          - text: 
+      - navigation "Hauptnavigation" [ref=e16]:
+        - generic [ref=e18]:
+          - list [ref=e19]:
+            - listitem [ref=e20]:
+              - link "Themenbereiche" [ref=e21] [cursor=pointer]:
+                - /url: /themenbereiche/
+            - listitem [ref=e22]:
+              - link "KI-Assistent" [ref=e23] [cursor=pointer]:
+                - /url: /ki-assistent/
+            - listitem [ref=e24]:
+              - link "Wissensnetz" [ref=e25] [cursor=pointer]:
+                - /url: /entity/
+            - listitem [ref=e26]:
+              - button "Rechner Menü anzeigen" [ref=e27] [cursor=pointer]: Rechner
+            - listitem [ref=e29]:
+              - button "Simulationen Menü anzeigen" [ref=e30] [cursor=pointer]: Simulationen
+            - listitem [ref=e32]:
+              - button "Visualisierungen Menü anzeigen" [ref=e33] [cursor=pointer]: Visualisierungen
+            - listitem [ref=e35]:
+              - button "Lehrende Menü anzeigen" [ref=e36] [cursor=pointer]: Lehrende
+            - listitem [ref=e38]:
+              - button "Mehr Menü anzeigen" [ref=e39] [cursor=pointer]: Mehr
+          - search [ref=e41]:
+            - generic [ref=e42]:
+              - generic [ref=e43]: Themen suchen
+              - textbox "Themen suchen" [ref=e44]:
+                - /placeholder: Themen suchen...
+            - button "Suchen" [ref=e45] [cursor=pointer]:
+              - generic [ref=e46]: 
+  - generic [ref=e47]:
+    - navigation "breadcrumb" [ref=e48]:
+      - list [ref=e49]:
+        - listitem [ref=e50]:
+          - link "Start" [ref=e51] [cursor=pointer]:
+            - /url: https://chemie-lernen.org/
+            - generic [ref=e52]: 
+            - text: Start
+        - listitem [ref=e53]: ›Wissensnetz-Graph
+    - generic [ref=e54]:
+      - main [ref=e55]:
+        - generic [ref=e56]:
+          - generic [ref=e58]:
+            - navigation "breadcrumb" [ref=e59]:
+              - list [ref=e60]:
+                - listitem [ref=e61]:
+                  - link "Start" [ref=e62] [cursor=pointer]:
+                    - /url: /
+                - listitem [ref=e63]:
+                  - text: ›
+                  - link "Wissensnetz" [ref=e64] [cursor=pointer]:
+                    - /url: /entity/
+                - listitem [ref=e65]: ›Graph
+            - heading "Wissensnetz-Graph" [level=1] [ref=e66]
+            - paragraph [ref=e67]: Interaktive Visualisierung der Verbindungen zwischen Fachbegriffen und Artikeln.
+            - paragraph [ref=e68]: Jeder ● blaue Knoten ist ein Fachbegriff. ● rosa Knoten sind Artikel.
+          - generic [ref=e72]:
+            - generic [ref=e73]:
+              - generic [ref=e74]: "Filter:"
+              - combobox [ref=e75]:
+                - option "Alle Knoten" [selected]
+                - option "Nur Fachbegriffe"
+                - option "Nur Artikel"
+            - generic [ref=e76]:
+              - button "Zurücksetzen" [ref=e77] [cursor=pointer]
+              - button "Zentrieren" [ref=e78] [cursor=pointer]
+      - generic [ref=e80]:
+        - paragraph [ref=e81]:
+          - strong [ref=e82]: "Diesen Beitrag teilen:"
+        - paragraph [ref=e83]:
+          - link "Auf Twitter/X teilen" [ref=e84] [cursor=pointer]:
+            - /url: https://twitter.com/intent/tweet?text=Wissensnetz-Graph&url=https%253A%252F%252Fchemie-lernen.org%252Fentity%252Fgraph%252F
+            - text: 🐦
+          - link "Auf LinkedIn teilen" [ref=e85] [cursor=pointer]:
+            - /url: https://www.linkedin.com/shareArticle?mini=true&url=https%253A%252F%252Fchemie-lernen.org%252Fentity%252Fgraph%252F&title=Wissensnetz-Graph&summary=Interaktive%20Visualisierung%20der%20Verbindungen%20zwischen%20Fachbegriffen%20und%20Artikeln%20im%20Wissensnetz%20von%20chemie-lernen.org
+            - text: 💼
+          - link "Per WhatsApp teilen" [ref=e86] [cursor=pointer]:
+            - /url: https://api.whatsapp.com/send?text=Wissensnetz-Graph%20https%253A%252F%252Fchemie-lernen.org%252Fentity%252Fgraph%252F
+            - text: 💬
+          - link "Auf Mastodon teilen" [ref=e87] [cursor=pointer]:
+            - /url: https://toot.kytta.dev/?text=Wissensnetz-Graph%20https%253A%252F%252Fchemie-lernen.org%252Fentity%252Fgraph%252F
+            - text: 🐘
+          - link "Per E-Mail teilen" [ref=e88] [cursor=pointer]:
+            - /url: mailto:?subject=Wissensnetz-Graph&body=Wissensnetz-Graph%0Ahttps%3a%2f%2fchemie-lernen.org%2fentity%2fgraph%2f
+            - text: ✉️
+          - link "Link kopieren" [ref=e89] [cursor=pointer]:
+            - /url: "#"
+            - text: 🔗
+  - contentinfo "Website-Fußzeile" [ref=e90]:
+    - generic [ref=e92]:
+      - generic [ref=e93]:
+        - heading "chemie-lernen.org - interaktiv und quelloffen" [level=4] [ref=e94]
+        - paragraph [ref=e95]: chemie-lernen.org - Ihre Plattform für innovativse Chemie-Lernen. Chemische Grundlagen und Konzepte greifbar und erlebbar.
+        - paragraph [ref=e96]:
+          - link "Unterstütze uns via Liberapay" [ref=e97] [cursor=pointer]:
+            - /url: https://liberapay.com/tobias-weiss-ai-xr/donate
+            - img "Liberapay" [ref=e98]
+            - text: Unterstütze uns via Liberapay
+        - paragraph [ref=e99]:
+          - link "Besuchen Sie unseren Patreon" [ref=e100] [cursor=pointer]:
+            - /url: https://www.patreon.com/c/chemie_lernen_org
+            - img [ref=e101]
+            - text: Unterstütze uns auf Patreon
+        - paragraph [ref=e103]:
+          - link "Mehr zu den Unterstützungsmöglichkeiten" [ref=e105] [cursor=pointer]:
+            - /url: /unterstuetzen/
+      - generic [ref=e106]:
+        - generic [ref=e107]:
+          - heading "Newsletter" [level=4] [ref=e108]
+          - paragraph [ref=e109]: Einmal pro Woche Chemie-Artikel, Rechner-Updates & Lerntipps.
+          - generic [ref=e110]:
+            - textbox "Deine E-Mail" [ref=e111]
+            - button "Anmelden" [ref=e112] [cursor=pointer]
+        - paragraph [ref=e113]: © 2026 chemie-lernen.org - interaktiv und quelloffen. Alle Rechte vorbehalten.
+        - paragraph [ref=e114]:
+          - generic [ref=e115]:
+            - link "Impressum" [ref=e116] [cursor=pointer]:
+              - /url: /impressum/
+            - text: "|"
+            - link "Datenschutz" [ref=e117] [cursor=pointer]:
+              - /url: /datenschutz/
+            - text: "|"
+            - link "Wissensnetz" [ref=e118] [cursor=pointer]:
+              - /url: /entity/
+            - text: "|"
+            - link "Barrierefreiheit" [ref=e119] [cursor=pointer]:
+              - /url: /pages/barrierefreiheit/

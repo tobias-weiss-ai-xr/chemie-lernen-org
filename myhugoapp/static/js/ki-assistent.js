@@ -159,6 +159,35 @@
     return html;
   }
 
+  // Global session state
+  var currentSession = null;
+
+  /**
+   * Initialize or get session from server
+   */
+  function initSession() {
+    return new Promise(function (resolve) {
+      fetch('/api/session')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          currentSession = data;
+          resolve(currentSession);
+        })
+        .catch(function () {
+          // Fallback: use local storage if API fails
+          var savedSession = localStorage.getItem('chemie_session');
+          if (savedSession) {
+            try {
+              currentSession = JSON.parse(savedSession);
+            } catch (e) {
+              currentSession = null;
+            }
+          }
+          resolve(currentSession);
+        });
+    });
+  }
+
   /**
    * Call the chat API with a timeout.
    */
@@ -168,23 +197,39 @@
       var controller = new AbortController();
       var timer = setTimeout(function () { controller.abort(); }, timeoutMs);
 
+      var requestBody = { message: query };
+      if (currentSession) {
+        requestBody.sessionId = currentSession.sessionId;
+      }
+
       fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: query }),
+        body: JSON.stringify(requestBody),
         signal: controller.signal,
       })
         .then(function (r) { return r.json(); })
         .then(function (data) {
           clearTimeout(timer);
+          if (data.sessionId && currentSession) {
+            currentSession.sessionId = data.sessionId;
+            currentSession.messageCount = data.messageCount;
+            localStorage.setItem('chemie_session', JSON.stringify(currentSession));
+          }
           if (data.reply) {
-            resolve({ reply: data.reply, remaining: data.remaining });
+            resolve({ 
+              reply: data.reply, 
+              remaining: data.remaining,
+              sessionId: data.sessionId,
+              messageCount: data.messageCount
+            });
           } else {
             resolve(null);
           }
         })
-        .catch(function () {
+        .catch(function (error) {
           clearTimeout(timer);
+          console.error('Chat API error:', error);
           resolve(null);
         });
     });
@@ -203,10 +248,11 @@
 
       if (apiResult) {
         var remaining = apiResult.remaining;
-        var remainingHtml = '';
-        if (remaining !== undefined) {
-          remainingHtml = '<br><br><small style="color:#888;">Noch ' + remaining + ' KI-Anfragen heute übrig.</small>';
-        }
+        var sessionInfo = apiResult.messageCount ? 
+          '<br><br><small style="color:#888;">Nachricht ' + apiResult.messageCount + ' von max. 50 pro Sitzung.</small>' : '';
+        var remainingHtml = remaining !== undefined ? 
+          '<br><br><small style="color:#888;">Noch ' + remaining + ' KI-Anfragen heute übrig.' + sessionInfo + '</small>' : sessionInfo;
+        
         addMessage(apiResult.reply + remainingHtml, false);
         addMessage('Hast du noch weitere Fragen?', false);
         return;
@@ -257,21 +303,23 @@
   function init() {
     kgData = loadKgData();
 
-    var input = document.getElementById('chat-input');
-    var sendBtn = document.getElementById('chat-send-btn');
+    initSession().then(function (session) {
+      var input = document.getElementById('chat-input');
+      var sendBtn = document.getElementById('chat-send-btn');
 
-    if (input && sendBtn) {
-      sendBtn.addEventListener('click', function () {
-        handleQuery(input.value);
-      });
-
-      input.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-          e.preventDefault();
+      if (input && sendBtn) {
+        sendBtn.addEventListener('click', function () {
           handleQuery(input.value);
-        }
-      });
-    }
+        });
+
+        input.addEventListener('keypress', function (e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            handleQuery(input.value);
+          }
+        });
+      }
+    });
   }
 
   if (document.getElementById('chat-input')) {
