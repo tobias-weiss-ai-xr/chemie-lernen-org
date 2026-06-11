@@ -150,23 +150,27 @@ try {
     updateStatus('loading', 'Lade Entitäten...');
     
     // Map API response to expected format
-    const entities = data.entities.map((e, i) => ({
-      id: e.id || `e${i}`,
-      name: e.name,
-      category: e.category || 'konzept',
-      articles: [],
-      relatedEntities: (e.relatedEntities || []).map(name => ({ name, weight: 1 })),
-      articleCount: e.articleCount || 0
-    }));
+    const entities = data.entities.map(function(e, i) {
+      return {
+        id: e.id || 'e' + i,
+        name: e.name,
+        category: e.category || 'konzept',
+        articles: [],
+        relatedEntities: (e.relatedEntities || []).map(function(name) { return { name: name, weight: 1 }; }),
+        articleCount: e.articleCount || 0
+      };
+    });
     
     updateStatus('loading', 'Lade Artikel...');
-    const articles = data.articles.map((a, i) => ({
-      id: a.id || `a${i}`,
-      title: a.title,
-      url: a.url,
-      entities: a.entities,
-      date: a.date
-    }));
+    const articles = data.articles.map(function(a, i) {
+      return {
+        id: a.id || 'a' + i,
+        title: a.title,
+        url: a.url,
+        entities: a.entities,
+        date: a.date
+      };
+    });
 
     console.log(`[kg-data] Loaded from API: ${entities.length} entities, ${articles.length} articles in ${data.loadTime || 'unknown'}s`);
     
@@ -345,8 +349,8 @@ function initializeGraph() {
   document.getElementById('graph-loading').style.display = 'none';
   
   // Update status
-  var entityCount = nodes.filter(n => n.type === 'entity').length;
-  var articleCount = nodes.filter(n => n.type === 'article').length;
+  var entityCount = nodes.filter(function(n) { return n.type === 'entity'; }).length;
+  var articleCount = nodes.filter(function(n) { return n.type === 'article'; }).length;
   document.getElementById('graph-status').innerHTML = 
     '<small class="text-muted">Daten geladen: ' + entityCount + ' Entitäten, ' + articleCount + ' Artikel</small>';
   
@@ -662,25 +666,25 @@ function setupSearchFunctionality() {
     // Clear existing highlights
     d3.selectAll('circle')
       .style('opacity', function(d) {
-        var highlighted = results.some(r => r.id === d.id);
+        var highlighted = results.some(function(r) { return r.id === d.id; });
         return highlighted ? 1 : 0.3;
       })
       .style('stroke-width', function(d) {
-        var highlighted = results.some(r => r.id === d.id);
+        var highlighted = results.some(function(r) { return r.id === d.id; });
         return highlighted ? 3 : 1.5;
       });
 
     d3.selectAll('line')
       .style('opacity', function(d) {
-        var sourceHighlighted = results.some(r => r.id === d.source.id);
-        var targetHighlighted = results.some(r => r.id === d.target.id);
+        var sourceHighlighted = results.some(function(r) { return r.id === d.source.id; });
+        var targetHighlighted = results.some(function(r) { return r.id === d.target.id; });
         return (sourceHighlighted && targetHighlighted) ? 0.8 : 0.2;
       });
 
     // Highlight connected nodes too
     d3.selectAll('circle')
       .style('stroke', function(d) {
-        if (results.some(r => r.id === d.id)) {
+        if (results.some(function(r) { return r.id === d.id; })) {
           return '#ff6b6b';
         } else if (isConnectedToHighlighted(d)) {
           return '#ffa726';
@@ -691,8 +695,8 @@ function setupSearchFunctionality() {
 
   function isConnectedToHighlighted(node) {
     return links.some(function(link) {
-      return (link.source.id === node.id && results.some(r => r.id === link.target.id)) ||
-             (link.target.id === node.id && results.some(r => r.id === link.source.id));
+      return (link.source.id === node.id && results.some(function(r) { return r.id === link.target.id; })) ||
+             (link.target.id === node.id && results.some(function(r) { return r.id === link.source.id; }));
     });
   }
 
@@ -708,7 +712,7 @@ function setupSearchFunctionality() {
 
   // Make focusNode available globally
   window.focusNode = function(nodeId) {
-    var node = nodes.find(n => n.id === nodeId);
+    var node = nodes.find(function(n) { return n.id === nodeId; });
     if (node) {
       var scale = 1.5;
       var translate = [width / 2 - node.x * scale, height / 2 - node.y * scale];
@@ -792,8 +796,8 @@ function setupExportFunctionality() {
         exportDate: new Date().toISOString(),
         nodeCount: nodes.length,
         linkCount: links.length,
-        entityCount: nodes.filter(n => n.type === 'entity').length,
-        articleCount: nodes.filter(n => n.type === 'article').length
+        entityCount: nodes.filter(function(n) { return n.type === 'entity'; }).length,
+        articleCount: nodes.filter(function(n) { return n.type === 'article'; }).length
       },
       nodes: nodes.map(function(n) {
         return {
@@ -890,26 +894,26 @@ function setupInteractiveControls() {
   var categoryButtons = document.querySelectorAll('.category-btn');
   categoryButtons.forEach(function(btn) {
     btn.addEventListener('click', function() {
-      categoryButtons.forEach(b => b.classList.remove('active'));
+      categoryButtons.forEach(function(b) { b.classList.remove('active'); });
       this.classList.add('active');
       filterByCategory(this.dataset.category);
     });
   });
 
   function filterByCategory(category) {
-    var entitiesToShow = category === 'all' ? nodes.filter(n => n.type === 'entity') :
-                       nodes.filter(n => n.type === 'entity' && n.category === category);
+    var entitiesToShow = category === 'all' ? nodes.filter(function(n) { return n.type === 'entity'; }) :
+                       nodes.filter(function(n) { return n.type === 'entity' && n.category === category; });
     
     d3.selectAll('circle')
       .style('opacity', function(d) {
-        var show = entitiesToShow.some(e => e.id === d.id);
+        var show = entitiesToShow.some(function(e) { return e.id === d.id; });
         return show ? 1 : 0.1;
       });
 
     d3.selectAll('line')
       .style('opacity', function(d) {
-        var sourceVisible = entitiesToShow.some(e => e.id === d.source.id);
-        var targetVisible = d.target.type === 'article' ? true : entitiesToShow.some(e => e.id === d.target.id);
+        var sourceVisible = entitiesToShow.some(function(e) { return e.id === d.source.id; });
+        var targetVisible = d.target.type === 'article' ? true : entitiesToShow.some(function(e) { return e.id === d.target.id; });
         return (sourceVisible && targetVisible) ? 0.6 : 0.1;
       });
   }
@@ -1003,7 +1007,7 @@ function setupAccessibilityFeatures() {
     if (!focusedElement || !focusedElement.__data__) return;
     
     var current = focusedElement.__data__;
-    var relatedLinks = links.filter(l => l.source.id === current.id || l.target.id === current.id);
+    var relatedLinks = links.filter(function(l) { return l.source.id === current.id || l.target.id === current.id; });
     
     if (relatedLinks.length > 0) {
       var next = relatedLinks[0][direction === 'ArrowRight' ? 'target' : 'source'];
