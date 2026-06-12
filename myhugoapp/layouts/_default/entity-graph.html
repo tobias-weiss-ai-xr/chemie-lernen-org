@@ -107,11 +107,11 @@ async function loadKnowledgeGraphData() {
     
     const entitiesResult = await session.run(entitiesQuery);
     const entities = entitiesResult.records.map((r, i) => ({
-      id: `e${i}`,
+      id: 'e' + i,
       name: r.get('name'),
       category: r.get('category') || 'konzept',
       articles: [], // Will be populated later
-      relatedEntities: (r.get('relatedEntities') || []).map(name => ({ name, weight: 1 })),
+      relatedEntities: (r.get('relatedEntities') || []).map(function(name) { return { name: name, weight: 1 }; }),
       articleCount: r.get('articleCount') || 0
     }));
     
@@ -125,27 +125,29 @@ async function loadKnowledgeGraphData() {
       LIMIT 300
     `;
     
-    const entityNames = entities.map(e => e.name);
+    var entityNames = entities.map(function(e) { return e.name; });
     const articlesResult = await session.run(articlesQuery, { 
       entityNames: entityNames.slice(0, 100) // Limit for performance
     });
     
-    const articles = articlesResult.records.map(r => ({
-      id: `a${articlesResult.records.indexOf(r)}`,
+    var articles = articlesResult.records.map(function(r) {
+      return {
+      id: 'a' + articlesResult.records.indexOf(r),
       title: r.get('title'),
       url: r.get('url'),
       entities: r.get('entities') || [],
       date: r.get('date')
-    }));
+    };
+    });
     
     // Build entity-article relationships efficiently
     updateStatus('processing', 'Verarbeite Beziehungen...');
     
-    const articleMap = new Map(articles.map(a => [a.title, a]));
-    entities.forEach(entity => {
+    var articleMap = new Map(articles.map(function(a) { return [a.title, a]; }));
+    entities.forEach(function(entity) {
       entity.articles = articles
-        .filter(a => a.entities.includes(entity.name))
-        .map(a => a.title);
+    .filter(function(a) { return a.entities.includes(entity.name); })
+    .map(function(a) { return a.title; });
     });
     
     await session.close();
@@ -317,8 +319,8 @@ function updateStatus(stage, message) {
           <strong>Performance Stats:</strong><br>
           Nodes: ${nodes.length}<br>
           Links: ${links.length}<br>
-          Entities: ${nodes.filter(n => n.type === 'entity').length}<br>
-          Articles: ${nodes.filter(n => n.type === 'article').length}
+          Entities: ${nodes.filter(function(n) { return n.type === 'entity'; }).length}<br>
+          Articles: ${nodes.filter(function(n) { return n.type === 'article'; }).length}
         </div>
       `;
       document.getElementById('knowledge-graph').appendChild(statsContainer[0]);

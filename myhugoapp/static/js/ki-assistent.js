@@ -283,6 +283,40 @@
     div.innerHTML = '<div class="message-content">' + text + '</div>';
     container.appendChild(div);
     container.scrollTop = container.scrollHeight;
+
+    if (!isUser) {
+      makeMessageClickable(div);
+    }
+  }
+
+  function makeMessageClickable(messageDiv) {
+    var contentDiv = messageDiv.querySelector('.message-content');
+    if (!contentDiv) return;
+
+    var links = contentDiv.querySelectorAll('a');
+    links.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var searchText = this.textContent.trim();
+        var searchInput = document.getElementById('search-input');
+        if (searchInput) {
+          searchInput.value = searchText;
+          searchInput.focus();
+          var event = new KeyboardEvent('keydown', {
+            key: 'Enter',
+            code: 'Enter',
+            keyCode: 13,
+            which: 13,
+            bubbles: true
+          });
+          searchInput.dispatchEvent(event);
+        }
+      });
+      link.style.cursor = 'pointer';
+      link.style.textDecoration = 'underline';
+      link.style.color = '#007bff';
+    });
   }
 
   function showTyping() {

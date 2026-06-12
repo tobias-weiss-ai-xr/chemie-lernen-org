@@ -1,11 +1,20 @@
 /* fortschritt-dashboard.js — Progress dashboard UI with gamification */
 
+function perAreaCompletionTracking() {
+  return {
+    areas: ['saeuren-basen', 'analytik', 'energetik', 'reaktionstypen', 'anorganik', 'organische-stoffklassen'],
+    goals: { 'saeuren-basen': 3, 'analytik': 5, 'energetik': 4, 'reaktionstypen': 3, 'anorganik': 3, 'organische-stoffklassen': 3 },
+    progress: {}
+  };
+}
+
 async function loadDashboard() {
   try {
     await Promise.all([
       loadXPAndLevel(),
       loadStreakAndStats(),
       loadModuleProgress(),
+      loadPerAreaProgress(),
       loadAchievements(),
       loadRecentActivity()
     ]);
@@ -212,6 +221,63 @@ async function loadAchievements() {
       </div>
     `;
   }).join('');
+}
+
+async function loadPerAreaProgress() {
+  const tracking = perAreaCompletionTracking();
+  const container = document.getElementById('per-area-progress');
+
+  if (!container) return;
+
+  const fsrsStats = fsrs.getCardStats();
+  const areaProgressData = tracking.areas.map(area => {
+    const goal = tracking.goals[area] || 3;
+    const areaCards = Object.values(fsrs.cards).filter(card => card.id.includes(area));
+    const learnedCards = areaCards.filter(card => card.interval > 0).length;
+    const pct = areaCards.length > 0 ? Math.round((learnedCards / goal) * 100) : 0;
+    
+    return {
+      name: area,
+      goal: goal,
+      completed: Math.min(learnedCards, goal),
+      pct: Math.min(pct, 100),
+      cardsTotal: areaCards.length,
+      mastered: learnedCards
+    };
+  });
+
+  const overallPct = areaProgressData.reduce((sum, area) => sum + area.pct, 0) / tracking.areas.length;
+
+  container.innerHTML = `
+    <div class="card">
+      <div class="card-header">
+        <h4 class="mb-0">Themenbereiche Fortschritt</h4>
+      </div>
+      <div class="card-body">
+        <div class="overall-progress mb-3">
+          <div class="progress">
+            <div class="progress-bar progress-bar-primary" role="progressbar"
+                 style="width: ${overallPct.toFixed(1)}%">${overallPct.toFixed(1)}% overall</div>
+          </div>
+        </div>
+        ${areaProgressData.map(area => `
+          <div class="area-progress-item mb-3" data-area="${area.name}">
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="badge badge-${area.pct > 75 ? 'success' : area.pct > 50 ? 'warning' : 'secondary'} badge-pill">
+                ${area.pct}%
+              </span>
+              <span class="area-name">${area.name}</span>
+              <span class="area-count">${area.completed}/${area.goal}</span>
+            </div>
+            <div class="progress mt-1">
+              <div class="progress-bar progress-bar-${area.pct > 75 ? 'success' : area.pct > 50 ? 'warning' : 'secondary'}" 
+                   role="progressbar" style="width: ${area.pct}%"></div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
 }
 
 async function loadRecentActivity() {

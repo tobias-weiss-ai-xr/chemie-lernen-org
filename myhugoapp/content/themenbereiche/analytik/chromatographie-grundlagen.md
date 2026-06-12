@@ -1,0 +1,34 @@
+---
+title: "Chromatographie Grundlagen"
+description: "Lernen Sie über chromatographie grundlagen und ihre Anwendungen in der Chemie."
+date: "2026-06-12"
+tags: ["chemie", "chromatographie-grundlagen"]
+interaktiv: false
+schwierigkeit: "grundlagen"
+teilgebiet: ["analytik"]
+icon: "🧬"
+---
+
+# Chromatographie Grundlagen
+
+Dies ist der Platzhalter für den Inhalt über Chromatographie Grundlagen.
+
+## Hauptkonzept
+
+Hier werden die grundlegenden Konzepte erklärt.
+
+Mathematische Beziehungen: $E = \frac{1}{2}mv^2$
+
+## Praktische Anwendungen
+
+- Laboranwendung
+- Industrielle Methoden  
+- Alltagsbezug
+
+## Übungsfragen
+
+{{< quiz id="chromatographie-grundlagen-quiz" >}}
+
+## Zusammenfassung
+
+Die wichtigsten Punkte sind hier zusammengefasst.

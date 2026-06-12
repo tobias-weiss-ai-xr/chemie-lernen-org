@@ -345,18 +345,19 @@ loadKnowledgeGraphData().then(function(data) {
 });
 
 function initializeGraph() {
-  // Hide loading indicator
-  document.getElementById('graph-loading').style.display = 'none';
-  
-  // Update status
-  var entityCount = nodes.filter(function(n) { return n.type === 'entity'; }).length;
-  var articleCount = nodes.filter(function(n) { return n.type === 'article'; }).length;
-  document.getElementById('graph-status').innerHTML = 
-    '<small class="text-muted">Daten geladen: ' + entityCount + ' Entitäten, ' + articleCount + ' Artikel</small>';
-  
-  // Clear the loading message
-  var graphContainer = document.getElementById('knowledge-graph');
-  graphContainer.innerHTML = '';
+  try {
+    // Hide loading indicator
+    document.getElementById('graph-loading').style.display = 'none';
+    
+    // Update status
+    var entityCount = nodes.filter(function(n) { return n.type === 'entity'; }).length;
+    var articleCount = nodes.filter(function(n) { return n.type === 'article'; }).length;
+    document.getElementById('graph-status').innerHTML = 
+      '<small class="text-muted">Daten geladen: ' + entityCount + ' Entitäten, ' + articleCount + ' Artikel</small>';
+    
+    // Clear the loading message
+    var graphContainer = document.getElementById('knowledge-graph');
+    graphContainer.innerHTML = '';
   
   // Create SVG
   svg = d3.select('#knowledge-graph')
@@ -594,6 +595,15 @@ function initializeGraph() {
     simulation.force('center', d3.forceCenter(newWidth / 2, height / 2));
     simulation.alpha(0.3).restart();
   });
+  
+  console.log('Graph initialization completed successfully');
+  } catch (error) {
+    console.error('Error during graph initialization:', error);
+    document.getElementById('graph-status').innerHTML = 
+      '<small class="text-danger">Fehler beim Laden des Graphen: ' + error.message + '</small>';
+    document.getElementById('knowledge-graph').innerHTML = 
+      '<div class="text-center p-4"><p class="text-danger">Der Graph konnte nicht geladen werden. Bitte laden Sie die Seite neu.</p></div>';
+  }
 }
 
 // Enhanced features: Search functionality

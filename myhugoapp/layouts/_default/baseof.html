@@ -26,8 +26,11 @@
 
     {{ partial "footer.html" . }}    
 
-  <!-- jQuery — needed synchronously for inline code below -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- Dark Mode Toggle Script -->
+  <script src="/js/dark-mode.js"></script>
+
+  <!-- jQuery — loaded asynchronously for performance boost -->
+  <script async src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
   <!-- Bootstrap JS (local copy) -->
   <script src="/js/bootstrap.min.js"></script>
@@ -58,39 +61,7 @@
   {{ end }}
 {{ block "js" . }}{{ end }}
 
-  <script>
-    $(document).ready(function() {
-      // Initialize Bootstrap dropdowns with proper configuration
-      $('.dropdown-toggle').each(function() {
-        $(this).dropdown({
-          html: true,
-          container: 'body'
-        });
-      });
-      
-      // Add custom mobile behavior
-      $('.dropdown-toggle').on('click', function(e) {
-        // Only prevent default on mobile for custom behavior
-        if (window.innerWidth < 768) {
-          e.preventDefault();
-          var parent = $(this).parent();
-          
-          // Close all other open dropdowns
-          $('.dropdown.open').not(parent).removeClass('open');
-          
-          // Toggle the current dropdown
-          parent.toggleClass('open');
-        }
-      });
-      
-      // Close dropdowns when clicking outside
-      $(document).on('click', function(e) {
-        if (!$(e.target).is('.dropdown-toggle')) {
-          $('.dropdown.open').removeClass('open');
-        }
-      });
-    });
-  </script>
+  <script src="{{ "base-nav.js" | relURL }}"></script>
   </body>
 
 </html>

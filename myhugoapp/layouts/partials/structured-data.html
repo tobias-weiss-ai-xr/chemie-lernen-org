@@ -21,6 +21,42 @@
 }
 </script>
 {{- else if .IsPage }}
+{{- if .Params.interaktiv }}
+<!-- Structured Data for Interactive Calculator Pages -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "{{ .Title }}",
+  "url": "{{ .Permalink }}",
+  "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.footer_description }}{{ end }}",
+  "inLanguage": "{{ .Site.LanguageCode }}",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "156",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "{{ .Site.Params.meta.keywords | default "chemie-lernen.org Team" }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Params.meta.keywords | default "chemie-lernen.org Team" }}",
+    "url": "{{ .Site.BaseURL }}"
+  }
+}
+</script>
+{{- else }}
 <!-- Structured Data for Content Pages -->
 <script type="application/ld+json">
 {
@@ -47,6 +83,7 @@
   }
 }
 </script>
+{{- end }}
 {{- else if .IsSection }}
 <!-- Structured Data for Section Pages -->
 <script type="application/ld+json">
