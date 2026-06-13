@@ -1,9 +1,9 @@
 {
-  "startedAt": "2026-06-08T02:42:09.888Z",
+  "startedAt": "2026-06-13T02:42:23.354Z",
   "articlesGenerated": 3,
   "articlesFailed": 0,
-  "feedErrors": 0,
+  "feedErrors": 5,
   "kgErrors": 0,
-  "durationMs": 90949,
-  "durationMin": "1.5"
+  "durationMs": 107290,
+  "durationMin": "1.8"
 }

@@ -1,26 +1,26 @@
 ---
 title: "ARTIKEL_TITEL_HIER"
 description: "BRiEF_ZWEIZEILIGE_BESCHREIBUNG"
-date: "{{ now.Format "2006-01-02" }}"
+date: '{{ now.Format "2006-01-02" }}'
 tags: ["tag1", "tag2"]
 interaktiv: false
-schwierigkeit: "grundlagen" # options: grundlagen, mittel, schwer, fortgeschritten
-teilgebiet: ["THERENBERREICH_NAME"] # example: ["saeuren-basen"]
-icon: "⚗️"
+schwierigkeit: "grundlagen"
+teilgebiet: ["THEMENBEREICH_NAME"]
+icon: "vial"
 ---
 
 LEITTEXT_BEGRÜNDUNG
 
 ## Hauptkonzept
 
-**Definition**: Klare, präzise Definition der zentralen Begriffe.
+**Definition**: Klare, prazise Definition der zentralen Begriffe.
 
 Die **wichtigsten Eigenschaften** sind:
 - Eigenschaft 1 mit Beispiel
-- Eigenschaft 2 mit Erklärung  
+- Eigenschaft 2 mit Erklarung  
 - Eigenschaft 3 mit praktischer Anwendung
 
-## Chemische Hintergründe
+## Chemische Hintergrunde
 
 Mathematischer Zusammenhang: $Gleichung$
 
@@ -29,18 +29,19 @@ $$H_2O \rightarrow H^+ + OH^-$$
 
 ## Praktische Anwendungen
 
-Dieses Konzept ist wichtig für:
+Dieses Konzept ist wichtig fur:
 1. Anwendung im Labor
 2. Industrieller Nutzen
 3. Alltagsbezug
 
-## Übungsfragen
+## Ubungsfragen
 
-{{< quiz id="ARTIKEL_ZUGERIEFIG_QUIZ_ID" >}}
+1. Frage 1?
+2. Frage 2?
 
 ## Zusammenfassung
 
-Kurzfassung der wichtigsten Punkte für schnelle Wiederholung.
+Kurzfassung der wichtigsten Punkte fur schnelle Wiederholung.
 
 ## Verwandte Themen
 
