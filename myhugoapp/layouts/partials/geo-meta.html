@@ -1,0 +1,30 @@
+{{- if .IsPage }}
+{{- /* Educational level tag for GEO (Generative Engine Optimization) */}}
+{{- with .Params.schwierigkeit }}
+<meta name="educationalLevel" content="{{ . }}">
+{{- end }}
+
+{{- /* Citation meta tags for scholarly content — strong GEO signal */}}
+{{- if or (in .Params.categories "forschung") (in .Params.tags "forschung") (eq .Section "posts") }}
+<meta name="citation_title" content="{{ .Title }}">
+<meta name="citation_language" content="de">
+{{- with .Description }}
+<meta name="citation_abstract" content="{{ . }}">
+{{- end }}
+<meta name="citation_publication_date" content="{{ .Date.Format "2006-01-02" }}">
+<meta name="citation_publisher" content="chemie-lernen.org">
+<meta name="citation_journal_title" content="chemie-lernen.org Forschung">
+{{- with .Params.doi }}
+<meta name="citation_doi" content="{{ . }}">
+{{- end }}
+{{- end }}
+
+{{- /* GEO-friendly: clear topic classification */}}
+{{- with .Params.teilgebiet }}
+{{- if reflect.IsSlice . }}
+<meta name="subject" content="{{ delimit . ", " }}">
+{{- else }}
+<meta name="subject" content="{{ . }}">
+{{- end }}
+{{- end }}
+{{- end }}

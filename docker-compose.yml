@@ -40,7 +40,7 @@ services:
       - ./api:/app
     environment:
       - LITELLM_URL=http://litellm-proxy:4000
-      - LITELLM_MODEL=gemini-2.5-flash
+      - LITELLM_MODEL=gemma-4
       - PORT=3001
     command: sh -c "npm install --omit=dev && node server.js"
     networks:
@@ -68,14 +68,16 @@ services:
       - ./myhugoapp/static/api-proxy.conf:/etc/nginx/conf.d/api-proxy.conf
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.hugo.rule=Host(`chemie-lernen.org`)"
+      - "traefik.http.routers.hugo.rule=Host(`chemie-lernen.org`,`www.chemie-lernen.org`)"
       - "traefik.http.routers.hugo.entrypoints=web"
-      - "traefik.http.routers.hugo.priority=10"
-      - "traefik.http.routers.hugo-secure.rule=Host(`chemie-lernen.org`)"
+      - "traefik.http.routers.hugo.priority=60"
+      - "traefik.http.routers.hugo.middlewares=https-redirect@file"
+      - "traefik.http.routers.hugo-secure.rule=Host(`chemie-lernen.org`,`www.chemie-lernen.org`)"
       - "traefik.http.routers.hugo-secure.entrypoints=websecure"
-      - "traefik.http.routers.hugo-secure.priority=10"
+      - "traefik.http.routers.hugo-secure.priority=60"
       - "traefik.http.routers.hugo-secure.tls=true"
-      - "traefik.http.routers.hugo-secure.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.hugo-secure.tls.certresolver=mytlschallenge"
+      - "traefik.http.routers.hugo-secure.middlewares=security-headers@file,compression@file"
       - "traefik.http.services.hugo.loadbalancer.server.port=80"
 
 networks:

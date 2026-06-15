@@ -120,6 +120,12 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 
+<!-- FAQ Schema for interactive pages -->
+{{ partial "faq-schema.html" . }}
+
+<!-- GEO meta tags for educational content -->
+{{ partial "geo-meta.html" . }}
+
 <!-- Preconnect hints for performance -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="preconnect" href="https://fonts.googleapis.com">

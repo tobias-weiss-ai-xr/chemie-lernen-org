@@ -1,7 +1,7 @@
 ---
 title: "ARTIKEL_TITEL_HIER"
 description: "BRiEF_ZWEIZEILIGE_BESCHREIBUNG"
-date: '{{ now.Format "2006-01-02" }}'
+date: 2024-01-01
 tags: ["tag1", "tag2"]
 interaktiv: false
 schwierigkeit: "grundlagen"

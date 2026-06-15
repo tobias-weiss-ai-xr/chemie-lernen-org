@@ -1,0 +1,9 @@
+2026-06-14 06:46:39 [INFO] === Neo4j Backup: leads-neo4j/neo4j ===
+2026-06-14 06:46:39 [INFO] Checking prerequisites...
+2026-06-14 06:46:39 [SUCCESS] Prerequisites OK
+2026-06-14 06:46:39 [INFO] Creating backup: leads_knowledge_backup_20260614_064639.dump
+2026-06-14 06:46:39 [INFO] Stopping Neo4j service for backup...
+Error response from daemon: container 10df87ed4ec7b84f261e9673f3d7264accae862efe12b7851f2a366f2a7a4465 is not running
+2026-06-14 06:47:03 [ERROR] Backup failed
+2026-06-14 06:47:03 [INFO] Restarting Neo4j container...
+2026-06-14 06:47:09 [ERROR] Backup process failed

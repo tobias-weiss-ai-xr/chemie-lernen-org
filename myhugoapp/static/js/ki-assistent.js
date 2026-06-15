@@ -118,6 +118,160 @@
     return null;
   }
 
+  /**
+   * Displays current session usage limits prominently above the chat input.
+   */
+  function updateSessionInfoDisplay(remaining, messageCount) {
+    var existing = document.getElementById('session-info-display');
+    if (existing) existing.remove();
+    if (remaining === undefined) return;
+
+    var infoDiv = document.createElement('div');
+    infoDiv.id = 'session-info-display';
+    infoDiv.style.padding = '8px 12px';
+    infoDiv.style.backgroundColor = '#f8f9fa';
+    infoDiv.style.borderRadius = '4px';
+    infoDiv.style.marginBottom = '8px';
+    infoDiv.style.color = '#6c757d';
+    infoDiv.style.fontSize = '14px';
+    infoDiv.style.textAlign = 'center';
+    
+    var sessionText = 'Noch ' + remaining + ' KI-Anfragen heute übrig';
+    if (messageCount !== undefined) {
+      sessionText += ' (' + messageCount + ' von 50 Nachrichten in dieser Sitzung)';
+    }
+    
+    infoDiv.textContent = sessionText;
+    var chatInput = document.getElementById('chat-input');
+    if (chatInput && chatInput.parentNode) {
+      chatInput.parentNode.insertBefore(infoDiv, chatInput);
+    }
+  }
+  
+  /**
+   * Calls /api/chat with SSE streaming via Accept: text/event-stream.
+   * Creates the bot message div immediately and appends content as chunks arrive.
+   */
+  function askAIStream(query) {
+    var streamResolve, streamReject;
+    var promise = new Promise(function (resolve, reject) {
+      streamResolve = resolve;
+      streamReject = reject;
+    });
+
+    var controller = new AbortController();
+    var timer = setTimeout(function () { controller.abort(); }, 30000);
+
+    var requestBody = { message: query };
+    if (currentSession) {
+      requestBody.sessionId = currentSession.sessionId;
+    }
+
+    var container = document.getElementById('chat-messages');
+    var botMessageDiv = document.createElement('div');
+    botMessageDiv.className = 'message bot';
+    var messageContentDiv = document.createElement('div');
+    messageContentDiv.className = 'message-content';
+    botMessageDiv.appendChild(messageContentDiv);
+    container.appendChild(botMessageDiv);
+    container.scrollTop = container.scrollHeight;
+
+    fetch('/api/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'text/event-stream'
+      },
+      body: JSON.stringify(requestBody),
+      signal: controller.signal,
+    })
+    .then(function (response) {
+      clearTimeout(timer);
+
+      if (!response.ok) {
+        return response.json().then(function(errData) {
+          errData.status = response.status;
+          throw errData;
+        });
+      }
+
+      var contentType = response.headers.get('content-type') || '';
+      if (contentType.indexOf('text/event-stream') === -1) {
+        return response.json().then(streamResolve);
+      }
+
+      var reader = response.body.getReader();
+      var decoder = new TextDecoder();
+      var result = {
+        reply: '',
+        remaining: undefined,
+        sessionId: undefined,
+        messageCount: undefined
+      };
+
+      function processChunk(value, streamEnd) {
+        var text = decoder.decode(value || new Uint8Array(), { stream: !streamEnd });
+        var lines = text.split('\n');
+        for (var i = 0; i < lines.length; i++) {
+          var line = lines[i].trim();
+          if (line === '' || !line.startsWith('data: ')) continue;
+          var dataStr = line.substring(6);
+          try {
+            var data = JSON.parse(dataStr);
+            if (data.content) {
+              result.reply += data.content;
+              messageContentDiv.innerHTML = result.reply;
+              container.scrollTop = container.scrollHeight;
+            }
+            if (data.done) {
+              result.remaining = data.remaining;
+              result.sessionId = data.sessionId;
+              result.messageCount = data.messageCount;
+
+              if (result.sessionId && currentSession) {
+                currentSession.sessionId = result.sessionId;
+                currentSession.messageCount = result.messageCount;
+                localStorage.setItem('chemie_session', JSON.stringify(currentSession));
+              }
+
+              var remainingInfo = '';
+              if (result.messageCount) {
+                remainingInfo = '<br><br><small style="color:#888;">Nachricht ' + result.messageCount + ' von max. 50 pro Sitzung.';
+              }
+              if (result.remaining !== undefined) {
+                remainingInfo = '<br><br><small style="color:#888;">Noch ' + result.remaining + ' KI-Anfragen heute übrig.' + remainingInfo + '</small>';
+              }
+
+              if (remainingInfo) {
+                messageContentDiv.innerHTML = result.reply + remainingInfo;
+              }
+            }
+          } catch (_) {}
+        }
+      }
+
+      function pump() {
+        return reader.read().then(function(chunk) {
+          processChunk(chunk.value, chunk.done);
+          if (chunk.done) {
+            streamResolve(result);
+          } else {
+            return pump();
+          }
+        }).catch(function(error) {
+          streamReject(error);
+        });
+      }
+
+      return pump();
+    })
+    .catch(function (error) {
+      streamReject(error);
+    });
+
+    return promise;
+  }
+
   function formatArticleResult(articles) {
     if (articles.length === 0) return null;
 
@@ -192,7 +346,7 @@
    * Call the chat API with a timeout.
    */
   function askAI(query, timeoutMs) {
-    timeoutMs = timeoutMs || 8000;
+    timeoutMs = timeoutMs || 30000;
     return new Promise(function (resolve) {
       var controller = new AbortController();
       var timer = setTimeout(function () { controller.abort(); }, timeoutMs);
@@ -243,21 +397,19 @@
     document.getElementById('chat-input').value = '';
     showTyping();
 
-    askAI(query).then(function (apiResult) {
+    // Use streaming API by default, with fallback to regular API
+    askAIStream(query).then(function (apiResult) {
       hideTyping();
 
       if (apiResult) {
-        var remaining = apiResult.remaining;
-        var sessionInfo = apiResult.messageCount ? 
-          '<br><br><small style="color:#888;">Nachricht ' + apiResult.messageCount + ' von max. 50 pro Sitzung.</small>' : '';
-        var remainingHtml = remaining !== undefined ? 
-          '<br><br><small style="color:#888;">Noch ' + remaining + ' KI-Anfragen heute übrig.' + sessionInfo + '</small>' : sessionInfo;
-        
-        addMessage(apiResult.reply + remainingHtml, false);
+        if (apiResult.remaining !== undefined) {
+          updateSessionInfoDisplay(apiResult.remaining, apiResult.messageCount);
+        }
         addMessage('Hast du noch weitere Fragen?', false);
         return;
       }
 
+      // Fallback to KG search and thematic answers
       var matches = findBestMatches(query);
       var answer = null;
 
@@ -271,6 +423,44 @@
 
       addMessage(answer, false);
       addMessage('Hast du noch weitere Fragen?', false);
+    }).catch(function (error) {
+      hideTyping();
+      var errorMessage = '';
+
+      // Custom error handling
+      if (error.status === 429) {
+        errorMessage = 'Maximal 50 KI-Anfragen pro Tag erreicht. ' +
+                      'Versuchen Sie es morgen erneut oder stöbern Sie in unserem <a href="#">Wissensgraph</a>.';
+        updateSessionInfoDisplay(0);
+      }
+      else if (error.status === 502 || error.message && error.message.includes('not available')) {
+        // Server error
+        errorMessage = 'Der KI-Assistent ist aktuell nicht verfügbar. ' +
+                      'Bitte versuchen Sie es später, oder stöbern Sie in <a href="/">unseren Lerninhalten</a>.';
+      }
+      else if (error.name === 'AbortError' || error.message && error.message.includes('timeout')) {
+        // Timeout
+        errorMessage = 'Die Anfrage hat zu lange gedauert. Bitte versuchen Sie es mit einer kürzeren Frage. ' +
+                      'Alternativ können Sie in <a href="/">unseren Lerninhalten</a> stöbern.';
+      }
+      else {
+        // Generic error with KG search fallback
+        console.error('Error:', error);
+        var matches = findBestMatches(query);
+        var answer = null;
+
+        if (matches.length > 0) {
+          answer = formatArticleResult(matches);
+          addMessage(answer, false);
+        } else {
+          answer = formatNoResult(query);
+          addMessage(answer, false);
+        }
+        return;
+      }
+
+      addMessage(errorMessage, false);
+      addMessage('Möchten Sie stattdessen etwas aus unserem Wissensgraphen ansehen?', false);
     });
   }
 

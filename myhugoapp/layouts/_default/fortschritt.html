@@ -19,7 +19,7 @@
         <div class="stat-value"><span id="xp-display">0</span> <small>XP</small></div>
         <div class="stat-label" id="level-display">Level 1 — Chemie-Anfänger</div>
         <div class="xp-bar-container">
-          <div class="xp-bar" id="xp-bar" style="width: 0%"></div>
+          <div class="xp-bar" id="xp-bar" style="width: 0%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
       </div>
     </div>
@@ -50,8 +50,8 @@
   <div class="row" style="margin-top: 30px;">
     <div class="col-md-12">
       <h2><i class="fa fa-cubes"></i> Modul-Fortschritt</h2>
-      <div id="module-progress-list">
-        <p class="text-muted"><i class="fa fa-spinner fa-spin"></i> Lade Daten...</p>
+      <div id="module-progress-list" aria-live="polite" aria-busy="true">
+        <p class="text-muted"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Lade Daten...</p>
       </div>
     </div>
   </div>
@@ -60,8 +60,8 @@
   <div class="row" style="margin-top: 30px;">
     <div class="col-md-12">
       <h2><i class="fa fa-trophy"></i> Erfolge</h2>
-      <div id="achievements-grid">
-        <p class="text-muted"><i class="fa fa-spinner fa-spin"></i> Lade Daten...</p>
+      <div id="achievements-grid" aria-live="polite" aria-busy="true">
+        <p class="text-muted"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Lade Daten...</p>
       </div>
     </div>
   </div>
@@ -70,8 +70,8 @@
   <div class="row" style="margin-top: 30px;">
     <div class="col-md-12">
       <h2><i class="fa fa-clock-o"></i> Letzte Aktivitäten</h2>
-      <div id="recent-activity">
-        <p class="text-muted"><i class="fa fa-spinner fa-spin"></i> Lade Daten...</p>
+      <div id="recent-activity" aria-live="polite" aria-busy="true">
+        <p class="text-muted"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Lade Daten...</p>
       </div>
     </div>
   </div>
@@ -79,10 +79,10 @@
   <!-- Controls -->
   <div class="row" style="margin-top: 30px;">
     <div class="col-md-12 text-center">
-      <button class="btn btn-danger" onclick="resetProgressData()">
+      <button class="btn btn-danger" onclick="resetProgressData()" aria-label="Fortschritt zurücksetzen">
         <i class="fa fa-trash"></i> Alle Daten zurücksetzen
       </button>
-      <button class="btn btn-success" onclick="loadDashboard()" style="margin-left: 10px;">
+      <button class="btn btn-success" onclick="loadDashboard()" style="margin-left: 10px;" aria-label="Daten aktualisieren">
         <i class="fa fa-refresh"></i> Aktualisieren
       </button>
     </div>

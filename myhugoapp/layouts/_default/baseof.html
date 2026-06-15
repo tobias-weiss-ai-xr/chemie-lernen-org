@@ -29,10 +29,10 @@
   <!-- Dark Mode Toggle Script -->
   <script src="/js/dark-mode.js"></script>
 
-  <!-- jQuery — loaded asynchronously for performance boost -->
-  <script async src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- jQuery — loaded before Bootstrap (Bootstrap depends on it) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-  <!-- Bootstrap JS (local copy) -->
+  <!-- Bootstrap JS (local copy) — loaded after jQuery -->
   <script src="/js/bootstrap.min.js"></script>
 
   <!-- Loaded via enhanced-bundle-loader (optimized versions): dark-mode, quiz-system, quiz-user-system, progress-tracker -->
@@ -61,7 +61,7 @@
   {{ end }}
 {{ block "js" . }}{{ end }}
 
-  <script src="{{ "base-nav.js" | relURL }}"></script>
+  <script src="{{ "js/base-nav.js" | relURL }}"></script>
   </body>
 
 </html>

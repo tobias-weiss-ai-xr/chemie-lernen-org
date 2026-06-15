@@ -26,7 +26,7 @@ class BundleManager {
         titration: '/js/titrations-simulator.optimized.js',
         combustion: '/js/verbrennungsrechner.optimized.js',
         solubility: '/js/loeslichkeitsprodukt-rechner.optimized.js',
-        stoichiometry: '/js/calculators/stoichiometry-calculator-page.js',
+        stoichiometry: '/js/calculators/stoichiometry.js',
       },
 
       visualizations: {

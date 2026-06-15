@@ -1,10 +1,12 @@
 User-agent: *
 Allow: /
-
-# Disallow admin and private areas
+Disallow: /api/
 Disallow: /admin/
 Disallow: /private/
 Disallow: /tmp/
 
-# Sitemap
+# Sitemaps
 Sitemap: https://chemie-lernen.org/sitemap.xml
+
+# Crawl delay for polite crawling
+Crawl-delay: 10

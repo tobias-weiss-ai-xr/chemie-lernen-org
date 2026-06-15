@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-<div class="home">
+<div class="home" id="main-content">
 
   <!-- Featured Image -->
   <div class="row">
@@ -23,10 +23,10 @@
    <div class="row">
      <div class="col-md-12">
        <div class="ki-assistent-hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px; border-radius: 12px; margin: 30px 0; text-align: center; color: white; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);">
-         <div style="font-size: 64px; margin-bottom: 15px;">🤖</div>
+         <div style="font-size: 64px; margin-bottom: 15px;" aria-hidden="true">🤖</div>
          <h2 style="color: white; margin-top: 0; font-size: 2em;">KI-Assistent</h2>
          <p style="font-size: 1.2em; max-width: 600px; margin: 15px auto; opacity: 0.95;">Stelle Fragen zur Chemie — der Assistent durchsucht das Wissensnetz und findet Antworten aus unseren Inhalten.</p>
-         <a href="/ki-assistent/" class="btn btn-lg" style="background: white; color: #667eea; font-weight: 700; padding: 12px 40px; border-radius: 30px; margin-top: 10px; display: inline-block; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">Zum KI-Assistent →</a>
+         <a href="/ki-assistent/" class="btn btn-lg" style="background: white; color: #667eea; font-weight: 700; padding: 12px 40px; border-radius: 30px; margin-top: 10px; display: inline-block; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.15);" aria-label="Zum KI-Assistent: Stelle Fragen zur Chemie">Zum KI-Assistent →</a>
        </div>
      </div>
    </div>
@@ -45,7 +45,7 @@
            <a href="/rechner/visualisierungen/" class="index-anchor">
               <div class="panel panel-default" style="border: 2px solid #4caf50;">
                 <div class="panel-body" style="background-color: #e8f5e9;">
-                  <h3 class="panel-title pull-left">🎨 3D-Visualisierungen</h3>
+                  <h3 class="panel-title pull-left"><span aria-hidden="true">🎨</span> 3D-Visualisierungen</h3>
                 </div>
                 <div class="panel-body"><small>
                   Periodensystem und Molekülstudio: Interaktive 3D-Darstellungen chemischer Strukturen.</small>
@@ -59,7 +59,7 @@
            <a href="/rechner/chemie-rechner/" class="index-anchor">
               <div class="panel panel-default" style="border: 2px solid #2196F3;">
                 <div class="panel-body" style="background-color: #E3F2FD;">
-                  <h3 class="panel-title pull-left">🧪 Chemie-Rechner</h3>
+                  <h3 class="panel-title pull-left"><span aria-hidden="true">🧪</span> Chemie-Rechner</h3>
                 </div>
                 <div class="panel-body"><small>
                   pH, Molare Masse, Gleichungen, Stöchiometrie: Essentielle Chemie-Berechnungen.</small>
@@ -73,7 +73,7 @@
            <a href="/rechner/spezialrechner/" class="index-anchor">
               <div class="panel panel-default" style="border: 2px solid #FF9800;">
                 <div class="panel-body" style="background-color: #FFF3E0;">
-                  <h3 class="panel-title pull-left">🔬 Spezialrechner</h3>
+                  <h3 class="panel-title pull-left"><span aria-hidden="true">🔬</span> Spezialrechner</h3>
                 </div>
                 <div class="panel-body"><small>
                   Titrationen, Gasgesetze, Verbrennung, Umrechner: Fortschrittliche chemische Tools.</small>
@@ -128,7 +128,7 @@
    <!-- "Alle anzeigen" Link -->
    <div class="row text-center" style="margin-top: 20px;">
      <div class="col-md-12">
-       <a href="/posts/" class="btn btn-primary">Alle Forschungsnews anzeigen →</a>
+       <a href="/posts/" class="btn btn-primary" aria-label="Alle Forschungsnews anzeigen">Alle Forschungsnews anzeigen →</a>
      </div>
    </div>
 

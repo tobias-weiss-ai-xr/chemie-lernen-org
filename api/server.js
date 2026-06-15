@@ -9,8 +9,8 @@ import neo4j from 'neo4j-driver';
 
 const PORT = process.env.PORT || 3001;
 const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
-const LITELLM_MODEL = process.env.LITELLM_MODEL || 'gemini-2.5-flash';
-const RATE_LIMIT = 10; // requests per IP per day
+const LITELLM_MODEL = process.env.LITELLM_MODEL || 'gemma-4';
+const RATE_LIMIT = 50; // requests per IP per day
 const SESSION_TTL = 24 * 60 * 60 * 1000; // 24 hours
 const MAX_MESSAGES_PER_SESSION = 50; // prevent infinite conversations
 
@@ -108,7 +108,7 @@ function cleanupSessionMessages(session) {
 }
 
 const app = express();
-app.use(express.json({ limit: '10kb' }));
+app.use(express.json({ limit: '100kb' }));
 app.use(cookieParser());
 
 // CORS for the chemie-lernen.org domain
@@ -146,7 +146,7 @@ app.post('/api/chat', async (req, res) => {
   if (!rate.allowed) {
     return res.status(429).json({
       error: 'Rate limit exceeded',
-      message: 'Max 10 Anfragen pro Tag. Morgen kannst du weitermachen!',
+      message: 'Max 50 Anfragen pro Tag. Morgen kannst du weitermachen!',
       remaining: 0,
     });
   }
@@ -158,58 +158,142 @@ app.post('/api/chat', async (req, res) => {
     return res.status(400).json({ error: 'Invalid message' });
   }
 
+  const acceptStreaming = req.accepts('text/event-stream');
+  
   try {
-    // Get or create session
     const session = getSession(sessionId);
-    
-    // Add user message to session
     session.messages.push({ role: 'user', content: message });
     cleanupSessionMessages(session);
     
     const systemPrompt = `Du bist ein hilfreicher Chemie-Assistent für Schüler (Klasse 8-13) auf chemie-lernen.org. 
-Antworte kurz, präzise und auf Deutsch. Beziehe dich auf chemische Konzepte, Formeln und Gesetze. 
-Wenn du etwas nicht weißt, sage es ehrlich. Maximal 3 Sätze. 
+Antworte präzise, ausführlich und auf Deutsch. Beziehe dich auf chemische Konzepte, Formeln und Gesetze. 
+Erkläre Zusammenhänge gründlich, wenn es der Frage hilft. 
+Wenn du etwas nicht weißt, sage es ehrlich. 
 Behandle Kontext aus vorherigen Fragen mit.`;
 
-    // Build conversation history with context
     const conversationHistory = [
       { role: 'system', content: systemPrompt },
       ...session.messages
     ];
 
-    const llmRes = await fetch(`${LITELLM_URL}/v1/chat/completions`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: LITELLM_MODEL,
-        messages: conversationHistory,
-        max_tokens: 300,
-        temperature: 0.3,
-      }),
-    });
+    if (!acceptStreaming) {
+      const llmRes = await fetch(`${LITELLM_URL}/v1/chat/completions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: LITELLM_MODEL,
+          messages: conversationHistory,
+          max_tokens: 2048,
+          temperature: 0.5,
+        }),
+      });
 
-    if (!llmRes.ok) {
-      const errText = await llmRes.text();
-      console.error(`[chat-api] LiteLLM error ${llmRes.status}: ${errText}`);
-      return res.status(502).json({ error: 'Upstream API error' });
+      if (!llmRes.ok) {
+        const errText = await llmRes.text();
+        console.error(`[chat-api] LiteLLM error ${llmRes.status}: ${errText}`);
+        return res.status(502).json({ error: 'Upstream API error' });
+      }
+
+      const data = await llmRes.json();
+      const reply = data.choices?.[0]?.message?.content || 'Keine Antwort erhalten.';
+      
+      session.messages.push({ role: 'assistant', content: reply });
+      cleanupSessionMessages(session);
+      res.json({
+        reply, 
+        remaining: rate.remaining,
+        sessionId,
+        messageCount: session.messages.length
+      });
+      return;
     }
-
-    const data = await llmRes.json();
-    const reply = data.choices?.[0]?.message?.content || 'Keine Antwort erhalten.';
     
-    // Add assistant response to session
-    session.messages.push({ role: 'assistant', content: reply });
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+    
+    const buffer = [];
+    let replyContent = '';
+    try {
+      const llmRes = await fetch(`${LITELLM_URL}/v1/chat/completions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: LITELLM_MODEL,
+          messages: conversationHistory,
+          max_tokens: 2048,
+          temperature: 0.5,
+          stream: true,
+        }),
+      });
+
+      if (!llmRes.ok) {
+        const errText = await llmRes.text();
+        console.error(`[chat-api] LiteLLM error ${llmRes.status}: ${errText}`);
+        throw new Error(`Stream init failed: ${errText}`);
+      }
+
+        const reader = llmRes.body.getReader();
+      const decoder = new TextDecoder();
+      
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        
+        const chunk = decoder.decode(value, { stream: true });
+        
+      for (const line of chunk.split("\n").filter(line => line.startsWith("data: "))) {
+          const dataLine = line.slice(6).trim();
+          if (dataLine === "[DONE]") continue;
+          
+          try {
+            const data = JSON.parse(dataLine);
+            const delta = data.choices?.[0]?.delta?.content;
+            if (delta) {
+              replyContent += delta;
+              buffer.push(delta);
+              res.write(`data: ${JSON.stringify({ content: delta })}\n\n`);
+            }
+          } catch (e) {
+            console.error(`[chat-api] Failed to parse stream chunk: ${line}`);
+          }
+        }
+      }
+
+      res.write(`data: ${JSON.stringify({
+        done: true,
+        remaining: rate.remaining,
+        sessionId,
+        messageCount: session.messages.length + 1
+      })}\n\n`);
+    } catch (streamErr) {
+      console.error(`[chat-api] Stream failed, falling back: ${streamErr.message}`);
+      while (buffer.length > 0) {
+        const chunk = buffer.shift();
+        if (chunk) replyContent += chunk;
+      }
+      
+      res.write(`data: ${JSON.stringify({
+        content: replyContent,
+        fallback: true,
+        done: true,
+        remaining: rate.remaining,
+        sessionId,
+        messageCount: session.messages.length + 1
+      })}\n\n`);
+    } finally {
+      res.end();
+    }
+    
+
+    session.messages.push({ role: 'assistant', content: replyContent });
     cleanupSessionMessages(session);
     
-    res.json({ 
-      reply, 
-      remaining: rate.remaining,
-      sessionId,
-      messageCount: session.messages.length
-    });
   } catch (err) {
     console.error(`[chat-api] Error: ${err.message}`);
-    res.status(502).json({ error: 'Service unavailable' });
+    if (!res.headersSent && !res.writableEnded) {
+      res.status(502).json({ error: 'Service unavailable' });
+    }
   }
 });
 

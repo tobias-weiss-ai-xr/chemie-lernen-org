@@ -1,0 +1,29 @@
+{{- if .IsPage }}
+{{- $hasFAQ := false }}
+{{- $faqItems := slice }}
+{{- /* Check if front matter has FAQ items */}}
+{{- with .Params.faq }}
+  {{- $hasFAQ = true }}
+  {{- $faqItems = . }}
+{{- end }}
+{{- if $hasFAQ }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {{- range $index, $item := $faqItems }}
+    {
+      "@type": "Question",
+      "name": {{ $item.question | jsonify }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ $item.answer | jsonify }}
+      }
+    }{{- if lt $index (sub (len $faqItems) 1) }},{{- end }}
+    {{- end }}
+  ]
+}
+</script>
+{{- end }}
+{{- end }}

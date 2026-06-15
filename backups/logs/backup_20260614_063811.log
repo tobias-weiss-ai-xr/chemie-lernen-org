@@ -1,0 +1,41 @@
+2026-06-14 06:38:11 [INFO] === Neo4j Backup: chemie-neo4j/chemie ===
+2026-06-14 06:38:11 [INFO] Checking prerequisites...
+2026-06-14 06:38:11 [SUCCESS] Prerequisites OK
+2026-06-14 06:38:11 [INFO] Creating backup: chemie_knowledge_backup_20260614_063811.dump
+Missing required parameter: '<database>'
+
+Dump a database into a single-file archive.
+
+USAGE
+
+neo4j-admin database dump [-h] [--expand-commands] [--verbose] [--overwrite-destination[=true|false]]
+                          [--additional-config=<file>] [--to-path=<path> | --to-stdout] <database>
+
+DESCRIPTION
+
+Dump a database into a single-file archive. The archive can be used by the load command. <to-path> should be a
+directory (in which case a file called <database>.dump will be created), or --to-stdout can be supplied to use standard
+output. If neither --to-path or --to-stdout is supplied `server.directories.dumps.root` setting will be used as
+destination. It is not possible to dump a database that is mounted in a running Neo4j server.
+
+PARAMETERS
+
+      <database>          Name of the database to dump. Can contain * and ? for globbing. Note that * and ? have
+                            special meaning in some shells and might need to be escaped or used with quotes.
+
+OPTIONS
+
+      --additional-config=<file>
+                          Configuration file with additional configuration.
+      --expand-commands   Allow command expansion in config value evaluation.
+  -h, --help              Show this help message and exit.
+      --overwrite-destination[=true|false]
+                          Overwrite any existing dump file in the destination folder.
+                            Default: false
+      --to-path=<path>    Destination folder of a database dump.
+                          It is possible to dump databases into AWS S3 buckets, Google Cloud storage buckets, and Azure
+                            buckets using the appropriate URI as the path.
+      --to-stdout         Use standard output as the destination for the database dump.
+      --verbose           Enable verbose output.
+2026-06-14 06:38:13 [ERROR] Backup failed
+2026-06-14 06:38:13 [ERROR] Backup process failed

@@ -473,7 +473,8 @@ async function run() {
   const startTime = Date.now();
   console.log(`[pipeline] Starting at ${new Date().toISOString()}`);
 
-  const metrics = { startedAt: new Date().toISOString(), articlesGenerated: 0, articlesFailed: 0, feedErrors: 0, kgErrors: 0, durationMs: 0 };
+  const currentModel = process.env.LITELLM_MODEL || 'saia/qwen3.5-397b-a17b';
+  const metrics = { startedAt: new Date().toISOString(), articlesGenerated: 0, articlesFailed: 0, feedErrors: 0, kgErrors: 0, durationMs: 0, model: currentModel };
 
   const feeds = JSON.parse(await readFile(FEEDS_PATH, 'utf-8'));
   const seenUrls = await loadSeenUrls();
@@ -667,6 +668,21 @@ async function run() {
     console.log(`[pipeline] Pipeline status: ${metrics.articlesGenerated} OK, ${metrics.articlesFailed} failed, ${metrics.feedErrors} feed errs, ${metrics.durationMin}min`);
   } catch (statusErr) {
     console.error(`[pipeline] Status write error: ${statusErr.message}`);
+  }
+
+  // Append to pipeline history
+  try {
+    const historyPath = join(REPO_ROOT, 'myhugoapp', 'static', 'data', 'pipeline-history.json');
+    let history = [];
+    try {
+      history = JSON.parse(await readFile(historyPath, 'utf-8'));
+      if (!Array.isArray(history)) history = [];
+    } catch { /* file may not exist yet */ }
+    history.push(metrics);
+    await mkdir(dirname(historyPath), { recursive: true });
+    await writeFile(historyPath, JSON.stringify(history, null, 2));
+  } catch (histErr) {
+    console.error(`[pipeline] History write error: ${histErr.message}`);
   }
 
   if (selected.length > 0) {

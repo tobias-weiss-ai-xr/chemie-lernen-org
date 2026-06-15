@@ -1,0 +1,13 @@
+2026-06-14 06:39:11 [INFO] === Neo4j Backup: chemie-neo4j/chemie ===
+2026-06-14 06:39:11 [INFO] Checking prerequisites...
+2026-06-14 06:39:11 [SUCCESS] Prerequisites OK
+2026-06-14 06:39:11 [INFO] Creating backup: chemie_knowledge_backup_20260614_063911.dump
+2026-06-14 06:39:11 [INFO] Stopping database 'chemie' for backup...
+2026-06-14 04:39:23.405+0000 INFO  [o.n.c.d.DumpCommand] Starting dump of database 'chemie'
+2026-06-14 04:39:23.446+0000 ERROR [o.n.c.d.DumpCommand] Failed to dump database 'chemie': The database is in use. Stop database 'chemie' and try again.
+2026-06-14 04:39:23.448+0000 ERROR [o.n.c.d.DumpCommand] Dump failed for databases: 'chemie'
+Dump failed for databases: 'chemie'
+Run with '--verbose' for a more detailed error message.
+2026-06-14 06:39:23 [ERROR] Backup failed
+2026-06-14 06:39:23 [INFO] Starting database 'chemie'...
+2026-06-14 06:39:28 [ERROR] Backup process failed

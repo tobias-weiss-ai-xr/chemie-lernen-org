@@ -1,5 +1,5 @@
 {{ define "main" }}
-<div class="container dashboard-container">
+<div class="container dashboard-container" id="main-content" aria-label="Dashboard Pipeline Status">
   <div class="row">
     <div class="col-md-12">
       <h1 class="text-center">{{ .Title }}</h1>
@@ -42,7 +42,7 @@
           <div class="col-md-12">
             <div class="detail-card">
               <h3>Letzter Durchlauf</h3>
-              <table class="table table-striped">
+              <table class="table table-striped" aria-live="polite">
                 <tr><td>Gestartet</td><td id="detail-started">—</td></tr>
                 <tr><td>Artikel generiert</td><td id="detail-generated">—</td></tr>
                 <tr><td>Artikel fehlgeschlagen</td><td id="detail-failed">—</td></tr>
@@ -57,6 +57,36 @@
         <div id="dashboard-no-data" style="display:none;">
           <div class="alert alert-info text-center">
             Noch keine Pipeline-Daten vorhanden. Der erste Durchlauf erzeugt diese automatisch.
+          </div>
+        </div>
+
+        <div id="charts-section" style="display:none; margin-top:30px;">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="detail-card">
+                <h3>Inhaltsentwicklung</h3>
+                <canvas id="chart-growth" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin-top:20px;">
+            <div class="col-md-6">
+              <div class="detail-card">
+                <h3>Fehlertrends</h3>
+                <canvas id="chart-errors" height="200"></canvas>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="detail-card">
+                <h3>Pipeline-Laufzeit</h3>
+                <canvas id="chart-duration" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="charts-waiting" style="display:none;">
+          <div class="alert alert-info text-center">
+            Weitere Daten nach dem nächsten Durchlauf.
           </div>
         </div>
       </div>
@@ -94,6 +124,7 @@
 }
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <script>
 (function() {
   var loading = document.getElementById('dashboard-loading');
@@ -101,44 +132,107 @@
   var errorDiv = document.getElementById('dashboard-error');
   var errorMsg = document.getElementById('dashboard-error-msg');
 
-  fetch('/data/pipeline-status.json')
-    .then(function(r) {
-      if (!r.ok) throw new Error('Status nicht gefunden (HTTP ' + r.status + ')');
-      return r.json();
-    })
-    .then(function(data) {
-      loading.style.display = 'none';
-
-      if (!data || !data.startedAt) {
-        document.getElementById('dashboard-no-data').style.display = 'block';
-        content.style.display = 'block';
-        return;
-      }
-
-      document.getElementById('stat-articles').textContent = data.articlesGenerated || 0;
-      document.getElementById('stat-duration').textContent = data.durationMin || (data.durationMs ? (data.durationMs/60000).toFixed(1) : '-');
-      var failures = (data.articlesFailed || 0) + (data.feedErrors || 0) + (data.kgErrors || 0);
-      document.getElementById('stat-failures').textContent = failures;
-
-      document.getElementById('detail-started').textContent = new Date(data.startedAt).toLocaleString('de-DE');
-      document.getElementById('detail-generated').textContent = data.articlesGenerated || 0;
-      document.getElementById('detail-failed').textContent = data.articlesFailed || 0;
-      document.getElementById('detail-feed-errors').textContent = data.feedErrors || 0;
-      document.getElementById('detail-kg-errors').textContent = data.kgErrors || 0;
-      document.getElementById('detail-duration').textContent = (data.durationMs ? (data.durationMs/1000).toFixed(0) + 's' : '-');
-
-      content.style.display = 'block';
-    })
-    .catch(function(err) {
-      loading.style.display = 'none';
-      if (err.message.indexOf('404') !== -1 || err.message.indexOf('not found') !== -1) {
-        document.getElementById('dashboard-no-data').style.display = 'block';
-        content.style.display = 'block';
-      } else {
-        errorMsg.textContent = err.message;
-        errorDiv.style.display = 'block';
-      }
+  function renderCharts(history) {
+    if (history.length < 3) {
+      document.getElementById('charts-waiting').style.display = 'block';
+      return;
+    }
+    var last20 = history.slice(-20);
+    var labels = last20.map(function(e) {
+      return new Date(e.startedAt).toLocaleDateString('de-DE', { day:'2-digit', month:'2-digit' });
     });
+
+    var chartOpts = { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { boxWidth: 12 } } } };
+    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (dark) { chartOpts.color = '#bbb'; }
+
+    // Content Growth (cumulative)
+    var cumulative = [];
+    var sum = 0;
+    last20.forEach(function(e) { sum += e.articlesGenerated || 0; cumulative.push(sum); });
+    new Chart(document.getElementById('chart-growth'), {
+      type: 'line',
+      data: { labels: labels, datasets: [{
+        label: 'Artikel gesamt',
+        data: cumulative,
+        borderColor: '#4caf50',
+        backgroundColor: 'rgba(76,175,80,0.1)',
+        fill: true,
+        tension: 0.3
+      }]},
+      options: chartOpts
+    });
+
+    // Error Trends (stacked bar)
+    new Chart(document.getElementById('chart-errors'), {
+      type: 'bar',
+      data: { labels: labels, datasets: [
+        { label: 'Feed-Fehler', data: last20.map(function(e){return e.feedErrors||0;}), backgroundColor: '#f44336' },
+        { label: 'KG-Fehler', data: last20.map(function(e){return e.kgErrors||0;}), backgroundColor: '#ff9800' }
+      ]},
+      options: Object.assign({}, chartOpts, {
+        scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } }
+      })
+    });
+
+    // Pipeline Duration
+    new Chart(document.getElementById('chart-duration'), {
+      type: 'line',
+      data: { labels: labels, datasets: [{
+        label: 'Laufzeit (Min.)',
+        data: last20.map(function(e){ return parseFloat(e.durationMin) || 0; }),
+        borderColor: '#2196f3',
+        backgroundColor: 'rgba(33,150,243,0.1)',
+        fill: true,
+        tension: 0.3
+      }]},
+      options: chartOpts
+    });
+
+    document.getElementById('charts-section').style.display = 'block';
+  }
+
+  Promise.all([
+    fetch('/data/pipeline-status.json').then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
+    fetch('/data/pipeline-history.json').then(function(r) { if (r.ok) return r.json(); return []; }).catch(function() { return []; })
+  ])
+  .then(function(results) {
+    var data = results[0];
+    var history = results[1];
+    loading.style.display = 'none';
+
+    if (!data || !data.startedAt) {
+      document.getElementById('dashboard-no-data').style.display = 'block';
+      content.style.display = 'block';
+      if (Array.isArray(history) && history.length >= 3) renderCharts(history);
+      return;
+    }
+
+    document.getElementById('stat-articles').textContent = data.articlesGenerated || 0;
+    document.getElementById('stat-duration').textContent = data.durationMin || (data.durationMs ? (data.durationMs/60000).toFixed(1) : '-');
+    var failures = (data.articlesFailed || 0) + (data.feedErrors || 0) + (data.kgErrors || 0);
+    document.getElementById('stat-failures').textContent = failures;
+
+    document.getElementById('detail-started').textContent = new Date(data.startedAt).toLocaleString('de-DE');
+    document.getElementById('detail-generated').textContent = data.articlesGenerated || 0;
+    document.getElementById('detail-failed').textContent = data.articlesFailed || 0;
+    document.getElementById('detail-feed-errors').textContent = data.feedErrors || 0;
+    document.getElementById('detail-kg-errors').textContent = data.kgErrors || 0;
+    document.getElementById('detail-duration').textContent = (data.durationMs ? (data.durationMs/1000).toFixed(0) + 's' : '-');
+
+    content.style.display = 'block';
+    if (Array.isArray(history)) renderCharts(history);
+  })
+  .catch(function(err) {
+    loading.style.display = 'none';
+    if (err.message.indexOf('404') !== -1 || err.message.indexOf('not found') !== -1) {
+      document.getElementById('dashboard-no-data').style.display = 'block';
+      content.style.display = 'block';
+    } else {
+      errorMsg.textContent = err.message;
+      errorDiv.style.display = 'block';
+    }
+  });
 })();
 </script>
 {{ end }}

@@ -10,9 +10,29 @@ const path = require('path');
 const { minify } = require('terser');
 
 const filesToMinify = [
+  // Calculator frameworks
+  'myhugoapp/static/js/chemistry-calculator-framework.js',
+  'myhugoapp/static/js/ph-rechner-framework.js',
+  'myhugoapp/static/js/druck-flaechen-rechner-framework.js',
+  'myhugoapp/static/js/molare-masse-rechner.js',
+  'myhugoapp/static/js/konzentrationsumrechner.js',
+  'myhugoapp/static/js/gasgesetz-rechner.js',
+  'myhugoapp/static/js/redox-potenzial-rechner.js',
+  'myhugoapp/static/js/titrations-simulator.js',
+  'myhugoapp/static/js/verbrennungsrechner.js',
+  'myhugoapp/static/js/loeslichkeitsprodukt-rechner.js',
   'myhugoapp/static/js/calculators/stoichiometry.js',
   'myhugoapp/static/js/calculators/practice-generators.js',
+  // Interactive tools
+  'myhugoapp/static/js/molekuel-studio.js',
+  'myhugoapp/static/js/perioden-system-der-elemente.js',
+  // Quiz & tracking
+  'myhugoapp/static/js/quiz-system.js',
+  'myhugoapp/static/js/progress-tracker.js',
+  'myhugoapp/static/js/quiz-user-system.js',
+  // UI & utility
   'myhugoapp/static/js/lazy-loader.js',
+  'myhugoapp/static/js/dark-mode.js',
 ];
 
 const colors = {
@@ -57,13 +77,15 @@ async function minifyFile(filePath) {
       return false;
     }
 
-    // Write minified code
-    fs.writeFileSync(filePath, result.code, 'utf8');
+    // Write .optimized.js alongside source (keep source untouched)
+    const parsedPath = path.parse(filePath);
+    const optimizedPath = path.join(parsedPath.dir, parsedPath.name + '.optimized.js');
+    fs.writeFileSync(optimizedPath, result.code, 'utf8');
     const newSize = Buffer.byteLength(result.code, 'utf8');
     const savings = ((originalSize - newSize) / originalSize * 100).toFixed(1);
 
     console.log(
-      `${colors.green}✓${colors.reset} ${path.basename(filePath)}: ` +
+      `${colors.green}✓${colors.reset} ${parsedPath.base} → ${parsedPath.name}.optimized.js: ` +
       `${formatBytes(originalSize)} → ${formatBytes(newSize)} (${colors.green}-${savings}%${colors.reset})`
     );
 
