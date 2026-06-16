@@ -1,6 +1,6 @@
 # ============================================================
 # Deploy workflow — chemie-lernen.org
-# Builds Docker image, pushes to private registry, deploys
+# Builds Docker images, pushes to private registry, deploys
 # ============================================================
 name: Deploy chemie-lernen.org
 
@@ -11,7 +11,6 @@ on:
 
 env:
   REGISTRY: registry.chemie-lernen.org
-  IMAGE_NAME: chemie-lernen-org
 
 jobs:
   build-and-deploy:
@@ -34,16 +33,26 @@ jobs:
         id: meta
         run: |
           SHORT_SHA="${GITHUB_SHA::7}"
-          echo "tags=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest,${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${SHORT_SHA}" >> "$GITHUB_OUTPUT"
-          echo "Digest will be based on SHA ${SHORT_SHA}"
+          echo "hugo_tags=${{ env.REGISTRY }}/chemie-lernen-org:latest,${{ env.REGISTRY }}/chemie-lernen-org:${SHORT_SHA}" >> "$GITHUB_OUTPUT"
+          echo "chat_tags=${{ env.REGISTRY }}/chemie-chat-api:latest,${{ env.REGISTRY }}/chemie-chat-api:${SHORT_SHA}" >> "$GITHUB_OUTPUT"
 
-      - name: Build and push Docker image
+      - name: Build and push Hugo image
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          tags: ${{ steps.meta.outputs.hugo_tags }}
+          cache-from: type=registry,ref=${{ env.REGISTRY }}/chemie-lernen-org:latest
+          cache-to: type=inline
+
+      - name: Build and push Chat-API image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./api
+          file: ./api/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.chat_tags }}
+          cache-from: type=registry,ref=${{ env.REGISTRY }}/chemie-chat-api:latest
           cache-to: type=inline
 
       - name: Deploy via SSH
@@ -52,16 +61,18 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT || '22' }}
+          port: ${{ secrets.SSH_PORT || "22" }}
           script: |
             set -e
             echo "=== Pulling latest compose config from git ==="
             cd /opt/git/hugo-chemie-lernen-org
             git pull --quiet
-            echo "=== Pulling new image from registry ==="
-            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-            echo "=== Recreating container ==="
+            echo "=== Pulling new images from registry ==="
+            docker pull ${{ env.REGISTRY }}/chemie-lernen-org:latest
+            docker pull ${{ env.REGISTRY }}/chemie-chat-api:latest
+            echo "=== Recreating containers ==="
             docker compose up -d hugo-chemie-lernen-org
+            docker compose up -d chemie-chat-api
             echo "=== Cleaning up old images ==="
             docker image prune -f
             echo "=== Deploy complete ==="

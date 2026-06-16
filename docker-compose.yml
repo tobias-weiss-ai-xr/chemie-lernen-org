@@ -21,28 +21,24 @@ services:
     networks:
       - traefik-web
     healthcheck:
-      test: ['CMD-SHELL', 'cypher-shell -u neo4j -p chemie "RETURN 1" || exit 1']
+      test: ["CMD-SHELL", "cypher-shell -u neo4j -p chemie \"RETURN 1\" || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 5
       start_period: 60s
 
   chemie-chat-api:
-    image: node:20-alpine
+    image: registry.chemie-lernen.org/chemie-chat-api:latest
     container_name: chemie-chat-api
     restart: unless-stopped
     deploy:
       resources:
         limits:
           memory: 128M
-    working_dir: /app
-    volumes:
-      - ./api:/app
     environment:
       - LITELLM_URL=http://litellm-proxy:4000
       - LITELLM_MODEL=gemma-4
       - PORT=3001
-    command: sh -c "npm install --omit=dev && node server.js"
     networks:
       - traefik-public
       - litellm-internal
