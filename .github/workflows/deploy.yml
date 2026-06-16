@@ -55,10 +55,12 @@ jobs:
           port: ${{ secrets.SSH_PORT || '22' }}
           script: |
             set -e
-            echo "=== Pulling new image ==="
+            echo "=== Pulling latest compose config from git ==="
+            cd /opt/git/hugo-chemie-lernen-org
+            git pull --quiet
+            echo "=== Pulling new image from registry ==="
             docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
             echo "=== Recreating container ==="
-            cd ~/git/chemie-lernen-org
             docker compose up -d hugo-chemie-lernen-org
             echo "=== Cleaning up old images ==="
             docker image prune -f
