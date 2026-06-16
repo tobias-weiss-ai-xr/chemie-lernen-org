@@ -122,6 +122,13 @@
 .entity-graph-link {
   text-align: center; margin-top: 2rem; font-size: 0.9rem;
 }
+.entity-graph-top-link {
+  display: inline-block; font-size: 0.82rem; font-weight: 500;
+  padding: 0.3rem 0.8rem; border-radius: 6px;
+  background: var(--bg-card, #f0f4ff); color: #667eea;
+  text-decoration: none; transition: background 0.2s;
+}
+.entity-graph-top-link:hover { background: #667eea; color: #fff; }
 
 /* Dark mode via Hugo theme variable */
 [data-theme="dark"] .entity-card,
@@ -209,11 +216,12 @@ return wb-wa;
 });
 
 var html="<div class=\"entity-header\">";
-html+="<h1>Wissensnetz</h1>";
-html+="<div class=\"entity-stats\">";
-html+="<span><strong>"+entities.length+"</strong> Begriffe</span>";
-html+="<span><strong>"+articles.length+"</strong> Dokumente</span>";
-html+="</div></div>";
+  html+="<h1>Wissensnetz</h1>";
+  html+="<div class=\"entity-stats\">";
+  html+="<span><strong>"+entities.length+"</strong> Begriffe</span>";
+  html+="<span><strong>"+articles.length+"</strong> Dokumente</span>";
+  html+="<span><a href=\"/wissennetz/\" class=\"entity-graph-top-link\">Interaktiver Graph \u2192</a></span>";
+  html+="</div></div>";
 
 html+="<input class=\"entity-search\" type=\"text\" placeholder=\"Begriff suchen...\" id=\"entity-search\" value=\""+searchQuery.replace(/"/g,"&quot;")+"\">";
 
@@ -256,9 +264,7 @@ html+="</div>";
 }
 html+="</div>";
 
-html+="<div class=\"entity-graph-link\"><a href=\"/wissennetz/\">Interaktiver Graph anzeigen →</a></div>";
-
-app.innerHTML=html;
+  app.innerHTML=html;
 
 document.getElementById("entity-search").addEventListener("input",function(ev){
 searchQuery=ev.target.value;
