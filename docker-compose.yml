@@ -54,7 +54,7 @@ services:
       - "traefik.http.services.chat.loadbalancer.server.port=3001"
 
   hugo-chemie-lernen-org:
-    image: nginx:alpine
+    image: registry.chemie-lernen.org/chemie-lernen-org:latest
     container_name: hugo-chemie-lernen-org
     restart: unless-stopped
     deploy:
@@ -64,9 +64,6 @@ services:
     networks:
       - traefik-web
       - traefik-public
-    volumes:
-      - ./myhugoapp/public:/usr/share/nginx/html:ro
-      - ./myhugoapp/static/api-proxy.conf:/etc/nginx/conf.d/api-proxy.conf
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.hugo.rule=Host(`chemie-lernen.org`,`www.chemie-lernen.org`)"
