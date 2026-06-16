@@ -1,5 +1,5 @@
 # ============================================================
-# Deploy workflow — chemie-lernen.org
+# Deploy workflow - chemie-lernen.org
 # Builds Docker images, pushes to private registry, deploys
 # ============================================================
 name: Deploy chemie-lernen.org
@@ -61,7 +61,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT || "22" }}
+          port: ${{ secrets.SSH_PORT || '22' }}
           script: |
             set -e
             echo "=== Pulling latest compose config from git ==="
