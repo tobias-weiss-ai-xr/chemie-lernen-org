@@ -65,17 +65,7 @@ services:
       - traefik-public
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=traefik-public"
-      - "traefik.http.routers.chemie.rule=Host(`chemie-lernen.org`,`www.chemie-lernen.org`)"
-      - "traefik.http.routers.chemie.entrypoints=web"
-      - "traefik.http.routers.chemie.priority=60"
-      - "traefik.http.routers.chemie.middlewares=https-redirect@file"
-      - "traefik.http.routers.chemie-tls.rule=Host(`chemie-lernen.org`,`www.chemie-lernen.org`)"
-      - "traefik.http.routers.chemie-tls.entrypoints=websecure"
-      - "traefik.http.routers.chemie-tls.priority=60"
-      - "traefik.http.routers.chemie-tls.tls=true"
-      - "traefik.http.routers.chemie-tls.tls.certresolver=mytlschallenge"
-      - "traefik.http.routers.chemie-tls.middlewares=security-headers@file,compression@file"
+      - "traefik.http.routers.chemie.rule=Host(`chemie-lernen.org`)"
       - "traefik.http.services.chemie.loadbalancer.server.port=80"
 
 networks:
