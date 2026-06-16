@@ -1,155 +1,280 @@
 {{ define "main" }}
 
-<div class="entity-index-container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1 class="text-center">{{ .Title }}</h1>
-      <p class="lead text-center">{{ .Description }}</p>
-    </div>
+<div id="entity-app">
+  <div style="text-align:center;padding:3em 1em;">
+    <div class="spinner-border text-primary mb-3" role="status"><span class="visually-hidden">Loading...</span></div>
+    <h5>Lade Wissensnetz...</h5>
   </div>
-
-  <hr class="featurette-divider">
-
-  {{ with $.Site.Data.kg_data }}
-  {{ $entities := .entities | default slice }}
-  {{ $articles := .articles | default slice }}
-
-  <div class="row">
-    <div class="col-md-12">
-      <p class="text-muted text-center">
-        <strong>{{ len $entities }}</strong> Fachbegriffe in <strong>{{ len $articles }}</strong> Artikeln
-        {{ if .updatedAt }}— zuletzt aktualisiert: {{ dateFormat "02.01.2006" .updatedAt }}{{ end }}
-      </p>
-    </div>
-  </div>
-
-  <div class="row entity-grid">
-    {{ if gt (len $entities) 0 }}
-      {{ range $entities }}
-      <div class="col-md-4 col-sm-6 entity-card-wrapper">
-        <div class="entity-card">
-          <h3 class="entity-name">{{ .name }}</h3>
-          <p class="entity-count">
-            {{ .articleCount }} {{ if eq .articleCount 1 }}Artikel{{ else }}Artikel{{ end }}
-          </p>
-          <div class="entity-articles">
-            {{ range first 3 .articles }}
-            <span class="entity-article-tag">{{ . }}</span>
-            {{ end }}
-            {{ if gt (len .articles) 3 }}
-            <span class="entity-article-tag entity-more">+{{ sub (len .articles) 3 }}</span>
-            {{ end }}
-          </div>
-        </div>
-      </div>
-      {{ end }}
-    {{ else }}
-    <div class="col-md-12">
-      <div class="alert alert-info">
-        Noch keine Entitäten im Wissensnetz. Neue Artikel werden automatisch analysiert.
-      </div>
-    </div>
-    {{ end }}
-  </div>
-
-  {{ else }}
-  <div class="row">
-    <div class="col-md-12">
-      <div class="alert alert-info">
-        Das Wissensnetz wird beim nächsten Artikel-Pipeline-Durchlauf befüllt.
-      </div>
-    </div>
-  </div>
-  {{ end }}
 </div>
 
 <style>
-.entity-index-container {
-  margin-top: 20px;
-  margin-bottom: 40px;
+#entity-app { margin-top: 1rem; margin-bottom: 2rem; }
+
+.entity-header {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;
+  margin-bottom: 1.5rem; padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border-color, #e0e0e0);
+}
+.entity-header h1 { margin: 0; flex: 1; font-size: 1.6rem; }
+
+.entity-stats {
+  display: flex; gap: 1.5rem; flex-wrap: wrap;
+  font-size: 0.9rem; color: var(--text-muted, #666);
+}
+.entity-stats strong { color: var(--text-primary, #333); }
+
+.entity-search {
+  width: 100%; padding: 0.6rem 1rem; border-radius: 8px;
+  border: 1px solid var(--border-color, #ddd); font-size: 1rem;
+  background: var(--bg-input, #fff); color: var(--text-primary, #333);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-bottom: 1rem;
+}
+.entity-search:focus {
+  outline: none; border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
+}
+
+.entity-filters {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem;
+}
+.entity-filter-btn {
+  padding: 0.35rem 0.9rem; border-radius: 20px; font-size: 0.82rem;
+  border: 1.5px solid var(--border-color, #ddd); cursor: pointer;
+  background: var(--bg-card, #fff); color: var(--text-muted, #666);
+  transition: all 0.2s; font-weight: 500;
+}
+.entity-filter-btn:hover { border-color: #667eea; color: #667eea; }
+.entity-filter-btn.active {
+  background: #667eea; color: #fff; border-color: #667eea;
+}
+.entity-filter-count {
+  font-size: 0.72rem; opacity: 0.7; margin-left: 3px;
 }
 
 .entity-grid {
-  margin-top: 30px;
-}
-
-.entity-card-wrapper {
-  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
 }
 
 .entity-card {
-  background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 20px;
-  height: 100%;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 10px; padding: 1.2rem;
+  cursor: default; transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  position: relative; overflow: hidden;
 }
-
 .entity-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.entity-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; border-radius: 10px 10px 0 0;
+}
+.entity-card[data-cat="stoff"]::before { background: #667eea; }
+.entity-card[data-cat="konzept"]::before { background: #45b7d1; }
+.entity-card[data-cat="reaktion"]::before { background: #4ecdc4; }
+.entity-card[data-cat="methode"]::before { background: #f093fb; }
+.entity-card[data-cat="person"]::before { background: #ff9a76; }
+.entity-card[data-cat="quelle"]::before { background: #a8a8a8; }
+
+.entity-card-name {
+  font-size: 1.15rem; font-weight: 600; margin: 0 0 0.4rem 0;
+  color: var(--text-primary, #333);
+}
+.entity-card-cat {
+  display: inline-block; padding: 0.15rem 0.55rem; border-radius: 12px;
+  font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.03em; margin-bottom: 0.6rem;
+}
+.entity-card[data-cat="stoff"] .entity-card-cat { background: rgba(102,126,234,0.12); color: #667eea; }
+.entity-card[data-cat="konzept"] .entity-card-cat { background: rgba(69,183,209,0.12); color: #45b7d1; }
+.entity-card[data-cat="reaktion"] .entity-card-cat { background: rgba(78,205,196,0.12); color: #2ea69e; }
+.entity-card[data-cat="methode"] .entity-card-cat { background: rgba(240,147,251,0.12); color: #c060d0; }
+.entity-card[data-cat="person"] .entity-card-cat { background: rgba(255,154,118,0.12); color: #d07040; }
+.entity-card[data-cat="quelle"] .entity-card-cat { background: rgba(168,168,168,0.12); color: #888; }
+
+.entity-card-meta {
+  font-size: 0.82rem; color: var(--text-muted, #888); margin-bottom: 0.5rem;
 }
 
-.entity-name {
-  font-size: 1.3rem;
-  margin: 0 0 8px 0;
-  color: #333;
-  font-weight: 600;
-  text-transform: capitalize;
+.entity-card-components {
+  margin-top: 0.5rem; font-size: 0.78rem; color: var(--text-muted, #888);
+}
+.entity-card-components strong { color: var(--text-primary, #555); font-size: 0.75rem; }
+
+.entity-card-related {
+  margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.3rem;
+}
+.entity-related-tag {
+  font-size: 0.7rem; padding: 0.1rem 0.45rem; border-radius: 4px;
+  background: var(--bg-tag, #f0f0f0); color: var(--text-muted, #666);
 }
 
-.entity-count {
-  font-size: 0.85rem;
-  color: #667eea;
-  font-weight: 500;
-  margin: 0 0 12px 0;
+.entity-empty {
+  grid-column: 1 / -1; text-align: center; padding: 3em 1em;
+  color: var(--text-muted, #888);
 }
 
-.entity-articles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+.entity-graph-link {
+  text-align: center; margin-top: 2rem; font-size: 0.9rem;
 }
 
-.entity-article-tag {
-  background: #f0f0f0;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  color: #555;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 150px;
+/* Dark mode via Hugo theme variable */
+[data-theme="dark"] .entity-card,
+.dark .entity-card {
+  background: #2c2c2c; border-color: #444;
 }
-
-.entity-more {
-  background: #667eea;
-  color: white;
-  font-weight: 600;
+[data-theme="dark"] .entity-search,
+.dark .entity-search {
+  background: #333; border-color: #555; color: #eee;
 }
+[data-theme="dark"] .entity-filter-btn,
+.dark .entity-filter-btn {
+  background: #333; border-color: #555; color: #bbb;
+}
+[data-theme="dark"] .entity-related-tag,
+.dark .entity-related-tag {
+  background: #3c3c3c; color: #aaa;
+}
+[data-theme="dark"] .entity-card-name,
+.dark .entity-card-name { color: #e0e0e0; }
+[data-theme="dark"] .entity-card-meta,
+.dark .entity-card-meta { color: #999; }
 
+/* Standalone dark mode via media query */
 @media (prefers-color-scheme: dark) {
-  .entity-card {
-    background: #2c2c2c;
-    border-color: #444;
-  }
-  .entity-name {
-    color: #e0e0e0;
-  }
-  .entity-article-tag {
-    background: #3c3c3c;
-    color: #bbb;
-  }
+  :root:not([data-theme="light"]) .entity-card { background: #2c2c2c; border-color: #444; }
+  :root:not([data-theme="light"]) .entity-search { background: #333; border-color: #555; color: #eee; }
+  :root:not([data-theme="light"]) .entity-filter-btn { background: #333; border-color: #555; color: #bbb; }
+  :root:not([data-theme="light"]) .entity-related-tag { background: #3c3c3c; color: #aaa; }
+  :root:not([data-theme="light"]) .entity-card-name { color: #e0e0e0; }
+  :root:not([data-theme="light"]) .entity-card-meta { color: #999; }
 }
 
 @media (max-width: 768px) {
-  .entity-card-wrapper {
-    margin-bottom: 15px;
-  }
+  .entity-header { flex-direction: column; align-items: flex-start; }
+  .entity-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.8rem; }
+  .entity-card { padding: 0.9rem; }
 }
 </style>
+
+<script>
+(async function(){
+var app=document.getElementById("entity-app");
+var data;
+try{
+var res=await fetch("/api/kg-data",{signal:AbortSignal.timeout(15000)});
+if(!res.ok)throw new Error(res.status);
+data=await res.json();
+}catch(e){
+app.innerHTML="<p style=\"padding:2em;text-align:center;color:#888;\">Wissensnetz konnte nicht geladen werden. <a href=\"/wissennetz/\">Graph-Ansicht</a></p>";
+return;
+}
+
+var entities=data.entities||[];
+var articles=data.articles||[];
+var artMap=new Map();
+articles.forEach(function(a){artMap.set(a.title.toLowerCase(),a)});
+
+var catLabels={stoff:"Stoff",konzept:"Konzept",reaktion:"Reaktion",methode:"Methode",person:"Person",quelle:"Quelle"};
+var catColors={stoff:"#667eea",konzept:"#45b7d1",reaktion:"#4ecdc4",methode:"#f093fb",person:"#ff9a76",quelle:"#a8a8a8"};
+
+var catCounts={};
+entities.forEach(function(e){
+var c=e.category||"other";
+catCounts[c]=(catCounts[c]||0)+1;
+});
+
+var activeFilter="all";
+var searchQuery="";
+
+function render(){
+var filtered=entities.filter(function(e){
+if(activeFilter!=="all"&&e.category!==activeFilter)return false;
+if(searchQuery){
+var q=searchQuery.toLowerCase();
+return e.name.toLowerCase().indexOf(q)!==-1||(e.relatedEntities||[]).some(function(r){return r.name.toLowerCase().indexOf(q)!==-1});
+}
+return true;
+});
+
+filtered.sort(function(a,b){
+var ca=catCounts[a.category]||0,cb=catCounts[b.category]||0;
+var wa=(a.relatedEntities||[]).length,wb=(b.relatedEntities||[]).length;
+return wb-wa;
+});
+
+var html="<div class=\"entity-header\">";
+html+="<h1>Wissensnetz</h1>";
+html+="<div class=\"entity-stats\">";
+html+="<span><strong>"+entities.length+"</strong> Begriffe</span>";
+html+="<span><strong>"+articles.length+"</strong> Dokumente</span>";
+html+="</div></div>";
+
+html+="<input class=\"entity-search\" type=\"text\" placeholder=\"Begriff suchen...\" id=\"entity-search\" value=\""+searchQuery.replace(/"/g,"&quot;")+"\">";
+
+html+="<div class=\"entity-filters\">";
+html+="<button class=\"entity-filter-btn"+(activeFilter==="all"?" active":"")+"\" data-cat=\"all\">Alle <span class=\"entity-filter-count\">"+entities.length+"</span></button>";
+Object.keys(catLabels).forEach(function(cat){
+if(catCounts[cat]){
+html+="<button class=\"entity-filter-btn"+(activeFilter===cat?" active":"")+"\" data-cat=\""+cat+"\" style=\""+(activeFilter===cat?"background:"+catColors[cat]+";border-color:"+catColors[cat]+";color:#fff":"")+"\">"+catLabels[cat]+" <span class=\"entity-filter-count\">"+catCounts[cat]+"</span></button>";
+}
+});
+html+="</div>";
+
+html+="<div class=\"entity-grid\">";
+if(filtered.length===0){
+html+="<div class=\"entity-empty\">Keine Begriffe gefunden.</div>";
+}else{
+filtered.forEach(function(e){
+var cat=e.category||"other";
+var relatedCount=(e.relatedEntities||[]).length;
+var compCount=(e.components||[]).length;
+html+="<div class=\"entity-card\" data-cat=\""+cat+"\">";
+html+="<div class=\"entity-card-name\">"+e.name+"</div>";
+html+="<span class=\"entity-card-cat\">"+(catLabels[cat]||cat)+"</span>";
+html+="<div class=\"entity-card-meta\">"+relatedCount+" verwandte Begriffe";
+if(compCount)html+=" &middot; "+compCount+" Bestandteile";
+html+="</div>";
+if(e.components&&e.components.length>0){
+html+="<div class=\"entity-card-components\"><strong>Besteht aus:</strong> "+e.components.slice(0,5).join(", ")+(e.components.length>5?" +"+(e.components.length-5):"")+"</div>";
+}
+if(e.relatedEntities&&e.relatedEntities.length>0){
+html+="<div class=\"entity-card-related\">";
+e.relatedEntities.slice(0,6).forEach(function(r){
+html+="<span class=\"entity-related-tag\">"+r.name+"</span>";
+});
+if(e.relatedEntities.length>6)html+="<span class=\"entity-related-tag\">+"+(e.relatedEntities.length-6)+"</span>";
+html+="</div>";
+}
+html+="</div>";
+});
+}
+html+="</div>";
+
+html+="<div class=\"entity-graph-link\"><a href=\"/wissennetz/\">Interaktiver Graph anzeigen →</a></div>";
+
+app.innerHTML=html;
+
+document.getElementById("entity-search").addEventListener("input",function(ev){
+searchQuery=ev.target.value;
+render();
+});
+
+app.querySelectorAll(".entity-filter-btn").forEach(function(btn){
+btn.addEventListener("click",function(){
+activeFilter=this.getAttribute("data-cat");
+render();
+});
+});
+}
+
+render();
+})();
+</script>
 
 {{ end }}
