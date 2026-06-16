@@ -51,7 +51,7 @@ function drawEnergyLevels() {
   ctx.fillStyle = '#1a1a1a';
   ctx.font = 'bold 14px Arial';
   ctx.textAlign = 'center';
-  ctx.fillText(p + '+', width / 2, height - padding / 2 + 5);
+  ctx.fillText('p+', width / 2, height - padding / 2 + 5);
 
   const levelSpacing = graphHeight / (maxN + 1);
 

@@ -12,7 +12,7 @@
 
   function initializeDropdowns() {
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-    
+
     dropdownToggles.forEach(function(toggle) {
       // Add click handler
       toggle.addEventListener('click', function(e) {
@@ -20,14 +20,14 @@
         if (window.innerWidth < 768) {
           e.preventDefault();
           const parent = this.parentElement;
-          
+
           // Close all other open dropdowns
           document.querySelectorAll('.dropdown.open').forEach(function(dropdown) {
             if (dropdown !== parent) {
               dropdown.classList.remove('open');
             }
           });
-          
+
           // Toggle the current dropdown
           parent.classList.toggle('open');
         }
@@ -44,7 +44,7 @@
     document.addEventListener('click', function(e) {
       // If click is outside all dropdowns
       const isOutsideDropdown = !e.target.closest('.dropdown');
-      
+
       if (isOutsideDropdown) {
         document.querySelectorAll('.dropdown.open').forEach(function(dropdown) {
           dropdown.classList.remove('open');

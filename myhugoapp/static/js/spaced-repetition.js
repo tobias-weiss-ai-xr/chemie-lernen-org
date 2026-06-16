@@ -9,15 +9,15 @@ class SpacedRepetitionSystem {
     this.storageKey = options.storageKey || 'chemie-lernen-fsrs-data';
     this.successKey = options.successKey || 'chemie-lernen-quiz-success';
     this.failureKey = options.failureKey || 'chemie-lernen-quiz-failure';
-    
+
     // FSRS parameters (default values from original algorithm)
     this.params = {
       request_retention: 0.9,    // Target retention rate (0.7-0.9)
       maximum_interval: 36500,   // Max interval in days (100 years)
-      w: [0.4, 0.6, 2.4, 5.8, 4.93, 0.94, 0.86, 0.01, 1.49, 0.14, 0.94, 2.18, 0.05, 
+      w: [0.4, 0.6, 2.4, 5.8, 4.93, 0.94, 0.86, 0.01, 1.49, 0.14, 0.94, 2.18, 0.05,
           0.34, 1.26, 0.29, 2.61] // Weights for memory calculations
     };
-    
+
     this.loadData();
     this.successData = this.loadQuizData(this.successKey);
     this.failureData = this.loadQuizData(this.failureKey);
@@ -79,20 +79,20 @@ class SpacedRepetitionSystem {
     const w = this.params.w;
     const lastStability = card.stability || 1;
     const lastDifficulty = card.difficulty || 5;
-    
+
     // Simplified FSRS calculation
     let newStability;
     if (quality >= 3) {
       // Success
-      newStability = lastStability * (1 + (w[8] * (11 - lastDifficulty) * lastStability ** -0.47 + 
-                   w[9] * (quality - 3) * Math.exp((2 - lastDifficulty) * 0.4) + 
-                   w[10] * (11 - lastDifficulty) * lastStability ** -0.55 * 
+      newStability = lastStability * (1 + (w[8] * (11 - lastDifficulty) * lastStability ** -0.47 +
+                   w[9] * (quality - 3) * Math.exp((2 - lastDifficulty) * 0.4) +
+                   w[10] * (11 - lastDifficulty) * lastStability ** -0.55 *
                    Math.exp((2 - quality) * 0.4)));
     } else {
       // Failure
       newStability = w[11] * lastDifficulty ** -0.49 * lastStability ** -0.32;
     }
-    
+
     return Math.max(newStability, 0.1);
   }
 
@@ -103,10 +103,10 @@ class SpacedRepetitionSystem {
   calculateDifficulty(card, quality) {
     const w = this.params.w;
     const lastDifficulty = card.difficulty || 5;
-    
+
     let newDifficulty = lastDifficulty - w[5] * (quality - 3);
     newDifficulty = Math.max(1, Math.min(10, newDifficulty));
-    
+
     return newDifficulty;
   }
 
@@ -143,33 +143,33 @@ class SpacedRepetitionSystem {
     const dueDate = new Date(card.dueDate);
     const now = new Date();
     const overdueDays = Math.max(0, (now - dueDate) / (1000 * 60 * 60 * 24));
-    
+
     // Update stability and difficulty
     card.stability = this.calculateStability(card, quality);
     card.difficulty = this.calculateDifficulty(card, quality);
-    
+
     // Calculate new interval
     card.interval = this.calculateInterval(card.stability);
-    
+
     // Set next due date
     const nextDue = new Date();
     nextDue.setDate(nextDue.getDate() + card.interval);
     card.dueDate = nextDue.toISOString();
-    
+
     // Update counts
     card.reviews++;
     if (quality < 3) {
       card.lapses++;
     }
-    
+
     // Update last review
     card.lastReview = now.toISOString();
-    
+
     // Track time taken if available
     if (timeTaken) {
       card.timeTaken = timeTaken;
     }
-    
+
     this.saveData();
     return card;
   }
@@ -180,16 +180,16 @@ class SpacedRepetitionSystem {
   getDueCards(limit = null) {
     const now = new Date();
     const dueCards = [];
-    
+
     for (const [cardId, card] of Object.entries(this.cards)) {
       if (new Date(card.dueDate) <= now) {
         dueCards.push({ id: cardId, ...card });
       }
     }
-    
+
     // Sort by due date (oldest first)
     dueCards.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
-    
+
     return limit ? dueCards.slice(0, limit) : dueCards;
   }
 
@@ -201,7 +201,7 @@ class SpacedRepetitionSystem {
     const dueCards = this.getDueCards();
     const learnedCards = Object.values(this.cards).filter(c => c.interval > 0).length;
     const mastery = totalCards > 0 ? (learnedCards / totalCards) * 100 : 0;
-    
+
     return {
       total: totalCards,
       due: dueCards.length,
@@ -237,10 +237,10 @@ class SpacedRepetitionSystem {
   recordQuizResult(quizId, questionId, isCorrect, timeTaken, hintsUsed = 0) {
     const cardId = `${quizId}-${questionId}`;
     const quality = this.quizToQuality(isCorrect, timeTaken, hintsUsed);
-    
+
     // Update FSRS card
     const updatedCard = this.updateCard(cardId, quality, timeTaken);
-    
+
     // Also track in legacy quiz success/failure data
     if (isCorrect) {
       if (!this.successData[cardId]) {
@@ -268,7 +268,7 @@ class SpacedRepetitionSystem {
       this.failureData[cardId].timeSpent.push(timeTaken);
       this.saveQuizData(this.failureKey, this.failureData);
     }
-    
+
     return updatedCard;
   }
 
@@ -277,7 +277,7 @@ class SpacedRepetitionSystem {
    */
   getPracticeSuggestions(limit = 10) {
     const dueCards = this.getDueCards(limit);
-    
+
     return dueCards.map(card => ({
       cardId: card.id,
       quizId: card.id.split('-')[0],
@@ -296,13 +296,13 @@ class SpacedRepetitionSystem {
   calculatePriority(card) {
     // Higher priority for more difficult cards
     const difficultyFactor = card.difficulty / 10;
-    
+
     // Higher priority for cards that haven't been reviewed recently
     const urgencyFactor = 1 / (card.interval + 1);
-    
+
     // Higher priority for cards with many lapses
     const lapseFactor = Math.min(card.lapses / 5, 1);
-    
+
     return (difficultyFactor * 0.4) + (urgencyFactor * 0.3) + (lapseFactor * 0.3);
   }
 
@@ -361,10 +361,10 @@ class SpacedRepetitionSystem {
   getStreak() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
+
     let streak = 0;
     let currentDate = new Date(today);
-    
+
     while (true) {
       const dateStr = currentDate.toISOString().split('T')[0];
       const hasReviews = Object.values(this.cards).some(card => {
@@ -372,7 +372,7 @@ class SpacedRepetitionSystem {
         const reviewDate = card.lastReview.split('T')[0];
         return reviewDate === dateStr;
       });
-      
+
       if (hasReviews) {
         streak++;
         currentDate.setDate(currentDate.getDate() - 1);
@@ -380,7 +380,7 @@ class SpacedRepetitionSystem {
         break;
       }
     }
-    
+
     return streak;
   }
 
@@ -390,14 +390,14 @@ class SpacedRepetitionSystem {
   getRetentionStats() {
     const totalReviews = Object.values(this.cards).reduce((sum, c) => sum + c.reviews, 0);
     const totalLapses = Object.values(this.cards).reduce((sum, c) => sum + c.lapses, 0);
-    const retentionRate = totalReviews > 0 ? 
+    const retentionRate = totalReviews > 0 ?
       ((totalReviews - totalLapses) / totalReviews) * 100 : 100;
-    
+
     return {
       totalReviews,
       totalLapses,
       retentionRate: retentionRate.toFixed(1),
-      averageInterval: totalReviews > 0 ? 
+      averageInterval: totalReviews > 0 ?
         (Object.values(this.cards).reduce((sum, c) => sum + c.interval, 0) / Object.keys(this.cards).length).toFixed(1) : 0
     };
   }

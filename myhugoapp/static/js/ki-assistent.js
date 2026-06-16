@@ -135,19 +135,19 @@
     infoDiv.style.color = '#6c757d';
     infoDiv.style.fontSize = '14px';
     infoDiv.style.textAlign = 'center';
-    
+
     var sessionText = 'Noch ' + remaining + ' KI-Anfragen heute übrig';
     if (messageCount !== undefined) {
       sessionText += ' (' + messageCount + ' von 50 Nachrichten in dieser Sitzung)';
     }
-    
+
     infoDiv.textContent = sessionText;
     var chatInput = document.getElementById('chat-input');
     if (chatInput && chatInput.parentNode) {
       chatInput.parentNode.insertBefore(infoDiv, chatInput);
     }
   }
-  
+
   /**
    * Calls /api/chat with SSE streaming via Accept: text/event-stream.
    * Creates the bot message div immediately and appends content as chunks arrive.
@@ -371,8 +371,8 @@
             localStorage.setItem('chemie_session', JSON.stringify(currentSession));
           }
           if (data.reply) {
-            resolve({ 
-              reply: data.reply, 
+            resolve({
+              reply: data.reply,
               remaining: data.remaining,
               sessionId: data.sessionId,
               messageCount: data.messageCount

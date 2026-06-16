@@ -95,7 +95,7 @@ function calculateEquilibriumResults(iceTable, ka, reactionType) {
   const display = document.getElementById('equilibrium-display');
 
   let html = '<div class="equilibrium-values">';
-  
+
   if (reactionType === 'weak-acid') {
     const ph = -Math.log10(iceTable.equilibrium[1]); // [H+]
     html = html.replace('equilibrium-values', 'equilibrium-values weak-acid');
@@ -231,10 +231,10 @@ function displayBufferCalculation(pka, acidConc, baseConc, ratio) {
 
 function determineBufferCapacity(ratio, totalConc) {
   const display = document.getElementById('buffer-capacity-result');
-  
+
   let quality;
   let color;
-  
+
   if (ratio >= 0.1 && ratio <= 10) {
     if (ratio >= 0.333 && ratio <= 3) {
       quality = 'Optimal';
@@ -296,7 +296,7 @@ function calculateMWG() {
 
 function displayMWGExplanation(Q, ka, direction) {
   const display = document.getElementById('mwg-explanation');
-  
+
   let explanation = '<div class="explanation-text">';
   explanation += `<p><strong>Reaktionsquotient Q:</strong> ${scientificNotation(Q)}</p>`;
   explanation += `<p><strong>Gleichgewichtskonstante Kₐ:</strong> ${scientificNotation(ka)}</p>`;
@@ -355,7 +355,7 @@ function scientificNotation(value, variable = null) {
   if (variable) {
     return variable;
   }
-  
+
   if (Math.abs(value) >= 0.01 && Math.abs(value) < 10000) {
     return value.toExponential(4);
   } else if (value === 0) {
@@ -368,7 +368,7 @@ function scientificNotation(value, variable = null) {
 function updateICETable() {
   const reactionType = document.getElementById('reaction-type').value;
   const helpBlock = document.querySelector('#ka-value').nextElementSibling;
-  
+
   if (reactionType === 'weak-acid') {
     helpBlock.textContent = 'Essigsäure: 1.8e-5, Ameisensäure: 1.8e-4, Blausäure: 6.2e-10';
   } else {

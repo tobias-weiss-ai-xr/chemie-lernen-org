@@ -42,7 +42,7 @@
     function renderQuestion() {
       const questionData = quizData.questions[currentQuestion];
       const questionNumber = currentQuestion + 1;
-      
+
       const questionHTML = `
         <div class="quiz-question" data-question-id="${questionData.id}">
           <div class="quiz-progress">
@@ -114,7 +114,7 @@
               </div>
             `;
             quizContent.insertAdjacentHTML('beforeend', scoreHTML);
-            
+
             document.getElementById(`restart-${quizId}`).addEventListener('click', function() {
               currentQuestion = 0;
               score = 0;
@@ -175,7 +175,7 @@
               </div>
             `;
             quizContent.insertAdjacentHTML('beforeend', scoreHTML);
-            
+
             document.getElementById(`restart-${quizId}`).addEventListener('click', function() {
               currentQuestion = 0;
               score = 0;

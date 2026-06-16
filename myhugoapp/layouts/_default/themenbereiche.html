@@ -337,7 +337,7 @@
         </div>
 
         <div class="filter-group search-group">
-          <input type="text" id="search-input" class="form-control" placeholder="Thema suchen...">
+          <input type="text" id="themen-filter" class="form-control" placeholder="Thema suchen..." aria-label="Thema suchen">
         </div>
       </div>
     </div>
@@ -535,7 +535,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Filter buttons
   const filterButtons = document.querySelectorAll('.btn-filter');
   const typeFilterButtons = document.querySelectorAll('.btn-type-filter');
-  const searchInput = document.getElementById('search-input');
+  const searchInput = document.getElementById('themen-filter');
 
   let currentDifficultyFilter = 'all';
   let currentTypeFilter = 'all';

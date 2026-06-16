@@ -235,7 +235,7 @@ async function loadPerAreaProgress() {
     const areaCards = Object.values(fsrs.cards).filter(card => card.id.includes(area));
     const learnedCards = areaCards.filter(card => card.interval > 0).length;
     const pct = areaCards.length > 0 ? Math.round((learnedCards / goal) * 100) : 0;
-    
+
     return {
       name: area,
       goal: goal,
