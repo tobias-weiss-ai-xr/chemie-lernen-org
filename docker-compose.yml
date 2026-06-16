@@ -62,7 +62,6 @@ services:
         limits:
           memory: 256M
     networks:
-      - traefik-web
       - traefik-public
     labels:
       - "traefik.enable=true"
