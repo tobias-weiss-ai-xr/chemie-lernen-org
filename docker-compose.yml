@@ -46,6 +46,7 @@ services:
     networks:
       - traefik-public
       - litellm-internal
+      - traefik-web
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.chat.rule=Host(`chemie-lernen.org`) && PathPrefix(`/api/chat`) || Host(`chemie-lernen.org`) && PathPrefix(`/api/health`) || Host(`chemie-lernen.org`) && Path(`/api/kg-data`)"

@@ -373,11 +373,13 @@ app.get('/api/kg-data', async (req, res) => {
     const entitiesQuery = `
       MATCH (e:Entity)
       OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
+      OPTIONAL MATCH (e)-[c:BESTEHT_AUS]->(component:Entity)
       RETURN e.name as name, e.kategorie as category,
              collect(DISTINCT related.name) as relatedEntities,
-             size((:Document)-[:MENTIONS]->(e)) as articleCount
+             collect(DISTINCT component.name) as components,
+             COUNT { (:Document)-[:MENTIONS]->(e) } as articleCount
       ORDER BY articleCount DESC
-      LIMIT 200
+      LIMIT 500
     `;
     const entitiesResult = await session.run(entitiesQuery);
     const entities = entitiesResult.records.map((r, i) => ({
@@ -385,7 +387,8 @@ app.get('/api/kg-data', async (req, res) => {
       name: r.get('name'),
       category: r.get('category') || 'konzept',
       articles: [],
-      relatedEntities: (r.get('relatedEntities') || []).map((name) => ({ name, weight: 1 })),
+      relatedEntities: (r.get('relatedEntities') || []).filter(n => n !== null).map((name) => ({ name, weight: 1 })),
+      components: (r.get('components') || []).filter(n => n !== null),
       articleCount: r.get('articleCount') || 0,
     }));
 
@@ -393,9 +396,11 @@ app.get('/api/kg-data', async (req, res) => {
     const entityNames = entities.map((e) => e.name);
     const articlesQuery = `
       MATCH (d:Document)-[:MENTIONS]->(e:Entity)
-      WHERE d.type = 'article' AND e.name IN $entityNames
-      RETURN d.title as title, d.url as url, collect(e.name) as entities, d.date as date
-      LIMIT 300
+      WHERE e.name IN $entityNames
+      RETURN d.title as title, d.url as url, d.type as type,
+             collect(e.name) as entities, d.date as date
+      ORDER BY d.type, d.date DESC
+      LIMIT 500
     `;
     const articlesResult = await session.run(articlesQuery, {
       entityNames: entityNames.slice(0, 100),
@@ -404,6 +409,7 @@ app.get('/api/kg-data', async (req, res) => {
       id: `a${i}`,
       title: r.get('title'),
       url: r.get('url'),
+      type: r.get('type') || 'article',
       entities: r.get('entities') || [],
       date: r.get('date'),
     }));

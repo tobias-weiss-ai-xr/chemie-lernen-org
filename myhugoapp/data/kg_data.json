@@ -1,48 +1,45 @@
 {
   "articles": [
     {
-      "title": "Neuer Photokatalysator nutzt ein Photon für CO₂-Reduktion und Abfalloxidation",
-      "url": "https://chemie-lernen.org/posts/2026-06-13-neuer-photokatalysator-nutzt-ein-photon-fuer-co-reduktion-und-abfalloxidation/",
-      "description": "Forschende haben ein neuartiges, solarbetriebenes Katalysatormaterial entwickelt, das die Energie eines einzelnen Photons nutzt, um zwei chemische Reaktionen gleichzeitig anzutreiben. Dieser Ansatz ko",
+      "title": "Protein-Dynamik: Kombinierte Bildgebung zeigt „Atmen\" von Proteinen",
+      "url": "https://chemie-lernen.org/posts/2026-06-16-protein-dynamik-kombinierte-bildgebung-zeigt-atmen-von-proteinen/",
+      "description": "Die Strukturbiologie liefert zwar detaillierte molekulare Strukturen, oft jedoch nur als statische Momentaufnahmen. Da die Dynamik von Proteinen für ihre biologische Funktion essenziell ist, haben For",
       "tags": [
-        "photokatalyse",
-        "co2-reduktion",
-        "abfallverwertung",
-        "sonnenenergie",
-        "redoxreaktion"
+        "strukturbiologie",
+        "protein-dynamik",
+        "bildgebung",
+        "nature-chemistry",
+        "ista"
       ],
       "entities": [],
-      "date": "2026-06-13T02:42:55+02:00"
+      "date": "2026-06-16T02:43:04+02:00"
     },
     {
-      "title": "Aromatische Ringflips zeigen Einfluss der Kristallpackung auf Proteindynamik",
-      "url": "https://chemie-lernen.org/posts/2026-06-13-aromatische-ringflips-zeigen-einfluss-der-kristallpackung-auf-proteindynamik/",
-      "description": "Eine aktuelle Studie in Nature Chemistry untersucht, wie Kristallpackung die Dynamik von Proteinen beeinflusst. Bisher war schwer zu entschlüsseln, inwieweit die Anordnung in Kristallen die natürliche",
+      "title": "Neuer Palladium-Präkatalysator vereint Stabilität und Reaktivität",
+      "url": "https://chemie-lernen.org/posts/2026-06-16-neuer-palladium-praekatalysator-vereint-stabilitaet-und-reaktivitaet/",
+      "description": "Forschende der Universität Tsukuba haben einen neuartigen Palladium-Präkatalysator entwickelt, der Stabilität und Reaktivität effektiv vereint. Dieser Katalysator zeichnet sich durch eine außergewöhnl",
       "tags": [
-        "proteinstruktur",
-        "nmr-spektroskopie",
-        "molekulardynamik",
-        "kristallographie",
-        "proteindynamik"
+        "palladium",
+        "katalyse",
+        "präkatalysator",
+        "organische synthese",
+        "universität tsukuba"
       ],
       "entities": [],
-      "date": "2026-06-13T02:43:27+02:00"
+      "date": "2026-06-16T02:43:33+02:00"
     },
     {
-      "title": "Kryo-Elektronenmikroskopie für organische Lösungsmittel erweitert",
-      "url": "https://chemie-lernen.org/posts/2026-06-13-kryo-elektronenmikroskopie-fuer-organische-loesungsmittel-erweitert/",
-      "description": "Viele fortschrittliche Technologien, von Katalysatoren bis hin zu Wirkstofftransportsystemen, basieren auf Substanzen, die in organischen Lösungsmitteln dispergiert sind. Bisher stellte die direkte Be",
+      "title": "Ursprung des Lebens: Effizientere GTP-Synthese durch Ribozyme entdeckt",
+      "url": "https://chemie-lernen.org/posts/2026-06-16-ursprung-des-lebens-effizientere-gtp-synthese-durch-ribozyme-entdeckt/",
+      "description": "Die Entstehung des Lebens auf der Erde ist eng mit der sogenannten RNA-Welt-Hypothese verknüpft. Demnach basierten frühe biologische Systeme auf RNA-Molekülen, die sowohl genetische Information speich",
       "tags": [
-        "kryo-em",
-        "elektronenmikroskopie",
-        "materialwissenschaft",
-        "lösungsmittel",
-        "strukturanalyse"
+        "chemie",
+        "forschung"
       ],
       "entities": [],
-      "date": "2026-06-13T02:44:10+02:00"
+      "date": "2026-06-16T02:44:07+02:00"
     }
   ],
   "entities": [],
-  "updatedAt": "2026-06-13T02:44:10+02:00"
+  "updatedAt": "2026-06-16T02:44:07+02:00"
 }

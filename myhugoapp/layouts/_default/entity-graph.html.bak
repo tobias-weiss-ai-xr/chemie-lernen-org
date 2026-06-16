@@ -100,7 +100,7 @@ async function loadKnowledgeGraphData() {
       OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
       RETURN e.name as name, e.kategorie as category, 
              collect(DISTINCT related.name) as relatedEntities,
-             size((:Document)-[:MENTIONS]->(e)) as articleCount
+             COUNT { (:Document)-[:MENTIONS]->(e) } as articleCount
       ORDER BY articleCount DESC
       LIMIT 200
     `;
