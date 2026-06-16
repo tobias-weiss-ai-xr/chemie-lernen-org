@@ -392,6 +392,32 @@ class QuizSystem {
   }
 }
 
+// Enable swipe gestures on quiz containers
+function enableQuizSwipes(containerId) {
+  var container = document.getElementById(containerId);
+  if (!container) return;
+  var startX = 0;
+  var threshold = 60;
+  container.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+  container.addEventListener('touchend', function(e) {
+    var diffX = e.changedTouches[0].clientX - startX;
+    if (Math.abs(diffX) < threshold) return;
+    var prevBtn = container.querySelector('.quiz-button-secondary:not([style*="display: none"])');
+    var nextBtn = container.querySelector('.quiz-button-primary:not([style*="display: none"]):not([onclick])');
+    if (diffX < 0 && nextBtn) nextBtn.click();
+    else if (diffX > 0 && prevBtn) prevBtn.click();
+  }, { passive: true });
+}
+
+// Auto-init swipe on all quiz containers after DOM ready
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.quiz-container[id^="quiz-"]').forEach(function(el) {
+    enableQuizSwipes(el.id);
+  });
+});
+
 // Global quiz instance
 const chemieQuiz = new QuizSystem({
   storageKey: 'chemie-lernen-quiz-progress'
