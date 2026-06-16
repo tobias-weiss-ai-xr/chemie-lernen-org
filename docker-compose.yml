@@ -66,6 +66,7 @@ services:
       - traefik-public
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=traefik-public"
       - "traefik.http.routers.hugo.rule=Host(`chemie-lernen.org`,`www.chemie-lernen.org`)"
       - "traefik.http.routers.hugo.entrypoints=web"
       - "traefik.http.routers.hugo.priority=60"
