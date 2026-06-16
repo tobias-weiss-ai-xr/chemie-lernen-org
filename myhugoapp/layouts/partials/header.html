@@ -495,15 +495,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const debouncedSearch = debounce(performSearch, 300);
 
+    function getResultCategory(url) {
+      if (!url) return null;
+      var path = new URL(url, window.location.origin).pathname;
+      if (path.indexOf('/rechner/') !== -1 || path.match(/rechner/i) || path.match(/-rechner\//)) return { label: 'Rechner', color: '#4ecdc4' };
+      if (path.indexOf('/themenbereich') !== -1) return { label: 'Themenbereich', color: '#45b7d1' };
+      if (path.indexOf('/simulation') !== -1 || path.match(/simulator/)) return { label: 'Simulation', color: '#f093fb' };
+      if (path.indexOf('/uebungsgenerator') !== -1 || path.indexOf('/aufgabensammlung') !== -1) return { label: 'Übung', color: '#ff9a76' };
+      if (path.indexOf('/lernpfad') !== -1 || path.indexOf('/fortschritt') !== -1) return { label: 'Lernpfad', color: '#667eea' };
+      if (path.indexOf('/lehr') !== -1) return { label: 'Lehrende', color: '#a8a8a8' };
+      if (path.indexOf('/ki-assistent') !== -1) return { label: 'KI-Assistent', color: '#667eea' };
+      if (path.indexOf('/entity/') !== -1) return { label: 'Begriff', color: '#45b7d1' };
+      if (path.indexOf('/wissennetz') !== -1) return { label: 'Wissensnetz', color: '#667eea' };
+      if (path.indexOf('/posts/') !== -1 || path.match(/\/\d{4}\/\d{2}\//)) return { label: 'Artikel', color: '#888' };
+      return null;
+    }
+
     function displayResults(results) {
       if (!results || !results.results || results.results.length === 0) {
         searchResults.innerHTML = '<div class="search-no-results">Keine Ergebnisse gefunden</div>';
       } else {
         let html = '';
         results.results.forEach(result => {
+          var cat = getResultCategory(result.url);
           html += '<div class="search-result-item">';
           html += '  <a href="' + result.url + '" class="search-result-link">';
           html += '    <div class="search-result-title">' + result.meta.title + '</div>';
+          if (cat) {
+            html += '    <span class="search-result-badge" style="display:inline-block;font-size:0.65rem;padding:0.1rem 0.45rem;border-radius:4px;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;background:' + cat.color + '22;color:' + cat.color + ';margin-top:0.2rem;">' + cat.label + '</span>';
+          }
           html += '    <div class="search-result-excerpt">' + result.excerpt + '</div>';
           html += '  </a>';
           html += '</div>';

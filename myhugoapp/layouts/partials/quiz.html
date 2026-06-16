@@ -125,3 +125,40 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Load quiz system CSS and JS -->
 <link rel="stylesheet" href="{{ "/css/quiz-system.css" | relURL }}">
 <script src="{{ "/js/quiz-system.js" | relURL }}"></script>
+
+<!-- Mobile swipe gestures for quiz navigation -->
+<script>
+(function(){
+  var quizId = '{{ $quizId }}';
+  var card = document.getElementById('question-card-' + quizId);
+  if (!card) return;
+
+  var startX = 0;
+  var startY = 0;
+  var threshold = 60;
+
+  card.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  card.addEventListener('touchend', function(e) {
+    var endX = e.changedTouches[0].clientX;
+    var endY = e.changedTouches[0].clientY;
+    var diffX = endX - startX;
+    var diffY = endY - startY;
+
+    if (Math.abs(diffX) < threshold) return;
+    if (Math.abs(diffY) > Math.abs(diffX) * 1.5) return;
+
+    var prevBtn = document.getElementById('prev-button-' + quizId);
+    var nextBtn = document.getElementById('next-button-' + quizId);
+
+    if (diffX < 0 && nextBtn && nextBtn.style.display !== 'none') {
+      nextBtn.click();
+    } else if (diffX > 0 && prevBtn && prevBtn.style.display !== 'none') {
+      prevBtn.click();
+    }
+  }, { passive: true });
+})();
+</script>

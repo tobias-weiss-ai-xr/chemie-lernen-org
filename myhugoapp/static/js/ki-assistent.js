@@ -389,6 +389,50 @@
     });
   }
 
+  var followUpSuggestions = [
+    'Was ist die molare Masse?',
+    'Wie gleiche ich Reaktionsgleichungen aus?',
+    'Erkläre mir den pH-Wert',
+    'Was sind Redox-Reaktionen?',
+    'Wie funktioniert das Periodensystem?',
+    'Was ist Stöchiometrie?',
+    'Erkläre mir Säuren und Basen',
+    'Was ist chemisches Gleichgewicht?',
+    'Wie funktioniert eine Titration?',
+    'Was besagt der Satz von Hess?'
+  ];
+
+  function getRandomSuggestions(count, exclude) {
+    var pool = followUpSuggestions.filter(function(s) { return s !== exclude; });
+    var shuffled = pool.slice();
+    for (var i = shuffled.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = shuffled[i];
+      shuffled[i] = shuffled[j];
+      shuffled[j] = tmp;
+    }
+    return shuffled.slice(0, count);
+  }
+
+  function addFollowUpButtons(container, suggestions) {
+    var btnContainer = document.createElement('div');
+    btnContainer.className = 'followup-buttons';
+    btnContainer.style.cssText = 'display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.6rem;';
+    suggestions.forEach(function(text) {
+      var btn = document.createElement('button');
+      btn.textContent = text;
+      btn.style.cssText = 'padding:0.3rem 0.7rem;border-radius:16px;font-size:0.78rem;border:1.5px solid #667eea;background:transparent;color:#667eea;cursor:pointer;transition:all 0.2s;';
+      btn.onmouseover = function() { this.style.background = '#667eea'; this.style.color = '#fff'; };
+      btn.onmouseout = function() { this.style.background = 'transparent'; this.style.color = '#667eea'; };
+      btn.onclick = function() {
+        document.getElementById('chat-input').value = this.textContent;
+        handleQuery(this.textContent);
+      };
+      btnContainer.appendChild(btn);
+    });
+    container.appendChild(btnContainer);
+  }
+
   function handleQuery(query) {
     query = query.trim();
     if (!query) return;
@@ -405,7 +449,12 @@
         if (apiResult.remaining !== undefined) {
           updateSessionInfoDisplay(apiResult.remaining, apiResult.messageCount);
         }
-        addMessage('Hast du noch weitere Fragen?', false);
+        // Add follow-up suggestion buttons
+        var container = document.getElementById('chat-messages');
+        var lastMsg = container.lastElementChild;
+        if (lastMsg) {
+          addFollowUpButtons(lastMsg, getRandomSuggestions(4, query));
+        }
         return;
       }
 
@@ -422,7 +471,11 @@
       }
 
       addMessage(answer, false);
-      addMessage('Hast du noch weitere Fragen?', false);
+      var container = document.getElementById('chat-messages');
+      var lastMsg = container.lastElementChild;
+      if (lastMsg) {
+        addFollowUpButtons(lastMsg, getRandomSuggestions(4, query));
+      }
     }).catch(function (error) {
       hideTyping();
       var errorMessage = '';
@@ -456,11 +509,20 @@
           answer = formatNoResult(query);
           addMessage(answer, false);
         }
+        var container = document.getElementById('chat-messages');
+        var lastMsg = container.lastElementChild;
+        if (lastMsg) {
+          addFollowUpButtons(lastMsg, getRandomSuggestions(4, query));
+        }
         return;
       }
 
       addMessage(errorMessage, false);
-      addMessage('Möchten Sie stattdessen etwas aus unserem Wissensgraphen ansehen?', false);
+      var container = document.getElementById('chat-messages');
+      var lastMsg = container.lastElementChild;
+      if (lastMsg) {
+        addFollowUpButtons(lastMsg, ['Wissensgraph durchsuchen', 'Zu Übungen', 'Zur Startseite']);
+      }
     });
   }
 

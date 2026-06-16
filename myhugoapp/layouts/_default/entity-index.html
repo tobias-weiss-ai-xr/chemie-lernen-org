@@ -18,22 +18,41 @@
 .entity-header h1 { margin: 0; flex: 1; font-size: 1.6rem; }
 
 .entity-stats {
-  display: flex; gap: 1.5rem; flex-wrap: wrap;
+  display: flex; gap: 1rem; flex-wrap: wrap;
   font-size: 0.9rem; color: var(--text-muted, #666);
+  align-items: center;
 }
 .entity-stats strong { color: var(--text-primary, #333); }
+
+.entity-toolbar {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin-bottom: 1rem; align-items: center;
+}
+.entity-toolbar-left { flex: 1; min-width: 200px; }
 
 .entity-search {
   width: 100%; padding: 0.6rem 1rem; border-radius: 8px;
   border: 1px solid var(--border-color, #ddd); font-size: 1rem;
   background: var(--bg-input, #fff); color: var(--text-primary, #333);
   transition: border-color 0.2s, box-shadow 0.2s;
-  margin-bottom: 1rem;
+  box-sizing: border-box;
 }
 .entity-search:focus {
   outline: none; border-color: #667eea;
   box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
 }
+
+.entity-view-controls {
+  display: flex; gap: 0.3rem;
+}
+.entity-view-btn {
+  padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.82rem;
+  border: 1.5px solid var(--border-color, #ddd); cursor: pointer;
+  background: var(--bg-card, #fff); color: var(--text-muted, #666);
+  transition: all 0.2s; font-weight: 500;
+}
+.entity-view-btn:hover { border-color: #667eea; color: #667eea; }
+.entity-view-btn.active { background: #667eea; color: #fff; border-color: #667eea; }
 
 .entity-filters {
   display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem;
@@ -62,14 +81,15 @@
   background: var(--bg-card, #fff);
   border: 1px solid var(--border-color, #e0e0e0);
   border-radius: 10px; padding: 1.2rem;
-  cursor: default; transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
   box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   position: relative; overflow: hidden;
 }
 .entity-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
+.entity-card:active { transform: translateY(-1px); }
 .entity-card::before {
   content: ""; position: absolute; top: 0; left: 0; right: 0;
   height: 3px; border-radius: 10px 10px 0 0;
@@ -85,6 +105,11 @@
   font-size: 1.15rem; font-weight: 600; margin: 0 0 0.4rem 0;
   color: var(--text-primary, #333);
 }
+.entity-card-name a {
+  color: inherit; text-decoration: none;
+}
+.entity-card-name a:hover { color: #667eea; }
+
 .entity-card-cat {
   display: inline-block; padding: 0.15rem 0.55rem; border-radius: 12px;
   font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
@@ -114,10 +139,99 @@
   background: var(--bg-tag, #f0f0f0); color: var(--text-muted, #666);
 }
 
-.entity-empty {
-  grid-column: 1 / -1; text-align: center; padding: 3em 1em;
-  color: var(--text-muted, #888);
+.entity-card-articles {
+  margin-top: 0.5rem; padding-top: 0.4rem;
+  border-top: 1px dashed var(--border-color, #ddd);
+  font-size: 0.72rem; color: var(--text-muted, #888);
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.3s ease;
 }
+.entity-card:hover .entity-card-articles,
+.entity-card.show-articles .entity-card-articles {
+  max-height: 200px;
+}
+.entity-card-articles div {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  padding: 0.1rem 0;
+}
+.entity-card-articles div::before { content: "\2022 "; color: #667eea; }
+
+.empty-state {
+  text-align: center; padding: 3em 1em; color: var(--text-muted, #888);
+  grid-column: 1 / -1;
+}
+.empty-state-icon { font-size: 2.5rem; margin-bottom: 0.5rem; opacity: 0.4; }
+
+/* Skeleton loading */
+@keyframes skeleton-pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+.entity-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+.entity-skeleton-card {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 10px; padding: 1.2rem;
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+.entity-skeleton-line {
+  height: 14px; background: var(--border-color, #e0e0e0);
+  border-radius: 4px; margin-bottom: 10px;
+}
+.entity-skeleton-line:first-child { width: 70%; height: 18px; }
+.entity-skeleton-line:nth-child(2) { width: 40%; }
+.entity-skeleton-line:nth-child(3) { width: 90%; }
+.entity-skeleton-line:nth-child(4) { width: 55%; }
+
+/* Tag cloud layout */
+.entity-tagcloud {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  justify-content: center; padding: 1rem 0;
+}
+.entity-tagcloud-item {
+  display: inline-block; padding: 0.3rem 0.8rem;
+  border-radius: 20px; cursor: pointer; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  color: #fff; font-weight: 500;
+}
+.entity-tagcloud-item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+/* Tooltip */
+.entity-tooltip-wrapper {
+  position: relative;
+}
+.entity-tooltip {
+  display: none; position: fixed;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 8px; padding: 0.8rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  z-index: 1000; max-width: 300px;
+  font-size: 0.78rem; pointer-events: none;
+}
+
+/* Pagination */
+.entity-pagination {
+  display: flex; justify-content: center; gap: 0.4rem;
+  margin-top: 1.5rem; flex-wrap: wrap;
+}
+.entity-page-btn {
+  padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.82rem;
+  border: 1.5px solid var(--border-color, #ddd); cursor: pointer;
+  background: var(--bg-card, #fff); color: var(--text-muted, #666);
+  transition: all 0.2s; font-weight: 500; min-width: 36px;
+}
+.entity-page-btn:hover { border-color: #667eea; color: #667eea; }
+.entity-page-btn.active { background: #667eea; color: #fff; border-color: #667eea; }
+.entity-page-btn:disabled { opacity: 0.4; cursor: default; }
 
 .entity-graph-link {
   text-align: center; margin-top: 2rem; font-size: 0.9rem;
@@ -130,6 +244,17 @@
 }
 .entity-graph-top-link:hover { background: #667eea; color: #fff; }
 
+/* Sort dropdown */
+.entity-sort-select {
+  padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.82rem;
+  border: 1.5px solid var(--border-color, #ddd); cursor: pointer;
+  background: var(--bg-card, #fff); color: var(--text-muted, #666);
+  transition: border-color 0.2s;
+}
+.entity-sort-select:focus {
+  outline: none; border-color: #667eea;
+}
+
 /* Dark mode via Hugo theme variable */
 [data-theme="dark"] .entity-card,
 .dark .entity-card {
@@ -140,7 +265,13 @@
   background: #333; border-color: #555; color: #eee;
 }
 [data-theme="dark"] .entity-filter-btn,
-.dark .entity-filter-btn {
+.dark .entity-filter-btn,
+[data-theme="dark"] .entity-view-btn,
+.dark .entity-view-btn,
+[data-theme="dark"] .entity-sort-select,
+.dark .entity-sort-select,
+[data-theme="dark"] .entity-page-btn,
+.dark .entity-page-btn {
   background: #333; border-color: #555; color: #bbb;
 }
 [data-theme="dark"] .entity-related-tag,
@@ -150,42 +281,83 @@
 [data-theme="dark"] .entity-card-name,
 .dark .entity-card-name { color: #e0e0e0; }
 [data-theme="dark"] .entity-card-meta,
-.dark .entity-card-meta { color: #999; }
+.dark .entity-card-meta,
+[data-theme="dark"] .entity-skeleton-card,
+.dark .entity-skeleton-card { color: #999; }
+[data-theme="dark"] .entity-skeleton-line,
+.dark .entity-skeleton-line { background: #444; }
+[data-theme="dark"] .entity-tooltip,
+.dark .entity-tooltip { background: #2c2c2c; border-color: #444; }
+[data-theme="dark"] .entity-graph-top-link,
+.dark .entity-graph-top-link { background: rgba(102,126,234,0.15); }
 
 /* Standalone dark mode via media query */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .entity-card { background: #2c2c2c; border-color: #444; }
   :root:not([data-theme="light"]) .entity-search { background: #333; border-color: #555; color: #eee; }
-  :root:not([data-theme="light"]) .entity-filter-btn { background: #333; border-color: #555; color: #bbb; }
+  :root:not([data-theme="light"]) .entity-filter-btn,
+  :root:not([data-theme="light"]) .entity-view-btn,
+  :root:not([data-theme="light"]) .entity-sort-select,
+  :root:not([data-theme="light"]) .entity-page-btn { background: #333; border-color: #555; color: #bbb; }
   :root:not([data-theme="light"]) .entity-related-tag { background: #3c3c3c; color: #aaa; }
   :root:not([data-theme="light"]) .entity-card-name { color: #e0e0e0; }
   :root:not([data-theme="light"]) .entity-card-meta { color: #999; }
+  :root:not([data-theme="light"]) .entity-skeleton-line { background: #444; }
+  :root:not([data-theme="light"]) .entity-tooltip { background: #2c2c2c; border-color: #444; }
+  :root:not([data-theme="light"]) .entity-graph-top-link { background: rgba(102,126,234,0.15); }
 }
 
 @media (max-width: 768px) {
   .entity-header { flex-direction: column; align-items: flex-start; }
-  .entity-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.8rem; }
+  .entity-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 0.7rem; }
   .entity-card { padding: 0.9rem; }
+  .entity-skeleton-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+  .entity-toolbar { flex-direction: column; }
+  .entity-toolbar-left { min-width: auto; width: 100%; }
 }
 </style>
 
+<div id="entity-skeleton" class="entity-skeleton-grid">
+  <div class="entity-skeleton-card"><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div></div>
+  <div class="entity-skeleton-card"><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div></div>
+  <div class="entity-skeleton-card"><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div></div>
+  <div class="entity-skeleton-card"><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div></div>
+  <div class="entity-skeleton-card"><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div></div>
+  <div class="entity-skeleton-card"><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div></div>
+</div>
+
 <script>
-(async function(){
+(function(){
 var app=document.getElementById("entity-app");
-var data;
-try{
-var res=await fetch("/api/kg-data",{signal:AbortSignal.timeout(15000)});
-if(!res.ok)throw new Error(res.status);
-data=await res.json();
-}catch(e){
-app.innerHTML="<p style=\"padding:2em;text-align:center;color:#888;\">Wissensnetz konnte nicht geladen werden. <a href=\"/wissennetz/\">Graph-Ansicht</a></p>";
-return;
+var skeleton=document.getElementById("entity-skeleton");
+
+function toSlug(name){
+return name.toLowerCase()
+.replace(/[üÜ]/g,'ue').replace(/[öÖ]/g,'oe').replace(/[äÄ]/g,'ae')
+.replace(/ß/g,'ss')
+.replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 }
 
+function escapeHtml(s){
+return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+var data;
+fetch("/api/kg-data",{signal:AbortSignal.timeout(15000)})
+.then(function(r){if(!r.ok)throw new Error(r.status);return r.json();})
+.then(function(d){
+data=d;
+skeleton.style.display="none";
+init(d);
+})
+.catch(function(){
+skeleton.style.display="none";
+app.innerHTML="<div class=\"empty-state\"><div class=\"empty-state-icon\">📡</div><p>Wissensnetz konnte nicht geladen werden.</p><p><a href=\"/wissennetz/\" style=\"color:#667eea;\">Graph-Ansicht öffnen →</a></p></div>";
+});
+
+function init(data){
 var entities=data.entities||[];
 var articles=data.articles||[];
-var artMap=new Map();
-articles.forEach(function(a){artMap.set(a.title.toLowerCase(),a)});
 
 var catLabels={stoff:"Stoff",konzept:"Konzept",reaktion:"Reaktion",methode:"Methode",person:"Person",quelle:"Quelle"};
 var catColors={stoff:"#667eea",konzept:"#45b7d1",reaktion:"#4ecdc4",methode:"#f093fb",person:"#ff9a76",quelle:"#a8a8a8"};
@@ -198,9 +370,23 @@ catCounts[c]=(catCounts[c]||0)+1;
 
 var activeFilter="all";
 var searchQuery="";
+var currentPage=1;
+var perPage=24;
+var viewMode="grid";
+var sortMode="relations";
 
-function render(){
-var filtered=entities.filter(function(e){
+function getSortValue(e,mode){
+switch(mode){
+case"name":return e.name.toLowerCase();
+case"relations":return -(e.relatedEntities||[]).length;
+case"articles":return -((e.articleCount&&e.articleCount.low)||0);
+case"category":return e.category||"";
+default:return -(e.relatedEntities||[]).length;
+}
+}
+
+function filteredAndSorted(){
+var f=entities.filter(function(e){
 if(activeFilter!=="all"&&e.category!==activeFilter)return false;
 if(searchQuery){
 var q=searchQuery.toLowerCase();
@@ -208,53 +394,108 @@ return e.name.toLowerCase().indexOf(q)!==-1||(e.relatedEntities||[]).some(functi
 }
 return true;
 });
-
-filtered.sort(function(a,b){
-var ca=catCounts[a.category]||0,cb=catCounts[b.category]||0;
-var wa=(a.relatedEntities||[]).length,wb=(b.relatedEntities||[]).length;
-return wb-wa;
+f.sort(function(a,b){
+var va=getSortValue(a,sortMode);
+var vb=getSortValue(b,sortMode);
+if(typeof va==="string")return va.localeCompare(vb);
+return va-vb;
 });
+return f;
+}
 
-var html="<div class=\"entity-header\">";
-  html+="<h1>Wissensnetz</h1>";
-  html+="<div class=\"entity-stats\">";
-  html+="<span><strong>"+entities.length+"</strong> Begriffe</span>";
-  html+="<span><strong>"+articles.length+"</strong> Dokumente</span>";
-  html+="<span><a href=\"/wissennetz/\" class=\"entity-graph-top-link\">Interaktiver Graph \u2192</a></span>";
-  html+="</div></div>";
+function getTooltipHtml(e){
+var art=(e.articles||[]).slice(0,5);
+var total=(e.articleCount&&e.articleCount.low)||e.articles.length;
+var h="<strong>"+escapeHtml(e.name)+"</strong>";
+h+="<br><span style=\"font-size:0.72rem;color:#667eea;\">"+(catLabels[e.category]||e.category)+"</span>";
+h+="<br><span style=\"font-size:0.78rem;\">"+(e.relatedEntities||[]).length+" verwandte Begriffe · "+total+" Artikel</span>";
+if(art.length>0){
+h+="<hr style=\"margin:0.4rem 0;border:none;border-top:1px solid var(--border-color,#eee);\">";
+h+="<div style=\"font-size:0.72rem;\">";
+art.forEach(function(a){
+h+="<div style=\"padding:0.1rem 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;\">• "+escapeHtml(a)+"</div>";
+});
+if(art.length<total)h+="<div style=\"color:#667eea;\">+"+(total-art.length)+" weitere</div>";
+h+="</div>";
+}
+return h;
+}
 
-html+="<input class=\"entity-search\" type=\"text\" placeholder=\"Begriff suchen...\" id=\"entity-search\" value=\""+searchQuery.replace(/"/g,"&quot;")+"\">";
+function render(){
+var filtered=filteredAndSorted();
+var totalPages=Math.ceil(filtered.length/perPage);
+if(currentPage>totalPages)currentPage=Math.max(1,totalPages);
+var start=(currentPage-1)*perPage;
+var pageItems=filtered.slice(start,start+perPage);
 
-html+="<div class=\"entity-filters\">";
-html+="<button class=\"entity-filter-btn"+(activeFilter==="all"?" active":"")+"\" data-cat=\"all\">Alle <span class=\"entity-filter-count\">"+entities.length+"</span></button>";
+var toolbar="<div class=\"entity-toolbar\">";
+toolbar+="<div class=\"entity-toolbar-left\">";
+toolbar+="<input class=\"entity-search\" type=\"text\" placeholder=\"Begriff suchen...\" id=\"entity-search\" value=\""+escapeHtml(searchQuery)+"\">";
+toolbar+="</div>";
+toolbar+="<select class=\"entity-sort-select\" id=\"entity-sort\">";
+var sortOptions=[{v:"relations",l:"Nach Relevanz"},{v:"name",l:"A–Z"},{v:"articles",l:"Nach Artikelzahl"},{v:"category",l:"Nach Kategorie"}];
+sortOptions.forEach(function(o){
+toolbar+="<option value=\""+o.v+"\""+(sortMode===o.v?" selected":"")+">"+o.l+"</option>";
+});
+toolbar+="</select>";
+toolbar+="<div class=\"entity-view-controls\">";
+toolbar+="<button class=\"entity-view-btn"+(viewMode==="grid"?" active":"")+"\" data-view=\"grid\" title=\"Kachelansicht\">▦</button>";
+toolbar+="<button class=\"entity-view-btn"+(viewMode==="cloud"?" active":"")+"\" data-view=\"cloud\" title=\"Schlagwortwolke\">☁</button>";
+toolbar+="</div>";
+toolbar+="</div>";
+
+var filters="<div class=\"entity-filters\">";
+filters+="<button class=\"entity-filter-btn"+(activeFilter==="all"?" active":"")+"\" data-cat=\"all\">Alle <span class=\"entity-filter-count\">"+entities.length+"</span></button>";
 Object.keys(catLabels).forEach(function(cat){
 if(catCounts[cat]){
-html+="<button class=\"entity-filter-btn"+(activeFilter===cat?" active":"")+"\" data-cat=\""+cat+"\" style=\""+(activeFilter===cat?"background:"+catColors[cat]+";border-color:"+catColors[cat]+";color:#fff":"")+"\">"+catLabels[cat]+" <span class=\"entity-filter-count\">"+catCounts[cat]+"</span></button>";
+filters+="<button class=\"entity-filter-btn"+(activeFilter===cat?" active":"")+"\" data-cat=\""+cat+"\" style=\""+(activeFilter===cat?"background:"+catColors[cat]+";border-color:"+catColors[cat]+";color:#fff":"")+"\">"+catLabels[cat]+" <span class=\"entity-filter-count\">"+catCounts[cat]+"</span></button>";
 }
 });
-html+="</div>";
+filters+="</div>";
 
-html+="<div class=\"entity-grid\">";
-if(filtered.length===0){
-html+="<div class=\"entity-empty\">Keine Begriffe gefunden.</div>";
-}else{
+var html="<div class=\"entity-header\">";
+html+="<h1>Wissensnetz</h1>";
+html+="<div class=\"entity-stats\">";
+html+="<span><strong>"+entities.length+"</strong> Begriffe</span>";
+html+="<span><strong>"+articles.length+"</strong> Dokumente</span>";
+html+="<span>"+filtered.length+" angezeigt</span>";
+html+="<span><a href=\"/wissennetz/\" class=\"entity-graph-top-link\">Interaktiver Graph →</a></span>";
+html+="</div></div>";
+
+html+=toolbar;
+html+=filters;
+
+if(viewMode==="cloud"){
+html+="<div class=\"entity-tagcloud\">";
 filtered.forEach(function(e){
+var artCount=(e.articleCount&&e.articleCount.low)||e.articles.length||1;
+var size=Math.max(0.8,Math.min(2.5,0.8+artCount*0.15));
+var slug=toSlug(e.name);
+html+="<a href=\"/entity/"+slug+"/\" class=\"entity-tagcloud-item\" style=\"font-size:"+size+"rem;background:"+(catColors[e.category]||"#667eea")+"\">"+escapeHtml(e.name)+"</a>";
+});
+html+="</div>";
+}else{
+html+="<div class=\"entity-grid\">";
+if(pageItems.length===0){
+html+="<div class=\"empty-state\"><div class=\"empty-state-icon\">🔍</div><p>Keine Begriffe gefunden.</p></div>";
+}else{
+pageItems.forEach(function(e){
 var cat=e.category||"other";
 var relatedCount=(e.relatedEntities||[]).length;
 var compCount=(e.components||[]).length;
-html+="<div class=\"entity-card\" data-cat=\""+cat+"\">";
-html+="<div class=\"entity-card-name\">"+e.name+"</div>";
+var artCount=(e.articleCount&&e.articleCount.low)||e.articles.length||0;
+var slug=toSlug(e.name);
+html+="<div class=\"entity-card\" data-cat=\""+cat+"\" data-slug=\""+slug+"\" data-tooltip=\""+escapeHtml(getTooltipHtml(e))+"\">";
+html+="<div class=\"entity-card-name\"><a href=\"/entity/"+slug+"/\">"+escapeHtml(e.name)+"</a></div>";
 html+="<span class=\"entity-card-cat\">"+(catLabels[cat]||cat)+"</span>";
-html+="<div class=\"entity-card-meta\">"+relatedCount+" verwandte Begriffe";
-if(compCount)html+=" &middot; "+compCount+" Bestandteile";
-html+="</div>";
+html+="<div class=\"entity-card-meta\">"+relatedCount+" verwandte Begriffe · "+artCount+" Artikel</div>";
 if(e.components&&e.components.length>0){
 html+="<div class=\"entity-card-components\"><strong>Besteht aus:</strong> "+e.components.slice(0,5).join(", ")+(e.components.length>5?" +"+(e.components.length-5):"")+"</div>";
 }
 if(e.relatedEntities&&e.relatedEntities.length>0){
 html+="<div class=\"entity-card-related\">";
 e.relatedEntities.slice(0,6).forEach(function(r){
-html+="<span class=\"entity-related-tag\">"+r.name+"</span>";
+html+="<span class=\"entity-related-tag\">"+escapeHtml(r.name)+"</span>";
 });
 if(e.relatedEntities.length>6)html+="<span class=\"entity-related-tag\">+"+(e.relatedEntities.length-6)+"</span>";
 html+="</div>";
@@ -263,23 +504,95 @@ html+="</div>";
 });
 }
 html+="</div>";
+}
 
-  app.innerHTML=html;
+if(totalPages>1){
+html+="<div class=\"entity-pagination\">";
+html+="<button class=\"entity-page-btn\" data-page=\""+(currentPage-1)+"\""+(currentPage<=1?" disabled":"")+">‹</button>";
+var startPage=Math.max(1,currentPage-3);
+var endPage=Math.min(totalPages,currentPage+3);
+for(var p=startPage;p<=endPage;p++){
+html+="<button class=\"entity-page-btn"+(p===currentPage?" active":"")+"\" data-page=\""+p+"\">"+p+"</button>";
+}
+html+="<button class=\"entity-page-btn\" data-page=\""+(currentPage+1)+"\""+(currentPage>=totalPages?" disabled":"")+">›</button>";
+html+="</div>";
+}
+
+app.innerHTML=html;
 
 document.getElementById("entity-search").addEventListener("input",function(ev){
 searchQuery=ev.target.value;
+currentPage=1;
 render();
+});
+
+document.getElementById("entity-sort").addEventListener("change",function(ev){
+sortMode=ev.target.value;
+currentPage=1;
+render();
+});
+
+app.querySelectorAll(".entity-view-btn").forEach(function(btn){
+btn.addEventListener("click",function(){
+viewMode=this.getAttribute("data-view");
+currentPage=1;
+render();
+});
 });
 
 app.querySelectorAll(".entity-filter-btn").forEach(function(btn){
 btn.addEventListener("click",function(){
 activeFilter=this.getAttribute("data-cat");
+currentPage=1;
 render();
 });
+});
+
+app.querySelectorAll(".entity-page-btn").forEach(function(btn){
+btn.addEventListener("click",function(){
+if(btn.disabled)return;
+var p=parseInt(btn.getAttribute("data-page"));
+if(p>0&&p<=totalPages){
+currentPage=p;
+render();
+}
+});
+});
+
+var tooltipEl=null;
+app.addEventListener("mouseover",function(ev){
+var card=ev.target.closest(".entity-card");
+if(!card)return;
+var tip=card.getAttribute("data-tooltip");
+if(!tip)return;
+if(!tooltipEl){
+tooltipEl=document.createElement("div");
+tooltipEl.className="entity-tooltip";
+document.body.appendChild(tooltipEl);
+}
+tooltipEl.innerHTML=tip;
+tooltipEl.style.display="block";
+});
+
+app.addEventListener("mousemove",function(ev){
+if(!tooltipEl)return;
+var x=ev.clientX+12;
+var y=ev.clientY+12;
+var tw=tooltipEl.offsetWidth;
+var th=tooltipEl.offsetHeight;
+if(x+tw>window.innerWidth-10)x=ev.clientX-tw-12;
+if(y+th>window.innerHeight-10)y=ev.clientY-th-12;
+tooltipEl.style.left=x+"px";
+tooltipEl.style.top=y+"px";
+});
+
+app.addEventListener("mouseout",function(ev){
+var card=ev.target.closest(".entity-card");
+if(!card)return;
+if(tooltipEl)tooltipEl.style.display="none";
 });
 }
 
-render();
 })();
 </script>
 
