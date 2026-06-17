@@ -270,16 +270,3 @@
 .equilibrium-values.weak-acid .valuehighlight {
   color: #dc3545;
 }
-
-/* Utility Classes */
-.text-success {
-  color: #28a745 !important;
-}
-
-.text-warning {
-  color: #ffc107 !important;
-}
-
-.text-info {
-  color: #17a2b8 !important;
-}

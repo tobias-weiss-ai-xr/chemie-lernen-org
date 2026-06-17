@@ -203,29 +203,6 @@
   margin: 10px 0;
 }
 
-.table-bordered {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 15px 0;
-}
-
-.table-bordered th,
-.table-bordered td {
-  border: 1px solid #dee2e6;
-  padding: 12px;
-  text-align: left;
-}
-
-.table-bordered th {
-  background: #f8f9fa;
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-.table-bordered tbody tr:nth-child(even) {
-  background: #f8f9fa;
-}
-
 .exceptions {
   display: flex;
   flex-direction: column;
@@ -243,27 +220,6 @@
   color: #856404;
   margin-bottom: 10px;
   font-size: 1rem;
-}
-
-.featurette-divider {
-  margin: 40px 0;
-  border-top: 1px solid #e9ecef;
-}
-
-.text-muted {
-  color: #6c757d !important;
-}
-
-.text-info {
-  color: #17a2b8 !important;
-}
-
-.text-success {
-  color: #28a745 !important;
-}
-
-.text-danger {
-  color: #dc3545 !important;
 }
 
 @media (max-width: 768px) {

@@ -114,53 +114,7 @@
   margin: 8px 0;
 }
 
-.table-bordered {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 15px 0;
-}
 
-.table-bordered th,
-.table-bordered td {
-  border: 1px solid #dee2e6;
-  padding: 12px;
-  text-align: left;
-}
-
-.table-bordered th {
-  background: #f8f9fa;
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-.table-bordered tbody tr:nth-child(even) {
-  background: #f8f9fa;
-}
-
-.featurette-divider {
-  margin: 40px 0;
-  border-top: 1px solid #e9ecef;
-}
-
-.text-muted {
-  color: #6c757d !important;
-}
-
-.text-primary {
-  color: #007bff !important;
-}
-
-.text-success {
-  color: #28a745 !important;
-}
-
-.text-warning {
-  color: #ffc107 !important;
-}
-
-.text-danger {
-  color: #dc3545 !important;
-}
 
 @media (max-width: 768px) {
   .simulation-controls,
