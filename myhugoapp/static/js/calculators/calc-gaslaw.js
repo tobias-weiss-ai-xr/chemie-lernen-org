@@ -216,7 +216,7 @@ function calculateGasLaw() {
     displayGasResult(calculateVariable, result, resultUnit, P_atm, V_L, n_mol, T_K, R);
 
   } catch (error) {
-    alert(error.message);
+    showToast(error.message, 'error');
   }
 }
 

@@ -6,7 +6,7 @@ function calcYield() {
   const act = parseFloat(document.getElementById('yield-act').value);
 
   if (isNaN(theo) || isNaN(act)) {
-    alert('Bitte geben Sie alle Werte ein');
+    showToast('Bitte geben Sie alle Werte ein', 'error');
     return;
   }
 

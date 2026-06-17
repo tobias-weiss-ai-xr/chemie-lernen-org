@@ -19,7 +19,7 @@ function calculateICE() {
   const initialConc = parseFloat(document.getElementById('initial-concentration').value);
 
   if (isNaN(ka) || isNaN(initialConc) || ka <= 0 || initialConc <= 0) {
-    alert('Bitte geben Sie gültige Werte ein.');
+    showToast('Bitte geben Sie gültige Werte ein.', 'error');
     return;
   }
 
@@ -200,7 +200,7 @@ function calculateBufferpH() {
   const baseConc = parseFloat(document.getElementById('base-concentration').value);
 
   if (isNaN(pka) || isNaN(acidConc) || isNaN(baseConc) || acidConc <= 0 || baseConc <= 0) {
-    alert('Bitte geben Sie gültige Werte ein.');
+    showToast('Bitte geben Sie gültige Werte ein.', 'error');
     return;
   }
 
@@ -267,7 +267,7 @@ function calculateMWG() {
   const ka = parseFloat(document.getElementById('ka-comparison').value);
 
   if (isNaN(product1) || isNaN(product2) || isNaN(reactant1) || isNaN(ka)) {
-    alert('Bitte geben Sie gültige Werte ein.');
+    showToast('Bitte geben Sie gültige Werte ein.', 'error');
     return;
   }
 
@@ -324,7 +324,7 @@ function calculateBufferPreparation() {
   const pka = parseFloat(document.getElementById('prep-pka').value);
 
   if (isNaN(targetPh) || isNaN(pka) || targetPh < 0 || targetPh > 14) {
-    alert('Bitte geben Sie gültige Werte ein.');
+    showToast('Bitte geben Sie gültige Werte ein.', 'error');
     return;
   }
 

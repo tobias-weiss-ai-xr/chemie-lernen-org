@@ -127,7 +127,7 @@ function berechneDruck() {
   const flaecheEinheit = domCache.druck.flaecheEinheit.value;
 
   if (isNaN(kraft) || isNaN(flaeche) || kraft < 0 || flaeche <= 0) {
-    alert('Bitte geben Sie gültige Werte ein (Kraft ≥ 0, Fläche > 0).');
+    showToast('Bitte geben Sie gültige Werte ein (Kraft ≥ 0, Fläche > 0).', 'error');
     return;
   }
 
@@ -178,7 +178,7 @@ function berechneKraft() {
   const flaecheEinheit = domCache.kraft.flaecheEinheit.value;
 
   if (isNaN(druck) || isNaN(flaeche) || druck < 0 || flaeche < 0) {
-    alert('Bitte geben Sie gültige Werte ein (Druck ≥ 0, Fläche ≥ 0).');
+    showToast('Bitte geben Sie gültige Werte ein (Druck ≥ 0, Fläche ≥ 0).', 'error');
     return;
   }
 
@@ -229,7 +229,7 @@ function berechneFlaeche() {
   const druckEinheit = domCache.flaeche.druckEinheit.value;
 
   if (isNaN(kraft) || isNaN(druck) || kraft < 0 || druck <= 0) {
-    alert('Bitte geben Sie gültige Werte ein (Kraft ≥ 0, Druck > 0).');
+    showToast('Bitte geben Sie gültige Werte ein (Kraft ≥ 0, Druck > 0).', 'error');
     return;
   }
 

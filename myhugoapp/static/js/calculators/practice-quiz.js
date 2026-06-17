@@ -267,7 +267,7 @@ function checkAnswer() {
   const userAnswer = parseFloat(document.getElementById('practice-answer').value);
 
   if (isNaN(userAnswer)) {
-    alert('Bitte gib eine Zahl ein');
+    showToast('Bitte gib eine Zahl ein', 'error');
     return;
   }
 

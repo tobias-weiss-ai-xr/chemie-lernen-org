@@ -6,7 +6,7 @@ function parseEquation() {
   const equation = document.getElementById('equation-parser-input').value.trim();
 
   if (!equation) {
-    alert('Bitte geben Sie eine Reaktionsgleichung ein.');
+    showToast('Bitte geben Sie eine Reaktionsgleichung ein.', 'error');
     return;
   }
 
@@ -14,7 +14,7 @@ function parseEquation() {
     const result = parseChemicalEquation(equation);
     displayParsedCoefficients(result);
   } catch (error) {
-    alert('Fehler beim Parsen: ' + error.message);
+    showToast('Fehler beim Parsen: ' + error.message, 'error');
     console.error('Parse error:', error);
   }
 }
@@ -141,7 +141,7 @@ function applyCoefficientsToMolMol(v1, v2) {
 
   document.querySelector('.calculator-panel').scrollIntoView({ behavior: 'smooth' });
 
-  alert('Koeffizienten übernommen: Edukt ν₁=' + v1 + ', Produkt ν₂=' + v2);
+  showToast('Koeffizienten übernommen: Edukt ν₁=' + v1 + ', Produkt ν₂=' + v2, 'success');
 }
 
 
@@ -153,5 +153,5 @@ function applyCoefficientsToMassMass(v1, v2) {
 
   document.querySelectorAll('.calculator-panel')[1].scrollIntoView({ behavior: 'smooth' });
 
-  alert('Koeffizienten übernommen: Edukt ν₁=' + v1 + ', Produkt ν₂=' + v2);
+  showToast('Koeffizienten übernommen: Edukt ν₁=' + v1 + ', Produkt ν₂=' + v2, 'success');
 }

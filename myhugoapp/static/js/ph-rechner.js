@@ -33,7 +33,7 @@ function calculateFromHPlus() {
   const hplus = parseFloat(input);
 
   if (isNaN(hplus) || hplus <= 0) {
-    alert('Bitte geben Sie eine positive Zahl ein.');
+    showToast('Bitte geben Sie eine positive Zahl ein.', 'error');
     return;
   }
 
@@ -58,7 +58,7 @@ function calculateFromOHMinus() {
   const ohminus = parseFloat(input);
 
   if (isNaN(ohminus) || ohminus <= 0) {
-    alert('Bitte geben Sie eine positive Zahl ein.');
+    showToast('Bitte geben Sie eine positive Zahl ein.', 'error');
     return;
   }
 
@@ -86,7 +86,7 @@ function calculateFromPOH() {
   const poh = parseFloat(input);
 
   if (isNaN(poh) || poh < 0 || poh > 14) {
-    alert('Bitte geben Sie einen pOH-Wert zwischen 0 und 14 ein.');
+    showToast('Bitte geben Sie einen pOH-Wert zwischen 0 und 14 ein.', 'error');
     return;
   }
 

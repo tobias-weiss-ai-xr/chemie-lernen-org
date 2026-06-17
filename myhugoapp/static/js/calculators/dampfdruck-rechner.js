@@ -68,7 +68,7 @@
     const boilingPointC = parseFloat(document.getElementById('boiling-point').value);
 
     if (isNaN(temperatureC) || isNaN(normalPressure) || isNaN(boilingPointC)) {
-      alert('Bitte geben Sie alle Werte ein.');
+      showToast('Bitte geben Sie alle Werte ein.', 'error');
       return;
     }
 
@@ -82,7 +82,7 @@
 
       resultBox.classList.remove('hidden');
     } catch (error) {
-      alert('Fehler bei der Berechnung: ' + error.message);
+      showToast('Fehler bei der Berechnung: ' + error.message, 'error');
     }
   }
 

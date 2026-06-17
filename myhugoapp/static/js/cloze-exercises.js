@@ -218,7 +218,7 @@ function checkClozeExercise(index) {
 function showClozeHint(exIdx, blankIdx) {
   const blk = currentExercises[exIdx].blanks[blankIdx - 1];
   if (!blk) return;
-  alert(`Hinweis: ${blk.hint}`);
+  showToast(`Hinweis: ${blk.hint}`, 'info');
 }
 
 function updateScore() {

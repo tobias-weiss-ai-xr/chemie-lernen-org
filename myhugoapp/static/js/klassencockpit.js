@@ -228,7 +228,7 @@
   function exportCSV() {
     var scores = getScores();
     if (students.length === 0 && scores.length === 0) {
-      alert('Keine Daten zum Exportieren vorhanden.');
+      showToast('Keine Daten zum Exportieren vorhanden.', 'error');
       return;
     }
 
@@ -295,7 +295,7 @@
           nameInput.value = '';
           renderAll();
         } else {
-          alert('Name ungültig oder bereits vorhanden.');
+          showToast('Name ungültig oder bereits vorhanden.', 'error');
         }
       });
 

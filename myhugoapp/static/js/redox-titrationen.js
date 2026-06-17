@@ -12,7 +12,7 @@ function simulatePermanganatTitration() {
   const targetAnalyte = document.getElementById('permanganat-target-analyte').value;
 
   if (isNaN(analyteConc) || isNaN(analyteVolume) || isNaN(titrantConc) || isNaN(stepSize)) {
-    alert('Bitte geben Sie gültige Werte ein.');
+    showToast('Bitte geben Sie gültige Werte ein.', 'error');
     return;
   }
 
@@ -278,7 +278,7 @@ function simulateIodThiosulfat() {
   const thioConc = parseFloat(document.getElementById('iod-thio-concentration').value);
 
   if (isNaN(sampleVol) || isNaN(kio3Conc) || isNaN(thioConc)) {
-    alert('Bitte geben Sie gültige Werte ein.');
+    showToast('Bitte geben Sie gültige Werte ein.', 'error');
     return;
   }
 

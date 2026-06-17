@@ -134,7 +134,7 @@ function calculateMultiStep() {
   const initialCompound = document.getElementById('initial-compound').value || 'Ausgangsstoff';
 
   if (isNaN(initialAmount) || initialAmount <= 0) {
-    alert('Bitte geben Sie eine g\u00fcltige Stoffmenge f\u00fcr den Ausgangsstoff ein.');
+    showToast('Bitte geben Sie eine g\u00fcltige Stoffmenge f\u00fcr den Ausgangsstoff ein.', 'error');
     return;
   }
 
@@ -142,7 +142,7 @@ function calculateMultiStep() {
   const stepElements = document.querySelectorAll('.reaction-step');
 
   if (stepElements.length === 0) {
-    alert('Bitte f\u00fcgen Sie mindestens einen Reaktionsschritt hinzu.');
+    showToast('Bitte f\u00fcgen Sie mindestens einen Reaktionsschritt hinzu.', 'error');
     return;
   }
 
@@ -158,7 +158,7 @@ function calculateMultiStep() {
     const equation = stepEl.querySelector('.step-equation').value || '';
 
     if (isNaN(coeffR) || isNaN(coeffP) || coeffR <= 0 || coeffP <= 0) {
-      alert('Fehler in Schritt ' + (index + 1) + ': Ung\u00fcltige Koeffizienten');
+      showToast('Fehler in Schritt ' + (index + 1) + ': Ung\u00fcltige Koeffizienten', 'error');
       hasError = true;
       return;
     }

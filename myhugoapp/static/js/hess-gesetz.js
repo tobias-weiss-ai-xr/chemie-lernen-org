@@ -139,7 +139,7 @@ function calculateHessSimple() {
   });
 
   if (calculationSteps.length === 0) {
-    alert('Bitte geben Sie mindestens eine Reaktionsstufe mit Enthalpiewert ein.');
+    showToast('Bitte geben Sie mindestens eine Reaktionsstufe mit Enthalpiewert ein.', 'error');
     return;
   }
 
@@ -203,14 +203,14 @@ function calculateFromFormationEnthalpies() {
   const reactionEquation = domCache.formation.reaktion.value.trim();
 
   if (!reactionEquation) {
-    alert('Bitte geben Sie eine Reaktionsgleichung ein.');
+    showToast('Bitte geben Sie eine Reaktionsgleichung ein.', 'error');
     return;
   }
 
   const elements = parseReactionElements(reactionEquation);
 
   if (!elements || elements.length === 0) {
-    alert('Konnte die Elemente in der Reaktion nicht ermitteln.');
+    showToast('Konnte die Elemente in der Reaktion nicht ermitteln.', 'error');
     return;
   }
 

@@ -7,7 +7,7 @@ function calcMolMol() {
   const v2 = parseFloat(document.getElementById('mol-coeff-p').value);
 
   if (isNaN(n1) || isNaN(v1) || isNaN(v2)) {
-    alert('Bitte geben Sie alle Werte ein');
+    showToast('Bitte geben Sie alle Werte ein', 'error');
     return;
   }
 

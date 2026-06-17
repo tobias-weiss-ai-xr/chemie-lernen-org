@@ -873,12 +873,12 @@ function startTutorial(tutorialId) {
   const tutorial = tutorials[tutorialId];
 
   if (!tutorial) {
-    alert('Tutorial nicht gefunden!');
+    showToast('Tutorial nicht gefunden!', 'error');
     return;
   }
 
   if (tutorialId > 1 && !tutorialState.completedTutorials.includes(tutorialId - 1)) {
-    alert('Bitte schließe zuerst das vorherige Tutorial ab!');
+    showToast('Bitte schließe zuerst das vorherige Tutorial ab!', 'error');
     return;
   }
 
@@ -944,7 +944,7 @@ function completeTutorial() {
 
   updateTutorialProgress();
 
-  alert('\ud83c\udf89 Tutorial "' + tutorials[tutorialId].title + '" abgeschlossen!');
+  showToast('\ud83c\udf89 Tutorial "' + tutorials[tutorialId].title + '" abgeschlossen!', 'success');
 
   closeTutorial();
 }

@@ -255,7 +255,7 @@ function transferToStoichiometry() {
     const coeffsList = document.querySelectorAll('.coefficient-item');
 
     if (!equationDisplay || coeffsList.length === 0) {
-      alert('Keine ausgeglichene Gleichung gefunden. Bitte gleichen Sie zuerst eine Gleichung aus.');
+      showToast('Keine ausgeglichene Gleichung gefunden. Bitte gleichen Sie zuerst eine Gleichung aus.', 'error');
       return;
     }
 
@@ -288,7 +288,7 @@ function transferToStoichiometry() {
     window.location.href = '/stoechiometrie-rechner/';
 
   } catch (error) {
-    alert('Fehler beim Übertragen der Daten: ' + error.message);
+    showToast('Fehler beim Übertragen der Daten: ' + error.message, 'error');
   }
 }
 

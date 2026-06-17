@@ -8,7 +8,7 @@ function calcLimiting() {
   const M2 = parseFloat(document.getElementById('lim-mm2').value);
 
   if (isNaN(m1) || isNaN(M1) || isNaN(m2) || isNaN(M2)) {
-    alert('Bitte geben Sie alle Werte ein');
+    showToast('Bitte geben Sie alle Werte ein', 'error');
     return;
   }
 

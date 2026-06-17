@@ -35,7 +35,7 @@ function applyMolarMass() {
   const selectedValue = selector.value;
 
   if (!selectedValue) {
-    alert('Bitte wählen Sie ein Element aus.');
+    showToast('Bitte wählen Sie ein Element aus.', 'error');
     return;
   }
 
@@ -45,7 +45,7 @@ function applyMolarMass() {
   const element = elementDatabase[symbol];
 
   if (!element) {
-    alert('Element nicht gefunden: ' + symbol);
+    showToast('Element nicht gefunden: ' + symbol, 'error');
     return;
   }
 
@@ -79,10 +79,10 @@ function applyMolarMassToCalculator(element) {
 
   if (!reactantField.value || parseFloat(reactantField.value) === 0) {
     reactantField.value = element.mass;
-    alert(element.symbol + ' (' + element.name + ') molare Masse ' + element.mass + ' g/mol als Edukt übernommen');
+    showToast(element.symbol + ' (' + element.name + ') molare Masse ' + element.mass + ' g/mol als Edukt übernommen', 'success');
   } else if (!productField.value || parseFloat(productField.value) === 0) {
     productField.value = element.mass;
-    alert(element.symbol + ' (' + element.name + ') molare Masse ' + element.mass + ' g/mol als Produkt übernommen');
+    showToast(element.symbol + ' (' + element.name + ') molare Masse ' + element.mass + ' g/mol als Produkt übernommen', 'success');
   } else {
     const choice = confirm(
       element.symbol + ' (' + element.name + ') - M = ' + element.mass + ' g/mol\n\n' +

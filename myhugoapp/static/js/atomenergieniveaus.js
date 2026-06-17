@@ -113,7 +113,7 @@ function simulateTransition() {
   const finalN = parseInt(document.getElementById('final-n').value);
 
   if (initialN === finalN) {
-    alert('Anfangs- und Endniveau müssen unterschiedlich sein!');
+    showToast('Anfangs- und Endniveau müssen unterschiedlich sein!', 'error');
     return;
   }
 

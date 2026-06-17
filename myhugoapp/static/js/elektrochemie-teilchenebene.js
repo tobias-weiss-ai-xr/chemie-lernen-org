@@ -521,17 +521,17 @@ function calculateNernst() {
   const Q = parseFloat(document.getElementById('quotient-q').value);
 
   if (isNaN(E0) || isNaN(n) || isNaN(Q)) {
-    alert('Bitte geben Sie gltige Werte ein.');
+    showToast('Bitte geben Sie gltige Werte ein.', 'error');
     return;
   }
 
   if (n < 1 || n > 10) {
-    alert('Anzahl der Elektronen muss zwischen 1 und 10 liegen.');
+    showToast('Anzahl der Elektronen muss zwischen 1 und 10 liegen.', 'error');
     return;
   }
 
   if (Q < 0) {
-    alert('Reaktionsquotient Q muss positiv sein.');
+    showToast('Reaktionsquotient Q muss positiv sein.', 'error');
     return;
   }
 

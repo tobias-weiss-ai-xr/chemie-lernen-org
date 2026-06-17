@@ -66,7 +66,7 @@
     const unit = document.getElementById('unit').value;
 
     if (isNaN(initialConc) || isNaN(numSteps) || numSteps < 1 || numSteps > 20) {
-      alert('Bitte geben Sie gltige Werte ein.');
+      showToast('Bitte geben Sie gltige Werte ein.', 'error');
       return;
     }
 

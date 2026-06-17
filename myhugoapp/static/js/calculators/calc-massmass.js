@@ -9,7 +9,7 @@ function calcMassMass() {
   const v2 = parseFloat(document.getElementById('mass-coeff-p').value);
 
   if (isNaN(m1) || isNaN(M1) || isNaN(M2) || isNaN(v1) || isNaN(v2)) {
-    alert('Bitte geben Sie alle Werte ein');
+    showToast('Bitte geben Sie alle Werte ein', 'error');
     return;
   }
 

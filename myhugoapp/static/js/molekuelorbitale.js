@@ -434,7 +434,7 @@
 
   window.showBondOrder = function() {
     const mol = moleculeData[currentMolecule];
-    alert(`Bindungsordnung: ${mol.bondOrder}\nσ-Bindungen: ${mol.sigma}\nπ-Bindungen: ${mol.pi}`);
+    showToast(`Bindungsordnung: ${mol.bondOrder}\nσ-Bindungen: ${mol.sigma}\nπ-Bindungen: ${mol.pi}`, 'info');
   };
 
   window.resetView = function() {
