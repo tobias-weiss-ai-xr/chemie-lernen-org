@@ -105,3 +105,38 @@
 @media print {
   .navbar, .footer, .site-header, .site-footer { display: none; }
 }
+
+@media (max-width: 768px) {
+  .ghs-container {
+    padding: 10px;
+  }
+
+  .ghs-pictogram {
+    padding: 15px;
+    min-height: auto;
+  }
+
+  .pictogram-symbol {
+    font-size: 36px;
+  }
+
+  .ghs-detail-symbol {
+    font-size: 48px;
+  }
+
+  .ghs-detail-card {
+    padding: 15px;
+  }
+
+  #h-phrases-table,
+  #p-phrases-table {
+    font-size: 12px;
+  }
+
+  #h-phrases-table th,
+  #p-phrases-table th,
+  #h-phrases-table td,
+  #p-phrases-table td {
+    padding: 6px 4px;
+  }
+}

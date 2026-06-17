@@ -505,3 +505,22 @@
     bleed: 3mm;
   }
 }
+
+@media (max-width: 768px) {
+  .arbeitsblatt-generator-container {
+    padding: 10px;
+  }
+
+  .config-panel {
+    padding: 15px;
+  }
+
+  .config-panel .form-group {
+    margin-bottom: 12px;
+  }
+
+  #worksheet-preview {
+    padding: 15px;
+    font-size: 13px;
+  }
+}

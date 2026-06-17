@@ -501,3 +501,183 @@
 .text-danger {
   color: #dc3545 !important;
 }
+
+/* ===== MOBILE OPTIMIZATION ===== */
+
+/* P1: Nav-tabs wrapping — fixes 19 calculator pages */
+@media (max-width: 768px) {
+  .nav-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .nav-tabs > li {
+    float: none;
+    flex: 0 0 auto;
+  }
+
+  .nav-tabs > li > a {
+    padding: 8px 12px;
+    font-size: 13px;
+    margin-right: 2px;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .nav-tabs > li.active > a,
+  .nav-tabs > li.active > a:hover,
+  .nav-tabs > li.active > a:focus {
+    border-color: #ddd #ddd transparent;
+  }
+}
+
+/* P1b: Tab content padding on mobile */
+@media (max-width: 768px) {
+  .tab-content {
+    padding: 10px;
+  }
+}
+
+/* P2: Global table overflow wrapper */
+@media (max-width: 768px) {
+  .table-responsive-mobile {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 10px -10px;
+    padding: 0 10px;
+  }
+
+  table {
+    font-size: 13px;
+  }
+
+  table th,
+  table td {
+    padding: 8px 6px;
+  }
+}
+
+/* P3: Calculator panel padding on mobile */
+@media (max-width: 768px) {
+  .calculator-panel,
+  .panel.panel-default {
+    margin: 10px 0;
+    border-radius: 8px;
+  }
+
+  .calculator-panel .panel-body,
+  .panel.panel-default .panel-body {
+    padding: 15px;
+  }
+
+  .form-group {
+    margin-bottom: 12px;
+  }
+
+  .form-control {
+    font-size: 16px;
+  }
+
+  .btn {
+    min-height: 44px;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .btn-lg {
+    min-height: 48px;
+    padding: 10px 20px;
+  }
+
+  .btn-sm,
+  .btn-xs {
+    min-height: 36px;
+    padding: 6px 12px;
+  }
+}
+
+/* P4: Touch target minimums */
+@media (max-width: 768px) {
+  .toggle-answer,
+  .btn-toggle {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  button,
+  [type="button"],
+  [type="submit"],
+  [type="reset"] {
+    min-height: 44px;
+  }
+
+  input[type="number"],
+  input[type="text"],
+  input[type="search"] {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  select {
+    min-height: 44px;
+    font-size: 16px;
+  }
+}
+
+/* P5: Container padding reduction on mobile */
+@media (max-width: 576px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .wrapper {
+    padding: 10px 0;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  .lead {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .ki-assistent-hero {
+    padding: 20px 15px !important;
+    margin: 15px 0 !important;
+  }
+
+  .ki-assistent-hero div[style*="font-size: 64px"] {
+    font-size: 40px !important;
+  }
+
+  .ki-assistent-hero h2 {
+    font-size: 1.4em !important;
+  }
+
+  .ki-assistent-hero p {
+    font-size: 1em !important;
+  }
+
+  .ki-assistent-hero .btn {
+    padding: 10px 24px !important;
+    font-size: 14px !important;
+  }
+
+  .featured-image {
+    margin: 1rem auto;
+    border-radius: 6px;
+  }
+}

@@ -126,3 +126,31 @@
 @media print {
   .navbar, .footer, .site-header, .site-footer, .chat-input-area { display: none; }
 }
+
+@media (max-width: 768px) {
+  .ki-assistent-container {
+    padding: 10px;
+  }
+
+  .chat-messages {
+    height: calc(100vh - 260px);
+    min-height: 200px;
+    padding: 15px;
+  }
+
+  .message-content {
+    max-width: 85%;
+    padding: 10px 14px;
+    font-size: 15px;
+  }
+
+  .suggestions li {
+    font-size: 14px;
+    padding: 8px 0;
+  }
+
+  .chat-input-area button {
+    width: 44px;
+    height: 44px;
+  }
+}

@@ -73,3 +73,31 @@
 .badge-cat-mess { background: #d4efdf; color: #1a5a7a; }
 .badge-cat-heiz { background: #fdebd0; color: #a05a1a; }
 .badge-cat-sicherheit { background: #fadbd8; color: #a01a1a; }
+
+@media (max-width: 768px) {
+  .laborgeraete-container {
+    padding: 10px;
+  }
+
+  .equipment-card {
+    padding: 15px;
+    min-height: auto;
+  }
+
+  .equipment-card .equipment-icon {
+    font-size: 28px;
+  }
+
+  .equipment-card h4 {
+    font-size: 15px;
+  }
+
+  #equipment-categories {
+    gap: 4px;
+  }
+
+  #equipment-categories .btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
