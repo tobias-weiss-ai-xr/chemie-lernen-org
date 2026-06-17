@@ -9,8 +9,8 @@
  * Neo4j driver lifecycle managed by @graphwiz/neo4j.
  */
 
+import { getDriver, closeDriver } from '@graphwiz/neo4j';
 import { existsSync } from 'fs';
-import { createDriver, getDriver, closeDriver } from '@graphwiz/neo4j';
 
 const { int } = (await import('neo4j-driver')).default;
 

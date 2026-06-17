@@ -5,10 +5,10 @@
  *
  * Neo4j driver lifecycle managed by @graphwiz/neo4j.
  */
-import { readFileSync, readdirSync, existsSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { createDriver, getDriver, closeDriver } from '@graphwiz/neo4j';
+import { getDriver, closeDriver } from '@graphwiz/neo4j';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, '..');

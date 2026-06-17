@@ -333,7 +333,7 @@
           if (savedSession) {
             try {
               currentSession = JSON.parse(savedSession);
-            } catch (e) {
+            } catch (_e) {
               currentSession = null;
             }
           }
@@ -342,10 +342,7 @@
     });
   }
 
-  /**
-   * Call the chat API with a timeout.
-   */
-  function askAI(query, timeoutMs) {
+  function _askAI(query, timeoutMs) {
     timeoutMs = timeoutMs || 30000;
     return new Promise(function (resolve) {
       var controller = new AbortController();
@@ -471,10 +468,10 @@
       }
 
       addMessage(answer, false);
-      var container = document.getElementById('chat-messages');
-      var lastMsg = container.lastElementChild;
-      if (lastMsg) {
-        addFollowUpButtons(lastMsg, getRandomSuggestions(4, query));
+      var msgContainer = document.getElementById('chat-messages');
+      var lastResponse = msgContainer.lastElementChild;
+      if (lastResponse) {
+        addFollowUpButtons(lastResponse, getRandomSuggestions(4, query));
       }
     }).catch(function (error) {
       hideTyping();
@@ -509,19 +506,19 @@
           answer = formatNoResult(query);
           addMessage(answer, false);
         }
-        var container = document.getElementById('chat-messages');
-        var lastMsg = container.lastElementChild;
-        if (lastMsg) {
-          addFollowUpButtons(lastMsg, getRandomSuggestions(4, query));
+        var msgBox = document.getElementById('chat-messages');
+        var lastBotMsg = msgBox.lastElementChild;
+        if (lastBotMsg) {
+          addFollowUpButtons(lastBotMsg, getRandomSuggestions(4, query));
         }
         return;
       }
 
       addMessage(errorMessage, false);
-      var container = document.getElementById('chat-messages');
-      var lastMsg = container.lastElementChild;
-      if (lastMsg) {
-        addFollowUpButtons(lastMsg, ['Wissensgraph durchsuchen', 'Zu Übungen', 'Zur Startseite']);
+      var errContainer = document.getElementById('chat-messages');
+      var lastErrMsg = errContainer.lastElementChild;
+      if (lastErrMsg) {
+        addFollowUpButtons(lastErrMsg, ['Wissensgraph durchsuchen', 'Zu Übungen', 'Zur Startseite']);
       }
     });
   }
@@ -589,7 +586,7 @@
   function init() {
     kgData = loadKgData();
 
-    initSession().then(function (session) {
+    initSession().then(function (_session) {
       var input = document.getElementById('chat-input');
       var sendBtn = document.getElementById('chat-send-btn');
 

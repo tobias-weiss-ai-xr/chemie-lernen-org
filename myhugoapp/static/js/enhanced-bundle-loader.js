@@ -55,7 +55,7 @@ class BundleManager {
 
     this.setupBundleCaching();
 
-    console.log('📦 Bundle Manager initialized');
+
   }
 
   async loadBundle(bundleName) {
@@ -82,9 +82,6 @@ class BundleManager {
       this.performanceMetrics.bundleLoads++;
       this.performanceMetrics.totalLoadTime += performance.now() - startTime;
 
-      console.log(
-        `✅ Bundle loaded: ${bundleName} (${(performance.now() - startTime).toFixed(2)}ms)`
-      );
     } catch (error) {
       console.error(`❌ Failed to load bundle: ${bundleName}`, error);
     }

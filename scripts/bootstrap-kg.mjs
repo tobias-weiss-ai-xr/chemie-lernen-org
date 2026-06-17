@@ -6,7 +6,7 @@
  *
  * Neo4j driver lifecycle managed by @graphwiz/neo4j.
  */
-import { createDriver, getDriver, closeDriver } from '@graphwiz/neo4j';
+import { getDriver, closeDriver } from '@graphwiz/neo4j';
 
 const URI = process.env.NEO4J_URI || 'bolt://localhost:7687';
 const USER = process.env.NEO4J_USER || 'neo4j';
@@ -151,9 +151,7 @@ async function run() {
         { name: ent.name, kategorie: ent.kategorie }
       );
       entityCount++;
-    } catch (err) {
-      // Skip duplicates silently
-    }
+    } catch { /* skip duplicates */ }
   }
   console.log(`  Seeded ${entityCount} new entities`);
 
@@ -170,7 +168,7 @@ async function run() {
            MERGE (cpd)-[:BESTEHT_AUS]->(el)`,
           { cpdName: cpd.name, elName: el }
         );
-      } catch (e) { /* skip */ }
+      } catch { /* skip */ }
     }
   }
 
@@ -208,7 +206,7 @@ async function run() {
          MERGE (a)-[:RELATED_TO {weight: 3}]-(b)`,
         { from, to }
       );
-    } catch (e) { /* skip if one entity doesn't exist */ }
+    } catch { /* skip if one entity doesn't exist */ }
   }
 
   // Periodic trends: element groups
@@ -234,7 +232,7 @@ async function run() {
            MERGE (e)-[:GEHOERT_ZU]->(g)`,
           { group: groupName, member }
         );
-      } catch (e) { /* skip */ }
+      } catch { /* skip */ }
     }
   }
 

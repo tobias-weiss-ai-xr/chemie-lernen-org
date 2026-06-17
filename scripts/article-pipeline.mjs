@@ -352,7 +352,7 @@ function parseGeneratedText(text) {
 
   if (!title) {
     const firstLine = text.split('\n').find((l) => l.trim());
-    title = (firstLine || '').replace(/^#\s*/, '').replace(/[*\"]/g, '').trim().slice(0, 80);
+    title = (firstLine || '').replace(/^#\s*/, '').replace(/[*"]/g, '').trim().slice(0, 80);
   }
 
   return { title, tags: tags.length ? tags : ['chemie', 'forschung'], entities, description };
@@ -408,7 +408,7 @@ async function verifySource(sourceUrl) {
       }
       result.paperLinks = [...linkSet].slice(0, 3);
     }
-  } catch (err) {
+  } catch {
     result.statusCode = 0;
     result.available = false;
   }
@@ -580,7 +580,7 @@ async function run() {
           });
         }
 
-        const kgResult = await storeArticleWithEntities({
+        await storeArticleWithEntities({
           title,
           source: article.url,
           date: isoDateStr(),

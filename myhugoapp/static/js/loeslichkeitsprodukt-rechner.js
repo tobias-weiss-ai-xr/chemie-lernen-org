@@ -426,11 +426,6 @@ function showResults() {
 }
 
 // Show error
-function showError(message) {
-  document.getElementById('error-message').textContent = message;
-  document.getElementById('error-section').style.display = 'block';
-  document.getElementById('results-section').style.display = 'none';
-}
 
 // Setup example button handlers
 document.addEventListener('DOMContentLoaded', function() {

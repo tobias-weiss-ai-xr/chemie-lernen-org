@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  var ERROR_STORAGE_KEY = 'chemie_errors';
+  const ERROR_STORAGE_KEY = 'chemie_errors';
 
   function getStoredErrors() {
     try {

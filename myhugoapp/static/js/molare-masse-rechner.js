@@ -189,11 +189,6 @@ function displayResults(formula, totalMass, composition, details) {
 }
 
 // Show error message
-function showError(message) {
-  document.getElementById('results-section').style.display = 'none';
-  document.getElementById('error-section').style.display = 'block';
-  document.getElementById('error-message').textContent = message;
-}
 
 // Event listeners for example buttons
 document.addEventListener('DOMContentLoaded', function() {

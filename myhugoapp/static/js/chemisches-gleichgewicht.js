@@ -4,8 +4,6 @@
  * Dynamic equilibrium and Le Chatelier's principle visualization
  */
 
-const AS_CONSTANT = 8.314;
-
 let equilibriumState = {
   concA: 1.0,
   concB: 1.0,

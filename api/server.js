@@ -254,7 +254,7 @@ Behandle Kontext aus vorherigen Fragen mit.`;
               buffer.push(delta);
               res.write(`data: ${JSON.stringify({ content: delta })}\n\n`);
             }
-          } catch (e) {
+          } catch {
             console.error(`[chat-api] Failed to parse stream chunk: ${line}`);
           }
         }

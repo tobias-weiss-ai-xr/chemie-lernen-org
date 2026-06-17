@@ -311,7 +311,6 @@ class PerformanceMonitor {
     const reportPath = path.join(__dirname, '../../performance-report.json');
 
     fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
-    console.log('Performance report saved to performance-report.json');
 
     return report;
   }

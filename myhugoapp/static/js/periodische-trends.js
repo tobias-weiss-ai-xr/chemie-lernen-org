@@ -303,7 +303,7 @@ function loadTrend() {
   currentTrend = document.getElementById('trend-selector').value;
   const trend = trendInfo[currentTrend];
 
-  var info = document.getElementById('trend-info');
+  const info = document.getElementById('trend-info');
   if (info) {
     info.innerHTML =
       '<h4>' + trend.title + '</h4>' +

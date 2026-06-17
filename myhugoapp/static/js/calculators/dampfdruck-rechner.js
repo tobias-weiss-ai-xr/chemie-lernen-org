@@ -5,28 +5,27 @@
 (function() {
   'use strict';
 
-  var form = document.getElementById('dampfdruck-form');
-  var resultBox = document.getElementById('result');
-  var pressureBarEl = document.getElementById('pressure-bar');
-  var pressurePaEl = document.getElementById('pressure-pa');
-  var pressureKpaEl = document.getElementById('pressure-kpa');
-  var comparisonEl = document.getElementById('comparison');
+  const form = document.getElementById('dampfdruck-form');
+  const resultBox = document.getElementById('result');
+  const pressureBarEl = document.getElementById('pressure-bar');
+  const pressurePaEl = document.getElementById('pressure-pa');
+  const pressureKpaEl = document.getElementById('pressure-kpa');
+  const comparisonEl = document.getElementById('comparison');
 
   if (!form || !resultBox) {
-    console.log('[dampfdruck-rechner] Form or result box not found');
     return;
   }
 
   function calculateVaporPressure(temperatureC, normalPressure, boilingPointC) {
-    var temperatureK = temperatureC + 273.15;
-    var boilingPointK = boilingPointC + 273.15;
+    const temperatureK = temperatureC + 273.15;
+    const boilingPointK = boilingPointC + 273.15;
 
     if (temperatureK <= 0 || boilingPointK <= 0) {
       throw new Error('Temperatur muss größer als 0 K sein');
     }
 
-    var deltaT = 1 / temperatureK - 1 / boilingPointK;
-    var pressure = normalPressure * Math.exp(-8860 * deltaT);
+    const deltaT = 1 / temperatureK - 1 / boilingPointK;
+    let pressure = normalPressure * Math.exp(-8860 * deltaT);
 
     pressure = Math.max(0, pressure);
 
@@ -41,8 +40,8 @@
   }
 
   function getResultText(pressure, normalPressure) {
-    var ratio = pressure / normalPressure;
-    var text = '';
+    const ratio = pressure / normalPressure;
+    let text = '';
 
     if (ratio < 0.01) {
       text = 'Sehr niedrig (weniger als 1% des Normaldrucks) — Flüssigkeit siedet nicht';
@@ -64,9 +63,9 @@
   function handleSubmit(e) {
     e.preventDefault();
 
-    var temperatureC = parseFloat(document.getElementById('temperature').value);
-    var normalPressure = parseFloat(document.getElementById('normal-pressure').value);
-    var boilingPointC = parseFloat(document.getElementById('boiling-point').value);
+    const temperatureC = parseFloat(document.getElementById('temperature').value);
+    const normalPressure = parseFloat(document.getElementById('normal-pressure').value);
+    const boilingPointC = parseFloat(document.getElementById('boiling-point').value);
 
     if (isNaN(temperatureC) || isNaN(normalPressure) || isNaN(boilingPointC)) {
       alert('Bitte geben Sie alle Werte ein.');
@@ -74,7 +73,7 @@
     }
 
     try {
-      var pressure = calculateVaporPressure(temperatureC, normalPressure, boilingPointC);
+      const pressure = calculateVaporPressure(temperatureC, normalPressure, boilingPointC);
 
       pressureBarEl.textContent = formatNumber(pressure, 3);
       pressurePaEl.textContent = formatNumber(pressure * 1e5, 0);

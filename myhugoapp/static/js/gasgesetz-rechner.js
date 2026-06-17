@@ -49,13 +49,6 @@ function celsiusToKelvin(celsius) {
 }
 
 // Format number for display
-function formatNumber(value, decimals = 3) {
-  if (Math.abs(value) < 0.0001 || Math.abs(value) >= 10000) {
-    return value.toExponential(decimals - 1);
-  }
-  return value.toFixed(decimals);
-}
-
 // Ideal Gas Law Calculator
 function calculateIdealGas(calculateWhat) {
   const pressureInput = document.getElementById('ig-pressure').value.trim();
@@ -514,11 +507,6 @@ function showResults() {
 }
 
 // Show error
-function showError(message) {
-  document.getElementById('error-message').textContent = message;
-  document.getElementById('error-section').style.display = 'block';
-  document.getElementById('results-section').style.display = 'none';
-}
 
 // Setup event handlers
 document.addEventListener('DOMContentLoaded', function() {

@@ -1,0 +1,362 @@
+var { showError, formatNumber, darkenColor, escapeHtml } = require('../myhugoapp/static/js/utils/ui-utils.js');
+
+function setupErrorDOM() {
+  document.body.innerHTML =
+    '<div id="error-message"></div>' +
+    '<div id="error-section" style="display:none"></div>' +
+    '<div id="results-section" style="display:block"></div>';
+}
+
+function resetErrorDOM() {
+  document.getElementById('error-message').textContent = '';
+  document.getElementById('error-section').style.display = 'none';
+  document.getElementById('results-section').style.display = 'block';
+}
+
+describe('UIUtils - showError', function () {
+  beforeEach(setupErrorDOM);
+
+  test('sets error message text', function () {
+    showError('Test error');
+    expect(document.getElementById('error-message').textContent).toBe('Test error');
+  });
+
+  test('shows error section', function () {
+    showError('Test');
+    expect(document.getElementById('error-section').style.display).toBe('block');
+  });
+
+  test('hides results section', function () {
+    showError('Test');
+    expect(document.getElementById('results-section').style.display).toBe('none');
+  });
+
+  test('handles empty message', function () {
+    showError('');
+    expect(document.getElementById('error-message').textContent).toBe('');
+    expect(document.getElementById('error-section').style.display).toBe('block');
+  });
+
+  test('handles special characters in message via textContent (safe)', function () {
+    showError('<script>alert("xss")</script>');
+    expect(document.getElementById('error-message').textContent).toBe('<script>alert("xss")</script>');
+    expect(document.getElementById('error-message').innerHTML).toBe('&lt;script&gt;alert("xss")&lt;/script&gt;');
+  });
+
+  test('sets all three elements in correct order', function () {
+    showError('Ungültige Eingabe');
+    expect(document.getElementById('error-message').textContent).toBe('Ungültige Eingabe');
+    expect(document.getElementById('error-section').style.display).toBe('block');
+    expect(document.getElementById('results-section').style.display).toBe('none');
+  });
+
+  test('gracefully handles missing DOM elements', function () {
+    document.body.innerHTML = '';
+    expect(function () { showError('test'); }).not.toThrow();
+  });
+
+  test('gracefully handles partial DOM (only error-message)', function () {
+    document.body.innerHTML = '<div id="error-message"></div>';
+    expect(function () { showError('test'); }).not.toThrow();
+    expect(document.getElementById('error-message').textContent).toBe('test');
+  });
+
+  test('can be called multiple times', function () {
+    showError('Error 1');
+    expect(document.getElementById('error-message').textContent).toBe('Error 1');
+    showError('Error 2');
+    expect(document.getElementById('error-message').textContent).toBe('Error 2');
+  });
+});
+
+describe('UIUtils - formatNumber', function () {
+  describe('default behavior (decimals=3, threshold=0.0001/10000)', function () {
+    test('formats normal numbers with toFixed', function () {
+      expect(formatNumber(3.14159)).toBe('3.142');
+    });
+
+    test('uses scientific notation for very small values', function () {
+      expect(formatNumber(0.00005)).toBe('5.00e-5');
+    });
+
+    test('uses scientific notation for very large values', function () {
+      expect(formatNumber(15000)).toBe('1.50e+4');
+    });
+
+    test('formats zero with toFixed (not scientific)', function () {
+      expect(formatNumber(0)).toBe('0.000');
+    });
+
+    test('formats negative numbers', function () {
+      expect(formatNumber(-42.5)).toBe('-42.500');
+    });
+
+    test('uses scientific for large negative', function () {
+      expect(formatNumber(-15000)).toBe('-1.50e+4');
+    });
+
+    test('formats integer', function () {
+      expect(formatNumber(5)).toBe('5.000');
+    });
+
+    test('boundary: just below upper threshold', function () {
+      expect(formatNumber(9999.9)).toBe('9999.900');
+    });
+
+    test('boundary: at upper threshold', function () {
+      expect(formatNumber(10000)).toBe('1.00e+4');
+    });
+
+    test('boundary: just above lower threshold', function () {
+      expect(formatNumber(0.0002)).toBe('0.000');
+    });
+
+    test('boundary: just below lower threshold', function () {
+      expect(formatNumber(0.00009)).toBe('9.00e-5');
+    });
+  });
+
+  describe('custom decimals', function () {
+    test('respects decimals=4 like konzentrationsumrechner', function () {
+      expect(formatNumber(3.14159, 4)).toBe('3.1416');
+    });
+
+    test('respects decimals=2', function () {
+      expect(formatNumber(3.14159, 2)).toBe('3.14');
+    });
+
+    test('respects decimals=0', function () {
+      expect(formatNumber(3.7, 0)).toBe('4');
+    });
+
+    test('respects decimals=6', function () {
+      expect(formatNumber(3.14159265, 6)).toBe('3.141593');
+    });
+
+    test('scientific notation uses dec-1 exponent digits', function () {
+      expect(formatNumber(0.00005, 4)).toBe('5.000e-5');
+    });
+  });
+
+  describe('custom thresholds like redox-potenzial (0.001)', function () {
+    test('uses 0.001 lower threshold when specified', function () {
+      expect(formatNumber(0.0005, 3, { lowerThreshold: 0.001 })).toBe('5.00e-4');
+    });
+
+    test('keeps fixed notation above custom lower threshold', function () {
+      expect(formatNumber(0.002, 3, { lowerThreshold: 0.001 })).toBe('0.002');
+    });
+
+    test('uses custom upper threshold', function () {
+      expect(formatNumber(5000, 3, { upperThreshold: 1000 })).toBe('5.00e+3');
+    });
+  });
+
+  describe('disable scientific notation like redox-titrationen', function () {
+    test('never uses scientific when useScientific=false', function () {
+      expect(formatNumber(0.00005, 3, { useScientific: false })).toBe('0.000');
+    });
+
+    test('never uses scientific for large values when disabled', function () {
+      expect(formatNumber(15000, 3, { useScientific: false })).toBe('15000.000');
+    });
+
+    test('still formats decimals correctly with scientific disabled', function () {
+      expect(formatNumber(1.5, 2, { useScientific: false })).toBe('1.50');
+    });
+  });
+
+  describe('edge cases', function () {
+    test('handles null', function () {
+      expect(formatNumber(null)).toBe('null');
+    });
+
+    test('handles undefined', function () {
+      expect(formatNumber(undefined)).toBe('undefined');
+    });
+
+    test('handles NaN', function () {
+      expect(formatNumber(NaN)).toBe('NaN');
+    });
+
+    test('no decimals param defaults to 3', function () {
+      expect(formatNumber(1)).toBe('1.000');
+    });
+
+    test('null options uses defaults', function () {
+      expect(formatNumber(0.00005, 3, null)).toBe('5.00e-5');
+    });
+
+    test('empty options object uses defaults', function () {
+      expect(formatNumber(0.00005, 3, {})).toBe('5.00e-5');
+    });
+
+    test('handles Infinity', function () {
+      expect(formatNumber(Infinity)).toBe('Infinity');
+    });
+
+    test('handles negative Infinity', function () {
+      expect(formatNumber(-Infinity)).toBe('-Infinity');
+    });
+
+    test('handles negative zero', function () {
+      expect(formatNumber(-0)).toBe('0.000');
+    });
+  });
+});
+
+describe('UIUtils - darkenColor', function () {
+  test('darkens rgb color by percent', function () {
+    expect(darkenColor('rgb(100, 150, 200)', 20)).toBe('rgb(80, 130, 180)');
+  });
+
+  test('clamps to 0 minimum', function () {
+    expect(darkenColor('rgb(10, 10, 10)', 50)).toBe('rgb(0, 0, 0)');
+  });
+
+  test('clamps to 255 maximum for negative percent', function () {
+    expect(darkenColor('rgb(200, 200, 200)', -50)).toBe('rgb(250, 250, 250)');
+  });
+
+  test('returns original for non-rgb input', function () {
+    expect(darkenColor('#ff0000', 50)).toBe('#ff0000');
+  });
+
+  test('returns original for rgb with less than 3 values', function () {
+    expect(darkenColor('rgb(100)', 50)).toBe('rgb(100)');
+  });
+
+  test('handles zero percent', function () {
+    expect(darkenColor('rgb(100, 150, 200)', 0)).toBe('rgb(100, 150, 200)');
+  });
+
+  test('handles large percent that exceeds 255 range', function () {
+    expect(darkenColor('rgb(255, 255, 255)', 300)).toBe('rgb(0, 0, 0)');
+  });
+
+  test('returns original for null-like rgb match', function () {
+    expect(darkenColor('no-numbers-here', 50)).toBe('no-numbers-here');
+  });
+
+  test('extracts only first three numbers from rgb', function () {
+    expect(darkenColor('rgb(100, 150, 200, 0.5)', 20)).toBe('rgb(80, 130, 180)');
+  });
+
+  test('matches konvektion.js behavior exactly', function () {
+    expect(darkenColor('rgb(66, 133, 244)', 30)).toBe('rgb(36, 103, 214)');
+  });
+
+  test('handles mixed brightness values', function () {
+    expect(darkenColor('rgb(255, 128, 0)', 100)).toBe('rgb(155, 28, 0)');
+  });
+});
+
+describe('UIUtils - escapeHtml', function () {
+  test('escapes ampersand', function () {
+    expect(escapeHtml('foo & bar')).toBe('foo &amp; bar');
+  });
+
+  test('escapes less-than', function () {
+    expect(escapeHtml('1 < 2')).toBe('1 &lt; 2');
+  });
+
+  test('escapes greater-than', function () {
+    expect(escapeHtml('2 > 1')).toBe('2 &gt; 1');
+  });
+
+  test('escapes double quotes', function () {
+    expect(escapeHtml('say "hello"')).toBe('say &quot;hello&quot;');
+  });
+
+  test('escapes single quotes', function () {
+    expect(escapeHtml("it's")).toBe('it&#039;s');
+  });
+
+  test('escapes all special chars combined', function () {
+    expect(escapeHtml('<a href="x">&\'</a>')).toBe('&lt;a href=&quot;x&quot;&gt;&amp;&#039;&lt;/a&gt;');
+  });
+
+  test('returns empty string for empty input', function () {
+    expect(escapeHtml('')).toBe('');
+  });
+
+  test('converts non-string to string first', function () {
+    expect(escapeHtml(42)).toBe('42');
+  });
+
+  test('handles null via String()', function () {
+    expect(escapeHtml(null)).toBe('null');
+  });
+
+  test('leaves normal text unchanged', function () {
+    expect(escapeHtml('Hello World')).toBe('Hello World');
+  });
+
+  test('handles german umlauts (no transformation)', function () {
+    expect(escapeHtml('äöü ÄÖÜ ß')).toBe('äöü ÄÖÜ ß');
+  });
+
+  test('escapes multiple ampersands', function () {
+    expect(escapeHtml('a & b & c')).toBe('a &amp; b &amp; c');
+  });
+
+  test('matches entity-index.js original behavior', function () {
+    expect(escapeHtml('<script>alert("xss")</script>')).toBe(
+      '&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;'
+    );
+  });
+
+  test('handles already-escaped content idempotently', function () {
+    expect(escapeHtml('&amp;')).toBe('&amp;amp;');
+  });
+});
+
+describe('UIUtils - backward compatibility with existing calculators', function () {
+  beforeEach(setupErrorDOM);
+
+  test('gasgesetz formatNumber: decimals=3, threshold=0.0001', function () {
+    expect(formatNumber(0.08206, 3)).toBe('0.082');
+    expect(formatNumber(0.00005, 3)).toBe('5.00e-5');
+    expect(formatNumber(22.4, 3)).toBe('22.400');
+    expect(formatNumber(273.15, 3)).toBe('273.150');
+  });
+
+  test('konzentrationsumrechner formatNumber: decimals=4, threshold=0.0001', function () {
+    expect(formatNumber(0.5, 4)).toBe('0.5000');
+    expect(formatNumber(0.00005, 4)).toBe('5.000e-5');
+  });
+
+  test('redox-potenzial formatNumber: decimals=3, threshold=0.001', function () {
+    expect(formatNumber(0.34, 3, { lowerThreshold: 0.001 })).toBe('0.340');
+    expect(formatNumber(0.0005, 3, { lowerThreshold: 0.001 })).toBe('5.00e-4');
+  });
+
+  test('redox-titrationen formatNumber: decimals=3, no scientific', function () {
+    expect(formatNumber(12.5, 3, { useScientific: false })).toBe('12.500');
+  });
+
+  test('verbrennungsrechner formatNumber: decimals=3, threshold=0.0001', function () {
+    expect(formatNumber(44.01, 3)).toBe('44.010');
+    expect(formatNumber(0.00001, 3)).toBe('1.00e-5');
+  });
+
+  test('showError matches Variant A behavior (6 calculators)', function () {
+    showError('Bitte füllen Sie alle Felder aus.');
+    expect(document.getElementById('error-message').textContent).toBe('Bitte füllen Sie alle Felder aus.');
+    expect(document.getElementById('error-section').style.display).toBe('block');
+    expect(document.getElementById('results-section').style.display).toBe('none');
+  });
+
+  test('showError can be called after reset', function () {
+    showError('First error');
+    resetErrorDOM();
+    showError('Second error');
+    expect(document.getElementById('error-message').textContent).toBe('Second error');
+  });
+
+  test('darkenColor matches original IIFE implementations', function () {
+    expect(darkenColor('rgb(66, 133, 244)', 30)).toBe('rgb(36, 103, 214)');
+    expect(darkenColor('rgb(255, 0, 0)', 100)).toBe('rgb(155, 0, 0)');
+    expect(darkenColor('rgb(100, 100, 100)', 50)).toBe('rgb(50, 50, 50)');
+  });
+});

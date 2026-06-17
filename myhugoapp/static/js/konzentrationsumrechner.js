@@ -15,12 +15,6 @@ function parseNumber(value) {
 }
 
 // Format number for display
-function formatNumber(value, decimals = 4) {
-  if (Math.abs(value) < 0.0001 || Math.abs(value) >= 10000) {
-    return value.toExponential(decimals - 1);
-  }
-  return value.toFixed(decimals);
-}
 
 // Convert all concentrations to/from a common internal format
 // Internal format: moles of solute per kg of solution
@@ -438,11 +432,6 @@ function showResults() {
 }
 
 // Show error
-function showError(message) {
-  document.getElementById('error-message').textContent = message;
-  document.getElementById('error-section').style.display = 'block';
-  document.getElementById('results-section').style.display = 'none';
-}
 
 // Setup example button handlers
 document.addEventListener('DOMContentLoaded', function() {

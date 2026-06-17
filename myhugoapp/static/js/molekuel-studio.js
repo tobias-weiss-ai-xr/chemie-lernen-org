@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 
 // Set loaded flag immediately to prevent timeout
-console.log('Molekülstudio script loaded');
+__debug.log('Molekülstudio script loaded');
 window.moleculeStudioLoaded = true;
 
 // Error handler
@@ -15,7 +15,7 @@ window.addEventListener('unhandledrejection', (e) => {
     console.error('Unhandled promise rejection:', e.reason);
 });
 
-console.log('Molekülstudio script loaded');
+__debug.log('Molekülstudio script loaded');
 
 // Global flag to track initialization
 window.moleculeStudioInitialized = false;
@@ -961,7 +961,7 @@ const moleculeData = {
 };
 
 function init() {
-    console.log('Init function called');
+    __debug.log('Init function called');
 
     // Hide loading message
     const loadingMsg = document.getElementById('js-loading');
@@ -981,7 +981,7 @@ function init() {
     controlsInfo = document.getElementById('controls-info');
     autoRotateCheckbox = document.getElementById('auto-rotate');
 
-    console.log('DOM elements:', { container, canvas, moleculeInput, visualizeBtn });
+    __debug.log('DOM elements:', { container, canvas, moleculeInput, visualizeBtn });
 
     if (!container || !canvas || !moleculeInput || !visualizeBtn) {
         console.error('Ein oder mehrere Elemente nicht gefunden!');
@@ -990,7 +990,7 @@ function init() {
     }
 
     try {
-        console.log('Molekülstudio wird initialisiert...');
+        __debug.log('Molekülstudio wird initialisiert...');
         window.moleculeStudioInitialized = true;
         window.moleculeStudioLoaded = true; // Ensure this is set
 
@@ -1008,12 +1008,12 @@ function init() {
     camera.position.z = 10;
 
     // Renderer
-    console.log('Creating WebGL renderer...');
+    __debug.log('Creating WebGL renderer...');
     renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
     updateRendererSize();
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    console.log('Renderer created:', renderer);
+    __debug.log('Renderer created:', renderer);
 
     // Lights
     const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
@@ -1102,11 +1102,11 @@ function setupResizeObserver() {
 }
 
 function setupEventListeners() {
-    console.log('Setting up event listeners...');
+    __debug.log('Setting up event listeners...');
 
     // Visualize button
     visualizeBtn.addEventListener('click', () => {
-        console.log('Visualize button clicked');
+        __debug.log('Visualize button clicked');
         const moleculeName = moleculeInput.value.trim();
         if (moleculeName) {
             visualizeMolecule(moleculeName);
@@ -1366,32 +1366,32 @@ function animate() {
     renderer.render(scene, camera);
 }
 
-console.log('Animation loop function defined');
+__debug.log('Animation loop function defined');
 
 // Warte bis DOM geladen ist, dann initialisiere
-console.log('Document ready state:', document.readyState);
+__debug.log('Document ready state:', document.readyState);
 
 // Warte bis DOM geladen ist, dann initialisiere
 if (document.readyState === 'loading') {
-    console.log('Waiting for DOMContentLoaded...');
+    __debug.log('Waiting for DOMContentLoaded...');
     document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOMContentLoaded fired, calling init()');
+        __debug.log('DOMContentLoaded fired, calling init()');
         init();
     });
 } else {
-    console.log('DOM already loaded, calling init() immediately');
+    __debug.log('DOM already loaded, calling init() immediately');
     init();
 }
 
 // Process any molecules that were queued before the module loaded
 setTimeout(() => {
     if (window.moleculeStudioQueue && window.moleculeStudioQueue.length > 0) {
-        console.log('Processing queued molecules:', window.moleculeStudioQueue);
+        __debug.log('Processing queued molecules:', window.moleculeStudioQueue);
 
         // Process each queued molecule
         window.moleculeStudioQueue.forEach(molecule => {
             if (moleculeData[molecule]) {
-                console.log('Visualizing queued molecule:', molecule);
+                __debug.log('Visualizing queued molecule:', molecule);
                 visualizeMolecule(molecule);
             }
         });
@@ -1410,13 +1410,13 @@ window.moleculeData = moleculeData;
 // Process any molecules that were queued before the module loaded
 function processQueue() {
     if (window.moleculeStudioQueue && window.moleculeStudioQueue.length > 0) {
-        console.log('Processing queued molecules:', window.moleculeStudioQueue);
+        __debug.log('Processing queued molecules:', window.moleculeStudioQueue);
 
         // Process each queued molecule
         while (window.moleculeStudioQueue.length > 0) {
             const molecule = window.moleculeStudioQueue.shift();
             if (moleculeData[molecule]) {
-                console.log('Visualizing queued molecule:', molecule);
+                __debug.log('Visualizing queued molecule:', molecule);
                 visualizeMolecule(molecule);
             } else {
                 console.warn('Molecule not found in data:', molecule);
