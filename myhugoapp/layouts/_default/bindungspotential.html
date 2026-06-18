@@ -42,7 +42,7 @@
         <div class="input-section">
           <div class="form-group">
             <label for="bindungstyp">Bindungstyp:</label>
-            <select id="bindungstyp" class="form-control" onchange="updateBindingData()">
+            <select id="bindungstyp" class="form-control">
               <option value="h-h">H-H (Wasserstoff)</option>
               <option value="h-cl">H-Cl (Chlorwasserstoff)</option>
               <option value="c-h">C-H (Kohlenstoff-Wasserstoff)</option>
@@ -57,7 +57,7 @@
           <div class="form-group">
             <label for="atomabstand">Atomabstand (Å):</label>
             <div class="input-group">
-              <input type="range" id="atomabstand" min="0.5" max="4.0" step="0.1" value="2.5" oninput="updateBindingDiagram()">
+              <input type="range" id="atomabstand" min="0.5" max="4.0" step="0.1" value="2.5">
               <span class="input-group-addon" id="abstand-display">2.5 Å</span>
             </div>
           </div>
@@ -77,7 +77,7 @@
             </div>
           </div>
 
-          <button class="btn btn-primary btn-lg btn-block" onclick="animateBondFormation()">
+          <button class="btn btn-primary btn-lg btn-block" id="btn-animate-bond">
             <i class="fa fa-play"></i> Bindungsbildung animieren
           </button>
         </div>
@@ -86,10 +86,10 @@
           <h3>Bindungspotential-Diagramm</h3>
           <canvas id="binding-canvas" width="600" height="400"></canvas>
           <div class="diagram-controls">
-            <button class="btn btn-sm btn-default" onclick="resetBindingDiagram()">
+            <button class="btn btn-sm btn-default" id="btn-reset-binding">
               <i class="fa fa-refresh"></i> Zurücksetzen
             </button>
-            <button class="btn btn-sm btn-info" onclick="toggleGrid()">
+            <button class="btn btn-sm btn-info" id="btn-toggle-grid">
               <i class="fa fa-th"></i> Gitter ein/aus
             </button>
           </div>
@@ -107,7 +107,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="reaktions-typ">Reaktionstyp:</label>
-                <select id="reaktions-typ" class="form-control" onchange="updateReactionData()">
+                <select id="reaktions-typ" class="form-control">
                   <option value="exotherm">Exotherme Reaktion</option>
                   <option value="endotherm">Endotherme Reaktion</option>
                   <option value="neutral">Thermoneutrale Reaktion</option>
@@ -117,7 +117,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="beispiel-reaktion">Beispielreaktion:</label>
-                <select id="beispiel-reaktion" class="form-control" onchange="loadExampleReaction()">
+                <select id="beispiel-reaktion" class="form-control">
                   <option value="ch4-combustion">CH₄ + 2O₂ → CO₂ + 2H₂O</option>
                   <option value="nh3-synthesis">N₂ + 3H₂ → 2NH₃</option>
                   <option value="photosynthesis">6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</option>
@@ -161,10 +161,10 @@
           </div>
 
           <div class="simulation-controls">
-            <button class="btn btn-success" onclick="animateReaction()">
+            <button class="btn btn-success" id="btn-animate-reaction">
               <i class="fa fa-play"></i> Reaktion animieren
             </button>
-            <button class="btn btn-warning" onclick="reverseReaction()">
+            <button class="btn btn-warning" id="btn-reverse-reaction">
               <i class="fa fa-undo"></i> Reaktion umkehren
             </button>
           </div>
@@ -200,7 +200,7 @@
           <div class="form-group">
             <label for="temperatur">Temperatur (K):</label>
             <div class="input-group">
-              <input type="range" id="temperatur" min="200" max="1000" value="298" oninput="updateActivationDiagram()">
+              <input type="range" id="temperatur" min="200" max="1000" value="298">
               <span class="input-group-addon" id="temp-display">298 K (25°C)</span>
             </div>
           </div>
@@ -208,7 +208,7 @@
           <div class="form-group">
             <label for="aktivierungsenergie-input">Aktivierungsenergie (kJ/mol):</label>
             <div class="input-group">
-              <input type="number" id="aktivierungsenergie-input" class="form-control" value="150" min="10" max="500" oninput="updateActivationDiagram()">
+              <input type="number" id="aktivierungsenergie-input" class="form-control" value="150" min="10" max="500">
               <span class="input-group-addon">kJ/mol</span>
             </div>
           </div>
@@ -216,7 +216,7 @@
           <div class="form-group">
             <label for="reaktionsenthalpie-input">Reaktionsenthalpie (kJ/mol):</label>
             <div class="input-group">
-              <input type="number" id="reaktionsenthalpie-input" class="form-control" value="-80" min="-200" max="200" oninput="updateActivationDiagram()">
+              <input type="number" id="reaktionsenthalpie-input" class="form-control" value="-80" min="-200" max="200">
               <span class="input-group-addon">kJ/mol</span>
             </div>
           </div>
@@ -368,7 +368,7 @@
           <div class="catalyst-demo">
             <div class="demo-controls">
               <label>
-                <input type="checkbox" id="katalysator-aktiv" onchange="updateCatalystDemo()">
+                <input type="checkbox" id="katalysator-aktiv">
                 Katalysator hinzufügen
               </label>
               <label>EA-Reduktion: <span id="ea-reduction">0</span>%</label>
@@ -386,7 +386,7 @@
           <div class="coordinate-demo">
             <div class="demo-controls">
               <label>Fortschritt: <span id="reaktion-fortschritt">0</span>%</label>
-              <input type="range" id="reaktion-slider" min="0" max="100" value="0" oninput="updateReactionCoordinate()">
+              <input type="range" id="reaktion-slider" min="0" max="100" value="0">
             </div>
             <canvas id="coordinate-canvas" width="500" height="300"></canvas>
           </div>
@@ -400,4 +400,25 @@
 <script src="{{ "js/bindungspotential.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/bindungspotential.css" | relURL }}">
 
+{{ end }}
+
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('bindungstyp').addEventListener('change', function() { updateBindingData(); });
+  document.getElementById('atomabstand').addEventListener('input', function() { updateBindingDiagram(); });
+  document.getElementById('btn-animate-bond').addEventListener('click', function() { animateBondFormation(); });
+  document.getElementById('btn-reset-binding').addEventListener('click', function() { resetBindingDiagram(); });
+  document.getElementById('btn-toggle-grid').addEventListener('click', function() { toggleGrid(); });
+  document.getElementById('reaktions-typ').addEventListener('change', function() { updateReactionData(); });
+  document.getElementById('beispiel-reaktion').addEventListener('change', function() { loadExampleReaction(); });
+  document.getElementById('btn-animate-reaction').addEventListener('click', function() { animateReaction(); });
+  document.getElementById('btn-reverse-reaction').addEventListener('click', function() { reverseReaction(); });
+  document.getElementById('temperatur').addEventListener('input', function() { updateActivationDiagram(); });
+  document.getElementById('aktivierungsenergie-input').addEventListener('input', function() { updateActivationDiagram(); });
+  document.getElementById('reaktionsenthalpie-input').addEventListener('input', function() { updateActivationDiagram(); });
+  document.getElementById('katalysator-aktiv').addEventListener('change', function() { updateCatalystDemo(); });
+  document.getElementById('reaktion-slider').addEventListener('input', function() { updateReactionCoordinate(); });
+});
+</script>
 {{ end }}

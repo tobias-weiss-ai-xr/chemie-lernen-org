@@ -47,19 +47,19 @@
           <div class="simulation-controls">
             <div class="control-group">
               <label>Temperatur (K):</label>
-              <input type="range" id="temperature-slider" min="100" max="1000" value="300" oninput="updateTemperatureSimulation()">
+              <input type="range" id="temperature-slider" min="100" max="1000" value="300">
               <span id="temp-kinetics-display">300 K</span>
             </div>
 
             <div class="control-group">
               <label>Anzahl Teilchen:</label>
-              <input type="range" id="particle-count" min="50" max="500" value="200" oninput="updateTemperatureSimulation()">
+              <input type="range" id="particle-count" min="50" max="500" value="200">
               <span id="particle-count-display">200</span>
             </div>
 
             <div class="control-group">
               <label>Simulation starten:</label>
-              <button class="btn btn-primary" id="start-kinetics" onclick="toggleKineticsAnimation()">
+              <button class="btn btn-primary" id="start-kinetics">
                 <i class="fa fa-play"></i> <span id="kinetics-btn-text">Start</span>
               </button>
             </div>
@@ -96,25 +96,25 @@
           <div class="simulation-controls">
             <div class="control-group">
               <label>Stöquerschnitt:</label>
-              <input type="range" id="collision-threshold" min="0.1" max="1.0" value="0.5" step="0.1" oninput="updateCollisionSimulation()">
+              <input type="range" id="collision-threshold" min="0.1" max="1.0" value="0.5" step="0.1">
               <span id="collision-threshold-display">0.5</span>
             </div>
 
             <div class="control-group">
               <label>Konzentration (mol/L):</label>
-              <input type="range" id="concentration-slider" min="0.1" max="10.0" value="1.0" step="0.1" oninput="updateCollisionSimulation()">
+              <input type="range" id="concentration-slider" min="0.1" max="10.0" value="1.0" step="0.1">
               <span id="concentration-display">1.0 mol/L</span>
             </div>
 
             <div class="control-group">
               <label>Effektiver Querschnitt (Å²):</label>
-              <input type="range" id="cross-section-slider" min="0.1" max="5.0" value="1.0" step="0.1" oninput="updateCollisionSimulation()">
+              <input type="range" id="cross-section-slider" min="0.1" max="5.0" value="1.0" step="0.1">
               <span id="cross-section-display">1.0 Å²</span>
             </div>
 
             <div class="control-group">
               <label>Reaktion starten:</label>
-              <button class="btn btn-success" id="start-collision" onclick="toggleCollisionAnimation()">
+              <button class="btn btn-success" id="start-collision">
                 <i class="fa fa-bolt"></i> <span id="collision-btn-text">Start</span>
               </button>
             </div>
@@ -161,13 +161,13 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="arrhenius-ea">Aktivierungsenergie (kJ/mol):</label>
-                <input type="number" id="arrhenius-ea" class="form-control" value="75" min="10" max="300" step="1" oninput="updateArrheniusPlot()">
+                <input type="number" id="arrhenius-ea" class="form-control" value="75" min="10" max="300" step="1">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="arrhenius-preexp">Präexponentialfaktor (log A):</label>
-                <input type="number" id="arrhenius-preexp" class="form-control" value="12" min="0" max="20" step="0.5" oninput="updateArrheniusPlot()">
+                <input type="number" id="arrhenius-preexp" class="form-control" value="12" min="0" max="20" step="0.5">
               </div>
             </div>
           </div>
@@ -179,11 +179,11 @@
                 <div class="temp-range-inputs">
                   <div>
                     <label>Min:</label>
-                    <input type="number" id="temp-min" class="form-control" value="200" oninput="updateArrheniusPlot()">
+                    <input type="number" id="temp-min" class="form-control" value="200">
                   </div>
                   <div>
                     <label>Max:</label>
-                    <input type="number" id="temp-max" class="form-control" value="800" oninput="updateArrheniusPlot()">
+                    <input type="number" id="temp-max" class="form-control" value="800">
                   </div>
                 </div>
               </div>
@@ -191,12 +191,12 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="arrhenius-steps">Anzahl Temperaturpunkte:</label>
-                <input type="number" id="temp-steps" class="form-control" value="10" min="5" max="30" oninput="updateArrheniusPlot()">
+                <input type="number" id="temp-steps" class="form-control" value="10" min="5" max="30">
               </div>
             </div>
           </div>
 
-          <button class="btn btn-primary btn-lg btn-block" onclick="updateArrheniusPlot()">
+          <button class="btn btn-primary btn-lg btn-block" id="btn-update-arrhenius">
             <i class="fa fa-chart-line"></i> Arrhenius-Plot aktualisieren
           </button>
         </div>
@@ -334,4 +334,24 @@
 <script src="{{ "js/reaktionskinetik-simulator.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/reaktionskinetik-simulator.css" | relURL }}">
 
+{{ end }}
+
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('temperature-slider').addEventListener('input', function() { updateTemperatureSimulation(); });
+  document.getElementById('particle-count').addEventListener('input', function() { updateTemperatureSimulation(); });
+  document.getElementById('start-kinetics').addEventListener('click', function() { toggleKineticsAnimation(); });
+  document.getElementById('collision-threshold').addEventListener('input', function() { updateCollisionSimulation(); });
+  document.getElementById('concentration-slider').addEventListener('input', function() { updateCollisionSimulation(); });
+  document.getElementById('cross-section-slider').addEventListener('input', function() { updateCollisionSimulation(); });
+  document.getElementById('start-collision').addEventListener('click', function() { toggleCollisionAnimation(); });
+  document.getElementById('arrhenius-ea').addEventListener('input', function() { updateArrheniusPlot(); });
+  document.getElementById('arrhenius-preexp').addEventListener('input', function() { updateArrheniusPlot(); });
+  document.getElementById('temp-min').addEventListener('input', function() { updateArrheniusPlot(); });
+  document.getElementById('temp-max').addEventListener('input', function() { updateArrheniusPlot(); });
+  document.getElementById('temp-steps').addEventListener('input', function() { updateArrheniusPlot(); });
+  document.getElementById('btn-update-arrhenius').addEventListener('click', function() { updateArrheniusPlot(); });
+});
+</script>
 {{ end }}

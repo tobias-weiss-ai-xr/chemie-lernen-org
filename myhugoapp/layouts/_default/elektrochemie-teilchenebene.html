@@ -50,10 +50,10 @@
         </div>
 
         <div class="cell-controls">
-          <button class="btn btn-primary btn-lg" onclick="startGalvanicAnimation()">
+          <button class="btn btn-primary btn-lg" id="btn-start-galvanic">
             <i class="fa fa-play"></i> Animation starten
           </button>
-          <button class="btn btn-secondary btn-lg" onclick="stopGalvanicAnimation()">
+          <button class="btn btn-secondary btn-lg" id="btn-stop-galvanic">
             <i class="fa fa-pause"></i> Animation stoppen
           </button>
         </div>
@@ -110,15 +110,15 @@
         </div>
 
         <div class="electrolysis-controls">
-          <button class="btn btn-primary btn-lg" onclick="startElectrolysisAnimation()">
+          <button class="btn btn-primary btn-lg" id="btn-start-electrolysis">
             <i class="fa fa-play"></i> Elektrolyse starten
           </button>
-          <button class="btn btn-secondary btn-lg" onclick="stopElectrolysisAnimation()">
+          <button class="btn btn-secondary btn-lg" id="btn-stop-electrolysis">
             <i class="fa fa-pause"></i> Elekrolyse stoppen
           </button>
           <div class="voltage-control">
             <label for="electrolysis-voltage">Spannung:</label>
-            <input type="range" id="electrolysis-voltage" min="0" max="10" value="5" step="0.1" onchange="updateElectrolysisVoltage()">
+            <input type="range" id="electrolysis-voltage" min="0" max="10" value="5" step="0.1">
             <span id="voltage-display">5.0 V</span>
           </div>
         </div>
@@ -186,7 +186,7 @@
 
         <div class="reaction-selector">
           <label for="half-reaction">Halbreaktion:</label>
-          <select id="half-reaction" class="form-control" onchange="updateElectronTransition()">
+          <select id="half-reaction" class="form-control">
             <option value="zn-oxidation">Zn → Zn²⁺ + 2e⁻ (Oxidation)</option>
             <option value="cu-reduction">Cu²⁺ + 2e⁻ → Cu (Reduktion)</option>
             <option value="na-oxidation">Na → Na⁺ + e⁻ (Oxidation)</option>
@@ -199,7 +199,7 @@
         </div>
 
         <div class="transition-controls">
-          <button class="btn btn-primary btn-lg" onclick="playElectronTransition()">
+          <button class="btn btn-primary btn-lg" id="btn-play-electron">
             <i class="fa fa-play"></i> Übergang abspielen
           </button>
         </div>
@@ -231,22 +231,22 @@
         <div class="nernst-calculator">
           <div class="form-group">
             <label for="standard-potential">Standardpotential E° (V):</label>
-            <input type="number" id="standard-potential" class="form-control" value="1.10" step="0.01" onchange="calculateNernst()">
+            <input type="number" id="standard-potential" class="form-control" value="1.10" step="0.01">
             <p class="help-block">Beispiel: Daniell-Element E° = +1.10 V</p>
           </div>
 
           <div class="form-group">
             <label for="electrons-n">Anzahl Elektronen n:</label>
-            <input type="number" id="electrons-n" class="form-control" value="2" min="1" max="10" onchange="calculateNernst()">
+            <input type="number" id="electrons-n" class="form-control" value="2" min="1" max="10">
           </div>
 
           <div class="form-group">
             <label for="quotient-q">Reaktionsquotient Q:</label>
-            <input type="number" id="quotient-q" class="form-control" value="1" step="any" min="0" onchange="calculateNernst()">
+            <input type="number" id="quotient-q" class="form-control" value="1" step="any" min="0">
             <p class="help-block">Q = [Produkte]/[Edukte]; Q = 1 → Standardbedingungen</p>
           </div>
 
-          <button class="btn btn-primary btn-lg" onclick="calculateNernst()">
+          <button class="btn btn-primary btn-lg" id="btn-calc-nernst">
             <i class="fa fa-calculator"></i> Nernst-Gleichung berechnen
           </button>
         </div>
@@ -378,4 +378,22 @@
 <script src="{{ "js/elektrochemie-teilchenebene.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/elektrochemie-teilchenebene.css" | relURL }}">
 
+{{ end }}
+
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-start-galvanic').addEventListener('click', function() { startGalvanicAnimation(); });
+  document.getElementById('btn-stop-galvanic').addEventListener('click', function() { stopGalvanicAnimation(); });
+  document.getElementById('btn-start-electrolysis').addEventListener('click', function() { startElectrolysisAnimation(); });
+  document.getElementById('btn-stop-electrolysis').addEventListener('click', function() { stopElectrolysisAnimation(); });
+  document.getElementById('electrolysis-voltage').addEventListener('change', function() { updateElectrolysisVoltage(); });
+  document.getElementById('half-reaction').addEventListener('change', function() { updateElectronTransition(); });
+  document.getElementById('btn-play-electron').addEventListener('click', function() { playElectronTransition(); });
+  document.getElementById('standard-potential').addEventListener('change', function() { calculateNernst(); });
+  document.getElementById('electrons-n').addEventListener('change', function() { calculateNernst(); });
+  document.getElementById('quotient-q').addEventListener('change', function() { calculateNernst(); });
+  document.getElementById('btn-calc-nernst').addEventListener('click', function() { calculateNernst(); });
+});
+</script>
 {{ end }}

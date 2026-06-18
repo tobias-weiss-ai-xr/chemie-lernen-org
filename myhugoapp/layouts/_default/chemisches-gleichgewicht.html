@@ -55,11 +55,11 @@
                 <div class="conc-inputs">
                   <div class="conc-input">
                     <label>[A]:</label>
-                    <input type="number" id="conc-a" class="form-control" value="1.0" step="0.1" min="0" oninput="updateEquilibrium()">
+                    <input type="number" id="conc-a" class="form-control" value="1.0" step="0.1" min="0">
                   </div>
                   <div class="conc-input">
                     <label>[B]:</label>
-                    <input type="number" id="conc-b" class="form-control" value="1.0" step="0.1" min="0" oninput="updateEquilibrium()">
+                    <input type="number" id="conc-b" class="form-control" value="1.0" step="0.1" min="0">
                   </div>
                 </div>
               </div>
@@ -71,11 +71,11 @@
                 <div class="conc-inputs">
                   <div class="conc-input">
                     <label>[C]:</label>
-                    <input type="number" id="conc-c" class="form-control" value="1.0" step="0.1" min="0" oninput="updateEquilibrium()">
+                    <input type="number" id="conc-c" class="form-control" value="1.0" step="0.1" min="0">
                   </div>
                   <div class="conc-input">
                     <label>[D]:</label>
-                    <input type="number" id="conc-d" class="form-control" value="1.0" step="0.1" min="0" oninput="updateEquilibrium()">
+                    <input type="number" id="conc-d" class="form-control" value="1.0" step="0.1" min="0">
                   </div>
                 </div>
               </div>
@@ -99,7 +99,7 @@
                 </div>
               </div>
 
-              <button class="btn btn-primary" onclick="startEquilibriumSimulation()">
+              <button class="btn btn-primary" id="btn-start-equilibrium">
                 <i class="fa fa-play"></i> Simulation starten
               </button>
             </div>
@@ -120,7 +120,7 @@
                 <h4>🌡️ Temperaturerhöhung</h4>
                 <p>Erhöhung der Temperatur verschiebt das Gleichgewicht zur Seite der endothermen Reaktion.</p>
                 <div class="button-group">
-                  <button class="btn btn-info" onclick="applyChatelier('temp-increase')">
+                  <button class="btn btn-info" id="btn-chatelier-temp">
                     <i class="fa fa-thermometer-full"></i> Temperatur erhöhen
                   </button>
                 </div>
@@ -136,7 +136,7 @@
                 <h4>🧪 Druckerhöhung</h4>
                 <p>Erhöhung des Drucks verschiebt das Gleichgewicht zur Seite mit weniger Gasvolumen.</p>
                 <div class="button-group">
-                  <button class="btn btn-info" onclick="applyChatelier('pressure-increase')">
+                  <button class="btn btn-info" id="btn-chatelier-pressure">
                     <i class="fa fa-compress-arrows-alt"></i> Druck erhöhen
                   </button>
                 </div>
@@ -152,7 +152,7 @@
                 <h4>📉 Konzentrationserhöhung</h4>
                 <p>Erhöhung der Konzentration eines Eduktes verschiebt das Gleichgewicht zur Seite der Produkte.</p>
                 <div class="button-group">
-                  <button class="btn btn-info" onclick="applyChatelier('conc-increase')">
+                  <button class="btn btn-info" id="btn-chatelier-conc">
                     <i class="fa fa-flask"></i> [A] erhöhen
                   </button>
                 </div>
@@ -168,7 +168,7 @@
                 <h4>💉 Entfernen eines Produktes</h4>
                 <p>Entfernen eines Produktes verschiebt das Gleichgewicht zur Reaktionsseite.</p>
                 <div class="button-group">
-                  <button class="btn btn-warning" onclick="removeProduct()">
+                  <button class="btn btn-warning" id="btn-remove-product">
                     <i class="fa fa-trash"></i> [D] entfernen
                   </button>
                 </div>
@@ -193,19 +193,19 @@
             <div class="col-md-6">
               <div class="control-group">
                 <label for="kc-initial">Gleichgewichtskonstante Kc:</label>
-                <input type="number" id="kc-initial" class="form-control" value="1.0" step="0.1" min="0" oninput="updateConcentrationEffect()">
+                <input type="number" id="kc-initial" class="form-control" value="1.0" step="0.1" min="0">
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="control-group">
                 <label for="reaction-quotient">Stöchiometrischer Faktor (n):</label>
-                <input type="number" id="reaction-quotient" class="form-control" value="1" step="1" min="1" max="4" oninput="updateConcentrationEffect()">
+                <input type="number" id="reaction-quotient" class="form-control" value="1" step="1" min="1" max="4">
               </div>
             </div>
           </div>
 
-          <button class="btn btn-success btn-lg btn-block" onclick="updateConcentrationEffect()">
+          <button class="btn btn-success btn-lg btn-block" id="btn-update-conc-effect">
             <i class="fa fa-chart-line"></i> Effekte aktualisieren
           </button>
         </div>
@@ -369,4 +369,23 @@
 <script src="{{ "js/chemisches-gleichgewicht.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/chemisches-gleichgewicht.css" | relURL }}">
 
+{{ end }}
+
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('conc-a').addEventListener('input', function() { updateEquilibrium(); });
+  document.getElementById('conc-b').addEventListener('input', function() { updateEquilibrium(); });
+  document.getElementById('conc-c').addEventListener('input', function() { updateEquilibrium(); });
+  document.getElementById('conc-d').addEventListener('input', function() { updateEquilibrium(); });
+  document.getElementById('btn-start-equilibrium').addEventListener('click', function() { startEquilibriumSimulation(); });
+  document.getElementById('btn-chatelier-temp').addEventListener('click', function() { applyChatelier('temp-increase'); });
+  document.getElementById('btn-chatelier-pressure').addEventListener('click', function() { applyChatelier('pressure-increase'); });
+  document.getElementById('btn-chatelier-conc').addEventListener('click', function() { applyChatelier('conc-increase'); });
+  document.getElementById('btn-remove-product').addEventListener('click', function() { removeProduct(); });
+  document.getElementById('kc-initial').addEventListener('input', function() { updateConcentrationEffect(); });
+  document.getElementById('reaction-quotient').addEventListener('input', function() { updateConcentrationEffect(); });
+  document.getElementById('btn-update-conc-effect').addEventListener('click', function() { updateConcentrationEffect(); });
+});
+</script>
 {{ end }}
