@@ -9,10 +9,52 @@ teilgebiet: ["einfuehrung-chemie"]
 icon: "⚛️"
 ---
 
-Chemie ist die Naturwissenschaft, die sich mit Stoffen, deren Eigenschaften und deren Umwandlungen beschäftigt. Jeder Stoff besteht aus kleinsten Teilchen – Atomen oder Molekülen – die miteinander wechselwirken.
+## Definition
 
-Die Stoffe lassen sich in zwei Hauptgruppen einteilen: **Reinstoffe** (bestehen aus einer Teilchenart, z. B. $H_2O$ oder $O_2$) und **Stoffgemische** (mehrere Teilchenarten, z. B. Luft oder Salzlösung). Wichtige grundlegende Konzepte sind das **Konzentrationsverhältnis** (Mischungsverhältnis), der **pH-Wert** bei Säuren und Basen, sowie das **Periodensystem der Elemente**.
+Chemie ist die Naturwissenschaft, die sich mit **Stoffen**, deren **Eigenschaften** und deren **Umwandlungen** beschäftigt. Jeder Stoff besteht aus kleinsten Teilchen — Atomen, Molekülen oder Ionen — die miteinander wechselwirken.
 
-Chemische Reaktionen können beschrieben werden mit Reaktionsgleichungen wie $2H_2 + O_2 \rightarrow 2H_2O$. Bei jeder chemischen Umwandlung werden Bindungen gelöst und neue Bindungen geknüpft, oft unter Freisetzung oder Aufnahme von Energie.
+## Stoffe und Stoffgemische
 
-Mit diesen Grundlagen können wir die **Struktur der Materie**, **chemische Bindungen** und **Reaktionstypen** vertiefen.
+Alle Stoffe lassen sich in zwei Hauptgruppen einteilen:
+
+| | Reinstoffe | Stoffgemische |
+|---|-----------|--------------|
+| Definition | eine Teilchenart | mehrere Teilchenarten |
+| Beispiele | $H_2O$, $O_2$, $Fe$, $NaCl$ | Luft, Salzlösung, Granit |
+| Trennung | nicht nötig | möglich (Filtration, Destillation) |
+
+**Reinstoffe** unterteilt man weiter in **Elemente** (nur eine Atomart, z. B. $O_2$, $Fe$) und **Verbindungen** (zwei+ Atomarten chemisch gebunden, z. B. $H_2O$, $NaCl$).
+
+## Chemische Reaktionen
+
+Bei einer **chemischen Reaktion** werden Bindungen gelöst und neue Bindungen geknüpft. Stoffe werden in andere Stoffe umgewandelt, oft unter Freisetzung oder Aufnahme von Energie.
+
+**Beispiel:** Die Verbrennung von Wasserstoff:
+
+$$2H_2 + O_2 \rightarrow 2H_2O$$
+
+Wasserstoff und Sauerstoff reagieren zu Wasser. Energie wird als Wärme und Licht freigesetzt (exotherme Reaktion).
+
+### Merkmale einer chemischen Reaktion:
+- **Edukte** (Ausgangsstoffe) → **Produkte** (Endstoffe)
+- Energieumsatz: exotherm (gibt Energie ab) oder endotherm (nimmt Energie auf)
+- Massenerhaltung: Die Gesamtmasse bleibt gleich (Gesetz von Lavoisier)
+
+## Die wichtigsten Grundlagen
+
+Chemie baut auf einigen zentralen Konzepten auf:
+
+1. **Periodensystem der Elemente:** Ordnet alle 118 Elemente nach Ordnungszahl und Eigenschaften
+2. **Chemische Bindungen:** Kovalent, ionisch, metallisch — erklären, warum Atome zusammenhalten
+3. **Stöchiometrie:** Quantitative Verhältnisse bei Reaktionen (wie viel Edukt → wie viel Produkt?)
+4. **Säuren und Basen:** pH-Wert, Protolyse, Neutralisation
+5. **Redox-Chemie:** Oxidation und Reduktion, Elektronenübergang
+
+## Chemie im Alltag
+
+Chemie begegnet uns überall:
+
+- **Kochen:** Maillard-Reaktion (Bräunung), Backpulver ($NaHCO_3$ als Triebmittel)
+- **Körper:** Atmung ($C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O$), Verdauung
+- **Umwelt:** Photosynthese ($6CO_2 + 6H_2O \xrightarrow{Licht} C_6H_{12}O_6 + 6O_2$)
+- **Technik:** Batterien, Kunststoffe, Arzneimittel, Düngemittel

@@ -9,14 +9,58 @@ teilgebiet: ["erdoel-organische-stoffklassen"]
 icon: "🛢️"
 ---
 
-**Kohlenwasserstoffe** bestehen aus $C$- und $H$-Atomen. Sie werden nach der Art der Kohlenstoff-Kohlenstoff-Bindungen eingeteilt.
+**Kohlenwasserstoffe** bestehen ausschließlich aus Kohlenstoff- und Wasserstoffatomen. Sie bilden die wichtigste Stoffklasse der organischen Chemie und sind Hauptbestandteil von Erdöl und Erdgas.
 
-**Alkane** (gesättigte Kohlenwasserstoffe) – nur Einfachbindungen: $CH_4$ (Methan), $C_2H_6$ (Ethan), $C_3H_8$ (Propan), $C_4H_{10}$ (Butan). Summenformel: $C_nH_{2n+2}$.
+## Alkane (gesättigt)
 
-**Alkene** (ungesättigte, Doppelbindung): $C_nH_{2n}$ – z. B. Ethen ($C_2H_4$), Propen ($C_3H_6$).
+Enthalten nur **Einfachbindungen** ($sp^3$-hybridisiert). Summenformel: $C_nH_{2n+2}$.
 
-**Alkine** (ungesättigte, Dreifachbindung): $C_nH_{2n-2}$ – z. B. Ethin ($C_2H_2$), Propin ($C_3H_4$).
+| Alkan | Formel | $M$ (g/mol) | Siedepunkt (°C) | Verwendung |
+|-------|--------|-------------|-----------------|------------|
+| Methan | $CH_4$ | 16 | −161 | Erdgas |
+| Ethan | $C_2H_6$ | 30 | −89 | Brenngas |
+| Propan | $C_3H_8$ | 44 | −42 | Campinggas |
+| Butan | $C_4H_{10}$ | 58 | −1 | Feuerzeug, Gas |
+| Pentan | $C_5H_{12}$ | 72 | 36 | Lösungsmittel |
 
-**Aromatische Kohlenwasserstoffe** – Benzol-Ringe: $C_6H_6$, ringförmig, stabil, typische Duft- und Farbstoffe.
+**Trend:** Mit steigender Kettenlänge nehmen Siedepunkt und Molmasse zu. Alkane sind bei Raumtemperatur gasförmig ($C_1$–$C_4$), flüssig ($C_5$–$C_{17}$) oder fest ($>C_{17}$, Paraffine).
 
-Kohlenwasserstoffe sind wichtiger Grundlage für Erdöl, Benzin, Kunststoffe und organische Wirkstoffe.
+**Isomerie:** $C_4H_{10}$ hat zwei Isomere: n-Butan (lineare Kette) und Isobutan (verzweigt). Verzweigte Isomere haben niedrigere Siedepunkte.
+
+## Alkene (Doppelbindung)
+
+Enthalten eine **$C=C$-Doppelbindung** ($sp^2$-hybridisiert). Summenformel: $C_nH_{2n}$.
+
+- **Ethen** ($C_2H_4$): wichtigstes Alken, Grundbaustein für Polyethylen ($n\,C_2H_4 \rightarrow [-CH_2-CH_2-]_n$)
+- **Propen** ($C_3H_6$): Vorstufe für Polypropylen (Verpackungen, Folien)
+
+Alkene sind reaktiver als Alkane — die Doppelbindung ermöglicht **Additionsreaktionen** (Halogenierung, Hydrierung, Hydratation).
+
+## Alkine (Dreifachbindung)
+
+Enthalten eine **$C\equiv C$-Dreifachbindung** ($sp$-hybridisiert). Summenformel: $C_nH_{2n-2}$.
+
+- **Ethin** ($C_2H_2$, Acetylen): Schweißgas, höchste Flamme von allen Gasen (~3300°C)
+- **Propin** ($C_3H_4$): synthetische Vorstufe
+
+## Aromatische Kohlenwasserstoffe
+
+**Benzol** ($C_6H_6$) ist der Grundkörper. Die 6 Kohlenstoffatome bilden einen Ring mit einem **delokalisierten $\pi$-Elektronensystem** (3 Doppelbindungen, die nicht fixiert sind).
+
+Benzol ist besonders stabil (Aromatizität) und reagiert anders als Alkene: **Substitution** statt Addition.
+
+## Verbrennung von Kohlenwasserstoffen
+
+Alle Kohlenwasserstoffe brennen mit Sauerstoff zu $CO_2$ und $H_2O$:
+
+$$C_nH_m + \left(n + \frac{m}{4}\right)O_2 \rightarrow n\,CO_2 + \frac{m}{2}\,H_2O$$
+
+**Beispiel Methan:** $CH_4 + 2O_2 \rightarrow CO_2 + 2H_2O\quad(\Delta H = -890\text{ kJ/mol})$
+
+## Kohlenwasserstoffe im Alltag
+
+- **Erdgas:** hauptsächlich Methan — Heizung, Stromerzeugung
+- **Benzin:** $C_5$–$C_{12}$-Alkane — Kraftstoffe
+- **Ethen:** Reifung von Früchten (Ethylengas)
+- **Polyethylen:** Plastiktüten, Verpackungen (aus Ethen)
+- **Benzol:** Aromaten in der Industrie (Vorsicht: krebserregend)
