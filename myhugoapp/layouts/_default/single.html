@@ -46,7 +46,7 @@
       <div class="col-md-8">
         <article class="thema-content">
           {{ $headingCount := len (findRE `<h[2-3]` .Content) }}
-          {{ if ge $headingCount 3 }}
+          {{ if and (ge $headingCount 3) (ne .Params.toc false) }}
           <div class="toc-wrapper">
             <details class="toc-details" open>
               <summary class="toc-summary">📑 Inhaltsverzeichnis</summary>
