@@ -25,6 +25,14 @@ myhugoapp/content/posts/.urls.json
 # Dependencies
 node_modules/
 
+# Backup files
+backups/logs/
+backups/neo4j/
+backups/neo4j-leads/
+
+# Temporary files
+tmp/
+
 # Development artifacts
 .sisyphus/
 .playwright-mcp/
