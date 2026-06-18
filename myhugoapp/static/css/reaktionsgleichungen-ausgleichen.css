@@ -87,7 +87,7 @@
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   margin-bottom: 20px;
-  animation: fadeIn 0.3s ease-in;
+  animation: fadeInDown 0.3s ease-in;
 }
 
 .result-card h3 {
@@ -283,18 +283,6 @@
 .info-card ul li {
   margin-bottom: 8px;
   line-height: 1.6;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* Responsive */

@@ -13,6 +13,29 @@
   --bg-primary: #f8f9fa;
 }
 
+/* Shared animation keyframes - consolidated from calculator CSS files */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .site-main-heading {
   margin: 2rem 0;
   font-size: 2.5rem;
