@@ -181,6 +181,19 @@ th {
     margin-right: 0;
 }
 
+/* Quiz start screen */
+.quiz-start-content {
+    text-align: center;
+    padding: 2rem;
+}
+.quiz-start-heading {
+    margin-bottom: 1rem;
+}
+.quiz-start-text {
+    margin-bottom: 2rem;
+    color: var(--text-secondary, #666);
+}
+
 /* Special handling for links to prevent them from overflowing */
 a {
     word-break: break-word;
