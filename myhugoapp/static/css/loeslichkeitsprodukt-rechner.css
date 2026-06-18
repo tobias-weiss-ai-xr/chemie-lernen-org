@@ -60,7 +60,7 @@
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-  color: #007bff;
+  color: var(--accent-color);
   background-color: #fff;
   border: 2px solid #dee2e6;
   border-bottom-color: #fff;
@@ -95,7 +95,7 @@
 }
 
 .form-control:focus {
-  border-color: #007bff;
+  border-color: var(--accent-color);
   outline: none;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
@@ -117,8 +117,8 @@
 }
 
 .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
 }
 
 .btn-primary:hover {
@@ -152,8 +152,8 @@
   margin: 5px;
   padding: 8px 15px;
   background-color: #fff;
-  border: 1px solid #007bff;
-  color: #007bff;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
   border-radius: 5px;
   transition: all 0.2s;
   cursor: pointer;
@@ -163,7 +163,7 @@
 .example-btn:hover,
 .example-btn-sol:hover,
 .example-btn-precip:hover {
-  background-color: #007bff;
+  background-color: var(--accent-color);
   color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0,123,255,0.3);
@@ -180,7 +180,7 @@
 }
 
 .result-card h3 {
-  color: #007bff;
+  color: var(--accent-color);
   margin-bottom: 20px;
   font-size: 20px;
 }
@@ -245,7 +245,7 @@
   margin-bottom: 10px;
   background-color: #fff;
   border-radius: 8px;
-  border-left: 4px solid #007bff;
+  border-left: 4px solid var(--accent-color);
   transition: transform 0.2s;
 }
 
@@ -266,7 +266,7 @@
 }
 
 .ion-value {
-  color: #007bff;
+  color: var(--accent-color);
   font-weight: 700;
   font-size: 16px;
 }
@@ -323,7 +323,7 @@
 }
 
 .info-card h3 {
-  color: #007bff;
+  color: var(--accent-color);
   margin-bottom: 15px;
   font-size: 18px;
 }
@@ -365,7 +365,7 @@
 }
 
 .table thead {
-  background-color: #007bff;
+  background-color: var(--accent-color);
   color: #fff;
 }
 

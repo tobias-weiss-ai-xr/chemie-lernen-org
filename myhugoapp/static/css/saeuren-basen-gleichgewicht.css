@@ -46,13 +46,13 @@
 }
 
 .value-highlight {
-  color: #007bff;
+  color: var(--accent-color);
   font-weight: bold;
 }
 
 .formula-display {
   background: #e3f2fd;
-  border-left: 4px solid #007bff;
+  border-left: 4px solid var(--accent-color);
   padding: 15px;
   margin: 20px 0;
   text-align: center;
@@ -121,7 +121,7 @@
 .calculation-steps .step {
   display: inline-block;
   width: 20px;
-  color: #007bff;
+  color: var(--accent-color);
   font-weight: bold;
 }
 
@@ -189,7 +189,7 @@
 }
 
 .example-card h4 {
-  color: #007bff;
+  color: var(--accent-color);
   margin-bottom: 15px;
 }
 
@@ -204,14 +204,14 @@
 /* Info Cards */
 .info-card {
   background: white;
-  border-left: 4px solid #007bff;
+  border-left: 4px solid var(--accent-color);
   padding: 20px;
   margin-bottom: 15px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .info-card h3 {
-  color: #007bff;
+  color: var(--accent-color);
   margin-bottom: 15px;
   font-size: 1.2rem;
 }

@@ -17,7 +17,7 @@
 .config-panel h3 {
   margin-top: 0;
   margin-bottom: 20px;
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 .config-panel .form-group {
@@ -41,7 +41,7 @@
 }
 
 .ws-header {
-  border-bottom: 2px solid #2c3e50;
+  border-bottom: 2px solid var(--text-primary);
   margin-bottom: 30px;
   padding-bottom: 20px;
 }
@@ -65,7 +65,7 @@
 .ws-problem h4 {
   font-size: 14px;
   font-weight: 700;
-  color: #2c3e50;
+  color: var(--text-primary);
   margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -95,7 +95,7 @@
 
 .ws-solutions h2 {
   margin-top: 0;
-  color: #2c3e50;
+  color: var(--text-primary);
   border-bottom: 2px solid #3498db;
   padding-bottom: 10px;
 }

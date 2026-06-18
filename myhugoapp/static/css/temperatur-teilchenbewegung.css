@@ -13,7 +13,7 @@
 
 .form-group label {
   font-weight: bold;
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 .temperature-display {
@@ -94,7 +94,7 @@
 }
 
 .educational-content h2 {
-  color: #2c3e50;
+  color: var(--text-primary);
   margin-bottom: 20px;
 }
 

@@ -46,7 +46,7 @@
 .stat-value {
   font-size: 2.2rem;
   font-weight: bold;
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 .stat-label {

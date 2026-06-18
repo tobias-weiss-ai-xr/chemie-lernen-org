@@ -13,7 +13,7 @@
 
 .form-group label {
   font-weight: bold;
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 .simulation-area {
@@ -73,7 +73,7 @@
 .formula-text {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #2c3e50;
+  color: var(--text-primary);
   margin: 10px 0;
   font-family: 'Times New Roman', serif;
 }
@@ -83,7 +83,7 @@
 }
 
 .educational-content h2 {
-  color: #2c3e50;
+  color: var(--text-primary);
   margin-bottom: 20px;
 }
 
