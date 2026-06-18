@@ -27,7 +27,7 @@ enableRobotsTXT = true
   custom_css = ["css/custom.css", "css/dark-mode.css"]
   custom_js = ["js/dark-mode.js"]
   defaultImage = "recent-article_001.jpg"
-  footer_description = "chemie-lernen.org - Ihre Plattform für innovativse Chemie-Lernen. Chemische Grundlagen und Konzepte greifbar und erlebbar."
+  footer_description = "chemie-lernen.org - Ihre Plattform für innovatives Chemie-Lernen. Chemische Grundlagen und Konzepte greifbar und erlebbar."
 
 [params.meta]
   keywords = "chemie-lernen.org, VR Chemieunterricht, Virtual Reality Bildung, Chemie lernen online, interaktiver Chemieunterricht, digitale Bildung, Chemie studieren, innovative Chemie, immersive Bildung"

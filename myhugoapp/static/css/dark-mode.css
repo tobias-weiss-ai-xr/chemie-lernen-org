@@ -6,8 +6,8 @@
   --bg-secondary: #0d2a1a;
   --bg-tertiary: #123d25;
   --text-primary: #c8e6c9;
-  --text-secondary: #81c784;
-  --text-muted: #4caf50;
+  --text-secondary: #a5d6a7;
+  --text-muted: #81c784;
   --border-color: #1b5e20;
   --accent-color: #4caf50;
   --accent-hover: #66bb6a;
@@ -26,7 +26,7 @@
 
 /* Logo switching for dark mode - use dark version of logo */
 [data-theme="dark"] .navbar-brand img.site-logo {
-  content: url("/img/chemie-lernen-logo_dark.png");
+  content: url("/img/chemie-lernen-logo_dark.webp");
 }
 
 /* Global Dark Mode Styles */
@@ -178,7 +178,8 @@
   background-color: var(--bg-secondary);
   border-color: var(--accent-color);
   color: var(--text-primary);
-  outline: none;
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
 }
 
 [data-theme="dark"] .form-control {

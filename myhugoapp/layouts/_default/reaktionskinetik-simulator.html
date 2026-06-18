@@ -41,25 +41,25 @@
 
         <div class="simulation-container">
           <div class="simulation-canvas">
-            <canvas id="temperature-canvas" width="700" height="400"></canvas>
+            <canvas id="temperature-canvas" width="700" height="400" role="img" aria-label="Teilchenbewegung bei verschiedener Temperatur"></canvas>
           </div>
 
           <div class="simulation-controls">
             <div class="control-group">
-              <label>Temperatur (K):</label>
-              <input type="range" id="temperature-slider" min="100" max="1000" value="300">
+              <label for="temperature-slider">Temperatur (K):</label>
+<input type="range" id="temperature-slider" min="100" max="1000" value="300">
               <span id="temp-kinetics-display">300 K</span>
             </div>
 
             <div class="control-group">
-              <label>Anzahl Teilchen:</label>
-              <input type="range" id="particle-count" min="50" max="500" value="200">
+              <label for="particle-count">Anzahl Teilchen:</label>
+<input type="range" id="particle-count" min="50" max="500" value="200">
               <span id="particle-count-display">200</span>
             </div>
 
             <div class="control-group">
-              <label>Simulation starten:</label>
-              <button class="btn btn-primary" id="start-kinetics">
+              <span class="control-label">Simulation starten:</span>
+ <button class="btn btn-primary" id="start-kinetics">
                 <i class="fa fa-play"></i> <span id="kinetics-btn-text">Start</span>
               </button>
             </div>
@@ -90,31 +90,31 @@
 
         <div class="simulation-container">
           <div class="simulation-canvas">
-            <canvas id="collision-canvas" width="700" height="400"></canvas>
+            <canvas id="collision-canvas" width="700" height="400" role="img" aria-label="Teilchenkollision Simulation"></canvas>
           </div>
 
           <div class="simulation-controls">
             <div class="control-group">
-              <label>Stöquerschnitt:</label>
-              <input type="range" id="collision-threshold" min="0.1" max="1.0" value="0.5" step="0.1">
+              <label for="collision-threshold">Stöquerschnitt:</label>
+<input type="range" id="collision-threshold" min="0.1" max="1.0" value="0.5" step="0.1">
               <span id="collision-threshold-display">0.5</span>
             </div>
 
             <div class="control-group">
-              <label>Konzentration (mol/L):</label>
-              <input type="range" id="concentration-slider" min="0.1" max="10.0" value="1.0" step="0.1">
+              <label for="concentration-slider">Konzentration (mol/L):</label>
+<input type="range" id="concentration-slider" min="0.1" max="10.0" value="1.0" step="0.1">
               <span id="concentration-display">1.0 mol/L</span>
             </div>
 
             <div class="control-group">
-              <label>Effektiver Querschnitt (Å²):</label>
-              <input type="range" id="cross-section-slider" min="0.1" max="5.0" value="1.0" step="0.1">
+              <label for="cross-section-slider">Effektiver Querschnitt (Å²):</label>
+<input type="range" id="cross-section-slider" min="0.1" max="5.0" value="1.0" step="0.1">
               <span id="cross-section-display">1.0 Å²</span>
             </div>
 
             <div class="control-group">
-              <label>Reaktion starten:</label>
-              <button class="btn btn-success" id="start-collision">
+              <span class="control-label">Reaktion starten:</span>
+ <button class="btn btn-success" id="start-collision">
                 <i class="fa fa-bolt"></i> <span id="collision-btn-text">Start</span>
               </button>
             </div>
@@ -178,12 +178,12 @@
                 <label for="arrhenius-temp-range">Temperaturbereich (K):</label>
                 <div class="temp-range-inputs">
                   <div>
-                    <label>Min:</label>
-                    <input type="number" id="temp-min" class="form-control" value="200">
+                    <label for="temp-min">Min:</label>
+<input type="number" id="temp-min" class="form-control" value="200">
                   </div>
                   <div>
-                    <label>Max:</label>
-                    <input type="number" id="temp-max" class="form-control" value="800">
+                    <label for="temp-max">Max:</label>
+<input type="number" id="temp-max" class="form-control" value="800">
                   </div>
                 </div>
               </div>
@@ -191,7 +191,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="arrhenius-steps">Anzahl Temperaturpunkte:</label>
-                <input type="number" id="temp-steps" class="form-control" value="10" min="5" max="30">
+                <input aria-label="Temp Steps"type="number" id="temp-steps" class="form-control" value="10" min="5" max="30">
               </div>
             </div>
           </div>
@@ -204,7 +204,7 @@
         <div class="plot-container">
           <h3>Arrhenius-Plot</h3>
           <div class="plot-wrapper">
-            <canvas id="arrhenius-plot-canvas" width="600" height="400"></canvas>
+            <canvas id="arrhenius-plot-canvas" width="600" height="400" role="img" aria-label="Arrhenius-Plot der Reaktionsrate"></canvas>
           </div>
           <div class="plot-legend">
             <div class="legend-item">
@@ -219,7 +219,7 @@
         </div>
 
         <div class="arrhenius-results">
-          <div class="result-box">
+          <div class="result-box" aria-live="polite">
             <h4>Berechnete Werte</h4>
             <div class="calculation-summary">
               <div class="calc-row">

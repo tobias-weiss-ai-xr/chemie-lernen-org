@@ -59,9 +59,13 @@ const mockDocument = {
 };
 
 global.document = mockDocument;
+global.window = { document: mockDocument };
 
 // Mock THREE
 global.THREE = {
+  Color: class {
+    constructor(hex) { this.hex = hex; }
+  },
   Scene: class {
     constructor() {
       this.children = [];
@@ -395,6 +399,7 @@ describe('Chart Manager', () => {
 describe('3D Visualizer', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockGetElementById.mockReturnValue(null);
   });
 
   describe('Molecule Viewer', () => {

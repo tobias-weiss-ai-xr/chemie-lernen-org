@@ -35,8 +35,8 @@
         <div id="practice-setup" style="background: white; padding: 20px; border-radius: 8px; margin-top: 15px;">
           <div class="row">
             <div class="col-md-4">
-              <label>Aufgabentyp:</label>
-              <select id="practice-type" class="form-control" aria-label="Aufgabentyp wählen">
+              <label for="practice-type">Aufgabentyp:</label>
+<select id="practice-type" class="form-control" aria-label="Aufgabentyp wählen">
                 <option value="mol-mol">Mol-Mol Umrechnung</option>
                 <option value="mass-mass">Masse-Masse Umrechnung</option>
                 <option value="limiting">Limitierendes Reagenz</option>
@@ -45,15 +45,15 @@
               </select>
             </div>
             <div class="col-md-4">
-              <label>Schwierigkeit:</label>
-              <select id="practice-difficulty" class="form-control" aria-label="Schwierigkeit wählen">
+              <label for="practice-difficulty">Schwierigkeit:</label>
+<select id="practice-difficulty" class="form-control" aria-label="Schwierigkeit wählen">
                 <option value="easy">Einfach (ganze Zahlen)</option>
                 <option value="medium">Mittel (Dezimalzahlen)</option>
                 <option value="hard">Schwer (komplexe Reaktionen)</option>
               </select>
             </div>
             <div class="col-md-4">
-              <label>&nbsp;</label>
+              
               <button id="btn-start-practice" class="btn btn-success btn-block">
                 <i class="fa fa-play"></i> Aufgabe starten
               </button>
@@ -66,7 +66,7 @@
           <div id="problem-content"></div>
 
           <div id="answer-section" style="margin-top: 20px;">
-            <label>Deine Antwort:</label>
+            <label for="practice-answer">Deine Antwort:</label>
             <div class="row">
               <div class="col-md-8">
                 <input type="number" id="practice-answer" class="form-control" step="any" placeholder="Ergebnis eingeben..." aria-label="Deine Antwort eingeben">

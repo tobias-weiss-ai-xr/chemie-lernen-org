@@ -16,7 +16,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="material-selector">Material auswählen:</label>
-          <select id="material-selector" class="form-control">
+          <select id="material-selector" class="form-control" aria-label="Material wählen">
             <option value="copper">Kupfer (Metall, λ=400 W/m·K)</option>
             <option value="iron">Eisen (Metall, λ=80 W/m·K)</option>
             <option value="silicon">Silizium (Halbleiter, λ=150 W/m·K)</option>
@@ -65,7 +65,7 @@
         <div class="info-card">
           <h4>Wärmefluss-Visualisierung</h4>
           <div id="conduction-simulation" class="conduction-simulation">
-            <canvas id="simulation-canvas" width="700" height="400"></canvas>
+            <canvas id="simulation-canvas" width="700" height="400" role="img" aria-label="Visualisierung: simulation canvas"></canvas>
           </div>
         </div>
       </div>

@@ -46,7 +46,7 @@
         <p>Visuelle Darstellung einer galvanischen Zelle mit Elektronen- und Ionenflüssen.</p>
 
         <div class="canvas-container">
-          <canvas id="galvanic-cell-canvas" width="800" height="500"></canvas>
+          <canvas id="galvanic-cell-canvas" width="800" height="500" role="img" aria-label="Galvanische Zelle Animation"></canvas>
         </div>
 
         <div class="cell-controls">
@@ -106,7 +106,7 @@
         <p>Visuelle Darstellung der Elektrolyse mit externer Spannungsquelle.</p>
 
         <div class="canvas-container">
-          <canvas id="electrolysis-canvas" width="800" height="500"></canvas>
+          <canvas id="electrolysis-canvas" width="800" height="500" role="img" aria-label="Elektrolyse Animation"></canvas>
         </div>
 
         <div class="electrolysis-controls">
@@ -186,7 +186,7 @@
 
         <div class="reaction-selector">
           <label for="half-reaction">Halbreaktion:</label>
-          <select id="half-reaction" class="form-control">
+          <select id="half-reaction" class="form-control" aria-label="Halbreaktion wählen">
             <option value="zn-oxidation">Zn → Zn²⁺ + 2e⁻ (Oxidation)</option>
             <option value="cu-reduction">Cu²⁺ + 2e⁻ → Cu (Reduktion)</option>
             <option value="na-oxidation">Na → Na⁺ + e⁻ (Oxidation)</option>
@@ -195,7 +195,7 @@
         </div>
 
         <div class="canvas-container">
-          <canvas id="electron-canvas" width="800" height="400"></canvas>
+          <canvas id="electron-canvas" width="800" height="400" role="img" aria-label="Elektronenfluss Animation"></canvas>
         </div>
 
         <div class="transition-controls">
@@ -251,9 +251,9 @@
           </button>
         </div>
 
-        <div id="nernst-result" class="result-panel" style="display:none;">
+        <div id="nernst-result" class="result-panel" style="display:none;" aria-live="polite">
           <h3>Ergebnis:</h3>
-          <div class="result-value">
+          <div class="result-value" aria-live="polite">
             <span class="label">Zellpotential E:</span>
             <span id="nernst-potential" class="value"></span>
           </div>

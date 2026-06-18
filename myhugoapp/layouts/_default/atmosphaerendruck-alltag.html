@@ -70,24 +70,24 @@
         <div class="simulation-container">
           <h3>Interaktive Simulation</h3>
           <div class="strohhalm-demo">
-            <canvas id="strohhalm-canvas" width="500" height="400"></canvas>
+            <canvas id="strohhalm-canvas" width="500" height="400" role="img" aria-label="Simulation: Flüssigkeitssäule im Strohhalm"></canvas>
 
             <div class="simulation-controls">
               <div class="control-group">
-                <label>Saugstärke:</label>
-                <input type="range" id="strohhalm-suction" min="0" max="100" value="0">
+                <label for="strohhalm-suction">Saugstärke:</label>
+<input type="range" id="strohhalm-suction" min="0" max="100" value="0">
                 <span id="strohhalm-suction-value">0%</span>
               </div>
 
               <div class="control-group">
-                <label>Flüssigkeitshöhe (cm):</label>
-                <input type="range" id="strohhalm-liquid-height" min="5" max="20" value="10">
+                <label for="strohhalm-liquid-height">Flüssigkeitshöhe (cm):</label>
+<input type="range" id="strohhalm-liquid-height" min="5" max="20" value="10">
                 <span id="strohhalm-height-value">10 cm</span>
               </div>
 
               <div class="control-group">
-                <label>Flüssigkeit:</label>
-                <select id="strohhalm-liquid">
+                <label for="strohhalm-liquid">Flüssigkeit:</label>
+<select id="strohhalm-liquid" aria-label="Flüssigkeit wählen">
                   <option value="water">Wasser (ρ = 1.000 kg/m³)</option>
                   <option value="juice">Saft (ρ = 1.050 kg/m³)</option>
                   <option value="oil">Öl (ρ = 920 kg/m³)</option>
@@ -158,24 +158,24 @@
         <div class="simulation-container">
           <h3>Interaktive Simulation</h3>
           <div class="ballon-demo">
-            <canvas id="ballon-canvas" width="500" height="400"></canvas>
+            <canvas id="ballon-canvas" width="500" height="400" role="img" aria-label="Simulation: Ballon unter varying Druck"></canvas>
 
             <div class="simulation-controls">
               <div class="control-group">
-                <label>Luftmenge (Pumps):</label>
-                <input type="range" id="ballon-air" min="0" max="50" value="10">
+                <label for="ballon-air">Luftmenge (Pumps):</label>
+<input type="range" id="ballon-air" min="0" max="50" value="10">
                 <span id="ballon-air-value">10</span>
               </div>
 
               <div class="control-group">
-                <label>Temperatur (°C):</label>
-                <input type="range" id="ballon-temperature" min="-20" max="60" value="20">
+                <label for="ballon-temperature">Temperatur (°C):</label>
+<input type="range" id="ballon-temperature" min="-20" max="60" value="20">
                 <span id="ballon-temperature-value">20°C</span>
               </div>
 
               <div class="control-group">
-                <label>Gummispannung:</label>
-                <select id="ballon-tension">
+                <label for="ballon-tension">Gummispannung:</label>
+<select id="ballon-tension" aria-label="Oberflächenspannung wählen">
                   <option value="low">Niedrig (dünner Ballon)</option>
                   <option value="medium" selected>Mittel (normaler Ballon)</option>
                   <option value="high">Hoch (fester Ballon)</option>
@@ -259,24 +259,24 @@
         <div class="simulation-container">
           <h3>Interaktive Simulation</h3>
           <div class="saugnapf-demo">
-            <canvas id="saugnapf-canvas" width="500" height="400"></canvas>
+            <canvas id="saugnapf-canvas" width="500" height="400" role="img" aria-label="Visualisierung: saugnapf canvas"></canvas>
 
             <div class="simulation-controls">
               <div class="control-group">
-                <label>Saugnapf-Größe:</label>
-                <input type="range" id="saugnapf-size" min="5" max="20" value="10">
+                <label for="saugnapf-size">Saugnapf-Größe:</label>
+<input type="range" id="saugnapf-size" min="5" max="20" value="10">
                 <span id="saugnapf-size-value">10 cm Durchmesser</span>
               </div>
 
               <div class="control-group">
-                <label>Atmosphärendruck:</label>
-                <input type="range" id="saugnapf-air-pressure" min="0" max="100" value="101">
+                <label for="saugnapf-air-pressure">Atmosphärendruck:</label>
+<input type="range" id="saugnapf-air-pressure" min="0" max="100" value="101">
                 <span id="saugnapf-pressure-value">101.3 kPa</span>
               </div>
 
               <div class="control-group">
-                <label>Oberfläche:</label>
-                <select id="saugnapf-surface">
+                <label for="saugnapf-surface">Oberfläche:</label>
+<select id="saugnapf-surface" aria-label="Untergrund wählen">
                   <option value="glass">Glas (sehr glatt)</option>
                   <option value="wood" selected>Holz (mittelmäßig)</option>
                   <option value="concrete">Beton (rau)</option>

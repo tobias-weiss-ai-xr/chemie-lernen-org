@@ -100,8 +100,8 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Berechnen:</label>
-                  <div class="btn-group" style="width: 100%;">
+                  <span class="control-label">Berechnen:</span>
+ <div class="btn-group" style="width: 100%;">
                     <button class="btn btn-primary" id="btn-ideal-pressure" style="width: 25%;">Druck p</button>
                     <button class="btn btn-primary" id="btn-ideal-volume" style="width: 25%;">Volumen V</button>
                     <button class="btn btn-primary" id="btn-ideal-amount" style="width: 25%;">Stoffmenge n</button>
@@ -134,7 +134,7 @@
                   <div class="col-md-6">
                     <h4>Ausgangszustand (1)</h4>
                     <div class="form-group">
-                      <label>Druck p₁:</label>
+                      <label for="bm-p1">Druck p₁:</label>
                       <div class="input-group">
                         <input type="text" id="bm-p1" class="form-control"
                                placeholder="z.B. 1" aria-label="Druck p1">
@@ -142,7 +142,7 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label>Volumen V₁:</label>
+                      <label for="bm-v1">Volumen V₁:</label>
                       <div class="input-group">
                         <input type="text" id="bm-v1" class="form-control"
                                placeholder="z.B. 10" aria-label="Volumen V1">
@@ -153,7 +153,7 @@
                   <div class="col-md-6">
                     <h4>Endzustand (2)</h4>
                     <div class="form-group">
-                      <label>Druck p₂:</label>
+                      <label for="bm-p2">Druck p₂:</label>
                       <div class="input-group">
                         <input type="text" id="bm-p2" class="form-control"
                                placeholder="Berechnet oder eingeben" aria-label="Druck p2">
@@ -161,7 +161,7 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label>Volumen V₂:</label>
+                      <label for="bm-v2">Volumen V₂:</label>
                       <div class="input-group">
                         <input type="text" id="bm-v2" class="form-control"
                                placeholder="Berechnet oder eingeben" aria-label="Volumen V2">
@@ -172,8 +172,8 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Berechnen:</label>
-                  <button class="btn btn-primary btn-block" id="btn-boyle-mariotte">
+                  <span class="control-label">Berechnen:</span>
+ <button class="btn btn-primary btn-block" id="btn-boyle-mariotte">
                     <i class="fa fa-calculator"></i> Berechnen
                   </button>
                 </div>
@@ -187,8 +187,8 @@
                 <p class="help-block">Isobare (p = konst.) oder isochore (V = konst.) Zustandsänderung</p>
 
                 <div class="form-group">
-                  <label>Gesetz wählen:</label>
-                  <select id="gl-law-type" class="form-control" aria-label="Gesetzwahl">
+                  <label for="gl-law-type">Gesetz wählen:</label>
+<select id="gl-law-type" class="form-control" aria-label="Gesetzwahl">
                     <option value="isobar">Isobares Gesetz (V₁/T₁ = V₂/T₂ bei p = konst.)</option>
                     <option value="isochor">Ichores Gesetz (p₁/T₁ = p₂/T₂ bei V = konst.)</option>
                   </select>
@@ -204,8 +204,8 @@
                       <p class="help-block" id="gl-v1-unit">L / bar</p>
                     </div>
                     <div class="form-group">
-                      <label>Temperatur T₁:</label>
-                      <input type="text" id="gl-t1" class="form-control"
+                      <label for="gl-t1">Temperatur T₁:</label>
+<input type="text" id="gl-t1" class="form-control"
                              placeholder="z.B. 273" aria-label="Temperatur T1">
                       <p class="help-block">Kelvin</p>
                     </div>
@@ -219,8 +219,8 @@
                       <p class="help-block" id="gl-v2-unit">L / bar</p>
                     </div>
                     <div class="form-group">
-                      <label>Temperatur T₂:</label>
-                      <input type="text" id="gl-t2" class="form-control"
+                      <label for="gl-t2">Temperatur T₂:</label>
+<input type="text" id="gl-t2" class="form-control"
                              placeholder="Berechnet oder eingeben" aria-label="Temperatur T2">
                       <p class="help-block">Kelvin</p>
                     </div>
@@ -228,8 +228,8 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Berechnen:</label>
-                  <button class="btn btn-primary btn-block" id="btn-gay-lussac">
+                  <span class="control-label">Berechnen:</span>
+ <button class="btn btn-primary btn-block" id="btn-gay-lussac">
                     <i class="fa fa-calculator"></i> Berechnen
                   </button>
                 </div>
@@ -246,20 +246,20 @@
                   <div class="col-md-6">
                     <h4>Ausgangszustand (1)</h4>
                     <div class="form-group">
-                      <label>Druck p₁:</label>
-                      <input type="text" id="cg-p1" class="form-control"
+                      <label for="cg-p1">Druck p₁:</label>
+<input type="text" id="cg-p1" class="form-control"
                              placeholder="z.B. 1" aria-label="Druck p1">
                       <p class="help-block">bar</p>
                     </div>
                     <div class="form-group">
-                      <label>Volumen V₁:</label>
-                      <input type="text" id="cg-v1" class="form-control"
+                      <label for="cg-v1">Volumen V₁:</label>
+<input type="text" id="cg-v1" class="form-control"
                              placeholder="z.B. 10" aria-label="Volumen V1">
                       <p class="help-block">L</p>
                     </div>
                     <div class="form-group">
-                      <label>Temperatur T₁:</label>
-                      <input type="text" id="cg-t1" class="form-control"
+                      <label for="cg-t1">Temperatur T₁:</label>
+<input type="text" id="cg-t1" class="form-control"
                              placeholder="z.B. 273" aria-label="Temperatur T1">
                       <p class="help-block">Kelvin</p>
                     </div>
@@ -267,20 +267,20 @@
                   <div class="col-md-6">
                     <h4>Endzustand (2)</h4>
                     <div class="form-group">
-                      <label>Druck p₂:</label>
-                      <input type="text" id="cg-p2" class="form-control"
+                      <label for="cg-p2">Druck p₂:</label>
+<input type="text" id="cg-p2" class="form-control"
                              placeholder="Berechnet oder eingeben" aria-label="Druck p2">
                       <p class="help-block">bar</p>
                     </div>
                     <div class="form-group">
-                      <label>Volumen V₂:</label>
-                      <input type="text" id="cg-v2" class="form-control"
+                      <label for="cg-v2">Volumen V₂:</label>
+<input type="text" id="cg-v2" class="form-control"
                              placeholder="Berechnet oder eingeben" aria-label="Volumen V2">
                       <p class="help-block">L</p>
                     </div>
                     <div class="form-group">
-                      <label>Temperatur T₂:</label>
-                      <input type="text" id="cg-t2" class="form-control"
+                      <label for="cg-t2">Temperatur T₂:</label>
+<input type="text" id="cg-t2" class="form-control"
                              placeholder="Berechnet oder eingeben" aria-label="Temperatur T2">
                       <p class="help-block">Kelvin</p>
                     </div>
@@ -288,8 +288,8 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Berechnen:</label>
-                  <button class="btn btn-primary btn-block" id="btn-combined-gas">
+                  <span class="control-label">Berechnen:</span>
+ <button class="btn btn-primary btn-block" id="btn-combined-gas">
                     <i class="fa fa-calculator"></i> Berechnen
                   </button>
                 </div>
@@ -305,7 +305,7 @@
     <div id="results-section" style="display:none;">
       <div class="row">
         <div class="col-md-12">
-          <div class="result-card main-result">
+          <div class="result-card main-result" aria-live="polite">
             <h3>Ergebnis</h3>
             <div id="calculation-result"></div>
           </div>
@@ -314,14 +314,14 @@
 
       <div class="row">
         <div class="col-md-6">
-          <div class="result-card details-result">
+          <div class="result-card details-result" aria-live="polite">
             <h3>Berechnungsdetails</h3>
             <div id="calculation-details"></div>
           </div>
         </div>
 
         <div class="col-md-6">
-          <div class="result-card comparison-result">
+          <div class="result-card comparison-result" aria-live="polite">
             <h3>Anwendung</h3>
             <div id="application-info"></div>
           </div>

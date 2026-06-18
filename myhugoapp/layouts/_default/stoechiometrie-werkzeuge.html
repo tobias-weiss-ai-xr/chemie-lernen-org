@@ -22,7 +22,7 @@
         </h3>
         <p>Geben Sie eine Reaktionsgleichung ein, um die Koeffizienten automatisch zu extrahieren:</p>
         <div class="form-group">
-          <input type="text" id="equation-parser-input" class="form-control"
+          <input aria-label="Equation Parser Input"type="text" id="equation-parser-input" class="form-control"
                  placeholder="z.B. 2H2 + O2 -> 2H2O oder CH4 + 2O2 -> CO2 + 2H2O"
                  style="font-size: 16px; padding: 12px;"
                  aria-label="Reaktionsgleichung eingeben">
@@ -31,7 +31,7 @@
           <i class="fa fa-cogs"></i> Gleichung analysieren
         </button>
         <div id="parser-result" style="display:none; margin-top: 15px;">
-          <div class="result-box">
+          <div class="result-box" aria-live="polite">
             <h4>Erkannte Koeffizienten:</h4>
             <div id="parsed-coefficients"></div>
             <div id="apply-buttons" style="margin-top: 15px;"></div>

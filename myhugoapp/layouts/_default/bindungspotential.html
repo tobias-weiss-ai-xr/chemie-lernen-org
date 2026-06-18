@@ -84,7 +84,7 @@
 
         <div class="diagram-container">
           <h3>Bindungspotential-Diagramm</h3>
-          <canvas id="binding-canvas" width="600" height="400"></canvas>
+          <canvas id="binding-canvas" width="600" height="400" role="img" aria-label="Diagramm der Bindungsenergien"></canvas>
           <div class="diagram-controls">
             <button class="btn btn-sm btn-default" id="btn-reset-binding">
               <i class="fa fa-refresh"></i> Zurücksetzen
@@ -153,7 +153,7 @@
           </div>
 
           <div class="reaction-result">
-            <div class="result-box">
+            <div class="result-box" aria-live="polite">
               <h4>Reaktionsenthalpie (ΔH):</h4>
               <span id="reaktionsenthalpie" class="value large highlight">-770 kJ/mol</span>
               <p id="reaktionstyp-text" class="explanation">Exotherm - Energie wird freigesetzt</p>
@@ -172,7 +172,7 @@
 
         <div class="diagram-container">
           <h3>Energie-Profil-Diagramm</h3>
-          <canvas id="reaction-canvas" width="600" height="400"></canvas>
+          <canvas id="reaction-canvas" width="600" height="400" role="img" aria-label="Reaktionsdiagramm"></canvas>
           <div class="diagram-legend">
             <div class="legend-item">
               <div class="legend-color" style="background: #ff6b6b;"></div>
@@ -238,13 +238,13 @@
 
           <div class="temperature-comparison">
             <h4>Temperaturabhängigkeit</h4>
-            <canvas id="temp-canvas" width="600" height="300"></canvas>
+            <canvas id="temp-canvas" width="600" height="300" role="img" aria-label="Temperaturabhängigkeit der Reaktion"></canvas>
           </div>
         </div>
 
         <div class="diagram-container">
           <h3>Aktivierungsenergie-Diagramm</h3>
-          <canvas id="activation-canvas" width="600" height="400"></canvas>
+          <canvas id="activation-canvas" width="600" height="400" role="img" aria-label="Aktivierungsenergie-Diagramm"></canvas>
           <div class="diagram-annotations">
             <div class="annotation-item">
               <div class="annotation-line" style="left: 20%;"></div>
@@ -371,9 +371,9 @@
                 <input type="checkbox" id="katalysator-aktiv">
                 Katalysator hinzufügen
               </label>
-              <label>EA-Reduktion: <span id="ea-reduction">0</span>%</label>
+              <span class="control-label">EA-Reduktion: <span id="ea-reduction">0</span>%</span>
             </div>
-            <canvas id="catalyst-canvas" width="500" height="300"></canvas>
+            <canvas id="catalyst-canvas" width="500" height="300" role="img" aria-label="Katalysator-Effekt auf Reaktion"></canvas>
           </div>
         </div>
       </div>
@@ -385,10 +385,10 @@
           
           <div class="coordinate-demo">
             <div class="demo-controls">
-              <label>Fortschritt: <span id="reaktion-fortschritt">0</span>%</label>
-              <input type="range" id="reaktion-slider" min="0" max="100" value="0">
+              <span class="control-label">Fortschritt: <span id="reaktion-fortschritt">0</span>%</span>
+              <input aria-label="Reaktion Slider"type="range" id="reaktion-slider" min="0" max="100" value="0">
             </div>
-            <canvas id="coordinate-canvas" width="500" height="300"></canvas>
+            <canvas id="coordinate-canvas" width="500" height="300" role="img" aria-label="Reaktionskoordinaten-Diagramm"></canvas>
           </div>
         </div>
       </div>

@@ -33,7 +33,7 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="gas-mass">Molekültyp:</label>
-          <select id="gas-mass" class="form-control">
+          <select id="gas-mass" class="form-control" aria-label="Gas wählen">
             <option value="light">Helium (m=4 u)</option>
             <option value="medium">Stickstoff (m=28 u)</option>
             <option value="heavy" selected>Sauerstoff (m=32 u)</option>
@@ -64,7 +64,7 @@
         <div class="info-card">
           <h4>Gas-Behälter-Simulation</h4>
           <div id="particle-simulation" class="particle-simulation">
-            <canvas id="particle-canvas" width="700" height="400"></canvas>
+            <canvas id="particle-canvas" width="700" height="400" role="img" aria-label="Partikelsimulation"></canvas>
           </div>
         </div>
       </div>
@@ -84,7 +84,7 @@
 
         <div class="info-card" style="margin-top: 20px;">
           <h4>Maxwell-Boltzmann-Verteilung</h4>
-          <canvas id="distribution-canvas" width="280" height="200"></canvas>
+          <canvas id="distribution-canvas" width="280" height="200" role="img" aria-label="Visualisierung: distribution canvas"></canvas>
         </div>
       </div>
     </div>

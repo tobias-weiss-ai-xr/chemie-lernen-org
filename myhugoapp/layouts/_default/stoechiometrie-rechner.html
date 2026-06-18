@@ -66,7 +66,7 @@
         </div>
 
         <div class="form-group">
-          <label>Vordefinierte Reaktionen:</label>
+          <span class="control-label">Vordefinierte Reaktionen:</span>
           <div class="preset-buttons">
             <button type="button" class="btn btn-default btn-sm" id="btn-preset-water">💧 Wasserbildung</button>
             <button type="button" class="btn btn-default btn-sm" id="btn-preset-methane">🔥 Methan-Verbrennung</button>
@@ -82,13 +82,13 @@
             <div class="well">
               <h4>Edukt</h4>
               <div class="form-group">
-                <label>Koeffizient (ν₁):</label>
-                <input type="number" id="mol-coeff-r" class="form-control" value="2" step="any" aria-label="Koeffizient Reaktant">
+                <label for="mol-coeff-r">Koeffizient (ν₁):</label>
+<input type="number" id="mol-coeff-r" class="form-control" value="2" step="any" aria-label="Koeffizient Reaktant">
                 <small class="text-muted">Stöchiometrischer Koeffizient des Edukts</small>
               </div>
               <div class="form-group">
-                <label>Stoffmenge (mol):</label>
-                <input type="number" id="mol-reactant" class="form-control" placeholder="z.B. 2" step="any" aria-label="Stoffmenge Reaktant">
+                <label for="mol-reactant">Stoffmenge (mol):</label>
+<input type="number" id="mol-reactant" class="form-control" placeholder="z.B. 2" step="any" aria-label="Stoffmenge Reaktant">
               </div>
             </div>
           </div>
@@ -96,8 +96,8 @@
             <div class="well">
               <h4>Produkt</h4>
               <div class="form-group">
-                <label>Koeffizient (ν₂):</label>
-                <input type="number" id="mol-coeff-p" class="form-control" value="2" step="any" aria-label="Koeffizient Produkt">
+                <label for="mol-coeff-p">Koeffizient (ν₂):</label>
+<input type="number" id="mol-coeff-p" class="form-control" value="2" step="any" aria-label="Koeffizient Produkt">
                 <small class="text-muted">Stöchiometrischer Koeffizient des Produkts</small>
               </div>
             </div>
@@ -106,7 +106,7 @@
 
         <button class="btn btn-primary btn-lg btn-block" id="btn-calc-molmol">Berechnen</button>
 
-        <div id="mol-result" class="result-box" style="display:none; margin-top:20px;">
+        <div id="mol-result" class="result-box" style="display:none; margin-top:20px;" aria-live="polite">
           <h3>Ergebnis:</h3>
           <div id="mol-calc"></div>
           <button class="btn btn-success btn-sm" id="btn-export-molmol-pdf" style="margin-top:15px;">
@@ -122,7 +122,7 @@
         <h2>Masse-Masse-Umrechnung</h2>
 
         <div class="form-group">
-          <label>Vordefinierte Reaktionen:</label>
+          <span class="control-label">Vordefinierte Reaktionen:</span>
           <div class="preset-buttons">
             <button type="button" class="btn btn-default btn-sm" id="btn-mass-water">💧 Wasserbildung</button>
             <button type="button" class="btn btn-default btn-sm" id="btn-mass-methane">🔥 Methan-Verbrennung</button>
@@ -138,17 +138,17 @@
             <div class="well">
               <h4>Edukt</h4>
               <div class="form-group">
-                <label>Koeffizient (ν₁):</label>
-                <input type="number" id="mass-coeff-r" class="form-control" value="1" step="any" aria-label="Massenkoeffizient Reaktant">
+                <label for="mass-coeff-r">Koeffizient (ν₁):</label>
+<input type="number" id="mass-coeff-r" class="form-control" value="1" step="any" aria-label="Massenkoeffizient Reaktant">
                 <small class="text-muted">Stöchiometrischer Koeffizient</small>
               </div>
               <div class="form-group">
-                <label>Masse (g):</label>
-                <input type="number" id="mass-r" class="form-control" step="any" aria-label="Masse Reaktant">
+                <label for="mass-r">Masse (g):</label>
+<input type="number" id="mass-r" class="form-control" step="any" aria-label="Masse Reaktant">
               </div>
               <div class="form-group">
-                <label>Molare Masse (g/mol):</label>
-                <input type="number" id="mm-r" class="form-control" step="any" aria-label="Molare Masse Reaktant">
+                <label for="mm-r">Molare Masse (g/mol):</label>
+<input type="number" id="mm-r" class="form-control" step="any" aria-label="Molare Masse Reaktant">
               </div>
             </div>
           </div>
@@ -156,13 +156,13 @@
             <div class="well">
               <h4>Produkt</h4>
               <div class="form-group">
-                <label>Koeffizient (ν₂):</label>
-                <input type="number" id="mass-coeff-p" class="form-control" value="1" step="any" aria-label="Massenkoeffizient Produkt">
+                <label for="mass-coeff-p">Koeffizient (ν₂):</label>
+<input type="number" id="mass-coeff-p" class="form-control" value="1" step="any" aria-label="Massenkoeffizient Produkt">
                 <small class="text-muted">Stöchiometrischer Koeffizient</small>
               </div>
               <div class="form-group">
-                <label>Molare Masse (g/mol):</label>
-                <input type="number" id="mm-p" class="form-control" step="any" aria-label="Molare Masse Produkt">
+                <label for="mm-p">Molare Masse (g/mol):</label>
+<input type="number" id="mm-p" class="form-control" step="any" aria-label="Molare Masse Produkt">
               </div>
             </div>
           </div>
@@ -193,12 +193,12 @@
             <div class="well">
               <h4>Reagenz 1</h4>
               <div class="form-group">
-                <label>Masse (g):</label>
-                <input type="number" id="lim-m1" class="form-control" step="any" aria-label="Masse Reagenz 1">
+                <label for="lim-m1">Masse (g):</label>
+<input type="number" id="lim-m1" class="form-control" step="any" aria-label="Masse Reagenz 1">
               </div>
               <div class="form-group">
-                <label>Molare Masse (g/mol):</label>
-                <input type="number" id="lim-mm1" class="form-control" step="any" aria-label="Molare Masse Reagenz 1">
+                <label for="lim-mm1">Molare Masse (g/mol):</label>
+<input type="number" id="lim-mm1" class="form-control" step="any" aria-label="Molare Masse Reagenz 1">
               </div>
             </div>
           </div>
@@ -206,12 +206,12 @@
             <div class="well">
               <h4>Reagenz 2</h4>
               <div class="form-group">
-                <label>Masse (g):</label>
-                <input type="number" id="lim-m2" class="form-control" step="any" aria-label="Masse Reagenz 2">
+                <label for="lim-m2">Masse (g):</label>
+<input type="number" id="lim-m2" class="form-control" step="any" aria-label="Masse Reagenz 2">
               </div>
               <div class="form-group">
-                <label>Molare Masse (g/mol):</label>
-                <input type="number" id="lim-mm2" class="form-control" step="any" aria-label="Molare Masse Reagenz 2">
+                <label for="lim-mm2">Molare Masse (g/mol):</label>
+<input type="number" id="lim-mm2" class="form-control" step="any" aria-label="Molare Masse Reagenz 2">
               </div>
             </div>
           </div>
@@ -233,8 +233,8 @@
             <div class="well">
               <h4>Theoretisch</h4>
               <div class="form-group">
-                <label>Masse (g):</label>
-                <input type="number" id="yield-theo" class="form-control" step="any" aria-label="Theoretische Ausbeute">
+                <label for="yield-theo">Masse (g):</label>
+<input type="number" id="yield-theo" class="form-control" step="any" aria-label="Theoretische Ausbeute">
               </div>
             </div>
           </div>
@@ -242,8 +242,8 @@
             <div class="well">
               <h4>Praktisch</h4>
               <div class="form-group">
-                <label>Masse (g):</label>
-                <input type="number" id="yield-act" class="form-control" step="any" aria-label="Tatsächliche Ausbeute">
+                <label for="yield-act">Masse (g):</label>
+<input type="number" id="yield-act" class="form-control" step="any" aria-label="Tatsächliche Ausbeute">
               </div>
             </div>
           </div>
@@ -280,20 +280,20 @@
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label>Stoffmenge (mol):</label>
-                <input type="number" id="initial-amount" class="form-control" step="any" value="1" placeholder="z.B. 1" aria-label="Anfangsstoffmenge">
+                <label for="initial-amount">Stoffmenge (mol):</label>
+<input type="number" id="initial-amount" class="form-control" step="any" value="1" placeholder="z.B. 1" aria-label="Anfangsstoffmenge">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label>Molare Masse (g/mol):</label>
-                <input type="number" id="initial-molar-mass" class="form-control" step="any" value="" placeholder="Optional für Masse" aria-label="Anfangs-Molare Masse">
+                <label for="initial-molar-mass">Molare Masse (g/mol):</label>
+<input type="number" id="initial-molar-mass" class="form-control" step="any" value="" placeholder="Optional für Masse" aria-label="Anfangs-Molare Masse">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label>Verbindung:</label>
-                <input type="text" id="initial-compound" class="form-control" value="" placeholder="z.B. Fe" aria-label="Anfangsverbindung">
+                <label for="initial-compound">Verbindung:</label>
+<input type="text" id="initial-compound" class="form-control" value="" placeholder="z.B. Fe" aria-label="Anfangsverbindung">
               </div>
             </div>
           </div>
@@ -347,8 +347,8 @@
             <i class="fa fa-calculator"></i> Was möchten Sie berechnen?
           </h4>
           <div class="form-group">
-            <label>Wähle die Variable:</label>
-            <select id="gas-calculate-variable" class="form-control" aria-label="Berechnungsvariable">
+            <label for="gas-calculate-variable">Wähle die Variable:</label>
+<select id="gas-calculate-variable" class="form-control" aria-label="Berechnungsvariable">
               <option value="n">Stoffmenge (n) - Druck, Volumen, Temperatur bekannt</option>
               <option value="P">Druck (P) - Volumen, Stoffmenge, Temperatur bekannt</option>
               <option value="V">Volumen (V) - Druck, Stoffmenge, Temperatur bekannt</option>
@@ -363,8 +363,8 @@
             <i class="fa fa-cog"></i> Gaskonstante (R)
           </h4>
           <div class="form-group">
-            <label>Wähle die Einheiten:</label>
-            <select id="gas-constant-select" class="form-control" aria-label="Gaskonstante">
+            <label for="gas-constant-select">Wähle die Einheiten:</label>
+<select id="gas-constant-select" class="form-control" aria-label="Gaskonstante">
               <option value="0.08206">R = 0.08206 L·atm/(mol·K) [Druck in atm, Volumen in L]</option>
               <option value="8.314">R = 8.314 J/(mol·K) [Druck in Pa, Volumen in m³]</option>
               <option value="0.08314">R = 0.08314 L·bar/(mol·K) [Druck in bar, Volumen in L]</option>
@@ -386,12 +386,12 @@
             <div class="well">
               <h4>Druck (P)</h4>
               <div class="form-group">
-                <label>Wert:</label>
-                <input type="number" id="gas-pressure" class="form-control" step="any" placeholder="z.B. 1" aria-label="Druck">
+                <label for="gas-pressure">Wert:</label>
+<input type="number" id="gas-pressure" class="form-control" step="any" placeholder="z.B. 1" aria-label="Druck">
               </div>
               <div class="form-group">
-                <label>Einheit:</label>
-                <select id="gas-pressure-unit" class="form-control" aria-label="Druckeinheit">
+                <label for="gas-pressure-unit">Einheit:</label>
+<select id="gas-pressure-unit" class="form-control" aria-label="Druckeinheit">
                   <option value="atm">atm</option>
                   <option value="bar">bar</option>
                   <option value="Pa">Pascal (Pa)</option>
@@ -408,12 +408,12 @@
             <div class="well">
               <h4>Volumen (V)</h4>
               <div class="form-group">
-                <label>Wert:</label>
-                <input type="number" id="gas-volume" class="form-control" step="any" placeholder="z.B. 22.4" aria-label="Volumen">
+                <label for="gas-volume">Wert:</label>
+<input type="number" id="gas-volume" class="form-control" step="any" placeholder="z.B. 22.4" aria-label="Volumen">
               </div>
               <div class="form-group">
-                <label>Einheit:</label>
-                <select id="gas-volume-unit" class="form-control" aria-label="Volumeneinheit">
+                <label for="gas-volume-unit">Einheit:</label>
+<select id="gas-volume-unit" class="form-control" aria-label="Volumeneinheit">
                   <option value="L">Liter (L)</option>
                   <option value="mL">Milliliter (mL)</option>
                   <option value="m3">Kubikmeter (m³)</option>
@@ -428,12 +428,12 @@
             <div class="well">
               <h4>Stoffmenge (n)</h4>
               <div class="form-group">
-                <label>Wert:</label>
-                <input type="number" id="gas-amount" class="form-control" step="any" placeholder="z.B. 1" aria-label="Stoffmenge">
+                <label for="gas-amount">Wert:</label>
+<input type="number" id="gas-amount" class="form-control" step="any" placeholder="z.B. 1" aria-label="Stoffmenge">
               </div>
               <div class="form-group">
-                <label>Einheit:</label>
-                <select id="gas-amount-unit" class="form-control" aria-label="Stoffmengeneinheit">
+                <label for="gas-amount-unit">Einheit:</label>
+<select id="gas-amount-unit" class="form-control" aria-label="Stoffmengeneinheit">
                   <option value="mol">Mol (mol)</option>
                   <option value="mmol">Millimol (mmol)</option>
                 </select>
@@ -446,12 +446,12 @@
             <div class="well">
               <h4>Temperatur (T)</h4>
               <div class="form-group">
-                <label>Wert:</label>
-                <input type="number" id="gas-temperature" class="form-control" step="any" placeholder="z.B. 273.15" aria-label="Temperatur">
+                <label for="gas-temperature">Wert:</label>
+<input type="number" id="gas-temperature" class="form-control" step="any" placeholder="z.B. 273.15" aria-label="Temperatur">
               </div>
               <div class="form-group">
-                <label>Einheit:</label>
-                <select id="gas-temperature-unit" class="form-control" aria-label="Temperatureinheit">
+                <label for="gas-temperature-unit">Einheit:</label>
+<select id="gas-temperature-unit" class="form-control" aria-label="Temperatureinheit">
                   <option value="K">Kelvin (K)</option>
                   <option value="C">Celsius (°C)</option>
                   <option value="F">Fahrenheit (°F)</option>

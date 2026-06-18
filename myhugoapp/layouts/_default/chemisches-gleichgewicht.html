@@ -41,7 +41,7 @@
 
         <div class="simulation-container">
           <div class="simulation-canvas">
-            <canvas id="equilibrium-canvas" width="700" height="400"></canvas>
+            <canvas id="equilibrium-canvas" width="700" height="400" role="img" aria-label="Chemisches Gleichgewicht Simulation"></canvas>
           </div>
 
           <div class="equilibrium-display">
@@ -54,12 +54,12 @@
                 <h4><i class="fa fa-flask"></i> Ausgangsstoffe</h4>
                 <div class="conc-inputs">
                   <div class="conc-input">
-                    <label>[A]:</label>
-                    <input type="number" id="conc-a" class="form-control" value="1.0" step="0.1" min="0">
+                    <label for="conc-a">[A]:</label>
+<input type="number" id="conc-a" class="form-control" value="1.0" step="0.1" min="0">
                   </div>
                   <div class="conc-input">
-                    <label>[B]:</label>
-                    <input type="number" id="conc-b" class="form-control" value="1.0" step="0.1" min="0">
+                    <label for="conc-b">[B]:</label>
+<input type="number" id="conc-b" class="form-control" value="1.0" step="0.1" min="0">
                   </div>
                 </div>
               </div>
@@ -70,19 +70,19 @@
                 <h4><i class="fa fa-flask"></i> Produkte</h4>
                 <div class="conc-inputs">
                   <div class="conc-input">
-                    <label>[C]:</label>
-                    <input type="number" id="conc-c" class="form-control" value="1.0" step="0.1" min="0">
+                    <label for="conc-c">[C]:</label>
+<input type="number" id="conc-c" class="form-control" value="1.0" step="0.1" min="0">
                   </div>
                   <div class="conc-input">
-                    <label>[D]:</label>
-                    <input type="number" id="conc-d" class="form-control" value="1.0" step="0.1" min="0">
+                    <label for="conc-d">[D]:</label>
+<input type="number" id="conc-d" class="form-control" value="1.0" step="0.1" min="0">
                   </div>
                 </div>
               </div>
             </div>
 
             <div class="equilibrium-results">
-              <div class="result-box">
+              <div class="result-box" aria-live="polite">
                 <h4>Gleichgewichtskonstante Kc</h4>
                 <div class="equation">
                   <p class="formula-text">Kc = [C][D] / [A][B]</p>
@@ -213,7 +213,7 @@
         <div class="concentration-graph">
           <h3>Reaktionsfortschritt vs. Kc</h3>
           <div class="plot-wrapper">
-            <canvas id="concentration-plot-canvas" width="600" height="350"></canvas>
+            <canvas id="concentration-plot-canvas" width="600" height="350" role="img" aria-label="Konzentrationsverlauf Diagramm"></canvas>
           </div>
           <div class="graph-legend">
             <div class="legend-item">

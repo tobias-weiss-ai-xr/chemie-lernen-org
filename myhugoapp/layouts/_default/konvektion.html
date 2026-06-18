@@ -16,7 +16,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="fluid-selector">Fluid-Material:</label>
-          <select id="fluid-selector" class="form-control">
+          <select id="fluid-selector" class="form-control" aria-label="Fluid wählen">
             <option value="water">Wasser (Dichte=1.0, Viskosität=mittel)</option>
             <option value="air">Luft (Dichte=0.0012, Viskosität=niedrig)</option>
             <option value="oil">Öl (Dichte=0.9, Viskosität=hoch)</option>
@@ -61,7 +61,7 @@
         <div class="info-card">
           <h4>Konvektions-Simulation</h4>
           <div id="convection-simulation" class="convection-simulation">
-            <canvas id="convection-canvas" width="700" height="500"></canvas>
+            <canvas id="convection-canvas" width="700" height="500" role="img" aria-label="Konvektionsströmung Simulation"></canvas>
           </div>
         </div>
       </div>

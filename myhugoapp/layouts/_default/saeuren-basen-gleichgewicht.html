@@ -63,7 +63,7 @@
           <i class="fa fa-calculator"></i> ICE berechnen
         </button>
 
-        <div id="ice-result" class="result-panel" style="display:none;">
+        <div id="ice-result" class="result-panel" style="display:none;" aria-live="polite">
           <h3>ICE-Tabelle:</h3>
           <table class="table table-bordered">
             <thead>
@@ -136,9 +136,9 @@
           <i class="fa fa-calculator"></i> pH berechnen
         </button>
 
-        <div id="buffer-result" class="result-panel" style="display:none;">
+        <div id="buffer-result" class="result-panel" style="display:none;" aria-live="polite">
           <h3>Ergebnis:</h3>
-          <div class="result-value">
+          <div class="result-value" aria-live="polite">
             <span class="label">pH-Wert:</span>
             <span id="buffer-ph" class="value-highlight"></span>
           </div>
@@ -186,7 +186,7 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label>&nbsp;</label>
+                
                 <button id="btn-calculate-buffer-prep" class="btn btn-info btn-block">
                   <i class="fa fa-flask"></i> Ansatz berechnen
                 </button>
@@ -315,9 +315,9 @@
           <i class="fa fa-calculator"></i> Kₐ und Reaktionsrichtung berechnen
         </button>
 
-        <div id="mwg-result" class="result-panel" style="display:none;">
+        <div id="mwg-result" class="result-panel" style="display:none;" aria-live="polite">
           <h3>Ergebnis:</h3>
-          <div class="result-value">
+          <div class="result-value" aria-live="polite">
             <span class="label">Q (Reaktionsquotient):</span>
             <span id="quotient-value" class="value-highlight"></span>
           </div>

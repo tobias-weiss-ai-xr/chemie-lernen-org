@@ -41,7 +41,7 @@
         <p>Interaktive Visualisierung der Energieniveaus n=1 bis n=6 des Wasserstoffatoms.</p>
 
         <div class="canvas-container">
-          <canvas id="energy-level-canvas" width="700" height="500"></canvas>
+          <canvas id="energy-level-canvas" width="700" height="500" role="img" aria-label="Energieniveaudiagramm der Atomorbitale"></canvas>
         </div>
 
         <div class="controls">
@@ -102,7 +102,7 @@
           <i class="fa fa-play"></i> Übergang simulieren
         </button>
 
-        <div id="transition-result" class="result-panel" style="display:none;">
+        <div id="transition-result" class="result-panel" style="display:none;" aria-live="polite">
           <h3>Übergangsergebnis:</h3>
           <div class="transition-details">
             <div class="detail-row">
@@ -158,7 +158,7 @@
         </div>
 
         <div class="canvas-container">
-          <canvas id="spectrum-canvas" width="800" height="400"></canvas>
+          <canvas id="spectrum-canvas" width="800" height="400" role="img" aria-label="Emissionsspektrum der Wellenlängen"></canvas>
         </div>
 
         <div class="spectrum-info">

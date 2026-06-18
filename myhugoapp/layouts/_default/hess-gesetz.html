@@ -51,19 +51,19 @@
               <div class="step-input">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                  <label>Stufe 1:</label>
-                  <input type="text" class="form-control step-formula" placeholder="z.B. C + ½O₂ → CO" value="C + ½O₂ → CO">
-                  <label>ΔH₁ (kJ/mol):</label>
-                  <input type="number" class="form-control step-delta-h" value="-110.5" step="0.1">
+                  <label for="stufe-1">Stufe 1:</label>
+<input id="stufe-1" type="text" class="form-control step-formula" placeholder="z.B. C + ½O₂ → CO" value="C + ½O₂ → CO">
+                  <label for="h-kjmol">ΔH₁ (kJ/mol):</label>
+<input id="h-kjmol" type="number" class="form-control step-delta-h" value="-110.5" step="0.1">
                 </div>
               </div>
               <div class="step-input">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                  <label>Stufe 2:</label>
-                  <input type="text" class="form-control step-formula" placeholder="z.B. CO + ½O₂ → CO₂" value="CO + ½O₂ → CO₂">
-                  <label>ΔH₂ (kJ/mol):</label>
-                  <input type="number" class="form-control step-delta-h" value="-283.0" step="0.1">
+                  <label for="stufe-2">Stufe 2:</label>
+<input id="stufe-2" type="text" class="form-control step-formula" placeholder="z.B. CO + ½O₂ → CO₂" value="CO + ½O₂ → CO₂">
+                  <label for="h-kjmol">ΔH₂ (kJ/mol):</label>
+<input id="h-kjmol" type="number" class="form-control step-delta-h" value="-283.0" step="0.1">
                 </div>
               </div>
             </div>
@@ -79,7 +79,7 @@
             </button>
           </div>
 
-          <div id="hess-simple-result" class="result-panel" style="display:none;">
+          <div id="hess-simple-result" class="result-panel" style="display:none;" aria-live="polite">
             <h3>Ergebnis</h3>
             <div class="calculation-display">
               <div class="calculation-row">
@@ -110,16 +110,16 @@
                 <h3><i class="fa fa-road"></i> Weg A</h3>
                 <div class="path-steps">
                   <div class="path-step">
-                    <label>Zwischenprodukt 1:</label>
-                    <input type="text" id="path-a-step1" class="form-control" value="C + H₂O → CO + H₂">
+                    <label for="path-a-step1">Zwischenprodukt 1:</label>
+<input type="text" id="path-a-step1" class="form-control" value="C + H₂O → CO + H₂">
                   </div>
                   <div class="path-step">
-                    <label>Zwischenprodukt 2:</label>
-                    <input type="text" id="path-a-step2" class="form-control" value="CO + H₂O → CO + H₂O">
+                    <label for="path-a-step2">Zwischenprodukt 2:</label>
+<input type="text" id="path-a-step2" class="form-control" value="CO + H₂O → CO + H₂O">
                   </div>
                   <div class="path-step">
-                    <label>Endprodukt:</label>
-                    <input type="text" id="path-a-final" class="form-control" value="CO₂ + 2H₂">
+                    <label for="path-a-final">Endprodukt:</label>
+<input type="text" id="path-a-final" class="form-control" value="CO₂ + 2H₂">
                   </div>
                 </div>
               </div>
@@ -130,16 +130,16 @@
                 <h3><i class="fa fa-road"></i> Weg B</h3>
                 <div class="path-steps">
                   <div class="path-step">
-                    <label>Zwischenprodukt 1:</label>
-                    <input type="text" id="path-b-step1" class="form-control" value="C + O₂ → CO₂">
+                    <label for="path-b-step1">Zwischenprodukt 1:</label>
+<input type="text" id="path-b-step1" class="form-control" value="C + O₂ → CO₂">
                   </div>
                   <div class="path-step">
-                    <label>Zwischenprodukt 2:</label>
-                    <input type="text" id="path-b-step2" class="form-control" value="CO₂ + 2H₂ → 2CO + 2H₂O">
+                    <label for="path-b-step2">Zwischenprodukt 2:</label>
+<input type="text" id="path-b-step2" class="form-control" value="CO₂ + 2H₂ → 2CO + 2H₂O">
                   </div>
                   <div class="path-step">
-                    <label>Endprodukt:</label>
-                    <input type="text" id="path-b-final" class="form-control" value="CO₂ + 2H₂O">
+                    <label for="path-b-final">Endprodukt:</label>
+<input type="text" id="path-b-final" class="form-control" value="CO₂ + 2H₂O">
                   </div>
                 </div>
               </div>
@@ -152,12 +152,12 @@
                 <div class="path-enthalpies">
                   <h4>Weg A - Enthalpien (kJ/mol)</h4>
                   <div class="enthalpy-row">
-                    <label>ΔH₁:</label>
-                    <input type="number" id="path-a-dh1" class="form-control" value="-131.3" step="0.1">
+                    <label for="path-a-dh1">ΔH₁:</label>
+<input type="number" id="path-a-dh1" class="form-control" value="-131.3" step="0.1">
                   </div>
                   <div class="enthalpy-row">
-                    <label>ΔH₂:</label>
-                    <input type="number" id="path-a-dh2" class="form-control" value="-285.8" step="0.1">
+                    <label for="path-a-dh2">ΔH₂:</label>
+<input type="number" id="path-a-dh2" class="form-control" value="-285.8" step="0.1">
                   </div>
                   <div class="enthalpy-total">
                     <strong>Summe Weg A:</strong>
@@ -170,12 +170,12 @@
                 <div class="path-enthalpies">
                   <h4>Weg B - Enthalpien (kJ/mol)</h4>
                   <div class="enthalpy-row">
-                    <label>ΔH₁:</label>
-                    <input type="number" id="path-b-dh1" class="form-control" value="-393.5" step="0.1">
+                    <label for="path-b-dh1">ΔH₁:</label>
+<input type="number" id="path-b-dh1" class="form-control" value="-393.5" step="0.1">
                   </div>
                   <div class="enthalpy-row">
-                    <label>ΔH₂:</label>
-                    <input type="number" id="path-b-dh2" class="form-control" value="-571.6" step="0.1">
+                    <label for="path-b-dh2">ΔH₂:</label>
+<input type="number" id="path-b-dh2" class="form-control" value="-571.6" step="0.1">
                   </div>
                   <div class="enthalpy-total">
                     <strong>Summe Weg B:</strong>
@@ -192,7 +192,7 @@
             </button>
           </div>
 
-          <div id="hess-multipath-result" class="result-panel" style="display:none;">
+          <div id="hess-multipath-result" class="result-panel" style="display:none;" aria-live="polite">
             <h3>Ergebnis</h3>
             <div class="comparison-display">
               <div class="path-comparison">
@@ -278,7 +278,7 @@
             </button>
           </div>
 
-          <div id="hess-formation-result" class="result-panel" style="display:none;">
+          <div id="hess-formation-result" class="result-panel" style="display:none;" aria-live="polite">
             <h3>Ergebnis</h3>
             <div class="formation-display">
               <div class="calculation-steps">

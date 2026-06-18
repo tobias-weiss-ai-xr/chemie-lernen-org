@@ -45,7 +45,7 @@
             <label for="druck-kraft">Kraft (F):</label>
             <div class="input-group">
               <input type="number" id="druck-kraft" class="form-control" placeholder="z.B. 1000" step="any" min="0" aria-label="Kraft in Newton">
-              <select class="input-group-addon" id="druck-kraft-einheit">
+              <select aria-label="Druck Kraft Einheit"class="input-group-addon" id="druck-kraft-einheit">
                 <option value="N">Newton (N)</option>
                 <option value="kN">Kilonewton (kN)</option>
                 <option value="MN">Meganewton (MN)</option>
@@ -57,7 +57,7 @@
             <label for="druck-flaeche">Fläche (A):</label>
             <div class="input-group">
               <input type="number" id="druck-flaeche" class="form-control" placeholder="z.B. 0.01" step="any" min="0" aria-label="Fläche in Quadratmetern">
-              <select class="input-group-addon" id="druck-flaeche-einheit">
+              <select aria-label="Druck Flaeche Einheit"class="input-group-addon" id="druck-flaeche-einheit">
                 <option value="m2">m²</option>
                 <option value="cm2">cm²</option>
                 <option value="mm2">mm²</option>
@@ -70,9 +70,9 @@
           </button>
         </div>
 
-        <div id="druck-result" class="result-panel" style="display:none;">
+        <div id="druck-result" class="result-panel" style="display:none;" aria-live="polite">
           <h3>Ergebnis:</h3>
-          <div class="result-value">
+          <div class="result-value" aria-live="polite">
             <span class="label">Druck (p):</span>
             <span id="druck-wert" class="value-highlight"></span>
             <select id="druck-ergebnis-einheit">
@@ -90,7 +90,7 @@
       <div class="visual-demo">
         <h3>Visuelle Demonstration: Kolben</h3>
         <div class="piston-container">
-          <canvas id="piston-canvas" width="400" height="300"></canvas>
+          <canvas id="piston-canvas" width="400" height="300" role="img" aria-label="Kolben-Simulation"></canvas>
           <div class="piston-controls">
             <label>Kraft anpassen: <input type="range" id="kraft-slider" min="100" max="10000" value="1000"></label>
             <span id="kraft-display">1000 N</span>
@@ -120,7 +120,7 @@
             <label for="kraft-druck">Druck (p):</label>
             <div class="input-group">
               <input type="number" id="kraft-druck" class="form-control" placeholder="z.B. 100000" step="any" min="0" aria-label="Druck in Pascal">
-              <select class="input-group-addon" id="kraft-druck-einheit">
+              <select aria-label="Kraft Druck Einheit"class="input-group-addon" id="kraft-druck-einheit">
                 <option value="Pa">Pascal (Pa)</option>
                 <option value="kPa">Kilopascal (kPa)</option>
                 <option value="MPa">Megapascal (MPa)</option>
@@ -133,7 +133,7 @@
             <label for="kraft-flaeche">Fläche (A):</label>
             <div class="input-group">
               <input type="number" id="kraft-flaeche" class="form-control" placeholder="z.B. 0.01" step="any" min="0" aria-label="Fläche in Quadratmetern">
-              <select class="input-group-addon" id="kraft-flaeche-einheit">
+              <select aria-label="Kraft Flaeche Einheit"class="input-group-addon" id="kraft-flaeche-einheit">
                 <option value="m2">m²</option>
                 <option value="cm2">cm²</option>
                 <option value="mm2">mm²</option>
@@ -146,9 +146,9 @@
           </button>
         </div>
 
-        <div id="kraft-result" class="result-panel" style="display:none;">
+        <div id="kraft-result" class="result-panel" style="display:none;" aria-live="polite">
           <h3>Ergebnis:</h3>
-          <div class="result-value">
+          <div class="result-value" aria-live="polite">
             <span class="label">Kraft (F):</span>
             <span id="kraft-wert" class="value-highlight"></span>
             <select id="kraft-ergebnis-einheit">
@@ -173,7 +173,7 @@
             <label for="flaeche-kraft">Kraft (F):</label>
             <div class="input-group">
               <input type="number" id="flaeche-kraft" class="form-control" placeholder="z.B. 1000" step="any" min="0" aria-label="Kraft in Newton">
-              <select class="input-group-addon" id="flaeche-kraft-einheit">
+              <select aria-label="Flaeche Kraft Einheit"class="input-group-addon" id="flaeche-kraft-einheit">
                 <option value="N">Newton (N)</option>
                 <option value="kN">Kilonewton (kN)</option>
                 <option value="MN">Meganewton (MN)</option>
@@ -185,7 +185,7 @@
             <label for="flaeche-druck">Druck (p):</label>
             <div class="input-group">
               <input type="number" id="flaeche-druck" class="form-control" placeholder="z.B. 100000" step="any" min="0" aria-label="Druck in Pascal">
-              <select class="input-group-addon" id="flaeche-druck-einheit">
+              <select aria-label="Flaeche Druck Einheit"class="input-group-addon" id="flaeche-druck-einheit">
                 <option value="Pa">Pascal (Pa)</option>
                 <option value="kPa">Kilopascal (kPa)</option>
                 <option value="MPa">Megapascal (MPa)</option>
@@ -199,9 +199,9 @@
           </button>
         </div>
 
-        <div id="flaeche-result" class="result-panel" style="display:none;">
+        <div id="flaeche-result" class="result-panel" style="display:none;" aria-live="polite">
           <h3>Ergebnis:</h3>
-          <div class="result-value">
+          <div class="result-value" aria-live="polite">
             <span class="label">Fläche (A):</span>
             <span id="flaeche-wert" class="value-highlight"></span>
             <select id="flaeche-ergebnis-einheit">
