@@ -230,7 +230,7 @@
     detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  function renderHPhrases(filter) {
+  function renderHPhrases(_filter) {
     var tbody = document.getElementById('h-phrases-body');
     if (!tbody) return;
 

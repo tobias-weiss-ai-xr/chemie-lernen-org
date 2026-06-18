@@ -7,7 +7,6 @@
   'use strict';
 
   var students = [];
-  var selectedStudent = null;
 
   // --- LocalStorage for student data ---
 
@@ -15,7 +14,7 @@
     try {
       var data = localStorage.getItem('klassencockpit_students');
       students = data ? JSON.parse(data) : [];
-    } catch (e) {
+    } catch (_e) {
       students = [];
     }
   }
@@ -23,7 +22,7 @@
   function saveStudents() {
     try {
       localStorage.setItem('klassencockpit_students', JSON.stringify(students));
-    } catch (e) {
+    } catch (_e) {
       console.warn('Could not save student data');
     }
   }
@@ -32,7 +31,7 @@
     try {
       var data = localStorage.getItem('progress_completed');
       return data ? JSON.parse(data) : {};
-    } catch (e) {
+    } catch (_e) {
       return {};
     }
   }
@@ -41,15 +40,15 @@
     try {
       var data = localStorage.getItem('progress_scores');
       return data ? JSON.parse(data) : [];
-    } catch (e) {
+    } catch (_e) {
       return [];
     }
   }
 
-  function getStreak() {
+  function _getStreak() {
     try {
       return parseInt(localStorage.getItem('progress_streak') || '0', 10);
-    } catch (e) {
+    } catch (_e) {
       return 0;
     }
   }
@@ -139,8 +138,7 @@
     if (!container) return;
 
     var completed = getCompletedModules();
-    var scores = getScores();
-    var moduleKeys = Object.keys(completed);
+    var _moduleKeys = Object.keys(completed);
     var moduleNames = {
       'uebungsgenerator': 'Übungsgenerator',
       'lueckentexte': 'Lückentexte',

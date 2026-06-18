@@ -3,7 +3,6 @@
  * Dynamic chemistry exercise generator with 5 exercise types
  */
 
-/* global LazyLoader */
 
 (function () {
   'use strict';
@@ -122,7 +121,7 @@
     return Math.round(v * f) / f;
   }
 
-  function unitStr(topic) {
+  function _unitStr(topic) {
     switch (topic) {
       case 'stoichiometry': return 'mol';
       case 'molar-mass': return 'g/mol';
@@ -134,7 +133,7 @@
   // ------- STOICHIOMETRY -------
 
   function createStoichiometryQuestion(diff) {
-    var compounds, question, answer, unit;
+    var _compounds, _question, _answer, _unit;
     var templates = [];
 
     if (diff >= 1) {
@@ -430,7 +429,7 @@
     var options = generateDistractors(correctAns, q.unit);
 
     elements.mcOptions.innerHTML = '';
-    options.forEach(function (opt, i) {
+    options.forEach(function (opt, _i) {
       var btn = document.createElement('button');
       btn.className = 'mc-option-btn';
       btn.textContent = opt;
@@ -513,7 +512,7 @@
     updateScoreDisplay();
   }
 
-  function showFreeInput(q) {
+  function showFreeInput(_q) {
     elements.mcSection.style.display = 'none';
     elements.freeSection.style.display = 'block';
     elements.freeInput.value = '';
@@ -579,7 +578,7 @@
         state.totalQuestions = data.total || 0;
         state.correctAnswers = data.correct || 0;
       }
-    } catch (e) { /* localStorage unavailable */ }
+    } catch (_e) { /* localStorage unavailable */ }
   }
 
   function saveScore() {
@@ -588,7 +587,7 @@
         total: state.totalQuestions,
         correct: state.correctAnswers
       }));
-    } catch (e) { /* localStorage unavailable */ }
+    } catch (_e) { /* localStorage unavailable */ }
     if (typeof ProgressTracker !== 'undefined') {
       ProgressTracker.saveExerciseProgress('uebungsgenerator', 'overview', {
         total: state.totalQuestions,

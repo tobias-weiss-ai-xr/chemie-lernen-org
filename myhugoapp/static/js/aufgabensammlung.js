@@ -17,22 +17,6 @@
 
   function generateTaskDatabase() {
     var tasks = [];
-    var themes = ['stoichiometry', 'balancing', 'molar-mass', 'ph', 'redox'];
-    var themeNames = {
-      'stoichiometry': 'Stöchiometrie',
-      'balancing': 'Reaktionsgleichungen',
-      'molar-mass': 'Molare Massen',
-      'ph': 'pH-Berechnungen',
-      'redox': 'Redox-Gleichungen'
-    };
-
-    var typeNames = {
-      'calculation': 'Rechnung',
-      'equation': 'Gleichung',
-      'multiple-choice': 'Multiple Choice'
-    };
-
-    var difficultyNames = { '1': 'Leicht', '2': 'Mittel', '3': 'Schwer' };
 
     var stoichiometryTasks = [
       { id: 's1', text: 'Berechnen Sie die Masse von 3 mol Wasser (H2O).', theme: 'stoichiometry', difficulty: '1', type: 'calculation', answer: '54.045 g' },

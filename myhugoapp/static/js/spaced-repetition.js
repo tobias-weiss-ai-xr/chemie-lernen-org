@@ -115,7 +115,7 @@ class SpacedRepetitionSystem {
    * I = interval (days until next review)
    */
   calculateInterval(stability) {
-    const w = this.params.w;
+    const _w = this.params.w;
     const interval = 9 * stability * (1 / this.params.request_retention - 1);
     return Math.min(Math.max(Math.round(interval), 1), this.params.maximum_interval);
   }
@@ -142,7 +142,7 @@ class SpacedRepetitionSystem {
     const card = this.cards[cardId];
     const dueDate = new Date(card.dueDate);
     const now = new Date();
-    const overdueDays = Math.max(0, (now - dueDate) / (1000 * 60 * 60 * 24));
+    const _overdueDays = Math.max(0, (now - dueDate) / (1000 * 60 * 60 * 24));
 
     // Update stability and difficulty
     card.stability = this.calculateStability(card, quality);

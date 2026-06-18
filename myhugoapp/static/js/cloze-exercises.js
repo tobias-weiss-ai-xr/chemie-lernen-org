@@ -1,4 +1,5 @@
 /* cloze-exercises.js — Cloze deletion exercises */
+/* exported loadClozeExercises */
 let clozeScore = { correct: 0, incorrect: 0, open: 0 };
 let currentExercises = [];
 let currentExerciseIndex = 0;
@@ -112,7 +113,7 @@ function renderExercise(exercise, index) {
   let blankIdx = 0;
   const renderedParts = parts.map(part => {
     if (part === '___') {
-      const blk = exercise.blanks[blankIdx];
+      const _blk = exercise.blanks[blankIdx];
       blankIdx++;
       const id = `cloze-blank-${index}-${blankIdx}`;
       return `<span class="cloze-blank-wrapper">
@@ -139,7 +140,7 @@ function renderExercise(exercise, index) {
   </div>`;
 }
 
-function handleClozeKeydown(event, exIdx, blankIdx) {
+function _handleClozeKeydown(event, exIdx, blankIdx) {
   if (event.key === 'Enter') {
     const allBlanks = currentExercises[exIdx].blanks;
     if (blankIdx < allBlanks.length) {
@@ -173,7 +174,7 @@ function checkBlank(exIdx, blankIdx) {
   return isCorrect;
 }
 
-function checkClozeExercise(index) {
+function _checkClozeExercise(index) {
   const exercise = currentExercises[index];
   if (!exercise) return;
 
@@ -215,7 +216,7 @@ function checkClozeExercise(index) {
   }
 }
 
-function showClozeHint(exIdx, blankIdx) {
+function _showClozeHint(exIdx, blankIdx) {
   const blk = currentExercises[exIdx].blanks[blankIdx - 1];
   if (!blk) return;
   showToast(`Hinweis: ${blk.hint}`, 'info');

@@ -4,7 +4,7 @@
  *
  * Depends on: ProgressTracker (static/js/utils/progress-tracker.js)
  */
-const GamificationEngine = {
+const _GamificationEngine = {
   /** Points constants */
   POINTS_CORRECT: 10,
   POINTS_WRONG: 2,

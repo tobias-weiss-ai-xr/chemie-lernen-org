@@ -229,7 +229,7 @@ async function loadPerAreaProgress() {
 
   if (!container) return;
 
-  const fsrsStats = fsrs.getCardStats();
+  const _fsrsStats = fsrs.getCardStats();
   const areaProgressData = tracking.areas.map(area => {
     const goal = tracking.goals[area] || 3;
     const areaCards = Object.values(fsrs.cards).filter(card => card.id.includes(area));
@@ -307,7 +307,7 @@ async function loadRecentActivity() {
     }).join('') + '</ul>';
 }
 
-async function resetProgressData() {
+async function _resetProgressData() {
   if (!confirm('Wirklich alle Fortschrittsdaten l\u00f6schen?')) return;
   await ProgressTracker.resetProgress();
   localStorage.removeItem('chemie-lernen-xp');

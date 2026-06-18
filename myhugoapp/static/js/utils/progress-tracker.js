@@ -3,7 +3,7 @@
  * IndexedDB-based persistent progress tracking for interactive chemistry modules
  */
 
-const ProgressTracker = {
+const _ProgressTracker = {
   DB_NAME: 'ChemieLernenProgress',
   DB_VERSION: 1,
   db: null,
@@ -114,7 +114,7 @@ const ProgressTracker = {
     const tx = db.transaction('exercises', 'readonly');
     const store = tx.objectStore('exercises');
     return new Promise((resolve) => {
-      const results = [];
+      const _results = [];
       const request = store.getAll();
       request.onsuccess = () => resolve(request.result || []);
       request.onerror = () => resolve([]);

@@ -13,11 +13,11 @@ function escapeHtml(s){
 return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-var data;
+var _data;
 fetch("/api/kg-data",{signal:AbortSignal.timeout(15000)})
 .then(function(r){if(!r.ok)throw new Error(r.status);return r.json();})
 .then(function(d){
-data=d;
+  _data=d;
 skeleton.style.display="none";
 init(d);
 })
@@ -92,7 +92,7 @@ h+="</div>";
 return h;
 }
 
-function render(){
+function _render(){
 var filtered=filteredAndSorted();
 var totalPages=Math.ceil(filtered.length/perPage);
 if(currentPage>totalPages)currentPage=Math.max(1,totalPages);
@@ -153,7 +153,7 @@ html+="<div class=\"empty-state\"><div class=\"empty-state-icon\">🔍</div><p>K
 pageItems.forEach(function(e){
 var cat=e.category||"other";
 var relatedCount=(e.relatedEntities||[]).length;
-var compCount=(e.components||[]).length;
+var _compCount=(e.components||[]).length;
 var artCount=(e.articleCount&&e.articleCount.low)||e.articles.length||0;
 var slug=toSlug(e.name);
 html+="<div class=\"entity-card\" data-cat=\""+cat+"\" data-slug=\""+slug+"\" data-tooltip=\""+escapeHtml(getTooltipHtml(e))+"\">";
@@ -194,20 +194,20 @@ app.innerHTML=html;
 document.getElementById("entity-search").addEventListener("input",function(ev){
 searchQuery=ev.target.value;
 currentPage=1;
-render();
+_render();
 });
 
 document.getElementById("entity-sort").addEventListener("change",function(ev){
 sortMode=ev.target.value;
 currentPage=1;
-render();
+_render();
 });
 
 app.querySelectorAll(".entity-view-btn").forEach(function(btn){
 btn.addEventListener("click",function(){
 viewMode=this.getAttribute("data-view");
 currentPage=1;
-render();
+_render();
 });
 });
 
@@ -215,7 +215,7 @@ app.querySelectorAll(".entity-filter-btn").forEach(function(btn){
 btn.addEventListener("click",function(){
 activeFilter=this.getAttribute("data-cat");
 currentPage=1;
-render();
+_render();
 });
 });
 
@@ -225,7 +225,7 @@ if(btn.disabled)return;
 var p=parseInt(btn.getAttribute("data-page"));
 if(p>0&&p<=totalPages){
 currentPage=p;
-render();
+_render();
 }
 });
 });

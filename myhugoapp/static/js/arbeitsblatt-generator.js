@@ -78,7 +78,7 @@
     }
   }
 
-  function genBalancing(diff) {
+  function genBalancing(_diff) {
     var equations = [
       { left: 'H2 + O2', right: 'H2O', balanced: '2 H2 + O2 -> 2 H2O' },
       { left: 'Fe + O2', right: 'Fe2O3', balanced: '4 Fe + 3 O2 -> 2 Fe2O3' },
@@ -98,7 +98,7 @@
     };
   }
 
-  function genMolarMass(diff) {
+  function genMolarMass(_diff) {
     var compounds = [
       { formula: 'H2O', name: 'Wasser', mass: 18.015 },
       { formula: 'CO2', name: 'Kohlenstoffdioxid', mass: 44.01 },
@@ -164,7 +164,7 @@
     }
   }
 
-  function genRedox(diff) {
+  function genRedox(_diff) {
     var redoxPairs = [
       { ox: 'Fe2+', red: 'Fe3+', e0: 0.77, name: 'Eisen(II)/Eisen(III)' },
       { ox: 'Zn', red: 'Zn2+', e0: -0.76, name: 'Zink/Zink(II)' },

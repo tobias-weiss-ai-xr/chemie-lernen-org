@@ -173,12 +173,12 @@ function selectPath(pathId) {
   updateProgressSummary();
 }
 
-function markStepDone(pathId, stepIdx) {
+function _markStepDone(pathId, stepIdx) {
   const key = `lernpfad-${pathId}`;
   let done = [];
   try {
     done = JSON.parse(localStorage.getItem(key)) || [];
-  } catch (e) { /* ignore */ }
+  } catch (_e) { /* ignore */ }
   if (!done.includes(stepIdx)) {
     done.push(stepIdx);
     localStorage.setItem(key, JSON.stringify(done));
@@ -196,7 +196,7 @@ function getPathProgress(pathId) {
   try {
     const done = JSON.parse(localStorage.getItem(`lernpfad-${pathId}`)) || [];
     return done.length;
-  } catch (e) { return 0; }
+  } catch (_e) { return 0; }
 }
 
 function updateProgressSummary() {
@@ -225,7 +225,7 @@ function updateProgressSummary() {
   `;
 }
 
-function resetAllPathProgress() {
+function _resetAllPathProgress() {
   if (!confirm('Wirklich alle Lernpfad-Fortschritte zurücksetzen?')) return;
   LEARNING_PATHS.forEach((p) => {
     localStorage.removeItem(`lernpfad-${p.id}`);
