@@ -413,12 +413,10 @@ describe('3D Visualizer', () => {
       });
 
       expect(viewer).toBeDefined();
-      if (viewer) {
-        expect(viewer.scene).toBeDefined();
-        expect(viewer.camera).toBeDefined();
-        expect(viewer.renderer).toBeDefined();
-        expect(viewer.controls).toBeDefined();
-      }
+      expect(viewer.scene).toBeDefined();
+      expect(viewer.camera).toBeDefined();
+      expect(viewer.renderer).toBeDefined();
+      expect(viewer.controls).toBeDefined();
     });
 
     test('parses H2O molecule', () => {

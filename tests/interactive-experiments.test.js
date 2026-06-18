@@ -361,16 +361,18 @@ describe('Enhanced pH Visualization', () => {
     expect(data[99].ph).toBeCloseTo(13.0, 1);
   });
 
-  test('should animate pH transitions smoothly', (done) => {
-    const phViz = new EnhancedPHVisualization();
-    phViz.currentPH = 7.0;
-    
-    phViz.animateToPH(9.0);
-    
-    setTimeout(() => {
-      expect(phViz.currentPH).toBeCloseTo(9.0, 0.1);
-      done();
-    }, 100);
+  test('should animate pH transitions smoothly', () => {
+    return new Promise((resolve) => {
+      const phViz = new EnhancedPHVisualization();
+      phViz.currentPH = 7.0;
+      
+      phViz.animateToPH(9.0);
+      
+      setTimeout(() => {
+        expect(phViz.currentPH).toBeCloseTo(9.0, 0.1);
+        resolve();
+      }, 100);
+    });
   });
 
   test('should get correct solution colors', () => {

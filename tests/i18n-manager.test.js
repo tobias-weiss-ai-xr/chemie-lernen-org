@@ -85,6 +85,7 @@ describe('I18n Manager', () => {
     };
   });
 
+  /* eslint-disable jest/no-disabled-tests */
   describe('Initialization', () => {
     test.skip('initializes with default locale', () => {
       // Skipped: Module auto-initializes on load, making this test unreliable
@@ -106,7 +107,9 @@ describe('I18n Manager', () => {
       expect(I18nManager.getLocale()).toBe('de');
     });
   });
+  /* eslint-enable jest/no-disabled-tests */
 
+  /* eslint-disable jest/no-disabled-tests */
   describe('Locale Detection', () => {
     test.skip('detects browser language', () => {
       // Skipped: Requires specific navigator setup that conflicts with auto-init
@@ -146,6 +149,7 @@ describe('I18n Manager', () => {
       expect(detected).toBeNull();
     });
   });
+  /* eslint-enable jest/no-disabled-tests */
 
   describe('Locale Management', () => {
     test('sets valid locale', () => {

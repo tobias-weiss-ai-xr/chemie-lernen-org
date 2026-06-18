@@ -195,7 +195,7 @@ describe('Spaced Repetition System', () => {
       fsrs.updateCard('quiz-2-q1', 3, 15000);
       fsrs.updateCard('quiz-3-q1', 5, 8000);
       
-      expect(Object.keys(fsrs.cards).length).toBe(3);
+      expect(Object.keys(fsrs.cards)).toHaveLength(3);
       
       fsrs.resetAll();
       expect(fsrs.cards).toEqual({});
@@ -222,7 +222,7 @@ describe('Spaced Repetition System', () => {
 
     test('should identify cards due for review', () => {
       const dueCards = fsrs.getDueCards();
-      expect(dueCards.length).toBe(2);
+      expect(dueCards).toHaveLength(2);
       expect(dueCards.find(c => c.id === 'future')).toBeUndefined();
     });
 
@@ -234,7 +234,7 @@ describe('Spaced Repetition System', () => {
 
     test('should limit number of returned cards', () => {
       const limitedCards = fsrs.getDueCards(1);
-      expect(limitedCards.length).toBe(1);
+      expect(limitedCards).toHaveLength(1);
     });
   });
 
@@ -357,7 +357,7 @@ describe('Spaced Repetition System', () => {
     test('should generate practice suggestions prioritized correctly', () => {
       const suggestions = fsrs.getPracticeSuggestions(10);
       
-      expect(suggestions.length).toBe(3);
+      expect(suggestions).toHaveLength(3);
       expect(suggestions.every(s => s.cardId)).toBe(true);
       expect(suggestions.every(s => s.dueDate)).toBe(true);
     });
@@ -365,7 +365,7 @@ describe('Spaced Repetition System', () => {
     test('should limit practice suggestions', () => {
       const suggestions = fsrs.getPracticeSuggestions(2);
       
-      expect(suggestions.length).toBe(2);
+      expect(suggestions).toHaveLength(2);
     });
   });
 

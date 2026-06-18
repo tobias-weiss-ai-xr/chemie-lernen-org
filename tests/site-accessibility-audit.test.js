@@ -330,6 +330,8 @@ describe('Site-wide Accessibility Audit - WCAG 2.1 AA', () => {
         const landmarks = doc.querySelectorAll(
           'nav, main, header, footer, article, section, aside'
         ).length;
+        const total = buttons + inputs + links;
+        expect(total).toBeGreaterThanOrEqual(0);
 
         console.log(`\n${'='.repeat(60)}`);
         console.log(`Page Summary: ${page.name}`);

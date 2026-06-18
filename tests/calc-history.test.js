@@ -120,7 +120,7 @@ describe('Calculator History Management', () => {
       }
       
       expect(history[19].id).toBe(19);
-      expect(history.length).toBe(20);
+      expect(history).toHaveLength(20);
     });
   });
 

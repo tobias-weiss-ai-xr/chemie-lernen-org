@@ -273,7 +273,7 @@ describe('GamificationEngine', () => {
     test('creates toast element in DOM', () => {
       GamificationEngine.showNotification('Test', 'fa-star', '#FFC107');
       const container = document.getElementById('gamification-notifications');
-      expect(container.children.length).toBe(1);
+      expect(container.children).toHaveLength(1);
     });
 
     test('includes message text in toast', () => {
