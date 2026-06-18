@@ -163,6 +163,24 @@ th {
     color: var(--green-light, #8bc34a);
 }
 
+/* Social share bar - migrated from inline styles */
+.social-share-bar {
+    margin: 2em 0;
+    padding-top: 1em;
+    border-top: 1px solid #ddd;
+}
+.social-share-links {
+    font-size: 1.4em;
+    line-height: 2;
+}
+.social-share-link {
+    text-decoration: none;
+    margin-right: 0.6em;
+}
+.social-share-link:last-child {
+    margin-right: 0;
+}
+
 /* Special handling for links to prevent them from overflowing */
 a {
     word-break: break-word;

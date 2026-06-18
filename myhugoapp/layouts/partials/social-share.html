@@ -4,31 +4,31 @@
 {{ $encodedUrl := querify "q" $url | strings.TrimPrefix "q=" }}
 {{ $encodedTitle := querify "q" $title | strings.TrimPrefix "q=" }}
 
-<div class="social-share-bar" style="margin: 2em 0; padding-top: 1em; border-top: 1px solid #ddd;">
+<div class="social-share-bar">
   <p><strong>Diesen Beitrag teilen:</strong></p>
-  <p style="font-size: 1.4em; line-height: 2;">
+  <p class="social-share-links">
     <!-- Twitter/X -->
-    <a href="https://twitter.com/intent/tweet?text={{ $encodedTitle }}&url={{ $encodedUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Auf Twitter/X teilen" style="text-decoration:none; margin-right: 0.6em;">
+    <a href="https://twitter.com/intent/tweet?text={{ $encodedTitle }}&url={{ $encodedUrl }}" target="_blank" rel="noopener noreferrer" class="social-share-link" aria-label="Auf Twitter/X teilen">
       🐦
     </a>
     <!-- LinkedIn -->
-    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ $encodedUrl }}&title={{ $encodedTitle }}&summary={{ $description }}" target="_blank" rel="noopener noreferrer" aria-label="Auf LinkedIn teilen" style="text-decoration:none; margin-right: 0.6em;">
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ $encodedUrl }}&title={{ $encodedTitle }}&summary={{ $description }}" target="_blank" rel="noopener noreferrer" class="social-share-link" aria-label="Auf LinkedIn teilen">
       💼
     </a>
     <!-- WhatsApp -->
-    <a href="https://api.whatsapp.com/send?text={{ $encodedTitle }}%20{{ $encodedUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Per WhatsApp teilen" style="text-decoration:none; margin-right: 0.6em;">
+    <a href="https://api.whatsapp.com/send?text={{ $encodedTitle }}%20{{ $encodedUrl }}" target="_blank" rel="noopener noreferrer" class="social-share-link" aria-label="Per WhatsApp teilen">
       💬
     </a>
     <!-- Mastodon -->
-    <a href="https://toot.kytta.dev/?text={{ $encodedTitle }}%20{{ $encodedUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Auf Mastodon teilen" style="text-decoration:none; margin-right: 0.6em;">
+    <a href="https://toot.kytta.dev/?text={{ $encodedTitle }}%20{{ $encodedUrl }}" target="_blank" rel="noopener noreferrer" class="social-share-link" aria-label="Auf Mastodon teilen">
       🐘
     </a>
     <!-- E-Mail -->
-    <a href="mailto:?subject={{ $title }}&body={{ $title }}%0A{{ $url }}" aria-label="Per E-Mail teilen" style="text-decoration:none; margin-right: 0.6em;">
+    <a href="mailto:?subject={{ $title }}&body={{ $title }}%0A{{ $url }}" class="social-share-link" aria-label="Per E-Mail teilen">
       ✉️
     </a>
     <!-- Copy link -->
-    <a href="#" id="copy-link-btn" aria-label="Link kopieren" style="text-decoration:none;">
+    <a href="#" id="copy-link-btn" class="social-share-link" aria-label="Link kopieren">
       🔗
     </a>
   </p>
