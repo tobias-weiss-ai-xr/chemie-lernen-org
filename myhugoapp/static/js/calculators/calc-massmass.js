@@ -1,6 +1,13 @@
 /* global saveToHistory */
 
 
+function calcMassMassValue(m1, M1, M2, v1, v2) {
+  const n1 = m1 / M1;
+  const n2 = n1 * (v2 / v1);
+  const m2 = n2 * M2;
+  return { n1, n2, m2 };
+}
+
 function calcMassMass() {
   const m1 = parseFloat(document.getElementById('mass-r').value);
   const M1 = parseFloat(document.getElementById('mm-r').value);
@@ -13,9 +20,7 @@ function calcMassMass() {
     return;
   }
 
-  const n1 = m1 / M1;
-  const n2 = n1 * (v2 / v1);
-  const m2 = n2 * M2;
+  const { n1, n2, m2 } = calcMassMassValue(m1, M1, M2, v1, v2);
 
   document.getElementById('mass-preview').innerHTML =
     '<p style="font-size:2em; color:#007bff;">' + m2.toFixed(2) + '</p>' +
@@ -114,4 +119,8 @@ function toggleMassMassExplanation() {
   if (explanation) {
     explanation.style.display = explanation.style.display === 'none' ? 'block' : 'none';
   }
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { calcMassMassValue };
 }

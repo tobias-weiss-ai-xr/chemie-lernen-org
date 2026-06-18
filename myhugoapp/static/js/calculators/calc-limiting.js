@@ -1,6 +1,15 @@
 /* global saveToHistory */
 
 
+function calcLimitingValue(m1, M1, m2, M2) {
+  const n1 = m1 / M1;
+  const n2 = m2 / M2;
+  const limiting = n1 < n2 ? 1 : 2;
+  const name = limiting === 1 ? 'Reagenz 1' : 'Reagenz 2';
+  const excess = limiting === 1 ? n2 - n1 : n1 - n2;
+  return { n1, n2, limiting, name, excess };
+}
+
 function calcLimiting() {
   const m1 = parseFloat(document.getElementById('lim-m1').value);
   const M1 = parseFloat(document.getElementById('lim-mm1').value);
@@ -12,12 +21,7 @@ function calcLimiting() {
     return;
   }
 
-  const n1 = m1 / M1;
-  const n2_2 = m2 / M2;
-
-  const limiting = n1 < n2_2 ? 1 : 2;
-  const name = limiting === 1 ? 'Reagenz 1' : 'Reagenz 2';
-  const other = limiting === 1 ? n2_2 - n1 : n1 - n2_2;
+  const { n1, n2: n2_2, limiting, name, excess: other } = calcLimitingValue(m1, M1, m2, M2);
 
   document.getElementById('limit-result').style.display = 'block';
   document.getElementById('limit-result').innerHTML =
@@ -94,4 +98,8 @@ function toggleLimitingExplanation() {
   if (explanation) {
     explanation.style.display = explanation.style.display === 'none' ? 'block' : 'none';
   }
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { calcLimitingValue };
 }

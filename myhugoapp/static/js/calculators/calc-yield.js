@@ -1,6 +1,10 @@
 /* global saveToHistory */
 
 
+function calcYieldValue(theo, act) {
+  return (act / theo) * 100;
+}
+
 function calcYield() {
   const theo = parseFloat(document.getElementById('yield-theo').value);
   const act = parseFloat(document.getElementById('yield-act').value);
@@ -10,7 +14,7 @@ function calcYield() {
     return;
   }
 
-  const yield_pct = (act / theo) * 100;
+  const yield_pct = calcYieldValue(theo, act);
 
   document.getElementById('yield-result').style.display = 'block';
   document.getElementById('yield-result').innerHTML =
@@ -102,4 +106,8 @@ function toggleYieldExplanation() {
   if (explanation) {
     explanation.style.display = explanation.style.display === 'none' ? 'block' : 'none';
   }
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { calcYieldValue };
 }

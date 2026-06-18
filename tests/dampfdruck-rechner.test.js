@@ -1,21 +1,10 @@
 /**
  * Unit Tests for Dampfdruck-Rechner (Vapor Pressure Calculator)
  * Tests the Clausius-Clapeyron approximation: P = P₀ * exp(-8860 * (1/T - 1/T₀))
+ * Imports pure functions from source via module.exports.
  */
 
-function calculateVaporPressure(temperatureC, normalPressure, boilingPointC) {
-  var temperatureK = temperatureC + 273.15;
-  var boilingPointK = boilingPointC + 273.15;
-
-  if (temperatureK <= 0 || boilingPointK <= 0) {
-    throw new Error('Temperatur muss größer als 0 K sein');
-  }
-
-  var deltaT = 1 / temperatureK - 1 / boilingPointK;
-  var pressure = normalPressure * Math.exp(-8860 * deltaT);
-  pressure = Math.max(0, pressure);
-  return pressure;
-}
+const { calculateVaporPressure } = require('../myhugoapp/static/js/calculators/dampfdruck-rechner.js');
 
 describe('Dampfdruck-Rechner — Vapor Pressure (Clausius-Clapeyron)', () => {
   test('boiling point gives normal pressure (T=T₀)', () => {

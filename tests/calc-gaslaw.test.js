@@ -1,53 +1,11 @@
-/**
- * Unit Tests for Gas Law Calculator (calc-gaslaw.js)
- * Tests PV = nRT calculations and unit conversions.
- */
+const {
+  convertPressureToAtm,
+  convertVolumeToLiters,
+  convertAmountToMoles,
+  convertToKelvin,
+  convertFromKelvin,
+} = require('../myhugoapp/static/js/calculators/calc-gaslaw.js');
 
-// Re-implement pure conversion functions from calc-gaslaw.js
-function convertPressureToAtm(pressure, unit) {
-  switch (unit) {
-    case 'atm': return pressure;
-    case 'bar': return pressure * 0.986923;
-    case 'Pa': return pressure / 101325;
-    case 'kPa': return pressure / 101.325;
-    case 'Torr': return pressure / 760;
-    case 'mmHg': return pressure / 760;
-    default: return pressure;
-  }
-}
-
-function convertVolumeToLiters(volume, unit) {
-  switch (unit) {
-    case 'L': return volume;
-    case 'mL': return volume / 1000;
-    case 'm3': return volume * 1000;
-    case 'cm3': return volume / 1000;
-    default: return volume;
-  }
-}
-
-function convertAmountToMoles(amount, unit) {
-  switch (unit) {
-    case 'mol': return amount;
-    case 'mmol': return amount / 1000;
-    default: return amount;
-  }
-}
-
-function convertToKelvin(temp, unit) {
-  switch (unit) {
-    case 'K': return temp;
-    case 'C': return temp + 273.15;
-    case 'F': return (temp - 32) * 5 / 9 + 273.15;
-    default: return temp;
-  }
-}
-
-function convertFromKelvin(kelvin) {
-  return kelvin - 273.15;
-}
-
-// Re-implement PV=nRT solver
 function solveGasLaw(P_atm, V_L, n_mol, T_K, R, solveFor) {
   switch (solveFor) {
     case 'n': return (P_atm * V_L) / (R * T_K);

@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">8.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/34</span>
+                <span class='fraction'>3/36</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">16.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>3/18</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">8.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/34</span>
+                <span class='fraction'>3/36</span>
             </div>
         
             
@@ -165,7 +165,13 @@
 <a name='L100'></a><a href='#L100'>100</a>
 <a name='L101'></a><a href='#L101'>101</a>
 <a name='L102'></a><a href='#L102'>102</a>
-<a name='L103'></a><a href='#L103'>103</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -267,7 +273,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const elementDatabase = <span class="cstat-no" title="statement not covered" >{</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const elementDatabase = {
   'H': { symbol: 'H', name: 'Wasserstoff', mass: 1.008, number: 1 },
   'C': { symbol: 'C', name: 'Kohlenstoff', mass: 12.011, number: 6 },
   'N': { symbol: 'N', name: 'Stickstoff', mass: 14.007, number: 7 },
@@ -304,7 +316,7 @@ function <span class="fstat-no" title="function not covered" >applyMolarMass(</s
   const selectedValue = <span class="cstat-no" title="statement not covered" >selector.value;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (!selectedValue) {</span>
-<span class="cstat-no" title="statement not covered" >    alert('Bitte wählen Sie ein Element aus.');</span>
+<span class="cstat-no" title="statement not covered" >    showToast('Bitte wählen Sie ein Element aus.', 'error');</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
@@ -314,7 +326,7 @@ function <span class="fstat-no" title="function not covered" >applyMolarMass(</s
   const element = <span class="cstat-no" title="statement not covered" >elementDatabase[symbol];</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (!element) {</span>
-<span class="cstat-no" title="statement not covered" >    alert('Element nicht gefunden: ' + symbol);</span>
+<span class="cstat-no" title="statement not covered" >    showToast('Element nicht gefunden: ' + symbol, 'error');</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
   }
 &nbsp;
@@ -348,10 +360,10 @@ function <span class="fstat-no" title="function not covered" >applyMolarMassToCa
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (!reactantField.value || parseFloat(reactantField.value) === 0) {</span>
 <span class="cstat-no" title="statement not covered" >    reactantField.value = element.mass;</span>
-<span class="cstat-no" title="statement not covered" >    alert(element.symbol + ' (' + element.name + ') molare Masse ' + element.mass + ' g/mol als Edukt übernommen');</span>
+<span class="cstat-no" title="statement not covered" >    showToast(element.symbol + ' (' + element.name + ') molare Masse ' + element.mass + ' g/mol als Edukt übernommen', 'success');</span>
   } else <span class="cstat-no" title="statement not covered" >if (!productField.value || parseFloat(productField.value) === 0) {</span>
 <span class="cstat-no" title="statement not covered" >    productField.value = element.mass;</span>
-<span class="cstat-no" title="statement not covered" >    alert(element.symbol + ' (' + element.name + ') molare Masse ' + element.mass + ' g/mol als Produkt übernommen');</span>
+<span class="cstat-no" title="statement not covered" >    showToast(element.symbol + ' (' + element.name + ') molare Masse ' + element.mass + ' g/mol als Produkt übernommen', 'success');</span>
   } else {
     const choice = <span class="cstat-no" title="statement not covered" >confirm(</span>
       element.symbol + ' (' + element.name + ') - M = ' + element.mass + ' g/mol\n\n' +
@@ -369,6 +381,12 @@ function <span class="fstat-no" title="function not covered" >applyMolarMassToCa
     }
   }
 }
+&nbsp;
+<span class="missing-if-branch" title="else path not taken" >E</span>if (typeof module !== 'undefined' &amp;&amp; module.exports) {
+  module.exports = {
+    elementDatabase: elementDatabase,
+  };
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -376,7 +394,7 @@ function <span class="fstat-no" title="function not covered" >applyMolarMassToCa
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-06-11T10:20:33.869Z
+                at 2026-06-18T21:17:49.617Z
             </div>
         <script src="../prettify.js"></script>
         <script>

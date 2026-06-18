@@ -1,45 +1,13 @@
 /**
  * Unit Tests for Verduennungsreihen-Rechner (Dilution Series Calculator)
  * Tests the 1:2 serial dilution series: cₙ = c₀ × 0.5ⁿ
+ * Imports pure functions from source via module.exports.
  */
 
-/**
- * Pure function from source: calculateDilutionSeries
- */
-function calculateDilutionSeries(initialConc, numSteps) {
-  var series = [];
-  for (var n = 0; n <= numSteps; n++) {
-    var conc = initialConc * Math.pow(0.5, n);
-    var dilutionFactor = Math.pow(2, n);
-    series.push({
-      step: n,
-      dilutionRatio: '1:' + dilutionFactor,
-      concentration: conc,
-      dilutionFactor: dilutionFactor
-    });
-  }
-  return series;
-}
-
-/**
- * Pure function from source: formatConcentration
- */
-function formatConcentration(conc, unit) {
-  var value;
-  switch (unit) {
-    case 'mol/L': value = conc; break;
-    case 'mM': value = conc * 1000; break;
-    case 'μM': value = conc * 1000000; break;
-    case 'g/L': value = conc; break;
-    case 'mg/mL': value = conc; break;
-    default: value = conc;
-  }
-  if (Math.abs(value) >= 0.001) {
-    return value.toExponential(2);
-  } else {
-    return value.toFixed(2);
-  }
-}
+const {
+  calculateDilutionSeries,
+  formatConcentration
+} = require('../myhugoapp/static/js/calculators/verduennungsreihen-rechner.js');
 
 describe('Verduennungsreihen-Rechner — Dilution Series (1:2)', () => {
   describe('calculateDilutionSeries', () => {
@@ -82,7 +50,6 @@ describe('Verduennungsreihen-Rechner — Dilution Series (1:2)', () => {
     test('handles large step count (20)', () => {
       const series = calculateDilutionSeries(1, 20);
       expect(series).toHaveLength(21);
-      // 2^20 = 1,048,576-fold dilution
       expect(series[20].dilutionFactor).toBe(1048576);
       expect(series[20].concentration).toBeCloseTo(Math.pow(0.5, 20), 15);
     });
@@ -150,7 +117,6 @@ describe('Verduennungsreihen-Rechner — Dilution Series (1:2)', () => {
     test('returns exponential format for normal values', () => {
       const result = formatConcentration(0.01, 'mol/L');
       expect(typeof result).toBe('string');
-      // Should use toExponential since abs(value) >= 0.001
       expect(result.length).toBeGreaterThan(0);
     });
   });

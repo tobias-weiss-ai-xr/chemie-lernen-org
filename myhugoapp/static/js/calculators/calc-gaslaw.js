@@ -365,3 +365,24 @@ document.addEventListener('DOMContentLoaded', () => {
     tempUnit.addEventListener('change', convertTemperatureToKelvin);
   }
 });
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    convertPressureToAtm,
+    convertVolumeToLiters,
+    convertAmountToMoles,
+    convertToKelvin,
+    convertFromKelvin
+  };
+}
+
+// Export pure functions for testing
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    convertPressureToAtm,
+    convertVolumeToLiters,
+    convertAmountToMoles,
+    convertToKelvin,
+    convertFromKelvin,
+  };
+}

@@ -128,6 +128,57 @@ function updateInitialMass() {
 }
 
 
+function calculateMultiStepPure(initialAmount, steps) {
+  if (isNaN(initialAmount) || initialAmount <= 0) {
+    throw new Error('Bitte geben Sie eine gültige Stoffmenge für den Ausgangsstoff ein.');
+  }
+
+  if (steps.length === 0) {
+    throw new Error('Bitte fügen Sie mindestens einen Reaktionsschritt hinzu.');
+  }
+
+  var currentAmount = initialAmount;
+  var results = [];
+
+  steps.forEach(function (step, index) {
+    var coeffR = step.coeffR;
+    var coeffP = step.coeffP;
+    var molarMass = step.molarMass;
+    var product = step.product || 'Produkt ' + (index + 1);
+    var equation = step.equation || '';
+
+    if (isNaN(coeffR) || isNaN(coeffP) || coeffR <= 0 || coeffP <= 0) {
+      throw new Error('Fehler in Schritt ' + (index + 1) + ': Ungültige Koeffizienten');
+    }
+
+    var productAmount = currentAmount * (coeffP / coeffR);
+
+    var productMass = null;
+    if (!isNaN(molarMass) && molarMass > 0) {
+      productMass = productAmount * molarMass;
+    }
+
+    results.push({
+      stepNumber: index + 1,
+      reactantAmount: currentAmount,
+      coeffR: coeffR,
+      coeffP: coeffP,
+      productAmount: productAmount,
+      molarMass: molarMass,
+      productMass: productMass,
+      product: product,
+      equation: equation,
+    });
+
+    currentAmount = productAmount;
+  });
+
+  var finalResult = results[results.length - 1];
+  var overallYield = (finalResult.productAmount / initialAmount) * 100;
+
+  return { results: results, overallYield: overallYield };
+}
+
 function calculateMultiStep() {
   const initialAmount = parseFloat(document.getElementById('initial-amount').value);
   const initialMolarMass = parseFloat(document.getElementById('initial-molar-mass').value);
@@ -373,3 +424,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initialMolarMass.addEventListener('input', updateInitialMass);
   }
 });
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    calculateMultiStepPure: calculateMultiStepPure,
+  };
+}

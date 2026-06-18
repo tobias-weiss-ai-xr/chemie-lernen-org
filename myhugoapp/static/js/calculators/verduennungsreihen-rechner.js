@@ -2,6 +2,56 @@
  * Verduennungsreihen-Rechner
  * Berechnet Konzentrationen in 1:2-Verduennungsreihe
  */
+
+function formatConcentration(conc, unit) {
+  let value;
+  switch (unit) {
+    case 'mol/L':
+      value = conc;
+      break;
+    case 'mM':
+      value = conc * 1000;
+      break;
+    case 'μM':
+      value = conc * 1000000;
+      break;
+    case 'g/L':
+      value = conc;
+      break;
+    case 'mg/mL':
+      value = conc;
+      break;
+    default:
+      value = conc;
+  }
+
+  if (value >= 0.001 || value <= -0.001) {
+    return value.toExponential(2);
+  } else {
+    return value.toFixed(2);
+  }
+}
+
+function calculateDilutionSeries(initialConc, numSteps) {
+  const series = [];
+  for (let n = 0; n <= numSteps; n++) {
+    const conc = initialConc * Math.pow(0.5, n);
+    const dilutionFactor = Math.pow(2, n);
+
+    series.push({
+      step: n,
+      dilutionRatio: '1:' + dilutionFactor,
+      concentration: conc,
+      dilutionFactor: dilutionFactor
+    });
+  }
+  return series;
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { calculateDilutionSeries, formatConcentration };
+}
+
 (function() {
   'use strict';
 
@@ -11,51 +61,6 @@
 
   if (!form || !resultBox) {
     return;
-  }
-
-  function formatConcentration(conc, unit) {
-    let value;
-    switch (unit) {
-      case 'mol/L':
-        value = conc;
-        break;
-      case 'mM':
-        value = conc * 1000;
-        break;
-      case 'μM':
-        value = conc * 1000000;
-        break;
-      case 'g/L':
-        value = conc;
-        break;
-      case 'mg/mL':
-        value = conc;
-        break;
-      default:
-        value = conc;
-    }
-
-    if (value >= 0.001 || value <= -0.001) {
-      return value.toExponential(2);
-    } else {
-      return value.toFixed(2);
-    }
-  }
-
-  function calculateDilutionSeries(initialConc, numSteps) {
-    const series = [];
-    for (let n = 0; n <= numSteps; n++) {
-      const conc = initialConc * Math.pow(0.5, n);
-      const dilutionFactor = Math.pow(2, n);
-
-      series.push({
-        step: n,
-        dilutionRatio: '1:' + dilutionFactor,
-        concentration: conc,
-        dilutionFactor: dilutionFactor
-      });
-    }
-    return series;
   }
 
   function handleSubmit(e) {

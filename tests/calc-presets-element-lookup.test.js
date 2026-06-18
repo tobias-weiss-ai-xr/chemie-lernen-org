@@ -3,23 +3,10 @@
  * Validates preset data integrity and element database accuracy.
  */
 
+const { presets, massPresets } = require('../myhugoapp/static/js/calculators/calc-presets.js');
+const { elementDatabase } = require('../myhugoapp/static/js/calculators/calc-element-lookup.js');
+
 describe('Calculator Presets (calc-presets.js)', () => {
-  const presets = {
-    water: { name: 'Wasserbildung', equation: '2H2 + O2 -> 2H2O', v1: 2, v2: 2, example: 4 },
-    methane: { name: 'Methan-Verbrennung', equation: 'CH4 + 2O2 -> CO2 + 2H2O', v1: 1, v2: 1, example: 2 },
-    ammonia: { name: 'Haber-Verfahren (Ammoniak)', equation: 'N2 + 3H2 -> 2NH3', v1: 1, v2: 2, example: 3 },
-    sodium: { name: 'Natrium + Wasser', equation: '2Na + 2H2O -> 2NaOH + H2', v1: 2, v2: 2, example: 4 },
-    photosynthesis: { name: 'Fotosynthese', equation: '6CO2 + 6H2O -> C6H12O6 + 6O2', v1: 6, v2: 1, example: 6 },
-  };
-
-  const massPresets = {
-    water: { name: 'Wasserbildung', v1: 2, v2: 2, m1: 4, M1: 2, M2: 18 },
-    methane: { name: 'Methan-Verbrennung', v1: 1, v2: 1, m1: 16, M1: 16, M2: 44 },
-    ammonia: { name: 'Haber-Verfahren', v1: 1, v2: 2, m1: 28, M1: 28, M2: 17 },
-    sodium: { name: 'Natrium + Wasser', v1: 2, v2: 2, m1: 46, M1: 23, M2: 40 },
-    photosynthesis: { name: 'Fotosynthese', v1: 6, v2: 1, m1: 264, M1: 44, M2: 180 },
-  };
-
   test('all presets have required fields', () => {
     Object.entries(presets).forEach(([key, preset]) => {
       expect(preset.name).toBeDefined();
@@ -83,16 +70,6 @@ describe('Calculator Presets (calc-presets.js)', () => {
 });
 
 describe('Element Database (calc-element-lookup.js)', () => {
-  const elementDatabase = {
-    H: { symbol: 'H', name: 'Wasserstoff', mass: 1.008, number: 1 },
-    C: { symbol: 'C', name: 'Kohlenstoff', mass: 12.011, number: 6 },
-    N: { symbol: 'N', name: 'Stickstoff', mass: 14.007, number: 7 },
-    O: { symbol: 'O', name: 'Oauerstoff', mass: 15.999, number: 8 },
-    Fe: { symbol: 'Fe', name: 'Eisen', mass: 55.845, number: 26 },
-    Au: { symbol: 'Au', name: 'Gold', mass: 196.97, number: 79 },
-    Cl: { symbol: 'Cl', name: 'Chlor', mass: 35.45, number: 17 },
-  };
-
   test('hydrogen mass ≈ 1.008', () => {
     expect(elementDatabase.H.mass).toBeCloseTo(1.008, 3);
   });

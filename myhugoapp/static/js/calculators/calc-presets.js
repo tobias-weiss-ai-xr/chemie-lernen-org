@@ -108,3 +108,10 @@ function loadMassPreset(presetKey) {
   document.getElementById('mass-result').style.display = 'none';
   document.getElementById('mass-preview').innerHTML = '<p style="font-size:2em; color:#007bff;">--</p><p>Gramm</p>';
 }
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    presets: presets,
+    massPresets: massPresets,
+  };
+}

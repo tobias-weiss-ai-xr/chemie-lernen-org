@@ -1,6 +1,10 @@
 /* global saveToHistory */
 
 
+function calcMolMolValue(n1, v1, v2) {
+  return n1 * (v2 / v1);
+}
+
 function calcMolMol() {
   const n1 = parseFloat(document.getElementById('mol-reactant').value);
   const v1 = parseFloat(document.getElementById('mol-coeff-r').value);
@@ -11,7 +15,7 @@ function calcMolMol() {
     return;
   }
 
-  const n2 = n1 * (v2 / v1);
+  const n2 = calcMolMolValue(n1, v1, v2);
   document.getElementById('mol-result').style.display = 'block';
 
   document.getElementById('mol-calc').innerHTML =
@@ -89,4 +93,8 @@ function toggleMolMolExplanation() {
   if (explanation) {
     explanation.style.display = explanation.style.display === 'none' ? 'block' : 'none';
   }
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { calcMolMolValue };
 }

@@ -100,3 +100,9 @@ function applyMolarMassToCalculator(element) {
     }
   }
 }
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    elementDatabase: elementDatabase,
+  };
+}
