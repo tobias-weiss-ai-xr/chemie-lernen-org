@@ -13,6 +13,10 @@ function calcYield() {
     showToast('Bitte geben Sie alle Werte ein', 'error');
     return;
   }
+  if (theo <= 0) {
+    showToast('Die theoretische Ausbeute muss größer als 0 sein', 'error');
+    return;
+  }
 
   const yield_pct = calcYieldValue(theo, act);
 

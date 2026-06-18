@@ -1,5 +1,14 @@
 // ===== HISTORY MANAGEMENT =====
 
+function _escapeHtml(str) {
+  if (typeof str !== 'string') {
+    return '';
+  }
+  var div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
 function saveToHistory(type, data) {
   try {
     const history = JSON.parse(localStorage.getItem('stoichHistory') || '[]');
@@ -46,9 +55,9 @@ function displayHistory() {
         '<div class="history-item" style="padding: 10px; margin-bottom: 8px; background: #f5f5f5; border-radius: 4px; border-left: 3px solid #007bff;">' +
           '<div style="display: flex; justify-content: space-between; align-items: start;">' +
             '<div style="flex: 1;">' +
-              '<strong>' + entry.type + '</strong>' +
-              '<span class="text-muted" style="font-size: 0.85em; margin-left: 10px;">' + entry.timestamp + '</span>' +
-              '<div style="margin-top: 5px; font-size: 0.9em;">' + entry.data + '</div>' +
+              '<strong>' + _escapeHtml(entry.type) + '</strong>' +
+              '<span class="text-muted" style="font-size: 0.85em; margin-left: 10px;">' + _escapeHtml(entry.timestamp) + '</span>' +
+              '<div style="margin-top: 5px; font-size: 0.9em;">' + _escapeHtml(entry.data) + '</div>' +
             '</div>' +
           '</div>' +
         '</div>';

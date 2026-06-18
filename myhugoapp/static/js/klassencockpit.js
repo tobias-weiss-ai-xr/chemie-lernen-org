@@ -211,7 +211,7 @@
         html += '  <h5>Letzte Aktivitäten</h5>';
         html += '  <ul>';
         studentScores.slice(-5).reverse().forEach(function (s) {
-          html += '    <li>' + (s.topic || 'Unbekannt') + ': ' + s.correct + '/' + s.total + ' richtig</li>';
+          html += '    <li>' + escapeHtml(s.topic || 'Unbekannt') + ': ' + s.correct + '/' + s.total + ' richtig</li>';
         });
         html += '  </ul>';
       }

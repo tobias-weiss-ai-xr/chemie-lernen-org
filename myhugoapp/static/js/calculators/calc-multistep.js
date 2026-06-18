@@ -243,6 +243,15 @@ function calculateMultiStep() {
   displayMultiStepResults(initialAmount, initialMolarMass, initialCompound, results);
 }
 
+function _escapeHtml(str) {
+  if (typeof str !== 'string') {
+    return '';
+  }
+  var div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
 function displayMultiStepResults(initialAmount, initialMolarMass, initialCompound, results) {
   const resultDiv = document.getElementById('multistep-result');
   const contentDiv = document.getElementById('multistep-results-content');
@@ -251,7 +260,7 @@ function displayMultiStepResults(initialAmount, initialMolarMass, initialCompoun
 
   html += '<div style="margin-bottom: 20px; padding: 15px; background: #e8f5e9; border-radius: 4px;">';
   html += '<h4 style="color: #2E7D32; margin-top: 0;"><i class="fa fa-play-circle"></i> Ausgangsstoff</h4>';
-  html += '<p><strong>Verbindung:</strong> ' + initialCompound + '</p>';
+  html += '<p><strong>Verbindung:</strong> ' + _escapeHtml(initialCompound) + '</p>';
   html += '<p><strong>Stoffmenge:</strong> ' + initialAmount.toFixed(4) + ' mol</p>';
   if (!isNaN(initialMolarMass) && initialMolarMass > 0) {
     const initialMass = initialAmount * initialMolarMass;
@@ -271,12 +280,12 @@ function displayMultiStepResults(initialAmount, initialMolarMass, initialCompoun
         '</h4>';
 
     if (result.equation) {
-      html += '<p><strong>Gleichung:</strong> ' + result.equation + '</p>';
+      html += '<p><strong>Gleichung:</strong> ' + _escapeHtml(result.equation) + '</p>';
     }
 
     html += '<p><strong>Edukt:</strong> ' + result.reactantAmount.toFixed(4) + ' mol</p>';
     html += '<p><strong>Koeffizienten:</strong> \u03bd\u2081 = ' + result.coeffR + ', \u03bd\u2082 = ' + result.coeffP + '</p>';
-    html += '<p><strong>Berechnung:</strong> ' + result.product + ' = ' + result.reactantAmount.toFixed(4) + ' \u00d7 (' + result.coeffP + '/' + result.coeffR + ')</p>';
+    html += '<p><strong>Berechnung:</strong> ' + _escapeHtml(result.product) + ' = ' + result.reactantAmount.toFixed(4) + ' \u00d7 (' + result.coeffP + '/' + result.coeffR + ')</p>';
     html += '<p><strong>Produktstoffmenge:</strong> <strong style="color: ' + (index % 2 === 0 ? '#E65100' : '#C2185B') + '">' + result.productAmount.toFixed(4) + ' mol</strong></p>';
 
     if (result.productMass !== null) {

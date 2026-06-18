@@ -9,6 +9,20 @@
   var kgData = null;
 
   /**
+   * Sanitize HTML to prevent XSS from server responses.
+   * Strips <script> tags, event handler attributes, and javascript: URLs.
+   */
+  function sanitizeAiHtml(html) {
+    if (typeof html !== 'string') return '';
+    html = html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+    html = html.replace(/\son\w+\s*=\s*"[^"]*"/gi, '');
+    html = html.replace(/\son\w+\s*=\s*'[^']*'/gi, '');
+    html = html.replace(/\son\w+\s*=\s*[^\s>]+/gi, '');
+    html = html.replace(/(href|src)\s*=\s*("javascript:[^"]*"|'javascript:[^']*'|javascript:[^\s>]+)/gi, '$1="#"');
+    return html;
+  }
+
+  /**
    * Parse KG data from the embedded script tag.
    */
   function loadKgData() {
@@ -220,7 +234,7 @@
             var data = JSON.parse(dataStr);
             if (data.content) {
               result.reply += data.content;
-              messageContentDiv.innerHTML = result.reply;
+              messageContentDiv.innerHTML = sanitizeAiHtml(result.reply);
               container.scrollTop = container.scrollHeight;
             }
             if (data.done) {
@@ -243,7 +257,7 @@
               }
 
               if (remainingInfo) {
-                messageContentDiv.innerHTML = result.reply + remainingInfo;
+                messageContentDiv.innerHTML = sanitizeAiHtml(result.reply + remainingInfo);
               }
             }
           } catch (_) {}
@@ -529,7 +543,14 @@
     var container = document.getElementById('chat-messages');
     var div = document.createElement('div');
     div.className = 'message ' + (isUser ? 'user' : 'bot');
-    div.innerHTML = '<div class="message-content">' + text + '</div>';
+    var contentDiv = document.createElement('div');
+    contentDiv.className = 'message-content';
+    if (isUser) {
+      contentDiv.textContent = text;
+    } else {
+      contentDiv.innerHTML = sanitizeAiHtml(text);
+    }
+    div.appendChild(contentDiv);
     container.appendChild(div);
     container.scrollTop = container.scrollHeight;
 

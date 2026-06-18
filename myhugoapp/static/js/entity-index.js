@@ -158,10 +158,10 @@ var artCount=(e.articleCount&&e.articleCount.low)||e.articles.length||0;
 var slug=toSlug(e.name);
 html+="<div class=\"entity-card\" data-cat=\""+cat+"\" data-slug=\""+slug+"\" data-tooltip=\""+escapeHtml(getTooltipHtml(e))+"\">";
 html+="<div class=\"entity-card-name\"><a href=\"/entity/"+slug+"/\">"+escapeHtml(e.name)+"</a></div>";
-html+="<span class=\"entity-card-cat\">"+(catLabels[cat]||cat)+"</span>";
+html+="<span class=\"entity-card-cat\">"+escapeHtml(catLabels[cat]||cat)+"</span>";
 html+="<div class=\"entity-card-meta\">"+relatedCount+" verwandte Begriffe · "+artCount+" Artikel</div>";
 if(e.components&&e.components.length>0){
-html+="<div class=\"entity-card-components\"><strong>Besteht aus:</strong> "+e.components.slice(0,5).join(", ")+(e.components.length>5?" +"+(e.components.length-5):"")+"</div>";
+html+="<div class=\"entity-card-components\"><strong>Besteht aus:</strong> "+e.components.slice(0,5).map(escapeHtml).join(", ")+(e.components.length>5?" +"+(e.components.length-5):"")+"</div>";
 }
 if(e.relatedEntities&&e.relatedEntities.length>0){
 html+="<div class=\"entity-card-related\">";

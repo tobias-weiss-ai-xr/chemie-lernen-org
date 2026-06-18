@@ -20,6 +20,10 @@ function calcLimiting() {
     showToast('Bitte geben Sie alle Werte ein', 'error');
     return;
   }
+  if (M1 <= 0 || M2 <= 0) {
+    showToast('Die molare Masse muss größer als 0 sein', 'error');
+    return;
+  }
 
   const { n1, n2: n2_2, limiting, name, excess: other } = calcLimitingValue(m1, M1, m2, M2);
 

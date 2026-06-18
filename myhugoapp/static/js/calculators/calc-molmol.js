@@ -14,6 +14,10 @@ function calcMolMol() {
     showToast('Bitte geben Sie alle Werte ein', 'error');
     return;
   }
+  if (v1 <= 0) {
+    showToast('Der Edukt-Koeffizient muss größer als 0 sein', 'error');
+    return;
+  }
 
   const n2 = calcMolMolValue(n1, v1, v2);
   document.getElementById('mol-result').style.display = 'block';

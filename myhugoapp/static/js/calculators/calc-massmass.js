@@ -19,6 +19,10 @@ function calcMassMass() {
     showToast('Bitte geben Sie alle Werte ein', 'error');
     return;
   }
+  if (M1 <= 0 || v1 <= 0) {
+    showToast('Molare Masse und Koeffizient müssen größer als 0 sein', 'error');
+    return;
+  }
 
   const { n1, n2, m2 } = calcMassMassValue(m1, M1, M2, v1, v2);
 

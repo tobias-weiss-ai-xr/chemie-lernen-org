@@ -73,6 +73,15 @@ function parseCompound(compoundStr) {
   };
 }
 
+function _escapeHtml(str) {
+  if (typeof str !== 'string') {
+    return '';
+  }
+  var div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
 function displayParsedCoefficients(result) {
   const container = document.getElementById('parsed-coefficients');
   const buttonsContainer = document.getElementById('apply-buttons');
@@ -86,7 +95,7 @@ function displayParsedCoefficients(result) {
   result.reactants.forEach((reactant) => {
     html +=
       '<li class="list-group-item">' +
-        '<strong>' + reactant.formula + '</strong>' +
+        '<strong>' + _escapeHtml(reactant.formula) + '</strong>' +
         '<span class="badge" style="margin-left: 10px;">ν₁ = ' + reactant.coefficient + '</span>' +
       '</li>';
   });
@@ -98,7 +107,7 @@ function displayParsedCoefficients(result) {
   result.products.forEach((product) => {
     html +=
       '<li class="list-group-item">' +
-        '<strong>' + product.formula + '</strong>' +
+        '<strong>' + _escapeHtml(product.formula) + '</strong>' +
         '<span class="badge" style="margin-left: 10px;">ν₂ = ' + product.coefficient + '</span>' +
       '</li>';
   });
