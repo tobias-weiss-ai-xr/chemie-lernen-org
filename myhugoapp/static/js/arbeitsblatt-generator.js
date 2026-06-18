@@ -308,7 +308,7 @@
     branding.innerHTML = [
       '<div class="ws-print-header">',
       '  <div class="ws-print-header-left">',
-      '    <img src="/img/chemie-lernen-logo_dark.png" alt="chemie-lernen.org" class="ws-print-logo" height="40">',
+      '    <img src="/img/chemie-lernen-logo_dark.webp" alt="chemie-lernen.org" class="ws-print-logo" height="40">',
       '  </div>',
       '  <div class="ws-print-header-center">',
       '    <div class="ws-print-site-name">chemie-lernen.org</div>',
