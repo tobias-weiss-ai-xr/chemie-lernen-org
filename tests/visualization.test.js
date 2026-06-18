@@ -59,9 +59,22 @@ const mockDocument = {
 };
 
 global.document = mockDocument;
-global.window = { document: mockDocument };
+global.window = {
+  document: mockDocument,
+  devicePixelRatio: 1,
+  addEventListener: () => {},
+  removeEventListener: () => {}
+};
+global.requestAnimationFrame = (cb) => 0;
+global.cancelAnimationFrame = (id) => {};
 
 // Mock THREE
+const mockPosition = () => ({
+  x: 0, y: 0, z: 0,
+  set(x, y, z) { this.x = x; this.y = y; this.z = z; return this; },
+  copy(v) { this.x = v.x; this.y = v.y; this.z = v.z; return this; }
+});
+
 global.THREE = {
   Color: class {
     constructor(hex) { this.hex = hex; }
@@ -75,7 +88,7 @@ global.THREE = {
   },
   PerspectiveCamera: class {
     constructor() {}
-    position = { x: 0, y: 0, z: 0 };
+    position = mockPosition();
     aspect = 1;
     updateProjectionMatrix() {}
   },
@@ -87,11 +100,14 @@ global.THREE = {
   },
   AmbientLight: class {},
   DirectionalLight: class {
-    constructor() { this.position = { x: 0, y: 0, z: 0 }; }
+    constructor() { this.position = mockPosition(); }
   },
   Group: class {
     constructor() { this.children = []; }
     add(child) { this.children.push(child); }
+    position = mockPosition();
+    rotation = { x: 0, y: 0, z: 0 };
+    scale = { x: 1, y: 1, z: 1 };
   },
   SphereGeometry: class {},
   CylinderGeometry: class {},
@@ -102,7 +118,8 @@ global.THREE = {
   MeshBasicMaterial: class {},
   Mesh: class {
     constructor() { this.userData = {}; }
-    position = { x: 0, y: 0, z: 0 };
+    position = mockPosition();
+    quaternion = { setFromUnitVectors: () => this };
     castShadow = false;
     receiveShadow = false;
   },
@@ -116,7 +133,10 @@ global.THREE = {
   },
   SpriteMaterial: class {},
   Sprite: class {
-    constructor() { this.scale = { x: 1, y: 1, z: 1 }; }
+    constructor() {
+      this.scale = mockPosition();
+      this.position = mockPosition();
+    }
   },
   CanvasTexture: class {},
   Vector3: class {
@@ -397,20 +417,37 @@ describe('Chart Manager', () => {
 });
 
 describe('3D Visualizer', () => {
+  const originalGetElementById = document.getElementById.bind(document);
+  const originalCreateElement = document.createElement.bind(document);
+  const originalHeadAppendChild = document.head.appendChild.bind(document.head);
+  const originalBodyAppendChild = document.body.appendChild.bind(document.body);
+
   beforeEach(() => {
     jest.clearAllMocks();
     mockGetElementById.mockReturnValue(null);
+    document.getElementById = mockGetElementById;
+    document.createElement = mockCreateElement;
+    document.head.appendChild = () => {};
+    document.body.appendChild = () => {};
+  });
+
+  afterEach(() => {
+    document.getElementById = originalGetElementById;
+    document.createElement = originalCreateElement;
+    document.head.appendChild = originalHeadAppendChild;
+    document.body.appendChild = originalBodyAppendChild;
   });
 
   describe('Molecule Viewer', () => {
     test('creates molecule viewer from formula', () => {
-      mockGetElementById.mockReturnValueOnce({
+      const mockContainer = {
         appendChild: () => {},
         clientWidth: 800,
         clientHeight: 600,
         removeChild: () => {},
         querySelector: () => null
-      });
+      };
+      mockGetElementById.mockImplementation(() => mockContainer);
 
       const viewer = Visualizer3D.createMoleculeViewer({
         containerId: 'test-container',
