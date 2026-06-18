@@ -1,7 +1,7 @@
 ---
 title: "Kryo-Elektronenmikroskopie für organische Lösungsmittel erweitert"
 date: "2026-06-13T02:44:10+02:00"
-description: "Viele fortschrittliche Technologien, von Katalysatoren bis hin zu Wirkstofftransportsystemen, basieren auf Substanzen, die in organischen Lösungsmitteln dispergiert sind. Bisher stellte die direkte Be"
+description: "Viele fortschrittliche Technologien, von Katalysatoren bis hin zu Wirkstofftransportsystemen, basieren auf Substanzen, die in organischen Lösungsmitteln"
 source: "https://phys.org/news/2026-06-cryo-electron-microscopy.html"
 tags:
   - "kryo-em"

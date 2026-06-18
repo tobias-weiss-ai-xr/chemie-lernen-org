@@ -1,7 +1,7 @@
 ---
 title: "Asymmetrisches Alloying für neuartige lumineszente Metallcluster"
 date: "2026-06-06T02:42:32+02:00"
-description: "Metallcluster-Moleküle bestehen aus mehreren Metallatomen, die durch Metall-Metall- und Metall-Ligand-Bindungen zusammengehalten werden, oft dargestellt als [M_nL_m]. Sie sind vielversprechend für Kat"
+description: "Metallcluster-Moleküle bestehen aus mehreren Metallatomen, die durch Metall-Metall- und Metall-Ligand-Bindungen zusammengehalten werden, oft dargestellt als"
 source: "https://phys.org/news/2026-06-asymmetric-alloying-generation-luminescent-materials.html"
 tags:
   - "metallcluster"

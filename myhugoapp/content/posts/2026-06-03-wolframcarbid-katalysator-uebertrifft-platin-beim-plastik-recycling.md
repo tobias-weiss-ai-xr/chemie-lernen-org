@@ -1,7 +1,7 @@
 ---
 title: "Wolframcarbid-Katalysator übertrifft Platin beim Plastik-Recycling"
 date: "2026-06-03T02:43:49+02:00"
-description: "Wissenschaftler haben einen neuen Katalysator entwickelt, der das teure und seltene Platin durch das häufigere Wolframcarbid ersetzt. Durch präzise Steuerung der Atomanordnung bei extrem hohen Tempera"
+description: "Wissenschaftler haben einen neuen Katalysator entwickelt, der das teure und seltene Platin durch das häufigere Wolframcarbid ersetzt. Durch präzise Steuerung"
 tags:
   - "katalyse"
   - "recycling"

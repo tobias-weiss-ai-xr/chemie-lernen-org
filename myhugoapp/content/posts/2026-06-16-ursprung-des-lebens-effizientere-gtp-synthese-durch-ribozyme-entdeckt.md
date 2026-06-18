@@ -1,7 +1,7 @@
 ---
 title: "Ursprung des Lebens: Effizientere GTP-Synthese durch Ribozyme entdeckt"
 date: "2026-06-16T02:44:07+02:00"
-description: "Die Entstehung des Lebens auf der Erde ist eng mit der sogenannten RNA-Welt-Hypothese verknüpft. Demnach basierten frühe biologische Systeme auf RNA-Molekülen, die sowohl genetische Information speich"
+description: "Die Entstehung des Lebens auf der Erde ist mit der RNA-Welt-Hypothese verknüpft. Demnach basierten frühe biologische Systeme auf RNA-Molekülen"
 source: "https://phys.org/news/2026-06-powered-earth-earliest-life.html"
 tags:
   - "chemie"

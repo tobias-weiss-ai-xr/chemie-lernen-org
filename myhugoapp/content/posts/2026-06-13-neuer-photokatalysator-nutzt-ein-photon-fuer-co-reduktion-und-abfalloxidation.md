@@ -1,7 +1,7 @@
 ---
 title: "Neuer Photokatalysator nutzt ein Photon für CO₂-Reduktion und Abfalloxidation"
 date: "2026-06-13T02:42:54+02:00"
-description: "Forschende haben ein neuartiges, solarbetriebenes Katalysatormaterial entwickelt, das die Energie eines einzelnen Photons nutzt, um zwei chemische Reaktionen gleichzeitig anzutreiben. Dieser Ansatz ko"
+description: "Forschende haben ein neuartiges, solarbetriebenes Katalysatormaterial entwickelt, das die Energie eines einzelnen Photons nutzt, um zwei chemische Reaktionen"
 source: "https://phys.org/news/2026-06-photon-reactions-catalyst-biowaste-simultaneously.html"
 tags:
   - "photokatalyse"

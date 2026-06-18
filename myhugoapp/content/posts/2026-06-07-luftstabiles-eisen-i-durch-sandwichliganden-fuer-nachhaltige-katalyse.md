@@ -1,7 +1,7 @@
 ---
 title: "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse"
 date: "2026-06-07T02:43:24+02:00"
-description: "Forscher haben eine bahnbrechende Methode entwickelt, um Eisen in der Oxidationsstufe +1 (Fe(I)) an Luft stabil zu halten. Bisher waren Fe(I)-Spezies extrem luftempfindlich, was ihren Einsatz in der K"
+description: "Forscher haben eine bahnbrechende Methode entwickelt, um Eisen in der Oxidationsstufe +1 (Fe(I)) an Luft stabil zu halten. Bisher waren Fe(I)-Spezies extrem"
 source: "https://cen.acs.org/synthesis/reagents/air-stable-iron-1-in-situ-catalyst/104/web/2026/04?sc=230901_cenrssfeed_eng_latestnewsrss_cen"
 tags:
   - "eisen"

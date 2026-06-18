@@ -1,6 +1,6 @@
 ---
 title: "Anorganische Verbindungen"
-description: "Salze, Säuren, Basen und ihre Reaktionen - Erfahren Sie alles über Ionenbindungen, Löslichkeit, Fällungsreaktionen und die Nutzung des Molaren Masse Rechners"
+description: "Salze, Säuren, Basen und ihre Reaktionen - Erfahren Sie alles über Ionenbindungen, Löslichkeit, Fällungsreaktionen und den Molaren Masse Rechner"
 date: 2025-12-26
 teilgebiet: "anorganische-verbindungen"
 schwierigkeit: "mittelstufe"

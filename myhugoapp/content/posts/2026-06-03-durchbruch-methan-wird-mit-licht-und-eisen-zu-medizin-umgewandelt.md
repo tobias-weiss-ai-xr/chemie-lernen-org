@@ -1,7 +1,7 @@
 ---
 title: "Durchbruch: Methan wird mit Licht und Eisen zu Medizin umgewandelt"
 date: "2026-06-03T02:42:41+02:00"
-description: "Wissenschaftler haben eine bahnbrechende Methode entwickelt, um Erdgas statt als Brennstoff als chemischen Baustein für Medikamente zu nutzen. Ein neuartiger Katalysator auf Eisenbasis, angetrieben du"
+description: "Wissenschaftler haben eine bahnbrechende Methode entwickelt, um Erdgas statt als Brennstoff als chemischen Baustein für Medikamente zu nutzen. Ein neuartiger"
 tags:
   - "organische chemie"
   - "katalyse"

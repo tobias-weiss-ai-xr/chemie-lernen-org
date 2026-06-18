@@ -1,7 +1,7 @@
 ---
 title: "Kohlendioxid als Sauerstoffquelle für sicherere Oxidationschemie bei Raumtemperatur"
 date: "2026-06-14T02:44:46+02:00"
-description: "Oxidationsreaktionen sind in der chemischen Industrie unverzichtbar, aber sicherheitstechnisch besonders anspruchsvoll. Ein Forschungsteam der Universität Bayreuth hat nun mit internationalen Partnern"
+description: "Oxidationsreaktionen sind in der chemischen Industrie unverzichtbar, aber sicherheitstechnisch besonders anspruchsvoll. Ein Forschungsteam der Universität"
 source: "https://phys.org/news/2026-06-carbon-dioxide-safer-oxidation-chemistry.html"
 tags:
   - "oxidation"

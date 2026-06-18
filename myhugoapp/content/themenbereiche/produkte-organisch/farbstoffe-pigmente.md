@@ -1,6 +1,6 @@
 ---
 title: "Farbstoffe und Pigmente"
-description: "Erfahre alles über Farbstoffe und Pigmente: Aufbau, Eigenschaften, Herstellung und Anwendungen in Alltag und Industrie. Mit Übungen für Schüler und Studierende."
+description: "Erfahre alles über Farbstoffe und Pigmente: Aufbau, Eigenschaften, Herstellung und Anwendungen in Alltag und Industrie. Mit Übungen."
 date: "2026-06-14"
 tags: ["chemie", "farbstoffe", "pigmente", "organische chemie", "farben"]
 interaktiv: false

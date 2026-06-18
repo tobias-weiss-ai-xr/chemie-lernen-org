@@ -1,6 +1,6 @@
 ---
 title: "Tipps und Tricks"
-description: "Lernstrategien, Merkhilfen und Prüfungstipps für Chemie. Erfahren Sie, wie Sie effektiv Chemie lernen, Formeln merken und sich optimal auf Prüfungen vorbereiten."
+description: "Lernstrategien, Merkhilfen und Prüfungstipps für Chemie. Erfahren Sie, wie Sie effektiv lernen, Formeln merken und sich auf Prüfungen vorbereiten."
 date: 2025-12-27
 teilgebiet: "tipps-tricks"
 quiz: "tipps-tricks"

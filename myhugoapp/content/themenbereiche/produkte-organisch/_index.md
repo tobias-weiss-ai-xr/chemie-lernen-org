@@ -1,6 +1,6 @@
 ---
 title: "Produkte der Organischen Chemie"
-description: "Polymere, Farbstoffe, Arzneimittel und mehr - Erfahren Sie alles über wichtige Produkte der organischen Chemie von Kunststoffen bis zu modernen Arzneimitteln"
+description: "Polymere, Farbstoffe, Arzneimittel und mehr - Erfahren Sie alles über wichtige Produkte der organischen Chemie von Kunststoffen bis Arzneimitteln"
 date: 2025-12-26
 teilgebiet: "produkte-organisch"
 quiz: "produkte-organisch"

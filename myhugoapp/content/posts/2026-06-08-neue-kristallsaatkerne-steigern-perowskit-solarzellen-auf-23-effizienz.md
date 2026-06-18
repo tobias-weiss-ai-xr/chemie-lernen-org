@@ -1,7 +1,7 @@
 ---
 title: "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
 date: "2026-06-08T02:42:34+02:00"
-description: "Forschende haben eine neue Methode zur Herstellung invertierter Perowskit-Solarzellen entwickelt, die deren Effizienz und Stabilität显著 verbessert. Bisher limitierte eine versteckte Grenzfläche im Inne"
+description: "Forschende haben eine neue Methode zur Herstellung invertierter Perowskit-Solarzellen entwickelt, die deren Effizienz und Stabilität显著 verbessert."
 source: "https://www.sciencedaily.com/releases/2026/03/260301190354.htm"
 tags:
   - "perowskit"

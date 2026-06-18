@@ -1,7 +1,7 @@
 ---
 title: "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion"
 date: "2026-06-05T02:43:33+02:00"
-description: "Forschende haben einen entscheidenden Mechanismus bei der Herstellung von grünem Ammoniak entdeckt. Dabei wandeln sich Kupferoxid-Katalysatoren während der Reaktion in metallisches Kupfer um. Dieser s"
+description: "Forschende haben einen entscheidenden Mechanismus bei der Herstellung von grünem Ammoniak entdeckt. Dabei wandeln sich Kupferoxid-Katalysatoren während der"
 source: "https://www.sciencedaily.com/releases/2025/11/251122044325.htm"
 tags:
   - "katalyse"

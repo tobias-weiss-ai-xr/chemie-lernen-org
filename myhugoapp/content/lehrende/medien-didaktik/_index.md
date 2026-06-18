@@ -1,6 +1,6 @@
 ---
 title: "Medien-Didaktik"
-description: "Digitale Werkzeuge und Mediendidaktik für den Chemieunterricht: Interaktive Simulationen, VR/AR, Lernplattformen, Rechner und Visualisierungen — didaktisch eingebettet und praxisnah"
+description: "Digitale Werkzeuge für den Chemieunterricht: Interaktive Simulationen, VR/AR, Lernplattformen, Rechner und Visualisierungen — didaktisch eingebettet"
 date: 2026-01-05
 type: "page"
 icon: "💻"

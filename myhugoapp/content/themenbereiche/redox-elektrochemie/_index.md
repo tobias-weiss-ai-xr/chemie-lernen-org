@@ -1,6 +1,6 @@
 ---
 title: 'Redoxreaktionen und Elektrochemie'
-description: 'Elektronenübertragungen und Strom aus chemischen Reaktionen - Erfahren Sie alles über Oxidation, Reduktion, galvanische Zellen, Elektrolyse und moderne Batterietechnologie'
+description: 'Elektronenübertragungen & Strom aus Reaktionen - alles über Oxidation, Reduktion, galvanische Zellen, Elektrolyse und moderne Batterietechnologie'
 date: 2025-12-26
 teilgebiet: 'redox-elektrochemie'
 schwierigkeit: 'mittelstufe'

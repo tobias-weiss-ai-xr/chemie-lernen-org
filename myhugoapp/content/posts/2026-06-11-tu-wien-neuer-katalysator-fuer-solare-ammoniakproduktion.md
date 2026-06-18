@@ -1,7 +1,7 @@
 ---
 title: "TU Wien: Neuer Katalysator für solare Ammoniakproduktion"
 date: "2026-06-11T02:43:39+02:00"
-description: "Forscher der TU Wien haben einen Durchbruch bei der solaren Ammoniaksynthese erzielt. Ein neu entwickelter metall-organischer Katalysator ermöglicht die Herstellung von NH_3 aus Wasser, Luft und Sonne"
+description: "Forscher der TU Wien haben einen Durchbruch bei der solaren Ammoniaksynthese erzielt. Ein neu entwickelter metall-organischer Katalysator ermöglicht die"
 source: "https://phys.org/news/2026-06-catalyst-boosts-solar-driven-ammonia.html"
 tags:
   - "ammoniak"

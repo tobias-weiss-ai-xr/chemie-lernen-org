@@ -1,7 +1,7 @@
 ---
 title: "Neuer Palladium-Präkatalysator vereint Stabilität und Reaktivität"
 date: "2026-06-16T02:43:33+02:00"
-description: "Forschende der Universität Tsukuba haben einen neuartigen Palladium-Präkatalysator entwickelt, der Stabilität und Reaktivität effektiv vereint. Dieser Katalysator zeichnet sich durch eine außergewöhnl"
+description: "Forschende der Universität Tsukuba haben einen neuartigen Palladium-Präkatalysator entwickelt, der Stabilität und Reaktivität effektiv vereint. Dieser"
 source: "https://phys.org/news/2026-06-stability-reactivity-palladium-precatalyst-high.html"
 tags:
   - "palladium"

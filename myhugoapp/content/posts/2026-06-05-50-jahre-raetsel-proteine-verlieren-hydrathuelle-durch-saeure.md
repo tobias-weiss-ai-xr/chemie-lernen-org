@@ -1,7 +1,7 @@
 ---
 title: "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
 date: "2026-06-05T02:42:39+02:00"
-description: "Forschende der Martin Luther Universität Halle-Wittenberg (MLU) haben ein 50 Jahre altes Rätsel der Biochemie gelöst. Sie konnten erstmals direkt beobachten, wie Proteine in saurer Umgebung ihre schüt"
+description: "Forschende der Martin Luther Universität Halle-Wittenberg (MLU) haben ein 50 Jahre altes Rätsel der Biochemie gelöst. Sie konnten erstmals direkt beobachten,"
 source: "https://phys.org/news/2026-06-fifty-year-protein-mystery-acid.html"
 tags:
   - "biochemie"

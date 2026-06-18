@@ -1,7 +1,7 @@
 ---
 title: "Röntgenanalyse zeigt Platin-Oxidation in Wasserstofftechnologien"
 date: "2026-06-15T02:43:57+02:00"
-description: "Elektrolyseure und Brennstoffzellen sind zentrale Technologien der Energiewende. Sie ermöglichen die Speicherung und Nutzung von erneuerbarer Energie durch Wasserstoff (H_2). Ein kritischer Bestandtei"
+description: "Elektrolyseure und Brennstoffzellen sind zentrale Technologien der Energiewende. Sie ermöglichen die Speicherung und Nutzung von erneuerbarer Energie durch"
 source: "https://phys.org/news/2026-06-rays-reveal-platinum-oxidizes-real.html"
 tags:
   - "katalyse"

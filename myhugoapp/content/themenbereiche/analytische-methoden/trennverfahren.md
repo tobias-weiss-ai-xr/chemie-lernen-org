@@ -1,6 +1,6 @@
 ---
 title: "Trennverfahren in der Analytik"
-description: "Überblick über chromatographische und elektrophoretische Trennverfahren in der chemischen Analytik – DC, GC, HPLC, Elektrophorese – für Schule und Studium."
+description: "Überblick über chromatographische und elektrophoretische Trennverfahren in der Analytik – DC, GC, HPLC, Elektrophorese – für Schule und Studium."
 date: "2026-06-14"
 tags: ["chemie", "analytik", "trennverfahren", "chromatographie", "elektrophorese"]
 interaktiv: false

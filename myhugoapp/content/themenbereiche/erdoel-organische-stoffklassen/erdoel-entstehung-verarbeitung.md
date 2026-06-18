@@ -1,6 +1,6 @@
 ---
 title: "Erdölentstehung und -verarbeitung"
-description: "Erfahre, wie Erdöl entsteht, welche Prozesse bei der Förderung und Verarbeitung ablaufen und welche Produkte daraus gewonnen werden. Ideal für Schüler und Studierende."
+description: "Erfahre, wie Erdöl entsteht, gefördert und verarbeitet wird und welche Produkte daraus gewonnen werden. Ideal für Schüler und Studierende."
 date: "2026-06-14"
 tags: ["chemie", "erdöl", "organische chemie", "raffination"]
 interaktiv: false

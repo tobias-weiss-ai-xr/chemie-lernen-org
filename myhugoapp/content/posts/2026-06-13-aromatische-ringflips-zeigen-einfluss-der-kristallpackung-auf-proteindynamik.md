@@ -1,7 +1,7 @@
 ---
 title: "Aromatische Ringflips zeigen Einfluss der Kristallpackung auf Proteindynamik"
 date: "2026-06-13T02:43:27+02:00"
-description: "Eine aktuelle Studie in Nature Chemistry untersucht, wie Kristallpackung die Dynamik von Proteinen beeinflusst. Bisher war schwer zu entschlüsseln, inwieweit die Anordnung in Kristallen die natürliche"
+description: "Eine aktuelle Studie in Nature Chemistry untersucht, wie Kristallpackung die Dynamik von Proteinen beeinflusst. Bisher war schwer zu entschlüsseln, inwieweit"
 source: "https://www.nature.com/articles/s41557-026-02155-0"
 tags:
   - "proteinstruktur"

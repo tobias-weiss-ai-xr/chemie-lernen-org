@@ -1,6 +1,6 @@
 ---
 title: "Analytische Methoden"
-description: "Qualitative und quantitative Analyse - Erfahren Sie alles über Nachweisreaktionen, Titration, Chromatographie, Spektroskopie und moderne analytische Verfahren"
+description: "Qualitative und quantitative Analyse - Erfahren Sie alles über Nachweisreaktionen, Titration, Chromatographie, Spektroskopie und moderne Verfahren"
 date: 2025-12-26
 teilgebiet: "analytische-methoden"
 schwierigkeit: "fortgeschritten"

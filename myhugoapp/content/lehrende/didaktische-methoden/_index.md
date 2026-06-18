@@ -1,6 +1,6 @@
 ---
 title: "Didaktische Methoden"
-description: "Methoden des Chemieunterrichts: kompetenzorientiert, handlungsorientiert, experimentell und kollaborativ lernen — mit praxisnahen Beispielen für den Chemieunterricht"
+description: "Methoden des Chemieunterrichts: kompetenzorientiert, handlungsorientiert, experimentell und kollaborativ lernen — mit praxisnahen Beispielen"
 date: 2026-01-05
 type: "page"
 icon: "📐"

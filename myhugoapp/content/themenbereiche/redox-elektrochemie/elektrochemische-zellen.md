@@ -1,6 +1,6 @@
 ---
 title: "Elektrochemische Zellen"
-description: "Galvanische Zellen wandeln chemische Energie in elektrische um (Batterien). Elektrolysezellen wandeln elektrische Energie in chemische um (z. B. Metallgewinnung)."
+description: "Galvanische Zellen wandeln chemische Energie in elektrische um (Batterien). Elektrolysezellen wandeln elektrische Energie in chemische um (Metallgewinnung)."
 date: "2026-06-03"
 tags: ["chemie", "elektrochemie", "galvanisch", "elektrolyse"]
 interaktiv: false

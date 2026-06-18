@@ -1,6 +1,6 @@
 ---
 title: "Kohlenwasserstoffe"
-description: "Kohlenwasserstoffe sind organische Verbindungen aus Kohlenstoff und Wasserstoff. Einteilung: gesättigte (Alkane), ungesättigte (Alkene, Alkine), aromatisch."
+description: "Kohlenwasserstoffe sind organische Verbindungen aus Kohlenstoff und Wasserstoff: gesättigte (Alkane), ungesättigte (Alkene, Alkine), aromatische."
 date: "2026-06-03"
 tags: ["chemie", "kohlenwasserstoffe", "organik"]
 interaktiv: false

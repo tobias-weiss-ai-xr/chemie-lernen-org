@@ -1,6 +1,6 @@
 ---
 title: "Eliminierung und Umlagerung"
-description: "Fortgeschrittene Reaktionstypen in der Organik: Eliminierungen (Abspaltung von Gruppen) und Umlagerungen (innere Molekülumbauten). Mechanismen und Beispiele."
+description: "Fortgeschrittene Reaktionstypen in der Organik: Eliminierungen (Abspaltung von Gruppen) und Umlagerungen (innere Molekülumbauten) mit Beispielen."
 date: "2026-06-14"
 tags: ["chemie", "reaktionstypen", "organik", "eliminierung", "umlagerung"]
 interaktiv: false

@@ -1,7 +1,7 @@
 ---
 title: "Durchbruch: Eisen-Katalysator übertrifft seltene Metalle"
 date: "2026-06-03T02:43:14+02:00"
-description: "Forscher der Universität Nagoya haben einen effizienten Photokatalysator auf Eisenbasis entwickelt. Dieser Durchbruch könnte den Bedarf an seltenen und teuren Edelmetallen in der fortschrittlichen Che"
+description: "Forscher der Universität Nagoya haben einen effizienten Photokatalysator auf Eisenbasis entwickelt. Dieser Durchbruch könnte den Bedarf an seltenen und teuren"
 tags:
   - "katalyse"
   - "eisen"

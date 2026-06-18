@@ -1,7 +1,7 @@
 ---
 title: "Finite-Elemente-Modellierung für chemo-mechano-thermodynamischen Kontakt und Bindung"
 date: "2026-06-12T02:43:52+02:00"
-description: "Diese Arbeit stellt eine Finite-Elemente-Formulierung für gekoppelten chemo-mechano-thermodynamischen Kontakt bei großen Deformationen vor. Basierend auf der Kontakttheorie von Sauer et al. (2022) wer"
+description: "Diese Arbeit stellt eine Finite-Elemente-Formulierung für gekoppelten chemo-mechano-thermodynamischen Kontakt bei großen Deformationen vor. Basierend auf"
 source: "https://arxiv.org/abs/2606.12375"
 tags:
   - "finite-elemente-methode"

@@ -1,6 +1,6 @@
 ---
 title: "Gleichgewicht und Geschwindigkeit"
-description: "Reaktionskinetik und chemisches Gleichgewicht - Erfahren Sie alles über Reaktionsgeschwindigkeit, Einflussfaktoren, Geschwindigkeitsgesetze, chemisches Gleichgewicht und das Prinzip von Le Chatelier"
+description: "Reaktionskinetik & chemisches Gleichgewicht - alles über Reaktionsgeschwindigkeit, Einflussfaktoren, Geschwindigkeitsgesetze und das Prinzip von Le Chatelier"
 date: 2025-12-26
 teilgebiet: "gleichgewicht-geschwindigkeit"
 schwierigkeit: "fortgeschritten"

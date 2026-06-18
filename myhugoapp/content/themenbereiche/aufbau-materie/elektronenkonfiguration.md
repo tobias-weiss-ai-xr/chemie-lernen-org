@@ -1,6 +1,6 @@
 ---
 title: "Elektronenkonfiguration"
-description: "Die Elektronenkonfiguration beschreibt, wie die Elektronen eines Atoms in Schalen und Unterschalen angeordnet sind und warum Elemente ihre typischen chemischen Eigenschaften zeigen."
+description: "Die Elektronenkonfiguration beschreibt, wie Elektronen in Schalen und Unterschalen angeordnet sind und warum Elemente ihre chemischen Eigenschaften zeigen."
 date: "2026-06-18"
 tags: ["chemie", "elektronenkonfiguration", "atome", "orbitale", "periodensystem"]
 interaktiv: false

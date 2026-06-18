@@ -1,7 +1,7 @@
 ---
 title: "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"
 date: "2026-06-08T02:43:06+02:00"
-description: "Wissenschaftler der Florida State University haben einen neuen Kristall entwickelt, der atomare Magnete zu komplexen, sich wiederholenden Mustern zwingt. Durch das Mischen zweier nahezu identischer Ve"
+description: "Wissenschaftler der Florida State University haben einen neuen Kristall entwickelt, der atomare Magnete zu komplexen, sich wiederholenden Mustern zwingt."
 source: "https://www.sciencedaily.com/releases/2026/01/260112001039.htm"
 tags:
   - "festkörperchemie"

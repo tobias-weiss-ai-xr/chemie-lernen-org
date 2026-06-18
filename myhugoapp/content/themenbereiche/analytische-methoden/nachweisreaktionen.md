@@ -1,6 +1,6 @@
 ---
 title: "Nachweisreaktionen"
-description: "Nachweisreaktionen zeigen anhand charakteristischer Farbumschläge, ob bestimmte Ionen oder Moleküle in einer Probe enthalten sind. Verwendung in Laboranalytik und Qualitätskontrolle."
+description: "Nachweisreaktionen zeigen durch Farbumschläge, ob Ionen oder Moleküle in einer Probe enthalten sind. Für Laboranalytik und Qualitätskontrolle."
 date: "2026-06-03"
 tags: ["chemie", "nachweis", "analytik", "labor"]
 interaktiv: false

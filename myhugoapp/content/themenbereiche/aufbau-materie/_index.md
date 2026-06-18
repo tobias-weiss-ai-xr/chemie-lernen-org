@@ -1,6 +1,6 @@
 ---
 title: 'Aufbau der Materie'
-description: 'Vom Atom bis zum Molekül - Wie Materie aufgebaut ist. Erfahren Sie alles über Atommodelle, Elementarteilchen, das Periodensystem und chemische Bindungen mit interaktiven Tools.'
+description: 'Vom Atom bis zum Molekül: Wie Materie aufgebaut ist. Alles über Atommodelle, Elementarteilchen, Periodensystem und chemische Bindungen - interaktiv.'
 date: 2025-12-27
 teilgebiet: 'aufbau-materie'
 schwierigkeit: 'grundlagen'

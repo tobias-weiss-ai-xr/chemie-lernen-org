@@ -1,7 +1,7 @@
 ---
 title: "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung"
 date: "2026-06-08T02:43:40+02:00"
-description: "Proteine mit ähnlicher Struktur können völlig unterschiedliche Funktionen erfüllen. Bisher war unklar, welche energetischen Mechanismen dieser funktionellen Diversität zugrunde liegen. Eine neue Studi"
+description: "Proteine mit ähnlicher Struktur können völlig unterschiedliche Funktionen erfüllen. Bisher war unklar, welche energetischen Mechanismen dieser funktionellen"
 source: "https://www.nature.com/articles/s41557-026-02163-0"
 tags:
   - "proteinchemie"

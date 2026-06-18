@@ -1,7 +1,7 @@
 ---
 title: "Nickeloxid-Katalysator boostet wasserstoffbasierte Stahlproduktion"
 date: "2026-06-15T02:43:16+02:00"
-description: "Die Stahl- und Metallproduktion verursacht etwa 10 % der globalen CO_2-Emissionen. Wasserstoffbasierte Verfahren bieten eine kohlenstofffreie Alternative, indem sie Reduktion, Legierungsbildung und Mi"
+description: "Die Stahl- und Metallproduktion verursacht etwa 10 % der globalen CO_2-Emissionen. Wasserstoffbasierte Verfahren bieten eine kohlenstofffreie Alternative,"
 source: "https://phys.org/news/2026-06-hydrogen-based-steelmaking-2x-boost.html"
 tags:
   - "stahlproduktion"
