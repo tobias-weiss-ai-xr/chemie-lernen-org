@@ -44,7 +44,7 @@
             <li class="list-group-item">
               <a href="{{ $a.url }}">{{ $a.title }}</a>
               {{ if $a.tags }}
-              <br><small class="text-muted">🏷️ {{ delimit $a.tags ", " }}</small>
+              <br><small class="text-muted"><span aria-hidden="true">🏷️</span> {{ delimit $a.tags ", " }}</small>
               {{ end }}
             </li>
             {{ else }}

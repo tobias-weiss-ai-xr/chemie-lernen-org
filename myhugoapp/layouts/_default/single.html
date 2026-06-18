@@ -67,16 +67,16 @@
             <div class="interactive-links">
               {{ if eq .Params.teilgebiet "aufbau-materie" }}
               <a href="/perioden-system-der-elemente/" class="btn btn-primary btn-lg interactive-btn">
-                ⚛️ Periodensystem 3D erkunden
+                <span aria-hidden="true">⚛️</span> Periodensystem 3D erkunden
               </a>
               <a href="/molekuel-studio/" class="btn btn-primary btn-lg interactive-btn">
-                🔬 Molekülstudio öffnen
+                <span aria-hidden="true">🔬</span> Molekülstudio öffnen
               </a>
               {{ end }}
 
               {{ if or (eq .Params.teilgebiet "erdoel-organische-stoffklassen") (eq .Params.teilgebiet "reaktionstypen-organisch") }}
               <a href="/molekuel-studio/" class="btn btn-primary btn-lg interactive-btn">
-                🔬 Moleküle im Molekülstudio visualisieren
+                <span aria-hidden="true">🔬</span> Moleküle im Molekülstudio visualisieren
               </a>
               {{ end }}
 
@@ -115,7 +115,7 @@
           <!-- Related Topics -->
           {{ if .Params.schwierigkeit }}
           <div class="sidebar-section">
-            <h3>🔗 Ähnliche Themen</h3>
+            <h3><span aria-hidden="true">🔗</span> Ähnliche Themen</h3>
             <div class="related-topics">
               {{ $currentSchwierigkeit := .Params.schwierigkeit }}
               {{ $currentTeilgebiet := .Params.teilgebiet }}
