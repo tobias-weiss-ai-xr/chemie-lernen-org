@@ -7,6 +7,10 @@ theme = "hugo-cards"
 disableLiveReload = true
 enableRobotsTXT = true
 
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
