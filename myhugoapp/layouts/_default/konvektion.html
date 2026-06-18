@@ -16,7 +16,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="fluid-selector">Fluid-Material:</label>
-          <select id="fluid-selector" class="form-control" onchange="changeFluid()">
+          <select id="fluid-selector" class="form-control">
             <option value="water">Wasser (Dichte=1.0, Viskosität=mittel)</option>
             <option value="air">Luft (Dichte=0.0012, Viskosität=niedrig)</option>
             <option value="oil">Öl (Dichte=0.9, Viskosität=hoch)</option>
@@ -27,14 +27,14 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="temperature-source">Quellentemperatur (°C):</label>
-          <input type="range" id="temperature-source" class="form-control" value="80" min="20" max="100" step="5" oninput="updateTemperature()">
+          <input type="range" id="temperature-source" class="form-control" value="80" min="20" max="100" step="5">
           <span id="temp-source-display" class="text-muted">80°C</span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label for="convection-speed">Viskositätseffekt:</label>
-          <input type="range" id="convection-speed" class="form-control" value="50" min="10" max="100" step="10" oninput="updateSpeed()">
+          <input type="range" id="convection-speed" class="form-control" value="50" min="10" max="100" step="10">
           <span id="speed-display" class="text-muted">Normal</span>
         </div>
       </div>
@@ -42,13 +42,13 @@
 
     <div class="row" style="margin-top: 15px;">
       <div class="col-md-12 text-center">
-        <button class="btn btn-primary btn-lg" onclick="startSimulation()">
+        <button id="btn-start-simulation" class="btn btn-primary btn-lg">
           <i class="fa fa-play"></i> Konvektion starten
         </button>
-        <button class="btn btn-secondary btn-lg" onclick="stopSimulation()">
+        <button id="btn-stop-simulation" class="btn btn-secondary btn-lg">
           <i class="fa fa-pause"></i> Pause
         </button>
-        <button class="btn btn-info btn-lg" onclick="resetSimulation()">
+        <button id="btn-reset-simulation" class="btn btn-info btn-lg">
           <i class="fa fa-redo"></i> Zurücksetzen
         </button>
       </div>
@@ -186,5 +186,17 @@
 
 <script src="{{ "js/konvektion.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/konvektion.css" | relURL }}">
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('fluid-selector').addEventListener('change', function() { changeFluid(); });
+  document.getElementById('temperature-source').addEventListener('input', function() { updateTemperature(); });
+  document.getElementById('convection-speed').addEventListener('input', function() { updateSpeed(); });
+  document.getElementById('btn-start-simulation').addEventListener('click', function() { startSimulation(); });
+  document.getElementById('btn-stop-simulation').addEventListener('click', function() { stopSimulation(); });
+  document.getElementById('btn-reset-simulation').addEventListener('click', function() { resetSimulation(); });
+});
+</script>
 {{ end }}

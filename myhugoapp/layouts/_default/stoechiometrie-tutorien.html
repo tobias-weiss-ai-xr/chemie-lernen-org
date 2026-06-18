@@ -38,7 +38,7 @@
         <div id="tutorial-menu" style="background: white; padding: 20px; border-radius: 8px; margin-top: 15px;">
           <div class="row">
             <div class="col-md-4 col-sm-6" style="margin-bottom: 15px;">
-              <div class="tutorial-card" onclick="startTutorial(1)" style="cursor: pointer; transition: all 0.3s ease;">
+              <div class="tutorial-card" id="tutorial-card-1" style="cursor: pointer; transition: all 0.3s ease;">
                 <div class="tutorial-card-header" style="background: #4CAF50; color: white; padding: 15px; border-radius: 8px 8px 0 0;">
                   <h4 style="margin: 0;"><i class="fa fa-play-circle"></i> Tutorial 1</h4>
                   <p style="margin: 5px 0 0 0; font-size: 14px;">Was ist Stöchiometrie?</p>
@@ -53,7 +53,7 @@
             </div>
 
             <div class="col-md-4 col-sm-6" style="margin-bottom: 15px;">
-              <div class="tutorial-card" onclick="startTutorial(2)" style="cursor: pointer; transition: all 0.3s ease;">
+              <div class="tutorial-card" id="tutorial-card-2" style="cursor: pointer; transition: all 0.3s ease;">
                 <div class="tutorial-card-header" style="background: #2196F3; color: white; padding: 15px; border-radius: 8px 8px 0 0;">
                   <h4 style="margin: 0;"><i class="fa fa-exchange"></i> Tutorial 2</h4>
                   <p style="margin: 5px 0 0 0; font-size: 14px;">Mol-Mol Umrechnung</p>
@@ -68,7 +68,7 @@
             </div>
 
             <div class="col-md-4 col-sm-6" style="margin-bottom: 15px;">
-              <div class="tutorial-card" onclick="startTutorial(3)" style="cursor: pointer; transition: all 0.3s ease;">
+              <div class="tutorial-card" id="tutorial-card-3" style="cursor: pointer; transition: all 0.3s ease;">
                 <div class="tutorial-card-header" style="background: #FF9800; color: white; padding: 15px; border-radius: 8px 8px 0 0;">
                   <h4 style="margin: 0;"><i class="fa fa-balance-scale"></i> Tutorial 3</h4>
                   <p style="margin: 5px 0 0 0; font-size: 14px;">Masse-Masse Umrechnung</p>
@@ -83,7 +83,7 @@
             </div>
 
             <div class="col-md-4 col-sm-6" style="margin-bottom: 15px;">
-              <div class="tutorial-card" onclick="startTutorial(4)" style="cursor: pointer; transition: all 0.3s ease;">
+              <div class="tutorial-card" id="tutorial-card-4" style="cursor: pointer; transition: all 0.3s ease;">
                 <div class="tutorial-card-header" style="background: #9C27B0; color: white; padding: 15px; border-radius: 8px 8px 0 0;">
                   <h4 style="margin: 0;"><i class="fa fa-filter"></i> Tutorial 4</h4>
                   <p style="margin: 5px 0 0 0; font-size: 14px;">Limitierendes Reagenz</p>
@@ -98,7 +98,7 @@
             </div>
 
             <div class="col-md-4 col-sm-6" style="margin-bottom: 15px;">
-              <div class="tutorial-card" onclick="startTutorial(5)" style="cursor: pointer; transition: all 0.3s ease;">
+              <div class="tutorial-card" id="tutorial-card-5" style="cursor: pointer; transition: all 0.3s ease;">
                 <div class="tutorial-card-header" style="background: #F44336; color: white; padding: 15px; border-radius: 8px 8px 0 0;">
                   <h4 style="margin: 0;"><i class="fa fa-chart-line"></i> Tutorial 5</h4>
                   <p style="margin: 5px 0 0 0; font-size: 14px;">Ausbeute berechnen</p>
@@ -118,7 +118,7 @@
         <div id="tutorial-viewer" style="display: none; background: white; padding: 30px; border-radius: 8px; margin-top: 15px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
             <h3 id="tutorial-title" style="color: #f5576c; margin: 0;">Tutorial Title</h3>
-            <button class="btn btn-default btn-sm" onclick="closeTutorial()">
+            <button class="btn btn-default btn-sm" id="btn-tutorial-close">
               <i class="fa fa-times"></i> Schließen
             </button>
           </div>
@@ -128,13 +128,13 @@
           </div>
 
           <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid #eee;">
-            <button id="tutorial-prev" class="btn btn-default" onclick="previousStep()">
+            <button id="tutorial-prev" class="btn btn-default">
               <i class="fa fa-arrow-left"></i> Zurück
             </button>
             <div style="text-align: center;">
               <span id="step-indicator">Schritt 1 von 5</span>
             </div>
-            <button id="tutorial-next" class="btn btn-primary" onclick="nextStep()">
+            <button id="tutorial-next" class="btn btn-primary">
               Weiter <i class="fa fa-arrow-right"></i>
             </button>
           </div>
@@ -157,6 +157,15 @@
 <script src="/js/lazy-loader.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('tutorial-card-1').addEventListener('click', function() { startTutorial(1); });
+  document.getElementById('tutorial-card-2').addEventListener('click', function() { startTutorial(2); });
+  document.getElementById('tutorial-card-3').addEventListener('click', function() { startTutorial(3); });
+  document.getElementById('tutorial-card-4').addEventListener('click', function() { startTutorial(4); });
+  document.getElementById('tutorial-card-5').addEventListener('click', function() { startTutorial(5); });
+  document.getElementById('btn-tutorial-close').addEventListener('click', function() { closeTutorial(); });
+  document.getElementById('tutorial-prev').addEventListener('click', function() { previousStep(); });
+  document.getElementById('tutorial-next').addEventListener('click', function() { nextStep(); });
+
   if (typeof LazyLoader !== 'undefined') {
     LazyLoader.loadCalculator('tutorien').catch(function(err) {
       console.error('Failed to load tutorials:', err);

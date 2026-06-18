@@ -51,7 +51,7 @@
             </div>
           </div>
 
-          <button class="btn btn-primary btn-lg btn-block" onclick="calculateDilution()">
+          <button id="btn-calc-dilution" class="btn btn-primary btn-lg btn-block">
             <i class="fa fa-calculator"></i> Berechnen
           </button>
         </div>
@@ -279,5 +279,12 @@
 </style>
 
 <script src="/js/verduennungsrechner.js"></script>
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-calc-dilution').addEventListener('click', function() { calculateDilution(); });
+});
+</script>
 {{ end }}

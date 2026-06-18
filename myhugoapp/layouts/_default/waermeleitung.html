@@ -16,7 +16,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="material-selector">Material auswählen:</label>
-          <select id="material-selector" class="form-control" onchange="changeMaterial()">
+          <select id="material-selector" class="form-control">
             <option value="copper">Kupfer (Metall, λ=400 W/m·K)</option>
             <option value="iron">Eisen (Metall, λ=80 W/m·K)</option>
             <option value="silicon">Silizium (Halbleiter, λ=150 W/m·K)</option>
@@ -29,14 +29,14 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="temperature-diff">Temperaturdifferenz (K):</label>
-          <input type="range" id="temperature-diff" class="form-control" value="100" min="10" max="200" step="10" oninput="updateTemperature()">
+          <input type="range" id="temperature-diff" class="form-control" value="100" min="10" max="200" step="10">
           <span id="temp-display" class="text-muted">100 K</span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label for="animation-speed">Geschwindigkeit:</label>
-          <input type="range" id="animation-speed" class="form-control" value="50" min="10" max="100" step="10" oninput="updateSpeed()">
+          <input type="range" id="animation-speed" class="form-control" value="50" min="10" max="100" step="10">
           <span id="speed-display" class="text-muted">50%</span>
         </div>
       </div>
@@ -44,14 +44,14 @@
 
     <div class="row" style="margin-top: 15px;">
       <div class="col-md-12 text-center">
-        <button class="btn btn-primary btn-lg" onclick="startSimulation()">
+        <button id="btn-start-simulation" class="btn btn-primary btn-lg">
           <i class="fa fa-play"></i> Simulation starten
         </button>
-        <button class="btn btn-secondary btn-lg" onclick="stopSimulation()">
+        <button id="btn-stop-simulation" class="btn btn-secondary btn-lg">
           <i class="fa fa-pause"></i>
           Pause
         </button>
-        <button class="btn btn-info btn-lg" onclick="resetSimulation()">
+        <button id="btn-reset-simulation" class="btn btn-info btn-lg">
           <i class="fa fa-redo"></i>
           Zurücksetzen
         </button>
@@ -209,5 +209,17 @@
 
 <script src="{{ "js/waermeleitung.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/waermeleitung.css" | relURL }}">
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('material-selector').addEventListener('change', function() { changeMaterial(); });
+  document.getElementById('temperature-diff').addEventListener('input', function() { updateTemperature(); });
+  document.getElementById('animation-speed').addEventListener('input', function() { updateSpeed(); });
+  document.getElementById('btn-start-simulation').addEventListener('click', function() { startSimulation(); });
+  document.getElementById('btn-stop-simulation').addEventListener('click', function() { stopSimulation(); });
+  document.getElementById('btn-reset-simulation').addEventListener('click', function() { resetSimulation(); });
+});
+</script>
 {{ end }}

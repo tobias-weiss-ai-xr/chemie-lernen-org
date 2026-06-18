@@ -35,7 +35,7 @@
             </div>
           </div>
 
-          <button class="btn btn-primary btn-lg btn-block" onclick="calculateDensity()">
+          <button id="btn-calc-density" class="btn btn-primary btn-lg btn-block">
             <i class="fa fa-calculator"></i> Berechnen
           </button>
         </div>
@@ -247,5 +247,12 @@
 </style>
 
 <script src="/js/dichte-rechner.js"></script>
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-calc-density').addEventListener('click', function() { calculateDensity(); });
+});
+</script>
 {{ end }}

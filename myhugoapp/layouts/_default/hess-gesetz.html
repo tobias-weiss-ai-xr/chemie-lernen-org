@@ -68,13 +68,13 @@
               </div>
             </div>
 
-            <button class="btn btn-default" onclick="addReactionStep()">
+            <button id="btn-add-reaction-step" class="btn btn-default">
               <i class="fa fa-plus"></i> Stufe hinzufügen
             </button>
           </div>
 
           <div class="result-section">
-            <button class="btn btn-primary btn-lg btn-block" onclick="calculateHessSimple()">
+            <button id="btn-calc-hess-simple" class="btn btn-primary btn-lg btn-block">
               <i class="fa fa-calculator"></i> Gesamtenthalpie berechnen
             </button>
           </div>
@@ -187,7 +187,7 @@
           </div>
 
           <div class="result-section">
-            <button class="btn btn-primary btn-lg btn-block" onclick="calculateHessMultiPath()">
+            <button id="btn-calc-hess-multi" class="btn btn-primary btn-lg btn-block">
               <i class="fa fa-calculator"></i> Wege vergleichen
             </button>
           </div>
@@ -273,7 +273,7 @@
           </div>
 
           <div class="result-section">
-            <button class="btn btn-success btn-lg btn-block" onclick="calculateFromFormationEnthalpies()">
+            <button id="btn-calc-formation" class="btn btn-success btn-lg btn-block">
               <i class="fa fa-flask"></i> Aus Bildungsenthalpien berechnen
             </button>
           </div>
@@ -410,5 +410,15 @@
 
 <script src="{{ "js/hess-gesetz.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/hess-gesetz.css" | relURL }}">
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-add-reaction-step').addEventListener('click', function() { addReactionStep(); });
+  document.getElementById('btn-calc-hess-simple').addEventListener('click', function() { calculateHessSimple(); });
+  document.getElementById('btn-calc-hess-multi').addEventListener('click', function() { calculateHessMultiPath(); });
+  document.getElementById('btn-calc-formation').addEventListener('click', function() { calculateFromFormationEnthalpies(); });
+});
+</script>
 {{ end }}

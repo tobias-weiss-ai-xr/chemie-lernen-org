@@ -16,7 +16,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="temperature-slider">Temperatur (°C):</label>
-          <input type="range" id="temperature-slider" class="form-control" value="20" min="-100" max="500" step="10" oninput="updateTemperature()">
+          <input type="range" id="temperature-slider" class="form-control" value="20" min="-100" max="500" step="10">
           <div class="temperature-display">
             <span id="temp-display-celsius" class="temp-value">20°C</span>
             <span id="temp-display-kelvin" class="temp-value">293K</span>
@@ -27,13 +27,13 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="particle-count">Teilchenzahl:</label>
-          <input type="number" id="particle-count" class="form-control" value="100" min="10" max="300" step="10" oninput="updateParticleCount()">
+          <input type="number" id="particle-count" class="form-control" value="100" min="10" max="300" step="10">
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
           <label for="gas-mass">Molekültyp:</label>
-          <select id="gas-mass" class="form-control" onchange="updateGasType()">
+          <select id="gas-mass" class="form-control">
             <option value="light">Helium (m=4 u)</option>
             <option value="medium">Stickstoff (m=28 u)</option>
             <option value="heavy" selected>Sauerstoff (m=32 u)</option>
@@ -45,13 +45,13 @@
 
     <div class="row" style="margin-top: 15px;">
       <div class="col-md-12 text-center">
-        <button class="btn btn-primary btn-lg" onclick="startSimulation()">
+        <button id="btn-start-simulation" class="btn btn-primary btn-lg">
           <i class="fa fa-play"></i> Simulation starten
         </button>
-        <button class="btn btn-secondary btn-lg" onclick="stopSimulation()">
+        <button id="btn-stop-simulation" class="btn btn-secondary btn-lg">
           <i class="fa fa-pause"></i> Pause
         </button>
-        <button class="btn btn-info btn-lg" onclick="resetSimulation()">
+        <button id="btn-reset-simulation" class="btn btn-info btn-lg">
           <i class="fa fa-redo"></i> Zurücksetzen
         </button>
       </div>
@@ -197,5 +197,17 @@
 
 <script src="{{ "js/temperatur-teilchenbewegung.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/temperatur-teilchenbewegung.css" | relURL }}">
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('temperature-slider').addEventListener('input', function() { updateTemperature(); });
+  document.getElementById('particle-count').addEventListener('input', function() { updateParticleCount(); });
+  document.getElementById('gas-mass').addEventListener('change', function() { updateGasType(); });
+  document.getElementById('btn-start-simulation').addEventListener('click', function() { startSimulation(); });
+  document.getElementById('btn-stop-simulation').addEventListener('click', function() { stopSimulation(); });
+  document.getElementById('btn-reset-simulation').addEventListener('click', function() { resetSimulation(); });
+});
+</script>
 {{ end }}

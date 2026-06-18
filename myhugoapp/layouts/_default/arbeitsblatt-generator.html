@@ -82,7 +82,7 @@
             <button id="generate-ws-btn" class="btn btn-primary btn-lg">
               <i class="fa fa-file-text-o"></i> Arbeitsblatt erstellen
             </button>
-            <button id="print-ws-btn" class="btn btn-success btn-lg" style="display:none;" onclick="window.print()">
+            <button id="print-ws-btn" class="btn btn-success btn-lg" style="display:none;">
               <i class="fa fa-print"></i> Drucken / PDF
             </button>
           </div>
@@ -119,5 +119,12 @@
 
 <script src="/js/arbeitsblatt-generator.js"></script>
 <link rel="stylesheet" href="/css/arbeitsblatt-generator.css">
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('print-ws-btn').addEventListener('click', function() { window.print(); });
+});
+</script>
 {{ end }}

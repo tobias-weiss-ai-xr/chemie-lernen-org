@@ -56,7 +56,7 @@
           <input type="number" id="volume-solution" class="form-control" placeholder="Volumen der Lösung" step="any" aria-label="Volumen in Litern">
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="calculateMolarity()" style="margin-top: 20px;">
+        <button id="btn-calc-molarity" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;">
           <i class="fa fa-calculator"></i> Berechnen
         </button>
 
@@ -106,7 +106,7 @@
           <input type="number" id="final-volume" class="form-control" placeholder="Gewünschtes Gesamtvolumen" step="any" aria-label="Zielvolumen in Litern">
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="calculateDilution()" style="margin-top: 20px;">
+        <button id="btn-calc-dilution" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;">
           <i class="fa fa-tint"></i> Berechnen
         </button>
 
@@ -161,7 +161,7 @@
           </div>
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="calculateMixing()" style="margin-top: 20px;">
+        <button id="btn-calc-mixing" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;">
           <i class="fa fa-random"></i> Berechnen
         </button>
 
@@ -415,5 +415,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 </style>
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-calc-molarity').addEventListener('click', function() { calculateMolarity(); });
+  document.getElementById('btn-calc-dilution').addEventListener('click', function() { calculateDilution(); });
+  document.getElementById('btn-calc-mixing').addEventListener('click', function() { calculateMixing(); });
+});
+</script>
 {{ end }}

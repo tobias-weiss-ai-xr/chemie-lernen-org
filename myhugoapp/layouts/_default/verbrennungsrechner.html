@@ -73,7 +73,7 @@
               </div>
             </div>
 
-            <button class="btn btn-primary btn-lg btn-block" onclick="calculateCombustion()">
+            <button id="btn-calc-combustion" class="btn btn-primary btn-lg btn-block">
               <i class="fa fa-fire"></i> Verbrennung analysieren
             </button>
 
@@ -351,4 +351,12 @@
 
 <script src="{{ "js/utils/ui-utils.js" | relURL }}"></script><script src="{{ "js/utils/chemistry-utils.js" | relURL }}"></script><script src="{{ "js/verbrennungsrechner.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/verbrennungsrechner.css" | relURL }}">
+{{ end }}
+
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-calc-combustion').addEventListener('click', function() { calculateCombustion(); });
+});
+</script>
 {{ end }}

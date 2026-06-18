@@ -78,7 +78,7 @@
           </div>
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="convertTemperature()" style="margin-top: 20px;">
+        <button id="btn-convert-temp" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;">
           <i class="fa fa-exchange-alt"></i> Umrechnen
         </button>
 
@@ -139,7 +139,7 @@
           </div>
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="convertPressure()" style="margin-top: 20px;">
+        <button id="btn-convert-pressure" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;">
           <i class="fa fa-exchange-alt"></i> Umrechnen
         </button>
 
@@ -197,7 +197,7 @@
           </div>
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="convertVolume()" style="margin-top: 20px;">
+        <button id="btn-convert-volume" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;">
           <i class="fa fa-exchange-alt"></i> Umrechnen
         </button>
 
@@ -258,7 +258,7 @@
           <input type="number" id="molar-mass" class="form-control" placeholder="z.B. 18.015 für Wasser" step="any" aria-label="Molare Masse in g/mol">
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="convertMass()" style="margin-top: 20px;">
+        <button id="btn-convert-mass" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;">
           <i class="fa fa-exchange-alt"></i> Umrechnen
         </button>
 
@@ -317,7 +317,7 @@
           </div>
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="convertEnergy()" style="margin-top: 20px;">
+        <button id="btn-convert-energy" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;">
           <i class="fa fa-exchange-alt"></i> Umrechnen
         </button>
 
@@ -550,6 +550,12 @@ function convertEnergy() {
 
 // Auto-calculate on Enter key
 document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-convert-temp').addEventListener('click', function() { convertTemperature(); });
+  document.getElementById('btn-convert-pressure').addEventListener('click', function() { convertPressure(); });
+  document.getElementById('btn-convert-volume').addEventListener('click', function() { convertVolume(); });
+  document.getElementById('btn-convert-mass').addEventListener('click', function() { convertMass(); });
+  document.getElementById('btn-convert-energy').addEventListener('click', function() { convertEnergy(); });
+
   const inputs = document.querySelectorAll('input[type="number"]');
   inputs.forEach(input => {
     input.addEventListener('keypress', function(e) {

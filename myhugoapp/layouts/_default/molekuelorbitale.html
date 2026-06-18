@@ -16,7 +16,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="molecule-selector">Molekül auswählen:</label>
-          <select id="molecule-selector" class="form-control" onchange="changeMolecule()">
+          <select id="molecule-selector" class="form-control">
             <option value="methane">Methan (CH₄) - sp³-Hybridisierung</option>
             <option value="ethene">Ethen (C₂H₄) - sp²-Hybridisierung</option>
             <option value="acetylene">Acetylen (C₂H₂) - sp-Hybridisierung</option>
@@ -27,7 +27,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="orbital-type">Orbital-Typ:</label>
-          <select id="orbital-type" class="form-control" onchange="changeOrbitalType()">
+          <select id="orbital-type" class="form-control">
             <option value="sigma">σ-Bindungen (Kopf-zu-Kopf)</option>
             <option value="pi">π-Bindungen (Seitenaustausch)</option>
             <option value="bonding">Gebundende MOs</option>
@@ -39,7 +39,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="view-angle">Betrachtungswinkel:</label>
-          <select id="view-angle" class="form-control" onchange="changeViewAngle()">
+          <select id="view-angle" class="form-control">
             <option value="default">Standardansicht</option>
             <option value="top">Schräg-Oben</option>
             <option value="side">Seitlich</option>
@@ -51,16 +51,16 @@
 
     <div class="row" style="margin-top: 15px;">
       <div class="col-md-12 text-center">
-        <button class="btn btn-primary btn-lg" onclick="toggleRotation()" id="rotation-therapy" data-playing="false">
+        <button class="btn btn-primary btn-lg" id="rotation-therapy" data-playing="false">
           <i class="fa fa-sync"></i> Rotation aktivieren
         </button>
-        <button class="btn btn-secondary btn-lg" onclick="showOrbitals()">
+        <button class="btn btn-secondary btn-lg" id="btn-show-orbitals">
           <i class="fa fa-toggle-on"></i> Orbitale ein/aus
         </button>
-        <button class="btn btn-info btn-lg" onclick="showBondOrder()">
+        <button class="btn btn-info btn-lg" id="btn-bond-order">
           <i class="fa fa-link"></i> Bindungsordnung
         </button>
-        <button class="btn btn-warning btn-lg" onclick="resetView()">
+        <button class="btn btn-warning btn-lg" id="btn-reset-view">
           <i class="fa fa-redo"></i> Zurücksetzen
         </button>
       </div>
@@ -254,4 +254,18 @@
 <script src="{{ "js/molekuelorbitale.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/molekuelorbitale.css" | relURL }}">
 
+{{ end }}
+
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('molecule-selector').addEventListener('change', function() { changeMolecule(); });
+  document.getElementById('orbital-type').addEventListener('change', function() { changeOrbitalType(); });
+  document.getElementById('view-angle').addEventListener('change', function() { changeViewAngle(); });
+  document.getElementById('rotation-therapy').addEventListener('click', function() { toggleRotation(); });
+  document.getElementById('btn-show-orbitals').addEventListener('click', function() { showOrbitals(); });
+  document.getElementById('btn-bond-order').addEventListener('click', function() { showBondOrder(); });
+  document.getElementById('btn-reset-view').addEventListener('click', function() { resetView(); });
+});
+</script>
 {{ end }}

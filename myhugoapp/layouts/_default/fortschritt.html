@@ -79,10 +79,10 @@
   <!-- Controls -->
   <div class="row" style="margin-top: 30px;">
     <div class="col-md-12 text-center">
-      <button class="btn btn-danger" onclick="resetProgressData()" aria-label="Fortschritt zurücksetzen">
+      <button id="btn-reset-progress" class="btn btn-danger" aria-label="Fortschritt zurücksetzen">
         <i class="fa fa-trash"></i> Alle Daten zurücksetzen
       </button>
-      <button class="btn btn-success" onclick="loadDashboard()" style="margin-left: 10px;" aria-label="Daten aktualisieren">
+      <button id="btn-load-dashboard" class="btn btn-success" style="margin-left: 10px;" aria-label="Daten aktualisieren">
         <i class="fa fa-refresh"></i> Aktualisieren
       </button>
     </div>
@@ -94,5 +94,13 @@
 <script src="/js/gamification-engine.js"></script>
 <script src="/js/fortschritt-dashboard.js"></script>
 <link rel="stylesheet" href="/css/progress-dashboard.css">
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-reset-progress').addEventListener('click', function() { resetProgressData(); });
+  document.getElementById('btn-load-dashboard').addEventListener('click', function() { loadDashboard(); });
+});
+</script>
 {{ end }}

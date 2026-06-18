@@ -54,7 +54,7 @@
             </div>
             <div class="col-md-4">
               <label>&nbsp;</label>
-              <button class="btn btn-success btn-block" onclick="startPractice()">
+              <button id="btn-start-practice" class="btn btn-success btn-block">
                 <i class="fa fa-play"></i> Aufgabe starten
               </button>
             </div>
@@ -72,7 +72,7 @@
                 <input type="number" id="practice-answer" class="form-control" step="any" placeholder="Ergebnis eingeben..." aria-label="Deine Antwort eingeben">
               </div>
               <div class="col-md-4">
-                <button class="btn btn-primary btn-block" onclick="checkAnswer()">
+                <button id="btn-check-answer" class="btn btn-primary btn-block">
                   <i class="fa fa-check"></i> Prüfen
                 </button>
               </div>
@@ -82,10 +82,10 @@
           <div id="feedback-section" style="display:none; margin-top: 20px;"></div>
 
           <div style="margin-top: 20px; text-align: center;">
-            <button class="btn btn-default" onclick="skipProblem()">
+            <button id="btn-skip-problem" class="btn btn-default">
               <i class="fa fa-forward"></i> Überspringen
             </button>
-            <button class="btn btn-warning" onclick="resetPractice()" style="margin-left: 10px;">
+            <button id="btn-reset-practice" class="btn btn-warning" style="margin-left: 10px;">
               <i class="fa fa-refresh"></i> Neustart
             </button>
           </div>
@@ -108,6 +108,11 @@
 <script src="/js/lazy-loader.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-start-practice').addEventListener('click', function() { startPractice(); });
+  document.getElementById('btn-check-answer').addEventListener('click', function() { checkAnswer(); });
+  document.getElementById('btn-skip-problem').addEventListener('click', function() { skipProblem(); });
+  document.getElementById('btn-reset-practice').addEventListener('click', function() { resetPractice(); });
+
   if (typeof LazyLoader !== 'undefined') {
     LazyLoader.loadCalculator('uebungen').catch(function(err) {
       console.error('Failed to load practice:', err);

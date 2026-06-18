@@ -47,7 +47,7 @@
         <div class="controls">
           <div class="control-group">
             <label for="max-n">Höchstes Energieniveau:</label>
-            <select id="max-n" class="form-control" onchange="drawEnergyLevels()">
+            <select id="max-n" class="form-control">
               <option value="6">n = 1 bis 6</option>
               <option value="5">n = 1 bis 5</option>
               <option value="4">n = 1 bis 4</option>
@@ -55,7 +55,7 @@
             </select>
           </div>
           <div class="control-group">
-            <button class="btn btn-primary" onclick="drawEnergyLevels()">
+            <button id="btn-draw-levels" class="btn btn-primary">
               <i class="fa fa-sync"></i> Neu zeichnen
             </button>
           </div>
@@ -98,7 +98,7 @@
           </select>
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="simulateTransition()">
+        <button id="btn-simulate-transition" class="btn btn-primary btn-lg btn-block">
           <i class="fa fa-play"></i> Übergang simulieren
         </button>
 
@@ -148,7 +148,7 @@
 
         <div class="spectrum-selector">
           <label for="spectrum-series">Spektralserie:</label>
-          <select id="spectrum-series" class="form-control" onchange="drawSpectrum()">
+          <select id="spectrum-series" class="form-control">
             <option value="lyman">Lyman-Serie (UV, n = 1)</option>
             <option value="balmer">Balmer-Serie (sichtbar, n = 2)</option>
             <option value="paschen">Paschen-Serie (IR, n = 3)</option>
@@ -291,5 +291,15 @@
 
 <script src="{{ "js/atomenergieniveaus.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/atomenergieniveaus.css" | relURL }}">
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('max-n').addEventListener('change', function() { drawEnergyLevels(); });
+  document.getElementById('btn-draw-levels').addEventListener('click', function() { drawEnergyLevels(); });
+  document.getElementById('btn-simulate-transition').addEventListener('click', function() { simulateTransition(); });
+  document.getElementById('spectrum-series').addEventListener('change', function() { drawSpectrum(); });
+});
+</script>
 {{ end }}

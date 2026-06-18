@@ -42,7 +42,7 @@
 
         <div class="form-group">
           <label for="reaction-type">Reaktionstyp:</label>
-          <select id="reaction-type" class="form-control" onchange="updateICETable()">
+          <select id="reaction-type" class="form-control">
             <option value="weak-acid">Schwache Säure-Dissoziation (HA ⇌ H⁺ + A⁻)</option>
             <option value="weak-base">Schwache Base-Protonierung (B + H₂O ⇌ BH⁺ + OH⁻)</option>
           </select>
@@ -59,7 +59,7 @@
           <input type="number" id="initial-concentration" class="form-control" value="0.1" step="any" min="0">
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="calculateICE()">
+        <button id="btn-calculate-ice" class="btn btn-primary btn-lg btn-block">
           <i class="fa fa-calculator"></i> ICE berechnen
         </button>
 
@@ -103,7 +103,7 @@
 
         <div class="form-group">
           <label for="buffer-preset">Puffer-Vorlage:</label>
-          <select id="buffer-preset" class="form-control" onchange="loadBufferPreset()">
+          <select id="buffer-preset" class="form-control">
             <option value="custom">Benutzerdefiniert</option>
             <option value="acetate" selected>Acetatpuffer (CH₃COOH/CH₃COO⁻, pKₐ 4.76)</option>
             <option value="phosphate">Phosphatpuffer (H₂PO₄⁻/HPO₄²⁻, pKₐ 7.21)</option>
@@ -132,7 +132,7 @@
           <input type="number" id="base-concentration" class="form-control" value="0.1" step="any" min="0">
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="calculateBufferpH()">
+        <button id="btn-calculate-buffer-ph" class="btn btn-primary btn-lg btn-block">
           <i class="fa fa-calculator"></i> pH berechnen
         </button>
 
@@ -187,7 +187,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label>&nbsp;</label>
-                <button class="btn btn-info btn-block" onclick="calculateBufferPreparation()">
+                <button id="btn-calculate-buffer-prep" class="btn btn-info btn-block">
                   <i class="fa fa-flask"></i> Ansatz berechnen
                 </button>
               </div>
@@ -311,7 +311,7 @@
           </div>
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="calculateMWG()">
+        <button id="btn-calculate-mwg" class="btn btn-primary btn-lg btn-block">
           <i class="fa fa-calculator"></i> Kₐ und Reaktionsrichtung berechnen
         </button>
 
@@ -435,5 +435,17 @@
 
 <script src="{{ "js/saeuren-basen-gleichgewicht.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/saeuren-basen-gleichgewicht.css" | relURL }}">
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('reaction-type').addEventListener('change', function() { updateICETable(); });
+  document.getElementById('btn-calculate-ice').addEventListener('click', function() { calculateICE(); });
+  document.getElementById('buffer-preset').addEventListener('change', function() { loadBufferPreset(); });
+  document.getElementById('btn-calculate-buffer-ph').addEventListener('click', function() { calculateBufferpH(); });
+  document.getElementById('btn-calculate-buffer-prep').addEventListener('click', function() { calculateBufferPreparation(); });
+  document.getElementById('btn-calculate-mwg').addEventListener('click', function() { calculateMWG(); });
+});
+</script>
 {{ end }}

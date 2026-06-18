@@ -16,7 +16,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="trend-selector">Trend auswählen:</label>
-          <select id="trend-selector" class="form-control" onchange="loadTrend()">
+          <select id="trend-selector" class="form-control">
             <option value="atomradius">Atomradius (pm) - Größe der Atome</option>
             <option value="ionisation">1. Ionisationsenergie (kJ/mol) - Energiedefizit</option>
             <option value="electronegativity">Elektronegativität (Pauling) - Elektronenaffinität</option>
@@ -180,5 +180,12 @@
 
 <script src="{{ "js/periodische-trends.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/periodische-trends.css" | relURL }}">
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('trend-selector').addEventListener('change', function() { loadTrend(); });
+});
+</script>
 {{ end }}

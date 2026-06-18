@@ -67,7 +67,7 @@
             </div>
           </div>
 
-          <button class="btn btn-primary btn-lg btn-block" onclick="berechneDruck()">
+          <button class="btn btn-primary btn-lg btn-block" id="btn-druck-berechnen">
             <i class="fa fa-calculator"></i> Druck berechnen
           </button>
         </div>
@@ -77,7 +77,7 @@
           <div class="result-value">
             <span class="label">Druck (p):</span>
             <span id="druck-wert" class="value-highlight"></span>
-            <select id="druck-ergebnis-einheit" onchange="konvertiereDruck()">
+            <select id="druck-ergebnis-einheit">
               <option value="Pa">Pascal (Pa)</option>
               <option value="kPa">Kilopascal (kPa)</option>
               <option value="MPa">Megapascal (MPa)</option>
@@ -95,11 +95,11 @@
         <div class="piston-container">
           <canvas id="piston-canvas" width="400" height="300"></canvas>
           <div class="piston-controls">
-            <label>Kraft anpassen: <input type="range" id="kraft-slider" min="100" max="10000" value="1000" oninput="updatePiston()"></label>
+            <label>Kraft anpassen: <input type="range" id="kraft-slider" min="100" max="10000" value="1000"></label>
             <span id="kraft-display">1000 N</span>
           </div>
           <div class="piston-controls">
-            <label>Fläche anpassen: <input type="range" id="flaeche-slider" min="1" max="100" value="10" oninput="updatePiston()"></label>
+            <label>Fläche anpassen: <input type="range" id="flaeche-slider" min="1" max="100" value="10"></label>
             <span id="flaeche-display">10 cm²</span>
           </div>
         </div>
@@ -145,7 +145,7 @@
             </div>
           </div>
 
-          <button class="btn btn-primary btn-lg btn-block" onclick="berechneKraft()">
+          <button class="btn btn-primary btn-lg btn-block" id="btn-kraft-berechnen">
             <i class="fa fa-calculator"></i> Kraft berechnen
           </button>
         </div>
@@ -155,7 +155,7 @@
           <div class="result-value">
             <span class="label">Kraft (F):</span>
             <span id="kraft-wert" class="value-highlight"></span>
-            <select id="kraft-ergebnis-einheit" onchange="konvertiereKraft()">
+            <select id="kraft-ergebnis-einheit">
               <option value="N">Newton (N)</option>
               <option value="kN">Kilonewton (kN)</option>
               <option value="MN">Meganewton (MN)</option>
@@ -199,7 +199,7 @@
             </div>
           </div>
 
-          <button class="btn btn-primary btn-lg btn-block" onclick="berechneFlaeche()">
+          <button class="btn btn-primary btn-lg btn-block" id="btn-flaeche-berechnen">
             <i class="fa fa-calculator"></i> Fläche berechnen
           </button>
         </div>
@@ -209,7 +209,7 @@
           <div class="result-value">
             <span class="label">Fläche (A):</span>
             <span id="flaeche-wert" class="value-highlight"></span>
-            <select id="flaeche-ergebnis-einheit" onchange="konvertiereFlaeche()">
+            <select id="flaeche-ergebnis-einheit">
               <option value="m2">m²</option>
               <option value="cm2">cm²</option>
               <option value="mm2">mm²</option>
@@ -376,4 +376,19 @@
 <script src="{{ "js/druck-flaechen-rechner.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/druck-flaechen-rechner.css" | relURL }}">
 
+{{ end }}
+
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-druck-berechnen').addEventListener('click', function() { berechneDruck(); });
+  document.getElementById('druck-ergebnis-einheit').addEventListener('change', function() { konvertiereDruck(); });
+  document.getElementById('kraft-slider').addEventListener('input', function() { updatePiston(); });
+  document.getElementById('flaeche-slider').addEventListener('input', function() { updatePiston(); });
+  document.getElementById('btn-kraft-berechnen').addEventListener('click', function() { berechneKraft(); });
+  document.getElementById('kraft-ergebnis-einheit').addEventListener('change', function() { konvertiereKraft(); });
+  document.getElementById('btn-flaeche-berechnen').addEventListener('click', function() { berechneFlaeche(); });
+  document.getElementById('flaeche-ergebnis-einheit').addEventListener('change', function() { konvertiereFlaeche(); });
+});
+</script>
 {{ end }}

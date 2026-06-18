@@ -45,7 +45,7 @@
           <input type="number" id="hplus-input" class="form-control" placeholder="z.B. 1e-7" step="any" aria-label="Wasserstoffionenkonzentration in mol pro Liter">
           <span class="input-group-addon">mol/L</span>
           <span class="input-group-btn">
-            <button class="btn btn-primary" onclick="calculateFromHPlus()">Berechnen</button>
+            <button id="btn-calc-from-hplus" class="btn btn-primary">Berechnen</button>
           </span>
         </div>
 
@@ -69,7 +69,7 @@
           <input type="number" id="ohminus-input" class="form-control" placeholder="z.B. 1e-7" step="any" aria-label="Hydroxidionenkonzentration in mol pro Liter">
           <span class="input-group-addon">mol/L</span>
           <span class="input-group-btn">
-            <button class="btn btn-primary" onclick="calculateFromOHMinus()">Berechnen</button>
+            <button id="btn-calc-from-ohminus" class="btn btn-primary">Berechnen</button>
           </span>
         </div>
 
@@ -92,7 +92,7 @@
         <div class="input-group">
           <input type="number" id="poh-input" class="form-control" placeholder="z.B. 7" step="any" min="0" max="14" aria-label="pOH-Wert zwischen 0 und 14">
           <span class="input-group-btn">
-            <button class="btn btn-primary" onclick="calculateFromPOH()">Berechnen</button>
+            <button id="btn-calc-from-poh" class="btn btn-primary">Berechnen</button>
           </span>
         </div>
 
@@ -199,5 +199,14 @@
 
 <script src="{{ "js/ph-rechner.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/ph-rechner.css" | relURL }}">
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-calc-from-hplus').addEventListener('click', function() { calculateFromHPlus(); });
+  document.getElementById('btn-calc-from-ohminus').addEventListener('click', function() { calculateFromOHMinus(); });
+  document.getElementById('btn-calc-from-poh').addEventListener('click', function() { calculateFromPOH(); });
+});
+</script>
 {{ end }}

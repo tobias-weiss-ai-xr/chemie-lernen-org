@@ -53,7 +53,7 @@
 
         <div class="form-group">
           <label for="permanganat-target-analyte">Zielanalyt:</label>
-          <select id="permanganat-target-analyte" class="form-control" onchange="updatePermanganatSetup()">
+          <select id="permanganat-target-analyte" class="form-control">
             <option value="oxalate">Oxalsäure (C₂O₄²⁻)</option>
             <option value="peroxide">Wasserstoffperoxid (H₂O₂)</option>
             <option value="iron(II)">Eisen(II) (Fe²⁺)</option>
@@ -81,7 +81,7 @@
           <input type="number" id="permanganat-stepsize" class="form-control" value="1.0" step="any" min="0.1">
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="simulatePermanganatTitration()">
+        <button class="btn btn-primary btn-lg btn-block" id="btn-permanganat-titrate">
           <i class="fa fa-play"></i> Titration simulieren
         </button>
 
@@ -117,7 +117,7 @@
         <div class="color-controls">
           <p><strong>Vorher:</strong> KMnO₄ violett</p>
           <p><strong>Nachher:</strong> Mn²⁺ farblos</p>
-          <button class="btn btn-secondary" onclick="animatePermanganatSwap()">Farbwechsel anzeigen</button>
+          <button class="btn btn-secondary" id="btn-permanganat-swap">Farbwechsel anzeigen</button>
         </div>
       </div>
     </div>
@@ -168,7 +168,7 @@
           <input type="number" id="cers4-stepsize" class="form-control" value="0.5" step="any" min="0.1">
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="simulateCerS4Titration()">
+        <button class="btn btn-primary btn-lg btn-block" id="btn-cer-titrate">
           <i class="fa fa-play"></i> Titration simulieren
         </button>
 
@@ -230,7 +230,7 @@
           <input type="number" id="iod-thio-concentration" class="form-control" value="0.1" step="any" min="0">
         </div>
 
-        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="simulateIodThiosulfat()">
+        <button type="button" class="btn btn-primary btn-lg btn-block" id="btn-iod-thiosulfat">
           <i class="fa fa-play"></i> Berechnung starten
         </button>
 
@@ -269,7 +269,7 @@
 
         <div class="form-group">
           <label for="potentiometry-redox-pair">Redox-Paar:</label>
-          <select id="potentiometry-redox-pair" class="form-control" onchange="updatePotentiometrySetup()">
+          <select id="potentiometry-redox-pair" class="form-control">
             <option value="ce">Ce⁴⁺/Ce³⁺ (E° = +1.44 V)</option>
             <option value="fe2+">Fe²⁺/Fe³⁺ (E° = +0.77 V)</option>
             <option value="i2/i-">I₂/I⁻ (E° = +0.54 V)</option>
@@ -297,7 +297,7 @@
           <input type="number" id="potentiometry-stepsize" class="form-control" value="0.5" step="any" min="0.1">
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="simulatePotentiometricTitration()">
+        <button class="btn btn-primary btn-lg btn-block" id="btn-potentiometry-titrate">
           <i class="fa fa-play"></i> Titration simulieren
         </button>
 
@@ -442,4 +442,18 @@
 <script src="{{ "js/redox-titrationen.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/redox-titrationen.css" | relURL }}">
 
+{{ end }}
+
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('permanganat-target-analyte').addEventListener('change', function() { updatePermanganatSetup(); });
+  document.getElementById('btn-permanganat-titrate').addEventListener('click', function() { simulatePermanganatTitration(); });
+  document.getElementById('btn-permanganat-swap').addEventListener('click', function() { animatePermanganatSwap(); });
+  document.getElementById('btn-cer-titrate').addEventListener('click', function() { simulateCerS4Titration(); });
+  document.getElementById('btn-iod-thiosulfat').addEventListener('click', function() { simulateIodThiosulfat(); });
+  document.getElementById('potentiometry-redox-pair').addEventListener('change', function() { updatePotentiometrySetup(); });
+  document.getElementById('btn-potentiometry-titrate').addEventListener('click', function() { simulatePotentiometricTitration(); });
+});
+</script>
 {{ end }}

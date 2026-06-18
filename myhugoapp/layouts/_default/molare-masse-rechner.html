@@ -24,7 +24,7 @@
                    placeholder="z.B. H2O, NaCl, C6H12O6"
                    aria-label="Chemische Formel">
             <span class="input-group-btn">
-              <button class="btn btn-primary btn-lg" onclick="calculateMolarMass()">
+              <button id="btn-calc-molar-mass" class="btn btn-primary btn-lg">
                 <i class="fa fa-calculator"></i> Berechnen
               </button>
             </span>
@@ -250,5 +250,12 @@
 <script src="{{ "js/utils/chemistry-utils.js" | relURL }}"></script>
 <script src="{{ "js/utils/ui-utils.js" | relURL }}"></script><script src="{{ "js/molare-masse-rechner.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/molare-masse-rechner.css" | relURL }}">
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-calc-molar-mass').addEventListener('click', function() { calculateMolarMass(); });
+});
+</script>
 {{ end }}

@@ -27,7 +27,7 @@
                  style="font-size: 16px; padding: 12px;"
                  aria-label="Reaktionsgleichung eingeben">
         </div>
-        <button class="btn btn-primary" onclick="parseEquation()">
+        <button id="btn-parse-equation" class="btn btn-primary">
           <i class="fa fa-cogs"></i> Gleichung analysieren
         </button>
         <div id="parser-result" style="display:none; margin-top: 15px;">
@@ -112,11 +112,11 @@
   <div class="row">
     <div class="col-md-12">
       <div class="history-section">
-        <button class="btn btn-info btn-sm" onclick="toggleHistory()" type="button">
+        <button id="btn-toggle-history" class="btn btn-info btn-sm" type="button">
           <i class="fa fa-history"></i> Berechnungsverlauf
           <span id="history-count" class="badge">(0)</span>
         </button>
-        <button class="btn btn-default btn-sm" onclick="clearHistory()" type="button" style="margin-left: 10px;">
+        <button id="btn-clear-history" class="btn btn-default btn-sm" type="button" style="margin-left: 10px;">
           <i class="fa fa-trash"></i> Verlauf löschen
         </button>
 
@@ -156,6 +156,10 @@
 <script src="/js/lazy-loader.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-parse-equation').addEventListener('click', function() { parseEquation(); });
+  document.getElementById('btn-toggle-history').addEventListener('click', function() { toggleHistory(); });
+  document.getElementById('btn-clear-history').addEventListener('click', function() { clearHistory(); });
+
   if (typeof LazyLoader !== 'undefined') {
     LazyLoader.loadCalculator('werkzeuge').catch(function(err) {
       console.error('Failed to load tools:', err);

@@ -102,10 +102,10 @@
                 <div class="form-group">
                   <label>Berechnen:</label>
                   <div class="btn-group" style="width: 100%;">
-                    <button class="btn btn-primary" onclick="calculateIdealGas('pressure')" style="width: 25%;">Druck p</button>
-                    <button class="btn btn-primary" onclick="calculateIdealGas('volume')" style="width: 25%;">Volumen V</button>
-                    <button class="btn btn-primary" onclick="calculateIdealGas('amount')" style="width: 25%;">Stoffmenge n</button>
-                    <button class="btn btn-primary" onclick="calculateIdealGas('temperature')" style="width: 25%;">Temp. T</button>
+                    <button class="btn btn-primary" id="btn-ideal-pressure" style="width: 25%;">Druck p</button>
+                    <button class="btn btn-primary" id="btn-ideal-volume" style="width: 25%;">Volumen V</button>
+                    <button class="btn btn-primary" id="btn-ideal-amount" style="width: 25%;">Stoffmenge n</button>
+                    <button class="btn btn-primary" id="btn-ideal-temperature" style="width: 25%;">Temp. T</button>
                   </div>
                 </div>
 
@@ -173,7 +173,7 @@
 
                 <div class="form-group">
                   <label>Berechnen:</label>
-                  <button class="btn btn-primary btn-block" onclick="calculateBoyleMariotte()">
+                  <button class="btn btn-primary btn-block" id="btn-boyle-mariotte">
                     <i class="fa fa-calculator"></i> Berechnen
                   </button>
                 </div>
@@ -229,7 +229,7 @@
 
                 <div class="form-group">
                   <label>Berechnen:</label>
-                  <button class="btn btn-primary btn-block" onclick="calculateGayLussac()">
+                  <button class="btn btn-primary btn-block" id="btn-gay-lussac">
                     <i class="fa fa-calculator"></i> Berechnen
                   </button>
                 </div>
@@ -289,7 +289,7 @@
 
                 <div class="form-group">
                   <label>Berechnen:</label>
-                  <button class="btn btn-primary btn-block" onclick="calculateCombinedGasLaw()">
+                  <button class="btn btn-primary btn-block" id="btn-combined-gas">
                     <i class="fa fa-calculator"></i> Berechnen
                   </button>
                 </div>
@@ -493,4 +493,18 @@
 
 <script src="{{ "js/utils/ui-utils.js" | relURL }}"></script><script src="{{ "js/utils/chemistry-utils.js" | relURL }}"></script><script src="{{ "js/gasgesetz-rechner.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/gasgesetz-rechner.css" | relURL }}">
+{{ end }}
+
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-ideal-pressure').addEventListener('click', function() { calculateIdealGas('pressure'); });
+  document.getElementById('btn-ideal-volume').addEventListener('click', function() { calculateIdealGas('volume'); });
+  document.getElementById('btn-ideal-amount').addEventListener('click', function() { calculateIdealGas('amount'); });
+  document.getElementById('btn-ideal-temperature').addEventListener('click', function() { calculateIdealGas('temperature'); });
+  document.getElementById('btn-boyle-mariotte').addEventListener('click', function() { calculateBoyleMariotte(); });
+  document.getElementById('btn-gay-lussac').addEventListener('click', function() { calculateGayLussac(); });
+  document.getElementById('btn-combined-gas').addEventListener('click', function() { calculateCombinedGasLaw(); });
+});
+</script>
 {{ end }}

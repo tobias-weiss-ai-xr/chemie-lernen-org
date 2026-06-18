@@ -58,7 +58,7 @@
                 <p class="help-block">Verwenden Sie wissenschaftliche Notation (z.B. 1.8e-10)</p>
               </div>
 
-              <button class="btn btn-primary btn-lg" onclick="calculateSolubilityFromKsp()">
+              <button id="btn-calc-solubility-from-ksp" class="btn btn-primary btn-lg">
                 <i class="fa fa-calculator"></i> Löslichkeit berechnen
               </button>
 
@@ -93,7 +93,7 @@
                 <p class="help-block">Verwenden Sie wissenschaftliche Notation (z.B. 1.34e-5)</p>
               </div>
 
-              <button class="btn btn-primary btn-lg" onclick="calculateKspFromSolubility()">
+              <button id="btn-calc-ksp-from-solubility" class="btn btn-primary btn-lg">
                 <i class="fa fa-calculator"></i> Ksp berechnen
               </button>
 
@@ -144,7 +144,7 @@
                 </div>
               </div>
 
-              <button class="btn btn-primary btn-lg" onclick="checkPrecipitation()">
+              <button id="btn-check-precipitation" class="btn btn-primary btn-lg">
                 <i class="fa fa-check-circle"></i> Fällung prüfen
               </button>
 
@@ -360,5 +360,14 @@
 <script src="{{ "js/utils/chemistry-utils.js" | relURL }}"></script>
 <script src="{{ "js/utils/ui-utils.js" | relURL }}"></script><script src="{{ "js/loeslichkeitsprodukt-rechner.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/loeslichkeitsprodukt-rechner.css" | relURL }}">
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-calc-solubility-from-ksp').addEventListener('click', function() { calculateSolubilityFromKsp(); });
+  document.getElementById('btn-calc-ksp-from-solubility').addEventListener('click', function() { calculateKspFromSolubility(); });
+  document.getElementById('btn-check-precipitation').addEventListener('click', function() { checkPrecipitation(); });
+});
+</script>
 {{ end }}

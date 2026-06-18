@@ -111,7 +111,7 @@
             </div>
           </div>
 
-          <button class="btn btn-primary btn-lg btn-block" onclick="runTitration()">
+          <button id="btn-run-titration" class="btn btn-primary btn-lg btn-block">
             <i class="fa fa-flask"></i> Titration durchführen
           </button>
 
@@ -328,4 +328,12 @@
 <script src="{{ "js/utils/ui-utils.js" | relURL }}"></script><script src="{{ "js/utils/chemistry-utils.js" | relURL }}"></script><script src="{{ "js/titrations-simulator.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/titrations-simulator.css" | relURL }}">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+{{ end }}
+
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-run-titration').addEventListener('click', function() { runTitration(); });
+});
+</script>
 {{ end }}

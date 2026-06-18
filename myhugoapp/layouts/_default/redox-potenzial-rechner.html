@@ -68,7 +68,7 @@
                 <p class="help-block">Ganzzahl zwischen 1 und 10</p>
               </div>
 
-              <button class="btn btn-primary btn-lg" onclick="calculateCellPotential()">
+              <button id="btn-calc-cell-potential" class="btn btn-primary btn-lg">
                 <i class="fa fa-calculator"></i> Zellpotential berechnen
               </button>
 
@@ -145,7 +145,7 @@
                 </div>
               </div>
 
-              <button class="btn btn-primary btn-lg" onclick="calculateNernstPotential()">
+              <button id="btn-calc-nernst" class="btn btn-primary btn-lg">
                 <i class="fa fa-calculator"></i> Nach Nernst berechnen
               </button>
 
@@ -194,7 +194,7 @@
                 <p class="help-block">Standard: 298.15 K (25°C)</p>
               </div>
 
-              <button class="btn btn-primary btn-lg" onclick="calculateGibbsEnergy()">
+              <button id="btn-calc-gibbs" class="btn btn-primary btn-lg">
                 <i class="fa fa-calculator"></i> ΔG° und K berechnen
               </button>
 
@@ -460,5 +460,14 @@
 <script src="{{ "js/utils/chemistry-utils.js" | relURL }}"></script>
 <script src="{{ "js/utils/ui-utils.js" | relURL }}"></script><script src="{{ "js/redox-potenzial-rechner.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/redox-potenzial-rechner.css" | relURL }}">
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-calc-cell-potential').addEventListener('click', function() { calculateCellPotential(); });
+  document.getElementById('btn-calc-nernst').addEventListener('click', function() { calculateNernstPotential(); });
+  document.getElementById('btn-calc-gibbs').addEventListener('click', function() { calculateGibbsEnergy(); });
+});
+</script>
 {{ end }}

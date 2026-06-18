@@ -28,8 +28,21 @@
       ✉️
     </a>
     <!-- Copy link -->
-    <a href="#" onclick="navigator.clipboard.writeText('{{ $url }}');alert('Link kopiert!');void(0);" aria-label="Link kopieren" style="text-decoration:none;">
+    <a href="#" id="copy-link-btn" aria-label="Link kopieren" style="text-decoration:none;">
       🔗
     </a>
   </p>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var copyBtn = document.getElementById('copy-link-btn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      navigator.clipboard.writeText('{{ $url }}').then(function() {
+        alert('Link kopiert!');
+      });
+    });
+  }
+});
+</script>

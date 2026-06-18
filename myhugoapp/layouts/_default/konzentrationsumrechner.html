@@ -97,7 +97,7 @@
               </div>
             </div>
 
-            <button class="btn btn-primary btn-lg btn-block" onclick="convertConcentration()">
+            <button id="btn-convert-concentration" class="btn btn-primary btn-lg btn-block">
               <i class="fa fa-exchange-alt"></i> Umrechnen
             </button>
 
@@ -331,5 +331,12 @@
 <script src="{{ "js/utils/chemistry-utils.js" | relURL }}"></script>
 <script src="{{ "js/utils/ui-utils.js" | relURL }}"></script><script src="{{ "js/konzentrationsumrechner.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/konzentrationsumrechner.css" | relURL }}">
+{{ end }}
 
+{{ define "js" }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-convert-concentration').addEventListener('click', function() { convertConcentration(); });
+});
+</script>
 {{ end }}

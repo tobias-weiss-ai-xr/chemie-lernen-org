@@ -82,7 +82,7 @@
 
     <!-- Action Buttons -->
     <div class="button-group">
-      <button class="quiz-button quiz-button-secondary" onclick="window.location.reload()">
+      <button class="quiz-button quiz-button-secondary" id="quiz-restart-{{ $quizId }}">
         ↻ Wiederholen
       </button>
       <a href="{{ "/themenbereiche/" | relURL }}" class="quiz-button quiz-button-primary">
@@ -99,7 +99,7 @@
     <p style="margin-bottom: 2rem; color: var(--text-secondary, #666);">
       Testen Sie Ihr Wissen mit interaktiven Fragen zu diesem Thema.
     </p>
-    <button class="quiz-button quiz-button-primary" onclick="startQuiz('{{ $quizId }}')">
+    <button class="quiz-button quiz-button-primary" id="quiz-start-{{ $quizId }}">
       Quiz starten →
     </button>
   </div>
@@ -118,7 +118,15 @@ const quizData_{{ $quizId }} = {
 // Initialize quiz when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
   // Quiz initialization logic
-  console.log('Quiz {{ $quizId }} loaded');
+  var qid = '{{ $quizId }}';
+  var startBtn = document.getElementById('quiz-start-' + qid);
+  var restartBtn = document.getElementById('quiz-restart-' + qid);
+  if (startBtn) {
+    startBtn.addEventListener('click', function() { startQuiz(qid); });
+  }
+  if (restartBtn) {
+    restartBtn.addEventListener('click', function() { window.location.reload(); });
+  }
 });
 </script>
 
