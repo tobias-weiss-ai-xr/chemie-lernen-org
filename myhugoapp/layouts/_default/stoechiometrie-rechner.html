@@ -68,11 +68,11 @@
         <div class="form-group">
           <label>Vordefinierte Reaktionen:</label>
           <div class="preset-buttons">
-            <button type="button" class="btn btn-default btn-sm" onclick="loadPreset('water')">💧 Wasserbildung</button>
-            <button type="button" class="btn btn-default btn-sm" onclick="loadPreset('methane')">🔥 Methan-Verbrennung</button>
-            <button type="button" class="btn btn-default btn-sm" onclick="loadPreset('ammonia')">🌿 Haber-Verfahren</button>
-            <button type="button" class="btn btn-default btn-sm" onclick="loadPreset('sodium')">⚡ Natrium + Wasser</button>
-            <button type="button" class="btn btn-default btn-sm" onclick="loadPreset('photosynthesis')">🌱 Fotosynthese</button>
+            <button type="button" class="btn btn-default btn-sm" id="btn-preset-water">💧 Wasserbildung</button>
+            <button type="button" class="btn btn-default btn-sm" id="btn-preset-methane">🔥 Methan-Verbrennung</button>
+            <button type="button" class="btn btn-default btn-sm" id="btn-preset-ammonia">🌿 Haber-Verfahren</button>
+            <button type="button" class="btn btn-default btn-sm" id="btn-preset-sodium">⚡ Natrium + Wasser</button>
+            <button type="button" class="btn btn-default btn-sm" id="btn-preset-photosynthesis">🌱 Fotosynthese</button>
           </div>
           <small class="text-muted">Klicken Sie auf eine Reaktion, um die Koeffizienten automatisch einzufügen</small>
         </div>
@@ -104,12 +104,12 @@
           </div>
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="calcMolMol()">Berechnen</button>
+        <button class="btn btn-primary btn-lg btn-block" id="btn-calc-molmol">Berechnen</button>
 
         <div id="mol-result" class="result-box" style="display:none; margin-top:20px;">
           <h3>Ergebnis:</h3>
           <div id="mol-calc"></div>
-          <button class="btn btn-success btn-sm" onclick="exportMolMolToPDF()" style="margin-top:15px;">
+          <button class="btn btn-success btn-sm" id="btn-export-molmol-pdf" style="margin-top:15px;">
             <i class="fa fa-file-pdf-o"></i> Als PDF exportieren
           </button>
         </div>
@@ -124,11 +124,11 @@
         <div class="form-group">
           <label>Vordefinierte Reaktionen:</label>
           <div class="preset-buttons">
-            <button type="button" class="btn btn-default btn-sm" onclick="loadMassPreset('water')">💧 Wasserbildung</button>
-            <button type="button" class="btn btn-default btn-sm" onclick="loadMassPreset('methane')">🔥 Methan-Verbrennung</button>
-            <button type="button" class="btn btn-default btn-sm" onclick="loadMassPreset('ammonia')">🌿 Haber-Verfahren</button>
-            <button type="button" class="btn btn-default btn-sm" onclick="loadMassPreset('sodium')">⚡ Natrium + Wasser</button>
-            <button type="button" class="btn btn-default btn-sm" onclick="loadMassPreset('photosynthesis')">🌱 Fotosynthese</button>
+            <button type="button" class="btn btn-default btn-sm" id="btn-mass-water">💧 Wasserbildung</button>
+            <button type="button" class="btn btn-default btn-sm" id="btn-mass-methane">🔥 Methan-Verbrennung</button>
+            <button type="button" class="btn btn-default btn-sm" id="btn-mass-ammonia">🌿 Haber-Verfahren</button>
+            <button type="button" class="btn btn-default btn-sm" id="btn-mass-sodium">⚡ Natrium + Wasser</button>
+            <button type="button" class="btn btn-default btn-sm" id="btn-mass-photosynthesis">🌱 Fotosynthese</button>
           </div>
           <small class="text-muted">Klicken Sie auf eine Reaktion, um Koeffizienten und Molmassen automatisch einzufügen</small>
         </div>
@@ -177,7 +177,7 @@
           </div>
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="calcMassMass()">Berechnen</button>
+        <button class="btn btn-primary btn-lg btn-block" id="btn-calc-massmass">Berechnen</button>
 
         <div id="mass-result" style="display:none; margin-top:20px;"></div>
       </div>
@@ -217,7 +217,7 @@
           </div>
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="calcLimiting()">Bestimmen</button>
+        <button class="btn btn-primary btn-lg btn-block" id="btn-calc-limiting">Bestimmen</button>
 
         <div id="limit-result" style="display:none; margin-top:20px;"></div>
       </div>
@@ -249,7 +249,7 @@
           </div>
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block" onclick="calcYield()">Berechnen</button>
+        <button class="btn btn-primary btn-lg btn-block" id="btn-calc-yield">Berechnen</button>
 
         <div id="yield-result" style="display:none; margin-top:20px;"></div>
       </div>
@@ -263,13 +263,13 @@
 
         <!-- Step Management -->
         <div style="margin-bottom: 20px;">
-          <button class="btn btn-success" onclick="addReactionStep()">
+          <button class="btn btn-success" id="btn-add-step">
             <i class="fa fa-plus"></i> Reaktionsschritt hinzufügen
           </button>
-          <button class="btn btn-default" onclick="loadMultiStepExample()">
+          <button class="btn btn-default" id="btn-load-multistep">
             <i class="fa fa-flask"></i> Beispiel laden
           </button>
-          <button class="btn btn-danger" onclick="clearAllSteps()" style="margin-left: 10px;">
+          <button class="btn btn-danger" id="btn-clear-steps" style="margin-left: 10px;">
             <i class="fa fa-trash"></i> Alle Schritte löschen
           </button>
         </div>
@@ -307,7 +307,7 @@
 
         <!-- Calculate Button -->
         <div style="margin-top: 20px;">
-          <button class="btn btn-primary btn-lg btn-block" onclick="calculateMultiStep()">
+          <button class="btn btn-primary btn-lg btn-block" id="btn-calc-multistep">
             <i class="fa fa-calculator"></i> Alle Schritte berechnen
           </button>
         </div>
@@ -330,13 +330,13 @@
 
         <!-- Quick STP Reference -->
         <div style="margin-bottom: 20px;">
-          <button class="btn btn-info btn-sm" onclick="loadSTP()">
+          <button class="btn btn-info btn-sm" id="btn-load-stp">
             <i class="fa fa-thermometer-half"></i> STPbedingungen (0°C, 1 atm)
           </button>
-          <button class="btn btn-info btn-sm" onclick="loadSATP()">
+          <button class="btn btn-info btn-sm" id="btn-load-satp">
             <i class="fa fa-flask"></i> SATPbedingungen (25°C, 1 bar)
           </button>
-          <button class="btn btn-default btn-sm" onclick="loadGasExample()">
+          <button class="btn btn-default btn-sm" id="btn-load-gas-example">
             <i class="fa fa-flask"></i> Beispiel laden
           </button>
         </div>
@@ -348,7 +348,7 @@
           </h4>
           <div class="form-group">
             <label>Wähle die Variable:</label>
-            <select id="gas-calculate-variable" class="form-control" onchange="updateGasInputs()" aria-label="Berechnungsvariable">
+            <select id="gas-calculate-variable" class="form-control" aria-label="Berechnungsvariable">
               <option value="n">Stoffmenge (n) - Druck, Volumen, Temperatur bekannt</option>
               <option value="P">Druck (P) - Volumen, Stoffmenge, Temperatur bekannt</option>
               <option value="V">Volumen (V) - Druck, Stoffmenge, Temperatur bekannt</option>
@@ -451,7 +451,7 @@
               </div>
               <div class="form-group">
                 <label>Einheit:</label>
-                <select id="gas-temperature-unit" class="form-control" onchange="convertTemperatureToKelvin()" aria-label="Temperatureinheit">
+                <select id="gas-temperature-unit" class="form-control" aria-label="Temperatureinheit">
                   <option value="K">Kelvin (K)</option>
                   <option value="C">Celsius (°C)</option>
                   <option value="F">Fahrenheit (°F)</option>
@@ -466,7 +466,7 @@
 
         <!-- Calculate Button -->
         <div style="margin-top: 20px;">
-          <button class="btn btn-primary btn-lg btn-block" onclick="calculateGasLaw()">
+          <button class="btn btn-primary btn-lg btn-block" id="btn-calc-gaslaw">
             <i class="fa fa-calculator"></i> Berechnen
           </button>
         </div>
@@ -477,7 +477,7 @@
             <h3><i class="fa fa-check-circle"></i> Ergebnis der Gasberechnung</h3>
             <div id="gas-result-content"></div>
             <div style="margin-top: 15px; text-align: center;">
-              <button class="btn btn-success" onclick="exportGasToPDF()" style="color: white;">
+              <button class="btn btn-success" id="btn-export-gas-pdf" style="color: white;">
                 <i class="fa fa-file-pdf-o"></i> Als PDF exportieren
               </button>
             </div>
@@ -606,9 +606,38 @@
 // Initialize calculator when page is ready
 document.addEventListener('DOMContentLoaded', function() {
   if (typeof LazyLoader !== 'undefined') {
-    LazyLoader.loadCalculator('stoichiometry').then(() => {
-      console.log('Stoichiometry calculator loaded successfully');
-    }).catch(err => {
+    LazyLoader.loadCalculator('stoichiometry').then(function() {
+      // Wire event handlers for Mol-Mol tab
+      document.getElementById('btn-preset-water').addEventListener('click', function() { loadPreset('water'); });
+      document.getElementById('btn-preset-methane').addEventListener('click', function() { loadPreset('methane'); });
+      document.getElementById('btn-preset-ammonia').addEventListener('click', function() { loadPreset('ammonia'); });
+      document.getElementById('btn-preset-sodium').addEventListener('click', function() { loadPreset('sodium'); });
+      document.getElementById('btn-preset-photosynthesis').addEventListener('click', function() { loadPreset('photosynthesis'); });
+      document.getElementById('btn-calc-molmol').addEventListener('click', function() { calcMolMol(); });
+      document.getElementById('btn-export-molmol-pdf').addEventListener('click', function() { exportMolMolToPDF(); });
+      // Wire event handlers for Mass-Mass tab
+      document.getElementById('btn-mass-water').addEventListener('click', function() { loadMassPreset('water'); });
+      document.getElementById('btn-mass-methane').addEventListener('click', function() { loadMassPreset('methane'); });
+      document.getElementById('btn-mass-ammonia').addEventListener('click', function() { loadMassPreset('ammonia'); });
+      document.getElementById('btn-mass-sodium').addEventListener('click', function() { loadMassPreset('sodium'); });
+      document.getElementById('btn-mass-photosynthesis').addEventListener('click', function() { loadMassPreset('photosynthesis'); });
+      document.getElementById('btn-calc-massmass').addEventListener('click', function() { calcMassMass(); });
+      document.getElementById('btn-calc-limiting').addEventListener('click', function() { calcLimiting(); });
+      document.getElementById('btn-calc-yield').addEventListener('click', function() { calcYield(); });
+      // Wire event handlers for Multi-step tab
+      document.getElementById('btn-add-step').addEventListener('click', function() { addReactionStep(); });
+      document.getElementById('btn-load-multistep').addEventListener('click', function() { loadMultiStepExample(); });
+      document.getElementById('btn-clear-steps').addEventListener('click', function() { clearAllSteps(); });
+      document.getElementById('btn-calc-multistep').addEventListener('click', function() { calculateMultiStep(); });
+      // Wire event handlers for Gas Laws tab
+      document.getElementById('btn-load-stp').addEventListener('click', function() { loadSTP(); });
+      document.getElementById('btn-load-satp').addEventListener('click', function() { loadSATP(); });
+      document.getElementById('btn-load-gas-example').addEventListener('click', function() { loadGasExample(); });
+      document.getElementById('gas-calculate-variable').addEventListener('change', function() { updateGasInputs(); });
+      document.getElementById('gas-temperature-unit').addEventListener('change', function() { convertTemperatureToKelvin(); });
+      document.getElementById('btn-calc-gaslaw').addEventListener('click', function() { calculateGasLaw(); });
+      document.getElementById('btn-export-gas-pdf').addEventListener('click', function() { exportGasToPDF(); });
+    }).catch(function(err) {
       console.error('Failed to load calculator:', err);
     });
   } else {
