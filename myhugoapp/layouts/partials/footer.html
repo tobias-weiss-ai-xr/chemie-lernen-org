@@ -1,37 +1,37 @@
-<footer class="site-footer" style="margin-top: 50px; padding: 30px 0; background-color: #333; color: #fff;" role="contentinfo" aria-label="Footer">
+<footer class="site-footer" role="contentinfo" aria-label="Footer">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <h4>{{ .Site.Title }}</h4>
                 <p>{{ .Site.Params.footer_description }}</p>
                 <p>
-                    <a href="https://liberapay.com/tobias-weiss-ai-xr/donate" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; font-weight: 500; margin-right: 20px;" aria-label="Unterstütze uns via Liberapay">
-                        <img src="https://img.shields.io/liberapay/patrons/tobias-weiss-ai-xr.svg?logo=liberapay" alt="Liberapay" style="vertical-align: middle; margin-right: 5px;">
+                    <a href="https://liberapay.com/tobias-weiss-ai-xr/donate" target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="Unterstütze uns via Liberapay">
+                        <img src="https://img.shields.io/liberapay/patrons/tobias-weiss-ai-xr.svg?logo=liberapay" alt="Liberapay" class="footer-icon">
                         Unterstütze uns via Liberapay
                     </a>
                 </p>
                 <p>
-                    <a href="https://www.patreon.com/c/chemie_lernen_org" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: none; font-weight: 500;" aria-label="Besuchen Sie unseren Patreon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: text-bottom; margin-right: 5px;">
+                    <a href="https://www.patreon.com/c/chemie_lernen_org" target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="Besuchen Sie unseren Patreon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="footer-icon-svg">
                             <path d="M4.231 0C3.281 0 2.4.513 2.4 1.484v20.922c0 .995.881 1.484 1.831 1.484.95 0 1.774-.49 1.774-1.484V1.484C6.005.513 5.181 0 4.231 0zm13.396 4.453c-2.606 0-4.748 2.054-4.748 4.578 0 2.525 2.142 4.579 4.748 4.579s4.748-2.054 4.748-4.579c0-2.524-2.142-4.578-4.748-4.578z"/>
                         </svg>
                         Unterstütze uns auf Patreon
                     </a>
                 </p>
-                <p><small><a href="/unterstuetzen/" style="color: #aaa;">Mehr zu den Unterstützungsmöglichkeiten</a></small></p>
+                <p><small><a href="/unterstuetzen/" class="footer-link-support">Mehr zu den Unterstützungsmöglichkeiten</a></small></p>
             </div>
             <div class="col-md-6 text-right">
                 <div class="newsletter-footer-widget">
-                    <h4 style="color:#fff;margin-top:0;">Newsletter</h4>
-                    <p style="font-size:0.9rem;color:#ccc;">Einmal pro Woche Chemie-Artikel, Rechner-Updates & Lerntipps.</p>
-                    <form action="https://newsletter.chemie-lernen.org/subscription/form" method="POST" target="_blank" style="display:flex;gap:5px;margin-bottom:15px;">
+                    <h4 class="footer-newsletter-heading">Newsletter</h4>
+                    <p class="footer-newsletter-text">Einmal pro Woche Chemie-Artikel, Rechner-Updates & Lerntipps.</p>
+                    <form action="https://newsletter.chemie-lernen.org/subscription/form" method="POST" target="_blank" class="footer-newsletter-form">
                         <input type="hidden" name="l" value="f15c8ae9-4269-42ff-9a0c-a0f66d5410bf">
-                        <input type="email" name="email" placeholder="Deine E-Mail" required style="flex:1;padding:6px 10px;border-radius:4px;border:none;font-size:0.9rem;">
-                        <button type="submit" class="btn btn-default btn-sm" style="white-space:nowrap;">Anmelden</button>
+                        <input type="email" name="email" placeholder="Deine E-Mail" required class="footer-newsletter-input">
+                        <button type="submit" class="btn btn-default btn-sm footer-nowrap-btn">Anmelden</button>
                     </form>
                 </div>
                 <p>&copy; {{ now.Format "2006" }} Tobias Weiss IT-Services. Alle Rechte vorbehalten.</p>
-                <p><small><a href="/impressum/" style="color: #fff;">Impressum</a> | <a href="/datenschutz/" style="color: #fff;">Datenschutz</a> | <a href="/entity/" style="color: #fff;">Wissensnetz</a> | <a href="/pages/barrierefreiheit/" style="color: #fff;">Barrierefreiheit</a></small></p>
+                <p class="footer-legal-links"><small><a href="/impressum/">Impressum</a> | <a href="/datenschutz/">Datenschutz</a> | <a href="/entity/">Wissensnetz</a> | <a href="/pages/barrierefreiheit/">Barrierefreiheit</a></small></p>
             </div>
         </div>
     </div>

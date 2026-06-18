@@ -99,6 +99,70 @@ th {
     overflow-wrap: break-word;
 }
 
+/* Footer styling - migrated from inline styles */
+.site-footer {
+    margin-top: 50px;
+    padding: 30px 0;
+    background-color: var(--green-darkest, #333);
+    color: #fff;
+}
+.footer-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-right: 20px;
+}
+.footer-link:hover,
+.footer-link:focus {
+    color: var(--green-light, #8bc34a);
+    text-decoration: none;
+}
+.footer-link-support {
+    color: #aaa;
+}
+.footer-link-support:hover,
+.footer-link-support:focus {
+    color: var(--green-light, #8bc34a);
+}
+.footer-icon {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.footer-icon-svg {
+    vertical-align: text-bottom;
+    margin-right: 5px;
+}
+.footer-newsletter-heading {
+    color: #fff;
+    margin-top: 0;
+}
+.footer-newsletter-text {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+.footer-newsletter-form {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+.footer-newsletter-input {
+    flex: 1;
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: none;
+    font-size: 0.9rem;
+}
+.footer-nowrap-btn {
+    white-space: nowrap;
+}
+.footer-legal-links a {
+    color: #fff;
+}
+.footer-legal-links a:hover,
+.footer-legal-links a:focus {
+    color: var(--green-light, #8bc34a);
+}
+
 /* Special handling for links to prevent them from overflowing */
 a {
     word-break: break-word;
