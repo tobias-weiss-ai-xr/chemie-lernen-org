@@ -337,3 +337,87 @@ img {
         font-size: 16px !important;
     }
 }
+
+/* ==================== Print Styles ==================== */
+
+@media print {
+    /* Hide non-essential elements */
+    .navbar,
+    .footer,
+    .sidebar,
+    .topic-navigation,
+    .social-share,
+    .newsletter-signup,
+    #scroll-to-top,
+    #chat-widget,
+    #theme-toggle,
+    .toast-container,
+    .ad-banner,
+    .no-print {
+        display: none !important;
+    }
+
+    /* Ensure full-width content */
+    .container,
+    .container-fluid {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Reset colors for print */
+    body {
+        background: #fff !important;
+        color: #000 !important;
+        font-size: 12pt !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Expand collapsed content */
+    .collapse {
+        display: block !important;
+    }
+
+    /* Ensure links show URLs in parentheses */
+    a[href]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.85em;
+        color: #555;
+    }
+
+    /* Don't show URL for internal/anchor links */
+    a[href^="#"]::after,
+    a[href^="javascript:"]::after {
+        content: "";
+    }
+
+    /* Page breaks */
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+
+    table, figure, img {
+        page-break-inside: avoid;
+    }
+
+    /* Ensure good print contrast for KaTeX formulas */
+    .katex {
+        color: #000 !important;
+    }
+
+    /* Card borders for print */
+    .card {
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+    }
+
+    /* Bootstrap grid fix for print */
+    .col-md-8,
+    .col-lg-8 {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+}

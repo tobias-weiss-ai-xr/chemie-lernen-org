@@ -48,7 +48,7 @@ const LazyLoader = {
         '/js/calculators/practice-quiz.js',
       ],
       tutorien: [
-        '/js/calculators/tutorials.js',
+        '/js/calculators/tutorials.optimized.js',
       ],
     };
 

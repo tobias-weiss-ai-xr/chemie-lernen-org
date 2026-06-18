@@ -1,4 +1,9 @@
 {{ define "main" }}
+<noscript>
+  <div class="alert alert-warning" role="alert">
+    <p><strong>JavaScript ist erforderlich.</strong> Dieser interaktive Rechner funktioniert nur mit aktiviertem JavaScript. Bitte aktivieren Sie JavaScript in Ihrem Browser.</p>
+  </div>
+</noscript>
 
 <div class="ki-assistent-container">
 
@@ -33,7 +38,7 @@
         </div>
         <div class="chat-input-area">
           <input aria-label="Chat Input"type="text" id="chat-input" class="form-control" placeholder="Frage eingeben..." autocomplete="off">
-          <button id="chat-send-btn" class="btn btn-primary"><i class="fa fa-send"></i></button>
+          <button id="chat-send-btn" class="btn btn-primary" aria-label="Nachricht senden"><i class="fa fa-send"></i></button>
         </div>
       </div>
     </div>
@@ -49,7 +54,7 @@
 {{- end -}}
 </script>
 
-<script src="/js/ki-assistent.js"></script>
+<script src="/js/ki-assistent.optimized.js"></script>
 <link rel="stylesheet" href="/css/ki-assistent.css">
 
 {{ end }}

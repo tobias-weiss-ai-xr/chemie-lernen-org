@@ -33,6 +33,15 @@ const filesToMinify = [
   // UI & utility
   'myhugoapp/static/js/lazy-loader.js',
   'myhugoapp/static/js/dark-mode.js',
+  // Interactive tool scripts (directly loaded by templates)
+  'myhugoapp/static/js/bindungspotential.js',
+  'myhugoapp/static/js/atmosphaerendruck-alltag.js',
+  'myhugoapp/static/js/reaktionskinetik-simulator.js',
+  'myhugoapp/static/js/elektrochemie-teilchenebene.js',
+  'myhugoapp/static/js/chemisches-gleichgewicht.js',
+  'myhugoapp/static/js/enhanced-ph-visualization.js',
+  'myhugoapp/static/js/ki-assistent.js',
+  'myhugoapp/static/js/calculators/tutorials.js',
 ];
 
 const colors = {

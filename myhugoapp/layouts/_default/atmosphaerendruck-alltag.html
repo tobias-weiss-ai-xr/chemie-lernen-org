@@ -1,4 +1,9 @@
 {{ define "main" }}
+<noscript>
+  <div class="alert alert-warning" role="alert">
+    <p><strong>JavaScript ist erforderlich.</strong> Dieser interaktive Rechner funktioniert nur mit aktiviertem JavaScript. Bitte aktivieren Sie JavaScript in Ihrem Browser.</p>
+  </div>
+</noscript>
 
 <div class="atmosphaerendruck-container">
 
@@ -534,7 +539,7 @@
 
 </div>
 
-<script src="{{ "js/atmosphaerendruck-alltag.js" | relURL }}"></script>
+<script src="{{ "js/atmosphaerendruck-alltag.optimized.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/atmosphaerendruck-alltag.css" | relURL }}">
 
 {{ end }}

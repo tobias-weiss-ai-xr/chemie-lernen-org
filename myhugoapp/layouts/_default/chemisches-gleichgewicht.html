@@ -1,4 +1,9 @@
 {{ define "main" }}
+<noscript>
+  <div class="alert alert-warning" role="alert">
+    <p><strong>JavaScript ist erforderlich.</strong> Dieser interaktive Rechner funktioniert nur mit aktiviertem JavaScript. Bitte aktivieren Sie JavaScript in Ihrem Browser.</p>
+  </div>
+</noscript>
 
 <div class="chemisches-gleichgewicht-container">
 
@@ -366,7 +371,7 @@
 
 </div>
 
-<script src="{{ "js/chemisches-gleichgewicht.js" | relURL }}"></script>
+<script src="{{ "js/chemisches-gleichgewicht.optimized.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/chemisches-gleichgewicht.css" | relURL }}">
 
 {{ end }}

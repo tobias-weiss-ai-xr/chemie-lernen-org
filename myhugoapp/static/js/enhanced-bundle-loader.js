@@ -26,13 +26,13 @@ class BundleManager {
         titration: '/js/titrations-simulator.optimized.js',
         combustion: '/js/verbrennungsrechner.optimized.js',
         solubility: '/js/loeslichkeitsprodukt-rechner.optimized.js',
-        stoichiometry: '/js/calculators/stoichiometry.js',
+        stoichiometry: '/js/calculators/stoichiometry.optimized.js',
       },
 
       visualizations: {
         'molecular-studio': '/js/molekuel-studio.optimized.js',
         'periodic-table': '/js/perioden-system-der-elemente.optimized.js',
-        'ph-visualization': '/js/enhanced-ph-visualization.js',
+        'ph-visualization': '/js/enhanced-ph-visualization.optimized.js',
         'gas-simulation': '/js/gas-law-simulator.js',
         'molar-visualizer': '/js/molar-mass-visualizer.js',
       },
