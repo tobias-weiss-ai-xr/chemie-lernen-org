@@ -40,9 +40,9 @@
     ]
   },
   "dependencies": {
-    "@graphwiz/builder": "file:../graphwiz-graph-lib/packages/builder/graphwiz-builder-0.1.0.tgz",
-    "@graphwiz/core": "file:../graphwiz-graph-lib/packages/core/graphwiz-core-0.1.0.tgz",
-    "@graphwiz/neo4j": "file:../graphwiz-graph-lib/packages/neo4j/graphwiz-neo4j-0.1.0.tgz",
+    "@graphwiz/builder": "file:packages/graphwiz/graphwiz-builder-0.2.0.tgz",
+    "@graphwiz/core": "file:packages/graphwiz/graphwiz-core-0.2.0.tgz",
+    "@graphwiz/neo4j": "file:packages/graphwiz/graphwiz-neo4j-0.2.0.tgz",
     "@playwright/test": "^1.61.0",
     "fast-xml-parser": "^5.9.2",
     "neo4j-driver": "^6.1.0"
