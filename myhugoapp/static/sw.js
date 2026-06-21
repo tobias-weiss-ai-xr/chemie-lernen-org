@@ -20,33 +20,37 @@ const STATIC_FILES = [
   '/js/dark-mode.js',
   '/js/chemistry-calculator-framework.js',
   '/js/lazy-loader.js',
-  '/images/recent-article_001.jpg'
+  '/images/recent-article_001.jpg',
 ];
 
 const PERFORMANCE_CRITICAL = [
   '/js/chemistry-calculator-framework.js',
-  '/css/chemistry-calculator-framework.css'
+  '/css/chemistry-calculator-framework.css',
 ];
 
 const LAZY_LOADED = [
   '/js/ph-rechner-framework.js',
   '/js/druck-flaechen-rechner-framework.js',
-  '/js/molare-masse-rechner.js'
+  '/js/molare-masse-rechner.js',
 ];
 
 // Install event - cache static files
 self.addEventListener('install', (event) => {
   console.log('[SW] Installing service worker v2');
   event.waitUntil(
-    caches.open(STATIC_CACHE).then((cache) => {
-      console.log('[SW] Caching static files');
-      return cache.addAll(STATIC_FILES);
-    }).then(() => {
-      console.log('[SW] Installation complete');
-      return self.skipWaiting();
-    }).catch((error) => {
-      console.error('[SW] Installation failed:', error);
-    })
+    caches
+      .open(STATIC_CACHE)
+      .then((cache) => {
+        console.log('[SW] Caching static files');
+        return cache.addAll(STATIC_FILES);
+      })
+      .then(() => {
+        console.log('[SW] Installation complete');
+        return self.skipWaiting();
+      })
+      .catch((error) => {
+        console.error('[SW] Installation failed:', error);
+      })
   );
 });
 
@@ -54,21 +58,25 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   console.log('[SW] Activating service worker v2');
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames
-          .filter((cacheName) => cacheName !== STATIC_CACHE && cacheName !== ASSETS_CACHE)
-          .map((cacheName) => {
-            console.log('[SW] Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
-          })
-      );
-    }).then(() => {
-      console.log('[SW] Activation complete');
-      return self.clients.claim();
-    }).catch((error) => {
-      console.error('[SW] Activation failed:', error);
-    })
+    caches
+      .keys()
+      .then((cacheNames) => {
+        return Promise.all(
+          cacheNames
+            .filter((cacheName) => cacheName !== STATIC_CACHE && cacheName !== ASSETS_CACHE)
+            .map((cacheName) => {
+              console.log('[SW] Deleting old cache:', cacheName);
+              return caches.delete(cacheName);
+            })
+        );
+      })
+      .then(() => {
+        console.log('[SW] Activation complete');
+        return self.clients.claim();
+      })
+      .catch((error) => {
+        console.error('[SW] Activation failed:', error);
+      })
   );
 });
 
@@ -84,9 +92,9 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== location.origin) {
     // Allow specific external resources (CDNs, APIs)
     const allowedOrigins = [
-      'cdn.jsdelivr.net',          // KaTeX, Charts
-      'fonts.googleapis.com',      // Google Fonts
-      'fonts.gstatic.com'          // Google Fonts
+      'cdn.jsdelivr.net', // KaTeX, Charts
+      'fonts.googleapis.com', // Google Fonts
+      'fonts.gstatic.com', // Google Fonts
     ];
 
     if (allowedOrigins.includes(url.hostname)) {
@@ -94,7 +102,10 @@ self.addEventListener('fetch', (event) => {
     }
 
     // Allow analytics but don't cache
-    if (url.hostname.includes('googletagmanager.com') || url.hostname.includes('google-analytics.com')) {
+    if (
+      url.hostname.includes('googletagmanager.com') ||
+      url.hostname.includes('google-analytics.com')
+    ) {
       return;
     }
 
@@ -102,22 +113,23 @@ self.addEventListener('fetch', (event) => {
   }
 
   // Cache First strategy for static assets
-  if (url.pathname.includes('/css/') ||
-      url.pathname.includes('/js/') ||
-      url.pathname.includes('/favicons/') ||
-      url.pathname.includes('/images/') ||
-      url.pathname.includes('/img/') ||
-      url.pathname.includes('/pagefind/') ||
-      url.pathname.endsWith('.png') ||
-      url.pathname.endsWith('.jpg') ||
-      url.pathname.endsWith('.jpeg') ||
-      url.pathname.endsWith('.gif') ||
-      url.pathname.endsWith('.svg') ||
-      url.pathname.endsWith('.webmanifest') ||
-      url.pathname.endsWith('.woff2') ||
-      url.pathname.endsWith('.woff') ||
-      url.pathname.endsWith('.ttf')) {
-
+  if (
+    url.pathname.includes('/css/') ||
+    url.pathname.includes('/js/') ||
+    url.pathname.includes('/favicons/') ||
+    url.pathname.includes('/images/') ||
+    url.pathname.includes('/img/') ||
+    url.pathname.includes('/pagefind/') ||
+    url.pathname.endsWith('.png') ||
+    url.pathname.endsWith('.jpg') ||
+    url.pathname.endsWith('.jpeg') ||
+    url.pathname.endsWith('.gif') ||
+    url.pathname.endsWith('.svg') ||
+    url.pathname.endsWith('.webmanifest') ||
+    url.pathname.endsWith('.woff2') ||
+    url.pathname.endsWith('.woff') ||
+    url.pathname.endsWith('.ttf')
+  ) {
     event.respondWith(
       caches.open(ASSETS_CACHE).then((cache) => {
         return cache.match(request).then((response) => {
@@ -138,124 +150,138 @@ self.addEventListener('fetch', (event) => {
   }
 
   // Network First strategy for HTML pages
-  if (url.pathname.endsWith('.html') ||
-      url.pathname === '/' ||
-      url.pathname === '/offline/' ||
-      // Section pages
-      url.pathname.includes('/posts/') ||
-      url.pathname.includes('/themenbereiche/') ||
-      url.pathname.includes('/klassenstufen/') ||
-      url.pathname.includes('/pages/') ||
-      // Interactive tools & calculators
-      url.pathname.includes('/perioden-system-der-elemente/') ||
-      url.pathname.includes('/molekuel-studio/') ||
-      url.pathname.includes('/ph-rechner/') ||
-      url.pathname.includes('/molare-masse-rechner/') ||
-      url.pathname.includes('/reaktionsgleichungen-ausgleichen/') ||
-      url.pathname.includes('/einheitenumrechner/') ||
-      url.pathname.includes('/loesungsrechner/') ||
-      url.pathname.includes('/stoechiometrie-rechner/') ||
-      // Phase 7-10 pages
-      url.pathname.includes('/uebungsgenerator/') ||
-      url.pathname.includes('/lueckentexte/') ||
-      url.pathname.includes('/fortschritt/') ||
-      url.pathname.includes('/lernpfad/') ||
-      url.pathname.includes('/arbeitsblatt-generator/') ||
-      url.pathname.includes('/aufgabensammlung/') ||
-      url.pathname.includes('/klassencockpit/') ||
-      url.pathname.includes('/gefahrstoffkennzeichnung/') ||
-      url.pathname.includes('/spektroskopie-simulator/') ||
-      url.pathname.includes('/laborgeraete-explorer/') ||
-      url.pathname.includes('/ki-assistent/') ||
-      // Phase 1-2 calculators
-      url.pathname.includes('/druck-flaechen-rechner/') ||
-      url.pathname.includes('/atmosphaerendruck-alltag/') ||
-      url.pathname.includes('/bindungspotential/') ||
-      url.pathname.includes('/hess-gesetz/') ||
-      url.pathname.includes('/reaktionskinetik-simulator/') ||
-      url.pathname.includes('/chemisches-gleichgewicht/') ||
-      // Phase 3-6 calculators
-      url.pathname.includes('/gasgesetz-rechner/') ||
-      url.pathname.includes('/verbrennungsrechner/') ||
-      url.pathname.includes('/loeslichkeitsprodukt-rechner/') ||
-      url.pathname.includes('/redox-potenzial-rechner/') ||
-      url.pathname.includes('/konzentrationsumrechner/') ||
-      url.pathname.includes('/titrations-simulator/') ||
-      url.pathname.includes('/atomenergieniveaus/') ||
-      url.pathname.includes('/periodische-trends/') ||
-      url.pathname.includes('/molekuelorbitale/') ||
-      url.pathname.includes('/elektrochemie-teilchenebene/') ||
-      url.pathname.includes('/redox-titrationen/') ||
-      url.pathname.includes('/saeuren-basen-gleichgewicht/') ||
-      url.pathname.includes('/waermeleitung/') ||
-      url.pathname.includes('/konvektion/') ||
-      url.pathname.includes('/temperatur-teilchenbewegung/') ||
-      url.pathname.includes('/torricelli-versuch/') ||
-      url.pathname.includes('/enhanced-ph-visualization/') ||
-      url.pathname.includes('/pwa-offline-modus/') ||
-      url.pathname.includes('/unterstuetzen/') ||
-      // New calculators (Sprints D, 2)
-      url.pathname.includes('/dampfdruck-rechner/') ||
-      url.pathname.includes('/verduennungsreihen-rechner/') ||
-      url.pathname.includes('/dichte-rechner/') ||
-      url.pathname.includes('/entity/')) {
-
+  if (
+    url.pathname.endsWith('.html') ||
+    url.pathname === '/' ||
+    url.pathname === '/offline/' ||
+    // Section pages
+    url.pathname.includes('/posts/') ||
+    url.pathname.includes('/themenbereiche/') ||
+    url.pathname.includes('/klassenstufen/') ||
+    url.pathname.includes('/pages/') ||
+    // Interactive tools & calculators
+    url.pathname.includes('/perioden-system-der-elemente/') ||
+    url.pathname.includes('/molekuel-studio/') ||
+    url.pathname.includes('/ph-rechner/') ||
+    url.pathname.includes('/molare-masse-rechner/') ||
+    url.pathname.includes('/reaktionsgleichungen-ausgleichen/') ||
+    url.pathname.includes('/einheitenumrechner/') ||
+    url.pathname.includes('/loesungsrechner/') ||
+    url.pathname.includes('/stoechiometrie-rechner/') ||
+    // Phase 7-10 pages
+    url.pathname.includes('/uebungsgenerator/') ||
+    url.pathname.includes('/lueckentexte/') ||
+    url.pathname.includes('/fortschritt/') ||
+    url.pathname.includes('/lernpfad/') ||
+    url.pathname.includes('/arbeitsblatt-generator/') ||
+    url.pathname.includes('/aufgabensammlung/') ||
+    url.pathname.includes('/klassencockpit/') ||
+    url.pathname.includes('/gefahrstoffkennzeichnung/') ||
+    url.pathname.includes('/spektroskopie-simulator/') ||
+    url.pathname.includes('/laborgeraete-explorer/') ||
+    url.pathname.includes('/ki-assistent/') ||
+    // Phase 1-2 calculators
+    url.pathname.includes('/druck-flaechen-rechner/') ||
+    url.pathname.includes('/atmosphaerendruck-alltag/') ||
+    url.pathname.includes('/bindungspotential/') ||
+    url.pathname.includes('/hess-gesetz/') ||
+    url.pathname.includes('/reaktionskinetik-simulator/') ||
+    url.pathname.includes('/chemisches-gleichgewicht/') ||
+    // Phase 3-6 calculators
+    url.pathname.includes('/gasgesetz-rechner/') ||
+    url.pathname.includes('/verbrennungsrechner/') ||
+    url.pathname.includes('/loeslichkeitsprodukt-rechner/') ||
+    url.pathname.includes('/redox-potenzial-rechner/') ||
+    url.pathname.includes('/konzentrationsumrechner/') ||
+    url.pathname.includes('/titrations-simulator/') ||
+    url.pathname.includes('/atomenergieniveaus/') ||
+    url.pathname.includes('/periodische-trends/') ||
+    url.pathname.includes('/molekuelorbitale/') ||
+    url.pathname.includes('/elektrochemie-teilchenebene/') ||
+    url.pathname.includes('/redox-titrationen/') ||
+    url.pathname.includes('/saeuren-basen-gleichgewicht/') ||
+    url.pathname.includes('/waermeleitung/') ||
+    url.pathname.includes('/konvektion/') ||
+    url.pathname.includes('/temperatur-teilchenbewegung/') ||
+    url.pathname.includes('/torricelli-versuch/') ||
+    url.pathname.includes('/enhanced-ph-visualization/') ||
+    url.pathname.includes('/pwa-offline-modus/') ||
+    url.pathname.includes('/unterstuetzen/') ||
+    // New calculators (Sprints D, 2)
+    url.pathname.includes('/dampfdruck-rechner/') ||
+    url.pathname.includes('/verduennungsreihen-rechner/') ||
+    url.pathname.includes('/dichte-rechner/') ||
+    url.pathname.includes('/entity/')
+  ) {
     event.respondWith(
-      fetch(request).then((response) => {
-        if (response && response.status === 200) {
-          const clone = response.clone();
-          caches.open(STATIC_CACHE).then((cache) => {
-            cache.put(request, clone);
-          });
-        }
-        return response;
-      }).catch(() => {
-        // If network fails, try cache
-        return caches.match(request).then((response) => {
-          if (response) {
-            return response;
+      fetch(request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const clone = response.clone();
+            caches.open(STATIC_CACHE).then((cache) => {
+              cache.put(request, clone);
+            });
           }
-          // Return offline page if available
-          return caches.match('/offline/') || new Response('Offline', {
-            status: 503,
-            statusText: 'Service Unavailable'
+          return response;
+        })
+        .catch(() => {
+          // If network fails, try cache
+          return caches.match(request).then((response) => {
+            if (response) {
+              return response;
+            }
+            // Return offline page if available
+            return (
+              caches.match('/offline/') ||
+              new Response('Offline', {
+                status: 503,
+                statusText: 'Service Unavailable',
+              })
+            );
           });
-        });
-      })
+        })
     );
     return;
   }
 
-  // Stale While Revalidate for API calls and dynamic content
-  if (url.pathname.includes('/api/') ||
-      url.pathname.includes('.json') ||
-      url.pathname.includes('.xml')) {
-
+  // Network First for API calls and dynamic content (cache on success, fallback on failure)
+  if (
+    url.pathname.includes('/api/') ||
+    url.pathname.includes('.json') ||
+    url.pathname.includes('.xml')
+  ) {
     event.respondWith(
-      caches.open(STATIC_CACHE).then((cache) => {
-        return cache.match(request).then((cachedResponse) => {
-          const fetchPromise = fetch(request).then((networkResponse) => {
-            if (networkResponse && networkResponse.status === 200) {
-              cache.put(request, networkResponse.clone());
+      fetch(request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const clone = response.clone();
+            caches.open(STATIC_CACHE).then((cache) => {
+              cache.put(request, clone);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          return caches.match(request).then((cachedResponse) => {
+            if (cachedResponse) {
+              return cachedResponse;
             }
-            return networkResponse;
+            return new Response('Offline', { status: 503, statusText: 'Service Unavailable' });
           });
-
-          // Return cached response immediately if available
-          return cachedResponse || fetchPromise;
-        });
-      })
+        })
     );
     return;
   }
 
   // Default: Network First for everything else
   event.respondWith(
-    fetch(request).then((response) => {
-      return response;
-    }).catch(() => {
-      return caches.match(request);
-    })
+    fetch(request)
+      .then((response) => {
+        return response;
+      })
+      .catch(() => {
+        return caches.match(request);
+      })
   );
 });
 
@@ -284,25 +310,23 @@ self.addEventListener('push', (event) => {
       vibrate: [100, 50, 100],
       data: {
         dateOfArrival: Date.now(),
-        primaryKey: 1
+        primaryKey: 1,
       },
       actions: [
         {
           action: 'explore',
           title: 'Explore',
-          icon: '/favicons/android-chrome-192x192.png'
+          icon: '/favicons/android-chrome-192x192.png',
         },
         {
           action: 'close',
           title: 'Close',
-          icon: '/favicons/android-chrome-192x192.png'
-        }
-      ]
+          icon: '/favicons/android-chrome-192x192.png',
+        },
+      ],
     };
 
-    event.waitUntil(
-      self.registration.showNotification('Chemie Lernen', options)
-    );
+    event.waitUntil(self.registration.showNotification('Chemie Lernen', options));
   }
 });
 
@@ -313,9 +337,7 @@ self.addEventListener('notificationclick', (event) => {
   event.notification.close();
 
   if (event.action === 'explore') {
-    event.waitUntil(
-      clients.openWindow('https://chemie-lernen.org/themenbereiche/')
-    );
+    event.waitUntil(clients.openWindow('https://chemie-lernen.org/themenbereiche/'));
   }
 });
 
