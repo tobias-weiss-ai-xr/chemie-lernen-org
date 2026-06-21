@@ -1,6 +1,6 @@
-const CACHE_NAME = 'chemie-lernen-v2';
-const STATIC_CACHE = 'static-v2';
-const ASSETS_CACHE = 'assets-v2';
+const CACHE_NAME = 'chemie-lernen-v3';
+const STATIC_CACHE = 'static-v3';
+const ASSETS_CACHE = 'assets-v3';
 
 // Files to cache immediately for the chemistry learning platform
 const STATIC_FILES = [
