@@ -5,9 +5,8 @@
 
 # ---- Stage 0: Minify JS ----
 FROM node:20-alpine AS minifier
+RUN npm install -g terser
 WORKDIR /src
-COPY package.json package-lock.json ./
-RUN npm install terser
 COPY scripts ./scripts
 COPY myhugoapp/static/js ./myhugoapp/static/js
 RUN node scripts/minify-calculators.js
