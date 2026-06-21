@@ -7,7 +7,7 @@
 FROM node:20-alpine AS minifier
 WORKDIR /src
 COPY package.json package-lock.json ./
-RUN npm ci --omit=dev && npm install terser
+RUN npm install terser
 COPY scripts ./scripts
 COPY myhugoapp/static/js ./myhugoapp/static/js
 RUN node scripts/minify-calculators.js
