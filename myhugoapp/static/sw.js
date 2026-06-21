@@ -112,10 +112,34 @@ self.addEventListener('fetch', (event) => {
     return; // Skip other cross-origin requests
   }
 
-  // Cache First strategy for static assets
+  // Network First for JavaScript files (always fetch fresh to get bug fixes)
+  if (url.pathname.includes('/js/')) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const clone = response.clone();
+            caches.open(ASSETS_CACHE).then((cache) => {
+              cache.put(request, clone);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          return caches.match(request).then((cachedResponse) => {
+            if (cachedResponse) {
+              return cachedResponse;
+            }
+            return new Response('Network error', { status: 503 });
+          });
+        })
+    );
+    return;
+  }
+
+  // Cache First strategy for other static assets (CSS, images, fonts)
   if (
     url.pathname.includes('/css/') ||
-    url.pathname.includes('/js/') ||
     url.pathname.includes('/favicons/') ||
     url.pathname.includes('/images/') ||
     url.pathname.includes('/img/') ||
