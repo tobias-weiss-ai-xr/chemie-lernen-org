@@ -9,6 +9,7 @@ RUN npm install -g terser
 WORKDIR /src
 COPY scripts ./scripts
 COPY myhugoapp/static/js ./myhugoapp/static/js
+ENV NODE_PATH=/usr/local/lib/node_modules
 RUN node scripts/minify-calculators.js
 
 # ---- Stage 1: Hugo Build ----
