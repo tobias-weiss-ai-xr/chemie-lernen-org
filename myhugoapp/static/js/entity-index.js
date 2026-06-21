@@ -30,9 +30,16 @@
     .then(function (d) {
       _data = d;
       skeleton.style.display = 'none';
-      init(d);
+      try {
+        init(d);
+      } catch (e) {
+        console.error('[entity-index] init() failed:', e);
+        skeleton.style.display = 'none';
+        app.innerHTML =
+          '<div class="empty-state"><div class="empty-state-icon">📡</div><p>Wissensnetz konnte nicht geladen werden.</p><p><a href="/wissennetz/" style="color:#667eea;">Graph-Ansicht öffnen →</a></p></div>';
+      }
     })
-    .catch(function () {
+    .catch(function (err) {
       skeleton.style.display = 'none';
       app.innerHTML =
         '<div class="empty-state"><div class="empty-state-icon">📡</div><p>Wissensnetz konnte nicht geladen werden.</p><p><a href="/wissennetz/" style="color:#667eea;">Graph-Ansicht öffnen →</a></p></div>';
