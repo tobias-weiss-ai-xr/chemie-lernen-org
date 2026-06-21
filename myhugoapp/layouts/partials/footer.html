@@ -24,11 +24,9 @@
                 <div class="newsletter-footer-widget">
                     <h4 class="footer-newsletter-heading">Newsletter</h4>
                     <p class="footer-newsletter-text">Einmal pro Woche Chemie-Artikel, Rechner-Updates & Lerntipps.</p>
-                    <form action="https://newsletter.chemie-lernen.org/subscription/form" method="POST" target="_blank" class="footer-newsletter-form">
-                        <input type="hidden" name="l" value="f15c8ae9-4269-42ff-9a0c-a0f66d5410bf">
-                        <input type="email" name="email" placeholder="Deine E-Mail" aria-label="E-Mail-Adresse" required class="footer-newsletter-input">
-                        <button type="submit" class="btn btn-default btn-sm footer-nowrap-btn">Anmelden</button>
-                    </form>
+                    <div class="newsletter-unavailable">
+                        <p class="text-muted"><small>Newsletter-Anmeldung aktuell nicht verfügbar.<br>Komm später wieder!</small></p>
+                    </div>
                 </div>
                 <p>&copy; {{ now.Format "2006" }} Tobias Weiss IT-Services. Alle Rechte vorbehalten.</p>
                 <p class="footer-legal-links"><small><a href="/impressum/">Impressum</a> | <a href="/datenschutz/">Datenschutz</a> | <a href="/entity/">Wissensnetz</a> | <a href="/pages/barrierefreiheit/">Barrierefreiheit</a></small></p>
