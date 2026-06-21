@@ -3,8 +3,7 @@ myhugoapp/public/
 myhugoapp/resources/
 
 # Playwright test artifacts
-tests/test-results/
-tests/playwright-report/
+test-results/
 tests/test-results/
 tests/playwright-report/
 tests/screenshots/
@@ -36,3 +35,4 @@ tmp/
 # Development artifacts
 .sisyphus/
 .playwright-mcp/
+.omo/

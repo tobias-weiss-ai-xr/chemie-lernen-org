@@ -370,8 +370,6 @@
         });
       });
 
-      _render();
-
       var tooltipEl = null;
       app.addEventListener('mouseover', function (ev) {
         var card = ev.target.closest('.entity-card');
@@ -405,5 +403,7 @@
         if (tooltipEl) tooltipEl.style.display = 'none';
       });
     }
+
+    _render();
   }
 })();
