@@ -1,4 +1,5 @@
 (function () {
+  window.__entityIndexLoaded = true;
   var app = document.getElementById('entity-app');
   var skeleton = document.getElementById('entity-skeleton');
 
