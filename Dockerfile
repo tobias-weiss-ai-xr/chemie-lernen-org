@@ -15,7 +15,7 @@ RUN node scripts/minify-calculators.js
 # ---- Stage 1: Hugo Build ----
 FROM hugomods/hugo:exts AS hugo
 COPY myhugoapp /src
-COPY --from=minifier /src/myhugoapp/static/js/*.optimized.js /src/myhugoapp/static/js/
+COPY --from=minifier /src/myhugoapp/static/js/ /src/static/js/
 WORKDIR /src
 RUN hugo --minify --baseURL https://chemie-lernen.org && \
     echo "Hugo build complete: $(ls -la public/ | wc -l) entries"
