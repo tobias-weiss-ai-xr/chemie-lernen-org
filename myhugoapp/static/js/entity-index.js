@@ -30,13 +30,17 @@
     .then(function (d) {
       _data = d;
       skeleton.style.display = 'none';
+      window.__initStarted = true;
       try {
         init(d);
+        window.__initDone = true;
       } catch (e) {
         console.error('[entity-index] init() failed:', e);
-        skeleton.style.display = 'none';
+        window.__initError = e.message || String(e);
         app.innerHTML =
-          '<div class="empty-state"><div class="empty-state-icon">📡</div><p>Wissensnetz konnte nicht geladen werden.</p><p><a href="/wissennetz/" style="color:#667eea;">Graph-Ansicht öffnen →</a></p></div>';
+          '<div class="empty-state" id="init-error"><div class="empty-state-icon">⚠️</div><p style="color:red;">init() FEHLER: <strong>' +
+          escapeHtml(e.message || String(e)) +
+          '</strong></p><p id="debug-info"></p></div>';
       }
     })
     .catch(function (err) {
@@ -149,6 +153,20 @@
     }
 
     function _render() {
+      window.__renderStarted = true;
+      try {
+        _renderImpl();
+        window.__renderDone = true;
+      } catch (e) {
+        window.__renderError = e.message || String(e);
+        console.error('[_render] ERROR:', e);
+        app.innerHTML =
+          '<div class="empty-state" id="render-error"><div class="empty-state-icon">⚠️</div><p style="color:red;">_render() FEHLER: <strong>' +
+          escapeHtml(e.message || String(e)) +
+          '</strong></p></div>';
+      }
+    }
+    function _renderImpl() {
       var filtered = filteredAndSorted();
       var totalPages = Math.ceil(filtered.length / perPage);
       if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
