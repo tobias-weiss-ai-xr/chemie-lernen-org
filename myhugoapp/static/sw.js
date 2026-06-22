@@ -1,6 +1,6 @@
-const CACHE_NAME = 'chemie-lernen-v3';
-const STATIC_CACHE = 'static-v3';
-const ASSETS_CACHE = 'assets-v3';
+const CACHE_NAME = 'chemie-lernen-v4';
+const STATIC_CACHE = 'static-v4';
+const ASSETS_CACHE = 'assets-v4';
 
 // Files to cache immediately for the chemistry learning platform
 const STATIC_FILES = [
@@ -36,7 +36,7 @@ const LAZY_LOADED = [
 
 // Install event - cache static files
 self.addEventListener('install', (event) => {
-  console.log('[SW] Installing service worker v2');
+  console.log('[SW] Installing service worker v4');
   event.waitUntil(
     caches
       .open(STATIC_CACHE)
@@ -56,7 +56,7 @@ self.addEventListener('install', (event) => {
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-  console.log('[SW] Activating service worker v2');
+  console.log('[SW] Activating service worker v4');
   event.waitUntil(
     caches
       .keys()

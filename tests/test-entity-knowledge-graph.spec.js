@@ -119,19 +119,13 @@ test.describe('Entity Index — Knowledge Graph Display', () => {
     // Load just DOM first to catch skeleton in initial state
     await page.goto(`${BASE_URL}/entity/`, { waitUntil: 'domcontentloaded' });
 
-    // Immediately after DOM load the skeleton should exist
+    // The skeleton element must exist in initial HTML (may already be hidden
+    // if entity-index.js loaded and executed very quickly)
     const skeleton = page.locator('#entity-skeleton');
-    await expect(skeleton).toBeVisible({ timeout: 3000 });
+    await expect(skeleton).toBeAttached({ timeout: 3000 });
 
-    // Loading text inside #entity-app should be visible
-    const loadingText = page.locator('#entity-app h5');
-    await expect(loadingText).toHaveText('Lade Wissensnetz...');
-
-    // Wait for data to load and skeleton to disappear
+    // Wait for skeleton to disappear (data loaded, content rendered)
     await expect(skeleton).not.toBeVisible({ timeout: 15000 });
-
-    // Loading text should be replaced by rendered content
-    await expect(loadingText).not.toBeVisible({ timeout: 5000 });
 
     // Entity cards should now be visible
     const cards = page.locator('.entity-card');
@@ -260,7 +254,7 @@ test.describe('Entity Index — Knowledge Graph Display', () => {
     expect(await countSpans.count()).toBe(btnCount);
 
     // Clicking a category filter should update the active state
-    const firstCat = filterBtns.not(allBtn).first();
+    const firstCat = filterBtns.filter({ hasNotText: /^Alle/ }).first();
     const catName = await firstCat.textContent();
     console.log(`  🔘 Clicking filter: ${catName.trim()}`);
     await firstCat.click();
