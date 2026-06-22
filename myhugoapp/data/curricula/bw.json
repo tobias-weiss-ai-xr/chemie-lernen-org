@@ -1,0 +1,858 @@
+{
+  "state": "Baden-Württemberg",
+  "state_abbr": "BW",
+  "school_curricula": [
+    {
+      "school_type": "Gymnasium",
+      "grade_levels": [
+        {
+          "grade": "11/12 (Basisfach)",
+          "topics": [
+            {
+              "title": "3.3.1 Chemische Gleichgewichte",
+              "learning_objectives": [
+                {
+                  "text": "die Umkehrbarkeit einer Reaktion als Voraussetzung für die Einstellung eines Gleichgewichts nennen"
+                },
+                {
+                  "text": "am Beispiel eines Ester-Gleichgewichts die Einstellung und den Zustand eines chemischen Gleichgewichts erläutern"
+                },
+                {
+                  "text": "ein Modellexperiment zur Gleichgewichtseinstellung auswerten"
+                },
+                {
+                  "text": "die Lage homogener Gleichgewichte mit dem Massenwirkungsgesetz beschreiben"
+                },
+                {
+                  "text": "die Beeinflussung der Lage chemischer Gleichgewichte experimentell untersuchen und mithilfe des Prinzips von Le Chatelier erklären"
+                },
+                {
+                  "text": "die Wahl der Reaktionsbedingungen (Temperatur, Druck, Konzentration, Katalysator) bei der großtechnischen Ammoniaksynthese unter dem Aspekt der Erhöhung der Ammoniakausbeute begründen"
+                },
+                {
+                  "text": "die Leistungen von Haber und Bosch darstellen und die gesellschaftliche Bedeutung der Ammoniaksynthese erläutern"
+                },
+                {
+                  "text": "Säure-Base-Reaktionen mithilfe der Theorie von Brønsted beschreiben (Donator-Akzeptor-Prinzip)"
+                },
+                {
+                  "text": "die Definition des pH-Werts nennen und den Zusammenhang zwischen pH-Wert und Autoprotolyse des Wassers erklären"
+                },
+                {
+                  "text": "pH-Werte von Lösungen einprotoniger, starker Säuren ermitteln"
+                }
+              ]
+            },
+            {
+              "title": "3.3.2 Naturstoffe",
+              "learning_objectives": [
+                {
+                  "text": "die Struktur von Fettmolekülen beschreiben (gesättigte und ungesättigte Fettsäuren, Glycerin, Ester)"
+                },
+                {
+                  "text": "die Molekülstruktur von Monosacchariden und Aminosäuren erklären (Chiralität, Fischer- und Haworth-Projektionsformeln)"
+                },
+                {
+                  "text": "die Verknüpfung von Monomeren zu einem Disaccharid beziehungsweise einem Dipeptid sowie zu den entsprechenden Makromolekülen erklären"
+                },
+                {
+                  "text": "Kohlenhydrate und Proteine mit Nachweismethoden untersuchen (GOD-Test, Benedict-Probe, Biuret- und Ninhydrin-Reaktion)"
+                },
+                {
+                  "text": "Biomoleküle anhand ihrer Struktur den Stoffklassen der Fette, Kohlenhydrate, Proteine und Nukleinsäuren zuordnen"
+                },
+                {
+                  "text": "Funktionen der Fette, Kohlenhydrate, Proteine und Nukleinsäuren für den menschlichen Organismus beschreiben"
+                }
+              ]
+            },
+            {
+              "title": "3.3.3 Kunststoffe",
+              "learning_objectives": [
+                {
+                  "text": "Kunststoffe anhand ihrer thermischen und mechanischen Eigenschaften in Gruppen klassifizieren (Thermoplaste, Duromere, Elastomere) und den Gruppen entsprechende Molekülstrukturen zuordnen (lineare, eng- und weitmaschig vernetzte Makromoleküle)"
+                },
+                {
+                  "text": "die Prinzipien wichtiger Kunststoffsynthesen darstellen (Polymerisation, Polykondensation)"
+                },
+                {
+                  "text": "ein Experiment zur Herstellung eines Kunststoffs planen und durchführen"
+                },
+                {
+                  "text": "die Verwendung von Massenkunststoffen aus wirtschaftlicher, ökologischer und gesundheitlicher Sicht bewerten"
+                },
+                {
+                  "text": "Trends bei der Entwicklung moderner Kunststoffe beschreiben"
+                },
+                {
+                  "text": "die unterschiedlichen Verwertungsmöglichkeiten für Kunststoffabfälle bewerten (Werkstoffrecycling, Rohstoffrecycling, energetische Verwertung, Kompostierung)"
+                }
+              ]
+            },
+            {
+              "title": "3.3.4 Elektrische Energie und Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Elektrolysen als erzwungene Redoxreaktionen erklären (Elektronenübergang, Donator-Akzeptor-Prinzip)"
+                },
+                {
+                  "text": "den Aufbau einer galvanischen Zelle am Beispiel des Daniell-Elements beschreiben"
+                },
+                {
+                  "text": "die wesentlichen Prozesse in galvanischen Zellen darstellen (Elektrodenreaktionen)"
+                },
+                {
+                  "text": "Redoxreaktionen beschreiben, die der Umwandlung von chemischer Energie in elektrische Energie dienen (eine Batterie, ein Akkumulator, Brennstoffzelle)"
+                },
+                {
+                  "text": "die Bedeutung einer Brennstoffzelle für die zukünftige Energiebereitstellung erläutern"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "11/12 (Leistungsfach)",
+          "topics": [
+            {
+              "title": "3.4.1 Chemische Energetik",
+              "learning_objectives": [
+                {
+                  "text": "Merkmale offener, geschlossener und isolierter Systeme beschreiben"
+                },
+                {
+                  "text": "chemische Reaktionen unter stofflichen und energetischen Aspekten (exotherm, endotherm, Brennwert, Heizwert) erläutern"
+                },
+                {
+                  "text": "eine kalorimetrische Messung planen, durchführen und auswerten (Reaktionsenthalpie)"
+                },
+                {
+                  "text": "den Satz von der Erhaltung der Energie bei der Berechnung von Reaktionsenthalpien und Bildungsenthalpien anwenden (Satz von Hess)"
+                },
+                {
+                  "text": "die Entropie als Maß für die Anzahl von Realisierungsmöglichkeiten eines Zustands beschreiben"
+                },
+                {
+                  "text": "Änderungen der Entropie bei chemischen Reaktionen erläutern"
+                },
+                {
+                  "text": "Berechnungen mithilfe der Gibbs-Helmholtz-Gleichung durchführen, um chemische Reaktionen energetisch zu klassifizieren (freie Reaktionsenthalpie, exergonische und endergonische Reaktionen, Einfluss der Temperatur)"
+                },
+                {
+                  "text": "an Beispielen die Grenzen der energetischen Betrachtungsweise diskutieren (metastabiler Zustand und unvollständig ablaufende Reaktionen)"
+                }
+              ]
+            },
+            {
+              "title": "3.4.2 Chemisches Gleichgewicht",
+              "learning_objectives": [
+                {
+                  "text": "die Umkehrbarkeit einer Reaktion als Voraussetzung für die Einstellung eines Gleichgewichts nennen"
+                },
+                {
+                  "text": "die Einstellung des chemischen Gleichgewichts aufgrund der Angleichung der Reaktionsgeschwindigkeiten der Hin- und Rückreaktion erklären"
+                },
+                {
+                  "text": "Gleichgewichtskonzentrationen experimentell ermitteln"
+                },
+                {
+                  "text": "ein Modellexperiment zur Gleichgewichtseinstellung durchführen und auswerten"
+                },
+                {
+                  "text": "mithilfe des Massenwirkungsgesetzes Berechnungen zur Lage von homogenen Gleichgewichten durchführen (Gleichgewichtskonstante K c , Gleichgewichtskonzentration)"
+                },
+                {
+                  "text": "Möglichkeiten zur Beeinflussung der Lage von chemischen Gleichgewichten mit dem Prinzip von Le Chatelier erklären (Konzentrations‑, Druck- und Temperaturänderung)"
+                },
+                {
+                  "text": "die Reaktionsbedingungen (Temperatur, Druck, Konzentration, Katalysator) bei der großtechnischen Ammoniaksynthese unter dem Aspekt der Erhöhung der Ammoniakausbeute diskutieren und die Leistungen von Haber und Bosch darstellen"
+                },
+                {
+                  "text": "die gesellschaftliche Bedeutung der Ammoniaksynthese erläutern"
+                }
+              ]
+            },
+            {
+              "title": "3.4.3 Säure-Base-Gleichgewichte",
+              "learning_objectives": [
+                {
+                  "text": "Säure-Base-Reaktionen mithilfe der Theorie von Brønsted beschreiben (Donator-Akzeptor-Prinzip)"
+                },
+                {
+                  "text": "das Konzept des chemischen Gleichgewichts auf Säure-Base-Reaktionen mit Wasser anwenden (HCl, HNO 3 , H 2 SO 4 , H 2 CO 3 , NH 3 , korrespondierende Säure-Base-Paare, Wassermolekül als amphoteres Teilchen)"
+                },
+                {
+                  "text": "die Säurekonstante K s aus dem Massenwirkungsgesetz ableiten"
+                },
+                {
+                  "text": "Säuren und Basen mithilfe der p K S -Werte (Säurestärke) beziehungsweise p K B -Werte (Basenstärke) klassifizieren"
+                },
+                {
+                  "text": "die Definition des pH-Werts nennen"
+                },
+                {
+                  "text": "die Autoprotolyse des Wassers und ihren Zusammenhang mit dem pH-Wert des Wassers erläutern"
+                },
+                {
+                  "text": "pH-Werte von Lösungen starker einprotoniger Säuren und von Hydroxid-Lösungen rechnerisch ermitteln"
+                },
+                {
+                  "text": "im Näherungsverfahren pH-Werte für Lösungen schwacher Säuren und Basen rechnerisch ermitteln"
+                },
+                {
+                  "text": "Säure-Base-Titrationen zur Konzentrationsbestimmung planen, durchführen und auswerten"
+                },
+                {
+                  "text": "die Titration von Salzsäure und verdünnter Essigsäure mit Natronlauge durchführen und die Veränderung des pH-Werts während der Titration erklären (Titrationskurve)"
+                },
+                {
+                  "text": "das Konzept des Säure-Base-Gleichgewichts auf Indikatoren anwenden"
+                },
+                {
+                  "text": "eine Dünnschichtchromatografie zur Ermittlung von Bestandteilen des Universalindikators durchführen und beschreiben"
+                },
+                {
+                  "text": "die Wirkungsweise von Puffersystemen und deren Bedeutung an Beispielen erklären"
+                }
+              ]
+            },
+            {
+              "title": "3.4.4 Naturstoffe",
+              "learning_objectives": [
+                {
+                  "text": "die Chiralität eines Moleküls mit dem Vorhandensein eines asymmetrisch substituierten Kohlenstoffatoms erklären"
+                },
+                {
+                  "text": "die räumliche Struktur geeigneter Moleküle in der Fischer-Projektion darstellen und benennen (D- und L- Form)"
+                },
+                {
+                  "text": "den Ringschluss bei Monosacchariden als Halbacetalbildung erklären und den Zusammenhang zwischen Fischer-Projektionsformeln und Haworth-Projektionsformeln darstellen (Glucose, Fructose, α-Form, β-Form)"
+                },
+                {
+                  "text": "D-Glucose, D-Fructose und Saccharose auf ihre reduzierende Wirkung untersuchen (Benedict-Probe oder Tollens-Probe) und die Untersuchungsergebnisse erklären"
+                },
+                {
+                  "text": "den Glucosenachweis durchführen und beschreiben (GOD-Test)"
+                },
+                {
+                  "text": "die Bildung und die räumliche Struktur von Di‑, Oligo- und Polysacchariden erklären (Saccharose, Maltose, ein Cyclodextrin, Stärke, Cellulose, Acetalbildung, glycosidische Verknüpfung)"
+                },
+                {
+                  "text": "Vorkommen von Mono‑, Di- und Polysacchariden nennen und ihre Eigenschaften erklären"
+                },
+                {
+                  "text": "Eigenschaften und Verwendung von Cyclodextrinen beschreiben"
+                },
+                {
+                  "text": "die Verwendung von Kohlenhydraten als nachwachsende Rohstoffe bewerten"
+                },
+                {
+                  "text": "die Struktur von Fettmolekülen beschreiben (gesättigte und ungesättigte Fettsäuren, Glycerin, Ester)"
+                },
+                {
+                  "text": "die Eigenschaften von Fetten erklären (Löslichkeit, Konsistenz, Addition von Halogenen)"
+                },
+                {
+                  "text": "Fette und Kohlenhydrate als Energieträger in Lebewesen vergleichen"
+                },
+                {
+                  "text": "die Struktur von L-α-Aminosäuren beschreiben"
+                },
+                {
+                  "text": "die Bildung und Hydrolyse einer Peptidbindung beschreiben"
+                },
+                {
+                  "text": "Nachweise für Aminosäuren und Proteine durchführen und beschreiben (Ninhydrin- und Biuret-Reaktion)"
+                },
+                {
+                  "text": "die Primär‑, Sekundär‑, Tertiär- und Quartärstruktur von Proteinen erläutern"
+                },
+                {
+                  "text": "Versuche zur Denaturierung von Proteinen durchführen und auswerten"
+                }
+              ]
+            },
+            {
+              "title": "3.4.5 Aromaten",
+              "learning_objectives": [
+                {
+                  "text": "Eigenschaften, Vorkommen und Verwendung von Benzol beschreiben"
+                },
+                {
+                  "text": "am Beispiel aromatischer Verbindungen die mögliche Gesundheitsgefährdung durch einen Stoff beschreiben (Expositions-Risiko-Beziehung)"
+                },
+                {
+                  "text": "Grenzen bisher erarbeiteter Bindungsmodelle und unerwartete Eigenschaften des Benzols aus der besonderen Molekülstruktur erklären (Kekulé, delokalisiertes Elektronenringsystem, Mesomeriestabilisierung, Substitution statt Addition)"
+                },
+                {
+                  "text": "die Bedeutung beziehungsweise Verwendung weiterer wichtiger Aromaten in Natur, Alltag und Technik beschreiben sowie die Strukturformeln dieser Aromaten darstellen (unter anderem Benzoesäure, Styrol, Terephthalsäure, Phenylalanin)"
+                }
+              ]
+            },
+            {
+              "title": "3.4.6 Kunststoffe",
+              "learning_objectives": [
+                {
+                  "text": "den Zusammenhang zwischen den Eigenschaften von Kunststoffen und ihrer Struktur erläutern (Thermoplaste, Duromere, Elastomere, Vernetzungsgrad, kristalline und amorphe Bereiche)"
+                },
+                {
+                  "text": "die Prinzipien wichtiger Kunststoffsynthesen mithilfe chemischer Formeln darstellen (Polymerisation, Polykondensation, Polyaddition)"
+                },
+                {
+                  "text": "Strukturformeln der Monomere und sinnvolle Strukturformelausschnitte der Polymere darstellen und benennen (Polyethen, Polypropen, Polyvinylchlorid, Polystyrol, Polyethylenterephthalat, Polymilchsäure, Polyamide, Polyurethane)"
+                },
+                {
+                  "text": "den Reaktionsmechanismus der radikalischen Polymerisation beschreiben (Radikalbildung, Kettenstart, Kettenwachstum, Kettenabbruch)"
+                },
+                {
+                  "text": "einen Versuch zur Herstellung eines Polymerisats und eines Polykondensats planen und durchführen"
+                },
+                {
+                  "text": "Möglichkeiten zur Beeinflussung der Eigenschaften eines Kunststoffs begründen (Wahl der Monomere, Weichmacher, Reaktionsbedingungen)"
+                },
+                {
+                  "text": "die Verarbeitungsmöglichkeiten von Kunststoffen beschreiben (Spritzgießen, Tiefziehen, Kalandrieren, Extrudieren)"
+                },
+                {
+                  "text": "die unterschiedlichen Verwertungsmöglichkeiten für Kunststoffabfälle bewerten (Werkstoffrecycling, Rohstoffrecycling, energetische Verwertung, Kompostierung)"
+                },
+                {
+                  "text": "die Nutzung nachwachsender Rohstoffe zur Herstellung von Kunststoffen erläutern"
+                }
+              ]
+            },
+            {
+              "title": "3.4.7 Elektrochemie",
+              "learning_objectives": [
+                {
+                  "text": "das Donator-Akzeptor-Prinzip auf Reaktionen mit Elektronenübergang anwenden (Oxidation, Reduktion, Redoxpaare)"
+                },
+                {
+                  "text": "Reaktionen zwischen Metallen und Metallsalzlösungen durchführen und das Reduktions- beziehungsweise das Oxidationsvermögen der Teilchen vergleichen"
+                },
+                {
+                  "text": "Oxidationszahlen zur Identifizierung von Redoxreaktionen und zur Formulierung von Reaktionsgleichungen von Redoxreaktionen anwenden"
+                },
+                {
+                  "text": "den Aufbau einer galvanischen Zelle (Daniell-Element) und einer Elektrolysezelle beschreiben"
+                },
+                {
+                  "text": "Zellspannungen galvanischer Zellen experimentell ermitteln"
+                },
+                {
+                  "text": "die wesentlichen Prozesse in galvanischen Zellen und Elektrolysezellen darstellen und vergleichen (Elektrodenreaktionen, Anode, Kathode, Zellspannung, Zersetzungsspannung)"
+                },
+                {
+                  "text": "die Zellspannung mithilfe von Gleichgewichtsbetrachtungen an den elektrochemischen Doppelschichten erklären"
+                },
+                {
+                  "text": "den Aufbau und die Funktion der Standard-Wasserstoff-Halbzelle erläutern"
+                },
+                {
+                  "text": "Standardpotenziale zur Vorhersage von elektrochemischen Reaktionen und zur Berechnung von Zellspannungen unter Standardbedingungen anwenden"
+                },
+                {
+                  "text": "die Abhängigkeit der Zellspannung von den Ionen-Konzentrationen in galvanischen Zellen erläutern"
+                },
+                {
+                  "text": "das Phänomen der Überspannung beschreiben"
+                },
+                {
+                  "text": "Möglichkeiten und Probleme der elektrochemischen Speicherung von Energie in Batterien und Akkumulatoren (Bleiakkumulator) erläutern"
+                },
+                {
+                  "text": "aktuelle Entwicklungen bei elektrochemischen Stromquellen unter dem Aspekt der Nachhaltigkeit diskutieren (Brennstoffzellen)"
+                }
+              ]
+            },
+            {
+              "title": "3.4.8 Chemie in Wissenschaft, Forschung und Anwendung",
+              "learning_objectives": [
+                {
+                  "text": "den energetischen Zustand der Elektronen in der Atomhülle mithilfe des Orbitalmodells beschreiben und dieses Modell auf die chemische Bindung in einfachen Molekülen anwenden"
+                },
+                {
+                  "text": "anwendungsorientierte Forschung und Entwicklung am Beispiel einer ausgewählten Stoffgruppe aus wissenschaftshistorischer, aktueller und zukunftsorientierter Perspektive erläutern (zum Beispiel Farbstoffe, Waschmittel, Pharmazeutika, Nanomaterialien, Komplexverbindungen, Silikone)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "8/9/10",
+          "topics": [
+            {
+              "title": "3.2.1.1 Stoffe und ihre Eigenschaften",
+              "learning_objectives": [
+                {
+                  "text": "Stoffeigenschaften experimentell untersuchen und beschreiben (Farbe, Geruch, Verformbarkeit, Dichte, Magnetisierbarkeit, elektrische Leitfähigkeit, Schmelztemperatur, Siedetemperatur, Löslichkeit)"
+                },
+                {
+                  "text": "Kombinationen charakteristischer Eigenschaften ausgewählter Stoffe nennen (Luft, Stickstoff, Sauerstoff, Kohlenstoffdioxid, Wasser, Wasserstoff, Chlor, Eisen, Kupfer, Silber, Magnesium, Natrium, Natriumchlorid, Natriumhydroxid, Magnesiumoxid, Salzsäure)"
+                },
+                {
+                  "text": "die Bedeutung der Gefahrenpiktogramme nennen und daraus das Gefahrenpotenzial eines Stoffes für Mensch und Umwelt ableiten"
+                },
+                {
+                  "text": "ein Experiment zur Trennung eines Gemisches planen und durchführen"
+                },
+                {
+                  "text": "an einem ausgewählten Stoff den Weg von der industriellen Gewinnung aus Rohstoffen bis zur Verwendung darstellen (zum Beispiel Kochsalz, Eisen, Kupfer, Benzin )"
+                },
+                {
+                  "text": "ein sinnvolles Ordnungsprinzip zur Einteilung der Stoffe darstellen und anwenden (Element, Verbindung, Metall, Nichtmetall, Salz, flüchtiger/molekularer Stoff, Reinstoff, homogenes und heterogenes Gemisch, Lösung, Legierung, Suspension, Emulsion, Rauch, Nebel)"
+                },
+                {
+                  "text": "die Änderung der Stoffeigenschaften in Abhängigkeit von der Partikelgröße an einem Beispiel beschreiben (Nanopartikel, Verhältnis Oberfläche zu Volumen)"
+                },
+                {
+                  "text": "die Eigenschaften wässriger Lösungen (elektrische Leitfähigkeit, sauer, alkalisch, neutral) untersuchen und die Fachbegriffe sauer, alkalisch und neutral der pH-Skala zuordnen"
+                },
+                {
+                  "text": "Beispiele für alkalische und saure Lösungen nennen und deren Verwendung im Alltag beschreiben (Natronlauge, Ammoniak-Lösung, Salzsäure, kohlensaure Lösung, verdünnte Essigsäure)"
+                },
+                {
+                  "text": "die Zusammensetzung der Luft nennen und die Veränderungen des Kohlenstoffdioxidanteils hinsichtlich ihrer globalen Auswirkungen bewerten (Volumenanteile von Stickstoff, Sauerstoff, Edelgasen und Kohlenstoffdioxid)"
+                },
+                {
+                  "text": "organische Stoffe mithilfe typischer Eigenschaften beschreiben (Methan, Heptan, Ethen, Ethanol, Propanal, Propanon, Ethansäure, Glucose, Ethansäureethylester )"
+                },
+                {
+                  "text": "die Verwendung ausgewählter organischer Stoffe aufgrund ihrer Eigenschaften in Alltag und Technik erläutern (Methan, Ethen, Benzin, Ethanol, Propanon/Aceton, Ethansäure/Essigsäure)"
+                },
+                {
+                  "text": "die Gefahren und den Nutzen von Ethanol beschreiben (Alkoholkonsum, Desinfektionsmittel)"
+                },
+                {
+                  "text": "Änderungen von Stoffeigenschaften innerhalb einer homologen Reihe beschreiben (homologe Reihe der Alkane und Alkanole)"
+                },
+                {
+                  "text": "ausgewählte organische Stoffklassen bezüglich ihrer Stoffeigenschaften vergleichen (Siedetemperatur und Wasserlöslichkeit von Alkanen, Alkanolen, Alkansäuren und Estern )"
+                }
+              ]
+            },
+            {
+              "title": "3.2.1.2 Stoffe und ihre Teilchen",
+              "learning_objectives": [
+                {
+                  "text": "Atome, Moleküle und Ionengruppen als Stoffteilchen beschreiben und entsprechenden Reinstoffen zuordnen"
+                },
+                {
+                  "text": "Stoffe anhand ihrer Stoffteilchen ordnen (Metalle, Edelgase, flüchtige/molekulare Stoffe, Salze)"
+                },
+                {
+                  "text": "mithilfe eines geeigneten Teilchenmodells (Stoffteilchen) Aggregatzustände, Lösungsvorgänge, Diffusion und Brownsche Bewegung beschreiben"
+                },
+                {
+                  "text": "die Größenordnungen von Teilchen (Atome, Moleküle, Makromoleküle), Teilchengruppen (Nanopartikel) und makroskopischen Objekten vergleichen"
+                },
+                {
+                  "text": "mit Atommodellen den Aufbau von Atomen und Ionen erläutern (Proton, Elektron, Neutron, Kern-Hülle-Modell, Schalen‑/Energiestufenmodell, Außenelektron, Ionenbildung, Ionisierungsenergie, Edelgaskonfiguration)"
+                },
+                {
+                  "text": "den Rutherfordschen Streuversuch beschreiben und die Versuchsergebnisse im Hinblick auf die Entwicklung des Kern-Hülle-Modells erläutern"
+                },
+                {
+                  "text": "den Zusammenhang zwischen Atombau und Stellung der Atome im Periodensystem der Elemente erklären (Atomsymbole, Ordnungszahl, Protonenanzahl, Elektronenanzahl, Neutronenanzahl, Massenzahl, Außenelektronen, Hauptgruppe, Periode, Vorhersagen von Mendelejew)"
+                },
+                {
+                  "text": "sauren und alkalischen Lösungen die entsprechenden Teilchen zuordnen (Oxonium- und Hydroxid-Ionen)"
+                },
+                {
+                  "text": "das Aufbauprinzip von Polymeren an einem Beispiel erläutern"
+                },
+                {
+                  "text": "organische Kohlenstoffverbindungen mithilfe von Strukturelementen und funktionellen Gruppen ordnen (Einfach- und Mehrfachbindungen zwischen Kohlenstoffatomen, Hydroxyl‑, Aldehyd‑, Keto‑, Carboxyl- und Estergruppe)"
+                },
+                {
+                  "text": "die Nomenklaturregeln nach IUPAC nutzen, um organische Moleküle zu benennen (Alkane, Alkanole, Alkanale , Alkanone , Carbonsäuren )"
+                }
+              ]
+            },
+            {
+              "title": "3.2.1.3 Bindungs- und Wechselwirkungsmodelle",
+              "learning_objectives": [
+                {
+                  "text": "die Ionenbindung erklären und typische Eigenschaften der Salze und Salzlösungen begründen (Ionengitter, Sprödigkeit, hohe Schmelztemperatur, elektrische Leitfähigkeit)"
+                },
+                {
+                  "text": "die Metallbindung erklären und damit typische Eigenschaften der Metalle begründen (Duktilität, elektrische Leitfähigkeit)"
+                },
+                {
+                  "text": "die Molekülbildung durch Elektronenpaarbindung unter Anwendung der Edelgasregel erläutern (bindende und nichtbindende Elektronenpaare, Lewis-Schreibweise, Einfach- und Mehrfach-Bindungen)"
+                },
+                {
+                  "text": "polare und unpolare Elektronenpaarbindungen vergleichen (Elektronegativität)"
+                },
+                {
+                  "text": "den räumlichen Bau von Molekülen mithilfe eines Modells erklären"
+                },
+                {
+                  "text": "den Zusammenhang zwischen Bindungstyp, räumlichem Bau und Dipol-Eigenschaft bei Molekülen darstellen (H 2 , HCl, CO 2 , H 2 O, NH 3 )"
+                },
+                {
+                  "text": "Reinstoffen aufgrund ihrer Stoffeigenschaften Stoffteilchen und Bindungstypen zuordnen (Elektronenpaarbindung, Ionenbindung, Metallbindung)"
+                },
+                {
+                  "text": "zwischenmolekulare Wechselwirkungen erklären (Wechselwirkungen zwischen temporären Dipolen, Wechselwirkungen zwischen permanenten Dipolen, Wasserstoffbrücken)"
+                },
+                {
+                  "text": "aus der Struktur zweier Moleküle mögliche zwischenmolekulare Wechselwirkungen ableiten"
+                },
+                {
+                  "text": "die besonderen Eigenschaften von Wasser erklären (Dichteanomalie, hohe Siedetemperatur, räumlicher Bau des Wassermoleküls, Wasserstoffbrücken)"
+                },
+                {
+                  "text": "ausgehend von den zwischenmolekularen Wechselwirkungen ausgewählte Eigenschaften von Stoffen erklären (Siedetemperatur, Löslichkeit)"
+                },
+                {
+                  "text": "den Lösungsvorgang von Salzen auf der Teilchenebene beschreiben (Hydratation)"
+                }
+              ]
+            },
+            {
+              "title": "3.2.2.1 Qualitative Aspekte chemischer Reaktionen",
+              "learning_objectives": [
+                {
+                  "text": "beobachtbare Merkmale chemischer Reaktionen beschreiben"
+                },
+                {
+                  "text": "ausgewählte Experimente zu chemischen Reaktionen unter Beteiligung von Sauerstoff, Schwefel, Wasserstoff, Kohlenstoff und ausgewählten Metallen planen, durchführen, im Protokoll darstellen und in Fach- und Alltagskontexte einordnen"
+                },
+                {
+                  "text": "die chemische Reaktion als Veränderung von Atomen, Molekülen und Ionen beziehungsweise als Neuanordnung von Atomen oder Ionen durch das Lösen und Knüpfen von Bindungen erklären"
+                },
+                {
+                  "text": "die Umkehrbarkeit von chemischen Reaktionen beispielhaft beschreiben (Synthese und Analyse)"
+                },
+                {
+                  "text": "das Donator-Akzeptor-Prinzip erklären und auf Redoxreaktionen (Oxidation, Reduktion, Elektronenübergang) und Säure-Base-Reaktionen (Protonenübergang, Neutralisation) anwenden"
+                },
+                {
+                  "text": "Nachweise für ausgewählte Stoffe, Ionen, Strukturelemente und funktionelle Gruppen durchführen und beschreiben (Sauerstoff, Kohlenstoffdioxid, Wasserstoff, Wasser, Oxonium- und Hydroxid-Ionen, Chlorid-Ionen, Mehrfachbindungen zwischen Kohlenstoffatomen , Aldehydgruppe )"
+                },
+                {
+                  "text": "den Zerteilungsgrad als Möglichkeit zur Steuerung chemischer Reaktionen beschreiben"
+                },
+                {
+                  "text": "Indikatoren zur Identifizierung neutraler, saurer und alkalischer Lösungen nutzen (ein Pflanzenfarbstoff, Universalindikator, Thymolphthalein-Lösung)"
+                },
+                {
+                  "text": "ausgewählte chemische Reaktionen dem jeweiligen organischen Reaktionstyp zuordnen (Substitution an einem Alkan, Addition an ein Alken, Kondensation am Beispiel der Veresterung)"
+                },
+                {
+                  "text": "die Oxidation organischer Moleküle mithilfe von Strukturformeln und Reaktionsgleichungen darstellen (Alkanol über Alkanal zur Alkansäure und Alkanol zu Alkanon, Oxidationszahlen )"
+                },
+                {
+                  "text": "einen Kohlenstoffatomkreislauf in der belebten Natur als System chemischer Reaktionen beschreiben und Auswirkungen durch Eingriffe des Menschen bewerten"
+                }
+              ]
+            },
+            {
+              "title": "3.2.2.2 Quantitative Aspekte chemischer Reaktionen",
+              "learning_objectives": [
+                {
+                  "text": "den Zusammenhang zwischen Massen- und Atomanzahlerhaltung bei chemischen Reaktionen erläutern"
+                },
+                {
+                  "text": "Experimente zur Massenerhaltung bei chemischen Reaktionen und zur Ermittlung eines Massenverhältnisses durchführen und unter Anleitung auswerten (Gesetz von der Erhaltung der Masse, Verhältnisformel)"
+                },
+                {
+                  "text": "Reaktionsgleichungen aufstellen (Formelschreibweise)"
+                },
+                {
+                  "text": "Verhältnis- und Molekülformeln mithilfe der Edelgasregel aufstellen"
+                },
+                {
+                  "text": "den Informationsgehalt einer chemischen Formel erläutern (Verhältnisformel, Molekülformel, Strukturformel, räumliche Darstellung)"
+                },
+                {
+                  "text": "eine Säure-Base-Titration durchführen und auswerten (Neutralisation)"
+                },
+                {
+                  "text": "Berechnungen durchführen und dabei Größen und Einheiten korrekt nutzen (Atommasse, Teilchenzahl, Masse, Dichte, Stoffmenge, molare Masse, molares Volumen , Massenanteil, Stoffmengenkonzentration)"
+                }
+              ]
+            },
+            {
+              "title": "3.2.2.3 Energetische Aspekte chemischer Reaktionen",
+              "learning_objectives": [
+                {
+                  "text": "energetische Erscheinungen bei chemischen Reaktionen mit der Umwandlung eines Teils der in Stoffen gespeicherten Energie in andere Energieformen erklären (Lichtenergie, thermische Energie, Schallenergie)"
+                },
+                {
+                  "text": "die Begriffe exotherm und endotherm erklären und entsprechenden Phänomenen zuordnen"
+                },
+                {
+                  "text": "energetische Zustände der Edukte und Produkte exothermer und endothermer Reaktionen vergleichen"
+                },
+                {
+                  "text": "ein Experiment zur Elektrolyse einer Metallsalz-Lösung durchführen und auswerten (Prinzip eines elektrochemischen Energiespeichers)"
+                },
+                {
+                  "text": "die Zufuhr von Energie als Voraussetzung zum Start chemischer Reaktionen erklären (Aktivierungsenergie) und mit der Energiezufuhr bei endothermen Reaktionen vergleichen"
+                },
+                {
+                  "text": "den Einfluss von Katalysatoren auf die Aktivierungsenergie beschreiben"
+                },
+                {
+                  "text": "Modellexperimente zur Brandbekämpfung durchführen und Maßnahmen zum Brandschutz begründen"
+                },
+                {
+                  "text": "die Verwendung von Erdöl als Rohstoff und als Brennstoff vergleichen und bewerten"
+                },
+                {
+                  "text": "die Kohlenstoffdioxidbilanz und die Reaktionsenergie bei der Verbrennung verschiedener Brennstoffe vergleichen, um die Verwendung verschiedener Energieträger zu bewerten (Wasserstoff, Methan, Benzin)"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_url": "https://www.bildungsplaene-bw.de/,Lde/BP2016BW_ALLG_GYM_CH",
+      "last_checked": "2026-06-22"
+    },
+    {
+      "school_type": "Sekundarstufe I (RS/HS/GMS)",
+      "grade_levels": [
+        {
+          "grade": "10",
+          "topics": [
+            {
+              "title": "3.3.1.1 Stoffe und ihre Eigenschaften",
+              "learning_objectives": [
+                {
+                  "text": "Kombinationen charakteristischer Eigenschaften ausgewählter Stoffe nennen (Natrium, Natriumhydroxid)"
+                },
+                {
+                  "text": "die Eigenschaften wässriger Lösungen (elektrische Leitfähigkeit, sauer, alkalisch, neutral) untersuchen und die Fachbegriffe sauer, alkalisch und neutral der pH-Skala zuordnen"
+                },
+                {
+                  "text": "Beispiele für alkalische und saure Lösungen nennen und deren Verwendung im Alltag beschreiben (Natronlauge, Salzsäure, kohlensaure Lösung, Essig)"
+                },
+                {
+                  "text": "organische Stoffe mithilfe typischer Eigenschaften beschreiben (Methan, Heptan, Ethen, Ethanol)"
+                },
+                {
+                  "text": "die Verwendung ausgewählter organischer Stoffe aufgrund ihrer Eigenschaften in Alltag und Technik erläutern (Erdgas oder Feuerzeuggas, Benzin, Spiritus)"
+                },
+                {
+                  "text": "die Gefahren und den Nutzen von Ethanol beschreiben (Alkoholkonsum, Desinfektionsmittel)"
+                },
+                {
+                  "text": "Änderungen von Stoffeigenschaften innerhalb der homologen Reihe der Alkane beschreiben"
+                }
+              ]
+            },
+            {
+              "title": "3.3.1.2 Stoffe und ihre Teilchen",
+              "learning_objectives": [
+                {
+                  "text": "sauren und alkalischen Lösungen die entsprechenden Teilchen zuordnen (Oxonium- und Hydroxid-Ionen)"
+                },
+                {
+                  "text": "unverzweigte Alkanmoleküle mit systematischen Namen benennen"
+                }
+              ]
+            },
+            {
+              "title": "3.3.1.3 Bindungs- und Wechselwirkungsmodelle",
+              "learning_objectives": [
+                {
+                  "text": "die Molekülbildung durch Elektronenpaarbindung beschreiben"
+                },
+                {
+                  "text": "den räumlichen Bau von Molekülen mithilfe eines Modells beschreiben (CH 4 , H 2 O)"
+                },
+                {
+                  "text": "Molekülen und Ionengittern Bindungstypen zuordnen (Elektronenpaarbindung, Ionenbindung)"
+                },
+                {
+                  "text": "die besonderen Eigenschaften von Wasser beschreiben (hohe Siedetemperatur)"
+                },
+                {
+                  "text": "die unterschiedlichen Siedetemperaturen von Stoffen mit den verschieden starken Anziehungskräften zwischen Molekülen begründen"
+                }
+              ]
+            },
+            {
+              "title": "3.3.2.1 Qualitative Aspekte chemischer Reaktionen",
+              "learning_objectives": [
+                {
+                  "text": "Nachweise für ausgewählte Ionen durchführen und beschreiben (Oxonium- und Hydroxid-Ionen)"
+                },
+                {
+                  "text": "Indikatoren zur Identifizierung neutraler, saurer und alkalischer Lösungen nutzen (ein Pflanzenfarbstoff, Universalindikator)"
+                },
+                {
+                  "text": "die Oxidation von alkoholhaltigen Getränken an der Luft untersuchen"
+                }
+              ]
+            },
+            {
+              "title": "3.3.2.2 Quantitative Aspekte chemischer Reaktionen",
+              "learning_objectives": [
+                {
+                  "text": "einfache Molekülformeln unter Anleitung aufstellen"
+                },
+                {
+                  "text": "einfache Reaktionsgleichungen bei vorgegebenen Edukten und Produkten unter Anleitung aufstellen (Formelschreibweise)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "7/8/9",
+          "topics": [
+            {
+              "title": "3.2.1.1 Stoffe und ihre Eigenschaften",
+              "learning_objectives": [
+                {
+                  "text": "Stoffeigenschaften experimentell untersuchen und beschreiben (Farbe, Geruch, Verformbarkeit, Dichte, Magnetisierbarkeit, elektrische Leitfähigkeit, Schmelztemperatur, Siedetemperatur, Wasserlöslichkeit (qualitativ))"
+                },
+                {
+                  "text": "Kombinationen charakteristischer Eigenschaften ausgewählter Stoffe nennen (Sauerstoff, Kohlenstoffdioxid, Wasser, Wasserstoff, Eisen, Kupfer, Magnesium, Natriumchlorid)"
+                },
+                {
+                  "text": "die Bedeutung der Gefahrenpiktogramme nennen und daraus das Gefahrenpotenzial eines Stoffes für Mensch und Umwelt ableiten"
+                },
+                {
+                  "text": "ein Experiment zur Trennung eines Gemisches planen und durchführen"
+                },
+                {
+                  "text": "an einem ausgewählten Stoff den Weg von der industriellen Gewinnung aus Rohstoffen bis zur Verwendung darstellen (z. B. Kochsalz)"
+                },
+                {
+                  "text": "ein sinnvolles Ordnungsprinzip zur Einteilung der Stoffe darstellen und anwenden (Element, Verbindung, Metall, Nichtmetall, Salz, flüchtiger Stoff, Reinstoff, Gemisch)"
+                },
+                {
+                  "text": "Einsatzmöglichkeiten von Nanopartikeln beschreiben"
+                },
+                {
+                  "text": "die Zusammensetzung der Luft nennen und Veränderungen des Kohlenstoffdioxidanteils hinsichtlich ihrer globalen Auswirkungen bewerten (Volumenanteile von Stickstoff, Sauerstoff, Edelgasen und Kohlenstoffdioxid)"
+                }
+              ]
+            },
+            {
+              "title": "3.2.1.2 Stoffe und ihre Teilchen",
+              "learning_objectives": [
+                {
+                  "text": "Atome, Moleküle und Ionen als Bausteine von Stoffen nennen"
+                },
+                {
+                  "text": "Stoffe anhand ihrer Bausteine ordnen (Metalle, flüchtige/molekulare Stoffe, Salze)"
+                },
+                {
+                  "text": "mithilfe eines geeigneten Teilchenmodells (Stoffteilchen) Aggregatzustände und Lösungsvorgänge beschreiben"
+                },
+                {
+                  "text": "die Größenordnungen von Teilchen (Atome, Moleküle), Teilchengruppen (Nanopartikel) und Alltagsgegenständen vergleichen"
+                },
+                {
+                  "text": "mit dem Kern-Hülle-Modell den Aufbau von Atomen darstellen (Proton, Elektron, Neutron)"
+                },
+                {
+                  "text": "auf der Grundlage eines Modellversuchs zum Rutherfordschen Streuversuch das Kern-Hülle-Modell beschreiben"
+                },
+                {
+                  "text": "den Zusammenhang zwischen Atombau und Stellung der Atome im Periodensystem der Elemente beschreiben (Atomsymbole, Protonenanzahl)"
+                }
+              ]
+            },
+            {
+              "title": "3.2.1.3 Bindungs- und Wechselwirkungsmodelle",
+              "learning_objectives": [
+                {
+                  "text": "den festen Aggregatzustand mit Anziehungskräften zwischen den Stoffteilchen erklären"
+                },
+                {
+                  "text": "Moleküle als miteinander verbundene Atome beschreiben"
+                },
+                {
+                  "text": "die Ionenbindung beschreiben und typische Eigenschaften des Natriumchlorids begründen (Ionengitter, Sprödigkeit, hohe Schmelztemperatur)"
+                }
+              ]
+            },
+            {
+              "title": "3.2.2.1 Qualitative Aspekte chemischer Reaktionen",
+              "learning_objectives": [
+                {
+                  "text": "beobachtbare Merkmale chemischer Reaktionen nennen"
+                },
+                {
+                  "text": "ausgewählte Experimente zu chemischen Reaktionen von Metallen und Nichtmetallen durchführen, auswerten und in Alltagskontexte einordnen"
+                },
+                {
+                  "text": "die chemische Reaktion als Bildung neuer Stoffe beschreiben, die aus anderen Bausteinen aufgebaut sind"
+                },
+                {
+                  "text": "die Umkehrbarkeit von chemischen Reaktionen beispielhaft beschreiben (Oxidation als Sauerstoffaufnahme, Reduktion als Sauerstoffabgabe)"
+                },
+                {
+                  "text": "das Donator-Akzeptor-Prinzip auf chemische Reaktionen mit Sauerstoff anwenden"
+                },
+                {
+                  "text": "Nachweise für ausgewählte Stoffe durchführen und beschreiben (Sauerstoff, Kohlenstoffdioxid, Wasserstoff, Wasser)"
+                },
+                {
+                  "text": "den Zerteilungsgrad als Möglichkeit zur Steuerung von Verbrennungsprozessen beschreiben"
+                },
+                {
+                  "text": "den Kohlenstoffkreislauf in der belebten Natur beschreiben und Auswirkungen durch Eingriffe des Menschen bewerten"
+                }
+              ]
+            },
+            {
+              "title": "3.2.2.2 Quantitative Aspekte chemischer Reaktionen",
+              "learning_objectives": [
+                {
+                  "text": "ein Experiment zur Massenerhaltung bei chemischen Reaktionen durchführen und das Phänomen der Massenerhaltung beschreiben"
+                },
+                {
+                  "text": "die Massenerhaltung bei chemischen Reaktionen auf der Teilchenebene erklären"
+                },
+                {
+                  "text": "einfache Verhältnisformeln mithilfe vorgegebener Ionen unter Anleitung aufstellen"
+                },
+                {
+                  "text": "den Informationsgehalt von Molekülformeln beschreiben (H 2 O, O 2 , CO 2 )"
+                },
+                {
+                  "text": "einfache chemische Reaktionen in Reaktionsschemata darstellen"
+                }
+              ]
+            },
+            {
+              "title": "3.2.2.3 Energetische Aspekte chemischer Reaktionen",
+              "learning_objectives": [
+                {
+                  "text": "energetische Erscheinungen bei chemischen Reaktionen mit der Umwandlung der in Stoffen gespeicherten Energie in andere Energieformen erklären (Lichtenergie, thermische Energie, Schallenergie)"
+                },
+                {
+                  "text": "die Begriffe exotherm und endotherm entsprechenden Phänomenen zuordnen"
+                },
+                {
+                  "text": "die Zufuhr von thermischer Energie als Voraussetzung zum Start chemischer Reaktionen nennen"
+                },
+                {
+                  "text": "den Nutzen der Verwendung von Katalysatoren bei chemischen Reaktionen beschreiben"
+                },
+                {
+                  "text": "Modellexperimente zur Brandbekämpfung durchführen und Maßnahmen zum Brandschutz beschreiben"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_url": "https://www.bildungsplaene-bw.de/,Lde/BP2016BW_ALLG_SEK1_CH",
+      "last_checked": "2026-06-22"
+    }
+  ],
+  "last_updated": "2026-06-22",
+  "source_urls": [
+    "https://www.bildungsplaene-bw.de/,Lde/BP2016BW_ALLG_GYM_CH",
+    "https://www.bildungsplaene-bw.de/,Lde/BP2016BW_ALLG_SEK1_CH"
+  ]
+}

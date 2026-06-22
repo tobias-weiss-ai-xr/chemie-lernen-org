@@ -1,0 +1,27 @@
+[
+  {
+    "state": "Baden-Württemberg",
+    "state_abbr": "BW",
+    "school_types": ["Gymnasium", "Sekundarstufe I (RS/HS/GMS)"],
+    "last_updated": "2026-06-22"
+  },
+  {
+    "state": "Bayern",
+    "state_abbr": "BY",
+    "school_types": ["Gymnasium (NTG)", "Gymnasium (HG/SG/MuG/WWG/SWG)", "Realschule"],
+    "last_updated": "2026-06-22"
+  },
+  {
+    "state": "Nordrhein-Westfalen",
+    "state_abbr": "NRW",
+    "school_types": [
+      "Gymnasium (Sek I)",
+      "Gymnasium (Sek II)",
+      "Realschule",
+      "Hauptschule",
+      "Gesamtschule",
+      "Sekundarschule"
+    ],
+    "last_updated": "2026-06-22"
+  }
+]

@@ -1,0 +1,2041 @@
+{
+  "state": "Bayern",
+  "state_abbr": "BY",
+  "school_curricula": [
+    {
+      "school_type": "Gymnasium (NTG)",
+      "grade_levels": [
+        {
+          "grade": "8",
+          "topics": [
+            {
+              "title": "Lernbereich 1: Wie Chemiker denken und arbeiten",
+              "sub_topics": [
+                {
+                  "title": "Gefahrstoffe: Gefahrstoffkennzeichnung gemäß aktueller Richtlinien, Gefahrenpotenzial, Sicherheitsmaßnahmen, Entsorgung, Laborregeln und Sicherheitsunterweisung in Schule und Arbeitswelt"
+                },
+                {
+                  "title": "Arbeitstechniken: Verwendung einfacher Laborgeräte zur Temperatur-, Massen- und Volumenbestimmung, Aufbau einfacher Apparaturen"
+                },
+                {
+                  "title": "naturwissenschaftlicher Erkenntnisweg (Fragestellung, Hypothese, Planung und Durchführung von Experimenten, Datenauswertung (ggf. digital) und Dateninterpretation, Hypothesenprüfung, Regel oder Gesetz); naturwissenschaftliches Protokoll (Dokumentation, Auswertung und Veranschaulichung, auch digital)"
+                },
+                {
+                  "title": "Versuchsplanung und Versuchsdurchführung: Konstanthalten und Variieren von Einflussgrößen (Variablenkontrolle, abhängige und unabhängige Variable), positive und negative Blindprobe"
+                },
+                {
+                  "title": "Versuchsprotokollierung, Versuchsauswertung und Versuchsinterpretation: Unterscheidung zwischen beobachtender Beschreibung und deutender Erklärung; Abhängigkeit der Interpretation von z. B. Messfehlern, Vorwissen, Erwartungshaltung; Verwendung von digitaler Messwerterfassung und Tabellenkalkulationsprogrammen"
+                },
+                {
+                  "title": "Entwicklung und Eigenschaften naturwissenschaftlichen Wissens: Nutzung unterschiedlicher Methoden zur Erkenntnisgewinnung, Daten und deren Interpretation als Grundlage naturwissenschaftlicher Erkenntnisgewinnung"
+                },
+                {
+                  "title": "Eigenschaften, Grenzen und Erweiterung von materiellen und ideellen Modellen: Modell-Definition, Vergleich von Modelldarstellungen zum Aufbau der Materie (u. a. Teilchenmodell, Daltonsches Atommodell, Kern-Hülle-Modell)"
+                },
+                {
+                  "title": "Reaktionsschema, Nomenklatur, Symbol- und Formelsprache: binäre anorganische Verbindungen (Molekülformel, Verhältnisformel), einfache Kohlenwasserstoffe (Molekülformel), einfache Reaktionsgleichung"
+                },
+                {
+                  "title": "Anfertigung und Auswertung verschiedener Darstellungsformen, Wechsel der Darstellungsform (ggf. unter Verwendung geeigneter Software): Texte, Tabellen; Schnitt- und Schemazeichnungen (u. a. zur Darstellung von Versuchsaufbauten und zur Visualisierung der Teilchenebene); Diagramme zur Darstellung qualitativer Zusammenhänge (z. B. Flussdiagramm, Baumdiagramm), Kreis- und Achsendiagramme zur Darstellung quantitativer Zusammenhänge (z. B. Punkt-, Linien- und Säulendiagramm; eine abhängige Variable), Bezeichnung von Messgröße, Größensymbol und Einheit; mathematische Beziehungen zwischen Größen"
+                },
+                {
+                  "title": "Quellen: v. a. Schulbuch, populärwissenschaftliche Literatur bzw. Internetquellen; Datenaufbereitung: Gefahr der Meinungsbeeinflussung"
+                },
+                {
+                  "title": "gesellschaftlich relevante Errungenschaften der Chemie und die Bewertung ihrer Bedeutung für Mensch und Umwelt: Nachhaltigkeit (ökologische, ökonomische, soziale Aspekte)"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "kennen die Bedeutung der Gefahrstoffkennzeichnung und leiten daraus Maßnahmen zum sicherheitsgerechten Umgang mit Haushalts- und wenigen ausgewählten Laborchemikalien und deren umweltgerechter Entsorgung ab."
+                },
+                {
+                  "text": "setzen grundlegende Arbeitstechniken bei der Durchführung einfacher angeleiteter Experimente ein. Dabei nehmen sie mithilfe verschiedener Darstellungsformen die Dokumentation, Auswertung und Veranschaulichung der erhobenen Daten strukturiert nach Anleitung vor."
+                },
+                {
+                  "text": "formulieren ausgehend von einfach strukturierten Alltagsphänomenen chemische Fragestellungen und planen hypothesengeleitet v. a. qualitative Experimente zu deren Beantwortung."
+                },
+                {
+                  "text": "interpretieren erhobene oder recherchierte Daten und setzen diese zu den Eingangshypothesen in Beziehung."
+                },
+                {
+                  "text": "beschreiben die Entwicklung naturwissenschaftlichen Wissens im Rahmen eines Erkenntniswegs und schätzen ab, ob eine vorgegebene Fragestellung mithilfe chemischer Methoden zu beantworten ist."
+                },
+                {
+                  "text": "beschreiben Eigenschaften von Modellen und verwenden Modelle zur Veranschaulichung und Erklärung des Aufbaus der Materie aus verschiedenen Teilchen und zur Beschreibung chemischer Reaktionen."
+                },
+                {
+                  "text": "vergleichen die Eignung verschiedener Modelle zum Aufbau der Materie zur Erklärung von chemischen Phänomenen, erkennen dabei die Eigenschaften, Aussagekraft und Grenzen von Modellen und leiten daraus die Notwendigkeit ab, Modelle kritisch zu hinterfragen und weiterzuentwickeln."
+                },
+                {
+                  "text": "übersetzen Alltagssprache in Fachsprache und umgekehrt, nutzen die systematische Nomenklatur zur Benennung von Stoffen und unterscheiden bei der Formulierung chemischer Sachverhalte exakt zwischen Stoff- und Teilchenebene."
+                },
+                {
+                  "text": "nutzen die Symbol- und Formelsprache zur Beschreibung des submikroskopischen Aufbaus von Stoffen aus Atomen, Molekülen und Ionen sowie zur Beschreibung der Teilchenänderungen bei einfachen chemischen Reaktionen."
+                },
+                {
+                  "text": "beantworten chemische Fragestellungen, indem sie vorgegebene, auf einfachen Texten und wenigen Darstellungsformen beruhende Quellen auswerten."
+                },
+                {
+                  "text": "recherchieren und erkennen für die Bewertung von chemischen Sachverhalten relevante Kriterien und wägen sie gegeneinander ab, indem sie vorgegebene Pro- und Kontra-Argumente vergleichen."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 2: Stoffe und ihre Eigenschaften – Von beobachtbaren Stoffeigenschaften zum Teilchenmodell (ca. 23 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Stoffe und Stoffportionen: Stoffart, Quantität (u. a. Masse, Volumen)"
+                },
+                {
+                  "title": "Teilchenmodell zum Aufbau der Materie"
+                },
+                {
+                  "title": "Aggregatzustände, Aggregatzustandsänderung"
+                },
+                {
+                  "title": "Kenneigenschaften (Schmelztemperatur, Siedetemperatur, Dichte), weitere Eigenschaften (u. a. Löslichkeit, magnetische Eigenschaft)"
+                },
+                {
+                  "title": "Profil: Bestimmung der Dichte, Ermittlung von Schmelz- und Siedetemperaturen, ggf. digitale Messwerterfassung"
+                },
+                {
+                  "title": "Profil: Identifikation saurer, neutraler und basischer Lösungen mithilfe von Indikatoren (z. B. Blaukraut-Indikator)"
+                },
+                {
+                  "title": "homogene und heterogene Stoffgemische (Legierung, Gasgemisch, Lösung, Suspension, Emulsion, Rauch, Nebel, Schaum, Gemenge), Reinstoffe"
+                },
+                {
+                  "title": "Trennverfahren: Destillation, einfache chromatographische Verfahren (z. B. Papierchromatographie), Extraktion, ggf. weitere Verfahren"
+                },
+                {
+                  "title": "Gasnachweise: Glimmspanprobe, Kalkwasserprobe, Knallgasprobe"
+                },
+                {
+                  "title": "Luft als Stoffgemisch"
+                },
+                {
+                  "title": "Profil: Prinzip eines Verfahrens zur Gasverflüssigung (z. B. Lindeverfahren)"
+                },
+                {
+                  "title": "weitere Vorschläge für den Profilbereich: Laborführerschein; Apparaturen zur Gasentwicklung und zum pneumatischen Auffangen von Gasen; naturwissenschaftlicher Erkenntnisweg; Diffusion, Osmose; Gehaltsgrößen (Massenanteil, Massenkonzentration, Volumenkonzentration), Gehaltsbestimmung (Sauerstoffanteil der Luft, Zuckeranteil und Alkoholkonzentration in Getränken, Anteil eines Metalls in einer Legierung), Eichkurve zur Dichtebestimmung; beispielhafte Anwendungen in der Berufswelt"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "beschreiben die Eigenschaften von Stoffen und ordnen Stoffe nach verschiedenen Kriterien. Dabei erläutern sie die Notwendigkeit definierter Kenneigenschaften zur Charakterisierung und Identifizierung eines Reinstoffes."
+                },
+                {
+                  "text": "wenden das Teilchenmodell zur Erklärung von Stoffeigenschaften und physikalischen Vorgängen an."
+                },
+                {
+                  "text": "kategorisieren Stoffe als Reinstoff oder Stoffgemisch und erklären Trennverfahren aus Alltag und Technik mithilfe unterschiedlicher Stoffeigenschaften."
+                },
+                {
+                  "text": "weisen die Gase Sauerstoff, Kohlenstoffdioxid und Wasserstoff mithilfe einfacher Reaktionen nach."
+                },
+                {
+                  "text": "ermitteln experimentell und rechnerisch den Gehalt eines Reinstoffes in einem Stoffgemisch und bewerten die Zuverlässigkeit der gewählten Messmethode."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 3: Chemische Reaktion – Vom Teilchenmodell zum Daltonschen Atommodell (ca. 36 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Stoff- und Energieumsatz bei chemischen Reaktionen"
+                },
+                {
+                  "title": "chemische Verbindungen, chemische Elemente (Atomarten, Periodensystem, Einteilung in Metalle, Halbmetalle und Nichtmetalle)"
+                },
+                {
+                  "title": "Reaktionsenergie: Auftreten von Energieänderungen in Form von Wärme, Arbeit, Strahlung; exotherme und endotherme Reaktion"
+                },
+                {
+                  "title": "Aktivierung chemischer Reaktionen, Katalyse"
+                },
+                {
+                  "title": "Erhaltung der Masse bei chemischen Reaktionen"
+                },
+                {
+                  "title": "Profil: Experimente zur Massenerhaltung, offenes und geschlossenes System"
+                },
+                {
+                  "title": "Atommodell nach Dalton, Atomartensymbole aus dem Periodensystem"
+                },
+                {
+                  "title": "Ermittlung der relativen Atommasse und Modellierung der Molekülformel: Avogadro-Hypothese, Volumengesetze bei Gasreaktionen, Gaswägung, Element- und Verbindungsmoleküle"
+                },
+                {
+                  "title": "chemische Formelsprache: Molekülformel, systematische Benennung von binären Molekülen"
+                },
+                {
+                  "title": "Atommasse, einfaches Modell zur Massenspektrometrie"
+                },
+                {
+                  "title": "Profil: experimentelle Bestimmung von Molekülformeln aus Volumenverhältnissen bei Gasreaktionen"
+                },
+                {
+                  "title": "Ableiten von Stoffumsätzen aus Reaktionsgleichungen für Molekülreaktionen; Quantitätsgrößen: Stoffmenge, Masse, Volumen und Teilchenzahl; Umrechungsgrößen: Avogadro-Konstante, molare Masse, molares Volumen, Dichte und Teilchenmasse; Größengleichungen"
+                },
+                {
+                  "title": "einfache Molekülreaktionen: u. a. Verbrennung von einfachen Kohlenwasserstoffen, Molekülformeln und Namen der Vertreter der homologen Reihe der Alkane"
+                },
+                {
+                  "title": "fossile Energieträger (Kohlenstoffdioxid- und Energiebilanz), nachwachsende Energieträger (Nachhaltigkeit), einfacher Kohlenstoffatom-Kreislauf"
+                },
+                {
+                  "title": "Profil: einfache kalorimetrische Messungen (ggf. mit digitaler Messwerterfassung), Vergleich der Energieänderung im geschlossenen und offenen System, isoliertes System, Messungenauigkeiten"
+                },
+                {
+                  "title": "weitere Vorschläge für den Profilbereich: Brandvermeidung, Brandbekämpfung, Förderung und Verarbeitung fossiler Energieträger, Einsatz und Einsparmöglichkeiten fossiler Brennstoffe, erneuerbare Energien, Gaschromatographie von kurzkettigen Alkangemischen (z. B. Feuerzeuggas)"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "beschreiben das Verschwinden und Neuentstehen von Stoffen sowie den zugehörigen Energieumsatz als typisch für die Stoffebene chemischer Reaktionen und grenzen die chemische Reaktion dadurch von einem physikalischen Vorgang ab."
+                },
+                {
+                  "text": "klassifizieren die bei chemischen Reaktionen auftretende Energieänderung und stellen diese auch unter Betrachtung katalysierter Reaktionen grafisch dar."
+                },
+                {
+                  "text": "wenden das Daltonsche Atommodell an, um Massenerhaltung und Stoffänderungen mit der Umgruppierung von Atomen auf der Teilchenebene zu erklären und Gemische, Verbindungen und Elemente voneinander abzugrenzen."
+                },
+                {
+                  "text": "nutzen das Periodensystem als Informationsquelle für die verschiedenen Atomarten und für die Zuordnung der Elemente zu den Stoffklassen Metalle, Halbmetalle oder Nichtmetalle."
+                },
+                {
+                  "text": "begründen die bei chemischen Reaktionen auftretende Energieänderung mit dem Spalten und Bilden von chemischen Bindungen auf Grundlage des Daltonschen Atommodells."
+                },
+                {
+                  "text": "werten Versuchsergebnisse zur Ermittlung von relativen Atommassen und zur Molekülformelbestimmung für gasförmige Elemente und binäre Verbindungen aus."
+                },
+                {
+                  "text": "berechnen mithilfe von Größengleichungen die Stoffumsätze bei einfachen Molekülreaktionen."
+                },
+                {
+                  "text": "vergleichen die Kohlenstoffdioxidbilanz und die Reaktionswärme bei der Verbrennung verschiedener Brennstoffe, um die Verwendung verschiedener Energieträger zu bewerten (z. B. Umweltbelastung, Nachhaltigkeit, Energieeffizienz) und um den durch die Verbrennung fossiler Energieträger ausgelösten Anstieg der Kohlenstoffdioxid-Konzentration in der Atmosphäre anhand des Kohlenstoffatom-Kreislaufs zu begründen."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 4: Chemische Verbindungen und ihre Eigenschaften – Vom Daltonschen Atommodell zum Kern-Hülle-Modell (ca. 25 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Reibungselektrizität (Grundlagen der Elektrostatik) und elektrische Leitfähigkeit, Bausteine der Reinstoffe (Atome, Moleküle, Ionen), Verbindungsklassen (molekulare Verbindungen, Salze)"
+                },
+                {
+                  "title": "Metalle und Metallbindung: Elektronengasmodell, Eigenschaften (Duktilität, Wärmeleitfähigkeit, elektrische Leitfähigkeit, Glanz)"
+                },
+                {
+                  "title": "Profil: Untersuchung der Eigenschaften von Metallen"
+                },
+                {
+                  "title": "chemische Formelsprache: Verhältnisformel, Molekül-Ionen, systematische Benennung von Salzen (z. B. Aluminiumoxid, Blei(IV)-oxid)"
+                },
+                {
+                  "title": "Profil: Bestimmung von Verhältnisformeln"
+                },
+                {
+                  "title": "Ionenbindung als ungerichtete elektrostatische Anziehung zwischen Metall-Kationen und Nichtmetall-Anionen in einem Ionengitter (Salze, Modell der Kugelpackung, keine Unterscheidung der verschiedenen Gittertypen); ggf. Verwendung geeigneter Modellierungssoftware"
+                },
+                {
+                  "title": "Eigenschaften von Salzen: Kristallinität, Sprödigkeit, elektrische Leitfähigkeit von Schmelzen und Lösungen"
+                },
+                {
+                  "title": "Profil: Untersuchung der Eigenschaften von Salzen, Ionenwanderung"
+                },
+                {
+                  "title": "Ionennachweise: Fällungsreaktionen (Halogenid-, Carbonat-, Sulfat-, Silber-, Calcium-, Barium-Ionen, ggf. weitere), Farbreaktionen (Kupfer-, Eisen-Ionen, ggf. weitere), Flammenfärbung"
+                },
+                {
+                  "title": "Profil: Untersuchung von z. B. Mineralwasser, Elektrolytgetränken und Dünger"
+                },
+                {
+                  "title": "Kern-Hülle-Modell: Rutherfordscher Streuversuch, Proton, Neutron, Elektron"
+                },
+                {
+                  "title": "weitere Vorschläge für den Profilbereich: Kochsalzgewinnung, Kristallzucht, Streusalz, Kältemischungen, vergleichende Betrachtung der Leitfähigkeit von verschiedenen Salzlösungen, Simulation zum Rutherfordschen Streuversuch, Metall-Verarbeitung (z. B. Zinn-Gießen, Legierungen), Reaktivität von Metallen gegenüber Luft"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "werten Ergebnisse (z. B. Reibungselektrizität, Leitfähigkeitsmessungen) von Experimenten mit molekularen Stoffen, Metallen und Salzen aus und führen diese Ergebnisse auf den unterschiedlichen Aufbau zurück."
+                },
+                {
+                  "text": "begründen anhand der Eigenschaften von Metallen die Grenzen des Daltonschen Atommodells und entwickeln ein Modell für den Bau von Metallen."
+                },
+                {
+                  "text": "grenzen binäre molekulare Verbindungen von binären ionogenen Verbindungen ab, indem sie bei chemischen Reaktionen zwischen der Reaktion von einem Nichtmetall mit einem Nichtmetall und der Reaktion von einem Metall mit einem Nichtmetall unterscheiden."
+                },
+                {
+                  "text": "unterscheiden die gerichtete Anziehung zwischen den ungeladenen Nichtmetallatomen in Molekülen von der ungerichteten Anziehung zwischen Metall-Kationen und Nichtmetall-Anionen in einem Ionengitter, um Molekül- von Verhältnisformeln abzugrenzen."
+                },
+                {
+                  "text": "modellieren den Aufbau von Molekülen und einfachen Ionengittern, um zwischen einer Molekül- und einer Verhältnisformel zu unterscheiden."
+                },
+                {
+                  "text": "leiten aus vorgegebenen Ionenladungen und Formeln für Molekül-Ionen die Verhältnisformeln von Salzen ab, um den Salznamen und die Formel ineinander zu transformieren, und erklären die Eigenschaften von Salzen als Folge ihres Aufbaus aus Ionen."
+                },
+                {
+                  "text": "weisen Ionen experimentell nach und ermitteln so die Zusammensetzung von Salzen."
+                },
+                {
+                  "text": "zeigen anhand experimenteller Befunde die Grenzen des Daltonschen Atommodells auf, ordnen Protonen und Neutronen dem Atomkern und Elektronen der Atomhülle zu und skizzieren deren Anordnung, um experimentelle Beobachtungen zu erklären."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "9",
+          "topics": [
+            {
+              "title": "Lernbereich 1: Wie Chemiker denken und arbeiten",
+              "sub_topics": [
+                {
+                  "title": "Gefahrstoffe: Gefahrstoffkennzeichnung gemäß aktueller Richtlinien, Gefahrenpotenzial, Sicherheitsmaßnahmen, Entsorgung, Laborregeln und Sicherheitsunterweisung in Schule und Arbeitswelt"
+                },
+                {
+                  "title": "Arbeitstechniken: u. a. Aufbau komplexer Apparaturen nach Anleitung (z. B. Elektrolyse), Verwendung von Molekülbaukästen, ggf. Verwendung von Programmen zur Moleküldarstellung"
+                },
+                {
+                  "title": "naturwissenschaftlicher Erkenntnisweg (Fragestellung, Hypothese, Planung und Durchführung von Experimenten, Datenauswertung (ggf. digital), Dateninterpretation und Hypothesenprüfung): u. a. Finden und Bewerten von möglichen Fehlerquellen (z. B. falsche Fragestellung, falsches Untersuchungsdesign)"
+                },
+                {
+                  "title": "Entwicklung und Eigenschaften naturwissenschaftlichen Wissens: u. a. Nutzung vielfältiger Methoden zur Erkenntnisgewinnung"
+                },
+                {
+                  "title": "Eigenschaften, Grenzen und Erweiterung von materiellen und ideellen Modellen: u. a. Elektronendichteverteilung, ladungscodierte Elektronendichteoberfläche von Molekülen; Verwendung von Molekülmodellierungssoftware"
+                },
+                {
+                  "title": "Reaktionsschema, Nomenklatur, Symbol- und Formelsprache: u. a. Formeldarstellung bei organischen sauerstoffatomhaltigen Molekülen (Molekülformel, Valenzstrichformel, Keilstrichformel; Strukturformel, Halbstrukturformel, Skelettformel), Darstellung von Ladungen (Partialladung, Formalladung, Ionenladung), Teilgleichungen"
+                },
+                {
+                  "title": "Anfertigung und Auswertung verschiedener Darstellungsformen, Wechsel der Darstellungsform: u. a. Diagramme zur Darstellung qualitativer Zusammenhänge (z. B. Begriffsnetze), Diagramme zur Darstellung quantitativer Zusammenhänge (z. B. Diagramme mit mehreren Datenreihen); Einsatz von Tabellenkalkulationsprogrammen"
+                },
+                {
+                  "title": "Quellen: v. a. Schulbuch, aufbereitete Fachliteratur bzw. ausgewählte Internetquellen; Datenaufbereitung: Gefahr der Meinungsbeeinflussung"
+                },
+                {
+                  "title": "gesellschaftlich relevante Errungenschaften der Chemie und die Bewertung ihrer Bedeutung für Mensch und Umwelt: u. a. Gefahren für Gesundheit und Umwelt; Berufsfelder in der Chemie"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "recherchieren die Gefahrstoffkennzeichnung ausgewählter Chemikalien und leiten daraus Maßnahmen zum sicherheitsgerechten Umgang mit Haushalts- und ausgewählten Laborchemikalien und deren umweltgerechter Entsorgung ab."
+                },
+                {
+                  "text": "setzen grundlegende Arbeitstechniken bei der Durchführung einfacher selbst geplanter oder komplexer angeleiteter Experimente ein. Dabei nehmen sie mithilfe verschiedener Darstellungsformen die Dokumentation, Auswertung und Veranschaulichung der erhobenen Daten bei bekannten Sachverhalten selbständig und bei unbekannten mit Hilfestellung vor."
+                },
+                {
+                  "text": "leiten aus einfach strukturierten Alltagsphänomenen chemische Fragestellungen ab und planen hypothesengeleitet vermehrt auch quantitative Experimente zu deren Beantwortung."
+                },
+                {
+                  "text": "interpretieren erhobene oder recherchierte Daten unter Einbezug möglicher Fehlerquellen und setzen diese zu den Eingangshypothesen in Beziehung."
+                },
+                {
+                  "text": "beschreiben die Entwicklung naturwissenschaftlichen Wissens im Rahmen eines Erkenntniswegs und begründen, ob eine vorgegebene Fragestellung mithilfe chemischer Methoden zu beantworten ist."
+                },
+                {
+                  "text": "beschreiben Eigenschaften von Modellen und verwenden Modelle zur Veranschaulichung und Erklärung des Aufbaus der Materie aus verschiedenen Teilchen und zur Deutung chemischer Reaktionen sowie der Bindung und Wechselwirkung der Teilchen untereinander. Dabei erkennen sie die Eigenschaften, Aussagekraft und Grenzen dieser Modelle und leiten daraus die Notwendigkeit ab, Modelle kritisch zu hinterfragen und weiterzuentwickeln."
+                },
+                {
+                  "text": "unterscheiden bei der Beschreibung chemischer Sachverhalte sicher zwischen Stoff- und Teilchenebene sowie zwischen alltagssprachlicher und fachsprachlicher Formulierung."
+                },
+                {
+                  "text": "nutzen die Symbol- und Formelsprache zur Beschreibung des submikroskopischen Aufbaus von Stoffen aus Atomen, Molekülen und Ionen, zur Beschreibung der Teilchenänderungen bei einfachen chemischen Reaktionen sowie zur Beschreibung der Wechselwirkungen zwischen Teilchen."
+                },
+                {
+                  "text": "beantworten chemische Fragestellungen, indem sie vorgegebene und selbst recherchierte Quellen zielgruppen- und adressatenbewusst auswerten."
+                },
+                {
+                  "text": "bewerten selbständig chemische Sachverhalte, indem sie Pro- und Kontra-Argumente finden und vergleichen."
+                },
+                {
+                  "text": "beschreiben Aufgaben und Anwendungsbereiche der Chemie und diskutieren deren Bedeutung für die Gesellschaft, um die vielfältigen chemischen Berufsfelder in die Berufswahl einzubeziehen."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 2: Atombau und gekürztes Periodensystem – Vom Kern-Hülle-Modell zum Energiestufenmodell und zum Ordnungsprinzip des gekürzten Periodensystems (ca. 9 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Energiestufenmodell: Ionisierungsenergie, Elektronenkonfiguration"
+                },
+                {
+                  "title": "Profil: Flammenfärbung und Linienspektrum"
+                },
+                {
+                  "title": "gekürztes Periodensystem: Protonenzahl, Nukleonenzahl, Isotope; Hauptgruppen, Valenzelektronen; Perioden"
+                },
+                {
+                  "title": "Edelgaskonfiguration, Ionenladungszahl von Kationen und Anionen, Edelgasregel"
+                },
+                {
+                  "title": "weitere Vorschläge für den Profilbereich: Atom- und Ionenradius, Geschichte des Periodensystems, Bau von Modellen, Radioaktivität und Kernenergie, ausgewählte Vertreter der Hauptgruppenelemente (Reaktivität, Verwendung im Alltag)"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "beschreiben das Energiestufenmodell und zeigen Beziehungen zwischen experimentellen Befunden zur Ionisierungsenergie und den Ordnungsprinzipien des Periodensystems auf."
+                },
+                {
+                  "text": "charakterisieren den Feinbau von Atomen, indem sie Daten aus dem Periodensystem entnehmen."
+                },
+                {
+                  "text": "entnehmen aus dem Periodensystem die Valenzelektronenzahl der Atome und ermitteln durch Vergleich der Valenzelektronenzahl mit der Edelgaskonfiguration die Ladung von Atom-Ionen."
+                },
+                {
+                  "text": "vergleichen und bewerten die Aussagen verschiedener Modelldarstellungen zum Feinbau der Atome und beschreiben die Modellgrenzen."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 3: Donator-Akzeptor-Konzept – Elektronenübergänge (Entladen und Bilden von Ionen) (ca. 18 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Elektrolyse als erzwungene Redoxreaktion (z. B. Elektrolyse einer Kupfer(II)-chlorid-Lösung, Zinkiodid-Lösung, Schmelzelektrolyse)"
+                },
+                {
+                  "title": "Salzbildung als exotherme Reaktion: Darstellung der ablaufenden Prozesse und der Energiebeteiligungen"
+                },
+                {
+                  "title": "Redoxreaktion als Elektronenübergang zwischen Teilchen: Oxidation als Elektronenabgabe, Reduktion als Elektronenaufnahme (Salzbildung, elektrochemische Abscheidung von Metallen, Elektrolyse; ökologische Aspekte)"
+                },
+                {
+                  "title": "Reduktionsmittel als Elektronendonator, Oxidationsmittel als Elektronenakzeptor"
+                },
+                {
+                  "title": "Profil: Elektronenübergänge bei der Salzbildung und der Elektrolyse"
+                },
+                {
+                  "title": "elektrochemische Stromerzeugung als freiwillige Redoxreaktion (z. B. Zink-Iod-Batterie, Magnesium-Iod-Batterie, Daniell-Element)"
+                },
+                {
+                  "title": "Profil: Redoxreihe der Metallatome und -ionen, Bau und Erfinden einfacher Batterien"
+                },
+                {
+                  "title": "weitere Vorschläge für den Profilbereich: Herstellung von Metallen und Nichtmetallen durch Elektrolyse, Nachweis für Chlor- und Brom-Moleküle (Verdrängungsreaktionen), Thermitverfahren, Pyrotechnik"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "erläutern die bei der Elektrolyse von Salzlösungen bzw. Salzschmelzen ablaufenden Vorgänge, um die Herstellung von Metallen und Nichtmetallen zu erklären."
+                },
+                {
+                  "text": "erläutern die bei der Salzbildung aus den Elementen beobachteten Veränderungen durch die Entstehung von Atom-Ionen, erklären deren Entstehung mithilfe des Energiestufenmodells und begründen den exothermen Verlauf mithilfe der Gitterenergie als Triebkraft der Salzbildung."
+                },
+                {
+                  "text": "beschreiben die Ionenbildung als Elektronenübergang zwischen Metall- und Nichtmetall-Atomen und wenden dabei das Donator-Akzeptor-Konzept an."
+                },
+                {
+                  "text": "beschreiben das Reaktionsverhalten von Metallen in Metallsalzlösungen und deuten es auf der Teilchenebene als Redoxreaktion. Über die Formulierung von Redoxteilgleichungen verdeutlichen sie Elektronenabgabe und Elektronenaufnahme."
+                },
+                {
+                  "text": "leiten die Reversibilität der Redoxreaktionen aus dem Zusammenhang zwischen erzwungener Redoxreaktion und freiwillig ablaufender Redoxreaktion ab und bewerten u. a. Alltagsformulierungen wie „leere Batterie“, „geladener Akku“."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 4: Moleküle – Mit dem einfachen Orbitalmodell zum Elektronenpaarabstoßungsmodell (ca. 21 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Valenzstrichschreibweise"
+                },
+                {
+                  "title": "einfaches Orbitalmodell: Orbital als Elektronenwolke und als Aufenthaltsraum für Elektronen"
+                },
+                {
+                  "title": "Elektronenpaarbindung: Kräftegleichgewicht, bildhaftes Molekül-Orbital-Schema für das Wasserstoffmolekül (bindendes und antibindendes Molekülorbital unterschiedlicher Energie, Besetzung mit Elektronen, Bindungsenergie), Einfach- und Mehrfachbindung, Bindigkeit, Formalladung (u. a. Kohlenstoffmonooxid-Molekül, Ammonium-Ion, Hydroxid-Ion)"
+                },
+                {
+                  "title": "bindende und nicht-bindende Elektronenpaare"
+                },
+                {
+                  "title": "Elektronenpaarabstoßungsmodell: räumlicher Bau von Molekülen, Bindungswinkel"
+                },
+                {
+                  "title": "Mesomerie-Modell (z. B. Carbonat-Ion, Nitrat-Ion, Schwefeldioxid-Molekül, Ozon-Molekül)"
+                },
+                {
+                  "title": "Profil: Bau von Molekülmodellen, Moleküldarstellung am Computer"
+                },
+                {
+                  "title": "verzweigte und zyklische Kohlenwasserstoff-Moleküle: Konstitutionsisomerie, Nomenklatur"
+                },
+                {
+                  "title": "einfache Alken- und Alkin-Moleküle: Doppel- und Dreifachbindung, E/Z-Isomerie, Nomenklatur"
+                },
+                {
+                  "title": "Profil: Nachweis von Mehrfachbindungen"
+                },
+                {
+                  "title": "weitere Vorschläge für den Profilbereich: Bindungslänge, Bindungswinkel, Bindungsenergie bei weiteren Molekülen; Konformationsisomerie; Kohlenstoffmodifikationen; Ethin in der Technik (z. B. Schneidbrenner); Ethen als Pflanzenhormon"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "verwenden ein einfaches Orbitalmodell und die Valenzstrichschreibweise, um die Valenzelektronenkonfiguration von Atomen und Atom-Ionen darzustellen."
+                },
+                {
+                  "text": "erklären den Zusammenhalt von Atomen in Molekülen durch die Überlagerung von Orbitalen."
+                },
+                {
+                  "text": "sagen mithilfe der Edelgasregel die Bindigkeit von Nichtmetall-Atomen vorher und stellen Valenzstrichformeln von Molekülen und ausgewählten Molekül-Ionen unter Berücksichtigung des Mesomerie-Modells auf."
+                },
+                {
+                  "text": "leiten unter Anwendung des Elektronenpaarabstoßungsmodells den räumlichen Bau ausgewählter Moleküle ab und schätzen Bindungswinkel in diesen Molekülen ab."
+                },
+                {
+                  "text": "erstellen aus dem systematischen Namen von Kohlenwasserstoffen die Strukturformel und umgekehrt, um Moleküle eindeutig zu beschreiben und Stoffe zu identifizieren."
+                },
+                {
+                  "text": "wandeln verschiedene Formeldarstellungen für Moleküle ineinander um und wählen situationsbedingt geeignete Darstellungen aus."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 5: Wechselwirkungskonzept – Anziehung zwischen Teilchen (ca. 36 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Elektronegativität, Partialladung, polare und unpolare Elektronenpaarbindung"
+                },
+                {
+                  "title": "Bindungspolarität (Elektronendichteverteilung), Molekülpolarität (ladungscodierte Elektronendichteoberfläche, ggf. mithilfe einer Software zur Molekül-Modellierung)"
+                },
+                {
+                  "title": "funktionelle Gruppen und Nomenklatur bei Alkohol-, Aldehyd-, Keton-, Carbonsäure-Molekülen; Moleküle mit mehreren funktionellen Gruppen"
+                },
+                {
+                  "title": "Profil: Nachweisreaktionen für funktionelle Gruppen (z. B. mit Cer(IV)-ammoniumnitrat-, Bromthymolblau-, Dinitrophenylhydrazin-Lösung, Schiffsches Reagenz)"
+                },
+                {
+                  "title": "Wechselwirkungen zwischen Teilchen: Van-der-Waals-Wechselwirkungen als Überbegriff für London-Dispersionswechselwirkungen und Dipol-Dipol-Wechselwirkungen; Wasserstoffbrücken; Ion-Dipol-Wechselwirkungen, ggf. Verwendung von Simulationssoftware"
+                },
+                {
+                  "title": "physikalische Eigenschaften: Viskosität, Siedetemperatur, Löslichkeit; Auswirkung der Isomerie auf die Molekülform und die Oberfläche"
+                },
+                {
+                  "title": "Profil: vergleichende Betrachtung von Viskosität, Siedetemperatur, Löslichkeit"
+                },
+                {
+                  "title": "Erdölprodukte: Kohlenwasserstoffe als Schmierstoffe und Lösemittel, Einsatzbereiche und Umweltaspekte"
+                },
+                {
+                  "title": "Wasser: Siede- und Schmelztemperatur, Dichteanomalie, Oberflächenspannung"
+                },
+                {
+                  "title": "wichtige Lösemittel: Wasser, Benzin, Ethanol; hydrophil, hydrophob, lipophil, amphiphil"
+                },
+                {
+                  "title": "Profil: Versuche zur Löslichkeit in verschiedenen Lösemittel, z. B. Fleckentfernung"
+                },
+                {
+                  "title": "Hydratation, Energiebeteiligung beim Lösevorgang"
+                },
+                {
+                  "title": "Profil: qualitative und quantitative Experimente zum Energieumsatz beim Lösen von Salzen, schwer- und leichtlösliche Salze"
+                },
+                {
+                  "title": "weitere Vorschläge für den Profilbereich: Moleküldarstellung am Computer, Vergleich von Flammtemperaturen, Erdölverarbeitung (z. B. Cracken, Reforming), Wasser als Wirtschaftsgut, Auswirkungen der Dichteanomalie (Klimawandel, globale Meeresströmungen), Kristallstruktur von Eis, Hydrophobierung"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "verwenden die Modellvorstellung der Elektronegativität zur Erklärung der Bindungspolaritäten, leiten aus den Bindungspolaritäten und der Molekülgeometrie die Molekülpolarität ab und interpretieren Abbildungen zur Elektronendichteverteilung und zur ladungscodierten Elektronendichteoberfläche."
+                },
+                {
+                  "text": "teilen ausgewählte organische Verbindungklassen (Alkohole, Aldehyde, Ketone, Carbonsäuren) anhand der funktionellen Gruppen ihrer Moleküle ein und kennen in Alltag und Technik verwendete Vertreter der Verbindungklassen."
+                },
+                {
+                  "text": "nutzen die Nomenklaturregeln nach IUPAC, um typische Moleküle der Verbindungsklassen Alkohole, Aldehyde, Ketone und Carbonsäuren zu benennen."
+                },
+                {
+                  "text": "vergleichen die physikalischen Eigenschaften molekularer Stoffe und erklären die Gemeinsamkeiten bzw. Unterschiede durch die auftretenden zwischenmolekularen Wechselwirkungen, um hypothesengeleitet Eigenschaftsunterschiede aus den Molekülstrukturen vorauszusagen, z. B. für die Auswahl geeigneter Lösemittel."
+                },
+                {
+                  "text": "beurteilen die Bedeutung von Erdölprodukten in verschiedenen Einsatzbereichen in Alltag und Technik und schätzen die Konsequenzen des Einsatzes für die Umwelt ab."
+                },
+                {
+                  "text": "erklären die Besonderheiten des Stoffes Wasser mithilfe der aus dem Bau des Wasser-Moleküls und den Wechselwirkungen zwischen den Wasser-Molekülen resultierenden Eigenschaften und sind sich dadurch der Bedeutung des Wassers als Grundlage für das Leben bewusst."
+                },
+                {
+                  "text": "erklären den Lösevorgang von Salzen, indem sie die Vorgänge auf der Teilchenebene beschreiben und die Energiebeteiligung auch quantitativ betrachten."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "10",
+          "topics": [
+            {
+              "title": "Lernbereich 1: Wie Chemiker denken und arbeiten",
+              "sub_topics": [
+                {
+                  "title": "Gefahrstoffe: Gefahrstoffkennzeichnung gemäß aktueller Richtlinien, Gefahrenpotenzial, Sicherheitsmaßnahmen, Entsorgung, Laborregeln und Sicherheitsunterweisung in Schule und Arbeitswelt, Nutzung einer Gefahrstoffdatenbank"
+                },
+                {
+                  "title": "Arbeitstechniken: u. a. Herstellung von Maßlösungen, Gehaltsbestimmung durch Titration, Verwendung von digitaler Messwerterfassung"
+                },
+                {
+                  "title": "naturwissenschaftlicher Erkenntnisweg (Fragestellung, Hypothese, Planung und Durchführung von Experimenten, Datenauswertung (ggf. digital), Dateninterpretation und Hypothesenprüfung, Regel oder Gesetz): u. a. Berechnungen zu Stoffmengen-, Massen- und Volumenkonzentrationen und zum Massenanteil"
+                },
+                {
+                  "title": "Entwicklung und Eigenschaften naturwissenschaftlichen Wissens: u. a. Subjektivität, Vorläufigkeit, empirische Daten als Gültigkeitskriterium für chemische Modelle und Theorien"
+                },
+                {
+                  "title": "Eigenschaften, Aussagekraft, Grenzen und Erweiterung von materiellen und ideellen Modellen: u. a. Oxidationszahlen"
+                },
+                {
+                  "title": "Reaktionsschema, Nomenklatur, Symbol- und Formelsprache: u. a. Reaktionsgleichung reversibler Reaktionen, Zerlegung in Teilgleichungen, Reaktionsmechanismus"
+                },
+                {
+                  "title": "Anfertigung und Auswertung verschiedener Darstellungsformen, Wechsel der Darstellungsform: u. a. Diagramme zur Darstellung qualitativer Zusammenhänge (z. B. Concept-Maps), Diagramme zur Darstellung quantitativer Zusammenhänge (z. B. Diagramme mit mehreren Datenreihen und mehreren abhängigen Variablen); Einsatz geeigneter Software"
+                },
+                {
+                  "title": "Quellen: v. a. Schulbuch, ausgewählte Fachliteratur bzw. eigenständig gesuchte Internetquellen; Datenaufbereitung: Gefahr der Meinungsbeeinflussung"
+                },
+                {
+                  "title": "Entscheidungsfindung als systematischer und begründeter Prozess: Erkennen, Priorisieren und Abwägen von Bewertungskriterien; Formulierung von Handlungsoptionen, Reflexion von Entscheidungen; gesellschaftlich relevante Errungenschaften der Wissenschaft Chemie und der Technik in Bezug auf ihre Auswirkung auf Mensch und Umwelt"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "recherchieren die Gefahrstoffkennzeichnung ausgewählter Chemikalien und leiten daraus Maßnahmen zum sicherheitsgerechten Umgang mit Laborchemikalien und deren umweltgerechter Entsorgung ab, um durch geeignete Maßnahmen das Gefahrenpotenzial beim Experimentieren zu minimieren."
+                },
+                {
+                  "text": "setzen Arbeitstechniken bei der Durchführung selbst geplanter Experimente ein. Dabei nehmen sie mithilfe verschiedener Darstellungsformen die Dokumentation, Auswertung und Veranschaulichung der erhobenen Daten selbständig vor."
+                },
+                {
+                  "text": "leiten aus komplexer strukturierten Phänomenen des Alltags und der Technik chemische Fragestellungen ab und planen hypothesengeleitet qualitative oder quantitative Experimente zu deren Beantwortung."
+                },
+                {
+                  "text": "beurteilen die Gültigkeit von erhobenen oder recherchierten Daten und finden in diesen Daten Trends, Strukturen und Beziehungen."
+                },
+                {
+                  "text": "beschreiben Grenzen des im Rahmen eines naturwissenschaftlichen Erkenntniswegs generierten Wissens und leiten daraus Aussagen zur Gültigkeit dieses Wissens ab."
+                },
+                {
+                  "text": "beschreiben Eigenschaften von Modellen und verwenden Modelle zur Veranschaulichung sowie zur Erklärung von Stoffeigenschaften und des Reaktionsverhaltens von Teilchen."
+                },
+                {
+                  "text": "verwenden z. B. Bindungs- und Wechselwirkungsmodelle im Rahmen eines Erkenntniswegs zur hypothesengeleiteten Beantwortung chemischer Fragestellungen."
+                },
+                {
+                  "text": "leiten aus Ungenauigkeiten der Alltagsprache die Notwendigkeit einer exakten Fachsprache ab (u. a. Säurebegriff in der Alltags- und Fachsprache)."
+                },
+                {
+                  "text": "unterscheiden zwischen alltags- sowie fachsprachlichen Texten und Bildern und verarbeiten unterschiedliche Quellen zur Beantwortung chemischer Fragestellungen adressaten- und situationsgerecht."
+                },
+                {
+                  "text": "stellen Teil- und Gesamtgleichungen auf, um chemische Reaktionen zu beschreiben."
+                },
+                {
+                  "text": "erkennen die ethische Relevanz in lebensweltbezogenen chemischen Sachverhalten und bewerten diese angeleitet im Rahmen eines Entscheidungsfindungsprozesses auch hinsichtlich weiterer Aspekte (z. B. ökologische, wirtschaftliche)."
+                },
+                {
+                  "text": "recherchieren in bereitgestellten fachwissenschaftlichen Quellen bzw. im Internet Informationen und bereiten diese so auf, dass aus ihnen Bewertungskriterien abgeleitet werden können."
+                },
+                {
+                  "text": "formulieren unter Nutzung fachwissenschaftlicher Erkenntnisse der Chemie systematisch und begründet Handlungsoptionen, wenden dabei Entscheidungsstrategien an und reflektieren über getroffene Entscheidungen."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 2: Donator-Akzeptor-Konzept und Reversibilität chemischer Reaktionen bei Protonenübergängen (ca. 28 Std.)",
+              "sub_topics": [
+                {
+                  "title": "saure und basische Lösungen in Alltag (Regenwasser, Gewässer) und Technik (z. B. zur Entkalkung, Konservierung, Reinigung) sowie in biologischen Systemen (z. B. Verdauung, Haut)"
+                },
+                {
+                  "title": "häufig verwendete Indikatoren und ihre Färbung, pH-Skala zur Einschätzung des Charakters einer Lösung (stark sauer, schwach sauer, neutral, schwach basisch, stark basisch)"
+                },
+                {
+                  "title": "Profil: Ermittlung des sauren, neutralen oder basischen Charakters von Lösungen mithilfe von Indikatoren, Isolierung von Indikatoren aus Pflanzen"
+                },
+                {
+                  "title": "Säure als Protonendonator, Base als Protonenakzeptor, Ampholyt (Wassermolekül, ggf. weitere Beispiele), unterschiedliche Verwendung des Begriffs Säure in der Alltags- und Fachsprache"
+                },
+                {
+                  "title": "Acidität, Bindungspolarität, Mesomeriestabilisierung"
+                },
+                {
+                  "title": "Profil: Springbrunnenexperimente, Leitfähigkeit als Eigenschaft saurer und basischer Lösungen"
+                },
+                {
+                  "title": "Protonenübergang als reversible Reaktion, Gleichgewichtspfeil als Symbol für die Reversibilität"
+                },
+                {
+                  "title": "Profil: Säure-Base-Reaktionen beim Lösen von Salzen"
+                },
+                {
+                  "title": "Bildung und Zersetzung von Kohlensäure; Abhängigkeit von Außenfaktoren (nur phänomenologisch, kein MWG)"
+                },
+                {
+                  "title": "Profil: Säure-Base-Reaktionen in Alltag und Technik: z. B. Entkalken, Brausepulver, Laugengebäck"
+                },
+                {
+                  "title": "Berechnen von Stoffmengenkonzentrationen und Herstellen von Lösungen definierter Konzentration"
+                },
+                {
+                  "title": "Neutralisation als Protonenübergang zwischen Oxonium- und Hydroxid-Ionen, exothermer Verlauf, Benennung der entstehenden Salze"
+                },
+                {
+                  "title": "Profil: kalorimetrische Bestimmung der Neutralisationswärme, ggf. digitale Messwerterfassung"
+                },
+                {
+                  "title": "Säure-Base-Titration (auch mehrprotonige Säuren, keine Titrationskurven mit pH-Skala), ggf. computergestützte Leitfähigkeitstitration, Äquivalenzpunkt"
+                },
+                {
+                  "title": "Auswirkungen von pH-Wertänderungen auf den Menschen bzw. Ökosysteme"
+                },
+                {
+                  "title": "weitere Vorschläge für den Profilbereich: saure und basische Lösungen in Haushalt und Technik (z. B. Batteriesäure), Herstellung von Schwefel- oder Salpetersäure, Kalkkreislauf und Bauchemie, quantitative Untersuchung von Getränken und Medikamenten (z. B. Antazida) durch Titration, computergestützte Messwerterfassung"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "unterscheiden saure, neutrale und basische Lösungen experimentell mithilfe von Indikatoren und verwenden die pH-Skala zur Charakterisierung der untersuchten Lösungen."
+                },
+                {
+                  "text": "erörtern die Bedeutung von sauren und basischen Lösungen im Alltag, in der Technik und in biologischen Systemen und beurteilen die Folgen von pH-Wert-Änderungen."
+                },
+                {
+                  "text": "charakterisieren saure und basische Lösungen auf der Teilchenebene durch das Vorhandensein von Oxonium- bzw. Hydroxid-Ionen."
+                },
+                {
+                  "text": "beschreiben mithilfe des Brönsted-Konzepts die Eigenschaften von Säuren und Basen auf der Teilchenebene und nutzen die Begriffe Säure und Base zur Beschreibung von Teilchen, saure und basische Lösungen zur Beschreibung entsprechender Stoffgemische."
+                },
+                {
+                  "text": "stellen Protonenübergänge in Reaktionsgleichungen dar, um die Vorgänge bei der Bildung saurer, neutraler oder basischer Lösungen zu verdeutlichen."
+                },
+                {
+                  "text": "erkennen in Formeldarstellungen die strukturellen Voraussetzungen für die Eignung eines Teilchens als Säure bzw. Base und leiten die Reversibilität von Protonenübergängen aus experimentellen Beobachtungen ab."
+                },
+                {
+                  "text": "vergleichen die Acidität von Alkohol-Molekülen mit der von Carbonsäure-Molekülen und begründen die Acidität von Carbonsäure-Molekülen."
+                },
+                {
+                  "text": "erklären die Beeinflussung ausgewählter Säure-Base-Reaktionen, indem sie das Konzept der Reversibilität von Reaktionen anwenden."
+                },
+                {
+                  "text": "führen Berechnungen durch, um saure und basische Lösungen definierter Stoffmengenkonzentrationen herzustellen."
+                },
+                {
+                  "text": "beschreiben die Neutralisation auf der Teilchenebene und wenden sie zur umweltgerechten Entsorgung von sauren und basischen Lösungen an."
+                },
+                {
+                  "text": "führen einfache Titrationen zur Konzentrationsbestimmung durch, um unbekannte Konzentrationen saurer oder basischer Lösungen zu ermitteln."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 3: Donator-Akzeptor-Konzept und Reversibilität chemischer Reaktionen bei Elektronenübergängen: Redoxreaktionen (ca. 28 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Reaktion von Metallen mit z. B. Sauerstoff, Chlor, Kohlenstoffdioxid, Wasser"
+                },
+                {
+                  "title": "Oxidationszahlen als Hilfsmittel zum Erkennen von Redoxreaktionen, Regeln zur Ermittlung von Oxidationszahlen"
+                },
+                {
+                  "title": "Regeln zum Aufstellen von Redoxgleichungen"
+                },
+                {
+                  "title": "Wasserstoffentwicklung bei Redoxreaktionen zwischen unedlen Metallen und sauren Lösungen"
+                },
+                {
+                  "title": "Profil: Redoxreaktion von Metallen mit sauren und basischen Lösungen"
+                },
+                {
+                  "title": "Oxidation von Alkohol-Molekülen mit verschiedenen Oxidationsmitteln"
+                },
+                {
+                  "title": "Profil: Oxidierbarkeit von Alkoholen"
+                },
+                {
+                  "title": "Ethanol und Methanol als Industriechemikalien"
+                },
+                {
+                  "title": "Nachweis von Aldehyden: Fehling-Probe, Silberspiegel-Probe, Schiffsche Probe"
+                },
+                {
+                  "title": "Profil: Untersuchung von Lebensmitteln"
+                },
+                {
+                  "title": "Ethanol: Herstellung, Gefährdung (z. B. Toxizität, Straßenverkehr, Verhaltensänderung, Sucht)"
+                },
+                {
+                  "title": "Profil: Herstellung von Ethanol durch Gärung"
+                },
+                {
+                  "title": "Redoxreaktionen in Alltag und Technik: Funktionsweise verschiedener Brennstoffzelltypen, Solarwasserstofftechnologie, ggf. weitere Beispiele (Chlorfreisetzung bei unsachgemäßer Anwendung von Reinigungsmitteln, Metall-Luft-Batterie, Löschen von Metallbränden, Darstellung von Metallen)"
+                },
+                {
+                  "title": "weitere Vorschläge für den Profilbereich: Redoxtitration, Methoden der Wasserstoffentwicklung, Essigherstellung, Antioxidationsmittel in Lebensmitteln"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "charakterisieren die Reaktion von Metallen mit molekularen Stoffen als Redoxreaktion, indem sie das Donator-Akzeptor-Konzept anwenden."
+                },
+                {
+                  "text": "ermitteln Oxidationszahlen in anorganischen und organischen Teilchen, um Redoxreaktionen zu identifizieren."
+                },
+                {
+                  "text": "verwenden die Regeln zum Aufstellen von Redoxteilgleichungen in wässrigen Lösungen, um Redoxgleichungen zu formulieren."
+                },
+                {
+                  "text": "grenzen Redoxreaktionen von Säure-Base-Reaktionen ab, indem sie z. B. die Reaktion von unedlen Metallen und von Carbonaten mit sauren Lösungen vergleichen."
+                },
+                {
+                  "text": "vergleichen die Oxidierbarkeit primärer, sekundärer und tertiärer Alkohole, um die Bildung von Aldehyden, Ketonen und Carbonsäuren zu erklären."
+                },
+                {
+                  "text": "führen geeignete Nachweisreaktionen durch, um Aldehyde von Ketonen zu unterscheiden."
+                },
+                {
+                  "text": "beschreiben Schädigungen des Körpers, die durch den Konsum alkoholhaltiger Getränke entstehen, Gefährdungen unter Alkoholeinfluss und Ursachen für Abhängigkeit."
+                },
+                {
+                  "text": "erörtern die Bedeutung von Redoxreaktionen im Alltag und in der Technik."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 4: Donator-Akzeptor-Konzept und Reversibilität bei Nukleophil-Elektrophil-Reaktionen (ca. 28 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Mechanismus der säurekatalysierten Esterkondensation und baseninduzierten Esterhydrolyse; Peptidbindung als Beispiel für eine weitere Kondensationsreaktion (kein Mechanismus)"
+                },
+                {
+                  "title": "Profil: Herstellung von Carbonsäure-Estern als Aromastoffe (Fruchtester)"
+                },
+                {
+                  "title": "Eigenschaften der Ester (u. a. Löslichkeit, Siedetemperatur, Zersetzung), Verwendung in Alltagsprodukten und in der Technik"
+                },
+                {
+                  "title": "Profil: Untersuchung der physikalischen und chemischen Eigenschaften von esterhaltigen Alltagsprodukten (z. B. Medikamente, Lebensmittel, Kosmetikartikel, Klebstoffe)"
+                },
+                {
+                  "title": "Bau von Fettmolekülen: Carbonsäureester aus Propan-1,2,3-triol (Glycerin) und Fettsäuren; Zusammenhang zwischen Molekülbau und Eigenschaften von Fetten, Z-Konfiguration bei ungesättigten Fettsäuren"
+                },
+                {
+                  "title": "Profil: Schmelzbereichsbestimmung"
+                },
+                {
+                  "title": "Bedeutung von Fetten und fetten Ölen: z. B. Anbau von Pflanzen als Energieträger vs. Nahrungsmittelgewinnung"
+                },
+                {
+                  "title": "Profil: Emulgatoren u. a. in Alltagsprodukten"
+                },
+                {
+                  "title": "Eigenschaften von Seifen und synthetischen Tensiden im Vergleich: Grenzflächenaktivität, amphiphiler Charakter; Nachteile der Seifen (Verhalten gegenüber saurem und hartem Wasser, basische Eigenschaft in Lösung)"
+                },
+                {
+                  "title": "Profil: Herstellung von Seifen"
+                },
+                {
+                  "title": "Zusammensetzung von Waschmitteln, Umweltproblematik beim Einsatz von Waschmitteln"
+                },
+                {
+                  "title": "Monosaccharide: Glucose und Fructose; Disaccharid: Saccharose; gesunde Ernährung"
+                },
+                {
+                  "title": "Glucose und Fructose als mehrfunktionelle Verbindungen: offenkettige Form und Ringschluss als nucleophile Addition, Keto-Enol-Tautomerie; Saccharose als Vollacetal"
+                },
+                {
+                  "title": "weitere Vorschläge für den Profilbereich: Energiegehalt von Fetten, Fette in Nahrungsmitteln, Margarineherstellung, Biodieselherstellung, Fette in Ölfarben, Waschwirkung, Geschichte der Waschmittel, Produktion von Süßwaren, Herstellung von Körperpflegeprodukten"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "leiten aus experimentellen Beobachtungen die Bildung von Estern aus Alkoholen und Carbonsäuren ab und begründen die Stoffeigenschaften der Ester mithilfe der zwischenmolekularen Wechselwirkungen."
+                },
+                {
+                  "text": "wenden das Prinzip der Reversibilität chemischer Reaktionen bei der Stoffklasse der Ester an, um Alltagsbeobachtungen zu erklären."
+                },
+                {
+                  "text": "erkennen den Einsatz von Estern in Alltagsprodukten und in der Technik und identifizieren Fette über das Strukturmerkmal Estergruppe als Ester."
+                },
+                {
+                  "text": "beschreiben den Bau von Fett-Molekülen über geeignete Darstellungsformen (z. B. Skelettformel, Halbstrukturformel)."
+                },
+                {
+                  "text": "erklären die physikalischen Eigenschaften von Fetten und fetten Ölen durch den Vergleich des räumlichen Baus von Fett-Molekülen mit gesättigten und ungesättigten Fettsäureresten."
+                },
+                {
+                  "text": "erläutern die Bedeutung von Fetten und fetten Ölen als nachwachsende Rohstoffe und bewerten deren Verwendungsmöglichkeiten."
+                },
+                {
+                  "text": "unterscheiden Seifen von modernen Tensiden und bewerten Vor- und Nachteile verschiedener Tenside."
+                },
+                {
+                  "text": "beschreiben die Zusammensetzung moderner Waschmittel und bewerten deren Funktionalität und Umweltverträglichkeit."
+                },
+                {
+                  "text": "beschreiben die Verwendung von wichtigen Zuckern im Alltag und bewerten deren Bedeutung für die Ernährung."
+                },
+                {
+                  "text": "vergleichen ausgewählte Zucker anhand des molekularen Baus und begründen damit deren chemisches Reaktionsverhalten."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "11",
+          "topics": [
+            {
+              "title": "Lernbereich 1: Wie Chemiker denken und arbeiten",
+              "sub_topics": [
+                {
+                  "title": "Gefahrstoffe: Gefahrstoffkennzeichnung gemäß aktueller Richtlinien, Gefahrenpotenzial, Sicherheitsmaßnahmen, Entsorgung, Laborregeln und Sicherheitsunterweisung in Schule und Arbeitswelt, Nutzung einer Gefahrstoffdatenbank"
+                },
+                {
+                  "title": "Analysemethoden und fachgemäße Arbeitstechniken: u. a. Dünnschichtchromatographie, Säure-Base- bzw. Redox-Titration, Verwendung computergestützter Messwerterfassungssysteme, Schnelltests"
+                },
+                {
+                  "title": "naturwissenschaftlicher Erkenntnisweg (Fragestellung, Hypothese, Planung und Durchführung von naturwissenschaftlichen Untersuchungen, Datenauswertung (u. a. digital), Dateninterpretation und Hypothesenprüfung, Regel oder Gesetz): u. a. Ursachen für Mess- und Verfahrensfehler (z. B. Ungenauigkeiten der Messgeräte, beim Ablesen oder durch den Versuchsaufbau); naturwissenschaftliche Modellierung und digitale Simulationen"
+                },
+                {
+                  "title": "Anfertigung und Auswertung verschiedener Darstellungsformen, Wechsel der Darstellungsform: u. a. Sach-, Adressaten- und Situationsbezug (Perspektivwechsel, Alltags- und Fachsprache, Vor- und Nachteile von Darstellungsformen); Aufbereitung und Auswertung von Daten, Nutzung von Tabellenkalkulationsprogrammen"
+                },
+                {
+                  "title": "Eigenschaften, Aussagekraft, Grenzen und Erweiterung von materiellen und ideellen Modellen: u. a. 3D-Modelle, Computersimulationen"
+                },
+                {
+                  "title": "Reaktionsschema, Reaktionsgleichung, Nomenklatur, Symbol- und Formelsprache, funktionelle Gruppen, Strukturelemente, Synthesewege"
+                },
+                {
+                  "title": "Quellen: Schulbuch, populär- und fachwissenschaftliche Literatur; kriteriengeleitete Auswahl von Internetquellen; Datenaufbereitung: Gefahr der Meinungsbeeinflussung"
+                },
+                {
+                  "title": "Nährstoff- und lebensmittelorientierte Empfehlungen zu ausgewogener und nachhaltiger Ernährung"
+                },
+                {
+                  "title": "reflektierte Verwendung von Arzneimitteln: Selbstmedikation, Einfluss von Werbung, Entwicklung von Abhängigkeit"
+                },
+                {
+                  "title": "Entwicklung naturwissenschaftlichen Wissens: u. a. angewandte Forschung, Ernährungsempfehlungen, Verwendung von Arzneimitteln, Diskurs in der Gesellschaft"
+                },
+                {
+                  "title": "Entscheidungsfindung als systematischer und begründeter Prozess: Erkennen, Priorisieren und Abwägen von Bewertungskriterien; Formulierung von Handlungsoptionen; Reflexion von Entscheidungen; gesellschaftlich relevante Errungenschaften der Wissenschaft Chemie und der Technik in Bezug auf eine nachhaltige Entwicklung und ihre Auswirkungen auf den Menschen"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "recherchieren an ausgewählten Beispielen die Gefahrstoffkennzeichnung von Chemikalien und leiten daraus geeignete Maßnahmen zum sicherheitsgerechten Umgang mit Laborchemikalien und deren umweltgerechter Entsorgung ab, um dadurch das Gefahrenpotential beim Experimentieren zu minimieren."
+                },
+                {
+                  "text": "setzen Analysemethoden und fachgemäße Arbeitstechniken (u. a. Dünnschichtchromatographie, Säure-Base- bzw. Redox-Titration) bei der selbständigen, sicherheitsgerechten Durchführung qualitativer und quantitativer naturwissenschaftlicher Untersuchungen ein."
+                },
+                {
+                  "text": "stellen theoriebasiert zu chemischen Fragestellungen Hypothesen auf, planen ausgehend von diesen überwiegend selbständig naturwissenschaftliche Untersuchungen und nutzen Modelle und digitale Simulationen, um chemische Fragestellungen zu bearbeiten."
+                },
+                {
+                  "text": "beurteilen die Validität von erhobenen oder recherchierten Daten (u. a. digitale Messwerterfassung, Internetrecherche) und benennen mögliche Ursachen für Mess- und Verfahrensfehler."
+                },
+                {
+                  "text": "bereiten erhobene oder recherchierte Daten für die Auswertung auf, indem sie verstärkt Tabellenkalkulationsprogramme nutzen. Sie finden Trends, Strukturen und Beziehungen, um die zugrunde liegende Hypothese zu stützen bzw. zu falsifizieren."
+                },
+                {
+                  "text": "verwenden verschiedene Modelle (u. a. Moleküldarstellungen und Simulationen am Computer) zur Veranschaulichung von Bindungsverhältnissen und Molekülgeometrien in komplexen organischen Molekülen (z. B. Enzyme, Wirkstoff-Moleküle) und Wechselwirkungen zwischen Wirkstoff-Molekül und Rezeptor-Molekül bzw. Substrat-Molekül und Enzym-Molekül."
+                },
+                {
+                  "text": "beschreiben charakteristische funktionelle Gruppen und Strukturelemente sowie den Bau von Molekülen, indem sie geeignete Darstellungsformen (z. B. Fischer-Projektionsformel, Haworth-Projektionsformel, analoge und digitale 3D-Darstellungen) nutzen oder interpretieren."
+                },
+                {
+                  "text": "überführen Sachverhalte in eine sach-, adressaten- und situationsgerechte Darstellungsform, um chemische und pharmazeutische Problemstellungen zu bearbeiten und darzustellen."
+                },
+                {
+                  "text": "schätzen auch selbständig beschaffte analoge und digitale Quellen im Hinblick auf ihre Eignung ein und nutzen sie, um Sachverhalte zu bewerten."
+                },
+                {
+                  "text": "formulieren unter Nutzung fachwissenschaftlicher Erkenntnisse der Chemie systematisch und begründet Handlungsoptionen (u. a. Lebensmittelauswahl, Verwendung von Arzneimitteln), wenden dabei Entscheidungsstrategien an und reflektieren über getroffene Entscheidungen."
+                },
+                {
+                  "text": "beschreiben und bewerten soziale, kulturelle, technologische sowie ökologische und ökonomische Einflüsse auf die Entwicklung naturwissenschaftlichen Wissens."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 2: Lebensmittelchemie (ca. 34 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Zusammensetzung von Lebensmitteln: Makronährstoffe (Kohlenhydrate, Fette, Proteine; charakteristische funktionelle Gruppen), Mikronährstoffe (Vitamine, Mineralsalze), Ballaststoffe, Sekundäre Pflanzenstoffe, Zusatzstoffe (z. B. Konsistenzgeber, Farbstoffe, Konservierungsmittel)"
+                },
+                {
+                  "title": "Mikronährstoffe: Bedeutung von Vitaminen und Mineralsalzen an je einem Beispiel"
+                },
+                {
+                  "title": "qualitativer und quantitativer Nachweis von Lebensmittelinhaltsstoffen (z. B. Vitamin C, organische Säuren, Nitrat-Ionen, Glucose, Lebensmittelfarbstoffe) durch Farbreaktion, Schnelltests oder Säure-Base- bzw. Redox-Titration (u. a. digitale Messwerterfassung); Zusammenhang zwischen pH- und pOH-Wert (ohne Massenwirkungsgesetz)"
+                },
+                {
+                  "title": "chromatographische Analysemethoden: Dünnschichtchromatographie (DC); stationäre und mobile Phase; Wahl des Fließmittels; Auswertung von Chromatogrammen: Identifikation (Co-Chromatographie, Retentionszeit, Rf-Wert), ggf. Sichtbarmachen der Banden"
+                },
+                {
+                  "title": "optische Aktivität: Bau und Funktion eines Polarimeters, spezifischer Drehwinkel, Biot-Gesetz"
+                },
+                {
+                  "title": "chirale Moleküle (z. B. Milchsäure- und Monosaccharid-Moleküle): asymmetrisches Kohlenstoff-Atom, Chiralitätszentrum, Einsatz von Modellierungssoftware)"
+                },
+                {
+                  "title": "Fischer-Projektion, D-/L-Nomenklatur, Enantiomere, Diastereomere"
+                },
+                {
+                  "title": "experimentelle Nachweise von Kohlenhydraten oder Süßungsmitteln in Lebensmitteln z. B. mittels Fehling-Probe, Silberspiegel-Probe, GOD-Test, Cer(IV)-ammoniumnitrat-Test, Dinitrophenylhydrazin-Test, Schiffsche-Probe, Seliwanow-Probe; ggf. Dünnschichtchromatographie"
+                },
+                {
+                  "title": "Monosaccharide (Glucose, Fructose und Galactose), Stereochemie: offenkettige Form und Fischer-Projektion; Anomeren-Gleichgewicht, Haworth-Projektion, Pyranose- und Furanose-Form"
+                },
+                {
+                  "title": "glykosidische Bindung; Disaccharide (z. B. Maltose, Trehalose, Saccharose, Lactose, Cellobiose), reduzierende und nicht-reduzierende Disaccharid-Moleküle"
+                },
+                {
+                  "title": "Polysaccharide: Stärke (Amylose und Amylopektin), Glykogen, Cellulose, ggf. Inulin"
+                },
+                {
+                  "title": "Bedeutung von Kohlenhydraten für die Energieversorgung; Problematik eines hohen Konsums freier Zucker (z. B. Übergewicht und Adipositas, Diabetes-Typ II)"
+                },
+                {
+                  "title": "Fette: molekularer Bau, Bedeutung für die Speicherung und Freisetzung von Energie, Bedeutung für eine gesunde Ernährung (z. B. essenzielle Fettsäuren, Fettsäuremuster, gehärtete Fette)"
+                },
+                {
+                  "title": "Proteine: Aufbau aus 2-Aminocarbonsäure-Bausteinen, Peptidbindung, molekularer Bau von L-2-Aminocarbonsäuren (Aminogruppe, Carboxygruppe, allgemeiner Rest), Hinweis auf essenzielle 2-Aminocarbonsäuren, Funktion als Baustoffe, Enzyme"
+                },
+                {
+                  "title": "Verdauung: z. B. unterschiedliche Enzymausstattung (Lactose-Unverträglichkeit), Bedeutung des Darmmikrobioms, Prinzip der Oberflächenvergrößerung durch Denaturierung (Magensäure) oder Emulgierung (Gallenflüssigkeit)"
+                },
+                {
+                  "title": "Wirkung von Verdauungsenzymen: enzymatische Hydrolyse, Substrat- und Wirkungsspezifität von Enzymen, Schlüssel-Schloss-Prinzip, reversible Enzymhemmung"
+                },
+                {
+                  "title": "Resorption: hydrophile, lipophile und amphiphile Nahrungsbestandteile; ggf. Fructose-Malabsorption"
+                },
+                {
+                  "title": "Vergleich verschiedener Möglichkeiten der Lebensmittelauswahl im Hinblick auf Ausgewogenheit und Nachhaltigkeit: ausgeglichene Energiebilanz, Massenanteil und energetischer Anteil von Makronährstoffen, Ballaststoffen und Wasser (u. a. Einsatz von Tabellenkalkulationssoftware), Energiedichte, essenzielle Nahrungsbestandteile (u. a. Wasser), ökologischer Fußabdruck"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "recherchieren die Zusammensetzung von Lebensmitteln, um sie nach selbstgewählten Kriterien zu kategorisieren."
+                },
+                {
+                  "text": "vergleichen ausgewählte Inhaltsstoffe von Nahrungsmitteln anhand des submikroskopischen Baus, um sie den Makronährstoffen (Kohlenhydrate, Fette und Proteine) und Mikronährstoffen zuzuordnen und deren Bedeutung für den menschlichen Körper zu beschreiben."
+                },
+                {
+                  "text": "führen experimentelle Untersuchungen an Lebensmitteln durch, um Makronährstoffe und weitere Bestandteile nachzuweisen."
+                },
+                {
+                  "text": "wählen geeignete Verfahren aus, um den Gehalt von Lebensmittelinhaltsstoffen experimentell zu bestimmen."
+                },
+                {
+                  "text": "wenden chromatographische Analysemethoden an und werten Chromatogramme aus, um die enthaltenen Reinstoffe in Lebensmitteln zu identifizieren."
+                },
+                {
+                  "text": "beschreiben den spezifischen Drehwinkel als Kenneigenschaft, um optisch aktive Substanzen zu charakterisieren sowie zu identifizieren."
+                },
+                {
+                  "text": "erkennen in Molekülen asymmetrische Kohlenstoff-Atome als Stereozentren, um Moleküle den verschiedenen Stereoisomerietypen zuzuordnen."
+                },
+                {
+                  "text": "benennen chirale Moleküle mithilfe der Nomenklatur und ordnen ausgewählte einfache Biomoleküle dem D- oder L-Typ zu."
+                },
+                {
+                  "text": "charakterisieren ausgewählte Kohlenhydrate aufgrund des Molekülbaus als Mono-, Di- und Polysaccharide und begründen deren chemische und physiologische Eigenschaften u. a. mithilfe des Struktur-Eigenschafts-Konzepts."
+                },
+                {
+                  "text": "bewerten die Bedeutung von Kohlenhydraten für die Ernährung."
+                },
+                {
+                  "text": "erklären die Bedeutung von Fetten und fetten Ölen für die Ernährung mithilfe der Zusammensetzung und Struktur von Fett-Molekülen."
+                },
+                {
+                  "text": "beschreiben die allgemeine Grundstruktur von L-2-Aminocarbonsäure-Molekülen, leiten daraus den allgemeinen Aufbau von Protein-Molekülen ab und beschreiben deren Bedeutung für den menschlichen Körper."
+                },
+                {
+                  "text": "unterteilen die Bestandteile von Nahrungsmitteln in hydrophile, lipophile und amphiphile Stoffe, um z. B. die Resorption und Verweildauer von Vitaminen im Körper zu begründen und geeignete Lösemittel für die Zubereitung abzuleiten."
+                },
+                {
+                  "text": "erklären die Bedeutung der verschiedenen Verdauungssäfte aus chemischer Sicht."
+                },
+                {
+                  "text": "beschreiben anhand einer einfachen Modellvorstellung Enzymreaktionen und deren Hemmung."
+                },
+                {
+                  "text": "begründen individuelle Unterschiede (genetisch bedingt oder erworben) bei der Verdauung und Resorption von Nahrungsbestandteilen."
+                },
+                {
+                  "text": "vergleichen verschiedene Möglichkeiten der Lebensmittelauswahl bezüglich der chemischen Zusammensetzung der Nahrung und bewerten diese im Hinblick auf Ausgewogenheit und Nachhaltigkeit, z. B. Klimawandel. Dabei berücksichtigen sie kontroverse Vorstellungen zwischen wissenschaftlicher Erkenntnis, tradiertem Wissen und Ernährungstrends."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_url": "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/8/chemie",
+      "last_checked": "2026-06-22"
+    },
+    {
+      "school_type": "Gymnasium (HG/SG/MuG/WWG/SWG)",
+      "grade_levels": [
+        {
+          "grade": "9",
+          "topics": [
+            {
+              "title": "Lernbereich 1: Wie Chemiker denken und arbeiten",
+              "sub_topics": [
+                {
+                  "title": "Gefahrstoffe: Gefahrstoffkennzeichnung gemäß aktueller Richtlinien, Gefahrenpotenzial, Sicherheitsmaßnahmen, Entsorgung, Laborregeln und Sicherheitsunterweisung"
+                },
+                {
+                  "title": "Arbeitstechniken: Verwendung einfacher Laborgeräte zur Temperatur-, Massen- und Volumenbestimmung, Aufbau einfacher Apparaturen"
+                },
+                {
+                  "title": "naturwissenschaftlicher Erkenntnisweg (Fragestellung, Hypothese, Planung und Durchführung von Experimenten, Datenauswertung (ggf. digital) und Dateninterpretation): Hypothesenprüfung, Regel oder Gesetz; naturwissenschaftliches Protokoll (Dokumentation, Auswertung und Veranschaulichung, auch digital)"
+                },
+                {
+                  "title": "Versuchsplanung und Versuchsdurchführung: Konstanthalten und Variieren von Einflussgrößen (Variablenkontrolle, abhängige und unabhängige Variable), positive und negative Blindprobe"
+                },
+                {
+                  "title": "Versuchsprotokollierung, Versuchsauswertung und Versuchsinterpretation: Unterscheidung zwischen beobachtender Beschreibung und deutender Erklärung, Abhängigkeit der Interpretation von z. B. Messfehlern, Vorwissen, Erwartungshaltung; Verwendung von digitaler Messwerterfassung und Tabellenkalkulationsprogrammen"
+                },
+                {
+                  "title": "Entwicklung und Eigenschaften naturwissenschaftlichen Wissens: Nutzung unterschiedlicher Methoden zur Erkenntnisgewinnung; Daten und deren Interpretation als Grundlage naturwissenschaftlicher Erkenntnisgewinnung"
+                },
+                {
+                  "title": "Eigenschaften, Grenzen und Erweiterung von materiellen und ideellen Modellen: Modell-Definition, Vergleich von Modelldarstellungen zum Aufbau der Materie (u. a. Teilchenmodell, Daltonsches Atommodell, Kern-Hülle-Modell)"
+                },
+                {
+                  "title": "Reaktionsschema, Nomenklatur, Symbol- und Formelsprache: binäre anorganische Verbindungen (Molekülformel, Verhältnisformel), einfache Kohlenwasserstoffe (Molekülformel), Reaktionsgleichung, reversible Reaktionen"
+                },
+                {
+                  "title": "Anfertigung und Auswertung verschiedener Darstellungsformen, Wechsel der Darstellungsform (ggf. unter Verwendung geeigneter Software): Texte, Tabellen; Schnitt- und Schemazeichnungen (u. a. zur Darstellung von Versuchsaufbauten und zur Visualisierung der Teilchenebene); Diagramme zur Darstellung qualitativer Zusammenhänge (z. B. Flussdiagramm, Baumdiagramm), Kreis- und Achsendiagramme zur Darstellung quantitativer Zusammenhänge (z. B. Punkt-, Linien- und Säulendiagramm; eine abhängige Variable), Bezeichnung von Messgröße, Größensymbol und Einheit; mathematische Beziehungen zwischen Größen"
+                },
+                {
+                  "title": "Quellen: v. a. Schulbuch, populärwissenschaftliche Literatur bzw. Internetquellen; Datenaufbereitung: Gefahr der Meinungsbeeinfussung"
+                },
+                {
+                  "title": "gesellschaftlich relevante Errungenschaften der Chemie und die Bewertung ihrer Bedeutung für Mensch und Umwelt: Nachhaltigkeit (ökologische, ökonomische, soziale Aspekte), Berufsfelder in der Chemie"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "kennen die Bedeutung der Gefahrstoffkennzeichnung und leiten daraus Maßnahmen zum sicherheitsgerechten Umgang mit Haushalts- und wenigen ausgewählten Laborchemikalien und deren umweltgerechter Entsorgung ab."
+                },
+                {
+                  "text": "setzen grundlegende Arbeitstechniken bei der Durchführung einfacher angeleiteter Experimente ein. Dabei nehmen sie mithilfe verschiedener Darstellungsformen die Dokumentation, Auswertung und Veranschaulichung der erhobenen Daten strukturiert nach Anleitung vor."
+                },
+                {
+                  "text": "formulieren ausgehend von einfach strukturierten Alltagsphänomenen chemische Fragestellungen und planen hypothesengeleitet v. a. qualitative Experimente zu deren Beantwortung."
+                },
+                {
+                  "text": "interpretieren erhobene oder recherchierte Daten und setzen diese zu den Eingangshypothesen in Beziehung."
+                },
+                {
+                  "text": "beschreiben die Entwicklung naturwissenschaftlichen Wissens im Rahmen eines Erkenntniswegs und schätzen ab, ob eine vorgegebene Fragestellung mithilfe chemischer Methoden zu beantworten ist."
+                },
+                {
+                  "text": "beschreiben Eigenschaften von Modellen und verwenden Modelle zur Veranschaulichung und Erklärung des Aufbaus der Materie aus verschiedenen Teilchen und zur Beschreibung chemischer Reaktionen."
+                },
+                {
+                  "text": "beurteilen die Aussagekraft von Modellvorstellungen zum Aufbau der Materie, indem sie Modelle mit der stofflichen Wirklichkeit vergleichen."
+                },
+                {
+                  "text": "vergleichen die Eignung verschiedener Modelle zum Aufbau der Materie zur Erklärung von chemischen Phänomenen, erkennen dabei die Eigenschaften, Aussagekraft und Grenzen von Modellen und leiten daraus die Notwendigkeit ab, Modelle kritisch zu hinterfragen und weiterzuentwickeln."
+                },
+                {
+                  "text": "übersetzen Alltagssprache in Fachsprache und umgekehrt, nutzen die systematische Nomenklatur zur Benennung von Stoffen und unterscheiden bei der Formulierung chemischer Sachverhalte exakt zwischen Stoff- und Teilchenebene."
+                },
+                {
+                  "text": "nutzen die Symbol- und Formelsprache zur Beschreibung des submikroskopischen Aufbaus von Stoffen aus Atomen, Molekülen und Ionen sowie zur Beschreibung der Teilchenänderungen bei einfachen chemischen Reaktionen."
+                },
+                {
+                  "text": "beantworten chemische Fragestellungen, indem sie vorgegebene, auf einfachen Texten und wenigen Darstellungsformen beruhende Quellen auswerten."
+                },
+                {
+                  "text": "recherchieren und erkennen für die Bewertung von chemischen Sachverhalten relevante Kriterien und wägen sie gegeneinander ab, indem sie vorgegebene Pro- und Kontra-Argumente vergleichen."
+                },
+                {
+                  "text": "beschreiben Aufgaben und Anwendungsbereiche der Chemie und diskutieren deren Bedeutung für die Gesellschaft, um die vielfältigen chemischen Berufsfelder in die Berufswahl einzubeziehen."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 2: Stoffe und ihre Eigenschaften – Von beobachtbaren Stoffeigenschaften zum Teilchenmodell (ca. 10 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Stoffe und Stoffportionen: Stoffart, Quantität (u. a. Masse, Volumen)"
+                },
+                {
+                  "title": "Teilchenmodell zum Aufbau der Materie"
+                },
+                {
+                  "title": "Aggregatzustände, Aggregatzustandsänderung"
+                },
+                {
+                  "title": "Kenneigenschaften (Schmelztemperatur, Siedetemperatur, Dichte), weitere Eigenschaften (u. a. Löslichkeit)"
+                },
+                {
+                  "title": "Reinstoffe und Stoffgemische (Gasgemisch, Lösung, Suspension, Emulsion, Rauch, Nebel), Luft als Stoffgemisch"
+                },
+                {
+                  "title": "Trennung von Stoffgemischen: Destillation, Extraktion"
+                },
+                {
+                  "title": "Gasnachweise: Glimmspanprobe, Kalkwasserprobe, Knallgasprobe"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "beschreiben die Eigenschaften von ausgewählten Stoffen aus dem Alltag und ordnen Stoffe nach verschiedenen Kriterien. Dabei erläutern sie die Notwendigkeit definierter Kenneigenschaften zur Charakterisierung eines Reinstoffes."
+                },
+                {
+                  "text": "wenden das Teilchenmodell zur Erklärung von Stoffeigenschaften und physikalischen Vorgängen an und nutzen ausgewählte Stoffeigenschaften zur Stofftrennung."
+                },
+                {
+                  "text": "weisen die Gase Sauerstoff, Kohlenstoffdioxid und Wasserstoff mithilfe einfacher Reaktionen nach."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 3: Chemische Reaktion – Vom Teilchenmodell zum Daltonschen Atommodell (ca. 20 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Stoff- und Energieumsatz bei chemischen Reaktionen"
+                },
+                {
+                  "title": "chemische Verbindungen, chemische Elemente (Atomarten, Periodensystem, Einteilung in Metalle, Halbmetalle und Nichtmetalle)"
+                },
+                {
+                  "title": "Reaktionsenergie: Auftreten von Energieänderungen in Form von Wärme, Arbeit, Strahlung; exotherme und endotherme Reaktion"
+                },
+                {
+                  "title": "Aktivierung chemischer Reaktionen, Katalyse"
+                },
+                {
+                  "title": "Erhaltung der Masse bei chemischen Reaktionen"
+                },
+                {
+                  "title": "Atommodell nach Dalton, Atomartensymbole, Atommasse"
+                },
+                {
+                  "title": "Ermittlung der Molekülformel: Avogadro-Hypothese, Volumengesetze bei Gasreaktionen, Element- und Verbindungsmoleküle"
+                },
+                {
+                  "title": "chemische Formelsprache: Molekülformel, systematische Benennung von binären Molekülen"
+                },
+                {
+                  "title": "Ableiten von Stoffumsätzen aus Reaktionsgleichungen für Molekülreaktionen; Quantitätsgrößen: Stoffmenge, Masse, Volumen und Teilchenzahl; Umrechnungsgrößen: Avogadro-Konstante, molare Masse, molares Volumen, Dichte und Teilchenmasse; Größengleichungen"
+                },
+                {
+                  "title": "einfache Molekülreaktionen: u. a. Verbrennung von einfachen Kohlenwasserstoffen, Molekülformeln und Namen der Vertreter der homologen Reihe der Alkane"
+                },
+                {
+                  "title": "einfacher Kohlenstoffatom-Kreislauf"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "beschreiben das Verschwinden und Neuentstehen von Stoffen sowie den zugehörigen Energieumsatz als typisch für die Stoffebene chemischer Reaktionen und grenzen die chemische Reaktion dadurch von einem physikalischen Vorgang ab."
+                },
+                {
+                  "text": "klassifizieren die bei chemischen Reaktionen auftretende Energieänderung und stellen diese auch unter Betrachtung katalysierter Reaktionen grafisch dar."
+                },
+                {
+                  "text": "wenden das Daltonsche Atommodell an, um die Massenerhaltung und Stoffänderungen mit der Umgruppierung von Atomen auf der Teilchenebene zu erklären und Gemische, Verbindungen und Elemente voneinander abzugrenzen."
+                },
+                {
+                  "text": "nutzen das Periodensystem als Informationsquelle für die verschiedenen Atomarten und für die Zuordnung der Elemente zu den Stoffklassen Metalle, Halbmetalle oder Nichtmetalle."
+                },
+                {
+                  "text": "begründen die bei chemischen Reaktionen auftretende Energieänderung mit dem Spalten und Bilden von chemischen Bindungen auf Grundlage des Daltonschen Atommodells."
+                },
+                {
+                  "text": "werten Versuchsergebnisse zur Molekülformelbestimmung für gasförmige Elemente und binäre Verbindungen aus."
+                },
+                {
+                  "text": "berechnen mithilfe von Größengleichungen die Stoffumsätze bei einfachen Molekülreaktionen."
+                },
+                {
+                  "text": "vergleichen die Kohlenstoffdioxidbilanz bei der Verbrennung verschiedener Brennstoffe, um die Verwendung verschiedener Energieträger zu bewerten (z. B. Umweltbelastung, Nachhaltigkeit) und um den durch die Verbrennung fossiler Energieträger ausgelösten Anstieg der Kohlenstoffdioxid-Konzentration in der Atmosphäre anhand des Kohlenstoffatom-Kreislaufs zu begründen."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 4: Chemische Verbindungen und ihre Eigenschaften – Vom Daltonschen Atommodell zum Kern-Hülle-Modell (ca. 11 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Reibungselektrizität (Grundlagen der Elektrostatik) und elektrische Leitfähigkeit, Bausteine der Reinstoffe (Atome, Moleküle, Ionen), Verbindungsklassen (molekulare Verbindungen, Salze)"
+                },
+                {
+                  "title": "Kern-Hülle-Modell: Rutherfordscher Streuversuch, Proton, Neutron, Elektron"
+                },
+                {
+                  "title": "Metalle und Metallbindung: Elektronengasmodell, Eigenschaften (Duktilität, Wärmeleitfähigkeit, elektrische Leitfähigkeit, Glanz)"
+                },
+                {
+                  "title": "chemische Formelsprache: Verhältnisformeln binärer Salze (z. B. Natriumchlorid, Natriumsulfid, Magnesiumoxid), systematische Benennung von Salzen (z. B. Aluminiumoxid, Blei(IV)-oxid)"
+                },
+                {
+                  "title": "Ionenbindung als ungerichtete elektrostatische Anziehung zwischen Metall-Kationen und Nichtmetall-Anionen in einem Ionengitter"
+                },
+                {
+                  "title": "Eigenschaften von Salzen: Kristallinität, Sprödigkeit, elektrische Leitfähigkeit von Schmelzen und Lösungen"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "werten Ergebnisse (z. B. Reibungselektrizität, Leitfähigkeitsmessungen) von Experimenten mit molekularen Stoffen, Metallen und Salzen aus und führen diese Ergebnisse auf den unterschiedlichen Aufbau zurück."
+                },
+                {
+                  "text": "zeigen anhand experimenteller Befunde die Grenzen des Daltonschen Atommodells auf, ordnen Protonen und Neutronen dem Atomkern und Elektronen der Atomhülle zu und skizzieren deren Anordnung, um experimentelle Beobachtungen (elektrische Leitfähigkeit von Metallen bzw. Salzschmelzen und Salzlösungen, Rutherfordsches Streuexperiment) zu erklären."
+                },
+                {
+                  "text": "begründen anhand der Eigenschaften von Metallen die Grenzen des Daltonschen Atommodells und verwenden ein Modell für den Bau von Metallen."
+                },
+                {
+                  "text": "grenzen binäre molekulare Verbindungen von binären ionogenen Verbindungen ab, indem sie bei chemischen Reaktionen zwischen der Reaktion von einem Nichtmetall mit einem Nichtmetall und der Reaktion von einem Metall mit einem Nichtmetall unterscheiden."
+                },
+                {
+                  "text": "unterscheiden die gerichtete Anziehung zwischen den ungeladenen Nichtmetallatomen in Molekülen von der ungerichteten Anziehung zwischen Metall-Kationen und Nichtmetall-Anionen in einem Ionengitter, um Molekül- von Verhältnisformeln abzugrenzen."
+                },
+                {
+                  "text": "modellieren den Aufbau von Molekülen und einfachen Ionengittern, um zwischen einer Molekül- und einer Verhältnisformel zu unterscheiden."
+                },
+                {
+                  "text": "leiten aus vorgegebenen Ionenladungen die Verhältnisformeln binärer Salze ab, um den Salznamen und die Formel ineinander zu transformieren, und erklären die Eigenschaften von Salzen als Folge ihres Aufbaus aus Ionen."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 5: Atombau und gekürztes Periodensystem – Vom Kern-Hülle-Modell zum Energiestufenmodell und zum Ordnungsprinzip des gekürzten Periodensystems (ca. 6 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Energiestufenmodell: Ionisierungsenergie, Elektronenkonfiguration"
+                },
+                {
+                  "title": "gekürztes Periodensystem: Protonenzahl, Nukleonenzahl; Hauptgruppen, Valenzelektronen; Perioden"
+                },
+                {
+                  "title": "Edelgaskonfiguration, Ionenladungszahl von Kationen und Anionen, Edelgasregel"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "beschreiben das Energiestufenmodell und zeigen Beziehungen zwischen experimentellen Befunden zur Ionisierungsenergie und den Ordnungsprinzipien des Periodensystems auf."
+                },
+                {
+                  "text": "entnehmen aus dem Periodensystem die Valenzelektronenzahl sowie die Protonenzahl der Atome und ermitteln durch Vergleich der Valenzelektronenzahl mit der Edelgaskonfiguration die Ladung von Atom-Ionen."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 6: Donator-Akzeptor-Konzept – Elektronenübergänge (Entladen und Bilden von Ionen) (ca. 9 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Elektrolyse als erzwungene Redoxreaktion (z. B. Elektrolyse einer Zinkiodid-Lösung)"
+                },
+                {
+                  "title": "Salzbildung als exotherme Reaktion (nur Reaktionsenergie)"
+                },
+                {
+                  "title": "Redoxreaktion als Elektronenübergang zwischen Teilchen: Oxidation als Elektronenabgabe, Reduktion als Elektronenaufnahme (Salzbildung, elektrochemische Abscheidung von Metallen, Elektrolyse)"
+                },
+                {
+                  "title": "Reduktionsmittel als Elektronendonator, Oxidationsmittel als Elektronenakzeptor"
+                },
+                {
+                  "title": "elektrochemische Stromerzeugung als freiwillige Redoxreaktion (z. B. Zink-Iod-Batterie, Magnesium-Iod-Batterie)"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "erläutern die bei der Elektrolyse von Salzlösungen ablaufenden Vorgänge, um die Abscheidung von Metallen und Nichtmetallen zu erklären."
+                },
+                {
+                  "text": "erläutern die bei der Salzbildung aus den Elementen beobachteten Veränderungen durch die Entstehung von Atom-Ionen, erklären deren Entstehung mithilfe des Energiestufenmodells und begründen den exothermen Verlauf mithilfe der Gitterenergie als Triebkraft der Salzbildung."
+                },
+                {
+                  "text": "beschreiben die Ionenbildung als Elektronenübergang zwischen Metall- und Nichtmetall-Atomen und wenden dabei das Donator-Akzeptor-Konzept an."
+                },
+                {
+                  "text": "beschreiben das Reaktionsverhalten von Metallen in Metallsalzlösungen und deuten es auf der Teilchenebene als Redoxreaktion. Über die Formulierung von Redoxteilgleichungen verdeutlichen sie Elektronenabgabe und Elektronenaufnahme."
+                },
+                {
+                  "text": "leiten die Reversibilität der Redoxreaktionen aus dem Zusammenhang zwischen erzwungener Redoxreaktion und freiwillig ablaufender Redoxreaktion ab und bewerten u. a. Alltagsformulierungen wie „leere Batterie“, „geladener Akku“."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "10",
+          "topics": [
+            {
+              "title": "Lernbereich 1: Wie Chemiker denken und arbeiten",
+              "sub_topics": [
+                {
+                  "title": "Gefahrstoffe: Gefahrstoffkennzeichnung gemäß aktueller Richtlinien, Gefahrenpotenzial, Sicherheitsmaßnahmen, Entsorgung, Laborregeln und Sicherheitsunterweisung, Nutzung einer Gefahrstoffdatenbank"
+                },
+                {
+                  "title": "Arbeitstechniken: u. a. Herstellung von Lösungen definierter Konzentration"
+                },
+                {
+                  "title": "naturwissenschaftlicher Erkenntnisweg (Fragestellung, Hypothese, Planung und Durchführung von Experimenten, Datenauswertung (ggf. digital), Dateninterpretation und Hypothesenprüfung), Regel oder Gesetz: u. a. einfache Berechnungen zu Stoffmengenkonzentrationen"
+                },
+                {
+                  "title": "Entwicklung und Eigenschaften naturwissenschaftlichen Wissens: u. a. Subjektivität, Vorläufigkeit, empirische Daten als Gültigkeitskriterium für chemische Modelle und Theorien"
+                },
+                {
+                  "title": "Eigenschaften, Aussagekraft, Grenzen und Erweiterung von materiellen und ideellen Modellen: u. a. Elektronendichteverteilung und ladungscodierte Elektronendichteoberfläche in Molekülen, Oxidationszahlen; Verwendung von Molekülmodellierungssoftware"
+                },
+                {
+                  "title": "Reaktionsgleichung, Nomenklatur, Symbol- und Formelsprache: u. a. Formeldarstellungen (Valenzstrichformel, Keilstrichformel, Strukturformel, Halbstrukturformel, Skelettformel, Projektionsformel) bei organischen Molekülen; Reaktionsgleichung reversibler Reaktionen; Zerlegung in Teilgleichungen"
+                },
+                {
+                  "title": "Anfertigung und Auswertung verschiedener Darstellungsformen, Wechsel der Darstellungsform: u. a. Diagramme zur Darstellung qualitativer Zusammenhänge (z. B. Concept-Maps), Diagramme zur Darstellung quantitativer Zusammenhänge (z. B. Diagramme mit mehreren Datenreihen); Einsatz geeigneter Software"
+                },
+                {
+                  "title": "Quellen: v. a. Schulbuch, aufbereitete Fachliteratur, ausgewählte Internetquellen; Datenaufbereitung: Gefahr der Meinungsbeeinflussung"
+                },
+                {
+                  "title": "Entscheidungsfindung als systematischer und begründeter Prozess: Erkennen, Priorisieren und Abwägen von Bewertungskriterien; Formulieren von Handlungsoptionen, Reflexion von Entscheidungen; gesellschaftlich relevante Errungenschaften der Wissenschaft Chemie und der Technik in Bezug auf ihre Auswirkung auf Mensch und Umwelt"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "kennen die Bedeutung der Gefahrstoffkennzeichnung und leiten daraus Maßnahmen zum sicherheitsgerechten Umgang mit Laborchemikalien und deren umweltgerechter Entsorgung ab."
+                },
+                {
+                  "text": "setzen grundlegende Arbeitstechniken bei der Durchführung selbst geplanter Experimente ein. Dabei nehmen sie mithilfe verschiedener Darstellungsformen die Dokumentation, Auswertung und Veranschaulichung der erhobenen Daten selbständig vor."
+                },
+                {
+                  "text": "formulieren zu komplexer strukturierten Phänomenen des Alltags chemische Fragestellungen und planen hypothesengeleitet vermehrt auch quantitative Experimente zu deren Beantwortung."
+                },
+                {
+                  "text": "beurteilen die Gültigkeit von erhobenen oder recherchierten Daten und finden in diesen Daten Trends, Strukturen und Beziehungen."
+                },
+                {
+                  "text": "beschreiben Grenzen des im Rahmen eines naturwissenschaftlichen Erkenntniswegs generierten Wissens und leiten daraus Aussagen zur Gültigkeit dieses Wissens ab."
+                },
+                {
+                  "text": "beschreiben Eigenschaften von Modellen und verwenden Modelle zur Veranschaulichung sowie zur Erklärung von Stoffeigenschaften und des Reaktionsverhaltens von Teilchen."
+                },
+                {
+                  "text": "verwenden z. B. Bindungs- und Wechselwirkungsmodelle im Rahmen eines Erkenntniswegs zur hypothesengeleiteten Beantwortung chemischer Fragestellungen."
+                },
+                {
+                  "text": "leiten aus Ungenauigkeiten der Alltagsprache die Notwendigkeit einer exakten Fachsprache ab (u. a. Säurebegriff in der Alltags- und Fachsprache)."
+                },
+                {
+                  "text": "unterscheiden zwischen alltags- sowie fachsprachlichen Texten und Bildern und verarbeiten unterschiedliche Quellen zur Beantwortung chemischer Fragestellungen adressaten- und situationsgerecht."
+                },
+                {
+                  "text": "stellen Teil- und Gesamtgleichungen auf, um chemische Reaktionen zu beschreiben."
+                },
+                {
+                  "text": "erkennen die ethische Relevanz in lebensweltbezogenen chemischen Sachverhalten und bewerten diese angeleitet im Rahmen eines Entscheidungsfindungsprozesses auch hinsichtlich weiterer Aspekte (z. B. ökologische, wirtschaftliche)."
+                },
+                {
+                  "text": "recherchieren in bereitgestellten fachwissenschaftlichen Quellen bzw. im Internet Informationen und bereiten diese so auf, dass aus ihnen Bewertungskriterien abgeleitet werden können."
+                },
+                {
+                  "text": "formulieren unter Nutzung fachwissenschaftlicher Erkenntnisse der Chemie systematisch und begründet Handlungsoptionen, wenden dabei Entscheidungsstrategien an und reflektieren über getroffene Entscheidungen."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 2: Moleküle – Mit dem einfachen Orbitalmodell zum Elektronenpaarabstoßungsmodell (ca. 15 Std.)",
+              "sub_topics": [
+                {
+                  "title": "einfache Beispiele zur Valenzstrichschreibweise"
+                },
+                {
+                  "title": "einfaches Orbitalmodell: Orbital als Elektronenwolke und als Aufenthaltsraum für Elektronen"
+                },
+                {
+                  "title": "Elektronenpaarbindung: Kräftegleichgewicht, bildhaftes Molekül-Orbital-Schema für das Wasserstoff-Molekül (bindendes und antibindendes Molekülorbital unterschiedlicher Energie, Besetzung mit Elektronen, Bindungsenergie), Einfach- und Mehrfachbindung, Bindigkeit, Formalladung"
+                },
+                {
+                  "title": "bindende und nicht-bindende Elektronenpaare, Moleküldarstellung am Computer"
+                },
+                {
+                  "title": "Elektronenpaarabstoßungsmodell: räumlicher Bau von Molekülen (ggf. Nutzung von Software zur Molekül-Modellierung), Bindungswinkel"
+                },
+                {
+                  "title": "Mesomerie-Modell (z. B. Carbonat-Ion, Ozon-Molekül)"
+                },
+                {
+                  "title": "verzweigte Kohlenwasserstoff-Moleküle: Konstitutionsisomerie, Nomenklatur"
+                },
+                {
+                  "title": "einfache Alken- und Alkin-Moleküle: Doppel- und Dreifachbindung, E/Z-Isomerie, Nomenklatur"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "verwenden ein einfaches Orbitalmodell und die Valenzstrichschreibweise, um die Valenzelektronenkonfiguration von Atomen und Atom-Ionen darzustellen."
+                },
+                {
+                  "text": "erklären den Zusammenhalt von Atomen in Molekülen durch die Überlagerung von Orbitalen."
+                },
+                {
+                  "text": "sagen mithilfe der Edelgasregel die Bindigkeit von Nichtmetall-Atomen vorher und stellen Valenzstrichformeln von Molekülen und ausgewählten Molekül-Ionen unter Berücksichtigung des Mesomerie-Modells auf."
+                },
+                {
+                  "text": "leiten unter Anwendung des Elektronenpaarabstoßungsmodells den räumlichen Bau ausgewählter Moleküle ab und schätzen Bindungswinkel in diesen Molekülen ab."
+                },
+                {
+                  "text": "erstellen aus dem systematischen Namen von Kohlenwasserstoffen die Strukturformel und umgekehrt, um Moleküle eindeutig zu beschreiben und Stoffe zu identifizieren."
+                },
+                {
+                  "text": "wandeln verschiedene Formeldarstellungen für Moleküle ineinander um und wählen situationsbedingt geeignete Darstellungen aus."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 3: Wechselwirkungskonzept – Anziehung zwischen Teilchen (ca. 20 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Elektronegativität, Partialladung, polare und unpolare Elektronenpaarbindung"
+                },
+                {
+                  "title": "Bindungspolarität, Molekülpolarität"
+                },
+                {
+                  "title": "funktionelle Gruppen und Nomenklatur bei Alkohol-, Aldehyd-, Keton-, Carbonsäure-Molekülen"
+                },
+                {
+                  "title": "Wechselwirkungen zwischen Teilchen (ggf. Simulationssoftware): Van-der-Waals-Wechselwirkungen als Überbegriff für London-Dispersionswechselwirkungen und Dipol-Dipol-Wechselwirkungen; Wasserstoffbrücken; Ion-Dipol-Wechselwirkungen"
+                },
+                {
+                  "title": "physikalische Eigenschaften: Viskosität, Siedetemperatur, Löslichkeit"
+                },
+                {
+                  "title": "Erdölprodukte: Einsatzbereiche kurzkettiger Kohlenwasserstoffe (Lösemittel), Umweltaspekte"
+                },
+                {
+                  "title": "Wasser: Siede- und Schmelztemperatur, Dichteanomalie, Oberflächenspannung, Hydrathülle"
+                },
+                {
+                  "title": "wichtige Lösemittel: Wasser, Benzin, Ethanol; hydrophil, hydrophob, lipophil, amphiphil"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "verwenden die Elektronegativität zur Erklärung der Bindungspolaritäten und leiten aus den Bindungspolaritäten und der Molekülgeometrie die Molekülpolarität ab."
+                },
+                {
+                  "text": "teilen ausgewählte organische Verbindungklassen (Alkohole, Aldehyde, Ketone, Carbonsäuren) anhand der funktionellen Gruppen ihrer Moleküle ein und kennen in Alltag und Technik verwendete Vertreter der Verbindungklassen."
+                },
+                {
+                  "text": "nutzen die Nomenklaturregeln nach IUPAC, um typische Moleküle der Verbindungsklassen Alkohole, Aldehyde, Ketone und Carbonsäuren zu benennen."
+                },
+                {
+                  "text": "vergleichen die physikalischen Eigenschaften einfacher molekularer Stoffe, und erklären die Gemeinsamkeiten bzw. Unterschiede durch die auftretenden zwischenmolekularen Wechselwirkungen, um hypothesengeleitet Eigenschaftsunterschiede aus den Molekülstrukturen vorauszusagen, z. B. für die Auswahl geeigneter Lösemittel."
+                },
+                {
+                  "text": "beurteilen die Bedeutung von Erdölprodukten in verschiedenen Einsatzbereichen in Alltag und Technik und schätzen die Konsequenzen des Einsatzes für die Umwelt ab."
+                },
+                {
+                  "text": "erklären die Besonderheiten des Stoffes Wasser mithilfe der aus dem Bau des Wassermoleküls und den Wechselwirkungen zwischen den Wassermolekülen resultierenden Eigenschaften und sind sich dadurch der Bedeutung des Wassers als Grundlage für das Leben bewusst."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 4: Donator-Akzeptor-Konzept und Reversibilität chemischer Reaktionen bei Protonenübergängen (ca. 18 Std.)",
+              "sub_topics": [
+                {
+                  "title": "häufig verwendete saure und basische Lösungen in Alltag und Technik (z. B. zur Entkalkung, Konservierung, Reinigung), in biologischen Systemen (z. B. Verdauung, Haut)"
+                },
+                {
+                  "title": "häufig verwendete Indikatoren und ihre Färbung, pH-Skala zur Einschätzung des Charakters einer Lösung (stark sauer, schwach sauer, neutral, schwach basisch, stark basisch)"
+                },
+                {
+                  "title": "Säure als Protonendonator, Base als Protonenakzeptor, Wassermolekül als ein Beispiel für einen Ampholyten, unterschiedliche Verwendung des Begriffs Säure in der Alltags- und Fachsprache"
+                },
+                {
+                  "title": "Acidität: Bindungspolarität, Mesomeriestabilisierung"
+                },
+                {
+                  "title": "Protonenübergang als reversible Reaktion, Gleichgewichtspfeil als Symbol für die Reversibilität"
+                },
+                {
+                  "title": "Berechnen von Stoffmengenkonzentrationen und Herstellung von Lösungen definierter Konzentration"
+                },
+                {
+                  "title": "Neutralisation als Protonenübergang zwischen Oxonium- und Hydroxid-Ionen; Benennung der entstehenden Salze"
+                },
+                {
+                  "title": "Säure-Base-Titration (keine Titrationskurve), Äquivalenzpunkt"
+                },
+                {
+                  "title": "Auswirkungen von pH-Wert-Änderungen auf den Menschen bzw. Ökosysteme"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "unterscheiden saure, neutrale und basische Lösungen experimentell mithilfe von Indikatoren und verwenden die pH-Skala zur Charakterisierung der untersuchten Lösungen."
+                },
+                {
+                  "text": "erörtern die Bedeutung von sauren und basischen Lösungen im Alltag, in der Technik und in biologischen Systemen und betrachten die Folgen von pH-Wert-Änderungen."
+                },
+                {
+                  "text": "charakterisieren saure und basische Lösungen auf der Teilchenebene durch das Vorhandensein von Oxonium- bzw. Hydroxid-Ionen."
+                },
+                {
+                  "text": "beschreiben mithilfe des Brönsted-Konzepts die Eigenschaften von Säuren und Basen auf der Teilchenebene und nutzen die Begriffe Säure und Base zur Beschreibung von Teilchen, saure und basische Lösungen zur Beschreibung entsprechender Stoffgemische."
+                },
+                {
+                  "text": "stellen Protonenübergänge in Reaktionsgleichungen dar, um die Vorgänge bei der Bildung saurer, neutraler oder basischer Lösungen zu verdeutlichen."
+                },
+                {
+                  "text": "erkennen in Formeldarstellungen die strukturellen Voraussetzungen für die Eignung eines Teilchens als Säure bzw. Base und leiten daraus die Reversibilität von Protonenübergängen ab."
+                },
+                {
+                  "text": "vergleichen die Acidität von Alkohol-Molekülen mit der von Carbonsäure-Molekülen und begründen die Acidität von Carbonsäure-Molekülen."
+                },
+                {
+                  "text": "führen Berechnungen durch, um saure und basische Lösungen definierter Stoffmengenkonzentrationen herzustellen."
+                },
+                {
+                  "text": "beschreiben die Neutralisation auf der Teilchenebene und erklären damit z. B. die Wirkung von Antazida oder die umweltgerechte Entsorgung von sauren und basischen Lösungen."
+                },
+                {
+                  "text": "führen einfache Titrationen durch, um die Konzentrationen saurer oder basischer Lösungen zu ermitteln."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 5: Donator-Akzeptor-Konzept und Reversibilität chemischer Reaktionen bei Redoxreaktionen in wässriger Lösung (ca. 18 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Oxidationszahlen als Hilfsmittel zum Erkennen von Redoxreaktionen, Regeln zur Ermittlung von Oxidationszahlen"
+                },
+                {
+                  "title": "Regeln zum Aufstellen von Redoxgleichungen"
+                },
+                {
+                  "title": "Wasserstoffentwicklung bei Redoxreaktionen zwischen unedlen Metallen und sauren Lösungen"
+                },
+                {
+                  "title": "Oxidation von Alkohol-Molekülen mithilfe von Permanganat-Ionen"
+                },
+                {
+                  "title": "Nachweis von Aldehyden: Fehling-Probe, Silberspiegel-Probe, Schiffsche Probe"
+                },
+                {
+                  "title": "Ethanol: Herstellung, Gefährdung (z. B. Toxizität, Straßenverkehr, Verhaltensänderung, Sucht)"
+                },
+                {
+                  "title": "Brennstoffzellen: u. a. Methanol- oder Ethanol-Brennstoffzelle"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "ermitteln Oxidationszahlen in anorganischen und organischen Teilchen, um Redoxreaktionen zu identifizieren."
+                },
+                {
+                  "text": "verwenden die Regeln zum Aufstellen von Redoxteilgleichungen in wässrigen Lösungen, um Redoxgleichungen zu formulieren."
+                },
+                {
+                  "text": "grenzen Redoxreaktionen von Säure-Base-Reaktionen ab, indem sie z. B. die Reaktion von unedlen Metallen und von Calciumcarbonat mit sauren Lösungen vergleichen."
+                },
+                {
+                  "text": "vergleichen die Oxidierbarkeit primärer, sekundärer und tertiärer Alkohole, um die Bildung von Aldehyden, Ketonen und Carbonsäuren zu erklären."
+                },
+                {
+                  "text": "führen geeignete Nachweisreaktionen durch, um Aldehyde von Ketonen zu unterscheiden."
+                },
+                {
+                  "text": "beschreiben Schädigungen des Körpers, die durch den Konsum alkoholhaltiger Getränke entstehen, Gefährdungen unter Alkoholeinfluss und Ursachen für Abhängigkeit."
+                },
+                {
+                  "text": "beschreiben die Funktionsweise von Brennstoffzellen und stellen die ablaufenden chemischen Reaktionen geeignet dar."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 6: Donator-Akzeptor-Konzept und Reversibilität bei Nukleophil-Elektrophil-Reaktionen (ca. 13 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Monosaccharide: Glucose und Fructose; Disaccharid: Saccharose; gesunde Ernährung"
+                },
+                {
+                  "title": "Glucose und Fructose als mehrfunktionelle Verbindungen: offenkettige Form und Ringschluss als nucleophile Addition, Keto-Enol-Tautomerie; Saccharose als Vollacetal"
+                },
+                {
+                  "title": "Mechanismus der säurekatalysierten Esterkondensation und baseninduzierten Esterhydrolyse; Peptidbindung als Beispiel für eine weitere Kondensationsreaktion (kein Mechanismus)"
+                },
+                {
+                  "title": "Eigenschaften der Ester (u. a. Löslichkeit, Siedetemperatur, Zersetzung), Verwendung in Alltagsprodukten und in der Technik"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "beschreiben die Verwendung von wichtigen Zuckern im Alltag und bewerten deren Bedeutung für die Ernährung."
+                },
+                {
+                  "text": "vergleichen ausgewählte Zucker anhand des molekularen Baus und begründen damit deren chemisches Reaktionsverhalten."
+                },
+                {
+                  "text": "leiten aus experimentellen Beobachtungen die Bildung von Estern aus Alkoholen und Carbonsäuren ab und begründen die Stoffeigenschaften der Ester mithilfe der zwischenmolekularen Wechselwirkungen."
+                },
+                {
+                  "text": "wenden das Prinzip der Reversibilität chemischer Reaktionen bei der Stoffklasse der Ester an, um Alltagsbeobachtungen zu erklären."
+                },
+                {
+                  "text": "erkennen den Einsatz von Estern in Alltagsprodukten und in der Technik und identifizieren Fette über das Strukturmerkmal Estergruppe als Ester."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_url": "https://www.lehrplanplus.bayern.de/schulart/gymnasium/jgs/9/fach/chemie/inhalt/fachlehrplaene?w_schulart=gymnasium&w_fach=chemie&w_jgs=9&w_auspraegung=ch",
+      "last_checked": "2026-06-22"
+    },
+    {
+      "school_type": "Realschule",
+      "grade_levels": [
+        {
+          "grade": "8",
+          "topics": [
+            {
+              "title": "Lernbereich 1: Wie Chemiker denken und arbeiten",
+              "sub_topics": [
+                {
+                  "title": "Gefahrstoffkennzeichnung: gemäß aktueller Richtlinien, Gefahrenpotenzial, Sicherheitsmaßnahmen, Entsorgung, Laborregeln und Sicherheitsunterweisung"
+                },
+                {
+                  "title": "Arbeitstechniken: Verwendung von Nachweisreagenzien und einfachen Laborgeräten, Aufbau einfacher Versuchsanordnungen, Verwendung von Modellen"
+                },
+                {
+                  "title": "Dokumentation: Versuchsprotokoll, Versuchsauswertung und Versuchsinterpretation; Veranschaulichung der Versuchsdurchführung und des Versuchsergebnisses in Form von Texten, Skizzen, Zeichnungen, Tabellen oder Diagrammen"
+                },
+                {
+                  "title": "naturwissenschaftliche Arbeits- und Denkweisen: Problemerfassung, Hypothesenbildung, Planung von Lösungswegen, Durchführung des Experiments, Beobachtung, Deutung und Gesamtauswertung, Verifizierung oder Falsifizierung der Hypothese; Nutzung geeigneter Methoden und Materialien zur Erkenntnisgewinnung"
+                },
+                {
+                  "title": "Eigenschaften, Erweiterungsmöglichkeiten und Grenzen von Modellen"
+                },
+                {
+                  "title": "chemische Fachsprache: Chemische Symbol- und Formelsprache (Summenformel); Benennung einfacher anorganischer und organischer Verbindungen; einfache chemische Reaktionsgleichungen (Wort- und Formelgleichung, energetische Betrachtung); Fachbegriffe; Unterscheidung zwischen der Molekülformel und der Verhältnisformel von Salzen"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "kennen die Bedeutung der Gefahrstoffkennzeichnung und leiten daraus Maßnahmen zum sicherheitsgerechten Umgang mit Chemikalien und deren Entsorgung ab."
+                },
+                {
+                  "text": "führen Experimente unter Beachtung von Sicherheits- und Umweltaspekten durch, protokollieren angeleitet die Beobachtungen und werten die Versuchsergebnisse unter Anleitung aus."
+                },
+                {
+                  "text": "setzen grundlegende Arbeitstechniken bei der Durchführung einfacher angeleiteter Experimente ein."
+                },
+                {
+                  "text": "nutzen ihr Wissen über den Verbrennungsvorgang und den Brandschutz, um geeignete Sicherheitsmaßnahmen herzuleiten und anzuwenden."
+                },
+                {
+                  "text": "beschreiben bei chemischen Vorgängen beobachtbare Stoff- und Energieänderungen und deuten diese auf der Teilchenebene; dabei unterscheiden sie konsequent zwischen Beschreibungen auf der Stoff- und Erklärungen auf der Teilchenebene."
+                },
+                {
+                  "text": "beschreiben einfache chemische Reaktionen qualitativ durch Wortgleichungen und quantitativ durch Formelgleichungen."
+                },
+                {
+                  "text": "entwickeln nach Anleitung einfache Fragestellungen (auch Hypothesen), die mithilfe chemischer Kenntnisse und einfacher Untersuchungsmethoden, insbesondere durch chemische Experimente, zu überprüfen sind."
+                },
+                {
+                  "text": "beschreiben mithilfe verschiedener Modelle den Aufbau der Materie und beurteilen deren Eignung zur Erklärung von chemischen Phänomenen; sie erkennen dabei die Eigenschaften und Grenzen von Modellen und leiten die Notwendigkeit ab, Modelle weiterzuentwickeln."
+                },
+                {
+                  "text": "verwenden geeignete Modelle zur Deutung chemischer Reaktionen."
+                },
+                {
+                  "text": "beschreiben mithilfe von Modellen die unterschiedlichen Anziehungskräfte zwischen Metallatomen, Nichtmetallatomen und Ionen."
+                },
+                {
+                  "text": "wenden die Fachsprache an, um chemische Sachverhalte exakt zu beschreiben. Dabei grenzen sie die Fachsprache von den Ungenauigkeiten der Alltagssprache ab."
+                },
+                {
+                  "text": "wenden Regeln zur Benennung von binären anorganischen Verbindungen an."
+                },
+                {
+                  "text": "dokumentieren und präsentieren den Verlauf und die Ergebnisse ihrer Arbeit nach Anleitung sachgerecht, situationsgerecht und adressatenbezogen. Dabei nutzen sie auch elektronische Medien und verwenden Texte, Tabellen, Diagramme und Skizzen oder Zeichnungen (u. a. Versuchsaufbauten, Formelschreibweisen)."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 2: Stoffe und ihre Eigenschaften (ca. 12 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Stofferkennungsmethoden mit Sinnesorganen (z. B. Farbe, Geruch)"
+                },
+                {
+                  "title": "experimentelle Methoden der Stofferkennung (Kenngrößen: Siede- und Schmelztemperatur; Löslichkeit; elektrische Leitfähigkeit von Feststoffen und Flüssigkeiten)"
+                },
+                {
+                  "title": "Nachweisreaktionen: Glimmspanprobe, Knallgasprobe, Kalkwasserprobe, Nachweisreagenz für Wasser"
+                },
+                {
+                  "title": "Teilchenmodell zum Aufbau der Materie"
+                },
+                {
+                  "title": "Aggregatzustände, Aggregatzustandsänderungen"
+                },
+                {
+                  "title": "Reinstoffe, homogene und heterogene Stoffgemische"
+                },
+                {
+                  "title": "physikalische Trennverfahren: Filtration, Destillation, Magnetscheiden, Extraktion"
+                },
+                {
+                  "title": "Linde-Verfahren; Zusammensetzung der Luft: Stickstoff, Sauerstoff, Kohlenstoffdioxid, Edelgase"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "untersuchen Eigenschaften von Stoffen anhand von Sinneseindrücken und erläutern dabei die Grenzen dieser Untersuchungsmethode."
+                },
+                {
+                  "text": "ermitteln im Experiment ausgewählte Kenngrößen, um Stoffe exakter als mit den Sinneseindrücken zu beschreiben und zu unterscheiden."
+                },
+                {
+                  "text": "weisen die Gase Sauerstoff, Wasserstoff und Kohlenstoffdioxid mit einfachen Reaktionen sowie Wasser mit einem Nachweisreagenz nach und beschreiben die Durchführung der Nachweismethoden."
+                },
+                {
+                  "text": "unterscheiden anhand von konstanten und veränderbaren Stoffeigenschaften Reinstoffe von Gemischen."
+                },
+                {
+                  "text": "wenden das Teilchenmodell zur Erklärung von Stoffeigenschaften und physikalischen Vorgängen (Aggregatzustände und Trennverfahren) an."
+                },
+                {
+                  "text": "trennen Stoffgemische mithilfe von physikalischen Trennverfahren unter Ausnutzung von bekannten Stoffeigenschaften."
+                },
+                {
+                  "text": "erläutern mithilfe ihrer Kenntnisse über Stoffe und deren Eigenschaften die Trennung von Luft in ihre Bestandteile."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 3: Aufbau der Materie (ca. 12 Std.)",
+              "sub_topics": [
+                {
+                  "title": "stoffbezogenes Ordnungssystem der Elemente (Bilder/Originale, Namen der Elemente, Schmelz- und Siedetemperaturen, Dichten)"
+                },
+                {
+                  "title": "Daltonsches Atommodell"
+                },
+                {
+                  "title": "Kombinationen der Grundbausteine der Materie (Metall- und Nichtmetallatome, Ionen)"
+                },
+                {
+                  "title": "Anziehungskräfte zwischen den Grundbausteinen: gerichtete Anziehung in Molekülen; ungerichtete Anziehung in Metall- und Ionengittern"
+                },
+                {
+                  "title": "Teilchenverbände: Metallgitter, Moleküle, Ionengitter, atomar vorkommende Atomsorten; passende Modelle"
+                },
+                {
+                  "title": "Bindigkeit; Molekülformeln (z. B. H 2 , H 2 O, NH 3 , CH 4 )"
+                },
+                {
+                  "title": "Ionenladung; Zahlenverhältnis der Ionen in binären Salzen"
+                },
+                {
+                  "title": "Eigenschaften von Metallen, molekular aufgebauten Stoffen und Salzen: z. B. Verformbarkeit, Sprödigkeit, Härte, Dichte, Schmelz- und Siedetemperatur"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "verwenden das Daltonsche Atommodell, um verschiedene Atomsorten zu unterscheiden."
+                },
+                {
+                  "text": "nutzen ein stoffbezogenes Ordnungssystem zur Zuordnung verschiedener existierender Atomsorten in die Stoffklassen der Metalle und Nichtmetalle."
+                },
+                {
+                  "text": "unterscheiden den Aufbau von Stoffen anhand der Grundbausteine der Materie in Salze (Ionengitter), molekulare Verbindungen (Moleküle) und Metalle (Metallgitter) sowie Stoffe, die atomar (einzelne Atome) aufgebaut sind."
+                },
+                {
+                  "text": "unterscheiden die unterschiedliche Anziehung zwischen Nichtmetallatomen, Metallatomen und Ionen, um verschiedene Teilchenverbände voneinander abzugrenzen."
+                },
+                {
+                  "text": "nutzen Modelle, um den Aufbau von Metallgittern, Molekülen und Ionengittern zu erklären."
+                },
+                {
+                  "text": "leiten mithilfe der Bindigkeit von Nichtmetallatomen die Zusammensetzung einfacher Moleküle und deren chemischer Formeln ab."
+                },
+                {
+                  "text": "stellen mithilfe von vorgegebenen Ionen und ihrer Ladung das Zahlenverhältnis der Ionen in binären Salzen dar."
+                },
+                {
+                  "text": "untersuchen anhand experimenteller Befunde ausgewählte Eigenschaften von Metallen, molekular aufgebauten Stoffen und Salzen und erklären diese mithilfe von Modellen."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 4: Chemische Reaktion (ca. 24 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Analyse und Synthese als Umordnung von Teilchen; chemische Reaktion"
+                },
+                {
+                  "title": "Analyse: Wasser und eine weitere molekulare Verbindung (z. B. Diiodpentaoxid); Formelgleichungen"
+                },
+                {
+                  "title": "Synthese: Wasser und eine weitere molekulare Verbindung (z. B. Kohlenstoffdioxid); Formelgleichungen"
+                },
+                {
+                  "title": "Elemente und Verbindungen"
+                },
+                {
+                  "title": "Reversibilität von chemischen Reaktionen am Beispiel der Analyse und Synthese von Wasser"
+                },
+                {
+                  "title": "Aktivierung chemischer Reaktionen (Aktivierungsenergie), Auftreten verschiedener Energieformen"
+                },
+                {
+                  "title": "Reaktionsenergie als Änderung der inneren Energie, exothermer und endothermer Reaktionsverlauf"
+                },
+                {
+                  "title": "Katalyse: Eigenschaften von Katalysatoren und deren Bedeutung; Vorgänge an der Katalysatoroberfläche"
+                },
+                {
+                  "title": "Stoffumsatz: Stoffmenge, Masse, Volumen und Teilchenzahl als Quantitätsgrößen; Avogadro-Konstante, molare Masse, molares Volumen; Dichte und Teilchenmasse als Umrechnungsgrößen"
+                },
+                {
+                  "title": "absolute Atommassen, relative Atom- und Molekülmassen"
+                },
+                {
+                  "title": "Massenerhaltung bei chemischen Reaktionen"
+                },
+                {
+                  "title": "Summenformeln der homologen Reihe der Alkane; Verbrennung von Alkanen als chemische Reaktion"
+                },
+                {
+                  "title": "unterschiedlicher Verlauf von Verbrennungsreaktionen (vollständige und unvollständige Verbrennung)"
+                },
+                {
+                  "title": "Funktion und Bedeutung von Abgaskatalysator und Partikelfilter"
+                },
+                {
+                  "title": "besondere Verbrennungserscheinungen: Explosion (Abhängigkeit von der Oberfläche, Explosionsbereich), Atmung, Verbrennung in reinem Sauerstoff"
+                },
+                {
+                  "title": "einfacher Kohlenstoff-Kreislauf"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "wenden das Daltonsche Atommodell an, um Stoffänderungen als Umgruppierung von Atomen zu erklären."
+                },
+                {
+                  "text": "ermitteln bei der Analyse von Wasser experimentell die Volumenverhältnisse der entstehenden Gase und bestätigen damit die Molekülformel von Wasser."
+                },
+                {
+                  "text": "interpretieren Experimente zur Massenerhaltung bei Molekülreaktionen und bestätigen dadurch die Daltonsche Atomhypothese."
+                },
+                {
+                  "text": "nutzen die chemische Formelsprache, um Synthese und Analyse zu beschreiben."
+                },
+                {
+                  "text": "teilen Reinstoffe in Elemente und Verbindungen ein und grenzen diese von Gemischen ab."
+                },
+                {
+                  "text": "beschreiben den Stoff- und Energieumsatz als typische Merkmale von chemischen Reaktionen und grenzen so chemische von physikalischen Vorgängen ab."
+                },
+                {
+                  "text": "führen Experimente durch, um die Eigenschaften von Katalysatoren zu ermitteln."
+                },
+                {
+                  "text": "klassifizieren auftretende Energieänderungen und stellen sie grafisch dar, auch unter Berücksichtigung von katalysierten Reaktionen."
+                },
+                {
+                  "text": "stellen die Vorgänge an einer Katalysatoroberfläche bei einfachen Molekülreaktionen mithilfe von geeigneten Modellen dar, um den Ablauf einer katalysierten Reaktion auf Teilchenebene zu erklären."
+                },
+                {
+                  "text": "berechnen aus der absoluten Masse von Atomen und Molekülen deren molare Massen."
+                },
+                {
+                  "text": "berechnen anhand von Größengleichungen Stoffumsätze bei einfachen Molekülreaktionen."
+                },
+                {
+                  "text": "bewerten verschiedene Faktoren, die den Ablauf einer Verbrennungsreaktion beeinflussen."
+                },
+                {
+                  "text": "vergleichen die Kohlenstoffdioxidbilanz bei der Verbrennung verschiedener Brennstoffe, um die Verwendung verschiedener Energieträger bezüglich ausgewählter Aspekte (z. B. Umweltbelastung, Gewinnung des Energieträgers, Nachhaltigkeit) zu bewerten und um den durch Verbrennung fossiler Energieträger ausgelösten Anstieg der Kohlenstoffdioxid-Konzentration in der Atmosphäre anhand des Kohlenstoff-Kreislaufes zu begründen."
+                },
+                {
+                  "text": "begründen aufgrund des Nachweises von Kohlenstoffmonooxid und des Auftretens von Ruß bei Verbrennungsreaktionen die Notwendigkeit und die Bedeutung von Abgaskatalysatoren und Partikelfiltern."
+                },
+                {
+                  "text": "ermitteln aus experimentellen Befunden die Kennzeichen von besonderen Verbrennungserscheinungen und leiten vorbeugende Maßnahmen gegen Explosionen ab."
+                },
+                {
+                  "text": "vergleichen Verbrennungsreaktionen an der Luft und in reinem Sauerstoff, um die Rolle des Sauerstoffgehalts bei Verbrennungsreaktionen zu erklären."
+                }
+              ]
+            },
+            {
+              "title": "Lernbereich 5: Atombau und Periodensystem der Elemente (ca. 8 Std.)",
+              "sub_topics": [
+                {
+                  "title": "Kern-Hülle-Modell (Rutherfordscher Streuversuch): Nukleonen (Protonen, Neutronen), Elektronen"
+                },
+                {
+                  "title": "Energiestufenmodell: Ionisierungsenergie, Flammenfärbung, Elektronenkonfiguration"
+                },
+                {
+                  "title": "Kugelwolkenmodell: Verteilung der Elektronen auf die einzelnen Kugelwolken"
+                },
+                {
+                  "title": "Periodensystem der Atomsorten: Protonenzahl, Verteilung der Elektronen auf die Energiestufen, Valenzelektronen, Neutronenzahl, Haupt- und Nebengruppen, Perioden"
+                },
+                {
+                  "title": "Isotopie"
+                },
+                {
+                  "title": "Edelgaskonfiguration, Edelgasregel, Ionenladungszahl von Kationen und Anionen"
+                }
+              ],
+              "learning_objectives": [
+                {
+                  "text": "deuten die Befunde des Rutherfordschen Streuversuchs und leiten daraus das Kern-Hülle-Modell ab."
+                },
+                {
+                  "text": "leiten aus experimentellen Befunden das Energiestufenmodell ab."
+                },
+                {
+                  "text": "vergleichen die Aussagen verschiedener Modelldarstellungen zum Atombau und beschreiben die Modellgrenzen."
+                },
+                {
+                  "text": "setzen Aussagen der Modelle in Beziehung zu Ordnungsprinzipien des Periodensystems."
+                },
+                {
+                  "text": "nutzen das Periodensystem zur Ermittlung der Elektronenanzahl auf den verschiedenen Energiestufen, der Protonenzahl sowie der Neutronenzahl von Atomen und der Ionenladungszahl von Kationen und Anionen."
+                },
+                {
+                  "text": "ordnen die Elektronen der Energiestufen den entsprechenden Kugelwolken zu."
+                },
+                {
+                  "text": "beschreiben das Auftreten von verschiedenen Massen bei Atomen desselben Elements mithilfe der Isotopie und erklären damit nicht ganzzahlige molare Massen."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_url": "https://www.lehrplanplus.bayern.de/fachlehrplan/realschule/8/chemie",
+      "last_checked": "2026-06-22"
+    }
+  ],
+  "last_updated": "2026-06-22",
+  "source_urls": [
+    "https://www.lehrplanplus.bayern.de/fachlehrplan/gymnasium/8/chemie",
+    "https://www.lehrplanplus.bayern.de/schulart/gymnasium/jgs/9/fach/chemie/inhalt/fachlehrplaene?w_schulart=gymnasium&w_fach=chemie&w_jgs=9&w_auspraegung=ch",
+    "https://www.lehrplanplus.bayern.de/fachlehrplan/realschule/8/chemie"
+  ]
+}

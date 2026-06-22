@@ -1,0 +1,44 @@
+{
+  "state": "Nordrhein-Westfalen",
+  "state_abbr": "NRW",
+  "school_curricula": [
+    {
+      "school_type": "Gymnasium (Sek I)",
+      "grade_levels": [],
+      "source_url": "https://www.schulentwicklung.nrw.de/lehrplaene/",
+      "last_checked": "2026-06-22"
+    },
+    {
+      "school_type": "Gymnasium (Sek II)",
+      "grade_levels": [],
+      "source_url": "https://www.schulentwicklung.nrw.de/lehrplaene/",
+      "last_checked": "2026-06-22"
+    },
+    {
+      "school_type": "Realschule",
+      "grade_levels": [],
+      "source_url": "https://www.schulentwicklung.nrw.de/lehrplaene/",
+      "last_checked": "2026-06-22"
+    },
+    {
+      "school_type": "Hauptschule",
+      "grade_levels": [],
+      "source_url": "https://www.schulentwicklung.nrw.de/lehrplaene/",
+      "last_checked": "2026-06-22"
+    },
+    {
+      "school_type": "Gesamtschule",
+      "grade_levels": [],
+      "source_url": "https://www.schulentwicklung.nrw.de/lehrplaene/",
+      "last_checked": "2026-06-22"
+    },
+    {
+      "school_type": "Sekundarschule",
+      "grade_levels": [],
+      "source_url": "https://www.schulentwicklung.nrw.de/lehrplaene/",
+      "last_checked": "2026-06-22"
+    }
+  ],
+  "last_updated": "2026-06-22",
+  "source_urls": []
+}
