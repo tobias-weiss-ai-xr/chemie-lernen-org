@@ -1,0 +1,11 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Test scratch files
+_test_*.py
+
+# Virtual environments
+venv/
+.venv/
