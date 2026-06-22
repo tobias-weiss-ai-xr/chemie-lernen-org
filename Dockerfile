@@ -17,7 +17,7 @@ FROM hugomods/hugo:exts AS hugo
 COPY myhugoapp /src
 COPY --from=minifier /src/myhugoapp/static/js/ /src/static/js/
 WORKDIR /src
-RUN hugo --minify --baseURL https://chemie-lernen.org && \
+RUN hugo --baseURL https://chemie-lernen.org && \
     echo "Hugo build complete: $(ls -la public/ | wc -l) entries"
 
 # ---- Stage 2: Pagefind Search Index ----

@@ -95,6 +95,22 @@ jobs:
             echo "=== Recreating containers ==="
             docker compose up -d hugo-chemie-lernen-org
             docker compose up -d chemie-chat-api
+            echo "=== Running smoke tests ==="
+            sleep 5
+            SITE="https://chemie-lernen.org"
+            # 1. Entity page returns 200
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$SITE/entity/")
+            if [ "$HTTP_CODE" != "200" ]; then echo "❌ SMOKE FAIL: /entity/ returned $HTTP_CODE"; exit 1; fi
+            echo "  ✓ /entity/ HTTP 200"
+            # 2. Script tag has properly quoted src attribute
+            QUOTED=$(curl -s "$SITE/entity/" | grep -c 'src="/js/entity-index.js"' || true)
+            if [ "$QUOTED" -eq 0 ]; then echo "❌ SMOKE FAIL: entity-index.js src is unquoted"; exit 1; fi
+            echo "  ✓ script src properly quoted"
+            # 3. entity-index.js loads (HTTP 200)
+            JS_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$SITE/js/entity-index.js")
+            if [ "$JS_CODE" != "200" ]; then echo "❌ SMOKE FAIL: /js/entity-index.js returned $JS_CODE"; exit 1; fi
+            echo "  ✓ entity-index.js HTTP 200"
+            echo "=== Smoke tests passed ==="
             echo "=== Cleaning up old images ==="
             docker image prune -f
             echo "=== Deploy complete ==="
