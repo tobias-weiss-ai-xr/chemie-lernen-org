@@ -1,6 +1,6 @@
 """Hamburg — Bildungsplan Chemie.
 
-Source: https://bildungsplaene.bildungshamburg.de/
+Source: https://www.hamburg.de/resource/blob/122942/c361d54826518754a33046670775308e/chemie-gy-sek-i-data.pdf
 Status: 💤 Not yet implemented — research needed.
 
 Notes:

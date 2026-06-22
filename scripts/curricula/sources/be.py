@@ -1,6 +1,6 @@
 """Berlin — Rahmenlehrplan Chemie (Berlin/Brandenburg joint curriculum).
 
-Source: https://bildungsserver.berlin-brandenburg.de/
+Source: https://bildungsserver.berlin-brandenburg.de/rlp-online/c-faecher/chemie
 Status: 💤 Not yet implemented — research needed.
 
 Notes:

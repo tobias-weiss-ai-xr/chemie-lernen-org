@@ -1,6 +1,6 @@
 """Saarland — Kernlehrplan Chemie.
 
-Source: https://www.saarland.de/mbk/
+Source: https://www.saarland.de/mbk/DE/portale/bildungsserver/unterricht-und-bildungsthemen/lehrplaenehandreichungen/lehrplaeneallgemeinbildende/gymnasium
 Status: 💤 Not yet implemented — research needed.
 
 Notes:

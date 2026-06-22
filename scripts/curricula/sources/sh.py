@@ -1,6 +1,6 @@
 """Schleswig-Holstein — Fachanforderungen Chemie.
 
-Source: https://www.schleswig-holstein.de/bildungsplaene
+Source: https://fachportal.lernnetz.de/sh/fachanforderungen.html
 Status: 💤 Not yet implemented — research needed.
 
 Notes:

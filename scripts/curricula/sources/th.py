@@ -1,6 +1,6 @@
 """Thüringen — Lehrplan Chemie.
 
-Source: https://www.schulportal-thueringen.de/
+Source: https://www.schulportal-thueringen.de/media/detail?tspi=17952
 Status: 💤 Not yet implemented — research needed.
 
 Notes:

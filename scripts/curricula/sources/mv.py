@@ -1,6 +1,6 @@
 """Mecklenburg-Vorpommern — Rahmenplan Chemie.
 
-Source: https://www.bildung-mv.de/
+Source: https://www.bildungsserver-mv.de/
 Status: 💤 Not yet implemented — research needed.
 
 Notes:

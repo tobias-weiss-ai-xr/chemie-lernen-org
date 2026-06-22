@@ -1,6 +1,6 @@
 """Sachsen-Anhalt — Fachlehrplan Chemie.
 
-Source: https://www.bildung-lsa.de/
+Source: https://www.bildung-lsa.de/files/b45de329c361a40a2f0a7211902d5815/FLP_Chemie_Gym_01082022_swd.pdf
 Status: 💤 Not yet implemented — research needed.
 
 Notes:

@@ -1,6 +1,6 @@
 """Bremen — Bildungsplan Chemie.
 
-Source: https://www.bildung.bremen.de/
+Source: https://www.lis.bremen.de/sixcms/media.php/13/Bildungsplan_Chemie_GyO_Bremen.pdf
 Status: 💤 Not yet implemented — research needed.
 
 Notes:
