@@ -1,0 +1,2654 @@
+{
+  "state": "Hessen",
+  "state_abbr": "HE",
+  "school_curricula": [
+    {
+      "school_type": "Gymnasium (Oberstufe)",
+      "grade_levels": [
+        {
+          "grade": "Q1-Q4",
+          "topics": [
+            {
+              "title": "Bildungsstandards und Unterrichtsinhalte",
+              "learning_objectives": [
+                {
+                  "text": "Einführende Erläuterungen"
+                },
+                {
+                  "text": "Nachfolgend werden die am Ende der gymnasialen Oberstufe erwarteten fachlichen Kompe-"
+                },
+                {
+                  "text": "Form von Bildungsstandards, gegliedert nach Kompetenzbereichen (Abschnitt 3.2),"
+                },
+                {
+                  "text": "aufgeführt. Die verbindlichen Unterrichtsinhalte (Abschnitt 3.3) werden in Kurshalbjahre und"
+                },
+                {
+                  "text": "Themenfelder strukturiert. Diese sind durch verbindlich zu bearbeitende inhaltliche Aspekte"
+                },
+                {
+                  "text": "ergänzende Erläuterungen didaktisch fokussiert."
+                },
+                {
+                  "text": "Im Unterricht werden Bildungsstandards und Themenfelder so zusammengeführt, dass die"
+                },
+                {
+                  "text": "Lernenden in unterschiedlichen inhaltlichen Kontexten die Bildungsstandards – je nach"
+                },
+                {
+                  "text": "Schwerpunktsetzung – erarbeiten können. Mit wachsender Komplexität der fachlichen Zusam-"
+                },
+                {
+                  "text": "menhänge und der kognitiven Operationen entwickeln sie in entsprechend gestalteten Lern-"
+                },
+                {
+                  "text": "Fachkompetenz weiter."
+                },
+                {
+                  "text": "Die Themenfelder bieten die Möglichkeit – im Rahmen der Unterrichtsplanung didaktisch-me-"
+                },
+                {
+                  "text": "Einheiten umgesetzt zu werden. Zugleich lassen"
+                },
+                {
+                  "text": "sich, themenfeldübergreifend, inhaltliche Aspekte der Themenfelder, die innerhalb eines Kurs-"
+                },
+                {
+                  "text": "vielfältig miteinander verschränkt sind und je nach Kontext auch aufeinander auf-"
+                },
+                {
+                  "text": "können, in einen unterrichtlichen Zusammenhang stellen."
+                },
+                {
+                  "text": "Themenfelder und inhaltliche Aspekte sind über die Kurshalbjahre hinweg so angeordnet, dass"
+                },
+                {
+                  "text": "Verlauf der Lernzeit – auch Kurshalbjahre übergreifend – immer wieder Bezüge zwischen"
+                },
+                {
+                  "text": "Themenfeldern hergestellt werden können. In diesem Zusammenhang bieten die Basis-"
+                },
+                {
+                  "text": "ausführliche Darstellung in Abschnitt 2.4) Orientierungshilfen, um"
+                },
+                {
+                  "text": "Wissen zu strukturieren, anschlussfähig zu machen und zu vernetzen."
+                },
+                {
+                  "text": "Die Bildungsstandards sind nicht nach Kursen auf grundlegendem Niveau (Grund- und Leis-"
+                },
+                {
+                  "text": "erhöhtem Niveau (Leistungskurs) differenziert. Hingegen werden in den"
+                },
+                {
+                  "text": "Kurshalbjahren der Qualifikationsphase die Fachinhalte nach grundlegendem Niveau (Grund-"
+                },
+                {
+                  "text": "Leistungskurs) und erhöhtem Niveau (Leistungskurs) unterschieden. Die jeweils"
+                },
+                {
+                  "text": "Anforderungen, die an Lernende in Grund- und Leistungskurs gestellt werden,"
+                },
+                {
+                  "text": "folgt: „Grundkurse vermitteln grundlegende wissenschaftspropädeuti-"
+                },
+                {
+                  "text": "Kenntnisse und Einsichten in Stoffgebiete und Methoden, Leistungskurse exemplarisch"
+                },
+                {
+                  "text": "wissenschaftspropädeutisches Verständnis und erweiterte Kenntnisse“ (§ 8 Abs. 2"
+                },
+                {
+                  "text": "Im Unterricht ist ein Lernen in Kontexten anzustreben. Lernen in Kontexten bedeutet, dass"
+                },
+                {
+                  "text": "Fragestellungen aus der Praxis der Forschung, technische und gesellschaftliche Fragestellun-"
+                },
+                {
+                  "text": "Lebenswelt der Lernenden den Rahmen für Unterricht und Lernpro-"
+                },
+                {
+                  "text": "Geeignete Kontexte beschreiben Situationen mit Problemen, deren Relevanz für"
+                },
+                {
+                  "text": "Lernenden erkennbar ist und die mit den zu erwerbenden Kompetenzen gelöst werden"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "Bildungsstandards"
+                },
+                {
+                  "text": "Kompetenzbereich: Sachkompetenz (S)"
+                },
+                {
+                  "text": "Chemische Konzepte und Theorien zum Klassifizieren, Strukturieren, Systematisie-"
+                },
+                {
+                  "text": "Interpretieren nutzen"
+                },
+                {
+                  "text": "S 1 ◼ beschreiben und begründen Ordnungsprinzipien für Stoffe und wenden diese an,"
+                },
+                {
+                  "text": "S 2 ◼ leiten Voraussagen über die Eigenschaften der Stoffe auf Basis chemischer"
+                },
+                {
+                  "text": "Strukturen und Gesetzmäßigkeiten begründet ab,"
+                },
+                {
+                  "text": "S 3 ◼ interpretieren Phänomene der Stoff- und Energieumwandlung bei chemischen"
+                },
+                {
+                  "text": "S 4 ◼ bestimmen Reaktionstypen,"
+                },
+                {
+                  "text": "S 5 ◼ beschreiben Stoffkreisläufe in Natur oder Technik als Systeme chemischer Reak-"
+                },
+                {
+                  "text": "Chemische Konzepte und Theorien auswählen und vernetzen"
+                },
+                {
+                  "text": "S 6 ◼ unterscheiden konsequent zwischen Stoff- und Teilchenebene,"
+                },
+                {
+                  "text": "S 7 ◼ beschreiben die Umkehrbarkeit chemischer Reaktionen, das dynamische Gleich-"
+                },
+                {
+                  "text": "Donator-Akzeptor-Prinzip und wenden diese an,"
+                },
+                {
+                  "text": "S 8 ◼ beschreiben Einflussfaktoren auf chemische Reaktionen und Möglichkeiten der"
+                },
+                {
+                  "text": "Steuerung durch Variation von Reaktionsbedingungen sowie durch den Einsatz"
+                },
+                {
+                  "text": "S 9 ◼ erklären unterschiedliche Reaktivitäten und Reaktionsverläufe,"
+                },
+                {
+                  "text": "S 10 ◼ nutzen chemische Konzepte und Theorien zur Vernetzung von Sachverhalten in-"
+                },
+                {
+                  "text": "Chemie sowie mit anderen Unterrichtsfächern."
+                },
+                {
+                  "text": "Chemische Zusammenhänge qualitativ-modellhaft erklären"
+                },
+                {
+                  "text": "S 11 ◼ erklären die Vielfalt der Stoffe und ihrer Eigenschaften auf der Basis unterschiedli-"
+                },
+                {
+                  "text": "Kombinationen und Anordnungen von Teilchen,"
+                },
+                {
+                  "text": "S 12 ◼ deuten Stoff- und Energieumwandlungen hinsichtlich der Veränderung von Teil-"
+                },
+                {
+                  "text": "Umbaus chemischer Bindungen,"
+                },
+                {
+                  "text": "S 13 ◼ nutzen Modelle zur chemischen Bindung und zu intra- und intermolekularen"
+                },
+                {
+                  "text": "Wechselwirkungen,"
+                },
+                {
+                  "text": "S 14 ◼ beschreiben ausgewählte Reaktionsmechanismen,"
+                },
+                {
+                  "text": "S 15 ◼ grenzen mithilfe von Modellen den statischen Zustand auf Stoffebene vom dyna-"
+                },
+                {
+                  "text": "Zustand auf Teilchenebene ab."
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "S 16 ◼ entwickeln Reaktionsgleichungen,"
+                },
+                {
+                  "text": "S 17 ◼ wenden bekannte mathematische Verfahren auf chemische Sachverhalte an."
+                },
+                {
+                  "text": "Kompetenzbereich: Erkenntnisgewinnungskompetenz (E)"
+                },
+                {
+                  "text": "Fragestellungen und Hypothesen auf Basis von Beobachtungen und Theorien bilden"
+                },
+                {
+                  "text": "E 1 ◼ leiten chemische Sachverhalte aus Alltagssituationen ab,"
+                },
+                {
+                  "text": "E 2 ◼ identifizieren und entwickeln Fragestellungen zu chemischen Sachverhalten,"
+                },
+                {
+                  "text": "E 3 ◼ stellen theoriegeleitet Hypothesen zur Bearbeitung von Fragestellungen auf."
+                },
+                {
+                  "text": "Fachspezifische Modelle und Verfahren charakterisieren, auswählen und zur Unter-"
+                },
+                {
+                  "text": "Sachverhalten nutzen"
+                },
+                {
+                  "text": "E 4 ◼ planen, gegebenenfalls unter Berücksichtigung der Variablenkontrolle, experi-"
+                },
+                {
+                  "text": "Vorgehensweisen, auch zur Prüfung von Hypothesen,"
+                },
+                {
+                  "text": "Aussagen oder Theorien,"
+                },
+                {
+                  "text": "E 5 ◼ führen qualitative und quantitative experimentelle Untersuchungen – den chemi-"
+                },
+                {
+                  "text": "Arbeitsweisen und Sicherheitsregeln entsprechend – durch, protokollieren"
+                },
+                {
+                  "text": "E 6 ◼ nutzen digitale Werkzeuge und Medien zum Aufnehmen, Darstellen und Auswer-"
+                },
+                {
+                  "text": "Messwerten, für Berechnungen, Modellierungen und Simulationen,"
+                },
+                {
+                  "text": "E 7 ◼ wählen geeignete Real- oder Denkmodelle (zum Beispiel Atommodelle, Perioden-"
+                },
+                {
+                  "text": "Elemente) aus und nutzen sie, um chemische Fragestellungen zu be-"
+                },
+                {
+                  "text": "Erkenntnisprozesse und Ergebnisse interpretieren und reflektieren"
+                },
+                {
+                  "text": "E 8 ◼ finden in erhobenen oder recherchierten Daten Strukturen, Beziehungen und"
+                },
+                {
+                  "text": "Trends, erklären diese theoriebezogen und ziehen Schlussfolgerungen,"
+                },
+                {
+                  "text": "E 9 ◼ diskutieren Möglichkeiten und Grenzen von Modellen,"
+                },
+                {
+                  "text": "E 10 ◼ reflektieren die eigenen Ergebnisse und den eigenen Prozess der Erkenntnisge-"
+                },
+                {
+                  "text": "E 11 ◼ stellen bei der Interpretation von Untersuchungsbefunden fachübergreifende Be-"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "Merkmale wissenschaftlicher Aussagen und Methoden charakterisieren und"
+                },
+                {
+                  "text": "E 12 ◼ reflektieren Möglichkeiten und Grenzen des konkreten Erkenntnisgewinnungspro-"
+                },
+                {
+                  "text": "Erkenntnisse (zum Beispiel Reproduzierbarkeit,"
+                },
+                {
+                  "text": "Falsifizierbarkeit, Intersubjektivität, logische Konsistenz, Vorläufigkeit)."
+                },
+                {
+                  "text": "Kompetenzbereich: Kommunikationskompetenz (K)"
+                },
+                {
+                  "text": "Informationen erschließen"
+                },
+                {
+                  "text": "K 1 ◼ recherchieren zu chemischen Sachverhalten zielgerichtet in analogen und digita-"
+                },
+                {
+                  "text": "Medien und wählen für ihre Zwecke passende Quellen aus,"
+                },
+                {
+                  "text": "K 2 ◼ wählen relevante und aussagekräftige Informationen und Daten zu chemischen"
+                },
+                {
+                  "text": "Sachverhalten und anwendungsbezogenen Fragestellungen aus und erschließen"
+                },
+                {
+                  "text": "Informationen aus Quellen mit verschiedenen, auch komplexen Darstellungsfor-"
+                },
+                {
+                  "text": "K 3 ◼ prüfen die Übereinstimmung verschiedener Quellen oder Darstellungsformen im"
+                },
+                {
+                  "text": "Hinblick auf deren Aussagen,"
+                },
+                {
+                  "text": "K 4 ◼ überprüfen die Vertrauenswürdigkeit verwendeter Quellen und Medien (zum Bei-"
+                },
+                {
+                  "text": "Herkunft und Qualität)."
+                },
+                {
+                  "text": "Informationen aufbereiten"
+                },
+                {
+                  "text": "K 5 ◼ wählen chemische Sachverhalte und Informationen sach-, adressaten- und situa-"
+                },
+                {
+                  "text": "K 6 ◼ unterscheiden zwischen Alltags- und Fachsprache,"
+                },
+                {
+                  "text": "K 7 ◼ nutzen geeignete Darstellungsformen für chemische Sachverhalte und überführen"
+                },
+                {
+                  "text": "K 8 ◼ strukturieren und interpretieren ausgewählte Informationen und leiten Schlussfol-"
+                },
+                {
+                  "text": "Informationen austauschen und wissenschaftlich diskutieren"
+                },
+                {
+                  "text": "K 9 ◼ verwenden Fachbegriffe und -sprache korrekt,"
+                },
+                {
+                  "text": "K 10 ◼ erklären chemische Sachverhalte und argumentieren fachlich schlüssig,"
+                },
+                {
+                  "text": "K 11 ◼ präsentieren chemische Sachverhalte sowie Lern- und Arbeitsergebnisse sach-,"
+                },
+                {
+                  "text": "Einsatz geeigneter analoger und digitaler"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "K 12 ◼ prüfen die Urheberschaft, belegen verwendete Quellen und kennzeichnen Zitate,"
+                },
+                {
+                  "text": "K 13 ◼ tauschen sich mit anderen konstruktiv über chemische Sachverhalte aus, vertre-"
+                },
+                {
+                  "text": "ten, reflektieren und korrigieren gegebenenfalls den eigenen Standpunkt."
+                },
+                {
+                  "text": "Kompetenzbereich: Bewertungskompetenz (B)"
+                },
+                {
+                  "text": "Sachverhalte und Informationen multiperspektivisch beurteilen"
+                },
+                {
+                  "text": "B 1 ◼ betrachten Aussagen, Modelle und Verfahren aus unterschiedlichen Perspektiven"
+                },
+                {
+                  "text": "Grundlage chemischer Kenntnisse,"
+                },
+                {
+                  "text": "B 2 ◼ beurteilen die Inhalte verwendeter Quellen und Medien (zum Beispiel anhand der"
+                },
+                {
+                  "text": "Richtigkeit und Vertrauenswürdigkeit),"
+                },
+                {
+                  "text": "B 3 ◼ beurteilen Informationen und Daten hinsichtlich ihrer Angemessenheit, Grenzen"
+                },
+                {
+                  "text": "B 4 ◼ analysieren und beurteilen die Auswahl von Quellen und Darstellungsformen im"
+                },
+                {
+                  "text": "Zusammenhang mit der Intention der Autorin / des Autors."
+                },
+                {
+                  "text": "Kriteriengeleitet Meinungen bilden und Entscheidungen treffen"
+                },
+                {
+                  "text": "B 5 ◼ entwickeln anhand relevanter Bewertungskriterien Handlungsoptionen in gesell-"
+                },
+                {
+                  "text": "Entscheidungssituationen mit fachlichem Bezug"
+                },
+                {
+                  "text": "wägen sie gegeneinander ab,"
+                },
+                {
+                  "text": "B 6 ◼ beurteilen Chancen und Risiken ausgewählter Technologien, Produkte und Ver-"
+                },
+                {
+                  "text": "B 7 ◼ treffen mithilfe fachlicher Kriterien begründete Entscheidungen in Alltagssituatio-"
+                },
+                {
+                  "text": "B 8 ◼ beurteilen die Bedeutung fachlicher Kompetenzen in Bezug auf Alltagsituationen"
+                },
+                {
+                  "text": "B 9 ◼ beurteilen Möglichkeiten und Grenzen chemischer Sichtweisen,"
+                },
+                {
+                  "text": "B 10 ◼ bewerten die gesellschaftliche Relevanz und ökologische Bedeutung der ange-"
+                },
+                {
+                  "text": "B 11 ◼ beurteilen grundlegende Aspekte zu Gefahren und Sicherheit in Labor und Alltag"
+                },
+                {
+                  "text": "begründet Handlungsoptionen ab."
+                },
+                {
+                  "text": "Entscheidungsprozesse und Folgen reflektieren"
+                },
+                {
+                  "text": "B 12 ◼ beurteilen und bewerten Auswirkungen chemischer Produkte, Methoden, Verfah-"
+                },
+                {
+                  "text": "Erkenntnisse in historischen und aktuellen gesellschaftlichen Zusammen-"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "B 13 ◼ beurteilen und bewerten Auswirkungen chemischer Produkte, Methoden, Verfah-"
+                },
+                {
+                  "text": "Erkenntnisse sowie des eigenen Handelns im Sinne einer nachhaltigen"
+                },
+                {
+                  "text": "Entwicklung aus ökologischer, ökonomischer und sozialer Perspektive,"
+                },
+                {
+                  "text": "B 14 ◼ reflektieren Kriterien und Strategien für Entscheidungen aus chemischer Perspek-"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "Kurshalbjahre und Themenfelder"
+                },
+                {
+                  "text": "Dem Unterricht in der Einführungsphase kommt mit Blick auf den Übergang in die Qualifika-"
+                },
+                {
+                  "text": "Brückenfunktion zu. Zum einen erhalten die Lernenden die Möglichkeit, das"
+                },
+                {
+                  "text": "Sekundarstufe I erworbene Wissen und Können zu festigen und zu vertiefen bezie-"
+                },
+                {
+                  "text": "(Kompensation) sowie Neigungen und Stärken zu identifizieren, um"
+                },
+                {
+                  "text": "Wahl der Grundkurs- und Leistungskursfächer entsprechend vorbereitet zu sein. Zum"
+                },
+                {
+                  "text": "wissenschaftspropädeutische Arbeiten herangeführt. Damit wird"
+                },
+                {
+                  "text": "Ausgangsbasis geschaffen, um in der Qualifikationsphase erfolgreich zu lernen."
+                },
+                {
+                  "text": "Die Themenfelder der Einführungsphase sind dementsprechend ausgewählt und bilden die"
+                },
+                {
+                  "text": "Basis für die Qualifikationsphase."
+                },
+                {
+                  "text": "In der Qualifikationsphase erwerben die Lernenden eine solide Wissensbasis sowohl im"
+                },
+                {
+                  "text": "Fachunterricht als auch in fachübergreifenden und fächerverbindenden Zusammenhängen"
+                },
+                {
+                  "text": "Wissen bei der Lösung zunehmend anspruchsvoller und komplexer Frage-"
+                },
+                {
+                  "text": "Problemstellungen an. Dabei erschließen sie Zusammenhänge zwischen Wissensberei-"
+                },
+                {
+                  "text": "Methoden und Strategien zur systematischen Beschaffung, Strukturierung"
+                },
+                {
+                  "text": "Nutzung von Informationen und Materialien. Der Unterricht in der Qualifikationsphase zielt"
+                },
+                {
+                  "text": "selbstständiges und eigenverantwortliches Lernen und Arbeiten sowie auf die Weiterent-"
+                },
+                {
+                  "text": "Kommunikationsfähigkeit; der Erwerb einer angemessenen Fachsprache ermög-"
+                },
+                {
+                  "text": "Teilhabe am fachbezogenen Diskurs. In diesem Kontext beschreiben die"
+                },
+                {
+                  "text": "Bildungsstandards und die verbindlichen Themenfelder die Leistungserwartungen für das Er-"
+                },
+                {
+                  "text": "Allgemeinen Hochschulreife. Durch die Wahl von Grund- und Leistungskursen ist"
+                },
+                {
+                  "text": "Möglichkeit gegeben, individuelle Schwerpunkte zu setzen und auf unterschiedlichen An-"
+                },
+                {
+                  "text": "Verbindliche Regelungen zur Bearbeitung der Themenfelder"
+                },
+                {
+                  "text": "Einführungsphase"
+                },
+                {
+                  "text": "In der Einführungsphase sind die Themenfelder 1 bis 3 verbindliche Grundlage des Unter-"
+                },
+                {
+                  "text": "Die „zum Beispiel“-Nennungen in den Themenfeldern dienen der inhaltlichen Anregung"
+                },
+                {
+                  "text": "Soweit sich eine bestimmte Reihenfolge der Themenfelder nicht"
+                },
+                {
+                  "text": "Erfordernissen ableitet, kann die Reihenfolge frei gewählt werden. In jedem Fall"
+                },
+                {
+                  "text": "Themenfelder im zweiten Kurshalbjahr zu bear-"
+                },
+                {
+                  "text": "Für die Bearbeitung der verbindlichen Themenfelder sind etwa zwei Drittel der gemäß"
+                },
+                {
+                  "text": "OAVO zur Verfügung stehenden Unterrichtszeit – in der Regel circa 24 Unterrichtswochen –"
+                },
+                {
+                  "text": "Die verbleibende Unterrichtszeit bietet die Möglichkeit, Aspekte der verbindlichen"
+                },
+                {
+                  "text": "Themenfelder zu vertiefen oder zu erweitern, und den notwendigen Zeitrahmen für Unterricht-"
+                },
+                {
+                  "text": "vorhaben, die in besonderer Weise auf den Kompetenzerwerb in den einzelnen Kompetenz-"
+                },
+                {
+                  "text": "Darüber hinaus kann diese Zeit auch zur Bearbeitung eines nicht"
+                },
+                {
+                  "text": "Themenfeldes genutzt werden."
+                },
+                {
+                  "text": "Qualifikationsphase"
+                },
+                {
+                  "text": "Verbindliche Grundlage des Unterrichts sind im Kurshalbjahr Q1 die Themenfelder 1 bis 3, im"
+                },
+                {
+                  "text": "Kurshalbjahr Q2 die innerhalb der Themenfelder 1 und 2 jeweils durch Erlass festgelegten"
+                },
+                {
+                  "text": "Inhalte, im Kurshalbjahr Q3 die innerhalb der Themenfelder 1 bis 3 jeweils durch Erlass fest-"
+                },
+                {
+                  "text": "Inhalte sowie im Kurshalbjahr Q4 die innerhalb des Themenfelds 1 durch Erlass fest-"
+                },
+                {
+                  "text": "Inhalte; insgesamt gibt es somit neun Themenfelder, die jeweils entweder insgesamt"
+                },
+                {
+                  "text": "für die schriftlichen Abiturprüfungen verbindlich sind oder aus denen jeweils durch Erlass die"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "für die schriftlichen Abiturprüfungen verbindlichen Inhalte festgelegt werden. Im Hinblick auf"
+                },
+                {
+                  "text": "Themenfelder 1 bis 3 der Q1 können durch Erlass Schwerpunkte sowie Kon-"
+                },
+                {
+                  "text": "Themenfelder ausgewiesen werden. Je nach Länge der Kurs-"
+                },
+                {
+                  "text": "Q1 bis Q4 können Teile eines der Themenfelder zwischen zwei"
+                },
+                {
+                  "text": "Halbjahren verschoben werden."
+                },
+                {
+                  "text": "Die „zum Beispiel“-Nennungen in den Themenfeldern dienen der inhaltlichen Anregung und"
+                },
+                {
+                  "text": "Inhalte im Kontext der Formulierung „am Beispiel von“ sind hingegen"
+                },
+                {
+                  "text": "Soweit sich eine bestimmte Reihenfolge der Themenfelder nicht aus fachlichen"
+                },
+                {
+                  "text": "Erfordernissen ableitet, kann die Reihenfolge frei gewählt werden."
+                },
+                {
+                  "text": "Differenzierung zwischen Grund- und Leistungskursen"
+                },
+                {
+                  "text": "Gemeinsames Ziel von Grund- und Leistungskursen in den naturwissenschaftlichen Fächern"
+                },
+                {
+                  "text": "Förderung und Entwicklung grundlegender Kompetenzen als Teil der Allgemeinbildung"
+                },
+                {
+                  "text": "Voraussetzung für Studium und Beruf. Daher werden für beide Kursarten gemeinsame"
+                },
+                {
+                  "text": "Könnenserwartungen (vergleiche Abschnitt 3.2) in Form von Bildungsstandards formuliert."
+                },
+                {
+                  "text": "Diese Kompetenzen erfahren im Unterricht und in Prüfungen durch eine Verschränkung mit"
+                },
+                {
+                  "text": "Grund- und Leistungskurs differenzierten Inhalten (vergleiche Abschnitt 3.3) auch"
+                },
+                {
+                  "text": "Differenzierung im Leistungsniveau. Ein exemplarisches Arbeiten lässt Zusammenhänge"
+                },
+                {
+                  "text": "Fach und über dessen Grenzen hinaus erkennbar werden."
+                },
+                {
+                  "text": "Grund- und Leistungskurse führen in grundlegende Fragestellungen, Sachverhalte, Problem-"
+                },
+                {
+                  "text": "Strukturen ein. Sie machen dabei wesentliche Arbeits- und Fachmethoden so-"
+                },
+                {
+                  "text": "Darstellungsformen bewusst und erfahrbar. Der Unterricht in Grundkursen fördert durch"
+                },
+                {
+                  "text": "Bezüge Einsicht in die Bedeutung des Faches sowie durch schülerzentriertes"
+                },
+                {
+                  "text": "Arbeiten die Selbstständigkeit der Lernenden."
+                },
+                {
+                  "text": "Zusätzlich vertiefen Leistungskurse die Inhalte, Modelle, Theorien und Arbeitsweisen, so dass"
+                },
+                {
+                  "text": "Komplexität und der Aspektreichtum des Faches noch deutlicher werden. Der Unterricht"
+                },
+                {
+                  "text": "Beherrschung der Arbeits- und Fachmethoden, deren selbstständige Anwendung,"
+                },
+                {
+                  "text": "Übertragung und Reflexion sowie auf ein exemplarisch vertieftes wissenschaftspropädeuti-"
+                },
+                {
+                  "text": "Arbeiten ausgerichtet. Leistungskurse zielen auf einen hohen Grad an Selbsttätigkeit"
+                },
+                {
+                  "text": "Lernenden vor allem während des Experimentierens sowie des Erarbeitens fachlicher"
+                },
+                {
+                  "text": "Kenntnisse und deren gesellschaftlicher und wissenschaftlicher Bezüge."
+                },
+                {
+                  "text": "Die Anforderungen im Leistungskurs unterscheiden sich daher nicht nur quantitativ, sondern"
+                },
+                {
+                  "text": "Grundkurs. Dies zeigt sich in allen Kompetenzbereichen."
+                },
+                {
+                  "text": "Im Bereich der Sachkompetenz äußert sich das erhöhte Anforderungsniveau im Leistungskurs"
+                },
+                {
+                  "text": "darin, dass bestimmte Sachverhalte in höherer Komplexität der verwendeten Modelle detail-"
+                },
+                {
+                  "text": "Darüber hinaus nutzen Lernende des erhöhten Anforderungsniveaus"
+                },
+                {
+                  "text": "Mathematisierung."
+                },
+                {
+                  "text": "Im Bereich der Erkenntnisgewinnungskompetenz bedingt das erhöhte Anforderungsniveau"
+                },
+                {
+                  "text": "höhere Komplexität der bearbeiteten Fragestellungen, Modelle und Experimente sowie"
+                },
+                {
+                  "text": "Reflexion des Prozesses der Erkenntnisgewinnung. Auch die Vor- und Nachteile"
+                },
+                {
+                  "text": "Aussagekraft verschiedener Mess- und Auswertungsverfahren werden vertieft be-"
+                },
+                {
+                  "text": "Im Bereich der Kommunikationskompetenz bedingt das erhöhte Anforderungsniveau ein um-"
+                },
+                {
+                  "text": "Fachvokabular, abstraktere Darstellungsformen – auch im Bereich der Mathe-"
+                },
+                {
+                  "text": "Ausdrucksweisen. Auch müssen"
+                },
+                {
+                  "text": "Fachtexte zu komplexeren Inhalten verstanden werden."
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "Im Bereich der Bewertungskompetenz zeigt sich das erhöhte Anforderungsniveau darin, dass"
+                },
+                {
+                  "text": "Argumente mit Belegen zur Bewertung naturwissenschaftlicher Sach-"
+                },
+                {
+                  "text": "Auch müssen eigene Standpunkte differenzierter begründet"
+                },
+                {
+                  "text": "Kritik verteidigt werden."
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "Übersicht über die Themen der Kurshalbjahre und die Themenfelder"
+                },
+                {
+                  "text": "Einführungsphase (E)"
+                },
+                {
+                  "text": "E1/E2 Redoxreaktionen, Protolysereaktionen und ausgewählte organische Verbin-"
+                },
+                {
+                  "text": "E.1 Redoxreaktionen"
+                },
+                {
+                  "text": "E.2 Protolysereaktionen"
+                },
+                {
+                  "text": "E.3 Einführung in die Chemie organischer Verbindungen"
+                },
+                {
+                  "text": "E.4 Erdöl und Erdgas – Brennstoffe in der Diskussion"
+                },
+                {
+                  "text": "E.5 Mobile Energiewandler"
+                },
+                {
+                  "text": "verbindlich: Themenfelder 1 bis 3"
+                },
+                {
+                  "text": "Qualifikationsphase (Q)"
+                },
+                {
+                  "text": "Q1.1 Chemische Bindung und Strukturen ausgewählter anorganischer und orga-"
+                },
+                {
+                  "text": "Q1.2 Alkanole und Carbonylverbindungen"
+                },
+                {
+                  "text": "Q1.3 Alkansäuren und ihre Derivate"
+                },
+                {
+                  "text": "Q1.5 Konservierungsstoffe"
+                },
+                {
+                  "text": "verbindlich: Themenfelder 1 bis 3; innerhalb dieser Themenfelder können durch Erlass"
+                },
+                {
+                  "text": "Schwerpunkte sowie Konkretisierungen ausgewiesen werden; je nach Länge der Kurshalb-"
+                },
+                {
+                  "text": "Q1 bis Q4 können Teile eines der Themenfelder zwischen zwei aufeinanderfolgenden"
+                },
+                {
+                  "text": "Halbjahren verschoben werden."
+                },
+                {
+                  "text": "Q2 Naturstoffe und Synthesechemie"
+                },
+                {
+                  "text": "Q2.1 Naturstoffe"
+                },
+                {
+                  "text": "Q2.2 Grundlagen der Kunststoffchemie"
+                },
+                {
+                  "text": "Q2.3 Chemie der Aromaten"
+                },
+                {
+                  "text": "Q2.4 Organische Werkstoffe"
+                },
+                {
+                  "text": "verbindlich: die innerhalb der Themenfelder 1 und 2 jeweils durch Erlass festgelegten Inhalte;"
+                },
+                {
+                  "text": "Länge der Kurshalbjahre Q1 bis Q4 können Teile eines der Themenfelder zwischen"
+                },
+                {
+                  "text": "Halbjahren verschoben werden."
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "Q3 Das chemische Gleichgewicht"
+                },
+                {
+                  "text": "Q3.1 Chemische Gleichgewichte und ihre Einstellung"
+                },
+                {
+                  "text": "Q3.2 Protolysegleichgewichte"
+                },
+                {
+                  "text": "Q3.3 Redoxgleichgewichte"
+                },
+                {
+                  "text": "Q3.4 Puffersysteme – Säure-Base-Puffer"
+                },
+                {
+                  "text": "Q3.5 Geschwindigkeit chemischer Reaktionen"
+                },
+                {
+                  "text": "verbindlich: die innerhalb der Themenfelder 1 bis 3 jeweils durch Erlass festgelegten Inhalte;"
+                },
+                {
+                  "text": "Länge der Kurshalbjahre Q1 bis Q4 können Teile eines der Themenfelder zwischen"
+                },
+                {
+                  "text": "Halbjahren verschoben werden."
+                },
+                {
+                  "text": "Q4 Energie und Nachhaltigkeit"
+                },
+                {
+                  "text": "Q4.1 Energetische und kinetische Aspekte chemischer Reaktionen"
+                },
+                {
+                  "text": "Q4.2 Nachhaltige Chemie und Energieumwandlung in der Technik"
+                },
+                {
+                  "text": "Q4.3 Nachhaltige Chemie am Beispiel eines modernen Waschmittels"
+                },
+                {
+                  "text": "verbindlich: die innerhalb von Themenfeld 1 durch Erlass festgelegten Inhalte; je nach Länge"
+                },
+                {
+                  "text": "Kurshalbjahre Q1 bis Q4 können Teile eines der Themenfelder zwischen zwei aufeinan-"
+                },
+                {
+                  "text": "Halbjahren verschoben werden."
+                },
+                {
+                  "text": "Im Zusammenhang der Bearbeitung der Themen der Kurshalbjahre und der Themenfelder des"
+                },
+                {
+                  "text": "Faches lassen sich vielfältig Bezüge auch zu Themenfeldern anderer Fächer (innerhalb eines"
+                },
+                {
+                  "text": "Kurshalbjahres) herstellen, um sich komplexeren Fragestellungen aus unterschiedlichen"
+                },
+                {
+                  "text": "Fachperspektiven zu nähern. Auf diese Weise erfahren die Lernenden die Notwendigkeit und"
+                },
+                {
+                  "text": "Wirksamkeit interdisziplinärer Kooperation und erhalten gleichzeitig Gelegenheit, ihre fachspe-"
+                },
+                {
+                  "text": "Kenntnisse in anderen Kontexten zu erproben und zu nutzen. Dabei erwerben sie"
+                },
+                {
+                  "text": "Wissen, welches die Fachdisziplinen verbindet. Dies bereitet sie auf den Umgang mit"
+                },
+                {
+                  "text": "Problemlagen vor und fördert eine systemische Sichtweise."
+                },
+                {
+                  "text": "Durch fachübergreifende und fächerverbindende Themenstellungen können mit dem An-"
+                },
+                {
+                  "text": "stärkeren Lebensweltorientierung auch die Interessen und Fragestellungen, die"
+                },
+                {
+                  "text": "Lernende bewegen, Berücksichtigung finden. In der Anlage der Themenfelder in den"
+                },
+                {
+                  "text": "Kurshalbjahren sind – anknüpfend an bewährte Unterrichtspraxis – fachübergreifende und fä-"
+                },
+                {
+                  "text": "Bezüge jeweils mitgedacht. Dies erleichtert die Kooperation zwischen den"
+                },
+                {
+                  "text": "Fächern und ermöglicht interessante Themenstellungen."
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "E1/E2 Redoxreaktionen, Protolysereaktionen und ausgewählte organische"
+                },
+                {
+                  "text": "Die Lernenden greifen Kenntnisse aus der Sekundarstufe I zum Aufbau von Atomen, Ionen"
+                },
+                {
+                  "text": "Molekülen sowie Vorstellungen zum räumlichen Bau von Stoffen und deren Eigenschaften"
+                },
+                {
+                  "text": "Sie erkennen bei der Beschäftigung mit Protolyse- und Redoxreakti-"
+                },
+                {
+                  "text": "onen, dass die Vielfalt chemischer Reaktionen auf wenige übertragbare Grundprinzipien zu-"
+                },
+                {
+                  "text": "rückgeführt werden kann. Dabei verwenden sie aus dem Konzept der chemischen Reaktion"
+                },
+                {
+                  "text": "Donator-Akzeptor-Prinzip als wichtige Strukturierungshilfe und erkennen die"
+                },
+                {
+                  "text": "Analogie zwischen beiden Reaktionstypen. Ihre Kenntnisse über polare Bindungen und den"
+                },
+                {
+                  "text": "Bau von Molekülen verhelfen den Lernenden zu einem tieferen Verständnis der Protonenüber-"
+                },
+                {
+                  "text": "gänge. Dieses befähigt sie dazu, die Bedeutung beider Reaktionstypen in Technik und Alltag"
+                },
+                {
+                  "text": "erkennen, in Teilen experimentell zu prüfen und zu bewerten."
+                },
+                {
+                  "text": "Am Beispiel strukturell übersichtlicher Kohlenwasserstoffe gewinnen die Lernenden einen Ein-"
+                },
+                {
+                  "text": "davon, wie aus den überschaubaren Bindungsverhältnissen des Kohlenstoffatoms die"
+                },
+                {
+                  "text": "Vielfalt organischer Verbindungen entstehen kann. Mithilfe des Konzepts vom Auf-"
+                },
+                {
+                  "text": "Eigenschaften der Stoffe und ihrer Teilchen und in Verbindung mit geeigne-"
+                },
+                {
+                  "text": "Modellen stellen die Lernenden Bezüge zwischen der Molekülstruktur und den"
+                },
+                {
+                  "text": "Eigenschaften der Stoffe her. Sie erhalten an Beispielen einen ersten exemp-"
+                },
+                {
+                  "text": "Einblick, wie funktionelle Gruppen physikalische Eigenschaften und chemische Re-"
+                },
+                {
+                  "text": "maßgeblich bestimmen. Die Lernenden erfahren anhand ausgewählter funktioneller"
+                },
+                {
+                  "text": "Gruppen und homologer Reihen, wie die Vielfalt organischer Verbindungen geordnet und be-"
+                },
+                {
+                  "text": "Insbesondere am Beispiel Ethanol erkennen und beschreiben die"
+                },
+                {
+                  "text": "Lernenden die Relevanz und Bedeutung chemischer Kenntnisse im Zusammenhang von Fra-"
+                },
+                {
+                  "text": "Problemen, die persönliche und gesellschaftliche Aspekte betreffen. Auch Einblicke"
+                },
+                {
+                  "text": "Forschungsgebiete, das Aufgreifen relevanter Umweltaspekte und die Auseinan-"
+                },
+                {
+                  "text": "Fragen zu Problemen der Grundstoff- und Energieversorgung sind für Ler-"
+                },
+                {
+                  "text": "geeignet, die eigene und gesellschaftliche Verantwortung für eine nachhaltige"
+                },
+                {
+                  "text": "Entwicklung zu erkennen und kritisch zu diskutieren."
+                },
+                {
+                  "text": "Bezug zu den Basiskonzepten: Im Kontext des Themas der Kurshalbjahre sind vor allem das"
+                },
+                {
+                  "text": "Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen (insbe-"
+                },
+                {
+                  "text": "Themenfeldern E2 und E3), das Konzept der chemischen Reaktion (insbe-"
+                },
+                {
+                  "text": "Themenfeldern E1 und E2) und das Energiekonzept (insbesondere im"
+                },
+                {
+                  "text": "Themenfeld E1) maßgeblich."
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "verbindlich: Themenfelder 1 bis 3"
+                },
+                {
+                  "text": "E.1 Redoxreaktionen"
+                },
+                {
+                  "text": "Aufgreifen von Inhalten aus der Sekundarstufe I:"
+                },
+                {
+                  "text": "Redoxbegriff: Redoxreaktionen als Elektronenübergänge, Definition der Be-"
+                },
+                {
+                  "text": "Oxidation, Reduktion, Oxidationsmittel, Reduktionsmittel"
+                },
+                {
+                  "text": "Begriffe auf Modellebene erklären: Aufbau einfacher Anionen und Kationen mithilfe des"
+                },
+                {
+                  "text": "Bohr‘schen Atommodells, Oktettregel"
+                },
+                {
+                  "text": "Ionenbindung und Ionengitter (im Allgemeinen)"
+                },
+                {
+                  "text": "Erweiterung und Vertiefung von Inhalten:"
+                },
+                {
+                  "text": "Metallbindung (Elektronengasmodell / Metallgitter im Allgemeinen)"
+                },
+                {
+                  "text": "Ermitteln einer verkürzten Redoxreihe der Metalle (Metallabscheidungen aus Metallsalz-"
+                },
+                {
+                  "text": "lösungen einschließlich der Kennzeichnung von Elektronendonator/-akzeptor-Paaren)"
+                },
+                {
+                  "text": "Spannungsreihe: Standard-Wasserstoff-Halbzelle, Berechnung der"
+                },
+                {
+                  "text": "Spannungsquellen / galvanische Elemente: grundlegender Aufbau und"
+                },
+                {
+                  "text": "Funktionsprinzip an einem Beispiel"
+                },
+                {
+                  "text": "Aufstellen von Reaktionsgleichungen unter Verwendung von Oxidationszahlen"
+                },
+                {
+                  "text": "Elektrolyse an einem Beispiel"
+                },
+                {
+                  "text": "E.2 Protolysereaktionen"
+                },
+                {
+                  "text": "Aufgreifen von Inhalten aus der Sekundarstufe I:"
+                },
+                {
+                  "text": "Wiederholung: Definition des Begriffs Säure beziehungsweise Base/Lauge laut Säure-"
+                },
+                {
+                  "text": "Base-Theorie nach Arrhenius, Namen und Summenformeln folgender anorganischer"
+                },
+                {
+                  "text": "Säuren und deren Salzen: Schwefelsäure, Salpetersäure, Kohlensäure, Phosphorsäure,"
+                },
+                {
+                  "text": "Salzsäure, Namen und Verhältnisformeln folgender Basen/Laugen: Natriumhydroxid/Nat-"
+                },
+                {
+                  "text": "ronlauge, Kaliumhydroxid/Kalilauge, Calciumhydroxid/Kalkwasser, Bariumhydroxid/Baryt-"
+                },
+                {
+                  "text": "Erweiterung und Vertiefung von Inhalten:"
+                },
+                {
+                  "text": "Berechnungen: Masse, molare Masse, Stoffmenge und Konzentration von Lösungen"
+                },
+                {
+                  "text": "Definition des Begriffes pH-Wert, Nachweis von Oxonium- und Hydroxidionen mit Univer-"
+                },
+                {
+                  "text": "salindikatorpapier, pH-Wert-Berechnungen wässriger Lösungen von starken Säuren und"
+                },
+                {
+                  "text": "Säure-Base-Titration (mit Umschlagspunkt) mit wässriger Salzsäurelösung und Natron-"
+                },
+                {
+                  "text": "lauge, Berechnung der Konzentration der Probelösung"
+                },
+                {
+                  "text": "Säure-Base-Theorie nach Brönsted: Säuren als Protonendonatoren, Basen als Protonen-"
+                },
+                {
+                  "text": "akzeptoren, Säure-Base-Reaktionen als Protonenübertragungsreaktionen"
+                },
+                {
+                  "text": "Anwenden der Säure-Base-Theorie nach Brönsted: Ionengleichung von Protolysereaktio-"
+                },
+                {
+                  "text": "nen, Bildung von Oxoniumionen und Hydroxidionen"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "E.3 Einführung in die Chemie organischer Verbindungen"
+                },
+                {
+                  "text": "Aufgreifen von Inhalten aus der Sekundarstufe I:"
+                },
+                {
+                  "text": "Elektronenpaarbindung, Elektronegativität, unpolare und polare Bindung, Molekülgeo-"
+                },
+                {
+                  "text": "Elektronenpaarabstoßungsmodell (EPA-Modell)"
+                },
+                {
+                  "text": "Wasser als Dipolmolekül, Wasserstoffbrücken"
+                },
+                {
+                  "text": "Ionen-Dipol-Wechselwirkung einschließlich Solvatisierung von Ionen"
+                },
+                {
+                  "text": "Erweiterung und Vertiefung von Inhalten:"
+                },
+                {
+                  "text": "Reihe der Alkane und Alkene: Nomenklatur, Isomerie, Darstellung in Struktur-"
+                },
+                {
+                  "text": "formeln, räumliche Struktur"
+                },
+                {
+                  "text": "Reaktionen der Alkane mit Brom einschließlich des Reaktionsmechanismus der radikali-"
+                },
+                {
+                  "text": "Einfluss der Van-der-Waals-Kräfte auf Schmelz- oder Siedetemperaturen bei Alkanen"
+                },
+                {
+                  "text": "Alkenen, Löslichkeit in polaren und unpolaren Lösungsmitteln"
+                },
+                {
+                  "text": "Ethanol: Hydroxygruppe und deren Einfluss auf die Stoffeigenschaften, Wirkung von"
+                },
+                {
+                  "text": "Ethanol im menschlichen Körper"
+                },
+                {
+                  "text": "E.4 Erdöl und Erdgas – Brennstoffe in der Diskussion"
+                },
+                {
+                  "text": "Lagerstätten und Förderung: Erdöl als begrenzte Ressource, Förderverfahren und ihre"
+                },
+                {
+                  "text": "Risiken für die Umwelt, geopolitische Aspekte"
+                },
+                {
+                  "text": "Gewinnung von Kohlenwasserstoffen aus Erdöl: Cracken, fraktionierte Destillation"
+                },
+                {
+                  "text": "Beispiele für Vorkommen und Bedeutung: Methan (zum Beispiel Methan-"
+                },
+                {
+                  "text": "hydrat), Propan und Butan (zum Beispiel Flüssiggas, Feuerzeugbenzin, Camping- und"
+                },
+                {
+                  "text": "Autogas), Isooctan (zum Beispiel Octanzahl)"
+                },
+                {
+                  "text": "Betrachtungen: Verbrennung ausgewählter Stoffe im Vergleich"
+                },
+                {
+                  "text": "E.5 Mobile Energiewandler"
+                },
+                {
+                  "text": "Funktionsweise einer Wasserstoff-Sauerstoff-Brennstoffzelle: Vorgänge an den Elektro-"
+                },
+                {
+                  "text": "den, Wasserstoff als Energiespeicher, Gewinnung von Wasserstoff durch Elektrolyse"
+                },
+                {
+                  "text": "Beispiel mittels Solarzellen)"
+                },
+                {
+                  "text": "Lithium-Ionen-Akkumulator: Aufbau und Funktionsweise in vereinfachter Form"
+                },
+                {
+                  "text": "Blei-Akkumulator: Aufbau, Funktionsweise in vereinfachter Form bezogen auf Blei-Ionen"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "Die Lernenden greifen sowohl Kenntnisse aus der Sekundarstufe I als auch aus der E-Phase"
+                },
+                {
+                  "text": "Aufbau von Atomen, Ionen und Molekülen, zu Vorstellungen zum räumlichen Bau von"
+                },
+                {
+                  "text": "Stoffen und deren Eigenschaften ebenso auf wie zu Bindungsarten. Sie erweitern diese im"
+                },
+                {
+                  "text": "Leistungskurs auch in Bezug auf die Betrachtung der koordinativen Bindung."
+                },
+                {
+                  "text": "Aliphatische Kohlenwasserstoffverbindungen (einschließlich der sich daraus ableitenden sau-"
+                },
+                {
+                  "text": "Derivate) haben beispielsweise für die Ernährung des Menschen, zur Energie-"
+                },
+                {
+                  "text": "gewinnung, in biologischen Prozessen sowie durch die vielfältige Verwendung dieser Stoffe in"
+                },
+                {
+                  "text": "Produktion und der Industrie eine große Bedeutung. Die Lernenden erklären"
+                },
+                {
+                  "text": "Auswirkungen funktioneller Gruppen auf physikalische Eigenschaften und Reaktionsverhalten"
+                },
+                {
+                  "text": "Stoffe. Sie greifen dabei das Konzept vom Aufbau und von den Eigenschaften der"
+                },
+                {
+                  "text": "Stoffe und ihrer Teilchen auf und vertiefen es, indem sie Stoffklassen über funktionelle Grup-"
+                },
+                {
+                  "text": "In diesem Zusammenhang erweitern die Lernenden über das"
+                },
+                {
+                  "text": "Konzept der chemischen Reaktion auch die das Donator-Akzeptor-Prinzip betreffenden As-"
+                },
+                {
+                  "text": "Kenntnisse zu Reaktionen zwischen nucleophilen und elektrophilen Teilchen."
+                },
+                {
+                  "text": "Anhand von Reaktionsmechanismen entwickeln die Lernenden eine vertiefte Vorstellung vom"
+                },
+                {
+                  "text": "Ablauf chemischer Reaktionen. Ihre Kenntnisse hierzu wirken auch im Kurshalbjahr Q3 über"
+                },
+                {
+                  "text": "Aspekte zum chemischen Gleichgewicht im Rahmen des Konzepts der chemischen Reak-"
+                },
+                {
+                  "text": "mit, ein tragfähiges Wissensnetz zu knüpfen."
+                },
+                {
+                  "text": "Den Lernenden werden Grenzen bisheriger Bindungsmodelle bewusst, indem sie sich zum"
+                },
+                {
+                  "text": "Beispiel mit der Acidität von Carbonsäuren, der Stabilität des Carboxylations oder (im Leis-"
+                },
+                {
+                  "text": "Reaktionsverhalten aromatischer Verbindungen befassen. In"
+                },
+                {
+                  "text": "Zusammenhang erweitern die Lernenden ihre Modellvorstellungen um die Mesomerie,"
+                },
+                {
+                  "text": "für sie das besondere Verhalten dieser Stoffe erklärbar wird."
+                },
+                {
+                  "text": "Eine Orientierung an Stoffklassen, funktionellen Gruppen und Strukturmerkmalen ermöglicht"
+                },
+                {
+                  "text": "Lernenden insgesamt, Reaktionstypen und auch Synthesewege über die Stoffklassen"
+                },
+                {
+                  "text": "erkennen, zu beschreiben und zu beurteilen. Dadurch wird ihnen das Prinzip deut-"
+                },
+                {
+                  "text": "lich, wie aus wenigen Grundstoffen zielgerichtet neue Substanzen hergestellt werden können,"
+                },
+                {
+                  "text": "Alltag entscheidend prägen."
+                },
+                {
+                  "text": "Die beiden fakultativen Themenfelder 4 und 5 bieten für die Lernenden Möglichkeiten, ausge-"
+                },
+                {
+                  "text": "wählte Anwendungsbezüge zu vertiefen und damit verbundene Sachverhalte zu beurteilen"
+                },
+                {
+                  "text": "Bezug zu den Basiskonzepten: Im Kontext des Themas des Kurshalbjahres sind vor allem das"
+                },
+                {
+                  "text": "Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen und das"
+                },
+                {
+                  "text": "Konzept der chemischen Reaktion maßgeblich."
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "verbindlich: Themenfelder 1 bis 3; innerhalb dieser Themenfelder können durch Erlass"
+                },
+                {
+                  "text": "Schwerpunkte sowie Konkretisierungen ausgewiesen werden; je nach Länge der Kurshalb-"
+                },
+                {
+                  "text": "Q1 bis Q4 können Teile eines der Themenfelder zwischen zwei aufeinanderfolgenden"
+                },
+                {
+                  "text": "Halbjahren verschoben werden."
+                },
+                {
+                  "text": "Q1.1 Chemische Bindung und Strukturen ausgewählter anorganischer und organi-"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Aufgreifen von Inhalten aus der Sekundarstufe I beziehungsweise aus der Einführungs-"
+                },
+                {
+                  "text": "Wechselwirkungen: Metallbindung (Elektronengasmodell / Metallgitter im"
+                },
+                {
+                  "text": "Allgemeinen), Ionenbindung und Ionengitter (im Allgemeinen), Elektronenpaarbindung"
+                },
+                {
+                  "text": "Molekülgeometrie (EPA-Modell)"
+                },
+                {
+                  "text": "Wechselwirkungen: Dipolmoleküle, Wasserstoffbrücken, Ionen-Dipol-"
+                },
+                {
+                  "text": "Wechselwirkungen einschließlich Solvatisierung von Ionen, Van-der-Waals-Kräfte"
+                },
+                {
+                  "text": "Erweiterung und Vertiefung von Inhalten:"
+                },
+                {
+                  "text": "Übersicht über die Substanzklassen der Alkane, Alkene, Alkine: Nomenklatur, homologe"
+                },
+                {
+                  "text": "Reihen, Mehrfachbindungen bei Alkenen und Alkinen, Konstitutionsisomerie, Strukturfor-"
+                },
+                {
+                  "text": "Struktur-Eigenschafts-Beziehungen: Van-der-Waals-Kräfte im Kontext von Struktur und"
+                },
+                {
+                  "text": "Eigenschaften (Schmelz- oder Siedetemperaturen, Löslichkeit)"
+                },
+                {
+                  "text": "vollständige Oxidation: Verbrennungsreaktion einschließlich Oxidationszahlen und Nach-"
+                },
+                {
+                  "text": "Wasser (mit wasserfreiem Kupfer(II)-sulfat) und Kohlenstoffdioxid (mit Kalkwas-"
+                },
+                {
+                  "text": "ser), Nachweis des entstandenen Carbonats (mit verdünnter Salzsäure)"
+                },
+                {
+                  "text": "Reaktionstypen und Reaktionsmechanismen: Grundprinzipien von Reaktionsmechanis-"
+                },
+                {
+                  "text": "men, radikalische Substitution am Alkan sowie elektrophile Addition von Molekülen des"
+                },
+                {
+                  "text": "Typs X an eine Kohlenstoff-Kohlenstoff-Mehrfachbindung (Nachweis der Doppelbindun-"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Betrachtungen der Kohlenstoff-Kohlenstoff-Doppelbindung: cis-trans-Isome-"
+                },
+                {
+                  "text": "rie/E-Z-Isomerie, induktive Effekte in Bezug auf Additionsreaktionen, Reaktionstyp und"
+                },
+                {
+                  "text": "Reaktionsmechanismus der elektrophilen Addition von Molekülen des Typs HX (Mar-"
+                },
+                {
+                  "text": "kovnikov-Regel), Reaktionstyp der Eliminierung"
+                },
+                {
+                  "text": "Benzen (Benzol): aromatisches System - Struktur und Reaktivität, Eigenschaften und"
+                },
+                {
+                  "text": "Bindungsverhältnisse auf Basis des Mesomeriemodells"
+                },
+                {
+                  "text": "Erstsubstitution an Aromaten: Reaktionstyp und Reaktionsmechanismus der elektrophi-"
+                },
+                {
+                  "text": "Substitution (Mechanismus der Bromierung)"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "Q1.2 Alkanole und Carbonylverbindungen"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Übersicht über die Substanzklasse der Alkanole: Nomenklatur, Hydroxygruppe, homo-"
+                },
+                {
+                  "text": "Reihe, Konstitutionsisomerie, Strukturformeln (auch Skelettformeln), Struktur-Eigen-"
+                },
+                {
+                  "text": "schafts-Beziehungen im Zusammenhang mit Dipol-Dipol-Wechselwirkungen und"
+                },
+                {
+                  "text": "Wasserstoffbrücken (Schmelz- oder Siedetemperaturen, Löslichkeit)"
+                },
+                {
+                  "text": "Reaktionstyp der nucleophilen Substitution: Reaktionsgleichungen zwischen Hydroxidio-"
+                },
+                {
+                  "text": "Halogenalkanen einschließlich Nachweis von Chlorid- und Bromidionen mit Sil-"
+                },
+                {
+                  "text": "Oxidation: Redox-Reaktionen primärer und sekundärer Alkanole im Unterschied"
+                },
+                {
+                  "text": "tertiären Alkanolen einschließlich der Anwendung von Oxidationszahlen (Oxidations-"
+                },
+                {
+                  "text": "Kupfer(II)oxid, Permanganationen in saurer Lösung)"
+                },
+                {
+                  "text": "Alkanole: Nomenklatur, Struktur (Ethan-1,2-diol, Propan-1,2,3-triol)"
+                },
+                {
+                  "text": "Übersicht über die Substanzklasse der Alkanale: Strukturmerkmal der endständigen Car-"
+                },
+                {
+                  "text": "(Aldehydgruppe) einschließlich des Nachweises der Aldehydgruppe über"
+                },
+                {
+                  "text": "Wirkung (Fehling-Probe mit Reaktionsgleichung), Strukturformeln (auch"
+                },
+                {
+                  "text": "Übersicht über die Substanzklasse der Alkanone: Strukturmerkmal der mittelständigen"
+                },
+                {
+                  "text": "Carbonylgruppe (Ketogruppe), Strukturformeln (auch Skelettformeln)"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Bindung – Wechselwirkung von Metallkationen und Teilchen mit freien Elekt-"
+                },
+                {
+                  "text": "Beispiel der Bildung von Kupfer(II)-tartrat bei der Fehling-Probe"
+                },
+                {
+                  "text": "Reaktionsmechanismus der nucleophilen Substitution einschließlich Differenzierung nach"
+                },
+                {
+                  "text": "S 1-Mechanismus (bei tertiären Kohlenstoffatomen) und S 2-Mechanismus (bei pri-"
+                },
+                {
+                  "text": "mären Kohlenstoffatomen) –Poten Einfluss induktiver und sterischer Effekte"
+                },
+                {
+                  "text": "Q1.3 Alkansäuren und ihre Derivate"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Übersicht über die Substanzklasse der Carbonsäuren: Nomenklatur, Carboxygruppe ein-"
+                },
+                {
+                  "text": "schließlich des Nachweises der Carboxygruppe über den sauren Charakter, homologe"
+                },
+                {
+                  "text": "Reihe, Strukturformeln (auch Skelettformeln), Struktur-Eigenschafts-Beziehungen"
+                },
+                {
+                  "text": "(Schmelz- oder Siedetemperaturen, Löslichkeit)"
+                },
+                {
+                  "text": "Acidität im Zusammenhang mit polaren Bindungen und induktiven Effekten, Mesome-"
+                },
+                {
+                  "text": "Beispiel des Carboxylations"
+                },
+                {
+                  "text": "Derivate der Monocarbonsäuren: struktureller Aufbau von Hydroxy- und Aminosäuren,"
+                },
+                {
+                  "text": "Substanzklasse der Carbonsäureester: Nomenklatur, Estergruppe, Strukturformeln (auch"
+                },
+                {
+                  "text": "Skelettformeln), Esterbildung - Reaktionstyp (Kondensation) und mechanistische Be-"
+                },
+                {
+                  "text": "Reaktionstyp Hydrolyse: saure und alkalische Esterhydrolyse"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Betrachtung der alkalischen Esterhydrolyse"
+                },
+                {
+                  "text": "Di- und Tricarbonsäuren: Struktur"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Herstellung von Seife durch alkalische Hydrolyse"
+                },
+                {
+                  "text": "Aufbau von Seifen und Zusammenhänge zwischen Struktur und Eigenschaften: Emulga-"
+                },
+                {
+                  "text": "tor, pH-Wert, Grenzflächenaktivität und Oberflächenspannung des Wassers"
+                },
+                {
+                  "text": "Waschvorgang: Dispergiervermögen und Micellenbildung, Beeinflussung der Waschwir-"
+                },
+                {
+                  "text": "kung, Bildung von Kalkseifen"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Wasserhärte (permanente, temporäre und Gesamthärte)"
+                },
+                {
+                  "text": "Q1.5 Konservierungsstoffe"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Lebensmittelkonservierung früher und heute"
+                },
+                {
+                  "text": "Nachweis von Ascorbinsäure als Antioxidans"
+                },
+                {
+                  "text": "Zusatz von Sorbinsäure in Lebensmitteln"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Eigenschaften und quantitative Bestimmung der Ascorbinsäure"
+                },
+                {
+                  "text": "Verwendung der Parabene: p-Hydroxybenzoesäureester"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "Q2 Naturstoffe und Synthesechemie"
+                },
+                {
+                  "text": "Viele organische Verbindungen, die uns in unserem Alltag begegnen, sind strukturell kompli-"
+                },
+                {
+                  "text": "Sie weisen oftmals mehrere funktionelle Gruppen auf und erreichen mitunter"
+                },
+                {
+                  "text": "Größe. An ausgewählten Beispielen er-"
+                },
+                {
+                  "text": "Lernenden einen Einblick in die Vielfalt dieser Kohlenstoffverbindungen und ihrer"
+                },
+                {
+                  "text": "Anwendungsgebiete im Alltag."
+                },
+                {
+                  "text": "Die Inhalte der Themenfelder 1 und 2 berücksichtigen mit den Proteinen, den Polysacchariden"
+                },
+                {
+                  "text": "Kunststoffen höhermolekulare Verbindungen. Gemeinsam ist diesen Verbindungen,"
+                },
+                {
+                  "text": "Stoffen mit übersichtlicher Anzahl an funktio-"
+                },
+                {
+                  "text": "Gruppen hergestellt beziehungsweise in diese zerlegt werden können. Damit einherge-"
+                },
+                {
+                  "text": "rücken auch die jeweiligen niedermolekularen Edukte beziehungsweise Spaltprodukte"
+                },
+                {
+                  "text": "Eigenschaften, Vorkommen und Verwendungen in den Fokus. Mit den Fetten wird"
+                },
+                {
+                  "text": "Naturstoff betrachtet. Die Lernenden erhalten dabei die Gelegenheit,"
+                },
+                {
+                  "text": "Bedeutung der Fette zum Beispiel im Rahmen der Ernährung und als nachwachsender"
+                },
+                {
+                  "text": "Rohstoff zu erörtern. Über die Auseinandersetzung mit der Herstellung und dem Recycling"
+                },
+                {
+                  "text": "Kunststoffen entwickeln die Lernenden die Bereitschaft zu verantwortlichem Handeln im"
+                },
+                {
+                  "text": "Sinne der Nachhaltigkeit. Durch die Betrachtung moderner Werkstoffe wie Nanomaterialien"
+                },
+                {
+                  "text": "darüber hinaus im inhaltlichen Kontext der Kunststoffe angeknüpft. Damit wird sowohl"
+                },
+                {
+                  "text": "Konzept vom Aufbau und den Eigenschaften der Stoffe und ihrer Teilchen als auch dem"
+                },
+                {
+                  "text": "Konzept der chemischen Reaktion Rechnung getragen."
+                },
+                {
+                  "text": "Im fakultativen Themenfeld 3 liegt der Schwerpunkt auf dem Beschreiben und Erklären des"
+                },
+                {
+                  "text": "Reaktionsverhaltens der Aromaten. Insgesamt erkennen die Lernenden,"
+                },
+                {
+                  "text": "Verbindungen als Grundstoffe zahlreicher Alltagsprodukte von Bedeutung"
+                },
+                {
+                  "text": "Im Leistungskurs werden Inhalte aus dem Kurshalbjahr Q1 vertieft und erweitert. Durch"
+                },
+                {
+                  "text": "Einblick in das Orbitalmodell gilt das die Modellvorstellungen betreffend ebenso wie für"
+                },
+                {
+                  "text": "Kenntnisse zum Reaktionsverhalten von Aromaten beziehungsweise zu Reaktionsmecha-"
+                },
+                {
+                  "text": "Das fakultative Themenfeld 4 zeichnet sich durch einen vertiefenden Charakter bezüglich mak-"
+                },
+                {
+                  "text": "Verbindungen aus. Über die Auseinandersetzung mit konkreten, dem Alltag ent-"
+                },
+                {
+                  "text": "Anwendungssituationen erkennen die Lernenden das Prinzip der"
+                },
+                {
+                  "text": "Modifizierung von Makromolekülen."
+                },
+                {
+                  "text": "In der Auseinandersetzung mit den Inhalten der Themenfelder dieses Kurshalbjahres bieten"
+                },
+                {
+                  "text": "Vernetzungsmöglichkeiten mit inhaltlichen Aspekten aus dem Kurshalbjahr Q1 an. So"
+                },
+                {
+                  "text": "können Lernende beispielsweise Kenntnisse zu Stoffklassen, funktionellen Gruppen und"
+                },
+                {
+                  "text": "Strukturelementen aufgreifen und diese vertiefen. Im Rahmen ausgewählter Alltags- und An-"
+                },
+                {
+                  "text": "wendungsbezüge bieten sich für die Lernenden vielseitige Möglichkeiten zur kritischen Refle-"
+                },
+                {
+                  "text": "Bezug zu den Basiskonzepten: Im Kontext des Themas des Kurshalbjahres sind vor allem das"
+                },
+                {
+                  "text": "Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen und das"
+                },
+                {
+                  "text": "Konzept der chemischen Reaktion maßgeblich."
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "verbindlich: die innerhalb der Themenfelder 1 und 2 jeweils durch Erlass festgelegten Inhalte;"
+                },
+                {
+                  "text": "Länge der Kurshalbjahre Q1 bis Q4 können Teile eines der Themenfelder zwischen"
+                },
+                {
+                  "text": "Halbjahren verschoben werden."
+                },
+                {
+                  "text": "Q2.1 Naturstoffe"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Aminosäuren: grundlegender struktureller Bau, Zwitterion, Strukturformeln (auch Skelett-"
+                },
+                {
+                  "text": "formeln), Eigenschaften proteinogener Aminosäuren, Säure-Base-Eigenschaften, asym-"
+                },
+                {
+                  "text": "C-Atom, Chiralität, Strukturdarstellung in der Fischer-Projektion, D-/L-"
+                },
+                {
+                  "text": "Konfiguration, Stereoisomere, Enantiomere"
+                },
+                {
+                  "text": "Peptide: Peptidbindung"
+                },
+                {
+                  "text": "Strukturebenen der Proteine: Primärstruktur, Sekundärstrukturen, Tertiärstruktur ein-"
+                },
+                {
+                  "text": "schließlich aller Wechselwirkungen zwischen den Aminosäureseitenketten, Quartärstruk-"
+                },
+                {
+                  "text": "Eigenschaften, Bedeutung und Verwendung von Proteinen"
+                },
+                {
+                  "text": "Nachweis von Proteinen (typische Färbung bei der Biuret-Reaktion) und von Ammoni-"
+                },
+                {
+                  "text": "Abbauprodukt von Proteinen (Reaktion mit Natriumhydroxid und Nachweis"
+                },
+                {
+                  "text": "Kohlenhydrate: Monosaccharide (Glucose und Fructose), Strukturdarstellungen in der Fi-"
+                },
+                {
+                  "text": "scher-/Haworth-Projektion, D-/L-Konfiguration, Enantiomere, Anomere, Fehling-Probe mit"
+                },
+                {
+                  "text": "Kohlenhydrate: Di- und Polysaccharide (Maltose, Saccharose, Stärke, Cellulose), glyco-"
+                },
+                {
+                  "text": "Bindung, reduzierende und nicht reduzierende Disaccharide, Iod-Stärke-Reak-"
+                },
+                {
+                  "text": "Fette: Aufbau und Eigenschaften der Fette und Öle; Aufbau und Eigenschaften von Fett-"
+                },
+                {
+                  "text": "säuren: gesättigte und ungesättigte Fettsäuren, cis-trans-Isomerie"
+                },
+                {
+                  "text": "Fette: Herstellung von Margarine: Fetthärtung durch Hydrierung von Kohlenstoff-Kohlen-"
+                },
+                {
+                  "text": "stoff-Doppelbindungen"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Aminosäuren: isoelektrischer Punkt"
+                },
+                {
+                  "text": "Chromatografie am Beispiel der Dünnschichtchromatografie von Aminosäuren: Prinzip"
+                },
+                {
+                  "text": "Chromatografie, Nachweis der Aminosäuren mit Ninhydrin-Sprühreagenz, Ermittlung"
+                },
+                {
+                  "text": "Interpretation von Rf-Werten"
+                },
+                {
+                  "text": "Aktivität, Polarimetrie als ein Verfahren der instrumentellen Analyse"
+                },
+                {
+                  "text": "Kohlenhydrate: Keto-Enol-Tautomerie am Beispiel von Fructose, Diastereomere, Halb-"
+                },
+                {
+                  "text": "Acetal-Bildung durch nucleophile Addition"
+                },
+                {
+                  "text": "Fette: Tensidwirkung von Fettsäureanionen"
+                },
+                {
+                  "text": "Fette: Umesterung"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "Q2.2 Grundlagen der Kunststoffchemie"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Klassifizierung von Kunststoffen und Zusammenhänge zwischen Struktur und Eigen-"
+                },
+                {
+                  "text": "schaften: Duroplaste, Thermoplaste, Elastomere"
+                },
+                {
+                  "text": "Reaktionstypen zur Verknüpfung von Monomeren zu Makromolekülen: Polymerisation"
+                },
+                {
+                  "text": "Polykondensation sowie Mechanismus der radikalischen Polymerisation"
+                },
+                {
+                  "text": "Rohstoffgewinnung und -verarbeitung: Gewinnung von Ethen (durch thermisches Cra-"
+                },
+                {
+                  "text": "cken), Synthesereaktion von Polyethylen"
+                },
+                {
+                  "text": "Synthesereaktionen: Polyester, Polyamide am Beispiel von Nylon"
+                },
+                {
+                  "text": "Recycling von Kunststoffen: Rohstoffliches Recycling am Beispiel der Zerlegung in Mo-"
+                },
+                {
+                  "text": "nomere, werkstoffliches Recycling - Einschmelzen von Thermoplasten, ökologische und"
+                },
+                {
+                  "text": "ökonomische Aspekte des Recyclings"
+                },
+                {
+                  "text": "Werkstoffe: Nanostrukturen am Beispiel von Silber-Nanopartikeln, Nanomateri-"
+                },
+                {
+                  "text": "Beispiel von Silber-Nanopartikeln zur antimikrobiellen Ausrüstung von Polyole-"
+                },
+                {
+                  "text": "fin-Lebensmittelverpackungen (zum Beispiel Polyethylen, Polypropylen)"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Reaktionstyp der Polyaddition am Beispiel der Polyurethane"
+                },
+                {
+                  "text": "Recycling von Kunststoffen: Hydrolyse von Polykondensaten"
+                },
+                {
+                  "text": "Wertstoffkreisläufe am Beispiel von Polyethylen"
+                },
+                {
+                  "text": "Q2.3 Chemie der Aromaten"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Benzen (Benzol): Eigenschaften und Bindungsverhältnisse auf Basis des Mesomeriemo-"
+                },
+                {
+                  "text": "Substitution: Reaktionstyp und Reaktionsmechanismus der Halogenierung"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Orbitalmodell: sp3-, sp2- und sp-Hybridisierung von Kohlenstoffatomen,"
+                },
+                {
+                  "text": "σ- und π-Bindung, delokalisiertes π-Elektronensystem des Benzenmoleküls (Benzolmo-"
+                },
+                {
+                  "text": "Substitution: Reaktionsmechanismus der Nitrierung"
+                },
+                {
+                  "text": "Reaktionsmechanismus der elektrophilen Zweitsubstitution: induktive und mesomere Ef-"
+                },
+                {
+                  "text": "fekte, dirigierende Wirkung an den Beispielen Toluol, Phenol, Anilin und Nitrobenzen"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "Q2.4 Organische Werkstoffe"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Biokunststoffe: Synthese, Eigenschaften und Verwendung am Beispiel der Polymilch-"
+                },
+                {
+                  "text": "Aufbau eines Copolymers"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Kautschuk: Herstellung, Erklärung der Elastizität auf molekularer Ebene"
+                },
+                {
+                  "text": "Veränderung durch Vulkanisation"
+                },
+                {
+                  "text": "Textilfaser: Viskose, modifizierte Cellulose"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "Q3 Das chemische Gleichgewicht"
+                },
+                {
+                  "text": "Die Inhalte von Themenfeld 1 lassen die Lernenden erkennen, dass viele chemische Prozesse"
+                },
+                {
+                  "text": "Gleichgewicht zugrunde liegt. Dabei greifen sie"
+                },
+                {
+                  "text": "Beispiele aus thematischen Zusammenhängen der Einführungsphase sowie des Kurs-"
+                },
+                {
+                  "text": "Q1 auf und vernetzen diese mithilfe der Aspekte zum chemischen Gleichgewicht"
+                },
+                {
+                  "text": "Kontext des Konzepts der chemischen Reaktion. Kenntnisse zum Massenwirkungsgesetz"
+                },
+                {
+                  "text": "befähigen sie in diesem Zusammenhang zu quantitativen Beschreibungen von Gleichge-"
+                },
+                {
+                  "text": "wichtszuständen in geschlossenen Systemen und erlauben ihnen Berechnungen in Bezug auf"
+                },
+                {
+                  "text": "Konzentrationen beteiligter Stoffe. Eine erweiterte Betrachtung der Lage des chemischen"
+                },
+                {
+                  "text": "Gleichgewichts wird den Lernenden möglich, indem sie das Prinzip des kleinsten Zwangs (Le"
+                },
+                {
+                  "text": "Chatelier) anwenden. Somit wird über die Behandlung der Aspekte zum chemischen Gleich-"
+                },
+                {
+                  "text": "Konzept der chemischen Reaktion berücksichtigt."
+                },
+                {
+                  "text": "Die Themenfelder 2 (Protolysegleichgewichte) und 3 (Redoxgleichgewichte) bieten Kontext-"
+                },
+                {
+                  "text": "bezüge zum chemischen Gleichgewicht und ermöglichen es den Lernenden somit, Grundvor-"
+                },
+                {
+                  "text": "Gleichgewichten zu erweitern beziehungsweise auf viele Bereiche"
+                },
+                {
+                  "text": "Chemie zu übertragen. Durch die Anwendung des Massenwirkungsgesetzes ist es nun"
+                },
+                {
+                  "text": "möglich, das bislang nur qualitativ zugängliche Donator-Akzeptor-Prinzip auch quantitativ ein-"
+                },
+                {
+                  "text": "Damit wird dem Konzept der chemischen Reaktion in weiterem Umfang Rechnung"
+                },
+                {
+                  "text": "Protolysegleichgewichte finden ihre Anwendung nicht nur in Technik und Industrie, sondern"
+                },
+                {
+                  "text": "Bezügen des alltäglichen Lebens. Die Lernenden erlangen beispielsweise Kenntnisse"
+                },
+                {
+                  "text": "Kenngrößen pH-Wert und Säure- beziehungsweise Basenkonstante, die sie"
+                },
+                {
+                  "text": "Einschätzung des jeweiligen Gefahrenpotenzials der Anwendung von"
+                },
+                {
+                  "text": "Produkten und daraus abzuleitender Handlungsoptionen befähigen. Basierend auf der Neut-"
+                },
+                {
+                  "text": "Titration als analytisches Verfahren zum Beispiel bei Untersu-"
+                },
+                {
+                  "text": "Aspekte oder Überprüfungen von Herstellerangaben eine wichtige"
+                },
+                {
+                  "text": "Redoxgleichgewichte finden sich im Alltag vielfach im Zusammenhang der Elektrochemie –"
+                },
+                {
+                  "text": "Batterien beziehungsweise Akkumulatoren ablaufenden chemischen Reaktionen."
+                },
+                {
+                  "text": "Dies können die Lernenden anhand von Untersuchungen zur Redoxreihe, zu galvanischen"
+                },
+                {
+                  "text": "Elementen und zum Energieträger Wasserstoff erkennen und als Grundlage für die fundierte"
+                },
+                {
+                  "text": "Bewertung alternativer Mobilitätskonzepte beziehungsweise von Möglichkeiten der effizienten"
+                },
+                {
+                  "text": "Energiespeicherung nutzen. Neue Planungsvorhaben zur Mobilität der Zukunft und die zuneh-"
+                },
+                {
+                  "text": "Digitalisierung verschiedenster Lebensbereiche sind ohne eine Weiterentwicklung mo-"
+                },
+                {
+                  "text": "Energiequellen nicht denkbar. Damit findet über das Konzept der chemischen Reaktion"
+                },
+                {
+                  "text": "Energiekonzept Berücksichtigung."
+                },
+                {
+                  "text": "Die fakultativen Themenfelder 4 und 5 greifen zusätzliche Inhalte für Kontextbezüge auf. So"
+                },
+                {
+                  "text": "Möglichkeit, in den ausgewählten Anwendungsgebieten „Puffersysteme“ und „Ge-"
+                },
+                {
+                  "text": "Reaktionen“ die erworbenen Kenntnisse zu vertiefen."
+                },
+                {
+                  "text": "Bezug zu den Basiskonzepten: Im Kontext des Themas des Kurshalbjahres sind insbesondere"
+                },
+                {
+                  "text": "Konzept der chemischen Reaktion und das Energiekonzept maßgeblich."
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "verbindlich: die innerhalb der Themenfelder 1 bis 3 jeweils durch Erlass festgelegten Inhalte;"
+                },
+                {
+                  "text": "Länge der Kurshalbjahre Q1 bis Q4 können Teile eines der Themenfelder zwischen"
+                },
+                {
+                  "text": "Halbjahren verschoben werden."
+                },
+                {
+                  "text": "Q3.1 Chemische Gleichgewichte und ihre Einstellung"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Nachweis des gleichzeitigen Vorliegens von Edukten und Produkten"
+                },
+                {
+                  "text": "Definition des chemischen Gleichgewichts als dynamisches Gleichgewicht: Hin- und"
+                },
+                {
+                  "text": "Gleichgewichte an Beispielen: Estergleichgewicht und Ammoniak-Synthese"
+                },
+                {
+                  "text": "Massenwirkungsgesetz (MWG) vereinfacht (stöchiometrische Faktoren der Edukte und"
+                },
+                {
+                  "text": "Produkte sind in der Summe gleich) am Beispiel des Estergleichgewichts, Bedeutung der"
+                },
+                {
+                  "text": "Gleichgewichtskonstanten K"
+                },
+                {
+                  "text": "Lage von Gleichgewichten in Abhängigkeit von Druck, Temperatur und Konzentration:"
+                },
+                {
+                  "text": "Prinzip von Le Chatelier"
+                },
+                {
+                  "text": "Katalyse: Einfluss von Katalysatoren auf die Einstellung eines chemischen Gleichge-"
+                },
+                {
+                  "text": "wichts, Unterschied zwischen homogener und heterogener Katalyse"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Syntheseverfahren: Ammoniak-Synthese nach Haber-Bosch"
+                },
+                {
+                  "text": "Massenwirkungsgesetz erweitert (stöchiometrische Faktoren der Edukte und Produkte"
+                },
+                {
+                  "text": "Summe nicht gleich), Berechnung von Gleichgewichtskonstanten K und Kon-"
+                },
+                {
+                  "text": "Gleichgewicht (MWG) (einschließlich Lösung quadratischer"
+                },
+                {
+                  "text": "Löslichkeitsgleichgewichte: Interpretation von K -Werten"
+                },
+                {
+                  "text": "Q3.2 Protolysegleichgewichte"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Aufgreifen von Inhalten aus der Einführungsphase:"
+                },
+                {
+                  "text": "Säure-Base-Konzept nach Brönsted: Protolyse, korrespondierende Säure-Base-Paare"
+                },
+                {
+                  "text": "Definition pH-Wert, Nachweis von Oxonium- und Hydroxidionen mit Universalindikator"
+                },
+                {
+                  "text": "Erweiterung und Vertiefung von Inhalten:"
+                },
+                {
+                  "text": "Stärke von Säuren und Basen (qualitative Betrachtung): Säurekonstante (K -Wert) sowie"
+                },
+                {
+                  "text": "pK -Wert, Basenkonstante (K -Wert) sowie pK -Wert"
+                },
+                {
+                  "text": "Berechnung von pH-Werten wässriger Lösungen starker Säuren und starker Basen (bei"
+                },
+                {
+                  "text": "vollständiger Protolyse)"
+                },
+                {
+                  "text": "Säure-Base-Titration (mit Umschlagspunkt) bei vollständiger Protolyse am Beispiel von"
+                },
+                {
+                  "text": "Salzsäure-Lösung / Natronlauge; Berechnung der Konzentration der Probelösung"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Berechnung von pH-Werten wässriger Lösungen schwacher Säuren und Basen (bei"
+                },
+                {
+                  "text": "vollständiger Protolyse) mithilfe von pK - und pK -Werten"
+                },
+                {
+                  "text": "Säure-Base-Titration (mit Titrationskurve): Titration bei unvollständiger Protolyse am Bei-"
+                },
+                {
+                  "text": "Titration einer schwachen einprotonigen Säure mit einer starken Base"
+                },
+                {
+                  "text": "Säure-Base-Titration (mit Titrationskurve): Titration einer mehrprotonigen Säure am Bei-"
+                },
+                {
+                  "text": "Titration einer Aminosäurelösung"
+                },
+                {
+                  "text": "Interpretation einer Titrationskurve, Berechnung von charakteristischen Punkten der Tit-"
+                },
+                {
+                  "text": "rationskurve: Anfangspunkt, Äquivalenzpunkt, Halbäquivalenzpunkt"
+                },
+                {
+                  "text": "Puffersysteme (qualitativ): Bedeutung, Zusammensetzung und Wirkung am Beispiel des"
+                },
+                {
+                  "text": "Essigsäure-Acetat-Puffers"
+                },
+                {
+                  "text": "Q3.3 Redoxgleichgewichte"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Aufgreifen von Inhalten aus der Einführungsphase:"
+                },
+                {
+                  "text": "Redoxpaare, Redoxreaktionen als Elektronenübergang, Aufstellen"
+                },
+                {
+                  "text": "Redoxgleichungen (auch für Redoxreaktionen in saurer Lösung) unter Verwendung"
+                },
+                {
+                  "text": "Oxidationszahlen"
+                },
+                {
+                  "text": "Spannungsquellen (galvanische Elemente am Beispiel des Daniell-Ele-"
+                },
+                {
+                  "text": "Spannungsreihe: Standard-Wasserstoff-Halbzelle, Standardpotenziale"
+                },
+                {
+                  "text": "(Berechnung von Potenzialdifferenzen beziehungsweise Zellspannungen bei Standard-"
+                },
+                {
+                  "text": "Elektrolyse am Beispiel einer Kupfer(II)-chloridlösung"
+                },
+                {
+                  "text": "Erweiterung und Vertiefung von Inhalten:"
+                },
+                {
+                  "text": "Energieträger und Energiespeicherung: Speicherung von Sonnenenergie über"
+                },
+                {
+                  "text": "Gewinnung des alternativen Energieträgers Wasserstoff durch Elektrolyse von Was-"
+                },
+                {
+                  "text": "Verwendung von Solarzellen"
+                },
+                {
+                  "text": "Korrosion: Metallkorrosion am Lokalelement (Sauerstoff- und Säurekorrosion)"
+                },
+                {
+                  "text": "Korrosionsschutz (Opferanode)"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Nernst-Gleichung: Berechnungen (ohne pH- und Temperaturabhängigkeit), Konzentrati-"
+                },
+                {
+                  "text": "Elektrolyse: Überspannung, Zersetzungsspannung"
+                },
+                {
+                  "text": "Faraday-Gesetze (ohne Berechnungen)"
+                },
+                {
+                  "text": "Redoxtitration (Prinzip) am Beispiel der Manganometrie"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "Q3.4 Puffersysteme – Säure-Base-Puffer"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Puffersysteme am Beispiel des Phosphat-Puffer-Systems, Berücksichti-"
+                },
+                {
+                  "text": "Prinzips von Le Chatelier"
+                },
+                {
+                  "text": "Bedeutungen von Puffern für lebende Organismen"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Puffersysteme am Beispiel des Kohlensäure-Hydrogencarbonat-Puffersystems im"
+                },
+                {
+                  "text": "Blut und am Beispiel des Ammoniumpuffersystems"
+                },
+                {
+                  "text": "Puffergleichung (Henderson-Hasselbalch-Gleichung) zur quantitativen Betrachtung von"
+                },
+                {
+                  "text": "Pufferlösungen: Berechnungen zu pH-Werten von Pufferlösungen"
+                },
+                {
+                  "text": "Q3.5 Geschwindigkeit chemischer Reaktionen"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Verlauf einer Reaktion: mittlere und momentane Reaktionsgeschwindigkeit,"
+                },
+                {
+                  "text": "Konzentrations-/Zeit-Diagramme (c/t-Diagramme)"
+                },
+                {
+                  "text": "Einfluss weiterer Faktoren auf die Reaktionsgeschwindigkeit: Stoff, Konzentration, Zertei-"
+                },
+                {
+                  "text": "Aktivierungsenergie und Katalyse"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Autokatalyse am Beispiel der Reaktion Oxalsäure mit Kaliumpermanganat"
+                },
+                {
+                  "text": "Enzyme: Einfluss der Temperatur"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "Q4 Energie und Nachhaltigkeit"
+                },
+                {
+                  "text": "Energetische Betrachtungen spielen zur Beschreibung von Teilchen- und Stoffumwandlungen"
+                },
+                {
+                  "text": "Rolle. In diesem Kurshalbjahr erweitern die Lernenden ihre Kenntnisse zum Ver-"
+                },
+                {
+                  "text": "Reaktionen um energetische, kinetische und thermodynamische Aspekte in"
+                },
+                {
+                  "text": "Natur sowie in der Technik. Damit wird dem Energiekonzept ver-"
+                },
+                {
+                  "text": "Rechnung getragen."
+                },
+                {
+                  "text": "Während über die Inhalte des ersten Themenfelds die Grundlagen vermittelt werden, eröffnen"
+                },
+                {
+                  "text": "Themenfelder die Möglichkeit, diese Kenntnisse über Anwendungsbe-"
+                },
+                {
+                  "text": "züge aus dem Alltag zu vertiefen und dabei je nach Neigung den Bereich der Nachhaltigkeit"
+                },
+                {
+                  "text": "Zusammenhang mit Energieumwandlung bei verschiedenen technischen Verfah-"
+                },
+                {
+                  "text": "Beispiel moderner Waschmittel zu erarbeiten. Insbesondere bei Fragen der Mo-"
+                },
+                {
+                  "text": "bilität spielt nicht nur die Bereitstellung von Energie, sondern auch die Betrachtung von"
+                },
+                {
+                  "text": "Aspekten der Nachhaltigkeit eine große Rolle. Über das fakultative Themenfeld 2 werden da-"
+                },
+                {
+                  "text": "Optionen im Hinblick auf den Antrieb von Fahrzeugen inhaltlich er-"
+                },
+                {
+                  "text": "schlossen, Vor- und Nachteile der jeweiligen Verwendung unter energetischen und"
+                },
+                {
+                  "text": "ökologischen Gesichtspunkten diskutiert und ihre Zukunftsfähigkeit bewertet. Die Lernenden"
+                },
+                {
+                  "text": "Lebenswelt jeden Tag eine Vielzahl unterschiedlicher Produkte der chemischen"
+                },
+                {
+                  "text": "Industrie. Als Verbraucher entscheiden sie über ihre Auswahl von Produkten mit, welchen"
+                },
+                {
+                  "text": "Stellenwert Nachhaltigkeit hat und auch in Zukunft haben wird. Über das fakultative Themen-"
+                },
+                {
+                  "text": "Waschmittel als ein solches Produkt betrachtet werden."
+                },
+                {
+                  "text": "Die Inhalte beider fakultativen Themenfelder sollen in diesem Sinne jeweils insbesondere der"
+                },
+                {
+                  "text": "Vernetzung von Sach- und Bewertungskompetenz dienen. Darüber hinaus sind die Inhalte"
+                },
+                {
+                  "text": "Themenfelder jeweils so kombiniert, dass sie über bedeutende lebenswelt-"
+                },
+                {
+                  "text": "Bezüge hinaus Aspekte zur Wiederholung, Erweiterung und Vertiefung von Inhalten vo-"
+                },
+                {
+                  "text": "Kurshalbjahre integrieren, was mithilfe der Basiskonzepte zur"
+                },
+                {
+                  "text": "kursübergreifenden Vernetzung von Kenntnissen bzw. Kompetenzen beiträgt."
+                },
+                {
+                  "text": "Bezug zu den Basiskonzepten: Im Kontext des Themas des Kurshalbjahres sind insbesondere"
+                },
+                {
+                  "text": "Energiekonzept und das Konzept der chemischen Reaktion maßgeblich."
+                },
+                {
+                  "text": "verbindlich: die innerhalb des Themenfelds 1 durch Erlass festgelegten Inhalte; je nach"
+                },
+                {
+                  "text": "Länge der Kurshalbjahre Q1 bis Q4 können Teile eines der Themenfelder zwischen zwei auf-"
+                },
+                {
+                  "text": "Halbjahren verschoben werden."
+                },
+                {
+                  "text": "Q4.1 Energetische und kinetische Aspekte chemischer Reaktionen"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Hauptsatz der Thermodynamik (qualitativ): Energieerhaltung in thermodynamischen"
+                },
+                {
+                  "text": "Systemen (offenes, geschlossenes und isoliertes System), innere Energie"
+                },
+                {
+                  "text": "Enthalpie: Reaktionswärme bei konstantem Druck, Berechnung von Standardreaktions-"
+                },
+                {
+                  "text": "enthalpien, Satz von Hess"
+                },
+                {
+                  "text": "Kalorimetrie (Prinzip)"
+                },
+                {
+                  "text": "Reaktionsgeschwindigkeit: Abhängigkeiten und Stoßtheorie"
+                },
+                {
+                  "text": "Reaktionsgeschwindigkeit-Temperatur-Regel (RGT-Regel)"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Hauptsatz der Thermodynamik (qualitativ): Entropie als Maß für die Unordnung eines"
+                },
+                {
+                  "text": "Systems, Einfluss der Reaktionsentropie in spontan ablaufenden endothermen Reaktio-"
+                },
+                {
+                  "text": "nen, Berechnung von Reaktionsentropien"
+                },
+                {
+                  "text": "Enthalpie, Berechnungen mit der Gibbs-Helmholtz-Gleichung"
+                },
+                {
+                  "text": "Q4.2 Nachhaltige Chemie und Energieumwandlung in der Technik"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Wasserstoff-Sauerstoff-Brennstoffzelle: Aufbau und Funktionsprinzip, Elektrodenreaktio-"
+                },
+                {
+                  "text": "Elektrolytlösung, Einsatzgebiete (zum Beispiel Antrieb von"
+                },
+                {
+                  "text": "Bussen und Zügen), Vorteile (zum Beispiel emissionsfreier Betrieb) und Nachteile (zum"
+                },
+                {
+                  "text": "Beispiel hoher Energieaufwand bei der Wasserstoffgewinnung) der Verwendung, Proble-"
+                },
+                {
+                  "text": "flächendeckenden Einsatzes für den Fahrzeugantrieb"
+                },
+                {
+                  "text": "Pflanzenölkraftstoffe: Fette und fette Öle als Gemische von Triglyceriden, Aufbau eines"
+                },
+                {
+                  "text": "Triglycerids, Einsatz von Pflanzenölkraftstoffen (zum Beispiel Rapsöl, Palmöl) als erneu-"
+                },
+                {
+                  "text": "Kraftstoffe für Dieselmotoren, Vor- und Nachteile des Einsatzes (zum Beispiel"
+                },
+                {
+                  "text": "Umweltproblematik des Abholzens von Regenwald beim Anlegen von Palmölplantagen)"
+                },
+                {
+                  "text": "Bioethanol: Gewinnung von Glucose aus stärkehaltigen Pflanzen, Aufbau eines Glucose-"
+                },
+                {
+                  "text": "moleküls, Gewinnung von Ethanol aus Glucose durch alkoholische Gärung, Vor- und"
+                },
+                {
+                  "text": "Nachteile der Verwendung als Alternative zu fossilen Kraftstoffen"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Antrieb von Elektrofahrzeugen: Aufbau und Funktionsprinzip von Lithium-Ionen-Akkumu-"
+                },
+                {
+                  "text": "Biodiesel: Gewinnung aus Rapsöl durch Umsetzung mit Methanol (Umesterung), Vor-"
+                },
+                {
+                  "text": "Nachteile des Einsatzes"
+                },
+                {
+                  "text": "Biokunststoffe auf Stärkebasis: glycosidische Bindung, Aufbau von Stärke, großtechnisch"
+                },
+                {
+                  "text": "Stärke hergestellte Stärkefolien – Problematik bezüglich der biologi-"
+                },
+                {
+                  "text": "Abbaubarkeit infolge der Reaktion zwischen Aldehydgruppen und Hydroxygruppen"
+                },
+                {
+                  "text": "Glucoseeinheiten zu Halbacetalen unter Entstehung von Quervernetzun-"
+                },
+                {
+                  "text": "Q.4.3 Nachhaltige Chemie am Beispiel eines modernen Waschmittels"
+                },
+                {
+                  "text": "Niveau (Grundkurs und Leistungskurs)"
+                },
+                {
+                  "text": "Strukturen und Eigenschaften ausgewählter Tenside (zum Beispiel anionische, kationi-"
+                },
+                {
+                  "text": "Zusammensetzung von Waschmitteln: Funktion von Enthärter, Bleichsystem, Enzymen"
+                },
+                {
+                  "text": "ausgewählten Hilfsstoffen"
+                },
+                {
+                  "text": "HMKB Kerncurriculum"
+                },
+                {
+                  "text": "Chemie gymnasiale Oberstufe"
+                },
+                {
+                  "text": "ökologische, ökonomische und soziale Nachhaltigkeit (zum Beispiel Prinzip der biologi-"
+                },
+                {
+                  "text": "Abbaubarkeit, Nachhaltigkeit in Bezug auf die Wahl der Rohstoffe für die Syn-"
+                },
+                {
+                  "text": "these, petrochemische Rohstoffe im Vergleich zu nachwachsenden Rohstoffen, Wasch-"
+                },
+                {
+                  "text": "Verbraucherverhalten)"
+                },
+                {
+                  "text": "erhöhtes Niveau (Leistungskurs)"
+                },
+                {
+                  "text": "Wasserenthärtung: vereinfachte Struktur und Funktion eines ionentauschenden Enthär-"
+                },
+                {
+                  "text": "Beispiel Zeolith A)"
+                },
+                {
+                  "text": "Abbauwege eines Tensids (zum Beispiel Hydrolyse, Oxidation der endständi-"
+                },
+                {
+                  "text": "Methylgruppe beziehungsweise Hydroxygruppe zur Carboxygruppe, β-Oxidation"
+                },
+                {
+                  "text": "Mikroorganismen)"
+                },
+                {
+                  "text": "Hessisches Ministerium"
+                },
+                {
+                  "text": "für Kultus, Bildung und Chancen"
+                }
+              ]
+            },
+            {
+              "title": "Wiesbaden",
+              "learning_objectives": [
+                {
+                  "text": "https://kultus.hessen.de"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_url": "https://kultus.hessen.de/sites/kultus.hessen.de/files/2024-11/kerncurriculum_gymnasiale_oberstufe-chemie_0.pdf",
+      "last_checked": "2026-06-22"
+    }
+  ],
+  "last_updated": "2026-06-22",
+  "source_urls": [
+    "https://kultus.hessen.de/sites/kultus.hessen.de/files/2024-11/kerncurriculum_gymnasiale_oberstufe-chemie_0.pdf"
+  ]
+}

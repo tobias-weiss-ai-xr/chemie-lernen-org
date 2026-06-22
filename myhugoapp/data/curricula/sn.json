@@ -1,0 +1,1392 @@
+{
+  "state": "Sachsen",
+  "state_abbr": "SN",
+  "school_curricula": [
+    {
+      "school_type": "Gymnasium",
+      "grade_levels": [
+        {
+          "grade": "7",
+          "topics": [
+            {
+              "title": "Untersuchen von Stoffen",
+              "learning_objectives": [
+                {
+                  "text": "Einblick in die Bedeutung der Naturwissenschaft Chemie gewinnen Beherrschen von einfachen Verfahren im Umgang mit Chemikalien, Geräten und dem Brenner SE Bedienen des Brenners, Erhitzen von Feststoffen und Flüssigkeiten Demonstration der Nutzung digitaler Werkzeuge zur Messwerterfassung Bestimmungen des Gesundheits-, Arbeits- und Brandschutzes, sparsamer Chemikalieneinsatz Haushaltchemikalien ⇒ Medienbildung ⇒ Verantwortungsbereitschaft Durchführen, Beobachten und Auswerten von einfachen Experimenten SE ➔ PH, Kl. 6, LB 2 Protokollieren von Experimenten Anwenden von Wissen über Stoffeigenschaften zur Einteilung der Stoffe ⇒ Methodenbewusstsein experimentelles Untersuchen von Stoffen auf ihre Eigenschaften SE Stoffe aus dem Alltagsbereich des Schülers: Kochsalz, Zucker, Wasser, Eisen, Spiritus Beobachten, Beschreiben, Vergleichen Stoff Definition Ordnen von Stoffen nach ihren Eigenschaften Aggregatzustand und Teilchenmodell Nutzung digitaler Medien zur Visualisierung ➔ PH, Kl. 6, LB 2 Reinstoffe und Stoffgemische Bedeutung von Massen- und Volumenanteil ➔ MA, Kl. 6, LB 5 Anwenden von Wissen über Stoffeigenschaften auf Trennverfahren Zusammenhang von Eigenschaften und Trennverfahren experimentelles Ausführen von Trennverfahren: Dekantieren, Filtrieren, Eindampfen, Destillieren SE"
+                }
+              ],
+              "duration": "10 Ustd."
+            },
+            {
+              "title": "Metalle – von Aluminium bis Zink",
+              "learning_objectives": [
+                {
+                  "text": "Gestalten einer Dokumentation zu Metallen und Legierungen Nutzung digitaler Medien ⇒ informatische Bildung ⇒ Medienbildung ⇒ Methodenbewusstsein Eigenschaften – Verwendung Bedeutung in Alltag und Technik Übertragen des Wissens über Stoffeigenschaften auf die Stoffgruppe der Metalle experimentelles Untersuchen von Metallen auf charakteristische Eigenschaften SE ➔ PH, Kl. 7, LB 2 Kennen des Kern-Hülle-Modells der Atome Teilchenmodell, PSE als ständiges Arbeitsmittel Nutzung digitaler Medien ➔ PH, Kl. 6, LB 2 Atombau Element Definition Symbole von Metallen Kennen des Baus von Metallen, Metallbindung Modellvorstellung Metallgitter Nutzung digitaler Medien zur Visualisierung"
+                }
+              ],
+              "duration": "7 Ustd."
+            },
+            {
+              "title": "Umwandlung von Stoffen",
+              "learning_objectives": [
+                {
+                  "text": "Einblick in stoffliche Veränderungen im Alltag gewinnen experimentelles Untersuchen SE Brausetablette, Karamellisierung, Abbinden von Gips Erkennen der stofflichen Veränderung Verwitterung von Gestein, Rosten von Eisen Anwenden der Merkmale einer chemischen Reaktion auf ausgewählte Beispiele ⇒ Lernkompetenz experimentelles Untersuchen chemischer Reaktionen auf stoffliche und energetische Veränderungen SE Nutzung digitaler Werkzeuge zur Messwerterfassung ⇒ Medienbildung Stoffumwandlung, Ausgangsstoffe, Reaktionsprodukte Energieformen, Energieumwandlung, Energieerhaltung chemische, elektrische, thermische und Strahlungsenergie ➔ PH, Kl"
+                },
+                {
+                  "text": "Dabei entwickeln sie ihre Fähigkeiten beim Beobachten und Beschreiben von Erscheinungen weiter"
+                },
+                {
+                  "text": "Sie nutzen ihr Wissen zur Unterscheidung und ersten Klassifizierung der Stoffe"
+                },
+                {
+                  "text": "Durch das Wissen über charakteristische Eigenschaften der Metalle sind die Schüler in der Lage, Aussagen über deren Einsatz in der Technik und im Alltag abzuleiten"
+                },
+                {
+                  "text": "Ausgehend von beobachtbaren stofflichen Veränderungen begreifen die Schüler chemische Reaktionen als Prozesse, die durch die Einheit von Stoff- und Energieumwandlungen gekennzeichnet sind"
+                },
+                {
+                  "text": "Kennenlernen und zunehmendes Beherrschen von fachspezifischen Arbeitsweisen der Chemie zur Erklärung chemischer Erscheinungen im Alltag Die Schüler erschließen das Experimentieren als eine grundlegende Arbeitsweise der Naturwissenschaft Chemie und als Mittel zum Erkenntnisgewinn"
+                },
+                {
+                  "text": "Sie gewinnen erste Einblicke in die digitale Messwerterfassung"
+                },
+                {
+                  "text": "Sie kennen und beachten geltende Bestimmungen des Gesundheits-, Arbeits- und Brandschutzes im Umgang mit Chemikalien und Geräten im Chemieunterricht"
+                },
+                {
+                  "text": "Die Schüler interpretieren die Ergebnisse experimenteller Untersuchungen von Stoffen und chemischen Reaktionen phänomenologisch und makroskopisch"
+                },
+                {
+                  "text": "Mit der Einführung des Teilchenmodells sowie des Elementbegriffs lernen sie erste submikroskopische Betrachtungen kennen"
+                },
+                {
+                  "text": "Ausgehend vom Teilchenaufbau der Stoffe gewinnen sie erste Vorstellungen vom Atombau nach dem Kern-Hülle-Modell"
+                },
+                {
+                  "text": "Entwickeln der Fähigkeit zum chemisch kompetenten Kommunizieren unter angemessener Nutzung von Fachsprache und fachtypischen Darstellungs- und Argumentationsstrukturen Die Schüler entwickeln sprachliche Fähigkeiten, indem sie lernen, chemische Phänomene zu beschreiben und erste fachsprachliche Termini verständig zu gebrauchen"
+                },
+                {
+                  "text": "Sie interpretieren Tabellen und Diagramme"
+                },
+                {
+                  "text": "Sie sind in der Lage, mit Hilfe von Nachschlagewerken, Sachbüchern und digitalen Medien chemische Sachverhalte zu präsentieren"
+                },
+                {
+                  "text": "Die Schüler lernen die Symbole ausgewählter Elemente und in diesem Zusammenhang das Periodensystem der Elemente als Arbeitsmittel der Chemie kennen"
+                },
+                {
+                  "text": "Entwickeln der Fähigkeit, Sachverhalte kriteriengeleitet zu beurteilen sowie Entscheidungen und deren Folgen zu bewerten, als Voraussetzung für eine kompetente Teilnahme am gesellschaftlichen Diskurs über Natur­wissenschaft und Technik Die Schüler erlangen erste Einsichten in die Aufgaben, die Entwicklung und die Bedeutung der Naturwissenschaft Chemie"
+                },
+                {
+                  "text": "Durch den sachgerechten Umgang mit Stoffen, der die Vermeidung und Entsorgung von Schadstoffen einschließt, erkennen sie an Beispielen die Verantwortung des Menschen für den Schutz der Umwelt."
+                }
+              ],
+              "duration": "8 Ustd."
+            }
+          ]
+        },
+        {
+          "grade": "8",
+          "topics": [
+            {
+              "title": "Luft – ein Stoffgemisch",
+              "learning_objectives": [
+                {
+                  "text": "Kennen der Zusammensetzung der Luft Sauerstoff, Stickstoff, Kohlenstoffdioxid, Edelgase experimentelles Erkunden der Luftbestandteile SE Stickstoff und Sauerstoff als Nichtmetalle Kennen der Eigenschaften von Sauerstoff ⇒ Lernkompetenz experimentelles Darstellen und Untersuchen von Eigenschaften, Nachweis SE pneumatisches Auffangen, Wasserlöslichkeit, Dichte, Spanprobe ➔ PH, Kl. 8, LB 1 experimentelles Untersuchen der Reaktionen mit den Nichtmetallen Kohlenstoff und Schwefel SE Vergleich der Verbrennung in Luft und in reinem Sauerstoff Nichtmetalloxide Luftreinhaltung als globale Herausforderung ⇒ Bildung für nachhaltige Entwicklung Einblick in den Bau von Sauerstoff, Stickstoff, Kohlenstoffdioxid aus Molekülen gewinnen Molekülsubstanzen Verbindung Definition Molekül Modelle, Unterscheidung Symbol - Formel Ableiten der Formel aus dem Namen weitere Nichtmetalloxide Kennen der chemischen Reaktion als Teilchenveränderung Umordnung von Atomen experimentelles Bestätigen des Gesetzes von der Erhaltung der Masse SE Zusammenhang von Stoffumwandlung und Teilchenveränderung Aufstellen von Reaktionsgleichungen für die Bildung von Nichtmetalloxiden"
+                }
+              ],
+              "duration": "12 Ustd."
+            },
+            {
+              "title": "Wasser – eine chemische Verbindung",
+              "learning_objectives": [
+                {
+                  "text": "Übertragen des Wissens über Stoffgemische auf das Vorkommen von Wasser in der Natur Wasser als Löse- und Transportmittel ⇒ Interdisziplinarität, Mehrperspektivität experimentelles Untersuchen von chemisch reinem Wasser und Wasser als Bestandteil eines Stoffgemischs SE Leitfähigkeit, Eindampfen Leitungswasser, Salzwasser, Mineralwasser, Vorhandensein von Gasen und Ladungsträgern im Wasser Nutzung digitaler Werkzeuge zur Messwerterfassung ⇒ Medienbildung Kennen der Zusammensetzung von Wasser als chemische Verbindung ⇒ Arbeitsorganisation Zersetzung und Bildung von Wasser Wasser- und Wasserstoffmolekül experimentelles Darstellen und Untersuchen von Eigenschaften des Wasserstoffs, Nachweis SE pneumatisches Auffangen, Wasserlöslichkeit, Dichte Kennen der chemischen Bindung im Wasserstoff- und Wassermolekül Molekülsubstanz Schalenmodell der Atomhülle Perioden, Hauptgruppen Elektronenschreibweise Außenelektronen, LEWIS-Formel Oktett-Regel Atombindung Definition"
+                },
+                {
+                  "text": "Sauerstoff, Stickstoff, Kohlenstoffdioxid polare Atombindung, Partialladungen und Dipole Definition"
+                },
+                {
+                  "text": "Elektronegativitätswert, PSE Übertragen des Wissens über den Atombau auf den Zusammenhang zwischen Atombau und Anordnung der Elemente im Periodensystem der Elemente ⇒ Lernkompetenz: Modellerweiterung Sich zu Problemen der Wasserreinhaltung positionieren Exkursion Wasserwerk oder Abwasserwerk Trinkwasserversorgung in der Welt ⇒ Bildung für nachhaltige Entwicklung ⇒ Reflexions- und Diskursfähigkeit ⇒ Verantwortungsbereitschaft Kennen von Ionen als Ladungsträger im Mineralwasser und Salzwasser Vorhandensein positiv und negativ elektrisch geladener Ionen Ionen, Ionenbildung Kat- und Anionen, Energieniveauschema Sich zu Aussagen über die Zusammensetzung von alltäglichen Produkten positionieren natriumarmes Mineralwasser, Magnesium in der Tablette ⇒ Reflexions- und Diskursfähigkeit ➔ SPO, Kl"
+                }
+              ],
+              "duration": "15 Ustd."
+            },
+            {
+              "title": "Kochsalz und andere Salze",
+              "learning_objectives": [
+                {
+                  "text": "Einblick in die Bedeutung des Kochsalzes gewinnen Geschichte der Salzgewinnung, Verwendung selbstorganisiertes Lernen Anwenden des Wissens über den Zusammenhang von Bau und Eigenschaften von Stoffen am Beispiel des Kochsalzes experimentelles Untersuchen von Stoffeigenschaften SE Lösen und Eindampfen Nutzung digitaler Werkzeuge zur Messwerterfassung ⇒ Medienbildung Bau aus Ionen, Ionenbindung, Ionenkristalle Ionensubstanz Entwickeln der Formel auf Grundlage der Elektronenverteilung Lösen von Salzen als chemische Reaktion Dissoziationsgleichung Übertragen des Wissens über den Bau von Kochsalz auf weitere Halogenide"
+                }
+              ],
+              "duration": "5 Ustd."
+            },
+            {
+              "title": "Reaktion von Metallen mit Nichtmetallen",
+              "learning_objectives": [
+                {
+                  "text": "Einblick in Eigenschaften und Verwendung der Alkalimetalle und Halogene gewinnen Demonstration von Stoffproben, Chlorierung, Batterien und Akkumulatoren - nachhaltiger Umgang ⇒ Bildung für nachhaltige Entwicklung Übertragen des Wissens über die Atombindung auf Halogene Kennen der Reaktion mit Elektronenübergang als Redoxreaktion Donator-Akzeptor-Prinzip experimentelles Darstellen von Metallhalogeniden aus den Elementen Mikroskopieren von Kristallen Reaktionsgleichungen für Oxidation, Reduk­tion und Redoxreaktion in Ionenschreibweise, Bruttogleichung Teilgleichungen Übertragen des Wissens über Redoxreaktionen auf die Herstellung der Metalloxide und -sulfide ⇒ Methodenbewusstsein experimentelles Darstellen von Metalloxiden und -sulfiden aus den Elementen Sich zu Aussagen über die Zusammensetzung von Alltagsprodukten positionieren Iod im Salz, Fluor in der Zahncreme Demonstration von Stoffproben ⇒ Reflexions- und Diskursfähigkeit"
+                }
+              ],
+              "duration": "9 Ustd."
+            },
+            {
+              "title": "Säuren und deren saure Lösungen",
+              "learning_objectives": [
+                {
+                  "text": "Einblick in die Bedeutung und Verwendung sowie den Umgang mit Säuren und deren sau­ren Lösungen im Alltag gewinnen Einteilung in anorganische und organische Säuren sauerstoffhaltige anorganische Säuren Verhaltensregeln saurer Regen und dessen Wirkungen ⇒ Verantwortungsbereitschaft ⇒ Bildung für nachhaltige Entwicklung experimentelles Untersuchen von sauren Lösungen mit Indikatoren SE Anwenden des Wissens über den Zusammenhang von Bau und Eigenschaften von Stoffen auf Chlorwasserstoff und seine wässrige Lösung Molekülsubstanzen, Polarität der Atombindung, Dipol verdünnte und konzentrierte saure Lösungen, Massenanteil ⇒ Lernkompetenz experimentelles Untersuchen von Eigenschaften SE elektrische Leitfähigkeit, Wärmeentwicklung beim Lösen und Verdünnen Nutzung digitaler Werkzeuge zur Messwerterfassung ⇒ Medienbildung Kennen der Reaktion mit Protonenübergang am Beispiel der chemischen Reaktion von Chlorwasserstoff mit Wasser Donator-Akzeptor-Prinzip Reaktionsgleichungen für Protonenabgabe, Protonenaufnahme und Gesamtreaktion in Ionenschreibweise, Bruttogleichung Teilgleichungen Oxonium-Ion Merkmal saurer Lösungen Übertragen des Wissens über Reaktionen mit Protonenübergang auf die chemische Reaktion von Schwefelsäure mit Wasser Donator-Akzeptor-Prinzip vollständige Protolyse Anwenden des Wissens über Redoxreaktionen auf chemische Reaktionen von verdünnten sauren Lösungen mit unedlen Metallen Salzlösungen experimentelles Untersuchen SE Interpretation als Redoxreaktion Wahlbereich 1: Wasserstoff als Energieträger Kennen der Möglichkeiten zur Nutzung von Wasserstoff als Energieträger Raketentechnik, alternative Antriebstechnologien auf Wasserstoffbasis experimentelles Durchführen der Reaktion von Wasserstoff mit Sauerstoff in einer Brennstoffzelle Nachweis des Reaktionsprodukts, Vergleich mit der Knallgasreaktion Einblick in die Etappen des Solar-Wasserstoff-Konzepts gewinnen Bedeutung regenerativer Energien, Umweltbilanz ⇒ Bildung für nachhaltige Entwicklung Kennen der Gefahren bei Umgang, Transport und Lagerung von Wasserstoff Sicherheitsbestimmungen Wahlbereich 2: Technische Produktion von Schwefelsäure Kennen der Bedeutung der Schwefelsäure als Grundchemikalie und ihrer Verarbeitungsprodukte experimentelles Untersuchen der Eigenschaften von konzentrierter Schwefelsäure Einblick in den Ablauf des großtechnischen Herstellungsverfahrens gewinnen Kennen der Gefahren bei Umgang, Transport und Lagerung von Schwefelsäure Sicherheitsbestimmungen Wahlbereich 3: Brände und Brandbekämpfung Kennen der Voraussetzungen von Bränden und der Brandbekämpfung ➔ Kl"
+                },
+                {
+                  "text": "An Beispielen aus dem Alltag lernen sie den unterschiedlichen Bau der Stoffe aus Atomen, Molekülen und Ionen kennen"
+                },
+                {
+                  "text": "Sie sind zunehmend in der Lage, Stoffeigenschaften einschließlich des Reaktionsvermögens mit Modellvorstellungen über Art, Zusammenhalt und Anordnung von Teilchen zu erklären"
+                },
+                {
+                  "text": "Die Schüler setzen sich vertieft mit dem Atombau und der Ionenbildung auseinander"
+                },
+                {
+                  "text": "Mit der Atombindung und der Ionenbindung lernen die Schüler zwei weitere Bindungstypen kennen"
+                },
+                {
+                  "text": "Die Schüler lernen die beobachtbaren Stoffumwandlungen bei chemischen Reaktionen als Teilchenveränderungen zu verstehen"
+                },
+                {
+                  "text": "Sie erfassen dabei, dass Teilchenveränderungen auf Elektronenübergänge oder auf Protonenübergänge zurückführbar sind"
+                },
+                {
+                  "text": "Kennenlernen und zunehmendes Beherrschen von fachspezifischen Arbeitsweisen der Chemie zur Erklärung chemischer Erscheinungen im Alltag Die Schüler erweitern ihre Vorstellungen über den Atombau"
+                },
+                {
+                  "text": "Dazu nutzen sie das Schalenmodell der Atomhülle und erschließen sich den Zusammenhang zum Aufbau des Periodensystems der Elemente"
+                },
+                {
+                  "text": "Sie erkennen zunehmend die Komplexität des Aufbaus der Materie"
+                },
+                {
+                  "text": "Sie können ausgewählte Eigenschaften von Stoffen und deren Reaktionsverhalten erläutern und voraussagen"
+                },
+                {
+                  "text": "Darin sind Stoffe aus Elementgruppen eingeschlossen"
+                },
+                {
+                  "text": "Die Funktion und die Leistungsfähigkeit von Modellen beim Erschließen chemischer Erscheinungen werden ihnen damit bewusst"
+                },
+                {
+                  "text": "Durch die Anwendung neuer Arbeitstechniken entwickeln die Schüler ihre experimentellen Fähigkeiten einschließlich des Umgangs mit digitalen Werkzeugen beim Experimentieren weiter"
+                },
+                {
+                  "text": "Sie sind in der Lage, an ausgewählten Beispielen Experimente zunehmend selbstständig zu planen, durchzuführen und auszuwerten"
+                },
+                {
+                  "text": "Mit der Untersuchung von sauren Lösungen erweitern die Schüler ihre Kenntnisse zum sachgerechten Umgang mit Chemikalien und ziehen Rückschlüsse auf den Umgang mit diesen Stoffen im Alltag"
+                },
+                {
+                  "text": "Entwickeln der Fähigkeit zum chemisch kompetenten Kommunizieren unter angemessener Nutzung von Fachsprache und fachtypischen Darstellungs- und Argumentationsstrukturen Die Schüler erweitern ihre sprachlichen Fähigkeiten, indem sie Naturphänomene beschreiben und deren chemischen Inhalt unter Nutzung der Fachsprache darstellen"
+                },
+                {
+                  "text": "Insbesondere beim experimentellen Arbeiten entwickeln sie Lösungsansätze für Probleme und diskutieren Vorschläge"
+                },
+                {
+                  "text": "Dabei sind sie zunehmend in der Lage, chemische Sachverhalte ihrer Umwelt zu erfassen, zu beurteilen und sich damit kritisch auseinander zu setzen"
+                },
+                {
+                  "text": "Die Schüler lernen mit Hilfe des Periodensystems der Elemente Formeln aufzustellen"
+                },
+                {
+                  "text": "Sie können einfache chemische Reaktionsgleichungen entwickeln und diese stofflich sowie teilchenmäßig interpretieren"
+                },
+                {
+                  "text": "Entwickeln der Fähigkeit, Sachverhalte kriteriengeleitet zu beurteilen sowie Entscheidungen und deren Folgen zu bewerten, als Voraussetzung für eine kompetente Teilnahme am gesellschaftlichen Diskurs über Natur­wissenschaft und Technik Die Schüler vertiefen ihre Kenntnisse über die Bedeutung von Luft und Wasser als Grundlage des Lebens"
+                },
+                {
+                  "text": "Sie setzen sich mit Umweltproblemen wie Luftverschmutzung und sauren Regen auseinander und erkennen diese als anthropogen verursachte Erscheinungen"
+                },
+                {
+                  "text": "Die Schüler erhalten Anregungen für nachhaltiges Handeln im Alltag."
+                }
+              ],
+              "duration": "9 Ustd."
+            }
+          ]
+        },
+        {
+          "grade": "9",
+          "topics": [
+            {
+              "title": "Saure, basische und neutrale Lösungen",
+              "learning_objectives": [
+                {
+                  "text": "Kennen der sauren, basischen oder neutralen Eigenschaft von Lösungen verschiedene Lösungen des Alltags experimentelles Untersuchen von Lösungen mit Indikatoren SE Verhaltensregeln beim Umgang mit basischen Lösungen ⇒ Verantwortungsbereitschaft pH-Wert-Skala zur Charakteristik der Lösungen Anwenden des Wissens über den Zusammenhang von Bau, Eigenschaften und Verwendung von Stoffen auf Natriumhydroxid Natronlauge ⇒ Lernkompetenz experimentelles Untersuchen von Eigenschaften SE elektrische Leitfähigkeit, Wärmeentwicklung beim Lösen und Verdünnen, pH-Wert Nutzung digitaler Werkzeuge zur Messwerterfassung ⇒ Medienbildung Übertragen des Zusammenhangs zwischen Bau, Eigenschaften und Verwendung von Stoffen auf weitere Metallhydroxide und deren basische Lösungen Einsatz im Alltag ⇒ Methodenbewusstsein Dissoziationsgleichung Hydroxid-Ion Merkmal basischer Lösungen Übertragen des Wissens über Reaktionen mit Protonenübergang auf chemische Reaktionen von sauren mit basischen Lösungen Donator-Akzeptor-Prinzip experimentelles Untersuchen SE energetische Betrachtung, Veränderung der Leitfähigkeit Nutzung digitaler Werkzeuge zur Messwerterfassung ⇒ Medienbildung Neutralisation Salzlösungen, Salze"
+                }
+              ],
+              "duration": "9 Ustd."
+            },
+            {
+              "title": "Vom Kohlenstoff bis zum Kalkstein",
+              "learning_objectives": [
+                {
+                  "text": "Anwenden des Zusammenhangs zwischen Struktur, Eigenschaften und Verwendung von Stoffen auf Kohlenstoff Modifikationen: Graphit, Diamant Atomgitter, Fullerene Übertragen des Wissens über chemische Reaktionen auf Reaktionen des Kohlenstoffs und seiner Verbindungen – Stoffkreislauf ⇒ Methodenbewusstsein ➔ BIO, Kl"
+                },
+                {
+                  "text": "Kohlensäure experimentelles Durchführen der Bildung und Zersetzung von Kalkstein Kalkbrennen, Kalklöschen, Abbinden von Kalkmörtel SE Reaktionen von Carbonaten mit sauren Lösungen Anwenden gesetzmäßiger Zusammenhänge beim Stoffumsatz chemischer Reaktionen Bezug zu technischen Prozessen Stoffmenge molare Masse, molares Volumen Masse- und Volumenberechnungen zu chemischen Reaktionen Größengleichung, Nutzung von Algorithmen ➔ MA, Kl"
+                }
+              ],
+              "duration": "16 Ustd."
+            },
+            {
+              "title": "Erdöl und Erdgas – organische Stoffgemische",
+              "learning_objectives": [
+                {
+                  "text": "Einblick in die Zusammensetzung von Erdgas und Erdöl als Stoffgemische gewinnen ➔ GEO, Kl. 7, LB 5 experimenteller Nachweis von Kohlenstoff und Wasserstoff SE Erdgas und Erdölfraktionen Kohlenwasserstoffe Definition Bedeutung der Erdölfraktionen Treibstoffe, anthropogene Quellen für Luftschadstoffe Begrenztheit natürlicher Ressourcen ⇒ Bildung für nachhaltige Entwicklung ⇒ Verantwortungsbereitschaft Einblick in die Entwicklung der organischen Chemie gewinnen Berzelius, Wöhler Anwenden des Wissens über den Zusammenhang von Struktur, Eigenschaften und Verwendung der Kohlenwasserstoffe Heizgas, Flüssiggas, Benzin, Paraffin Tankerunfälle ⇒ Bildung für nachhaltige Entwicklung ⇒ Methodenbewusstsein ⇒ Lernkompetenz experimentelles Untersuchen SE Brennbarkeit, Löslichkeit, elektrische Leitfähigkeit, Dichte Nutzung digitaler Werkzeuge zur Messwerterfassung ⇒ Medienbildung Struktur der Moleküle Kohlenstofftetraeder polare und unpolare Lösungsmittel Wasser und Benzin homologe Reihe der Alkane, Nomenklatur Schmelz- und Siedepunkt in Abhängigkeit von der molaren Masse verzweigte Alkane, Isomerie Octanzahl Kennen von Ethen und Ethin als Vertreter der ungesättigten Kohlenwasserstoffe Struktur, Reaktionsverhalten, Verwendung quantitativer Berechnungen experimentelles Untersuchen der Eigenschaften von Ethen experimentelles Darstellen und Untersuchen der Eigenschaften von Ethin SE Kennen von Substitution, Addition und Eliminierung als Reaktionen organischer Stoffe Halogenderivate, anthropogene Quellen, Ozonloch als globale Herausforderung ⇒ Bildung für nachhaltige Entwicklung experimentelles Untersuchen SE Nachweis: Mehrfachbindung zwischen Kohlenstoffatomen"
+                }
+              ],
+              "duration": "15 Ustd."
+            },
+            {
+              "title": "Alkohole",
+              "learning_objectives": [
+                {
+                  "text": "Kennen von Ethanol als Vertreter der Alkohole Alkoholmissbrauch, Beitrag zur Suchtprävention, Jugendschutzgesetz ⇒ Werteorientierung ➔ BIO, Kl"
+                },
+                {
+                  "text": "Die Schüler können ausgewählte Reaktionen der organischen Chemie den Reaktionsarten zuordnen"
+                },
+                {
+                  "text": "Wissen über Stoffmenge, molare Masse und molares Volumen ermöglicht den Schülern, beobachtbare quantitative Veränderungen bei chemischen Reaktionen zu analysieren und mathematisch zu beschreiben"
+                },
+                {
+                  "text": "Kennenlernen und zunehmendes Beherrschen von fachspezifischen Arbeitsweisen der Chemie zur Erklärung chemischer Erscheinungen im Alltag Vor allem auf experimentellem Weg erweitern die Schüler ihr Wissen über Stoffeigenschaften ausgewählter Verbindungen"
+                },
+                {
+                  "text": "Beim Experimentieren entwickeln sie auch ihre Fertigkeiten im Umgang mit digitalen Werkzeugen weiter"
+                },
+                {
+                  "text": "Mit geeigneten Molekülmodellen erschließen sie die Strukturen organischer Verbindungen"
+                },
+                {
+                  "text": "Aus der Struktur können sie Eigenschaften der Stoffe voraussagen und erklären"
+                },
+                {
+                  "text": "Sie sind in der Lage, ausgewählte Stoffeigenschaften mit Hilfe der Modellvorstellungen über die Struktur organischer Moleküle, insbesondere über charakteristische Strukturmerkmale und inter- und intramolekulare Wechselwirkungen zu erklären"
+                },
+                {
+                  "text": "Entwickeln der Fähigkeit zum chemisch kompetenten Kommunizieren unter angemessener Nutzung von Fachsprache und fachtypischen Darstellungs- und Argumentationsstrukturen Die Vorteile der Fachsprache werden den Schülern an der systematischen Benennung organischer Stoffe nach den international vereinbarten Nomenklaturregeln deutlich"
+                },
+                {
+                  "text": "Damit sind sie in der Lage, Beziehungen zwischen Stoffnamen, Strukturen und Eigenschaften herzustellen"
+                },
+                {
+                  "text": "Sie lernen gebräuchliche Trivialnamen einiger Stoffe kennen"
+                },
+                {
+                  "text": "Bei quantitativen Betrachtungen können die Schüler verbale Aussagen zu chemischen Sachverhalten in mathematische Beziehungen umsetzen"
+                },
+                {
+                  "text": "Sie können Größen, Einheiten und Größengleichungen in diesem Zusammenhang interpretieren"
+                },
+                {
+                  "text": "Entwickeln der Fähigkeit, Sachverhalte kriteriengeleitet zu beurteilen sowie Entscheidungen und deren Folgen zu bewerten, als Voraussetzung für eine kompetente Teilnahme am gesellschaftlichen Diskurs über Natur­wissenschaft und Technik Die Schüler erhalten einen Einblick in die ökonomische und technische Bedeutung der Chemie anhand der Aufbereitung von Erdöl"
+                },
+                {
+                  "text": "Die Schüler erwerben chemische Grundlagen für das Verständnis globaler Umweltprobleme bei der Betrachtung ausgewählter Verbindungen"
+                },
+                {
+                  "text": "Sie erkennen die natürlichen und anthropogenen Quellen dieser Stoffe"
+                },
+                {
+                  "text": "Somit entwickeln sie ihre Urteilsfähigkeit weiter und ziehen begründete Schlussfolgerungen für ein eigenes nachhaltiges Verhalten."
+                }
+              ],
+              "duration": "10 Ustd."
+            }
+          ]
+        },
+        {
+          "grade": "10",
+          "topics": [
+            {
+              "title": "Von der Essigsäure zu den Estern",
+              "learning_objectives": [
+                {
+                  "text": "Anwenden des Wissens über den Einfluss funktioneller Gruppen in Molekülen auf das Reaktionsverhalten von Stoffen ⇒ Methodenbewusstsein experimentelles Untersuchen von Ethansäure als Verbindung mit einer Carboxygruppe im Molekül auch unter Nutzung digitaler Werkzeuge SE Neutralisation, Reaktion mit unedlen Metallen digitale Erfassung von Messwerten ⇒ Medienbildung vom Ethanol zum Speiseessig Essigsäuregärung, Reaktion der Hydroxygruppe zur Carboxygruppe Reaktion mit Protonenübergang am Beispiel der Reaktion von Ethansäure mit Wasser Donator-Akzeptor-Prinzip weitere Carbonsäuren Milchsäure, Oxalsäure, Acrylsäure Übertragen des Wissens über die Substitution auf die Bildung und den Zerfall von Estern ⇒ Kommunikationsfähigkeit Ester als Reaktionsprodukt Bedeutung als Aromastoffe experimentelles Darstellen von Estern, Kondensation SE Propansäurepropylester unvollständiger Stoffumsatz Einstellung des chemischen Gleichgewichts dynamisches Gleichgewicht Nutzung von Simulationssoftware experimentelles Untersuchen der umkehrbaren Reaktion, Hydrolyse SE"
+                }
+              ],
+              "duration": "12 Ustd."
+            },
+            {
+              "title": "Zusammensetzung unserer Lebensmittel",
+              "learning_objectives": [
+                {
+                  "text": "Einblick in die Zusammensetzung von Lebensmitteln gewinnen Übertragen des Wissens über den Zusammenhang zwischen Struktur und Eigenschaften von Stoffen auf die Nährstoffe ⇒ Lernkompetenz ⇒ Verantwortungsbereitschaft experimentelles Untersuchen von Eigenschaften SE Löseverhalten: Hydrophilie, Hydrophobie"
+                },
+                {
+                  "text": "Denaturierung der Proteine"
+                },
+                {
+                  "text": "Nachweisreaktionen: Fettfleckprobe, Mehrfachbindung zwischen Kohlenstoffatomen, Biuretreaktion, Tollens-Probe, Fehling-Probe, Stärkenachweis selbstorganisiertes Lernen Fette als Ester gesättigte und ungesättigte Fettsäuren Kohlenhydrate Glucose, Fructose, Saccharose, Stärke Interpretieren vorgegebener Strukturen von Kohlenhydraten reduzierende Wirkung der Glucose Reduktion von Silber(I)- und Kupfer(II)-Ionen Eiweiße Glycin und Alanin als Aminosäuren essenzielle Aminosäuren Peptidgruppe Erkennen von Proteinstrukturen Bildung und Zerfall eines Dipeptids Anwenden der Substitution auf die Bildung und die Zerlegung eines Nährstoffs unter Nutzung allgemeiner Strukturformeln Kondensation und Hydrolyse, Umwandlung von Nährstoffen – Stoff- und Energiewechsel Einblick in Funktion und Eigenschaften von ausgewählten Lebensmittelzusatzstoffen gewinnen E-Nummern: Emulgatoren, Konservierungsstoffe, Aromastoffe Nutzung digitaler Medien ⇒ informatische Bildung ⇒ Medienbildung Gestalten einer Dokumentation zur Zusammensetzung, Herstellung, physiologischen Wirkung und Bedeutung eines Lebensmittels Nutzung digitaler Medien ⇒ informatische Bildung ⇒ Medienbildung selbstständiges experimentelles Untersuchen ausgewählter Lebensmittel SE Sich zu Erkenntnissen moderner Ernährungsforschung positionieren gesunde Ernährung ⇒ Reflexions- und Diskursfähigkeit ➔ BIO, Kl"
+                }
+              ],
+              "duration": "14 Ustd."
+            },
+            {
+              "title": "Den Stoffen analytisch auf der Spur",
+              "learning_objectives": [
+                {
+                  "text": "Beherrschen ausgewählter qualitativer Nachweise von Ionen ⇒ Methodenbewusstsein experimentelles Durchführen von Vorproben SE Flammenfärbung, Phosphorsalzperle experimentelles Durchführen von Fällungsreaktionen, Nachweis von Halogenid-, Sulfat- und Carbonat-Ionen SE experimentelles Durchführen von Farbreaktionen SE Indikatoren"
+                },
+                {
+                  "text": "Teststäbchen Kennen der Stoffmengenkonzentration als Konzentrationsmaß Berechnungen Kennen einer ausgewählten quantitativen Analysemethode experimentelles Durchführen einer Titration mit Indikatoren und unter Nutzung digitaler Werkzeuge SE Säure-Base-Titration und Leitfähigkeitstitration mit einwertiger Säure- und Metallhydroxidlösung quantitative Auswertung der Titration digitale Erfassung und Auswertung von Messwerten ⇒ Medienbildung Übertragen des Wissens auf das Untersuchen eines Produkts aus dem Alltag Dünge-, Wasch-, Reinigungs- und Körperpflegemittel, Boden- und Wasserproben ⇒ Bildung für nachhaltige Entwicklung ⇒ Arbeitsorganisation"
+                }
+              ],
+              "duration": "15 Ustd."
+            },
+            {
+              "title": "Moderne Werkstoffe – Kunststoffe",
+              "learning_objectives": [
+                {
+                  "text": "Kennen des Zusammenhangs zwischen Struktur, Eigenschaften und Verwendung von Kunststoffen Vergleich der Struktur von Kunst- und Naturstoffen Überblick über Kunststoffarten Thermoplaste, Duroplaste, Elastomere, Biokunststoffe vs"
+                },
+                {
+                  "text": "Verformbarkeit, Dichte Schließen von den Eigenschaften auf die Verwendungen Kennen der Herstellung von Kunststoffen durch Polymerisation und Polykondensation Polyethylen, Polyester, Polyamid Monomer, Polyme experimentelles Darstellen eines Polykondensats Sich zu den Möglichkeiten der Vermeidung und des Recyclings von Kunststoffabfällen positionieren Kunststoffabfälle als globale Herausforderung Podiumsdiskussion ⇒ Reflexions- und Diskursfähigkeit ⇒ Bildung für nachhaltige Entwicklung Einblick in die Anwendung funktionaler Kunststoffe im Alltag gewinnen Wahlbereich 1: Lösungsmittel im Alltag Kennen der Gruppen von Lösungsmitteln polare und unpolare Lösungsmittel experimentelles Untersuchen des Lösevermögens Wasser, Hexan, Ethanol, Aceton, Essigester Zusammenhang zwischen Struktur und Eigenschaften Anwenden des Wissens über das Löseverhalten auf Beispiele aus dem Alltag experimentelles Untersuchen von handelsüblichen Lösungsmitteln Nagellackentferner, Nitroverdünnung experimentelles Durchführen einer Extraktion Tee- und Kaffeeextrakte, Chlorophyllauszug, Blütenfarbstoffe Bedeutung umweltgerechter Umgang mit Lösungsmitteln ⇒ Bildung für nachhaltige Entwicklung Wahlbereich 2: Wasseruntersuchung Kennen der Herkunft und der Wirkungen von Inhaltsstoffen in Trink- und Oberflächenwasser Nitrat- und Nitrit-Ionen, Sulfat-, Phosphat-Ionen, Calcium- und Magnesium-Ionen, Sauerstoff Nutzung von Messsensoren und Nachweisreagenzien digitale Erfassung und Auswertung von Messwerten ⇒ Medienbildung experimentelles Durchführen einer halbquantitativen Analyse von Wasserproben SE experimentelles Ermitteln des Sauerstoffgehalts und des BSB 5 -Wertes SE experimentelles Bestimmen der Gesamthärte des Wassers SE Wasserhärtegrade in Deutschland Einblick in die Stufen der Trinkwasserbereitung gewinnen Exkursion in ein Wasserwerk Wahlbereich 3: Duft- und Aromastoffe Anwenden des Wissens über die Bildung von Estern auf die Herstellung verschiedener Aromastoffe experimentelles Darstellen verschiedener Aromen SE Birnen-, Apfel-, Ananas-, Wintergrün-, Nelkenaroma natürliche, naturidentische und künstliche Aromastoffe Einblick in die Vielfalt von Duftstoffen gewinnen Herstellung und Geschichte des Parfüms Wirkungsweise von Duftstoffen Gewinnung von Duftstoffen aus natürlichen Rohstoffen experimentelles Untersuchen der Wirkungsdauer von Duftstoffen oder Gewinnung ätherischer Öle SE Ziele Erwerben von Wissen über Stoffe und Reaktionen, die die Vielfalt und Komplexität chemischer Vorgänge in allen Lebensbereichen erkennen lassen Die Schüler übertragen erworbenes Wissen auf verschiedene Gebiete der angewandten Chemie"
+                },
+                {
+                  "text": "Sie sind beim experimentellen Erkunden wichtiger Bestandteile von Lebensmitteln und bei der Betrachtung von Kunststoffen in der Lage, grundlegendes Wissen über chemische Reaktionen sowie über den Zusammenhang zwischen Struktur, Eigenschaften und Verwendung von Stoffen anzuwenden"
+                },
+                {
+                  "text": "Die Schüler lernen mit der qualitativen und quantitativen Analytik einen weiteren praxisbedeutsamen Aufgabenbereich der Chemie kennen"
+                },
+                {
+                  "text": "Die Schüler wenden ihr Wissen über quantitative Betrachtungen chemischer Reaktionen auf eine experimentell auszuführende quantitative Analysemethode an"
+                },
+                {
+                  "text": "Sie lernen Grundlagen umkehrbarer chemischer Reaktionen von Esterbildung und -zerfall kennen"
+                },
+                {
+                  "text": "Die Schüler sind in der Lage, anhand vorgegebener Formeln die Grundstrukturen von Nährstoffen zu erkennen und daraus charakteristische Eigenschaften abzuleiten"
+                },
+                {
+                  "text": "Kennenlernen und zunehmendes Beherrschen von fachspezifischen Arbeitsweisen der Chemie zur Erklärung chemischer Erscheinungen im Alltag Die Untersuchung verschiedener Lebensmittel und Kunststoffe dient den Schülern zur Erweiterung ihrer experimentellen Fähigkeiten"
+                },
+                {
+                  "text": "Insbesondere durch qualitatives und quantitatives Analysieren von Substanzen erweitern die Schüler ihre Kompetenzen im exakten Durchführen von Experimenten und in einer genauen und kritischen Auswertung der Beobachtungsergebnisse"
+                },
+                {
+                  "text": "Sie kennen verschiedene Anwendungsmöglichkeiten digitaler Werkzeuge beim Experimentieren und beherrschen den Umgang mit diesen zunehmend sicher"
+                },
+                {
+                  "text": "Entwickeln der Fähigkeit zum chemisch kompetenten Kommunizieren unter angemessener Nutzung von Fachsprache und fachtypischen Darstellungs- und Argumentationsstrukturen Die Schüler vertiefen ihre Fähigkeiten im Umgang mit der chemischen Zeichensprache durch die Anwendung der Nomenklaturregeln"
+                },
+                {
+                  "text": "Sie erweitern ihre Medienkompetenzen im Umgang mit traditionellen und digitalen Medien, in dem sie u"
+                },
+                {
+                  "text": "Die Schüler stellen Zusammenhänge zwischen chemischen Sachverhalten und Alltagserscheinungen her und übersetzen dabei Fachsprache in Alltagssprache und umgekehrt"
+                },
+                {
+                  "text": "Entwickeln der Fähigkeit, Sachverhalte kriteriengeleitet zu beurteilen sowie Entscheidungen und deren Folgen zu bewerten, als Voraussetzung für eine kompetente Teilnahme am gesellschaftlichen Diskurs über Natur­wissenschaft und Technik Die Schüler sind zunehmend in der Lage, zu Problemen aus dem persönlichen Lebensumfeld Stellung zu nehmen und ein eigenes Umweltbewusstsein zu entwickeln"
+                },
+                {
+                  "text": "Sie erkennen die Ambivalenz der zunehmenden Nutzung von Kunststoffen in verschiedenen Bereichen des täglichen Lebens und können sich zu ökonomischen und ökologischen Interessen auf diesem Gebiet positionieren"
+                },
+                {
+                  "text": "Durch das Wissen über qualitative und quantitative Untersuchungsmethoden erkennen die Schüler die Notwendigkeit der Überwachung der Trinkwasser- und Lebensmittelqualität sowie des Düngemitteleinsatzes"
+                },
+                {
+                  "text": "Die Schüler erkennen zunehmend die Notwendigkeit auf mehr Nachhaltigkeit im privaten wie gesellschaftlichen Handeln zu achten"
+                },
+                {
+                  "text": "Jahrgangsstufen 11/12 - Grundkurs Ziele Jahrgangsstufen 11/12 – Grundkurs Erwerben von Wissen zu Stoffen und Reaktionen, die die Vielfalt und Komplexität chemischer Vorgänge in allen Lebensbereichen erkennen lassen An ausgewählten Stoffen aus Natur und Technik erweitern und festigen die Schüler ihr Wissen über den Zusammenhang zwischen Struktur, Eigenschaften und Verwendung der Stoffe"
+                },
+                {
+                  "text": "Sie nutzen das Basiskonzept Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen, um Stoffe zu klassifizieren und zu systematisieren"
+                },
+                {
+                  "text": "Wissen über Merkmale, Verlauf und Bedingungsabhängigkeit chemischer Reaktionen ermöglicht den Schülern ausgewählte Phänomene des Alltags zu erschließen"
+                },
+                {
+                  "text": "Um den Zusammenhang zwischen qualitativen und quantitativen Veränderungen zu verstehen, wenden die Schüler die weiteren Basiskonzepte Konzept der chemischen Reaktion und Energiekonzept an"
+                },
+                {
+                  "text": "Kennenlernen und zunehmendes Beherrschen von fachspezifischen Arbeitsweisen der Chemie, zur Erklärung chemischer Erscheinungen im Alltag Die Schüler sind in der Lage, Erkenntniswege beim Voraussagen und Erklären nachzuvollziehen und anzuwenden"
+                },
+                {
+                  "text": "Sie nutzen selbstständig Arbeitstechniken, Verfahrenskenntnisse und Problemlösestrategien zum Lösen ausgewählter Aufgaben"
+                },
+                {
+                  "text": "Die Schüler können selbstständig chemische Experimente planen, durchführen, beobachten, beschreiben und auswerten"
+                },
+                {
+                  "text": "Sie sind in der Lage, digitale Werkzeuge beim Experimentieren zielgerichtet und sicher zu nutzen"
+                },
+                {
+                  "text": "Sie vertiefen ihr Verständnis über Modelle"
+                },
+                {
+                  "text": "Ihnen wird bewusst, dass sich zur Erklärung chemischer Erscheinungen die Notwendigkeit zur Präzisierung und Weiterentwicklung von Modellen ergibt"
+                },
+                {
+                  "text": "Sie nutzen mathematische Verfahren und beherrschen geeignete digitale Werkzeuge, um Stoff- und Energieumsätze zu berechnen"
+                },
+                {
+                  "text": "Entwickeln der Fähigkeit zum chemisch kompetenten Kommunizieren unter angemessener Nutzung von Fachsprache und fachtypischen Darstellungs- und Argumentationsstrukturen Die Schüler beschreiben und veranschaulichen chemische Sachverhalte unter Nutzung der Fachsprache"
+                },
+                {
+                  "text": "Sie interpretieren und erläutern chemische Reaktionen und können Fachtexte und grafische Darstellungen analysieren"
+                },
+                {
+                  "text": "Die Schüler sind in der Lage, auch unter Verwendung digitaler Medien und Präsentationsformen, ihre Lern- und Arbeitsergebnisse sowie eigene Standpunkte zeitgemäß, adressaten- und situationsgerecht darzustellen"
+                },
+                {
+                  "text": "Durch das Gestalten einer Präsentation weisen die Schüler ihre Fähigkeit nach, komplexe chemische Sachverhalte in mündlicher und schriftlicher Form zu erarbeiten und darzustellen"
+                },
+                {
+                  "text": "Entwickeln der Fähigkeit, Sachverhalte kriteriengeleitet zu beurteilen sowie Entscheidungen und deren Folgen zu bewerten, als Voraussetzung für eine kompetente Teilnahme am gesellschaftlichen Diskurs über Naturwissenschaft und Technik Die Schüler sind zunehmend in der Lage, ihre natürliche und technische Umwelt in einer zukunftsorientierten und verantwortungsbereiten naturwissenschaftlichen Perspektive zu erschließen"
+                },
+                {
+                  "text": "Den Schülern wird bewusst, dass die Erkenntnisse der Chemie im Zusammenwirken mit den anderen Naturwissenschaften und der Mathematik dazu beitragen können, Prozesse der Natur und Technik zu beherrschen und diese ökonomisch und ökologisch zum Wohle der Menschen zu nutzen"
+                },
+                {
+                  "text": "Sie beurteilen Technikfolgen sowie wirtschaftliche Aspekte im Sinne der Nachhaltigkeit und gewinnen die Einsicht, dass die Erkenntnisse der Wissenschaft Chemie den technischen Fortschritt maßgeblich beeinflussen und mitbestimmen können"
+                },
+                {
+                  "text": "Ziele Jahrgangsstufen 11/12 – Grundkurs Erwerben von Wissen zu Stoffen und Reaktionen, die die Vielfalt und Komplexität chemischer Vorgänge in allen Lebensbereichen erkennen lassen An ausgewählten Stoffen aus Natur und Technik erweitern und festigen die Schüler ihr Wissen über den Zusammenhang zwischen Struktur, Eigenschaften und Verwendung der Stoffe"
+                },
+                {
+                  "text": "Sie nutzen das Basiskonzept Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen, um Stoffe zu klassifizieren und zu systematisieren"
+                },
+                {
+                  "text": "Wissen über Merkmale, Verlauf und Bedingungsabhängigkeit chemischer Reaktionen ermöglicht den Schülern ausgewählte Phänomene des Alltags zu erschließen"
+                },
+                {
+                  "text": "Um den Zusammenhang zwischen qualitativen und quantitativen Veränderungen zu verstehen, wenden die Schüler die weiteren Basiskonzepte Konzept der chemischen Reaktion und Energiekonzept an"
+                },
+                {
+                  "text": "Kennenlernen und zunehmendes Beherrschen von fachspezifischen Arbeitsweisen der Chemie, zur Erklärung chemischer Erscheinungen im Alltag Die Schüler sind in der Lage, Erkenntniswege beim Voraussagen und Erklären nachzuvollziehen und anzuwenden"
+                },
+                {
+                  "text": "Sie nutzen selbstständig Arbeitstechniken, Verfahrenskenntnisse und Problemlösestrategien zum Lösen ausgewählter Aufgaben"
+                },
+                {
+                  "text": "Die Schüler können selbstständig chemische Experimente planen, durchführen, beobachten, beschreiben und auswerten"
+                },
+                {
+                  "text": "Sie sind in der Lage, digitale Werkzeuge beim Experimentieren zielgerichtet und sicher zu nutzen"
+                },
+                {
+                  "text": "Sie vertiefen ihr Verständnis über Modelle"
+                },
+                {
+                  "text": "Ihnen wird bewusst, dass sich zur Erklärung chemischer Erscheinungen die Notwendigkeit zur Präzisierung und Weiterentwicklung von Modellen ergibt"
+                },
+                {
+                  "text": "Sie nutzen mathematische Verfahren und beherrschen geeignete digitale Werkzeuge, um Stoff- und Energieumsätze zu berechnen"
+                },
+                {
+                  "text": "Entwickeln der Fähigkeit zum chemisch kompetenten Kommunizieren unter angemessener Nutzung von Fachsprache und fachtypischen Darstellungs- und Argumentationsstrukturen Die Schüler beschreiben und veranschaulichen chemische Sachverhalte unter Nutzung der Fachsprache"
+                },
+                {
+                  "text": "Sie interpretieren und erläutern chemische Reaktionen und können Fachtexte und grafische Darstellungen analysieren"
+                },
+                {
+                  "text": "Die Schüler sind in der Lage, auch unter Verwendung digitaler Medien und Präsentationsformen, ihre Lern- und Arbeitsergebnisse sowie eigene Standpunkte zeitgemäß, adressaten- und situationsgerecht darzustellen"
+                },
+                {
+                  "text": "Durch das Gestalten einer Präsentation weisen die Schüler ihre Fähigkeit nach, komplexe chemische Sachverhalte in mündlicher und schriftlicher Form zu erarbeiten und darzustellen"
+                },
+                {
+                  "text": "Entwickeln der Fähigkeit, Sachverhalte kriteriengeleitet zu beurteilen sowie Entscheidungen und deren Folgen zu bewerten, als Voraussetzung für eine kompetente Teilnahme am gesellschaftlichen Diskurs über Naturwissenschaft und Technik Die Schüler sind zunehmend in der Lage, ihre natürliche und technische Umwelt in einer zukunftsorientierten und verantwortungsbereiten naturwissenschaftlichen Perspektive zu erschließen"
+                },
+                {
+                  "text": "Den Schülern wird bewusst, dass die Erkenntnisse der Chemie im Zusammenwirken mit den anderen Naturwissenschaften und der Mathematik dazu beitragen können, Prozesse der Natur und Technik zu beherrschen und diese ökonomisch und ökologisch zum Wohle der Menschen zu nutzen"
+                },
+                {
+                  "text": "Sie beurteilen Technikfolgen sowie wirtschaftliche Aspekte im Sinne der Nachhaltigkeit und gewinnen die Einsicht, dass die Erkenntnisse der Wissenschaft Chemie den technischen Fortschritt maßgeblich beeinflussen und mitbestimmen können."
+                }
+              ],
+              "duration": "9 Ustd."
+            }
+          ]
+        },
+        {
+          "grade": "11 (Grundkurs)",
+          "topics": [
+            {
+              "title": "Stoffe – von der Vielfalt zur Ordnung – PSE",
+              "learning_objectives": [
+                {
+                  "text": "Kennen des Zusammenhangs zwischen Atombau und Stellung der Haupt- und Nebengruppenelemente im Periodensystem Basiskonzept: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen historischer Überblick über die Entwicklung der Erkenntnisse zum Atombau Demokrit, Thomson, Rutherford, Bohr, Sommerfeld ⇒ Methodenbewusstsein ⇒ Arbeitsorganisation ➔ Kl"
+                },
+                {
+                  "text": "Ethandisäure ➔ Kl"
+                }
+              ],
+              "duration": "14 Ustd."
+            },
+            {
+              "title": "Redoxreaktionen der Nebengruppenelemente",
+              "learning_objectives": [
+                {
+                  "text": "Anwenden des Wissens über Redoxreaktionen auf Reaktionen der Nebengruppenelemente als umkehrbare, pH-abhängige Reaktionen Basiskonzepte: Konzept der chemischen Reaktion Erkennen der Redoxreaktionen an Oxidationszahlen ⇒ Methodenbewusstsein ➔ LBW 1 ➔ LBW 2 Oxidationszahlen in anorganischen Verbindungen Zusammenhang zwischen Elektronenkonfiguration, Stellung im PSE und Oxidationszahl Redoxgleichungen korrespondierende Redoxpaare, Teilgleichungen Elektronendonator und -akzeptor Schrittfolge für das Aufstellen von Reaktionsgleichungen im sauren Bereich experimentelles Untersuchen ausgewählter Redoxreaktionen SE Redoxreaktionen am Beispiel von Eisen und Mangan Metallherstellung Reaktionen im Hochofen, Aluminothermisches Schweißen Rohstoffgewinnung exemplarische Behandlung eines nachhaltigen Ansatzes ⇒ Bildung für nachhaltige Entwicklung"
+                }
+              ],
+              "duration": "12 Ustd."
+            },
+            {
+              "title": "Chemische Gleichgewichte",
+              "learning_objectives": [
+                {
+                  "text": "Kennen der Möglichkeiten der Beeinflussbarkeit des zeitlichen Verlaufs chemischer Reaktionen Basiskonzepte: Konzept der chemischen Reaktion, Energiekonzept Stoßtheorie Reaktionsgeschwindigkeit Durchschnittsgeschwindigkeit Katalyse experimentelles Untersuchen der Abhängig­keit von Temperatur, Konzentration und Katalysator SE selbstorganisiertes Lernen Übertragen des Wissens über das chemische Gleichgewicht bei der Veresterung auf weitere chemische Reaktionen Basiskonzepte: Konzept der chemischen Reaktion, Energiekonzept ⇒ Problemlösestrategien ➔ Kl. 10, LB 1 ➔ LBW 3 Einstellung und Merkmale Prinzip von Le Chatelier und Braun Nutzung von Simulationssoftware Steuerung chemisch-technischer Prozesse – Ammoniaksynthese globale Auswirkungen der Störung natürlicher Gleichgewichte – Ozongleichgewicht der Stratosphäre ⇒ Bildung für nachhaltige Entwicklung Massenwirkungsgesetz als mathematischer Ausdruck der Lage des chemischen Gleichgewichts, K C Temperaturabhängigkeit der Gleichge­wichtskonstante Berechnungen für Δ ν = 0 Diskutieren des Konzentrationseinflusses auf die Gleichgewichtslage mit Hilfe des Massenwirkungsgesetzes"
+                }
+              ],
+              "duration": "10 Ustd."
+            },
+            {
+              "title": "Säure-Base-Gleichgewichte",
+              "learning_objectives": [
+                {
+                  "text": "Kennen der Säure-Base-Theorie nach Brönsted Basiskonzept: Konzept der chemischen Reaktion ➔ Kl"
+                },
+                {
+                  "text": "Berechnungen für Salze der Zusammensetzung AB Wahlbereich 4: Pufferlösungen Anwenden des Wissens über Protolysegleich­gewichte auf Pufferlösungen Nutzung digitaler Medien experimentelles Untersuchen der Zusam­mensetzung und Wirkung von Pufferlösungen SE Ammoniak-Ammoniumchlorid-Puffer, Essig­säure-Acetat-Puffer, Phosphat-Puffer Pufferungskurven, Pufferkapazität Bedeutung von Pufferlösungen Puffersysteme des Blutes Wahlbereich 5: Komplexverbindungen eines ausgewählten Nebengruppenelements Kennen des Zusammenhangs zwischen Bau und Eigenschaften ausgewählter Komplexverbindungen Basiskonzepte: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen Aquakomplexe Zentralteilchen und Ligand räumliche Struktur, chemische Bindung experimentelles Untersuchen des Ligandenaustausches SE Nachweisreaktionen"
+                }
+              ],
+              "duration": "16 Ustd."
+            }
+          ]
+        },
+        {
+          "grade": "12 (Grundkurs)",
+          "topics": [
+            {
+              "title": "Elektrochemische Reaktionen",
+              "learning_objectives": [
+                {
+                  "text": "Einblick in elektrochemische Phänomene des Alltags gewinnen Basiskonzepte: Konzept der chemischen Reaktion, Energiekonzept Batterien, Akkumulatoren, Brennstoffzellen nachhaltiger Umgang ⇒ Bildung für nachhaltige Entwicklung Übertragen des Wissens über Redoxreaktionen auf elektrochemische Vorgänge Basiskonzepte: Konzept der chemischen Reaktion, Energiekonzept Elektrolyte Elektrodenpotenzialbildung elektrochemische Doppelschicht Standardelektrodenpotenzial elektrochemische Spannungsreihe Elektrodenreaktionen galvanische Zelle Berechnung der Standardzellspannung experimentelles Bestimmen der Zellspan­nung in galvanischen Zellen unter Nutzung digitaler Werkzeuge SE Erfassung von Messwerten ⇒ Medienbildung Diskutieren der Konzentrationsabhängigkeit des Elektrodenpotenzials experimentelles Untersuchen von elektro­chemischen Fällungsreaktionen SE Zementation, Metallrecycling ⇒ Bildung für nachhaltige Entwicklung Kennen von Korrosion und Korrosionsschutz als elektrochemische Vorgänge Lokalelement Prinzip der Opferanode Anwenden des Wissens über Redoxreaktionen auf die Elektrolyse Basiskonzepte: Konzept der chemischen Reaktion, Energiekonzept ⇒ Problemlösestrategien ➔ LBW 2 Elektrolysezelle experimentelles Untersuchen elektrolytischer Vorgänge SE Nutzung digitaler Werkzeuge zur Auswertung von Messwerten ⇒ Medienbildung Abscheiden eines edleren Metalls Kupferüberzug Vergleich von galvanischer Zelle und Elektro­lysezelle Übertragen des Wissens über elektrochemische Zusammenhänge auf ausgewählte Spannungsquellen nachhaltiger Umgang Dokumentation, Präsentation Nutzung digitaler Medien ⇒ Bildung für nachhaltige Entwicklung ⇒ informatische Bildung ⇒ Kommunikationsfähigkeit Primärelement Aluminium-Luft-Zelle Sekundärelement Bleiakkumulator Brennstoffzelle Wasserstoffzelle Beurteilen der ökonomischen und ökologischen Bedeutung alternativer Energiequellen ⇒ Bildung für nachhaltige Entwicklung"
+                }
+              ],
+              "duration": "17 Ustd."
+            },
+            {
+              "title": "Energie bei chemischen Reaktionen",
+              "learning_objectives": [
+                {
+                  "text": "Einblick in die Bedeutung energieumwandelnder Prozesse gewinnen Basiskonzept: Energiekonzept Energiegehalt von Lebensmitteln Energieerhaltungssatz Energieformen ➔ PH, Gk 11, LB 1 Anwenden des Wissens über Energieumwand­lungen auf chemische Reaktionen Nutzung digitaler Werkzeuge zur Erfassung von Messwerten ⇒ Methodenbewusstsein ⇒ Medienbildung ➔ LBW 1 Aussagen und Bedeutung des 1"
+                },
+                {
+                  "text": "Hauptsatzes der Thermodynamik Reaktionsenthalpie als Reaktionswärme bei isobarer Prozessführung experimentelles Bestimmen von molaren Reaktionsenthalpien mit dem Kalorimeter SE Berechnungen mit der kalorimetrischen Grundgleichung Berechnen von Reaktionsenthalpien aus Bildungsenthalpien mit dem Satz von Hess Verbrennungsenthalpien, Brennwerte Energiebilanzen für eine gesunde Ernährung ⇒ Verantwortungsbereitschaft"
+                }
+              ],
+              "duration": "10 Ustd."
+            },
+            {
+              "title": "Organische Stoffe",
+              "learning_objectives": [
+                {
+                  "text": "Anwenden des Wissens über den Zusammenhang zwischen Struktur und Eigenschaften von Stoffen zur Systematisierung organischer Stoffe Basiskonzept: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen ⇒ Methodenbewusstsein ⇒ Arbeitsorganisation ➔ LBW 4 Carbonylverbindungen mit Ester-, Aldehyd- und Carboxygruppe Verbindungen mit Hydroxy- und Aminogruppe experimentelles Untersuchen von Strukturmerkmalen organischer Stoffe, Nachweisreaktionen SE ➔ LBW 3 Mehrfachbindungen zwischen Kohlenstoffatomen Aldehyd-, Carboxygruppe Übertragen des Wissens über Redoxreaktionen auf organische Stoffe Oxidationszahlen in organischen Verbindungen Übertragen des Wissens über Substitutions- und Additionsreaktionen auf die Grundprinzipien von Reaktionsmechanismen Basiskonzept: Konzept der chemischen Reaktion Halogenierung radikalische Substitution elektrophile Addition Anwenden des Wissens über organische Stoffe und deren Reaktionen auf Kunststoffe Basiskonzepte: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen, Konzept der chemischen Reaktion Zusammenhang von Struktur und Eigenschaften bei Thermoplasten, Duroplasten und Elastomeren ➔ Kl"
+                },
+                {
+                  "text": "Berechnungen Liebig, Ermitteln der molaren Masse nach Meyer Wahlbereich 4: Aromatische Verbindungen Einblick in die Vielfalt und Bedeutung aromatischer Verbindungen gewinnen Styrol, Anilin, TNT, heterocyclische und mehrkernige Aromaten Anwenden des Wissens über den Zusammenhang zwischen Struktur und Eigenschaften organischer Stoffe auf aromatische Verbindungen Basiskonzept: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen, Konzept der chemischen Reaktion ⇒ Methodenbewusstsein Benzol (Benzen) als ein Stoff mit aromati­schem System Kekulé, Elektronensextett, mesomere Grenzstrukturen, Mesomerieenergie experimentelles Untersuchen von Eigenschaften und Reaktionen einiger Benzolhomologe und -derivate SE Benzaldehyd, Benzoesäure Jahrgangsstufen 11/12 - Leistungskurs Ziele Jahrgangsstufen 11/12 – Leistungskurs Erwerben von Wissen über Stoffe und Reaktionen, die die Vielfalt und Komplexität chemischer Vorgänge in allen Lebensbereichen erkennen lassen An ausgewählten Stoffen aus Natur und Technik erweitern und festigen die Schüler ihr Wissen über den Zusammenhang zwischen Struktur, Eigenschaften und Verwendung der Stoffe"
+                },
+                {
+                  "text": "Sie nutzen das Basiskonzept Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen, um Stoffe zu klassifizieren und zu systematisieren"
+                },
+                {
+                  "text": "Wissen über Merkmale, Verlauf und Bedingungsabhängigkeit chemischer Reaktionen ermöglicht den Schülern, insbesondere in Jahrgangsstufe 12, komplexe Phänomene des Alltags selbstständig zu erschließen"
+                },
+                {
+                  "text": "Um den Zusammenhang zwischen qualitativen und quantitativen Veränderungen zu verstehen, wenden die Schüler die weiteren Basiskonzepte Konzept der chemischen Reaktion und Energiekonzept an"
+                },
+                {
+                  "text": "Kennenlernen und zunehmendes Beherrschen von fachspezifischen Arbeitsweisen der Chemie zur Erklärung chemischer Erscheinungen im Alltag Die Schüler nutzen selbstständig Arbeitstechniken und Verfahrenskenntnisse zum Lösen komplexer Aufgaben"
+                },
+                {
+                  "text": "Sie entwickeln eigene Fragestellungen und alternative Lösestrategien"
+                },
+                {
+                  "text": "Die Schüler können selbstständig chemische Experimente planen, durchführen, beobachten, beschreiben und auswerten"
+                },
+                {
+                  "text": "Sie sind in der Lage, digitale Werkzeuge beim Experimentieren zielgerichtet und sicher zu nutzen"
+                },
+                {
+                  "text": "Zum Voraussagen und Erklären chemischer Reaktionen wenden sie auch die experimentelle Methode an"
+                },
+                {
+                  "text": "Die Schüler vertiefen ihr Verständnis über Modelle"
+                },
+                {
+                  "text": "Ihnen wird bewusst, dass sich zur Erklärung chemischer Erscheinungen die Notwendigkeit zur Präzisierung und Weiterentwicklung von Modellen ergibt"
+                },
+                {
+                  "text": "Sie nutzen mathematische Verfahren und beherrschen geeignete digitale Werkzeuge, um Stoff- und Energieumsätze zu berechnen"
+                },
+                {
+                  "text": "Entwickeln der Fähigkeit zum chemisch kompetenten Kommunizieren unter angemessener Nutzung von Fachsprache und fachtypischen Darstellungs- und Argumentationsstrukturen Die Schüler beschreiben und veranschaulichen chemische Sachverhalte unter Nutzung der Fachsprache"
+                },
+                {
+                  "text": "Sie interpretieren und erläutern chemische Reaktionen und können Fachtexte und grafische Darstellungen analysieren"
+                },
+                {
+                  "text": "Die Schüler sind in der Lage, ihre Lern- und Arbeitsergebnisse sowie eigene Standpunkte adressaten-und situationsgerecht auch in digitaler Form darzustellen"
+                },
+                {
+                  "text": "Sie nutzen verschiedene, auch digitale Medien, erkennen Kernaussagen, wählen Informationen gezielt und kritisch aus und verknüpfen diese mit dem erworbenen Wissen"
+                },
+                {
+                  "text": "Durch das Gestalten von Präsentationen weisen die Schüler ihre Fähigkeit nach, komplexe chemische Sachverhalte in mündlicher und schriftlicher Form zu erarbeiten und darzustellen"
+                },
+                {
+                  "text": "Entwickeln der Fähigkeit, Sachverhalte kriteriengeleitet zu beurteilen sowie Entscheidungen und deren Folgen zu bewerten, als Voraussetzung für eine kompetente Teilnahme am gesellschaftlichen Diskurs über Natur­wissenschaft und Technik Die Schüler sind zunehmend in der Lage, ihre natürliche und technische Umwelt in einer zukunftsorientierten und verantwortungsbereiten naturwissenschaftlichen Perspektive zu erschließen"
+                },
+                {
+                  "text": "Den Schülern wird bewusst, dass die Erkenntnisse der Chemie im Zusammenwirken mit den anderen Naturwissenschaften und der Mathematik dazu beitragen können, Prozesse der Natur und der Technik zu beherrschen und diese ökonomisch und ökologisch zum Wohle der Menschen zu nutzen"
+                },
+                {
+                  "text": "Sie gewinnen die Einsicht, dass die Erkenntnisse der Wissenschaft Chemie den technischen Fortschritt maßgeblich beeinflussen und mitbestimmen können"
+                },
+                {
+                  "text": "Durch die Beschäftigung mit Produkten aktueller Technologien erkennen die Schüler die gesellschaftliche Bedeutung der angewandten Chemie"
+                },
+                {
+                  "text": "Sie beurteilen Technikfolgen sowie wirtschaftliche Aspekte und Stoffkreisläufe im Sinne der Nachhaltigkeit"
+                },
+                {
+                  "text": "Ziele Jahrgangsstufen 11/12 – Leistungskurs Erwerben von Wissen über Stoffe und Reaktionen, die die Vielfalt und Komplexität chemischer Vorgänge in allen Lebensbereichen erkennen lassen An ausgewählten Stoffen aus Natur und Technik erweitern und festigen die Schüler ihr Wissen über den Zusammenhang zwischen Struktur, Eigenschaften und Verwendung der Stoffe"
+                },
+                {
+                  "text": "Sie nutzen das Basiskonzept Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen, um Stoffe zu klassifizieren und zu systematisieren"
+                },
+                {
+                  "text": "Wissen über Merkmale, Verlauf und Bedingungsabhängigkeit chemischer Reaktionen ermöglicht den Schülern, insbesondere in Jahrgangsstufe 12, komplexe Phänomene des Alltags selbstständig zu erschließen"
+                },
+                {
+                  "text": "Um den Zusammenhang zwischen qualitativen und quantitativen Veränderungen zu verstehen, wenden die Schüler die weiteren Basiskonzepte Konzept der chemischen Reaktion und Energiekonzept an"
+                },
+                {
+                  "text": "Kennenlernen und zunehmendes Beherrschen von fachspezifischen Arbeitsweisen der Chemie zur Erklärung chemischer Erscheinungen im Alltag Die Schüler nutzen selbstständig Arbeitstechniken und Verfahrenskenntnisse zum Lösen komplexer Aufgaben"
+                },
+                {
+                  "text": "Sie entwickeln eigene Fragestellungen und alternative Lösestrategien"
+                },
+                {
+                  "text": "Die Schüler können selbstständig chemische Experimente planen, durchführen, beobachten, beschreiben und auswerten"
+                },
+                {
+                  "text": "Sie sind in der Lage, digitale Werkzeuge beim Experimentieren zielgerichtet und sicher zu nutzen"
+                },
+                {
+                  "text": "Zum Voraussagen und Erklären chemischer Reaktionen wenden sie auch die experimentelle Methode an"
+                },
+                {
+                  "text": "Die Schüler vertiefen ihr Verständnis über Modelle"
+                },
+                {
+                  "text": "Ihnen wird bewusst, dass sich zur Erklärung chemischer Erscheinungen die Notwendigkeit zur Präzisierung und Weiterentwicklung von Modellen ergibt"
+                },
+                {
+                  "text": "Sie nutzen mathematische Verfahren und beherrschen geeignete digitale Werkzeuge, um Stoff- und Energieumsätze zu berechnen"
+                },
+                {
+                  "text": "Entwickeln der Fähigkeit zum chemisch kompetenten Kommunizieren unter angemessener Nutzung von Fachsprache und fachtypischen Darstellungs- und Argumentationsstrukturen Die Schüler beschreiben und veranschaulichen chemische Sachverhalte unter Nutzung der Fachsprache"
+                },
+                {
+                  "text": "Sie interpretieren und erläutern chemische Reaktionen und können Fachtexte und grafische Darstellungen analysieren"
+                },
+                {
+                  "text": "Die Schüler sind in der Lage, ihre Lern- und Arbeitsergebnisse sowie eigene Standpunkte adressaten-und situationsgerecht auch in digitaler Form darzustellen"
+                },
+                {
+                  "text": "Sie nutzen verschiedene, auch digitale Medien, erkennen Kernaussagen, wählen Informationen gezielt und kritisch aus und verknüpfen diese mit dem erworbenen Wissen"
+                },
+                {
+                  "text": "Durch das Gestalten von Präsentationen weisen die Schüler ihre Fähigkeit nach, komplexe chemische Sachverhalte in mündlicher und schriftlicher Form zu erarbeiten und darzustellen"
+                },
+                {
+                  "text": "Entwickeln der Fähigkeit, Sachverhalte kriteriengeleitet zu beurteilen sowie Entscheidungen und deren Folgen zu bewerten, als Voraussetzung für eine kompetente Teilnahme am gesellschaftlichen Diskurs über Natur­wissenschaft und Technik Die Schüler sind zunehmend in der Lage, ihre natürliche und technische Umwelt in einer zukunftsorientierten und verantwortungsbereiten naturwissenschaftlichen Perspektive zu erschließen"
+                },
+                {
+                  "text": "Den Schülern wird bewusst, dass die Erkenntnisse der Chemie im Zusammenwirken mit den anderen Naturwissenschaften und der Mathematik dazu beitragen können, Prozesse der Natur und der Technik zu beherrschen und diese ökonomisch und ökologisch zum Wohle der Menschen zu nutzen"
+                },
+                {
+                  "text": "Sie gewinnen die Einsicht, dass die Erkenntnisse der Wissenschaft Chemie den technischen Fortschritt maßgeblich beeinflussen und mitbestimmen können"
+                },
+                {
+                  "text": "Durch die Beschäftigung mit Produkten aktueller Technologien erkennen die Schüler die gesellschaftliche Bedeutung der angewandten Chemie"
+                },
+                {
+                  "text": "Sie beurteilen Technikfolgen sowie wirtschaftliche Aspekte und Stoffkreisläufe im Sinne der Nachhaltigkeit."
+                }
+              ],
+              "duration": "17 Ustd."
+            }
+          ]
+        },
+        {
+          "grade": "11 (Leistungskurs)",
+          "topics": [
+            {
+              "title": "Stoffe – von der Vielfalt zur Ordnung",
+              "learning_objectives": [
+                {
+                  "text": "Kennen des Zusammenhangs zwischen Atombau und Stellung der Haupt- und Nebengruppenelemente im Periodensystem Basiskonzept: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen historischer Überblick über die Entwicklung der Erkenntnisse zum Atombau Demokrit, Thomson, Rutherford, Bohr, Sommerfeld ⇒ Arbeitsorganisation ⇒ Methodenbewusstsein ➔ Kl. 8, LB 2 Aufbau der Atomhülle nach dem Bohr-Sommerfeldschen Modell und dem Orbitalmodell Orbital Welle-Teilchen-Dualismus Energieniveauschema Haupt- und Unterniveaus, Hundsche Regel, Stabilität halb- und vollbesetzter Energieniveaus Elektronenkonfiguration Pauling-Schreibweise Zusammenhang zwischen Elektronen­konfiguration und Stellung im PSE Klassifizieren der Elemente nach der Elektronenkonfiguration in Haupt- und Nebengruppenelemente Anwenden des Wissens über den Zusammenhang zwischen Struktur und Eigenschaften von Stoffen zur Ordnung von ausgewählten anorganischen und organischen Stoffen Basiskonzept: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen ⇒ Methodenbewusstsein ⇒ Arbeitsorganisation Zusammenhang zwischen Struktur und chemischer Bindung Nutzung digitaler Medien zur Visualisierung ➔ Kl. 7, LB 2 ➔ Kl. 8, LB 2 Atombindung – Lewis-Formel, Elektronenpaarabstoßungsmodell Bindungslänge, Bindungsenthalpie Ionenbindung – Ionengitter Metallbindung – Elektronengasmodell Klassifizieren der Stoffe in Metalle, Ionensubstanzen, Molekülsubstanzen, polymere Stoffe experimentelles Untersuchen verschiedener Stoffe auch unter Nutzung digitaler Werkzeuge SE Löslichkeit, Siede- und Schmelztemperatur, Leitfähigkeit, Flammenfärbung projektorientiertes Arbeiten Erfassung von Messwerten ⇒ Medienbildung inter- und intramolekulare Wechselwirkungen Halogene, Alkane, Alkanale, Alkanole, Alkansäuren, Hydroxycarbonsäuren ➔ Kl. 9, LB 4 ➔ LBW 2: Von Runge-Bildern bis zur Gaschromatographie Van-der-Waals-Kräfte Dispersionskräfte Dipol-Dipol-Kräfte Wasserstoffbrücken Ionen-Dipol-Wechselwirkung Kennen des Orbitalmodells zur Erklärung der Bindungsverhältnisse in ausgewählten Molekülsubstanzen und polymeren Stoffen ⇒ Lernkompetenz räumliche Gestalt von Orbitalen s-, p- und Hybridorbitale Hybridisierung des Kohlenstoffs in kettenförmigen Kohlenwasserstoffen und polymeren Stoffen σ - und π - Bindungen Valenzbindungsmodell"
+                }
+              ],
+              "duration": "26 Ustd."
+            },
+            {
+              "title": "Elektronenübergänge – Redoxreaktionen",
+              "learning_objectives": [
+                {
+                  "text": "Kennen der Eigenschaften von Verbindungen der Metalle Kupfer, Eisen und Mangan Basiskonzept: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen Oxidationszahlen in anorganischen Verbindungen Oxidationsstufen von Kupfer, Eisen und Mangan in Verbindungen Stabilität von Oxidationsstufen Anwenden des Wissens über Redoxreaktionen auf Reaktionen der Nebengruppenelemente als umkehrbare, pH-abhängige Reaktionen Basiskonzept: Konzept der chemischen Reaktion ⇒ Problemlösestrategien experimentelles Untersuchen von Redoxreaktionen SE projektorientiertes Arbeiten Redoxgleichungen, korrespondierende Redoxpaare, Teilgleichungen Elektronendonator und -akzeptor Schrittfolge für das Aufstellen von Reaktionsgleichungen bei pH-abhängigen Reaktionen Übertragen des Wissens über Redoxreaktionen auf ausgewählte Beispiele aus Alltag, Technik und Analytik Metallherstellung Hochofenprozess, Aluminothermisches Schweißen Rohstoffgewinnung exemplarische Behandlung nachhaltiger Ansätze ⇒ Bildung für nachhaltige Entwicklung weitere Redoxreaktionen im Alltag Haushaltsreiniger, Antioxidantien, Entfärber Redoxampholyte (Wasserstoffperoxid) experimentelles Durchführen und quantitatives Auswerten von Redoxtitrationen SE Manganometrie, Wasseruntersuchung Übertragen des Wissens über Redoxreaktionen auf ausgewählte Beispiele organischer Stoffe Basiskonzept: Konzept der chemischen Reaktion Oxidationszahlen in organischen Verbindungen partielle Oxidation primärer Alkohole Aldehyde, Carbonsäuren, Kohlenstoffdioxid experimentelle Untersuchung der reduzierenden Wirkung der Aldehydgruppe SE Fehling- bzw. Tollens-Probe"
+                }
+              ],
+              "duration": "21 Ustd."
+            },
+            {
+              "title": "Stoffe komplexer Natur",
+              "learning_objectives": [
+                {
+                  "text": "Einblick in die natürlichen Vorkommen von Komplexverbindungen gewinnen Minerale, Hämoglobin, Chlorophyll Kennen des Zusammenhangs zwischen Bau und Eigenschaften ausgewählter Komplexverbin­dungen Basiskonzepte: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen, Konzept der chemischen Reaktion Zentralteilchen und Ligand räumliche Struktur Nomenklatur koordinative Bindung zwischen Metallkationen und freien Elektronenpaaren der Liganden Komplexbildung und -zerfall Aquakomplexe experimentelles Untersuchen des Ligandenaustausches SE Reaktion von Kupfer(II)-salz-Lösungen mit Salzsäure experimentelles Durchführen von Komplex­reaktionen zum Nachweis von Fe 2+ -, Fe 3+ -, Cu 2+ -Ionen bzw. zur Maskierung von Ionen SE experimentelles Untersuchen der Beein­flussung der Löslichkeit durch Komplex­bildung SE Silberhalogenide, Fällungskaskade der Halogenid-Ionen, Hydroxide Einblick in die Bedeutung von Komplexverbindungen in der Technik gewinnen Cyanid-Laugerei, Bayer-Verfahren ökologische Probleme ⇒ Bildung für nachhaltige Entwicklung"
+                }
+              ],
+              "duration": "12 Ustd."
+            },
+            {
+              "title": "Stoffe im Gleichgewicht",
+              "learning_objectives": [
+                {
+                  "text": "Kennen der Möglichkeiten der Beeinflussbarkeit des zeitlichen Verlaufs chemischer Reaktionen Gas- und Staubexplosionen, Korrosionen, Fällungsreaktionen, oszillierende Reaktionen, Stoffwechselprozesse ⇒ Verantwortungsbereitschaft Stoßtheorie Reaktionsgeschwindigkeit, Berechnung von Durchschnittsreaktionsgeschwindigkeiten Katalyse experimentelles Untersuchen der Abhängig­keit von Temperatur, Konzentration und Katalysator SE Anwenden des Wissens über das chemische Gleichgewicht Basiskonzept: Konzept der chemischen Reaktion ⇒ Methodenbewusstsein ⇒ Problemlösestrategien ➔ Kl. 10, LB 1 Einstellung, Merkmale und Beeinflussbarkeit des chemischen Gleichgewichts Nutzung von Simulationssoftware Prinzip von Le Chatelier und Braun Steuerung chemisch-technischer Prozesse - Ammoniaksynthese globale Auswirkungen der Störung natürlicher Gleichgewichte - Ozongleichgewicht der Atmosphäre ⇒ Bildung für nachhaltige Entwicklung experimentelles Untersuchen der Konzentrations-, Druck- und Temperaturabhängigkeit SE Iod-Iodstärke-Gleichgewicht, Kohlensäure-Gleichgewicht, Ester-Gleichgewicht projektorientiertes Arbeiten Massenwirkungsgesetz, K C Berechnen von Gleichgewichtskonzentrationen Übertragen des Wissens zum Massenwirkungsgesetz auf Löslichkeitsgleichgewichte Basiskonzept: Konzept der chemischen Reaktion ⇒ Bildung für nachhaltige Entwicklung Löslichkeitsprodukt Berechnen von Gleichgewichtskonzentrationen und Löslichkeiten experimentelles Untersuchen der Beeinflussung von Löslichkeitsgleichgewichten SE gesättigte, ungesättigte Lösungen Temperaturabhängigkeit, gleichionige Zusätze Bedeutung im Alltag Tropfsteine, Abwasserreinigung, Analyse, Wasserhärte, Gallen- und Nierensteinbildung"
+                }
+              ],
+              "duration": "18 Ustd."
+            },
+            {
+              "title": "Protonenübergänge – Säure-Base-Reaktionen",
+              "learning_objectives": [
+                {
+                  "text": "Einblick in die historische Entwicklung des Säure-Base-Begriffs gewinnen Boyle, Lavoisier, Liebig, Arrhenius, Brönsted ➔ Kl. 8, LB 5 ➔ Kl. 9, LB 1 Übertragen des Donator-Akzeptor-Prinzips und des Massenwirkungsgesetzes auf Säure-Base-Reaktionen nach Brönsted Basiskonzept: Konzept der chemischen Reaktion Brönsted-Säuren und -Basen, Oxonium-Ion Ammoniak als Base experimentelles Untersuchen ausgewählter Reaktionen verschiedener Säuren und Basen SE Nachweisen von Ammonium-Ionen Nachweisen saurer und basischer Lösungen Protolyse, Protonenübergang, korrespondierende Säure-Base-Paare Ionenprodukt und Autoprotolyse des Wassers Ampholyte pH-Wert-Definition Sörensen Stärke von Säuren und Basen K S - und K B -Wert pK S - und pK B -Wert Berechnen von pH-Werten bei vollständiger und unvollständiger Protolyse, von Säure- und Basenkonstanten und von Gleichgewichtskonzentrationen Säure-Basen-Indikatoren Indikatorgleichgewicht, Umschlagbereich Übertragen des Wissens über Säure-Base-Reaktionen auf Protolysegleichgewichte ausgewählter Salze einschließlich der Hydrogensalze ⇒ Problemlösestrategien experimentelles Untersuchen des pH-Wertes SE Anwenden des Wissens über Säure-Base-Reaktionen auf Pufferlösungen Zusammensetzung, Wirkungsweise und Bedeutung von Puffersystemen Puffersysteme in der Natur, Konservierungsmittel experimentelles Untersuchen und Herstellen von Pufferlösungen SE selbstorganisiertes Lernen Nutzung digitaler Werkzeuge zur Erfassung und Auswertung von Messwerten ⇒ Medienbildung Berechnungen mit der Henderson-Hassel­balch-Gleichung Beherrschen des Verfahrens der Titration ⇒ Methodenbewusstsein ➔ Kl. 10, LB 3 Konzentrationsmaße und Berechnungen experimentelles Durchführen von Säure-Base-Titrationen mit Indikator und bei digitaler Messung von Leitfähigkeit und pH-Werten SE digitale Erfassung und Auswertung von Messwerten ⇒ Medienbildung ein- und mehrprotonige Säuren Interpretation von Titrationskurven bei vollständiger und unvollständiger Protolyse Berechnung charakteristischer Punkte Anfangspunkt, Äquivalenzpunkt, Halbäquivalenzpunkt experimentelles Bestimmen des Säureanteils in einem Lebensmittel durch Säure-Base-Titration SE Essigsäure, Weinsäure, Citronensäure Übertragen des Wissens über chemische Reaktionen auf den Nachweis weiterer Ionen in wässrigen Lösungen experimentelles Nachweisen von Halogenid-, Sulfat- und Carbonat-Ionen SE ➔ Kl. 10, LB 3"
+                }
+              ],
+              "duration": "34 Ustd."
+            },
+            {
+              "title": "Chemische Reaktionen – energetisch betrachtet",
+              "learning_objectives": [
+                {
+                  "text": "Kennen von Möglichkeiten der Energieumwand­lung bei chemischen Reaktionen und deren praktische Nutzung Basiskonzept: Energiekonzept Energieformen, Energiegehalt von Nahrungs­mitteln ➔ PH, Gk11, LB 1 Aussagen und Bedeutung des 1"
+                },
+                {
+                  "text": "Hauptsatzes der Thermodynamik Reaktionsenergie, Reaktionsenthalpie Berechnung der Volumenarbeit Anwenden des Wissens über die Merkmale chemischer Reaktionen zur vertieften energe­tischen Betrachtung Basiskonzept: Energiekonzept Nutzung digitaler Werkzeuge zur Erfassung und Auswertung von Messwerten ⇒ Methodenbewusstsein ⇒ Medienbildung Reaktionsenthalpie als Reaktionswärme bei isobarer Prozessführung Temperaturabhängigkeit des molaren Volumens experimentelles Bestimmen molarer Reaktionsenthalpien mittels Kalorimetrie SE selbstorganisiertes Lernen Berechnung mit der Kalorimetergleichung Bildungsenthalpie Berechnungen von Reaktionsenthalpien aus Bildungsenthalpien mit dem Satz von Hess Verbrennungsenthalpien, Brennwerte, Heizstoffe, Lebensmittel Energiebilanz für eine gesunde Ernährung ⇒ Verantwortungsbereitschaft Gitter- und Hydratationsenthalpie experimentelles Untersuchen von exothermen und endothermen Lösungsvorgängen SE Beurteilen der Möglichkeit des Ablaufs einer chemischen Reaktion technische Prozesse 2"
+                },
+                {
+                  "text": "Hauptsatz der Thermodynamik Entropie, Freie Enthalpie experimentelles Untersuchen spontan ablaufender Reaktionen SE Gibbs-Helmholtz-Gleichung Berechnungen Wahlbereich 1: Glas – vom Sand zur Fensterscheibe Einblick in die Vielfalt organischer und anorganischer Werkstoffe gewinnen Tonerde, Holz, Glas, Kunststoffe Kennen von Glas als universeller Werkstoff Basiskonzept: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen experimentelles Untersuchen der Eigenschaften SE Glasbiegen, -ziehen und -blasen, Verhalten gegenüber Chemikalien, Härte Zusammenhang zwischen Struktur und Eigenschaften amorpher Festkörper, Glasübergang, Quarzkristall, Silicattetraeder, Veränderung der Eigenschaften durch Beimischungen Glasarten im Alltag Kalknatronglas, Bleiglas, Quarzglas, Laborglas, Borosilicatglas, optisches Glas, Sicherheitsglas experimentelles Untersuchen von Glas auf Beimischungen SE Spektralanalyse, Herauslösen von Inhaltsstoffen durch Erwärmen technische Glasherstellung und -verarbeitung Sand, Soda, Pottasche Floatverfahren"
+                },
+                {
+                  "text": "Schott, Abbe Exkursion: Glasbläserei experimentelles Herstellen von Glas SE Phosphorsalzschmelze Sich zum Glasrecycling positionieren Dokumentation zum Einsatz von Glas im Alltag Nutzung digitaler Medien ⇒ Reflexions- und Diskursfähigkeit ⇒ informatische Bildung ⇒ Medienbildung Wahlbereich 2: Von Runge-Bildern bis zur Gaschromatographie Einblick in die Klassifizierung der chromatographischen Verfahren nach der Art der Phasen gewinnen Verteilungs-, Adsorptions-, Ionenaustausch-, Gelchromatographie, Elektrophorese experimentelles Herstellen von Runge-Bildern SE Kennen der theoretischen Grundlagen der Chromatographie Basiskonzept: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen mobile und stationäre Phase Lösungsmittel, Polarität, Laufgeschwindigkeit Wechselwirkung zwischen Substanz und mobiler Phase Adsorption, Verteilung, Löslichkeit Bedeutung für Identifizierung, Reinigung und Strukturaufklärung von Substanzen klinische Diagnostik, Lebensmittelanalytik, Analyse von Pflanzeninhaltsstoffen, Nachweis von Spurenelementen bei der Wasseraufbereitung experimentelles Durchführen einer Chromatographie SE Dünnschicht-, Gel-, Säulenchromatographie Einblick in moderne Verfahren der Chromatographie gewinnen Exkursion Wahlbereich 3: Von der Alchemie zur Chemie Einblick in die Geschichte der Alchemie gewin­nen Ägypten, China und Indien, Arabien, Spanien, Europa Ziele alchemistischer Versuche Alchemie im Mittelalter, Quacksalber, „Stein des Weisen“, „Erschaffung von Leben“, Scheide- und Königswasser, Böttger-Porzellan experimentelles Untersuchen alchemisti­scher Reaktionen Bleibaum, Traubesche Zelle, Wirkung des Lustfeuerwerks von Vicenza (1379) Kennen ausgewählter Beispiele vom Beginn der wissenschaftlich-praktischen und technischen Chemie experimentelles Untersuchen von Salpeter als Oxidationsmittel SE Oxidationsschmelze Herstellung von Soda Glas- und Seifenherstellung Anwenden thermodynamischer Sachverhalte auf die Herstellung von Kältemischungen Basiskonzept: Energiekonzept Nutzen von Kältemischungen Herstellung von Speiseeis, Konservierung von Lebensmitteln experimentelles Herstellen von Kältemischungen und Bestimmen der Lösungsenthalpie SE Nutzung digitaler Werkzeuge zur Erfassung und Auswertung von Messwerten ⇒ Medienbildung Dokumentation zum Durchbruch der chemischen Theorien im 19"
+                },
+                {
+                  "text": "Jahrhundert Berzelius, Liebig, Wöhler, Meyer, Mendelejew Nutzung digitaler Medien ⇒ informatische Bildung ⇒ Medienbildung"
+                }
+              ],
+              "duration": "19 Ustd."
+            }
+          ]
+        },
+        {
+          "grade": "12 (Leistungskurs)",
+          "topics": [
+            {
+              "title": "Elektrochemische Reaktionen",
+              "learning_objectives": [
+                {
+                  "text": "Einblick in elektrochemische Phänomene des Alltags gewinnen Basiskonzepte: Konzept der chemischen Reaktion, Energiekonzept Kennen der Redoxreihe der Metalle experimentelles Untersuchen der Redox­reihe der Metalle SE Reaktionen verschiedener Metalle mit Metallsalzlösungen elektrochemische Fällungsreaktionen SE Zementation, Metallrecycling ⇒ Bildung für nachhaltige Entwicklung Kennen der Vorgänge zur Ausbildung eines Elektrodenpotenzials Elektrolyte Elektrodenpotenzialbildung elektrochemische Doppelschicht Standardelektrodenpotenzial Standard-Wasserstoffelektrode elektrochemische Spannungsreihe Elektrodenreaktionen galvanische Zelle einschließlich Konzentra­tionszelle Berechnung der Standardzellspannung experimentelles Untersuchen der Abhängig­keit des Elektrodenpotenzials von Stoff und Konzentration unter Nutzung digitaler Werkzeuge SE Erfassung und Auswertung von Messwerten ⇒ Medienbildung Anwenden des Wissens über Elektrodenpoten­ziale auf freiwillig verlaufende und erzwungene Redoxsysteme Basiskonzepte: Konzept der chemischen Reaktion, Energiekonzept ⇒ Methodenbewusstsein Nernst-Gleichung Konzentrationselement Metall/Metall-Ionen-Elektroden Berechnungen in Abhängigkeit von Konzentrationen bei Standardtemperatur pH-abhängige Redoxreaktionen Korrosion und Korrosionsschutz Lokalelement Prinzip der Opferanode experimentelles Untersuchen von Lokalelementen und Korrosionsvorgängen SE Elektrolyse, Elektrolysezelle ➔ LBW 4 Abscheidungspotenzial, Überspannung, Zersetzungsspannung Raffination experimentelles Untersuchen elektrolytischer Vorgänge SE Abscheidung von Metallen, Galvanotechnik Nutzung digitaler Werkzeuge zur Auswertung von Messwerten ⇒ Medienbildung Faraday-Gesetze Berechnungen Vergleich von galvanischer Zelle und Elektrolysezelle Anwenden des Wissens über elektrochemische Zusammenhänge auf ausgewählte Spannungsquellen exemplarische Behandlung nachhaltiger Umgang, E-Mobilität Dokumentation, Präsentation Nutzung digitaler Medien projektorientiertes Arbeiten ⇒ Bildung für nachhaltige Entwicklung ⇒ informatische Bildung ⇒ Kommunikationsfähigkeit Primärelement Sekundärelement Brennstoffzelle Beurteilen der Nutzung alternativer Energiequellen und der Speicherung gewonnener Energie aus ökonomischer und ökologischer Sicht Pro- und Kontra-Debatte ⇒ Bildung für nachhaltige Entwicklung ⇒ Reflexions- und Diskursfähigkeit"
+                }
+              ],
+              "duration": "28 Ustd."
+            },
+            {
+              "title": "Organische Stoffe",
+              "learning_objectives": [
+                {
+                  "text": "Kennen der Nomenklatur und Struktur organischer Stoffklassen der Chemie Basiskonzept: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen Nomenklaturregeln nach IUPAC für Kohlenwasserstoffe, Carbonylverbindungen, Amine und Alkohole Carbonylverbindungen mit Ester-, Keto-, Aldehyd- und Carboxygruppe Ketone am Beispiel von Aceton: Struktur und Eigenschaften Verbindungen mit Hydroxy- und Aminogruppe Anwenden des Wissens über das Orbitalmodell auf Struktur und Eigenschaften des Benzens und ausgewählter Derivate Basiskonzept: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen Phenol, Anilin, Nitrobenzol, Benzoesäure Bindungsverhältnisse in aromatischen Systemen Delokalisierung von π -Elektronen mesomere Grenzstrukturen, Mesomerieenergie I- und M-Effekt und ihr Einfluss auf die Eigenschaften der Stoffe Säure-Basen-Stärke Übertragen des Wissens über organische Reaktionen auf Reaktionsmechanismen Basiskonzept: Konzept der chemischen Reaktion Radikale, Nucleophile, Elektrophile Homolyse, Heterolyse Mechanismen S N 1-Mechanismus Mechanismus der Veresterung S E -Mechanismus zur Bildung von Benzenderivaten Erstsubstitution S R -Mechanismus A E -Mechanismus Beherrschen ausgewählter qualitativer und quantitativer Verfahren zur Analyse organischer Stoffe ⇒ Problemlösestrategien qualitative und quantitative Elementaranalyse Liebig, Meyer Ermitteln der Summenformel Kohlenstoff-, Wasserstoff- und Stickstoff-Nachweis experimentelles Nachweisen von Strukturmerkmalen SE Mehrfachbindungen zwischen Kohlenstoffatomen Hydroxy-, Aldehyd-, Carboxygruppe"
+                }
+              ],
+              "duration": "30 Ustd."
+            },
+            {
+              "title": "Naturstoffe, Kunststoffe und Nanomaterialien",
+              "learning_objectives": [
+                {
+                  "text": "Anwenden des Wissens über den Zusammenhang zwischen Struktur und Eigenschaften von Stoffen auf Naturstoffe Basiskonzept: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen ➔ Kl. 10, LB 2 ➔ LBW 3 Kohlenhydrate experimentelles Untersuchen verschiedener Kohlenhydrate auf ihre reduzierende Wirkung SE Einteilung der Kohlenhydrate Glucose, Fructose, Maltose, Saccharose, Stärke Ketten- und Ringstruktur der Glucose und Fructose Fischer- und Haworth-Projektion glycosidische Bindung experimentelles Durchführen der Hydrolyse der Disaccharide SE Aminosäuren und Proteine Bau und Einteilung von Aminosäuren unpolar und polar; neutral, sauer und basisch Amino- und Carboxygruppe als funktionelle Gruppen Zwitterion: Aggregatzustand, Wasserlöslichkeit, Pufferwirkung, isoelektrischer Punkt Nutzung digitaler Werkzeuge zur Erfassung von Messwerten Strukturen der Proteine, Bindungen, inter- und intramolekulare Wechselwirkungen Auswirkungen von Strukturveränderungen bei Proteinen auf Lebewesen ➔ BIO, Gk 11, LB 1 Übertragen des Wissens über die Struktur von Stoffen auf das Trennen und Bestimmen durch Chromatographie Basiskonzept: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen Dünnschichtchromatografie, Säulenchromatographie, Gaschromatografie Trennprinzip am Beispiel der Dünnschichtchromatografie experimentelles Durchführen SE Ermittlung und Interpretation von Retentionsfaktoren Übertragen des Wissens über die Struktur von Stoffen auf Formen der Isomerie Basiskonzept: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen ➔ LBW 3 Konstitutionsisomerie Glucose und Fructose Propan-1-ol und Propan-2-ol Konfigurationsisomerie Chiralität, asymmetrisches Kohlenstoffatom optische Aktivität Enantiomere Bild/Spiegelbild, D- und L-Formen Diastereomere α - und β -Formen Anwenden des Wissens über organische Stoffe und deren Reaktionen auf Kunststoffe Basiskonzepte: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen, Konzept der chemischen Reaktion Zusammenhang von Struktur und Eigenschaften bei Thermoplasten, Duroplasten und Elastomeren ➔ Kl. 10, LB 4 Polymerisation und Polykondensation Kennen des Reaktionsmechanismus zur radikalischen Polymeri­sation Basiskonzept: Konzept der chemischen Reaktion Initiator, Kettenstart, -wachstum, -abbruch Anwenden des Wissens über den Zusammen­hang zwischen Struktur und Eigenschaften von Stoffen auf Nanomaterialien Basiskonzept: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen exemplarische Betrachtung Nanostrukturen, Nanoteilchen Einfluss von Nanostrukturen auf Oberflächeneigenschaften selbstreinigende Oberflächen, Riblet-Ober­flächen Sich zum nachhaltigen Umgang mit Wertstoffen positionieren ⇒ Bildung für nachhaltige Entwicklung Recycling Wertstoffkreisläufe PET, biologischer Wertstoffkreislauf"
+                }
+              ],
+              "duration": "32 Ustd."
+            },
+            {
+              "title": "Streifzug durch die Chemie – Systematisierung",
+              "learning_objectives": [
+                {
+                  "text": "Beurteilen von Anwendungsmöglichkeiten digitaler Werkzeuge beim Experimentieren ⇒ Problemlösestrategien ⇒ Arbeitsorganisation ⇒ Medienbildung Gestalten chemischer Prozesse auf der Grundlage der Basiskonzepte ⇒ Problemlösestrategien ⇒ Arbeitsorganisation ⇒ Medienbildung Zusammenhang von Struktur, Eigenschaften und Verwendung der Stoffe Basiskonzept: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen SE anorganische und organische Analyse Arten der chemischen Reaktion Basiskonzept: Konzept der chemischen Reaktion SE Redoxtitration, Konzentrationszellen, Potentiometrische Titration, Säure-Base-Titration, Bestimmung von pK S -Werten, Fällungsreaktion, Ligandenaustauschreaktion, Addition, Substitution und Eliminierung Merkmale, Verlauf und Bedingungsabhängigkeit chemischer Reaktionen Basiskonzept: Energiekonzept, Konzept der chemischen Reaktion SE Enthalpiebestimmung, Abhängigkeit der Reaktionsgeschwindigkeit, Ermittlung der Gleichgewichtskonstante für eine Veresterung Beurteilen des Einsatzes und der Grenzen von Modellen Atommodelle Bindungsmodelle Elektronenpaarabstoßungsmodell, Valenzbindungsmodell Mesomeriemodell Wahlbereich 1: Farbstoffe Einblick in Geschichte, Vielfalt und Anwendung der Farbstoffe gewinnen Pflanzenfarbstoffe, Textilfarben, Indikatoren, Mineralfarben Kennen des Chromophor-Modells nach Witt und Witzinger Zusammenhang von Lichtabsorption und Farbigkeit ➔ PH, Gk 12, LB 4 chromophore Gruppe, auxo- und antiauxochrome Gruppen Bathochromie, Hypsochromie, Halochromie Anwenden des Wissens über das Chromophor-Modell auf die Einteilung der Farbstoffe nach ihrer Struktur Basiskonzept: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen Polymethinfarbstoffe, Triphenylmethanfarbstoffe, Carbonylfarbstoffe Anwenden des Wissens über Säure-Base-Reaktionen auf die Verwendung von Farbstoffen als Indikatoren Basiskonzept: Konzept der chemischen Reaktion Struktur von Säure-Base-Indikatoren experimentelles Untersuchen der Umschlagbereiche von Indikatoren SE Phenolphthalein, Methylrot u.a"
+                },
+                {
+                  "text": "Übertragen des Wissens über Struktur-Eigenschafts-Beziehungen auf ausgewählte Färbeverfahren experimentelles Untersuchen verschiedener Färbeverfahren Beizenfärbung, Küpenfärbung Sich zu Problemen bei der Nutzung von Farbstoffen positionieren ⇒ Reflexions- und Diskursfähigkeit Wahlbereich 2: Arzneimittel Einblick in die Vielfalt von Arzneimitteln gewinnen Kennen von Handelsnamen, Zusammensetzung, Indikation und Wirkungsweise von Aspirin ® (Acetylsalicylsäure, ASS) und ACC ® (Acetylcystein) Basiskonzepte: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen Veresterung experimentelles Untersuchen der Eigenschaften von Salicylsäure und Acetylsalicylsäure SE Schmelz- und Siedetemperaturen, Löslichkeiten, Säurestärke Nutzung digitaler Werkzeuge zur Erfassung von Messwerten ⇒ Medienbildung experimentelles Untersuchen der Zusammensetzung SE Hydrolyse von Aspirin experimentelles Bestimmen des ASS-Gehalts im Aspirin durch Verseifung und Rücktitration SE Stärke und Lactose als Tablettenbindemittel Einblick in die physiologische Wirkung von ASS gewinnen Sich zur Anwendung von Arzneimitteln positionieren Medikamentenabhängigkeit"
+                },
+                {
+                  "text": "Paracelsus ⇒ Reflexions- und Diskursfähigkeit Wahlbereich 3: Vitamine Einblick in die Vielfalt und Bedeutung der Vitamine gewinnen Anwenden des Wissens über Säure-Base-Reaktionen, chemische Gleichgewichte und Redoxreaktionen Basiskonzepte: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen, Konzept der chemischen Reaktion Vitamine Ascorbinsäure (Vitamin C) und Riboflavin (Vitamin B2) experimentelles Untersuchen der sauren und der Redoxwirkung von Vitamin C SE experimentelles Bestimmen des Vitamin-C-Gehalts durch Redoxtitration SE Vitamin-C-Tablette, Orangensaft, Zitronensaft, Spinat, Kartoffeln, Salat Reduktion und Oxidation von Vitamin B2 SE Puddingpulver-Extrakt Modellexperiment zum Verständnis biochemischer Vorgänge Sich zur Bedeutung der Vitamine für die gesunde Ernährung positionieren ⇒ Reflexions- und Diskursfähigkeit Wahlbereich 4: Technische Elektrolysen Anwenden des Wissens über elektrochemische Vorgänge und Zusammenhänge auf technisch bedeutende Elektrolyseverfahren Basiskonzepte: Konzept der chemischen Reaktion, Energiekonzept Chloralkali-Elektrolyse"
+                },
+                {
+                  "text": "Schmelzflusselektrolyse zur Aluminiumherstellung Einsatz digitaler Werkzeuge zur Erfassung und Auswertung von Messwerten ⇒ Medienbildung experimentelles Durchführen von geeigneten Modellexperimenten SE Entwickeln von Teil- und Gesamtgleichungen für die technischen Anwendungen Berechnen von Größen mit Hilfe der Faraday-Gesetze Elektrizitätsmenge, Abscheidungsmasse, Stromausbeute Einblick in die technische Realisierung und in Produktionsprinzipien und -probleme gewinnen Exkursion in eine Produktionsanlage Reaktionsapparate Vor- und Nachteile verschiedener Verfahren Reinheit, Nebenprodukte, Vermeidung un­erwünschter Nebenprodukte Sich zu großtechnischen Anwendungen der Elektrolysen positionieren Chlor-Alkali-Elektrolyse ⇒ Reflexions- und Diskursfähigkeit Ziele und Aufgaben des Faches Chemie Beitrag zur allgemeinen Bildung Die Schüler erwerben im Fach Chemie Wissen über Methoden des naturwissenschaftlichen Arbeitens, Argumentierens und Experimentierens"
+                },
+                {
+                  "text": "Das sich daraus entwickelnde Verständnis für naturwissenschaftliche Konzepte und deren Grenzen sowie für Beziehungen zwischen Naturwissenschaften, Technik und Gesellschaft ist eine wichtige Voraussetzung, um im Alltag sachorientiert zu urteilen sowie ökonomisch und ökologisch verantwortungsbewusst zu handeln"
+                },
+                {
+                  "text": "Ausgehend von der Vielfalt der Stoffe und der Stoffumwandlungen wird Interesse am Erkunden von Naturvorgängen und technischen Prozessen geweckt"
+                },
+                {
+                  "text": "Das Fach Chemie leistet einen Beitrag zu naturwissenschaftlich begründeter Umweltbildung, zu vorausschauender Beurteilung von Technikfolgen und zu nachhaltigem Wirtschaften vor dem Hintergrund knapper werdender natürlicher Ressourcen"
+                },
+                {
+                  "text": "Es regt damit zu zukunftsfähigem Denken und Handeln im Sinne einer nachhaltigen Entwicklung an"
+                },
+                {
+                  "text": "Damit leistet das Fach Chemie einen wesentlichen Beitrag bei der Entwicklung naturwissenschaftlicher Kompetenzen entsprechend den vier in den Bildungsstandards für den Mittleren Schulabschluss und für die Allgemeine Hochschulreife beschriebenen Kompetenzbereichen: Sachkompetenz Erkenntnisgewinnungskompetenz Kommunikationskompetenz Bewertungskompetenz"
+                },
+                {
+                  "text": "Die erworbenen Kompetenzen und Kenntnisse auf Grundlage der Bildungsstandards für den Mittleren Schulabschluss werden für die Allgemeine Hochschulreife weiterentwickelt"
+                },
+                {
+                  "text": "Besondere Bedeutung kommt dem Experiment als Methode der naturwissenschaftlichen Erkenntnisgewinnung zu"
+                },
+                {
+                  "text": "Es erfordert eine präzise Fragestellung, exaktes Beobachten und erzieht zu objektiver, unvoreingenommener Beschreibung der Phänomene"
+                },
+                {
+                  "text": "Kritisches Analysieren und Deuten der Ergebnisse fördert das Abstraktionsvermögen"
+                },
+                {
+                  "text": "Durch individuelles und gemeinsames Lernen entwickeln die Schüler sowohl die Kommunikations- und Teamfähigkeit als auch Beharrlichkeit, Selbstständigkeit, Gewissenhaftigkeit, Genauigkeit und Zielstrebigkeit"
+                },
+                {
+                  "text": "Das Fach Chemie fördert das Interesse der Schüler für Politik und schafft bei ihnen ein Bewusstsein für lokale, regionale und globale Herausforderungen unserer Zeit"
+                },
+                {
+                  "text": "Als Orientierungs- und Erklärungsgrundlage verwendet der Lehrplan die zentralen Basiskonzepte: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen, Konzept der chemischen Reaktion und Energiekonzept"
+                },
+                {
+                  "text": "In allen Lernbereichen sind verpflichtend Experimente ausgewiesen, die von den Schülern zunehmend selbstständig geplant, durchgeführt und ausgewertet werden sollen"
+                },
+                {
+                  "text": "Im Kursunterricht der Jahrgangsstufen 11 und 12 sieht der Lehrplan eine umfassende Anwendung, Vertiefung und Erweiterung des Wissens über Begriffe, Fakten, Gesetze und Theorien vor"
+                },
+                {
+                  "text": "Grund- und Leistungskurs unterscheiden sich in der Tiefe des Eindringens in Theorien und Modellvorstellungen der Wissenschaft Chemie sowie im Grad der Selbstständigkeit des Problemerkennens und Problemlösens beim Erschließen komplexer chemischer Phänomene"
+                },
+                {
+                  "text": "Im Lehrplan wird für Schülerexperimente die Abkürzung SE verwendet"
+                },
+                {
+                  "text": "Die Basiskonzepte dienen zur Strukturierung und Vernetzung der fachlichen Inhalte"
+                },
+                {
+                  "text": "An unterschiedlichen Stellen des Lehrplans wird auf diese Konzepte zurückgegriffen und somit kumulatives Lernen ermöglicht"
+                },
+                {
+                  "text": "Die Gestaltung eines differenzierten und schülerorientierten Lehr- und Lernprozesses setzt handlungsorientierte Formen des Chemieunterrichts voraus"
+                },
+                {
+                  "text": "Ausgangspunkt für den Wissenserwerb sind in der Regel Phänomene des Alltags"
+                },
+                {
+                  "text": "Diese werden zunächst makroskopisch und zunehmend submikroskopisch betrachtet und erklärt"
+                },
+                {
+                  "text": "Dies führt zum Verstehen und Entwickeln von Modellen"
+                },
+                {
+                  "text": "Eine verstärkte experimentelle Durchdringung fachlicher Inhalte sowie das bewusste Nutzen der experimentellen Methode zum Erkenntnisgewinn sind dabei grundlegendes Prinzip"
+                },
+                {
+                  "text": "Dabei ist möglichst oft die Durchführung von Schülerexperimenten anzustreben"
+                },
+                {
+                  "text": "Für den Chemieunterricht ist besonders charakteristisch, dass die Wissensaneignung vom konkret Einzelnen zum abstrakt Allgemeinen auf experimenteller Grundlage erfolgt"
+                },
+                {
+                  "text": "Außerdem eröffnet das Interpretieren von Ergebnissen auf der Ebene von Modellvorstellungen ein tieferes Verständnis der Stoffeigenschaften und Strukturen"
+                },
+                {
+                  "text": "Die Entwicklung von Medienkompetenz im Umgang mit verschiedenen traditionellen und digitalen Medien zur Wissensaneignung, Übung und Informationsbeschaffung ist wichtiger Bestandteil des Lehr- und Lernprozesses"
+                },
+                {
+                  "text": "Zur Bildung für nachhaltige Entwicklung eigenen sich insbesondere die didaktischen Prinzipien der Visionsorientierung, des vernetzten Lernens sowie der Partizipation"
+                },
+                {
+                  "text": "Vernetztes Denken bedeutet hier die Verbindung von Gegenwart und Zukunft einerseits und ökologischen, ökonomischen und sozialen Dimensionen des eigenen Handelns andererseits"
+                },
+                {
+                  "text": "Bei Inhalten mit politischem Gehalt werden die speziellen Arbeitsmethoden der politischen Bildung eingesetzt"
+                },
+                {
+                  "text": "Dafür eigenen sich u"
+                },
+                {
+                  "text": "Expertengespräche, Rollenspiele, Streitgespräche oder Pro- und Kontra-Debatten"
+                },
+                {
+                  "text": "Übersicht über die Lernbereiche und Zeitrichtwerte Zeitrichtwert"
+                }
+              ],
+              "duration": "20 Ustd."
+            }
+          ]
+        }
+      ],
+      "source_url": "https://www.schulportal.sachsen.de/lplandb/lehrplan/521",
+      "last_checked": "2026-06-22"
+    },
+    {
+      "school_type": "Oberschule",
+      "grade_levels": [
+        {
+          "grade": "8 (Oberschule Hauptschulbildungsgang)",
+          "topics": [
+            {
+              "title": "Stoffe, die uns umgeben",
+              "learning_objectives": [
+                {
+                  "text": "Einblick gewinnen in die Bedeutung der Chemie im alltäglichen Leben Haushaltchemikalien, Kosmetik, Farben, Lebensmittel, Medikamente, Verpackungen Nutzung regionaler Besonderheiten Diskussion zu Möglichkeiten und Problemen bei der Anwendung der Chemie Nutzung digitaler Medien Softwareapplikationen, Videosequenzen ⇒ Kommunikationsfähigkeit ⇒ Bildung für nachhaltige Entwicklung Kennen des sachgerechten Umgangs mit Geräten und Chemikalien Beachtung des Gesundheits- und Arbeitsschutzes sowie des Brandschutzes Umgang mit einem Brenner Kennen von Eigenschaften der Stoffe Stoff Vorkommen als Roh-, Nähr-, Schad-, Gefahrstoffe, Stoffe als Energieträger ➔ BIO, Kl. 7, LB 2 Aggregatzustände Einfluss äußerer Bedingungen experimentelles Untersuchen und Beschreiben von Eigenschaften Auswählen charakteristischer Eigenschaften, Steckbrief, Arbeit mit Tabellen- und Formelsammlungen Nutzung digitaler Werkzeuge zur Messwerterfassung Reinstoffe – Stoffgemische experimentelles Trennen eines Stoffgemisches Dekantieren, Filtrieren, Eindampfen Auslesen, Sieben, Destillieren Zusammenhang von Eigenschaften und Verwendung der Stoffe Gefahrstoffe, Stoffe als Energieträger, Kosmetika Übertragen des Zusammenhangs von Eigenschaften und Verwendung auf die Stoffgruppe der Metalle und auf ausgewählte Nichtmetalle ➔ LBW 3 Metalle und Nichtmetalle Legierungen Wasserstoff, Kohlenstoff, Schwefel, Sauerstoff Edelmetalle und unedle Metalle Schwermetalle und Leichtmetalle chemisches Element Stoff, der aus einer Atomart besteht experimentelles Untersuchen charakteristischer Eigenschaften der Metalle Löslichkeit, Härte LDE zur Strom- und Wärmeleitfähigkeit Stromstärke-Sensor Nutzung digitaler Werkzeuge zur Messwerterfassung ➔ PH, Kl. 8, LB 1 experimentelles Untersuchen der Eigenschaften von Wasserstoff, Kohlenstoff und Schwefel Stromstärke-Sensor Nutzung digitaler Werkzeuge zur Messwerterfassung Herstellen des Zusammenhangs von Eigenschaften und Verwendung Übertragen der Modellvorstellung zum Teilchenaufbau der Stoffe auf das Kern-Hülle-Modell des Atoms ➔ PH, Kl. 6, LB 2 Atom und Molekül Moleküle als aus Atomen zusammengesetzte Teilchen Symbol und Formel Kennzeichnung von chemischen Elementen durch Symbole PSE als Arbeitsmittel und Ordnungsprinzip der Chemie historischer Bezug Aufsuchen von Metallen und Nichtmetallen interessendifferenzierende Aufgabenstellungen Kennen der Zusammensetzung der Luft Veranschaulichung durch grafische Darstellung ➔ PH, Kl. 9, LB 2 experimentelles Bestimmen des Sauerstoffanteils Kennen von Sauerstoff Darstellung und Nachweis Spanprobe, SE Eigenschaften und Verwendung Bau aus Molekülen, Formel Anwenden der Kenntnisse über Wasser als lebensnotwendigen Stoff Recherchen in digitalen und traditionellen Medien Wasservorräte, Einsatz im Haushalt, Sparmaßnahmen Löse- und Transportmittel ⇒ Medienbildung ⇒ Bildung für nachhaltige Entwicklung ➔ LBW 2 Trinkwasser ➔ GEO, Kl. 7, LB 5 Abwasser Wirkung von Wasserschadstoffen anhand von Beispielen Wasser als chemische Verbindung chemische Verbindung als Stoff, der aus mindestens zwei verschiedenen Elementen zusammengesetzt ist Bau aus Molekülen, Formel"
+                }
+              ],
+              "duration": "25 Ustd."
+            },
+            {
+              "title": "Untersuchen von Stoffen",
+              "learning_objectives": [
+                {
+                  "text": "Beherrschen experimenteller Tätigkeiten zum Untersuchen von Stoffeigenschaften – Prüfen und Zuordnen unbekannter Stoffproben Kohlenstoff, Schwefel, Eisen, Aluminium, Zink, Kupfer Steckbrief ⇒ Methodenkompetenz Beherrschen von Verfahren zur Trennung von Stoffgemischen Zusammenhang Eigenschaften – Trennverfahren Papierchromatographie Gemische fester Stoffe Lösungen Löslichkeit gesättigte und ungesättigte Lösungen Kennen von Methoden zur Sicherung experimenteller Arbeitsergebnisse Erstellen von Experimentprotokollen Zusammenarbeit der naturwissenschaftlichen Fächer Nutzung von traditionellen und digitalen Medien"
+                }
+              ],
+              "duration": "6 Ustd."
+            },
+            {
+              "title": "Stoffe wandeln sich um",
+              "learning_objectives": [
+                {
+                  "text": "Kennen der chemischen Reaktion als Stoffumwandlung Ausgangsstoffe, Reaktionsprodukte, energetische Begleiterscheinungen SE zum Feststellen der Bildung neuer Stoffe Übertragen der Kenntnisse über chemische Reaktionen auf die Oxidation von Metallen und Nichtmetallen Oxidation der Metalle und Nichtmetalle an ausgewählten Beispielen experimentelles Untersuchen von Oxidationen Metalloxide Nichtmetalloxide Wasser, Kohlenstoff- und Schwefeldioxid Oxidation Sauerstoffaufnahme Wortgleichung Differenzierung: Reaktionsgleichung Oxide als chemische Verbindungen Bedeutung einiger Metalloxide in Haushalt, Technik und Umwelt Recherchen in digitalen und traditionellen Medien Korrosion Auswerten von statistischem Material ⇒ Medienbildung Gestalten einer Präsentation zu Möglichkeiten der Luft- und Wasserreinhaltung Smog, Ozon und saurer Regen Nutzung von traditionellen und digitalen Medien für Recherche und die Erstellung des Lernprodukts ⇒ Medienbildung ⇒ Bildung für nachhaltige Entwicklung Übertragen der Kenntnisse zu Redoxreaktionen auf die Herstellung von Metallen aus Metalloxiden experimentelles Untersuchen von Redoxreaktionen Wortgleichung SE: Reaktion von Kupfer(II)-oxid mit Kohlenstoff Reduktion Sauerstoffabgabe Redoxreaktion gleichzeitiger Ablauf von Oxidation und Reduktion Redoxreaktionen in der Technik, auch unter Nutzung geeigneter Lernsoftware Nutzung digitaler Medien, Softwareapplikationen, Videokanäle Thermitverfahren, Hochofenprozess Zusammenarbeit mit INF Wahlbereich 1: Brände Kennen der Bedingungen eines Brandes Ableiten mithilfe von Experimenten Anwenden der Kenntnisse zum Löschen von Bränden Löschmittel Löschmethoden Kennen von Brandschutzmaßnahmen Besuch einer Feuerwache Wahlbereich 2: Wasser Einblick gewinnen in die Arbeit eines Klärwerkes oder Wasserwerkes Besuch von Kläranlage oder Wasserwerk ⇒ Bildung für nachhaltige Entwicklung Kennen der Reinigungsstufen eines Klärwerkes mechanische, biologische und chemische Reinigungsstufe Herstellen eines Filtersystems zum Reinigen von Schmutzwasser Wahlbereich 3: Das Element Gold Einblick gewinnen in die Geschichte des Goldes Aberglaube, Wissenschaft Goldwaschen Gold in der Weltwirtschaft ⇒ Mehrperspektivität ⇒ Bildung für nachhaltige Entwicklung Übertragen des Zusammenhangs zwischen Eigenschaften und Verwendung auf Gold Steckbrief Gold als Edelmetall Gold in Legierungen Feingoldanteil Falschgold Vergolden einer Kupfermünze Ziele Auseinandersetzen mit Stoffen und chemischen Reaktionen als Beitrag zur Erschließung der Lebenswelt der Schüler Die Schüler lernen, ausgewählte Stoffe aus ihrem Erfahrungsbereich zu untersuchen, deren Eigenschaften zu erkunden und auf deren Verwendung zu schließen"
+                },
+                {
+                  "text": "Dabei wird ihnen die Bedeutung der Chemie im täglichen Leben bewusst"
+                },
+                {
+                  "text": "Wissen zu Metallen, Nichtmetallen und deren Oxiden nutzen sie zur Unterscheidung von Stoffen nach ihren Eigenschaften"
+                },
+                {
+                  "text": "Für die Stoffgruppe der Metalle entdecken sie charakteristische gemeinsame Eigenschaften und können daraus Verwendungen ableiten"
+                },
+                {
+                  "text": "Die Schüler erwerben erste Voraussetzungen, um die Notwendigkeit der Reinhaltung von Luft und Wasser als lebensnotwendige Stoffe erörtern zu können und eigene Schlüsse für umweltbewusstes Handeln abzuleiten"
+                },
+                {
+                  "text": "Ausgehend von beobachtbaren Anzeichen für stoffliche Veränderungen erkennen die Schüler chemische Reaktionen als Vorgänge, bei denen sich Stoffe umwandeln"
+                },
+                {
+                  "text": "Erarbeiten von Aspekten naturwissenschaftlichen Denkens unter Nutzung von Experimenten und Modellen zur Erklärung chemischer Erscheinungen im Alltag Die Schüler erschließen sich das chemische Experiment als Mittel zum Erkenntnisgewinn"
+                },
+                {
+                  "text": "Sie nutzen erworbene Fähigkeiten im Beobachten, Vergleichen, Beschreiben und Interpretieren von Experimentergebnissen"
+                },
+                {
+                  "text": "Ihre Selbstständigkeit beim Durchführen und Auswerten von Experimenten entwickeln sie insbesondere im Lernbereich 2"
+                },
+                {
+                  "text": "Sie gewinnen erste Einblicke in die digitale Messwerterfassung"
+                },
+                {
+                  "text": "Sie erlernen den sachgerechten Umgang mit Chemikalien und Geräten und beachten geltende Bestimmungen des Gesundheits-, Arbeits- und Brandschutzes beim experimentellen Arbeiten"
+                },
+                {
+                  "text": "Sprachliches Darstellen chemischer Sachverhalte unter Verwendung der Fachsprache Die Schüler entwickeln sprachliche Fähigkeiten, indem sie lernen, chemische Erscheinungen zu beschreiben und erste Fachbegriffe verständig zu gebrauchen"
+                },
+                {
+                  "text": "Sie lernen die Symbole der Elemente kennen und nutzen das Periodensystem der Elemente als wichtiges Arbeitsmittel und Ordnungsprinzip"
+                },
+                {
+                  "text": "Die Schüler verwenden das Tafelwerk, um die Formeln chemischer Verbindungen aufzusuchen und sich weitere Informationen über die Stoffe zu beschaffen"
+                },
+                {
+                  "text": "Sie stellen einfache Wortgleichungen unter Anleitung auf."
+                }
+              ],
+              "duration": "19 Ustd."
+            }
+          ]
+        },
+        {
+          "grade": "9 (Oberschule Hauptschulbildungsgang)",
+          "topics": [
+            {
+              "title": "Chemische Verbindungen im Alltag",
+              "learning_objectives": [
+                {
+                  "text": "Einblick gewinnen in die Vielfalt der chemischen Verbindungen im Alltag Vorstellen handelsüblicher Haushaltchemikalien und deren Verwendung als Rohrreiniger, Konservierungsstoffe und Düngemittel kritisches Werten von Medienbeiträgen ⇒ Medienbildung Kennen salzartiger Stoffe Natriumchlorid ein Salz unter vielen Kochsalz, Chloride außerschulische Lernorte nutzen Eigenschaften und Verwendung experimentelles Ermitteln, Steckbrief ⇒ Methodenkompetenz Vorkommen und Gewinnung ⇒ Bildung für nachhaltige Entwicklung experimentelles Prüfen der elektrischen Leitfähigkeit Festsubstanz, Lösung Stromstärke-Sensor Nutzung digitaler Werkzeuge zur Messwerterfassung ➔ PH, Kl. 8, LB 1 Aufbau aus Ionen, Formel Differenzierung: Ionen als weitere Teilchenart, Ionenbindung Metallhydroxide und deren Lösungen am Beispiel von Natrium- und Calciumhydroxid Rohrreiniger, Löschkalk Eigenschaften und Verwendung Nutzung digitaler Werkzeuge zur Messwerterfassung Formel Hydroxidion, basische Lösung experimentelles Nachweisen basischer Lösungen mit Indikator Universalindikator Reiniger, Waschmittel, Seifen Kennen einiger im Haushalt vorkommender saurer Lösungen Gefahrstoffe, Lebensmittel, Reinigungs- und Konservierungsmittel Umgang und Entsorgung Phosphorsäure, Kohlensäure, Ameisensäure ⇒ Mehrperspektivität ⇒ Bildung für nachhaltige Entwicklung ➔ WTH, Kl. 9, LB 4 Säuren am Beispiel der Essigsäure, Salzsäure und Schwefelsäure Eigenschaften und Verwendung Formel Wasserstoffion, saure Lösung experimentelles Nachweisen saurer Lösungen Universalindikator Reiniger, Früchte, Getränke Nutzung digitaler Werkzeuge zur Messwerterfassung Anwenden der Kenntnisse zur chemischen Reaktion auf die Reaktionen saurer Lösungen experimentelles Untersuchen der Reaktion von Säuren mit unedlen Metallen Knallgasprobe experimentelles Untersuchen der Reaktion von sauren mit basischen Lösungen Bildung neutraler Lösungen pH-Wert-Skala Temperatur-Sensor Nutzung digitaler Werkzeuge zur Messwerterfassung Beurteilen der praktischen Bedeutung der Neutralisationsreaktion Abwasserreinigung, Bodenverbesserung ⇒ Bildung für nachhaltige Entwicklung Kennen von Ethanol Eigenschaften und Verwendung wirtschaftliche Bedeutung als Lösemittel, Brennspiritus, Kraftstoff, Trinkalkohol Vor-und Nachteile von Ethanol als Kraftstoffzusatz Bau aus Molekülen, Formel Hydroxylgruppe alkoholische Gärung Sich positionieren zu den Gefahren des Alkoholmissbrauches individueller Umgang mit Alkohol Einfluss von Medien auf das eigene Verhalten und das von anderen ⇒ Medienbildung ⇒ Werteorientierung"
+                }
+              ],
+              "duration": "22 Ustd."
+            },
+            {
+              "title": "Chemische Verbindungen als Rohstoffe und Energieträger",
+              "learning_objectives": [
+                {
+                  "text": "Kennen organischer Stoffgemische als Rohstoffe und Energieträger Organische Chemie ⇒ Bildung für nachhaltige Entwicklung Bedeutung von Erdgas und Erdöl als begrenzt verfügbare Ressourcen Kohle, Biogas fraktionierte Destillation als Trennverfahren für Erdöl Experiment Verwendung der verschiedenen Fraktionen zur Herstellung wichtiger Produkte des Alltags ➔ LBW 2 Einblick gewinnen in die Vielfalt der Kohlenwasserstoffe gasförmige, flüssige, feste Kohlenwasserstoffe Kennen ausgewählter gesättigter und ungesättigter Vertreter der Kohlenwasserstoffe Methan, Ethan, Propan, Butan, Ethen, Ethin Eigenschaften und Verwendung Bau aus Molekülen Differenzierung: Atombindung Summenformel Strukturformel FCKW ⇒ Bildung für nachhaltige Entwicklung Verwendung Wirkung als Schadstoffe Übertragen der Kenntnisse über chemische Reaktionen auf Oxidationsreaktionen der Kohlenwasserstoffe zur Energiebereitstellung Treibhauseffekt alternative Energieträger Wasserstoff Nutzung von Simulationssoftware experimentelles Untersuchen der vollständigen Oxidation Kohlenstoffdioxidnachweis unvollständige Oxidation als Gefahrenquelle"
+                }
+              ],
+              "duration": "12 Ustd."
+            },
+            {
+              "title": "Experimentelles Unterscheiden von Stoffen",
+              "learning_objectives": [
+                {
+                  "text": "Beherrschen experimenteller Tätigkeiten ⇒ Methodenkompetenz beim Unterscheiden von wässrigen Lösungen basische, saure, neutrale Lösungen natürliche Indikatoren: Blaukrautsaft pH-Wert mithilfe der Farbskala Einbezug von Haushaltchemikalien Nutzung digitaler Werkzeuge zur Messwerterfassung, pH-Wert-Sensor bei der Reaktion von Natronlauge mit verdünnter Salzsäure und Essigsäure Eindampfen der Lösungen allgemeine Wortgleichung der Neutralisation Temperatur-Sensor, pH-Wert-Sensor"
+                }
+              ],
+              "duration": "6 Ustd."
+            },
+            {
+              "title": "Chemische Verbindungen als Werkstoffe",
+              "learning_objectives": [
+                {
+                  "text": "Einblick gewinnen in die Vielfalt der Werkstoffe metallische Werkstoffe, keramische Werkstoffe, Kunststoffe, Baustoffe ökonomisch-technische Bezüge ⇒ Bildung für nachhaltige Entwicklung Kennen der Baustoffe als herkömmliche Werkstoffe ➔ LBW 1 technischer Kalkkreislauf Kalkbrennen als chemisch-technisches Verfahren Experiment Kalklöschen Arbeitsschutz Abbinden des Kalkmörtels Wortgleichungen Trivialnamen, Vergleich zur Alltagssprache Mörtelsorten – Zusammensetzung und Verwendung Kalk- und Zementmörtel, Baumörtel Kennen der Kunststoffe als Werkstoffe nach Maß Erstellen einer Präsentation Nutzung digitaler und traditioneller Medien ⇒ Medienbildung Thermoplaste, Duroplaste und Elaste Bau, Eigenschaften, Verwendung Anordnung der Makromoleküle Polyethylen und Polyvinylchlorid Sich positionieren zur Entsorgung und Wiederverwendung von Kunststoffabfällen Diskussion zu Aufwand und Nutzen Recherche in verschiedenen digitalen und traditionellen Medien Diskussion zu Möglichkeiten des Recyclings ⇒ Kommunikationsfähigkeit ⇒ Bildung für nachhaltige Entwicklung Wahlbereich 1: Glas und keramische Werkstoffe Übertragen des Wissens über den Zusammenhang von Eigenschaften und Verwendung auf Werkstoffe Glas Herstellung SE: Darstellen einer Glasperle wichtige Glassorten experimentelles Bearbeiten von Glas keramische Werkstoffe Überblick Porzellan, Glaskeramik, Steingut, Steinzeug, Baukeramik historische Bezüge und Innovationen Eigenschaften und Verwendung Herstellung Nutzen territorialer Besonderheiten, Exkursion Wahlbereich 2: Kraftstoffe Kennen der Kraftstoffe herkömmliche und zukunftsweisende Benzine, Diesel Ethanol, Wasserstoff, Kraftstoffe aus nachwachsenden Rohstoffen Zusammensetzung Oktanzahl Übertragen der Kenntnisse zu Eigenschaften von Stoffen auf Benzin Geruch Löslichkeit Brennbarkeit Löschmethoden Sich positionieren zum Zusammenhang zwischen Verbrauch, Fahrverhalten und der Umweltbelastung ⇒ Bildung für nachhaltige Entwicklung Wahlbereich 3: Das Element Kohlenstoff Einblick gewinnen in natürliche Vorkommen des Elements Kohlenstoff Entstehung und Zusammensetzung von Stein- und Braunkohle Nutzen regionaler Besonderheiten experimentelles Herstellen von Koks Kennen verschiedener Modifikationen und ihrer Verwendung Grafit, Diamant, Fullerene Übertragen des Zusammenhangs zwischen Bau, Eigenschaften und Verwendung auf Grafit und Diamant Ziele Auseinandersetzen mit Stoffen und chemischen Reaktionen als Beitrag zur Erschließung der Lebenswelt der Schüler Die Schüler lernen chemische Verbindungen des alltäglichen Lebens an ausgewählten Beispielen salzartiger Stoffe, Säuren und Verbindungen der organischen Chemie kennen und an ihren Eigenschaften und Verwendungsmöglichkeiten zu unterscheiden"
+                },
+                {
+                  "text": "Sie erfassen die Bedeutung organischer Stoffgemische als Energieträger und Rohstoffe"
+                },
+                {
+                  "text": "Sie gewinnen Einblicke in die Nutzung von Werkstoffen und deren Stellenwert im Alltag"
+                },
+                {
+                  "text": "Die Schüler gewinnen die Einsicht, dass ein verantwortungsbewusster Umgang mit chemischen Verbindungen dem Erhalt der Umwelt und der eigenen Gesundheit dient"
+                },
+                {
+                  "text": "Erarbeiten von Aspekten naturwissenschaftlichen Denkens unter Nutzung von Experimenten und Modellen zur Erklärung chemischer Erscheinungen im Alltag Die Schüler nutzen das Experiment als Mittel zum Erkenntnisgewinn"
+                },
+                {
+                  "text": "Dabei übertragen sie die Kenntnisse zum fachspezifischen Beobachten und Auswerten chemischer Sachverhalte auf das Reaktionsverhalten ausgewählter anorganischer und organischer Verbindungen"
+                },
+                {
+                  "text": "Sie verwenden auch digitale Werkzeuge zur Messwerterfassung und -auswertung beim Experimentieren"
+                },
+                {
+                  "text": "Die Schüler lernen das Hydroxid-Ion und das Wasserstoff-Ion als Bestandteile von basischen bzw"
+                },
+                {
+                  "text": "Sie nutzen diese Kenntnisse zum experimentellen Unterscheiden chemischer Verbindungen"
+                },
+                {
+                  "text": "Im Lernbereich 3 entwickeln die Schüler eine zunehmende Selbstständigkeit und Sicherheit beim experimentellen Arbeiten"
+                },
+                {
+                  "text": "Sprachliches Darstellen chemischer Sachverhalte unter Verwendung der Fachsprache Die Schüler entwickeln ihre sprachlichen Fähigkeiten weiter, indem sie chemische Erscheinungen unter Verwendung von Fachbegriffen beschreiben"
+                },
+                {
+                  "text": "Sie erweitern ihren Fachwortschatz, einschließlich des Kennenlernens wichtiger Trivialnamen"
+                },
+                {
+                  "text": "Die Schüler stellen zunehmend schwierigere Wortgleichungen chemischer Reaktionen unter Anleitung auf"
+                },
+                {
+                  "text": "Realschulbildungsgang"
+                }
+              ],
+              "duration": "10 Ustd."
+            }
+          ]
+        },
+        {
+          "grade": "8 (Oberschule Realschulbildungsgang)",
+          "topics": [
+            {
+              "title": "Stoffe, die uns umgeben",
+              "learning_objectives": [
+                {
+                  "text": "Einblick gewinnen in die Bedeutung der Chemie im alltäglichen Leben Haushaltchemikalien, Kosmetik, Farben, Lebensmittel, Medikamente, Verpackungen Nutzung regionaler Besonderheiten Diskussion zu Möglichkeiten und Problemen bei der Anwendung der Chemie Nutzung digitaler Medien, Softwareapplikationen, Videosequenzen ⇒ Bildung für nachhaltige Entwicklung Kennen des sachgerechten Umgangs mit Geräten und Chemikalien Beachtung des Gesundheits- und Arbeitsschutzes sowie des Brandschutzes Umgang mit einem Brenner Kennen von Eigenschaften der Stoffe Stoff Vorkommen als Roh-, Nähr-, Schad-, Gefahrstoffe, Stoffe als Energieträger ➔ BIO, Kl. 7, LB 2 Aggregatzustände Einfluss äußerer Bedingungen Untersuchen von Eigenschaften Auswählen charakteristischer Eigenschaften, Steckbrief Nutzung digitaler Werkzeuge zur Messwerterfassung Beschreiben Experimentieren Ermitteln in Nachschlagewerken Reinstoffe und Stoffgemische experimentelles Trennen eines Stoffgemisches Dekantieren, Filtrieren, Eindampfen Auslesen, Sieben, Destillieren Anwenden des Wissens über den Zusammenhang von Eigenschaften und Verwendung auf die Stoffgruppe der Metalle und auf ausgewählte Nichtmetalle ➔ LBW 3 Metalle und Nichtmetalle Legierungen Wasserstoff, Kohlenstoff, Schwefel, Sauerstoff Edelmetalle und unedle Metalle Schwermetalle und Leichtmetalle chemisches Element Stoff, der aus einer Atomart besteht experimentelles Untersuchen charakteristischer Eigenschaften der Metalle Löslichkeit, Härte, Strom- und Wärmeleitfähigkeit Stromstärke-Sensor Nutzung digitaler Werkzeuge zur Messwerterfassung ➔ PH, Kl. 8, LB 1 experimentelles Untersuchen der Eigenschaften von Wasserstoff, Kohlenstoff und Schwefel Stromstärke-Sensor Nutzung digitaler Werkzeuge zur Messwerterfassung Ableiten von Verwendungen aus den Eigenschaften Übertragen der Modellvorstellung zum Teilchenaufbau der Stoffe auf das Kern-Hülle-Modell des Atoms ➔ PH, Kl. 6, LB 2 ➔ PH, Kl. 8, LB 2 Atom und Molekül Moleküle als aus Atomen zusammengesetzte Teilchen Symbol und Formel Kennzeichnung von Elementen durch chemische Symbole PSE als Arbeitsmittel und Ordnungsprinzip der Chemie historischer Bezug Aufsuchen von Metallen und Nichtmetallen interessendifferenzierende Aufgabenstellungen Differenzieren der Reinstoffe als chemische Elemente und chemische Verbindungen chemische Verbindung als Stoffe, die aus mehreren Atomarten zusammengesetzt sind Kennen der Zusammensetzung der Luft Veranschaulichung durch grafische Darstellung experimentelles Bestimmen des Sauerstoffanteils Kennen von Sauerstoff Darstellung und Nachweis Spanprobe, SE Eigenschaften und Verwendung Bau aus Molekülen, Formel Anwenden der Kenntnisse über Wasser als lebensnotwendigen Stoff Wasservorräte, Einsatz im Haushalt, Sparmaßnahmen Löse- und Transportmittel Nutzung digitaler und traditioneller Medien für Recherchen ⇒ Medienbildung ⇒ Bildung für nachhaltige Entwicklung ➔ LBW 2 Trinkwasser, Abwasser, Brauchwasser Wasserkreislauf zunehmende Wasserverknappung und Belastung durch Schadstoffe ⇒ Bildung für nachhaltige Entwicklung ➔ GEO, Kl. 7, LB 5 Wasser als chemische Verbindung Bau aus Molekülen, Formel"
+                }
+              ],
+              "duration": "23 Ustd."
+            },
+            {
+              "title": "Untersuchen von Stoffen",
+              "learning_objectives": [
+                {
+                  "text": "Beherrschen experimenteller Tätigkeiten zum Untersuchen von Stoffeigenschaften – Prüfen und Zuordnen unbekannter Stoffproben Kohlenstoff, Schwefel, Eisen, Aluminium, Zink und Kupfer Steckbrief Stromstärke-Sensor Nutzung digitaler Werkzeuge zur Messwerterfassung ⇒ Methodenkompetenz Beherrschen von Verfahren zur Trennung von Stoffgemischen Zusammenhang Eigenschaften – Trennverfahren Eindampfen, Filtrieren, Papierchromatographie Gemische fester Stoffe Lösungen Löslichkeit gesättigte und ungesättigte Lösungen Kennen von Methoden zur Sicherung experimenteller Arbeitsergebnisse Erstellen von Experimentprotokollen Zusammenarbeit der naturwissenschaftlichen Fächer Nutzung von traditionellen und digitalen Medien"
+                }
+              ],
+              "duration": "4 Ustd."
+            },
+            {
+              "title": "Stoffe wandeln sich um",
+              "learning_objectives": [
+                {
+                  "text": "Kennen der chemischen Reaktion als Stoff- und Energieumwandlung SE zum Feststellen der Bildung neuer Stoffe und energetischer Begleiterscheinungen Ausgangsstoffe, Reaktionsprodukte Energieumwandlung, Energieformen, Aktivierungsenergie chemische, elektrische, thermische und Strahlungsenergie ➔ PH, Kl"
+                },
+                {
+                  "text": "Dabei wird ihnen die Bedeutung der Chemie im täglichen Leben bewusst"
+                },
+                {
+                  "text": "Sie entwickeln Fähigkeiten beim Beobachten und Beschreiben von Erscheinungen weiter"
+                },
+                {
+                  "text": "Kenntnisse zu Metallen, Nichtmetallen und deren Oxiden nutzen sie zur Unterscheidung von Stoffen nach ihren Eigenschaften"
+                },
+                {
+                  "text": "Für die Stoffgruppe der Metalle entdecken sie charakteristische gemeinsame Eigenschaften"
+                },
+                {
+                  "text": "Sie gewinnen einen ersten Einblick, dass ein Zusammenhang zwischen den Eigenschaften von Stoffen und ihrem Bau besteht"
+                },
+                {
+                  "text": "Die Schüler erwerben erste Voraussetzungen, um die Notwendigkeit der Reinhaltung von Luft und Wasser als lebensnotwendige Stoffe erörtern zu können und eigene Schlüsse für umweltbewusstes Handeln abzuleiten"
+                },
+                {
+                  "text": "Ausgehend von beobachtbaren Anzeichen für stoffliche Veränderungen erkennen die Schüler chemische Reaktionen als Vorgänge, die durch die Einheit von Stoff- und Energieumwandlung gekennzeichnet sind"
+                },
+                {
+                  "text": "Darüber hinaus wird ihnen das Gesetzmäßige des Stoffumsatzes bei quantitativen Betrachtungen chemischer Reaktionen bewusst"
+                },
+                {
+                  "text": "Erarbeiten von Aspekten naturwissenschaftlichen Denkens unter Nutzung von Experimenten und Modellen zur Erklärung chemischer Erscheinungen im Alltag Die Schüler erschließen sich das chemische Experiment als Mittel zum Erkenntnisgewinn"
+                },
+                {
+                  "text": "Sie nutzen erworbene Fähigkeiten im Beobachten, Vergleichen, Beschreiben und Interpretieren von Experimentergebnissen"
+                },
+                {
+                  "text": "Ihre Selbstständigkeit beim Durchführen und Auswerten von Experimenten entwickeln sie insbesondere im Lernbereich 2"
+                },
+                {
+                  "text": "Sie gewinnen erste Einblicke in die digitale Messwerterfassung"
+                },
+                {
+                  "text": "Sie erlernen den sachgerechten Umgang mit Chemikalien und Geräten und beachten geltende Bestimmungen des Gesundheits-, Arbeits- und Brandschutzes beim experimentellen Arbeiten"
+                },
+                {
+                  "text": "Kenntnisse über Modellvorstellungen zum Teilchenaufbau der Stoffe wenden sie zunächst auf den Aufbau der Atome nach dem Kern-Hülle-Modell an, um sie zum Verstehen einiger Stoffeigenschaften zu nutzen"
+                },
+                {
+                  "text": "Die Schüler vollziehen in ihrem Denken den Übergang von der stofflichen Realität (makroskopische Betrachtung) zu Modellvorstellungen über den Bau der Stoffe aus Teilchen (submikroskopische Betrachtung)"
+                },
+                {
+                  "text": "Sprachliches Darstellen chemischer Sachverhalte unter Verwendung der Fachsprache Die Schüler entwickeln sprachliche Fähigkeiten, indem sie lernen, chemische Erscheinungen zu beschreiben und erste Fachbegriffe verständig zu gebrauchen"
+                },
+                {
+                  "text": "Sie lernen die Symbole der Elemente kennen, Formeln chemischer Verbindungen mithilfe von Nachschlagewerken aufzusuchen, Reaktionsgleichungen angeleitet zu entwickeln und sachgerecht zu interpretieren"
+                },
+                {
+                  "text": "Das Periodensystem der Elemente als wichtiges Arbeitsmittel und Ordnungsprinzip der Chemie nutzen sie dabei zielgerichtet"
+                },
+                {
+                  "text": "Zur Beschaffung von Informationen verwenden die Schüler das Tafelwerk."
+                }
+              ],
+              "duration": "23 Ustd."
+            }
+          ]
+        },
+        {
+          "grade": "9 (Oberschule Realschulbildungsgang)",
+          "topics": [
+            {
+              "title": "Chemische Verbindung im Alltag",
+              "learning_objectives": [
+                {
+                  "text": "Einblick gewinnen in die Vielfalt der chemischen Verbindungen im Alltag Vorstellen handelsüblicher Haushaltchemikalien und deren Verwendung als Reiniger, Konservierungsstoffe und Düngemittel kritisches Werten von Medienbeiträgen ⇒ Medienbildung ⇒ Bildung für nachhaltige Entwicklung Kennen salzartiger Stoffe Natriumchlorid als ein Salz unter vielen Kochsalz, Überblick Salze außerschulische Lernorte nutzen Eigenschaften und Verwendung experimentelles Ermitteln, Steckbrief ⇒ Methodenkompetenz Vorkommen und Gewinnung experimentelles Untersuchen der elektrischen Leitfähigkeit Festsubstanz, Lösung Aufbau aus Ionen Stromstärke-Sensor Nutzung digitaler Werkzeuge zur Messwerterfassung ➔ PH, Kl. 8, LB 1 Ion als weitere Teilchenart Ionen als elektrisch geladene Teilchen Ionenbindung chemische Zeichen der Ionen, Formel Metallhydroxide und deren Lösungen am Beispiel von Natrium- und Calciumhydroxid Rohrreiniger, Löschkalk Zusammenhang von Eigenschaften und Verwendung Aufbau aus Ionen Hydroxidion chemische Zeichen der Ionen, Formeln experimentelles Nachweisen der Hydroxidionen Universalindikator experimentelles Untersuchen basischer Lösungen Reiniger, Waschmittel, Seifen Übertragen der Kenntnisse zum Atombau auf den Bau von Ionen ➔ Kl. 8, LB 1 ➔ PH, Kl. 9, LB 2 Schalenmodell Erweiterung der Modellvorstellungen Außenelektronen, Achterschale Zusammenhang Atombau – PSE Vergleich Atom – Ion Kennen einiger im Haushalt vorkommender saurer Lösungen Umgang und Entsorgung Lebensmittel, Reinigungs- und Konservierungsmittel ⇒ Mehrperspektivität ⇒ Bildung für nachhaltige Entwicklung ➔ WTH, Kl. 9, LB 4 Säuren am Beispiel der Essigsäure, Salzsäure, Schwefelsäure Phosphorsäure, Kohlensäure, Ameisensäure, Zitronensäure Eigenschaften und Verwendung verdünnte und konzentrierte Lösungen, Massenanteile Nutzung digitaler Werkzeuge zur Messwerterfassung Formel Ionen in Lösung, chemische Zeichen der Ionen Wasserstoffionen, Chlorid- und Sulfationen experimentelles Nachweisen der Wasserstoffionen Universalindikator Nutzung digitaler Werkzeuge zur Messwerterfassung experimentelles Nachweisen saurer Lösungen Reiniger, Früchte, Getränke experimentelles Untersuchen der Reaktion von Säuren mit unedlen Metallen Knallgasprobe experimentelles Untersuchen der Reaktion von sauren mit basischen Lösungen Temperatur-Sensor Nutzung digitaler Werkzeuge zur Messwerterfassung leistungsdifferenzierende Aufgabenstellungen Donator-Akzeptor-Prinzip (Protonenübergang) Neutralisation – neutrale Lösungen teilchenmäßige Betrachtung Beurteilen der praktischen Bedeutung der Neutralisationsreaktion pH-Wert-Skala, Abwasserreinigung, Bodenverbesserung ⇒ Bildung für nachhaltige Entwicklung Sich positionieren zur Verwendung von Ethanol im Alltag Vor- und Nachteile von Ethanol als Kraftstoffzusatz projektorientiertes Lernen, Pro- und Kontra-Debatten, Fish-Bowl ⇒ Lernkompetenz ⇒ Methodenkompetenz Herstellung alkoholische Gärung, technische Herstellung Eigenschaften und Verwendung Lösemittel, Brennspiritus, Kraftstoff, Trinkalkohol Formel, Hydroxylgruppe experimentelles Unterscheiden von Ethanol- und Natriumhydroxidlösung Universalindikator, elektrische Leitfähigkeit, Geruchsprobe Gefahren des Alkoholmissbrauchs individueller Umgang mit Alkohol Einfluss von Medien auf das eigene Verhalten und auf das von anderen ⇒ Medienbildung ⇒ Werteorientierung"
+                }
+              ],
+              "duration": "22 Ustd."
+            },
+            {
+              "title": "Chemische Verbindungen als Rohstoffe und Energieträger",
+              "learning_objectives": [
+                {
+                  "text": "Kennen organischer Stoffgemische als Rohstoffe und Energieträger Organische Chemie ⇒ Bildung für nachhaltige Entwicklung Bedeutung von Erdgas und Erdöl als begrenzt verfügbare Ressourcen Kohle, Biogas fraktionierte Destillation als Trennverfahren für Erdöl LDE Verwendung der verschiedenen Fraktionen zur Herstellung wichtiger Produkte des Alltags ➔ LBW 2 Einblick gewinnen in die Vielfalt der Kohlenwasserstoffe gasförmige, flüssige, feste Kohlenwasserstoffe Kennen ausgewählter gesättigter und ungesättigter Vertreter der Kohlenwasserstoffe Methan, Ethan, Propan, Butan, Ethen, Ethin Eigenschaften und Verwendung Bau und Formel Summen- und Strukturformel Atombindung in Kohlenwasserstoffmolekülen C-C-Bindung, C-H-Bindung, Mehrfachbindung Übertragen der Kenntnisse über chemische Reaktionen auf Oxidationsreaktionen der Kohlenwasserstoffe zur Energiebereitstellung Treibhauseffekt alternative Energieträger Wasserstoff Nutzung von Simulationssoftware ⇒ Bildung für nachhaltige Entwicklung experimentelles Untersuchen der vollständigen Oxidation unvollständige Oxidation als Gefahrenquelle Kohlenstoffdioxidnachweis Berechnen des Volumens von Stoffen bei der Verbrennung von Kohlenwasserstoffen Einführung des molaren Volumens leistungsdifferenzierende Aufgabenstellungen ➔ Kl. 8, LB 3"
+                }
+              ],
+              "duration": "12 Ustd."
+            },
+            {
+              "title": "Experimentelles Unterscheiden von Stoffen",
+              "learning_objectives": [
+                {
+                  "text": "Beherrschen experimenteller Tätigkeiten Einhaltung des Arbeitsschutzes ⇒ Methodenkompetenz ⇒ Sozialkompetenz beim Nachweisen von Teilchen und Analysieren von Stoffen Nachweisen von Chlorid- und Sulfat-Ionen Unterscheiden von wässrigen Lösungen Unterscheiden von Salz- und Schwefelsäure Unterscheiden von Chloriden und Sulfaten saure, basische, neutrale Lösungen pH-Wert-Bestimmung mithilfe der Farbskala und pH-Wert-Sensor Nutzung digitaler Werkzeuge zur Messwerterfassung beim Durchführen von Neutralisationsreaktionen weitere Beispielreaktionen Temperatur-Sensor, pH-Wert-Sensor"
+                }
+              ],
+              "duration": "6 Ustd."
+            },
+            {
+              "title": "Chemische Verbindungen als Werkstoffe",
+              "learning_objectives": [
+                {
+                  "text": "Einblick gewinnen in die Vielfalt der Werkstoffe metallische Werkstoffe, keramische Werkstoffe, Kunststoffe, Baustoffe ökonomisch-technische Bezüge Kennen der Baustoffe als herkömmliche Werkstoffe ➔ LBW 1 technischer Kalkkreislauf Kalkbrennen als chemisch-technisches Verfahren LDE Kalklöschen Arbeitsschutz Abbinden des Kalkmörtels Wort- und Reaktionsgleichungen Trivialnamen, Vergleich zur Alltagssprache Mörtelsorten – Zusammensetzung und Verwendung Kalk- und Zementmörtel, Baumörtel Kennen der Kunststoffe als Werkstoffe nach Maß Erstellen einer Präsentation Nutzung digitaler und traditioneller Medien für Recherchen und Erstellung einer Präsentation ⇒ Medienbildung Thermoplaste, Duroplaste und Elaste Bau, Eigenschaften, Verwendung Anordnung der Makromoleküle Polyethylen und Polyvinylchlorid vom Monomer zum Polymer Aufspalten der Doppelbindung Polymerisation Wort- und Reaktionsgleichung Sich positionieren zur Entsorgung und Wiederverwendung von Kunststoffabfällen unter Nutzung von digitalen Medien Diskussion zu Möglichkeiten des Recyclings ⇒ Kommunikationsfähigkeit ⇒ Bildung für nachhaltige Entwicklung Wahlbereich 1: Glas und keramische Werkstoffe Übertragen des Wissens über den Zusammenhang von Eigenschaften und Verwendung auf Werkstoffe Glas Herstellung SE: Darstellen einer Glasperle wichtige Glassorten experimentelles Bearbeiten von Glas keramische Werkstoffe Überblick Porzellan, Glaskeramik, Steingut, Steinzeug, Baukeramik historische Bezüge, Innovationen Eigenschaften und Verwendung Herstellung Nutzen territorialer Besonderheiten, Exkursion Wahlbereich 2: Kraftstoffe Kennen von Kraftstoffen herkömmliche und zukunftsweisende Benzine, Diesel Ethanol, Wasserstoff, Kraftstoffe aus nachwachsenden Rohstoffen Zusammensetzung Oktanzahl Übertragen der Kenntnisse zu Eigenschaften von Stoffen auf Benzin Geruch, Löslichkeit, Brennbarkeit Einblick gewinnen in die Herstellung von Benzin Cracken Reformieren Raffinieren Sich positionieren zum Zusammenhang zwischen Verbrauch, Fahrverhalten und Umweltbelastung Informationen verschiedener, divergierender Medienbeiträge ⇒ Medienbildung ⇒ Bildung für nachhaltige Entwicklung Wahlbereich 3: Das Element Kohlenstoff Einblick gewinnen in natürliche Vorkommen des Elements Kohlenstoff Entstehung und Zusammensetzung von Stein- und Braunkohle Nutzen regionaler Besonderheiten experimentelles Herstellen von Koks Kennen verschiedener Modifikationen und ihrer Verwendung Grafit, Diamant, Fullerene Übertragen des Zusammenhangs zwischen Bau, Eigenschaften und Verwendung auf Grafit und Diamant Ziele Auseinandersetzen mit Stoffen und chemischen Reaktionen als Beitrag zur Erschließung der Lebenswelt der Schüler Die Schüler lernen chemische Verbindungen des alltäglichen Lebens an ausgewählten Beispielen salzartiger Stoffe, Säuren und Verbindungen der organischen Chemie kennen und an ihren Eigenschaften und Verwendungsmöglichkeiten zu unterscheiden"
+                },
+                {
+                  "text": "Beim Beschäftigen mit Haushaltchemikalien können die Schüler aufgrund der erworbenen chemischen Kenntnisse Aussagen zum Einsatz und den Eigenschaften dieser Stoffe ableiten"
+                },
+                {
+                  "text": "Sie erfassen die Bedeutung organischer Stoffgemische als Energieträger und Rohstoffe für die chemische Industrie"
+                },
+                {
+                  "text": "Sie gewinnen Einblicke in die Nutzung von Werkstoffen und deren Stellenwert im Alltag"
+                },
+                {
+                  "text": "Die Schüler gewinnen die Einsicht, dass ein verantwortungsbewusster Umgang mit chemischen Verbindungen dem Erhalt der Umwelt und der eigenen Gesundheit dient"
+                },
+                {
+                  "text": "Bei quantitativen Betrachtungen chemischer Reaktionen wenden die Schüler ihre Kenntnisse auf einfache Volumenberechnungen an"
+                },
+                {
+                  "text": "Erarbeiten von Aspekten naturwissenschaftlichen Denkens unter Nutzung von Experimenten und Modellen zur Erklärung chemischer Erscheinungen im Alltag Durch die Erweiterung der Modellvorstellung zum Atombau lernen die Schüler das Ion als neue Teilchenart kennen"
+                },
+                {
+                  "text": "Mithilfe der Kenntnisse über Ionenbindung und Atombindung können sie den Zusammenhalt der Teilchen erklären und auf charakteristische Stoffeigenschaften schließen"
+                },
+                {
+                  "text": "Die Schüler nutzen das Experiment als Mittel zum Erkenntnisgewinn"
+                },
+                {
+                  "text": "Dabei übertragen sie die Kenntnisse zum fachspezifischen Beobachten und Auswerten chemischer Sachverhalte auf das Reaktionsverhalten ausgewählter anorganischer und organischer Verbindungen"
+                },
+                {
+                  "text": "Sie verwenden auch digitale Werkzeuge zur Messwerterfassung und -auswertung beim Experimentieren"
+                },
+                {
+                  "text": "Die Schüler lernen einfache Ionennachweise kennen und wenden diese beim Unterscheiden chemischer Verbindungen an"
+                },
+                {
+                  "text": "Im Lernbereich 3 entwickeln die Schüler eine zunehmende Selbstständigkeit beim experimentellen Arbeiten, in dem sie Experimente teilweise planen und Lösungsansätze zum Identifizieren unbekannter Stoffe finden"
+                },
+                {
+                  "text": "Sprachliches Darstellen chemischer Sachverhalte unter Verwendung der Fachsprache Die Schüler entwickeln ihre sprachlichen Fähigkeiten weiter, indem sie chemische Erscheinungen unter Verwendung von Fachbegriffen beschreiben"
+                },
+                {
+                  "text": "Sie erweitern ihren Fachwortschatz, einschließlich des Kennenlernens wichtiger Trivialnamen"
+                },
+                {
+                  "text": "Die Schüler können Reaktionsgleichungen unter Nutzung des Tafelwerks zunehmend selbstständig entwickeln und sachgerecht interpretieren."
+                }
+              ],
+              "duration": "10 Ustd."
+            }
+          ]
+        },
+        {
+          "grade": "10",
+          "topics": [
+            {
+              "title": "Chemische Verbindungen in Lebensmitteln",
+              "learning_objectives": [
+                {
+                  "text": "Anwenden des Zusammenhangs von Bau und Eigenschaften der Stoffe auf Nährstoffe Kohlenhydrate Einteilung Glucose als Grundbaustein Summenformel, Strukturmodell experimentelles Nachweisen von Glucose und Stärke Löslichkeit Fette Glycerol und Fettsäuren als Grundbausteine ungesättigte und gesättigte Fettsäuren Strukturmodelle experimentelles Nachweisen von Mehrfachbindungen in Molekülen ungesättigter Fettsäuren Bromat-/Bromidlösung bzw. basische Kaliumpermanganatlösung Eiweiße Aminosäuren als Grundbausteine experimentelles Untersuchen der Eiweiße Nachweis, Denaturierung Bedeutung der Nährstoffe für die Gesunderhaltung Kennen der Bedeutung von Zusatzstoffen in Nahrungsmitteln Konservierungsmittel, Mineral-, Aroma- und Farbstoffe, Vitamine Gesundheitserziehung Vergleich der Sichtweisen von Produzenten und Verbrauchern ⇒ Mehrperspektivität ⇒ Bildung für nachhaltige Entwicklung"
+                }
+              ],
+              "duration": "7 Ustd."
+            },
+            {
+              "title": "Ordnen von Stoffen",
+              "learning_objectives": [
+                {
+                  "text": "Anwenden der Kenntnisse über den Bau der Stoffe zum Erklären ihrer Eigenschaften Stoffbeispiele aus den Kl"
+                },
+                {
+                  "text": "Simulationssoftware ⇒ informatische Bildung"
+                }
+              ],
+              "duration": "7 Ustd."
+            },
+            {
+              "title": "Experimentelles Untersuchen chemischer Reaktionen",
+              "learning_objectives": [
+                {
+                  "text": "Beherrschen der Nachweisreaktionen für Ionen und Erkennen unbekannter Stoffproben Wasserstoffion, Hydroxidion, Chloridion, Sulfation ➔ Kl. 9, LB 3 Reaktionsgleichung in Ionenschreibweise Beherrschen von Arbeitstechniken beim Untersuchen von chemischen Reaktionen, auch unter Nutzung digitaler Werkzeuge zur Messwerterfassung Temperatur-Sensor, pH-Wert-Sensor ⇒ Methodenkompetenz Metalloxid und Wasser Nichtmetalloxid und Wasser Reaktionen von Säurelösungen mit Metallhydroxidlösungen mit Carbonaten Nachweis der entstehenden Gase mit unedlen Metallen Beherrschen von Nachweisreaktionen bei der komplexen Untersuchung eines Nahrungsmittels Planung des experimentellen Vorgehens ⇒ Methodenkompetenz Beherrschen des Protokollierens von Arbeitsergebnissen"
+                }
+              ],
+              "duration": "8 Ustd."
+            },
+            {
+              "title": "Erkennen chemischer Reaktionen und ihres Nutzens in der Lebenswelt",
+              "learning_objectives": [
+                {
+                  "text": "Gestalten einer Übersicht zur Bedeutung chemischer Reaktionen Herstellung von Stoffen, Beseitigung von Schadstoffen, Energiebereitstellung, Vorgänge im lebenden Organismus Nutzung traditioneller und digitaler Medien interessendifferenzierende Auswahl ⇒ Bildung für nachhaltige Entwicklung Anwenden des Wissens über Merkmale chemischer Reaktionen auf ausgewählte Beispiele bekannte chemische Reaktionen aus Kl"
+                },
+                {
+                  "text": "Globale Probleme der Menschheit wie Sicherung der Energie- und Rohstoffbasis, der Ernährung und des Lebensstandards der wachsenden Weltbevölkerung sowie die Bewältigung von Umweltbelastungen sind ohne die Erkenntnisse der Chemie unlösbar"
+                },
+                {
+                  "text": "Dem Fach Chemie kommt mit Fokus auf die Bildung für nachhaltige Entwicklung eine Schlüsselrolle zu"
+                },
+                {
+                  "text": "Auf der Grundlage der fachlichen Linienführung im Fach Chemie wird in unterschiedlichen Zusammenhängen der Umgang des Menschen mit der stofflichen Welt mit Blick auf Gesellschaft, Wirtschaft und Umwelt thematisiert"
+                },
+                {
+                  "text": "Gleichzeitig werden die Schüler für eine nachhaltige Nutzung von Ressourcen sensibilisiert"
+                },
+                {
+                  "text": "Das schließt den verantwortungsbewussten Umgang mit Chemikalien und Gerätschaften aus Haushalt, Labor und Umwelt sowie das sicherheitsbewusste Experimentieren ein"
+                },
+                {
+                  "text": "Diese Erkenntnisse sollen auch in die Betrachtung zu Herausforderungen gesellschaftsrelevanter Themen einfließen"
+                },
+                {
+                  "text": "Durch die Auseinandersetzung mit gesellschaftlichen, politischen, rechtlichen und ökonomischen Sachverhalten fördert das Fach Chemie das Interesse der Schüler an Politik und schafft bei ihnen ein Bewusstsein für lokale, regionale und globale Herausforderungen ihrer Zeit"
+                },
+                {
+                  "text": "Lösungsansätze müssen eine nachhaltige Entwicklung ermöglichen und damit zu zukunftsfähigem Denken und Handeln anregen"
+                },
+                {
+                  "text": "Durch Einbeziehung technischer, ökologischer, wirtschaftlicher und gesellschaftlicher Aspekte wird ein Verständnis der Wechselbeziehungen zwischen Natur, Technik und Umwelt entwickelt"
+                },
+                {
+                  "text": "Das Fach leistet dadurch einen Beitrag zur Verbesserung des Urteils- und Kritikvermögens der Schüler und befähigt sie, chemische Erkenntnisse in Diskussionen argumentierend einzubringen"
+                },
+                {
+                  "text": "Durch eine enge Bindung an den Alltag und die Lebenswelt der Schüler bietet das Fach Chemie in besonderer Weise Möglichkeiten zur Entwicklung naturwissenschaftlicher Interessen und Neigungen"
+                },
+                {
+                  "text": "Damit leistet das Fach Chemie einen wesentlichen Beitrag bei der Entwicklung naturwissenschaftlicher Kompetenzen entsprechend den vier in den weiterentwickelten Bildungsstandards für den Mittleren Schulabschluss in den Naturwissenschaften für das Fach Chemie beschriebenen Kompetenzbereichen: Sachkompetenz Erkenntnisgewinnungskompetenz Kommunikationskompetenz Bewertungskompetenz"
+                },
+                {
+                  "text": "Besondere Bedeutung kommt dem Experiment als Methode der naturwissenschaftlichen Erkenntnisgewinnung zu"
+                },
+                {
+                  "text": "Gemeinsames Experimentieren fördert Teamfähigkeit, Gewissenhaftigkeit, Zielstrebigkeit und Selbstdisziplin"
+                },
+                {
+                  "text": "Der verantwortungsvolle Umgang mit Stoffen und ihre sachgerechte Entsorgung prägen umweltbewusstes Denken und Handeln aus"
+                },
+                {
+                  "text": "Die Verbindung von Alltagssprache und Fachsprache beim Beschreiben und Erklären chemischer Vorgänge trägt zur Entwicklung der Kommunikationsfähigkeit bei"
+                },
+                {
+                  "text": "Durch den Erwerb chemischen Grundwissens, naturwissenschaftlicher Arbeitstechniken und durch die Förderung der Persönlichkeitsentwicklung der Schüler schafft das Fach Chemie Voraussetzungen für Ausbildungsfähigkeit und berufliche Qualifikation"
+                },
+                {
+                  "text": "Dabei sind chemische Erscheinungen aus der Erfahrungswelt der Schüler sowohl Ausgangspunkt als auch Ziel der Erkenntnis"
+                },
+                {
+                  "text": "Als Orientierungs- und Erklärungsgrundlage verwendet der Lehrplan die zentralen Basiskonzepte: Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen Konzept der chemischen Reaktion Energiekonzept Schwerpunkte in den Lernbereichen der"
+                }
+              ],
+              "duration": "18 Ustd."
+            }
+          ]
+        }
+      ],
+      "source_url": "https://www.schulportal.sachsen.de/lplandb/lehrplan/126",
+      "last_checked": "2026-06-22"
+    }
+  ],
+  "last_updated": "2026-06-22",
+  "source_urls": [
+    "https://www.schulportal.sachsen.de/lplandb/lehrplan/521",
+    "https://www.schulportal.sachsen.de/lplandb/lehrplan/126"
+  ]
+}
