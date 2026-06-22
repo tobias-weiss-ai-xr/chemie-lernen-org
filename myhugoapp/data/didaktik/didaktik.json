@@ -1,0 +1,65 @@
+{
+  "guidelines": [
+    {
+      "title": "Bildungsstandards im Fach Chemie für den Mittleren Schulabschluss",
+      "source_type": "KMK",
+      "institution": "Kultusministerkonferenz (KMK)",
+      "url": "https://www.kmk.org/themen/allgemeinbildende-schulen/unterrichtsfaecher/chemie.html",
+      "sections": [
+        {
+          "title": "Zusammenfassung",
+          "content": [
+            "KMK-Beschluss vom 04.12.2003, aktualisiert 2022. Definiert die Regelstandards, die Schüler am Ende der Klasse 10 (MSA) im Fach Chemie erreichen sollen."
+          ]
+        }
+      ],
+      "last_checked": "2026-06-22"
+    },
+    {
+      "title": "Bildungsstandards im Fach Chemie für die Allgemeine Hochschulreife",
+      "source_type": "KMK",
+      "institution": "Kultusministerkonferenz (KMK)",
+      "url": "https://www.kmk.org/themen/allgemeinbildende-schulen/unterrichtsfaecher/chemie.html",
+      "sections": [
+        {
+          "title": "Zusammenfassung",
+          "content": [
+            "KMK-Beschluss vom 18.10.2012, aktualisiert 2020. Definiert die Standards für das Abitur im Fach Chemie."
+          ]
+        }
+      ],
+      "last_checked": "2026-06-22"
+    },
+    {
+      "title": "Ländergemeinsame inhaltliche Anforderungen für die Fachwissenschaften und Fachdidaktiken in der Lehrerbildung",
+      "source_type": "KMK",
+      "institution": "Kultusministerkonferenz (KMK)",
+      "url": "https://www.kmk.org/themen/allgemeinbildende-schulen/unterrichtsfaecher/chemie.html",
+      "sections": [
+        {
+          "title": "Zusammenfassung",
+          "content": [
+            "KMK-Beschluss vom 16.10.2008, aktualisiert 2023. Legt die fachwissenschaftlichen und fachdidaktischen Mindestanforderungen für das Lehramtsstudium Chemie fest."
+          ]
+        }
+      ],
+      "last_checked": "2026-06-22"
+    },
+    {
+      "title": "Kompetenzen der Naturwissenschaften — Basiskonzepte der Chemie",
+      "source_type": "KMK",
+      "institution": "Kultusministerkonferenz (KMK)",
+      "url": "https://www.kmk.org/themen/allgemeinbildende-schulen/unterrichtsfaecher/chemie.html",
+      "sections": [
+        {
+          "title": "Zusammenfassung",
+          "content": [
+            "Die KMK-Bildungsstandards definieren vier Basiskonzepte: Stoff-Teilchen, Struktur-Eigenschaft, Chemische Reaktion, Energie. Diese bilden die Grundlage der chemischen Bildung."
+          ]
+        }
+      ],
+      "last_checked": "2026-06-22"
+    }
+  ],
+  "last_updated": "2026-06-22"
+}

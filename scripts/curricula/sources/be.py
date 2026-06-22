@@ -1,26 +1,22 @@
-"""Berlin — Rahmenlehrplan Chemie (Berlin/Brandenburg joint curriculum).
+"""Berlin — Rahmenlehrplan Chemie.
 
-Source: https://bildungsserver.berlin-brandenburg.de/rlp-online/c-faecher/chemie
-Status: 💤 Not yet implemented — research needed.
+Berlin shares a joint Rahmenlehrplan with Brandenburg for grades 1-10
+(Teil C Chemie). The Oberstufe has a separate Berlin-specific curriculum.
 
-Notes:
-  - Berlin and Brandenburg share a joint Rahmenlehrplan for grades 1-10.
-  - Published as PDF on the Bildungsserver Berlin-Brandenburg.
-  - Gymnasium (grades 11-12): separate PDF for the Sekundarstufe II.
-  - Site structure is mostly PDF-based; some HTML overview pages exist.
-  - Needs URL verification and PDF parsing setup.
+This module uses the shared parser from _berlin_brandenburg.py.
 
-Future work:
-  - Identify correct PDF URLs for Sek I (grades 7-10) and Sek II (11-12).
-  - Consider PyMuPDF or pdfplumber for PDF text extraction.
+TODO:
+  - Berliner Oberstufe (Sek II) URL not yet found.
+    Check: https://www.berlin.de/sen/bildung/unterricht/faecher-rahmenlehrplaene/
 """
 
 from __future__ import annotations
 
 from schema import StateCurriculum
+from ._berlin_brandenburg import build_state_curriculum
 
 
 async def scrape() -> StateCurriculum | None:
-    """Scrape Berlin chemistry curriculum — not yet implemented."""
-    print("    NOT IMPLEMENTED — Berlin (BE) needs URL research + PDF parser")
-    return None
+    """Scrape Berlin chemistry curriculum (joint RLP + TODO Oberstufe)."""
+    print()
+    return build_state_curriculum("Berlin", "BE")

@@ -1,0 +1,3918 @@
+{
+  "state": "Schleswig-Holstein",
+  "state_abbr": "SH",
+  "school_curricula": [
+    {
+      "school_type": "Sekundarstufe I und II (Fachanforderungen)",
+      "grade_levels": [
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Lernen und Unterricht .................................................................................................................................................................8",
+              "learning_objectives": [
+                {
+                  "text": "Kompetenzorientierung ........................................................................................................................................................8"
+                },
+                {
+                  "text": "Auseinandersetzung mit Kernproblemen des gesellschaftlichen Lebens ......................................................................8"
+                },
+                {
+                  "text": "Leitbild Unterricht ..................................................................................................................................................................9"
+                },
+                {
+                  "text": "Aufgabenfelder von besonderer Bedeutung .....................................................................................................................9"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche ..................................................................................................................................................................17",
+              "learning_objectives": [
+                {
+                  "text": "Prozessbezogene Kompetenzen .......................................................................................................................................17"
+                },
+                {
+                  "text": "Inhaltsbezogene Kompetenzen .........................................................................................................................................20"
+                }
+              ]
+            },
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "Gymnasien und Gemeinschaftsschulen ....................................................................................................30"
+                }
+              ]
+            },
+            {
+              "title": "Das Fach Chemie in der Oberstufe an Gymnasien und Gemeinschaftsschulen ..............................................................30",
+              "learning_objectives": [
+                {
+                  "text": "Grundlagen und Lernausgangslage .................................................................................................................................30"
+                },
+                {
+                  "text": "Der Beitrag des Faches zur allgemeinen und fachlichen Bildung .................................................................................30"
+                },
+                {
+                  "text": "Didaktische Leitlinien ..........................................................................................................................................................31"
+                },
+                {
+                  "text": "Anforderungsbereiche ........................................................................................................................................................34"
+                }
+              ]
+            },
+            {
+              "title": "Kompetenzbereiche ..................................................................................................................................................................36",
+              "learning_objectives": [
+                {
+                  "text": "Prozessbezogene Kompetenzen .......................................................................................................................................36"
+                },
+                {
+                  "text": "Inhaltsbezogene Kompetenzen .........................................................................................................................................39"
+                }
+              ]
+            },
+            {
+              "title": "Inhalte des Unterrichts ..............................................................................................................................................................50",
+              "learning_objectives": [
+                {
+                  "text": "Hinweise zur inhaltlichen Planung des Unterrichts in der Oberstufe ............................................................................51"
+                },
+                {
+                  "text": "Chemieunterricht in der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Q",
+          "topics": [
+            {
+              "title": "Leistungsbewertung ..................................................................................................................................................................63",
+              "learning_objectives": [
+                {
+                  "text": "Beurteilungsbereiche für das Fach Chemie ....................................................................................................................63"
+                },
+                {
+                  "text": "Leistungsnachweise............................................................................................................................................................64"
+                }
+              ]
+            },
+            {
+              "title": "Die Abiturprüfung im Fach Chemie.........................................................................................................................................66",
+              "learning_objectives": [
+                {
+                  "text": "Die schriftliche Abiturprüfung ............................................................................................................................................66"
+                },
+                {
+                  "text": "Die mündliche Abiturprüfung ............................................................................................................................................66"
+                },
+                {
+                  "text": "Die Präsentationsprüfung ...................................................................................................................................................67"
+                },
+                {
+                  "text": "Besondere Lernleistung ......................................................................................................................................................67"
+                },
+                {
+                  "text": "IV Anhang ...................................................................................................................................................................................68"
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE 5"
+                },
+                {
+                  "text": "ALLGEMEINER TEIL"
+                }
+              ]
+            },
+            {
+              "title": "Geltungsbereich und Regelungsgehalt",
+              "learning_objectives": [
+                {
+                  "text": "I Allgemeiner Teil"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "ALLGEMEINER TEIL"
+                }
+              ]
+            },
+            {
+              "title": "Geltungsbereich und Regelungsgehalt",
+              "learning_objectives": [
+                {
+                  "text": "∙ Schwerpunktsetzungen, die Verteilung und Gewichtung"
+                },
+                {
+                  "text": "Unterrichtsinhalten und Themen"
+                },
+                {
+                  "text": "∙ fachspezifische Methoden"
+                },
+                {
+                  "text": "∙ angemessene mediale Gestaltung des Unterrichts"
+                },
+                {
+                  "text": "∙ Diagnostik, Differenzierung und Förderung, Leistungs-"
+                },
+                {
+                  "text": "Leistungsbewertung"
+                },
+                {
+                  "text": "∙ Einbeziehung außerunterrichtlicher Lernangebote und"
+                },
+                {
+                  "text": "Ganztagsangebote."
+                },
+                {
+                  "text": "Die Fachcurricula berücksichtigen die Prinzipien des"
+                },
+                {
+                  "text": "fächerverbindenden und fächerübergreifenden wie auch"
+                },
+                {
+                  "text": "Arbeitens. Die Fachcurricula wer-"
+                },
+                {
+                  "text": "weiterentwickelt."
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE 7"
+                },
+                {
+                  "text": "ALLGEMEINER TEIL"
+                }
+              ]
+            },
+            {
+              "title": "Lernen und Unterricht ∙ Sozialkompetenz meint die Fähigkeit, die Bedürfnisse",
+              "learning_objectives": [
+                {
+                  "text": "Interessen der Mitlernenden empathisch wahrzu-"
+                },
+                {
+                  "text": "Ziel des Unterrichts ist der systematische, alters- und nehmen. Schülerinnen und Schüler sind in der Lage,"
+                },
+                {
+                  "text": "entwicklungsgemäße Erwerb von Kompetenzen. Der selbstständig und sozial verantwortlich zu handeln. Sie"
+                },
+                {
+                  "text": "Unterricht fördert die kognitiven, emotionalen, sozialen, setzen sich mit den Vorstellungen der anderen kritisch"
+                },
+                {
+                  "text": "körperlichen Fähigkeiten der Schülerinnen und auch selbstkritisch auseinander, hören einander zu"
+                },
+                {
+                  "text": "Schüler. Er vermittelt ihnen kulturelle und und gehen aufeinander ein. Sie können konstruktiv und"
+                },
+                {
+                  "text": "Orientierung und ermuntert sie dazu, erfolgreich mit anderen zusammenarbeiten."
+                },
+                {
+                  "text": "eigenständig zu denken und vermeintliche Gewissheiten, ∙ Methodenkompetenz meint die Fähigkeit, Aufgaben"
+                },
+                {
+                  "text": "Wertorientierungen und gesellschaftliche selbstständig zu bearbeiten. Schülerinnen und Schüler"
+                },
+                {
+                  "text": "Strukturen auch kritisch zu überdenken. Unterricht trägt verfügen über grundlegende Arbeitstechniken und"
+                },
+                {
+                  "text": "bei, Bereitschaft zur Empathie zu entwickeln, und Methoden; dazu gehört auch die sichere Nutzung der"
+                },
+                {
+                  "text": "fördert die Fähigkeit, die eigenen Überzeugungen und Informationstechnologie. Sie wählen Verfahrensweisen"
+                },
+                {
+                  "text": "Weltbild in Frage zu stellen. Er unterstützt und Vorgehensweisen selbstständig und wenden"
+                },
+                {
+                  "text": "Schülerinnen und Schüler dabei, Unsicherheiten methodische Kenntnisse sinnvoll auf unbekannte Sach-"
+                },
+                {
+                  "text": "Selbstvertrauen zu erwerben. verhalte an. Sie können Sachverhalte sprachlich differen-"
+                },
+                {
+                  "text": "Kompetenzorientierung"
+                },
+                {
+                  "text": "Die fortschreitende Entwicklung und Ausbildung dieser"
+                },
+                {
+                  "text": "In den Fachanforderungen wird ein Kompetenzbegriff ver- überfachlichen Kompetenzen ermöglicht es den Schüle-"
+                },
+                {
+                  "text": "wendet, der das Wissen und Können, die Fähigkeiten und rinnen und Schülern, Lernprozesse zunehmend selbst zu"
+                },
+                {
+                  "text": "Fertigkeiten eines Menschen umfasst. Das schließt die gestalten, das heißt: zu planen, zu steuern, zu analysieren"
+                },
+                {
+                  "text": "Bereitschaft ein, das Wissen und Können in unterschiedli- und zu bewerten."
+                },
+                {
+                  "text": "Situationen zur Bewältigung von Herausforderungen"
+                },
+                {
+                  "text": "Lösen von Problemen anzuwenden. Die Fachan- 2.2 Auseinandersetzung mit Kernproblemen des"
+                },
+                {
+                  "text": "Sinne auf die Darstellung der gesellschaftlichen Lebens"
+                },
+                {
+                  "text": "Kompetenzen fokussiert."
+                },
+                {
+                  "text": "Schülerinnen und Schüler werden durch die"
+                },
+                {
+                  "text": "Über die fachbezogenen Kompetenzen hinaus fördert Auseinandersetzung mit Kernproblemen des sozio-"
+                },
+                {
+                  "text": "Unterricht aller Fächer den Erwerb überfachlicher kulturellen Lebens in die Lage versetzt, Entscheidungen"
+                },
+                {
+                  "text": "Kompetenzen: für die Zukunft zu treffen und dabei abzuschätzen,"
+                },
+                {
+                  "text": "Handeln auf andere Menschen,"
+                },
+                {
+                  "text": "∙ Selbstkompetenz meint die Fähigkeit, die eigene Situ- auf künftige Generationen, auf die Umwelt oder das"
+                },
+                {
+                  "text": "für sich selbst eigenständig Leben in anderen Kulturen auswirkt. Die Kernprobleme"
+                },
+                {
+                  "text": "Verantwortung zu übernehmen. Die beschreiben Herausforderungen, die sich sowohl auf"
+                },
+                {
+                  "text": "Schülerinnen und Schüler artikulieren eigene Bedürf- die Lebensgestaltung des Einzelnen als auch auf das"
+                },
+                {
+                  "text": "Interessen differenziert und reflektieren diese gemeinsame gesellschaftliche Handeln beziehen."
+                },
+                {
+                  "text": "Dazu gehört die Bereitschaft, vermeint-"
+                },
+                {
+                  "text": "Gewissheiten, das eigene Denken und das eigene Die Auseinandersetzung mit Kernproblemen richtet sich"
+                },
+                {
+                  "text": "Weltbild kritisch zu reflektieren und Unsicherheiten insbesondere auf:"
+                },
+                {
+                  "text": "Bezogen auf das Lernen bedeutet Selbst- ∙ Grundwerte menschlichen Zusammenlebens: Men-"
+                },
+                {
+                  "text": "kompetenz, Lernprozesse selbstständig zu planen und schenrechte, das friedliche Zusammenleben in einer"
+                },
+                {
+                  "text": "durchzuführen, Lernergebnisse zu überprüfen, gegebe- Welt mit unterschiedlichen Kulturen, Religionen, Gesell-"
+                },
+                {
+                  "text": "schaftsformen, Völkern und Nationen"
+                }
+              ]
+            },
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "ALLGEMEINER TEIL"
+                }
+              ]
+            },
+            {
+              "title": "Lernen und Unterricht",
+              "learning_objectives": [
+                {
+                  "text": "∙ Nachhaltigkeit der ökologischen, sozialen und ökonomi- ∙ Inklusive Schule: Die inklusive Schule zeichnet sich"
+                },
+                {
+                  "text": "Entwicklung: Erhalt der natürlichen Lebensgrund- dadurch aus, dass sie in allen Schularten und Schulstufen"
+                },
+                {
+                  "text": "lagen, Sicherung und Weiterentwicklung der sozialen, Kinder und Jugendliche mit und ohne Behinderung"
+                },
+                {
+                  "text": "Lebensbedingungen gemeinsam beschult und ihren Unterricht auf eine"
+                },
+                {
+                  "text": "Kontext der Globalisierung Schülerschaft in der ganzen Bandbreite ihrer Heteroge-"
+                },
+                {
+                  "text": "∙ Gleichstellung und Diversität: Entfaltungsmöglichkeiten nität ausrichtet. Diese Heterogenität bezieht sich nicht"
+                },
+                {
+                  "text": "Geschlechter, Wahrung des Gleichberechtigungs- allein auf Behinderung oder sonderpädagogischen"
+                },
+                {
+                  "text": "gebots, Wertschätzung gesellschaftlicher Vielfalt Förderbedarf. Sie steht generell für Vielfalt und schließt"
+                },
+                {
+                  "text": "∙ Partizipation: Recht aller Menschen zur verantwortungs- beispielsweise die Hochbegabung ebenso ein wie den"
+                },
+                {
+                  "text": "Mit-Gestaltung ihrer soziokulturellen, politischen Migrationshintergrund oder unterschiedliche soziale"
+                },
+                {
+                  "text": "Lebensverhältnisse. Ausgangslagen."
+                },
+                {
+                  "text": "∙ Sonderpädagogische Förderung: Auch die Förderung"
+                },
+                {
+                  "text": "Leitbild Unterricht von Schülerinnen und Schülern mit sonderpädagogi-"
+                },
+                {
+                  "text": "Förderbedarf orientiert sich an den Fachanfor-"
+                },
+                {
+                  "text": "Guter Unterricht derungen. Das methodische Instrument dafür ist der"
+                },
+                {
+                  "text": "∙ fördert gezielt die Freude der Schülerinnen und Schüler Förderplan, der in Ausrichtung auf die individuelle"
+                },
+                {
+                  "text": "Lernen und die Entwicklung fachlicher Interessen Situation und den sonderpädagogischen Förderbedarf"
+                },
+                {
+                  "text": "∙ lässt Schülerinnen und Schüler Selbstwirksamkeit einer Schülerin oder eines Schülers und in Zusammen-"
+                },
+                {
+                  "text": "Förderzentrum erstellt, umgesetzt und"
+                },
+                {
+                  "text": "∙ vermittelt Wertorientierungen evaluiert wird."
+                },
+                {
+                  "text": "∙ fördert nicht allein die intellektuellen und kognitiven ∙ Durchgängige Sprachbildung: Die Vermittlung schul-"
+                },
+                {
+                  "text": "Kompetenzen der Schülerinnen und Schüler, sondern und bildungsrelevanter sprachlicher Fähigkeiten (Bildungs-"
+                },
+                {
+                  "text": "emotionalen, kreativen und kör- sprache) erfolgt im Unterricht aller Fächer. Das Ziel ist,"
+                },
+                {
+                  "text": "Potenziale die sprachlichen Fähigkeiten der Kinder und Jugend-"
+                },
+                {
+                  "text": "∙ ermöglicht den Schülerinnen und Schülern durch pas- lichen mit und ohne Migrationshintergrund, unabhängig"
+                },
+                {
+                  "text": "Lernangebote, die auf ihre individuellen Voraus- von ihrer Erstsprache, im Schriftlichen wie im Mündlichen"
+                },
+                {
+                  "text": "Vorwissen abgestimmt sind, einen systematisch auf– und auszubauen."
+                },
+                {
+                  "text": "− alters- und entwicklungsgerechten Das setzt entsprechenden Wortschatz und die Kenntnis"
+                },
+                {
+                  "text": "− Erwerb von Wissen und Können sowie die Chance, bildungssprachlicher grammatischer Strukturen voraus."
+                },
+                {
+                  "text": "Leistungserwartungen zu erfüllen Die Lehrkräfte planen und gestalten den Unterricht mit"
+                },
+                {
+                  "text": "∙ fördert und fordert eigene Lernaktivität der Schülerinnen Blick auf die Sprachebene Bildungssprache und stellen"
+                },
+                {
+                  "text": "Schüler, vermittelt Lernstrategien und unterstützt die Verbindung von Alltags-, Bildungs- und Fachsprache"
+                },
+                {
+                  "text": "Fähigkeit zum selbstgesteuerten Lernen explizit her."
+                },
+                {
+                  "text": "∙ zielt auf nachhaltige Lernprozesse Alle Schülerinnen und Schüler werden an die Besonder-"
+                },
+                {
+                  "text": "∙ bietet Gelegenheit, das Gelernte in ausreichender Form heiten von Fachsprachen und an fachspezifische Textsorten"
+                },
+                {
+                  "text": "einzuüben, anzuwenden und zu festigen. herangeführt. Deshalb ist Fachunterricht auch stets Sprach-"
+                },
+                {
+                  "text": "Aufgabenfelder von besonderer Bedeutung ∙ Kulturelle Bildung: Kulturelle Bildung ist unverzicht-"
+                },
+                {
+                  "text": "Teil der ganzheitlichen Persönlichkeitsentwicklung,"
+                },
+                {
+                  "text": "Folgende Aufgabenfelder von besonderer Bedeutung, die den Einzelnen zur Mitgestaltung gesellschaftlicher"
+                },
+                {
+                  "text": "pädagogischen Zielen des Schulgesetzes Prozesse befähigt. Der Zusammenarbeit mit professio-"
+                },
+                {
+                  "text": "ergeben, sind nicht dem Unterricht einzelner Fächer nellen Künstlerinnen, Künstlern und Kulturschaffenden"
+                },
+                {
+                  "text": "Sie sind im Unterricht aller Fächer zu auch an außerschulischen Lernorten kommt hierbei eine"
+                },
+                {
+                  "text": "berücksichtigen: besondere Bedeutung zu."
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE 9"
+                },
+                {
+                  "text": "ALLGEMEINER TEIL"
+                }
+              ]
+            },
+            {
+              "title": "Lernen und Unterricht",
+              "learning_objectives": [
+                {
+                  "text": "∙ Niederdeutsch und Friesisch: Seinem Selbstverständnis"
+                },
+                {
+                  "text": "Schleswig-Holstein ein Mehrsprachenland, in"
+                },
+                {
+                  "text": "Regional- und Minderheitensprachen als kultureller"
+                },
+                {
+                  "text": "Mehrwert begriffen werden. Für die Bildungseinrich-"
+                },
+                {
+                  "text": "Landes erwächst daraus die Aufgabe, das"
+                },
+                {
+                  "text": "Niederdeutsche und das Friesische zu fördern und zu"
+                },
+                {
+                  "text": "Weiterentwicklung beizutragen."
+                },
+                {
+                  "text": "∙ Medienbildung: Medien sind Bestandteil aller Lebens-"
+                },
+                {
+                  "text": "bereiche; wesentliche Teile der Umwelt sind nur medial"
+                },
+                {
+                  "text": "zugänglich. Schülerinnen und Schüler sollen"
+                },
+                {
+                  "text": "Lage versetzt werden, selbstbestimmt, sachge-"
+                },
+                {
+                  "text": "recht, sozial verantwortlich, kommunikativ und kreativ"
+                },
+                {
+                  "text": "Medien umzugehen. Dazu gehört auch die"
+                },
+                {
+                  "text": "Auseinandersetzung mit dem Bild von Wirk-"
+                },
+                {
+                  "text": "lichkeit, das medial erzeugt wird. Schülerinnen und"
+                },
+                {
+                  "text": "Schüler sollen den Einfluss der Medien reflektieren und"
+                },
+                {
+                  "text": "erkennen, dass Medien (zum Beispiel: Zeitungen,"
+                },
+                {
+                  "text": "Bücher, Filme) immer nur eine Interpretation, eine Lesart"
+                },
+                {
+                  "text": "Wirklichkeit bieten, und sie sollen sich bewusst"
+                },
+                {
+                  "text": "werden, dass ihr vermeintlich eigenes Bild von Wirk-"
+                },
+                {
+                  "text": "Medien (mit-)bestimmt wird."
+                },
+                {
+                  "text": "∙ Berufs- und Studienorientierung: Diese ist integrativer"
+                },
+                {
+                  "text": "Bestandteil im Unterricht aller Fächer und Jahrgangs-"
+                },
+                {
+                  "text": "Sie hat einen deutlichen Praxisbezug, zum"
+                },
+                {
+                  "text": "Beispiel Betriebspraktika, schulische Veranstaltungen"
+                },
+                {
+                  "text": "Lernort Betrieb. Die Schulen haben ein eigenes"
+                },
+                {
+                  "text": "Curriculum zur Berufs- und Studienorientierung, sie"
+                },
+                {
+                  "text": "gewährleisten in Zusammenarbeit mit ihren Partnern,"
+                },
+                {
+                  "text": "Berufsberatung, eine kontinuier-"
+                },
+                {
+                  "text": "Unterstützung der beruflichen Orientierung der"
+                },
+                {
+                  "text": "Schülerinnen und Schüler. Ziel ist, dass alle Schülerinnen"
+                },
+                {
+                  "text": "Schüler nach dem Schulabschluss einen beruflichen"
+                },
+                {
+                  "text": "Anschluss finden."
+                }
+              ]
+            },
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "ALLGEMEINER TEIL"
+                }
+              ]
+            },
+            {
+              "title": "Grundsätze der Leistungsbewertung und Schüler, die vorübergehend an der Teilnahme am",
+              "learning_objectives": [
+                {
+                  "text": "Unterricht beeinträchtigt sind."
+                },
+                {
+                  "text": "Leistungsbewertung wird verstanden als Dokumentation ∙ Bei Schülerinnen und Schülern, deren Zweitsprache"
+                },
+                {
+                  "text": "Beurteilung der individuellen Lernentwicklung Deutsch ist, kann die Schule wegen zu geringer Deutsch-"
+                },
+                {
+                  "text": "Leistungsstands. Sie kenntnisse auf eine Leistungsbewertung in bestimmten"
+                },
+                {
+                  "text": "Fachanforderungen ausgewiesenen Fächern verzichten."
+                },
+                {
+                  "text": "Kompetenzbereiche und berücksichtigt sowohl die ∙ Besonderen Schwierigkeiten im Lesen und Recht-"
+                },
+                {
+                  "text": "Prozesse als auch die Ergebnisse schulischen Arbeitens schreiben wird durch Ausgleichs- und Fördermaß-"
+                },
+                {
+                  "text": "Lernens. Die Beurteilung von Leistungen dient der nahmen gemäß Erlass begegnet."
+                },
+                {
+                  "text": "Rückmeldung an Schülerinnen, Schüler"
+                },
+                {
+                  "text": "Eltern, zudem ist sie für die Lehrkräfte eine wichtige Leistungsbewertung im Zeugnis"
+                },
+                {
+                  "text": "Grundlage für Förderungs- und Beratungsstrategien. Die Leistungsbewertung im Zeugnis ist das Ergebnis einer"
+                },
+                {
+                  "text": "Die individuelle Leistungsbewertung erfüllt neben der sowohl fachlichen als auch pädagogischen Abwägung der"
+                },
+                {
+                  "text": "Funktion. erbrachten Unterrichtsbeiträge und gegebenenfalls Leis-"
+                },
+                {
+                  "text": "Kriterien und Verfahren der Leistungsbewertung werden tungsnachweise. Es ist sicherzustellen, dass die Bewertung"
+                },
+                {
+                  "text": "Schülerinnen, Schülern und Eltern vorab offengelegt für die Unterrichtsb eiträge auf einer ausreichenden Zahl"
+                },
+                {
+                  "text": "erläutert. Schülerinnen und Schüler erhalten eine unterschiedlicher Formen von Unterrichtsbeiträgen beruht."
+                },
+                {
+                  "text": "Rückmeldung über den Leistungsstand. Bei der Gesamtb ewertung hat der Bereich der Unterrichts-"
+                },
+                {
+                  "text": "Diese erfolgt so rechtzeitig, dass die Schülerinnen und beiträge ein stärkeres Gewicht als der Bereich der Leis-"
+                },
+                {
+                  "text": "Schüler die Möglichkeit haben, aus der Rückmeldung tungsnachweise. Fachspezifische Hinweise zur Leistungsbe-"
+                },
+                {
+                  "text": "zukünftige Lern- und Arbeitsstrategien abzuleiten. wertung werden in den Fachanforderungen ausgeführt."
+                },
+                {
+                  "text": "In der Leistungsbewertung werden zwei Beurteilungsb ereic he Vergleichsarbeiten"
+                },
+                {
+                  "text": "unterschieden: Unterrichtsbeiträge und Leistungsnachweise. Vergleichsarbeiten in den Kernfächern sind länderüber-"
+                },
+                {
+                  "text": "∙ Unterrichtsbeiträge umfassen alle Leistungen, die sich auf greifend konzipiert und an den KMK- Bildungsstandards"
+                },
+                {
+                  "text": "Mitarbeit und Mitgestaltung im Unterricht oder im un- orientiert. Die Ergebnisse geben Aufschluss darüber, ob"
+                },
+                {
+                  "text": "Kontext beziehen. Zu ihnen gehören sowohl und inwieweit Schülerinnen und Schüler die in den Bil-"
+                },
+                {
+                  "text": "mündliche als auch praktische und schriftliche Leistungen. dungsstandards formulierten Leistungserwartungen erfüllen."
+                },
+                {
+                  "text": "∙ Leistungsnachweise werden in Form von Klassenarbeiten Vergleichsarbeiten dienen in erster Linie der Selbsteva-"
+                },
+                {
+                  "text": "Leistungsnachweisen, die diesen gleichwertig sind, luation der Schule. Sie ermöglichen die Identifikation von"
+                },
+                {
+                  "text": "erbracht; sie decken die verbindlichen Leistungserwar- Stärken und Entwicklungsbedarfen von Lerngruppen. Die"
+                },
+                {
+                  "text": "Fächer und die Kompetenzbereiche ange- Ergebnisse der Vergleichsarbeiten werden schulintern"
+                },
+                {
+                  "text": "Art und Zahl der in den Fächern zu erbrin- ausgewertet. Die Auswertungen sind Ausgangspunkt für"
+                },
+                {
+                  "text": "Leistungsnachweise werden per Erlass geregelt. Strategien und Maßnahmen der Unterrichtsentwicklung."
+                },
+                {
+                  "text": "Vergleichsarbeiten gehen nicht in die Leistungsbewertung"
+                },
+                {
+                  "text": "Besondere Regelungen der einzelnen Schülerinnen und Schüler ein. Die Teilnahme"
+                },
+                {
+                  "text": "∙ Für Schülerinnen und Schüler mit anerkanntem sonder- an den Vergleichsarbeiten ist per Erlass geregelt."
+                },
+                {
+                  "text": "pädagogischen Förderbedarf, die zieldifferent unter-"
+                },
+                {
+                  "text": "werden, wird ein Förderplan mit individuell zu Zentrale Abschlussprüfungen"
+                },
+                {
+                  "text": "Leistungserwartungen aufgestellt. Im Rahmen der Prüfungen zum Erwerb des Ersten allgemein-"
+                },
+                {
+                  "text": "∙ Werden Schülerinnen und Schüler mit sonderpädagogi- bildenden Schulabschlusses, des Mittleren Schulabschlusses"
+                },
+                {
+                  "text": "Förderbedarf entsprechend den Anforderungen und der Allgemeinen Hochschulreife werden in einigen"
+                },
+                {
+                  "text": "Schule unterrichtet, hat die Schule Fächern Prüfungen mit zentraler Aufgabenstellung durch-"
+                },
+                {
+                  "text": "Beeinträchtigung angemessen Rechnung zu tragen geführt. Die Prüfungsregelungen richten sich nach den"
+                },
+                {
+                  "text": "(Nachteilsausgleich). Dies gilt ebenso für Schülerinnen Fachanforderungen und den KMK-Bildungsstandards."
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE 11"
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche 2.1 Prozessbezogene Kompetenzen",
+              "learning_objectives": [
+                {
+                  "text": "Der Unterricht in den Fächern Biologie, Chemie und Die prozessbezogenen Kompetenzen beschreiben die"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Kompetenzbereich Erkenntnisgewinnung"
+                },
+                {
+                  "text": "Entwicklung von Kompetenzen im Bereich Erkenntnisgewinnung in der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Kompetenzbereich Kommunikation"
+                },
+                {
+                  "text": "Entwicklung von Kompetenzen im Bereich Kommunikation in der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "Kompetenzbereich",
+              "learning_objectives": [
+                {
+                  "text": "Inhaltsbezogene Kompetenzen unterrichts betreffen, werden im Kapitel 2.1 „Prozessbezo-"
+                },
+                {
+                  "text": "Kompetenzen“ beschrieben."
+                },
+                {
+                  "text": "Die naturwissenschaftliche Kompetenz der Schülerinnen"
+                },
+                {
+                  "text": "Schüler im Umgang mit chemischem Fachwissen be- Die im Folgenden formulierten Kompetenzen sollen eine"
+                },
+                {
+                  "text": "Basiskonzepte und die mit ihnen verbun- Orientierungshilfe geben, welches Niveau in den ent-"
+                },
+                {
+                  "text": "Vorstellungen. Sie umfasst das Verständnis und die sprechenden Jahrgangsstufen anzustreben ist. Darge-"
+                },
+                {
+                  "text": "Anwendung begründeter Prinzipien, Theorien, Begriffe stellt wird so die Progression des Kompetenzerwerbs in"
+                },
+                {
+                  "text": "Erkenntnis leitender Ideen, mit denen Vorstellungen den Jahrgangstufen. Weiterhin zeigen die Tabellen, an"
+                },
+                {
+                  "text": "Phänomene im Fach Chemie beschrieben und ge- welchen verbindlichen Inhalten die Kompetenzen zu er-"
+                },
+                {
+                  "text": "Ergebnisse vorhergesagt und eingeschätzt arbeiten sind. In Kapitel 3 werden diese Inhalte nochmals"
+                },
+                {
+                  "text": "können. Die Lernenden sollen auf der Basis ihres verkürzt zusammengefasst."
+                },
+                {
+                  "text": "Wissens die natürliche bzw. vom Menschen veränderte"
+                },
+                {
+                  "text": "Umwelt verstehen und Zusammenhänge erklären können. Die unterrichtliche Umsetzung liegt unter Berücksichti-"
+                },
+                {
+                  "text": "Im Vordergrund steht also nicht der Wissensabruf, son- gung der drei Anforderungsbereiche in der Hand der"
+                },
+                {
+                  "text": "Umgang mit dem Fachwissen zum Lösen Kolleginnen und Kollegen. Die Kompetenzbeschreibun-"
+                },
+                {
+                  "text": "Probleme. gen sind kumulativ zu verstehen."
+                },
+                {
+                  "text": "Im Sinne der Kompetenzorientierung steht hierbei die Wird mit dem Unterricht im Fach Chemie erst nach der"
+                },
+                {
+                  "text": "Vernetzung einzelner Wissenselemente über Basiskon- Jahrgangsstufe 6 begonnen, müssen die hier für die Jahr-"
+                },
+                {
+                  "text": "Vordergrund. Jeder Inhalt beschreibt einen Zu- gangsstufen 5 und 6 genannten Kompetenzerwartungen"
+                },
+                {
+                  "text": "sammenhang, der die zugrunde liegenden Basiskonzepte und Inhalte entsprechend stufengerecht später Berück-"
+                },
+                {
+                  "text": "Kompetenzen, die über das chemische Fachwissen hin-"
+                },
+                {
+                  "text": "überfachlichen Aufgaben des Chemie-"
+                },
+                {
+                  "text": "Kompetenzerwartungen zum Basiskonzept „Stoff-Teilchen-Konzept“"
+                },
+                {
+                  "text": "Inhaltsbezogene Kompetenzen"
+                },
+                {
+                  "text": "Zusammenhänge des Verbindliche Fachinhalte"
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler …"
+                },
+                {
+                  "text": "Stoffe besitzen charakte- ∙ beschreiben Eigenschaften von Stoffen. ∙ Stoffeigenschaften"
+                },
+                {
+                  "text": "Eigenschaften. ∙ unterscheiden Reinstoffe und Stoffgemische. ∙ Reinstoffe und Stoffgemische"
+                },
+                {
+                  "text": "Die Eigenschaften be- ∙ nutzen charakteristische Stoffeigenschaften ∙ homogene und heterogene Stoffgemische"
+                },
+                {
+                  "text": "Verwen- für die Trennung von Stoffgemischen. ∙ Trennverfahren"
+                },
+                {
+                  "text": "Stoffe bestehen aus ∙ erklären den Aufbau der Stoffe und Stoffge- ∙ Teilchenmodell"
+                },
+                {
+                  "text": "Teilchen / Bausteinen. mische mithilfe eines Teilchenmodells. ∙ Aggregatzustände und Aggregatzustandsän-"
+                },
+                {
+                  "text": "∙ beschreiben und erklären Aggregatzustands- derungen"
+                },
+                {
+                  "text": "änderungen mithilfe einer Teilchenvorstellung."
+                }
+              ]
+            },
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Jahrgang 7 bis 9 bzw. 7 bis 10"
+                },
+                {
+                  "text": "Stoffe sind aus Atomen ∙ unterscheiden chemische Elemente und ∙ Elemente und chemische Verbindungen"
+                },
+                {
+                  "text": "∙ erläutern an ausgewählten Beispielen, dass"
+                },
+                {
+                  "text": "Elementen die Vielfalt an Ver-"
+                },
+                {
+                  "text": "Atome besitzen einen ∙ beschreiben den Aufbau der Atome mithilfe ∙ Atommodell nach Dalton (ohne die Aussage"
+                },
+                {
+                  "text": "Aufbau. geeigneter Modelle. über die Unteilbarkeit der Atome)"
+                },
+                {
+                  "text": "∙ Kern-Hülle-Modell nach Rutherford"
+                },
+                {
+                  "text": "∙ Schalenmodell bzw. Energiestufenmodell"
+                },
+                {
+                  "text": "∙ atomare Masse, Isotope"
+                },
+                {
+                  "text": "∙ Molekülgeometrie: Elektronenpaar-"
+                },
+                {
+                  "text": "abstoßungsmodell"
+                },
+                {
+                  "text": "Elemente lassen ∙ erklären die Ordnung der Elemente im ∙ Periodensystem der Elemente"
+                },
+                {
+                  "text": "Periodensystem mithilfe des Aufbaus des"
+                },
+                {
+                  "text": "Atomkerns und der Atomhülle."
+                },
+                {
+                  "text": "Atome gehen ∙ erklären die chemische Bindung in Salzen, ∙ Ionenbindung und Ionengitter"
+                },
+                {
+                  "text": "Bindungen ein. Molekülen und Metallen anhand von ∙ Bindung in Metallen"
+                },
+                {
+                  "text": "Beispielen. ∙ Elektronenpaarbindung"
+                },
+                {
+                  "text": "∙ begründen die Bildung von Ionen mit dem ∙ Elektronegativität"
+                },
+                {
+                  "text": "Edelgaszustand bzw. der Oktettregel."
+                },
+                {
+                  "text": "∙ nennen die Elektronegativität als Maß für die"
+                },
+                {
+                  "text": "Fähigkeit eines Atoms, Bindungselektronen"
+                },
+                {
+                  "text": "∙ differenzieren zwischen polaren und unpola-"
+                },
+                {
+                  "text": "Elektronenpaarbindungen in Molekülen."
+                },
+                {
+                  "text": "∙ unterscheiden Ionen, Dipolmoleküle und"
+                },
+                {
+                  "text": "∙ wenden ihr Wissen über den Aufbau der"
+                },
+                {
+                  "text": "Materie für die Vorhersage möglicher chemi-"
+                },
+                {
+                  "text": "Organische Stoffe ∙ unterscheiden anorganische und organische ∙ Stoffklassen und ihre funktionellen Gruppen"
+                },
+                {
+                  "text": "Stoff- Stoffe. (Alkane, Alkene, Alkanole)"
+                },
+                {
+                  "text": "∙ unterscheiden die Stoffklassen der Alkane"
+                },
+                {
+                  "text": "∙ beschreiben und erläutern den Aufbau einer"
+                },
+                {
+                  "text": "Reihe und die Strukturisomerie"
+                },
+                {
+                  "text": "Beispiel der Alkane und Alkanole."
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE 21"
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Kompetenzerwartungen zum Basiskonzept „Struktur-Eigenschafts-Konzept“"
+                },
+                {
+                  "text": "Grundlegende Inhaltsbezogene Kompetenzen"
+                },
+                {
+                  "text": "Zusammenhänge des Verbindliche Fachinhalte"
+                },
+                {
+                  "text": "Basiskonzepts Die Schülerinnen und Schüler …"
+                },
+                {
+                  "text": "Eigenschaften können ∙ ordnen Reinstoffe anhand ihrer charakteristi- ∙ Reinstoffe und Stoffgemische des Alltags"
+                },
+                {
+                  "text": "Charakterisierung schen Eigenschaftskombinationen. ∙ Stoffeigenschaften: Siede- und Schmelztem-"
+                },
+                {
+                  "text": "Identifizierung ∙ nutzen charakteristische Stoffeigenschaften peratur, Leitfähigkeit, Dichte"
+                },
+                {
+                  "text": "Stoffen genutzt zur Unterscheidung bzw. Identifizierung von"
+                },
+                {
+                  "text": "∙ beschreiben Ordnungsprinzipien für Stoff-"
+                },
+                {
+                  "text": "Jahrgang 7 bis 9 bzw. 7 bis 10"
+                },
+                {
+                  "text": "Stoffeigenschaften ∙ deuten die Bindungsarten Ionenbindung, ∙ Ionenbindung"
+                },
+                {
+                  "text": "können mithilfe von Elektronenpaarbindung und Metallbindung ∙ Bindung in Metallen"
+                },
+                {
+                  "text": "Bindungsmodellen mithilfe des Konzepts der Elektronegativität. ∙ Elektronenpaarbindung"
+                },
+                {
+                  "text": "∙ erklären die spezifischen Eigenschaften von"
+                },
+                {
+                  "text": "Salzen mithilfe von Ionen, Ionengittern und"
+                },
+                {
+                  "text": "∙ erklären die spezifischen Eigenschaften von Me-"
+                },
+                {
+                  "text": "Konzepts der Metallbindung."
+                },
+                {
+                  "text": "∙ erklären Stoffeigenschaften (Löslichkeit,"
+                },
+                {
+                  "text": "Mischbarkeit, Siede-, Schmelztemperaturen)"
+                },
+                {
+                  "text": "Bindungstyps bzw. der zwischen-"
+                },
+                {
+                  "text": "Wechselwirkungen (Van-der-"
+                },
+                {
+                  "text": "Waals-Kräfte, Dipol-Dipol-Kräfte, Wasserstoff-"
+                },
+                {
+                  "text": "Zwischen den ∙ fassen Stoffe, die sich in ihren Eigenschaften ∙ Periodensystem der Elemente"
+                },
+                {
+                  "text": "Eigenschaften und und in ihrem Reaktionsverhalten ähneln, zu"
+                },
+                {
+                  "text": "Struktur eines Stoffklassen zusammen."
+                },
+                {
+                  "text": "Stoffes besteht ein ∙ nutzen das Periodensystem der Elemente"
+                },
+                {
+                  "text": "Zusammenhang. zur Vorhersage ausgewählter Strukturen und"
+                },
+                {
+                  "text": "Eigenschaften von ∙ verwenden das Konzept der Elektronegativi- ∙ Konzept der Elektronegativität"
+                },
+                {
+                  "text": "Stoffen können mit- tät zur Erklärung intermolekularer Wechsel- ∙ intermolekulare Wechselwirkungen"
+                },
+                {
+                  "text": "Wechselwirkungen ∙ erklären die spezifischen Eigenschaften von"
+                },
+                {
+                  "text": "Stoffen mithilfe inter-"
+                },
+                {
+                  "text": "Wechselwirkungen."
+                }
+              ]
+            },
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Kompetenzerwartungen zum Basiskonzept chemische Reaktion"
+                },
+                {
+                  "text": "Grundlegende Inhaltsbezogene Kompetenzen"
+                },
+                {
+                  "text": "Zusammenhänge des Verbindliche Fachinhalte"
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler …"
+                },
+                {
+                  "text": "Chemische Reak- ∙ benennen die Bildung neuer Stoffe und den ∙ Kennzeichen chemischer Reaktionen"
+                },
+                {
+                  "text": "Energieumsatz als Merkmale chemischer ∙ Eigenschaften und Reaktionen der Bestand-"
+                },
+                {
+                  "text": "Merkmale Reaktionen. teile der Luft"
+                },
+                {
+                  "text": "(Stoffebene). ∙ benennen Eigenschaften, Nachweise und ∙ Verbrennungsreaktionen"
+                },
+                {
+                  "text": "Reaktionen der Bestandteile der Luft. ∙ Wortschemata"
+                },
+                {
+                  "text": "∙ dokumentieren chemische Reaktionen mithil-"
+                },
+                {
+                  "text": "Jahrgang 7 bis 9 bzw. 7 bis 10"
+                },
+                {
+                  "text": "Chemische Reak- ∙ erklären Veränderungen bei chemischen ∙ Gesetz von der Erhaltung der Masse"
+                },
+                {
+                  "text": "können auf Reaktionen auf atomarer Ebene. ∙ Reaktionsschemata"
+                },
+                {
+                  "text": "Teilchenebene ge- ∙ deuten die Erhaltung der Masse bei chemi-"
+                },
+                {
+                  "text": "Reaktionen mithilfe der konstanten"
+                },
+                {
+                  "text": "Chemische Reaktio-"
+                },
+                {
+                  "text": "∙ formulieren Reaktionsschemata."
+                },
+                {
+                  "text": "Chemische Reak- ∙ erklären die Bildung von Ionen durch Elektro- ∙ Bildung von Ionen"
+                },
+                {
+                  "text": "können diffe - nenübertragung. ∙ Redoxreaktionen als Elektronenübertra-"
+                },
+                {
+                  "text": "Teil- ∙ definieren Oxidation als Abgabe von Elek- gungsreaktionen"
+                },
+                {
+                  "text": "erklärt tronen und Reduktion als Aufnahme von ∙ Reaktionen von Metallen mit Sauerstoff, edle"
+                },
+                {
+                  "text": "Elektronen. und unedle Metalle"
+                },
+                {
+                  "text": "∙ Metallgewinnung"
+                },
+                {
+                  "text": "Chemische Reaktio-"
+                },
+                {
+                  "text": "∙ Redoxreaktionen am Beispiel von Elektrolyse"
+                },
+                {
+                  "text": "Chemische Reaktio- ∙ erklären Säure-Base-Reaktionen als ∙ Säure-Base-Reaktionen nach Brönsted"
+                },
+                {
+                  "text": "Protonenübertragungsreaktionen mithilfe ∙ Säure, Base, saure Lösung, basische bzw."
+                },
+                {
+                  "text": "Konzepts der Elektronegativität. alkalische Lösung, Neutralisation"
+                },
+                {
+                  "text": "∙ wenden die Konzepte der Redoxreaktionen"
+                },
+                {
+                  "text": "Protonenübertragungsreaktionen auf die"
+                },
+                {
+                  "text": "Reaktion von Säuren / sauren Lösungen mit"
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE 23"
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Kompetenzerwartungen zum Basiskonzept Energie"
+                },
+                {
+                  "text": "Grundlegende Inhaltsbezogene Kompetenzen"
+                },
+                {
+                  "text": "Zusammenhänge des Verbindliche Fachinhalte"
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler …"
+                },
+                {
+                  "text": "Stoffe kommen in ∙ erklären die unterschiedlichen Aggregatzu- ∙ Aggregatzustände, Siede- und Schmelztem-"
+                },
+                {
+                  "text": "Aggre- stände eines Stoffes mithilfe des Zusammen- peratur"
+                },
+                {
+                  "text": "gatzuständen vor. hangs zwischen der Bewegungsenergie der"
+                },
+                {
+                  "text": "Teilchen und der Temperatur."
+                },
+                {
+                  "text": "Bei chemischen Reak- ∙ beschreiben die Umwandlung von chemi- ∙ exotherme Reaktionen"
+                },
+                {
+                  "text": "Energie scher Energie bei chemischen Reaktionen in ∙ Energiebilanzen bei chemischen Reaktionen"
+                },
+                {
+                  "text": "Energieformen. ∙ Aktivierungsenergie als Startenergie"
+                },
+                {
+                  "text": "∙ beschreiben, dass bei exothermen Reaktio-"
+                },
+                {
+                  "text": "Energie an die Umgebung abgegeben"
+                },
+                {
+                  "text": "∙ stellen die energetischen Verhältnisse bei"
+                },
+                {
+                  "text": "Reaktionen mithilfe eines Dia-"
+                },
+                {
+                  "text": "∙ deuten Aktivierungsenergie als Startenergie."
+                },
+                {
+                  "text": "Jahrgang 7 bis 9 bzw. 7 bis 10"
+                },
+                {
+                  "text": "Bei chemischen Re- ∙ stellen den Verlauf der Energie bei exother- ∙ Energiegehalt von Stoffen"
+                },
+                {
+                  "text": "Energie men und endothermen chemischen Reaktio- ∙ Energiediagramme"
+                },
+                {
+                  "text": "Energiediagramms dar. ∙ Katalysatoren"
+                },
+                {
+                  "text": "∙ beschreiben die Aktivierungsenergie als"
+                },
+                {
+                  "text": "Energie, die man benötigt, um Stoffe in einen"
+                },
+                {
+                  "text": "Zustand zu versetzen."
+                },
+                {
+                  "text": "∙ beschreiben den Einfluss eines Katalysators"
+                },
+                {
+                  "text": "Aktivierungsenergie."
+                },
+                {
+                  "text": "∙ beschreiben die Umwandlung von chemi- ∙ Redoxreaktionen als elektrochemische"
+                },
+                {
+                  "text": "Energie und umgekehrt. Reaktionen"
+                },
+                {
+                  "text": "Atommodelle können ∙ beschreiben mithilfe der Ionisierungsener- ∙ Ionisierungsenergie"
+                },
+                {
+                  "text": "gien, dass sich Elektronen in einem Atom in"
+                },
+                {
+                  "text": "Energiegehalt unterscheiden."
+                },
+                {
+                  "text": "∙ leiten aus den Ionisierungsenergien den"
+                },
+                {
+                  "text": "Aufbau der Atomhülle ab."
+                },
+                {
+                  "text": "Bindungsmodelle ∙ erklären in einfacher Form die Energiebilanz ∙ Energiebilanz bei chemischen Reaktionen"
+                },
+                {
+                  "text": "können energetisch chemischer Reaktionen durch die Aufspal-"
+                },
+                {
+                  "text": "Ausbildung chemischer Bindungen"
+                },
+                {
+                  "text": "Aufhebung und Ausbildung von"
+                },
+                {
+                  "text": "Wechselwirkungen zwischen Teilchen."
+                }
+              ]
+            },
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "Inhalte des Unterrichts im Fach Chemie möglichst durchgehend geplant und in",
+              "learning_objectives": [
+                {
+                  "text": "Jahrgangsstufe ausgesetzt wird."
+                },
+                {
+                  "text": "Die Entwicklung prozessbezogener und inhaltsbezoge-"
+                },
+                {
+                  "text": "Kompetenzen ist eng mit der inhaltlichen Gestaltung ∙ Verteilung der Inhalte auf die Jahrgangsstufen"
+                },
+                {
+                  "text": "Unterrichts verbunden. Allerdings können die Inhalte In der folgenden Tabelle werden die verbindlich zu"
+                },
+                {
+                  "text": "für den Chemieunterricht vorgese- behandelnden Inhalte aufgelistet. Ergänzend sind in"
+                },
+                {
+                  "text": "Jahrgangsstufen verteilt werden. Zu berücksichti- der ersten Spalte Empfehlungen zu finden, ab welcher"
+                },
+                {
+                  "text": "Voraussetzungen der Jahrgangsstufe die jeweiligen Inhalte berücksichtigt"
+                },
+                {
+                  "text": "Lernenden, zum anderen aber auch deren Interessen und werden können. Innerhalb dieses Rahmens werden die"
+                },
+                {
+                  "text": "Erfahrungen. Verteilung der Inhalte auf einzelne Jahrgangsstufen,"
+                },
+                {
+                  "text": "Reihenfolge und die fachliche Tiefe der Unterrichts-"
+                },
+                {
+                  "text": "Die folgenden Überlegungen sollen dabei berücksichtigt themen, die Gestaltung von Lernumgebungen, Vernet-"
+                },
+                {
+                  "text": "werden: zungen und Wiederholungen usw. von der Fachschaft im"
+                },
+                {
+                  "text": "∙ Verteilung der Kontingentstunden schulinternen Fachcurriculum festgelegt."
+                },
+                {
+                  "text": "Die Anzahl und die Verteilung der für das Fach Chemie Bei der Planung ist bereits in der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Verbindlich zu behandelnde Inhalte"
+                },
+                {
+                  "text": "Struktur-Eigen- Konzepte zur"
+                },
+                {
+                  "text": "Stoff-Teilchen-Konzept Energiekonzept"
+                },
+                {
+                  "text": "schafts-Konzept chemischen Reaktion"
+                },
+                {
+                  "text": "∙ Stoffeigenschaften ∙ Reinstoffe und Stoffge- ∙ Kennzeichen chemischer ∙ Aggregatzustände,"
+                },
+                {
+                  "text": "∙ Reinstoffe und Stoff- mische des Alltags Reaktionen Siede- und Schmelz-"
+                },
+                {
+                  "text": "∙ Stoffeigenschaften ∙ Eigenschaften und Reak- temperatur"
+                },
+                {
+                  "text": "∙ homogene und heteroge- tionen der Bestandteile ∙ exotherme Reaktionen"
+                },
+                {
+                  "text": "Stoffgemische der Luft ∙ Energieverlauf bei che-"
+                },
+                {
+                  "text": "∙ Trennverfahren ∙ Verbrennungsreak tionen mischen Reaktionen"
+                },
+                {
+                  "text": "∙ Teilchenmodell ∙ Aktivierungsenergie"
+                },
+                {
+                  "text": "∙ Aggregatzustände und Ag- als Startenergie"
+                },
+                {
+                  "text": "gregatzustandsänderungen"
+                },
+                {
+                  "text": "∙ Elemente und chemische ∙ Gesetz von der Erhaltung ∙ Energiegehalt von"
+                },
+                {
+                  "text": "Verbindungen der Masse Stoffen"
+                },
+                {
+                  "text": "∙ Atommodell nach Dalton ∙ Energiediagramme"
+                },
+                {
+                  "text": "Aussage über die"
+                },
+                {
+                  "text": "Unteilbarkeit der Atome)"
+                },
+                {
+                  "text": "∙ Kern-Hülle-Modell nach ∙ Periodensystem ∙ Bildung von Ionen ∙ Ionisierungsenergie"
+                },
+                {
+                  "text": "Rutherford der Elemente ∙ Redoxreaktionen als ∙ Katalysatoren"
+                },
+                {
+                  "text": "∙ Schalenmodell bzw. Ener- ∙ Ionenbindung Elektronenübertragungs- ∙ Redoxreaktionen"
+                },
+                {
+                  "text": "elektrochemische"
+                },
+                {
+                  "text": "∙ atomare Masse, Isotope ∙ Reaktionen von Metallen Reaktionen"
+                },
+                {
+                  "text": "∙ Periodensystem der mit Sauerstoff, edle und"
+                },
+                {
+                  "text": "Elemente unedle Metalle"
+                },
+                {
+                  "text": "∙ Ionenbindung und ∙ Metallgewinnung"
+                },
+                {
+                  "text": "Ionengitter ∙ Redoxreaktionen am Bei-"
+                },
+                {
+                  "text": "∙ Bindung in Metallen spiel von Elektrolyse und"
+                },
+                {
+                  "text": "∙ Elektronenpaar- ∙ Elektronenpaar- ∙ Säure-Base-Reaktionen"
+                },
+                {
+                  "text": "∙ Molekülgeometrie: ∙ Konzept der Elek tro- ∙ Säure, Base, saure Lösung,"
+                },
+                {
+                  "text": "Elektronenpaar- negativität basische bzw. alkalische"
+                },
+                {
+                  "text": "abstoßungsmodell ∙ intermolekulare Kräfte Lösung, Neutralisation"
+                },
+                {
+                  "text": "∙ Bindungsmodelle organi- ∙ Struktur und Eigen- ∙ Verbrennungsreaktionen ∙ Nutzung fossiler"
+                },
+                {
+                  "text": "Verbindungen schaften organischer der Alkane und Alkanole Brennstoffe"
+                },
+                {
+                  "text": "Sekundar- Verbindungen (Alka-"
+                },
+                {
+                  "text": "Die Unterrichtsthemen, die im schulinternen Basiskonzepte und vernetzen die Vielfalt der Inhalte."
+                },
+                {
+                  "text": "Fachcurriculum dokumentiert werden, müssen immer ∙ Sie weisen, wenn möglich, fächerübergreifende"
+                },
+                {
+                  "text": "Eignung bezüglich des Kompetenzaufbaus Bezüge auf."
+                },
+                {
+                  "text": "überprüft werden. Dabei gelten die folgenden Kriterien: ∙ Sie bieten Gelegenheiten, die erworbenen Kom petenzen"
+                },
+                {
+                  "text": "∙ Die Unterrichtsthemen enthalten nach Möglichkeit in unterschiedlichen Bereichen des Alltags anzuwenden"
+                },
+                {
+                  "text": "Bezüge zur Lebenswelt der Schülerinnen und Schüler. und lassen damit ihren Sinn und Nutzen erkennen."
+                },
+                {
+                  "text": "∙ Sie besitzen fachliche Relevanz. ∙ Sie ermöglichen selbstgesteuertes Lernen."
+                },
+                {
+                  "text": "∙ Sie führen zu einem systematischen Verständnis der ∙ Sie fördern kumulatives und nachhaltiges Lernen."
+                }
+              ]
+            },
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "Schulinternes Fachcurriculum ∙ Es muss für den Chemieunterricht ein schulinternes",
+              "learning_objectives": [
+                {
+                  "text": "Fachcurriculum beschlossen werden, in dem ver-"
+                },
+                {
+                  "text": "Innerhalb der Rahmenvorgaben der Fachanforderungen bindliche Aussagen zu den Inhalten und den von den"
+                },
+                {
+                  "text": "Schulen Gestaltungsfreiheit bezüglich der Schülerinnen und Schülern nach dem jeweiligen Unter-"
+                },
+                {
+                  "text": "Umsetzung der Kontingentstundentafel, der Lern- und Un- richtsabschnitt bzw. der Jahrgangsstufe zu erwerbenden"
+                },
+                {
+                  "text": "terrichtsorganisation, der pädagogisch-didaktischen Kon- Kompetenzen festgehalten werden (siehe unten)."
+                },
+                {
+                  "text": "Schwerpunktsetzungen."
+                },
+                {
+                  "text": "Die Weiterentwicklung des schulinternen Fachcurriculums"
+                },
+                {
+                  "text": "Für die Fachkonferenz Chemie ergeben sich die folgen- stellt eine ständige Aufgabe der Fachkonferenz dar."
+                },
+                {
+                  "text": "∙ Es muss der Schulkonferenz ein Vorschlag gemacht Die Fachkonferenz ist durch das Schulgesetz und die Fach-"
+                },
+                {
+                  "text": "werden, in welcher Jahrgangsstufe der Einstieg in den anforderungen gehalten, eine Reihe von Vereinbarungen"
+                },
+                {
+                  "text": "Chemieunterricht stattfinden soll. zu treffen. Darüber hinaus können im Verantwortungsbereich"
+                },
+                {
+                  "text": "∙ Die Unterrichtsthemen müssen sinnvoll auf die zur der Fachkonferenz weitere Beschlüsse gefasst werden,"
+                },
+                {
+                  "text": "Verfügung stehenden Jahrgangsstufen verteilt werden. die dann die gleiche Verbindlichkeit für die Lehrkräfte"
+                },
+                {
+                  "text": "Dabei muss das für das Verständnis der Inhalte erforder- besitzen. Im schulinternen Fachcurriculum sind Vereinba-"
+                },
+                {
+                  "text": "Abstraktionsniveau berücksichtigt werden. rungen zu folgenden Aspekten zu treffen:"
+                },
+                {
+                  "text": "Aspekte Vereinbarungen"
+                },
+                {
+                  "text": "Unterricht ∙ Gestaltung von Unterrichtseinheiten; Festlegung der Unterrichtsthemen"
+                },
+                {
+                  "text": "∙ Beitrag der jeweiligen Unterrichtseinheit zum Erwerb und zur Erweiterung der prozessbezo-"
+                },
+                {
+                  "text": "Kompetenzen und des Aufbaus der Basiskonzepte"
+                },
+                {
+                  "text": "∙ Absprachen zu den Kontexten im Zusammenhang mit dem Wahlpflichtunterricht zum Zweck"
+                },
+                {
+                  "text": "Vermeidung inhaltlicher Dopplungen"
+                },
+                {
+                  "text": "∙ fächer- und themenübergreifendes Arbeiten"
+                },
+                {
+                  "text": "∙ Einbeziehung außerunterrichtlicher Lernangebote und Projekte"
+                },
+                {
+                  "text": "Fachsprache ∙ Festlegung von einheitlichen Bezeichnungen und Begriffen; einheitliche Formelsprache"
+                },
+                {
+                  "text": "∙ Möglichkeiten für durchgängige Sprachbildung"
+                },
+                {
+                  "text": "Fördern und Fordern ∙ Vorschläge für Angebote für besonders leistungsstarke, motivierte bzw. leistungsschwache"
+                },
+                {
+                  "text": "Schülerinnen und Schüler"
+                },
+                {
+                  "text": "∙ Fördermaßnahmen für Schülerinnen und Schüler mit hohem Förderbedarf sowie für beson-"
+                },
+                {
+                  "text": "Schülerinnen und Schüler"
+                },
+                {
+                  "text": "∙ Fördermaßnahmen für Schülerinnen und Schüler mit unterschiedlichen Fähigkeiten und Interessen"
+                },
+                {
+                  "text": "∙ Ausgestaltung der Binnendifferenzierung"
+                },
+                {
+                  "text": "∙ außerunterrichtliche Angebote für besonders interessierte Schülerinnen und Schüler"
+                },
+                {
+                  "text": "Sicherung von Basis- ∙ Maßnahmen zur Sicherung von Wissensbeständen, die ohne Nachschlagewerke wie Chemie-"
+                },
+                {
+                  "text": "wissen, Nachhaltigkeit bücher oder Lexika aus dem Gedächtnis abrufbar sein sollen"
+                },
+                {
+                  "text": "Medien, Lehr- und ∙ Anschaffungen und Einsatz von Experimentiergeräten und elektronischen Medien"
+                },
+                {
+                  "text": "Lernmaterial ∙ Einbindung von digitalen Medien in den Unterricht"
+                },
+                {
+                  "text": "Leistungsbewertung ∙ Grundsätze zur Leistungsbewertung und zur Gestaltung von Leistungsnachweisen"
+                },
+                {
+                  "text": "Überprüfung und ∙ regelmäßige Evaluation und Weiterentwicklung getroffener Verabredungen"
+                },
+                {
+                  "text": "Weiterentwicklung ∙ regelmäßige Absprachen über den Fortbildungsbedarf"
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE 27"
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "Leistungsbewertung Schüler gerecht zu werden, aber auch, um das gesamte",
+              "learning_objectives": [
+                {
+                  "text": "Spektrum der Leistungen angemessen berücksichtigen"
+                },
+                {
+                  "text": "Grundlage für eine Beurteilung sowie gegebenenfalls zu können, müssen im Bereich der Unterrichtsbeiträge"
+                },
+                {
+                  "text": "Leistungs bewertung sind die von der Lehrkraft be- Leistungsnachweise aus unterschiedlichen Feldern der"
+                },
+                {
+                  "text": "Schülerhandlungen. Beurteilen bedeutet die Unterrichtsarbeit herangezogen werden. Hierzu gehören"
+                },
+                {
+                  "text": "kritische, wertschätzende und individuelle Rückmeldung unter anderem:"
+                },
+                {
+                  "text": "Grundlage von kompetenzbasierten Kriterien."
+                },
+                {
+                  "text": "In diesem Sinne stehen im Unterricht die Diagnostik und Unterrichtsgespräch"
+                },
+                {
+                  "text": "Feedback unter Berücksichtigung des individuellen ∙ Teilnahme am Unterrichtsgespräch mit weiterführenden"
+                },
+                {
+                  "text": "Lernprozesses im Vordergrund. Eine Bewertung lässt sich Fragestellungen"
+                },
+                {
+                  "text": "Kriterien orientierten Beobachtung ab- ∙ Formulierung von Hypothesen und Problemstellungen"
+                },
+                {
+                  "text": "Lernerfolgsüberprüfungen sollen Schülerinnen und ∙ Verwendung von Fachsprache und Modellen"
+                },
+                {
+                  "text": "Schülern Gelegenheit geben, erworbene Kompetenzen"
+                },
+                {
+                  "text": "Zusammenhängen unter Aufgaben und Experimente"
+                },
+                {
+                  "text": "Beweis zu stellen. ∙ Formulierung von Problemstellungen und Hypothesen"
+                },
+                {
+                  "text": "∙ Organisation, Bearbeitung und Durchführung"
+                },
+                {
+                  "text": "Grundsätzlich sind alle in Kapitel II.2 ausgewiesenen ∙ Formulierung von Vorgehensweisen, Beobachtungen,"
+                },
+                {
+                  "text": "Kompetenzbereiche (Fachwissen, Erkenntnisgewinnung, Ergebnissen"
+                },
+                {
+                  "text": "Kommunikation, Bewertung) bei der Leistungsbewertung ∙ Ziehen von Schlussfolgerungen und Ableiten von Regeln"
+                },
+                {
+                  "text": "berücksichtigen. Überprüfungsformen"
+                },
+                {
+                  "text": "schriftlicher, mündlicher und praktischer Art sollen deshalb Dokumentation"
+                },
+                {
+                  "text": "sein, das Erreichen der dort aufgeführten ∙ Zusammenstellung von Materialsammlungen"
+                },
+                {
+                  "text": "Kompetenzerwartungen zu evaluieren. Lernerfolgsüber- ∙ Verwendung von Fachsprache und Modellen"
+                },
+                {
+                  "text": "prüfungen sollen Schülerinnen und Schülern Gelegenheit ∙ den Anforderungen des Unterrichts entsprechende"
+                },
+                {
+                  "text": "geben, erworbene Kompetenzen wiederholt und in Heftführung"
+                },
+                {
+                  "text": "Zusammenhängen unter Beweis zu stellen. ∙ geeignete Dokumentation von Versuchsergebnissen"
+                },
+                {
+                  "text": "Für Lehrkräfte sind die Ergebnisse der begleitenden Eva- ∙ Erstellen von Lerntagebüchern und Portfolios"
+                },
+                {
+                  "text": "Lernprozesses sowie des Kompetenzerwerbs"
+                },
+                {
+                  "text": "Anlass, die Zielsetzungen und Methoden ihres Unterrichts Präsentation"
+                },
+                {
+                  "text": "überprüfen. Schülerinnen und Schüler erhalten Rückmel- ∙ mündliche und schriftliche Darstellung von Arbeitser-"
+                },
+                {
+                  "text": "Lernprozess und zu den erreichten gebnissen"
+                },
+                {
+                  "text": "Lernständen. Beide Rückmeldungen sind eine Hilfe für die ∙ Kurzvorträge und Referate"
+                },
+                {
+                  "text": "Selbsteinschätzung. Die Rückmeldungen müssen auch ∙ Verwendung von Fachsprache und Modellen"
+                },
+                {
+                  "text": "Hinweise für das weitere Lernen enthalten. Sie dienen ∙ Präsentation von Wettbewerbsbeiträgen"
+                },
+                {
+                  "text": "Lenkung und Unterstützung des individuellen"
+                },
+                {
+                  "text": "Lernprozesses. Schriftliche Überprüfungen"
+                },
+                {
+                  "text": "∙ Tests, die eine Dauer von 20 min nicht überschreiten"
+                },
+                {
+                  "text": "Beurteilungsbereiche für das Fach Chemie dürfen und über rein reproduktive Anforderungen hin-"
+                },
+                {
+                  "text": "Für die Leistungsbewertung im Fach Chemie werden in"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE 29"
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Das Fach Chemie in der Oberstufe an Gymnasien und 1.2 Beitrag des Faches zur allgemeinen und fachlichen",
+              "learning_objectives": [
+                {
+                  "text": "Gemeinschaftsschulen Bildung"
+                },
+                {
+                  "text": "Grundlagen und Lernausgangslage Naturwissenschaften und Technik prägen den Alltag in"
+                },
+                {
+                  "text": "Gesellschaft. Sie bilden einen bedeutenden Teil"
+                },
+                {
+                  "text": "Diese Fachanforderungen gelten in der Oberstufe sowohl unserer kulturellen Identität. Erkenntnisse aus den Berei-"
+                },
+                {
+                  "text": "Gymnasien wie auch an den Gemeinschaftsschulen. chen Biologie, Chemie und Physik und deren technische"
+                },
+                {
+                  "text": "Anwendung bewirken Fortschritte auf vielen Gebieten."
+                },
+                {
+                  "text": "Grundlage für den Chemieunterricht in der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche tionen, in denen die Anwendung naturwissenschaftlicher",
+              "learning_objectives": [
+                {
+                  "text": "Denk- und Arbeitsweisen erforderlich ist. Sie dienen einer-"
+                },
+                {
+                  "text": "Der Unterricht in den Fächern Biologie, Chemie und Physik seits der Entwicklung des Fachwissens und stellen zum"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "∙ steigender Abstraktionsgrad der Inhalte munikation und Bewertung auf dem für Fachanforderun-"
+                },
+                {
+                  "text": "∙ höherer Grad an Selbstständigkeit gen angemessenen Abstraktionsniveau dargestellt. Die"
+                },
+                {
+                  "text": "∙ zunehmender Einsatz quantitativer Verfahren Ausprägung der beschriebenen Schüleraktivitäten, die"
+                },
+                {
+                  "text": "∙ verstärktes Einüben von Perspektivwechseln Komplexität und der Grad der Selbstständigkeit werden"
+                },
+                {
+                  "text": "Form erwartet, die der jeweiligen Lernausgangs-"
+                },
+                {
+                  "text": "Den Kompetenzbereichen Erkenntnisgewinnung, Kommu- lage der Schülerinnen und Schüler entspricht. Individuelle"
+                },
+                {
+                  "text": "Bewertung sind auch für die Sekundarstufe Unterschiede müssen dabei im Sinne einer Differenzie-"
+                },
+                {
+                  "text": "II keine verbindlichen Inhalte zugeordnet. Die Inhalte, an rung berücksichtigt werden."
+                },
+                {
+                  "text": "Kompetenzen erworben werden,"
+                },
+                {
+                  "text": "Unterricht. Die Schülerinnen und Schüler treten mit sehr unterschied-"
+                },
+                {
+                  "text": "Voraussetzungen in die"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Entwicklung von Kompetenzen im Bereich Erkenntnisgewinnung in der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Kompetenzbereich Bewertung"
+                },
+                {
+                  "text": "Entwicklung von Kompetenzen im Bereich Bewertung in der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Kolleginnen und Kollegen. Die Kompetenzbeschreibungen Chemie in der Oberstufe drei Jahre vorgesehen sind. Die"
+                },
+                {
+                  "text": "Anbindung kann jedoch variieren. In der Unter-"
+                },
+                {
+                  "text": "Beginn des Unterrichtsgangs"
+                },
+                {
+                  "text": "Vertiefende Inhalte für das Profilfach Chemie sind grau geplant werden, an welcher Stelle diese Inhalte eingeführt"
+                },
+                {
+                  "text": "Diese Inhalte können aber bzw. wieder aufgegriffen und vertieft werden sollen."
+                },
+                {
+                  "text": "Bestandteile des Unterrichts sein, wenn Chemie"
+                },
+                {
+                  "text": "profilergänzendes oder nicht ergänzendes Fach Die Schülerinnen und Schüler treten mit sehr unterschied-"
+                },
+                {
+                  "text": "Voraussetzungen in die"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Grundlegende Inhaltsbezogene Kompetenzen"
+                },
+                {
+                  "text": "Zusammenhänge des Verbindliche Fachinhalte"
+                },
+                {
+                  "text": "Basiskonzepts Die Schülerinnen und Schüler …"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Kompetenzerwartungen zum Basiskonzept „Struktur-Eigenschafts-Konzept“"
+                },
+                {
+                  "text": "Grundlegende Inhaltsbezogene Kompetenzen"
+                },
+                {
+                  "text": "Zusammenhänge des Verbindliche Fachinhalte"
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler …"
+                },
+                {
+                  "text": "Kompetenzen aus der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "E",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Inhaltsbezogene Kompetenzen"
+                },
+                {
+                  "text": "Zusammenhänge des Verbindliche Fachinhalte"
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler …"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Kompetenzerwartungen zum Basiskonzept „Chemische Reaktion“"
+                },
+                {
+                  "text": "Grundlegende Inhaltsbezogene Kompetenzen"
+                },
+                {
+                  "text": "Zusammenhänge des Verbindliche Fachinhalte"
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler …"
+                },
+                {
+                  "text": "Kompetenzen aus der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "E",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Inhaltsbezogene Kompetenzen"
+                },
+                {
+                  "text": "Zusammenhänge des Verbindliche Fachinhalte"
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler …"
+                },
+                {
+                  "text": "Elektrochemische ∙ beschreiben und erklären die Umkehrbarkeit von Redox- ∙ Umkehrbarkeit von Red-"
+                },
+                {
+                  "text": "Reaktionen sind Re- reaktionen. oxreaktionen"
+                },
+                {
+                  "text": "∙ begründen, dass elektrochemische Reaktionen Redoxreak- ∙ Redoxreaktionen als elek-"
+                },
+                {
+                  "text": "∙ nennen die Grundprinzipien von galvanischen Zellen und ∙ Grundprinzipien galvanischer"
+                },
+                {
+                  "text": "Akkumulatoren. Zellen und Akkumulatoren"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Grundlegende Inhaltsbezogene Kompetenzen"
+                },
+                {
+                  "text": "Zusammenhänge des Verbindliche Fachinhalte"
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler …"
+                },
+                {
+                  "text": "Elektronenübergänge ∙ beschreiben die elektrochemische Doppelschicht als Red- ∙ Nernstsche Gleichung"
+                },
+                {
+                  "text": "können mathematisch oxgleichgewicht. ∙ quantitative Aspekte"
+                },
+                {
+                  "text": "∙ beschreiben die galvanische Zelle als Kopplung zweier Red- elektrochemischer Pro-"
+                },
+                {
+                  "text": "∙ nennen die Definition und die Bedeutung des Standard-"
+                },
+                {
+                  "text": "∙ beschreiben die Abhängigkeit des Standard-Potentials von"
+                },
+                {
+                  "text": "Konzentration anhand der vereinfachten Nernstschen"
+                },
+                {
+                  "text": "∙ beschreiben Überspannungen bei elektrochemischen Vor-"
+                },
+                {
+                  "text": "gängen als reale Abweichung von berechneten Werten."
+                },
+                {
+                  "text": "Gleichgewichtskonzept"
+                },
+                {
+                  "text": "Carbonsäuren sind ∙ beschreiben und erklären das chemische Gleichgewicht auf ∙ Chemisches Gleichge-"
+                },
+                {
+                  "text": "Säuren. Stoff- und Teilchenebene als dynamisches Gleichgewicht.* wicht*"
+                },
+                {
+                  "text": "∙ beschreiben die Säurekonstante als spezielle Gleichgewichts- ∙ Massenwirkungsgesetz*"
+                },
+                {
+                  "text": "konstante.* ∙ Beeinflussung von"
+                },
+                {
+                  "text": "∙ erklären die Bedeutung des pKS-Wertes.* Gleichgewichtsreaktio-"
+                },
+                {
+                  "text": "∙ beschreiben die Basenkonstante als spezielle Gleichgewichts- nen (Prinzip des kleinsten"
+                },
+                {
+                  "text": "erklären die Bedeutung des pK-Wertes.* Zwanges)*"
+                },
+                {
+                  "text": "∙ unterscheiden starke und schwache Säuren bzw. Basen ∙ pH-Wert*, pKS-Wert,*"
+                },
+                {
+                  "text": "pK-und pK-Werte.* pK-Wert*"
+                },
+                {
+                  "text": "∙ beschreiben Indikatoren als schwache Brönsted-Säuren bzw."
+                },
+                {
+                  "text": "∙ treffen näherungsweise Voraussagen über pH-Werte* auf"
+                },
+                {
+                  "text": "Basis der pK-Werte bei gegebenen Konzentrationen."
+                },
+                {
+                  "text": "Im chemischen Gleich- ∙ beschreiben und erklären das chemische Gleichgewicht auf ∙ z. B. Carbonsäuren als"
+                },
+                {
+                  "text": "Hin- Stoff- und Teilchenebene als dynamisches Gleichgewicht. schwache Säuren oder"
+                },
+                {
+                  "text": "Rückreaktion statt, Estersynthese"
+                },
+                {
+                  "text": "änderung zu bewirken."
+                },
+                {
+                  "text": "Für ein Reaktionssys- ∙ formulieren das Massenwirkungsgesetz. ∙ z. B. Carbonsäuren als"
+                },
+                {
+                  "text": "tem, das sich im chemi- ∙ können anhand der Gleichgewichtskonstanten Aussagen zur schwache Säuren oder"
+                },
+                {
+                  "text": "Gleichgewicht Lage des Gleichgewichts machen. Estersynthese"
+                },
+                {
+                  "text": "befindet, können die ∙ erklären, dass Katalysatoren die Einstellung des chemischen"
+                },
+                {
+                  "text": "Stoffmengen der Reak- Gleichgewichts beschleunigen."
+                },
+                {
+                  "text": "Fortführung der Tabelle »"
+                }
+              ]
+            },
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Grundlegende Inhaltsbezogene Kompetenzen"
+                },
+                {
+                  "text": "Zusammenhänge des Verbindliche Fachinhalte"
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler …"
+                },
+                {
+                  "text": "Die Lage des Gleich- ∙ wenden das Prinzip des kleinsten Zwanges an, um die Gleichge- ∙ Die inhaltliche Anbindung"
+                },
+                {
+                  "text": "Änderung der vorgegeben; das schul-"
+                },
+                {
+                  "text": "äußeren Bedingungen interne Fachcurriculum"
+                },
+                {
+                  "text": "Gleichgewichtsre- ∙ beschreiben die Autoprotolyse des Wassers als Gleichgewichts-"
+                },
+                {
+                  "text": "natürlichen und techni- ∙ erklären den Zusammenhang zwischen der Autoprotolyse des"
+                },
+                {
+                  "text": "Prozessen eine Wassers und dem pH-Wert."
+                },
+                {
+                  "text": "Rolle. ∙ beschreiben die Basenkonstante als spezielle Gleichge-"
+                },
+                {
+                  "text": "wichtskonstante*."
+                },
+                {
+                  "text": "∙ erklären die Bedeutung des pK-Wertes."
+                },
+                {
+                  "text": "∙ beschreiben Puffersysteme."
+                },
+                {
+                  "text": "∙ interpretieren Puffersysteme."
+                },
+                {
+                  "text": "∙ deuten Puffergleichgewichte quantitativ als Säure-Base-"
+                },
+                {
+                  "text": "∙ vergleichen Säure-Base- und Redoxreaktionen."
+                },
+                {
+                  "text": "∙ erfassen, dass Donator-Akzeptor-Reaktionen chemische Gleich-"
+                },
+                {
+                  "text": "Elektrochemische ∙ beschreiben die galvanische Zelle als Kopplung zweier Re- ∙ galvanische Zellen"
+                },
+                {
+                  "text": "Reaktionen können als doxgleichgewichte. ∙ Vor- und Nachteile der"
+                },
+                {
+                  "text": "Gleichgewichtsreaktio- ∙ nennen die Definition und die Bedeutung des Standard-Po- verschiedenen elektro-"
+                },
+                {
+                  "text": "tentials*. chemischen Stromquellen"
+                },
+                {
+                  "text": "∙ beschreiben die Abhängigkeit des Standard-Potentials von ∙ Elektrodenpotentiale,"
+                },
+                {
+                  "text": "Konzentration anhand einer vereinfachten Nernstschen Potentialdifferenzen"
+                },
+                {
+                  "text": "Gleichung*. ∙ Konzentrationsabhän-"
+                },
+                {
+                  "text": "∙ nennen die prinzipiellen Unterschiede zwischen Batterien, Ak- gigkeit des Elektroden-"
+                },
+                {
+                  "text": "Brennstoffzellen. potentials"
+                },
+                {
+                  "text": "∙ Nernstsche Gleichung"
+                },
+                {
+                  "text": "∙ quantitative Aspekte elek-"
+                },
+                {
+                  "text": "∙ Beispiele für Akkumulator"
+                },
+                {
+                  "text": "Fortführung der Tabelle »"
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE 47"
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Grundlegende Inhaltsbezogene Kompetenzen"
+                },
+                {
+                  "text": "Zusammenhänge des Verbindliche Fachinhalte"
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler …"
+                },
+                {
+                  "text": "Mechanistische Betrachtungen"
+                },
+                {
+                  "text": "Chemische Reaktio- ∙ beschreiben Reaktionsmechanismen.* ∙ Reaktionsmechanismen*"
+                },
+                {
+                  "text": "Organischen ∙ beschreiben Reaktionsmechanismen zur Bildung von Makro-"
+                },
+                {
+                  "text": "Chemie können unter molekülen.*"
+                },
+                {
+                  "text": "häufig in mehre-"
+                },
+                {
+                  "text": "Einzelschritten ab."
+                },
+                {
+                  "text": "Die Elektronenver- ∙ erklären die unterschiedliche Reaktivität sowie die Reakti- ∙ Die inhaltliche Anbindung"
+                },
+                {
+                  "text": "onsverläufe mithilfe der induktiven und mesomeren Effekte. wird an dieser Stelle nicht"
+                },
+                {
+                  "text": "Reaktivität eines vorgegeben; das schu-"
+                },
+                {
+                  "text": "Stoffes. linterne Fachcurriculum"
+                },
+                {
+                  "text": "Die Synthese von ∙ wenden bekannte Reaktionsmechanismen an, um die Synthese- ∙ funktionale Stoffe und"
+                },
+                {
+                  "text": "Stoffen setzt eine schritte von gewünschten Produkten nachzuvollziehen. Materialien"
+                },
+                {
+                  "text": "Kenntnis ∙ planen Synthesen inklusive der notwendigen Reaktionsbe-"
+                },
+                {
+                  "text": "Synthesewegen dingungen auf der Basis bekannter Mechanismen."
+                },
+                {
+                  "text": "aktionsmechanismen"
+                },
+                {
+                  "text": "Kompetenzerwartungen zum Basiskonzept Energie"
+                },
+                {
+                  "text": "Grundlegende Inhaltsbezogene Kompetenzen"
+                },
+                {
+                  "text": "Zusammenhänge des Verbindliche Fachinhalte"
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler …"
+                },
+                {
+                  "text": "Kompetenzen aus der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Kompetenzbereiche",
+              "learning_objectives": [
+                {
+                  "text": "Grundlegende Inhaltsbezogene Kompetenzen"
+                },
+                {
+                  "text": "Zusammenhänge des Verbindliche Fachinhalte"
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler …"
+                },
+                {
+                  "text": "Atommodelle können ∙ beschreiben mithilfe der Ionisierungsenergien, dass sich Elek- ∙ Ionisierungsenergie"
+                },
+                {
+                  "text": "Atom in ihrem Energiegehalt unterscheiden."
+                },
+                {
+                  "text": "∙ leiten aus den Ionisierungsenergien den Aufbau der Atomhülle ab."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Inhalte des Unterrichts 3.1 Hinweise zur inhaltlichen Planung des Unterrichts in",
+              "learning_objectives": [
+                {
+                  "text": "Wie bereits in der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Q",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Inhalte des Unterrichts",
+              "learning_objectives": [
+                {
+                  "text": "Chemie als profilergänzendes oder nicht ergänzendes ∙ Auf grundlegendem Niveau erwerben Schülerinnen"
+                },
+                {
+                  "text": "Fach angeboten wird. und Schüler eine wissenschaftspropädeutisch orientier-"
+                },
+                {
+                  "text": "Grundbildung. Sie setzen sich mit grundlegenden"
+                },
+                {
+                  "text": "Die Interessen der Schülerinnen und Schüler, regionale Fragestellungen, Sachverhalten, Problemkomplexen und"
+                },
+                {
+                  "text": "Bezüge sowie die unterschiedlichen Profile und die Strukturen des Faches Chemie auseinander und machen"
+                },
+                {
+                  "text": "Heterogenität der Lerngruppen müssen bei der Planung sich mit wesentlichen Arbeits- und Fachmethoden sowie"
+                },
+                {
+                  "text": "berücksichtigt werden. Unterschiedliche Strukturierungen Darstellungsformen des Faches vertraut. In exempla-"
+                },
+                {
+                  "text": "Wahrung des fachlichen Anspruchs sind rischer Form stellen sie Zusammenhänge im Fach und"
+                },
+                {
+                  "text": "möglich und bieten den Fachschaften Raum für mit anderen Fächern her und nutzen diese."
+                },
+                {
+                  "text": "Schwerpunktsetzungen."
+                },
+                {
+                  "text": "∙ Einige Lerngruppen nehmen nur in der Einführungs-"
+                },
+                {
+                  "text": "Chemieunterricht in der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Inhalte des Unterrichts",
+              "learning_objectives": [
+                {
+                  "text": "Verbindliche Inhalte Sachgebiet „Chemie und Leben“"
+                },
+                {
+                  "text": "∙ Exemplarische Betrachtung bedeutsamer Stoffklassen der Naturstoffe"
+                },
+                {
+                  "text": "∙ Kohlenhydrate, Lipide, Proteine"
+                },
+                {
+                  "text": "∙ Betrachtung von Strukturen und damit verbundenen Eigenschaften"
+                },
+                {
+                  "text": "∙ Peptid-Reaktion, Veresterung, Kondensationsreaktion von Monosacchariden, Säure-Base-Reaktionen am Beispiel von"
+                },
+                {
+                  "text": "∙ Umkehrbarkeit und Beeinflussung von Reaktionen (Prinzip des kleinsten Zwangs)"
+                },
+                {
+                  "text": "∙ Hier werden auch Inhalte genannt, die nur dann umfassend berücksichtigt werden müssen, wenn sie in der Sekundar-"
+                },
+                {
+                  "text": "I nicht behandelt wurden."
+                },
+                {
+                  "text": "∙ Wird das Fach Chemie nur in der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Inhalte des Unterrichts",
+              "learning_objectives": [
+                {
+                  "text": "Sachgebiet „Chemie und funktionale Stoffe und Materialien“"
+                },
+                {
+                  "text": "Das dritte Sachgebiet stellt die Nutzung von Struktur-Eigenschafts-Beziehungen für die Entwicklung individuell und"
+                },
+                {
+                  "text": "Werkstoffe und Materialien ins Zentrum und zeigt damit die Vielfalt der Produkte auf,"
+                },
+                {
+                  "text": "Chemie hergestellt und optimiert werden. Fragen nachhaltiger Entwicklung sollen hier zum Tragen"
+                },
+                {
+                  "text": "Ein Ansatz dafür ist die Betrachtung von Stoffkreisläufen und -bilanzen, ökologischen Fußabdrücken"
+                },
+                {
+                  "text": "Wiederverwertungsansätzen für verschiedene Produkte. Im Rahmen der Gestaltung der Oberstufe sind dabei"
+                },
+                {
+                  "text": "Kooperationen mit allen Fächern möglich."
+                },
+                {
+                  "text": "An ausgewählten Beispielen soll erarbeitet werden, wie über verschiedene Systemebenen (Gegenstände, Stoffe,"
+                },
+                {
+                  "text": "Partikel, chemische Strukturen von Verbindungen, differenzierte Modellbetrachtung von atomaren Eigenschaften)"
+                },
+                {
+                  "text": "Deutungen und Vorhersagen funktionaler Eigenschaften möglich sind."
+                },
+                {
+                  "text": "Verbindliche Inhalte Sachgebiet „Chemie der funktionalen Stoffe und Materialien“"
+                },
+                {
+                  "text": "∙ Produkte auf Basis von Funktionalität"
+                },
+                {
+                  "text": "∙ Erarbeitung systematischer Deutungsansätze für Struktur-Eigenschafts-Beziehungen auf verschiedenen System-"
+                },
+                {
+                  "text": "Gegenstands- und Stoffeigenschaften zu molekularen Betrachtungen; Einflüsse der Partikelgröße sowie"
+                },
+                {
+                  "text": "Umgebungsbedingungen)"
+                },
+                {
+                  "text": "∙ Duftstoffe oder Tenside oder Emulgatoren oder Polymere"
+                },
+                {
+                  "text": "∙ Deutung der Stoffeigenschaften an dem gewählten Beispiel über Strukturen und Wechselwirkungen"
+                },
+                {
+                  "text": "∙ Gesichtspunkte der Nachhaltigkeit bei der Bewertung von Produkten und Herstellungsverfahren"
+                },
+                {
+                  "text": "∙ Energiebilanzen"
+                },
+                {
+                  "text": "Chemieunterricht in der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Q",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Inhalte des Unterrichts",
+              "learning_objectives": [
+                {
+                  "text": "∙ Bedeutung der Proteine für Lebewesen"
+                },
+                {
+                  "text": "∙ Aminosäuren als Bausteine der Proteine"
+                },
+                {
+                  "text": "∙ essentielle Aminosäuren und ihre Bedeutung für die Ernährung"
+                },
+                {
+                  "text": "∙ Primär-, Sekundär-,Tertiär- und Quartärstruktur"
+                },
+                {
+                  "text": "∙ isoelektrischer Punkt und Puffereigenschaften"
+                },
+                {
+                  "text": "∙ Analyseverfahren für Aminosäuregemische"
+                },
+                {
+                  "text": "∙ D- und L- Aminosäuren, optische Aktivität"
+                },
+                {
+                  "text": "∙ Nomenklatur nach Cahn-Ingold-Prelog"
+                },
+                {
+                  "text": "∙ Vorkommen, Eigenschaften und Nachweis der Glucose und Fructose"
+                },
+                {
+                  "text": "∙ Darstellung der Moleküle mitmilfe verschiedener Modelle (Aussagen und Grenzen von Modelldarstellungen)"
+                },
+                {
+                  "text": "∙ optische Aktivität und Mutarotation"
+                },
+                {
+                  "text": "∙ Überblick über die verschiedenen Isomerien"
+                },
+                {
+                  "text": "∙ glykosidische Bindung"
+                },
+                {
+                  "text": "∙ Beispiele für Disaccharide, reduzierend und nichtreduzierend"
+                },
+                {
+                  "text": "∙ Beispiele für Polysacharide"
+                },
+                {
+                  "text": "∙ hydrolytische Spaltung von Di- und Polysacchariden"
+                },
+                {
+                  "text": "∙ Gesichtspunkte der Nachhaltigkeit bei der Verwendung von Energieträgern aus nachwachsenden Rohstoffen"
+                },
+                {
+                  "text": "∙ grundsätzlicher Aufbau eines Lipid-Moleküls"
+                },
+                {
+                  "text": "∙ Aufbau eines Fettmoleküls aus Glycerin und Fettsäuren"
+                },
+                {
+                  "text": "∙ gesättigte Fettsäuren, ungesättigte Fettsäuren"
+                },
+                {
+                  "text": "∙ Bewertung von Fetten anhand von Kennzahlen (Iodzahl, Säurezahl, Verseifungszahl)"
+                },
+                {
+                  "text": "∙ Gesichtspunkte der Nachhaltigkeit bei der Verwendung von Energieträgern aus nachwachsenden Rohstoffen"
+                },
+                {
+                  "text": "∙ experimentelle Ermittlung ausgewählter Kennzahlen"
+                }
+              ]
+            },
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Inhalte des Unterrichts",
+              "learning_objectives": [
+                {
+                  "text": "Sachgebiet „Chemie und Umwelt“ (Analytik – Agrarchemie – Atmosphärenchemie – Meereschemie)"
+                },
+                {
+                  "text": "Umweltthemen wie Klimawandel, Wasserverschmutzung und erneuerbare Energien werden umfangreich in den Medien"
+                },
+                {
+                  "text": "täglichen Leben immer wichtiger. Fragen nach der Gefährlichkeit von Chemikalien und Chemie-"
+                },
+                {
+                  "text": "Umgang mit Chemikalien können im Rahmen dieses Sachgebiets ebenfalls"
+                },
+                {
+                  "text": "Das Thema eignet sich besonders gut zur Erweiterung der Kompetenzen im Bereich „Bewertung“."
+                },
+                {
+                  "text": "Verbindliche Inhalte Sachgebiet „Chemie und Umwelt“"
+                },
+                {
+                  "text": "Analytik wird mindestens innerhalb des gewählten Umweltbereichs behandelt. Darüber hinaus sind die genannten"
+                },
+                {
+                  "text": "Inhalte im Sinne der Umweltanalytik verbindlich. Die Behandlung mindestens eines Umweltbereichs ist verpflichtend."
+                },
+                {
+                  "text": "Ergänzend können die anderen Umweltbereiche behandelt werden."
+                },
+                {
+                  "text": "∙ Stoffmengen und Konzentrationen"
+                },
+                {
+                  "text": "∙ Analysegenauigkeit, Fehlerbetrachtung und Nachweisgrenzen"
+                },
+                {
+                  "text": "∙ qualitative, halbquantitative und quantitative Analysemethoden"
+                },
+                {
+                  "text": "∙ ausgewählte analytische Verfahren"
+                },
+                {
+                  "text": "∙ Umweltbereich Luft und Atmosphärenchemie"
+                },
+                {
+                  "text": "∙ Treibhauseffekt (natürlich, anthropogen)"
+                },
+                {
+                  "text": "∙ anthropogene Einflüsse und Probleme"
+                },
+                {
+                  "text": "∙ Luftschadstoffe und deren Nachweise: zum Beispiel Stickstoffoxide, Kohlenstoffmonooxid, FCKW"
+                },
+                {
+                  "text": "∙ Ozon (stratosphärisch) und Ozonloch, bodennahes Ozon"
+                },
+                {
+                  "text": "∙ Kohlenstoffkreislauf, Kohlenstoffdioxidsenken, -quellen und -reservoirs, Messverfahren für den Kohlenstoffdioxidgehalt"
+                },
+                {
+                  "text": "∙ Umweltbereich Wasser und Meereschemie"
+                },
+                {
+                  "text": "∙ Wasseruntersuchung: Nachweis von Nitrat-, Nitrit-, Phosphat-, Sulfat-Ionen, Bestimmung der Wasserhärte"
+                },
+                {
+                  "text": "∙ Gewässerschutz, Trinkwasserschutz"
+                },
+                {
+                  "text": "∙ Düngung und Grundwasser, Trinkwasseraufbereitung"
+                },
+                {
+                  "text": "∙ Versauerung der Meere"
+                },
+                {
+                  "text": "∙ Mikroplastik im Meer"
+                },
+                {
+                  "text": "∙ Umweltbereich Boden und Agrarchemie"
+                },
+                {
+                  "text": "∙ Bodenanalytik: Bodenstruktur, Boden-pH, Schwermetallanalytik, Nachweis von Nitrat-, Nitrit-, Phosphat-, Sulfationen"
+                },
+                {
+                  "text": "∙ Bodenbelastung und Bodensanierung"
+                },
+                {
+                  "text": "∙ Einsatz von Düngemitteln in der Landwirtschaft"
+                },
+                {
+                  "text": "Der Unterricht im Profilfach findet durch die geeignete Auswahl der analytischen Verfahren auf erhöhtem Anfor-"
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE 57"
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Inhalte des Unterrichts",
+              "learning_objectives": [
+                {
+                  "text": "Sachgebiet „Chemie und Energie“"
+                },
+                {
+                  "text": "Die Verwendung mobiler Energiequellen beeinflusst das tägliche Leben in einer modernen Gesellschaft. Elektrische"
+                },
+                {
+                  "text": "Energie kann aus chemischen Reaktionen erhalten werden. Sie wird zum Laden vieler mobiler Geräte, zur Gewinnung von"
+                },
+                {
+                  "text": "Stoffen und zum Schutz von Gegenständen vor Korrosion genutzt. Grundlegend für diese Reaktionen ist das Donator-Akzep-"
+                },
+                {
+                  "text": "tor-Konzept. Die Umwandlung chemischer Energie in elektrische Energie verdeutlicht die inneren Zusammen hänge zwi-"
+                },
+                {
+                  "text": "Naturwissenschaften Chemie und Physik. Der Wirkungsgrad der Gewinnung, Speicherung und Nutzung"
+                },
+                {
+                  "text": "Energie durch chemische Reaktionen ist eine Voraussetzung für die Beurteilung der Verfahren. Die Möglichkeit"
+                },
+                {
+                  "text": "Speicherung elektrischer Energie ist ein wichtiges Forschungsgebiet für die Energieversorgung der Zukunft."
+                },
+                {
+                  "text": "Verbindliche Inhalte Sachgebiet „Chemie und Energie“"
+                },
+                {
+                  "text": "Die chemischen Grundlagen von Energiekonzepten sind nicht an dieses Sachgebiet gebunden, sondern können im"
+                },
+                {
+                  "text": "Rahmen anderer Sachgebiete berücksichtigt werden."
+                },
+                {
+                  "text": "∙ Chemische Grundlagen von Energiekonzepten"
+                },
+                {
+                  "text": "∙ energetische Betrachtung von Speicher- und Umwandlungsprozessen"
+                },
+                {
+                  "text": "∙ 1. Hauptsatz der Thermodynamik"
+                },
+                {
+                  "text": "∙ Reaktionsenthalpie und Reaktionsentropie"
+                },
+                {
+                  "text": "∙ 2. Hauptsatz der Thermodynamik"
+                },
+                {
+                  "text": "∙ Redoxreaktionen und chemische Stromgewinnung"
+                },
+                {
+                  "text": "∙ Vertiefung der Inhalte der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "E",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Inhalte des Unterrichts",
+              "learning_objectives": [
+                {
+                  "text": "Sachgebiet „Chemie der funktionalen Stoffe und Materialien“"
+                },
+                {
+                  "text": "Die Inhalte dieses Sachgebiets berühren die Lebenswelt der Schülerinnen und Schüler in besonderem Maße und bieten"
+                },
+                {
+                  "text": "Möglichkeiten der Bearbeitung sowohl auf grundlegendem als auch auf erhöhtem Niveau. Dabei steht die gezielte"
+                },
+                {
+                  "text": "Auswahl von Stoffen aufgrund ihrer Eigenschaften für ein gewünschtes Produkt im Mittelpunkt aller angebotenen The-"
+                },
+                {
+                  "text": "Diese Schwerpunktsetzung ist unabhängig von der Wahl des Themas innerhalb dieses Sachgebiets verbindlich."
+                },
+                {
+                  "text": "Die folgenden Themen können behandelt werden:"
+                },
+                {
+                  "text": "∙ Aromatische Verbindungen und Farbstoffe"
+                },
+                {
+                  "text": "Die Beschäftigung mit der Chemie der Aromaten erschließt eine Vielzahl von stofflich interessanten Verbindungen, die"
+                },
+                {
+                  "text": "Lebenswelt der Schülerinnen und Schüler eine große Rolle spielen. Dies beginnt mit einfachen Medikamenten"
+                },
+                {
+                  "text": "Neurotransmittern oder Farbstoffen. Das Thema ermöglicht Einblicke in die zielgerichtete Planung"
+                },
+                {
+                  "text": "Synthesen und fördert dadurch an vielen Stellen besonders den Kompetenzbereich Bewertung. Die The-"
+                },
+                {
+                  "text": "Farbstoffe und aromatische Verbindungen können unabhängig voneinander behandelt werden. In diesem"
+                },
+                {
+                  "text": "Fall sind die Pflichtinhalte der jeweils anderen Themenbereiche optional. Aufgrund des Strukturelements der delokali-"
+                },
+                {
+                  "text": "Elektronen ist eine aufeinander aufbauende Behandlung jedoch sinnvoll."
+                },
+                {
+                  "text": "Polymere sind Stoffe, die in der Lebenswelt der Schü lerinnen und Schüler einen zentralen Platz besitzen. Die moder-"
+                },
+                {
+                  "text": "Kunststoffe bestehen in der Regel aus orga nischen Molekülen, die ausgehend von Erdöl oder Erdgas synthetisiert"
+                },
+                {
+                  "text": "Bei den Herstellungsverfahren der Kunststoffe werden Reaktionen aufgegriffen, die zum Teil schon in der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Inhalte des Unterrichts",
+              "learning_objectives": [
+                {
+                  "text": "∙ Chemie und Medikamente"
+                },
+                {
+                  "text": "Die Gesundheit des Menschen ist von je her eines der zentralen Anliegen der Chemie. Arzneistoffe wurden zunächst"
+                },
+                {
+                  "text": "Ausprobieren auf ihre Wirksamkeit untersucht. Inzwischen werden Medikamente gezielt auf der Grundlage be-"
+                },
+                {
+                  "text": "Stoffwechselvorgänge und Stoffwechselfehler entwickelt und produziert. Insofern bietet dieser Themenbereich"
+                },
+                {
+                  "text": "Einblick in die historische und moderne Pharmazie."
+                },
+                {
+                  "text": "Die Kopplung dieses Themas an die aromatischen Verbindungen kann – je nach Auswahl der betrachteten Medika-"
+                },
+                {
+                  "text": "Verbindliche Inhalte Sachgebiet „Chemie der funktionalen Stoffe und Materialien“"
+                },
+                {
+                  "text": "Die Behandlung eines Themenbereichs ist verpflichtend. Ergänzend können weitere Themenbereiche dieses Sachge-"
+                },
+                {
+                  "text": "Die aromatischen Verbindungen werden mindestens innerhalb des Themenbereichs „Aromatische Verbindungen und"
+                },
+                {
+                  "text": "Farbstoffe“ behandelt. Im Profilfach ist die Behandlung der aromatischen Verbindungen unabhängig von der An-"
+                },
+                {
+                  "text": "Schwerpunkt „Farbstoffe“ verpflichtend."
+                },
+                {
+                  "text": "∙ Aromatische Verbindungen"
+                },
+                {
+                  "text": "∙ Struktur aromatischer Systeme (Hybridisierung)"
+                },
+                {
+                  "text": "∙ Mesomerie und deren Darstellung"
+                },
+                {
+                  "text": "∙ Benzol und ausgewählte Substitutionsprodukte"
+                },
+                {
+                  "text": "∙ Wellenmechanisches Atommodell"
+                },
+                {
+                  "text": "∙ Mechanismus der elektrophilen Substitution"
+                },
+                {
+                  "text": "∙ Zweitsubstitution an Benzolderivaten"
+                },
+                {
+                  "text": "∙ induktiver und mesomerer Effekt"
+                },
+                {
+                  "text": "∙ Synthesewege typischer Benzolderivate"
+                },
+                {
+                  "text": "∙ Farbsehen, additive und subtraktive Farbmischung"
+                },
+                {
+                  "text": "∙ Farbstoffklassen"
+                },
+                {
+                  "text": "∙ Farbstoffe und Pigmente – Definitionen und Unterschiede"
+                },
+                {
+                  "text": "∙ Zusammenhang zwischen Textilstruktur, Farbstoffstruktur und passendem Färbeverfahren"
+                },
+                {
+                  "text": "∙ ein beispielhaftes Textilfärbeverfahren"
+                },
+                {
+                  "text": "∙ zentrale Begriffe: Monomer, Polymer, Makromolekül"
+                },
+                {
+                  "text": "∙ Einteilung nach thermischem Verhalten: Thermoplaste, Duroplaste, Elastomere (jeweils mit typischen Vertretern)"
+                },
+                {
+                  "text": "∙ zwischenmolekulare Wechselwirkungen"
+                },
+                {
+                  "text": "∙ Einteilung nach Herstellungsverfahren1: Polymerisation, Polykondensation, Polyaddition (jeweils mit typischen Vertretern)"
+                },
+                {
+                  "text": "∙ Herstellung und Eigenschaften wichtiger Kunststoffe: (z. B. Polyethen, Polystyrol, Polyvinylchlorid, Polyamid, Polyester)"
+                },
+                {
+                  "text": "∙ Rohstoff- und Abfallproblematik"
+                },
+                {
+                  "text": "∙ Recyclingverfahren: werkstofflich, rohstofflich, energetisch"
+                },
+                {
+                  "text": "∙ Verstrecken von Kunststofffasern"
+                },
+                {
+                  "text": "∙ Polymerisationsgrad"
+                },
+                {
+                  "text": "∙ Grundlagen der Klebstoffchemie (zentral: Adhäsion und Kohäsion)"
+                },
+                {
+                  "text": "Fortführung der Tabelle »"
+                }
+              ]
+            },
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Schulinternes Fachcurriculum",
+              "learning_objectives": [
+                {
+                  "text": "∙ Grenzflächenaktive Stoffe: Wasch- und Reinigungsmittel und kosmetische Produkte"
+                },
+                {
+                  "text": "∙ Oberflächenaktivität und Grenzflächenaktivität"
+                },
+                {
+                  "text": "∙ Struktur und Eigenschaften von Tensiden und Emulgatoren"
+                },
+                {
+                  "text": "∙ Seife als typisches Beispiel einfacher Tenside"
+                },
+                {
+                  "text": "∙ anionische, kationische und nichtionische Tenside"
+                },
+                {
+                  "text": "∙ Mizellen als Struktureinheiten von Emulsionen"
+                },
+                {
+                  "text": "∙ Qualitätskriterien für Tenside und Emulgatoren (Struktur-Eigenschafts-Konzept)"
+                },
+                {
+                  "text": "∙ Zusammensetzung von Produkten im Hinblick auf unterschiedliche Funktionen ( z. B. Tages- und Nachtcreme;"
+                },
+                {
+                  "text": "Fein- und Vollwaschmittel)"
+                },
+                {
+                  "text": "∙ typische Inhaltsstoffe von Waschmitteln oder von kosmetischen Produkten"
+                },
+                {
+                  "text": "∙ kritische Betrachtung von Inhaltsstoffen (z. B. biologische Abbaubarkeit, gesundheitliche Aspekte)"
+                },
+                {
+                  "text": "∙ Struktur und Eigenschaft von Metallen (elektrische Leitfähigkeit, Wärmeleitfähigkeit, Glanz, Verformbarkeit)"
+                },
+                {
+                  "text": "∙ Abhängigkeit der Eigenschaften von der Partikelgröße (Nanotechnologie)"
+                },
+                {
+                  "text": "∙ Vorkommen der Metalle (Lagerstätten, Ressourcen)"
+                },
+                {
+                  "text": "∙ Gewinnung und Raffination von Metallen (z. B. Eisen, Aluminium, Kupfer, seltene Erden, Titan)"
+                },
+                {
+                  "text": "∙ Rückgewinnungsverfahren: Einsatz verwertbarer Abfall- und Altstoffe"
+                },
+                {
+                  "text": "∙ Kugelpackungen (hexagonal und kubisch dichteste Packung)"
+                },
+                {
+                  "text": "∙ Chemie und Medikamente"
+                },
+                {
+                  "text": "∙ exemplarische Betrachtung mindestens einer Arzneimittelgruppe: Forschung und Entwicklung, Herstellung und"
+                },
+                {
+                  "text": "Produktion, Vermarktung"
+                },
+                {
+                  "text": "∙ Giftigkeit von Arzneimitteln, Dosierung und Überdosierung"
+                },
+                {
+                  "text": "∙ Wirkort und Applikationsweg"
+                },
+                {
+                  "text": "∙ Medikamente auf Aromatenbasis"
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE 61"
+                },
+                {
+                  "text": "FFAACCHHAANNFFOORRDDEERRUUNNGGEENN CCHHEEMMIIEE SSEEKKUUNNDDAARRSSTTUUFFEE IIII"
+                }
+              ]
+            },
+            {
+              "title": "LLeeiissttuunnggssbbeewweerrttuunngg",
+              "learning_objectives": [
+                {
+                  "text": "Im Pflichtbereich werden auch Inhalte genannt, die nur dann berücksichtigt werden müssen, wenn sie in der Sekundar-"
+                },
+                {
+                  "text": "Im schulinternen Fachcurriculum dokumentiert die"
+                },
+                {
+                  "text": "I nicht behandelt wurden."
+                },
+                {
+                  "text": "Fachkonferenz ihre Vereinbarungen zur Gestaltung des"
+                }
+              ]
+            },
+            {
+              "title": "Die tiefgreifende Behandlung der zugrundeliegenden Mechanismen ist bei Unterricht auf grundlegendem",
+              "learning_objectives": [
+                {
+                  "text": "Chemieunterrichts an ihrer Schule. Die Weiterentwicklung"
+                },
+                {
+                  "text": "Niveau nicht vorgeschrieben, auf erhöhtem Anforderungsniveau müssen jedoch exemplarisch Mechanismen dis-"
+                },
+                {
+                  "text": "Fachcurriculums stellt eine ständige"
+                },
+                {
+                  "text": "Aufgabe der Fachkonferenz dar."
+                }
+              ]
+            },
+            {
+              "title": "Schulinternes Fachcurriculum",
+              "learning_objectives": [
+                {
+                  "text": "Für die Fachkonferenz Chemie ergeben sich die folgen-"
+                },
+                {
+                  "text": "Die Fachanforderungen geben mit verbindlich formu- den Aufgaben:"
+                },
+                {
+                  "text": "Grundsätzen für den Unterricht und verbindlichen ∙ Die Fachkonferenz entscheidet über die die Dauer, den"
+                },
+                {
+                  "text": "Kerninhalten einen Rahmen vor. Innerhalb der Rahmen- Umfang und die Gestaltung sowie die Verwendung von"
+                },
+                {
+                  "text": "Fachanforderungen besitzen die Schulen Kontexten der entsprechenden Sachgebiete der Einfüh-"
+                },
+                {
+                  "text": "Gestaltungsfreiheit bezüglich der Umsetzung der Lern-"
+                },
+                {
+                  "text": "Unterrichtsorganisation, der pädagogisch-didakti-"
+                },
+                {
+                  "text": "Konzepte wie auch der inhaltlichen Schwerpunkt-"
+                },
+                {
+                  "text": "∙ Die Sachgebiete der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Q",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FFAACCHHAANNFFOORRDDEERRUUNNGGEENN CCHHEEMMIIEE SSEEKKUUNNDDAARRSSTTUUFFEE IIII"
+                }
+              ]
+            },
+            {
+              "title": "LLeeiissttuunnggssbbeewweerrttuunngg",
+              "learning_objectives": [
+                {
+                  "text": "Medien, Lehr- und ∙ Anschaffungen und Einsatz von Experimentiergeräten und elektronischen Medien"
+                },
+                {
+                  "text": "Lernmaterial ∙ Einbindung von digitalen Medien in den Unterricht"
+                },
+                {
+                  "text": "Beurteilungsbereiche für das Fach Chemie"
+                },
+                {
+                  "text": "Leistungsbewertung ∙ Grundsätze zur Leistungsbewertung und zur Gestaltung von Leistungsnachweisen"
+                },
+                {
+                  "text": "Unterrichtsbeiträge"
+                },
+                {
+                  "text": "Überprüfung und ∙ regelmäßige Evaluation und Weiterentwicklung getroffener Verabredungen"
+                },
+                {
+                  "text": "Weiterentwicklung ∙ regelmäßige Absprachen über den FoUrtmb idldeumng usnbteedrsacrhf iedlichen Leistungsvermögen und den"
+                },
+                {
+                  "text": "Persönlichkeiten der Schülerinnen und"
+                }
+              ]
+            },
+            {
+              "title": "Leistungsbewertung Schüler gerecht zu werden, aber auch, um das gesamte",
+              "learning_objectives": [
+                {
+                  "text": "Spektrum der Leistungen angemessen berücksichtigen"
+                },
+                {
+                  "text": "Grundlage für eine Beurteilung sowie gegebenenfalls zu können, müssen im Bereich der Unterrichtsbeiträge"
+                },
+                {
+                  "text": "Leistungsbewertung sind die von der Lehrkraft be- Leistungsnachweise aus unterschiedlichen Feldern der"
+                },
+                {
+                  "text": "Schülerhandlungen. Beurteilen bedeutet die Unterrichtsarbeit herangezogen werden. Hierzu gehören"
+                },
+                {
+                  "text": "kritische, wertschätzende und individuelle Rückmeldung unter anderem:"
+                },
+                {
+                  "text": "Grundlage von kompetenzbasierten Kriterien. In"
+                },
+                {
+                  "text": "Sinne stehen im Unterricht die Diagnostik und Unterrichtsgespräch"
+                },
+                {
+                  "text": "Feedback unter Berücksichtigung des individuellen ∙ Teilnahme am Unterrichtsgespräch mit weiterführenden"
+                },
+                {
+                  "text": "Lernprozesses im Vordergrund. Eine Bewertung lässt sich Fragestellungen"
+                },
+                {
+                  "text": "Kriterien orientierten Beobachtung ablei- ∙ Formulierung von Hypothesen und Problemstellungen"
+                },
+                {
+                  "text": "Lernerfolgsüberprüfungen sollen Schülerinnen und ∙ Verwendung von Fachsprache und Modellen"
+                },
+                {
+                  "text": "Schülern Gelegenheit geben, erworbene Kompetenzen"
+                },
+                {
+                  "text": "Zusammenhängen unter Aufgaben und Experimente"
+                },
+                {
+                  "text": "Beweis zu stellen. ∙ Formulierung von Problemstellungen und Hypothesen"
+                },
+                {
+                  "text": "∙ Organisation, Bearbeitung und Durchführung"
+                },
+                {
+                  "text": "Grundsätzlich sind alle in Kapitel II.2 ausgewiesenen ∙ Formulierung von Vorgehensweisen, Beobachtungen,"
+                },
+                {
+                  "text": "Kompetenzbereiche (Fachwissen, Erkenntnisgewinnung, Ergebnissen"
+                },
+                {
+                  "text": "Kommunikation, Bewertung) bei der Leistungsbewer- ∙ Ziehen von Schlussfolgerungen und Ableiten von Regeln"
+                },
+                {
+                  "text": "berücksichtigen. Überprüfungsfor-"
+                },
+                {
+                  "text": "schriftlicher, mündlicher und praktischer Art sollen Dokumentation"
+                },
+                {
+                  "text": "sein, das Erreichen der dort ∙ Zusammenstellung von Materialsammlungen"
+                },
+                {
+                  "text": "aufgeführten Kompetenzerwartungen zu evaluieren. Lern- ∙ Verwendung von Fachsprache und Modellen"
+                },
+                {
+                  "text": "erfolgsüberprüfungen sollen Schülerinnen und Schülern ∙ den Anforderungen des Unterrichts entsprechende"
+                },
+                {
+                  "text": "Gelegenheit geben, erworbene Kompetenzen wiederholt Heftführung"
+                },
+                {
+                  "text": "Zusammenhängen unter Beweis zu ∙ geeignete Dokumentation von Versuchsergebnissen"
+                },
+                {
+                  "text": "∙ Erstellen von Lerntagebüchern und Portfolios"
+                },
+                {
+                  "text": "Für Lehrkräfte sind die Ergebnisse der begleitenden"
+                },
+                {
+                  "text": "Evaluation des Lernprozesses sowie des Kompetenz- Präsentation"
+                },
+                {
+                  "text": "Anlass, die Zielsetzungen und Methoden ihres ∙ mündliche und schriftliche Darstellung von Arbeits-"
+                },
+                {
+                  "text": "Unterrichts zu überprüfen. Schülerinnen und Schüler ergebnissen"
+                },
+                {
+                  "text": "Rückmeldungen zu ihrem Lernprozess und zu ∙ Kurzvorträge und Referate"
+                },
+                {
+                  "text": "Lernständen. Beide Rückmeldungen sind ∙ Verwendung von Fachsprache und Modellen"
+                },
+                {
+                  "text": "Hilfe für die Selbsteinschätzung. Die Rückmeldungen ∙ Präsentation von Wettbewerbsbeiträgen"
+                },
+                {
+                  "text": "müssen auch Hinweise für das weitere Lernen enthalten."
+                },
+                {
+                  "text": "Sie dienen damit der Lenkung und Unterstützung des Schriftliche Überprüfungen"
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE 63"
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Leistungsbewertung",
+              "learning_objectives": [
+                {
+                  "text": "∙ Tests, die eine Dauer von 20 min nicht überschreiten se in der Aufgabenstellung enthalten sein."
+                },
+                {
+                  "text": "dürfen und über rein reproduktive Anforderungen ∙ Folgende Arten von Aufgaben sind unter anderem"
+                },
+                {
+                  "text": "möglich: Bearbeitung eines Schüler- oder Lehrerexpe-"
+                },
+                {
+                  "text": "riments, das im Unterricht nicht behandelt wurde; Aus-"
+                },
+                {
+                  "text": "Die Lehrkraft initiiert, dass die Lernenden für Unterrichts- wertung von nicht im Unterricht behandeltem Material;"
+                },
+                {
+                  "text": "beiträge eine kriteriengeleitete Rückmeldung erhalten. theoretische Anwendung erworbener Qualifikationen"
+                },
+                {
+                  "text": "Die Lehrkraft gewährleistet die Transparenz der Kriterien. auf eine bisher nicht behandelte Problemstellung."
+                },
+                {
+                  "text": "Das kann eine gemeinsame Erarbeitung von Kriterien mit Aufgaben, deren Lösung ausschließlich die Aufsatzform"
+                },
+                {
+                  "text": "Lerngruppe einschließen. Die Bewertung liegt in der verlangt, sind nicht geeignet."
+                },
+                {
+                  "text": "Verantwortung der Lehrkraft. ∙ Die Klassenarbeit auf erhöhtem Anforderungsniveau soll"
+                },
+                {
+                  "text": "Sachgebiete beziehen."
+                },
+                {
+                  "text": "Da die Unterrichtsbeiträge bei der Leistungsbewertung ∙ Bei der Formulierung der Aufgaben sind die vorgegebe-"
+                },
+                {
+                  "text": "Ausschlag geben, muss die Gewichtung einzelner nen Operatoren zu verwenden."
+                },
+                {
+                  "text": "Arten von Unterrichtsbeiträgen innerhalb dieses Teilberei- ∙ Die Klassenarbeit muss auch Operatoren enthalten, die"
+                },
+                {
+                  "text": "Erläuterungen durch Texte in angemessenem Umfang"
+                },
+                {
+                  "text": "Leistungsnachweise ∙ In jeder Klassenarbeit müssen die drei Anforderungs-"
+                },
+                {
+                  "text": "Leistungsnachweise umfassen Klassenarbeiten und zu"
+                },
+                {
+                  "text": "Klassenarbeiten gleichwertige Leistungsnachweise. Tests Im schulinternen Fachcurriculum werden die hier genann-"
+                },
+                {
+                  "text": "Leistungsnachweise. ten Grundsätze für die Gestaltung von Klassenarbeiten"
+                },
+                {
+                  "text": "Grundsätze für die Erstellung von Klassenarbeiten"
+                },
+                {
+                  "text": "Eine Klassenarbeit muss so angelegt sein, dass sie eine Für Schülerinnen und Schüler, die im Fach Chemie"
+                },
+                {
+                  "text": "Vorbereitung auf die Abiturprüfung dar- eine schriftliche Abiturprüfung ablegen werden, sollen"
+                },
+                {
+                  "text": "Dies wird durch die Beachtung folgender Aspekte Klassenarbeiten im Verlauf der Oberstufe zunehmend"
+                },
+                {
+                  "text": "sichergestellt: auf die inhaltlichen und formalen Anforderungen des"
+                },
+                {
+                  "text": "∙ Gemäß den in diesen Fachanforderungen formulierten schriftlichen Teils in der Abiturprüfung vorbereiten. In der"
+                },
+                {
+                  "text": "Zielen ist bei Leistungsnachweisen in Form von Klassen-"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "E",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Leistungsbewertung",
+              "learning_objectives": [
+                {
+                  "text": "Bewertung von Klassenarbeiten"
+                },
+                {
+                  "text": "In der Oberstufe orientiert sich die Bewertung an den"
+                },
+                {
+                  "text": "Vorschriften, die für die Bewertung der Prüfungsarbeiten"
+                },
+                {
+                  "text": "Abitur gelten. In der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Die Abiturprüfung chemischen Verständnisses. Die Aufgaben beziehen sich",
+              "learning_objectives": [
+                {
+                  "text": "Fachanforderungen beschriebenen inhalts-"
+                },
+                {
+                  "text": "Für die Abiturprüfung gelten die Vorgaben der Kultus- bezogenen Kompetenzen unter angemessener Berück-"
+                },
+                {
+                  "text": "(KMK) nach Maßgabe dieser Bestim- sichtigung der prozessbezogenen Kompetenzbereiche,"
+                },
+                {
+                  "text": "Grundlage für die Abiturprüfung sind die in den so dass chemisches Arbeiten in der Oberstufe in seiner"
+                },
+                {
+                  "text": "Faches Naturwissenschaften (an Ge-"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Sek II",
+          "topics": [
+            {
+              "title": "Die Abiturprüfung",
+              "learning_objectives": [
+                {
+                  "text": "Kompetenzen bewertet. Jede Aufgabe muss so angelegt folgenden Schulhalbjahren erbracht wird, in das Abitur"
+                },
+                {
+                  "text": "sein, dass sie vom Anspruchsniveau her eine Bewertung einbringen. „Besondere Lernleistungen“ können sein:"
+                },
+                {
+                  "text": "Notenskala zulässt. ∙ eine Jahres- oder Seminararbeit,"
+                },
+                {
+                  "text": "∙ die Ergebnisse eines umfassenden, auch fachübergrei-"
+                },
+                {
+                  "text": "Bei der Bewertung sollen vor allem folgende Kriterien fenden Projektes oder Praktikums,"
+                },
+                {
+                  "text": "berücksichtigt werden: ∙ ein umfassender Beitrag aus einem von den Ländern"
+                },
+                {
+                  "text": "∙ Umfang und Qualität der nachgewiesenen chemischen geförderten Wettbewerb in Bereichen, die schulischen"
+                },
+                {
+                  "text": "Kompetenzen, Referenzfächern zugeordnet werden können."
+                },
+                {
+                  "text": "∙ sachgerechte Gliederung und folgerichtiger Aufbau der"
+                },
+                {
+                  "text": "Darstellung, Beherrschung der Fachsprache, Verständ- Eine solche „besondere Lernleistung“ ist schriftlich zu"
+                },
+                {
+                  "text": "Darlegungen, adäquater Einsatz der Präsen- dokumentieren, ihre Ergebnisse stellt die Schülerin oder"
+                },
+                {
+                  "text": "Fähigkeit, das Wesentliche heraus- der Schüler in einem Kolloquium dar, erläutert sie und"
+                },
+                {
+                  "text": "zustellen, antwortet auf Fragen."
+                },
+                {
+                  "text": "∙ Verständnis für chemische Probleme sowie die Fähigkeit,"
+                },
+                {
+                  "text": "Zusammenhänge zu erkennen und darzustellen, chemi-"
+                },
+                {
+                  "text": "Sachverhalte zu beurteilen, auf Fragen und Einwän-"
+                },
+                {
+                  "text": "Hilfen aufzugreifen,"
+                },
+                {
+                  "text": "∙ Kreativität, Reflexionsfähigkeit und Selbstständigkeit im"
+                },
+                {
+                  "text": "Prüfungsverlauf."
+                },
+                {
+                  "text": "Kommt ein Prüfling im Verlauf der mündlichen Prüfung"
+                },
+                {
+                  "text": "über die reine Reproduktion gelernten Wissens"
+                },
+                {
+                  "text": "hinaus, so kann die Note nicht besser als „ausreichend"
+                },
+                {
+                  "text": "Punkte)“ sein. Soll die Leistung mit „sehr gut“ beurteilt"
+                },
+                {
+                  "text": "werden, so muss dem Prüfungsgespräch ein eigenständi-"
+                },
+                {
+                  "text": "Vortrag vorausgehen. Im Vortrag oder im Verlauf des"
+                },
+                {
+                  "text": "Gesprächs müssen in diesem Fall dann auch Leistungen"
+                },
+                {
+                  "text": "Anforderungsbereich III erbracht werden."
+                },
+                {
+                  "text": "Die Präsentationsprüfung"
+                },
+                {
+                  "text": "Die Präsentationsprüfung muss aus dem Unterricht in"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Q",
+          "topics": [
+            {
+              "title": "FACHANFORDERUNGEN CHEMIE",
+              "learning_objectives": [
+                {
+                  "text": "/ ordnen Begriffe, Gegenstände etc. auf der Grundlage bestimmter Merkmale systematisch einteilen"
+                },
+                {
+                  "text": "/ angeben Elemente, Sachverhalte, Begriffe, Daten, Fakten ohne Erläuterung wiedergeben"
+                },
+                {
+                  "text": "Problem eine Experimentieranordnung finden und eine"
+                },
+                {
+                  "text": "Experimentieranleitung erstellen"
+                },
+                {
+                  "text": "Ablauf, Beobachtungen und Ergebnisse sowie ggf. Auswertung (Ergebnisprotokoll,"
+                },
+                {
+                  "text": "Verlaufsprotokoll) in fachtypischer Weise wiedergeben"
+                },
+                {
+                  "text": "Sachverhalte, Objekte, Strukturen oder Ergebnisse auf das Wesentliche reduzieren und"
+                },
+                {
+                  "text": "übersichtlich darstellen"
+                },
+                {
+                  "text": "Gegenstand, der an sich nicht eindeutig ist, nach kritischer Prüfung und"
+                },
+                {
+                  "text": "sorgfältiger Abwägung ein begründetes Urteil abgeben"
+                },
+                {
+                  "text": "Sachverhalte oder Aussagen an Fakten oder innerer Logik messen und ggf. Widersprüche"
+                },
+                {
+                  "text": "überprüfen / prüfen"
+                },
+                {
+                  "text": "Sachverhalte/Objekte erkunden, Merkmale und Zusammenhänge herausarbeiten"
+                },
+                {
+                  "text": "Sachverhalt eine erweiterte Aussage treffen"
+                },
+                {
+                  "text": "Gemeinsamkeiten und Unterschiede von Sachverhalten, Objekten, Lebewesen und"
+                },
+                {
+                  "text": "Vorgängen ermitteln"
+                },
+                {
+                  "text": "Darstellung beobachtbarer oder gegebener Strukturen anfertigen"
+                },
+                {
+                  "text": "Wesentliche in konzentrierter Form wiedergeben"
+                },
+                {
+                  "text": "FACHANFORDERUNGEN CHEMIE 69"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_url": "https://gymglinde.info/wp-content/uploads/2018/08/Fachanforderungen_Chemie_Sekundarstufen_I_II.pdf",
+      "last_checked": "2026-06-22"
+    }
+  ],
+  "last_updated": "2026-06-22",
+  "source_urls": [
+    "https://gymglinde.info/wp-content/uploads/2018/08/Fachanforderungen_Chemie_Sekundarstufen_I_II.pdf",
+    "https://fachportal.lernnetz.de/sh/faecher/chemie/fachanforderungen.html"
+  ]
+}
