@@ -1,19 +1,25 @@
-"""Saarland — Kernlehrplan Chemie (PDF-based, per-grade G9).
+"""Saarland — Kernlehrplan Chemie (PDF-based, per-grade G9 + Gemeinschaftsschule + GOS).
 
 IMPORTANT: The Saarland PDFs are behind BunnyCDN Shield (JS challenge).
 The standard requests/urllib approach returns 403. Playwright is used to
 bypass the CDN shield by running real JavaScript.
+
+NOTE on Saarland Chemie curriculum availability:
+  - Gymnasium G9: Chemie is taught from Klasse 8 onwards (not 5/6/7).
+    Separate Chemie curricula exist for Klasse 8 and Klasse 9.
+  - Gemeinschaftsschule: Naturwissenschaften (fächerübergreifend) for 5-8;
+    separate Chemie curriculum for Klassenstufen 9 und 10.
+  - GOS (gymnasiale Oberstufe): EP (Einführungsphase, two tracks),
+    Grundkurs (GK) and Leistungskurs (LK).
 
 Sources:
   G9 Klasse 8:
     https://www.saarland.de/SharedDocs/Downloads/DE/mbk/Lehrpl%C3%A4ne/...
   G9 Klasse 9:
     https://www.saarland.de/SharedDocs/Downloads/DE/mbk/Lehrpl%C3%A4ne/...
+  Gemeinschaftsschule Chemie 9/10:
+    https://www.saarland.de/SharedDocs/Downloads/DE/mbk/Lehrpl%C3%A4ne/...
   Portal: https://www.saarland.de/mbk/DE/portale/bildungsserver/...
-
-TODO:
-  - G9 Klasse 5/6, 7, 10 URLs not yet found.
-  - GOS (gymnasiale Oberstufe) and Gemeinschaftsschule URLs not yet found.
 """
 
 from __future__ import annotations
@@ -39,6 +45,7 @@ USER_AGENT = (
 )
 
 SCHOOL_PDFS: dict[str, str] = {
+    # Gymnasium G9 — Chemie ab Klasse 8 (kein separater Chemie-Lehrplan für 5/6/7)
     "Gymnasium G9 (Klasse 8)": (
         "https://www.saarland.de/SharedDocs/Downloads/DE/mbk/"
         "Lehrpl%C3%A4ne/Lehrplaene_Gymnasium_neunjaehriges_23/"
@@ -48,6 +55,42 @@ SCHOOL_PDFS: dict[str, str] = {
         "https://www.saarland.de/SharedDocs/Downloads/DE/mbk/"
         "Lehrpl%C3%A4ne/Lehrplaene_Gymnasium_neunjaehriges_23/"
         "Chemie/LP_gym9_CH_9_2025.pdf?__blob=publicationFile&v=1"
+    ),
+    "Gemeinschaftsschule (Klassen 9-10)": (
+        "https://www.saarland.de/SharedDocs/Downloads/DE/mbk/"
+        "Lehrpl%C3%A4ne/Lehrplaene_Gemeinschaftsschulen/"
+        "Naturwissenschaften/LP_Ch_GemS_9und10_2016.pdf"
+        "?__blob=publicationFile&v=1"
+    ),
+    "Gymnasiale Oberstufe EP (naturwiss.)": (
+        "https://www.saarland.de/SharedDocs/Downloads/DE/mbk/"
+        "Lehrpl%C3%A4ne/Lehrplaene_GOS_ab_2019_2020/"
+        "Chemie/EP_CH_nawi_2024.pdf?__blob=publicationFile&v=1"
+    ),
+    "Gymnasiale Oberstufe EP (sprachl.)": (
+        "https://www.saarland.de/SharedDocs/Downloads/DE/mbk/"
+        "Lehrpl%C3%A4ne/Lehrplaene_GOS_ab_2019_2020/"
+        "Chemie/EP_CH_sprachl_2024.pdf?__blob=publicationFile&v=1"
+    ),
+    "Gymnasiale Oberstufe GK (Abitur 2025-2026)": (
+        "https://www.saarland.de/SharedDocs/Downloads/DE/mbk/"
+        "Lehrpl%C3%A4ne/Lehrplaene_GOS_ab_2019_2020/"
+        "Chemie/LP_CH_GK_2023_2025_2026.pdf?__blob=publicationFile&v=1"
+    ),
+    "Gymnasiale Oberstufe LK (Abitur 2025-2026)": (
+        "https://www.saarland.de/SharedDocs/Downloads/DE/mbk/"
+        "Lehrpl%C3%A4ne/Lehrplaene_GOS_ab_2019_2020/"
+        "Chemie/LP_CH_LK_2023_2025_2026.pdf?__blob=publicationFile&v=1"
+    ),
+    "Gymnasiale Oberstufe GK (Abitur 2027+)": (
+        "https://www.saarland.de/SharedDocs/Downloads/DE/mbk/"
+        "Lehrpl%C3%A4ne/Lehrplaene_GOS_ab_2019_2020/"
+        "Chemie/LP_CH_GK_2023_2027.pdf?__blob=publicationFile&v=1"
+    ),
+    "Gymnasiale Oberstufe LK (Abitur 2027+)": (
+        "https://www.saarland.de/SharedDocs/Downloads/DE/mbk/"
+        "Lehrpl%C3%A4ne/Lehrplaene_GOS_ab_2019_2020/"
+        "Chemie/LP_CH_LK_2023_2027.pdf?__blob=publicationFile&v=1"
     ),
 }
 
