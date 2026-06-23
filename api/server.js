@@ -165,11 +165,23 @@ app.post('/api/chat', async (req, res) => {
     session.messages.push({ role: 'user', content: message });
     cleanupSessionMessages(session);
 
-    const systemPrompt = `Du bist ein hilfreicher Chemie-Assistent für Schüler (Klasse 8-13) auf chemie-lernen.org. 
-Antworte präzise, ausführlich und auf Deutsch. Beziehe dich auf chemische Konzepte, Formeln und Gesetze. 
-Erkläre Zusammenhänge gründlich, wenn es der Frage hilft. 
-Wenn du etwas nicht weißt, sage es ehrlich. 
-Behandle Kontext aus vorherigen Fragen mit.`;
+    // RAG: build curriculum context from Neo4j (or fallback)
+    var ragContext = await getRAGContext(message);
+    var ragSources = [];
+    if (ragContext) {
+      ragSources = extractSourceNames(ragContext);
+    }
+
+    var systemPrompt =
+      'Du bist ein hilfreicher Chemie-Assistent für Schüler (Klasse 8-13) auf chemie-lernen.org. ';
+    systemPrompt += 'Antworte präzise, ausführlich und auf Deutsch. ';
+    systemPrompt += 'Beziehe dich auf chemische Konzepte, Formeln und Gesetze. ';
+    systemPrompt += 'Erkläre Zusammenhänge gründlich, wenn es der Frage hilft. ';
+    systemPrompt += 'Wenn du etwas nicht weißt, sage es ehrlich. ';
+    systemPrompt += 'Behandle Kontext aus vorherigen Fragen mit.';
+    if (ragContext) {
+      systemPrompt += '\n\nKontext aus dem Wissensgraph:\n' + ragContext;
+    }
 
     const conversationHistory = [{ role: 'system', content: systemPrompt }, ...session.messages];
 
@@ -198,6 +210,7 @@ Behandle Kontext aus vorherigen Fragen mit.`;
       cleanupSessionMessages(session);
       res.json({
         reply,
+        sources: ragSources,
         remaining: rate.remaining,
         sessionId,
         messageCount: session.messages.length,
@@ -260,6 +273,7 @@ Behandle Kontext aus vorherigen Fragen mit.`;
       res.write(
         `data: ${JSON.stringify({
           done: true,
+          sources: ragSources,
           remaining: rate.remaining,
           sessionId,
           messageCount: session.messages.length + 1,
@@ -277,6 +291,7 @@ Behandle Kontext aus vorherigen Fragen mit.`;
           content: replyContent,
           fallback: true,
           done: true,
+          sources: ragSources,
           remaining: rate.remaining,
           sessionId,
           messageCount: session.messages.length + 1,
@@ -311,6 +326,388 @@ function getNeo4jDriver() {
     });
   }
   return neo4jDriver;
+}
+
+// ── RAG: Build curriculum context from Neo4j (fallback: static data) ────
+const STOP_WORDS = new Set([
+  'der',
+  'die',
+  'das',
+  'den',
+  'dem',
+  'des',
+  'ein',
+  'eine',
+  'einen',
+  'einem',
+  'eines',
+  'und',
+  'oder',
+  'aber',
+  'sondern',
+  'doch',
+  'denn',
+  'also',
+  'nicht',
+  'kein',
+  'keine',
+  'ist',
+  'sind',
+  'war',
+  'wird',
+  'werden',
+  'wurde',
+  'wurden',
+  'hat',
+  'haben',
+  'hast',
+  'mit',
+  'von',
+  'aus',
+  'bei',
+  'nach',
+  'zu',
+  'zur',
+  'zum',
+  'in',
+  'im',
+  'an',
+  'am',
+  'auf',
+  'für',
+  'gegen',
+  'durch',
+  'über',
+  'unter',
+  'neben',
+  'vor',
+  'hinter',
+  'zwischen',
+  'wie',
+  'als',
+  'was',
+  'wer',
+  'wen',
+  'wem',
+  'wessen',
+  'dass',
+  'weil',
+  'wenn',
+  'ob',
+  'the',
+  'a',
+  'an',
+  'is',
+  'are',
+  'was',
+  'were',
+  'been',
+  'have',
+  'has',
+  'had',
+  'do',
+  'does',
+  'did',
+  'will',
+  'would',
+  'can',
+  'could',
+  'may',
+  'might',
+  'shall',
+  'should',
+  'of',
+  'to',
+  'for',
+  'with',
+  'by',
+  'at',
+  'from',
+  'into',
+  'onto',
+  'upon',
+  'bitte',
+  'danke',
+  'gern',
+  'gerne',
+  'sehr',
+  'vielen',
+  'viel',
+  'was',
+  'wie',
+  'wo',
+  'wann',
+  'warum',
+  'weshalb',
+  'wieso',
+  'mir',
+  'mich',
+  'dir',
+  'dich',
+  'ihm',
+  'ihn',
+  'ihr',
+  'uns',
+  'euch',
+  'diese',
+  'dieser',
+  'dieses',
+  'jene',
+  'jener',
+  'jenes',
+  'solche',
+  'solcher',
+  'man',
+  'jemand',
+  'niemand',
+  'etwas',
+  'nichts',
+  'alle',
+  'jeder',
+  'jede',
+  'jedes',
+  'aber',
+  'auch',
+  'nur',
+  'noch',
+  'schon',
+  'erst',
+  'immer',
+  'wieder',
+  'nochmal',
+  'tut',
+  'tue',
+  'tust',
+  'tun',
+  'mach',
+  'mache',
+  'machst',
+  'machen',
+  'sagen',
+  'sag',
+  'sage',
+  'sagst',
+  'sagen',
+  'meinen',
+  'mein',
+  'meine',
+]);
+
+// Minimal LRU cache for RAG contexts (100 entries)
+const ragCache = new Map();
+const RAG_CACHE_MAX = 100;
+
+function getRAGContext(message) {
+  // Extract meaningful keywords
+  var tokens = message
+    .toLowerCase()
+    .replace(/[.,!?;:()"']/g, '')
+    .split(/\s+/);
+  var keywords = [];
+  for (var t = 0; t < tokens.length; t++) {
+    var tok = tokens[t].trim();
+    if (tok.length > 2 && !STOP_WORDS.has(tok)) {
+      keywords.push(tok);
+    }
+  }
+  // Deduplicate and limit
+  var uniqueKeywords = [];
+  var seen = {};
+  for (var k = 0; k < keywords.length; k++) {
+    if (!seen[keywords[k]]) {
+      seen[keywords[k]] = true;
+      uniqueKeywords.push(keywords[k]);
+    }
+  }
+  var limitedKeywords = uniqueKeywords.slice(0, 5);
+  if (limitedKeywords.length === 0) return null;
+
+  // Check cache
+  var cacheKey = limitedKeywords.join(',');
+  if (ragCache.has(cacheKey)) return ragCache.get(cacheKey);
+
+  // Try Neo4j first
+  try {
+    var driver = getNeo4jDriver();
+    if (driver) {
+      // We'll query Neo4j asynchronously, so we return a promise
+      return queryNeo4jRAG(limitedKeywords, cacheKey);
+    }
+  } catch {
+    // Neo4j unavailable, fall through to fallback
+  }
+
+  // Fallback: content-links.json + curricula
+  return getRAGContextFallback(limitedKeywords, cacheKey);
+}
+
+async function queryNeo4jRAG(keywords, cacheKey) {
+  try {
+    var driver = getNeo4jDriver();
+    var session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+    var result;
+    try {
+      result = await session.run(
+        'MATCH (e:Entity) WHERE ANY(kw IN $keywords WHERE e.name CONTAINS kw) ' +
+          'OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity) ' +
+          'RETURN e.name as name, e.kategorie as category, ' +
+          'e.state as state, e.grade as grade, ' +
+          'e.school_type as school_type, e.objective_count as objective_count, ' +
+          'collect(DISTINCT related.name) as relatedEntities ' +
+          'ORDER BY e.name ' +
+          'LIMIT 30',
+        { keywords: keywords }
+      );
+    } finally {
+      await session.close();
+    }
+
+    if (result.records.length === 0) {
+      var fallback = getRAGContextFallback(keywords, cacheKey);
+      if (cacheKey) ragCache.set(cacheKey, fallback);
+      return fallback;
+    }
+
+    var lines = [];
+    var seen = {};
+    for (var i = 0; i < result.records.length; i++) {
+      var rec = result.records[i];
+      var name = rec.get('name');
+      if (seen[name]) continue;
+      seen[name] = true;
+      var parts = ['- ' + name];
+      var cat = rec.get('category');
+      if (cat) parts.push('Kategorie: ' + cat);
+      var state = rec.get('state');
+      var grade = rec.get('grade');
+      var school = rec.get('school_type');
+      var objCount = rec.get('objective_count');
+      if (state)
+        parts.push(state + (grade ? ', Klasse ' + grade : '') + (school ? ', ' + school : ''));
+      if (objCount) parts.push(objCount.toNumber() + ' Lernziele');
+      var related = rec.get('relatedEntities') || [];
+      var filteredRelated = related.filter(function (n) {
+        return n !== null && n !== name;
+      });
+      if (filteredRelated.length > 0 && filteredRelated.length <= 5) {
+        parts.push('verwandt: ' + filteredRelated.join(', '));
+      }
+      lines.push(parts.join(' | '));
+    }
+
+    if (lines.length === 0) {
+      var fallback2 = getRAGContextFallback(keywords, cacheKey);
+      if (cacheKey) ragCache.set(cacheKey, fallback2);
+      return fallback2;
+    }
+
+    var context =
+      'Folgende Entitäten aus dem Chemie-Wissensgraph sind relevant:\n' + lines.join('\n');
+    if (ragCache.size >= RAG_CACHE_MAX) ragCache.clear();
+    if (cacheKey) ragCache.set(cacheKey, context);
+    return context;
+  } catch {
+    var f = getRAGContextFallback(keywords, cacheKey);
+    if (cacheKey) ragCache.set(cacheKey, f);
+    return f;
+  }
+}
+
+function getRAGContextFallback(keywords) {
+  try {
+    var fallback = getFallbackData();
+    var matches = [];
+    var seen = {};
+    // Search in curricula
+    for (var ci = 0; ci < fallback.curricula.length; ci++) {
+      var c = fallback.curricula[ci];
+      if (seen[c.name]) continue;
+      var nameLower = c.name.toLowerCase();
+      for (var kw = 0; kw < keywords.length; kw++) {
+        if (nameLower.indexOf(keywords[kw]) !== -1) {
+          seen[c.name] = true;
+          var parts = ['- ' + c.name + ' (Lehrplan)'];
+          if (c.curriculumMeta) {
+            parts.push(
+              c.curriculumMeta.state +
+                ', Klasse ' +
+                c.curriculumMeta.grade +
+                ', ' +
+                c.curriculumMeta.school_type
+            );
+            parts.push(c.curriculumMeta.objective_count + ' Lernziele');
+          }
+          matches.push(parts.join(' | '));
+          break;
+        }
+      }
+    }
+    // Search in entities
+    for (var ei = 0; ei < fallback.entities.length; ei++) {
+      var e = fallback.entities[ei];
+      if (e.category === 'lehrplan') continue;
+      if (seen[e.name]) continue;
+      var eNameLower = e.name.toLowerCase();
+      for (var kw2 = 0; kw2 < keywords.length; kw2++) {
+        if (eNameLower.indexOf(keywords[kw2]) !== -1) {
+          seen[e.name] = true;
+          var eparts = ['- ' + e.name + ' (' + (e.category || 'Entität') + ')'];
+          matches.push(eparts.join(' | '));
+          break;
+        }
+      }
+    }
+
+    if (matches.length === 0) return null;
+    var context = 'Folgende Entitäten aus dem Wissensgraph sind relevant:\n' + matches.join('\n');
+    return context;
+  } catch {
+    return null;
+  }
+}
+
+// Trim RAG cache periodically
+setInterval(function () {
+  if (ragCache.size > RAG_CACHE_MAX) {
+    ragCache.clear();
+  }
+}, 60000);
+
+/**
+ * Extract entity names from RAG context string for source chips in chat UI.
+ * Parses format: "- Name | Kategorie: category | State..."
+ */
+function extractSourceNames(contextStr) {
+  if (!contextStr) return [];
+  var lines = contextStr.split('\n');
+  var sources = [];
+  var seenNames = {};
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i];
+    if (line.indexOf('- ') === 0) {
+      var parts = line.slice(2).split(' | ');
+      if (parts.length > 0) {
+        var name = parts[0].trim();
+        if (name && !seenNames[name]) {
+          seenNames[name] = true;
+          var source = { name: name, nameDisplay: name.replace(/-/g, ' ') };
+          for (var p = 1; p < parts.length; p++) {
+            var part = parts[p].trim();
+            if (part.indexOf('Kategorie: ') === 0) {
+              source.category = part.slice('Kategorie: '.length);
+            } else if (part.indexOf('Klasse ') === 0) {
+              source.grade = part;
+            }
+          }
+          sources.push(source);
+        }
+      }
+    }
+  }
+  return sources;
 }
 
 /**
