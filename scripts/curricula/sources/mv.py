@@ -2,11 +2,13 @@
 
 Source:
   Gymnasium Sek I (Klassen 7-10):
-    https://www.regierung-mv.de/static/Regierungsportal/Ministerium%20f%C3%BCr%20Bildung,%20Wissenschaft%20und%20Kultur/Dateien/RP_CHE_AHR%207-10.pdf
+    https://www.regierung-mv.de/static/Regierungsportal/...
+  Gymnasium Sek II (Klassen 11-12):
+    https://www.bildung-mv.de/export/sites/bildungsserver/...
 
 TODO:
-  - Sek II URL (lehrer-mv.de) currently times out — needs alternative source.
   - Regionale Schule / Integrierte Gesamtschule URLs not yet found.
+  - Fachgymnasium/Abendgymnasium (FG/AG) URL available but not yet scraped.
 """
 
 from __future__ import annotations
@@ -29,6 +31,11 @@ SCHOOL_PDFS: dict[str, str] = {
         "https://www.regierung-mv.de/static/Regierungsportal/"
         "Ministerium%20f%C3%BCr%20Bildung,%20Wissenschaft%20und%20Kultur/"
         "Dateien/RP_CHE_AHR%207-10.pdf"
+    ),
+    "Gymnasium (Sek II, Klassen 11-12)": (
+        "https://www.bildung-mv.de/export/sites/bildungsserver/"
+        ".galleries/dokumente/unterricht/rahmenplaene/"
+        "RP_CHE_SEK2_erprobungsfassung.pdf"
     ),
 }
 
@@ -80,18 +87,28 @@ def _fetch_pdf_text(url: str) -> str | None:
 
 # ── Parser ─────────────────────────────────────────────────────────────────
 
+def _is_sek2(text: str) -> bool:
+    first_quarter = text[: len(text) // 4]
+    return "Qualifikationsphase" in first_quarter or "Einführungsphase" in first_quarter
+
+
 def _parse_pdf(text: str) -> list[GradeLevel]:
     """Parse MV Rahmenplan Chemie PDF into grade levels."""
     text = _normalize(text)
     grades: list[GradeLevel] = []
 
-    # MV Rahmenplan organized by Jahrgangsstufen 7-10 with Themenfelder
-    grade_patterns = [
-        (r"(Jahrgangsstufe\s*7)", "7"),
-        (r"(Jahrgangsstufe\s*8)", "8"),
-        (r"(Jahrgangsstufe\s*9)", "9"),
-        (r"(Jahrgangsstufe\s*10)", "10"),
-    ]
+    if _is_sek2(text):
+        topics = _extract_topics(text)
+        if topics:
+            grades.append(GradeLevel(grade="Sek II", topics=topics))
+        return grades
+    else:
+        grade_patterns = [
+            (r"(Jahrgangsstufe\s*7)", "7"),
+            (r"(Jahrgangsstufe\s*8)", "8"),
+            (r"(Jahrgangsstufe\s*9)", "9"),
+            (r"(Jahrgangsstufe\s*10)", "10"),
+        ]
 
     grade_positions: list[tuple[int, str]] = []
     for pattern, label in grade_patterns:
@@ -106,8 +123,13 @@ def _parse_pdf(text: str) -> list[GradeLevel]:
             grades.append(GradeLevel(grade="Sek I", topics=topics))
         return grades
 
-    for idx, (pos, label) in enumerate(grade_positions):
-        end = grade_positions[idx + 1][0] if idx + 1 < len(grade_positions) else len(text)
+    merged: list[tuple[int, str]] = [grade_positions[0]]
+    for pos, label in grade_positions[1:]:
+        if label != merged[-1][1] or pos - merged[-1][0] > 500:
+            merged.append((pos, label))
+
+    for idx, (pos, label) in enumerate(merged):
+        end = merged[idx + 1][0] if idx + 1 < len(merged) else len(text)
         section = text[pos:end]
         topics = _extract_topics(section)
         if topics:

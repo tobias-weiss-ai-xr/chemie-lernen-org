@@ -1,27 +1,32 @@
 """Saarland — Kernlehrplan Chemie (PDF-based, per-grade G9).
 
-NOTE: The Saarland PDF URLs are behind BunnyCDN and return 403.
-Investigation needed to find a working download mechanism.
+IMPORTANT: The Saarland PDFs are behind BunnyCDN Shield (JS challenge).
+The standard requests/urllib approach returns 403. Playwright is used to
+bypass the CDN shield by running real JavaScript.
 
 Sources:
-  G9 Klasse 8/9 (currently returning 403):
+  G9 Klasse 8:
+    https://www.saarland.de/SharedDocs/Downloads/DE/mbk/Lehrpl%C3%A4ne/...
+  G9 Klasse 9:
     https://www.saarland.de/SharedDocs/Downloads/DE/mbk/Lehrpl%C3%A4ne/...
   Portal: https://www.saarland.de/mbk/DE/portale/bildungsserver/...
 
 TODO:
-  - Find working PDF URLs (may need referer header, cookie, or different URL pattern).
   - G9 Klasse 5/6, 7, 10 URLs not yet found.
   - GOS (gymnasiale Oberstufe) and Gemeinschaftsschule URLs not yet found.
 """
 
 from __future__ import annotations
 
+import asyncio
 import io
+import os
 import re
+import shutil
 from datetime import date
 
-import requests
 import pdfplumber
+import requests
 
 from schema import LearningObjective, Topic, GradeLevel, SchoolTypeCurriculum, StateCurriculum
 
@@ -77,18 +82,87 @@ def _normalize(text: str) -> str:
 
 # ── PDF download ───────────────────────────────────────────────────────────
 
-def _fetch_pdf_text(url: str) -> str | None:
+def _fetch_pdf_with_requests(url: str) -> bytes | None:
+    """Try to download PDF via standard requests (may fail on BunnyCDN)."""
     try:
         session = requests.Session()
         session.headers.update({"User-Agent": USER_AGENT})
         resp = session.get(url, timeout=120)
         resp.raise_for_status()
-    except requests.RequestException as e:
-        print(f"    [warn] PDF download failed: {url} — {e}")
+        return resp.content
+    except requests.RequestException:
+        return None
+
+
+def _fetch_pdf_with_playwright(url: str) -> bytes | None:
+    """Download PDF via Playwright to bypass BunnyCDN Shield."""
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        print("    [warn] Playwright not installed — can't bypass BunnyCDN")
         return None
 
     try:
-        with pdfplumber.open(io.BytesIO(resp.content)) as pdf:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(
+                headless=True,
+                args=["--disable-blink-features=AutomationControlled",
+                      "--no-sandbox"],
+            )
+            context = browser.new_context(
+                user_agent=USER_AGENT,
+                viewport={"width": 1920, "height": 1080},
+                locale="de-DE",
+                accept_downloads=True,
+            )
+            page = context.new_page()
+            page.goto("about:blank")
+
+            download_result = [None]
+
+            def on_download(dl):
+                download_result[0] = dl
+
+            page.on("download", on_download)
+            page.evaluate(f"window.location.href = '{url}'")
+
+            for _ in range(60):
+                if download_result[0] is not None:
+                    break
+                page.wait_for_timeout(1000)
+
+            if download_result[0] is None:
+                print("    [warn] Playwright download timeout")
+                browser.close()
+                return None
+
+            path = download_result[0].path()
+            if path and os.path.exists(path):
+                with open(path, "rb") as f:
+                    data = f.read()
+                browser.close()
+                return data
+
+            browser.close()
+            return None
+    except Exception as e:
+        print(f"    [warn] Playwright download failed: {e}")
+        return None
+
+
+def _fetch_pdf_text_sync(url: str) -> str | None:
+    """Synchronous fetch — used when called from async context via thread pool."""
+    content = _fetch_pdf_with_requests(url)
+    if content is None:
+        print("     requests failed, trying Playwright...", end="", flush=True)
+        content = _fetch_pdf_with_playwright(url)
+        if content is None:
+            print(" FAILED")
+            return None
+        print(" OK")
+
+    try:
+        with pdfplumber.open(io.BytesIO(content)) as pdf:
             all_text: list[str] = []
             for page in pdf.pages:
                 text = page.extract_text()
@@ -98,6 +172,42 @@ def _fetch_pdf_text(url: str) -> str | None:
     except Exception as e:
         print(f"    [warn] PDF parsing failed: {url} — {e}")
         return None
+
+
+def _fetch_pdf_text(url: str) -> str | None:
+    """Download and extract text from a Saarland PDF.
+
+    Tries requests first (fast path), falls back to Playwright if 403/blocked.
+    Playwright sync API runs in a thread pool to avoid async loop conflicts.
+    """
+    content = _fetch_pdf_with_requests(url)
+    if content is not None:
+        try:
+            with pdfplumber.open(io.BytesIO(content)) as pdf:
+                all_text: list[str] = []
+                for page in pdf.pages:
+                    text = page.extract_text()
+                    if text:
+                        all_text.append(text)
+            return "\n".join(all_text)
+        except Exception as e:
+            print(f"    [warn] PDF parsing failed: {url} — {e}")
+            return None
+
+    print("     requests failed, trying Playwright in thread...", end="", flush=True)
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor() as pool:
+        future = pool.submit(_fetch_pdf_text_sync, url)
+        try:
+            result = future.result(timeout=180)
+            if result is not None:
+                print(" OK")
+            else:
+                print(" FAILED")
+            return result
+        except Exception as e:
+            print(f" FAILED ({e})")
+            return None
 
 
 # ── Parser ─────────────────────────────────────────────────────────────────
@@ -117,12 +227,22 @@ def _parse_pdf(text: str, grade_label: str) -> list[GradeLevel]:
 
 
 def _extract_topics(text: str) -> list[Topic]:
-    """Extract topics (Themenfelder) and learning objectives."""
+    """Extract topics (Module from Themenfelder) and learning objectives.
+
+    SL PDFs use format:
+      A 1 Experimentieren, aber sicher!
+        Die Schülerinnen und Schüler
+        • bullet-point objectives
+
+    Module headings are letter+number+title (e.g. "A 1 Experimentieren, aber sicher!").
+    """
     topics: list[Topic] = []
     lines = text.split("\n")
 
     current_title: str | None = None
     current_objectives: list[str] = []
+
+    module_pat = re.compile(r"^\s*([A-Z])\s+(\d+)\s+(.{5,})")
 
     for line in lines:
         line = _clean(line)
@@ -132,20 +252,31 @@ def _extract_topics(text: str) -> list[Topic]:
             continue
         if re.match(r"^\d+$", line):
             continue
+        if "FACHANFORDERUNGEN" in line and "CHEMIE" in line:
+            continue
+        if "Saarland" in line and ("Ministerium" in line or "Lehrplan" in line):
+            continue
 
-        m = re.match(r"^\s*(\d+)\s+(.{5,})", line)
-        if m and len(m.group(2)) > 5 and not re.match(r"^\d", m.group(2)[0]):
+        m = module_pat.match(line)
+        if m:
             if current_title and current_objectives:
                 los = [LearningObjective(text=o) for o in current_objectives]
                 topics.append(Topic(title=current_title, learning_objectives=los))
-            current_title = _clean(m.group(2))
+            full_title = f"{m.group(1)}{m.group(2)} {m.group(3)}"
+            current_title = _clean(full_title)
             current_objectives = []
             continue
 
         if current_title:
-            cleaned = re.sub(r"^[\s•–\- \d.()a-z)]+\s+", "", line).strip()
+            cleaned = re.sub(
+                r"^[\s•–\- ✦\d.()a-z)]+\s+", "", line
+            ).strip()
             if cleaned and len(cleaned) > 15:
-                current_objectives.append(cleaned)
+                if not re.match(
+                    r"^(Kompetenzerwartungen|Vorschläge|Hinweise|Basisbegriffe)",
+                    cleaned,
+                ):
+                    current_objectives.append(cleaned)
 
     if current_title and current_objectives:
         los = [LearningObjective(text=o) for o in current_objectives]

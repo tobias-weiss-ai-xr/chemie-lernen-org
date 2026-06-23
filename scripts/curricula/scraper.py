@@ -21,6 +21,7 @@ from pathlib import Path
 from diff import load_checksums, save_checksums, compute_checksum
 from schema import StateCurriculum, write_curriculum, write_index
 from sources import REGISTRY, STATE_META
+from validate import validate_curriculum, print_validation
 
 # Default output directory — Hugo's data/curricula/
 DEFAULT_OUTPUT = Path(__file__).resolve().parents[2] / "myhugoapp" / "data" / "curricula"
@@ -79,6 +80,12 @@ async def scrape_state(
     if curriculum is None:
         print(" skipped (source unavailable)")
         return None
+
+    # Quality gate
+    validation_warnings = validate_curriculum(curriculum, state_key)
+    if validation_warnings:
+        print()
+        print_validation(validation_warnings)
 
     # Compute checksum from the output JSON for change detection
     content = json.dumps(curriculum.to_dict(), ensure_ascii=False)

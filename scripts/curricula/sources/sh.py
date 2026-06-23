@@ -82,51 +82,64 @@ def _fetch_pdf_text(url: str) -> str | None:
 # ── Parser ─────────────────────────────────────────────────────────────────
 
 def _parse_pdf(text: str) -> list[GradeLevel]:
-    """Parse SH Fachanforderungen Chemie into grade levels."""
+    """Parse SH Fachanforderungen Chemie into grade levels.
+
+    The PDF has two main sections: Sek I (pages 11-28) and Sek II (pages 29-69).
+    Split at the first UPPERCASE 'SEKUNDARSTUFE II' occurrence which marks the
+    page-29 boundary (not running-text mentions of 'Sekundarstufe II').
+    """
     text = _normalize(text)
     grades: list[GradeLevel] = []
 
-    # Fachanforderungen cover Sek I (5-10) and Sek II (11-12/13)
-    grade_patterns = [
-        (r"(Sekundarstufe\s+I)", "Sek I"),
-        (r"(Sekundarstufe\s+II)", "Sek II"),
-        (r"(Jahrgangsstufe\s*5[/-]?\s*6|Doppeljahrgang\s*5/6)", "5/6"),
-        (r"(Jahrgangsstufe\s*7[/-]?\s*8|Doppeljahrgang\s*7/8)", "7/8"),
-        (r"(Jahrgangsstufe\s*9[/-]?\s*10|Doppeljahrgang\s*9/10)", "9/10"),
-        (r"(Einführungsphase)", "E"),
-        (r"(Qualifikationsphase)", "Q"),
-    ]
+    sek2_marker = "SEKUNDARSTUFE II"
+    sek2_pos = text.find(sek2_marker)
 
-    grade_positions: list[tuple[int, str]] = []
-    for pattern, label in grade_patterns:
-        for m in re.finditer(pattern, text, re.IGNORECASE):
-            grade_positions.append((m.start(), label))
-
-    grade_positions.sort()
-
-    if not grade_positions:
+    if sek2_pos == -1:
         topics = _extract_topics(text)
         if topics:
             grades.append(GradeLevel(grade="Sek I + II", topics=topics))
         return grades
 
-    for idx, (pos, label) in enumerate(grade_positions):
-        end = grade_positions[idx + 1][0] if idx + 1 < len(grade_positions) else len(text)
-        section = text[pos:end]
-        topics = _extract_topics(section)
-        if topics:
-            grades.append(GradeLevel(grade=label, topics=topics))
+    sek1_text = text[:sek2_pos]
+    sek2_text = text[sek2_pos:]
+
+    topics = _extract_topics(sek1_text)
+    if topics:
+        grades.append(GradeLevel(grade="Sek I", topics=topics))
+
+    topics = _extract_topics_sek2(sek2_text)
+    if topics:
+        grades.append(GradeLevel(grade="Sek II", topics=topics))
 
     return grades
 
 
 def _extract_topics(text: str) -> list[Topic]:
-    """Extract topics and learning objectives."""
+    """Extract topics and learning objectives.
+
+    SH Fachanforderungen use a competency-based format without numbered
+    chemistry topic headings. If no numbered topics are found, collect
+    meaningful content lines as a single combined topic.
+    """
     topics: list[Topic] = []
     lines = text.split("\n")
 
     current_title: str | None = None
     current_objectives: list[str] = []
+
+    skip_heading_kw = [
+        "Sekundarstufe", "Fachanforderung", "Kompetenzbereich",
+        "Kompetenzerwartung", "Jahrgangsstufe", "Doppeljahrgang",
+        "Einführungsphase", "Qualifikationsphase",
+        "Das Fach Chemie in der", "Inhalte des Unterrichts",
+        "Schulinternes Fachcurriculum", "Leistungsbewertung",
+        "Abiturprüfung", "Allgemeiner Teil",
+        "Geltungsbereich", "Lernen und Unterricht",
+        "Der Beitrag", "Beitrag der",
+        "Zielsetzung", "Überblick",
+    ]
+
+    collected: list[str] = []
 
     for line in lines:
         line = _clean(line)
@@ -139,10 +152,18 @@ def _extract_topics(text: str) -> list[Topic]:
 
         m = re.match(r"^\s*(\d+)\s+(.{5,})", line)
         if m and len(m.group(2)) > 5 and not re.match(r"^\d", m.group(2)[0]):
+            cleaned_title = _clean(m.group(2))
+            if any(kw.lower() in cleaned_title.lower() for kw in skip_heading_kw):
+                if current_title and current_objectives:
+                    los = [LearningObjective(text=o) for o in current_objectives]
+                    topics.append(Topic(title=current_title, learning_objectives=los))
+                current_title = None
+                current_objectives = []
+                continue
             if current_title and current_objectives:
                 los = [LearningObjective(text=o) for o in current_objectives]
                 topics.append(Topic(title=current_title, learning_objectives=los))
-            current_title = _clean(m.group(2))
+            current_title = cleaned_title
             current_objectives = []
             continue
 
@@ -150,10 +171,72 @@ def _extract_topics(text: str) -> list[Topic]:
             cleaned = re.sub(r"^[\s•–\- \d.()a-z)]+\s+", "", line).strip()
             if cleaned and len(cleaned) > 15:
                 current_objectives.append(cleaned)
+        else:
+            if line and len(line) > 20:
+                cleaned = re.sub(r"^[\s•–\- \d.()a-z)]+\s+", "", line).strip()
+                if cleaned and len(cleaned) > 20:
+                    collected.append(cleaned)
 
     if current_title and current_objectives:
         los = [LearningObjective(text=o) for o in current_objectives]
         topics.append(Topic(title=current_title, learning_objectives=los))
+
+    if not topics and collected:
+        topics.append(Topic(
+            title="Chemie (Kompetenzbereiche)",
+            learning_objectives=[LearningObjective(text=t) for t in collected],
+        ))
+
+    return topics
+
+
+_SACHGEBIET_RE = re.compile(
+    r'Sachgebiet\s*[„"“ʺ]\s*([^„"“ʺ]+?)\s*[„"“ʺ]',
+    re.IGNORECASE,
+)
+
+
+def _extract_topics_sek2(text: str) -> list[Topic]:
+    """Extract Sek II topics using Sachgebiet headings."""
+    topics: list[Topic] = []
+    matches = list(_SACHGEBIET_RE.finditer(text))
+
+    if not matches:
+        return _extract_topics(text)
+
+    for idx, m in enumerate(matches):
+        title = _clean(m.group(1))
+        if not title or len(title) < 5:
+            continue
+
+        content_start = m.end()
+        content_end = matches[idx + 1].start() if idx + 1 < len(matches) else len(text)
+
+        section = text[content_start:content_end]
+        objectives: list[str] = []
+        for line in section.split("\n"):
+            line = _clean(line)
+            if not line or len(line) < 8:
+                continue
+            if any(kw in line for kw in [
+                "Sachgebiet", "Verbindliche Inhalte", "Erläuterung",
+                "FACHANFORDERUNGEN", "Kompetenzbereich", "Kompetenzerwartung",
+                "Die Schülerinnen und Schüler",
+            ]):
+                continue
+            if re.match(r"^[\d\s\-–—]+$", line):
+                continue
+
+            cleaned = line.lstrip("•■□–-∙  	")
+            cleaned = re.sub(r"\s+", " ", cleaned).strip()
+            if cleaned and len(cleaned) > 10:
+                objectives.append(cleaned)
+
+        if objectives:
+            topics.append(Topic(
+                title=title,
+                learning_objectives=[LearningObjective(text=t) for t in objectives],
+            ))
 
     return topics
 
