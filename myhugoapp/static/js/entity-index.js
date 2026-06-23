@@ -61,6 +61,7 @@
       methode: 'Methode',
       person: 'Person',
       quelle: 'Quelle',
+      lehrplan: 'Lehrplan',
     };
     var catColors = {
       stoff: '#667eea',
@@ -69,6 +70,7 @@
       methode: '#f093fb',
       person: '#ff9a76',
       quelle: '#a8a8a8',
+      lehrplan: '#9b59b6',
     };
 
     var catCounts = {};
@@ -123,32 +125,47 @@
     }
 
     function getTooltipHtml(e) {
-      var art = (e.articles || []).slice(0, 5);
-      var total = (e.articleCount && e.articleCount.low) || e.articles.length;
       var h = '<strong>' + escapeHtml(e.name) + '</strong>';
       h +=
-        '<br><span style="font-size:0.72rem;color:#667eea;">' +
+        '<br><span style="font-size:0.72rem;color:#9b59b6;">' +
         (catLabels[e.category] || e.category) +
         '</span>';
-      h +=
-        '<br><span style="font-size:0.78rem;">' +
-        (e.relatedEntities || []).length +
-        ' verwandte Begriffe · ' +
-        total +
-        ' Artikel</span>';
-      if (art.length > 0) {
+
+      if (e.category === 'lehrplan' && e.curriculumMeta) {
+        var cm = e.curriculumMeta;
         h +=
-          '<hr style="margin:0.4rem 0;border:none;border-top:1px solid var(--border-color,#eee);">';
-        h += '<div style="font-size:0.72rem;">';
-        art.forEach(function (a) {
+          '<br><span style="font-size:0.78rem;">' +
+          escapeHtml(cm.state_name || cm.state || '') +
+          ', ' +
+          escapeHtml(cm.school_type || '') +
+          ' · Klasse ' +
+          escapeHtml(cm.grade || '') +
+          '</span>';
+        h +=
+          '<br><span style="font-size:0.78rem;">' + (cm.objective_count || 0) + ' Lernziele</span>';
+      } else {
+        var art = (e.articles || []).slice(0, 5);
+        var total = (e.articleCount && e.articleCount.low) || e.articles.length;
+        h +=
+          '<br><span style="font-size:0.78rem;">' +
+          (e.relatedEntities || []).length +
+          ' verwandte Begriffe · ' +
+          total +
+          ' Artikel</span>';
+        if (art.length > 0) {
           h +=
-            '<div style="padding:0.1rem 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">• ' +
-            escapeHtml(a) +
-            '</div>';
-        });
-        if (art.length < total)
-          h += '<div style="color:#667eea;">+' + (total - art.length) + ' weitere</div>';
-        h += '</div>';
+            '<hr style="margin:0.4rem 0;border:none;border-top:1px solid var(--border-color,#eee);">';
+          h += '<div style="font-size:0.72rem;">';
+          art.forEach(function (a) {
+            h +=
+              '<div style="padding:0.1rem 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">• ' +
+              escapeHtml(a) +
+              '</div>';
+          });
+          if (art.length < total)
+            h += '<div style="color:#667eea;">+' + (total - art.length) + ' weitere</div>';
+          h += '</div>';
+        }
       }
       return h;
     }
@@ -281,8 +298,11 @@
             var _compCount = (e.components || []).length;
             var artCount = (e.articleCount && e.articleCount.low) || e.articles.length || 0;
             var slug = toSlug(e.name);
+            var isCurriculum = cat === 'lehrplan';
             html +=
-              '<div class="entity-card" data-cat="' +
+              '<div class="entity-card' +
+              (isCurriculum ? ' entity-card-curriculum' : '') +
+              '" data-cat="' +
               cat +
               '" data-slug="' +
               slug +
@@ -297,12 +317,28 @@
               '</a></div>';
             html +=
               '<span class="entity-card-cat">' + escapeHtml(catLabels[cat] || cat) + '</span>';
-            html +=
-              '<div class="entity-card-meta">' +
-              relatedCount +
-              ' verwandte Begriffe · ' +
-              artCount +
-              ' Artikel</div>';
+
+            if (isCurriculum && e.curriculumMeta) {
+              var cm = e.curriculumMeta;
+              html +=
+                '<div class="entity-card-curriculum-meta">' +
+                escapeHtml(cm.state_name || cm.state || '') +
+                ', ' +
+                escapeHtml(cm.school_type || '') +
+                ' · Klasse ' +
+                escapeHtml(cm.grade || '') +
+                '</div>';
+              html +=
+                '<div class="entity-card-meta">' + (cm.objective_count || 0) + ' Lernziele</div>';
+            } else {
+              html +=
+                '<div class="entity-card-meta">' +
+                relatedCount +
+                ' verwandte Begriffe · ' +
+                artCount +
+                ' Artikel</div>';
+            }
+
             if (e.components && e.components.length > 0) {
               html +=
                 '<div class="entity-card-components"><strong>Besteht aus:</strong> ' +
@@ -310,7 +346,7 @@
                 (e.components.length > 5 ? ' +' + (e.components.length - 5) : '') +
                 '</div>';
             }
-            if (e.relatedEntities && e.relatedEntities.length > 0) {
+            if (e.relatedEntities && e.relatedEntities.length > 0 && !isCurriculum) {
               html += '<div class="entity-card-related">';
               e.relatedEntities.slice(0, 6).forEach(function (r) {
                 html += '<span class="entity-related-tag">' + escapeHtml(r.name) + '</span>';

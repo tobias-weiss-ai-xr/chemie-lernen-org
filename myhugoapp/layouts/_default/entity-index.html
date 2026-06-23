@@ -92,6 +92,10 @@
 .entity-card[data-cat="methode"]::before { background: #f093fb; }
 .entity-card[data-cat="person"]::before { background: #ff9a76; }
 .entity-card[data-cat="quelle"]::before { background: #a8a8a8; }
+.entity-card[data-cat="lehrplan"]::before { background: #9b59b6; }
+.entity-card[data-cat="lehrplan"] .entity-card-cat {
+  background: rgba(155,89,182,0.12); color: #9b59b6;
+}
 
 .entity-card-name {
   font-size: 1.15rem; font-weight: 600; margin: 0 0 0.4rem 0;
@@ -116,6 +120,13 @@
 
 .entity-card-meta {
   font-size: 0.82rem; color: var(--text-muted, #888); margin-bottom: 0.5rem;
+}
+
+.entity-card-curriculum-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted, #888);
+  margin-top: 2px;
+  line-height: 1.3;
 }
 
 .entity-card-components {
