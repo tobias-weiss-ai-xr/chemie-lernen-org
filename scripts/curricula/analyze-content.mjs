@@ -21,8 +21,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '../..');
 const DATA_DIR = path.join(ROOT, 'myhugoapp/data/curricula');
 const CONTENT_DIR = path.join(ROOT, 'myhugoapp/content');
-const LAYOUTS_DIR = path.join(ROOT, 'myhugoapp/layouts/_default');
-
 // --- Hilfsfunktionen ---
 
 function loadJSON(relPath) {
@@ -33,7 +31,7 @@ function loadJSON(relPath) {
 
 function hasGarbage(text) {
   if (!text || text.length < 3) return true;
-  if (/[󰆃󰆂]/.test(text)) return true;
+  if (/[\uF0B7]/.test(text)) return true;
   if (/Schüler/.test(text) || /Bildungsstandards/.test(text)) return true;
   if (/Lernbereich \d/.test(text)) return true;
   if (/ca\. \d+ Std/.test(text)) return true;
@@ -60,12 +58,15 @@ const topics = contentLinks ? Object.keys(contentLinks) : [];
 
 // --- 2. Curriculum-JSONs laden (alle States) ---
 
-const curriculumFiles = fs.readdirSync(DATA_DIR).filter(f => /^[a-z]{2}\.json$/.test(f));
+const curriculumFiles = fs.readdirSync(DATA_DIR).filter((f) => /^[a-z]{2}\.json$/.test(f));
 const allTopics = []; // {name, state, school_type, grade, isGarbage}
 
 for (const file of curriculumFiles) {
   const stateData = JSON.parse(fs.readFileSync(path.join(DATA_DIR, file), 'utf8'));
-  const state = stateData.state_abbr || stateData.state?.slice(0, 2).toUpperCase() || file.slice(0, 2).toUpperCase();
+  const state =
+    stateData.state_abbr ||
+    stateData.state?.slice(0, 2).toUpperCase() ||
+    file.slice(0, 2).toUpperCase();
   if (!stateData.school_curricula) continue;
 
   for (const sc of stateData.school_curricula) {
@@ -106,26 +107,31 @@ function scanContent(dir, depth = 0) {
           title: titleMatch ? titleMatch[1] : path.basename(entry.name, '.md'),
           description: descMatch ? descMatch[1] : '',
           teilgebiet: teilgebietMatch ? teilgebietMatch[1].trim() : '',
-          url: '/' + path.relative(CONTENT_DIR, fullPath).replace(/\/?index\.md$/, '/').replace(/\.md$/, '/'),
+          url:
+            '/' +
+            path
+              .relative(CONTENT_DIR, fullPath)
+              .replace(/\/?index\.md$/, '/')
+              .replace(/\.md$/, '/'),
         });
       }
     }
-  } catch {}
+  } catch {
+    /* ignore directory errors */
+  }
 }
 scanContent(CONTENT_DIR);
 
 // --- 4. Gap-Analyse ---
 
-const cleanTopics = allTopics.filter(t => !t.isGarbage);
-const garbageTopics = allTopics.filter(t => t.isGarbage);
+const cleanTopics = allTopics.filter((t) => !t.isGarbage);
+const garbageTopics = allTopics.filter((t) => t.isGarbage);
 
 // Topics with links
-const linkedTopics = new Set(
-  topics.filter(t => !hasGarbage(t)).map(t => normalizeName(t))
-);
+const linkedTopics = new Set(topics.filter((t) => !hasGarbage(t)).map((t) => normalizeName(t)));
 
 // Clean topics without links
-const noLinkTopics = cleanTopics.filter(t => {
+const noLinkTopics = cleanTopics.filter((t) => {
   const norm = normalizeName(t.name);
   return !linkedTopics.has(norm);
 });
@@ -170,7 +176,7 @@ const gapReport = {
     linkedTopicsPct: Math.round((linkedTopics.size / cleanTopics.length) * 100),
   },
   coverageByState: stateCoverage,
-  thinTopics: noLinkTopics.slice(0, 100).map(t => ({
+  thinTopics: noLinkTopics.slice(0, 100).map((t) => ({
     name: t.name,
     state: t.state,
     school_type: t.school_type,
@@ -186,7 +192,7 @@ const gapReport = {
       .map(([tg, arts]) => `Themenbereich "${tg}" hat nur ${arts.length} Artikel — ausbauen`),
   ],
   gapTopics: noLinkTopics
-    .filter(t => t.grade !== undefined)
+    .filter((t) => t.grade !== undefined)
     .reduce((acc, t) => {
       const key = `${t.state}-${t.grade}`;
       if (!acc[key]) acc[key] = { state: t.state, grade: t.grade, count: 0 };

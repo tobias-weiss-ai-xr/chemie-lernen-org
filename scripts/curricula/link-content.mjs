@@ -12,9 +12,10 @@
  *   node scripts/curricula/link-content.mjs --out ../path
  */
 
-import { readFileSync, readdirSync, statSync, existsSync, writeFileSync, mkdirSync } from 'fs';
+import { readFileSync, readdirSync, statSync, existsSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -25,24 +26,87 @@ const DEFAULT_OUTPUT = join(CURRICULA_DIR, 'content-links.json');
 const CACHE_DIR = join(ROOT, '.omo', 'evidence');
 
 const STOPWORDS = new Set([
-  'und', 'die', 'der', 'das', 'von', 'mit', 'fuer', 'auf', 'bei', 'aus',
-  'durch', 'nach', 'dem', 'den', 'des', 'ein', 'eine', 'einer', 'eines',
-  'nicht', 'sich', 'auch', 'als', 'im', 'am', 'um', 'zum', 'zur',
-  'oder', 'in', 'an', 'zu', 'ist', 'werden', 'wird', 'sind',
-  'ueber', 'vor', 'bis', 'haben', 'hat', 'ihre', 'sein', 'kein',
-  'uebungen', 'aufgaben', 'rechner', 'grundlagen', 'verstehen',
+  'und',
+  'die',
+  'der',
+  'das',
+  'von',
+  'mit',
+  'fuer',
+  'auf',
+  'bei',
+  'aus',
+  'durch',
+  'nach',
+  'dem',
+  'den',
+  'des',
+  'ein',
+  'eine',
+  'einer',
+  'eines',
+  'nicht',
+  'sich',
+  'auch',
+  'als',
+  'im',
+  'am',
+  'um',
+  'zum',
+  'zur',
+  'oder',
+  'in',
+  'an',
+  'zu',
+  'ist',
+  'werden',
+  'wird',
+  'sind',
+  'ueber',
+  'vor',
+  'bis',
+  'haben',
+  'hat',
+  'ihre',
+  'sein',
+  'kein',
+  'uebungen',
+  'aufgaben',
+  'rechner',
+  'grundlagen',
+  'verstehen',
 ]);
 
 // Single-word stop tokens that should never match as substrings
 // These are too generic and cause false positives
-const STOP_TOKENS = new Set(['rechner', 'grundlagen', 'verstehen', 'berechnen',
-  'interaktiv', 'uebungen', 'aufgaben', 'aufgabe', 'lernen', 'erklaerung',
-  'chemie', 'organische', 'anorganische', 'wichtig', 'verschiedene', 'verschieden']);
+const STOP_TOKENS = new Set([
+  'rechner',
+  'grundlagen',
+  'verstehen',
+  'berechnen',
+  'interaktiv',
+  'uebungen',
+  'aufgaben',
+  'aufgabe',
+  'lernen',
+  'erklaerung',
+  'chemie',
+  'organische',
+  'anorganische',
+  'wichtig',
+  'verschiedene',
+  'verschieden',
+]);
 
 // Pages to exclude from matching (non-chemistry content)
 const SKIP_PAGES = new Set([
-  'dashboard.md', 'datenschutz.md', 'impressum.md', 'der-hackprozess.md',
-  'pwa-offline.md', 'unterstuetzen.md', 'fortschritt.md',
+  'dashboard.md',
+  'datenschutz.md',
+  'impressum.md',
+  'der-hackprozess.md',
+  'pwa-offline.md',
+  'unterstuetzen.md',
+  'fortschritt.md',
 ]);
 
 function parseFrontmatter(text) {
@@ -61,24 +125,34 @@ function parseFrontmatter(text) {
     if (value.startsWith("'") && value.endsWith("'")) value = value.slice(1, -1);
     if (value.startsWith('"') && value.endsWith('"')) value = value.slice(1, -1);
     if (value.startsWith('[') && value.endsWith(']')) {
-      const arr = value.slice(1, -1).split(',').map(s => s.trim().replace(/['"]/g, ''));
+      const arr = value
+        .slice(1, -1)
+        .split(',')
+        .map((s) => s.trim().replace(/['"]/g, ''));
       meta[key] = arr;
-    } else { meta[key] = value; }
+    } else {
+      meta[key] = value;
+    }
   }
   return meta;
 }
 
 function tokenize(text) {
-  const words = (text || '').toLowerCase()
+  const words = (text || '')
+    .toLowerCase()
     .replace(/[^a-z0-9-]/g, ' ')
     .split(/\s+/)
-    .filter(w => w.length >= 3 && !STOPWORDS.has(w) && !/^\d+$/.test(w));
+    .filter((w) => w.length >= 3 && !STOPWORDS.has(w) && !/^\d+$/.test(w));
   return [...new Set(words)];
 }
 
 function normalizeUmlaut(text) {
-  return text.toLowerCase()
-    .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss');
+  return text
+    .toLowerCase()
+    .replace(/ä/g, 'ae')
+    .replace(/ö/g, 'oe')
+    .replace(/ü/g, 'ue')
+    .replace(/ß/g, 'ss');
 }
 
 /**
@@ -89,13 +163,15 @@ function extractContentKeywords(title, description, tags, teilgebiet) {
   const sourceText = [
     normalizeUmlaut(title || ''),
     normalizeUmlaut(description || ''),
-    ...(Array.isArray(tags) ? tags : (tags ? [tags] : [])).map(t => normalizeUmlaut(t)),
-    ...(Array.isArray(teilgebiet) ? teilgebiet : (teilgebiet ? [teilgebiet] : [])).map(tg => normalizeUmlaut(tg)),
+    ...(Array.isArray(tags) ? tags : tags ? [tags] : []).map((t) => normalizeUmlaut(t)),
+    ...(Array.isArray(teilgebiet) ? teilgebiet : teilgebiet ? [teilgebiet] : []).map((tg) =>
+      normalizeUmlaut(tg)
+    ),
   ].join(' ');
 
   const tokens = tokenize(sourceText);
   // Filter out generic stop tokens and very short tokens
-  return tokens.filter(t => !STOP_TOKENS.has(t));
+  return tokens.filter((t) => !STOP_TOKENS.has(t));
 }
 
 /**
@@ -119,8 +195,9 @@ function scanArticles() {
     for (const entry of readdirSync(dir)) {
       const full = join(dir, entry);
       const st = statSync(full);
-      if (st.isDirectory()) { walk(full); }
-      else if (entry.endsWith('.md') && entry !== '_index.md') {
+      if (st.isDirectory()) {
+        walk(full);
+      } else if (entry.endsWith('.md') && entry !== '_index.md') {
         const fm = parseFrontmatter(readFileSync(full, 'utf8'));
         if (fm.title) {
           const url = '/' + full.replace(ROOT + '/myhugoapp/content/', '').replace(/\.md$/, '/');
@@ -140,9 +217,6 @@ function scanArticles() {
   walk(THEMENS_DIR);
   return articles;
 }
-
-// Non-calculator directories under content/ that we skip
-const SKIP_CALC_DIRS = new Set(['themenbereiche', 'curricula', 'klassenstufen', 'pages', 'entity']);
 
 function scanCalculatorPages() {
   const calculators = [];
@@ -170,8 +244,10 @@ function scanCalculatorPages() {
 
 function scanCurriculumTopics() {
   const topics = [];
-  const files = readdirSync(CURRICULA_DIR)
-    .filter(f => f.endsWith('.json') && !['index.json','checksums.json','content-links.json'].includes(f));
+  const files = readdirSync(CURRICULA_DIR).filter(
+    (f) =>
+      f.endsWith('.json') && !['index.json', 'checksums.json', 'content-links.json'].includes(f)
+  );
   for (const file of files) {
     const data = JSON.parse(readFileSync(join(CURRICULA_DIR, file), 'utf8'));
     if (!data.school_curricula) continue;
@@ -179,7 +255,7 @@ function scanCurriculumTopics() {
       for (const gl of sc.grade_levels) {
         for (const t of gl.topics) {
           const normalized = normalizeTopicName(t.title);
-          const objTexts = (t.learning_objectives || []).map(o => o.text).join(' ');
+          const objTexts = (t.learning_objectives || []).map((o) => o.text).join(' ');
           const objKeywords = tokenize(normalizeUmlaut(objTexts));
           topics.push({
             name: t.title,
@@ -273,7 +349,7 @@ function main() {
     const matches = matchContentToTopics(content, allTopics);
 
     // Only keep matches with score >= 1
-    const validMatches = matches.filter(m => m.score >= 1);
+    const validMatches = matches.filter((m) => m.score >= 1);
 
     if (validMatches.length > 0) {
       // Limit to top 20 per content item
@@ -301,35 +377,65 @@ function main() {
   console.log('  Topics linked (name match): ' + linkedTopics.size + ' / ' + allTopics.length);
   console.log('  Total relations: ' + totalLinks);
   console.log('  Avg per linked topic: ' + (totalLinks / (linkedTopics.size || 1)).toFixed(1));
-  console.log('  Content items matched: ' + allContent.filter(c => {
-    for (const [k, v] of linkMap) {
-      if (v.some(l => l.title === c.title)) return true;
-    }
-    return false;
-  }).length + ' / ' + allContent.length);
+  console.log(
+    '  Content items matched: ' +
+      allContent.filter((c) => {
+        for (const [, v] of linkMap) {
+          if (v.some((l) => l.title === c.title)) return true;
+        }
+        return false;
+      }).length +
+      ' / ' +
+      allContent.length
+  );
 
   if (nameMatchCount > 0) {
     const sorted = [...linkMap.entries()]
-      .map(([k, v]) => ({ name: k, count: v.length, score: v.reduce((s, l) => s + l.score, 0) / v.length }))
+      .map(([k, v]) => ({
+        name: k,
+        count: v.length,
+        score: v.reduce((s, l) => s + l.score, 0) / v.length,
+      }))
       .sort((a, b) => b.count - a.count);
 
     console.log('\n  Top 15 most linked topics:');
-    sorted.slice(0, 15).forEach(t =>
-      console.log('    ' + t.name.slice(0, 47).padEnd(47) + ' ' + t.count + ' links (avg score ' + t.score.toFixed(1) + ')')
-    );
+    sorted
+      .slice(0, 15)
+      .forEach((t) =>
+        console.log(
+          '    ' +
+            t.name.slice(0, 47).padEnd(47) +
+            ' ' +
+            t.count +
+            ' links (avg score ' +
+            t.score.toFixed(1) +
+            ')'
+        )
+      );
 
     console.log('\n  Top 15 content items (by links made):');
     const contentLinkCount = {};
-    for (const [k, v] of linkMap) {
+    for (const [, v] of linkMap) {
       for (const l of v) {
         const key = l.title;
-        if (!contentLinkCount[key]) contentLinkCount[key] = { title: l.title, type: l.type, url: l.url, count: 0 };
+        if (!contentLinkCount[key])
+          contentLinkCount[key] = { title: l.title, type: l.type, url: l.url, count: 0 };
         contentLinkCount[key].count++;
       }
     }
-    const sortedContent = Object.values(contentLinkCount).sort((a, b) => b.count - a.count).slice(0, 15);
-    sortedContent.forEach(c =>
-      console.log('    [' + c.type.slice(0, 1) + '] ' + c.title.slice(0, 44).padEnd(44) + ' ' + c.count + ' topics')
+    const sortedContent = Object.values(contentLinkCount)
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 15);
+    sortedContent.forEach((c) =>
+      console.log(
+        '    [' +
+          c.type.slice(0, 1) +
+          '] ' +
+          c.title.slice(0, 44).padEnd(44) +
+          ' ' +
+          c.count +
+          ' topics'
+      )
     );
   }
 
@@ -344,7 +450,15 @@ function main() {
   }
   writeFileSync(outputPath, JSON.stringify(output, null, 2), 'utf8');
   const outSize = (JSON.stringify(output).length / 1024).toFixed(0);
-  console.log('\n[link-content] Written to ' + outputPath + ' (' + Object.keys(output).length + ' topics, ' + outSize + ' KB)');
+  console.log(
+    '\n[link-content] Written to ' +
+      outputPath +
+      ' (' +
+      Object.keys(output).length +
+      ' topics, ' +
+      outSize +
+      ' KB)'
+  );
 
   if (existsSync(CACHE_DIR)) {
     const stats = {
@@ -354,9 +468,13 @@ function main() {
       topics: allTopics.length,
       linkedTopics: linkedTopics.size,
       totalLinks,
-      coverage: Math.round(linkedTopics.size / allTopics.length * 100),
+      coverage: Math.round((linkedTopics.size / allTopics.length) * 100),
     };
-    writeFileSync(join(CACHE_DIR, 'link-content-stats.json'), JSON.stringify(stats, null, 2), 'utf8');
+    writeFileSync(
+      join(CACHE_DIR, 'link-content-stats.json'),
+      JSON.stringify(stats, null, 2),
+      'utf8'
+    );
   }
 
   // A5: Optional Neo4j import of content links as node properties
@@ -364,7 +482,8 @@ function main() {
     (async () => {
       console.log('\n[link-content] Importing to Neo4j...');
       try {
-        const neo4j = require('neo4j-driver');
+        const __require = createRequire(import.meta.url);
+        const neo4j = __require('neo4j-driver');
         const NEO4J_URI = process.env.NEO4J_URI || 'bolt://localhost:7687';
         const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
         const NEO4J_PASS = process.env.NEO4J_PASS || 'chemie_knowledge_2024';
@@ -375,7 +494,9 @@ function main() {
         let skipped = 0;
         for (const [topicName, links] of linkMap) {
           try {
-            const topLinks = links.slice(0, 30).map(l => ({ type: l.type, title: l.title, url: l.url }));
+            const topLinks = links
+              .slice(0, 30)
+              .map((l) => ({ type: l.type, title: l.title, url: l.url }));
             const result = await session.run(
               'MATCH (e:Entity {name: $name}) SET e.contentLinks = $links RETURN e.name',
               { name: topicName, links: JSON.stringify(topLinks) }
@@ -387,12 +508,17 @@ function main() {
             }
           } catch (e) {
             failed++;
-            if (failed <= 3) console.warn('    [warn] Neo4j set failed for "' + topicName.slice(0, 40) + '": ' + e.message);
+            if (failed <= 3)
+              console.warn(
+                '    [warn] Neo4j set failed for "' + topicName.slice(0, 40) + '": ' + e.message
+              );
           }
         }
         await session.close();
         await driver.close();
-        console.log('  Neo4j: ' + stored + ' topics updated, ' + skipped + ' not found, ' + failed + ' errors');
+        console.log(
+          '  Neo4j: ' + stored + ' topics updated, ' + skipped + ' not found, ' + failed + ' errors'
+        );
       } catch (e) {
         console.warn('[link-content] Neo4j import error: ' + e.message);
       }
