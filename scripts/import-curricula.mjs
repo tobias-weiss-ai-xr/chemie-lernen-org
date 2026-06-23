@@ -82,6 +82,25 @@ function normalizeLearningObjective(text) {
   return text.toLowerCase().replace(/\s+/g, ' ').trim().replace(/[\s,;.:!?]+$/, '');
 }
 
+/**
+ * Normalize a name for entity linking comparison.
+ * Handles umlauts (ä→ae, ö→oe, ü→ue, ß→ss), hyphens→spaces,
+ * and strips non-alphanumeric characters (except spaces).
+ */
+function normalizeForLinking(name) {
+  return name
+    .toLowerCase()
+    .replace(/[-/\s]+/g, ' ')      // hyphens/slashes → space
+    .replace(/[_-]+/g, ' ')        // underscores too
+    .replace(/ä/g, 'ae')
+    .replace(/ö/g, 'oe')
+    .replace(/ü/g, 'ue')
+    .replace(/ß/g, 'ss')
+    .replace(/[^a-z0-9\s]/g, '')   // strip remaining non-alpha
+    .replace(/\s+/g, ' ')          // collapse whitespace
+    .trim();
+}
+
 // ── Curriculum JSON reader ────────────────────────────────────────────
 function readAllCurricula() {
   if (!existsSync(DATA_DIR)) {
@@ -214,13 +233,15 @@ function generateDryRun(topics) {
     }
   }
 
-  // Entity linking pass
+  // Entity linking pass (node-side matching with normalization)
+  const uniqueTopics = [...new Set(topics.map((t) => t.normalizedName))];
   lines.push('// === Entity linking pass ===');
-  lines.push('// For each lehrplan topic, find matching existing Entity by name prefix matching');
-  lines.push('MATCH (t:Entity {kategorie: \'lehrplan\'})');
-  lines.push('MATCH (e:Entity) WHERE e.kategorie IS NOT NULL AND e.kategorie <> \'lehrplan\' AND e.kategorie <> \'lernziel\'');
-  lines.push('WHERE t.name STARTS WITH e.name OR e.name STARTS WITH t.name');
-  lines.push('MERGE (t)-[r:RELATED_TO {weight: 1, auto: true}]-(e)');
+  lines.push('// For each lehrplan topic, find matching existing Entity by');
+  lines.push('// node-side name normalization (umlaut→ae, hyphen→space, CONTAINS).');
+  lines.push(`// Unique topics to match: ${uniqueTopics.length}`);
+  lines.push('// NOTE: Dry-run cannot show individual match candidates without Neo4j access.');
+  lines.push('// In real import, queries all existing entities and iterates node-side.');
+  lines.push(`// Estimated topics to attempt linking: ${uniqueTopics.length}`);
   lines.push('');
 
   return lines.join('\n');
@@ -301,15 +322,44 @@ async function runImport(topics) {
       }
     }
 
-    // Phase 2: Link curriculum topics to existing entities
-    const linkResult = await session.run(
-      `MATCH (t:Entity {kategorie: 'lehrplan'})
-       MATCH (e:Entity) WHERE e.kategorie IS NOT NULL AND e.kategorie <> 'lehrplan' AND e.kategorie <> 'lernziel'
-       WHERE t.name STARTS WITH e.name OR e.name STARTS WITH t.name
-       MERGE (t)-[r:RELATED_TO {weight: 1, auto: true}]-(e)
-       RETURN count(r) AS created`
+    // Phase 2: Link curriculum topics to existing entities (node-side matching)
+    const existingEntities = await session.run(
+      `MATCH (e:Entity)
+       WHERE e.kategorie IS NOT NULL
+         AND e.kategorie <> 'lehrplan'
+         AND e.kategorie <> 'lernziel'
+       RETURN e.name as name`
     );
-    linkCount = linkResult.records[0].get('created').toNumber();
+    const entityNames = existingEntities.records.map((r) => r.get('name'));
+    const entityNamesNorm = entityNames.map((n) => normalizeForLinking(n));
+
+    const uniqueTopicNames = [...new Set(topics.map((t) => t.normalizedName))];
+
+    for (const topicName of uniqueTopicNames) {
+      const normTopic = normalizeForLinking(topicName);
+      if (normTopic.length < 3) continue;
+
+      for (let ei = 0; ei < entityNames.length; ei++) {
+        const normEntity = entityNamesNorm[ei];
+        if (normEntity.length < 3) continue;
+
+        // Match if one normalized name CONTAINS the other
+        // (handles "redoxreaktionen" ↔ "redoxreaktion", "atombau" ↔ "atombau und periodensystem")
+        const matched =
+          normTopic.includes(normEntity) || normEntity.includes(normTopic);
+
+        if (matched) {
+          await session.run(
+            `MATCH (t:Entity {name: $topicName})
+             MATCH (e:Entity {name: $entityName})
+             MERGE (t)-[r:RELATED_TO {weight: 1, auto: true}]-(e)
+             RETURN count(r) AS created`,
+            { topicName, entityName: entityNames[ei] }
+          );
+          linkCount++;
+        }
+      }
+    }
 
     // Summary
     const totalResult = await session.run(

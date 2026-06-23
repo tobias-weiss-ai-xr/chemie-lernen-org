@@ -299,7 +299,7 @@ Behandle Kontext aus vorherigen Fragen mit.`;
 // ── Neo4j driver (knowledge graph) ──────────────────────────────────────
 const NEO4J_URI = process.env.NEO4J_URI || 'bolt://chemie-neo4j:7687';
 const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
-const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || 'chemie';
+const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || 'chemie_knowledge_2024';
 const NEO4J_DATABASE = process.env.NEO4J_DATABASE || 'chemie';
 
 let neo4jDriver = null;
@@ -537,6 +537,7 @@ function getFallbackData() {
       },
     ],
     curricula: [
+      // BY (Bayern) — 5 Topics
       {
         id: 'e18',
         name: 'redoxreaktionen',
@@ -603,6 +604,149 @@ function getFallbackData() {
           { name: 'säure-base-reaktion', weight: 1 },
           { name: 'redoxreaktion', weight: 1 },
         ],
+        articleCount: 0,
+      },
+      // NW (Nordrhein-Westfalen) — 4 Topics
+      {
+        id: 'e27',
+        name: 'chemische-reaktion',
+        category: 'lehrplan',
+        curriculumMeta: {
+          state: 'NW',
+          grade: '5-7',
+          school_type: 'Gymnasium (Sek I)',
+          objective_count: 15,
+        },
+        articles: [],
+        relatedEntities: [{ name: 'chemische-reaktion', weight: 1 }],
+        articleCount: 0,
+      },
+      {
+        id: 'e28',
+        name: 'elemente-und-ihre-ordnung',
+        category: 'lehrplan',
+        curriculumMeta: {
+          state: 'NW',
+          grade: '8-10',
+          school_type: 'Gymnasium (Sek I)',
+          objective_count: 22,
+        },
+        articles: [],
+        relatedEntities: [],
+        articleCount: 0,
+      },
+      {
+        id: 'e29',
+        name: 'salze-und-ionen',
+        category: 'lehrplan',
+        curriculumMeta: {
+          state: 'NW',
+          grade: '8-10',
+          school_type: 'Gymnasium (Sek I)',
+          objective_count: 24,
+        },
+        articles: [],
+        relatedEntities: [],
+        articleCount: 0,
+      },
+      {
+        id: 'e30',
+        name: 'stoffe-und-stoffeigenschaften',
+        category: 'lehrplan',
+        curriculumMeta: {
+          state: 'NW',
+          grade: '5-7',
+          school_type: 'Gymnasium (Sek I)',
+          objective_count: 13,
+        },
+        articles: [],
+        relatedEntities: [],
+        articleCount: 0,
+      },
+      // BW (Baden-Württemberg) — 3 Topics
+      {
+        id: 'e31',
+        name: 'chemische-gleichgewichte',
+        category: 'lehrplan',
+        curriculumMeta: {
+          state: 'BW',
+          grade: '11/12',
+          school_type: 'Gymnasium (Leistungsfach)',
+          objective_count: 8,
+        },
+        articles: [],
+        relatedEntities: [],
+        articleCount: 0,
+      },
+      {
+        id: 'e32',
+        name: 'kunststoffe',
+        category: 'lehrplan',
+        curriculumMeta: {
+          state: 'BW',
+          grade: '11/12',
+          school_type: 'Gymnasium (Basisfach)',
+          objective_count: 6,
+        },
+        articles: [],
+        relatedEntities: [],
+        articleCount: 0,
+      },
+      {
+        id: 'e33',
+        name: 'aromaten',
+        category: 'lehrplan',
+        curriculumMeta: {
+          state: 'BW',
+          grade: '11/12',
+          school_type: 'Gymnasium (Leistungsfach)',
+          objective_count: 4,
+        },
+        articles: [],
+        relatedEntities: [],
+        articleCount: 0,
+      },
+      // SN (Sachsen) — 3 Topics
+      {
+        id: 'e34',
+        name: 'umwandlung-von-stoffen',
+        category: 'lehrplan',
+        curriculumMeta: {
+          state: 'SN',
+          grade: '7',
+          school_type: 'Gymnasium',
+          objective_count: 17,
+        },
+        articles: [],
+        relatedEntities: [],
+        articleCount: 0,
+      },
+      {
+        id: 'e35',
+        name: 'saeuren-und-saure-loesungen',
+        category: 'lehrplan',
+        curriculumMeta: {
+          state: 'SN',
+          grade: '8',
+          school_type: 'Gymnasium',
+          objective_count: 24,
+        },
+        articles: [],
+        relatedEntities: [],
+        articleCount: 0,
+      },
+      {
+        id: 'e36',
+        name: 'metalle',
+        category: 'lehrplan',
+        curriculumMeta: {
+          state: 'SN',
+          grade: '7',
+          school_type: 'Gymnasium',
+          objective_count: 1,
+        },
+        articles: [],
+        relatedEntities: [{ name: 'legierung', weight: 1 }],
         articleCount: 0,
       },
     ],
@@ -688,6 +832,7 @@ app.get('/api/kg-data', async (req, res) => {
 
     const entitiesQuery = `
       MATCH (e:Entity)
+      WHERE e.kategorie IS NULL OR e.kategorie <> 'lernziel'
       OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
       OPTIONAL MATCH (e)-[c:BESTEHT_AUS]->(component:Entity)
       RETURN e.name as name, e.kategorie as category,
