@@ -1,14 +1,16 @@
 """KMK — Kultusministerkonferenz standards for chemistry education.
 
-Sources:
-  - Ländergemeinsame inhaltliche Anforderungen für die Fachwissenschaften
-    und Fachdidaktiken in der Lehrerbildung (Beschluss der KMK)
-  - Bildungsstandards im Fach Chemie für den Mittleren Schulabschluss
-  - Bildungsstandards im Fach Chemie für die Allgemeine Hochschulreife
-
-TODO:
-  - Find direct PDF URLs for the actual KMK documents.
-  - Current implementation returns metadata structure awaiting URL discovery.
+Sources (all verified PDF URLs):
+  - Bildungsstandards Chemie MSA (2004):
+    https://www.kmk.org/fileadmin/veroeffentlichungen_beschluesse/...
+  - Bildungsstandards Chemie MSA (2024, weiterentwickelt):
+    https://www.kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/...
+  - Bildungsstandards Chemie AHR (2020):
+    https://www.kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/...
+  - Implementation brochure (2024):
+    https://www.kmk.org/fileadmin/Dateien/pdf/Bildung/...
+  - Kerncurriculum für Deutsche Schulen im Ausland (2024):
+    https://www.kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/...
 """
 
 from __future__ import annotations
@@ -17,6 +19,8 @@ import re
 from datetime import date
 
 import requests
+import pdfplumber
+import io
 
 from schema import GuidelineSection, DidacticGuideline
 
@@ -24,81 +28,159 @@ USER_AGENT = "Mozilla/5.0 (compatible; chemie-lernen-org/1.0; +https://chemie-le
 
 KMK_QUELLEN = [
     {
-        "title": "Bildungsstandards im Fach Chemie für den Mittleren Schulabschluss",
+        "title": "Bildungsstandards im Fach Chemie für den Mittleren Schulabschluss (2004)",
         "description": (
-            "KMK-Beschluss vom 04.12.2003, aktualisiert 2022. "
-            "Definiert die Regelstandards, die Schüler am Ende der "
-            "Klasse 10 (MSA) im Fach Chemie erreichen sollen."
+            "KMK-Beschluss vom 16.12.2004. Definiert die Regelstandards, "
+            "die Schüler am Ende der Klasse 10 (MSA) im Fach Chemie "
+            "erreichen sollen."
         ),
-        "url": "https://www.kmk.org/themen/allgemeinbildende-schulen/unterrichtsfaecher/chemie.html",
+        "url": (
+            "https://www.kmk.org/fileadmin/veroeffentlichungen_beschluesse/"
+            "2004/2004_12_16-Bildungsstandards-Chemie.pdf"
+        ),
     },
     {
-        "title": "Bildungsstandards im Fach Chemie für die Allgemeine Hochschulreife",
+        "title": "Weiterentwickelte Bildungsstandards Chemie MSA (2024)",
         "description": (
-            "KMK-Beschluss vom 18.10.2012, aktualisiert 2020. "
-            "Definiert die Standards für das Abitur im Fach Chemie."
+            "KMK-Beschluss vom 13.06.2024. Ersetzt die Bildungsstandards "
+            "von 2004. Enthält aktualisierte Kompetenzbereiche und "
+            "Basiskonzepte für den Mittleren Schulabschluss."
         ),
-        "url": "https://www.kmk.org/themen/allgemeinbildende-schulen/unterrichtsfaecher/chemie.html",
+        "url": (
+            "https://www.kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/"
+            "2024/2024_06_13-WeBiS_Chemie_MSA.pdf"
+        ),
     },
     {
-        "title": "Ländergemeinsame inhaltliche Anforderungen für die Fachwissenschaften "
-                "und Fachdidaktiken in der Lehrerbildung",
+        "title": "Bildungsstandards im Fach Chemie für die Allgemeine Hochschulreife (2020)",
         "description": (
-            "KMK-Beschluss vom 16.10.2008, aktualisiert 2023. "
-            "Legt die fachwissenschaftlichen und fachdidaktischen "
-            "Mindestanforderungen für das Lehramtsstudium Chemie fest."
+            "KMK-Beschluss vom 18.06.2020. Definiert die Standards "
+            "für das Abitur im Fach Chemie (AHR)."
         ),
-        "url": "https://www.kmk.org/themen/allgemeinbildende-schulen/unterrichtsfaecher/chemie.html",
+        "url": (
+            "https://www.kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/"
+            "2020/2020_06_18-BildungsstandardsAHR_Chemie.pdf"
+        ),
     },
     {
-        "title": "Kompetenzen der Naturwissenschaften — Basiskonzepte der Chemie",
+        "title": "Kerncurriculum Chemie für die gymnasiale Oberstufe — Deutsche Schulen im Ausland",
         "description": (
-            "Die KMK-Bildungsstandards definieren vier Basiskonzepte: "
-            "Stoff-Teilchen, Struktur-Eigenschaft, Chemische Reaktion, "
-            "Energie. Diese bilden die Grundlage der chemischen Bildung."
+            "KMK-Beschluss vom 01.03.2024. Leitet aus den AHR-Bildungsstandards "
+            "fachspezifische Kerncurricula für den Unterricht an "
+            "Deutschen Schulen im Ausland ab."
         ),
-        "url": "https://www.kmk.org/themen/allgemeinbildende-schulen/unterrichtsfaecher/chemie.html",
+        "url": (
+            "https://www.kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/"
+            "2024/2024_03_01-Kerncurriculum-Chemie.pdf"
+        ),
+    },
+    {
+        "title": "Implementation der weiterentwickelten Bildungsstandards Naturwissenschaften (2024)",
+        "description": (
+            "Implementationsbroschüre zu den weiterentwickelten "
+            "Bildungsstandards für Biologie, Chemie, Physik in der "
+            "Sekundarstufe I (Beschluss vom 13.06.2024)."
+        ),
+        "url": (
+            "https://www.kmk.org/fileadmin/Dateien/pdf/Bildung/Qualitaet/"
+            "ImplBroschuere_BiSta_NATURWISSENSCHAFTEN_2024-06-06.pdf"
+        ),
     },
 ]
 
 
-async def scrape() -> list[DidacticGuideline] | None:
-    """Scrape KMK chemistry education standards.
+def _fetch_pdf_text(url: str) -> str | None:
+    """Download PDF and extract text."""
+    try:
+        resp = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=60)
+        resp.raise_for_status()
+        with pdfplumber.open(io.BytesIO(resp.content)) as pdf:
+            all_text: list[str] = []
+            for page in pdf.pages:
+                text = page.extract_text()
+                if text:
+                    all_text.append(text)
+        return "\n".join(all_text)
+    except Exception as e:
+        print(f"    [warn] KMK PDF fetch failed: {e}")
+        return None
 
-    Currently returns structured metadata; PDF content extraction
-    requires identifying direct document URLs on kmk.org.
+
+def _extract_sections(text: str) -> list[GuidelineSection]:
+    """Parse KMK PDF into sections by their numbered headings.
+
+    Typical structure:
+      1 Einleitung
+      2 Bildungsstandards für die Kompetenzbereiche im Fach Chemie
+        2.1 Eingangsvoraussetzungen
+        2.2 ...
     """
-    print(f"    fetching KMK Chemie standards page ...", end="", flush=True)
+    sections: list[GuidelineSection] = []
+    lines = text.split("\n")
+    heading_pat = re.compile(r"^(\d+(?:\.\d+)*)\s+(.{3,})")
+    current: GuidelineSection | None = None
+    current_content: list[str] = []
+
+    for line in lines:
+        line = line.strip()
+        if not line or len(line) < 4:
+            continue
+
+        m = heading_pat.match(line)
+        if m:
+            if current and current_content:
+                current.content = [c for c in current_content if len(c) > 20]
+            current = GuidelineSection(title=line)
+            sections.append(current)
+            current_content = []
+            continue
+
+        if current:
+            current_content.append(line)
+
+    if current and current_content:
+        current.content = [c for c in current_content if len(c) > 20]
+
+    return sections
+
+
+async def scrape() -> list[DidacticGuideline] | None:
+    """Scrape KMK chemistry education standards from verified PDF URLs."""
+    print()
 
     guidelines: list[DidacticGuideline] = []
 
     for quelle in KMK_QUELLEN:
-        section = GuidelineSection(
-            title="Zusammenfassung",
-            content=[quelle["description"]],
-        )
+        title = quelle["title"]
+        print(f"    fetching {title} ...", end="", flush=True)
+
+        text = _fetch_pdf_text(quelle["url"])
+        if text:
+            print(f" {len(text)} chars")
+            sections = _extract_sections(text)
+            # Limit to first 30 sections to avoid massive output
+            if len(sections) > 30:
+                sections = sections[:30]
+            print(f"      {len(sections)} section(s) extracted")
+        else:
+            print(" FAILED (PDF unavailable)")
+            sections = [
+                GuidelineSection(
+                    title="Zusammenfassung",
+                    content=[quelle["description"]],
+                )
+            ]
 
         guideline = DidacticGuideline(
-            title=quelle["title"],
+            title=title,
             source_type="KMK",
             institution="Kultusministerkonferenz (KMK)",
             url=quelle["url"],
-            sections=[section],
+            sections=sections,
             last_checked=date.today().isoformat(),
         )
 
         guidelines.append(guideline)
-
-    # Try to fetch the KMK page for more detail
-    try:
-        resp = requests.get(
-            KMK_QUELLEN[0]["url"],
-            headers={"User-Agent": USER_AGENT},
-            timeout=30,
-        )
-        print(f" HTTP {resp.status_code}")
-    except requests.RequestException as e:
-        print(f" page fetch failed: {e}")
 
     print(f"    {len(guidelines)} KMK guideline(s) recorded")
     return guidelines
