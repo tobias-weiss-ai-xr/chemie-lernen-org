@@ -1,13 +1,8 @@
 [
   {
-    "state": "Nordrhein-Westfalen",
-    "state_abbr": "NW",
-    "school_types": [
-      "Gymnasium (Sek I)",
-      "Realschule",
-      "Gymnasium (Sek II, ab 2022/2023)",
-      "Gymnasium (Sek II, ab 2013)"
-    ],
+    "state": "Berlin",
+    "state_abbr": "BE",
+    "school_types": ["Sek I (gemeinsamer RLP Berlin/Brandenburg)"],
     "last_updated": "2026-06-23"
   }
 ]
