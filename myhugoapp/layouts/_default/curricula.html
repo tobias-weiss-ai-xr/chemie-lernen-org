@@ -200,17 +200,18 @@
   {{/* Stats */}}
   <div class="curricula-stats">
     <p>
-      <strong>{{ len $.Site.Data.curricula }}</strong> Bundesländer ·
-      <strong>{{ range $.Site.Data.curricula }}{{ if .school_curricula }}{{ $total := 0 }}{{ range .school_curricula }}{{ $total = add $total (len .grade_levels) }}{{ end }}{{ end }}{{ end }}</strong> Jahrgangsstufen
-      —
+      {{ $stateKeys := slice "bb" "be" "bw" "by" "hb" "he" "hh" "mv" "ni" "nw" "rp" "sh" "sn" "st" "th" }}
+      <strong>{{ len $stateKeys }}</strong> Bundesländer —
       <em>Stand: fortlaufend aktualisiert aus den amtlichen Lehrplänen</em>
     </p>
   </div>
 
-  {{/* State accordion — sorted by state name */}}
-  {{ $states := $.Site.Data.curricula }}
-  {{ range $abbr, $state := $states }}
-    {{ if and $state.state (ne $abbr "index") }}
+  {{/* State accordion — iterate known 2-letter state codes only */}}
+  {{ $data := $.Site.Data.curricula }}
+  {{ $stateKeys := slice "bb" "be" "bw" "by" "hb" "he" "hh" "mv" "ni" "nw" "rp" "sh" "sn" "st" "th" }}
+  {{ range $stateKeys }}
+    {{ $state := index $data . }}
+    {{ if $state }}
       {{ partial "curriculum.html" (dict "state_curriculum" $state) }}
     {{ end }}
   {{ end }}
