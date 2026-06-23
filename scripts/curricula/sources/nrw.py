@@ -256,6 +256,31 @@ def _extract_topics(text: str) -> list[Topic]:
         los = [LearningObjective(text=o) for o in current_objectives]
         topics.append(Topic(title=current_title, learning_objectives=los))
 
+    # Fallback: If no Inhaltsfeld markers found at all, collect all meaningful
+    # non-meta lines as a single combined topic. This handles Realschule erste
+    # Progressionsstufe and E-Phase sections that don't use Inhaltsfeld headings.
+    if not topics and current_objectives:
+        los = [LearningObjective(text=o) for o in current_objectives]
+        topics.append(Topic(title="Chemie", learning_objectives=los))
+    elif not topics:
+        # Try collecting any content lines that were skipped (in_inhaltsfeld=False)
+        collected: list[str] = []
+        for line in text.split("\n"):
+            cl = _clean(line)
+            cl = _strip_invisible(cl)
+            if not cl or len(cl) < 10:
+                continue
+            if _is_meta_line(cl):
+                continue
+            if re.match(r"^(?:Inhaltsfeld|Inhaltsfelder)", cl):
+                continue
+            collected.append(cl)
+        if collected:
+            topics.append(Topic(
+                title="Chemie",
+                learning_objectives=[LearningObjective(text=t) for t in collected],
+            ))
+
     return topics
 
 

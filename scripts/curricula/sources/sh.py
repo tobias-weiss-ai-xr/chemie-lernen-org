@@ -114,20 +114,27 @@ def _parse_pdf(text: str) -> list[GradeLevel]:
     return grades
 
 
-def _extract_topics(text: str) -> list[Topic]:
-    """Extract topics and learning objectives.
+# Detect TOC dot-leader lines (e.g. "Kompetenzbereiche ........................ 17")
+_TOC_DOT_RE = re.compile(r"[\u2024\.]{8,}|\.\s{3,}\d+\s*$")
 
-    SH Fachanforderungen use a competency-based format without numbered
-    chemistry topic headings. If no numbered topics are found, collect
-    meaningful content lines as a single combined topic.
-    """
+
+def _is_toc_line(line: str) -> bool:
+    """True for table-of-contents entries with dot leaders and page numbers."""
+    if re.search(r"\d{1,3}\s*$", line) and _TOC_DOT_RE.search(line):
+        return True
+    if re.search(r"\d{1,3}\s*$", line) and line.count(".") > 8:
+        return True
+    return False
+
+
+def _extract_topics(text: str) -> list[Topic]:
     topics: list[Topic] = []
     lines = text.split("\n")
 
     current_title: str | None = None
     current_objectives: list[str] = []
 
-    skip_heading_kw = [
+    skip_kw = [
         "Sekundarstufe", "Fachanforderung", "Kompetenzbereich",
         "Kompetenzerwartung", "Jahrgangsstufe", "Doppeljahrgang",
         "Einführungsphase", "Qualifikationsphase",
@@ -137,7 +144,16 @@ def _extract_topics(text: str) -> list[Topic]:
         "Geltungsbereich", "Lernen und Unterricht",
         "Der Beitrag", "Beitrag der",
         "Zielsetzung", "Überblick",
+        "Grundsätze der", "Aufgabenfelder",
+        "Leitbild Unterricht", "Anforderungsbereiche",
+        "Didaktische Leitlinien",
     ]
+
+    # Sachgebiet headings for Sek I (same pattern as Sek II)
+    _SACHGEBIET_SEK1_RE = re.compile(
+        r"Sachgebiet\s*[„"“ʺ]\s*([^„"“ʺ]+?)\s*[„"“ʺ]",
+        re.IGNORECASE,
+    )
 
     collected: list[str] = []
 
@@ -149,11 +165,25 @@ def _extract_topics(text: str) -> list[Topic]:
             continue
         if re.match(r"^\d+$", line):
             continue
+        if _is_toc_line(line):
+            continue
+        if re.match(r"^[\s\-–—•■□∙ ]*$", line):
+            continue
+
+        # Check for Sachgebiet heading (used in both Sek I and Sek II)
+        sg_match = _SACHGEBIET_SEK1_RE.search(line)
+        if sg_match:
+            if current_title and current_objectives:
+                los = [LearningObjective(text=o) for o in current_objectives]
+                topics.append(Topic(title=current_title, learning_objectives=los))
+            current_title = _clean(sg_match.group(1))
+            current_objectives = []
+            continue
 
         m = re.match(r"^\s*(\d+)\s+(.{5,})", line)
         if m and len(m.group(2)) > 5 and not re.match(r"^\d", m.group(2)[0]):
             cleaned_title = _clean(m.group(2))
-            if any(kw.lower() in cleaned_title.lower() for kw in skip_heading_kw):
+            if any(kw.lower() in cleaned_title.lower() for kw in skip_kw):
                 if current_title and current_objectives:
                     los = [LearningObjective(text=o) for o in current_objectives]
                     topics.append(Topic(title=current_title, learning_objectives=los))
@@ -217,6 +247,8 @@ def _extract_topics_sek2(text: str) -> list[Topic]:
         for line in section.split("\n"):
             line = _clean(line)
             if not line or len(line) < 8:
+                continue
+            if _is_toc_line(line):
                 continue
             if any(kw in line for kw in [
                 "Sachgebiet", "Verbindliche Inhalte", "Erläuterung",
