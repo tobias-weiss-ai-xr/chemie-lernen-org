@@ -151,7 +151,7 @@ def _extract_topics(text: str) -> list[Topic]:
 
     # Sachgebiet headings for Sek I (same pattern as Sek II)
     _SACHGEBIET_SEK1_RE = re.compile(
-        r"Sachgebiet\s*[„"“ʺ]\s*([^„"“ʺ]+?)\s*[„"“ʺ]",
+        r'Sachgebiet\s*[„"„ʺ]\s*([^„"„ʺ]+?)\s*[„"„ʺ]',
         re.IGNORECASE,
     )
 
