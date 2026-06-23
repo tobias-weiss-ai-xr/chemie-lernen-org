@@ -1,0 +1,63 @@
+{{/* curriculum.html — Renders a single Bundesland's curriculum data.
+   Expects: .state_curriculum (a StateCurriculum dict from data/curricula/*.json)
+   Structure:
+     state, state_abbr, school_curricula[]
+       school_type, grade_levels[]
+         grade, topics[]
+           title, learning_objectives[{text}]
+*/}}
+{{- $sc := .state_curriculum -}}
+{{- $abbr := $sc.state_abbr -}}
+{{- $id := printf "curriculum-%s" ($abbr | lower) -}}
+
+<div class="panel panel-default curriculum-state" id="{{ $id }}">
+  <div class="panel-heading curriculum-header" data-toggle="collapse" data-target="#collapse-{{ $abbr | lower }}" aria-expanded="false" aria-controls="collapse-{{ $abbr | lower }}">
+    <h3 class="panel-title">
+      {{ $sc.state }} <small>({{ $abbr }})</small>
+      <span class="badge pull-right">{{ len $sc.school_curricula }} Schulform(en)</span>
+    </h3>
+  </div>
+
+  <div id="collapse-{{ $abbr | lower }}" class="panel-collapse collapse">
+    <div class="panel-body">
+      {{ range $sc.school_curricula }}
+      <div class="school-type-section">
+        <h4>{{ .school_type }}</h4>
+
+        {{ range .grade_levels }}
+        <div class="grade-section">
+          <h5>Klasse {{ .grade }}</h5>
+          <ul class="topic-list">
+            {{ range .topics }}
+            <li class="topic-item">
+              <strong>{{ .title }}</strong>
+              {{ if .learning_objectives }}
+              <ul class="objective-list">
+                {{ range .learning_objectives }}
+                <li>{{ .text }}</li>
+                {{ end }}
+              </ul>
+              {{ end }}
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+
+    {{ if $sc.source_urls }}
+    <div class="panel-footer">
+      <small>Quellen:
+      {{ range $i, $url := $sc.source_urls }}
+        {{ if $i }}; {{ end }}<a href="{{ $url }}" target="_blank" rel="noopener">{{ $url }}</a>
+      {{ end }}
+      </small>
+      {{ if $sc.last_updated }}
+      <br><small>Letzte Aktualisierung: {{ $sc.last_updated }}</small>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</div>
