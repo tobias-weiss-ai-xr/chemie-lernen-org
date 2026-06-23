@@ -961,6 +961,241 @@ app.get('/api/kg-data', async (req, res) => {
 });
 
 /**
+ * Find an entity by slug/name across all fallback data.
+ */
+function findEntityBySlug(slug) {
+  var data = getFallbackData();
+  var normalized = slug.toLowerCase().replace(/-/g, ' ');
+  var entity = null;
+  var fi;
+  for (fi = 0; fi < data.entities.length; fi++) {
+    if (data.entities[fi].name.toLowerCase() === normalized) {
+      entity = data.entities[fi];
+      break;
+    }
+  }
+  if (!entity && data.curricula) {
+    for (fi = 0; fi < data.curricula.length; fi++) {
+      if (data.curricula[fi].name.toLowerCase() === normalized) {
+        entity = data.curricula[fi];
+        break;
+      }
+    }
+  }
+  return entity;
+}
+
+/**
+ * GET /api/entity/:slug — Entity detail JSON.
+ */
+app.get('/api/entity/:slug', function (req, res) {
+  var slug = req.params.slug;
+  var entity = findEntityBySlug(slug);
+  if (!entity) {
+    return res.status(404).json({ error: 'Entity not found', slug: slug });
+  }
+
+  // Resolve related entities to full objects
+  var relatedEntities = [];
+  if (entity.relatedEntities && entity.relatedEntities.length > 0) {
+    for (var r = 0; r < entity.relatedEntities.length; r++) {
+      var ref = entity.relatedEntities[r];
+      var refName = typeof ref === 'string' ? ref : ref.name;
+      var related = findEntityBySlug(refName);
+      if (related) {
+        var copy = {
+          name: related.name,
+          category: related.category || 'unknown',
+        };
+        if (related.curriculumMeta) {
+          copy.curriculumMeta = related.curriculumMeta;
+        }
+        relatedEntities.push(copy);
+      }
+    }
+  }
+
+  var result = {
+    name: entity.name,
+    category: entity.category || 'unknown',
+    articles: entity.articles || [],
+    articleCount: entity.articleCount || 0,
+    relatedEntities: relatedEntities,
+  };
+
+  if (entity.curriculumMeta) {
+    result.curriculumMeta = entity.curriculumMeta;
+  }
+
+  res.json(result);
+});
+
+/**
+ * GET /entity/:slug — Entity detail page (HTML).
+ */
+app.get('/entity/:slug', function (req, res) {
+  var slug = req.params.slug;
+  var entity = findEntityBySlug(slug);
+
+  if (!entity) {
+    return res
+      .status(404)
+      .send(
+        '<html><body style="font-family:sans-serif;padding:2em;color:#555">' +
+          '<h1>Seite nicht gefunden</h1>' +
+          '<p>Die angeforderte Entität <strong>' +
+          escapeHtml(slug) +
+          '</strong> existiert nicht.</p>' +
+          '<a href="/entity/">← Zurück zur Übersicht</a>' +
+          '</body></html>'
+      );
+  }
+
+  var isCurriculum = entity.category === 'lehrplan';
+  var displayName = entity.name.replace(/-/g, ' ').replace(/\b\w/g, function (c) {
+    return c.toUpperCase();
+  });
+  var catColor = '#9b59b6';
+  if (!isCurriculum) {
+    var colors = {
+      stoff: '#e74c3c',
+      konzept: '#3498db',
+      reaktion: '#2ecc71',
+      methode: '#f39c12',
+      person: '#1abc9c',
+      quelle: '#95a5a6',
+    };
+    catColor = colors[entity.category] || '#95a5a6';
+  }
+
+  var catLabel = entity.category;
+  var catLabels = {
+    stoff: 'Stoff',
+    konzept: 'Konzept',
+    reaktion: 'Reaktion',
+    methode: 'Methode',
+    person: 'Person',
+    quelle: 'Quelle',
+    lehrplan: 'Lehrplan',
+  };
+  if (catLabels[entity.category]) catLabel = catLabels[entity.category];
+
+  var metaHtml = '';
+  if (isCurriculum && entity.curriculumMeta) {
+    metaHtml =
+      '<div class="meta-row">' +
+      '<span class="meta-label">Bundesland</span><span class="meta-value">' +
+      escapeHtml(entity.curriculumMeta.state) +
+      '</span></div>' +
+      '<div class="meta-row"><span class="meta-label">Schulform</span><span class="meta-value">' +
+      escapeHtml(entity.curriculumMeta.school_type) +
+      '</span></div>' +
+      '<div class="meta-row"><span class="meta-label">Klasse</span><span class="meta-value">' +
+      escapeHtml(entity.curriculumMeta.grade) +
+      '</span></div>' +
+      '<div class="meta-row"><span class="meta-label">Lernziele</span><span class="meta-value">' +
+      entity.curriculumMeta.objective_count +
+      '</span></div>';
+  }
+
+  var relatedHtml = '';
+  if (entity.relatedEntities && entity.relatedEntities.length > 0) {
+    relatedHtml = '<h3>Verwandte Begriffe</h3><div class="related-list">';
+    for (var r = 0; r < entity.relatedEntities.length; r++) {
+      var ref = entity.relatedEntities[r];
+      var refName = typeof ref === 'string' ? ref : ref.name;
+      relatedHtml +=
+        '<a href="/entity/' +
+        slugify(refName) +
+        '/" class="related-chip">' +
+        escapeHtml(refName.replace(/-/g, ' ')) +
+        '</a>';
+    }
+    relatedHtml += '</div>';
+  }
+
+  var articlesHtml = '';
+  if (entity.articles && entity.articles.length > 0) {
+    articlesHtml = '<h3>Artikel (' + entity.articles.length + ')</h3><ul class="article-list">';
+    for (var a = 0; a < entity.articles.length; a++) {
+      articlesHtml += '<li>' + escapeHtml(entity.articles[a]) + '</li>';
+    }
+    articlesHtml += '</ul>';
+  }
+
+  var backLink = isCurriculum ? '/' : '/entity/';
+
+  res.send(
+    '<!DOCTYPE html>' +
+      '<html lang="de">' +
+      '<head><meta charset="utf-8">' +
+      '<meta name="viewport" content="width=device-width,initial-scale=1">' +
+      '<title>' +
+      escapeHtml(displayName) +
+      ' - chemie-lernen.org</title>' +
+      '<style>' +
+      'body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;margin:0;padding:2rem;background:#f5f5f5;color:#333}' +
+      '.container{max-width:800px;margin:0 auto}' +
+      '.card{background:#fff;border-radius:12px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.1)}' +
+      '.cat-badge{display:inline-block;padding:4px 12px;border-radius:20px;color:#fff;font-size:.85rem;font-weight:600;background:' +
+      catColor +
+      '}' +
+      'h1{margin:.5rem 0 1.5rem;font-size:1.8rem}' +
+      '.meta-section{background:#fafafa;border-radius:8px;padding:1rem;margin:1rem 0}' +
+      '.meta-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee}' +
+      '.meta-row:last-child{border-bottom:none}' +
+      '.meta-label{font-weight:600;color:#666}' +
+      '.meta-value{color:#333}' +
+      '.related-list{display:flex;flex-wrap:wrap;gap:8px;margin:.5rem 0}' +
+      '.related-chip{display:inline-block;padding:6px 14px;background:#e8f0fe;color:#1a73e8;border-radius:20px;text-decoration:none;font-size:.9rem}' +
+      '.related-chip:hover{background:#d2e3fc}' +
+      '.article-list{padding-left:1.2rem}' +
+      '.article-list li{margin:.5rem 0;color:#555}' +
+      '.back-link{display:inline-block;margin-top:1.5rem;color:#666;text-decoration:none}' +
+      '.back-link:hover{color:#333}' +
+      '@media(prefers-color-scheme:dark){' +
+      'body{background:#1a1a2e;color:#e0e0e0}' +
+      '.card{background:#16213e;box-shadow:0 2px 8px rgba(0,0,0,0.4)}' +
+      '.meta-section{background:#1a1a3e}' +
+      '.related-chip{background:#2a2a5e;color:#7cb3ff}' +
+      '.meta-row{border-bottom-color:#333}' +
+      '.meta-label{color:#999}' +
+      '}</style>' +
+      '</head><body>' +
+      '<div class="container">' +
+      '<div class="card">' +
+      '<span class="cat-badge">' +
+      escapeHtml(catLabel) +
+      '</span>' +
+      '<h1>' +
+      escapeHtml(displayName) +
+      '</h1>' +
+      (isCurriculum ? '<div class="meta-section">' + metaHtml + '</div>' : '') +
+      relatedHtml +
+      articlesHtml +
+      '<a href="' +
+      backLink +
+      '" class="back-link">← Zurück</a>' +
+      '</div></div></body></html>'
+  );
+});
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function slugify(str) {
+  return str
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
+}
+
+/**
  * Graceful shutdown — close Neo4j driver
  */
 process.on('SIGTERM', async () => {
