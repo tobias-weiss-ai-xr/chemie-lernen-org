@@ -67,14 +67,16 @@
     students.push({
       id: Date.now().toString(36),
       name: trimmed,
-      created: new Date().toISOString()
+      created: new Date().toISOString(),
     });
     saveStudents();
     return true;
   }
 
   function removeStudent(id) {
-    students = students.filter(function (s) { return s.id !== id; });
+    students = students.filter(function (s) {
+      return s.id !== id;
+    });
     saveStudents();
   }
 
@@ -85,17 +87,22 @@
     if (!container) return;
 
     if (students.length === 0) {
-      container.innerHTML = '<p class="text-muted">Noch keine Schüler angelegt. Fügen Sie den ersten Schüler hinzu.</p>';
+      container.innerHTML =
+        '<p class="text-muted">Noch keine Schüler angelegt. Fügen Sie den ersten Schüler hinzu.</p>';
       return;
     }
 
-    var html = '<table class="table table-hover"><thead><tr><th>Name</th><th>Erstellt</th><th>Aktionen</th></tr></thead><tbody>';
+    var html =
+      '<table class="table table-hover"><thead><tr><th>Name</th><th>Erstellt</th><th>Aktionen</th></tr></thead><tbody>';
     students.forEach(function (s) {
       html += '<tr>';
       html += '  <td><strong>' + escapeHtml(s.name) + '</strong></td>';
       html += '  <td>' + new Date(s.created).toLocaleDateString('de-DE') + '</td>';
       html += '  <td>';
-      html += '    <button class="btn btn-xs btn-danger remove-student" data-id="' + s.id + '"><i class="fa fa-trash"></i></button>';
+      html +=
+        '    <button class="btn btn-xs btn-danger remove-student" data-id="' +
+        s.id +
+        '"><i class="fa fa-trash"></i></button>';
       html += '  </td>';
       html += '</tr>';
     });
@@ -124,8 +131,12 @@
     statTasks.textContent = scores.length;
 
     if (scores.length > 0) {
-      var total = scores.reduce(function (sum, s) { return sum + (s.correct || 0); }, 0);
-      var overall = scores.reduce(function (sum, s) { return sum + (s.total || 0); }, 0);
+      var total = scores.reduce(function (sum, s) {
+        return sum + (s.correct || 0);
+      }, 0);
+      var overall = scores.reduce(function (sum, s) {
+        return sum + (s.total || 0);
+      }, 0);
       var avg = overall > 0 ? Math.round((total / overall) * 100) : 0;
       statAverage.textContent = avg + '%';
     } else {
@@ -140,9 +151,9 @@
     var completed = getCompletedModules();
     var _moduleKeys = Object.keys(completed);
     var moduleNames = {
-      'uebungsgenerator': 'Übungsgenerator',
-      'lueckentexte': 'Lückentexte',
-      'lernpfad': 'Lernpfad'
+      uebungsgenerator: 'Übungsgenerator',
+      lueckentexte: 'Lückentexte',
+      lernpfad: 'Lernpfad',
     };
 
     if (students.length === 0) {
@@ -150,7 +161,8 @@
       return;
     }
 
-    var html = '<div class="table-responsive"><table class="table table-striped"><thead><tr><th>Schüler</th>';
+    var html =
+      '<div class="table-responsive"><table class="table table-striped"><thead><tr><th>Schüler</th>';
     Object.keys(moduleNames).forEach(function (key) {
       html += '<th>' + moduleNames[key] + '</th>';
     });
@@ -161,7 +173,12 @@
       var studentTotal = 0;
       Object.keys(moduleNames).forEach(function (key) {
         var done = completed[s.id + '_' + key] || false;
-        html += '<td>' + (done ? '<span class="text-success"><i class="fa fa-check"></i></span>' : '<span class="text-muted"><i class="fa fa-minus"></i></span>') + '</td>';
+        html +=
+          '<td>' +
+          (done
+            ? '<span class="text-success"><i class="fa fa-check"></i></span>'
+            : '<span class="text-muted"><i class="fa fa-minus"></i></span>') +
+          '</td>';
         if (done) studentTotal++;
       });
       html += '<td>' + studentTotal + '/' + Object.keys(moduleNames).length + '</td></tr>';
@@ -188,7 +205,9 @@
         return;
       }
 
-      var student = students.filter(function (s) { return s.id === id; })[0];
+      var student = students.filter(function (s) {
+        return s.id === id;
+      })[0];
       if (!student) {
         container.innerHTML = '<p class="text-muted">Schüler nicht gefunden.</p>';
         return;
@@ -196,23 +215,51 @@
 
       var completed = getCompletedModules();
       var scores = getScores();
-      var studentScores = scores.filter(function (s) { return s.studentId === id; });
+      var studentScores = scores.filter(function (s) {
+        return s.studentId === id;
+      });
 
-      var correct = studentScores.reduce(function (sum, s) { return sum + (s.correct || 0); }, 0);
-      var total = studentScores.reduce(function (sum, s) { return sum + (s.total || 0); }, 0);
+      var correct = studentScores.reduce(function (sum, s) {
+        return sum + (s.correct || 0);
+      }, 0);
+      var total = studentScores.reduce(function (sum, s) {
+        return sum + (s.total || 0);
+      }, 0);
       var pct = total > 0 ? Math.round((correct / total) * 100) : 0;
 
       var html = '<div class="student-detail-card">';
       html += '  <h4>' + escapeHtml(student.name) + '</h4>';
-      html += '  <p><strong>Richtige Antworten:</strong> ' + correct + '/' + total + ' (' + pct + '%)</p>';
-      html += '  <p><strong>Erledigte Module:</strong> ' + Object.keys(completed).filter(function (k) { return completed[k] && k.indexOf(id) !== -1; }).length + '</p>';
+      html +=
+        '  <p><strong>Richtige Antworten:</strong> ' +
+        correct +
+        '/' +
+        total +
+        ' (' +
+        pct +
+        '%)</p>';
+      html +=
+        '  <p><strong>Erledigte Module:</strong> ' +
+        Object.keys(completed).filter(function (k) {
+          return completed[k] && k.indexOf(id) !== -1;
+        }).length +
+        '</p>';
 
       if (studentScores.length > 0) {
         html += '  <h5>Letzte Aktivitäten</h5>';
         html += '  <ul>';
-        studentScores.slice(-5).reverse().forEach(function (s) {
-          html += '    <li>' + escapeHtml(s.topic || 'Unbekannt') + ': ' + s.correct + '/' + s.total + ' richtig</li>';
-        });
+        studentScores
+          .slice(-5)
+          .reverse()
+          .forEach(function (s) {
+            html +=
+              '    <li>' +
+              escapeHtml(s.topic || 'Unbekannt') +
+              ': ' +
+              s.correct +
+              '/' +
+              s.total +
+              ' richtig</li>';
+          });
         html += '  </ul>';
       }
 
@@ -232,9 +279,23 @@
 
     var lines = ['Schüler;Modul;Thema;Richtig;Gesamt;Datum'];
     students.forEach(function (s) {
-      var studentScores = scores.filter(function (sc) { return sc.studentId === s.id; });
+      var studentScores = scores.filter(function (sc) {
+        return sc.studentId === s.id;
+      });
       studentScores.forEach(function (sc) {
-        lines.push(s.name + ';' + (sc.module || '') + ';' + (sc.topic || '') + ';' + (sc.correct || 0) + ';' + (sc.total || 0) + ';' + (sc.date || ''));
+        lines.push(
+          s.name +
+            ';' +
+            (sc.module || '') +
+            ';' +
+            (sc.topic || '') +
+            ';' +
+            (sc.correct || 0) +
+            ';' +
+            (sc.total || 0) +
+            ';' +
+            (sc.date || '')
+        );
       });
     });
 
@@ -255,7 +316,12 @@
   }
 
   function resetAllData() {
-    if (!confirm('Alle Klassencockpit-Daten wirklich löschen? Dies kann nicht rückgängig gemacht werden.')) return;
+    if (
+      !confirm(
+        'Alle Klassencockpit-Daten wirklich löschen? Dies kann nicht rückgängig gemacht werden.'
+      )
+    )
+      return;
     if (!confirm('Sind Sie sicher?')) return;
     students = [];
     saveStudents();
@@ -275,6 +341,62 @@
     renderStats();
     renderClassProgress();
     renderStudentDetail();
+    renderChatLogs();
+  }
+
+  // --- Chat Log ---
+
+  function renderChatLogs() {
+    var container = document.getElementById('chat-log-container');
+    if (!container) return;
+
+    fetch('/api/admin/chat-logs?limit=20')
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        if (!data.sessions || data.sessions.length === 0) {
+          container.innerHTML = '<p class="text-muted">Keine Chat-Sitzungen vorhanden.</p>';
+          return;
+        }
+        var html =
+          '<div class="table-responsive"><table class="table table-hover">' +
+          '<thead><tr><th>Frage</th><th>Nachrichten</th><th>Letzte Aktivität</th></tr></thead><tbody>';
+        data.sessions.forEach(function (s) {
+          var question = s.firstQuestion
+            ? escapeHtml(
+                s.firstQuestion.length > 80 ? s.firstQuestion.slice(0, 77) + '...' : s.firstQuestion
+              )
+            : '<em>Keine Nachricht</em>';
+          var lastActive = new Date(s.lastUsed);
+          var dateStr = lastActive.toLocaleDateString('de-DE');
+          var timeStr = lastActive.toLocaleTimeString('de-DE', {
+            hour: '2-digit',
+            minute: '2-digit',
+          });
+          html +=
+            '<tr>' +
+            '<td>' +
+            question +
+            '</td>' +
+            '<td>' +
+            s.userMessageCount +
+            '</td>' +
+            '<td>' +
+            dateStr +
+            ', ' +
+            timeStr +
+            '</td>' +
+            '</tr>';
+        });
+        html += '</tbody></table></div>';
+        container.innerHTML = html;
+      })
+      .catch(function () {
+        container.innerHTML =
+          '<p class="text-muted">Chat-Logs nicht verfügbar (Server nicht erreichbar).</p>';
+      });
   }
 
   // --- Init ---
@@ -311,5 +433,4 @@
   if (document.getElementById('add-student-btn')) {
     init();
   }
-
 })();

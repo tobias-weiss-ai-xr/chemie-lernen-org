@@ -1921,6 +1921,38 @@ app.get('/api/curricula/compare', function (req, res) {
   res.json({ results: grouped, query: q, count: matches.length });
 });
 
+/**
+ * GET /api/admin/chat-logs — Recent chat sessions for klassencockpit.
+ */
+app.get('/api/admin/chat-logs', function (req, res) {
+  var limit = parseInt(req.query.limit) || 20;
+  var sessions = [];
+  sessionStore.forEach(function (session, id) {
+    var userMsgCount = 0;
+    var firstQuestion = '';
+    for (var mi = 0; mi < session.messages.length; mi++) {
+      var msg = session.messages[mi];
+      if (msg.role === 'user') {
+        userMsgCount++;
+        if (!firstQuestion) firstQuestion = msg.content.slice(0, 120);
+      }
+    }
+    sessions.push({
+      sessionId: id,
+      messageCount: session.messages.length,
+      userMessageCount: userMsgCount,
+      firstQuestion: firstQuestion,
+      createdAt: session.createdAt,
+      lastUsed: session.lastUsed,
+    });
+  });
+  sessions.sort(function (a, b) {
+    return new Date(b.lastUsed) - new Date(a.lastUsed);
+  });
+  sessions = sessions.slice(0, limit);
+  res.json({ totalSessions: sessions.length, sessions: sessions });
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', uptime: process.uptime() });
 });
