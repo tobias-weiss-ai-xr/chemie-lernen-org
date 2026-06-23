@@ -129,6 +129,27 @@
   line-height: 1.3;
 }
 
+.entity-explorer { margin-bottom: 1.5rem; }
+.explorer-controls {
+  display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1.2rem;
+  padding: 1rem; background: var(--bg-card, #f8f9fa);
+  border: 1px solid var(--border-color, #e0e0e0); border-radius: 8px;
+}
+.explorer-controls label {
+  font-size: 0.85rem; font-weight: 500;
+  color: var(--text-primary, #333);
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.explorer-controls select {
+  padding: 0.35rem 0.6rem; border-radius: 6px; font-size: 0.82rem;
+  border: 1.5px solid var(--border-color, #ddd); cursor: pointer;
+  background: var(--bg-card, #fff); color: var(--text-muted, #666);
+  transition: border-color 0.2s;
+}
+.explorer-controls select:focus {
+  outline: none; border-color: #e67e22;
+}
+
 .entity-card-components {
   margin-top: 0.5rem; font-size: 0.78rem; color: var(--text-muted, #888);
 }

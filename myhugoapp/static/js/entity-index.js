@@ -53,6 +53,7 @@
   function init(data) {
     var entities = data.entities || [];
     var articles = data.articles || [];
+    var curricula = data.curricula || [];
 
     var catLabels = {
       stoff: 'Stoff',
@@ -62,6 +63,7 @@
       person: 'Person',
       quelle: 'Quelle',
       lehrplan: 'Lehrplan',
+      explorer: 'Entdecken',
     };
     var catColors = {
       stoff: '#667eea',
@@ -71,6 +73,7 @@
       person: '#ff9a76',
       quelle: '#a8a8a8',
       lehrplan: '#9b59b6',
+      explorer: '#e67e22',
     };
 
     var catCounts = {};
@@ -236,7 +239,17 @@
         entities.length +
         '</span></button>';
       Object.keys(catLabels).forEach(function (cat) {
-        if (catCounts[cat]) {
+        if (cat === 'explorer') {
+          filters +=
+            '<button class="entity-filter-btn' +
+            (activeFilter === 'explorer' ? ' active' : '') +
+            '" data-cat="explorer"' +
+            ' style="' +
+            (activeFilter === 'explorer'
+              ? 'background:#e67e22;border-color:#e67e22;color:#fff'
+              : '') +
+            '">🔍 Entdecken</button>';
+        } else if (catCounts[cat]) {
           filters +=
             '<button class="entity-filter-btn' +
             (activeFilter === cat ? ' active' : '') +
@@ -267,6 +280,15 @@
 
       html += toolbar;
       html += filters;
+
+      if (activeFilter === 'explorer') {
+        html += _renderExplorer(curricula);
+        html += '</div>';
+        app.innerHTML = html;
+        _attachExplorerEvents();
+        _attachCommonEvents(totalPages);
+        return;
+      }
 
       if (viewMode === 'cloud') {
         html += '<div class="entity-tagcloud">';
@@ -392,45 +414,7 @@
       }
 
       app.innerHTML = html;
-
-      document.getElementById('entity-search').addEventListener('input', function (ev) {
-        searchQuery = ev.target.value;
-        currentPage = 1;
-        _render();
-      });
-
-      document.getElementById('entity-sort').addEventListener('change', function (ev) {
-        sortMode = ev.target.value;
-        currentPage = 1;
-        _render();
-      });
-
-      app.querySelectorAll('.entity-view-btn').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          viewMode = this.getAttribute('data-view');
-          currentPage = 1;
-          _render();
-        });
-      });
-
-      app.querySelectorAll('.entity-filter-btn').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          activeFilter = this.getAttribute('data-cat');
-          currentPage = 1;
-          _render();
-        });
-      });
-
-      app.querySelectorAll('.entity-page-btn').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          if (btn.disabled) return;
-          var p = parseInt(btn.getAttribute('data-page'));
-          if (p > 0 && p <= totalPages) {
-            currentPage = p;
-            _render();
-          }
-        });
-      });
+      _attachCommonEvents(totalPages);
 
       var tooltipEl = null;
       app.addEventListener('mouseover', function (ev) {
@@ -463,6 +447,156 @@
         var card = ev.target.closest('.entity-card');
         if (!card) return;
         if (tooltipEl) tooltipEl.style.display = 'none';
+      });
+    }
+
+    // ── Explorer view ────────────────────────────────────────────
+    function _renderExplorer(curricula) {
+      var html = '<div class="entity-explorer">';
+
+      // Collect unique values
+      var stMap = {};
+      var scMap = {};
+      curricula.forEach(function (c) {
+        var cm = c.curriculumMeta || {};
+        if (cm.state) stMap[cm.state] = (stMap[cm.state] || 0) + 1;
+        if (cm.school_type) scMap[cm.school_type] = (scMap[cm.school_type] || 0) + 1;
+      });
+      var states = Object.keys(stMap).sort();
+      var schoolTypes = Object.keys(scMap).sort();
+
+      html +=
+        '<div class="explorer-controls"><label>Bundesland:' +
+        ' <select id="explorer-state"><option value="">Alle</option>';
+      states.forEach(function (s) {
+        html += '<option value="' + s + '">' + s + ' (' + stMap[s] + ')</option>';
+      });
+      html +=
+        '</select></label>' +
+        '<label>Schulform:' +
+        ' <select id="explorer-school"><option value="">Alle</option>';
+      schoolTypes.forEach(function (st) {
+        html +=
+          '<option value="' +
+          escapeHtml(st) +
+          '">' +
+          escapeHtml(st) +
+          ' (' +
+          scMap[st] +
+          ')</option>';
+      });
+      html += '</select></label></div>';
+
+      html += '<div class="entity-grid" id="explorer-results">';
+      curricula.forEach(function (c) {
+        var cm = c.curriculumMeta || {};
+        var cat = c.category || 'lehrplan';
+        var slug = toSlug(c.name);
+        html +=
+          '<div class="entity-card entity-card-curriculum" data-cat="' +
+          cat +
+          '" data-state="' +
+          (cm.state || '') +
+          '" data-school="' +
+          escapeHtml(cm.school_type || '') +
+          '">';
+        html +=
+          '<div class="entity-card-name"><a href="/entity/' +
+          slug +
+          '/">' +
+          escapeHtml(c.name) +
+          '</a></div>';
+        html += '<div class="entity-card-cat">' + escapeHtml(catLabels[cat] || cat) + '</div>';
+        html +=
+          '<div class="entity-card-curriculum-meta">' +
+          (cm.state ? cm.state + ', ' : '') +
+          escapeHtml(cm.school_type || '') +
+          ' · Klasse ' +
+          escapeHtml(cm.grade || '') +
+          '</div>';
+        html += '<div class="entity-card-meta">' + (cm.objective_count || 0) + ' Lernziele</div>';
+        html += '</div>';
+      });
+      html += '</div></div>';
+      return html;
+    }
+
+    function _attachExplorerEvents() {
+      var stateSel = document.getElementById('explorer-state');
+      var schoolSel = document.getElementById('explorer-school');
+      if (!stateSel || !schoolSel) return;
+
+      function filterExplorer() {
+        var sv = stateSel.value;
+        var scv = schoolSel.value;
+        var cards = document.querySelectorAll('#explorer-results .entity-card');
+        var visible = 0;
+        cards.forEach(function (card) {
+          var cs = card.getAttribute('data-state') || '';
+          var csc = card.getAttribute('data-school') || '';
+          var match = (!sv || cs === sv) && (!scv || csc === scv);
+          card.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+        var noRes = document.getElementById('explorer-no-results');
+        if (visible === 0) {
+          if (!noRes) {
+            noRes = document.createElement('div');
+            noRes.id = 'explorer-no-results';
+            noRes.className = 'empty-state';
+            noRes.innerHTML = '<div class="empty-state-icon">🔍</div><p>Keine Themen gefunden.</p>';
+            document.getElementById('explorer-results').after(noRes);
+          }
+          noRes.style.display = '';
+        } else if (noRes) {
+          noRes.style.display = 'none';
+        }
+      }
+
+      stateSel.addEventListener('change', filterExplorer);
+      schoolSel.addEventListener('change', filterExplorer);
+    }
+
+    function _attachCommonEvents(tp) {
+      var es = document.getElementById('entity-search');
+      if (es) {
+        es.addEventListener('input', function (ev) {
+          searchQuery = ev.target.value;
+          currentPage = 1;
+          _render();
+        });
+      }
+      var esSort = document.getElementById('entity-sort');
+      if (esSort) {
+        esSort.addEventListener('change', function (ev) {
+          sortMode = ev.target.value;
+          currentPage = 1;
+          _render();
+        });
+      }
+      app.querySelectorAll('.entity-view-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          viewMode = this.getAttribute('data-view');
+          currentPage = 1;
+          _render();
+        });
+      });
+      app.querySelectorAll('.entity-filter-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activeFilter = this.getAttribute('data-cat');
+          currentPage = 1;
+          _render();
+        });
+      });
+      app.querySelectorAll('.entity-page-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (btn.disabled) return;
+          var p = parseInt(btn.getAttribute('data-page'));
+          if (p > 0 && p <= tp) {
+            currentPage = p;
+            _render();
+          }
+        });
       });
     }
 
