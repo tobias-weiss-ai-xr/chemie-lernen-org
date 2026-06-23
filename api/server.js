@@ -2033,8 +2033,26 @@ app.get('/api/admin/chat-logs', function (req, res) {
   res.json({ totalSessions: sessions.length, sessions: sessions });
 });
 
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', uptime: process.uptime() });
+app.get('/api/health', async (req, res) => {
+  var neo4jOk = false;
+  var entityCount = 0;
+  try {
+    var driver = getNeo4jDriver();
+    var session = driver.session({ database: NEO4J_DATABASE, defaultAccessMode: 'READ' });
+    var result = await session.run('MATCH (e:Entity) RETURN count(e) as cnt');
+    entityCount = result.records[0].get('cnt').toNumber();
+    neo4jOk = true;
+    await session.close();
+  } catch {
+    neo4jOk = false;
+  }
+  res.json({
+    status: 'ok',
+    uptime: process.uptime(),
+    neo4j: neo4jOk ? 'connected' : 'unavailable',
+    entityCount: entityCount,
+    version: '2.0',
+  });
 });
 
 app.listen(PORT, () => {
