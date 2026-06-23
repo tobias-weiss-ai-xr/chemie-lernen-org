@@ -142,6 +142,9 @@ def _extract_topics(text: str) -> list[Topic]:
     )
     if_match_plain = re.compile(r"^Inhaltsfeld\s+(Organization|Organische|Stoffklassen|Stoffe|Stoff|Chemische|Reaktion|Verbindung|Luft|Wasser|Metall|Säure|Base|Salz|Ion|Molekül|Elektro|Energie|Kunststoff|Werkstoff|Farbe|Kohlenwasserstoff|Alkohol|Aldehyd|Keton|Carbonsäure|Ester|Fett|Kohlenhydrat|Eiweiß|Naturstoff|Katalyse|Gleichgewicht|Geschwindigkeit|Technik|Produkt|Modell|Atom|Element|Periodensystem)[a-zA-Zäöüß\s,\-–]+", re.IGNORECASE)
 
+    def _strip_invisible(line: str) -> str:
+        return re.sub(r"[\uf000-\uffff\U00010000-\U0010ffff]", "", line)
+
     def _is_meta_line(line: str) -> bool:
         meta_kw = [
             "Inhaltliche Schwerpunkte",
@@ -178,6 +181,7 @@ def _extract_topics(text: str) -> list[Topic]:
 
     for line in lines:
         line = _clean(line)
+        line = _strip_invisible(line)
         if not line or len(line) < 5:
             continue
         if re.match(r"^\d+$", line):
@@ -213,8 +217,9 @@ def _extract_topics(text: str) -> list[Topic]:
             in_inhaltsfeld = True
             continue
 
-        if_match_start = re.search(r"^\s*Inhaltsfeld\b", line)
-        if if_match_start and not _is_meta_line(line) and not in_inhaltsfeld:
+        # Catch-all Inhaltsfeld/Inhaltsfelder detection — also triggers when already in one
+        if_match_start = re.search(r"^\s*Inhaltsfeld(?:er)?\b", line)
+        if if_match_start and not _is_meta_line(line):
             title_part = line[if_match_start.end():].strip()
             title_part = re.sub(r"[\u2000-\uFFFF]", "", title_part).strip()
             title_part = _clean(title_part)
@@ -259,6 +264,7 @@ def _parse_pdf(text: str) -> list[GradeLevel]:
 
     grades: list[GradeLevel] = []
 
+    # Try Gymnasium Sek I format: "Erste Stufe" / "Zweite Stufe"
     stufe1_match = re.search(r"Erste Stufe\s*$", text, re.MULTILINE)
     stufe2_match = re.search(r"Zweite Stufe\s*$", text, re.MULTILINE)
 
@@ -273,6 +279,42 @@ def _parse_pdf(text: str) -> list[GradeLevel]:
         topics_s2 = _extract_topics(s2_text)
         if topics_s2:
             grades.append(GradeLevel(grade="8-10", topics=topics_s2))
+
+        return grades
+
+    # Try Realschule format: "ersten Progressionsstufe" / "zweiten Progressionsstufe"
+    prog1_match = re.search(r"ersten? Progressionsstufe", text, re.IGNORECASE)
+    prog2_match = re.search(r"zweiten? Progressionsstufe", text, re.IGNORECASE)
+
+    if prog1_match and prog2_match:
+        s1_text = text[prog1_match.start() : prog2_match.start()]
+        s2_text = text[prog2_match.start() :]
+
+        topics_s1 = _extract_topics(s1_text)
+        if topics_s1:
+            grades.append(GradeLevel(grade="5-8", topics=topics_s1))
+
+        topics_s2 = _extract_topics(s2_text)
+        if topics_s2:
+            grades.append(GradeLevel(grade="9-10", topics=topics_s2))
+
+        return grades
+
+    # Try Sek II format: "Einführungsphase" / "Qualifikationsphase"
+    ephase_match = re.search(r"Einführungsphase", text)
+    qphase_match = re.search(r"Qualifikationsphase", text)
+
+    if ephase_match and qphase_match:
+        e_text = text[ephase_match.start() : qphase_match.start()]
+        q_text = text[qphase_match.start() :]
+
+        topics_e = _extract_topics(e_text)
+        if topics_e:
+            grades.append(GradeLevel(grade="11 (E-Phase)", topics=topics_e))
+
+        topics_q = _extract_topics(q_text)
+        if topics_q:
+            grades.append(GradeLevel(grade="12/13 (Q-Phase)", topics=topics_q))
 
         return grades
 

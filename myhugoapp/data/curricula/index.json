@@ -1,99 +1,13 @@
 [
   {
-    "state": "Brandenburg",
-    "state_abbr": "BB",
-    "school_types": ["Sek I (gemeinsamer RLP Berlin/Brandenburg)"],
-    "last_updated": "2026-06-22"
-  },
-  {
-    "state": "Berlin",
-    "state_abbr": "BE",
-    "school_types": ["Sek I (gemeinsamer RLP Berlin/Brandenburg)"],
-    "last_updated": "2026-06-22"
-  },
-  {
-    "state": "Baden-Württemberg",
-    "state_abbr": "BW",
-    "school_types": ["Gymnasium", "Sekundarstufe I (RS/HS/GMS)"],
-    "last_updated": "2026-06-22"
-  },
-  {
-    "state": "Bayern",
-    "state_abbr": "BY",
-    "school_types": ["Gymnasium (NTG)", "Gymnasium (HG/SG/MuG/WWG/SWG)", "Realschule"],
-    "last_updated": "2026-06-22"
-  },
-  {
-    "state": "Bremen",
-    "state_abbr": "HB",
-    "school_types": ["Gymnasiale Oberstufe (GyO)"],
-    "last_updated": "2026-06-22"
-  },
-  {
-    "state": "Hessen",
-    "state_abbr": "HE",
-    "school_types": ["Gymnasium (Oberstufe)"],
-    "last_updated": "2026-06-22"
-  },
-  {
-    "state": "Hamburg",
-    "state_abbr": "HH",
-    "school_types": ["Gymnasium (Sek I)", "Gymnasium (Oberstufe)"],
-    "last_updated": "2026-06-22"
-  },
-  {
-    "state": "Mecklenburg-Vorpommern",
-    "state_abbr": "MV",
-    "school_types": ["Gymnasium (Sek I, Klassen 7-10)"],
-    "last_updated": "2026-06-22"
-  },
-  {
-    "state": "Niedersachsen",
-    "state_abbr": "NI",
-    "school_types": ["Gymnasium (Sek II)", "Gymnasium (Sek I)", "Realschule", "Hauptschule"],
-    "last_updated": "2026-06-22"
-  },
-  {
     "state": "Nordrhein-Westfalen",
-    "state_abbr": "NRW",
+    "state_abbr": "NW",
     "school_types": [
       "Gymnasium (Sek I)",
-      "Gymnasium (Sek II)",
       "Realschule",
-      "Hauptschule",
-      "Gesamtschule",
-      "Sekundarschule"
+      "Gymnasium (Sek II, ab 2022/2023)",
+      "Gymnasium (Sek II, ab 2013)"
     ],
-    "last_updated": "2026-06-22"
-  },
-  {
-    "state": "Rheinland-Pfalz",
-    "state_abbr": "RP",
-    "school_types": ["Sek I (alle Schularten, kombiniert NW)"],
-    "last_updated": "2026-06-22"
-  },
-  {
-    "state": "Sachsen",
-    "state_abbr": "SN",
-    "school_types": ["Gymnasium", "Oberschule"],
-    "last_updated": "2026-06-22"
-  },
-  {
-    "state": "Sachsen-Anhalt",
-    "state_abbr": "ST",
-    "school_types": ["Gymnasium"],
-    "last_updated": "2026-06-22"
-  },
-  {
-    "state": "Schleswig-Holstein",
-    "state_abbr": "SH",
-    "school_types": ["Sekundarstufe I und II (Fachanforderungen)"],
-    "last_updated": "2026-06-22"
-  },
-  {
-    "state": "Thüringen",
-    "state_abbr": "TH",
-    "school_types": ["Gymnasium (AHR)", "Regelschule (HRA)"],
-    "last_updated": "2026-06-22"
+    "last_updated": "2026-06-23"
   }
 ]

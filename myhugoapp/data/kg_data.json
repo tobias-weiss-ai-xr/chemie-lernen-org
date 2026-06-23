@@ -1,45 +1,5 @@
 {
-  "articles": [
-    {
-      "title": "Protein-Dynamik: Kombinierte Bildgebung zeigt „Atmen\" von Proteinen",
-      "url": "https://chemie-lernen.org/posts/2026-06-16-protein-dynamik-kombinierte-bildgebung-zeigt-atmen-von-proteinen/",
-      "description": "Die Strukturbiologie liefert zwar detaillierte molekulare Strukturen, oft jedoch nur als statische Momentaufnahmen. Da die Dynamik von Proteinen für ihre biologische Funktion essenziell ist, haben For",
-      "tags": [
-        "strukturbiologie",
-        "protein-dynamik",
-        "bildgebung",
-        "nature-chemistry",
-        "ista"
-      ],
-      "entities": [],
-      "date": "2026-06-16T02:43:04+02:00"
-    },
-    {
-      "title": "Neuer Palladium-Präkatalysator vereint Stabilität und Reaktivität",
-      "url": "https://chemie-lernen.org/posts/2026-06-16-neuer-palladium-praekatalysator-vereint-stabilitaet-und-reaktivitaet/",
-      "description": "Forschende der Universität Tsukuba haben einen neuartigen Palladium-Präkatalysator entwickelt, der Stabilität und Reaktivität effektiv vereint. Dieser Katalysator zeichnet sich durch eine außergewöhnl",
-      "tags": [
-        "palladium",
-        "katalyse",
-        "präkatalysator",
-        "organische synthese",
-        "universität tsukuba"
-      ],
-      "entities": [],
-      "date": "2026-06-16T02:43:33+02:00"
-    },
-    {
-      "title": "Ursprung des Lebens: Effizientere GTP-Synthese durch Ribozyme entdeckt",
-      "url": "https://chemie-lernen.org/posts/2026-06-16-ursprung-des-lebens-effizientere-gtp-synthese-durch-ribozyme-entdeckt/",
-      "description": "Die Entstehung des Lebens auf der Erde ist eng mit der sogenannten RNA-Welt-Hypothese verknüpft. Demnach basierten frühe biologische Systeme auf RNA-Molekülen, die sowohl genetische Information speich",
-      "tags": [
-        "chemie",
-        "forschung"
-      ],
-      "entities": [],
-      "date": "2026-06-16T02:44:07+02:00"
-    }
-  ],
+  "articles": [],
   "entities": [],
-  "updatedAt": "2026-06-16T02:44:07+02:00"
+  "updatedAt": "2026-06-23T02:43:09+02:00"
 }
