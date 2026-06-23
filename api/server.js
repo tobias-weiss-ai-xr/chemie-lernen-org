@@ -786,6 +786,47 @@ function getFallbackData() {
       relatedEntities: [{ name: 'chemische reaktion', weight: 1 }],
       articleCount: 0,
     },
+    // P3b: KMK didaktik entities for compliance display
+    {
+      id: 'e37',
+      name: 'kmk-chemie-msa-2004',
+      category: 'didaktik',
+      articles: [],
+      relatedEntities: [
+        { name: 'redoxreaktionen', weight: 1 },
+        { name: 'saeure-base-gleichgewichte', weight: 1 },
+        { name: 'chemische reaktion', weight: 1 },
+        { name: 'stoffwechselwirkungen', weight: 1 },
+      ],
+      articleCount: 0,
+    },
+    {
+      id: 'e38',
+      name: 'kmk-chemie-msa-2024',
+      category: 'didaktik',
+      articles: [],
+      relatedEntities: [
+        { name: 'redoxreaktionen', weight: 1 },
+        { name: 'saeure-base-gleichgewichte', weight: 1 },
+        { name: 'chemische reaktion', weight: 1 },
+        { name: 'atombau und periodensystem', weight: 1 },
+        { name: 'donator-akzeptor-konzept', weight: 1 },
+      ],
+      articleCount: 0,
+    },
+    {
+      id: 'e39',
+      name: 'kmk-chemie-ahr-2020',
+      category: 'didaktik',
+      articles: [],
+      relatedEntities: [
+        { name: 'chemische-gleichgewichte', weight: 1 },
+        { name: 'kunststoffe', weight: 1 },
+        { name: 'aromaten', weight: 1 },
+        { name: 'saeure-base-gleichgewichte', weight: 1 },
+      ],
+      articleCount: 0,
+    },
   ];
   var _ri, _ci, _ej, _existing;
   for (_ri = 0; _ri < refEntities.length; _ri++) {
@@ -995,7 +1036,7 @@ app.get('/api/entity/:slug', function (req, res) {
     return res.status(404).json({ error: 'Entity not found', slug: slug });
   }
 
-  // Resolve related entities to full objects
+  // Resolve forward related entities
   var relatedEntities = [];
   if (entity.relatedEntities && entity.relatedEntities.length > 0) {
     for (var r = 0; r < entity.relatedEntities.length; r++) {
@@ -1011,6 +1052,33 @@ app.get('/api/entity/:slug', function (req, res) {
           copy.curriculumMeta = related.curriculumMeta;
         }
         relatedEntities.push(copy);
+      }
+    }
+  }
+
+  // Reverse-lookup: find entities that reference this one
+  var data = getFallbackData();
+  var reverseEntityNames = {};
+  for (var ei = 0; ei < relatedEntities.length; ei++) {
+    reverseEntityNames[relatedEntities[ei].name] = true;
+  }
+  for (var _ei = 0; _ei < data.entities.length; _ei++) {
+    var candidate = data.entities[_ei];
+    if (candidate.name === entity.name) continue;
+    if (reverseEntityNames[candidate.name]) continue;
+    if (candidate.relatedEntities && candidate.relatedEntities.length > 0) {
+      for (var _r = 0; _r < candidate.relatedEntities.length; _r++) {
+        var _ref = candidate.relatedEntities[_r];
+        var _refName = typeof _ref === 'string' ? _ref : _ref.name;
+        if (_refName.toLowerCase() === entity.name.toLowerCase()) {
+          reverseEntityNames[candidate.name] = true;
+          relatedEntities.push({
+            name: candidate.name,
+            category: candidate.category || 'unknown',
+            curriculumMeta: candidate.curriculumMeta || null,
+          });
+          break;
+        }
       }
     }
   }
@@ -1064,6 +1132,7 @@ app.get('/entity/:slug', function (req, res) {
       methode: '#f39c12',
       person: '#1abc9c',
       quelle: '#95a5a6',
+      didaktik: '#2e7d32',
     };
     catColor = colors[entity.category] || '#95a5a6';
   }
@@ -1077,6 +1146,7 @@ app.get('/entity/:slug', function (req, res) {
     person: 'Person',
     quelle: 'Quelle',
     lehrplan: 'Lehrplan',
+    didaktik: 'KMK-Standard',
   };
   if (catLabels[entity.category]) catLabel = catLabels[entity.category];
 
@@ -1098,20 +1168,80 @@ app.get('/entity/:slug', function (req, res) {
       '</span></div>';
   }
 
-  var relatedHtml = '';
+  // Collect all related entities (forward + reverse lookup)
+  var kmkRefs = [];
+  var otherRefs = [];
+  var seenRefNames = {};
+
+  function addRef(name) {
+    if (seenRefNames[name]) return;
+    seenRefNames[name] = true;
+    var refEntity = findEntityBySlug(name);
+    if (refEntity && refEntity.category === 'didaktik') {
+      kmkRefs.push(name);
+    } else if (refEntity) {
+      otherRefs.push(name);
+    }
+  }
+
+  // Forward: entity.relatedEntities
   if (entity.relatedEntities && entity.relatedEntities.length > 0) {
-    relatedHtml = '<h3>Verwandte Begriffe</h3><div class="related-list">';
     for (var r = 0; r < entity.relatedEntities.length; r++) {
       var ref = entity.relatedEntities[r];
       var refName = typeof ref === 'string' ? ref : ref.name;
-      relatedHtml +=
+      addRef(refName);
+    }
+  }
+  // Reverse: find entities that reference this one
+  var data = getFallbackData();
+  for (var ei = 0; ei < data.entities.length; ei++) {
+    var candidate = data.entities[ei];
+    if (candidate.name === entity.name) continue;
+    if (candidate.relatedEntities && candidate.relatedEntities.length > 0) {
+      for (var ri = 0; ri < candidate.relatedEntities.length; ri++) {
+        var cr = candidate.relatedEntities[ri];
+        var crName = typeof cr === 'string' ? cr : cr.name;
+        if (crName.toLowerCase() === entity.name.toLowerCase()) {
+          addRef(candidate.name);
+          break;
+        }
+      }
+    }
+  }
+
+  var kmkHtml = '';
+  if (kmkRefs.length > 0) {
+    kmkHtml = '<h3>KMK-Bildungsstandards</h3><div class="kmk-list">';
+    for (var k = 0; k < kmkRefs.length; k++) {
+      kmkHtml +=
         '<a href="/entity/' +
-        slugify(refName) +
-        '/" class="related-chip">' +
-        escapeHtml(refName.replace(/-/g, ' ')) +
+        slugify(kmkRefs[k]) +
+        '/" class="kmk-chip">' +
+        escapeHtml(
+          kmkRefs[k]
+            .replace(/^kmk-/i, 'KMK ')
+            .replace(/-/g, ' ')
+            .replace(/\b\w/g, function (c) {
+              return c.toUpperCase();
+            })
+        ) +
         '</a>';
     }
-    relatedHtml += '</div>';
+    kmkHtml += '</div>';
+  }
+
+  var otherRelatedHtml = '';
+  if (otherRefs.length > 0) {
+    otherRelatedHtml = '<h3>Verwandte Begriffe</h3><div class="related-list">';
+    for (var r2 = 0; r2 < otherRefs.length; r2++) {
+      otherRelatedHtml +=
+        '<a href="/entity/' +
+        slugify(otherRefs[r2]) +
+        '/" class="related-chip">' +
+        escapeHtml(otherRefs[r2].replace(/-/g, ' ')) +
+        '</a>';
+    }
+    otherRelatedHtml += '</div>';
   }
 
   var articlesHtml = '';
@@ -1149,6 +1279,10 @@ app.get('/entity/:slug', function (req, res) {
       '.related-list{display:flex;flex-wrap:wrap;gap:8px;margin:.5rem 0}' +
       '.related-chip{display:inline-block;padding:6px 14px;background:#e8f0fe;color:#1a73e8;border-radius:20px;text-decoration:none;font-size:.9rem}' +
       '.related-chip:hover{background:#d2e3fc}' +
+      '.kmk-list{display:flex;flex-wrap:wrap;gap:8px;margin:.5rem 0}' +
+      '.kmk-chip{display:inline-block;padding:6px 14px;background:#e8f5e9;color:#2e7d32;border-radius:20px;text-decoration:none;font-size:.85rem;border:1px solid #a5d6a7}' +
+      '.kmk-chip:hover{background:#c8e6c9;border-color:#388e3c}' +
+      '.kmk-chip::before{content:"✓ ";font-weight:bold}' +
       '.article-list{padding-left:1.2rem}' +
       '.article-list li{margin:.5rem 0;color:#555}' +
       '.back-link{display:inline-block;margin-top:1.5rem;color:#666;text-decoration:none}' +
@@ -1158,6 +1292,7 @@ app.get('/entity/:slug', function (req, res) {
       '.card{background:#16213e;box-shadow:0 2px 8px rgba(0,0,0,0.4)}' +
       '.meta-section{background:#1a1a3e}' +
       '.related-chip{background:#2a2a5e;color:#7cb3ff}' +
+      '.kmk-chip{background:#1b3a1b;color:#81c784;border-color:#2e7d32}' +
       '.meta-row{border-bottom-color:#333}' +
       '.meta-label{color:#999}' +
       '}</style>' +
@@ -1171,7 +1306,8 @@ app.get('/entity/:slug', function (req, res) {
       escapeHtml(displayName) +
       '</h1>' +
       (isCurriculum ? '<div class="meta-section">' + metaHtml + '</div>' : '') +
-      relatedHtml +
+      kmkHtml +
+      otherRelatedHtml +
       articlesHtml +
       '<a href="' +
       backLink +
@@ -1204,6 +1340,49 @@ process.on('SIGTERM', async () => {
     neo4jDriver = null;
   }
   process.exit(0);
+});
+
+/**
+ * GET /api/curricula/compare?name=X — Find matching topics across all states.
+ * Returns grouped results for P3a Ländervergleich.
+ */
+app.get('/api/curricula/compare', function (req, res) {
+  var q = (req.query.name || '').toLowerCase().trim();
+  if (!q) {
+    return res.json({ results: {}, query: q, count: 0 });
+  }
+
+  var fallback = getFallbackData();
+  var matches = [];
+  var seen = {};
+
+  // Search in fallback curricula
+  for (var ci = 0; ci < fallback.curricula.length; ci++) {
+    var c = fallback.curricula[ci];
+    if (c.name.toLowerCase().indexOf(q) !== -1) {
+      var key = c.curriculumMeta.state + '|' + c.name;
+      if (!seen[key]) {
+        seen[key] = true;
+        matches.push({
+          name: c.name,
+          state: c.curriculumMeta.state,
+          grade: c.curriculumMeta.grade,
+          school_type: c.curriculumMeta.school_type,
+          objective_count: c.curriculumMeta.objective_count,
+        });
+      }
+    }
+  }
+
+  // Group by state
+  var grouped = {};
+  for (var mi = 0; mi < matches.length; mi++) {
+    var m = matches[mi];
+    if (!grouped[m.state]) grouped[m.state] = [];
+    grouped[m.state].push(m);
+  }
+
+  res.json({ results: grouped, query: q, count: matches.length });
 });
 
 app.get('/api/health', (req, res) => {
