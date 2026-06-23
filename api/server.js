@@ -45,7 +45,7 @@ setInterval(() => {
   for (const key of rateStore.keys()) {
     if (!key.endsWith(today)) rateStore.delete(key);
   }
-  
+
   // Clean old sessions
   const now = Date.now();
   for (const [sessionId, session] of sessionStore.entries()) {
@@ -61,19 +61,19 @@ setInterval(() => {
 function getSessionId(req, res) {
   // Check if session ID in cookie
   let sessionId = req.cookies?.chemie_session;
-  
+
   // Generate new session if none exists
   if (!sessionId) {
     sessionId = crypto.randomUUID();
     // Set cookie for future requests
-    res.cookie('chemie_session', sessionId, { 
+    res.cookie('chemie_session', sessionId, {
       maxAge: SESSION_TTL,
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax'
+      sameSite: 'lax',
     });
   }
-  
+
   return sessionId;
 }
 
@@ -82,18 +82,18 @@ function getSessionId(req, res) {
  */
 function getSession(sessionId) {
   let session = sessionStore.get(sessionId);
-  
+
   if (!session) {
     session = {
       messages: [],
       createdAt: Date.now(),
-      lastUsed: Date.now()
+      lastUsed: Date.now(),
     };
     sessionStore.set(sessionId, session);
   } else {
     session.lastUsed = Date.now();
   }
-  
+
   return session;
 }
 
@@ -126,15 +126,15 @@ app.use((req, res, next) => {
 app.get('/api/session', (req, res) => {
   const sessionId = getSessionId(req, res);
   const session = getSession(sessionId);
-  
+
   res.json({
     sessionId,
     messageCount: session.messages.length,
     sessionInfo: {
       createdAt: new Date(session.createdAt).toISOString(),
       lastUsed: new Date(session.lastUsed).toISOString(),
-      maxMessages: MAX_MESSAGES_PER_SESSION
-    }
+      maxMessages: MAX_MESSAGES_PER_SESSION,
+    },
   });
 });
 
@@ -159,22 +159,19 @@ app.post('/api/chat', async (req, res) => {
   }
 
   const acceptStreaming = req.accepts('text/event-stream');
-  
+
   try {
     const session = getSession(sessionId);
     session.messages.push({ role: 'user', content: message });
     cleanupSessionMessages(session);
-    
+
     const systemPrompt = `Du bist ein hilfreicher Chemie-Assistent für Schüler (Klasse 8-13) auf chemie-lernen.org. 
 Antworte präzise, ausführlich und auf Deutsch. Beziehe dich auf chemische Konzepte, Formeln und Gesetze. 
 Erkläre Zusammenhänge gründlich, wenn es der Frage hilft. 
 Wenn du etwas nicht weißt, sage es ehrlich. 
 Behandle Kontext aus vorherigen Fragen mit.`;
 
-    const conversationHistory = [
-      { role: 'system', content: systemPrompt },
-      ...session.messages
-    ];
+    const conversationHistory = [{ role: 'system', content: systemPrompt }, ...session.messages];
 
     if (!acceptStreaming) {
       const llmRes = await fetch(`${LITELLM_URL}/v1/chat/completions`, {
@@ -196,22 +193,22 @@ Behandle Kontext aus vorherigen Fragen mit.`;
 
       const data = await llmRes.json();
       const reply = data.choices?.[0]?.message?.content || 'Keine Antwort erhalten.';
-      
+
       session.messages.push({ role: 'assistant', content: reply });
       cleanupSessionMessages(session);
       res.json({
-        reply, 
+        reply,
         remaining: rate.remaining,
         sessionId,
-        messageCount: session.messages.length
+        messageCount: session.messages.length,
       });
       return;
     }
-    
+
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
-    
+
     const buffer = [];
     let replyContent = '';
     try {
@@ -233,19 +230,19 @@ Behandle Kontext aus vorherigen Fragen mit.`;
         throw new Error(`Stream init failed: ${errText}`);
       }
 
-        const reader = llmRes.body.getReader();
+      const reader = llmRes.body.getReader();
       const decoder = new TextDecoder();
-      
+
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
-        
+
         const chunk = decoder.decode(value, { stream: true });
-        
-      for (const line of chunk.split("\n").filter(line => line.startsWith("data: "))) {
+
+        for (const line of chunk.split('\n').filter((line) => line.startsWith('data: '))) {
           const dataLine = line.slice(6).trim();
-          if (dataLine === "[DONE]") continue;
-          
+          if (dataLine === '[DONE]') continue;
+
           try {
             const data = JSON.parse(dataLine);
             const delta = data.choices?.[0]?.delta?.content;
@@ -260,35 +257,37 @@ Behandle Kontext aus vorherigen Fragen mit.`;
         }
       }
 
-      res.write(`data: ${JSON.stringify({
-        done: true,
-        remaining: rate.remaining,
-        sessionId,
-        messageCount: session.messages.length + 1
-      })}\n\n`);
+      res.write(
+        `data: ${JSON.stringify({
+          done: true,
+          remaining: rate.remaining,
+          sessionId,
+          messageCount: session.messages.length + 1,
+        })}\n\n`
+      );
     } catch (streamErr) {
       console.error(`[chat-api] Stream failed, falling back: ${streamErr.message}`);
       while (buffer.length > 0) {
         const chunk = buffer.shift();
         if (chunk) replyContent += chunk;
       }
-      
-      res.write(`data: ${JSON.stringify({
-        content: replyContent,
-        fallback: true,
-        done: true,
-        remaining: rate.remaining,
-        sessionId,
-        messageCount: session.messages.length + 1
-      })}\n\n`);
+
+      res.write(
+        `data: ${JSON.stringify({
+          content: replyContent,
+          fallback: true,
+          done: true,
+          remaining: rate.remaining,
+          sessionId,
+          messageCount: session.messages.length + 1,
+        })}\n\n`
+      );
     } finally {
       res.end();
     }
-    
 
     session.messages.push({ role: 'assistant', content: replyContent });
     cleanupSessionMessages(session);
-    
   } catch (err) {
     console.error(`[chat-api] Error: ${err.message}`);
     if (!res.headersSent && !res.writableEnded) {
@@ -318,40 +317,357 @@ function getNeo4jDriver() {
  * Fallback data used when Neo4j is unreachable.
  */
 function getFallbackData() {
-  return {
+  var fallback = {
     articles: [
-      { id: 'a0', title: 'Energetische Baupläne diversifizieren Proteinfunktion', url: 'https://chemie-lernen.org/posts/2026-06-08-energetische-bauplaene-diversifizieren-proteinfunktion-bei-konservierter-faltung/', entities: ['allosterie', 'ligandenempfindlichkeit', 'transportproteine'], date: '2026-06-08T02:43:40+02:00' },
-      { id: 'a1', title: 'Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen', url: 'https://chemie-lernen.org/posts/2026-06-08-neuer-kristall-erzeugt-magnetische-skyrmionen-strukturen/', entities: ['kristallstruktur', 'magnetische ordnung', 'datenspeicherung'], date: '2026-06-08T02:43:06+02:00' },
-      { id: 'a2', title: 'Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse', url: 'https://chemie-lernen.org/posts/2026-06-07-magnetfeld-verdreifacht-ammoniakausbeute-bei-elektrokatalyse/', entities: ['ammoniak', 'elektrokatalyse', 'cobaltferrit'], date: '2026-06-07T02:44:22+02:00' },
-      { id: 'a3', title: 'Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz', url: 'https://chemie-lernen.org/posts/2026-06-08-neue-kristallsaatkerne-steigern-perowskit-solarzellen-auf-23-effizienz/', entities: ['perowskit-solarzellen', 'kristallisation', 'materialwissenschaft'], date: '2026-06-08T02:42:34+02:00' },
-      { id: 'a4', title: '50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure', url: 'https://chemie-lernen.org/posts/2026-06-05-50-jahre-raetsel-proteine-verlieren-hydrathuelle-durch-saeure/', entities: ['hydrathülle', 'proteine', 'ph-wert'], date: '2026-06-05T02:42:39+02:00' },
-      { id: 'a5', title: 'Künstliche Intelligenz findet neue Katalysatoren für Wasserstoffproduktion', url: 'https://chemie-lernen.org/posts/2026-06-08-ki-findet-neue-katalysatoren/', entities: ['katalysatoren', 'wasserstoffproduktion', 'ki'], date: '2026-06-08T02:45:00+02:00' },
-      { id: 'a6', title: 'Quantencomputer berechnen Molekülstrukturen in Rekordzeit', url: 'https://chemie-lernen.org/posts/2026-06-08-quantencomputer-molekuel/', entities: ['quantencomputer', 'molekülstrukturen', 'berechnungen'], date: '2026-06-08T02:46:00+02:00' },
-      { id: 'a7', title: 'Neue Legierung macht Motoren 30% effizienter', url: 'https://chemie-lernen.org/posts/2026-06-08-neue-legierung-motoren/', entities: ['legierung', 'motoren', 'effizienz'], date: '2026-06-08T02:47:00+02:00' },
-      { id: 'a8', title: 'Solarzellen aus organischem Material erreichen 18% Wirkungsgrad', url: 'https://chemie-lernen.org/posts/2026-06-08-solarzellen-organisch/', entities: ['solarzellen', 'organische materialien', 'wirkungsgrad'], date: '2026-06-08T02:48:00+02:00' },
-      { id: 'a9', title: 'Wissenschaftler entdecken neue Art chemischer Bindung', url: 'https://chemie-lernen.org/posts/2026-06-08-neue-bindung/', entities: ['chemische bindung', 'molekülphysik', 'neuentdeckung'], date: '2026-06-08T02:49:00+02:00' },
+      {
+        id: 'a0',
+        title: 'Energetische Baupläne diversifizieren Proteinfunktion',
+        url: 'https://chemie-lernen.org/posts/2026-06-08-energetische-bauplaene-diversifizieren-proteinfunktion-bei-konservierter-faltung/',
+        entities: ['allosterie', 'ligandenempfindlichkeit', 'transportproteine'],
+        date: '2026-06-08T02:43:40+02:00',
+      },
+      {
+        id: 'a1',
+        title: 'Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen',
+        url: 'https://chemie-lernen.org/posts/2026-06-08-neuer-kristall-erzeugt-magnetische-skyrmionen-strukturen/',
+        entities: ['kristallstruktur', 'magnetische ordnung', 'datenspeicherung'],
+        date: '2026-06-08T02:43:06+02:00',
+      },
+      {
+        id: 'a2',
+        title: 'Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse',
+        url: 'https://chemie-lernen.org/posts/2026-06-07-magnetfeld-verdreifacht-ammoniakausbeute-bei-elektrokatalyse/',
+        entities: ['ammoniak', 'elektrokatalyse', 'cobaltferrit'],
+        date: '2026-06-07T02:44:22+02:00',
+      },
+      {
+        id: 'a3',
+        title: 'Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz',
+        url: 'https://chemie-lernen.org/posts/2026-06-08-neue-kristallsaatkerne-steigern-perowskit-solarzellen-auf-23-effizienz/',
+        entities: ['perowskit-solarzellen', 'kristallisation', 'materialwissenschaft'],
+        date: '2026-06-08T02:42:34+02:00',
+      },
+      {
+        id: 'a4',
+        title: '50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure',
+        url: 'https://chemie-lernen.org/posts/2026-06-05-50-jahre-raetsel-proteine-verlieren-hydrathuelle-durch-saeure/',
+        entities: ['hydrathülle', 'proteine', 'ph-wert'],
+        date: '2026-06-05T02:42:39+02:00',
+      },
+      {
+        id: 'a5',
+        title: 'Künstliche Intelligenz findet neue Katalysatoren für Wasserstoffproduktion',
+        url: 'https://chemie-lernen.org/posts/2026-06-08-ki-findet-neue-katalysatoren/',
+        entities: ['katalysatoren', 'wasserstoffproduktion', 'ki'],
+        date: '2026-06-08T02:45:00+02:00',
+      },
+      {
+        id: 'a6',
+        title: 'Quantencomputer berechnen Molekülstrukturen in Rekordzeit',
+        url: 'https://chemie-lernen.org/posts/2026-06-08-quantencomputer-molekuel/',
+        entities: ['quantencomputer', 'molekülstrukturen', 'berechnungen'],
+        date: '2026-06-08T02:46:00+02:00',
+      },
+      {
+        id: 'a7',
+        title: 'Neue Legierung macht Motoren 30% effizienter',
+        url: 'https://chemie-lernen.org/posts/2026-06-08-neue-legierung-motoren/',
+        entities: ['legierung', 'motoren', 'effizienz'],
+        date: '2026-06-08T02:47:00+02:00',
+      },
+      {
+        id: 'a8',
+        title: 'Solarzellen aus organischem Material erreichen 18% Wirkungsgrad',
+        url: 'https://chemie-lernen.org/posts/2026-06-08-solarzellen-organisch/',
+        entities: ['solarzellen', 'organische materialien', 'wirkungsgrad'],
+        date: '2026-06-08T02:48:00+02:00',
+      },
+      {
+        id: 'a9',
+        title: 'Wissenschaftler entdecken neue Art chemischer Bindung',
+        url: 'https://chemie-lernen.org/posts/2026-06-08-neue-bindung/',
+        entities: ['chemische bindung', 'molekülphysik', 'neuentdeckung'],
+        date: '2026-06-08T02:49:00+02:00',
+      },
     ],
     entities: [
-      { id: 'e0', name: 'allosterie', category: 'konzept', articles: ['Energetische Baupläne diversifizieren Proteinfunktion'], relatedEntities: ['ligandenempfindlichkeit'], articleCount: 1 },
-      { id: 'e1', name: 'kristallstruktur', category: 'konzept', articles: ['Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen'], relatedEntities: ['magnetische ordnung'], articleCount: 1 },
-      { id: 'e2', name: 'ammoniak', category: 'stoff', articles: ['Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse'], relatedEntities: ['elektrokatalyse'], articleCount: 1 },
-      { id: 'e3', name: 'elektrokatalyse', category: 'reaktion', articles: ['Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse'], relatedEntities: ['ammoniak'], articleCount: 1 },
-      { id: 'e4', name: 'perowskit-solarzellen', category: 'stoff', articles: ['Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz'], relatedEntities: ['materialwissenschaft'], articleCount: 1 },
-      { id: 'e5', name: 'hydrathülle', category: 'konzept', articles: ['50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure'], relatedEntities: ['proteine'], articleCount: 1 },
-      { id: 'e6', name: 'katalysatoren', category: 'stoff', articles: ['Künstliche Intelligenz findet neue Katalysatoren für Wasserstoffproduktion'], relatedEntities: ['wasserstoffproduktion'], articleCount: 1 },
-      { id: 'e7', name: 'wasserstoffproduktion', category: 'reaktion', articles: ['Künstliche Intelligenz findet neue Katalysatoren für Wasserstoffproduktion'], relatedEntities: ['katalysatoren'], articleCount: 1 },
-      { id: 'e8', name: 'quantencomputer', category: 'methode', articles: ['Quantencomputer berechnen Molekülstrukturen in Rekordzeit'], relatedEntities: ['berechnungen'], articleCount: 1 },
-      { id: 'e9', name: 'molekülstrukturen', category: 'konzept', articles: ['Quantencomputer berechnen Molekülstrukturen in Rekordzeit'], relatedEntities: ['berechnungen'], articleCount: 1 },
-      { id: 'e10', name: 'legierung', category: 'stoff', articles: ['Neue Legierung macht Motoren 30% effizienter'], relatedEntities: ['effizienz'], articleCount: 1 },
-      { id: 'e11', name: 'motoren', category: 'methode', articles: ['Neue Legierung macht Motoren 30% effizienter'], relatedEntities: ['legierung'], articleCount: 1 },
-      { id: 'e12', name: 'solarzellen', category: 'stoff', articles: ['Solarzellen aus organischem Material erreichen 18% Wirkungsgrad'], relatedEntities: ['wirkungsgrad'], articleCount: 1 },
-      { id: 'e13', name: 'organische materialien', category: 'stoff', articles: ['Solarzellen aus organischem Material erreichen 18% Wirkungsgrad'], relatedEntities: ['solarzellen'], articleCount: 1 },
-      { id: 'e14', name: 'wirkungsgrad', category: 'konzept', articles: ['Solarzellen aus organischem Material erreichen 18% Wirkungsgrad'], relatedEntities: ['solarzellen'], articleCount: 1 },
-      { id: 'e15', name: 'chemische bindung', category: 'konzept', articles: ['Wissenschaftler entdecken neue Art chemischer Bindung'], relatedEntities: ['molekülphysik'], articleCount: 1 },
-      { id: 'e16', name: 'molekülphysik', category: 'konzept', articles: ['Wissenschaftler entdecken neue Art chemischer Bindung'], relatedEntities: ['chemische bindung'], articleCount: 1 },
-      { id: 'e17', name: 'neuentdeckung', category: 'konzept', articles: ['Wissenschaftler entdecken neue Art chemischer Bindung'], relatedEntities: ['chemische bindung'], articleCount: 1 },
+      {
+        id: 'e0',
+        name: 'allosterie',
+        category: 'konzept',
+        articles: ['Energetische Baupläne diversifizieren Proteinfunktion'],
+        relatedEntities: ['ligandenempfindlichkeit'],
+        articleCount: 1,
+      },
+      {
+        id: 'e1',
+        name: 'kristallstruktur',
+        category: 'konzept',
+        articles: ['Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen'],
+        relatedEntities: ['magnetische ordnung'],
+        articleCount: 1,
+      },
+      {
+        id: 'e2',
+        name: 'ammoniak',
+        category: 'stoff',
+        articles: ['Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse'],
+        relatedEntities: ['elektrokatalyse'],
+        articleCount: 1,
+      },
+      {
+        id: 'e3',
+        name: 'elektrokatalyse',
+        category: 'reaktion',
+        articles: ['Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse'],
+        relatedEntities: ['ammoniak'],
+        articleCount: 1,
+      },
+      {
+        id: 'e4',
+        name: 'perowskit-solarzellen',
+        category: 'stoff',
+        articles: ['Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz'],
+        relatedEntities: ['materialwissenschaft'],
+        articleCount: 1,
+      },
+      {
+        id: 'e5',
+        name: 'hydrathülle',
+        category: 'konzept',
+        articles: ['50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure'],
+        relatedEntities: ['proteine'],
+        articleCount: 1,
+      },
+      {
+        id: 'e6',
+        name: 'katalysatoren',
+        category: 'stoff',
+        articles: ['Künstliche Intelligenz findet neue Katalysatoren für Wasserstoffproduktion'],
+        relatedEntities: ['wasserstoffproduktion'],
+        articleCount: 1,
+      },
+      {
+        id: 'e7',
+        name: 'wasserstoffproduktion',
+        category: 'reaktion',
+        articles: ['Künstliche Intelligenz findet neue Katalysatoren für Wasserstoffproduktion'],
+        relatedEntities: ['katalysatoren'],
+        articleCount: 1,
+      },
+      {
+        id: 'e8',
+        name: 'quantencomputer',
+        category: 'methode',
+        articles: ['Quantencomputer berechnen Molekülstrukturen in Rekordzeit'],
+        relatedEntities: ['berechnungen'],
+        articleCount: 1,
+      },
+      {
+        id: 'e9',
+        name: 'molekülstrukturen',
+        category: 'konzept',
+        articles: ['Quantencomputer berechnen Molekülstrukturen in Rekordzeit'],
+        relatedEntities: ['berechnungen'],
+        articleCount: 1,
+      },
+      {
+        id: 'e10',
+        name: 'legierung',
+        category: 'stoff',
+        articles: ['Neue Legierung macht Motoren 30% effizienter'],
+        relatedEntities: ['effizienz'],
+        articleCount: 1,
+      },
+      {
+        id: 'e11',
+        name: 'motoren',
+        category: 'methode',
+        articles: ['Neue Legierung macht Motoren 30% effizienter'],
+        relatedEntities: ['legierung'],
+        articleCount: 1,
+      },
+      {
+        id: 'e12',
+        name: 'solarzellen',
+        category: 'stoff',
+        articles: ['Solarzellen aus organischem Material erreichen 18% Wirkungsgrad'],
+        relatedEntities: ['wirkungsgrad'],
+        articleCount: 1,
+      },
+      {
+        id: 'e13',
+        name: 'organische materialien',
+        category: 'stoff',
+        articles: ['Solarzellen aus organischem Material erreichen 18% Wirkungsgrad'],
+        relatedEntities: ['solarzellen'],
+        articleCount: 1,
+      },
+      {
+        id: 'e14',
+        name: 'wirkungsgrad',
+        category: 'konzept',
+        articles: ['Solarzellen aus organischem Material erreichen 18% Wirkungsgrad'],
+        relatedEntities: ['solarzellen'],
+        articleCount: 1,
+      },
+      {
+        id: 'e15',
+        name: 'chemische bindung',
+        category: 'konzept',
+        articles: ['Wissenschaftler entdecken neue Art chemischer Bindung'],
+        relatedEntities: ['molekülphysik'],
+        articleCount: 1,
+      },
+      {
+        id: 'e16',
+        name: 'molekülphysik',
+        category: 'konzept',
+        articles: ['Wissenschaftler entdecken neue Art chemischer Bindung'],
+        relatedEntities: ['chemische bindung'],
+        articleCount: 1,
+      },
+      {
+        id: 'e17',
+        name: 'neuentdeckung',
+        category: 'konzept',
+        articles: ['Wissenschaftler entdecken neue Art chemischer Bindung'],
+        relatedEntities: ['chemische bindung'],
+        articleCount: 1,
+      },
+    ],
+    curricula: [
+      {
+        id: 'e18',
+        name: 'redoxreaktionen',
+        category: 'lehrplan',
+        curriculumMeta: {
+          state: 'BY',
+          grade: '9',
+          school_type: 'Gymnasium (NTG)',
+          objective_count: 11,
+        },
+        articles: [],
+        relatedEntities: [{ name: 'redoxreaktion', weight: 1 }],
+        articleCount: 0,
+      },
+      {
+        id: 'e19',
+        name: 'saeure-base-gleichgewichte',
+        category: 'lehrplan',
+        curriculumMeta: {
+          state: 'BY',
+          grade: '10',
+          school_type: 'Gymnasium (NTG)',
+          objective_count: 8,
+        },
+        articles: [],
+        relatedEntities: [{ name: 'säure-base-reaktion', weight: 1 }],
+        articleCount: 0,
+      },
+      {
+        id: 'e20',
+        name: 'atombau und periodensystem',
+        category: 'lehrplan',
+        curriculumMeta: { state: 'BY', grade: '9', school_type: 'Realschule', objective_count: 7 },
+        articles: [],
+        relatedEntities: [{ name: 'atombau', weight: 1 }],
+        articleCount: 0,
+      },
+      {
+        id: 'e21',
+        name: 'chemische reaktion',
+        category: 'lehrplan',
+        curriculumMeta: {
+          state: 'BY',
+          grade: '8',
+          school_type: 'Gymnasium (NTG)',
+          objective_count: 8,
+        },
+        articles: [],
+        relatedEntities: [{ name: 'chemische-reaktion', weight: 1 }],
+        articleCount: 0,
+      },
+      {
+        id: 'e22',
+        name: 'donator-akzeptor-konzept',
+        category: 'lehrplan',
+        curriculumMeta: {
+          state: 'BY',
+          grade: '9',
+          school_type: 'Gymnasium (NTG)',
+          objective_count: 5,
+        },
+        articles: [],
+        relatedEntities: [
+          { name: 'säure-base-reaktion', weight: 1 },
+          { name: 'redoxreaktion', weight: 1 },
+        ],
+        articleCount: 0,
+      },
     ],
   };
+
+  // Ensure matching reference entities exist for curriculum fallback
+  var refEntities = [
+    {
+      id: 'e23',
+      name: 'redoxreaktion',
+      category: 'reaktion',
+      articles: [],
+      relatedEntities: [{ name: 'redoxreaktionen', weight: 1 }],
+      articleCount: 0,
+    },
+    {
+      id: 'e24',
+      name: 'säure-base-reaktion',
+      category: 'reaktion',
+      articles: [],
+      relatedEntities: [{ name: 'saeure-base-gleichgewichte', weight: 1 }],
+      articleCount: 0,
+    },
+    {
+      id: 'e25',
+      name: 'atombau',
+      category: 'konzept',
+      articles: [],
+      relatedEntities: [{ name: 'atombau und periodensystem', weight: 1 }],
+      articleCount: 0,
+    },
+    {
+      id: 'e26',
+      name: 'chemische-reaktion',
+      category: 'reaktion',
+      articles: [],
+      relatedEntities: [{ name: 'chemische reaktion', weight: 1 }],
+      articleCount: 0,
+    },
+  ];
+  var _ri, _ci, _ej, _existing;
+  for (_ri = 0; _ri < refEntities.length; _ri++) {
+    _existing = false;
+    for (_ej = 0; _ej < fallback.entities.length; _ej++) {
+      if (fallback.entities[_ej].name === refEntities[_ri].name) {
+        _existing = true;
+        break;
+      }
+    }
+    if (!_existing) fallback.entities.push(refEntities[_ri]);
+  }
+
+  // Merge curricula into entities (frontend filters by category)
+  for (_ci = 0; _ci < fallback.curricula.length; _ci++) {
+    _existing = false;
+    for (_ej = 0; _ej < fallback.entities.length; _ej++) {
+      if (fallback.entities[_ej].name === fallback.curricula[_ci].name) {
+        _existing = true;
+        break;
+      }
+    }
+    if (!_existing) fallback.entities.push(fallback.curricula[_ci]);
+  }
+
+  return fallback;
 }
 
 /**
@@ -387,8 +703,10 @@ app.get('/api/kg-data', async (req, res) => {
       name: r.get('name'),
       category: r.get('category') || 'konzept',
       articles: [],
-      relatedEntities: (r.get('relatedEntities') || []).filter(n => n !== null).map((name) => ({ name, weight: 1 })),
-      components: (r.get('components') || []).filter(n => n !== null),
+      relatedEntities: (r.get('relatedEntities') || [])
+        .filter((n) => n !== null)
+        .map((name) => ({ name, weight: 1 })),
+      components: (r.get('components') || []).filter((n) => n !== null),
       articleCount: r.get('articleCount') || 0,
     }));
 
@@ -415,18 +733,67 @@ app.get('/api/kg-data', async (req, res) => {
     }));
 
     entities.forEach((entity) => {
-      entity.articles = articles.filter((a) => a.entities.includes(entity.name)).map((a) => a.title);
+      entity.articles = articles
+        .filter((a) => a.entities.includes(entity.name))
+        .map((a) => a.title);
     });
 
     await session.close();
 
+    // Query curriculum entities separately
+    let curriculaEntities = [];
+    try {
+      const curriculaQuery = `
+        MATCH (e:Entity {kategorie: 'lehrplan'})
+        OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
+        RETURN e.name as name, e.kategorie as category,
+               e.state as state, e.grade as grade,
+               e.school_type as school_type,
+               e.objective_count as objective_count,
+               collect(DISTINCT related.name) as relatedEntities
+        ORDER BY e.name
+        LIMIT 500
+      `;
+      const curriculaResult = await session.run(curriculaQuery);
+      curriculaEntities = curriculaResult.records.map((r, i) => ({
+        id: `c${i}`,
+        name: r.get('name'),
+        category: r.get('category') || 'lehrplan',
+        curriculumMeta: {
+          state: r.get('state'),
+          grade: r.get('grade'),
+          school_type: r.get('school_type'),
+          objective_count: r.get('objective_count') ? r.get('objective_count').toNumber() : 0,
+        },
+        articles: [],
+        relatedEntities: (r.get('relatedEntities') || [])
+          .filter((n) => n !== null)
+          .map((name) => ({ name, weight: 1 })),
+        articleCount: 0,
+      }));
+    } catch (e) {
+      console.warn(`[kg-data] Curriculum query failed: ${e.message}`);
+    }
+
+    // Merge curricula into entities array (frontend filters by category)
+    const existingNames = new Set(entities.map((e) => e.name));
+    for (const curr of curriculaEntities) {
+      if (!existingNames.has(curr.name)) {
+        entities.push(curr);
+        existingNames.add(curr.name);
+      }
+    }
+
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
-    console.log(`[kg-data] Neo4j: ${articles.length} articles, ${entities.length} entities in ${elapsed}s`);
+    console.log(
+      `[kg-data] Neo4j: ${articles.length} articles, ${entities.length} entities (${curriculaEntities.length} curricula) in ${elapsed}s`
+    );
 
     return res.json({
       source: 'neo4j',
       articles,
       entities,
+      curricula: curriculaEntities,
       loadTime: parseFloat(elapsed),
     });
   } catch (err) {
@@ -435,7 +802,10 @@ app.get('/api/kg-data', async (req, res) => {
     const fallback = getFallbackData();
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
 
-    console.log(`[kg-data] Fallback: ${fallback.articles.length} articles, ${fallback.entities.length} entities in ${elapsed}s`);
+    const curriculaCount = (fallback.curricula || []).length;
+    console.log(
+      `[kg-data] Fallback: ${fallback.articles.length} articles, ${fallback.entities.length} entities (${curriculaCount} curricula) in ${elapsed}s`
+    );
 
     return res.json({
       source: 'fallback',
