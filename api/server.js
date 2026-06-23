@@ -1579,6 +1579,39 @@ app.get('/api/entity/:slug', async function (req, res) {
     if (contentLinks.length > 0) {
       result.contentLinks = contentLinks.slice(0, 30);
     }
+    // Quiz/exercise links for curriculum topics
+    var quizCategories = [
+      { kw: 'atom', label: 'Atommodelle und Kernchemie' },
+      { kw: 'bindung', label: 'Chemische Bindungen' },
+      { kw: 'saeure', label: 'Säuren und Basen' },
+      { kw: 'base', label: 'Säuren und Basen' },
+      { kw: 'redox', label: 'Redoxreaktionen' },
+      { kw: 'stoechiometrie', label: 'Stöchiometrie' },
+      { kw: 'stoffmeng', label: 'Stöchiometrie' },
+      { kw: 'organisch', label: 'Organische Chemie' },
+      { kw: 'kohlenwasserstoff', label: 'Organische Chemie' },
+      { kw: 'periodensystem', label: 'Periodensystem' },
+      { kw: 'pse', label: 'Periodensystem' },
+    ];
+    var quizLinks = [];
+    var nameLower = entity.name.toLowerCase();
+    for (var qi = 0; qi < quizCategories.length; qi++) {
+      if (nameLower.indexOf(quizCategories[qi].kw) !== -1) {
+        quizLinks.push({
+          label: quizCategories[qi].label,
+          url: '/lueckentexte/',
+        });
+      }
+    }
+    // Deduplicate
+    var seenLabels = {};
+    result.quizLinks = [];
+    for (var qi2 = 0; qi2 < quizLinks.length; qi2++) {
+      if (!seenLabels[quizLinks[qi2].label]) {
+        seenLabels[quizLinks[qi2].label] = true;
+        result.quizLinks.push(quizLinks[qi2]);
+      }
+    }
   }
 
   res.json(result);
@@ -1778,6 +1811,45 @@ app.get('/entity/:slug', async function (req, res) {
     articlesHtml += '</ul>';
   }
 
+  // Quiz links for curriculum topics
+  var quizHtml = '';
+  if (isCurriculum) {
+    var qCategories = [
+      { kw: 'atom', label: 'Atommodelle und Kernchemie' },
+      { kw: 'bindung', label: 'Chemische Bindungen' },
+      { kw: 'saeure', label: 'Säuren und Basen' },
+      { kw: 'base', label: 'Säuren und Basen' },
+      { kw: 'redox', label: 'Redoxreaktionen' },
+      { kw: 'stoechiometrie', label: 'Stöchiometrie' },
+      { kw: 'stoffmeng', label: 'Stöchiometrie' },
+      { kw: 'organisch', label: 'Organische Chemie' },
+      { kw: 'kohlenwasserstoff', label: 'Organische Chemie' },
+      { kw: 'periodensystem', label: 'Periodensystem' },
+      { kw: 'pse', label: 'Periodensystem' },
+    ];
+    var qLinks = [];
+    var nameLower = entity.name.toLowerCase();
+    for (var qzi = 0; qzi < qCategories.length; qzi++) {
+      if (nameLower.indexOf(qCategories[qzi].kw) !== -1) {
+        if (qLinks.indexOf(qCategories[qzi].label) === -1) {
+          qLinks.push(qCategories[qzi].label);
+        }
+      }
+    }
+    if (qLinks.length > 0) {
+      quizHtml = '<h3>📝 Übungen zu diesem Thema</h3><div class="quiz-links-list">';
+      for (var qzi2 = 0; qzi2 < qLinks.length; qzi2++) {
+        quizHtml +=
+          '<a href="/lueckentexte/" class="quiz-link-card" target="_blank" rel="noopener">' +
+          '<span class="quiz-link-label">' +
+          escapeHtml(qLinks[qzi2]) +
+          '</span>' +
+          '<span class="quiz-link-arrow">→</span></a>';
+      }
+      quizHtml += '</div>';
+    }
+  }
+
   var backLink = isCurriculum ? '/' : '/entity/';
 
   res.send(
@@ -1815,6 +1887,11 @@ app.get('/entity/:slug', async function (req, res) {
       '.content-link-title{flex:1;font-weight:500}' +
       '.content-link-type{font-size:.75rem;color:#888;text-transform:uppercase;letter-spacing:.5px}' +
       '.content-link-more{text-align:center;font-size:.85rem;color:#888;padding:4px}' +
+      '.quiz-links-list{display:flex;flex-wrap:wrap;gap:8px;margin:.5rem 0}' +
+      '.quiz-link-card{display:flex;align-items:center;gap:6px;padding:8px 14px;background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;text-decoration:none;color:#e65100;font-size:.9rem;transition:all .15s}' +
+      '.quiz-link-card:hover{background:#ffe0b2;border-color:#ff9800;text-decoration:none}' +
+      '.quiz-link-label{flex:1;font-weight:500}' +
+      '.quiz-link-arrow{font-weight:bold;font-size:1.1rem}' +
       '.article-list{padding-left:1.2rem}' +
       '.article-list li{margin:.5rem 0;color:#555}' +
       '.back-link{display:inline-block;margin-top:1.5rem;color:#666;text-decoration:none}' +
@@ -1825,6 +1902,8 @@ app.get('/entity/:slug', async function (req, res) {
       '.meta-section{background:#1a1a3e}' +
       '.related-chip{background:#2a2a5e;color:#7cb3ff}' +
       '.content-link-card{background:#2a2a4e;color:#e0e0e0;border-color:#444}' +
+      '.quiz-link-card{background:#3a2a1e;color:#ffb74d;border-color:#6a4a2e}' +
+      '.quiz-link-card:hover{background:#4a3a2e}' +
       '.content-link-card:hover{background:#3a3a6e}' +
       '.content-link-type{color:#999}' +
       '.kmk-chip{background:#1b3a1b;color:#81c784;border-color:#2e7d32}' +
@@ -1843,6 +1922,7 @@ app.get('/entity/:slug', async function (req, res) {
       (isCurriculum ? '<div class="meta-section">' + metaHtml + '</div>' : '') +
       kmkHtml +
       contentLinksHtml +
+      quizHtml +
       otherRelatedHtml +
       articlesHtml +
       '<a href="' +

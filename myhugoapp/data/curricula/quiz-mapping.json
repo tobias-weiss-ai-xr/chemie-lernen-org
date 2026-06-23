@@ -1,0 +1,93 @@
+[
+  {
+    "category": "atom",
+    "label": "Atommodelle und Kernchemie",
+    "url": "/lueckentexte/",
+    "topicCount": 29,
+    "exampleTopics": [
+      "Atomanzahlen lassen sich Quantitative Experimente Fachsprache um quantitative Chemie als bedeutsame",
+      "Die Möglichkeiten der unterrichtlichen Umsetzung des Kerncurriculums auf Schulebene bleiben auch",
+      "Bau der Atomhülle. Strukturen und Beziehungen,",
+      "Lernbereich 4: Chemische Verbindungen und ihre Eigenschaften – Vom Daltonschen Atommodell zum Kern-Hülle-Modell (ca. 25 Std.)",
+      "Lernbereich 4: Chemische Verbindungen und ihre Eigenschaften – Vom Daltonschen Atommodell zum Kern-Hülle-Modell (ca. 11 Std.)"
+    ]
+  },
+  {
+    "category": "bindungen",
+    "label": "Chemische Bindungen",
+    "url": "/lueckentexte/",
+    "topicCount": 48,
+    "exampleTopics": [
+      "Die Tatsache, dass man heute z. T. einzelne Moleküle nachweisen kann, führt zu Betrach-",
+      "Lernbereich 4: Moleküle – Mit dem einfachen Orbitalmodell zum Elektronenpaarabstoßungsmodell (ca. 21 Std.)",
+      "Lernbereich 2: Moleküle – Mit dem einfachen Orbitalmodell zum Elektronenpaarabstoßungsmodell (ca. 15 Std.)",
+      "5 7 Molekülen an.",
+      "Für das Verständnis von Molekülen ist es notwendig, auf die Struktur der Elektronenhülle"
+    ]
+  },
+  {
+    "category": "saeuren-basen",
+    "label": "Säuren und Basen",
+    "url": "/lueckentexte/",
+    "topicCount": 22,
+    "exampleTopics": [
+      "Bei der Neutralisation heben sich Säuren und Laugen in ih- Base/Alkalien, alkalische",
+      "Säuren, Laugen, Salze",
+      "󰆃 Säuren, Basen und analytische Verfahren Im Inhaltsfeld Säuren, Ba-",
+      "󰆃 Säuren, Basen und analytische Verfahren",
+      "Komplementäre Basenpaare bilden die molekularen Funktions-"
+    ]
+  },
+  {
+    "category": "redox",
+    "label": "Redoxreaktionen",
+    "url": "/lueckentexte/",
+    "topicCount": 12,
+    "exampleTopics": [
+      "Lernbereich 3: Donator-Akzeptor-Konzept und Reversibilität chemischer Reaktionen bei Elektronenübergängen: Redoxreaktionen (ca. 28 Std.)",
+      "Lernbereich 5: Donator-Akzeptor-Konzept und Reversibilität chemischer Reaktionen bei Redoxreaktionen in wässriger Lösung (ca. 18 Std.)",
+      "Basiskonzept Donator-Akzeptor stellt ein fachsystematisches Ordnungsprinzip für Redox- und",
+      "Redoxreaktionen der Nebengruppenelemente",
+      "3.4.7 Elektrochemie"
+    ]
+  },
+  {
+    "category": "stoechiometrie",
+    "label": "Stöchiometrie",
+    "url": "/lueckentexte/",
+    "topicCount": 20,
+    "exampleTopics": [
+      "Die Tatsache, dass man heute z. T. einzelne Moleküle nachweisen kann, führt zu Betrach-",
+      "Lernbereich 4: Moleküle – Mit dem einfachen Orbitalmodell zum Elektronenpaarabstoßungsmodell (ca. 21 Std.)",
+      "Lernbereich 2: Moleküle – Mit dem einfachen Orbitalmodell zum Elektronenpaarabstoßungsmodell (ca. 15 Std.)",
+      "5 7 Molekülen an.",
+      "Für das Verständnis von Molekülen ist es notwendig, auf die Struktur der Elektronenhülle"
+    ]
+  },
+  {
+    "category": "organik",
+    "label": "Organische Chemie",
+    "url": "/lueckentexte/",
+    "topicCount": 12,
+    "exampleTopics": [
+      "Polymere sind Makromoleküle, die aus vielen mehr oder we- Polymer, Polyreaktion",
+      "Erdöl und Erdgas – organische Stoffgemische",
+      "Die Energie der Sonne wird genutzt, um aus energiearmen (anorganischen) Stoffen ener-",
+      "󰆅 OrganischeProdukteWerkstoffeundFarbstoffe ImInhaltsfeldOr-",
+      "󰆅 Organische Produkte Werkstoffe und Farbstoffe"
+    ]
+  },
+  {
+    "category": "pse",
+    "label": "Periodensystem",
+    "url": "/lueckentexte/",
+    "topicCount": 22,
+    "exampleTopics": [
+      "Das Schlüssel-Schloss-Prinzip wird genutzt, um die Funktion von chemischen Synapsen zu",
+      "Elektronen in einem Atom in Periodensystem der Elemente verhalte unter Verwendung der",
+      "Symbole und die Nutzung bestimmter Ordnungsprinzipien wie dem Periodensystem der Elemente be-",
+      "Lernbereich 5: Atombau und Periodensystem der Elemente (ca. 8 Std.)",
+      "Stoffeigenschaften. Elementen und Verbindungen. h lekülstruktur und Stoffeigenschaften"
+    ]
+  }
+]
