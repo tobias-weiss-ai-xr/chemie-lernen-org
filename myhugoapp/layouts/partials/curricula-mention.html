@@ -1,0 +1,123 @@
+{{/* curricula-mention.html — Shows Lehrplan-Bezug on article pages.
+   Reads content-links-reverse.json data to find which curriculum topics
+   link to the current article.
+   Usage: {{ partial "curricula-mention" . }}
+*/}}
+{{ $reverseLinks := $.Site.Data.curricula.content_links_reverse }}
+{{ $url := .RelPermalink }}
+{{ $links := index $reverseLinks $url }}
+
+{{ if $links }}
+<div class="curricula-mention">
+  <h3><i class="fa fa-graduation-cap"></i> Lehrplan-Bezug</h3>
+  <p class="curricula-mention-desc">Dieses Thema ist in folgenden Lehrplänen enthalten:</p>
+  <div class="curricula-mention-list">
+    {{ $maxDisplay := 6 }}
+    {{ $displayCount := 0 }}
+    {{ range $links }}
+      {{ if lt $displayCount $maxDisplay }}
+        {{ $meta := .meta }}
+        {{ $firstMeta := index $meta 0 }}
+        <div class="curricula-mention-item">
+          <span class="curricula-state-badge">{{ $firstMeta.state }}</span>
+          <span class="curricula-topic-name">{{ .topicName | truncate 45 }}</span>
+          {{ if $firstMeta }}
+          <span class="curricula-grade">{{ $firstMeta.school_type }}, Klasse {{ $firstMeta.grade }}</span>
+          {{ end }}
+          {{ if gt (len $meta) 1 }}
+          <span class="curricula-multi">+{{ sub (len $meta) 1 }} weitere Bundesländer</span>
+          {{ end }}
+        </div>
+        {{ $displayCount = add $displayCount 1 }}
+      {{ end }}
+    {{ end }}
+    {{ if gt (len $links) $maxDisplay }}
+    <div class="curricula-mention-more">
+      <a href="/entity/?cat=lehrplan&q={{ .Title | urlize }}">+{{ sub (len $links) $maxDisplay }} weitere Lehrplan-Verweise →</a>
+    </div>
+    {{ end }}
+  </div>
+</div>
+
+<style>
+.curricula-mention {
+  background: #f3e8ff;
+  border: 1px solid #d4b4ff;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin: 1.5rem 0;
+}
+.curricula-mention h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1rem;
+  color: #7b1fa2;
+}
+.curricula-mention-desc {
+  margin: 0 0 0.8rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+.curricula-mention-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.curricula-mention-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  padding: 4px 0;
+  border-bottom: 1px solid #e8d5ff;
+}
+.curricula-mention-item:last-child {
+  border-bottom: none;
+}
+.curricula-state-badge {
+  display: inline-block;
+  background: #9b59b6;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  min-width: 28px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.curricula-topic-name {
+  flex: 1;
+  color: #333;
+}
+.curricula-grade {
+  color: #888;
+  font-size: 0.78rem;
+  flex-shrink: 0;
+}
+.curricula-multi {
+  color: #9b59b6;
+  font-size: 0.78rem;
+  font-style: italic;
+  flex-shrink: 0;
+}
+.curricula-mention-more {
+  margin-top: 6px;
+  font-size: 0.85rem;
+}
+.curricula-mention-more a {
+  color: #7b1fa2;
+}
+@media (prefers-color-scheme: dark) {
+  .curricula-mention {
+    background: #2a1a3e;
+    border-color: #6a3a9e;
+  }
+  .curricula-mention h3 { color: #c9a0e8; }
+  .curricula-mention-desc { color: #aaa; }
+  .curricula-mention-item { border-bottom-color: #3a2a4e; }
+  .curricula-topic-name { color: #e0e0e0; }
+  .curricula-grade { color: #999; }
+  .curricula-mention-more a { color: #c9a0e8; }
+}
+</style>
+{{ end }}

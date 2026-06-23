@@ -241,6 +241,7 @@ function matchContentToTopics(contentItem, topics) {
 function main() {
   const args = process.argv.slice(2);
   const isDryRun = args.includes('--dry-run');
+  const useNeo4j = args.includes('--neo4j');
   const outIdx = args.indexOf('--out');
   const outputPath = outIdx !== -1 ? args[outIdx + 1] : DEFAULT_OUTPUT;
 
@@ -356,6 +357,46 @@ function main() {
       coverage: Math.round(linkedTopics.size / allTopics.length * 100),
     };
     writeFileSync(join(CACHE_DIR, 'link-content-stats.json'), JSON.stringify(stats, null, 2), 'utf8');
+  }
+
+  // A5: Optional Neo4j import of content links as node properties
+  if (useNeo4j && !isDryRun) {
+    (async () => {
+      console.log('\n[link-content] Importing to Neo4j...');
+      try {
+        const neo4j = require('neo4j-driver');
+        const NEO4J_URI = process.env.NEO4J_URI || 'bolt://localhost:7687';
+        const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
+        const NEO4J_PASS = process.env.NEO4J_PASS || 'chemie_knowledge_2024';
+        const driver = neo4j.driver(NEO4J_URI, neo4j.auth.basic(NEO4J_USER, NEO4J_PASS));
+        const session = driver.session({ database: 'chemie' });
+        let stored = 0;
+        let failed = 0;
+        let skipped = 0;
+        for (const [topicName, links] of linkMap) {
+          try {
+            const topLinks = links.slice(0, 30).map(l => ({ type: l.type, title: l.title, url: l.url }));
+            const result = await session.run(
+              'MATCH (e:Entity {name: $name}) SET e.contentLinks = $links RETURN e.name',
+              { name: topicName, links: JSON.stringify(topLinks) }
+            );
+            if (result.records.length > 0) {
+              stored++;
+            } else {
+              skipped++;
+            }
+          } catch (e) {
+            failed++;
+            if (failed <= 3) console.warn('    [warn] Neo4j set failed for "' + topicName.slice(0, 40) + '": ' + e.message);
+          }
+        }
+        await session.close();
+        await driver.close();
+        console.log('  Neo4j: ' + stored + ' topics updated, ' + skipped + ' not found, ' + failed + ' errors');
+      } catch (e) {
+        console.warn('[link-content] Neo4j import error: ' + e.message);
+      }
+    })();
   }
 }
 

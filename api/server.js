@@ -1027,9 +1027,92 @@ function findEntityBySlug(slug) {
 }
 
 /**
+ * Lazy-load content-links.json (article↔curriculum mapping).
+ */
+var _contentLinksCache = null;
+async function loadContentLinks() {
+  if (_contentLinksCache) return _contentLinksCache;
+  try {
+    var url = new URL('file://' + process.cwd() + '/myhugoapp/data/curricula/content-links.json');
+    var fs = await import('fs');
+    _contentLinksCache = JSON.parse(fs.readFileSync(url.pathname, 'utf8'));
+  } catch (err) {
+    if (err.code !== 'ENOENT') console.warn('[content-links] load error: ' + err.message);
+    _contentLinksCache = {};
+  }
+  return _contentLinksCache;
+}
+
+/**
+ * Find content links for a curriculum topic using 3-level matching:
+ * 1. exact normalized name → contentLinks[topicName]
+ * 2. substring match on normalized name
+ * 3. keyword match (first word before hyphen)
+ */
+async function findContentLinks(topicName) {
+  var links = await loadContentLinks();
+  var results = [];
+  var normName = topicName.toLowerCase().trim();
+  var matched = {};
+
+  // 1. Exact match
+  if (links[normName]) {
+    for (var li = 0; li < links[normName].length; li++) {
+      var item = links[normName][li];
+      var key = item.url + '|' + item.title;
+      if (!matched[key]) {
+        matched[key] = true;
+        results.push(item);
+      }
+    }
+  }
+
+  // 2. Substring match
+  for (var topic in links) {
+    if (topic !== normName && topic.indexOf(normName) !== -1) {
+      for (var li2 = 0; li2 < links[topic].length; li2++) {
+        var item2 = links[topic][li2];
+        var key2 = item2.url + '|' + item2.title;
+        if (!matched[key2]) {
+          matched[key2] = true;
+          results.push(item2);
+        }
+      }
+    }
+  }
+
+  // 3. Fallback: first significant keyword (before hyphen or first word)
+  var firstWord = normName.replace(/[^a-z0-9]/g, ' ');
+  var words = firstWord.split(' ').filter(function (w) {
+    return w.length > 3;
+  });
+  if (words.length > 0) {
+    var primary = words[0];
+    for (var topic2 in links) {
+      if (
+        topic2 !== normName &&
+        topic2.indexOf(normName) === -1 &&
+        topic2.indexOf(primary) !== -1
+      ) {
+        for (var li3 = 0; li3 < links[topic2].length; li3++) {
+          var item3 = links[topic2][li3];
+          var key3 = item3.url + '|' + item3.title;
+          if (!matched[key3]) {
+            matched[key3] = true;
+            results.push(item3);
+          }
+        }
+      }
+    }
+  }
+
+  return results;
+}
+
+/**
  * GET /api/entity/:slug — Entity detail JSON.
  */
-app.get('/api/entity/:slug', function (req, res) {
+app.get('/api/entity/:slug', async function (req, res) {
   var slug = req.params.slug;
   var entity = findEntityBySlug(slug);
   if (!entity) {
@@ -1093,6 +1176,12 @@ app.get('/api/entity/:slug', function (req, res) {
 
   if (entity.curriculumMeta) {
     result.curriculumMeta = entity.curriculumMeta;
+
+    // Add content links for curriculum topics
+    var contentLinks = await findContentLinks(entity.name);
+    if (contentLinks.length > 0) {
+      result.contentLinks = contentLinks.slice(0, 30);
+    }
   }
 
   res.json(result);
@@ -1101,7 +1190,7 @@ app.get('/api/entity/:slug', function (req, res) {
 /**
  * GET /entity/:slug — Entity detail page (HTML).
  */
-app.get('/entity/:slug', function (req, res) {
+app.get('/entity/:slug', async function (req, res) {
   var slug = req.params.slug;
   var entity = findEntityBySlug(slug);
 
@@ -1245,6 +1334,45 @@ app.get('/entity/:slug', function (req, res) {
   }
 
   var articlesHtml = '';
+
+  // Content links for curriculum topics
+  var contentLinksHtml = '';
+  if (isCurriculum) {
+    var clinks = await findContentLinks(entity.name);
+    if (clinks.length > 0) {
+      var maxLinks = Math.min(clinks.length, 20);
+      contentLinksHtml =
+        '<h3>Zugehörige Inhalte (' + clinks.length + ')</h3><div class="content-links-list">';
+      for (var cli = 0; cli < maxLinks; cli++) {
+        var cl = clinks[cli];
+        var icon = '';
+        if (cl.type === 'calculator' || cl.type === 'rechner') icon = '🔬';
+        else if (cl.type === 'uebung' || cl.type === 'exercise') icon = '✏️';
+        else if (cl.type === 'simulation') icon = '🎮';
+        else icon = '📖';
+        contentLinksHtml +=
+          '<a href="' +
+          escapeHtml(cl.url) +
+          '" class="content-link-card" target="_blank" rel="noopener">' +
+          '<span class="content-link-icon">' +
+          icon +
+          '</span>' +
+          '<span class="content-link-title">' +
+          escapeHtml(cl.title) +
+          '</span>' +
+          '<span class="content-link-type">' +
+          escapeHtml(cl.type || 'article') +
+          '</span>' +
+          '</a>';
+      }
+      if (clinks.length > maxLinks) {
+        contentLinksHtml +=
+          '<div class="content-link-more">+' + (clinks.length - maxLinks) + ' weitere</div>';
+      }
+      contentLinksHtml += '</div>';
+    }
+  }
+
   if (entity.articles && entity.articles.length > 0) {
     articlesHtml = '<h3>Artikel (' + entity.articles.length + ')</h3><ul class="article-list">';
     for (var a = 0; a < entity.articles.length; a++) {
@@ -1283,6 +1411,13 @@ app.get('/entity/:slug', function (req, res) {
       '.kmk-chip{display:inline-block;padding:6px 14px;background:#e8f5e9;color:#2e7d32;border-radius:20px;text-decoration:none;font-size:.85rem;border:1px solid #a5d6a7}' +
       '.kmk-chip:hover{background:#c8e6c9;border-color:#388e3c}' +
       '.kmk-chip::before{content:"✓ ";font-weight:bold}' +
+      '.content-links-list{display:flex;flex-direction:column;gap:6px;margin:.5rem 0}' +
+      '.content-link-card{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#f8f9fa;border-radius:8px;text-decoration:none;color:#333;font-size:.9rem;border:1px solid #e9ecef;transition:all .15s}' +
+      '.content-link-card:hover{background:#e8f0fe;border-color:#1a73e8;transform:translateX(3px)}' +
+      '.content-link-icon{font-size:1.1rem;flex-shrink:0}' +
+      '.content-link-title{flex:1;font-weight:500}' +
+      '.content-link-type{font-size:.75rem;color:#888;text-transform:uppercase;letter-spacing:.5px}' +
+      '.content-link-more{text-align:center;font-size:.85rem;color:#888;padding:4px}' +
       '.article-list{padding-left:1.2rem}' +
       '.article-list li{margin:.5rem 0;color:#555}' +
       '.back-link{display:inline-block;margin-top:1.5rem;color:#666;text-decoration:none}' +
@@ -1292,6 +1427,9 @@ app.get('/entity/:slug', function (req, res) {
       '.card{background:#16213e;box-shadow:0 2px 8px rgba(0,0,0,0.4)}' +
       '.meta-section{background:#1a1a3e}' +
       '.related-chip{background:#2a2a5e;color:#7cb3ff}' +
+      '.content-link-card{background:#2a2a4e;color:#e0e0e0;border-color:#444}' +
+      '.content-link-card:hover{background:#3a3a6e}' +
+      '.content-link-type{color:#999}' +
       '.kmk-chip{background:#1b3a1b;color:#81c784;border-color:#2e7d32}' +
       '.meta-row{border-bottom-color:#333}' +
       '.meta-label{color:#999}' +
@@ -1307,6 +1445,7 @@ app.get('/entity/:slug', function (req, res) {
       '</h1>' +
       (isCurriculum ? '<div class="meta-section">' + metaHtml + '</div>' : '') +
       kmkHtml +
+      contentLinksHtml +
       otherRelatedHtml +
       articlesHtml +
       '<a href="' +
