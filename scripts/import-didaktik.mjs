@@ -26,14 +26,6 @@ const NEO4J_URI = process.env.NEO4J_URI || 'bolt://localhost:7687';
 const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
 const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || 'chemie_knowledge_2024';
 
-const CLAIMED_TITLES = [
-  'Bildungsstandards im Fach Chemie für den Mittleren Schulabschluss (2004)',
-  'Weiterentwickelte Bildungsstandards Chemie MSA (2024)',
-  'Bildungsstandards im Fach Chemie für die Allgemeine Hochschulreife (2020)',
-  'Kerncurriculum Chemie für die gymnasiale Oberstufe \u2014 Deutsche Schulen im Ausland',
-  'Implementation der weiterentwickelten Bildungsstandards Naturwissenschaften (2024)',
-];
-
 /**
  * Slugify a name for entity.name storage.
  */
@@ -44,8 +36,8 @@ function slugify(name) {
     .replace(/[ö]/g, 'oe')
     .replace(/[ü]/g, 'ue')
     .replace(/[ß]/g, 'ss')
-    .replace(/[–—\-/\s]+/g, '-')
-    .replace(/[^a-z0-9\-]/g, '')
+    .replace(/[–—/\s-]+/g, '-')
+    .replace(/[^a-z0-9-]/g, '')
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '')
     .slice(0, 120);
@@ -158,19 +150,6 @@ function generateDryRun(guidelines) {
   return statements;
 }
 
-function slugifyName(name) {
-  return name
-    .toLowerCase()
-    .replace(/[ä]/g, 'ae')
-    .replace(/[ö]/g, 'oe')
-    .replace(/[ü]/g, 'ue')
-    .replace(/[ß]/g, 'ss')
-    .replace(/[–—\-/\s]+/g, '-')
-    .replace(/[^a-z0-9\-]/g, '')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '');
-}
-
 async function main() {
   const isDryRun = process.argv.includes('--dry-run');
   const guidelines = loadDidaktik();
@@ -200,7 +179,7 @@ async function main() {
         didaktikUrl: g.url || '',
         sectionCount: g.sections ? g.sections.length : 0,
       };
-      const result = await session.run(MERGE_GUIDELINE, params);
+      await session.run(MERGE_GUIDELINE, params);
       console.log(`  MERGE: ${name} (${g.title.slice(0, 60)}...)`);
       createdCount++;
     }
