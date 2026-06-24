@@ -1832,6 +1832,7 @@ app.get('/entity/:slug', async function (req, res) {
 
   // Collect all related entities (forward + reverse lookup)
   var kmkRefs = [];
+  var quelleRefs = [];
   var otherRefs = [];
   var seenRefNames = {};
 
@@ -1841,6 +1842,8 @@ app.get('/entity/:slug', async function (req, res) {
     var refEntity = findEntityBySlug(name);
     if (refEntity && refEntity.category === 'didaktik') {
       kmkRefs.push(name);
+    } else if (refEntity && refEntity.category === 'quelle') {
+      quelleRefs.push(name);
     } else if (refEntity) {
       otherRefs.push(name);
     }
@@ -1863,12 +1866,34 @@ app.get('/entity/:slug', async function (req, res) {
       for (var ri = 0; ri < candidate.relatedEntities.length; ri++) {
         var cr = candidate.relatedEntities[ri];
         var crName = typeof cr === 'string' ? cr : cr.name;
-        if (crName.toLowerCase() === entity.name.toLowerCase()) {
+        if (
+          crName.toLowerCase() === entity.name.toLowerCase() ||
+          (candidate.category === 'quelle' &&
+            crName.toLowerCase().indexOf(entity.name.toLowerCase()) !== -1)
+        ) {
           addRef(candidate.name);
           break;
         }
       }
     }
+  }
+
+  var quelleHtml = '';
+  if (quelleRefs.length > 0) {
+    quelleHtml = '<h3>📚 Quellen</h3><div class="related-list">';
+    for (var qi = 0; qi < quelleRefs.length; qi++) {
+      quelleHtml +=
+        '<a href="/entity/' +
+        slugify(quelleRefs[qi]) +
+        '/" class="quelle-chip">' +
+        escapeHtml(
+          quelleRefs[qi].replace(/-/g, ' ').replace(/\b\w/g, function (c) {
+            return c.toUpperCase();
+          })
+        ) +
+        '</a>';
+    }
+    quelleHtml += '</div>';
   }
 
   var kmkHtml = '';
@@ -2030,6 +2055,8 @@ app.get('/entity/:slug', async function (req, res) {
       '.related-list{display:flex;flex-wrap:wrap;gap:8px;margin:.5rem 0}' +
       '.related-chip{display:inline-block;padding:6px 14px;background:#e8f0fe;color:#1a73e8;border-radius:20px;text-decoration:none;font-size:.9rem}' +
       '.related-chip:hover{background:#d2e3fc}' +
+      '.quelle-chip{display:inline-block;padding:6px 14px;background:#fef3e2;color:#b8860b;border-radius:20px;text-decoration:none;font-size:.85rem;border:1px solid #f0d9b5}' +
+      '.quelle-chip:hover{background:#fce4b8}' +
       '.kmk-list{display:flex;flex-wrap:wrap;gap:8px;margin:.5rem 0}' +
       '.kmk-chip{display:inline-block;padding:6px 14px;background:#e8f5e9;color:#2e7d32;border-radius:20px;text-decoration:none;font-size:.85rem;border:1px solid #a5d6a7}' +
       '.kmk-chip:hover{background:#c8e6c9;border-color:#388e3c}' +
@@ -2061,6 +2088,7 @@ app.get('/entity/:slug', async function (req, res) {
       '.content-link-card:hover{background:#3a3a6e}' +
       '.content-link-type{color:#999}' +
       '.kmk-chip{background:#1b3a1b;color:#81c784;border-color:#2e7d32}' +
+      '.quelle-chip{background:#3a2a1b;color:#f0d9b5;border-color:#b8860b}' +
       '.meta-row{border-bottom-color:#333}' +
       '.meta-label{color:#999}' +
       '}</style>' +
@@ -2074,6 +2102,7 @@ app.get('/entity/:slug', async function (req, res) {
       escapeHtml(displayName) +
       '</h1>' +
       (isCurriculum ? '<div class="meta-section">' + metaHtml + '</div>' : '') +
+      quelleHtml +
       kmkHtml +
       learningPathHtml +
       quizHtml +
