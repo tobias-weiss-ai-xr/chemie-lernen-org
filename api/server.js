@@ -554,7 +554,7 @@ async function queryNeo4jRAG(keywords, cacheKey) {
     try {
       result = await session.run(
         'MATCH (e:Entity) WHERE ANY(kw IN $keywords WHERE e.name CONTAINS kw) ' +
-          'OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity) ' +
+          'OPTIONAL MATCH (e)-[r:RELATED_TO|ERFUELLT]-(related:Entity) ' +
           'RETURN e.name as name, e.kategorie as category, ' +
           'e.state as state, e.grade as grade, ' +
           'e.school_type as school_type, e.objective_count as objective_count, ' +
@@ -1363,7 +1363,7 @@ app.get('/api/kg-data', async (req, res) => {
       ? `
       MATCH (e:Entity)
       WHERE e.kategorie = 'lehrplan' OR e.kategorie = 'didaktik'
-      OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
+      OPTIONAL MATCH (e)-[r:RELATED_TO|ERFUELLT]-(related:Entity)
       RETURN e.name as name, e.kategorie as category,
              collect(DISTINCT related.name) as relatedEntities,
              [] as components, 0 as articleCount
@@ -1373,7 +1373,7 @@ app.get('/api/kg-data', async (req, res) => {
       : `
       MATCH (e:Entity)
       WHERE (e.kategorie IS NULL OR e.kategorie NOT IN ['lernziel', 'lehrplan', 'didaktik'])
-      OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
+      OPTIONAL MATCH (e)-[r:RELATED_TO|ERFUELLT]-(related:Entity)
       OPTIONAL MATCH (e)-[c:BESTEHT_AUS]->(component:Entity)
       RETURN e.name as name, e.kategorie as category,
              collect(DISTINCT related.name) as relatedEntities,
@@ -1431,7 +1431,7 @@ app.get('/api/kg-data', async (req, res) => {
       try {
         const curriculaQuery = `
           MATCH (e:Entity {kategorie: 'lehrplan'})
-          OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
+          OPTIONAL MATCH (e)-[r:RELATED_TO|ERFUELLT]-(related:Entity)
           RETURN e.name as name, e.kategorie as category,
                  e.state as state, e.grade as grade,
                  e.school_type as school_type,

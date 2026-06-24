@@ -125,22 +125,19 @@ async function run() {
     const contentEntries = Object.values(contentItems);
     console.log(`[import-content-nodes] ${contentEntries.length} unique Content nodes to create`);
 
-    // Batch: MERGE Content nodes (100 at a time)
+    // Batch: MERGE Content nodes (sequentially — Neo4j 5.x requires no concurrent session.run)
     let created = 0;
-    for (let i = 0; i < contentEntries.length; i += 100) {
-      const batch = contentEntries.slice(i, i + 100);
-      const promises = batch.map((c) =>
-        session.run(
-          'MERGE (content:Content {url: $url}) ' +
-            'ON CREATE SET content.title = $title, content.type = $type ' +
-            'ON MATCH SET content.title = $title, content.type = $type ' +
-            'RETURN id(content)',
-          { url: c.url, title: c.title, type: c.type },
-        ),
+    for (let i = 0; i < contentEntries.length; i++) {
+      const c = contentEntries[i];
+      await session.run(
+        'MERGE (content:Content {url: $url}) ' +
+          'ON CREATE SET content.title = $title, content.type = $type ' +
+          'ON MATCH SET content.title = $title, content.type = $type ' +
+          'RETURN id(content)',
+        { url: c.url, title: c.title, type: c.type },
       );
-      await Promise.all(promises);
-      created += batch.length;
-      if (created % 200 === 0 || created === contentEntries.length) {
+      created++;
+      if (created % 100 === 0 || created === contentEntries.length) {
         console.log(`[import-content-nodes] ${created}/${contentEntries.length} Content nodes`);
       }
     }
