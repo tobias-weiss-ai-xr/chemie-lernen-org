@@ -54,11 +54,12 @@
     var searchQuery = '';
     var currentPage = 1;
     var perPage = 24;
-    var filterState = '';
-    var filterSchool = '';
-    var filterGrade = '';
+    var filterState = [];
+    var filterSchool = [];
+    var filterGrade = [];
     var compareTopicName = '';
     var compareResults = null;
+    var expandedCompareRow = null;
 
     // Precompute KMK topic map from didaktik entities
     var kmkTopicMap = {};
@@ -121,9 +122,15 @@
         if (e.category === 'didaktik') return false;
         var meta = e.curriculumMeta;
         if (!meta) return false;
-        if (filterState && meta.state !== filterState) return false;
-        if (filterSchool && meta.school_type !== filterSchool) return false;
-        if (filterGrade && String(meta.grade) !== filterGrade) return false;
+        if (filterState.length && filterState.indexOf(meta.state) === -1) return false;
+        if (filterSchool.length && filterSchool.indexOf(meta.school_type) === -1) return false;
+        if (filterGrade.length) {
+          var metaGrade = String(meta.grade);
+          var match = filterGrade.some(function (g) {
+            return metaGrade === g || metaGrade.indexOf(g) !== -1;
+          });
+          if (!match) return false;
+        }
         if (searchQuery) {
           var q = searchQuery.toLowerCase();
           return (
@@ -176,14 +183,15 @@
       // Filters
       html += '<div class="curricula-filters">';
       html += '<div class="curricula-filter-row">';
-      html += '<select class="curricula-select" id="curricula-filter-state">';
-      html += '<option value="">Alle Bundesländer</option>';
+      html += '<label class="curricula-filter-label">Bundesland</label>';
+      html +=
+        '<select class="curricula-select curricula-multi" id="curricula-filter-state" multiple size="1" data-placeholder="Alle Bundesländer">';
       stateKeys.forEach(function (s) {
         html +=
           '<option value="' +
           s +
           '"' +
-          (filterState === s ? ' selected' : '') +
+          (filterState.indexOf(s) !== -1 ? ' selected' : '') +
           '>' +
           escapeHtml(s) +
           ' (' +
@@ -191,14 +199,15 @@
           ')</option>';
       });
       html += '</select>';
-      html += '<select class="curricula-select" id="curricula-filter-school">';
-      html += '<option value="">Alle Schulformen</option>';
+      html += '<label class="curricula-filter-label">Schulform</label>';
+      html +=
+        '<select class="curricula-select curricula-multi" id="curricula-filter-school" multiple size="1" data-placeholder="Alle Schulformen">';
       schoolKeys.forEach(function (s) {
         html +=
           '<option value="' +
           s +
           '"' +
-          (filterSchool === s ? ' selected' : '') +
+          (filterSchool.indexOf(s) !== -1 ? ' selected' : '') +
           '>' +
           escapeHtml(s) +
           ' (' +
@@ -206,14 +215,15 @@
           ')</option>';
       });
       html += '</select>';
-      html += '<select class="curricula-select" id="curricula-filter-grade">';
-      html += '<option value="">Alle Klassen</option>';
+      html += '<label class="curricula-filter-label">Klasse</label>';
+      html +=
+        '<select class="curricula-select curricula-multi" id="curricula-filter-grade" multiple size="1" data-placeholder="Alle Klassen">';
       gradeKeys.forEach(function (g) {
         html +=
           '<option value="' +
           g +
           '"' +
-          (filterGrade === g ? ' selected' : '') +
+          (filterGrade.indexOf(g) !== -1 ? ' selected' : '') +
           '>' +
           escapeHtml(g) +
           ' (' +
@@ -222,6 +232,31 @@
       });
       html += '</select>';
       html += '</div>';
+      // Active filter badges
+      var activeFilters = [];
+      filterState.forEach(function (s) {
+        activeFilters.push({ type: 'state', label: s });
+      });
+      filterSchool.forEach(function (s) {
+        activeFilters.push({ type: 'school', label: s });
+      });
+      filterGrade.forEach(function (g) {
+        activeFilters.push({ type: 'grade', label: 'Klasse ' + g });
+      });
+      if (activeFilters.length > 0) {
+        html += '<div class="curricula-active-filters">';
+        activeFilters.forEach(function (f) {
+          html +=
+            '<span class="curricula-active-filter" data-type="' +
+            f.type +
+            '" data-value="' +
+            escapeHtml(f.label) +
+            '">' +
+            escapeHtml(f.label) +
+            ' <span class="curricula-active-filter-x">&times;</span></span>';
+        });
+        html += '</div>';
+      }
       html += '<div class="curricula-search-row">';
       html +=
         '<input class="curricula-search" type="text" placeholder="Thema suchen..." id="curricula-search" value="' +
@@ -351,10 +386,19 @@
       var selGrade = document.getElementById('curricula-filter-grade');
       var searchInput = document.getElementById('curricula-search');
 
+      function getMultiSelectValues(sel) {
+        if (!sel) return [];
+        var vals = [];
+        for (var i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].selected) vals.push(sel.options[i].value);
+        }
+        return vals;
+      }
+
       function onFilterChange() {
-        filterState = selState ? selState.value : '';
-        filterSchool = selSchool ? selSchool.value : '';
-        filterGrade = selGrade ? selGrade.value : '';
+        filterState = getMultiSelectValues(selState);
+        filterSchool = getMultiSelectValues(selSchool);
+        filterGrade = getMultiSelectValues(selGrade);
         currentPage = 1;
         _render();
       }
@@ -362,6 +406,45 @@
       if (selState) selState.addEventListener('change', onFilterChange);
       if (selSchool) selSchool.addEventListener('change', onFilterChange);
       if (selGrade) selGrade.addEventListener('change', onFilterChange);
+
+      // Active filter badge click to remove
+      app.addEventListener('click', function (ev) {
+        var badge = ev.target.closest('.curricula-active-filter');
+        if (!badge) return;
+        var type = badge.getAttribute('data-type');
+        var val = badge.getAttribute('data-value');
+        if (type === 'state') {
+          filterState = filterState.filter(function (v) {
+            return v !== val;
+          });
+          if (selState) {
+            for (var si = 0; si < selState.options.length; si++) {
+              if (selState.options[si].value === val) selState.options[si].selected = false;
+            }
+          }
+        } else if (type === 'school') {
+          filterSchool = filterSchool.filter(function (v) {
+            return v !== val;
+          });
+          if (selSchool) {
+            for (var sci = 0; sci < selSchool.options.length; sci++) {
+              if (selSchool.options[sci].value === val) selSchool.options[sci].selected = false;
+            }
+          }
+        } else if (type === 'grade') {
+          var gradeVal = val.replace('Klasse ', '');
+          filterGrade = filterGrade.filter(function (v) {
+            return v !== gradeVal;
+          });
+          if (selGrade) {
+            for (var gi = 0; gi < selGrade.options.length; gi++) {
+              if (selGrade.options[gi].value === gradeVal) selGrade.options[gi].selected = false;
+            }
+          }
+        }
+        currentPage = 1;
+        _render();
+      });
       if (searchInput) {
         searchInput.addEventListener('input', function (ev) {
           searchQuery = ev.target.value;
@@ -417,17 +500,44 @@
       if (compareResults) {
         var stateNames = Object.keys(compareResults);
         if (stateNames.length > 0) {
+          // Compute majority values for diff highlighting
+          var allEntries = [];
+          var schoolVotes = {},
+            gradeVotes = {},
+            objVotes = {};
+          stateNames.forEach(function (st) {
+            (compareResults[st] || []).forEach(function (e) {
+              allEntries.push(e);
+              schoolVotes[e.school_type || '-'] = (schoolVotes[e.school_type || '-'] || 0) + 1;
+              gradeVotes[String(e.grade || '-')] = (gradeVotes[String(e.grade || '-')] || 0) + 1;
+              objVotes[e.objective_count || 0] = (objVotes[e.objective_count || 0] || 0) + 1;
+            });
+          });
+          var majoritySchool = Object.keys(schoolVotes).reduce(function (a, b) {
+            return schoolVotes[a] > schoolVotes[b] ? a : b;
+          });
+          var majorityGrade = Object.keys(gradeVotes).reduce(function (a, b) {
+            return gradeVotes[a] > gradeVotes[b] ? a : b;
+          });
+          var majorityObj = Object.keys(objVotes).reduce(function (a, b) {
+            return objVotes[a] > objVotes[b] ? a : b;
+          });
+
           html += '<div class="compare-results">';
           html += '<table class="compare-table">';
           html +=
-            '<thead><tr><th>Bundesland</th><th>Schulform</th><th>Klasse</th><th>Lernziele</th><th>KMK</th></tr></thead>';
+            '<thead><tr><th>Bundesland</th><th>Schulform</th><th>Klasse</th><th>Lernziele</th><th>KMK</th><th></th></tr></thead>';
           html += '<tbody>';
           stateNames.forEach(function (st) {
             var entries = compareResults[st];
             if (!entries || entries.length === 0) return;
             entries.forEach(function (entry, idx) {
               var kmkStandards = kmkTopicMap[entry.name] || [];
-              html += '<tr class="compare-row">';
+              var isDiffSchool = (entry.school_type || '-') !== majoritySchool;
+              var isDiffGrade = String(entry.grade || '-') !== majorityGrade;
+              var isDiffObj = (entry.objective_count || 0) !== parseInt(majorityObj);
+              var rowId = 'compare-row-' + toSlug(st) + '-' + idx;
+              html += '<tr class="compare-row" id="' + rowId + '">';
               if (idx === 0) {
                 html +=
                   '<td class="compare-state-cell" rowspan="' +
@@ -436,11 +546,49 @@
                   escapeHtml(st) +
                   '</strong></td>';
               }
-              html += '<td>' + escapeHtml(entry.school_type || '-') + '</td>';
-              html += '<td>' + escapeHtml(String(entry.grade || '-')) + '</td>';
-              html += '<td class="compare-num">' + (entry.objective_count || 0) + '</td>';
+              html +=
+                '<td' +
+                (isDiffSchool ? ' class="diff-cell"' : '') +
+                '>' +
+                escapeHtml(entry.school_type || '-') +
+                '</td>';
+              html +=
+                '<td' +
+                (isDiffGrade ? ' class="diff-cell"' : '') +
+                '>' +
+                escapeHtml(String(entry.grade || '-')) +
+                '</td>';
+              html +=
+                '<td class="compare-num' +
+                (isDiffObj ? ' diff-cell' : '') +
+                '">' +
+                (entry.objective_count || 0) +
+                '</td>';
               html += '<td>' + (kmkStandards.length > 0 ? '✓' : '') + '</td>';
+              html +=
+                '<td><button class="compare-expand-btn" data-row="' +
+                rowId +
+                '" data-name="' +
+                escapeHtml(entry.name) +
+                '" title="Details anzeigen">+</button></td>';
               html += '</tr>';
+              // Expandable detail row
+              var isExpanded = expandedCompareRow === rowId;
+              if (isExpanded) {
+                var relEntities = entry.relatedEntities || [];
+                html +=
+                  '<tr class="compare-detail-row"><td colspan="6"><div class="compare-detail">';
+                html += '<strong>Verknüpfte Begriffe:</strong> ';
+                if (relEntities.length > 0) {
+                  relEntities.forEach(function (r) {
+                    var rn = typeof r === 'string' ? r : r.name;
+                    html += '<span class="compare-detail-tag">' + escapeHtml(rn) + '</span> ';
+                  });
+                } else {
+                  html += '<em>keine</em>';
+                }
+                html += '</div></td></tr>';
+              }
             });
           });
           html += '</tbody></table>';
@@ -465,6 +613,19 @@
           currentPage = 1;
           _render();
         });
+      });
+
+      // Expandable detail rows
+      app.addEventListener('click', function (ev) {
+        var btn = ev.target.closest('.compare-expand-btn');
+        if (!btn) return;
+        var rowId = btn.getAttribute('data-row');
+        if (expandedCompareRow === rowId) {
+          expandedCompareRow = null;
+        } else {
+          expandedCompareRow = rowId;
+        }
+        _render();
       });
 
       var searchInput = document.getElementById('compare-search');

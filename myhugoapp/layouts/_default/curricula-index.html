@@ -107,6 +107,58 @@
 }
 .curricula-page-btn:disabled { opacity: 0.4; cursor: default; }
 
+/* Multi-Select Filter */
+.curricula-filter-label {
+  display: inline-block; font-size: 0.75rem; font-weight: 600;
+  color: var(--text-muted, #666); margin-right: 0.25rem;
+  text-transform: uppercase; letter-spacing: 0.03em;
+}
+.curricula-multi {
+  height: auto; min-height: 2.2rem; max-height: 8rem;
+  padding: 0.3rem;
+}
+.curricula-multi option {
+  padding: 0.2rem 0.4rem; font-size: 0.85rem;
+}
+.curricula-active-filters {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem;
+}
+.curricula-active-filter {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  padding: 0.2rem 0.6rem; font-size: 0.78rem; font-weight: 500;
+  background: #9b59b6; color: #fff; border-radius: 12px;
+  cursor: pointer; transition: opacity 0.2s;
+}
+.curricula-active-filter:hover { opacity: 0.8; }
+.curricula-active-filter-x { font-size: 1rem; line-height: 1; }
+
+/* Diff Highlighting */
+.diff-cell {
+  background: #fff3e0 !important; color: #e65100 !important;
+  font-weight: 600;
+}
+@media (prefers-color-scheme: dark) {
+  .diff-cell { background: #3a2010 !important; color: #ffb74d !important; }
+}
+.compare-expand-btn {
+  background: none; border: 1px solid #ddd; border-radius: 50%;
+  width: 24px; height: 24px; cursor: pointer; font-size: 1rem;
+  line-height: 1; text-align: center; color: #666;
+  transition: background 0.2s;
+}
+.compare-expand-btn:hover { background: #f0f0f0; }
+.compare-detail { padding: 0.5rem 1rem; font-size: 0.85rem; color: var(--text-muted, #666); }
+.compare-detail-tag {
+  display: inline-block; padding: 0.15rem 0.5rem; margin: 0.15rem;
+  background: #f0f0f0; border-radius: 8px; font-size: 0.78rem;
+}
+.compare-detail-row { background: #fafafa; }
+@media (prefers-color-scheme: dark) {
+  .compare-detail { color: #999; }
+  .compare-detail-tag { background: #333; color: #ddd; }
+  .compare-detail-row { background: #222; }
+}
+
 /* Compare */
 .compare-search {
   display: flex; gap: 0.5rem; margin-bottom: 1.5rem;

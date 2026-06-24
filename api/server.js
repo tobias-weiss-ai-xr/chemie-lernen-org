@@ -1343,12 +1343,48 @@ function getFallbackData() {
   return fallback;
 }
 
+// LRU cache for /api/kg-data (5 min TTL)
+const kgDataCache = new Map();
+const KG_CACHE_TTL = 300000; // 5 minutes
+const KG_CACHE_MAX = 20;
+
+function getKgDataCacheKey(req) {
+  return 'kg-data-' + (req.query.lehrplan === 'true' ? 'lehrplan' : 'default');
+}
+
+function getCachedKgData(key) {
+  var entry = kgDataCache.get(key);
+  if (!entry) return null;
+  if (Date.now() - entry.ts > KG_CACHE_TTL) {
+    kgDataCache.delete(key);
+    return null;
+  }
+  // LRU: move to end on access
+  kgDataCache.delete(key);
+  kgDataCache.set(key, entry);
+  return entry.data;
+}
+
+function setCachedKgData(key, data) {
+  if (kgDataCache.size >= KG_CACHE_MAX) {
+    var oldest = kgDataCache.keys().next().value;
+    if (oldest) kgDataCache.delete(oldest);
+  }
+  kgDataCache.set(key, { ts: Date.now(), data: data });
+}
+
 /**
  * GET /api/kg-data
  * Returns knowledge graph data (entities + articles) proxied from Neo4j.
  * Falls back to embedded static data if Neo4j is unavailable.
  */
 app.get('/api/kg-data', async (req, res) => {
+  var cacheKey = getKgDataCacheKey(req);
+  var cached = getCachedKgData(cacheKey);
+  if (cached) {
+    console.log('[kg-data] Cache HIT for ' + cacheKey);
+    return res.json(cached);
+  }
   const startTime = Date.now();
   const isLehrplanMode = req.query.lehrplan === 'true';
 
@@ -1476,13 +1512,15 @@ app.get('/api/kg-data', async (req, res) => {
       `[kg-data] Neo4j: ${articles.length} articles, ${entities.length} entities (${curriculaEntities.length} curricula) in ${elapsed}s`
     );
 
-    return res.json({
+    var responseData = {
       source: 'neo4j',
       articles,
       entities,
       curricula: isLehrplanMode ? curriculaEntities : [],
       loadTime: parseFloat(elapsed),
-    });
+    };
+    setCachedKgData(cacheKey, responseData);
+    return res.json(responseData);
   } catch (err) {
     console.error(`[kg-data] Neo4j error, using fallback: ${err.message}`);
 
@@ -1499,24 +1537,28 @@ app.get('/api/kg-data', async (req, res) => {
       const combined = [...lehrplanEntities, ...didaktikEntities];
 
       console.log(`[kg-data] Fallback (lehrplan): ${combined.length} entities in ${elapsed}s`);
-      return res.json({
+      var fbLehrplanResponse = {
         source: 'fallback',
         articles: [],
         entities: combined,
         curricula: lehrplanEntities,
         loadTime: parseFloat(elapsed),
-      });
+      };
+      setCachedKgData(cacheKey, fbLehrplanResponse);
+      return res.json(fbLehrplanResponse);
     }
 
     console.log(
       `[kg-data] Fallback: ${fallback.articles.length} articles, ${fallback.entities.length} entities in ${elapsed}s`
     );
 
-    return res.json({
+    var fallbackResponse = {
       source: 'fallback',
       ...fallback,
       loadTime: parseFloat(elapsed),
-    });
+    };
+    setCachedKgData(cacheKey, fallbackResponse);
+    return res.json(fallbackResponse);
   }
 });
 
