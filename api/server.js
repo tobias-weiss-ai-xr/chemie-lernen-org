@@ -6,6 +6,8 @@ import express from 'express';
 import crypto from 'crypto';
 import cookieParser from 'cookie-parser';
 import neo4j from 'neo4j-driver';
+import fs from 'fs';
+import path from 'path';
 
 const PORT = process.env.PORT || 3001;
 const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
@@ -1249,6 +1251,95 @@ function getFallbackData() {
     if (!_existing) fallback.entities.push(fallback.curricula[_ci]);
   }
 
+  // Phase 2.2: Quelle entities — textbook/magazine sources
+  var quelleEntities = [
+    {
+      id: 'e40',
+      name: 'Chemie Heute',
+      category: 'quelle',
+      articles: [],
+      relatedEntities: [
+        { name: 'kristallstruktur', weight: 1 },
+        { name: 'molekülstrukturen', weight: 1 },
+        { name: 'chemische bindung', weight: 1 },
+        { name: 'molekülphysik', weight: 1 },
+        { name: 'atombau', weight: 1 },
+        { name: 'chemische-reaktion', weight: 1 },
+      ],
+      articleCount: 0,
+    },
+    {
+      id: 'e41',
+      name: 'Elemente Chemie',
+      category: 'quelle',
+      articles: [],
+      relatedEntities: [
+        { name: 'ammoniak', weight: 1 },
+        { name: 'katalysatoren', weight: 1 },
+        { name: 'legierung', weight: 1 },
+        { name: 'organische materialien', weight: 1 },
+        { name: 'chemische bindung', weight: 1 },
+        { name: 'chemische-reaktion', weight: 1 },
+        { name: 'säure-base-reaktion', weight: 1 },
+      ],
+      articleCount: 0,
+    },
+    {
+      id: 'e42',
+      name: 'Basiswissen Chemie',
+      category: 'quelle',
+      articles: [],
+      relatedEntities: [
+        { name: 'allosterie', weight: 1 },
+        { name: 'hydrathülle', weight: 1 },
+        { name: 'wirkungsgrad', weight: 1 },
+        { name: 'atombau', weight: 1 },
+        { name: 'chemische-reaktion', weight: 1 },
+        { name: 'säure-base-reaktion', weight: 1 },
+      ],
+      articleCount: 0,
+    },
+    {
+      id: 'e43',
+      name: 'Spektrum der Wissenschaft',
+      category: 'quelle',
+      articles: [],
+      relatedEntities: [
+        { name: 'elektrokatalyse', weight: 1 },
+        { name: 'perowskit-solarzellen', weight: 1 },
+        { name: 'wasserstoffproduktion', weight: 1 },
+        { name: 'quantencomputer', weight: 1 },
+        { name: 'solarzellen', weight: 1 },
+        { name: 'neuentdeckung', weight: 1 },
+      ],
+      articleCount: 0,
+    },
+    {
+      id: 'e44',
+      name: 'Naturwissenschaften im Unterricht Chemie',
+      category: 'quelle',
+      articles: [],
+      relatedEntities: [
+        { name: 'motoren', weight: 1 },
+        { name: 'katalysatoren', weight: 1 },
+        { name: 'elektrokatalyse', weight: 1 },
+        { name: 'legierung', weight: 1 },
+        { name: 'redoxreaktion', weight: 1 },
+      ],
+      articleCount: 0,
+    },
+  ];
+  for (var _qi = 0; _qi < quelleEntities.length; _qi++) {
+    _existing = false;
+    for (_ej = 0; _ej < fallback.entities.length; _ej++) {
+      if (fallback.entities[_ej].name === quelleEntities[_qi].name) {
+        _existing = true;
+        break;
+      }
+    }
+    if (!_existing) fallback.entities.push(quelleEntities[_qi]);
+  }
+
   return fallback;
 }
 
@@ -1643,6 +1734,27 @@ app.get('/api/entity/:slug', async function (req, res) {
         result.quizLinks.push(quizLinks[qi2]);
       }
     }
+
+    // Phase 2.4: Learning path — group content by type for progression
+    var learningPath = {
+      articles: [],
+      calculators: [],
+      exercises: [],
+    };
+    if (result.contentLinks) {
+      for (var lpi = 0; lpi < result.contentLinks.length; lpi++) {
+        var cl = result.contentLinks[lpi];
+        var type = (cl.type || 'article').toLowerCase();
+        if (type === 'calculator' || type === 'simulation') {
+          learningPath.calculators.push(cl);
+        } else if (type === 'exercise') {
+          learningPath.exercises.push(cl);
+        } else {
+          learningPath.articles.push(cl);
+        }
+      }
+    }
+    result.learningPath = learningPath;
   }
 
   res.json(result);
@@ -1796,41 +1908,52 @@ app.get('/entity/:slug', async function (req, res) {
 
   var articlesHtml = '';
 
-  // Content links for curriculum topics
-  var contentLinksHtml = '';
+  // Learning path: group content by type (articles, calculators, exercises)
+  var learningPathHtml = '';
   if (isCurriculum) {
     var clinks = await findContentLinks(entity.name);
     if (clinks.length > 0) {
-      var maxLinks = Math.min(clinks.length, 20);
-      contentLinksHtml =
-        '<h3>Zugehörige Inhalte (' + clinks.length + ')</h3><div class="content-links-list">';
-      for (var cli = 0; cli < maxLinks; cli++) {
-        var cl = clinks[cli];
-        var icon = '';
-        if (cl.type === 'calculator' || cl.type === 'rechner') icon = '🔬';
-        else if (cl.type === 'uebung' || cl.type === 'exercise') icon = '✏️';
-        else if (cl.type === 'simulation') icon = '🎮';
-        else icon = '📖';
-        contentLinksHtml +=
-          '<a href="' +
-          escapeHtml(cl.url) +
-          '" class="content-link-card" target="_blank" rel="noopener">' +
-          '<span class="content-link-icon">' +
-          icon +
-          '</span>' +
-          '<span class="content-link-title">' +
-          escapeHtml(cl.title) +
-          '</span>' +
-          '<span class="content-link-type">' +
-          escapeHtml(cl.type || 'article') +
-          '</span>' +
-          '</a>';
+      var sections = { article: [], calculator: [], simulation: [], exercise: [] };
+      for (var cli2 = 0; cli2 < clinks.length; cli2++) {
+        var cl2 = clinks[cli2];
+        var t = (cl2.type || 'article').toLowerCase();
+        if (sections[t]) sections[t].push(cl2);
+        else sections.article.push(cl2);
       }
-      if (clinks.length > maxLinks) {
-        contentLinksHtml +=
-          '<div class="content-link-more">+' + (clinks.length - maxLinks) + ' weitere</div>';
+      var order = ['article', 'calculator', 'simulation', 'exercise'];
+      var labels = {
+        article: '📖 Artikel',
+        calculator: '🔬 Rechner',
+        simulation: '🎮 Simulationen',
+        exercise: '✏️ Übungen',
+      };
+      for (var si = 0; si < order.length; si++) {
+        var key = order[si];
+        var items = sections[key];
+        if (items.length === 0) continue;
+        var maxShow = Math.min(items.length, 8);
+        learningPathHtml +=
+          '<h3>' + labels[key] + ' (' + items.length + ')</h3><div class="content-links-list">';
+        for (var li = 0; li < maxShow; li++) {
+          var item = items[li];
+          learningPathHtml +=
+            '<a href="' +
+            escapeHtml(item.url) +
+            '" class="content-link-card" target="_blank" rel="noopener">' +
+            '<span class="content-link-title">' +
+            escapeHtml(item.title) +
+            '</span>' +
+            '<span class="content-link-type">' +
+            escapeHtml(item.type || 'article') +
+            '</span>' +
+            '</a>';
+        }
+        if (items.length > maxShow) {
+          learningPathHtml +=
+            '<div class="content-link-more">+' + (items.length - maxShow) + ' weitere</div>';
+        }
+        learningPathHtml += '</div>';
       }
-      contentLinksHtml += '</div>';
     }
   }
 
@@ -1952,7 +2075,7 @@ app.get('/entity/:slug', async function (req, res) {
       '</h1>' +
       (isCurriculum ? '<div class="meta-section">' + metaHtml + '</div>' : '') +
       kmkHtml +
-      contentLinksHtml +
+      learningPathHtml +
       quizHtml +
       otherRelatedHtml +
       articlesHtml +
@@ -1987,6 +2110,85 @@ process.on('SIGTERM', async () => {
     neo4jDriver = null;
   }
   process.exit(0);
+});
+
+/**
+ * Find an article by slug across all content directories.
+ */
+var _articleCache = null;
+function loadArticleIndex() {
+  if (_articleCache) return _articleCache;
+  _articleCache = {};
+  try {
+    var contentDir = path.join(process.cwd(), 'myhugoapp', 'content', 'themenbereiche');
+    var dirs = fs.readdirSync(contentDir);
+    for (var di = 0; di < dirs.length; di++) {
+      var subDir = path.join(contentDir, dirs[di]);
+      var stat = fs.statSync(subDir);
+      if (!stat.isDirectory()) continue;
+      var files = fs.readdirSync(subDir);
+      for (var fi = 0; fi < files.length; fi++) {
+        if (!files[fi].endsWith('.md')) continue;
+        var filePath = path.join(subDir, files[fi]);
+        var content = fs.readFileSync(filePath, 'utf8');
+        var fmMatch = content.match(/^---\n([\s\S]*?)\n---\n?/);
+        if (!fmMatch) continue;
+        var fm = {};
+        var fmLines = fmMatch[1].split('\n');
+        for (var li = 0; li < fmLines.length; li++) {
+          var line = fmLines[li];
+          var colonIdx = line.indexOf(':');
+          if (colonIdx === -1) continue;
+          var key = line.slice(0, colonIdx).trim();
+          var val = line.slice(colonIdx + 1).trim();
+          if (val.startsWith('[') && val.endsWith(']')) {
+            try {
+              fm[key] = JSON.parse(val.replace(/'/g, '"'));
+            } catch {
+              fm[key] = val;
+            }
+          } else if (val === 'true') {
+            fm[key] = true;
+          } else if (val === 'false') {
+            fm[key] = false;
+          } else {
+            fm[key] = val.replace(/^"(.*)"$/, '$1');
+          }
+        }
+        var slug = files[fi].replace(/\.md$/, '');
+        fm._slug = slug;
+        fm._url = '/themenbereiche/' + dirs[di] + '/' + slug + '/';
+        fm._category = dirs[di];
+        _articleCache[slug] = fm;
+      }
+    }
+  } catch (err) {
+    console.warn('[article-index] load error: ' + err.message);
+  }
+  return _articleCache;
+}
+
+/**
+ * GET /api/article/:slug — Article detail JSON.
+ */
+app.get('/api/article/:slug', function (req, res) {
+  var slug = req.params.slug;
+  var index = loadArticleIndex();
+  var article = index[slug];
+  if (!article) {
+    return res.status(404).json({ error: 'Article not found', slug: slug });
+  }
+  res.json({
+    title: article.title || '',
+    description: article.description || '',
+    slug: article._slug,
+    url: article._url,
+    tags: article.tags || [],
+    icon: article.icon || '',
+    difficulty: article.schwierigkeit || '',
+    category: article._category || '',
+    interactive: !!article.interaktiv,
+  });
 });
 
 /**
