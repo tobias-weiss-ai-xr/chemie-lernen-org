@@ -1,7 +1,8 @@
 ---
-title: "Wissensnetz Graph"
-description: "Interaktive Visualisierung der Wissensverbindungen zwischen Fachbegriffen und Artikeln"
+title: 'Wissensnetz Graph'
+description: 'Interaktive Visualisierung der Wissensverbindungen zwischen Fachbegriffen und Artikeln'
 date: 2026-06-11
+aliases: [/entity/graph/]
 weight: 10
 ---
 

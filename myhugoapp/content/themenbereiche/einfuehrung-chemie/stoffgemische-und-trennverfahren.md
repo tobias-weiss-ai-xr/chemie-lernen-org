@@ -1,21 +1,22 @@
 ---
-title: "Stoffgemische und Trennverfahren"
-description: "Stoffgemische enthalten mehrere Reinstoffe. Trennverfahren nutzen unterschiedliche physikalische Eigenschaften zur Trennung."
-date: "2026-06-08"
-tags: ["chemie", "stoffe", "trennverfahren", "gemische"]
+title: 'Stoffgemische und Trennverfahren'
+description: 'Stoffgemische enthalten mehrere Reinstoffe. Trennverfahren nutzen unterschiedliche physikalische Eigenschaften zur Trennung.'
+date: '2026-06-08'
+tags: ['chemie', 'stoffe', 'trennverfahren', 'gemische']
 interaktiv: false
-schwierigkeit: "grundlagen"
-teilgebiet: ["einfuehrung-chemie"]
-icon: "🔬"
+schwierigkeit: 'grundlagen'
+teilgebiet: ['einfuehrung-chemie']
+icon: '🔬'
+aliases: [/article/stoffgemische-und-trennverfahren/]
 ---
 
 ## Arten von Stoffgemischen
 
-| Eigenschaft | Heterogenes Gemisch | Homogenes Gemisch |
-|------------|--------------------|--------------------|
-| Phasen | mehrere erkennbar | eine Phase |
-| Beispiel | Sand + Wasser, Granit, Öl + Wasser | Salzwasser, Luft, Legierungen |
-| Trennung | mechanisch möglich | Trennverfahren nötig |
+| Eigenschaft | Heterogenes Gemisch                | Homogenes Gemisch             |
+| ----------- | ---------------------------------- | ----------------------------- |
+| Phasen      | mehrere erkennbar                  | eine Phase                    |
+| Beispiel    | Sand + Wasser, Granit, Öl + Wasser | Salzwasser, Luft, Legierungen |
+| Trennung    | mechanisch möglich                 | Trennverfahren nötig          |
 
 **Homogene Gemische** nennt man auch **Lösungen**: Der gelöste Stoff (Solut) ist molekular oder ionar verteilt im Lösungsmittel (Solvens). Beispiel: $NaCl$ in Wasser — $Na^+$ und $Cl^-$ gleichmäßig verteilt.
 
@@ -69,12 +70,12 @@ Trennt **magnetische** von **nicht-magnetischen** Feststoffen.
 
 Die Wahl des Trennverfahrens hängt von den **physikalischen Eigenschaften** ab:
 
-| Unterscheidungsmerkmal | Trennverfahren |
-|----------------------|----------------|
-| Teilchengröße | Filtration, Sieben |
-| Siedepunkt | Destillation |
-| Löslichkeit | Extraktion, Kristallisation |
-| Dichte | Zentrifugieren, Dekantieren |
-| Magnetismus | Magnetische Trennung |
-| Wanderungsgeschwindigkeit | Chromatographie |
-| Aggregatzustand | Sublimation (fest → gas) |
+| Unterscheidungsmerkmal    | Trennverfahren              |
+| ------------------------- | --------------------------- |
+| Teilchengröße             | Filtration, Sieben          |
+| Siedepunkt                | Destillation                |
+| Löslichkeit               | Extraktion, Kristallisation |
+| Dichte                    | Zentrifugieren, Dekantieren |
+| Magnetismus               | Magnetische Trennung        |
+| Wanderungsgeschwindigkeit | Chromatographie             |
+| Aggregatzustand           | Sublimation (fest → gas)    |

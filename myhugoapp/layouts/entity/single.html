@@ -1,119 +1,545 @@
+{{ define "css" }}
+<style>
+/* ── Entity Detail Page ──────────────────────── */
+.entity-detail-wrapper {
+  max-width: 960px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+/* Breadcrumb */
+.entity-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted, #888);
+}
+.entity-breadcrumb a {
+  color: var(--text-muted, #888);
+  text-decoration: none;
+}
+.entity-breadcrumb a:hover {
+  color: #9b59b6;
+  text-decoration: underline;
+}
+.entity-breadcrumb .sep {
+  color: var(--border-color, #ccc);
+}
+
+/* Header Card */
+.entity-header-card {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.entity-header-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--cat-color, #9b59b6);
+}
+.entity-header-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  color: var(--text-primary, #222);
+}
+.entity-header-desc {
+  font-size: 1rem;
+  color: var(--text-muted, #666);
+  margin: 0 0 0.8rem;
+  line-height: 1.5;
+}
+.entity-badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--badge-color, #9b59b6);
+  margin-right: 0.4rem;
+  margin-bottom: 0.3rem;
+}
+
+/* Stats Row */
+.entity-stats {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: var(--text-muted, #666);
+  margin-top: 0.6rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border-color, #eee);
+}
+.entity-stats strong {
+  color: var(--text-primary, #333);
+}
+
+/* Content Grid */
+.entity-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 1.5rem;
+}
+@media (max-width: 768px) {
+  .entity-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Articles Card */
+.entity-card {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.entity-card-header {
+  padding: 0.9rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color, #eee);
+  background: var(--bg-card-header, #fafafa);
+  color: var(--text-primary, #333);
+}
+.entity-card-body {
+  padding: 0.8rem 1.2rem;
+}
+
+/* Article List */
+.entity-article-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.entity-article-item {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border-color, #f0f0f0);
+}
+.entity-article-item:last-child {
+  border-bottom: none;
+}
+.entity-article-link {
+  color: var(--text-primary, #333);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.entity-article-link:hover {
+  color: #9b59b6;
+  text-decoration: underline;
+}
+.entity-article-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted, #999);
+}
+
+/* Relation Tags */
+.entity-rel-section {
+  margin-bottom: 1rem;
+}
+.entity-rel-section:last-child {
+  margin-bottom: 0;
+}
+.entity-rel-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted, #888);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.4rem;
+}
+.entity-rel-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.entity-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 14px;
+  font-size: 0.78rem;
+  color: var(--tag-fg, #333);
+  background: var(--tag-bg, #f0f0f0);
+  border: 1px solid var(--tag-border, #ddd);
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+.entity-tag:hover {
+  border-color: #9b59b6;
+  background: var(--tag-bg-hover, #f5f0ff);
+}
+.entity-tag-kmk {
+  background: #e8f5e9;
+  border-color: #a5d6a7;
+  color: #2e7d32;
+}
+.entity-tag-kmk:hover {
+  background: #c8e6c9;
+  border-color: #81c784;
+}
+.entity-tag-quelle {
+  background: #fff3e0;
+  border-color: #ffcc80;
+  color: #e65100;
+}
+.entity-tag-quelle:hover {
+  background: #ffe0b2;
+  border-color: #ffb74d;
+}
+
+/* Graph Link */
+.entity-graph-link {
+  display: block;
+  padding: 0.7rem 1.2rem;
+  text-align: center;
+  color: var(--text-muted, #888);
+  text-decoration: none;
+  font-size: 0.88rem;
+  border-top: 1px solid var(--border-color, #eee);
+  transition: background 0.15s, color 0.15s;
+}
+.entity-graph-link:hover {
+  background: var(--bg-hover, #f5f0ff);
+  color: #9b59b6;
+}
+
+/* Empty / Loading / Error */
+.entity-skeleton {
+  margin-bottom: 1rem;
+}
+.entity-skeleton-card {
+  height: 80px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--skel-from, #eee) 25%, var(--skel-to, #f5f5f5) 50%, var(--skel-from, #eee) 75%);
+  background-size: 200% 100%;
+  animation: entityShimmer 1.5s infinite;
+  margin-bottom: 0.6rem;
+}
+@keyframes entityShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.entity-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted, #999);
+}
+.entity-empty-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+}
+.entity-error {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #c0392b;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .entity-header-card {
+    background: #2a2a2a;
+    border-color: #444;
+  }
+  .entity-header-title { color: #e0e0e0; }
+  .entity-header-desc { color: #999; }
+  .entity-stats { border-top-color: #333; }
+  .entity-stats strong { color: #e0e0e0; }
+  .entity-card {
+    background: #2a2a2a;
+    border-color: #444;
+  }
+  .entity-card-header {
+    background: #333;
+    border-bottom-color: #444;
+    color: #e0e0e0;
+  }
+  .entity-article-item { border-bottom-color: #333; }
+  .entity-article-link { color: #e0e0e0; }
+  .entity-article-link:hover { color: #bb86fc; }
+  .entity-tag {
+    background: #3a3a3a;
+    border-color: #555;
+    color: #ccc;
+  }
+  .entity-tag:hover {
+    border-color: #bb86fc;
+    background: #2a2040;
+  }
+  .entity-tag-kmk {
+    background: #1b3a1b;
+    border-color: #2e7d32;
+    color: #81c784;
+  }
+  .entity-tag-kmk:hover {
+    background: #1b4a1b;
+    border-color: #388e3c;
+  }
+  .entity-tag-quelle {
+    background: #3a2000;
+    border-color: #6d4c00;
+    color: #ffb74d;
+  }
+  .entity-tag-quelle:hover {
+    background: #4a3000;
+  }
+  .entity-graph-link { border-top-color: #333; }
+  .entity-graph-link:hover { background: #2a2040; color: #bb86fc; }
+  .entity-skeleton-card {
+    background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
+  }
+}
+</style>
+{{ end }}
+
 {{ define "main" }}
-{{ $entityName := lower .Title }}
-{{ $entityData := where $.Site.Data.kg_data.entities "name" $entityName }}
-{{ $entity := index $entityData 0 }}
+<div class="entity-detail-wrapper" id="entity-app">
+  <nav class="entity-breadcrumb">
+    <a href="/">Start</a>
+    <span class="sep">›</span>
+    <a href="/entity/">Wissensnetz</a>
+    <span class="sep">›</span>
+    <span>{{ .Title }}</span>
+  </nav>
 
-<div class="entity-detail-container">
-  <div class="row">
-    <div class="col-md-12">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Start</a></li>
-          <li class="breadcrumb-item"><a href="/entity/">Wissensnetz</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
-        </ol>
-      </nav>
-
-      <h1>{{ .Title }}</h1>
-      <p class="lead">{{ .Description }}</p>
-    </div>
+  <!-- Skeleton -->
+  <div id="entity-skeleton">
+    <div class="entity-skeleton-card"></div>
+    <div class="entity-skeleton-card" style="height:120px;"></div>
+    <div class="entity-skeleton-card" style="height:60px;"></div>
   </div>
 
-  {{ if $entity }}
-  <div class="row">
-    <div class="col-md-8">
-      {{ if $entity.category }}
-      <p class="text-muted"><strong>Kategorie:</strong> 
-        <span class="label label-primary">{{ $entity.category }}</span>
-      </p>
-      {{ end }}
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Artikel zu „{{ $entity.name }}“</h3>
-        </div>
-        <div class="panel-body">
-          {{ $articles := $.Site.Data.kg_data.articles }}
-          {{ $articleTitles := $entity.articles }}
-          <ul class="list-group">
-          {{ range $articleTitles }}
-            {{ $title := . }}
-            {{ $article := where $articles "title" $title }}
-            {{ if $article }}
-            {{ $a := index $article 0 }}
-            <li class="list-group-item">
-              <a href="{{ $a.url }}">{{ $a.title }}</a>
-              {{ if $a.tags }}
-              <br><small class="text-muted"><span aria-hidden="true">🏷️</span> {{ delimit $a.tags ", " }}</small>
-              {{ end }}
-            </li>
-            {{ else }}
-            <li class="list-group-item">
-              {{ $title }} <small class="text-muted">(Artikel nicht im Datensatz)</small>
-            </li>
-            {{ end }}
-          {{ end }}
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Statistik</h3>
-        </div>
-        <div class="panel-body">
-          <p><strong>Artikelanzahl:</strong> {{ $entity.articleCount }}</p>
-          {{ if $entity.relatedEntities }}
-          <p><strong>Verknüpfte Begriffe:</strong> {{ len $entity.relatedEntities }}</p>
-          {{ end }}
-        </div>
-      </div>
-
-      {{ if $entity.relatedEntities }}
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Verwandte Begriffe</h3>
-        </div>
-        <div class="panel-body">
-          <div class="related-entity-tags">
-          {{ $allEntities := $.Site.Data.kg_data.entities }}
-          {{ range $entity.relatedEntities }}
-            {{ $rel := where $allEntities "name" . }}
-            {{ if $rel }}
-            {{ $re := index $rel 0 }}
-            <a href="/entity/{{ $re.name | urlize }}/" class="related-entity-tag">
-              {{ $re.name }}{{ if $re.category }} <small>({{ $re.category }})</small>{{ end }}
-            </a>
-            {{ end }}
-          {{ end }}
-          </div>
-          <p class="text-muted" style="margin-top:10px;"><small><a href="/entity/graph/">→ Interaktiver Graph</a></small></p>
-        </div>
-      </div>
-      {{ end }}
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Alle Fachbegriffe</h3>
-        </div>
-        <div class="panel-body">
-          <p class="text-muted"><small><a href="/entity/">→ Zurück zur Übersicht</a></small></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  {{ else }}
-  <div class="row">
-    <div class="col-md-12">
-      <div class="alert alert-warning">
-        <strong>Hinweis:</strong> Keine Daten zu „{{ .Title }}“ im Wissensnetz gefunden.
-      </div>
-      <p><a href="/entity/">Zurück zur Übersicht</a></p>
-    </div>
-  </div>
-  {{ end }}
+  <!-- Content -->
+  <div id="entity-content" style="display:none;"></div>
 </div>
 
+<script>
+(function () {
+  var app = document.getElementById('entity-content');
+  var skel = document.getElementById('entity-skeleton');
+  var slug = window.location.pathname.split('/').filter(Boolean).pop();
+
+  var catColors = {
+    stoff: '#667eea', konzept: '#45b7d1', reaktion: '#4ecdc4',
+    methode: '#f093fb', person: '#ff9a76', quelle: '#a8a8a8',
+    lehrplan: '#9b59b6', didaktik: '#2e7d32',
+  };
+  var catLabels = {
+    stoff: 'Stoff', konzept: 'Konzept', reaktion: 'Reaktion',
+    methode: 'Methode', person: 'Person', quelle: 'Quelle',
+    lehrplan: 'Lehrplan', didaktik: 'KMK-Standard',
+  };
+
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function render(data) {
+    var entity = null;
+    var entityName = slug.replace(/-/g, ' ').replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+
+    // Find entity by slug (urlized name matching)
+    var allEntities = data.entities || [];
+    for (var i = 0; i < allEntities.length; i++) {
+      var eName = allEntities[i].name;
+      var eSlug = eName.toLowerCase()
+        .replace(/[üÜ]/g,'ue').replace(/[öÖ]/g,'oe').replace(/[äÄ]/g,'ae').replace(/ß/g,'ss')
+        .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+      if (eSlug === slug) {
+        entity = allEntities[i];
+        break;
+      }
+    }
+
+    if (!entity) {
+      skel.style.display = 'none';
+      app.style.display = 'block';
+      app.innerHTML =
+        '<div class="entity-empty"><div class="entity-empty-icon">🔍</div>' +
+        '<p>Keine Daten zu <strong>' + esc(entityName) + '</strong> im Wissensnetz gefunden.</p>' +
+        '<p><a href="/entity/" style="color:#9b59b6;">→ Zurück zur Übersicht</a></p></div>';
+      return;
+    }
+
+    var cat = entity.category || 'konzept';
+    var color = catColors[cat] || '#9b59b6';
+    var label = catLabels[cat] || cat;
+
+    // Categorize related entities
+    var kmkRefs = [], quelleRefs = [], otherRefs = [];
+    var refs = entity.relatedEntities || [];
+    for (var ri = 0; ri < refs.length; ri++) {
+      var rName = typeof refs[ri] === 'string' ? refs[ri] : refs[ri].name;
+      // Find this related entity's category
+      var rCat = '';
+      for (var ei = 0; ei < allEntities.length; ei++) {
+        if (allEntities[ei].name === rName) {
+          rCat = allEntities[ei].category || '';
+          break;
+        }
+      }
+      if (rCat === 'didaktik') kmkRefs.push(rName);
+      else if (rCat === 'quelle') quelleRefs.push(rName);
+      else otherRefs.push(rName);
+    }
+
+    // Article links
+    var articleIds = entity.articles || [];
+    var articles = data.articles || [];
+    var entityArticles = articles.filter(function(a) {
+      return articleIds.indexOf(a.title) !== -1 || (a.entities && a.entities.indexOf(entity.name) !== -1);
+    });
+
+    var artCount = entity.articleCount || entityArticles.length || 0;
+
+    // Build HTML
+    var html = '';
+
+    // Header card
+    html += '<div class="entity-header-card" style="--cat-color:' + color + '">';
+    html += '<h1 class="entity-header-title">' + esc(entity.name) + '</h1>';
+    html += '<p class="entity-header-desc">' + esc(entityName) + '</p>';
+    html += '<div><span class="entity-badge" style="background:' + color + '">' + esc(label) + '</span></div>';
+    html += '<div class="entity-stats">';
+    html += '<span><strong>' + artCount + '</strong> Artikel</span>';
+    html += '<span><strong>' + refs.length + '</strong> Verknüpfungen</span>';
+    if (entity.components && entity.components.length > 0) {
+      html += '<span><strong>' + entity.components.length + '</strong> Bestandteile</span>';
+    }
+    html += '</div></div>';
+
+    // Content grid
+    html += '<div class="entity-content-grid">';
+
+    // Left column: Articles
+    html += '<div class="entity-card">';
+    html += '<div class="entity-card-header">📄 Artikel zu „' + esc(entity.name) + '“</div>';
+    html += '<div class="entity-card-body">';
+    if (entityArticles.length === 0) {
+      html += '<p class="entity-empty" style="padding:1rem 0;">Keine Artikel verknüpft.</p>';
+    } else {
+      html += '<ul class="entity-article-list">';
+      for (var ai = 0; ai < entityArticles.length; ai++) {
+        var a = entityArticles[ai];
+        var url = a.url || '/';
+        html += '<li class="entity-article-item">';
+        html += '<a class="entity-article-link" href="' + esc(url) + '">' + esc(a.title) + '</a>';
+        html += '<div class="entity-article-meta">';
+        if (a.type) html += esc(a.type);
+        if (a.date) html += ' · ' + esc(a.date);
+        html += '</div></li>';
+      }
+      html += '</ul>';
+    }
+    html += '</div></div>';
+
+    // Right column: Relations
+    html += '<div>';
+
+    // KMK references
+    if (kmkRefs.length > 0) {
+      html += '<div class="entity-card">';
+      html += '<div class="entity-card-header">📋 KMK-Standards</div>';
+      html += '<div class="entity-card-body">';
+      html += '<div class="entity-rel-tags">';
+      for (var ki = 0; ki < kmkRefs.length; ki++) {
+        var kSlug = kmkRefs[ki].toLowerCase()
+          .replace(/[üÜ]/g,'ue').replace(/[öÖ]/g,'oe').replace(/[äÄ]/g,'ae').replace(/ß/g,'ss')
+          .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+        html += '<a href="/entity/' + esc(kSlug) + '/" class="entity-tag entity-tag-kmk">' + esc(kmkRefs[ki]) + '</a>';
+      }
+      html += '</div></div></div>';
+    }
+
+    // Quelle references
+    if (quelleRefs.length > 0) {
+      html += '<div class="entity-card">';
+      html += '<div class="entity-card-header">📚 Quellen</div>';
+      html += '<div class="entity-card-body">';
+      html += '<div class="entity-rel-tags">';
+      for (var qi = 0; qi < quelleRefs.length; qi++) {
+        var qSlug = quelleRefs[qi].toLowerCase()
+          .replace(/[üÜ]/g,'ue').replace(/[öÖ]/g,'oe').replace(/[äÄ]/g,'ae').replace(/ß/g,'ss')
+          .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+        html += '<a href="/entity/' + esc(qSlug) + '/" class="entity-tag entity-tag-quelle">' + esc(quelleRefs[qi]) + '</a>';
+      }
+      html += '</div></div></div>';
+    }
+
+    // Other references
+    if (otherRefs.length > 0) {
+      html += '<div class="entity-card">';
+      html += '<div class="entity-card-header">🔗 Verwandte Begriffe</div>';
+      html += '<div class="entity-card-body">';
+      html += '<div class="entity-rel-tags">';
+      for (var oi = 0; oi < otherRefs.length; oi++) {
+        var oSlug = otherRefs[oi].toLowerCase()
+          .replace(/[üÜ]/g,'ue').replace(/[öÖ]/g,'oe').replace(/[äÄ]/g,'ae').replace(/ß/g,'ss')
+          .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+        html += '<a href="/entity/' + esc(oSlug) + '/" class="entity-tag">' + esc(otherRefs[oi]) + '</a>';
+      }
+      html += '</div></div></div>';
+    }
+
+    // Components
+    if (entity.components && entity.components.length > 0) {
+      html += '<div class="entity-card">';
+      html += '<div class="entity-card-header">🧩 Bestandteile</div>';
+      html += '<div class="entity-card-body">';
+      html += '<div class="entity-rel-tags">';
+      for (var ci = 0; ci < entity.components.length; ci++) {
+        html += '<span class="entity-tag">' + esc(entity.components[ci]) + '</span>';
+      }
+      html += '</div></div></div>';
+    }
+
+    // Graph link
+    html += '<a href="/wissennetz/" class="entity-card" style="display:block;text-decoration:none;">';
+    html += '<div class="entity-graph-link">🌐 Im interaktiven Wissensnetz-Graph anzeigen →</div>';
+    html += '</a>';
+
+    html += '</div>'; // end right column
+    html += '</div>'; // end content grid
+
+    app.innerHTML = html;
+    skel.style.display = 'none';
+    app.style.display = 'block';
+  }
+
+  fetch('/api/kg-data', { signal: AbortSignal.timeout(15000) })
+    .then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(function (d) {
+      render(d);
+    })
+    .catch(function (err) {
+      skel.style.display = 'none';
+      app.style.display = 'block';
+      app.innerHTML =
+        '<div class="entity-error">' +
+        '<p style="font-size:2rem;margin-bottom:0.5rem;">⚠️</p>' +
+        '<p>Wissensnetz konnte nicht geladen werden.</p>' +
+        '<p style="font-size:0.85rem;color:#888;">' + esc(err.message || String(err)) + '</p>' +
+        '<p><a href="/entity/" style="color:#9b59b6;">→ Zurück zur Übersicht</a></p>' +
+        '</div>';
+    });
+})();
+</script>
 {{ end }}

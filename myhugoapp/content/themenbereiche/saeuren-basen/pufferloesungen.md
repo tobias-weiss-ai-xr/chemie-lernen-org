@@ -1,12 +1,13 @@
 ---
-title: "Pufferlösungen"
-description: "Pufferlösungen halten den pH-Wert auch bei Zugabe von Säure oder Base nahezu konstant. Sie bestehen aus einem schwachen Säure-Base-Paar."
-date: "2026-06-08"
-tags: ["chemie", "puffer", "ph-wert", "gleichgewicht"]
+title: 'Pufferlösungen'
+description: 'Pufferlösungen halten den pH-Wert auch bei Zugabe von Säure oder Base nahezu konstant. Sie bestehen aus einem schwachen Säure-Base-Paar.'
+date: '2026-06-08'
+tags: ['chemie', 'puffer', 'ph-wert', 'gleichgewicht']
 interaktiv: false
-schwierigkeit: "mittelstufe"
-teilgebiet: ["saeuren-basen"]
-icon: "⚗️"
+schwierigkeit: 'mittelstufe'
+teilgebiet: ['saeuren-basen']
+icon: '⚗️'
+aliases: [/article/pufferloesungen/]
 ---
 
 Ein **Puffer** ist eine Lösung, die ihren pH-Wert auch bei Zugabe kleinerer Mengen starker Säure ($H^+$) oder starker Base ($OH^-$) nahezu konstant hält. Ein Puffersystem besteht aus einer schwachen Säure und ihrer korrespondierenden Base.
@@ -35,14 +36,14 @@ Die **Pufferkapazität** gibt an, wie viel Säure oder Base zugegeben werden kan
 
 ## Saure und basische Puffersysteme im Vergleich
 
-| Eigenschaft | Saurer Puffer | Basischer Puffer |
-|------------|--------------|-----------------|
-| Bestandteile | Schwache Säure + ihr Salz | Schwache Base + ihr Salz |
-| Beispiel | $CH_3COOH/CH_3COONa$ | $NH_3/NH_4Cl$ |
-| Wirkungsbereich | pH < 7 (nahe $pK_s$ der Säure) | pH > 7 (nahe $pK_s$ der Base) |
-| Gegen $H^+$ | Base neutralisiert zugefügtes $H^+$ | Base wird verbraucht |
-| Gegen $OH^-$ | Säure neutralisiert zugefügtes $OH^-$ | Schwache Base reagiert |
-| Henderson-Hasselbalch | $pH = pK_s + \log\frac{[A^-]}{[HA]}$ | $pH = pK_s + \log\frac{[Base]}{[Säure]}$ |
+| Eigenschaft           | Saurer Puffer                         | Basischer Puffer                         |
+| --------------------- | ------------------------------------- | ---------------------------------------- |
+| Bestandteile          | Schwache Säure + ihr Salz             | Schwache Base + ihr Salz                 |
+| Beispiel              | $CH_3COOH/CH_3COONa$                  | $NH_3/NH_4Cl$                            |
+| Wirkungsbereich       | pH < 7 (nahe $pK_s$ der Säure)        | pH > 7 (nahe $pK_s$ der Base)            |
+| Gegen $H^+$           | Base neutralisiert zugefügtes $H^+$   | Base wird verbraucht                     |
+| Gegen $OH^-$          | Säure neutralisiert zugefügtes $OH^-$ | Schwache Base reagiert                   |
+| Henderson-Hasselbalch | $pH = pK_s + \log\frac{[A^-]}{[HA]}$  | $pH = pK_s + \log\frac{[Base]}{[Säure]}$ |
 
 ## Herstellung eines Puffers
 
@@ -69,6 +70,7 @@ Das Verhältnis von Hydrogencarbonat zu Kohlensäure liegt bei etwa 11:1. Dieser
 **Natron gegen Säure**: Natriumhydrogencarbonat ($NaHCO_3$) wirkt als Basisches Puffer, wenn es mit einer Säure reagiert: $NaHCO_3 + H^+ \rightarrow Na^+ + H_2O + CO_2\uparrow$. Deshalb wird es gegen Sodbrennen eingesetzt und als Backtriebmittel verwendet. Im Haushalt neutralisiert Natron Essig, Zitronensäure und andere Haushaltssäuren.
 
 Puffer in der Praxis:
+
 - **Blut**: $\frac{HCO_3^-}{H_2CO_3}$ Puffer hält pH ≈ 7,4
 - **Tränen**, **Speichel**
 - **Technik**: Galvanik-Bäder, Shampoo-Hersteller nutzen Puffer, um Hautverträglichkeit zu sichern.

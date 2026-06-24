@@ -1,12 +1,13 @@
 ---
-title: "Der Satz von Hess"
-description: "Die Reaktionsenthalpie ist unabhängig vom Reaktionsweg. Sie kann aus den Bildungsenthalpien der Produkte und Edukte berechnet werden."
-date: "2026-06-08"
-tags: ["chemie", "hess", "enthalpie", "thermochemie"]
+title: 'Der Satz von Hess'
+description: 'Die Reaktionsenthalpie ist unabhängig vom Reaktionsweg. Sie kann aus den Bildungsenthalpien der Produkte und Edukte berechnet werden.'
+date: '2026-06-08'
+tags: ['chemie', 'hess', 'enthalpie', 'thermochemie']
 interaktiv: false
-schwierigkeit: "oberstufe"
-teilgebiet: ["energetik"]
-icon: "🔥"
+schwierigkeit: 'oberstufe'
+teilgebiet: ['energetik']
+icon: '🔥'
+aliases: [/article/satz-von-hess/]
 ---
 
 Der **Satz von Hess** (1840) besagt: Die Reaktionsenthalpie ($\Delta H$) einer chemischen Reaktion hängt nur vom Anfangs- und Endzustand ab, nicht vom Reaktionsweg. Dies erlaubt die Berechnung von Enthalpien, die experimentell schwer zu messen sind.

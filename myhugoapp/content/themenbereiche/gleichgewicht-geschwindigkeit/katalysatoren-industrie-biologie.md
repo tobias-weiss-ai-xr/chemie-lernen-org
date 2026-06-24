@@ -1,12 +1,13 @@
 ---
-title: "Katalysatoren in der Industrie und Biologie"
-description: "Homogene und heterogene Katalysatoren, Enzyme als biologische Katalysatoren und die industrielle Bedeutung der Katalyse."
-date: "2026-06-18"
-tags: ["chemie", "katalysator", "enzyme", "industrie", "heterogen", "homogen"]
+title: 'Katalysatoren in der Industrie und Biologie'
+description: 'Homogene und heterogene Katalysatoren, Enzyme als biologische Katalysatoren und die industrielle Bedeutung der Katalyse.'
+date: '2026-06-18'
+tags: ['chemie', 'katalysator', 'enzyme', 'industrie', 'heterogen', 'homogen']
 interaktiv: false
-schwierigkeit: "mittelstufe"
-teilgebiet: ["gleichgewicht-geschwindigkeit"]
-icon: "⚡"
+schwierigkeit: 'mittelstufe'
+teilgebiet: ['gleichgewicht-geschwindigkeit']
+icon: '⚡'
+aliases: [/article/katalysatoren-industrie-biologie/]
 ---
 
 **Katalysatoren** beschleunigen chemische Reaktionen, ohne selbst verbraucht zu werden. Sie ermöglichen Reaktionen bei niedrigeren Temperaturen und Drücken, was Energie und Kosten spart. Etwa 80 % aller industriellen chemischen Prozesse nutzen Katalysatoren.

@@ -1,15 +1,15 @@
 ---
-title: "Reaktionstypen der Organischen Chemie"
-description: "Substitution, Addition, Elimination und mehr - Erfahren Sie alles über die wichtigsten Reaktionstypen der organischen Chemie von SN1/SN2 bis zur Kondensation"
+title: 'Reaktionstypen der Organischen Chemie'
+description: 'Substitution, Addition, Elimination und mehr - Erfahren Sie alles über die wichtigsten Reaktionstypen der organischen Chemie von SN1/SN2 bis zur Kondensation'
 date: 2025-12-26
-teilgebiet: "reaktionstypen-organisch"
-quiz: "reaktionstypen-organisch"
-schwierigkeit: "fortgeschritten"
-icon: "🔄"
+teilgebiet: 'reaktionstypen-organisch'
+quiz: 'reaktionstypen-organisch'
+schwierigkeit: 'fortgeschritten'
+icon: '🔄'
 weight: 100
 interaktiv: true
+aliases: [/article/_index/]
 ---
-
 
 ## Reaktionstypen der Organischen Chemie
 
@@ -41,6 +41,7 @@ $$\ce{R-X + Y -> R-Y + X}$$
 #### S_N2-Mechanismus (bimolekular)
 
 **Eigenschaften:**
+
 - Einzeitiger Prozess
 - Inversion am Kohlenstoff (Walden-Umkehr)
 - Kinetik: $v = k[\ce{R-X}][\ce{Nu-}]$
@@ -50,6 +51,7 @@ $$\ce{R-X + Y -> R-Y + X}$$
 $$\ce{CH3I + OH- -> CH3OH + I-}$$
 
 Übergangszustand:
+
 ```
     H
     |
@@ -59,6 +61,7 @@ H — C — I  +  OH⁻  →  [H₃C---I---OH]‡  →  CH₃OH + I⁻
 ```
 
 **Faktoren:**
+
 - Primäre Halogenide reagieren am schnellsten
 - Sterische Hinderung verlangsamt Reaktion
 - Polare aprotische Lösungsmittel beschleunigen
@@ -66,6 +69,7 @@ H — C — I  +  OH⁻  →  [H₃C---I---OH]‡  →  CH₃OH + I⁻
 #### S_N1-Mechanismus (unimolekular)
 
 **Eigenschaften:**
+
 - Zweizeitiger Prozess
 - Bildung eines Carbocations (Zwischenstufe)
 - Kinetik: $v = k[\ce{R-X}]$
@@ -79,6 +83,7 @@ Schritt 2: $\ce{(CH3)3C+ + OH- -> (CH3)3C-OH}$ (schnell)
 Gesamt: $\ce{(CH3)3C-Cl + OH- -> (CH3)3C-OH + Cl-}$
 
 **Faktoren:**
+
 - Tertiäre Halogenide reagieren bevorzugt
 - Stabile Carbikationen fördern Reaktion
 - Polare protische Lösungsmittel begünstigen
@@ -97,6 +102,7 @@ $$\ce{C6H6 + NO2+ -> C6H6-NO2+} \text{ (Komplex)}$$
 $$\ce{C6H6-NO2+ -> C6H5NO2 + H+}$$
 
 **Anwendung:**
+
 - Herstellung von Nitrobenzol
 - Sulfonierung
 - Friedel-Crafts-Alkylierung
@@ -168,6 +174,7 @@ $$\ce{CH2=CH2 + H2 -> CH3-CH3}$$
 Katalysator: Pd, Pt, Ni
 
 **Anwendung:**
+
 - Härtung von Fetten
 - Reduktion von Alkenen zu Alkanen
 
@@ -190,6 +197,7 @@ Schritt 1: $\ce{(CH3)3C-Br -> (CH3)2C=CH2 + HBr}$
 Schritt 2: $\ce{(CH3)2C=CH2 + Br- -> \text{Produkte}}$
 
 **Eigenschaften:**
+
 - Bildung eines Carbocations
 - Konkurrenz mit S_N1
 - Saytzeff-Regel: Wasserstoff wird vom benachbarten Kohlenstoff mit weniger Wasserstoffatomen entfernt
@@ -203,6 +211,7 @@ $$\ce{CH3-CH2-CH2-Br + Base -> CH3-CH=CH2 + HBr}$$
 Base ($\ce{OH-}$) entfernt H, während $\ce{Br-}$ abspaltet
 
 **Eigenschaften:**
+
 - Einzeitiger Prozess
 - Anti-periplanare Anordnung von H und Abgangsgruppe
 - Konkurrenz mit S_N2
@@ -211,11 +220,11 @@ Base ($\ce{OH-}$) entfernt H, während $\ce{Br-}$ abspaltet
 
 **Wann tritt was auf?**
 
-| Bedingung | Substitution | Elimination |
-|-----------|--------------|-------------|
-| Primäres Halogenid | S_N2 dominiert | E2 bei starker Base, hoher Temperatur |
-| Sekundäres Halogenid | S_N2/E2 Konkurrenz | E2 bei starker Base |
-| Tertiäres Halogenid | S_N1 bei schwachem Nucleophil | E1 bei starker Base, hoher Temperatur |
+| Bedingung            | Substitution                  | Elimination                           |
+| -------------------- | ----------------------------- | ------------------------------------- |
+| Primäres Halogenid   | S_N2 dominiert                | E2 bei starker Base, hoher Temperatur |
+| Sekundäres Halogenid | S_N2/E2 Konkurrenz            | E2 bei starker Base                   |
+| Tertiäres Halogenid  | S_N1 bei schwachem Nucleophil | E1 bei starker Base, hoher Temperatur |
 
 **Beispiel:** 2-Brombutan
 
@@ -242,6 +251,7 @@ Wachstum: $\ce{^.CH2-CH2^. + n CH2=CH2 -> ^.(CH2-CH2)_{n}^.}$
 Terminierung: $\ce{2 ^.(CH2-CH2)_{n}^. -> (CH2-CH2)_{2n}}$
 
 **Anwendung:**
+
 - Polyethylen (PE)
 - Polypropylen (PP)
 - Polystyrol (PS)
@@ -258,6 +268,7 @@ $$\ce{n H2N-(CH2)6-NH2 + n HOOC-(CH2)4-COOH ->}$$
 $$\ce{-> -(NH-(CH2)6-NH-CO-(CH2)4-CO)_{n}- + 2n H2O}$$
 
 **Anwendung:**
+
 - Nylon (Polyamid)
 - PET (Polyethylenterephthalat)
 - Polycarbonate
@@ -309,6 +320,7 @@ $$\ce{R-COO-R' + NaOH -> R-COONa + R'-OH}$$
 ### Energieprofile
 
 **S_N2:**
+
 ```
 Energie
   ↑
@@ -321,6 +333,7 @@ Ea │     /  \
 ```
 
 **S_N1:**
+
 ```
 Energie
   ↑
@@ -353,6 +366,7 @@ $$\ce{n CH2=CH-CH3 -> -(CH2-CH(CH3))_{n}-}$$
 ### 2. Pharmazeutische Industrie
 
 **Aspirin-Synthese:**
+
 ```
 Salicylsäure + Essigsäureanhydrid → Acetylsalicylsäure + Essigsäure
 ```
@@ -360,11 +374,13 @@ Salicylsäure + Essigsäureanhydrid → Acetylsalicylsäure + Essigsäure
 ### 3. Lebensmittelchemie
 
 **Margarine-Herstellung:**
+
 - Hydrierung ungesättigter Fettsäuren
 
 ### 4. Farbstoffsynthese
 
 **Azofarbstoffe:**
+
 ```
 Diazotierung + Kupplung → Azoverbindung (Farbstoff)
 ```
@@ -372,9 +388,11 @@ Diazotierung + Kupplung → Azoverbindung (Farbstoff)
 ## Experimente
 
 ### Experiment 1: Addition von Brom
+
 **Materialien:** Ethen (oder Cyclohexen), Bromwasser
 
 **Durchführung:**
+
 1. Bromwasser in Gasentwicklungsapparat
 2. Eten zuleiten
 3. Entfärbung beobachten
@@ -382,9 +400,11 @@ Diazotierung + Kupplung → Azoverbindung (Farbstoff)
 **Erklärung:** Elektrophile Addition an Doppelbindung
 
 ### Experiment 2: Veresterung
+
 **Materialien:** Essigsäure, Ethanol, konc. H₂SO₄, Wasserbad
 
 **Durchführung:**
+
 1. Alle Komponenten mischen
 2. Erhitzen (60°C, 10 Min)
 3. Geruch beobachten
@@ -392,9 +412,11 @@ Diazotierung + Kupplung → Azoverbindung (Farbstoff)
 **Erklärung:** Bildung von Essigsäureethylester
 
 ### Experiment 3: Polymerisation (Modell)
+
 **Materialien:** Styrol, Peroxid (Initiator), Wasserbad
 
 **Durchführung:**
+
 1. Styrol mit Peroxid mischen
 2. Erhitzen (80°C)
 3. Verfestigung beobachten
@@ -427,6 +449,7 @@ Diazotierung + Kupplung → Azoverbindung (Farbstoff)
 ## Lernziele
 
 Nach Abschluss dieses Themenbereichs sollten Sie:
+
 - ✅ Substitutionsreaktionen (S_N1, S_N2) unterscheiden können
 - ✅ Additionsreaktionen erklären können
 - ✅ Eliminierungsreaktionen vorhersagen können

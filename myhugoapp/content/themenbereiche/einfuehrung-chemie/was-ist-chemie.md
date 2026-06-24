@@ -1,12 +1,13 @@
 ---
-title: "Was ist Chemie?"
-description: "Chemie ist die Lehre von den Stoffen und deren Umwandlungen. Sie erklärt, warum Stoffe so reagieren, wie sie reagieren."
-date: "2026-06-03"
-tags: ["chemie", "einführung", "stoffe"]
+title: 'Was ist Chemie?'
+description: 'Chemie ist die Lehre von den Stoffen und deren Umwandlungen. Sie erklärt, warum Stoffe so reagieren, wie sie reagieren.'
+date: '2026-06-03'
+tags: ['chemie', 'einführung', 'stoffe']
 interaktiv: false
-schwierigkeit: "grundlagen"
-teilgebiet: ["einfuehrung-chemie"]
-icon: "⚛️"
+schwierigkeit: 'grundlagen'
+teilgebiet: ['einfuehrung-chemie']
+icon: '⚛️'
+aliases: [/article/was-ist-chemie/]
 ---
 
 ## Definition
@@ -17,11 +18,11 @@ Chemie ist die Naturwissenschaft, die sich mit **Stoffen**, deren **Eigenschafte
 
 Alle Stoffe lassen sich in zwei Hauptgruppen einteilen:
 
-| | Reinstoffe | Stoffgemische |
-|---|-----------|--------------|
-| Definition | eine Teilchenart | mehrere Teilchenarten |
-| Beispiele | $H_2O$, $O_2$, $Fe$, $NaCl$ | Luft, Salzlösung, Granit |
-| Trennung | nicht nötig | möglich (Filtration, Destillation) |
+|            | Reinstoffe                  | Stoffgemische                      |
+| ---------- | --------------------------- | ---------------------------------- |
+| Definition | eine Teilchenart            | mehrere Teilchenarten              |
+| Beispiele  | $H_2O$, $O_2$, $Fe$, $NaCl$ | Luft, Salzlösung, Granit           |
+| Trennung   | nicht nötig                 | möglich (Filtration, Destillation) |
 
 **Reinstoffe** unterteilt man weiter in **Elemente** (nur eine Atomart, z. B. $O_2$, $Fe$) und **Verbindungen** (zwei+ Atomarten chemisch gebunden, z. B. $H_2O$, $NaCl$).
 
@@ -36,6 +37,7 @@ $$2H_2 + O_2 \rightarrow 2H_2O$$
 Wasserstoff und Sauerstoff reagieren zu Wasser. Energie wird als Wärme und Licht freigesetzt (exotherme Reaktion).
 
 ### Merkmale einer chemischen Reaktion:
+
 - **Edukte** (Ausgangsstoffe) → **Produkte** (Endstoffe)
 - Energieumsatz: exotherm (gibt Energie ab) oder endotherm (nimmt Energie auf)
 - Massenerhaltung: Die Gesamtmasse bleibt gleich (Gesetz von Lavoisier)

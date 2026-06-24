@@ -1,12 +1,13 @@
 ---
-title: "Komplexverbindungen"
-description: "Struktur, Nomenklatur, Bildungskonstanten und Anwendungen von Koordinationsverbindungen – für fortgeschrittene Lernende der Chemie."
-date: "2026-06-14"
-tags: ["chemie", "anorganische-verbindungen", "komplexchemie", "koordination", "liganden"]
+title: 'Komplexverbindungen'
+description: 'Struktur, Nomenklatur, Bildungskonstanten und Anwendungen von Koordinationsverbindungen – für fortgeschrittene Lernende der Chemie.'
+date: '2026-06-14'
+tags: ['chemie', 'anorganische-verbindungen', 'komplexchemie', 'koordination', 'liganden']
 interaktiv: false
-schwierigkeit: "fortgeschritten"
-teilgebiet: ["anorganische-verbindungen"]
-icon: "💎"
+schwierigkeit: 'fortgeschritten'
+teilgebiet: ['anorganische-verbindungen']
+icon: '💎'
+aliases: [/article/komplexverbindungen/]
 ---
 
 ## Definition und Struktur
@@ -20,20 +21,20 @@ Die **Koordinationszahl** (KZ) gibt die Zahl der direkt gebundenen Ligandenatome
 Die IUPAC-Nomenklatur folgt diesen Regeln:
 
 1. **Kationische Komplexe**: Metallname mit Oxidationszahl in römischen Ziffern
-   Beispiel: $\ce{[Co(NH3)6]^{3+}}$ → *Hexaammincobalt(III)*
+   Beispiel: $\ce{[Co(NH3)6]^{3+}}$ → _Hexaammincobalt(III)_
 2. **Anionische Komplexe**: Metallname mit Endung -at; bei lateinischen Namen
    umgedreht: Ferrat → Eisen, Cuprat → Kupfer
-   Beispiel: $\ce{[Fe(CN)6]^{4-}}$ → *Hexacyanidoferrat(II)*
+   Beispiel: $\ce{[Fe(CN)6]^{4-}}$ → _Hexacyanidoferrat(II)_
 3. **Ligandennamen**: Anionische Liganden enden auf -o (Cl⁻ → Chlorido); neutrale Liganden bleiben meist unverändert (NH₃ → Ammin)
 4. **Reihenfolge**: Liganden in alphabetischer Ordnung vor dem Metall
 
 ## Ligandentypen
 
-| Typ | Donoratom | Beispiele |
-|-----|-----------|-----------|
-| **Einzählige Liganden** | 1 | NH₃, H₂O, Cl⁻, CN⁻ |
-| **Mehrzählige Liganden** | ≥2 | en (Ethylendiamin), EDTA⁴⁻ |
-| **π-Akzeptoren** | C=C | CO, Alken, Aromaten |
+| Typ                      | Donoratom | Beispiele                  |
+| ------------------------ | --------- | -------------------------- |
+| **Einzählige Liganden**  | 1         | NH₃, H₂O, Cl⁻, CN⁻         |
+| **Mehrzählige Liganden** | ≥2        | en (Ethylendiamin), EDTA⁴⁻ |
+| **π-Akzeptoren**         | C=C       | CO, Alken, Aromaten        |
 
 Liganden beeinflussen die **Reaktivität** des Zentralions – starke π-Akzeptoren (z. B. CO) erhöhen die **Elektronendichte** am Metall.
 
@@ -48,18 +49,19 @@ Die **gesamte Bildungskonstante** $\beta_n$ fasst alle Einzelschritte zusammen:
 $$\beta_n = K_1 \cdot K_2 \cdot \ldots \cdot K_n$$
 
 Typische Werte (log $\beta_n$)
+
 - $\ce{[Co(NH3)6]^{3+}}$: 35,2
 - $\ce{[Fe(CN)6]^{4-}}$: 42
-- $\ce{[Cu(en)2]^{2+}}$  (en = Bidentat): 20,0
+- $\ce{[Cu(en)2]^{2+}}$ (en = Bidentat): 20,0
 
 ## Isomerie
 
-| Typ | Beschreibung | Beispiel |
-|-----|--------------|-----------|
+| Typ                  | Beschreibung                           | Beispiel                                                                      |
+| -------------------- | -------------------------------------- | ----------------------------------------------------------------------------- |
 | **Strukturisomerie** | Unterschiedliche Verknüpfung der Atome | Bindungsisomerie bei $\ce{[Co(NH3)5(NO2)]^{2+}}$/ $\ce{[Co(NH3)5(ONO)]^{2+}}$ |
-| **Stereoisomerie** | Unterschiedliche räumliche Anordnung |     |
-|  - *cis/trans* | Anordnung um Koordinationsebene | $\ce{[Pt(NH3)2Cl2]}$ |
-|  - *optisch* | Nicht deckungsgleiche Spiegelbilder | $\ce{[Co(en)3]^{3+}}$ |
+| **Stereoisomerie**   | Unterschiedliche räumliche Anordnung   |                                                                               |
+| - _cis/trans_        | Anordnung um Koordinationsebene        | $\ce{[Pt(NH3)2Cl2]}$                                                          |
+| - _optisch_          | Nicht deckungsgleiche Spiegelbilder    | $\ce{[Co(en)3]^{3+}}$                                                         |
 
 Das **Phänomen der optischen Isomerie** bei oktaedrischen Chelatkomplexen ist die Grundlage für **chiroptische Methoden** wie die **CD-Spektroskopie**.
 

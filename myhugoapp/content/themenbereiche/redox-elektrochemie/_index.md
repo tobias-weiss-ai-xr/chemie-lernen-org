@@ -8,6 +8,7 @@ icon: '⚡'
 weight: 60
 interaktiv: true
 quiz: 'redox-elektrochemie'
+aliases: [/article/_index/]
 ---
 
 ## Redoxreaktionen und Elektrochemie
@@ -460,4 +461,3 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Energetik](/themenbereiche/energetik/) – Energieumsatz bei Reaktionen
 - [Reaktionsgleichungen ausgleichen](/reaktionsgleichungen-ausgleichen/) – Interaktives Tool zum Ausgleichen
 - [Gleichgewicht und Geschwindigkeit](/themenbereiche/gleichgewicht-geschwindigkeit/) – Reaktionskinetik
-

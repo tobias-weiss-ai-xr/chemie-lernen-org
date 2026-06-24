@@ -1,12 +1,13 @@
 ---
-title: "Erdölentstehung und -verarbeitung"
-description: "Erfahre, wie Erdöl entsteht, gefördert und verarbeitet wird und welche Produkte daraus gewonnen werden. Ideal für Schüler und Studierende."
-date: "2026-06-14"
-tags: ["chemie", "erdöl", "organische chemie", "raffination"]
+title: 'Erdölentstehung und -verarbeitung'
+description: 'Erfahre, wie Erdöl entsteht, gefördert und verarbeitet wird und welche Produkte daraus gewonnen werden. Ideal für Schüler und Studierende.'
+date: '2026-06-14'
+tags: ['chemie', 'erdöl', 'organische chemie', 'raffination']
 interaktiv: false
-schwierigkeit: "mittelstufe"
-teilgebiet: ["erdoel-organische-stoffklassen"]
-icon: "🛢️"
+schwierigkeit: 'mittelstufe'
+teilgebiet: ['erdoel-organische-stoffklassen']
+icon: '🛢️'
+aliases: [/article/erdoel-entstehung-verarbeitung/]
 ---
 
 ## Entstehung von Erdöl
@@ -18,6 +19,7 @@ Erdöl ist ein fossiler Brennstoff, der über Millionen von Jahren aus abgestorb
 3. **Katagenese**: Durch weitere Druck- und Temperatureinwirkung (150–200 °C) spaltet sich Kerogen in **Kohlenwasserstoffe**, aus denen Erdöl und Erdgas entstehen.
 
 Die chemische Zusammensetzung von Erdöl besteht hauptsächlich aus **Alkanen** (gesättigte Kohlenwasserstoffe), **Cycloalkanen** und **Aromaten** (z. B. Benzol). Die allgemeine Summenformel für Alkane lautet:
+
 $$
 \ce{C_nH_{2n+2}}
 $$
@@ -34,22 +36,24 @@ Erdöl wird durch Bohrungen aus unterirdischen Lagerstätten gefördert. Es gibt
 
 Die Verarbeitung von Erdöl erfolgt in einer **Raffinerie** durch **fraktionierte Destillation**. Dabei wird das Rohöl in einem Destillationsturm erhitzt und in verschiedene Fraktionen aufgetrennt, die sich durch ihre Siedepunkte unterscheiden:
 
-| Fraktion          | Siedebereich (°C) | Verwendung                     |
-|-------------------|-------------------|--------------------------------|
-| Gase              | < 30              | Heizgas, Chemierohstoff       |
-| Benzin            | 30–180            | Treibstoff für Autos           |
-| Kerosin           | 180–250           | Flugzeugtreibstoff             |
-| Diesel            | 250–350           | Treibstoff für LKW             |
-| Schweröle         | 350–500           | Heizöl, Schiffstreibstoff     |
-| Rückstand         | > 500             | Asphalt, Bitumen               |
+| Fraktion  | Siedebereich (°C) | Verwendung                |
+| --------- | ----------------- | ------------------------- |
+| Gase      | < 30              | Heizgas, Chemierohstoff   |
+| Benzin    | 30–180            | Treibstoff für Autos      |
+| Kerosin   | 180–250           | Flugzeugtreibstoff        |
+| Diesel    | 250–350           | Treibstoff für LKW        |
+| Schweröle | 350–500           | Heizöl, Schiffstreibstoff |
+| Rückstand | > 500             | Asphalt, Bitumen          |
 
 Nach der Destillation werden die Fraktionen weiterverarbeitet, z. B. durch:
+
 - **Cracken**: Lange Kohlenwasserstoffketten werden in kürzere gespalten.
 - **Reformieren**: Umwandlung von geradkettigen in verzweigte oder aromatische Kohlenwasserstoffe zur Verbesserung der Oktanzahl.
 
 ## Wichtige Produkte aus Erdöl
 
 Aus Erdöl werden zahlreiche Produkte hergestellt, darunter:
+
 - **Kraftstoffe** (Benzin, Diesel, Kerosin)
 - **Schmiermittel** (Motoröl, Fette)
 - **Kunststoffe** (Polyethylen, PVC)

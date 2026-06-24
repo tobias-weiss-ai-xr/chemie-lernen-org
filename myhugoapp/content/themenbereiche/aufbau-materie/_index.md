@@ -8,6 +8,7 @@ icon: '⚛️'
 weight: 20
 interaktiv: true
 quiz: 'aufbau-materie'
+aliases: [/article/_index/]
 ---
 
 ## Aufbau der Materie
@@ -63,11 +64,11 @@ Atome bestehen aus drei wichtigsten Teilchen:
 
 ### Struktur des Atoms
 
-| Bestandteil | Ladung | Masse | Ort |
-|------------|--------|-------|-----|
-| Proton | +1 | ~1 u | Kern |
-| Neutron | 0 | ~1 u | Kern |
-| Elektron | −1 | ~0 u | Hülle |
+| Bestandteil | Ladung | Masse | Ort   |
+| ----------- | ------ | ----- | ----- |
+| Proton      | +1     | ~1 u  | Kern  |
+| Neutron     | 0      | ~1 u  | Kern  |
+| Elektron    | −1     | ~0 u  | Hülle |
 
 Das Atom besteht aus einem kompakten Kern mit Protonen und Neutronen, umgeben von einer Elektronenhülle.
 
@@ -144,10 +145,10 @@ Das Periodensystem ordnet alle **118 bekannten Elemente** nach:
 
 ### Struktur
 
-| Achse | Bedeutung | Einteilung |
-|-------|-----------|------------|
+| Achse                | Bedeutung                    | Einteilung |
+| -------------------- | ---------------------------- | ---------- |
 | Waagrecht (Perioden) | Anzahl der Elektronenschalen | 7 Perioden |
-| Senkrecht (Gruppen) | Anzahl der Außenelektronen | 18 Gruppen |
+| Senkrecht (Gruppen)  | Anzahl der Außenelektronen   | 18 Gruppen |
 
 **Legende:**
 
@@ -369,8 +370,6 @@ $$\ce{Zn + 2HCl -> ZnCl2 + H2}$$
 ## Interaktive Tools
 
 ⚛️ **[Periodensystem 3D](/perioden-system-der-elemente/)** - Interaktives 3D-Periodensystem mit detaillierten Informationen zu allen 118 Elementen
-
-
 
 ## Testen Sie Ihr Wissen
 

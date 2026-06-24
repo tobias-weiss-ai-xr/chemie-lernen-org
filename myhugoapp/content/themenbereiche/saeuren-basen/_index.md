@@ -1,14 +1,14 @@
 ---
-title: "Säuren und Basen"
-description: "Das saure und das basische Milieu - pH-Wert und Neutralisation. Erfahren Sie alles über Säuren, Basen, Puffersysteme und Indikatoren mit interaktiven Tools."
+title: 'Säuren und Basen'
+description: 'Das saure und das basische Milieu - pH-Wert und Neutralisation. Erfahren Sie alles über Säuren, Basen, Puffersysteme und Indikatoren mit interaktiven Tools.'
 date: 2025-12-27
-teilgebiet: "saeuren-basen"
-schwierigkeit: "mittelstufe"
-icon: "🔵"
+teilgebiet: 'saeuren-basen'
+schwierigkeit: 'mittelstufe'
+icon: '🔵'
 weight: 50
-quiz: "saeuren-basen"
+quiz: 'saeuren-basen'
+aliases: [/article/_index/]
 ---
-
 
 ## Säuren und Basen
 
@@ -17,6 +17,7 @@ Tauchen Sie ein in die faszinierende Welt der sauren und basischen Lösungen! S�
 ## Lernziele
 
 Nach diesem Themenbereich können Sie:
+
 - Säuren und Basen nach Brønsted definieren
 - pH-Werte berechnen und interpretieren
 - Neutralisationsreaktionen verstehen
@@ -71,26 +72,28 @@ Wobei $[\ce{H3O+}]$ die Konzentration der Oxonium-Ionen in mol/L ist.
 
 Die pH-Skala reicht von **0 bis 14**:
 
-| pH-Bereich | Charakter | Beispiele |
-|------------|-----------|-----------|
-| **0-1** | Stark sauer | Salzsäure (1), Batteriesäure |
-| **2-3** | Sauer | Zitronensaft (2), Magensäure (1-3) |
-| **4-6** | Schwach sauer | Regenwasser (5.6), Cola (2.5) |
-| **7** | Neutral | Reines Wasser, Blut (7.4) |
-| **8-10** | Schwach basisch | Seifenlösung (9-10) |
-| **11-13** | Basisch | Ammoniaklösung (11-12) |
-| **14** | Stark basisch | Natronlauge (14) |
+| pH-Bereich | Charakter       | Beispiele                          |
+| ---------- | --------------- | ---------------------------------- |
+| **0-1**    | Stark sauer     | Salzsäure (1), Batteriesäure       |
+| **2-3**    | Sauer           | Zitronensaft (2), Magensäure (1-3) |
+| **4-6**    | Schwach sauer   | Regenwasser (5.6), Cola (2.5)      |
+| **7**      | Neutral         | Reines Wasser, Blut (7.4)          |
+| **8-10**   | Schwach basisch | Seifenlösung (9-10)                |
+| **11-13**  | Basisch         | Ammoniaklösung (11-12)             |
+| **14**     | Stark basisch   | Natronlauge (14)                   |
 
 **Wichtig:** Die pH-Skala ist logarithmisch! Ein pH-Unterschied von 1 bedeutet einen zehnfachen Unterschied in der H₃O⁺-Konzentration.
 
 ### Berechnungsbeispiele
 
 **Beispiel 1: Starke Säure**
+
 - $\ce{HCl}$-Konzentration: 0.01 mol/L
 - $[\ce{H3O+}]$ = 0.01 mol/L (da $\ce{HCl}$ vollständig dissoziiert)
 - $\text{pH} = -\log(0.01) = -\log(10^{-2}) = \textbf{2}$
 
 **Beispiel 2: Base**
+
 - $\ce{NaOH}$-Konzentration: 0.001 mol/L
 - $[\ce{OH-}]$ = 0.001 mol/L (vollständige Dissoziation)
 - $\text{pOH} = -\log(0.001) = 3$
@@ -150,21 +153,26 @@ Ein **Puffer** ist eine Lösung, die ihren pH-Wert bei Zugabe von Säuren oder B
 ### Der Acetat-Puffer
 
 **Zusammensetzung:**
+
 - Essigsäure (CH₃COOH)
 - Natriumacetat (CH₃COONa)
 
 **Wirkungsweise:**
 
 Bei Zugabe von Säure (H⁺):
+
 ```
 CH₃COO⁻ + H⁺ → CH₃COOH
 ```
+
 Das Acetat-Ion bindet die zugefügten Protonen.
 
 Bei Zugabe von Base (OH⁻):
+
 ```
 CH₃COOH + OH⁻ → CH₃COO⁻ + H₂O
 ```
+
 Die Essigsäure gibt Protonen an die Base ab.
 
 ### Anwendungen von Puffern
@@ -189,12 +197,12 @@ Die Essigsäure gibt Protonen an die Base ab.
 
 ### Wichtige Indikatoren
 
-| Indikator | Farbwechsel (sauer → basisch) | pH-Bereich |
-|-----------|------------------------------|-------------|
-| **Methylorange** | Rot → Gelb-orange | 3.1 - 4.4 |
-| **Bromthymolblau** | Gelb → Blau | 6.0 - 7.6 |
-| **Phenolphthalein** | Farblos → Rot | 8.3 - 10.0 |
-| **Universalindikator** | Rot → Grün → Violett | 0 - 14 |
+| Indikator              | Farbwechsel (sauer → basisch) | pH-Bereich |
+| ---------------------- | ----------------------------- | ---------- |
+| **Methylorange**       | Rot → Gelb-orange             | 3.1 - 4.4  |
+| **Bromthymolblau**     | Gelb → Blau                   | 6.0 - 7.6  |
+| **Phenolphthalein**    | Farblos → Rot                 | 8.3 - 10.0 |
+| **Universalindikator** | Rot → Grün → Violett          | 0 - 14     |
 
 ### Anwendungen
 
@@ -215,10 +223,12 @@ Die Essigsäure gibt Protonen an die Base ab.
 ### Dissoziationsgrad
 
 **Starke Säuren und Basen** dissoziieren in Wasser vollständig:
+
 - Starke Säuren: HCl, HNO₃, H₂SO₄, HClO₄
 - Starke Basen: NaOH, KOH, Ca(OH)₂
 
 **Schwache Säuren und Basen** dissoziieren nur teilweise:
+
 - Schwache Säuren: CH₃COOH, H₂CO₃, H₃PO₄
 - Schwache Basen: NH₃, CH₃NH₂
 
@@ -240,17 +250,20 @@ pKa = -log₁₀(Ka)
 ### Experiment 1: Herstellung eines Indikators
 
 **Material:**
+
 - Rotkohl
 - Wasser
 - Herd/Topf
 - Sieb
 
 **Durchführung:**
+
 1. Rotkohl fein hacken
 2. In kochendem Wasser 10 Minuten köcheln
 3. Abseihen und abkühlen lassen
 
 **Ergebnis:**
+
 - Der Rotkohl-Saft ist ein natürlicher Indikator
 - Farbe ändert sich mit pH-Wert
 - Rot (sauer) → Violett (neutral) → Grün/Gelb (basisch)
@@ -258,18 +271,21 @@ pKa = -log₁₀(Ka)
 ### Experiment 2: Neutralisation
 
 **Material:**
+
 - Salzsäure (verdünnt)
 - Natronlauge (verdünnt)
 - Phenolphthalein
 - Becherglas
 
 **Durchführung:**
+
 1. Salzsäure in Becherglas geben
 2. Wenige Tropfen Phenolphthalein hinzufügen (farblos)
 3. Natronlauge langsam hinzugeben und rühren
 4. Bei Neutralität: Farbumschlag nach Rot
 
 **Ergebnis:**
+
 - Neutralisationsreaktion
 - Bildung von Kochsalz und Wasser
 - Phenolphthalein zeigt Neutralpunkt an

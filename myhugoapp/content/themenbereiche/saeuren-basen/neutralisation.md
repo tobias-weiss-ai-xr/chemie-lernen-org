@@ -1,12 +1,13 @@
 ---
-title: "Neutralisation"
-description: "Säure-Base-Reaktionen, Neutralisationsenthalpie, pH-Wert nach Neutralisation und praktische Anwendungen der Neutralisation in Alltag und Labor."
-date: "2026-06-18"
-tags: ["chemie", "neutralisation", "saeuren", "basen", "pH"]
+title: 'Neutralisation'
+description: 'Säure-Base-Reaktionen, Neutralisationsenthalpie, pH-Wert nach Neutralisation und praktische Anwendungen der Neutralisation in Alltag und Labor.'
+date: '2026-06-18'
+tags: ['chemie', 'neutralisation', 'saeuren', 'basen', 'pH']
 interaktiv: false
-schwierigkeit: "grundlagen"
-teilgebiet: ["saeuren-basen"]
-icon: "⚗️"
+schwierigkeit: 'grundlagen'
+teilgebiet: ['saeuren-basen']
+icon: '⚗️'
+aliases: [/article/neutralisation/]
 ---
 
 Bei einer **Neutralisation** reagiert eine Säure mit einer Base zu Wasser und einem Salz. Die allgemeine Gleichung lautet: $\text{Säure} + \text{Base} \rightarrow \text{Salz} + \text{H}_2\text{O}$. Beispiel: $\text{HCl} + \text{NaOH} \rightarrow \text{NaCl} + \text{H}_2\text{O}$.

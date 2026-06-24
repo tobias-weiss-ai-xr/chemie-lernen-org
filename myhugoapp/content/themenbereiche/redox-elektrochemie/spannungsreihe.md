@@ -1,17 +1,19 @@
 ---
-title: "Spannungsreihe der Elemente"
-description: "Die Spannungsreihe ordnet Metalle nach ihrer Fähigkeit, Elektronen abzugeben. Edle Metalle geben schwer, unedle leicht Elektronen ab."
-date: "2026-06-08"
-tags: ["chemie", "spannungsreihe", "redox", "metalle"]
+title: 'Spannungsreihe der Elemente'
+description: 'Die Spannungsreihe ordnet Metalle nach ihrer Fähigkeit, Elektronen abzugeben. Edle Metalle geben schwer, unedle leicht Elektronen ab.'
+date: '2026-06-08'
+tags: ['chemie', 'spannungsreihe', 'redox', 'metalle']
 interaktiv: false
-schwierigkeit: "mittelstufe"
-teilgebiet: ["redox-elektrochemie"]
-icon: "⚡"
+schwierigkeit: 'mittelstufe'
+teilgebiet: ['redox-elektrochemie']
+icon: '⚡'
+aliases: [/article/spannungsreihe/]
 ---
 
 Die **elektrochemische Spannungsreihe** ordnet Elemente nach ihrem **Normalpotential** $E^0$ (gemessen gegen die Standardwasserstoffelektrode). Je negativer $E^0$, desto unedler (reduktionsfreudiger) ist das Metall.
 
 Auszug der Spannungsreihe (Normalpotentiale bei 25°C):
+
 - **Lithium** ($Li^+ + e^- \rightarrow Li$) — $E^0 = -3,04 V$ (unedel)
 - **Zink** ($Zn^{2+} + 2e^- \rightarrow Zn$) — $E^0 = -0,76 V$
 - **Eisen** ($Fe^{2+} + 2e^- \rightarrow Fe$) — $E^0 = -0,44 V$
