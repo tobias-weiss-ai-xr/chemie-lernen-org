@@ -1,0 +1,4534 @@
+{
+  "ionenbindung. elektronenpaarbindung an": [
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["elektronen", "ionen"],
+      "score": 2,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Chemische Bindungen",
+      "url": "/themenbereiche/aufbau-materie/chemische-bindungen/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Oxidation und Reduktion",
+      "url": "/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Spannungsreihe der Elemente",
+      "url": "/themenbereiche/redox-elektrochemie/spannungsreihe/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "reaktionen. reaktionen (z. b. großtech-": [
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Aktivierungsenergie und Katalysatoren",
+      "url": "/themenbereiche/energetik/aktivierungsenergie-und-katalysatoren/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["reaktion"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Faktoren der Reaktionsgeschwindigkeit",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/faktoren-reaktionsgeschwindigkeit/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Redoxpotential Rechner",
+      "url": "/redox-potenzial-rechner/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "variationen einer art. durch rekombination": [
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "knallgasprobe und nährstoffnachweise": [
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["nachweis"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "salze und ionen": [
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["NW"]
+    }
+  ],
+  "chemische reaktionen durch elektronenübertragung": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["reaktionen", "chemische"],
+      "score": 2,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["chemische", "reaktionen"],
+      "score": 2,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["chemische", "reaktion"],
+      "score": 2,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["chemische", "reaktionen"],
+      "score": 2,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["elektronen", "ionen"],
+      "score": 2,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Aktivierungsenergie und Katalysatoren",
+      "url": "/themenbereiche/energetik/aktivierungsenergie-und-katalysatoren/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Chemische Bindungen",
+      "url": "/themenbereiche/aufbau-materie/chemische-bindungen/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Oxidation und Reduktion",
+      "url": "/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Spannungsreihe der Elemente",
+      "url": "/themenbereiche/redox-elektrochemie/spannungsreihe/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Atome und Moleküle",
+      "url": "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Faktoren der Reaktionsgeschwindigkeit",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/faktoren-reaktionsgeschwindigkeit/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionsgleichungen Ausgleichen",
+      "url": "/reaktionsgleichungen-ausgleichen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Redoxpotential Rechner",
+      "url": "/redox-potenzial-rechner/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["NW"]
+    }
+  ],
+  "elektrische energie aus chemischen reaktionen": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie", "reaktionen", "chemische"],
+      "score": 3,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["chemische", "energie", "reaktion"],
+      "score": 3,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["chemische", "reaktionen"],
+      "score": 2,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["chemische", "energie"],
+      "score": 2,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["chemische", "reaktionen"],
+      "score": 2,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Aktivierungsenergie und Katalysatoren",
+      "url": "/themenbereiche/energetik/aktivierungsenergie-und-katalysatoren/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Atome und Moleküle",
+      "url": "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Faktoren der Reaktionsgeschwindigkeit",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/faktoren-reaktionsgeschwindigkeit/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionsgleichungen Ausgleichen",
+      "url": "/reaktionsgleichungen-ausgleichen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Redoxpotential Rechner",
+      "url": "/redox-potenzial-rechner/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Praxis-Tipps fürs Labor",
+      "url": "/themenbereiche/tipps-tricks/praxis-labor/",
+      "matchedKeywords": ["chemischen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Molare Masse Rechner",
+      "url": "/molare-masse-rechner/",
+      "matchedKeywords": ["chemischen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Elektronenkonfiguration",
+      "url": "/themenbereiche/aufbau-materie/elektronenkonfiguration/",
+      "matchedKeywords": ["chemischen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["NW"]
+    }
+  ],
+  "körperfunktionen, leistungsanpassung": [
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "nachweisgrenzen": [
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["nachweis"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "informationen": [
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "die intentionen des lehrplans chemie": [
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "ionenbindung": [
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "ionenbildung": [
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "verwendungssituationen,…": [
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "redoxreaktionen der nebengruppenelemente": [
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Aktivierungsenergie und Katalysatoren",
+      "url": "/themenbereiche/energetik/aktivierungsenergie-und-katalysatoren/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["reaktion"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Faktoren der Reaktionsgeschwindigkeit",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/faktoren-reaktionsgeschwindigkeit/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Redoxpotential Rechner",
+      "url": "/redox-potenzial-rechner/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Redox-Titrationen",
+      "url": "/redox-titrationen/",
+      "matchedKeywords": ["redox"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Periodensystem der Elemente",
+      "url": "/perioden-system-der-elemente/",
+      "matchedKeywords": ["elemente"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "PSE in VR - Virtuelles Periodensystem",
+      "url": "/pse-vr/",
+      "matchedKeywords": ["elemente"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "elektrochemische reaktionen": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["reaktionen", "chemische"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["chemische", "reaktionen"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["chemische", "reaktion"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["chemische", "reaktionen"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Aktivierungsenergie und Katalysatoren",
+      "url": "/themenbereiche/energetik/aktivierungsenergie-und-katalysatoren/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Atome und Moleküle",
+      "url": "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Faktoren der Reaktionsgeschwindigkeit",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/faktoren-reaktionsgeschwindigkeit/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionsgleichungen Ausgleichen",
+      "url": "/reaktionsgleichungen-ausgleichen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Redoxpotential Rechner",
+      "url": "/redox-potenzial-rechner/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "energie bei chemischen reaktionen": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie", "reaktionen", "chemische"],
+      "score": 3,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["chemische", "energie", "reaktion"],
+      "score": 3,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["chemische", "reaktionen"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["chemische", "energie"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["chemische", "reaktionen"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Aktivierungsenergie und Katalysatoren",
+      "url": "/themenbereiche/energetik/aktivierungsenergie-und-katalysatoren/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Atome und Moleküle",
+      "url": "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Faktoren der Reaktionsgeschwindigkeit",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/faktoren-reaktionsgeschwindigkeit/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionsgleichungen Ausgleichen",
+      "url": "/reaktionsgleichungen-ausgleichen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Redoxpotential Rechner",
+      "url": "/redox-potenzial-rechner/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Praxis-Tipps fürs Labor",
+      "url": "/themenbereiche/tipps-tricks/praxis-labor/",
+      "matchedKeywords": ["chemischen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Molare Masse Rechner",
+      "url": "/molare-masse-rechner/",
+      "matchedKeywords": ["chemischen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Elektronenkonfiguration",
+      "url": "/themenbereiche/aufbau-materie/elektronenkonfiguration/",
+      "matchedKeywords": ["chemischen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "chemische reaktionen": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["reaktionen", "chemische"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["chemische", "reaktionen"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["chemische", "reaktion"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["chemische", "reaktionen"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Aktivierungsenergie und Katalysatoren",
+      "url": "/themenbereiche/energetik/aktivierungsenergie-und-katalysatoren/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Atome und Moleküle",
+      "url": "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Faktoren der Reaktionsgeschwindigkeit",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/faktoren-reaktionsgeschwindigkeit/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionsgleichungen Ausgleichen",
+      "url": "/reaktionsgleichungen-ausgleichen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Redoxpotential Rechner",
+      "url": "/redox-potenzial-rechner/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "experimentelles untersuchen chemischer reaktionen": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["reaktionen", "chemische"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["chemische", "reaktionen"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["chemische", "reaktion"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["chemische", "reaktionen"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Faktoren der Reaktionsgeschwindigkeit",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/faktoren-reaktionsgeschwindigkeit/",
+      "matchedKeywords": ["chemischer", "reaktionen"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Nachweisreaktionen",
+      "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Aktivierungsenergie und Katalysatoren",
+      "url": "/themenbereiche/energetik/aktivierungsenergie-und-katalysatoren/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Torricelli-Versuch - Atmosphärischer Druck",
+      "url": "/torricelli-versuch/",
+      "matchedKeywords": ["experiment"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Atome und Moleküle",
+      "url": "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Formeln und Gleichungen meistern",
+      "url": "/themenbereiche/tipps-tricks/formeln-gleichungen-meistern/",
+      "matchedKeywords": ["chemischer"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionsgleichungen Ausgleichen",
+      "url": "/reaktionsgleichungen-ausgleichen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Redoxpotential Rechner",
+      "url": "/redox-potenzial-rechner/",
+      "matchedKeywords": ["reaktionen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["ionen"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "wie chemiker denken und arbeiten": [
+    {
+      "type": "article",
+      "title": "Aktivierungsenergie und Katalysatoren",
+      "url": "/themenbereiche/energetik/aktivierungsenergie-und-katalysatoren/",
+      "matchedKeywords": ["wie"],
+      "score": 1,
+      "states": ["BY"]
+    },
+    {
+      "type": "article",
+      "title": "Erdölentstehung und -verarbeitung",
+      "url": "/themenbereiche/erdoel-organische-stoffklassen/erdoel-entstehung-verarbeitung/",
+      "matchedKeywords": ["wie"],
+      "score": 1,
+      "states": ["BY"]
+    },
+    {
+      "type": "article",
+      "title": "Elektronenkonfiguration",
+      "url": "/themenbereiche/aufbau-materie/elektronenkonfiguration/",
+      "matchedKeywords": ["wie"],
+      "score": 1,
+      "states": ["BY"]
+    },
+    {
+      "type": "article",
+      "title": "Was ist Chemie?",
+      "url": "/themenbereiche/einfuehrung-chemie/was-ist-chemie/",
+      "matchedKeywords": ["wie"],
+      "score": 1,
+      "states": ["BY"]
+    }
+  ],
+  "wiesbaden": [
+    {
+      "type": "article",
+      "title": "Aktivierungsenergie und Katalysatoren",
+      "url": "/themenbereiche/energetik/aktivierungsenergie-und-katalysatoren/",
+      "matchedKeywords": ["wie"],
+      "score": 1,
+      "states": ["HE"]
+    },
+    {
+      "type": "article",
+      "title": "Erdölentstehung und -verarbeitung",
+      "url": "/themenbereiche/erdoel-organische-stoffklassen/erdoel-entstehung-verarbeitung/",
+      "matchedKeywords": ["wie"],
+      "score": 1,
+      "states": ["HE"]
+    },
+    {
+      "type": "article",
+      "title": "Elektronenkonfiguration",
+      "url": "/themenbereiche/aufbau-materie/elektronenkonfiguration/",
+      "matchedKeywords": ["wie"],
+      "score": 1,
+      "states": ["HE"]
+    },
+    {
+      "type": "article",
+      "title": "Was ist Chemie?",
+      "url": "/themenbereiche/einfuehrung-chemie/was-ist-chemie/",
+      "matchedKeywords": ["wie"],
+      "score": 1,
+      "states": ["HE"]
+    }
+  ],
+  "wie wird pudding am schnellsten kalt": [
+    {
+      "type": "article",
+      "title": "Aktivierungsenergie und Katalysatoren",
+      "url": "/themenbereiche/energetik/aktivierungsenergie-und-katalysatoren/",
+      "matchedKeywords": ["wie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Erdölentstehung und -verarbeitung",
+      "url": "/themenbereiche/erdoel-organische-stoffklassen/erdoel-entstehung-verarbeitung/",
+      "matchedKeywords": ["wie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektronenkonfiguration",
+      "url": "/themenbereiche/aufbau-materie/elektronenkonfiguration/",
+      "matchedKeywords": ["wie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Was ist Chemie?",
+      "url": "/themenbereiche/einfuehrung-chemie/was-ist-chemie/",
+      "matchedKeywords": ["wie"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "vorhersagen über größen sowie die herlei-": [
+    {
+      "type": "article",
+      "title": "Aktivierungsenergie und Katalysatoren",
+      "url": "/themenbereiche/energetik/aktivierungsenergie-und-katalysatoren/",
+      "matchedKeywords": ["wie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Erdölentstehung und -verarbeitung",
+      "url": "/themenbereiche/erdoel-organische-stoffklassen/erdoel-entstehung-verarbeitung/",
+      "matchedKeywords": ["wie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektronenkonfiguration",
+      "url": "/themenbereiche/aufbau-materie/elektronenkonfiguration/",
+      "matchedKeywords": ["wie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Was ist Chemie?",
+      "url": "/themenbereiche/einfuehrung-chemie/was-ist-chemie/",
+      "matchedKeywords": ["wie"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "chemische reaktion": [
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["chemische", "reaktion"],
+      "score": 2,
+      "states": ["BY", "NW"]
+    },
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["BY", "NW"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["BY", "NW"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["BY", "NW"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["BY", "NW"]
+    },
+    {
+      "type": "article",
+      "title": "Atome und Moleküle",
+      "url": "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["BY", "NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionsgleichungen Ausgleichen",
+      "url": "/reaktionsgleichungen-ausgleichen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["BY", "NW"]
+    }
+  ],
+  "basiskonzept energie": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI", "RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI", "RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI", "RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI", "RP"]
+    }
+  ],
+  "basiskonzept energie befasst sich mit": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "basiskonzept chemische reaktion": [
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["chemische", "reaktion"],
+      "score": 2,
+      "states": ["NI", "RP"]
+    },
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NI", "RP"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NI", "RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NI", "RP"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NI", "RP"]
+    },
+    {
+      "type": "article",
+      "title": "Atome und Moleküle",
+      "url": "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NI", "RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionsgleichungen Ausgleichen",
+      "url": "/reaktionsgleichungen-ausgleichen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NI", "RP"]
+    }
+  ],
+  "energie-konzept": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "aktivierungsenergie. prozesse in der industrie": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "hydratationsenergie die energie-": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "energieumsatz, atomkreislauf": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Substitution und Addition",
+      "url": "/themenbereiche/reaktionstypen-organisch/substitution-und-addition/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Atomenergieniveaus und Linienspektren",
+      "url": "/atomenergieniveaus/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionsenthalpie und Energieprofile",
+      "url": "/themenbereiche/energetik/reaktionsenthalpie-und-energieprofile/",
+      "matchedKeywords": ["satz"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "nahrungs- these als energiebereitstellungsprozess": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "energie e": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "basiskonzept „chemische reaktion“": [
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["chemische", "reaktion"],
+      "score": 2,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Atome und Moleküle",
+      "url": "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionsgleichungen Ausgleichen",
+      "url": "/reaktionsgleichungen-ausgleichen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "stoffe als energieträger": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["NW"]
+    }
+  ],
+  "formelsprache tf 8 thermische energieströme": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "chemische": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Atome und Moleküle",
+      "url": "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionsgleichungen Ausgleichen",
+      "url": "/reaktionsgleichungen-ausgleichen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "energieumsatz  umgewandelt": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionsenthalpie und Energieprofile",
+      "url": "/themenbereiche/energetik/reaktionsenthalpie-und-energieprofile/",
+      "matchedKeywords": ["satz"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "energieform": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "energiewandlung": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "verbindung, pse tf 4 fotosynthese, energieträger": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Periodische Trends",
+      "url": "/periodische-trends/",
+      "matchedKeywords": ["pse"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "energiebilanz": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "energie verbrennung an die umgebung": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "abb.: aufbau eines individuellen energiekonzeptes": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Arbeitsblatt-Generator",
+      "url": "/arbeitsblatt-generator/",
+      "matchedKeywords": ["individuelle"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "energie": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "damit energie strömt, ist ein": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "der begriff „energieformen“ wird oft synonym": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "zur kontinuierlichen energieübertragung": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Hess-Gesetz Rechner",
+      "url": "/hess-gesetz/",
+      "matchedKeywords": ["energie"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "chemische gleichgewichte": [
+    {
+      "type": "article",
+      "title": "Chemisches Gleichgewicht",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/chemisches-gleichgewicht/",
+      "matchedKeywords": ["gleichgewicht", "gleich"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Chemisches Gleichgewicht Rechner",
+      "url": "/chemisches-gleichgewicht/",
+      "matchedKeywords": ["gleichgewicht", "gleichgewichte"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Atome und Moleküle",
+      "url": "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionsgleichungen Ausgleichen",
+      "url": "/reaktionsgleichungen-ausgleichen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Prinzip von Le Chatelier",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/prinzip-von-le-chatelier/",
+      "matchedKeywords": ["gleichgewicht"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Säuren-Basen-Gleichgewichte",
+      "url": "/saeuren-basen-gleichgewicht/",
+      "matchedKeywords": ["gleichgewicht"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "chemische verbindungen im alltag": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Neutralisation",
+      "url": "/themenbereiche/saeuren-basen/neutralisation/",
+      "matchedKeywords": ["alltag"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Atome und Moleküle",
+      "url": "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionsgleichungen Ausgleichen",
+      "url": "/reaktionsgleichungen-ausgleichen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Atmosphärendruck im Alltag",
+      "url": "/atmosphaerendruck-alltag/",
+      "matchedKeywords": ["alltag"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Farbstoffe und Pigmente",
+      "url": "/themenbereiche/produkte-organisch/farbstoffe-pigmente/",
+      "matchedKeywords": ["alltag"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Kohlenwasserstoffe",
+      "url": "/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/",
+      "matchedKeywords": ["verbindungen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Aufgabensammlung",
+      "url": "/aufgabensammlung/",
+      "matchedKeywords": ["bindungen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Molare Masse Visualizer",
+      "url": "/molar-mass-visualizer/",
+      "matchedKeywords": ["verbindungen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Verbrennungsrechner",
+      "url": "/verbrennungsrechner/",
+      "matchedKeywords": ["verbindungen"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "chemische verbindungen als werkstoffe": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Atome und Moleküle",
+      "url": "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionsgleichungen Ausgleichen",
+      "url": "/reaktionsgleichungen-ausgleichen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Kohlenwasserstoffe",
+      "url": "/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/",
+      "matchedKeywords": ["verbindungen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Aufgabensammlung",
+      "url": "/aufgabensammlung/",
+      "matchedKeywords": ["bindungen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Molare Masse Visualizer",
+      "url": "/molar-mass-visualizer/",
+      "matchedKeywords": ["verbindungen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Verbrennungsrechner",
+      "url": "/verbrennungsrechner/",
+      "matchedKeywords": ["verbindungen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "chemische verbindung im alltag": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Neutralisation",
+      "url": "/themenbereiche/saeuren-basen/neutralisation/",
+      "matchedKeywords": ["alltag"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Atome und Moleküle",
+      "url": "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionsgleichungen Ausgleichen",
+      "url": "/reaktionsgleichungen-ausgleichen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Atmosphärendruck im Alltag",
+      "url": "/atmosphaerendruck-alltag/",
+      "matchedKeywords": ["alltag"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Farbstoffe und Pigmente",
+      "url": "/themenbereiche/produkte-organisch/farbstoffe-pigmente/",
+      "matchedKeywords": ["alltag"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "chemische verbindungen in lebensmitteln": [
+    {
+      "type": "article",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "/themenbereiche/energetik/energie-bei-reaktionen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Reaktionskinetik",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Elektrochemische Zellen",
+      "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Oxide und Hydroxide",
+      "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Atome und Moleküle",
+      "url": "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionsgleichungen Ausgleichen",
+      "url": "/reaktionsgleichungen-ausgleichen/",
+      "matchedKeywords": ["chemische"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Kohlenwasserstoffe",
+      "url": "/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/",
+      "matchedKeywords": ["verbindungen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Aufgabensammlung",
+      "url": "/aufgabensammlung/",
+      "matchedKeywords": ["bindungen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Molare Masse Visualizer",
+      "url": "/molar-mass-visualizer/",
+      "matchedKeywords": ["verbindungen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Verbrennungsrechner",
+      "url": "/verbrennungsrechner/",
+      "matchedKeywords": ["verbindungen"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "󰆃 säuren, basen und analytische verfahren": [
+    {
+      "type": "article",
+      "title": "Erdölentstehung und -verarbeitung",
+      "url": "/themenbereiche/erdoel-organische-stoffklassen/erdoel-entstehung-verarbeitung/",
+      "matchedKeywords": ["erfahre"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Säure-Base-Titration",
+      "url": "/themenbereiche/saeuren-basen/saeure-base-titration/",
+      "matchedKeywords": ["verfahren"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Farbstoffe und Pigmente",
+      "url": "/themenbereiche/produkte-organisch/farbstoffe-pigmente/",
+      "matchedKeywords": ["erfahre"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Pufferlösungen",
+      "url": "/themenbereiche/saeuren-basen/pufferloesungen/",
+      "matchedKeywords": ["base"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Titrationssimulator",
+      "url": "/titrations-simulator/",
+      "matchedKeywords": ["base"],
+      "score": 1,
+      "states": ["NW"]
+    }
+  ],
+  "trennverfahren": [
+    {
+      "type": "article",
+      "title": "Erdölentstehung und -verarbeitung",
+      "url": "/themenbereiche/erdoel-organische-stoffklassen/erdoel-entstehung-verarbeitung/",
+      "matchedKeywords": ["erfahre"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Säure-Base-Titration",
+      "url": "/themenbereiche/saeuren-basen/saeure-base-titration/",
+      "matchedKeywords": ["verfahren"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Farbstoffe und Pigmente",
+      "url": "/themenbereiche/produkte-organisch/farbstoffe-pigmente/",
+      "matchedKeywords": ["erfahre"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "verfahren tf 11 maschinen optimieren mit sensoren": [
+    {
+      "type": "article",
+      "title": "Erdölentstehung und -verarbeitung",
+      "url": "/themenbereiche/erdoel-organische-stoffklassen/erdoel-entstehung-verarbeitung/",
+      "matchedKeywords": ["erfahre"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Säure-Base-Titration",
+      "url": "/themenbereiche/saeuren-basen/saeure-base-titration/",
+      "matchedKeywords": ["verfahren"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Farbstoffe und Pigmente",
+      "url": "/themenbereiche/produkte-organisch/farbstoffe-pigmente/",
+      "matchedKeywords": ["erfahre"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "verfahren umgehen": [
+    {
+      "type": "article",
+      "title": "Erdölentstehung und -verarbeitung",
+      "url": "/themenbereiche/erdoel-organische-stoffklassen/erdoel-entstehung-verarbeitung/",
+      "matchedKeywords": ["erfahre"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Säure-Base-Titration",
+      "url": "/themenbereiche/saeuren-basen/saeure-base-titration/",
+      "matchedKeywords": ["verfahren"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Farbstoffe und Pigmente",
+      "url": "/themenbereiche/produkte-organisch/farbstoffe-pigmente/",
+      "matchedKeywords": ["erfahre"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "reaktion verschwinden": [
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["reaktion"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "reaktion": [
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["reaktion"],
+      "score": 1,
+      "states": ["NW", "RP"]
+    }
+  ],
+  "redoxreaktion": [
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["reaktion"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Redox-Titrationen",
+      "url": "/redox-titrationen/",
+      "matchedKeywords": ["redox"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "reaktion von metallen mit nichtmetallen": [
+    {
+      "type": "calculator",
+      "title": "Bindungspotential Rechner",
+      "url": "/bindungspotential/",
+      "matchedKeywords": ["reaktion"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "fragestellungen aus dem alltag s": [
+    {
+      "type": "article",
+      "title": "Neutralisation",
+      "url": "/themenbereiche/saeuren-basen/neutralisation/",
+      "matchedKeywords": ["alltag"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Atmosphärendruck im Alltag",
+      "url": "/atmosphaerendruck-alltag/",
+      "matchedKeywords": ["alltag"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Farbstoffe und Pigmente",
+      "url": "/themenbereiche/produkte-organisch/farbstoffe-pigmente/",
+      "matchedKeywords": ["alltag"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "abwasser aus industrie und labor": [
+    {
+      "type": "article",
+      "title": "Neutralisation",
+      "url": "/themenbereiche/saeuren-basen/neutralisation/",
+      "matchedKeywords": ["labor"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Sicherheit im Labor",
+      "url": "/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Was ist Chemie?",
+      "url": "/themenbereiche/einfuehrung-chemie/was-ist-chemie/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "vergiftungen im alltag": [
+    {
+      "type": "article",
+      "title": "Neutralisation",
+      "url": "/themenbereiche/saeuren-basen/neutralisation/",
+      "matchedKeywords": ["alltag"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Atmosphärendruck im Alltag",
+      "url": "/atmosphaerendruck-alltag/",
+      "matchedKeywords": ["alltag"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Farbstoffe und Pigmente",
+      "url": "/themenbereiche/produkte-organisch/farbstoffe-pigmente/",
+      "matchedKeywords": ["alltag"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "alltag schung": [
+    {
+      "type": "article",
+      "title": "Neutralisation",
+      "url": "/themenbereiche/saeuren-basen/neutralisation/",
+      "matchedKeywords": ["alltag"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Atmosphärendruck im Alltag",
+      "url": "/atmosphaerendruck-alltag/",
+      "matchedKeywords": ["alltag"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Farbstoffe und Pigmente",
+      "url": "/themenbereiche/produkte-organisch/farbstoffe-pigmente/",
+      "matchedKeywords": ["alltag"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "elektronenpaarbin-": [
+    {
+      "type": "article",
+      "title": "Chemische Bindungen",
+      "url": "/themenbereiche/aufbau-materie/chemische-bindungen/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Oxidation und Reduktion",
+      "url": "/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Spannungsreihe der Elemente",
+      "url": "/themenbereiche/redox-elektrochemie/spannungsreihe/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "elektronenübertragung": [
+    {
+      "type": "article",
+      "title": "Chemische Bindungen",
+      "url": "/themenbereiche/aufbau-materie/chemische-bindungen/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Oxidation und Reduktion",
+      "url": "/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Spannungsreihe der Elemente",
+      "url": "/themenbereiche/redox-elektrochemie/spannungsreihe/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "elektronenpaarbindungen": [
+    {
+      "type": "article",
+      "title": "Chemische Bindungen",
+      "url": "/themenbereiche/aufbau-materie/chemische-bindungen/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Oxidation und Reduktion",
+      "url": "/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Spannungsreihe der Elemente",
+      "url": "/themenbereiche/redox-elektrochemie/spannungsreihe/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Aufgabensammlung",
+      "url": "/aufgabensammlung/",
+      "matchedKeywords": ["bindungen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "elektronenübergänge": [
+    {
+      "type": "article",
+      "title": "Chemische Bindungen",
+      "url": "/themenbereiche/aufbau-materie/chemische-bindungen/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Oxidation und Reduktion",
+      "url": "/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Spannungsreihe der Elemente",
+      "url": "/themenbereiche/redox-elektrochemie/spannungsreihe/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Elektrochemie auf Teilchenebene",
+      "url": "/elektrochemie-teilchenebene/",
+      "matchedKeywords": ["elektronen"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "chemie als bedeutsame wissenschaft erkennen": [
+    {
+      "type": "article",
+      "title": "Sicherheit im Labor",
+      "url": "/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/",
+      "matchedKeywords": ["wissen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Übungsgenerator",
+      "url": "/uebungsgenerator/",
+      "matchedKeywords": ["wissen"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "bewertungskriterien aus fachwissen entwickeln": [
+    {
+      "type": "article",
+      "title": "Sicherheit im Labor",
+      "url": "/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/",
+      "matchedKeywords": ["wissen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Übungsgenerator",
+      "url": "/uebungsgenerator/",
+      "matchedKeywords": ["wissen"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "bausteinen anwenden wissenschaft erkennen": [
+    {
+      "type": "article",
+      "title": "Sicherheit im Labor",
+      "url": "/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/",
+      "matchedKeywords": ["wissen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Übungsgenerator",
+      "url": "/uebungsgenerator/",
+      "matchedKeywords": ["wissen"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "kohlenstoffdioxid und wasser": [
+    {
+      "type": "article",
+      "title": "Sicherheit im Labor",
+      "url": "/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Was ist Chemie?",
+      "url": "/themenbereiche/einfuehrung-chemie/was-ist-chemie/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "9 glimmspanprobe, kalkwasserprobe": [
+    {
+      "type": "article",
+      "title": "Sicherheit im Labor",
+      "url": "/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "article",
+      "title": "Was ist Chemie?",
+      "url": "/themenbereiche/einfuehrung-chemie/was-ist-chemie/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "luft und wasser": [
+    {
+      "type": "article",
+      "title": "Sicherheit im Labor",
+      "url": "/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Was ist Chemie?",
+      "url": "/themenbereiche/einfuehrung-chemie/was-ist-chemie/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["NW"]
+    }
+  ],
+  "was ist stoff? 1 vielfalt der stoffe": [
+    {
+      "type": "article",
+      "title": "Sicherheit im Labor",
+      "url": "/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Was ist Chemie?",
+      "url": "/themenbereiche/einfuehrung-chemie/was-ist-chemie/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "maßanalyse) zur wasseruntersuchung": [
+    {
+      "type": "article",
+      "title": "Sicherheit im Labor",
+      "url": "/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Quantitative Analyse",
+      "url": "/themenbereiche/analytische-methoden/quantitative-analyse/",
+      "matchedKeywords": ["analyse"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Was ist Chemie?",
+      "url": "/themenbereiche/einfuehrung-chemie/was-ist-chemie/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "mineralwasserbetrieb, wasserwerk": [
+    {
+      "type": "article",
+      "title": "Sicherheit im Labor",
+      "url": "/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Was ist Chemie?",
+      "url": "/themenbereiche/einfuehrung-chemie/was-ist-chemie/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "von der wassermühle zu düsentrieb-": [
+    {
+      "type": "article",
+      "title": "Sicherheit im Labor",
+      "url": "/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "article",
+      "title": "Was ist Chemie?",
+      "url": "/themenbereiche/einfuehrung-chemie/was-ist-chemie/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "strategiewissen)": [
+    {
+      "type": "article",
+      "title": "Sicherheit im Labor",
+      "url": "/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/",
+      "matchedKeywords": ["wissen"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Übungsgenerator",
+      "url": "/uebungsgenerator/",
+      "matchedKeywords": ["wissen"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "wasser": [
+    {
+      "type": "article",
+      "title": "Sicherheit im Labor",
+      "url": "/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Was ist Chemie?",
+      "url": "/themenbereiche/einfuehrung-chemie/was-ist-chemie/",
+      "matchedKeywords": ["was"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "daniell-experiment batterie oder akku": [
+    {
+      "type": "calculator",
+      "title": "Torricelli-Versuch - Atmosphärischer Druck",
+      "url": "/torricelli-versuch/",
+      "matchedKeywords": ["experiment"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "sehhilfen für alle fälle - experimente": [
+    {
+      "type": "calculator",
+      "title": "Torricelli-Versuch - Atmosphärischer Druck",
+      "url": "/torricelli-versuch/",
+      "matchedKeywords": ["experiment"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "experimentelles unterscheiden von stoffen": [
+    {
+      "type": "calculator",
+      "title": "Torricelli-Versuch - Atmosphärischer Druck",
+      "url": "/torricelli-versuch/",
+      "matchedKeywords": ["experiment"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "temperatur- körpertemperatur und schnelligkeit": [
+    {
+      "type": "calculator",
+      "title": "Einheitenumrechner",
+      "url": "/einheitenumrechner/",
+      "matchedKeywords": ["temperatur"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionskinetik Simulator",
+      "url": "/reaktionskinetik-simulator/",
+      "matchedKeywords": ["temperatur"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Temperatur & Teilchenbewegung",
+      "url": "/temperatur-teilchenbewegung/",
+      "matchedKeywords": ["temperatur"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "temperatur": [
+    {
+      "type": "calculator",
+      "title": "Einheitenumrechner",
+      "url": "/einheitenumrechner/",
+      "matchedKeywords": ["temperatur"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionskinetik Simulator",
+      "url": "/reaktionskinetik-simulator/",
+      "matchedKeywords": ["temperatur"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Temperatur & Teilchenbewegung",
+      "url": "/temperatur-teilchenbewegung/",
+      "matchedKeywords": ["temperatur"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "temperatur, des potenzials). die pro zeitein-": [
+    {
+      "type": "calculator",
+      "title": "Einheitenumrechner",
+      "url": "/einheitenumrechner/",
+      "matchedKeywords": ["temperatur"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionskinetik Simulator",
+      "url": "/reaktionskinetik-simulator/",
+      "matchedKeywords": ["temperatur"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Temperatur & Teilchenbewegung",
+      "url": "/temperatur-teilchenbewegung/",
+      "matchedKeywords": ["temperatur"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "temperaturdifferenz ist der antrieb für strom": [
+    {
+      "type": "calculator",
+      "title": "Einheitenumrechner",
+      "url": "/einheitenumrechner/",
+      "matchedKeywords": ["temperatur"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Reaktionskinetik Simulator",
+      "url": "/reaktionskinetik-simulator/",
+      "matchedKeywords": ["temperatur"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Temperatur & Teilchenbewegung",
+      "url": "/temperatur-teilchenbewegung/",
+      "matchedKeywords": ["temperatur"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "anregungen für lehr- bzw. lernmethoden": [
+    {
+      "type": "article",
+      "title": "Quantitative Analyse",
+      "url": "/themenbereiche/analytische-methoden/quantitative-analyse/",
+      "matchedKeywords": ["methoden"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "familienstammbaumanalysen": [
+    {
+      "type": "article",
+      "title": "Quantitative Analyse",
+      "url": "/themenbereiche/analytische-methoden/quantitative-analyse/",
+      "matchedKeywords": ["analyse"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "genomanalyse: medizinische vorsorge": [
+    {
+      "type": "article",
+      "title": "Quantitative Analyse",
+      "url": "/themenbereiche/analytische-methoden/quantitative-analyse/",
+      "matchedKeywords": ["analyse"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "analysemethoden": [
+    {
+      "type": "article",
+      "title": "Quantitative Analyse",
+      "url": "/themenbereiche/analytische-methoden/quantitative-analyse/",
+      "matchedKeywords": ["analyse", "methoden"],
+      "score": 2,
+      "states": ["RP"]
+    }
+  ],
+  "bau der atomhülle. strukturen und beziehungen": [
+    {
+      "type": "article",
+      "title": "Substitution und Addition",
+      "url": "/themenbereiche/reaktionstypen-organisch/substitution-und-addition/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Atomenergieniveaus und Linienspektren",
+      "url": "/atomenergieniveaus/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "kohlenstoffatom-kreislauf": [
+    {
+      "type": "article",
+      "title": "Substitution und Addition",
+      "url": "/themenbereiche/reaktionstypen-organisch/substitution-und-addition/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Atomenergieniveaus und Linienspektren",
+      "url": "/atomenergieniveaus/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "atommasse als charakteristische": [
+    {
+      "type": "article",
+      "title": "Substitution und Addition",
+      "url": "/themenbereiche/reaktionstypen-organisch/substitution-und-addition/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Atomenergieniveaus und Linienspektren",
+      "url": "/atomenergieniveaus/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "atommodell von dalton. verbindung an": [
+    {
+      "type": "article",
+      "title": "Substitution und Addition",
+      "url": "/themenbereiche/reaktionstypen-organisch/substitution-und-addition/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Atomenergieniveaus und Linienspektren",
+      "url": "/atomenergieniveaus/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "atommodell von dalton.  verbindung an": [
+    {
+      "type": "article",
+      "title": "Substitution und Addition",
+      "url": "/themenbereiche/reaktionstypen-organisch/substitution-und-addition/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Atomenergieniveaus und Linienspektren",
+      "url": "/atomenergieniveaus/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "atomkern, proton": [
+    {
+      "type": "article",
+      "title": "Substitution und Addition",
+      "url": "/themenbereiche/reaktionstypen-organisch/substitution-und-addition/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Atomenergieniveaus und Linienspektren",
+      "url": "/atomenergieniveaus/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "neutron, atomhülle": [
+    {
+      "type": "article",
+      "title": "Substitution und Addition",
+      "url": "/themenbereiche/reaktionstypen-organisch/substitution-und-addition/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Atomenergieniveaus und Linienspektren",
+      "url": "/atomenergieniveaus/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "atomen in methan basieren auf": [
+    {
+      "type": "article",
+      "title": "Substitution und Addition",
+      "url": "/themenbereiche/reaktionstypen-organisch/substitution-und-addition/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Atomenergieniveaus und Linienspektren",
+      "url": "/atomenergieniveaus/",
+      "matchedKeywords": ["atom"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Gasgesetz-Rechner",
+      "url": "/gasgesetz-rechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Löslichkeitsprodukt Rechner",
+      "url": "/loeslichkeitsprodukt-rechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Molare Masse Rechner",
+      "url": "/molare-masse-rechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "pH-Rechner",
+      "url": "/ph-rechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Verdünnungsrechner",
+      "url": "/verduennungsrechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "KI-Assistent",
+      "url": "/ki-assistent/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Klassencockpit",
+      "url": "/klassencockpit/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "insektizideinsatz": [
+    {
+      "type": "article",
+      "title": "Reaktionsenthalpie und Energieprofile",
+      "url": "/themenbereiche/energetik/reaktionsenthalpie-und-energieprofile/",
+      "matchedKeywords": ["satz"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "produkte der chemie": [
+    {
+      "type": "article",
+      "title": "Der Satz von Hess",
+      "url": "/themenbereiche/energetik/satz-von-hess/",
+      "matchedKeywords": ["produkte"],
+      "score": 1,
+      "states": ["NW"]
+    }
+  ],
+  "󰆅 organische produkte werkstoffe und farbstoffe": [
+    {
+      "type": "article",
+      "title": "Der Satz von Hess",
+      "url": "/themenbereiche/energetik/satz-von-hess/",
+      "matchedKeywords": ["produkte"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["NW"]
+    }
+  ],
+  "vom reagenzglas zum produkte der chem. industrie": [
+    {
+      "type": "article",
+      "title": "Der Satz von Hess",
+      "url": "/themenbereiche/energetik/satz-von-hess/",
+      "matchedKeywords": ["produkte"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "7 tion.  werten sie aus": [
+    {
+      "type": "calculator",
+      "title": "Gasgesetz-Rechner",
+      "url": "/gasgesetz-rechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Löslichkeitsprodukt Rechner",
+      "url": "/loeslichkeitsprodukt-rechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Molare Masse Rechner",
+      "url": "/molare-masse-rechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "pH-Rechner",
+      "url": "/ph-rechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Verdünnungsrechner",
+      "url": "/verduennungsrechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "KI-Assistent",
+      "url": "/ki-assistent/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Klassencockpit",
+      "url": "/klassencockpit/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "die absorption ionisierender strahlung kann": [
+    {
+      "type": "calculator",
+      "title": "Gasgesetz-Rechner",
+      "url": "/gasgesetz-rechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Löslichkeitsprodukt Rechner",
+      "url": "/loeslichkeitsprodukt-rechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Molare Masse Rechner",
+      "url": "/molare-masse-rechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "pH-Rechner",
+      "url": "/ph-rechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Verdünnungsrechner",
+      "url": "/verduennungsrechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "KI-Assistent",
+      "url": "/ki-assistent/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Klassencockpit",
+      "url": "/klassencockpit/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "mathematisierungsgrad": [
+    {
+      "type": "calculator",
+      "title": "Gasgesetz-Rechner",
+      "url": "/gasgesetz-rechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Löslichkeitsprodukt Rechner",
+      "url": "/loeslichkeitsprodukt-rechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Molare Masse Rechner",
+      "url": "/molare-masse-rechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "pH-Rechner",
+      "url": "/ph-rechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Verdünnungsrechner",
+      "url": "/verduennungsrechner/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "KI-Assistent",
+      "url": "/ki-assistent/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Klassencockpit",
+      "url": "/klassencockpit/",
+      "matchedKeywords": ["sie"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "unterscheidung zwischen leitern und isolatoren": [
+    {
+      "type": "calculator",
+      "title": "Wissensnetz Graph",
+      "url": "/wissennetz/",
+      "matchedKeywords": ["zwischen"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "elektrizitätspumpen zwischen kraft und": [
+    {
+      "type": "calculator",
+      "title": "Wissensnetz Graph",
+      "url": "/wissennetz/",
+      "matchedKeywords": ["zwischen"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "lernen im fach chemie": [
+    {
+      "type": "article",
+      "title": "Alkohole und Ether",
+      "url": "/themenbereiche/erdoel-organische-stoffklassen/alkohole-ether/",
+      "matchedKeywords": ["lerne"],
+      "score": 1,
+      "states": ["HH"]
+    },
+    {
+      "type": "article",
+      "title": "Waschmittel und Tenside",
+      "url": "/themenbereiche/produkte-organisch/waschmittel-tenside/",
+      "matchedKeywords": ["lerne"],
+      "score": 1,
+      "states": ["HH"]
+    }
+  ],
+  "lernen und unterricht": [
+    {
+      "type": "article",
+      "title": "Alkohole und Ether",
+      "url": "/themenbereiche/erdoel-organische-stoffklassen/alkohole-ether/",
+      "matchedKeywords": ["lerne"],
+      "score": 1,
+      "states": ["SH"]
+    },
+    {
+      "type": "article",
+      "title": "Waschmittel und Tenside",
+      "url": "/themenbereiche/produkte-organisch/waschmittel-tenside/",
+      "matchedKeywords": ["lerne"],
+      "score": 1,
+      "states": ["SH"]
+    }
+  ],
+  "verbindungen": [
+    {
+      "type": "article",
+      "title": "Kohlenwasserstoffe",
+      "url": "/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/",
+      "matchedKeywords": ["verbindungen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Aufgabensammlung",
+      "url": "/aufgabensammlung/",
+      "matchedKeywords": ["bindungen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Molare Masse Visualizer",
+      "url": "/molar-mass-visualizer/",
+      "matchedKeywords": ["verbindungen"],
+      "score": 1,
+      "states": ["NI"]
+    },
+    {
+      "type": "calculator",
+      "title": "Verbrennungsrechner",
+      "url": "/verbrennungsrechner/",
+      "matchedKeywords": ["verbindungen"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "molekülverbindungen": [
+    {
+      "type": "article",
+      "title": "Kohlenwasserstoffe",
+      "url": "/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/",
+      "matchedKeywords": ["verbindungen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Aufgabensammlung",
+      "url": "/aufgabensammlung/",
+      "matchedKeywords": ["bindungen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Molare Masse Visualizer",
+      "url": "/molar-mass-visualizer/",
+      "matchedKeywords": ["verbindungen"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "Verbrennungsrechner",
+      "url": "/verbrennungsrechner/",
+      "matchedKeywords": ["verbindungen"],
+      "score": 1,
+      "states": ["NW"]
+    }
+  ],
+  "bindungen und wechselwirkun- vorgängen an": [
+    {
+      "type": "calculator",
+      "title": "Aufgabensammlung",
+      "url": "/aufgabensammlung/",
+      "matchedKeywords": ["bindungen"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "neutralisation": [
+    {
+      "type": "article",
+      "title": "Säuren, Basen und Salze",
+      "url": "/themenbereiche/anorganische-verbindungen/saeuren-basen-salze/",
+      "matchedKeywords": ["neutralisation"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "säure-base-gleichgewichte": [
+    {
+      "type": "article",
+      "title": "Chemisches Gleichgewicht",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/chemisches-gleichgewicht/",
+      "matchedKeywords": ["gleichgewicht", "gleich"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Chemisches Gleichgewicht Rechner",
+      "url": "/chemisches-gleichgewicht/",
+      "matchedKeywords": ["gleichgewicht", "gleichgewichte"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Pufferlösungen",
+      "url": "/themenbereiche/saeuren-basen/pufferloesungen/",
+      "matchedKeywords": ["base"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Titrationssimulator",
+      "url": "/titrations-simulator/",
+      "matchedKeywords": ["base"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Prinzip von Le Chatelier",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/prinzip-von-le-chatelier/",
+      "matchedKeywords": ["gleichgewicht"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Säuren-Basen-Gleichgewichte",
+      "url": "/saeuren-basen-gleichgewicht/",
+      "matchedKeywords": ["gleichgewicht"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "regelungen als gleich- oder wechselwarm ein": [
+    {
+      "type": "article",
+      "title": "Chemisches Gleichgewicht",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/chemisches-gleichgewicht/",
+      "matchedKeywords": ["gleich"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "stoffe im gleichgewicht": [
+    {
+      "type": "article",
+      "title": "Chemisches Gleichgewicht",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/chemisches-gleichgewicht/",
+      "matchedKeywords": ["gleichgewicht", "gleich"],
+      "score": 2,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Prinzip von Le Chatelier",
+      "url": "/themenbereiche/gleichgewicht-geschwindigkeit/prinzip-von-le-chatelier/",
+      "matchedKeywords": ["gleichgewicht"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Chemisches Gleichgewicht Rechner",
+      "url": "/chemisches-gleichgewicht/",
+      "matchedKeywords": ["gleichgewicht"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Säuren-Basen-Gleichgewichte",
+      "url": "/saeuren-basen-gleichgewicht/",
+      "matchedKeywords": ["gleichgewicht"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "elemente und ihre ordnung": [
+    {
+      "type": "calculator",
+      "title": "Periodensystem der Elemente",
+      "url": "/perioden-system-der-elemente/",
+      "matchedKeywords": ["elemente"],
+      "score": 1,
+      "states": ["NW"]
+    },
+    {
+      "type": "calculator",
+      "title": "PSE in VR - Virtuelles Periodensystem",
+      "url": "/pse-vr/",
+      "matchedKeywords": ["elemente"],
+      "score": 1,
+      "states": ["NW"]
+    }
+  ],
+  "elemente (z. b. generator und elektrische": [
+    {
+      "type": "calculator",
+      "title": "Periodensystem der Elemente",
+      "url": "/perioden-system-der-elemente/",
+      "matchedKeywords": ["elemente"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "PSE in VR - Virtuelles Periodensystem",
+      "url": "/pse-vr/",
+      "matchedKeywords": ["elemente"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "eigenschaften und der aggre- sorgfältig": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["eigenschaften"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "stoffeigenschaften": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["eigenschaften", "stoffe"],
+      "score": 2,
+      "states": ["NI"]
+    }
+  ],
+  "stoffes auf das vorhandensein": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "hormonen als botenstoffe (sexual-": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "6 s stoß klimaverändernder stoffe": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "vd vd vd organische rohstoffe für die in-": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "ausgangsstoffe in neue stoffe. e n kann. c h w ä": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["NI"]
+    }
+  ],
+  "stoffe und stoffeigenschaften": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["eigenschaften", "stoffe"],
+      "score": 2,
+      "states": ["NW"]
+    }
+  ],
+  "moderne werkstoffe": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["NW", "SN"]
+    }
+  ],
+  "stoffe verantwortungsvoll stoffe": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "den stoffen untersuchen stoffe neu": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "stoffe nutzen heizen und antreiben 3": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "stoffe": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["RP", "SN"]
+    }
+  ],
+  "auf der stoffebene: stoff": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "molekül  stoffe bestehen": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "ion  stoffe werden": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "untersuchen von stoffen": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "umwandlung von stoffen": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "den stoffen analytisch auf der spur": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "organische stoffe": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "stoffe komplexer natur": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "naturstoffe, kunststoffe und nanomaterialien": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["SN"]
+    },
+    {
+      "type": "calculator",
+      "title": "Wärmeleitung",
+      "url": "/waermeleitung/",
+      "matchedKeywords": ["materialien"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "stoffe, die uns umgeben": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "stoffe wandeln sich um": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "ordnen von stoffen": [
+    {
+      "type": "article",
+      "title": "Stoffgemische und Trennverfahren",
+      "url": "/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/",
+      "matchedKeywords": ["stoffe"],
+      "score": 1,
+      "states": ["SN"]
+    }
+  ],
+  "warum sind in warmen ländern": [
+    {
+      "type": "article",
+      "title": "Was ist Chemie?",
+      "url": "/themenbereiche/einfuehrung-chemie/was-ist-chemie/",
+      "matchedKeywords": ["warum"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "sicherheit im umgang mit": [
+    {
+      "type": "calculator",
+      "title": "Gefahrstoffkennzeichnung",
+      "url": "/gefahrstoffkennzeichnung/",
+      "matchedKeywords": ["sicherheit"],
+      "score": 1,
+      "states": ["RP"]
+    },
+    {
+      "type": "calculator",
+      "title": "Laborgeräte-Explorer",
+      "url": "/laborgeraete-explorer/",
+      "matchedKeywords": ["sicherheit"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "chemie physik": [
+    {
+      "type": "calculator",
+      "title": "Druck und Fläche Rechner",
+      "url": "/druck-flaechen-rechner/",
+      "matchedKeywords": ["physik"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "nawi physik": [
+    {
+      "type": "calculator",
+      "title": "Druck und Fläche Rechner",
+      "url": "/druck-flaechen-rechner/",
+      "matchedKeywords": ["physik"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ],
+  "zusammenhang von zielkompetenz, aufgabenstel-": [
+    {
+      "type": "calculator",
+      "title": "Lernpfade",
+      "url": "/lernpfad/",
+      "matchedKeywords": ["ziel"],
+      "score": 1,
+      "states": ["RP"]
+    }
+  ]
+}
