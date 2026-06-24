@@ -1259,6 +1259,7 @@ function getFallbackData() {
  */
 app.get('/api/kg-data', async (req, res) => {
   const startTime = Date.now();
+  const isLehrplanMode = req.query.lehrplan === 'true';
 
   try {
     const driver = getNeo4jDriver();
@@ -1267,10 +1268,20 @@ app.get('/api/kg-data', async (req, res) => {
       defaultAccessMode: neo4j.session.READ,
       fetchSize: 1000,
     });
-
-    const entitiesQuery = `
+    const entitiesQuery = isLehrplanMode
+      ? `
       MATCH (e:Entity)
-      WHERE e.kategorie IS NULL OR e.kategorie <> 'lernziel'
+      WHERE e.kategorie = 'lehrplan' OR e.kategorie = 'didaktik'
+      OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
+      RETURN e.name as name, e.kategorie as category,
+             collect(DISTINCT related.name) as relatedEntities,
+             [] as components, 0 as articleCount
+      ORDER BY e.name
+      LIMIT 500
+    `
+      : `
+      MATCH (e:Entity)
+      WHERE (e.kategorie IS NULL OR e.kategorie NOT IN ['lernziel', 'lehrplan', 'didaktik'])
       OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
       OPTIONAL MATCH (e)-[c:BESTEHT_AUS]->(component:Entity)
       RETURN e.name as name, e.kategorie as category,
@@ -1323,47 +1334,49 @@ app.get('/api/kg-data', async (req, res) => {
 
     await session.close();
 
-    // Query curriculum entities separately
+    // Query curriculum entities separately (for lehrplan mode, to get curriculumMeta)
     let curriculaEntities = [];
-    try {
-      const curriculaQuery = `
-        MATCH (e:Entity {kategorie: 'lehrplan'})
-        OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
-        RETURN e.name as name, e.kategorie as category,
-               e.state as state, e.grade as grade,
-               e.school_type as school_type,
-               e.objective_count as objective_count,
-               collect(DISTINCT related.name) as relatedEntities
-        ORDER BY e.name
-        LIMIT 500
-      `;
-      const curriculaResult = await session.run(curriculaQuery);
-      curriculaEntities = curriculaResult.records.map((r, i) => ({
-        id: `c${i}`,
-        name: r.get('name'),
-        category: r.get('category') || 'lehrplan',
-        curriculumMeta: {
-          state: r.get('state'),
-          grade: r.get('grade'),
-          school_type: r.get('school_type'),
-          objective_count: r.get('objective_count') ? r.get('objective_count').toNumber() : 0,
-        },
-        articles: [],
-        relatedEntities: (r.get('relatedEntities') || [])
-          .filter((n) => n !== null)
-          .map((name) => ({ name, weight: 1 })),
-        articleCount: 0,
-      }));
-    } catch (e) {
-      console.warn(`[kg-data] Curriculum query failed: ${e.message}`);
-    }
+    if (isLehrplanMode) {
+      try {
+        const curriculaQuery = `
+          MATCH (e:Entity {kategorie: 'lehrplan'})
+          OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
+          RETURN e.name as name, e.kategorie as category,
+                 e.state as state, e.grade as grade,
+                 e.school_type as school_type,
+                 e.objective_count as objective_count,
+                 collect(DISTINCT related.name) as relatedEntities
+          ORDER BY e.name
+          LIMIT 500
+        `;
+        const curriculaResult = await session.run(curriculaQuery);
+        curriculaEntities = curriculaResult.records.map((r, i) => ({
+          id: `c${i}`,
+          name: r.get('name'),
+          category: r.get('category') || 'lehrplan',
+          curriculumMeta: {
+            state: r.get('state'),
+            grade: r.get('grade'),
+            school_type: r.get('school_type'),
+            objective_count: r.get('objective_count') ? r.get('objective_count').toNumber() : 0,
+          },
+          articles: [],
+          relatedEntities: (r.get('relatedEntities') || [])
+            .filter((n) => n !== null)
+            .map((name) => ({ name, weight: 1 })),
+          articleCount: 0,
+        }));
+      } catch (e) {
+        console.warn(`[kg-data] Curriculum query failed: ${e.message}`);
+      }
 
-    // Merge curricula into entities array (frontend filters by category)
-    const existingNames = new Set(entities.map((e) => e.name));
-    for (const curr of curriculaEntities) {
-      if (!existingNames.has(curr.name)) {
-        entities.push(curr);
-        existingNames.add(curr.name);
+      // Merge curricula into entities array (lehrplan mode wants both lehrplan + didaktik)
+      const existingNames = new Set(entities.map((e) => e.name));
+      for (const curr of curriculaEntities) {
+        if (!existingNames.has(curr.name)) {
+          entities.push(curr);
+          existingNames.add(curr.name);
+        }
       }
     }
 
@@ -1376,7 +1389,7 @@ app.get('/api/kg-data', async (req, res) => {
       source: 'neo4j',
       articles,
       entities,
-      curricula: curriculaEntities,
+      curricula: isLehrplanMode ? curriculaEntities : [],
       loadTime: parseFloat(elapsed),
     });
   } catch (err) {
@@ -1385,9 +1398,27 @@ app.get('/api/kg-data', async (req, res) => {
     const fallback = getFallbackData();
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
 
-    const curriculaCount = (fallback.curricula || []).length;
+    // In lehrplan mode, filter to only lehrplan + didaktik entities
+    if (isLehrplanMode) {
+      const lehrplanEntities = (fallback.curricula || []).map((c) => ({
+        ...c,
+        articles: [],
+      }));
+      const didaktikEntities = fallback.entities.filter((e) => e.category === 'didaktik');
+      const combined = [...lehrplanEntities, ...didaktikEntities];
+
+      console.log(`[kg-data] Fallback (lehrplan): ${combined.length} entities in ${elapsed}s`);
+      return res.json({
+        source: 'fallback',
+        articles: [],
+        entities: combined,
+        curricula: lehrplanEntities,
+        loadTime: parseFloat(elapsed),
+      });
+    }
+
     console.log(
-      `[kg-data] Fallback: ${fallback.articles.length} articles, ${fallback.entities.length} entities (${curriculaCount} curricula) in ${elapsed}s`
+      `[kg-data] Fallback: ${fallback.articles.length} articles, ${fallback.entities.length} entities in ${elapsed}s`
     );
 
     return res.json({

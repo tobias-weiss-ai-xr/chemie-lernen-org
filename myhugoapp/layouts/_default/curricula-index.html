@@ -1,0 +1,217 @@
+{{ define "css" }}
+<style>
+#curricula-app { margin-top: 1rem; margin-bottom: 2rem; min-height: 400px; }
+
+/* Header */
+.curricula-header {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;
+  margin-bottom: 1.5rem; padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border-color, #e0e0e0);
+}
+.curricula-header h1 { margin: 0; flex: 1; font-size: 1.6rem; }
+.curricula-subtitle { margin: 0; color: var(--text-muted, #666); width: 100%; }
+.curricula-stats {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  font-size: 0.9rem; color: var(--text-muted, #666); align-items: center;
+}
+.curricula-stats strong { color: var(--text-primary, #333); }
+
+/* Tabs */
+.curricula-tabs {
+  display: flex; gap: 0; margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--border-color, #e0e0e0);
+}
+.curricula-tab {
+  padding: 0.6rem 1.2rem; border: none; background: transparent;
+  cursor: pointer; font-size: 0.95rem; color: var(--text-muted, #666);
+  border-bottom: 2px solid transparent; margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.curricula-tab:hover { color: var(--text-primary, #333); }
+.curricula-tab.active {
+  color: #9b59b6; border-bottom-color: #9b59b6; font-weight: 600;
+}
+
+/* Filters */
+.curricula-filters {
+  background: var(--bg-card, #f8f9fa); padding: 1rem;
+  border-radius: 8px; margin-bottom: 1.5rem;
+}
+.curricula-filter-row, .curricula-search-row { margin-bottom: 0.5rem; }
+.curricula-filter-row:last-child, .curricula-search-row:last-child { margin-bottom: 0; }
+.curricula-select {
+  padding: 0.5rem 0.75rem; border-radius: 6px;
+  border: 1px solid var(--border-color, #ddd); font-size: 0.9rem;
+  background: var(--bg-input, #fff); color: var(--text-primary, #333);
+  margin-right: 0.5rem; min-width: 180px;
+}
+.curricula-search {
+  width: 100%; padding: 0.6rem 1rem; border-radius: 8px;
+  border: 1px solid var(--border-color, #ddd); font-size: 1rem;
+  background: var(--bg-input, #fff); color: var(--text-primary, #333);
+  transition: border-color 0.2s, box-shadow 0.2s; box-sizing: border-box;
+}
+.curricula-search:focus {
+  outline: none; border-color: #9b59b6;
+  box-shadow: 0 0 0 3px rgba(155,89,182,0.15);
+}
+
+/* Cards */
+.curricula-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem; margin-bottom: 1.5rem;
+}
+.curricula-card {
+  background: var(--bg-card, #fff); border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--border-color, #e0e0e0);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.curricula-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+.curricula-card-bar { height: 4px; }
+.curricula-card-body { padding: 1rem; }
+.curricula-card-name {
+  font-size: 1.05rem; font-weight: 600; margin-bottom: 0.4rem;
+}
+.curricula-card-name a { color: var(--text-primary, #333); text-decoration: none; }
+.curricula-card-name a:hover { color: #9b59b6; text-decoration: underline; }
+.curricula-card-meta { font-size: 0.8rem; color: var(--text-muted, #666); margin-bottom: 0.3rem; }
+.curricula-card-relations { font-size: 0.78rem; color: var(--text-muted, #999); margin-bottom: 0.4rem; }
+.curricula-meta-state { font-weight: 600; }
+
+/* KMK Badges */
+.curricula-card-kmk { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 0.4rem; }
+.kmk-badge {
+  display: inline-block; padding: 2px 8px; font-size: 0.7rem;
+  background: #e8f5e9; color: #2e7d32; border-radius: 10px;
+  border: 1px solid #a5d6a7; white-space: nowrap;
+}
+
+/* Pagination */
+.curricula-pagination {
+  display: flex; justify-content: center; gap: 0.3rem; margin-top: 1.5rem;
+}
+.curricula-page-btn {
+  padding: 0.4rem 0.8rem; border: 1px solid var(--border-color, #ddd);
+  border-radius: 6px; background: var(--bg-btn, #fff);
+  color: var(--text-primary, #333); cursor: pointer; font-size: 0.9rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+.curricula-page-btn:hover:not(:disabled) {
+  background: var(--bg-btn-hover, #f0f0f0); border-color: #9b59b6;
+}
+.curricula-page-btn.active {
+  background: #9b59b6; color: #fff; border-color: #9b59b6;
+}
+.curricula-page-btn:disabled { opacity: 0.4; cursor: default; }
+
+/* Compare */
+.compare-search {
+  display: flex; gap: 0.5rem; margin-bottom: 1.5rem;
+}
+.compare-search .curricula-search { flex: 1; }
+.compare-btn {
+  padding: 0.6rem 1.2rem; background: #e67e22; color: #fff;
+  border: none; border-radius: 8px; cursor: pointer; font-size: 0.95rem;
+  transition: background 0.2s; white-space: nowrap;
+}
+.compare-btn:hover { background: #d35400; }
+.compare-results { overflow-x: auto; }
+.compare-table {
+  width: 100%; border-collapse: collapse; font-size: 0.9rem;
+}
+.compare-table th {
+  background: var(--bg-card, #f8f9fa); padding: 0.6rem 0.8rem;
+  text-align: left; border-bottom: 2px solid var(--border-color, #e0e0e0);
+  font-weight: 600; position: sticky; top: 0;
+}
+.compare-table td {
+  padding: 0.5rem 0.8rem; border-bottom: 1px solid var(--border-color, #eee);
+}
+.compare-state-cell { font-weight: 600; vertical-align: top; }
+.compare-num { text-align: center; }
+.compare-row:hover { background: var(--bg-hover, #f5f0ff); }
+
+/* Skeleton */
+.curricula-skeleton {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+.curricula-skeleton-card {
+  height: 100px; border-radius: 10px;
+  background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+  background-size: 200% 100%; animation: shim 1.5s infinite;
+}
+@keyframes shim { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* Empty state */
+.empty-state { text-align: center; padding: 3rem 1rem; color: var(--text-muted, #999); }
+.empty-state-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .curricula-header { border-bottom-color: #333; }
+  .curricula-tabs { border-bottom-color: #333; }
+  .curricula-tab { color: #999; }
+  .curricula-tab:hover { color: #ddd; }
+  .curricula-tab.active { color: #bb86fc; border-bottom-color: #bb86fc; }
+  .curricula-filters { background: #2a2a2a; }
+  .curricula-search, .curricula-select {
+    background: #333; border-color: #555; color: #e0e0e0;
+  }
+  .curricula-card {
+    background: #2a2a2a; border-color: #444;
+  }
+  .curricula-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+  .curricula-card-name a { color: #e0e0e0; }
+  .curricula-page-btn {
+    background: #333; border-color: #555; color: #e0e0e0;
+  }
+  .curricula-page-btn:hover:not(:disabled) {
+    background: #444; border-color: #bb86fc;
+  }
+  .curricula-page-btn.active { background: #bb86fc; color: #000; }
+  .kmk-badge {
+    background: #1b3a1b; color: #81c784; border-color: #2e7d32;
+  }
+  .compare-table th { background: #2a2a2a; border-bottom-color: #444; }
+  .compare-table td { border-bottom-color: #333; }
+  .compare-row:hover { background: #2a2040; }
+  .curricula-skeleton-card {
+    background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
+    background-size: 200% 100%;
+  }
+}
+</style>
+{{ end }}
+
+{{ define "main" }}
+<div class="container" style="margin-top: 1rem;">
+  <div class="row">
+    <div class="col-md-12">
+      {{ .Content }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div id="curricula-app">
+        <div class="curricula-skeleton" id="curricula-skeleton" aria-label="Lade Lehrplandaten…">
+          <div class="curricula-skeleton-card"></div>
+          <div class="curricula-skeleton-card"></div>
+          <div class="curricula-skeleton-card"></div>
+          <div class="curricula-skeleton-card"></div>
+          <div class="curricula-skeleton-card"></div>
+          <div class="curricula-skeleton-card"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{ define "js" }}
+<script src="/js/curricula-index.js"></script>
+{{ end }}

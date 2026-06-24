@@ -1,7 +1,7 @@
 ---
 title: 'Lehrpläne & Curricula'
 description: 'Übersicht über die Chemie-Lehrpläne aller 16 Bundesländer — aufbereitet aus amtlichen Quellen (Kernlehrpläne, Fachanforderungen, Bildungsstandards). Die Daten werden kontinuierlich aktualisiert und mit den KMK-Bildungsstandards abgeglichen.'
-layout: curricula
+layout: curricula-index
 outputs:
   - html
 menu:

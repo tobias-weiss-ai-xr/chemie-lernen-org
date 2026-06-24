@@ -44,7 +44,7 @@
           '</strong></p><p id="debug-info"></p></div>';
       }
     })
-    .catch(function (err) {
+    .catch(function (_err) {
       skeleton.style.display = 'none';
       app.innerHTML =
         '<div class="empty-state"><div class="empty-state-icon">📡</div><p>Wissensnetz konnte nicht geladen werden.</p><p><a href="/wissennetz/" style="color:#667eea;">Graph-Ansicht öffnen →</a></p></div>';
@@ -53,7 +53,6 @@
   function init(data) {
     var entities = data.entities || [];
     var articles = data.articles || [];
-    var curricula = data.curricula || [];
 
     var catLabels = {
       stoff: 'Stoff',
@@ -62,8 +61,6 @@
       methode: 'Methode',
       person: 'Person',
       quelle: 'Quelle',
-      lehrplan: 'Lehrplan',
-      explorer: 'Entdecken',
     };
     var catColors = {
       stoff: '#667eea',
@@ -72,8 +69,6 @@
       methode: '#f093fb',
       person: '#ff9a76',
       quelle: '#a8a8a8',
-      lehrplan: '#9b59b6',
-      explorer: '#e67e22',
     };
 
     var catCounts = {};
@@ -133,42 +128,27 @@
         '<br><span style="font-size:0.72rem;color:#9b59b6;">' +
         (catLabels[e.category] || e.category) +
         '</span>';
-
-      if (e.category === 'lehrplan' && e.curriculumMeta) {
-        var cm = e.curriculumMeta;
+      var art = (e.articles || []).slice(0, 5);
+      var total = (e.articleCount && e.articleCount.low) || e.articles.length;
+      h +=
+        '<br><span style="font-size:0.78rem;">' +
+        (e.relatedEntities || []).length +
+        ' verwandte Begriffe · ' +
+        total +
+        ' Artikel</span>';
+      if (art.length > 0) {
         h +=
-          '<br><span style="font-size:0.78rem;">' +
-          escapeHtml(cm.state_name || cm.state || '') +
-          ', ' +
-          escapeHtml(cm.school_type || '') +
-          ' · Klasse ' +
-          escapeHtml(cm.grade || '') +
-          '</span>';
-        h +=
-          '<br><span style="font-size:0.78rem;">' + (cm.objective_count || 0) + ' Lernziele</span>';
-      } else {
-        var art = (e.articles || []).slice(0, 5);
-        var total = (e.articleCount && e.articleCount.low) || e.articles.length;
-        h +=
-          '<br><span style="font-size:0.78rem;">' +
-          (e.relatedEntities || []).length +
-          ' verwandte Begriffe · ' +
-          total +
-          ' Artikel</span>';
-        if (art.length > 0) {
+          '<hr style="margin:0.4rem 0;border:none;border-top:1px solid var(--border-color,#eee);">';
+        h += '<div style="font-size:0.72rem;">';
+        art.forEach(function (a) {
           h +=
-            '<hr style="margin:0.4rem 0;border:none;border-top:1px solid var(--border-color,#eee);">';
-          h += '<div style="font-size:0.72rem;">';
-          art.forEach(function (a) {
-            h +=
-              '<div style="padding:0.1rem 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">• ' +
-              escapeHtml(a) +
-              '</div>';
-          });
-          if (art.length < total)
-            h += '<div style="color:#667eea;">+' + (total - art.length) + ' weitere</div>';
-          h += '</div>';
-        }
+            '<div style="padding:0.1rem 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">• ' +
+            escapeHtml(a) +
+            '</div>';
+        });
+        if (art.length < total)
+          h += '<div style="color:#667eea;">+' + (total - art.length) + ' weitere</div>';
+        h += '</div>';
       }
       return h;
     }
@@ -239,17 +219,7 @@
         entities.length +
         '</span></button>';
       Object.keys(catLabels).forEach(function (cat) {
-        if (cat === 'explorer') {
-          filters +=
-            '<button class="entity-filter-btn' +
-            (activeFilter === 'explorer' ? ' active' : '') +
-            '" data-cat="explorer"' +
-            ' style="' +
-            (activeFilter === 'explorer'
-              ? 'background:#e67e22;border-color:#e67e22;color:#fff'
-              : '') +
-            '">🔍 Entdecken</button>';
-        } else if (catCounts[cat]) {
+        if (catCounts[cat]) {
           filters +=
             '<button class="entity-filter-btn' +
             (activeFilter === cat ? ' active' : '') +
@@ -281,15 +251,6 @@
       html += toolbar;
       html += filters;
 
-      if (activeFilter === 'explorer') {
-        html += _renderExplorer(curricula);
-        html += '</div>';
-        app.innerHTML = html;
-        _attachExplorerEvents();
-        _attachCommonEvents(totalPages);
-        return;
-      }
-
       if (viewMode === 'cloud') {
         html += '<div class="entity-tagcloud">';
         filtered.forEach(function (e) {
@@ -320,10 +281,8 @@
             var _compCount = (e.components || []).length;
             var artCount = (e.articleCount && e.articleCount.low) || e.articles.length || 0;
             var slug = toSlug(e.name);
-            var isCurriculum = cat === 'lehrplan';
             html +=
               '<div class="entity-card' +
-              (isCurriculum ? ' entity-card-curriculum' : '') +
               '" data-cat="' +
               cat +
               '" data-slug="' +
@@ -340,26 +299,12 @@
             html +=
               '<span class="entity-card-cat">' + escapeHtml(catLabels[cat] || cat) + '</span>';
 
-            if (isCurriculum && e.curriculumMeta) {
-              var cm = e.curriculumMeta;
-              html +=
-                '<div class="entity-card-curriculum-meta">' +
-                escapeHtml(cm.state_name || cm.state || '') +
-                ', ' +
-                escapeHtml(cm.school_type || '') +
-                ' · Klasse ' +
-                escapeHtml(cm.grade || '') +
-                '</div>';
-              html +=
-                '<div class="entity-card-meta">' + (cm.objective_count || 0) + ' Lernziele</div>';
-            } else {
-              html +=
-                '<div class="entity-card-meta">' +
-                relatedCount +
-                ' verwandte Begriffe · ' +
-                artCount +
-                ' Artikel</div>';
-            }
+            html +=
+              '<div class="entity-card-meta">' +
+              relatedCount +
+              ' verwandte Begriffe · ' +
+              artCount +
+              ' Artikel</div>';
 
             if (e.components && e.components.length > 0) {
               html +=
@@ -368,7 +313,7 @@
                 (e.components.length > 5 ? ' +' + (e.components.length - 5) : '') +
                 '</div>';
             }
-            if (e.relatedEntities && e.relatedEntities.length > 0 && !isCurriculum) {
+            if (e.relatedEntities && e.relatedEntities.length > 0) {
               html += '<div class="entity-card-related">';
               e.relatedEntities.slice(0, 6).forEach(function (r) {
                 html += '<span class="entity-related-tag">' + escapeHtml(r.name) + '</span>';
@@ -448,324 +393,6 @@
         if (!card) return;
         if (tooltipEl) tooltipEl.style.display = 'none';
       });
-    }
-
-    // ── Explorer view ────────────────────────────────────────────
-
-    // Build a set of topic names referenced by didaktik entities
-    var _kmkTopicMap = {};
-    entities.forEach(function (e) {
-      if (e.category === 'didaktik' && e.relatedEntities) {
-        e.relatedEntities.forEach(function (r) {
-          var rn = typeof r === 'string' ? r : r.name;
-          _kmkTopicMap[rn.toLowerCase()] = true;
-        });
-      }
-    });
-
-    function _renderExplorer(curricula) {
-      var html = '<div class="entity-explorer">';
-
-      var stMap = {};
-      var scMap = {};
-      var grMap = {};
-      curricula.forEach(function (c) {
-        var cm = c.curriculumMeta || {};
-        if (cm.state) stMap[cm.state] = (stMap[cm.state] || 0) + 1;
-        if (cm.school_type) scMap[cm.school_type] = (scMap[cm.school_type] || 0) + 1;
-        if (cm.grade) {
-          var g = cm.grade;
-          grMap[g] = (grMap[g] || 0) + 1;
-        }
-      });
-      var states = Object.keys(stMap).sort();
-      var schoolTypes = Object.keys(scMap).sort();
-      var grades = Object.keys(grMap).sort(function (a, b) {
-        // Sort by numeric first grade
-        var na = parseInt(a);
-        var nb = parseInt(b);
-        if (!isNaN(na) && !isNaN(nb)) return na - nb;
-        return a.localeCompare(b);
-      });
-
-      html += '<div class="explorer-controls">';
-      html +=
-        '<input type="text" id="explorer-search" placeholder="Lehrplan-Topic suchen..." class="explorer-search-input">';
-      html +=
-        '<div id="explorer-autocomplete" class="explorer-autocomplete" style="display:none;"></div>';
-      html += '<label>Bundesland: <select id="explorer-state"><option value="">Alle</option>';
-      states.forEach(function (s) {
-        html += '<option value="' + s + '">' + s + ' (' + stMap[s] + ')</option>';
-      });
-      html += '</select></label>';
-      html += '<label>Schulform: <select id="explorer-school"><option value="">Alle</option>';
-      schoolTypes.forEach(function (st) {
-        html +=
-          '<option value="' +
-          escapeHtml(st) +
-          '">' +
-          escapeHtml(st) +
-          ' (' +
-          scMap[st] +
-          ')</option>';
-      });
-      html += '</select></label>';
-      html += '<label>Klasse: <select id="explorer-grade"><option value="">Alle</option>';
-      grades.forEach(function (g) {
-        html +=
-          '<option value="' +
-          escapeHtml(g) +
-          '">Klasse ' +
-          escapeHtml(g) +
-          ' (' +
-          grMap[g] +
-          ')</option>';
-      });
-      html += '</select></label>';
-      html += '<button id="explorer-compare-btn" class="explorer-compare-btn">Vergleichen</button>';
-      html += '</div>';
-
-      html += '<div class="entity-grid" id="explorer-results">';
-      curricula.forEach(function (c) {
-        var cm = c.curriculumMeta || {};
-        var cat = c.category || 'lehrplan';
-        var slug = toSlug(c.name);
-        var hasKmk = _kmkTopicMap[c.name.toLowerCase()] ? true : false;
-        html +=
-          '<div class="entity-card entity-card-curriculum' +
-          (hasKmk ? ' entity-card-has-kmk' : '') +
-          '" data-cat="' +
-          cat +
-          '" data-state="' +
-          (cm.state || '') +
-          '" data-school="' +
-          escapeHtml(cm.school_type || '') +
-          '" data-grade="' +
-          escapeHtml(cm.grade || '') +
-          '" data-topic="' +
-          escapeHtml(c.name.toLowerCase()) +
-          '">';
-        html +=
-          '<div class="entity-card-name"><a href="/entity/' +
-          slug +
-          '/">' +
-          escapeHtml(c.name) +
-          '</a></div>';
-        html += '<div class="entity-card-cat">' + escapeHtml(catLabels[cat] || cat) + '</div>';
-        if (hasKmk) {
-          html += '<span class="kmk-badge" title="Erfüllt KMK-Bildungsstandard">KMK ✓</span>';
-        }
-        html +=
-          '<div class="entity-card-curriculum-meta">' +
-          (cm.state ? cm.state + ', ' : '') +
-          escapeHtml(cm.school_type || '') +
-          ' · Klasse ' +
-          escapeHtml(cm.grade || '') +
-          '</div>';
-        html += '<div class="entity-card-meta">' + (cm.objective_count || 0) + ' Lernziele</div>';
-        html += '</div>';
-      });
-      html += '</div></div>';
-
-      // Comparison section (hidden by default)
-      html +=
-        '<div id="explorer-compare-section" class="explorer-compare-section" style="display:none;">';
-      html += '<h3>Ländervergleich</h3>';
-      html +=
-        '<input type="text" id="explorer-compare-search" placeholder="Topic zum Vergleichen eingeben..." class="explorer-search-input">';
-      html += '<div id="explorer-compare-results"></div>';
-      html += '</div>';
-
-      return html;
-    }
-
-    function _attachExplorerEvents() {
-      var stateSel = document.getElementById('explorer-state');
-      var schoolSel = document.getElementById('explorer-school');
-      var gradeSel = document.getElementById('explorer-grade');
-      var searchInput = document.getElementById('explorer-search');
-      var autocomplete = document.getElementById('explorer-autocomplete');
-      var compareBtn = document.getElementById('explorer-compare-btn');
-      var compareSection = document.getElementById('explorer-compare-section');
-      var compareSearch = document.getElementById('explorer-compare-search');
-      var compareResults = document.getElementById('explorer-compare-results');
-
-      if (!stateSel || !schoolSel) return;
-
-      // Get unique topic names from fallback curricula
-      var topicNames = [];
-      try {
-        var cd = window.__curriculaData || curricula;
-        cd.forEach(function (c) {
-          if (topicNames.indexOf(c.name) === -1) topicNames.push(c.name);
-        });
-      } catch (e) {}
-      topicNames.sort();
-
-      function filterExplorer() {
-        var sv = stateSel.value;
-        var scv = schoolSel.value;
-        var gv = gradeSel ? gradeSel.value : '';
-        var q = searchInput ? searchInput.value.toLowerCase().trim() : '';
-        var cards = document.querySelectorAll('#explorer-results .entity-card');
-        var visible = 0;
-        cards.forEach(function (card) {
-          var cs = card.getAttribute('data-state') || '';
-          var csc = card.getAttribute('data-school') || '';
-          var cg = card.getAttribute('data-grade') || '';
-          var ct = card.getAttribute('data-topic') || '';
-          var match = (!sv || cs === sv) && (!scv || csc === scv) && (!gv || cg === gv);
-          if (match && q) match = ct.indexOf(q) !== -1;
-          card.style.display = match ? '' : 'none';
-          if (match) visible++;
-        });
-        var noRes = document.getElementById('explorer-no-results');
-        if (visible === 0) {
-          if (!noRes) {
-            noRes = document.createElement('div');
-            noRes.id = 'explorer-no-results';
-            noRes.className = 'empty-state';
-            noRes.innerHTML = '<div class="empty-state-icon">🔍</div><p>Keine Themen gefunden.</p>';
-            document.getElementById('explorer-results').after(noRes);
-          }
-          noRes.style.display = '';
-        } else if (noRes) {
-          noRes.style.display = 'none';
-        }
-      }
-
-      // Search autocomplete
-      if (searchInput && autocomplete) {
-        searchInput.addEventListener('input', function () {
-          var val = searchInput.value.toLowerCase().trim();
-          if (val.length < 1) {
-            autocomplete.style.display = 'none';
-            filterExplorer();
-            return;
-          }
-          var matches = topicNames
-            .filter(function (n) {
-              return n.toLowerCase().indexOf(val) !== -1;
-            })
-            .slice(0, 10);
-          if (matches.length > 0) {
-            autocomplete.innerHTML = '';
-            matches.forEach(function (m) {
-              var item = document.createElement('div');
-              item.className = 'explorer-autocomplete-item';
-              item.textContent = m;
-              item.addEventListener('mousedown', function (ev) {
-                ev.preventDefault();
-                searchInput.value = m;
-                autocomplete.style.display = 'none';
-                filterExplorer();
-              });
-              autocomplete.appendChild(item);
-            });
-            autocomplete.style.display = 'block';
-          } else {
-            autocomplete.style.display = 'none';
-          }
-          filterExplorer();
-        });
-        document.addEventListener('click', function (ev) {
-          if (ev.target !== searchInput) autocomplete.style.display = 'none';
-        });
-      }
-
-      // Compare mode toggle
-      if (compareBtn && compareSection) {
-        compareBtn.addEventListener('click', function () {
-          var visible = compareSection.style.display !== 'none';
-          compareSection.style.display = visible ? 'none' : 'block';
-          compareBtn.textContent = visible ? 'Vergleichen' : '× Schließen';
-          compareBtn.classList.toggle('active', !visible);
-        });
-      }
-
-      // Compare search
-      if (compareSearch && compareResults) {
-        var compareTimeout;
-        compareSearch.addEventListener('input', function () {
-          clearTimeout(compareTimeout);
-          compareTimeout = setTimeout(function () {
-            var q = compareSearch.value.trim();
-            if (q.length < 2) {
-              compareResults.innerHTML =
-                '<div style="color:#888;padding:1rem;">Bitte mindestens 2 Zeichen eingeben.</div>';
-              return;
-            }
-            fetch('/api/curricula/compare?name=' + encodeURIComponent(q))
-              .then(function (r) {
-                return r.json();
-              })
-              .then(function (d) {
-                if (!d.count) {
-                  compareResults.innerHTML =
-                    '<div style="color:#888;padding:1rem;">Keine passenden Topics gefunden.</div>';
-                  return;
-                }
-                var h = '<table class="explorer-compare-table"><thead><tr><th>Thema</th>';
-                var stateKeys = Object.keys(d.results);
-                stateKeys.forEach(function (sk) {
-                  h += '<th>' + escapeHtml(sk) + '</th>';
-                });
-                h += '</tr></thead><tbody>';
-                // Group by topic name
-                var topicGroup = {};
-                stateKeys.forEach(function (sk) {
-                  d.results[sk].forEach(function (item) {
-                    if (!topicGroup[item.name]) topicGroup[item.name] = [];
-                    topicGroup[item.name].push(item);
-                  });
-                });
-                Object.keys(topicGroup)
-                  .sort()
-                  .forEach(function (tn) {
-                    h += '<tr><td><strong>' + escapeHtml(tn) + '</strong></td>';
-                    stateKeys.forEach(function (sk) {
-                      var match = null;
-                      topicGroup[tn].forEach(function (item) {
-                        if (item.state === sk) match = item;
-                      });
-                      if (match) {
-                        h += '<td class="compare-cell-ok">';
-                        h += escapeHtml(match.grade || '') + '<br>';
-                        h +=
-                          '<span class="compare-cell-detail">' +
-                          escapeHtml(match.school_type || '') +
-                          '</span><br>';
-                        h +=
-                          '<span class="compare-cell-detail">' +
-                          (match.objective_count || 0) +
-                          ' LZ</span>';
-                        h += '</td>';
-                      } else {
-                        h += '<td class="compare-cell-none">—</td>';
-                      }
-                    });
-                    h += '</tr>';
-                  });
-                h += '</tbody></table>';
-                h +=
-                  '<div style="margin-top:0.5rem;font-size:0.82rem;color:#888;">' +
-                  d.count +
-                  ' Treffer in ' +
-                  stateKeys.length +
-                  ' Bundesländern</div>';
-                compareResults.innerHTML = h;
-              })
-              .catch(function () {
-                compareResults.innerHTML =
-                  '<div style="color:#c00;padding:1rem;">Fehler beim Laden der Vergleichsdaten.</div>';
-              });
-          }, 300);
-        });
-      }
-
-      stateSel.addEventListener('change', filterExplorer);
-      schoolSel.addEventListener('change', filterExplorer);
-      if (gradeSel) gradeSel.addEventListener('change', filterExplorer);
     }
 
     function _attachCommonEvents(tp) {
