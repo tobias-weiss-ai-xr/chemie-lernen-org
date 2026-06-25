@@ -22,6 +22,8 @@
       /(href|src)\s*=\s*("javascript:[^"]*"|'javascript:[^']*'|javascript:[^\s>]+)/gi,
       '$1="#"'
     );
+    html = html.replace(/\[([^\]]+)\]\(((?:https?:\/\/|\/)[^)\s]+)\)/gi, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    html = html.replace(/(^|[\s>])(https?:\/\/[^\s<]{1,250})(?=[\s<]|$)/gi, '$1<a href="$2" target="_blank" rel="noopener">$2</a>');
     return html;
   }
 
