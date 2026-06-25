@@ -25,13 +25,6 @@ const CONTENT_DIR = path.resolve(
 );
 
 /**
- * Check if a line is a YAML frontmatter key line (e.g., "title: foo" or "aliases: [...]").
- */
-function isKeyLine(line) {
-  return /^[a-zA-Z_][a-zA-Z0-9_-]*\s*:/.test(line);
-}
-
-/**
  * Parse frontmatter from markdown content, return { frontmatterLines, bodyLines, fmEndIndex }.
  */
 function splitFrontmatter(content) {

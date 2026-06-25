@@ -8,7 +8,7 @@
  * --dry-run: preview without writing
  */
 
-import { readFileSync } from 'fs';
+// import { readFileSync } from 'fs'; // unused — removed
 
 const NEO4J_URI = process.env.NEO4J_URI || 'bolt://chemie-neo4j:7687';
 const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
