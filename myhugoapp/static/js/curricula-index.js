@@ -413,38 +413,37 @@
         if (!badge) return;
         var type = badge.getAttribute('data-type');
         var val = badge.getAttribute('data-value');
-        if (type === 'state') {
-          filterState = filterState.filter(function (v) {
-            return v !== val;
-          });
-          if (selState) {
-            for (var si = 0; si < selState.options.length; si++) {
-              if (selState.options[si].value === val) selState.options[si].selected = false;
-            }
-          }
-        } else if (type === 'school') {
-          filterSchool = filterSchool.filter(function (v) {
-            return v !== val;
-          });
-          if (selSchool) {
-            for (var sci = 0; sci < selSchool.options.length; sci++) {
-              if (selSchool.options[sci].value === val) selSchool.options[sci].selected = false;
-            }
-          }
-        } else if (type === 'grade') {
-          var gradeVal = val.replace('Klasse ', '');
-          filterGrade = filterGrade.filter(function (v) {
-            return v !== gradeVal;
-          });
-          if (selGrade) {
-            for (var gi = 0; gi < selGrade.options.length; gi++) {
-              if (selGrade.options[gi].value === gradeVal) selGrade.options[gi].selected = false;
-            }
-          }
-        }
+        _removeActiveFilterBadge(type, val);
         currentPage = 1;
         _render();
       });
+
+      function _removeActiveFilterBadge(type, badgeVal) {
+        if (type === 'state') {
+          filterState = filterState.filter(function (v) {
+            return v !== badgeVal;
+          });
+          _unselectOption(selState, badgeVal);
+        } else if (type === 'school') {
+          filterSchool = filterSchool.filter(function (v) {
+            return v !== badgeVal;
+          });
+          _unselectOption(selSchool, badgeVal);
+        } else if (type === 'grade') {
+          var gradeVal = badgeVal.replace('Klasse ', '');
+          filterGrade = filterGrade.filter(function (v) {
+            return v !== gradeVal;
+          });
+          _unselectOption(selGrade, gradeVal);
+        }
+      }
+
+      function _unselectOption(sel, val) {
+        if (!sel) return;
+        for (var i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].value === val) sel.options[i].selected = false;
+        }
+      }
       if (searchInput) {
         searchInput.addEventListener('input', function (ev) {
           searchQuery = ev.target.value;
@@ -501,13 +500,11 @@
         var stateNames = Object.keys(compareResults);
         if (stateNames.length > 0) {
           // Compute majority values for diff highlighting
-          var allEntries = [];
           var schoolVotes = {},
             gradeVotes = {},
             objVotes = {};
           stateNames.forEach(function (st) {
             (compareResults[st] || []).forEach(function (e) {
-              allEntries.push(e);
               schoolVotes[e.school_type || '-'] = (schoolVotes[e.school_type || '-'] || 0) + 1;
               gradeVotes[String(e.grade || '-')] = (gradeVotes[String(e.grade || '-')] || 0) + 1;
               objVotes[e.objective_count || 0] = (objVotes[e.objective_count || 0] || 0) + 1;

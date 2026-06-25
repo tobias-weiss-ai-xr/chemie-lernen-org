@@ -1,5 +1,6 @@
 import js from '@eslint/js';
 import jestPlugin from 'eslint-plugin-jest';
+import sonarjs from 'eslint-plugin-sonarjs';
 
 export default [
   // Ignore files
@@ -41,6 +42,21 @@ export default [
 
   // Global defaults
   js.configs.recommended,
+  sonarjs.configs.recommended,
+
+  // Complexity budgets (applied to all .js files)
+  {
+    files: ['myhugoapp/static/js/**/*.js'],
+    rules: {
+      complexity: ['warn', 12],
+      'max-depth': ['warn', 4],
+      'max-lines': ['warn', 500],
+      'max-statements': ['warn', 50],
+      'max-params': ['warn', 5],
+      // IIFE is the project convention for non-ESM scope isolation — not a smell
+      'sonarjs/no-nested-functions': 'off',
+    },
+  },
 
   // All static JS files - base configuration (script type)
   {

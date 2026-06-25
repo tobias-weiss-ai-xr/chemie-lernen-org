@@ -126,6 +126,43 @@
     if (SEARCH._resolveReady) SEARCH._resolveReady();
   }
 
+  function docToItem(doc) {
+    if (doc._type === 'entity') {
+      return {
+        type: 'entity',
+        name: doc.name,
+        slug: doc._slug,
+        category: doc.category,
+        categoryLabel: catLabels[doc.category] || doc.category,
+        categoryColor: catColors[doc.category] || '#888',
+        articleCount: doc._articleCount,
+        url: '/entity/' + doc._slug + '/',
+      };
+    }
+    if (doc._type === 'article') {
+      return {
+        type: 'article',
+        name: doc.title,
+        slug: toSlug(doc.title),
+        url: doc._url,
+        date: doc._articleDate,
+      };
+    }
+    if (doc._type === 'curricula') {
+      return {
+        type: 'curricula',
+        name: doc.name,
+        slug: doc._slug,
+        category: 'lehrplan',
+        categoryLabel: 'Lehrplan',
+        categoryColor: '#9b59b6',
+        url: '/entity/' + doc._slug + '/',
+        state: doc.state,
+      };
+    }
+    return null;
+  }
+
   SEARCH.search = function (query) {
     if (!SEARCH._idx || !query || query.trim().length < 2) return [];
     try {
@@ -139,37 +176,8 @@
         if (!doc || seen[match.ref]) continue;
         seen[match.ref] = true;
 
-        if (doc._type === 'entity') {
-          output.push({
-            type: 'entity',
-            name: doc.name,
-            slug: doc._slug,
-            category: doc.category,
-            categoryLabel: catLabels[doc.category] || doc.category,
-            categoryColor: catColors[doc.category] || '#888',
-            articleCount: doc._articleCount,
-            url: '/entity/' + doc._slug + '/',
-          });
-        } else if (doc._type === 'article') {
-          output.push({
-            type: 'article',
-            name: doc.title,
-            slug: toSlug(doc.title),
-            url: doc._url,
-            date: doc._articleDate,
-          });
-        } else if (doc._type === 'curricula') {
-          output.push({
-            type: 'curricula',
-            name: doc.name,
-            slug: doc._slug,
-            category: 'lehrplan',
-            categoryLabel: 'Lehrplan',
-            categoryColor: '#9b59b6',
-            url: '/entity/' + doc._slug + '/',
-            state: doc.state,
-          });
-        }
+        var item = docToItem(doc);
+        if (item) output.push(item);
       }
       return output;
     } catch (e) {

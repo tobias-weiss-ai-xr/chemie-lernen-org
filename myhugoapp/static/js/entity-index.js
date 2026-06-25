@@ -167,29 +167,22 @@
           '</strong></p></div>';
       }
     }
-    function _renderImpl() {
-      var filtered = filteredAndSorted();
-      var totalPages = Math.ceil(filtered.length / perPage);
-      if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
-      var start = (currentPage - 1) * perPage;
-      var pageItems = filtered.slice(start, start + perPage);
-
-      var toolbar = '<div class="entity-toolbar">';
-      toolbar += '<div class="entity-toolbar-left">';
-      toolbar +=
+    function _buildToolbarHtml() {
+      var h = '<div class="entity-toolbar">';
+      h += '<div class="entity-toolbar-left">';
+      h +=
         '<input class="entity-search" type="text" placeholder="Begriff suchen..." id="entity-search" value="' +
         escapeHtml(searchQuery) +
         '">';
-      toolbar += '</div>';
-      toolbar += '<select class="entity-sort-select" id="entity-sort">';
-      var sortOptions = [
+      h += '</div>';
+      h += '<select class="entity-sort-select" id="entity-sort">';
+      [
         { v: 'relations', l: 'Nach Relevanz' },
         { v: 'name', l: 'A–Z' },
         { v: 'articles', l: 'Nach Artikelzahl' },
         { v: 'category', l: 'Nach Kategorie' },
-      ];
-      sortOptions.forEach(function (o) {
-        toolbar +=
+      ].forEach(function (o) {
+        h +=
           '<option value="' +
           o.v +
           '"' +
@@ -198,45 +191,159 @@
           o.l +
           '</option>';
       });
-      toolbar += '</select>';
-      toolbar += '<div class="entity-view-controls">';
-      toolbar +=
+      h += '</select>';
+      h += '<div class="entity-view-controls">';
+      h +=
         '<button class="entity-view-btn' +
         (viewMode === 'grid' ? ' active' : '') +
         '" data-view="grid" title="Kachelansicht">▦</button>';
-      toolbar +=
+      h +=
         '<button class="entity-view-btn' +
         (viewMode === 'cloud' ? ' active' : '') +
         '" data-view="cloud" title="Schlagwortwolke">☁</button>';
-      toolbar += '</div>';
-      toolbar += '</div>';
+      h += '</div>';
+      h += '</div>';
+      return h;
+    }
 
-      var filters = '<div class="entity-filters">';
-      filters +=
+    function _buildCatFilterBtn(cat) {
+      if (!catCounts[cat]) return '';
+      return (
+        '<button class="entity-filter-btn' +
+        (activeFilter === cat ? ' active' : '') +
+        '" data-cat="' +
+        cat +
+        '" style="' +
+        (activeFilter === cat
+          ? 'background:' + catColors[cat] + ';border-color:' + catColors[cat] + ';color:#fff'
+          : '') +
+        '">' +
+        catLabels[cat] +
+        ' <span class="entity-filter-count">' +
+        catCounts[cat] +
+        '</span></button>'
+      );
+    }
+
+    function _buildFilterHtml() {
+      var h = '<div class="entity-filters">';
+      h +=
         '<button class="entity-filter-btn' +
         (activeFilter === 'all' ? ' active' : '') +
         '" data-cat="all">Alle <span class="entity-filter-count">' +
         entities.length +
         '</span></button>';
       Object.keys(catLabels).forEach(function (cat) {
-        if (catCounts[cat]) {
-          filters +=
-            '<button class="entity-filter-btn' +
-            (activeFilter === cat ? ' active' : '') +
-            '" data-cat="' +
-            cat +
-            '" style="' +
-            (activeFilter === cat
-              ? 'background:' + catColors[cat] + ';border-color:' + catColors[cat] + ';color:#fff'
-              : '') +
-            '">' +
-            catLabels[cat] +
-            ' <span class="entity-filter-count">' +
-            catCounts[cat] +
-            '</span></button>';
-        }
+        h += _buildCatFilterBtn(cat);
       });
-      filters += '</div>';
+      h += '</div>';
+      return h;
+    }
+
+    function _buildCloudHtml(items) {
+      var h = '<div class="entity-tagcloud">';
+      items.forEach(function (e) {
+        var artCount = (e.articleCount && e.articleCount.low) || e.articles.length || 1;
+        var size = Math.max(0.8, Math.min(2.5, 0.8 + artCount * 0.15));
+        var slug = toSlug(e.name);
+        h +=
+          '<a href="/entity/' +
+          slug +
+          '/" class="entity-tagcloud-item" style="font-size:' +
+          size +
+          'rem;background:' +
+          (catColors[e.category] || '#667eea') +
+          '">' +
+          escapeHtml(e.name) +
+          '</a>';
+      });
+      h += '</div>';
+      return h;
+    }
+
+    function _buildEntityCardHtml(e) {
+      var cat = e.category || 'other';
+      var relatedCount = (e.relatedEntities || []).length;
+      var artCount = (e.articleCount && e.articleCount.low) || e.articles.length || 0;
+      var slug = toSlug(e.name);
+      var h =
+        '<div class="entity-card' +
+        '" data-cat="' +
+        cat +
+        '" data-slug="' +
+        slug +
+        '" data-tooltip="' +
+        escapeHtml(getTooltipHtml(e)) +
+        '">';
+      h +=
+        '<div class="entity-card-name"><a href="/entity/' +
+        slug +
+        '/">' +
+        escapeHtml(e.name) +
+        '</a></div>';
+      h += '<span class="entity-card-cat">' + escapeHtml(catLabels[cat] || cat) + '</span>';
+      h +=
+        '<div class="entity-card-meta">' +
+        relatedCount +
+        ' verwandte Begriffe · ' +
+        artCount +
+        ' Artikel</div>';
+      if (e.components && e.components.length > 0) {
+        h +=
+          '<div class="entity-card-components"><strong>Besteht aus:</strong> ' +
+          e.components.slice(0, 5).map(escapeHtml).join(', ') +
+          (e.components.length > 5 ? ' +' + (e.components.length - 5) : '') +
+          '</div>';
+      }
+      if (e.relatedEntities && e.relatedEntities.length > 0) {
+        h += '<div class="entity-card-related">';
+        e.relatedEntities.slice(0, 6).forEach(function (r) {
+          h += '<span class="entity-related-tag">' + escapeHtml(r.name) + '</span>';
+        });
+        if (e.relatedEntities.length > 6)
+          h += '<span class="entity-related-tag">+' + (e.relatedEntities.length - 6) + '</span>';
+        h += '</div>';
+      }
+      h += '</div>';
+      return h;
+    }
+
+    function _buildPaginationHtml(totalPages, currentPage) {
+      var html = '<div class="entity-pagination">';
+      html +=
+        '<button class="entity-page-btn" data-page="' +
+        (currentPage - 1) +
+        '"' +
+        (currentPage <= 1 ? ' disabled' : '') +
+        '>‹</button>';
+      var startPage = Math.max(1, currentPage - 3);
+      var endPage = Math.min(totalPages, currentPage + 3);
+      for (var p = startPage; p <= endPage; p++) {
+        html +=
+          '<button class="entity-page-btn' +
+          (p === currentPage ? ' active' : '') +
+          '" data-page="' +
+          p +
+          '">' +
+          p +
+          '</button>';
+      }
+      html +=
+        '<button class="entity-page-btn" data-page="' +
+        (currentPage + 1) +
+        '"' +
+        (currentPage >= totalPages ? ' disabled' : '') +
+        '>›</button>';
+      html += '</div>';
+      return html;
+    }
+
+    function _renderImpl() {
+      var filtered = filteredAndSorted();
+      var totalPages = Math.ceil(filtered.length / perPage);
+      if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
+      var start = (currentPage - 1) * perPage;
+      var pageItems = filtered.slice(start, start + perPage);
 
       var html = '<div class="entity-header">';
       html += '<h1>Wissensnetz</h1>';
@@ -248,27 +355,11 @@
         '<span><a href="/wissennetz/" class="entity-graph-top-link">Interaktiver Graph →</a></span>';
       html += '</div></div>';
 
-      html += toolbar;
-      html += filters;
+      html += _buildToolbarHtml();
+      html += _buildFilterHtml();
 
       if (viewMode === 'cloud') {
-        html += '<div class="entity-tagcloud">';
-        filtered.forEach(function (e) {
-          var artCount = (e.articleCount && e.articleCount.low) || e.articles.length || 1;
-          var size = Math.max(0.8, Math.min(2.5, 0.8 + artCount * 0.15));
-          var slug = toSlug(e.name);
-          html +=
-            '<a href="/entity/' +
-            slug +
-            '/" class="entity-tagcloud-item" style="font-size:' +
-            size +
-            'rem;background:' +
-            (catColors[e.category] || '#667eea') +
-            '">' +
-            escapeHtml(e.name) +
-            '</a>';
-        });
-        html += '</div>';
+        html += _buildCloudHtml(filtered);
       } else {
         html += '<div class="entity-grid">';
         if (pageItems.length === 0) {
@@ -276,123 +367,19 @@
             '<div class="empty-state"><div class="empty-state-icon">🔍</div><p>Keine Begriffe gefunden.</p></div>';
         } else {
           pageItems.forEach(function (e) {
-            var cat = e.category || 'other';
-            var relatedCount = (e.relatedEntities || []).length;
-            var _compCount = (e.components || []).length;
-            var artCount = (e.articleCount && e.articleCount.low) || e.articles.length || 0;
-            var slug = toSlug(e.name);
-            html +=
-              '<div class="entity-card' +
-              '" data-cat="' +
-              cat +
-              '" data-slug="' +
-              slug +
-              '" data-tooltip="' +
-              escapeHtml(getTooltipHtml(e)) +
-              '">';
-            html +=
-              '<div class="entity-card-name"><a href="/entity/' +
-              slug +
-              '/">' +
-              escapeHtml(e.name) +
-              '</a></div>';
-            html +=
-              '<span class="entity-card-cat">' + escapeHtml(catLabels[cat] || cat) + '</span>';
-
-            html +=
-              '<div class="entity-card-meta">' +
-              relatedCount +
-              ' verwandte Begriffe · ' +
-              artCount +
-              ' Artikel</div>';
-
-            if (e.components && e.components.length > 0) {
-              html +=
-                '<div class="entity-card-components"><strong>Besteht aus:</strong> ' +
-                e.components.slice(0, 5).map(escapeHtml).join(', ') +
-                (e.components.length > 5 ? ' +' + (e.components.length - 5) : '') +
-                '</div>';
-            }
-            if (e.relatedEntities && e.relatedEntities.length > 0) {
-              html += '<div class="entity-card-related">';
-              e.relatedEntities.slice(0, 6).forEach(function (r) {
-                html += '<span class="entity-related-tag">' + escapeHtml(r.name) + '</span>';
-              });
-              if (e.relatedEntities.length > 6)
-                html +=
-                  '<span class="entity-related-tag">+' + (e.relatedEntities.length - 6) + '</span>';
-              html += '</div>';
-            }
-            html += '</div>';
+            html += _buildEntityCardHtml(e);
           });
         }
         html += '</div>';
       }
 
       if (totalPages > 1) {
-        html += '<div class="entity-pagination">';
-        html +=
-          '<button class="entity-page-btn" data-page="' +
-          (currentPage - 1) +
-          '"' +
-          (currentPage <= 1 ? ' disabled' : '') +
-          '>‹</button>';
-        var startPage = Math.max(1, currentPage - 3);
-        var endPage = Math.min(totalPages, currentPage + 3);
-        for (var p = startPage; p <= endPage; p++) {
-          html +=
-            '<button class="entity-page-btn' +
-            (p === currentPage ? ' active' : '') +
-            '" data-page="' +
-            p +
-            '">' +
-            p +
-            '</button>';
-        }
-        html +=
-          '<button class="entity-page-btn" data-page="' +
-          (currentPage + 1) +
-          '"' +
-          (currentPage >= totalPages ? ' disabled' : '') +
-          '>›</button>';
-        html += '</div>';
+        html += _buildPaginationHtml(totalPages, currentPage);
       }
 
       app.innerHTML = html;
       _attachCommonEvents(totalPages);
-
-      var tooltipEl = null;
-      app.addEventListener('mouseover', function (ev) {
-        var card = ev.target.closest('.entity-card');
-        if (!card) return;
-        var tip = card.getAttribute('data-tooltip');
-        if (!tip) return;
-        if (!tooltipEl) {
-          tooltipEl = document.createElement('div');
-          tooltipEl.className = 'entity-tooltip';
-          document.body.appendChild(tooltipEl);
-        }
-        tooltipEl.innerHTML = tip;
-        tooltipEl.style.display = 'block';
-      });
-
-      app.addEventListener('mousemove', function (ev) {
-        if (!tooltipEl) return;
-        var x = ev.clientX + 12;
-        var y = ev.clientY + 12;
-        var tw = tooltipEl.offsetWidth;
-        var th = tooltipEl.offsetHeight;
-        if (x + tw > window.innerWidth - 10) x = ev.clientX - tw - 12;
-        if (y + th > window.innerHeight - 10) y = ev.clientY - th - 12;
-        tooltipEl.style.left = x + 'px';
-        tooltipEl.style.top = y + 'px';
-      });
-
-      app.addEventListener('mouseout', function (ev) {
-        var card = ev.target.closest('.entity-card');
-        if (!card) return;
-        if (tooltipEl) tooltipEl.style.display = 'none';
-      });
+      _attachTooltipEvents(app);
     }
 
     function _attachCommonEvents(tp) {
@@ -435,6 +422,41 @@
             _render();
           }
         });
+      });
+    }
+
+    function _attachTooltipEvents(app) {
+      var tooltipEl = null;
+      app.addEventListener('mouseover', function (ev) {
+        var card = ev.target.closest('.entity-card');
+        if (!card) return;
+        var tip = card.getAttribute('data-tooltip');
+        if (!tip) return;
+        if (!tooltipEl) {
+          tooltipEl = document.createElement('div');
+          tooltipEl.className = 'entity-tooltip';
+          document.body.appendChild(tooltipEl);
+        }
+        tooltipEl.innerHTML = tip;
+        tooltipEl.style.display = 'block';
+      });
+
+      app.addEventListener('mousemove', function (ev) {
+        if (!tooltipEl) return;
+        var x = ev.clientX + 12;
+        var y = ev.clientY + 12;
+        var tw = tooltipEl.offsetWidth;
+        var th = tooltipEl.offsetHeight;
+        if (x + tw > window.innerWidth - 10) x = ev.clientX - tw - 12;
+        if (y + th > window.innerHeight - 10) y = ev.clientY - th - 12;
+        tooltipEl.style.left = x + 'px';
+        tooltipEl.style.top = y + 'px';
+      });
+
+      app.addEventListener('mouseout', function (ev) {
+        var card = ev.target.closest('.entity-card');
+        if (!card) return;
+        if (tooltipEl) tooltipEl.style.display = 'none';
       });
     }
 
