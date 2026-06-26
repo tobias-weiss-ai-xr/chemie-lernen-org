@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 import neo4j from 'neo4j-driver';
 import fs from 'fs';
 import path from 'path';
+import ragHelpers from './_rag-helpers.cjs';
 
 const PORT = process.env.PORT || 3001;
 const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
@@ -493,7 +494,7 @@ const STOP_WORDS = new Set([
 const ragCache = new Map();
 const RAG_CACHE_MAX = 100;
 
-const { buildSystemPrompt, extractSourceNames } = require('./_rag-helpers.cjs');
+const { buildSystemPrompt, extractSourceNames } = ragHelpers;
 
 function getRAGContext(message) {
   // Extract meaningful keywords
