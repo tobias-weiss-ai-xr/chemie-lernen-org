@@ -2,6 +2,25 @@
 
 Hugo-based static site for interactive chemistry education (German, `de-de`). Theme: `hugo-cards`.
 
+## OpenSpec workflow (canonical for planning)
+
+This repo uses [OpenSpec](https://github.com/Fission-AI/OpenSpec) for
+specifications and change tracking. The canonical workflow is:
+
+- **Main specs** live in `openspec/specs/<capability>/spec.md`
+- **Active changes** live in `openspec/changes/<change-name>/`
+- **Archived changes** live in `openspec/changes/archive/<change-name>/`
+- **Index** in `openspec/SPECS_INDEX.md`
+
+Before starting any non-trivial work, check the index and either:
+
+- Create a new change: `openspec change new <name>`
+- Or update the relevant spec directly (then make a change to document it)
+
+The legacy `.omo/`, `.opencode/`, `.hermes/`, `.sisyphus/` planning
+directories are **archived** under `openspec/archive/` and should not
+be used for new planning.
+
 ## Commands
 
 ```bash
@@ -63,16 +82,16 @@ Most JS files use `sourceType: 'script'` (global scope, `<script>` tags). Only T
 
 ### Key directories
 
-| Directory | Purpose |
-|-----------|---------|
-| `myhugoapp/static/js/` | All JavaScript (calculators, utils, visualizations, i18n, analytics) |
-| `myhugoapp/static/js/calculators/` | Core calculator logic (stoichiometry, practice generators) |
-| `myhugoapp/static/js/utils/` | Shared chemistry utilities |
-| `myhugoapp/static/js/i18n/` | Internationalization |
-| `myhugoapp/static/js/visualization/` | 3D/periodic table visualizations |
-| `myhugoapp/layouts/_default/` | Hugo templates — one `.html` per calculator/page |
-| `myhugoapp/layouts/partials/` | Shared template partials (head, header, footer, quiz) |
-| `tests/` | Jest unit tests (`*.test.js`) + Playwright E2E tests (`*.spec.js`) |
+| Directory                            | Purpose                                                              |
+| ------------------------------------ | -------------------------------------------------------------------- |
+| `myhugoapp/static/js/`               | All JavaScript (calculators, utils, visualizations, i18n, analytics) |
+| `myhugoapp/static/js/calculators/`   | Core calculator logic (stoichiometry, practice generators)           |
+| `myhugoapp/static/js/utils/`         | Shared chemistry utilities                                           |
+| `myhugoapp/static/js/i18n/`          | Internationalization                                                 |
+| `myhugoapp/static/js/visualization/` | 3D/periodic table visualizations                                     |
+| `myhugoapp/layouts/_default/`        | Hugo templates — one `.html` per calculator/page                     |
+| `myhugoapp/layouts/partials/`        | Shared template partials (head, header, footer, quiz)                |
+| `tests/`                             | Jest unit tests (`*.test.js`) + Playwright E2E tests (`*.spec.js`)   |
 
 ## Testing
 
