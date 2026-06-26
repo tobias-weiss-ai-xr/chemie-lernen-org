@@ -4,21 +4,24 @@ Last updated: 2026-06-26
 
 ## Main capabilities (specs/)
 
-| Capability                      | Spec                             | Status | Owners   | Last change                   |
-| ------------------------------- | -------------------------------- | ------ | -------- | ----------------------------- |
-| Entity Knowledge Graph          | `entity-knowledge-graph/spec.md` | Active | Sisyphus | sprint-8b-neo4j-data          |
-| AI Assistant (KI-Assistent)     | `ai-assistant/spec.md`           | Active | Sisyphus | sprint-8c-rag                 |
-| WCAG 2.1 AA Compliance          | `a11y-compliance/spec.md`        | Active | Sisyphus | sprint-7-wcag-a11y            |
-| Wissensnetz Full-Graph          | `wissensnetz-graph/spec.md`      | Active | Sisyphus | sprint-8a-d3-ego-graph        |
-| Lehrplan + Didaktik (curricula) | `lehrplan-curriculum/spec.md`    | Active | Sisyphus | (proposed — not yet imported) |
+| Capability                      | Spec                               | Status | Owners   | Last change                                   |
+| ------------------------------- | ---------------------------------- | ------ | -------- | --------------------------------------------- |
+| Entity Knowledge Graph          | `entity-knowledge-graph/spec.md`   | Active | Sisyphus | sprint-8b-neo4j-data                          |
+| AI Assistant (KI-Assistent)     | `ai-assistant/spec.md`             | Active | Sisyphus | sprint-8c-rag                                 |
+| WCAG 2.1 AA Compliance          | `a11y-compliance/spec.md`          | Active | Sisyphus | sprint-7-wcag-a11y                            |
+| Wissensnetz Full-Graph          | `wissensnetz-graph/spec.md`        | Active | Sisyphus | sprint-8a-d3-ego-graph                        |
+| Central KG Architecture         | `central-kg-architecture/spec.md`  | Active | Sisyphus | NEW (2026-06-26) — governs all subset queries |
+| Lehrplan + Didaktik (curricula) | `lehrplan-curriculum/spec.md`      | Active | Sisyphus | (proposed — not yet imported)                 |
+| Modulhandbuch (universities)    | `modulhandbuch-university/spec.md` | Active | Sisyphus | (proposed — Marburg stub, no data yet)        |
 
 ## Active changes (`changes/`)
 
-| Change                           | Status      | Goal                                                                                                                                     |
-| -------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `open-spec-coverage`             | In progress | Add 5 missing main specs (calculators, quiz, 3d-visualizations, themenbereiche, pwa)                                                     |
-| `deploy-observability`           | Proposal    | Add API smoke tests to deploy workflow (kg-stats, health, chat)                                                                          |
-| `extend-entity-kg-with-lehrplan` | Proposal    | Import 16 state curricula + 5 KMK guidelines into Neo4j; clean ~683k code-analysis pollution nodes (user consent required per AGENTS.md) |
+| Change                              | Status      | Goal                                                                                                                                |
+| ----------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `open-spec-coverage`                | In progress | Add 5 missing main specs (calculators, quiz, 3d-visualizations, themenbereiche, pwa)                                                |
+| `deploy-observability`              | Proposal    | Add API smoke tests to deploy workflow (kg-stats, health, chat)                                                                     |
+| `extend-entity-kg-with-lehrplan`    | Proposal    | Import 16 state curricula + 5 KMK guidelines into Neo4j; all queries scoped via `subsetMatch('chemie')` per central-kg-architecture |
+| `integrate-global-modulhandbuecher` | Proposal    | Implement Marburg reference scraper + 9 more top universities; new modulhandbuch subset of the central KG                           |
 
 ## Archived changes (`changes/archive/`)
 

@@ -2,34 +2,45 @@
 
 **Status:** Active (proposal stage)
 **Spec impact:** Extends `entity-knowledge-graph/spec.md` with
-curriculum/didaktik data; new main spec `lehrplan-curriculum/spec.md`
+curriculum/didaktik data; new main spec `lehrplan-curriculum/spec.md`;
+complies with `central-kg-architecture/spec.md` REQ-CKG-2, REQ-CKG-3
 
 ## Why
 
-The Neo4j `chemie` database has 16k legitimate chemistry nodes
+The central Neo4j `chemie` database has 16k chemistry nodes
 (14,474 :Entity, 1,405 :Document, 171 :Tag, 90 :Content) but is
 missing the curricula + didaktik data. The 16 state curricula
 JSON files in `myhugoapp/data/curricula/` (21k learning
 objectives, 12.8 MB of cross-links) and the 5 KMK guidelines in
 `myhugoapp/data/didaktik/didaktik.json` are NOT in Neo4j.
 
-Additionally, the Neo4j is polluted with ~683k code-analysis nodes
-(Variables, Parameters, Functions, etc.) from a separate CI/crawler
-system. This pollution must be cleaned up before the curricula
-import to avoid mixing data.
+The `chemie` DB is the user's **central knowledge graph for
+everything** (see `AGENTS.md` §"Central Knowledge Graph
+architecture" and `central-kg-architecture/spec.md`). It contains
+the chemie subset + a code-analysis subset (~683k nodes) and will
+contain more subsets (modulhandbücher, etc.). All queries must
+scope to their subset.
 
 The new spec `lehrplan-curriculum/spec.md` defines the target
 schema. This change implements it.
 
 ## What changed (planned)
 
-1. **Cleanup phase** (per AGENTS.md safety rules, requires user
-   consent):
-   - Identify all non-chemistry nodes by label
-   - Export a backup of the code-analysis data (so the CI/crawler
-     system doesn't lose it)
-   - Delete the code-analysis nodes in a targeted, scoped query
-   - Verify chemie data is intact
+1. **Scope-filter convention** (NEW, per user decision 2026-06-26):
+   - All queries in scripts, API, and tests MUST filter to the
+     chemie label set:
+     `Entity | Document | Tag | Content | Curriculum | Topic |
+SubTopic | LearningObjective | DidacticGuideline |
+GuidelineSection`
+   - Centralize as a Cypher `MATCH (n) WHERE n:Entity OR n:Document
+OR ...` pattern in a shared helper
+   - Add `scripts/_neo4j-chemie-filter.cjs` (or `.mjs`) with:
+     - `CHEMIE_LABELS` array
+     - `chemieMatch()` Cypher snippet generator
+     - `chemieMatchParam()` for use in `WHERE` clauses
+   - Refactor existing queries in `api/server.js` to use the helper
+   - Tests in `tests/neo4j-scope-filter.test.js` assert the helper
+     is used in all chemie queries
 
 2. **Import phase**:
    - New `scripts/import-didaktik.mjs` — reads
@@ -76,16 +87,16 @@ schema. This change implements it.
      checks (REQ-LP-4, REQ-LP-5, REQ-LP-8)
    - Add 5 endpoint tests for the new API routes
    - Add a Playwright test for `/lehrplaene/by/`
+   - Add `tests/neo4j-scope-filter.test.js` to assert scope filter
+     is applied
 
 ## Tasks
 
-- [ ] **ELP-1** User consent: confirm cleanup of code-analysis
-      pollution (per AGENTS.md safety rules)
-- [ ] **ELP-2** Export backup of code-analysis data before deletion
-- [ ] **ELP-3** Delete code-analysis nodes (Variables, Parameters,
-      Functions, Classes, Files, Modules, Interfaces, Directories,
-      Repositories, Macros, Structs, Enums, Episodic, no-label)
-- [ ] **ELP-4** Verify chemie data is intact after cleanup
+- [ ] **ELP-1** Create `scripts/_neo4j-chemie-filter.mjs` with
+      `CHEMIE_LABELS` + `chemieMatch()` helper
+- [ ] **ELP-2** Refactor `api/server.js` queries to use the helper
+- [ ] **ELP-3** Refactor `scripts/export-kg-data.mjs` to use the helper
+- [ ] **ELP-4** Add `tests/neo4j-scope-filter.test.js`
 - [ ] **ELP-5** Write `scripts/import-didaktik.mjs` for the 5 KMK
       guidelines
 - [ ] **ELP-6** Extend `scripts/import-curricula.mjs` for the 16
@@ -108,4 +119,4 @@ schema. This change implements it.
 
 ## Status
 
-In progress (proposal stage, awaiting user decision on cleanup).
+In progress (proposal stage).

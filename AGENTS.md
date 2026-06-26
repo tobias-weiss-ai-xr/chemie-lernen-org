@@ -2,6 +2,34 @@
 
 Hugo-based static site for interactive chemistry education (German, `de-de`). Theme: `hugo-cards`.
 
+## 🧠 Central Knowledge Graph architecture (CRITICAL — memorize)
+
+The Neo4j `chemie` database (`bolt://chemie-neo4j:7687`, database name
+`chemie`) is **the user's central knowledge graph for everything** —
+NOT a chemie-specific database. The chemie data is one of many
+subsets living in the same DB. The ~683k code-analysis nodes
+(Variables, Parameters, Functions, Classes, etc.) are not pollution;
+they are another legitimate subset of the central KG.
+
+**All queries MUST scope to a subset via labels or properties.**
+Never assume "this database is for X". Never propose to delete nodes
+from the central KG without explicit user consent AND a backup plan.
+
+Current subsets (by label):
+
+- **Chemie subset**: `Entity`, `Document`, `Tag`, `Content` (existing)
+  - `Curriculum`, `Topic`, `SubTopic`, `LearningObjective` (planned)
+  - `DidacticGuideline`, `GuidelineSection` (planned)
+- **Code-analysis subset**: `Variable`, `Parameter`, `Function`,
+  `Class`, `File`, `Module`, `Interface`, `Directory`, `Repository`,
+  `Macro`, `Struct`, `Enum`, `Episodic` (~683k nodes)
+- **Modulhandbuch subset (planned)**: `University`, `Module`,
+  `ModuleOffering`, `ECTS`, etc.
+
+Subset selectors are centralized in
+`scripts/_neo4j-subset-filter.mjs` (formerly `_neo4j-chemie-filter.mjs`)
+and used by all consumers (api/server.js, scripts/, tests/).
+
 ## OpenSpec workflow (canonical for planning)
 
 This repo uses [OpenSpec](https://github.com/Fission-AI/OpenSpec) for
