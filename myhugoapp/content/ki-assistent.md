@@ -17,7 +17,7 @@ Der KI-Assistent beantwortet Ihre Chemie-Fragen mit Multi-Turn-Kontext und echte
 
 ### Funktionen
 
-- **Echter LLM-Chat:** Multi-Turn-Konversation mit echtem Sprachmodell (Gemini 2.5 Flash)
+- **Echter LLM-Chat:** Multi-Turn-Konversation mit echtem Sprachmodell (gemma-4 via LiteLLM)
 - **Multi-Turn-Kontext:** Behält Gesprächsverlauf im Gedächtnis für kontextbezogene Antworten
 - **Wissensnetz-Integration:** Fallback zu unserem Wissensnetz bei speziellen Fragen
 - **Quellenangaben:** Antworten mit Verweisen auf die passenden Seiten
@@ -25,21 +25,21 @@ Der KI-Assistent beantwortet Ihre Chemie-Fragen mit Multi-Turn-Kontext und echte
 
 ### Abgedeckte Themenbereiche
 
-| Kategorie | Themen | Tools |
-|-----------|--------|-------|
-| **Allgemeine Chemie** | Molare Masse, Stöchiometrie, Reaktionsgleichungen | Molare-Masse-Rechner, Stöchiometrie-Rechner |
-| **Periodensystem** | Elemente, Atomradius, Ionisierungsenergie, EN | 3D-PSE, PSE-VR, Periodische Trends |
-| **Säuren & Basen** | pH-Wert, Puffer, Titration, Indikatoren | pH-Rechner, Titrationssimulator, Säure-Base-GG |
-| **Redox & Elektrochemie** | Oxidation/Reduktion, Galvanische Zellen, Elektrolyse | Redox-Titrationen, Potenzial-Rechner |
-| **Thermodynamik** | Wärmeleitung, Konvektion, Reaktionsenthalpie | Wärmeleitung, Konvektion, Hess-Rechner |
-| **Gasgesetze** | Boyle-Mariotte, Ideales Gas, Atmosphärendruck | Gasgesetz-Simulator, Torricelli |
-| **Kinetik & Gleichgewicht** | Reaktionsgeschwindigkeit, MWG, Le Chatelier | Kinetik-Simulator, Gleichgewichtsrechner |
-| **Atombau & Orbitale** | Energieniveaus, Molekülorbitale, Bindungspotential | Atomenergieniveaus, Molekülorbitale |
-| **Lösungen & Konzentration** | Molarität, Verdünnung, Löslichkeit | Lösungsrechner, Konzentrationsumrechner |
-| **Spektroskopie** | IR, NMR, Massenspektrum | Spektroskopie-Simulator |
-| **Labor & Sicherheit** | GHS-Piktogramme, Laborgeräte | Gefahrstoffkennzeichnung, Laborgeräte-Explorer |
-| **Übungen & Lernpfade** | Lückentexte, Arbeitsblätter, Lernpfad | Übungsgenerator, Aufgabensammlung |
-| **Lehrkräfte** | Klassencockpit, Unterrichtsmaterial | Klassencockpit, Lehrenden-Bereich |
+| Kategorie                    | Themen                                               | Tools                                          |
+| ---------------------------- | ---------------------------------------------------- | ---------------------------------------------- |
+| **Allgemeine Chemie**        | Molare Masse, Stöchiometrie, Reaktionsgleichungen    | Molare-Masse-Rechner, Stöchiometrie-Rechner    |
+| **Periodensystem**           | Elemente, Atomradius, Ionisierungsenergie, EN        | 3D-PSE, PSE-VR, Periodische Trends             |
+| **Säuren & Basen**           | pH-Wert, Puffer, Titration, Indikatoren              | pH-Rechner, Titrationssimulator, Säure-Base-GG |
+| **Redox & Elektrochemie**    | Oxidation/Reduktion, Galvanische Zellen, Elektrolyse | Redox-Titrationen, Potenzial-Rechner           |
+| **Thermodynamik**            | Wärmeleitung, Konvektion, Reaktionsenthalpie         | Wärmeleitung, Konvektion, Hess-Rechner         |
+| **Gasgesetze**               | Boyle-Mariotte, Ideales Gas, Atmosphärendruck        | Gasgesetz-Simulator, Torricelli                |
+| **Kinetik & Gleichgewicht**  | Reaktionsgeschwindigkeit, MWG, Le Chatelier          | Kinetik-Simulator, Gleichgewichtsrechner       |
+| **Atombau & Orbitale**       | Energieniveaus, Molekülorbitale, Bindungspotential   | Atomenergieniveaus, Molekülorbitale            |
+| **Lösungen & Konzentration** | Molarität, Verdünnung, Löslichkeit                   | Lösungsrechner, Konzentrationsumrechner        |
+| **Spektroskopie**            | IR, NMR, Massenspektrum                              | Spektroskopie-Simulator                        |
+| **Labor & Sicherheit**       | GHS-Piktogramme, Laborgeräte                         | Gefahrstoffkennzeichnung, Laborgeräte-Explorer |
+| **Übungen & Lernpfade**      | Lückentexte, Arbeitsblätter, Lernpfad                | Übungsgenerator, Aufgabensammlung              |
+| **Lehrkräfte**               | Klassencockpit, Unterrichtsmaterial                  | Klassencockpit, Lehrenden-Bereich              |
 
 ### Tipps zur Nutzung
 
@@ -51,7 +51,7 @@ Der KI-Assistent beantwortet Ihre Chemie-Fragen mit Multi-Turn-Kontext und echte
 ### Häufig gestellte Fragen (FAQ)
 
 **Wie funktioniert der KI-Assistent?**  
-Der Assistent kombiniert echte LLM-Sprachverarbeitung (Gemini 2.5 Flash) mit unserem Wissensnetz. Er beantwortet Fragen mit natürlichem Sprachverständnis und kann Gesprächsverläufe speichern für kontextbezogene Antworten.
+Der Assistent kombiniert echte LLM-Sprachverarbeitung (gemma-4 via LiteLLM) mit unserem Wissensnetz. Er beantwortet Fragen mit natürlichem Sprachverständnis und kann Gesprächsverläufe speichern für kontextbezogene Antworten.
 
 **Welche Fragen kann der Assistent beantworten?**  
 Der Assistent beantwortet Fragen zu allen Chemie-Themen — von grundlegenden Konzepten (Atombau, Periodensystem) bis zu fortgeschrittenen Themen (Redox-Titrationen, Spektroskopie) mit natürlichem Sprachfluss.

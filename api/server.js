@@ -155,7 +155,7 @@ app.post('/api/chat', async (req, res) => {
 
   // Generate or get session ID (handles cookie)
   const sessionId = getSessionId(req, res);
-  const { message } = req.body;
+  const { message, currentEntity } = req.body;
   if (!message || typeof message !== 'string' || message.length > 1000) {
     return res.status(400).json({ error: 'Invalid message' });
   }
@@ -167,23 +167,17 @@ app.post('/api/chat', async (req, res) => {
     session.messages.push({ role: 'user', content: message });
     cleanupSessionMessages(session);
 
-    // RAG: build curriculum context from Neo4j (or fallback)
     var ragContext = await getRAGContext(message);
     var ragSources = [];
     if (ragContext) {
       ragSources = extractSourceNames(ragContext);
     }
 
-    var systemPrompt =
-      'Du bist ein hilfreicher Chemie-Assistent für Schüler (Klasse 8-13) auf chemie-lernen.org. ';
-    systemPrompt += 'Antworte präzise, ausführlich und auf Deutsch. ';
-    systemPrompt += 'Beziehe dich auf chemische Konzepte, Formeln und Gesetze. ';
-    systemPrompt += 'Erkläre Zusammenhänge gründlich, wenn es der Frage hilft. ';
-    systemPrompt += 'Wenn du etwas nicht weißt, sage es ehrlich. ';
-    systemPrompt += 'Behandle Kontext aus vorherigen Fragen mit.';
-    if (ragContext) {
-      systemPrompt += '\n\nKontext aus dem Wissensgraph:\n' + ragContext;
-    }
+    var systemPrompt = buildSystemPrompt({
+      lang: req.headers['accept-language'],
+      ragContext: ragContext,
+      currentEntity: currentEntity,
+    });
 
     const conversationHistory = [{ role: 'system', content: systemPrompt }, ...session.messages];
 
@@ -499,6 +493,8 @@ const STOP_WORDS = new Set([
 const ragCache = new Map();
 const RAG_CACHE_MAX = 100;
 
+const { buildSystemPrompt, extractSourceNames } = require('./_rag-helpers');
+
 function getRAGContext(message) {
   // Extract meaningful keywords
   var tokens = message
@@ -553,14 +549,28 @@ async function queryNeo4jRAG(keywords, cacheKey) {
     var result;
     try {
       result = await session.run(
-        'MATCH (e:Entity) WHERE ANY(kw IN $keywords WHERE e.name CONTAINS kw) ' +
-          'OPTIONAL MATCH (e)-[r:RELATED_TO|ERFUELLT]-(related:Entity) ' +
-          'RETURN e.name as name, e.kategorie as category, ' +
-          'e.state as state, e.grade as grade, ' +
-          'e.school_type as school_type, e.objective_count as objective_count, ' +
-          'collect(DISTINCT related.name) as relatedEntities ' +
-          'ORDER BY e.name ' +
-          'LIMIT 30',
+        'MATCH (e:Entity) ' +
+          'WHERE ANY(kw IN $keywords WHERE toLower(e.name) CONTAINS kw ' +
+          '   OR toLower(coalesce(e.description, "")) CONTAINS kw ' +
+          '   OR ANY(t IN coalesce(e.tags, []) WHERE toLower(t) CONTAINS kw)) ' +
+          'WITH e, ' +
+          '  [kw IN $keywords WHERE toLower(e.name) = kw | 10.0] + ' +
+          '  [kw IN $keywords WHERE toLower(e.name) STARTS WITH kw AND toLower(e.name) <> kw | 6.0] + ' +
+          '  [kw IN $keywords WHERE toLower(e.name) CONTAINS kw AND toLower(e.name) <> kw AND NOT toLower(e.name) STARTS WITH kw | 3.0] + ' +
+          '  [kw IN $keywords WHERE toLower(coalesce(e.description, "")) CONTAINS kw | 2.0] + ' +
+          '  [kw IN $keywords | 0.0] AS scoreParts ' +
+          'WITH e, REDUCE(s = 0.0, x IN scoreParts | s + x) AS score ' +
+          'OPTIONAL MATCH (e)-[r:RELATED_TO|ERFUELLT|BESTEHT_AUS]-(related:Entity) ' +
+          'WITH e, score, ' +
+          '  collect(DISTINCT related.name) AS relatedEntities ' +
+          'RETURN e.name AS name, e.kategorie AS category, ' +
+          '  e.state AS state, e.grade AS grade, ' +
+          '  e.school_type AS school_type, ' +
+          '  coalesce(e.objective_count, 0) AS objective_count, ' +
+          '  e.description AS description, ' +
+          '  relatedEntities, score ' +
+          'ORDER BY score DESC, e.name ' +
+          'LIMIT 10',
         { keywords: keywords }
       );
     } finally {
@@ -581,6 +591,8 @@ async function queryNeo4jRAG(keywords, cacheKey) {
       if (seen[name]) continue;
       seen[name] = true;
       var parts = ['- ' + name];
+      var score = rec.get('score');
+      if (typeof score === 'number') parts.push('Score: ' + score.toFixed(1));
       var cat = rec.get('category');
       if (cat) parts.push('Kategorie: ' + cat);
       var state = rec.get('state');
@@ -590,6 +602,11 @@ async function queryNeo4jRAG(keywords, cacheKey) {
       if (state)
         parts.push(state + (grade ? ', Klasse ' + grade : '') + (school ? ', ' + school : ''));
       if (objCount) parts.push(objCount.toNumber() + ' Lernziele');
+      var desc = rec.get('description');
+      if (desc && typeof desc === 'string' && desc.length > 0) {
+        var shortDesc = desc.length > 200 ? desc.slice(0, 197) + '...' : desc;
+        parts.push('Definition: ' + shortDesc);
+      }
       var related = rec.get('relatedEntities') || [];
       var filteredRelated = related.filter(function (n) {
         return n !== null && n !== name;
@@ -607,7 +624,8 @@ async function queryNeo4jRAG(keywords, cacheKey) {
     }
 
     var context =
-      'Folgende Entitäten aus dem Chemie-Wissensgraph sind relevant:\n' + lines.join('\n');
+      'Folgende Entitäten aus dem Chemie-Wissensgraph sind relevant (sortiert nach Relevanz-Score):\n' +
+      lines.join('\n');
     if (ragCache.size >= RAG_CACHE_MAX) ragCache.clear();
     if (cacheKey) ragCache.set(cacheKey, context);
     return context;
@@ -677,40 +695,6 @@ setInterval(function () {
     ragCache.clear();
   }
 }, 60000);
-
-/**
- * Extract entity names from RAG context string for source chips in chat UI.
- * Parses format: "- Name | Kategorie: category | State..."
- */
-function extractSourceNames(contextStr) {
-  if (!contextStr) return [];
-  var lines = contextStr.split('\n');
-  var sources = [];
-  var seenNames = {};
-  for (var i = 0; i < lines.length; i++) {
-    var line = lines[i];
-    if (line.indexOf('- ') === 0) {
-      var parts = line.slice(2).split(' | ');
-      if (parts.length > 0) {
-        var name = parts[0].trim();
-        if (name && !seenNames[name]) {
-          seenNames[name] = true;
-          var source = { name: name, nameDisplay: name.replace(/-/g, ' ') };
-          for (var p = 1; p < parts.length; p++) {
-            var part = parts[p].trim();
-            if (part.indexOf('Kategorie: ') === 0) {
-              source.category = part.slice('Kategorie: '.length);
-            } else if (part.indexOf('Klasse ') === 0) {
-              source.grade = part;
-            }
-          }
-          sources.push(source);
-        }
-      }
-    }
-  }
-  return sources;
-}
 
 /**
  * Fallback data used when Neo4j is unreachable.

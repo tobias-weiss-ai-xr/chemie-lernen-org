@@ -1,0 +1,100 @@
+/**
+ * Pure helpers extracted from api/server.js for unit testing.
+ * Keep this in sync with the corresponding logic in server.js.
+ */
+
+var SYSTEM_PROMPTS = {
+  de: [
+    'Du bist ein hilfreicher Chemie-Assistent für Schüler (Klasse 8-13) auf chemie-lernen.org.',
+    'Antworte präzise, ausführlich und auf Deutsch.',
+    'Beziehe dich auf chemische Konzepte, Formeln und Gesetze.',
+    'Erkläre Zusammenhänge gründlich, wenn es der Frage hilft.',
+    'Wenn du etwas nicht weißt, sage es ehrlich.',
+    'Behandle Kontext aus vorherigen Fragen mit.',
+    'Wenn du Quellen aus dem Kontext verwendest, nenne sie namentlich im Text (z.B. "Laut dem Wissensgraph zu Ammoniak...").',
+  ].join(' '),
+  en: [
+    'You are a helpful chemistry assistant for students (grades 8-13) on chemie-lernen.org.',
+    'Respond precisely, thoroughly, and in English.',
+    'Refer to chemical concepts, formulas, and laws.',
+    'Explain relationships in depth when it helps the question.',
+    "If you don't know something, say so honestly.",
+    'Treat context from previous questions as part of the conversation.',
+    'When using sources from the context, name them explicitly in the text (e.g. "According to the knowledge graph entry on Ammonia...").',
+  ].join(' '),
+};
+
+function pickSystemPromptLang(acceptLanguageHeader) {
+  if (!acceptLanguageHeader || typeof acceptLanguageHeader !== 'string') return 'de';
+  var primary = acceptLanguageHeader.split(',')[0].trim().toLowerCase();
+  if (primary.indexOf('en') === 0) return 'en';
+  return 'de';
+}
+
+function buildSystemPrompt(opts) {
+  opts = opts || {};
+  var lang = pickSystemPromptLang(opts.lang);
+  var parts = [SYSTEM_PROMPTS[lang] || SYSTEM_PROMPTS.de];
+  if (opts.currentEntity && typeof opts.currentEntity === 'string') {
+    var safe = opts.currentEntity.slice(0, 120).replace(/[\r\n]+/g, ' ');
+    if (lang === 'en') {
+      parts.push(
+        'The user is currently reading the page about "' +
+          safe +
+          '". Prefer to relate your answer to that entity.'
+      );
+    } else {
+      parts.push(
+        'Du liest gerade die Seite zu „' + safe + '". Beziehe dich bevorzugt auf diesen Begriff.'
+      );
+    }
+  }
+  if (opts.ragContext) {
+    if (lang === 'en') parts.push('\n\nContext from the knowledge graph:\n' + opts.ragContext);
+    else parts.push('\n\nKontext aus dem Wissensgraph:\n' + opts.ragContext);
+  }
+  return parts.join(' ');
+}
+
+function extractSourceNames(contextStr) {
+  if (!contextStr) return [];
+  var lines = contextStr.split('\n');
+  var sources = [];
+  var seenNames = {};
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i];
+    if (line.indexOf('- ') === 0) {
+      var parts = line.slice(2).split(' | ');
+      if (parts.length > 0) {
+        var name = parts[0].trim();
+        if (name && !seenNames[name]) {
+          seenNames[name] = true;
+          var source = { name: name, nameDisplay: name.replace(/-/g, ' ') };
+          for (var p = 1; p < parts.length; p++) {
+            var part = parts[p].trim();
+            if (part.indexOf('Kategorie: ') === 0) {
+              source.category = part.slice('Kategorie: '.length);
+            } else if (part.indexOf('Score: ') === 0) {
+              var scoreStr = part.slice('Score: '.length);
+              var parsed = parseFloat(scoreStr);
+              if (!isNaN(parsed)) source.score = parsed;
+            } else if (part.indexOf('Klasse ') === 0) {
+              source.grade = part;
+            } else if (part.indexOf('Definition: ') === 0) {
+              source.definition = part.slice('Definition: '.length);
+            }
+          }
+          sources.push(source);
+        }
+      }
+    }
+  }
+  return sources;
+}
+
+module.exports = {
+  SYSTEM_PROMPTS: SYSTEM_PROMPTS,
+  pickSystemPromptLang: pickSystemPromptLang,
+  buildSystemPrompt: buildSystemPrompt,
+  extractSourceNames: extractSourceNames,
+};

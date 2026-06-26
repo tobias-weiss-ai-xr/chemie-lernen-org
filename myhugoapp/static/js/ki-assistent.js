@@ -22,8 +22,14 @@
       /(href|src)\s*=\s*("javascript:[^"]*"|'javascript:[^']*'|javascript:[^\s>]+)/gi,
       '$1="#"'
     );
-    html = html.replace(/\[([^\]]+)\]\(((?:https?:\/\/|\/)[^)\s]+)\)/gi, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-    html = html.replace(/(^|[\s>])(https?:\/\/[^\s<]{1,250})(?=[\s<]|$)/gi, '$1<a href="$2" target="_blank" rel="noopener">$2</a>');
+    html = html.replace(
+      /\[([^\]]+)\]\(((?:https?:\/\/|\/)[^)\s]+)\)/gi,
+      '<a href="$2" target="_blank" rel="noopener">$1</a>'
+    );
+    html = html.replace(
+      /(^|[\s>])(https?:\/\/[^\s<]{1,250})(?=[\s<]|$)/gi,
+      '$1<a href="$2" target="_blank" rel="noopener">$2</a>'
+    );
     return html;
   }
 
@@ -247,6 +253,8 @@
     if (currentSession) {
       requestBody.sessionId = currentSession.sessionId;
     }
+    var pageEntity = getCurrentEntity();
+    if (pageEntity) requestBody.currentEntity = pageEntity;
 
     var container = document.getElementById('chat-messages');
     var botMessageDiv = document.createElement('div');
@@ -442,52 +450,12 @@
     });
   }
 
-  function _askAI(query, timeoutMs) {
-    timeoutMs = timeoutMs || 30000;
-    return new Promise(function (resolve) {
-      var controller = new AbortController();
-      var timer = setTimeout(function () {
-        controller.abort();
-      }, timeoutMs);
-
-      var requestBody = { message: query };
-      if (currentSession) {
-        requestBody.sessionId = currentSession.sessionId;
-      }
-
-      fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(requestBody),
-        signal: controller.signal,
-      })
-        .then(function (r) {
-          return r.json();
-        })
-        .then(function (data) {
-          clearTimeout(timer);
-          if (data.sessionId && currentSession) {
-            currentSession.sessionId = data.sessionId;
-            currentSession.messageCount = data.messageCount;
-            localStorage.setItem('chemie_session', JSON.stringify(currentSession));
-          }
-          if (data.reply) {
-            resolve({
-              reply: data.reply,
-              remaining: data.remaining,
-              sessionId: data.sessionId,
-              messageCount: data.messageCount,
-            });
-          } else {
-            resolve(null);
-          }
-        })
-        .catch(function (error) {
-          clearTimeout(timer);
-          console.error('Chat API error:', error);
-          resolve(null);
-        });
-    });
+  function getCurrentEntity() {
+    var app = document.getElementById('entity-app');
+    if (app && app.dataset && app.dataset.entity) return app.dataset.entity;
+    var ego = document.getElementById('entity-ego-graph');
+    if (ego && ego.dataset && ego.dataset.entity) return ego.dataset.entity;
+    return null;
   }
 
   var followUpSuggestions = [
@@ -722,26 +690,80 @@
 
   function renderSourceChips(sources, botMsgDiv) {
     if (!sources || sources.length === 0) return;
+    var topSources = sources.slice(0, 5);
+    var hasMore = sources.length > topSources.length;
     var sourcesDiv = document.createElement('div');
     sourcesDiv.className = 'message-sources';
     sourcesDiv.innerHTML =
       '<div class="sources-title">Quellen aus dem Wissensgraph</div><div class="sources-chips">';
-    for (var i = 0; i < sources.length; i++) {
-      var s = sources[i];
+    for (var i = 0; i < topSources.length; i++) {
+      var s = topSources[i];
       var chipClass = 'source-chip';
       if (s.category === 'lehrplan') chipClass += ' source-curriculum';
       else if (s.category === 'didaktik') chipClass += ' source-didaktik';
+      var scoreAttr = '';
+      if (typeof s.score === 'number' && !isNaN(s.score)) {
+        scoreAttr =
+          ' title="Relevanz: ' +
+          escapeHtml(s.score.toFixed(1)) +
+          '" data-score="' +
+          escapeHtml(s.score.toFixed(1)) +
+          '"';
+        chipClass += ' source-scored';
+      }
       sourcesDiv.innerHTML +=
         '<a href="/entity/' +
         slugify(s.name) +
         '/" class="' +
         chipClass +
-        '">' +
+        '"' +
+        scoreAttr +
+        '>' +
         escapeHtml(s.nameDisplay || s.name) +
         (s.category ? '<span class="source-cat">' + s.category + '</span>' : '') +
         '</a>';
     }
     sourcesDiv.innerHTML += '</div>';
+    if (hasMore) {
+      var moreBtn = document.createElement('button');
+      moreBtn.type = 'button';
+      moreBtn.className = 'source-more-btn';
+      moreBtn.textContent = 'Mehr anzeigen (' + (sources.length - topSources.length) + ' weitere)';
+      moreBtn.style.cssText =
+        'display:inline-block;margin-top:0.4rem;background:transparent;border:none;color:#667eea;cursor:pointer;font-size:0.78rem;text-decoration:underline;';
+      moreBtn.addEventListener('click', function () {
+        sourcesDiv.querySelector('.sources-chips').innerHTML = '';
+        for (var j = 0; j < sources.length; j++) {
+          var s2 = sources[j];
+          var cc = 'source-chip';
+          if (s2.category === 'lehrplan') cc += ' source-curriculum';
+          else if (s2.category === 'didaktik') cc += ' source-didaktik';
+          var sa = '';
+          if (typeof s2.score === 'number' && !isNaN(s2.score)) {
+            sa =
+              ' title="Relevanz: ' +
+              escapeHtml(s2.score.toFixed(1)) +
+              '" data-score="' +
+              escapeHtml(s2.score.toFixed(1)) +
+              '"';
+            cc += ' source-scored';
+          }
+          sourcesDiv.querySelector('.sources-chips').innerHTML +=
+            '<a href="/entity/' +
+            slugify(s2.name) +
+            '/" class="' +
+            cc +
+            '"' +
+            sa +
+            '>' +
+            escapeHtml(s2.nameDisplay || s2.name) +
+            (s2.category ? '<span class="source-cat">' + s2.category + '</span>' : '') +
+            '</a>';
+        }
+        moreBtn.remove();
+      });
+      sourcesDiv.appendChild(moreBtn);
+    }
     botMsgDiv.appendChild(sourcesDiv);
     var container = document.getElementById('chat-messages');
     if (container) container.scrollTop = container.scrollHeight;
