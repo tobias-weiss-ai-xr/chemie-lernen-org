@@ -513,21 +513,11 @@
   <div id="entity-content" {{ if $canSSR }}style="display:none"{{ end }}></div>
 </div>
 
+<script src="{{ "/js/visualization/d3-ego-graph.js" | relURL }}"></script>
 <script>
 (function () {
   var ssrContent = document.getElementById('entity-ssr-content');
   var isSSR = ssrContent && ssrContent.dataset.ssr === 'true';
-
-  var catColors = {
-    stoff: '#667eea', konzept: '#45b7d1', reaktion: '#4ecdc4',
-    methode: '#f093fb', person: '#ff9a76', quelle: '#a8a8a8',
-    lehrplan: '#9b59b6', didaktik: '#2e7d32',
-  };
-  var catLabels = {
-    stoff: 'Stoff', konzept: 'Konzept', reaktion: 'Reaktion',
-    methode: 'Methode', person: 'Person', quelle: 'Quelle',
-    lehrplan: 'Lehrplan', didaktik: 'KMK-Standard',
-  };
 
   function esc(s) {
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -570,7 +560,10 @@
           }
         }
         if (entity) {
-          initEgoGraph(allData, entity);
+          var egoContainer = document.getElementById('entity-ego-graph');
+          if (egoContainer && globalThis.D3EgoGraph) {
+            globalThis.D3EgoGraph.createEgoGraph(egoContainer, allData, { entity: entity });
+          }
         }
       })
       .catch(function (err) {
@@ -615,8 +608,8 @@
     }
 
     var cat = entity.category || 'konzept';
-    var color = catColors[cat] || '#9b59b6';
-    var label = catLabels[cat] || cat;
+    var color = (globalThis.D3EgoGraph && globalThis.D3EgoGraph.colorize(cat)) || '#9b59b6';
+    var label = (globalThis.D3EgoGraph && globalThis.D3EgoGraph.labelize(cat)) || cat;
 
     // Categorize related entities
     var kmkRefs = [], quelleRefs = [], otherRefs = [];
@@ -765,134 +758,12 @@
     skel.style.display = 'none';
     app.style.display = 'block';
 
-    // Start ego graph loading (lazy via IntersectionObserver)
-    initEgoGraph(data, entity);
-  }
-
-  function initEgoGraph(data, entity) {
-    var container = document.getElementById('entity-ego-graph');
-    if (!container) return;
-
-    // If D3 not loaded, lazy-load it
-    if (typeof d3 === 'undefined') {
-      var script = document.createElement('script');
-      script.src = 'https://d3js.org/d3.v7.min.js';
-      script.onload = function() { renderEgoGraph(); };
-      script.onerror = function() { container.innerHTML = '<div style="padding:1em;text-align:center;color:#999;">Graph konnte nicht geladen werden.</div>'; };
-      document.head.appendChild(script);
-    } else {
-      renderEgoGraph();
-    }
-
-    function renderEgoGraph() {
-      if (typeof d3 === 'undefined') return;
-
-      // Collect ego network nodes
-      var entityName = entity.name;
-      var egoNodes = [];
-      var egoLinks = [];
-      var egoEmap = {};
-      var allEntities = data.entities || [];
-      var allArticles = data.articles || [];
-
-      // Central entity
-      var centralId = 'ego-center';
-      egoNodes.push({
-        id: centralId, label: entity.name, category: entity.category,
-        size: 18, isCenter: true,
-      });
-      egoEmap[entity.name] = centralId;
-
-      // Related entities (1 hop)
-      var refs = entity.relatedEntities || [];
-      var refArticles = {};
-      for (var ri = 0; ri < refs.length; ri++) {
-        var rName = typeof refs[ri] === 'string' ? refs[ri] : refs[ri].name;
-        if (!egoEmap[rName]) {
-          var rCat = '';
-          for (var ei = 0; ei < allEntities.length; ei++) {
-            if (allEntities[ei].name === rName) { rCat = allEntities[ei].category || ''; break; }
-          }
-          var rId = 'ego-' + ri;
-          egoNodes.push({ id: rId, label: rName, category: rCat || 'konzept', size: 10, isCenter: false });
-          egoEmap[rName] = rId;
-          egoLinks.push({ source: centralId, target: rId, type: 'related' });
-        }
+    // Start ego graph rendering via shared D3 module
+    if (globalThis.D3EgoGraph) {
+      var egoContainer = document.getElementById('entity-ego-graph');
+      if (egoContainer) {
+        globalThis.D3EgoGraph.createEgoGraph(egoContainer, data, { entity: entity });
       }
-
-      // Related articles
-      var articleIds = entity.articles || [];
-      var matchedArticles = allArticles.filter(function(a) {
-        return articleIds.indexOf(a.title) !== -1 || (a.entities && a.entities.indexOf(entity.name) !== -1);
-      });
-      for (var ai = 0; ai < Math.min(matchedArticles.length, 8); ai++) {
-        var artId = 'ego-art-' + ai;
-        egoNodes.push({
-          id: artId, label: matchedArticles[ai].title, size: 5, isArticle: true,
-          url: matchedArticles[ai].url || '',
-        });
-        egoLinks.push({ source: centralId, target: artId, type: 'article' });
-      }
-
-      var w = container.clientWidth || 280;
-      var h = 280;
-      container.innerHTML = '';
-
-      var svg = d3.select(container).append('svg').attr('width', w).attr('height', h);
-      var g = svg.append('g');
-
-      var egoColors = {
-        stoff: '#667eea', konzept: '#45b7d1', reaktion: '#4ecdc4',
-        methode: '#f093fb', person: '#ff9a76', quelle: '#a8a8a8',
-        lehrplan: '#9b59b6', didaktik: '#2e7d32',
-      };
-
-      var link = g.selectAll('line').data(egoLinks).enter().append('line')
-        .attr('stroke', function(d) { return d.type === 'article' ? '#ccc' : '#ddd'; })
-        .attr('stroke-width', function(d) { return d.type === 'article' ? 0.5 : 1; })
-        .attr('stroke-opacity', 0.5);
-
-      var node = g.selectAll('circle').data(egoNodes).enter().append('circle')
-        .attr('r', function(d) { return d.size; })
-        .attr('fill', function(d) {
-          if (d.isArticle) return '#bbb';
-          if (d.isCenter) return '#9b59b6';
-          return egoColors[d.category] || '#888';
-        })
-        .attr('stroke', function(d) { return d.isCenter ? '#fff' : 'none'; })
-        .attr('stroke-width', function(d) { return d.isCenter ? 3 : 0; })
-        .style('cursor', function(d) { return d.url ? 'pointer' : 'default'; })
-        .on('click', function(ev, d) { if (d.url) window.location.href = d.url; })
-        .on('mouseover', function(ev, d) {
-          d3.select(this).transition().duration(200).attr('r', d.size * 1.3);
-          node.style('opacity', function(n) { return n.id === d.id || egoLinks.some(function(l) { return (l.source.id === d.id && l.target.id === n.id) || (l.target.id === d.id && l.source.id === n.id); }) ? 1 : 0.2; });
-        })
-        .on('mouseout', function(ev, d) {
-          d3.select(this).transition().duration(200).attr('r', d.size);
-          node.style('opacity', 0.85);
-        });
-
-      // Labels for entity nodes
-      g.selectAll('text').data(egoNodes.filter(function(d) { return !d.isArticle; })).enter().append('text')
-        .text(function(d) { return d.label.length > 15 ? d.label.slice(0, 14) + '…' : d.label; })
-        .attr('font-size', function(d) { return d.isCenter ? '12px' : '9px'; })
-        .attr('font-weight', function(d) { return d.isCenter ? '700' : '400'; })
-        .attr('dx', function(d) { return d.size + 3; }).attr('dy', 3)
-        .attr('fill', '#555')
-        .style('pointer-events', 'none');
-
-      d3.forceSimulation(egoNodes)
-        .force('link', d3.forceLink(egoLinks).id(function(d) { return d.id; }).distance(function(d) { return d.type === 'article' ? 80 : 60; }))
-        .force('charge', d3.forceManyBody().strength(-100))
-        .force('center', d3.forceCenter(w / 2, h / 2))
-        .force('collision', d3.forceCollide().radius(function(d) { return d.size + 5; }))
-        .alphaDecay(0.05)
-        .on('tick', function() {
-          link.attr('x1', function(d) { return d.source.x; }).attr('y1', function(d) { return d.source.y; })
-            .attr('x2', function(d) { return d.target.x; }).attr('y2', function(d) { return d.target.y; });
-          node.attr('cx', function(d) { return d.x; }).attr('cy', function(d) { return d.y; });
-          g.selectAll('text').attr('x', function(d) { return d.x; }).attr('y', function(d) { return d.y; });
-        });
     }
   }
 
