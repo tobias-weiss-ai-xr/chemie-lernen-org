@@ -1,5 +1,4 @@
-(function() {
-
+(function () {
   let scene, camera, renderer, controls;
   let moleculeGroup;
   let orbitalMeshes = [];
@@ -24,14 +23,14 @@
         { element: 'H', position: { x: 0, y: 1.2, z: 0 }, color: 0xffffff },
         { element: 'H', position: { x: 1.1, y: -0.4, z: 0 }, color: 0xffffff },
         { element: 'H', position: { x: -0.55, y: -0.4, z: 0.95 }, color: 0xffffff },
-        { element: 'H', position: { x: -0.55, y: -0.4, z: -0.95 }, color: 0xffffff }
+        { element: 'H', position: { x: -0.55, y: -0.4, z: -0.95 }, color: 0xffffff },
       ],
       bonds: [
         { from: 0, to: 1, order: 1, type: 'sigma' },
         { from: 0, to: 2, order: 1, type: 'sigma' },
         { from: 0, to: 3, order: 1, type: 'sigma' },
-        { from: 0, to: 4, order: 1, type: 'sigma' }
-      ]
+        { from: 0, to: 4, order: 1, type: 'sigma' },
+      ],
     },
     ethene: {
       formula: 'C₂H₄',
@@ -47,15 +46,15 @@
         { element: 'H', position: { x: -1.2, y: 1.0, z: 0 }, color: 0xffffff },
         { element: 'H', position: { x: -1.2, y: -1.0, z: 0 }, color: 0xffffff },
         { element: 'H', position: { x: 1.2, y: 1.0, z: 0 }, color: 0xffffff },
-        { element: 'H', position: { x: 1.2, y: -1.0, z: 0 }, color: 0xffffff }
+        { element: 'H', position: { x: 1.2, y: -1.0, z: 0 }, color: 0xffffff },
       ],
       bonds: [
         { from: 0, to: 1, order: 2, type: 'sigma/pi' },
         { from: 0, to: 2, order: 1, type: 'sigma' },
         { from: 0, to: 3, order: 1, type: 'sigma' },
         { from: 1, to: 4, order: 1, type: 'sigma' },
-        { from: 1, to: 5, order: 1, type: 'sigma' }
-      ]
+        { from: 1, to: 5, order: 1, type: 'sigma' },
+      ],
     },
     acetylene: {
       formula: 'C₂H₂',
@@ -69,13 +68,13 @@
         { element: 'C', position: { x: -0.6, y: 0, z: 0 }, color: 0x333333 },
         { element: 'C', position: { x: 0.6, y: 0, z: 0 }, color: 0x333333 },
         { element: 'H', position: { x: -1.2, y: 0, z: 0 }, color: 0xffffff },
-        { element: 'H', position: { x: 1.2, y: 0, z: 0 }, color: 0xffffff }
+        { element: 'H', position: { x: 1.2, y: 0, z: 0 }, color: 0xffffff },
       ],
       bonds: [
         { from: 0, to: 1, order: 3, type: 'sigma/2pi' },
         { from: 0, to: 2, order: 1, type: 'sigma' },
-        { from: 1, to: 3, order: 1, type: 'sigma' }
-      ]
+        { from: 1, to: 3, order: 1, type: 'sigma' },
+      ],
     },
     water: {
       formula: 'H₂O',
@@ -88,13 +87,13 @@
       atoms: [
         { element: 'O', position: { x: 0, y: 0, z: 0 }, color: 0xff0000 },
         { element: 'H', position: { x: 0.94, y: 0.31, z: 0 }, color: 0xffffff },
-        { element: 'H', position: { x: -0.94, y: 0.31, z: 0 }, color: 0xffffff }
+        { element: 'H', position: { x: -0.94, y: 0.31, z: 0 }, color: 0xffffff },
       ],
       bonds: [
         { from: 0, to: 1, order: 1, type: 'sigma' },
-        { from: 0, to: 2, order: 1, type: 'sigma' }
-      ]
-    }
+        { from: 0, to: 2, order: 1, type: 'sigma' },
+      ],
+    },
   };
 
   function init() {
@@ -152,13 +151,13 @@
     const mol = moleculeData[moleculeKey];
     currentMolecule = moleculeKey;
 
-    mol.atoms.forEach(atom => {
+    mol.atoms.forEach((atom) => {
       const geometry = new THREE.SphereGeometry(0.3, 64, 64);
       const material = new THREE.MeshPhongMaterial({
         color: atom.color,
         shininess: 100,
         transparent: true,
-        opacity: 0.9
+        opacity: 0.9,
       });
       const sphere = new THREE.Mesh(geometry, material);
       sphere.position.set(atom.position.x, atom.position.y, atom.position.z);
@@ -166,7 +165,7 @@
       atoms.push(sphere);
     });
 
-    mol.bonds.forEach(bond => {
+    mol.bonds.forEach((bond) => {
       const fromAtom = mol.atoms[bond.from];
       const toAtom = mol.atoms[bond.to];
 
@@ -179,7 +178,7 @@
       const bondGeometry = new THREE.CylinderGeometry(0.1, 0.1, direction.length(), 32, 1);
       const bondMaterial = new THREE.MeshPhongMaterial({
         color: 0x888888,
-        shininess: 100
+        shininess: 100,
       });
       const bondMesh = new THREE.Mesh(bondGeometry, bondMaterial);
       bondMesh.position.copy(fromAtom.position);
@@ -190,53 +189,26 @@
 
       if (bond.order === 1) {
         if (currentOrbitalType === 'sigma' || currentOrbitalType === 'bonding') {
-          createSigmaOrbital(
-            fromAtom.position,
-            toAtom.position,
-            mol.formula
-          );
+          createSigmaOrbital(fromAtom.position, toAtom.position, mol.formula);
         }
       }
 
       if (bond.order === 2) {
         if (currentOrbitalType === 'sigma' || currentOrbitalType === 'bonding') {
-          createSigmaOrbital(
-            fromAtom.position,
-            toAtom.position,
-            mol.formula
-          );
+          createSigmaOrbital(fromAtom.position, toAtom.position, mol.formula);
         }
         if (currentOrbitalType === 'pi' || currentOrbitalType === 'bonding') {
-          createPiOrbital(
-            fromAtom.position,
-            toAtom.position,
-            mol.formula,
-            'pi1'
-          );
+          createPiOrbital(fromAtom.position, toAtom.position, mol.formula, 'pi1');
         }
       }
 
       if (bond.order === 3) {
         if (currentOrbitalType === 'sigma' || currentOrbitalType === 'bonding') {
-          createSigmaOrbital(
-            fromAtom.position,
-            toAtom.position,
-            mol.formula
-          );
+          createSigmaOrbital(fromAtom.position, toAtom.position, mol.formula);
         }
         if (currentOrbitalType === 'pi' || currentOrbitalType === 'bonding') {
-          createPiOrbital(
-            fromAtom.position,
-            toAtom.position,
-            mol.formula,
-            'pi1'
-          );
-          createPiOrbital(
-            fromAtom.position,
-            toAtom.position,
-            mol.formula,
-            'pi2'
-          );
+          createPiOrbital(fromAtom.position, toAtom.position, mol.formula, 'pi1');
+          createPiOrbital(fromAtom.position, toAtom.position, mol.formula, 'pi2');
         }
       }
     });
@@ -264,7 +236,7 @@
       color: 0x00ff00,
       emissive: 0x004400,
       transparent: true,
-      opacity: orbitalsVisible ? 0.6 : 0
+      opacity: orbitalsVisible ? 0.6 : 0,
     });
 
     const sigmaMesh = new THREE.Mesh(sigmaGeometry, sigmaMaterial);
@@ -304,14 +276,14 @@
       emissive: 0x440044,
       transparent: true,
       opacity: orbitalsVisible ? 0.5 : 0,
-      side: THREE.DoubleSide
+      side: THREE.DoubleSide,
     });
     const piMaterial2 = new THREE.MeshPhongMaterial({
       color: 0x00ffff,
       emissive: 0x004444,
       transparent: true,
       opacity: orbitalsVisible ? 0.5 : 0,
-      side: THREE.DoubleSide
+      side: THREE.DoubleSide,
     });
 
     const piMesh1 = new THREE.Mesh(piGeometry, piMaterial1);
@@ -379,17 +351,17 @@
     renderer.render(scene, camera);
   }
 
-  window.changeMolecule = function() {
+  window.changeMolecule = function () {
     currentMolecule = document.getElementById('molecule-selector').value;
     loadMolecule(currentMolecule);
   };
 
-  window.changeOrbitalType = function() {
+  window.changeOrbitalType = function () {
     currentOrbitalType = document.getElementById('orbital-type').value;
     loadMolecule(currentMolecule);
   };
 
-  window.changeViewAngle = function() {
+  window.changeViewAngle = function () {
     const angle = document.getElementById('view-angle').value;
 
     switch (angle) {
@@ -410,7 +382,18 @@
     camera.lookAt(0, 0, 0);
   };
 
-  window.toggleRotation = function() {
+  window.toggleRotation = function () {
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion && !rotationEnabled) {
+      const btn = document.getElementById('rotation-therapy');
+      if (btn) {
+        btn.innerHTML = '<i class="fa fa-sync"></i> Rotation deaktiviert (Reduced Motion)';
+      }
+      return;
+    }
     rotationEnabled = !rotationEnabled;
     controls.autoRotate = rotationEnabled;
 
@@ -424,20 +407,27 @@
     }
   };
 
-  window.showOrbitals = function() {
+  window.showOrbitals = function () {
     orbitalsVisible = !orbitalsVisible;
 
-    orbitalMeshes.forEach(mesh => {
-      mesh.material.opacity = orbitalsVisible ? (mesh.material.emissive.getHex() === 0x004400 ? 0.6 : 0.5) : 0;
+    orbitalMeshes.forEach((mesh) => {
+      mesh.material.opacity = orbitalsVisible
+        ? mesh.material.emissive.getHex() === 0x004400
+          ? 0.6
+          : 0.5
+        : 0;
     });
   };
 
-  window.showBondOrder = function() {
+  window.showBondOrder = function () {
     const mol = moleculeData[currentMolecule];
-    showToast(`Bindungsordnung: ${mol.bondOrder}\nσ-Bindungen: ${mol.sigma}\nπ-Bindungen: ${mol.pi}`, 'info');
+    showToast(
+      `Bindungsordnung: ${mol.bondOrder}\nσ-Bindungen: ${mol.sigma}\nπ-Bindungen: ${mol.pi}`,
+      'info'
+    );
   };
 
-  window.resetView = function() {
+  window.resetView = function () {
     camera.position.set(3, 2, 5);
     camera.lookAt(0, 0, 0);
     controls.reset();
@@ -445,14 +435,13 @@
 
     if (orbitalsVisible) {
       orbitalsVisible = false;
-      orbitalMeshes.forEach(mesh => {
+      orbitalMeshes.forEach((mesh) => {
         mesh.material.opacity = 0;
       });
     }
   };
 
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     init();
   });
-
 })();

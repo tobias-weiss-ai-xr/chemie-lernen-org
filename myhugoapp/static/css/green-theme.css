@@ -212,22 +212,22 @@ button.mode-btn:hover {
 }
 
 /* pH Calculator tabs */
-.nav-tabs > li > a[href="#hplus"],
-.nav-tabs > li > a[href="#ohminus"],
-.nav-tabs > li > a[href="#poh"] {
+.nav-tabs > li > a[href='#hplus'],
+.nav-tabs > li > a[href='#ohminus'],
+.nav-tabs > li > a[href='#poh'] {
   color: var(--green-darker);
 }
 
 /* Calculator buttons */
-input[type="number"] + .input-group-btn .btn,
-input[type="text"] + .input-group-btn .btn {
+input[type='number'] + .input-group-btn .btn,
+input[type='text'] + .input-group-btn .btn {
   background-color: var(--green-primary) !important;
   border-color: var(--green-primary) !important;
   color: white !important;
 }
 
-input[type="number"] + .input-group-btn .btn:hover,
-input[type="text"] + .input-group-btn .btn:hover {
+input[type='number'] + .input-group-btn .btn:hover,
+input[type='text'] + .input-group-btn .btn:hover {
   background-color: var(--green-dark) !important;
 }
 
@@ -244,7 +244,8 @@ input[type="text"] + .input-group-btn .btn:hover {
 
 /* pH scale visualization */
 .ph-scale {
-  background: linear-gradient(to right,
+  background: linear-gradient(
+    to right,
     #c8e6c9 0%,
     #a5d6a7 25%,
     #81c784 50%,
@@ -299,13 +300,31 @@ table a:hover {
 
 /* Focus visible for accessibility */
 *:focus-visible {
-  outline: 2px solid var(--green-primary) !important;
+  outline: 3px solid #ffc107 !important;
   outline-offset: 2px !important;
 }
 
+.sr-only-focusable {
+  position: absolute !important;
+  top: -40px;
+  left: 0;
+  z-index: 10000;
+  width: auto;
+  height: auto;
+  padding: 8px 16px;
+  background: #4caf50;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+  top: 0;
+}
+
 /* Custom checkbox and radio styling */
-input[type="checkbox"]:checked,
-input[type="radio"]:checked {
+input[type='checkbox']:checked,
+input[type='radio']:checked {
   accent-color: var(--green-primary) !important;
 }
 
@@ -323,6 +342,6 @@ input[type="radio"]:checked {
   color: var(--green-darker) !important;
 }
 
-.auto-rotate-toggle input[type="checkbox"]:checked {
+.auto-rotate-toggle input[type='checkbox']:checked {
   accent-color: var(--green-primary) !important;
 }

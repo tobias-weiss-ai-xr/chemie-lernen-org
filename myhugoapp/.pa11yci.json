@@ -5,19 +5,17 @@
     "chromeLaunchConfig": {
       "args": ["--no-sandbox"]
     },
-    "actions": [
-      "wait for element body to be visible"
-    ],
+    "actions": ["wait for element body to be visible"],
     "headers": {
       "User-Agent": "pa11y-ci"
     },
     "standard": "WCAG2AA",
-    "level": "A",
+    "level": "AA",
     "runner": "pa11y",
     "rules": [
       "WCAG2A.Principle1.Guideline1_4.1_4_3.G18.Abs",
       "WCAG2A.Principle1.Guideline1_4.1_4_3.G145.Abs",
-      "WCAG2A.Principle1.Guideline1_4.1_4_6.G17.Abs",
+      "WCAG2A.Principle1.Guideline1_4.1_4_3.G18.BgImage",
       "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.BgImage",
       "WCAG2AA.Principle1.Guideline1_4.1_4_6.G11",
       "WCAG2AA.Principle1.Guideline1_4.1_4_6.G13",
@@ -51,6 +49,51 @@
     },
     "light-mode-panel": {
       "url": "http://localhost:1313/molekuel-studio/"
+    },
+    "themenbereich-aufbau-materie": {
+      "url": "http://localhost:1313/themenbereiche/aufbau-materie/"
+    },
+    "themenbereich-saeuren-basen": {
+      "url": "http://localhost:1313/themenbereiche/saeuren-basen/"
+    },
+    "themenbereich-organische-chemie": {
+      "url": "http://localhost:1313/themenbereiche/produkte-organisch/"
+    },
+    "themenbereich-redox": {
+      "url": "http://localhost:1313/themenbereiche/redox-elektrochemie/"
+    },
+    "rechner-ph": {
+      "url": "http://localhost:1313/ph-rechner/"
+    },
+    "rechner-molare-masse": {
+      "url": "http://localhost:1313/molare-masse-rechner/"
+    },
+    "rechner-stoechiometrie": {
+      "url": "http://localhost:1313/stoechiometrie-rechner/"
+    },
+    "rechner-gasgesetz": {
+      "url": "http://localhost:1313/gasgesetz-rechner/"
+    },
+    "rechner-konzentration": {
+      "url": "http://localhost:1313/konzentrationsumrechner/"
+    },
+    "rechner-loeslichkeit": {
+      "url": "http://localhost:1313/loeslichkeitsprodukt-rechner/"
+    },
+    "interaktiv-ki-assistent": {
+      "url": "http://localhost:1313/ki-assistent/"
+    },
+    "interaktiv-periodensystem": {
+      "url": "http://localhost:1313/perioden-system-der-elemente/"
+    },
+    "interaktiv-titration": {
+      "url": "http://localhost:1313/titrations-simulator/"
+    },
+    "statisch-impressum": {
+      "url": "http://localhost:1313/impressum/"
+    },
+    "statisch-barrierefreiheit": {
+      "url": "http://localhost:1313/pages/barrierefreiheit/"
     }
   }
 }

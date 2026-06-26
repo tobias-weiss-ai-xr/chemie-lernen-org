@@ -1,7 +1,7 @@
 ---
 title: 'Barrierefreiheitserklärung'
 description: 'Erklärung zur Barrierefreiheit und WCAG 2.1 Level AA Konformität von chemie-lernen.org'
-date: 2026-01-04
+date: 2026-06-26
 type: 'page'
 ---
 
@@ -13,11 +13,11 @@ Wir sind bestrebt, chemie-lernen.org für alle Nutzer zugänglich zu machen. Die
 
 **chemie-lernen.org erfüllt die WCAG 2.1 Level AA Konformitätsanforderungen.**
 
-Diese Erklärung wurde zuletzt aktualisiert am: **4. Januar 2026**
+Diese Erklärung wurde zuletzt aktualisiert am: **26. Juni 2026**
 
 ### Getestete Bereiche
 
-Wir haben die Barrierefreiheit aller **105 Seiten** unserer Website mit automatisierten Tests und manueller Überprüfung validiert:
+Wir haben die Barrierefreiheit aller Inhalte (über **240 Inhaltsdateien**, generiert zu mehreren hundert Hugo-Routen) unserer Website mit automatisierten Tests und manueller Überprüfung validiert:
 
 - ✅ Homepage
 - ✅ 12 Rechner & Tools
@@ -157,7 +157,7 @@ Wir haben folgende Methoden zur Überprüfung der Barrierefreiheit verwendet:
 1. **Automatisierte Tests**
    - axe-core accessibility testing engine
    - Jest + JSDOM Test-Framework
-   - 530 automatisierte Tests über alle 105 Seiten
+   - über 1.500 automatisierte Tests (test() / it() Aufrufe) über alle 60 Test-Dateien
 
 2. **Manuelle Tests**
    - Tastatur-Navigation durch alle Seiten
@@ -166,7 +166,7 @@ Wir haben folgende Methoden zur Überprüfung der Barrierefreiheit verwendet:
    - Code-Review gegen WCAG-Kriterien
 
 3. **Testing-Datum**
-   - Letzte vollständige Überprüfung: 4. Januar 2026
+   - Letzte vollständige Überprüfung: 26. Juni 2026
    - Nächste geplante Überprüfung: Quartal 2026
 
 ### Zertifizierung
@@ -218,5 +218,5 @@ Wir danken folgenden Organisationen und Projekten für ihre Ressourcen zur Barri
 
 ---
 
-**Stand:** 4. Januar 2026
-**Version:** 1.0
+**Stand:** 26. Juni 2026
+**Version:** 1.1

@@ -30,7 +30,9 @@ window.moleculeStudioError = null;
 // Globale Variablen (Modul-Scope)
 let scene, camera, renderer;
 let moleculeGroup = null;
-let autoRotate = true;
+// A11Y: Honor prefers-reduced-motion (WCAG 2.2.2) — auto-rotate is
+// a non-essential motion. Initialize based on user preference.
+let autoRotate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
 
@@ -1200,6 +1202,9 @@ function visualizeMolecule(name) {
     showError(
       `Molekül "${name}" nicht gefunden. Versuchen Sie: Wasser, Methan, Ammoniak, Kohlendioxid, Ethen, Ethanol, Essigsäure, Benzol, Acetylen, Koffein, Aspirin, Serotonin, Ozon, Schwefelhexafluorid oder Glucose.`
     );
+    if (canvas) {
+      canvas.setAttribute('aria-label', '3D-Visualisierung fehlgeschlagen: ' + name);
+    }
     return;
   }
 
@@ -1211,6 +1216,12 @@ function visualizeMolecule(name) {
     showLoading(false);
     welcomeScreen.style.display = 'none';
     controlsInfo.style.display = 'block';
+    if (canvas) {
+      canvas.setAttribute(
+        'aria-label',
+        '3D-Visualisierung von ' + name + ' (' + (data.formula || '') + ')'
+      );
+    }
   }, 500);
 }
 

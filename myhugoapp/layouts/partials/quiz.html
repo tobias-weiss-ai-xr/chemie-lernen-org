@@ -32,7 +32,7 @@
     <div class="answer-options" id="answer-options-{{ $quizId }}"></div>
 
     <!-- Feedback -->
-    <div class="feedback" id="feedback-{{ $quizId }}">
+    <div class="feedback" id="feedback-{{ $quizId }}" role="status" aria-live="polite">
       <div class="feedback-title">
         <span class="feedback-icon" id="feedback-icon-{{ $quizId }}"></span>
         <span id="feedback-title-{{ $quizId }}"></span>
@@ -56,7 +56,7 @@
 </div>
 
 <!-- Results Container -->
-<div class="quiz-container" id="results-{{ $quizId }}" style="display: none;">
+<div class="quiz-container" id="results-{{ $quizId }}" style="display: none;" role="status" aria-live="polite">
   <div class="results-card">
     <h2 class="quiz-title">Quiz-Ergebnisse</h2>
     <div class="results-score" id="results-score-{{ $quizId }}"></div>
