@@ -41,6 +41,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Export KG data from Neo4j
+        run: node scripts/export-kg-data.mjs || echo '[CI] Neo4j export skipped (non-fatal)'
+
+      - name: Generate entity pages from KG data
+        run: node scripts/generate-entity-pages.mjs
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 

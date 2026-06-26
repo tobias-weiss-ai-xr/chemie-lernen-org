@@ -30,6 +30,9 @@
     "security:check": "npm run audit && npm run check:updates",
     "duplicate:check": "jscpd myhugoapp/static/js --min-lines=10 --min-tokens=50 --threshold=10 --gitignore",
     "hugo:build": "docker run --rm -v \"$(pwd)/myhugoapp:/src\" -w /src hugomods/hugo:exts hugo",
+    "export:kg-data": "node scripts/export-kg-data.mjs",
+    "generate:entities": "node scripts/generate-entity-pages.mjs",
+    "prebuild": "(node scripts/export-kg-data.mjs || echo '[build] Neo4j export skipped (non-fatal)') && node scripts/generate-entity-pages.mjs",
     "validate": "npm run lint && npm run format:check && npm run test:unit && npm run duplicate:check && npm run hugo:build",
     "build": "docker run --rm -v \"$(pwd)/myhugoapp:/src\" -w /src hugomods/hugo:exts hugo --baseURL https://chemie-lernen.org && npx pagefind --site myhugoapp/public"
   },

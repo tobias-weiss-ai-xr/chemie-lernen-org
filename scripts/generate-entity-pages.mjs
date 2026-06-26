@@ -30,7 +30,13 @@ function escapeYaml(s) {
 }
 
 async function main() {
-  const raw = await readFile(DATA_FILE, 'utf-8');
+  let raw;
+  try {
+    raw = await readFile(DATA_FILE, 'utf-8');
+  } catch {
+    console.log('kg_data.json not found at ' + DATA_FILE + '. Skipping entity page generation.');
+    return;
+  }
   const { entities } = JSON.parse(raw);
 
   if (!entities || entities.length === 0) {
@@ -44,11 +50,18 @@ async function main() {
     const pageDir = join(ENTITY_DIR, slug);
     const pageFile = join(pageDir, 'index.md');
 
+    const category = entity.category || 'konzept';
+    const articleCount = entity.articleCount || 0;
+    const relatedCount = (entity.relatedEntities || []).length;
+
     const frontmatter = `---
 title: "${escapeYaml(entity.name)}"
-description: "Fachbegriff: ${escapeYaml(entity.name)} — ${entity.articleCount} Artikel auf chemie-lernen.org"
+description: "Fachbegriff: ${escapeYaml(entity.name)} — ${articleCount} Artikel auf chemie-lernen.org"
 date: 2026-06-03
 slug: "${escapeYaml(slug)}"
+category: "${escapeYaml(category)}"
+articleCount: ${articleCount}
+relatedCount: ${relatedCount}
 ---
 `;
 

@@ -308,31 +308,215 @@
 {{ end }}
 
 {{ define "main" }}
+{{ $hasSSR := .Params.category | default false }}
+{{ $catColors := dict "stoff" "#667eea" "konzept" "#45b7d1" "reaktion" "#4ecdc4" "methode" "#f093fb" "person" "#ff9a76" "quelle" "#a8a8a8" "lehrplan" "#9b59b6" "didaktik" "#2e7d32" }}
+{{ $catLabels := dict "stoff" "Stoff" "konzept" "Konzept" "reaktion" "Reaktion" "methode" "Methode" "person" "Person" "quelle" "Quelle" "lehrplan" "Lehrplan" "didaktik" "KMK-Standard" }}
+{{ $category := .Params.category | default "konzept" }}
+{{ $catColor := index $catColors $category | default "#9b59b6" }}
+{{ $catLabel := index $catLabels $category | default $category }}
+{{ $entityName := .Title }}
+{{ $hasKGData := false }}
+{{ $entity := false }}
+{{ with .Site.Data.kg_data }}
+  {{ $hasKGData = true }}
+  {{ $match := index (where .entities "name" $entityName) 0 }}
+  {{ if $match }}
+    {{ $entity = $match }}
+  {{ end }}
+{{ end }}
+{{ $canSSR := and $hasSSR $entity }}
+
 <div class="entity-detail-wrapper" id="entity-app">
   <nav class="entity-breadcrumb">
     <a href="/">Start</a>
     <span class="sep">›</span>
     <a href="/entity/">Wissensnetz</a>
     <span class="sep">›</span>
-    <span>{{ .Title }}</span>
+    <span>{{ $entityName }}</span>
   </nav>
 
-  <!-- Skeleton -->
-  <div id="entity-skeleton">
+  <!-- JSON-LD Structured Data (DefinedTerm) -->
+  {{ if $entity }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    "name": {{ $entityName | jsonify }},
+    "description": {{ printf "Fachbegriff: %s — %d Artikel auf chemie-lernen.org" $entityName ($.Params.articleCount | default 0) | jsonify }},
+    "inLanguage": "de-DE",
+    "url": {{ .Permalink | jsonify }},
+    "termCode": {{ .Params.slug | jsonify }},
+    "category": {{ $category | jsonify }},
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ .Permalink | jsonify }}
+    }
+    {{ if $entity.articles }}
+    {{ $allArticles := $.Site.Data.kg_data.articles }}
+    {{ $entityArticles := where $allArticles "title" "in" $entity.articles }}
+    {{ if $entityArticles }},
+    "mentions": [
+      {{ range $i, $a := $entityArticles }}{{ if $i }},{{ end }}
+      {
+        "@type": "CreativeWork",
+        "name": {{ $a.title | jsonify }},
+        "url": {{ $a.url | jsonify }}
+      }{{ end }}
+    ]
+    {{ end }}
+    {{ end }}
+  }
+  </script>
+  {{ end }}
+
+  <!-- SSR Content -->
+  <div id="entity-ssr-content" data-ssr="{{ if $canSSR }}true{{ else }}false{{ end }}" {{ if $canSSR }}style="display:block"{{ else }}style="display:none"{{ end }}>
+    {{ if $canSSR }}
+    <!-- Header Card -->
+    <div class="entity-header-card" style="--cat-color: {{ $catColor }}">
+      <h1 class="entity-header-title">{{ $entityName }}</h1>
+      <p class="entity-header-desc">{{ .Description }}</p>
+      <div><span class="entity-badge" style="background: {{ $catColor }}">{{ $catLabel }}</span></div>
+      <div class="entity-stats">
+        <span><strong>{{ $.Params.articleCount | default 0 }}</strong> Artikel</span>
+        <span><strong>{{ $.Params.relatedCount | default 0 }}</strong> Verknüpfungen</span>
+      </div>
+    </div>
+
+    <!-- Content Grid -->
+    <div class="entity-content-grid">
+      <!-- Left column: Articles -->
+      <div class="entity-card">
+        <div class="entity-card-header">📄 Artikel zu „{{ $entityName }}“</div>
+        <div class="entity-card-body">
+          {{ $allArticles := $.Site.Data.kg_data.articles }}
+          {{ $entityArticles := where $allArticles "title" "in" ($entity.articles | default slice) }}
+          {{ if $entityArticles }}
+          <ul class="entity-article-list">
+            {{ range $entityArticles }}
+            <li class="entity-article-item">
+              <a class="entity-article-link" href="{{ .url | default "/" }}">{{ .title }}</a>
+              <div class="entity-article-meta">
+                {{ with .type }}{{ . }}{{ end }}{{ with .date }} · {{ . }}{{ end }}
+              </div>
+            </li>
+            {{ end }}
+          </ul>
+          {{ else }}
+          <p class="entity-empty" style="padding:1rem 0;">Keine Artikel verknüpft.</p>
+          {{ end }}
+        </div>
+      </div>
+
+      <!-- Right column: Relations + Graph -->
+      <div>
+        {{ $allEntities := $.Site.Data.kg_data.entities }}
+        {{ $refNames := $entity.relatedEntities | default slice }}
+        {{ $kmkRefs := slice }}
+        {{ $quelleRefs := slice }}
+        {{ $otherRefs := slice }}
+        {{ range $allEntities }}
+          {{ if in $refNames .name }}
+            {{ if eq .category "didaktik" }}
+              {{ $kmkRefs = $kmkRefs | append .name }}
+            {{ else if eq .category "quelle" }}
+              {{ $quelleRefs = $quelleRefs | append .name }}
+            {{ else }}
+              {{ $otherRefs = $otherRefs | append .name }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+
+        {{ if $kmkRefs }}
+        <div class="entity-card">
+          <div class="entity-card-header">📋 KMK-Standards</div>
+          <div class="entity-card-body">
+            <div class="entity-rel-tags">
+              {{ range $kmkRefs }}
+              {{ $rSlug := . | urlize }}
+              <a href="/entity/{{ $rSlug }}/" class="entity-tag entity-tag-kmk">{{ . }}</a>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+        {{ end }}
+
+        {{ if $quelleRefs }}
+        <div class="entity-card">
+          <div class="entity-card-header">📚 Quellen</div>
+          <div class="entity-card-body">
+            <div class="entity-rel-tags">
+              {{ range $quelleRefs }}
+              {{ $rSlug := . | urlize }}
+              <a href="/entity/{{ $rSlug }}/" class="entity-tag entity-tag-quelle">{{ . }}</a>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+        {{ end }}
+
+        {{ if $otherRefs }}
+        <div class="entity-card">
+          <div class="entity-card-header">🔗 Verwandte Begriffe</div>
+          <div class="entity-card-body">
+            <div class="entity-rel-tags">
+              {{ range $otherRefs }}
+              {{ $rSlug := . | urlize }}
+              <a href="/entity/{{ $rSlug }}/" class="entity-tag">{{ . }}</a>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+        {{ end }}
+
+        {{ if $entity.components }}
+        <div class="entity-card">
+          <div class="entity-card-header">🧩 Bestandteile</div>
+          <div class="entity-card-body">
+            <div class="entity-rel-tags">
+              {{ range $entity.components }}
+              <span class="entity-tag">{{ . }}</span>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+        {{ end }}
+
+        <!-- Ego graph container -->
+        <div class="entity-card">
+          <div class="entity-card-header">🕸️ Vernetzung</div>
+          <div class="entity-card-body" style="padding:0;">
+            <div id="entity-ego-graph" style="width:100%;height:280px;position:relative;" data-entity="{{ $entityName }}">
+              <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:#aaa;font-size:0.85rem;">
+                <div style="font-size:1.2rem;margin-bottom:4px;">🔄</div>Lade Graph...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Graph link -->
+        <a href="/wissennetz/" class="entity-card" style="display:block;text-decoration:none;">
+          <div class="entity-graph-link">🌐 Im interaktiven Wissensnetz-Graph anzeigen →</div>
+        </a>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+
+  <!-- Skeleton (hidden when SSR renders) -->
+  <div id="entity-skeleton" {{ if $canSSR }}style="display:none"{{ end }}>
     <div class="entity-skeleton-card"></div>
     <div class="entity-skeleton-card" style="height:120px;"></div>
     <div class="entity-skeleton-card" style="height:60px;"></div>
   </div>
 
-  <!-- Content -->
-  <div id="entity-content" style="display:none;"></div>
+  <!-- Client-side rendered content (hidden when SSR renders) -->
+  <div id="entity-content" {{ if $canSSR }}style="display:none"{{ end }}></div>
 </div>
 
 <script>
 (function () {
-  var app = document.getElementById('entity-content');
-  var skel = document.getElementById('entity-skeleton');
-  var slug = window.location.pathname.split('/').filter(Boolean).pop();
+  var ssrContent = document.getElementById('entity-ssr-content');
+  var isSSR = ssrContent && ssrContent.dataset.ssr === 'true';
 
   var catColors = {
     stoff: '#667eea', konzept: '#45b7d1', reaktion: '#4ecdc4',
@@ -348,6 +532,60 @@
   function esc(s) {
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
+
+  // ── SSR path: ego-graph only ────────────────────────────
+  if (isSSR) {
+    var entityName = ssrContent.querySelector('.entity-header-title');
+    if (entityName) {
+      entityName = entityName.textContent.trim();
+    } else {
+      entityName = decodeURIComponent(window.location.pathname.split('/').filter(Boolean).pop() || '');
+    }
+    fetch('/api/kg-data', { signal: AbortSignal.timeout(15000) })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (d) {
+        var entity = null;
+        var allData = d;
+        var allEntities = d.entities || [];
+        for (var i = 0; i < allEntities.length; i++) {
+          if (allEntities[i].name === entityName) {
+            entity = allEntities[i];
+            break;
+          }
+        }
+        if (!entity) {
+          // Fuzzy slug matching
+          var slug = window.location.pathname.split('/').filter(Boolean).pop();
+          for (var i = 0; i < allEntities.length; i++) {
+            var eSlug = allEntities[i].name.toLowerCase()
+              .replace(/[üÜ]/g,'ue').replace(/[öÖ]/g,'oe').replace(/[äÄ]/g,'ae').replace(/ß/g,'ss')
+              .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+            if (eSlug === slug) {
+              entity = allEntities[i];
+              break;
+            }
+          }
+        }
+        if (entity) {
+          initEgoGraph(allData, entity);
+        }
+      })
+      .catch(function (err) {
+        var egoContainer = document.getElementById('entity-ego-graph');
+        if (egoContainer) {
+          egoContainer.innerHTML = '<div style="padding:1em;text-align:center;color:#999;">⚠️ Graph-Daten nicht verfügbar.</div>';
+        }
+      });
+    return; // SSR path done — skip client-side render
+  }
+
+  // ── Client-side fallback (original behavior) ───────────
+  var app = document.getElementById('entity-content');
+  var skel = document.getElementById('entity-skeleton');
+  var slug = window.location.pathname.split('/').filter(Boolean).pop();
 
   function render(data) {
     var entity = null;
@@ -385,7 +623,6 @@
     var refs = entity.relatedEntities || [];
     for (var ri = 0; ri < refs.length; ri++) {
       var rName = typeof refs[ri] === 'string' ? refs[ri] : refs[ri].name;
-      // Find this related entity's category
       var rCat = '';
       for (var ei = 0; ei < allEntities.length; ei++) {
         if (allEntities[ei].name === rName) {
@@ -659,6 +896,7 @@
     }
   }
 
+  // ── Start client-side fetch ─────────────────────────
   fetch('/api/kg-data', { signal: AbortSignal.timeout(15000) })
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);

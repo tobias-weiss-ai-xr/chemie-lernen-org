@@ -161,7 +161,7 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 
-{{ if .IsPage }}
+{{ if and .IsPage (ne .Section "entity") }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",

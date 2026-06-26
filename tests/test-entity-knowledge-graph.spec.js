@@ -441,3 +441,124 @@ test.describe('Entity Index — Knowledge Graph Display', () => {
     await expect(graphLink).toContainText('Interaktiver Graph');
   });
 });
+
+// ── SSR & SEO ──────────────────────────────────────────────────────────
+
+test.describe('Entity Detail — SSR & SEO', () => {
+  const KNOWN_ENTITY = '/entity/wasser/';
+
+  test('should render SSR content on entity detail page', async ({ page }) => {
+    await page.goto(`${BASE_URL}${KNOWN_ENTITY}`, { waitUntil: 'domcontentloaded' });
+
+    const ssrContent = page.locator('#entity-ssr-content');
+    await expect(ssrContent).toBeAttached({ timeout: 5000 });
+    const ssrAttr = await ssrContent.getAttribute('data-ssr');
+    expect(ssrAttr).toBe('true');
+
+    await expect(ssrContent).toBeVisible();
+
+    const headerTitle = page.locator('.entity-header-title');
+    await expect(headerTitle).toBeVisible();
+    const titleText = await headerTitle.textContent();
+    expect(titleText.trim().length).toBeGreaterThan(0);
+
+    await expect(page.locator('.entity-badge')).toBeVisible();
+
+    const stats = page.locator('.entity-stats');
+    await expect(stats).toBeVisible();
+    await expect(stats).toContainText(/Artikel/);
+    await expect(stats).toContainText(/Verknüpfungen/);
+
+    const skeleton = page.locator('#entity-skeleton');
+    const skelDisplay = (await skeleton.getAttribute('style')) || '';
+    expect(skelDisplay).toContain('display:none');
+
+    const content = page.locator('#entity-content');
+    const contentDisplay = (await content.getAttribute('style')) || '';
+    expect(contentDisplay).toContain('display:none');
+  });
+
+  test('should include JSON-LD DefinedTerm structured data', async ({ page }) => {
+    await page.goto(`${BASE_URL}${KNOWN_ENTITY}`, { waitUntil: 'domcontentloaded' });
+
+    const jsonldScripts = page.locator('script[type="application/ld+json"]');
+    const count = await jsonldScripts.count();
+    expect(count).toBeGreaterThanOrEqual(1);
+
+    let foundDefinedTerm = false;
+    for (let i = 0; i < count; i++) {
+      const text = await jsonldScripts.nth(i).textContent();
+      try {
+        const parsed = JSON.parse(text);
+        if (parsed['@type'] === 'DefinedTerm') {
+          foundDefinedTerm = true;
+          expect(parsed).toHaveProperty('name');
+          expect(parsed).toHaveProperty('description');
+          expect(parsed).toHaveProperty('inLanguage', 'de-DE');
+          expect(parsed).toHaveProperty('termCode');
+          expect(parsed).toHaveProperty('category');
+          expect(parsed).toHaveProperty('mainEntityOfPage');
+          expect(parsed.mainEntityOfPage['@type']).toBe('WebPage');
+          break;
+        }
+      } catch {
+        // skip parse errors on non-DefinedTerm JSON-LD blocks
+      }
+    }
+    expect(foundDefinedTerm).toBe(true);
+  });
+
+  test('should include SEO meta tags and canonical URL', async ({ page }) => {
+    await page.goto(`${BASE_URL}${KNOWN_ENTITY}`, { waitUntil: 'domcontentloaded' });
+
+    const metaDesc = page.locator('meta[name="description"]');
+    await expect(metaDesc).toBeAttached();
+    const descContent = await metaDesc.getAttribute('content');
+    expect(descContent.length).toBeGreaterThan(0);
+
+    const canonical = page.locator('link[rel="canonical"]');
+    await expect(canonical).toBeAttached();
+    const canonicalHref = await canonical.getAttribute('href');
+    expect(canonicalHref).toContain('/entity/wasser/');
+
+    const ogTitle = page.locator('meta[property="og:title"]');
+    await expect(ogTitle).toBeAttached();
+    const ogTitleContent = await ogTitle.getAttribute('content');
+    expect(ogTitleContent.length).toBeGreaterThan(0);
+
+    const ogUrl = page.locator('meta[property="og:url"]');
+    await expect(ogUrl).toBeAttached();
+    const ogUrlContent = await ogUrl.getAttribute('content');
+    expect(ogUrlContent).toContain('/entity/wasser/');
+
+    const ogDescription = page.locator('meta[property="og:description"]');
+    await expect(ogDescription).toBeAttached();
+    const ogDescContent = await ogDescription.getAttribute('content');
+    expect(ogDescContent.length).toBeGreaterThan(0);
+
+    const twitterCard = page.locator('meta[name="twitter:card"]');
+    await expect(twitterCard).toBeAttached();
+    await expect(twitterCard).toHaveAttribute('content', 'summary_large_image');
+
+    const twitterTitle = page.locator('meta[name="twitter:title"]');
+    await expect(twitterTitle).toBeAttached();
+    const twitterTitleContent = await twitterTitle.getAttribute('content');
+    expect(twitterTitleContent.length).toBeGreaterThan(0);
+  });
+
+  test('should include entity pages in sitemap', async ({ page }) => {
+    const response = await page.goto(`${BASE_URL}/sitemap.xml`, {
+      waitUntil: 'domcontentloaded',
+    });
+    expect(response.status()).toBe(200);
+
+    const body = await response.text();
+    expect(body).toContain('/entity/');
+    expect(body).toContain('wasser');
+    expect(body).toContain('<loc>');
+    expect(body).toContain('</loc>');
+
+    const entityMatches = body.match(/<loc>[^<]*\/entity\/[^<]*<\/loc>/g);
+    expect(entityMatches.length).toBeGreaterThanOrEqual(10);
+  });
+});
