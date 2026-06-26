@@ -19,20 +19,20 @@ Last updated: 2026-06-26
 | Change                              | Status      | Goal                                                                                                                                |
 | ----------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | `open-spec-coverage`                | In progress | Add 5 missing main specs (calculators, quiz, 3d-visualizations, themenbereiche, pwa)                                                |
-| `deploy-observability`              | Proposal    | Add API smoke tests to deploy workflow (kg-stats, health, chat)                                                                     |
 | `extend-entity-kg-with-lehrplan`    | Proposal    | Import 16 state curricula + 5 KMK guidelines into Neo4j; all queries scoped via `subsetMatch('chemie')` per central-kg-architecture |
 | `integrate-global-modulhandbuecher` | Proposal    | Implement Marburg reference scraper + 9 more top universities; new modulhandbuch subset of the central KG                           |
 
 ## Archived changes (`changes/archive/`)
 
-| Change                      | Commits            | Status             |
-| --------------------------- | ------------------ | ------------------ |
-| sprint-6-wissensnetz-ssr    | dea14d91, e9ad62be | Shipped 2026-06-26 |
-| sprint-7-wcag-a11y          | dcb2ab18           | Shipped 2026-06-26 |
-| sprint-8a-d3-ego-graph      | e9ad62be           | Shipped 2026-06-26 |
-| sprint-8b-neo4j-data        | 5d5e6238           | Shipped 2026-06-26 |
-| sprint-8c-rag               | d47bd48e           | Shipped 2026-06-26 |
-| sprint-8-mega-kg (umbrella) | wraps 8a/8b/8c     | Shipped 2026-06-26 |
+| Change                                 | Commits            | Status             |
+| -------------------------------------- | ------------------ | ------------------ |
+| sprint-6-wissensnetz-ssr               | dea14d91, e9ad62be | Shipped 2026-06-26 |
+| sprint-7-wcag-a11y                     | dcb2ab18           | Shipped 2026-06-26 |
+| sprint-8a-d3-ego-graph                 | e9ad62be           | Shipped 2026-06-26 |
+| sprint-8b-neo4j-data                   | 5d5e6238           | Shipped 2026-06-26 |
+| sprint-8c-rag                          | d47bd48e           | Shipped 2026-06-26 |
+| sprint-8-mega-kg (umbrella)            | wraps 8a/8b/8c     | Shipped 2026-06-26 |
+| deploy-observability (API smoke tests) | a1a11699           | Shipped 2026-06-26 |
 
 ## Legacy planning artifacts (`archive/`)
 
