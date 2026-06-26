@@ -493,7 +493,7 @@ const STOP_WORDS = new Set([
 const ragCache = new Map();
 const RAG_CACHE_MAX = 100;
 
-const { buildSystemPrompt, extractSourceNames } = require('./_rag-helpers');
+const { buildSystemPrompt, extractSourceNames } = require('./_rag-helpers.cjs');
 
 function getRAGContext(message) {
   // Extract meaningful keywords

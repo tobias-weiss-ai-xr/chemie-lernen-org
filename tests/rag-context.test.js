@@ -12,7 +12,7 @@ const {
   extractSourceNames,
   pickSystemPromptLang,
   buildSystemPrompt,
-} = require('../api/_rag-helpers');
+} = require('../api/_rag-helpers.cjs');
 
 describe('extractSourceNames', () => {
   test('returns empty array for null/empty input', () => {
