@@ -36,3 +36,4 @@ tmp/
 .sisyphus/
 .playwright-mcp/
 .omo/
+tests/__pycache__/
