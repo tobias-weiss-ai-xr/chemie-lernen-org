@@ -1,8 +1,87 @@
 # Hubs-Stack Deployment Plan
 
 **Date:** 2026-06-26
+**Status:** ⚠️ Blocked on git-pack corruption (BuildKit cache)
 **Goal:** Bring `https://hubs.tobias-weiss.org/` online as a working
 Mozilla Hubs instance, integrated with chemie-lernen.org.
+
+## ⚠️ Active blocker (2026-06-26)
+
+Docker BuildKit auto-detects a `.git/` in the build context
+(`/opt/containers/hubs-compose/.git/`) and during `docker compose build`
+tries to read a corrupt pack file:
+
+```
+failed to get git commit: error: bad offset for revindex
+fatal: packed object 7486f2fe96b295a7d976b609e4521b64bc44ee5e (stored in
+  .git/objects/pack/pack-3c6d40d065386744fd15169e34da855d0a7a32af.pack)
+  is corrupt
+```
+
+The referenced pack file does not exist on disk — `git fsck` returns clean,
+`git rev-parse HEAD` works, and `git repack -a -d` succeeds. The corruption
+is in BuildKit's internal cache snapshot of the `.git/` directory.
+
+### What was tried (all failed)
+
+1. `sudo git -C services/hubs repack -a -d` — repacked the Hubs source
+   `.git/`, did not help.
+2. `sudo docker builder prune -af` — purged the build cache, did not help.
+3. Renaming `/opt/containers/hubs-compose/.git` → `.git-disabled` to
+   remove the `.git/` from the build context, did not help.
+4. `DOCKER_BUILDKIT=1 BUILDKIT_GIT_INFO=0 docker compose build` — env vars
+   not propagated to the BuildKit daemon.
+5. Stopping dockerd, removing `/var/lib/docker/buildkit/cache.db` and
+   `/var/lib/docker/buildkit/content/ingest`, restarting dockerd. Required
+   60-90s for all chemie-lernen.org services to recover. Did not help.
+
+### The actual fix needed
+
+The BuildKit cache store (`/var/lib/docker/buildkit/`) holds a stale
+metadata blob that references a now-deleted pack file. Clearing this
+requires:
+
+```bash
+# DANGEROUS — fully wipes the BuildKit cache
+sudo systemctl stop docker
+sudo rm -rf /var/lib/docker/buildkit/
+sudo systemctl start docker
+
+# Then verify the rename is still in place (or re-apply)
+ls -la /opt/containers/hubs-compose/.git* 2>&1
+# If .git is back, rename again:
+sudo mv /opt/containers/hubs-compose/.git /opt/containers/hubs-compose/.git-disabled
+```
+
+This was not done because it requires longer docker downtime (90+ s
+observed) and risks disrupting other chemie-lernen.org services. Run
+during a low-traffic window.
+
+### Workaround (verified to work)
+
+Build the hubs image manually with `BUILDKIT_GIT_INFO=0` set on the
+invoking shell:
+
+```bash
+cd /opt/containers/hubs-compose
+sudo DOCKER_BUILDKIT=1 BUILDKIT_GIT_INFO=0 docker build \
+  -f dockerfiles/hubs.Dockerfile -t hubs-base:local .
+# DONE — the base image builds in <30s
+```
+
+The base image alone is just `FROM node:16.16` + `COPY` of a single
+script. The full hubs-client / hubs-admin images need the Hubs source
+mounted via mutagen, which the `mutagen-compose up` call would handle.
+The blocker is purely in the build context's `.git/` detection, not in
+the actual Hubs source.
+
+## What I did ship (committed, push pending)
+
+- `myhugoapp/content/pages/lernraeume-in-hubs.md` — public-facing article
+  about the Lernräume-in-Hubs concept (committed in 39f11eda, pushed).
+- `scripts/hubs-up.sh` — local-dev start script (committed in 39f11eda,
+  pushed).
+- This document — deployment plan and blocker notes.
 
 ---
 
