@@ -14,8 +14,13 @@ which requires a different scraper (see mit_catalog.py).
 
 from __future__ import annotations
 
+import sys
 from datetime import date
+from pathlib import Path
 from typing import Optional
+
+# Make sibling modules importable
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from schema import Degree, Lecturer, Module, ModuleCatalog, University
 from modulhandbuch_framework import (
