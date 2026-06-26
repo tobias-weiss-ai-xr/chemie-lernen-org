@@ -355,12 +355,43 @@ function getFallbackData() {
 }
 
 /**
+ * Parse query params: search, category, type, limit, offset
+ */
+function parseKGParams(req) {
+  const search  = (req.query.search || '').toLowerCase().trim();
+  const category = (req.query.category || '').toLowerCase().trim();
+  const type    = (req.query.type || '').toLowerCase().trim();
+  const limit   = Math.min(parseInt(req.query.limit) || 50, 500);
+  const offset  = parseInt(req.query.offset) || 0;
+  return { search, category, type, limit, offset };
+}
+
+/**
+ * Filter entities by search/category/type
+ */
+function filterEntities(entities, { search, category, type }) {
+  let result = entities;
+  if (search) {
+    result = result.filter(e => e.name.toLowerCase().includes(search));
+  }
+  if (category) {
+    result = result.filter(e => (e.category || '').toLowerCase() === category);
+  }
+  if (type) {
+    result = result.filter(e => (e.type || '').toLowerCase() === type);
+  }
+  return result;
+}
+
+/**
  * GET /api/kg-data
- * Returns knowledge graph data (entities + articles) proxied from Neo4j.
- * Falls back to embedded static data if Neo4j is unavailable.
+ * Returns knowledge graph data with optional search, filter, pagination.
+ * Query params: ?search=, ?category=, ?type=, ?limit=, ?offset=
  */
 app.get('/api/kg-data', async (req, res) => {
   const startTime = Date.now();
+  const params = parseKGParams(req);
+  const { limit, offset } = params;
 
   try {
     const driver = getNeo4jDriver();
@@ -370,49 +401,82 @@ app.get('/api/kg-data', async (req, res) => {
       fetchSize: 1000,
     });
 
+    // Build filtered Cypher query
+    let whereClause = '';
+    const queryParams = {};
+    if (params.search) {
+      whereClause += ' AND toLower(e.name) CONTAINS $search';
+      queryParams.search = params.search;
+    }
+    if (params.category) {
+      whereClause += ' AND toLower(e.kategorie) = $category';
+      queryParams.category = params.category;
+    }
+    if (params.type) {
+      whereClause += ' AND toLower(e.typ) = $type';
+      queryParams.type = params.type;
+    }
+
     const entitiesQuery = `
       MATCH (e:Entity)
       OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
       OPTIONAL MATCH (e)-[c:BESTEHT_AUS]->(component:Entity)
-      RETURN e.name as name, e.kategorie as category,
+      WHERE 1=1${whereClause}
+      RETURN e.name as name, e.kategorie as category, e.typ as type,
+             e.symbol as symbol, e.ordnungszahl as ordnungszahl,
              collect(DISTINCT related.name) as relatedEntities,
              collect(DISTINCT component.name) as components,
              COUNT { (:Document)-[:MENTIONS]->(e) } as articleCount
-      ORDER BY articleCount DESC
-      LIMIT 500
+      ORDER BY articleCount DESC, e.name
+      SKIP ${offset}
+      LIMIT ${limit}
     `;
-    const entitiesResult = await session.run(entitiesQuery);
+    const entitiesResult = await session.run(entitiesQuery, queryParams);
     const entities = entitiesResult.records.map((r, i) => ({
-      id: `e${i}`,
+      id: `e${offset + i}`,
       name: r.get('name'),
       category: r.get('category') || 'konzept',
-      articles: [],
+      type: r.get('type') || null,
+      symbol: r.get('symbol') || null,
+      ordnungszahl: r.get('ordnungszahl') ? r.get('ordnungszahl').toNumber() : null,
       relatedEntities: (r.get('relatedEntities') || []).filter(n => n !== null).map((name) => ({ name, weight: 1 })),
       components: (r.get('components') || []).filter(n => n !== null),
       articleCount: r.get('articleCount') || 0,
     }));
 
-    // Query articles linked to top entities
+    // Total count for pagination
+    const countResult = await session.run(`
+      MATCH (e:Entity) WHERE 1=1${whereClause}
+      RETURN count(e) AS total
+    `, queryParams);
+    const totalEntities = countResult.records[0].get('total').toNumber();
+
+    // Query articles linked to entities
     const entityNames = entities.map((e) => e.name);
-    const articlesQuery = `
-      MATCH (d:Document)-[:MENTIONS]->(e:Entity)
-      WHERE e.name IN $entityNames
-      RETURN d.title as title, d.url as url, d.type as type,
-             collect(e.name) as entities, d.date as date
-      ORDER BY d.type, d.date DESC
-      LIMIT 500
-    `;
-    const articlesResult = await session.run(articlesQuery, {
-      entityNames: entityNames.slice(0, 100),
-    });
-    const articles = articlesResult.records.map((r, i) => ({
-      id: `a${i}`,
-      title: r.get('title'),
-      url: r.get('url'),
-      type: r.get('type') || 'article',
-      entities: r.get('entities') || [],
-      date: r.get('date'),
-    }));
+    const articles = [];
+    if (entityNames.length > 0) {
+      const articlesQuery = `
+        MATCH (d:Document)-[:MENTIONS]->(e:Entity)
+        WHERE e.name IN $entityNames
+        RETURN d.title as title, d.url as url, d.type as type,
+               collect(e.name) as entities, d.date as date
+        ORDER BY d.type, d.date DESC
+        LIMIT ${Math.min(limit * 2, 500)}
+      `;
+      const articlesResult = await session.run(articlesQuery, {
+        entityNames,
+      });
+      for (const r of articlesResult.records) {
+        articles.push({
+          id: `a${articles.length}`,
+          title: r.get('title'),
+          url: r.get('url'),
+          type: r.get('type') || 'article',
+          entities: r.get('entities') || [],
+          date: r.get('date'),
+        });
+      }
+    }
 
     entities.forEach((entity) => {
       entity.articles = articles.filter((a) => a.entities.includes(entity.name)).map((a) => a.title);
@@ -421,25 +485,154 @@ app.get('/api/kg-data', async (req, res) => {
     await session.close();
 
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
-    console.log(`[kg-data] Neo4j: ${articles.length} articles, ${entities.length} entities in ${elapsed}s`);
+    console.log(`[kg-data] Neo4j: ${articles.length} articles, ${entities.length}/${totalEntities} entities in ${elapsed}s`);
 
     return res.json({
       source: 'neo4j',
       articles,
       entities,
+      pagination: {
+        total: totalEntities,
+        limit,
+        offset,
+        returned: entities.length,
+      },
       loadTime: parseFloat(elapsed),
     });
   } catch (err) {
     console.error(`[kg-data] Neo4j error, using fallback: ${err.message}`);
 
     const fallback = getFallbackData();
-    const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
+    let allEntities = fallback.entities;
+    let allArticles = fallback.articles;
 
-    console.log(`[kg-data] Fallback: ${fallback.articles.length} articles, ${fallback.entities.length} entities in ${elapsed}s`);
+    // Apply filters to fallback data
+    allEntities = filterEntities(allEntities, params);
+
+    // Paginate
+    const totalEntities = allEntities.length;
+    const paginatedEntities = allEntities.slice(offset, offset + limit);
+
+    // Get articles for paginated entities
+    const entityNames = paginatedEntities.map(e => e.name);
+    const linkedArticles = allArticles.filter(a =>
+      (a.entities || []).some(en => entityNames.includes(en))
+    );
+
+    const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
+    console.log(`[kg-data] Fallback: ${linkedArticles.length} articles, ${paginatedEntities.length}/${totalEntities} entities in ${elapsed}s`);
 
     return res.json({
       source: 'fallback',
-      ...fallback,
+      articles: linkedArticles,
+      entities: paginatedEntities,
+      pagination: {
+        total: totalEntities,
+        limit,
+        offset,
+        returned: paginatedEntities.length,
+      },
+      loadTime: parseFloat(elapsed),
+    });
+  }
+});
+
+/**
+ * GET /api/kg-data/entity/:name
+ * Returns a single entity with its full details and linked articles.
+ */
+app.get('/api/kg-data/entity/:name', async (req, res) => {
+  const entityName = req.params.name.toLowerCase().trim();
+  const startTime = Date.now();
+
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+
+    const entityResult = await session.run(`
+      MATCH (e:Entity {name: $name})
+      OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
+      OPTIONAL MATCH (e)-[c:BESTEHT_AUS]->(component:Entity)
+      OPTIONAL MATCH (e)<-[g:GEHOERT_ZU]-(group:Entity)
+      RETURN e.name as name, e.kategorie as category, e.typ as type,
+             e.symbol as symbol, e.ordnungszahl as ordnungszahl,
+             e.beschreibung as description,
+             collect(DISTINCT related.name) as relatedEntities,
+             collect(DISTINCT component.name) as components,
+             collect(DISTINCT group.name) as groups,
+             COUNT { (:Document)-[:MENTIONS]->(e) } as articleCount
+    `, { name: entityName });
+
+    if (entityResult.records.length === 0) {
+      return res.status(404).json({ error: 'Entity not found', name: entityName });
+    }
+
+    const r = entityResult.records[0];
+    const entity = {
+      name: r.get('name'),
+      category: r.get('category') || 'konzept',
+      type: r.get('type') || null,
+      symbol: r.get('symbol') || null,
+      ordnungszahl: r.get('ordnungszahl') ? r.get('ordnungszahl').toNumber() : null,
+      description: r.get('description') || null,
+      relatedEntities: (r.get('relatedEntities') || []).filter(n => n !== null).map((name) => ({ name, weight: 1 })),
+      components: (r.get('components') || []).filter(n => n !== null),
+      groups: (r.get('groups') || []).filter(n => n !== null),
+      articleCount: r.get('articleCount') || 0,
+    };
+
+    // Get linked articles
+    const articlesResult = await session.run(`
+      MATCH (d:Document)-[:MENTIONS]->(e:Entity {name: $name})
+      RETURN d.title as title, d.url as url, d.type as type,
+             d.date as date, d.description as description
+      ORDER BY d.date DESC
+      LIMIT 50
+    `, { name: entityName });
+
+    const articles = articlesResult.records.map((r, i) => ({
+      id: `a${i}`,
+      title: r.get('title'),
+      url: r.get('url'),
+      type: r.get('type') || 'article',
+      description: r.get('description') || null,
+      date: r.get('date'),
+    }));
+
+    entity.articles = articles.map(a => a.title);
+
+    await session.close();
+
+    const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
+    console.log(`[kg-data] Entity "${entityName}": ${articles.length} articles in ${elapsed}s`);
+
+    return res.json({
+      source: 'neo4j',
+      entity,
+      articles,
+      loadTime: parseFloat(elapsed),
+    });
+  } catch (err) {
+    console.error(`[kg-data] Entity lookup error: ${err.message}`);
+
+    // Fallback: search in static data
+    const fallback = getFallbackData();
+    const entity = fallback.entities.find(e => e.name.toLowerCase() === entityName);
+    if (!entity) {
+      return res.status(404).json({ error: 'Entity not found', name: entityName, source: 'fallback' });
+    }
+
+    const articleTitles = entity.articles || [];
+    const articles = fallback.articles.filter(a => articleTitles.includes(a.title));
+
+    const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
+    return res.json({
+      source: 'fallback',
+      entity,
+      articles,
       loadTime: parseFloat(elapsed),
     });
   }

@@ -1,0 +1,15 @@
+schema: spec-driven
+
+context: |
+  Tech stack: Hugo static site generator (Go templates), JavaScript, Jest
+  Content: Chemistry education articles, learning materials
+  Conventions: Hugo archetypes, Markdown content, shortcodes
+  Domain: Chemistry education website (German-language)
+
+rules:
+  proposal:
+    - Include rollback plan
+  specs:
+    - Use Given/When/Then format for scenarios
+  design:
+    - Include sequence diagrams for complex flows
