@@ -1,12 +1,13 @@
 ---
-title: "Chemische Bindungen"
-description: "Atome gehen durch Abgabe, Aufnahme oder gemeinsame Nutzung von Elektronen Bindungen ein. Drei Haupttypen: Ionenbindung, Atombindung, Metallbindung."
-date: "2026-06-08"
-tags: ["chemie", "bindungen", "ionen", "moleküle"]
+title: 'Chemische Bindungen'
+description: 'Atome gehen durch Abgabe, Aufnahme oder gemeinsame Nutzung von Elektronen Bindungen ein. Drei Haupttypen: Ionenbindung, Atombindung, Metallbindung.'
+date: '2026-06-08'
+tags: ['chemie', 'bindungen', 'ionen', 'moleküle']
 interaktiv: false
-schwierigkeit: "grundlagen"
-teilgebiet: ["aufbau-materie"]
-icon: "⚛️"
+schwierigkeit: 'grundlagen'
+teilgebiet: ['aufbau-materie']
+icon: '⚛️'
+aliases: [/article/chemische-bindungen/]
 ---
 
 Atome streben eine **Edelgaskonfiguration** an (8 Außenelektronen, Oktettregel). Daraus ergeben sich drei Bindungstypen:
@@ -21,13 +22,13 @@ Die **Elektronegativität** (EN) nach Pauling gibt an, wie stark ein Atom Elektr
 
 Ausgewählte Elektronegativitätswerte:
 
-| Element | Symbol | EN (Pauling) | Typische Rolle |
-|---------|--------|-------------|----------------|
-| Natrium | $Na$ | 0,9 | Metall, Elektronendonator |
-| Wasserstoff | $H$ | 2,1 | Kann Metall oder Nichtmetall sein |
-| Kohlenstoff | $C$ | 2,5 | Nichtmetall |
-| Chlor | $Cl$ | 3,2 | Nichtmetall, Elektronenakzeptor |
-| Sauerstoff | $O$ | 3,5 | Stark elektronegativ |
+| Element     | Symbol | EN (Pauling) | Typische Rolle                    |
+| ----------- | ------ | ------------ | --------------------------------- |
+| Natrium     | $Na$   | 0,9          | Metall, Elektronendonator         |
+| Wasserstoff | $H$    | 2,1          | Kann Metall oder Nichtmetall sein |
+| Kohlenstoff | $C$    | 2,5          | Nichtmetall                       |
+| Chlor       | $Cl$   | 3,2          | Nichtmetall, Elektronenakzeptor   |
+| Sauerstoff  | $O$    | 3,5          | Stark elektronegativ              |
 
 ## Lewis-Strukturen wichtiger Moleküle
 
@@ -43,15 +44,15 @@ Das **VSEPR-Modell** (Valence Shell Electron Pair Repulsion) erklärt die Molek�
 
 ## Die drei Bindungstypen im Vergleich
 
-| Eigenschaft | Ionenbindung | Atombindung (kovalent) | Metallbindung |
-|------------|-------------|----------------------|---------------|
-| Partner | Metall + Nichtmetall | Nichtmetall + Nichtmetall | Metall + Metall |
-| Elektronen | werden übertragen | werden geteilt | sind frei beweglich |
-| Bindungskräfte | elektrostatisch | shared Electron Pairs | Elektronengas im Gitter |
-| Schmelzpunkt | hoch (> 800°C) | mittel (wenige 100°C) | meist hoch |
-| Härte | hart, spröde | weich bis mittel | verformbar (duktil) |
-| Leitfähigkeit | nur in Lösung/geschmolzen | nichtleitend | sehr gut leitend |
-| Beispiel | $NaCl$, $MgO$ | $H_2O$, $CH_4$, $O_2$ | $Cu$, $Fe$, $Al$ |
+| Eigenschaft    | Ionenbindung              | Atombindung (kovalent)    | Metallbindung           |
+| -------------- | ------------------------- | ------------------------- | ----------------------- |
+| Partner        | Metall + Nichtmetall      | Nichtmetall + Nichtmetall | Metall + Metall         |
+| Elektronen     | werden übertragen         | werden geteilt            | sind frei beweglich     |
+| Bindungskräfte | elektrostatisch           | shared Electron Pairs     | Elektronengas im Gitter |
+| Schmelzpunkt   | hoch (> 800°C)            | mittel (wenige 100°C)     | meist hoch              |
+| Härte          | hart, spröde              | weich bis mittel          | verformbar (duktil)     |
+| Leitfähigkeit  | nur in Lösung/geschmolzen | nichtleitend              | sehr gut leitend        |
+| Beispiel       | $NaCl$, $MgO$             | $H_2O$, $CH_4$, $O_2$     | $Cu$, $Fe$, $Al$        |
 
 ## Ionenbindung im Detail
 

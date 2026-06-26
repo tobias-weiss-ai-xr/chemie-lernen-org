@@ -4,7 +4,7 @@ function _escapeHtml(str) {
   if (typeof str !== 'string') {
     return '';
   }
-  var div = document.createElement('div');
+  const div = document.createElement('div');
   div.textContent = str;
   return div.innerHTML;
 }
@@ -17,7 +17,7 @@ function saveToHistory(type, data) {
       id: Date.now(),
       timestamp: new Date().toLocaleString('de-DE'),
       type: type,
-      data: data
+      data: data,
     };
 
     history.unshift(entry);
@@ -45,7 +45,8 @@ function displayHistory() {
     const historyList = document.getElementById('history-list');
 
     if (history.length === 0) {
-      historyList.innerHTML = '<p class="text-muted"><small>Noch keine Berechnungen durchgeführt.</small></p>';
+      historyList.innerHTML =
+        '<p class="text-muted"><small>Noch keine Berechnungen durchgeführt.</small></p>';
       return;
     }
 
@@ -53,13 +54,19 @@ function displayHistory() {
     history.forEach((entry) => {
       html +=
         '<div class="history-item" style="padding: 10px; margin-bottom: 8px; background: #f5f5f5; border-radius: 4px; border-left: 3px solid #007bff;">' +
-          '<div style="display: flex; justify-content: space-between; align-items: start;">' +
-            '<div style="flex: 1;">' +
-              '<strong>' + _escapeHtml(entry.type) + '</strong>' +
-              '<span class="text-muted" style="font-size: 0.85em; margin-left: 10px;">' + _escapeHtml(entry.timestamp) + '</span>' +
-              '<div style="margin-top: 5px; font-size: 0.9em;">' + _escapeHtml(entry.data) + '</div>' +
-            '</div>' +
-          '</div>' +
+        '<div style="display: flex; justify-content: space-between; align-items: start;">' +
+        '<div style="flex: 1;">' +
+        '<strong>' +
+        _escapeHtml(entry.type) +
+        '</strong>' +
+        '<span class="text-muted" style="font-size: 0.85em; margin-left: 10px;">' +
+        _escapeHtml(entry.timestamp) +
+        '</span>' +
+        '<div style="margin-top: 5px; font-size: 0.9em;">' +
+        _escapeHtml(entry.data) +
+        '</div>' +
+        '</div>' +
+        '</div>' +
         '</div>';
     });
     html += '</div>';
@@ -69,7 +76,6 @@ function displayHistory() {
     console.error('Error displaying history:', e);
   }
 }
-
 
 function toggleHistory() {
   const panel = document.getElementById('history-panel');
@@ -91,7 +97,6 @@ function updateHistoryCount() {
   }
 }
 
-
 function clearHistory() {
   if (confirm('Möchten Sie wirklich den gesamten Berechnungsverlauf löschen?')) {
     localStorage.removeItem('stoichHistory');
@@ -112,7 +117,12 @@ function checkForBalancedEquation() {
 
     const data = JSON.parse(balancedData);
 
-    if (!data.reactants || !data.products || data.reactants.length === 0 || data.products.length === 0) {
+    if (
+      !data.reactants ||
+      !data.products ||
+      data.reactants.length === 0 ||
+      data.products.length === 0
+    ) {
       console.warn('Invalid balanced equation data structure');
       return;
     }
@@ -139,7 +149,6 @@ function checkForBalancedEquation() {
     }
 
     sessionStorage.removeItem('balancedEquation');
-
   } catch (e) {
     console.error('Error importing balanced equation:', e);
   }
@@ -160,27 +169,40 @@ function showImportNotification(data) {
     'max-width: 400px;' +
     'animation: slideIn 0.5s ease;';
 
-  const equationStr = data.reactants.map((r) => { return (r.coefficient > 1 ? r.coefficient : '') + r.formula; }).join(' + ') +
+  const equationStr =
+    data.reactants
+      .map((r) => {
+        return (r.coefficient > 1 ? r.coefficient : '') + r.formula;
+      })
+      .join(' + ') +
     ' → ' +
-    data.products.map((p) => { return (p.coefficient > 1 ? p.coefficient : '') + p.formula; }).join(' + ');
+    data.products
+      .map((p) => {
+        return (p.coefficient > 1 ? p.coefficient : '') + p.formula;
+      })
+      .join(' + ');
 
   notification.innerHTML =
     '<div style="display: flex; align-items: start;">' +
-      '<i class="fa fa-check-circle" style="font-size: 24px; margin-right: 12px; flex-shrink: 0;"></i>' +
-      '<div>' +
-        '<h4 style="margin: 0 0 10px 0;">Gleichung übertragen!</h4>' +
-        '<p style="margin: 0 0 10px 0; font-size: 14px;">Die ausgeglichene Gleichung wurde automatisch in den Stöchiometrie-Rechner übertragen.</p>' +
-        '<div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 4px; font-size: 13px;">' +
-          '<strong style="display: block; margin-bottom: 5px;">Übertragene Koeffizienten:</strong>' +
-          '<div style="font-family: monospace;">' + equationStr + '</div>' +
-        '</div>' +
-      '</div>' +
+    '<i class="fa fa-check-circle" style="font-size: 24px; margin-right: 12px; flex-shrink: 0;"></i>' +
+    '<div>' +
+    '<h4 style="margin: 0 0 10px 0;">Gleichung übertragen!</h4>' +
+    '<p style="margin: 0 0 10px 0; font-size: 14px;">Die ausgeglichene Gleichung wurde automatisch in den Stöchiometrie-Rechner übertragen.</p>' +
+    '<div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 4px; font-size: 13px;">' +
+    '<strong style="display: block; margin-bottom: 5px;">Übertragene Koeffizienten:</strong>' +
+    '<div style="font-family: monospace;">' +
+    equationStr +
+    '</div>' +
+    '</div>' +
+    '</div>' +
     '</div>';
 
   document.body.appendChild(notification);
 
   setTimeout(() => {
     notification.style.animation = 'slideOut 0.5s ease';
-    setTimeout(() => { notification.remove(); }, 500);
+    setTimeout(() => {
+      notification.remove();
+    }, 500);
   }, 5000);
 }

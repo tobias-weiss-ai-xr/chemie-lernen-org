@@ -1,20 +1,44 @@
 ---
-title: "Wissensnetz Graph"
-description: "Interaktive Visualisierung der Wissensverbindungen zwischen Fachbegriffen und Artikeln"
+title: 'Wissensnetz Graph'
+description: 'Interaktive Visualisierung der Wissensverbindungen zwischen Fachbegriffen und Artikeln'
 date: 2026-06-11
+aliases: [/entity/graph/]
 weight: 10
 ---
 
+<style>
+#kg-controls{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;padding:10px;background:#f8f9fa;border-radius:8px;align-items:center;}
+#kg-controls label{font-size:0.85rem;font-weight:600;margin-right:4px;color:#555;}
+.kg-filter-chip{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border:1px solid #ddd;border-radius:14px;background:#fff;cursor:pointer;font-size:0.8rem;transition:all 0.2s;user-select:none;}
+.kg-filter-chip:hover{border-color:#999;}
+.kg-filter-chip.active{color:#fff;border-color:currentColor;}
+.kg-filter-chip .kg-dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
+@media(prefers-color-scheme:dark){
+#kg-controls{background:#2a2a2a;}
+#kg-controls label{color:#ccc;}
+.kg-filter-chip{background:#333;border-color:#555;color:#ddd;}
+.kg-filter-chip:hover{border-color:#888;}
+}
+</style>
+<div id="kg-controls">
+<label>Kategorien:</label>
+</div>
 <div id="kg-app" style="width:100%;height:700px;border:1px solid #ddd;border-radius:8px;background:#fafafa;position:relative;">
 <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;">
 <div class="spinner-border text-primary mb-3" role="status"><span class="visually-hidden">Loading...</span></div>
 <h5>Lade Wissensnetz...</h5>
 </div>
 </div>
-<script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
-(async function(){
+(function(){ // Lazy D3 loader
+var d3Script=document.createElement("script");
+d3Script.src="https://d3js.org/d3.v7.min.js";
+d3Script.onload=function(){main();};
+d3Script.onerror=function(){document.getElementById("kg-app").innerHTML='<p style="padding:2em;color:#888;">Graph-Bibliothek konnte nicht geladen werden.</p>';};
+document.head.appendChild(d3Script);
+async function main(){
 var container=document.getElementById("kg-app");
+var controls=document.getElementById("kg-controls");
 try{
 var res=await fetch("/api/kg-data",{signal:AbortSignal.timeout(15000)});
 if(!res.ok)throw new Error(res.status);
@@ -24,6 +48,33 @@ container.innerHTML='<p style="padding:2em;color:#888;">Wissensnetz konnte nicht
 return;
 }
 var catColors={stoff:"#667eea",methode:"#f093fb",reaktion:"#4ecdc4",konzept:"#45b7d1",person:"#ff9a76",quelle:"#a8a8a8"};
+var catLabels={stoff:"Stoff",konzept:"Konzept",reaktion:"Reaktion",methode:"Methode",person:"Person",quelle:"Quelle"};
+var activeCategories={stoff:true,konzept:true,reaktion:true,methode:true,person:true,quelle:true};
+// Build filter chips
+Object.keys(catLabels).forEach(function(cat){
+var chip=document.createElement("span");
+chip.className="kg-filter-chip active";
+chip.dataset.cat=cat;
+chip.style.color=catColors[cat];
+chip.style.borderColor=catColors[cat];
+chip.innerHTML='<span class="kg-dot" style="background:'+catColors[cat]+'"></span>'+catLabels[cat];
+chip.addEventListener("click",function(){
+var isActive=activeCategories[cat];
+activeCategories[cat]=!isActive;
+if(activeCategories[cat]){chip.classList.add("active");chip.style.color=catColors[cat];chip.style.borderColor=catColors[cat];}
+else{chip.classList.remove("active");chip.style.color="#999";chip.style.borderColor="#ddd";}
+updateVisibility();
+});
+controls.appendChild(chip);
+});
+// Page/Article filter chip
+var _pageActive=true;
+var pageChip=document.createElement("span");
+pageChip.className="kg-filter-chip active";
+pageChip.style.color="#2ecc71";pageChip.style.borderColor="#2ecc71";
+pageChip.innerHTML='<span class="kg-dot" style="background:#2ecc71"></span>Artikel';
+pageChip.addEventListener("click",function(){_pageActive=!_pageActive;if(_pageActive){pageChip.classList.add("active");pageChip.style.color="#2ecc71";pageChip.style.borderColor="#2ecc71";}else{pageChip.classList.remove("active");pageChip.style.color="#999";pageChip.style.borderColor="#ddd";}updateVisibility();});
+controls.appendChild(pageChip);
 var nodes=[],links=[],emap=new Map();
 data.entities.forEach(function(e){
 var conns=(e.relatedEntities||[]).length;
@@ -96,6 +147,21 @@ node.style("opacity",0.85);link.style("stroke-opacity",function(d){return d.type
 var labels=g.append("g").selectAll("text").data(nodes.filter(function(d){return d.type==="entity"&&d.size>=8})).enter().append("text")
 .text(function(d){return d.label}).attr("font-size","10px").attr("dx",function(d){return d.size+3}).attr("dy",3)
 .attr("fill","#444").style("pointer-events","none").style("text-shadow","0 0 3px #fafafa,0 0 3px #fafafa");
+function updateVisibility(){
+node.style("display",function(d){
+if(d.type==="page"||d.type==="article")return _pageActive?null:"none";
+return activeCategories[d.category]!==false?null:"none";
+});
+link.style("display",function(d){
+var srcNode=typeof d.source==="object"?d.source:nodes.find(function(n){return n.id===d.source;});
+var tgtNode=typeof d.target==="object"?d.target:nodes.find(function(n){return n.id===d.target;});
+if(!srcNode||!tgtNode)return"none";
+if(srcNode.type==="page"||srcNode.type==="article")return _pageActive?null:"none";
+if(tgtNode.type==="page"||tgtNode.type==="article")return _pageActive?null:"none";
+if(activeCategories[srcNode.category]!==false&&activeCategories[tgtNode.category]!==false)return null;
+return"none";
+});
+}
 var tooltip=g.append("g").style("display","none");
 tooltip.append("rect").attr("rx",4).attr("fill","#fff").attr("stroke","#ddd").style("filter","drop-shadow(0 1px 2px rgba(0,0,0,0.1))");
 tooltip.append("text").attr("dy","1.2em").attr("x",8).style("font-size","12px").attr("fill","#333");
@@ -122,5 +188,6 @@ link.attr("x1",function(d){return isNaN(d.source.x)?0:d.source.x}).attr("y1",fun
 node.attr("cx",function(d){return isNaN(d.x)?0:d.x}).attr("cy",function(d){return d.y});
 labels.attr("x",function(d){return isNaN(d.x)?0:d.x}).attr("y",function(d){return d.y});
 });
-})();
+})(); // end main
+})(); // end lazy loader IIFE
 </script>

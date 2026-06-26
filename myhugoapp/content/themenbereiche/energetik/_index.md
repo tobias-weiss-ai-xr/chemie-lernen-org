@@ -1,14 +1,14 @@
 ---
-title: "Energetik"
-description: "Energieumsatz bei chemischen Reaktionen - Exotherme und endotherme Prozesse, Reaktionsenthalpien und der Hesssche Satz"
+title: 'Energetik'
+description: 'Energieumsatz bei chemischen Reaktionen - Exotherme und endotherme Prozesse, Reaktionsenthalpien und der Hesssche Satz'
 date: 2025-12-26
-teilgebiet: "energetik"
-schwierigkeit: "fortgeschritten"
-icon: "🔥"
+teilgebiet: 'energetik'
+schwierigkeit: 'fortgeschritten'
+icon: '🔥'
 weight: 70
-quiz: "energetik"
+quiz: 'energetik'
+aliases: [/article/_index/]
 ---
-
 
 ## Energetik
 
@@ -34,11 +34,13 @@ Die Energetik beschäftigt sich mit den Energieveränderungen, die bei chemische
 Bei exothermen Reaktionen wird **Energie abgegeben** – das System verliert Energie an die Umgebung.
 
 **Merkmale:**
+
 - Temperaturerhöhung (wird warm)
 - $\Delta H < 0$ (negativ)
 - Energie wird freigesetzt
 
 **Beispiele:**
+
 - Verbrennung von Methan: $\ce{CH4 + 2O2 -> CO2 + 2H2O}$ ($\Delta H = -890 \text{ kJ/mol}$)
 - Neutralisation: $\ce{HCl + NaOH -> NaCl + H2O}$
 - Rosten von Eisen: $\ce{4Fe + 3O2 -> 2Fe2O3}$
@@ -48,11 +50,13 @@ Bei exothermen Reaktionen wird **Energie abgegeben** – das System verliert Ene
 Bei endothermen Reaktionen wird **Energie aufgenommen** – das System nimmt Energie aus der Umgebung auf.
 
 **Merkmale:**
+
 - Temperaturerniedrigung (wird kalt)
 - $\Delta H > 0$ (positiv)
 - Energie wird benötigt
 
 **Beispiele:**
+
 - Verdunstung von Wasser
 - Fotosynthese: $\ce{6CO2 + 6H2O -> C6H12O6 + 6O2}$ ($\Delta H = +2808 \text{ kJ/mol}$)
 - Lösen von Ammoniumnitrat in Wasser (Kältemischung)
@@ -87,11 +91,11 @@ Man kann Reaktionsenthalpien berechnen, indem man bekannte Reaktionen addiert:
 
 **Beispiel: Bildung von CO₂ aus C und O₂**
 
-Reaktion 1: $\ce{C + O2 -> CO2}$          $\Delta H_1 = -393 \text{ kJ/mol}$
+Reaktion 1: $\ce{C + O2 -> CO2}$ $\Delta H_1 = -393 \text{ kJ/mol}$
 
-Reaktion 2: $\ce{C + 1/2 O2 -> CO}$         $\Delta H_2 = -111 \text{ kJ/mol}$
+Reaktion 2: $\ce{C + 1/2 O2 -> CO}$ $\Delta H_2 = -111 \text{ kJ/mol}$
 
-Reaktion 3: $\ce{CO + 1/2 O2 -> CO2}$       $\Delta H_3 = \text{?}$
+Reaktion 3: $\ce{CO + 1/2 O2 -> CO2}$ $\Delta H_3 = \text{?}$
 
 Laut Hess: $\Delta H_1 = \Delta H_2 + \Delta H_3$
 
@@ -106,13 +110,13 @@ Die **Bindungsenthalpie** ist die Energie, die notwendig ist, um eine chemische 
 ### Typische Bindungsenthalpien
 
 | Bindung | Enthalpie (kJ/mol) |
-|---------|-------------------|
-| H-H | 436 |
-| O=O | 498 |
-| O-H | 463 |
-| C-C | 348 |
-| C=C | 614 |
-| C≡C | 839 |
+| ------- | ------------------ |
+| H-H     | 436                |
+| O=O     | 498                |
+| O-H     | 463                |
+| C-C     | 348                |
+| C=C     | 614                |
+| C≡C     | 839                |
 
 ### Berechnung mit Bindungsenthalpien
 
@@ -121,11 +125,13 @@ $$\Delta H = \Sigma(\text{Bindungsenthalpien Edukte}) - \Sigma(\text{Bindungsent
 **Beispiel: $\ce{H2 + 1/2 O2 -> H2O}$**
 
 Edukte:
+
 - $1 \times \text{H-H}: 436 \text{ kJ/mol}$
 - $\frac{1}{2} \times \text{O=O}: \frac{1}{2} \times 498 = 249 \text{ kJ/mol}$
 - Summe: $685 \text{ kJ/mol}$
 
 Produkte:
+
 - $2 \times \text{O-H}: 2 \times 463 = 926 \text{ kJ/mol}$
 
 $$\Delta H = 685 - 926 = \textbf{-241 kJ/mol} \quad \text{(exotherm)}$$
@@ -155,6 +161,7 @@ Ein **Katalysator** senkt die Aktivierungsenergie, ohne selbst verbraucht zu wer
 Nicht jede exotherme Reaktion läuft spontan ab. Die Spontaneität hängt von zwei Faktoren ab:
 
 ### 1. Enthalpie (ΔH)
+
 - ΔH < 0: Begünstigt spontane Reaktion
 - ΔH > 0: Ungünstig für spontane Reaktion
 
@@ -230,12 +237,14 @@ Energie
 - **Brennwert**: Energie inklusive Kondensationswärme von Wasser
 
 **Beispiel Methan:**
+
 - Heizwert: 36 MJ/kg
 - Brennwert: 39,8 MJ/kg
 
 ### 2. Neutralisationswärme
 
 Die Neutralisation von starken Säuren und Laugen:
+
 ```
 H⁺ + OH⁻ → H₂O     ΔH = -57,6 kJ/mol
 ```
@@ -243,6 +252,7 @@ H⁺ + OH⁻ → H₂O     ΔH = -57,6 kJ/mol
 ### 3. Lösungsenergie
 
 Beim Lösen von Stoffen:
+
 - **Gitterenergie** wird benötigt (endotherm)
 - **Hydratationsenergie** wird freigesetzt (exotherm)
 
@@ -251,9 +261,11 @@ Gesamt: ΔH = Hydratationsenergie - Gitterenergie
 ## Experimente
 
 ### Experiment 1: Exotherme Reaktion
+
 **Materialien**: Stahlwolle, Feuerzeug, Wärmefläschchen
 
 **Durchführung**:
+
 1. Stahlwolle entzünden
 2. In ein Wärmefläschchen halten
 3. Temperaturanstieg messen
@@ -261,9 +273,11 @@ Gesamt: ΔH = Hydratationsenergie - Gitterenergie
 **Erklärung**: Oxidation von Eisen ist exotherm (ΔH < 0)
 
 ### Experiment 2: Endotherme Reaktion
+
 **Materialien**: Bariumhydroxid, Ammoniumthiocyanat, Holzblock, Tropfen Wasser
 
 **Durchführung**:
+
 1. Beide Stoffe mischen
 2. Mischung auf Holzblock mit Wasserstropfen stellen
 3. Wasser gefriert fest
@@ -273,6 +287,7 @@ Gesamt: ΔH = Hydratationsenergie - Gitterenergie
 ## Lernziele
 
 Nach Abschluss dieses Themenbereichs sollten Sie:
+
 - ✅ Exotherme und endotherme Reaktionen unterscheiden können
 - ✅ Die Reaktionsenthalpie ΔH berechnen können
 - ✅ Den Hessschen Satz anwenden können

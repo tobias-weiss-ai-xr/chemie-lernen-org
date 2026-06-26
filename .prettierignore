@@ -48,3 +48,6 @@ yarn.lock
 
 # Generated files
 *.generated.*
+
+# Large generated data files
+content-links-reverse.json

@@ -26,7 +26,9 @@ function parseChemicalEquation(equation) {
     throw new Error('Kein Reaktionspfeil gefunden. Verwenden Sie ->, → oder =');
   }
 
-  const sides = equation.split(arrowMatch[1]).map((s) => { return s.trim(); });
+  const sides = equation.split(arrowMatch[1]).map((s) => {
+    return s.trim();
+  });
   const reactants = parseSide(sides[0]);
   const products = parseSide(sides[1]);
 
@@ -34,7 +36,7 @@ function parseChemicalEquation(equation) {
     reactants: reactants,
     products: products,
     totalReactants: reactants.length,
-    totalProducts: products.length
+    totalProducts: products.length,
   };
 }
 
@@ -43,13 +45,22 @@ function parseSide(sideStr) {
     throw new Error('Leere Seite der Gleichung');
   }
 
-  const compounds = sideStr.split('+').map((s) => { return s.trim(); }).filter((s) => { return s.length > 0; });
+  const compounds = sideStr
+    .split('+')
+    .map((s) => {
+      return s.trim();
+    })
+    .filter((s) => {
+      return s.length > 0;
+    });
 
   if (compounds.length === 0) {
     throw new Error('Keine Verbindungen gefunden');
   }
 
-  return compounds.map((compound) => { return parseCompound(compound); });
+  return compounds.map((compound) => {
+    return parseCompound(compound);
+  });
 }
 
 function parseCompound(compoundStr) {
@@ -59,7 +70,7 @@ function parseCompound(compoundStr) {
     return {
       coefficient: 1,
       formula: compoundStr.trim(),
-      hasExplicitCoefficient: false
+      hasExplicitCoefficient: false,
     };
   }
 
@@ -69,7 +80,7 @@ function parseCompound(compoundStr) {
   return {
     coefficient: coefficient,
     formula: formula,
-    hasExplicitCoefficient: !!coeffMatch[1]
+    hasExplicitCoefficient: !!coeffMatch[1],
   };
 }
 
@@ -77,7 +88,7 @@ function _escapeHtml(str) {
   if (typeof str !== 'string') {
     return '';
   }
-  var div = document.createElement('div');
+  const div = document.createElement('div');
   div.textContent = str;
   return div.innerHTML;
 }
@@ -95,8 +106,12 @@ function displayParsedCoefficients(result) {
   result.reactants.forEach((reactant) => {
     html +=
       '<li class="list-group-item">' +
-        '<strong>' + _escapeHtml(reactant.formula) + '</strong>' +
-        '<span class="badge" style="margin-left: 10px;">ν₁ = ' + reactant.coefficient + '</span>' +
+      '<strong>' +
+      _escapeHtml(reactant.formula) +
+      '</strong>' +
+      '<span class="badge" style="margin-left: 10px;">ν₁ = ' +
+      reactant.coefficient +
+      '</span>' +
       '</li>';
   });
   html += '</ul></div>';
@@ -107,8 +122,12 @@ function displayParsedCoefficients(result) {
   result.products.forEach((product) => {
     html +=
       '<li class="list-group-item">' +
-        '<strong>' + _escapeHtml(product.formula) + '</strong>' +
-        '<span class="badge" style="margin-left: 10px;">ν₂ = ' + product.coefficient + '</span>' +
+      '<strong>' +
+      _escapeHtml(product.formula) +
+      '</strong>' +
+      '<span class="badge" style="margin-left: 10px;">ν₂ = ' +
+      product.coefficient +
+      '</span>' +
       '</li>';
   });
   html += '</ul></div>';
@@ -116,23 +135,34 @@ function displayParsedCoefficients(result) {
   html += '</div>';
   container.innerHTML = html;
 
-  let buttonsHtml = '<p style="margin-bottom: 10px;"><strong>Koeffizienten übernehmen:</strong></p>';
+  let buttonsHtml =
+    '<p style="margin-bottom: 10px;"><strong>Koeffizienten übernehmen:</strong></p>';
   buttonsHtml += '<div class="btn-group">';
 
   if (result.reactants.length === 1 && result.products.length === 1) {
     const rCoeff = result.reactants[0].coefficient;
     const pCoeff = result.products[0].coefficient;
-    buttonsHtml += '<button class="btn btn-success" onclick="applyCoefficientsToMolMol(' + rCoeff + ', ' + pCoeff + ')">' +
+    buttonsHtml +=
+      '<button class="btn btn-success" onclick="applyCoefficientsToMolMol(' +
+      rCoeff +
+      ', ' +
+      pCoeff +
+      ')">' +
       '<i class="fa fa-check"></i> Mol-Mol-Rechner' +
-    '</button>';
+      '</button>';
   }
 
   if (result.reactants.length === 1 && result.products.length === 1) {
     const rCoeff2 = result.reactants[0].coefficient;
     const pCoeff2 = result.products[0].coefficient;
-    buttonsHtml += '<button class="btn btn-success" onclick="applyCoefficientsToMassMass(' + rCoeff2 + ', ' + pCoeff2 + ')">' +
+    buttonsHtml +=
+      '<button class="btn btn-success" onclick="applyCoefficientsToMassMass(' +
+      rCoeff2 +
+      ', ' +
+      pCoeff2 +
+      ')">' +
       '<i class="fa fa-check"></i> Masse-Masse-Rechner' +
-    '</button>';
+      '</button>';
   }
 
   buttonsHtml += '</div>';
@@ -140,7 +170,6 @@ function displayParsedCoefficients(result) {
 
   resultPanel.style.display = 'block';
 }
-
 
 function applyCoefficientsToMolMol(v1, v2) {
   document.getElementById('mol-coeff-r').value = v1;
@@ -152,7 +181,6 @@ function applyCoefficientsToMolMol(v1, v2) {
 
   showToast('Koeffizienten übernommen: Edukt ν₁=' + v1 + ', Produkt ν₂=' + v2, 'success');
 }
-
 
 function applyCoefficientsToMassMass(v1, v2) {
   document.getElementById('mass-coeff-r').value = v1;

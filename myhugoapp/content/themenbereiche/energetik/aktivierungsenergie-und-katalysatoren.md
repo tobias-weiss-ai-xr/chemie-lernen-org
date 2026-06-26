@@ -1,12 +1,13 @@
 ---
-title: "Aktivierungsenergie und Katalysatoren"
-description: "Warum nicht alle exothermen Reaktionen spontan ablaufen, der Maxwell-Boltzmann-Ansatz, und wie Katalysatoren Reaktionswege verändern."
-date: "2026-06-18"
-tags: ["chemie", "aktivierungsenergie", "katalysator", "reaktionsgeschwindigkeit", "arrhenius"]
+title: 'Aktivierungsenergie und Katalysatoren'
+description: 'Warum nicht alle exothermen Reaktionen spontan ablaufen, der Maxwell-Boltzmann-Ansatz, und wie Katalysatoren Reaktionswege verändern.'
+date: '2026-06-18'
+tags: ['chemie', 'aktivierungsenergie', 'katalysator', 'reaktionsgeschwindigkeit', 'arrhenius']
 interaktiv: false
-schwierigkeit: "mittelstufe"
-teilgebiet: ["energetik"]
-icon: "🔥"
+schwierigkeit: 'mittelstufe'
+teilgebiet: ['energetik']
+icon: '🔥'
+aliases: [/article/aktivierungsenergie-und-katalysatoren/]
 ---
 
 Nicht jede thermodynamisch mögliche Reaktion läuft auch praktisch ab. Der Grund ist die **Aktivierungsenergie ($E_A$)** — die minimale Energie, die Moleküle benötigen, um in den Übergangszustand zu gelangen und zu reagieren. Selbst eine stark exotherme Reaktion (wie die Verbrennung von Papier) setzt bei Raumtemperatur nicht spontan ein — die Aktivierungsenergie ist zu hoch.

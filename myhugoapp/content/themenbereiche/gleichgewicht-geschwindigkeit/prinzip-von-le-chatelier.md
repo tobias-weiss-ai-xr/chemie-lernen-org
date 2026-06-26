@@ -1,12 +1,13 @@
 ---
-title: "Prinzip von Le Chatelier"
-description: "Das Prinzip des kleinsten Zwanges: Ein System im Gleichgewicht reagiert auf äußere Änderungen so, dass diese teilweise rückgängig gemacht werden."
-date: "2026-06-08"
-tags: ["chemie", "gleichgewicht", "le-chatelier", "prinzip"]
+title: 'Prinzip von Le Chatelier'
+description: 'Das Prinzip des kleinsten Zwanges: Ein System im Gleichgewicht reagiert auf äußere Änderungen so, dass diese teilweise rückgängig gemacht werden.'
+date: '2026-06-08'
+tags: ['chemie', 'gleichgewicht', 'le-chatelier', 'prinzip']
 interaktiv: false
-schwierigkeit: "mittelstufe"
-teilgebiet: ["gleichgewicht-geschwindigkeit"]
-icon: "⚖️"
+schwierigkeit: 'mittelstufe'
+teilgebiet: ['gleichgewicht-geschwindigkeit']
+icon: '⚖️'
+aliases: [/article/prinzip-von-le-chatelier/]
 ---
 
 ## Das Prinzip
@@ -15,10 +16,10 @@ Das **Prinzip von Le Chatelier** (1884) besagt: Wenn ein chemisches Gleichgewich
 
 ## Temperaturänderung
 
-| Änderung | Endotherme Seite ($\Delta H > 0$) | Exotherme Seite ($\Delta H < 0$) |
-|----------|--------------------------------|--------------------------------|
-| Temperatur ↑ | begünstigt ✓ | benachteiligt |
-| Temperatur ↓ | benachteiligt | begünstigt ✓ |
+| Änderung     | Endotherme Seite ($\Delta H > 0$) | Exotherme Seite ($\Delta H < 0$) |
+| ------------ | --------------------------------- | -------------------------------- |
+| Temperatur ↑ | begünstigt ✓                      | benachteiligt                    |
+| Temperatur ↓ | benachteiligt                     | begünstigt ✓                     |
 
 **Beispiel:** $N_2 + 3H_2 \rightleftharpoons 2NH_3\quad(\Delta H = -92\text{ kJ/mol})$
 
@@ -52,11 +53,11 @@ Ein **Katalysator verändert die Gleichgewichtslage nicht** — er beschleunigt 
 
 $$N_2 + 3H_2 \rightleftharpoons 2NH_3\quad(\Delta H = -92\text{ kJ/mol})$$
 
-| Bedingung | Thermodynamisch optimal | Kinetisch optimal | Gewählt |
-|-----------|----------------------|-------------------|---------|
-| Temperatur | niedrig (exotherm) | hoch (schnelle Kinetik) | **450°C** (Kompromiss) |
-| Druck | hoch (weniger Gasvolumen) | technisch limitiert | **200–300 bar** |
-| Katalysator | — | — | **Eisen** mit $K_2O$/$Al_2O_3$-Promotoren |
+| Bedingung   | Thermodynamisch optimal   | Kinetisch optimal       | Gewählt                                   |
+| ----------- | ------------------------- | ----------------------- | ----------------------------------------- |
+| Temperatur  | niedrig (exotherm)        | hoch (schnelle Kinetik) | **450°C** (Kompromiss)                    |
+| Druck       | hoch (weniger Gasvolumen) | technisch limitiert     | **200–300 bar**                           |
+| Katalysator | —                         | —                       | **Eisen** mit $K_2O$/$Al_2O_3$-Promotoren |
 
 Ohne Katalysator wäre die Reaktion bei 450°C extrem langsam. Ohne hohen Druck wäre die $NH_3$-Ausbeute gering. Das Haber-Bosch-Verfahren ist ein klassisches Beispiel für die Abwägung zwischen Thermodynamik und Kinetik.
 

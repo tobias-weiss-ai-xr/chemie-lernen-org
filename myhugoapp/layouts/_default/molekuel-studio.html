@@ -452,8 +452,12 @@
     // Set a timeout to check if molecule studio loaded
     window.addEventListener('load', () => {
         setTimeout(() => {
-            if (!window.moleculeStudioLoaded) {
-                console.error('Molecule Studio failed to load');
+            if (!window.moleculeStudioLoaded || window.moleculeStudioError) {
+                if (window.moleculeStudioError) {
+                    console.error('Molecule Studio error detected:', window.moleculeStudioError);
+                } else {
+                    console.error('Molecule Studio failed to load');
+                }
 
                 // Hide loading indicators
                 const loadingMsg = document.getElementById('js-loading');

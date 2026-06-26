@@ -1,12 +1,13 @@
 ---
-title: "Kohlenwasserstoffe"
-description: "Kohlenwasserstoffe sind organische Verbindungen aus Kohlenstoff und Wasserstoff: gesättigte (Alkane), ungesättigte (Alkene, Alkine), aromatische."
-date: "2026-06-03"
-tags: ["chemie", "kohlenwasserstoffe", "organik"]
+title: 'Kohlenwasserstoffe'
+description: 'Kohlenwasserstoffe sind organische Verbindungen aus Kohlenstoff und Wasserstoff: gesättigte (Alkane), ungesättigte (Alkene, Alkine), aromatische.'
+date: '2026-06-03'
+tags: ['chemie', 'kohlenwasserstoffe', 'organik']
 interaktiv: false
-schwierigkeit: "mittelstufe"
-teilgebiet: ["erdoel-organische-stoffklassen"]
-icon: "🛢️"
+schwierigkeit: 'mittelstufe'
+teilgebiet: ['erdoel-organische-stoffklassen']
+icon: '🛢️'
+aliases: [/article/kohlenwasserstoffe/]
 ---
 
 **Kohlenwasserstoffe** bestehen ausschließlich aus Kohlenstoff- und Wasserstoffatomen. Sie bilden die wichtigste Stoffklasse der organischen Chemie und sind Hauptbestandteil von Erdöl und Erdgas.
@@ -15,13 +16,13 @@ icon: "🛢️"
 
 Enthalten nur **Einfachbindungen** ($sp^3$-hybridisiert). Summenformel: $C_nH_{2n+2}$.
 
-| Alkan | Formel | $M$ (g/mol) | Siedepunkt (°C) | Verwendung |
-|-------|--------|-------------|-----------------|------------|
-| Methan | $CH_4$ | 16 | −161 | Erdgas |
-| Ethan | $C_2H_6$ | 30 | −89 | Brenngas |
-| Propan | $C_3H_8$ | 44 | −42 | Campinggas |
-| Butan | $C_4H_{10}$ | 58 | −1 | Feuerzeug, Gas |
-| Pentan | $C_5H_{12}$ | 72 | 36 | Lösungsmittel |
+| Alkan  | Formel      | $M$ (g/mol) | Siedepunkt (°C) | Verwendung     |
+| ------ | ----------- | ----------- | --------------- | -------------- |
+| Methan | $CH_4$      | 16          | −161            | Erdgas         |
+| Ethan  | $C_2H_6$    | 30          | −89             | Brenngas       |
+| Propan | $C_3H_8$    | 44          | −42             | Campinggas     |
+| Butan  | $C_4H_{10}$ | 58          | −1              | Feuerzeug, Gas |
+| Pentan | $C_5H_{12}$ | 72          | 36              | Lösungsmittel  |
 
 **Trend:** Mit steigender Kettenlänge nehmen Siedepunkt und Molmasse zu. Alkane sind bei Raumtemperatur gasförmig ($C_1$–$C_4$), flüssig ($C_5$–$C_{17}$) oder fest ($>C_{17}$, Paraffine).
 

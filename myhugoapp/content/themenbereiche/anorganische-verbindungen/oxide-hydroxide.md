@@ -1,12 +1,13 @@
 ---
-title: "Oxide und Hydroxide"
-description: "Chemische Eigenschaften, Reaktionen und Anwendungen von Oxiden und Hydroxiden – wichtige Verbindungsklassen der anorganischen Chemie."
-date: "2026-06-14"
-tags: ["chemie", "anorganische-verbindungen", "oxide", "hydroxide", "metalle", "nichtmetalle"]
+title: 'Oxide und Hydroxide'
+description: 'Chemische Eigenschaften, Reaktionen und Anwendungen von Oxiden und Hydroxiden – wichtige Verbindungsklassen der anorganischen Chemie.'
+date: '2026-06-14'
+tags: ['chemie', 'anorganische-verbindungen', 'oxide', 'hydroxide', 'metalle', 'nichtmetalle']
 interaktiv: false
-schwierigkeit: "mittelstufe"
-teilgebiet: ["anorganische-verbindungen"]
-icon: "🧱"
+schwierigkeit: 'mittelstufe'
+teilgebiet: ['anorganische-verbindungen']
+icon: '🧱'
+aliases: [/article/oxide-hydroxide/]
 ---
 
 ## Definitionen
@@ -19,12 +20,12 @@ $$\ce{MeO + H2O -> Me(OH)2}$$
 
 ## Klassifizierung der Oxide
 
-| Typ             | Beispiele                | Säure-Base-Verhalten                     |
-|-----------------|--------------------------|-------------------------------------------|
-| **Saure Oxide** | CO₂, SO₃                 | Bilden mit Wasser Säuren (H₂CO₃)          |
-| **Basische Oxide** | CaO, Na₂O               | Bilden mit Wasser Hydroxide (Ca(OH)₂)     |
-| **Amphotere Oxide** | Al₂O₃, ZnO             | Reagieren sowohl mit Säuren als auch Basen |
-| **Neutrale Oxide** | CO, NO                  | Keine Reaktion mit Wasser                 |
+| Typ                 | Beispiele  | Säure-Base-Verhalten                       |
+| ------------------- | ---------- | ------------------------------------------ |
+| **Saure Oxide**     | CO₂, SO₃   | Bilden mit Wasser Säuren (H₂CO₃)           |
+| **Basische Oxide**  | CaO, Na₂O  | Bilden mit Wasser Hydroxide (Ca(OH)₂)      |
+| **Amphotere Oxide** | Al₂O₃, ZnO | Reagieren sowohl mit Säuren als auch Basen |
+| **Neutrale Oxide**  | CO, NO     | Keine Reaktion mit Wasser                  |
 
 Der Übergang zwischen sauer und basisch hängt von der **Elektronegativität** (χ) des Zentralatoms ab.
 
@@ -45,13 +46,13 @@ $$\ce{Al(OH)3 + OH- -> [Al(OH)4]-}$$
 
 ## Technische Anwendungen
 
-| Verbindung       | Verwendung                                  |
-|------------------|---------------------------------------------|
-| CaO (Branntkalk) | Mörtel, Zement, Rauchgasentschwefelung      |
-| SiO₂             | Glas, Silicagel, Quarzuhren                 |
-| Fe₂O₃            | Pigmente, Rost, Magnetbänder                |
-| NaOH             | Seifenherstellung, Papierindustrie          |
-| Al₂O₃            | Keramik, Schleifmittel, Katalysatorträger   |
+| Verbindung       | Verwendung                                |
+| ---------------- | ----------------------------------------- |
+| CaO (Branntkalk) | Mörtel, Zement, Rauchgasentschwefelung    |
+| SiO₂             | Glas, Silicagel, Quarzuhren               |
+| Fe₂O₃            | Pigmente, Rost, Magnetbänder              |
+| NaOH             | Seifenherstellung, Papierindustrie        |
+| Al₂O₃            | Keramik, Schleifmittel, Katalysatorträger |
 
 ## Übungen
 

@@ -1,12 +1,13 @@
 ---
-title: "Stöchiometrie-Grundlagen"
-description: "Molbegriff, Avogadro-Zahl, molare Masse und die Umrechnung zwischen Masse, Stoffmenge und Teilchenzahl — das Fundament quantitativer Chemie."
-date: "2026-06-18"
-tags: ["chemie", "stoechiometrie", "mol", "avogadro", "molare-masse"]
+title: 'Stöchiometrie-Grundlagen'
+description: 'Molbegriff, Avogadro-Zahl, molare Masse und die Umrechnung zwischen Masse, Stoffmenge und Teilchenzahl — das Fundament quantitativer Chemie.'
+date: '2026-06-18'
+tags: ['chemie', 'stoechiometrie', 'mol', 'avogadro', 'molare-masse']
 interaktiv: false
-schwierigkeit: "grundlagen"
-teilgebiet: ["aufbau-materie"]
-icon: "⚛️"
+schwierigkeit: 'grundlagen'
+teilgebiet: ['aufbau-materie']
+icon: '⚛️'
+aliases: [/article/stoechiometrie-grundlagen/]
 ---
 
 Die **Stöchiometrie** beschreibt die quantitativen Beziehungen bei chemischen Reaktionen. Sie beantwortet die Frage: "Wie viel von Stoff A brauche ich, um eine bestimmte Menge von Stoff B herzustellen?" Das zentrale Konzept dafür ist der **Molbegriff**.

@@ -1,0 +1,83 @@
+# ============================================================
+# Curriculum Scraper — Periodic pipeline
+# Runs weekly to fetch latest chemistry curricula from all 16
+# Bundesländer. Detects changes via SHA-256 checksums; only
+# commits updated data. Commit triggers deploy workflow.
+# ============================================================
+name: Curricula Scrape
+
+on:
+  schedule:
+    # Every Sunday at 06:00 UTC
+    - cron: "0 6 * * 0"
+  workflow_dispatch:
+    inputs:
+      state:
+        description: 'State(s) to scrape (e.g. "bw" or "all")'
+        required: true
+        default: "all"
+      force:
+        description: "Ignore checksums, re-scrape everything"
+        type: boolean
+        default: false
+
+env:
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "pip"
+          cache-dependency-path: scripts/curricula/requirements.txt
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scripts/curricula/requirements.txt
+
+      - name: Run curriculum scraper
+        run: |
+          cd scripts/curricula
+          ARGS=""
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ "${{ github.event.inputs.state }}" != "all" ]; then
+              ARGS="$ARGS --state ${{ github.event.inputs.state }}"
+            fi
+            if [ "${{ github.event.inputs.force }}" = "true" ]; then
+              ARGS="$ARGS --force"
+            fi
+          fi
+          python3 scraper.py $ARGS
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          if [ -n "$(git status --porcelain myhugoapp/data/curricula/)" ]; then
+            echo "changes_detected=true" >> "$GITHUB_OUTPUT"
+            echo "Changed files:"
+            git status --short myhugoapp/data/curricula/
+          else
+            echo "changes_detected=false" >> "$GITHUB_OUTPUT"
+            echo "No curriculum data changes."
+          fi
+
+      - name: Commit updated curricula
+        if: steps.git-check.outputs.changes_detected == 'true'
+        run: |
+          git config user.name "sisyphus-bot"
+          git config user.email "bot@chemie-lernen.org"
+          git add myhugoapp/data/curricula/
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          git commit -m "chore: update curriculum data ($TIMESTAMP)" \
+                     -m "Automated scrape by sisyphus-bot." \
+                     -m "Ultraworked with [Sisyphus](https://github.com/code-yeongyu/oh-my-openagent)" \
+                     -m "Co-authored-by: Sisyphus <clio-agent@sisyphuslabs.ai>"
+          git push

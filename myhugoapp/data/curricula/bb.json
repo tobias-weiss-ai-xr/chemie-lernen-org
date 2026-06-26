@@ -1,0 +1,1503 @@
+{
+  "state": "Brandenburg",
+  "state_abbr": "BB",
+  "school_curricula": [
+    {
+      "school_type": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+      "grade_levels": [
+        {
+          "grade": "7/8",
+          "topics": [
+            {
+              "title": "In Brandenburg sind diese Schülerinnen und Schüler dem Bildungsgang Förderschule Lernen gemäß",
+              "learning_objectives": [
+                {
+                  "text": "§ 30 BbgSchulG zugeordnet."
+                },
+                {
+                  "text": "Der experimentellen Methode kommt aufgrund ihrer exponierten Stellung in den naturwis-"
+                },
+                {
+                  "text": "Fächern eine tragende Rolle zu. Aus diesem Grund werden für jedes The-"
+                },
+                {
+                  "text": "Experimente und Untersuchungen angegeben. Diese können entspre-"
+                },
+                {
+                  "text": "Ausstattung der Schule variiert werden, sofern die mit dem Expe-"
+                },
+                {
+                  "text": "Untersuchung verbundenen Intentionen gewahrt bleiben."
+                },
+                {
+                  "text": "Die in den Tabellen angegebenen Fachbegriffe beschränken sich auf wichtige, unverzicht-"
+                },
+                {
+                  "text": "Begriffe des Faches."
+                },
+                {
+                  "text": "Themenfeldern Beispiele für Differenzierungsmöglichkeiten, die den Lehrkräften helfen, das"
+                },
+                {
+                  "text": "für ihre Lerngruppe und für einzelne Schülerinnen und Schüler passende Leistungsniveau"
+                },
+                {
+                  "text": "Differenzierungsmöglichkeiten beziehen sich auf:"
+                },
+                {
+                  "text": "Komplexität von Sachverhalten und Kontexten,"
+                },
+                {
+                  "text": "Tiefe, mit der die Inhalte behandelt werden,"
+                },
+                {
+                  "text": "Abstraktionsniveau,"
+                },
+                {
+                  "text": "Zugänge, z. B. mit Bezug auf den Grad der Selbstständigkeit,"
+                },
+                {
+                  "text": "Bearbeitungsweisen, z. B. bei der Textrezeption und Neustrukturie-"
+                },
+                {
+                  "text": "Sachverhalten, beim Erkunden oder Recherchieren,"
+                },
+                {
+                  "text": "Verarbeitungsweisen, z. B. Aufgaben lösen, Textproduktion, Anwenden"
+                },
+                {
+                  "text": "Memorieren von Wissen,"
+                },
+                {
+                  "text": "Im Rahmen der Kontingentstundentafel obliegt es jeder Schule, Profilstunden für den Wahl-"
+                },
+                {
+                  "text": "Fächer Chemie, Biologie, Physik oder das Wahlpflichtfach Naturwissen-"
+                },
+                {
+                  "text": "Die Themen und Inhalte für ein naturwissenschaftliches Wahlpflichtfach"
+                },
+                {
+                  "text": "Fachkonferenz der Schule festgelegt."
+                },
+                {
+                  "text": "Übersicht über die Themenfelder"
+                },
+                {
+                  "text": "Doppeljahrgangsstufe 7/8"
+                },
+                {
+                  "text": "Faszination Chemie – Feuer, Schall und Rauch"
+                },
+                {
+                  "text": "Das Periodensystem der Elemente – Übersicht und Werkzeug"
+                },
+                {
+                  "text": "Gase – zwischen lebensnotwendig und gefährlich"
+                },
+                {
+                  "text": "Wasser – eine Verbindung"
+                },
+                {
+                  "text": "Salze – Gegensätze ziehen sich an"
+                },
+                {
+                  "text": "Metalle – Schätze der Erde"
+                },
+                {
+                  "text": "Klare Verhältnisse – Quantitative Betrachtungen"
+                },
+                {
+                  "text": "Säuren und Laugen – echt ätzend"
+                },
+                {
+                  "text": "Doppeljahrgangsstufe 9/10"
+                },
+                {
+                  "text": "Kohlenwasserstoffe – vom Campinggas zum Superbenzin"
+                },
+                {
+                  "text": "Alkohole – vom Holzgeist zum Glycerin"
+                },
+                {
+                  "text": "Organische Säuren – Salatsauce, Entkalker & Co"
+                },
+                {
+                  "text": "Ester – Vielfalt der Produkte aus Alkoholen und Säuren"
+                },
+                {
+                  "text": "Faszination Chemie – Feuer, Schall und Rauch"
+                },
+                {
+                  "text": "Das Themenfeld bietet eine erste Orientierung in der Vielfalt der Stoffe sowie deren Reakti-"
+                },
+                {
+                  "text": "führt in die Chemie und naturwissenschaftliche Denk- und Arbeitsweisen ein."
+                },
+                {
+                  "text": "Chemische Reaktionen werden exemplarisch auf der Stoffebene bearbeitet. Ihre Deutung"
+                },
+                {
+                  "text": "Teilchenebene knüpft an die Teilchenvorstellungen aus dem Fach Naturwissen-"
+                },
+                {
+                  "text": "5/6 an und führt zu einer einfachen Atomvorstellung, welche die unterschiedliche"
+                },
+                {
+                  "text": "Masse der Atome, ihre Größe und ihre Kugelform beinhaltet."
+                },
+                {
+                  "text": "Inhalte Experimente/Untersuchungen"
+                },
+                {
+                  "text": "Reaktion (stofflich und auf – Handhabung des Brenners"
+                },
+                {
+                  "text": "Verbrennung von Metallen und Nichtme-"
+                },
+                {
+                  "text": "Energie bei chemischen Reaktionen tallen"
+                },
+                {
+                  "text": "(Reaktionsenergie, endotherm, exotherm,"
+                },
+                {
+                  "text": "Aktivierungsenergie)"
+                },
+                {
+                  "text": "Gesetz von der Erhaltung der Masse"
+                },
+                {
+                  "text": "Reaktionen von Nichtmetallen und von"
+                },
+                {
+                  "text": "Metallen mit Sauerstoff, Oxidation, Wort-"
+                },
+                {
+                  "text": "Verbindung, Metall- und Nichtmetalloxide,"
+                },
+                {
+                  "text": "Bezüge zu den Basiskonzepten"
+                },
+                {
+                  "text": "Stoff-Teilchen- – Stoffe bestehen aus Teilchen"
+                },
+                {
+                  "text": "Summe der Massen aller an einer chemischen Reaktion"
+                },
+                {
+                  "text": "Stoffe bleibt konstant"
+                },
+                {
+                  "text": "Konzept der – Betrachtung einfacher chemischer Reaktionen auf makroskopi-"
+                },
+                {
+                  "text": "Umgruppierung von Teilchen bei einer chemischen Reaktion"
+                },
+                {
+                  "text": "Energie-Konzept – bei Verbrennungen/Oxidationen findet ein Energieumsatz statt"
+                },
+                {
+                  "text": "Vergleich der Energiegehalte von Edukten und Produkten"
+                },
+                {
+                  "text": "Aktivierungsenergie ist eine Einflussgröße chemischer Reaktionen"
+                },
+                {
+                  "text": "Mögliche Kontexte Fachbegriffe"
+                },
+                {
+                  "text": "Feuer und Flamme – Brennen und – Reaktionsenergie"
+                },
+                {
+                  "text": "Müllverbrennung und Energie"
+                },
+                {
+                  "text": "Kerze und Wunderkerze"
+                },
+                {
+                  "text": "Aktivierungsenergie"
+                },
+                {
+                  "text": "Oxid, Verbindung"
+                },
+                {
+                  "text": "Beispiele für Differenzierungsmöglichkeiten"
+                },
+                {
+                  "text": "Vorgabe von detaillierten Versuchsdurchführungen oder thesengeleitete Experimente zur"
+                },
+                {
+                  "text": "Rolle des Sauerstoffs bei Verbrennungsreaktionen"
+                },
+                {
+                  "text": "Prozesse der Müllverbrennung werden mithilfe eines Sachtextes beschrieben oder in"
+                },
+                {
+                  "text": "Form eines Prozessdiagramms visualisiert und präsentiert"
+                },
+                {
+                  "text": "Benennung der Oxide und Sulfide ohne oder mit Angabe der Wertigkeit"
+                },
+                {
+                  "text": "Wortgleichung aufstellen oder Wortgleichungen als Fachtext verbalisieren"
+                },
+                {
+                  "text": "Wortgleichungen oder einfache Reaktionsgleichungen am Beispiel der Sulfidbildung"
+                },
+                {
+                  "text": "Das Periodensystem der Elemente – Übersicht und Werkzeug"
+                },
+                {
+                  "text": "Im zweiten Themenfeld wird die einfache Atomvorstellung über ein Kern-Hülle-Modell zum"
+                },
+                {
+                  "text": "Modell der Atomhülle erweitert. Jedem Element wird anhand einer charakteris-"
+                },
+                {
+                  "text": "Protonen- und Elektronenzahl eine eindeutige Identität zugewiesen."
+                },
+                {
+                  "text": "Über das Periodensystem der Elemente (PSE) werden Merkmale des Atombaus mit chemi-"
+                },
+                {
+                  "text": "Eigenschaften verknüpft, wodurch im Weiteren eine Deutung chemischer Reaktionen"
+                },
+                {
+                  "text": "Teilchenebene ermöglicht wird."
+                },
+                {
+                  "text": "Inhalte Experimente/Untersuchungen"
+                },
+                {
+                  "text": "Symbole – Modellexperiment zum Kern-Hülle-Modell"
+                },
+                {
+                  "text": "Atombau: Kern-Hülle-Modell (Proton,"
+                },
+                {
+                  "text": "Neutron, Elektron)"
+                },
+                {
+                  "text": "Modell der strukturierten Atomhülle,"
+                },
+                {
+                  "text": "Elektronenschreibweise nach Lewis"
+                },
+                {
+                  "text": "Bezüge zu den Basiskonzepten"
+                },
+                {
+                  "text": "Stoff-Teilchen- – Charakterisierung von Elementen auf stofflicher Ebene (Metalle,"
+                },
+                {
+                  "text": "Konzept Nichtmetalle, Edelgase) und den Atomen, aus denen diese"
+                },
+                {
+                  "text": "Stoffe aufgebaut sind"
+                },
+                {
+                  "text": "Struktur-Eigenschafts- – Zusammenhänge zwischen Eigenschaften und Atombau der"
+                },
+                {
+                  "text": "Konzept Elementgruppen des PSE"
+                },
+                {
+                  "text": "Mögliche Kontexte Fachbegriffe"
+                },
+                {
+                  "text": "Ordnungsprinzipien chemischer – PSE"
+                },
+                {
+                  "text": "Elemente – ein historischer Rückblick"
+                },
+                {
+                  "text": "Entwicklung der Atommodelle"
+                },
+                {
+                  "text": "Proton, Neutron, Elektron"
+                },
+                {
+                  "text": "Rutherfordscher Streuversuch – vom"
+                },
+                {
+                  "text": "Experiment zum Modell"
+                },
+                {
+                  "text": "Periode, Hauptgruppe, Nebengruppe"
+                },
+                {
+                  "text": "Valenzelektronen/Außenelektronen"
+                },
+                {
+                  "text": "Beispiele für Differenzierungsmöglichkeiten"
+                },
+                {
+                  "text": "Ordnungsprinzipien des PSE erkennen oder aus dem Atombau Ordnungsprinzipien der"
+                },
+                {
+                  "text": "Elemente ableiten"
+                },
+                {
+                  "text": "Darstellung der Atome der Elemente der 1. bis 3. Periode oder der höheren Perioden"
+                },
+                {
+                  "text": "Gase – zwischen lebensnotwendig und gefährlich"
+                },
+                {
+                  "text": "Aufbauend auf Fähigkeiten zur Beschreibung von Stoffen anhand wahrnehmbarer Eigen-"
+                },
+                {
+                  "text": "Themenfeld eine Charakterisierung unsichtbarer Bestandteile der"
+                },
+                {
+                  "text": "Luft sowie weiterer technisch, chemisch und physiologisch bedeutsamer Gase."
+                },
+                {
+                  "text": "Der Aufbau der molekularen Gase wird mithilfe der Elektronenpaarbindung erklärt."
+                },
+                {
+                  "text": "Die Beeinflussung der Luft/Atmosphäre durch natürliche und anthropogene Faktoren wird"
+                },
+                {
+                  "text": "Ausgewählte Nachweise von Gasen bieten die Möglichkeit der Untersuchung vielfältiger"
+                },
+                {
+                  "text": "Inhalte Experimente/Untersuchungen"
+                },
+                {
+                  "text": "Eigenschaften, Verwendung und Nach- – Nachweis von Wasserstoff, Sauerstoff"
+                },
+                {
+                  "text": "Sauerstoff, Wasserstoff und Kohlenstoffdioxid"
+                },
+                {
+                  "text": "Kohlenstoffdioxid"
+                },
+                {
+                  "text": "Ermittlung des Sauerstoffgehaltes der"
+                },
+                {
+                  "text": "Bestandteile der Luft Luft"
+                },
+                {
+                  "text": "Atombindung/Elektronenpaarbindung/"
+                },
+                {
+                  "text": "Moleküle, Lewis-Strukturformel"
+                },
+                {
+                  "text": "Bezüge zu den Basiskonzepten"
+                },
+                {
+                  "text": "Konzept der – Unterscheidung von Eigenschaften von Gasen auf phänomeno-"
+                },
+                {
+                  "text": "Reaktion logischer Ebene (Eine Deutung der Phänomene auf Teilchen-"
+                },
+                {
+                  "text": "Mögliche Kontexte Fachbegriffe"
+                },
+                {
+                  "text": "Dicke Luft – Luftverschmutzung – Moleküle"
+                },
+                {
+                  "text": "Die Hindenburg – fliegende Zigarre – unpolare Atom-/Elektronenpaarbindung"
+                },
+                {
+                  "text": "Rauchgasvergiftung – Oktettregel"
+                },
+                {
+                  "text": "Edelgase – edle Gase? – Lewis-Strukturformel"
+                },
+                {
+                  "text": "Beispiele für Differenzierungsmöglichkeiten"
+                },
+                {
+                  "text": "Recherche zum Gewinnungsverfahren eines Gases oder mehrerer Gase im Vergleich"
+                },
+                {
+                  "text": "Wechsel des Aggregatzustands von Gasen bei verschiedenen Drücken und Temperaturen"
+                },
+                {
+                  "text": "phänomenologisch beschrieben oder anhand eines Modells durch geringe Wechsel-"
+                },
+                {
+                  "text": "Teilchen erklärt"
+                },
+                {
+                  "text": "Abstraktion der Knallgasprobe anhand einer Wortgleichung oder Reaktionsgleichung"
+                },
+                {
+                  "text": "Herleitung der Molekülgeometrie der Gase anhand eines Modells"
+                },
+                {
+                  "text": "Wasser – eine Verbindung"
+                },
+                {
+                  "text": "Kenntnisse über chemische Reaktionen und Nachweise der Gase Sauerstoff und Wasser-"
+                },
+                {
+                  "text": "Zugang zum Themenfeld Wasser."
+                },
+                {
+                  "text": "Die Elektronegativität ist Grundlage für das Verständnis eines differenzierten Modells der"
+                },
+                {
+                  "text": "Elektronenpaarbindung im Wassermolekül und der Ausbildung eines Dipols."
+                },
+                {
+                  "text": "Aufbauend auf Kenntnissen über Atombau, Teilchenarten, chemische Bindung und chemi-"
+                },
+                {
+                  "text": "Symbolschreibweise wird am Beispiel der Bildung und Zerlegung von Wasser die"
+                },
+                {
+                  "text": "Reaktionsgleichung eingeführt."
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler lernen, ihr naturwissenschaftlich erworbenes Wissen im"
+                },
+                {
+                  "text": "Themenfeld Wasser anzuwenden, erkennen naturwissenschaftliche Problemstellungen"
+                },
+                {
+                  "text": "B. Wasserhaushalt, Grundwasserabsenkung, Versteppung, Versalzung) und können aus"
+                },
+                {
+                  "text": "Wissen Schlussfolgerungen ziehen, um daraus auch Entscheidungen"
+                },
+                {
+                  "text": "für ihr eigenes alltägliches Handeln zu treffen."
+                },
+                {
+                  "text": "Inhalte Experimente/Untersuchungen"
+                },
+                {
+                  "text": "Eigenschaften von Wasser – Wasser als Lösungsmittel"
+                },
+                {
+                  "text": "Wasser als Lösungsmittel – Wassernachweis"
+                },
+                {
+                  "text": "Analyse von Wasser – Ablenkung eines Wasserstrahls"
+                },
+                {
+                  "text": "Bildung und Zerlegung von Wasser als – elektrolytische Zerlegung von Wasser"
+                },
+                {
+                  "text": "Beispiel der Umkehrbarkeit chemischer"
+                },
+                {
+                  "text": "Reaktionsgleichung"
+                },
+                {
+                  "text": "Elektronegativität, polare Elektronenpaar-"
+                },
+                {
+                  "text": "Bezüge zu den Basiskonzepten"
+                },
+                {
+                  "text": "Stoff-Teilchen- – Wasser besteht aus Molekülen"
+                },
+                {
+                  "text": "Lewis-Strukturformel von Wasser veranschaulicht die Verteilung"
+                },
+                {
+                  "text": "Valenz-/Außenelektronen in der Verbindung Wasser"
+                },
+                {
+                  "text": "Struktur-Eigenschafts- – Eigenschaften von Wasser lassen sich auf die Struktur und die"
+                },
+                {
+                  "text": "Konzept inter- und intramolekularen Wechselwirkungen der Wassermole-"
+                },
+                {
+                  "text": "küle zurückführen"
+                },
+                {
+                  "text": "Konzept der – Umgruppierung von Teilchen bei einer chemischen Reaktion"
+                },
+                {
+                  "text": "Charakterisierung der Bildung und Zerlegung von Wasser als"
+                },
+                {
+                  "text": "Mögliche Kontexte Fachbegriffe"
+                },
+                {
+                  "text": "Wasserstoff – Energieträger der Zukunft? – Reaktionsgleichung"
+                },
+                {
+                  "text": "Wasser – Transportmittel in der Natur – Elektronegativität"
+                },
+                {
+                  "text": "Wasserläufer ertrinken nicht – polare Elektronenpaarbindung"
+                },
+                {
+                  "text": "Salzwasser und Süßwasser – vom Über- – Dipol"
+                },
+                {
+                  "text": "Dipol-Dipol-Wechselwirkungen"
+                },
+                {
+                  "text": "Beispiele für Differenzierungsmöglichkeiten"
+                },
+                {
+                  "text": "Darstellung der Bildung und Zerlegung von Wasser auf unterschiedlichem Abstraktionsni-"
+                },
+                {
+                  "text": "(Wortgleichung, Reaktionsgleichung, Teilchenebene)"
+                },
+                {
+                  "text": "Veranschaulichung von Wasserstoffbrückenbindungen in"
+                },
+                {
+                  "text": "Aggregatzuständen"
+                },
+                {
+                  "text": "Versuch zur Dichteanomalie und zur Oberflächenspannung"
+                },
+                {
+                  "text": "Erklärung der Phänomene anhand zwischenmolekularer Wechselwirkungen (Dipol-Dipol-"
+                },
+                {
+                  "text": "Wechselwirkungen, Wasserstoffbrückenbindungen)"
+                },
+                {
+                  "text": "Salze – Gegensätze ziehen sich an"
+                },
+                {
+                  "text": "Auf stofflicher Ebene werden Eigenschaften von Salzen beschrieben und durch Art, Anord-"
+                },
+                {
+                  "text": "Wechselwirkung der Teilchen erklärt. Auf der Grundlage der Kenntnisse zum"
+                },
+                {
+                  "text": "Atombau und der Ordnungsprinzipien des PSE wird das Ion als eine weitere Teilchenart"
+                },
+                {
+                  "text": "eingeführt. Starke Anziehungskräfte zwischen entgegengesetzt geladenen Teilchen sind die"
+                },
+                {
+                  "text": "Ursache einer Vielzahl charakteristischer Eigenschaften von Ionensubstanzen."
+                },
+                {
+                  "text": "Salz war lange Zeit ein kostbares Tauschobjekt gegen Schmuck. Dank hochmoderner"
+                },
+                {
+                  "text": "Verfahren der Salzgewinnung wurde Salz zum preiswerten Alltagsprodukt. Weil unser"
+                },
+                {
+                  "text": "Körper Salz braucht, zu viel davon aber dem Wohlbefinden schadet, bietet es sich hier an,"
+                },
+                {
+                  "text": "Inhalte Experimente/Untersuchungen"
+                },
+                {
+                  "text": "Ion – Ionenbildung – Leitfähigkeitsuntersuchungen an"
+                },
+                {
+                  "text": "Feststoffen und Lösungen"
+                },
+                {
+                  "text": "Ionensubstanzen (Salze), Bildung, Vor-"
+                },
+                {
+                  "text": "Verwendung – Löslichkeit von Salzen"
+                },
+                {
+                  "text": "Bau und Eigenschaften (Ionenkristalle, – Flammenfärbungen phänomenologisch"
+                },
+                {
+                  "text": "Kristallgitter) – Ionenbindung,"
+                },
+                {
+                  "text": "Summenformel/Wertigkeit"
+                },
+                {
+                  "text": "Bezüge zu den Basiskonzepten"
+                },
+                {
+                  "text": "Stoff-Teilchen- – Verbindungen bilden sich aus den Elementen in einem für sie"
+                },
+                {
+                  "text": "Konzept typischen Verhältnis"
+                },
+                {
+                  "text": "Struktur-Eigenschafts- – Zusammenhang zwischen Bau der Ionensubstanzen und"
+                },
+                {
+                  "text": "Konzept Eigenschaften"
+                },
+                {
+                  "text": "Konzept der chemi- – Betrachtung einfacher chemischer Reaktionen auf makrosko-"
+                },
+                {
+                  "text": "Reaktion pischer Ebene"
+                },
+                {
+                  "text": "Umgruppierung von Teilchen bei einer chemischen Reaktion"
+                },
+                {
+                  "text": "Energie-Konzept – bei Salzbildungsreaktionen findet ein Energieumsatz statt"
+                },
+                {
+                  "text": "Mögliche Kontexte Fachbegriffe"
+                },
+                {
+                  "text": "Salz – kostbar und lebenswichtig – Ion"
+                },
+                {
+                  "text": "Streusalz – Pro und Kontra – Ionenbindung (chemische Bindung)"
+                },
+                {
+                  "text": "Kochsalz – weißes Gold – Ionensubstanz"
+                },
+                {
+                  "text": "Kochsalzlösung – ein Lebensretter? – Ionenkristall, Kristallgitter"
+                },
+                {
+                  "text": "Totes-Meer-Salz – Löslichkeit"
+                },
+                {
+                  "text": "Salz als Farbgeber im Feuerwerk – Lösungsmittel"
+                },
+                {
+                  "text": "Beispiele für Differenzierungsmöglichkeiten"
+                },
+                {
+                  "text": "Differenzierung über Auswahl der Inhalte: Natriumchlorid, Kupfer(II)-chlorid, Kupfer(I)-"
+                },
+                {
+                  "text": "chlorid, Kupfer(II)-sulfat, Kupfer(II)-sulfat-Pentahydrat"
+                },
+                {
+                  "text": "Vorgabe von detaillierten Versuchsdurchführungen oder selbstständiges Planen von"
+                },
+                {
+                  "text": "Experimenten zum Ermitteln energetischer Unterschiede beim Lösen von Salzen"
+                },
+                {
+                  "text": "Reaktionsgleichungen aufstellen oder Reaktionsgleichungen als Fachtext verbalisieren"
+                },
+                {
+                  "text": "Bau von Modellen verschiedener Kristallgittertypen"
+                },
+                {
+                  "text": "Metalle – Schätze der Erde"
+                },
+                {
+                  "text": "Ausgehend von Kenntnissen zum Atombau wird ein Zusammenhang zwischen metallischen"
+                },
+                {
+                  "text": "Eigenschaften und Bau der Metalle auf Teilchenebene hergestellt. Vergleichend mit der"
+                },
+                {
+                  "text": "Atom- und Ionenbindung werden die Kenntnisse zu Bindungstypen um das Modell der"
+                },
+                {
+                  "text": "Metallbindung erweitert. Basierend auf der Gewinnung von Metallen werden Redoxreaktio-"
+                },
+                {
+                  "text": "Reaktionstyp eingeführt."
+                },
+                {
+                  "text": "Inhalte Experimente/Untersuchungen"
+                },
+                {
+                  "text": "Eigenschaften und Verwendung der – Versuche zur elektrischen Leitfähigkeit,"
+                },
+                {
+                  "text": "Metalle und deren Legierungen Wärmeleitfähigkeit und Verformbarkeit"
+                },
+                {
+                  "text": "Gewinnung – Verbrennung von Metallen unterschiedli-"
+                },
+                {
+                  "text": "Zerteilungsgrades"
+                },
+                {
+                  "text": "Reaktion von Metallen unterschiedlicher"
+                },
+                {
+                  "text": "Bau der Metalle (Elektronengas-Modell)"
+                },
+                {
+                  "text": "Affinität zu Sauerstoff"
+                },
+                {
+                  "text": "Reaktionsgleichungen"
+                },
+                {
+                  "text": "Gewinnung von Metallen aus Oxiden"
+                },
+                {
+                  "text": "Reduktion und Redoxreaktion"
+                },
+                {
+                  "text": "Affinität der Metalle gegenüber Sauerstoff"
+                },
+                {
+                  "text": "Bezüge zu den Basiskonzepten"
+                },
+                {
+                  "text": "Struktur-Eigenschafts- – Anordnung der Teilchen im Metallgitter bedingt charakteristische"
+                },
+                {
+                  "text": "Konzept Eigenschaften von Metallen und bestimmt deren Verwendung"
+                },
+                {
+                  "text": "Energie-Konzept – Wärme- und Lichterscheinungen bei der Verbrennung von edlen"
+                },
+                {
+                  "text": "Mögliche Kontexte Fachbegriffe"
+                },
+                {
+                  "text": "Aluminium – ein Metall wie jedes andere? – Erz"
+                },
+                {
+                  "text": "Historische Gewinnung von Metallen – Legierung"
+                },
+                {
+                  "text": "Thermit-Verfahren – eine wichtige Redox- – Reduktion"
+                },
+                {
+                  "text": "Schrott als Rohstoff"
+                },
+                {
+                  "text": "Erze – Rohstoffe für die Gewinnung von"
+                },
+                {
+                  "text": "Münzmetalle – Woraus besteht ein Euro?"
+                },
+                {
+                  "text": "Elektronengas-Modell"
+                },
+                {
+                  "text": "Beispiele für Differenzierungsmöglichkeiten"
+                },
+                {
+                  "text": "Betrachtung von Redoxreaktionen auf Teilchenebene, Einführung des Donator-Akzeptor-"
+                },
+                {
+                  "text": "Prinzips (entweder Sauerstoffaufnahme/-abgabe oder Elektronenübertragung, Oxidations-"
+                },
+                {
+                  "text": "Abschätzung des Reaktionsverhaltens von edlen und"
+                },
+                {
+                  "text": "Klare Verhältnisse – Quantitative Betrachtungen"
+                },
+                {
+                  "text": "Ausgehend von den Gesetzen der konstanten Massen und Proportionen sowie Kenntnissen"
+                },
+                {
+                  "text": "Aufstellen von Reaktionsgleichungen, werden in diesem Themenfeld mathematische"
+                },
+                {
+                  "text": "Kenntnisse genutzt, um stöchiometrische Berechnungen vorzunehmen. Die Tiefe der Dis-"
+                },
+                {
+                  "text": "Sachverhalte wird um eine ökonomische Komponente erweitert. Im Mit-"
+                },
+                {
+                  "text": "Themenfelds steht die Einführung des Mols als Zählmaß für die Stoffmenge,"
+                },
+                {
+                  "text": "Voraussetzung für den Umgang mit Konzentrationsangaben"
+                },
+                {
+                  "text": "Inhalte Experimente/Untersuchungen"
+                },
+                {
+                  "text": "Stoffmenge − Vergleich der Massen verschiedener"
+                },
+                {
+                  "text": "Stoffe gleicher Stoffmenge"
+                },
+                {
+                  "text": "Atommasse und molare Masse"
+                },
+                {
+                  "text": "stöchiometrisches Rechnen (Masse,"
+                },
+                {
+                  "text": "Stoffmenge und molare Masse)"
+                },
+                {
+                  "text": "Massenberechnungen bei chemischen"
+                },
+                {
+                  "text": "Stoffmengenkonzentration wässriger"
+                },
+                {
+                  "text": "Bezüge zu den Basiskonzepten"
+                },
+                {
+                  "text": "Konzept der – Nutzung mathematischer Rechenoperationen"
+                },
+                {
+                  "text": "Mögliche Kontexte Fachbegriffe"
+                },
+                {
+                  "text": "Historische und gegenwärtige Zählmaße – Atommasse"
+                },
+                {
+                  "text": "Isotonische Kochsalzlösung – Zusam- – Stoffmenge"
+                },
+                {
+                  "text": "Koch- und Backrezepte – Man nehme die"
+                },
+                {
+                  "text": "Stoffmengenkonzentration"
+                },
+                {
+                  "text": "Beispiele für Differenzierungsmöglichkeiten"
+                },
+                {
+                  "text": "Differenzierung bei der Bestimmung von Molaren Massen über die Anzahl der Atomarten"
+                },
+                {
+                  "text": "Verbindungen (Natriumchlorid oder Traubenzucker)"
+                },
+                {
+                  "text": "Nutzung oder Begründung des Gesetzes von der Erhaltung der Masse und des Gesetzes"
+                },
+                {
+                  "text": "Rechenbeispiele mit Feststoffen oder Reaktionen, an denen Gase beteiligt sind"
+                },
+                {
+                  "text": "Säuren und Laugen – echt ätzend"
+                },
+                {
+                  "text": "Ausgehend von Alltagsstoffen lässt sich mithilfe von Indikatoren anschaulich ein experimen-"
+                },
+                {
+                  "text": "Zugang zum Themenfeld Säuren und Laugen ermöglichen. Bei der Herstellung von"
+                },
+                {
+                  "text": "Lösungen wird der Umgang mit dem PSE intensiviert. Auf stofflicher"
+                },
+                {
+                  "text": "Ebene werden insbesondere die Eigenschaften und das Reaktionsverhalten basischer und"
+                },
+                {
+                  "text": "Lösungen betrachtet. Das Grundwissen zu den Salzen wird hier erweitert. Neben der"
+                },
+                {
+                  "text": "vielfältigen Nutzung von Säuren und Laugen im täglichen Leben werden Fragen, die den"
+                },
+                {
+                  "text": "sorgfältigen, verantwortungsvollen Umgang mit diesen Stoffen betreffen, behandelt und so-"
+                },
+                {
+                  "text": "Entwicklung eines Bewusstseins für Nachhaltigkeit beigetragen."
+                },
+                {
+                  "text": "Inhalte Experimente/Untersuchungen"
+                },
+                {
+                  "text": "Indikatoren – Hilfsmittel zum Erkennen – Untersuchung von Haushalts- und Labor-"
+                },
+                {
+                  "text": "Unterscheiden von sauren, neutralen chemikalien mithilfe von Indikatoren"
+                },
+                {
+                  "text": "Reaktion von Nichtmetalloxiden und"
+                },
+                {
+                  "text": "pH-Wert (Maß für den sauren, neutralen Metalloxiden mit Wasser"
+                },
+                {
+                  "text": "Charakter einer Lösung)"
+                },
+                {
+                  "text": "Reaktion von sauren Lösungen mit"
+                },
+                {
+                  "text": "Säure-Base-Begriff Metallen und mit Carbonaten"
+                },
+                {
+                  "text": "Bildung von sauren und alkalischen – Neutralisationsreaktion"
+                },
+                {
+                  "text": "Neutralisationsreaktion"
+                },
+                {
+                  "text": "Bezüge zu den Basiskonzepten"
+                },
+                {
+                  "text": "Stoff-Teilchen- – der saure, neutrale oder basische Charakter einer Lösung wird"
+                },
+                {
+                  "text": "Konzept durch die Konzentration der Wasserstoff-/Hydronium- bzw."
+                },
+                {
+                  "text": "Oxonium-Ionen und Hydroxid-Ionen bestimmt"
+                },
+                {
+                  "text": "Konzept der chemi- – Neutralisationsreaktionen als Reaktion von"
+                },
+                {
+                  "text": "Reaktion Wasserstoff-/Hydronium- bzw. Oxonium-Ionen und Hydroxid-"
+                },
+                {
+                  "text": "Ionen zu Wassermolekülen"
+                },
+                {
+                  "text": "Mögliche Kontexte Fachbegriffe"
+                },
+                {
+                  "text": "Cola – ein säurehaltiges Getränk – Indikatoren"
+                },
+                {
+                  "text": "Rohrreiniger – die Mischung macht es – Säuren, saure Lösungen"
+                },
+                {
+                  "text": "Salmiak – ein bitter salziger Aromastoff – Wasserstoff-/Hydronium- bzw. Oxonium-"
+                },
+                {
+                  "text": "Natron – nicht nur zum Backen gut"
+                },
+                {
+                  "text": "Basen, basische/alkalische Lösungen"
+                },
+                {
+                  "text": "Beispiele für Differenzierungsmöglichkeiten"
+                },
+                {
+                  "text": "Neutralisation phänomenologisch oder maßanalytisch"
+                },
+                {
+                  "text": "Formeln und Reaktionsgleichungen in Summen- oder Lewis-Strukturformeln"
+                },
+                {
+                  "text": "Reaktionen mit ein- und mehrprotonigen Säuren"
+                },
+                {
+                  "text": "Reaktionen (Natriumoxid und Wasser bzw. Natrium und Wasser)"
+                },
+                {
+                  "text": "Massen- oder Stoffmengenkonzentrationsbestimmung"
+                },
+                {
+                  "text": "Anwendung der Säure-Base-Theorie nach Arrhenius und/oder Brønsted"
+                },
+                {
+                  "text": "Kohlenwasserstoffe – vom Campinggas zum Superbenzin"
+                },
+                {
+                  "text": "Die Kohlenwasserstoffe werden als Stoffgruppe der organischen Chemie bekannt gemacht,"
+                },
+                {
+                  "text": "Verbindungen nur aus den Elementen Wasserstoff und Kohlenstoff aufgebaut sind."
+                },
+                {
+                  "text": "Die kombinatorischen Möglichkeiten der Atome ergeben eine Vielzahl von Kohlenwasser-"
+                },
+                {
+                  "text": "Eigenschaften, deren technische Bedeutung derzeit überwiegend"
+                },
+                {
+                  "text": "Bereich der energetischen Nutzung liegt. Ausgehend von bekannten Verbindungen, wie"
+                },
+                {
+                  "text": "Sumpf- und Grubengas Methan und den bei Gaskochern verwendeten Gasen Propan"
+                },
+                {
+                  "text": "Butan, lassen sich die inhaltlichen Schwerpunkte dieses Themenfeldes exemplarisch"
+                },
+                {
+                  "text": "Inhalte Experimente/Untersuchungen"
+                },
+                {
+                  "text": "Vorkommen und Verwendung von – Verbrennung von Alkanen und Nachweis"
+                },
+                {
+                  "text": "Kohlenwasserstoffen der Reaktionsprodukte"
+                },
+                {
+                  "text": "Struktur und Eigenschaften gesättigter – Alkane als Lösungsmittel"
+                },
+                {
+                  "text": "Kohlenwasserstoffe, homologe Reihe"
+                },
+                {
+                  "text": "Wechselwirkungen:"
+                },
+                {
+                  "text": "Van-der-Waals-Kräfte"
+                },
+                {
+                  "text": "Reaktionen (Verbrennung)"
+                },
+                {
+                  "text": "ungesättigte Kohlenwasserstoffe"
+                },
+                {
+                  "text": "Bezüge zu den Basiskonzepten"
+                },
+                {
+                  "text": "Stoff-Teilchen- – Eigenschaften von Stoffen innerhalb der homologen Reihe"
+                },
+                {
+                  "text": "Konzept verändern sich in Abhängigkeit von der Größe des Moleküls"
+                },
+                {
+                  "text": "Struktur-Eigenschafts- – Eigenschaften der Alkane, Alkene und Alkine (Siedepunkte,"
+                },
+                {
+                  "text": "Konzept Schmelzpunkte, Löslichkeitsverhalten) werden durch die"
+                },
+                {
+                  "text": "Molekülstruktur bestimmt"
+                },
+                {
+                  "text": "Energie-Konzept – Alkane als Energieträger"
+                },
+                {
+                  "text": "Vergleich der Energieinhalte der Edukte und Produkte"
+                },
+                {
+                  "text": "Mögliche Kontexte Fachbegriffe"
+                },
+                {
+                  "text": "Benzin – ein Kohlenwasserstoffgemisch – gesättigte und ungesättigte Kohlenwas-"
+                },
+                {
+                  "text": "Vom Erdöl zum Benzin"
+                },
+                {
+                  "text": "Alkane, Alkene, Alkine"
+                },
+                {
+                  "text": "Kohlenwasserstoffe als Energieträger"
+                },
+                {
+                  "text": "Acetylenschweißen – Autogenschweißen"
+                },
+                {
+                  "text": "Halbstrukturformel"
+                },
+                {
+                  "text": "Waschbenzin – der Fleck ist Weg"
+                },
+                {
+                  "text": "Van-der-Waals-Kräfte"
+                },
+                {
+                  "text": "Doppel- und Dreifachbindung"
+                },
+                {
+                  "text": "Beispiele für Differenzierungsmöglichkeiten"
+                },
+                {
+                  "text": "Auswertung der Verbrennungsreaktion unter stofflichen Aspekten oder auch unter"
+                },
+                {
+                  "text": "Durchführung von qualitativen oder quantitativen Experimenten zur Verbrennung von"
+                },
+                {
+                  "text": "Kohlenwasserstoffen"
+                },
+                {
+                  "text": "Erweiterung der Nomenklatur-Regeln auf verzweigte Kohlenwasserstoffe (Isomere)"
+                },
+                {
+                  "text": "Kohlenwasserstoffe"
+                },
+                {
+                  "text": "phänomenologischer Nachweis von Mehrfachbindungen oder zusätzlich dessen"
+                },
+                {
+                  "text": "Auswertung auf struktureller Ebene"
+                },
+                {
+                  "text": "Alkohole – vom Holzgeist zum Glycerin"
+                },
+                {
+                  "text": "Vergleichend zu den Kohlenwasserstoffen wird am Beispiel der Alkohole eine Stoffklasse"
+                },
+                {
+                  "text": "Chemie eingeführt, die zusätzlich Sauerstoffatome im Molekül enthält."
+                },
+                {
+                  "text": "Erstmalig wird in Bezug auf das Struktur-Eigenschafts-Konzept die Bedeutung einer funktio-"
+                },
+                {
+                  "text": "Gruppe verdeutlicht."
+                },
+                {
+                  "text": "Am Beispiel des Wortes Alkohol erfolgt eine Abgrenzung der Alltagssprache von der Fach-"
+                },
+                {
+                  "text": "Exemplarisch wird die physiologische Wirkung von Methanol und Ethanol diskutiert."
+                },
+                {
+                  "text": "Anhand der Redoxbeziehungen zwischen Alkanolen und Alkanalen kann man das Struktur-"
+                },
+                {
+                  "text": "Eigenschafts-Konzept und das Konzept der chemischen Reaktion nachhaltig vertiefen. Die"
+                },
+                {
+                  "text": "Aldehyd-Gruppe wird eingeführt und damit eine Grundlage für den Übergang zum nachfol-"
+                },
+                {
+                  "text": "Themenfeld gelegt."
+                },
+                {
+                  "text": "Inhalte Experimente/Untersuchungen"
+                },
+                {
+                  "text": "Herstellung von Methanol oder Ethanol – enzymkatalytische Vergärung von Obst,"
+                },
+                {
+                  "text": "Struktur und Nomenklatur der Alkanole"
+                },
+                {
+                  "text": "Alkohol als Lösungsmittel"
+                },
+                {
+                  "text": "Bedeutung einer funktionellen Gruppe"
+                },
+                {
+                  "text": "Oxidation eines Alkanols"
+                },
+                {
+                  "text": "Änderung von Eigenschaften innerhalb"
+                },
+                {
+                  "text": "Reihe in Bezug zur Ver- – Nachweis der Aldehydgruppe"
+                },
+                {
+                  "text": "(Hydrophilie, Hydrophobie)"
+                },
+                {
+                  "text": "Wirkung von alkoholischen"
+                },
+                {
+                  "text": "Propan-1,2,3-triol"
+                },
+                {
+                  "text": "Bezüge zu den Basiskonzepten"
+                },
+                {
+                  "text": "Stoff-Teilchen- – Eigenschaften verändern sich in Abhängigkeit von der Größe"
+                },
+                {
+                  "text": "Konzept des Moleküls"
+                },
+                {
+                  "text": "Struktur-Eigenschafts- – Eigenschaften der Alkanole und Alkanale werden durch die"
+                },
+                {
+                  "text": "Konzept Molekülstruktur und insbesondere der funktionellen Gruppen"
+                },
+                {
+                  "text": "Konzept der chemi- – Redoxbeziehung zwischen Alkanolen und Alkanalen"
+                },
+                {
+                  "text": "Mögliche Kontexte Fachbegriffe"
+                },
+                {
+                  "text": "Legale Drogen – Suchtmittel – Alkanole, Alkohole"
+                },
+                {
+                  "text": "Glycerin – Inhaltstoff von Kosmetikartikeln – Hydroxy-Gruppe"
+                },
+                {
+                  "text": "Lebensmittelzusatzstoff"
+                },
+                {
+                  "text": "Glykol als Frostschutzmittel oder Weinzu-"
+                },
+                {
+                  "text": "Hydrophilie, Hydrophobie"
+                },
+                {
+                  "text": "Beispiele für Differenzierungsmöglichkeiten"
+                },
+                {
+                  "text": "Eigenschaften und Reaktionen primärer Alkohole bearbeiten oder zwischen primären und"
+                },
+                {
+                  "text": "sekundären Alkoholen sowie deren Oxidationsprodukten unterscheiden"
+                },
+                {
+                  "text": "Herstellung von Wein oder Branntwein"
+                },
+                {
+                  "text": "Organische Säuren – Salatsauce, Entkalker & Co"
+                },
+                {
+                  "text": "Das Verständnis über die Auswirkungen funktioneller Gruppen auf die Eigenschaften von"
+                },
+                {
+                  "text": "Kohlenwasserstoffverbindungen wird in diesem Themenfeld ausgebaut."
+                },
+                {
+                  "text": "Eine vergleichende Betrachtung der Eigenschaften organischer und anorganischer Säuren"
+                },
+                {
+                  "text": "knüpft an Kenntnisse aus Themenfeld 3.8 an. Weitere strukturbedingte Eigenschaften"
+                },
+                {
+                  "text": "Bedeutung des Struktur-Eigenschafts-Konzepts in diesem Themenfeld. Die"
+                },
+                {
+                  "text": "Betrachtung vielfältiger Verwendungsformen von Carbonsäuren im Alltag bahnt ein"
+                },
+                {
+                  "text": "Verständnis der Bedeutung dieser Stoffgruppe für die Esterbildung in Themenfeld 3.12 an."
+                },
+                {
+                  "text": "Inhalte Experimente/Untersuchungen"
+                },
+                {
+                  "text": "Herstellung der Alkansäuren – Herstellung von Essig"
+                },
+                {
+                  "text": "Struktur von Alkansäuren, Carboxy- – Vergleichende Untersuchung zwischen"
+                },
+                {
+                  "text": "Gruppe organischen und anorganischen Säuren"
+                },
+                {
+                  "text": "Eigenschaften und Verwendung von"
+                },
+                {
+                  "text": "Änderung der Eigenschaften innerhalb"
+                },
+                {
+                  "text": "Reihe in Bezug zur"
+                },
+                {
+                  "text": "Bezüge zu den Basiskonzepten"
+                },
+                {
+                  "text": "Stoff-Teilchen- – Eigenschaften verändern sich in Abhängigkeit von der Größe"
+                },
+                {
+                  "text": "Konzept des Moleküls"
+                },
+                {
+                  "text": "Struktur-Eigenschafts- – Eigenschaften der Carbonsäuren werden durch die Molekül-"
+                },
+                {
+                  "text": "Konzept struktur und insbesondere die funktionelle Gruppe bestimmt"
+                },
+                {
+                  "text": "Konzept zur – Redoxbeziehungen zwischen Alkanalen und Carbonsäuren"
+                },
+                {
+                  "text": "Mögliche Kontexte Fachbegriffe"
+                },
+                {
+                  "text": "Sanitärreiniger und Entkalker im Haushalt – Carbonsäure – Alkansäure"
+                },
+                {
+                  "text": "Haltbare Lebensmittel durch – Carboxy-Gruppe"
+                },
+                {
+                  "text": "Organische Säuren – unverzichtbar bei"
+                },
+                {
+                  "text": "Lebensmittelherstellung"
+                },
+                {
+                  "text": "Organische Säuren – Alles Naturproduk-"
+                },
+                {
+                  "text": "Weinsäure, Citronensäure und Oxalsäure"
+                },
+                {
+                  "text": "Beispiele für Differenzierungsmöglichkeiten"
+                },
+                {
+                  "text": "Salzbildung mit Mono- oder Di- und Tricarbonsäuren"
+                },
+                {
+                  "text": "Löslichkeitsuntersuchungen von kurzkettigen oder langkettigen Monocarbonsäuren im"
+                },
+                {
+                  "text": "Vergleich mit Di- und Hydroxycarbonsäuren"
+                },
+                {
+                  "text": "Gebrauch und/oder Wirksamkeit und/oder Umweltverträglichkeit von Entkalkern"
+                },
+                {
+                  "text": "Ester – Vielfalt der Produkte aus Alkoholen und Säuren"
+                },
+                {
+                  "text": "Die Synthese organischer Verbindungen aus Stoffen mit einer oder mehreren funktionellen"
+                },
+                {
+                  "text": "Gruppen ist der zentrale Aspekt dieses Themenfeldes. Ausgehend von einem Verständnis"
+                },
+                {
+                  "text": "über die Struktur-Eigenschafts-Beziehungen bei Alkoholen und Carbonsäuren erschließt"
+                },
+                {
+                  "text": "über die Ester die Vielfalt der organischen Verbindungen im Alltag."
+                },
+                {
+                  "text": "Sowohl Stoffe mit affektivem Bezug (Fruchtester und Duftstoffe) wie auch die Betrachtung"
+                },
+                {
+                  "text": "Herstellung von Arzneimitteln und Seifen betonen den großen Stellenwert chemischer"
+                },
+                {
+                  "text": "Grundkenntnisse für das alltägliche Leben."
+                },
+                {
+                  "text": "Inhalte Experimente/Untersuchungen"
+                },
+                {
+                  "text": "Eigenschaften und Verwendung von – Synthese und Hydrolyse eines organischen"
+                },
+                {
+                  "text": "Alkansäurealkylestern und Fetten Esters"
+                },
+                {
+                  "text": "(lipophil, lipophob)"
+                },
+                {
+                  "text": "Seifenherstellung"
+                },
+                {
+                  "text": "Struktur von Estern, Estergruppe"
+                },
+                {
+                  "text": "Ester als Lösungsmittel"
+                },
+                {
+                  "text": "Synthese und Analyse von Estern"
+                },
+                {
+                  "text": "Kondensationsreaktion und Hydrolyse"
+                },
+                {
+                  "text": "katalysierte, umkehrbare Reaktionen"
+                },
+                {
+                  "text": "Fettsäuren und deren Salze"
+                },
+                {
+                  "text": "Bezüge zu den Basiskonzepten"
+                },
+                {
+                  "text": "Struktur-Eigenschafts- – Eigenschaften der Ester werden durch die Molekülstruktur und"
+                },
+                {
+                  "text": "Konzept insbesondere die funktionelle Gruppe bestimmt"
+                },
+                {
+                  "text": "Konzept zur chemi- – Umkehrbarkeit chemischer Reaktionen: Kondensation und"
+                },
+                {
+                  "text": "Reaktion Hydrolyse"
+                },
+                {
+                  "text": "Energie-Konzept – saure Katalyse der Ester-Reaktion"
+                },
+                {
+                  "text": "Mögliche Kontexte Fachbegriffe"
+                },
+                {
+                  "text": "Vom beißenden Geruch der Säure zum – Ester-Gruppe"
+                },
+                {
+                  "text": "lipophil, lipophob"
+                },
+                {
+                  "text": "Lösungsmittel in Klebstoffen"
+                },
+                {
+                  "text": "Kondensationsreaktion"
+                },
+                {
+                  "text": "Moleküllego – aus einfachen Bausteinen"
+                },
+                {
+                  "text": "große Moleküle bauen"
+                },
+                {
+                  "text": "Fett und Fettsäure"
+                },
+                {
+                  "text": "Sprengstoff oder medizinischer Bindfaden"
+                },
+                {
+                  "text": "Vielfalt der Ester"
+                },
+                {
+                  "text": "Vom Dreckfleck zur reinen Weste –"
+                },
+                {
+                  "text": "Waschen im Alltag"
+                },
+                {
+                  "text": "ASS – ein Wirkstoff verändert die Welt"
+                },
+                {
+                  "text": "Nagellackentferner"
+                },
+                {
+                  "text": "Beispiele für Differenzierungsmöglichkeiten"
+                },
+                {
+                  "text": "Synthese und Analyse von Estern monofunktionaler oder polyfunktionaler Alkohole und"
+                },
+                {
+                  "text": "Carbonsäuren und/oder Vergleich zur Polykondensation und enzymatischer Zersetzung"
+                },
+                {
+                  "text": "Löslichkeitsuntersuchungen oder strukturmodellbasierte Löslichkeitsab-"
+                },
+                {
+                  "text": "schätzungen zwischen Edukten und Produkten kurz- und langkettiger Ester"
+                },
+                {
+                  "text": "Eigenschaftsvergleich von Alkansäurealkylestern oder pflanzlichen und tierischen Fetten"
+                },
+                {
+                  "text": "Der Wahlpflichtunterricht stellt ein Angebot dar, das über den Regelunterricht hinausgeht und"
+                },
+                {
+                  "text": "Er dient der Vertiefung von Fachinhalten und schafft die Möglich-"
+                },
+                {
+                  "text": "keit, Fachliches und Überfachliches zu verbinden."
+                },
+                {
+                  "text": "Im schulinternen Curriculum wird sichergestellt, dass thematische Dopplungen mit dem Re-"
+                },
+                {
+                  "text": "Vorgriffe auf Inhalte des Unterrichts in der gymnasialen Oberstufe vermie-"
+                },
+                {
+                  "text": "Grundlage für den Unterricht im Wahlpflichtfach sind die fachlichen Kompetenzbereiche."
+                },
+                {
+                  "text": "Werden weitere Fächer hinzugezogen, gilt dies für die Kompetenzbereiche aller beteiligten"
+                },
+                {
+                  "text": "In den Fächern Biologie, Chemie und Physik kann im Wahlpflichtfach auf Themenfelder aus"
+                },
+                {
+                  "text": "Fachteil Naturwissenschaften 7 – 10 zurückgegriffen werden."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_url": "https://bildungsserver.berlin-brandenburg.de/fileadmin/bbb/unterricht/rahmenlehrplaene/Rahmenlehrplanprojekt/amtliche_Fassung/Teil_C_Chemie_2015_11_10.pdf",
+      "last_checked": "2026-06-23"
+    }
+  ],
+  "last_updated": "2026-06-23",
+  "source_urls": [
+    "https://bildungsserver.berlin-brandenburg.de/fileadmin/bbb/unterricht/rahmenlehrplaene/Rahmenlehrplanprojekt/amtliche_Fassung/Teil_C_Chemie_2015_11_10.pdf"
+  ]
+}

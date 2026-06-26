@@ -1,0 +1,3445 @@
+{
+  "state": "Mecklenburg-Vorpommern",
+  "state_abbr": "MV",
+  "school_curricula": [
+    {
+      "school_type": "Gymnasium (Sek I, Klassen 7-10)",
+      "grade_levels": [
+        {
+          "grade": "Sek I",
+          "topics": [
+            {
+              "title": "Grundlagen .................................................................................................................................... 1",
+              "learning_objectives": [
+                {
+                  "text": "Aufbau und Verbindlichkeit des Rahmenplans ............................................................................. 1"
+                },
+                {
+                  "text": "Querschnittsthemen und Aufgabengebiete des Schulgesetzes ................................................... 2"
+                },
+                {
+                  "text": "Bildung und Erziehung im gymnasialen Bildungsgang .................................................................. 3"
+                }
+              ]
+            },
+            {
+              "title": "Beitrag des Unterrichtsfaches Chemie zum Kompetenzerwerb ................................................... 4",
+              "learning_objectives": [
+                {
+                  "text": "Fachprofil ...................................................................................................................................... 4"
+                },
+                {
+                  "text": "Bildung in der digitalen Welt ......................................................................................................... 4"
+                },
+                {
+                  "text": "Bildung für eine nachhaltige Entwicklung ..................................................................................... 5"
+                },
+                {
+                  "text": "Interkulturelle Bildung .................................................................................................................. 5"
+                },
+                {
+                  "text": "Inklusiver Unterricht ..................................................................................................................... 6"
+                },
+                {
+                  "text": "Meine Heimat – Mein modernes Mecklenburg-Vorpommern ..................................................... 6"
+                }
+              ]
+            },
+            {
+              "title": "Abschlussbezogene Standards ...................................................................................................... 8",
+              "learning_objectives": [
+                {
+                  "text": "Kompetenzbereiche im Fach Chemie ........................................................................................... 8"
+                },
+                {
+                  "text": "Konkretisierung der Standards in den einzelnen Kompetenzbereichen .................................... 10"
+                },
+                {
+                  "text": "Unterrichtsinhalte ....................................................................................................................... 13"
+                },
+                {
+                  "text": "Klasse 8 ........................................................................................................................................ 13"
+                },
+                {
+                  "text": "Klasse 9 ........................................................................................................................................ 21"
+                },
+                {
+                  "text": "Klasse 10 ...................................................................................................................................... 28"
+                }
+              ]
+            },
+            {
+              "title": "Leistungsfeststellung und Leistungsbewertung .......................................................................... 34",
+              "learning_objectives": [
+                {
+                  "text": "Gesetzliche Grundlagen .............................................................................................................. 34"
+                },
+                {
+                  "text": "Allgemeine Grundsätze ............................................................................................................... 34"
+                },
+                {
+                  "text": "Fachspezifische Grundsätze ........................................................................................................ 35"
+                },
+                {
+                  "text": "Aufbau und Verbindlichkeit des Rahmenplans"
+                }
+              ]
+            },
+            {
+              "title": "Grundlagen",
+              "learning_objectives": [
+                {
+                  "text": "Aufbau und Verbindlichkeit des Rahmenplans"
+                },
+                {
+                  "text": "Intention Der Rahmenplan ist als verbindliches und unterstützendes Instrument für die"
+                },
+                {
+                  "text": "Unterrichtsgestaltung zu verstehen. Die in Kapitel 3.3 benannten Themen füllen"
+                },
+                {
+                  "text": "% der zur Verfügung stehenden Unterrichtszeit. Die Gesamtunterrichtszeit"
+                },
+                {
+                  "text": "„Empfehlung zur Umsetzung der Kontingentstundentafel“"
+                },
+                {
+                  "text": "Dementsprechend sind die Stundenzahlen als Orientierungswert,"
+                },
+                {
+                  "text": "Vorgabe anzusehen. Den Lehrkräften wird somit Frei-"
+                },
+                {
+                  "text": "für die eigene Unterrichtsgestaltung sowie für methodisch-didaktische Ent-"
+                },
+                {
+                  "text": "Hinblick auf schulinterne Konkretisierungen eröffnet."
+                },
+                {
+                  "text": "Grundstruktur Der Rahmenplan gliedert sich in einen allgemeinen und einen fachspezifischen"
+                },
+                {
+                  "text": "Teil. Der allgemeine Teil beschreibt den für alle Fächer geltenden Bildungs- und"
+                },
+                {
+                  "text": "Erziehungsauftrag im gymnasialen Bildungsgang. Im fachspezifischen Teil werden"
+                },
+                {
+                  "text": "Themen und die Ziele ausgewiesen."
+                },
+                {
+                  "text": "Kompetenzen Im Zentrum des Fachunterrichts steht der Kompetenzerwerb. Die Kompetenzen"
+                },
+                {
+                  "text": "Auseinandersetzung mit den verbindlichen Themen entwickelt."
+                },
+                {
+                  "text": "Der Rahmenplan benennt die verbindlich zu erreichenden fachspezifischen Kom-"
+                },
+                {
+                  "text": "Themen Für den Unterricht werden verbindliche Themen benannt, denen Inhalte zuge-"
+                },
+                {
+                  "text": "Die Reihenfolge der Themen hat keinen normativen, sondern"
+                },
+                {
+                  "text": "Inhalte Der Rahmenplan gibt Hinweise und Anregungen für die konkrete inhaltliche Un-"
+                },
+                {
+                  "text": "Beispielen zur Schwerpunktsetzung."
+                },
+                {
+                  "text": "Hinweise und Neben Anregungen für die Umsetzung im Unterricht werden sowohl Hinweise für"
+                },
+                {
+                  "text": "Anregungen notwendige und hinreichende Tiefe der Auseinandersetzung mit den Inhalten"
+                },
+                {
+                  "text": "Möglichkeiten für die fachübergreifende und"
+                },
+                {
+                  "text": "fächerverbindende Arbeit sowie fachinterne Verknüpfungen aufgezeigt."
+                },
+                {
+                  "text": "Querschnitts- Kompetenzen oder Inhalte, die die im Schulgesetz festgelegten Aufgabengebiete"
+                },
+                {
+                  "text": "berühren, werden im Rahmenplan als Querschnittsthemen gekennzeichnet."
+                },
+                {
+                  "text": "Verknüpfungs- Als Anregung für die Unterrichtsplanung werden im Anschluss an jede tabellari-"
+                },
+                {
+                  "text": "Darstellung eines Themas Beispiele für die Verknüpfung von Kompetenzen"
+                },
+                {
+                  "text": "Inhalten aufgeführt."
+                },
+                {
+                  "text": "Textgrundlage Bei der Erarbeitung des Rahmenplans wurden die Bildungsstandards für die All-"
+                },
+                {
+                  "text": "Hochschulreife und die bisher in Mecklenburg-Vorpommern geltenden"
+                },
+                {
+                  "text": "Rahmenpläne für den gymnasialen Bildungsgang als Textgrundlage herangezo-"
+                }
+              ]
+            },
+            {
+              "title": "Grundlagen",
+              "learning_objectives": [
+                {
+                  "text": "Querschnittsthemen und Aufgabengebiete des Schulgesetzes"
+                },
+                {
+                  "text": "Die Schule setzt den Bildungs- und Erziehungsauftrag insbesondere durch Unterricht um, der in Ge-"
+                },
+                {
+                  "text": "genstandsbereichen, Unterrichtsfächern, Lernbereichen sowie Aufgabenfeldern erfolgt. Im Schulge-"
+                },
+                {
+                  "text": "Aufgabengebiete benannt, die Bestandteil mehrerer Unterrichtsfächer sowie"
+                },
+                {
+                  "text": "Lernbereiche sind und in allen Bereichen des Unterrichts eine angemessene Berücksichtigung finden"
+                },
+                {
+                  "text": "Diese Aufgabengebiete sind als Querschnittsthemen in allen Rahmenplänen verankert. Im"
+                },
+                {
+                  "text": "Plan sind die Querschnittsthemen durch Kürzel gekennzeichnet und den Aufgabenge-"
+                },
+                {
+                  "text": "Schulgesetzes wie folgt zugeordnet:"
+                },
+                {
+                  "text": "[DRF] – Demokratie-, Rechts- und Friedenserziehung"
+                },
+                {
+                  "text": "[BNE] – Bildung für eine nachhaltige Entwicklung"
+                },
+                {
+                  "text": "Bildung für eine nachhaltige Entwicklung"
+                },
+                {
+                  "text": "Förderung des Verständnisses von wirtschaftlichen, ökologischen, sozialen und kulturel-"
+                },
+                {
+                  "text": "[BTV] – Bildung für Toleranz und Akzeptanz von Vielfalt"
+                },
+                {
+                  "text": "Bildung und Erziehung"
+                },
+                {
+                  "text": "ethische, kulturelle und soziale Aspekte der Sexualerziehung"
+                },
+                {
+                  "text": "[PG] – Prävention und Gesundheitserziehung"
+                },
+                {
+                  "text": "Gesundheitserziehung"
+                },
+                {
+                  "text": "Aspekte der Sexualerziehung"
+                },
+                {
+                  "text": "Verkehrs- und Sicherheitserziehung"
+                },
+                {
+                  "text": "[MD] – Medienbildung und Digitale Kompetenzen"
+                },
+                {
+                  "text": "Bildung in der digitalen Welt"
+                },
+                {
+                  "text": "[MD1] – Suchen, Verarbeiten und Aufbewahren"
+                },
+                {
+                  "text": "[MD2] – Kommunizieren und Kooperieren"
+                },
+                {
+                  "text": "[MD3] – Produzieren und Präsentieren"
+                },
+                {
+                  "text": "[MD4] – Schützen und sicher Agieren"
+                },
+                {
+                  "text": "[MD5] – Problemlösen und Handeln"
+                },
+                {
+                  "text": "[MD6] – Analysieren und Reflektieren"
+                },
+                {
+                  "text": "[BO] – berufliche Orientierung"
+                },
+                {
+                  "text": "Bildung und Erziehung im gymnasialen Bildungsgang"
+                },
+                {
+                  "text": "Bildung und Erziehung im gymnasialen Bildungsgang"
+                },
+                {
+                  "text": "Der gymnasiale Bildungsgang bereitet junge Menschen darauf vor, selbstbestimmt zu leben, sich"
+                },
+                {
+                  "text": "Verantwortung zu handeln."
+                },
+                {
+                  "text": "Zur Erfüllung des Bildungs- und Erziehungsauftrags im gymnasialen Bildungsgang sind der Erwerb"
+                },
+                {
+                  "text": "über den schulischen Kontext hinausgehenden Wissens, die Entwicklung"
+                },
+                {
+                  "text": "Kompetenzen mit der Befähigung zu lebenslangem Lernen so-"
+                },
+                {
+                  "text": "Werteorientierung an einer demokratischen und pluralistischen Gesellschaftsordnung zu"
+                },
+                {
+                  "text": "verknüpfen. Die jungen Menschen sollten befähigt werden, mit den zukünftigen Herausforderungen 3"
+                },
+                {
+                  "text": "Wandels nachhaltig umgehen zu können."
+                },
+                {
+                  "text": "Das Gymnasium umfasst die Jahrgangsstufen 7 bis 12, greift die in der Orientierungsstufe erworbe-"
+                },
+                {
+                  "text": "Kompetenzen auf und vermittelt daran anknüpfend seinen Schülerinnen und Schülern entspre-"
+                },
+                {
+                  "text": "Leistungen, individuellen Lernausgangslagen, Entwicklungsvoraussetzungen und Bega-"
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler werden befähigt, nach Maßgabe der Abschlüsse ihren Bildungsweg"
+                },
+                {
+                  "text": "Hochschule als auch in berufsqualifizierenden Bildungsgängen fortzusetzen."
+                },
+                {
+                  "text": "Der Unterricht orientiert sich am Erkenntnisstand der Wissenschaft und berücksichtigt in Gestaltung"
+                },
+                {
+                  "text": "Anforderung die altersgemäße Verständnisfähigkeit der Schülerinnen und Schüler."
+                },
+                {
+                  "text": "Aufgrund der unterschiedlichen individuellen Lernausgangslagen, Entwicklungsvoraussetzungen und"
+                },
+                {
+                  "text": "Begabungen der Schülerinnen und Schüler kommt der individuellen Förderung eine besondere Be-"
+                },
+                {
+                  "text": "Diese wird durch leistungsdifferenzierten Unterricht in ausgewählten Unterrichtsfä-"
+                },
+                {
+                  "text": "chern, Enrichment- und Akzelerationsmaßnahmen realisiert."
+                },
+                {
+                  "text": "Grundsatz der Arbeit im Gymnasium ist eine Erziehung, die zur Persönlichkeitsentwicklung und"
+                },
+                {
+                  "text": "-stärkung, zur Gestaltung des eigenen Lebens in sozialer Verantwortung sowie zur Mitwirkung in der"
+                },
+                {
+                  "text": "Gesellschaft befähigt. Eine angemessene Feedback-Kultur an allen Schulen ist ein"
+                },
+                {
+                  "text": "Element zur Erreichung dieses Ziels."
+                }
+              ]
+            },
+            {
+              "title": "Beitrag des Unterrichtsfaches Chemie zum Kompetenzerwerb",
+              "learning_objectives": [
+                {
+                  "text": "Die Chemie als Naturwissenschaft beschäftigt sich mit den Stoffen, deren Eigenschaften und ihrer"
+                },
+                {
+                  "text": "Umwandlung. Sie ermöglicht eine Auseinandersetzung mit der Natur, indem sie sich mit der Untersu-"
+                },
+                {
+                  "text": "Beschreibung von Stoffen sowie deren chemischen Reaktionen als Einheit von Stoff- und"
+                },
+                {
+                  "text": "Energieumwandlung, der Teilchenveränderung und dem Umbau chemischer Bindungen auseinander-"
+                },
+                {
+                  "text": "Die Chemie ist aufgrund ihrer Erkenntnisse und ihren vielfältigen Anwendungen ein wesentli-"
+                },
+                {
+                  "text": "Fundament für wissenschaftliche, technische und wirtschaftliche Entwicklungen. Sie eröffnet"
+                },
+                {
+                  "text": "Wege für die Gestaltung unserer Lebenswelt, im Alltag, in der Wissenschaft und in der"
+                },
+                {
+                  "text": "Das Fach Chemie ermöglicht es den Schülerinnen und Schülern, sich mit den spezifischen Fragestel-"
+                },
+                {
+                  "text": "lungen, Lösungswegen und Denkstrategien dieser Naturwissenschaft vertraut zu machen und die"
+                },
+                {
+                  "text": "Fachkenntnisse und Methoden zu erwerben. Sie erarbeiten sich einen Überblick"
+                },
+                {
+                  "text": "über wichtige chemische Stoffe, Stoffgruppen und deren Umwandlungen. Die Schülerinnen und"
+                },
+                {
+                  "text": "Schüler entwickeln die Fähigkeit, chemische Erscheinungen und Gesetzmäßigkeiten zu erkennen. Sie"
+                },
+                {
+                  "text": "Alltagserfahrungen und sich daraus ergebenden Fragestellungen –"
+                },
+                {
+                  "text": "Einblick in die Bedeutung der Chemie für die Entwicklung unseres Lebensstandards und die"
+                },
+                {
+                  "text": "Bewältigung zahlreicher Alltagsprobleme. Dabei erschließen sie durch die Einbeziehung von techni-"
+                },
+                {
+                  "text": "schen, ökologischen, wirtschaftlichen und gesellschaftlichen Aspekten die Wechselwirkungen zwi-"
+                },
+                {
+                  "text": "Chemie, der Technik, der Umwelt und dem Alltagsleben."
+                },
+                {
+                  "text": "Der Chemieunterricht weckt ausgehend von der Vielfalt der Stoffe und deren Umwandlungen das"
+                },
+                {
+                  "text": "Interesse am Erkunden von Naturvorgängen und technischen Prozessen. Dabei kommt dem Experi-"
+                },
+                {
+                  "text": "Bedeutung zu. Das Analysieren und Erklären der Beobachtungen fördert das Ab-"
+                },
+                {
+                  "text": "straktionsvermögen der Schülerinnen und Schüler. Sie lernen, die konkret erfahrbare Ebene mit Mo-"
+                },
+                {
+                  "text": "verknüpfen und zugleich Möglichkeiten und Grenzen naturwissenschaftlicher"
+                },
+                {
+                  "text": "Erkenntnisse zu diskutieren."
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler befassen sich im Chemieunterricht mit aktuellen Fragen und Proble-"
+                },
+                {
+                  "text": "Umweltschutzes, der Notwendigkeit einer gesunden Lebensführung und Erhaltung der na-"
+                },
+                {
+                  "text": "türlichen Lebenswelt. Sie erlernen ein verantwortliches Handeln im alltäglichen Umgang mit Stoffen"
+                },
+                {
+                  "text": "Sachkompetenz, über gesellschaftlich relevante Themen mit chemi-"
+                },
+                {
+                  "text": "Fragestellungen zu diskutieren."
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler vertiefen ihr Wissen über die experimentelle Methode der Erkenntnis-"
+                },
+                {
+                  "text": "Fächern, indem sie chemische Experimente"
+                },
+                {
+                  "text": "planen, durchführen und auswerten. Sie können Sachverhalte genau beobachten, beschreiben und –"
+                },
+                {
+                  "text": "Verwendung der chemischen Zeichensprache – fachgerecht erklären."
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler erwerben grundlegende Kompetenzen wie Selbstständigkeit, Sorgfalt,"
+                },
+                {
+                  "text": "Ausdauer, logisches und kreatives Denken, Teamfähigkeit. Sie sind in der Lage, verantwortungs- und"
+                },
+                {
+                  "text": "Sie können unter Nutzung der Alltags- sowie"
+                },
+                {
+                  "text": "Fachsprache kommunizieren."
+                },
+                {
+                  "text": "Der Chemieunterricht trägt zum fachübergreifenden und fächerverbindenden Denken bei. So werden"
+                },
+                {
+                  "text": "Erkenntnisse aus der Chemie, Physik, Biologie unter Anwendung der Mathematik verknüpft, ange-"
+                },
+                {
+                  "text": "begründetes Weltbild aufgebaut."
+                },
+                {
+                  "text": "Bildung in der digitalen Welt"
+                },
+                {
+                  "text": "„Der Bildungs- und Erziehungsauftrag der Schule besteht im Kern darin, Schülerinnen und Schüler"
+                },
+                {
+                  "text": "Leben in der derzeitigen und künftigen Gesellschaft vorzubereiten und sie zu"
+                },
+                {
+                  "text": "Teilhabe am kulturellen, gesellschaftlichen, politischen, berufli-"
+                },
+                {
+                  "text": "Leben zu befähigen.“1"
+                }
+              ]
+            },
+            {
+              "title": "KMK-Strategie zur Bildung in der Digitalen Welt, Berlin 2018, S.10",
+              "learning_objectives": [
+                {
+                  "text": "Bildung für eine nachhaltige Entwicklung"
+                },
+                {
+                  "text": "Durch die Digitalisierung entstehen neue Möglichkeiten, die mit gesellschaftlichen und wirtschaftli-"
+                },
+                {
+                  "text": "Veränderungsprozessen einhergehen und an den Bildungsauftrag erweiterte Anforderungen"
+                },
+                {
+                  "text": "Kommunikations- und Arbeitsabläufe verändern sich z. B. durch digitale Medien, Werkzeuge"
+                },
+                {
+                  "text": "Kommunikationsplattformen und erlauben neue schöpferische Prozesse und damit neue media-"
+                },
+                {
+                  "text": "Um diesem erweiterten Bildungsauftrag gerecht zu werden, hat die Kultusministerkonferenz einen"
+                },
+                {
+                  "text": "Kompetenzrahmen zur Bildung in der digitalen Welt formuliert, dessen Umsetzung integrativer Be-"
+                },
+                {
+                  "text": "Diese Kompetenzen werden in Abstimmung mit den im Rahmenplan „Digitale Kompetenzen“ ausge-"
+                },
+                {
+                  "text": "Leitfächern, welche für die Entwicklung der Basiskompetenzen verantwortlich sind, alters-"
+                },
+                {
+                  "text": "Niveaustufen weiterentwickelt."
+                },
+                {
+                  "text": "Im Fach Chemie können auf digitalem Weg Daten erzeugt und ausgewertet werden, insbesondere"
+                },
+                {
+                  "text": "Experimentieren auf diese Weise unterstützt. Die Visualisierung von Demonstrationsexpe-"
+                },
+                {
+                  "text": "rimenten, Animation und Simulation chemischer Vorgänge sowie die Darstellung räumlicher Struktu-"
+                },
+                {
+                  "text": "Stoffen mithilfe digitaler Medien ermöglichen eine adäquate Kompetenzentwicklung."
+                },
+                {
+                  "text": "Durch die Integration digitaler Medien und Werkzeuge in den Unterrichtsprozess, die Produktion von"
+                },
+                {
+                  "text": "Medienbotschaften sowie die Reflexion des eigenen Medienhandelns trägt das Fach Chemie dem"
+                },
+                {
+                  "text": "Kompetenzerwerb der Schülerinnen und Schüler in einer zunehmend digital und mul-"
+                },
+                {
+                  "text": "geprägten Gesellschaft Rechnung."
+                },
+                {
+                  "text": "Bildung für eine nachhaltige Entwicklung"
+                },
+                {
+                  "text": "Bildung für eine nachhaltige Entwicklung (BNE) ist eine wichtige Querschnittsaufgabe von Schule."
+                },
+                {
+                  "text": "Entwicklung ist dann nachhaltig, wenn sie die Lebensqualität der gegenwärtigen und der zukünftigen"
+                },
+                {
+                  "text": "Generationen unter der Berücksichtigung der planetaren Grenzen sichert."
+                },
+                {
+                  "text": "Unterrichtsthemen sollten in allen Fächern so ausgerichtet werden, dass Schülerinnen und Schüler"
+                },
+                {
+                  "text": "Gestaltungskompetenz erwerben, die sie zum nachhaltigen Denken und Handeln befähigt. Ak-"
+                },
+                {
+                  "text": "Herausforderungen wie Klimawandel, internationale Handels- und Finanzbeziehungen, Um-"
+                },
+                {
+                  "text": "weltschutz, erneuerbare Energien oder soziale Konflikte und Kriege werden in ihrer Wechselwirkung"
+                },
+                {
+                  "text": "ökonomischen, ökologischen, regionalen und internationalen, sozialen und kulturellen Aspekten"
+                },
+                {
+                  "text": "BNE ist dabei keine zusätzliche neue Aufgabe mit neuen Themen, sondern ein Perspek-"
+                },
+                {
+                  "text": "Um diesen Bildungsauftrag zu konsolidieren, hat die Kultusministerkonferenz den Orientierungsrah-"
+                },
+                {
+                  "text": "für den Lernbereich Globale Entwicklung2 verabschiedet. Er ist eine Empfehlung, um BNE mit"
+                },
+                {
+                  "text": "Perspektive fest in Schule und Unterricht zu verankern, und alle an der Bildung Beteiligten"
+                },
+                {
+                  "text": "Aufgabe konzeptionell zu unterstützen. Er ist Bezugsrahmen für die Entwicklung von Lehr-"
+                },
+                {
+                  "text": "Bildungsplänen sowie die Gestaltung von Unterricht und außerunterrichtlichen Aktivitäten. Dar-"
+                },
+                {
+                  "text": "über hinaus unterstützt der „Bildungsatlas Umwelt und Entwicklung“ 3 der Arbeitsgemeinschaft Na-"
+                },
+                {
+                  "text": "Umweltbildung Mecklenburg-Vorpommern e. V. Lehrkräfte, passende Bildungsangebote"
+                },
+                {
+                  "text": "außerschulischer Lernorte kennenzulernen und ihre Potenziale für die Planung und Gestaltung des"
+                },
+                {
+                  "text": "Unterrichts zu nutzen."
+                },
+                {
+                  "text": "Interkulturelle Bildung"
+                },
+                {
+                  "text": "Interkulturelle Bildung ist eine Querschnittsaufgabe von Schule. Vermittlung von Fachkenntnissen,"
+                },
+                {
+                  "text": "Lernen in Gegenstandsbereichen, außerschulische Lernorte, grenzüberschreitender Austausch oder"
+                },
+                {
+                  "text": "Medienbildung – alle diesbezüglichen Maßnahmen müssen koordiniert werden und helfen, eine Ori-"
+                },
+                {
+                  "text": "für verantwortungsbewusstes Handeln in der globalisierten und digitalen Welt zu vermit-"
+                },
+                {
+                  "text": "Der Erwerb interkultureller Kompetenzen ist eine Schlüsselqualifikation im 21. Jahrhundert."
+                }
+              ]
+            },
+            {
+              "title": "Beitrag des Unterrichtsfaches Chemie zum Kompetenzerwerb",
+              "learning_objectives": [
+                {
+                  "text": "Kulturelle Vielfalt verlangt interkulturelle Bildung, Bewahrung des kulturellen Erbes, Förderung der"
+                },
+                {
+                  "text": "Vielfalt und der Dialog zwischen den Kulturen zählen dazu. Ein Austausch mit Gleichaltri-"
+                },
+                {
+                  "text": "Themen unterstützt die Auseinandersetzung mit kultureller Vielfalt. Die damit ver-"
+                },
+                {
+                  "text": "Lernprozesse zielen auf das gegenseitige Verstehen, auf bereichernde Perspektivwechsel,"
+                },
+                {
+                  "text": "Reflexion der eigenen Wahrnehmung und einen toleranten Umgang miteinander ab."
+                },
+                {
+                  "text": "Fast alle Unterrichtsinhalte sind geeignet, sie als Gegenstand für bi- oder multilaterale Projekte,"
+                },
+                {
+                  "text": "Schüleraustausche oder auch virtuelle grenzüberschreitende Projekte im Rahmen des Fachunter-"
+                },
+                {
+                  "text": "wählen. Förderprogramme der EU bieten dafür exzellente finanzielle Rahmenbedingungen."
+                },
+                {
+                  "text": "Inklusiver Unterricht"
+                },
+                {
+                  "text": "Inklusion ist als gesamtgesellschaftlicher Prozess zu verstehen. Dabei ist inklusive Bildung eine über-"
+                },
+                {
+                  "text": "Aufgabe von Schule und schließt alle Gegenstandsbereiche im Lernen ein."
+                },
+                {
+                  "text": "Inklusive Bildung ist das gemeinsame Lernen von Schülerinnen und Schülern mit und ohne Behinde-"
+                },
+                {
+                  "text": "Sie ist eine wichtige Voraussetzung für Selbstbestimmung, aktive Teilhabe an Gesellschaft, Kul-"
+                },
+                {
+                  "text": "tur, Beruf und Demokratie."
+                },
+                {
+                  "text": "Grundvoraussetzung für eine gelingende Inklusion ist die gegenseitige Akzeptanz und die Rücksicht-"
+                },
+                {
+                  "text": "Haltung und Einstellung aller an Schule Mitwirkenden."
+                },
+                {
+                  "text": "Ziel einer inklusiven Bildung ist, alle Schülerinnen und Schüler während ihrer Schullaufbahn individu-"
+                },
+                {
+                  "text": "fördern, einen gleichberechtigten Zugang zu allen Angeboten des Unterrichts und der verschie-"
+                },
+                {
+                  "text": "Bildungsgänge sowie des Schullebens insgesamt zu ermöglichen."
+                },
+                {
+                  "text": "In Mecklenburg-Vorpommern werden Maßnahmen zur Einführung eines inklusiven Schulsystems"
+                },
+                {
+                  "text": "umgesetzt, die Schülerinnen und Schüler sowie Lehrkräfte entlasten. Dazu werden neben dem Unter-"
+                },
+                {
+                  "text": "Regelklassen eigene Lerngruppen für Schülerinnen und Schüler mit starken Auffälligkeiten in"
+                },
+                {
+                  "text": "Bereichen Sprache oder Lernen oder Auffälligkeiten im Verhalten gebildet. In inklusiven Lern-"
+                },
+                {
+                  "text": "Schülerinnen und Schüler eine kooperative Förderung. Dabei sind sie Schülerinnen"
+                },
+                {
+                  "text": "Schüler einer regulären Grundschulklasse oder einer regulären Klasse der weiterführenden all-"
+                },
+                {
+                  "text": "Schule (Bezugsklasse). In ihrer Lerngruppe werden die Schülerinnen und Schüler im"
+                },
+                {
+                  "text": "Rahmen des Unterrichts gezielt individuell gefördert. Der Unterricht in den Lerngruppen erfolgt"
+                },
+                {
+                  "text": "sonderpädagogisches Fachpersonal."
+                },
+                {
+                  "text": "Ein weiterer Baustein im inklusiven Schulsystem ist die Einrichtung von Schulen mit spezifischer"
+                },
+                {
+                  "text": "Kompetenz. Diese ermöglichen Schülerinnen und Schülern mit sonderpädagogischem Förderbedarf"
+                },
+                {
+                  "text": "Schwerpunkten Hören oder Sehen oder körperliche und motorische Entwicklung eine wohnor-"
+                },
+                {
+                  "text": "Beschulung. Die Schülerinnen und Schüler können mit ihren Freundinnen und Freunden, bei-"
+                },
+                {
+                  "text": "Kindertagesstätte oder aus der Nachbarschaft, gemeinsam in eine Schule gehen"
+                },
+                {
+                  "text": "Für eine inklusive Bildung sind curriculare Anpassungen notwendig, um den Schülerinnen und Schü-"
+                },
+                {
+                  "text": "Zugang zum Rahmenplan der allgemein bildenden Schulen zu ermögli-"
+                },
+                {
+                  "text": "Meine Heimat – Mein modernes Mecklenburg-Vorpommern"
+                },
+                {
+                  "text": "Bildungs- und Erziehungsziel sowie Querschnittsaufgabe der Schule ist es, die Verbundenheit der"
+                },
+                {
+                  "text": "Schülerinnen und Schüler mit ihrer natürlichen, gesellschaftlichen und kulturellen Umwelt sowie die"
+                },
+                {
+                  "text": "Pflege der niederdeutschen Sprache zu fördern. Weil Globalisierung, Wachstum und Fortschritt nicht"
+                },
+                {
+                  "text": "Begriffe sind, ist es entscheidend, die verstärkten Beziehungen zur eigenen"
+                },
+                {
+                  "text": "Region und zu deren kulturellem Erbe mit den Werten von Demokratie sowie den Zielen der interkul-"
+                },
+                {
+                  "text": "Bildung zu verbinden. Diese Lernprozesse zielen auf die Beschäftigung mit Mecklenburg-"
+                },
+                {
+                  "text": "Vorpommern als Migrationsgebiet, als Kultur- und Tourismusland sowie als Wirtschaftsstandort ab."
+                },
+                {
+                  "text": "Sie geben eine Orientierung für die Wahrnehmung von Originalität, Zugehörigkeit als Individuum,"
+                },
+                {
+                  "text": "Einbettung in Verbindung mit gesellschaftlichem Engagement. Die Gestal-"
+                },
+                {
+                  "text": "Meine Heimat – Mein modernes Mecklenburg-Vorpommern"
+                },
+                {
+                  "text": "Zusammenhalts aller Bevölkerungsgruppen ist eine zentrale Zukunftsauf-"
+                },
+                {
+                  "text": "Eine Vielzahl von Unterrichtsinhalten eignet sich in besonderer Weise, regionale Literatur, Kunst,"
+                },
+                {
+                  "text": "Kultur, Musik und die niederdeutsche Sprache zu erleben. In Mecklenburg-Vorpommern lassen sich"
+                },
+                {
+                  "text": "Hansestädte, Welterbestätten, Museen und Nationalparks und Stätten des Weltnaturerbes erkun-"
+                },
+                {
+                  "text": "Außerdem lässt sich Neues über das Schaffen von Persönlichkeiten aus dem heutigen Vorpom-"
+                },
+                {
+                  "text": "Mecklenburg erfahren, welche auf dem naturwissenschaftlich-technischen Gebiet den"
+                },
+                {
+                  "text": "Weg bereitet haben. Unterricht an außerschulischen Lernorten in Mecklenburg-Vorpommern, Pro-"
+                },
+                {
+                  "text": "jekte, Schulfahrten sowie die Teilnahme am Plattdeutschwettbewerb bieten somit einen geeigneten"
+                },
+                {
+                  "text": "Rahmen, um die Ziele des Landesprogramms „Meine Heimat – Mein modernes Mecklenburg-"
+                },
+                {
+                  "text": "Vorpommern“4 umzusetzen."
+                }
+              ]
+            },
+            {
+              "title": "Abschlussbezogene Standards",
+              "learning_objectives": [
+                {
+                  "text": "Kompetenzbereiche im Fach Chemie"
+                },
+                {
+                  "text": "Naturwissenschaftliches Arbeiten erfolgt unabhängig von der speziellen Fachrichtung stets nach den"
+                },
+                {
+                  "text": "Prinzipien. Daher weisen die im Chemieunterricht und die in den anderen naturwissen-"
+                },
+                {
+                  "text": "Unterrichtsfächern zu erwerbenden Kompetenzen große Gemeinsamkeiten auf. Um"
+                },
+                {
+                  "text": "Gemeinsamkeiten zu verdeutlichen und Anhaltspunkte für fachübergreifendes und fächerver-"
+                },
+                {
+                  "text": "Arbeiten zu geben, sind die Kompetenzen für die naturwissenschaftlichen Unterrichtsfä-"
+                },
+                {
+                  "text": "Im Detail sind sie im nachfolgenden Kapitel auf das Unterrichtsfach"
+                },
+                {
+                  "text": "Der Unterricht in der Sekundarstufe l des gymnasialen Bildungsgangs greift die Alltagserfahrungen"
+                },
+                {
+                  "text": "Schülerinnen und Schüler auf und ermöglicht ihnen, sich mit naturwissen-"
+                },
+                {
+                  "text": "Konzepten, Sicht- und Arbeitsweisen vertraut zu machen. Dabei soll die Freude der Ler-"
+                },
+                {
+                  "text": "Entdecken genutzt und gefördert werden. Durch eigenes Erleben und Handeln, beim"
+                },
+                {
+                  "text": "Fragen, Beobachten und Beschreiben, beim Experimentieren, Auswerten und Be-"
+                },
+                {
+                  "text": "Präsentieren und Kommunizieren der Ergebnisse werden für die Schü-"
+                },
+                {
+                  "text": "Schüler altersgemäße naturwissenschaftliche Zusammenhänge und Gesetzmäßigkeiten"
+                },
+                {
+                  "text": "anschlussfähige und vernetzte Begriffs- und Konzeptentwicklungen möglich."
+                },
+                {
+                  "text": "Kompetenzen sind nur in konkreten Situationen zu erwerben. Je näher und je häufiger sich Lernsitua-"
+                },
+                {
+                  "text": "Anwendungszusammenhängen orientieren, desto besser kann es gelingen, übergeordnete"
+                },
+                {
+                  "text": "Zusammenhänge herauszuarbeiten. Kontexte werden konsequent dazu genutzt, fachliche Konzepte"
+                },
+                {
+                  "text": "Kompetenzen in neuen Situationen anzuwenden."
+                },
+                {
+                  "text": "Naturwissenschaftliche Phänomene und Zusammenhänge können so komplex und vielfältig sein,"
+                },
+                {
+                  "text": "interdisziplinäre Herangehensweise zu ihrem Verständnis notwendig ist."
+                },
+                {
+                  "text": "Der naturwissenschaftliche Unterricht in den Einzelfächern bezieht daher fachübergreifende und"
+                },
+                {
+                  "text": "fächerverbindende Aspekte ein."
+                },
+                {
+                  "text": "Bei der Bearbeitung naturwissenschaftlicher Fragestellungen erschließen, verwenden und reflektie-"
+                },
+                {
+                  "text": "Schülerinnen und Schüler die grundlegenden Konzepte und Ideen der Naturwissenschaften"
+                },
+                {
+                  "text": "verknüpfen anhand dieser nachhaltig neue Erkenntnisse mit bereits vorhandenem Wissen. Sie"
+                },
+                {
+                  "text": "Kompetenzen weiter aus, mit deren Hilfe sie naturwissenschaftliche Untersuchun-"
+                },
+                {
+                  "text": "durchführen, Probleme unter Verwendung naturwissenschaftlicher Erkenntnisse und Methoden"
+                },
+                {
+                  "text": "lösen, über naturwissenschaftliche Themen kommunizieren und auf der Grundlage der Kenntnis na-"
+                },
+                {
+                  "text": "Zusammenhänge Entscheidungen verantwortungsbewusst treffen und reflek-"
+                },
+                {
+                  "text": "Die Anforderungsbereiche unterscheiden sich vor allem im Grad der Selbstständigkeit bei der Bear-"
+                },
+                {
+                  "text": "Aufgaben sowie im Grad der Komplexität der gedanklichen Verarbeitungsprozesse und"
+                },
+                {
+                  "text": "Abstufung in Bezug auf den Anspruch der Aufgabe dar."
+                },
+                {
+                  "text": "Die Reproduktion einfacher Inhalte wird dem Anforderungsbereich I zugeordnet, während die selbst-"
+                },
+                {
+                  "text": "ständige Anwendung von Fachmethoden und die Herstellung neuer Kontexte auf den Anforderungs-"
+                },
+                {
+                  "text": "II verweist. Die eigenständige Planung von Experimenten und deren Umsetzung gehören zum"
+                },
+                {
+                  "text": "Anforderungsbereich III."
+                },
+                {
+                  "text": "Der Anforderungsbereich I umfasst die Verfügbarkeit von Daten, Fakten, Regeln, Formeln, naturwis-"
+                },
+                {
+                  "text": "Gesetzmäßigkeiten usw. aus einem begrenzten Gebiet im gelernten Zusammenhang,"
+                },
+                {
+                  "text": "Beschreibung und Verwendung erlernter und eingeübter Arbeitstechniken und Verfahrensweisen"
+                },
+                {
+                  "text": "Gebiet und in einem wiederholenden Zusammenhang."
+                },
+                {
+                  "text": "Im Fach Chemie gehören dazu:"
+                },
+                {
+                  "text": "Wiedergeben von z. B. Daten, Fakten, Regeln, Begriffen, Definitionen,"
+                },
+                {
+                  "text": "Wiedergeben und Erläutern von z. B. Formeln, Gesetzen und Reaktionen,"
+                },
+                {
+                  "text": "Beschreiben von bekannten Stoffen, Stoffklassen, Strukturtypen und Modellvorstellungen in"
+                },
+                {
+                  "text": "Kennen und Wiedergeben der Basiskonzepte,"
+                },
+                {
+                  "text": "Kompetenzbereiche im Fach Chemie"
+                },
+                {
+                  "text": "Wiedergeben von im Unterricht eingehend erörterten Fragestellungen und Zusammenhän-"
+                },
+                {
+                  "text": "Entnehmen von Informationen aus einfachen Texten, Diagrammen und Tabellen,"
+                },
+                {
+                  "text": "Erstellen von Reaktionsgleichungen"
+                },
+                {
+                  "text": "Durchführung von Berechnungen und Abschätzungen unter Nutzung von Tabellen bzw. von"
+                },
+                {
+                  "text": "Messergebnissen,"
+                },
+                {
+                  "text": "Aufbauen von Apparaturen nach Anweisung und von Versuchen nach geübten Verfahren mit"
+                },
+                {
+                  "text": "Geräten unter Einhaltung der Sicherheitsbestimmungen,"
+                },
+                {
+                  "text": "Aufnehmen von Messwerten und Erstellen von Versuchsprotokollen, 9"
+                },
+                {
+                  "text": "Darstellen von bekannten Sachverhalten in einer vorgegebenen Darstellungsform z. B. als"
+                },
+                {
+                  "text": "Tabelle, Graph, Skizze, Text, Bild, Modell, Diagramm oder Mindmap."
+                },
+                {
+                  "text": "Der Anforderungsbereich II umfasst selbstständiges Auswählen, Anordnen, Verarbeiten und Darstel-"
+                },
+                {
+                  "text": "Sachverhalte unter vorgegebenen Gesichtspunkten in einem durch Übung bekannten"
+                },
+                {
+                  "text": "Zusammenhang, selbstständiges Übertragen des Gelernten auf vergleichbare neuartige Fragestellun-"
+                },
+                {
+                  "text": "gen, veränderte Sachzusammenhänge oder abgewandelte Verfahrensweisen."
+                },
+                {
+                  "text": "Im Fach Chemie gehören dazu:"
+                },
+                {
+                  "text": "Wiedergeben von komplexen Zusammenhängen,"
+                },
+                {
+                  "text": "Verbalisieren quantitativer und qualitativer Aussagen chemischer Formeln und Reaktions-"
+                },
+                {
+                  "text": "Interpretieren von Tabellen und grafischen Darstellungen mit Methoden, die im Unterricht"
+                },
+                {
+                  "text": "Planen, Durchführen und Auswerten einfacher Versuche zur Lösung vorgegebener Fragestel-"
+                },
+                {
+                  "text": "Einhaltung der Sicherheitsbestimmungen,"
+                },
+                {
+                  "text": "Anwenden von Modellvorstellungen und Gesetzen zur Lösung von Fragen, die an analogen"
+                },
+                {
+                  "text": "Beispielen behandelt wurden,"
+                },
+                {
+                  "text": "Anwenden elementarer mathematischer Beziehungen auf chemische Sachverhalte,"
+                },
+                {
+                  "text": "Auswählen und Verknüpfen bekannter Daten, Fakten und Methoden bei vertrauter oder"
+                },
+                {
+                  "text": "Aufgabenstruktur,"
+                },
+                {
+                  "text": "Analysieren von Material und sachbezogenes Auswählen von Informationen,"
+                },
+                {
+                  "text": "Verknüpfen und fächerübergreifendes Anwenden von Wissen; Strukturierung des Wissens"
+                },
+                {
+                  "text": "Hilfe von Basiskonzepten,"
+                },
+                {
+                  "text": "sachgemäßes Urteilen und Argumentieren unter Verwendung der Fachsprache,"
+                },
+                {
+                  "text": "Anwenden der im Unterricht vermittelten chemischen Kenntnisse auf Umweltfragen und"
+                },
+                {
+                  "text": "Analysieren und Bewerten von Informationen aus Medien zu chemischen Sachverhalten und"
+                },
+                {
+                  "text": "Fragestellungen,"
+                },
+                {
+                  "text": "Darstellen und Strukturieren von Zusammenhängen in Tabellen, Graphen, Skizzen, Texten,"
+                },
+                {
+                  "text": "Schaubildern, Modellen, Diagrammen oder Mindmaps."
+                },
+                {
+                  "text": "Der Anforderungsbereich III umfasst bewusstes und selbstständiges Auswählen und Anpassen ge-"
+                },
+                {
+                  "text": "Methoden und Verfahren in neuartigen Situationen sowie planmäßiges und kreati-"
+                },
+                {
+                  "text": "Bearbeiten vielschichtiger Problemstellungen mit dem Ziel, selbstständig zu Lösungen, Deutun-"
+                },
+                {
+                  "text": "gen, Wertungen oder Folgerungen zu gelangen."
+                },
+                {
+                  "text": "Im Fach Chemie gehören dazu:"
+                },
+                {
+                  "text": "selbstständiges Erschließen von Sachverhalten in einem unbekannten Zusammenhang,"
+                },
+                {
+                  "text": "selbstständiger Transfer auf vergleichbare Sachverhalte bzw. Anwendungssituationen,"
+                },
+                {
+                  "text": "selbstständiges und zielgerichtetes Auswählen und Anpassen geeigneter und gelernter Me-"
+                },
+                {
+                  "text": "Verfahren in neuen Situationen,"
+                },
+                {
+                  "text": "Planen und gegebenenfalls Durchführen von Experimenten zu vorgegebenen oder selbst ge-"
+                },
+                {
+                  "text": "Fragestellungen,"
+                },
+                {
+                  "text": "Entwickeln eigener Fragestellungen und alternativer Lösungsstrategien,"
+                },
+                {
+                  "text": "Analysieren komplexer Texte und Darstellen der Erkenntnisse in angemessener und adressa-"
+                },
+                {
+                  "text": "Erschließen von Kontexten mit Hilfe der Basiskonzepte,"
+                }
+              ]
+            },
+            {
+              "title": "Abschlussbezogene Standards",
+              "learning_objectives": [
+                {
+                  "text": "Betrachtung gesellschaftlich relevanter Themen aus verschiedenen Perspektiven und Refle-"
+                },
+                {
+                  "text": "Konkretisierung der Standards in den einzelnen Kompetenzbereichen"
+                },
+                {
+                  "text": "Das Lernen der Schülerinnen und Schüler im Fach Chemie knüpft an die in Klasse 5 und 6 erworbenen"
+                },
+                {
+                  "text": "Kompetenzen. Die Entwicklung der angestrebten vertieften naturwissen-"
+                },
+                {
+                  "text": "Grundbildung erfolgt durch die Vermittlung grundlegender fachlicher Prozesse, die den"
+                },
+                {
+                  "text": "Kompetenzbereichen zugeordnet werden können."
+                },
+                {
+                  "text": "[S] Sachkompetenz – mit naturwissenschaftlichem Wissen souverän umgehen"
+                },
+                {
+                  "text": "Die Sachkompetenz der Schülerinnen und Schüler zeigt sich in der Kenntnis naturwissenschaftlicher"
+                },
+                {
+                  "text": "Konzepte, Theorien und Verfahren und der Fähigkeit, diese zu beschreiben und zu erklären sowie"
+                },
+                {
+                  "text": "auszuwählen und zu nutzen, um Sachverhalte aus fach- und alltagsbezogenen Anwen-"
+                },
+                {
+                  "text": "Bei der Bearbeitung bisher unbekannter naturwissenschaftlicher Problem- und Fragestellungen ver-"
+                },
+                {
+                  "text": "Kenntnisse, ihre methodischen Fähigkeiten und Fertigkeiten sowie"
+                },
+                {
+                  "text": "Strategien. Sie deuten und präsentieren die Ergebnisse und setzen sie in Beziehung zu"
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler"
+                },
+                {
+                  "text": "Stoffe aus Haushalt, Industrie und Umwelt beschreiben sie mit ihren"
+                },
+                {
+                  "text": "Eigenschaften in der Fachsprache,"
+                },
+                {
+                  "text": "Bau ausgewählter Stoffe,"
+                },
+                {
+                  "text": "Bau von Atomen mit Hilfe eines geeigneten Atommodells,"
+                },
+                {
+                  "text": "Bindungsmodelle zur Interpretation von Teilchenaggregationen, räumlichen"
+                },
+                {
+                  "text": "Strukturen und zwischenmolekularen Wechselwirkungen,"
+                },
+                {
+                  "text": "begründete Voraussagen zur räumlichen Anordnung von Teilchen,"
+                },
+                {
+                  "text": "erklären die Vielfalt der Stoffe auf der Basis unterschiedlicher Kombinationen und Anordnun-"
+                },
+                {
+                  "text": "Teilchen- und Bindungsmodelle zum Deuten und Voraussagen von Stof-"
+                },
+                {
+                  "text": "schließen aus den Eigenschaften der Stoffe auf ihre Verwendungsmöglichkeiten,"
+                },
+                {
+                  "text": "begründen die Zuordnung von Stoffen zu Stoffklassen,"
+                },
+                {
+                  "text": "erläutern und beschreiben für wichtige Rohstoffe die Bedeutung, Gewinnung und Herstel-"
+                },
+                {
+                  "text": "Experimente auf der Basis von Kenntnissen über Stoffe, Reaktionen, Gerä-"
+                },
+                {
+                  "text": "Sicherheitsbestimmungen und führen sie durch,"
+                },
+                {
+                  "text": "Ergebnisse chemischer Experimente auch auf der Teilchenebene,"
+                },
+                {
+                  "text": "Reaktion hinsichtlich der Stoff- und Energieumwandlung,"
+                },
+                {
+                  "text": "Stoff- und Energieumwandlungen hinsichtlich der Veränderung von Teilchen und des"
+                },
+                {
+                  "text": "Umbaus chemischer Bindungen,"
+                },
+                {
+                  "text": "Donator-Akzeptor-Reaktionen die Übertragung von Teilchen und bestimmen"
+                },
+                {
+                  "text": "Reaktionsschemata (Wortgleichungen) und Reaktionsgleichungen,"
+                },
+                {
+                  "text": "Betrachtungen chemischer Reaktionen an,"
+                },
+                {
+                  "text": "Wissen über die Umkehrbarkeit chemischer Reaktionen an,"
+                },
+                {
+                  "text": "Beispiele für Stoffkreisläufe in Natur und Technik als Systeme chemischer Reak-"
+                },
+                {
+                  "text": "Möglichkeiten der Steuerung chemischer Reaktionen durch Variation von Reak-"
+                },
+                {
+                  "text": "tionsbedingungen,"
+                },
+                {
+                  "text": "auf, dass sich bei chemischen Reaktionen auch der Energiegehalt des Reaktionssys-"
+                },
+                {
+                  "text": "Austausch mit der Umgebung ändert,"
+                },
+                {
+                  "text": "Aktivierungsenergie auf der Teilchenebene,"
+                },
+                {
+                  "text": "Konkretisierung der Standards in den einzelnen Kompetenzbereichen"
+                },
+                {
+                  "text": "führen energetische Erscheinungen bei chemischen Reaktionen auf die Umwandlung eines"
+                },
+                {
+                  "text": "Teils der in Stoffen gespeicherten Energie in andere Energieformen zurück,"
+                },
+                {
+                  "text": "Umwandlung von chemischer Energie in andere Energieformen unter dem"
+                },
+                {
+                  "text": "Aspekt der technischen Anwendung chemischer Reaktionen,"
+                },
+                {
+                  "text": "Beeinflussbarkeit chemischer Reaktionen durch den Einsatz von Katalysato-"
+                },
+                {
+                  "text": "[E] Erkenntnisgewinnung – mit Methoden der Naturwissenschaften Erkenntnisse gewinnen"
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler wenden die Methoden und Arbeitsweisen der Naturwissenschaften an,"
+                },
+                {
+                  "text": "Erkenntnisse über naturwissenschaftliche Sachverhalte zu erwerben oder zu bestätigen und"
+                },
+                {
+                  "text": "Auftreten bisher unbekannter Phänomene vorauszusagen. Das bedeutet beispielsweise, dass"
+                },
+                {
+                  "text": "Schülerinnen und Schüler natürliche Phänomene oder technische Effekte zielorientiert erfassen,"
+                },
+                {
+                  "text": "Sie werten die Beobachtungsdaten oder Messwerte mithilfe"
+                },
+                {
+                  "text": "Methoden aus. Sie reflektieren die Ergebnisse und setzen sie in"
+                },
+                {
+                  "text": "Beziehung zu vorhandenen Erkenntnissen. Sie entwickeln dabei neue Modelle oder modifizieren"
+                },
+                {
+                  "text": "Mit Hilfe von Modellen beschreiben, erklären und prognostizieren sie natürliche Phä-"
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler"
+                },
+                {
+                  "text": "Fragestellungen, die mit Hilfe chemischer Kenntnisse und Untersu-"
+                },
+                {
+                  "text": "chungen, insbesondere durch chemische Experimente, zu beantworten sind,"
+                },
+                {
+                  "text": "Untersuchungen zur Überprüfung von Vermutungen und Hypothesen,"
+                },
+                {
+                  "text": "führen qualitative und einfache quantitative experimentelle und andere Untersuchungen"
+                },
+                {
+                  "text": "Experimentieren Sicherheits- und Umweltaspekte,"
+                },
+                {
+                  "text": "Untersuchungen, insbesondere in chemischen Experimenten, relevante Daten"
+                },
+                {
+                  "text": "Daten Trends, Strukturen und Beziehungen, erklären"
+                },
+                {
+                  "text": "Schlussfolgerungen,"
+                },
+                {
+                  "text": "Modelle, um chemische Fragestellungen zu beantworten,"
+                },
+                {
+                  "text": "Verknüpfungen zwischen gesellschaftlichen Entwicklungen und Er-"
+                },
+                {
+                  "text": "[K] Kommunikation – aktiv und souverän über chemische Sachverhalte kommunizieren"
+                },
+                {
+                  "text": "Die sichere Anwendung aller Formen der Kommunikation auch unter Verwendung von Fremdspra-"
+                },
+                {
+                  "text": "Voraussetzung für die aktive Teilnahme am politischen, kulturellen und wirt-"
+                },
+                {
+                  "text": "Leben sowie für wissenschaftliches Arbeiten. Das bedeutet beispielsweise, dass die"
+                },
+                {
+                  "text": "Schülerinnen und Schüler naturwissenschaftliche Phänomene, Vorgänge, Sachverhalte und Zusam-"
+                },
+                {
+                  "text": "menhänge unter Verwendung der Fachsprache situationsangemessen, zielorientiert und adressaten-"
+                },
+                {
+                  "text": "Sie nutzen Medien und Technologien zum Erschließen und Prä-"
+                },
+                {
+                  "text": "Inhalten sowie zur direkten Kommunikation und reflektieren deren Einsatz."
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler"
+                },
+                {
+                  "text": "Sachverhalten zielgerichtet und selbstständig in unterschiedli-"
+                },
+                {
+                  "text": "wählen themenbezogene und aussagekräftige Informationen aus Quellen aus,"
+                },
+                {
+                  "text": "prüfen Darstellungen in Medien hin sichtlich ihrer fachlichen Richtigkeit,"
+                },
+                {
+                  "text": "beschreiben, veranschaulichen oder erklären chemische Sachverhalte unter Verwendung der"
+                },
+                {
+                  "text": "Fachsprache und mit Hilfe von Modellen und Darstellungen,"
+                },
+                {
+                  "text": "Zusammenhänge zwischen chemischen Sachverhalten und Alltagserscheinungen her"
+                },
+                {
+                  "text": "übersetzen dabei bewusst Fachsprache in Alltagssprache und umgekehrt,"
+                },
+                {
+                  "text": "selbstständig den Verlauf und die Ergebnisse von Untersuchungen in an ge-"
+                },
+                {
+                  "text": "präsentieren den Verlauf und die Ergebnisse ihrer Arbeit situations- und"
+                },
+                {
+                  "text": "adressatenbezogen,"
+                }
+              ]
+            },
+            {
+              "title": "Abschlussbezogene Standards",
+              "learning_objectives": [
+                {
+                  "text": "Standpunkte zu chemischen Sachverhalten und reflektieren Einwände selbst-"
+                },
+                {
+                  "text": "planen, strukturieren, reflektieren und präsentieren ihre Arbeit als Team."
+                },
+                {
+                  "text": "[B] Bewerten – chemische Sachverhalte prüfen und beurteilen"
+                },
+                {
+                  "text": "Die mit naturwissenschaftlichen Methoden gewonnenen Erkenntnisse sowie deren Anwendung ha-"
+                },
+                {
+                  "text": "Auswirkungen auf Individuum und Gesellschaft. Daraus resultiert die Forderung nach einem be-"
+                },
+                {
+                  "text": "Umgang mit ihnen. Das bedeutet beispielsweise, dass die Schüle-"
+                },
+                {
+                  "text": "Schüler naturwissenschaftliche Aussagen und Situationen hinterfragen und überprüfen"
+                },
+                {
+                  "text": "Relation zu den vorhandenen Informationen bewerten. Sie setzen naturwissenschaftli-"
+                },
+                {
+                  "text": "Aussagen in Beziehung zu gesellschaftlich relevanten Fragestellungen und prüfen, diskutieren"
+                },
+                {
+                  "text": "Anwendungsmöglichkeiten und deren individuelle sowie gesellschaftliche Folgen in"
+                },
+                {
+                  "text": "Bereichen wie Technik, Gesundheit und Umwelt. Sie gestalten Meinungsbildungsprozesse und Ent-"
+                },
+                {
+                  "text": "für sich verschiedene Handlungsmöglichkeiten."
+                },
+                {
+                  "text": "Die Schülerinnen und Schüler"
+                },
+                {
+                  "text": "Anwendungsbereiche und Berufsfelder dar, in denen chemische Kenntnisse bedeut-"
+                },
+                {
+                  "text": "Fragestellungen, die einen engen Bezug zu anderen Unterrichtsfächern aufweisen"
+                },
+                {
+                  "text": "Kenntnisse und Fertigkeiten, um lebenspraktisch bedeut-"
+                },
+                {
+                  "text": "Zusammenhänge zu erschließen,"
+                },
+                {
+                  "text": "selbstständig aktuelle, lebensweltbezogene Fragestellungen, die unter Nutzung"
+                },
+                {
+                  "text": "Erkenntnisse der Chemie einsichtig werden und beantwortet werden"
+                },
+                {
+                  "text": "Aussagen aus unterschiedlichen Perspekti-"
+                },
+                {
+                  "text": "Sachverhalte in Problemzusammenhänge ein, entwickeln Lösungs-"
+                },
+                {
+                  "text": "Unterrichtsinhalte – Klasse 8"
+                },
+                {
+                  "text": "Unterrichtsinhalte"
+                },
+                {
+                  "text": "Klasse 8 ca. 60 Unterrichtsstunden"
+                },
+                {
+                  "text": "Einführung in die Naturwissenschaft Chemie ca. 20 Unterrichtsstunden"
+                },
+                {
+                  "text": "Verbindliche Inhalte Hinweise und Anregungen"
+                },
+                {
+                  "text": "Chemie – was ist das?"
+                },
+                {
+                  "text": "Chemie als Naturwissenschaft Die Lebenswelt der Schüler ist einzubeziehen"
+                },
+                {
+                  "text": "Stoffe, deren Eigenschaften und Ver- und die Chancen als auch die Gefahren aufzu-"
+                },
+                {
+                  "text": "änderungen zeigen und zu diskutieren."
+                },
+                {
+                  "text": "Bedeutung der Chemie"
+                },
+                {
+                  "text": "Sicherheit im Chemieunterricht"
+                },
+                {
+                  "text": "Gefahrstoffe und ihre Symbole Die Produkte des Alltags mit Gefahrstoffkenn-"
+                },
+                {
+                  "text": "Umgang mit Chemikalien zeichnungen sind zu berücksichtigen. [PG]"
+                },
+                {
+                  "text": "Grundregeln beim Experimentieren"
+                },
+                {
+                  "text": "Verhalten im Fachraum"
+                },
+                {
+                  "text": "Laborgeräte Die Laborgeräte können durch erste einfache"
+                },
+                {
+                  "text": "Experimente kennengelernt werden."
+                },
+                {
+                  "text": "Gasbrenner Der Umgang mit dem Gasbrenner kann mit"
+                },
+                {
+                  "text": "Funktionsweise einem Brennerführerschein gefestigt und"
+                },
+                {
+                  "text": "Umgang überprüft werden."
+                },
+                {
+                  "text": "SE: Ermitteln verschiedener Temperaturzonen"
+                },
+                {
+                  "text": "SE: Entzünden und Löschen eines Brenners, in der nicht leuchtenden Brennerflamme"
+                },
+                {
+                  "text": "Einstellen verschiedener Flammen mit Holzspan oder Magnesiastab"
+                },
+                {
+                  "text": "Stoffe und ihre Eigenschaften Die Eigenschaften können im SE, DE, theore-"
+                },
+                {
+                  "text": "Eigenschaften: Farbe, Geruch, Glanz, tisch mit dem Tafelwerk, dem Lehrbuch, den"
+                },
+                {
+                  "text": "Aggregatzustand, Löslichkeit, Brennbarkeit, digitalen Tabellenwerten oder anderen Medien"
+                },
+                {
+                  "text": "Dichte, Schmelz- und Siedetemperatur, erarbeitet werden. [MD1]"
+                },
+                {
+                  "text": "Verformbarkeit, Härte, elektrische Leitfä- Auf das Gefahrenpotenzial einzelner Eigen-"
+                },
+                {
+                  "text": "higkeit, Magnetisierbarkeit schaften eines Stoffes für Mensch und Umwelt"
+                },
+                {
+                  "text": "SE: Untersuchen einzelner Eigenschaften an"
+                },
+                {
+                  "text": "ausgewählten Stoffen Steckbriefe von Stoffen können angefertigt"
+                }
+              ]
+            },
+            {
+              "title": "Abschlussbezogene Standards",
+              "learning_objectives": [
+                {
+                  "text": "Teilchenmodell und Aggregatzustandsän- Auf die Bedeutung der Modelle ist hinzuwei-"
+                },
+                {
+                  "text": "DE: Sublimation und Resublimation von Iod"
+                },
+                {
+                  "text": "DE: Aggregatzustandsänderungen von Helium Das Teilchenmodell ist anzuwenden."
+                },
+                {
+                  "text": "Feuerzeuggas [Physik]"
+                },
+                {
+                  "text": "Einteilung der Stoffe"
+                },
+                {
+                  "text": "Reinstoff und Stoffgemisch"
+                },
+                {
+                  "text": "Arten der Stoffgemische"
+                },
+                {
+                  "text": "Trennverfahren für Stoffgemische Die Trennverfahren des Alltags sind zu nutzen."
+                },
+                {
+                  "text": "Sieben Die Mülltrennung als besondere Maßnahme"
+                },
+                {
+                  "text": "Dekantieren der Umweltentlastung soll diskutiert werden."
+                },
+                {
+                  "text": "Filtrieren Der Umgang mit dem Abfall als ernsthaftes"
+                },
+                {
+                  "text": "Eindampfen Umweltproblem ist zu darzustellen. [BNE]"
+                },
+                {
+                  "text": "Chromatografieren"
+                },
+                {
+                  "text": "Adsorbieren SE: Adsorption von Farbstoffen, wie Methylen-"
+                },
+                {
+                  "text": "Cola mit Aktivkohle"
+                },
+                {
+                  "text": "SE: Papierchromatografie"
+                },
+                {
+                  "text": "SE: Trennung eines Salz-, Sand- und Wasser-"
+                },
+                {
+                  "text": "Protokoll Bei der Stofftrennung ist das Protokollieren"
+                },
+                {
+                  "text": "Aufbau, Inhalt, Bedeutung einzuführen."
+                },
+                {
+                  "text": "Stoffe und ihre Veränderungen"
+                },
+                {
+                  "text": "SE: Erhitzen von Wasser, Salz und Zucker"
+                },
+                {
+                  "text": "Stoffumwandlung als Merkmal der chemi-"
+                },
+                {
+                  "text": "Reaktion und Abgrenzung zu physi-"
+                },
+                {
+                  "text": "SE: Auflösen von Brausetabletten"
+                },
+                {
+                  "text": "DE: Lösen von Rohrreiniger in Wasser"
+                },
+                {
+                  "text": "SE: Erhitzen von Magnesium oder Entzünden"
+                },
+                {
+                  "text": "Energieumwandlung als weiteres Merkmal"
+                },
+                {
+                  "text": "Beispiele für die Verknüpfung von Inhalten und prozessbezogenen Kompetenzen:"
+                },
+                {
+                  "text": "S: Erläutern der Merkmale einer chemischen Reaktion"
+                },
+                {
+                  "text": "E: Planen und Durchführen geeigneter Experimente zur Stofftrennung"
+                },
+                {
+                  "text": "K: Beschreiben des Baus von Stoffen mit Hilfe des Teilchenmodells"
+                },
+                {
+                  "text": "B: Bewerten der Bedeutung der Naturwissenschaft Chemie für den gesellschaftlichen Fortschritt"
+                },
+                {
+                  "text": "Unterrichtsinhalte – Klasse 8"
+                },
+                {
+                  "text": "Metalle und das Periodensystem der Elemente ca. 10 Unterrichtsstunden"
+                },
+                {
+                  "text": "Verbindliche Inhalte Hinweise und Anregungen"
+                },
+                {
+                  "text": "Metalle Der geschichtliche Überblick über die Entde-"
+                },
+                {
+                  "text": "Einteilung, Verwendung und Bedeutung ckung der Metalle kann einbezogen werden."
+                },
+                {
+                  "text": "Leicht- und Schwermetalle Die Verwendung von Messing, Bronze und"
+                },
+                {
+                  "text": "Metalle und Edelmetalle Stahl als Legierungen sind zu betrachten. 15"
+                },
+                {
+                  "text": "Legierungen Metalle als Partner des Fortschritts: Platine in"
+                },
+                {
+                  "text": "USB-Speicherstick, Implantate, Metalle"
+                },
+                {
+                  "text": "Eigenschaften: der Seltenen Erden, LED-Leuchten, Akkumula-"
+                },
+                {
+                  "text": "Glanz toren in Smartphones [BNE]"
+                },
+                {
+                  "text": "Wärmeleitfähigkeit"
+                },
+                {
+                  "text": "Schmelz- und Siedetemperaturen"
+                },
+                {
+                  "text": "SE/DE: Ermitteln einiger Eigenschaften der Weitere Betrachtungen erfolgen im Kon-"
+                },
+                {
+                  "text": "Metalle textthema [Warum fließt Strom durch Kabel?]"
+                },
+                {
+                  "text": "Kern-Hülle-Modell mit Atomkern und Pro- Die räumlichen Darstellungen sind zu nutzen."
+                },
+                {
+                  "text": "Atomhülle und Elektronen"
+                },
+                {
+                  "text": "Atombau als Schalenmodell"
+                },
+                {
+                  "text": "Bau der Metalle aus Atomen gleicher Art"
+                },
+                {
+                  "text": "Kugelpackungsmodell"
+                },
+                {
+                  "text": "Periodensystem der Elemente Die Geschichte und Entwicklung des PSE ist"
+                },
+                {
+                  "text": "Elemente und Symbole darzustellen."
+                },
+                {
+                  "text": "Einteilung der chemischen Elemente in"
+                },
+                {
+                  "text": "Metalle und Nichtmetalle"
+                },
+                {
+                  "text": "Zusammenhang Atombau und Stellung im"
+                },
+                {
+                  "text": "PSE bei Hauptgruppenelementen:"
+                },
+                {
+                  "text": "Anzahl der Protonen und Elektronen,"
+                },
+                {
+                  "text": "Anzahl der Außenelektronen, Haupt-"
+                },
+                {
+                  "text": "gruppennummer, Elektronenschreib-"
+                },
+                {
+                  "text": "Anzahl der Elektronenschalen, Perio-"
+                },
+                {
+                  "text": "Bildung positiv und negativ geladener Io- Die Begriffe Kat- und Anionen können verwen-"
+                },
+                {
+                  "text": "Symbole det werden."
+                },
+                {
+                  "text": "Metallbindung als chemische Bindung"
+                },
+                {
+                  "text": "Zusammenhang zwischen Metallbindung Die elektrische Leitfähigkeit, die Verformbar-"
+                },
+                {
+                  "text": "Eigenschaften keit, die Wärmeleitfähigkeit und der metalli-"
+                },
+                {
+                  "text": "Glanz sind abzuleiten."
+                },
+                {
+                  "text": "Beispiele für die Verknüpfung von Inhalten und prozessbezogenen Kompetenzen:"
+                },
+                {
+                  "text": "S: Beschreiben des Zusammenhangs zwischen Metallbindung und Stoffeigenschaften"
+                },
+                {
+                  "text": "E: Anwenden des Schalenmodells bei der Ionenbildung"
+                },
+                {
+                  "text": "K: Darstellen der Bedeutung von Metalllegierungen in der Technik"
+                },
+                {
+                  "text": "B: Erörtern und Bewerten des Metallrecyclings"
+                }
+              ]
+            },
+            {
+              "title": "Abschlussbezogene Standards",
+              "learning_objectives": [
+                {
+                  "text": "Kontext – Warum fließt Strom durch Kabel? ca. 2 Unterrichtsstunden"
+                },
+                {
+                  "text": "(Physik: 4 Unterrichtsstunden)"
+                },
+                {
+                  "text": "Dieses Thema wird kontextorientiert und fächerübergreifend mit dem Fach Physik unterrichtet. Es"
+                },
+                {
+                  "text": "Bestandteil des Rahmenplanes für das Fach Physik."
+                },
+                {
+                  "text": "Verbindliche Inhalte Hinweise und Anregungen"
+                },
+                {
+                  "text": "Praktisch genutzte Stromleiter [Physik] Es muss auch der Aspekt der Wirtschaftlichkeit"
+                },
+                {
+                  "text": "Kupferkabel und des Rohstoffverbrauchs thematisiert wer-"
+                },
+                {
+                  "text": "Aluminiumkabel den. [BNE] [AWT]"
+                },
+                {
+                  "text": "Goldflächen [Geografie]"
+                },
+                {
+                  "text": "Äußere und innere Isolierungen"
+                },
+                {
+                  "text": "DE: Stromfluss durch verschiedene Teile eines"
+                },
+                {
+                  "text": "Aufbau von Metallgittern [Physik] Simulationen von Metallgittern können genutzt"
+                },
+                {
+                  "text": "Metall-Ionen werden."
+                },
+                {
+                  "text": "Atombau und PSE am Beispiel von Aluminium Räumliche Darstellungen sind zu nutzen."
+                },
+                {
+                  "text": "Atombau als Schalenmodell"
+                },
+                {
+                  "text": "Periodensystem der Elemente Der Begriff Element wird eingeführt."
+                },
+                {
+                  "text": "Element und Symbol"
+                },
+                {
+                  "text": "Zusammenhang Atombau und Stellung im"
+                },
+                {
+                  "text": "Anzahl der Protonen und Elektronen,"
+                },
+                {
+                  "text": "Anzahl der Außenelektronen, Haupt-"
+                },
+                {
+                  "text": "Anzahl der Elektronenschalen, Perio-"
+                },
+                {
+                  "text": "Bildung des elektrisch positiv geladenen Alumi- Auf die Ionenbildung bei Kupfer und Gold als"
+                },
+                {
+                  "text": "nium-Ions als Metall-Ion Nebengruppenelemente ist hinzuweisen."
+                },
+                {
+                  "text": "Modell des elektrischen Stroms in Metallen Der Zusammenhang zwischen Bau der Metalle"
+                },
+                {
+                  "text": "[Physik] und der elektrischen Leitfähigkeit muss herge-"
+                },
+                {
+                  "text": "Spannungsquelle als Antrieb des Stromes stellt werden."
+                },
+                {
+                  "text": "Elektronen als bewegliche Ladungsträger"
+                },
+                {
+                  "text": "Metall-Ionen als Hindernisse Auf die technische Stromrichtung kann einge-"
+                },
+                {
+                  "text": "SE: Untersuchung der elektrischen Leitfähigkeit"
+                },
+                {
+                  "text": "Leiter und Isolatoren - Vorschlag zur inhaltlichen Vertiefung:"
+                },
+                {
+                  "text": "Leitfähigkeit als physikalische"
+                },
+                {
+                  "text": "Beispiele für die Verknüpfung von Inhalten und prozessbezogenen Kompetenzen:"
+                },
+                {
+                  "text": "S: Beschreiben des Zusammenhangs zwischen Atomaufbau und Stellung im PSE für Aluminium"
+                },
+                {
+                  "text": "E: Analysieren des Aufbaus eines Kabels mit Stecker"
+                },
+                {
+                  "text": "K: Angeben des Aluminium-Ions mittels der chemischen Zeichensprache"
+                },
+                {
+                  "text": "B: Vergleichen der elektrischen Leitfähigkeit und Rohstoffkosten verschiedener Metalle [MD1]"
+                },
+                {
+                  "text": "Unterrichtsinhalte – Klasse 8"
+                },
+                {
+                  "text": "Luft und Sauerstoff ca. 14 Unterrichtsstunden"
+                },
+                {
+                  "text": "Verbindliche Inhalte Hinweise und Anregungen"
+                },
+                {
+                  "text": "Bedeutung der Bestandteile Auf die Verunreinigung und Reinhaltung der"
+                },
+                {
+                  "text": "Luft, Fotosynthese, Atmung, Verwendung der 17"
+                },
+                {
+                  "text": "DE: Ermitteln des Sauerstoffanteils in der Luft Edelgase, Stickstoff als Kühlmittel und Schutz-"
+                },
+                {
+                  "text": "Medizin und Industrie, Korrosion,"
+                },
+                {
+                  "text": "Sauerstoff Raketentreibstoff, Bedingungen für die Entste-"
+                },
+                {
+                  "text": "Darstellung hung eines Feuers, Verhütung und Bekämpfung"
+                },
+                {
+                  "text": "Bränden ist einzugehen. [BNE] [MD1]"
+                },
+                {
+                  "text": "SE: Darstellen mit pneumatischem Auffangen"
+                },
+                {
+                  "text": "Atombindung als chemische Bindung"
+                },
+                {
+                  "text": "Formel in Elektronenschreibweise"
+                },
+                {
+                  "text": "Reaktion von Metallen und Sauerstoff Die Stoff- und Energieumwandlung als Merk-"
+                },
+                {
+                  "text": "Reaktionen sind zu wiederho-"
+                },
+                {
+                  "text": "SE: Reaktion von Metallen mit Sauerstoff len."
+                },
+                {
+                  "text": "Wortgleichung Der Begriff Korrosion ist miteinzubeziehen."
+                },
+                {
+                  "text": "Auf wirtschaftliche Schäden durch Korrosion"
+                },
+                {
+                  "text": "Namen und Formeln der Metalloxide von Metallen kann eingegangen werden. [BNE]"
+                },
+                {
+                  "text": "Die Begriffe Ausgangsstoffe, Reaktionsprodukte"
+                },
+                {
+                  "text": "Bedeutung des Reaktionspfeils sind zu"
+                },
+                {
+                  "text": "Begriff chemische Verbindung Die Einteilung der Reinstoffe ist mit den Begrif-"
+                },
+                {
+                  "text": "Element und chemische Ver-"
+                },
+                {
+                  "text": "Das Aufstellen der Formeln der Metalloxide"
+                },
+                {
+                  "text": "Ionen oder Wertigkeiten."
+                },
+                {
+                  "text": "Namen und Formeln der Nichtmetalloxide aus"
+                },
+                {
+                  "text": "Tafelwerk nutzen."
+                },
+                {
+                  "text": "Gesetz von der Erhaltung der Masse"
+                },
+                {
+                  "text": "DE: Massenvergleich vor und nach einer"
+                }
+              ]
+            },
+            {
+              "title": "Abschlussbezogene Standards",
+              "learning_objectives": [
+                {
+                  "text": "Aufstellen der Reaktionsgleichungen Das Aufstellen der Reaktionsgleichungen er-"
+                },
+                {
+                  "text": "Oxidation folgt für die Bildung der Metalloxide und"
+                },
+                {
+                  "text": "Reduktion Nichtmetalloxide."
+                },
+                {
+                  "text": "Reaktion eines Stoffes mit Sauerstoff ist als"
+                },
+                {
+                  "text": "Oxidation zu betrachten."
+                },
+                {
+                  "text": "SE: Zerlegen von Silber(I)-oxid und Nachweis Reaktion, bei der einem Stoff Sauerstoff entzo-"
+                },
+                {
+                  "text": "Sauerstoff gen wird, ist als Reduktion zu benennen."
+                }
+              ]
+            },
+            {
+              "title": "• Redoxreaktion Redoxreaktion ist im engeren Sinne als Reakti-",
+              "learning_objectives": [
+                {
+                  "text": "Redoxreaktion mit Teilreaktionen on mit Sauerstoffübertragung zu betrachten."
+                },
+                {
+                  "text": "Bedeutung Auf die Bedeutung der Redoxreaktionen bei"
+                },
+                {
+                  "text": "Metallgewinnung besonders von Eisen ist"
+                },
+                {
+                  "text": "SE: Reaktion von Kupfer(II)-oxid mit Eisen oder hinzuweisen."
+                },
+                {
+                  "text": "Zink Der Hochofenprozess ist zu veranschaulichen."
+                },
+                {
+                  "text": "SE: Kupfer(II)-oxid mit Kohlenstoff [MD1] [MD2]"
+                },
+                {
+                  "text": "Quantitative Betrachtungen"
+                },
+                {
+                  "text": "Kennzeichnung von Stoffportionen durch Historische und gegenwärtige Zählmaße kön-"
+                },
+                {
+                  "text": "Masse, Teilchenanzahl, Stoffmenge nen erwähnt werden. [MD1]"
+                },
+                {
+                  "text": "Zusammenhang Stoffmenge und Masse"
+                },
+                {
+                  "text": "stöchiometrisches Rechnen Die Berechnungen von Massen sind durchzu-"
+                },
+                {
+                  "text": "Beispiele für die Verknüpfung von Inhalten und prozessbezogenen Kompetenzen:"
+                },
+                {
+                  "text": "S: Begründen der Reaktion von Kupfer(II)-oxid mit Eisen als Redoxreaktion"
+                },
+                {
+                  "text": "E: Durchführen der quantitativen Untersuchung zum Sauerstoffanteil in der Luft"
+                },
+                {
+                  "text": "K: Aufstellen von Reaktionsgleichungen zu Redoxreaktionen und Kennzeichnen der Teilreaktio-"
+                },
+                {
+                  "text": "B: Bewerten der Korrosion als wirtschaftlicher Schaden"
+                },
+                {
+                  "text": "Unterrichtsinhalte – Klasse 8"
+                },
+                {
+                  "text": "Wasserstoff und Wasser ca. 10 Unterrichtsstunden"
+                },
+                {
+                  "text": "Verbindliche Inhalte Hinweise und Anregungen"
+                },
+                {
+                  "text": "Verwendung und Bedeutung Wasserstoff als Energieträger der Zukunft, Aus-"
+                },
+                {
+                  "text": "Darstellung gangstoff in der chemischen Industrie und"
+                },
+                {
+                  "text": "Probleme der Wasserstoffspeicherung ist zu"
+                },
+                {
+                  "text": "SE: Darstellen mit pneumatischen Auffangen diskutieren. [BNE] [MD1] 19"
+                },
+                {
+                  "text": "SE: Knallgasprobe"
+                },
+                {
+                  "text": "Formel in Elektronenschreibweise"
+                },
+                {
+                  "text": "Wasser Wasser als Lebensraum, Lösungsmittel, Trans-"
+                },
+                {
+                  "text": "Verwendung und Bedeutung portmittel, Wärmespeicher, Wärmeregulation"
+                },
+                {
+                  "text": "Eigenschaften und Lebensmittel ist zu erarbeiten."
+                },
+                {
+                  "text": "Nachweis [Biologie]"
+                },
+                {
+                  "text": "Wasserverunreinigung und Gewässerschutz"
+                },
+                {
+                  "text": "SE: Nachweis mit Watesmopapier oder entwäs- sowie der Wasserkreislauf sind einzubeziehen."
+                },
+                {
+                  "text": "Kupfer(II)-sulfat [BNE]"
+                },
+                {
+                  "text": "Exkursionen zum Thema Trinkwasser bzw. Ab-"
+                },
+                {
+                  "text": "Bau: wasseraufbereitung sind möglich. [BO]"
+                },
+                {
+                  "text": "Elektronegativitätswerte [Geografie]"
+                },
+                {
+                  "text": "Atombindung Die Wiederholung der physikalischen Eigen-"
+                },
+                {
+                  "text": "Dipolmolekül schaften sollte erfolgen."
+                },
+                {
+                  "text": "Formel in Elektronenschreibweise"
+                },
+                {
+                  "text": "Zusammenhang zwischen Bau und Eigenschaf-"
+                },
+                {
+                  "text": "Dipoleigenschaften als Voraussetzung für"
+                },
+                {
+                  "text": "SE: Lösen von verschiedenen Stoffen aus dem"
+                },
+                {
+                  "text": "Bildung und Zerlegung von Wasser"
+                },
+                {
+                  "text": "Umordnung der Teilchen und Änderung der Die unpolare und polare Atombindung sind"
+                },
+                {
+                  "text": "Bindung als Merkmale der voneinander abzugrenzen."
+                },
+                {
+                  "text": "Reaktion Der Bau und die chemischen Bindungen im"
+                },
+                {
+                  "text": "Sauerstoff-, Wasserstoff- und Wassermolekül"
+                },
+                {
+                  "text": "DE: Elektrolytische Zerlegung von Wasser sind zu vergleichen."
+                },
+                {
+                  "text": "Regel, Ähnliches löst sich in Ähnlichem, ist an-"
+                },
+                {
+                  "text": "Reaktionsgleichungen aufstellen"
+                },
+                {
+                  "text": "Beispiele für die Verknüpfung von Inhalten und prozessbezogenen Kompetenzen:"
+                },
+                {
+                  "text": "S: Beschreiben von Wasser als Dipolmolekül"
+                },
+                {
+                  "text": "E: Durchführen des qualitativen Nachweises des Wassers"
+                },
+                {
+                  "text": "K: Erläutern des Zusammenhangs zwischen Bau und Eigenschaften von Wasser"
+                },
+                {
+                  "text": "B: Erörtern und Bewerten des Einsatzes von Wasserstoff als ein Energieträger der Zukunft"
+                }
+              ]
+            },
+            {
+              "title": "Abschlussbezogene Standards",
+              "learning_objectives": [
+                {
+                  "text": "Kohlenstoff und Kohlenstoffverbindungen ca. 4 Unterrichtsstunden"
+                },
+                {
+                  "text": "Verbindliche Inhalte Hinweise und Anregungen"
+                },
+                {
+                  "text": "Modifikationen Modelle sind einzusetzen."
+                },
+                {
+                  "text": "Graphit und Diamant Auf Fullerene und Graphen sind hinzuweisen."
+                }
+              ]
+            },
+            {
+              "title": "- Eigenschaften Der Zusammenhang zwischen PSE und Atom-",
+              "learning_objectives": [
+                {
+                  "text": "Verwendung aufbau ist zu erarbeiten."
+                },
+                {
+                  "text": "Kohlenstoffmono- und Kohlenstoffdioxid Der Zusammenhang von Bau, Eigenschaften"
+                },
+                {
+                  "text": "Bau und Verwendung ist zu erläutern."
+                },
+                {
+                  "text": "Reaktionsgleichung zur Bildung"
+                },
+                {
+                  "text": "Verwendung und Bedeutung Kohlenstoffmonooxid als Atemgift sowie die"
+                },
+                {
+                  "text": "Bedeutung als Reduktionsmittel im Hochofen-"
+                },
+                {
+                  "text": "Die Bedeutung und Verwendung des Kohlen-"
+                },
+                {
+                  "text": "Getränkeherstellung, als"
+                },
+                {
+                  "text": "Feuerlöschmittel, Kühlmittel, Ausgangsstoff der"
+                },
+                {
+                  "text": "Fotosynthese, Reaktionsprodukt bei der At-"
+                },
+                {
+                  "text": "Verbrennungsprozessen und als"
+                },
+                {
+                  "text": "Treibgas sind herauszuarbeiten."
+                },
+                {
+                  "text": "Die Entstehung der Tropfsteinhöhlen ist zu"
+                },
+                {
+                  "text": "Nachweis von Kohlenstoffdioxid Diese Kohlenstoffverbindungen sind unter öko-"
+                },
+                {
+                  "text": "Aspekten zu bewerten. [BNE]"
+                },
+                {
+                  "text": "SE: Nachweis [Biologie]"
+                },
+                {
+                  "text": "Beispiele für die Verknüpfung von Inhalten und prozessbezogenen Kompetenzen:"
+                },
+                {
+                  "text": "S: Ableiten begründeter Voraussagen über die Eigenschaften von Diamant und Graphit aus dem"
+                },
+                {
+                  "text": "Bau dieser Stoffe"
+                },
+                {
+                  "text": "E: Durchführen des qualitativen Nachweises von Kohlenstoffdioxid"
+                },
+                {
+                  "text": "K: Darstellen der Bildung von Kohlenstoffmonooxid und Kohlenstoffdioxid durch Reaktionsglei-"
+                },
+                {
+                  "text": "B: Bewerten des Kohlenstoffdioxids unter ökologischen Aspekten"
+                },
+                {
+                  "text": "Unterrichtsinhalte – Klasse 9"
+                },
+                {
+                  "text": "Klasse 9 ca. 60 Unterrichtsstunden"
+                },
+                {
+                  "text": "Alkali-, Erdalkalimetalle, Metallhydroxide und Halogene ca. 18 Unterrichtsstunden"
+                },
+                {
+                  "text": "Verbindliche Inhalte Hinweise und Anregungen"
+                },
+                {
+                  "text": "Alkalimetalle und Erdalkalimetalle"
+                },
+                {
+                  "text": "Bedeutung, Verwendung und Vorkommen"
+                },
+                {
+                  "text": "Metalle und ihrer Verbindungen"
+                },
+                {
+                  "text": "Eigenschaften Die Eigenschaften der Metalle sind zu wieder-"
+                },
+                {
+                  "text": "Reaktionsfreudigkeit gegenüber Sauerstoff Der Zusammenhang von Atombau und Stellung"
+                },
+                {
+                  "text": "Wasser im PSE sowie zwischen Anzahl der Außenelekt-"
+                },
+                {
+                  "text": "Reaktionsfreudigkeit ist abzulei-"
+                },
+                {
+                  "text": "SE: Verbrennen von Magnesium ten."
+                },
+                {
+                  "text": "DE: Reaktion von Natrium mit Wasser Ein Hinweis auf die Aufbewahrung von Natrium"
+                },
+                {
+                  "text": "SE: Magnesium mit Wasser ist notwendig."
+                },
+                {
+                  "text": "Metallhydroxide und alkalische Lösungen"
+                },
+                {
+                  "text": "Darstellung der Metallhydroxide durch die"
+                },
+                {
+                  "text": "Reaktion unedler Metalle und Wasser"
+                },
+                {
+                  "text": "Formulieren der Reaktionsgleichungen Die Merkmale der chemischen Reaktionen sind"
+                },
+                {
+                  "text": "SE: Nachweis der Hydroxid-Ionen"
+                },
+                {
+                  "text": "Begriff Indikator Indikatoren als Anzeiger der Reaktion verwen-"
+                },
+                {
+                  "text": "Namen und Formeln von wichtigen Metall-"
+                },
+                {
+                  "text": "Verwendung und Bedeutung von Natrium-, Trivialnamen: Natronlauge, Kalilauge, Kalkwas-"
+                },
+                {
+                  "text": "Kalium-, Calcium- und Bariumhydroxid ser"
+                },
+                {
+                  "text": "Abflussreiniger, Laugenbrezel, Industriereini-"
+                },
+                {
+                  "text": "Bau ger, Kalkmörtel sind zu erwähnen."
+                },
+                {
+                  "text": "Metall-und Hydroxid-Ionen Die Gefahrsymbole sind anzuwenden. [BNE]"
+                },
+                {
+                  "text": "Hydroxid-Ion als zusammengesetztes [PG]"
+                },
+                {
+                  "text": "Formel Hydroxid-Ion Der Bau des Wassermoleküls ist zu wiederho-"
+                },
+                {
+                  "text": "Ionenkristall len."
+                },
+                {
+                  "text": "Ionenbindung als chemische Bindung Die Bildung des Hydroxid-Ions aus Wasser ist zu"
+                }
+              ]
+            },
+            {
+              "title": "Abschlussbezogene Standards",
+              "learning_objectives": [
+                {
+                  "text": "Eigenschaften der Metallhydroxide"
+                },
+                {
+                  "text": "Laugen als Lösungen der Metallhydroxide"
+                },
+                {
+                  "text": "SE: Auflösen von Natriumhydroxid"
+                }
+              ]
+            },
+            {
+              "title": "SE: Versetzen von Haaren, Schafwolle oder",
+              "learning_objectives": [
+                {
+                  "text": "Vogelfedern mit Natronlauge"
+                },
+                {
+                  "text": "Verhaltensregeln im Umgang mit Metall-"
+                },
+                {
+                  "text": "DE: Prüfen von Metallhydroxiden und alkali-"
+                },
+                {
+                  "text": "Lösungen auf die elektrische Leit-"
+                },
+                {
+                  "text": "SE: Prüfen verschiedener alkalischer Lösungen"
+                },
+                {
+                  "text": "Darstellung durch die Reaktion von Me-"
+                },
+                {
+                  "text": "Formulieren der Reaktionsgleichungen"
+                },
+                {
+                  "text": "SE: Reaktion von Calcium- oder Magnesi-"
+                },
+                {
+                  "text": "SE: Nachweis der Hydroxid-Ionen"
+                },
+                {
+                  "text": "Vorkommen und Bedeutung der Halogene"
+                },
+                {
+                  "text": "Bau Der Zusammenhang von Atombau und Stellung"
+                },
+                {
+                  "text": "Molekül im PSE sowie zwischen Anzahl der Außenelekt-"
+                },
+                {
+                  "text": "Atombindung ronen und der Reaktionsfreudigkeit, Atombin-"
+                },
+                {
+                  "text": "Formel dung, Molekül, Formel, Formel in Elektronen-"
+                },
+                {
+                  "text": "Formel in Elektronenschreibweise schreibweise sind zu wiederholen."
+                },
+                {
+                  "text": "Schmelz- und Siedetemperatur"
+                },
+                {
+                  "text": "Reaktionsfreudigkeit"
+                },
+                {
+                  "text": "DE: Reaktion mit Alkali- und Erdalkalimetallen Die Nutzung von digitalen Medien ist möglich."
+                },
+                {
+                  "text": "Metallhalogenide als Ionensubstanzen"
+                },
+                {
+                  "text": "Ionenbindung Die Ionenbindung ist zu wiederholen."
+                },
+                {
+                  "text": "Salzbegriff Salze sind Verbindungen, die aus positiv gela-"
+                },
+                {
+                  "text": "Metall-Ionen und negativ geladenen"
+                },
+                {
+                  "text": "Halogenid-Ionen bestehen."
+                },
+                {
+                  "text": "Unterrichtsinhalte – Klasse 9"
+                },
+                {
+                  "text": "Bedeutung und Gewinnung von Natrium-"
+                },
+                {
+                  "text": "Eigenschaften der Metallhalogenide"
+                },
+                {
+                  "text": "Schmelz- und Siedetemperatur"
+                },
+                {
+                  "text": "Leitfähigkeit 23"
+                },
+                {
+                  "text": "SE: Untersuchung von Natrium- und Kalium-"
+                },
+                {
+                  "text": "Löslichkeit und elektrische Leit-"
+                },
+                {
+                  "text": "Nachweis der Halogenid-Ionen"
+                },
+                {
+                  "text": "Fällungsreaktion"
+                },
+                {
+                  "text": "Aufstellen der Reaktionsgleichungen Die Merkmale der chemischen Reaktionen sind"
+                },
+                {
+                  "text": "SE: Nachweis von Halogenid-Ionen mit Silber- SE: Nachweis der Halogenide in Lebensmitteln,"
+                },
+                {
+                  "text": "nitrat-Lösung Trink- und Mineralwasser"
+                },
+                {
+                  "text": "Beispiele für die Verknüpfung von Inhalten und prozessbezogenen Kompetenzen:"
+                },
+                {
+                  "text": "S: Darstellen des Zusammenhangs von Bau und Eigenschaften am Beispiel von Magnesium"
+                },
+                {
+                  "text": "E: Planen eines Experiments zum qualitativen Nachweis der Chlorid-Ionen im Trinkwasser"
+                },
+                {
+                  "text": "K: Beschreiben der Reaktion von Natrium mit Wasser mit Hilfe der Reaktionsgleichung"
+                },
+                {
+                  "text": "B: Begründen der Verhaltensregeln im Umgang mit Natronlauge"
+                }
+              ]
+            },
+            {
+              "title": "Abschlussbezogene Standards",
+              "learning_objectives": [
+                {
+                  "text": "Säuren und saure Lösungen ca. 22 Unterrichtsstunden"
+                },
+                {
+                  "text": "Verbindliche Inhalte Hinweise und Anregungen"
+                },
+                {
+                  "text": "Vorkommen saurer Lösungen im Alltag, Bedeu- Magensäure, saurer Regen, Fruchtsäuren,"
+                },
+                {
+                  "text": "Verwendung Ameisen- und Essigsäure, Autobatterie, Reini-"
+                },
+                {
+                  "text": "Würzmittel sind einzubeziehen."
+                }
+              ]
+            },
+            {
+              "title": "Umgang mit Säuren im Haushalt und Labor Gefahrgutkennzeichnung der Behälter und",
+              "learning_objectives": [
+                {
+                  "text": "Fahrzeuge können als All-"
+                },
+                {
+                  "text": "DE: Feststellen der zerstörerischen Wirkung tagsanwendung herangezogen werden. [BNE]"
+                },
+                {
+                  "text": "Säure auf Holz, Zucker, [PG]"
+                },
+                {
+                  "text": "Papier und Wurst"
+                },
+                {
+                  "text": "SE: Zersetzung von Kalk und unedlen Metallen"
+                },
+                {
+                  "text": "Namen und Formeln wichtiger anorganische"
+                },
+                {
+                  "text": "Bau der Säuren am Beispiel von Chlorwas- Chlorwasserstoffsäure, Kohlenstoffsäure, Sal-"
+                },
+                {
+                  "text": "petersäure, Schwefelsäure, Schweflige Säure"
+                },
+                {
+                  "text": "Molekül und Phosphorsäure sind zu berücksichtigen."
+                },
+                {
+                  "text": "Elektronegativität"
+                },
+                {
+                  "text": "DE: Auflösen von Chlorwasserstoff in Wasser"
+                },
+                {
+                  "text": "DE: Feststellen der Temperaturerhöhung beim"
+                },
+                {
+                  "text": "Verdünnen konzentrierter Säure Auf die Verdünnungsregel ist hinzuweisen. [PG]"
+                },
+                {
+                  "text": "DE: Prüfen von Chlorwasserstoffsäure auf"
+                },
+                {
+                  "text": "Reaktion mit Protonenübergang Die Merkmale der chemischen Reaktion sind"
+                },
+                {
+                  "text": "Protolyse anzuwenden."
+                },
+                {
+                  "text": "Aufstellen der Reaktionsgleichung"
+                },
+                {
+                  "text": "Benennung des Hydronium- und Protolysegleichungen aufstellen"
+                },
+                {
+                  "text": "DE: Elektrische Leitfähigkeit weiterer saurer"
+                },
+                {
+                  "text": "Lösungen überprüfen"
+                },
+                {
+                  "text": "SE: Prüfen verschiedener saurer Lösungen mit SE: Rotkohlindikator herstellen"
+                },
+                {
+                  "text": "Definition der Säuren"
+                },
+                {
+                  "text": "SE: Nachweisreaktionen von Chlorid-, Sulfat- Die Fällungsreaktionen sind zu wiederholen."
+                },
+                {
+                  "text": "Aufstellen von Reaktionsgleichungen"
+                },
+                {
+                  "text": "verdünnte und konzentrierte Säuren"
+                },
+                {
+                  "text": "Stoffmengenkonzentration Die Zusammenhänge zwischen Stoffmenge,"
+                },
+                {
+                  "text": "Definition molare Masse und Masse sind zu wiederholen"
+                },
+                {
+                  "text": "Darstellen von Säuren aus Nichtmetalloxid DE: Darstellen von Kohlensäure"
+                },
+                {
+                  "text": "Die Anwendung dieser Darstellung kann mittels"
+                },
+                {
+                  "text": "DE: Darstellen von Schwefliger Säure Trinkwassersprudlers erfolgen."
+                },
+                {
+                  "text": "Unterrichtsinhalte – Klasse 9"
+                },
+                {
+                  "text": "Chemische Reaktion von alkalischer mit"
+                },
+                {
+                  "text": "SE: Reaktion von Natronlauge mit Salzsäure Natriumchlorid als Reaktionsprodukt erkennen."
+                },
+                {
+                  "text": "Prüfen mit Indikator"
+                },
+                {
+                  "text": "SE: Eindampfen der Lösung"
+                },
+                {
+                  "text": "Neutralisationsreaktion als Reaktion von"
+                },
+                {
+                  "text": "Säure mit Base zu Salz und Wasser 25"
+                },
+                {
+                  "text": "saure, alkalische und neutrale Lösungen"
+                },
+                {
+                  "text": "SE: Prüfen verschiedener Lösungen mit Indika-"
+                },
+                {
+                  "text": "pH-Wert als Maß für saure, basische und Haushaltschemikalien sind einzubeziehen."
+                },
+                {
+                  "text": "Bedeutung des pH-Wertes Die pH-Werte im menschlichen Körper sowie"
+                },
+                {
+                  "text": "Boden und in Gewässern sind zu berücksich-"
+                },
+                {
+                  "text": "[BNE] [PG] [Biologie]"
+                },
+                {
+                  "text": "Beispiele für die Verknüpfung von Inhalten und prozessbezogenen Kompetenzen:"
+                },
+                {
+                  "text": "S: Erläutern des Wesens von Reaktionen mit Protonenübergang"
+                },
+                {
+                  "text": "E: Beschreiben des Baus von Chlorwasserstoff mit Hilfe des Elektronenpaarabstoßungsmodells"
+                },
+                {
+                  "text": "K: Definieren des Begriffs Säure"
+                },
+                {
+                  "text": "B: Bewerten der Bedeutung des pH-Wertes für Pflanzen und Tiere"
+                }
+              ]
+            },
+            {
+              "title": "Abschlussbezogene Standards",
+              "learning_objectives": [
+                {
+                  "text": "Salze ca. 20 Unterrichtsstunden"
+                },
+                {
+                  "text": "Verbindliche Inhalte Hinweise und Anregungen"
+                },
+                {
+                  "text": "Begriff Salze sind Verbindungen, die aus positiv gela-"
+                },
+                {
+                  "text": "Metall-Ionen und negativ geladenen"
+                },
+                {
+                  "text": "Nomenklatur und Aufstellen der Formeln Säurerest-Ionen bestehen."
+                },
+                {
+                  "text": "Die Säurerest-Ionen sind zu wiederholen."
+                }
+              ]
+            },
+            {
+              "title": "Bau Die Formeln für Halogenide, Nitrate, Sulfate,",
+              "learning_objectives": [
+                {
+                  "text": "Ionenbindung Carbonate und Phosphate sind zu erarbeiten."
+                },
+                {
+                  "text": "Die Salzkristalle sind zu zeigen und können"
+                },
+                {
+                  "text": "spröde gezüchtet werden. [MD1]"
+                },
+                {
+                  "text": "Schmelz- und Siedetemperatur"
+                },
+                {
+                  "text": "SE: Überprüfen der Löslichkeit und der elektri-"
+                },
+                {
+                  "text": "Leitfähigkeit verschiedener Salze und"
+                },
+                {
+                  "text": "Verwendung und Bedeutung Salze als Düngemittel sowie Verwendung im"
+                },
+                {
+                  "text": "Haushalt als Würz- und Reinigungsmittel und"
+                },
+                {
+                  "text": "Herstellung von Kosmetika sind zu nennen."
+                },
+                {
+                  "text": "Salze in Stoffwechselprozessen und medizini-"
+                },
+                {
+                  "text": "Produkten sind zu erarbeiten. [BNE] [PG]"
+                },
+                {
+                  "text": "Darstellung durch Neutralisationsreaktionen Die Reaktion von Hydroxid- mit Hydronium-"
+                },
+                {
+                  "text": "Wesen Ionen ist zu erarbeiten."
+                },
+                {
+                  "text": "Bruttogleichungen und Reaktionsgleichun- Das Wesen der Reaktionen mit Protonenüber-"
+                },
+                {
+                  "text": "Ionenschreibweise aufstellen gang ist zu wiederholen."
+                },
+                {
+                  "text": "Darstellung durch die Reaktion von ver- Sodbrennen, Kalken von Böden, Spülmaschine"
+                },
+                {
+                  "text": "dünnten Säuren und unedlen Metallen [BNE]"
+                },
+                {
+                  "text": "SE: Reaktion von verdünnten Säuren und un-"
+                },
+                {
+                  "text": "Metallen und Eindampfen der Salzlö-"
+                },
+                {
+                  "text": "Darstellung durch die Reaktion von verdünnten"
+                },
+                {
+                  "text": "Säuren und Metalloxide"
+                },
+                {
+                  "text": "SE: Reaktion von verdünnten Säuren und Me-"
+                },
+                {
+                  "text": "Unterrichtsinhalte – Klasse 9"
+                },
+                {
+                  "text": "Nachweis Carbonat- und Sulfat-Ionen Bruttogleichungen und Reaktionsgleichungen"
+                },
+                {
+                  "text": "Ionenschreibweise aufstellen"
+                },
+                {
+                  "text": "SE: Nachweis Carbonat- und Sulfat-Ionen Das Wesen der Fällungsreaktion ist zu wieder-"
+                },
+                {
+                  "text": "Reaktionsgleichungen aufstellen"
+                },
+                {
+                  "text": "Bedeutung von Fällungsreaktionen Analytik, Abwasserreinigung, Trinkwasserauf-"
+                },
+                {
+                  "text": "Reaktion der Carbonate mit sauren Lösungen Die Wirkungsweise von Essigreiniger ist zu un-"
+                },
+                {
+                  "text": "Nachweis Kohlenstoffdioxid tersuchen."
+                },
+                {
+                  "text": "SE: Reaktion der Carbonate mit sauren Lösun- Reaktionsgleichungen formulieren"
+                },
+                {
+                  "text": "Nachweis von Kohlenstoffdioxid"
+                },
+                {
+                  "text": "Beispiele für die Verknüpfung von Inhalten und prozessbezogenen Kompetenzen:"
+                },
+                {
+                  "text": "S: Erklären der Wasserlöslichkeit von Natriumchlorid mit Hilfe des Teilchenmodells"
+                },
+                {
+                  "text": "E: Auswerten der Nachweisreaktionen mithilfe von Reaktionsgleichungen"
+                },
+                {
+                  "text": "K: Beschreiben des Zusammenhangs von Bau und Eigenschaften am Beispiel von Natriumchlorid"
+                },
+                {
+                  "text": "B: Beurteilen der Bedeutung des Nachweises von Sulfat- und Carbonat-Ionen für die Trinkwas-"
+                }
+              ]
+            },
+            {
+              "title": "Abschlussbezogene Standards",
+              "learning_objectives": [
+                {
+                  "text": "Klasse 10 ca.60 Unterrichtsstunden"
+                },
+                {
+                  "text": "Organische Chemie ca. 30 Unterrichtsstunden"
+                },
+                {
+                  "text": "Verbindliche Inhalte Hinweise und Anregungen"
+                },
+                {
+                  "text": "Organische Stoffe im Alltag"
+                },
+                {
+                  "text": "Historische Entwicklung des Begriffs organische Die organische und anorganische Chemie sind"
+                },
+                {
+                  "text": "Chemie voneinander abzugrenzen."
+                },
+                {
+                  "text": "Vielfalt organischer Stoffe Die Vielfalt der organischen Verbindungen mit"
+                },
+                {
+                  "text": "Hilfe des Kohlenstoffatombaus ist zu erklären."
+                },
+                {
+                  "text": "SE: Nachweis von Kohlenstoff und seiner Ver- Den Nachweis des Kohlenstoffdioxids wieder-"
+                },
+                {
+                  "text": "Beispiel in Mehl holen."
+                },
+                {
+                  "text": "Zucker verwenden."
+                },
+                {
+                  "text": "Alkane als gesättigte Kohlenwasserstoffe"
+                },
+                {
+                  "text": "Einteilung Kettenförmig unverzweigte, kettenförmig ver-"
+                },
+                {
+                  "text": "ringförmige Verbindungen sind zu"
+                },
+                {
+                  "text": "Vorkommen Hauptbestandteil des Erd- und Biogases"
+                },
+                {
+                  "text": "Gewinnung Fracking als Verfahren ist zu diskutieren."
+                },
+                {
+                  "text": "Verwendung und Bedeutung Die Gewinnung von Wasserstoff als Energieträ-"
+                },
+                {
+                  "text": "Bau ger in Brennstoffzellen und als Ausgangstoff für"
+                },
+                {
+                  "text": "Summen- und Strukturformel die chemische Industrie ist zu erläutern."
+                },
+                {
+                  "text": "Eigenschaften [BNE] [MD1] [MD2] [BO]"
+                },
+                {
+                  "text": "Reihe der Alkane"
+                },
+                {
+                  "text": "Begriff homologe Reihe"
+                },
+                {
+                  "text": "Einfachbindung als Merkmal Der Zusammenhang von Bau, Eigenschaften"
+                },
+                {
+                  "text": "gesättigter Kohlenwasserstoffe und Verwendung ist zu erarbeiten."
+                },
+                {
+                  "text": "Summen- und Strukturformeln Die Begriffe Atombindung und Molekül sind zu"
+                },
+                {
+                  "text": "Eigenschaften Die physikalischen Eigenschaften wie Siede-"
+                },
+                {
+                  "text": "van-der-Waals-Kräfte als zwischenmo- und Schmelztemperatur, Löslichkeit sind zu"
+                },
+                {
+                  "text": "Wechselwirkungen vergleichen und zu erklären."
+                },
+                {
+                  "text": "Die Regel, Ähnliches löst sich in Ähnlichem,"
+                },
+                {
+                  "text": "Isomerie Die Nomenklaturregeln sind anzuwenden."
+                },
+                {
+                  "text": "Reaktionen Das Aufstellen von Reaktionsgleichungen ist zu"
+                },
+                {
+                  "text": "Verbrennung üben"
+                },
+                {
+                  "text": "Unterrichtsinhalte – Klasse 10"
+                },
+                {
+                  "text": "DE: Verbrennen von Alkanen unterschiedlicher"
+                },
+                {
+                  "text": "Halogenalkane und deren Bedeutung Die Verwendung als Lösungsmittel und die"
+                },
+                {
+                  "text": "Umweltbelastung ist zu diskutieren. [BNE] [PG]"
+                },
+                {
+                  "text": "DE: Beilsteinprobe [Biologie]"
+                },
+                {
+                  "text": "Digitale Experimente zur Substitution und Beil-"
+                },
+                {
+                  "text": "Eliminierung steinprobe sind möglich. [MD1] 29"
+                },
+                {
+                  "text": "Quantitative Betrachtungen"
+                },
+                {
+                  "text": "Zusammenhang von Stoffmenge und Vo- Der Zusammenhang zwischen der Stoffmenge"
+                },
+                {
+                  "text": "gasförmiger Stoffe und der Masse ist zu wiederholen."
+                },
+                {
+                  "text": "Definition Der Satz von Avogadro ist anzuwenden."
+                },
+                {
+                  "text": "Stöchiometrisches Rechnen Masse- und Volumenberechnungen sind durch-"
+                },
+                {
+                  "text": "Alkene und Alkine als ungesättigte Kohlenwas- Der Begriff homologe Reihe ist anzuwenden."
+                },
+                {
+                  "text": "Doppel- und Dreifachbindung als Die Begriffe Atombindung und Molekül sind zu"
+                },
+                {
+                  "text": "Merkmale ungesättigter Kohlenwasser- wiederholen."
+                },
+                {
+                  "text": "Summen- und Strukturformeln"
+                },
+                {
+                  "text": "Reaktionen Digitale Experimente sind zu verwenden."
+                },
+                {
+                  "text": "Verbrennung Der Nachweis der Mehrfachbindung ist not-"
+                },
+                {
+                  "text": "Addition wendig. [MD1] [MD2]"
+                },
+                {
+                  "text": "Hydrierung Das Aufstellen von Reaktionsgleichungen ist zu"
+                },
+                {
+                  "text": "Die Reaktionsarten der organischen Chemie"
+                },
+                {
+                  "text": "Erdöl und Erdgas sind zu vergleichen."
+                },
+                {
+                  "text": "Stoffgemische aus Kohlenwasserstoffen"
+                },
+                {
+                  "text": "Bedeutung Energieträger und Rohstoff der chemischen"
+                },
+                {
+                  "text": "Ökonomische und ökologische Konsequenzen"
+                },
+                {
+                  "text": "Förderung, Transport und Nutzung sind zu"
+                },
+                {
+                  "text": "erläutern. [BNE]"
+                }
+              ]
+            },
+            {
+              "title": "Abschlussbezogene Standards",
+              "learning_objectives": [
+                {
+                  "text": "künstliche Makromoleküle Zur Darstellung der Kunststoffe sind Reaktions-"
+                },
+                {
+                  "text": "Polyethylen und Polyvinylchlorid gleichungen zu nutzen."
+                },
+                {
+                  "text": "Bedeutung Die Nutzung von Kunststoffen im Haushalt und"
+                },
+                {
+                  "text": "Eigenschaften bei der Nahrungsaufbewahrung und Verpa-"
+                },
+                {
+                  "text": "Lebensmitteln sind zu diskutieren."
+                },
+                {
+                  "text": "Die Umweltproblematik, das Kunststoffrecyc-"
+                },
+                {
+                  "text": "Gefährdung des Organismus"
+                }
+              ]
+            },
+            {
+              "title": "durch Mikroplastik sind einzubeziehen.",
+              "learning_objectives": [
+                {
+                  "text": "Die Notwendigkeit einer sachgerechten Entsor-"
+                },
+                {
+                  "text": "begründen. [BNE]"
+                },
+                {
+                  "text": "Beispiele für die Verknüpfung von Inhalten und prozessbezogenen Kompetenzen:"
+                },
+                {
+                  "text": "S: Begründen der Zuordnung von Alkanen zu den organischen Stoffen"
+                },
+                {
+                  "text": "E: Berechnen der Teilchenanzahl mithilfe des molaren Volumens"
+                },
+                {
+                  "text": "K: Interpretieren des Zusammenhangs zwischen Stoffmenge und Volumen bei Gasen"
+                },
+                {
+                  "text": "B: Erläutern der Bedeutung von Methan"
+                },
+                {
+                  "text": "Unterrichtsinhalte – Klasse 10"
+                },
+                {
+                  "text": "Organische Moleküle mit funktionellen Gruppen ca. 30 Unterrichtsstunden"
+                },
+                {
+                  "text": "Verbindliche Inhalte Hinweise und Anregungen"
+                },
+                {
+                  "text": "Beispiele Ethanol, Isopropanol, Glycol, Glycerin"
+                },
+                {
+                  "text": "Verwendung und Bedeutung Genuss- und Konservierungsmittel, Lösungs- 31"
+                },
+                {
+                  "text": "Frostschutzmittel, Kosmetika"
+                },
+                {
+                  "text": "Strukturformeln Die Begriffe Atombindung und Molekül sind zu"
+                },
+                {
+                  "text": "Hydroxylgruppe als funktionelle Grup- wiederholen."
+                },
+                {
+                  "text": "Homologe Reihe der Alkanole"
+                },
+                {
+                  "text": "Summen- und Strukturformeln"
+                },
+                {
+                  "text": "Hydroxylgruppe Der Zusammenhang zwischen Struktur und"
+                },
+                {
+                  "text": "Eigenschaften Eigenschaften sowie die Auswirkung der funk-"
+                },
+                {
+                  "text": "Wasserstoffbrückenbindungen als zwi- tionellen Gruppe auf die Eigenschaften ist zu"
+                },
+                {
+                  "text": "Wechselwirkungen beschreiben."
+                },
+                {
+                  "text": "Der Begriff hydrophob sowie die Wirkung der"
+                },
+                {
+                  "text": "van-der-Waals-Kräfte beim Lösen sind zu wie-"
+                },
+                {
+                  "text": "DE: Löslichkeit verschiedener Alkanole in Was- derholen und anzuwenden."
+                },
+                {
+                  "text": "Lösungsmitteln Graphische Darstellungen sind zu nutzen."
+                },
+                {
+                  "text": "Ethanol als Alkohol"
+                },
+                {
+                  "text": "Herstellung durch alkoholische Gärung Die technische Herstellung ist ebenso zu erar-"
+                },
+                {
+                  "text": "Verwendung beiten."
+                },
+                {
+                  "text": "Bedeutung Die gesundheitlichen Gefahren von Ethanol"
+                },
+                {
+                  "text": "persönliche und gesellschaftliche Folgen"
+                },
+                {
+                  "text": "Missbrauchs sind zu bewerten. [PG] [MD6]"
+                },
+                {
+                  "text": "Der Alltagsbezug wie Antiseptikum, Desinfekti-"
+                },
+                {
+                  "text": "ons-, Lösungs- und Konservierungsmittel sind"
+                },
+                {
+                  "text": "Eigenschaften Zusammenhang zwischen Struktur und Eigen-"
+                },
+                {
+                  "text": "DE: Löslichkeitsverhalten Die Begriffe hydrophil und hydrophob sind"
+                },
+                {
+                  "text": "Verbrennung Die Verwendung als Treibstoff und Energieträ-"
+                },
+                {
+                  "text": "Reaktion mit Wasser ger ist zu erarbeiten. [BNE]"
+                },
+                {
+                  "text": "Oxidation der Alkanole Die Begriffe Hydroxid-Ion und Hydroxylgruppe"
+                },
+                {
+                  "text": "DE: Verbrennung und Nachweis der Verbren- Das Wesen der Redoxreaktion ist zu wiederho-"
+                },
+                {
+                  "text": "DE: Reaktion mit Wasser und Nachweis mit Reaktionsgleichungen aufstellen"
+                },
+                {
+                  "text": "DE: Oxidation von Ethanol mit Kupfer(II)-oxid"
+                }
+              ]
+            },
+            {
+              "title": "Abschlussbezogene Standards",
+              "learning_objectives": [
+                {
+                  "text": "Alkanale als Oxidationsprodukte der Alkanole"
+                },
+                {
+                  "text": "Strukturformeln von Methanal und Ethanal"
+                },
+                {
+                  "text": "Vertreter der Alkanale"
+                },
+                {
+                  "text": "Aldehydgruppe als funktionelle Gruppe"
+                },
+                {
+                  "text": "Verwendung und Bedeutung Herstellung von Kunststoffen, Lacken, Baustof-"
+                },
+                {
+                  "text": "Nachweis der Aldehydgruppe fen, Duftstoffen, Desinfektions- und Konservie-"
+                }
+              ]
+            },
+            {
+              "title": "SE: Fehlingprobe Glucose sollte alternativ verwendet werden.",
+              "learning_objectives": [
+                {
+                  "text": "SE: Tollensprobe"
+                },
+                {
+                  "text": "Digitale Medien können genutzt werden."
+                },
+                {
+                  "text": "Beispiele Essigsäure, Milchsäure, Citronensäure, Oxal-"
+                },
+                {
+                  "text": "Bau säure, Fettsäure, Aminosäure"
+                },
+                {
+                  "text": "Carboxylgruppe als funktionelle Gruppe"
+                },
+                {
+                  "text": "Verwendung und Bedeutung Herstellung von Kunst- und Konservierungsstof-"
+                },
+                {
+                  "text": "fe, Lebensmittelzusätze, Geruchsstoffe, Seifen-"
+                },
+                {
+                  "text": "herstellung, Grundbausteine der Proteine und"
+                },
+                {
+                  "text": "Fette, Zwischenprodukte im Stoffwechsel"
+                },
+                {
+                  "text": "Auf gesundheitliche Gefahren ist hinzuweisen."
+                },
+                {
+                  "text": "Homologe Reihe der Alkansäuren [PG]"
+                },
+                {
+                  "text": "Struktur- und Summenformeln"
+                },
+                {
+                  "text": "Eigenschaften Der Begriff Wasserstoffbrückenbindung ist"
+                },
+                {
+                  "text": "Ethansäure als Alkansäure"
+                },
+                {
+                  "text": "Herstellung durch Essigsäuregärung"
+                },
+                {
+                  "text": "Verwendung und Bedeutung Aktivierte Essigsäure als Drehscheibe des"
+                },
+                {
+                  "text": "Stoffwechsels sowie Essigsäure als Würzmittel"
+                },
+                {
+                  "text": "Haushaltschemikalie erarbeiten."
+                },
+                {
+                  "text": "Reaktionen der Ethansäure [Biologie]"
+                },
+                {
+                  "text": "Reaktion mit Wasser Reaktionen der anorganischen Säuren mit"
+                },
+                {
+                  "text": "Reaktion mit Metallen Wasser, Metallen und Metallhydroxiden sind"
+                },
+                {
+                  "text": "Reaktion mit Metallhydroxiden zu wiederholen."
+                },
+                {
+                  "text": "Reaktion mit Alkanolen, Esterbildung"
+                },
+                {
+                  "text": "SE: Prüfen mit Unitest Reaktionsgleichungen aufstellen"
+                },
+                {
+                  "text": "SE: Reaktion mit Magnesium"
+                },
+                {
+                  "text": "SE: Reaktion mit Natriumhydroxid"
+                },
+                {
+                  "text": "SE: Reaktion mit Ethanol"
+                },
+                {
+                  "text": "Unterrichtsinhalte – Klasse 10"
+                },
+                {
+                  "text": "Ester Die Bedeutung der Schwefelsäure als Katalysa-"
+                },
+                {
+                  "text": "Bau tor ist zu erläutern."
+                },
+                {
+                  "text": "Bedeutung Auf Fette sowie Aromastoffe in der Natur und"
+                },
+                {
+                  "text": "Lebensmittelindustrie ist hinzuweisen."
+                },
+                {
+                  "text": "Beispiele für die Verknüpfung von Inhalten und prozessbezogenen Kompetenzen:"
+                },
+                {
+                  "text": "S: Erklären der Eigenschaften von Ethanol mithilfe des Baus unter Verwendung von Bindungs-"
+                },
+                {
+                  "text": "E: Planen, Durchführen und Auswerten des Kohlenstoffnachweises im Ethanol"
+                },
+                {
+                  "text": "K: Darstellen von Alkansäuren mithilfe der Struktur- und Summenformeln"
+                },
+                {
+                  "text": "B: Bewerten persönlicher und gesellschaftlicher Folgen des Alkoholmissbrauchs"
+                }
+              ]
+            },
+            {
+              "title": "Leistungsfeststellung und Leistungsbewertung",
+              "learning_objectives": [
+                {
+                  "text": "Gesetzliche Grundlagen"
+                },
+                {
+                  "text": "Die Leistungsbewertung erfolgt auf der Grundlage der folgenden Rechtsvorschriften in den jeweils"
+                },
+                {
+                  "text": "Oberstufen- und Abiturprüfungsverordnung (Abiturprüfungsverordnung - APVO M-V) vom"
+                },
+                {
+                  "text": "Verordnung zur einheitlichen Leistungsbewertung an den Schulen des Landes Mecklenburg-"
+                },
+                {
+                  "text": "Vorpommern (Leistungsbewertungsverordnung – LeistBewVO M-V) vom 30. April 2014"
+                },
+                {
+                  "text": "Förderung von Schülerinnen und Schülern mit besonderen Schwierigkeiten im Lesen, im"
+                },
+                {
+                  "text": "Rechtschreiben oder im Rechnen (Verwaltungsvorschrift des Ministeriums für Bildung, Wis-"
+                },
+                {
+                  "text": "Kultur) vom 20. Mai 2014"
+                },
+                {
+                  "text": "Allgemeine Grundsätze"
+                },
+                {
+                  "text": "Leistungsbewertung umfasst mündliche, schriftliche und gegebenenfalls praktische Formen der Leis-"
+                },
+                {
+                  "text": "Den Schülerinnen und Schülern muss im Fachunterricht die Gelegenheit dazu gege-"
+                },
+                {
+                  "text": "werden, Kompetenzen, die sie erworben haben, wiederholt und in wechselnden Zusammen-"
+                },
+                {
+                  "text": "hängen zu üben und unter Beweis zu stellen. Die Lehrkräfte begleiten den Lernprozess der Schülerin-"
+                },
+                {
+                  "text": "Schüler, indem sie ein positives und konstruktives Feedback zu den erreichten Lernständen"
+                },
+                {
+                  "text": "Dialog und unter Zuhilfenahme der Selbstbewertung der Schülerin bzw. dem Schüler"
+                },
+                {
+                  "text": "Wege für das weitere Lernen aufzeigen."
+                },
+                {
+                  "text": "Es sind grundsätzlich alle in Kapitel 3 ausgewiesenen Kompetenzbereiche bei der Leistungsbewertung"
+                },
+                {
+                  "text": "berücksichtigen. Das Beurteilen einer Leistung erfolgt in Bezug auf verständlich for-"
+                },
+                {
+                  "text": "Schülerin bzw. dem Schüler bekannten Kriterien, nach denen die Bewertung vorge-"
+                },
+                {
+                  "text": "Im Fach Physik ergeben sich die Kriterien zur Leistungsbewertung aus dem Zusam-"
+                },
+                {
+                  "text": "Bildungsstandards formulierten Kompetenzen und den im Rahmenplan formu-"
+                },
+                {
+                  "text": "Anforderungsbereiche und allgemeine Vorgaben für Klassenarbeiten"
+                },
+                {
+                  "text": "Ausgehend von den verbindlichen Themen, zu denen erworbene Kompetenzen nachzuweisen sind,"
+                },
+                {
+                  "text": "Folgenden insbesondere benannt, nach welchen Kriterien die Klassenarbeiten zu gestalten"
+                },
+                {
+                  "text": "Leistungen zu bewerten sind."
+                },
+                {
+                  "text": "Klassenarbeiten bestehen aus mehreren unabhängig voneinander bearbeitbaren Aufgaben, die in"
+                },
+                {
+                  "text": "Teilaufgaben gegliedert sind. Die Teilaufgaben sollen nicht beziehungslos nebeneinanderstehen, aber"
+                },
+                {
+                  "text": "unabhängig voneinander sein, dass eine Fehlleistung – insbesondere am Anfang – nicht die"
+                },
+                {
+                  "text": "Bearbeitung der Aufgabe stark erschwert. Außerdem soll darauf geachtet werden, dass"
+                },
+                {
+                  "text": "Teilaufgaben nicht ein Lösungsweg zwingend vorgezeichnet wird."
+                },
+                {
+                  "text": "Sie sind so zu gestalten, dass sie Leistungen in den drei Anforderungsbereichen erfordern."
+                },
+                {
+                  "text": "Anforderungsbereich I umfasst"
+                },
+                {
+                  "text": "Wiedergeben von Sachverhalten und Kenntnissen im gelernten Zusammenhang,"
+                },
+                {
+                  "text": "Verständnissicherung sowie"
+                },
+                {
+                  "text": "Anwenden und Beschreiben geübter Arbeitstechniken und Verfahren."
+                },
+                {
+                  "text": "Anforderungsbereich II umfasst"
+                },
+                {
+                  "text": "selbständige Auswählen, Anordnen, Verarbeiten, Erklären und Darstellen bekannter"
+                },
+                {
+                  "text": "Sachverhalte unter vorgegebenen Gesichtspunkten in einem durch Übung bekannten Zu-"
+                },
+                {
+                  "text": "selbstständige Übertragen und Anwenden des Gelernten auf vergleichbare neue Zusam-"
+                },
+                {
+                  "text": "menhänge und Sachverhalte."
+                },
+                {
+                  "text": "Fachspezifische Grundsätze"
+                },
+                {
+                  "text": "Anforderungsbereich III umfasst"
+                },
+                {
+                  "text": "Verarbeiten komplexer Sachverhalte mit dem Ziel, zu selbständigen Lösungen, Gestal-"
+                },
+                {
+                  "text": "Deutungen, Folgerungen, Verallgemeinerungen, Begründungen und Wertungen"
+                },
+                {
+                  "text": "Dabei wählen die Schülerinnen und Schüler selbstständig geeignete Arbeits-"
+                },
+                {
+                  "text": "Verfahren zur Bewältigung der Aufgabe, wenden sie auf eine neue Problem-"
+                },
+                {
+                  "text": "Die Stufung der Anforderungsbereiche dient der Orientierung auf eine in den Ansprüchen ausgewo-"
+                },
+                {
+                  "text": "Aufgabenstellung und ermöglicht so, unterschiedliche Leistungsanforderungen in den einzelnen"
+                },
+                {
+                  "text": "Teilen einer Aufgabe nach dem Grad des selbstständigen Umgangs mit Gelerntem einzuordnen."
+                },
+                {
+                  "text": "Der Schwerpunkt der zu erbringenden Leistungen liegt im Anforderungsbereich II. Darüber hinaus"
+                },
+                {
+                  "text": "Anforderungsbereiche I und III zu berücksichtigen."
+                },
+                {
+                  "text": "Die in den Arbeitsaufträgen verwendeten Operatoren müssen in einen Bezug zu den Anforderungs-"
+                },
+                {
+                  "text": "werden, wobei die Zuordnung vom Kontext der Aufgabenstellung und ihrer unter-"
+                },
+                {
+                  "text": "Einordnung abhängig und damit eine eindeutige Zuordnung zu nur einem Anforderungs-"
+                },
+                {
+                  "text": "Der Schwierigkeitsgrad wird gesteuert durch"
+                },
+                {
+                  "text": "Komplexität der Aufgabenstellung,"
+                },
+                {
+                  "text": "Komplexität und Anforderungshöhe des vorgelegten Materials oder einer entsprechen-"
+                },
+                {
+                  "text": "Problemstellung,"
+                },
+                {
+                  "text": "Anforderung an Kontext- und Orientierungswissen,"
+                },
+                {
+                  "text": "Anforderung an die sprachliche Darstellung,"
+                },
+                {
+                  "text": "Umfang und Komplexität der notwendigen Reflexion oder Bewertung."
+                },
+                {
+                  "text": "Fachspezifische Grundsätze"
+                },
+                {
+                  "text": "Bei der Leistungsbewertung sind alle Kompetenzbereiche angemessen zu berücksichtigen und neben"
+                },
+                {
+                  "text": "mündlichen Leistungsfeststellungen auch praktische Formen der Leistungsermitt-"
+                },
+                {
+                  "text": "Insbesondere soll auch das Experimentieren Bestandteil mündlicher, schriftlicher"
+                },
+                {
+                  "text": "Leistungsfeststellungen sein."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_url": "https://www.regierung-mv.de/static/Regierungsportal/Ministerium%20f%C3%BCr%20Bildung,%20Wissenschaft%20und%20Kultur/Dateien/RP_CHE_AHR%207-10.pdf",
+      "last_checked": "2026-06-22"
+    }
+  ],
+  "last_updated": "2026-06-22",
+  "source_urls": [
+    "https://www.regierung-mv.de/static/Regierungsportal/Ministerium%20f%C3%BCr%20Bildung,%20Wissenschaft%20und%20Kultur/Dateien/RP_CHE_AHR%207-10.pdf"
+  ]
+}

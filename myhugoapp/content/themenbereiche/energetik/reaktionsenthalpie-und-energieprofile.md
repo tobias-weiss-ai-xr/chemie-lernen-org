@@ -1,12 +1,13 @@
 ---
-title: "Reaktionsenthalpie und Energieprofile"
-description: "Enthalpiediagramme, Bindungsenergien, Bildungsenthalpien und die Berechnung von Reaktionsenthalpien mit dem Satz von Hess."
-date: "2026-06-18"
-tags: ["chemie", "enthalpie", "energieprofil", "bindungsenergie", "thermodynamik"]
+title: 'Reaktionsenthalpie und Energieprofile'
+description: 'Enthalpiediagramme, Bindungsenergien, Bildungsenthalpien und die Berechnung von Reaktionsenthalpien mit dem Satz von Hess.'
+date: '2026-06-18'
+tags: ['chemie', 'enthalpie', 'energieprofil', 'bindungsenergie', 'thermodynamik']
 interaktiv: false
-schwierigkeit: "mittelstufe"
-teilgebiet: ["energetik"]
-icon: "🔥"
+schwierigkeit: 'mittelstufe'
+teilgebiet: ['energetik']
+icon: '🔥'
+aliases: [/article/reaktionsenthalpie-und-energieprofile/]
 ---
 
 Das **Energieprofil** einer Reaktion zeigt den Energiegehalt der Teilchen entlang des Reaktionsweges. Die y-Achse gibt die Enthalpie ($H$) an, die x-Achse den Reaktionsfortschritt. Bei einer **exothermen Reaktion** liegt der Endzustand (Produkte) energetisch tiefer als der Anfangszustand (Edukte) — die Differenz $\Delta H$ ist negativ. Bei einer **endothermen Reaktion** liegt der Endzustand höher — $\Delta H$ ist positiv.

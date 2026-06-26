@@ -1,0 +1,107 @@
+{{/* cross-links.html — Shows Verwandte Rechner/Artikel on content pages.
+   Reads content-cross-links.json to find related content sharing curriculum topics.
+   Usage: {{ partial "cross-links" . }}
+*/}}
+{{ $crossLinks := $.Site.Data.curricula.content_cross_links }}
+{{ $url := .RelPermalink }}
+{{ $links := index $crossLinks $url }}
+
+{{ if $links }}
+{{ $rel := $links.related }}
+<div class="cross-links-section">
+
+  {{ if $rel.articles }}
+  <div class="cross-link-group">
+    <h4><i class="fa fa-book"></i> Verwandte Artikel</h4>
+    <div class="cross-link-list">
+      {{ range $rel.articles }}
+      <a href="{{ .url }}" class="cross-link-item">{{ .title }}</a>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  {{ if $rel.calculators }}
+  <div class="cross-link-group">
+    <h4><i class="fa fa-calculator"></i> Passende Rechner &amp; Simulationen</h4>
+    <div class="cross-link-list">
+      {{ range $rel.calculators }}
+      <a href="{{ .url }}" class="cross-link-item">{{ .title }}</a>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  {{ if $rel.exercises }}
+  <div class="cross-link-group">
+    <h4><i class="fa fa-pencil"></i> Übungen &amp; Aufgaben</h4>
+    <div class="cross-link-list">
+      {{ range $rel.exercises }}
+      <a href="{{ .url }}" class="cross-link-item">{{ .title }}</a>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+</div>
+
+<style>
+.cross-links-section {
+  margin: 1.5rem 0;
+  padding: 1rem 1.2rem;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+}
+.cross-link-group {
+  margin-bottom: 1rem;
+}
+.cross-link-group:last-child {
+  margin-bottom: 0;
+}
+.cross-link-group h4 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  color: #495057;
+}
+.cross-link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cross-link-item {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 16px;
+  color: #495057;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.cross-link-item:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+  color: #212529;
+  text-decoration: none;
+}
+@media (prefers-color-scheme: dark) {
+  .cross-links-section {
+    background: #2c2c2c;
+    border-color: #444;
+  }
+  .cross-link-group h4 { color: #e0e0e0; }
+  .cross-link-item {
+    background: #3c3c3c;
+    border-color: #555;
+    color: #e0e0e0;
+  }
+  .cross-link-item:hover {
+    background: #4c4c4c;
+    border-color: #666;
+    color: #fff;
+  }
+}
+</style>
+{{ end }}

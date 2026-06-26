@@ -1,0 +1,249 @@
+{
+  "generated": "2026-06-23",
+  "states": {
+    "BB": {
+      "state": "Brandenburg",
+      "schools": 1,
+      "topics": 1,
+      "objectives": 492,
+      "clean_topics": 0,
+      "garbled_topics": 1,
+      "score": 0,
+      "grade": "D",
+      "sample_titles": []
+    },
+    "BE": {
+      "state": "Berlin",
+      "schools": 1,
+      "topics": 1,
+      "objectives": 492,
+      "clean_topics": 0,
+      "garbled_topics": 1,
+      "score": 0,
+      "grade": "D",
+      "sample_titles": []
+    },
+    "BW": {
+      "state": "Baden-Württemberg",
+      "schools": 2,
+      "topics": 29,
+      "objectives": 221,
+      "clean_topics": 29,
+      "garbled_topics": 0,
+      "score": 100,
+      "grade": "A",
+      "sample_titles": [
+        "3.3.1 Chemische Gleichgewichte",
+        "3.3.2 Naturstoffe",
+        "3.3.3 Kunststoffe",
+        "3.3.4 Elektrische Energie und Chemie",
+        "3.4.1 Chemische Energetik"
+      ]
+    },
+    "BY": {
+      "state": "Bayern",
+      "schools": 3,
+      "topics": 32,
+      "objectives": 271,
+      "clean_topics": 32,
+      "garbled_topics": 0,
+      "score": 100,
+      "grade": "A",
+      "sample_titles": [
+        "Lernbereich 1: Wie Chemiker denken und arbeiten",
+        "Lernbereich 2: Stoffe und ihre Eigenschaften – Von beobachtbaren Stoffeigenschaften zum Teilchenmodell (ca. 23 Std.)",
+        "Lernbereich 3: Chemische Reaktion – Vom Teilchenmodell zum Daltonschen Atommodell (ca. 36 Std.)",
+        "Lernbereich 4: Chemische Verbindungen und ihre Eigenschaften – Vom Daltonschen Atommodell zum Kern-Hülle-Modell (ca. 25 Std.)",
+        "Lernbereich 1: Wie Chemiker denken und arbeiten"
+      ]
+    },
+    "HB": {
+      "state": "Bremen",
+      "schools": 1,
+      "topics": 23,
+      "objectives": 971,
+      "clean_topics": 11,
+      "garbled_topics": 12,
+      "score": 48,
+      "grade": "C",
+      "sample_titles": [
+        "Gymnasiale Oberstufe – Chemie",
+        "Bremen",
+        "Bremen",
+        "Themenbereiche und Kompetenzerwerb 14",
+        "Gymnasiale Oberstufe – Chemie"
+      ]
+    },
+    "HE": {
+      "state": "Hessen",
+      "schools": 1,
+      "topics": 2,
+      "objectives": 874,
+      "clean_topics": 1,
+      "garbled_topics": 1,
+      "score": 50,
+      "grade": "C",
+      "sample_titles": ["Wiesbaden"]
+    },
+    "HH": {
+      "state": "Hamburg",
+      "schools": 2,
+      "topics": 10,
+      "objectives": 2422,
+      "clean_topics": 4,
+      "garbled_topics": 6,
+      "score": 40,
+      "grade": "C",
+      "sample_titles": [
+        "Lernen im Fach Chemie ................................................................................................. 4",
+        "Kompetenzen und Inhalte des Faches Chemie .............................................................12",
+        "Lernen im Fach Chemie ................................................................................................. 4",
+        "Kompetenzen und Inhalte im Fach Chemie ...................................................................12"
+      ]
+    },
+    "MV": {
+      "state": "Mecklenburg-Vorpommern",
+      "schools": 1,
+      "topics": 30,
+      "objectives": 1091,
+      "clean_topics": 19,
+      "garbled_topics": 11,
+      "score": 63,
+      "grade": "B",
+      "sample_titles": [
+        "Grundlagen .................................................................................................................................... 1",
+        "Beitrag des Unterrichtsfaches Chemie zum Kompetenzerwerb ................................................... 4",
+        "Abschlussbezogene Standards ...................................................................................................... 8",
+        "Leistungsfeststellung und Leistungsbewertung .......................................................................... 34",
+        "Grundlagen"
+      ]
+    },
+    "NI": {
+      "state": "Niedersachsen",
+      "schools": 4,
+      "topics": 479,
+      "objectives": 2921,
+      "clean_topics": 478,
+      "garbled_topics": 1,
+      "score": 100,
+      "grade": "A",
+      "sample_titles": [
+        "Basiskonzept bezeichnet man die „strukturierte Vernetzung aufeinander bezogener Begriffe, Theorien und erklärender",
+        "Basiskonzept chemische Reaktion in die Basiskonzepte Donator-Akzeptor sowie Kinetik und",
+        "Basiskonzept Stoff-Teilchen stellt fachsystematische Ordnungsprinzipien und Modellvorstellungen",
+        "Basiskonzept Struktur-Eigenschaft stellt die wechselseitigen Bezüge zwischen der Anordnung von",
+        "Basiskonzept Donator-Akzeptor stellt ein fachsystematisches Ordnungsprinzip für Redox- und"
+      ]
+    },
+    "NW": {
+      "state": "Nordrhein-Westfalen",
+      "schools": 4,
+      "topics": 40,
+      "objectives": 3400,
+      "clean_topics": 21,
+      "garbled_topics": 19,
+      "score": 53,
+      "grade": "C",
+      "sample_titles": [
+        "Stoffe und Stoffeigenschaften",
+        "Chemische Reaktion",
+        "Verbrennung",
+        "Metalle und Metallgewinnung",
+        "Elemente und ihre Ordnung"
+      ]
+    },
+    "RP": {
+      "state": "Rheinland-Pfalz",
+      "schools": 1,
+      "topics": 936,
+      "objectives": 2606,
+      "clean_topics": 936,
+      "garbled_topics": 0,
+      "score": 100,
+      "grade": "A",
+      "sample_titles": [
+        "Chemie",
+        "Das Schulgesetz § 10 Abs. 1 und die Übergreifende Schulord- Gesetzlicher Rahmen",
+        "Interesse, Motivation und Neigung, Begabungen und Lernstände Kategorien der",
+        "Bedingungen oder geschlechtsspezifischer Sozialisation. Im Un-",
+        "Dies erfordert die schul- und schulartspezifische Anpassung"
+      ]
+    },
+    "SH": {
+      "state": "Schleswig-Holstein",
+      "schools": 1,
+      "topics": 92,
+      "objectives": 1035,
+      "clean_topics": 92,
+      "garbled_topics": 0,
+      "score": 100,
+      "grade": "A",
+      "sample_titles": [
+        "Lernen und Unterricht .................................................................................................................................................................8",
+        "Kompetenzbereiche ..................................................................................................................................................................17",
+        "FACHANFORDERUNGEN CHEMIE",
+        "Das Fach Chemie in der Oberstufe an Gymnasien und Gemeinschaftsschulen ..............................................................30",
+        "Kompetenzbereiche ..................................................................................................................................................................36"
+      ]
+    },
+    "SN": {
+      "state": "Sachsen",
+      "schools": 2,
+      "topics": 51,
+      "objectives": 332,
+      "clean_topics": 50,
+      "garbled_topics": 1,
+      "score": 98,
+      "grade": "A",
+      "sample_titles": [
+        "Untersuchen von Stoffen",
+        "Metalle – von Aluminium bis Zink",
+        "Umwandlung von Stoffen",
+        "Luft – ein Stoffgemisch",
+        "Wasser – eine chemische Verbindung"
+      ]
+    },
+    "ST": {
+      "state": "Sachsen-Anhalt",
+      "schools": 1,
+      "topics": 11,
+      "objectives": 1666,
+      "clean_topics": 7,
+      "garbled_topics": 4,
+      "score": 64,
+      "grade": "B",
+      "sample_titles": [
+        "Magdeburg",
+        "Kompetenzentwicklung in den Schuljahrgängen ............................................................. 19",
+        "Kompetenzentwicklung im Fach Chemie",
+        "Vereinte Nationen (Hrsg.) (2016): Ziele für eine nachhaltige Entwicklung. New York, S. 3 – 17.",
+        "Kompetenzentwicklung in den Schuljahrgängen"
+      ]
+    },
+    "TH": {
+      "state": "Thüringen",
+      "schools": 2,
+      "topics": 51,
+      "objectives": 2808,
+      "clean_topics": 44,
+      "garbled_topics": 7,
+      "score": 86,
+      "grade": "A",
+      "sample_titles": [
+        "Leitgedanken zu den Thüringer Lehrplänen für den Erwerb der allgemein bildenden Schulabschlüsse.",
+        "Weiterentwickelte Bildungsstandards in den Naturwissenschaften für das Fach Chemie (MSA).",
+        "Bildungsstandards im Fach Chemie für die allgemeine Hochschulreife. Kultusministerkonferenz 2020",
+        "Weiterentwickelte Bildungsstandards in den Naturwissenschaften für das Fach Chemie (MSA).",
+        "https://www.kmk.org/fileadmin/veroeffentlichungen_beschluesse/1994/1994_09_09-Sicherheit-im"
+      ]
+    }
+  },
+  "summary": {
+    "total_topics": 1788,
+    "total_objectives": 21602,
+    "avg_score": 67,
+    "grade_A": 7,
+    "grade_B_or_C": 6,
+    "grade_D": 2
+  }
+}

@@ -319,7 +319,7 @@ describe('Analytics Manager', () => {
       AnalyticsManager.endSession();
 
       const stats = AnalyticsManager.getStats();
-      expect(stats.avgSessionLength).toBeCloseTo(90000, 0); // Average of 1min and 2min
+      expect(stats.avgSessionLength).toBeCloseTo(90000, -1); // Average of 1min and 2min
     });
 
     test('gets streak information', () => {

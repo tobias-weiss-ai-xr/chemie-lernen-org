@@ -1,17 +1,19 @@
 ---
-title: "Nachweisreaktionen"
-description: "Nachweisreaktionen zeigen durch Farbumschläge, ob Ionen oder Moleküle in einer Probe enthalten sind. Für Laboranalytik und Qualitätskontrolle."
-date: "2026-06-03"
-tags: ["chemie", "nachweis", "analytik", "labor"]
+title: 'Nachweisreaktionen'
+description: 'Nachweisreaktionen zeigen durch Farbumschläge, ob Ionen oder Moleküle in einer Probe enthalten sind. Für Laboranalytik und Qualitätskontrolle.'
+date: '2026-06-03'
+tags: ['chemie', 'nachweis', 'analytik', 'labor']
 interaktiv: false
-schwierigkeit: "mittelstufe"
-teilgebiet: ["analytische-methoden"]
-icon: "🔬"
+schwierigkeit: 'mittelstufe'
+teilgebiet: ['analytische-methoden']
+icon: '🔬'
+aliases: [/article/nachweisreaktionen/]
 ---
 
 **Nachweisreaktionen** sind klassische Labortests für spezifische Ionen. Die Chemikalie, die den Nachweis durchführt, wird als **Reagenz** bezeichnet. Der Farbumschlag oder die Ausfällung eines weißen Niederschlags ist das Anzeichen für das Vorhandensein des gesuchten Stoffes.
 
 Beispiele:
+
 - **Nitrate-Nachweis ($NO_3^-$)**: Mit Zink-Granchip-Reagenz (oder Ringtest) → brauner Niederschlag (oder brauner Ring)
 - **Chlorid-Nachweis ($Cl^-$)**: Mit Silbernitrat ($AgNO_3$) → weißer Niederschlag ($AgCl$), löst sich in Ammoniak auf
 - **Sulfat-Nachweis ($SO_4^{2-}$)**: Mit Bariumchlorid ($BaCl_2$) → weißer Niederschlag ($BaSO_4$), unlöslich in Säure

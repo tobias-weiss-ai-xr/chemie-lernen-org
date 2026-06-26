@@ -1,12 +1,13 @@
 ---
-title: "Quantitative Analyse"
-description: "Vertiefung in Methoden der quantitativen chemischen Analyse – Gravimetrie, Titration, Spektroskopie und Fehlerrechnung – für Fortgeschrittene."
-date: "2026-06-14"
-tags: ["chemie", "analytik", "quantitative-analyse", "gravimetrie", "titration", "spektroskopie"]
+title: 'Quantitative Analyse'
+description: 'Vertiefung in Methoden der quantitativen chemischen Analyse – Gravimetrie, Titration, Spektroskopie und Fehlerrechnung – für Fortgeschrittene.'
+date: '2026-06-14'
+tags: ['chemie', 'analytik', 'quantitative-analyse', 'gravimetrie', 'titration', 'spektroskopie']
 interaktiv: false
-schwierigkeit: "fortgeschritten"
-teilgebiet: ["analytische-methoden"]
-icon: "⚖️"
+schwierigkeit: 'fortgeschritten'
+teilgebiet: ['analytische-methoden']
+icon: '⚖️'
+aliases: [/article/quantitative-analyse/]
 ---
 
 ## Grundlagen und Fehlerrechnung

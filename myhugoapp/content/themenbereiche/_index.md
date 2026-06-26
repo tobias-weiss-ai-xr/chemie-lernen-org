@@ -1,10 +1,10 @@
 ---
-title: "Themenbereiche"
+title: 'Themenbereiche'
 date: 2025-12-26
-description: "Alle Themenbereiche der Chemie - von der Einführung bis zu fortgeschrittenen Themen"
-layout: "themenbereiche"
+description: 'Alle Themenbereiche der Chemie - von der Einführung bis zu fortgeschrittenen Themen'
+layout: 'themenbereiche'
+aliases: [/article/_index/]
 ---
-
 
 ## Themenbereiche
 

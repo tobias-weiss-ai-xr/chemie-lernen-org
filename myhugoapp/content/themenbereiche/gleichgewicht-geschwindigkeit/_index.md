@@ -1,15 +1,15 @@
 ---
-title: "Gleichgewicht und Geschwindigkeit"
-description: "Reaktionskinetik & chemisches Gleichgewicht - alles über Reaktionsgeschwindigkeit, Einflussfaktoren, Geschwindigkeitsgesetze und das Prinzip von Le Chatelier"
+title: 'Gleichgewicht und Geschwindigkeit'
+description: 'Reaktionskinetik & chemisches Gleichgewicht - alles über Reaktionsgeschwindigkeit, Einflussfaktoren, Geschwindigkeitsgesetze und das Prinzip von Le Chatelier'
 date: 2025-12-26
-teilgebiet: "gleichgewicht-geschwindigkeit"
-schwierigkeit: "fortgeschritten"
-icon: "⚖️"
+teilgebiet: 'gleichgewicht-geschwindigkeit'
+schwierigkeit: 'fortgeschritten'
+icon: '⚖️'
 weight: 40
 interaktiv: true
-quiz: "gleichgewicht-geschwindigkeit"
+quiz: 'gleichgewicht-geschwindigkeit'
+aliases: [/article/_index/]
 ---
-
 
 ## Gleichgewicht und Geschwindigkeit
 
@@ -59,6 +59,7 @@ $$v \sim c(\text{Reaktand}_1) \cdot c(\text{Reaktand}_2)$$
 Höhere Temperatur → schnellere Reaktion (mehr Teilchen mit ausreichender Energie).
 
 **RGT-Regel (Raoult-Guldberg- van't Hoff):**
+
 ```
 Eine Erhöhung um 10 K verdoppelt bis vervierfacht die Geschwindigkeit.
 ```
@@ -77,6 +78,7 @@ $$k = A \cdot e^{-E_a/(R \cdot T)}$$
 **Katalysatoren** senken die Aktivierungsenergie und beschleunigen Reaktionen, ohne selbst verbraucht zu werden.
 
 **Beispiele:**
+
 - **Platin** in Katalysatoren (Autoabgase)
 - **Enzyme** im Körper (biologische Katalysatoren)
 - **Eisen** im Haber-Bosch-Verfahren
@@ -131,6 +133,7 @@ Ea   /    \
 ```
 
 **Katalysator-Wirkung:**
+
 ```
 Energie
   ↑
@@ -210,9 +213,11 @@ Höherer Druck → mehr $\ce{NH3}$ (weniger Gasmoleküle)
 #### 3. Temperaturänderung
 
 **Exotherme Reaktion ($\Delta H < 0$):**
+
 - Höhere Temperatur → Verschiebung zu Reaktanden (endotherme Richtung)
 
 **Endotherme Reaktion ($\Delta H > 0$):**
+
 - Höhere Temperatur → Verschiebung zu Produkten (endotherme Richtung)
 
 **Beispiel (exotherm):**
@@ -233,6 +238,7 @@ N₂ + 3H₂ ⇌ 2NH₃      ΔH = -92 kJ/mol
 ```
 
 **Optimierung nach Le Chatelier:**
+
 - **Höherer Druck** (200-300 bar): verschiebt zu NH₃ (weniger Gasmoleküle)
 - **Mittlere Temperatur** (400-500°C): Kompromiss zwischen Geschwindigkeit und Ausbeute
 - **Eisen-Katalysator:** beschleunigt Einstellung
@@ -245,6 +251,7 @@ N₂ + 3H₂ ⇌ 2NH₃      ΔH = -92 kJ/mol
 ```
 
 **Optimierung:**
+
 - Höherer Druck (1-2 bar)
 - Mittlere Temperatur (400-450°C)
 - Vanadium-Pentoxid-Katalysator (V₂O₅)
@@ -286,9 +293,11 @@ Reaktionen mit Katalysator (beschleunigt, aber nicht verbraucht)
 ## Experimente
 
 ### Experiment 1: Temperaturabhängigkeit
+
 **Materialien:** Natriumthiosulfat, Salzsäure, Wasserbad, Stoppuhr
 
 **Durchführung:**
+
 1. Natriumthiosulfat mit Salzsäure bei verschiedenen Temperaturen mischen
 2. Zeit bis zur Trübung messen
 3. Geschwindigkeit berechnen
@@ -296,9 +305,11 @@ Reaktionen mit Katalysator (beschleunigt, aber nicht verbraucht)
 **Erklärung:** Höhere Temperatur → schnellere Reaktion (RGT-Regel)
 
 ### Experiment 2: Katalysator-Wirkung
+
 **Materialien:** Wasserstoffperoxid, Mangandioxid, Spatel
 
 **Durchführung:**
+
 1. H₂O₂ zersetzen (ohne Katalysator)
 2. MnO₂ zugeben
 3. Gasentwicklung beobachten
@@ -306,9 +317,11 @@ Reaktionen mit Katalysator (beschleunigt, aber nicht verbraucht)
 **Erklärung:** Katalysator senkt Aktivierungsenergie
 
 ### Experiment 3: Gleichgewichtsverschiebung
+
 **Materialien:** CoCl₂-Lösung, HCl-Wasser, Konz. HCl
 
 **Durchführung:**
+
 1. CoCl₂-Lösung (rosa) mit HCl versetzen
 2. Farbwechsel zu blau beobachten
 3. Verdünnen (Wasser zugeben)
@@ -346,6 +359,7 @@ t₁/₂ = ln(2)/k = 0.693/k
 ## Lernziele
 
 Nach Abschluss dieses Themenbereichs sollten Sie:
+
 - ✅ Die Reaktionsgeschwindigkeit definieren können
 - ✅ Methoden zur Geschwindigkeitsmessung kennen
 - ✅ Faktoren beeinflussen die Reaktionsgeschwindigkeit erklären können

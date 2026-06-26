@@ -1,14 +1,14 @@
 ---
-title: "Anorganische Verbindungen"
-description: "Salze, Säuren, Basen und ihre Reaktionen - Erfahren Sie alles über Ionenbindungen, Löslichkeit, Fällungsreaktionen und den Molaren Masse Rechner"
+title: 'Anorganische Verbindungen'
+description: 'Salze, Säuren, Basen und ihre Reaktionen - Erfahren Sie alles über Ionenbindungen, Löslichkeit, Fällungsreaktionen und den Molaren Masse Rechner'
 date: 2025-12-26
-teilgebiet: "anorganische-verbindungen"
-schwierigkeit: "mittelstufe"
-icon: "🧪"
+teilgebiet: 'anorganische-verbindungen'
+schwierigkeit: 'mittelstufe'
+icon: '🧪'
 weight: 30
-quiz: "anorganische-verbindungen"
+quiz: 'anorganische-verbindungen'
+aliases: [/article/_index/]
 ---
-
 
 ## Anorganische Verbindungen
 
@@ -33,11 +33,13 @@ Anorganische Verbindungen bilden einen der größten und wichtigsten Bereiche de
 **Säuren** sind Stoffe, die in Wasser Protonen (H⁺) abgeben können.
 
 **Beispiele:**
+
 - **Salzsäure:** $\ce{HCl -> H+ + Cl-}$
 - **Schwefelsäure:** $\ce{H2SO4 -> 2H+ + SO4^2-}$
 - **Salpetersäure:** $\ce{HNO3 -> H+ + NO3-}$
 
 **Eigenschaften von Säuren:**
+
 - Saurer Geschmack (Vorsicht: nie probieren!)
 - Farbumschlag von Indikatoren (z.B. Rotkohl)
 - Reagieren mit Metallen unter Wasserstoffentwicklung
@@ -48,11 +50,13 @@ Anorganische Verbindungen bilden einen der größten und wichtigsten Bereiche de
 **Basen** sind Stoffe, die in Wasser Hydroxid-Ionen (OH⁻) bilden oder Protonen aufnehmen können.
 
 **Beispiele:**
+
 - **Natronlauge:** $\ce{NaOH -> Na+ + OH-}$
 - **Kalilauge:** $\ce{KOH -> K+ + OH-}$
 - **Kalkwasser:** $\ce{Ca(OH)2 -> Ca^2+ + 2OH-}$
 
 **Eigenschaften von Basen:**
+
 - Seifiger, glitschiger Geschmack
 - Ätzend auf Haut und Materialien
 - Farbumschlag von Indikatoren
@@ -99,6 +103,7 @@ Kalkstein + Salzsäure → Calciumchlorid + Wasser + Kohlendioxid
 ### Struktur von Salzen
 
 Salze bestehen aus **Ionen** - geladenen Teilchen:
+
 - **Kationen**: Positiv geladen (z.B. Na⁺, Ca²⁺, Al³⁺)
 - **Anionen**: Negativ geladen (z.B. Cl⁻, SO₄²⁻, NO₃⁻)
 
@@ -107,6 +112,7 @@ Salze bestehen aus **Ionen** - geladenen Teilchen:
 Die **Ionenbindung** entsteht durch die elektrostatische Anziehung zwischen entgegengesetzt geladenen Ionen.
 
 **Eigenschaften:**
+
 - Kristalline Struktur
 - Hoher Schmelzpunkt
 - Spröde
@@ -114,13 +120,13 @@ Die **Ionenbindung** entsteht durch die elektrostatische Anziehung zwischen entg
 
 ### Typische Salze
 
-| Salz | Formel | Verwendung |
-|------|--------|------------|
-| Kochsalz | $\ce{NaCl}$ | Speisesalz, Konservierung |
+| Salz            | Formel        | Verwendung                        |
+| --------------- | ------------- | --------------------------------- |
+| Kochsalz        | $\ce{NaCl}$   | Speisesalz, Konservierung         |
 | Natriumcarbonat | $\ce{Na2CO3}$ | Glasherstellung, Wasserenthärtung |
-| Calciumcarbonat | $\ce{CaCO3}$ | Baustoffe, Kalkstein |
-| Kaliumnitrat | $\ce{KNO3}$ | Dünger, Schwarzpulver |
-| Kupfersulfat | $\ce{CuSO4}$ | Pflanzenschutz, Galvanik |
+| Calciumcarbonat | $\ce{CaCO3}$  | Baustoffe, Kalkstein              |
+| Kaliumnitrat    | $\ce{KNO3}$   | Dünger, Schwarzpulver             |
+| Kupfersulfat    | $\ce{CuSO4}$  | Pflanzenschutz, Galvanik          |
 
 ## Löslichkeit und Fällungsreaktionen
 
@@ -129,12 +135,14 @@ Die **Ionenbindung** entsteht durch die elektrostatische Anziehung zwischen entg
 Nicht alle Salze sind gleich löslich in Wasser:
 
 **Gut löslich:**
+
 - Alle Nitrate (NO₃⁻)
 - Alle Alkalisalze (Na⁺, K⁺, NH₄⁺)
 - Alle Chloride (außer AgCl, PbCl₂)
 - Alle Sulfate (außer BaSO₄, PbSO₄)
 
 **Schwer löslich:**
+
 - Carbonate (außer Alkalicarbonate)
 - Sulfide
 - Phosphate
@@ -191,6 +199,7 @@ $$\ce{CaCO3(s) + 2HCl(aq) -> CaCl2(aq) + H2O(l) + CO2(g)^}$$
 ### Redoxreaktionen
 
 **Redoxreaktionen** sind Reaktionen mit Elektronenübertragung:
+
 - **Oxidation**: Abgabe von Elektronen
 - **Reduktion**: Aufnahme von Elektronen
 
@@ -219,6 +228,7 @@ Kupfer wird sowohl zu Cu(0) als auch zu Cu(II) umgewandelt.
 **Komplexe** sind Verbindungen, bei denen ein Zentralatom (meist ein Metall) von Molekülen oder Ionen (Liganden) umgeben ist.
 
 **Beispiele:**
+
 - **Hexaaquakupfer(II)**: $\ce{[Cu(H2O)6]^2+}$ (blau)
 - **Tetrachlorocobaltat(II)**: $\ce{[CoCl4]^2-}$ (blau)
 - **Hexamminecobalt(III)**: $\ce{[Co(NH3)6]^3+}$ (gelb-orange)
@@ -227,13 +237,13 @@ Kupfer wird sowohl zu Cu(0) als auch zu Cu(II) umgewandelt.
 
 **Liganden** sind Moleküle oder Ionen, die an das Zentralatom binden:
 
-| Ligand | Abkürzung | Zähnigkeit |
-|--------|-----------|------------|
-| Wasser | $\ce{H2O}$ | 1 (neutral) |
-| Ammoniak | $\ce{NH3}$ | 1 (neutral) |
-| Cyanid | $\ce{CN-}$ | 1 |
-| Ethylendiamin | en | 2 |
-| EDTA | $\ce{EDTA^4-}$ | 6 |
+| Ligand        | Abkürzung      | Zähnigkeit  |
+| ------------- | -------------- | ----------- |
+| Wasser        | $\ce{H2O}$     | 1 (neutral) |
+| Ammoniak      | $\ce{NH3}$     | 1 (neutral) |
+| Cyanid        | $\ce{CN-}$     | 1           |
+| Ethylendiamin | en             | 2           |
+| EDTA          | $\ce{EDTA^4-}$ | 6           |
 
 ### Anwendung von Komplexen
 
@@ -247,6 +257,7 @@ Kupfer wird sowohl zu Cu(0) als auch zu Cu(II) umgewandelt.
 ### Ammoniak ($\ce{NH3}$)
 
 **Eigenschaften:**
+
 - Farbloses Gas mit stechendem Geruch
 - Gut wasserlöslich
 - Bildet mit Wasser $\ce{NH4+ + OH-}$ (schwache Base)
@@ -289,6 +300,7 @@ $$\ce{SO2 + H2O <=> H2SO3}$$
 Unbeständig, schwache Säure
 
 **Schwefelsäure:**
+
 - Starke Säure
 - Hygroskopisch (wasserziehend)
 - Dehydratisierungsmittel
@@ -352,6 +364,7 @@ $$\ce{Ca^2+ + Na2R -> CaR + 2Na+}$$
 ### 2. Düngemittel
 
 Wichtige anorganische Dünger:
+
 - **Stickstoff**: Kalksalpeter ($\ce{Ca(NO3)2}$)
 - **Phosphor**: Superphosphat ($\ce{Ca(H2PO4)2}$)
 - **Kalium**: Kaliumsulfat ($\ce{K2SO4}$)
@@ -365,9 +378,11 @@ Wichtige anorganische Dünger:
 ## Experimente
 
 ### Experiment 1: Säure-Base-Reaktion
+
 **Materialien:** Natronlauge, Salzsäure, Indikator (Rotkohl)
 
 **Durchführung:**
+
 1. Natronlauge mit Indikator versetzen (rot → blau)
 2. Salzsäure zugeben
 3. Farbumschlag beobachten
@@ -375,18 +390,22 @@ Wichtige anorganische Dünger:
 **Erklärung:** Neutralisation von Säure und Base
 
 ### Experiment 2: Fällungsreaktion
+
 **Materialien:** Silbernitratlösung, Natriumchloridlösung
 
 **Durchführung:**
+
 1. Beide Lösungen mischen
 2. Weißen Niederschlag beobachten
 
 **Erklärung:** Bildung von schwerlöslichem AgCl
 
 ### Experiment 3: Kupferfällung
+
 **Materialien:** Kupfersulfatlösung, Eisenfeiln
 
 **Durchführung:**
+
 1. Eisenfeiln in Kupfersulfatlösung geben
 2. Farbänderung beobachten (blau → grün)
 3. Kupferniederschlag sammeln
@@ -400,6 +419,7 @@ Wichtige anorganische Dünger:
 Nutzen Sie den **[Molaren Masse Rechner](/molare-masse-rechner/)**, um die molaren Massen anorganischer Verbindungen zu berechnen:
 
 **Beispiele:**
+
 - **$\ce{NaCl}$**: 22.99 + 35.45 = 58.44 g/mol
 - **$\ce{CaCO3}$**: 40.08 + 12.01 + (3 × 16.00) = 100.09 g/mol
 - **$\ce{H2SO4}$**: (2 × 1.01) + 32.07 + (4 × 16.00) = 98.09 g/mol
@@ -419,6 +439,7 @@ $$n = \frac{5 \text{ g}}{58.44 \text{ g/mol}} = 0.086 \text{ mol}$$
 ## Lernziele
 
 Nach Abschluss dieses Themenbereichs sollten Sie:
+
 - ✅ Den Unterschied zwischen Säuren und Basen erklären können
 - ✅ Neutralisationsreaktionen durchführen können
 - ✅ Die Bildung von Salzen beschreiben können

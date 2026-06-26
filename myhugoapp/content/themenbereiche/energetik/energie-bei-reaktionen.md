@@ -1,12 +1,13 @@
 ---
-title: "Energie bei chemischen Reaktionen"
-description: "Chemische Reaktionen speichern oder geben Energie frei. Exotherm → Wärmefreigabe, Endotherm → Wärmeaufnahme."
-date: "2026-06-03"
-tags: ["chemie", "energie", "thermodynamik", "enthalpie"]
+title: 'Energie bei chemischen Reaktionen'
+description: 'Chemische Reaktionen speichern oder geben Energie frei. Exotherm → Wärmefreigabe, Endotherm → Wärmeaufnahme.'
+date: '2026-06-03'
+tags: ['chemie', 'energie', 'thermodynamik', 'enthalpie']
 interaktiv: false
-schwierigkeit: "mittelstufe"
-teilgebiet: ["energetik"]
-icon: "🔥"
+schwierigkeit: 'mittelstufe'
+teilgebiet: ['energetik']
+icon: '🔥'
+aliases: [/article/energie-bei-reaktionen/]
 ---
 
 Jede chemische Reaktion ist mit **Energieänderungen** verbunden. Die umgesetzte Energie wird als **Reaktionsenthalpie** ($\Delta H$) in kJ/mol angegeben.
@@ -35,6 +36,7 @@ $$\Delta H_{gesamt} = \sum \Delta H_f (\text{Produkte}) - \sum \Delta H_f (\text
 **Beispiel**: Berechnung der Verbrennungsenthalpie von Ethan ($C_2H_6$).
 
 Gegebene Standardbildungsenthalpien $\Delta H_f^0$:
+
 - $C_2H_6(g)$: $-84$ kJ/mol
 - $CO_2(g)$: $-394$ kJ/mol
 - $H_2O(l)$: $-286$ kJ/mol

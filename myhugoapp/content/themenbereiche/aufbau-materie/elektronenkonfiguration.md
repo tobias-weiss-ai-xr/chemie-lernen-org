@@ -1,12 +1,13 @@
 ---
-title: "Elektronenkonfiguration"
-description: "Die Elektronenkonfiguration beschreibt, wie Elektronen in Schalen und Unterschalen angeordnet sind und warum Elemente ihre chemischen Eigenschaften zeigen."
-date: "2026-06-18"
-tags: ["chemie", "elektronenkonfiguration", "atome", "orbitale", "periodensystem"]
+title: 'Elektronenkonfiguration'
+description: 'Die Elektronenkonfiguration beschreibt, wie Elektronen in Schalen und Unterschalen angeordnet sind und warum Elemente ihre chemischen Eigenschaften zeigen.'
+date: '2026-06-18'
+tags: ['chemie', 'elektronenkonfiguration', 'atome', 'orbitale', 'periodensystem']
 interaktiv: false
-schwierigkeit: "grundlagen"
-teilgebiet: ["aufbau-materie"]
-icon: "⚛️"
+schwierigkeit: 'grundlagen'
+teilgebiet: ['aufbau-materie']
+icon: '⚛️'
+aliases: [/article/elektronenkonfiguration/]
 ---
 
 Die **Elektronenkonfiguration** gibt an, wie die Elektronen eines Atoms auf die verschiedenen Energieniveaus verteilt sind. Diese Anordnung bestimmt, welche Elektronen an chemischen Reaktionen teilnehmen können.

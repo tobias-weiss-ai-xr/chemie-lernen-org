@@ -1,12 +1,13 @@
 ---
-title: "Atome und Moleküle"
-description: "Atome sind die kleinsten Bausteine der Materie. Moleküle sind Atome, die durch chemische Bindungen verbunden sind."
-date: "2026-06-03"
-tags: ["chemie", "atome", "moleküle", "bindungen"]
+title: 'Atome und Moleküle'
+description: 'Atome sind die kleinsten Bausteine der Materie. Moleküle sind Atome, die durch chemische Bindungen verbunden sind.'
+date: '2026-06-03'
+tags: ['chemie', 'atome', 'moleküle', 'bindungen']
 interaktiv: false
-schwierigkeit: "grundlagen"
-teilgebiet: ["aufbau-materie"]
-icon: "⚛️"
+schwierigkeit: 'grundlagen'
+teilgebiet: ['aufbau-materie']
+icon: '⚛️'
+aliases: [/article/atome-und-molekuele/]
 ---
 
 ## Aufbau des Atoms
@@ -18,11 +19,11 @@ Alle Stoffe bestehen aus Atomen. Ein **Atom** setzt sich zusammen aus:
 
 In einem neutralen Atom gilt: **Anzahl Protonen = Anzahl Elektronen**.
 
-| Teilchen | Symbol | Ladung | Ort |
-|----------|--------|--------|-----|
-| Proton | $p^+$ | +1 | Kern |
-| Neutron | $n$ | 0 | Kern |
-| Elektron | $e^-$ | −1 | Hülle |
+| Teilchen | Symbol | Ladung | Ort   |
+| -------- | ------ | ------ | ----- |
+| Proton   | $p^+$  | +1     | Kern  |
+| Neutron  | $n$    | 0      | Kern  |
+| Elektron | $e^-$  | −1     | Hülle |
 
 Die **Ordnungszahl** $Z$ (Anzahl der Protonen) bestimmt, welches chemische Element vorliegt. Kohlenstoff hat z. B. $Z = 6$, Sauerstoff $Z = 8$. Das **Periodensystem** ordnet alle Elemente nach steigender Ordnungszahl.
 
@@ -46,6 +47,7 @@ Wenn Atome durch **chemische Bindungen** verbunden werden, entstehen **Moleküle
 - **Anion** (negativ): Atom hat Elektronen aufgenommen → $Cl + e^- \rightarrow Cl^-$
 
 Beispiele aus dem Alltag:
+
 - $Na^+$ und $Cl^-$ in Kochsalz
 - $Ca^{2+}$ und $CO_3^{2-}$ in Kalk
 - $Fe^{2+}$ und $Fe^{3+}$ als Spurenelemente im Körper

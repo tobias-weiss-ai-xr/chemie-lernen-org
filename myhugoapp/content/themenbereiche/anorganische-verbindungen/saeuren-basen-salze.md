@@ -1,12 +1,13 @@
 ---
-title: "Säuren, Basen und Salze"
-description: "Säuren bilden in Wasser $H^+$-Ionen, Basen bilden $OH^-$-Ionen. Salze entstehen aus der Neutralisation."
-date: "2026-06-03"
-tags: ["chemie", "säuren", "basen", "salze"]
+title: 'Säuren, Basen und Salze'
+description: 'Säuren bilden in Wasser $H^+$-Ionen, Basen bilden $OH^-$-Ionen. Salze entstehen aus der Neutralisation.'
+date: '2026-06-03'
+tags: ['chemie', 'säuren', 'basen', 'salze']
 interaktiv: false
-schwierigkeit: "grundlagen"
-teilgebiet: ["anorganische-verbindungen"]
-icon: "⚗️"
+schwierigkeit: 'grundlagen'
+teilgebiet: ['anorganische-verbindungen']
+icon: '⚗️'
+aliases: [/article/saeuren-basen-salze/]
 ---
 
 **Säuren** sind Stoffe, die in Wasser $H^+$-Ionen (Protonen) abgeben. Typische Beispiele: Salzsäure ($HCl$), Schwefelsäure ($H_2SO_4$). Der **pH-Wert** gibt an, wie stark sauer oder basisch eine Lösung ist: $pH < 7$ → sauer, $pH > 7$ → basisisch, $pH = 7$ → neutral.
@@ -42,6 +43,7 @@ Wenn Salze miteinander reagieren, kann sich ein schwerlösliches Niederschlag bi
 $$K_s = [A^+][B^-]$$
 
 Löslichkeitsregeln für $K_s$ in Wasser:
+
 - $K_s > 10^{-3}$: sehr gut löslich
 - $10^{-3} \geq K_s > 10^{-5}$: gut löslich
 - $10^{-5} \geq K_s > 10^{-8}$: schwer löslich
@@ -49,12 +51,12 @@ Löslichkeitsregeln für $K_s$ in Wasser:
 
 ## Salzlöslichkeit in Wasser
 
-| Verbindung | Löslichkeit bei 20°C | Löslichkeitsprodukt $K_s$ (mol²/L²) |
-|------------|---------------------|--------------------------------------|
-| $NaCl$ (Kochsalz) | sehr gut löslich | nicht anwendbar (stark elektrolytisch) |
-| $AgCl$ (Silberchlorid) | kaum löslich | $1, \times 10^{-10}$ |
-| $CaCO_3$ (Calcit) | fast unlöslich | $3,3 \times 10^{-9}$ |
-| $PbCl_2$ (Bleichlorid) | schwer löslich | $1,7 \times 10^{-5}$ |
+| Verbindung             | Löslichkeit bei 20°C | Löslichkeitsprodukt $K_s$ (mol²/L²)    |
+| ---------------------- | -------------------- | -------------------------------------- |
+| $NaCl$ (Kochsalz)      | sehr gut löslich     | nicht anwendbar (stark elektrolytisch) |
+| $AgCl$ (Silberchlorid) | kaum löslich         | $1, \times 10^{-10}$                   |
+| $CaCO_3$ (Calcit)      | fast unlöslich       | $3,3 \times 10^{-9}$                   |
+| $PbCl_2$ (Bleichlorid) | schwer löslich       | $1,7 \times 10^{-5}$                   |
 
 ## Alltagsrelevanz
 

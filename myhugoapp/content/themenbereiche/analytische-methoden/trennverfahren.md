@@ -1,12 +1,13 @@
 ---
-title: "Trennverfahren in der Analytik"
-description: "Überblick über chromatographische und elektrophoretische Trennverfahren in der Analytik – DC, GC, HPLC, Elektrophorese – für Schule und Studium."
-date: "2026-06-14"
-tags: ["chemie", "analytik", "trennverfahren", "chromatographie", "elektrophorese"]
+title: 'Trennverfahren in der Analytik'
+description: 'Überblick über chromatographische und elektrophoretische Trennverfahren in der Analytik – DC, GC, HPLC, Elektrophorese – für Schule und Studium.'
+date: '2026-06-14'
+tags: ['chemie', 'analytik', 'trennverfahren', 'chromatographie', 'elektrophorese']
 interaktiv: false
-schwierigkeit: "mittelstufe"
-teilgebiet: ["analytische-methoden"]
-icon: "🧪"
+schwierigkeit: 'mittelstufe'
+teilgebiet: ['analytische-methoden']
+icon: '🧪'
+aliases: [/article/trennverfahren/]
 ---
 
 ## Grundprinzip der Trennung
@@ -21,11 +22,11 @@ $$R_f = \frac{\text{Wanderungsstrecke des Stoffes}}{\text{Wanderungsstrecke der 
 
 Wichtige chromatographische Verfahren sind:
 
-| Verfahren | Mobile Phase | Stationäre Phase | Anwendung |
-|-----------|-------------|------------------|-----------|
-| **Dünnschichtchromatographie (DC)** | Flüssigkeit | Kieselgel auf Folie/Platte | Schnelle Vorproben |
-| **Gaschromatographie (GC)** | Trägergas (He, N₂) | Flüssigkeit auf Kapillare | Flüchtige Stoffe |
-| **HPLC** | Flüssigkeit (Hochdruck) | Gepackte Säule | Thermisch labile Stoffe |
+| Verfahren                           | Mobile Phase            | Stationäre Phase           | Anwendung               |
+| ----------------------------------- | ----------------------- | -------------------------- | ----------------------- |
+| **Dünnschichtchromatographie (DC)** | Flüssigkeit             | Kieselgel auf Folie/Platte | Schnelle Vorproben      |
+| **Gaschromatographie (GC)**         | Trägergas (He, N₂)      | Flüssigkeit auf Kapillare  | Flüchtige Stoffe        |
+| **HPLC**                            | Flüssigkeit (Hochdruck) | Gepackte Säule             | Thermisch labile Stoffe |
 
 In der **Gaschromatographie** ergibt sich die Retentionszeit $t_R$ aus der Summe von Totzeit $t_M$ und korrigierter Retentionszeit $t_R'$:
 

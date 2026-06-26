@@ -8,5 +8,45 @@
     "durationMs": 96413,
     "model": "saia/qwen3.5-397b-a17b",
     "durationMin": "1.6"
+  },
+  {
+    "startedAt": "2026-06-23T02:42:50.423Z",
+    "articlesGenerated": 0,
+    "articlesFailed": 3,
+    "feedErrors": 5,
+    "kgErrors": 0,
+    "durationMs": 18907,
+    "model": "saia/qwen3.5-397b-a17b",
+    "durationMin": "0.3"
+  },
+  {
+    "startedAt": "2026-06-24T02:42:18.521Z",
+    "articlesGenerated": 0,
+    "articlesFailed": 3,
+    "feedErrors": 5,
+    "kgErrors": 0,
+    "durationMs": 19079,
+    "model": "saia/qwen3.5-397b-a17b",
+    "durationMin": "0.3"
+  },
+  {
+    "startedAt": "2026-06-25T02:42:43.586Z",
+    "articlesGenerated": 0,
+    "articlesFailed": 3,
+    "feedErrors": 5,
+    "kgErrors": 0,
+    "durationMs": 18843,
+    "model": "saia/qwen3.5-397b-a17b",
+    "durationMin": "0.3"
+  },
+  {
+    "startedAt": "2026-06-26T02:42:46.380Z",
+    "articlesGenerated": 0,
+    "articlesFailed": 3,
+    "feedErrors": 5,
+    "kgErrors": 0,
+    "durationMs": 20443,
+    "model": "saia/qwen3.5-397b-a17b",
+    "durationMin": "0.3"
   }
 ]

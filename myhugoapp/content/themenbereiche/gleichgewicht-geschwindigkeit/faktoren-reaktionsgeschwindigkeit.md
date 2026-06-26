@@ -1,12 +1,13 @@
 ---
-title: "Faktoren der Reaktionsgeschwindigkeit"
-description: "Konzentration, Temperatur, Oberfläche und Katalysatoren als Einflussgrößen auf die Geschwindigkeit chemischer Reaktionen."
-date: "2026-06-18"
-tags: ["chemie", "reaktionsgeschwindigkeit", "konzentration", "temperatur", "kinetik"]
+title: 'Faktoren der Reaktionsgeschwindigkeit'
+description: 'Konzentration, Temperatur, Oberfläche und Katalysatoren als Einflussgrößen auf die Geschwindigkeit chemischer Reaktionen.'
+date: '2026-06-18'
+tags: ['chemie', 'reaktionsgeschwindigkeit', 'konzentration', 'temperatur', 'kinetik']
 interaktiv: false
-schwierigkeit: "mittelstufe"
-teilgebiet: ["gleichgewicht-geschwindigkeit"]
-icon: "⚡"
+schwierigkeit: 'mittelstufe'
+teilgebiet: ['gleichgewicht-geschwindigkeit']
+icon: '⚡'
+aliases: [/article/faktoren-reaktionsgeschwindigkeit/]
 ---
 
 Die **Reaktionsgeschwindigkeit** beschreibt, wie schnell Edukte zu Produkten umgesetzt werden. Sie wird in mol/(l·s) gemessen und hängt von mehreren Faktoren ab.

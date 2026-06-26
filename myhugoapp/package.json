@@ -8,6 +8,7 @@
     "test:coverage": "cd .. && npm run test:coverage",
     "test:integration": "cd .. && npm run test:integration",
     "build": "cd .. && npm run build",
+    "export-kg-data": "cd .. && node scripts/export-kg-data.mjs",
     "lint": "cd .. && npm run lint",
     "format": "cd .. && npm run format"
   }

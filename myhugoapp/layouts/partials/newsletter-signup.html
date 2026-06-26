@@ -3,41 +3,8 @@
   <div class="newsletter-signup-inner">
     <h3><i class="fa fa-envelope"></i> Chemie-Newsletter</h3>
     <p class="newsletter-signup-desc">Keine Neuigkeit mehr verpassen — einmal pro Woche die wichtigsten Chemie-Artikel, Rechner-Updates und Lerntipps per E-Mail.</p>
-    <form class="newsletter-signup-form" action="https://newsletter.chemie-lernen.org/subscription/form" method="POST" target="newsletter-iframe" onsubmit="return handleNewsletterSubmit(this)">
-      <input type="hidden" name="nonce" value="">
-      <input type="hidden" name="l" value="f15c8ae9-4269-42ff-9a0c-a0f66d5410bf">
-      <div class="newsletter-fields">
-        <input type="email" name="email" class="form-control" placeholder="Deine E-Mail-Adresse" aria-label="E-Mail-Adresse" required>
-        <input type="text" name="name" class="form-control" placeholder="Vorname (optional)" aria-label="Vorname (optional)">
-        <button type="submit" class="btn btn-primary">Anmelden</button>
-      </div>
-      <div class="newsletter-success" style="display:none;">
-        <p class="text-success"><i class="fa fa-check-circle"></i> Fast geschafft! Prüfe dein Postfach und bestätige die Anmeldung.</p>
-      </div>
-    </form>
-    <p class="newsletter-footer">Kein Spam, jederzeit abbestellbar.</p>
+    <div class="newsletter-unavailable">
+      <p class="text-muted"><small>Newsletter-Anmeldung aktuell nicht verfügbar.<br>Komm später wieder!</small></p>
+    </div>
   </div>
 </div>
-
-<iframe name="newsletter-iframe" style="display:none;width:0;height:0;" onload="onNewsletterFrameLoad()"></iframe>
-
-<script>
-function handleNewsletterSubmit(form) {
-  var btn = form.querySelector('.btn-primary');
-  btn.disabled = true;
-  btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Wird gesendet...';
-  setTimeout(function() {
-    form.querySelector('.newsletter-fields').style.display = 'none';
-    form.querySelector('.newsletter-success').style.display = 'block';
-    btn.disabled = false;
-    btn.innerHTML = 'Anmelden';
-  }, 1500);
-  return true;
-}
-function onNewsletterFrameLoad() {
-  var success = document.querySelector('.newsletter-success');
-  if (success && success.style.display === 'block') {
-    // Already handled — do nothing
-  }
-}
-</script>

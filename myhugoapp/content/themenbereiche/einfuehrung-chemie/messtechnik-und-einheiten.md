@@ -1,12 +1,13 @@
 ---
-title: "Messtechnik und Einheiten"
-description: "SI-Einheiten, Dezimalpräfixe, signifikante Stellen und die wichtigsten Messmethoden in der Chemie — Grundlagen für präzises Experimentieren."
-date: "2026-06-18"
-tags: ["chemie", "messtechnik", "einheiten", "SI", "labor"]
+title: 'Messtechnik und Einheiten'
+description: 'SI-Einheiten, Dezimalpräfixe, signifikante Stellen und die wichtigsten Messmethoden in der Chemie — Grundlagen für präzises Experimentieren.'
+date: '2026-06-18'
+tags: ['chemie', 'messtechnik', 'einheiten', 'SI', 'labor']
 interaktiv: false
-schwierigkeit: "grundlagen"
-teilgebiet: ["einfuehrung-chemie"]
-icon: "🧪"
+schwierigkeit: 'grundlagen'
+teilgebiet: ['einfuehrung-chemie']
+icon: '🧪'
+aliases: [/article/messtechnik-und-einheiten/]
 ---
 
 In der Chemie sind genaue Messungen die Grundlage für alle Experimente und Berechnungen. Das **Internationale Einheitensystem (SI)** definiert sieben Basiseinheiten, von denen sechs in der Chemie regelmäßig verwendet werden: **Meter (m)** für Länge, **Kilogramm (kg)** für Masse, **Sekunde (s)** für Zeit, **Kelvin (K)** für Temperatur, **Mol (mol)** für Stoffmenge und **Ampère (A)** für Stromstärke.

@@ -1,12 +1,13 @@
 ---
-title: "Säure-Base-Titration"
-description: "Titrationstechnik, Indikatorwahl, Titrationskurven und die Bestimmung unbekannter Konzentrationen durch maßanalytische Verfahren."
-date: "2026-06-18"
-tags: ["chemie", "titration", "maessanalyse", "indikator", "aequivalenzpunkt"]
+title: 'Säure-Base-Titration'
+description: 'Titrationstechnik, Indikatorwahl, Titrationskurven und die Bestimmung unbekannter Konzentrationen durch maßanalytische Verfahren.'
+date: '2026-06-18'
+tags: ['chemie', 'titration', 'maessanalyse', 'indikator', 'aequivalenzpunkt']
 interaktiv: false
-schwierigkeit: "mittelstufe"
-teilgebiet: ["saeuren-basen"]
-icon: "⚗️"
+schwierigkeit: 'mittelstufe'
+teilgebiet: ['saeuren-basen']
+icon: '⚗️'
+aliases: [/article/saeure-base-titration/]
 ---
 
 Die **Titration** ist eine maßanalytische Methode zur Bestimmung der Konzentration einer unbekannten Lösung (Analyt) durch schrittweise Zugabe einer Lösung mit bekannter Konzentration (Titrant). Für Säure-Base-Titrationen verwendet man eine **Bürette**, einen **Erlenmeyerkolben** mit dem Analyten und einen **Indikator** oder ein **pH-Meter**.

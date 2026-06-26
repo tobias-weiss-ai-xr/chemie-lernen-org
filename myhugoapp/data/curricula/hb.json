@@ -1,0 +1,3083 @@
+{
+  "state": "Bremen",
+  "state_abbr": "HB",
+  "school_curricula": [
+    {
+      "school_type": "Gymnasiale Oberstufe (GyO)",
+      "grade_levels": [
+        {
+          "grade": "Q1-Q4",
+          "topics": [
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Die Senatorin für Kinder und Bildung,"
+                },
+                {
+                  "text": "Rembertiring 8-12"
+                }
+              ]
+            },
+            {
+              "title": "Bremen",
+              "learning_objectives": [
+                {
+                  "text": "http://www.bildung.bremen.de"
+                },
+                {
+                  "text": "Curriculumentwicklung"
+                },
+                {
+                  "text": "Landesinstitut für Schule"
+                },
+                {
+                  "text": "Abteilung 2 - Qualitätssicherung und Innovationsförderung"
+                }
+              ]
+            },
+            {
+              "title": "Bremen",
+              "learning_objectives": [
+                {
+                  "text": "Ansprechpartnerin: Dr. Nike Janke"
+                },
+                {
+                  "text": "Nachdruck ist zulässig"
+                },
+                {
+                  "text": "Bezugsadresse: http://www.lis.bremen.de"
+                },
+                {
+                  "text": "Gymnasiale Oberstufe – Chemie 3"
+                },
+                {
+                  "text": "Aufgaben und Ziele 5"
+                },
+                {
+                  "text": "Bildungsstandards 6"
+                },
+                {
+                  "text": "Erkenntnisgewinnungskompetenz 8"
+                },
+                {
+                  "text": "Kommunikationskompetenz 10"
+                },
+                {
+                  "text": "Bewertungskompetenz 11"
+                },
+                {
+                  "text": "Basiskonzepte 12"
+                },
+                {
+                  "text": "Bildung in der digitalen Welt 14"
+                }
+              ]
+            },
+            {
+              "title": "Themenbereiche und Kompetenzerwerb 14",
+              "learning_objectives": [
+                {
+                  "text": "Themenbereichsübergreifende prozessbezogene und digitale"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Q1-Q4",
+          "topics": [
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Bildungsplan vor, der die drei Jahrgänge der Gymnasialen"
+                },
+                {
+                  "text": "Oberstufe umfasst. Er schließt damit sowohl an den Bildungsplan Naturwissen-"
+                },
+                {
+                  "text": "schaften, Biologie, Chemie, Physik für die Oberschule (2010) für die Jahrgänge 5"
+                },
+                {
+                  "text": "Physik für das Gymnasium (2006), Jahrgangsstufe 5-10, eingeschränkt auf die"
+                },
+                {
+                  "text": "Jahrgangsstufen 5 bis 9, also bis zum Eintritt in die"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Q1-Q4",
+          "topics": [
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "gültigen gesetzlichen Regelungen für das sichere Experimentieren im Un-"
+                },
+                {
+                  "text": "Bildungsstandards"
+                },
+                {
+                  "text": "Im Folgenden Abschnitt werden die Bildungsstandards für die vier Kompetenzbe-"
+                },
+                {
+                  "text": "Weitergehende Beschreibungen der Kompetenzbereiche fin-"
+                },
+                {
+                  "text": "Bildungsstandards."
+                },
+                {
+                  "text": "Die Bildungsstandards für die Allgemeine Hochschulreife definieren die Kompeten-"
+                },
+                {
+                  "text": "zen, die Lernende bis zum Ende der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Q1-Q4",
+          "topics": [
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Chemische Zusammenhänge qualitativ-modellhaft erklären"
+                },
+                {
+                  "text": "S 11 erklären die Vielfalt der Stoffe und ihrer Eigenschaften auf der Basis unter-"
+                },
+                {
+                  "text": "Kombinationen und Anordnungen von Teilchen;"
+                },
+                {
+                  "text": "S 12 deuten Stoff- und Energieumwandlungen hinsichtlich der Veränderung von"
+                },
+                {
+                  "text": "Teilchen sowie des Umbaus chemischer Bindungen;"
+                },
+                {
+                  "text": "S 13 nutzen Modelle zur chemischen Bindung und zu intra- und intermolekularen"
+                },
+                {
+                  "text": "Wechselwirkungen;"
+                },
+                {
+                  "text": "S 14 beschreiben ausgewählte Reaktionsmechanismen;"
+                },
+                {
+                  "text": "S 15 grenzen mithilfe von Modellen den statischen Zustand auf Stoffebene vom"
+                },
+                {
+                  "text": "Zustand auf Teilchenebene ab."
+                },
+                {
+                  "text": "Chemische Zusammenhänge quantitativ-mathematisch beschreiben"
+                },
+                {
+                  "text": "S 16 entwickeln Reaktionsgleichungen;"
+                },
+                {
+                  "text": "S 17 wenden bekannte mathematische Verfahren auf chemische Sachverhalte"
+                },
+                {
+                  "text": "Erkenntnisgewinnungskompetenz"
+                },
+                {
+                  "text": "Die Erkenntnisgewinnungskompetenz der Lernenden zeigt sich in der Kenntnis"
+                },
+                {
+                  "text": "Denk- und Arbeitsweisen und in der Fähigkeit, diese"
+                },
+                {
+                  "text": "beschreiben, zu erklären und zu verknüpfen, um Erkenntnisprozesse nachvoll-"
+                },
+                {
+                  "text": "können und deren Möglichkeiten und Grenzen zu reflek-"
+                },
+                {
+                  "text": "Im Bereich der Erkenntnisgewinnungskompetenz ist es wichtig, nicht nur das Expe-"
+                },
+                {
+                  "text": "Untersuchungsmethode zu kennen und Experimente zur"
+                },
+                {
+                  "text": "Datengewinnung nutzen zu können, sondern auch Modelle sachgerecht zur Be-"
+                },
+                {
+                  "text": "Phänomens oder zur Gewinnung von Erkenntnissen einsetzen zu"
+                },
+                {
+                  "text": "können. Dabei werden vier sich überlappende Teilkompetenzbereiche unterschie-"
+                },
+                {
+                  "text": "Experimente und Modelle werden eingesetzt, um durch theoriegeleitete Be-"
+                },
+                {
+                  "text": "weiterführende Fragestellungen und Hypothesen zu über-"
+                },
+                {
+                  "text": "prüfen und um Sachverhalte zu untersuchen. Die experimentellen Ergebnisse und"
+                },
+                {
+                  "text": "Modellen abgeleiteten Annahmen werden vor dem Hintergrund der theore-"
+                },
+                {
+                  "text": "Erkenntnisse interpretiert und der gesamte Erkenntnisgewinnungsprozess"
+                },
+                {
+                  "text": "Auf einer Metaebene werden die Merkmale naturwissenschaftlicher Aus-"
+                },
+                {
+                  "text": "Methoden charakterisiert und von nicht-naturwissenschaftlichen abge-"
+                },
+                {
+                  "text": "Das wissenschaftliche Vorgehen umfasst ausgehend von einem Phänomen die"
+                },
+                {
+                  "text": "Verknüpfung der zentralen Schritte des Erkenntnisprozesses:"
+                },
+                {
+                  "text": "Formulierung von Fragestellungen,"
+                },
+                {
+                  "text": "Ableitung von Hypothesen,"
+                },
+                {
+                  "text": "Planung und Durchführung von Untersuchungen,"
+                },
+                {
+                  "text": "Auswertung, Interpretation und methodische Reflexion zur Widerlegung bzw."
+                },
+                {
+                  "text": "Stützung der Hypothese sowie zur Beantwortung der Fragestellung."
+                },
+                {
+                  "text": "Gymnasiale Oberstufe – Chemie 9"
+                },
+                {
+                  "text": "Fragestellungen und Hypothesen auf Basis von Beobachtungen und Theorien"
+                },
+                {
+                  "text": "E 1 leiten chemische Sachverhalte aus Alltagssituationen ab;"
+                },
+                {
+                  "text": "E 2 identifizieren und entwickeln Fragestellungen zu chemischen Sachverhal-"
+                },
+                {
+                  "text": "E 3 stellen theoriegeleitet Hypothesen zur Bearbeitung von Fragestellungen"
+                },
+                {
+                  "text": "Fachspezifische Modelle und Verfahren charakterisieren, auswählen und zur"
+                },
+                {
+                  "text": "Untersuchung von Sachverhalten nutzen"
+                },
+                {
+                  "text": "E 4 planen, ggf. unter Berücksichtigung der Variablenkontrolle, experiment-"
+                },
+                {
+                  "text": "Vorgehensweisen, auch zur Prüfung von Hypothesen,"
+                },
+                {
+                  "text": "Aussagen oder Theorien;"
+                },
+                {
+                  "text": "E 5 führen qualitative und quantitative experimentelle Untersuchungen – den"
+                },
+                {
+                  "text": "Arbeitsweisen und Sicherheitsregeln entsprechend – durch,"
+                },
+                {
+                  "text": "E 6 nutzen digitale Werkzeuge und Medien zum Aufnehmen, Darstellen und"
+                },
+                {
+                  "text": "Auswerten von Messwerten, für Berechnungen, Modellierungen und Simu-"
+                },
+                {
+                  "text": "E 7 wählen geeignete Real- oder Denkmodelle (z. B. Atommodelle, Perioden-"
+                },
+                {
+                  "text": "Elemente) aus und nutzen sie, um chemische Fragestellungen"
+                },
+                {
+                  "text": "Erkenntnisprozesse und Ergebnisse interpretieren und reflektieren"
+                },
+                {
+                  "text": "E 8 finden in erhobenen oder recherchierten Daten Strukturen, Beziehungen"
+                },
+                {
+                  "text": "Trends, erklären diese theoriebezogen und ziehen Schlussfolgerun-"
+                },
+                {
+                  "text": "E 9 diskutieren Möglichkeiten und Grenzen von Modellen;"
+                },
+                {
+                  "text": "E 10 reflektieren die eigenen Ergebnisse und den eigenen Prozess der Erkennt-"
+                },
+                {
+                  "text": "E 11 stellen bei der Interpretation von Untersuchungsbefunden fachübergrei-"
+                },
+                {
+                  "text": "Merkmale wissenschaftlicher Aussagen und Methoden charakterisieren und"
+                },
+                {
+                  "text": "E 12 reflektieren Möglichkeiten und Grenzen des konkreten Erkenntnisgewin-"
+                },
+                {
+                  "text": "Erkenntnisse (z. B. Reproduzier-"
+                },
+                {
+                  "text": "barkeit, Falsifizierbarkeit, Intersubjektivität, logische Konsistenz, Vorläufig-"
+                }
+              ]
+            },
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Kommunikationskompetenz"
+                },
+                {
+                  "text": "Die Kommunikationskompetenz der Lernenden zeigt sich in der Kenntnis von"
+                },
+                {
+                  "text": "Fachsprache, fachtypischen Darstellungen und Argumentationsstrukturen und in"
+                },
+                {
+                  "text": "Fähigkeit, diese zu nutzen, um fachbezogene Informationen zu erschließen,"
+                },
+                {
+                  "text": "Chemisch kompetent Kommunizieren bedingt ein Durchdringen der Teilkompetenz-"
+                },
+                {
+                  "text": "Erschließen, Aufbereiten und Austauschen. Im Bereich der Kommunikati-"
+                },
+                {
+                  "text": "wichtig, sich nicht darauf zu beschränken, fachlich richtige"
+                },
+                {
+                  "text": "Sätze zu Aufgabenstellungen zu formulieren, sondern auch fachlich und fach-"
+                },
+                {
+                  "text": "Informationsmateri-"
+                },
+                {
+                  "text": "Repräsentationsformen adressatengerecht"
+                },
+                {
+                  "text": "Dabei werden drei sich überlappende Teilkompetenzbereiche unter-"
+                },
+                {
+                  "text": "Fachsprache und andere fachspezifische Repräsentationsformen wie"
+                },
+                {
+                  "text": "Formeln und Reaktionsgleichungen werden erlernt, um Inhalte aus un-"
+                },
+                {
+                  "text": "Medien zu erschließen, sie fachgerecht und aufgabenbezogen auf-"
+                },
+                {
+                  "text": "können. Hierzu zählt der In-"
+                },
+                {
+                  "text": "Umfeld genauso wie die Partizipation in einer wis-"
+                },
+                {
+                  "text": "Diskussion auf einem angemessenen Niveau. Dazu müssen Aus-"
+                },
+                {
+                  "text": "Kontext – differenziert wahrgenommen, Missverständ-"
+                },
+                {
+                  "text": "Standpunkte geklärt und Lösungen angestrebt werden."
+                },
+                {
+                  "text": "Informationen erschließen"
+                },
+                {
+                  "text": "K 1 recherchieren zu chemischen Sachverhalten zielgerichtet in analogen und"
+                },
+                {
+                  "text": "Medien und wählen für ihre Zwecke passende Quellen aus;"
+                },
+                {
+                  "text": "K 2 wählen relevante und aussagekräftige Informationen und Daten zu chemi-"
+                },
+                {
+                  "text": "Sachverhalten und anwendungsbezogenen Fragestellungen aus und"
+                },
+                {
+                  "text": "erschließen Informationen aus Quellen mit verschiedenen, auch komplexen"
+                },
+                {
+                  "text": "Darstellungsformen;"
+                },
+                {
+                  "text": "K 3 prüfen die Übereinstimmung verschiedener Quellen oder Darstellungsfor-"
+                },
+                {
+                  "text": "Hinblick auf deren Aussagen;"
+                },
+                {
+                  "text": "K 4 überprüfen die Vertrauenswürdigkeit verwendeter Quellen und Medien"
+                },
+                {
+                  "text": "B. anhand ihrer Herkunft und Qualität);"
+                },
+                {
+                  "text": "Informationen aufbereiten"
+                },
+                {
+                  "text": "K 5 wählen chemische Sachverhalte und Informationen sach-, adressaten- und"
+                },
+                {
+                  "text": "K 6 unterscheiden zwischen Alltags- und Fachsprache;"
+                },
+                {
+                  "text": "K 7 nutzen geeignete Darstellungsformen für chemische Sachverhalte und"
+                },
+                {
+                  "text": "überführen diese ineinander;"
+                },
+                {
+                  "text": "K 8 strukturieren und interpretieren ausgewählte Informationen und leiten"
+                },
+                {
+                  "text": "Schlussfolgerungen ab."
+                },
+                {
+                  "text": "Gymnasiale Oberstufe – Chemie 11"
+                },
+                {
+                  "text": "Informationen austauschen und wissenschaftlich diskutieren"
+                },
+                {
+                  "text": "K 9 verwenden Fachbegriffe und -sprache korrekt;"
+                },
+                {
+                  "text": "K 10 erklären chemische Sachverhalte und argumentieren fachlich schlüssig;"
+                },
+                {
+                  "text": "K 11 präsentieren chemische Sachverhalte sowie Lern- und Arbeitsergebnisse"
+                },
+                {
+                  "text": "sach-, adressaten- und situationsgerecht unter Einsatz geeigneter analoger"
+                },
+                {
+                  "text": "K 12 prüfen die Urheberschaft, belegen verwendete Quellen und kennzeichnen"
+                },
+                {
+                  "text": "K 13 tauschen sich mit anderen konstruktiv über chemische Sachverhalte aus,"
+                },
+                {
+                  "text": "vertreten, reflektieren und korrigieren gegebenenfalls den eigenen Stand-"
+                },
+                {
+                  "text": "Bewertungskompetenz"
+                },
+                {
+                  "text": "Die Bewertungskompetenz der Lernenden zeigt sich in der Kenntnis von fachli-"
+                },
+                {
+                  "text": "überfachlichen Perspektiven und Bewertungsverfahren und in der Fähig-"
+                },
+                {
+                  "text": "keit, diese zu nutzen, um Aussagen bzw. Daten anhand verschiedener Kriterien zu"
+                },
+                {
+                  "text": "beurteilen, sich dazu begründet Meinungen zu bilden, Entscheidungen auch auf"
+                },
+                {
+                  "text": "Grundlage zu treffen und Entscheidungsprozesse und deren Folgen zu"
+                },
+                {
+                  "text": "Im Bereich der Bewertungskompetenz ist es wichtig, sich nicht darauf zu beschrän-"
+                },
+                {
+                  "text": "ken, Fakten zu vergleichen, sondern Sachverhalte und Informationen fachlich zu"
+                },
+                {
+                  "text": "Dabei werden drei sich überlappende Teil-"
+                },
+                {
+                  "text": "Um mit Informationen kritisch umgehen zu kön-"
+                },
+                {
+                  "text": "nen, werden Quellen in ihrer Qualität beurteilt. Hierfür ist Wissen über den Bewer-"
+                },
+                {
+                  "text": "Die Unterscheidung von wissenschaftlichen und nichtwis-"
+                },
+                {
+                  "text": "Aussagen erfordert Kenntnisse formaler und inhaltlicher Kriterien"
+                },
+                {
+                  "text": "Prüfung der Glaubwürdigkeit und zur Beurteilung des Einflusses von Werten,"
+                },
+                {
+                  "text": "Normen und Interessen. Es geht darum, sich kriteriengeleitet eigene Meinungen zu"
+                },
+                {
+                  "text": "bilden, Entscheidungen zu treffen und Handlungsoptionen abzuleiten. Dazu zählt"
+                },
+                {
+                  "text": "B. bei der Beurteilung und Bewertung von Technologien ein Abwägen von Chan-"
+                },
+                {
+                  "text": "Risiken unter Berücksichtigung von Sicherheitsmaßnahmen. Hierbei rei-"
+                },
+                {
+                  "text": "Entscheidungsfelder vom eigenen täglichen Leben bis zu gesellschaftlich"
+                },
+                {
+                  "text": "Entscheidungen. Aus einer Metaperspektive her-"
+                },
+                {
+                  "text": "Entscheidungsprozesse reflektiert und daraus entstehende Folgen"
+                },
+                {
+                  "text": "abgeschätzt. Die Einbindung von Bewertungskompetenz in den Chemieunterricht"
+                },
+                {
+                  "text": "erfordert, über die sachliche Beurteilung von naturwissenschaftlichen Aussagen"
+                },
+                {
+                  "text": "Handlungen und Entscheidungen aus per-"
+                },
+                {
+                  "text": "sönlicher, gesellschaftlicher und ethischer Perspektive zu betrachten."
+                },
+                {
+                  "text": "Sachverhalte und Informationen multiperspektivisch beurteilen"
+                },
+                {
+                  "text": "B 1 betrachten Aussagen, Modelle und Verfahren aus unterschiedlichen Per-"
+                },
+                {
+                  "text": "Grundlage chemischer"
+                }
+              ]
+            },
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "B 2 beurteilen die Inhalte verwendeter Quellen und Medien (z. B. anhand der"
+                },
+                {
+                  "text": "Richtigkeit und Vertrauenswürdigkeit);"
+                },
+                {
+                  "text": "B 3 beurteilen Informationen und Daten hinsichtlich ihrer Angemessenheit,"
+                },
+                {
+                  "text": "Grenzen und Tragweite;"
+                },
+                {
+                  "text": "B 4 analysieren und beurteilen die Auswahl von Quellen und Darstellungsfor-"
+                },
+                {
+                  "text": "Zusammenhang mit der Intention der Autorin/des Autors."
+                },
+                {
+                  "text": "Kriteriengeleitet Meinungen bilden und Entscheidungen treffen"
+                },
+                {
+                  "text": "B 5 entwickeln anhand relevanter Bewertungskriterien Handlungsoptionen in"
+                },
+                {
+                  "text": "Entscheidungssituationen mit fach-"
+                },
+                {
+                  "text": "Bezug und wägen sie gegeneinander ab;"
+                },
+                {
+                  "text": "B 6 beurteilen Chancen und Risiken ausgewählter Technologien, Produkte und"
+                },
+                {
+                  "text": "Verhaltensweisen fachlich und bewerten diese;"
+                },
+                {
+                  "text": "B 7 treffen mithilfe fachlicher Kriterien begründete Entscheidungen in Alltagssi-"
+                },
+                {
+                  "text": "B 8 beurteilen die Bedeutung fachlicher Kompetenzen in Bezug auf Alltagsitua-"
+                },
+                {
+                  "text": "B 9 beurteilen Möglichkeiten und Grenzen chemischer Sichtweisen;"
+                },
+                {
+                  "text": "B 10 bewerten die gesellschaftliche Relevanz und ökologische Bedeutung der"
+                },
+                {
+                  "text": "B 11 beurteilen grundlegende Aspekte zu Gefahren und Sicherheit in Labor und"
+                },
+                {
+                  "text": "Alltag und leiten daraus begründet Handlungsoptionen ab."
+                },
+                {
+                  "text": "Entscheidungsprozesse und Folgen reflektieren"
+                },
+                {
+                  "text": "B 12 beurteilen und bewerten Auswirkungen chemischer Produkte, Methoden,"
+                },
+                {
+                  "text": "Verfahren und Erkenntnisse in historischen und aktuellen gesellschaftlichen"
+                },
+                {
+                  "text": "B 13 beurteilen und bewerten Auswirkungen chemischer Produkte, Methoden,"
+                },
+                {
+                  "text": "Verfahren und Erkenntnisse sowie des eigenen Handelns im Sinne einer"
+                },
+                {
+                  "text": "Entwicklung aus ökologischer, ökonomischer und sozialer"
+                },
+                {
+                  "text": "B 14 reflektieren Kriterien und Strategien für Entscheidungen aus chemischer"
+                },
+                {
+                  "text": "Der Beschreibung von chemischen Sachverhalten liegen fachspezifische Gemein-"
+                },
+                {
+                  "text": "zugrunde, die sich in Form von Basiskonzepten strukturieren lassen. Die"
+                },
+                {
+                  "text": "Basiskonzepte im Fach Chemie ermöglichen somit die Vernetzung fachlicher In-"
+                },
+                {
+                  "text": "Betrachtung aus verschiedenen Perspektiven. Die Basiskonzepte"
+                },
+                {
+                  "text": "übergreifend auf alle Kompetenzbereiche bezogen. Sie können kumulatives"
+                },
+                {
+                  "text": "Lernen, den Aufbau von strukturiertem Wissen und die Erschließung neuer Inhalte"
+                },
+                {
+                  "text": "Gymnasiale Oberstufe – Chemie 13"
+                },
+                {
+                  "text": "Das Fach Chemie ist im Besonderen durch eine Betrachtung der Analyse und Syn-"
+                },
+                {
+                  "text": "Stoffen, der Beschreibung ihres Aufbaus und ihrer Eigenschaften und"
+                },
+                {
+                  "text": "Zusammenhänge gekennzeichnet, woraus die folgenden drei Basis-"
+                },
+                {
+                  "text": "Sie beziehen sich auf die Struktur der Stoffe, deren Umwand-"
+                },
+                {
+                  "text": "Reaktionen und die damit einhergehenden energetischen"
+                },
+                {
+                  "text": "Konzept vom Aufbau und von den Eigenschaften der Stoffe und ihrer Teilchen"
+                },
+                {
+                  "text": "Die Art, Anordnung und Wechselwirkung der Teilchen bestimmen die Struktur und"
+                },
+                {
+                  "text": "Eigenschaften eines Stoffes und können daher durch ein Basiskonzept inhaltlich"
+                },
+                {
+                  "text": "kohärent beschrieben werden. Insbesondere die Betrachtung sowohl auf der Stoff-"
+                },
+                {
+                  "text": "Teilchenebene hat dabei eine große Bedeutung und zeigt"
+                },
+                {
+                  "text": "B. in den nachfolgend aufgelisteten Zusammenhängen. Innerhalb dieses Ba-"
+                },
+                {
+                  "text": "Typen der chemischen Bindung, Verbindungen mit funktionel-"
+                },
+                {
+                  "text": "Gruppen, Strukturen ausgewählter organischer und anorganischer Stoffe sowie"
+                },
+                {
+                  "text": "Natur- und Kunststoffe vorgestellt. Dabei soll auch der Zusammenhang zwischen"
+                },
+                {
+                  "text": "Eigenschaften ausgewählter Stoffe und deren Verwendung hergestellt werden:"
+                },
+                {
+                  "text": "Atom- und Molekülbau, • inter- und intramolekulare Wechselwirkungen,"
+                },
+                {
+                  "text": "Bindung, • Stoffeigenschaften,"
+                },
+                {
+                  "text": "Modifikationen, • Stoffklassen,"
+                },
+                {
+                  "text": "Gruppen, • analytische Verfahren (qualitativ/quantitativ),"
+                },
+                {
+                  "text": "Isomerie, • Verwendungsmöglichkeiten."
+                },
+                {
+                  "text": "So können z. B. Kenntnisse über inter- und intramolekulare Wechselwirkungen ge-"
+                },
+                {
+                  "text": "werden, um Eigenschaften von Stoffen auf der Stoffebene zu erklären. Somit"
+                },
+                {
+                  "text": "Phänomene auf der Stoffebene und deren Deutung auf der Teilchenebene"
+                },
+                {
+                  "text": "Konzept der chemischen Reaktion"
+                },
+                {
+                  "text": "Chemische Reaktionen spielen in der Chemie eine zentrale Rolle und werden in"
+                },
+                {
+                  "text": "Basiskonzept in den folgenden Zusammenhängen systematisch betrachtet:"
+                },
+                {
+                  "text": "Donator-Akzeptor-Prinzipien bei Protonen und Elektronenübergängen; Reaktions-"
+                },
+                {
+                  "text": "Donator-Akzeptor, • Reaktionstypen,"
+                },
+                {
+                  "text": "Umkehrbarkeit, • Mechanismen,"
+                },
+                {
+                  "text": "Gleichgewicht, • Steuerung."
+                },
+                {
+                  "text": "So können z. B. mit dem Donator-Akzeptor-Prinzip Protonen- und Elektronenüber-"
+                },
+                {
+                  "text": "gänge beschrieben werden, um so chemische Reaktionen sowohl in der anorgani-"
+                },
+                {
+                  "text": "Chemie erschließen zu können. Kennzeichnend"
+                },
+                {
+                  "text": "für das Donator-Akzeptor-Prinzip ist dabei der Teilchenübergang."
+                }
+              ]
+            },
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Energetische Betrachtungen spielen eine wichtige Rolle zur Beschreibung von Teil-"
+                },
+                {
+                  "text": "Stoffumwandlungen. In diesem Zusammenhang ist auch die Beeinflus-"
+                },
+                {
+                  "text": "Reaktionsabläufen durch die Änderung energetischer Parameter bedeut-"
+                },
+                {
+                  "text": "So können z. B. folgende Zusammenhänge betrachtet werden: Thermodyna-"
+                },
+                {
+                  "text": "Prinzipien beim Ablauf chemischer und physikalisch-chemischer Vorgänge,"
+                },
+                {
+                  "text": "Prinzipien beim Ablauf chemischer Reaktionen. Hierbei werden die Re-"
+                },
+                {
+                  "text": "aktionsverläufe auch mechanistisch betrachtet."
+                },
+                {
+                  "text": "Energieformen, -umwandlung, -kreislauf, • Reaktionskinetik,"
+                },
+                {
+                  "text": "Aktivierungsenergie/Katalyse, • Enthalpie/Entropie."
+                },
+                {
+                  "text": "Energie chemischer Bindungen/Wechselwirkungen,"
+                },
+                {
+                  "text": "So kann z. B. die energetische Betrachtung sowohl auf chemische Reaktionen (z. B."
+                },
+                {
+                  "text": "Aktivierungsenergie) als auch auf einzelne Teilchen (z. B. Ionisierungsenergie) be-"
+                },
+                {
+                  "text": "Erklärung von Prozessen herangezogen werden."
+                },
+                {
+                  "text": "Bildung in der digitalen Welt"
+                },
+                {
+                  "text": "Der Chemieunterricht in der gymnasialen Oberstufe hat primär den Aufbau und die"
+                },
+                {
+                  "text": "Förderung von Fachkompetenz zum Ziel. Angesichts der zunehmenden Digitalisie-"
+                },
+                {
+                  "text": "erforderlich, die Ausbildung der Fachkompetenz mit einem breiten"
+                },
+                {
+                  "text": "Spektrum an digitalen Anwendungs- und Handlungsfeldern zu verbinden."
+                },
+                {
+                  "text": "Grundlage sind die Strategie „Bildung in der digitalen Welt” (2016) und die ergän-"
+                },
+                {
+                  "text": "Empfehlung „Lehren und Lernen in der digitalen Welt“ (2021) der Kultusmi-"
+                },
+                {
+                  "text": "In der ergänzenden Empfehlung wird die Verwendung digitaler"
+                },
+                {
+                  "text": "Werkzeuge erweitert zur Gestaltung digital gestützter Lehr-Lern-Prozesse. Dazu"
+                },
+                {
+                  "text": "zählen die digitale gestützte Kommunikation, individuelles Lernen und Üben mit di-"
+                },
+                {
+                  "text": "gestützter Rückmeldung und die Erstellung kollaborativ-vernetzt erstellter digi-"
+                },
+                {
+                  "text": "Produkte der Lernenden. Sie liefern einen Rahmen, um Kompetenzen im Um-"
+                },
+                {
+                  "text": "Medien fachspezifisch zu konkretisieren. Für das Fach Chemie"
+                },
+                {
+                  "text": "Kapitel 3 Kompetenzen von besonderer Relevanz aufgelistet."
+                }
+              ]
+            },
+            {
+              "title": "Themenbereiche und Kompetenzerwerb",
+              "learning_objectives": [
+                {
+                  "text": "Themenbereichsübergreifende prozessbezogene und digitale Kompe-"
+                },
+                {
+                  "text": "Neben den inhaltsbezogenen Kompetenzen sind folgende übergreifende Kompe-"
+                },
+                {
+                  "text": "formuliert, die im Laufe der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Q1-Q4",
+          "topics": [
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Beschreibung der Beobachtungen durch Symbole, For-"
+                },
+                {
+                  "text": "Gleichungen. Zu Beginn der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "E",
+          "topics": [
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Organische Verbindungen – Eine Vielfalt aus Kohlenstoff, Wasserstoff &"
+                },
+                {
+                  "text": "Fachinhaltliche Kompetenzen Verbindliche Fachbegriffe"
+                },
+                {
+                  "text": "Die Lernenden ... homologe Reihe Alkane, Al-"
+                },
+                {
+                  "text": "Aufbau einfacher organischer kene, Alkine, Alkohole, Isome-"
+                },
+                {
+                  "text": "Verbindungen, die homologen Reihen und die rie, funktionelle Gruppe, Alde-"
+                },
+                {
+                  "text": "Strukturisomerie am Beispiel der Alkane und Alko- hyde, Ketone, Carbonsäuren,"
+                },
+                {
+                  "text": "van-der-Waals-Kräfte, Was-"
+                },
+                {
+                  "text": "ausgewählte organische Verbindungen serstoffbrücken, radikalische"
+                },
+                {
+                  "text": "Nomenklatur (IUPAC). Substitution, elektrophile Addi-"
+                },
+                {
+                  "text": "EPA-Modell zur Erklärung der räumli- tion, Halogenalkane"
+                },
+                {
+                  "text": "Struktur von Alkanen an."
+                },
+                {
+                  "text": "Einfluss der Molekülstruktur von"
+                },
+                {
+                  "text": "Alkanen und Alkoholen sowie deren Strukturisome-"
+                },
+                {
+                  "text": "Siede- und Schmelztemperaturen."
+                },
+                {
+                  "text": "Gruppen in organischen Mo-"
+                },
+                {
+                  "text": "lekülen und erklären ihren Einfluss auf die Mole-"
+                },
+                {
+                  "text": "küleigenschaften am Beispiel der Löslichkeit."
+                },
+                {
+                  "text": "erläutern das Zustandekommen ausgewählter Ei-"
+                },
+                {
+                  "text": "Grundlage der Wechselwirkungen"
+                },
+                {
+                  "text": "erklären das Grundprinzip der radikalischen Substi-"
+                },
+                {
+                  "text": "Konkretisierung prozessbezogener Kompetenzen"
+                },
+                {
+                  "text": "Die Lernenden ..."
+                },
+                {
+                  "text": "Untersuchungen zum Löslichkeitsverhalten und zu Siede- und"
+                },
+                {
+                  "text": "Schmelztemperaturen ausgewählter organischer Verbindungen."
+                },
+                {
+                  "text": "Nachweisreaktionen für ausgewählte funktionelle Gruppen an."
+                },
+                {
+                  "text": "Darstellungsformen organischer Moleküle (Summen-"
+                },
+                {
+                  "text": "formel, Lewis-Schreibweise, Skelettformel) und wenden diese an."
+                },
+                {
+                  "text": "Relevanz organischer Verbindungen in der Lebens-"
+                },
+                {
+                  "text": "welt, diskutieren diese kritisch und beschreiben und bewerten den Einfluss der ener-"
+                },
+                {
+                  "text": "Nutzung fossiler Treib- und Heizstoffe auf den Klimawandel."
+                },
+                {
+                  "text": "Mögliche Anwendungskontexte"
+                },
+                {
+                  "text": "Vor- und Nachteile der Nutzung von Bioethanol als Treibstoff"
+                },
+                {
+                  "text": "Vergleich verschiedener Stoffe in Bezug zum Klimawandel"
+                },
+                {
+                  "text": "Herstellung von alkoholischen Getränken und ihre Wirkung auf den Körper"
+                },
+                {
+                  "text": "Beispiele für experimentelle Arbeiten"
+                },
+                {
+                  "text": "Verbrennung von Alkanen und Nachweis der Reaktionsprodukte"
+                },
+                {
+                  "text": "Organische Verbindungen als Löse- und Reinigungsmittel"
+                },
+                {
+                  "text": "Untersuchungen zur Viskosität verschiedener organischer Verbindungen"
+                },
+                {
+                  "text": "Alkoholische Gärung und Destillation von Alkohol"
+                },
+                {
+                  "text": "Gymnasiale Oberstufe – Chemie 19"
+                },
+                {
+                  "text": "Chemie für mehr Nachhaltigkeit – Erste Einblicke in die Welt der Kunst-"
+                },
+                {
+                  "text": "Fachinhaltliche Kompetenzen Verbindliche Fachbegriffe"
+                },
+                {
+                  "text": "Die Lernenden ... Nachhaltige Chemie, Kunst-"
+                },
+                {
+                  "text": "erläutern ausgewählte Konzepte stoff, Biokunststoff, nachwach-"
+                },
+                {
+                  "text": "Nachhaltigkeit im Zusammenhang der Che- sende Rohstoffe, biologische"
+                },
+                {
+                  "text": "Entstehung von Makromolekülen Makromolekül, Monomer, Poly-"
+                },
+                {
+                  "text": "Monomeren. mer, Polymerisation"
+                },
+                {
+                  "text": "erläutern die Herstellung ausgewählter Kunst-"
+                },
+                {
+                  "text": "erläutern die Unterscheidung von traditionellen"
+                },
+                {
+                  "text": "Kunststoffen und Kunststoffen aus nachwachsen-"
+                },
+                {
+                  "text": "Konkretisierung prozessbezogener Kompetenzen"
+                },
+                {
+                  "text": "Die Lernenden ..."
+                },
+                {
+                  "text": "führen experimentelle Untersuchungen zu Kunststoffen aus nachwachsenden Roh-"
+                },
+                {
+                  "text": "Medienberichte zur kontroversen Nutzung von Kunststoffen, fassen"
+                },
+                {
+                  "text": "Argumente zusammen und präsentieren diese."
+                },
+                {
+                  "text": "Kunststoffe entlang ausgewählter Kriterien."
+                },
+                {
+                  "text": "Vor- und Nachteile der Nutzung herkömmlicher Kunststoffe und Kunst-"
+                },
+                {
+                  "text": "Rohstoffen in Alltag und Technik und diskutieren"
+                },
+                {
+                  "text": "Mögliche Anwendungskontexte"
+                },
+                {
+                  "text": "Kunststoffmüll in der Umwelt und den Ozeanen"
+                },
+                {
+                  "text": "Kunststoffrecycling"
+                },
+                {
+                  "text": "Nutzung von Kunststoffen in Alltag und Technik"
+                },
+                {
+                  "text": "Beispiele für experimentelle Arbeiten"
+                },
+                {
+                  "text": "Herstellung von Biokunststoffen (z. B. Thermoplastische Stärke, Polymilchsäure)"
+                },
+                {
+                  "text": "Versuche zur Zersetzung von herkömmlichen Kunststoffen und Kunststoffen aus"
+                },
+                {
+                  "text": "Untersuchungen zu den Eigenschaften verschiedener Kunststoffe"
+                }
+              ]
+            },
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Geben und Nehmen – Grundtypen chemischer Reaktionen"
+                },
+                {
+                  "text": "Fachinhaltliche Kompetenzen Verbindliche Fachbegriffe"
+                },
+                {
+                  "text": "Die Lernenden ... Säuren, saure Lösungen, Basen, basi-"
+                },
+                {
+                  "text": "erklären das Verhalten von Säuren und Ba- sche/alkalische Lösungen (Laugen),"
+                },
+                {
+                  "text": "Sinne der Säure-Base-Theorie nach Protolyse, Oxonium-Ion, Hydroxid-Ion,"
+                },
+                {
+                  "text": "Brönsted. pH-Wert, Neutralisation, Protonendona-"
+                },
+                {
+                  "text": "Zusammenhang zwischen tor, Protonenakzeptor, Indikator"
+                },
+                {
+                  "text": "Konzentration von Oxonium- und"
+                },
+                {
+                  "text": "Hydroxid-Ionen und dem pH-Wert."
+                },
+                {
+                  "text": "Konkretisierung prozessbezogener Kompetenzen"
+                },
+                {
+                  "text": "Die Lernenden ..."
+                },
+                {
+                  "text": "pH-Wert für unterschiedliche Lösungen mit Indikatoren oder pH-Metern"
+                },
+                {
+                  "text": "Unterscheidung von sauren, neutralen und basischen Lösungen"
+                },
+                {
+                  "text": "Donator-Akzeptor-Prinzip anhand einer Säure-Base-Reaktion dar, erklären"
+                },
+                {
+                  "text": "Reaktionsgleichungen zu Säure-Base-Reaktionen."
+                },
+                {
+                  "text": "Wirkung und das Gefahrenpotenzial von Säuren und Basen in Alltagspro-"
+                },
+                {
+                  "text": "Mögliche Anwendungskontexte"
+                },
+                {
+                  "text": "Säuren und Basen in Lebens- und Reinigungsmitteln"
+                },
+                {
+                  "text": "Säuren und Basen in Kosmetik und Körperpflege"
+                },
+                {
+                  "text": "Beispiele für experimentelle Arbeiten"
+                },
+                {
+                  "text": "Verdünnungsreihe"
+                },
+                {
+                  "text": "pH-Wert-Messungen mit herkömmlichen Methoden und digitalen Instrumenten"
+                },
+                {
+                  "text": "Neutralisationsreaktionen"
+                },
+                {
+                  "text": "Fachinhaltliche Kompetenzen Verbindliche Fachbegriffe"
+                },
+                {
+                  "text": "Die Lernenden ... Redoxreaktion, Oxidationszahl, Elektro-"
+                },
+                {
+                  "text": "Redoxreaktionen als chemische nendonator, Elektronenakzeptor, Dona-"
+                },
+                {
+                  "text": "Reaktionen mit Elektronenübertragung. tor-Akzeptor-Prinzip, Redox-Reihe, gal-"
+                },
+                {
+                  "text": "Redox-Reihe zur Vorhersage vanisches Element, Anode, Kathode,"
+                },
+                {
+                  "text": "Redoxreaktionen an. Batterie, Akkumulator, Wasserelektro-"
+                },
+                {
+                  "text": "Grundprinzip von Batterien lyse, Brennstoffzelle"
+                },
+                {
+                  "text": "Konkretisierung prozessbezogener Kompetenzen"
+                },
+                {
+                  "text": "Die Lernenden ..."
+                },
+                {
+                  "text": "Versuche zur Redox-Reihe und werten diese aus."
+                },
+                {
+                  "text": "Redoxreaktionen und deren Teilgleichungen."
+                },
+                {
+                  "text": "Element dar und beschreiben die Funktionsweise."
+                },
+                {
+                  "text": "Rolle elektrochemischer Energiespeicherung im Kontext von Mobilität."
+                },
+                {
+                  "text": "Mögliche Anwendungskontexte"
+                },
+                {
+                  "text": "Wasserstoff als Energieträger der Zukunft"
+                },
+                {
+                  "text": "Moderne Batterien und Akkumulatoren, z. B. Lithium-Ionen-Akku"
+                },
+                {
+                  "text": "Beispiele für experimentelle Arbeiten"
+                },
+                {
+                  "text": "Versuche zur Redox-Reihe und zu einfachen galvanischen Elementen"
+                },
+                {
+                  "text": "Wasserelektrolyse, Wassersynthese in einer Brennstoffzelle"
+                },
+                {
+                  "text": "Gymnasiale Oberstufe – Chemie 21"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Q1-Q4",
+          "topics": [
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Thema 1.1: Grundlagen des chemischen Gleichgewichts"
+                },
+                {
+                  "text": "Fachinhaltliche Kompetenzen Verbindliche Fachbegriffe"
+                },
+                {
+                  "text": "Die Lernenden ... Hin- und Rückreaktion,"
+                },
+                {
+                  "text": "Umkehrbarkeit chemischer Reaktio- Dynamisches Gleichgewicht,"
+                },
+                {
+                  "text": "Ursache für unvollständigen Konzentrations-Zeit-Diagramm,"
+                },
+                {
+                  "text": "Stoffumsatz dar. Massenwirkungsgesetz und"
+                },
+                {
+                  "text": "erläutern das chemische Gleichgewicht als ein Gleichgewichtskonstante,"
+                },
+                {
+                  "text": "Gleichgewicht. Prinzip von Le Chatelier,"
+                },
+                {
+                  "text": "erklären Möglichkeiten der Beeinflussung von Nachhaltige Chemie,"
+                },
+                {
+                  "text": "Gleichgewichtslagen durch Variation von Reakti- Haber-Bosch-Verfahren"
+                },
+                {
+                  "text": "Massenwirkungsgesetz auf Gas- LK:"
+                },
+                {
+                  "text": "Gleichgewichte in Lösungen L öslichkeitsgleichgewicht"
+                },
+                {
+                  "text": "Lage von Gleichgewichten"
+                },
+                {
+                  "text": "Massenwirkungsgesetz."
+                },
+                {
+                  "text": "erläutern das Haber-Bosch-Verfahren."
+                },
+                {
+                  "text": "ausgewählte Prinzipien nachhaltiger"
+                },
+                {
+                  "text": "Chemie (z. B. geschlossene Stoffkreisläufe, Ab-"
+                },
+                {
+                  "text": "fallvermeidung, Prozessoptimierung, Energie-"
+                },
+                {
+                  "text": "erklären und berechnen Löslichkeitsgleichge-"
+                },
+                {
+                  "text": "Konkretisierung prozessbezogener Kompetenzen"
+                },
+                {
+                  "text": "Die Lernenden ..."
+                },
+                {
+                  "text": "Berücksichtigung der Variablenkontrolle experimentelle Untersuchun-"
+                },
+                {
+                  "text": "führen diese durch."
+                },
+                {
+                  "text": "Hypothesen zum unvollständigen Stoffumsatz bei chemischen Reaktionen"
+                },
+                {
+                  "text": "Auswirkungen chemischer Verfahren im Sinne einer nach-"
+                },
+                {
+                  "text": "Entwicklung aus ökologischer, ökonomischer und sozialer Perspektive."
+                },
+                {
+                  "text": "Modellierung chemischer Gleichgewichte (Computersimulation, Modellrechnungen)"
+                },
+                {
+                  "text": "Gleichgewichte bei chromatographischen Prozessen"
+                },
+                {
+                  "text": "Weitere Gleichgewichte in großtechnischen Synthesen (z. B. Ostwaldverfahren,"
+                },
+                {
+                  "text": "Kontaktverfahren)"
+                },
+                {
+                  "text": "Beispiele für experimentelle Arbeiten"
+                },
+                {
+                  "text": "Estergleichgewicht und Bestimmung der Gleichgewichtskonstanten"
+                },
+                {
+                  "text": "Verschiebung des Gleichgewichtes durch Druck, Konzentration und Temperatur"
+                },
+                {
+                  "text": "Modellversuch zum chemischen Gleichgewicht"
+                },
+                {
+                  "text": "Löslichkeitsprodukte/Löslichkeitsgleichgewichte"
+                },
+                {
+                  "text": "Dicke Rahmenlinien: Verpflichtende Inhalte und Kompetenzen"
+                },
+                {
+                  "text": "Dünne Rahmenlinien: Optionale Kontexte und je nach Schwerpunktsetzung für das Abitur relevant"
+                },
+                {
+                  "text": "Gymnasiale Oberstufe – Chemie 23"
+                },
+                {
+                  "text": "Thema 1.2: Protolysegleichgewichte"
+                },
+                {
+                  "text": "Fachinhaltliche Kompetenzen Verbindliche Fachbegriffe"
+                },
+                {
+                  "text": "Die Lernenden ... Brönsted Säure-Base-Theorie,"
+                },
+                {
+                  "text": "erklären Säure-Base-Reaktionen als reversible Protolysegleichgewicht, korres-"
+                },
+                {
+                  "text": "Protolysereaktionen mit der Brönsted Säure- pondierendes Säure-Base-Paar,"
+                },
+                {
+                  "text": "Base-Theorie. Autoprotolyse, Ionenprodukt des"
+                },
+                {
+                  "text": "Massenwirkungsgesetz auf Protoly- Wassers, pH-Wert, Säurestärke"
+                },
+                {
+                  "text": "Basenstärke, Neutralisation,"
+                },
+                {
+                  "text": "begründen die unterschiedliche Stärke von Säu- Titration, Titrationskurve und"
+                },
+                {
+                  "text": "Basen auf der Teilchenebene. charakteristische Punkte"
+                },
+                {
+                  "text": "pH-Werte bei vollständiger Protolyse."
+                },
+                {
+                  "text": "pH-Titration Stoffmengen bzw."
+                },
+                {
+                  "text": "Puffersysteme, Konduktometrie,"
+                },
+                {
+                  "text": "Stoffmengenkonzentrationen von Säuren und"
+                },
+                {
+                  "text": "Bindung bei hydrati-"
+                },
+                {
+                  "text": "pH-Titrationskurven."
+                },
+                {
+                  "text": "Puffersysteme mit der Henderson-"
+                },
+                {
+                  "text": "Hasselbalch-Gleichung."
+                },
+                {
+                  "text": "pH-Werte bei unvollständiger Proto-"
+                },
+                {
+                  "text": "pH-Titrationskurven mehrprotoni-"
+                },
+                {
+                  "text": "erklären die saure Reaktion von hydratisierten"
+                },
+                {
+                  "text": "Metallkationen mit Hilfe der koordinativen Bin-"
+                },
+                {
+                  "text": "Konkretisierung prozessbezogener Kompetenzen"
+                },
+                {
+                  "text": "Die Lernenden ..."
+                },
+                {
+                  "text": "Untersuchungen zur Bestimmung der Stoffmengenkonzentration"
+                },
+                {
+                  "text": "Säuren und Basen, führen diese durch und werten sie u. a. mit Hilfe von Titrati-"
+                },
+                {
+                  "text": "Zuhilfenahme von digitalen Werkzeugen)."
+                },
+                {
+                  "text": "präsentieren die Relevanz von Säuren und Basen im Alltag in"
+                },
+                {
+                  "text": "ökologische Bedeutung der Ozeanversauerung durch den Menschen"
+                },
+                {
+                  "text": "Handlungsoptionen ab."
+                },
+                {
+                  "text": "Physiologisch bedeutsame Puffersysteme (z. B. Blutpuffer, Antazida)"
+                },
+                {
+                  "text": "Ökologisch bedeutsame Puffersysteme (z. B. Bodenpuffer, Meerwasser)"
+                },
+                {
+                  "text": "Beispiele für experimentelle Arbeiten"
+                },
+                {
+                  "text": "pH-Wert-Bestimmung und Titration von Säuren/ Basen in Lebens- und Reinigungs-"
+                },
+                {
+                  "text": "Untersuchung von CO -Gleichgewichten (Mineralwasser, Meerwasser)"
+                },
+                {
+                  "text": "Herstellung und Untersuchung eines Puffers (z. B. Acetatpuffer)"
+                },
+                {
+                  "text": "Leitfähigkeitstitration (z. B. Salzsäure mit Natronlauge)"
+                },
+                {
+                  "text": "Bestimmung des pH-Werts von Salzlösungen und Salzlösungen mit hydratisierten"
+                },
+                {
+                  "text": "Metallkationen (Aluminium-, Kupfer - oder Eisenchlorid)"
+                }
+              ]
+            },
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Thema 1.3: Reaktionskinetik und Katalyse"
+                },
+                {
+                  "text": "Fachinhaltliche Kompetenzen Verbindliche Fachbegriffe"
+                },
+                {
+                  "text": "Die Lernenden ... Reaktionsgeschwindigkeit, Durch-"
+                },
+                {
+                  "text": "Reaktionsgeschwindigkeit und schnitts- und Momentangeschwin-"
+                },
+                {
+                  "text": "Messwerten. digkeit, Konzentrations-Zeit-Dia-"
+                },
+                {
+                  "text": "gramm, Energiediagramm, Kon-"
+                },
+                {
+                  "text": "Einfluss von Temperatur, Druck, Konzentra- zentrationsabhängigkeit, Tempera-"
+                },
+                {
+                  "text": "Zerteilungsgrad auf die Reaktionsge- turabhängigkeit, Zerteilungsgrad,"
+                },
+                {
+                  "text": "erklären diesen auf der Aktivierungsenergie, Stoßtheorie,"
+                },
+                {
+                  "text": "Teilchenebene. Maxwell-Boltzmann-Verteilung,"
+                },
+                {
+                  "text": "erklären die Bedeutung von Katalysatoren RGT-Regel, homogene und hetero-"
+                },
+                {
+                  "text": "Einfluss auf die Reaktionsge- gene Katalyse"
+                },
+                {
+                  "text": "Reaktionsordnung aus Konzen- Reaktionsordnung, nucleophile"
+                },
+                {
+                  "text": "trations-Zeit-Verläufen. S ubstitution"
+                },
+                {
+                  "text": "erläutern die Mechanismen der S 1- und S 2-"
+                },
+                {
+                  "text": "Konkretisierung prozessbezogener Kompetenzen"
+                },
+                {
+                  "text": "Die Lernenden ..."
+                },
+                {
+                  "text": "Werkzeuge und Medien zum Aufnehmen, Darstellen und Auswerten"
+                },
+                {
+                  "text": "Konzentrations-Zeit-Verläufen."
+                },
+                {
+                  "text": "Ablauf chemischer Reaktionen in Abhängigkeit von ver-"
+                },
+                {
+                  "text": "Parametern (u. a. Oberfläche, Konzentration, Temperatur) und stellen"
+                },
+                {
+                  "text": "Einsatz von Katalysatoren im Sinne einer nachhaltigen Chemie."
+                },
+                {
+                  "text": "Vergleich von enzymatischer Katalyse mit anderen Katalysen im Hinblick auf ihre"
+                },
+                {
+                  "text": "Einsatzmöglichkeiten im Rahmen der nachhaltigen Chemie"
+                },
+                {
+                  "text": "Ermittlungen von Reaktionsordnungen über kinetische Messungen"
+                },
+                {
+                  "text": "Einsatz von Katalysatoren in der Ammoniak-Synthese oder dem Ostwaldverfahren"
+                },
+                {
+                  "text": "Beispiele für experimentelle Arbeiten"
+                },
+                {
+                  "text": "Modellversuch zur Reaktionsgeschwindigkeit (Stechheber-Versuch)"
+                },
+                {
+                  "text": "Gasometrische oder pH-Wert-Messungen (Zink und Salzsäure oder Kalk und Salz-"
+                },
+                {
+                  "text": "Zersetzung von Wasserstoffperoxid"
+                },
+                {
+                  "text": "Bildung und Zerfall von Schaum (Bierschaum und Hefegärung)"
+                },
+                {
+                  "text": "Entzünden von Wasserstoff am Platinkatalysator (Döbereiner-Feuerzeug)"
+                },
+                {
+                  "text": "Gymnasiale Oberstufe – Chemie 25"
+                },
+                {
+                  "text": "Themenbereich 2: Organische Naturstoffe und nachwachsende Rohstoffe"
+                },
+                {
+                  "text": "Thema 2.1: Kohlenhydrate"
+                },
+                {
+                  "text": "Kohlenhydrate sind von großer Bedeutung für die Ernährung, aber auch als nach-"
+                },
+                {
+                  "text": "Rohstoff für die Industrie. Um die Kohlenhydrate möglichst sinnvoll ein-"
+                },
+                {
+                  "text": "zusetzen, ist ein Verständnis ihres Aufbaus und der daraus resultierenden Eigen-"
+                },
+                {
+                  "text": "Nur so können Chancen und Risiken bei der Nutzung verschiede-"
+                },
+                {
+                  "text": "Kohlenhydrate für die Ernährung, aber auch als nachwachsender Rohstoff für"
+                },
+                {
+                  "text": "Entwicklung verglichen und bewertet werden."
+                },
+                {
+                  "text": "Thema 2.2: Aminosäuren"
+                },
+                {
+                  "text": "Aminosäuren gehören zu den Grundbausteinen des Lebens. Zellen, Muskeln oder"
+                },
+                {
+                  "text": "Gewebe bestehen zu einem Großteil aus Proteinen, die wiederum aus Aminosäu-"
+                },
+                {
+                  "text": "Die Funktion von Aminosäuren und Proteinen im Körper, aber"
+                },
+                {
+                  "text": "Anwendungen sind viel-"
+                },
+                {
+                  "text": "fältig. Dies zu verstehen, erfordert eine grundlegende Betrachtung ihrer Strukturen"
+                },
+                {
+                  "text": "Eigenschaften, auch um ihr Potenzial für Anwendungen in den Bereichen Er-"
+                },
+                {
+                  "text": "nährung, Gesundheit und nachhaltige Entwicklung verstehen zu können."
+                },
+                {
+                  "text": "Thema 2.3: Fette und Öle"
+                },
+                {
+                  "text": "Fette und Öle aus pflanzlichen und tierischen Quellen sind von großer Bedeutung"
+                },
+                {
+                  "text": "für die Ernährung und die chemische Industrie. Für eine gesunde Ernährung spielen"
+                },
+                {
+                  "text": "Menge als auch die Qualität beim Konsum von Fetten und Ölen eine"
+                },
+                {
+                  "text": "Rolle. In kosmetischen Produkten sind Fette und Öle ein wichtiger Inhaltsstoff. Um"
+                },
+                {
+                  "text": "Anwendungen zu verstehen, bedarf es eines grundlegenden Verständnisses"
+                },
+                {
+                  "text": "Aufbaus der Fette und Öle und ihrer Unterschiede, um deren Nutzung bewerten"
+                }
+              ]
+            },
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Thema 2.1: Kohlenhydrate"
+                },
+                {
+                  "text": "Fachinhaltliche Kompetenzen Verbindliche Fachbegriffe"
+                },
+                {
+                  "text": "Die Lernenden ... Mono-, Di- und Polysaccharide,"
+                },
+                {
+                  "text": "Entstehung der Kohlenhydrate Aldosen, Ketosen, Fischer-Pro-"
+                },
+                {
+                  "text": "Organismen und die Bedeutung der Kohlen- jektion, Haworth-Projektion, Keil-"
+                },
+                {
+                  "text": "Rohstoffe für industrielle Produkte. strich-Schreibweise, Zucker-"
+                },
+                {
+                  "text": "erklären und vergleichen die Strukturen und Ei- stammbaum, Stereoisomerie,"
+                },
+                {
+                  "text": "Mono-, Di- und Polysaccharide. asymmetrisch substituiertes Koh-"
+                },
+                {
+                  "text": "erklären die Funktionsweise eines Polarimeters. lenstoffatom, Chiralitätszentrum,"
+                },
+                {
+                  "text": "ausgewählte Aspekte der Stereochemie glykosidische Bindung, Ringbil-"
+                },
+                {
+                  "text": "Kohlenhydrate an. dung, Mutarotation, Fehling-"
+                },
+                {
+                  "text": "LK: Probe, Hydrolyse, optische Akti-"
+                },
+                {
+                  "text": "vität, Polarimeter"
+                },
+                {
+                  "text": "führen Berechnungen zur Konzentrationsbestim-"
+                },
+                {
+                  "text": "Polarimeter durch."
+                },
+                {
+                  "text": "Konformationsschreibweisen zur Darstel-"
+                },
+                {
+                  "text": "Drehwinkel, Konfor-"
+                },
+                {
+                  "text": "mationsschreibweise, Keto-En-"
+                },
+                {
+                  "text": "erklären die Umwandlung von Fructose zu Glu-"
+                },
+                {
+                  "text": "über die Keto-Endiol-Tautomerie."
+                },
+                {
+                  "text": "Konkretisierung prozessbezogener Kompetenzen"
+                },
+                {
+                  "text": "Die Lernenden ..."
+                },
+                {
+                  "text": "prüfen mit Nachweisreaktionen Kohlenhydrate auf reduzierende Eigenschaften."
+                },
+                {
+                  "text": "Darstellungsformen von Kohlenhydraten mit Hilfe von Molekül-"
+                },
+                {
+                  "text": "baukästen und digitalen 3D-Moleküldarstellungen, um die Fischer-Projektion und"
+                },
+                {
+                  "text": "Keilstrich-Schreibweise ineinander zu überführen."
+                },
+                {
+                  "text": "Bildung der Ringformen von α-D-Glucose und β-D-Glucose aus der"
+                },
+                {
+                  "text": "Fischer-Projektion und stellen sie mit der Haworth-Projektionsformel (LK: zusätzlich"
+                },
+                {
+                  "text": "Konformationsschreibweise) dar."
+                },
+                {
+                  "text": "Auswirkungen der Zuckergewinnung im industriellen"
+                },
+                {
+                  "text": "Maßstab aus ökologischer, ökonomischer und sozialer Perspektive."
+                },
+                {
+                  "text": "Süßstoffe und Zuckeraustauschstoffe (z. B. Fructose, Sorbit, Cyclamat, Saccharin,"
+                },
+                {
+                  "text": "Klebstoffe auf Kohlenhydratbasis"
+                },
+                {
+                  "text": "Beispiele für experimentelle Arbeiten"
+                },
+                {
+                  "text": "Nachweis reduzierender Zucker mit Fehling-, Tollens- oder Benedict-Probe"
+                },
+                {
+                  "text": "Nachweis von Stärke mit Lugol’scher Lösung"
+                },
+                {
+                  "text": "Untersuchungen zur optischen Aktivität"
+                },
+                {
+                  "text": "Gymnasiale Oberstufe – Chemie 27"
+                },
+                {
+                  "text": "Thema 2.2: Aminosäuren und Proteine"
+                },
+                {
+                  "text": "Fachinhaltliche Kompetenzen Verbindliche Fachbegriffe"
+                },
+                {
+                  "text": "Die Lernenden ... Aminosäuren, Proteine, Peptidbin-"
+                },
+                {
+                  "text": "Molekülstrukturen und Ei- dung, Primär-, Sekundär-, Tertiär-"
+                },
+                {
+                  "text": "Aminosäu- und Quartärstruktur, α-Helix, β-Falt-"
+                },
+                {
+                  "text": "Proteinen. blatt, Kondensationsreaktion, Dena-"
+                },
+                {
+                  "text": "Stereochemie von Amino- turierung, isoelektrischer Punkt,"
+                },
+                {
+                  "text": "säuren. Zwitterion, Chiralität, optische Aktivi-"
+                },
+                {
+                  "text": "erläutern elektrophoretische und dünn- tät, Stereoisomerie, Biuret-Reaktion,"
+                },
+                {
+                  "text": "Trennverfahren. Ninhydrin-Nachweis, Xanthoprotein-"
+                },
+                {
+                  "text": "Ermitteln und interpretieren R-Werte. Reaktion, Elektrophorese, Dünn-"
+                },
+                {
+                  "text": "LK: schicht-chromatographie, R f -Wert"
+                },
+                {
+                  "text": "Chiralitätszentren in Amino-"
+                },
+                {
+                  "text": "säuren nach dem Cahn-Ingold-Prelog Sys-"
+                },
+                {
+                  "text": "R- und S-Konfiguration"
+                },
+                {
+                  "text": "Konkretisierung prozessbezogener Kompetenzen"
+                },
+                {
+                  "text": "Die Lernenden ..."
+                },
+                {
+                  "text": "führen einfache Nachweisverfahren und experimentelle Untersuchungen zu Amino-"
+                },
+                {
+                  "text": "säuren und Proteinen durch, protokollieren diese und werten sie aus."
+                },
+                {
+                  "text": "Denaturierung von Proteinen unter Einfluss von Tem-"
+                },
+                {
+                  "text": "peratur, Ethanol, sauren und alkalischen Lösungen sowie Schwermetallionen und"
+                },
+                {
+                  "text": "Wirkung auf lebende Organismen."
+                },
+                {
+                  "text": "Verknüpfung von Aminosäuren als Kondensationsreaktion mithilfe von"
+                },
+                {
+                  "text": "Strukturformeln dar."
+                },
+                {
+                  "text": "Darstellungsformen die räumliche Struktur von Pro-"
+                },
+                {
+                  "text": "Ebenen (Primär-, Sekundär-, Tertiär- und Quartärstruktur)."
+                },
+                {
+                  "text": "Proteinreiche Nahrungsergänzungsprodukte im Sportbereich (z. B. Proteinshakes"
+                },
+                {
+                  "text": "Analyse von Titrationskurven verschiedener Aminosäuren"
+                },
+                {
+                  "text": "Aufbau und Funktionsweise von Enzymen (Substrat- und Reaktionsspezifität, zwi-"
+                },
+                {
+                  "text": "Wechselwirkungen von Enzym und Substrat)"
+                },
+                {
+                  "text": "Beispiele für experimentelle Arbeiten"
+                },
+                {
+                  "text": "Nachweis von Aminosäuren und Proteinen (Ninhydrin-Nachweis, Biuret-Reaktion,"
+                },
+                {
+                  "text": "Xanthoprotein-Reaktion)"
+                },
+                {
+                  "text": "Denaturierung von Proteinen"
+                },
+                {
+                  "text": "Hydrolyse von Proteinen und Trennung eines Aminosäuregemisches"
+                },
+                {
+                  "text": "Titration von Aminosäuren (Pufferwirkung und isoelektrischer Punkt)"
+                }
+              ]
+            },
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Thema 2.3: Fette und Öle"
+                },
+                {
+                  "text": "Fachinhaltliche Kompetenzen Verbindliche Fachbegriffe"
+                },
+                {
+                  "text": "Die Lernenden ... Fett, Öl, Triglyceride, gesättigte"
+                },
+                {
+                  "text": "Struktur von Fettmolekülen. und ungesättigte Fettsäuren,"
+                },
+                {
+                  "text": "Methoden der Fettgewinnung. Ester, Fetthärtung, Kennzahlen"
+                },
+                {
+                  "text": "erklären wichtige Eigenschaften der Fette und Öle von Fetten (Verseifungszahl,"
+                },
+                {
+                  "text": "(Löslichkeit, Konsistenz) durch ihre molekulare Iodzahl), essenzielle Fettsäu-"
+                },
+                {
+                  "text": "Struktur. ren, Hydrolyse"
+                },
+                {
+                  "text": "Zusammenhang zwischen den Kenn-"
+                },
+                {
+                  "text": "Fettes und seiner Struktur dar."
+                },
+                {
+                  "text": "Verfahren der Fetthärtung mittels"
+                },
+                {
+                  "text": "Hydrierung als Additionsreaktion dar."
+                },
+                {
+                  "text": "Konkretisierung prozessbezogener Kompetenzen"
+                },
+                {
+                  "text": "Die Lernenden ..."
+                },
+                {
+                  "text": "Löslichkeit von Fetten und Ölen in unterschiedlichen Lösungsmit-"
+                },
+                {
+                  "text": "Kennzahlen von Fetten, um Aussagen zur Zusammensetzung und Halt-"
+                },
+                {
+                  "text": "Veresterung mit Hilfe von Strukturformeln und Reaktionsgleichungen dar."
+                },
+                {
+                  "text": "Bedeutung von gesättigten und ungesättigten Fettsäuren als Nah-"
+                },
+                {
+                  "text": "rungsbestandteile."
+                },
+                {
+                  "text": "Fette und ihre Bedeutung für das Leben (Entstehung und Gewinnung der Fette,"
+                },
+                {
+                  "text": "Brennwert, Fettoxidation)"
+                },
+                {
+                  "text": "Aspekte gesunder Ernährung (trans-Fettsäuren, Omega-3-Fettsäuren und fettredu-"
+                },
+                {
+                  "text": "Seifengewinnung aus Fetten und deren Einsatz und Wirkungsweise als Tenside"
+                },
+                {
+                  "text": "Beispiele für experimentelle Arbeiten"
+                },
+                {
+                  "text": "Extraktion von Fetten"
+                },
+                {
+                  "text": "Nachweis von ungesättigten Fettsäuren"
+                },
+                {
+                  "text": "Bestimmung der Iodzahl und Verseifungszahl eines Fettes"
+                },
+                {
+                  "text": "Bestimmung des Fettgehaltes von Lebensmitteln"
+                },
+                {
+                  "text": "Herstellung von Margarine"
+                },
+                {
+                  "text": "Gymnasiale Oberstufe – Chemie 29"
+                },
+                {
+                  "text": "Themenbereich 3: Energie und Energiespeicherung"
+                },
+                {
+                  "text": "Thema 3.1: Energetik"
+                },
+                {
+                  "text": "Neben dem Stoffumsatz sind chemische Reaktionen immer auch mit energetischen"
+                },
+                {
+                  "text": "Veränderungen verbunden. Dies spielt eine Rolle etwa im Bereich des Heizens oder"
+                },
+                {
+                  "text": "Nutzung von Treibstoffen in Verbrennungsmotoren. Diese Energieumsätze zu"
+                },
+                {
+                  "text": "Grundlage, die Nutzung von chemischen Reaktio-"
+                },
+                {
+                  "text": "Bereich einer sich verändernden Mobilität einschätzen und im Hinblick"
+                },
+                {
+                  "text": "Klimawandel bewerten zu können."
+                },
+                {
+                  "text": "Thema 3.2: Elektrochemie"
+                },
+                {
+                  "text": "Batterien und Akkumulatoren spielen eine wichtige Rolle im Alltag, etwa im Bereich"
+                },
+                {
+                  "text": "Kommunikation, vom Telefon über das Handy bis zum Laptop. Die Elektro-"
+                },
+                {
+                  "text": "Feld für die Energiewende. Die Nutzung elektro-"
+                },
+                {
+                  "text": "Energie in Batterien und Akkumulatoren ist Grundlage für"
+                },
+                {
+                  "text": "e-Mobilität, die einen wichtigen Beitrag zur Begrenzung des Klima-"
+                },
+                {
+                  "text": "Diesen Beitrag bewerten zu können, erfordert ein grundlegen-"
+                },
+                {
+                  "text": "Verständnis von Elektronenübertragungsreaktionen und elektrochemischen"
+                },
+                {
+                  "text": "Thema 3.3: Mit nachwachsenden Rohstoffen gegen den Klimawandel"
+                },
+                {
+                  "text": "Bis zum Beginn des Industriezeitalters waren nachwachsende Rohstoffe die über-"
+                },
+                {
+                  "text": "Basis für die Bereitstellung von Energie und die Herstellung von Gegen-"
+                },
+                {
+                  "text": "ständen im Alltag. Mit Beginn der Industrialisierung wurden immer mehr fossile Roh-"
+                },
+                {
+                  "text": "Brenn- und Treibstoffe sowie für industrielle Anwendungen genutzt, was"
+                },
+                {
+                  "text": "Treibhauseffekt und zum zunehmenden Klimawandel"
+                },
+                {
+                  "text": "geführt hat. Um Maßnahmen gegen den Klimawandel bewerten zu können, ist es"
+                },
+                {
+                  "text": "notwendig, die Grundlagen des Energiehaushaltes der Erde und Ansätze zum Er-"
+                },
+                {
+                  "text": "Verbrauchs fossiler durch nachwachsende Rohstoffe zu verstehen."
+                }
+              ]
+            },
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Thema 3.1: Energetik"
+                },
+                {
+                  "text": "Fachinhaltliche Kompetenzen Verbindliche Fachbegriffe"
+                },
+                {
+                  "text": "Die Lernenden ... innere Energie, Systeme (offene,"
+                },
+                {
+                  "text": "erklären die Gesetzmäßigkeiten von Enthal- geschlossene und isolierte), Reak-"
+                },
+                {
+                  "text": "pieänderungen. tionsenthalpie, (Standard-) Bil-"
+                },
+                {
+                  "text": "Reaktionsenthalpien mit Hilfe der dungsenthalpie, Bindungsenthal-"
+                },
+                {
+                  "text": "Standardbildungsenthalpien. pie, Satz von Hess, 1. Hauptsatz"
+                },
+                {
+                  "text": "Bedeutung des 1. Hauptsatzes der der Thermodynamik"
+                },
+                {
+                  "text": "Thermodynamik dar."
+                },
+                {
+                  "text": "Satz von Hess an. LK:"
+                },
+                {
+                  "text": "LK: Entropie, exergonische und ender-"
+                },
+                {
+                  "text": "Vorgänge, Gibbs-Helm-"
+                },
+                {
+                  "text": "Bedeutung des 2. Hauptsatzes der"
+                },
+                {
+                  "text": "holtz-Gleichung, 2. Hauptsatz der"
+                },
+                {
+                  "text": "Thermodynamik dar."
+                },
+                {
+                  "text": "erklären die Rolle der Entropie für die Freiwillig-"
+                },
+                {
+                  "text": "Reaktion und berechnen die freie"
+                },
+                {
+                  "text": "Enthalpie einer chemischen Reaktion mit der"
+                },
+                {
+                  "text": "Gibbs-Helmholtz-Gleichung."
+                },
+                {
+                  "text": "Konkretisierung prozessbezogener Kompetenzen"
+                },
+                {
+                  "text": "Die Lernenden ..."
+                },
+                {
+                  "text": "Reaktionsenthalpien mit einem einfachen Kalorimeter."
+                },
+                {
+                  "text": "führen Temperaturmessungen mit digitalen Werkzeugen durch und werten diese aus."
+                },
+                {
+                  "text": "Energie als eine Erhaltungsgröße und diskutieren die Konsequenzen"
+                },
+                {
+                  "text": "Aspekte bei chemischen Vorgängen im Sinne einer nachhalti-"
+                },
+                {
+                  "text": "Entwicklung multiperspektivisch."
+                },
+                {
+                  "text": "Energetische Aspekte von Lebensmitteln, z. B. fetthaltige und kohlenhydratreiche Le-"
+                },
+                {
+                  "text": "bensmittel, kritische Diskussion von Light-Produkten"
+                },
+                {
+                  "text": "Vergleich von Brennwert und Heizwert bei Brennstoffen"
+                },
+                {
+                  "text": "Beispiele für experimentelle Arbeiten"
+                },
+                {
+                  "text": "Selbstbau eines einfachen Kalorimeters"
+                },
+                {
+                  "text": "Bestimmung der Verbrennungsenthalpie von Ethanol"
+                },
+                {
+                  "text": "Bestimmung von Lösungs- und Neutralisationsenthalpien"
+                },
+                {
+                  "text": "Modelldampfmaschine als Wärmekraftmaschine"
+                },
+                {
+                  "text": "Gymnasiale Oberstufe – Chemie 31"
+                },
+                {
+                  "text": "Thema 3.2: Elektrochemie"
+                },
+                {
+                  "text": "Fachinhaltliche Kompetenzen Verbindliche Fachbegriffe"
+                },
+                {
+                  "text": "Die Lernenden ... Redoxreaktionen als Elektronen-"
+                },
+                {
+                  "text": "erläutern Aufbau und Funktion von galvanischen übertragung, Halbzelle, galvani-"
+                },
+                {
+                  "text": "Elektrolyse-Zellen an ausgewählten Beispie- sche Zelle, Elektrolysezelle, elek-"
+                },
+                {
+                  "text": "Potenzial, Span-"
+                },
+                {
+                  "text": "Verfahren zur Messung von elektro- nungsreihe, Normalwasserstof-"
+                },
+                {
+                  "text": "Potenzialen und wenden diese an. felektrode, Standardpotenzial,"
+                },
+                {
+                  "text": "Zellspannungen mit der Spannungs- Alkali-Mangan-Zelle und Blei-Akku-"
+                },
+                {
+                  "text": "mulator, Li-Ionenakku, Korrosion"
+                },
+                {
+                  "text": "Aufbau und die Reaktionen der"
+                },
+                {
+                  "text": "Alkali-Mangan-Zelle, des Blei- und des Li-Ionen- LK:"
+                },
+                {
+                  "text": "erläutern diese. Nernst-Gleichung, Konzentrations-"
+                },
+                {
+                  "text": "zelle, Redoxtitration, Faraday-Ge-"
+                },
+                {
+                  "text": "erklären Korrosion und Maßnahmen des Korrosi-"
+                },
+                {
+                  "text": "etze, Überspannung"
+                },
+                {
+                  "text": "erklären die Konzentrationsabhängigkeit des"
+                },
+                {
+                  "text": "führen eine Redoxtitration durch und erklären"
+                },
+                {
+                  "text": "führen mit Hilfe der Faraday-Gesetze Berech-"
+                },
+                {
+                  "text": "Elektrolysen durch."
+                },
+                {
+                  "text": "erklären die Überspannung im Kontext der"
+                },
+                {
+                  "text": "Elektrolyse und des Akkumulators."
+                },
+                {
+                  "text": "Konkretisierung prozessbezogener Kompetenzen"
+                },
+                {
+                  "text": "Die Lernenden ..."
+                },
+                {
+                  "text": "führen experimentelle Untersuchungen zur Spannungsreihe durch."
+                },
+                {
+                  "text": "Rolle von Akkumulatoren bei der Speicherung und Bereitstellung"
+                },
+                {
+                  "text": "Aufwand und Umweltaspekte bei der Herstellung und Verwendung von Bat-"
+                },
+                {
+                  "text": "Brennstoffzellen für Fahrzeugantriebe, technisch-ökologische Bewertung"
+                },
+                {
+                  "text": "Elektrochemische Verfahren in der Industrie (z. B. Aluminiumherstellung, Kupferraffina-"
+                },
+                {
+                  "text": "Kupferrecycling, Galvanisieren, Eloxieren)"
+                },
+                {
+                  "text": "Messung energetischer Größen mit Hilfe der Elektrochemie (z. B. Bestimmung der"
+                },
+                {
+                  "text": "Reaktionsenthalpie aus elektrochemischen Daten)"
+                },
+                {
+                  "text": "Beispiele für experimentelle Arbeiten"
+                },
+                {
+                  "text": "Daniell-Element/Alkali-Mangan-Element"
+                },
+                {
+                  "text": "Bestimmung des Standardpotentials und Potentialmessungen"
+                },
+                {
+                  "text": "Korrosionsversuche/Korrosionsschutz"
+                },
+                {
+                  "text": "Elektrolyse von Wasser mit Hofmannschem Zersetzer/Überspannung"
+                },
+                {
+                  "text": "Aus Potentialmessungen die Nernst-Gleichung herleiten"
+                },
+                {
+                  "text": "Redoxtitration Fe-II-Bestimmung mittels Permanganometrie"
+                }
+              ]
+            },
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Thema 3.3: Mit nachwachsenden Rohstoffen gegen den Klimawandel"
+                },
+                {
+                  "text": "Fachinhaltliche Kompetenzen Verbindliche Fachbegriffe"
+                },
+                {
+                  "text": "Die Lernenden ... Photosynthese, Kohlenstoffkreis-"
+                },
+                {
+                  "text": "erklären die Bedeutung und grundlegende Funk- lauf, Energiehaushalt der Erde,"
+                },
+                {
+                  "text": "Photosynthese für die Bereitstel- Treibhauseffekt, anthropogener"
+                },
+                {
+                  "text": "Rohstoffen. Treibhauseffekt, Treibstoffe der 1."
+                },
+                {
+                  "text": "erläutern den Kohlenstoffkreislauf. und 2. Generation, Pflanzenöl, Bio-"
+                },
+                {
+                  "text": "erklären den Treibhauseffekt. diesel, Umesterung, Bioethanol,"
+                },
+                {
+                  "text": "Biotreibstoffe und erläutern die Kohlenstoffdioxidbilanz"
+                },
+                {
+                  "text": "Herstellungsverfahren."
+                },
+                {
+                  "text": "erläutern das Fischer-Tropsch-Verfahren zur"
+                },
+                {
+                  "text": "Herstellung von BTL-Treibstoffen."
+                },
+                {
+                  "text": "Konkretisierung prozessbezogener Kompetenzen"
+                },
+                {
+                  "text": "Die Lernenden ..."
+                },
+                {
+                  "text": "Zusammenhang zwischen ihrer eigenen Lebensweise und aktuellen glo-"
+                },
+                {
+                  "text": "Ursachen und Auswirkungen des Klimawandels dar und kommunizieren diese."
+                },
+                {
+                  "text": "ökologische und ökonomische Bewertungen verschiedener Treibstoffe vor."
+                },
+                {
+                  "text": "Informationen zur Nutzung nachwachsender Rohstoffe und"
+                },
+                {
+                  "text": "Klimawandel aus digitalen und analogen Quellen kritisch."
+                },
+                {
+                  "text": "Energetische Betrachtung verschiedener Energieträger (z. B. Verbrennungsenthalpien"
+                },
+                {
+                  "text": "Treibstoffen aus fossilen und regenerativen Quellen)"
+                },
+                {
+                  "text": "Globale Gleichgewichte und Klimawandel (Klimamodellierung)"
+                },
+                {
+                  "text": "Power-to-X-Technologien"
+                },
+                {
+                  "text": "Beispiele für experimentelle Arbeiten"
+                },
+                {
+                  "text": "Unterscheidung der Eigenschaften von Treibstoffen (Viskosität/Flammpunkt)"
+                },
+                {
+                  "text": "Umesterung von Rapsöl zu Biodiesel"
+                },
+                {
+                  "text": "Bestimmung der Verbrennungsenthalpien verschiedener Treibstoffe mittels eines ein-"
+                },
+                {
+                  "text": "Modellexperimente zum Treibhauseffekt"
+                },
+                {
+                  "text": "Gymnasiale Oberstufe – Chemie 33"
+                },
+                {
+                  "text": "Themenbereich 4: Chemie verändert die Welt"
+                },
+                {
+                  "text": "Thema 4.1: Kunststoffe"
+                },
+                {
+                  "text": "Kunststoffe sind in unserem Alltag überall präsent, bei Verpackungen, beim Handy"
+                },
+                {
+                  "text": "Auto. Je nach Anwendung müssen die Kunststoffe dabei unterschiedliche"
+                },
+                {
+                  "text": "Eigenschaften aufweisen, die durch die molekulare Struktur der Kunststoffe und Zu-"
+                },
+                {
+                  "text": "Da Erdöl als Ausgangsstoff für Kunststoffe nur be-"
+                },
+                {
+                  "text": "Anstieg von Kunststoffabfällen die Umwelt und"
+                },
+                {
+                  "text": "Gesundheit von Mensch und Tier belastet, sind Kunststoffrecycling, Kunststoffe"
+                },
+                {
+                  "text": "Rohstoffen und biologisch abbaubare Kunststoffe wichtige"
+                },
+                {
+                  "text": "Entwicklungen für die Nutzung von Kunststoffen in der Zukunft."
+                },
+                {
+                  "text": "Thema 4.2: Farbstoffe"
+                },
+                {
+                  "text": "Farbstoffe aus Mineralien, Pflanzen und Tieren werden seit Jahrhunderten unter"
+                },
+                {
+                  "text": "für das Färben von Kleidung genutzt. Hinzu gekommen sind seit dem 19."
+                },
+                {
+                  "text": "Jahrhundert synthetische Farbstoffe. Da sich einige der synthetischen Farbstoffe"
+                },
+                {
+                  "text": "gesundheitsschädlich erwiesen haben, werden heute wieder vermehrt Natur-"
+                },
+                {
+                  "text": "eingesetzt, z. B. in Lebensmitteln. Pflanzenfarbstoffe dienen nicht nur zum"
+                },
+                {
+                  "text": "Färben, sondern spielen auch bei der Lichtreaktion der Photosynthese eine wichtige"
+                },
+                {
+                  "text": "Rolle. Bei der künstlichen Photosynthese werden wesentliche Schritte der natürli-"
+                },
+                {
+                  "text": "Photosynthese mit dem Ziel nachgeahmt, Rohstoffe und Energie in industriel-"
+                },
+                {
+                  "text": "Maßstab zu erzeugen."
+                },
+                {
+                  "text": "Thema 4.3: Aromatische Systeme als wichtige Strukturelemente von Natur-"
+                },
+                {
+                  "text": "Wirkstoffen in Medikamenten"
+                },
+                {
+                  "text": "Der Name der Aromaten lässt sich auf den zum Teil intensiven Geruch dieser Stoff-"
+                },
+                {
+                  "text": "zurückführen. Einige aromatische Verbindungen sind krebserregend oder"
+                },
+                {
+                  "text": "Andere sind Grundlage für wichtige pharma-"
+                },
+                {
+                  "text": "Wirkstoffe oder können als Naturstoffe aus Pflanzen und Pilzen isoliert"
+                },
+                {
+                  "text": "werden, aus denen Wirkstoffe für Medikamente gewonnen werden. So ist ein Ver-"
+                },
+                {
+                  "text": "ständnis der Besonderheiten aromatischer Verbindungen eine wichtige Grundlage"
+                },
+                {
+                  "text": "für die Gewinnung moderner Wirkstoffe, etwa in der Medizin."
+                }
+              ]
+            },
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Thema 4.1: Kunststoffe"
+                },
+                {
+                  "text": "Fachinhaltliche Kompetenzen Verbindliche Fachbegriffe"
+                },
+                {
+                  "text": "Die Lernenden ... Kunststoff, Makromolekül, Mono-"
+                },
+                {
+                  "text": "Kunststoffe anhand ihrer Eigenschaften mer, Polymer, Thermoplast, Duro-"
+                },
+                {
+                  "text": "Strukturen. plast, Elastomer, Polymerisation,"
+                },
+                {
+                  "text": "erklären die Entstehung wichtiger Kunststoffe Polyaddition, Polykondensation,"
+                },
+                {
+                  "text": "über Reaktionen der Polymerisation, Poly- Biokunststoff, Mikroplastik, Addi-"
+                },
+                {
+                  "text": "Polykondensation und beschrei- tiv, Kunststoffrecycling,"
+                },
+                {
+                  "text": "Struktur. Stoffkreislauf"
+                },
+                {
+                  "text": "Recyclingmethoden"
+                },
+                {
+                  "text": "(werkstoffliche, rohstoffliche und energetische LK:"
+                },
+                {
+                  "text": "Kunststoffverwertung). Nanotechnologie"
+                },
+                {
+                  "text": "erläutern den Mechanismus"
+                },
+                {
+                  "text": "Polymerisation und der"
+                },
+                {
+                  "text": "Veränderung der Eigenschaf-"
+                },
+                {
+                  "text": "Kunststoffen durch den Einsatz von Na-"
+                },
+                {
+                  "text": "(Nanostrukturierung, Nanoparti-"
+                },
+                {
+                  "text": "kelverstärkte Kunststoffe)."
+                },
+                {
+                  "text": "Konkretisierung prozessbezogener Kompetenzen"
+                },
+                {
+                  "text": "Die Lernenden ..."
+                },
+                {
+                  "text": "Kunststoffe anhand ausgewählter Kriterien."
+                },
+                {
+                  "text": "Vor- und Nachteile verschiedener Recyclingmethoden."
+                },
+                {
+                  "text": "Einsatz von Additiven (Weichmacher, Farb- und Füllstoffe, Flamm-"
+                },
+                {
+                  "text": "schutzmittel, Antistatika) bei Kunststoffen."
+                },
+                {
+                  "text": "Bedeutung von Kunststoffen und"
+                },
+                {
+                  "text": "Biokunststoffen aus Sicht der Nachhaltigkeit."
+                },
+                {
+                  "text": "Klebstoffe (Klebstoffarten, Wirkungsweise, Adhäsion, Kohäsion, Abbindemechanis-"
+                },
+                {
+                  "text": "men, Anwendungsgebiete und Art der Anforderungen)"
+                },
+                {
+                  "text": "Silicone (Herstellung und Struktur, Eigenschaften und Anwendungsgebiete, Si-"
+                },
+                {
+                  "text": "liconöle, Siliconharze und Siliconkautschuke)"
+                },
+                {
+                  "text": "Beispiele für experimentelle Arbeiten"
+                },
+                {
+                  "text": "Herstellung von traditionellen Kunststoffen (z. B. Polyurethan, Nylon)"
+                },
+                {
+                  "text": "Herstellung von Biokunststoffen (z. B. Thermoplastische Stärke, Stärkefolie, Poly-"
+                },
+                {
+                  "text": "Versuche zum Abbau von Kunststoffen"
+                },
+                {
+                  "text": "Gymnasiale Oberstufe – Chemie 35"
+                },
+                {
+                  "text": "Thema 4.2: Pflanzliche und synthetische Farbstoffe"
+                },
+                {
+                  "text": "Fachinhaltliche Kompetenzen Verbindliche Fachbegriffe"
+                },
+                {
+                  "text": "Die Lernenden ... Elektromagnetisches Spektrum, An-"
+                },
+                {
+                  "text": "erklären Farbigkeit als Wechselwirkung von regungsenergie, Absorptionsspek-"
+                },
+                {
+                  "text": "Strahlung und Materie. trum, Farbmischung, Komplemen-"
+                },
+                {
+                  "text": "Molekülstruktur von farbigen, tärfarbe, Farbstoffklasse (Azofarb-"
+                },
+                {
+                  "text": "Verbindungen und ordnen Farb- stoffe, Triphenylmethanfarbstoffe,"
+                },
+                {
+                  "text": "Polyene), Mesomerie, Delokalisa-"
+                },
+                {
+                  "text": "erläutern an Beispielen ausgewählter natürli- tion, Chromophor, Auxochrom und"
+                },
+                {
+                  "text": "Farbstoffe deren Vor- Antiauxochrom,"
+                },
+                {
+                  "text": "kommen, Herstellung bzw. Isolierung sowie Photometrie, Lichtreaktion der Pho-"
+                },
+                {
+                  "text": "Verwendung. tosynthese, Ladungstransfer, künst-"
+                },
+                {
+                  "text": "Grundzüge der Lichtreaktion l iche Photosynthese"
+                },
+                {
+                  "text": "Konkretisierung prozessbezogener Kompetenzen"
+                },
+                {
+                  "text": "Die Lernenden ..."
+                },
+                {
+                  "text": "Absorptionsspektren photometrischer Messungen."
+                },
+                {
+                  "text": "Lichtreaktion der Photosynthese und die Möglichkeit der Nach-"
+                },
+                {
+                  "text": "künstlichen Photosynthese."
+                },
+                {
+                  "text": "natürliche und künstliche Farbstoffe an-"
+                },
+                {
+                  "text": "ausgewählter Kriterien (Nutzen und Risiko)."
+                },
+                {
+                  "text": "ökologische Potential der natürlichen und künst-"
+                },
+                {
+                  "text": "Photosynthese zur Erzeugung von Rohstoffen bzw. zur Energiegewinnung."
+                },
+                {
+                  "text": "Farben und Färben im Alltag (z. B. Kleidung, Lebensmittel, Tätowierungen)"
+                },
+                {
+                  "text": "Konzentrationsbestimmung in der Umwelt durch Photometrie bzw. Kolorimetrie"
+                },
+                {
+                  "text": "Beispiele für experimentelle Arbeiten"
+                },
+                {
+                  "text": "Herstellung von synthetischen Farbstoffen"
+                },
+                {
+                  "text": "Extraktion und Chromatographie von Pflanzenfarbstoffen (z. B. Chlorophyll, Caro-"
+                },
+                {
+                  "text": "Untersuchungen von Farbstoffen z. B. in Lebensmitteln oder in Pflanzenextrakten"
+                },
+                {
+                  "text": "Hilfe des Photometers"
+                },
+                {
+                  "text": "Färben von Textilien mit Pflanzenfarbstoffen (z. B. Kurkuma, schwarzer Tee, Indigo)"
+                }
+              ]
+            },
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Thema 4.3: Aromatische Systeme in Natur- und Wirkstoffen"
+                },
+                {
+                  "text": "Fachinhaltliche Kompetenzen Verbindliche Fachbegriffe"
+                },
+                {
+                  "text": "Die Lernenden ... Benzol, Mesomerie, Aromatizität,"
+                },
+                {
+                  "text": "Verhalten aromati- elektrophile aromatische Substitu-"
+                },
+                {
+                  "text": "Verbindungen im Vergleich zu aliphati- tion, Wirkstoff, Natur- und Wirk-"
+                },
+                {
+                  "text": "Verbindungen. stoffsynthese, Molecular Mo-"
+                },
+                {
+                  "text": "erklären die Struktur und Bindungsverhältnisse delling, ortho-, meta- und para-"
+                },
+                {
+                  "text": "Benzol mit dem Mesomeriemodell. Stellung"
+                },
+                {
+                  "text": "Reaktionen aromatischer Ver-"
+                },
+                {
+                  "text": "für einfache Beispiele. Orbital, Hybridisierung, σ- und π-"
+                },
+                {
+                  "text": "erklären den Begriff Wirkstoff und erläutern die Bindung"
+                },
+                {
+                  "text": "Isolierung von Wirkstoffen aus Naturstoffen."
+                },
+                {
+                  "text": "Natur- und Wirkstoffsynthese"
+                },
+                {
+                  "text": "Zusammenspiel von Analyse, Synthese"
+                },
+                {
+                  "text": "Molecular Modelling."
+                },
+                {
+                  "text": "erklären die Struktur und Bindungsverhältnisse"
+                },
+                {
+                  "text": "Benzol mit dem einfachen Orbitalmodell."
+                },
+                {
+                  "text": "Konkretisierung prozessbezogener Kompetenzen"
+                },
+                {
+                  "text": "Grenzen der Lewis-Schreibweise zur Darstellung von Benzol."
+                },
+                {
+                  "text": "Strukturen aromatischer Verbindungen mit Hilfe von digitalen Werkzeugen"
+                },
+                {
+                  "text": "erörtern Nutzen und Risiken von kanzerogenen aromatischen Verbindungen."
+                },
+                {
+                  "text": "Auswirkungen der Entwicklung neuer Medikamente anhand ausge-"
+                },
+                {
+                  "text": "wählter Beispiele in historischen und aktuellen gesellschaftlichen Zusammenhän-"
+                },
+                {
+                  "text": "Nutzen und Risiken aromatischer Verbindungen am Beispiel von Medikamenten"
+                },
+                {
+                  "text": "Drogen (z. B. Aspirin, Crystal Meth, Methadon, Opiate, Valium bzw. Diazepam)"
+                },
+                {
+                  "text": "Pestizide (z. B. Neonicotinoide) oder Duft- und Aromastoffe (z. B. Vanille und Vanil-"
+                },
+                {
+                  "text": "Zweitsubstitution, mesomerer und induktiver Effekt, Substituenten 1. und 2. Ord-"
+                },
+                {
+                  "text": "Beispiele für experimentelle Arbeiten"
+                },
+                {
+                  "text": "Synthese von Acetylsalicylsäure"
+                },
+                {
+                  "text": "Nachweis der Inhaltsstoffe von Schmerzmitteln (mittels Dünnschichtchromatogra-"
+                },
+                {
+                  "text": "Bromierung von Toluol"
+                },
+                {
+                  "text": "Extraktion eines Naturstoffs (Coffein aus schwarzem Tee, Vanillin aus Vanillescho-"
+                },
+                {
+                  "text": "Gymnasiale Oberstufe – Chemie 37"
+                },
+                {
+                  "text": "Themenfolgen und Schwerpunktsetzungen"
+                },
+                {
+                  "text": "Die in diesem Dokument beschriebenen Inhalte gliedern sich in Pflichtinhalte und"
+                },
+                {
+                  "text": "Wahlthemen. Die Pflichtinhalte sind zwingend zu unterrichten, die Wahlthemen wer-"
+                },
+                {
+                  "text": "für den jeweiligen Abiturjahrgang vorher in einem Schwerpunktkatalog festge-"
+                },
+                {
+                  "text": "Die Kursfolge in der"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "Q1-Q4",
+          "topics": [
+            {
+              "title": "Gymnasiale Oberstufe – Chemie",
+              "learning_objectives": [
+                {
+                  "text": "Die Leistungsbewertung findet mit Blick auf den Erwerb der zum jeweiligen Un-"
+                },
+                {
+                  "text": "gehörenden Kompetenzen unter Berücksichtigung der Anfor-"
+                },
+                {
+                  "text": "Die Leistungsbewertung muss für Lernende sowie Erziehungsberechtigte trans-"
+                },
+                {
+                  "text": "sein, die Kriterien der Leistungsbewertung müssen zu Beginn des Beur-"
+                },
+                {
+                  "text": "Die Kriterien für die Leistungsbewertung und die Gewichtung zwischen den bei-"
+                },
+                {
+                  "text": "Beurteilungsbereichen werden in der Fachkonferenz fest-"
+                },
+                {
+                  "text": "Rahmen der Vorgaben der Verordnung über die Gymnasiale Ober-"
+                },
+                {
+                  "text": "Die beiden notwendigen Beurteilungsbereiche sind:"
+                },
+                {
+                  "text": "Arbeiten unter Aufsicht und ihnen gleichgestellte Arbeiten und"
+                },
+                {
+                  "text": "Unterrichtsarbeit."
+                },
+                {
+                  "text": "Für beide Bereiche werden Noten festgelegt. Die Gesamtnote darf sich nicht über-"
+                },
+                {
+                  "text": "Ergebnisse des ersten Beurteilungsbereichs stützen."
+                },
+                {
+                  "text": "Schriftliche Arbeiten unter Aufsicht und ihnen gleichgestellte Arbeiten"
+                },
+                {
+                  "text": "Schriftliche Arbeiten unter Aufsicht (Klausuren) dienen der Überprüfung der Lerner-"
+                },
+                {
+                  "text": "Unterrichtsabschnittes. Weiter können sie zur Unterstützung kumu-"
+                },
+                {
+                  "text": "Lernens auch der Vergewisserung über die Nachhaltigkeit der Lernergeb-"
+                },
+                {
+                  "text": "zurückliegenden Unterrichts dienen. Sie geben Aufschluss über das Erreichen"
+                },
+                {
+                  "text": "Ziele des Unterrichts. Im Verlauf der Gymnasialen Oberstufe sollen sich die"
+                },
+                {
+                  "text": "Klausuren in ihren Anforderungen zunehmend inhaltlich und formal an den Anfor-"
+                },
+                {
+                  "text": "Abiturprüfung orientieren."
+                },
+                {
+                  "text": "Dies betrifft in formaler Hinsicht:"
+                },
+                {
+                  "text": "Formulierung der Aufgabenstellungen unter Verwendung der Operatoren,"
+                },
+                {
+                  "text": "Anhang beschrieben sind;"
+                },
+                {
+                  "text": "Verteilung der Bewertungseinheiten auf Aufgaben;"
+                },
+                {
+                  "text": "Verwendung der vier naturwissenschaftlichen Kompetenzbereiche;"
+                },
+                {
+                  "text": "Berücksichtigung der Anforderungsbereiche;"
+                },
+                {
+                  "text": "Verwendung von Hilfsmitteln."
+                },
+                {
+                  "text": "Laufende Unterrichtsarbeit"
+                },
+                {
+                  "text": "Dieser Beurteilungsbereich umfasst alle von den Lernenden außerhalb der schriftli-"
+                },
+                {
+                  "text": "Arbeiten unter Aufsicht und den ihnen gleichgestellten Arbeiten erbrachten"
+                },
+                {
+                  "text": "Unterrichtsleistungen. Dazu gehören beispielsweise"
+                },
+                {
+                  "text": "Qualität und Quantität der mündlichen und schriftlichen Mitarbeit unter Be-"
+                },
+                {
+                  "text": "rücksichtigung der vier naturwissenschaftlichen Kompetenzbereiche, der Kom-"
+                },
+                {
+                  "text": "Bildung in der digitalen Welt und zur Bildung für nachhaltige Ent-"
+                },
+                {
+                  "text": "Mitarbeit und Qualität der Arbeit im Rahmen praktischer Arbeiten (z. B. Experi-"
+                },
+                {
+                  "text": "mentieren, Protokollieren, Untersuchen);"
+                },
+                {
+                  "text": "selbstständige Bearbeitung von Übungsaufgaben im Unterricht in Einzel-"
+                },
+                {
+                  "text": "Beteiligung bei Gruppenarbeit;"
+                },
+                {
+                  "text": "Gymnasiale Oberstufe – Chemie 39"
+                },
+                {
+                  "text": "Güte der Kommunikation, mit der sich Lernende auf fachliche Inhalte und"
+                },
+                {
+                  "text": "Gedankengänge anderer beziehen, diese aufgreifen, korrigieren oder weiterent-"
+                },
+                {
+                  "text": "Mitarbeit in Unterrichtsprojekten (z. B. mit gemeinsamem Produkt, gemein-"
+                },
+                {
+                  "text": "Präsentation, schriftlicher Prozessdokumentation);"
+                },
+                {
+                  "text": "Arbeitsprodukte aus dem Unterricht wie Protokolle und Auswertungen von Ex-"
+                },
+                {
+                  "text": "perimenten, Lerntagebücher oder Portfolios;"
+                },
+                {
+                  "text": "längerfristig gestellte häusliche Arbeiten (z. B. Referate oder kleinere Facharbei-"
+                },
+                {
+                  "text": "Präsentationen und Präsentationstechniken;"
+                },
+                {
+                  "text": "Auswahl und Umgang mit geeigneten Medien."
+                },
+                {
+                  "text": "O.1 Gymnasiale Oberstufe – Chemie"
+                },
+                {
+                  "text": "Operatoren für die naturwissenschaftlichen Fächer"
+                },
+                {
+                  "text": "Die standardisierten Arbeitsaufträge (Operatoren) werden in der folgenden Tabelle"
+                },
+                {
+                  "text": "aufgeführt und erläutert. Diese Operatoren werden im Unterricht eingeführt. Sie sig-"
+                },
+                {
+                  "text": "Lernenden, welche Tätigkeiten sie bei der Erledigung von Arbeits-"
+                },
+                {
+                  "text": "aufträgen ausführen sollen und welche beim Lösen von Aufgaben in Klausuren und"
+                },
+                {
+                  "text": "Prüfungen von ihnen erwartet werden."
+                },
+                {
+                  "text": "Die Verwendung eines Operators, der im Folgenden nicht genannt wird, ist möglich,"
+                },
+                {
+                  "text": "Bedeutung dieses Operators in Verbin-"
+                },
+                {
+                  "text": "Aufgabenstellung davon auszugehen ist, dass die jeweilige Aufgabe"
+                },
+                {
+                  "text": "Sinne der Aufgabenstellung bearbeitet werden kann (z. B. „durchführen“: Führen"
+                },
+                {
+                  "text": "Sie das Experiment durch.)"
+                },
+                {
+                  "text": "Operator Erläuterung"
+                },
+                {
+                  "text": "Grundlage von Erkenntnissen oder Daten sachgerechte"
+                },
+                {
+                  "text": "abschätzen durch begründete Überlegungen Größenwerte angeben"
+                },
+                {
+                  "text": "Bestandteile, Eigenschaften oder Zusammenhänge auf eine be-"
+                },
+                {
+                  "text": "Fragestellung hin herausarbeiten"
+                },
+                {
+                  "text": "Chemie zusätzlich: einen Sachverhalt experimentell prüfen"
+                },
+                {
+                  "text": "aufstellen, chemische Formeln, Gleichungen, Reaktionsgleichungen (Wort- oder"
+                },
+                {
+                  "text": "Formelgleichungen) oder Reaktionsmechanismen entwickeln"
+                },
+                {
+                  "text": "Hypothesen eine Vermutung über einen unbekannten Sachverhalt formulieren, die"
+                },
+                {
+                  "text": "angeben, Formeln, Regeln, Sachverhalte, Begriffe oder Daten ohne Erläuterung"
+                },
+                {
+                  "text": "aufzählen bzw. wiedergeben"
+                },
+                {
+                  "text": "Beobachtungen, Daten, Einzelergebnisse oder Informationen in einen"
+                },
+                {
+                  "text": "Zusammenhang stellen und daraus Schlussfolgerungen ziehen"
+                },
+                {
+                  "text": "begründen Gründe oder Argumente für eine Vorgehensweise oder einen Sachver-"
+                },
+                {
+                  "text": "Die Berechnung ist ausgehend von einem Ansatz darzustellen."
+                },
+                {
+                  "text": "Beobachtungen, Strukturen, Sachverhalte, Methoden, Verfahren oder"
+                },
+                {
+                  "text": "Zusammenhänge strukturiert und unter Verwendung der Fachsprache"
+                },
+                {
+                  "text": "Das zu fällende Sachurteil ist mithilfe fachlicher Kriterien zu begründen."
+                },
+                {
+                  "text": "Das zu fällende Werturteil ist unter Berücksichtigung gesellschaftlicher"
+                },
+                {
+                  "text": "Werte und Normen zu begründen."
+                },
+                {
+                  "text": "Strukturen, Sachverhalte oder Zusammenhänge strukturiert und unter"
+                },
+                {
+                  "text": "Verwendung der Fachsprache formulieren, auch mithilfe von Zeichnun-"
+                },
+                {
+                  "text": "Argumente zu einer Aussage oder These einander gegenüberstellen und"
+                },
+                {
+                  "text": "erklären einen Sachverhalt nachvollziehbar und verständlich machen, indem man"
+                },
+                {
+                  "text": "Regeln und Gesetzmäßigkeiten zurückführt"
+                },
+                {
+                  "text": "erläutern einen Sachverhalt veranschaulichend darstellen und durch zusätzliche"
+                },
+                {
+                  "text": "Informationen verständlich machen"
+                },
+                {
+                  "text": "Ergebnis oder einen Zusammenhang rechnerisch, grafisch oder ex-"
+                },
+                {
+                  "text": "Gymnasiale Oberstufe – Chemie O.2"
+                },
+                {
+                  "text": "Gesetzmäßigkeiten einen Zusammenhang zwischen"
+                },
+                {
+                  "text": "Größen herstellen"
+                },
+                {
+                  "text": "Ergebnisse, Beschreibungen und Annahmen vor"
+                },
+                {
+                  "text": "ren, dem Hintergrund einer Fragestellung oder Hypothese in einen nachvoll-"
+                },
+                {
+                  "text": "Zusammenhang bringen"
+                },
+                {
+                  "text": "Begriffe oder Gegenstände auf der Grundlage bestimmter Merkmale sys-"
+                },
+                {
+                  "text": "Problem (auch experimentelle) Lösungswege"
+                },
+                {
+                  "text": "Sachverhalte, Prozesse, Strukturen oder Ergebnisse übersichtlich gra-"
+                },
+                {
+                  "text": "Sachverhalte oder Phänomene mithilfe fachspezifischer Arbeitsweisen"
+                },
+                {
+                  "text": "Gemeinsamkeiten und Unterschiede kriteriengeleitet herausarbeiten"
+                },
+                {
+                  "text": "Objekte grafisch exakt darstellen"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_url": "https://www.lis.bremen.de/sixcms/media.php/13/GyO_Chemie_2022.pdf",
+      "last_checked": "2026-06-22"
+    }
+  ],
+  "last_updated": "2026-06-22",
+  "source_urls": ["https://www.lis.bremen.de/sixcms/media.php/13/GyO_Chemie_2022.pdf"]
+}

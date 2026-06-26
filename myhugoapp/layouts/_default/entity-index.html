@@ -1,0 +1,622 @@
+{{ define "css" }}
+<style>
+#entity-app { margin-top: 1rem; margin-bottom: 2rem; }
+
+.entity-header {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;
+  margin-bottom: 1.5rem; padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border-color, #e0e0e0);
+}
+.entity-header h1 { margin: 0; flex: 1; font-size: 1.6rem; }
+
+<<<<<<< Updated upstream
+.entity-stats {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  font-size: 0.9rem; color: var(--text-muted, #666);
+  align-items: center;
+}
+.entity-stats strong { color: var(--text-primary, #333); }
+
+.entity-toolbar {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin-bottom: 1rem; align-items: center;
+}
+.entity-toolbar-left { flex: 1; min-width: 200px; }
+=======
+  <div class="row">
+    <div class="col-md-12">
+      <p class="text-muted text-center">
+        <strong>{{ len $entities }}</strong> Fachbegriffe in <strong>{{ len $articles }}</strong> Artikeln —
+        <strong>{{ .stats.elements | default 0 }}</strong> Elemente,
+        <strong>{{ .stats.compounds | default 0 }}</strong> Verbindungen,
+        <strong>{{ .stats.concepts | default 0 }}</strong> Konzepte,
+        <strong>{{ .stats.groups | default 0 }}</strong> Gruppen
+        {{ if .updatedAt }}— zuletzt aktualisiert: {{ dateFormat "02.01.2006" .updatedAt }}{{ end }}
+      </p>
+    </div>
+  </div>
+
+  {{ if gt (len $entities) 0 }}
+  <!-- Category filter -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="entity-filter-bar text-center">
+        <button class="filter-btn active" data-filter="all">Alle</button>
+        <button class="filter-btn" data-filter="element">🔬 Elemente</button>
+        <button class="filter-btn" data-filter="compound">⚗️ Verbindungen</button>
+        <button class="filter-btn" data-filter="concept">📖 Konzepte</button>
+        <button class="filter-btn" data-filter="group">📁 Gruppen</button>
+        <input type="text" class="entity-search" placeholder="Suche..." id="entity-search-input">
+      </div>
+    </div>
+  </div>
+
+  <div class="row entity-grid" id="entity-grid">
+    {{ range $entities }}
+    <div class="col-md-4 col-sm-6 entity-card-wrapper" data-entity-type="{{ .type }}" data-entity-name="{{ .name | lower }}">
+      <div class="entity-card">
+        <div class="entity-card-header">
+          <span class="entity-badge entity-badge-{{ .type }}">
+            {{ if eq .type "element" }}🔬{{ else if eq .type "compound" }}⚗️{{ else if eq .type "concept" }}📖{{ else }}📁{{ end }}
+          </span>
+          <h3 class="entity-name">
+            <a href="/entity/{{ .name | urlize }}/">{{ .displayName | default .name }}</a>
+          </h3>
+        </div>
+        <p class="entity-meta">
+          <span class="entity-type-label">{{ .category | default .type }}</span>
+          {{ if .symbol }}<span class="entity-symbol">{{ .symbol }}</span>{{ end }}
+        </p>
+        {{ if .description }}
+        <p class="entity-desc">{{ .description | truncate 100 }}</p>
+        {{ end }}
+        <p class="entity-count">
+          {{ .articleCount }} {{ if eq .articleCount 1 }}Artikel{{ else }}Artikel{{ end }}
+          {{ if .calculators }} · {{ len .calculators }} Rechner{{ end }}
+          {{ if .themenbereiche }} · {{ len .themenbereiche }} Themen{{ end }}
+        </p>
+        <div class="entity-articles">
+          {{ range first 3 .articles }}
+          <span class="entity-article-tag">{{ . }}</span>
+          {{ end }}
+          {{ if gt (len .articles) 3 }}
+          <span class="entity-article-tag entity-more">+{{ sub (len .articles) 3 }}</span>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+  {{ else }}
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-info">
+        Noch keine Entitäten im Wissensnetz. Neue Artikel werden automatisch analysiert.
+      </div>
+    </div>
+  </div>
+  {{ end }}
+>>>>>>> Stashed changes
+
+.entity-search {
+  width: 100%; padding: 0.6rem 1rem; border-radius: 8px;
+  border: 1px solid var(--border-color, #ddd); font-size: 1rem;
+  background: var(--bg-input, #fff); color: var(--text-primary, #333);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+.entity-search:focus {
+  outline: none; border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
+}
+
+<<<<<<< Updated upstream
+.entity-view-controls {
+  display: flex; gap: 0.3rem;
+=======
+<script>
+(function() {
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var cards = document.querySelectorAll('.entity-card-wrapper');
+  var searchInput = document.getElementById('entity-search-input');
+
+  function filterEntities() {
+    var activeFilter = document.querySelector('.filter-btn.active');
+    var filter = activeFilter ? activeFilter.getAttribute('data-filter') : 'all';
+    var query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+    cards.forEach(function(card) {
+      var type = card.getAttribute('data-entity-type');
+      var name = card.getAttribute('data-entity-name');
+      var showByType = filter === 'all' || type === filter;
+      var showBySearch = !query || name.indexOf(query) !== -1;
+      card.style.display = (showByType && showBySearch) ? '' : 'none';
+    });
+  }
+
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filterBtns.forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      filterEntities();
+    });
+  });
+
+  if (searchInput) {
+    searchInput.addEventListener('input', filterEntities);
+  }
+})();
+</script>
+
+<style>
+.entity-index-container {
+  margin-top: 20px;
+  margin-bottom: 40px;
+>>>>>>> Stashed changes
+}
+.entity-view-btn {
+  padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.82rem;
+  border: 1.5px solid var(--border-color, #ddd); cursor: pointer;
+  background: var(--bg-card, #fff); color: var(--text-muted, #666);
+  transition: all 0.2s; font-weight: 500;
+}
+.entity-view-btn:hover { border-color: #667eea; color: #667eea; }
+.entity-view-btn.active { background: #667eea; color: #fff; border-color: #667eea; }
+
+<<<<<<< Updated upstream
+.entity-filters {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem;
+}
+.entity-filter-btn {
+  padding: 0.35rem 0.9rem; border-radius: 20px; font-size: 0.82rem;
+  border: 1.5px solid var(--border-color, #ddd); cursor: pointer;
+  background: var(--bg-card, #fff); color: var(--text-muted, #666);
+  transition: all 0.2s; font-weight: 500;
+}
+.entity-filter-btn:hover { border-color: #667eea; color: #667eea; }
+.entity-filter-btn.active {
+  background: #667eea; color: #fff; border-color: #667eea;
+}
+.entity-filter-count {
+  font-size: 0.72rem; opacity: 0.7; margin-left: 3px;
+=======
+.entity-filter-bar {
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-btn {
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 6px 16px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.filter-btn.active {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.filter-btn:hover:not(.active) {
+  background: #e4e4e4;
+}
+
+.entity-search {
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 0.85rem;
+  min-width: 200px;
+  margin-left: 8px;
+}
+
+.entity-grid {
+  margin-top: 10px;
+>>>>>>> Stashed changes
+}
+
+.entity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.entity-card {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 10px; padding: 1.2rem;
+  cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  position: relative; overflow: hidden;
+}
+.entity-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+.entity-card:active { transform: translateY(-1px); }
+.entity-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; border-radius: 10px 10px 0 0;
+}
+.entity-card[data-cat="stoff"]::before { background: #667eea; }
+.entity-card[data-cat="konzept"]::before { background: #45b7d1; }
+.entity-card[data-cat="reaktion"]::before { background: #4ecdc4; }
+.entity-card[data-cat="methode"]::before { background: #f093fb; }
+.entity-card[data-cat="person"]::before { background: #ff9a76; }
+.entity-card[data-cat="quelle"]::before { background: #a8a8a8; }
+
+.entity-card-name {
+  font-size: 1.15rem; font-weight: 600; margin: 0 0 0.4rem 0;
+  color: var(--text-primary, #333);
+}
+.entity-card-name a {
+  color: inherit; text-decoration: none;
+}
+.entity-card-name a:hover { color: #667eea; }
+
+.entity-card-cat {
+  display: inline-block; padding: 0.15rem 0.55rem; border-radius: 12px;
+  font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.03em; margin-bottom: 0.6rem;
+}
+.entity-card[data-cat="stoff"] .entity-card-cat { background: rgba(102,126,234,0.12); color: #667eea; }
+.entity-card[data-cat="konzept"] .entity-card-cat { background: rgba(69,183,209,0.12); color: #45b7d1; }
+.entity-card[data-cat="reaktion"] .entity-card-cat { background: rgba(78,205,196,0.12); color: #2ea69e; }
+.entity-card[data-cat="methode"] .entity-card-cat { background: rgba(240,147,251,0.12); color: #c060d0; }
+.entity-card[data-cat="person"] .entity-card-cat { background: rgba(255,154,118,0.12); color: #d07040; }
+.entity-card[data-cat="quelle"] .entity-card-cat { background: rgba(168,168,168,0.12); color: #888; }
+
+.entity-card-meta {
+  font-size: 0.82rem; color: var(--text-muted, #888); margin-bottom: 0.5rem;
+}
+
+.entity-card-components {
+  margin-top: 0.5rem; font-size: 0.78rem; color: var(--text-muted, #888);
+}
+.entity-card-components strong { color: var(--text-primary, #555); font-size: 0.75rem; }
+
+.entity-card-related {
+  margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.3rem;
+}
+.entity-related-tag {
+  font-size: 0.7rem; padding: 0.1rem 0.45rem; border-radius: 4px;
+  background: var(--bg-tag, #f0f0f0); color: var(--text-muted, #666);
+}
+
+.entity-card-articles {
+  margin-top: 0.5rem; padding-top: 0.4rem;
+  border-top: 1px dashed var(--border-color, #ddd);
+  font-size: 0.72rem; color: var(--text-muted, #888);
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.entity-card:hover .entity-card-articles,
+.entity-card.show-articles .entity-card-articles {
+  max-height: 200px;
+}
+.entity-card-articles div {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  padding: 0.1rem 0;
+}
+.entity-card-articles div::before { content: "\2022 "; color: #667eea; }
+
+.empty-state {
+  text-align: center; padding: 3em 1em; color: var(--text-muted, #888);
+  grid-column: 1 / -1;
+}
+.empty-state-icon { font-size: 2.5rem; margin-bottom: 0.5rem; opacity: 0.4; }
+
+@keyframes skeleton-pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+.entity-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+.entity-skeleton-card {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 10px; padding: 1.2rem;
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+.entity-skeleton-line {
+  height: 14px; background: var(--border-color, #e0e0e0);
+  border-radius: 4px; margin-bottom: 10px;
+}
+.entity-skeleton-line:first-child { width: 70%; height: 18px; }
+.entity-skeleton-line:nth-child(2) { width: 40%; }
+.entity-skeleton-line:nth-child(3) { width: 90%; }
+.entity-skeleton-line:nth-child(4) { width: 55%; }
+
+.entity-tagcloud {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  justify-content: center; padding: 1rem 0;
+}
+.entity-tagcloud-item {
+  display: inline-block; padding: 0.3rem 0.8rem;
+  border-radius: 20px; cursor: pointer; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  color: #fff; font-weight: 500;
+}
+.entity-tagcloud-item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+<<<<<<< Updated upstream
+.entity-tooltip-wrapper {
+  position: relative;
+}
+.entity-tooltip {
+  display: none; position: fixed;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 8px; padding: 0.8rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  z-index: 1000; max-width: 300px;
+  font-size: 0.78rem; pointer-events: none;
+}
+
+.entity-pagination {
+  display: flex; justify-content: center; gap: 0.4rem;
+  margin-top: 1.5rem; flex-wrap: wrap;
+}
+.entity-page-btn {
+  padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.82rem;
+  border: 1.5px solid var(--border-color, #ddd); cursor: pointer;
+  background: var(--bg-card, #fff); color: var(--text-muted, #666);
+  transition: all 0.2s; font-weight: 500; min-width: 36px;
+=======
+.entity-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.entity-badge {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.entity-name {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #333;
+  font-weight: 600;
+}
+
+.entity-name a {
+  color: #333;
+  text-decoration: none;
+}
+
+.entity-name a:hover {
+  color: #667eea;
+}
+
+.entity-meta {
+  margin: 4px 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.entity-type-label {
+  font-size: 0.75rem;
+  background: #e8e8e8;
+  padding: 2px 8px;
+  border-radius: 10px;
+  color: #666;
+}
+
+.entity-symbol {
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: #667eea;
+}
+
+.entity-desc {
+  font-size: 0.82rem;
+  color: #666;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.entity-count {
+  font-size: 0.78rem;
+  color: #888;
+  font-weight: 500;
+  margin: 0 0 10px 0;
+>>>>>>> Stashed changes
+}
+.entity-page-btn:hover { border-color: #667eea; color: #667eea; }
+.entity-page-btn.active { background: #667eea; color: #fff; border-color: #667eea; }
+.entity-page-btn:disabled { opacity: 0.4; cursor: default; }
+
+.entity-graph-link {
+  text-align: center; margin-top: 2rem; font-size: 0.9rem;
+}
+.entity-graph-top-link {
+  display: inline-block; font-size: 0.82rem; font-weight: 500;
+  padding: 0.3rem 0.8rem; border-radius: 6px;
+  background: var(--bg-card, #f0f4ff); color: #667eea;
+  text-decoration: none; transition: background 0.2s;
+}
+.entity-graph-top-link:hover { background: #667eea; color: #fff; }
+
+<<<<<<< Updated upstream
+.entity-sort-select {
+  padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.82rem;
+  border: 1.5px solid var(--border-color, #ddd); cursor: pointer;
+  background: var(--bg-card, #fff); color: var(--text-muted, #666);
+  transition: border-color 0.2s;
+}
+.entity-sort-select:focus {
+  outline: none; border-color: #667eea;
+=======
+.entity-article-tag {
+  background: #f0f0f0;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  color: #555;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+>>>>>>> Stashed changes
+}
+
+[data-theme="dark"] .entity-card,
+.dark .entity-card {
+  background: #2c2c2c; border-color: #444;
+}
+[data-theme="dark"] .entity-search,
+.dark .entity-search {
+  background: #333; border-color: #555; color: #eee;
+}
+[data-theme="dark"] .entity-filter-btn,
+.dark .entity-filter-btn,
+[data-theme="dark"] .entity-view-btn,
+.dark .entity-view-btn,
+[data-theme="dark"] .entity-sort-select,
+.dark .entity-sort-select,
+[data-theme="dark"] .entity-page-btn,
+.dark .entity-page-btn {
+  background: #333; border-color: #555; color: #bbb;
+}
+[data-theme="dark"] .entity-related-tag,
+.dark .entity-related-tag {
+  background: #3c3c3c; color: #aaa;
+}
+[data-theme="dark"] .entity-card-name,
+.dark .entity-card-name { color: #e0e0e0; }
+[data-theme="dark"] .entity-card-meta,
+.dark .entity-card-meta,
+[data-theme="dark"] .entity-skeleton-card,
+.dark .entity-skeleton-card { color: #999; }
+[data-theme="dark"] .entity-skeleton-line,
+.dark .entity-skeleton-line { background: #444; }
+[data-theme="dark"] .entity-tooltip,
+.dark .entity-tooltip { background: #2c2c2c; border-color: #444; }
+[data-theme="dark"] .entity-graph-top-link,
+.dark .entity-graph-top-link { background: rgba(102,126,234,0.15); }
+
+@media (prefers-color-scheme: dark) {
+<<<<<<< Updated upstream
+  :root:not([data-theme="light"]) .entity-card { background: #2c2c2c; border-color: #444; }
+  :root:not([data-theme="light"]) .entity-search { background: #333; border-color: #555; color: #eee; }
+  :root:not([data-theme="light"]) .entity-filter-btn,
+  :root:not([data-theme="light"]) .entity-view-btn,
+  :root:not([data-theme="light"]) .entity-sort-select,
+  :root:not([data-theme="light"]) .entity-page-btn { background: #333; border-color: #555; color: #bbb; }
+  :root:not([data-theme="light"]) .entity-related-tag { background: #3c3c3c; color: #aaa; }
+  :root:not([data-theme="light"]) .entity-card-name { color: #e0e0e0; }
+  :root:not([data-theme="light"]) .entity-card-meta { color: #999; }
+  :root:not([data-theme="light"]) .entity-skeleton-line { background: #444; }
+  :root:not([data-theme="light"]) .entity-tooltip { background: #2c2c2c; border-color: #444; }
+  :root:not([data-theme="light"]) .entity-graph-top-link { background: rgba(102,126,234,0.15); }
+}
+
+@media (max-width: 768px) {
+  .entity-header { flex-direction: column; align-items: flex-start; }
+  .entity-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 0.7rem; }
+  .entity-card { padding: 0.9rem; }
+  .entity-skeleton-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+  .entity-toolbar { flex-direction: column; }
+  .entity-toolbar-left { min-width: auto; width: 100%; }
+=======
+  .entity-card {
+    background: #2c2c2c;
+    border-color: #444;
+  }
+  .entity-name {
+    color: #e0e0e0;
+  }
+  .entity-name a {
+    color: #e0e0e0;
+  }
+  .entity-name a:hover {
+    color: #8899ee;
+  }
+  .entity-article-tag {
+    background: #3c3c3c;
+    color: #bbb;
+  }
+  .filter-btn {
+    background: #3c3c3c;
+    border-color: #555;
+    color: #ddd;
+  }
+  .filter-btn.active {
+    background: #667eea;
+    border-color: #667eea;
+    color: white;
+  }
+  .filter-btn:hover:not(.active) {
+    background: #4a4a4a;
+  }
+  .entity-search {
+    background: #2c2c2c;
+    border-color: #555;
+    color: #ddd;
+  }
+  .entity-type-label {
+    background: #3c3c3c;
+    color: #aaa;
+  }
+  .entity-desc {
+    color: #999;
+  }
+}
+
+@media (max-width: 768px) {
+  .entity-card-wrapper {
+    margin-bottom: 15px;
+  }
+  .entity-filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .entity-search {
+    margin-left: 0;
+    width: 100%;
+  }
+>>>>>>> Stashed changes
+}
+</style>
+{{ end }}
+
+{{ define "main" }}
+
+<div id="entity-app">
+  <div style="text-align:center;padding:3em 1em;">
+    <div class="spinner-border text-primary mb-3" role="status"><span class="visually-hidden">Loading...</span></div>
+    <h5>Lade Wissensnetz...</h5>
+  </div>
+</div>
+
+<div id="entity-skeleton" class="entity-skeleton-grid">
+  <div class="entity-skeleton-card"><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div></div>
+  <div class="entity-skeleton-card"><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div></div>
+  <div class="entity-skeleton-card"><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div></div>
+  <div class="entity-skeleton-card"><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div></div>
+  <div class="entity-skeleton-card"><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div></div>
+  <div class="entity-skeleton-card"><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div></div>
+</div>
+
+<script src="{{ "/js/entity-index.js" | relURL }}"></script>
+
+{{ end }}
