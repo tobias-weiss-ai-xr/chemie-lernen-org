@@ -1,0 +1,16 @@
+{
+  "university": {
+    "name": "Technische Universität München",
+    "country": "DE",
+    "city": "München",
+    "website": "https://www.ch.tum.de/",
+    "short_code": "TUM"
+  },
+  "degrees": [],
+  "lecturers": [],
+  "modules": [],
+  "source_url": "https://www.ch.tum.de/",
+  "last_updated": "2026-06-26",
+  "status": "stub",
+  "note": "See scripts/curricula_didaktik/sources/tum.py"
+}

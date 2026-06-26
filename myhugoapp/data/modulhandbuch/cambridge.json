@@ -1,0 +1,16 @@
+{
+  "university": {
+    "name": "University of Cambridge",
+    "country": "UK",
+    "city": "Cambridge",
+    "website": "https://www.ch.cam.ac.uk/",
+    "short_code": "Cambridge"
+  },
+  "degrees": [],
+  "lecturers": [],
+  "modules": [],
+  "source_url": "https://www.ch.cam.ac.uk/",
+  "last_updated": "2026-06-26",
+  "status": "stub",
+  "note": "See scripts/curricula_didaktik/sources/cambridge.py"
+}

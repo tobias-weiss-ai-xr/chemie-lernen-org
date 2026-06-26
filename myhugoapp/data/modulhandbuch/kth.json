@@ -1,0 +1,16 @@
+{
+  "university": {
+    "name": "KTH Royal Institute of Technology",
+    "country": "SE",
+    "city": "Stockholm",
+    "website": "https://www.kth.se/",
+    "short_code": "KTH"
+  },
+  "degrees": [],
+  "lecturers": [],
+  "modules": [],
+  "source_url": "https://www.kth.se/",
+  "last_updated": "2026-06-26",
+  "status": "stub",
+  "note": "See scripts/curricula_didaktik/sources/kth.py"
+}

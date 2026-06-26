@@ -1,0 +1,207 @@
+{
+  "university": {
+    "name": "Massachusetts Institute of Technology",
+    "country": "US",
+    "city": "Cambridge, MA",
+    "website": "https://www.mit.edu/",
+    "short_code": "MIT"
+  },
+  "degrees": [
+    {
+      "name": "BSc in Chemistry",
+      "level": "BSc",
+      "university": "MIT"
+    },
+    {
+      "name": "MSc in Chemistry",
+      "level": "MSc",
+      "university": "MIT"
+    },
+    {
+      "name": "PhD in Chemistry",
+      "level": "PhD",
+      "university": "MIT"
+    }
+  ],
+  "lecturers": [],
+  "modules": [
+    {
+      "university": "MIT",
+      "module_code": "5-03",
+      "module_name": "Principles of Inorganic Chemistry I",
+      "ects": 12.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (MIT)",
+      "url": "https://ocw.mit.edu/courses/5-03-principles-of-inorganic-chemistry-i-spring-2005/",
+      "last_checked": "2026-06-26"
+    },
+    {
+      "university": "MIT",
+      "module_code": "5-04",
+      "module_name": "Principles of Inorganic Chemistry II",
+      "ects": 12.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (MIT)",
+      "url": "https://ocw.mit.edu/courses/5-04-principles-of-inorganic-chemistry-ii-spring-2005/",
+      "last_checked": "2026-06-26"
+    },
+    {
+      "university": "MIT",
+      "module_code": "5-07",
+      "module_name": "Introduction to Biological Chemistry",
+      "ects": 12.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (MIT)",
+      "url": "https://ocw.mit.edu/courses/5-07sc-introduction-to-biological-chemistry-fall-2013/",
+      "last_checked": "2026-06-26"
+    },
+    {
+      "university": "MIT",
+      "module_code": "5-08",
+      "module_name": "Introduction to Statistical Thermodynamics",
+      "ects": 12.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (MIT)",
+      "url": "https://ocw.mit.edu/courses/5-08-recitation-1-statistical-thermodynamics-spring-2008/",
+      "last_checked": "2026-06-26"
+    },
+    {
+      "university": "MIT",
+      "module_code": "5-111",
+      "module_name": "Principles of Chemical Science",
+      "ects": 12.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (MIT)",
+      "url": "https://ocw.mit.edu/courses/5-111-principles-of-chemical-science-fall-2008/",
+      "last_checked": "2026-06-26"
+    },
+    {
+      "university": "MIT",
+      "module_code": "5-112",
+      "module_name": "Principles of Chemical Science",
+      "ects": 12.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (MIT)",
+      "url": "https://ocw.mit.edu/courses/5-112-principles-of-chemical-science-spring-2008/",
+      "last_checked": "2026-06-26"
+    },
+    {
+      "university": "MIT",
+      "module_code": "5-12",
+      "module_name": "Organic Chemistry I",
+      "ects": 12.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (MIT)",
+      "url": "https://ocw.mit.edu/courses/5-12-organic-chemistry-i-spring-2005/",
+      "last_checked": "2026-06-26"
+    },
+    {
+      "university": "MIT",
+      "module_code": "5-13",
+      "module_name": "Organic Chemistry II",
+      "ects": 12.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (MIT)",
+      "url": "https://ocw.mit.edu/courses/5-13-organic-chemistry-ii-spring-2005/",
+      "last_checked": "2026-06-26"
+    },
+    {
+      "university": "MIT",
+      "module_code": "5-60",
+      "module_name": "Thermodynamics & Kinetics",
+      "ects": 12.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (MIT)",
+      "url": "https://ocw.mit.edu/courses/5-60-thermodynamics-kinetics-spring-2008/",
+      "last_checked": "2026-06-26"
+    },
+    {
+      "university": "MIT",
+      "module_code": "5-61",
+      "module_name": "Physical Chemistry",
+      "ects": 12.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (MIT)",
+      "url": "https://ocw.mit.edu/courses/5-61-physical-chemistry-fall-2017/",
+      "last_checked": "2026-06-26"
+    },
+    {
+      "university": "MIT",
+      "module_code": "5-62",
+      "module_name": "Physical Chemistry II",
+      "ects": 12.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (MIT)",
+      "url": "https://ocw.mit.edu/courses/5-62-physical-chemistry-ii-spring-2008/",
+      "last_checked": "2026-06-26"
+    },
+    {
+      "university": "MIT",
+      "module_code": "5-70",
+      "module_name": "Statistical Mechanics I",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (MIT)",
+      "url": "https://ocw.mit.edu/courses/5-70j-statistical-mechanics-i-spring-2011/",
+      "last_checked": "2026-06-26"
+    },
+    {
+      "university": "MIT",
+      "module_code": "5-72",
+      "module_name": "Statistical Mechanics II",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (MIT)",
+      "url": "https://ocw.mit.edu/courses/5-72-statistical-mechanics-ii-spring-2012/",
+      "last_checked": "2026-06-26"
+    },
+    {
+      "university": "MIT",
+      "module_code": "5-73",
+      "module_name": "Introductory Quantum Mechanics I",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (MIT)",
+      "url": "https://ocw.mit.edu/courses/5-73-introductory-quantum-mechanics-i-fall-2018/",
+      "last_checked": "2026-06-26"
+    },
+    {
+      "university": "MIT",
+      "module_code": "5-74",
+      "module_name": "Introductory Quantum Mechanics II",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (MIT)",
+      "url": "https://ocw.mit.edu/courses/5-74-introductory-quantum-mechanics-ii-spring-2009/",
+      "last_checked": "2026-06-26"
+    },
+    {
+      "university": "MIT",
+      "module_code": "5-95",
+      "module_name": "Teaching College-Level Science",
+      "ects": 6.0,
+      "language": "en",
+      "level": "PhD",
+      "degree": "BSc/MSc Chemistry (MIT)",
+      "url": "https://ocw.mit.edu/courses/5-95-teaching-college-level-science-spring-2009/",
+      "last_checked": "2026-06-26"
+    }
+  ],
+  "source_url": "https://ocw.mit.edu/courses/chemistry/",
+  "last_updated": "2026-06-26"
+}

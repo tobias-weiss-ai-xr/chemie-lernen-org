@@ -1,0 +1,16 @@
+{
+  "university": {
+    "name": "RWTH Aachen",
+    "country": "DE",
+    "city": "Aachen",
+    "website": "https://www.chemie.rwth-aachen.de/",
+    "short_code": "RWTH"
+  },
+  "degrees": [],
+  "lecturers": [],
+  "modules": [],
+  "source_url": "https://www.chemie.rwth-aachen.de/",
+  "last_updated": "2026-06-26",
+  "status": "stub",
+  "note": "See scripts/curricula_didaktik/sources/rwth.py"
+}

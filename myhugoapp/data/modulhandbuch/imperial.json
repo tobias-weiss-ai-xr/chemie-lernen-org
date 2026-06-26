@@ -1,0 +1,16 @@
+{
+  "university": {
+    "name": "Imperial College London",
+    "country": "UK",
+    "city": "London",
+    "website": "https://www.imperial.ac.uk/chemistry/",
+    "short_code": "Imperial"
+  },
+  "degrees": [],
+  "lecturers": [],
+  "modules": [],
+  "source_url": "https://www.imperial.ac.uk/chemistry/",
+  "last_updated": "2026-06-26",
+  "status": "stub",
+  "note": "See scripts/curricula_didaktik/sources/imperial.py"
+}

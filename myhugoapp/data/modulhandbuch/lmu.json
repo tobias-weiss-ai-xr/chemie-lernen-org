@@ -1,0 +1,16 @@
+{
+  "university": {
+    "name": "Ludwig-Maximilians-Universität München",
+    "country": "DE",
+    "city": "München",
+    "website": "https://www.cup.uni-muenchen.de/",
+    "short_code": "LMU"
+  },
+  "degrees": [],
+  "lecturers": [],
+  "modules": [],
+  "source_url": "https://www.cup.uni-muenchen.de/",
+  "last_updated": "2026-06-26",
+  "status": "stub",
+  "note": "See scripts/curricula_didaktik/sources/lmu.py"
+}

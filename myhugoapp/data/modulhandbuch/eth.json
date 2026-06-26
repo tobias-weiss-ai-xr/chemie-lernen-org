@@ -1,0 +1,16 @@
+{
+  "university": {
+    "name": "Eidgenössische Technische Hochschule Zürich",
+    "country": "CH",
+    "city": "Zürich",
+    "website": "https://chab.ethz.ch/",
+    "short_code": "ETH"
+  },
+  "degrees": [],
+  "lecturers": [],
+  "modules": [],
+  "source_url": "https://chab.ethz.ch/",
+  "last_updated": "2026-06-26",
+  "status": "stub",
+  "note": "See scripts/curricula_didaktik/sources/eth.py"
+}

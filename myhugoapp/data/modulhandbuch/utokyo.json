@@ -1,0 +1,16 @@
+{
+  "university": {
+    "name": "University of Tokyo",
+    "country": "JP",
+    "city": "Tokyo",
+    "website": "https://www.chem.s.u-tokyo.ac.jp/",
+    "short_code": "UTokyo"
+  },
+  "degrees": [],
+  "lecturers": [],
+  "modules": [],
+  "source_url": "https://www.chem.s.u-tokyo.ac.jp/",
+  "last_updated": "2026-06-26",
+  "status": "stub",
+  "note": "See scripts/curricula_didaktik/sources/utokyo.py"
+}
