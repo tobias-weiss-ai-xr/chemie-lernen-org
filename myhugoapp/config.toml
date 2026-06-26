@@ -67,253 +67,264 @@ author = "chemie-lernen.org Team"
     url = "/entity/"
     weight = 16
     icon = "🕸️"
+# ── Interaktiv ───────────────────────────────────────
+[[menu.main]]
+    name = "Interaktiv"
+    url = "#"
+    weight = 17
+    identifier = "interaktiv"
+    icon = "🔬"
+
 # ── Rechner ──────────────────────────────────────────
 [[menu.main]]
     name = "Rechner"
     url = "#"
-    weight = 20
+    weight = 18
     identifier = "rechner"
+    parent = "interaktiv"
     icon = "🧮"
 
 [[menu.main]]
     name = "Molare Masse"
     url = "/molare-masse-rechner/"
     parent = "rechner"
-    weight = 21
+    weight = 19
     icon = "⚗️"
 [[menu.main]]
     name = "pH-Rechner"
     url = "/ph-rechner/"
     parent = "rechner"
-    weight = 22
+    weight = 20
     icon = "🧪"
 [[menu.main]]
     name = "Stöchiometrie"
     url = "/stoechiometrie-rechner/"
     parent = "rechner"
-    weight = 23
+    weight = 21
     icon = "⚗️"
 [[menu.main]]
     name = "Gasgesetze"
     url = "/gasgesetz-rechner/"
     parent = "rechner"
-    weight = 24
+    weight = 22
     icon = "🌡️"
 [[menu.main]]
     name = "Konzentration"
     url = "/konzentrationsumrechner/"
     parent = "rechner"
-    weight = 25
+    weight = 23
     icon = "📏"
 [[menu.main]]
     name = "Dichte"
     url = "/dichte-rechner/"
     parent = "rechner"
-    weight = 26
+    weight = 24
     icon = "⚖️"
 [[menu.main]]
     name = "Dampfdruck"
     url = "/dampfdruck-rechner/"
     parent = "rechner"
-    weight = 27
+    weight = 25
     icon = "💨"
 [[menu.main]]
     name = "Verdünnungsrechner"
     url = "/verduennungsrechner/"
     parent = "rechner"
-    weight = 28
+    weight = 26
     icon = "💧"
 [[menu.main]]
     name = "Verdünnungsreihen"
     url = "/verduennungsreihen-rechner/"
     parent = "rechner"
-    weight = 29
+    weight = 27
     icon = "🔬"
 [[menu.main]]
     name = "Lösungsrechner"
     url = "/loesungsrechner/"
     parent = "rechner"
-    weight = 30
+    weight = 28
     icon = "🧪"
 [[menu.main]]
     name = "Einheitenumrechner"
     url = "/einheitenumrechner/"
     parent = "rechner"
-    weight = 31
+    weight = 29
     icon = "🔄"
 [[menu.main]]
     name = "Löslichkeit"
     url = "/loeslichkeitsprodukt-rechner/"
     parent = "rechner"
-    weight = 32
+    weight = 30
     icon = "💧"
 [[menu.main]]
     name = "Verbrennung"
     url = "/verbrennungsrechner/"
     parent = "rechner"
-    weight = 33
+    weight = 31
     icon = "🔥"
 [[menu.main]]
     name = "Redox-Potenzial"
     url = "/redox-potenzial-rechner/"
     parent = "rechner"
-    weight = 34
+    weight = 32
     icon = "⚡"
 [[menu.main]]
     name = "Gleichungen Ausgleichen"
     url = "/reaktionsgleichungen-ausgleichen/"
     parent = "rechner"
-    weight = 35
+    weight = 33
     icon = "⚖️"
 [[menu.main]]
     name = "Hess'sches Gesetz"
     url = "/hess-gesetz/"
     parent = "rechner"
-    weight = 36
+    weight = 34
     icon = "🔥"
 [[menu.main]]
     name = "Bindungspotential"
     url = "/bindungspotential/"
     parent = "rechner"
-    weight = 37
+    weight = 35
     icon = "⚡"
 [[menu.main]]
     name = "Reaktionskinetik"
     url = "/reaktionskinetik-simulator/"
     parent = "rechner"
-    weight = 38
+    weight = 36
     icon = "🔬"
 [[menu.main]]
     name = "Chemisches Gleichgewicht"
     url = "/chemisches-gleichgewicht/"
     parent = "rechner"
-    weight = 39
+    weight = 37
     icon = "⚖️"
 [[menu.main]]
     name = "Druck & Fläche"
     url = "/druck-flaechen-rechner/"
     parent = "rechner"
-    weight = 40
+    weight = 38
     icon = "⚖️"
 
 # ── Simulationen ─────────────────────────────────────
 [[menu.main]]
     name = "Simulationen"
     url = "#"
-    weight = 50
+    weight = 39
     identifier = "simulationen"
+    parent = "interaktiv"
     icon = "🎮"
 
 [[menu.main]]
     name = "Titration"
     url = "/titrations-simulator/"
     parent = "simulationen"
-    weight = 51
+    weight = 40
     icon = "📊"
 [[menu.main]]
     name = "Redox-Titration"
     url = "/redox-titrationen/"
     parent = "simulationen"
-    weight = 52
+    weight = 41
     icon = "⚡"
 [[menu.main]]
     name = "Spektroskopie"
     url = "/spektroskopie-simulator/"
     parent = "simulationen"
-    weight = 53
+    weight = 42
     icon = "📉"
 [[menu.main]]
     name = "Gasgesetz-Simulator"
     url = "/gasgesetz-simulator/"
     parent = "simulationen"
-    weight = 54
+    weight = 43
     icon = "🌡️"
 [[menu.main]]
     name = "Atmosphärendruck"
     url = "/atmosphaerendruck-alltag/"
     parent = "simulationen"
-    weight = 55
+    weight = 44
     icon = "🌡️"
 [[menu.main]]
     name = "Wärmeleitung"
     url = "/waermeleitung/"
     parent = "simulationen"
-    weight = 56
+    weight = 45
     icon = "🔥"
 [[menu.main]]
     name = "Konvektion"
     url = "/konvektion/"
     parent = "simulationen"
-    weight = 57
+    weight = 46
     icon = "🌊"
 [[menu.main]]
     name = "Teilchenbewegung"
     url = "/temperatur-teilchenbewegung/"
     parent = "simulationen"
-    weight = 58
+    weight = 47
     icon = "⚡"
 [[menu.main]]
     name = "Elektrochemie"
     url = "/elektrochemie-teilchenebene/"
     parent = "simulationen"
-    weight = 59
+    weight = 48
     icon = "🔋"
 [[menu.main]]
     name = "Säuren-Basen-Gleichgewicht"
     url = "/saeuren-basen-gleichgewicht/"
     parent = "simulationen"
-    weight = 60
+    weight = 49
     icon = "⚗️"
 
 # ── Visualisierungen ─────────────────────────────────
 [[menu.main]]
     name = "Visualisierungen"
     url = "#"
-    weight = 70
+    weight = 50
     identifier = "visualisierungen"
+    parent = "interaktiv"
     icon = "🔬"
 
 [[menu.main]]
     name = "Periodensystem 3D"
     url = "/perioden-system-der-elemente/"
     parent = "visualisierungen"
-    weight = 71
+    weight = 51
     icon = "⚛️"
 [[menu.main]]
     name = "Molekülstudio"
     url = "/molekuel-studio/"
     parent = "visualisierungen"
-    weight = 72
+    weight = 52
     icon = "🔬"
 [[menu.main]]
     name = "Molekülorbitale"
     url = "/molekuelorbitale/"
     parent = "visualisierungen"
-    weight = 73
+    weight = 53
     icon = "🔬"
 [[menu.main]]
     name = "Atomenergieniveaus"
     url = "/atomenergieniveaus/"
     parent = "visualisierungen"
-    weight = 74
+    weight = 54
     icon = "⚛️"
 [[menu.main]]
     name = "Periodische Trends"
     url = "/periodische-trends/"
     parent = "visualisierungen"
-    weight = 75
+    weight = 55
     icon = "📈"
 [[menu.main]]
     name = "Laborgeräte"
     url = "/laborgeraete-explorer/"
     parent = "visualisierungen"
-    weight = 76
+    weight = 56
     icon = "🔬"
 [[menu.main]]
     name = "Gefahrstoffe"
     url = "/gefahrstoffkennzeichnung/"
     parent = "visualisierungen"
-    weight = 77
+    weight = 57
     icon = "⚠️"
 
 # ── Lehrende ─────────────────────────────────────────

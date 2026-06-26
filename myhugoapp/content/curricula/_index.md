@@ -6,7 +6,7 @@ outputs:
   - html
 menu:
   main:
-    parent: 'lernen'
+    parent: 'lehrende'
     weight: 100
 ---
 

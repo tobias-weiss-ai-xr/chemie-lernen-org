@@ -8,7 +8,7 @@ services:
         limits:
           memory: 1G
     environment:
-      - NEO4J_AUTH=neo4j/chemie
+      - NEO4J_AUTH=neo4j/chemie_knowledge_2024
       - NEO4J_dbms_default__database=chemie
       - NEO4J_dbms_security_auth__minimum__password__length=4
       - NEO4J_dbms_memory_heap_initial__size=256m
@@ -21,7 +21,7 @@ services:
     networks:
       - traefik-web
     healthcheck:
-      test: ["CMD-SHELL", "cypher-shell -u neo4j -p chemie \"RETURN 1\" || exit 1"]
+      test: ["CMD-SHELL", "cypher-shell -u neo4j -p chemie_knowledge_2024 \"RETURN 1\" || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 5
