@@ -13,7 +13,10 @@ Last updated: 2026-06-26
 
 ## Active changes (`changes/`)
 
-(none currently)
+| Change                 | Status      | Goal                                                                                 |
+| ---------------------- | ----------- | ------------------------------------------------------------------------------------ |
+| `open-spec-coverage`   | In progress | Add 5 missing main specs (calculators, quiz, 3d-visualizations, themenbereiche, pwa) |
+| `deploy-observability` | Proposal    | Add API smoke tests to deploy workflow (kg-stats, health, chat)                      |
 
 ## Archived changes (`changes/archive/`)
 

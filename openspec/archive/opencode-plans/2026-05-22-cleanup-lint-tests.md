@@ -1,17 +1,3 @@
-# ⚠️ LEGACY — Archived 2026-06-26
-
-This file is from the `.omo/`, `.opencode/`, `.hermes/`, or `.sisyphus/` planning directory used before the OpenSpec bootstrap. The contents reflect planning state at the time of the original work — they may be out of date.
-
-**Where to look instead**:
-
-- Main specs: `openspec/specs/<capability>/spec.md`
-- Active changes: `openspec/changes/<change-name>/`
-- Archived changes: `openspec/changes/archive/`
-
-The source directories ($.omo, .opencode, .hermes, .sisyphus) are kept for historical reference but should not be used for new planning.
-
----
-
 # Cleanup: Stale Infrastructure, Test Suite, ESLint Warnings
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
