@@ -24,6 +24,17 @@ const NEO4J_DATABASE = process.env.NEO4J_DATABASE || 'chemie';
 
 const TARGET = path.resolve(__dirname, '..', 'myhugoapp', 'data', 'kg_data.json');
 
+// Configurable row limits. Defaults lifted from 500 to 5000/10000 — the
+// previous hard caps silently truncated the export when the graph grew
+// beyond them. Override with env vars for very large knowledge bases.
+const LIMIT_ENTITIES = parseInt(process.env.LIMIT_ENTITIES || '5000', 10);
+const LIMIT_ARTICLES = parseInt(process.env.LIMIT_ARTICLES || '10000', 10);
+const LIMIT_CURRICULA = parseInt(process.env.LIMIT_CURRICULA || '5000', 10);
+const MAX_ARTICLES_PER_ENTITY = parseInt(
+  process.env.MAX_ARTICLES_PER_ENTITY || '20',
+  10
+);
+
 // ── Rate-limit helper ──────────────────────────────────────────────────
 function delay(ms) {
   return new Promise(function (resolve) {
@@ -76,9 +87,9 @@ async function main() {
              collect(DISTINCT component.name) as components,
              COUNT { (d:Document)-[:MENTIONS]->(e) } as articleCount
       ORDER BY articleCount DESC
-      LIMIT 500
+      LIMIT $limit
       `,
-      {},
+      { limit: neo4j.int(LIMIT_ENTITIES) },
       'entities'
     );
 
@@ -105,9 +116,12 @@ async function main() {
       RETURN d.title as title, d.url as url, d.type as type,
              collect(e.name) as entities, d.date as date
       ORDER BY d.type, d.date DESC
-      LIMIT 500
+      LIMIT $limit
       `,
-      { entityNames: entityNames.slice(0, 100) },
+      {
+        entityNames: entityNames.slice(0, MAX_ARTICLES_PER_ENTITY),
+        limit: neo4j.int(LIMIT_ARTICLES),
+      },
       'articles'
     );
 
@@ -142,9 +156,9 @@ async function main() {
              e.objective_count as objective_count,
              collect(DISTINCT related.name) as relatedEntities
       ORDER BY e.name
-      LIMIT 500
+      LIMIT $limit
       `,
-      {},
+      { limit: neo4j.int(LIMIT_CURRICULA) },
       'curricula'
     );
 

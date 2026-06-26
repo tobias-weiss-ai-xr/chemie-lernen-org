@@ -1,0 +1,112 @@
+{{/*
+  element-detail shortcode — renders a periodic-table-style card with the
+  element's physical/chemical properties from the page frontmatter.
+
+  Usage:  {{< element-detail ordnungszahl="6" symbol="C" name="Kohlenstoff" >}}
+
+  All values fall back to "-" when missing. Uses a data-table format that
+  adapts to the theme's CSS custom properties.
+*/}}
+{{- $ordnungszahl := .Get "ordnungszahl" -}}
+{{- $symbol := .Get "symbol" -}}
+{{- $name := .Get "name" -}}
+{{- $params := $.Page.Params -}}
+{{- $kat := $params.kategorie | default "Element" -}}
+{{- $blockClass := lower (replace (lower $kat) "ü" "ue") -}}
+
+<div class="element-detail-card" data-block="{{ $blockClass }}">
+  <div class="element-detail-header">
+    <div class="element-detail-symbol">{{ $symbol }}</div>
+    <div class="element-detail-title">
+      <h3 class="element-detail-name">{{ $name }}</h3>
+      <p class="element-detail-cat">{{ $kat }} · Ordnungszahl {{ $ordnungszahl }}</p>
+    </div>
+  </div>
+
+  <table class="element-detail-table">
+    <tbody>
+      <tr><th scope="row">Atommasse</th><td>{{ with $params.atommasse }}{{ . }}{{ else }}-{{ end }} u</td></tr>
+      <tr><th scope="row">Periode</th><td>{{ with $params.periode }}{{ . }}{{ else }}-{{ end }}</td></tr>
+      <tr><th scope="row">Gruppe</th><td>{{ with $params.gruppe }}{{ . }}{{ else }}-{{ end }}</td></tr>
+      <tr><th scope="row">Block</th><td>{{ with $params.block }}{{ . }}{{ else }}-{{ end }}</td></tr>
+      <tr><th scope="row">Elektronenkonfiguration</th><td><code>{{ with $params.elektronenkonfiguration }}{{ . }}{{ else }}-{{ end }}</code></td></tr>
+      <tr><th scope="row">Elektronegativität</th><td>{{ with $params.elektronegativitaet }}{{ . }}{{ else }}-{{ end }}</td></tr>
+      <tr><th scope="row">Aggregatzustand</th><td>{{ with $params.aggregatzustand }}{{ . }}{{ else }}-{{ end }}</td></tr>
+      <tr><th scope="row">Schmelzpunkt</th><td>{{ with $params.schmelzpunkt }}{{ . }} K{{ else }}-{{ end }}</td></tr>
+      <tr><th scope="row">Siedepunkt</th><td>{{ with $params.siedepunkt }}{{ . }} K{{ else }}-{{ end }}</td></tr>
+      <tr><th scope="row">Dichte</th><td>{{ with $params.dichte }}{{ . }} g/cm³{{ else }}-{{ end }}</td></tr>
+      <tr><th scope="row">Entdeckung</th><td>{{ with $params.entdeckungsjahr }}{{ . }}{{ else }}-{{ end }}</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .element-detail-card {
+    background: var(--bg-card, #fff);
+    border: 1px solid var(--border-color, #e0e0e0);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .element-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color, #eee);
+  }
+  .element-detail-symbol {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #9b59b6;
+    min-width: 80px;
+    text-align: center;
+    background: rgba(155, 89, 182, 0.08);
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+  }
+  .element-detail-card[data-block="nichtmetall"] .element-detail-symbol { color: #667eea; background: rgba(102, 126, 234, 0.1); }
+  .element-detail-card[data-block="metall"] .element-detail-symbol { color: #95a5a6; background: rgba(149, 165, 166, 0.1); }
+  .element-detail-card[data-block="uebergangsmetall"] .element-detail-symbol { color: #ff9a76; background: rgba(255, 154, 118, 0.1); }
+  .element-detail-card[data-block="halogen"] .element-detail-symbol { color: #4ecdc4; background: rgba(78, 205, 196, 0.1); }
+  .element-detail-card[data-block="edelgas"] .element-detail-symbol { color: #45b7d1; background: rgba(69, 183, 209, 0.1); }
+  .element-detail-card[data-block="metalloid"] .element-detail-symbol { color: #f093fb; background: rgba(240, 147, 251, 0.1); }
+  .element-detail-card[data-block="alkalimetall"] .element-detail-symbol { color: #e74c3c; background: rgba(231, 76, 60, 0.1); }
+  .element-detail-card[data-block="erdalkalimetall"] .element-detail-symbol { color: #f39c12; background: rgba(243, 156, 18, 0.1); }
+  .element-detail-name { margin: 0; font-size: 1.4rem; }
+  .element-detail-cat { margin: 0.3rem 0 0; color: var(--text-muted, #666); font-size: 0.95rem; }
+  .element-detail-table { width: 100%; border-collapse: collapse; }
+  .element-detail-table th,
+  .element-detail-table td {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color, #f0f0f0);
+  }
+  .element-detail-table th {
+    color: var(--text-muted, #666);
+    font-weight: 500;
+    font-size: 0.88rem;
+    width: 40%;
+  }
+  .element-detail-table td { color: var(--text-primary, #333); font-size: 0.92rem; }
+  .element-detail-table tr:last-child th,
+  .element-detail-table tr:last-child td { border-bottom: none; }
+  .element-detail-table code {
+    background: rgba(155, 89, 182, 0.08);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 0.85em;
+  }
+  @media (max-width: 480px) {
+    .element-detail-header { flex-direction: column; text-align: center; gap: 0.8rem; }
+    .element-detail-table th, .element-detail-table td { padding: 0.4rem 0.5rem; font-size: 0.85rem; }
+  }
+  @media (prefers-color-scheme: dark) {
+    .element-detail-card { background: #2a2a2a; border-color: #444; }
+    .element-detail-header { border-bottom-color: #444; }
+    .element-detail-table th, .element-detail-table td { border-bottom-color: #333; }
+  }
+</style>

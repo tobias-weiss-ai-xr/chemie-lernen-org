@@ -2548,6 +2548,116 @@ app.get('/api/admin/chat-logs', function (req, res) {
   res.json({ totalSessions: sessions.length, sessions: sessions });
 });
 
+app.get('/api/kg-stats', async (req, res) => {
+  var statsCacheKey = 'kg-stats:v1';
+  var statsCached = getCachedKgData(statsCacheKey);
+  if (statsCached) return res.json(statsCached);
+
+  try {
+    var driver = getNeo4jDriver();
+    var session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+      fetchSize: 1000,
+    });
+
+    var byKatResult = await session.run(
+      `MATCH (e:Entity) WHERE e.kategorie IS NOT NULL
+       RETURN e.kategorie AS kat, count(e) AS n ORDER BY n DESC`
+    );
+    var byCategory = {};
+    byKatResult.records.forEach(function (r) {
+      byCategory[r.get('kat')] = r.get('n').toNumber();
+    });
+
+    var relResult = await session.run(
+      `MATCH ()-[r]->()
+       RETURN type(r) AS t, count(r) AS n ORDER BY n DESC`
+    );
+    var byRelType = {};
+    relResult.records.forEach(function (r) {
+      byRelType[r.get('t')] = r.get('n').toNumber();
+    });
+
+    var dqResult = await session.run(
+      `MATCH (e:Entity)
+       WITH e,
+            (e.description IS NULL OR e.description = '') AS missingDesc,
+            (e.kategorie IS NULL OR e.kategorie = '') AS missingKat
+       WITH count(e) AS total,
+            count(CASE WHEN missingDesc THEN 1 END) AS missingDescription,
+            count(CASE WHEN missingKat THEN 1 END) AS missingKategorie
+       RETURN total, missingDescription, missingKategorie`
+    );
+    var dq = dqResult.records[0];
+    var totalEntities = dq.get('total').toNumber();
+    var missingDescription = dq.get('missingDescription').toNumber();
+    var missingKategorie = dq.get('missingKategorie').toNumber();
+
+    var orphanResult = await session.run(
+      `MATCH (e:Entity)
+       WHERE NOT (e)-[:RELATED_TO|ERFUELLT|BESTEHT_AUS|GEHOERT_ZU]-()
+         AND NOT (:Document)-[:MENTIONS]->(e)
+       RETURN count(e) AS n`
+    );
+    var orphans = orphanResult.records[0].get('n').toNumber();
+
+    var danglingResult = await session.run(
+      `MATCH (a:Entity)-[r:RELATED_TO]->(b)
+       WHERE b IS NULL
+       RETURN count(r) AS n`
+    );
+    var dangling = danglingResult.records[0].get('n').toNumber();
+
+    var dupResult = await session.run(
+      `MATCH (e:Entity)
+       WITH toLower(e.name) AS lname, collect(e) AS nodes
+       WHERE size(nodes) > 1
+       RETURN count(*) AS n`
+    );
+    var duplicates = dupResult.records[0].get('n').toNumber();
+
+    await session.close();
+
+    var payload = {
+      source: 'neo4j',
+      generatedAt: new Date().toISOString(),
+      totals: {
+        entities: totalEntities,
+        relations: Object.values(byRelType).reduce(function (a, b) {
+          return a + b;
+        }, 0),
+      },
+      byCategory: byCategory,
+      byRelType: byRelType,
+      quality: {
+        missingDescription: missingDescription,
+        missingKategorie: missingKategorie,
+        orphans: orphans,
+        danglingRefs: dangling,
+        duplicateNames: duplicates,
+        descriptionCoveragePct:
+          totalEntities > 0
+            ? Math.round(((totalEntities - missingDescription) / totalEntities) * 1000) / 10
+            : 0,
+        kategorieCoveragePct:
+          totalEntities > 0
+            ? Math.round(((totalEntities - missingKategorie) / totalEntities) * 1000) / 10
+            : 0,
+      },
+    };
+
+    setCachedKgData(statsCacheKey, payload, 300);
+    res.json(payload);
+  } catch (err) {
+    console.error('[kg-stats] ERROR:', err.message);
+    res.status(503).json({
+      error: 'kg-stats unavailable',
+      message: err.message,
+    });
+  }
+});
+
 app.get('/api/health', async (req, res) => {
   var neo4jOk = false;
   var entityCount = 0;
