@@ -1377,11 +1377,11 @@ function setCachedKgData(key, data) {
  * Parse query params: search, category, type, limit, offset
  */
 function parseKGParams(req) {
-  const search  = (req.query.search || '').toLowerCase().trim();
+  const search = (req.query.search || '').toLowerCase().trim();
   const category = (req.query.category || '').toLowerCase().trim();
-  const type    = (req.query.type || '').toLowerCase().trim();
-  const limit   = Math.min(parseInt(req.query.limit) || 50, 500);
-  const offset  = parseInt(req.query.offset) || 0;
+  const type = (req.query.type || '').toLowerCase().trim();
+  const limit = Math.min(parseInt(req.query.limit) || 50, 500);
+  const offset = parseInt(req.query.offset) || 0;
   return { search, category, type, limit, offset };
 }
 
@@ -1391,13 +1391,13 @@ function parseKGParams(req) {
 function filterEntities(entities, { search, category, type }) {
   let result = entities;
   if (search) {
-    result = result.filter(e => e.name.toLowerCase().includes(search));
+    result = result.filter((e) => e.name.toLowerCase().includes(search));
   }
   if (category) {
-    result = result.filter(e => (e.category || '').toLowerCase() === category);
+    result = result.filter((e) => (e.category || '').toLowerCase() === category);
   }
   if (type) {
-    result = result.filter(e => (e.type || '').toLowerCase() === type);
+    result = result.filter((e) => (e.type || '').toLowerCase() === type);
   }
   return result;
 }
@@ -1416,6 +1416,17 @@ app.get('/api/kg-data', async (req, res) => {
   }
   const startTime = Date.now();
   const isLehrplanMode = req.query.lehrplan === 'true';
+  const params = parseKGParams(req);
+  const { limit, offset } = params;
+
+  let whereClause = '';
+  let queryParams = { ...params };
+  if (params.search) {
+    whereClause = ' AND toLower(e.name) CONTAINS $search';
+  }
+  if (params.category) {
+    whereClause += ' AND e.kategorie = $category';
+  }
 
   try {
     const driver = getNeo4jDriver();
@@ -1464,10 +1475,13 @@ app.get('/api/kg-data', async (req, res) => {
     }));
 
     // Total count for pagination
-    const countResult = await session.run(`
+    const countResult = await session.run(
+      `
       MATCH (e:Entity) WHERE 1=1${whereClause}
       RETURN count(e) AS total
-    `, queryParams);
+    `,
+      queryParams
+    );
     const totalEntities = countResult.records[0].get('total').toNumber();
 
     // Query articles linked to entities
@@ -1498,13 +1512,17 @@ app.get('/api/kg-data', async (req, res) => {
     }
 
     entities.forEach((entity) => {
-      entity.articles = articles.filter((a) => a.entities.includes(entity.name)).map((a) => a.title);
+      entity.articles = articles
+        .filter((a) => a.entities.includes(entity.name))
+        .map((a) => a.title);
     });
 
     await session.close();
 
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
-    console.log(`[kg-data] Neo4j: ${articles.length} articles, ${entities.length}/${totalEntities} entities in ${elapsed}s`);
+    console.log(
+      `[kg-data] Neo4j: ${articles.length} articles, ${entities.length}/${totalEntities} entities in ${elapsed}s`
+    );
 
     return res.json({
       source: 'neo4j',
@@ -1533,13 +1551,15 @@ app.get('/api/kg-data', async (req, res) => {
     const paginatedEntities = allEntities.slice(offset, offset + limit);
 
     // Get articles for paginated entities
-    const entityNames = paginatedEntities.map(e => e.name);
-    const linkedArticles = allArticles.filter(a =>
-      (a.entities || []).some(en => entityNames.includes(en))
+    const entityNames = paginatedEntities.map((e) => e.name);
+    const linkedArticles = allArticles.filter((a) =>
+      (a.entities || []).some((en) => entityNames.includes(en))
     );
 
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
-    console.log(`[kg-data] Fallback: ${linkedArticles.length} articles, ${paginatedEntities.length}/${totalEntities} entities in ${elapsed}s`);
+    console.log(
+      `[kg-data] Fallback: ${linkedArticles.length} articles, ${paginatedEntities.length}/${totalEntities} entities in ${elapsed}s`
+    );
 
     return res.json({
       source: 'fallback',
@@ -1563,6 +1583,8 @@ app.get('/api/kg-data', async (req, res) => {
 app.get('/api/kg-data/entity/:name', async (req, res) => {
   const entityName = req.params.name.toLowerCase().trim();
   const startTime = Date.now();
+  const isLehrplanMode = req.query.lehrplan === 'true';
+  var cacheKey = entityName + (isLehrplanMode ? ':lehrplan' : '');
 
   try {
     const driver = getNeo4jDriver();
@@ -1571,7 +1593,8 @@ app.get('/api/kg-data/entity/:name', async (req, res) => {
       defaultAccessMode: neo4j.session.READ,
     });
 
-    const entityResult = await session.run(`
+    const entityResult = await session.run(
+      `
       MATCH (e:Entity {name: $name})
       OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
       OPTIONAL MATCH (e)-[c:BESTEHT_AUS]->(component:Entity)
@@ -1583,7 +1606,9 @@ app.get('/api/kg-data/entity/:name', async (req, res) => {
              collect(DISTINCT component.name) as components,
              collect(DISTINCT group.name) as groups,
              COUNT { (:Document)-[:MENTIONS]->(e) } as articleCount
-    `, { name: entityName });
+    `,
+      { name: entityName }
+    );
 
     if (entityResult.records.length === 0) {
       return res.status(404).json({ error: 'Entity not found', name: entityName });
@@ -1597,20 +1622,25 @@ app.get('/api/kg-data/entity/:name', async (req, res) => {
       symbol: r.get('symbol') || null,
       ordnungszahl: r.get('ordnungszahl') ? r.get('ordnungszahl').toNumber() : null,
       description: r.get('description') || null,
-      relatedEntities: (r.get('relatedEntities') || []).filter(n => n !== null).map((name) => ({ name, weight: 1 })),
-      components: (r.get('components') || []).filter(n => n !== null),
-      groups: (r.get('groups') || []).filter(n => n !== null),
+      relatedEntities: (r.get('relatedEntities') || [])
+        .filter((n) => n !== null)
+        .map((name) => ({ name, weight: 1 })),
+      components: (r.get('components') || []).filter((n) => n !== null),
+      groups: (r.get('groups') || []).filter((n) => n !== null),
       articleCount: r.get('articleCount') || 0,
     };
 
     // Get linked articles
-    const articlesResult = await session.run(`
+    const articlesResult = await session.run(
+      `
       MATCH (d:Document)-[:MENTIONS]->(e:Entity {name: $name})
       RETURN d.title as title, d.url as url, d.type as type,
              d.date as date, d.description as description
       ORDER BY d.date DESC
       LIMIT 50
-    `, { name: entityName });
+    `,
+      { name: entityName }
+    );
 
     const articles = articlesResult.records.map((r, i) => ({
       id: `a${i}`,
@@ -1621,9 +1651,10 @@ app.get('/api/kg-data/entity/:name', async (req, res) => {
       date: r.get('date'),
     }));
 
-    entities.forEach((entity) => {
-      entity.articles = articles
-        .filter((a) => a.entities.includes(entity.name))
+    const entities = [entity];
+    entities.forEach((ent) => {
+      ent.articles = articles
+        .filter((a) => a.entities && a.entities.includes(ent.name))
         .map((a) => a.title);
     });
 
@@ -1692,12 +1723,15 @@ app.get('/api/kg-data/entity/:name', async (req, res) => {
     return res.json(responseData);
   } catch (err) {
     console.error(`[kg-data] Entity lookup error: ${err.message}`);
+    const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
 
     // Fallback: search in static data
     const fallback = getFallbackData();
-    const entity = fallback.entities.find(e => e.name.toLowerCase() === entityName);
+    const entity = fallback.entities.find((e) => e.name.toLowerCase() === entityName);
     if (!entity) {
-      return res.status(404).json({ error: 'Entity not found', name: entityName, source: 'fallback' });
+      return res
+        .status(404)
+        .json({ error: 'Entity not found', name: entityName, source: 'fallback' });
     }
 
     // In lehrplan mode, filter to only lehrplan + didaktik entities
@@ -1721,14 +1755,17 @@ app.get('/api/kg-data/entity/:name', async (req, res) => {
       return res.json(fbLehrplanResponse);
     }
 
+    const fallbackArticles = (fallback.articles || []).filter((a) =>
+      (a.entities || []).includes(entity.name)
+    );
     console.log(
-      `[kg-data] Fallback: ${fallback.articles.length} articles, ${fallback.entities.length} entities in ${elapsed}s`
+      `[kg-data] Fallback: ${fallbackArticles.length} articles, ${fallback.entities.length} entities in ${elapsed}s`
     );
 
     var fallbackResponse = {
       source: 'fallback',
       entity,
-      articles,
+      articles: fallbackArticles,
       loadTime: parseFloat(elapsed),
     };
     setCachedKgData(cacheKey, fallbackResponse);
