@@ -1,0 +1,84 @@
+{{ define "css" }}
+<style>
+#curricula-state-app { margin-top: 1rem; min-height: 400px; }
+#curricula-state-app .curricula-skeleton { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+#curricula-state-app .curricula-skeleton-card {
+  height: 80px; border-radius: 10px;
+  background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+  background-size: 200% 100%; animation: shim 1.5s infinite;
+}
+@keyframes shim { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.state-picker { margin-bottom: 1.5rem; }
+.state-picker select {
+  padding: 0.6rem 1rem; border-radius: 8px; border: 1px solid var(--border-color,#ddd);
+  font-size: 1rem; background: var(--bg-input,#fff); color: var(--text-primary,#333);
+  min-width: 250px; max-width: 100%;
+}
+.school-type-group { margin-bottom: 2rem; }
+.school-type-group h2 {
+  font-size: 1.2rem; color: var(--text-primary,#333); margin-bottom: 0.5rem;
+  padding-bottom: 0.3rem; border-bottom: 2px solid #9b59b6;
+}
+.grade-group { margin: 1rem 0 1rem 1rem; }
+.grade-group h3 {
+  font-size: 1rem; color: var(--text-muted,#666); margin-bottom: 0.5rem;
+}
+.state-topic-card {
+  background: var(--bg-card,#fff); border: 1px solid var(--border-color,#e0e0e0);
+  border-radius: 8px; padding: 0.8rem; margin-bottom: 0.5rem;
+  transition: box-shadow 0.2s;
+}
+.state-topic-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.state-topic-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; }
+.state-topic-name a { color: var(--text-primary,#333); text-decoration: none; }
+.state-topic-name a:hover { color: #9b59b6; text-decoration: underline; }
+.state-topic-meta { font-size: 0.8rem; color: var(--text-muted,#999); }
+.objective-chip {
+  display: inline-block; padding: 1px 6px; margin: 1px;
+  font-size: 0.72rem; background: #f3e8ff; color: #7b1fa2;
+  border-radius: 8px; white-space: nowrap; max-width: 200px;
+  overflow: hidden; text-overflow: ellipsis; cursor: default;
+}
+.content-link-mini {
+  display: inline-block; padding: 1px 6px; margin: 1px;
+  font-size: 0.72rem; background: #e3f2fd; color: #1565c0;
+  border-radius: 8px; text-decoration: none; white-space: nowrap;
+}
+.content-link-mini:hover { background: #bbdefb; }
+@media (prefers-color-scheme: dark) {
+  #curricula-state-app .curricula-skeleton-card {
+    background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
+    background-size: 200% 100%;
+  }
+  .state-topic-card { background: #2a2a2a; border-color: #444; }
+  .objective-chip { background: #3a2060; color: #ce93d8; }
+  .content-link-mini { background: #1a3050; color: #90caf9; }
+}
+</style>
+{{ end }}
+
+{{ define "main" }}
+<div class="container" style="margin-top: 1rem;">
+  <div class="row">
+    <div class="col-md-12">
+      {{ .Content }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="curricula-state-app">
+        <div class="curricula-skeleton" id="state-skeleton" aria-label="Lade…">
+          <div class="curricula-skeleton-card"></div>
+          <div class="curricula-skeleton-card"></div>
+          <div class="curricula-skeleton-card"></div>
+          <div class="curricula-skeleton-card"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{ define "js" }}
+<script src="/js/curricula-state.js"></script>
+{{ end }}

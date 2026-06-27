@@ -64,6 +64,10 @@
     var objectivesSearch = '';
     var objectivesParentTopic = '';
     var objectivesLoading = false;
+    var contentData = null;
+    var contentSearch = '';
+    var contentType = '';
+    var contentLoading = false;
 
     // Precompute KMK topic map from didaktik entities
     var kmkTopicMap = {};
@@ -152,6 +156,7 @@
       if (activeTab === 'explorer') _renderExplorer();
       else if (activeTab === 'compare') _renderCompare();
       else if (activeTab === 'objectives') _renderObjectives();
+      else if (activeTab === 'content') _renderContent();
       else _renderExplorer();
     }
 
@@ -192,7 +197,10 @@
       html +=
         '<button class="curricula-tab' +
         (activeTab === 'objectives' ? ' active' : '') +
-        '" data-tab="objectives">Lernziele</button>';
+        '" data-tab="objectives">Lernziele</button>' +
+        '<button class="curricula-tab' +
+        (activeTab === 'content' ? ' active' : '') +
+        '" data-tab="content">Inhalte</button>';
       html += '</div>';
 
       // Filters
@@ -510,7 +518,10 @@
       html +=
         '<button class="curricula-tab' +
         (activeTab === 'objectives' ? ' active' : '') +
-        '" data-tab="objectives">Lernziele</button>';
+        '" data-tab="objectives">Lernziele</button>' +
+        '<button class="curricula-tab' +
+        (activeTab === 'content' ? ' active' : '') +
+        '" data-tab="content">Inhalte</button>';
       html += '</div>';
 
       html += '<div class="compare-search">';
@@ -723,7 +734,10 @@
       html +=
         '<button class="curricula-tab' +
         (activeTab === 'objectives' ? ' active' : '') +
-        '" data-tab="objectives">Lernziele</button>';
+        '" data-tab="objectives">Lernziele</button>' +
+        '<button class="curricula-tab' +
+        (activeTab === 'content' ? ' active' : '') +
+        '" data-tab="content">Inhalte</button>';
       html += '</div>';
 
       html += '<div class="curricula-filters">';
@@ -852,6 +866,174 @@
         loadLink.addEventListener('click', function (ev) {
           ev.preventDefault();
           _loadObjectives();
+        });
+      }
+    }
+
+    // ── Content Tab ──
+    function _renderContent() {
+      var html = '';
+      html += '<div class="curricula-header">';
+      html += '<h1>Inhalte durchsuchen</h1>';
+      html +=
+        '<p class="curricula-subtitle">Artikel, Rechner und interaktive Inhalte aus dem Chemie-Portal.</p>';
+      html += '</div>';
+
+      html += '<div class="curricula-tabs">';
+      html +=
+        '<button class="curricula-tab' +
+        (activeTab === 'explorer' ? ' active' : '') +
+        '" data-tab="explorer">Durchsuchen</button>';
+      html +=
+        '<button class="curricula-tab' +
+        (activeTab === 'compare' ? ' active' : '') +
+        '" data-tab="compare">Ländervergleich</button>';
+      html +=
+        '<button class="curricula-tab' +
+        (activeTab === 'objectives' ? ' active' : '') +
+        '" data-tab="objectives">Lernziele</button>';
+      html +=
+        '<button class="curricula-tab' +
+        (activeTab === 'content' ? ' active' : '') +
+        '" data-tab="content">Inhalte</button>';
+      html += '</div>';
+
+      html += '<div class="curricula-filters">';
+      html += '<div class="curricula-filter-row">';
+      html += '<label class="curricula-filter-label">Typ</label>';
+      html += '<select class="curricula-select" id="content-type-filter">';
+      html += '<option value=""' + (!contentType ? ' selected' : '') + '>Alle Typen</option>';
+      html +=
+        '<option value="article"' +
+        (contentType === 'article' ? ' selected' : '') +
+        '>Artikel</option>';
+      html +=
+        '<option value="calculator"' +
+        (contentType === 'calculator' ? ' selected' : '') +
+        '>Rechner</option>';
+      html += '</select>';
+      html += '</div>';
+      html += '<div class="curricula-search-row">';
+      html +=
+        '<input class="curricula-search" type="text" placeholder="Inhalt suchen..." id="content-search" value="' +
+        escapeHtml(contentSearch) +
+        '">';
+      html += '</div></div>';
+
+      if (contentLoading) {
+        html += '<div class="curricula-loading"><em>Lade Inhalte…</em></div>';
+        app.innerHTML = html;
+        _attachContentEvents();
+        return;
+      }
+
+      if (contentData && contentData.items) {
+        var items = contentData.items;
+        if (items.length === 0) {
+          html +=
+            '<div class="empty-state"><div class="empty-state-icon">📄</div><p>Keine Inhalte gefunden.</p></div>';
+        } else {
+          html +=
+            '<div class="curricula-grid" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">';
+          items.forEach(function (item) {
+            var typeLabel =
+              item.type === 'calculator'
+                ? '🔬 Rechner'
+                : item.type === 'article'
+                  ? '📖 Artikel'
+                  : item.type;
+            html += '<div class="curricula-card">';
+            html += '<div class="curricula-card-body">';
+            html +=
+              '<div class="curricula-card-name"><a href="' +
+              escapeHtml(item.url) +
+              '" target="_blank" rel="noopener">' +
+              escapeHtml(item.title) +
+              '</a></div>';
+            html += '<div class="curricula-card-meta" style="margin-top:0.3rem;">';
+            html +=
+              '<span style="font-size:0.78rem;color:var(--text-muted,#999);">' +
+              typeLabel +
+              '</span>';
+            if (item.labels) {
+              item.labels.forEach(function (l) {
+                if (l !== 'Content')
+                  html +=
+                    ' <span style="display:inline-block;padding:0 6px;font-size:0.7rem;background:#e8f5e9;color:#2e7d32;border-radius:8px;">' +
+                    escapeHtml(l) +
+                    '</span>';
+              });
+            }
+            html += '</div></div></div>';
+          });
+          html += '</div>';
+        }
+      } else {
+        html +=
+          '<div class="empty-state"><div class="empty-state-icon">📄</div><p>Inhalte laden… <a href="#" id="content-load-trigger" style="color:#9b59b6;">Jetzt laden</a></p></div>';
+      }
+
+      app.innerHTML = html;
+      _attachContentEvents();
+    }
+
+    function _loadContent() {
+      contentLoading = true;
+      _render();
+      var params = [];
+      if (contentSearch) params.push('search=' + encodeURIComponent(contentSearch));
+      if (contentType) params.push('type=' + encodeURIComponent(contentType));
+      params.push('limit=200');
+
+      fetch('/api/content?' + params.join('&'), { signal: AbortSignal.timeout(15000) })
+        .then(function (r) {
+          if (!r.ok) {
+            throw new Error(r.status);
+          }
+          return r.json();
+        })
+        .then(function (d) {
+          contentData = d;
+          contentLoading = false;
+          _render();
+        })
+        .catch(function () {
+          contentLoading = false;
+          contentData = { items: [] };
+          _render();
+        });
+    }
+
+    function _attachContentEvents() {
+      app.querySelectorAll('.curricula-tab').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activeTab = this.getAttribute('data-tab');
+          currentPage = 1;
+          _render();
+        });
+      });
+
+      var searchInput = document.getElementById('content-search');
+      if (searchInput) {
+        searchInput.addEventListener('input', function (ev) {
+          contentSearch = ev.target.value;
+          _loadContent();
+        });
+      }
+
+      var typeFilter = document.getElementById('content-type-filter');
+      if (typeFilter) {
+        typeFilter.addEventListener('change', function () {
+          contentType = this.value;
+          _loadContent();
+        });
+      }
+
+      var loadLink = document.getElementById('content-load-trigger');
+      if (loadLink) {
+        loadLink.addEventListener('click', function (ev) {
+          ev.preventDefault();
+          _loadContent();
         });
       }
     }

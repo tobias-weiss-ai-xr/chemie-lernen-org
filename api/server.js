@@ -2312,6 +2312,13 @@ app.get('/entity/:slug', async function (req, res) {
       '.quiz-link-card:hover{background:#ffe0b2;border-color:#ff9800;text-decoration:none}' +
       '.quiz-link-label{flex:1;font-weight:500}' +
       '.quiz-link-arrow{font-weight:bold;font-size:1.1rem}' +
+      '.curricula-context{margin:1rem 0}' +
+      '.curricula-context h3{font-size:1rem;margin:1rem 0 0.5rem}' +
+      '.curricula-context-stats{display:flex;gap:1rem;font-size:0.85rem;color:var(--text-muted,#666);margin-bottom:0.5rem}' +
+      '.curricula-context-stats strong{color:#9b59b6}' +
+      '.topic-chip{display:inline-block;padding:4px 10px;margin:3px;background:#f3e5f5;color:#7b1fa2;border-radius:14px;text-decoration:none;font-size:0.8rem;border:1px solid #ce93d8}' +
+      '.topic-chip:hover{background:#e1bee7;border-color:#7b1fa2}' +
+      '.objective-chip{display:inline-block;padding:3px 8px;margin:2px;background:#e8f5e9;color:#2e7d32;border-radius:10px;font-size:0.75rem;border:1px solid #a5d6a7}' +
       '.article-list{padding-left:1.2rem}' +
       '.article-list li{margin:.5rem 0;color:#555}' +
       '.back-link{display:inline-block;margin-top:1.5rem;color:#666;text-decoration:none}' +
@@ -2330,6 +2337,10 @@ app.get('/entity/:slug', async function (req, res) {
       '.quelle-chip{background:#3a2a1b;color:#f0d9b5;border-color:#b8860b}' +
       '.meta-row{border-bottom-color:#333}' +
       '.meta-label{color:#999}' +
+      '.topic-chip{background:#3a2050;color:#ce93d8;border-color:#7b1fa2}' +
+      '.topic-chip:hover{background:#4a2060}' +
+      '.objective-chip{background:#1b3a1b;color:#81c784;border-color:#2e7d32}' +
+      '.curricula-context h3{color:#e0e0e0}' +
       '}</style>' +
       '</head><body>' +
       '<div class="container">' +
@@ -2347,10 +2358,46 @@ app.get('/entity/:slug', async function (req, res) {
       quizHtml +
       otherRelatedHtml +
       articlesHtml +
+      '<div id="curricula-context" class="curricula-context"></div>' +
       '<a href="' +
       backLink +
       '" class="back-link">← Zurück</a>' +
-      '</div></div></body></html>'
+      '</div></div>' +
+      '<script>' +
+      'fetch("/api/entities/' +
+      slugify(slug) +
+      '/curricula").then(function(r){return r.json()}).then(function(d){' +
+      'var el=document.getElementById("curricula-context");' +
+      'if(!el||!d.coveredTopics||!d.fulfilledObjectives)return;' +
+      'var ct=d.coveredTopics.filter(function(t){return t.topic});' +
+      'var fo=d.fulfilledObjectives.filter(function(o){return o.objective});' +
+      'if(ct.length===0&&fo.length===0)return;' +
+      'var h="<h3>📚 Lehrplan-Kontext</h3>";' +
+      'h+="<div class=\\"curricula-context-stats\\">";' +
+      'h+="<span><strong>"+ct.length+"</strong> Themen</span>";' +
+      'h+="<span><strong>"+fo.length+"</strong> Lernziele</span>";' +
+      'h+="</div>";' +
+      'if(ct.length>0){' +
+      'h+="<div class=\\"kmk-list\\">";' +
+      'for(var i=0;i<ct.length;i++){' +
+      'var topicSlug=ct[i].topic.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");' +
+      'h+="<a href=\\"/entity/"+topicSlug+"/\\" class=\\"topic-chip\\">"+ct[i].topic.replace(/-/g," ")+"</a>";' +
+      '}' +
+      'h+="</div>";' +
+      '}' +
+      'if(fo.length>0){' +
+      'h+="<p style=\\"font-size:0.8rem;color:#888;margin:0.5rem 0 0.25rem\\">Erfüllte Lernziele</p>";' +
+      'h+="<div class=\\"kmk-list\\">";' +
+      'for(var j=0;j<Math.min(fo.length,20);j++){' +
+      'h+="<span class=\\"objective-chip\\">"+fo[j].objective.replace(/-/g," ")+"</span>";' +
+      '}' +
+      'if(fo.length>20)h+="<span class=\\"objective-chip\\">+"+(fo.length-20)+" weitere</span>";' +
+      'h+="</div>";' +
+      '}' +
+      'el.innerHTML=h;' +
+      '}).catch(function(){});' +
+      '</script>' +
+      '</body></html>'
   );
 });
 
@@ -2604,6 +2651,37 @@ app.get('/api/kg-stats', async (req, res) => {
     );
     var duplicates = dupResult.records[0].get('n').toNumber();
 
+    // Curriculum coverage metrics
+    var currCoverage = { totalTopics: 0, totalObjectives: 0, linkedEntities: 0, contentNodes: 0 };
+    try {
+      var ccResult = await session.run(
+        `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
+         AND e.kategorie = 'lehrplan'
+         RETURN count(e) AS topics`
+      );
+      currCoverage.totalTopics = ccResult.records[0].get('topics').toNumber();
+
+      var objResult = await session.run(
+        `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
+         AND e.kategorie = 'lernziel'
+         RETURN count(e) AS objectives`
+      );
+      currCoverage.totalObjectives = objResult.records[0].get('objectives').toNumber();
+
+      var linkResult = await session.run(
+        `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
+         AND NOT e.kategorie IN ['lehrplan', 'lernziel']
+         AND ((e)-[:COVERS_TOPIC]->() OR (e)-[:FULFILLS]->())
+         RETURN count(DISTINCT e) AS linked`
+      );
+      currCoverage.linkedEntities = linkResult.records[0].get('linked').toNumber();
+
+      var contentNodeResult = await session.run(`MATCH (c:Content) RETURN count(c) AS cnt`);
+      currCoverage.contentNodes = contentNodeResult.records[0].get('cnt').toNumber();
+    } catch (ccErr) {
+      console.warn('[kg-stats] curriculum coverage query failed:', ccErr.message);
+    }
+
     await session.close();
 
     var payload = {
@@ -2617,6 +2695,7 @@ app.get('/api/kg-stats', async (req, res) => {
       },
       byCategory: byCategory,
       byRelType: byRelType,
+      curriculumCoverage: currCoverage,
       quality: {
         missingDescription: missingDescription,
         missingKategorie: missingKategorie,
@@ -2848,6 +2927,95 @@ app.get('/api/curricula/objectives', async (req, res) => {
   } catch (err) {
     console.error('[curricula/objectives] Neo4j error:', err.message);
     res.status(503).json({ error: 'Learning objectives unavailable' });
+  }
+});
+
+/**
+ * GET /api/curricula/by-state/:state — Full curriculum tree for a state.
+ * Returns all topics for the given state (2-letter code, e.g. "NW", "BY"),
+ * each with its learning objectives and linked content.
+ */
+app.get('/api/curricula/by-state/:state', async (req, res) => {
+  const state = req.params.state.toUpperCase();
+  if (!state || state.length !== 2) {
+    return res.status(400).json({ error: 'Invalid state code', state });
+  }
+
+  try {
+    var driver = getNeo4jDriver();
+    var session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+      fetchSize: 5000,
+    });
+
+    const scope = subsetWhere('e', ['Entity']);
+    const result = await session.run(
+      `MATCH (e:Entity) ${scope}
+       AND e.kategorie = 'lehrplan' AND e.state = $state
+       OPTIONAL MATCH (o:Entity)-[:TEIL_VON]->(e)
+         WHERE o.kategorie = 'lernziel'
+       OPTIONAL MATCH (e)-[:MENTIONS]->(c:Content)
+       WITH e, collect(DISTINCT o.name) AS objectives,
+            collect(DISTINCT {url: c.url, title: c.title, type: c.type}) AS contentLinks
+       RETURN e.name AS name, e.grade AS grade, e.school_type AS schoolType,
+              e.display_name AS displayName,
+              size(objectives) AS objectiveCount,
+              [ob IN objectives WHERE ob IS NOT NULL] AS objectives,
+              [cl IN contentLinks WHERE cl.url IS NOT NULL] AS contentLinks
+       ORDER BY e.grade, e.name`,
+      { state }
+    );
+    await session.close();
+
+    const topics = result.records.map(function (r) {
+      return {
+        name: r.get('name'),
+        grade: r.get('grade'),
+        schoolType: r.get('schoolType'),
+        displayName: r.get('displayName'),
+        objectiveCount: r.get('objectiveCount').toNumber(),
+        objectives: r.get('objectives'),
+        contentLinks: r.get('contentLinks'),
+      };
+    });
+
+    res.json({
+      source: 'neo4j',
+      state,
+      topicCount: topics.length,
+      totalObjectives: topics.reduce((s, t) => s + t.objectiveCount, 0),
+      topics,
+    });
+  } catch (err) {
+    console.error('[curricula/by-state] Neo4j error:', err.message);
+    try {
+      var fb = getFallbackData();
+      var fTopics = fb.curricula.filter(function (c) {
+        return c.curriculumMeta && c.curriculumMeta.state === state;
+      });
+      res.json({
+        source: 'fallback',
+        state,
+        topicCount: fTopics.length,
+        totalObjectives: fTopics.reduce(function (s, t) {
+          return s + (t.curriculumMeta.objective_count || 0);
+        }, 0),
+        topics: fTopics.map(function (c) {
+          return {
+            name: c.name,
+            grade: c.curriculumMeta.grade,
+            schoolType: c.curriculumMeta.school_type,
+            displayName: c.name,
+            objectiveCount: c.curriculumMeta.objective_count || 0,
+            objectives: [],
+            contentLinks: [],
+          };
+        }),
+      });
+    } catch {
+      res.status(503).json({ error: 'Curriculum data unavailable' });
+    }
   }
 });
 
