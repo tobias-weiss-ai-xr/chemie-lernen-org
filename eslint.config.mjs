@@ -20,8 +20,6 @@ export default [
       'myhugoapp/public/**/*.js',
       'myhugoapp/static/sw.js',
       'myhugoapp/public/sw.js',
-      'myhugoapp/static/enhanced-sw.js',
-      'myhugoapp/public/enhanced-sw.js',
       'myhugoapp/static/js/three.module.js',
       'myhugoapp/static/js/three/three.core.js',
       'myhugoapp/static/js/three/TrackballControls.js',
