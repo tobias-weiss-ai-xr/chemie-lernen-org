@@ -21,11 +21,6 @@
 
 // NOTE: All queries in this file use :Entity / kategorie labels — already subset-restricted.
 
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
 // ── Config ────────────────────────────────────────────────────────────
 const NEO4J_URI = process.env.NEO4J_URI || 'bolt://chemie-neo4j:7687';
 const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';

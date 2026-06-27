@@ -1,31 +1,31 @@
 # OpenSpec — Capabilities Index
 
-Last updated: 2026-06-26
+Last updated: 2026-06-28
 
 ## Main capabilities (specs/)
 
-| Capability                      | Spec                               | Status | Owners   | Last change                   |
-| ------------------------------- | ---------------------------------- | ------ | -------- | ----------------------------- |
-| Entity Knowledge Graph          | `entity-knowledge-graph/spec.md`   | Active | Sisyphus | sprint-8b-neo4j-data          |
-| AI Assistant (KI-Assistent)     | `ai-assistant/spec.md`             | Active | Sisyphus | sprint-8c-rag                 |
-| WCAG 2.1 AA Compliance          | `a11y-compliance/spec.md`          | Active | Sisyphus | sprint-7-wcag-a11y            |
-| Wissensnetz Full-Graph          | `wissensnetz-graph/spec.md`        | Active | Sisyphus | sprint-8a-d3-ego-graph        |
-| Central KG Architecture         | `central-kg-architecture/spec.md`  | Active | Sisyphus | sprint-9-specs-and-fixes      |
-| Lehrplan + Didaktik (curricula) | `lehrplan-curriculum/spec.md`      | Active | Sisyphus | (proposed — not yet imported) |
-| Modulhandbuch (universities)    | `modulhandbuch-university/spec.md` | Active | Sisyphus | (proposed — Marburg stub)     |
-| Calculators                     | `calculators/spec.md`              | Active | Sisyphus | sprint-9-specs-and-fixes      |
-| Quiz & Exercises                | `quiz/spec.md`                     | Active | Sisyphus | sprint-9-specs-and-fixes      |
-| 3D Visualizations               | `3d-visualizations/spec.md`        | Active | Sisyphus | sprint-9-specs-and-fixes      |
-| Themenbereiche (subject areas)  | `themenbereiche/spec.md`           | Active | Sisyphus | sprint-9-specs-and-fixes      |
-| PWA (Progressive Web App)       | `pwa/spec.md`                      | Active | Sisyphus | sprint-9-specs-and-fixes      |
+| Capability                      | Spec                               | Status | Owners   | Last change                                             |
+| ------------------------------- | ---------------------------------- | ------ | -------- | ------------------------------------------------------- |
+| Entity Knowledge Graph          | `entity-knowledge-graph/spec.md`   | Active | Sisyphus | sprint-8b-neo4j-data                                    |
+| AI Assistant (KI-Assistent)     | `ai-assistant/spec.md`             | Active | Sisyphus | sprint-8c-rag                                           |
+| WCAG 2.1 AA Compliance          | `a11y-compliance/spec.md`          | Active | Sisyphus | sprint-7-wcag-a11y                                      |
+| Wissensnetz Full-Graph          | `wissensnetz-graph/spec.md`        | Active | Sisyphus | sprint-8a-d3-ego-graph                                  |
+| Central KG Architecture         | `central-kg-architecture/spec.md`  | Active | Sisyphus | sprint-9-specs-and-fixes                                |
+| Lehrplan + Didaktik (curricula) | `lehrplan-curriculum/spec.md`      | Active | Sisyphus | sprint-d-import (15 states + 5 KMK guidelines imported) |
+| Modulhandbuch (universities)    | `modulhandbuch-university/spec.md` | Active | Sisyphus | sprint-c-scrapers (ETH+TUM working, 7 stubs)            |
+| Calculators                     | `calculators/spec.md`              | Active | Sisyphus | sprint-9-specs-and-fixes                                |
+| Quiz & Exercises                | `quiz/spec.md`                     | Active | Sisyphus | sprint-9-specs-and-fixes                                |
+| 3D Visualizations               | `3d-visualizations/spec.md`        | Active | Sisyphus | sprint-9-specs-and-fixes                                |
+| Themenbereiche (subject areas)  | `themenbereiche/spec.md`           | Active | Sisyphus | sprint-9-specs-and-fixes                                |
+| PWA (Progressive Web App)       | `pwa/spec.md`                      | Active | Sisyphus | sprint-9-specs-and-fixes                                |
 
 ## Active changes (`changes/`)
 
 | Change                              | Status      | Goal                                                                                                                                |
 | ----------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | `sprint-9-specs-and-fixes`          | In progress | 5 new specs + critical code quality fixes; absorbs `open-spec-coverage`                                                             |
-| `extend-entity-kg-with-lehrplan`    | Proposal    | Import 16 state curricula + 5 KMK guidelines into Neo4j; all queries scoped via `subsetMatch('chemie')` per central-kg-architecture |
-| `integrate-global-modulhandbuecher` | Proposal    | Implement Marburg reference scraper + 9 more top universities; new modulhandbuch subset of the central KG                           |
+| `extend-entity-kg-with-lehrplan`    | Active      | Import 16 state curricula + 5 KMK guidelines into Neo4j; all queries scoped via `subsetMatch('chemie')` per central-kg-architecture |
+| `integrate-global-modulhandbuecher` | Active      | Implement ETH+TUM scrapers + 8 more top universities; new modulhandbuch subset of the central KG                                    |
 
 ## Archived changes (`changes/archive/`)
 

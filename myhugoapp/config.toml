@@ -403,4 +403,9 @@ author = "chemie-lernen.org Team"
     parent = "mehr"
     weight = 93
     icon = "❤️"
+[[menu.main]]
+    name = "Modulhandbücher"
+    url = "/modulhandbuecher/"
+    parent = "mehr"
+    weight = 94
 

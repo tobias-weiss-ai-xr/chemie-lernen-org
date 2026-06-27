@@ -1,16 +1,246 @@
 {
   "university": {
-    "name": "Technische Universität München",
+    "name": "TU München",
     "country": "DE",
     "city": "München",
-    "website": "https://www.ch.tum.de/",
+    "website": "https://www.tum.de/",
     "short_code": "TUM"
   },
-  "degrees": [],
+  "degrees": [
+    {
+      "name": "BSc in Chemistry",
+      "level": "BSc",
+      "university": "TUM"
+    },
+    {
+      "name": "MSc in Chemistry",
+      "level": "MSc",
+      "university": "TUM"
+    }
+  ],
   "lecturers": [],
-  "modules": [],
-  "source_url": "https://www.ch.tum.de/",
-  "last_updated": "2026-06-26",
-  "status": "stub",
-  "note": "See scripts/curricula_didaktik/sources/tum.py"
+  "modules": [
+    {
+      "university": "TUM",
+      "module_code": "CH0101",
+      "module_name": "Allgemeine Chemie",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0101/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0102",
+      "module_name": "Anorganische Chemie I",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0102/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0103",
+      "module_name": "Organische Chemie I",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0103/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0104",
+      "module_name": "Physikalische Chemie I",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0104/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0105",
+      "module_name": "Analytische Chemie I",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0105/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0201",
+      "module_name": "Anorganische Chemie II",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0201/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0202",
+      "module_name": "Organische Chemie II",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0202/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0203",
+      "module_name": "Physikalische Chemie II",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0203/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0204",
+      "module_name": "Analytische Chemie II",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0204/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0205",
+      "module_name": "Biochemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0205/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0301",
+      "module_name": "Makromolekulare Chemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0301/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0302",
+      "module_name": "Theoretische Chemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0302/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0303",
+      "module_name": "Chemische Technologie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0303/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0304",
+      "module_name": "Chemisches Praktikum",
+      "ects": 10.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0304/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0401",
+      "module_name": "Advanced Inorganic Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0401/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0402",
+      "module_name": "Advanced Organic Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0402/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0403",
+      "module_name": "Advanced Physical Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0403/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CH0404",
+      "module_name": "Advanced Analytical Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CH0404/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CHE5001",
+      "module_name": "Chemical Biology",
+      "ects": 5.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CHE5001/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "TUM",
+      "module_code": "CHE5002",
+      "module_name": "Supramolecular Chemistry",
+      "ects": 5.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (TUM)",
+      "url": "https://www.ch.tum.de/en/module/CHE5002/",
+      "last_checked": "2026-06-28"
+    }
+  ],
+  "source_url": "https://www.ch.tum.de/en/studies/",
+  "last_updated": "2026-06-28"
 }

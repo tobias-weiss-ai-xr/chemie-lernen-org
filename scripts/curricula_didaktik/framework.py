@@ -375,19 +375,22 @@ def main(argv: list[str]) -> int:
                   args.source)
         return EXIT_FETCH_ERROR
 
-    if args.dry_run:
-        log.info("DRY RUN: would write %d item(s)", len(result))
-        print(json.dumps(
-            [r.to_dict() if hasattr(r, "to_dict") else r for r in result],
-            ensure_ascii=False, indent=2,
-        ))
-        return EXIT_OK
+    items = result if isinstance(result, (list, tuple)) else [result]
+    log.info("Scraper %s returned %d item(s)", args.source, len(items))
 
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    if args.dry_run:
+        log.info("DRY RUN: would write %d item(s)", len(items))
+        print(json.dumps(
+            [i.to_dict() if hasattr(i, "to_dict") else i for i in items],
+            ensure_ascii=False, indent=2,
+        ))
+        return EXIT_OK
+
     try:
-        for item in result:
+        for item in items:
             if hasattr(item, "to_dict") and hasattr(item, "university"):
                 from schema import write_module_catalog
                 path = write_module_catalog(item, output_dir)

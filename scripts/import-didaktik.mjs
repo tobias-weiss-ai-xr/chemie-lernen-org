@@ -77,29 +77,29 @@ const LINKING_RULES = [
   {
     name: 'bildungsstandards-im-fach-chemie-fuer-den-mittleren-schulabschluss-2004',
     // MSA (Sek I) standards → match broad topics
-    keywords: ['chemische reaktion', 'stoff', 'element', 'salz', 'ion', 'saeure', 'base', 'metall'],
+    keywords: ['chemische reaktion', 'stoff', 'element', 'salz', 'ion', 'säure', 'base', 'metall', 'chemie'],
     curriculumFilter: null,
   },
   {
     name: 'weiterentwickelte-bildungsstandards-chemie-msa-2024',
-    keywords: ['chemische reaktion', 'stoff', 'element', 'salz', 'ion', 'saeure', 'base', 'metall'],
+    keywords: ['chemische reaktion', 'stoff', 'element', 'salz', 'ion', 'säure', 'base', 'metall', 'chemie'],
     curriculumFilter: null,
   },
   {
     name: 'bildungsstandards-im-fach-chemie-fuer-die-allgemeine-hochschulreife-2020',
     // AHR (Sek II) → match upper-level topics
-    keywords: ['gleichgewicht', 'saeure', 'base', 'elektro', 'redox', 'organisch', 'kunststoff', 'aromaten'],
+    keywords: ['gleichgewicht', 'säure', 'base', 'elektro', 'redox', 'organisch', 'kunststoff', 'aromaten', 'chemie'],
     curriculumFilter: null,
   },
   {
     name: 'kerncurriculum-chemie-fuer-die-gymnasiale-oberstufe-deutsche-schulen-im-ausland',
-    keywords: ['gleichgewicht', 'saeure', 'base', 'elektro', 'redox', 'organisch'],
+    keywords: ['gleichgewicht', 'säure', 'base', 'elektro', 'redox', 'organisch', 'chemie'],
     curriculumFilter: null,
   },
   {
     name: 'implementation-der-weiterentwickelten-bildungsstandards-naturwissenschaften-2024',
     // Implementation brochure → links broadly
-    keywords: ['chemische reaktion', 'stoff', 'element', 'saeure', 'base', 'gleichgewicht', 'redox', 'metall', 'salz'],
+    keywords: ['chemische reaktion', 'stoff', 'element', 'säure', 'base', 'gleichgewicht', 'redox', 'metall', 'salz', 'chemie'],
     curriculumFilter: null,
   },
 ];

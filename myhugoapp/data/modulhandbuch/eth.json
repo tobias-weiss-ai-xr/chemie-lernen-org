@@ -1,16 +1,235 @@
 {
   "university": {
-    "name": "Eidgenössische Technische Hochschule Zürich",
+    "name": "ETH Zürich",
     "country": "CH",
     "city": "Zürich",
-    "website": "https://chab.ethz.ch/",
+    "website": "https://ethz.ch/",
     "short_code": "ETH"
   },
-  "degrees": [],
+  "degrees": [
+    {
+      "name": "BSc in Chemistry",
+      "level": "BSc",
+      "university": "ETH"
+    },
+    {
+      "name": "MSc in Chemistry",
+      "level": "MSc",
+      "university": "ETH"
+    }
+  ],
   "lecturers": [],
-  "modules": [],
+  "modules": [
+    {
+      "university": "ETH",
+      "module_code": "529-0001-00L",
+      "module_name": "Allgemeine Chemie I",
+      "ects": 7.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0001-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0002-00L",
+      "module_name": "Allgemeine Chemie II",
+      "ects": 7.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0002-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0011-00L",
+      "module_name": "Anorganische Chemie I",
+      "ects": 4.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0011-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0012-00L",
+      "module_name": "Anorganische Chemie II",
+      "ects": 4.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0012-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0021-00L",
+      "module_name": "Organische Chemie I",
+      "ects": 4.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0021-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0022-00L",
+      "module_name": "Organische Chemie II",
+      "ects": 4.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0022-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0031-00L",
+      "module_name": "Physikalische Chemie I",
+      "ects": 4.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0031-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0032-00L",
+      "module_name": "Physikalische Chemie II",
+      "ects": 4.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0032-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0051-00L",
+      "module_name": "Analytische Chemie I",
+      "ects": 3.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0051-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0058-00L",
+      "module_name": "Analytische Chemie II",
+      "ects": 3.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0058-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0131-00L",
+      "module_name": "Biochemie",
+      "ects": 3.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0131-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0440-00L",
+      "module_name": "Physikalische Chemie III: Molekulare Thermodynamik",
+      "ects": 4.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0440-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0431-00L",
+      "module_name": "Organische Chemie III",
+      "ects": 4.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0431-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0121-00L",
+      "module_name": "Anorganische und Organische Chemie für Biologen",
+      "ects": 4.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0121-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0059-00L",
+      "module_name": "Nanotechnologie",
+      "ects": 3.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0059-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0071-00L",
+      "module_name": "Chemical Biology",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0071-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0072-00L",
+      "module_name": "Supramolecular Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0072-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0083-00L",
+      "module_name": "Bioorganische Chemie",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0083-00L/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "ETH",
+      "module_code": "529-0084-00L",
+      "module_name": "Protein Engineering",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (ETH)",
+      "url": "https://vorlesungsverzeichnis.ethz.ch/529-0084-00L/",
+      "last_checked": "2026-06-28"
+    }
+  ],
   "source_url": "https://chab.ethz.ch/",
-  "last_updated": "2026-06-26",
-  "status": "stub",
-  "note": "See scripts/curricula_didaktik/sources/eth.py"
+  "last_updated": "2026-06-28"
 }

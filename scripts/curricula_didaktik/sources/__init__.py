@@ -64,13 +64,13 @@ SOURCE_META = {
     },
     "tum": {
         "name": "TU München Chemie",
-        "status": "stub",
+        "status": "working",
         "url": "https://www.ch.tum.de/en/bachelor-s-program-chemistry/",
         "subset": "modulhandbuch",
     },
     "eth_zurich": {
         "name": "ETH Zürich Chemie",
-        "status": "stub",
+        "status": "working",
         "url": "https://chab.ethz.ch/",
         "subset": "modulhandbuch",
     },
