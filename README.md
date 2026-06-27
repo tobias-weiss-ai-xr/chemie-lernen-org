@@ -1,6 +1,6 @@
 # chemie-lernen.org
 
-[chemie-lernen.org](chemie-lernen.org)
+[chemie-lernen.org](https://chemie-lernen.org)
 
 [Playwright Tests](https://github.com/tobias-weiss-ai-xr/hugo-chemie-lernen-org/actions/workflows/playwright-tests.yml)
 
