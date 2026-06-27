@@ -39,6 +39,8 @@ const CONTENT_LINKS_PATH = join(
 
 const isDryRun = process.argv.includes('--dry-run');
 
+import { subsetWhere } from '../_neo4j-subset-filter.mjs';
+
 /**
  * Normalize a curriculum topic name for Neo4j matching.
  * Must match import-curricula.mjs normalizeName logic.
@@ -126,13 +128,17 @@ async function run() {
     console.log(`[import-content-nodes] ${contentEntries.length} unique Content nodes to create`);
 
     // Batch: MERGE Content nodes (sequentially — Neo4j 5.x requires no concurrent session.run)
+    // Also applies type-specific sub-labels (Article, Calculator, Exercise).
+    const SUB_LABEL_MAP = { article: 'Article', calculator: 'Calculator', exercise: 'Exercise' };
     let created = 0;
     for (let i = 0; i < contentEntries.length; i++) {
       const c = contentEntries[i];
+      const subLabel = SUB_LABEL_MAP[c.type] || '';
+      const setSubLabel = subLabel ? ` SET content:${subLabel}` : '';
       await session.run(
         'MERGE (content:Content {url: $url}) ' +
-          'ON CREATE SET content.title = $title, content.type = $type ' +
-          'ON MATCH SET content.title = $title, content.type = $type ' +
+          `ON CREATE SET content.title = $title, content.type = $type${setSubLabel} ` +
+          `ON MATCH SET content.title = $title, content.type = $type${setSubLabel} ` +
           'RETURN id(content)',
         { url: c.url, title: c.title, type: c.type },
       );
@@ -157,10 +163,11 @@ async function run() {
       }
 
       // Find matching Entity by normalized name (with caching)
+      const entityScope = subsetWhere('e', ['Entity']);
       let entityName = nameCache[normName];
       if (!entityName) {
         const result = await session.run(
-          'MATCH (e:Entity {kategorie: "lehrplan"}) WHERE e.name CONTAINS $name RETURN e.name LIMIT 1',
+          `MATCH (e) ${entityScope} AND e.kategorie = "lehrplan" AND e.name CONTAINS $name RETURN e.name LIMIT 1`,
           { name: normName },
         );
         if (result.records.length === 0) {
