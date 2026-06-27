@@ -19,6 +19,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import neo4j from 'neo4j-driver';
 
+// NOTE: All queries in this file use :Entity / kategorie labels — they are already
+// subset-restricted. The centralized subset filter (_neo4j-subset-filter.mjs) is
+// referenced by api/server.js for queries that cannot use label-based scoping.
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..');
 const DIDAKTIK_JSON = path.join(REPO_ROOT, 'myhugoapp/data/didaktik/didaktik.json');

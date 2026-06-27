@@ -14,6 +14,9 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+// NOTE: All queries in this file scope via :Entity / :Document labels — they are
+// already subset-restricted. No subsetWhere import needed here.
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // ── Config ─────────────────────────────────────────────────────────────

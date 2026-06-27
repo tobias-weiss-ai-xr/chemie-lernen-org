@@ -21,6 +21,8 @@ import { readFileSync, readdirSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
+// NOTE: All queries in this file use :Entity / kategorie labels — already subset-restricted.
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, '..', 'myhugoapp', 'data', 'curricula');
 
@@ -108,8 +110,13 @@ function readAllCurricula() {
     process.exit(1);
   }
 
+  // Match only 2-letter state abbreviation files (e.g. by.json, nw.json).
+  // This excludes metadata files (index.json, checksums.json, etc.) and
+  // any 3-letter variants (e.g. nrw.json is a stub; real NW data is nw.json).
+  // Saarland (SL) is expected as sl.json when data becomes available.
+  const STATE_RE = /^[a-z]{2}\.json$/;
   const files = readdirSync(DATA_DIR)
-    .filter((f) => f.endsWith('.json') && f.length === 7) // ??/json = 7 chars
+    .filter((f) => STATE_RE.test(f))
     .sort();
 
   if (files.length === 0) {
