@@ -18,7 +18,7 @@ jobs:
       run:
         working-directory: scripts/curricula_didaktik
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -40,14 +40,14 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - name: Install deps
         working-directory: scripts/curricula_didaktik
         run: |
-          pip install --break-system-packages -r requirements.txt
+          pip install --require-hashes --break-system-packages -r requirements.txt
       - name: Run all scrapers
         working-directory: scripts/curricula_didaktik
         run: make all

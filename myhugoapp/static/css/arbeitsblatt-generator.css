@@ -131,7 +131,6 @@
 }
 
 @media print {
-
   /* Hide non-printable elements */
   .config-panel,
   #generate-ws-btn,
@@ -151,7 +150,7 @@
     background: white !important;
     color: #1a1a1a !important;
     font-size: 10.5pt;
-    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.45;
     margin: 0;
     padding: 0;
@@ -374,7 +373,7 @@
   .ws-solution .ws-steps {
     font-size: 8pt;
     color: #444;
-    font-family: "Courier New", monospace;
+    font-family: 'Courier New', monospace;
     background: #f5f6fa;
     padding: 1.5mm;
     border-radius: 2px;
@@ -439,40 +438,33 @@
 
   /* Footer enhancement */
   .ws-print-footer::after {
-    content: "";
+    content: '';
   }
   .ws-print-footer-left::after {
-    content: " – Alle Rechte vorbehalten";
+    content: ' – Alle Rechte vorbehalten';
     opacity: 0.7;
     margin-left: 3mm;
   }
 
   /* Page numbers: total alongside current */
   @page {
-    @page:left {
-      @bottom-center { content: counter(page) " / " counter(pages); }
-    }
-    @page:right {
-      @bottom-center { content: counter(page) " / " counter(pages); }
-  }
-  @page {
     @bottom-center {
-      content: counter(page) " / " counter(pages);
+      content: counter(page) ' / ' counter(pages);
     }
   }
 
   /* Print-specific link handling */
-  a[href^="http"],
-  a[href^="https"] {
+  a[href^='http'],
+  a[href^='https'] {
     text-decoration: none !important;
     color: #1a5276 !important;
   }
-  a[href^="http"]::after,
-  a[href^="https"]::after {
-    content: "";
+  a[href^='http']::after,
+  a[href^='https']::after {
+    content: '';
   }
-  a[href^="mailto"]::after {
-    content: " (E-Mail)";
+  a[href^='mailto']::after {
+    content: ' (E-Mail)';
     font-size: 8pt !important;
   }
 

@@ -1,0 +1,19 @@
+# Version control
+.git
+.gitignore
+
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
