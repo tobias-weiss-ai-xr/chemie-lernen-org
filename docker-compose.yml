@@ -35,6 +35,12 @@ services:
       resources:
         limits:
           memory: 128M
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3001/api/health | grep -q '\"status\":\"ok\"' || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
     environment:
       - LITELLM_URL=http://litellm-proxy:4000
       - LITELLM_MODEL=gemma-4

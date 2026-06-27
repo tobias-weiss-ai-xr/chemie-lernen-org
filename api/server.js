@@ -1,6 +1,6 @@
 /**
  * Chemie Chat API — Express server with rate limiting.
- * Proxies chemistry questions to LiteLLM, enforces 10 requests/IP/day.
+ * Proxies chemistry questions to LiteLLM, enforces 50 requests/IP/day.
  */
 import express from 'express';
 import crypto from 'crypto';
