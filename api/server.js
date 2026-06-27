@@ -9,6 +9,7 @@ import neo4j from 'neo4j-driver';
 import fs from 'fs';
 import path from 'path';
 import ragHelpers from './_rag-helpers.cjs';
+import { subsetWhere, CHEMIE_LABELS } from '../scripts/_neo4j-subset-filter.mjs';
 
 const PORT = process.env.PORT || 3001;
 const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
@@ -2556,7 +2557,8 @@ app.get('/api/kg-stats', async (req, res) => {
     });
 
     var relResult = await session.run(
-      `MATCH ()-[r]->()
+      `MATCH (a)-[r]->(b)
+       WHERE ${subsetWhere('a')} OR ${subsetWhere('b')}
        RETURN type(r) AS t, count(r) AS n ORDER BY n DESC`
     );
     var byRelType = {};
@@ -2640,6 +2642,367 @@ app.get('/api/kg-stats', async (req, res) => {
       error: 'kg-stats unavailable',
       message: err.message,
     });
+  }
+});
+
+/**
+ * GET /api/curricula/states — List all states with curriculum data.
+ * Returns: [{ state, stateName, topicCount }] sorted by state.
+ */
+app.get('/api/curricula/states', async (req, res) => {
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+    const result = await session.run(
+      `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
+       AND e.kategorie = 'lehrplan' AND e.state IS NOT NULL
+       WITH e.state AS state, coalesce(e.state_name, e.state) AS stateName,
+            count(e) AS topicCount
+       RETURN state, stateName, topicCount
+       ORDER BY state`
+    );
+    await session.close();
+    const states = result.records.map((r) => ({
+      state: r.get('state'),
+      stateName: r.get('stateName'),
+      topicCount: r.get('topicCount').toNumber(),
+    }));
+    res.json({ source: 'neo4j', states, count: states.length });
+  } catch (err) {
+    console.error('[curricula/states] Neo4j error:', err.message);
+    // Fallback: extract states from content-links.json curriculum keys
+    try {
+      const links = await loadContentLinks();
+      const seen = {};
+      for (const key of Object.keys(links)) {
+        // content-links keys aren't state-keyed; use fallback data instead
+        break;
+      }
+      const fb = getFallbackData();
+      const states = [];
+      const seen2 = {};
+      for (const c of fb.curricula) {
+        if (c.curriculumMeta && !seen2[c.curriculumMeta.state]) {
+          seen2[c.curriculumMeta.state] = true;
+          states.push({
+            state: c.curriculumMeta.state,
+            stateName: c.curriculumMeta.state,
+            topicCount: 1,
+          });
+        }
+      }
+      res.json({ source: 'fallback', states, count: states.length });
+    } catch (fbErr) {
+      res.status(503).json({ error: 'Curriculum data unavailable' });
+    }
+  }
+});
+
+/**
+ * GET /api/curricula/topics — List curriculum topics with optional filters.
+ * Query params: ?state=, ?grade=, ?schoolType=, ?search=, ?limit=, ?offset=
+ */
+app.get('/api/curricula/topics', async (req, res) => {
+  const state = (req.query.state || '').trim();
+  const grade = (req.query.grade || '').trim();
+  const schoolType = (req.query.schoolType || '').trim();
+  const search = (req.query.search || '').toLowerCase().trim();
+  const limit = Math.min(parseInt(req.query.limit) || 200, 1000);
+  const offset = parseInt(req.query.offset) || 0;
+
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+      fetchSize: 1000,
+    });
+
+    let whereExtra = "e.kategorie = 'lehrplan'";
+    const params = {};
+    if (state) {
+      whereExtra += ' AND e.state = $state';
+      params.state = state;
+    }
+    if (grade) {
+      whereExtra += ' AND e.grade = $grade';
+      params.grade = grade;
+    }
+    if (schoolType) {
+      whereExtra += ' AND e.school_type = $schoolType';
+      params.schoolType = schoolType;
+    }
+    if (search) {
+      whereExtra += ' AND toLower(e.name) CONTAINS $search';
+      params.search = search;
+    }
+
+    const result = await session.run(
+      `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
+       AND ${whereExtra}
+       OPTIONAL MATCH (e)<-[:TEIL_VON]-(obj:Entity)
+         WHERE obj.kategorie = 'lernziel'
+       RETURN e.name AS name, e.state AS state, e.grade AS grade,
+              e.school_type AS schoolType,
+              coalesce(e.objective_count, 0) AS objectiveCount,
+              e.display_name AS displayName
+       ORDER BY e.state, e.grade, e.name
+       SKIP ${offset} LIMIT ${limit}`,
+      params
+    );
+    const totalResult = await session.run(
+      `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
+       AND ${whereExtra}
+       RETURN count(e) AS total`,
+      params
+    );
+    await session.close();
+
+    const topics = result.records.map((r) => ({
+      name: r.get('name'),
+      state: r.get('state'),
+      grade: r.get('grade'),
+      schoolType: r.get('schoolType'),
+      objectiveCount: r.get('objectiveCount').toNumber(),
+      displayName: r.get('displayName'),
+    }));
+    const total = totalResult.records[0].get('total').toNumber();
+    res.json({ source: 'neo4j', topics, total, limit, offset });
+  } catch (err) {
+    console.error('[curricula/topics] Neo4j error:', err.message);
+    try {
+      const fb = getFallbackData();
+      let topics = fb.curricula.map((c) => ({
+        name: c.name,
+        state: c.curriculumMeta.state,
+        grade: c.curriculumMeta.grade,
+        schoolType: c.curriculumMeta.school_type,
+        objectiveCount: c.curriculumMeta.objective_count,
+        displayName: c.name,
+      }));
+      if (state) topics = topics.filter((t) => t.state === state);
+      if (grade) topics = topics.filter((t) => t.grade === grade);
+      if (search) topics = topics.filter((t) => t.name.includes(search));
+      const total = topics.length;
+      topics = topics.slice(offset, offset + limit);
+      res.json({ source: 'fallback', topics, total, limit, offset });
+    } catch (fbErr) {
+      res.status(503).json({ error: 'Curriculum topics unavailable' });
+    }
+  }
+});
+
+/**
+ * GET /api/curricula/objectives — List learning objectives.
+ * Query params: ?topic=, ?search=, ?limit=, ?offset=
+ */
+app.get('/api/curricula/objectives', async (req, res) => {
+  const topic = (req.query.topic || '').trim();
+  const search = (req.query.search || '').toLowerCase().trim();
+  const limit = Math.min(parseInt(req.query.limit) || 200, 1000);
+  const offset = parseInt(req.query.offset) || 0;
+
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+      fetchSize: 1000,
+    });
+
+    let whereExtra = "e.kategorie = 'lernziel'";
+    const params = {};
+    if (topic) {
+      whereExtra += ' AND parent.name = $topic';
+      params.topic = topic;
+    }
+    if (search) {
+      whereExtra += ' AND toLower(e.name) CONTAINS $search';
+      params.search = search;
+    }
+
+    const result = await session.run(
+      `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
+       AND ${whereExtra}
+       OPTIONAL MATCH (e)-[:TEIL_VON]->(parent:Entity)
+       RETURN e.name AS name, e.display_name AS displayName,
+              parent.name AS parentTopic,
+              parent.state AS state, parent.grade AS grade
+       ORDER BY e.name
+       SKIP ${offset} LIMIT ${limit}`,
+      params
+    );
+    const totalResult = await session.run(
+      `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
+       AND ${whereExtra}
+       RETURN count(e) AS total`,
+      params
+    );
+    await session.close();
+
+    const objectives = result.records.map((r) => ({
+      name: r.get('name'),
+      displayName: r.get('displayName'),
+      parentTopic: r.get('parentTopic'),
+      state: r.get('state'),
+      grade: r.get('grade'),
+    }));
+    const total = totalResult.records[0].get('total').toNumber();
+    res.json({ source: 'neo4j', objectives, total, limit, offset });
+  } catch (err) {
+    console.error('[curricula/objectives] Neo4j error:', err.message);
+    res.status(503).json({ error: 'Learning objectives unavailable' });
+  }
+});
+
+/**
+ * GET /api/entities/:name/curricula — Curriculum context for an entity.
+ * Shows which topics this entity COVERS_TOPIC, which objectives it FULFILLS,
+ * and which Content nodes it MENTIONS.
+ */
+app.get('/api/entities/:name/curricula', async (req, res) => {
+  const entityName = req.params.name.toLowerCase().trim();
+
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+
+    const result = await session.run(
+      `MATCH (e:Entity {name: $name})
+       OPTIONAL MATCH (e)-[ct:COVERS_TOPIC]->(t:Entity)
+         WHERE t.kategorie = 'lehrplan'
+       OPTIONAL MATCH (e)-[f:FULFILLS]->(o:Entity)
+         WHERE o.kategorie = 'lernziel'
+       OPTIONAL MATCH (e)-[m:MENTIONS]->(c:Content)
+       RETURN e.name AS name, e.kategorie AS kategorie,
+              collect(DISTINCT {
+                topic: t.name, state: t.state,
+                grade: t.grade, schoolType: t.school_type
+              }) AS coveredTopics,
+              collect(DISTINCT {
+                objective: o.name,
+                parentTopic: o.parent_topic
+              }) AS fulfilledObjectives,
+              collect(DISTINCT {
+                url: c.url, title: c.title, type: c.type
+              }) AS contentLinks`,
+      { name: entityName }
+    );
+    await session.close();
+
+    if (result.records.length === 0 || !result.records[0].get('name')) {
+      return res.status(404).json({ error: 'Entity not found', name: entityName });
+    }
+
+    const r = result.records[0];
+    const coveredTopics = (r.get('coveredTopics') || []).filter((t) => t.topic !== null);
+    const fulfilledObjectives = (r.get('fulfilledObjectives') || []).filter(
+      (o) => o.objective !== null
+    );
+    const contentLinks = (r.get('contentLinks') || []).filter((c) => c.url !== null);
+
+    res.json({
+      source: 'neo4j',
+      entity: {
+        name: r.get('name'),
+        kategorie: r.get('kategorie'),
+      },
+      coveredTopics,
+      fulfilledObjectives,
+      contentLinks,
+      stats: {
+        coveredTopics: coveredTopics.length,
+        fulfilledObjectives: fulfilledObjectives.length,
+        contentLinks: contentLinks.length,
+      },
+    });
+  } catch (err) {
+    console.error('[entities/curricula] Neo4j error:', err.message);
+    res.status(503).json({ error: 'Curriculum context unavailable' });
+  }
+});
+
+/**
+ * GET /api/content — List Content nodes.
+ * Query params: ?type= (article|calculator), ?search=, ?limit=, ?offset=
+ */
+app.get('/api/content', async (req, res) => {
+  const type = (req.query.type || '').trim();
+  const search = (req.query.search || '').toLowerCase().trim();
+  const limit = Math.min(parseInt(req.query.limit) || 50, 500);
+  const offset = parseInt(req.query.offset) || 0;
+
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+
+    let whereExtra = '';
+    const params = {};
+    if (type) {
+      whereExtra = ' AND c.type = $type';
+      params.type = type;
+    }
+    if (search) {
+      whereExtra += ' AND toLower(c.title) CONTAINS $search';
+      params.search = search;
+    }
+
+    const result = await session.run(
+      `MATCH (c:Content)
+       WHERE true${whereExtra}
+       RETURN c.url AS url, c.title AS title, c.type AS type,
+              labels(c) AS labels
+       ORDER BY c.type, c.title
+       SKIP ${offset} LIMIT ${limit}`,
+      params
+    );
+    await session.close();
+
+    const items = result.records.map((r) => ({
+      url: r.get('url'),
+      title: r.get('title'),
+      type: r.get('type'),
+      labels: r.get('labels'),
+    }));
+    res.json({ source: 'neo4j', items, count: items.length, limit, offset });
+  } catch (err) {
+    console.error('[content] Neo4j error:', err.message);
+    try {
+      const links = await loadContentLinks();
+      const seen = {};
+      const items = [];
+      for (const [, entries] of Object.entries(links)) {
+        for (const item of entries) {
+          const key = item.url;
+          if (seen[key]) continue;
+          seen[key] = true;
+          if (type && item.type !== type) continue;
+          if (search && !item.title.toLowerCase().includes(search)) continue;
+          items.push({ url: item.url, title: item.title, type: item.type, labels: ['Content'] });
+        }
+      }
+      const total = items.length;
+      const paginated = items.slice(offset, offset + limit);
+      res.json({
+        source: 'fallback',
+        items: paginated,
+        total,
+        count: paginated.length,
+        limit,
+        offset,
+      });
+    } catch (fbErr) {
+      res.status(503).json({ error: 'Content list unavailable' });
+    }
   }
 });
 
