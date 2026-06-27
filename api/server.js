@@ -9,7 +9,7 @@ import neo4j from 'neo4j-driver';
 import fs from 'fs';
 import path from 'path';
 import ragHelpers from './_rag-helpers.cjs';
-import { subsetWhere, CHEMIE_LABELS } from '../scripts/_neo4j-subset-filter.mjs';
+import { subsetWhere } from '../scripts/_neo4j-subset-filter.mjs';
 
 const PORT = process.env.PORT || 3001;
 const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
@@ -2673,20 +2673,13 @@ app.get('/api/curricula/states', async (req, res) => {
     res.json({ source: 'neo4j', states, count: states.length });
   } catch (err) {
     console.error('[curricula/states] Neo4j error:', err.message);
-    // Fallback: extract states from content-links.json curriculum keys
     try {
-      const links = await loadContentLinks();
-      const seen = {};
-      for (const key of Object.keys(links)) {
-        // content-links keys aren't state-keyed; use fallback data instead
-        break;
-      }
       const fb = getFallbackData();
+      const seen = {};
       const states = [];
-      const seen2 = {};
       for (const c of fb.curricula) {
-        if (c.curriculumMeta && !seen2[c.curriculumMeta.state]) {
-          seen2[c.curriculumMeta.state] = true;
+        if (c.curriculumMeta && !seen[c.curriculumMeta.state]) {
+          seen[c.curriculumMeta.state] = true;
           states.push({
             state: c.curriculumMeta.state,
             stateName: c.curriculumMeta.state,
@@ -2695,7 +2688,7 @@ app.get('/api/curricula/states', async (req, res) => {
         }
       }
       res.json({ source: 'fallback', states, count: states.length });
-    } catch (fbErr) {
+    } catch {
       res.status(503).json({ error: 'Curriculum data unavailable' });
     }
   }
@@ -2789,7 +2782,7 @@ app.get('/api/curricula/topics', async (req, res) => {
       const total = topics.length;
       topics = topics.slice(offset, offset + limit);
       res.json({ source: 'fallback', topics, total, limit, offset });
-    } catch (fbErr) {
+    } catch {
       res.status(503).json({ error: 'Curriculum topics unavailable' });
     }
   }
@@ -3000,7 +2993,7 @@ app.get('/api/content', async (req, res) => {
         limit,
         offset,
       });
-    } catch (fbErr) {
+    } catch {
       res.status(503).json({ error: 'Content list unavailable' });
     }
   }
