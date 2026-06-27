@@ -28,7 +28,7 @@ services:
       start_period: 60s
 
   chemie-chat-api:
-    image: registry.chemie-lernen.org/chemie-chat-api:kg-stats-fix
+    image: registry.chemie-lernen.org/chemie-chat-api:latest
     container_name: chemie-chat-api
     restart: unless-stopped
     deploy:
