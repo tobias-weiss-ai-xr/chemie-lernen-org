@@ -60,6 +60,10 @@
     var compareTopicName = '';
     var compareResults = null;
     var expandedCompareRow = null;
+    var objectivesData = null;
+    var objectivesSearch = '';
+    var objectivesParentTopic = '';
+    var objectivesLoading = false;
 
     // Precompute KMK topic map from didaktik entities
     var kmkTopicMap = {};
@@ -147,6 +151,7 @@
     function _render() {
       if (activeTab === 'explorer') _renderExplorer();
       else if (activeTab === 'compare') _renderCompare();
+      else if (activeTab === 'objectives') _renderObjectives();
       else _renderExplorer();
     }
 
@@ -176,8 +181,18 @@
 
       // Tab bar
       html += '<div class="curricula-tabs">';
-      html += '<button class="curricula-tab active" data-tab="explorer">Durchsuchen</button>';
-      html += '<button class="curricula-tab" data-tab="compare">Ländervergleich</button>';
+      html +=
+        '<button class="curricula-tab' +
+        (activeTab === 'explorer' ? ' active' : '') +
+        '" data-tab="explorer">Durchsuchen</button>';
+      html +=
+        '<button class="curricula-tab' +
+        (activeTab === 'compare' ? ' active' : '') +
+        '" data-tab="compare">Ländervergleich</button>';
+      html +=
+        '<button class="curricula-tab' +
+        (activeTab === 'objectives' ? ' active' : '') +
+        '" data-tab="objectives">Lernziele</button>';
       html += '</div>';
 
       // Filters
@@ -484,8 +499,18 @@
       html += '</div>';
 
       html += '<div class="curricula-tabs">';
-      html += '<button class="curricula-tab" data-tab="explorer">Durchsuchen</button>';
-      html += '<button class="curricula-tab active" data-tab="compare">Ländervergleich</button>';
+      html +=
+        '<button class="curricula-tab' +
+        (activeTab === 'explorer' ? ' active' : '') +
+        '" data-tab="explorer">Durchsuchen</button>';
+      html +=
+        '<button class="curricula-tab' +
+        (activeTab === 'compare' ? ' active' : '') +
+        '" data-tab="compare">Ländervergleich</button>';
+      html +=
+        '<button class="curricula-tab' +
+        (activeTab === 'objectives' ? ' active' : '') +
+        '" data-tab="objectives">Lernziele</button>';
       html += '</div>';
 
       html += '<div class="compare-search">';
@@ -673,6 +698,160 @@
       if (searchInput) {
         searchInput.addEventListener('keydown', function (ev) {
           if (ev.key === 'Enter') doCompare();
+        });
+      }
+    }
+
+    // ── Objectives Tab ──
+    function _renderObjectives() {
+      var html = '';
+      html += '<div class="curricula-header">';
+      html += '<h1>Lernziele durchsuchen</h1>';
+      html +=
+        '<p class="curricula-subtitle">Alle Lernziele aus den Lehrplänen der Bundesländer.</p>';
+      html += '</div>';
+
+      html += '<div class="curricula-tabs">';
+      html +=
+        '<button class="curricula-tab' +
+        (activeTab === 'explorer' ? ' active' : '') +
+        '" data-tab="explorer">Durchsuchen</button>';
+      html +=
+        '<button class="curricula-tab' +
+        (activeTab === 'compare' ? ' active' : '') +
+        '" data-tab="compare">Ländervergleich</button>';
+      html +=
+        '<button class="curricula-tab' +
+        (activeTab === 'objectives' ? ' active' : '') +
+        '" data-tab="objectives">Lernziele</button>';
+      html += '</div>';
+
+      html += '<div class="curricula-filters">';
+      html += '<div class="curricula-search-row">';
+      html +=
+        '<input class="curricula-search" type="text" placeholder="Lernziel suchen..." id="objectives-search" value="' +
+        escapeHtml(objectivesSearch) +
+        '">';
+      html += '</div>';
+      if (objectivesParentTopic) {
+        html += '<div class="curricula-active-filters">';
+        html +=
+          '<span class="curricula-active-filter" data-type="topic" data-value="' +
+          escapeHtml(objectivesParentTopic) +
+          '">Thema: ' +
+          escapeHtml(objectivesParentTopic) +
+          ' <span class="curricula-active-filter-x">&times;</span></span>';
+        html += '</div>';
+      }
+      html += '</div>';
+
+      if (objectivesLoading) {
+        html += '<div class="curricula-loading"><em>Lade Lernziele…</em></div>';
+        app.innerHTML = html;
+        _attachObjectivesEvents();
+        return;
+      }
+
+      if (objectivesData && objectivesData.objectives) {
+        var items = objectivesData.objectives;
+        if (items.length === 0) {
+          html +=
+            '<div class="empty-state"><div class="empty-state-icon">🎯</div><p>Keine Lernziele gefunden.</p></div>';
+        } else {
+          html +=
+            '<p style="color:var(--text-muted,#666);margin-bottom:1rem;"><strong>' +
+            objectivesData.total +
+            '</strong> Lernziele gefunden</p>';
+          html +=
+            '<div style="max-height:600px;overflow-y:auto;border:1px solid var(--border-color,#e0e0e0);border-radius:8px;">';
+          html += '<table class="compare-table" style="font-size:0.85rem;">';
+          html +=
+            '<thead><tr><th>Lernziel</th><th>Thema</th><th>Bundesland</th><th>Klasse</th></tr></thead><tbody>';
+          items.forEach(function (o) {
+            html += '<tr class="compare-row">';
+            html += '<td>' + escapeHtml(o.displayName || o.name) + '</td>';
+            html +=
+              '<td>' +
+              (o.parentTopic
+                ? '<a href="/entity/' +
+                  toSlug(o.parentTopic) +
+                  '/">' +
+                  escapeHtml(o.parentTopic) +
+                  '</a>'
+                : '-') +
+              '</td>';
+            html += '<td>' + escapeHtml(o.state || '-') + '</td>';
+            html += '<td>' + escapeHtml(o.grade || '-') + '</td>';
+            html += '</tr>';
+          });
+          html += '</tbody></table></div>';
+        }
+      } else {
+        html +=
+          '<div class="empty-state"><div class="empty-state-icon">🎯</div><p>Lernziele laden… <a href="#" id="objectives-load-trigger" style="color:#9b59b6;">Jetzt laden</a></p></div>';
+      }
+
+      app.innerHTML = html;
+      _attachObjectivesEvents();
+    }
+
+    function _loadObjectives() {
+      objectivesLoading = true;
+      _render();
+      var qs = '';
+      if (objectivesSearch) qs += '&search=' + encodeURIComponent(objectivesSearch);
+      if (objectivesParentTopic) qs += '&topic=' + encodeURIComponent(objectivesParentTopic);
+      qs += '&limit=500';
+
+      fetch('/api/curricula/objectives?' + qs.slice(1), { signal: AbortSignal.timeout(15000) })
+        .then(function (r) {
+          if (!r.ok) throw new Error(r.status);
+          return r.json();
+        })
+        .then(function (d) {
+          objectivesData = d;
+          objectivesLoading = false;
+          _render();
+        })
+        .catch(function (_err) {
+          objectivesLoading = false;
+          objectivesData = { objectives: [] };
+          _render();
+        });
+    }
+
+    function _attachObjectivesEvents() {
+      app.querySelectorAll('.curricula-tab').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activeTab = this.getAttribute('data-tab');
+          currentPage = 1;
+          _render();
+        });
+      });
+
+      var searchInput = document.getElementById('objectives-search');
+      if (searchInput) {
+        searchInput.addEventListener('input', function (ev) {
+          objectivesSearch = ev.target.value;
+          _loadObjectives();
+        });
+      }
+
+      app.addEventListener('click', function (ev) {
+        var badge = ev.target.closest('.curricula-active-filter');
+        if (!badge) return;
+        var type = badge.getAttribute('data-type');
+        if (type === 'topic') {
+          objectivesParentTopic = '';
+          _loadObjectives();
+        }
+      });
+
+      var loadLink = document.getElementById('objectives-load-trigger');
+      if (loadLink) {
+        loadLink.addEventListener('click', function (ev) {
+          ev.preventDefault();
+          _loadObjectives();
         });
       }
     }
