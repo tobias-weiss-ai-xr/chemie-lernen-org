@@ -2,9 +2,9 @@
 
 [chemie-lernen.org](chemie-lernen.org)
 
-[Playwright Tests](https://github.com/tobias-weiss-ai-xr/hugo-chemie-lernen-org/actions/workflows/playwright-tests.yml/badge.svg)](https://github.com/tobias-weiss-ai-xr/hugo-chemie-lernen-org/actions/workflows/playwright-tests.yml)
+[Playwright Tests](https://github.com/tobias-weiss-ai-xr/hugo-chemie-lernen-org/actions/workflows/playwright-tests.yml)
 
-[Hugo Build](https://github.com/tobias-weiss-ai-xr/hugo-chemie-lernen-org/actions/workflows/hugo-build.yml/badge.svg)](https://github.com/tobias-weiss-ai-xr/hugo-chemie-lernen-org/actions/workflows/hugo-build.yml)
+[Hugo Build](https://github.com/tobias-weiss-ai-xr/hugo-chemie-lernen-org/actions/workflows/hugo-build.yml)
 
 📖 **Offene**, 🖱️ **Interaktive** und 🥽 **Immersive Lerninhalte** für Chemie
 
