@@ -562,7 +562,7 @@
       })
       .catch(function (error) {
         hideTyping();
-        var errorMessage = '';
+        var errorMessage;
 
         // Custom error handling
         if (error.status === 429) {
@@ -590,7 +590,7 @@
           // Generic error with KG search fallback
           console.error('Error:', error);
           var matches = findBestMatches(query);
-          var answer = null;
+          var answer;
 
           if (matches.length > 0) {
             answer = formatArticleResult(matches);

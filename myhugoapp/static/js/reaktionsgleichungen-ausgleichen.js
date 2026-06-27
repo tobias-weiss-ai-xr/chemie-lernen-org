@@ -12,8 +12,14 @@ function parseEquation(equation) {
     throw new Error('Ungültiges Format. Verwenden Sie "=" zwischen Edukten und Produkten.');
   }
 
-  const reactants = parts[0].split('+').map(s => s.trim()).filter(s => s);
-  const products = parts[1].split('+').map(s => s.trim()).filter(s => s);
+  const reactants = parts[0]
+    .split('+')
+    .map((s) => s.trim())
+    .filter((s) => s);
+  const products = parts[1]
+    .split('+')
+    .map((s) => s.trim())
+    .filter((s) => s);
 
   if (reactants.length === 0 || products.length === 0) {
     throw new Error('Die Gleichung muss Edukte und Produkte enthalten.');
@@ -26,9 +32,9 @@ function parseEquation(equation) {
 function getAllElements(reactants, products) {
   const elements = new Set();
 
-  [...reactants, ...products].forEach(formula => {
+  [...reactants, ...products].forEach((formula) => {
     const composition = window.ChemistryUtils.parseFormula(formula);
-    Object.keys(composition).forEach(element => elements.add(element));
+    Object.keys(composition).forEach((element) => elements.add(element));
   });
 
   return Array.from(elements).sort();
@@ -77,12 +83,13 @@ function balanceEquation() {
     const coefficients = solveMatrix(matrix);
 
     if (!coefficients) {
-      throw new Error('Konnte die Gleichung nicht ausgleichen. Möglicherweise ist sie nicht ausgleichbar.');
+      throw new Error(
+        'Konnte die Gleichung nicht ausgleichen. Möglicherweise ist sie nicht ausgleichbar.'
+      );
     }
 
     // Display results
     displayResults(reactants, products, coefficients, elements);
-
   } catch (error) {
     showError(error.message);
   }
@@ -139,7 +146,7 @@ function solveByBruteForce(matrix) {
       // Check if coefficients can be simplified
       const gcd = coeffs.reduce((a, b) => gcdFunction(a, b), coeffs[0]);
       if (gcd > 1) {
-        return coeffs.map(c => c / gcd);
+        return coeffs.map((c) => c / gcd);
       }
       return coeffs;
     }
@@ -197,8 +204,6 @@ function displayResults(reactants, products, coefficients, elements) {
   // Display coefficients
   const coeffsList = document.getElementById('coefficients-list');
   coeffsList.innerHTML = '';
-  coeffIndex = 0;
-
   const allCompounds = [...reactants, ...products];
   allCompounds.forEach((formula, index) => {
     const coeff = coefficients[index];
@@ -213,10 +218,11 @@ function displayResults(reactants, products, coefficients, elements) {
 
   // Display verification table
   const verificationTable = document.getElementById('verification-table');
-  verificationTable.innerHTML = '<table class="table table-striped"><thead><tr><th>Element</th><th>Edukte</th><th>Produkte</th></tr></thead><tbody></tbody></table>';
+  verificationTable.innerHTML =
+    '<table class="table table-striped"><thead><tr><th>Element</th><th>Edukte</th><th>Produkte</th></tr></thead><tbody></tbody></table>';
   const tbody = verificationTable.querySelector('tbody');
 
-  elements.forEach(element => {
+  elements.forEach((element) => {
     let reactantCount = 0;
     let productCount = 0;
 
@@ -255,7 +261,10 @@ function transferToStoichiometry() {
     const coeffsList = document.querySelectorAll('.coefficient-item');
 
     if (!equationDisplay || coeffsList.length === 0) {
-      showToast('Keine ausgeglichene Gleichung gefunden. Bitte gleichen Sie zuerst eine Gleichung aus.', 'error');
+      showToast(
+        'Keine ausgeglichene Gleichung gefunden. Bitte gleichen Sie zuerst eine Gleichung aus.',
+        'error'
+      );
       return;
     }
 
@@ -263,7 +272,7 @@ function transferToStoichiometry() {
     const transferData = {
       reactants: [],
       products: [],
-      coefficients: []
+      coefficients: [],
     };
 
     coeffsList.forEach((item, index) => {
@@ -286,17 +295,16 @@ function transferToStoichiometry() {
 
     // Navigate to stoichiometry calculator
     window.location.href = '/stoechiometrie-rechner/';
-
   } catch (error) {
     showToast('Fehler beim Übertragen der Daten: ' + error.message, 'error');
   }
 }
 
 // Event listeners
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Example button clicks
-  document.querySelectorAll('.example-btn').forEach(button => {
-    button.addEventListener('click', function() {
+  document.querySelectorAll('.example-btn').forEach((button) => {
+    button.addEventListener('click', function () {
       const equation = this.dataset.equation;
       document.getElementById('equation-input').value = equation;
       balanceEquation();
@@ -304,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Enter key support
-  document.getElementById('equation-input').addEventListener('keypress', function(e) {
+  document.getElementById('equation-input').addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
       balanceEquation();
     }

@@ -13,7 +13,7 @@ import ragHelpers from './_rag-helpers.cjs';
 const PORT = process.env.PORT || 3001;
 const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
 const LITELLM_MODEL = process.env.LITELLM_MODEL || 'gemma-4';
-const RATE_LIMIT = 50; // requests per IP per day
+const RATE_LIMIT = parseInt(process.env.RATE_LIMIT, 10) || 50; // requests per IP per day
 const SESSION_TTL = 24 * 60 * 60 * 1000; // 24 hours
 const MAX_MESSAGES_PER_SESSION = 50; // prevent infinite conversations
 
@@ -2644,7 +2644,7 @@ app.get('/api/kg-stats', async (req, res) => {
 });
 
 app.get('/api/health', async (req, res) => {
-  var neo4jOk = false;
+  var neo4jOk;
   var entityCount = 0;
   try {
     var driver = getNeo4jDriver();

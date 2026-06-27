@@ -19,34 +19,46 @@
     document.getElementById('results-section').style.display = 'none';
     document.getElementById('error-section').style.display = 'none';
 
-    const providedValues = [c1, c2, v1, v2].filter(v => !isNaN(v)).length;
+    const providedValues = [c1, c2, v1, v2].filter((v) => !isNaN(v)).length;
 
     if (providedValues < 3) {
       showError('Bitte geben Sie mindestens drei Werte ein.');
       return;
     }
 
-    let result = null;
-    let details = '';
+    let result;
+    let details;
 
     if (isNaN(v1)) {
-      if (c1 === 0) { showError('c₁ darf nicht Null sein.'); return; }
-      result = (c2 * v2 / c1).toFixed(2);
+      if (c1 === 0) {
+        showError('c₁ darf nicht Null sein.');
+        return;
+      }
+      result = ((c2 * v2) / c1).toFixed(2);
       details = `V₁ = c₂V₂ / c₁ = (${c2} × ${v2}) / ${c1} = ${result} mL`;
       document.getElementById('missing-variable-result').textContent = `V₁ = ${result} mL`;
     } else if (isNaN(v2)) {
-      if (c2 === 0) { showError('c₂ darf nicht Null sein.'); return; }
-      result = (c1 * v1 / c2).toFixed(2);
+      if (c2 === 0) {
+        showError('c₂ darf nicht Null sein.');
+        return;
+      }
+      result = ((c1 * v1) / c2).toFixed(2);
       details = `V₂ = c₁V₁ / c₂ = (${c1} × ${v1}) / ${c2} = ${result} mL`;
       document.getElementById('missing-variable-result').textContent = `V₂ = ${result} mL`;
     } else if (isNaN(c2)) {
-      if (v2 === 0) { showError('V₂ darf nicht Null sein.'); return; }
-      result = (c1 * v1 / v2).toFixed(4);
+      if (v2 === 0) {
+        showError('V₂ darf nicht Null sein.');
+        return;
+      }
+      result = ((c1 * v1) / v2).toFixed(4);
       details = `c₂ = c₁V₁ / V₂ = (${c1} × ${v1}) / ${v2} = ${result} mol/L`;
       document.getElementById('missing-variable-result').textContent = `c₂ = ${result} mol/L`;
     } else if (isNaN(c1)) {
-      if (v1 === 0) { showError('V₁ darf nicht Null sein.'); return; }
-      result = (c2 * v2 / v1).toFixed(4);
+      if (v1 === 0) {
+        showError('V₁ darf nicht Null sein.');
+        return;
+      }
+      result = ((c2 * v2) / v1).toFixed(4);
       details = `c₁ = c₂V₂ / V₁ = (${c2} × ${v2}) / ${v1} = ${result} mol/L`;
       document.getElementById('missing-variable-result').textContent = `c₁ = ${result} mol/L`;
     } else {
@@ -59,7 +71,8 @@
       } else {
         details = 'Verdünnungsgesetz bestätigt ✓';
       }
-      document.getElementById('missing-variable-result').textContent = diff > tolerance ? 'Nicht konsistent' : 'Konsistent';
+      document.getElementById('missing-variable-result').textContent =
+        diff > tolerance ? 'Nicht konsistent' : 'Konsistent';
     }
 
     document.getElementById('calculation-details').innerHTML = details;
@@ -81,11 +94,13 @@
   }
 
   const inputs = ['c1-input', 'c2-input', 'v1-input', 'v2-input'];
-  inputs.forEach(id => {
+  inputs.forEach((id) => {
     const el = document.getElementById(id);
     if (el) {
       el.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') { calculateDilution(); }
+        if (e.key === 'Enter') {
+          calculateDilution();
+        }
       });
     }
   });

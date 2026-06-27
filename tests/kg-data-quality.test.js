@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /**
  * Knowledge Graph Data Quality Tests
  *

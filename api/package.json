@@ -6,6 +6,6 @@
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "express": "^4.21.0",
-    "neo4j-driver": "^5.15.0"
+    "neo4j-driver": "^6.1.0"
   }
 }

@@ -23,7 +23,7 @@ function initDOMCache() {
     phIndicator: document.getElementById('ph-indicator'),
     currentPHDisplay: document.getElementById('current-ph'),
     phValue: document.getElementById('current-ph'),
-    phDescription: document.getElementById('ph-description')
+    phDescription: document.getElementById('ph-description'),
   };
 }
 
@@ -117,8 +117,8 @@ function updatePHScale(ph) {
   phValueSpan.textContent = ph.toFixed(2);
 
   // Update description based on pH value
-  let description = '';
-  let colorClass = '';
+  let description;
+  let colorClass;
 
   if (ph < 2) {
     description = 'Sehr stark sauer 🔴';
@@ -156,21 +156,20 @@ function updatePHScale(ph) {
 }
 
 // Initialize: Set indicator to neutral (pH 7)
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   initDOMCache();
   updatePHScale(7);
 
   // Add enter key support for inputs
-  domCache.hplusInput.addEventListener('keypress', function(e) {
+  domCache.hplusInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') calculateFromHPlus();
   });
 
-  domCache.ohminusInput.addEventListener('keypress', function(e) {
+  domCache.ohminusInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') calculateFromOHMinus();
   });
 
-  domCache.pohInput.addEventListener('keypress', function(e) {
+  domCache.pohInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') calculateFromPOH();
   });
 });
-

@@ -14,7 +14,7 @@ class ChemistryCalculator {
       resultFields: config.resultFields || [],
       calculations: config.calculations || {},
       validation: config.validation || {},
-      units: config.units || {}
+      units: config.units || {},
     };
 
     // DOM cache
@@ -30,7 +30,7 @@ class ChemistryCalculator {
    */
   init() {
     // Cache DOM elements
-    this.config.inputFields.forEach(field => {
+    this.config.inputFields.forEach((field) => {
       const element = document.getElementById(field.id);
       if (element) {
         this.elements[field.id] = element;
@@ -48,7 +48,7 @@ class ChemistryCalculator {
     });
 
     // Cache result elements
-    this.config.resultFields.forEach(field => {
+    this.config.resultFields.forEach((field) => {
       const element = document.getElementById(field.id);
       if (element) {
         this.results[field.id] = element;
@@ -69,7 +69,7 @@ class ChemistryCalculator {
    * @returns {boolean} True if valid
    */
   validateInput(fieldId, value) {
-    const fieldConfig = this.config.inputFields.find(f => f.id === fieldId);
+    const fieldConfig = this.config.inputFields.find((f) => f.id === fieldId);
     if (!fieldConfig) return true;
 
     // Check validation rules
@@ -204,10 +204,10 @@ class ChemistryCalculator {
       for (const fieldId of Object.keys(this.elements)) {
         this.clearValidationError(fieldId);
       }
-
     } catch (error) {
       // Show error message
-      const errorContainer = document.querySelector('.calculator-error') || this.createErrorContainer();
+      const errorContainer =
+        document.querySelector('.calculator-error') || this.createErrorContainer();
       errorContainer.textContent = `Berechnungsfehler: ${error.message}`;
       errorContainer.style.display = 'block';
 
@@ -223,11 +223,13 @@ class ChemistryCalculator {
    */
   parseValue(value, type) {
     switch (type) {
-      case 'number':
-        return parseFloat(value) || 0;
+      case 'number': {
+        const parsed = parseFloat(value);
+        return Number.isFinite(parsed) ? parsed : 0;
+      }
 
       case 'select':
-      return value;
+        return value;
 
       case 'checkbox':
         return value === 'on' || value === 'true';

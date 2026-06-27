@@ -37,23 +37,6 @@ const DRY_RUN = args.includes('--dry-run');
 const fileArg = args.find((a) => a.startsWith('--file='));
 const singleFile = fileArg ? fileArg.slice('--file='.length) : null;
 
-const MODULHANDBUCH_LABELS = [
-  'University',
-  'Module',
-  'ModuleOffering',
-  'ECTS',
-  'Lecturer',
-  'Degree',
-];
-
-function chemieSubsetMatch(variable = 'n') {
-  return `(${MODULHANDBUCH_LABELS.map((l) => `${variable}:${l}`).join(' OR ')})`;
-}
-
-function chemieSubsetMatchRel(variable = 'r', relType) {
-  return `${variable}:${relType}`;
-}
-
 async function loadJson(filepath) {
   const raw = await fs.readFile(filepath, 'utf-8');
   return JSON.parse(raw);
@@ -132,7 +115,7 @@ async function importCatalog(driver, catalog, dryRun) {
     }
 
     for (const mod of catalog.modules || []) {
-      const fullResult = await session.run(
+      await session.run(
         `MATCH (u:University {short_code: $short_code})
          MERGE (m:Module {module_code: $module_code, university: $short_code})
          SET m.module_name = $module_name,

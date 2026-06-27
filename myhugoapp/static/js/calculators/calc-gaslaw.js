@@ -54,7 +54,7 @@ function convertTemperatureToKelvin() {
   }
 
   let kelvin;
-  switch(unit) {
+  switch (unit) {
     case 'K':
       kelvin = temp;
       break;
@@ -62,7 +62,7 @@ function convertTemperatureToKelvin() {
       kelvin = temp + 273.15;
       break;
     case 'F':
-      kelvin = (temp - 32) * 5/9 + 273.15;
+      kelvin = ((temp - 32) * 5) / 9 + 273.15;
       break;
   }
 
@@ -81,7 +81,7 @@ function updateGasInputs() {
   amountInput.disabled = false;
   temperatureInput.disabled = false;
 
-  switch(variable) {
+  switch (variable) {
     case 'P':
       pressureInput.disabled = true;
       pressureInput.placeholder = 'Wird berechnet...';
@@ -112,48 +112,75 @@ function updateGasInputs() {
       break;
   }
 
-  if (variable === 'P') {pressureInput.value = '';}
-  if (variable === 'V') {volumeInput.value = '';}
-  if (variable === 'n') {amountInput.value = '';}
-  if (variable === 'T') {temperatureInput.value = '';}
+  if (variable === 'P') {
+    pressureInput.value = '';
+  }
+  if (variable === 'V') {
+    volumeInput.value = '';
+  }
+  if (variable === 'n') {
+    amountInput.value = '';
+  }
+  if (variable === 'T') {
+    temperatureInput.value = '';
+  }
 }
 
 function convertPressureToAtm(pressure, unit) {
-  switch(unit) {
-    case 'atm': return pressure;
-    case 'bar': return pressure * 0.986923;
-    case 'Pa': return pressure / 101325;
-    case 'kPa': return pressure / 101.325;
-    case 'Torr': return pressure / 760;
-    case 'mmHg': return pressure / 760;
-    default: return pressure;
+  switch (unit) {
+    case 'atm':
+      return pressure;
+    case 'bar':
+      return pressure * 0.986923;
+    case 'Pa':
+      return pressure / 101325;
+    case 'kPa':
+      return pressure / 101.325;
+    case 'Torr':
+      return pressure / 760;
+    case 'mmHg':
+      return pressure / 760;
+    default:
+      return pressure;
   }
 }
 
 function convertVolumeToLiters(volume, unit) {
-  switch(unit) {
-    case 'L': return volume;
-    case 'mL': return volume / 1000;
-    case 'm3': return volume * 1000;
-    case 'cm3': return volume / 1000;
-    default: return volume;
+  switch (unit) {
+    case 'L':
+      return volume;
+    case 'mL':
+      return volume / 1000;
+    case 'm3':
+      return volume * 1000;
+    case 'cm3':
+      return volume / 1000;
+    default:
+      return volume;
   }
 }
 
 function convertAmountToMoles(amount, unit) {
-  switch(unit) {
-    case 'mol': return amount;
-    case 'mmol': return amount / 1000;
-    default: return amount;
+  switch (unit) {
+    case 'mol':
+      return amount;
+    case 'mmol':
+      return amount / 1000;
+    default:
+      return amount;
   }
 }
 
 function convertToKelvin(temp, unit) {
-  switch(unit) {
-    case 'K': return temp;
-    case 'C': return temp + 273.15;
-    case 'F': return (temp - 32) * 5/9 + 273.15;
-    default: return temp;
+  switch (unit) {
+    case 'K':
+      return temp;
+    case 'C':
+      return temp + 273.15;
+    case 'F':
+      return ((temp - 32) * 5) / 9 + 273.15;
+    default:
+      return temp;
   }
 }
 
@@ -194,7 +221,7 @@ function calculateGasLaw() {
     let result;
     let resultUnit;
 
-    switch(calculateVariable) {
+    switch (calculateVariable) {
       case 'n':
         result = (P_atm * V_L) / (R * T_K);
         resultUnit = 'mol';
@@ -214,7 +241,6 @@ function calculateGasLaw() {
     }
 
     displayGasResult(calculateVariable, result, resultUnit, P_atm, V_L, n_mol, T_K, R);
-
   } catch (error) {
     showToast(error.message, 'error');
   }
@@ -225,31 +251,66 @@ function displayGasResult(variable, result, unit, P, V, n, T, R) {
   const contentDiv = document.getElementById('gas-result-content');
 
   const variableNames = {
-    'P': 'Druck',
-    'V': 'Volumen',
-    'n': 'Stoffmenge',
-    'T': 'Temperatur'
+    P: 'Druck',
+    V: 'Volumen',
+    n: 'Stoffmenge',
+    T: 'Temperatur',
   };
 
   let html = '<div style="background: white; padding: 20px; border-radius: 8px;">';
 
-  html += '<div style="margin-bottom: 20px; padding: 15px; background: #e3f2fd; border-radius: 4px; text-align: center;">';
+  html +=
+    '<div style="margin-bottom: 20px; padding: 15px; background: #e3f2fd; border-radius: 4px; text-align: center;">';
   html += '<h4 style="color: #1976D2; margin-top: 0;">Ideales Gasgesetz</h4>';
   html += '<p style="font-size: 24px; font-weight: bold; color: #0D47A1;">PV = nRT</p>';
 
   let formulaText = '';
-  switch(variable) {
+  switch (variable) {
     case 'n':
-      formulaText = 'n = PV \u00f7 RT = ' + P.toFixed(4) + ' \u00d7 ' + V.toFixed(4) + ' \u00f7 (' + R + ' \u00d7 ' + T.toFixed(2) + ')';
+      formulaText =
+        'n = PV \u00f7 RT = ' +
+        P.toFixed(4) +
+        ' \u00d7 ' +
+        V.toFixed(4) +
+        ' \u00f7 (' +
+        R +
+        ' \u00d7 ' +
+        T.toFixed(2) +
+        ')';
       break;
     case 'P':
-      formulaText = 'P = nRT \u00f7 V = ' + n.toFixed(4) + ' \u00d7 ' + R + ' \u00d7 ' + T.toFixed(2) + ' \u00f7 ' + V.toFixed(4);
+      formulaText =
+        'P = nRT \u00f7 V = ' +
+        n.toFixed(4) +
+        ' \u00d7 ' +
+        R +
+        ' \u00d7 ' +
+        T.toFixed(2) +
+        ' \u00f7 ' +
+        V.toFixed(4);
       break;
     case 'V':
-      formulaText = 'V = nRT \u00f7 P = ' + n.toFixed(4) + ' \u00d7 ' + R + ' \u00d7 ' + T.toFixed(2) + ' \u00f7 ' + P.toFixed(4);
+      formulaText =
+        'V = nRT \u00f7 P = ' +
+        n.toFixed(4) +
+        ' \u00d7 ' +
+        R +
+        ' \u00d7 ' +
+        T.toFixed(2) +
+        ' \u00f7 ' +
+        P.toFixed(4);
       break;
     case 'T':
-      formulaText = 'T = PV \u00f7 nR = ' + P.toFixed(4) + ' \u00d7 ' + V.toFixed(4) + ' \u00f7 (' + n.toFixed(4) + ' \u00d7 ' + R + ')';
+      formulaText =
+        'T = PV \u00f7 nR = ' +
+        P.toFixed(4) +
+        ' \u00d7 ' +
+        V.toFixed(4) +
+        ' \u00f7 (' +
+        n.toFixed(4) +
+        ' \u00d7 ' +
+        R +
+        ')';
       break;
   }
   html += '<p style="font-size: 16px; color: #1976D2;">' + formulaText + '</p>';
@@ -258,17 +319,33 @@ function displayGasResult(variable, result, unit, P, V, n, T, R) {
   html += '<div style="margin-bottom: 20px;">';
   html += '<h4>Bekannte Werte:</h4>';
   html += '<table class="table table-bordered" style="background: white;">';
-  if (variable !== 'P') {html += '<tr><td><strong>Druck (P)</strong></td><td>' + P.toFixed(4) + ' atm</td></tr>';}
-  if (variable !== 'V') {html += '<tr><td><strong>Volumen (V)</strong></td><td>' + V.toFixed(4) + ' L</td></tr>';}
-  if (variable !== 'n') {html += '<tr><td><strong>Stoffmenge (n)</strong></td><td>' + n.toFixed(4) + ' mol</td></tr>';}
-  if (variable !== 'T') {html += '<tr><td><strong>Temperatur (T)</strong></td><td>' + T.toFixed(2) + ' K (' + convertFromKelvin(T).toFixed(1) + '\u00b0C)</td></tr>';}
-  html += '<tr><td><strong>Gaskonstante (R)</strong></td><td>' + R + ' L\u00b7atm/(mol\u00b7K)</td></tr>';
+  if (variable !== 'P') {
+    html += '<tr><td><strong>Druck (P)</strong></td><td>' + P.toFixed(4) + ' atm</td></tr>';
+  }
+  if (variable !== 'V') {
+    html += '<tr><td><strong>Volumen (V)</strong></td><td>' + V.toFixed(4) + ' L</td></tr>';
+  }
+  if (variable !== 'n') {
+    html += '<tr><td><strong>Stoffmenge (n)</strong></td><td>' + n.toFixed(4) + ' mol</td></tr>';
+  }
+  if (variable !== 'T') {
+    html +=
+      '<tr><td><strong>Temperatur (T)</strong></td><td>' +
+      T.toFixed(2) +
+      ' K (' +
+      convertFromKelvin(T).toFixed(1) +
+      '\u00b0C)</td></tr>';
+  }
+  html +=
+    '<tr><td><strong>Gaskonstante (R)</strong></td><td>' + R + ' L\u00b7atm/(mol\u00b7K)</td></tr>';
   html += '</table>';
   html += '</div>';
 
-  html += '<div style="padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; text-align: center;">';
+  html +=
+    '<div style="padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; text-align: center;">';
   html += '<h3 style="margin-top: 0;">' + variableNames[variable] + '</h3>';
-  html += '<p style="font-size: 32px; font-weight: bold;">' + result.toFixed(4) + ' ' + unit + '</p>';
+  html +=
+    '<p style="font-size: 32px; font-weight: bold;">' + result.toFixed(4) + ' ' + unit + '</p>';
 
   if (variable === 'T') {
     html += '<p style="font-size: 18px;">(' + convertFromKelvin(result).toFixed(1) + '\u00b0C)</p>';
@@ -335,17 +412,31 @@ function exportGasToPDF() {
   y += 15;
 
   doc.setFontSize(12);
-  doc.text('Eingabewerte:', 20, y); y += 10;
+  doc.text('Eingabewerte:', 20, y);
+  y += 10;
 
-  if (calculateVariable !== 'P') {doc.text('Druck: ' + pressure + ' ' + pressureUnit, 25, y); y += 8;}
-  if (calculateVariable !== 'V') {doc.text('Volumen: ' + volume + ' ' + volumeUnit, 25, y); y += 8;}
-  if (calculateVariable !== 'n') {doc.text('Stoffmenge: ' + amount + ' ' + amountUnit, 25, y); y += 8;}
-  if (calculateVariable !== 'T') {doc.text('Temperatur: ' + temperature + ' ' + temperatureUnit, 25, y); y += 8;}
-  doc.text('Gaskonstante: R = ' + R, 25, y); y += 15;
+  if (calculateVariable !== 'P') {
+    doc.text('Druck: ' + pressure + ' ' + pressureUnit, 25, y);
+    y += 8;
+  }
+  if (calculateVariable !== 'V') {
+    doc.text('Volumen: ' + volume + ' ' + volumeUnit, 25, y);
+    y += 8;
+  }
+  if (calculateVariable !== 'n') {
+    doc.text('Stoffmenge: ' + amount + ' ' + amountUnit, 25, y);
+    y += 8;
+  }
+  if (calculateVariable !== 'T') {
+    doc.text('Temperatur: ' + temperature + ' ' + temperatureUnit, 25, y);
+    y += 8;
+  }
+  doc.text('Gaskonstante: R = ' + R, 25, y);
+  y += 15;
 
   doc.setFontSize(14);
   doc.setTextColor(0, 123, 255);
-  doc.text('Formel: PV = nRT', 20, y); y += 15;
+  doc.text('Formel: PV = nRT', 20, y);
 
   doc.setFontSize(10);
   doc.setTextColor(150, 150, 150);
@@ -372,7 +463,7 @@ if (typeof module !== 'undefined' && module.exports) {
     convertVolumeToLiters,
     convertAmountToMoles,
     convertToKelvin,
-    convertFromKelvin
+    convertFromKelvin,
   };
 }
 

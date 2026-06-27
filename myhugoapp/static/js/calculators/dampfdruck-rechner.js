@@ -22,13 +22,13 @@ function calculateVaporPressure(temperatureC, normalPressure, boilingPointC) {
 function formatNumber(num, decimals) {
   return Number(num).toLocaleString('de-DE', {
     minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals
+    maximumFractionDigits: decimals,
   });
 }
 
 function getResultText(pressure, normalPressure) {
   const ratio = pressure / normalPressure;
-  let text = '';
+  let text;
 
   if (ratio < 0.01) {
     text = 'Sehr niedrig (weniger als 1% des Normaldrucks) — Flüssigkeit siedet nicht';
@@ -51,7 +51,7 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = { calculateVaporPressure, formatNumber, getResultText };
 }
 
-(function() {
+(function () {
   'use strict';
 
   const form = document.getElementById('dampfdruck-form');

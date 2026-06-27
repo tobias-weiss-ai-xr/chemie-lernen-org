@@ -9,6 +9,10 @@ const fs = require('fs');
 const path = require('path');
 const { minify } = require('terser');
 
+// NOTE: ESM files (*.module.js, three/**/*.js) use import/export syntax
+// and are intentionally excluded from this list. Terser's default config
+// preserves import/export statements, but we keep ESM files separate to
+// avoid accidental mangling of named exports.
 const filesToMinify = [
   // Calculator frameworks
   'myhugoapp/static/js/chemistry-calculator-framework.js',
@@ -91,11 +95,11 @@ async function minifyFile(filePath) {
     const optimizedPath = path.join(parsedPath.dir, parsedPath.name + '.optimized.js');
     fs.writeFileSync(optimizedPath, result.code, 'utf8');
     const newSize = Buffer.byteLength(result.code, 'utf8');
-    const savings = ((originalSize - newSize) / originalSize * 100).toFixed(1);
+    const savings = (((originalSize - newSize) / originalSize) * 100).toFixed(1);
 
     console.log(
       `${colors.green}✓${colors.reset} ${parsedPath.base} → ${parsedPath.name}.optimized.js: ` +
-      `${formatBytes(originalSize)} → ${formatBytes(newSize)} (${colors.green}-${savings}%${colors.reset})`
+        `${formatBytes(originalSize)} → ${formatBytes(newSize)} (${colors.green}-${savings}%${colors.reset})`
     );
 
     return true;

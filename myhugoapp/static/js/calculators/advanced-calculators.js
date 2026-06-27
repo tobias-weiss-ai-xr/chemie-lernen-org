@@ -10,10 +10,10 @@
 
 function calculateSerialDilution(options) {
   const {
-    initialConcentration,  // Stock solution concentration (M)
-    targetConcentration,   // Desired final concentration (M)
-    finalVolume,          // Desired final volume (mL)
-    numberOfDilutions = 1 // Number of serial dilutions
+    initialConcentration, // Stock solution concentration (M)
+    targetConcentration, // Desired final concentration (M)
+    finalVolume, // Desired final volume (mL)
+    numberOfDilutions = 1, // Number of serial dilutions
   } = options;
 
   // Validation
@@ -52,7 +52,7 @@ function calculateSerialDilution(options) {
       volumeOfStock,
       volumeOfDiluent,
       finalVolume,
-      dilutionFactor: dilutionFactorPerStep
+      dilutionFactor: dilutionFactorPerStep,
     });
 
     currentConcentration = currentConcentration / dilutionFactorPerStep;
@@ -65,7 +65,7 @@ function calculateSerialDilution(options) {
     numberOfDilutions,
     totalDilutionFactor,
     dilutionFactorPerStep,
-    steps: results
+    steps: results,
   };
 }
 
@@ -96,7 +96,7 @@ function calculateDilution(c1, v1, c2) {
     v2,
     diluentVolume,
     dilutionFactor,
-    formula: 'C₁V₁ = C₂V₂'
+    formula: 'C₁V₁ = C₂V₂',
   };
 }
 
@@ -107,10 +107,10 @@ function calculateDilution(c1, v1, c2) {
 
 function calculateTitration(options) {
   const {
-    titrantConcentration,  // Concentration of titrant (M)
-    analyteConcentration,  // Concentration of analyte (M)
-    analyteVolume,         // Volume of analyte (mL)
-    stoichiometryRatio = 1 // Mole ratio (titrant:analyte)
+    titrantConcentration, // Concentration of titrant (M)
+    analyteConcentration, // Concentration of analyte (M)
+    analyteVolume, // Volume of analyte (mL)
+    stoichiometryRatio = 1, // Mole ratio (titrant:analyte)
   } = options;
 
   // Validation
@@ -152,7 +152,7 @@ function calculateTitration(options) {
     volumeOfTitrant,
     totalVolume,
     concentrationAtEquivalence,
-    titrationCurve: generateTitrationCurve(options)
+    titrationCurve: generateTitrationCurve(options),
   };
 }
 
@@ -165,8 +165,8 @@ function generateTitrationCurve(options) {
     analyteConcentration,
     analyteVolume,
     stoichiometryRatio = 1,
-    acidStrength = 'strong',  // 'strong' or 'weak'
-    baseStrength = 'strong'   // 'strong' or 'weak'
+    acidStrength = 'strong', // 'strong' or 'weak'
+    baseStrength = 'strong', // 'strong' or 'weak'
   } = options;
 
   const curve = [];
@@ -248,18 +248,18 @@ function calculatePHAfterEquivalence(percent, acidStrength, baseStrength) {
  */
 
 const ConcentrationUnits = {
-  MOLAR: 'M',           // moles/L
-  MILLIMOLAR: 'mM',     // mmol/L
-  MICROMOLAR: 'μM',     // μmol/L
-  NANOMOLAR: 'nM',      // nmol/L
-  PERCENT: '%',         // g/100mL (approximate)
-  PPM: 'ppm',           // mg/L
-  PPB: 'ppb'            // μg/L
+  MOLAR: 'M', // moles/L
+  MILLIMOLAR: 'mM', // mmol/L
+  MICROMOLAR: 'μM', // μmol/L
+  NANOMOLAR: 'nM', // nmol/L
+  PERCENT: '%', // g/100mL (approximate)
+  PPM: 'ppm', // mg/L
+  PPB: 'ppb', // μg/L
 };
 
 function convertConcentration(value, fromUnit, toUnit, molecularWeight = 1) {
   // Convert to molar first
-  let molar = value;
+  let molar;
 
   switch (fromUnit) {
     case ConcentrationUnits.MOLAR:
@@ -280,11 +280,11 @@ function convertConcentration(value, fromUnit, toUnit, molecularWeight = 1) {
       break;
     case ConcentrationUnits.PPM:
       // ppm = mg/L, convert to mol/L
-      molar = (value / 1000) / molecularWeight;
+      molar = value / 1000 / molecularWeight;
       break;
     case ConcentrationUnits.PPB:
       // ppb = μg/L, convert to mol/L
-      molar = (value / 1000000) / molecularWeight;
+      molar = value / 1000000 / molecularWeight;
       break;
     default:
       throw new Error('Unknown source unit: ' + fromUnit);
@@ -303,9 +303,9 @@ function convertConcentration(value, fromUnit, toUnit, molecularWeight = 1) {
     case ConcentrationUnits.PERCENT:
       return (molar * molecularWeight) / 10;
     case ConcentrationUnits.PPM:
-      return (molar * molecularWeight) * 1000;
+      return molar * molecularWeight * 1000;
     case ConcentrationUnits.PPB:
-      return (molar * molecularWeight) * 1000000;
+      return molar * molecularWeight * 1000000;
     default:
       throw new Error('Unknown target unit: ' + toUnit);
   }
@@ -351,11 +351,11 @@ function calculateKW(ph, temperature = 25) {
 
 function calculateSolutionParameters(options) {
   const {
-    mass = null,              // grams
-    molecularWeight,          // g/mol
-    volume = null,            // liters
-    concentration = null,     // M (moles/L)
-    moles = null              // moles
+    mass = null, // grams
+    molecularWeight, // g/mol
+    volume = null, // liters
+    concentration = null, // M (moles/L)
+    moles = null, // moles
   } = options;
 
   if (!molecularWeight || molecularWeight <= 0) {
@@ -453,7 +453,7 @@ function _calculateMultipleDilutions(dilutionScheme) {
       finalVolume,
       volumeOfStock,
       volumeOfDiluent,
-      dilutionFactor
+      dilutionFactor,
     });
   }
 
@@ -475,6 +475,6 @@ if (typeof module !== 'undefined' && module.exports) {
     calculateMolesForMolarity,
     convertConcentration,
     ConcentrationUnits,
-    generateTitrationCurve
+    generateTitrationCurve,
   };
 }
