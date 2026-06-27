@@ -575,6 +575,9 @@
         methode: true,
         person: true,
         quelle: true,
+        lehrplan: true,
+        didaktik: true,
+        lernziel: true,
       };
       var showArticles = true;
 
@@ -928,6 +931,9 @@
         methode: true,
         person: true,
         quelle: true,
+        lehrplan: true,
+        didaktik: true,
+        lernziel: true,
       },
       showArticles: true,
     };

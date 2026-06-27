@@ -551,10 +551,11 @@ async function queryNeo4jRAG(keywords, cacheKey) {
     var result;
     try {
       result = await session.run(
-        'MATCH (e:Entity) ' +
-          'WHERE ANY(kw IN $keywords WHERE toLower(e.name) CONTAINS kw ' +
-          '   OR toLower(coalesce(e.description, "")) CONTAINS kw ' +
-          '   OR ANY(t IN coalesce(e.tags, []) WHERE toLower(t) CONTAINS kw)) ' +
+        `MATCH (e) ${subsetWhere('e', ['Entity'])} AND (
+          ANY(kw IN $keywords WHERE toLower(e.name) CONTAINS kw
+           OR toLower(coalesce(e.description, "")) CONTAINS kw
+           OR ANY(t IN coalesce(e.tags, []) WHERE toLower(t) CONTAINS kw))
+        ) ` +
           'WITH e, ' +
           '  [kw IN $keywords WHERE toLower(e.name) = kw | 10.0] + ' +
           '  [kw IN $keywords WHERE toLower(e.name) STARTS WITH kw AND toLower(e.name) <> kw | 6.0] + ' +
@@ -562,15 +563,17 @@ async function queryNeo4jRAG(keywords, cacheKey) {
           '  [kw IN $keywords WHERE toLower(coalesce(e.description, "")) CONTAINS kw | 2.0] + ' +
           '  [kw IN $keywords | 0.0] AS scoreParts ' +
           'WITH e, REDUCE(s = 0.0, x IN scoreParts | s + x) AS score ' +
-          'OPTIONAL MATCH (e)-[r:RELATED_TO|ERFUELLT|BESTEHT_AUS]-(related:Entity) ' +
+          'OPTIONAL MATCH (e)-[r:RELATED_TO|ERFUELLT|BESTEHT_AUS|COVERS_TOPIC|FULFILLS|MENTIONS]-(related:Entity) ' +
           'WITH e, score, ' +
-          '  collect(DISTINCT related.name) AS relatedEntities ' +
+          '  collect(DISTINCT related.name) AS relatedEntities, ' +
+          '  collect(DISTINCT { rel: type(r), target: related.name }) AS curriculumRels ' +
           'RETURN e.name AS name, e.kategorie AS category, ' +
           '  e.state AS state, e.grade AS grade, ' +
           '  e.school_type AS school_type, ' +
           '  coalesce(e.objective_count, 0) AS objective_count, ' +
           '  e.description AS description, ' +
-          '  relatedEntities, score ' +
+          '  relatedEntities, score, ' +
+          '  curriculumRels ' +
           'ORDER BY score DESC, e.name ' +
           'LIMIT 10',
         { keywords: keywords }
@@ -3164,6 +3167,60 @@ app.get('/api/content', async (req, res) => {
     } catch {
       res.status(503).json({ error: 'Content list unavailable' });
     }
+  }
+});
+
+/**
+ * GET /api/didaktik — List didactic guidelines (KMK standards).
+ * Query params: ?institution=, ?search=, ?limit=
+ */
+app.get('/api/didaktik', async (req, res) => {
+  const institution = (req.query.institution || '').trim();
+  const search = (req.query.search || '').toLowerCase().trim();
+  const limit = Math.min(parseInt(req.query.limit) || 50, 500);
+
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+    let whereExtra = "e.kategorie = 'didaktik'";
+    const params = {};
+    if (institution) {
+      whereExtra += ' AND toLower(e.institution) CONTAINS $institution';
+      params.institution = institution.toLowerCase();
+    }
+    if (search) {
+      whereExtra +=
+        ' AND (toLower(e.name) CONTAINS $search OR toLower(e.description) CONTAINS $search)';
+      params.search = search;
+    }
+
+    const result = await session.run(
+      `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
+       AND ${whereExtra}
+       RETURN e.name AS name, e.title AS title, e.description AS description,
+              e.institution AS institution, e.year AS year, e.url AS url,
+              e.kategorie AS kategorie
+       ORDER BY e.year DESC, e.name
+       LIMIT ${limit}`,
+      params
+    );
+    await session.close();
+    const items = result.records.map((r) => ({
+      name: r.get('name'),
+      title: r.get('title'),
+      description: r.get('description'),
+      institution: r.get('institution'),
+      year: r.get('year'),
+      url: r.get('url'),
+      kategorie: r.get('kategorie'),
+    }));
+    res.json({ source: 'neo4j', items, count: items.length });
+  } catch (err) {
+    console.error('[didaktik] Neo4j error:', err.message);
+    res.status(503).json({ error: 'Didaktik data unavailable' });
   }
 });
 
