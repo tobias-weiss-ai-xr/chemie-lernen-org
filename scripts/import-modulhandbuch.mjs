@@ -117,7 +117,7 @@ async function importCatalog(driver, catalog, dryRun) {
     for (const mod of catalog.modules || []) {
       await session.run(
         `MATCH (u:University {short_code: $short_code})
-         MERGE (m:Module {module_code: $module_code, university: $short_code})
+         MERGE (m:UniversityModule {module_code: $module_code, university: $short_code})
          SET m.module_name = $module_name,
              m.ects = $ects,
              m.language = $language,
@@ -147,7 +147,7 @@ async function importCatalog(driver, catalog, dryRun) {
       count.modules++;
 
       await session.run(
-        `MATCH (m:Module {module_code: $module_code, university: $short_code})
+        `MATCH (m:UniversityModule {module_code: $module_code, university: $short_code})
          MERGE (e:ECTS {module_code: $module_code, university: $short_code})
          SET e.credits = $ects,
              e.workload_hours = $workload_hours
@@ -163,7 +163,7 @@ async function importCatalog(driver, catalog, dryRun) {
 
       for (const offering of mod.offerings || []) {
         await session.run(
-          `MATCH (m:Module {module_code: $module_code, university: $short_code})
+          `MATCH (m:UniversityModule {module_code: $module_code, university: $short_code})
            MERGE (o:ModuleOffering {module_code: $module_code, university: $short_code, semester: $semester, year: $year})
            MERGE (m)-[:OFFERED_IN]->(o)`,
           {

@@ -42,8 +42,8 @@ describe('_neo4j-subset-filter.mjs', () => {
       expect(mod.CHEMIE_LABELS).not.toContain('Interface');
     });
 
-    test('has exactly 10 labels', () => {
-      expect(mod.CHEMIE_LABELS).toHaveLength(10);
+    test('has exactly 16 labels (includes modulhandbuch subset)', () => {
+      expect(mod.CHEMIE_LABELS).toHaveLength(16);
     });
   });
 

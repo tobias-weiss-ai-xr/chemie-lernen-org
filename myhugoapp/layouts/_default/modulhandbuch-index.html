@@ -1,0 +1,50 @@
+{{ define "css" }}
+<style>
+#mh-app .curricula-skeleton { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+#mh-app .curricula-skeleton-card { height: 80px; border-radius: 10px; background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%); background-size: 200% 100%; animation: shim 1.5s infinite; }
+@keyframes shim { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.mh-card { background: var(--bg-card,#fff); border: 1px solid var(--border-color,#e0e0e0); border-radius: 10px; padding: 1.2rem; margin-bottom: 0.8rem; transition: box-shadow 0.2s; cursor: pointer; }
+.mh-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
+.mh-card h3 { margin: 0 0 0.3rem; font-size: 1.05rem; }
+.mh-card h3 a { color: var(--text-primary,#333); text-decoration: none; }
+.mh-card h3 a:hover { color: #9b59b6; }
+.mh-meta { font-size: 0.82rem; color: var(--text-muted,#888); }
+.mh-module { padding: 0.5rem 0.8rem; margin: 0.2rem 0; border-left: 3px solid #9b59b6; font-size: 0.85rem; }
+.mh-module .code { font-family: monospace; color: #9b59b6; font-size: 0.78rem; }
+.mh-chip { display: inline-block; padding: 1px 6px; margin: 1px; font-size: 0.75rem; border-radius: 6px; background: #f3e8ff; color: #7b1fa2; }
+.mh-detail { display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 1rem; font-size: 0.88rem; }
+.mh-detail dt { color: var(--text-muted,#888); font-weight: 600; }
+.mh-detail dd { margin: 0; }
+.mh-search { padding: 0.6rem 1rem; border-radius: 8px; border: 1px solid var(--border-color,#ddd); font-size: 1rem; width: 100%; max-width: 400px; margin-bottom: 1rem; }
+@media (prefers-color-scheme: dark) {
+  #mh-app .curricula-skeleton-card { background: linear-gradient(90deg,#333 25%,#3a3a3a 50%,#333 75%); background-size: 200% 100%; }
+  .mh-card { background: #2a2a2a; border-color: #444; }
+  .mh-chip { background: #3a2060; color: #ce93d8; }
+}
+</style>
+{{ end }}
+
+{{ define "main" }}
+<div class="container" style="margin-top:1rem;">
+  <div class="row">
+    <div class="col-md-12">
+      {{ .Content }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="mh-app">
+        <div class="curricula-skeleton" aria-label="Lade…">
+          <div class="curricula-skeleton-card"></div>
+          <div class="curricula-skeleton-card"></div>
+          <div class="curricula-skeleton-card"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{ define "js" }}
+<script src="/js/modulhandbuch-index.js"></script>
+{{ end }}

@@ -3224,6 +3224,237 @@ app.get('/api/didaktik', async (req, res) => {
   }
 });
 
+/**
+ * GET /api/modulhandbuch/universities — List all indexed universities.
+ */
+app.get('/api/modulhandbuch/universities', async (req, res) => {
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+    const result = await session.run(
+      `MATCH (u:University)
+       RETURN u.short_code AS shortCode, u.name AS name, u.country AS country,
+              u.city AS city, u.website AS website
+       ORDER BY u.name`
+    );
+    await session.close();
+    res.json({
+      source: 'neo4j',
+      universities: result.records.map((r) => ({
+        shortCode: r.get('shortCode'),
+        name: r.get('name'),
+        country: r.get('country'),
+        city: r.get('city'),
+        website: r.get('website'),
+      })),
+    });
+  } catch (err) {
+    console.error('[modulhandbuch/universities] Neo4j error:', err.message);
+    res.status(503).json({ error: 'University data unavailable' });
+  }
+});
+
+/**
+ * GET /api/modulhandbuch/university/:shortCode — Single university with its modules.
+ */
+app.get('/api/modulhandbuch/university/:shortCode', async (req, res) => {
+  const shortCode = req.params.shortCode.toLowerCase().trim();
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+    const result = await session.run(
+      `MATCH (u:University {short_code: $code})
+       OPTIONAL MATCH (u)-[:OFFERS_DEGREE]->(d:Degree)
+       OPTIONAL MATCH (m:UniversityModule {university: $code})
+       RETURN u, collect(DISTINCT d{.*}) AS degrees,
+              collect(DISTINCT m{.*}) AS modules`,
+      { code: shortCode }
+    );
+    await session.close();
+    if (!result.records.length) return res.status(404).json({ error: 'University not found' });
+    const r = result.records[0];
+    const u = r.get('u');
+    if (!u) return res.status(404).json({ error: 'University not found' });
+    res.json({
+      source: 'neo4j',
+      university: {
+        shortCode: u.properties.short_code,
+        name: u.properties.name,
+        country: u.properties.country,
+        city: u.properties.city,
+        website: u.properties.website,
+      },
+      degrees: r.get('degrees').filter((d) => d.name),
+      modules: r
+        .get('modules')
+        .filter((m) => m.module_code)
+        .map((m) => ({
+          code: m.module_code,
+          name: m.module_name,
+          ects: m.ects,
+          level: m.level,
+          degree: m.degree,
+          semesterOffered: m.semester_offered,
+        })),
+    });
+  } catch (err) {
+    console.error('[modulhandbuch/university] Neo4j error:', err.message);
+    res.status(503).json({ error: 'University data unavailable' });
+  }
+});
+
+/**
+ * GET /api/modulhandbuch/module/:univCode/:moduleCode — Single module detail.
+ */
+app.get('/api/modulhandbuch/module/:univCode/:moduleCode', async (req, res) => {
+  const univCode = req.params.univCode.toLowerCase().trim();
+  const moduleCode = req.params.moduleCode.trim();
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+    const result = await session.run(
+      `MATCH (m:UniversityModule {module_code: $code, university: $univ})
+       OPTIONAL MATCH (m)-[:CARRIES]->(e:ECTS)
+       OPTIONAL MATCH (m)-[:PART_OF]->(d:Degree)
+       OPTIONAL MATCH (off:ModuleOffering {module_code: $code, university: $univ})-[:TAUGHT_BY]->(l:Lecturer)
+       RETURN m, e{.*} AS ects, d{.*} AS degree,
+              collect(DISTINCT {semester: off.semester, year: off.year, lecturer: l.name}) AS offerings`,
+      { code: moduleCode, univ: univCode }
+    );
+    await session.close();
+    if (!result.records.length) return res.status(404).json({ error: 'Module not found' });
+    const r = result.records[0];
+    const m = r.get('m');
+    if (!m) return res.status(404).json({ error: 'Module not found' });
+    res.json({
+      source: 'neo4j',
+      module: {
+        code: m.properties.module_code,
+        name: m.properties.module_name,
+        ects: m.properties.ects,
+        workloadHours: m.properties.workload_hours,
+        language: m.properties.language,
+        level: m.properties.level,
+        degree: m.properties.degree,
+        university: m.properties.university,
+        semesterOffered: m.properties.semester_offered,
+        learningOutcomes: m.properties.learning_outcomes,
+        content: m.properties.content,
+        prerequisites: m.properties.prerequisites,
+        examination: m.properties.examination,
+        url: m.properties.url,
+      },
+      ects: r.get('ects').credits
+        ? { credits: r.get('ects').credits, workloadHours: r.get('ects').workload_hours }
+        : null,
+      degree: r.get('degree').name ? r.get('degree') : null,
+      offerings: r.get('offerings').filter((o) => o.semester),
+    });
+  } catch (err) {
+    console.error('[modulhandbuch/module] Neo4j error:', err.message);
+    res.status(503).json({ error: 'Module data unavailable' });
+  }
+});
+
+/**
+ * GET /api/modulhandbuch/search — Search modules across all universities.
+ * Query params: ?q= (required), ?limit=, ?offset=
+ */
+app.get('/api/modulhandbuch/search', async (req, res) => {
+  const q = (req.query.q || '').toLowerCase().trim();
+  if (!q) return res.status(400).json({ error: 'Query param "q" is required' });
+  const limit = Math.min(parseInt(req.query.limit) || 20, 100);
+  const offset = parseInt(req.query.offset) || 0;
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+      fetchSize: 200,
+    });
+    const [result, totalResult] = await Promise.all([
+      session.run(
+        `MATCH (m:UniversityModule)
+         WHERE toLower(m.module_name) CONTAINS $q OR toLower(m.module_code) CONTAINS $q
+         RETURN m.module_code AS code, m.module_name AS name, m.university AS university,
+                m.ects AS ects, m.level AS level, m.degree AS degree
+         ORDER BY m.university, m.module_name
+         SKIP ${offset} LIMIT ${limit}`,
+        { q }
+      ),
+      session.run(
+        `MATCH (m:UniversityModule)
+         WHERE toLower(m.module_name) CONTAINS $q OR toLower(m.module_code) CONTAINS $q
+         RETURN count(m) AS total`,
+        { q }
+      ),
+    ]);
+    await session.close();
+    res.json({
+      source: 'neo4j',
+      modules: result.records.map((r) => ({
+        code: r.get('code'),
+        name: r.get('name'),
+        university: r.get('university'),
+        ects: r.get('ects'),
+        level: r.get('level'),
+        degree: r.get('degree'),
+      })),
+      total: totalResult.records[0].get('total').toNumber(),
+      limit,
+      offset,
+    });
+  } catch (err) {
+    console.error('[modulhandbuch/search] Neo4j error:', err.message);
+    res.status(503).json({ error: 'Search unavailable' });
+  }
+});
+
+/**
+ * GET /api/modulhandbuch/teaches/:entityName — Modules that teach a chemie concept.
+ */
+app.get('/api/modulhandbuch/teaches/:entityName', async (req, res) => {
+  const entityName = req.params.entityName.toLowerCase().trim();
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+    const result = await session.run(
+      `MATCH (e:Entity {name: $name})<-[:TEACHES]-(m:UniversityModule)
+       RETURN m.module_code AS code, m.module_name AS name, m.university AS university,
+              m.ects AS ects, m.level AS level, m.url AS url, e.name AS entityName`,
+      { name: entityName }
+    );
+    await session.close();
+    res.json({
+      source: 'neo4j',
+      entityName,
+      modules: result.records.map((r) => ({
+        code: r.get('code'),
+        name: r.get('name'),
+        university: r.get('university'),
+        ects: r.get('ects'),
+        level: r.get('level'),
+        url: r.get('url'),
+      })),
+    });
+  } catch (err) {
+    console.error('[modulhandbuch/teaches] Neo4j error:', err.message);
+    res.status(503).json({ error: 'Teaches data unavailable' });
+  }
+});
+
 app.get('/api/health', async (req, res) => {
   var neo4jOk;
   var entityCount = 0;
