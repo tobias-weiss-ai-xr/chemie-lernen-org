@@ -1,0 +1,328 @@
+{
+  "university": {
+    "name": "University of Tokyo",
+    "country": "JP",
+    "city": "Tokyo",
+    "website": "https://www.u-tokyo.ac.jp/en/",
+    "short_code": "UTKYO"
+  },
+  "degrees": [
+    {
+      "name": "BSc Chemistry",
+      "level": "BSc",
+      "university": "UTKYO"
+    },
+    {
+      "name": "MSc Chemistry",
+      "level": "MSc",
+      "university": "UTKYO"
+    },
+    {
+      "name": "PhD Chemistry",
+      "level": "PhD",
+      "university": "UTKYO"
+    }
+  ],
+  "lecturers": [],
+  "modules": [
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM101",
+      "module_name": "General Chemistry I (atomic structure, bonding)",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM101/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM102",
+      "module_name": "General Chemistry II (thermodynamics, kinetics)",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM102/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM103",
+      "module_name": "General Chemistry III (electrochemistry, equilibrium)",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM103/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM104",
+      "module_name": "General Chemistry Laboratory",
+      "ects": 3.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM104/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM105",
+      "module_name": "Mathematics for Chemistry",
+      "ects": 3.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM105/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM201",
+      "module_name": "Physical Chemistry I (quantum chemistry)",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM201/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM202",
+      "module_name": "Physical Chemistry II (spectroscopy)",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM202/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM203",
+      "module_name": "Inorganic Chemistry I (coordination chemistry)",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM203/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM204",
+      "module_name": "Inorganic Chemistry II (organometallics)",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM204/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM205",
+      "module_name": "Organic Chemistry I (structure and reactivity)",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM205/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM206",
+      "module_name": "Organic Chemistry II (reaction mechanisms)",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM206/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM207",
+      "module_name": "Analytical Chemistry I",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM207/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM208",
+      "module_name": "Analytical Chemistry II (instrumental analysis)",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM208/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM209",
+      "module_name": "Biochemistry I (structure and function)",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM209/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM210",
+      "module_name": "Advanced Chemistry Laboratory",
+      "ects": 3.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM210/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM301",
+      "module_name": "Advanced Physical Chemistry (stat mech, dynamics)",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM301/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM302",
+      "module_name": "Advanced Inorganic Chemistry (solid state, bioinorganic)",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM302/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM303",
+      "module_name": "Advanced Organic Chemistry (synthesis, total synthesis)",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM303/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM304",
+      "module_name": "Polymer Chemistry",
+      "ects": 3.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM304/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM305",
+      "module_name": "Chemical Biology",
+      "ects": 3.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM305/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM401",
+      "module_name": "Graduate Physical Chemistry",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM401/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM402",
+      "module_name": "Graduate Inorganic Chemistry",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM402/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM403",
+      "module_name": "Graduate Organic Chemistry",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM403/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM404",
+      "module_name": "Graduate Analytical Chemistry",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM404/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM405",
+      "module_name": "Graduate Biochemistry",
+      "ects": 4.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM405/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM501",
+      "module_name": "Research in Chemistry (Master's Thesis)",
+      "ects": 20.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM501/",
+      "last_checked": "2026-06-28"
+    },
+    {
+      "university": "UTKYO",
+      "module_code": "CHEM502",
+      "module_name": "Chemistry Seminar",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (Dept of Chemistry)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/en/education/CHEM502/",
+      "last_checked": "2026-06-28"
+    }
+  ],
+  "source_url": "https://www.chem.s.u-tokyo.ac.jp/en/",
+  "last_updated": "2026-06-28"
+}
