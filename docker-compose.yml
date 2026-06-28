@@ -60,6 +60,10 @@ services:
       - "traefik.http.services.chat.loadbalancer.server.port=3001"
 
   hugo-chemie-lernen-org:
+    volumes:
+      - ./myhugoapp/static/openspec:/usr/share/nginx/html/openspec
+      - ./myhugoapp/static/landscape:/usr/share/nginx/html/landscape
+      - ./myhugoapp/static/api-proxy.conf:/etc/nginx/conf.d/api-proxy.conf
     image: registry.chemie-lernen.org/chemie-lernen-org:latest
     container_name: hugo-chemie-lernen-org
     restart: unless-stopped

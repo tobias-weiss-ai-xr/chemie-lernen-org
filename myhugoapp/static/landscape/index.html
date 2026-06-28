@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Service Landscape | openDesk Edu</title>
+    <meta
+      name="description"
+      content="Complete service landscape of the openDesk Edu ecosystem — 25+ integrated open-source services across education, collaboration, infrastructure, and security domains"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0e27'/><text y='.9em' font-size='80' text-anchor='middle' x='50'>🗺️</text></svg>"
+    />
+    <style>
+      :root {
+        --primary: #06ffa5;
+        --secondary: #00b894;
+        --accent: #6c5ce7;
+        --dark: #0a0e27;
+        --darker: #050716;
+        --card-bg: #111638;
+        --card-border: #1a1f4a;
+        --text: #e2e8f0;
+        --text-muted: #8892b0;
+        --radius: 12px;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family:
+          'Inter',
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background: var(--darker);
+        color: var(--text);
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+      .bg-grid {
+        position: fixed;
+        inset: 0;
+        background-image: radial-gradient(circle at 1px 1px, rgba(6, 255, 165, 0.03) 1px, transparent 0);
+        background-size: 40px 40px;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        position: relative;
+        z-index: 1;
+      }
+      header {
+        padding: 48px 0 32px;
+        text-align: center;
+        border-bottom: 1px solid var(--card-border);
+      }
+      header .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      header .logo svg {
+        width: 40px;
+        height: 40px;
+      }
+      header h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      header p {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+        max-width: 700px;
+        margin: 12px auto 0;
+      }
+      .stats-bar {
+        display: flex;
+        justify-content: center;
+        gap: 48px;
+        padding: 24px 0;
+        flex-wrap: wrap;
+      }
+      .stat {
+        text-align: center;
+      }
+      .stat-value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .stat-label {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+      .section-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 48px 0 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .section-title .badge {
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 2px 10px;
+        border-radius: 20px;
+        background: var(--primary);
+        color: var(--dark);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 16px;
+        margin-bottom: 48px;
+      }
+      .card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: var(--radius);
+        padding: 24px;
+        transition: all 0.2s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .card:hover {
+        border-color: var(--primary);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+      .card .icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+      }
+      .card h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .card p {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+      .card .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 12px;
+      }
+      .card .tags span {
+        font-size: 0.7rem;
+        font-weight: 500;
+        padding: 2px 8px;
+        border-radius: 6px;
+        background: rgba(6, 255, 165, 0.08);
+        color: var(--primary);
+        border: 1px solid rgba(6, 255, 165, 0.15);
+      }
+      .card .status {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 6px;
+      }
+      .status-prod {
+        background: rgba(6, 255, 165, 0.12);
+        color: var(--primary);
+      }
+      .status-beta {
+        background: rgba(108, 92, 231, 0.12);
+        color: var(--accent);
+      }
+      .status-dev {
+        background: rgba(255, 193, 7, 0.12);
+        color: #ffc107;
+      }
+      .icon-core {
+        background: rgba(6, 255, 165, 0.12);
+      }
+      .icon-edu {
+        background: rgba(108, 92, 231, 0.12);
+      }
+      .icon-collab {
+        background: rgba(0, 184, 148, 0.12);
+      }
+      .icon-infra {
+        background: rgba(255, 193, 7, 0.12);
+      }
+      .icon-sec {
+        background: rgba(255, 107, 107, 0.12);
+      }
+      footer {
+        text-align: center;
+        padding: 32px 0 48px;
+        border-top: 1px solid var(--card-border);
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+      footer a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+      .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin-top: 24px;
+        flex-wrap: wrap;
+      }
+      .nav-links a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: 1px solid var(--card-border);
+        transition: all 0.2s;
+      }
+      .nav-links a:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 1.8rem;
+        }
+        .stats-bar {
+          gap: 24px;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-grid"></div>
+
+    <div class="container">
+      <header>
+        <div class="logo">
+          <svg viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="8" fill="#06ffa5" fill-opacity="0.15" />
+            <path d="M20 8l12 8v12l-12 8-12-8V16l12-8z" stroke="#06ffa5" stroke-width="2" fill="none" />
+            <circle cx="20" cy="20" r="4" fill="#06ffa5" />
+          </svg>
+          <h1>openDesk Edu</h1>
+        </div>
+        <p>
+          Complete service landscape of the openDesk Edu ecosystem — 25+ integrated open-source services deployed on
+          Kubernetes across education, research, and administration domains.
+        </p>
+      </header>
+
+      <div class="stats-bar">
+        <div class="stat">
+          <div class="stat-value">25+</div>
+          <div class="stat-label">Services</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">9</div>
+          <div class="stat-label">Nodes</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Domains</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">99.5%</div>
+          <div class="stat-label">Uptime</div>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <span>Core Platform</span>
+        <span class="badge">9 services</span>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="icon icon-core">🔑</div>
+          <span class="status status-prod">Production</span>
+          <h3>Keycloak</h3>
+          <p>Unified SSO with SAML 2.0 and OIDC for all services. Central identity management with LDAP federation.</p>
+          <div class="tags">
+            <span>SSO</span>
+            <span>SAML</span>
+            <span>OIDC</span>
+            <span>LDAP</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-core">☁️</div>
+          <span class="status status-prod">Production</span>
+          <h3>OpenCloud</h3>
+          <p>
+            File sync, share, and collaboration platform. Replaces Nextcloud with modern architecture and native S3
+            storage.
+          </p>
+          <div class="tags">
+            <span>Files</span>
+            <span>Sync</span>
+            <span>S3</span>
+            <span>WebDAV</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-core">📧</div>
+          <span class="status status-prod">Production</span>
+          <h3>Dovecot + Postfix</h3>
+          <p>Production mail infrastructure with IMAP, SMTP, Sieve filtering, and distributed anti-spam.</p>
+          <div class="tags">
+            <span>IMAP</span>
+            <span>SMTP</span>
+            <span>Mail</span>
+            <span>Sieve</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-core">📅</div>
+          <span class="status status-prod">Production</span>
+          <h3>SOGo</h3>
+          <p>Groupware suite with CalDAV, CardDAV, WebMail, and shared calendaring. OIDC-integrated via Keycloak.</p>
+          <div class="tags">
+            <span>Calendar</span>
+            <span>Contacts</span>
+            <span>WebMail</span>
+            <span>Groupware</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-core">💬</div>
+          <span class="status status-prod">Production</span>
+          <h3>Matrix + Element</h3>
+          <p>Decentralised, end-to-end encrypted messaging. Federated chat with bridges to Telegram and IRC.</p>
+          <div class="tags">
+            <span>Chat</span>
+            <span>E2EE</span>
+            <span>Federation</span>
+            <span>Bridges</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-core">📝</div>
+          <span class="status status-prod">Production</span>
+          <h3>Etherpad</h3>
+          <p>Real-time collaborative document editing with Markdown support and version history.</p>
+          <div class="tags">
+            <span>Collaboration</span>
+            <span>Real-time</span>
+            <span>Markdown</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-core">🔗</div>
+          <span class="status status-prod">Production</span>
+          <h3>Nubus Portal</h3>
+          <p>Univention-based portal and IAM layer with self-service user management and application catalogue.</p>
+          <div class="tags">
+            <span>Portal</span>
+            <span>IAM</span>
+            <span>Self-Service</span>
+            <span>UCS</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-core">🗄️</div>
+          <span class="status status-prod">Production</span>
+          <h3>PostgreSQL + MySQL</h3>
+          <p>Managed database clusters with automated backup, point-in-time recovery, and connection pooling.</p>
+          <div class="tags">
+            <span>Database</span>
+            <span>HA</span>
+            <span>Backup</span>
+            <span>PITR</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-core">⚙️</div>
+          <span class="status status-prod">Production</span>
+          <h3>MinIO S3</h3>
+          <p>S3-compatible object storage for application data, backups, and blob storage across all services.</p>
+          <div class="tags">
+            <span>S3</span>
+            <span>Object Storage</span>
+            <span>Backup</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <span>Education & Research</span>
+        <span class="badge">5 services</span>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="icon icon-edu">🎓</div>
+          <span class="status status-prod">Production</span>
+          <h3>Moodle</h3>
+          <p>
+            Learning management system with course management, quizzes, assignments, and gradebook. SAML-integrated.
+          </p>
+          <div class="tags">
+            <span>LMS</span>
+            <span>Courses</span>
+            <span>Quizzes</span>
+            <span>Gradebook</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-edu">📚</div>
+          <span class="status status-prod">Production</span>
+          <h3>ILIAS</h3>
+          <p>
+            Open-source LMS with competence-based learning, ILIAS learning outcomes, and comprehensive assessment tools.
+          </p>
+          <div class="tags">
+            <span>LMS</span>
+            <span>Competences</span>
+            <span>Assessment</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-edu">🔬</div>
+          <span class="status status-beta">Beta</span>
+          <h3>JupyterHub</h3>
+          <p>Multi-user Jupyter notebook server for computational research, data analysis, and collaborative coding.</p>
+          <div class="tags">
+            <span>Notebooks</span>
+            <span>Python</span>
+            <span>Data Science</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-edu">📖</div>
+          <span class="status status-beta">Beta</span>
+          <h3>XWiki</h3>
+          <p>Collaborative wiki platform for knowledge management, documentation, and research project coordination.</p>
+          <div class="tags">
+            <span>Wiki</span>
+            <span>Documentation</span>
+            <span>Knowledge Base</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-edu">🧪</div>
+          <span class="status status-dev">Development</span>
+          <h3>OpenProject</h3>
+          <p>
+            Project management with Gantt charts, agile boards, time tracking, and budget management for research
+            projects.
+          </p>
+          <div class="tags">
+            <span>Project Mgmt</span>
+            <span>Agile</span>
+            <span>Gantt</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <span>Collaboration & Productivity</span>
+        <span class="badge">6 services</span>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="icon icon-collab">📄</div>
+          <span class="status status-prod">Production</span>
+          <h3>Collabora Online</h3>
+          <p>
+            Online document editing with real-time collaboration for ODF, OOXML, and PDF formats. Integrated with
+            Nextcloud.
+          </p>
+          <div class="tags">
+            <span>Office</span>
+            <span>Documents</span>
+            <span>Real-time</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-collab">🗺️</div>
+          <span class="status status-prod">Production</span>
+          <h3>OpenStreetMap</h3>
+          <p>Self-hosted tile server and geocoding for location-based services and geographic data visualisation.</p>
+          <div class="tags">
+            <span>Maps</span>
+            <span>Geocoding</span>
+            <span>Tiles</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-collab">📹</div>
+          <span class="status status-prod">Production</span>
+          <h3>Jitsi Meet</h3>
+          <p>WebRTC-based video conferencing with screen sharing, recording, and SIP gateway for PSTN integration.</p>
+          <div class="tags">
+            <span>Video</span>
+            <span>WebRTC</span>
+            <span>Conferencing</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-collab">📋</div>
+          <span class="status status-prod">Production</span>
+          <h3>Planka</h3>
+          <p>Kanban project management board with drag-and-drop, labels, due dates, and OIDC authentication.</p>
+          <div class="tags">
+            <span>Kanban</span>
+            <span>Tasks</span>
+            <span>Boards</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-collab">🤖</div>
+          <span class="status status-beta">Beta</span>
+          <h3>n8n + Dify</h3>
+          <p>
+            Workflow automation and LLM app builder. n8n handles integrations, Dify provides AI-powered agent workflows.
+          </p>
+          <div class="tags">
+            <span>Automation</span>
+            <span>AI</span>
+            <span>Workflows</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-collab">📰</div>
+          <span class="status status-dev">Development</span>
+          <h3>WordPress</h3>
+          <p>Multi-site content management for news portals, department websites, and course landing pages.</p>
+          <div class="tags">
+            <span>CMS</span>
+            <span>Websites</span>
+            <span>Blog</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <span>Infrastructure & Operations</span>
+        <span class="badge">5 services</span>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="icon icon-infra">⎈</div>
+          <span class="status status-prod">Production</span>
+          <h3>K3s + ArgoCD</h3>
+          <p>
+            Lightweight Kubernetes distribution with GitOps deployment, automated rollouts, and multi-cluster
+            management.
+          </p>
+          <div class="tags">
+            <span>K8s</span>
+            <span>GitOps</span>
+            <span>ArgoCD</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-infra">📊</div>
+          <span class="status status-prod">Production</span>
+          <h3>Prometheus + Grafana</h3>
+          <p>Complete observability stack with metrics collection, alerting, dashboards, and Loki log aggregation.</p>
+          <div class="tags">
+            <span>Monitoring</span>
+            <span>Metrics</span>
+            <span>Logs</span>
+            <span>Alerts</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-infra">🔄</div>
+          <span class="status status-prod">Production</span>
+          <h3>k8up (Restic)</h3>
+          <p>
+            Kubernetes backup operator using restic. Automated scheduled backups, retention policies, and S3 storage.
+          </p>
+          <div class="tags">
+            <span>Backup</span>
+            <span>Restic</span>
+            <span>S3</span>
+            <span>Operator</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-infra">🌐</div>
+          <span class="status status-prod">Production</span>
+          <h3>Traefik + HAProxy</h3>
+          <p>
+            Dual ingress layer: Traefik for dynamic routing with automatic TLS, HAProxy for high-throughput TCP
+            proxying.
+          </p>
+          <div class="tags">
+            <span>Ingress</span>
+            <span>TLS</span>
+            <span>Load Balancing</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-infra">💾</div>
+          <span class="status status-prod">Production</span>
+          <h3>Ceph CSI</h3>
+          <p>
+            Software-defined storage with RBD (SSD) for databases and CephFS (HDD EC) for file storage. 27 TiB usable.
+          </p>
+          <div class="tags">
+            <span>Storage</span>
+            <span>Ceph</span>
+            <span>RBD</span>
+            <span>CephFS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <span>Security & Compliance</span>
+        <span class="badge">4 services</span>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="icon icon-sec">🛡️</div>
+          <span class="status status-prod">Production</span>
+          <h3>ClamAV</h3>
+          <p>On-access and on-demand virus scanning for mail attachments, file uploads, and shared storage.</p>
+          <div class="tags">
+            <span>Anti-Virus</span>
+            <span>Scanning</span>
+            <span>Security</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-sec">🔐</div>
+          <span class="status status-prod">Production</span>
+          <h3>cert-manager</h3>
+          <p>Automated TLS certificate provisioning and renewal with Let's Encrypt for all ingress endpoints.</p>
+          <div class="tags">
+            <span>TLS</span>
+            <span>Certificates</span>
+            <span>Let's Encrypt</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-sec">🔍</div>
+          <span class="status status-beta">Beta</span>
+          <h3>Kubescape</h3>
+          <p>
+            Kubernetes security scanning with NSA/CISA hardening guidelines, runtime threat detection, and compliance
+            reports.
+          </p>
+          <div class="tags">
+            <span>Compliance</span>
+            <span>Hardening</span>
+            <span>Runtime</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon icon-sec">📋</div>
+          <span class="status status-dev">Development</span>
+          <h3>Pentest Reports</h3>
+          <p>Regular security assessments with documented findings, remediation tracking, and executive summaries.</p>
+          <div class="tags">
+            <span>Pentest</span>
+            <span>Audit</span>
+            <span>Compliance</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="https://opendesk-edu.org">Main Site</a>
+        <a href="https://openspec.opendesk-edu.org">OpenSpec</a>
+        <a href="https://chemie-lernen.org">Chemistry Portal</a>
+      </div>
+
+      <footer>
+        <p>
+          openDesk Edu &mdash; Managed by
+          <a href="https://www.uni-marburg.de">HRZ Marburg</a>
+          on K3s v1.32.3 &middot; 9 nodes &middot; Debian 12
+        </p>
+        <p style="margin-top: 8px; font-size: 0.8rem">
+          Last updated June 2026 &middot;
+          <a href="https://github.com/tobias-weiss-ai-xr/opendesk-edu">Source on GitHub</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
