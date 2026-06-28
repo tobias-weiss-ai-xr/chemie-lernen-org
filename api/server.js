@@ -9,7 +9,7 @@ import neo4j from 'neo4j-driver';
 import fs from 'fs';
 import path from 'path';
 import ragHelpers from './_rag-helpers.cjs';
-import { subsetWhere } from '../scripts/_neo4j-subset-filter.mjs';
+import { subsetWhere } from './scripts/_neo4j-subset-filter.mjs';
 
 const PORT = process.env.PORT || 3001;
 const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
