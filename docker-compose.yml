@@ -67,14 +67,6 @@ services:
       resources:
         limits:
           memory: 256M
-    # Persistent mounts:
-    # 1. subdomain static dirs (openspec/, landscape/) survive container restarts
-    # 2. api-proxy.conf with variable-based upstream so nginx does not fail
-    #    at startup when chemie-chat-api is in restart loop
-    volumes:
-      - ./myhugoapp/static/openspec:/usr/share/nginx/html/openspec:ro
-      - ./myhugoapp/static/landscape:/usr/share/nginx/html/landscape:ro
-      - ./myhugoapp/static/api-proxy.conf:/etc/nginx/conf.d/api-proxy.conf:ro
     networks:
       - traefik-public
     labels:

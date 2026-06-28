@@ -269,26 +269,6 @@
       });
     });
 
-    // Curricula (Lehrplan topics)
-    var curricula = data.curricula || [];
-    curricula.forEach(function (c) {
-      if (emap[c.name]) return; // skip if entity with same name already exists
-      var conns = (c.relatedEntities || []).length;
-      var n = {
-        id: c.id || 'c-' + slugify(c.name),
-        label: c.name,
-        type: 'entity',
-        category: 'lehrplan',
-        size: Math.max(5, Math.min(14, Math.sqrt(conns + 1) * 3)),
-        count: c.objective_count || 0,
-        state: c.state || '',
-        grade: c.grade || '',
-        school_type: c.school_type || '',
-      };
-      nodes.push(n);
-      emap[c.name] = n;
-    });
-
     var compLinks = [];
     entities.forEach(function (e) {
       if (e.components) {
@@ -299,17 +279,6 @@
           }
         });
       }
-    });
-    // Links from curricula relatedEntities
-    curricula.forEach(function (c) {
-      var cn = emap[c.name];
-      if (!cn) return;
-      (c.relatedEntities || []).forEach(function (rel) {
-        var rn = emap[rel];
-        if (rn) {
-          links.push({ source: cn.id, target: rn.id, type: 'curricula' });
-        }
-      });
     });
     links = links.concat(compLinks);
 
