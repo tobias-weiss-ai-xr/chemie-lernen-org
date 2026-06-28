@@ -3023,6 +3023,174 @@ app.get('/api/curricula/by-state/:state', async (req, res) => {
 });
 
 /**
+ * GET /api/curricula/by-state/:state/grade/:grade — Topics for a specific state and grade.
+ * Returns topics with objectives and content links, filtered by grade level.
+ */
+app.get('/api/curricula/by-state/:state/grade/:grade', async (req, res) => {
+  const state = req.params.state.toUpperCase();
+  const grade = req.params.grade;
+  if (!state || state.length !== 2) {
+    return res.status(400).json({ error: 'Invalid state code', state });
+  }
+
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+      fetchSize: 5000,
+    });
+
+    const scope = subsetWhere('e', ['Entity']);
+    const result = await session.run(
+      `MATCH (e:Entity) ${scope}
+       AND e.kategorie = 'lehrplan' AND e.state = $state AND e.grade = $grade
+       OPTIONAL MATCH (o:Entity)-[:TEIL_VON]->(e)
+         WHERE o.kategorie = 'lernziel'
+       OPTIONAL MATCH (e)-[:MENTIONS]->(c:Content)
+       WITH e, collect(DISTINCT o.name) AS objectives,
+            collect(DISTINCT {url: c.url, title: c.title, type: c.type}) AS contentLinks
+       RETURN e.name AS name, e.grade AS grade, e.school_type AS schoolType,
+              e.display_name AS displayName,
+              size(objectives) AS objectiveCount,
+              [ob IN objectives WHERE ob IS NOT NULL] AS objectives,
+              [cl IN contentLinks WHERE cl.url IS NOT NULL] AS contentLinks
+       ORDER BY e.grade, e.name`,
+      { state, grade }
+    );
+    await session.close();
+
+    const topics = result.records.map(function (r) {
+      return {
+        name: r.get('name'),
+        grade: r.get('grade'),
+        schoolType: r.get('schoolType'),
+        displayName: r.get('displayName'),
+        objectiveCount: r.get('objectiveCount').toNumber(),
+        objectives: r.get('objectives'),
+        contentLinks: r.get('contentLinks'),
+      };
+    });
+
+    res.json({
+      source: 'neo4j',
+      state,
+      grade,
+      topicCount: topics.length,
+      totalObjectives: topics.reduce((s, t) => s + t.objectiveCount, 0),
+      topics,
+    });
+  } catch (err) {
+    console.error('[curricula/by-state/grade] Neo4j error:', err.message);
+    res.status(503).json({ error: 'Curriculum data unavailable' });
+  }
+});
+
+/**
+ * GET /api/curricula/topic/:slug/articles — Content nodes covering a curriculum topic.
+ * Returns articles/calculators that COVERS_TOPIC links to the given topic.
+ */
+app.get('/api/curricula/topic/:slug/articles', async (req, res) => {
+  const slug = req.params.slug.toLowerCase().trim();
+  if (!slug) {
+    return res.status(400).json({ error: 'Topic slug required' });
+  }
+
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+
+    const result = await session.run(
+      `MATCH (t:Entity {name: $slug, kategorie: 'lehrplan'})
+       OPTIONAL MATCH (e:Entity)-[ct:COVERS_TOPIC]->(t)
+       OPTIONAL MATCH (e)-[:MENTIONS]->(c:Content)
+       RETURN t.name AS topicName, t.display_name AS displayName,
+              t.state AS state, t.grade AS grade,
+              collect(DISTINCT {name: e.name, kategorie: e.kategorie}) AS coveringEntities,
+              collect(DISTINCT {url: c.url, title: c.title, type: c.type}) AS contentLinks`,
+      { slug }
+    );
+    await session.close();
+
+    if (result.records.length === 0) {
+      return res.status(404).json({ error: 'Topic not found', slug });
+    }
+
+    const row = result.records[0];
+    res.json({
+      source: 'neo4j',
+      topic: {
+        name: row.get('topicName'),
+        displayName: row.get('displayName'),
+        state: row.get('state'),
+        grade: row.get('grade'),
+      },
+      coveringEntities: row.get('coveringEntities').filter((e) => e.name),
+      contentLinks: row.get('contentLinks').filter((c) => c.url),
+    });
+  } catch (err) {
+    console.error('[curricula/topic/articles] Neo4j error:', err.message);
+    res.status(503).json({ error: 'Topic articles unavailable' });
+  }
+});
+
+/**
+ * GET /api/curricula/objective/:slug/articles — Content that FULFILLS a learning objective.
+ * Returns entities and content nodes linked via FULFILLS + MENTIONS.
+ */
+app.get('/api/curricula/objective/:slug/articles', async (req, res) => {
+  const slug = req.params.slug.toLowerCase().trim();
+  if (!slug) {
+    return res.status(400).json({ error: 'Objective slug required' });
+  }
+
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+
+    const result = await session.run(
+      `MATCH (o:Entity {name: $slug, kategorie: 'lernziel'})
+       OPTIONAL MATCH (e:Entity)-[f:FULFILLS]->(o)
+       OPTIONAL MATCH (e)-[:MENTIONS]->(c:Content)
+       OPTIONAL MATCH (o)-[:TEIL_VON]->(t:Entity)
+         WHERE t.kategorie = 'lehrplan'
+       RETURN o.name AS objName, o.display_name AS displayName,
+              t.name AS topicName, t.display_name AS topicDisplayName,
+              collect(DISTINCT {name: e.name, kategorie: e.kategorie}) AS fulfillingEntities,
+              collect(DISTINCT {url: c.url, title: c.title, type: c.type}) AS contentLinks`,
+      { slug }
+    );
+    await session.close();
+
+    if (result.records.length === 0) {
+      return res.status(404).json({ error: 'Objective not found', slug });
+    }
+
+    const row = result.records[0];
+    res.json({
+      source: 'neo4j',
+      objective: {
+        name: row.get('objName'),
+        displayName: row.get('displayName'),
+        topic: row.get('topicName'),
+        topicDisplayName: row.get('topicDisplayName'),
+      },
+      fulfillingEntities: row.get('fulfillingEntities').filter((e) => e.name),
+      contentLinks: row.get('contentLinks').filter((c) => c.url),
+    });
+  } catch (err) {
+    console.error('[curricula/objective/articles] Neo4j error:', err.message);
+    res.status(503).json({ error: 'Objective articles unavailable' });
+  }
+});
+
+/**
  * GET /api/entities/:name/curricula — Curriculum context for an entity.
  * Shows which topics this entity COVERS_TOPIC, which objectives it FULFILLS,
  * and which Content nodes it MENTIONS.
