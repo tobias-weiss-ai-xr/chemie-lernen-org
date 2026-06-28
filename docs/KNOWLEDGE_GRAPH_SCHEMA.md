@@ -1,7 +1,7 @@
 # Knowledge Graph Schema
 
 **Status:** consolidated from all code paths
-**Date:** 2026-06-27
+**Date:** 2026-06-28
 **DB:** Neo4j 5.26, `chemie` database, `bolt://chemie-neo4j:7687`
 
 ## Subset isolation
@@ -9,43 +9,52 @@
 The `chemie` database is a central knowledge graph serving multiple subsets.
 The **chemie subset** is scoped by the following labels (see `scripts/_neo4j-subset-filter.mjs`):
 
-| Label                  | Purpose                                                              |
-| ---------------------- | -------------------------------------------------------------------- |
-| `Entity`               | Core chemistry concepts                                              |
-| `Document`             | Articles/pages                                                       |
-| `Tag`                  | Tags                                                                 |
-| `Content`              | Curriculum / content nodes                                           |
-| `Category`             | Kategorie proxy nodes                                                |
-| `Curriculum`           | Lehrplan (curriculum per state)                                      |
-| `Topic`                | Topic within a curriculum                                            |
-| `SubTopic`             | Sub-topic within a topic                                             |
-| `LearningObjective`    | Lernziel (learning objective)                                        |
-| `DidacticGuideline`    | KMK didactic guideline                                               |
-| `GuidelineSection`     | Section within a didactic guideline                                  |
-| `University`           | University (planned)                                                 |
-| `Module`               | Study module (planned)                                               |
-| `ECTS`                 | Credit point record (planned)                                        |
+| Label               | Purpose                                                         |
+| ------------------- | --------------------------------------------------------------- |
+| `Entity`            | Core chemistry concepts                                         |
+| `Document`          | Articles/pages                                                  |
+| `Tag`               | Tags                                                            |
+| `Content`           | Curriculum / content nodes                                      |
+| `Category`          | Kategorie proxy nodes                                           |
+| `Curriculum`        | Lehrplan (curriculum per state)                                 |
+| `Topic`             | Topic within a curriculum                                       |
+| `SubTopic`          | Sub-topic within a topic                                        |
+| `LearningObjective` | Lernziel (learning objective)                                   |
+| `DidacticGuideline` | KMK didactic guideline                                          |
+| `GuidelineSection`  | Section within a didactic guideline                             |
+| `University`        | University (active — 10 institutions, ETH/MIT/TUM with modules) |
+| `UniversityModule`  | Study module (active — 55 modules from ETH, MIT, TUM)           |
+| `Degree`            | Degree program offered by a university (active — 7 records)     |
+| `ModuleOffering`    | Semester-specific module offering (active)                      |
+| `Lecturer`          | Module lecturer (active)                                        |
+| `ECTS`              | Credit point record (active — 55 credits linked to modules)     |
 
 All Cypher queries **must** scope to the chemie subset via label checks. Use `subsetMatch()` (labels) or `subsetWhere()` (Cypher `WHERE`) from `_neo4j-subset-filter.mjs` for generic MATCH queries. Code-analysis nodes (~683k `Variable`, `Function`, `Class`, …) live in the same DB but are excluded from chemie queries.
 
 ## Node labels
 
-| Label                | Purpose                                                        | Key properties                                                                                                                                                                         |
-| -------------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `:Entity`            | Core chemistry concept (Wasser, Kohlenstoff, Elektrolyse …)    | `name` (PK, lowercased), `kategorie`, `description`, `symbol`, `ordnungszahl`, `state`, `grade`, `school_type`, `objective_count`, `articleCount`, `components[]`, `relatedEntities[]` |
-| `:Document`          | Article or page that mentions entities                         | `title`, `url`, `type` (`page`/`article`), `date`, `entities[]`                                                                                                                        |
-| `:Tag`               | Tag attached to entities (KMK standard, source type)           | `name`, `kind` (`kmk` / `quelle` / `topic`)                                                                                                                                            |
-| `:Content`           | Site content node (article, calculator, exercise)              | `url`, `title`, `type` (`article`/`calculator`)                                                                                                                                       |
-| `:Article`           | Content sub-label for article type nodes                       | (same properties as parent :Content)                                                                                                                                                   |
-| `:Calculator`        | Content sub-label for calculator type nodes                    | (same properties as parent :Content)                                                                                                                                                   |
-| `:Exercise`          | Content sub-label for exercise type nodes (future)             | (same properties as parent :Content)                                                                                                                                                   |
-| `:Category`          | Kategorie proxy node (populated by `backfill-orphan-rels.mjs`) | `name`                                                                                                                                                                                 |
-| `:Curriculum`        | _(planned label — currently stored as `:Entity {kategorie:'lehrplan'}')_ | `name`, `state`, `grade`, `school_type`, `topicCount`, `objectiveCount`                                                                                                                |
-| `:Topic`             | _(planned label — currently stored as `:Entity {kategorie:'lehrplan'}')_ | `name`, `state`, `grade`, `school_type`, `topic`, `curriculum_name`                                                                                                                    |
-| `:SubTopic`          | _(planned label)_                                                     | `name`, `topic`, `state`, `grade`, `school_type`                                                                                                                                       |
-| `:LearningObjective` | _(planned label — currently stored as `:Entity {kategorie:'lernziel'}')_ | `name`, `state`, `grade`, `school_type`, `keywords[]`                                                                                                                                  |
-| `:DidacticGuideline` | _(planned label — currently stored as `:Entity {kategorie:'didaktik'}')_ | `name`, `title`, `year`, `url`                                                                                                                                                         |
-| `:GuidelineSection`  | _(planned label)_                                                     | `name`, `title`, `guideline_name`                                                                                                                                                      |
+| Label                | Purpose                                                                        | Key properties                                                                                                                                                                         |
+| -------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `:Entity`            | Core chemistry concept (Wasser, Kohlenstoff, Elektrolyse …)                    | `name` (PK, lowercased), `kategorie`, `description`, `symbol`, `ordnungszahl`, `state`, `grade`, `school_type`, `objective_count`, `articleCount`, `components[]`, `relatedEntities[]` |
+| `:Document`          | Article or page that mentions entities                                         | `title`, `url`, `type` (`page`/`article`), `date`, `entities[]`                                                                                                                        |
+| `:Tag`               | Tag attached to entities (KMK standard, source type)                           | `name`, `kind` (`kmk` / `quelle` / `topic`)                                                                                                                                            |
+| `:Content`           | Site content node (article, calculator, exercise)                              | `url`, `title`, `type` (`article`/`calculator`)                                                                                                                                        |
+| `:Article`           | Content sub-label for article type nodes                                       | (same properties as parent :Content)                                                                                                                                                   |
+| `:Calculator`        | Content sub-label for calculator type nodes                                    | (same properties as parent :Content)                                                                                                                                                   |
+| `:Exercise`          | Content sub-label for exercise type nodes (future)                             | (same properties as parent :Content)                                                                                                                                                   |
+| `:Category`          | Kategorie proxy node (populated by `backfill-orphan-rels.mjs`)                 | `name`                                                                                                                                                                                 |
+| `:Curriculum`        | _Label not yet applied — currently stored as `:Entity {kategorie:'lehrplan'}`_ | `name`, `state`, `grade`, `school_type`, `topicCount`, `objectiveCount`                                                                                                                |
+| `:Topic`             | _Label not yet applied — currently stored as `:Entity {kategorie:'lehrplan'}`_ | `name`, `state`, `grade`, `school_type`, `topic`, `curriculum_name`                                                                                                                    |
+| `:SubTopic`          | _(planned label — not yet applied)_                                            | `name`, `topic`, `state`, `grade`, `school_type`                                                                                                                                       |
+| `:LearningObjective` | _Label not yet applied — currently stored as `:Entity {kategorie:'lernziel'}`_ | `name`, `state`, `grade`, `school_type`, `keywords[]`                                                                                                                                  |
+| `:DidacticGuideline` | _Label not yet applied — currently stored as `:Entity {kategorie:'didaktik'}`_ | `name`, `title`, `year`, `url`                                                                                                                                                         |
+| `:GuidelineSection`  | _(planned label)_                                                              | `name`, `title`, `guideline_name`                                                                                                                                                      |
+| `:University`        | University institution (active)                                                | `short_code` (PK), `name`, `country`, `city`, `website`                                                                                                                                |
+| `:UniversityModule`  | University module/course (active)                                              | `module_code`, `university` (composite PK), `module_name`, `ects`, `language`, `level`, `degree`, `url`, `learning_outcomes[]`, `content[]`, `examination`, `last_checked`             |
+| `:Degree`            | Degree program (active)                                                        | `name`, `university`, `level`                                                                                                                                                          |
+| `:ModuleOffering`    | Semester offering of a module (active)                                         | `module_code`, `university`, `semester`, `year`                                                                                                                                        |
+| `:Lecturer`          | Module lecturer (active)                                                       | `name`, `university`, `title`, `email`, `orcid`                                                                                                                                        |
+| `:ECTS`              | ECTS credit record (active)                                                    | `module_code`, `university`, `credits`, `workload_hours`                                                                                                                               |
 
 ## Relationship types
 
@@ -56,6 +65,16 @@ All Cypher queries **must** scope to the chemie subset via label checks. Use `su
 | `:HAS_TAG`    | `:Entity`   | `:Tag`    | entity → its tags                  |
 | `:MENTIONS`   | `:Document` | `:Entity` | article → entities it mentions     |
 | `:RELATED_TO` | `:Entity`   | `:Entity` | bidirectional concept relationship |
+
+### Written by modulhandbuch importers (`import-modulhandbuch.mjs`, `link-module-entities.mjs`)
+
+| Type             | From                | To                  | Direction                                     |
+| ---------------- | ------------------- | ------------------- | --------------------------------------------- |
+| `:OFFERS`        | `:University`       | `:UniversityModule` | uni → its modules                             |
+| `:OFFERS_DEGREE` | `:University`       | `:Degree`           | uni → its degree programs                     |
+| `:CARRIES`       | `:UniversityModule` | `:ECTS`             | module → its ECTS credit record               |
+| `:COVERS`        | `:UniversityModule` | `:Entity`           | module → chemistry topic it covers            |
+| `:TEACHES`       | `:Content`          | `:UniversityModule` | article → uni module that teaches the concept |
 
 ### Written by `scripts/backfill-orphan-rels.mjs`
 
@@ -70,13 +89,13 @@ All Cypher queries **must** scope to the chemie subset via label checks. Use `su
 > Aspirational typed labels (`:Curriculum`, `:Topic`, `:SubTopic`, `:LearningObjective`) are
 > in `CHEMIE_LABELS` but not yet applied. Queries scope by `kategorie` instead.
 
-| Type            | From      | To        | Source script                          |
-| --------------- | --------- | --------- | -------------------------------------- |
-| `:TEIL_VON`     | `:Entity` | `:Entity` | `import-curricula.mjs` — lernziel → lehrplan |
-| `:RELATED_TO`   | `:Entity` | `:Entity` | `import-curricula.mjs`, `import-didaktik.mjs` — shared-name links |
-| `:COVERS_TOPIC` | `:Entity` | `:Entity` | `link-entities-to-curricula.mjs` — entity → lehrplan |
-| `:FULFILLS`     | `:Entity` | `:Entity` | `link-entities-to-curricula.mjs` — entity → lernziel |
-| `:MENTIONS`     | `:Entity` | `:Content` | `import-content-nodes.mjs` — topic → site content |
+| Type            | From      | To         | Source script                                                     |
+| --------------- | --------- | ---------- | ----------------------------------------------------------------- |
+| `:TEIL_VON`     | `:Entity` | `:Entity`  | `import-curricula.mjs` — lernziel → lehrplan                      |
+| `:RELATED_TO`   | `:Entity` | `:Entity`  | `import-curricula.mjs`, `import-didaktik.mjs` — shared-name links |
+| `:COVERS_TOPIC` | `:Entity` | `:Entity`  | `link-entities-to-curricula.mjs` — entity → lehrplan              |
+| `:FULFILLS`     | `:Entity` | `:Entity`  | `link-entities-to-curricula.mjs` — entity → lernziel              |
+| `:MENTIONS`     | `:Entity` | `:Content` | `import-content-nodes.mjs` — topic → site content                 |
 
 > The didaktik import (`import-didaktik.mjs`) links didaktik entities to lehrplan entities via
 > `:RELATED_TO`. No separate `:FULFILLS_DIDACTIC` or `:HAS_SECTION` relationship exists yet.
@@ -135,32 +154,37 @@ Endpoint caches for 5 minutes in-memory.
 ## Data flow
 
 ```
-content/**/*.md                                  data/curricula/*.json            data/didaktik.json
-   ↓                                                   ↓                               ↓
-scripts/knowledge-graph.mjs                     scripts/import-curricula.mjs    scripts/import-didaktik.mjs
-(article → :Document, :Entity, :Tag)            (:Curriculum, :Topic,           (:DidacticGuideline, :GuidelineSection)
-                                                 :SubTopic, :LearningObjective)
-   ↓                                                   ↓                               ↓
-   └──────────────────────────────────┬────────────────┘───────────────────────────────┘
-                                      ↓
-                          ┌────────── Neo4j ──────────┐
-                          │ (:Entity, :Document, :Tag, │
-                          │  :Content, :Category,      │
-                          │  :Curriculum, :Topic,      │
-                          │  :SubTopic, :LearningObject,│
-                          │  :DidacticGuideline,       │
-                          │  :GuidelineSection)        │
-                          └────────────────────────────┘
-                                      ↓
-                    scripts/export-kg-data.mjs
-                    (Neo4j → myhugoapp/data/kg_data.json)
-                                      ↓
-                                  Hugo build
-                                      ↓
-                    entity/single.html, content/wissennetz.md,
-                    layouts/_default/entity-index.html
-                                      ↓
-                          browser (D3EgoGraph module)
+content/**/*.md              data/curricula/*.json     data/didaktik.json     data/modulhandbuch/*.json
+   ↓                                ↓                        ↓                        ↓
+scripts/knowledge-graph.mjs   scripts/import-           scripts/import-        scripts/import-
+(article → :Document,         curricula.mjs             didaktik.mjs           modulhandbuch.mjs
+ :Entity, :Tag)               (:Entity:kategorie=       (:Entity:kategorie=    (:University,
+                               'lehrplan', 'lernziel')   'didaktik')            :UniversityModule, :ECTS)
+   ↓                                ↓                        ↓                        ↓
+   └──────────────────────────────────┬───────────────────────────────────────────────┘
+                                       ↓
+                           ┌────────── Neo4j ──────────┐
+                           │ (:Entity, :Document, :Tag, │
+                           │  :Content, :Category,      │
+                           │  :University, :UniversityModule, │
+                           │  :Degree, :ECTS, :Lecturer)│
+                           └────────────────────────────┘
+                                       ↓
+                     scripts/link-entities-to-curricula.mjs
+                     (→ :COVERS_TOPIC, :FULFILLS)
+                                       ↓
+                     scripts/curricula/link-module-entities.mjs
+                     (→ :COVERS, :TEACHES)
+                                       ↓
+                     scripts/export-kg-data.mjs
+                     (Neo4j → myhugoapp/data/kg_data.json)
+                                       ↓
+                                   Hugo build
+                                       ↓
+                     entity/single.html, content/wissennetz.md,
+                     layouts/_default/entity-index.html
+                                       ↓
+                           browser (D3EgoGraph module)
 ```
 
 ## Build-time hook (Sprint 6)
@@ -176,31 +200,34 @@ The `|| echo` is non-fatal: if Neo4j is unreachable, build still proceeds and th
 
 ## Tunable env vars
 
-| Var                       | Default | File                    | Effect                                                |
-| ------------------------- | ------- | ----------------------- | ----------------------------------------------------- |
-| `LIMIT_ENTITIES`          | 5000    | export-kg-data.mjs      | Max entities to export                                |
-| `LIMIT_ARTICLES`          | 10000   | export-kg-data.mjs      | Max articles to export                                |
-| `LIMIT_CURRICULA`         | 5000    | export-kg-data.mjs      | Max curriculum rows                                   |
-| `MAX_ARTICLES_PER_ENTITY` | 20      | export-kg-data.mjs      | Cap on per-entity article list (bigger = fatter JSON) |
+| Var                       | Default | File               | Effect                                                |
+| ------------------------- | ------- | ------------------ | ----------------------------------------------------- |
+| `LIMIT_ENTITIES`          | 5000    | export-kg-data.mjs | Max entities to export                                |
+| `LIMIT_ARTICLES`          | 10000   | export-kg-data.mjs | Max articles to export                                |
+| `LIMIT_CURRICULA`         | 5000    | export-kg-data.mjs | Max curriculum rows                                   |
+| `MAX_ARTICLES_PER_ENTITY` | 20      | export-kg-data.mjs | Cap on per-entity article list (bigger = fatter JSON) |
 
 ## Files
 
-| File                                                | Purpose                                                            |
-| --------------------------------------------------- | ------------------------------------------------------------------ |
-| `scripts/knowledge-graph.mjs`                       | Article → KG pipeline (writes :Document, :Tag, :Entity)            |
-| `scripts/export-kg-data.mjs`                        | Neo4j → kg_data.json                                               |
-| `scripts/generate-entity-pages.mjs`                 | kg_data.json → `content/entity/*.md`                               |
-| `scripts/backfill-orphan-rels.mjs`                  | Backfill `:BESTEHT_AUS`, `:GEHOERT_ZU`                             |
-| `scripts/kg-enrich.mjs`                             | Local enricher (15-type catalog)                                   |
-| `scripts/kg-enrich-relations.mjs`                   | Neo4j semantic rel promotion                                       |
-| `scripts/import-curricula.mjs`                      | Curricula → `:Curriculum`, `:Topic`, `:SubTopic`, `:LearningObjective` |
-| `scripts/import-didaktik.mjs`                       | KMK standards → `:DidacticGuideline`, `:GuidelineSection`          |
-| `scripts/import-content-nodes.mjs`                  | Content → `:Content` + sub-labels (`:Article`, `:Calculator`)      |
-| `scripts/curricula/migrate-content-labels.mjs`      | One-time migration: add `:Article`/`:Calculator` to existing Content nodes |
-| `scripts/_neo4j-subset-filter.mjs`                  | Subset isolation helpers (`CHEMIE_LABELS`, `subsetMatch`, `subsetWhere`) |
-| `api/server.js`                                     | All KG endpoints (including `/api/kg-stats`)                       |
-| `myhugoapp/data/kg_data.json`                       | Hugo build-time data export                                        |
-| `myhugoapp/content/entity/*.md`                     | 54 generated entity pages (3 hand-written element pages preserved) |
-| `myhugoapp/static/js/visualization/d3-ego-graph.js` | Shared D3 graph renderer (ego + full modes)                        |
-| `tests/kg-data-quality.test.js`                     | Data integrity unit tests                                          |
-| `tests/d3-ego-graph.test.js`                        | Renderer unit tests                                                |
+| File                                                | Purpose                                                                      |
+| --------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `scripts/knowledge-graph.mjs`                       | Article → KG pipeline (writes :Document, :Tag, :Entity)                      |
+| `scripts/export-kg-data.mjs`                        | Neo4j → kg_data.json                                                         |
+| `scripts/generate-entity-pages.mjs`                 | kg_data.json → `content/entity/*.md`                                         |
+| `scripts/backfill-orphan-rels.mjs`                  | Backfill `:BESTEHT_AUS`, `:GEHOERT_ZU`                                       |
+| `scripts/kg-enrich.mjs`                             | Local enricher (15-type catalog)                                             |
+| `scripts/kg-enrich-relations.mjs`                   | Neo4j semantic rel promotion                                                 |
+| `scripts/import-curricula.mjs`                      | Curricula → `:Curriculum`, `:Topic`, `:SubTopic`, `:LearningObjective`       |
+| `scripts/import-didaktik.mjs`                       | KMK standards → `:DidacticGuideline`, `:GuidelineSection`                    |
+| `scripts/import-content-nodes.mjs`                  | Content → `:Content` + sub-labels (`:Article`, `:Calculator`)                |
+| `scripts/curricula/migrate-content-labels.mjs`      | One-time migration: add `:Article`/`:Calculator` to existing Content nodes   |
+| `scripts/import-modulhandbuch.mjs`                  | Modulhandbuch JSON → `:University`, `:UniversityModule`, `:ECTS` nodes       |
+| `scripts/curricula/link-module-entities.mjs`        | Create `:COVERS` and `:TEACHES` between modules and existing chemie entities |
+| `scripts/link-entities-to-curricula.mjs`            | Create `:COVERS_TOPIC` and `:FULFILLS` between entities and curriculum data  |
+| `scripts/_neo4j-subset-filter.mjs`                  | Subset isolation helpers (`CHEMIE_LABELS`, `subsetMatch`, `subsetWhere`)     |
+| `api/server.js`                                     | All KG endpoints (including `/api/kg-stats`)                                 |
+| `myhugoapp/data/kg_data.json`                       | Hugo build-time data export                                                  |
+| `myhugoapp/content/entity/*.md`                     | 54 generated entity pages (3 hand-written element pages preserved)           |
+| `myhugoapp/static/js/visualization/d3-ego-graph.js` | Shared D3 graph renderer (ego + full modes)                                  |
+| `tests/kg-data-quality.test.js`                     | Data integrity unit tests                                                    |
+| `tests/d3-ego-graph.test.js`                        | Renderer unit tests                                                          |
