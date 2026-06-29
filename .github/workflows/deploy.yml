@@ -135,7 +135,7 @@ jobs:
             fi
             echo "  ✓ /api/kg-stats returns valid JSON"
             # 7. /api/chat rejects empty body with 400 (NOT 500)
-            CHAT_CODE=$(curl -sf -X POST "$API/api/chat" \
+            CHAT_CODE=$(curl -s -X POST "$API/api/chat" \
               -H "Content-Type: application/json" \
               -d '{}' \
               -o /dev/null -w "%{http_code}" -m 30)
