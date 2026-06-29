@@ -4,7 +4,7 @@
 # ============================================================
 
 # ---- Stage 1: Hugo Build ----
-FROM hugomods/hugo:0.154.5 AS hugo
+FROM hugomods/hugo:0.163.3 AS hugo
 COPY myhugoapp /src
 WORKDIR /src
 RUN hugo --minify --baseURL https://chemie-lernen.org && \
