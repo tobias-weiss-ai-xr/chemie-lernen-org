@@ -48,7 +48,7 @@
     "@graphwiz/builder": "file:packages/graphwiz/graphwiz-builder-0.2.0.tgz",
     "@graphwiz/core": "file:packages/graphwiz/graphwiz-core-0.2.0.tgz",
     "@graphwiz/neo4j": "file:packages/graphwiz/graphwiz-neo4j-0.2.0.tgz",
-    "@playwright/test": "^1.61.0",
+    "@playwright/test": "^1.61.1",
     "fast-xml-parser": "^5.9.2",
     "neo4j-driver": "^6.1.0"
   },
