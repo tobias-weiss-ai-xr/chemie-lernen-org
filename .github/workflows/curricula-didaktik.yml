@@ -27,7 +27,7 @@ jobs:
       - name: Install runtime deps
         run: |
           python -m pip install --upgrade pip
-          pip install --require-hashes -r requirements.txt
+          pip install -r requirements.txt
       - name: Install test deps
         run: pip install --break-system-packages -r requirements-dev.txt
       - name: Run tests
@@ -47,7 +47,7 @@ jobs:
       - name: Install deps
         working-directory: scripts/curricula_didaktik
         run: |
-          pip install --require-hashes --break-system-packages -r requirements.txt
+          pip install --break-system-packages -r requirements.txt
       - name: Run all scrapers
         working-directory: scripts/curricula_didaktik
         run: make all
