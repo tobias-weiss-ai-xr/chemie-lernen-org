@@ -43,11 +43,31 @@ ETH_CHEMISTRY_MODULES = [
     ("529-0440-00L", "Physikalische Chemie III: Molekulare Thermodynamik", 4, "BSc"),
     ("529-0431-00L", "Organische Chemie III", 4, "BSc"),
     ("529-0121-00L", "Anorganische und Organische Chemie für Biologen", 4, "BSc"),
+    # BSc Wahlfächer / Kernfächer (3. Jahr)
+    ("529-0132-00L", "Anorganische Chemie III: Metallorganische Chemie", 4, "BSc"),
+    ("529-0231-00L", "Organic Chemistry III: Introduction to Asymmetric Synthesis", 4, "BSc"),
+    ("529-0441-00L", "Messtechnik", 4, "BSc"),
+    ("529-0029-00L", "Organic Chemistry for Biology and Biochemistry", 4, "BSc"),
     ("529-0059-00L", "Nanotechnologie", 3, "MSc"),
     ("529-0071-00L", "Chemical Biology", 6, "MSc"),
     ("529-0072-00L", "Supramolecular Chemistry", 6, "MSc"),
     ("529-0083-00L", "Bioorganische Chemie", 6, "MSc"),
     ("529-0084-00L", "Protein Engineering", 6, "MSc"),
+    # MSc Kernfächer (D-CHAB)
+    ("529-0041-00L", "Moderne Massenspektrometrie", 6, "MSc"),
+    ("529-0233-00L", "Organic Synthesis: Methods and Strategies", 6, "MSc"),
+    ("529-0243-01L", "Transition Metal Catalysis: From Mechanisms to Applications", 6, "MSc"),
+    ("529-0241-10L", "Selectivity in Organic Synthesis", 6, "MSc"),
+    ("529-0432-00L", "Physikalische Chemie IV: Magnetische Resonanz", 4, "MSc"),
+    ("529-0434-00L", "Physical Chemistry V: Spectroscopy", 4, "MSc"),
+    ("529-0442-00L", "Advanced Kinetics", 4, "MSc"),
+    ("529-0941-00L", "Introduction to Macromolecular Chemistry", 6, "MSc"),
+    ("529-0733-02L", "Chemical Biology and Synthetic Biochemistry", 6, "MSc"),
+    ("529-0077-00L", "Biosynthesis of Fragrant and Medicinal Natural Products", 6, "MSc"),
+    ("529-0150-00L", "Digital Chemistry", 3, "MSc"),
+    ("529-0002-10L", "Cheminformatics and Computer-Aided Drug Design", 6, "MSc"),
+    ("529-0101-00L", "From Chemical to Biological Evolution", 6, "MSc"),
+    ("529-0240-00L", "Chemical Biology – Peptides and Proteins", 6, "MSc"),
 ]
 
 

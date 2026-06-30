@@ -129,7 +129,7 @@
       return entities.filter(function (e) {
         if (e.category === 'didaktik') return false;
         var meta = e.curriculumMeta;
-        if (!meta) return false;
+        if (!meta) return true; // entities without curriculumMeta shown unfiltered
         if (filterState.length && filterState.indexOf(meta.state) === -1) return false;
         if (filterSchool.length && filterSchool.indexOf(meta.school_type) === -1) return false;
         if (filterGrade.length) {

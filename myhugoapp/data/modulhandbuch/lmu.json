@@ -6,11 +6,428 @@
     "website": "https://www.cup.uni-muenchen.de/",
     "short_code": "LMU"
   },
-  "degrees": [],
+  "degrees": [
+    {
+      "name": "BSc in Chemistry and Biochemistry",
+      "level": "BSc",
+      "university": "LMU"
+    },
+    {
+      "name": "MSc in Chemistry",
+      "level": "MSc",
+      "university": "LMU"
+    }
+  ],
   "lecturers": [],
-  "modules": [],
-  "source_url": "https://www.cup.uni-muenchen.de/",
-  "last_updated": "2026-06-26",
-  "status": "stub",
-  "note": "See scripts/curricula_didaktik/sources/lmu.py"
+  "modules": [
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B01",
+      "module_name": "Allgemeine Chemie",
+      "ects": 10.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B02",
+      "module_name": "Anorganische Chemie I",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B03",
+      "module_name": "Anorganische Chemie II",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B04",
+      "module_name": "Organische Chemie I",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B05",
+      "module_name": "Organische Chemie II",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B06",
+      "module_name": "Physikalische Chemie I",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B07",
+      "module_name": "Physikalische Chemie II",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B08",
+      "module_name": "Analytische Chemie I",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B09",
+      "module_name": "Analytische Chemie II",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B10",
+      "module_name": "Biochemie",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B11",
+      "module_name": "Experimentalphysik für Chemiker",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B12",
+      "module_name": "Mathematik für Chemiker",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B13",
+      "module_name": "Grundpraktikum Anorganische Chemie",
+      "ects": 12.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B14",
+      "module_name": "Grundpraktikum Organische Chemie",
+      "ects": 12.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B15",
+      "module_name": "Grundpraktikum Physikalische Chemie",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-W01",
+      "module_name": "Anorganische Chemie Vertiefung",
+      "ects": 15.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-W02",
+      "module_name": "Organische Chemie Vertiefung",
+      "ects": 15.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-W03",
+      "module_name": "Physikalische und Theoretische Chemie Vertiefung",
+      "ects": 15.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-W04",
+      "module_name": "Biochemie Vertiefung",
+      "ects": 15.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B16",
+      "module_name": "Toxikologie und Rechtskunde",
+      "ects": 3.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-B17",
+      "module_name": "Bachelorarbeit",
+      "ects": 12.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-M01",
+      "module_name": "Anorganische Chemie Schwerpunkt Praktikum",
+      "ects": 15.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-M02",
+      "module_name": "Anorganische Chemie Schwerpunkt Vorlesungen",
+      "ects": 15.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-M03",
+      "module_name": "Organische Chemie Schwerpunkt Praktikum",
+      "ects": 15.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-M04",
+      "module_name": "Organische Chemie Schwerpunkt Vorlesungen",
+      "ects": 15.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-M05",
+      "module_name": "Physikalische Chemie Schwerpunkt Praktikum",
+      "ects": 15.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-M06",
+      "module_name": "Physikalische Chemie Schwerpunkt Vorlesungen",
+      "ects": 15.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-M07",
+      "module_name": "Theoretische Chemie Schwerpunkt Praktikum",
+      "ects": 15.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-M08",
+      "module_name": "Theoretische Chemie Schwerpunkt Vorlesungen",
+      "ects": 15.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-M09",
+      "module_name": "Strukturbiologie",
+      "ects": 15.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-M10",
+      "module_name": "Molekulare und zelluläre Genetik",
+      "ects": 15.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-M11",
+      "module_name": "Biologische Chemie",
+      "ects": 15.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-M12",
+      "module_name": "Biochemie Vertiefung MSc",
+      "ects": 15.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-M13",
+      "module_name": "Forschungspraktikum Anorganische Chemie",
+      "ects": 15.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-M14",
+      "module_name": "Forschungspraktikum Organische Chemie",
+      "ects": 15.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-M15",
+      "module_name": "Forschungspraktikum Physikalische Chemie",
+      "ects": 15.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "LMU",
+      "module_code": "LMU-CH-M16",
+      "module_name": "Masterarbeit",
+      "ects": 30.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry and Biochemistry (LMU)",
+      "url": "https://www.cup.uni-muenchen.de/studium/studiengaenge/",
+      "last_checked": "2026-06-30"
+    }
+  ],
+  "source_url": "https://www.cup.uni-muenchen.de/studium/",
+  "last_updated": "2026-06-30"
 }

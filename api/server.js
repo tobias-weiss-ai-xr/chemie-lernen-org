@@ -3409,15 +3409,22 @@ app.get('/api/modulhandbuch/universities', async (req, res) => {
        ORDER BY u.name`
     );
     await session.close();
+    const seen = new Map();
+    result.records.forEach((r) => {
+      const name = r.get('name');
+      if (!seen.has(name)) {
+        seen.set(name, {
+          shortCode: r.get('shortCode'),
+          name: name,
+          country: r.get('country'),
+          city: r.get('city'),
+          website: r.get('website'),
+        });
+      }
+    });
     res.json({
       source: 'neo4j',
-      universities: result.records.map((r) => ({
-        shortCode: r.get('shortCode'),
-        name: r.get('name'),
-        country: r.get('country'),
-        city: r.get('city'),
-        website: r.get('website'),
-      })),
+      universities: Array.from(seen.values()),
     });
   } catch (err) {
     console.error('[modulhandbuch/universities] Neo4j error:', err.message);
@@ -3429,7 +3436,7 @@ app.get('/api/modulhandbuch/universities', async (req, res) => {
  * GET /api/modulhandbuch/university/:shortCode — Single university with its modules.
  */
 app.get('/api/modulhandbuch/university/:shortCode', async (req, res) => {
-  const shortCode = req.params.shortCode.toLowerCase().trim();
+  const shortCode = req.params.shortCode.toUpperCase().trim();
   try {
     const driver = getNeo4jDriver();
     const session = driver.session({
@@ -3620,6 +3627,470 @@ app.get('/api/modulhandbuch/teaches/:entityName', async (req, res) => {
   } catch (err) {
     console.error('[modulhandbuch/teaches] Neo4j error:', err.message);
     res.status(503).json({ error: 'Teaches data unavailable' });
+  }
+});
+
+/**
+ * GET /api/studienvergleich/compare — Compare modules between two universities.
+ * Query params:
+ *   u1=<shortCode>       — First university (required, e.g. "TUM")
+ *   u2=<shortCode>       — Second university (required, e.g. "MIT")
+ *   level=<BSc|MSc|PhD>  — Optional: filter by degree level
+ *   topic=<keyword>       — Optional: filter modules containing keyword
+ *
+ * Returns a structured comparison matrix grouped by topic area.
+ */
+app.get('/api/studienvergleich/compare', async (req, res) => {
+  const u1 = (req.query.u1 || '').trim().toUpperCase();
+  const u2 = (req.query.u2 || '').trim().toUpperCase();
+  const levelFilter = (req.query.level || '').trim().toUpperCase();
+  const keyword = (req.query.topic || '').trim().toLowerCase();
+
+  if (!u1 || !u2) {
+    return res.status(400).json({ error: 'Both u1 and u2 query params are required' });
+  }
+
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+
+    // Fetch modules for both universities
+    const baseCypher = `
+      MATCH (m:UniversityModule {university: $univ})
+      ${levelFilter ? 'WHERE toUpper(m.level) = toUpper($level)' : ''}
+      RETURN m.module_code AS code, m.module_name AS name,
+             m.ects AS ects, m.level AS level, m.degree AS degree,
+             m.url AS url, m.language AS language
+      ORDER BY m.module_name
+    `;
+    const params1 = { univ: u1 };
+    const params2 = { univ: u2 };
+    if (levelFilter) {
+      params1.level = levelFilter;
+      params2.level = levelFilter;
+    }
+
+    const result1 = await session.run(baseCypher, params1);
+    const result2 = await session.run(baseCypher, params2);
+    await session.close();
+
+    const mapRecord = (r) => ({
+      code: r.get('code'),
+      name: r.get('name'),
+      ects: r.get('ects')
+        ? r.get('ects').toNumber
+          ? r.get('ects').toNumber()
+          : r.get('ects')
+        : null,
+      level: r.get('level'),
+      degree: r.get('degree'),
+      url: r.get('url'),
+      language: r.get('language'),
+    });
+
+    const modules1 = result1.records.map(mapRecord);
+    const modules2 = result2.records.map(mapRecord);
+
+    // Build module matrix: find common modules by keyword overlap in name
+    // and list unique-to-each modules
+    const common = [];
+    const only1 = [];
+    const only2 = [];
+
+    // Bilingual chemistry keyword map (German → English) for cross-language matching.
+    // TUM uses German module names, ETH uses English — this normalizes both to
+    // English so "Anorganische Chemie" matches "Inorganic Chemistry".
+    const DE_EN_MAP = {
+      anorganische: 'inorganic',
+      organische: 'organic',
+      physikalische: 'physical',
+      chemie: 'chemistry',
+      biochemie: 'biochemistry',
+      biologie: 'biology',
+      mathematik: 'mathematics',
+      physik: 'physics',
+      chemiker: 'chemist',
+      praktikum: 'lab',
+      analytische: 'analytical',
+      theoretische: 'theoretical',
+      technische: 'technical',
+      molekulare: 'molecular',
+      quanten: 'quantum',
+      spektroskopie: 'spectroscopy',
+      katalyse: 'catalysis',
+      polymer: 'polymer',
+      biotechnologie: 'biotechnology',
+      umwelt: 'environmental',
+      elektrochemie: 'electrochemistry',
+      photochemie: 'photochemistry',
+      makromolekulare: 'macromolecular',
+      metall: 'metal',
+      kristall: 'crystal',
+      thermodynamik: 'thermodynamics',
+      kinetik: 'kinetics',
+      synthese: 'synthesis',
+      nanostruktur: 'nanostructure',
+      oberfläche: 'surface',
+      festkörper: 'solid',
+      kernchemie: 'nuclear',
+      computerchemie: 'computational',
+      stoffwechsel: 'metabolism',
+      zellbiologie: 'cell',
+      enzym: 'enzyme',
+      protein: 'protein',
+      bioanorganische: 'bioinorganic',
+      bioorganische: 'bioorganic',
+      medizinische: 'medical',
+      lebensmittel: 'food',
+      geochemie: 'geochemistry',
+      photoelektronen: 'photoelectron',
+      röntgen: 'xray',
+      magnetische: 'magnetic',
+      kernspin: 'nmr',
+      nanomaterialien: 'nanomaterials',
+      wissenschaftliches: 'scientific',
+      rechnen: 'computing',
+      programmierung: 'programming',
+      informatik: 'informatics',
+      molekül: 'molecule',
+      reaktion: 'reaction',
+      verfahrenstechnik: 'process',
+      ingenieurwesen: 'engineering',
+      grundlagen: 'fundamentals',
+      grundpraktikum: 'basiclab',
+      strukturaufklärung: 'structureelucidation',
+      struktur: 'structure',
+      funktion: 'function',
+      werkstoff: 'material',
+      werkstoffe: 'materials',
+      verbundwerkstoff: 'composite',
+      grenzflächen: 'interfaces',
+      oberflächen: 'surfaces',
+      nanostrukturierte: 'nanostructured',
+      nanotechnologie: 'nanotechnology',
+      koordinationschemie: 'coordination',
+      supramolekular: 'supramolecular',
+      heterocyclen: 'heterocycles',
+      wirkstoff: 'drug',
+      wirkstoffkunde: 'pharmacology',
+      biomedizinische: 'biomedical',
+      lebenswissenschaften: 'lifesciences',
+      bioverfahrenstechnik: 'bioprocess',
+      biokatalyse: 'biocatalysis',
+      biopolymere: 'biopolymers',
+      enzymtechnologie: 'enzymetechnology',
+      proteinchemie: 'proteinchemistry',
+      membranproteine: 'membraneproteins',
+      säugetier: 'mammalian',
+      stoffströme: 'materialflows',
+      klinische: 'clinical',
+      medizin: 'medicine',
+      pharmakologie: 'pharmacology',
+      toxikologie: 'toxicology',
+      pharmazeutische: 'pharmaceutical',
+      radiochemie: 'radiochemistry',
+      radioaktivität: 'radioactivity',
+      radioanalytik: 'radioanalysis',
+      radiopharmazie: 'radiopharmacy',
+      photokatalyse: 'photocatalysis',
+      elektrochemisches: 'electrochemical',
+      elektronische: 'electronic',
+      elektronenmikroskopie: 'electronmicroscopy',
+      roentgen: 'xray',
+      synchrotron: 'synchrotron',
+      quantendynamik: 'quantumdynamics',
+      quantenmechanik: 'quantummechanics',
+      gruppentheorie: 'grouptheory',
+      festkoerper: 'solidstate',
+      festkörperchemie: 'solidstatechemistry',
+      festkörpermaterialien: 'solidstatematerials',
+      festkörpertheorie: 'solidstatetheory',
+      polymerisation: 'polymerization',
+      polymerphysik: 'polymerphysics',
+      hochleistungspolymere: 'highperformancepolymers',
+      hybridmaterialien: 'hybridmaterials',
+      umweltschutz: 'environmentalprotection',
+      ressourcen: 'resources',
+      nachhaltige: 'sustainable',
+      industrielle: 'industrial',
+      reaktionstechnik: 'reactionengineering',
+      technisch: 'technical',
+      maschinelles: 'machine',
+      lernende: 'learning',
+      wissenschaft: 'science',
+      programmieren: 'programming',
+      numerische: 'numerical',
+      simulation: 'simulation',
+      modellbildung: 'modeling',
+      bioinformatik: 'bioinformatics',
+      automatisierung: 'automation',
+      visualisierung: 'visualization',
+      daten: 'data',
+      prozesse: 'processes',
+      moleküle: 'molecules',
+      reaktivität: 'reactivity',
+      synthesemethoden: 'synthesismethods',
+      katalysator: 'catalyst',
+      katalytische: 'catalytic',
+      verfahren: 'methods',
+      prozess: 'process',
+      energie: 'energy',
+      materialwissenschaften: 'materialsscience',
+      oberflächenspektroskopie: 'surfacespectroscopy',
+      mikroskopie: 'microscopy',
+      massenspektrometrie: 'massspectrometry',
+      biomolekulare: 'biomolecular',
+      chiroptik: 'chiroptics',
+      nanopartikel: 'nanoparticles',
+      farbzentren: 'colorcenters',
+      theroretisch: 'theoretical',
+      experimentalphysik: 'experimentalphysics',
+      mathematische: 'mathematical',
+      bauchemie: 'constructionchemistry',
+      anorganik: 'inorganics',
+      bindemittel: 'binders',
+    };
+
+    const stopWords = new Set([
+      'the',
+      'of',
+      'in',
+      'and',
+      'to',
+      'a',
+      'an',
+      'for',
+      'i',
+      'ii',
+      'iii',
+      '1',
+      '2',
+      '3',
+      'introductory',
+      'introduction',
+      'principles',
+      'advanced',
+      'der',
+      'die',
+      'das',
+      'den',
+      'dem',
+      'des',
+      'ein',
+      'eine',
+      'einer',
+      'eines',
+      'und',
+      'oder',
+      'mit',
+      'auf',
+      'bei',
+      'von',
+      'aus',
+      'an',
+      'zu',
+      'als',
+      'nach',
+      'vor',
+      'durch',
+      'über',
+      'fur',
+      'für',
+      'um',
+      'nicht',
+      'auch',
+      'werden',
+      'wird',
+      'wurde',
+      'sich',
+      'ihr',
+      'ihre',
+      'seine',
+      'seinen',
+      'durch',
+      'gegen',
+      'bis',
+      'ohne',
+      'zwischen',
+      'unter',
+      'über',
+      'neben',
+      'sowie',
+      'aber',
+      'wenn',
+      'dann',
+      'damit',
+      'dazu',
+      'davon',
+      'daran',
+      'dieser',
+      'diese',
+      'dieses',
+      'allen',
+      'alle',
+      'allem',
+      'jeder',
+      'jede',
+      'jedes',
+      'beide',
+      'beiden',
+      'grundlagen',
+      'grundlegende',
+      'vertiefung',
+      'vertiefungs',
+      'modul',
+      'vorlesung',
+      'ubung',
+      'übung',
+      'seminar',
+      'praktikum',
+      'fortgeschrittene',
+      'fortgeschritten',
+      'einführung',
+      'einfuhrung',
+      'einführungs',
+      'weiterführende',
+      'erweiterte',
+      'erweitert',
+      'speziell',
+      'spezielle',
+      'spezial',
+      'aktuell',
+      'aktuelle',
+      'teil',
+      'teile',
+      'teil1',
+      'teil2',
+      'teil3',
+      'i',
+      'ii',
+      'iii',
+      'allgemein',
+      'allgemeine',
+      'grund',
+      'grundkurs',
+      'aufbau',
+      'praxis',
+      'praktische',
+      'theorie',
+      'theoretische',
+      'übersicht',
+      'uberblick',
+      'anwendung',
+      'anwendungen',
+      'anwendungsrelevante',
+      'aspekte',
+      'aspekt',
+      'konzepte',
+      'konzept',
+      'prinzipien',
+      'prinzip',
+      'methode',
+      'methoden',
+      'moderne',
+      'modern',
+    ]);
+
+    const normalizeWords = (name) => {
+      return name
+        .toLowerCase()
+        .split(/[\s,.\-–—/:]+/)
+        .map((w) => DE_EN_MAP[w] || w) // map German → English first
+        .filter((w) => w.length > 2 && !stopWords.has(w));
+    };
+
+    modules1.forEach((m1) => {
+      const words1 = normalizeWords(m1.name);
+      let bestMatch = null;
+      let bestScore = 0;
+      let codeMatched = false;
+
+      modules2.forEach((m2) => {
+        if (m1.level !== m2.level) return;
+
+        if (m1.code && m2.code && m1.code.toUpperCase() === m2.code.toUpperCase()) {
+          if (!codeMatched || m1.name.length > bestMatch.name.length) {
+            bestMatch = m2;
+            bestScore = 999;
+            codeMatched = true;
+          }
+          return;
+        }
+        const words2 = normalizeWords(m2.name);
+        const overlap = words1.filter((w) => words2.includes(w)).length;
+        // Overlap ratio: fraction of the shorter word list that overlaps
+        const maxLen = Math.max(words1.length, words2.length);
+        const ratio = maxLen > 0 ? overlap / maxLen : 0;
+        // minOverlap: single-word modules match on 1, multi-word need 2+
+        const minOverlap = words1.length === 1 && words2.length === 1 ? 1 : 2;
+        // Require overlap >= minOverlap AND ratio > 0.3 to prevent catch-all false matches
+        if (overlap > bestScore && overlap >= minOverlap && ratio > 0.3) {
+          bestScore = overlap;
+          bestMatch = m2;
+        }
+      });
+
+      if (bestMatch) {
+        common.push({
+          topic: m1.name.length < 60 ? m1.name : words1.slice(0, 4).join(' '),
+          module1: m1,
+          module2: bestMatch,
+          matchScore: codeMatched ? 999 : bestScore,
+        });
+      } else {
+        only1.push(m1);
+      }
+    });
+
+    // Modules in u2 that had no match in u1
+    const matchedCodes2 = new Set(common.map((c) => c.module2.code));
+    modules2.forEach((m2) => {
+      if (!matchedCodes2.has(m2.code)) {
+        only2.push(m2);
+      }
+    });
+
+    // Apply keyword filter post-hoc (on text fields)
+    const filterByKeyword = (arr) => {
+      if (!keyword) return arr;
+      return arr.filter(
+        (m) =>
+          m.name.toLowerCase().includes(keyword) ||
+          (m.code && m.code.toLowerCase().includes(keyword))
+      );
+    };
+
+    res.json({
+      source: 'neo4j',
+      university1: u1,
+      university2: u2,
+      level: levelFilter || null,
+      topic: keyword || null,
+      stats: {
+        total1: modules1.length,
+        total2: modules2.length,
+        common: common.length,
+        unique1: only1.length,
+        unique2: only2.length,
+      },
+      matrix: {
+        commonTopics: common.filter(
+          (c) => filterByKeyword([c.module1]).length > 0 || filterByKeyword([c.module2]).length > 0
+        ),
+        unique1: filterByKeyword(only1),
+        unique2: filterByKeyword(only2),
+      },
+      universities: {
+        [u1]: modules1,
+        [u2]: modules2,
+      },
+    });
+  } catch (err) {
+    console.error('[studienvergleich/compare] Neo4j error:', err.message);
+    res.status(503).json({ error: 'Comparison data unavailable' });
   }
 });
 

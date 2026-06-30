@@ -3,14 +3,431 @@
     "name": "RWTH Aachen",
     "country": "DE",
     "city": "Aachen",
-    "website": "https://www.chemie.rwth-aachen.de/",
+    "website": "https://www.rwth-aachen.de/",
     "short_code": "RWTH"
   },
-  "degrees": [],
+  "degrees": [
+    {
+      "name": "BSc in Chemistry",
+      "level": "BSc",
+      "university": "RWTH"
+    },
+    {
+      "name": "MSc in Chemistry",
+      "level": "MSc",
+      "university": "RWTH"
+    }
+  ],
   "lecturers": [],
-  "modules": [],
+  "modules": [
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B01",
+      "module_name": "Allgemeine Chemie",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B02",
+      "module_name": "Anorganische Chemie I",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B03",
+      "module_name": "Anorganische Chemie II",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B04",
+      "module_name": "Organische Chemie I",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B05",
+      "module_name": "Organische Chemie II",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B06",
+      "module_name": "Physikalische Chemie I",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B07",
+      "module_name": "Physikalische Chemie II",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B08",
+      "module_name": "Analytische Chemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B09",
+      "module_name": "Biochemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B10",
+      "module_name": "Theoretische Chemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B11",
+      "module_name": "Makromolekulare Chemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B12",
+      "module_name": "Technische Chemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B13",
+      "module_name": "Mathematik für Chemiker",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B14",
+      "module_name": "Physik für Chemiker",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B15",
+      "module_name": "Grundpraktikum Anorganische Chemie",
+      "ects": 10.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B16",
+      "module_name": "Grundpraktikum Organische Chemie",
+      "ects": 10.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B17",
+      "module_name": "Grundpraktikum Physikalische Chemie",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-B18",
+      "module_name": "Bachelorarbeit",
+      "ects": 12.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M01",
+      "module_name": "Organometallic Chemistry and Homogeneous Catalysis",
+      "ects": 5.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M02",
+      "module_name": "Bioactive Compounds",
+      "ects": 5.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M03",
+      "module_name": "Bio- and Organocatalysis",
+      "ects": 5.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M04",
+      "module_name": "Optical Spectroscopy and Microscopy",
+      "ects": 5.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M05",
+      "module_name": "Surface and Interface Chemistry",
+      "ects": 5.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M06",
+      "module_name": "Bioorganic Chemistry",
+      "ects": 5.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M07",
+      "module_name": "Simulation von Festkörpern",
+      "ects": 5.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M08",
+      "module_name": "Sustainable Coordinative Polymerization Catalysis",
+      "ects": 5.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M09",
+      "module_name": "Diffraction Methods for Structure Determination",
+      "ects": 3.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M10",
+      "module_name": "Advanced Inorganic Chemistry",
+      "ects": 5.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M11",
+      "module_name": "Advanced Organic Chemistry",
+      "ects": 5.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M12",
+      "module_name": "Advanced Physical Chemistry",
+      "ects": 5.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M13",
+      "module_name": "Computational Chemistry",
+      "ects": 5.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M14",
+      "module_name": "Nanochemistry",
+      "ects": 5.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M15",
+      "module_name": "Polymer Chemistry",
+      "ects": 5.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M16",
+      "module_name": "Medicinal Chemistry",
+      "ects": 5.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M17",
+      "module_name": "Green Chemistry and Sustainability",
+      "ects": 5.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M18",
+      "module_name": "Research Project",
+      "ects": 10.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    },
+    {
+      "university": "RWTH",
+      "module_code": "RWTH-CH-M19",
+      "module_name": "Masterarbeit",
+      "ects": 30.0,
+      "language": "de",
+      "level": "MSc",
+      "degree": "MSc Chemistry (RWTH)",
+      "url": "https://www.chemie.rwth-aachen.de/",
+      "last_checked": "2026-06-30"
+    }
+  ],
   "source_url": "https://www.chemie.rwth-aachen.de/",
-  "last_updated": "2026-06-26",
-  "status": "stub",
-  "note": "See scripts/curricula_didaktik/sources/rwth.py"
+  "last_updated": "2026-06-30"
 }

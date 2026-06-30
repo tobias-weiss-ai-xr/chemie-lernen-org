@@ -1,13 +1,14 @@
 ---
-title: "Molare Masse Rechner"
-description: "Berechnen Sie die molare Masse von chemischen Verbindungen interaktiv"
+title: 'Molare Masse Rechner'
+description: 'Berechnen Sie die molare Masse von chemischen Verbindungen interaktiv'
 date: 2025-12-26
-type: "interactive"
+type: 'interactive'
 interaktiv: true
-layout: "molare-masse-rechner"
-icon: "⚗️"
-schwierigkeit: "mittelstufe"
-teilgebiet: "anorganische-verbindungen"
+layout: 'molare-masse-rechner'
+icon: '⚗️'
+schwierigkeit: 'mittelstufe'
+teilgebiet: 'anorganische-verbindungen'
+aliases: [/molare-masse/]
 ---
 
 ## Molare Masse Rechner

@@ -1,0 +1,146 @@
+{{ define "css" }}
+<style>
+#sv-app { margin-top: 1rem; margin-bottom: 2rem; min-height: 400px; }
+
+/* Header */
+.sv-header {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;
+  margin-bottom: 1.5rem; padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border-color, #e0e0e0);
+}
+.sv-header h1 { margin: 0; flex: 1; font-size: 1.6rem; }
+.sv-subtitle { margin: 0; color: var(--text-muted, #666); width: 100%; }
+
+/* Controls */
+.sv-controls {
+  display: flex; flex-wrap: wrap; gap: 1rem; align-items: end;
+  margin-bottom: 1.5rem; padding: 1rem;
+  background: var(--bg-secondary, #f8f9fa); border-radius: 8px;
+}
+.sv-controls label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted, #555); display: block; margin-bottom: 0.25rem; }
+.sv-controls select, .sv-controls button {
+  padding: 0.5rem 0.75rem; border: 1px solid var(--border-color, #ccc);
+  border-radius: 6px; font-size: 0.9rem;
+}
+.sv-controls button {
+  background: var(--accent, #0056b3); color: #fff; border: none;
+  cursor: pointer; font-weight: 600; padding: 0.5rem 1.5rem;
+}
+.sv-controls button:disabled { opacity: 0.5; cursor: not-allowed; }
+.sv-controls button:hover:not(:disabled) { background: var(--accent-hover, #003d80); }
+
+/* Stats bar */
+.sv-stats {
+  display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;
+  padding: 1rem; background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #e0e0e0); border-radius: 8px;
+}
+.sv-stat { text-align: center; }
+.sv-stat-value { font-size: 1.4rem; font-weight: 700; display: block; }
+.sv-stat-label { font-size: 0.8rem; color: var(--text-muted, #666); }
+
+/* Matrix table */
+.sv-table-wrap { overflow-x: auto; margin-bottom: 1.5rem; }
+.sv-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.sv-table th, .sv-table td {
+  padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border-color, #e0e0e0);
+  vertical-align: top;
+}
+.sv-table th { background: var(--bg-secondary, #f5f5f5); font-weight: 600; position: sticky; top: 0; }
+.sv-table tr:hover td { background: var(--bg-hover, #fafafa); }
+.sv-table .sv-matched { border-left: 3px solid #28a745; }
+.sv-table .sv-unique1 { border-left: 3px solid #007bff; }
+.sv-table .sv-unique2 { border-left: 3px solid #dc3545; }
+
+.sv-tag {
+  display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px;
+  font-size: 0.75rem; font-weight: 600;
+}
+.sv-tag-match { background: #d4edda; color: #155724; }
+.sv-tag-exakt { background: #28a745; color: #fff; }
+.sv-tag-gut { background: #17a2b8; color: #fff; }
+.sv-tag-mittel { background: #fd7e14; color: #fff; }
+.sv-tag-schwach { background: #ffc107; color: #212529; }
+.sv-tag-u1 { background: #cce5ff; color: #004085; }
+.sv-tag-u2 { background: #f8d7da; color: #721c24; }
+
+.sv-ects { font-weight: 600; }
+.sv-ects-high { color: #28a745; }
+.sv-ects-mid { color: #856404; }
+.sv-ects-low { color: #6c757d; }
+.sv-missing { color: var(--text-muted, #999); font-style: italic; }
+
+/* Sections */
+.sv-section-title {
+  font-size: 1.1rem; font-weight: 700; margin: 1.5rem 0 0.75rem;
+  padding-bottom: 0.4rem; border-bottom: 1px solid var(--border-color, #e0e0e0);
+}
+.sv-empty { text-align: center; padding: 3rem; color: var(--text-muted, #999); }
+
+/* Error / Loading */
+.sv-error {
+  padding: 1rem; background: #f8d7da; color: #721c24;
+  border-radius: 8px; margin-bottom: 1rem;
+}
+.sv-loading { text-align: center; padding: 3rem; color: var(--text-muted, #666); }
+.sv-loading::after { content: '...'; animation: sv-dots 1.5s infinite; }
+@keyframes sv-dots { 0%,20% { content: '.'; } 40% { content: '..'; } 60%,100% { content: '...'; } }
+
+#sv-swap-btn:hover { background: var(--accent, #0056b3) !important; color: #fff !important; }
+
+.sv-tag-count { background: #6f42c1; color: #fff; }
+.sv-extra td { padding-top: 0 !important; border-top: none !important; }
+.sv-dedup-note { color: var(--text-muted, #888); font-size: 0.8rem; }
+</style>
+{{ end }}
+
+{{ define "main" }}
+<div id="sv-app">
+  <div class="sv-header">
+    <h1>Studienvergleich</h1>
+    <p class="sv-subtitle">
+      Vergleiche Chemie-Studiengänge verschiedener Universitäten
+    </p>
+  </div>
+
+  <div class="sv-controls">
+    <div>
+      <label for="sv-u1">Universität 1</label>
+      <select id="sv-u1">
+        <option value="">— Bitte wählen —</option>
+      </select>
+    </div>
+    <div>
+      <label for="sv-u2">Universität 2</label>
+      <select id="sv-u2">
+        <option value="">— Bitte wählen —</option>
+      </select>
+    </div>
+    <div>
+      <label>&nbsp;</label>
+      <button id="sv-swap-btn" title="Universitäten vertauschen" style="padding:0.5rem 0.75rem;border:1px solid var(--border-color,#ccc);border-radius:6px;font-size:0.9rem;cursor:pointer;background:var(--bg-secondary,#f8f9fa);">↔</button>
+    </div>
+    <div>
+      <label for="sv-level">Studienniveau</label>
+      <select id="sv-level">
+        <option value="">Alle</option>
+        <option value="BSc">Bachelor</option>
+        <option value="MSc">Master</option>
+      </select>
+    </div>
+    <div>
+      <label for="sv-topic">Thema (optional)</label>
+      <input type="text" id="sv-topic" placeholder="z.B. Organische Chemie" style="padding:0.5rem 0.75rem;border:1px solid var(--border-color,#ccc);border-radius:6px;font-size:0.9rem;">
+    </div>
+    <div>
+      <button id="sv-compare-btn" disabled>Vergleichen</button>
+    </div>
+  </div>
+
+  <div id="sv-results"></div>
+</div>
+{{ end }}
+
+{{ define "js" }}
+<script src="{{ "js/studienvergleich.js" | relURL }}"></script>
+{{ end }}

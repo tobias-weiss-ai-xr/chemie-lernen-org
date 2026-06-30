@@ -10,7 +10,7 @@ class BundleManager {
     };
 
     this.bundleConfig = {
-      core: ['/js/chemistry-calculator-framework.optimized.js', '/js/dark-mode.optimized.js'],
+      core: ['/js/chemistry-calculator-framework.optimized.js'],
 
       vendor: [
         // Bootstrap and jQuery are loaded synchronously via baseof.html. No CDN duplicates needed.
@@ -54,8 +54,6 @@ class BundleManager {
     setTimeout(() => this.loadBundle('vendor'), 100);
 
     this.setupBundleCaching();
-
-
   }
 
   async loadBundle(bundleName) {
@@ -81,7 +79,6 @@ class BundleManager {
 
       this.performanceMetrics.bundleLoads++;
       this.performanceMetrics.totalLoadTime += performance.now() - startTime;
-
     } catch (error) {
       console.error(`❌ Failed to load bundle: ${bundleName}`, error);
     }
