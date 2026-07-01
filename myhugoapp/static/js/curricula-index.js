@@ -304,7 +304,7 @@
           // Top bar (state color)
           html +=
             '<div class="curricula-card-bar" style="background:' +
-            getStateColor(meta.state) +
+            getStateColor(meta && meta.state) +
             ';"></div>';
           html += '<div class="curricula-card-body">';
           html +=
