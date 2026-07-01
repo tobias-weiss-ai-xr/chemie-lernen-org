@@ -559,6 +559,13 @@ document.addEventListener('DOMContentLoaded', function() {
       return null;
     }
 
+    function escapeHtml(str) {
+      if (!str) return '';
+      var div = document.createElement('div');
+      div.appendChild(document.createTextNode(str));
+      return div.innerHTML;
+    }
+
     function displayResults(results) {
       if (!results || !results.results || results.results.length === 0) {
         searchResults.innerHTML = '<div class="search-no-results">Keine Ergebnisse gefunden</div>';
@@ -567,12 +574,12 @@ document.addEventListener('DOMContentLoaded', function() {
         results.results.forEach(result => {
           var cat = getResultCategory(result.url);
           html += '<div class="search-result-item">';
-          html += '  <a href="' + result.url + '" class="search-result-link">';
-          html += '    <div class="search-result-title">' + result.meta.title + '</div>';
+          html += '  <a href="' + escapeHtml(result.url) + '" class="search-result-link">';
+          html += '    <div class="search-result-title">' + escapeHtml(result.meta.title) + '</div>';
           if (cat) {
             html += '    <span class="search-result-badge" style="display:inline-block;font-size:0.65rem;padding:0.1rem 0.45rem;border-radius:4px;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;background:' + cat.color + '22;color:' + cat.color + ';margin-top:0.2rem;">' + cat.label + '</span>';
           }
-          html += '    <div class="search-result-excerpt">' + result.excerpt + '</div>';
+          html += '    <div class="search-result-excerpt">' + escapeHtml(result.excerpt) + '</div>';
           html += '  </a>';
           html += '</div>';
         });

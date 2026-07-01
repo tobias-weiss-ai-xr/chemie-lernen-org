@@ -234,6 +234,7 @@ self.addEventListener('fetch', (event) => {
     url.pathname.includes('/enhanced-ph-visualization/') ||
     url.pathname.includes('/pwa-offline-modus/') ||
     url.pathname.includes('/unterstuetzen/') ||
+    url.pathname.includes('/wissennetz/') ||
     // New calculators (Sprints D, 2)
     url.pathname.includes('/dampfdruck-rechner/') ||
     url.pathname.includes('/verduennungsreihen-rechner/') ||

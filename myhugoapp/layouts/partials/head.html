@@ -151,18 +151,6 @@ if ('serviceWorker' in navigator) {
  }
 </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "{{ .Site.Title }}",
-  "url": "{{ .Site.BaseURL }}",
-  "description": "{{ .Site.Params.footer_description }}",
-  "foundingDate": "2025",
-  "inLanguage": "de-DE"
-}
-</script>
-
 {{ if and .IsPage (ne .Section "entity") }}
 <script type="application/ld+json">
 {

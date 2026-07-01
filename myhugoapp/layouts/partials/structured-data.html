@@ -10,12 +10,12 @@
   "inLanguage": "{{ .Site.LanguageCode }}",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "{{ .Site.BaseURL }}search?q={search_term_string}",
+    "target": "{{ .Site.BaseURL }}pages/suche/?q={search_term_string}",
     "query-input": "required name=search_term_string"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "{{ .Site.Params.meta.keywords | default "chemie-lernen.org Team" }}",
+    "name": "{{ .Site.Title }}",
     "url": "{{ .Site.BaseURL }}"
   }
 }
@@ -40,11 +40,11 @@
   },
   "author": {
     "@type": "Organization",
-    "name": "{{ .Site.Params.meta.keywords | default "chemie-lernen.org Team" }}"
+    "name": "{{ .Site.Title }}"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "{{ .Site.Params.meta.keywords | default "chemie-lernen.org Team" }}",
+    "name": "{{ .Site.Title }}",
     "url": "{{ .Site.BaseURL }}"
   }
 }
@@ -63,11 +63,11 @@
   "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
   "author": {
     "@type": "Organization",
-    "name": "{{ .Site.Params.meta.keywords | default "chemie-lernen.org Team" }}"
+    "name": "{{ .Site.Title }}"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "{{ .Site.Params.meta.keywords | default "chemie-lernen.org Team" }}",
+    "name": "{{ .Site.Title }}",
     "url": "{{ .Site.BaseURL }}"
   },
   "mainEntityOfPage": {
