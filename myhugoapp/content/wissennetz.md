@@ -4,6 +4,7 @@ description: 'Interaktive Visualisierung der Wissensverbindungen zwischen Fachbe
 date: 2026-06-11
 aliases: [/entity/graph/]
 weight: 10
+layout: wissennetz
 ---
 
 <style>
