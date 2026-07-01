@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-06-29T07:51:10.110Z",
+  "summary": {
+    "calculatorFiles": 22,
+    "calculatorTotalSize": 248244,
+    "staticFiles": 132,
+    "staticTotalSize": 1870152,
+    "htmlPages": 1090,
+    "htmlTotalSize": 31411599
+  },
+  "budgetStatus": {
+    "calculators": true,
+    "static": false,
+    "html": true
+  },
+  "issues": [
+    "Consider splitting large calculator files (>20KB)",
+    "Total JS size exceeds 500KB - consider code splitting"
+  ]
+}
