@@ -1517,6 +1517,7 @@ app.get('/api/kg-data', async (req, res) => {
       source: 'neo4j',
       articles,
       entities,
+      curricula: [],
       pagination: {
         total: totalEntities,
         limit,
@@ -1554,6 +1555,7 @@ app.get('/api/kg-data', async (req, res) => {
       source: 'fallback',
       articles: linkedArticles,
       entities: paginatedEntities,
+      curricula: [],
       pagination: {
         total: totalEntities,
         limit,
@@ -1562,6 +1564,61 @@ app.get('/api/kg-data', async (req, res) => {
       },
       loadTime: parseFloat(elapsed),
     });
+  }
+});
+
+/**
+ * GET /api/rag-context?q=<query>
+ * Returns RAG context for a given entity or topic query.
+ * Used for AI-assisted learning features.
+ */
+app.get('/api/rag-context', async (req, res) => {
+  const query = (req.query.q || '').trim();
+  if (!query) {
+    return res.status(400).json({ error: 'Missing required parameter: q' });
+  }
+
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+
+    const result = await session.run(
+      `
+      MATCH (e:Entity)
+      WHERE toLower(e.name) CONTAINS toLower($query)
+      OPTIONAL MATCH (e)-[:RELATED_TO|ERFUELLT]-(related:Entity)
+      OPTIONAL MATCH (d:Document)-[:MENTIONS]->(e)
+      RETURN e.name as name, e.kategorie as category, e.typ as type,
+             collect(DISTINCT related.name) as relatedEntities,
+             collect(DISTINCT d.title) as documents
+      LIMIT 5
+      `,
+      { query }
+    );
+
+    await session.close();
+
+    const entities = result.records.map((r) => ({
+      name: r.get('name'),
+      category: r.get('category'),
+      type: r.get('type'),
+      relatedEntities: (r.get('relatedEntities') || []).filter((n) => n !== null),
+      documents: (r.get('documents') || []).filter((n) => n !== null),
+    }));
+
+    res.json({
+      query,
+      entities,
+      context: entities
+        .map((e) => `${e.name} (${e.category || 'unknown'}): ${e.documents.join(', ')}`)
+        .filter(Boolean),
+    });
+  } catch (err) {
+    console.error(`[rag-context] Error: ${err.message}`);
+    res.status(500).json({ error: 'Failed to retrieve RAG context' });
   }
 });
 
