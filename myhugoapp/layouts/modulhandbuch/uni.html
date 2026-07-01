@@ -1,0 +1,55 @@
+{{ define "css" }}
+<style>
+.uni-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.uni-header h1{margin:0;font-size:1.6rem;}
+.uni-meta{font-size:0.9rem;color:var(--text-muted,#888);}
+.uni-meta span{margin-right:1.5rem;}
+.degree-group{margin-bottom:2rem;}
+.degree-group h3{color:var(--text-primary,#333);margin-bottom:0.8rem;font-size:1.1rem;border-bottom:2px solid #9b59b6;padding-bottom:0.3rem;}
+.module-list{display:grid;gap:0.5rem;}
+.module-card{background:var(--bg-card,#fff);border:1px solid var(--border-color,#e0e0e0);border-radius:8px;padding:0.8rem 1rem;display:flex;justify-content:space-between;align-items:center;transition:box-shadow 0.2s;}
+.module-card:hover{box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+.module-card a{color:var(--text-primary,#333);text-decoration:none;font-weight:500;}
+.module-card a:hover{color:#9b59b6;}
+.module-card .code{font-family:monospace;color:#9b59b6;font-size:0.85rem;}
+.module-card .ects{font-size:0.8rem;color:var(--text-muted,#888);white-space:nowrap;}
+@media(prefers-color-scheme:dark){
+.module-card{background:#2a2a2a;border-color:#444;}
+.module-card a{color:#ddd;}
+}
+</style>
+{{ end }}
+
+{{ define "main" }}
+<div class="container" style="margin-top:1rem;">
+  <div class="row">
+    <div class="col-md-12">
+      <a href="/modulhandbuecher/" style="font-size:0.85rem;color:#9b59b6;">&larr; Zurück zur Übersicht</a>
+    </div>
+  </div>
+  <div class="row" style="margin-top:1rem;">
+    <div class="col-md-12">
+      <div class="uni-header">
+        <h1>{{ .Params.uni_name }}</h1>
+        <span style="font-size:0.85rem;color:#9b59b6;font-family:monospace;">{{ .Params.uni_code }}</span>
+      </div>
+      <div class="uni-meta">
+        <span>📍 {{ .Params.uni_city }}, {{ .Params.uni_country }}</span>
+        <span>🎓 {{ .Params.degree_count }} Studiengänge</span>
+        <span>📚 {{ .Params.module_count }} Module</span>
+        {{ if .Params.uni_website }}
+        <span><a href="{{ .Params.uni_website }}" target="_blank" rel="noopener">🌐 Website</a></span>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top:1.5rem;">
+    <div class="col-md-12">
+      {{ .Content }}
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{ define "js" }}
+{{ end }}

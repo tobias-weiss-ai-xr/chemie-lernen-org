@@ -1,0 +1,273 @@
+{
+  "university": {
+    "name": "TU Wien",
+    "country": "AT",
+    "city": "Wien",
+    "website": "https://www.tuwien.at/",
+    "short_code": "TU_WIEN"
+  },
+  "degrees": [
+    {
+      "name": "BSc in Technical Chemistry",
+      "level": "BSc",
+      "university": "TU_WIEN"
+    },
+    {
+      "name": "MSc in Technical Chemistry",
+      "level": "MSc",
+      "university": "TU_WIEN"
+    },
+    {
+      "name": "MSc in Chemical Engineering",
+      "level": "MSc",
+      "university": "TU_WIEN"
+    }
+  ],
+  "lecturers": [],
+  "modules": [
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG101",
+      "module_name": "Allgemeine Chemie",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG101/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG102",
+      "module_name": "Anorganische Chemie",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG102/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG103",
+      "module_name": "Organische Chemie 1",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG103/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG104",
+      "module_name": "Physikalische Chemie 1",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG104/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG105",
+      "module_name": "Analytische Chemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG105/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG106",
+      "module_name": "Mathematik für Chemiker",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG106/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG107",
+      "module_name": "Physik für Chemiker",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG107/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG108",
+      "module_name": "Chemische Technologie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG108/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG201",
+      "module_name": "Organische Chemie 2",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG201/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG202",
+      "module_name": "Physikalische Chemie 2",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG202/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG203",
+      "module_name": "Instrumentelle Analytik",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG203/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG204",
+      "module_name": "Biochemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG204/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG205",
+      "module_name": "Anorganische Werkstoffchemie",
+      "ects": 4.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG205/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG206",
+      "module_name": "Verfahrenstechnik Grundlagen",
+      "ects": 4.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG206/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG301",
+      "module_name": "Advanced Analytical Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG301/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG302",
+      "module_name": "Advanced Organic Synthesis",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG302/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG303",
+      "module_name": "Advanced Physical Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG303/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG304",
+      "module_name": "Chemical Process Engineering",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG304/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG305",
+      "module_name": "Sustainable Chemistry",
+      "ects": 5.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG305/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG306",
+      "module_name": "Polymer Chemistry and Technology",
+      "ects": 5.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG306/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG401",
+      "module_name": "Research Project: Technical Chemistry",
+      "ects": 10.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG401/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "TU_WIEN",
+      "module_code": "ALG402",
+      "module_name": "Master Thesis Seminar",
+      "ects": 4.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Technical Chemistry (TU Wien)",
+      "url": "https://www.tuwien.at/module/ALG402/",
+      "last_checked": "2026-06-29"
+    }
+  ],
+  "source_url": "https://www.tuwien.at/studium/",
+  "last_updated": "2026-06-29"
+}

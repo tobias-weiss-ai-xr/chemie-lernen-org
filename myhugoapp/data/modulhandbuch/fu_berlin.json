@@ -1,0 +1,284 @@
+{
+  "university": {
+    "name": "Freie Universität Berlin",
+    "country": "DE",
+    "city": "Berlin",
+    "website": "https://www.fu-berlin.de/",
+    "short_code": "FU_BERLIN"
+  },
+  "degrees": [
+    {
+      "name": "BSc in Chemistry",
+      "level": "BSc",
+      "university": "FU_BERLIN"
+    },
+    {
+      "name": "MSc in Chemistry",
+      "level": "MSc",
+      "university": "FU_BERLIN"
+    },
+    {
+      "name": "BSc in Biochemistry",
+      "level": "BSc",
+      "university": "FU_BERLIN"
+    }
+  ],
+  "lecturers": [],
+  "modules": [
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM101",
+      "module_name": "Allgemeine und Anorganische Chemie",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM101/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM102",
+      "module_name": "Organische Chemie: Grundlagen",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM102/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM103",
+      "module_name": "Physikalische Chemie: Grundlagen",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM103/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM104",
+      "module_name": "Analytische Chemie und Methodik",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM104/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM105",
+      "module_name": "Grundpraktikum Anorganische Chemie",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM105/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM106",
+      "module_name": "Grundpraktikum Organische Chemie",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM106/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM201",
+      "module_name": "Anorganische Chemie: Molekülchemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM201/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM202",
+      "module_name": "Organische Chemie: Reaktivität",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM202/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM203",
+      "module_name": "Physikalische Chemie: Quantenmechanik",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM203/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM204",
+      "module_name": "Biochemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM204/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM205",
+      "module_name": "Instrumentelle Analytik",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM205/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM206",
+      "module_name": "Fortgeschrittenenpraktikum AC/OC",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM206/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM301",
+      "module_name": "Anorganische Festkörper- und Materialchemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM301/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM302",
+      "module_name": "Organische Synthesechemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM302/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM303",
+      "module_name": "Theoretische Chemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM303/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM401",
+      "module_name": "Advanced Inorganic Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM401/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM402",
+      "module_name": "Advanced Organic Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM402/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM403",
+      "module_name": "Advanced Physical Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM403/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM404",
+      "module_name": "Chemical Biology",
+      "ects": 5.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM404/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM405",
+      "module_name": "Supramolecular Chemistry",
+      "ects": 5.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM405/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM406",
+      "module_name": "Polymer Chemistry",
+      "ects": 5.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM406/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM501",
+      "module_name": "Research Module: Synthesis",
+      "ects": 10.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM501/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "FU_BERLIN",
+      "module_code": "CHEM502",
+      "module_name": "Research Module: Spectroscopy",
+      "ects": 10.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (FU Berlin)",
+      "url": "https://www.bcp.fu-berlin.de/module/CHEM502/",
+      "last_checked": "2026-06-29"
+    }
+  ],
+  "source_url": "https://www.bcp.fu-berlin.de/studium/",
+  "last_updated": "2026-06-29"
+}

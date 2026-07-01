@@ -1,0 +1,273 @@
+{
+  "university": {
+    "name": "Heidelberg University",
+    "country": "DE",
+    "city": "Heidelberg",
+    "website": "https://www.uni-heidelberg.de/",
+    "short_code": "HEID"
+  },
+  "degrees": [
+    {
+      "name": "BSc in Chemistry",
+      "level": "BSc",
+      "university": "HEID"
+    },
+    {
+      "name": "MSc in Chemistry",
+      "level": "MSc",
+      "university": "HEID"
+    },
+    {
+      "name": "BSc in Molecular Biotechnology",
+      "level": "BSc",
+      "university": "HEID"
+    }
+  ],
+  "lecturers": [],
+  "modules": [
+    {
+      "university": "HEID",
+      "module_code": "CHEM101",
+      "module_name": "Allgemeine Chemie",
+      "ects": 8.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM101/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM102",
+      "module_name": "Anorganisch-Chemisches Praktikum 1",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM102/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM103",
+      "module_name": "Anorganische Chemie 1: Hauptgruppen",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM103/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM104",
+      "module_name": "Organische Chemie 1: Grundlagen",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM104/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM105",
+      "module_name": "Physikalische Chemie 1: Thermodynamik",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM105/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM106",
+      "module_name": "Analytische Chemie: Grundlagen",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM106/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM201",
+      "module_name": "Anorganische Chemie 2: Nebengruppen",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM201/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM202",
+      "module_name": "Organische Chemie 2: Reaktionsmechanismen",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM202/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM203",
+      "module_name": "Physikalische Chemie 2: Quantenchemie",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM203/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM204",
+      "module_name": "Biochemie: Grundlagen",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM204/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM205",
+      "module_name": "Organisch-Chemisches Praktikum",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM205/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM206",
+      "module_name": "Physikalisch-Chemisches Praktikum",
+      "ects": 6.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM206/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM301",
+      "module_name": "Anorganische Festkörperchemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM301/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM302",
+      "module_name": "Makromolekulare Chemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM302/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM303",
+      "module_name": "Theoretische Chemie",
+      "ects": 5.0,
+      "language": "de",
+      "level": "BSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM303/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM401",
+      "module_name": "Advanced Inorganic Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM401/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM402",
+      "module_name": "Advanced Organic Synthesis",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM402/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM403",
+      "module_name": "Advanced Physical Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM403/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM404",
+      "module_name": "Molecular Spectroscopy",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM404/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM405",
+      "module_name": "Chemical Biology",
+      "ects": 5.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM405/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM406",
+      "module_name": "Nanostructured Materials",
+      "ects": 5.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM406/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "HEID",
+      "module_code": "CHEM501",
+      "module_name": "Research Module: Catalysis",
+      "ects": 10.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc Chemistry (Heidelberg)",
+      "url": "https://www.uni-heidelberg.de/de/studium/module/CHEM501/",
+      "last_checked": "2026-06-29"
+    }
+  ],
+  "source_url": "https://www.uni-heidelberg.de/studium/",
+  "last_updated": "2026-06-29"
+}

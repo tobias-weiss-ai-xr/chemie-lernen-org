@@ -1,0 +1,278 @@
+{
+  "university": {
+    "name": "California Institute of Technology",
+    "country": "US",
+    "city": "Pasadena, CA",
+    "website": "https://www.caltech.edu/",
+    "short_code": "CALTECH"
+  },
+  "degrees": [
+    {
+      "name": "BSc in Chemistry",
+      "level": "BSc",
+      "university": "CALTECH"
+    },
+    {
+      "name": "MSc in Chemistry",
+      "level": "MSc",
+      "university": "CALTECH"
+    },
+    {
+      "name": "PhD in Chemistry",
+      "level": "PhD",
+      "university": "CALTECH"
+    },
+    {
+      "name": "MSc in Chemical Engineering",
+      "level": "MSc",
+      "university": "CALTECH"
+    }
+  ],
+  "lecturers": [],
+  "modules": [
+    {
+      "university": "CALTECH",
+      "module_code": "Ch1",
+      "module_name": "General Chemistry",
+      "ects": 10.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch1/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch3a",
+      "module_name": "Synthesis and Characterization of Organic Compounds",
+      "ects": 8.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch3a/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch3b",
+      "module_name": "Synthesis and Characterization of Inorganic Compounds",
+      "ects": 8.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch3b/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch4a",
+      "module_name": "Physical Chemistry: Thermodynamics",
+      "ects": 8.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch4a/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch4b",
+      "module_name": "Physical Chemistry: Quantum Mechanics",
+      "ects": 8.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch4b/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch5",
+      "module_name": "Chemical Biology",
+      "ects": 8.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch5/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch6",
+      "module_name": "Analytical Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch6/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch7",
+      "module_name": "Mathematics for Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch7/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch8",
+      "module_name": "Experimental Chemistry Laboratory",
+      "ects": 8.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch8/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch9a",
+      "module_name": "Organic Chemistry: Mechanisms",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch9a/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch9b",
+      "module_name": "Inorganic Chemistry: Structure and Bonding",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch9b/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch10",
+      "module_name": "Chemical Engineering Fundamentals",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch10/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch101a",
+      "module_name": "Advanced Organic Chemistry: Synthesis",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch101a/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch101b",
+      "module_name": "Advanced Organic Chemistry: Methods",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch101b/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch110",
+      "module_name": "Advanced Inorganic Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch110/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch120a",
+      "module_name": "Advanced Physical Chemistry: Statistical Mechanics",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch120a/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch120b",
+      "module_name": "Advanced Physical Chemistry: Spectroscopy",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch120b/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch125",
+      "module_name": "Chemical Biology: Advanced Topics",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch125/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch130",
+      "module_name": "Computational Chemistry",
+      "ects": 5.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch130/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch201",
+      "module_name": "Research Seminar",
+      "ects": 3.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch201/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch210",
+      "module_name": "Laboratory Rotation",
+      "ects": 10.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch210/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CALTECH",
+      "module_code": "Ch300",
+      "module_name": "Graduate Research",
+      "ects": 15.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSc/PhD Chemistry (Caltech)",
+      "url": "https://www.cce.caltech.edu/courses/Ch300/",
+      "last_checked": "2026-06-29"
+    }
+  ],
+  "source_url": "https://www.cce.caltech.edu/academics/",
+  "last_updated": "2026-06-29"
+}

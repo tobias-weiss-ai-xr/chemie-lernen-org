@@ -1,0 +1,251 @@
+{
+  "university": {
+    "name": "University of Oxford",
+    "country": "GB",
+    "city": "Oxford",
+    "website": "https://www.ox.ac.uk/",
+    "short_code": "OXF"
+  },
+  "degrees": [
+    {
+      "name": "MChem in Chemistry",
+      "level": "MSc",
+      "university": "OXF"
+    },
+    {
+      "name": "MSc by Research in Chemistry",
+      "level": "MSc",
+      "university": "OXF"
+    },
+    {
+      "name": "DPhil in Chemistry",
+      "level": "PhD",
+      "university": "OXF"
+    }
+  ],
+  "lecturers": [],
+  "modules": [
+    {
+      "university": "OXF",
+      "module_code": "CHEMIA01",
+      "module_name": "Atomic Structure and Bonding",
+      "ects": 8.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMIA01/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMIA02",
+      "module_name": "Organic Chemistry 1: Structure and Reactivity",
+      "ects": 8.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMIA02/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMIA03",
+      "module_name": "Physical Chemistry 1: Energy and Kinetics",
+      "ects": 8.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMIA03/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMIA04",
+      "module_name": "Practical Chemistry 1",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMIA04/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMIA05",
+      "module_name": "Mathematics for Chemists",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMIA05/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMIB01",
+      "module_name": "Inorganic Chemistry: Coordination and Organometallic",
+      "ects": 8.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMIB01/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMIB02",
+      "module_name": "Organic Chemistry 2: Synthesis and Mechanism",
+      "ects": 8.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMIB02/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMIB03",
+      "module_name": "Physical Chemistry 2: Quantum and Spectroscopy",
+      "ects": 8.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMIB03/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMIB04",
+      "module_name": "Practical Chemistry 2",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMIB04/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMIB05",
+      "module_name": "Molecular Biology and Biochemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMIB05/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMII01",
+      "module_name": "Advanced Inorganic Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMII01/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMII02",
+      "module_name": "Advanced Organic Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMII02/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMII03",
+      "module_name": "Advanced Physical Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMII03/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMII04",
+      "module_name": "Chemical Biology",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMII04/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMII05",
+      "module_name": "Theoretical Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMII05/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMIII01",
+      "module_name": "Research Project (MChem)",
+      "ects": 15.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMIII01/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMIII02",
+      "module_name": "Advanced Topics in Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMIII02/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMIII03",
+      "module_name": "Scientific Communication and Ethics",
+      "ects": 3.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMIII03/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMIII04",
+      "module_name": "Specialist Option: Catalysis",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMIII04/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "OXF",
+      "module_code": "CHEMIII05",
+      "module_name": "Specialist Option: Molecular Synthesis",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MChem/MSc by Research Chemistry (Oxford)",
+      "url": "https://www.chem.ox.ac.uk/module/CHEMIII05/",
+      "last_checked": "2026-06-29"
+    }
+  ],
+  "source_url": "https://www.chem.ox.ac.uk/teaching/",
+  "last_updated": "2026-06-29"
+}

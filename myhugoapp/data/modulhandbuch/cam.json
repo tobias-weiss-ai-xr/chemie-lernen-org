@@ -1,0 +1,224 @@
+{
+  "university": {
+    "name": "University of Cambridge",
+    "country": "UK",
+    "city": "Cambridge",
+    "website": "https://www.cam.ac.uk/",
+    "short_code": "CAM"
+  },
+  "degrees": [
+    {
+      "name": "BSc in Natural Sciences (Chemistry)",
+      "level": "BSc",
+      "university": "CAM"
+    },
+    {
+      "name": "MSci in Natural Sciences (Chemistry)",
+      "level": "MSc",
+      "university": "CAM"
+    }
+  ],
+  "lecturers": [],
+  "modules": [
+    {
+      "university": "CAM",
+      "module_code": "NST-1A-CHEM",
+      "module_name": "Chemistry A: Atoms, Molecules & Reactions",
+      "ects": 12.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-1A-CHEM/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-1A-PHYS",
+      "module_name": "Physics A for Chemists",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-1A-PHYS/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-1A-MATHS",
+      "module_name": "Mathematics for Natural Sciences",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-1A-MATHS/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-1A-CELL",
+      "module_name": "Cell Biology for Chemists",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-1A-CELL/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-1B-CHEM",
+      "module_name": "Chemistry B: Structure & Reactivity",
+      "ects": 12.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-1B-CHEM/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-1B-PCHEM",
+      "module_name": "Physical Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-1B-PCHEM/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-1B-OCHEM",
+      "module_name": "Organic Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-1B-OCHEM/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-1B-ACHEM",
+      "module_name": "Inorganic Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-1B-ACHEM/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-2-AC",
+      "module_name": "Advanced Inorganic Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-2-AC/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-2-OC",
+      "module_name": "Advanced Organic Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-2-OC/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-2-PC",
+      "module_name": "Advanced Physical Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-2-PC/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-2-SYNTH",
+      "module_name": "Synthetic Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-2-SYNTH/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-2-SPEC",
+      "module_name": "Molecular Spectroscopy",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-2-SPEC/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-3-RES",
+      "module_name": "Chemistry Research Project",
+      "ects": 30.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-3-RES/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-3-CBIO",
+      "module_name": "Chemical Biology",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-3-CBIO/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-3-NANO",
+      "module_name": "Nanomaterials",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-3-NANO/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-3-CAT",
+      "module_name": "Catalysis",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-3-CAT/",
+      "last_checked": "2026-06-29"
+    },
+    {
+      "university": "CAM",
+      "module_code": "NST-3-THEO",
+      "module_name": "Theoretical Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "BSc/MSci Natural Sciences (Chemistry)",
+      "url": "https://www.ch.cam.ac.uk/teaching/NST-3-THEO/",
+      "last_checked": "2026-06-29"
+    }
+  ],
+  "source_url": "https://www.ch.cam.ac.uk/",
+  "last_updated": "2026-06-29"
+}

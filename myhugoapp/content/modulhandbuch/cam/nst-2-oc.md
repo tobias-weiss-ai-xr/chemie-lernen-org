@@ -1,0 +1,17 @@
+---
+title: Advanced Organic Chemistry — University of Cambridge
+description: 'Advanced Organic Chemistry (NST-2-OC) an der University of Cambridge. 6 ECTS, Niveau: BSc.'
+layout: module
+date: 2026-06-29
+uni_code: CAM
+uni_name: University of Cambridge
+module_code: NST-2-OC
+module_name: Advanced Organic Chemistry
+module_url: 'https://www.ch.cam.ac.uk/teaching/NST-2-OC/'
+ects: 6
+level: BSc
+language: en
+degree: BSc/MSci Natural Sciences (Chemistry)
+---
+
+[→ Modulhandbuch-Eintrag](https://www.ch.cam.ac.uk/teaching/NST-2-OC/)
