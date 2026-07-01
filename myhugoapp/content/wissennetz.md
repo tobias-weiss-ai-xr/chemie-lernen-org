@@ -29,5 +29,3 @@ weight: 10
 <h5>Lade Wissensnetz...</h5>
 </div>
 </div>
-<script src="{{ "/js/visualization/d3-ego-graph.js" | relURL }}"></script>
-<script src="{{ "/js/wissennetz-graph.js" | relURL }}"></script>

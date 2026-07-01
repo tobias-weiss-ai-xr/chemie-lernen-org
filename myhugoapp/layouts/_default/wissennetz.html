@@ -1,0 +1,31 @@
+{{ define "main" }}
+
+<div class="thema-container">
+  <div class="thema-header">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Wissensnetz Graph</h1>
+        <div class="thema-metadata"></div>
+      </div>
+    </div>
+    <hr class="featurette-divider">
+  </div>
+
+  <div class="thema-content-layout">
+    <div class="row">
+      <div class="col-md-8">
+        <article class="thema-content">
+          {{ .Content }}
+        </article>
+      </div>
+      <aside class="col-md-4">
+        <div class="thema-sidebar"></div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<script src="{{ "/js/visualization/d3-ego-graph.js" | relURL }}"></script>
+<script src="{{ "/js/wissennetz-graph.js" | relURL }}"></script>
+
+{{ end }}

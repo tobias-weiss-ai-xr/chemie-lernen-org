@@ -10,7 +10,7 @@ class BundleManager {
     };
 
     this.bundleConfig = {
-      core: ['/js/chemistry-calculator-framework.optimized.js'],
+      core: ['/js/chemistry-calculator-framework.js'],
 
       vendor: [
         // Bootstrap and jQuery are loaded synchronously via baseof.html. No CDN duplicates needed.
