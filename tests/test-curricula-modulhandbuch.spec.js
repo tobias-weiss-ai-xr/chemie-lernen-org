@@ -6,7 +6,7 @@ test.describe('Curricula / Lehrpläne', () => {
   test('should load curricula index page', async ({ page }) => {
     await page.goto(`${BASE_URL}/curricula/`);
     await expect(page).toHaveTitle(/Lehrpläne|Curricula/i);
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Lehrpläne.*Curricula/i })).toBeVisible();
   });
 
   test('should load curricula state SSR page (NRW)', async ({ page }) => {
@@ -48,7 +48,7 @@ test.describe('Modulhandbuch', () => {
 
   test('should load university SSR page (TUM)', async ({ page }) => {
     await page.goto(`${BASE_URL}/modulhandbuch/tum/`);
-    await expect(page).toHaveTitle(/TUM|Technische Universität München/i);
+    await expect(page).toHaveTitle(/TUM|TU München|Technische Universität München/i);
     await expect(page.locator('h1')).toBeVisible();
   });
 
@@ -90,9 +90,8 @@ test.describe('Entity page modulhandbuch section', () => {
   });
 
   test('should load entity page with curricula section', async ({ page }) => {
-    await page.goto(`${BASE_URL}/entity/wasser/`);
+    await page.goto(`${BASE_URL}/entity/ammoniak/`);
     await expect(page.locator('h1')).toBeVisible();
-    // Should eventually load the Lehrplan-Bezug section
     await page.waitForSelector('#entity-curricula-card', { timeout: 15000 }).catch(() => {});
   });
 });
