@@ -37,3 +37,4 @@ tmp/
 .playwright-mcp/
 .omo/
 tests/__pycache__/
+curricula-venv/
