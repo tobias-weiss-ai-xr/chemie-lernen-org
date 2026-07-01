@@ -490,6 +490,27 @@ export default [
     },
   },
 
+  // Landscape visualization - uses browser globals
+  {
+    files: ['myhugoapp/static/landscape/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: {
+        console: 'readonly',
+        document: 'readonly',
+        window: 'readonly',
+        fetch: 'readonly',
+        self: 'readonly',
+        setTimeout: 'readonly',
+        setInterval: 'readonly',
+        requestAnimationFrame: 'readonly',
+        Event: 'readonly',
+        HTMLElement: 'readonly',
+      },
+    },
+  },
+
   // Performance monitor - uses Node.js globals
   {
     files: ['myhugoapp/static/js/performance-monitor.js'],
