@@ -534,7 +534,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const pagefind = await import('/pagefind/pagefind.js');
         const results = await pagefind.search(query);
 
-        displayResults(results);
+        await displayResults(results);
       } catch (error) {
         console.error('Search error:', error);
         searchResults.innerHTML = '<div class="search-error">Fehler bei der Suche</div>';
@@ -567,20 +567,25 @@ document.addEventListener('DOMContentLoaded', function() {
       return div.innerHTML;
     }
 
-    function displayResults(results) {
+    async function displayResults(results) {
       if (!results || !results.results || results.results.length === 0) {
         searchResults.innerHTML = '<div class="search-no-results">Keine Ergebnisse gefunden</div>';
       } else {
+        // Pagefind returns results with async data() method — call it for each result
+        const items = await Promise.all(
+          results.results.map(function (r) { return r.data(); })
+        );
         let html = '';
-        results.results.forEach(result => {
-          var cat = getResultCategory(result.url);
+        items.forEach(function (data) {
+          var cat = getResultCategory(data.url);
+          var excerpt = data.excerpt || data.content?.substring(0, 200) || '';
           html += '<div class="search-result-item">';
-          html += '  <a href="' + escapeHtml(result.url) + '" class="search-result-link">';
-          html += '    <div class="search-result-title">' + escapeHtml(result.meta.title) + '</div>';
+          html += '  <a href="' + escapeHtml(data.url) + '" class="search-result-link">';
+          html += '    <div class="search-result-title">' + escapeHtml(data.meta.title) + '</div>';
           if (cat) {
             html += '    <span class="search-result-badge" style="display:inline-block;font-size:0.65rem;padding:0.1rem 0.45rem;border-radius:4px;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;background:' + cat.color + '22;color:' + cat.color + ';margin-top:0.2rem;">' + cat.label + '</span>';
           }
-          html += '    <div class="search-result-excerpt">' + escapeHtml(result.excerpt) + '</div>';
+          html += '    <div class="search-result-excerpt">' + escapeHtml(excerpt) + '</div>';
           html += '  </a>';
           html += '</div>';
         });

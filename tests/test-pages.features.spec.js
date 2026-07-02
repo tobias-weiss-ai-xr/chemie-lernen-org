@@ -425,7 +425,24 @@ test.describe('Pagefind Search Interaction', () => {
       }
     });
 
+    // Bypass service worker cache to get fresh CSP headers
+    await page.route('**/*', async (route) => {
+      await route.continue({ cache: 'no-cache' });
+    });
+
     await page.goto(BASE_URL, { waitUntil: 'networkidle' });
+    // Unregister any stale service worker
+    await page.evaluate(() => {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function (regs) {
+          regs.forEach(function (r) {
+            r.unregister();
+          });
+        });
+      }
+    });
+    // Reload to ensure fresh page without SW interference
+    await page.reload({ waitUntil: 'networkidle' });
     // Wait for pagefind module to load
     await page.waitForTimeout(3000);
 
@@ -436,11 +453,13 @@ test.describe('Pagefind Search Interaction', () => {
     // Wait for debounce (300ms) + pagefind async search + render
     await page.waitForTimeout(2000);
 
-    // Check that no "Cannot read properties of undefined" error occurred
-    // (the regression bug: window.pagefind was never set by the ESM module)
+    // Check that no error is related to pagefind/search regression
     const searchErrors = consoleErrors.filter(
       (e) => e.includes('pagefind') || e.includes('search') || e.includes('undefined')
     );
+    if (searchErrors.length > 0) {
+      console.log('SEARCH ERRORS:', JSON.stringify(searchErrors, null, 2));
+    }
     expect(searchErrors.length).toBe(0);
 
     // Check that results container is visible
