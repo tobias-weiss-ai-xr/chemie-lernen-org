@@ -5,7 +5,7 @@
     <div class="navbar-brand-wrapper">
       <a class="navbar-brand" href="{{ .Site.BaseURL }}">
         <img src="{{ "/img/chemie-lernen-logo_light.webp" | relURL }}" alt="{{ .Site.Title }}" height="75" class="d-inline-block align-top site-logo">
-        {{ .Site.Title }}
+        <span class="site-title-label">{{ .Site.Title }}</span>
       </a>
       <!-- Dark mode toggle next to title -->
       <button type="button" id="theme-toggle" title="Zu dunkel wechseln" class="theme-toggle-header" aria-label="Dark Mode umschalten">
@@ -283,6 +283,7 @@
 
 @media (max-width: 576px) {
   .site-logo { height: 45px !important; }
+  .site-title-label { display: none; }
 }
 
 /* Dark mode support */
