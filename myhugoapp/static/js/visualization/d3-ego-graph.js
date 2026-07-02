@@ -630,13 +630,11 @@
           .style('font-size', '11px')
           .style('pointer-events', 'none');
         var li = 0;
-        var legendItems = [
-          { label: 'Stoff', color: '#667eea' },
-          { label: 'Konzept', color: '#45b7d1' },
-          { label: 'Reaktion', color: '#4ecdc4' },
-          { label: 'Methode', color: '#f093fb' },
-          { label: 'Person', color: '#ff9a76' },
-        ];
+        // Build legend from all defined categories
+        var legendItems = [];
+        Object.keys(CAT_COLORS).forEach(function (cat) {
+          legendItems.push({ label: CAT_LABELS[cat] || cat, color: CAT_COLORS[cat], cat: cat });
+        });
         legendItems.forEach(function (item) {
           legend
             .append('circle')
@@ -760,7 +758,24 @@
           return 'Artikel: ' + d.label;
         })
         .style('cursor', 'pointer')
-        .style('opacity', 0.85)
+        .style('opacity', 0.85);
+
+      var tooltip = d3
+        .select(container)
+        .append('div')
+        .style('position', 'absolute')
+        .style('display', 'none')
+        .style('padding', '6px 10px')
+        .style('background', 'var(--bg-card, #fff)')
+        .style('border', '1px solid var(--border-color, #ddd)')
+        .style('border-radius', '4px')
+        .style('font-size', '12px')
+        .style('color', 'var(--text-graph, #333)')
+        .style('pointer-events', 'none')
+        .style('z-index', '10')
+        .style('box-shadow', '0 2px 6px rgba(0,0,0,0.15)');
+
+      node
         .on('mouseover', function (ev, d) {
           d3.select(this)
             .attr('r', (d.size || 4) * 1.3)
@@ -780,6 +795,28 @@
             var t = typeof l.target === 'object' ? l.target.id : l.target;
             return s === d.id || t === d.id ? 0.8 : 0.1;
           });
+          var connCount = Object.keys(connected).length;
+          var catLabel =
+            d.type === 'entity' ? labelize(d.category) : d.type === 'page' ? 'Seite' : 'Artikel';
+          tooltip
+            .style('display', 'block')
+            .html(
+              '<strong>' +
+                esc(d.label) +
+                '</strong><br>' +
+                '<span style="color:' +
+                colorize(d.category || '') +
+                '">● </span>' +
+                catLabel +
+                ' &middot; ' +
+                connCount +
+                ' Verbindung' +
+                (connCount !== 1 ? 'en' : '')
+            );
+          var rect = container.getBoundingClientRect();
+          tooltip
+            .style('left', ev.clientX - rect.left + 12 + 'px')
+            .style('top', ev.clientY - rect.top - 10 + 'px');
         })
         .on('mouseout', function (ev, d) {
           d3.select(this)
@@ -789,6 +826,7 @@
           link.style('stroke-opacity', function (d) {
             return d.type === 'composition' ? 0.7 : 0.4;
           });
+          tooltip.style('display', 'none');
         })
         .on('click', function (ev, d) {
           if (d.type === 'entity') {
@@ -804,13 +842,13 @@
           }
         });
 
-      // Labels (large entities only)
+      // Labels (all entity nodes)
       var labels = g
         .append('g')
         .selectAll('text')
         .data(
           nodes.filter(function (d) {
-            return d.type === 'entity' && d.size >= 8;
+            return d.type === 'entity';
           })
         )
         .enter()
@@ -818,14 +856,19 @@
         .text(function (d) {
           return d.label;
         })
-        .attr('font-size', '10px')
+        .attr('font-size', function (d) {
+          return d.size >= 8 ? '10px' : '8px';
+        })
         .attr('dx', function (d) {
           return d.size + 3;
         })
         .attr('dy', 3)
         .attr('fill', 'var(--text-graph, #444)')
+        .style('opacity', function (d) {
+          return d.size >= 8 ? 1 : 0.6;
+        })
         .style('pointer-events', 'none')
-        .style('text-shadow', '0 0 3px #fafafa, 0 0 3px #fafafa');
+        .style('text-shadow', '0 0 3px var(--bg-body, #fafafa), 0 0 3px var(--bg-body, #fafafa)');
 
       // Force simulation
       var sim = d3
