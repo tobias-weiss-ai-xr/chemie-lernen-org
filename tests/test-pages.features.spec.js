@@ -415,24 +415,45 @@ test.describe('404 Handling', () => {
 });
 
 test.describe('Pagefind Search Interaction', () => {
-  test('should type search query and see results appear', async ({ page }) => {
+  test('should type search query and see results without console errors', async ({ page }) => {
     test.setTimeout(30000);
+
+    const consoleErrors = [];
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') {
+        consoleErrors.push(msg.text());
+      }
+    });
+
     await page.goto(BASE_URL, { waitUntil: 'networkidle' });
-    await page.waitForTimeout(2000); // let pagefind load
+    // Wait for pagefind module to load
+    await page.waitForTimeout(3000);
 
-    const searchInput = page
-      .locator('#navbar-search-input, .search-input, input[name="q"]')
-      .first();
-    if ((await searchInput.count()) > 0) {
-      await searchInput.fill('pH-Wert');
-      await page.waitForTimeout(2000); // debounce 300ms + pagefind async
+    const searchInput = page.locator('#search-input');
+    await expect(searchInput).toBeVisible();
+    await searchInput.fill('pH-Wert');
 
-      const results = page
-        .locator('.pagefind-ui__result, #search-results, [class*="result"]')
-        .first();
-      const resultCount = await results.count();
-      expect(resultCount).toBeGreaterThanOrEqual(0);
-    }
+    // Wait for debounce (300ms) + pagefind async search + render
+    await page.waitForTimeout(2000);
+
+    // Check that no "Cannot read properties of undefined" error occurred
+    // (the regression bug: window.pagefind was never set by the ESM module)
+    const searchErrors = consoleErrors.filter(
+      (e) => e.includes('pagefind') || e.includes('search') || e.includes('undefined')
+    );
+    expect(searchErrors.length).toBe(0);
+
+    // Check that results container is visible
+    const results = page.locator('#search-results');
+    await expect(results).toBeVisible();
+
+    // Check that results don't show an error message
+    await expect(results).not.toContainText('Fehler bei der Suche');
+
+    // Check actual result items exist
+    const resultItems = results.locator('.search-result-item');
+    const count = await resultItems.count();
+    expect(count).toBeGreaterThan(0);
   });
 });
 

@@ -531,7 +531,7 @@ document.addEventListener('DOMContentLoaded', function() {
       searchClear.classList.remove('hidden');
 
       try {
-        const pagefind = await window.pagefind;
+        const pagefind = await import('/pagefind/pagefind.js');
         const results = await pagefind.search(query);
 
         displayResults(results);
