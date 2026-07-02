@@ -109,10 +109,14 @@ test.describe('Calculator Interactions', () => {
     test.setTimeout(15000);
     await page.goto(`${BASE_URL}/molare-masse-rechner/`, { waitUntil: 'networkidle' });
     const input = page.locator('#formula-input, input[type="text"]').first();
-    if (await input.count() > 0) {
+    if ((await input.count()) > 0) {
       await input.fill('H2O');
-      const calcBtn = page.locator('button:has-text("Berechnen"), button:has-text("Calculate"), button[type="submit"]').first();
-      if (await calcBtn.count() > 0) {
+      const calcBtn = page
+        .locator(
+          'button:has-text("Berechnen"), button:has-text("Calculate"), button[type="submit"]'
+        )
+        .first();
+      if ((await calcBtn.count()) > 0) {
         await calcBtn.click();
         await page.waitForTimeout(2000);
         const body = page.locator('body');
@@ -138,10 +142,10 @@ test.describe('Calculator Interactions', () => {
     test.setTimeout(15000);
     await page.goto(`${BASE_URL}/verbrennungsrechner/`, { waitUntil: 'networkidle' });
     const input = page.locator('input[type="number"], input').first();
-    if (await input.count() > 0) {
+    if ((await input.count()) > 0) {
       await input.fill('10');
       const calcBtn = page.locator('button:has-text("Berechnen"), button[type="submit"]').first();
-      if (await calcBtn.count() > 0) {
+      if ((await calcBtn.count()) > 0) {
         await calcBtn.click();
         await page.waitForTimeout(2000);
       }
@@ -158,7 +162,9 @@ test.describe('Arbeitsblatt Generator', () => {
 
   test('should have worksheet generation controls', async ({ page }) => {
     await page.goto(`${BASE_URL}/arbeitsblatt-generator/`);
-    const controls = page.locator('button:has-text("generieren"), button:has-text("erstellen"), button:has-text("Arbeitsblatt"), select, #generate-btn');
+    const controls = page.locator(
+      'button:has-text("generieren"), button:has-text("erstellen"), button:has-text("Arbeitsblatt"), select, #generate-btn'
+    );
     await expect(controls.first()).toBeVisible();
   });
 });
@@ -172,7 +178,7 @@ test.describe('Content / Posts', () => {
   test('should load individual post with related articles section', async ({ page }) => {
     await page.goto(`${BASE_URL}/posts/`);
     const firstPostLink = page.locator('a[href^="/posts/"]').first();
-    if (await firstPostLink.count() > 0) {
+    if ((await firstPostLink.count()) > 0) {
       await firstPostLink.click();
       await expect(page).toHaveURL(/\/posts\//);
     }
@@ -201,6 +207,75 @@ test.describe('KI-Assistent Chat', () => {
     const count = await messages.count();
     expect(count).toBeGreaterThanOrEqual(1);
   });
+
+  test('should copy link text to chat input when clicking a link in a bot message', async ({
+    page,
+  }) => {
+    test.setTimeout(30000);
+    await page.goto(`${BASE_URL}/ki-assistent/`, { waitUntil: 'networkidle' });
+    await expect(page.locator('#chat-input')).toBeVisible({ timeout: 10000 });
+
+    // Send a query that triggers a fallback answer containing HTML links
+    // "Stöchiometrie" triggers the fallback: "... <a href="/stoechiometrie-rechner/">Stöchiometrie-Rechner</a> ..."
+    const chatInput = page.locator('#chat-input');
+    await chatInput.fill('Stöchiometrie');
+
+    const sendBtn = page.locator('#chat-send-btn');
+    await sendBtn.click();
+
+    // Wait for bot response with a link
+    const botLink = page.locator('.message.bot .message-content a').first();
+    await expect(botLink).toBeVisible({ timeout: 15000 });
+
+    // Get the link text before clicking
+    const linkText = await botLink.textContent();
+
+    // Click the link
+    await botLink.click();
+    await page.waitForTimeout(300);
+
+    // Verify the chat input now contains the link text
+    const inputValue = await chatInput.inputValue();
+    expect(inputValue.trim()).toBe(linkText.trim());
+  });
+
+  test('should copy entity name to chat input when clicking a source chip', async ({ page }) => {
+    test.setTimeout(60000);
+    await page.goto(`${BASE_URL}/ki-assistent/`, { waitUntil: 'networkidle' });
+    await expect(page.locator('#chat-input')).toBeVisible({ timeout: 10000 });
+
+    // Send a query that might return RAG sources
+    const chatInput = page.locator('#chat-input');
+    await chatInput.fill('Was ist die molare Masse von Wasser?');
+
+    const sendBtn = page.locator('#chat-send-btn');
+    await sendBtn.click();
+
+    // Wait for potential source chips to appear (they may or may not be present)
+    await page.waitForTimeout(3000);
+
+    const sourceChips = page.locator('.source-chip');
+    const chipCount = await sourceChips.count();
+
+    // Only test if source chips are present (RAG sources from the API)
+    if (chipCount > 0) {
+      const firstChip = sourceChips.first();
+      const chipText = (await firstChip.textContent()).trim();
+
+      await firstChip.click();
+      await page.waitForTimeout(300);
+
+      // Verify the chat input now contains the chip entity name
+      const inputValue = await chatInput.inputValue();
+      // Source chip text includes the entity name (sometimes with a category badge appended)
+      // The click should copy at least the beginning of the chip text
+      expect(inputValue.length).toBeGreaterThan(0);
+
+      // The input should contain the first word(s) of the chip (entity name)
+      const chipNamePart = chipText.split(/\s+/).slice(0, 2).join(' ');
+      expect(inputValue).toContain(chipNamePart);
+    }
+  });
 });
 
 test.describe('Dashboard', () => {
@@ -222,7 +297,10 @@ test.describe('Visualization Pages', () => {
   visualizations.forEach((viz) => {
     test(`should load visualization: ${viz.path}`, async ({ page, context }) => {
       test.setTimeout(30000);
-      await page.goto(`${BASE_URL}/${viz.path}/`, { waitUntil: 'domcontentloaded', timeout: 15000 });
+      await page.goto(`${BASE_URL}/${viz.path}/`, {
+        waitUntil: 'domcontentloaded',
+        timeout: 15000,
+      });
       await expect(page.locator('h1')).toBeVisible();
       await expect(page.locator('body')).not.toHaveText(/404|Seite nicht gefunden/);
     });
@@ -248,8 +326,10 @@ test.describe('Footer', () => {
 test.describe('Pagefind Search', () => {
   test('should have search input on homepage', async ({ page }) => {
     await page.goto(BASE_URL);
-    const searchInput = page.locator('#search-form input[type="search"], .search-input, input[name="q"]');
-    if (await searchInput.count() > 0) {
+    const searchInput = page.locator(
+      '#search-form input[type="search"], .search-input, input[name="q"]'
+    );
+    if ((await searchInput.count()) > 0) {
       await expect(searchInput.first()).toBeVisible();
     }
   });
@@ -257,7 +337,7 @@ test.describe('Pagefind Search', () => {
   test('should include pagefind script', async ({ page }) => {
     await page.goto(BASE_URL);
     const pagefindScript = page.locator('script[src*="pagefind"]');
-    if (await pagefindScript.count() > 0) {
+    if ((await pagefindScript.count()) > 0) {
       await expect(pagefindScript).toHaveCount(1);
     }
   });
@@ -280,12 +360,16 @@ test.describe('Pagefind Search Interaction', () => {
     await page.goto(BASE_URL, { waitUntil: 'networkidle' });
     await page.waitForTimeout(2000); // let pagefind load
 
-    const searchInput = page.locator('#navbar-search-input, .search-input, input[name="q"]').first();
-    if (await searchInput.count() > 0) {
+    const searchInput = page
+      .locator('#navbar-search-input, .search-input, input[name="q"]')
+      .first();
+    if ((await searchInput.count()) > 0) {
       await searchInput.fill('pH-Wert');
       await page.waitForTimeout(2000); // debounce 300ms + pagefind async
 
-      const results = page.locator('.pagefind-ui__result, #search-results, [class*="result"]').first();
+      const results = page
+        .locator('.pagefind-ui__result, #search-results, [class*="result"]')
+        .first();
       const resultCount = await results.count();
       expect(resultCount).toBeGreaterThanOrEqual(0);
     }
@@ -303,14 +387,16 @@ test.describe('Dark Mode', () => {
     await page.goto(BASE_URL);
     const toggle = page.locator('#theme-toggle, .dark-mode-toggle, button:has-text("🌙")');
 
-    if (await toggle.count() > 0) {
+    if ((await toggle.count()) > 0) {
       await toggle.click();
       await page.waitForTimeout(500);
 
       const hasDark = await page.evaluate(() => {
-        return document.documentElement.classList.contains('dark')
-          || document.body.classList.contains('dark-mode')
-          || document.body.classList.contains('dark');
+        return (
+          document.documentElement.classList.contains('dark') ||
+          document.body.classList.contains('dark-mode') ||
+          document.body.classList.contains('dark')
+        );
       });
       expect(typeof hasDark).toBe('boolean');
     }

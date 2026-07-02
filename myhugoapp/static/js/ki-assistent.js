@@ -534,6 +534,9 @@
           if (lastMsg && apiResult.sources && apiResult.sources.length > 0) {
             renderSourceChips(apiResult.sources, lastMsg);
           }
+          if (lastMsg) {
+            makeMessageClickable(lastMsg);
+          }
           // Add follow-up suggestion buttons
           if (lastMsg) {
             addFollowUpButtons(lastMsg, getRandomSuggestions(4, query));
@@ -643,27 +646,16 @@
   }
 
   function makeMessageClickable(messageDiv) {
-    var contentDiv = messageDiv.querySelector('.message-content');
-    if (!contentDiv) return;
-
-    var links = contentDiv.querySelectorAll('a');
+    var links = messageDiv.querySelectorAll('a');
     links.forEach(function (link) {
       link.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
-        var searchText = this.textContent.trim();
-        var searchInput = document.getElementById('search-input');
-        if (searchInput) {
-          searchInput.value = searchText;
-          searchInput.focus();
-          var event = new KeyboardEvent('keydown', {
-            key: 'Enter',
-            code: 'Enter',
-            keyCode: 13,
-            which: 13,
-            bubbles: true,
-          });
-          searchInput.dispatchEvent(event);
+        var clickText = this.textContent.trim();
+        var chatInput = document.getElementById('chat-input');
+        if (chatInput) {
+          chatInput.value = clickText;
+          chatInput.focus();
         }
       });
       link.style.cursor = 'pointer';
@@ -765,6 +757,7 @@
       sourcesDiv.appendChild(moreBtn);
     }
     botMsgDiv.appendChild(sourcesDiv);
+    makeMessageClickable(botMsgDiv);
     var container = document.getElementById('chat-messages');
     if (container) container.scrollTop = container.scrollHeight;
   }
