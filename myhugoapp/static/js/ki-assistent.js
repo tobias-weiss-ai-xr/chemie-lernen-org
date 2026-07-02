@@ -293,6 +293,7 @@
         var decoder = new TextDecoder();
         var result = {
           reply: '',
+          fallback: false,
           remaining: undefined,
           sessionId: undefined,
           messageCount: undefined,
@@ -313,6 +314,7 @@
                 container.scrollTop = container.scrollHeight;
               }
               if (data.done) {
+                result.fallback = data.fallback || false;
                 result.remaining = data.remaining;
                 result.sessionId = data.sessionId;
                 result.messageCount = data.messageCount;
@@ -524,13 +526,60 @@
       .then(function (apiResult) {
         hideTyping();
 
+        var matches, answer, container, lastMsg, contentDiv, remainingInfo;
+
         if (apiResult) {
           if (apiResult.remaining !== undefined) {
             updateSessionInfoDisplay(apiResult.remaining, apiResult.messageCount);
           }
+
+          // If API returned fallback/empty, use client-side KG search + thematic fallback
+          if (apiResult.fallback || !apiResult.reply) {
+            matches = findBestMatches(query);
+            answer = null;
+            if (matches.length > 0) {
+              answer = formatArticleResult(matches);
+            }
+            if (!answer) {
+              answer = formatNoResult(query);
+            }
+
+            container = document.getElementById('chat-messages');
+            lastMsg = container.lastElementChild;
+            if (lastMsg) {
+              contentDiv = lastMsg.querySelector('.message-content');
+              if (contentDiv) {
+                contentDiv.innerHTML = sanitizeAiHtml(answer || '');
+              }
+              remainingInfo = '';
+              if (apiResult.messageCount) {
+                remainingInfo =
+                  '<br><br><small style="color:#888;">Nachricht ' +
+                  apiResult.messageCount +
+                  ' von max. 50 pro Sitzung.';
+              }
+              if (apiResult.remaining !== undefined) {
+                remainingInfo =
+                  '<br><br><small style="color:#888;">Noch ' +
+                  apiResult.remaining +
+                  ' KI-Anfragen heute übrig.' +
+                  remainingInfo +
+                  '</small>';
+              }
+              if (remainingInfo) {
+                contentDiv = lastMsg.querySelector('.message-content');
+                if (contentDiv) contentDiv.innerHTML += remainingInfo;
+              }
+              makeMessageClickable(lastMsg);
+              addFollowUpButtons(lastMsg, getRandomSuggestions(4, query));
+              if (container) container.scrollTop = container.scrollHeight;
+            }
+            return;
+          }
+
           // Render source chips from RAG context
-          var container = document.getElementById('chat-messages');
-          var lastMsg = container.lastElementChild;
+          container = document.getElementById('chat-messages');
+          lastMsg = container.lastElementChild;
           if (lastMsg && apiResult.sources && apiResult.sources.length > 0) {
             renderSourceChips(apiResult.sources, lastMsg);
           }
@@ -545,8 +594,8 @@
         }
 
         // Fallback to KG search and thematic answers
-        var matches = findBestMatches(query);
-        var answer = null;
+        matches = findBestMatches(query);
+        answer = null;
 
         if (matches.length > 0) {
           answer = formatArticleResult(matches);
@@ -643,6 +692,25 @@
     if (!isUser) {
       makeMessageClickable(div);
     }
+  }
+
+  /**
+   * Make welcome message suggestion <li> items clickable.
+   * Copies the suggestion text (without surrounding quotes) to the chat input.
+   */
+  function makeSuggestionsClickable() {
+    var items = document.querySelectorAll('.suggestions li');
+    items.forEach(function (item) {
+      item.style.cursor = 'pointer';
+      item.addEventListener('click', function () {
+        var text = this.textContent.trim().replace(/^"|"$/g, '');
+        var chatInput = document.getElementById('chat-input');
+        if (chatInput) {
+          chatInput.value = text;
+          chatInput.focus();
+        }
+      });
+    });
   }
 
   function makeMessageClickable(messageDiv) {
@@ -779,6 +847,7 @@
 
   function init() {
     kgData = loadKgData();
+    makeSuggestionsClickable();
 
     initSession().then(function (_session) {
       var input = document.getElementById('chat-input');

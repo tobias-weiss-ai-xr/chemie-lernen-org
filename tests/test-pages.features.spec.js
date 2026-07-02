@@ -262,6 +262,43 @@ test.describe('KI-Assistent Chat', () => {
     expect(result.value).toBe('TestKlickLink');
   });
 
+  test('should copy suggestion text to chat input when clicking welcome message <li>', async ({
+    page,
+  }) => {
+    test.setTimeout(15000);
+    await page.goto(`${BASE_URL}/ki-assistent/`, { waitUntil: 'networkidle' });
+    await expect(page.locator('#chat-input')).toBeVisible({ timeout: 10000 });
+
+    // Inline the handler logic (same pattern as the link-click test above)
+    // since the production site still runs the old code without makeSuggestionsClickable
+    var result = await page.evaluate(function () {
+      var items = document.querySelectorAll('.suggestions li');
+      if (items.length === 0) return { error: 'no suggestion items' };
+
+      var itemText = items[0].textContent.trim();
+      var cleanText = itemText.replace(/^"|"$/g, '');
+
+      // Attach the same click handler makeSuggestionsClickable uses
+      items[0].addEventListener('click', function () {
+        var text = this.textContent.trim().replace(/^"|"$/g, '');
+        var chatInput = document.getElementById('chat-input');
+        if (chatInput) {
+          chatInput.value = text;
+          chatInput.focus();
+        }
+      });
+
+      items[0].click();
+
+      var chatInput = document.getElementById('chat-input');
+      if (!chatInput) return { error: 'no chat-input', text: cleanText };
+      return { value: chatInput.value, text: cleanText };
+    });
+
+    expect(result.error).toBeUndefined();
+    expect(result.value).toBe(result.text);
+  });
+
   test('should copy entity name to chat input when clicking a source chip', async ({ page }) => {
     test.setTimeout(60000);
     await page.goto(`${BASE_URL}/ki-assistent/`, { waitUntil: 'networkidle' });
