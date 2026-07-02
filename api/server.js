@@ -823,7 +823,7 @@ app.get('/api/kg-data', async (req, res) => {
     `
       : `
       MATCH (e:Entity)
-      WHERE (e.kategorie IS NULL OR e.kategorie NOT IN ['lernziel', 'lehrplan', 'didaktik'])
+      WHERE (e.kategorie IS NULL OR NOT (e.kategorie IN ['lernziel', 'lehrplan', 'didaktik']))
       OPTIONAL MATCH (e)-[r:RELATED_TO|ERFUELLT]-(related:Entity)
       OPTIONAL MATCH (e)-[c:BESTEHT_AUS]->(component:Entity)
       WHERE 1=1${whereClause}
