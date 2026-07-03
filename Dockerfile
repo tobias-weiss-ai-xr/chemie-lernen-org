@@ -26,7 +26,7 @@ COPY api ./api
 RUN echo "API dependencies installed"
 
 # ---- Stage 4: Production Nginx with Node.js ----
-FROM nginx:1.27-alpine
+FROM nginx:1.31-alpine
 RUN apk add --no-cache nodejs npm
 RUN rm -f /etc/nginx/conf.d/default.conf
 COPY --from=pagefind /site /usr/share/nginx/html
