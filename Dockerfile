@@ -17,14 +17,23 @@ COPY --from=hugo /src/public /site
 RUN npx pagefind --site /site && \
     echo "Pagefind indexing complete"
 
-# ---- Stage 3: Production Nginx ----
+# ---- Stage 3: Production Nginx + Node.js API ----
+FROM node:22-alpine AS api-builder
+WORKDIR /app
+COPY api/package*.json ./
+RUN npm ci --production
+COPY api ./api
+RUN echo "API dependencies installed"
+
+# ---- Stage 4: Production Nginx with Node.js ----
 FROM nginx:1.27-alpine
-# Remove default nginx config
+RUN apk add --no-cache nodejs npm
 RUN rm -f /etc/nginx/conf.d/default.conf
-# Copy built Hugo site
 COPY --from=pagefind /site /usr/share/nginx/html
-# Copy custom nginx config (API proxy to chat service)
 COPY myhugoapp/static/api-proxy.conf /etc/nginx/conf.d/api-proxy.conf
+COPY --from=api-builder /app /app
+COPY docker-entrypoint-api.sh /docker-entrypoint.d/99-api-server.sh
+RUN chmod +x /docker-entrypoint.d/99-api-server.sh
 LABEL org.opencontainers.image.source="https://github.com/tobias-weiss-ai-xr/chemie-lernen-org"
 LABEL org.opencontainers.image.description="chemie-lernen.org — interaktive Chemie-Lernplattform"
 LABEL org.opencontainers.image.licenses="MIT"

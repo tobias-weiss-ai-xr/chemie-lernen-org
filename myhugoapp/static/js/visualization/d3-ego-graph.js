@@ -326,6 +326,21 @@
 
       var g = svg.append('g');
 
+      var tooltip = d3
+        .select(container)
+        .append('div')
+        .style('position', 'absolute')
+        .style('display', 'none')
+        .style('padding', '6px 10px')
+        .style('background', 'var(--bg-card, #fff)')
+        .style('border', '1px solid var(--border-color, #ddd)')
+        .style('border-radius', '4px')
+        .style('font-size', '12px')
+        .style('color', 'var(--text-graph, #333)')
+        .style('pointer-events', 'none')
+        .style('z-index', '10')
+        .style('box-shadow', '0 2px 6px rgba(0,0,0,0.15)');
+
       // Links
       var link = g
         .selectAll('line')
@@ -403,10 +418,27 @@
             }
             return 0.2;
           });
+          var catLabel = d.isArticle ? 'Artikel' : d.isCenter ? 'Zentral' : labelize(d.category);
+          tooltip
+            .style('display', 'block')
+            .html(
+              '<strong>' +
+                esc(d.label) +
+                '</strong><br>' +
+                '<span style="color:' +
+                (d.isCenter ? '#9b59b6' : d.isArticle ? '#bbb' : colorize(d.category)) +
+                '">● </span>' +
+                catLabel
+            );
+          var rect = container.getBoundingClientRect();
+          tooltip
+            .style('left', ev.clientX - rect.left + 12 + 'px')
+            .style('top', ev.clientY - rect.top - 10 + 'px');
         })
         .on('mouseout', function (ev, d) {
           d3.select(this).attr('r', d.size);
           node.style('opacity', 0.85);
+          tooltip.style('display', 'none');
         });
 
       // Labels (entity nodes only)
@@ -432,7 +464,29 @@
         })
         .attr('dy', 3)
         .attr('fill', 'var(--text-graph, #555)')
-        .style('pointer-events', 'none');
+        .style('pointer-events', 'all')
+        .style('cursor', 'pointer')
+        .on('mouseover', function (ev, d) {
+          var catLabel = d.isCenter ? 'Zentral' : labelize(d.category);
+          tooltip
+            .style('display', 'block')
+            .html(
+              '<strong>' +
+                esc(d.label) +
+                '</strong><br>' +
+                '<span style="color:' +
+                (d.isCenter ? '#9b59b6' : colorize(d.category)) +
+                '">● </span>' +
+                catLabel
+            );
+          var rect = container.getBoundingClientRect();
+          tooltip
+            .style('left', ev.clientX - rect.left + 12 + 'px')
+            .style('top', ev.clientY - rect.top - 10 + 'px');
+        })
+        .on('mouseout', function () {
+          tooltip.style('display', 'none');
+        });
 
       // Force simulation
       var sim = d3

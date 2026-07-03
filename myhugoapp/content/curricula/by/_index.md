@@ -9,10 +9,6 @@ params:
   objectiveCount: 271
 outputs:
   - html
-menu:
-  main:
-    parent: 'lehrende'
-    weight: 110
 ---
 
 Der Chemie-Lehrplan für **Bayern** mit 32 Themen und 271 Lernzielen.

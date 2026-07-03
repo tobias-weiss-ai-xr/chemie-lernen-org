@@ -1,0 +1,49 @@
+---
+title: 'Sauerstoff'
+description: 'Fachbegriff „Sauerstoff“ (Stoff) — beschrieben in [object Object] Artikeln auf chemie-lernen.org und ist mit 32 weiteren Fachbegriffen verknüpft.'
+date: 2026-06-26
+slug: 'sauerstoff'
+category: 'stoff'
+articleCount: [object Object]
+relatedCount: 32
+relatedEntities:
+  - 'glycerin'
+  - 'die bindungen zwischen den atomen in wasserstoff, sauerstoff, was-'
+  - 'sauerstoff)'
+  - 'große oberflächen ermöglichen die schnelle aufnahme von kohlen- sauerstoff)'
+  - 'der aufbau der atmungsorgane, des herz-kreislauf-systems und sauerstoff'
+  - 'stoff'
+  - 'rpi metalle gegenüber sauerstoff. (chere) mithilfe geeigneter modelle. (e)'
+  - 'stoff- und energieumwandlung: fotosynthese 1 w) sauerstoffübertragungsreaktionen'
+  - 'aspirin'
+  - 'adrenalin'
+  - 'harnstoff'
+  - 'phthalsäure'
+  - 'benzoesäure'
+  - 'weinsäure'
+  - 'milchsäure'
+  - 'zitronensäure'
+  - 'essigsäure'
+  - 'aldehyde'
+  - 'carbonsäuren'
+  - 'ether'
+  - 'anhydride'
+  - 'epoxide'
+  - 'aminosäuren'
+  - 'oxidative phosphorylierung'
+  - 'photosynthese'
+  - 'contact-prozess'
+  - 'ostwald-verfahren'
+  - 'wacker-verfahren'
+  - 'korrosion'
+  - 'verbrennungsenthalpie'
+  - 'methanol'
+  - 'ethanol'
+components: []
+---
+
+## Verknüpfte Artikel
+
+- [undefined](/)
+- [undefined](/)
+- [undefined](/)
