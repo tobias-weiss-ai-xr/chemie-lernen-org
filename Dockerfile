@@ -11,14 +11,14 @@ RUN hugo --minify --baseURL https://chemie-lernen.org && \
     echo "Hugo build complete: $(ls -la public/ | wc -l) entries"
 
 # ---- Stage 2: Pagefind Search Index ----
-FROM node:22-alpine AS pagefind
+FROM node:26-alpine AS pagefind
 RUN npm install -g pagefind
 COPY --from=hugo /src/public /site
 RUN npx pagefind --site /site && \
     echo "Pagefind indexing complete"
 
 # ---- Stage 3: Production Nginx + Node.js API ----
-FROM node:22-alpine AS api-builder
+FROM node:26-alpine AS api-builder
 WORKDIR /app
 COPY api/package*.json ./
 RUN npm ci --production
