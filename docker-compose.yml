@@ -1,4 +1,7 @@
 services:
+  # ── Central Knowledge Graph (shared) ────────────────────────────────
+  # Contains ALL subsets: chemie, code-analysis, modulhandbuch, etc.
+  # The ~683k code-analysis nodes live here. DO NOT DETACH DELETE.
   chemie-neo4j:
     image: neo4j:5.26-community
     container_name: chemie-neo4j
@@ -27,6 +30,37 @@ services:
       retries: 5
       start_period: 60s
 
+  # ── Chemistry-only Knowledge Graph ─────────────────────────────────
+  # Dedicated Neo4j instance containing ONLY the chemie subset:
+  # Entity, Document, Tag, Content labels. No code-analysis pollution.
+  # Populated by scripts/migrate-chemie-neo4j.mjs (one-time migration
+  # from chemie-neo4j) and maintained by import-*.mjs scripts going forward.
+  chemie-kg:
+    image: neo4j:5.26-community
+    container_name: chemie-kg
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+    environment:
+      - NEO4J_AUTH=neo4j/chemie_knowledge_2024
+      - NEO4J_dbms_default__database=chemie
+      - NEO4J_dbms_security_auth__minimum__password__length=4
+      - NEO4J_dbms_memory_heap_initial__size=256m
+      - NEO4J_dbms_memory_heap_max__size=512m
+    volumes:
+      - chemie_kg_data:/data
+      - chemie_kg_logs:/logs
+    networks:
+      - traefik-web
+    healthcheck:
+      test: ["CMD-SHELL", "cypher-shell -u neo4j -p chemie_knowledge_2024 \"RETURN 1\" || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
   chemie-chat-api:
     image: registry.chemie-lernen.org/chemie-chat-api:latest
     container_name: chemie-chat-api
@@ -45,6 +79,10 @@ services:
       - LITELLM_URL=http://litellm-proxy:4000
       - LITELLM_MODEL=gemma-4
       - PORT=3001
+      - NEO4J_URI=bolt://chemie-kg:7687
+      - NEO4J_USER=neo4j
+      - NEO4J_PASSWORD=chemie_knowledge_2024
+      - NEO4J_DATABASE=chemie
     networks:
       - traefik-public
       - litellm-internal
@@ -93,3 +131,5 @@ networks:
 volumes:
   chemie_neo4j_data:
   chemie_neo4j_logs:
+  chemie_kg_data:
+  chemie_kg_logs:
