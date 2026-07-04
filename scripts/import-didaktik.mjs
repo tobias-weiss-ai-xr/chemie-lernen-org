@@ -1,37 +1,52 @@
 #!/usr/bin/env node
 /**
- * Import KMK didactic guidelines into Neo4j as :Entity {kategorie: 'didaktik'}.
+ * Import KMK didactic guidelines into Neo4j as typed labels.
  *
- * Reads myhugoapp/data/didaktik/didaktik.json and creates entities for each
- * KMK guideline. Links guidelines to matching curriculum topics (lehrplan entities)
- * by keyword overlap.
+ * Reads myhugoapp/data/didaktik/didaktik.json and creates:
+ *   - :DidacticGuideline nodes (5 KMK guidelines per REQ-LP-5)
+ *   - :GuidelineSection nodes with :HAS_SECTION relationships
+ *   - :RELATED_TO links to curriculum topics (keyword-based)
+ *
+ * Schema per openspec/specs/lehrplan-curriculum/spec.md REQ-LP-2/3:
+ *   :DidacticGuideline {title, source_type, institution, url}
+ *   :GuidelineSection {title, order}
+ *   -[:HAS_SECTION]-> from guideline to section
+ *   -[:RELATED_TO {weight, auto}]-> to curriculum topics
+ *
+ * Idempotent: uses MERGE only. Never DETACH DELETE.
+ * Exits 0 on partial success.
  *
  * Usage:
- *   node scripts/import-didaktik.mjs                  # real run
+ *   node scripts/import-didaktik.mjs
  *   NEO4J_PASSWORD=... node scripts/import-didaktik.mjs
- *   node scripts/import-didaktik.mjs --dry-run         # print only
- *
- * Safety: uses MERGE only, no DETACH DELETE.
+ *   node scripts/import-didaktik.mjs --dry-run
+ *   node scripts/import-didaktik.mjs --file path/to/didaktik.json
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import neo4j from 'neo4j-driver';
-
-// NOTE: All queries in this file use :Entity / kategorie labels — they are already
-// subset-restricted. The centralized subset filter (_neo4j-subset-filter.mjs) is
-// referenced by api/server.js for queries that cannot use label-based scoping.
+import { subsetWhere } from './_neo4j-subset-filter.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..');
-const DIDAKTIK_JSON = path.join(REPO_ROOT, 'myhugoapp/data/didaktik/didaktik.json');
-const NEO4J_URI = process.env.NEO4J_URI || 'bolt://localhost:7687';
+const DEFAULT_JSON = path.join(REPO_ROOT, 'myhugoapp/data/didaktik/didaktik.json');
+
+const NEO4J_URI = process.env.NEO4J_URI || 'bolt://chemie-neo4j:7687';
 const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
 const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || 'chemie_knowledge_2024';
+const NEO4J_DATABASE = process.env.NEO4J_DATABASE || 'chemie';
+
+const args = process.argv.slice(2);
+const DRY_RUN = args.includes('--dry-run');
+const fileArg = args.find((a) => a.startsWith('--file='));
+const DIDAKTIK_JSON = fileArg ? fileArg.slice('--file='.length) : DEFAULT_JSON;
+
+// ── Helpers ───────────────────────────────────────────────────────────
 
 /**
- * Slugify a name for entity.name storage.
+ * Slugify a title for use as a merge key.
  */
 function slugify(name) {
   return name
@@ -48,118 +63,252 @@ function slugify(name) {
 }
 
 /**
- * Extract salient keywords from a title for matching to curriculum topics.
+ * Load didaktik data from JSON file.
  */
-function extractKeywords(title) {
-  const stopwords = new Set([
-    'der', 'die', 'das', 'den', 'dem', 'des', 'ein', 'eine', 'einer', 'eines',
-    'im', 'am', 'zum', 'zur', 'für', 'auf', 'bei', 'mit', 'von', 'und', 'oder',
-    'als', 'in', 'an', 'aus', 'nach', 'vor', 'durch', 'über', 'unter', 'zwischen',
-    'nicht', 'sich', 'auch', 'ist', 'wird', 'werden', 'wurde', 'haben', 'hat',
-    'sowie', 'naturwissenschaften', 'naturwissenschaftlicher', 'naturwissenschaftliche',
-    'chemie', 'kompetenzen', 'kompetenzbereiche', 'unterricht',
-  ]);
-  // Remove parenthetical year info
-  const cleaned = title
-    .replace(/\(\d{4}\)|\(\d{4},\s*[^)]+\)/g, '')
-    .replace(/[–—\-/\s]+/g, ' ')
-    .replace(/[.,;:!?()]/g, '');
-  const words = cleaned
-    .toLowerCase()
-    .split(/\s+/)
-    .filter((w) => w.length > 3 && !stopwords.has(w))
-    .map((w) => w.replace(/[ä]/g, 'ae').replace(/[ö]/g, 'oe').replace(/[ü]/g, 'ue').replace(/[ß]/g, 'ss'));
-  return [...new Set(words)];
+function loadDidaktik(filepath) {
+  const raw = JSON.parse(fs.readFileSync(filepath, 'utf8'));
+  return raw.guidelines || [];
 }
 
-// Linking rules: for each guideline, specify curriculum topic keywords to match
+/**
+ * Recursively flatten sections into a flat list with order indices.
+ */
+function flattenSections(sections, baseOrder) {
+  const result = [];
+  for (let i = 0; i < sections.length; i++) {
+    const sec = sections[i];
+    const order = baseOrder !== undefined ? `${baseOrder}.${i + 1}` : `${i + 1}`;
+    result.push({ title: sec.title || '', content: sec.content || [], order });
+    if (sec.subsections && sec.subsections.length > 0) {
+      result.push(...flattenSections(sec.subsections, order));
+    }
+  }
+  return result;
+}
+
+// ── Phase 1: MERGE :DidacticGuideline + :GuidelineSection ────────────
+
+async function importGuidelines(session, guidelines) {
+  let guidelineCount = 0;
+  let sectionCount = 0;
+
+  for (const g of guidelines) {
+    const name = slugify(g.title);
+    const sections = g.sections || [];
+    const flatSections = flattenSections(sections);
+
+    // MERGE the guideline node with typed label
+    await session.run(
+      `MERGE (dg:DidacticGuideline {name: $name})
+       ON CREATE SET dg.title = $title,
+                   dg.source_type = $sourceType,
+                   dg.institution = $institution,
+                   dg.url = $url,
+                   dg.section_count = $sectionCount,
+                   dg.last_checked = $lastChecked
+       ON MATCH SET dg.title = $title,
+                   dg.source_type = $sourceType,
+                   dg.institution = $institution,
+                   dg.url = $url,
+                   dg.section_count = $sectionCount,
+                   dg.last_checked = $lastChecked
+       RETURN dg.name AS name`,
+      {
+        name,
+        title: g.title,
+        sourceType: g.source_type || 'KMK',
+        institution: g.institution || 'Kultusministerkonferenz (KMK)',
+        url: g.url || '',
+        sectionCount: flatSections.length,
+        lastChecked: g.last_checked || new Date().toISOString().slice(0, 10),
+      }
+    );
+    guidelineCount++;
+    console.log(`  MERGE :DidacticGuideline {name:'${name}'} (${g.title.slice(0, 60)}...)`);
+
+    // MERGE sections with :HAS_SECTION relationship
+    for (const sec of flatSections) {
+      const secName = slugify(`${g.title}--${sec.order}--${sec.title}`);
+      await session.run(
+        `MATCH (dg:DidacticGuideline {name: $gName})
+         MERGE (gs:GuidelineSection {name: $secName})
+         ON CREATE SET gs.title = $secTitle,
+                     gs.order = $order,
+                     gs.guideline = $gName
+         ON MATCH SET gs.title = $secTitle,
+                     gs.order = $order,
+                     gs.guideline = $gName
+         WITH dg, gs
+         MERGE (dg)-[:HAS_SECTION]->(gs)
+         RETURN gs.name AS name`,
+        {
+          gName: name,
+          secName,
+          secTitle: sec.title,
+          order: sec.order,
+        }
+      );
+      sectionCount++;
+    }
+    if (flatSections.length > 0) {
+      console.log(`    → ${flatSections.length} :GuidelineSection nodes`);
+    }
+  }
+
+  return { guidelineCount, sectionCount };
+}
+
+// ── Phase 2: Link guidelines to curriculum topics ─────────────────────
+
 const LINKING_RULES = [
   {
     name: 'bildungsstandards-im-fach-chemie-fuer-den-mittleren-schulabschluss-2004',
-    // MSA (Sek I) standards → match broad topics
-    keywords: ['chemische reaktion', 'stoff', 'element', 'salz', 'ion', 'säure', 'base', 'metall', 'chemie'],
-    curriculumFilter: null,
+    keywords: [
+      'chemische reaktion',
+      'stoff',
+      'element',
+      'salz',
+      'ion',
+      'säure',
+      'base',
+      'metall',
+      'chemie',
+    ],
   },
   {
     name: 'weiterentwickelte-bildungsstandards-chemie-msa-2024',
-    keywords: ['chemische reaktion', 'stoff', 'element', 'salz', 'ion', 'säure', 'base', 'metall', 'chemie'],
-    curriculumFilter: null,
+    keywords: [
+      'chemische reaktion',
+      'stoff',
+      'element',
+      'salz',
+      'ion',
+      'säure',
+      'base',
+      'metall',
+      'chemie',
+    ],
   },
   {
     name: 'bildungsstandards-im-fach-chemie-fuer-die-allgemeine-hochschulreife-2020',
-    // AHR (Sek II) → match upper-level topics
-    keywords: ['gleichgewicht', 'säure', 'base', 'elektro', 'redox', 'organisch', 'kunststoff', 'aromaten', 'chemie'],
-    curriculumFilter: null,
+    keywords: [
+      'gleichgewicht',
+      'säure',
+      'base',
+      'elektro',
+      'redox',
+      'organisch',
+      'kunststoff',
+      'aromaten',
+      'chemie',
+    ],
   },
   {
     name: 'kerncurriculum-chemie-fuer-die-gymnasiale-oberstufe-deutsche-schulen-im-ausland',
     keywords: ['gleichgewicht', 'säure', 'base', 'elektro', 'redox', 'organisch', 'chemie'],
-    curriculumFilter: null,
   },
   {
     name: 'implementation-der-weiterentwickelten-bildungsstandards-naturwissenschaften-2024',
-    // Implementation brochure → links broadly
-    keywords: ['chemische reaktion', 'stoff', 'element', 'säure', 'base', 'gleichgewicht', 'redox', 'metall', 'salz', 'chemie'],
-    curriculumFilter: null,
+    keywords: [
+      'chemische reaktion',
+      'stoff',
+      'element',
+      'säure',
+      'base',
+      'gleichgewicht',
+      'redox',
+      'metall',
+      'salz',
+      'chemie',
+    ],
   },
 ];
 
-// ── Load didaktik data ────────────────────────────────────────────────
-function loadDidaktik() {
-  const raw = JSON.parse(fs.readFileSync(DIDAKTIK_JSON, 'utf8'));
-  return raw.guidelines || [];
+async function linkToCurriculumTopics(session) {
+  let linkCount = 0;
+
+  for (const rule of LINKING_RULES) {
+    for (const keyword of rule.keywords) {
+      // Primary keyword search (hyphenated)
+      const result = await session.run(
+        `MATCH (t:Entity)
+         WHERE t.kategorie = 'lehrplan' AND toLower(t.name) CONTAINS $keyword
+         RETURN t.name AS name LIMIT 10`,
+        { keyword }
+      );
+      let topics = result.records.map((r) => r.get('name'));
+
+      // Also try spaced variant
+      const keywordSpaced = keyword.replace(/-/g, ' ');
+      if (keywordSpaced !== keyword) {
+        const result2 = await session.run(
+          `MATCH (t:Entity)
+           WHERE t.kategorie = 'lehrplan' AND toLower(t.name) CONTAINS $keyword
+           RETURN t.name AS name LIMIT 10`,
+          { keyword: keywordSpaced }
+        );
+        topics = [...topics, ...result2.records.map((r) => r.get('name'))];
+      }
+
+      const uniqueTopics = [...new Set(topics)];
+      for (const topic of uniqueTopics) {
+        await session.run(
+          `MATCH (dg:DidacticGuideline {name: $guideline})
+           MATCH (t:Entity {name: $topic})
+           MERGE (dg)-[:RELATED_TO {weight: 1, auto: true}]->(t)
+           MERGE (t)-[:RELATED_TO {weight: 1, auto: true}]->(dg)`,
+          { guideline: rule.name, topic }
+        );
+        linkCount++;
+        console.log(`  LINK: ${rule.name} <-> ${topic} (via '${keyword}')`);
+      }
+    }
+  }
+
+  return linkCount;
 }
 
-// ── Cypher queries ────────────────────────────────────────────────────
-const MERGE_GUIDELINE = `
-  MERGE (e:Entity {name: $name})
-  SET e.kategorie = 'didaktik',
-      e.didaktik_type = $didaktikType,
-      e.didaktik_source = $didaktikSource,
-      e.didaktik_url = $didaktikUrl,
-      e.didaktik_section_count = $sectionCount
-  RETURN e.name AS name
-`;
-
-const MATCH_LEHRPLAN_BY_KEYWORD = `
-  MATCH (t:Entity {kategorie: 'lehrplan'})
-  WHERE toLower(t.name) CONTAINS $keyword
-  RETURN t.name AS name
-  LIMIT 10
-`;
-
-const MERGE_RELATED = `
-  MATCH (a:Entity {name: $guideline, kategorie: 'didaktik'})
-  MATCH (b:Entity {name: $topic, kategorie: 'lehrplan'})
-  MERGE (a)-[:RELATED_TO {weight: $weight, auto: true}]->(b)
-  MERGE (b)-[:RELATED_TO {weight: $weight, auto: true}]->(a)
-  RETURN a.name, b.name
-`;
+// ── Dry run ──────────────────────────────────────────────────────────
 
 function generateDryRun(guidelines) {
   console.log('=== DRY RUN ===\n');
-  const statements = [];
+  let totalSections = 0;
   for (const g of guidelines) {
     const name = slugify(g.title);
-    const keywords = extractKeywords(g.title);
-    console.log(`MERGE :Entity {kategorie:'didaktik', name:'${name}'}`);
-    console.log(`  Title: ${g.title}`);
-    console.log(`  Type: ${g.source_type}, Institution: ${g.institution}`);
-    console.log(`  Sections: ${g.sections.length}`);
-    console.log(`  Keywords: ${keywords.join(', ')}`);
+    const flatSections = flattenSections(g.sections || []);
+    totalSections += flatSections.length;
+
+    console.log(`MERGE :DidacticGuideline {name:'${name}'}`);
+    console.log(`  title: ${g.title}`);
+    console.log(`  source_type: ${g.source_type}, institution: ${g.institution}`);
+    console.log(`  sections: ${flatSections.length}`);
+    for (const sec of flatSections.slice(0, 3)) {
+      console.log(`    [${sec.order}] ${sec.title}`);
+    }
+    if (flatSections.length > 3) {
+      console.log(`    ... and ${flatSections.length - 3} more`);
+    }
     console.log();
-    statements.push({ name, type: 'didaktik' });
   }
-  console.log(`Total: ${statements.length} didaktik entities to MERGE\n`);
-  return statements;
+
+  console.log(`Total: ${guidelines.length} :DidacticGuideline + ${totalSections} :GuidelineSection nodes\n`);
+  console.log(`Linking rules: ${LINKING_RULES.length} guideline → curriculum topic keyword mappings`);
 }
 
-async function main() {
-  const isDryRun = process.argv.includes('--dry-run');
-  const guidelines = loadDidaktik();
-  console.log(`Loaded ${guidelines.length} didaktik guidelines from ${DIDAKTIK_JSON}\n`);
+// ── Main ──────────────────────────────────────────────────────────────
 
-  if (isDryRun) {
+async function main() {
+  console.log('=== import-didaktik.mjs ===');
+  console.log(`NEO4J_URI: ${NEO4J_URI}`);
+  console.log(`NEO4J_DATABASE: ${NEO4J_DATABASE}`);
+  console.log(`DIDAKTIK_JSON: ${DIDAKTIK_JSON}`);
+  console.log(`DRY_RUN: ${DRY_RUN}`);
+  console.log();
+
+  const guidelines = loadDidaktik(DIDAKTIK_JSON);
+  console.log(`Loaded ${guidelines.length} didaktik guidelines\n`);
+
+  if (DRY_RUN) {
     generateDryRun(guidelines);
     return;
   }
@@ -168,62 +317,37 @@ async function main() {
     connectionTimeout: 30000,
     maxConnectionLifetime: 300000,
   });
-  const session = driver.session();
-  let createdCount = 0;
 
   try {
-    // Phase 1: MERGE guideline entities
-    console.log('=== Phase 1: Import guidelines ===');
-    for (const g of guidelines) {
-      const name = slugify(g.title);
-      const params = {
-        name,
-        didaktikType: g.source_type || 'KMK',
-        didaktikSource: g.institution || 'KMK',
-        didaktikUrl: g.url || '',
-        sectionCount: g.sections ? g.sections.length : 0,
-      };
-      await session.run(MERGE_GUIDELINE, params);
-      console.log(`  MERGE: ${name} (${g.title.slice(0, 60)}...)`);
-      createdCount++;
+    // Phase 1: Import guidelines + sections
+    console.log('=== Phase 1: Import :DidacticGuideline + :GuidelineSection ===');
+    const session = driver.session({ database: NEO4J_DATABASE });
+    try {
+      const { guidelineCount, sectionCount } = await importGuidelines(session, guidelines);
+      console.log(`  ${guidelineCount} guideline(s), ${sectionCount} section(s)\n`);
+    } finally {
+      await session.close();
     }
-    console.log(`  ${createdCount} guideline(s) created\n`);
 
     // Phase 2: Link to curriculum topics
     console.log('=== Phase 2: Link to curriculum topics ===');
-    let linkCount = 0;
-    for (const rule of LINKING_RULES) {
-      for (const keyword of rule.keywords) {
-        const result = await session.run(MATCH_LEHRPLAN_BY_KEYWORD, { keyword });
-        const topics = result.records.map((r) => r.get('name'));
-        if (topics.length === 0) continue;
-        // Try normalizing keyword too: replace hyphens with spaces
-        const keywordSpaced = keyword.replace(/-/g, ' ');
-        let result2 = [];
-        if (keywordSpaced !== keyword) {
-          result2 = (await session.run(MATCH_LEHRPLAN_BY_KEYWORD, { keyword: keywordSpaced })).records.map((r) => r.get('name'));
-        }
-        const allTopics = [...new Set([...topics, ...result2])];
-        for (const topic of allTopics) {
-          await session.run(MERGE_RELATED, {
-            guideline: rule.name,
-            topic,
-            weight: 1,
-          });
-          linkCount++;
-          console.log(`  LINK: ${rule.name} <-> ${topic} (via keyword '${keyword}')`);
-        }
-      }
+    const session2 = driver.session({ database: NEO4J_DATABASE });
+    try {
+      const linkCount = await linkToCurriculumTopics(session2);
+      console.log(`  ${linkCount} link(s) created\n`);
+    } finally {
+      await session2.close();
     }
-    console.log(`  ${linkCount} link(s) created\n`);
+
     console.log('Done.');
+  } catch (err) {
+    console.error('Import error (continuing to exit 0):', err.message);
   } finally {
-    await session.close();
     await driver.close();
   }
 }
 
 main().catch((err) => {
-  console.error('Import failed:', err);
+  console.error('Fatal:', err);
   process.exit(1);
 });

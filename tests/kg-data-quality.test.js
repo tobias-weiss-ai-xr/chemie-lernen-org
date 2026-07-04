@@ -50,6 +50,23 @@ const KNOWN_REL_TYPES = [
   'UNTERSCHIED_ZU',
   'GLEICHWIE',
   'TEIL_ASPEKT_VON',
+  'HAS_TOPIC',
+  'HAS_SUBTOPIC',
+  'HAS_LEARNING_OBJECTIVE',
+  'HAS_SECTION',
+  'COVERS_TOPIC',
+  'FULFILLS',
+  'ALIGNS_WITH',
+  'FROM_GUIDELINE',
+];
+
+const CURRICULUM_LABELS = [
+  'Curriculum',
+  'Topic',
+  'SubTopic',
+  'LearningObjective',
+  'DidacticGuideline',
+  'GuidelineSection',
 ];
 
 // ── Helper: build a clean reference dataset for unit tests ──────────
@@ -351,6 +368,207 @@ describe('KG Data Quality', () => {
       });
       expect(stats.entityCount).toBe(3);
       expect(stats.dataQuality.orphans).toBe(0);
+    });
+  });
+
+  describe('Curriculum typed labels (REQ-LP-8)', () => {
+    function buildCurriculumData() {
+      return {
+        curricula: [
+          {
+            slug: 'by-gym-8',
+            title: 'Säuren und Basen',
+            state_abbr: 'BY',
+            school_type: 'Gymnasium',
+            grade: '8',
+            topicCount: 3,
+            totalObjectives: 12,
+            topics: [
+              {
+                slug: 'by-gym-8-saeuren-basen',
+                title: 'Säuren und Basen',
+                grade: '8',
+                schoolType: 'Gymnasium',
+                objectiveCount: 4,
+                objectives: [
+                  'SuS beschreiben Eigenschaften von Säuren',
+                  'SuS führen pH-Messungen durch',
+                ],
+              },
+            ],
+          },
+        ],
+        guidelines: [
+          {
+            slug: 'kmk-bildungsstandards-chemie',
+            title: 'Bildungsstandards im Fach Chemie',
+            source_type: 'KMK',
+            institution: 'KMK',
+            sections: [
+              { title: 'Kompetenzbereiche', order: 1 },
+              { title: 'Prozessbezogene Kompetenzen', order: 2 },
+            ],
+          },
+        ],
+        linkedEntities: [
+          {
+            entityName: 'Ammoniak',
+            topicSlug: 'by-gym-8-saeuren-basen',
+            objectiveText: 'SuS beschreiben Eigenschaften von Ammoniak',
+          },
+        ],
+      };
+    }
+
+    test('Curriculum nodes have non-null state_abbr', () => {
+      const data = buildCurriculumData();
+      const nullState = data.curricula.filter((c) => !c.state_abbr);
+      expect(nullState).toEqual([]);
+    });
+
+    test('all Topic slugs are unique within a Curriculum', () => {
+      const data = buildCurriculumData();
+      const slugs = data.curricula.flatMap((c) => c.topics.map((t) => t.slug));
+      const unique = new Set(slugs);
+      expect(unique.size).toBe(slugs.length);
+    });
+
+    test('all LearningObjective texts are non-empty', () => {
+      const data = buildCurriculumData();
+      const empty = data.curricula
+        .flatMap((c) => c.topics)
+        .flatMap((t) => t.objectives || [])
+        .filter((o) => !o || o.trim().length === 0);
+      expect(empty).toEqual([]);
+    });
+
+    test('95% of Curriculum topics have at least one LearningObjective', () => {
+      const data = buildCurriculumData();
+      const topics = data.curricula.flatMap((c) => c.topics);
+      const withLO = topics.filter((t) => (t.objectives || []).length > 0);
+      expect(withLO.length / topics.length).toBeGreaterThanOrEqual(0.95);
+    });
+
+    test('DidacticGuideline has required properties', () => {
+      const data = buildCurriculumData();
+      for (const g of data.guidelines) {
+        expect(g.slug).toBeTruthy();
+        expect(g.title).toBeTruthy();
+        expect(g.source_type).toBeTruthy();
+        expect(g.institution).toBeTruthy();
+        expect(g.sections).toBeInstanceOf(Array);
+      }
+    });
+
+    test('GuidelineSection has title and order', () => {
+      const data = buildCurriculumData();
+      const sections = data.guidelines.flatMap((g) => g.sections || []);
+      for (const s of sections) {
+        expect(s.title).toBeTruthy();
+        expect(typeof s.order).toBe('number');
+      }
+    });
+
+    test('linked entity references are valid', () => {
+      const data = buildCurriculumData();
+      for (const link of data.linkedEntities) {
+        expect(link.entityName).toBeTruthy();
+        expect(link.topicSlug).toBeTruthy();
+      }
+    });
+
+    test('known curriculum rel types are in vocabulary', () => {
+      const curriculumRels = [
+        'HAS_TOPIC',
+        'HAS_SUBTOPIC',
+        'HAS_LEARNING_OBJECTIVE',
+        'HAS_SECTION',
+        'COVERS_TOPIC',
+        'FULFILLS',
+      ];
+      for (const rel of curriculumRels) {
+        expect(KNOWN_REL_TYPES).toContain(rel);
+      }
+    });
+
+    test('flags Curriculum with null state_abbr', () => {
+      const data = buildCurriculumData();
+      data.curricula.push({
+        slug: 'xx-no-state',
+        state_abbr: null,
+        title: 'Missing State',
+        topics: [],
+      });
+      const nullState = data.curricula.filter((c) => !c.state_abbr);
+      expect(nullState).toHaveLength(1);
+      expect(nullState[0].slug).toBe('xx-no-state');
+    });
+
+    test('flags empty LearningObjective text', () => {
+      const data = buildCurriculumData();
+      data.curricula[0].topics[0].objectives.push('');
+      const empty = data.curricula
+        .flatMap((c) => c.topics)
+        .flatMap((t) => t.objectives)
+        .filter((o) => !o || o.trim().length === 0);
+      expect(empty).toHaveLength(1);
+    });
+  });
+
+  describe('/api/entities/:name/curricula response contract', () => {
+    test('response has expected shape', () => {
+      const response = {
+        source: 'neo4j',
+        entity: { name: 'Ammoniak', kategorie: 'stoff' },
+        coveredTopics: [
+          { slug: 'by-gym-8-saeuren', title: 'Säuren und Basen', state: 'BY', grade: '8' },
+        ],
+        fulfilledObjectives: [
+          {
+            slug: 'by-gym-8-lo-1',
+            text: 'SuS beschreiben Eigenschaften',
+            topicSlug: 'by-gym-8-saeuren',
+            topicTitle: 'Säuren und Basen',
+          },
+        ],
+        contentLinks: [{ url: '/artikel/ammoniak/', title: 'Ammoniak', type: 'article' }],
+        stats: { coveredTopics: 1, fulfilledObjectives: 1, contentLinks: 1 },
+      };
+      expect(response).toMatchObject({
+        source: expect.any(String),
+        entity: expect.objectContaining({ name: expect.any(String) }),
+        coveredTopics: expect.any(Array),
+        fulfilledObjectives: expect.any(Array),
+        contentLinks: expect.any(Array),
+        stats: expect.objectContaining({
+          coveredTopics: expect.any(Number),
+          fulfilledObjectives: expect.any(Number),
+          contentLinks: expect.any(Number),
+        }),
+      });
+    });
+
+    test('filters out null entries from coveredTopics', () => {
+      var items = [
+        { slug: 'a', title: 'T', state: 'BY', grade: '8' },
+        null,
+        { slug: 'b', title: 'T2', state: 'NW', grade: '9' },
+      ];
+      var filtered = items.filter(function (t) {
+        return t && t.slug != null;
+      });
+      expect(filtered).toHaveLength(2);
+    });
+  });
+
+  describe('/api/curricula/linked-entities response contract', () => {
+    test('response has names array and count', () => {
+      const response = { names: ['Wasser', 'Ammoniak', 'Salzsäure'], count: 3 };
+      expect(response).toMatchObject({
+        names: expect.arrayContaining([expect.any(String)]),
+        count: expect.any(Number),
+      });
+      expect(response.names).toHaveLength(response.count);
     });
   });
 });

@@ -46,6 +46,25 @@
 .entity-view-btn:hover { border-color: #667eea; color: #667eea; }
 .entity-view-btn.active { background: #667eea; color: #fff; border-color: #667eea; }
 
+.entity-lehrplan-toggle {
+  padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.9rem;
+  border: 1.5px solid var(--border-color, #ddd); cursor: pointer;
+  background: var(--bg-card, #fff); color: var(--text-muted, #666);
+  transition: all 0.2s; font-weight: 500;
+}
+.entity-lehrplan-toggle:hover { border-color: #9b59b6; color: #9b59b6; }
+.entity-lehrplan-toggle.active { background: #9b59b6; color: #fff; border-color: #9b59b6; }
+.entity-lehrplan-toggle .loading-dot {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  background: #9b59b6; animation: lpPulse 0.8s infinite;
+}
+@keyframes lpPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+.entity-card.lehrplan-linked { box-shadow: 0 0 0 2px #9b59b6; }
+.entity-card.lehrplan-dimmed { opacity: 0.3; }
+.entity-tagcloud-item.lehrplan-linked { outline: 2px solid #9b59b6; outline-offset: 1px; }
+.entity-tagcloud-item.lehrplan-dimmed { opacity: 0.25; }
+
 .entity-filters {
   display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem;
 }
@@ -254,6 +273,8 @@
 .dark .entity-filter-btn,
 [data-theme="dark"] .entity-view-btn,
 .dark .entity-view-btn,
+[data-theme="dark"] .entity-lehrplan-toggle,
+.dark .entity-lehrplan-toggle,
 [data-theme="dark"] .entity-sort-select,
 .dark .entity-sort-select,
 [data-theme="dark"] .entity-page-btn,

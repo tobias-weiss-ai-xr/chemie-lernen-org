@@ -33,28 +33,28 @@ All Cypher queries **must** scope to the chemie subset via label checks. Use `su
 
 ## Node labels
 
-| Label                | Purpose                                                                        | Key properties                                                                                                                                                                         |
-| -------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `:Entity`            | Core chemistry concept (Wasser, Kohlenstoff, Elektrolyse …)                    | `name` (PK, lowercased), `kategorie`, `description`, `symbol`, `ordnungszahl`, `state`, `grade`, `school_type`, `objective_count`, `articleCount`, `components[]`, `relatedEntities[]` |
-| `:Document`          | Article or page that mentions entities                                         | `title`, `url`, `type` (`page`/`article`), `date`, `entities[]`                                                                                                                        |
-| `:Tag`               | Tag attached to entities (KMK standard, source type)                           | `name`, `kind` (`kmk` / `quelle` / `topic`)                                                                                                                                            |
-| `:Content`           | Site content node (article, calculator, exercise)                              | `url`, `title`, `type` (`article`/`calculator`)                                                                                                                                        |
-| `:Article`           | Content sub-label for article type nodes                                       | (same properties as parent :Content)                                                                                                                                                   |
-| `:Calculator`        | Content sub-label for calculator type nodes                                    | (same properties as parent :Content)                                                                                                                                                   |
-| `:Exercise`          | Content sub-label for exercise type nodes (future)                             | (same properties as parent :Content)                                                                                                                                                   |
-| `:Category`          | Kategorie proxy node (populated by `backfill-orphan-rels.mjs`)                 | `name`                                                                                                                                                                                 |
-| `:Curriculum`        | _Label not yet applied — currently stored as `:Entity {kategorie:'lehrplan'}`_ | `name`, `state`, `grade`, `school_type`, `topicCount`, `objectiveCount`                                                                                                                |
-| `:Topic`             | _Label not yet applied — currently stored as `:Entity {kategorie:'lehrplan'}`_ | `name`, `state`, `grade`, `school_type`, `topic`, `curriculum_name`                                                                                                                    |
-| `:SubTopic`          | _(planned label — not yet applied)_                                            | `name`, `topic`, `state`, `grade`, `school_type`                                                                                                                                       |
-| `:LearningObjective` | _Label not yet applied — currently stored as `:Entity {kategorie:'lernziel'}`_ | `name`, `state`, `grade`, `school_type`, `keywords[]`                                                                                                                                  |
-| `:DidacticGuideline` | _Label not yet applied — currently stored as `:Entity {kategorie:'didaktik'}`_ | `name`, `title`, `year`, `url`                                                                                                                                                         |
-| `:GuidelineSection`  | _(planned label)_                                                              | `name`, `title`, `guideline_name`                                                                                                                                                      |
-| `:University`        | University institution (active)                                                | `short_code` (PK), `name`, `country`, `city`, `website`                                                                                                                                |
-| `:UniversityModule`  | University module/course (active)                                              | `module_code`, `university` (composite PK), `module_name`, `ects`, `language`, `level`, `degree`, `url`, `learning_outcomes[]`, `content[]`, `examination`, `last_checked`             |
-| `:Degree`            | Degree program (active)                                                        | `name`, `university`, `level`                                                                                                                                                          |
-| `:ModuleOffering`    | Semester offering of a module (active)                                         | `module_code`, `university`, `semester`, `year`                                                                                                                                        |
-| `:Lecturer`          | Module lecturer (active)                                                       | `name`, `university`, `title`, `email`, `orcid`                                                                                                                                        |
-| `:ECTS`              | ECTS credit record (active)                                                    | `module_code`, `university`, `credits`, `workload_hours`                                                                                                                               |
+| Label                | Purpose                                                        | Key properties                                                                                                                                                                         |
+| -------------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `:Entity`            | Core chemistry concept (Wasser, Kohlenstoff, Elektrolyse …)    | `name` (PK, lowercased), `kategorie`, `description`, `symbol`, `ordnungszahl`, `state`, `grade`, `school_type`, `objective_count`, `articleCount`, `components[]`, `relatedEntities[]` |
+| `:Document`          | Article or page that mentions entities                         | `title`, `url`, `type` (`page`/`article`), `date`, `entities[]`                                                                                                                        |
+| `:Tag`               | Tag attached to entities (KMK standard, source type)           | `name`, `kind` (`kmk` / `quelle` / `topic`)                                                                                                                                            |
+| `:Content`           | Site content node (article, calculator, exercise)              | `url`, `title`, `type` (`article`/`calculator`)                                                                                                                                        |
+| `:Article`           | Content sub-label for article type nodes                       | (same properties as parent :Content)                                                                                                                                                   |
+| `:Calculator`        | Content sub-label for calculator type nodes                    | (same properties as parent :Content)                                                                                                                                                   |
+| `:Exercise`          | Content sub-label for exercise type nodes (future)             | (same properties as parent :Content)                                                                                                                                                   |
+| `:Category`          | Kategorie proxy node (populated by `backfill-orphan-rels.mjs`) | `name`                                                                                                                                                                                 |
+| `:Curriculum`        | One per state + school_type combination                        | `slug` (PK), `state_abbr`, `state`, `school_type`                                                                                                                                      |
+| `:Topic`             | A Lernbereich / topic within a curriculum                      | `slug` (PK), `title`, `grade`, `curriculum`                                                                                                                                            |
+| `:SubTopic`          | A sub-topic within a topic                                     | `slug` (PK), `title`, `parent_topic`                                                                                                                                                   |
+| `:LearningObjective` | A learning objective (Kompetenzerwartung)                      | `slug` (PK), `text`, `parent_topic`                                                                                                                                                    |
+| `:DidacticGuideline` | A KMK standard or didactic guideline                           | `name` (PK), `title`, `source_type`, `institution`, `url`, `section_count`, `last_checked`                                                                                             |
+| `:GuidelineSection`  | A section within a didactic guideline                          | `name` (PK), `title`, `order`, `guideline`                                                                                                                                             |
+| `:University`        | University institution (active)                                | `short_code` (PK), `name`, `country`, `city`, `website`                                                                                                                                |
+| `:UniversityModule`  | University module/course (active)                              | `module_code`, `university` (composite PK), `module_name`, `ects`, `language`, `level`, `degree`, `url`, `learning_outcomes[]`, `content[]`, `examination`, `last_checked`             |
+| `:Degree`            | Degree program (active)                                        | `name`, `university`, `level`                                                                                                                                                          |
+| `:ModuleOffering`    | Semester offering of a module (active)                         | `module_code`, `university`, `semester`, `year`                                                                                                                                        |
+| `:Lecturer`          | Module lecturer (active)                                       | `name`, `university`, `title`, `email`, `orcid`                                                                                                                                        |
+| `:ECTS`              | ECTS credit record (active)                                    | `module_code`, `university`, `credits`, `workload_hours`                                                                                                                               |
 
 ## Relationship types
 
@@ -85,20 +85,27 @@ All Cypher queries **must** scope to the chemie subset via label checks. Use `su
 
 ### Written by curriculum importers
 
-> All curriculum nodes carry `:Entity` with `kategorie: 'lehrplan'` (topics) or `kategorie: 'lernziel'` (objectives).
-> Aspirational typed labels (`:Curriculum`, `:Topic`, `:SubTopic`, `:LearningObjective`) are
-> in `CHEMIE_LABELS` but not yet applied. Queries scope by `kategorie` instead.
+> Typed labels (`:Curriculum`, `:Topic`, `:SubTopic`, `:LearningObjective`,
+> `:DidacticGuideline`, `:GuidelineSection`) are now applied by
+> `import-curricula.mjs` and `import-didaktik.mjs`. Old `:Entity {kategorie: …}`
+> nodes from prior imports may still exist but are superseded.
 
-| Type            | From      | To         | Source script                                                     |
-| --------------- | --------- | ---------- | ----------------------------------------------------------------- |
-| `:TEIL_VON`     | `:Entity` | `:Entity`  | `import-curricula.mjs` — lernziel → lehrplan                      |
-| `:RELATED_TO`   | `:Entity` | `:Entity`  | `import-curricula.mjs`, `import-didaktik.mjs` — shared-name links |
-| `:COVERS_TOPIC` | `:Entity` | `:Entity`  | `link-entities-to-curricula.mjs` — entity → lehrplan              |
-| `:FULFILLS`     | `:Entity` | `:Entity`  | `link-entities-to-curricula.mjs` — entity → lernziel              |
-| `:MENTIONS`     | `:Entity` | `:Content` | `import-content-nodes.mjs` — topic → site content                 |
+| Type                      | From                            | To                   | Source script                                              |
+| ------------------------- | ------------------------------- | -------------------- | ---------------------------------------------------------- |
+| `:HAS_TOPIC`              | `:Curriculum`                   | `:Topic`             | `import-curricula.mjs`                                     |
+| `:HAS_SUBTOPIC`           | `:Topic`                        | `:SubTopic`          | `import-curricula.mjs`                                     |
+| `:HAS_LEARNING_OBJECTIVE` | `:Topic`                        | `:LearningObjective` | `import-curricula.mjs`                                     |
+| `:HAS_SECTION`            | `:DidacticGuideline`            | `:GuidelineSection`  | `import-didaktik.mjs`                                      |
+| `:RELATED_TO`             | `:Topic` / `:DidacticGuideline` | `:Entity`            | `import-curricula.mjs`, `import-didaktik.mjs` — auto-links |
 
-> The didaktik import (`import-didaktik.mjs`) links didaktik entities to lehrplan entities via
-> `:RELATED_TO`. No separate `:FULFILLS_DIDACTIC` or `:HAS_SECTION` relationship exists yet.
+### Written by `scripts/link-entities-to-curricula.mjs`
+
+> Uses typed labels (`:Topic`, `:LearningObjective`) for relationship targets.
+
+| Type            | From      | To                   | Direction                               |
+| --------------- | --------- | -------------------- | --------------------------------------- |
+| `:COVERS_TOPIC` | `:Entity` | `:Topic`             | entity → curriculum topic it covers     |
+| `:FULFILLS`     | `:Entity` | `:LearningObjective` | entity → learning objective it fulfills |
 
 ### Aspirational (15-type catalog, materialized by `scripts/kg-enrich-relations.mjs`)
 
@@ -158,14 +165,20 @@ content/**/*.md              data/curricula/*.json     data/didaktik.json     da
    ↓                                ↓                        ↓                        ↓
 scripts/knowledge-graph.mjs   scripts/import-           scripts/import-        scripts/import-
 (article → :Document,         curricula.mjs             didaktik.mjs           modulhandbuch.mjs
- :Entity, :Tag)               (:Entity:kategorie=       (:Entity:kategorie=    (:University,
-                               'lehrplan', 'lernziel')   'didaktik')            :UniversityModule, :ECTS)
+ :Entity, :Tag)               (:Curriculum, :Topic,     (:DidacticGuideline,    (:University,
+                               :SubTopic,                :GuidelineSection)      :UniversityModule, :ECTS)
+                               :LearningObjective)
    ↓                                ↓                        ↓                        ↓
    └──────────────────────────────────┬───────────────────────────────────────────────┘
                                        ↓
                            ┌────────── Neo4j ──────────┐
                            │ (:Entity, :Document, :Tag, │
                            │  :Content, :Category,      │
+                           │  :Curriculum, :Topic,      │
+                           │  :SubTopic,                │
+                           │  :LearningObjective,      │
+                           │  :DidacticGuideline,       │
+                           │  :GuidelineSection,        │
                            │  :University, :UniversityModule, │
                            │  :Degree, :ECTS, :Lecturer)│
                            └────────────────────────────┘

@@ -83,6 +83,8 @@
     var perPage = 24;
     var viewMode = 'grid';
     var sortMode = 'relations';
+    var lehrplanHighlight = false;
+    var lehrplanEntities = new Set();
 
     function getSortValue(e, mode) {
       switch (mode) {
@@ -153,6 +155,31 @@
       return h;
     }
 
+    function _applyLehrplanHighlight() {
+      if (!lehrplanHighlight || lehrplanEntities.size === 0) {
+        app.querySelectorAll('.entity-card').forEach(function (c) {
+          c.classList.remove('lehrplan-linked', 'lehrplan-dimmed');
+        });
+        app.querySelectorAll('.entity-tagcloud-item').forEach(function (c) {
+          c.classList.remove('lehrplan-linked', 'lehrplan-dimmed');
+        });
+        return;
+      }
+      app.querySelectorAll('.entity-card').forEach(function (c) {
+        var slug = c.getAttribute('data-slug') || '';
+        var name = (c.querySelector('.entity-card-name a') || {}).textContent || '';
+        var isLinked = lehrplanEntities.has(name) || lehrplanEntities.has(slug);
+        c.classList.toggle('lehrplan-linked', isLinked);
+        c.classList.toggle('lehrplan-dimmed', !isLinked);
+      });
+      app.querySelectorAll('.entity-tagcloud-item').forEach(function (c) {
+        var name = c.textContent.trim();
+        var isLinked = lehrplanEntities.has(name);
+        c.classList.toggle('lehrplan-linked', isLinked);
+        c.classList.toggle('lehrplan-dimmed', !isLinked);
+      });
+    }
+
     function _render() {
       window.__renderStarted = true;
       try {
@@ -202,6 +229,10 @@
         (viewMode === 'cloud' ? ' active' : '') +
         '" data-view="cloud" title="Schlagwortwolke">☁</button>';
       h += '</div>';
+      h +=
+        '<button class="entity-lehrplan-toggle' +
+        (lehrplanHighlight ? ' active' : '') +
+        '" id="entity-lehrplan-toggle" title="Lehrplan-Bezug highlighten">📖</button>';
       h += '</div>';
       return h;
     }
@@ -380,6 +411,7 @@
       app.innerHTML = html;
       _attachCommonEvents(totalPages);
       _attachTooltipEvents(app);
+      _applyLehrplanHighlight();
     }
 
     function _attachCommonEvents(tp) {
@@ -423,6 +455,37 @@
           }
         });
       });
+      var lpToggle = document.getElementById('entity-lehrplan-toggle');
+      if (lpToggle) {
+        lpToggle.addEventListener('click', function () {
+          lehrplanHighlight = !lehrplanHighlight;
+          lpToggle.classList.toggle('active', lehrplanHighlight);
+          if (lehrplanHighlight && lehrplanEntities.size === 0) {
+            lpToggle.innerHTML = '<span class="loading-dot"></span>';
+            fetch('/api/curricula/linked-entities', { signal: AbortSignal.timeout(10000) })
+              .then(function (r) {
+                if (!r.ok) throw new Error(r.status);
+                return r.json();
+              })
+              .then(function (d) {
+                (d.names || []).forEach(function (n) {
+                  lehrplanEntities.add(n);
+                });
+                lpToggle.textContent = '📖';
+                _applyLehrplanHighlight();
+              })
+              .catch(function () {
+                lehrplanHighlight = false;
+                lpToggle.classList.remove('active');
+                lpToggle.textContent = '📖';
+              });
+          } else if (!lehrplanHighlight) {
+            _applyLehrplanHighlight();
+          } else {
+            _applyLehrplanHighlight();
+          }
+        });
+      }
     }
 
     function _attachTooltipEvents(app) {

@@ -37,6 +37,26 @@ test.describe('Curricula / Lehrpläne', () => {
     const response = await page.goto(`${BASE_URL}/curricula/xx/`);
     expect(response.status()).toBe(404);
   });
+
+  test('curricula index page loads API-driven tabs', async ({ page }) => {
+    await page.goto(`${BASE_URL}/curricula/`);
+    await expect(page.locator('#curricula-app')).toBeVisible({ timeout: 15000 });
+  });
+
+  test('curricula state page (BY) loads topic cards', async ({ page }) => {
+    await page.goto(`${BASE_URL}/curricula/by/`);
+    await expect(page.locator('.state-topic-card').first()).toBeVisible({ timeout: 15000 });
+  });
+
+  test('Wissensnetz loads entity grid', async ({ page }) => {
+    await page.goto(`${BASE_URL}/entity/`);
+    await expect(page.locator('.entity-grid').first()).toBeVisible({ timeout: 15000 });
+  });
+
+  test('Wissensnetz Lehrplan toggle button exists', async ({ page }) => {
+    await page.goto(`${BASE_URL}/entity/`);
+    await expect(page.locator('#entity-lehrplan-toggle')).toBeVisible({ timeout: 15000 });
+  });
 });
 
 test.describe('Modulhandbuch', () => {

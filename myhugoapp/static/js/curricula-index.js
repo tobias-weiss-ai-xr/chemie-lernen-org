@@ -51,12 +51,15 @@
   function init(data) {
     var entities = data.entities || [];
     var activeTab = 'explorer';
+    var hash = location.hash.replace('#', '');
+    if (['explorer', 'compare', 'objectives', 'content'].indexOf(hash) !== -1) activeTab = hash;
     var searchQuery = '';
     var currentPage = 1;
     var perPage = 24;
     var filterState = [];
     var filterSchool = [];
     var filterGrade = [];
+    var sortBy = 'name-asc';
     var compareTopicName = '';
     var compareResults = null;
     var expandedCompareRow = null;
@@ -126,7 +129,7 @@
     });
 
     function getFiltered() {
-      return entities.filter(function (e) {
+      var result = entities.filter(function (e) {
         if (e.category === 'didaktik') return false;
         var meta = e.curriculumMeta;
         if (!meta) return true; // entities without curriculumMeta shown unfiltered
@@ -150,6 +153,24 @@
         }
         return true;
       });
+      result.sort(function (a, b) {
+        var mA = a.curriculumMeta || {};
+        var mB = b.curriculumMeta || {};
+        switch (sortBy) {
+          case 'name-desc':
+            return b.name.localeCompare(a.name);
+          case 'state':
+            return (mA.state || '').localeCompare(mB.state || '') || a.name.localeCompare(b.name);
+          case 'grade': {
+            var gA = parseInt(mA.grade) || 999;
+            var gB = parseInt(mB.grade) || 999;
+            return gA - gB || a.name.localeCompare(b.name);
+          }
+          default:
+            return a.name.localeCompare(b.name);
+        }
+      });
+      return result;
     }
 
     function _render() {
@@ -278,21 +299,50 @@
             escapeHtml(f.label) +
             ' <span class="curricula-active-filter-x">&times;</span></span>';
         });
+        html +=
+          '<button class="curricula-clear-filters-btn" id="curricula-clear-filters">Alle zurücksetzen</button>';
         html += '</div>';
       }
-      html += '<div class="curricula-search-row">';
+      html += '<div class="curricula-search-row" style="display:flex;gap:0.5rem;">';
       html +=
         '<input class="curricula-search" type="text" placeholder="Thema suchen..." id="curricula-search" value="' +
         escapeHtml(searchQuery) +
-        '">';
+        '" style="flex:1;">';
+      html +=
+        '<select id="curricula-sort" class="curricula-select" style="min-width:140px;" title="Sortierung">';
+      html +=
+        '<option value="name-asc"' +
+        (sortBy === 'name-asc' ? ' selected' : '') +
+        '>Name A–Z</option>';
+      html +=
+        '<option value="name-desc"' +
+        (sortBy === 'name-desc' ? ' selected' : '') +
+        '>Name Z–A</option>';
+      html +=
+        '<option value="state"' + (sortBy === 'state' ? ' selected' : '') + '>Bundesland</option>';
+      html +=
+        '<option value="grade"' +
+        (sortBy === 'grade' ? ' selected' : '') +
+        '>Klassenstufe</option>';
+      html += '</select>';
       html += '</div>';
       html += '</div>';
 
       // Cards
       html += '<div class="curricula-grid">';
       if (pageItems.length === 0) {
-        html +=
-          '<div class="empty-state"><div class="empty-state-icon">🔍</div><p>Keine Themen gefunden.</p></div>';
+        var filterActive =
+          filterState.length > 0 ||
+          filterSchool.length > 0 ||
+          filterGrade.length > 0 ||
+          searchQuery;
+        if (filterActive) {
+          html +=
+            '<div class="empty-state"><div class="empty-state-icon">🔍</div><p>Keine Themen gefunden. Versuche die Filter anzupassen oder die Suche zu erweitern.</p></div>';
+        } else {
+          html +=
+            '<div class="empty-state"><div class="empty-state-icon">📭</div><p>Derzeit sind noch keine Themen geladen.</p></div>';
+        }
       } else {
         pageItems.forEach(function (e) {
           var meta = e.curriculumMeta;
@@ -374,6 +424,18 @@
           (currentPage >= totalPages ? ' disabled' : '') +
           '>›</button>';
         html += '</div>';
+      }
+      if (filtered.length > 0) {
+        var resultFrom = start + 1;
+        var resultTo = Math.min(start + perPage, filtered.length);
+        html +=
+          '<div class="curricula-result-summary">Zeige ' +
+          resultFrom +
+          '–' +
+          resultTo +
+          ' von ' +
+          filtered.length +
+          ' Themen</div>';
       }
 
       app.innerHTML = html;
@@ -475,11 +537,36 @@
         });
       }
 
+      // Sort handler
+      var sortSelect = document.getElementById('curricula-sort');
+      if (sortSelect) {
+        sortSelect.addEventListener('change', function () {
+          sortBy = this.value;
+          currentPage = 1;
+          _render();
+        });
+      }
+
+      // Clear all filters handler
+      var clearBtn = document.getElementById('curricula-clear-filters');
+      if (clearBtn) {
+        clearBtn.addEventListener('click', function () {
+          filterState = [];
+          filterSchool = [];
+          filterGrade = [];
+          searchQuery = '';
+          sortBy = 'name-asc';
+          currentPage = 1;
+          _render();
+        });
+      }
+
       // Tab switching
       app.querySelectorAll('.curricula-tab').forEach(function (btn) {
         btn.addEventListener('click', function () {
           activeTab = this.getAttribute('data-tab');
           currentPage = 1;
+          location.hash = activeTab;
           _render();
         });
       });
@@ -644,6 +731,7 @@
         btn.addEventListener('click', function () {
           activeTab = this.getAttribute('data-tab');
           currentPage = 1;
+          location.hash = activeTab;
           _render();
         });
       });
@@ -783,14 +871,14 @@
             '<thead><tr><th>Lernziel</th><th>Thema</th><th>Bundesland</th><th>Klasse</th></tr></thead><tbody>';
           items.forEach(function (o) {
             html += '<tr class="compare-row">';
-            html += '<td>' + escapeHtml(o.displayName || o.name) + '</td>';
+            html += '<td>' + escapeHtml(o.text || o.slug) + '</td>';
             html +=
               '<td>' +
-              (o.parentTopic
+              (o.topicTitle
                 ? '<a href="/entity/' +
-                  toSlug(o.parentTopic) +
+                  toSlug(o.topicSlug || o.topicTitle) +
                   '/">' +
-                  escapeHtml(o.parentTopic) +
+                  escapeHtml(o.topicTitle) +
                   '</a>'
                 : '-') +
               '</td>';
@@ -801,8 +889,10 @@
           html += '</tbody></table></div>';
         }
       } else {
-        html +=
-          '<div class="empty-state"><div class="empty-state-icon">🎯</div><p>Lernziele laden… <a href="#" id="objectives-load-trigger" style="color:#9b59b6;">Jetzt laden</a></p></div>';
+        if (!objectivesLoading) {
+          setTimeout(_loadObjectives, 50);
+        }
+        html += '<div class="curricula-loading"><em>Lade Lernziele…</em></div>';
       }
 
       app.innerHTML = html;
@@ -839,6 +929,7 @@
         btn.addEventListener('click', function () {
           activeTab = this.getAttribute('data-tab');
           currentPage = 1;
+          location.hash = activeTab;
           _render();
         });
       });
@@ -969,8 +1060,10 @@
           html += '</div>';
         }
       } else {
-        html +=
-          '<div class="empty-state"><div class="empty-state-icon">📄</div><p>Inhalte laden… <a href="#" id="content-load-trigger" style="color:#9b59b6;">Jetzt laden</a></p></div>';
+        if (!contentLoading) {
+          setTimeout(_loadContent, 50);
+        }
+        html += '<div class="curricula-loading"><em>Lade Inhalte…</em></div>';
       }
 
       app.innerHTML = html;
@@ -1009,6 +1102,7 @@
         btn.addEventListener('click', function () {
           activeTab = this.getAttribute('data-tab');
           currentPage = 1;
+          location.hash = activeTab;
           _render();
         });
       });
@@ -1037,6 +1131,15 @@
         });
       }
     }
+
+    window.addEventListener('hashchange', function () {
+      var h = location.hash.replace('#', '');
+      if (['explorer', 'compare', 'objectives', 'content'].indexOf(h) !== -1 && h !== activeTab) {
+        activeTab = h;
+        currentPage = 1;
+        _render();
+      }
+    });
 
     _render();
   }

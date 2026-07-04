@@ -548,6 +548,7 @@ async function queryNeo4jRAG(keywords, cacheKey) {
       database: NEO4J_DATABASE,
       defaultAccessMode: neo4j.session.READ,
     });
+    var curriculumResult = null;
     var result;
     try {
       result = await session.run(
@@ -575,9 +576,30 @@ async function queryNeo4jRAG(keywords, cacheKey) {
           '  relatedEntities, score, ' +
           '  curriculumRels ' +
           'ORDER BY score DESC, e.name ' +
-          'LIMIT 10',
+          'LIMIT 8',
         { keywords: keywords }
       );
+
+      // Also query typed curriculum labels (Topic, LearningObjective, Curriculum)
+      try {
+        curriculumResult = await session.run(
+          `MATCH (t:Topic)
+           WHERE ANY(kw IN $keywords WHERE toLower(t.title) CONTAINS kw OR toLower(t.slug) CONTAINS kw)
+           WITH t, [kw IN $keywords WHERE toLower(t.title) CONTAINS kw | 4.0] AS sp
+           WITH t, REDUCE(s = 0.0, x IN sp | s + x) AS score
+           OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)
+           WITH t, score, collect(DISTINCT lo.text) AS objectives
+           OPTIONAL MATCH (c:Curriculum)-[:HAS_TOPIC]->(t)
+           WITH t, score, objectives, collect(DISTINCT {state: c.state_abbr, school: c.school_type}) AS curricula
+           RETURN t.title AS title, t.slug AS slug, t.grade AS grade, t.state AS topicState,
+                  objectives, curricula, score
+           ORDER BY score DESC
+           LIMIT 5`,
+          { keywords: keywords }
+        );
+      } catch (curriculumErr) {
+        console.warn('[RAG] Curriculum typed-label query failed:', curriculumErr.message);
+      }
     } finally {
       await session.close();
     }
@@ -620,6 +642,38 @@ async function queryNeo4jRAG(keywords, cacheKey) {
         parts.push('verwandt: ' + filteredRelated.join(', '));
       }
       lines.push(parts.join(' | '));
+    }
+
+    if (curriculumResult && curriculumResult.records.length > 0) {
+      lines.push('');
+      lines.push('Lehrplan-Themen (Lernbereiche aus den Bundesland-Lehrplänen):');
+      for (var ci = 0; ci < curriculumResult.records.length; ci++) {
+        var cr = curriculumResult.records[ci];
+        var cTitle = cr.get('title') || '';
+        var cGrade = cr.get('grade');
+        var cObjectives = (cr.get('objectives') || []).filter(function (o) {
+          return o != null;
+        });
+        var cCurricula = (cr.get('curricula') || []).filter(function (c) {
+          return c != null;
+        });
+        var cParts = ['- ' + cTitle];
+        if (cGrade) cParts.push('Klasse ' + cGrade);
+        if (cCurricula.length > 0) {
+          var cStates = cCurricula
+            .map(function (c) {
+              return c.state;
+            })
+            .filter(Boolean)
+            .join(', ');
+          if (cStates) cParts.push(cStates);
+        }
+        if (cObjectives.length > 0) {
+          var objSample = cObjectives.slice(0, 3).join('; ');
+          cParts.push('Lernziele: ' + objSample + (cObjectives.length > 3 ? ' ...' : ''));
+        }
+        lines.push(cParts.join(' | '));
+      }
     }
 
     if (lines.length === 0) {
@@ -812,14 +866,16 @@ app.get('/api/kg-data', async (req, res) => {
     });
     const entitiesQuery = isLehrplanMode
       ? `
-      MATCH (e:Entity)
-      WHERE e.kategorie = 'lehrplan' OR e.kategorie = 'didaktik'
-      OPTIONAL MATCH (e)-[r:RELATED_TO|ERFUELLT]-(related:Entity)
-      RETURN e.name as name, e.kategorie as category,
-             collect(DISTINCT related.name) as relatedEntities,
-             [] as components, 0 as articleCount
-      ORDER BY e.name
+      MATCH (c:Curriculum)-[:HAS_TOPIC]->(t:Topic)
+      OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)
+      WITH c, t, count(lo) AS objectiveCount
+      ORDER BY c.state_abbr, t.title
       LIMIT 500
+      RETURN t.title AS name, 'lehrplan' AS category,
+             c.state AS state, c.state_abbr AS stateAbbr,
+             c.school_type AS school_type,
+             t.grade AS grade,
+             objectiveCount AS objective_count
     `
       : `
       MATCH (e:Entity)
@@ -837,27 +893,80 @@ app.get('/api/kg-data', async (req, res) => {
       LIMIT ${limit}
     `;
     const entitiesResult = await session.run(entitiesQuery, queryParams);
-    const entities = entitiesResult.records.map((r, i) => ({
-      id: `e${offset + i}`,
-      name: r.get('name'),
-      category: r.get('category') || 'konzept',
-      articles: [],
-      relatedEntities: (r.get('relatedEntities') || [])
-        .filter((n) => n !== null)
-        .map((name) => ({ name, weight: 1 })),
-      components: (r.get('components') || []).filter((n) => n !== null),
-      articleCount: r.get('articleCount') || 0,
-    }));
+    const entities = isLehrplanMode
+      ? entitiesResult.records.map((r, i) => ({
+          id: `c${i}`,
+          name: r.get('name'),
+          category: 'lehrplan',
+          curriculumMeta: {
+            state: r.get('state'),
+            stateAbbr: r.get('stateAbbr'),
+            grade: r.get('grade'),
+            school_type: r.get('school_type'),
+            objective_count: r.get('objective_count') ? r.get('objective_count').toNumber() : 0,
+          },
+          articles: [],
+          relatedEntities: [],
+          components: [],
+          articleCount: 0,
+        }))
+      : entitiesResult.records.map((r, i) => ({
+          id: `e${offset + i}`,
+          name: r.get('name'),
+          category: r.get('category') || 'konzept',
+          articles: [],
+          relatedEntities: (r.get('relatedEntities') || [])
+            .filter((n) => n !== null)
+            .map((name) => ({ name, weight: 1 })),
+          components: (r.get('components') || []).filter((n) => n !== null),
+          articleCount: r.get('articleCount') || 0,
+        }));
 
     // Total count for pagination
-    const countResult = await session.run(
-      `
-      MATCH (e:Entity) WHERE 1=1${whereClause}
-      RETURN count(e) AS total
-    `,
-      queryParams
-    );
-    const totalEntities = countResult.records[0].get('total').toNumber();
+    let totalEntities;
+    if (isLehrplanMode) {
+      const countResult = await session.run(
+        'MATCH (c:Curriculum)-[:HAS_TOPIC]->(t:Topic) RETURN count(DISTINCT t.title) AS total'
+      );
+      totalEntities = countResult.records[0].get('total').toNumber();
+    } else {
+      const countResult = await session.run(
+        `
+        MATCH (e:Entity) WHERE 1=1${whereClause}
+        RETURN count(e) AS total
+      `,
+        queryParams
+      );
+      totalEntities = countResult.records[0].get('total').toNumber();
+    }
+
+    // In lehrplan mode, also fetch KMK guidelines as didaktik entities
+    if (isLehrplanMode) {
+      try {
+        const kmkResult = await session.run(
+          `MATCH (dg:DidacticGuideline)
+           OPTIONAL MATCH (dg)-[:HAS_SECTION]->(gs:GuidelineSection)
+           WITH dg, collect(gs.title) AS sections
+           RETURN dg.title AS name, sections
+           ORDER BY dg.title`
+        );
+        const kmkGuidelines = kmkResult.records.map((r, i) => ({
+          id: `d${i}`,
+          name: r.get('name'),
+          category: 'didaktik',
+          articles: [],
+          relatedEntities: (r.get('sections') || [])
+            .filter((n) => n !== null)
+            .map((name) => ({ name, weight: 1 })),
+          components: [],
+          articleCount: 0,
+        }));
+        entities.push(...kmkGuidelines);
+        console.log(`[kg-data] Added ${kmkGuidelines.length} KMK guidelines`);
+      } catch (kmkErr) {
+        console.warn(`[kg-data] KMK guidelines query failed: ${kmkErr.message}`);
+      }
+    }
 
     // Query articles linked to entities
     const entityNames = entities.map((e) => e.name);
@@ -1092,43 +1201,48 @@ app.get('/api/kg-data/entity/:name', async (req, res) => {
 
     await session.close();
 
-    // Query curriculum entities separately (for lehrplan mode, to get curriculumMeta)
     let curriculaEntities = [];
     if (isLehrplanMode) {
       try {
+        const curDriver = getNeo4jDriver();
+        const curSession = curDriver.session({
+          database: NEO4J_DATABASE,
+          defaultAccessMode: neo4j.session.READ,
+          fetchSize: 1000,
+        });
         const curriculaQuery = `
-          MATCH (e:Entity {kategorie: 'lehrplan'})
-          OPTIONAL MATCH (e)-[r:RELATED_TO|ERFUELLT]-(related:Entity)
-          RETURN e.name as name, e.kategorie as category,
-                 e.state as state, e.grade as grade,
-                 e.school_type as school_type,
-                 e.objective_count as objective_count,
-                 collect(DISTINCT related.name) as relatedEntities
-          ORDER BY e.name
+          MATCH (c:Curriculum)-[:HAS_TOPIC]->(t:Topic)
+          OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)
+          WITH c, t, count(lo) AS objectiveCount
+          ORDER BY c.state_abbr, t.title
           LIMIT 500
+          RETURN t.title AS name, 'lehrplan' AS category,
+                 c.state AS state, c.state_abbr AS stateAbbr,
+                 c.school_type AS school_type,
+                 t.grade AS grade,
+                 objectiveCount AS objective_count
         `;
-        const curriculaResult = await session.run(curriculaQuery);
+        const curriculaResult = await curSession.run(curriculaQuery);
         curriculaEntities = curriculaResult.records.map((r, i) => ({
           id: `c${i}`,
           name: r.get('name'),
-          category: r.get('category') || 'lehrplan',
+          category: 'lehrplan',
           curriculumMeta: {
             state: r.get('state'),
+            stateAbbr: r.get('stateAbbr'),
             grade: r.get('grade'),
             school_type: r.get('school_type'),
             objective_count: r.get('objective_count') ? r.get('objective_count').toNumber() : 0,
           },
           articles: [],
-          relatedEntities: (r.get('relatedEntities') || [])
-            .filter((n) => n !== null)
-            .map((name) => ({ name, weight: 1 })),
+          relatedEntities: [],
           articleCount: 0,
         }));
+        await curSession.close();
       } catch (e) {
         console.warn(`[kg-data] Curriculum query failed: ${e.message}`);
       }
 
-      // Merge curricula into entities array (lehrplan mode wants both lehrplan + didaktik)
       const existingNames = new Set(entities.map((e) => e.name));
       for (const curr of curriculaEntities) {
         if (!existingNames.has(curr.name)) {
@@ -2100,24 +2214,16 @@ app.get('/api/kg-stats', async (req, res) => {
     // Curriculum coverage metrics
     var currCoverage = { totalTopics: 0, totalObjectives: 0, linkedEntities: 0, contentNodes: 0 };
     try {
-      var ccResult = await session.run(
-        `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
-         AND e.kategorie = 'lehrplan'
-         RETURN count(e) AS topics`
-      );
+      var ccResult = await session.run(`MATCH (t:Topic) RETURN count(t) AS topics`);
       currCoverage.totalTopics = ccResult.records[0].get('topics').toNumber();
 
       var objResult = await session.run(
-        `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
-         AND e.kategorie = 'lernziel'
-         RETURN count(e) AS objectives`
+        `MATCH (lo:LearningObjective) RETURN count(lo) AS objectives`
       );
       currCoverage.totalObjectives = objResult.records[0].get('objectives').toNumber();
 
       var linkResult = await session.run(
-        `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
-         AND NOT e.kategorie IN ['lehrplan', 'lernziel']
-         AND ((e)-[:COVERS_TOPIC]->() OR (e)-[:FULFILLS]->())
+        `MATCH (e:Entity)-[:COVERS_TOPIC]->(:Topic)
          RETURN count(DISTINCT e) AS linked`
       );
       currCoverage.linkedEntities = linkResult.records[0].get('linked').toNumber();
@@ -2182,18 +2288,17 @@ app.get('/api/curricula/states', async (req, res) => {
       defaultAccessMode: neo4j.session.READ,
     });
     const result = await session.run(
-      `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
-       AND e.kategorie = 'lehrplan' AND e.state IS NOT NULL
-       WITH e.state AS state, coalesce(e.state_name, e.state) AS stateName,
-            count(e) AS topicCount
-       RETURN state, stateName, topicCount
+      `MATCH (c:Curriculum)
+       WITH c.state_abbr AS state, c.state AS stateName,
+            count(c) AS curriculumCount
+       RETURN state, stateName, curriculumCount
        ORDER BY state`
     );
     await session.close();
     const states = result.records.map((r) => ({
       state: r.get('state'),
       stateName: r.get('stateName'),
-      topicCount: r.get('topicCount').toNumber(),
+      curriculumCount: r.get('curriculumCount').toNumber(),
     }));
     res.json({ source: 'neo4j', states, count: states.length });
   } catch (err) {
@@ -2208,7 +2313,7 @@ app.get('/api/curricula/states', async (req, res) => {
           states.push({
             state: c.curriculumMeta.state,
             stateName: c.curriculumMeta.state,
-            topicCount: 1,
+            curriculumCount: 1,
           });
         }
       }
@@ -2239,71 +2344,69 @@ app.get('/api/curricula/topics', async (req, res) => {
       fetchSize: 1000,
     });
 
-    let whereExtra = "e.kategorie = 'lehrplan'";
+    let matchClause = 'MATCH (c:Curriculum)-[:HAS_TOPIC]->(t:Topic)';
+    let whereClause = 'WHERE 1=1';
     const params = {};
     if (state) {
-      whereExtra += ' AND e.state = $state';
+      whereClause += ' AND c.state_abbr = $state';
       params.state = state;
     }
     if (grade) {
-      whereExtra += ' AND e.grade = $grade';
+      whereClause += ' AND t.grade = $grade';
       params.grade = grade;
     }
     if (schoolType) {
-      whereExtra += ' AND e.school_type = $schoolType';
+      whereClause += ' AND c.school_type = $schoolType';
       params.schoolType = schoolType;
     }
     if (search) {
-      whereExtra += ' AND toLower(e.name) CONTAINS $search';
+      whereClause += ' AND toLower(t.title) CONTAINS $search';
       params.search = search;
     }
 
-    const result = await session.run(
-      `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
-       AND ${whereExtra}
-       OPTIONAL MATCH (e)<-[:TEIL_VON]-(obj:Entity)
-         WHERE obj.kategorie = 'lernziel'
-       RETURN e.name AS name, e.state AS state, e.grade AS grade,
-              e.school_type AS schoolType,
-              coalesce(e.objective_count, 0) AS objectiveCount,
-              e.display_name AS displayName
-       ORDER BY e.state, e.grade, e.name
-       SKIP ${offset} LIMIT ${limit}`,
+    const countResult = await session.run(
+      `${matchClause} ${whereClause} RETURN count(t) AS total`,
       params
     );
-    const totalResult = await session.run(
-      `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
-       AND ${whereExtra}
-       RETURN count(e) AS total`,
+    const total = countResult.records[0].get('total').toNumber();
+
+    const result = await session.run(
+      `${matchClause} ${whereClause}
+       OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)
+       WITH t, c, count(DISTINCT lo) AS objectiveCount
+       RETURN t.slug AS slug, t.title AS title, t.grade AS grade,
+              c.state_abbr AS state, c.school_type AS schoolType,
+              objectiveCount
+       ORDER BY c.state_abbr, t.grade, t.title
+       SKIP ${offset} LIMIT ${limit}`,
       params
     );
     await session.close();
 
     const topics = result.records.map((r) => ({
-      name: r.get('name'),
+      slug: r.get('slug'),
+      title: r.get('title'),
       state: r.get('state'),
       grade: r.get('grade'),
       schoolType: r.get('schoolType'),
       objectiveCount: r.get('objectiveCount').toNumber(),
-      displayName: r.get('displayName'),
     }));
-    const total = totalResult.records[0].get('total').toNumber();
     res.json({ source: 'neo4j', topics, total, limit, offset });
   } catch (err) {
     console.error('[curricula/topics] Neo4j error:', err.message);
     try {
       const fb = getFallbackData();
       let topics = fb.curricula.map((c) => ({
-        name: c.name,
+        slug: c.name,
+        title: c.name,
         state: c.curriculumMeta.state,
         grade: c.curriculumMeta.grade,
         schoolType: c.curriculumMeta.school_type,
         objectiveCount: c.curriculumMeta.objective_count,
-        displayName: c.name,
       }));
       if (state) topics = topics.filter((t) => t.state === state);
       if (grade) topics = topics.filter((t) => t.grade === grade);
-      if (search) topics = topics.filter((t) => t.name.includes(search));
+      if (search) topics = topics.filter((t) => (t.title || '').includes(search));
       const total = topics.length;
       topics = topics.slice(offset, offset + limit);
       res.json({ source: 'fallback', topics, total, limit, offset });
@@ -2331,44 +2434,46 @@ app.get('/api/curricula/objectives', async (req, res) => {
       fetchSize: 1000,
     });
 
-    let whereExtra = "e.kategorie = 'lernziel'";
+    let matchClause = 'MATCH (lo:LearningObjective)';
+    let whereClause = 'WHERE 1=1';
     const params = {};
     if (topic) {
-      whereExtra += ' AND parent.name = $topic';
+      matchClause = 'MATCH (t:Topic)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)';
+      whereClause += ' AND (t.slug CONTAINS $topic OR t.title CONTAINS $topic)';
       params.topic = topic;
     }
     if (search) {
-      whereExtra += ' AND toLower(e.name) CONTAINS $search';
+      whereClause += ' AND toLower(lo.text) CONTAINS $search';
       params.search = search;
     }
 
-    const result = await session.run(
-      `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
-       AND ${whereExtra}
-       OPTIONAL MATCH (e)-[:TEIL_VON]->(parent:Entity)
-       RETURN e.name AS name, e.display_name AS displayName,
-              parent.name AS parentTopic,
-              parent.state AS state, parent.grade AS grade
-       ORDER BY e.name
-       SKIP ${offset} LIMIT ${limit}`,
+    const countResult = await session.run(
+      `${matchClause} ${whereClause} RETURN count(lo) AS total`,
       params
     );
-    const totalResult = await session.run(
-      `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
-       AND ${whereExtra}
-       RETURN count(e) AS total`,
+    const total = countResult.records[0].get('total').toNumber();
+
+    const result = await session.run(
+      `${matchClause} ${whereClause}
+       OPTIONAL MATCH (t:Topic)-[:HAS_LEARNING_OBJECTIVE]->(lo)
+       OPTIONAL MATCH (c:Curriculum)-[:HAS_TOPIC]->(t)
+       RETURN lo.slug AS slug, lo.text AS text,
+              t.slug AS topicSlug, t.title AS topicTitle,
+              c.state_abbr AS state, t.grade AS grade
+       ORDER BY lo.text
+       SKIP ${offset} LIMIT ${limit}`,
       params
     );
     await session.close();
 
     const objectives = result.records.map((r) => ({
-      name: r.get('name'),
-      displayName: r.get('displayName'),
-      parentTopic: r.get('parentTopic'),
+      slug: r.get('slug'),
+      text: r.get('text'),
+      topicSlug: r.get('topicSlug'),
+      topicTitle: r.get('topicTitle'),
       state: r.get('state'),
       grade: r.get('grade'),
     }));
-    const total = totalResult.records[0].get('total').toNumber();
     res.json({ source: 'neo4j', objectives, total, limit, offset });
   } catch (err) {
     console.error('[curricula/objectives] Neo4j error:', err.message);
@@ -2395,34 +2500,28 @@ app.get('/api/curricula/by-state/:state', async (req, res) => {
       fetchSize: 5000,
     });
 
-    const scope = subsetWhere('e', ['Entity']);
     const result = await session.run(
-      `MATCH (e:Entity) ${scope}
-       AND e.kategorie = 'lehrplan' AND e.state = $state
-       OPTIONAL MATCH (o:Entity)-[:TEIL_VON]->(e)
-         WHERE o.kategorie = 'lernziel'
-       OPTIONAL MATCH (e)-[:MENTIONS]->(c:Content)
-       WITH e, collect(DISTINCT o.name) AS objectives,
-            collect(DISTINCT {url: c.url, title: c.title, type: c.type}) AS contentLinks
-       RETURN e.name AS name, e.grade AS grade, e.school_type AS schoolType,
-              e.display_name AS displayName,
+      `MATCH (c:Curriculum {state_abbr: $state})
+       OPTIONAL MATCH (c)-[:HAS_TOPIC]->(t:Topic)
+       OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)
+       WITH c, t, collect(DISTINCT lo.text) AS objectives
+       RETURN c.slug AS curriculumSlug, c.school_type AS schoolType,
+              t.slug AS slug, t.title AS title, t.grade AS grade,
               size(objectives) AS objectiveCount,
-              [ob IN objectives WHERE ob IS NOT NULL] AS objectives,
-              [cl IN contentLinks WHERE cl.url IS NOT NULL] AS contentLinks
-       ORDER BY e.grade, e.name`,
+              [ob IN objectives WHERE ob IS NOT NULL] AS objectives
+       ORDER BY t.grade, t.title`,
       { state }
     );
     await session.close();
 
     const topics = result.records.map(function (r) {
       return {
-        name: r.get('name'),
+        slug: r.get('slug'),
+        title: r.get('title'),
         grade: r.get('grade'),
         schoolType: r.get('schoolType'),
-        displayName: r.get('displayName'),
         objectiveCount: r.get('objectiveCount').toNumber(),
         objectives: r.get('objectives'),
-        contentLinks: r.get('contentLinks'),
       };
     });
 
@@ -2484,34 +2583,26 @@ app.get('/api/curricula/by-state/:state/grade/:grade', async (req, res) => {
       fetchSize: 5000,
     });
 
-    const scope = subsetWhere('e', ['Entity']);
     const result = await session.run(
-      `MATCH (e:Entity) ${scope}
-       AND e.kategorie = 'lehrplan' AND e.state = $state AND e.grade = $grade
-       OPTIONAL MATCH (o:Entity)-[:TEIL_VON]->(e)
-         WHERE o.kategorie = 'lernziel'
-       OPTIONAL MATCH (e)-[:MENTIONS]->(c:Content)
-       WITH e, collect(DISTINCT o.name) AS objectives,
-            collect(DISTINCT {url: c.url, title: c.title, type: c.type}) AS contentLinks
-       RETURN e.name AS name, e.grade AS grade, e.school_type AS schoolType,
-              e.display_name AS displayName,
+      `MATCH (c:Curriculum {state_abbr: $state})
+       MATCH (c)-[:HAS_TOPIC]->(t:Topic {grade: $grade})
+       OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)
+       WITH t, collect(DISTINCT lo.text) AS objectives
+       RETURN t.slug AS slug, t.title AS title, t.grade AS grade,
               size(objectives) AS objectiveCount,
-              [ob IN objectives WHERE ob IS NOT NULL] AS objectives,
-              [cl IN contentLinks WHERE cl.url IS NOT NULL] AS contentLinks
-       ORDER BY e.grade, e.name`,
+              [ob IN objectives WHERE ob IS NOT NULL] AS objectives
+       ORDER BY t.title`,
       { state, grade }
     );
     await session.close();
 
     const topics = result.records.map(function (r) {
       return {
-        name: r.get('name'),
+        slug: r.get('slug'),
+        title: r.get('title'),
         grade: r.get('grade'),
-        schoolType: r.get('schoolType'),
-        displayName: r.get('displayName'),
         objectiveCount: r.get('objectiveCount').toNumber(),
         objectives: r.get('objectives'),
-        contentLinks: r.get('contentLinks'),
       };
     });
 
@@ -2531,10 +2622,10 @@ app.get('/api/curricula/by-state/:state/grade/:grade', async (req, res) => {
 
 /**
  * GET /api/curricula/topic/:slug/articles — Content nodes covering a curriculum topic.
- * Returns articles/calculators that COVERS_TOPIC links to the given topic.
+ * Returns articles/calculators linked via COVERS_TOPIC or :RELATED_TO to the given topic.
  */
 app.get('/api/curricula/topic/:slug/articles', async (req, res) => {
-  const slug = req.params.slug.toLowerCase().trim();
+  const slug = decodeURIComponent(req.params.slug).trim();
   if (!slug) {
     return res.status(400).json({ error: 'Topic slug required' });
   }
@@ -2547,11 +2638,11 @@ app.get('/api/curricula/topic/:slug/articles', async (req, res) => {
     });
 
     const result = await session.run(
-      `MATCH (t:Entity {name: $slug, kategorie: 'lehrplan'})
-       OPTIONAL MATCH (e:Entity)-[ct:COVERS_TOPIC]->(t)
+      `MATCH (t:Topic) WHERE t.slug CONTAINS $slug OR t.title CONTAINS $slug
+       OPTIONAL MATCH (e:Entity)-[:COVERS_TOPIC]->(t)
+       OPTIONAL MATCH (t)-[:RELATED_TO]->(e:Entity)
        OPTIONAL MATCH (e)-[:MENTIONS]->(c:Content)
-       RETURN t.name AS topicName, t.display_name AS displayName,
-              t.state AS state, t.grade AS grade,
+       RETURN t.slug AS topicSlug, t.title AS title, t.grade AS grade,
               collect(DISTINCT {name: e.name, kategorie: e.kategorie}) AS coveringEntities,
               collect(DISTINCT {url: c.url, title: c.title, type: c.type}) AS contentLinks`,
       { slug }
@@ -2566,9 +2657,8 @@ app.get('/api/curricula/topic/:slug/articles', async (req, res) => {
     res.json({
       source: 'neo4j',
       topic: {
-        name: row.get('topicName'),
-        displayName: row.get('displayName'),
-        state: row.get('state'),
+        slug: row.get('topicSlug'),
+        title: row.get('title'),
         grade: row.get('grade'),
       },
       coveringEntities: row.get('coveringEntities').filter((e) => e.name),
@@ -2585,7 +2675,7 @@ app.get('/api/curricula/topic/:slug/articles', async (req, res) => {
  * Returns entities and content nodes linked via FULFILLS + MENTIONS.
  */
 app.get('/api/curricula/objective/:slug/articles', async (req, res) => {
-  const slug = req.params.slug.toLowerCase().trim();
+  const slug = decodeURIComponent(req.params.slug).trim();
   if (!slug) {
     return res.status(400).json({ error: 'Objective slug required' });
   }
@@ -2598,13 +2688,12 @@ app.get('/api/curricula/objective/:slug/articles', async (req, res) => {
     });
 
     const result = await session.run(
-      `MATCH (o:Entity {name: $slug, kategorie: 'lernziel'})
-       OPTIONAL MATCH (e:Entity)-[f:FULFILLS]->(o)
+      `MATCH (lo:LearningObjective) WHERE lo.slug CONTAINS $slug OR lo.text CONTAINS $slug
+       OPTIONAL MATCH (e:Entity)-[:FULFILLS]->(lo)
        OPTIONAL MATCH (e)-[:MENTIONS]->(c:Content)
-       OPTIONAL MATCH (o)-[:TEIL_VON]->(t:Entity)
-         WHERE t.kategorie = 'lehrplan'
-       RETURN o.name AS objName, o.display_name AS displayName,
-              t.name AS topicName, t.display_name AS topicDisplayName,
+       OPTIONAL MATCH (t:Topic)-[:HAS_LEARNING_OBJECTIVE]->(lo)
+       RETURN lo.slug AS objSlug, lo.text AS text,
+              t.slug AS topicSlug, t.title AS topicTitle,
               collect(DISTINCT {name: e.name, kategorie: e.kategorie}) AS fulfillingEntities,
               collect(DISTINCT {url: c.url, title: c.title, type: c.type}) AS contentLinks`,
       { slug }
@@ -2619,10 +2708,10 @@ app.get('/api/curricula/objective/:slug/articles', async (req, res) => {
     res.json({
       source: 'neo4j',
       objective: {
-        name: row.get('objName'),
-        displayName: row.get('displayName'),
-        topic: row.get('topicName'),
-        topicDisplayName: row.get('topicDisplayName'),
+        slug: row.get('objSlug'),
+        text: row.get('text'),
+        topic: row.get('topicSlug'),
+        topicTitle: row.get('topicTitle'),
       },
       fulfillingEntities: row.get('fulfillingEntities').filter((e) => e.name),
       contentLinks: row.get('contentLinks').filter((c) => c.url),
@@ -2639,7 +2728,7 @@ app.get('/api/curricula/objective/:slug/articles', async (req, res) => {
  * and which Content nodes it MENTIONS.
  */
 app.get('/api/entities/:name/curricula', async (req, res) => {
-  const entityName = req.params.name.toLowerCase().trim();
+  const nameParam = decodeURIComponent(req.params.name).trim();
 
   try {
     const driver = getNeo4jDriver();
@@ -2649,37 +2738,35 @@ app.get('/api/entities/:name/curricula', async (req, res) => {
     });
 
     const result = await session.run(
-      `MATCH (e:Entity {name: $name})
-       OPTIONAL MATCH (e)-[ct:COVERS_TOPIC]->(t:Entity)
-         WHERE t.kategorie = 'lehrplan'
-       OPTIONAL MATCH (e)-[f:FULFILLS]->(o:Entity)
-         WHERE o.kategorie = 'lernziel'
-       OPTIONAL MATCH (e)-[m:MENTIONS]->(c:Content)
+      `MATCH (e:Entity)
+       WHERE toLower(e.name) = toLower($name)
+       OPTIONAL MATCH (e)-[:COVERS_TOPIC]->(t:Topic)
+       OPTIONAL MATCH (e)-[:FULFILLS]->(lo:LearningObjective)
+       OPTIONAL MATCH (e)-[:MENTIONS]->(c:Content)
+       OPTIONAL MATCH (t2:Topic)-[:HAS_LEARNING_OBJECTIVE]->(lo)
        RETURN e.name AS name, e.kategorie AS kategorie,
               collect(DISTINCT {
-                topic: t.name, state: t.state,
-                grade: t.grade, schoolType: t.school_type
+                slug: t.slug, title: t.title,
+                state: t.state, grade: t.grade
               }) AS coveredTopics,
               collect(DISTINCT {
-                objective: o.name,
-                parentTopic: o.parent_topic
+                slug: lo.slug, text: lo.text,
+                topicSlug: t2.slug, topicTitle: t2.title
               }) AS fulfilledObjectives,
               collect(DISTINCT {
                 url: c.url, title: c.title, type: c.type
               }) AS contentLinks`,
-      { name: entityName }
+      { name: nameParam }
     );
     await session.close();
 
     if (result.records.length === 0 || !result.records[0].get('name')) {
-      return res.status(404).json({ error: 'Entity not found', name: entityName });
+      return res.status(404).json({ error: 'Entity not found', name: nameParam });
     }
 
     const r = result.records[0];
-    const coveredTopics = (r.get('coveredTopics') || []).filter((t) => t.topic !== null);
-    const fulfilledObjectives = (r.get('fulfilledObjectives') || []).filter(
-      (o) => o.objective !== null
-    );
+    const coveredTopics = (r.get('coveredTopics') || []).filter((t) => t.slug != null);
+    const fulfilledObjectives = (r.get('fulfilledObjectives') || []).filter((o) => o.slug != null);
     const contentLinks = (r.get('contentLinks') || []).filter((c) => c.url !== null);
 
     res.json({
@@ -2700,6 +2787,33 @@ app.get('/api/entities/:name/curricula', async (req, res) => {
   } catch (err) {
     console.error('[entities/curricula] Neo4j error:', err.message);
     res.status(503).json({ error: 'Curriculum context unavailable' });
+  }
+});
+
+/**
+ * GET /api/curricula/linked-entities — Entity names linked to curriculum data.
+ * Returns entity names that have COVERS_TOPIC or FULFILLS relationships.
+ * Used by the Wissensnetz "Lehrplan" filter chip.
+ */
+app.get('/api/curricula/linked-entities', async (req, res) => {
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+
+    const result = await session.run(
+      `MATCH (e:Entity)-[:COVERS_TOPIC|FULFILLS]->()
+       RETURN collect(DISTINCT e.name) AS names`
+    );
+    await session.close();
+
+    const names = (result.records[0]?.get('names') || []).map((n) => n);
+    res.json({ names, count: names.length });
+  } catch (err) {
+    console.error('[curricula/linked-entities] Neo4j error:', err.message);
+    res.status(503).json({ error: 'Linked entities unavailable', names: [], count: 0 });
   }
 });
 
@@ -2796,25 +2910,29 @@ app.get('/api/didaktik', async (req, res) => {
       database: NEO4J_DATABASE,
       defaultAccessMode: neo4j.session.READ,
     });
-    let whereExtra = "e.kategorie = 'didaktik'";
+
+    let whereClause = '';
     const params = {};
     if (institution) {
-      whereExtra += ' AND toLower(e.institution) CONTAINS $institution';
+      whereClause += ' AND toLower(dg.institution) CONTAINS $institution';
       params.institution = institution.toLowerCase();
     }
     if (search) {
-      whereExtra +=
-        ' AND (toLower(e.name) CONTAINS $search OR toLower(e.description) CONTAINS $search)';
+      whereClause +=
+        ' AND (toLower(dg.title) CONTAINS $search OR toLower(dg.name) CONTAINS $search)';
       params.search = search;
     }
 
     const result = await session.run(
-      `MATCH (e:Entity) ${subsetWhere('e', ['Entity'])}
-       AND ${whereExtra}
-       RETURN e.name AS name, e.title AS title, e.description AS description,
-              e.institution AS institution, e.year AS year, e.url AS url,
-              e.kategorie AS kategorie
-       ORDER BY e.year DESC, e.name
+      `MATCH (dg:DidacticGuideline)
+       WHERE 1=1${whereClause}
+       OPTIONAL MATCH (dg)-[:HAS_SECTION]->(gs:GuidelineSection)
+       WITH dg, count(gs) AS sectionCount
+       RETURN dg.name AS name, dg.title AS title,
+              dg.source_type AS sourceType, dg.institution AS institution,
+              dg.url AS url, dg.section_count AS sectionCountDb,
+              sectionCount AS sectionCountActual
+       ORDER BY dg.title
        LIMIT ${limit}`,
       params
     );
@@ -2822,11 +2940,10 @@ app.get('/api/didaktik', async (req, res) => {
     const items = result.records.map((r) => ({
       name: r.get('name'),
       title: r.get('title'),
-      description: r.get('description'),
+      sourceType: r.get('sourceType'),
       institution: r.get('institution'),
-      year: r.get('year'),
       url: r.get('url'),
-      kategorie: r.get('kategorie'),
+      sectionCount: r.get('sectionCountActual').toNumber(),
     }));
     res.json({ source: 'neo4j', items, count: items.length });
   } catch (err) {

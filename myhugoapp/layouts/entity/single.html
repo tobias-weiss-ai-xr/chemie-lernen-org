@@ -298,8 +298,96 @@
   .entity-tag-quelle:hover {
     background: #4a3000;
   }
-  .entity-graph-link { border-top-color: #333; }
-  .entity-graph-link:hover { background: #2a2040; color: #bb86fc; }
+.entity-graph-link { border-top-color: #333; }
+.entity-graph-link:hover { background: #2a2040; color: #bb86fc; }
+
+/* Lehrplan-Bezug Section */
+.entity-lehrplan-card {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+.entity-lehrplan-card .entity-card-header {
+  padding: 0.8rem 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  background: #f3e8ff;
+  border-bottom: 1px solid #e9d5ff;
+  color: #7b1fa2;
+}
+.entity-lehrplan-body { padding: 0.8rem 1rem; }
+.entity-lehrplan-topic {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border-color, #eee);
+}
+.entity-lehrplan-topic:last-child { border-bottom: none; }
+.entity-lehrplan-topic-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary, #333);
+  margin-bottom: 0.3rem;
+}
+.entity-lehrplan-topic-title a {
+  color: var(--text-primary, #333);
+  text-decoration: none;
+}
+.entity-lehrplan-topic-title a:hover { color: #9b59b6; text-decoration: underline; }
+.entity-lehrplan-topic-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted, #888);
+  margin-bottom: 0.3rem;
+}
+.entity-lehrplan-lo {
+  font-size: 0.82rem;
+  color: #555;
+  padding: 0.15rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+.entity-lehrplan-lo::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: #9b59b6;
+  font-weight: bold;
+}
+.entity-lehrplan-state-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  font-size: 0.72rem;
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-radius: 4px;
+  margin-left: 0.3rem;
+  font-weight: 600;
+}
+.entity-lehrplan-empty {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  color: var(--text-muted, #999);
+  font-size: 0.9rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .entity-lehrplan-card {
+    background: #2a2a2a;
+    border-color: #444;
+  }
+  .entity-lehrplan-card .entity-card-header {
+    background: #2a1a3a;
+    border-bottom-color: #3a2060;
+    color: #ce93d8;
+  }
+  .entity-lehrplan-topic { border-bottom-color: #333; }
+  .entity-lehrplan-topic-title { color: #e0e0e0; }
+  .entity-lehrplan-lo { color: #bbb; }
+  .entity-lehrplan-state-badge {
+    background: #1b3a1b;
+    color: #81c784;
+  }
+}
   .entity-skeleton-card {
     background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
   }
@@ -380,6 +468,16 @@
       <div class="entity-stats">
         <span><strong>{{ $.Params.articleCount | default 0 }}</strong> Artikel</span>
         <span><strong>{{ $.Params.relatedCount | default 0 }}</strong> Verknüpfungen</span>
+      </div>
+    </div>
+
+    <!-- Lehrplan-Bezug Section (loaded via JS) -->
+    <div id="entity-lehrplan-section" data-entity="{{ $entityName }}">
+      <div class="entity-lehrplan-card" style="opacity:0.6;">
+        <div class="entity-card-header">📖 Lehrplan-Bezug</div>
+        <div class="entity-lehrplan-body">
+          <div class="entity-lehrplan-empty">Lade Lehrplan-Daten…</div>
+        </div>
       </div>
     </div>
 
@@ -653,6 +751,14 @@
     }
     html += '</div></div>';
 
+    // Lehrplan-Bezug placeholder (populated by fetchLehrplanBezug)
+    html += '<div id="entity-lehrplan-section" data-entity="' + esc(entity.name) + '">';
+    html += '<div class="entity-lehrplan-card" style="opacity:0.6;">';
+    html += '<div class="entity-card-header">📖 Lehrplan-Bezug</div>';
+    html += '<div class="entity-lehrplan-body">';
+    html += '<div class="entity-lehrplan-empty">Lade Lehrplan-Daten…</div>';
+    html += '</div></div></div>';
+
     // Content grid
     html += '<div class="entity-content-grid">';
 
@@ -787,6 +893,96 @@
         '<p><a href="/entity/" style="color:#9b59b6;">→ Zurück zur Übersicht</a></p>' +
         '</div>';
     });
+})();
+</script>
+
+<!-- Shared: Load Lehrplan-Bezug for any entity page -->
+<script>
+(function () {
+  function fetchLehrplanBezug() {
+    var section = document.getElementById('entity-lehrplan-section');
+    if (!section) return;
+    var entityName = section.dataset.entity;
+    if (!entityName) return;
+
+    fetch('/api/entities/' + encodeURIComponent(entityName) + '/curricula', {
+      signal: AbortSignal.timeout(10000),
+    })
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        return r.json();
+      })
+      .then(function (d) {
+        var topics = d.coveredTopics || [];
+        var objectives = d.fulfilledObjectives || [];
+
+        if (topics.length === 0 && objectives.length === 0) {
+          section.innerHTML =
+            '<div class="entity-lehrplan-card">' +
+            '<div class="entity-card-header">📖 Lehrplan-Bezug</div>' +
+            '<div class="entity-lehrplan-body">' +
+            '<div class="entity-lehrplan-empty">Kein direkter Lehrplan-Bezug für diesen Begriff gefunden.</div>' +
+            '</div></div>';
+          return;
+        }
+
+        var h = '';
+        h += '<div class="entity-lehrplan-card">';
+        h += '<div class="entity-card-header">📖 Lehrplan-Bezug</div>';
+        h += '<div class="entity-lehrplan-body">';
+
+        // Group objectives by topic
+        var byTopic = {};
+        objectives.forEach(function (o) {
+          var key = o.topicSlug || '_unknown';
+          if (!byTopic[key]) {
+            byTopic[key] = { title: o.topicTitle || 'Unbekannt', slug: o.topicSlug, los: [] };
+          }
+          byTopic[key].los.push(o);
+        });
+
+        // Topics not yet in byTopic
+        topics.forEach(function (t) {
+          if (!byTopic[t.slug]) {
+            byTopic[t.slug] = { title: t.title, slug: t.slug, state: t.state, grade: t.grade, los: [] };
+          } else {
+            byTopic[t.slug].state = byTopic[t.slug].state || t.state;
+            byTopic[t.slug].grade = byTopic[t.slug].grade || t.grade;
+          }
+        });
+
+        var topicKeys = Object.keys(byTopic);
+        topicKeys.forEach(function (key, idx) {
+          var topic = byTopic[key];
+          h += '<div class="entity-lehrplan-topic">';
+          h += '<div class="entity-lehrplan-topic-title">';
+          h += esc(topic.title);
+          if (topic.state) h += '<span class="entity-lehrplan-state-badge">' + esc(topic.state) + '</span>';
+          h += '</div>';
+          if (topic.grade) {
+            h += '<div class="entity-lehrplan-topic-meta">Klasse ' + esc(topic.grade) + '</div>';
+          }
+          topic.los.forEach(function (lo) {
+            h += '<div class="entity-lehrplan-lo">' + esc(lo.text) + '</div>';
+          });
+          h += '</div>';
+        });
+
+        h += '</div></div>';
+        section.innerHTML = h;
+      })
+      .catch(function () {
+        // Silently hide on error — Lehrplan data is supplementary
+        if (section) section.style.display = 'none';
+      });
+  }
+
+  // Run after DOM is ready (for both SSR and client paths)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fetchLehrplanBezug);
+  } else {
+    fetchLehrplanBezug();
+  }
 })();
 </script>
 {{ end }}

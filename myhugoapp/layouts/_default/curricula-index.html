@@ -132,6 +132,25 @@
 .curricula-active-filter:hover { opacity: 0.8; }
 .curricula-active-filter-x { font-size: 1rem; line-height: 1; }
 
+.curricula-clear-filters-btn {
+  padding: 0.2rem 0.6rem; font-size: 0.78rem; font-weight: 500;
+  background: transparent; color: var(--text-muted, #666);
+  border: 1px solid var(--border-color, #ddd); border-radius: 12px;
+  cursor: pointer; transition: color 0.2s, border-color 0.2s;
+}
+.curricula-clear-filters-btn:hover {
+  color: #e74c3c; border-color: #e74c3c;
+}
+@media (prefers-color-scheme: dark) {
+  .curricula-clear-filters-btn { color: #999; border-color: #555; }
+  .curricula-clear-filters-btn:hover { color: #ff6b6b; border-color: #ff6b6b; }
+}
+
+.curricula-result-summary {
+  text-align: center; font-size: 0.85rem; color: var(--text-muted, #666);
+  margin-top: 0.5rem;
+}
+
 /* Diff Highlighting */
 .diff-cell {
   background: #fff3e0 !important; color: #e65100 !important;

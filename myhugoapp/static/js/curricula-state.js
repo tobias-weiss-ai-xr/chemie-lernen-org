@@ -150,7 +150,7 @@
       // Group by school_type → grade
       var grouped = {};
       treeData.topics.forEach(function (t) {
-        var school = t.school_type || 'Allgemein';
+        var school = t.schoolType || 'Allgemein';
         var grade = t.grade || '-';
         if (!grouped[school]) grouped[school] = {};
         if (!grouped[school][grade]) grouped[school][grade] = [];
@@ -161,7 +161,7 @@
       var totalTopics = treeData.topics.length;
       var totalObjectives = 0;
       treeData.topics.forEach(function (t) {
-        totalObjectives += t.objective_count || 0;
+        totalObjectives += t.objectiveCount || 0;
       });
 
       html +=
@@ -185,21 +185,22 @@
             html += '<div class="state-topic-card">';
             html +=
               '<div class="state-topic-name"><a href="/entity/' +
-              toSlug(topic.name) +
+              toSlug(topic.title || topic.slug) +
               '/">' +
-              escapeHtml(topic.name) +
+              escapeHtml(topic.title || topic.slug) +
               '</a></div>';
             html +=
-              '<div class="state-topic-meta">' + (topic.objective_count || 0) + ' Lernziele</div>';
+              '<div class="state-topic-meta">' + (topic.objectiveCount || 0) + ' Lernziele</div>';
             // Objectives
             if (topic.objectives && topic.objectives.length > 0) {
               html += '<div style="margin-top:0.3rem;">';
               topic.objectives.slice(0, 10).forEach(function (obj) {
+                var objText = typeof obj === 'string' ? obj : obj.text || obj.name;
                 html +=
                   '<span class="objective-chip" title="' +
-                  escapeHtml(obj.name) +
+                  escapeHtml(objText) +
                   '">' +
-                  escapeHtml(obj.displayName || obj.name) +
+                  escapeHtml(objText) +
                   '</span>';
               });
               if (topic.objectives.length > 10) {
