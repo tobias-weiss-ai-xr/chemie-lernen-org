@@ -344,14 +344,44 @@
     renderChatLogs();
   }
 
+  // --- Admin API key helpers ---
+
+  function getAdminKey() {
+    return sessionStorage.getItem('klassencockpit_admin_key') || '';
+  }
+
+  function setAdminKey(key) {
+    if (key) sessionStorage.setItem('klassencockpit_admin_key', key);
+    else sessionStorage.removeItem('klassencockpit_admin_key');
+  }
+
+  function promptAdminKey() {
+    var key = prompt('Admin-API-Key eingeben:');
+    if (key) setAdminKey(key);
+    return key;
+  }
+
   // --- Chat Log ---
 
   function renderChatLogs() {
     var container = document.getElementById('chat-log-container');
     if (!container) return;
 
-    fetch('/api/admin/chat-logs?limit=20')
+    var adminKey = getAdminKey();
+    var headers = { 'Content-Type': 'application/json' };
+    if (adminKey) headers['x-api-key'] = adminKey;
+
+    fetch('/api/admin/chat-logs?limit=20', { headers: headers })
       .then(function (r) {
+        if (r.status === 401) {
+          var newKey = promptAdminKey();
+          if (!newKey) throw new Error('AUTH_REQUIRED');
+          headers['x-api-key'] = newKey;
+          return fetch('/api/admin/chat-logs?limit=20', { headers: headers }).then(function (r2) {
+            if (!r2.ok) throw new Error('HTTP ' + r2.status);
+            return r2.json();
+          });
+        }
         if (!r.ok) throw new Error('HTTP ' + r.status);
         return r.json();
       })
@@ -393,9 +423,14 @@
         html += '</tbody></table></div>';
         container.innerHTML = html;
       })
-      .catch(function () {
-        container.innerHTML =
-          '<p class="text-muted">Chat-Logs nicht verfügbar (Server nicht erreichbar).</p>';
+      .catch(function (err) {
+        if (err.message === 'AUTH_REQUIRED') {
+          container.innerHTML =
+            '<p class="text-danger">Admin-API-Key erforderlich. Seite neu laden und gültigen Key eingeben.</p>';
+        } else {
+          container.innerHTML =
+            '<p class="text-muted">Chat-Logs nicht verfügbar (Server nicht erreichbar).</p>';
+        }
       });
   }
 

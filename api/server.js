@@ -17,6 +17,23 @@ const LITELLM_MODEL = process.env.LITELLM_MODEL || 'gemma-4';
 const RATE_LIMIT = parseInt(process.env.RATE_LIMIT, 10) || 50; // requests per IP per day
 const SESSION_TTL = 24 * 60 * 60 * 1000; // 24 hours
 const MAX_MESSAGES_PER_SESSION = 50; // prevent infinite conversations
+const ADMIN_API_KEY = process.env.ADMIN_API_KEY || ''; // If set, required for /api/admin/* routes
+
+var _calcRagIndex = null;
+function getCalcRagIndex() {
+  if (_calcRagIndex) return _calcRagIndex;
+  try {
+    var indexPath = path.join(
+      path.dirname(new URL(import.meta.url).pathname),
+      'calc-rag-index.json'
+    );
+    _calcRagIndex = JSON.parse(fs.readFileSync(indexPath, 'utf-8'));
+  } catch (err) {
+    console.warn('[calc-rag] Failed to load calc-rag-index.json:', err.message);
+    _calcRagIndex = {};
+  }
+  return _calcRagIndex;
+}
 
 // In-memory rate limit store: Map<ip, { count, resetDate }>
 const rateStore = new Map();
@@ -125,6 +142,14 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.sendStatus(204);
   next();
+});
+
+// Admin API key check — optional, only enforced when ADMIN_API_KEY env is set
+app.use('/api/admin', (req, res, next) => {
+  if (!ADMIN_API_KEY) return next(); // no key configured → open
+  const provided = req.headers['x-api-key'] || req.query.api_key || '';
+  if (provided === ADMIN_API_KEY) return next();
+  res.status(401).json({ error: 'Unauthorized — gültiger API-Key erforderlich' });
 });
 
 app.get('/api/session', (req, res) => {
@@ -724,6 +749,26 @@ async function queryNeo4jRAG(keywords, cacheKey) {
         if (mTaught.length > 0) mParts.push('thematisiert: ' + mTaught.join(', '));
         lines.push(mParts.join(' | '));
       }
+    }
+
+    // Inject calculator links matching RAG keywords
+    try {
+      var calcIndex = getCalcRagIndex();
+      var foundCalcs = [];
+      for (var ci2 = 0; ci2 < keywords.length; ci2++) {
+        var kw = keywords[ci2];
+        if (calcIndex[kw]) {
+          for (var cj = 0; cj < calcIndex[kw].length; cj++) {
+            var entry = calcIndex[kw][cj];
+            if (foundCalcs.indexOf(entry.url) === -1) {
+              foundCalcs.push(entry.url);
+              lines.push('- ' + entry.title + ' | Online-Rechner/Simulation: ' + entry.url);
+            }
+          }
+        }
+      }
+    } catch (calcErr) {
+      console.warn('[calc-rag] Calculator lookup failed:', calcErr.message);
     }
 
     if (lines.length === 0) {

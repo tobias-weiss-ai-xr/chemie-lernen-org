@@ -20,9 +20,11 @@ implementation. The legal/policy page tracks the certification status.
 ### REQ-A11Y-1: Skip-link
 
 Every page has exactly one skip-link as the first focusable element.
-`<a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>`
-lives in `partials/header.html`. No duplicate skip-link from
-`baseof.html` (the old `sr-only-focusable` Bootstrap one is removed).
+`<a href="#main-content" class="sr-only sr-only-focusable">Zum Hauptinhalt springen</a>`
+lives in `_default/baseof.html` (line 16), before `{{ partial "header.html" . }}`.
+This uses Bootstrap 3's `sr-only`/`sr-only-focusable` utility classes which
+implement the standard screen-reader-only pattern. The skip-link is
+rendered on every page through the base template.
 
 ### REQ-A11Y-2: Focus indicators
 
@@ -157,7 +159,7 @@ required) and verifies:
 
 - `myhugoapp/static/css/a11y-reduced-motion.css` — new file
 - `myhugoapp/static/css/green-theme.css` — focus indicator
-- `myhugoapp/layouts/partials/header.html` — skip-link
+- `myhugoapp/layouts/_default/baseof.html` — skip-link
 - `myhugoapp/layouts/partials/quiz.html` — aria-live
 - `myhugoapp/static/js/visualization/d3-ego-graph.js` — D3 a11y
 - `myhugoapp/static/js/{molekuel-studio,3d-visualizer,molekuelorbitale}.js` — motion
