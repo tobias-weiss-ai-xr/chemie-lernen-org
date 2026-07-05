@@ -127,7 +127,7 @@ def test_mit_ocw_json_file_exists():
 
 
 def test_all_modulhandbuch_universities_have_files():
-    expected = ["mit", "eth", "tum", "lmu", "rwth", "cambridge", "imperial", "stanford", "utokyo", "kth"]
+    expected = ["mit", "eth", "tum", "lmu", "rwth", "cambridge", "imperial", "stanford", "utokyo", "kth", "caltech", "fu_berlin", "heid", "oxf", "tu_wien"]
     data_dir = REPO_ROOT / "myhugoapp" / "data" / "modulhandbuch"
     for code in expected:
         f = data_dir / f"{code}.json"

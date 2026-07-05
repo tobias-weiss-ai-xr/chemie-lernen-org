@@ -18,7 +18,7 @@
       (https://ocw.mit.edu/courses/chemistry/). CC BY-NC-SA 4.0.
       Output: `myhugoapp/data/modulhandbuch/mit.json`
 - [x] **MH-1.5b** `scripts/curricula_didaktik/sources/modulhandbuch
-    _framework.py` — shared framework (HTTP retries, PDF/HTML
+  _framework.py` — shared framework (HTTP retries, PDF/HTML
       extractors, JSON-LD, factories)
 - [x] **MH-1.5c** 9 stub scrapers: TUM, ETH, LMU, RWTH, Cambridge,
       Imperial, Stanford, Tokyo, KTH
@@ -32,32 +32,32 @@
 
 ## Phase 2: More universities
 
-- [ ] **MH-5** TU München
-- [ ] **MH-6** ETH Zürich
-- [ ] **MH-7** LMU München
-- [ ] **MH-8** RWTH Aachen
-- [ ] **MH-9** University of Cambridge
-- [ ] **MH-10** Imperial College London
-- [ ] **MH-11** MIT
-- [ ] **MH-12** Stanford
-- [ ] **MH-13** University of Tokyo
+- [x] **MH-5** TU München
+- [x] **MH-6** ETH Zürich
+- [x] **MH-7** LMU München
+- [x] **MH-8** RWTH Aachen
+- [x] **MH-9** University of Cambridge
+- [x] **MH-10** Imperial College London
+- [x] **MH-11** MIT
+- [x] **MH-12** Stanford
+- [x] **MH-13** University of Tokyo
 
 ## Phase 3: Neo4j import
 
-- [ ] **MH-14** `scripts/import-modulhandbuch.mjs` (6 node types)
-- [ ] **MH-15** Cross-subset `:TEACHES` resolution
-- [ ] **MH-16** Update `docs/KNOWLEDGE_GRAPH_SCHEMA.md`
+- [x] **MH-14** `scripts/import-modulhandbuch.mjs` (6 node types)
+- [x] **MH-15** Cross-subset `:TEACHES` resolution
+- [x] **MH-16** Update `docs/KNOWLEDGE_GRAPH_SCHEMA.md`
 
 ## Phase 4: API
 
-- [ ] **MH-17** 6 endpoints (scoped to modulhandbuch subset)
-- [ ] **MH-18** `tests/modulhandbuch-api.test.js`
+- [x] **MH-17** 6 endpoints (scoped to modulhandbuch subset)
+- [x] **MH-18** `tests/modulhandbuch-api.test.js`
 
 ## Phase 5: Front-end
 
-- [ ] **MH-19** `/modulhandbuecher/` index
-- [ ] **MH-20** `/modulhandbuecher/{uni_slug}/` page
-- [ ] **MH-21** Module detail page
+- [ ] **MH-19** `/modulhandbuecher/` index (content page + layout → already exists)
+- [ ] **MH-20** `/modulhandbuecher/{uni_slug}/` page (SSR from generator → already exists)
+- [ ] **MH-21** Module detail page (SSR from generator → already exists)
 - [ ] **MH-22** "Universitäten" on entity pages
 
 ## Phase 6: KI-Assistent

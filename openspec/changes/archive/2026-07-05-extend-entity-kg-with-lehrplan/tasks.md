@@ -45,22 +45,39 @@
 
 ## API phase
 
-- [ ] **ELP-11** 5 new endpoints per `lehrplan-curriculum/spec.md`
-      REQ-LP-6
+- [x] **ELP-11** 8 API endpoints updated from `:Entity{kategorie}` to
+      typed labels (`:Topic`, `:LearningObjective`, `:DidacticGuideline`,
+      `:Curriculum`). Added curricula endpoints:
+      `/api/curricula/didaktik`, `/api/curricula/by-state/:state`,
+      `/api/curricula/objectives`, `/api/curricula/:slug/objectives`,
+      `/api/curricula/linked-entities`. Front-end curricula-index.js +
+      curricula-state.js updated for new field names. ✓
 
 ## Front-end phase
 
-- [ ] **ELP-12** `/lehrplaene/` index + per-state pages
-- [ ] **ELP-13** Lehrplan-Bezug on entity pages
-- [ ] **ELP-14** "Lehrplan" filter chip on Wissensnetz
-- [ ] **ELP-15** Extend `getRAGContext` for curriculum nodes
+- [x] **ELP-12** curricula-state.js field names updated to match API
+      (`topic.title`, `topic.schoolType`, `topic.objectiveCount`,
+      objectives as strings). ✓
+- [x] **ELP-13** Lehrplan-Bezug on entity pages — added section with
+      CSS + SSR + client containers + `fetchLehrplanBezug()` shared
+      script to `entity/single.html`. ✓
+- [x] **ELP-14** "Lehrplan" filter chip on Wissensnetz — toggle button + highlight logic in `entity-index.js`, CSS in `entity-index.html`,
+      `/api/curricula/linked-entities` endpoint. ✓
+- [x] **ELP-15** Extend `getRAGContext` for curriculum nodes — added
+      typed label query (`:Topic/:LearningObjective/:Curriculum`) to
+      `api/server.js`. ✓
 
 ## Testing phase
 
-- [ ] **ELP-16** Extend `tests/kg-data-quality.test.js`
-- [ ] **ELP-17** 5 endpoint tests
-- [ ] **ELP-18** Playwright test for `/lehrplaene/by/`
+- [x] **ELP-16** `tests/kg-data-quality.test.js` — 31 tests for
+      curriculum labels, REQ-LP-8, API contracts. ✓
+- [x] **ELP-17** API endpoint contract tests included in
+      `kg-data-quality.test.js`. ✓
+- [x] **ELP-18** Playwright E2E smoke tests in
+      `test-curricula-modulhandbuch.spec.js` — curricula tabs,
+      BY topic cards, Wissensnetz grid + Lehrplan toggle. ✓
 
 ## Final
 
-- [ ] **ELP-19** Commit + push
+- [x] **ELP-19** Commit `9aeb6b5b` + push. All changes committed and
+      pushed to master. ✓

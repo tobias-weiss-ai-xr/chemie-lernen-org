@@ -144,8 +144,10 @@ def _extract_sections(text: str) -> list[GuidelineSection]:
     return sections
 
 
-async def scrape() -> list[DidacticGuideline] | None:
+def scrape() -> DidacticDataset | None:
     """Scrape KMK chemistry education standards from verified PDF URLs."""
+    from schema import DidacticDataset
+
     print()
 
     guidelines: list[DidacticGuideline] = []
@@ -183,4 +185,4 @@ async def scrape() -> list[DidacticGuideline] | None:
         guidelines.append(guideline)
 
     print(f"    {len(guidelines)} KMK guideline(s) recorded")
-    return guidelines
+    return DidacticDataset(guidelines=guidelines)

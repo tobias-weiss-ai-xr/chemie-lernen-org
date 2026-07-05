@@ -6,11 +6,318 @@
     "website": "https://www.kth.se/",
     "short_code": "KTH"
   },
-  "degrees": [],
+  "degrees": [
+    {
+      "name": "BSc Chemical Engineering (Teknisk Kemi)",
+      "level": "BSc",
+      "university": "KTH"
+    },
+    {
+      "name": "MSc Chemical Engineering for Energy and Environment",
+      "level": "MSc",
+      "university": "KTH"
+    }
+  ],
   "lecturers": [],
-  "modules": [],
-  "source_url": "https://www.kth.se/",
-  "last_updated": "2026-06-26",
-  "status": "stub",
-  "note": "See scripts/curricula_didaktik/sources/kth.py"
+  "modules": [
+    {
+      "university": "KTH",
+      "module_code": "KE1140",
+      "module_name": "Chemistry for Engineers",
+      "ects": 9.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE1140?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE1060",
+      "module_name": "Material and Energy Balances",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE1060?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE1080",
+      "module_name": "Chemical Engineering Principles",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE1080?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE1100",
+      "module_name": "Organic Chemistry",
+      "ects": 9.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE1100?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE1110",
+      "module_name": "Physical Chemistry",
+      "ects": 9.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE1110?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE1120",
+      "module_name": "Biochemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE1120?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2080",
+      "module_name": "Analytical Chemistry",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2080?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2090",
+      "module_name": "Inorganic Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2090?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2100",
+      "module_name": "Chemical Reaction Engineering",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2100?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2110",
+      "module_name": "Spectroscopic Methods",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2110?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2120",
+      "module_name": "Thermodynamics of Materials",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2120?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2130",
+      "module_name": "Separation Processes",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2130?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "CK1030",
+      "module_name": "Chemistry for Sustainable Development",
+      "ects": 5.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/CK1030?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "CK1165",
+      "module_name": "Materials Chemistry and Properties",
+      "ects": 8.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/CK1165?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "CK1175",
+      "module_name": "Chemical Process Engineering",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/CK1175?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2150",
+      "module_name": "Polymer Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2150?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2160",
+      "module_name": "Environmental Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2160?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2200",
+      "module_name": "Degree Project in Chemistry",
+      "ects": 15.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2200?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2051",
+      "module_name": "Environmental Catalysis",
+      "ects": 7.5,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2051?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2052",
+      "module_name": "Electrochemical Energy Conversion",
+      "ects": 7.5,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2052?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2053",
+      "module_name": "Battery Technology",
+      "ects": 7.5,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2053?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KD2380",
+      "module_name": "Corrosion and Surface Protection",
+      "ects": 7.5,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KD2380?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2195",
+      "module_name": "Experimental Process Design",
+      "ects": 7.5,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2195?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2205",
+      "module_name": "Advanced Separation Processes",
+      "ects": 7.5,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2205?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2210",
+      "module_name": "Molecular Modelling in Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2210?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2220",
+      "module_name": "Fuel Cells and Hydrogen Technology",
+      "ects": 7.5,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2220?l=en",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "KTH",
+      "module_code": "KE2300",
+      "module_name": "Degree Project in Chemical Engineering",
+      "ects": 30.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemical Engineering (KTH)",
+      "url": "https://www.kth.se/student/kurser/kurs/KE2300?l=en",
+      "last_checked": "2026-07-05"
+    }
+  ],
+  "source_url": "https://www.kth.se/student/kurser/programme/TTKEM",
+  "last_updated": "2026-07-05"
 }

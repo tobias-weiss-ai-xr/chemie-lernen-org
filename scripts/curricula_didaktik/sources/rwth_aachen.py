@@ -77,7 +77,7 @@ RWTH_MSC_MODULES = [
 ]
 
 
-async def scrape() -> Optional[ModuleCatalog]:
+def scrape() -> Optional[ModuleCatalog]:
     """Seed-based scraper for RWTH Aachen chemistry modules."""
     total = len(RWTH_BSC_MODULES) + len(RWTH_MSC_MODULES)
     print(f"    [rwth_aachen] Building {len(RWTH_BSC_MODULES)} BSc + {len(RWTH_MSC_MODULES)} MSc = {total} seed modules")

@@ -79,7 +79,7 @@ LMU_MSC_MODULES = [
 ]
 
 
-async def scrape() -> Optional[ModuleCatalog]:
+def scrape() -> Optional[ModuleCatalog]:
     """Seed-based scraper for LMU München chemistry modules."""
     total = len(LMU_BSC_MODULES) + len(LMU_MSC_MODULES)
     print(f"    [lmu_muenchen] Building {len(LMU_BSC_MODULES)} BSc + {len(LMU_MSC_MODULES)} MSc = {total} seed modules")

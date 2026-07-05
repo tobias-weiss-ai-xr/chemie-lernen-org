@@ -21,10 +21,8 @@ VENV_PYTHON := $(VENV)/bin/python
 OUTPUT_DIR := ../../myhugoapp/data/modulhandbuch
 DIDAKTIK_OUTPUT_DIR := ../../myhugoapp/data/didaktik
 
-# Sources (in order: working first, stubs last)
-# Working: kmk, mit_ocw
-# Stubs (return empty): tum, eth_zurich, lmu_muenchen, rwth_aachen, cambridge, imperial, stanford, u_tokyo, kth, marburg_modulhandbuch
-SOURCES := kmk mit_ocw tum eth_zurich lmu_muenchen rwth_aachen cambridge imperial stanford u_tokyo kth marburg_modulhandbuch
+# All registered sources (from MODULHANDBUCH_REGISTRY + DIDAKTIK_REGISTRY)
+SOURCES := kmk mit_ocw tum eth_zurich lmu_muenchen rwth_aachen cambridge imperial stanford u_tokyo kth caltech fu_berlin heidelberg oxford tu_wien marburg_modulhandbuch
 
 # Available test targets
 PYTEST := $(VENV_PYTHON) -m pytest

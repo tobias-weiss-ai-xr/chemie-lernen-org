@@ -951,14 +951,6 @@
           _loadObjectives();
         }
       });
-
-      var loadLink = document.getElementById('objectives-load-trigger');
-      if (loadLink) {
-        loadLink.addEventListener('click', function (ev) {
-          ev.preventDefault();
-          _loadObjectives();
-        });
-      }
     }
 
     // ── Content Tab ──
@@ -1119,14 +1111,6 @@
       if (typeFilter) {
         typeFilter.addEventListener('change', function () {
           contentType = this.value;
-          _loadContent();
-        });
-      }
-
-      var loadLink = document.getElementById('content-load-trigger');
-      if (loadLink) {
-        loadLink.addEventListener('click', function (ev) {
-          ev.preventDefault();
           _loadContent();
         });
       }

@@ -13,7 +13,12 @@
       "university": "STANF"
     },
     {
-      "name": "MSc in Chemistry",
+      "name": "PhD in Chemistry",
+      "level": "MSc",
+      "university": "STANF"
+    },
+    {
+      "name": "Coterminal MS in Chemistry",
       "level": "MSc",
       "university": "STANF"
     }
@@ -22,203 +27,335 @@
   "modules": [
     {
       "university": "STANF",
-      "module_code": "CHEM31",
-      "module_name": "Chemical Principles",
-      "ects": 6.0,
+      "module_code": "CHEM11",
+      "module_name": "Foundational Concepts and Study Skills for General Chemistry",
+      "ects": 4.5,
       "language": "en",
       "level": "BSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM31/",
-      "last_checked": "2026-06-29"
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM31A",
+      "module_name": "Chemical Principles I",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM31B",
+      "module_name": "Chemical Principles II",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM31E",
+      "module_name": "Chemical Foundations and 21st Century Problems",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
     },
     {
       "university": "STANF",
       "module_code": "CHEM33",
-      "module_name": "Structure & Reactivity of Organic Molecules",
-      "ects": 6.0,
+      "module_name": "Structure and Reactivity of Organic Molecules",
+      "ects": 7.5,
       "language": "en",
       "level": "BSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM33/",
-      "last_checked": "2026-06-29"
-    },
-    {
-      "university": "STANF",
-      "module_code": "CHEM35",
-      "module_name": "Physical Chemistry: Thermodynamics",
-      "ects": 5.0,
-      "language": "en",
-      "level": "BSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM35/",
-      "last_checked": "2026-06-29"
-    },
-    {
-      "university": "STANF",
-      "module_code": "CHEM101",
-      "module_name": "Organic Chemistry I",
-      "ects": 6.0,
-      "language": "en",
-      "level": "BSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM101/",
-      "last_checked": "2026-06-29"
-    },
-    {
-      "university": "STANF",
-      "module_code": "CHEM102",
-      "module_name": "Organic Chemistry II",
-      "ects": 6.0,
-      "language": "en",
-      "level": "BSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM102/",
-      "last_checked": "2026-06-29"
-    },
-    {
-      "university": "STANF",
-      "module_code": "CHEM103",
-      "module_name": "Organic Chemistry III",
-      "ects": 5.0,
-      "language": "en",
-      "level": "BSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM103/",
-      "last_checked": "2026-06-29"
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
     },
     {
       "university": "STANF",
       "module_code": "CHEM121",
-      "module_name": "Physical Chemistry I",
-      "ects": 5.0,
+      "module_name": "Understanding the Natural and Unnatural World through Chemistry",
+      "ects": 7.5,
       "language": "en",
       "level": "BSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM121/",
-      "last_checked": "2026-06-29"
-    },
-    {
-      "university": "STANF",
-      "module_code": "CHEM122",
-      "module_name": "Physical Chemistry II",
-      "ects": 5.0,
-      "language": "en",
-      "level": "BSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM122/",
-      "last_checked": "2026-06-29"
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
     },
     {
       "university": "STANF",
       "module_code": "CHEM131",
-      "module_name": "Inorganic Chemistry",
-      "ects": 5.0,
+      "module_name": "Organic Chemistry I",
+      "ects": 6.0,
       "language": "en",
       "level": "BSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM131/",
-      "last_checked": "2026-06-29"
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM132",
+      "module_name": "Organic Chemistry II",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM134",
+      "module_name": "Advanced Organic Chemistry",
+      "ects": 4.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
     },
     {
       "university": "STANF",
       "module_code": "CHEM141",
-      "module_name": "Biochemistry I",
-      "ects": 5.0,
+      "module_name": "Physical Chemistry I",
+      "ects": 6.0,
       "language": "en",
       "level": "BSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM141/",
-      "last_checked": "2026-06-29"
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM142",
+      "module_name": "Physical Chemistry II",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM143",
+      "module_name": "Physical Chemistry III",
+      "ects": 4.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
     },
     {
       "university": "STANF",
       "module_code": "CHEM151",
-      "module_name": "Analytical Chemistry",
-      "ects": 5.0,
+      "module_name": "Inorganic Chemistry I",
+      "ects": 6.0,
       "language": "en",
       "level": "BSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM151/",
-      "last_checked": "2026-06-29"
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM153",
+      "module_name": "Advanced Inorganic Chemistry",
+      "ects": 4.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM161",
+      "module_name": "Analytical Chemistry",
+      "ects": 6.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
     },
     {
       "university": "STANF",
       "module_code": "CHEM171",
-      "module_name": "Quantum Chemistry",
-      "ects": 5.0,
+      "module_name": "Instrumental Analysis Laboratory",
+      "ects": 6.0,
       "language": "en",
       "level": "BSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM171/",
-      "last_checked": "2026-06-29"
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
     },
     {
       "university": "STANF",
-      "module_code": "CHEM181",
-      "module_name": "Chemical Biology",
-      "ects": 5.0,
+      "module_code": "CHEM185",
+      "module_name": "Biochemistry I",
+      "ects": 6.0,
       "language": "en",
       "level": "BSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM181/",
-      "last_checked": "2026-06-29"
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
     },
     {
       "university": "STANF",
-      "module_code": "CHEM201",
-      "module_name": "Advanced Organic Chemistry",
-      "ects": 5.0,
+      "module_code": "CHEM186",
+      "module_name": "Biochemistry II",
+      "ects": 4.5,
       "language": "en",
-      "level": "MSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM201/",
-      "last_checked": "2026-06-29"
+      "level": "BSc",
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
     },
     {
       "university": "STANF",
-      "module_code": "CHEM211",
-      "module_name": "Advanced Physical Chemistry",
-      "ects": 5.0,
+      "module_code": "CHEM190",
+      "module_name": "Advanced Undergraduate Research",
+      "ects": 4.5,
       "language": "en",
-      "level": "MSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM211/",
-      "last_checked": "2026-06-29"
+      "level": "BSc",
+      "degree": "BSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
     },
     {
       "university": "STANF",
       "module_code": "CHEM221",
+      "module_name": "Advanced Organic Chemistry I",
+      "ects": 4.5,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM222",
+      "module_name": "Advanced Organic Chemistry II",
+      "ects": 4.5,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM231",
+      "module_name": "Advanced Physical Chemistry I",
+      "ects": 4.5,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM232",
+      "module_name": "Advanced Physical Chemistry II",
+      "ects": 4.5,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM251",
       "module_name": "Advanced Inorganic Chemistry",
-      "ects": 5.0,
+      "ects": 4.5,
       "language": "en",
       "level": "MSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM221/",
-      "last_checked": "2026-06-29"
+      "degree": "MSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
     },
     {
       "university": "STANF",
-      "module_code": "CHEM241",
-      "module_name": "Synthetic Chemistry",
-      "ects": 5.0,
+      "module_code": "CHEM253",
+      "module_name": "Fundamentals of Inorganic Chemistry",
+      "ects": 4.5,
       "language": "en",
       "level": "MSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM241/",
-      "last_checked": "2026-06-29"
+      "degree": "MSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
     },
     {
       "university": "STANF",
-      "module_code": "CHEM299",
-      "module_name": "Graduate Research",
-      "ects": 15.0,
+      "module_code": "CHEM261",
+      "module_name": "Advanced Analytical Chemistry",
+      "ects": 4.5,
       "language": "en",
       "level": "MSc",
-      "degree": "BSc/MSc Chemistry (Stanford)",
-      "url": "https://explorecourses.stanford.edu/search?q=CHEMCHEM299/",
-      "last_checked": "2026-06-29"
+      "degree": "MSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM271",
+      "module_name": "Computational Chemistry",
+      "ects": 4.5,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM281",
+      "module_name": "Chemical Biology",
+      "ects": 4.5,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM300",
+      "module_name": "Department Colloquium",
+      "ects": 1.5,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "STANF",
+      "module_code": "CHEM301",
+      "module_name": "Research in Chemistry",
+      "ects": 3.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSc Chemistry (Stanford)",
+      "url": "https://chemistry.stanford.edu/academics/current-courses",
+      "last_checked": "2026-07-05"
     }
   ],
-  "source_url": "https://explorecourses.stanford.edu/",
-  "last_updated": "2026-06-29"
+  "source_url": "https://bulletin.stanford.edu/departments/CHEMISTRY/courses",
+  "last_updated": "2026-07-05"
 }

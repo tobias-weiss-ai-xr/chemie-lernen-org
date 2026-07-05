@@ -1,0 +1,317 @@
+{
+  "university": {
+    "name": "Imperial College London",
+    "country": "GB",
+    "city": "London",
+    "website": "https://www.imperial.ac.uk/",
+    "short_code": "ICL"
+  },
+  "degrees": [
+    {
+      "name": "BSc in Chemistry",
+      "level": "BSc",
+      "university": "ICL"
+    },
+    {
+      "name": "MSci in Chemistry",
+      "level": "MSc",
+      "university": "ICL"
+    },
+    {
+      "name": "MSci in Chemistry with Medicinal Chemistry",
+      "level": "MSc",
+      "university": "ICL"
+    }
+  ],
+  "lecturers": [],
+  "modules": [
+    {
+      "university": "ICL",
+      "module_code": "CHEM40001",
+      "module_name": "i-Engage",
+      "ects": 0.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM40002",
+      "module_name": "Language of Chemistry",
+      "ects": 5.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM40004",
+      "module_name": "Structure and Bonding: Atomic Structure to Molecular Orbitals",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM40003",
+      "module_name": "Introduction to Spectroscopy",
+      "ects": 5.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM40006",
+      "module_name": "Reactivity at Carbon Centres",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM40007",
+      "module_name": "The Reactions Toolkit: Thermodynamics and Kinetics",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM40005",
+      "module_name": "Chemistry of the Elements: Hydrogen to Uranium",
+      "ects": 5.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM40008",
+      "module_name": "Practical Chemistry 1",
+      "ects": 5.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM40010",
+      "module_name": "Mathematics and Physics 1",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM40009",
+      "module_name": "Medicinal Chemistry 1",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM50002",
+      "module_name": "i-Engage 2",
+      "ects": 0.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM50003",
+      "module_name": "Electronic States and Bonding",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM50001",
+      "module_name": "Analysis of Molecules, Materials and Mixtures",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM50006",
+      "module_name": "Solids, Liquids and Interfaces",
+      "ects": 5.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM50005",
+      "module_name": "Chemistry of Molecular Systems",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM50011",
+      "module_name": "Macromolecules and Materials",
+      "ects": 5.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM50007",
+      "module_name": "Control and Selectivity in Molecular Synthesis",
+      "ects": 5.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM50004",
+      "module_name": "Practical Chemistry 2",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM50008",
+      "module_name": "Mathematics and Physics 2",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM50009",
+      "module_name": "Medicinal Chemistry 2",
+      "ects": 7.5,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM60001",
+      "module_name": "Advanced Chemistry Topics 1",
+      "ects": 15.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM60003",
+      "module_name": "Advanced Chemistry Topics 2",
+      "ects": 15.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM60007",
+      "module_name": "Practical Chemistry 3 for BSc Chemistry",
+      "ects": 15.0,
+      "language": "en",
+      "level": "BSc",
+      "degree": "BSc Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM70001",
+      "module_name": "MSci Research Project",
+      "ects": 30.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSci Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM70002",
+      "module_name": "Advanced Practical Chemistry",
+      "ects": 15.0,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSci Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "ICL",
+      "module_code": "CHEM70003",
+      "module_name": "Advanced Chemistry Topics 3",
+      "ects": 7.5,
+      "language": "en",
+      "level": "MSc",
+      "degree": "MSci Chemistry (Imperial)",
+      "url": "https://www.imperial.ac.uk/chemistry/undergraduate/courses/",
+      "last_checked": "2026-07-05"
+    }
+  ],
+  "source_url": "https://www.imperial.ac.uk/study/courses/undergraduate/2026/chemistry-bsc/",
+  "last_updated": "2026-07-05"
+}

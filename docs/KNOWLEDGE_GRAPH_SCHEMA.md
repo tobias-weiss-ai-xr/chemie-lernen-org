@@ -9,25 +9,25 @@
 The `chemie` database is a central knowledge graph serving multiple subsets.
 The **chemie subset** is scoped by the following labels (see `scripts/_neo4j-subset-filter.mjs`):
 
-| Label               | Purpose                                                         |
-| ------------------- | --------------------------------------------------------------- |
-| `Entity`            | Core chemistry concepts                                         |
-| `Document`          | Articles/pages                                                  |
-| `Tag`               | Tags                                                            |
-| `Content`           | Curriculum / content nodes                                      |
-| `Category`          | Kategorie proxy nodes                                           |
-| `Curriculum`        | Lehrplan (curriculum per state)                                 |
-| `Topic`             | Topic within a curriculum                                       |
-| `SubTopic`          | Sub-topic within a topic                                        |
-| `LearningObjective` | Lernziel (learning objective)                                   |
-| `DidacticGuideline` | KMK didactic guideline                                          |
-| `GuidelineSection`  | Section within a didactic guideline                             |
-| `University`        | University (active — 10 institutions, ETH/MIT/TUM with modules) |
-| `UniversityModule`  | Study module (active — 55 modules from ETH, MIT, TUM)           |
-| `Degree`            | Degree program offered by a university (active — 7 records)     |
-| `ModuleOffering`    | Semester-specific module offering (active)                      |
-| `Lecturer`          | Module lecturer (active)                                        |
-| `ECTS`              | Credit point record (active — 55 credits linked to modules)     |
+| Label               | Purpose                                                                                        |
+| ------------------- | ---------------------------------------------------------------------------------------------- |
+| `Entity`            | Core chemistry concepts                                                                        |
+| `Document`          | Articles/pages                                                                                 |
+| `Tag`               | Tags                                                                                           |
+| `Content`           | Curriculum / content nodes                                                                     |
+| `Category`          | Kategorie proxy nodes                                                                          |
+| `Curriculum`        | Lehrplan (curriculum per state)                                                                |
+| `Topic`             | Topic within a curriculum                                                                      |
+| `SubTopic`          | Sub-topic within a topic                                                                       |
+| `LearningObjective` | Lernziel (learning objective)                                                                  |
+| `DidacticGuideline` | KMK didactic guideline                                                                         |
+| `GuidelineSection`  | Section within a didactic guideline                                                            |
+| `University`        | University institution (active — 21 universities, 15 with catalog data)                        |
+| `UniversityModule`  | Study module (active — 730 modules across all universities)                                    |
+| `Degree`            | Degree program offered by a university (active — 75 records)                                   |
+| `ModuleOffering`    | Semester-specific module offering (active — 0 records; no scrapers populate semester data yet) |
+| `Lecturer`          | Module lecturer (active — 0 records; not yet scraped)                                          |
+| `ECTS`              | Credit point record (active — 730 credits, one per module)                                     |
 
 All Cypher queries **must** scope to the chemie subset via label checks. Use `subsetMatch()` (labels) or `subsetWhere()` (Cypher `WHERE`) from `_neo4j-subset-filter.mjs` for generic MATCH queries. Code-analysis nodes (~683k `Variable`, `Function`, `Class`, …) live in the same DB but are excluded from chemie queries.
 
@@ -66,15 +66,14 @@ All Cypher queries **must** scope to the chemie subset via label checks. Use `su
 | `:MENTIONS`   | `:Document` | `:Entity` | article → entities it mentions     |
 | `:RELATED_TO` | `:Entity`   | `:Entity` | bidirectional concept relationship |
 
-### Written by modulhandbuch importers (`import-modulhandbuch.mjs`, `link-module-entities.mjs`)
+### Written by modulhandbuch importers (`import-modulhandbuch.mjs`, `link-modules-to-entities.mjs`)
 
-| Type             | From                | To                  | Direction                                     |
-| ---------------- | ------------------- | ------------------- | --------------------------------------------- |
-| `:OFFERS`        | `:University`       | `:UniversityModule` | uni → its modules                             |
-| `:OFFERS_DEGREE` | `:University`       | `:Degree`           | uni → its degree programs                     |
-| `:CARRIES`       | `:UniversityModule` | `:ECTS`             | module → its ECTS credit record               |
-| `:COVERS`        | `:UniversityModule` | `:Entity`           | module → chemistry topic it covers            |
-| `:TEACHES`       | `:Content`          | `:UniversityModule` | article → uni module that teaches the concept |
+| Type             | From                | To                  | Direction                                                              |
+| ---------------- | ------------------- | ------------------- | ---------------------------------------------------------------------- |
+| `:OFFERS`        | `:University`       | `:UniversityModule` | uni → its modules                                                      |
+| `:OFFERS_DEGREE` | `:University`       | `:Degree`           | uni → its degree programs                                              |
+| `:CARRIES`       | `:UniversityModule` | `:ECTS`             | module → its ECTS credit record                                        |
+| `:TEACHES`       | `:UniversityModule` | `:Entity`           | module → chemistry concept it teaches (cross-subset, 81 relationships) |
 
 ### Written by `scripts/backfill-orphan-rels.mjs`
 
@@ -183,11 +182,11 @@ scripts/knowledge-graph.mjs   scripts/import-           scripts/import-        s
                            │  :Degree, :ECTS, :Lecturer)│
                            └────────────────────────────┘
                                        ↓
-                     scripts/link-entities-to-curricula.mjs
-                     (→ :COVERS_TOPIC, :FULFILLS)
-                                       ↓
-                     scripts/curricula/link-module-entities.mjs
-                     (→ :COVERS, :TEACHES)
+                      scripts/link-entities-to-curricula.mjs
+                      (→ :COVERS_TOPIC, :FULFILLS)
+                                        ↓
+                      scripts/link-modules-to-entities.mjs
+                      (→ :TEACHES)
                                        ↓
                      scripts/export-kg-data.mjs
                      (Neo4j → myhugoapp/data/kg_data.json)
@@ -222,25 +221,25 @@ The `|| echo` is non-fatal: if Neo4j is unreachable, build still proceeds and th
 
 ## Files
 
-| File                                                | Purpose                                                                      |
-| --------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `scripts/knowledge-graph.mjs`                       | Article → KG pipeline (writes :Document, :Tag, :Entity)                      |
-| `scripts/export-kg-data.mjs`                        | Neo4j → kg_data.json                                                         |
-| `scripts/generate-entity-pages.mjs`                 | kg_data.json → `content/entity/*.md`                                         |
-| `scripts/backfill-orphan-rels.mjs`                  | Backfill `:BESTEHT_AUS`, `:GEHOERT_ZU`                                       |
-| `scripts/kg-enrich.mjs`                             | Local enricher (15-type catalog)                                             |
-| `scripts/kg-enrich-relations.mjs`                   | Neo4j semantic rel promotion                                                 |
-| `scripts/import-curricula.mjs`                      | Curricula → `:Curriculum`, `:Topic`, `:SubTopic`, `:LearningObjective`       |
-| `scripts/import-didaktik.mjs`                       | KMK standards → `:DidacticGuideline`, `:GuidelineSection`                    |
-| `scripts/import-content-nodes.mjs`                  | Content → `:Content` + sub-labels (`:Article`, `:Calculator`)                |
-| `scripts/curricula/migrate-content-labels.mjs`      | One-time migration: add `:Article`/`:Calculator` to existing Content nodes   |
-| `scripts/import-modulhandbuch.mjs`                  | Modulhandbuch JSON → `:University`, `:UniversityModule`, `:ECTS` nodes       |
-| `scripts/curricula/link-module-entities.mjs`        | Create `:COVERS` and `:TEACHES` between modules and existing chemie entities |
-| `scripts/link-entities-to-curricula.mjs`            | Create `:COVERS_TOPIC` and `:FULFILLS` between entities and curriculum data  |
-| `scripts/_neo4j-subset-filter.mjs`                  | Subset isolation helpers (`CHEMIE_LABELS`, `subsetMatch`, `subsetWhere`)     |
-| `api/server.js`                                     | All KG endpoints (including `/api/kg-stats`)                                 |
-| `myhugoapp/data/kg_data.json`                       | Hugo build-time data export                                                  |
-| `myhugoapp/content/entity/*.md`                     | 54 generated entity pages (3 hand-written element pages preserved)           |
-| `myhugoapp/static/js/visualization/d3-ego-graph.js` | Shared D3 graph renderer (ego + full modes)                                  |
-| `tests/kg-data-quality.test.js`                     | Data integrity unit tests                                                    |
-| `tests/d3-ego-graph.test.js`                        | Renderer unit tests                                                          |
+| File                                                | Purpose                                                                     |
+| --------------------------------------------------- | --------------------------------------------------------------------------- |
+| `scripts/knowledge-graph.mjs`                       | Article → KG pipeline (writes :Document, :Tag, :Entity)                     |
+| `scripts/export-kg-data.mjs`                        | Neo4j → kg_data.json                                                        |
+| `scripts/generate-entity-pages.mjs`                 | kg_data.json → `content/entity/*.md`                                        |
+| `scripts/backfill-orphan-rels.mjs`                  | Backfill `:BESTEHT_AUS`, `:GEHOERT_ZU`                                      |
+| `scripts/kg-enrich.mjs`                             | Local enricher (15-type catalog)                                            |
+| `scripts/kg-enrich-relations.mjs`                   | Neo4j semantic rel promotion                                                |
+| `scripts/import-curricula.mjs`                      | Curricula → `:Curriculum`, `:Topic`, `:SubTopic`, `:LearningObjective`      |
+| `scripts/import-didaktik.mjs`                       | KMK standards → `:DidacticGuideline`, `:GuidelineSection`                   |
+| `scripts/import-content-nodes.mjs`                  | Content → `:Content` + sub-labels (`:Article`, `:Calculator`)               |
+| `scripts/curricula/migrate-content-labels.mjs`      | One-time migration: add `:Article`/`:Calculator` to existing Content nodes  |
+| `scripts/import-modulhandbuch.mjs`                  | Modulhandbuch JSON → `:University`, `:UniversityModule`, `:ECTS` nodes      |
+| `scripts/link-modules-to-entities.mjs`              | Create `:TEACHES` between modules and existing chemie entities              |
+| `scripts/link-entities-to-curricula.mjs`            | Create `:COVERS_TOPIC` and `:FULFILLS` between entities and curriculum data |
+| `scripts/_neo4j-subset-filter.mjs`                  | Subset isolation helpers (`CHEMIE_LABELS`, `subsetMatch`, `subsetWhere`)    |
+| `api/server.js`                                     | All KG endpoints (including `/api/kg-stats`)                                |
+| `myhugoapp/data/kg_data.json`                       | Hugo build-time data export                                                 |
+| `myhugoapp/content/entity/*.md`                     | 54 generated entity pages (3 hand-written element pages preserved)          |
+| `myhugoapp/static/js/visualization/d3-ego-graph.js` | Shared D3 graph renderer (ego + full modes)                                 |
+| `tests/kg-data-quality.test.js`                     | Data integrity unit tests                                                   |
+| `tests/d3-ego-graph.test.js`                        | Renderer unit tests                                                         |

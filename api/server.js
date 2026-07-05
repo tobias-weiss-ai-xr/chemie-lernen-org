@@ -3166,7 +3166,8 @@ app.get('/api/modulhandbuch/teaches/:entityName', async (req, res) => {
       defaultAccessMode: neo4j.session.READ,
     });
     const result = await session.run(
-      `MATCH (e:Entity {name: $name})<-[:TEACHES]-(m:UniversityModule)
+      `MATCH (e:Entity)<-[:TEACHES]-(m:UniversityModule)
+       WHERE toLower(e.name) = $name
        RETURN m.module_code AS code, m.module_name AS name, m.university AS university,
               m.ects AS ects, m.level AS level, m.url AS url, e.name AS entityName`,
       { name: entityName }
@@ -3187,6 +3188,62 @@ app.get('/api/modulhandbuch/teaches/:entityName', async (req, res) => {
   } catch (err) {
     console.error('[modulhandbuch/teaches] Neo4j error:', err.message);
     res.status(503).json({ error: 'Teaches data unavailable' });
+  }
+});
+
+/**
+ * GET /api/entities/:name/universities — Universities whose modules teach a given entity.
+ * Used by entity/single.html "Universitäten" section (MH-22).
+ */
+app.get('/api/entities/:name/universities', async (req, res) => {
+  const entityName = req.params.name.toLowerCase().trim();
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+    const result = await session.run(
+      `MATCH (e:Entity)<-[:TEACHES]-(m:UniversityModule)
+       WHERE toLower(e.name) = $name
+       OPTIONAL MATCH (u:University {short_code: m.university})
+       RETURN u.short_code AS uniCode, u.name AS uniName, u.country AS country,
+              m.module_code AS code, m.module_name AS name, m.level AS level,
+              m.ects AS ects, m.url AS url
+       ORDER BY u.name, m.module_name`,
+      { name: entityName }
+    );
+    await session.close();
+
+    const byUniversity = new Map();
+    result.records.forEach((r) => {
+      const uniCode = r.get('uniCode') || r.get('uniName') || 'unknown';
+      if (!byUniversity.has(uniCode)) {
+        byUniversity.set(uniCode, {
+          shortCode: uniCode,
+          name: r.get('uniName') || uniCode,
+          country: r.get('country') || '',
+          modules: [],
+        });
+      }
+      byUniversity.get(uniCode).modules.push({
+        code: r.get('code'),
+        name: r.get('name'),
+        level: r.get('level'),
+        ects: r.get('ects'),
+        url: r.get('url'),
+      });
+    });
+
+    res.json({
+      source: 'neo4j',
+      entityName,
+      universities: Array.from(byUniversity.values()),
+      totalModules: result.records.length,
+    });
+  } catch (err) {
+    console.error('[entities/name/universities] Neo4j error:', err.message);
+    res.status(503).json({ error: 'University data unavailable' });
   }
 });
 

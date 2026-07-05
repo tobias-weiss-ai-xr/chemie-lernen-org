@@ -1,16 +1,339 @@
 {
   "university": {
-    "name": "University of Tokyo",
+    "name": "The University of Tokyo",
     "country": "JP",
     "city": "Tokyo",
-    "website": "https://www.chem.s.u-tokyo.ac.jp/",
-    "short_code": "UTokyo"
+    "website": "https://www.u-tokyo.ac.jp/en/",
+    "short_code": "UTOKYO"
   },
-  "degrees": [],
+  "degrees": [
+    {
+      "name": "BSc in Chemistry",
+      "level": "BSc",
+      "university": "UTOKYO"
+    },
+    {
+      "name": "MSc in Chemistry",
+      "level": "MSc",
+      "university": "UTOKYO"
+    },
+    {
+      "name": "PhD in Chemistry",
+      "level": "MSc",
+      "university": "UTOKYO"
+    }
+  ],
   "lecturers": [],
-  "modules": [],
-  "source_url": "https://www.chem.s.u-tokyo.ac.jp/",
-  "last_updated": "2026-06-26",
-  "status": "stub",
-  "note": "See scripts/curricula_didaktik/sources/utokyo.py"
+  "modules": [
+    {
+      "university": "UTOKYO",
+      "module_code": "0530067",
+      "module_name": "Quantum Chemistry I (量子化学I)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "0530070",
+      "module_name": "Quantum Chemistry II (量子化学II)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "0530048",
+      "module_name": "Physical Chemistry I (物理化学I)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "0530049",
+      "module_name": "Physical Chemistry II (物理化学II)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "0530036",
+      "module_name": "Solid State Chemistry (固体化学)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "0530068",
+      "module_name": "Inorganic Chemistry I (無機化学I)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "0530071",
+      "module_name": "Inorganic Chemistry II (無機化学II)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "0530006",
+      "module_name": "Organic Chemistry I (有機化学I)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "0530007",
+      "module_name": "Organic Chemistry II (有機化学II)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "0530042",
+      "module_name": "Organic Chemistry III (有機化学III)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "0530010",
+      "module_name": "Analytical Chemistry (分析化学)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "0530053",
+      "module_name": "Structural Chemistry (構造化学)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "0530011",
+      "module_name": "Laboratory in Analytical/Inorganic Chemistry (分析化学無機化学実験)",
+      "ects": 3.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "0530012",
+      "module_name": "Laboratory in Organic Chemistry (有機化学実験)",
+      "ects": 3.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "0530013",
+      "module_name": "Laboratory in Physical Chemistry (物理化学実験)",
+      "ects": 3.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "0530069",
+      "module_name": "Radiochemistry (放射化学)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "0530073",
+      "module_name": "Basic Academic English for Chemistry (基礎化学英語演習)",
+      "ects": 1.0,
+      "language": "ja",
+      "level": "BSc",
+      "degree": "BSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "35606-0048",
+      "module_name": "Basic Physical Chemistry I (物理化学基礎I)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "MSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "35606-0049",
+      "module_name": "Basic Physical Chemistry II (物理化学基礎II)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "MSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "35606-0052",
+      "module_name": "Basic Inorganic/Analytical Chemistry I (無機・分析化学基礎I)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "MSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "35606-0053",
+      "module_name": "Basic Inorganic/Analytical Chemistry II (無機・分析化学基礎II)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "MSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "35606-0054",
+      "module_name": "Basic Organic Chemistry I (有機化学基礎I)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "MSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "35606-0055",
+      "module_name": "Basic Organic Chemistry II (有機化学基礎II)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "MSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "35606-0030",
+      "module_name": "Advanced Analytical Chemistry IV (分析化学特論IV)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "MSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "35606-0024",
+      "module_name": "Advanced Inorganic Chemistry VI (無機化学特論VI)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "MSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "35606-0066",
+      "module_name": "Special Topics in Organic Chemistry II (有機化学特論II)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "MSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "35606-0065",
+      "module_name": "Special Topics in Physical Chemistry II (物理化学特論II)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "MSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    },
+    {
+      "university": "UTOKYO",
+      "module_code": "35606-1110",
+      "module_name": "Frontiers in Advanced Technology I (先端科学技術特論I)",
+      "ects": 2.0,
+      "language": "ja",
+      "level": "MSc",
+      "degree": "MSc Chemistry (U-Tokyo)",
+      "url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+      "last_checked": "2026-07-05"
+    }
+  ],
+  "source_url": "https://www.chem.s.u-tokyo.ac.jp/chem_UGS/schedules_en.php",
+  "last_updated": "2026-07-05"
 }
