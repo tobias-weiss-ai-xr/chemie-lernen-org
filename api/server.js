@@ -549,6 +549,7 @@ async function queryNeo4jRAG(keywords, cacheKey) {
       defaultAccessMode: neo4j.session.READ,
     });
     var curriculumResult = null;
+    var moduleResult = null;
     var result;
     try {
       result = await session.run(
@@ -599,6 +600,32 @@ async function queryNeo4jRAG(keywords, cacheKey) {
         );
       } catch (curriculumErr) {
         console.warn('[RAG] Curriculum typed-label query failed:', curriculumErr.message);
+      }
+
+      // Also query UniversityModule nodes (international module catalogs)
+      try {
+        moduleResult = await session.run(
+          `MATCH (m:UniversityModule)
+           WHERE ANY(kw IN $keywords WHERE
+             toLower(m.module_name) CONTAINS kw
+             OR toLower(coalesce(m.module_code, '')) CONTAINS kw
+             OR ANY(lo IN coalesce(m.learning_outcomes, []) WHERE toLower(lo) CONTAINS kw)
+             OR ANY(ct IN coalesce(m.content, []) WHERE toLower(ct) CONTAINS kw))
+           WITH m, [kw IN $keywords WHERE toLower(m.module_name) CONTAINS kw | 5.0] AS sp
+           WITH m, REDUCE(s = 0.0, x IN sp | s + x) AS score
+           OPTIONAL MATCH (u:University)-[:OFFERS]->(m)
+           OPTIONAL MATCH (m)-[:TEACHES]->(e:Entity)
+           WITH m, score, u, collect(DISTINCT e.name) AS taughtEntities
+           RETURN m.module_code AS module_code, m.module_name AS module_name,
+                  m.ects AS ects, m.level AS level,
+                  u.name AS university_name, u.short_code AS university_code,
+                  taughtEntities, score
+           ORDER BY score DESC
+           LIMIT 5`,
+          { keywords: keywords }
+        );
+      } catch (moduleErr) {
+        console.warn('[RAG] UniversityModule query failed:', moduleErr.message);
       }
     } finally {
       await session.close();
@@ -673,6 +700,29 @@ async function queryNeo4jRAG(keywords, cacheKey) {
           cParts.push('Lernziele: ' + objSample + (cObjectives.length > 3 ? ' ...' : ''));
         }
         lines.push(cParts.join(' | '));
+      }
+    }
+
+    if (moduleResult && moduleResult.records.length > 0) {
+      lines.push('');
+      lines.push(
+        'Universitäre Module (internationale Modulkataloge, verknüpft mit dem Wissensgraph):'
+      );
+      for (var mi = 0; mi < moduleResult.records.length; mi++) {
+        var mr = moduleResult.records[mi];
+        var mName = mr.get('module_name') || '';
+        var mCode = mr.get('module_code') || '';
+        var mUni = mr.get('university_name') || mr.get('university_code') || '';
+        var mEcts = mr.get('ects');
+        var mLevel = mr.get('level') || '';
+        var mTaught = (mr.get('taughtEntities') || []).filter(function (e) {
+          return e != null;
+        });
+        var mParts = ['- ' + mName + ' (' + mCode + ', ' + mUni + ')'];
+        if (mEcts != null) mParts.push(mEcts + ' ECTS');
+        if (mLevel) mParts.push(mLevel);
+        if (mTaught.length > 0) mParts.push('thematisiert: ' + mTaught.join(', '));
+        lines.push(mParts.join(' | '));
       }
     }
 

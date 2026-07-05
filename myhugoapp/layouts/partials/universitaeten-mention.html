@@ -1,0 +1,95 @@
+{{/* universitaeten-mention.html — Shows "Universitäten" (modulhandbuch) links on entity pages.
+   Data is fetched client-side via /api/entities/:name/universities.
+   Usage: {{ partial "universitaeten-mention" . }}
+*/}}
+<div id="entity-universitaeten-section" class="entity-universitaeten-card" data-entity="{{ .Title }}" style="opacity:0.6;">
+  <div class="entity-card-header" style="background:#e8f5e9;color:#2e7d32;">🎓 Universitäten</div>
+  <div class="entity-universitaeten-body">
+    <div class="entity-universitaeten-empty">Lade Universitäts-Daten…</div>
+  </div>
+</div>
+
+<style>
+.entity-universitaeten-card {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+.entity-universitaeten-card .entity-card-header {
+  padding: 0.8rem 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  background: #e8f5e9;
+  border-bottom: 1px solid #c8e6c9;
+  color: #2e7d32;
+}
+.entity-universitaeten-body { padding: 0.8rem 1rem; }
+.entity-universitaeten-uni {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border-color, #eee);
+}
+.entity-universitaeten-uni:last-child { border-bottom: none; }
+.entity-universitaeten-uni-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary, #333);
+  margin-bottom: 0.2rem;
+}
+.entity-universitaeten-uni-name a {
+  color: var(--text-primary, #333);
+  text-decoration: none;
+}
+.entity-universitaeten-uni-name a:hover { color: #2e7d32; text-decoration: underline; }
+.entity-universitaeten-uni-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted, #888);
+}
+.entity-universitaeten-module-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 0.3rem;
+}
+.entity-universitaeten-module-tag {
+  display: inline-block;
+  padding: 1px 8px;
+  font-size: 0.72rem;
+  border-radius: 8px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+  text-decoration: none;
+}
+.entity-universitaeten-module-tag:hover {
+  background: #c8e6c9;
+}
+.entity-universitaeten-empty {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  color: var(--text-muted, #999);
+  font-size: 0.9rem;
+}
+@media (prefers-color-scheme: dark) {
+  .entity-universitaeten-card {
+    background: #2a2a2a;
+    border-color: #444;
+  }
+  .entity-universitaeten-card .entity-card-header {
+    background: #1a3a1a;
+    border-bottom-color: #2a4a2a;
+    color: #81c784;
+  }
+  .entity-universitaeten-uni { border-bottom-color: #333; }
+  .entity-universitaeten-uni-name { color: #e0e0e0; }
+  .entity-universitaeten-uni-name a { color: #e0e0e0; }
+  .entity-universitaeten-uni-name a:hover { color: #81c784; }
+  .entity-universitaeten-module-tag {
+    background: #1b3a1b;
+    color: #81c784;
+    border-color: #2e7d32;
+  }
+}
+</style>
+{{ end }}

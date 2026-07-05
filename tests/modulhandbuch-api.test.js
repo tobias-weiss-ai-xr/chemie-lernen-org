@@ -264,4 +264,100 @@ describe('Neo4j data integrity (integration)', () => {
       await s.close();
     }
   });
+
+  test('All UniversityModules have a non-empty module_name', async () => {
+    const s = driver.session({ database: 'chemie' });
+    try {
+      const r = await s.run(
+        `MATCH (m:UniversityModule)
+         WHERE m.module_name IS NULL OR m.module_name = ''
+         RETURN count(*) AS c`
+      );
+      expect(Number(r.records[0].get('c'))).toBe(0);
+    } finally {
+      await s.close();
+    }
+  });
+
+  test('All UniversityModules have positive or zero ECTS', async () => {
+    const s = driver.session({ database: 'chemie' });
+    try {
+      const r = await s.run(
+        `MATCH (m:UniversityModule)
+         WHERE m.ects < 0
+         RETURN count(*) AS c`
+      );
+      expect(Number(r.records[0].get('c'))).toBe(0);
+    } finally {
+      await s.close();
+    }
+  });
+
+  test('All University nodes have non-empty city and country', async () => {
+    const s = driver.session({ database: 'chemie' });
+    try {
+      const r = await s.run(
+        `MATCH (u:University)
+         WHERE u.city IS NULL OR u.city = '' OR u.country IS NULL OR u.country = ''
+         RETURN count(*) AS c`
+      );
+      expect(Number(r.records[0].get('c'))).toBe(0);
+    } finally {
+      await s.close();
+    }
+  });
+
+  test('TEACHES coverage — at least 10% of UniversityModules link to an Entity', async () => {
+    const s = driver.session({ database: 'chemie' });
+    try {
+      const r = await s.run(
+        `MATCH (m:UniversityModule)
+         OPTIONAL MATCH (m)-[:TEACHES]->(e:Entity)
+         WITH m, count(e) AS links
+         RETURN
+           count(m) AS total,
+           sum(CASE WHEN links > 0 THEN 1 ELSE 0 END) AS linked
+        `
+      );
+      const total = Number(r.records[0].get('total'));
+      const linked = Number(r.records[0].get('linked'));
+      expect(linked / total).toBeGreaterThanOrEqual(0.1);
+    } finally {
+      await s.close();
+    }
+  });
+
+  test('TEACHES audit — report linked vs total modules per university', async () => {
+    const s = driver.session({ database: 'chemie' });
+    try {
+      const r = await s.run(
+        `MATCH (u:University)-[:OFFERS]->(m:UniversityModule)
+         OPTIONAL MATCH (m)-[t:TEACHES]->(e:Entity)
+         WITH u, count(DISTINCT m) AS totalMods, count(DISTINCT t) AS totalTeaches, count(DISTINCT e) AS distinctEntities
+         RETURN u.short_code AS uni, u.name AS name,
+                totalMods, totalTeaches, distinctEntities
+         ORDER BY totalTeaches DESC`
+      );
+      console.log('\n=== TEACHES Audit Report ===');
+      let totalMods = 0,
+        totalTeaches = 0;
+      for (const rec of r.records) {
+        const tm = Number(rec.get('totalMods'));
+        const tt = Number(rec.get('totalTeaches'));
+        const de = Number(rec.get('distinctEntities'));
+        totalMods += tm;
+        totalTeaches += tt;
+        console.log(
+          `  ${String(rec.get('uni')).padEnd(10)} ${String(rec.get('name')).padEnd(35)} ` +
+            `${String(tm).padStart(4)} modules, ${String(tt).padStart(4)} teaches → ${String(de).padStart(2)} entities`
+        );
+      }
+      console.log(`  ${'─'.repeat(80)}`);
+      console.log(`  TOTAL: ${totalMods} modules, ${totalTeaches} TEACHES links`);
+      expect(totalMods).toBeGreaterThanOrEqual(450);
+      expect(totalTeaches).toBeGreaterThanOrEqual(50);
+    } finally {
+      await s.close();
+    }
+  });
 });

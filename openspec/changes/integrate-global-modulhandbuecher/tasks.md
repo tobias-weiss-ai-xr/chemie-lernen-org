@@ -18,7 +18,7 @@
       (https://ocw.mit.edu/courses/chemistry/). CC BY-NC-SA 4.0.
       Output: `myhugoapp/data/modulhandbuch/mit.json`
 - [x] **MH-1.5b** `scripts/curricula_didaktik/sources/modulhandbuch
-  _framework.py` — shared framework (HTTP retries, PDF/HTML
+_framework.py` — shared framework (HTTP retries, PDF/HTML
       extractors, JSON-LD, factories)
 - [x] **MH-1.5c** 9 stub scrapers: TUM, ETH, LMU, RWTH, Cambridge,
       Imperial, Stanford, Tokyo, KTH
@@ -55,18 +55,18 @@
 
 ## Phase 5: Front-end
 
-- [ ] **MH-19** `/modulhandbuecher/` index (content page + layout → already exists)
-- [ ] **MH-20** `/modulhandbuecher/{uni_slug}/` page (SSR from generator → already exists)
-- [ ] **MH-21** Module detail page (SSR from generator → already exists)
-- [ ] **MH-22** "Universitäten" on entity pages
+- [x] **MH-19** `/modulhandbuecher/` index (content page + layout → already exists)
+- [x] **MH-20** `/modulhandbuecher/{uni_slug}/` page (SSR from generator → already exists)
+- [x] **MH-21** Module detail page (SSR from generator → already exists)
+- [x] **MH-22** "Universitäten" on entity pages
 
 ## Phase 6: KI-Assistent
 
-- [ ] **MH-23** Extend `getRAGContext`
-- [ ] **MH-24** System prompt snippet (de/en)
+- [x] **MH-23** Extend `getRAGContext`
+- [x] **MH-24** System prompt snippet (de/en)
 
 ## Phase 7: Quality
 
-- [ ] **MH-25** Data quality tests
-- [ ] **MH-26** Cross-subset audit
-- [ ] **MH-27** Commit + push
+- [x] **MH-25** Data quality tests
+- [x] **MH-26** Cross-subset audit
+- [x] **MH-27** Commit + push
