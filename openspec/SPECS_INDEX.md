@@ -1,6 +1,6 @@
 # OpenSpec — Capabilities Index
 
-Last updated: 2026-06-28
+Last updated: 2026-07-05
 
 ## Main capabilities (specs/)
 
@@ -21,10 +21,7 @@ Last updated: 2026-06-28
 
 ## Active changes (`changes/`)
 
-| Change                              | Status              | Goal                                                                                                   |
-| ----------------------------------- | ------------------- | ------------------------------------------------------------------------------------------------------ |
-| `extend-entity-kg-with-lehrplan`    | Archived 2026-07-05 | Import 16 state curricula + 5 KMK guidelines into Neo4j. All tasks (19/19) complete. Commit `9aeb6b5b` |
-| `integrate-global-modulhandbuecher` | Active              | Implement ETH+TUM scrapers + 8 more top universities; new modulhandbuch subset of the central KG       |
+_(No active changes — all completed changes have been archived.)_
 
 ## Archived changes (`changes/archive/`)
 
@@ -39,6 +36,7 @@ Last updated: 2026-06-28
 | deploy-observability (API smoke tests) | a1a11699           | Shipped 2026-06-26                     |
 | sprint-9-specs-and-fixes               | 20/20 tasks ✓      | Archived 2026-07-04                    |
 | extend-entity-kg-with-lehrplan         | 19/19 tasks ✓      | Archived 2026-07-05. Commit `9aeb6b5b` |
+| integrate-global-modulhandbuecher      | 33/33 tasks ✓      | Archived 2026-07-05. Commit `3753a6a1` |
 
 ## Legacy planning artifacts (`archive/`)
 
