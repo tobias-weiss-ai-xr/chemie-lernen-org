@@ -1,0 +1,251 @@
+{{ define "title" }}Virtuelles Labor — Chemie Experimente{{ end }}
+
+{{ define "css" }}
+<style>
+    #lab-container {
+        width: 100%;
+        height: 60vh;
+        min-height: 500px;
+        position: relative;
+        background: #1a1a2e;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    #lab-canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+        touch-action: none;
+    }
+    .lab-toolbar {
+        display: flex;
+        gap: 8px;
+        padding: 12px 16px;
+        background: #16213e;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .lab-toolbar button {
+        padding: 8px 16px;
+        border: 1px solid #0f3460;
+        border-radius: 6px;
+        background: #1a1a2e;
+        color: #e0e0e0;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s;
+    }
+    .lab-toolbar button:hover {
+        background: #0f3460;
+        border-color: #533483;
+    }
+    .lab-toolbar button.active {
+        background: #533483;
+        border-color: #e94560;
+    }
+    .lab-toolbar .spacer {
+        flex: 1;
+    }
+    .lab-toolbar .label {
+        color: #888;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .equipment-panel {
+        position: absolute;
+        left: 12px;
+        top: 12px;
+        background: rgba(22, 33, 62, 0.9);
+        border-radius: 8px;
+        padding: 12px;
+        z-index: 10;
+        min-width: 140px;
+    }
+    .equipment-panel h4 {
+        color: #e94560;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 0 0 8px 0;
+    }
+    .equipment-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 8px;
+        margin: 4px 0;
+        border-radius: 4px;
+        cursor: grab;
+        color: #ccc;
+        font-size: 13px;
+        transition: background 0.2s;
+    }
+    .equipment-item:hover {
+        background: rgba(83, 52, 131, 0.5);
+    }
+    .equipment-item .icon {
+        font-size: 18px;
+        width: 24px;
+        text-align: center;
+    }
+    .info-panel {
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+        background: rgba(22, 33, 62, 0.95);
+        border-radius: 8px;
+        padding: 12px 16px;
+        z-index: 10;
+        max-width: 300px;
+        display: none;
+        color: #ccc;
+        font-size: 13px;
+    }
+    .info-panel.visible {
+        display: block;
+    }
+    .info-panel h4 {
+        color: #e94560;
+        margin: 0 0 6px 0;
+    }
+    .safety-badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        margin: 2px;
+    }
+    .safety-warning { background: #ff4444; color: white; }
+    .safety-caution { background: #ff8800; color: white; }
+    .safety-info { background: #44aaff; color: white; }
+    .experiment-selector {
+        padding: 8px 12px;
+        border-radius: 6px;
+        border: 1px solid #0f3460;
+        background: #1a1a2e;
+        color: #e0e0e0;
+        font-size: 13px;
+    }
+    #loading-lab {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #1a1a2e;
+        z-index: 20;
+        color: #888;
+        font-size: 14px;
+    }
+    #loading-lab.hidden { display: none; }
+    @media (max-width: 768px) {
+        #lab-container { height: 50vh; min-height: 350px; }
+        .equipment-panel { display: none; }
+        .lab-toolbar { padding: 8px; }
+        .lab-toolbar button { font-size: 12px; padding: 6px 10px; }
+    }
+</style>
+{{ end }}
+
+{{ define "main" }}
+<div class="container py-4">
+    <h1 class="mb-3" style="color: #e94560;">🧪 Virtuelles Labor</h1>
+    <p class="text-muted mb-4">Führen Sie chemische Experimente in einer sicheren, virtuellen 3D-Umgebung durch.</p>
+
+    <div class="lab-toolbar">
+        <span class="label">Experiment:</span>
+        <select class="experiment-selector" id="experiment-select">
+            <option value="freestyle">🔬 Freier Aufbau</option>
+            <option value="titration">🧪 Titration (Säure/Base)</option>
+            <option value="co2-nachweis">💨 CO₂-Nachweis</option>
+            <option value="kupfer-sulfat">🟦 Kupfersulfat-Kristallisation</option>
+            <option value="wasserstoff">🔥 Knallgasprobe (H₂)</option>
+        </select>
+        <div class="spacer"></div>
+        <button id="btn-reset" title="Reset">↺ Zurücksetzen</button>
+        <button id="btn-run" title="Run Experiment" class="active">▶ Starten</button>
+    </div>
+
+    <div id="lab-container">
+        <div id="loading-lab">🔬 Labor wird geladen…</div>
+        <canvas id="lab-canvas"></canvas>
+        <div class="equipment-panel" id="equipment-panel">
+            <h4>Geräte</h4>
+            <div class="equipment-item" data-type="burner"><span class="icon">🔥</span> Brenner</div>
+            <div class="equipment-item" data-type="beaker"><span class="icon">🧪</span> Becherglas</div>
+            <div class="equipment-item" data-type="flask"><span class="icon">⚗️</span> Erlenmeyerkolben</div>
+            <div class="equipment-item" data-type="cylinder"><span class="icon">📏</span> Messzylinder</div>
+            <div class="equipment-item" data-type="thermometer"><span class="icon">🌡️</span> Thermometer</div>
+            <div class="equipment-item" data-type="burette"><span class="icon">💧</span> Bürette</div>
+        </div>
+        <div class="info-panel" id="info-panel">
+            <h4 id="info-title">Info</h4>
+            <div id="info-content"></div>
+            <div id="safety-badges" style="margin-top: 8px;"></div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card bg-dark text-light border-secondary">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #e94560;">📋 Beobachtung</h5>
+                    <div id="observation-log" style="font-size: 13px; max-height: 200px; overflow-y: auto; color: #aaa;">
+                        <p class="text-muted">— Noch keine Beobachtungen —</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card bg-dark text-light border-secondary">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #e94560;">📖 Anleitung</h5>
+                    <div id="instructions" style="font-size: 13px; color: #ccc;">
+                        <p>1. Wähle ein Experiment aus dem Dropdown-Menü.</p>
+                        <p>2. Ziehe Geräte aus der Box auf die Laborfläche.</p>
+                        <p>3. Wähle Chemikalien und stelle Parameter ein.</p>
+                        <p>4. Klicke "Starten", um die Reaktion zu beobachten.</p>
+                        <p class="text-warning mt-2">⚠️ Achte auf die Sicherheitshinweise!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}
+
+{{ define "js" }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="{{ "js/virtual-lab/lab-engine.js" | relURL }}"></script>
+<script src="{{ "js/virtual-lab/equipment-manager.js" | relURL }}"></script>
+<script src="{{ "js/virtual-lab/reaction-engine.js" | relURL }}"></script>
+<script src="{{ "js/virtual-lab/experiments.js" | relURL }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    LabEngine.init('lab-canvas', 'loading-lab');
+
+    document.getElementById('experiment-select').addEventListener('change', function(e) {
+        LabEngine.loadExperiment(e.target.value);
+    });
+
+    document.getElementById('btn-run').addEventListener('click', function() {
+        LabEngine.runExperiment();
+    });
+
+    document.getElementById('btn-reset').addEventListener('click', function() {
+        LabEngine.reset();
+    });
+
+    document.querySelectorAll('.equipment-item').forEach(function(item) {
+        item.addEventListener('mousedown', function(e) {
+            LabEngine.startDrag(e, this.dataset.type);
+        });
+    });
+});
+</script>
+{{ end }}
