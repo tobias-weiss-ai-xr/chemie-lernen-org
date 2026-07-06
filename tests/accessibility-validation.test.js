@@ -10,7 +10,7 @@ const { JSDOM } = require('jsdom');
 // eslint-disable-next-line sonarjs/todo-tag
 // TODO: Re-enable live-site suite once CI has a local Hugo server (e.g. hugo server -D in webServer config).
 // Until then, axios.get against https://chemie-lernen.org is fragile in CI and during local runs.
-describe.skip('Accessibility Validation - WCAG 2.1 AA (live-site suite, skipped)', () => {
+describe('Accessibility Validation - WCAG 2.1 AA (live-site suite)', () => {
   const calculators = [
     {
       name: 'Atmosphärendruck Calculator',
