@@ -1,0 +1,183 @@
+{{ define "main" }}
+
+<div class="auth-page">
+  <div class="auth-container">
+    <div class="auth-card">
+      <h1 class="auth-title">{{ .Title }}</h1>
+      <p class="auth-subtitle">{{ .Description }}</p>
+
+      <form id="register-form" class="auth-form">
+        <div class="form-group">
+          <label for="reg-name">Name (optional)</label>
+          <input type="text" id="reg-name" class="form-control" placeholder="Dein Name" autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label for="reg-email">E-Mail-Adresse</label>
+          <input type="email" id="reg-email" class="form-control" placeholder="name@beispiel.de" required autocomplete="email" autofocus>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-password">Passwort</label>
+          <input type="password" id="reg-password" class="form-control" placeholder="Mindestens 8 Zeichen" required autocomplete="new-password" minlength="8">
+        </div>
+
+        <div class="form-group">
+          <label for="reg-password-confirm">Passwort bestätigen</label>
+          <input type="password" id="reg-password-confirm" class="form-control" placeholder="Passwort wiederholen" required autocomplete="new-password" minlength="8">
+        </div>
+
+        <div id="register-error" class="auth-error hidden"></div>
+        <div id="register-success" class="auth-success hidden"></div>
+
+        <button type="submit" id="register-submit" class="btn btn-primary btn-block auth-submit">
+          Kostenloses Konto erstellen
+        </button>
+      </form>
+
+      <p class="auth-footer">
+        Bereits registriert? <a href="/login/">Anmelden</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 60vh;
+  padding: 60px 20px;
+}
+.auth-container {
+  width: 100%;
+  max-width: 420px;
+}
+.auth-card {
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 12px;
+  padding: 40px 32px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.auth-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+  text-align: center;
+  color: var(--text-primary, #222);
+}
+.auth-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary, #666);
+  text-align: center;
+  margin: 0 0 28px;
+}
+.auth-form .form-group {
+  margin-bottom: 20px;
+}
+.auth-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  color: var(--text-primary, #222);
+}
+.auth-form .form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color, #d0d0d0);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: var(--input-bg, #fff);
+  color: var(--text-primary, #222);
+  transition: border-color 0.2s;
+}
+.auth-form .form-control:focus {
+  outline: none;
+  border-color: var(--green-primary, #28a745);
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+}
+.auth-submit {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+.auth-error {
+  color: #dc3545;
+  font-size: 0.9rem;
+  padding: 10px 14px;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.auth-success {
+  color: #155724;
+  font-size: 0.9rem;
+  padding: 10px 14px;
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.auth-footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #666);
+}
+.hidden { display: none !important; }
+</style>
+
+<script src="/js/auth-client.js"></script>
+<script>
+(function() {
+  var form = document.getElementById('register-form');
+  var nameInput = document.getElementById('reg-name');
+  var emailInput = document.getElementById('reg-email');
+  var passwordInput = document.getElementById('reg-password');
+  var passwordConfirmInput = document.getElementById('reg-password-confirm');
+  var errorEl = document.getElementById('register-error');
+  var successEl = document.getElementById('register-success');
+  var submitBtn = document.getElementById('register-submit');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    errorEl.classList.add('hidden');
+    successEl.classList.add('hidden');
+
+    if (passwordInput.value !== passwordConfirmInput.value) {
+      errorEl.textContent = 'Passwörter stimmen nicht überein';
+      errorEl.classList.remove('hidden');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Konto wird erstellt...';
+
+    window.AuthClient.register(emailInput.value, passwordInput.value, nameInput.value)
+      .then(function() {
+        successEl.textContent = 'Registrierung erfolgreich! Weiterleiten...';
+        successEl.classList.remove('hidden');
+        setTimeout(function() {
+          window.location.href = '/';
+        }, 800);
+      })
+      .catch(function(err) {
+        errorEl.textContent = err.message || 'Registrierung fehlgeschlagen';
+        errorEl.classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Kostenloses Konto erstellen';
+      });
+  });
+})();
+</script>
+
+{{ end }}
