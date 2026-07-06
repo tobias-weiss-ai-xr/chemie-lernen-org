@@ -185,3 +185,29 @@ export function getAllUsers() {
     created_at: u.created_at,
   }));
 }
+
+// ── Quiz Results ──────────────────────────────────────────────
+
+export function addQuizResult(userId, result) {
+  const u = users.find((u) => u.id === userId);
+  if (!u) return { ok: false, error: 'User not found' };
+  if (!u.quiz_results) u.quiz_results = [];
+  u.quiz_results.push({
+    topic: result.topic,
+    score: result.score,
+    total: result.total,
+    percentage: result.percentage,
+    answers: result.answers || [],
+    time: result.time || 0,
+    completedAt: new Date().toISOString(),
+  });
+  u.updated_at = new Date().toISOString();
+  scheduleSave();
+  return { ok: true };
+}
+
+export function getQuizResults(userId) {
+  const u = users.find((u) => u.id === userId);
+  if (!u) return [];
+  return u.quiz_results || [];
+}

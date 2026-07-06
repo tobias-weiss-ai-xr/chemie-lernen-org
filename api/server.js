@@ -3874,6 +3874,106 @@ app.get('/api/studienvergleich/compare', async (req, res) => {
   }
 });
 
+// ── Quiz API ───────────────────────────────────────────────────
+
+app.get('/api/quizzes/:topic', async (req, res) => {
+  const topic = req.params.topic.trim();
+
+  try {
+    let questions = [];
+    try {
+      const qPath = path.join(process.cwd(), 'myhugoapp', 'static', 'js', 'quiz-questions.js');
+      const code = fs.readFileSync(qPath, 'utf-8');
+      const vm = await import('vm');
+      const sandbox = { window: {}, console };
+      vm.runInNewContext(code, sandbox, { filename: 'quiz-questions.js' });
+      questions = sandbox.window.quizQuestions || [];
+    } catch (evalErr) {
+      console.warn('[quiz-api] Failed to load quiz questions:', evalErr.message);
+    }
+
+    if (questions.length === 0) {
+      return res.status(503).json({ error: 'Quiz questions unavailable' });
+    }
+
+    let filtered;
+    if (topic === 'alle') {
+      filtered = questions.slice();
+    } else {
+      filtered = questions.filter((q) => q.topic === topic);
+      if (filtered.length === 0) {
+        return res.status(404).json({ error: 'Topic not found', topic });
+      }
+    }
+
+    for (let i = filtered.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
+    }
+
+    const sanitized = filtered.map((q) => {
+      const qCopy = Object.assign({}, q);
+      delete qCopy.correctIndex;
+      delete qCopy.correctIndices;
+      delete qCopy.correctAnswer;
+      delete qCopy.acceptedAnswers;
+      return qCopy;
+    });
+
+    res.json({
+      topic,
+      total: sanitized.length,
+      questions: sanitized,
+    });
+  } catch (err) {
+    console.error('[quiz-api] Error:', err.message);
+    res.status(500).json({ error: 'Failed to load quiz questions' });
+  }
+});
+
+app.put('/api/quiz-results', async (req, res) => {
+  const { topic, score, total, answers, time } = req.body;
+  if (!topic || score === undefined || !total) {
+    return res.status(400).json({ error: 'Missing required fields: topic, score, total' });
+  }
+
+  const percentage = total > 0 ? Math.round((score / total) * 100) : 0;
+
+  const result = {
+    topic,
+    score,
+    total,
+    percentage,
+    answers: answers || [],
+    time: time || 0,
+  };
+
+  if (req.user && req.user.id) {
+    const { addQuizResult } = await import('./auth-db.js');
+    const saveResult = addQuizResult(req.user.id, result);
+    if (!saveResult.ok) {
+      console.warn('[quiz-api] Failed to save result:', saveResult.error);
+    }
+  }
+
+  res.json({ ok: true, result });
+});
+
+app.get('/api/quiz-results', async (req, res) => {
+  if (!req.user || !req.user.id) {
+    return res.status(401).json({ error: 'Authentifizierung erforderlich' });
+  }
+
+  try {
+    const { getQuizResults } = await import('./auth-db.js');
+    const results = getQuizResults(req.user.id);
+    res.json({ results });
+  } catch (err) {
+    console.error('[quiz-api] Error loading results:', err.message);
+    res.status(500).json({ error: 'Failed to load quiz results' });
+  }
+});
+
 app.get('/api/health', async (req, res) => {
   var neo4jOk;
   var entityCount = 0;
