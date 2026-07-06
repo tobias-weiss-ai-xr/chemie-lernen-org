@@ -87,6 +87,9 @@ services:
       # Stripe keys — set these for premium checkout to work:
       # - STRIPE_SECRET_KEY=sk_live_...
       # - STRIPE_WEBHOOK_SECRET=whsec_...
+      # Monitoring — set these for error tracking and uptime monitoring:
+      # - SENTRY_DSN=https://xxx@oxxx.ingest.us.sentry.io/xxx
+      # - HEALTHCHECKS_IO_URL=https://hc-ping.com/xxx
     networks:
       - traefik-public
       - litellm-internal
