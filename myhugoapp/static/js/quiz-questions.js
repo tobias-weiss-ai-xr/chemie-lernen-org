@@ -1,0 +1,338 @@
+/**
+ * quiz-questions.js — 30 questions across 5 chemistry topics
+ * Question types: multiple-choice, multiple-select, true-false, fill-in-blank
+ */
+(function () {
+  'use strict';
+
+  var questions = [
+    // ── Allgemeine Chemie (6) ─────────────────────────────────
+    {
+      id: 'ac-1',
+      topic: 'Allgemeine Chemie',
+      type: 'multiple-choice',
+      question: 'Wie viele Protonen hat ein Wasserstoffatom?',
+      options: ['0', '1', '2', '3'],
+      correctIndex: 1,
+      explanation: 'Wasserstoff hat die Ordnungszahl 1 und besitzt daher ein Proton im Atomkern.',
+    },
+    {
+      id: 'ac-2',
+      topic: 'Allgemeine Chemie',
+      type: 'multiple-choice',
+      question: 'Welches ist das häufigste Element im Universum?',
+      options: ['Sauerstoff', 'Kohlenstoff', 'Wasserstoff', 'Helium'],
+      correctIndex: 2,
+      explanation: 'Wasserstoff macht etwa 75 % der baryonischen Masse des Universums aus.',
+    },
+    {
+      id: 'ac-3',
+      topic: 'Allgemeine Chemie',
+      type: 'true-false',
+      question: 'Die molare Masse von Kohlenstoff (C) beträgt etwa 12 g/mol.',
+      options: ['Richtig', 'Falsch'],
+      correctIndex: 0,
+      explanation: 'Kohlenstoff hat eine relative Atommasse von etwa 12 u, daher 12 g/mol.',
+    },
+    {
+      id: 'ac-4',
+      topic: 'Allgemeine Chemie',
+      type: 'fill-in-blank',
+      question:
+        'Das Teilchen, das bei einer chemischen Reaktion übertragen wird und die Reaktion bestimmt, nennt man ________.',
+      options: [],
+      correctAnswer: 'Elektron',
+      acceptedAnswers: ['Elektron', 'Elektronen', 'elektron'],
+      explanation: 'Elektronen werden bei chemischen Reaktionen übertragen oder geteilt.',
+    },
+    {
+      id: 'ac-5',
+      topic: 'Allgemeine Chemie',
+      type: 'multiple-select',
+      question: 'Welche der folgenden sind chemische Elemente?',
+      options: ['Kupfer', 'Wasser', 'Eisen', 'Kochsalz', 'Sauerstoff'],
+      correctIndices: [0, 2, 4],
+      explanation:
+        'Kupfer (Cu), Eisen (Fe) und Sauerstoff (O) sind Elemente. Wasser (H₂O) und Kochsalz (NaCl) sind Verbindungen.',
+    },
+    {
+      id: 'ac-6',
+      topic: 'Allgemeine Chemie',
+      type: 'multiple-choice',
+      question: 'Welches Gesetz besagt, dass Masse bei chemischen Reaktionen erhalten bleibt?',
+      options: [
+        'Gesetz der konstanten Proportionen',
+        'Gesetz der Massenerhaltung',
+        'Gesetz der multiplen Proportionen',
+        'Avogadro-Gesetz',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Das Gesetz der Massenerhaltung (Lavoisier) besagt, dass die Gesamtmasse vor und nach einer Reaktion gleich bleibt.',
+    },
+
+    // ── Anorganische Chemie (6) ───────────────────────────────
+    {
+      id: 'an-1',
+      topic: 'Anorganische Chemie',
+      type: 'multiple-choice',
+      question: 'Welche Art von Bindung liegt in Natriumchlorid (NaCl) vor?',
+      options: ['Ionenbindung', 'Kovalente Bindung', 'Metallbindung', 'Wasserstoffbrücke'],
+      correctIndex: 0,
+      explanation:
+        'NaCl besteht aus Na⁺- und Cl⁻-Ionen, die durch Ionenbindung zusammengehalten werden.',
+    },
+    {
+      id: 'an-2',
+      topic: 'Anorganische Chemie',
+      type: 'multiple-choice',
+      question: 'Welches Edelgas hat die kleinste Atommasse?',
+      options: ['Helium', 'Neon', 'Argon', 'Krypton'],
+      correctIndex: 0,
+      explanation: 'Helium (He) hat die Ordnungszahl 2 und ist das leichteste Edelgas.',
+    },
+    {
+      id: 'an-3',
+      topic: 'Anorganische Chemie',
+      type: 'true-false',
+      question: 'Schwefelsäure (H₂SO₄) ist eine zweiprotonige Säure.',
+      options: ['Richtig', 'Falsch'],
+      correctIndex: 0,
+      explanation: 'Schwefelsäure kann zwei Protonen (H⁺) abgeben, daher ist sie zweiprotonig.',
+    },
+    {
+      id: 'an-4',
+      topic: 'Anorganische Chemie',
+      type: 'multiple-choice',
+      question: 'Welche Oxidationszahl hat Sauerstoff in den meisten Verbindungen?',
+      options: ['-2', '0', '+2', '-1'],
+      correctIndex: 0,
+      explanation:
+        'Sauerstoff hat in den meisten Verbindungen die Oxidationszahl -II (Ausnahme: Peroxide).',
+    },
+    {
+      id: 'an-5',
+      topic: 'Anorganische Chemie',
+      type: 'fill-in-blank',
+      question: 'Die Reaktion zwischen einer Säure und einer Base nennt man ________.',
+      options: [],
+      correctAnswer: 'Neutralisation',
+      acceptedAnswers: ['Neutralisation', 'Neutralisierung', 'neutralisation', 'neutralisierung'],
+      explanation: 'Bei der Neutralisation reagieren Säure und Base zu Salz und Wasser.',
+    },
+    {
+      id: 'an-6',
+      topic: 'Anorganische Chemie',
+      type: 'multiple-choice',
+      question: 'Welches Element steht im Periodensystem in der 3. Periode und der 5. Hauptgruppe?',
+      options: ['Aluminium', 'Silicium', 'Phosphor', 'Schwefel'],
+      correctIndex: 2,
+      explanation: 'Phosphor (P) steht in der 3. Periode, 5. Hauptgruppe (15. Gruppe).',
+    },
+
+    // ── Organische Chemie (6) ─────────────────────────────────
+    {
+      id: 'oc-1',
+      topic: 'Organische Chemie',
+      type: 'multiple-choice',
+      question: 'Welche funktionelle Gruppe kennzeichnet Alkohole?',
+      options: ['-OH', '-COOH', '-NH₂', '-CHO'],
+      correctIndex: 0,
+      explanation: 'Alkohole enthalten die Hydroxylgruppe (-OH).',
+    },
+    {
+      id: 'oc-2',
+      topic: 'Organische Chemie',
+      type: 'multiple-choice',
+      question: 'Welcher Kohlenwasserstoff ist der einfachste Vertreter der Alkane?',
+      options: ['Ethan', 'Methan', 'Propan', 'Butan'],
+      correctIndex: 1,
+      explanation: 'Methan (CH₄) ist das einfachste Alkan.',
+    },
+    {
+      id: 'oc-3',
+      topic: 'Organische Chemie',
+      type: 'true-false',
+      question: 'Bei der Additionsreaktion von Ethen (C₂H₄) mit Brom entsteht 1,2-Dibromethan.',
+      options: ['Richtig', 'Falsch'],
+      correctIndex: 0,
+      explanation:
+        'Ethen reagiert mit Brom unter Addition zu 1,2-Dibromethan (Entfärbung von Bromwasser).',
+    },
+    {
+      id: 'oc-4',
+      topic: 'Organische Chemie',
+      type: 'multiple-choice',
+      question: 'Welche Verbindung ist ein primärer Alkohol?',
+      options: ['2-Propanol', '2-Methyl-2-propanol', '1-Propanol', 'tert-Butanol'],
+      correctIndex: 2,
+      explanation: '1-Propanol hat die OH-Gruppe an einem primären Kohlenstoffatom (endständig).',
+    },
+    {
+      id: 'oc-5',
+      topic: 'Organische Chemie',
+      type: 'fill-in-blank',
+      question:
+        'Die Reaktion, bei der aus einem Alkohol und einer Carbonsäure ein Ester entsteht, heißt ________.',
+      options: [],
+      correctAnswer: 'Veresterung',
+      acceptedAnswers: ['Veresterung', 'Esterbildung', 'veresterung', 'esterbildung'],
+      explanation:
+        'Bei der Veresterung reagieren Alkohol und Carbonsäure unter Wasserabspaltung zu Ester.',
+    },
+    {
+      id: 'oc-6',
+      topic: 'Organische Chemie',
+      type: 'multiple-select',
+      question: 'Welche der folgenden Verbindungen gehören zu den Kohlenhydraten?',
+      options: ['Glucose', 'Ethanol', 'Cellulose', 'Essigsäure', 'Stärke'],
+      correctIndices: [0, 2, 4],
+      explanation:
+        'Glucose, Cellulose und Stärke sind Kohlenhydrate (Saccharide). Ethanol ist ein Alkohol, Essigsäure eine Carbonsäure.',
+    },
+
+    // ── Physikalische Chemie (6) ──────────────────────────────
+    {
+      id: 'pc-1',
+      topic: 'Physikalische Chemie',
+      type: 'multiple-choice',
+      question: 'Welche Zustandsgleichung beschreibt ideale Gase?',
+      options: ['pV = nRT', 'E = mc²', 'ΔG = ΔH – TΔS', 'U = Q + W'],
+      correctIndex: 0,
+      explanation:
+        'Das ideale Gasgesetz lautet pV = nRT (Druck × Volumen = Stoffmenge × Gaskonstante × Temperatur).',
+    },
+    {
+      id: 'pc-2',
+      topic: 'Physikalische Chemie',
+      type: 'multiple-choice',
+      question: 'Was misst der pH-Wert?',
+      options: [
+        'Die Konzentration von H⁺-Ionen',
+        'Die Temperatur',
+        'Den Druck',
+        'Die Leitfähigkeit',
+      ],
+      correctIndex: 0,
+      explanation: 'Der pH-Wert ist der negative dekadische Logarithmus der H⁺-Ionenkonzentration.',
+    },
+    {
+      id: 'pc-3',
+      topic: 'Physikalische Chemie',
+      type: 'true-false',
+      question: 'Eine exotherme Reaktion gibt Wärme an die Umgebung ab.',
+      options: ['Richtig', 'Falsch'],
+      correctIndex: 0,
+      explanation: 'Bei exothermen Reaktionen ist ΔH negativ — die Reaktion gibt Wärme ab.',
+    },
+    {
+      id: 'pc-4',
+      topic: 'Physikalische Chemie',
+      type: 'multiple-choice',
+      question: 'Welche Größe ist ein Maß für die Unordnung eines Systems?',
+      options: ['Enthalpie', 'Entropie', 'Freie Enthalpie', 'Innere Energie'],
+      correctIndex: 1,
+      explanation:
+        'Die Entropie (S) ist ein Maß für die Unordnung bzw. die Anzahl der Mikrozustände eines Systems.',
+    },
+    {
+      id: 'pc-5',
+      topic: 'Physikalische Chemie',
+      type: 'fill-in-blank',
+      question:
+        'Die Geschwindigkeit einer chemischen Reaktion wird durch die ________ beschrieben.',
+      options: [],
+      correctAnswer: 'Reaktionskinetik',
+      acceptedAnswers: ['Reaktionskinetik', 'Kinetik', 'reaktionskinetik', 'kinetik'],
+      explanation:
+        'Die Reaktionskinetik untersucht die Geschwindigkeit von chemischen Reaktionen und ihre Beeinflussung.',
+    },
+    {
+      id: 'pc-6',
+      topic: 'Physikalische Chemie',
+      type: 'multiple-choice',
+      question:
+        'Nach Le Chatelier verschiebt sich ein Gleichgewicht bei Temperaturerhöhung in Richtung der…',
+      options: [
+        'exothermen Reaktion',
+        'endothermen Reaktion',
+        'Volumenverkleinerung',
+        'Druckerhöhung',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Bei Temperaturerhöhung verschiebt sich das Gleichgewicht in Richtung der endothermen Reaktion (Wärmeaufnahme).',
+    },
+
+    // ── Biochemie (6) ─────────────────────────────────────────
+    {
+      id: 'bc-1',
+      topic: 'Biochemie',
+      type: 'multiple-choice',
+      question: 'Welche Moleküle sind die primären Energieträger in Zellen?',
+      options: ['Proteine', 'Kohlenhydrate', 'Fette', 'ATP'],
+      correctIndex: 3,
+      explanation: 'Adenosintriphosphat (ATP) ist der universelle Energieträger in Zellen.',
+    },
+    {
+      id: 'bc-2',
+      topic: 'Biochemie',
+      type: 'multiple-choice',
+      question:
+        'Aus wie vielen verschiedenen Aminosäuren bestehen Proteine im menschlichen Körper?',
+      options: ['10', '20', '30', '50'],
+      correctIndex: 1,
+      explanation: 'Es gibt 20 proteinogene Aminosäuren, aus denen Proteine aufgebaut werden.',
+    },
+    {
+      id: 'bc-3',
+      topic: 'Biochemie',
+      type: 'true-false',
+      question: 'Enzyme setzen die Aktivierungsenergie einer Reaktion herab.',
+      options: ['Richtig', 'Falsch'],
+      correctIndex: 0,
+      explanation: 'Enzyme wirken als Katalysatoren und senken die Aktivierungsenergie.',
+    },
+    {
+      id: 'bc-4',
+      topic: 'Biochemie',
+      type: 'multiple-choice',
+      question: 'Welche Struktur der DNA wurde von Watson und Crick beschrieben?',
+      options: ['Einfachhelix', 'Alpha-Helix', 'Doppelhelix', 'Beta-Faltblatt'],
+      correctIndex: 2,
+      explanation: 'Watson und Crick beschrieben 1953 die Doppelhelix-Struktur der DNA.',
+    },
+    {
+      id: 'bc-5',
+      topic: 'Biochemie',
+      type: 'multiple-select',
+      question: 'Welche der folgenden sind essenzielle Nährstoffe für den Menschen?',
+      options: ['Vitamin C', 'Glucose', 'Omega-3-Fettsäuren', 'Cholesterin', 'Eisen'],
+      correctIndices: [0, 2, 4],
+      explanation:
+        'Vitamin C und Omega-3-Fettsäuren sind essenziell (müssen zugeführt werden). Eisen ist ein essenzielles Spurenelement. Glucose und Cholesterin können vom Körper synthetisiert werden.',
+    },
+    {
+      id: 'bc-6',
+      topic: 'Biochemie',
+      type: 'fill-in-blank',
+      question:
+        'Der Vorgang, bei dem Glucose unter Sauerstoffverbrauch zu CO₂ und H₂O abgebaut wird, heißt ________.',
+      options: [],
+      correctAnswer: 'Zellatmung',
+      acceptedAnswers: ['Zellatmung', 'zellatmung', 'Zellatmung (Atmungskette)'],
+      explanation:
+        'Bei der Zellatmung wird Glucose mit Sauerstoff zu Kohlenstoffdioxid und Wasser abgebaut, wobei Energie (ATP) freigesetzt wird.',
+    },
+  ];
+
+  // Expose as browser global
+  window.quizQuestions = questions;
+  window.quizTopics = [
+    'Allgemeine Chemie',
+    'Anorganische Chemie',
+    'Organische Chemie',
+    'Physikalische Chemie',
+    'Biochemie',
+  ];
+})();

@@ -1,0 +1,901 @@
+{{ define "main" }}
+
+<div class="quiz-page">
+  <div class="quiz-container">
+    <h1 class="quiz-title">Chemie-Quiz</h1>
+    <p class="quiz-subtitle">Teste dein Chemie-Wissen aus allen Bereichen</p>
+
+    <!-- Topic Selection -->
+    <div class="quiz-header" id="quiz-header">
+      <label for="quiz-topic-select" class="quiz-topic-label">Thema auswählen:</label>
+      <select id="quiz-topic-select" class="quiz-topic-select">
+        <option value="">— Bitte wählen —</option>
+        <option value="Allgemeine Chemie">Allgemeine Chemie</option>
+        <option value="Anorganische Chemie">Anorganische Chemie</option>
+        <option value="Organische Chemie">Organische Chemie</option>
+        <option value="Physikalische Chemie">Physikalische Chemie</option>
+        <option value="Biochemie">Biochemie</option>
+        <option value="alle">Alle Themen (30 Fragen)</option>
+      </select>
+      <button id="quiz-start-btn" class="quiz-btn quiz-btn-primary quiz-btn-start" disabled>
+        Quiz starten
+      </button>
+    </div>
+
+    <!-- Review reminder banner -->
+    <div id="quiz-review-banner" class="quiz-review-banner hidden">
+      <span class="quiz-review-banner-icon">🔔</span>
+      <span id="quiz-review-banner-text">Du hast fällige Wiederholungen.</span>
+      <button id="quiz-review-banner-btn" class="quiz-btn quiz-btn-small">Wiederholen</button>
+    </div>
+
+    <!-- Quiz Area -->
+    <div id="quiz-area" class="quiz-area">
+      <div class="quiz-empty-state">
+        <p>Wähle ein Thema und klicke auf "Quiz starten".</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* ── Quiz Page Styles ────────────────────────────── */
+.quiz-page {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.quiz-container {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.quiz-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 0.25rem;
+  text-align: center;
+}
+
+.quiz-subtitle {
+  text-align: center;
+  color: #666;
+  margin: 0 0 1.5rem;
+  font-size: 1rem;
+}
+
+/* Header / Topic Selection */
+.quiz-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.quiz-topic-label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.quiz-topic-select {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.6rem 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.quiz-topic-select:focus {
+  border-color: #4a90d9;
+  outline: none;
+}
+
+/* Buttons */
+.quiz-btn {
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.quiz-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.quiz-btn-primary {
+  background: #4a90d9;
+  color: #fff;
+}
+.quiz-btn-primary:hover:not(:disabled) {
+  background: #357ab8;
+}
+
+.quiz-btn-secondary {
+  background: #6c757d;
+  color: #fff;
+}
+.quiz-btn-secondary:hover:not(:disabled) {
+  background: #5a6268;
+}
+
+.quiz-btn-skip {
+  background: transparent;
+  color: #999;
+  border: 1px solid #ddd;
+}
+.quiz-btn-skip:hover {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.quiz-btn-small {
+  padding: 0.35rem 0.8rem;
+  font-size: 0.85rem;
+  background: #4a90d9;
+  color: #fff;
+  white-space: nowrap;
+}
+.quiz-btn-small:hover {
+  background: #357ab8;
+}
+
+.quiz-btn-start {
+  white-space: nowrap;
+}
+
+/* Progress Bar */
+.quiz-progress-bar {
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+}
+
+.quiz-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4a90d9, #357ab8);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.quiz-progress-text {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+
+/* Timer */
+.quiz-timer {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: #f8f9fa;
+}
+
+.quiz-timer-warning {
+  color: #dc3545;
+  background: #fff5f5;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Topic Badge */
+.quiz-topic-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  background: #e8f0fe;
+  color: #1a73e8;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+/* Question Text */
+.quiz-question-text {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0 0 0.5rem;
+  line-height: 1.5;
+}
+
+.quiz-type-label {
+  font-size: 0.8rem;
+  color: #999;
+  margin-bottom: 1rem;
+}
+
+/* Options */
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.quiz-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 0.95rem;
+  text-align: left;
+  width: 100%;
+  color: #333;
+}
+
+.quiz-option:hover {
+  border-color: #4a90d9;
+  background: #f8fbff;
+}
+
+.quiz-option-selected {
+  border-color: #4a90d9;
+  background: #e8f0fe;
+  color: #1a73e8;
+  font-weight: 600;
+}
+
+.quiz-option-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: #f0f0f0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.quiz-option-selected .quiz-option-key {
+  background: #4a90d9;
+  color: #fff;
+}
+
+.quiz-option-multi {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.quiz-option-multi:hover {
+  border-color: #4a90d9;
+}
+
+.quiz-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Fill-in-blank input */
+.quiz-fill-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.quiz-fill-input:focus {
+  border-color: #4a90d9;
+  outline: none;
+}
+
+/* Actions */
+.quiz-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* Feedback */
+.quiz-feedback {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  z-index: 1000;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  min-width: 300px;
+  animation: fadeIn 0.2s ease;
+}
+
+.quiz-feedback-correct {
+  background: #e8f5e9;
+  border: 3px solid #4caf50;
+}
+
+.quiz-feedback-wrong {
+  background: #fff5f5;
+  border: 3px solid #f44336;
+}
+
+.quiz-feedback-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.quiz-feedback-correct .quiz-feedback-icon {
+  color: #4caf50;
+}
+.quiz-feedback-wrong .quiz-feedback-icon {
+  color: #f44336;
+}
+
+.quiz-feedback-label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.quiz-feedback-explanation {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Results Screen */
+.quiz-results-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-results-header h2 {
+  font-size: 1.6rem;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.quiz-score-circle {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  border: 6px solid #e0e0e0;
+}
+
+.quiz-score-great {
+  border-color: #4caf50;
+}
+.quiz-score-good {
+  border-color: #ff9800;
+}
+.quiz-score-poor {
+  border-color: #f44336;
+}
+
+.quiz-score-pct {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  line-height: 1;
+}
+
+.quiz-score-detail {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 4px;
+}
+
+.quiz-results-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-stat {
+  text-align: center;
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.quiz-stat-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 0.35rem;
+}
+
+.quiz-stat-value {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.quiz-stat-correct { color: #4caf50; }
+.quiz-stat-wrong { color: #f44336; }
+.quiz-stat-skipped { color: #ff9800; }
+
+/* Review Section */
+.quiz-review-section {
+  margin: 1.5rem 0;
+}
+
+.quiz-review-section h3 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 0.75rem;
+}
+
+.quiz-review-item {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 10px;
+  margin-bottom: 0.75rem;
+  border-left: 4px solid #f44336;
+}
+
+.quiz-review-question {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.35rem;
+}
+
+.quiz-review-answer {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.quiz-review-skipped {
+  color: #ff9800;
+  font-style: italic;
+}
+
+.quiz-review-correct {
+  font-size: 0.9rem;
+  color: #4caf50;
+  font-weight: 600;
+}
+
+.quiz-review-explanation {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  color: #888;
+  font-style: italic;
+}
+
+/* Results Actions */
+.quiz-results-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* Review Banner */
+.quiz-review-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #f57f17;
+}
+
+.quiz-review-banner-icon {
+  font-size: 1.2rem;
+}
+
+/* Empty State */
+.quiz-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #999;
+}
+
+.quiz-empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #999;
+}
+
+/* Area */
+.quiz-area {
+  min-height: 200px;
+}
+
+/* Hidden */
+.hidden {
+  display: none !important;
+}
+
+/* ── Dark Mode ────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  .quiz-container {
+    background: #16213e;
+  }
+  .quiz-title {
+    color: #e0e0e0;
+  }
+  .quiz-subtitle {
+    color: #999;
+  }
+  .quiz-header {
+    background: #1a1a3e;
+  }
+  .quiz-topic-label {
+    color: #ccc;
+  }
+  .quiz-topic-select {
+    background: #2a2a4e;
+    color: #e0e0e0;
+    border-color: #444;
+  }
+  .quiz-topic-select:focus {
+    border-color: #4a90d9;
+  }
+  .quiz-question-text {
+    color: #e0e0e0;
+  }
+  .quiz-option {
+    background: #2a2a4e;
+    border-color: #444;
+    color: #e0e0e0;
+  }
+  .quiz-option:hover {
+    border-color: #4a90d9;
+    background: #3a3a6e;
+  }
+  .quiz-option-selected {
+    border-color: #4a90d9;
+    background: #2a3a5e;
+    color: #7cb3ff;
+  }
+  .quiz-option-key {
+    background: #444;
+    color: #aaa;
+  }
+  .quiz-option-selected .quiz-option-key {
+    background: #4a90d9;
+    color: #fff;
+  }
+  .quiz-progress-bar {
+    background: #333;
+  }
+  .quiz-topic-badge {
+    background: #2a3a5e;
+    color: #7cb3ff;
+  }
+  .quiz-results-header h2 {
+    color: #e0e0e0;
+  }
+  .quiz-score-pct {
+    color: #e0e0e0;
+  }
+  .quiz-stat {
+    background: #2a2a4e;
+  }
+  .quiz-stat-value {
+    color: #e0e0e0;
+  }
+  .quiz-stat-label {
+    color: #999;
+  }
+  .quiz-review-item {
+    background: #2a2a4e;
+  }
+  .quiz-review-question {
+    color: #e0e0e0;
+  }
+  .quiz-fill-input {
+    background: #2a2a4e;
+    color: #e0e0e0;
+    border-color: #444;
+  }
+  .quiz-fill-input:focus {
+    border-color: #4a90d9;
+  }
+  .quiz-feedback-label {
+    color: #e0e0e0;
+  }
+  .quiz-timer {
+    background: #2a2a4e;
+    color: #999;
+  }
+}
+</style>
+
+<script src="/js/quiz-engine.js"></script>
+<script src="/js/quiz-questions.js"></script>
+<script src="/js/quiz-ui.js"></script>
+<script src="/js/sm2.js"></script>
+<script>
+;(function () {
+  'use strict';
+
+  var quizEngine = null;
+  var quizUI = null;
+  var currentTopic = '';
+  var currentQuestions = [];
+
+  var topicSelect = document.getElementById('quiz-topic-select');
+  var startBtn = document.getElementById('quiz-start-btn');
+  var quizArea = document.getElementById('quiz-area');
+
+  // ── Review banner ─────────────────────────────
+  var reviewBanner = document.getElementById('quiz-review-banner');
+  var reviewBannerText = document.getElementById('quiz-review-banner-text');
+  var reviewBannerBtn = document.getElementById('quiz-review-banner-btn');
+
+  function checkDueCards() {
+    try {
+      var stored = localStorage.getItem('chemie-sm2-cards');
+      if (!stored) {
+        reviewBanner.classList.add('hidden');
+        return;
+      }
+      var cards = JSON.parse(stored);
+      var dueCards = [];
+      var now = new Date();
+      for (var key in cards) {
+        var card = cards[key];
+        if (card.status === 'failed' || !card.lastReview) {
+          dueCards.push(card);
+          continue;
+        }
+        var lastReview = new Date(card.lastReview);
+        var nextDate = new Date(lastReview);
+        nextDate.setDate(nextDate.getDate() + (card.interval || 1));
+        if (nextDate <= now) {
+          dueCards.push(card);
+        }
+      }
+      if (dueCards.length > 0) {
+        reviewBannerText.textContent =
+          dueCards.length + ' Frage(n) zur Wiederholung fällig.';
+        reviewBanner.classList.remove('hidden');
+      } else {
+        reviewBanner.classList.add('hidden');
+      }
+    } catch (e) {
+      reviewBanner.classList.add('hidden');
+    }
+  }
+
+  reviewBannerBtn.addEventListener('click', function () {
+    // Find wrong-answer questions from SM-2 storage
+    var cards;
+    try {
+      cards = JSON.parse(localStorage.getItem('chemie-sm2-cards') || '{}');
+    } catch (e) {
+      cards = {};
+    }
+
+    var wrongIds = [];
+    for (var key in cards) {
+      if (cards[key].status === 'failed') {
+        wrongIds.push(key);
+      }
+    }
+
+    // Filter questions to review
+    if (wrongIds.length > 0) {
+      var allQuestions = window.quizQuestions || [];
+      var reviewQuestions = allQuestions.filter(function (q) {
+        return wrongIds.indexOf(String(q.id)) !== -1;
+      });
+      if (reviewQuestions.length === 0) {
+        // Fallback: load all questions
+        reviewQuestions = allQuestions.slice();
+      }
+      startQuiz(reviewQuestions, 'Wiederholung');
+    } else {
+      // No wrong cards, load all
+      var allQs = window.quizQuestions || [];
+      startQuiz(allQs, 'Wiederholung');
+    }
+  });
+
+  // ── Topic selection ───────────────────────────
+  topicSelect.addEventListener('change', function () {
+    startBtn.disabled = !this.value;
+  });
+
+  startBtn.addEventListener('click', function () {
+    var topic = topicSelect.value;
+    if (!topic) return;
+
+    var allQuestions = window.quizQuestions || [];
+
+    if (topic === 'alle') {
+      startQuiz(allQuestions, 'Alle Themen');
+    } else {
+      var filtered = allQuestions.filter(function (q) {
+        return q.topic === topic;
+      });
+      startQuiz(filtered, topic);
+    }
+  });
+
+  // ── Start quiz ────────────────────────────────
+  function startQuiz(questions, topic) {
+    if (!questions || questions.length === 0) {
+      quizArea.innerHTML = '<div class="quiz-empty"><p>Keine Fragen für dieses Thema verfügbar.</p></div>';
+      return;
+    }
+
+    currentTopic = topic;
+    currentQuestions = questions;
+
+    // Clean up previous
+    if (quizUI) {
+      quizUI.destroy();
+    }
+    if (quizEngine) {
+      quizEngine.destroy();
+    }
+
+    quizArea.innerHTML = ''; // clear area
+
+    quizUI = new QuizUI(quizArea, {
+      onRetry: function () {
+        startQuiz(currentQuestions, currentTopic);
+      },
+      onWiederholen: function (reviewItems) {
+        var wrongQuestions = reviewItems
+          .filter(function (item) { return !item.correct; })
+          .map(function (item) { return item.question; });
+        if (wrongQuestions.length === 0) {
+          wrongQuestions = currentQuestions.slice();
+        }
+        startQuiz(wrongQuestions, currentTopic + ' (Wiederholung)');
+      },
+    });
+
+    quizEngine = new QuizEngine();
+    quizEngine.loadQuestions(questions, {
+      shuffle: true,
+    });
+
+    quizUI.start(quizEngine);
+
+    // Store SM-2 results when complete
+    var originalComplete = quizEngine.onComplete;
+    quizEngine.onComplete = function (results) {
+      // Save SM-2 data
+      saveSM2Results(results);
+      if (originalComplete) {
+        originalComplete(results);
+      }
+    };
+  }
+
+  // ── SM-2 persistence ──────────────────────────
+  function saveSM2Results(results) {
+    try {
+      var SM2 = window.SM2;
+      if (!SM2) return;
+
+      var stored = localStorage.getItem('chemie-sm2-cards');
+      var cards = stored ? JSON.parse(stored) : {};
+
+      for (var i = 0; i < results.answers.length; i++) {
+        var ans = results.answers[i];
+        if (!ans.question) continue;
+
+        var cardId = String(ans.question.id);
+        var existingCard = cards[cardId] || {
+          id: cardId,
+          ease: 2.5,
+          interval: 0,
+          repetitions: 0,
+          lastReview: null,
+          status: 'new',
+        };
+
+        // Map answer to quality (0-5)
+        var quality;
+        if (ans.skipped) {
+          quality = 0;
+        } else if (ans.correct) {
+          quality = 4; // good recall
+        } else if (ans.partial) {
+          quality = 2; // difficult
+        } else {
+          quality = 1; // incorrect
+        }
+
+        var sm2Result = SM2.calculate(
+          quality,
+          existingCard.repetitions,
+          existingCard.ease,
+          existingCard.interval
+        );
+
+        cards[cardId] = {
+          id: cardId,
+          ease: sm2Result.ease,
+          interval: sm2Result.interval,
+          repetitions: sm2Result.repetitions,
+          lastReview: new Date().toISOString(),
+          status: sm2Result.status,
+        };
+      }
+
+      localStorage.setItem('chemie-sm2-cards', JSON.stringify(cards));
+      localStorage.setItem(
+        'chemie-quiz-last-result',
+        JSON.stringify({
+          topic: currentTopic,
+          score: results.score,
+          total: results.total,
+          percentage: results.percentage,
+          date: new Date().toISOString(),
+        })
+      );
+
+      // Re-check due cards for review banner
+      checkDueCards();
+    } catch (e) {
+      // localStorage might be full or unavailable
+    }
+  }
+
+  // ── Initialize ────────────────────────────────
+  checkDueCards();
+})();
+</script>
+
+{{ end }}
