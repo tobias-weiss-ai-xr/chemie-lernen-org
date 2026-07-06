@@ -1,0 +1,16 @@
+# Tasks: Lehrenden-Premium
+
+## Status: In Progress
+
+| #   | Task                                       | Status  | Notes                            |
+| --- | ------------------------------------------ | ------- | -------------------------------- |
+| 1   | User database (SQLite, better-sqlite3)     | Done    | `api/auth-db.js`                 |
+| 2   | Auth routes + JWT middleware               | Done    | `api/auth.js`                    |
+| 3   | Login page (Hugo + JS)                     | Done    | `content/pages/login.md` + JS    |
+| 4   | Register page                              | Done    | `content/pages/register.md` + JS |
+| 5   | Premium gating middleware on /api/admin/\* | Done    | Built into auth.js middleware    |
+| 6   | Klassencockpit auth check + redirect       | Done    | client-side check in auth.js     |
+| 7   | Password reset flow                        | Pending | v1.1                             |
+| 8   | Stripe payment integration                 | Pending | v1.1                             |
+| 9   | Premium upgrade page                       | Pending | v1.1                             |
+| 10  | Rebuild + deploy chat-api image            | Done    | Included in 022aaf57 deploy      |
