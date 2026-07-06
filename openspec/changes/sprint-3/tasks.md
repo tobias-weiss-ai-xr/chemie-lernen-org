@@ -1,18 +1,18 @@
-- [ ] Remove hardcoded `JWT_SECRET` default — process exit if unset
-- [ ] Verify bcryptjs cost factor ≥ 12, rehash existing passwords
+- [x] Remove hardcoded `JWT_SECRET` default — process exit if unset
+- [x] Verify bcryptjs cost factor ≥ 12, rehash existing passwords
 - [ ] Audit CORS config in server.js — restrict to `https://chemie-lernen.org`
 - [ ] Install `express-rate-limit` and configure tiered rate limits
-- [ ] Add input sanitization middleware for auth endpoints
-- [ ] Verify Stripe webhook signature verification (if Sprint 1 not deployed)
+- [x] Add input sanitization middleware for auth endpoints
+- [x] Verify Stripe webhook signature verification (if Sprint 1 not deployed)
 - [ ] Create `backup-all.timer` systemd unit (weekly)
 - [ ] Configure off-site backup target (Hetzner Storage Box or S3)
 - [ ] Test healthchecks.io alerting end-to-end (simulate backup failure)
 - [ ] Remove deprecated `scripts/neo4j-backup.sh`
-- [ ] Create `GET /api/health` endpoint with container + backup status
+- [x] Create `GET /api/health` endpoint with container + backup status
 - [ ] Install `pino` and switch chat-api to structured JSON logging
-- [ ] Add LiteLLM health check in server.js startup
+- [x] Add LiteLLM health check in server.js startup
 - [ ] Add Prometheus metrics endpoint with `express-prom-bundle`
 - [ ] Run `npm audit` on root + api — fix critical/moderate
 - [ ] Run `depcheck` — remove unused deps
 - [ ] Audit all API routes for OWASP Top 10 compliance
-- [ ] Build + deploy Docker images
+- [x] Build + deploy Docker images

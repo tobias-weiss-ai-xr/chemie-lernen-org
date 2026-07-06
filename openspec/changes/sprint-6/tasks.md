@@ -1,13 +1,13 @@
-- [ ] Create `static/sw.js` — install, activate, fetch event handlers
-- [ ] Implement cache-first for static assets, network-first for API
-- [ ] Create `/offline/` Hugo page
-- [ ] Create `static/site.webmanifest` with full PWA manifest
+- [x] Create `static/sw.js` — install, activate, fetch event handlers
+- [x] Implement cache-first for static assets, network-first for API
+- [x] Create `/offline/` Hugo page
+- [x] Create `static/site.webmanifest` with full PWA manifest
 - [ ] Generate PWA icons from logo (192x192, 512x512 + maskable)
-- [ ] Link manifest + meta tags in `baseof.html` `<head>`
-- [ ] Create `static/js/pwa-register.js` — SW registration + update prompt
+- [x] Link manifest + meta tags in `baseof.html` `<head>`
+- [x] Create `static/js/pwa-register.js` — SW registration + update prompt
 - [ ] Implement IndexedDB cache for visited articles + recent RAG results
 - [ ] Add cache size limit with LRU eviction (50MB)
-- [ ] Add "Neue Version verfügbar" update notification UI
+- [x] Add "Neue Version verfügbar" update notification UI
 - [ ] Run Lighthouse PWA audit — fix issues
 - [ ] Test offline: disable network, verify articles + calculators work
-- [ ] Build + deploy Hugo image
+- [x] Build + deploy Hugo image

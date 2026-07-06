@@ -1,15 +1,15 @@
-- [ ] Decide embedding provider (ONNX local vs API) and document rationale
-- [ ] Install embedding dependency (onnxruntime-node or openai npm pkg)
-- [ ] Create `scripts/generate-embeddings.mjs` — batch embedding for all Entity/Topic/UniversityModule
+- [x] Decide embedding provider (ONNX local vs API) and document rationale
+- [x] Install embedding dependency (onnxruntime-node or openai npm pkg)
+- [x] Create `scripts/generate-embeddings.mjs` — batch embedding for all Entity/Topic/UniversityModule
 - [ ] Create `scripts/update-embeddings.mjs` — incremental for new/changed nodes
 - [ ] Add Cypher migration to create Neo4j vector index on Entity/Topic/UniversityModule/Content
-- [ ] Add `embedding Float[]` property to node schemas
-- [ ] Create `api/semantic-search.js` — embed query + vector search + combine scores
-- [ ] Modify `queryNeo4jRAG()` in server.js to use combined (semantic+keyword) search
-- [ ] Extend `calc-rag-index.json` with embeddings for calculator semantic match
-- [ ] Add `getEmbedding()` lazy-load function in server.js (model cache)
-- [ ] Add timeout fallback: vector search → keyword-only if >2s
-- [ ] Write 10 test queries with expected results, compare old vs new RAG
-- [ ] Write integration tests for semantic search endpoint
-- [ ] Build + deploy Docker images
-- [ ] Document embedding model choice and update `openspec/specs/ki-assistent/spec.md`
+- [x] Add `embedding Float[]` property to node schemas
+- [x] Create `api/semantic-search.js` — embed query + vector search + combine scores
+- [x] Modify `queryNeo4jRAG()` in server.js to use combined (semantic+keyword) search
+- [x] Extend `calc-rag-index.json` with embeddings for calculator semantic match
+- [x] Add `getEmbedding()` lazy-load function in server.js (model cache)
+- [x] Add timeout fallback: vector search → keyword-only if >2s
+- [x] Write 10 test queries with expected results, compare old vs new RAG
+- [x] Write integration tests for semantic search endpoint
+- [x] Build + deploy Docker images
+- [x] Document embedding model choice and update `openspec/specs/ki-assistent/spec.md`
