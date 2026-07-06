@@ -11,7 +11,7 @@ import path from 'path';
 import ragHelpers from './_rag-helpers.cjs';
 import { subsetWhere } from './scripts/_neo4j-subset-filter.mjs';
 import FileBackedSessionStore from './session-store.js';
-import authRouter, { authMiddleware } from './auth.js';
+import authRouter, { authMiddleware, handleStripeWebhook } from './auth.js';
 
 const PORT = process.env.PORT || 3001;
 const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
@@ -132,6 +132,14 @@ function cleanupSessionMessages(session) {
 }
 
 const app = express();
+
+// Stripe webhook MUST be before express.json() — needs raw body for signature verification
+app.post(
+  '/api/auth/stripe-webhook',
+  express.raw({ type: 'application/json' }),
+  handleStripeWebhook
+);
+
 app.use(express.json({ limit: '100kb' }));
 app.use(cookieParser());
 
