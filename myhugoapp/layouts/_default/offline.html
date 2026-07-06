@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Offline - chemie-lernen.org</title>
+  <meta name="theme-color" content="#2d6a4f">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Keine Internetverbindung - Chemie-Lernen.org ist offline">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+  <style>
+    {{ $greenDark   := "#2d6a4f" }}
+    {{ $greenPrimary := "#40916c" }}
+    {{ $greenLight  := "#52b788" }}
+    {{ $greenLighter := "#95d5b2" }}
+    {{ $bgLight     := "#f0f7f4" }}
+    {{ $textDark    := "#1b1b1b" }}
+    {{ $textMuted   := "#555" }}
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      color: {{ $textDark }};
+      background: {{ $bgLight }};
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1rem;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 3rem 2.5rem;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 4px 24px rgba(45, 106, 79, 0.12);
+      text-align: center;
+      border-top: 4px solid {{ $greenDark }};
+    }
+    .icon-flask {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.25rem;
+      display: block;
+    }
+    h1 {
+      color: {{ $greenDark }};
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+    }
+    .subtitle {
+      color: {{ $textMuted }};
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, {{ $greenLighter }}, transparent);
+      margin: 1.25rem 0;
+    }
+    .cache-links {
+      text-align: left;
+      margin: 1rem 0 1.5rem;
+    }
+    .cache-links p {
+      color: {{ $textMuted }};
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+      text-align: center;
+    }
+    .cache-links ul {
+      list-style: none;
+      padding: 0;
+    }
+    .cache-links li {
+      margin: 0.4rem 0;
+    }
+    .cache-links a {
+      display: block;
+      padding: 0.6rem 1rem;
+      color: {{ $greenDark }};
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      background: {{ $bgLight }};
+      transition: background 0.2s, transform 0.15s;
+    }
+    .cache-links a:hover {
+      background: {{ $greenLighter }};
+      transform: translateX(4px);
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: {{ $greenDark }};
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn:hover {
+      background: {{ $greenPrimary }};
+      transform: scale(1.02);
+    }
+    .btn:active {
+      transform: scale(0.98);
+    }
+    @media (prefers-color-scheme: dark) {
+      body { background: #121212; }
+      .card { background: #1e1e1e; box-shadow: 0 4px 24px rgba(0,0,0,0.4); border-top-color: {{ $greenLight }}; }
+      h1 { color: {{ $greenLight }}; }
+      .subtitle { color: #aaa; }
+      .cache-links a { background: #2a2a2a; color: {{ $greenLighter }}; }
+      .cache-links a:hover { background: #333; }
+      .divider { background: linear-gradient(to right, transparent, #444, transparent); }
+    }
+    @media (max-width: 480px) {
+      .card { padding: 2rem 1.25rem; }
+      h1 { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="alert">
+    {{ $iconSvg := "/icons/pwa-icon.svg" }}
+    <img class="icon-flask" src="{{ $iconSvg }}" alt="" width="80" height="80">
+    <h1>Keine Internetverbindung</h1>
+    <p class="subtitle">Es scheint, als wärst du gerade offline. Bitte überprüfe deine Internetverbindung und versuche es erneut.</p>
+    <div class="divider"></div>
+    <div class="cache-links">
+      <p>📚 Seiten aus dem Cache:</p>
+      <ul>
+        <li><a href="/">🏠 Startseite</a></li>
+        <li><a href="/themenbereiche/">📚 Themenbereiche</a></li>
+        <li><a href="/perioden-system-der-elemente/">⚛️ Periodensystem 3D</a></li>
+        <li><a href="/molekuel-studio/">🔬 Molekülstudio</a></li>
+        <li><a href="/ph-rechner/">🧪 pH-Rechner</a></li>
+        <li><a href="/molare-masse-rechner/">⚗️ Molare Masse</a></li>
+      </ul>
+    </div>
+    <button class="btn" onclick="window.location.reload()" type="button">Neu laden</button>
+  </div>
+</body>
+</html>

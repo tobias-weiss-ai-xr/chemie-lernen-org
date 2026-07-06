@@ -29,5 +29,8 @@
     }
   ],
   "categories": ["education", "science", "chemistry"],
-  "lang": "de-DE"
+  "lang": "de-DE",
+  "screenshots": [],
+  "prefer_related_applications": false,
+  "iarc_rating_id": null
 }

@@ -6,7 +6,7 @@
 <title>{{ .Title }}{{ if .IsPage }} - {{ .Site.Title }}{{ end }}</title>
 
 <!-- PWA Theme Color -->
-<meta name="theme-color" content="#4caf50">
+<meta name="theme-color" content="#2d6a4f">
 
 {{ if .Description }}
 <meta name="description" content="{{ .Description }}">
@@ -65,7 +65,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="{{ "/favicons/favicon-32x32.png" | relURL }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ "/favicons/favicon-16x16.png" | relURL }}">
 <link rel="apple-touch-icon" sizes="180x180" href="{{ "/favicons/apple-touch-icon.png" | relURL }}">
-<link rel="manifest" href="{{ "/site.webmanifest" | relURL }}">
+<link rel="manifest" href="{{ "/manifest.json" | relURL }}">
 <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ "/index.xml" | relURL }}">
 
 <!-- Bootstrap CSS (local) -->
@@ -107,19 +107,57 @@
 
 <script defer src="{{ "/js/enhanced-bundle-loader.js" | relURL }}"></script>
 
-<!-- PWA Service Worker Registration -->
+<!-- PWA Service Worker Registration + Update Prompt -->
 <script>
 if ('serviceWorker' in navigator) {
+  var swRegistration = null;
+
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('/sw.js')
       .then(function(registration) {
-        console.log('SW registered: ', registration);
+        swRegistration = registration;
+        console.log('[PWA] SW registered');
+
+        // Check for updates on each page load
         registration.update();
+
+        // Detect waiting service worker (new version)
+        if (registration.waiting) {
+          showUpdatePrompt(registration);
+        }
+
+        // Listen for new installing workers
+        registration.addEventListener('updatefound', function() {
+          var newWorker = registration.installing;
+          newWorker.addEventListener('statechange', function() {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              showUpdatePrompt(registration);
+            }
+          });
+        });
       })
-      .catch(function(registrationError) {
-        console.log('SW registration failed: ', registrationError);
+      .catch(function(err) {
+        console.log('[PWA] SW registration failed:', err);
       });
+
+    // Listen for SW postMessage (version info)
+    navigator.serviceWorker.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SW_UPDATED') {
+        console.log('[PWA] SW updated to', event.data.version);
+      }
+    });
   });
+
+  function showUpdatePrompt(registration) {
+    // Dispatch custom event for the update banner component
+    var evt = new CustomEvent('pwa-update-ready', {
+      detail: {
+        registration: registration,
+        message: 'Neue Version verfügbar — Seite aktualisieren?'
+      }
+    });
+    document.dispatchEvent(evt);
+  }
 }
 </script>
 

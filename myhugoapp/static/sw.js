@@ -1,388 +1,479 @@
-const CACHE_NAME = 'chemie-lernen-v5';
-const STATIC_CACHE = 'static-v5';
-const ASSETS_CACHE = 'assets-v5';
+// ============================================================
+// chemie-lernen.org — Service Worker
+// Strategies: cache-first for static assets, network-first for
+// content pages, network-only for admin/auth API calls.
+// Cache size limited to 50 MB with LRU eviction.
+// ============================================================
+const SW_VERSION = 'v6-2026-07';
+const STATIC_CACHE = 'static-' + SW_VERSION;
+const ASSETS_CACHE = 'assets-' + SW_VERSION;
+const DYNAMIC_CACHE = 'dynamic-' + SW_VERSION;
 
-// Files to cache immediately for the chemistry learning platform
-const STATIC_FILES = [
+// ── Cache limits ──────────────────────────────────────────
+const CACHE_LIMITS = {
+  [STATIC_CACHE]: 10 * 1024 * 1024, // 10 MB pre-cached static
+  [ASSETS_CACHE]: 25 * 1024 * 1024, // 25 MB CSS/images/fonts
+  [DYNAMIC_CACHE]: 15 * 1024 * 1024, // 15 MB HTML/API responses
+};
+const TOTAL_CACHE_LIMIT = 50 * 1024 * 1024; // 50 MB global
+
+// ── Pre-cached files (installed on 'install') ────────────
+const PRECACHE_FILES = [
   '/',
-  '/index.html',
   '/offline/',
+  '/manifest.json',
   '/site.webmanifest',
   '/favicons/favicon-16x16.png',
   '/favicons/favicon-32x32.png',
   '/favicons/android-chrome-192x192.png',
   '/favicons/android-chrome-512x512.png',
   '/favicons/apple-touch-icon.png',
+  '/icons/pwa-icon.svg',
   '/css/custom.css',
   '/css/dark-mode.css',
   '/css/green-theme.css',
   '/css/quiz-system.css',
   '/js/dark-mode.js',
-  '/js/chemistry-calculator-framework.js',
   '/js/lazy-loader.js',
-  '/images/recent-article_001.jpg',
+  '/js/utils/chemistry-utils.js',
+  '/js/utils/error-handler.js',
 ];
 
-const PERFORMANCE_CRITICAL = [
-  '/js/chemistry-calculator-framework.js',
-  '/css/chemistry-calculator-framework.css',
-];
+// ── Auth / admin paths — NEVER cache ──────────────────────
+function isAuthOrAdmin(url) {
+  var path = url.pathname;
+  return (
+    path.startsWith('/api/auth') ||
+    path.startsWith('/api/admin') ||
+    path.startsWith('/auth/') ||
+    path.startsWith('/login') ||
+    path.startsWith('/register') ||
+    path.startsWith('/konto') ||
+    path === '/login/' ||
+    path === '/register/' ||
+    path === '/konto/'
+  );
+}
 
-const LAZY_LOADED = [
-  '/js/ph-rechner-framework.js',
-  '/js/druck-flaechen-rechner-framework.js',
-  '/js/molare-masse-rechner.js',
-];
+// ── Is this a static asset? ───────────────────────────────
+function isStaticAsset(url) {
+  var path = url.pathname;
+  return (
+    path.startsWith('/css/') ||
+    path.startsWith('/favicons/') ||
+    path.startsWith('/icons/') ||
+    path.startsWith('/images/') ||
+    path.startsWith('/img/') ||
+    path.startsWith('/fonts/') ||
+    path.startsWith('/pagefind/') ||
+    path.endsWith('.png') ||
+    path.endsWith('.jpg') ||
+    path.endsWith('.jpeg') ||
+    path.endsWith('.gif') ||
+    path.endsWith('.svg') ||
+    path.endsWith('.woff2') ||
+    path.endsWith('.woff') ||
+    path.endsWith('.ttf') ||
+    path.endsWith('.webmanifest')
+  );
+}
 
-// Install event - cache static files
-self.addEventListener('install', (event) => {
-  console.log('[SW] Installing service worker v5');
+// ── Is this a JS file? ────────────────────────────────────
+function isJavaScript(url) {
+  return url.pathname.startsWith('/js/') && url.pathname.endsWith('.js');
+}
+
+// ── Is this an API call? ──────────────────────────────────
+function isApiCall(url) {
+  return (
+    url.pathname.startsWith('/api/') ||
+    url.pathname.endsWith('.json') ||
+    url.pathname.endsWith('.xml')
+  );
+}
+
+// ── Is this a content page? ───────────────────────────────
+function isContentPage(url) {
+  var path = url.pathname;
+  return (
+    path.endsWith('.html') ||
+    path === '/' ||
+    path === '/offline/' ||
+    path === '/offline' ||
+    path.startsWith('/posts/') ||
+    path.startsWith('/themenbereiche/') ||
+    path.startsWith('/klassenstufen/') ||
+    path.startsWith('/pages/')
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// LRU Cache Eviction — keep each cache under its size limit
+// ═══════════════════════════════════════════════════════════
+function lruEvictCache(cacheName, maxBytes) {
+  return caches.open(cacheName).then(function (cache) {
+    return cache.keys().then(function (requests) {
+      return Promise.all(
+        requests.map(function (req) {
+          return cache.match(req).then(function (resp) {
+            if (!resp) return { url: req.url, size: 0, time: 0 };
+            var size = parseInt(resp.headers.get('content-length') || '0', 10);
+            // Estimate from body if content-length missing
+            return resp
+              .clone()
+              .text()
+              .then(function (text) {
+                return {
+                  url: req.url,
+                  size: size || text.length,
+                  time: new Date(resp.headers.get('date') || Date.now()).getTime(),
+                };
+              });
+          });
+        })
+      ).then(function (entries) {
+        var total = entries.reduce(function (s, e) {
+          return s + e.size;
+        }, 0);
+        if (total <= maxBytes) return;
+        // Sort by age (oldest first, approximated by URL order in cache)
+        entries.sort(function (a, b) {
+          return a.time - b.time;
+        });
+        var deleteOps = [];
+        for (var i = 0; i < entries.length && total > maxBytes; i++) {
+          deleteOps.push(cache.delete(entries[i].url));
+          total -= entries[i].size;
+        }
+        return Promise.all(deleteOps);
+      });
+    });
+  });
+}
+
+// ── Global 50 MB limit check ──────────────────────────────
+function enforceGlobalLimit() {
+  return caches.keys().then(function (names) {
+    return Promise.all(
+      names.map(function (name) {
+        return caches.open(name).then(function (cache) {
+          return cache.keys().then(function (reqs) {
+            return Promise.all(
+              reqs.map(function (req) {
+                return cache.match(req).then(function (resp) {
+                  if (!resp) return 0;
+                  var len = parseInt(resp.headers.get('content-length') || '0', 10);
+                  return len || 1024; // fallback estimate
+                });
+              })
+            ).then(function (sizes) {
+              return sizes.reduce(function (a, b) {
+                return a + b;
+              }, 0);
+            });
+          });
+        });
+      })
+    ).then(function (perCache) {
+      var total = perCache.reduce(function (a, b) {
+        return a + b;
+      }, 0);
+      if (total > TOTAL_CACHE_LIMIT) {
+        // Evict the largest cache, starting with dynamic
+        var ordered = [DYNAMIC_CACHE, ASSETS_CACHE, STATIC_CACHE];
+        return Promise.all(
+          ordered.map(function (name) {
+            return lruEvictCache(name, CACHE_LIMITS[name] || 5 * 1024 * 1024);
+          })
+        );
+      }
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// INSTALL
+// ═══════════════════════════════════════════════════════════
+self.addEventListener('install', function (event) {
+  console.log('[SW] Installing', SW_VERSION);
   event.waitUntil(
     caches
       .open(STATIC_CACHE)
-      .then((cache) => {
-        console.log('[SW] Caching static files');
-        return cache.addAll(STATIC_FILES);
+      .then(function (cache) {
+        return cache.addAll(PRECACHE_FILES);
       })
-      .then(() => {
-        console.log('[SW] Installation complete');
+      .then(function () {
         return self.skipWaiting();
       })
-      .catch((error) => {
-        console.error('[SW] Installation failed:', error);
+      .catch(function (err) {
+        console.error('[SW] Install failed:', err);
       })
   );
 });
 
-// Activate event - clean up old caches
-self.addEventListener('activate', (event) => {
-  console.log('[SW] Activating service worker v5');
+// ═══════════════════════════════════════════════════════════
+// ACTIVATE — clean old caches, claim clients
+// ═══════════════════════════════════════════════════════════
+self.addEventListener('activate', function (event) {
+  console.log('[SW] Activating', SW_VERSION);
+  var expectedCaches = [STATIC_CACHE, ASSETS_CACHE, DYNAMIC_CACHE];
   event.waitUntil(
     caches
       .keys()
-      .then((cacheNames) => {
+      .then(function (names) {
         return Promise.all(
-          cacheNames
-            .filter((cacheName) => cacheName !== STATIC_CACHE && cacheName !== ASSETS_CACHE)
-            .map((cacheName) => {
-              console.log('[SW] Deleting old cache:', cacheName);
-              return caches.delete(cacheName);
+          names
+            .filter(function (n) {
+              return expectedCaches.indexOf(n) === -1;
+            })
+            .map(function (n) {
+              console.log('[SW] Deleting old cache:', n);
+              return caches.delete(n);
             })
         );
       })
-      .then(() => {
-        console.log('[SW] Activation complete');
+      .then(function () {
+        // Notify all clients of new version
+        return self.clients.matchAll().then(function (clients) {
+          clients.forEach(function (client) {
+            client.postMessage({ type: 'SW_UPDATED', version: SW_VERSION });
+          });
+        });
+      })
+      .then(function () {
         return self.clients.claim();
       })
-      .catch((error) => {
-        console.error('[SW] Activation failed:', error);
+      .catch(function (err) {
+        console.error('[SW] Activate failed:', err);
       })
   );
 });
 
-// Fetch event - serve from cache with appropriate strategies
-self.addEventListener('fetch', (event) => {
-  const { request } = event;
-  const url = new URL(request.url);
+// ═══════════════════════════════════════════════════════════
+// FETCH
+// ═══════════════════════════════════════════════════════════
+self.addEventListener('fetch', function (event) {
+  var request = event.request;
+  var url = new URL(request.url);
 
-  // Skip non-GET requests
+  // ── Guard: GET only ─────────────────────────────────────
   if (request.method !== 'GET') return;
 
-  // Skip cross-origin requests except for trusted CDNs
+  // ── Guard: same-origin (or allowed CDN) ─────────────────
   if (url.origin !== location.origin) {
-    // Allow specific external resources (CDNs, APIs)
-    const allowedOrigins = [
-      'cdn.jsdelivr.net', // KaTeX, Charts
-      'fonts.googleapis.com', // Google Fonts
-      'fonts.gstatic.com', // Google Fonts
+    var allowedOrigins = [
+      'cdn.jsdelivr.net',
+      'fonts.googleapis.com',
+      'fonts.gstatic.com',
+      'unpkg.com',
+      'code.jquery.com',
     ];
-
-    if (allowedOrigins.includes(url.hostname)) {
-      return; // Let these pass through
-    }
-
-    // Allow analytics but don't cache
-    if (
-      url.hostname.includes('googletagmanager.com') ||
-      url.hostname.includes('google-analytics.com')
-    ) {
-      return;
-    }
-
-    return; // Skip other cross-origin requests
-  }
-
-  // Network First for JavaScript files (always fetch fresh to get bug fixes)
-  if (url.pathname.includes('/js/')) {
+    if (allowedOrigins.indexOf(url.hostname) === -1) return;
+    // For allowed CDNs: pass through, no caching
     event.respondWith(
-      fetch(request)
-        .then((response) => {
-          if (response && response.status === 200) {
-            const clone = response.clone();
-            caches.open(ASSETS_CACHE).then((cache) => {
-              cache.put(request, clone);
-            });
-          }
-          return response;
-        })
-        .catch(() => {
-          return caches.match(request).then((cachedResponse) => {
-            if (cachedResponse) {
-              return cachedResponse;
-            }
-            return new Response('Network error', {
-              status: 503,
-              headers: { 'Content-Type': 'text/plain' },
-            });
-          });
-        })
+      fetch(request).catch(function () {
+        return caches.match(request);
+      })
     );
     return;
   }
 
-  // Cache First strategy for other static assets (CSS, images, fonts)
-  if (
-    url.pathname.includes('/css/') ||
-    url.pathname.includes('/favicons/') ||
-    url.pathname.includes('/images/') ||
-    url.pathname.includes('/img/') ||
-    url.pathname.includes('/pagefind/') ||
-    url.pathname.endsWith('.png') ||
-    url.pathname.endsWith('.jpg') ||
-    url.pathname.endsWith('.jpeg') ||
-    url.pathname.endsWith('.gif') ||
-    url.pathname.endsWith('.svg') ||
-    url.pathname.endsWith('.webmanifest') ||
-    url.pathname.endsWith('.woff2') ||
-    url.pathname.endsWith('.woff') ||
-    url.pathname.endsWith('.ttf')
-  ) {
+  // ── NEVER cache auth/admin paths (network-only) ─────────
+  if (isAuthOrAdmin(url)) {
     event.respondWith(
-      caches.open(ASSETS_CACHE).then((cache) => {
-        return cache.match(request).then((response) => {
-          if (response) {
-            return response;
-          }
-          return fetch(request).then((response) => {
-            if (response && response.status === 200) {
-              const clone = response.clone();
-              cache.put(request, clone);
-            }
-            return response;
-          });
+      fetch(request).catch(function () {
+        return new Response(JSON.stringify({ error: 'Offline', offline: true }), {
+          status: 503,
+          headers: { 'Content-Type': 'application/json' },
         });
       })
     );
     return;
   }
 
-  // Network First strategy for HTML pages
-  if (
-    url.pathname.endsWith('.html') ||
-    url.pathname === '/' ||
-    url.pathname === '/offline/' ||
-    // Section pages
-    url.pathname.includes('/posts/') ||
-    url.pathname.includes('/themenbereiche/') ||
-    url.pathname.includes('/klassenstufen/') ||
-    url.pathname.includes('/pages/') ||
-    // Interactive tools & calculators
-    url.pathname.includes('/perioden-system-der-elemente/') ||
-    url.pathname.includes('/molekuel-studio/') ||
-    url.pathname.includes('/ph-rechner/') ||
-    url.pathname.includes('/molare-masse-rechner/') ||
-    url.pathname.includes('/reaktionsgleichungen-ausgleichen/') ||
-    url.pathname.includes('/einheitenumrechner/') ||
-    url.pathname.includes('/loesungsrechner/') ||
-    url.pathname.includes('/stoechiometrie-rechner/') ||
-    // Phase 7-10 pages
-    url.pathname.includes('/uebungsgenerator/') ||
-    url.pathname.includes('/lueckentexte/') ||
-    url.pathname.includes('/fortschritt/') ||
-    url.pathname.includes('/lernpfad/') ||
-    url.pathname.includes('/arbeitsblatt-generator/') ||
-    url.pathname.includes('/aufgabensammlung/') ||
-    url.pathname.includes('/klassencockpit/') ||
-    url.pathname.includes('/gefahrstoffkennzeichnung/') ||
-    url.pathname.includes('/spektroskopie-simulator/') ||
-    url.pathname.includes('/laborgeraete-explorer/') ||
-    url.pathname.includes('/ki-assistent/') ||
-    // Phase 1-2 calculators
-    url.pathname.includes('/druck-flaechen-rechner/') ||
-    url.pathname.includes('/atmosphaerendruck-alltag/') ||
-    url.pathname.includes('/bindungspotential/') ||
-    url.pathname.includes('/hess-gesetz/') ||
-    url.pathname.includes('/reaktionskinetik-simulator/') ||
-    url.pathname.includes('/chemisches-gleichgewicht/') ||
-    // Phase 3-6 calculators
-    url.pathname.includes('/gasgesetz-rechner/') ||
-    url.pathname.includes('/verbrennungsrechner/') ||
-    url.pathname.includes('/loeslichkeitsprodukt-rechner/') ||
-    url.pathname.includes('/redox-potenzial-rechner/') ||
-    url.pathname.includes('/konzentrationsumrechner/') ||
-    url.pathname.includes('/titrations-simulator/') ||
-    url.pathname.includes('/atomenergieniveaus/') ||
-    url.pathname.includes('/periodische-trends/') ||
-    url.pathname.includes('/molekuelorbitale/') ||
-    url.pathname.includes('/elektrochemie-teilchenebene/') ||
-    url.pathname.includes('/redox-titrationen/') ||
-    url.pathname.includes('/saeuren-basen-gleichgewicht/') ||
-    url.pathname.includes('/waermeleitung/') ||
-    url.pathname.includes('/konvektion/') ||
-    url.pathname.includes('/temperatur-teilchenbewegung/') ||
-    url.pathname.includes('/torricelli-versuch/') ||
-    url.pathname.includes('/enhanced-ph-visualization/') ||
-    url.pathname.includes('/pwa-offline-modus/') ||
-    url.pathname.includes('/unterstuetzen/') ||
-    url.pathname.includes('/wissennetz/') ||
-    // New calculators (Sprints D, 2)
-    url.pathname.includes('/dampfdruck-rechner/') ||
-    url.pathname.includes('/verduennungsreihen-rechner/') ||
-    url.pathname.includes('/dichte-rechner/') ||
-    url.pathname.includes('/entity/')
-  ) {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          if (response && response.status === 200) {
-            const clone = response.clone();
-            caches.open(STATIC_CACHE).then((cache) => {
-              cache.put(request, clone);
-            });
-          }
-          return response;
-        })
-        .catch(() => {
-          // If network fails, try cache
-          return caches.match(request).then((response) => {
-            if (response) {
-              return response;
-            }
-            // Return offline page if available
-            return (
-              caches.match('/offline/') ||
-              new Response('Offline', {
-                status: 503,
-                statusText: 'Service Unavailable',
-                headers: { 'Content-Type': 'text/plain' },
-              })
-            );
-          });
-        })
-    );
+  // ── JS files: network-first (fresh code = fewer bugs) ───
+  if (isJavaScript(url)) {
+    event.respondWith(networkFirst(request, ASSETS_CACHE));
     return;
   }
 
-  // Network First for API calls and dynamic content (cache on success, fallback on failure)
-  if (
-    url.pathname.includes('/api/') ||
-    url.pathname.includes('.json') ||
-    url.pathname.includes('.xml')
-  ) {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          if (response && response.status === 200) {
-            const clone = response.clone();
-            caches.open(STATIC_CACHE).then((cache) => {
-              cache.put(request, clone);
-            });
-          }
-          return response;
-        })
-        .catch(() => {
-          return caches.match(request).then((cachedResponse) => {
-            if (cachedResponse) {
-              return cachedResponse;
-            }
-            return new Response('Offline', {
-              status: 503,
-              statusText: 'Service Unavailable',
-              headers: { 'Content-Type': 'text/plain' },
-            });
-          });
-        })
-    );
+  // ── Static assets: cache-first ──────────────────────────
+  if (isStaticAsset(url)) {
+    event.respondWith(cacheFirst(request, ASSETS_CACHE));
     return;
   }
 
-  // Default: Network First for everything else
+  // ── Content pages: network-first with offline fallback ──
+  if (isContentPage(url)) {
+    event.respondWith(networkFirstPage(request));
+    return;
+  }
+
+  // ── API calls (non-auth): network-first with cache ──────
+  if (isApiCall(url)) {
+    event.respondWith(networkFirst(request, DYNAMIC_CACHE));
+    return;
+  }
+
+  // ── Everything else: network-first, no cache ────────────
   event.respondWith(
-    fetch(request)
-      .then((response) => {
-        return response;
-      })
-      .catch(() => {
-        return caches.match(request);
-      })
+    fetch(request).catch(function () {
+      return caches.match(request).then(function (r) {
+        return r || new Response('Offline', { status: 503 });
+      });
+    })
   );
 });
 
-// Background sync for offline functionality
-self.addEventListener('sync', (event) => {
-  console.log('[SW] Background sync triggered:', event.tag);
+// ═══════════════════════════════════════════════════════════
+// STRATEGY: Cache-First
+// ═══════════════════════════════════════════════════════════
+function cacheFirst(request, cacheName) {
+  return caches.open(cacheName).then(function (cache) {
+    return cache.match(request).then(function (cached) {
+      if (cached) return cached;
+      return fetch(request).then(function (response) {
+        if (response && response.status === 200) {
+          cache.put(request, response.clone());
+          lruEvictCache(cacheName, CACHE_LIMITS[cacheName] || 10 * 1024 * 1024);
+          enforceGlobalLimit();
+        }
+        return response;
+      });
+    });
+  });
+}
 
+// ═══════════════════════════════════════════════════════════
+// STRATEGY: Network-First (generic)
+// ═══════════════════════════════════════════════════════════
+function networkFirst(request, cacheName) {
+  return fetch(request)
+    .then(function (response) {
+      if (response && response.status === 200) {
+        var clone = response.clone();
+        caches.open(cacheName).then(function (cache) {
+          cache.put(request, clone);
+          lruEvictCache(cacheName, CACHE_LIMITS[cacheName] || 10 * 1024 * 1024);
+          enforceGlobalLimit();
+        });
+      }
+      return response;
+    })
+    .catch(function () {
+      return caches.match(request).then(function (cached) {
+        if (cached) return cached;
+        return new Response('Offline', {
+          status: 503,
+          headers: { 'Content-Type': 'text/plain' },
+        });
+      });
+    });
+}
+
+// ═══════════════════════════════════════════════════════════
+// STRATEGY: Network-First for HTML pages (with offline page)
+// ═══════════════════════════════════════════════════════════
+function networkFirstPage(request) {
+  return fetch(request)
+    .then(function (response) {
+      if (response && response.status === 200) {
+        var clone = response.clone();
+        caches.open(DYNAMIC_CACHE).then(function (cache) {
+          cache.put(request, clone);
+          lruEvictCache(DYNAMIC_CACHE, CACHE_LIMITS[DYNAMIC_CACHE]);
+          enforceGlobalLimit();
+        });
+      }
+      return response;
+    })
+    .catch(function () {
+      return caches.match(request).then(function (cached) {
+        if (cached) return cached;
+        // Serve offline page for navigation requests
+        if (request.mode === 'navigate') {
+          return caches.match('/offline/').then(function (offlinePage) {
+            return (
+              offlinePage ||
+              new Response(
+                '<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Offline</title><meta name="theme-color" content="#2d6a4f"><style>body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;background:#f5f5f5;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0}.card{background:#fff;border-radius:12px;padding:2em;max-width:480px;margin:2em;box-shadow:0 2px 12px rgba(0,0,0,0.1);text-align:center}h1{color:#2d6a4f}</style></head><body><div class="card"><h1>Keine Internetverbindung</h1><p>Bitte überprüfe deine Internetverbindung und versuche es erneut.</p></div></body></html>',
+                {
+                  status: 503,
+                  headers: { 'Content-Type': 'text/html; charset=utf-8' },
+                }
+              )
+            );
+          });
+        }
+        return new Response('Offline', {
+          status: 503,
+          headers: { 'Content-Type': 'text/plain' },
+        });
+      });
+    });
+}
+
+// ═══════════════════════════════════════════════════════════
+// MESSAGE — handle version check from client
+// ═══════════════════════════════════════════════════════════
+self.addEventListener('message', function (event) {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+  if (event.data && event.data.type === 'GET_VERSION') {
+    event.ports[0].postMessage({ version: SW_VERSION });
+  }
+});
+
+// ═══════════════════════════════════════════════════════════
+// BACKGROUND SYNC
+// ═══════════════════════════════════════════════════════════
+self.addEventListener('sync', function (event) {
   if (event.tag === 'sync-quiz-progress') {
     event.waitUntil(syncQuizProgress());
   }
-
   if (event.tag === 'sync-user-data') {
     event.waitUntil(syncUserData());
   }
 });
 
-// Push notification handling
-self.addEventListener('push', (event) => {
-  console.log('[SW] Push notification received');
-
+// ═══════════════════════════════════════════════════════════
+// PUSH NOTIFICATIONS
+// ═══════════════════════════════════════════════════════════
+self.addEventListener('push', function (event) {
   if (event.data) {
-    const options = {
+    var options = {
       body: event.data.text(),
-      icon: '/favicons/android-chrome-192x192.png',
+      icon: '/icons/pwa-icon.svg',
       badge: '/favicons/favicon-32x32.png',
       vibrate: [100, 50, 100],
-      data: {
-        dateOfArrival: Date.now(),
-        primaryKey: 1,
-      },
+      data: { dateOfArrival: Date.now(), primaryKey: 1 },
       actions: [
-        {
-          action: 'explore',
-          title: 'Explore',
-          icon: '/favicons/android-chrome-192x192.png',
-        },
-        {
-          action: 'close',
-          title: 'Close',
-          icon: '/favicons/android-chrome-192x192.png',
-        },
+        { action: 'explore', title: 'Erkunden', icon: '/icons/pwa-icon.svg' },
+        { action: 'close', title: 'Schließen' },
       ],
     };
-
     event.waitUntil(self.registration.showNotification('Chemie Lernen', options));
   }
 });
 
-// Notification click handling
-self.addEventListener('notificationclick', (event) => {
-  console.log('[SW] Notification click received');
-
+self.addEventListener('notificationclick', function (event) {
   event.notification.close();
-
   if (event.action === 'explore') {
     event.waitUntil(clients.openWindow('https://chemie-lernen.org/themenbereiche/'));
   }
 });
 
-// Helper functions for background sync
-async function syncQuizProgress() {
-  // Sync quiz progress when back online
+// ═══════════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════════
+function syncQuizProgress() {
   console.log('[SW] Syncing quiz progress');
-  // Implementation would sync local storage data with server
+  // Placeholder: sync IndexedDB queue with server on reconnect
+  return Promise.resolve();
 }
 
-async function syncUserData() {
-  // Sync user preferences and settings
+function syncUserData() {
   console.log('[SW] Syncing user data');
-  // Implementation would sync user settings with server
+  return Promise.resolve();
 }
