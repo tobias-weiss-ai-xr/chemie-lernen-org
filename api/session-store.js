@@ -1,0 +1,164 @@
+/**
+ * session-store.js — File-backed persistent session store.
+ *
+ * Replaces the in-memory Map<sessionId, session> with a JSON-file-backed
+ * storage so that sessions survive server restarts.
+ *
+ * Environment variable:
+ *   SESSION_DATA_PATH — path to the JSON file (default: /data/chemie-sessions.json)
+ *   SESSION_SAVE_INTERVAL — periodic save interval in ms (default: 30000 = 30s)
+ */
+import fs from 'fs';
+import path from 'path';
+
+const DATA_PATH = process.env.SESSION_DATA_PATH || '/data/chemie-sessions.json';
+const SAVE_INTERVAL = parseInt(process.env.SESSION_SAVE_INTERVAL, 10) || 30000;
+
+/**
+ * A Map-like store that persists its contents to a JSON file.
+ * All mutations are tracked and flushed periodically + on process exit.
+ */
+class FileBackedSessionStore {
+  constructor() {
+    /** @type {Map<string, { messages: Array<{role:string,content:string}>, createdAt:number, lastUsed:number }>} */
+    this._map = new Map();
+    this._dirty = false;
+    this._saveTimer = null;
+    this._stopped = false;
+
+    // Ensure data directory exists
+    this._ensureDir();
+
+    // Load existing sessions from disk
+    this._load();
+
+    // Periodic auto-save
+    this._saveTimer = setInterval(() => this._flush(), SAVE_INTERVAL);
+    this._saveTimer.unref(); // Don't keep process alive
+
+    // Save on exit
+    const onExit = () => {
+      this._flushSync();
+    };
+    process.on('exit', onExit);
+    process.on('SIGINT', () => {
+      onExit();
+      process.exit(0);
+    });
+    process.on('SIGTERM', () => {
+      onExit();
+      process.exit(0);
+    });
+  }
+
+  /** Ensure the parent directory of DATA_PATH exists. */
+  _ensureDir() {
+    try {
+      const dir = path.dirname(DATA_PATH);
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+    } catch {
+      // Directory may not be writable — silently degrade to in-memory-only
+    }
+  }
+
+  /** Load sessions from disk, silently degrading on error. */
+  _load() {
+    try {
+      if (fs.existsSync(DATA_PATH)) {
+        const raw = fs.readFileSync(DATA_PATH, 'utf-8');
+        const data = JSON.parse(raw);
+        if (data && typeof data === 'object' && !Array.isArray(data)) {
+          const now = Date.now();
+          for (const [id, s] of Object.entries(data)) {
+            // Skip expired sessions
+            if (s.createdAt && now - s.createdAt > 24 * 60 * 60 * 1000) continue;
+            if (!s.messages || !Array.isArray(s.messages)) continue;
+            this._map.set(id, {
+              messages: s.messages.slice(-50),
+              createdAt: s.createdAt || now,
+              lastUsed: s.lastUsed || now,
+            });
+          }
+        }
+      }
+    } catch {
+      // Corrupt or unreadable file — start fresh
+    }
+  }
+
+  /** Async flush: write to a temp file then rename. */
+  _flush() {
+    if (!this._dirty || this._stopped) return;
+    this._dirty = false;
+    try {
+      const data = {};
+      for (const [id, session] of this._map) {
+        data[id] = session;
+      }
+      const json = JSON.stringify(data);
+      const tmp = DATA_PATH + '.tmp.' + process.pid;
+      fs.writeFileSync(tmp, json, 'utf-8');
+      fs.renameSync(tmp, DATA_PATH);
+    } catch {
+      // Write failed — mark dirty for retry
+      this._dirty = true;
+    }
+  }
+
+  /** Synchronous flush for process exit — no tmp file dance. */
+  _flushSync() {
+    if (!this._dirty || this._stopped) return;
+    this._dirty = false;
+    try {
+      const data = {};
+      for (const [id, session] of this._map) {
+        data[id] = session;
+      }
+      fs.writeFileSync(DATA_PATH, JSON.stringify(data), 'utf-8');
+    } catch {
+      // Best-effort at exit
+    }
+  }
+
+  // --- Public API (matches Map subset) ---
+
+  get(sessionId) {
+    return this._map.get(sessionId);
+  }
+
+  set(sessionId, session) {
+    this._map.set(sessionId, session);
+    this._dirty = true;
+  }
+
+  delete(sessionId) {
+    this._map.delete(sessionId);
+    this._dirty = true;
+  }
+
+  has(sessionId) {
+    return this._map.has(sessionId);
+  }
+
+  get size() {
+    return this._map.size;
+  }
+
+  /** Flush immediately (e.g. before responding to a critical request). */
+  flush() {
+    this._flush();
+  }
+
+  /** Stop periodic saves (for testing). */
+  stop() {
+    this._stopped = true;
+    if (this._saveTimer) {
+      clearInterval(this._saveTimer);
+      this._saveTimer = null;
+    }
+  }
+}
+
+export default FileBackedSessionStore;

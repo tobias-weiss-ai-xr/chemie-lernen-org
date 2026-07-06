@@ -10,6 +10,8 @@ import fs from 'fs';
 import path from 'path';
 import ragHelpers from './_rag-helpers.cjs';
 import { subsetWhere } from './scripts/_neo4j-subset-filter.mjs';
+import FileBackedSessionStore from './session-store.js';
+import authRouter, { authMiddleware } from './auth.js';
 
 const PORT = process.env.PORT || 3001;
 const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
@@ -18,6 +20,7 @@ const RATE_LIMIT = parseInt(process.env.RATE_LIMIT, 10) || 50; // requests per I
 const SESSION_TTL = 24 * 60 * 60 * 1000; // 24 hours
 const MAX_MESSAGES_PER_SESSION = 50; // prevent infinite conversations
 const ADMIN_API_KEY = process.env.ADMIN_API_KEY || ''; // If set, required for /api/admin/* routes
+// SESSION_DATA_PATH is read directly by session-store.js via process.env
 
 var _calcRagIndex = null;
 function getCalcRagIndex() {
@@ -38,8 +41,8 @@ function getCalcRagIndex() {
 // In-memory rate limit store: Map<ip, { count, resetDate }>
 const rateStore = new Map();
 
-// In-memory session store: Map<sessionId, { messages, createdAt, lastUsed }>
-const sessionStore = new Map();
+// File-backed session store: persists sessions across restarts
+const sessionStore = new FileBackedSessionStore();
 
 function getRateKey(ip) {
   const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
@@ -143,6 +146,12 @@ app.use((req, res, next) => {
   if (req.method === 'OPTIONS') return res.sendStatus(204);
   next();
 });
+
+// Auth routes — register, login, logout, me
+app.use('/api/auth', authRouter);
+
+// Apply authMiddleware to set req.user from JWT for all /api/* routes
+app.use('/api/*', authMiddleware);
 
 // Admin API key check — optional, only enforced when ADMIN_API_KEY env is set
 app.use('/api/admin', (req, res, next) => {

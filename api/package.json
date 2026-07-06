@@ -4,8 +4,10 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.6",
     "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.3",
     "neo4j-driver": "^6.1.0"
   }
 }
