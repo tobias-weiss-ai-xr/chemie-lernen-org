@@ -3882,14 +3882,12 @@ app.get('/api/quizzes/:topic', async (req, res) => {
   try {
     let questions = [];
     try {
-      const qPath = path.join(process.cwd(), 'myhugoapp', 'static', 'js', 'quiz-questions.js');
-      const code = fs.readFileSync(qPath, 'utf-8');
-      const vm = await import('vm');
-      const sandbox = { window: {}, console };
-      vm.runInNewContext(code, sandbox, { filename: 'quiz-questions.js' });
-      questions = sandbox.window.quizQuestions || [];
-    } catch (evalErr) {
-      console.warn('[quiz-api] Failed to load quiz questions:', evalErr.message);
+      const qPath = path.join(process.cwd(), 'data', 'quiz-questions.json');
+      const raw = fs.readFileSync(qPath, 'utf-8');
+      const parsed = JSON.parse(raw);
+      questions = parsed.questions || [];
+    } catch (loadErr) {
+      console.warn('[quiz-api] Failed to load quiz questions:', loadErr.message);
     }
 
     if (questions.length === 0) {

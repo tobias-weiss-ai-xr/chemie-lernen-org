@@ -83,6 +83,10 @@ services:
       - NEO4J_USER=neo4j
       - NEO4J_PASSWORD=chemie_knowledge_2024
       - NEO4J_DATABASE=chemie
+      - JWT_SECRET=569f48d79dfa29ba065c8936e813f7dfe64a23d66ebca62415ad53383f5b6f67
+      # Stripe keys — set these for premium checkout to work:
+      # - STRIPE_SECRET_KEY=sk_live_...
+      # - STRIPE_WEBHOOK_SECRET=whsec_...
     networks:
       - traefik-public
       - litellm-internal
@@ -90,7 +94,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik-public"
-      - "traefik.http.routers.chat.rule=Host(`chemie-lernen.org`) && (PathPrefix(`/api/chat`) || PathPrefix(`/api/health`) || PathPrefix(`/api/kg-data`) || PathPrefix(`/api/kg-stats`) || PathPrefix(`/api/curriculum`) || PathPrefix(`/api/curricula`) || PathPrefix(`/api/content`) || PathPrefix(`/api/didaktik`) || PathPrefix(`/api/modulhandbuch`) || PathPrefix(`/api/entity`) || PathPrefix(`/api/article`) || PathPrefix(`/api/session`) || PathPrefix(`/api/admin`))"
+      - "traefik.http.routers.chat.rule=Host(`chemie-lernen.org`) && (PathPrefix(`/api/chat`) || PathPrefix(`/api/health`) || PathPrefix(`/api/kg-data`) || PathPrefix(`/api/kg-stats`) || PathPrefix(`/api/curriculum`) || PathPrefix(`/api/curricula`) || PathPrefix(`/api/content`) || PathPrefix(`/api/didaktik`) || PathPrefix(`/api/modulhandbuch`) || PathPrefix(`/api/entity`) || PathPrefix(`/api/article`) || PathPrefix(`/api/session`) || PathPrefix(`/api/admin`) || PathPrefix(`/api/auth`) || PathPrefix(`/api/quizzes`) || PathPrefix(`/api/quiz-results`) || PathPrefix(`/api/studienvergleich`))"
       - "traefik.http.routers.chat.priority=100"
       - "traefik.http.routers.chat.entrypoints=websecure"
       - "traefik.http.routers.chat.tls=true"
