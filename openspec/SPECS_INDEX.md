@@ -1,6 +1,6 @@
 # OpenSpec — Capabilities Index
 
-Last updated: 2026-07-05
+Last updated: 2026-07-06
 
 ## Main capabilities (specs/)
 
@@ -21,7 +21,20 @@ Last updated: 2026-07-05
 
 ## Active changes (`changes/`)
 
-_(No active changes — all completed changes have been archived.)_
+| Change               | Status         | Goal                                                                    |
+| -------------------- | -------------- | ----------------------------------------------------------------------- |
+| `lehrenden-premium`  | 8/10 tasks     | Auth (Lucia/JWT), Stripe payments, premium gating                       |
+| `open-spec-coverage` | 5/6 spec files | Create missing spec files for all capabilities                          |
+| `sprint-1`           | Spec draft     | Lehrenden-Premium go-live — Stripe integration + premium gating         |
+| `sprint-2`           | Spec draft     | Semantic RAG — embeddings + vector search in Neo4j                      |
+| `sprint-3`           | Spec draft     | Platform Hardening — security, rate limits, backup DR, monitoring       |
+| `sprint-4`           | Spec draft     | Content Expansion — 15 new articles, cross-linking improvements         |
+| `sprint-5`           | Spec draft     | Calculator Ecosystem — 3 new calculators, unit converter, i18n          |
+| `sprint-6`           | Spec draft     | PWA + Offline — service worker, manifest, offline content               |
+| `sprint-7`           | Spec draft     | Quiz Platform — quiz engine, question bank, spaced repetition           |
+| `sprint-8`           | Spec draft     | KI-Assistent Personalization — learning profile, chat history, feedback |
+| `sprint-9`           | Spec draft     | 3D Visualizations — molecule viewer, periodic table, AR (experimental)  |
+| `sprint-10`          | Spec draft     | Production Audit — security, performance, docs, monitoring              |
 
 ## Archived changes (`changes/archive/`)
 

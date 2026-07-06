@@ -1,0 +1,18 @@
+- [ ] Install `stripe` npm package in api/
+- [ ] Add `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRICE_ID`, `FRONTEND_URL` to env validation
+- [ ] Create `POST /api/auth/create-checkout-session` — Stripe Checkout session creation
+- [ ] Create `POST /api/auth/stripe-webhook` — webhook endpoint with signature verification
+- [ ] Handle `checkout.session.completed` event → upgrade user to premium
+- [ ] Add `premium_until` field to user schema, set on upgrade
+- [ ] Wire `requirePremium` middleware into premium calculator pages
+- [ ] Wire `requirePremium` into KI-Assistent premium features (Sprint 8)
+- [ ] Create pricing page (`/preise`) with feature table + Checkout CTA
+- [ ] Create account page (`/konto`) with subscription status
+- [ ] Auth-client.js: add premium badge in navbar, loading states
+- [ ] Remove hardcoded `JWT_SECRET` default — fail at startup
+- [ ] Add file locking to `auth-db.js` for concurrent `users.json` writes
+- [ ] Add rate limiting to `/api/auth/*` endpoints (express-rate-limit)
+- [ ] Implement `expiresAt` check in `requirePremium` middleware
+- [ ] Build + deploy Docker images (chat-api + hugo)
+- [ ] Write integration tests for checkout flow (stripe-mock or test keys)
+- [ ] Update `openspec/specs/lehrenden-premium/spec.md` with payment details

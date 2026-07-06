@@ -1,0 +1,15 @@
+- [ ] Create `static/js/quiz-engine.js` — core quiz logic (types, scoring, timer, shuffle)
+- [ ] Create `static/js/quiz-ui.js` — renderer (progress, feedback, results, keyboard nav)
+- [ ] Create quiz content page (`/quiz/`) + Hugo layout
+- [ ] Create question schema definition
+- [ ] Write 30 initial questions (6 × 5 Themenbereiche)
+- [ ] Create `GET /api/quizzes/<topic>` endpoint with difficulty filter
+- [ ] Create `PUT /api/quiz-results` endpoint
+- [ ] Create `GET /api/quiz-results` endpoint with stats
+- [ ] Wire quiz results into auth-db users.json
+- [ ] Implement SM-2 spaced repetition algorithm
+- [ ] Add "Wiederholen" button + daily review reminder
+- [ ] Create quiz dashboard (recent, streak, weak areas)
+- [ ] Write Jest tests for quiz engine (scoring, edge cases)
+- [ ] Write Jest tests for SM-2 algorithm
+- [ ] Build + deploy Docker images

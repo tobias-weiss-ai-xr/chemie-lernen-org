@@ -1,0 +1,13 @@
+- [ ] Create `static/js/utils/unit-converter.js` — 5 dimensions, SI base, auto-detect
+- [ ] Create gas-calculator.js (ChemistryCalculator subclass) + layout + content
+- [ ] Create dilution-calculator.js + layout + content
+- [ ] Create yield-calculator.js + layout + content
+- [ ] Register all 3 new calculators in LazyLoader
+- [ ] Create `static/js/i18n/calculators-de.json` with German labels
+- [ ] Add `data-i18n` attributes to all calculator HTML templates
+- [ ] Write unit-converter Jest tests (round-trip, edge cases, zero, negative)
+- [ ] Write Jest tests for each new calculator (reference values)
+- [ ] Create calculator coverage report script
+- [ ] Run minify + check bundle size
+- [ ] Verify all calculators render in Hugo dev
+- [ ] Build + deploy Hugo image

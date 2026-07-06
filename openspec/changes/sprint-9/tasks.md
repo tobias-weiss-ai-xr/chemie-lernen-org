@@ -1,0 +1,19 @@
+- [ ] Audit existing Three.js code (molekuel-studio.js, perioden-system.js)
+- [ ] Add orbit display (s/p/d orbital visualization)
+- [ ] Add bond angle measurement tool
+- [ ] Add atom labeling with element symbols
+- [ ] Add download as .glb/.stl
+- [ ] Create pre-defined molecule library (10 molecules, JSON data)
+- [ ] Switch CSS3DRenderer → WebGLRenderer for complex molecules
+- [ ] Add touch gesture support (pinch zoom, rotate)
+- [ ] Add electron configuration overlay to periodic table
+- [ ] Add isotope explorer
+- [ ] Add property trends visualization (electronegativity, radius)
+- [ ] Add element comparison mode
+- [ ] Implement WebXR AR mode for molecule viewer
+- [ ] Add WebGL detection + 2D fallback
+- [ ] Optimize Three.js lazy-loading
+- [ ] Add GPU memory management (dispose on navigation)
+- [ ] Write bundle size tracking for visualization JS
+- [ ] Test on mobile (Chrome Android, Safari iOS)
+- [ ] Build + deploy Hugo image

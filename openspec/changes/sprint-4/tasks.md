@@ -1,0 +1,18 @@
+- [ ] Audit current article counts per Themenbereich (confirm gaps)
+- [ ] Write: Anorganische Verbindungen → Komplexchemie (+article .md)
+- [ ] Write: Anorganische Verbindungen → Industrielle anorganische Chemie
+- [ ] Write: Redox & Elektrochemie → Korrosion und Korrosionsschutz
+- [ ] Write: Analytische Methoden → Massenspektrometrie
+- [ ] Write: Analytische Methoden → Thermische Analyse
+- [ ] Write: Erdöl & organische Stoffklassen → Kunststoffe und Polymerisation
+- [ ] Write: Reaktionstypen organisch → Eliminierungsreaktionen
+- [ ] Write: Produkte des Alltags → Tenside und Waschmittel
+- [ ] Write: Tipps & Tricks → Lernstrategien Chemie
+- [ ] Write: Tipps & Tricks → Typische Fehler vermeiden
+- [ ] Run link-content.mjs + generate-cross-links.mjs — verify teilgebiet coverage
+- [ ] Add cross-link badge partial to article footer
+- [ ] Create `GET /api/content/cross-link-stats` endpoint
+- [ ] Add `last_reviewed` to frontmatter of all existing articles
+- [ ] Create `scripts/audit-content-freshness.mjs`
+- [ ] Document content workflow in CONTRIBUTING.md
+- [ ] Build + deploy Hugo image

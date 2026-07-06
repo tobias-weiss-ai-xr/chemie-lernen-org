@@ -1,0 +1,26 @@
+- [ ] Run OWASP Top 10 assessment — document findings
+- [ ] Attempt auth bypass, injection, XSS on all API endpoints
+- [ ] Run Snyk or `npm audit` + `grype` — fix critical/high
+- [ ] Run secrets scanner (truffleHog or git leaks)
+- [ ] Audit CORS and CSP headers
+- [ ] Audit session management (token storage, rotation)
+- [ ] Remediate all security findings ≥ medium
+- [ ] Run Lighthouse — fix all categories to 95+
+- [ ] Profile p50/p95/p99 latency for top 10 API endpoints
+- [ ] Run EXPLAIN on slow Cypher queries, add indexes
+- [ ] Audit bundle size — optimize if >50kB gzipped
+- [ ] Audit image optimization (WebP, lazy, srcset)
+- [ ] Fix top 3 performance bottlenecks
+- [ ] Write/update `README.md`
+- [ ] Create `docs/ARCHITECTURE.md` with Mermaid diagrams
+- [ ] Create `docs/API.md` with all route documentation
+- [ ] Create `docs/DEPLOYMENT.md`
+- [ ] Create `docs/SECURITY.md`
+- [ ] Create `docs/CONTRIBUTING.md`
+- [ ] Create `docs/openapi.yaml` (OpenAPI 3.0 spec)
+- [ ] Set up Grafana dashboard (request rate, error rate, latency, Neo4j)
+- [ ] Configure alert rules (5xx, latency, backup, disk)
+- [ ] Integrate uptime monitoring (healthchecks.io or similar)
+- [ ] Integrate error tracking (Sentry or similar)
+- [ ] Review log aggregation setup
+- [ ] Build + deploy final Docker images

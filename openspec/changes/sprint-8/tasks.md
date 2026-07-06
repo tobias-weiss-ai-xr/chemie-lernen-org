@@ -1,0 +1,19 @@
+- [ ] Extend user schema with `learning_profile` fields
+- [ ] Create `PUT /api/auth/profile` endpoint
+- [ ] Create `GET /api/auth/profile` endpoint (include inferred weak areas)
+- [ ] Implement weak area inference from quiz results + chat topics
+- [ ] Create `GET /api/chat/history` — list sessions
+- [ ] Create `GET /api/chat/history/:sessionId` — full conversation
+- [ ] Auto-generate session titles from first user message
+- [ ] Add session expiry (90d free, 365d premium)
+- [ ] Modify system prompt builder to inject user learning profile
+- [ ] Implement interest-boosted RAG scoring
+- [ ] Add explanation complexity adjustment to prompt
+- [ ] Detect confusion patterns (repeat questions, negative feedback)
+- [ ] Suggest remedial topics when weak areas detected
+- [ ] Add thumb up/down UI to chat messages
+- [ ] Add "War das hilfreich?" prompt after 3 exchanges
+- [ ] Create `POST /api/chat/feedback` endpoint
+- [ ] Add analytics dashboard (topic satisfaction, suggestions)
+- [ ] Write integration tests for all new endpoints
+- [ ] Build + deploy Docker images
