@@ -2132,7 +2132,7 @@ function slugify(str) {
 }
 
 /**
- * Graceful shutdown — close Neo4j driver
+ * Graceful shutdown / error handlers
  */
 process.on('SIGTERM', async () => {
   if (neo4jDriver) {
@@ -2140,6 +2140,14 @@ process.on('SIGTERM', async () => {
     neo4jDriver = null;
   }
   process.exit(0);
+});
+
+process.on('unhandledRejection', (reason) => {
+  console.error('[process] UNHANDLED REJECTION:', reason);
+});
+
+process.on('uncaughtException', (err) => {
+  console.error('[process] UNCAUGHT EXCEPTION:', err);
 });
 
 /**
@@ -3879,11 +3887,22 @@ app.get('/api/health', async (req, res) => {
   } catch {
     neo4jOk = false;
   }
+  var litellmOk;
+  try {
+    var litellmRes = await fetch(LITELLM_URL.replace('/chat/completions', '/health'), {
+      signal: AbortSignal.timeout(3000),
+    });
+    litellmOk = litellmRes.ok;
+  } catch {
+    litellmOk = false;
+  }
   res.json({
     status: 'ok',
     uptime: process.uptime(),
     neo4j: neo4jOk ? 'connected' : 'unavailable',
     entityCount: entityCount,
+    litellm: litellmOk ? 'connected' : 'unavailable',
+    model: LITELLM_MODEL,
     version: '2.0',
   });
 });

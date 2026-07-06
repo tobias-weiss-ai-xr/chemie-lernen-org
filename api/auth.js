@@ -92,17 +92,28 @@ authRouter.use(authLimiter);
 // POST /api/auth/register
 authRouter.post('/register', async (req, res) => {
   try {
-    const { email, password, name } = req.body;
+    const { email: rawEmail, password, name: rawName } = req.body;
 
-    if (!email || !password) {
+    if (!rawEmail || !password) {
       return res.status(400).json({ error: 'Email und Passwort erforderlich' });
     }
     if (password.length < 8) {
       return res.status(400).json({ error: 'Passwort muss mindestens 8 Zeichen lang sein' });
     }
+    if (password.length > 128) {
+      return res.status(400).json({ error: 'Passwort zu lang (max. 128 Zeichen)' });
+    }
+    const email = rawEmail.toLowerCase().trim();
+    if (email.length > 254) {
+      return res.status(400).json({ error: 'E-Mail-Adresse zu lang' });
+    }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return res.status(400).json({ error: 'Ungültiges E-Mail-Format' });
     }
+    const name = (rawName || '')
+      .trim()
+      .slice(0, 100)
+      .replace(/<[^>]*>/g, '');
 
     const existing = getUserByEmail(email);
     if (existing) {
