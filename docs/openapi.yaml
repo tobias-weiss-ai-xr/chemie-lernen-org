@@ -1,0 +1,781 @@
+openapi: "3.0.3"
+info:
+  title: "Chemie Lernen API"
+  description: "API for chemie-lernen.org — chemistry education platform with AI tutor, knowledge graph, and quiz system."
+  version: "1.0.0"
+  contact:
+    name: "Chemie Lernen"
+    url: "https://chemie-lernen.org"
+servers:
+  - url: "https://chemie-lernen.org"
+    description: "Production server"
+  - url: "http://localhost:3001"
+    description: "Local development"
+
+paths:
+
+  # ── Health ──────────────────────────────────────────
+  /api/health:
+    get:
+      operationId: "healthCheck"
+      summary: "API health check"
+      tags: ["Health"]
+      responses:
+        "200":
+          description: "Service is healthy"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  status:
+                    type: "string"
+                    example: "ok"
+                  neo4j:
+                    type: "string"
+                    example: "connected"
+                  litellm:
+                    type: "string"
+                    example: "connected"
+
+  # ── Auth ────────────────────────────────────────────
+  /api/auth/register:
+    post:
+      operationId: "authRegister"
+      summary: "Register a new user"
+      tags: ["Auth"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              required: ["email", "password", "name"]
+              properties:
+                email:
+                  type: "string"
+                  format: "email"
+                password:
+                  type: "string"
+                  minLength: 8
+                name:
+                  type: "string"
+      responses:
+        "201":
+          description: "User registered successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "409":
+          description: "Email already in use"
+
+  /api/auth/login:
+    post:
+      operationId: "authLogin"
+      summary: "Login with email and password"
+      tags: ["Auth"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              required: ["email", "password"]
+              properties:
+                email:
+                  type: "string"
+                  format: "email"
+                password:
+                  type: "string"
+      responses:
+        "200":
+          description: "Login successful"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "401":
+          description: "Invalid credentials"
+
+  /api/auth/logout:
+    post:
+      operationId: "authLogout"
+      summary: "Logout (invalidate session token)"
+      tags: ["Auth"]
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: "Logged out successfully"
+
+  /api/auth/me:
+    get:
+      operationId: "authMe"
+      summary: "Get current user profile"
+      tags: ["Auth"]
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: "User profile"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfile"
+        "401":
+          description: "Not authenticated (returns {user:null})"
+
+  /api/auth/profile:
+    get:
+      operationId: "getProfile"
+      summary: "Get learning profile with weak areas"
+      tags: ["Auth"]
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: "Learning profile"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LearningProfile"
+    put:
+      operationId: "updateProfile"
+      summary: "Update learning preferences"
+      tags: ["Auth"]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LearningProfileInput"
+      responses:
+        "200":
+          description: "Profile updated"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LearningProfile"
+
+  /api/auth/upgrade:
+    post:
+      operationId: "upgradeToPremium"
+      summary: "Upgrade account to premium"
+      tags: ["Auth"]
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: "Account upgraded"
+
+  /api/auth/create-checkout-session:
+    post:
+      operationId: "createCheckoutSession"
+      summary: "Create Stripe checkout session for premium upgrade"
+      tags: ["Auth"]
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: "Checkout session created"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  url:
+                    type: "string"
+                    format: "uri"
+                    description: "Stripe checkout URL"
+
+  # ── Chat ────────────────────────────────────────────
+  /api/chat:
+    post:
+      operationId: "chat"
+      summary: "Send a chat message to the AI tutor"
+      tags: ["Chat"]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              required: ["message"]
+              properties:
+                message:
+                  type: "string"
+                  description: "User's message"
+                sessionId:
+                  type: "string"
+                  description: "Session ID for conversation continuity"
+                role:
+                  type: "string"
+                  enum: ["student", "teacher"]
+                  description: "User context role for the assistant"
+                topic:
+                  type: "string"
+                  description: "Topic context to narrow RAG scope"
+      responses:
+        "200":
+          description: "AI response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message:
+                    type: "string"
+                    description: "Assistant response"
+                  sessionId:
+                    type: "string"
+                  sources:
+                    type: "array"
+                    items:
+                      type: "object"
+                      properties:
+                        title:
+                          type: "string"
+                        url:
+                          type: "string"
+                        score:
+                          type: "number"
+                          format: "float"
+
+  /api/chat/history:
+    get:
+      operationId: "listChatHistory"
+      summary: "List past chat sessions"
+      tags: ["Chat"]
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: "limit"
+          in: "query"
+          schema:
+            type: "integer"
+            default: 20
+        - name: "offset"
+          in: "query"
+          schema:
+            type: "integer"
+            default: 0
+      responses:
+        "200":
+          description: "List of sessions"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  sessions:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/ChatSession"
+                  total:
+                    type: "integer"
+
+  /api/chat/history/{sessionId}:
+    get:
+      operationId: "getChatSession"
+      summary: "Get full conversation for a session"
+      tags: ["Chat"]
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: "sessionId"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Full session messages"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  messages:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/ChatMessage"
+                  sessionId:
+                    type: "string"
+
+  /api/chat/feedback:
+    post:
+      operationId: "sendFeedback"
+      summary: "Rate an assistant response"
+      tags: ["Chat"]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              required: ["messageId", "rating"]
+              properties:
+                messageId:
+                  type: "string"
+                rating:
+                  type: "string"
+                  enum: ["up", "down"]
+                comment:
+                  type: "string"
+      responses:
+        "200":
+          description: "Feedback recorded"
+
+  # ── Quiz ────────────────────────────────────────────
+  /api/quizzes/{topic}:
+    get:
+      operationId: "getQuizQuestions"
+      summary: "Get quiz questions by topic"
+      tags: ["Quiz"]
+      parameters:
+        - name: "topic"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+          description: "Topic name (e.g. 'Allgemeine Chemie', 'alle' for all)"
+      responses:
+        "200":
+          description: "Quiz questions"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  total:
+                    type: "integer"
+                    example: 30
+                  questions:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/QuizQuestion"
+        "404":
+          description: "Topic not found"
+
+  /api/quiz-results:
+    get:
+      operationId: "getQuizResults"
+      summary: "Get quiz results for the current user"
+      tags: ["Quiz"]
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: "Quiz results"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/QuizResult"
+    put:
+      operationId: "saveQuizResult"
+      summary: "Save a quiz result"
+      tags: ["Quiz"]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              required: ["topic", "score", "total", "answers"]
+              properties:
+                topic:
+                  type: "string"
+                score:
+                  type: "integer"
+                total:
+                  type: "integer"
+                answers:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      questionIndex:
+                        type: "integer"
+                      correct:
+                        type: "boolean"
+                      timeTaken:
+                        type: "integer"
+      responses:
+        "200":
+          description: "Result saved"
+
+  # ── Knowledge Graph ─────────────────────────────────
+  /api/kg-data:
+    get:
+      operationId: "getKgData"
+      summary: "Get knowledge graph data"
+      tags: ["Knowledge Graph"]
+      parameters:
+        - name: "nodeId"
+          in: "query"
+          schema:
+            type: "string"
+        - name: "depth"
+          in: "query"
+          schema:
+            type: "integer"
+            default: 1
+        - name: "labels"
+          in: "query"
+          schema:
+            type: "string"
+            description: "Node labels to filter"
+      responses:
+        "200":
+          description: "Graph data (nodes + edges)"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GraphData"
+
+  /api/kg-stats:
+    get:
+      operationId: "getKgStats"
+      summary: "Get knowledge graph statistics"
+      tags: ["Knowledge Graph"]
+      responses:
+        "200":
+          description: "KG statistics"
+          content:
+            application/json:
+              schema:
+                type: "object"
+
+  /api/entity/{slug}:
+    get:
+      operationId: "getEntityBySlug"
+      summary: "Get entity details by slug"
+      tags: ["Knowledge Graph"]
+      parameters:
+        - name: "slug"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Entity data"
+        "404":
+          description: "Entity not found"
+
+  /api/entity:
+    get:
+      operationId: "searchEntities"
+      summary: "Search entities in the knowledge graph"
+      tags: ["Knowledge Graph"]
+      parameters:
+        - name: "q"
+          in: "query"
+          schema:
+            type: "string"
+        - name: "label"
+          in: "query"
+          schema:
+            type: "string"
+        - name: "limit"
+          in: "query"
+          schema:
+            type: "integer"
+            default: 20
+      responses:
+        "200":
+          description: "Entity search results"
+
+  # ── Curriculum ───────────────────────────────────────
+  /api/curricula:
+    get:
+      operationId: "getAllCurricula"
+      summary: "Get all curricula"
+      tags: ["Curriculum"]
+      responses:
+        "200":
+          description: "List of curricula"
+
+  /api/curriculum:
+    get:
+      operationId: "getCurriculumSummary"
+      summary: "Get curriculum summary data"
+      tags: ["Curriculum"]
+      responses:
+        "200":
+          description: "Curriculum data"
+
+  /api/content:
+    get:
+      operationId: "getContent"
+      summary: "Get educational content linked to curriculum"
+      tags: ["Curriculum"]
+      parameters:
+        - name: "topic"
+          in: "query"
+          schema:
+            type: "string"
+        - name: "label"
+          in: "query"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Content data"
+
+  /api/didaktik:
+    get:
+      operationId: "getDidaktik"
+      summary: "Get didactic guidelines"
+      tags: ["Curriculum"]
+      responses:
+        "200":
+          description: "Didaktik data"
+
+  # ── Modulhandbuch ────────────────────────────────────
+  /api/modulhandbuch:
+    get:
+      operationId: "getModulhandbuch"
+      summary: "Get university module handbook data"
+      tags: ["Modulhandbuch"]
+      responses:
+        "200":
+          description: "Modulhandbuch data"
+
+  # ── Studienvergleich ─────────────────────────────────
+  /api/studienvergleich/compare:
+    get:
+      operationId: "compareUniversities"
+      summary: "Compare university programs"
+      tags: ["Studienvergleich"]
+      parameters:
+        - name: "u1"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+          description: "First university/program"
+        - name: "u2"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+          description: "Second university/program"
+      responses:
+        "200":
+          description: "Comparison data"
+
+  # ── Admin ────────────────────────────────────────────
+  /api/admin/health:
+    get:
+      operationId: "adminHealth"
+      summary: "Admin health check with detailed metrics"
+      tags: ["Admin"]
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: "Detailed health info"
+
+  # ── Articles ─────────────────────────────────────────
+  /api/article/{slug}:
+    get:
+      operationId: "getArticle"
+      summary: "Get article by slug"
+      tags: ["Articles"]
+      parameters:
+        - name: "slug"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Article content"
+        "404":
+          description: "Article not found"
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: "http"
+      scheme: "bearer"
+      bearerFormat: "JWT"
+      description: "JWT token obtained from /api/auth/login or /api/auth/register"
+
+  schemas:
+    AuthResponse:
+      type: "object"
+      properties:
+        token:
+          type: "string"
+          description: "JWT bearer token"
+        user:
+          $ref: "#/components/schemas/UserProfile"
+
+    UserProfile:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        email:
+          type: "string"
+          format: "email"
+        name:
+          type: "string"
+        isPremium:
+          type: "boolean"
+        createdAt:
+          type: "string"
+          format: "date-time"
+        learning_profile:
+          $ref: "#/components/schemas/LearningProfile"
+
+    LearningProfile:
+      type: "object"
+      properties:
+        learning_level:
+          type: "string"
+          enum: ["beginner", "intermediate", "advanced"]
+        interests:
+          type: "array"
+          items:
+            type: "string"
+        preferred_explanation_style:
+          type: "string"
+          enum: ["visual", "textual", "example", "step-by-step"]
+        weak_areas:
+          type: "array"
+          items:
+            type: "string"
+          description: "Inferred from quiz and chat history"
+
+    LearningProfileInput:
+      type: "object"
+      properties:
+        learning_level:
+          type: "string"
+          enum: ["beginner", "intermediate", "advanced"]
+        interests:
+          type: "array"
+          items:
+            type: "string"
+        preferred_explanation_style:
+          type: "string"
+          enum: ["visual", "textual", "example", "step-by-step"]
+
+    ChatSession:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        topic_summary:
+          type: "string"
+        message_count:
+          type: "integer"
+        created_at:
+          type: "string"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          format: "date-time"
+
+    ChatMessage:
+      type: "object"
+      properties:
+        role:
+          type: "string"
+          enum: ["user", "assistant"]
+        content:
+          type: "string"
+        timestamp:
+          type: "string"
+          format: "date-time"
+
+    QuizQuestion:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+        question:
+          type: "string"
+        options:
+          type: "array"
+          items:
+            type: "string"
+        correct:
+          type: "integer"
+          description: "Index of correct option (0-based)"
+        topic:
+          type: "string"
+        level:
+          type: "integer"
+          description: "Difficulty level (1-5)"
+
+    QuizResult:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        topic:
+          type: "string"
+        score:
+          type: "integer"
+        total:
+          type: "integer"
+        percentage:
+          type: "number"
+          format: "float"
+        answers:
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              questionIndex:
+                type: "integer"
+              correct:
+                type: "boolean"
+              timeTaken:
+                type: "integer"
+        timestamp:
+          type: "string"
+          format: "date-time"
+
+    GraphData:
+      type: "object"
+      properties:
+        nodes:
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              id:
+                type: "string"
+              label:
+                type: "string"
+              group:
+                type: "string"
+              type:
+                type: "string"
+        edges:
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              source:
+                type: "string"
+              target:
+                type: "string"
+              relation:
+                type: "string"
