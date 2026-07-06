@@ -539,6 +539,10 @@ const RAG_CACHE_MAX = 100;
 
 const { buildSystemPrompt, extractSourceNames } = ragHelpers;
 
+// Semantic RAG — lazy-loaded embedding pipeline
+var embeddings = null;
+var RAG_SEMANTIC_ENABLED = process.env.RAG_SEMANTIC_ENABLED !== 'false';
+
 function getRAGContext(message) {
   // Extract meaningful keywords
   var tokens = message
@@ -573,7 +577,7 @@ function getRAGContext(message) {
     var driver = getNeo4jDriver();
     if (driver) {
       // We'll query Neo4j asynchronously, so we return a promise
-      return queryNeo4jRAG(limitedKeywords, cacheKey);
+      return queryNeo4jRAG(limitedKeywords, message, cacheKey);
     }
   } catch {
     // Neo4j unavailable, fall through to fallback
@@ -583,7 +587,7 @@ function getRAGContext(message) {
   return getRAGContextFallback(limitedKeywords, cacheKey);
 }
 
-async function queryNeo4jRAG(keywords, cacheKey) {
+async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
   try {
     var driver = getNeo4jDriver();
     var session = driver.session({
@@ -619,7 +623,7 @@ async function queryNeo4jRAG(keywords, cacheKey) {
           '  relatedEntities, score, ' +
           '  curriculumRels ' +
           'ORDER BY score DESC, e.name ' +
-          'LIMIT 8',
+          'LIMIT 15',
         { keywords: keywords }
       );
 
@@ -671,6 +675,45 @@ async function queryNeo4jRAG(keywords, cacheKey) {
       }
     } finally {
       await session.close();
+    }
+
+    // Semantic reranking — embed query + batch-embed results, combine scores
+    if (RAG_SEMANTIC_ENABLED && result.records.length > 1) {
+      try {
+        var semanticTimer = setTimeout(function () {
+          throw new Error('Semantic rerank timed out (>2s)');
+        }, 2000);
+        if (!embeddings) embeddings = require('./embeddings.js');
+        var queryText = originalMessage || keywords.join(' ');
+        var qEmbedding = await embeddings.embed(queryText);
+        var textBatch = [];
+        for (var ri = 0; ri < result.records.length; ri++) {
+          var rRec = result.records[ri];
+          var rName = rRec.get('name') || '';
+          var rDesc = rRec.get('description') || '';
+          textBatch.push(rName + (rDesc ? ' ' + rDesc : ''));
+        }
+        var resultEmbeddings = await embeddings.embedBatch(textBatch);
+        var combined = [];
+        for (var ri2 = 0; ri2 < result.records.length; ri2++) {
+          var kwScore = result.records[ri2].get('score') || 0;
+          var semScore = embeddings.cosineSimilarity(qEmbedding, resultEmbeddings[ri2]);
+          combined.push({ index: ri2, kwScore: kwScore, semScore: semScore });
+        }
+        combined.sort(function (a, b) {
+          var aTotal = a.kwScore * 0.4 + a.semScore * 0.6;
+          var bTotal = b.kwScore * 0.4 + b.semScore * 0.6;
+          return bTotal - aTotal;
+        });
+        var reranked = [];
+        for (var ri3 = 0; ri3 < combined.length && ri3 < 8; ri3++) {
+          reranked.push(result.records[combined[ri3].index]);
+        }
+        result.records = reranked;
+        clearTimeout(semanticTimer);
+      } catch (semErr) {
+        console.warn('[RAG] Semantic rerank unavailable, using keyword order:', semErr.message);
+      }
     }
 
     if (result.records.length === 0) {
