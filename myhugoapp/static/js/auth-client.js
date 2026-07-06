@@ -66,6 +66,22 @@
       return apiFetch('POST', '/upgrade');
     },
 
+    /** Create Stripe Checkout session and redirect */
+    createCheckoutSession: function () {
+      return apiFetch('POST', '/create-checkout-session')
+        .then(function (data) {
+          if (data.url) {
+            window.location.href = data.url;
+          }
+          return data;
+        })
+        .catch(function (err) {
+          console.error('[auth] Checkout error:', err.message);
+          alert('Fehler beim Erstellen der Checkout-Session: ' + err.message);
+          throw err;
+        });
+    },
+
     /** Check if user is logged in and return their info */
     getUser: function () {
       return apiFetch('GET', '/me')
@@ -107,6 +123,8 @@
         (!user.isPremium
           ? '<li><a href="/premium/" class="auth-upgrade-link">\u2B50 Zu Premium upgraden</a></li>'
           : '') +
+        '<li><a href="/konto/" class="auth-account-link">\uD83D\uDC64 Mein Konto</a></li>' +
+        '<li role="separator" class="divider"></li>' +
         '<li><a href="#" id="auth-logout-link">Abmelden</a></li>' +
         '</ul>';
       li.querySelector('#auth-logout-link').addEventListener('click', function (e) {

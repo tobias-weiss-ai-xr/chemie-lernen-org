@@ -1,0 +1,204 @@
+{{ define "main" }}
+
+<div class="auth-page">
+  <div class="premium-container">
+    <div class="premium-header">
+      <h1 class="auth-title">{{ .Title }}</h1>
+      <p class="auth-subtitle">{{ .Description }}</p>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Free tier -->
+      <div class="pricing-card">
+        <div class="pricing-card-header">
+          <h2 class="pricing-tier-name">Kostenlos</h2>
+          <p class="pricing-price">0 € <span class="pricing-period">/ Monat</span></p>
+        </div>
+        <ul class="pricing-features">
+          <li>✓ Alle Themenbereiche &amp; Artikel</li>
+          <li>✓ Basis-Rechner (Stöchiometrie, pH-Wert)</li>
+          <li>✓ KI-Assistent (begrenzt auf 5 Anfragen/Tag)</li>
+          <li>✗ Premium-Rechner</li>
+          <li>✗ KI-Assistent unbegrenzt</li>
+          <li>✗ Keine Werbung</li>
+          <li>✗ Offline-Zugriff</li>
+        </ul>
+        <div class="pricing-card-footer">
+          <span class="btn btn-default btn-block" disabled>Aktuell</span>
+        </div>
+      </div>
+
+      <!-- Premium tier -->
+      <div class="pricing-card pricing-card-featured">
+        <div class="pricing-badge">Empfohlen</div>
+        <div class="pricing-card-header">
+          <h2 class="pricing-tier-name">Premium</h2>
+          <p class="pricing-price">4,99 € <span class="pricing-period">/ Monat</span></p>
+        </div>
+        <ul class="pricing-features">
+          <li>✓ Alle Themenbereiche &amp; Artikel</li>
+          <li>✓ Alle Rechner (Stöchiometrie, pH-Wert, Titration, …)</li>
+          <li>✓ KI-Assistent unbegrenzt</li>
+          <li>✓ Werbefrei</li>
+          <li>✓ Offline-Zugriff</li>
+          <li>✓ Exklusive 3D-Visualisierungen</li>
+          <li>✓ Bevorzugter Support</li>
+        </ul>
+        <div class="pricing-card-footer">
+          <button id="premium-checkout-btn" class="btn btn-primary btn-block">
+            Jetzt Premium kaufen
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="checkout-error" class="auth-error hidden"></div>
+    <div id="checkout-loading" class="pricing-loading hidden">
+      <p>Weiterleitung zu Stripe…</p>
+    </div>
+
+    <p class="auth-footer">
+      Bereits Premium? <a href="/konto/">Zum Konto</a>
+    </p>
+  </div>
+</div>
+
+<style>
+.premium-container {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+.premium-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.pricing-grid {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  align-items: stretch;
+}
+.pricing-card {
+  flex: 1;
+  max-width: 380px;
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 16px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+.pricing-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+.pricing-card-featured {
+  border-color: var(--green-primary, #28a745);
+  border-width: 2px;
+  box-shadow: 0 4px 16px rgba(40, 167, 69, 0.15);
+}
+.pricing-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--green-primary, #28a745);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 16px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.pricing-card-header {
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color, #eee);
+  margin-bottom: 20px;
+}
+.pricing-tier-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: var(--text-primary, #222);
+}
+.pricing-price {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--text-primary, #222);
+}
+.pricing-period {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-secondary, #666);
+}
+.pricing-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  flex: 1;
+}
+.pricing-features li {
+  padding: 8px 0;
+  font-size: 0.92rem;
+  color: var(--text-primary, #333);
+  border-bottom: 1px solid var(--border-color, #f0f0f0);
+}
+.pricing-features li:last-child {
+  border-bottom: none;
+}
+.pricing-card-footer {
+  text-align: center;
+}
+.pricing-loading {
+  text-align: center;
+  margin-top: 24px;
+  color: var(--text-secondary, #666);
+}
+.hidden { display: none !important; }
+
+@media (max-width: 700px) {
+  .pricing-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .pricing-card {
+    max-width: 100%;
+  }
+}
+</style>
+
+<script src="/js/auth-client.js"></script>
+<script>
+(function() {
+  var checkoutBtn = document.getElementById('premium-checkout-btn');
+  var errorEl = document.getElementById('checkout-error');
+  var loadingEl = document.getElementById('checkout-loading');
+
+  if (!checkoutBtn) return;
+
+  checkoutBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    errorEl.classList.add('hidden');
+    loadingEl.classList.remove('hidden');
+    checkoutBtn.disabled = true;
+
+    window.AuthClient.createCheckoutSession()
+      .catch(function(err) {
+        loadingEl.classList.add('hidden');
+        checkoutBtn.disabled = false;
+        errorEl.textContent = err.message || 'Fehler beim Erstellen der Checkout-Session';
+        errorEl.classList.remove('hidden');
+      });
+  });
+})();
+</script>
+
+{{ end }}

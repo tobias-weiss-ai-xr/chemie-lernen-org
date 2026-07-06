@@ -1,0 +1,179 @@
+{{ define "main" }}
+
+<div class="auth-page">
+  <div class="konto-container">
+    <div id="konto-loading" class="konto-loading">
+      <p>Lade Kontodaten…</p>
+    </div>
+
+    <div id="konto-logged-out" class="konto-logged-out hidden">
+      <div class="auth-card">
+        <h1 class="auth-title">Nicht angemeldet</h1>
+        <p class="auth-subtitle">Bitte melde dich an, um deine Kontodaten zu sehen.</p>
+        <div style="text-align:center; margin-top: 20px;">
+          <a href="/login/?redirect=/konto/" class="btn btn-primary">Anmelden</a>
+          <a href="/register/" class="btn btn-default" style="margin-left:12px;">Registrieren</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="konto-content" class="konto-content hidden">
+      <h1 class="auth-title">Mein Konto</h1>
+
+      <!-- User info card -->
+      <div class="konto-card">
+        <h2 class="konto-section-title">Kontoinformationen</h2>
+        <div class="konto-info-row">
+          <span class="konto-info-label">Name</span>
+          <span class="konto-info-value" id="konto-name">—</span>
+        </div>
+        <div class="konto-info-row">
+          <span class="konto-info-label">E-Mail</span>
+          <span class="konto-info-value" id="konto-email">—</span>
+        </div>
+        <div class="konto-info-row">
+          <span class="konto-info-label">Mitglied seit</span>
+          <span class="konto-info-value" id="konto-created">—</span>
+        </div>
+      </div>
+
+      <!-- Premium status card -->
+      <div class="konto-card" id="konto-premium-card">
+        <h2 class="konto-section-title">Premium-Status</h2>
+        <div id="konto-premium-active" class="hidden">
+          <div class="konto-premium-badge premium-active">
+            ⭐ Premium-Mitglied
+          </div>
+          <div class="konto-info-row">
+            <span class="konto-info-label">Gültig bis</span>
+            <span class="konto-info-value" id="konto-premium-until">—</span>
+          </div>
+        </div>
+        <div id="konto-premium-inactive" class="hidden">
+          <div class="konto-premium-badge premium-inactive">
+            👊 Kostenloses Konto
+          </div>
+          <p class="konto-upgrade-text">
+            Upgrade auf Premium für unbegrenzten KI-Assistenten, werbefreies Lernen und exklusive Features.
+          </p>
+          <a href="/premium/" class="btn btn-primary">Jetzt upgraden</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.konto-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.konto-loading, .konto-logged-out {
+  text-align: center;
+  padding: 40px 0;
+}
+.konto-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.konto-card {
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 12px;
+  padding: 28px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.konto-section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 16px;
+  color: var(--text-primary, #222);
+}
+.konto-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color, #f0f0f0);
+}
+.konto-info-row:last-child {
+  border-bottom: none;
+}
+.konto-info-label {
+  font-weight: 600;
+  color: var(--text-secondary, #666);
+  font-size: 0.9rem;
+}
+.konto-info-value {
+  color: var(--text-primary, #222);
+  font-size: 0.95rem;
+}
+.konto-premium-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 24px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+.premium-active {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+.premium-inactive {
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+}
+.konto-upgrade-text {
+  font-size: 0.92rem;
+  color: var(--text-secondary, #555);
+  margin: 12px 0 16px;
+  line-height: 1.5;
+}
+.hidden { display: none !important; }
+</style>
+
+<script src="/js/auth-client.js"></script>
+<script>
+(function() {
+  var loadingEl = document.getElementById('konto-loading');
+  var loggedOutEl = document.getElementById('konto-logged-out');
+  var contentEl = document.getElementById('konto-content');
+  var nameEl = document.getElementById('konto-name');
+  var emailEl = document.getElementById('konto-email');
+  var createdEl = document.getElementById('konto-created');
+  var premiumActiveEl = document.getElementById('konto-premium-active');
+  var premiumInactiveEl = document.getElementById('konto-premium-inactive');
+  var premiumUntilEl = document.getElementById('konto-premium-until');
+
+  window.AuthClient.getUser().then(function(user) {
+    loadingEl.classList.add('hidden');
+
+    if (!user) {
+      loggedOutEl.classList.remove('hidden');
+      return;
+    }
+
+    contentEl.classList.remove('hidden');
+    nameEl.textContent = user.name || '—';
+    emailEl.textContent = user.email || '—';
+    createdEl.textContent = user.createdAt ? new Date(user.createdAt).toLocaleDateString('de-DE') : '—';
+
+    if (user.isPremium) {
+      premiumActiveEl.classList.remove('hidden');
+      if (user.premiumUntil) {
+        premiumUntilEl.textContent = new Date(user.premiumUntil).toLocaleDateString('de-DE');
+      }
+    } else {
+      premiumInactiveEl.classList.remove('hidden');
+    }
+  });
+})();
+</script>
+
+{{ end }}
