@@ -11,7 +11,7 @@ import path from 'path';
 import ragHelpers from './_rag-helpers.cjs';
 import { subsetWhere } from './scripts/_neo4j-subset-filter.mjs';
 import FileBackedSessionStore from './session-store.js';
-import authRouter, { authMiddleware, handleStripeWebhook } from './auth.js';
+import authRouter, { authMiddleware, requireAuth, handleStripeWebhook } from './auth.js';
 
 const PORT = process.env.PORT || 3001;
 const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
@@ -104,7 +104,7 @@ function getSessionId(req, res) {
 /**
  * Get or create session
  */
-function getSession(sessionId) {
+function getSession(sessionId, userId) {
   let session = sessionStore.get(sessionId);
 
   if (!session) {
@@ -112,10 +112,15 @@ function getSession(sessionId) {
       messages: [],
       createdAt: Date.now(),
       lastUsed: Date.now(),
+      userId: userId || null,
     };
     sessionStore.set(sessionId, session);
   } else {
     session.lastUsed = Date.now();
+    // Associate session with user if not already set
+    if (userId && !session.userId) {
+      session.userId = userId;
+    }
   }
 
   return session;
@@ -155,7 +160,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Auth routes — register, login, logout, me
+// Auth routes — register, login, logout, me, profile
 app.use('/api/auth', authRouter);
 
 // Apply authMiddleware to set req.user from JWT for all /api/* routes
@@ -171,7 +176,7 @@ app.use('/api/admin', (req, res, next) => {
 
 app.get('/api/session', (req, res) => {
   const sessionId = getSessionId(req, res);
-  const session = getSession(sessionId);
+  const session = getSession(sessionId, req.user?.id);
 
   res.json({
     sessionId,
@@ -181,6 +186,40 @@ app.get('/api/session', (req, res) => {
       lastUsed: new Date(session.lastUsed).toISOString(),
       maxMessages: MAX_MESSAGES_PER_SESSION,
     },
+  });
+});
+
+// GET /api/chat/history — list past sessions for current user
+// Retention: 90 days for free, 1 year for premium
+app.get('/api/chat/history', requireAuth, (req, res) => {
+  const maxAge = req.user.tier === 'premium' ? 365 * 24 * 60 * 60 * 1000 : 90 * 24 * 60 * 60 * 1000;
+  const sessions = sessionStore.findByUserId(req.user.id, maxAge);
+  res.json({ sessions });
+});
+
+// GET /api/chat/history/:sessionId — full conversation for a session
+app.get('/api/chat/history/:sessionId', requireAuth, (req, res) => {
+  const session = sessionStore.get(req.params.sessionId);
+  if (!session) {
+    return res.status(404).json({ error: 'Session nicht gefunden' });
+  }
+  if (session.userId !== req.user.id) {
+    return res.status(403).json({ error: 'Kein Zugriff auf diese Session' });
+  }
+  // Auto-generate title if not set
+  if (!session.title && session.messages.length > 0) {
+    const firstMsg = session.messages.find(m => m.role === 'user');
+    if (firstMsg) {
+      session.title = firstMsg.content.slice(0, 80) + (firstMsg.content.length > 80 ? '...' : '');
+      sessionStore._dirty = true;
+    }
+  }
+  res.json({
+    sessionId: req.params.sessionId,
+    title: session.title || null,
+    createdAt: new Date(session.createdAt).toISOString(),
+    lastUsed: new Date(session.lastUsed).toISOString(),
+    messages: session.messages,
   });
 });
 
@@ -207,7 +246,7 @@ app.post('/api/chat', async (req, res) => {
   const acceptStreaming = req.accepts('text/event-stream');
 
   try {
-    const session = getSession(sessionId);
+    const session = getSession(sessionId, req.user?.id);
     session.messages.push({ role: 'user', content: message });
     cleanupSessionMessages(session);
 
@@ -221,7 +260,24 @@ app.post('/api/chat', async (req, res) => {
       lang: req.headers['accept-language'],
       ragContext: ragContext,
       currentEntity: currentEntity,
+      learningProfile: req.user?.learningProfile || null,
     });
+
+    // Confusion detection — check if user repeated the same question
+    var userMessages = session.messages.filter(function (m) { return m.role === 'user'; });
+    var msgWords = message.toLowerCase().replace(/[.,!?;:]/g, '').split(/\s+/).filter(function (w) { return w.length > 3; });
+    for (var ci = 0; ci < userMessages.length; ci++) {
+      var prev = userMessages[ci].content.toLowerCase().replace(/[.,!?;:]/g, '').split(/\s+/);
+      var overlap = 0;
+      for (var wi = 0; wi < msgWords.length; wi++) {
+        if (prev.indexOf(msgWords[wi]) !== -1) overlap++;
+      }
+      var similarity = msgWords.length > 0 ? overlap / msgWords.length : 0;
+      if (similarity > 0.7) {
+        systemPrompt += ' Hinweis: Der Schüler hat eine ähnliche Frage bereits gestellt. Wiederhole die Erklärung mit anderen Worten und frag, ob es diesmal klarer ist.';
+        break;
+      }
+    }
 
     const conversationHistory = [{ role: 'system', content: systemPrompt }, ...session.messages];
 
@@ -244,7 +300,13 @@ app.post('/api/chat', async (req, res) => {
       }
 
       const data = await llmRes.json();
-      const reply = data.choices?.[0]?.message?.content || 'Keine Antwort erhalten.';
+      var reply = data.choices?.[0]?.message?.content || 'Keine Antwort erhalten.';
+
+      // "War das hilfreich?" after 3+ user messages
+      var userCount = session.messages.filter(function (m) { return m.role === 'user'; }).length;
+      if (userCount >= 3) {
+        reply += '\n\n---\n_War diese Antwort hilfreich? (Daumen hoch / runter)_';
+      }
 
       session.messages.push({ role: 'assistant', content: reply });
       cleanupSessionMessages(session);
@@ -338,6 +400,13 @@ app.post('/api/chat', async (req, res) => {
         })}\n\n`
       );
     } finally {
+      // "War das hilfreich?" after 3+ user messages (streaming)
+      var userCount = session.messages.filter(function (m) { return m.role === 'user'; }).length;
+      if (userCount >= 3) {
+        try {
+          res.write('data: ' + JSON.stringify({ prompt: '_War diese Antwort hilfreich? (Daumen hoch / runter)_' }) + '\n\n');
+        } catch {}
+      }
       res.end();
     }
 
@@ -348,6 +417,62 @@ app.post('/api/chat', async (req, res) => {
     if (!res.headersSent && !res.writableEnded) {
       res.status(502).json({ error: 'Service unavailable' });
     }
+  }
+});
+
+// ── Feedback ───────────────────────────────────────────────────
+
+// POST /api/chat/feedback — store per-message rating (thumb up/down)
+app.post('/api/chat/feedback', (req, res) => {
+  var { sessionId, messageIndex, rating } = req.body;
+  if (!sessionId || messageIndex === undefined || !rating) {
+    return res.status(400).json({ error: 'sessionId, messageIndex, rating required' });
+  }
+  if (rating !== 'up' && rating !== 'down') {
+    return res.status(400).json({ error: 'rating must be "up" or "down"' });
+  }
+  try {
+    var feedbackPath = path.join(process.cwd(), 'data', 'feedback.json');
+    var feedback = [];
+    try { feedback = JSON.parse(fs.readFileSync(feedbackPath, 'utf-8')); } catch {}
+    feedback.push({
+      sessionId: sessionId,
+      messageIndex: parseInt(messageIndex, 10),
+      rating: rating,
+      userId: req.user?.id || null,
+      createdAt: new Date().toISOString(),
+    });
+    if (feedback.length > 5000) feedback = feedback.slice(-5000);
+    var tmp = feedbackPath + '.tmp';
+    fs.writeFileSync(tmp, JSON.stringify(feedback), 'utf-8');
+    fs.renameSync(tmp, feedbackPath);
+    res.json({ ok: true });
+  } catch (err) {
+    console.error('[feedback] save error:', err.message);
+    res.status(500).json({ error: 'Feedback konnte nicht gespeichert werden' });
+  }
+});
+
+// GET /api/chat/feedback/analytics — satisfaction summary
+app.get('/api/chat/feedback/analytics', (req, res) => {
+  try {
+    var feedbackPath = path.join(process.cwd(), 'data', 'feedback.json');
+    var feedback = [];
+    try { feedback = JSON.parse(fs.readFileSync(feedbackPath, 'utf-8')); } catch {}
+    var up = 0, down = 0;
+    for (var fi = 0; fi < feedback.length; fi++) {
+      if (feedback[fi].rating === 'up') up++;
+      else if (feedback[fi].rating === 'down') down++;
+    }
+    res.json({
+      total: feedback.length,
+      up: up,
+      down: down,
+      satisfactionRate: feedback.length > 0 ? Math.round((up / feedback.length) * 100) : 0,
+    });
+  } catch (err) {
+    console.error('[feedback] analytics error:', err.message);
+    res.status(500).json({ error: 'Analytics nicht verfügbar' });
   }
 });
 

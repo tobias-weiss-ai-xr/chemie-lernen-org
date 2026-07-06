@@ -21,30 +21,30 @@
 
 ## 4. 🟡 Sprint 8 — KI Personalisierung Phase 1: Learning Profile
 
-- [ ] 4.1 Extend user schema in `api/auth.js` with `learning_profile` object (level, interests, preferred_explanation_style)
-- [ ] 4.2 Implement `PUT /api/auth/profile` — validate and store learning preferences
-- [ ] 4.3 Implement `GET /api/auth/profile` — return profile + inferred weak areas (from quiz results)
-- [ ] 4.4 Update JWT payload to include learning_profile (non-sensitive fields only)
+- [x] 4.1 Extend user schema in `api/auth-db.js` with `learning_profile` object (level, interests, preferred_explanation_style)
+- [x] 4.2 Implement `PUT /api/auth/profile` — validate and store learning preferences
+- [x] 4.3 Implement `GET /api/auth/profile` — return profile + inferred weak areas (from quiz results)
+- [x] 4.4 Update JWT payload and sanitizeUser to include learning_profile
 
 ## 5. 🟡 Sprint 8 — KI Personalisierung Phase 2: Chat History
 
-- [ ] 5.1 Implement `GET /api/chat/history` — list past sessions with date, topic_summary, message_count
-- [ ] 5.2 Implement `GET /api/chat/history/:sessionId` — full conversation for a session
-- [ ] 5.3 Implement auto-generated session titles from first user message (LLM-summarized)
-- [ ] 5.4 Implement retention policy: 90 days free, 1 year premium
+- [x] 5.1 Implement `GET /api/chat/history` — list past sessions with date, topic_summary, message_count
+- [x] 5.2 Implement `GET /api/chat/history/:sessionId` — full conversation for a session
+- [x] 5.3 Implement auto-generated session titles from first user message (first-80-chars; LLM-summarization deferred)
+- [x] 5.4 Implement retention policy: 90 days free, 1 year premium
 
 ## 6. 🟡 Sprint 8 — KI Personalisierung Phase 3: Personalized RAG
 
-- [ ] 6.1 Modify system prompt builder to include user's learning level and weak areas
-- [ ] 6.2 Add weighted RAG scoring that boosts results matching user's interests
-- [ ] 6.3 Adjust explanation complexity based on `preferred_explanation_style`
-- [ ] 6.4 Detect confusion patterns (same question twice, "not helpful" rating)
+- [x] 6.1 Modify system prompt builder to include user's learning level and weak areas
+- [x] 6.2 Add weighted RAG scoring that boosts results matching user's interests
+- [x] 6.3 Adjust explanation complexity based on `preferred_explanation_style`
+- [x] 6.4 Detect confusion patterns (same question twice, "not helpful" rating)
 
 ## 7. 🟡 Sprint 8 — KI Personalisierung Phase 4: Feedback Loop
 
-- [ ] 7.1 Implement `POST /api/chat/feedback` — store per-message rating (thumb up/down)
-- [ ] 7.2 Add "War das hilfreich?" prompt after 3 exchanges
-- [ ] 7.3 Add analytics endpoint: topic-level satisfaction, improvement suggestions
+- [x] 7.1 Implement `POST /api/chat/feedback` — store per-message rating (thumb up/down)
+- [x] 7.2 Add "War das hilfreich?" prompt after 3 exchanges
+- [x] 7.3 Add analytics endpoint: topic-level satisfaction, improvement suggestions
 
 ## 8. 🟡 Sprint 10 — Production Audit: Security
 

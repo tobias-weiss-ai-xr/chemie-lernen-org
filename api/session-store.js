@@ -146,6 +146,27 @@ class FileBackedSessionStore {
     return this._map.size;
   }
 
+  /** Find all sessions belonging to a user ID, optionally filtered by maxAge in ms */
+  findByUserId(userId, maxAge) {
+    const results = [];
+    const now = Date.now();
+    for (const [id, session] of this._map) {
+      if (session.userId === userId) {
+        if (maxAge && now - session.createdAt > maxAge) continue;
+        results.push({
+          sessionId: id,
+          createdAt: session.createdAt,
+          lastUsed: session.lastUsed,
+          messageCount: session.messages.length,
+          title: session.title || null,
+        });
+      }
+    }
+    // Sort by lastUsed descending (most recent first)
+    results.sort((a, b) => b.lastUsed - a.lastUsed);
+    return results;
+  }
+
   /** Flush immediately (e.g. before responding to a critical request). */
   flush() {
     this._flush();

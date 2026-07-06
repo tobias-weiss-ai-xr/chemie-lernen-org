@@ -73,6 +73,12 @@ export function createUser({ email, passwordHash, name = '', role = 'user', tier
     stripe_id: null,
     stripe_customer_id: null,
     premium_until: null,
+    learning_profile: {
+      level: 'beginner',
+      interests: [],
+      preferred_explanation_style: 'simple',
+      weak_areas: [],
+    },
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   };
@@ -135,6 +141,26 @@ export function setStripeCustomerId(id, customerId) {
 export function deleteUser(id) {
   users = users.filter((u) => u.id !== id);
   scheduleSave();
+}
+
+export function setLearningProfile(id, profile) {
+  const u = users.find((u) => u.id === id);
+  if (!u) return null;
+  u.learning_profile = {
+    level: profile.level || 'beginner',
+    interests: Array.isArray(profile.interests) ? profile.interests : [],
+    preferred_explanation_style: profile.preferred_explanation_style || 'simple',
+    weak_areas: Array.isArray(profile.weak_areas) ? profile.weak_areas : (u.learning_profile?.weak_areas || []),
+  };
+  u.updated_at = new Date().toISOString();
+  scheduleSave();
+  return u.learning_profile;
+}
+
+export function getLearningProfile(id) {
+  const u = users.find((u) => u.id === id);
+  if (!u) return null;
+  return u.learning_profile || null;
 }
 
 export function isPremium(user) {

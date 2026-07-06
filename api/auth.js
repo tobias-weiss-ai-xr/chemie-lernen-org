@@ -14,6 +14,9 @@ import {
   getUserByStripeId,
   setPremiumTier,
   setStripeCustomerId,
+  setLearningProfile,
+  getLearningProfile,
+  getQuizResults,
   isPremium,
 } from './auth-db.js';
 import cookieParser from 'cookie-parser';
@@ -49,8 +52,9 @@ const authLimiter = rateLimit({
 
 // ── Helpers ─────────────────────────────────────────────────
 function signToken(user) {
+  const lp = user.learning_profile || {};
   return jwt.sign(
-    { id: user.id, email: user.email, role: user.role, tier: user.tier },
+    { id: user.id, email: user.email, role: user.role, tier: user.tier, learning_profile: { level: lp.level, preferred_explanation_style: lp.preferred_explanation_style } },
     JWT_SECRET,
     { expiresIn: JWT_EXPIRY }
   );
@@ -80,6 +84,7 @@ function sanitizeUser(user) {
     tier: user.tier,
     isPremium: isPremium(user),
     premiumUntil: user.premium_until,
+    learningProfile: user.learning_profile || null,
     createdAt: user.created_at,
   };
 }
@@ -194,6 +199,57 @@ authRouter.get('/me', (req, res) => {
     clearAuthCookie(res);
     res.json({ user: null });
   }
+});
+
+// GET /api/auth/profile — returns learning profile + inferred weak areas
+authRouter.get('/profile', requireAuth, (req, res) => {
+  const profile = getLearningProfile(req.user.id);
+  const results = getQuizResults(req.user.id);
+
+  // Infer weak areas from quiz results (topics with < 60% average)
+  const topicScores = {};
+  for (const r of results) {
+    if (!topicScores[r.topic]) topicScores[r.topic] = { total: 0, count: 0 };
+    topicScores[r.topic].total += r.percentage;
+    topicScores[r.topic].count++;
+  }
+  const weakAreas = [];
+  for (const [topic, data] of Object.entries(topicScores)) {
+    const avg = data.total / data.count;
+    if (avg < 60) weakAreas.push(topic);
+  }
+
+  res.json({
+    profile: profile || { level: 'beginner', interests: [], preferred_explanation_style: 'simple' },
+    weakAreas,
+    quizCount: results.length,
+  });
+});
+
+// PUT /api/auth/profile — update learning preferences
+authRouter.put('/profile', requireAuth, (req, res) => {
+  const { learning_level, interests, preferred_explanation_style } = req.body;
+
+  const validLevels = ['beginner', 'intermediate', 'advanced'];
+  const validStyles = ['simple', 'detailed', 'visual'];
+
+  if (learning_level && !validLevels.includes(learning_level)) {
+    return res.status(400).json({ error: 'Ungültiges Niveau. Erlaubt: beginner, intermediate, advanced' });
+  }
+  if (preferred_explanation_style && !validStyles.includes(preferred_explanation_style)) {
+    return res.status(400).json({ error: 'Ungültiger Stil. Erlaubt: simple, detailed, visual' });
+  }
+  if (interests && !Array.isArray(interests)) {
+    return res.status(400).json({ error: 'Interessen müssen als Array übergeben werden' });
+  }
+
+  const profile = setLearningProfile(req.user.id, {
+    level: learning_level,
+    interests,
+    preferred_explanation_style,
+  });
+
+  res.json({ profile });
 });
 
 // POST /api/auth/create-checkout-session — Stripe Checkout for premium subscription

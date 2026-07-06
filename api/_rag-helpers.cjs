@@ -33,10 +33,54 @@ function pickSystemPromptLang(acceptLanguageHeader) {
   return 'de';
 }
 
+var LEARNING_LEVEL_PROMPTS = {
+  beginner: 'Der Schüler ist Anfänger (Klassenstufe 8-10). Verwende einfache Sprache, viele Beispiele und vermeide komplexe Formeln. Erkläre jedes Fachwort beim ersten Gebrauch.',
+  intermediate: 'Der Schüler hat Grundkenntnisse (Klassenstufe 10-12). Du kannst Fachbegriffe voraussetzen, aber erkläre komplexe Zusammenhänge ausführlich.',
+  advanced: 'Der Schüler ist fortgeschritten (Oberstufe / Studium). Du kannst detaillierte fachliche Erklärungen geben, Formeln und Reaktionsmechanismen verwenden.',
+};
+
+var STYLE_PROMPTS = {
+  simple: 'Antworte kurz und prägnant. Fasse dich auf das Wesentliche.',
+  detailed: 'Antworte sehr ausführlich. Erkläre Hintergründe, nenne Beispiele und gehe auf verwandte Konzepte ein.',
+  visual: 'Verwende anschauliche Beschreibungen. Erkläre mit Analogien und bildhafter Sprache, als ob du etwas an die Tafel zeichnen würdest.',
+};
+
 function buildSystemPrompt(opts) {
   opts = opts || {};
   var lang = pickSystemPromptLang(opts.lang);
   var parts = [SYSTEM_PROMPTS[lang] || SYSTEM_PROMPTS.de];
+  var lp = opts.learningProfile;
+
+  if (lp) {
+    // Learning level
+    var levelPrompt = LEARNING_LEVEL_PROMPTS[lp.level];
+    if (levelPrompt) parts.push(levelPrompt);
+
+    // Explanation style
+    var stylePrompt = STYLE_PROMPTS[lp.preferred_explanation_style];
+    if (stylePrompt) parts.push(stylePrompt);
+
+    // Weak areas
+    if (lp.weak_areas && lp.weak_areas.length > 0) {
+      var weakList = lp.weak_areas.slice(0, 3).join(', ');
+      if (lang === 'en') {
+        parts.push('The user struggles with: ' + weakList + '. Pay extra attention when these topics come up.');
+      } else {
+        parts.push('Der Schüler hat Schwierigkeiten mit: ' + weakList + '. Erkläre diese Themen besonders sorgfältig.');
+      }
+    }
+
+    // Interest-based boosting
+    if (lp.interests && lp.interests.length > 0) {
+      var interests = lp.interests.slice(0, 5).join(', ');
+      if (lang === 'en') {
+        parts.push('The user is particularly interested in: ' + interests + '. Prioritize examples and explanations from these areas when possible.');
+      } else {
+        parts.push('Der Schüler interessiert sich besonders für: ' + interests + '. Bevorzuge Beispiele und Erklärungen aus diesen Bereichen.');
+      }
+    }
+  }
+
   if (opts.currentEntity && typeof opts.currentEntity === 'string') {
     var safe = opts.currentEntity.slice(0, 120).replace(/[\r\n]+/g, ' ');
     if (lang === 'en') {
