@@ -69,7 +69,7 @@
 - [x] 10.3 Create `docs/DEPLOYMENT.md` with Docker setup, env vars, backup/restore
 - [x] 10.4 SECURITY.md already exists (452 lines, comprehensive)
 - [x] 10.5 Create `docs/CONTRIBUTING.md` — how to add content, calculators, tests
-- [ ] 10.6 Create `docs/openapi.yaml` — OpenAPI 3.0 spec for all API routes (background task running)
+- [x] 10.6 Create `docs/openapi.yaml` — OpenAPI 3.0 spec for all 40+ API routes
 
 ## 11. 🟡 Sprint 10 — Production Audit: Monitoring
 
