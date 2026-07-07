@@ -1,0 +1,162 @@
+{{ define "main" }}
+<div class="kollaboration-container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Login notice -->
+  <div id="login-notice" style="display:none;" class="alert alert-warning text-center">
+    <i class="fa fa-sign-in"></i>
+    Bitte <a href="/login">anmelden</a>, um an Lernräumen teilzunehmen.
+  </div>
+
+  <!-- Error display -->
+  <div id="session-error" style="display:none;">
+    <div class="alert alert-danger text-center" id="session-error-msg"></div>
+  </div>
+
+  <!-- Session List View -->
+  <div id="session-list-view">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <strong><i class="fa fa-users"></i> Aktive Lernräume</strong>
+            <div class="pull-right session-list-actions">
+              <button class="btn btn-xs btn-primary" onclick="Collaboration.showCreateModal(); return false;">
+                <i class="fa fa-plus"></i> Neuer Lernraum
+              </button>
+              <button class="btn btn-xs btn-default" onclick="Collaboration.loadSessions(); return false;">
+                <i class="fa fa-refresh"></i> Aktualisieren
+              </button>
+            </div>
+          </div>
+          <div class="panel-body" id="session-list">
+            <p class="text-muted text-center"><i class="fa fa-spinner fa-spin"></i> Lade Lernräume...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Session Detail View -->
+  <div id="session-detail-view" style="display:none;">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong><i class="fa fa-comments"></i> <span id="detail-session-name">Lernraum</span></strong>
+        <div class="pull-right session-detail-actions">
+          <button class="btn btn-xs btn-default" onclick="Collaboration.showSessionList(); return false;">
+            <i class="fa fa-arrow-left"></i> Zurück
+          </button>
+          <button class="btn btn-xs btn-danger" onclick="Collaboration.leaveSession(); return false;">
+            <i class="fa fa-sign-out"></i> Verlassen
+          </button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <!-- Participants sidebar -->
+          <div class="col-md-3">
+            <div class="panel panel-default participants-panel">
+              <div class="panel-heading"><strong><i class="fa fa-users"></i> Teilnehmer</strong></div>
+              <div class="panel-body" id="participants-list">
+                <p class="text-muted">Lade...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main content area -->
+          <div class="col-md-9">
+            <div id="detail-tabs">
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#tab-chat" aria-controls="tab-chat" role="tab" data-toggle="tab">
+                    <i class="fa fa-comment"></i> Chat
+                  </a>
+                </li>
+                <li role="presentation">
+                  <a href="#tab-exercises" aria-controls="tab-exercises" role="tab" data-toggle="tab">
+                    <i class="fa fa-pencil"></i> Geteilte Übungen
+                  </a>
+                </li>
+              </ul>
+
+              <div class="tab-content">
+                <!-- Chat Tab -->
+                <div role="tabpanel" class="tab-pane active" id="tab-chat">
+                  <div class="chat-messages" id="chat-messages">
+                    <p class="text-muted text-center">Keine Nachrichten.</p>
+                  </div>
+                  <div class="chat-input-area">
+                    <div class="input-group">
+                      <input type="text" id="chat-input" class="form-control"
+                        placeholder="Nachricht eingeben..."
+                        onkeydown="if(event.key==='Enter' && !event.shiftKey) { event.preventDefault(); Collaboration.sendMessage(); }">
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary" onclick="Collaboration.sendMessage(); return false;">
+                          <i class="fa fa-send"></i> Senden
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Exercises Tab -->
+                <div role="tabpanel" class="tab-pane" id="tab-exercises">
+                  <div class="exercises-toolbar">
+                    <button class="btn btn-sm btn-primary" onclick="Collaboration.shareExercise(); return false;">
+                      <i class="fa fa-share"></i> Übung teilen
+                    </button>
+                    <button class="btn btn-sm btn-default" onclick="Collaboration.loadExercises(); return false;">
+                      <i class="fa fa-refresh"></i> Aktualisieren
+                    </button>
+                  </div>
+                  <div id="shared-exercises">
+                    <p class="text-muted">Keine geteilten Übungen.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Create Session Modal -->
+<div class="modal fade" id="create-session-modal" tabindex="-1" role="dialog" aria-labelledby="create-session-label">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+        <h4 class="modal-title" id="create-session-label"><i class="fa fa-plus-circle"></i> Neuen Lernraum erstellen</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="session-name">Name *</label>
+          <input type="text" id="session-name" class="form-control" placeholder="z.B. Redoxreaktionen Gruppe A">
+        </div>
+        <div class="form-group">
+          <label for="session-topic">Thema</label>
+          <input type="text" id="session-topic" class="form-control" placeholder="z.B. Redoxreaktionen">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+        <button type="button" class="btn btn-primary" onclick="Collaboration.doCreateSession(); return false;">
+          <i class="fa fa-check"></i> Erstellen
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/kollaboration.js"></script>
+<link rel="stylesheet" href="/css/kollaboration.css">
+{{ end }}

@@ -1,0 +1,253 @@
+/* kollaboration.css — Collaborative learning rooms */
+
+.kollaboration-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.kollaboration-container .panel {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Session list */
+.session-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s;
+}
+
+.session-card:last-child {
+  border-bottom: none;
+}
+
+.session-card:hover {
+  background: #f9f9f9;
+}
+
+.session-card .session-info {
+  flex: 1;
+}
+
+.session-card .session-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.session-card .session-meta {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+}
+
+.session-card .session-meta span {
+  margin-right: 12px;
+}
+
+.session-card .session-actions {
+  flex-shrink: 0;
+}
+
+/* Participants panel */
+.participants-panel {
+  margin-bottom: 0;
+}
+
+.participants-panel .panel-body {
+  padding: 8px;
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.participant-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.participant-item .fa-user {
+  color: #3498db;
+  width: 16px;
+  text-align: center;
+}
+
+.participant-item .participant-name {
+  flex: 1;
+}
+
+/* Chat area */
+.chat-messages {
+  height: 320px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 12px;
+  margin: 12px 0;
+  background: #fafafa;
+}
+
+.chat-input-area {
+  margin-bottom: 12px;
+}
+
+.message-bubble {
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  max-width: 85%;
+  word-wrap: break-word;
+}
+
+.message-bubble.message-own {
+  background: #d4edda;
+  margin-left: auto;
+  border-bottom-right-radius: 2px;
+}
+
+.message-bubble.message-other {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  margin-right: auto;
+  border-bottom-left-radius: 2px;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+  font-size: 0.8rem;
+}
+
+.message-author {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.message-time {
+  color: #95a5a6;
+  font-size: 0.75rem;
+}
+
+.message-text {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+/* Exercises tab */
+.exercises-toolbar {
+  margin: 12px 0;
+  display: flex;
+  gap: 8px;
+}
+
+.exercise-card {
+  padding: 12px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color 0.2s;
+}
+
+.exercise-card:hover {
+  border-color: #bbb;
+}
+
+.exercise-card.exercise-completed {
+  background: #f0fff0;
+  border-color: #b2dfb2;
+  opacity: 0.8;
+}
+
+.exercise-card .exercise-info {
+  flex: 1;
+}
+
+.exercise-card .exercise-name {
+  font-weight: 600;
+  margin: 0 0 2px 0;
+}
+
+.exercise-card .exercise-meta {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .session-card {
+    border-color: #444;
+  }
+  .session-card:hover {
+    background: #333;
+  }
+  .session-card .session-meta {
+    color: #bbb;
+  }
+  .chat-messages {
+    background: #2c2c2c;
+    border-color: #444;
+  }
+  .message-bubble.message-own {
+    background: #1a4d2e;
+    color: #e0e0e0;
+  }
+  .message-bubble.message-other {
+    background: #333;
+    border-color: #555;
+    color: #e0e0e0;
+  }
+  .message-author {
+    color: #ddd;
+  }
+  .message-time {
+    color: #888;
+  }
+  .exercise-card {
+    border-color: #444;
+    background: #2c2c2c;
+  }
+  .exercise-card:hover {
+    border-color: #666;
+  }
+  .exercise-card.exercise-completed {
+    background: #1a3d1a;
+    border-color: #2d6a2d;
+  }
+  .participant-item {
+    color: #e0e0e0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .session-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .session-card .session-actions {
+    width: 100%;
+  }
+  .session-card .session-actions .btn {
+    width: 100%;
+  }
+  .message-bubble {
+    max-width: 100%;
+  }
+  .session-list-actions,
+  .session-detail-actions {
+    display: flex;
+    gap: 4px;
+  }
+}
