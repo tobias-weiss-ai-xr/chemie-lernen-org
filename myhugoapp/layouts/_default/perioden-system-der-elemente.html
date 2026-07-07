@@ -11,13 +11,56 @@
   </div>
 </noscript>
 <h1 class="sr-only">Periodensystem der Elemente - Interaktive 3D-Visualisierung</h1>
-<div id="menu">
+
+<div id="controls-bar">
+  <div id="menu">
     <button id="table" aria-label="Tabellenansicht anzeigen">TABELLE</button>
     <button id="sphere" aria-label="Kugelansicht anzeigen">KUGEL</button>
     <button id="helix" aria-label="Helixansicht anzeigen">HELIX</button>
     <button id="grid" aria-label="Gitteransicht anzeigen">GITTER</button>
+  </div>
+  <div id="search-bar">
+    <input type="text" id="search-input" placeholder="Element suchen (z.B. Wasserstoff, H, 6)" aria-label="Element suchen">
+    <button id="search-clear" aria-label="Suche zurücksetzen" hidden>&times;</button>
+  </div>
+  <div id="trend-bar">
+    <span id="trend-label">Färbung:</span>
+    <button class="trend-btn active" data-trend="group">Gruppe</button>
+    <button class="trend-btn" data-trend="electronegativity">Elektronegativität</button>
+    <button class="trend-btn" data-trend="radius">Atomradius</button>
+    <button class="trend-btn" data-trend="ionization">Ionisierungsenergie</button>
+    <button class="trend-btn" data-trend="density">Dichte</button>
+  </div>
 </div>
+
 <div id="container" role="region" aria-label="Periodensystem der Elemente Visualisierung"></div>
+
+<!-- Element Detail Panel -->
+<div id="detail-panel" role="dialog" aria-label="Element-Details" hidden>
+  <div id="detail-overlay"></div>
+  <div id="detail-content">
+    <button id="detail-close" aria-label="Schließen">&times;</button>
+    <div id="detail-header">
+      <span id="detail-symbol"></span>
+      <span id="detail-name"></span>
+    </div>
+    <div id="detail-body">
+      <div class="detail-row"><span class="detail-label">Ordnungszahl</span><span id="d-atomic-number" class="detail-value"></span></div>
+      <div class="detail-row"><span class="detail-label">Masse</span><span id="d-mass" class="detail-value"></span></div>
+      <div class="detail-row"><span class="detail-label">Dichte</span><span id="d-density" class="detail-value"></span></div>
+      <div class="detail-row"><span class="detail-label">Elektronegativität</span><span id="d-electronegativity" class="detail-value"></span></div>
+      <div class="detail-row"><span class="detail-label">Elektronenkonfiguration</span><span id="d-config" class="detail-value"></span></div>
+      <div class="detail-row"><span class="detail-label">Atomradius</span><span id="d-radius" class="detail-value"></span></div>
+      <div class="detail-row"><span class="detail-label">Ionisierungsenergie</span><span id="d-ionization" class="detail-value"></span></div>
+      <div class="detail-row"><span class="detail-label">Kategorie</span><span id="d-category" class="detail-value"></span></div>
+      <div class="detail-row"><span class="detail-label">Periode</span><span id="d-period" class="detail-value"></span></div>
+      <div class="detail-row"><span class="detail-label">Gruppe</span><span id="d-group" class="detail-value"></span></div>
+    </div>
+    <div id="detail-footer">
+      <a id="detail-wiki" href="#" target="_blank" rel="noopener noreferrer">Wikipedia öffnen</a>
+    </div>
+  </div>
+</div>
 {{ end }}
 
 {{ define "js" }}
