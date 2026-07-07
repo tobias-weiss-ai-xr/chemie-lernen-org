@@ -14,6 +14,7 @@ import FileBackedSessionStore from './session-store.js';
 import authRouter, { authMiddleware, requireAuth, handleStripeWebhook } from './auth.js';
 import exerciseEngine from './exercise-engine.js';
 import learningEngine from './learning-engine.js';
+import * as collabEngine from './collab-engine.js';
 
 const PORT = process.env.PORT || 3001;
 const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
@@ -4370,6 +4371,142 @@ app.get('/api/achievements', requireAuth, async (req, res) => {
     res.status(500).json({ error: 'Errungenschaften konnten nicht geladen werden' });
   }
 });
+
+// ── Collaboration Routes ─────────────────────────────────────
+app.post('/api/collab/sessions', requireAuth, async (req, res) => {
+  try {
+    const { name, topic } = req.body;
+    const result = collabEngine.createSession(
+      name,
+      topic,
+      req.user.id,
+      req.user.displayName || req.user.email
+    );
+    res.status(201).json(result);
+  } catch (err) {
+    console.error('[collab] create error:', err.message);
+    res.status(500).json({ error: 'Sitzung konnte nicht erstellt werden' });
+  }
+});
+
+app.get('/api/collab/sessions', requireAuth, async (req, res) => {
+  try {
+    const list = collabEngine.listActiveSessions();
+    res.json({ sessions: list });
+  } catch (err) {
+    console.error('[collab] list error:', err.message);
+    res.status(500).json({ error: 'Sitzungen konnten nicht geladen werden' });
+  }
+});
+
+app.get('/api/collab/sessions/:id', requireAuth, async (req, res) => {
+  try {
+    const session = collabEngine.getSession(req.params.id);
+    if (!session) return res.status(404).json({ error: 'Sitzung nicht gefunden' });
+    const participants = collabEngine.getParticipants(req.params.id);
+    res.json({ ...session, participants });
+  } catch (err) {
+    console.error('[collab] get error:', err.message);
+    res.status(500).json({ error: 'Sitzung konnte nicht geladen werden' });
+  }
+});
+
+app.post('/api/collab/sessions/:id/join', requireAuth, async (req, res) => {
+  try {
+    const result = collabEngine.joinSession(
+      req.params.id,
+      req.user.id,
+      req.user.displayName || req.user.email
+    );
+    if (result.error) return res.status(400).json(result);
+    res.json(result);
+  } catch (err) {
+    console.error('[collab] join error:', err.message);
+    res.status(500).json({ error: 'Beitritt fehlgeschlagen' });
+  }
+});
+
+app.post('/api/collab/sessions/:id/leave', requireAuth, async (req, res) => {
+  try {
+    const result = collabEngine.leaveSession(req.params.id, req.user.id);
+    if (result.error) return res.status(400).json(result);
+    res.json(result);
+  } catch (err) {
+    console.error('[collab] leave error:', err.message);
+    res.status(500).json({ error: 'Austritt fehlgeschlagen' });
+  }
+});
+
+app.get('/api/collab/sessions/:id/messages', requireAuth, async (req, res) => {
+  try {
+    const since = req.query.since;
+    const messages = collabEngine.getMessages(req.params.id, since);
+    res.json({ messages });
+  } catch (err) {
+    console.error('[collab] messages error:', err.message);
+    res.status(500).json({ error: 'Nachrichten konnten nicht geladen werden' });
+  }
+});
+
+app.post('/api/collab/sessions/:id/messages', requireAuth, async (req, res) => {
+  try {
+    const { text } = req.body;
+    const result = collabEngine.sendMessage(
+      req.params.id,
+      req.user.id,
+      req.user.displayName || req.user.email,
+      text
+    );
+    if (result.error) return res.status(400).json(result);
+    res.status(201).json(result);
+  } catch (err) {
+    console.error('[collab] send error:', err.message);
+    res.status(500).json({ error: 'Nachricht konnte nicht gesendet werden' });
+  }
+});
+
+app.get('/api/collab/sessions/:id/exercises', requireAuth, async (req, res) => {
+  try {
+    const exercises = collabEngine.getSharedExercises(req.params.id);
+    res.json({ exercises });
+  } catch (err) {
+    console.error('[collab] exercises error:', err.message);
+    res.status(500).json({ error: 'Aufgaben konnten nicht geladen werden' });
+  }
+});
+
+app.post('/api/collab/sessions/:id/exercises', requireAuth, async (req, res) => {
+  try {
+    const { exercise } = req.body;
+    if (!exercise) return res.status(400).json({ error: 'Aufgabe ist erforderlich' });
+    const result = collabEngine.shareExercise(req.params.id, req.user.id, exercise);
+    if (result.error) return res.status(400).json(result);
+    res.status(201).json(result);
+  } catch (err) {
+    console.error('[collab] share exercise error:', err.message);
+    res.status(500).json({ error: 'Aufgabe konnte nicht geteilt werden' });
+  }
+});
+
+app.post(
+  '/api/collab/sessions/:sessionId/exercises/:exerciseId/complete',
+  requireAuth,
+  async (req, res) => {
+    try {
+      const result = collabEngine.markExerciseCompleted(
+        req.params.sessionId,
+        req.params.exerciseId,
+        req.user.id,
+        req.user.displayName || req.user.email
+      );
+      if (result.error) return res.status(400).json(result);
+      res.json(result);
+    } catch (err) {
+      console.error('[collab] complete exercise error:', err.message);
+      res.status(500).json({ error: 'Aufgabe konnte nicht als erledigt markiert werden' });
+    }
+  }
+);
 
 app.listen(PORT, () => {
   console.log(`[chat-api] Listening on port ${PORT}`);
