@@ -131,7 +131,9 @@ export async function generateExercise(
   const validTypes = ['mcq', 'fill-blank', 'calculation', 'short-answer'];
 
   if (!validDifficulties.includes(difficulty)) {
-    throw new Error(`Invalid difficulty: ${difficulty}. Must be one of: ${validDifficulties.join(', ')}`);
+    throw new Error(
+      `Invalid difficulty: ${difficulty}. Must be one of: ${validDifficulties.join(', ')}`
+    );
   }
   if (!validTypes.includes(type)) {
     throw new Error(`Invalid type: ${type}. Must be one of: ${validTypes.join(', ')}`);
@@ -162,7 +164,10 @@ export async function generateExercise(
   try {
     parsed = parseJSON(raw);
   } catch (parseErr) {
-    throw new Error(`Failed to parse exercise JSON from LLM response: ${parseErr.message}\nRaw: ${raw.slice(0, 500)}`, { cause: parseErr });
+    throw new Error(
+      `Failed to parse exercise JSON from LLM response: ${parseErr.message}\nRaw: ${raw.slice(0, 500)}`,
+      { cause: parseErr }
+    );
   }
 
   // Validate required fields
@@ -176,11 +181,10 @@ export async function generateExercise(
     type: parsed.type || type,
     difficulty: parsed.difficulty || difficulty,
     question: parsed.question,
-    options: type === 'mcq' ? (parsed.options || []) : null,
+    options: type === 'mcq' ? parsed.options || [] : null,
     correctAnswer: parsed.correctAnswer || '',
-    tolerance: typeof parsed.tolerance === 'number'
-      ? parsed.tolerance
-      : type === 'calculation' ? 0.5 : 0.0,
+    tolerance:
+      typeof parsed.tolerance === 'number' ? parsed.tolerance : type === 'calculation' ? 0.5 : 0.0,
     explanation: parsed.explanation || '',
     learningObjective: {
       slug: learningObjectiveSlug,
@@ -215,7 +219,9 @@ export async function gradeAnswer(exercise, userAnswer, litellmUrl, litellmModel
 
   // Direct comparison for MCQ
   if (type === 'mcq') {
-    const correct = String(userAnswer).trim().toUpperCase() === String(exercise.correctAnswer).trim().toUpperCase();
+    const correct =
+      String(userAnswer).trim().toUpperCase() ===
+      String(exercise.correctAnswer).trim().toUpperCase();
     const correctOption = (exercise.options || []).find(
       (o) => o.id.toUpperCase() === String(exercise.correctAnswer).trim().toUpperCase()
     );
@@ -223,7 +229,8 @@ export async function gradeAnswer(exercise, userAnswer, litellmUrl, litellmModel
     if (correct) {
       baseMsg = 'Richtig! ' + (exercise.explanation || '');
     } else {
-      var wrongMsg = exercise.explanation || ('Die richtige Antwort ist ' + exercise.correctAnswer + '.');
+      var wrongMsg =
+        exercise.explanation || 'Die richtige Antwort ist ' + exercise.correctAnswer + '.';
       baseMsg = 'Leider nicht richtig. ' + wrongMsg;
       if (correctOption) {
         baseMsg += ' (' + correctOption.text + ')';
@@ -247,7 +254,8 @@ export async function gradeAnswer(exercise, userAnswer, litellmUrl, litellmModel
       };
     }
     const correctNum = parseFloat(String(exercise.correctAnswer).replace(',', '.'));
-    const tolerance = typeof exercise.tolerance === 'number' && exercise.tolerance > 0 ? exercise.tolerance : 0.5;
+    const tolerance =
+      typeof exercise.tolerance === 'number' && exercise.tolerance > 0 ? exercise.tolerance : 0.5;
     const diff = Math.abs(userNum - correctNum);
     const correct = diff <= tolerance;
 
@@ -263,7 +271,9 @@ export async function gradeAnswer(exercise, userAnswer, litellmUrl, litellmModel
       correct,
       score,
       feedback: correct
-        ? 'Richtig! ' + (exercise.explanation || `Die Antwort ${correctNum} ist korrekt (Toleranz: ±${tolerance}).`)
+        ? 'Richtig! ' +
+          (exercise.explanation ||
+            `Die Antwort ${correctNum} ist korrekt (Toleranz: ±${tolerance}).`)
         : `Deine Antwort (${userNum}) weicht zu stark von der erwarteten Lösung (${correctNum} ± ${tolerance}) ab. ` +
           (exercise.explanation || 'Überprüfe deine Berechnung und Einheiten.'),
     };
@@ -279,7 +289,9 @@ export async function gradeAnswer(exercise, userAnswer, litellmUrl, litellmModel
       score: correct ? 100 : 0,
       feedback: correct
         ? 'Richtig! ' + (exercise.explanation || '')
-        : 'Leider nicht richtig. Die korrekte Antwort ist "' + exercise.correctAnswer + '". ' +
+        : 'Leider nicht richtig. Die korrekte Antwort ist "' +
+          exercise.correctAnswer +
+          '". ' +
           (exercise.explanation || ''),
     };
   }
@@ -302,11 +314,12 @@ export async function gradeAnswer(exercise, userAnswer, litellmUrl, litellmModel
     let grade;
     try {
       grade = parseJSON(raw);
-    } catch (_) {
+    } catch {
       return {
         correct: false,
         score: 50,
-        feedback: 'Die Antwort konnte nicht automatisch bewertet werden. Ein Lehrer wird sie überprüfen.',
+        feedback:
+          'Die Antwort konnte nicht automatisch bewertet werden. Ein Lehrer wird sie überprüfen.',
       };
     }
 
