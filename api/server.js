@@ -13,6 +13,7 @@ import { subsetWhere } from './scripts/_neo4j-subset-filter.mjs';
 import FileBackedSessionStore from './session-store.js';
 import authRouter, { authMiddleware, requireAuth, handleStripeWebhook } from './auth.js';
 import exerciseEngine from './exercise-engine.js';
+import learningEngine from './learning-engine.js';
 
 const PORT = process.env.PORT || 3001;
 const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
@@ -209,7 +210,7 @@ app.get('/api/chat/history/:sessionId', requireAuth, (req, res) => {
   }
   // Auto-generate title if not set
   if (!session.title && session.messages.length > 0) {
-    const firstMsg = session.messages.find(m => m.role === 'user');
+    const firstMsg = session.messages.find((m) => m.role === 'user');
     if (firstMsg) {
       session.title = firstMsg.content.slice(0, 80) + (firstMsg.content.length > 80 ? '...' : '');
       sessionStore._dirty = true;
@@ -265,17 +266,29 @@ app.post('/api/chat', async (req, res) => {
     });
 
     // Confusion detection — check if user repeated the same question
-    var userMessages = session.messages.filter(function (m) { return m.role === 'user'; });
-    var msgWords = message.toLowerCase().replace(/[.,!?;:]/g, '').split(/\s+/).filter(function (w) { return w.length > 3; });
+    var userMessages = session.messages.filter(function (m) {
+      return m.role === 'user';
+    });
+    var msgWords = message
+      .toLowerCase()
+      .replace(/[.,!?;:]/g, '')
+      .split(/\s+/)
+      .filter(function (w) {
+        return w.length > 3;
+      });
     for (var ci = 0; ci < userMessages.length; ci++) {
-      var prev = userMessages[ci].content.toLowerCase().replace(/[.,!?;:]/g, '').split(/\s+/);
+      var prev = userMessages[ci].content
+        .toLowerCase()
+        .replace(/[.,!?;:]/g, '')
+        .split(/\s+/);
       var overlap = 0;
       for (var wi = 0; wi < msgWords.length; wi++) {
         if (prev.indexOf(msgWords[wi]) !== -1) overlap++;
       }
       var similarity = msgWords.length > 0 ? overlap / msgWords.length : 0;
       if (similarity > 0.7) {
-        systemPrompt += ' Hinweis: Der Schüler hat eine ähnliche Frage bereits gestellt. Wiederhole die Erklärung mit anderen Worten und frag, ob es diesmal klarer ist.';
+        systemPrompt +=
+          ' Hinweis: Der Schüler hat eine ähnliche Frage bereits gestellt. Wiederhole die Erklärung mit anderen Worten und frag, ob es diesmal klarer ist.';
         break;
       }
     }
@@ -304,12 +317,14 @@ app.post('/api/chat', async (req, res) => {
       var reply = data.choices?.[0]?.message?.content || 'Keine Antwort erhalten.';
 
       // "War das hilfreich?" after 3+ user messages
-      var userCount = session.messages.filter(function (m) { return m.role === 'user'; }).length;
+      var userCount = session.messages.filter(function (m) {
+        return m.role === 'user';
+      }).length;
       if (userCount >= 3) {
         reply += '\n\n---\n_War diese Antwort hilfreich? (Daumen hoch / runter)_';
       }
-
       session.messages.push({ role: 'assistant', content: reply });
+
       cleanupSessionMessages(session);
       res.json({
         reply,
@@ -402,11 +417,19 @@ app.post('/api/chat', async (req, res) => {
       );
     } finally {
       // "War das hilfreich?" after 3+ user messages (streaming)
-      var userCount = session.messages.filter(function (m) { return m.role === 'user'; }).length;
-      if (userCount >= 3) {
+      var userCountA = session.messages.filter(function (m) {
+        return m.role === 'user';
+      }).length;
+      if (userCountA >= 3) {
         try {
-          res.write('data: ' + JSON.stringify({ prompt: '_War diese Antwort hilfreich? (Daumen hoch / runter)_' }) + '\n\n');
-        } catch {}
+          res.write(
+            'data: ' +
+              JSON.stringify({ prompt: '_War diese Antwort hilfreich? (Daumen hoch / runter)_' }) +
+              '\n\n'
+          );
+        } catch {
+          void 0;
+        }
       }
       res.end();
     }
@@ -435,7 +458,11 @@ app.post('/api/chat/feedback', (req, res) => {
   try {
     var feedbackPath = path.join(process.cwd(), 'data', 'feedback.json');
     var feedback = [];
-    try { feedback = JSON.parse(fs.readFileSync(feedbackPath, 'utf-8')); } catch {}
+    try {
+      feedback = JSON.parse(fs.readFileSync(feedbackPath, 'utf-8'));
+    } catch {
+      void 0;
+    }
     feedback.push({
       sessionId: sessionId,
       messageIndex: parseInt(messageIndex, 10),
@@ -459,8 +486,13 @@ app.get('/api/chat/feedback/analytics', (req, res) => {
   try {
     var feedbackPath = path.join(process.cwd(), 'data', 'feedback.json');
     var feedback = [];
-    try { feedback = JSON.parse(fs.readFileSync(feedbackPath, 'utf-8')); } catch {}
-    var up = 0, down = 0;
+    try {
+      feedback = JSON.parse(fs.readFileSync(feedbackPath, 'utf-8'));
+    } catch {
+      void 0;
+    }
+    var up = 0,
+      down = 0;
     for (var fi = 0; fi < feedback.length; fi++) {
       if (feedback[fi].rating === 'up') up++;
       else if (feedback[fi].rating === 'down') down++;
@@ -4140,7 +4172,9 @@ app.post('/api/exercises/generate', requireAuth, async (req, res) => {
     }
     const validDifficulties = ['easy', 'medium', 'hard'];
     if (!validDifficulties.includes(difficulty)) {
-      return res.status(400).json({ error: 'Ungültiger Schwierigkeitsgrad. Nutze: easy, medium, hard' });
+      return res
+        .status(400)
+        .json({ error: 'Ungültiger Schwierigkeitsgrad. Nutze: easy, medium, hard' });
     }
     const validTypes = ['mcq', 'fill-blank', 'calculation', 'short-answer'];
     if (!validTypes.includes(type)) {
@@ -4156,8 +4190,12 @@ app.post('/api/exercises/generate', requireAuth, async (req, res) => {
     }
 
     const exercise = await exerciseEngine.generateExercise(
-      learningObjectiveSlug, difficulty, type,
-      LITELLM_URL, LITELLM_MODEL, kgContext
+      learningObjectiveSlug,
+      difficulty,
+      type,
+      LITELLM_URL,
+      LITELLM_MODEL,
+      kgContext
     );
 
     // Store in user session
@@ -4183,7 +4221,7 @@ app.post('/api/exercises/answer', requireAuth, async (req, res) => {
     // Find exercise in session
     const userSession = sessionStore.getSession(req.user.id);
     const exercises = userSession.exercises || [];
-    const exercise = exercises.find(e => e.id === exerciseId);
+    const exercise = exercises.find((e) => e.id === exerciseId);
     if (!exercise) {
       return res.status(404).json({ error: 'Aufgabe nicht gefunden' });
     }
@@ -4194,6 +4232,10 @@ app.post('/api/exercises/answer', requireAuth, async (req, res) => {
     exercise.answeredAt = new Date().toISOString();
     exercise.userAnswer = answer;
     exercise.result = result;
+
+    // Award XP
+    learningEngine.awardExerciseXp(sessionStore, req.user.id, exerciseId, result.score || 0);
+    learningEngine.evaluateBadges(sessionStore, req.user.id);
 
     res.json(result);
   } catch (err) {
@@ -4211,6 +4253,121 @@ app.get('/api/exercises/history', requireAuth, async (req, res) => {
   } catch (err) {
     console.error('[exercises] history error:', err.message);
     res.status(500).json({ error: 'Verlauf konnte nicht geladen werden' });
+  }
+});
+
+// ── Learning Path Routes ──────────────────────────────────────
+app.get('/api/learning-paths', requireAuth, async (req, res) => {
+  try {
+    const paths = await learningEngine.listPaths(neo4jDriver, sessionStore, req.user.id);
+    res.json(paths);
+  } catch (err) {
+    console.error('[learning-paths] list error:', err.message);
+    res.status(500).json({ error: 'Lernpfade konnten nicht geladen werden' });
+  }
+});
+
+app.get('/api/learning-paths/:slug', requireAuth, async (req, res) => {
+  try {
+    const detail = await learningEngine.getPathDetail(
+      neo4jDriver,
+      req.params.slug,
+      sessionStore,
+      req.user.id
+    );
+    if (!detail) return res.status(404).json({ error: 'Lernpfad nicht gefunden' });
+    res.json(detail);
+  } catch (err) {
+    console.error('[learning-paths] detail error:', err.message);
+    res.status(500).json({ error: 'Lernpfad-Details konnten nicht geladen werden' });
+  }
+});
+
+app.post('/api/learning-paths/:slug/enroll', requireAuth, async (req, res) => {
+  try {
+    const result = learningEngine.enrollInPath(sessionStore, req.user.id, req.params.slug);
+    res.json(result);
+  } catch (err) {
+    console.error('[learning-paths] enroll error:', err.message);
+    res.status(500).json({ error: 'Einschreibung fehlgeschlagen' });
+  }
+});
+
+app.get('/api/learning-paths/progress', requireAuth, async (req, res) => {
+  try {
+    const progress = learningEngine.getAggregatedProgress(sessionStore, req.user.id);
+    res.json(progress);
+  } catch (err) {
+    console.error('[learning-paths] progress error:', err.message);
+    res.status(500).json({ error: 'Fortschritt konnte nicht geladen werden' });
+  }
+});
+
+app.get('/api/learning-paths/:slug/certificate', requireAuth, async (req, res) => {
+  try {
+    const progress = learningEngine.getAggregatedProgress(sessionStore, req.user.id);
+    const pathData = progress.paths.find((p) => p.slug === req.params.slug);
+    if (!pathData || !pathData.completedAt) {
+      return res
+        .status(404)
+        .json({ error: 'Lernpfad noch nicht abgeschlossen oder nicht gefunden' });
+    }
+    const pathDetail = await learningEngine.getPathDetail(
+      neo4jDriver,
+      req.params.slug,
+      sessionStore,
+      req.user.id
+    );
+    if (!pathDetail) return res.status(404).json({ error: 'Lernpfad nicht gefunden' });
+
+    const pdfBuffer = await learningEngine.generateCertificate(
+      req.user.displayName || req.user.email || 'Benutzer',
+      pathDetail.title,
+      req.params.slug,
+      req.user.id,
+      pathData.completedAt
+    );
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader(
+      'Content-Disposition',
+      `attachment; filename="zertifikat-${req.params.slug}.pdf"`
+    );
+    res.send(pdfBuffer);
+  } catch (err) {
+    console.error('[learning-paths] certificate error:', err.message);
+    res.status(500).json({ error: 'Zertifikat konnte nicht erstellt werden' });
+  }
+});
+
+// ── Gamification Routes ───────────────────────────────────────
+app.post('/api/check-in', requireAuth, async (req, res) => {
+  try {
+    const result = learningEngine.dailyCheckIn(sessionStore, req.user.id);
+    learningEngine.evaluateBadges(sessionStore, req.user.id);
+    res.json(result);
+  } catch (err) {
+    console.error('[check-in] error:', err.message);
+    res.status(500).json({ error: 'Check-in fehlgeschlagen' });
+  }
+});
+
+app.get('/api/check-in', requireAuth, async (req, res) => {
+  try {
+    const status = learningEngine.getCheckInStatus(sessionStore, req.user.id);
+    res.json(status);
+  } catch (err) {
+    console.error('[check-in] status error:', err.message);
+    res.status(500).json({ error: 'Status konnte nicht geladen werden' });
+  }
+});
+
+app.get('/api/achievements', requireAuth, async (req, res) => {
+  try {
+    const achievements = learningEngine.getAchievements(sessionStore, req.user.id);
+    res.json(achievements);
+  } catch (err) {
+    console.error('[achievements] error:', err.message);
+    res.status(500).json({ error: 'Errungenschaften konnten nicht geladen werden' });
   }
 });
 
