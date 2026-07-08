@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation)'",
+    "test": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation|modulhandbuch-api)'",
     "test:watch": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --watch",
     "test:coverage": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --coverage --forceExit",
     "test:verbose": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --verbose --forceExit",

@@ -478,7 +478,7 @@ describe('UIUtils - showToast', function () {
   test('handles unknown toast type gracefully', function () {
     showToast('Custom type', 'unknown');
     var toast = document.getElementById('toast-container').children[0];
-    expect(toast.style.background).toBe('#17a2b8');
+    expect(toast.style.background).toBe('rgb(23, 162, 184)');
   });
 
   test('can show multiple toasts of different types', function () {
@@ -487,8 +487,8 @@ describe('UIUtils - showToast', function () {
     showToast('Info!', 'info');
     var container = document.getElementById('toast-container');
     expect(container.children).toHaveLength(3);
-    expect(container.children[0].style.background).toBe('#dc3545');
-    expect(container.children[1].style.background).toBe('#28a745');
-    expect(container.children[2].style.background).toBe('#17a2b8');
+    expect(container.children[0].style.background).toBe('rgb(220, 53, 69)');
+    expect(container.children[1].style.background).toBe('rgb(40, 167, 69)');
+    expect(container.children[2].style.background).toBe('rgb(23, 162, 184)');
   });
 });
