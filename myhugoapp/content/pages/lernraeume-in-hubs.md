@@ -1,6 +1,6 @@
 ---
 title: 'Lernräume in Mozilla Hubs'
-description: 'Wie 3D-Lernräume in Mozilla Hubs den Chemieunterricht ergänzen — Konzept, Beispiele und Einstieg in hubs.tobias-weiss.org'
+description: 'Wie 3D-Lernräume in Mozilla Hubs den Chemieunterricht ergänzen — Konzept, Beispiele und Einstieg in hubs.chemie-lernen.org'
 date: 2026-06-26
 tags: ['3d', 'webxr', 'hubs', 'lernräume', 'virtual-reality']
 menu:
@@ -16,7 +16,7 @@ vermitteln. **Lernräume in [Mozilla Hubs][hubs]** schaffen einen gemeinsamen
 ganze Experimentieraufbauten räumlich erleben, gemeinsam betrachten und
 diskutieren können.
 
-[hubs]: https://hubs.tobias-weiss.org/
+[hubs]: https://hubs.chemie-lernen.org/
 
 ## Was sind Lernräume in Hubs?
 
@@ -54,9 +54,9 @@ Präsenz-Dimension**. Konkret:
 [pse]: /perioden-system-der-elemente/
 [bp]: /bindungspotential/
 
-## hubs.tobias-weiss.org — der eigene Lernraum
+## hubs.chemie-lernen.org — der eigene Lernraum
 
-Unter [hubs.tobias-weiss.org][hubs] läuft eine selbst gehostete Instanz von
+Unter [hubs.chemie-lernen.org][hubs] läuft eine selbst gehostete Instanz von
 Mozilla Hubs, optimiert für den Chemieunterricht:
 
 - **Offen** — kein Account, keine Datenkrümel an Mozilla
@@ -67,7 +67,7 @@ Mozilla Hubs, optimiert für den Chemieunterricht:
 
 ### Erste Schritte
 
-1. Browser öffnen und [hubs.tobias-weiss.org][hubs] aufrufen
+1. Browser öffnen und [hubs.chemie-lernen.org][hubs] aufrufen
 2. Auf **„Raum erstellen"** klicken — es wird ein persönlicher Lernraum-Link
    generiert
 3. Link mit Lernenden teilen (z. B. über die Klassenraum-Pinnwand)
@@ -76,7 +76,7 @@ Mozilla Hubs, optimiert für den Chemieunterricht:
 5. Optional: **Szenen aus [Spoke][spoke]** (Hubs' Szenen-Editor) importieren
    — vorbereitete Chemie-Lab-Szenen sind im Asset-Browser verlinkt
 
-[spoke]: https://hubs.tobias-weiss.org/spoke
+[spoke]: https://hubs.chemie-lernen.org/spoke
 
 ## Didaktische Tipps
 

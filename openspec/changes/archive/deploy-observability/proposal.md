@@ -18,7 +18,7 @@ The `.github/workflows/deploy.yml` smoke test currently checks:
 - `/api/kg-stats` health (Sprint 8b added this endpoint, untested)
 - `/api/health` endpoint (referenced in `ai-assistant.md` but
   probably doesn't exist as a separate route)
-- `hubs.tobias-weiss.org` (the Hubs stack — separate from
+- `hubs.chemie-lernen.org` (the Hubs stack — separate from
   chemie-lernen.org, but it's a sister service and should be
   monitored)
 

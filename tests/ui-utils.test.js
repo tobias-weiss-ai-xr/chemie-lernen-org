@@ -1,4 +1,9 @@
-var { showError, formatNumber, darkenColor, escapeHtml } = require('../myhugoapp/static/js/utils/ui-utils.js');
+var uiUtils = require('../myhugoapp/static/js/utils/ui-utils.js');
+var showError = uiUtils.showError;
+var formatNumber = uiUtils.formatNumber;
+var darkenColor = uiUtils.darkenColor;
+var escapeHtml = uiUtils.escapeHtml;
+var showToast = uiUtils.showToast;
 
 function setupErrorDOM() {
   document.body.innerHTML =
@@ -39,8 +44,12 @@ describe('UIUtils - showError', function () {
 
   test('handles special characters in message via textContent (safe)', function () {
     showError('<script>alert("xss")</script>');
-    expect(document.getElementById('error-message').textContent).toBe('<script>alert("xss")</script>');
-    expect(document.getElementById('error-message').innerHTML).toBe('&lt;script&gt;alert("xss")&lt;/script&gt;');
+    expect(document.getElementById('error-message').textContent).toBe(
+      '<script>alert("xss")</script>'
+    );
+    expect(document.getElementById('error-message').innerHTML).toBe(
+      '&lt;script&gt;alert("xss")&lt;/script&gt;'
+    );
   });
 
   test('sets all three elements in correct order', function () {
@@ -52,12 +61,16 @@ describe('UIUtils - showError', function () {
 
   test('gracefully handles missing DOM elements', function () {
     document.body.innerHTML = '';
-    expect(function () { showError('test'); }).not.toThrow();
+    expect(function () {
+      showError('test');
+    }).not.toThrow();
   });
 
   test('gracefully handles partial DOM (only error-message)', function () {
     document.body.innerHTML = '<div id="error-message"></div>';
-    expect(function () { showError('test'); }).not.toThrow();
+    expect(function () {
+      showError('test');
+    }).not.toThrow();
     expect(document.getElementById('error-message').textContent).toBe('test');
   });
 
@@ -273,7 +286,9 @@ describe('UIUtils - escapeHtml', function () {
   });
 
   test('escapes all special chars combined', function () {
-    expect(escapeHtml('<a href="x">&\'</a>')).toBe('&lt;a href=&quot;x&quot;&gt;&amp;&#039;&lt;/a&gt;');
+    expect(escapeHtml('<a href="x">&\'</a>')).toBe(
+      '&lt;a href=&quot;x&quot;&gt;&amp;&#039;&lt;/a&gt;'
+    );
   });
 
   test('returns empty string for empty input', function () {
@@ -342,7 +357,9 @@ describe('UIUtils - backward compatibility with existing calculators', function 
 
   test('showError matches Variant A behavior (6 calculators)', function () {
     showError('Bitte füllen Sie alle Felder aus.');
-    expect(document.getElementById('error-message').textContent).toBe('Bitte füllen Sie alle Felder aus.');
+    expect(document.getElementById('error-message').textContent).toBe(
+      'Bitte füllen Sie alle Felder aus.'
+    );
     expect(document.getElementById('error-section').style.display).toBe('block');
     expect(document.getElementById('results-section').style.display).toBe('none');
   });
@@ -358,5 +375,120 @@ describe('UIUtils - backward compatibility with existing calculators', function 
     expect(darkenColor('rgb(66, 133, 244)', 30)).toBe('rgb(36, 103, 214)');
     expect(darkenColor('rgb(255, 0, 0)', 100)).toBe('rgb(155, 0, 0)');
     expect(darkenColor('rgb(100, 100, 100)', 50)).toBe('rgb(50, 50, 50)');
+  });
+});
+
+describe('UIUtils - showToast', function () {
+  var origRAF;
+
+  beforeAll(function () {
+    origRAF = global.requestAnimationFrame;
+    global.requestAnimationFrame = function (cb) {
+      return setTimeout(cb, 16);
+    };
+  });
+
+  afterAll(function () {
+    global.requestAnimationFrame = origRAF;
+  });
+
+  function freshShowToast() {
+    jest.resetModules();
+    return require('../myhugoapp/static/js/utils/ui-utils.js').showToast;
+  }
+
+  beforeEach(function () {
+    jest.useFakeTimers();
+    document.body.innerHTML = '';
+    showToast = freshShowToast();
+  });
+
+  afterEach(function () {
+    jest.useRealTimers();
+  });
+
+  test('creates toast container and appends to body', function () {
+    showToast('Test message');
+    var container = document.getElementById('toast-container');
+    expect(container).not.toBeNull();
+    expect(container.style.position).toBe('fixed');
+    expect(document.body.contains(container)).toBe(true);
+  });
+
+  test('creates toast with message text', function () {
+    showToast('Hello World');
+    var container = document.getElementById('toast-container');
+    expect(container.children).toHaveLength(1);
+    expect(container.children[0].textContent).toBe('Hello World');
+  });
+
+  test('uses type=info by default', function () {
+    showToast('Info toast');
+    var toast = document.getElementById('toast-container').children[0];
+    expect(toast.style.background).toBe('rgb(23, 162, 184)');
+  });
+
+  test('uses error colors for error type', function () {
+    showToast('Error toast', 'error');
+    var toast = document.getElementById('toast-container').children[0];
+    expect(toast.style.background).toBe('rgb(220, 53, 69)');
+    expect(toast.style.borderLeft).toContain('rgb(189, 33, 48)');
+  });
+
+  test('uses warning colors for warning type', function () {
+    showToast('Warning toast', 'warning');
+    var toast = document.getElementById('toast-container').children[0];
+    expect(toast.style.background).toBe('rgb(255, 193, 7)');
+  });
+
+  test('uses success colors for success type', function () {
+    showToast('Success toast', 'success');
+    var toast = document.getElementById('toast-container').children[0];
+    expect(toast.style.background).toBe('rgb(40, 167, 69)');
+  });
+
+  test('reuses existing toast container on multiple calls', function () {
+    showToast('First');
+    showToast('Second');
+    var container = document.getElementById('toast-container');
+    expect(container.children).toHaveLength(2);
+    expect(container.children[0].textContent).toBe('First');
+    expect(container.children[1].textContent).toBe('Second');
+  });
+
+  test('animates toast in via requestAnimationFrame', function () {
+    showToast('Animate');
+    var toast = document.getElementById('toast-container').children[0];
+    jest.advanceTimersByTime(20);
+    expect(toast.style.opacity).toBe('1');
+    expect(toast.style.transform).toBe('translateX(0)');
+  });
+
+  test('removes toast from DOM after fade-out sequence', function () {
+    showToast('Cleanup test');
+    var container = document.getElementById('toast-container');
+    expect(container.children).toHaveLength(1);
+    jest.advanceTimersByTime(20);
+    jest.advanceTimersByTime(4000);
+    expect(container.children[0].style.opacity).toBe('0');
+    jest.advanceTimersByTime(300);
+    expect(container.children).toHaveLength(0);
+  });
+
+  test('handles unknown toast type gracefully', function () {
+    showToast('Custom type', 'unknown');
+    var toast = document.getElementById('toast-container').children[0];
+    expect(toast.style.background).toBe('#17a2b8');
+  });
+
+  test('can show multiple toasts of different types', function () {
+    showToast('Error!', 'error');
+    showToast('Success!', 'success');
+    showToast('Info!', 'info');
+    var container = document.getElementById('toast-container');
+    expect(container.children).toHaveLength(3);
+    expect(container.children[0].style.background).toBe('#dc3545');
+    expect(container.children[1].style.background).toBe('#28a745');
+    expect(container.children[2].style.background).toBe('#17a2b8');
   });
 });

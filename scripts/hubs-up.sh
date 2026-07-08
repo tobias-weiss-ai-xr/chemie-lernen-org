@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Local-dev start script for the hubs.tobias-weiss.org stack.
+# Local-dev start script for the hubs.chemie-lernen.org stack.
 # Requires: docker, docker-compose, mutagen, mutagen-compose, root (for .env)
 #
 # Usage:
@@ -12,7 +12,7 @@
 set -euo pipefail
 
 HUBS_DIR="${HUBS_DIR:-/opt/containers/hubs-compose}"
-HOSTNAME="hubs.tobias-weiss.org"
+HOSTNAME="hubs.chemie-lernen.org"
 
 action="${1:-up}"
 

@@ -49,14 +49,14 @@ Die Plattform ist in einer stabilen Phase mit umfassenden Rechnern, Visualisieru
 
 ## 🥽 Immersive VR-Erweiterungen
 
-| Feature                     | Beschreibung                                                                                                                                                                                                      |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Subatomare Reisen**       | Atome durch Hinzufügen von Protonen/Neutronen/Elektronen in 3D aufbauen                                                                                                                                           |
-| **Molekülgalerie in VR**    | Riesige 3D-Modelle komplexer Moleküle (DNA, Koffein, Polymere)                                                                                                                                                    |
-| **Gefahrfreie Labore**      | Simulierte Extreme Experimente (Alkalimetalle in Wasser, Thermit)                                                                                                                                                 |
-| **Hybrides Lernen (WebGL)** | 2D/Browser-Modus für alle VR-Inhalte                                                                                                                                                                              |
-| **Wiki-Erweiterung**        | Theorie-Artikel zu jedem VR-Experiment                                                                                                                                                                            |
-| **🆕 Lernräume in Hubs**    | Gemeinsame 3D-Lernräume unter [hubs.tobias-weiss.org](/pages/lernraeume-in-hubs/) — Mehrspieler-Modus für Molekülmodelle, Periodensystem-Wand, Quiz-Cubes (siehe [Lernräume-Artikel](/pages/lernraeume-in-hubs/)) |
+| Feature                     | Beschreibung                                                                                                                                                                                                       |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Subatomare Reisen**       | Atome durch Hinzufügen von Protonen/Neutronen/Elektronen in 3D aufbauen                                                                                                                                            |
+| **Molekülgalerie in VR**    | Riesige 3D-Modelle komplexer Moleküle (DNA, Koffein, Polymere)                                                                                                                                                     |
+| **Gefahrfreie Labore**      | Simulierte Extreme Experimente (Alkalimetalle in Wasser, Thermit)                                                                                                                                                  |
+| **Hybrides Lernen (WebGL)** | 2D/Browser-Modus für alle VR-Inhalte                                                                                                                                                                               |
+| **Wiki-Erweiterung**        | Theorie-Artikel zu jedem VR-Experiment                                                                                                                                                                             |
+| **🆕 Lernräume in Hubs**    | Gemeinsame 3D-Lernräume unter [hubs.chemie-lernen.org](/pages/lernraeume-in-hubs/) — Mehrspieler-Modus für Molekülmodelle, Periodensystem-Wand, Quiz-Cubes (siehe [Lernräume-Artikel](/pages/lernraeume-in-hubs/)) |
 
 ---
 

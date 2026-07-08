@@ -1146,6 +1146,88 @@ function filterEntities(entities, { search, category, type }) {
 }
 
 /**
+ * Load curricula data from static JSON files as fallback when Neo4j has no
+ * :Curriculum nodes. Transforms the per-state JSON structure into the
+ * entity format expected by the /api/kg-data?lehrplan=true frontend.
+ */
+function loadCurriculaFromStaticFiles() {
+  var states = [
+    'bb',
+    'be',
+    'bw',
+    'by',
+    'hb',
+    'he',
+    'hh',
+    'mv',
+    'ni',
+    'nw',
+    'rp',
+    'sh',
+    'sn',
+    'st',
+    'th',
+  ];
+  var dataDir = path.join(process.cwd(), 'myhugoapp', 'data', 'curricula');
+  var result = [];
+  var idCounter = 0;
+
+  for (var si = 0; si < states.length; si++) {
+    var abbr = states[si];
+    try {
+      var filePath = path.join(dataDir, abbr + '.json');
+      if (!fs.existsSync(filePath)) continue;
+      var content = fs.readFileSync(filePath, 'utf-8');
+      var stateData = JSON.parse(content);
+      var stateName = stateData.state || '';
+      var stateAbbr = stateData.state_abbr || abbr.toUpperCase();
+
+      var schoolCurricula = stateData.school_curricula || [];
+      for (var sci = 0; sci < schoolCurricula.length; sci++) {
+        var sc = schoolCurricula[sci];
+        var gradeLevels = sc.grade_levels || [];
+        for (var gli = 0; gli < gradeLevels.length; gli++) {
+          var gl = gradeLevels[gli];
+          var topics = gl.topics || [];
+          for (var ti = 0; ti < topics.length; ti++) {
+            var topic = topics[ti];
+            result.push({
+              id: 'cs' + idCounter++,
+              name: topic.title,
+              category: 'lehrplan',
+              curriculumMeta: {
+                state: stateName,
+                stateAbbr: stateAbbr,
+                grade: gl.grade || '',
+                school_type: sc.school_type || '',
+                objective_count: (topic.learning_objectives || []).length,
+              },
+              articles: [],
+              relatedEntities: [],
+              components: [],
+              articleCount: 0,
+            });
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('[kg-data] Failed to load static curricula for ' + abbr + ': ' + e.message);
+    }
+  }
+
+  // Match Neo4j query ordering: state_abbr asc, name asc, capped at 500
+  result.sort(function (a, b) {
+    var sa = a.curriculumMeta.stateAbbr || '';
+    var sb = b.curriculumMeta.stateAbbr || '';
+    if (sa !== sb) return sa < sb ? -1 : 1;
+    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+  });
+  if (result.length > 500) result.length = 500;
+
+  return result;
+}
+
+/**
  * GET /api/kg-data
  * Returns knowledge graph data with optional search, filter, pagination.
  * Query params: ?search=, ?category=, ?type=, ?limit=, ?offset=
@@ -1207,7 +1289,7 @@ app.get('/api/kg-data', async (req, res) => {
       LIMIT ${limit}
     `;
     const entitiesResult = await session.run(entitiesQuery, queryParams);
-    const entities = isLehrplanMode
+    let entities = isLehrplanMode
       ? entitiesResult.records.map((r, i) => ({
           id: `c${i}`,
           name: r.get('name'),
@@ -1236,6 +1318,15 @@ app.get('/api/kg-data', async (req, res) => {
           articleCount: r.get('articleCount') || 0,
         }));
 
+    // Static file fallback for lehrplan mode when Neo4j returns no entities
+    if (isLehrplanMode && entities.length === 0) {
+      var staticCurricula = loadCurriculaFromStaticFiles();
+      if (staticCurricula.length > 0) {
+        entities = staticCurricula;
+        console.log('[kg-data] Static curricula fallback: ' + entities.length + ' entities');
+      }
+    }
+
     // Total count for pagination
     let totalEntities;
     if (isLehrplanMode) {
@@ -1252,6 +1343,11 @@ app.get('/api/kg-data', async (req, res) => {
         queryParams
       );
       totalEntities = countResult.records[0].get('total').toNumber();
+    }
+
+    // If static fallback loaded entities but Neo4j count returned 0, override
+    if (isLehrplanMode && entities.length > 0 && totalEntities === 0) {
+      totalEntities = entities.length;
     }
 
     // In lehrplan mode, also fetch KMK guidelines as didaktik entities
