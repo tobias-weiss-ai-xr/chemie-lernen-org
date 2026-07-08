@@ -12,8 +12,8 @@ import ragHelpers from './_rag-helpers.cjs';
 import { subsetWhere } from './scripts/_neo4j-subset-filter.mjs';
 import FileBackedSessionStore from './session-store.js';
 import authRouter, { authMiddleware, requireAuth, handleStripeWebhook } from './auth.js';
-import exerciseEngine from './exercise-engine.js';
-import learningEngine from './learning-engine.js';
+import * as exerciseEngine from './exercise-engine.js';
+import * as learningEngine from './learning-engine.js';
 import * as collabEngine from './collab-engine.js';
 
 const PORT = process.env.PORT || 3001;
