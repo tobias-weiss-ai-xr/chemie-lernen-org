@@ -54,7 +54,7 @@ async function main() {
 
   // Aggregate by URL: collect all states/keywords/scores per content URL
   const byUrl = new Map();
-  for (const [_loText, links] of Object.entries(mapping)) {
+  for (const [, links] of Object.entries(mapping)) {
     for (const link of links) {
       const url = link.url;
       if (!byUrl.has(url)) {

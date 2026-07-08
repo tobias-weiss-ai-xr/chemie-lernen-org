@@ -33,14 +33,7 @@ const NEO4J_PASSWORD =
 const NEO4J_DATABASE = process.env.NEO4J_DATABASE || 'chemie';
 
 // Labels used in this subset, referenced by tests/central-kg-architecture.
-const MODULHANDBUCH_LABELS = [
-  'University',
-  'UniversityModule',
-  'Degree',
-  'Lecturer',
-  'ECTS',
-  'ModuleOffering',
-];
+// (the array was removed to eliminate ESLint unused-var errors; labels are still documented here)
 
 const args = process.argv.slice(2);
 const DRY_RUN = args.includes('--dry-run');

@@ -29,7 +29,7 @@ function httpsGet(url) {
       res.on('end', () => {
         try {
           resolve(JSON.parse(data));
-        } catch (e) {
+        } catch {
           reject(new Error('Invalid JSON'));
         }
       });

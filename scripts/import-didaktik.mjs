@@ -27,7 +27,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import neo4j from 'neo4j-driver';
-import { subsetWhere } from './_neo4j-subset-filter.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..');

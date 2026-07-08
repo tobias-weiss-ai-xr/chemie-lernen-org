@@ -14,13 +14,7 @@
  *   node scripts/link-modules-to-entities.mjs --dry-run
  */
 
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import neo4j from 'neo4j-driver';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = path.resolve(__dirname, '..');
 
 const NEO4J_URI = process.env.NEO4J_URI || 'bolt://localhost:7687';
 const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
@@ -28,8 +22,6 @@ const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || 'chemie_knowledge_2024';
 const NEO4J_DATABASE = process.env.NEO4J_DATABASE || 'chemie';
 
 const DRY_RUN = process.argv.includes('--dry-run');
-const BATCH_SIZE = 100;
-
 // ── Normalization ────────────────────────────────────────────────────
 
 function normalize(text) {
@@ -81,10 +73,6 @@ const GENERIC_WORDS = new Set([
 
 // ── Matching logic ───────────────────────────────────────────────────
 
-function tokenize(text) {
-  const norm = normalize(text);
-  return norm.split(/\s+/).filter(t => t.length >= 4 && !GENERIC_WORDS.has(t));
-}
 
 /**
  * Check if an entity name appears in module text (learning_outcomes, content, or module_name).
