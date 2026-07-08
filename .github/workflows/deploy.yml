@@ -102,7 +102,7 @@ jobs:
             docker compose up -d hugo-chemie-lernen-org
             docker compose up -d chemie-chat-api
             echo "=== Running smoke tests ==="
-            sleep 5
+            sleep 20
             SITE="https://chemie-lernen.org"
             API="$SITE"
             # 1. Entity page returns 200
