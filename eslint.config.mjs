@@ -12,6 +12,8 @@ export default [
       'coverage/**',
       'test-results/**',
       '.playwright-artifacts/**',
+      '.playwright-mcp/**',
+      '**/curricula-venv/**',
       'myhugoapp/static/js/third-party/**',
       'myhugoapp/static/js/vendor/**',
       '*.min.js', 'myhugoapp/static/js/**/*.min.js',

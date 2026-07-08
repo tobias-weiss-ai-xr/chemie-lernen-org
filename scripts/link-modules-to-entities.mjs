@@ -73,7 +73,6 @@ const GENERIC_WORDS = new Set([
 
 // ── Matching logic ───────────────────────────────────────────────────
 
-
 /**
  * Check if an entity name appears in module text (learning_outcomes, content, or module_name).
  *
