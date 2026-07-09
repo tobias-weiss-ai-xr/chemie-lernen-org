@@ -2,6 +2,7 @@
 title: 'Alkohole und Ether'
 description: 'Lerne alles über Alkohole und Ether: Struktur, Eigenschaften, Herstellung und Anwendungen. Mit praktischen Beispielen und Übungen für Schüler.'
 date: '2026-06-14'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'alkohole', 'ether', 'organische chemie', 'funktionelle gruppen']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

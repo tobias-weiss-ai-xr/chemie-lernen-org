@@ -2,6 +2,7 @@
 title: 'Was ist Chemie?'
 description: 'Chemie ist die Lehre von den Stoffen und deren Umwandlungen. Sie erklärt, warum Stoffe so reagieren, wie sie reagieren.'
 date: '2026-06-03'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'einführung', 'stoffe']
 interaktiv: false
 schwierigkeit: 'grundlagen'

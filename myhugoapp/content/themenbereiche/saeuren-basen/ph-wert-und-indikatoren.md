@@ -2,6 +2,7 @@
 title: 'pH-Wert und Indikatoren'
 description: 'Der pH-Wert gibt die Konzentration von $H^+$-Ionen in einer Lösung an. Indikatoren zeigen durch Farbumschlag an, ob sauer oder basisch.'
 date: '2026-06-03'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'ph-wert', 'saeuren', 'basen']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

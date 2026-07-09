@@ -2,6 +2,7 @@
 title: 'Stoffgemische und Trennverfahren'
 description: 'Stoffgemische enthalten mehrere Reinstoffe. Trennverfahren nutzen unterschiedliche physikalische Eigenschaften zur Trennung.'
 date: '2026-06-08'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'stoffe', 'trennverfahren', 'gemische']
 interaktiv: false
 schwierigkeit: 'grundlagen'

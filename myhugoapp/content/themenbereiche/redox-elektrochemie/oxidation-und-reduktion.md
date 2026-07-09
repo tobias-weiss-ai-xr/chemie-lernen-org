@@ -2,6 +2,7 @@
 title: 'Oxidation und Reduktion'
 description: 'Oxidation = Elektronenabgabe, Reduktion = Elektronenaufnahme. Redox-Reaktionen stehen immer zusammen (Redox-Paar).'
 date: '2026-06-03'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'redox', 'elektronen', 'redox-reaktionen']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

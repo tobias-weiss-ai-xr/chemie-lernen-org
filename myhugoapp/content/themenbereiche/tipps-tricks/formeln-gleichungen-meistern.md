@@ -2,6 +2,7 @@
 title: 'Formeln und Gleichungen meistern'
 description: 'Tipps und Tricks zum Erstellen und Verstehen chemischer Formeln und Reaktionsgleichungen. Von Valenzstrichformeln bis zur Stöchiometrie.'
 date: '2026-06-14'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'formeln', 'gleichungen', 'tipps', 'stöchiometrie']
 interaktiv: false
 schwierigkeit: 'leicht'

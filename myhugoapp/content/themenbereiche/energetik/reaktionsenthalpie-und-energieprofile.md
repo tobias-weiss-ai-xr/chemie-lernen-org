@@ -2,6 +2,7 @@
 title: 'Reaktionsenthalpie und Energieprofile'
 description: 'Enthalpiediagramme, Bindungsenergien, Bildungsenthalpien und die Berechnung von Reaktionsenthalpien mit dem Satz von Hess.'
 date: '2026-06-18'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'enthalpie', 'energieprofil', 'bindungsenergie', 'thermodynamik']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

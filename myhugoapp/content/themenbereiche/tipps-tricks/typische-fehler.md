@@ -2,6 +2,7 @@
 title: 'Typische Fehler in Chemie-Klausuren vermeiden'
 description: 'Häufige Stolperfallen in Chemie-Klausuren und wie man sie vermeidet – von Formelfehlern über Reaktionsgleichungen bis zur Einheitenumrechnung.'
 date: '2026-07-06'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'tipps', 'fehler', 'klausur', 'lernen', 'prüfung']
 interaktiv: false
 schwierigkeit: 'leicht'

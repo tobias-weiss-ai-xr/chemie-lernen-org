@@ -1,40 +1,19 @@
 ---
 title: 'Waschmittel und Tenside'
-description: 'Lerne alles über Waschmittel und Tenside: Aufbau, Wirkungsweise, Umweltaspekte und Anwendungen. Mit Übungen für Schüler und Studierende.'
-date: '2026-06-14'
-tags: ['chemie', 'waschmittel', 'tenside', 'oberflächenaktive stoffe', 'umwelt']
+description: 'Waschmittel und Tenside: Aufbau, Wirkungsweise, Klassifizierung, Umweltaspekte und Anwendungen. Mit Übungen für Schüler und Studierende.'
+date: '2026-07-09'
+last_reviewed: '2026-07-09'
+tags: ['chemie', 'waschmittel', 'tenside', 'oberflächenaktive stoffe', 'umwelt', 'mizellen']
 interaktiv: false
 schwierigkeit: 'mittelstufe'
 teilgebiet: ['produkte-organisch']
 icon: '🫧'
-aliases: [/article/waschmittel-tenside/]
+aliases: [/article/waschmittel-tenside/, /article/tenside-waschmittel-chemie/]
 ---
 
-## Waschmittel
+## Was sind Tenside?
 
-**Waschmittel** sind Gemische aus verschiedenen chemischen Verbindungen, die zur Reinigung von Textilien, Oberflächen oder Haut dienen. Sie enthalten **Tenside** als Hauptwirkstoffe sowie Hilfsstoffe wie Enthärter, Bleichmittel und Duftstoffe.
-
-### Aufbau von Waschmitteln
-
-Waschmittel bestehen aus folgenden Komponenten:
-
-1. **Tenside** (15–30 %): Setzen die Oberflächenspannung des Wassers herab und entfernen Schmutz.
-2. **Enthärter** (20–40 %): Bindet Calcium- und Magnesiumionen (z. B. Zeolithe, Citrate).
-3. **Bleichmittel** (10–25 %): Oxidiert organische Verschmutzungen (z. B. Natriumpercarbonat).
-4. **Enzyme** (0,5–2 %): Spalten Proteine, Fette und Kohlenhydrate (z. B. Proteasen, Lipasen).
-5. **Optische Aufheller**: Wandeln UV-Licht in sichtbares Licht um, um Textilien „weißer“ erscheinen zu lassen.
-6. **Duftstoffe und Farbstoffe**: Verbessern den Geruch und das Aussehen.
-
-## Tenside
-
-**Tenside** (auch **Detergenzien** oder **oberflächenaktive Stoffe**) sind amphiphile Moleküle, die aus einem hydrophilen („wasserliebenden“) und einem hydrophoben („wasserabweisenden“) Teil bestehen. Sie setzen die **Oberflächenspannung** von Wasser herab und ermöglichen die Entfernung von Schmutz.
-
-### Aufbau von Tensiden
-
-Tenside bestehen aus:
-
-1. **Hydrophiler Kopf**: Polar oder ionisch (z. B. \(-SO_3^-\), \(-COO^-\), \(-N(CH_3)\_3^+\)).
-2. **Hydrophober Schwanz**: Lange Kohlenwasserstoffkette (z. B. \(\ce{C*{12}H*{25}}-\)).
+**Tenside** (von lat. _tensio_ = Spannung) sind **grenzflächenaktive Substanzen**, die die Oberflächenspannung von Wasser herabsetzen. Sie bestehen aus einem **hydrophilen** (wasserliebenden) Kopf und einem **hydrophoben** (wasserabweisenden) Schwanz – daher nennt man sie **amphiphil**.
 
 Die allgemeine Struktur eines Tensids lässt sich darstellen als:
 
@@ -44,27 +23,40 @@ $$
 
 wobei \(R\) der hydrophobe Alkylrest und \(X\) der hydrophile Kopf ist.
 
-### Klassifizierung von Tensiden
+### Arten von Tensiden
 
 Tenside werden nach der Ladung ihres hydrophilen Teils klassifiziert:
 
-| Typ                       | Ladung           | Beispiel                                                          | Anwendung                        |
-| ------------------------- | ---------------- | ----------------------------------------------------------------- | -------------------------------- |
-| **Anionische Tenside**    | Negativ          | Natriumlaurylsulfat (\(\ce{C12H25SO4^- Na+}\))                    | Waschmittel, Shampoos            |
-| **Kationische Tenside**   | Positiv          | Cetyltrimethylammoniumbromid (\(\ce{C16H33N(CH3)3^+ Br^-}\))      | Weichspüler, Desinfektionsmittel |
-| **Nichtionische Tenside** | Neutral          | Fettalkoholethoxylate (\(\ce{C12H25(OCH2CH2)\_nOH}\))             | Geschirrspülmittel, Emulgatoren  |
-| **Amphotere Tenside**     | Neutral/Variabel | Cocamidopropylbetain (\(\ce{R-CONH(CH2)\_3N^+(CH3)\_2CH2COO^-}\)) | Babyshampoos, Hautreiniger       |
+| Typ                       | Ladung      | Beispiele                                                                                     | Verwendung                           |
+| ------------------------- | ----------- | --------------------------------------------------------------------------------------------- | ------------------------------------ |
+| **Anionische Tenside**    | Negativ     | Natriumlaurylsulfat (\(\ce{C12H25SO4^- Na+}\)), Lineare Alkylbenzolsulfonate (LAS)            | Waschmittel, Shampoos                |
+| **Kationische Tenside**   | Positiv     | Cetyltrimethylammoniumbromid (\(\ce{C16H33N(CH3)3^+ Br^-}\)), Quaternary Ammoniumverbindungen | Weichspüler, Desinfektionsmittel     |
+| **Nichtionische Tenside** | Neutral     | Fettalkoholethoxylate (\(\ce{C12H25(OCH2CH2)\_nOH}\)), Alkylpolyglycoside                     | Geschirrspülmittel, Emulgatoren      |
+| **Amphotere Tenside**     | pH-abhängig | Cocamidopropylbetain (\(\ce{R-CONH(CH2)\_3N^+(CH3)\_2CH2COO^-}\)), Betaine                    | Hautschonende Reiniger, Babyshampoos |
 
-### Wirkungsweise von Tensiden
+### Wirkungsweise – Wie Tenside Schmutz entfernen
 
-Tenside wirken durch folgende Mechanismen:
+Tenside lagern sich mit ihrem hydrophoben Schwanz an Fett- und Schmutzpartikel an. Die hydrophilen Köpfe zeigen nach außen ins Wasser. Es bilden sich **Mizellen** – kugelförmige Aggregate, bei denen der Schmutz im Inneren eingeschlossen ist.
 
-1. **Benetzung**: Tenside lagern sich an die Oberfläche an und setzen die Oberflächenspannung des Wassers herab.
-2. **Emulgierung**: Tenside umhüllen ölige Schmutzpartikel und bilden **Mizellen**, die sich in Wasser dispergieren.
-3. **Dispergierung**: Feststoffpartikel werden von Tensiden umhüllt und in der Schwebe gehalten.
-4. **Schaumbildung**: Tenside stabilisieren Luftblasen in Wasser und bilden Schaum.
+Die **kritische Mizellbildungskonzentration (CMC)** ist die Konzentration, ab der Mizellen entstehen. Unterhalb der CMC liegen die Tensidmoleküle einzeln vor.
 
-Die Struktur einer **Mizelle** sieht wie folgt aus:
+#### 1. Benetzung
+
+Tenside setzen die **Oberflächenspannung** des Wassers herab, sodass es besser in feine Poren und Zwischenräume eindringen kann – die Oberfläche wird **benetzt**.
+
+#### 2. Emulgierung
+
+Ölige Schmutzpartikel werden von Tensiden umhüllt und als feine Tröpfchen in Wasser dispergiert (Emulsion). Ohne Tenside würden sich Öl und Wasser sofort wieder trennen.
+
+#### 3. Dispergierung
+
+Feststoffpartikel werden von Tensiden umhüllt und in der Schwebe gehalten.
+
+#### 4. Schaumbildung
+
+Tenside stabilisieren Luftblasen in Wasser und bilden Schaum.
+
+Die Struktur einer **Mizelle**:
 
 ```
        Hydrophiler Kopf (außen)
@@ -79,17 +71,55 @@ Die Struktur einer **Mizelle** sieht wie folgt aus:
      -------------
 ```
 
-### Umweltaspekte
+## Moderne Waschmittel
 
-Tenside können die Umwelt belasten, insbesondere wenn sie schwer abbaubar sind:
+**Waschmittel** sind Gemische aus verschiedenen chemischen Verbindungen, die zur Reinigung von Textilien dienen. Ein typisches Vollwaschmittel enthält:
 
-- **Biologische Abbaubarkeit**: Tenside sollten innerhalb von 28 Tagen zu 80 % abgebaut werden (EU-Richtlinie).
-- **Gewässerverschmutzung**: Nicht abgebaute Tenside können Schaumberge in Flüssen verursachen und aquatische Organismen schädigen.
-- **Alternativen**: Natürliche Tenside wie **Saponine** (aus Seifenkraut) oder **Zucker-Tenside** (z. B. Alkylpolyglucoside) sind umweltfreundlicher.
+| Komponente                   | Anteil    | Funktion                                                                           |
+| ---------------------------- | --------- | ---------------------------------------------------------------------------------- |
+| **Tenside**                  | 15–30 %   | Schmutzentfernung, Benetzung                                                       |
+| **Gerüststoffe** (Enthärter) | 20–40 %   | Wasserenthärtung: bindet \(\ce{Ca^{2+}}\) und \(\ce{Mg^{2+}}\) (Zeolithe, Citrate) |
+| **Bleichmittel**             | 10–25 %   | Oxidation von Farbflecken (Natriumpercarbonat)                                     |
+| **Bleichaktivatoren**        | 2–5 %     | TAED: Aktivierung bei niedrigen Temperaturen                                       |
+| **Enzyme**                   | 0,5–2 %   | Spezifischer Abbau von Proteinen (Proteasen), Fetten (Lipasen), Stärke (Amylasen)  |
+| **Optische Aufheller**       | 0,1–0,3 % | UV-Licht → blaues Licht („Weißer als weiß")                                        |
+| **Duftstoffe**               | 0,1–1 %   | Angenehmer Geruch                                                                  |
+| **Füllstoffe**               | Rest      | Natriumsulfat, Wasser                                                              |
+
+### Enzyme als biologische Helfer
+
+Besonders wichtig sind **Enzyme**, die spezifisch bestimmte Flecken abbauen:
+
+- **Proteasen** – bauen Eiweißflecken (Blut, Ei, Gras) ab
+- **Lipasen** – spalten Fettflecken (Butter, Öl)
+- **Amylasen** – entfernen Stärkeflecken (Kartoffeln, Soßen)
+- **Cellulasen** – glätten die Faseroberfläche, verhindern Grauschleier
+
+## Tenside und Umwelt
+
+### Abbaubarkeit
+
+Moderne Tenside müssen nach EU-Verordnung zu mindestens 80 % innerhalb von 28 Tagen biologisch abbaubar sein. Nicht abgebaute Tenside können Schaumberge in Flüssen verursachen und aquatische Organismen schädigen.
+
+### Phosphat-Debatte
+
+Früher enthielten Waschmittel große Mengen **Phosphate** (Natriumtriphosphat) als Gerüststoffe. Diese führten zur **Eutrophierung** (Überdüngung) von Gewässern und massivem Algenwachstum. Heute werden Phosphate durch **Zeolithe** und **Citrate** ersetzt.
+
+### Nachhaltige Alternativen
+
+- **Alkylpolyglycoside (APG)**: Tenside aus nachwachsenden Rohstoffen (Zucker + Fettalkohol)
+- **Waschnüsse**: Natürliche Saponine aus der Schale der Waschnuss
+- **Kernseife**: Klassische Seife aus Fettsäuren (Natriumsalze), jedoch nicht für hartes Wasser geeignet
 
 ## Übungen
 
-1. Erkläre den Unterschied zwischen **anionischen**, **kationischen**, **nichtionischen** und **amphoteren Tensiden** anhand ihrer Ladung und Anwendungen.
-2. Zeichne die Strukturformel von **Natriumlaurylsulfat** und markiere den hydrophilen und hydrophoben Teil.
-3. Beschreibe die **Wirkungsweise von Tensiden** bei der Entfernung von Fettschmutz.
-4. Warum sind **nichtionische Tenside** oft besser für empfindliche Haut geeignet als anionische Tenside?
+1. Zeichnen Sie schematisch den Aufbau einer Mizelle und beschriften Sie die hydrophoben und hydrophilen Bereiche.
+2. Erklären Sie den Unterschied zwischen **anionischen**, **kationischen**, **nichtionischen** und **amphoteren Tensiden** anhand ihrer Ladung und Anwendungen.
+3. Erklären Sie, warum in hartem Wasser die Waschwirkung von Tensiden vermindert ist.
+4. Welche Vorteile bieten Enzyme in Waschmitteln gegenüber höheren Waschtemperaturen?
+5. Diskutieren Sie die Umweltauswirkungen von Waschmitteln. Warum sind phosphatfreie Waschmittel heute die Regel?
+
+## Verwandte Themen
+
+- [Farbstoffe und Pigmente](/themenbereiche/produkte-organisch/farbstoffe-pigmente/)
+- [Kunststoffe im Alltag](/themenbereiche/produkte-organisch/kunststoffe-alltag/)

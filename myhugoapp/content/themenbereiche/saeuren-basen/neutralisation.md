@@ -2,6 +2,7 @@
 title: 'Neutralisation'
 description: 'Säure-Base-Reaktionen, Neutralisationsenthalpie, pH-Wert nach Neutralisation und praktische Anwendungen der Neutralisation in Alltag und Labor.'
 date: '2026-06-18'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'neutralisation', 'saeuren', 'basen', 'pH']
 interaktiv: false
 schwierigkeit: 'grundlagen'

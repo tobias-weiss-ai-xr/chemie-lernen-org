@@ -2,6 +2,7 @@
 title: 'Oxidation und Reduktion in der Organik'
 description: 'Oxidations- und Reduktionsreaktionen in der organischen Chemie: Von Alkoholen zu Aldehyden, Ketonen und Carbonsäuren. Mechanismen und Beispiele.'
 date: '2026-06-14'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'reaktionstypen', 'organik', 'oxidation', 'reduktion']
 interaktiv: false
 schwierigkeit: 'fortgeschritten'

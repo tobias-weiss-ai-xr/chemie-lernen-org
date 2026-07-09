@@ -12,8 +12,8 @@ const pHCalculator = new ChemistryCalculator({
       validation: {
         min: 0,
         max: 14,
-        errorMessage: 'Bitte geben Sie einen gültigen H⁺-Wert (0-14 Mol/L) ein.'
-      }
+        errorMessage: 'Bitte geben Sie einen gültigen H⁺-Wert (0-14 Mol/L) ein.',
+      },
     },
     {
       id: 'ohminus-input',
@@ -22,21 +22,21 @@ const pHCalculator = new ChemistryCalculator({
       validation: {
         min: 0,
         max: 14,
-        errorMessage: 'Bitte geben Sie einen gültigen OH⁻-Platz-Wert (0-14 Mol/L) ein.'
-      }
-    }
+        errorMessage: 'Bitte geben Sie einen gültigen OH⁻-Platz-Wert (0-14 Mol/L) ein.',
+      },
+    },
   ],
   resultFields: [
     {
       id: 'hplus-result',
       label: 'pH-Wert',
-      format: value => `${value} pH`
+      format: (value) => `${value} pH`,
     },
     {
       id: 'ohminus-result',
       label: 'pH-Wert',
-      format: value => `${value} pH`
-    }
+      format: (value) => `${value} pH`,
+    },
   ],
   calculations: {
     calculateFromInputs: (inputs) => {
@@ -45,11 +45,10 @@ const pHCalculator = new ChemistryCalculator({
 
       // H+ calculation
       if (hplus !== undefined && hplus > 0) {
-        const h = -Math.log10(hplus);
-        const ph = -h;
+        const ph = -Math.log10(hplus);
         return {
           result: ph,
-          explanation: `pH = -log₁₀(${h}) = ${(-ph).toFixed(2)}`
+          explanation: `pH = -log₁₀(${hplus}) = ${ph.toFixed(2)}`,
         };
       }
 
@@ -59,16 +58,16 @@ const pHCalculator = new ChemistryCalculator({
         const ph = 14 - poh;
         return {
           result: ph,
-          explanation: `pH = 14 - log₁₀(${poh}) = ${ph.toFixed(2)}`
+          explanation: `pH = 14 - log₁₀(${poh}) = ${ph.toFixed(2)}`,
         };
       }
 
       return null;
-    }
-  }
+    },
+  },
 });
 
 // Initialize calculator when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   pHCalculator.init();
 });

@@ -244,8 +244,6 @@ function drawTitrationChart(dataPoints, equivVolume, equivPH) {
   }
 
   const canvas = document.createElement('canvas');
-  canvas.width = 600;
-  canvas.height = 400;
   ctx.innerHTML = '';
   ctx.appendChild(canvas);
 
@@ -378,10 +376,18 @@ function runTitration() {
 
     if (analyteType === 'weak-acid') {
       pka = parseFloat(document.getElementById('analyte-pka').value);
+      if (isNaN(pka) || pka <= 0 || pka > 14) {
+        showError('Bitte geben Sie einen gültigen pKa-Wert (0-14) für die schwache Säure ein.');
+        return;
+      }
     }
 
     if (titrantType === 'weak-base') {
       pkb = parseFloat(document.getElementById('titrant-pkb').value);
+      if (isNaN(pkb) || pkb <= 0 || pkb > 14) {
+        showError('Bitte geben Sie einen gültigen pKb-Wert (0-14) für die schwache Base ein.');
+        return;
+      }
     }
 
     // Validate inputs

@@ -2,6 +2,7 @@
 title: 'Säure-Base-Titration'
 description: 'Titrationstechnik, Indikatorwahl, Titrationskurven und die Bestimmung unbekannter Konzentrationen durch maßanalytische Verfahren.'
 date: '2026-06-18'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'titration', 'maessanalyse', 'indikator', 'aequivalenzpunkt']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

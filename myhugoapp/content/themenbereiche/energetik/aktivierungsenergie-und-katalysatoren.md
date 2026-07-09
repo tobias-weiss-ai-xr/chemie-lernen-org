@@ -2,6 +2,7 @@
 title: 'Aktivierungsenergie und Katalysatoren'
 description: 'Warum nicht alle exothermen Reaktionen spontan ablaufen, der Maxwell-Boltzmann-Ansatz, und wie Katalysatoren Reaktionswege verändern.'
 date: '2026-06-18'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'aktivierungsenergie', 'katalysator', 'reaktionsgeschwindigkeit', 'arrhenius']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

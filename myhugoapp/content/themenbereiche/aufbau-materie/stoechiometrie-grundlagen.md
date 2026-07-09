@@ -2,6 +2,7 @@
 title: 'Stöchiometrie-Grundlagen'
 description: 'Molbegriff, Avogadro-Zahl, molare Masse und die Umrechnung zwischen Masse, Stoffmenge und Teilchenzahl — das Fundament quantitativer Chemie.'
 date: '2026-06-18'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'stoechiometrie', 'mol', 'avogadro', 'molare-masse']
 interaktiv: false
 schwierigkeit: 'grundlagen'

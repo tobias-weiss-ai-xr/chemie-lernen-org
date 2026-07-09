@@ -2,6 +2,7 @@
 title: 'Lernstrategien für das Chemie-Abitur'
 description: 'Effektive Methoden zur Vorbereitung auf das Chemie-Abitur: Karteikarten, Verständnis statt Auswendiglernen, Übungsaufgaben und Zeitmanagement.'
 date: '2026-07-06'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'abitur', 'lernstrategien', 'prüfungsvorbereitung', 'tipps']
 interaktiv: false
 schwierigkeit: 'leicht'

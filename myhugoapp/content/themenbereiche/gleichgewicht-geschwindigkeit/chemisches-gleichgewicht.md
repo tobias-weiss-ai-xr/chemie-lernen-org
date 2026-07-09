@@ -2,6 +2,7 @@
 title: 'Chemisches Gleichgewicht'
 description: 'Wenn Hin- und Rückreaktion gleich schnell ablaufen, stellt sich ein Gleichgewicht ein. MWG beschreibt das Konzentrationsverhältnis.'
 date: '2026-06-03'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'gleichgewicht', 'mwg', 'le-chatelier']
 interaktiv: false
 schwierigkeit: 'oberstufe'

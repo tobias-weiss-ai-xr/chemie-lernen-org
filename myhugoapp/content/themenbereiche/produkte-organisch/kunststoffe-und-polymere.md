@@ -2,6 +2,7 @@
 title: 'Kunststoffe und Polymere'
 description: 'Polymere sind Makromoleküle aus vielen gleichen Bausteinen (Monomeren). Kunststoffe sind synthetische Polymere mit vielseitigen Anwendungen.'
 date: '2026-06-03'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'kunststoffe', 'polymere', 'materialien']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

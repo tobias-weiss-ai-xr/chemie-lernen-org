@@ -2,6 +2,7 @@
 title: 'Industrielle anorganische Chemie: Schwefelsäure, Ammoniak und Co.'
 description: 'Großtechnische Verfahren der anorganischen Chemie – vom Haber-Bosch-Verfahren zur Schwefelsäureherstellung. Wirtschaftliche Bedeutung und chemische Grundlagen.'
 date: '2026-07-06'
+last_reviewed: '2026-07-09'
 tags:
   [
     'chemie',

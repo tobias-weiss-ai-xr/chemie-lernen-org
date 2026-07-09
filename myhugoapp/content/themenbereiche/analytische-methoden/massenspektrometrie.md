@@ -2,6 +2,7 @@
 title: 'Massenspektrometrie in der Chemie'
 description: 'Massenspektrometrie (MS) ermöglicht die Bestimmung der Molekülmasse und die Identifizierung von Substanzen durch Fragmentierung. Grundlagen und Anwendungen.'
 date: '2026-07-06'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'analytik', 'massenspektrometrie', 'MS', 'fragmentierung', 'spektroskopie']
 interaktiv: false
 schwierigkeit: 'fortgeschritten'

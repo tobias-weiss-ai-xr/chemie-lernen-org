@@ -2,6 +2,7 @@
 title: 'Säuren, Basen und Salze'
 description: 'Säuren bilden in Wasser $H^+$-Ionen, Basen bilden $OH^-$-Ionen. Salze entstehen aus der Neutralisation.'
 date: '2026-06-03'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'säuren', 'basen', 'salze']
 interaktiv: false
 schwierigkeit: 'grundlagen'

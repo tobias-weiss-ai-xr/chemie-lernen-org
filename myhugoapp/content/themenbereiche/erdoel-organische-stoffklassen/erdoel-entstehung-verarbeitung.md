@@ -2,6 +2,7 @@
 title: 'Erdölentstehung und -verarbeitung'
 description: 'Erfahre, wie Erdöl entsteht, gefördert und verarbeitet wird und welche Produkte daraus gewonnen werden. Ideal für Schüler und Studierende.'
 date: '2026-06-14'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'erdöl', 'organische chemie', 'raffination']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

@@ -2,6 +2,7 @@
 title: 'Atome und Moleküle'
 description: 'Atome sind die kleinsten Bausteine der Materie. Moleküle sind Atome, die durch chemische Bindungen verbunden sind.'
 date: '2026-06-03'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'atome', 'moleküle', 'bindungen']
 interaktiv: false
 schwierigkeit: 'grundlagen'

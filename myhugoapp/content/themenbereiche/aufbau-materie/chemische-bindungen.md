@@ -2,6 +2,7 @@
 title: 'Chemische Bindungen'
 description: 'Atome gehen durch Abgabe, Aufnahme oder gemeinsame Nutzung von Elektronen Bindungen ein. Drei Haupttypen: Ionenbindung, Atombindung, Metallbindung.'
 date: '2026-06-08'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'bindungen', 'ionen', 'moleküle']
 interaktiv: false
 schwierigkeit: 'grundlagen'

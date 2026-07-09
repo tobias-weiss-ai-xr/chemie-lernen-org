@@ -2,6 +2,7 @@
 title: 'Spannungsreihe der Elemente'
 description: 'Die Spannungsreihe ordnet Metalle nach ihrer Fähigkeit, Elektronen abzugeben. Edle Metalle geben schwer, unedle leicht Elektronen ab.'
 date: '2026-06-08'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'spannungsreihe', 'redox', 'metalle']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

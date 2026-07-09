@@ -2,6 +2,7 @@
 title: 'Praxis-Tipps fürs Labor'
 description: 'Praktische Tipps für sicheres und effizientes Arbeiten im chemischen Labor. Von der Handhabung von Chemikalien bis zur Fehlervermeidung.'
 date: '2026-06-14'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'labor', 'tipps', 'sicherheit', 'praxis']
 interaktiv: false
 schwierigkeit: 'leicht'

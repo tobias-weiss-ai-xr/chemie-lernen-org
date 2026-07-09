@@ -2,6 +2,7 @@
 title: 'Messtechnik und Einheiten'
 description: 'SI-Einheiten, Dezimalpräfixe, signifikante Stellen und die wichtigsten Messmethoden in der Chemie — Grundlagen für präzises Experimentieren.'
 date: '2026-06-18'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'messtechnik', 'einheiten', 'SI', 'labor']
 interaktiv: false
 schwierigkeit: 'grundlagen'

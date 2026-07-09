@@ -2,6 +2,7 @@
 title: 'Katalysatoren in der Industrie und Biologie'
 description: 'Homogene und heterogene Katalysatoren, Enzyme als biologische Katalysatoren und die industrielle Bedeutung der Katalyse.'
 date: '2026-06-18'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'katalysator', 'enzyme', 'industrie', 'heterogen', 'homogen']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

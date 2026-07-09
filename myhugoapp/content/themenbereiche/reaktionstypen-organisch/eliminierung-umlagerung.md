@@ -2,6 +2,7 @@
 title: 'Eliminierung und Umlagerung'
 description: 'Fortgeschrittene Reaktionstypen in der Organik: Eliminierungen (Abspaltung von Gruppen) und Umlagerungen (innere Molekülumbauten) mit Beispielen.'
 date: '2026-06-14'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'reaktionstypen', 'organik', 'eliminierung', 'umlagerung']
 interaktiv: false
 schwierigkeit: 'fortgeschritten'
@@ -56,3 +57,9 @@ Umlagerungen spielen eine wichtige Rolle in der Synthese komplexer Moleküle, z.
 1. Zeichne den Mechanismus der Eliminierung von Bromethan mit Natriumhydroxid.
 2. Erkläre, warum bei der Wagner-Meerwein-Umlagerung ein tertiäres Carbenium-Ion stabiler ist als ein primäres.
 3. Nenne ein Beispiel für eine Umlagerungsreaktion in der Naturstoffsynthese.
+
+## Verwandte Themen
+
+- [E1- und E2-Mechanismen im Detail](/themenbereiche/reaktionstypen-organisch/eliminierungsreaktionen/)
+- [Nukleophile Substitution (SN1/SN2)](/themenbereiche/reaktionstypen-organisch/nukleophile-substitution/)
+- [Addition an Doppelbindungen](/themenbereiche/reaktionstypen-organisch/addition-doppelbindungen/)

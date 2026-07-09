@@ -2,6 +2,7 @@
 title: 'Pufferlösungen'
 description: 'Pufferlösungen halten den pH-Wert auch bei Zugabe von Säure oder Base nahezu konstant. Sie bestehen aus einem schwachen Säure-Base-Paar.'
 date: '2026-06-08'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'puffer', 'ph-wert', 'gleichgewicht']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

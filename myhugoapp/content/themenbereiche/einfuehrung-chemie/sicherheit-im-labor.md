@@ -2,6 +2,7 @@
 title: 'Sicherheit im Labor'
 description: 'GHS-Gefahrstoffkennzeichnung, Schutzmaßnahmen, Verhaltensregeln und Notfallmaßnahmen — alles, was man vor dem ersten Praktikum wissen muss.'
 date: '2026-06-18'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'sicherheit', 'labor', 'GHS', 'gefahren']
 interaktiv: false
 schwierigkeit: 'grundlagen'

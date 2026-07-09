@@ -2,6 +2,7 @@
 title: 'Thermische Analyse: Methoden und Anwendungen'
 description: 'Thermische Analyseverfahren untersuchen physikalische und chemische Eigenschaften von Stoffen in Abhängigkeit von der Temperatur – TG, DTA, DSC.'
 date: '2026-07-06'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'analytik', 'thermische-analyse', 'TG', 'DSC', 'DTA', 'thermogravimetrie']
 interaktiv: false
 schwierigkeit: 'fortgeschritten'

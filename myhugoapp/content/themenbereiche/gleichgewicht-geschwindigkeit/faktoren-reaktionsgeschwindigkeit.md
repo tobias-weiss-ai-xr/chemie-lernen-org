@@ -2,6 +2,7 @@
 title: 'Faktoren der Reaktionsgeschwindigkeit'
 description: 'Konzentration, Temperatur, Oberfläche und Katalysatoren als Einflussgrößen auf die Geschwindigkeit chemischer Reaktionen.'
 date: '2026-06-18'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'reaktionsgeschwindigkeit', 'konzentration', 'temperatur', 'kinetik']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

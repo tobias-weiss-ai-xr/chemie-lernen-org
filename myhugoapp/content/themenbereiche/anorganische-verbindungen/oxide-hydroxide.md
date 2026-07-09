@@ -2,6 +2,7 @@
 title: 'Oxide und Hydroxide'
 description: 'Chemische Eigenschaften, Reaktionen und Anwendungen von Oxiden und Hydroxiden – wichtige Verbindungsklassen der anorganischen Chemie.'
 date: '2026-06-14'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'anorganische-verbindungen', 'oxide', 'hydroxide', 'metalle', 'nichtmetalle']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

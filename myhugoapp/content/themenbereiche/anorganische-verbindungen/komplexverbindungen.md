@@ -2,6 +2,7 @@
 title: 'Komplexverbindungen'
 description: 'Struktur, Nomenklatur, Bildungskonstanten und Anwendungen von Koordinationsverbindungen – für fortgeschrittene Lernende der Chemie.'
 date: '2026-06-14'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'anorganische-verbindungen', 'komplexchemie', 'koordination', 'liganden']
 interaktiv: false
 schwierigkeit: 'fortgeschritten'
@@ -79,3 +80,7 @@ Das **Phänomen der optischen Isomerie** bei oktaedrischen Chelatkomplexen ist d
 2. Erkläre, warum $\ce{[Co(en)3]^{3+}}$ optisch aktiv ist, $\ce{[Co(NH3)6]^{3+}}$ jedoch nicht.
 3. Berechne die Konzentration an freiem $\ce{Ni^{2+}}$ in einer Lösung, die $\pu{0.1 M}$ Ni²⁺ und $\pu{1.0 M}$ NH₃ enthält. $K_B(\ce{[Ni(NH3)6]^{2+}}) = 10^{8.74}$.
 4. Welche Art von Isomerie tritt in $\ce{[Co(NH3)4(NO2)2]NO3}$ auf? Skizziere die Isomere.
+
+## Verwandte Themen
+
+- [Komplexchemie: Kristallfeldtheorie und Farbigkeit](/themenbereiche/anorganische-verbindungen/komplexchemie/)

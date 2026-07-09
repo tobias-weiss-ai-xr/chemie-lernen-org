@@ -2,6 +2,7 @@
 title: 'Substitution und Addition'
 description: 'Die wichtigsten Reaktionstypen in der organischen Chemie: Addition (Doppelbindung öffnet sich) und Substitution (ein Atom wird ersetzt).'
 date: '2026-06-03'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'reaktionstypen', 'organik', 'addition', 'substitution']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

@@ -2,6 +2,7 @@
 title: 'Komplexchemie: Aufbau und Eigenschaften von Koordinationsverbindungen'
 description: 'Koordinationsverbindungen bestehen aus einem Zentralion und Liganden. Ihre Struktur, Farbigkeit und Stabilität werden durch die Kristallfeldtheorie erklärt.'
 date: '2026-07-06'
+last_reviewed: '2026-07-09'
 tags:
   [
     'chemie',
@@ -86,3 +87,7 @@ Viele natürliche Farbstoffe und Biomoleküle sind Komplexverbindungen:
 2. Erklären Sie, warum $\ce{[Co(NH3)6]^{3+}}$ gelb-orange erscheint, während $\ce{[Co(H2O)6]^{2+}}$ rosa ist.
 3. Ein Komplex der Form $\ce{[Fe(CN)6]^{4-}}$ ist diamagnetisch, $\ce{[Fe(H2O)6]^{2+}}$ ist paramagnetisch. Begründen Sie diesen Unterschied mit der Kristallfeldtheorie.
 4. Berechnen Sie die Kristallfeldaufspaltung $\Delta_o$ in kJ/mol für einen Komplex, der Licht der Wellenlänge $\lambda = 500\ \pu{nm}$ absorbiert.
+
+## Verwandte Themen
+
+- [Komplexverbindungen: Nomenklatur, Stabilität und Isomerie](/themenbereiche/anorganische-verbindungen/komplexverbindungen/)

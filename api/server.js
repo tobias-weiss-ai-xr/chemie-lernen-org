@@ -2695,6 +2695,56 @@ app.get('/api/kg-stats', async (req, res) => {
 });
 
 /**
+ * GET /api/content/cross-link-stats — Cross-linking coverage metrics.
+ * Returns counts of articles, cross-linked articles, orphan articles.
+ */
+app.get('/api/content/cross-link-stats', function (req, res) {
+  try {
+    var crossLinksPath = path.join(
+      path.dirname(new URL(import.meta.url).pathname),
+      '..',
+      'myhugoapp',
+      'data',
+      'curricula',
+      'content-cross-links.json'
+    );
+    var crossLinks = JSON.parse(fs.readFileSync(crossLinksPath, 'utf-8'));
+    var total = Object.keys(crossLinks).length;
+    var withArticles = 0;
+    var withCalculators = 0;
+    var withExercise = 0;
+    var orphan = 0;
+
+    for (var url in crossLinks) {
+      var entry = crossLinks[url];
+      var rel = entry.related || {};
+      var hasArticles = rel.articles && rel.articles.length > 0;
+      var hasCalcs = rel.calculators && rel.calculators.length > 0;
+      var hasEx = rel.exercises && rel.exercises.length > 0;
+
+      if (hasArticles) withArticles++;
+      if (hasCalcs) withCalculators++;
+      if (hasEx) withExercise++;
+      if (!hasArticles && !hasCalcs && !hasEx) orphan++;
+    }
+
+    res.json({
+      source: 'content-cross-links.json',
+      timestamp: new Date().toISOString(),
+      totalEntries: total,
+      withArticleLinks: withArticles,
+      withCalculatorLinks: withCalculators,
+      withExerciseLinks: withExercise,
+      orphanEntries: orphan,
+      coveragePct: total > 0 ? Math.round(((total - orphan) / total) * 100) : 0,
+    });
+  } catch (err) {
+    console.error('[cross-link-stats] Error:', err.message);
+    res.status(500).json({ error: 'Failed to load cross-link data', detail: err.message });
+  }
+});
+
+/**
  * GET /api/curricula/states — List all states with curriculum data.
  * Returns: [{ state, stateName, topicCount }] sorted by state.
  */

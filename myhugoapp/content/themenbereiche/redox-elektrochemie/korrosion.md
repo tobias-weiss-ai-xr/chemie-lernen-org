@@ -2,6 +2,7 @@
 title: 'Korrosion und Korrosionsschutz'
 description: 'Korrosion ist die unerwünschte Oxidation von Metallen. Grundlagen der elektrochemischen Korrosion und Verfahren des Korrosionsschutzes.'
 date: '2026-07-06'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'redox-elektrochemie', 'korrosion', 'rost', 'korrosionsschutz', 'opferanode']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

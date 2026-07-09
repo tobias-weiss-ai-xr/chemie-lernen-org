@@ -2,6 +2,7 @@
 title: 'Kunststoffe und Polymerisation'
 description: 'Synthetische Polymere entstehen durch verschiedene Polymerisationsarten. Mechanismus der radikalischen Kettenpolymerisation, Polykondensation und Polyaddition.'
 date: '2026-07-06'
+last_reviewed: '2026-07-09'
 tags:
   [
     'chemie',

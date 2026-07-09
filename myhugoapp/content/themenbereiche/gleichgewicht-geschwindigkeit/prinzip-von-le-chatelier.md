@@ -2,6 +2,7 @@
 title: 'Prinzip von Le Chatelier'
 description: 'Das Prinzip des kleinsten Zwanges: Ein System im Gleichgewicht reagiert auf äußere Änderungen so, dass diese teilweise rückgängig gemacht werden.'
 date: '2026-06-08'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'gleichgewicht', 'le-chatelier', 'prinzip']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

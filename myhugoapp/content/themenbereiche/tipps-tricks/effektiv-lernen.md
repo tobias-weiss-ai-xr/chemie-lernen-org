@@ -2,6 +2,7 @@
 title: 'Effektiv Chemie lernen'
 description: 'Merksätze und Strategien, um Chemie effizient zu lernen: Formeln nicht auswendig, sondern mit Verständnis. Regelmäßiges Üben der Rechnungen.'
 date: '2026-06-03'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'lernen', 'tipps', 'merksätze']
 interaktiv: false
 schwierigkeit: 'leicht'

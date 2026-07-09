@@ -2,6 +2,7 @@
 title: 'Reaktionskinetik'
 description: 'Die Reaktionskinetik beschreibt die Geschwindigkeit, mit der chemische Reaktionen ablaufen. Faktoren: Konzentration, Temperatur, Katalysator.'
 date: '2026-06-03'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'kinetik', 'reaktionsgeschwindigkeit', 'arrhenius']
 interaktiv: false
 schwierigkeit: 'oberstufe'

@@ -2,6 +2,7 @@
 title: 'Energie bei chemischen Reaktionen'
 description: 'Chemische Reaktionen speichern oder geben Energie frei. Exotherm → Wärmefreigabe, Endotherm → Wärmeaufnahme.'
 date: '2026-06-03'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'energie', 'thermodynamik', 'enthalpie']
 interaktiv: false
 schwierigkeit: 'mittelstufe'

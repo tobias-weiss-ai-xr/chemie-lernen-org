@@ -2,6 +2,7 @@
 title: 'Eliminierungsreaktionen: E1- und E2-Mechanismen'
 description: 'Eliminierungsreaktionen führen zur Bildung von Doppelbindungen. Die Mechanismen E1 und E2 unterscheiden sich in Kinetik, Übergangszustand und Produktselektivität.'
 date: '2026-07-06'
+last_reviewed: '2026-07-09'
 tags: ['chemie', 'reaktionstypen', 'organik', 'eliminierung', 'E1', 'E2', 'mechanismus']
 interaktiv: false
 schwierigkeit: 'fortgeschritten'
@@ -121,3 +122,8 @@ Eliminierung und nukleophile Substitution ($S_N1/S_N2$) laufen oft parallel ab. 
 2. Welches Produkt entsteht bei der E2-Eliminierung von 2-Brombutan mit Kalium-tert-butylat? Begründen Sie.
 3. Warum verläuft die Eliminierung von 1-Chlor-2-methylpropan mit $OH^-$ nach E2, während 2-Chlor-2-methylpropan eher nach E1 reagiert?
 4. Nennen Sie zwei experimentelle Methoden, um zu unterscheiden, ob eine Reaktion nach E1 oder E2 verläuft.
+
+## Verwandte Themen
+
+- [Eliminierung und Umlagerung (Überblick)](/themenbereiche/reaktionstypen-organisch/eliminierung-umlagerung/)
+- [Nukleophile Substitution (SN1/SN2)](/themenbereiche/reaktionstypen-organisch/nukleophile-substitution/)
