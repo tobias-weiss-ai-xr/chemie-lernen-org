@@ -182,6 +182,14 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - ✅ Grundlegende Sicherheitsregeln anwenden können
 - ✅ Einfache Experimente planen und durchführen können
 
+## Geeignete Rechner und Simulationen
+
+- [Dichte-Rechner](/dichte-rechner/) – Dichte von Stoffen berechnen
+- [Einheitenumrechner](/einheitenumrechner/) – Einheiten umrechnen
+- [Verdünnungsrechner](/verduennungsrechner/) – Lösungen herstellen
+- [Laborgeräte-Explorer](/laborgeraete-explorer/) – Geräte interaktiv erkunden
+- [Gefahrstoffkennzeichnung](/gefahrstoffkennzeichnung/) – Sicherheitskennzeichnung verstehen
+
 ## Weiterführende Themen
 
 Nach der Einführung empfiehlt sich der Besuch folgender Themenbereiche:

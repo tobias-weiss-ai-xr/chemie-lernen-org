@@ -296,6 +296,13 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - ✅ Die Spontaneität mit ΔG beurteilen können
 - ✅ Energetische Diagramme interpretieren können
 
+## Geeignete Rechner und Simulationen
+
+- [Reaktionskinetik-Simulator](/reaktionskinetik-simulator/) – Reaktionsgeschwindigkeit visualisieren
+- [Hess'sches Gesetz interaktiv](/hess-gesetz/) – Reaktionsenthalpien berechnen
+- [Verbrennungsrechner](/verbrennungsrechner/) – Verbrennungsenergie berechnen
+- [Temperatur und Teilchenbewegung](/temperatur-teilchenbewegung/) – Molekulardynamik visualisieren
+
 ## Weiterführende Themen
 
 - [Gleichgewicht und Geschwindigkeit](/themenbereiche/gleichgewicht-geschwindigkeit/) – Reaktionskinetik
