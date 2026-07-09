@@ -24,3 +24,22 @@ Die **Titrationskurve** zeigt den pH-Wert als Funktion des zugegebenen Volumens.
 **Indikatorwahl** ist entscheidend: Der Umschlagsbereich des Indikators muss den Äquivalenzpunkt überdecken. Für starke Säure mit starker Base: **Phenolphthalein** (Umschlag pH 8,2-10,0) oder **Bromthymolblau** (pH 6,0-7,6). Für schwache Säure mit starker Base: **Phenolphthalein**. Die Wahl eines falschen Indikators führt zu systematischen Fehlern.
 
 **Fehlerquellen** bei der Titration: Parallaxenfehler beim Ablesen der Bürette (Auge auf Höhe des Meniskus), ungenaues Abpipettieren des Analyten, zu spätes Erkennen des Umschlagspunkts, nicht vollständig ausgespülte Geräte, CO₂-Aufnahme aus der Luft bei langen Titrationen.
+
+## Übungen
+
+1. Bei einer Titration werden 25,0 mL einer $NaOH$-Lösung unbekannter Konzentration mit $0,10$ M $HCl$ titriert. Der Verbrauch bis zum Äquivalenzpunkt beträgt 22,5 mL. Berechne $c(NaOH)$.
+
+2. Für die Titration einer schwachen Säure ($pK_s = 4,75$) mit $0,10$ M $NaOH$ stehen folgende Indikatoren zur Verfügung: Methylorange (Umschlag pH 3,1–4,4), Bromthymolblau (pH 6,0–7,6) und Phenolphthalein (pH 8,2–10,0). Welchen Indikator wählst du? Begründe.
+
+3. Eine Titrationskurve zeigt einen pH-Sprung von pH 3 auf pH 11 bei Zugabe von nur 0,2 mL um den Äquivalenzpunkt. Handelt es sich um eine starke oder schwache Säure, die mit einer starken Base titriert wird? Begründe.
+
+4. Ein Schüler titriert Essigsäure ($c = 0,10$ mol/L) mit $NaOH$ ($c = 0,10$ mol/L) und verwendet Methylorange als Indikator. Der Farbumschlag erfolgt zu früh. Erkläre den Fehler und den resultierenden Konzentrationsfehler (zu hoch oder zu niedrig?).
+
+5. Berechne die Masse an Oxalsäure ($H_2C_2O_4 \cdot 2H_2O$, $M = 126,07$ g/mol), die für eine $0,050$ molare Maßlösung (2,0 L) eingewogen werden muss. Oxalsäure ist zweiprotonig.
+
+## Verwandte Themen
+
+- [Neutralisation](/themenbereiche/saeuren-basen/neutralisation/) – Säure-Base-Reaktionen, Neutralisationsenthalpie, pH-Wert nach Neutralisation und praktische Anwendungen der Neutralisation in Alltag und Labor.
+- [pH-Wert und Indikatoren](/themenbereiche/saeuren-basen/ph-wert-und-indikatoren/) – Der pH-Wert gibt die Konzentration von $H^+$-Ionen in einer Lösung an. Indikatoren zeigen durch Farbumschlag an, ob sauer oder basisch.
+- [Pufferlösungen](/themenbereiche/saeuren-basen/pufferloesungen/) – Pufferlösungen halten den pH-Wert auch bei Zugabe von Säure oder Base nahezu konstant. Sie bestehen aus einem schwachen Säure-Base-Paar.
+- [Säurestärke und pKs-Werte](/themenbereiche/saeuren-basen/saeurestaerke-pks/) – Starke und schwache Säuren, pKs-Werte, Zusammenhang mit dem pH-Wert, Vergleich der Säurestärke anhand von Beispielen.

@@ -60,3 +60,10 @@ Sicherheit geht vor! Beachte folgende Regeln:
 1. Warum muss man beim Verdünnen von Schwefelsäure die Säure in Wasser geben und nicht umgekehrt?
 2. Beschreibe den Ablauf einer Titration zur Bestimmung der Konzentration einer unbekannten Säure.
 3. Nenne drei wichtige Sicherheitseinrichtungen im Labor und ihre Funktion.
+
+## Verwandte Themen
+
+- [Effektiv Chemie lernen](/themenbereiche/tipps-tricks/effektiv-lernen/) – Merksätze und Strategien, um Chemie effizient zu lernen: Formeln nicht auswendig, sondern mit Verständnis. Regelmäßiges Üben der Rechnungen.
+- [Formeln und Gleichungen meistern](/themenbereiche/tipps-tricks/formeln-gleichungen-meistern/) – Tipps und Tricks zum Erstellen und Verstehen chemischer Formeln und Reaktionsgleichungen. Von Valenzstrichformeln bis zur Stöchiometrie.
+- [Lernstrategien für das Chemie-Abitur](/themenbereiche/tipps-tricks/lernstrategien/) – Effektive Methoden zur Vorbereitung auf das Chemie-Abitur: Karteikarten, Verständnis statt Auswendiglernen, Übungsaufgaben und Zeitmanagement.
+- [Typische Fehler in Chemie-Klausuren vermeiden](/themenbereiche/tipps-tricks/typische-fehler/) – Häufige Stolperfallen in Chemie-Klausuren und wie man sie vermeidet – von Formelfehlern über Reaktionsgleichungen bis zur Einheitenumrechnung.

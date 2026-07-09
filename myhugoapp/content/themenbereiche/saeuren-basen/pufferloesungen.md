@@ -75,3 +75,28 @@ Puffer in der Praxis:
 - **Blut**: $\frac{HCO_3^-}{H_2CO_3}$ Puffer hält pH ≈ 7,4
 - **Tränen**, **Speichel**
 - **Technik**: Galvanik-Bäder, Shampoo-Hersteller nutzen Puffer, um Hautverträglichkeit zu sichern.
+
+## Übungen
+
+1. Ein Puffer besteht aus $0,25$ mol/L Essigsäure ($pK_s = 4,75$) und $0,40$ mol/L Natriumacetat. Berechne den pH-Wert mit der Henderson-Hasselbalch-Gleichung.
+
+2. Zu 1,0 L eines Essigsäure-Acetat-Puffers ($c(HA) = 0,20$ mol/L, $c(A^-) = 0,20$ mol/L, $pK_s = 4,75$) werden 5,0 mL $1,0$ M $HCl$ gegeben. Berechne den pH-Wert vor und nach der Zugabe.
+
+3. Ein Blutpuffer hat ein $HCO_3^-/H_2CO_3$-Verhältnis von etwa 11:1 ($pK_s = 6,35$). Berechne den pH-Wert des Blutes. Was passiert mit dem pH, wenn durch schnelle Atmung der $CO_2$-Gehalt im Blut sinkt?
+
+4. Du möchtest einen Puffer mit pH = 4,50 herstellen. Welches Säure-Base-Paar aus folgender Tabelle wählst du? Begründe.
+
+| Säure        | $pK_s$ |
+| ------------ | ------ |
+| Ameisensäure | 3,75   |
+| Essigsäure   | 4,75   |
+| Propionsäure | 4,87   |
+
+5. Erkläre den Begriff Pufferkapazität. Ein Puffer A hat $c = 0,1$ mol/L, Puffer B hat $c = 0,5$ mol/L bei gleichem pH. Welcher Puffer hat die höhere Kapazität? Begründe.
+
+## Verwandte Themen
+
+- [Neutralisation](/themenbereiche/saeuren-basen/neutralisation/) – Säure-Base-Reaktionen, Neutralisationsenthalpie, pH-Wert nach Neutralisation und praktische Anwendungen der Neutralisation in Alltag und Labor.
+- [pH-Wert und Indikatoren](/themenbereiche/saeuren-basen/ph-wert-und-indikatoren/) – Der pH-Wert gibt die Konzentration von $H^+$-Ionen in einer Lösung an. Indikatoren zeigen durch Farbumschlag an, ob sauer oder basisch.
+- [Säure-Base-Titration](/themenbereiche/saeuren-basen/saeure-base-titration/) – Titrationstechnik, Indikatorwahl, Titrationskurven und die Bestimmung unbekannter Konzentrationen durch maßanalytische Verfahren.
+- [Säurestärke und pKs-Werte](/themenbereiche/saeuren-basen/saeurestaerke-pks/) – Starke und schwache Säuren, pKs-Werte, Zusammenhang mit dem pH-Wert, Vergleich der Säurestärke anhand von Beispielen.

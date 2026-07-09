@@ -104,3 +104,10 @@ In einer **Lerngruppe** kannst du:
 2. Schreibe eine Karteikarte zum $S_N2$-Mechanismus. Erkläre den Mechanismus anschließend einem Mitschüler.
 3. Erstelle einen Lernplan für die letzten 8 Wochen vor dem Chemie-Abitur. Plane jede Woche 5 Lerneinheiten à 45 Minuten ein.
 4. Löse eine alte Abituraufgabe zur Energetik und berechne die benötigte Zeit für jede Teilaufgabe.
+
+## Verwandte Themen
+
+- [Effektiv Chemie lernen](/themenbereiche/tipps-tricks/effektiv-lernen/) – Merksätze und Strategien, um Chemie effizient zu lernen: Formeln nicht auswendig, sondern mit Verständnis. Regelmäßiges Üben der Rechnungen.
+- [Formeln und Gleichungen meistern](/themenbereiche/tipps-tricks/formeln-gleichungen-meistern/) – Tipps und Tricks zum Erstellen und Verstehen chemischer Formeln und Reaktionsgleichungen. Von Valenzstrichformeln bis zur Stöchiometrie.
+- [Praxis-Tipps fürs Labor](/themenbereiche/tipps-tricks/praxis-labor/) – Praktische Tipps für sicheres und effizientes Arbeiten im chemischen Labor. Von der Handhabung von Chemikalien bis zur Fehlervermeidung.
+- [Typische Fehler in Chemie-Klausuren vermeiden](/themenbereiche/tipps-tricks/typische-fehler/) – Häufige Stolperfallen in Chemie-Klausuren und wie man sie vermeidet – von Formelfehlern über Reaktionsgleichungen bis zur Einheitenumrechnung.

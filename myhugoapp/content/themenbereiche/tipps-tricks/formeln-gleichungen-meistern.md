@@ -80,3 +80,10 @@ Beispiel: Oxidationszahl von Kohlenstoff in $\ce{CO2}$ ist +4, in $\ce{CH4}$ ist
    $$
 2. Zeichne die Valenzstrichformel von Ethanol ($\ce{C2H6O}$).
 3. Berechne die Oxidationszahl von Schwefel in $\ce{H2SO4}$.
+
+## Verwandte Themen
+
+- [Effektiv Chemie lernen](/themenbereiche/tipps-tricks/effektiv-lernen/) – Merksätze und Strategien, um Chemie effizient zu lernen: Formeln nicht auswendig, sondern mit Verständnis. Regelmäßiges Üben der Rechnungen.
+- [Lernstrategien für das Chemie-Abitur](/themenbereiche/tipps-tricks/lernstrategien/) – Effektive Methoden zur Vorbereitung auf das Chemie-Abitur: Karteikarten, Verständnis statt Auswendiglernen, Übungsaufgaben und Zeitmanagement.
+- [Praxis-Tipps fürs Labor](/themenbereiche/tipps-tricks/praxis-labor/) – Praktische Tipps für sicheres und effizientes Arbeiten im chemischen Labor. Von der Handhabung von Chemikalien bis zur Fehlervermeidung.
+- [Typische Fehler in Chemie-Klausuren vermeiden](/themenbereiche/tipps-tricks/typische-fehler/) – Häufige Stolperfallen in Chemie-Klausuren und wie man sie vermeidet – von Formelfehlern über Reaktionsgleichungen bis zur Einheitenumrechnung.

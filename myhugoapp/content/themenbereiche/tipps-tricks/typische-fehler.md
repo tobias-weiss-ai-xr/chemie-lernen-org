@@ -130,3 +130,10 @@ Ein Katalysator beschleunigt die Reaktion in **beide** Richtungen und verschiebt
 2. Eine Schülerin schreibt die Reaktionsgleichung $2Na + Cl_2 \rightarrow 2NaCl$ ohne Ladungen. Welche wichtigen Informationen fehlen?
 3. Warum ist die Aussage "Ein Katalysator verschiebt das Gleichgewicht auf die Produktseite" falsch?
 4. Berechnen Sie die Stoffmenge von 5 g $CaCO_3$ ($M = 100,09\ g/mol$). Ein Mitschüler rechnet $n = 5 \times 100,09 = 500,45\ mol$. Was ist falsch?
+
+## Verwandte Themen
+
+- [Effektiv Chemie lernen](/themenbereiche/tipps-tricks/effektiv-lernen/) – Merksätze und Strategien, um Chemie effizient zu lernen: Formeln nicht auswendig, sondern mit Verständnis. Regelmäßiges Üben der Rechnungen.
+- [Formeln und Gleichungen meistern](/themenbereiche/tipps-tricks/formeln-gleichungen-meistern/) – Tipps und Tricks zum Erstellen und Verstehen chemischer Formeln und Reaktionsgleichungen. Von Valenzstrichformeln bis zur Stöchiometrie.
+- [Lernstrategien für das Chemie-Abitur](/themenbereiche/tipps-tricks/lernstrategien/) – Effektive Methoden zur Vorbereitung auf das Chemie-Abitur: Karteikarten, Verständnis statt Auswendiglernen, Übungsaufgaben und Zeitmanagement.
+- [Praxis-Tipps fürs Labor](/themenbereiche/tipps-tricks/praxis-labor/) – Praktische Tipps für sicheres und effizientes Arbeiten im chemischen Labor. Von der Handhabung von Chemikalien bis zur Fehlervermeidung.

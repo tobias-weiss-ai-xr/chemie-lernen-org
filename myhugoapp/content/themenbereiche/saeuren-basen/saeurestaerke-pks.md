@@ -78,6 +78,13 @@ $$\ce{H3PO4}: pKs_1 = 2{,}1,\; pKs_2 = 7{,}2,\; pKs_3 = 12{,}3$$
 
 3. $\ce{H3PO4}$ gibt nacheinander drei $\ce{H+}$ ab. Die erste Abspaltung ist am leichtesten (kleinster pKs), da das jeweilige Anion mit jeder Stufe negativer wird und das Proton stärker bindet: $\ce{H3PO4 \rightarrow H2PO4- \rightarrow HPO4^{2-} \rightarrow PO4^{3-}}$.
 
+## Verwandte Themen
+
+- [Neutralisation](/themenbereiche/saeuren-basen/neutralisation/) – Säure-Base-Reaktionen, Neutralisationsenthalpie, pH-Wert nach Neutralisation und praktische Anwendungen der Neutralisation in Alltag und Labor.
+- [pH-Wert und Indikatoren](/themenbereiche/saeuren-basen/ph-wert-und-indikatoren/) – Der pH-Wert gibt die Konzentration von $H^+$-Ionen in einer Lösung an. Indikatoren zeigen durch Farbumschlag an, ob sauer oder basisch.
+- [Pufferlösungen](/themenbereiche/saeuren-basen/pufferloesungen/) – Pufferlösungen halten den pH-Wert auch bei Zugabe von Säure oder Base nahezu konstant. Sie bestehen aus einem schwachen Säure-Base-Paar.
+- [Säure-Base-Titration](/themenbereiche/saeuren-basen/saeure-base-titration/) – Titrationstechnik, Indikatorwahl, Titrationskurven und die Bestimmung unbekannter Konzentrationen durch maßanalytische Verfahren.
+
 ## Zusammenfassung
 
 Der **pKs-Wert** ist ein Maß für die Säurestärke: **kleiner pKs** = starke Säure, **großer pKs** = schwache Säure. Starke Säuren protolysieren vollständig, schwache nur teilweise. Bei mehrprotonigen Säuren nimmt die Säurestärke mit jeder Stufe ab. Über die Näherungsformeln lässt sich der pH-Wert einer Lösung aus pKs und Konzentration abschätzen.
