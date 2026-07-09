@@ -74,12 +74,12 @@ Eine hohe Elektronenaffinität bedeutet, dass ein Atom gern ein Elektron aufnimm
 
 5.  Ordne die Elemente $\ce{F}$, $\ce{I}$, $\ce{Cl}$, $\ce{Br}$ nach steigender Elektronegativität. Wie lässt sich der Trend innerhalb der Gruppe 17 begründen?
 
-## Zusammenfassung
-
-Alle periodischen Trends lassen sich aus der steigenden Kernladung und dem Schalenaufbau der Atome ableiten: Der Atomradius nimmt in Perioden ab und in Gruppen zu. Die Ionisierungsenergie und Elektronegativität nehmen in Perioden zu und in Gruppen ab. Die Elektronenaffinität ist bei Halogenen am höchsten. Diese Trends erklären die chemischen Eigenschaften der Elemente und die Art der Bindungen, die sie eingehen.
-
 ## Verwandte Themen
 
 - [Elektronenkonfiguration](/themenbereiche/aufbau-materie/elektronenkonfiguration/) — Grundlagen der Orbitalbesetzung
 - [Chemische Bindungen](/themenbereiche/aufbau-materie/chemische-bindungen/) — Atombindung, Ionenbindung, Metallbindung
 - [Atome und Moleküle](/themenbereiche/aufbau-materie/atome-und-molekuele/) — Atombau und Periodensystem
+
+## Zusammenfassung
+
+Alle periodischen Trends lassen sich aus der steigenden Kernladung und dem Schalenaufbau der Atome ableiten: Der Atomradius nimmt in Perioden ab und in Gruppen zu. Die Ionisierungsenergie und Elektronegativität nehmen in Perioden zu und in Gruppen ab. Die Elektronenaffinität ist bei Halogenen am höchsten. Diese Trends erklären die chemischen Eigenschaften der Elemente und die Art der Bindungen, die sie eingehen.

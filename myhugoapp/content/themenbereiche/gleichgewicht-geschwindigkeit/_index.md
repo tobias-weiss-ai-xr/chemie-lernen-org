@@ -1,14 +1,14 @@
 ---
 title: 'Gleichgewicht und Geschwindigkeit'
 description: 'Reaktionskinetik & chemisches Gleichgewicht - alles über Reaktionsgeschwindigkeit, Einflussfaktoren, Geschwindigkeitsgesetze und das Prinzip von Le Chatelier'
-date: 2025-12-26
+date: '2025-12-26'
 teilgebiet: 'gleichgewicht-geschwindigkeit'
 schwierigkeit: 'fortgeschritten'
 icon: '⚖️'
-weight: 40
-interaktiv: true
+weight: '40'
+interaktiv: 'true'
 quiz: 'gleichgewicht-geschwindigkeit'
-aliases: [/article/_index/]
+aliases: '[/article/_index/]'
 ---
 
 ## Gleichgewicht und Geschwindigkeit
@@ -376,3 +376,9 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Redoxreaktionen](/themenbereiche/redox-elektrochemie/) – Reaktionsmechanismen
 - [Analytische Methoden](/themenbereiche/analytische-methoden/) - Reaktionsverfolgung
 - [Reaktionsgleichungen ausgleichen](/reaktionsgleichungen-ausgleichen/) – Interaktives Tool
+
+- [Chemisches Gleichgewicht](/themenbereiche/gleichgewicht-geschwindigkeit/chemisches-gleichgewicht/) – Wenn Hin- und Rückreaktion gleich schnell ablaufen, stellt sich ein Gleichgewicht ein. MWG beschreibt das Konzentrationsverhältnis.
+- [Faktoren der Reaktionsgeschwindigkeit](/themenbereiche/gleichgewicht-geschwindigkeit/faktoren-reaktionsgeschwindigkeit/) – Konzentration, Temperatur, Oberfläche und Katalysatoren als Einflussgrößen auf die Geschwindigkeit chemischer Reaktionen.
+- [Katalysatoren in der Industrie und Biologie](/themenbereiche/gleichgewicht-geschwindigkeit/katalysatoren-industrie-biologie/) – Homogene und heterogene Katalysatoren, Enzyme als biologische Katalysatoren und die industrielle Bedeutung der Katalyse.
+- [Prinzip von Le Chatelier](/themenbereiche/gleichgewicht-geschwindigkeit/prinzip-von-le-chatelier/) – Das Prinzip des kleinsten Zwanges: Ein System im Gleichgewicht reagiert auf äußere Änderungen so, dass diese teilweise rückgängig gemacht werden.
+- [Reaktionskinetik](/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/) – Die Reaktionskinetik beschreibt die Geschwindigkeit, mit der chemische Reaktionen ablaufen. Faktoren: Konzentration, Temperatur, Katalysator.

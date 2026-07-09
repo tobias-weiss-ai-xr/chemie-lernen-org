@@ -77,11 +77,11 @@ Kunststoffe basieren überwiegend auf Erdöl. Die Herstellung von 1 kg PE verbra
 
 5.  Ein Teelicht aus Paraffin (einer Mischung längerer Alkane) brennt vollständig ab, während eine Plastiktüte aus PE schmilzt und tropft, bevor sie verbrennt. Erkläre diesen Unterschied auf molekularer Ebene. Welche Umweltprobleme entstehen durch unvollständige Verbrennung oder Verschwelung von Kunststoffen?
 
-## Zusammenfassung
-
-PE, PP, PVC, PET und PS sind die fünf bedeutendsten Kunststoffe mit unterschiedlichen Eigenschaften und Anwendungen. Recycling ist technisch machbar, aber durch Sortenreinheit und abnehmende Qualität begrenzt. Mikroplastik, $\ce{CO2}$-Bilanz und Ressourcenverbrauch bleiben drängende Umweltprobleme, die verbesserte Recyclingtechnologien und Kunststoffreduktion erfordern.
-
 ## Verwandte Themen
 
 - [Kunststoffe und Polymere](/themenbereiche/produkte-organisch/kunststoffe-und-polymere/) – Polymerisationsarten und Molekülstruktur
 - [Industrielle Anorganische Chemie](/themenbereiche/anorganische-verbindungen/industrielle-anorganische-chemie/) – Rohstoffverarbeitung
+
+## Zusammenfassung
+
+PE, PP, PVC, PET und PS sind die fünf bedeutendsten Kunststoffe mit unterschiedlichen Eigenschaften und Anwendungen. Recycling ist technisch machbar, aber durch Sortenreinheit und abnehmende Qualität begrenzt. Mikroplastik, $\ce{CO2}$-Bilanz und Ressourcenverbrauch bleiben drängende Umweltprobleme, die verbesserte Recyclingtechnologien und Kunststoffreduktion erfordern.

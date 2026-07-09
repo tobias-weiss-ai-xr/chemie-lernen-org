@@ -1,14 +1,14 @@
 ---
 title: 'Aufbau der Materie'
 description: 'Vom Atom bis zum Molekül: Wie Materie aufgebaut ist. Alles über Atommodelle, Elementarteilchen, Periodensystem und chemische Bindungen - interaktiv.'
-date: 2025-12-27
+date: '2025-12-27'
 teilgebiet: 'aufbau-materie'
 schwierigkeit: 'grundlagen'
 icon: '⚛️'
-weight: 20
-interaktiv: true
+weight: '20'
+interaktiv: 'true'
 quiz: 'aufbau-materie'
-aliases: [/article/_index/]
+aliases: '[/article/_index/]'
 ---
 
 ## Aufbau der Materie
@@ -366,6 +366,13 @@ $$\ce{Zn + 2HCl -> ZnCl2 + H2}$$
 - **Molekülgeometrie (VSEPR-Modell)**
 - **Kristallstrukturen**
 - **Metallurgie und Legierungen**
+
+- [Atome und Moleküle](/themenbereiche/aufbau-materie/atome-und-molekuele/) – Atome sind die kleinsten Bausteine der Materie. Moleküle sind Atome, die durch chemische Bindungen verbunden sind.
+- [Chemische Bindungen](/themenbereiche/aufbau-materie/chemische-bindungen/) – Atome gehen durch Abgabe, Aufnahme oder gemeinsame Nutzung von Elektronen Bindungen ein. Drei Haupttypen: Ionenbindung, Atombindung, Metallbindung.
+- [Elektronenkonfiguration](/themenbereiche/aufbau-materie/elektronenkonfiguration/) – Die Elektronenkonfiguration beschreibt, wie Elektronen in Schalen und Unterschalen angeordnet sind und warum Elemente ihre chemischen Eigenschaften zeigen.
+- [Isotope und ihre Anwendungen](/themenbereiche/aufbau-materie/isotope-anwendungen/) – Isotope: stabile und radioaktive Nuklide, C-14-Datierung, medizinische Isotope, Isotopenmuster in der Massenspektrometrie.
+- [Periodische Trends im Periodensystem](/themenbereiche/aufbau-materie/periodische-trends-artikel/) – Atomradius, Ionisierungsenergie, Elektronegativität und Elektronenaffinität – Trends entlang Perioden und Gruppen verstehen.
+- [Stöchiometrie-Grundlagen](/themenbereiche/aufbau-materie/stoechiometrie-grundlagen/) – Molbegriff, Avogadro-Zahl, molare Masse und die Umrechnung zwischen Masse, Stoffmenge und Teilchenzahl — das Fundament quantitativer Chemie.
 
 ## Interaktive Tools
 

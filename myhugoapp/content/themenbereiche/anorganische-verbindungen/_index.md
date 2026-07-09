@@ -1,13 +1,13 @@
 ---
 title: 'Anorganische Verbindungen'
 description: 'Salze, Säuren, Basen und ihre Reaktionen - Erfahren Sie alles über Ionenbindungen, Löslichkeit, Fällungsreaktionen und den Molaren Masse Rechner'
-date: 2025-12-26
+date: '2025-12-26'
 teilgebiet: 'anorganische-verbindungen'
 schwierigkeit: 'mittelstufe'
 icon: '🧪'
-weight: 30
+weight: '30'
 quiz: 'anorganische-verbindungen'
-aliases: [/article/_index/]
+aliases: '[/article/_index/]'
 ---
 
 ## Anorganische Verbindungen
@@ -455,3 +455,10 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Redoxreaktionen und Elektrochemie](/themenbereiche/redox-elektrochemie/) – Redoxreaktionen im Detail
 - [Aufbau der Materie](/themenbereiche/aufbau-materie/) – Ionenbindung und Kristallgitter
 - [pH-Rechner](/ph-rechner/) – pH-Werte berechnen und visualisieren
+
+- [Halogene und Edelgase](/themenbereiche/anorganische-verbindungen/halogene-edelgase/) – Gruppe 17 und 18: Trends in der Reaktivität, Halogenaustauschreaktionen, Edelgasverbindungen (XeF₂).
+- [Industrielle anorganische Chemie: Schwefelsäure, Ammoniak und Co.](/themenbereiche/anorganische-verbindungen/industrielle-anorganische-chemie/) – Großtechnische Verfahren der anorganischen Chemie – vom Haber-Bosch-Verfahren zur Schwefelsäureherstellung. Wirtschaftliche Bedeutung und chemische Grundlagen.
+- [Komplexchemie: Aufbau und Eigenschaften von Koordinationsverbindungen](/themenbereiche/anorganische-verbindungen/komplexchemie/) – Koordinationsverbindungen bestehen aus einem Zentralion und Liganden. Ihre Struktur, Farbigkeit und Stabilität werden durch die Kristallfeldtheorie erklärt.
+- [Komplexverbindungen](/themenbereiche/anorganische-verbindungen/komplexverbindungen/) – Struktur, Nomenklatur, Bildungskonstanten und Anwendungen von Koordinationsverbindungen – für fortgeschrittene Lernende der Chemie.
+- [Oxide und Hydroxide](/themenbereiche/anorganische-verbindungen/oxide-hydroxide/) – Chemische Eigenschaften, Reaktionen und Anwendungen von Oxiden und Hydroxiden – wichtige Verbindungsklassen der anorganischen Chemie.
+- [Säuren, Basen und Salze](/themenbereiche/anorganische-verbindungen/saeuren-basen-salze/) – Säuren bilden in Wasser $H^+$-Ionen, Basen bilden $OH^-$-Ionen. Salze entstehen aus der Neutralisation.

@@ -1,14 +1,14 @@
 ---
 title: 'Analytische Methoden'
 description: 'Qualitative und quantitative Analyse - Erfahren Sie alles über Nachweisreaktionen, Titration, Chromatographie, Spektroskopie und moderne Verfahren'
-date: 2025-12-26
+date: '2025-12-26'
 teilgebiet: 'analytische-methoden'
 schwierigkeit: 'fortgeschritten'
 icon: '🔍'
-weight: 80
-interaktiv: true
+weight: '80'
+interaktiv: 'true'
 quiz: 'analytische-methoden'
-aliases: [/article/_index/]
+aliases: '[/article/_index/]'
 ---
 
 ## Analytische Methoden
@@ -497,3 +497,9 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Säuren und Basen](/themenbereiche/saeuren-basen/) – Säure-Base-Reaktionen
 - [Redoxreaktionen](/themenbereiche/redox-elektrochemie/) – Redoxtitration
 - [pH-Rechner](/ph-rechner/) – pH-Wert Berechnungen
+
+- [Massenspektrometrie in der Chemie](/themenbereiche/analytische-methoden/massenspektrometrie/) – Massenspektrometrie (MS) ermöglicht die Bestimmung der Molekülmasse und die Identifizierung von Substanzen durch Fragmentierung. Grundlagen und Anwendungen.
+- [Nachweisreaktionen](/themenbereiche/analytische-methoden/nachweisreaktionen/) – Nachweisreaktionen zeigen durch Farbumschläge, ob Ionen oder Moleküle in einer Probe enthalten sind. Für Laboranalytik und Qualitätskontrolle.
+- [Quantitative Analyse](/themenbereiche/analytische-methoden/quantitative-analyse/) – Vertiefung in Methoden der quantitativen chemischen Analyse – Gravimetrie, Titration, Spektroskopie und Fehlerrechnung – für Fortgeschrittene.
+- [Thermische Analyse: Methoden und Anwendungen](/themenbereiche/analytische-methoden/thermische-analyse/) – Thermische Analyseverfahren untersuchen physikalische und chemische Eigenschaften von Stoffen in Abhängigkeit von der Temperatur – TG, DTA, DSC.
+- [Trennverfahren in der Analytik](/themenbereiche/analytische-methoden/trennverfahren/) – Überblick über chromatographische und elektrophoretische Trennverfahren in der Analytik – DC, GC, HPLC, Elektrophorese – für Schule und Studium.

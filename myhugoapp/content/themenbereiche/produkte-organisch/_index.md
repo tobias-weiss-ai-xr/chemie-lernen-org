@@ -1,14 +1,14 @@
 ---
 title: 'Produkte der Organischen Chemie'
 description: 'Polymere, Farbstoffe, Arzneimittel und mehr - Erfahren Sie alles über wichtige Produkte der organischen Chemie von Kunststoffen bis Arzneimitteln'
-date: 2025-12-26
+date: '2025-12-26'
 teilgebiet: 'produkte-organisch'
 quiz: 'produkte-organisch'
 schwierigkeit: 'fortgeschritten'
 icon: '🧬'
-weight: 110
-interaktiv: true
-aliases: [/article/_index/]
+weight: '110'
+interaktiv: 'true'
+aliases: '[/article/_index/]'
 ---
 
 ## Produkte der Organischen Chemie
@@ -529,3 +529,9 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Reaktionstypen der Organischen Chemie](/themenbereiche/reaktionstypen-organisch/) – Synthesewege
 - [Analytische Methoden](/themenbereiche/analytische-methoden/) – Strukturaufklärung
 - [Molekülstudio](/molekuel-studio/) – 3D-Modelle von Biomolekülen
+
+- [Aromastoffe und Duftstoffe](/themenbereiche/produkte-organisch/aromastoffe-duftstoffe/) – Natürliche und synthetische Aromastoffe: chemische Struktur, Gewinnung, Anwendung in Lebensmitteln und Parfüms.
+- [Farbstoffe und Pigmente](/themenbereiche/produkte-organisch/farbstoffe-pigmente/) – Erfahre alles über Farbstoffe und Pigmente: Aufbau, Eigenschaften, Herstellung und Anwendungen in Alltag und Industrie. Mit Übungen.
+- [Kunststoffe im Alltag](/themenbereiche/produkte-organisch/kunststoffe-alltag/) – Die wichtigsten Kunststoffe (PE, PP, PVC, PET, PS) – Eigenschaften, Verwendung, Recycling und Umweltauswirkungen.
+- [Kunststoffe und Polymere](/themenbereiche/produkte-organisch/kunststoffe-und-polymere/) – Polymere sind Makromoleküle aus vielen gleichen Bausteinen (Monomeren). Kunststoffe sind synthetische Polymere mit vielseitigen Anwendungen.
+- [Waschmittel und Tenside](/themenbereiche/produkte-organisch/waschmittel-tenside/) – Waschmittel und Tenside: Aufbau, Wirkungsweise, Klassifizierung, Umweltaspekte und Anwendungen. Mit Übungen für Schüler und Studierende.

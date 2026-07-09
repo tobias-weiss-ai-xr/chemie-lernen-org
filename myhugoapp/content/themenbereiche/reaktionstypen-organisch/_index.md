@@ -1,14 +1,14 @@
 ---
 title: 'Reaktionstypen der Organischen Chemie'
 description: 'Substitution, Addition, Elimination und mehr - Erfahren Sie alles über die wichtigsten Reaktionstypen der organischen Chemie von SN1/SN2 bis zur Kondensation'
-date: 2025-12-26
+date: '2025-12-26'
 teilgebiet: 'reaktionstypen-organisch'
 quiz: 'reaktionstypen-organisch'
 schwierigkeit: 'fortgeschritten'
 icon: '🔄'
-weight: 100
-interaktiv: true
-aliases: [/article/_index/]
+weight: '100'
+interaktiv: 'true'
+aliases: '[/article/_index/]'
 ---
 
 ## Reaktionstypen der Organischen Chemie
@@ -466,3 +466,10 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Redoxreaktionen](/themenbereiche/redox-elektrochemie/) – Oxidation/Reduktion
 - [Gleichgewicht und Geschwindigkeit](/themenbereiche/gleichgewicht-geschwindigkeit/) – Reaktionskinetik
 - [Molekülstudio](/molekuel-studio/) – 3D-Visualisierung von Molekülen
+
+- [Addition an Doppelbindungen](/themenbereiche/reaktionstypen-organisch/addition-doppelbindungen/) – Elektrophile Addition an Alkene, Markovnikov-Regel, Hydrierung, Halogenierung, Hydratation – Mechanismen und Beispiele.
+- [Eliminierung und Umlagerung](/themenbereiche/reaktionstypen-organisch/eliminierung-umlagerung/) – Fortgeschrittene Reaktionstypen in der Organik: Eliminierungen (Abspaltung von Gruppen) und Umlagerungen (innere Molekülumbauten) mit Beispielen.
+- [Eliminierungsreaktionen: E1- und E2-Mechanismen](/themenbereiche/reaktionstypen-organisch/eliminierungsreaktionen/) – Eliminierungsreaktionen führen zur Bildung von Doppelbindungen. Die Mechanismen E1 und E2 unterscheiden sich in Kinetik, Übergangszustand und Produktselektivität.
+- [Nukleophile Substitution (SN1 und SN2)](/themenbereiche/reaktionstypen-organisch/nukleophile-substitution/) – SN1- und SN2-Mechanismen: Kinetik, Stereochemie, Lösungsmitteleffekte, Abgangsgruppen und Substrateinfluss.
+- [Oxidation und Reduktion in der Organik](/themenbereiche/reaktionstypen-organisch/oxidation-reduktion-organik/) – Oxidations- und Reduktionsreaktionen in der organischen Chemie: Von Alkoholen zu Aldehyden, Ketonen und Carbonsäuren. Mechanismen und Beispiele.
+- [Substitution und Addition](/themenbereiche/reaktionstypen-organisch/substitution-und-addition/) – Die wichtigsten Reaktionstypen in der organischen Chemie: Addition (Doppelbindung öffnet sich) und Substitution (ein Atom wird ersetzt).

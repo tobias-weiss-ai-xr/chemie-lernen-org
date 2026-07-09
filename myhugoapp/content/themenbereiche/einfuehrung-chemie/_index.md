@@ -1,13 +1,13 @@
 ---
 title: 'Einführung in die Chemie'
 description: 'Grundlagen der Chemie - Was ist Chemie und wie arbeiten Chemiker? Erfahren Sie mehr über chemische Reaktionen, Sicherheitsmaßnahmen und Experimente.'
-date: 2025-12-26
+date: '2025-12-26'
 teilgebiet: 'einfuehrung-chemie'
 schwierigkeit: 'grundlagen'
 icon: '🔬'
-weight: 10
+weight: '10'
 quiz: 'einfuehrung-chemie'
-aliases: [/article/_index/]
+aliases: '[/article/_index/]'
 ---
 
 ## Einführung in die Chemie
@@ -197,3 +197,10 @@ Nach der Einführung empfiehlt sich der Besuch folgender Themenbereiche:
 - [Aufbau der Materie](/themenbereiche/aufbau-materie/) – Atome und ihre Struktur
 - [Periodensystem der Elemente](/perioden-system-der-elemente/) – Alle Elemente im Überblick
 - [Anorganische Verbindungen](/themenbereiche/anorganische-verbindungen/) – Salze, Säuren und Basen
+
+- [Laborgeräte und ihre Handhabung](/themenbereiche/einfuehrung-chemie/laborgeraete-handhabung/) – Übersicht über die wichtigsten Laborgeräte: Bunsenbrenner, Messzylinder, Pipette, Volumenkolben, Waage – Aufbau, Funktion und sichere Handhabung.
+- [Messtechnik und Einheiten](/themenbereiche/einfuehrung-chemie/messtechnik-und-einheiten/) – SI-Einheiten, Dezimalpräfixe, signifikante Stellen und die wichtigsten Messmethoden in der Chemie — Grundlagen für präzises Experimentieren.
+- [Sicherheit im Labor](/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/) – GHS-Gefahrstoffkennzeichnung, Schutzmaßnahmen, Verhaltensregeln und Notfallmaßnahmen — alles, was man vor dem ersten Praktikum wissen muss.
+- [Stoffgemische und Trennverfahren](/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/) – Stoffgemische enthalten mehrere Reinstoffe. Trennverfahren nutzen unterschiedliche physikalische Eigenschaften zur Trennung.
+- [Was ist Chemie?](/themenbereiche/einfuehrung-chemie/was-ist-chemie/) – Chemie ist die Lehre von den Stoffen und deren Umwandlungen. Sie erklärt, warum Stoffe so reagieren, wie sie reagieren.
+- [Wissenschaftliche Methoden in der Chemie](/themenbereiche/einfuehrung-chemie/wissenschaftliche-methoden/) – Die wissenschaftliche Methode in der Chemie: Hypothesenbildung, Experiment, Beobachtung, Auswertung und Reproduzierbarkeit.

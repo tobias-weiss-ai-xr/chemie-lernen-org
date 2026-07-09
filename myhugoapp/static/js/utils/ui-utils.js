@@ -8,9 +8,9 @@
  */
 
 function showError(message) {
-  var errorEl = document.getElementById('error-message');
-  var errorSection = document.getElementById('error-section');
-  var resultsSection = document.getElementById('results-section');
+  const errorEl = document.getElementById('error-message');
+  const errorSection = document.getElementById('error-section');
+  const resultsSection = document.getElementById('results-section');
 
   if (errorEl) {
     errorEl.textContent = message;
@@ -28,13 +28,17 @@ function formatNumber(value, decimals, options) {
     return String(value);
   }
 
-  var dec = typeof decimals === 'number' ? decimals : 3;
-  var opts = options || {};
-  var lowerThreshold = opts.lowerThreshold !== undefined ? opts.lowerThreshold : 0.0001;
-  var upperThreshold = opts.upperThreshold !== undefined ? opts.upperThreshold : 10000;
-  var useScientific = opts.useScientific !== undefined ? opts.useScientific : true;
+  const dec = typeof decimals === 'number' ? decimals : 3;
+  const opts = options || {};
+  const lowerThreshold = opts.lowerThreshold !== undefined ? opts.lowerThreshold : 0.0001;
+  const upperThreshold = opts.upperThreshold !== undefined ? opts.upperThreshold : 10000;
+  const useScientific = opts.useScientific !== undefined ? opts.useScientific : true;
 
-  if (useScientific && value !== 0 && (Math.abs(value) < lowerThreshold || Math.abs(value) >= upperThreshold)) {
+  if (
+    useScientific &&
+    value !== 0 &&
+    (Math.abs(value) < lowerThreshold || Math.abs(value) >= upperThreshold)
+  ) {
     return value.toExponential(dec - 1);
   }
 
@@ -42,14 +46,14 @@ function formatNumber(value, decimals, options) {
 }
 
 function darkenColor(color, percent) {
-  var rgb = color.match(/\d+/g);
+  const rgb = color.match(/\d+/g);
   if (!rgb || rgb.length < 3) {
     return color;
   }
 
-  var r = Math.max(0, Math.min(255, parseInt(rgb[0], 10) - percent));
-  var g = Math.max(0, Math.min(255, parseInt(rgb[1], 10) - percent));
-  var b = Math.max(0, Math.min(255, parseInt(rgb[2], 10) - percent));
+  const r = Math.max(0, Math.min(255, parseInt(rgb[0], 10) - percent));
+  const g = Math.max(0, Math.min(255, parseInt(rgb[1], 10) - percent));
+  const b = Math.max(0, Math.min(255, parseInt(rgb[2], 10) - percent));
 
   return 'rgb(' + r + ', ' + g + ', ' + b + ')';
 }
@@ -63,19 +67,19 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
-var _toastContainer = null;
+let _toastContainer = null;
 
 function showToast(message, type) {
   if (typeof document === 'undefined') {
     return;
   }
 
-  var toastType = type || 'info';
-  var colors = {
+  const toastType = type || 'info';
+  const colors = {
     error: { bg: '#dc3545', border: '#bd2130' },
     warning: { bg: '#ffc107', border: '#d39e00' },
     success: { bg: '#28a745', border: '#1e7e34' },
-    info: { bg: '#17a2b8', border: '#117a8b' }
+    info: { bg: '#17a2b8', border: '#117a8b' },
   };
 
   if (!_toastContainer) {
@@ -86,8 +90,8 @@ function showToast(message, type) {
     document.body.appendChild(_toastContainer);
   }
 
-  var palette = colors[toastType] || colors.info;
-  var toast = document.createElement('div');
+  const palette = colors[toastType] || colors.info;
+  const toast = document.createElement('div');
   toast.style.cssText =
     'padding:12px 20px;border-radius:8px;color:#fff;font-size:14px;font-family:sans-serif;' +
     'box-shadow:0 4px 12px rgba(0,0,0,0.15);opacity:0;transform:translateX(100%);' +
@@ -121,7 +125,7 @@ if (typeof module !== 'undefined' && module.exports) {
     formatNumber: formatNumber,
     darkenColor: darkenColor,
     escapeHtml: escapeHtml,
-    showToast: showToast
+    showToast: showToast,
   };
 }
 
@@ -131,6 +135,6 @@ if (typeof window !== 'undefined') {
     formatNumber: formatNumber,
     darkenColor: darkenColor,
     escapeHtml: escapeHtml,
-    showToast: showToast
+    showToast: showToast,
   };
 }

@@ -1,13 +1,13 @@
 ---
 title: 'Energetik'
 description: 'Energieumsatz bei chemischen Reaktionen - Exotherme und endotherme Prozesse, Reaktionsenthalpien und der Hesssche Satz'
-date: 2025-12-26
+date: '2025-12-26'
 teilgebiet: 'energetik'
 schwierigkeit: 'fortgeschritten'
 icon: '🔥'
-weight: 70
+weight: '70'
 quiz: 'energetik'
-aliases: [/article/_index/]
+aliases: '[/article/_index/]'
 ---
 
 ## Energetik
@@ -308,3 +308,9 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Gleichgewicht und Geschwindigkeit](/themenbereiche/gleichgewicht-geschwindigkeit/) – Reaktionskinetik
 - [Redoxreaktionen und Elektrochemie](/themenbereiche/redox-elektrochemie/) – Elektrochemische Energie
 - [Analytische Methoden](/themenbereiche/analytische-methoden/) – Kalorimetrie
+
+- [Aktivierungsenergie und Katalysatoren](/themenbereiche/energetik/aktivierungsenergie-und-katalysatoren/) – Warum nicht alle exothermen Reaktionen spontan ablaufen, der Maxwell-Boltzmann-Ansatz, und wie Katalysatoren Reaktionswege verändern.
+- [Energie bei chemischen Reaktionen](/themenbereiche/energetik/energie-bei-reaktionen/) – Chemische Reaktionen speichern oder geben Energie frei. Exotherm → Wärmefreigabe, Endotherm → Wärmeaufnahme.
+- [Kalorimetrie und Enthalpiemessung](/themenbereiche/energetik/kalorimetrie/) – Grundlagen der Kalorimetrie, Bombenkalorimeter, Bestimmung von Enthalpieänderungen, spezifische Wärmekapazität.
+- [Reaktionsenthalpie und Energieprofile](/themenbereiche/energetik/reaktionsenthalpie-und-energieprofile/) – Enthalpiediagramme, Bindungsenergien, Bildungsenthalpien und die Berechnung von Reaktionsenthalpien mit dem Satz von Hess.
+- [Der Satz von Hess](/themenbereiche/energetik/satz-von-hess/) – Die Reaktionsenthalpie ist unabhängig vom Reaktionsweg. Sie kann aus den Bildungsenthalpien der Produkte und Edukte berechnet werden.

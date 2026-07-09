@@ -76,10 +76,10 @@ Die wissenschaftliche Methode ist nicht auf das Labor beschränkt:
 4. Ordne die folgenden Aussagen den Schritten der wissenschaftlichen Methode zu: a) „Kupfer leitet Strom." b) „Ich glaube, Metalle leiten Strom, weil ihre Elektronen frei beweglich sind." c) „Ich messe die elektrische Leitfähigkeit von Kupfer, Eisen und Holz." d) „Kupfer und Eisen leiten, Holz nicht – meine Hypothese ist bestätigt."
 5. Erkläre, warum eine einmalige Beobachtung in der Wissenschaft nicht als Beweis ausreicht. Was muss hinzukommen?
 
+## Verwandte Themen
+
+[Messtechnik und Einheiten](/themenbereiche/einfuehrung-chemie/messtechnik-und-einheiten/) | [Laborgeräte und ihre Handhabung](/themenbereiche/einfuehrung-chemie/laborgeraete-handhabung/) | [Sicherheit im Labor](/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/) | [Was ist Chemie?](/themenbereiche/einfuehrung-chemie/was-ist-chemie/)
+
 ## Zusammenfassung
 
 Die wissenschaftliche Methode – Beobachtung, Hypothese, Experiment, Auswertung – ist das Fundament der Chemie. Kontrollierte Experimente mit Versuchs- und Kontrollgruppe, sorgfältige Dokumentation und Reproduzierbarkeit sichern die Verlässlichkeit der Ergebnisse. Die Methode ist universell: Sie funktioniert im Labor, im Alltag und in der medizinischen Forschung.
-
-## Verwandte Themen
-
-[Messtechnik und Einheiten](/messtechnik-und-einheiten/) | [Laborgeräte und ihre Handhabung](/laborgeraete-handhabung/) | [Sicherheit im Labor](/sicherheit-im-labor/) | [Was ist Chemie?](/was-ist-chemie/)

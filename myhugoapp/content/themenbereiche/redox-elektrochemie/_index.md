@@ -1,14 +1,14 @@
 ---
 title: 'Redoxreaktionen und Elektrochemie'
 description: 'Elektronenübertragungen & Strom aus Reaktionen - alles über Oxidation, Reduktion, galvanische Zellen, Elektrolyse und moderne Batterietechnologie'
-date: 2025-12-26
+date: '2025-12-26'
 teilgebiet: 'redox-elektrochemie'
 schwierigkeit: 'mittelstufe'
 icon: '⚡'
-weight: 60
-interaktiv: true
+weight: '60'
+interaktiv: 'true'
 quiz: 'redox-elektrochemie'
-aliases: [/article/_index/]
+aliases: '[/article/_index/]'
 ---
 
 ## Redoxreaktionen und Elektrochemie
@@ -461,3 +461,9 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Energetik](/themenbereiche/energetik/) – Energieumsatz bei Reaktionen
 - [Reaktionsgleichungen ausgleichen](/reaktionsgleichungen-ausgleichen/) – Interaktives Tool zum Ausgleichen
 - [Gleichgewicht und Geschwindigkeit](/themenbereiche/gleichgewicht-geschwindigkeit/) – Reaktionskinetik
+
+- [Elektrochemische Zellen](/themenbereiche/redox-elektrochemie/elektrochemische-zellen/) – Galvanische Zellen wandeln chemische Energie in elektrische um (Batterien). Elektrolysezellen wandeln elektrische Energie in chemische um (Metallgewinnung).
+- [Elektrolyse und Galvanik](/themenbereiche/redox-elektrochemie/elektrolyse-galvanik/) – Elektrolyse vs. galvanische Zellen, Faradaysche Gesetze, industrielle Anwendungen (Aluminiumherstellung, Galvanisieren).
+- [Korrosion und Korrosionsschutz](/themenbereiche/redox-elektrochemie/korrosion/) – Korrosion ist die unerwünschte Oxidation von Metallen. Grundlagen der elektrochemischen Korrosion und Verfahren des Korrosionsschutzes.
+- [Oxidation und Reduktion](/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/) – Oxidation = Elektronenabgabe, Reduktion = Elektronenaufnahme. Redox-Reaktionen stehen immer zusammen (Redox-Paar).
+- [Spannungsreihe der Elemente](/themenbereiche/redox-elektrochemie/spannungsreihe/) – Die Spannungsreihe ordnet Metalle nach ihrer Fähigkeit, Elektronen abzugeben. Edle Metalle geben schwer, unedle leicht Elektronen ab.

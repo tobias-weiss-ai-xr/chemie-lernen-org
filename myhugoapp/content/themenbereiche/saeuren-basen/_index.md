@@ -1,13 +1,13 @@
 ---
 title: 'Säuren und Basen'
 description: 'Das saure und das basische Milieu - pH-Wert und Neutralisation. Erfahren Sie alles über Säuren, Basen, Puffersysteme und Indikatoren mit interaktiven Tools.'
-date: 2025-12-27
+date: '2025-12-27'
 teilgebiet: 'saeuren-basen'
 schwierigkeit: 'mittelstufe'
 icon: '🔵'
-weight: 50
+weight: '50'
 quiz: 'saeuren-basen'
-aliases: [/article/_index/]
+aliases: '[/article/_index/]'
 ---
 
 ## Säuren und Basen
@@ -336,6 +336,12 @@ pKa = -log₁₀(Ka)
 - **Härte von Säuren und Basen**
 - **Komplexchemie**
 - **Säure-Base-Katalyse**
+
+- [Neutralisation](/themenbereiche/saeuren-basen/neutralisation/) – Säure-Base-Reaktionen, Neutralisationsenthalpie, pH-Wert nach Neutralisation und praktische Anwendungen der Neutralisation in Alltag und Labor.
+- [pH-Wert und Indikatoren](/themenbereiche/saeuren-basen/ph-wert-und-indikatoren/) – Der pH-Wert gibt die Konzentration von $H^+$-Ionen in einer Lösung an. Indikatoren zeigen durch Farbumschlag an, ob sauer oder basisch.
+- [Pufferlösungen](/themenbereiche/saeuren-basen/pufferloesungen/) – Pufferlösungen halten den pH-Wert auch bei Zugabe von Säure oder Base nahezu konstant. Sie bestehen aus einem schwachen Säure-Base-Paar.
+- [Säure-Base-Titration](/themenbereiche/saeuren-basen/saeure-base-titration/) – Titrationstechnik, Indikatorwahl, Titrationskurven und die Bestimmung unbekannter Konzentrationen durch maßanalytische Verfahren.
+- [Säurestärke und pKs-Werte](/themenbereiche/saeuren-basen/saeurestaerke-pks/) – Starke und schwache Säuren, pKs-Werte, Zusammenhang mit dem pH-Wert, Vergleich der Säurestärke anhand von Beispielen.
 
 ## Interaktive Tools
 

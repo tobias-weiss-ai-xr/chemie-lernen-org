@@ -103,11 +103,11 @@ Vervollständige und gleiche aus:
 1. $\ce{Br2 + 2KI -> 2KBr + I2}$ (Iod freigesetzt → braun-violette Färbung)
 2. $\ce{Cl2 + 2NaBr -> 2NaCl + Br2}$ (Brom freigesetzt → orange-braune Färbung)
 
-## Zusammenfassung
-
-Halogene sind sehr reaktive Nichtmetalle mit abnehmender Reaktivität von Fluor zu Iod. Sie bilden mit Metallen Salze (Halogenide) und verdrängen einander aus Verbindungen. Edelgase sind aufgrund der Edelgaskonfiguration meist reaktionsträge, doch schwere Edelgase wie Xenon und Krypton können mit starken Oxidationsmitteln (Fluor, Sauerstoff) Verbindungen eingehen.
-
 ## Verwandte Themen
 
 - [Aufbau der Materie](/themenbereiche/aufbau-materie/) – Atombau und Periodensystem
 - [Säuren, Basen und Salze](/themenbereiche/anorganische-verbindungen/saeuren-basen-salze/) – Halogenwasserstoffsäuren
+
+## Zusammenfassung
+
+Halogene sind sehr reaktive Nichtmetalle mit abnehmender Reaktivität von Fluor zu Iod. Sie bilden mit Metallen Salze (Halogenide) und verdrängen einander aus Verbindungen. Edelgase sind aufgrund der Edelgaskonfiguration meist reaktionsträge, doch schwere Edelgase wie Xenon und Krypton können mit starken Oxidationsmitteln (Fluor, Sauerstoff) Verbindungen eingehen.

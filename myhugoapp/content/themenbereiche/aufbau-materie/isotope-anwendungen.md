@@ -63,12 +63,12 @@ Für ein Molekül wie $\ce{Br2}$ zeigt das Spektrum drei Signale im Verhältnis 
 
 4.  In einem Massenspektrum von Brom ($\ce{Br2}$) erscheinen drei Signale für das Molekülion $\ce{Br2^+}$. Die natürliche Häufigkeit von $\ce{^79Br}$ beträgt 51 % und von $\ce{^81Br}$ 49 %. Berechne das erwartete Intensitätsverhältnis der drei Signale und gib an, welche Brom-Isotopenkombination zu jedem Signal gehört.
 
-## Zusammenfassung
-
-Isotope sind Atome gleicher Ordnungszahl mit unterschiedlicher Neutronenzahl. Die C-14-Datierung nutzt den radioaktiven Zerfall zur Altersbestimmung. Medizinische Isotope ermöglichen Diagnostik und Therapie. Die Massenspektrometrie nutzt Isotopenmuster zur Identifikation von Substanzen. Isotope sind ein zentrales Werkzeug in Chemie, Medizin, Archäologie und Geologie.
-
 ## Verwandte Themen
 
 - [Atome und Moleküle](/themenbereiche/aufbau-materie/atome-und-molekuele/) — Grundlagen des Atombaus
 - [Massenspektrometrie](/themenbereiche/analytische-methoden/massenspektrometrie/) — Analytische Methode
 - [Stöchiometrie-Grundlagen](/themenbereiche/aufbau-materie/stoechiometrie-grundlagen/) — Molare Massen und Stoffmengen
+
+## Zusammenfassung
+
+Isotope sind Atome gleicher Ordnungszahl mit unterschiedlicher Neutronenzahl. Die C-14-Datierung nutzt den radioaktiven Zerfall zur Altersbestimmung. Medizinische Isotope ermöglichen Diagnostik und Therapie. Die Massenspektrometrie nutzt Isotopenmuster zur Identifikation von Substanzen. Isotope sind ein zentrales Werkzeug in Chemie, Medizin, Archäologie und Geologie.

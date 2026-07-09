@@ -75,11 +75,11 @@ Die Synthese neuer Duftstoffe ist eine Herausforderung: Das Molekül muss flüch
 
 5. Ein Parfüm besteht aus Kopf-, Herz- und Basisnote. Ordne folgende Stoffe den Noten zu: Moschus, Limonen, Linalool. Begründe.
 
-## Zusammenfassung
-
-Aromastoffe und Duftstoffe sind flüchtige organische Verbindungen. Die wichtigsten Stoffklassen sind Terpene, Ester, Aldehyde und Ketone. Ätherische Öle liefern natürliche Duftstoffe, viele Aromen werden jedoch synthetisch hergestellt. Ester entstehen durch Veresterung und riechen oft fruchtig. Die Duftstoffchemie verbindet organische Chemie mit Alltagsphänomenen.
-
 ## Verwandte Themen
 
 - [Farbstoffe und Pigmente](/themenbereiche/produkte-organisch/farbstoffe-pigmente/) — Auch Farbstoffe sind organische Verbindungen mit konjugierten Doppelbindungen.
 - [Waschmittel und Tenside](/themenbereiche/produkte-organisch/waschmittel-tenside/) — Tenside sind Amphiphile, die Schmutz und Duftstoffe lösen.
+
+## Zusammenfassung
+
+Aromastoffe und Duftstoffe sind flüchtige organische Verbindungen. Die wichtigsten Stoffklassen sind Terpene, Ester, Aldehyde und Ketone. Ätherische Öle liefern natürliche Duftstoffe, viele Aromen werden jedoch synthetisch hergestellt. Ester entstehen durch Veresterung und riechen oft fruchtig. Die Duftstoffchemie verbindet organische Chemie mit Alltagsphänomenen.

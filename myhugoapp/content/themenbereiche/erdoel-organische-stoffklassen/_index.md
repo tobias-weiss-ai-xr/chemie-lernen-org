@@ -1,14 +1,14 @@
 ---
 title: 'Erdöl und organische Stoffklassen'
 description: 'Einführung in die organische Chemie - Erfahren Sie alles über Erdöl als Rohstoff, Kohlenwasserstoffe, funktionelle Gruppen und organische Stoffklassen'
-date: 2025-12-26
+date: '2025-12-26'
 teilgebiet: 'erdoel-organische-stoffklassen'
 schwierigkeit: 'mittelstufe'
 icon: '🛢️'
-weight: 90
-interaktiv: true
+weight: '90'
+interaktiv: 'true'
 quiz: 'erdoel-organische-stoffklassen'
-aliases: [/article/_index/]
+aliases: '[/article/_index/]'
 ---
 
 ## Erdöl und organische Stoffklassen
@@ -421,3 +421,9 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Produkte der Organischen Chemie](/themenbereiche/produkte-organisch/) – Anwendungen im Alltag
 - [Molekülstudio](/molekuel-studio/) – Interaktive 3D-Modelle
 - [Periodensystem der Elemente](/perioden-system-der-elemente/) – Elemente der organischen Chemie
+
+- [Alkohole und Ether](/themenbereiche/erdoel-organische-stoffklassen/alkohole-ether/) – Lerne alles über Alkohole und Ether: Struktur, Eigenschaften, Herstellung und Anwendungen. Mit praktischen Beispielen und Übungen für Schüler.
+- [Erdölentstehung und -verarbeitung](/themenbereiche/erdoel-organische-stoffklassen/erdoel-entstehung-verarbeitung/) – Erfahre, wie Erdöl entsteht, gefördert und verarbeitet wird und welche Produkte daraus gewonnen werden. Ideal für Schüler und Studierende.
+- [Funktionelle Gruppen in der Organik](/themenbereiche/erdoel-organische-stoffklassen/funktionelle-gruppen/) – Übersicht über wichtige funktionelle Gruppen (Hydroxy-, Carbonyl-, Carboxy-, Aminogruppe), ihre Eigenschaften und Nomenklatur.
+- [Kohlenwasserstoffe](/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/) – Kohlenwasserstoffe sind organische Verbindungen aus Kohlenstoff und Wasserstoff: gesättigte (Alkane), ungesättigte (Alkene, Alkine), aromatische.
+- [Kunststoffe und Polymerisation](/themenbereiche/erdoel-organische-stoffklassen/kunststoffe-polymerisation/) – Synthetische Polymere entstehen durch verschiedene Polymerisationsarten. Mechanismus der radikalischen Kettenpolymerisation, Polykondensation und Polyaddition.

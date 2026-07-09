@@ -62,10 +62,10 @@ Im Schulpraktikum wird die korrekte Handhabung dieser Geräte bei folgenden Stan
 4. Beim Erhitzen einer Flüssigkeit im Reagenzglas mit dem Bunsenbrenner zeigt sich eine gelbe, rußende Flamme. Was ist die Ursache und wie behebst du das Problem?
 5. Warum dürfen brennbare Lösungsmittel nie über einer offenen Flampe erhitzt werden? Nenne zwei Alternativen.
 
+## Verwandte Themen
+
+[Sicherheit im Labor](/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/) | [Messtechnik und Einheiten](/themenbereiche/einfuehrung-chemie/messtechnik-und-einheiten/) | [Was ist Chemie?](/themenbereiche/einfuehrung-chemie/was-ist-chemie/) | [Stoffgemische und Trennverfahren](/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/)
+
 ## Zusammenfassung
 
 Die sichere und präzise Handhabung von Laborgeräten ist die Grundlage jedes Experiments. Bunsenbrenner erfordern Kontrolle der Luftzufuhr; Volumenmessgeräte müssen auf Augenhöhe abgelesen werden; Pipetten werden nie mit dem Mund bedient; Analysenwaagen brauchen eine erschütterungsfreie Umgebung. Wer die Geräte kennt, arbeitet sicherer und erzielt zuverlässigere Ergebnisse.
-
-## Verwandte Themen
-
-[Sicherheit im Labor](/sicherheit-im-labor/) | [Messtechnik und Einheiten](/messtechnik-und-einheiten/) | [Was ist Chemie?](/was-ist-chemie/) | [Stoffgemische und Trennverfahren](/stoffgemische-und-trennverfahren/)
