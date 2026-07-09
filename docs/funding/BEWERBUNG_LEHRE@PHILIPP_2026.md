@@ -10,14 +10,14 @@
 
 Die Chemieausbildung steht vor strukturellen Herausforderungen: Chemische Konzepte wie Molekülgeometrie, Orbitaltheorie, Reaktionskinetik oder Elektrochemie operieren auf einer für Lernende nicht direkt beobachtbaren, submikroskopischen Ebene. Gleichzeitig fehlt es an digitalen Lernressourcen, die (1) wissenschaftlich fundiert, (2) interaktiv und multimodal, (3) kostenfrei und offen zugänglich (OER) sowie (4) datenschutzkonform und werbefrei sind. Kommerzielle Lernplattformen sind oft teuer, intransparent und nicht anpassbar; rein textbasierte Open-Access-Angebote bleiben hinter den didaktischen Möglichkeiten digitaler Medien zurück.
 
-**chemie-lernen.org** schließt diese Lücke durch eine innovative, modular aufgebaute Lernplattform, die in dieser Kombination mehrere neuartige Technologien in einem kohärenten didaktischen Rahmen vereint:
+**chemie-lernen.org** schließt diese Lücke durch eine innovative, modular aufgebaute Lernplattform, die in dieser Kombination mehrere neuartige Technologien in einem kohärenten didaktischen Rahmen vereint. Die Plattform wird in das bestehende **Lehr- und Lernlabor** der Philipps-Universität Marburg integriert – ein etablierter Ort für die Entwicklung und Erprobung innovativer Lehr-Lern-Formate, der Synergien in Infrastruktur, Betreuung und didaktischer Begleitung bietet:
 
-- **Interaktive 3D-Visualisierungen:** Moleküle, Orbitale und das Periodensystem werden mittels Three.js als dreidimensionale, dreh- und zoombare Lernobjekte erlebbar. Geplant ist die Erweiterung zu begehbaren WebXR-Lernräumen – ein innovativer Ansatz im deutschsprachigen Chemieunterricht.
-- **KI-Assistent mit Knowledge Graph:** Ein auf Large Language Models basierender Chatbot (Gemma, betrieben über LiteLLM) beantwortet Chemiefragen in natürlicher Sprache, gestützt auf einen Neo4j-Wissensgraphen mit über 130 chemischen Entitäten. Die Kombination aus generativer KI und strukturiertem Fachwissen ermöglicht kontextbezogene, quellenfundierte Antworten.
-- **Adaptive Gamification & Learning Analytics:** Ein XP-basiertes Levelsystem mit 10 Stufen, Achievements und fortschrittsbasierten Lernpfaden fördert die intrinsische Motivation. Das Klassencockpit gibt Lehrenden Einblick in den Fortschritt ihrer Lerngruppen.
-- **Vollständiges OER-Ökosystem:** Die Plattform ist als Open Source (MIT-Lizenz) auf GitHub veröffentlicht, werbefrei und als Progressive Web App (PWA) offline nutzbar. Sämtliche Inhalte, Rechner, Simulationen und Visualisierungen sind kostenfrei – ohne Registrierung, ohne Tracking.
+- **Interaktive 3D-Visualisierungen:** Moleküle, Orbitale und das Periodensystem werden mittels der 3D-Grafikbibliothek Three.js als dreidimensionale, dreh- und zoombare Lernobjekte erlebbar. Geplant ist die Erweiterung zu begehbaren WebXR-Lernräumen (virtuelle 3D-Umgebungen im Browser) – ein innovativer Ansatz im deutschsprachigen Chemieunterricht.
+- **KI-Assistent mit Wissensnetz:** Ein auf Künstlicher Intelligenz (KI) basierender Chatbot beantwortet Chemiefragen in natürlicher Sprache, gestützt auf ein strukturiertes Wissensnetz (Neo4j-Graphendatenbank) mit über 130 chemischen Entitäten. Die Kombination aus KI und strukturiertem Fachwissen ermöglicht kontextbezogene, quellenfundierte Antworten.
+- **Spielerisches Lernen (Gamification) & Lernstandsanalyse:** Ein Erfahrungspunkte-basiertes Levelsystem mit 10 Stufen, Auszeichnungen und fortschrittsbasierten Lernpfaden fördert die Motivation. Ein Klassencockpit gibt Lehrenden Einblick in den Lernfortschritt ihrer Gruppen.
+- **Vollständiges OER-Ökosystem:** Die Plattform ist als Open Source (MIT-Lizenz) auf GitHub veröffentlicht, werbefrei und als Progressive Web App (PWA) auch offline nutzbar. Sämtliche Inhalte, Rechner, Simulationen und Visualisierungen sind kostenfrei – ohne Registrierung, ohne Tracking.
 
-Was die Lehridee vom bisherigen Vorgehen unterscheidet, ist ihr **ganzheitlicher Ansatz**: Statt isolierter Einzeltools entsteht ein vernetztes Ökosystem, in dem sich interaktive Rechner (pH, Stöchiometrie, Titration, Gasgesetze etc.), Simulationen (Reaktionskinetik, Spektroskopie, Gasgesetze), 3D-Visualisierungen, ein KI-Assistent und ein Wissensnetz gegenseitig ergänzen. Die Lerninhalte sind nach 12 Themenbereichen und 9 Klassenstufen (5–13) strukturiert, mit über 20 Rechnern, 4 Simulationen, 8 Visualisierungen und über 1.500 automatisierten Tests auf einem professionellen CI/CD-Niveau.
+Was die Lehridee vom bisherigen Vorgehen unterscheidet, ist ihr **ganzheitlicher Ansatz**: Statt isolierter Einzeltools entsteht ein vernetztes Ökosystem, in dem sich interaktive Rechner (pH, Stöchiometrie, Titration, Gasgesetze etc.), Simulationen (Reaktionskinetik, Spektroskopie, Gasgesetze), 3D-Visualisierungen, ein KI-Assistent und ein Wissensnetz gegenseitig ergänzen. Die Lerninhalte sind nach 12 Themenbereichen und 9 Klassenstufen (5–13) strukturiert, mit über 20 Rechnern, 4 Simulationen, 8 Visualisierungen und über 1.500 automatisierten Tests auf professionellem Qualitätsniveau.
 
 Die Plattform adressiert damit nicht nur den Bedarf an modernen, digital gestützten Lernformen, sondern liefert eine **produktiv einsetzbare, sofort verfügbare Infrastruktur**, die sich nahtlos in die bestehende Hochschullehre integrieren lässt.
 
@@ -46,22 +46,24 @@ Die Plattform adressiert damit nicht nur den Bedarf an modernen, digital gestüt
 
 ---
 
-## 3. Nachhaltigkeit und Transferpotenzial (1.616 / 2.000 Zeichen)
+## 3. Nachhaltigkeit, Transferpotenzial und Anschlussperspektive (1.950 / 2.000 Zeichen)
 
 **Nachhaltigkeit:**
 
 - **Open Source (MIT-Lizenz):** Der gesamte Quellcode ist auf GitHub öffentlich, forkbar und weiterentwickelbar. Vendor-Lock-in ausgeschlossen.
-- **Statische Architektur:** Hugo-basiert, Auslieferung als reines HTML/JS/CSS ohne serverseitige DB-Abhängigkeit – minimale Betriebskosten, hohe Ausfallsicherheit.
+- **Statische Architektur:** Die Seiten werden mit Hugo (einem Werkzeug zur Erzeugung extrem schneller, statischer Webseiten) vorgefertigt und ohne serverseitige Datenbank ausgeliefert – das spart Kosten und macht die Seite ausfallsicher.
 - **PWA & Offline:** Inhalte dauerhaft offline verfügbar, auch bei schwacher Internetanbindung.
-- **CI/CD:** Über 1.500 Unit-Tests und 330 E2E-Tests sichern dauerhafte Funktionsfähigkeit.
+- **CI/CD:** Über 1.500 automatische Unit-Tests und 330 Browsertests sichern dauerhafte Funktionsfähigkeit.
 
 **Transferpotenzial:**
 
 - **Fachübergreifend:** Der technische Aufbau (Hugo + interaktive JS-Module + PWA) ist fachunabhängig und direkt auf Physik, Biologie oder Mathematik übertragbar.
 - **Curriculare Skalierung:** Modular aufgebaute Themenbereiche – neue Inhalte werden als Markdown-Dateien ergänzt, Rechner und Simulationen sind wiederverwendbare Webkomponenten.
-- **Wissensnetz:** Der Neo4j-Graph ist auf andere Domänen übertragbar, über Entity-Detailseiten und D3.js-Visualisierung erschließbar.
+- **Wissensnetz:** Das Neo4j-Wissensnetz ist auf andere Fächer übertragbar und über Detailseiten sowie interaktive Netzwerkgraphen erschließbar.
 - **Offene Bildungsressourcen:** Die Materialien können von anderen Hochschulen und Schulen übernommen und angepasst werden. Eine Übertragung auf andere Fachbereiche der UMR (Medizin, Pharmazie, Biologie) ist explizit erwünscht.
-- **Didaktisches Transfermodell:** Das integrierte Gamification-Konzept mit XP-System, fortschrittsbasierten Lernpfaden und Learning Analytics ist als didaktisches Framework auf andere Fachkontexte übertragbar. Der KI-Assistent demonstriert, wie generative KI mit strukturierten Wissensgraphen verbunden werden kann – ein Ansatz, der auch für andere Disziplinen modellhaft wirkt.
+- **Didaktisches Transfermodell:** Das spielerische Lernkonzept (Gamification) mit Erfahrungspunkten, fortschrittsbasierten Lernpfaden und Lernstandsanalyse ist als Rahmen auf andere Fächer übertragbar. Der KI-Assistent zeigt, wie KI mit strukturiertem Fachwissen verbunden werden kann – ein Ansatz, der auch für andere Disziplinen modellhaft wirkt.
+
+**Anschlussperspektive nach der Förderung:** Nach Ablauf der Lehre@Philipp-Förderung ist der Plattformbetrieb durch die effiziente, statische Webseiten-Architektur bereits zu sehr geringen Kosten (< 100 €/Monat) langfristig gesichert. Für den weiteren inhaltlichen und technischen Ausbau sind Anschlussförderungen vorgesehen – insbesondere über den **Stifterverband** (Fellowship für Innovationen in der Hochschullehre), die **DFG** (Fachdidaktik/E-Learning), das **BMBF** (Förderlinie Digitale Hochschulbildung) sowie das **MWK Hessen**. Parallel wird ein Crowdfunding-Modell über Open-Source-Plattformen (Open Collective, GitHub Sponsors) aufgebaut, um eine von institutionellen Förderzyklen unabhängige Weiterentwicklung zu ermöglichen. Die offene MIT-Lizenz erlaubt zudem, dass die Plattform auch ohne zentrale Koordination von der Community weiterentwickelt werden kann.
 
 ---
 
@@ -75,7 +77,7 @@ Die Wirksamkeit wird auf mehreren Ebenen gemessen:
 
 **3. Qualitative Evaluation:** Regelmäßige Befragung von Dozierenden über das Klassencockpit; optionale Kurzumfragen zur User Experience (System Usability Scale) und wahrgenommenen Lernwirksamkeit; leitfadengestützte Interviews mit ausgewählten Nutzergruppen.
 
-**4. Technische Qualitätssicherung:** Über 1.500 automatisierte Unit-Tests und 330 E2E-Tests über 3 Browser (Chromium, Firefox, WebKit) bei jeder Änderung. Performance-Budget-Überwachung und regelmäßige Barrierefreiheits-Checks (Kontrast, Fokus-Indikatoren, Screenreader-Tests).
+**4. Technische Qualitätssicherung:** Über 1.500 automatisierte Unit-Tests und 330 Browser-Tests über 3 Browser (Chromium, Firefox, WebKit) bei jeder Änderung. Performance-Budget-Überwachung und regelmäßige Barrierefreiheits-Checks (Kontrast, Fokus-Indikatoren, Screenreader-Tests).
 
 Die Ergebnisse werden jährlich in einem transparenten Evaluationsbericht veröffentlicht.
 
@@ -83,7 +85,9 @@ Die Ergebnisse werden jährlich in einem transparenten Evaluationsbericht veröf
 
 ## 5. Unterstützung aus anderen Quellen (791 / 1.000 Zeichen)
 
-Die Plattform **chemie-lernen.org** wird aktuell aus Eigenmitteln betrieben und entwickelt. Es bestehen keine Förderungen aus Drittmitteln, Preisen oder anderen öffentlichen Programmen. Die Infrastruktur (Server, Domains) wird privat finanziert; die LLM-API-Kosten für den KI-Assistenten werden aus den Betriebsmitteln gedeckt.
+Die Plattform **chemie-lernen.org** wird aktuell aus Eigenmitteln betrieben und entwickelt. Es bestehen keine Förderungen aus Drittmitteln, Preisen oder anderen öffentlichen Programmen. Die Infrastruktur (Server, Domains) wird privat finanziert; die Betriebskosten für den KI-Assistenten (KI-API) werden aus den Betriebsmitteln gedeckt.
+
+Die Integration in das **Lehr- und Lernlabor** der Philipps-Universität Marburg bringt wesentliche Synergien: Die dortige VR/AR-Entwicklungsumgebung sowie bestehende Test- und Evaluationsinfrastruktur können mitgenutzt werden. Dies reduziert den erforderlichen Gerätebedarf erheblich – so entfällt etwa die Anschaffung separater VR-Headsets – und erlaubt eine Konzentration der Fördermittel auf die für die immersive Lernraumentwicklung benötigten leistungsstarken Entwicklungsrechner.
 
 Eine Unterstützung erfolgt derzeit ausschließlich über freiwillige Spenden (Liberapay, Patreon), jedoch ohne nennenswerte regelmäßige Einnahmen.
 
@@ -93,11 +97,11 @@ Eine Förderung durch Lehre@Philipp wäre die **erste öffentliche Förderung** 
 
 ## 6. Weitere Bemerkungen (959 / 1.000 Zeichen)
 
-**chemie-lernen.org** ist kein Konzeptpapier – die Plattform ist **produktiv im Einsatz** und unter https://chemie-lernen.org/ frei zugänglich. Alle beschriebenen Module sind live: 12 Themenbereiche, über 20 interaktive Rechner, 4 Simulationen, 3D-Visualisierungen (Three.js), der KI-Assistent mit Knowledge-Graph-Anbindung (Neo4j), Gamification-System, PWA-Offline-Modus und das Klassencockpit für Lehrende.
+**chemie-lernen.org** ist kein Konzeptpapier – die Plattform ist **produktiv im Einsatz** und unter https://chemie-lernen.org/ frei zugänglich. Alle beschriebenen Module sind live: 12 Themenbereiche, über 20 interaktive Rechner, 4 Simulationen, 3D-Visualisierungen (Three.js), der KI-Assistent mit Wissensnetz-Anbindung (Neo4j), Gamification-System, PWA-Offline-Modus und das Klassencockpit für Lehrende.
 
 Die technische Infrastruktur (CI/CD, automatisiertes Deployment, Docker-Container) ist vollständig dokumentiert und reproduzierbar. Der gesamte Quellcode ist auf GitHub unter MIT-Lizenz veröffentlicht.
 
-Die Plattform wird kontinuierlich weiterentwickelt (letztes Update: Juni 2026). Die Roadmap sieht für Q3/Q4 2026 die Vertiefung des KI-Assistenten, die Erweiterung der Themenbereiche auf 3–5 Artikel pro Bereich und die Verbesserung der Barrierefreiheit (WCAG 2.1 AA) vor – alles Bereiche, die durch die Förderung deutlich beschleunigt werden könnten.
+Die Plattform wird kontinuierlich weiterentwickelt (letztes Update: Juni 2026). Die Roadmap sieht für Q3/Q4 2026 die Vertiefung des KI-Assistenten, die Erweiterung der Themenbereiche auf 3–5 Artikel pro Bereich und die Verbesserung der Barrierefreiheit (WCAG 2.1 AA) vor – alles Bereiche, die durch die Förderung deutlich beschleunigt werden könnten. Die Integration in das **Lehr- und Lernlabor** der Philipps-Universität Marburg schafft dabei den idealen Rahmen für die curriculare Einbettung und didaktische Begleitung der neu entwickelten immersiven Lernräume.
 
 ---
 
@@ -119,44 +123,43 @@ Die Plattform wird kontinuierlich weiterentwickelt (letztes Update: Juni 2026). 
 
 | Pos.  | Beschreibung                                              |     Menge | Einzelpreis |          Gesamt |
 | ----- | --------------------------------------------------------- | --------: | ----------: | --------------: |
-| **1** | **Studentische Hilfskräfte**                              |           |             |  **9.542,40 €** |
-| 1.1   | SHK – Inhaltserstellung (8 h/Woche × 12 Monate)           |     384 h |     14,20 € |      5.452,80 € |
-| 1.2   | SHK – 3D/WebXR-Entwicklung (8 h/Woche × 6 Monate)         |     192 h |     14,20 € |      2.726,40 € |
+| **1** | **Studentische Hilfskräfte**                              |           |             |  **7.156,80 €** |
+| 1.1   | SHK – Inhaltserstellung (6 h/Woche × 12 Monate)           |     288 h |     14,20 € |      4.089,60 € |
+| 1.2   | SHK – 3D/WebXR-Entwicklung (5 h/Woche × 6 Monate)         |     120 h |     14,20 € |      1.704,00 € |
 | 1.3   | SHK – Barrierefreiheit & Testing (4 h/Woche × 6 Monate)   |      96 h |     14,20 € |      1.363,20 € |
-|       | _Zwischensumme SHK_                                       |           |             |    _9.542,40 €_ |
-| **2** | **Infrastruktur & Betrieb**                               |           |             |  **2.400,00 €** |
+|       | _Zwischensumme SHK_                                       |           |             |    _7.156,80 €_ |
+| **2** | **Infrastruktur & Betrieb**                               |           |             |  **2.410,00 €** |
 | 2.1   | Server & Hosting                                          | 12 Monate |     20,00 € |        240,00 € |
-| 2.2   | LLM-API-Kosten (KI-Assistent)                             | 12 Monate |     50,00 € |        600,00 € |
+| 2.2   | KI-API-Kosten (KI-Assistent)                              | 12 Monate |     50,00 € |        600,00 € |
 | 2.3   | Domain & SSL                                              |    1 Jahr |     10,00 € |         10,00 € |
-| 2.4   | CDN & Optimierung (BunnyCDN)                              | 12 Monate |     30,00 € |        360,00 € |
+| 2.4   | Content Delivery Network (CDN) & Optimierung (BunnyCDN)   | 12 Monate |     30,00 € |        360,00 € |
 | 2.5   | WebXR-Hosting & 3D-Infrastruktur                          | 12 Monate |    100,00 € |      1.200,00 € |
-|       | _Zwischensumme Infrastruktur_                             |           |             |    _2.400,00 €_ |
-| **3** | **Geräte & Software**                                     |           |             |  **2.000,00 €** |
-| 3.1   | VR-Headset (Meta Quest 3) für Entwicklung & Test          |    1 Stk. |    450,00 € |        450,00 € |
-| 3.2   | Barrierefreiheit-Test-Suite (Screenreader, Testendgeräte) |    1 Satz |    600,00 € |        600,00 € |
-| 3.3   | 3D-Modell-Lizenzen (Science-Modelle für VR-Räume)         |    1 Satz |    250,00 € |        250,00 € |
-| 3.4   | Sprachsynthese/Spracherkennung (Accessibility-Lizenzen)   |    1 Satz |    200,00 € |        200,00 € |
-| 3.5   | Reserve für unvorhergesehene Lizenzkosten                 |   1 Psch. |    500,00 € |        500,00 € |
-|       | _Zwischensumme Geräte & Software_                         |           |             |    _2.000,00 €_ |
-| **4** | **Öffentlichkeitsarbeit & Transfer**                      |           |             |    **900,00 €** |
-| 4.1   | Druck Lehrmaterialien und Flyer                           |   1 Psch. |    300,00 € |        300,00 € |
-| 4.2   | Workshop/Schulung für Lehrende (Raummiete, Catering)      |   1 Psch. |    400,00 € |        400,00 € |
-| 4.3   | Tagungsbeitrag (Tag der Lehre, GDCP-Tagung)               |   1 Psch. |    200,00 € |        200,00 € |
-|       | _Zwischensumme Öffentlichkeitsarbeit_                     |           |             |      _900,00 €_ |
-|       | **Gesamtsumme (netto)**                                   |           |             | **14.842,40 €** |
+|       | _Zwischensumme Infrastruktur_                             |           |             |    _2.410,00 €_ |
+| **3** | **Geräte & Software**                                     |           |             |  **5.150,00 €** |
+| 3.1   | VR-Entwicklungs-Workstation 1 (PC i7/RTX 4070/32GB/1TB + 27" Monitor + Maus/Tastatur) | 1 Stk. | 2.250,00 € | 2.250,00 € |
+| 3.2   | VR-Entwicklungs-Workstation 2 (PC i7/RTX 4070/32GB/1TB + 27" Monitor + Maus/Tastatur) | 1 Stk. | 2.250,00 € | 2.250,00 € |
+| 3.3   | Barrierefreiheit-Test-Suite (Screenreader, Testendgeräte) |    1 Satz |    600,00 € |        600,00 € |
+| 3.4   | 3D-Modell-Lizenzen (Science-Modelle für VR-Räume)         |    1 Satz |     50,00 € |         50,00 € |
+|       | _Zwischensumme Geräte & Software_                         |           |             |    _5.150,00 €_ |
+| **4** | **Öffentlichkeitsarbeit & Transfer**                      |           |             |    **280,00 €** |
+| 4.1   | Druck Lehrmaterialien und Flyer                           |   1 Psch. |     50,00 € |         50,00 € |
+| 4.2   | Workshop/Schulung für Lehrende (Raummiete, Catering)      |   1 Psch. |    130,00 € |        130,00 € |
+| 4.3   | Tagungsbeitrag (Tag der Lehre, GDCP-Tagung)               |   1 Psch. |    100,00 € |        100,00 € |
+|       | _Zwischensumme Öffentlichkeitsarbeit_                     |           |             |      _280,00 €_ |
+|       | **Gesamtsumme (netto)**                                   |           |             | **14.996,80 €** |
 |       | Förderhöchstbetrag                                        |           |             |     15.000,00 € |
-|       | **Differenz zum Höchstbetrag**                            |           |             |    **157,60 €** |
+|       | **Differenz zum Höchstbetrag**                            |           |             |        **3,20 €** |
 
 ### 7.3 Begründung der Mittelverwendung
 
-Die beantragten Mittel in Höhe von 14.842,40 € verteilen sich auf vier Bereiche:
+Die beantragten Mittel in Höhe von 14.996,80 € verteilen sich auf vier Bereiche:
 
-**1. Studentische Hilfskräfte (9.542 € / 64 %):** Den größten Anteil bilden studentische Hilfskräfte. Eine SHK erstellt über 12 Monate vertiefende curriculare Inhalte und Übungsmaterialien. Eine zweite SHK entwickelt über 6 Monate neue 3D-Lernräume (Three.js/WebXR). Eine dritte SHK kümmert sich über 6 Monate um Barrierefreiheit und Testautomatisierung. Alle SHKs arbeiten unter fachlicher Anleitung und sammeln wertvolle Erfahrungen in der digitalen Hochschullehre. Die Vergütung orientiert sich am offiziellen SHK-Tarif der UMR (14,20 €/h).
+**1. Studentische Hilfskräfte (7.157 € / 48 %):** Den größten Anteil bilden studentische Hilfskräfte. Eine SHK erstellt über 12 Monate vertiefende curriculare Inhalte und Übungsmaterialien (6 h/Woche). Eine zweite SHK entwickelt über 6 Monate neue 3D-Lernräume (5 h/Woche) auf Basis von WebXR-Technologie. Eine dritte SHK kümmert sich über 6 Monate um Barrierefreiheit und Testautomatisierung. Alle SHKs arbeiten unter fachlicher Anleitung und sammeln wertvolle Erfahrungen in der digitalen Hochschullehre. Die Vergütung orientiert sich am offiziellen SHK-Tarif der UMR (14,20 €/h).
 
-**2. Infrastruktur & Betrieb (2.400 € / 16 %):** Die Plattform basiert auf einer effizienten statischen Hugo-Architektur, daher sind die Serverkosten niedrig. Der größte Infrastrukturposten ist das Hosting für 3D/WebXR-Lernräume. Die LLM-API-Kosten decken den Betrieb des KI-Assistenten.
+**2. Infrastruktur & Betrieb (2.410 € / 16 %):** Die Plattform basiert auf einer effizienten statischen Webseiten-Architektur (Hugo), daher sind die Serverkosten niedrig (20 €/Monat). Das WebXR-Hosting für die 3D-Lernräume ist mit 100 €/Monat der größte Infrastrukturposten. Die KI-API-Kosten decken den Betrieb des KI-Assistenten.
 
-**3. Geräte & Software (2.000 € / 14 %):** Ein VR-Headset (Meta Quest 3) wird für die Entwicklung und das Testen immersiver Lernerfahrungen benötigt. Testgeräte und -software für die Barrierefreiheit stellen sicher, dass die Plattform WCAG 2.1 AA-Standards erfüllt. 3D-Modell-Lizenzen (Open-Source-kompatibel) erweitern die Visualisierungsbibliothek.
+**3. Geräte & Software (5.150 € / 34 %):** Zwei leistungsstarke VR-Entwicklungs-Workstations (PC mit Intel Core i7/AMD Ryzen 7, NVIDIA RTX 4070, 32 GB RAM, 1 TB SSD) inklusive 27" WQHD-Monitor, Tastatur und Maus werden für die Entwicklung immersiver 3D-Lernräume beschafft. Die Preise basieren auf aktuellen Marktpreisen (z. B. Hyrican GAMEMAX Diamond i7-14700F/RTX 4070 für ca. 2.079 € zzgl. Monitor und Peripherie). Anders als VR-Brillen (Meta Quest 3), die im Lehr- und Lernlabor bereits verfügbar sind, müssen die leistungsstarken Entwicklungsrechner zusätzlich beschafft werden – sie sind das zentrale Arbeitsgerät für die SHKs und den Projektleiter. Testgeräte und -software für die Barrierefreiheit stellen sicher, dass die Plattform WCAG 2.1 AA-Standards erfüllt.
 
-**4. Öffentlichkeitsarbeit & Transfer (900 € / 6 %):** Workshops für Lehrende der UMR, gedruckte Begleitmaterialien sowie die Vorstellung der Ergebnisse auf dem Tag der Lehre und Fachtagungen (z. B. GDCP) stellen die Bekanntheit und nachhaltige Verankerung der Plattform sicher.
+**4. Öffentlichkeitsarbeit & Transfer (280 € / 2 %):** Workshops und die Vorstellung der Ergebnisse auf dem Tag der Lehre und Fachtagungen (z. B. GDCP) stellen die Bekanntheit und nachhaltige Verankerung der Plattform sicher. Die Rauminfrastruktur wird durch das Lehr- und Lernlabor bereitgestellt, sodass hier nur Catering-Kosten anfallen.
 
-**Gesamtsumme:** 14.842,40 € (unter dem Förderhöchstbetrag von 15.000,00 €)
+Die beantragte Förderung würde es ermöglichen, die bestehende Lernplattform chemie-lernen.org gezielt um immersive 3D-Lernräume und barrierefreie Zugänge zu erweitern und sie dauerhaft in der Hochschullehre der Philipps-Universität Marburg zu verankern.
