@@ -110,3 +110,10 @@ Chemische Zusätze, die die Korrosion verlangsamen:
 2. Warum schützt eine Zinkschicht Stahl, obwohl Zink unedler ist?
 3. Berechnen Sie die Zellspannung eines Lokalelements aus Eisen und Kupfer in einer sauren Lösung ($pH = 3$, $c(Fe^{2+}) = 10^{-5}\ \pu{mol/L}$).
 4. Beschreiben Sie, warum Aluminium trotz seines geringen Standardpotentials nicht spontan korrodiert.
+
+## Verwandte Themen
+
+- [Elektrochemische Zellen](/themenbereiche/redox-elektrochemie/elektrochemische-zellen/) – Galvanische Zellen wandeln chemische Energie in elektrische um (Batterien). Elektrolysezellen wandeln elektrische Energie in chemische um (Metallgewinnung).
+- [Elektrolyse und Galvanik](/themenbereiche/redox-elektrochemie/elektrolyse-galvanik/) – Elektrolyse vs. galvanische Zellen, Faradaysche Gesetze, industrielle Anwendungen (Aluminiumherstellung, Galvanisieren).
+- [Oxidation und Reduktion](/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/) – Oxidation = Elektronenabgabe, Reduktion = Elektronenaufnahme. Redox-Reaktionen stehen immer zusammen (Redox-Paar).
+- [Spannungsreihe der Elemente](/themenbereiche/redox-elektrochemie/spannungsreihe/) – Die Spannungsreihe ordnet Metalle nach ihrer Fähigkeit, Elektronen abzugeben. Edle Metalle geben schwer, unedle leicht Elektronen ab.

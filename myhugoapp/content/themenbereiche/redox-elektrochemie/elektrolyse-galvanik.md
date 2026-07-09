@@ -84,6 +84,13 @@ $\ce{2 H2O -> 2 H2 + O2}$ mit $E_{\text{min}} = 1{,}23\ \mathrm{V}$. Reale Zelle
 
 3. (1) Galvanisch: spontan, Elektrolyse: erzwungen. (2) Galvanisch: $E > 0$, Elektrolyse: $E < 0$. (3) Galvanisch: Anode (−), Kathode (+); Elektrolyse: Anode (+), Kathode (−).
 
+## Verwandte Themen
+
+- [Elektrochemische Zellen](/themenbereiche/redox-elektrochemie/elektrochemische-zellen/) – Galvanische Zellen wandeln chemische Energie in elektrische um (Batterien). Elektrolysezellen wandeln elektrische Energie in chemische um (Metallgewinnung).
+- [Korrosion und Korrosionsschutz](/themenbereiche/redox-elektrochemie/korrosion/) – Korrosion ist die unerwünschte Oxidation von Metallen. Grundlagen der elektrochemischen Korrosion und Verfahren des Korrosionsschutzes.
+- [Oxidation und Reduktion](/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/) – Oxidation = Elektronenabgabe, Reduktion = Elektronenaufnahme. Redox-Reaktionen stehen immer zusammen (Redox-Paar).
+- [Spannungsreihe der Elemente](/themenbereiche/redox-elektrochemie/spannungsreihe/) – Die Spannungsreihe ordnet Metalle nach ihrer Fähigkeit, Elektronen abzugeben. Edle Metalle geben schwer, unedle leicht Elektronen ab.
+
 ## Zusammenfassung
 
 **Galvanische Zellen** liefern nutzbare elektrische Energie aus spontanen Redoxreaktionen. **Elektrolysezellen** nutzen elektrische Energie, um un-freiwillige Redoxreaktionen zu erzwingen. Die **Faradayschen Gesetze** verknüpfen Stromstärke, Zeit und abgeschiedene Stoffmenge. Industrielle Anwendungen der Elektrolyse umfassen die Aluminiumgewinnung, Galvanisieren und die Wasserstoffherstellung.

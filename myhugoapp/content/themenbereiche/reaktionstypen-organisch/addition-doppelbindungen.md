@@ -91,6 +91,14 @@ $$
 
 4. **Mechanismus zeichnen:** Zeichne den vollständigen Mechanismus der Bromierung von cis-2-Buten. Zeige, dass die Reaktion anti-stereospezifisch ist.
 
+## Verwandte Themen
+
+- [Eliminierung und Umlagerung](/themenbereiche/reaktionstypen-organisch/eliminierung-umlagerung/) – Fortgeschrittene Reaktionstypen in der Organik: Eliminierungen (Abspaltung von Gruppen) und Umlagerungen (innere Molekülumbauten) mit Beispielen.
+- [Eliminierungsreaktionen: E1- und E2-Mechanismen](/themenbereiche/reaktionstypen-organisch/eliminierungsreaktionen/) – Eliminierungsreaktionen führen zur Bildung von Doppelbindungen. Die Mechanismen E1 und E2 unterscheiden sich in Kinetik, Übergangszustand und Produktselektivität.
+- [Nukleophile Substitution (SN1 und SN2)](/themenbereiche/reaktionstypen-organisch/nukleophile-substitution/) – SN1- und SN2-Mechanismen: Kinetik, Stereochemie, Lösungsmitteleffekte, Abgangsgruppen und Substrateinfluss.
+- [Oxidation und Reduktion in der Organik](/themenbereiche/reaktionstypen-organisch/oxidation-reduktion-organik/) – Oxidations- und Reduktionsreaktionen in der organischen Chemie: Von Alkoholen zu Aldehyden, Ketonen und Carbonsäuren. Mechanismen und Beispiele.
+- [Substitution und Addition](/themenbereiche/reaktionstypen-organisch/substitution-und-addition/) – Die wichtigsten Reaktionstypen in der organischen Chemie: Addition (Doppelbindung öffnet sich) und Substitution (ein Atom wird ersetzt).
+
 ## Zusammenfassung
 
 Die Addition an Doppelbindungen ist die Schlüsselreaktion der Alkene. Die elektrophile Addition folgt meist der Markovnikov-Regel, die sich aus der Carbeniumion-Stabilität ergibt. Bromierung verläuft anti-stereospezifisch über Bromonium-Ionen. Die katalytische Hydrierung ist syn-selektiv. Unter radikalischen Bedingungen kann Anti-Markovnikov-Produkte erhalten werden. Die Wahl des Reagens bestimmt Regio- und Stereoselektivität der Addition.

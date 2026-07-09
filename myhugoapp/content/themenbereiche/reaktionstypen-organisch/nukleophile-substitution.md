@@ -85,6 +85,14 @@ Aprotische Lösungsmittel (Aceton, DMF, DMSO) solvatisieren Kationen nicht über
 
 4. **Abgangsgruppen:** Begründe, warum $\ce{F-}$ eine schlechte Abgangsgruppe ist, während $\ce{I-}$ exzellent ist. Ziehe die Konzepte Basenstärke und Polarisierbarkeit heran.
 
+## Verwandte Themen
+
+- [Addition an Doppelbindungen](/themenbereiche/reaktionstypen-organisch/addition-doppelbindungen/) – Elektrophile Addition an Alkene, Markovnikov-Regel, Hydrierung, Halogenierung, Hydratation – Mechanismen und Beispiele.
+- [Eliminierung und Umlagerung](/themenbereiche/reaktionstypen-organisch/eliminierung-umlagerung/) – Fortgeschrittene Reaktionstypen in der Organik: Eliminierungen (Abspaltung von Gruppen) und Umlagerungen (innere Molekülumbauten) mit Beispielen.
+- [Eliminierungsreaktionen: E1- und E2-Mechanismen](/themenbereiche/reaktionstypen-organisch/eliminierungsreaktionen/) – Eliminierungsreaktionen führen zur Bildung von Doppelbindungen. Die Mechanismen E1 und E2 unterscheiden sich in Kinetik, Übergangszustand und Produktselektivität.
+- [Oxidation und Reduktion in der Organik](/themenbereiche/reaktionstypen-organisch/oxidation-reduktion-organik/) – Oxidations- und Reduktionsreaktionen in der organischen Chemie: Von Alkoholen zu Aldehyden, Ketonen und Carbonsäuren. Mechanismen und Beispiele.
+- [Substitution und Addition](/themenbereiche/reaktionstypen-organisch/substitution-und-addition/) – Die wichtigsten Reaktionstypen in der organischen Chemie: Addition (Doppelbindung öffnet sich) und Substitution (ein Atom wird ersetzt).
+
 ## Zusammenfassung
 
 SN2 und SN1 sind die beiden Grenzfälle der nukleophilen Substitution. SN2 ist ein konzertierter, bimolekularer Prozess mit stereochemischer Inversion, begünstigt an primären Zentren in aprotischen Medien. SN1 verläuft zweistufig über ein Carbeniumion mit planiem Zwischenzustand, was zu Racemisierung führt; er wird an tertiären Zentren und in protischen Lösungsmitteln beobachtet. Die Wahl des Reaktionswegs wird durch Substrat, Abgangsgruppe, Nukleophil und Lösungsmittel bestimmt.

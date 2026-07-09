@@ -90,3 +90,11 @@ $$
 1. Welche Verbindung entsteht bei der Oxidation von 2-Propanol? Zeichne die Reaktionsgleichung.
 2. Erkläre den Unterschied zwischen primären, sekundären und tertiären Alkoholen in Bezug auf ihre Oxidierbarkeit.
 3. Welches Produkt entsteht bei der Reduktion von Aceton mit $\ce{NaBH4}$?
+
+## Verwandte Themen
+
+- [Addition an Doppelbindungen](/themenbereiche/reaktionstypen-organisch/addition-doppelbindungen/) – Elektrophile Addition an Alkene, Markovnikov-Regel, Hydrierung, Halogenierung, Hydratation – Mechanismen und Beispiele.
+- [Eliminierung und Umlagerung](/themenbereiche/reaktionstypen-organisch/eliminierung-umlagerung/) – Fortgeschrittene Reaktionstypen in der Organik: Eliminierungen (Abspaltung von Gruppen) und Umlagerungen (innere Molekülumbauten) mit Beispielen.
+- [Eliminierungsreaktionen: E1- und E2-Mechanismen](/themenbereiche/reaktionstypen-organisch/eliminierungsreaktionen/) – Eliminierungsreaktionen führen zur Bildung von Doppelbindungen. Die Mechanismen E1 und E2 unterscheiden sich in Kinetik, Übergangszustand und Produktselektivität.
+- [Nukleophile Substitution (SN1 und SN2)](/themenbereiche/reaktionstypen-organisch/nukleophile-substitution/) – SN1- und SN2-Mechanismen: Kinetik, Stereochemie, Lösungsmitteleffekte, Abgangsgruppen und Substrateinfluss.
+- [Substitution und Addition](/themenbereiche/reaktionstypen-organisch/substitution-und-addition/) – Die wichtigsten Reaktionstypen in der organischen Chemie: Addition (Doppelbindung öffnet sich) und Substitution (ein Atom wird ersetzt).

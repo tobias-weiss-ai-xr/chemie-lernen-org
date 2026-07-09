@@ -72,3 +72,26 @@ Platinkatalysator beschleunigt die Reaktion. Ethen ($C_2H_4$) wird zu Ethan ($C_
 - **Pharmaindustrie:** Arzneimittelsynthese basiert auf gezielter Substitution (z. B. Umwandlung von Alkoholen zu Estern)
 - **Kunststoffproduktion:** Additionspolymerisation von Ethen zu Polyethylen ($n\,C_2H_4 \rightarrow [-CH_2-CH_2-]_n$)
 - **Tageschemie:** Bromierung von Alkenen (Schwimmbadwasser), Nitrierung von Aromaten (Sprengstoffe, Farbstoffe)
+
+## Übungen
+
+1. Klassifiziere die folgenden Reaktionen als Substitution oder Addition. Begründe kurz.
+   a) $CH_4 + Cl_2 \xrightarrow{UV} CH_3Cl + HCl$
+   b) $C_2H_4 + Br_2 \rightarrow C_2H_4Br_2$
+   c) $C_6H_6 + HNO_3 \xrightarrow{H_2SO_4} C_6H_5NO_2 + H_2O$
+
+2. Vervollständige die folgende Additionsreaktion und benenne das Produkt: $CH_3-CH=CH_2 + HBr \rightarrow \text{?}$. Wende die Markownikow-Regel an.
+
+3. Erkläre den Mechanismus der radikalischen Substitution am Methan. Zeige die drei Schritte (Start, Propagation, Termination) mit Elektronenformeln.
+
+4. Warum ist die radikalische Substitution bei längeren Alkanen ($n$-Butan) nicht regioselektiv? Welche Produkte entstehen bei der Chlorierung von $n$-Butan?
+
+5. Ein unbekannter Kohlenwasserstoff entfärbt Bromwasser ($Br_2$) in einer $CCl_4$-Lösung. Handelt es sich um ein Alkan oder ein Alken? Begründe mit der Reaktionsgleichung.
+
+## Verwandte Themen
+
+- [Addition an Doppelbindungen](/themenbereiche/reaktionstypen-organisch/addition-doppelbindungen/) – Elektrophile Addition an Alkene, Markovnikov-Regel, Hydrierung, Halogenierung, Hydratation – Mechanismen und Beispiele.
+- [Eliminierung und Umlagerung](/themenbereiche/reaktionstypen-organisch/eliminierung-umlagerung/) – Fortgeschrittene Reaktionstypen in der Organik: Eliminierungen (Abspaltung von Gruppen) und Umlagerungen (innere Molekülumbauten) mit Beispielen.
+- [Eliminierungsreaktionen: E1- und E2-Mechanismen](/themenbereiche/reaktionstypen-organisch/eliminierungsreaktionen/) – Eliminierungsreaktionen führen zur Bildung von Doppelbindungen. Die Mechanismen E1 und E2 unterscheiden sich in Kinetik, Übergangszustand und Produktselektivität.
+- [Nukleophile Substitution (SN1 und SN2)](/themenbereiche/reaktionstypen-organisch/nukleophile-substitution/) – SN1- und SN2-Mechanismen: Kinetik, Stereochemie, Lösungsmitteleffekte, Abgangsgruppen und Substrateinfluss.
+- [Oxidation und Reduktion in der Organik](/themenbereiche/reaktionstypen-organisch/oxidation-reduktion-organik/) – Oxidations- und Reduktionsreaktionen in der organischen Chemie: Von Alkoholen zu Aldehyden, Ketonen und Carbonsäuren. Mechanismen und Beispiele.
