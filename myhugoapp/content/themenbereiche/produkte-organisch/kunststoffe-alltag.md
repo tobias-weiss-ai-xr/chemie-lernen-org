@@ -65,15 +65,17 @@ Durch Verwitterung und Abrieb zerfallen Kunststoffe in Partikel < 5 mm. Mikropla
 
 Kunststoffe basieren überwiegend auf Erdöl. Die Herstellung von 1 kg PE verbraucht etwa 2 kg Erdöl und setzt rund 3 kg $\ce{CO2}$ frei. Die Verbrennung von Kunststoffabfällen in Müllverbrennungsanlagen trägt zusätzlich zu den Treibhausgasemissionen bei.
 
-## Praktische Übungen
+## Übungen
 
-**Übung 1: Dichtetrennung**
+1.  Identifiziere zu jedem der folgenden Alltagsgegenstände den wahrscheinlich verwendeten Kunststoff (PE, PP, PVC, PET oder PS) und begründe deine Wahl anhand von Eigenschaften: (a) Getränkeflasche, (b) Fensterrahmen, (c) Joghurtbecher, (d) Styropor-Verpackung, (e) Tragetasche aus dem Supermarkt.
 
-Gib Proben von PE, PP, PVC, PET und PS in Wasser. Welche schwimmen, welche sinken? (PE und PP: $\rho < 1$ g/cm³ → schwimmen; PVC und PET: $\rho > 1$ g/cm³ → sinken)
+2.  Formuliere die Reaktionsgleichung für die radikalische Polymerisation von Ethen zu Polyethylen. Kennzeichne das Monomer und das entstehende Polymer. Wie unterscheidet sich die Struktur von HDPE und LDPE auf molekularer Ebene?
 
-**Übung 2: Recycling-Kreislauf**
+3.  Eine PET-Flasche wird mechanisch recycelt. Beschreibe die einzelnen Schritte des Verfahrens von der Sammlung bis zum Regranulat. Erkläre den Begriff „Downcycling" und nenne ein Beispiel, bei dem rPET nicht erneut für Getränkeflaschen verwendet werden kann.
 
-Zeichne den Kreislauf von der PET-Flasche über Sortierung, Reinigung, Schreddern und Regranulierung zur neuen Flasche. Recherchiere den Energiebedarf im Vergleich zur Neuproduktion (ca. 50 % Ersparnis).
+4.  Vergleiche das mechanische mit dem chemischen Recycling von Kunststoffen. Nenne jeweils einen Vor- und einen Nachteil. Warum ist das chemische Recycling trotz höherer Qualität des Ausgangsmaterials bisher weniger verbreitet?
+
+5.  Ein Teelicht aus Paraffin (einer Mischung längerer Alkane) brennt vollständig ab, während eine Plastiktüte aus PE schmilzt und tropft, bevor sie verbrennt. Erkläre diesen Unterschied auf molekularer Ebene. Welche Umweltprobleme entstehen durch unvollständige Verbrennung oder Verschwelung von Kunststoffen?
 
 ## Zusammenfassung
 

@@ -65,3 +65,10 @@ Aus Erdöl werden zahlreiche Produkte hergestellt, darunter:
 1. Erkläre den Unterschied zwischen **Alkanen**, **Alkenen** und **Aromaten**.
 2. Beschreibe den Prozess der **fraktionierten Destillation** und nenne drei Fraktionen mit ihren Verwendungen.
 3. Warum ist Erdöl ein **endlicher Rohstoff**? Diskutiere mögliche Alternativen.
+
+## Verwandte Themen
+
+- [Alkohole und Ether](/themenbereiche/erdoel-organische-stoffklassen/alkohole-ether/) – Lerne alles über Alkohole und Ether: Struktur, Eigenschaften, Herstellung und Anwendungen. Mit praktischen Beispielen und Übungen für Schüler.
+- [Funktionelle Gruppen in der Organik](/themenbereiche/erdoel-organische-stoffklassen/funktionelle-gruppen/) – Übersicht über wichtige funktionelle Gruppen (Hydroxy-, Carbonyl-, Carboxy-, Aminogruppe), ihre Eigenschaften und Nomenklatur.
+- [Kohlenwasserstoffe](/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/) – Kohlenwasserstoffe sind organische Verbindungen aus Kohlenstoff und Wasserstoff: gesättigte (Alkane), ungesättigte (Alkene, Alkine), aromatische.
+- [Kunststoffe und Polymerisation](/themenbereiche/erdoel-organische-stoffklassen/kunststoffe-polymerisation/) – Synthetische Polymere entstehen durch verschiedene Polymerisationsarten. Mechanismus der radikalischen Kettenpolymerisation, Polykondensation und Polyaddition.

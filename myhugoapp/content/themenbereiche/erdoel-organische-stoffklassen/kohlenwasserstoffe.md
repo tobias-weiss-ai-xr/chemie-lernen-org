@@ -66,3 +66,22 @@ $$C_nH_m + \left(n + \frac{m}{4}\right)O_2 \rightarrow n\,CO_2 + \frac{m}{2}\,H_
 - **Ethen:** Reifung von Früchten (Ethylengas)
 - **Polyethylen:** Plastiktüten, Verpackungen (aus Ethen)
 - **Benzol:** Aromaten in der Industrie (Vorsicht: krebserregend)
+
+## Übungen
+
+1.  Ordne die folgenden Verbindungen den Stoffklassen (Alkan, Alken, Alkin, Aromat) zu und gib jeweils die Summenformel an: Ethen, Pentan, Ethin, Benzol, Propen, Heptan.
+
+2.  Zeichne die Strukturformeln aller Konstitutionsisomere mit der Summenformel $\ce{C5H12}$ und benenne sie nach IUPAC. Gib jeweils den Siedepunkt-Trend an: Welches Isomer hat den niedrigsten Siedepunkt und warum?
+
+3.  Stelle die vollständige Verbrennungsgleichung für Butan ($\ce{C4H10}$) auf. Berechne die Stoffmenge an $\ce{CO2}$, die bei der vollständigen Verbrennung von $58\,\text{g}$ Butan ($M = 58\,\text{g/mol}$) entsteht.
+
+4.  Ethen ($\ce{C2H4}$) reagiert mit Brom ($\ce{Br2}$) in einer Additionsreaktion. Formuliere die Reaktionsgleichung und gib das Produkt an. Erkläre, warum Alkane unter gleichen Bedingungen nicht mit Brom reagieren, während Alkene dies sofort tun.
+
+5.  Nenne drei Alltagsprodukte aus Kohlenwasserstoffen und ordne sie den entsprechenden Stoffklassen zu. Erläutere, warum die Kettenlänge die physikalischen Eigenschaften (Aggregatzustand, Siedepunkt) beeinflusst.
+
+## Verwandte Themen
+
+- [Alkohole und Ether](/themenbereiche/erdoel-organische-stoffklassen/alkohole-ether/) – Lerne alles über Alkohole und Ether: Struktur, Eigenschaften, Herstellung und Anwendungen. Mit praktischen Beispielen und Übungen für Schüler.
+- [Erdölentstehung und -verarbeitung](/themenbereiche/erdoel-organische-stoffklassen/erdoel-entstehung-verarbeitung/) – Erfahre, wie Erdöl entsteht, gefördert und verarbeitet wird und welche Produkte daraus gewonnen werden. Ideal für Schüler und Studierende.
+- [Funktionelle Gruppen in der Organik](/themenbereiche/erdoel-organische-stoffklassen/funktionelle-gruppen/) – Übersicht über wichtige funktionelle Gruppen (Hydroxy-, Carbonyl-, Carboxy-, Aminogruppe), ihre Eigenschaften und Nomenklatur.
+- [Kunststoffe und Polymerisation](/themenbereiche/erdoel-organische-stoffklassen/kunststoffe-polymerisation/) – Synthetische Polymere entstehen durch verschiedene Polymerisationsarten. Mechanismus der radikalischen Kettenpolymerisation, Polykondensation und Polyaddition.

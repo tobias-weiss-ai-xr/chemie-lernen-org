@@ -95,3 +95,10 @@ wobei \(R\) und \(R'\) gleich oder verschieden sein können.
 2. Erkläre, warum **Ethanol** wasserlöslich ist, während **Pentanol** nur begrenzt wasserlöslich ist.
 3. Beschreibe den Unterschied zwischen **Alkoholen** und **Ethern** anhand ihrer funktionellen Gruppen und Eigenschaften.
 4. Formuliere die Reaktionsgleichung für die **Williamson-Ethersynthese** von Methoxyethan (\(\ce{CH3-O-C2H5}\)).
+
+## Verwandte Themen
+
+- [Erdölentstehung und -verarbeitung](/themenbereiche/erdoel-organische-stoffklassen/erdoel-entstehung-verarbeitung/) – Erfahre, wie Erdöl entsteht, gefördert und verarbeitet wird und welche Produkte daraus gewonnen werden. Ideal für Schüler und Studierende.
+- [Funktionelle Gruppen in der Organik](/themenbereiche/erdoel-organische-stoffklassen/funktionelle-gruppen/) – Übersicht über wichtige funktionelle Gruppen (Hydroxy-, Carbonyl-, Carboxy-, Aminogruppe), ihre Eigenschaften und Nomenklatur.
+- [Kohlenwasserstoffe](/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/) – Kohlenwasserstoffe sind organische Verbindungen aus Kohlenstoff und Wasserstoff: gesättigte (Alkane), ungesättigte (Alkene, Alkine), aromatische.
+- [Kunststoffe und Polymerisation](/themenbereiche/erdoel-organische-stoffklassen/kunststoffe-polymerisation/) – Synthetische Polymere entstehen durch verschiedene Polymerisationsarten. Mechanismus der radikalischen Kettenpolymerisation, Polykondensation und Polyaddition.

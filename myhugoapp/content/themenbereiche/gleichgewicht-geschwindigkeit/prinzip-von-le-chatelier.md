@@ -67,3 +67,31 @@ Ohne Katalysator wäre die Reaktion bei 450°C extrem langsam. Ohne hohen Druck 
 - **Kohlensäure in Getränken:** $CO_2 + H_2O \rightleftharpoons H_2CO_3$ — Druck im Verschluss hält das Gleichgewicht links, Öffnen (Druck ↓) verschiebt es nach rechts, $CO_2$ entweicht, Getränk wird „flach"
 - **Blut und Sauerstoff:** $Hb + 4\,O_2 \rightleftharpoons Hb(O_2)_4$ — In der Lunge (hohe $O_2$-Konzentration) reagiert das Gleichgewicht rechts, im Gewebe (niedrige $O_2$) nach links
 - **Ozeanversauerung:** $CO_2 + H_2O \rightleftharpoons H_2CO_3 \rightleftharpoons H^+ + HCO_3^-$ — Steigendes $CO_2$ verschiebt das Gleichgewicht nach rechts, $H^+$ steigt, pH sinkt
+
+## Übungen
+
+1.  Gegeben ist die Reaktion $\ce{2SO2(g) + O2(g) <=> 2SO3(g)}$ mit $\Delta H = -198\,\text{kJ/mol}$. Sage voraus, wie sich das Gleichgewicht verschiebt, wenn:
+    - (a) die Temperatur erhöht wird,
+    - (b) der Druck erhöht wird,
+    - (c) $\ce{SO2}$ zugegeben wird,
+    - (d) $\ce{SO3}$ aus dem Reaktionsgemisch entfernt wird.
+      Begründe jede Antwort mit dem Prinzip von Le Chatelier.
+
+2.  Die Reaktion $\ce{N2(g) + 3H2(g) <=> 2NH3(g)}$ ist exotherm. Im Haber-Bosch-Verfahren wird dennoch bei $450\,^\circ\text{C}$ (nicht bei tieferen Temperaturen) gearbeitet. Erkläre diesen scheinbaren Widerspruch zwischen Thermodynamik und Kinetik. Welche Rolle spielt der Eisenkatalysator dabei?
+
+3.  In einer wässrigen Lösung stellt sich das Gleichgewicht $\ce{Fe^{3+}(aq) + SCN^{-}(aq) <=> FeSCN^{2+}(aq)}$ (rot) ein. Beschreibe die beobachtbare Farbänderung, wenn:
+    - (a) $\ce{KSCN}$ (Kaliumthiocyanat) zugegeben wird,
+    - (b) $\ce{Fe(NO3)3}$ zugegeben wird,
+    - (c) die Lösung verdünnt wird.
+      Begründe mit dem Prinzip von Le Chatelier.
+
+4.  Betrachte die Reaktion $\ce{H2(g) + I2(g) <=> 2HI(g)}$. Begründe, warum eine Druckerhöhung hier keinen Einfluss auf die Gleichgewichtslage hat. Berechne die Molzahl auf jeder Seite und verallgemeinere die Bedingung, unter der Druckänderungen das Gleichgewicht verschieben.
+
+5.  Eine geöffnete Cola-Flasche verliert nach einiger Zeit ihre Kohlensäure. Erkläre diesen Vorgang mithilfe des Prinzips von Le Chatelier, ausgehend vom Gleichgewicht $\ce{CO2(g) <=> CO2(aq)}$ und $\ce{CO2(aq) + H2O(l) <=> H2CO3(aq)}$. Welche Maßnahme könnte das Entweichen des $\ce{CO2}$ verlangsamen?
+
+## Verwandte Themen
+
+- [Chemisches Gleichgewicht](/themenbereiche/gleichgewicht-geschwindigkeit/chemisches-gleichgewicht/) – Wenn Hin- und Rückreaktion gleich schnell ablaufen, stellt sich ein Gleichgewicht ein. MWG beschreibt das Konzentrationsverhältnis.
+- [Faktoren der Reaktionsgeschwindigkeit](/themenbereiche/gleichgewicht-geschwindigkeit/faktoren-reaktionsgeschwindigkeit/) – Konzentration, Temperatur, Oberfläche und Katalysatoren als Einflussgrößen auf die Geschwindigkeit chemischer Reaktionen.
+- [Katalysatoren in der Industrie und Biologie](/themenbereiche/gleichgewicht-geschwindigkeit/katalysatoren-industrie-biologie/) – Homogene und heterogene Katalysatoren, Enzyme als biologische Katalysatoren und die industrielle Bedeutung der Katalyse.
+- [Reaktionskinetik](/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/) – Die Reaktionskinetik beschreibt die Geschwindigkeit, mit der chemische Reaktionen ablaufen. Faktoren: Konzentration, Temperatur, Katalysator.

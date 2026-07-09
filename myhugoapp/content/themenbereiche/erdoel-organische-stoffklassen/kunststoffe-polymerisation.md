@@ -122,3 +122,10 @@ Kunststoffe sind chemisch stabil und biologisch kaum abbaubar. Die Recyclingquot
 2. Erklären Sie den Unterschied zwischen Kettenpolymerisation, Polykondensation und Polyaddition.
 3. Warum eignet sich PVC nicht für die Herstellung von Getränkeflaschen?
 4. Berechnen Sie die molare Masse eines Polyethylen-Makromoleküls mit dem Polymerisationsgrad $n = 5000$.
+
+## Verwandte Themen
+
+- [Alkohole und Ether](/themenbereiche/erdoel-organische-stoffklassen/alkohole-ether/) – Lerne alles über Alkohole und Ether: Struktur, Eigenschaften, Herstellung und Anwendungen. Mit praktischen Beispielen und Übungen für Schüler.
+- [Erdölentstehung und -verarbeitung](/themenbereiche/erdoel-organische-stoffklassen/erdoel-entstehung-verarbeitung/) – Erfahre, wie Erdöl entsteht, gefördert und verarbeitet wird und welche Produkte daraus gewonnen werden. Ideal für Schüler und Studierende.
+- [Funktionelle Gruppen in der Organik](/themenbereiche/erdoel-organische-stoffklassen/funktionelle-gruppen/) – Übersicht über wichtige funktionelle Gruppen (Hydroxy-, Carbonyl-, Carboxy-, Aminogruppe), ihre Eigenschaften und Nomenklatur.
+- [Kohlenwasserstoffe](/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/) – Kohlenwasserstoffe sind organische Verbindungen aus Kohlenstoff und Wasserstoff: gesättigte (Alkane), ungesättigte (Alkene, Alkine), aromatische.

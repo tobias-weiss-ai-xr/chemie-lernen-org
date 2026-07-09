@@ -86,3 +86,10 @@ Farbstoffe und Pigmente werden in vielen Bereichen eingesetzt:
 2. Zeichne die Strukturformel eines **Azofarbstoffs** und markiere das Chromophor.
 3. Warum sind **anorganische Pigmente** oft lichtbeständiger als **organische Pigmente**?
 4. Beschreibe den Prozess der **Azokupplung** und nenne ein Beispiel für einen Azofarbstoff.
+
+## Verwandte Themen
+
+- [Aromastoffe und Duftstoffe](/themenbereiche/produkte-organisch/aromastoffe-duftstoffe/) – Natürliche und synthetische Aromastoffe: chemische Struktur, Gewinnung, Anwendung in Lebensmitteln und Parfüms.
+- [Kunststoffe im Alltag](/themenbereiche/produkte-organisch/kunststoffe-alltag/) – Die wichtigsten Kunststoffe (PE, PP, PVC, PET, PS) – Eigenschaften, Verwendung, Recycling und Umweltauswirkungen.
+- [Kunststoffe und Polymere](/themenbereiche/produkte-organisch/kunststoffe-und-polymere/) – Polymere sind Makromoleküle aus vielen gleichen Bausteinen (Monomeren). Kunststoffe sind synthetische Polymere mit vielseitigen Anwendungen.
+- [Waschmittel und Tenside](/themenbereiche/produkte-organisch/waschmittel-tenside/) – Waschmittel und Tenside: Aufbau, Wirkungsweise, Klassifizierung, Umweltaspekte und Anwendungen. Mit Übungen für Schüler und Studierende.

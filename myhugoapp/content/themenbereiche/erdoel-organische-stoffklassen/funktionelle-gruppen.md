@@ -45,6 +45,13 @@ In der **Wirkstoffentwicklung** steuern funktionelle Gruppen die Wechselwirkung 
 
 4. Nenne drei Beispiele für Naturstoffe, die mindestens zwei verschiedene funktionelle Gruppen enthalten. Gib die Gruppen jeweils an.
 
+## Verwandte Themen
+
+- [Alkohole und Ether](/themenbereiche/erdoel-organische-stoffklassen/alkohole-ether/) – Lerne alles über Alkohole und Ether: Struktur, Eigenschaften, Herstellung und Anwendungen. Mit praktischen Beispielen und Übungen für Schüler.
+- [Erdölentstehung und -verarbeitung](/themenbereiche/erdoel-organische-stoffklassen/erdoel-entstehung-verarbeitung/) – Erfahre, wie Erdöl entsteht, gefördert und verarbeitet wird und welche Produkte daraus gewonnen werden. Ideal für Schüler und Studierende.
+- [Kohlenwasserstoffe](/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/) – Kohlenwasserstoffe sind organische Verbindungen aus Kohlenstoff und Wasserstoff: gesättigte (Alkane), ungesättigte (Alkene, Alkine), aromatische.
+- [Kunststoffe und Polymerisation](/themenbereiche/erdoel-organische-stoffklassen/kunststoffe-polymerisation/) – Synthetische Polymere entstehen durch verschiedene Polymerisationsarten. Mechanismus der radikalischen Kettenpolymerisation, Polykondensation und Polyaddition.
+
 ## Zusammenfassung
 
 Funktionelle Gruppen bestimmen die chemischen und physikalischen Eigenschaften organischer Verbindungen. Die wichtigsten Gruppen sind Hydroxy- ($-\ce{OH}$), Carbonyl- ($\ce{C=O}$), Carboxy- ($-\ce{COOH}$) und Aminogruppe ($-\ce{NH2}$). Ihre Identifikation und Benennung nach IUPAC-Regeln ist die Grundlage der organischen Chemie.
