@@ -58,3 +58,10 @@ Die **ICP-OES** (optische Emissionsspektrometrie mit induktiv gekoppeltem Plasma
 1. Bei einer Gravimetrie werden 0,4325 g BaSO₄ ($M = \pu{233.39 g/mol}$) aus einer Ba²⁺-haltigen Probe gewogen. Berechne die Masse $m(\ce{Ba})$ ($M = \pu{137.33 g/mol}$) in der Probe.
 2. Eine Kalibriergerade in der AAS hat die Steigung $b = \pu{0.045 L/mg}$ und die Verfahrensstandardabweichung $s_0 = \pu{0.002}$. Berechne die Nachweisgrenze mit $k = 3$.
 3. Bei einer Titration von 20,00 mL HAc ($\text{p}K_S = 4{,}76$) mit $\pu{0.1 M}$ NaOH wird ein pH von 5,06 gemessen. Wie viel Prozent der Säure ist neutralisiert? (Hinweis: Henderson-Hasselbalch anwenden.)
+
+## Verwandte Themen
+
+- [Massenspektrometrie in der Chemie](/themenbereiche/analytische-methoden/massenspektrometrie/) – Massenspektrometrie (MS) ermöglicht die Bestimmung der Molekülmasse und die Identifizierung von Substanzen durch Fragmentierung. Grundlagen und Anwendungen.
+- [Nachweisreaktionen](/themenbereiche/analytische-methoden/nachweisreaktionen/) – Nachweisreaktionen zeigen durch Farbumschläge, ob Ionen oder Moleküle in einer Probe enthalten sind. Für Laboranalytik und Qualitätskontrolle.
+- [Thermische Analyse: Methoden und Anwendungen](/themenbereiche/analytische-methoden/thermische-analyse/) – Thermische Analyseverfahren untersuchen physikalische und chemische Eigenschaften von Stoffen in Abhängigkeit von der Temperatur – TG, DTA, DSC.
+- [Trennverfahren in der Analytik](/themenbereiche/analytische-methoden/trennverfahren/) – Überblick über chromatographische und elektrophoretische Trennverfahren in der Analytik – DC, GC, HPLC, Elektrophorese – für Schule und Studium.

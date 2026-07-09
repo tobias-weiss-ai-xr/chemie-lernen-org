@@ -72,3 +72,23 @@ Das Periodensystem zeigt **Perioden** (Zeilen) und **Gruppen** (Spalten):
 - **Periode 3:** Na bis Ar (3 Schalen)
 
 Elemente derselben Gruppe haben ähnliche Eigenschaften, da sie dieselbe Anzahl Valenzelektronen besitzen. Die **Edelgase** (Gruppe 18) sind besonders reaktionsträge, weil ihre Valenzschale vollständig besetzt ist.
+
+## Übungen
+
+1.  Ein Sauerstoffatom hat die Ordnungszahl $Z = 8$ und die Massenzahl $A = 16$. Gib die Anzahl der Protonen, Neutronen und Elektronen im neutralen Atom an. Wie ändern sich die Zahlen beim $\ce{O^{2-}}$-Ion?
+
+2.  Bestimme die Anzahl der Atome jedes Elements in den folgenden Verbindungen: $\ce{C6H12O6}$, $\ce{NH3}$, $\ce{H2SO4}$ und $\ce{CaCO3}$. Handelt es sich jeweils um ein Molekül oder ein Ionengitter?
+
+3.  Berechne die Anzahl der Moleküle in $36\,\text{g}$ Wasser ($M(\ce{H2O}) = 18{,}02\,\text{g/mol}$). Wie viel Mol entspricht das? Verwende die Avogadro-Konstante $N_A = 6{,}022 \times 10^{23}\,\text{mol}^{-1}$.
+
+4.  Erkläre den Unterschied zwischen einem Kation und einem Anion. Gib für jedes der folgenden Ionen an, ob es sich um ein Kation oder Anion handelt und wie viele Elektronen das ursprüngliche Atom abgegeben oder aufgenommen hat: $\ce{Na+}$, $\ce{Cl-}$, $\ce{Ca^{2+}}$, $\ce{O^{2-}}$.
+
+5.  Ein Atom der 3. Periode hat drei Valenzelektronen. Um welches Element handelt es sich? Begründe mithilfe des Periodensystems.
+
+## Verwandte Themen
+
+- [Chemische Bindungen](/themenbereiche/aufbau-materie/chemische-bindungen/) – Atome gehen durch Abgabe, Aufnahme oder gemeinsame Nutzung von Elektronen Bindungen ein. Drei Haupttypen: Ionenbindung, Atombindung, Metallbindung.
+- [Elektronenkonfiguration](/themenbereiche/aufbau-materie/elektronenkonfiguration/) – Die Elektronenkonfiguration beschreibt, wie Elektronen in Schalen und Unterschalen angeordnet sind und warum Elemente ihre chemischen Eigenschaften zeigen.
+- [Isotope und ihre Anwendungen](/themenbereiche/aufbau-materie/isotope-anwendungen/) – Isotope: stabile und radioaktive Nuklide, C-14-Datierung, medizinische Isotope, Isotopenmuster in der Massenspektrometrie.
+- [Periodische Trends im Periodensystem](/themenbereiche/aufbau-materie/periodische-trends-artikel/) – Atomradius, Ionisierungsenergie, Elektronegativität und Elektronenaffinität – Trends entlang Perioden und Gruppen verstehen.
+- [Stöchiometrie-Grundlagen](/themenbereiche/aufbau-materie/stoechiometrie-grundlagen/) – Molbegriff, Avogadro-Zahl, molare Masse und die Umrechnung zwischen Masse, Stoffmenge und Teilchenzahl — das Fundament quantitativer Chemie.

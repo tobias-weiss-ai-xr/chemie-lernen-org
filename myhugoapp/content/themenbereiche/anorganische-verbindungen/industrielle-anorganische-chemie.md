@@ -115,3 +115,11 @@ Die großtechnische Chemie steht vor der Herausforderung, ihren Energieverbrauch
 2. Erklären Sie, warum beim Haber-Bosch-Verfahren hohe Drücke die Ausbeute erhöhen (Prinzip von Le Chatelier).
 3. Stellen Sie die Reaktionsgleichung für die Herstellung von Ammoniumnitrat aus Ammoniak und Salpetersäure auf.
 4. Welche Umweltprobleme können bei der Chlor-Alkali-Elektrolyse auftreten, wenn Quecksilber als Kathodenmaterial verwendet wird?
+
+## Verwandte Themen
+
+- [Halogene und Edelgase](/themenbereiche/anorganische-verbindungen/halogene-edelgase/) – Gruppe 17 und 18: Trends in der Reaktivität, Halogenaustauschreaktionen, Edelgasverbindungen (XeF₂).
+- [Komplexchemie: Aufbau und Eigenschaften von Koordinationsverbindungen](/themenbereiche/anorganische-verbindungen/komplexchemie/) – Koordinationsverbindungen bestehen aus einem Zentralion und Liganden. Ihre Struktur, Farbigkeit und Stabilität werden durch die Kristallfeldtheorie erklärt.
+- [Komplexverbindungen](/themenbereiche/anorganische-verbindungen/komplexverbindungen/) – Struktur, Nomenklatur, Bildungskonstanten und Anwendungen von Koordinationsverbindungen – für fortgeschrittene Lernende der Chemie.
+- [Oxide und Hydroxide](/themenbereiche/anorganische-verbindungen/oxide-hydroxide/) – Chemische Eigenschaften, Reaktionen und Anwendungen von Oxiden und Hydroxiden – wichtige Verbindungsklassen der anorganischen Chemie.
+- [Säuren, Basen und Salze](/themenbereiche/anorganische-verbindungen/saeuren-basen-salze/) – Säuren bilden in Wasser $H^+$-Ionen, Basen bilden $OH^-$-Ionen. Salze entstehen aus der Neutralisation.

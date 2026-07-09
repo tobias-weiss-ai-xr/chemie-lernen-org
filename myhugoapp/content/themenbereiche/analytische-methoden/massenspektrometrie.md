@@ -110,3 +110,10 @@ Typische Fragmentierungen:
 2. Berechnen Sie das Isotopenmuster (M, M+2, M+4) für $CH_2Br_2$.
 3. Erklären Sie den Unterschied zwischen EI- und ESI-Ionisation und nennen Sie für jede Methode ein typisches Anwendungsgebiet.
 4. Ein Ion mit $m/z = 200$ benötigt in einem TOF-Analysator ($U = 5000\ \pu{V}$, $L = 1\ \pu{m}$) 10 µs. Berechnen Sie die Flugzeit für ein Ion mit $m/z = 800$.
+
+## Verwandte Themen
+
+- [Nachweisreaktionen](/themenbereiche/analytische-methoden/nachweisreaktionen/) – Nachweisreaktionen zeigen durch Farbumschläge, ob Ionen oder Moleküle in einer Probe enthalten sind. Für Laboranalytik und Qualitätskontrolle.
+- [Quantitative Analyse](/themenbereiche/analytische-methoden/quantitative-analyse/) – Vertiefung in Methoden der quantitativen chemischen Analyse – Gravimetrie, Titration, Spektroskopie und Fehlerrechnung – für Fortgeschrittene.
+- [Thermische Analyse: Methoden und Anwendungen](/themenbereiche/analytische-methoden/thermische-analyse/) – Thermische Analyseverfahren untersuchen physikalische und chemische Eigenschaften von Stoffen in Abhängigkeit von der Temperatur – TG, DTA, DSC.
+- [Trennverfahren in der Analytik](/themenbereiche/analytische-methoden/trennverfahren/) – Überblick über chromatographische und elektrophoretische Trennverfahren in der Analytik – DC, GC, HPLC, Elektrophorese – für Schule und Studium.

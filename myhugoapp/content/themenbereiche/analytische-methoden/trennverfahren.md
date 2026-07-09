@@ -46,3 +46,10 @@ Die **Kapillarelektrophorese (CE)** erreicht sehr hohe Trennleistungen bei gerin
 1. Ein Stoff wandert bei der DC 4,2 cm weit, die Laufmittelfront 6,0 cm. Berechne den $R_f$-Wert. Ist der Stoff eher polar oder unpolar, wenn die stationäre Phase Kieselgel (polar) ist?
 2. Nenne zwei Unterschiede zwischen GC und HPLC hinsichtlich mobiler Phase und Anwendungsbereich.
 3. Warum wandert ein Protein bei pH 7 im elektrischen Feld zur Anode, wenn sein isoelektrischer Punkt bei pH 5,5 liegt?
+
+## Verwandte Themen
+
+- [Massenspektrometrie in der Chemie](/themenbereiche/analytische-methoden/massenspektrometrie/) – Massenspektrometrie (MS) ermöglicht die Bestimmung der Molekülmasse und die Identifizierung von Substanzen durch Fragmentierung. Grundlagen und Anwendungen.
+- [Nachweisreaktionen](/themenbereiche/analytische-methoden/nachweisreaktionen/) – Nachweisreaktionen zeigen durch Farbumschläge, ob Ionen oder Moleküle in einer Probe enthalten sind. Für Laboranalytik und Qualitätskontrolle.
+- [Quantitative Analyse](/themenbereiche/analytische-methoden/quantitative-analyse/) – Vertiefung in Methoden der quantitativen chemischen Analyse – Gravimetrie, Titration, Spektroskopie und Fehlerrechnung – für Fortgeschrittene.
+- [Thermische Analyse: Methoden und Anwendungen](/themenbereiche/analytische-methoden/thermische-analyse/) – Thermische Analyseverfahren untersuchen physikalische und chemische Eigenschaften von Stoffen in Abhängigkeit von der Temperatur – TG, DTA, DSC.

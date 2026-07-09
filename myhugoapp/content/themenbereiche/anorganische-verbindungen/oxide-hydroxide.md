@@ -61,3 +61,11 @@ $$\ce{Al(OH)3 + OH- -> [Al(OH)4]-}$$
 2. Berechne den pH-Wert einer gesättigten Ca(OH)₂-Lösung ($K_L = \pu{5.5e-6 mol^{3}/L^{3}}$).
 3. Warum löst sich Zn(OH)₂ in Natronlauge, nicht aber in Ammoniak-Lösung? Begründe mit Hilfe des **HSAB-Konzepts**.
 4. Welches Oxid entsteht bei der thermischen Zersetzung von CaCO₃? Schreibe die Gleichung.
+
+## Verwandte Themen
+
+- [Halogene und Edelgase](/themenbereiche/anorganische-verbindungen/halogene-edelgase/) – Gruppe 17 und 18: Trends in der Reaktivität, Halogenaustauschreaktionen, Edelgasverbindungen (XeF₂).
+- [Industrielle anorganische Chemie: Schwefelsäure, Ammoniak und Co.](/themenbereiche/anorganische-verbindungen/industrielle-anorganische-chemie/) – Großtechnische Verfahren der anorganischen Chemie – vom Haber-Bosch-Verfahren zur Schwefelsäureherstellung. Wirtschaftliche Bedeutung und chemische Grundlagen.
+- [Komplexchemie: Aufbau und Eigenschaften von Koordinationsverbindungen](/themenbereiche/anorganische-verbindungen/komplexchemie/) – Koordinationsverbindungen bestehen aus einem Zentralion und Liganden. Ihre Struktur, Farbigkeit und Stabilität werden durch die Kristallfeldtheorie erklärt.
+- [Komplexverbindungen](/themenbereiche/anorganische-verbindungen/komplexverbindungen/) – Struktur, Nomenklatur, Bildungskonstanten und Anwendungen von Koordinationsverbindungen – für fortgeschrittene Lernende der Chemie.
+- [Säuren, Basen und Salze](/themenbereiche/anorganische-verbindungen/saeuren-basen-salze/) – Säuren bilden in Wasser $H^+$-Ionen, Basen bilden $OH^-$-Ionen. Salze entstehen aus der Neutralisation.

@@ -98,3 +98,10 @@ Diese Kopplungen erlauben eine umfassende Charakterisierung von Zersetzungsproze
 2. Die DSC-Kurve eines teilkristallinen Polymers zeigt einen Glasübergang bei $T_g = 80\ °C$ und einen Schmelzpeak bei $T_m = 165\ °C$. Erklären Sie diese beiden Phänomene.
 3. Berechnen Sie den Massenverlust (in %) bei der vollständigen Zersetzung von $\ce{MgCO3}$ zu $\ce{MgO}$.
 4. Warum werden TG-Messungen oft unter Inertgas (z. B. $N_2$, $Ar$) durchgeführt? Welche Informationen gehen bei Messungen unter synthetischer Luft verloren?
+
+## Verwandte Themen
+
+- [Massenspektrometrie in der Chemie](/themenbereiche/analytische-methoden/massenspektrometrie/) – Massenspektrometrie (MS) ermöglicht die Bestimmung der Molekülmasse und die Identifizierung von Substanzen durch Fragmentierung. Grundlagen und Anwendungen.
+- [Nachweisreaktionen](/themenbereiche/analytische-methoden/nachweisreaktionen/) – Nachweisreaktionen zeigen durch Farbumschläge, ob Ionen oder Moleküle in einer Probe enthalten sind. Für Laboranalytik und Qualitätskontrolle.
+- [Quantitative Analyse](/themenbereiche/analytische-methoden/quantitative-analyse/) – Vertiefung in Methoden der quantitativen chemischen Analyse – Gravimetrie, Titration, Spektroskopie und Fehlerrechnung – für Fortgeschrittene.
+- [Trennverfahren in der Analytik](/themenbereiche/analytische-methoden/trennverfahren/) – Überblick über chromatographische und elektrophoretische Trennverfahren in der Analytik – DC, GC, HPLC, Elektrophorese – für Schule und Studium.

@@ -62,11 +62,17 @@ $$\ce{M(g) + $e^-$ -> M-(g)} \quad \Delta H = EA$$
 
 Eine hohe Elektronenaffinität bedeutet, dass ein Atom gern ein Elektron aufnimmt. Halogene haben die höchsten $EA$-Werte, da sie durch die Aufnahme eines Elektrons die Edelgaskonfiguration erreichen. Edelgase haben negative $EA$-Werte, da das zusätzliche Elektron in eine neue, höhere Schale eingebaut werden müsste.
 
-## Übungsaufgaben
+## Übungen
 
-1. Ordne die Elemente $\ce{Mg}$, $\ce{Ar}$, $\ce{Na}$, $\ce{Si}$, $\ce{Cl}$ nach steigendem Atomradius und begründe.
-2. Erkläre, warum die Ionisierungsenergie von Sauerstoff niedriger ist als die von Stickstoff.
-3. Berechne $\Delta EN$ für $\ce{HF}$, $\ce{CCl4}$ und $\ce{LiBr}$. Handelt es sich um polare, unpolare oder Ionenbindungen?
+1.  Ordne die Elemente $\ce{Mg}$, $\ce{Ar}$, $\ce{Na}$, $\ce{Si}$, $\ce{Cl}$ nach steigendem Atomradius und begründe deine Reihenfolge mit der Kernladung und dem Schalenaufbau.
+
+2.  Erkläre, warum die erste Ionisierungsenergie von Sauerstoff niedriger ist als die von Stickstoff, obwohl Sauerstoff eine höhere Kernladung besitzt.
+
+3.  Berechne $\Delta EN$ für $\ce{HF}$, $\ce{CCl4}$ und $\ce{LiBr}$ mit folgenden EN-Werten: $EN_\ce{H}=2{,}1$, $EN_\ce{F}=4{,}0$, $EN_\ce{C}=2{,}5$, $EN_\ce{Cl}=3{,}2$, $EN_\ce{Li}=1{,}0$, $EN_\ce{Br}=3{,}0$. Handelt es sich jeweils um eine unpolare Atombindung, polare Atombindung oder Ionenbindung?
+
+4.  Die erste Ionisierungsenergie von Natrium beträgt $496\,\text{kJ/mol}$, die zweite $4562\,\text{kJ/mol}$. Erkläre den großen Unterschied zwischen $IE_1$ und $IE_2$.
+
+5.  Ordne die Elemente $\ce{F}$, $\ce{I}$, $\ce{Cl}$, $\ce{Br}$ nach steigender Elektronegativität. Wie lässt sich der Trend innerhalb der Gruppe 17 begründen?
 
 ## Zusammenfassung
 

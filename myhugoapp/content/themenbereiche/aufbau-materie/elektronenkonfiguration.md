@@ -72,3 +72,23 @@ Die Elektronenkonfiguration liefert das Verständnis für viele chemische Phäno
 Für weiterführende Themen wie chemische Bindungen, Redoxreaktionen oder Säure-Base-Chemie ist die Elektronenkonfiguration unverzichtbar. Wer sie sicher beherrscht, hat ein wichtiges Fundament für fast alle Bereiche der Chemie.
 
 Verwandte Rechner: [Molare Masse](/molare-masse-rechner/) | [Stöchiometrie-Rechner](/stoechiometrie-rechner/)
+
+## Übungen
+
+1.  Schreibe die vollständige Elektronenkonfiguration für die folgenden Elemente auf: Stickstoff ($Z=7$), Magnesium ($Z=12$) und Schwefel ($Z=16$). Gib jeweils an, wie viele Valenzelektronen das Atom besitzt.
+
+2.  Ein Element hat die Elektronenkonfiguration $1s^2 2s^2 2p^6 3s^2 3p^4$. Um welches Element handelt es sich? Welche Periode und welche Gruppe besetzt es im Periodensystem? Wie viele Valenzelektronen hat es?
+
+3.  Erkläre mithilfe der Klechkowski-Regel, warum die $4s$-Unterschale vor der $3d$-Unterschale mit Elektronen besetzt wird. Berechne dazu $n + l$ für $4s$ und $3d$.
+
+4.  Chrom hat eine ungewöhnliche Elektronenkonfiguration: $[\ce{Ar}]\,4s^1 3d^5$ statt der erwarteten $[\ce{Ar}]\,4s^2 3d^4$. Erkläre diese Abweichung von der regulären Besetzungsreihenfolge. Nenne ein weiteres Element mit einer ähnlichen Ausnahme.
+
+5.  Die Ionen $\ce{Na+}$ und $\ce{Cl-}$ haben Edelgaskonfiguration. Schreibe die Elektronenkonfiguration beider Ionen in Edelgasschreibweise. Welche Edelgaskonfiguration erreicht jedes Ion? Warum sind diese Ionen besonders stabil?
+
+## Verwandte Themen
+
+- [Atome und Moleküle](/themenbereiche/aufbau-materie/atome-und-molekuele/) – Atome sind die kleinsten Bausteine der Materie. Moleküle sind Atome, die durch chemische Bindungen verbunden sind.
+- [Chemische Bindungen](/themenbereiche/aufbau-materie/chemische-bindungen/) – Atome gehen durch Abgabe, Aufnahme oder gemeinsame Nutzung von Elektronen Bindungen ein. Drei Haupttypen: Ionenbindung, Atombindung, Metallbindung.
+- [Isotope und ihre Anwendungen](/themenbereiche/aufbau-materie/isotope-anwendungen/) – Isotope: stabile und radioaktive Nuklide, C-14-Datierung, medizinische Isotope, Isotopenmuster in der Massenspektrometrie.
+- [Periodische Trends im Periodensystem](/themenbereiche/aufbau-materie/periodische-trends-artikel/) – Atomradius, Ionisierungsenergie, Elektronegativität und Elektronenaffinität – Trends entlang Perioden und Gruppen verstehen.
+- [Stöchiometrie-Grundlagen](/themenbereiche/aufbau-materie/stoechiometrie-grundlagen/) – Molbegriff, Avogadro-Zahl, molare Masse und die Umrechnung zwischen Masse, Stoffmenge und Teilchenzahl — das Fundament quantitativer Chemie.

@@ -78,3 +78,27 @@ Die Stöchiometrie ist das Rückgrat der quantitativen Chemie. Vom einfachen Mol
 Wer die Grundlagen sicher beherrscht, kann chemische Probleme systematisch lösen. Die Formeln sind einfach, aber ihre richtige Anwendung erfordert Übung.
 
 Verwandte Rechner: [Molare Masse](/molare-masse-rechner/) | [Stöchiometrie-Rechner](/stoechiometrie-rechner/)
+
+## Übungen
+
+1.  Berechne die molare Masse von Schwefelsäure ($\ce{H2SO4}$) und von Calciumcarbonat ($\ce{CaCO3}$). Gegeben: $M(\ce{H})=1{,}008\,\text{g/mol}$, $M(\ce{S})=32{,}07\,\text{g/mol}$, $M(\ce{O})=16{,}00\,\text{g/mol}$, $M(\ce{Ca})=40{,}08\,\text{g/mol}$, $M(\ce{C})=12{,}01\,\text{g/mol}$.
+
+2.  Wie viel Gramm Kohlenstoffdioxid ($\ce{CO2}$) entstehen bei der vollständigen Verbrennung von $100\,\text{g}$ Methan ($\ce{CH4}$)? Die Reaktionsgleichung lautet:
+    $$\ce{CH4 + 2 O2 -> CO2 + 2 H2O}$$
+    $M(\ce{CH4})=16{,}05\,\text{g/mol}$, $M(\ce{CO2})=44{,}01\,\text{g/mol}$.
+
+3.  In einem Labor werden $5{,}85\,\text{g}$ Natriumchlorid ($\ce{NaCl}$) in Wasser gelöst und auf $250\,\text{ml}$ aufgefüllt. Berechne die Stoffmengenkonzentration $c$ der Lösung. $M(\ce{NaCl}) = 58{,}44\,\text{g/mol}$.
+
+4.  Bei einer Synthese werden $10{,}0\,\text{g}$ Eisen(III)-oxid ($\ce{Fe2O3}$) mit Kohlenstoffmonoxid ($\ce{CO}$) zu Eisen und $\ce{CO2}$ umgesetzt. Die Reaktionsgleichung lautet:
+    $$\ce{Fe2O3 + 3 CO -> 2 Fe + 3 CO2}$$
+    Die praktische Ausbeute beträgt $5{,}8\,\text{g}$ Eisen. Berechne die theoretische Ausbeute und die prozentuale Ausbeute. $M(\ce{Fe2O3})=159{,}69\,\text{g/mol}$, $M(\ce{Fe})=55{,}85\,\text{g/mol}$.
+
+5.  Ein Gasgemisch enthält $5{,}0\,\text{g}$ Helium und $10{,}0\,\text{g}$ Sauerstoff ($\ce{O2}$). Unter Normbedingungen ($0\,^\circ\text{C}$, $1013\,\text{hPa}$, $V_m = 22{,}4\,\text{l/mol}$): Welches Volumen nimmt jedes Gas ein? Welches Gesamtvolumen hat das Gemisch? $M(\ce{He})=4{,}00\,\text{g/mol}$, $M(\ce{O2})=32{,}00\,\text{g/mol}$.
+
+## Verwandte Themen
+
+- [Atome und Moleküle](/themenbereiche/aufbau-materie/atome-und-molekuele/) – Atome sind die kleinsten Bausteine der Materie. Moleküle sind Atome, die durch chemische Bindungen verbunden sind.
+- [Chemische Bindungen](/themenbereiche/aufbau-materie/chemische-bindungen/) – Atome gehen durch Abgabe, Aufnahme oder gemeinsame Nutzung von Elektronen Bindungen ein. Drei Haupttypen: Ionenbindung, Atombindung, Metallbindung.
+- [Elektronenkonfiguration](/themenbereiche/aufbau-materie/elektronenkonfiguration/) – Die Elektronenkonfiguration beschreibt, wie Elektronen in Schalen und Unterschalen angeordnet sind und warum Elemente ihre chemischen Eigenschaften zeigen.
+- [Isotope und ihre Anwendungen](/themenbereiche/aufbau-materie/isotope-anwendungen/) – Isotope: stabile und radioaktive Nuklide, C-14-Datierung, medizinische Isotope, Isotopenmuster in der Massenspektrometrie.
+- [Periodische Trends im Periodensystem](/themenbereiche/aufbau-materie/periodische-trends-artikel/) – Atomradius, Ionisierungsenergie, Elektronegativität und Elektronenaffinität – Trends entlang Perioden und Gruppen verstehen.

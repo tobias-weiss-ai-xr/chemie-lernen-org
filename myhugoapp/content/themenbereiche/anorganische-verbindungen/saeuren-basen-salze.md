@@ -70,3 +70,23 @@ Löslichkeitsregeln für $K_s$ in Wasser:
 **Kalksteinablagerungen**: In Kaffeemaschinen und Waschmaschinen bildet sich Kalk ($CaCO_3$) durch Reaktion gelöster Calciumhydrogencarbonate bei Erwärmung: $Ca(HCO_3)_2 \xrightarrow{Wärme} CaCO_3\downarrow + H_2O + CO_2\uparrow$. Entkalker enthalten starke Säuren (Zitronensäure, Salzsäure), die den Kalk auflösen.
 
 Anwendung: Titrationen, Pufferlösungen, Korrosionsschutz.
+
+## Übungen
+
+1. Berechne den pH-Wert einer Lösung von $0,0025$ mol/L $HCl$ (starke Säure, vollständige Dissoziation).
+
+2. Eine $NaOH$-Lösung hat einen pH-Wert von 12,0. Berechne die Konzentration der Hydroxidionen $[OH^-]$ und der $NaOH$-Lösung (starke Base).
+
+3. Ordne folgende Säuren nach steigender Stärke und begründe: $CH_3COOH$ ($pK_s = 4,75$), $HCl$ (starke Säure), $H_2CO_3$ ($pK_s = 6,35$), $HNO_3$ (starke Säure).
+
+4. Bei der Reaktion von $AgNO_3$ mit $NaCl$ fällt ein weißer Niederschlag aus. Formuliere die Reaktionsgleichung, benenne den Niederschlag und gib das Löslichkeitsprodukt $K_s$ an (kurze Recherche oder Schätzung: $K_s(AgCl) \approx 1,8 \times 10^{-10}$).
+
+5. Natriumhydrogencarbonat ($NaHCO_3$) wird gegen Sodbrennen eingesetzt. Formuliere die Neutralisationsreaktion mit Magensäure ($HCl$) und erkläre, warum dabei $CO_2$ entsteht.
+
+## Verwandte Themen
+
+- [Halogene und Edelgase](/themenbereiche/anorganische-verbindungen/halogene-edelgase/) – Gruppe 17 und 18: Trends in der Reaktivität, Halogenaustauschreaktionen, Edelgasverbindungen (XeF₂).
+- [Industrielle anorganische Chemie: Schwefelsäure, Ammoniak und Co.](/themenbereiche/anorganische-verbindungen/industrielle-anorganische-chemie/) – Großtechnische Verfahren der anorganischen Chemie – vom Haber-Bosch-Verfahren zur Schwefelsäureherstellung. Wirtschaftliche Bedeutung und chemische Grundlagen.
+- [Komplexchemie: Aufbau und Eigenschaften von Koordinationsverbindungen](/themenbereiche/anorganische-verbindungen/komplexchemie/) – Koordinationsverbindungen bestehen aus einem Zentralion und Liganden. Ihre Struktur, Farbigkeit und Stabilität werden durch die Kristallfeldtheorie erklärt.
+- [Komplexverbindungen](/themenbereiche/anorganische-verbindungen/komplexverbindungen/) – Struktur, Nomenklatur, Bildungskonstanten und Anwendungen von Koordinationsverbindungen – für fortgeschrittene Lernende der Chemie.
+- [Oxide und Hydroxide](/themenbereiche/anorganische-verbindungen/oxide-hydroxide/) – Chemische Eigenschaften, Reaktionen und Anwendungen von Oxiden und Hydroxiden – wichtige Verbindungsklassen der anorganischen Chemie.

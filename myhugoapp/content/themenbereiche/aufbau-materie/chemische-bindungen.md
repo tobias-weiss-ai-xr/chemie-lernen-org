@@ -68,3 +68,23 @@ Bei der Ionenbindung gibt ein Metall (z.B. Natrium) Elektronen ab und wird zum K
 **Warum leitet Kupfer Strom?** In Metallen sind die Valenzelektronen nicht an einzelne Atome gebunden, sondern bilden ein frei bewegliches **Elektronengas**. Legt man eine Spannung an, wandern die Elektronen und transportieren Ladung. Kupfer hat besonders viele freie Elektronen (ein pro Atom) und geringen Widerstand, weshalb es als Leitungsmaterial in Stromkabeln bevorzugt wird.
 
 Die Bindungsart bestimmt die physikalischen und chemischen Eigenschaften eines Stoffes.
+
+## Übungen
+
+1.  Berechne die Elektronegativitätsdifferenz $\Delta EN$ für folgende Paare und bestimme, ob eine Ionenbindung, polare Atombindung oder unpolare Atombindung vorliegt: $\ce{Na-F}$ ($EN_\ce{Na}=0{,}9$, $EN_\ce{F}=4{,}0$), $\ce{C-O}$ ($EN_\ce{C}=2{,}5$, $EN_\ce{O}=3{,}5$), $\ce{Cl-Cl}$ ($EN_\ce{Cl}=3{,}2$). Gib für die polaren Bindungen an, welches Atom die partial negative Ladung trägt.
+
+2.  Zeichne die Lewis-Struktur von Ammoniak ($\ce{NH3}$). Wie viele Valenzelektronen hat Stickstoff? Wie viele bindende und wie viele freie Elektronenpaare sind vorhanden? Welche Molekülform ergibt sich nach dem VSEPR-Modell?
+
+3.  Vergleiche die Eigenschaften von Kochsalz ($\ce{NaCl}$) und Zucker ($\ce{C12H22O11}$) hinsichtlich Schmelzpunkt, elektrischer Leitfähigkeit in Wasser und Härte. Ordne jeder Substanz den passenden Bindungstyp zu und erkläre die Unterschiede.
+
+4.  Warum leitet Kupfer elektrischen Strom, während ein Kupfer(II)-chlorid-Kristall ($\ce{CuCl2}$) im festen Zustand nicht leitet, wohl aber in wässriger Lösung? Erkläre die Unterschiede auf der Ebene der Bindungstypen und der beweglichen Ladungsträger.
+
+5.  Diamant und Graphit bestehen beide aus Kohlenstoff. Erkläre anhand der Bindungstypen, warum Diamant extrem hart ist, während Graphit als Schmiermittel verwendet werden kann.
+
+## Verwandte Themen
+
+- [Atome und Moleküle](/themenbereiche/aufbau-materie/atome-und-molekuele/) – Atome sind die kleinsten Bausteine der Materie. Moleküle sind Atome, die durch chemische Bindungen verbunden sind.
+- [Elektronenkonfiguration](/themenbereiche/aufbau-materie/elektronenkonfiguration/) – Die Elektronenkonfiguration beschreibt, wie Elektronen in Schalen und Unterschalen angeordnet sind und warum Elemente ihre chemischen Eigenschaften zeigen.
+- [Isotope und ihre Anwendungen](/themenbereiche/aufbau-materie/isotope-anwendungen/) – Isotope: stabile und radioaktive Nuklide, C-14-Datierung, medizinische Isotope, Isotopenmuster in der Massenspektrometrie.
+- [Periodische Trends im Periodensystem](/themenbereiche/aufbau-materie/periodische-trends-artikel/) – Atomradius, Ionisierungsenergie, Elektronegativität und Elektronenaffinität – Trends entlang Perioden und Gruppen verstehen.
+- [Stöchiometrie-Grundlagen](/themenbereiche/aufbau-materie/stoechiometrie-grundlagen/) – Molbegriff, Avogadro-Zahl, molare Masse und die Umrechnung zwischen Masse, Stoffmenge und Teilchenzahl — das Fundament quantitativer Chemie.

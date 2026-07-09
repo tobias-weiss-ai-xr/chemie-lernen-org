@@ -53,10 +53,15 @@ In der **Massenspektrometrie** werden Moleküle nach ihrer Masse aufgetrennt. Da
 
 Für ein Molekül wie $\ce{Br2}$ zeigt das Spektrum drei Signale im Verhältnis $1:2:1$, entsprechend $\ce{^79Br-^79Br}$, $\ce{^79Br-^81Br}$ und $\ce{^81Br-^81Br}$. Chlor zeigt ein $3:1$-Muster ($\ce{^35Cl} / \ce{^37Cl}$). Diese Muster helfen Chemikern, unbekannte Substanzen zu identifizieren und die Elementzusammensetzung zu bestimmen.
 
-## Übungsaufgaben
+## Übungen
 
-1. Ein Holzfund enthält noch 25 % des ursprünglichen $\ce{^14C}$. Wie alt ist das Holz? (Halbwertszeit $\ce{^14C} = 5730$ Jahre)
-2. Die relative Atommasse von Chlor beträgt 35,45 u. Berechne die Häufigkeiten von $\ce{^35Cl}$ (Masse 34,97 u) und $\ce{^37Cl}$ (Masse 36,97 u).
+1.  Ein Holzfund enthält noch 25 % des ursprünglichen $\ce{^14C}$. Wie alt ist das Holz? (Halbwertszeit $\ce{^14C} = 5730$ Jahre)
+
+2.  Die relative Atommasse von Chlor beträgt $35{,}45\,\text{u}$. Berechne die natürlichen Häufigkeiten von $\ce{^35Cl}$ (Masse $34{,}97\,\text{u}$) und $\ce{^37Cl}$ (Masse $36{,}97\,\text{u}$).
+
+3.  Ein Patient erhält eine Dosis $\ce{^131I}$ zur Schilddrüsentherapie. Die Halbwertszeit von $\ce{^131I}$ beträgt 8 Tage. Wie viel Prozent der ursprünglichen Aktivität sind nach 24 Tagen noch vorhanden? Nach wie vielen Tagen sind weniger als 1 % der Ausgangsaktivität übrig?
+
+4.  In einem Massenspektrum von Brom ($\ce{Br2}$) erscheinen drei Signale für das Molekülion $\ce{Br2^+}$. Die natürliche Häufigkeit von $\ce{^79Br}$ beträgt 51 % und von $\ce{^81Br}$ 49 %. Berechne das erwartete Intensitätsverhältnis der drei Signale und gib an, welche Brom-Isotopenkombination zu jedem Signal gehört.
 
 ## Zusammenfassung
 
