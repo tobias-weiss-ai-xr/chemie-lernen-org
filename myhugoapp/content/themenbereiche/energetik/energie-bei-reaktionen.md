@@ -70,3 +70,25 @@ Das Ergebnis stimmt gut mit dem experimentellen Wert ($-184$ kJ/mol) überein.
 **Photosynthese** ist eine der wichtigsten endothermen Reaktionen auf der Erde: $6CO_2 + 6H_2O \xrightarrow{Licht} C_6H_{12}O_6 + 6O_2$, $\Delta H = +2803$ kJ/mol. Pflanzen absorbieren Sonnenlicht, um $CO_2$ und Wasser in Glucose und Sauerstoff umzuwandeln. Ohne diese kontinuierliche Energiezufuhr aus Licht könnte die Reaktion nicht ablaufen.
 
 Energiebilanzen sind wichtig: Exotherme Reaktionen können zur Wärmegewinnung genutzt werden (Heizung, Kraftwerke). Endotherme Reaktionen benötigen kontinuierliche Energiezufuhr (sie finden in der Natur meist nicht spontan statt).
+
+## Übungen
+
+1.  Klassifiziere die folgenden Reaktionen als exotherm oder endotherm und begründe deine Entscheidung:
+    - $\ce{CaCO3 -> CaO + CO2}$ mit $\Delta H = +178\,\text{kJ/mol}$
+    - $\ce{2H2 + O2 -> 2H2O}$ mit $\Delta H = -572\,\text{kJ/mol}$
+    - $\ce{NH4NO3(s) -> NH4+(aq) + NO3-(aq)}$ (Kühlpack)
+
+2.  Berechne die Reaktionsenthalpie der Verbrennung von Propan ($\ce{C3H8}$) mithilfe der folgenden Standardbildungsenthalpien: $\Delta H_f^0(\ce{C3H8}) = -104\,\text{kJ/mol}$, $\Delta H_f^0(\ce{CO2}) = -394\,\text{kJ/mol}$, $\Delta H_f^0(\ce{H2O(l)}) = -286\,\text{kJ/mol}$. Stelle zunächst die Reaktionsgleichung auf.
+
+3.  Gegeben sind folgende Bindungsenthalpien: $\ce{C-H} = 413\,\text{kJ/mol}$, $\ce{Cl-Cl} = 243\,\text{kJ/mol}$, $\ce{C-Cl} = 339\,\text{kJ/mol}$, $\ce{H-Cl} = 432\,\text{kJ/mol}$. Berechne die Reaktionsenthalpie für die Reaktion $\ce{CH4 + Cl2 -> CH3Cl + HCl}$. Vergleiche dein Ergebnis mit dem erwarteten Vorzeichen: Handelt es sich um eine exotherme oder endotherme Reaktion?
+
+4.  Ein Handwärmer enthält Eisenpulver, das mit Sauerstoff aus der Luft zu $\ce{Fe2O3}$ oxidiert. Formuliere die Reaktionsgleichung und erkläre, warum das Eisenpulver vor Gebrauch luftdicht verpackt ist. Welche Rolle spielen Aktivkohle und Salz in der Mischung?
+
+5.  Zeichne ein beschriftetes Energieprofil für eine endotherme Reaktion. Markiere Edukte, Produkte, die Aktivierungsenergie $E_A$ und $\Delta H$. Wie würde sich die Zugabe eines Katalysators im Diagramm auswirken?
+
+## Verwandte Themen
+
+- [Aktivierungsenergie und Katalysatoren](/themenbereiche/energetik/aktivierungsenergie-und-katalysatoren/) – Warum nicht alle exothermen Reaktionen spontan ablaufen, der Maxwell-Boltzmann-Ansatz, und wie Katalysatoren Reaktionswege verändern.
+- [Kalorimetrie und Enthalpiemessung](/themenbereiche/energetik/kalorimetrie/) – Grundlagen der Kalorimetrie, Bombenkalorimeter, Bestimmung von Enthalpieänderungen, spezifische Wärmekapazität.
+- [Reaktionsenthalpie und Energieprofile](/themenbereiche/energetik/reaktionsenthalpie-und-energieprofile/) – Enthalpiediagramme, Bindungsenergien, Bildungsenthalpien und die Berechnung von Reaktionsenthalpien mit dem Satz von Hess.
+- [Der Satz von Hess](/themenbereiche/energetik/satz-von-hess/) – Die Reaktionsenthalpie ist unabhängig vom Reaktionsweg. Sie kann aus den Bildungsenthalpien der Produkte und Edukte berechnet werden.

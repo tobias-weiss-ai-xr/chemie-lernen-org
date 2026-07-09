@@ -24,3 +24,27 @@ Verwandte Rechner: [Einheitenumrechner](/einheitenumrechner/) | [Dichterechner](
 Wichtige Laborgeräte und ihre typische Genauigkeit: Eine **Analysenwaage** misst auf $\pm 0,001 \, \text{g}$ genau, ein **Messzylinder** auf etwa $\pm 0,5 \, \text{ml}$, eine **Pipette** auf $\pm 0,01 \, \text{ml}$ und ein **Thermometer** auf $\pm 0,5 \, \text{°C}$. Die Wahl des richtigen Messgeräts bestimmt die Qualität des Experiments.
 
 Der Unterschied zwischen **Genauigkeit** (Treffernähe am wahren Wert) und **Präzision** (Wiederholbarkeit der Messungen) ist fundamental. Ein Messgerät kann präzise (kleine Streuung) aber ungenau (systematischer Fehler) sein. Um beide zu verbessern, kalibriert man Geräte regelmäßig und führt mehrfache Messungen durch.
+
+## Übungen
+
+1.  Rechne die folgenden Größen in die angegebene Einheit um:
+    - $2500\,\text{ml}$ in Liter (l)
+    - $0{,}005\,\text{g}$ in Mikrogramm ($\mu\text{g}$)
+    - $3{,}2 \times 10^{-6}\,\text{m}$ in Nanometer (nm)
+    - $1500\,\text{cm}^3$ in Liter (l)
+
+2.  Ein Student misst die Dichte einer unbekannten Flüssigkeit: $m = 23{,}47\,\text{g}$, $V = 25{,}0\,\text{ml}$. Berechne die Dichte $\rho$ in $\text{g/ml}$. Wie viele signifikante Stellen hat das Ergebnis? Begründe.
+
+3.  Eine Analysenwaage zeigt $2{,}3456\,\text{g}$ an, ein Messzylinder $50{,}0\,\text{ml}$. Gib jedes Ergebnis mit der korrekten Anzahl signifikanter Stellen an, wenn du aus diesen Werten eine Dichte berechnest ($\rho = m/V$).
+
+4.  In einem Experiment werden drei Messungen der gleichen Temperatur durchgeführt: $25{,}3\,^\circ\text{C}$, $25{,}1\,^\circ\text{C}$ und $25{,}0\,^\circ\text{C}$. Der tatsächliche Wert beträgt $25{,}0\,^\circ\text{C}$. Beurteile die Genauigkeit und die Präzision dieser Messungen.
+
+5.  Die Dichte von Ethanol beträgt $0{,}789\,\text{g/ml}$. Wie viel Gramm Ethanol sind in $500\,\text{ml}$ enthalten? Wie viel Mol Ethanol ($\ce{C2H5OH}$, $M = 46{,}07\,\text{g/mol}$) sind das?
+
+## Verwandte Themen
+
+- [Laborgeräte und ihre Handhabung](/themenbereiche/einfuehrung-chemie/laborgeraete-handhabung/) – Übersicht über die wichtigsten Laborgeräte: Bunsenbrenner, Messzylinder, Pipette, Volumenkolben, Waage – Aufbau, Funktion und sichere Handhabung.
+- [Sicherheit im Labor](/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/) – GHS-Gefahrstoffkennzeichnung, Schutzmaßnahmen, Verhaltensregeln und Notfallmaßnahmen — alles, was man vor dem ersten Praktikum wissen muss.
+- [Stoffgemische und Trennverfahren](/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/) – Stoffgemische enthalten mehrere Reinstoffe. Trennverfahren nutzen unterschiedliche physikalische Eigenschaften zur Trennung.
+- [Was ist Chemie?](/themenbereiche/einfuehrung-chemie/was-ist-chemie/) – Chemie ist die Lehre von den Stoffen und deren Umwandlungen. Sie erklärt, warum Stoffe so reagieren, wie sie reagieren.
+- [Wissenschaftliche Methoden in der Chemie](/themenbereiche/einfuehrung-chemie/wissenschaftliche-methoden/) – Die wissenschaftliche Methode in der Chemie: Hypothesenbildung, Experiment, Beobachtung, Auswertung und Reproduzierbarkeit.

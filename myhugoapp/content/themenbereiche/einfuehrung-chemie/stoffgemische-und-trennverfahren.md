@@ -80,3 +80,23 @@ Die Wahl des Trennverfahrens hängt von den **physikalischen Eigenschaften** ab:
 | Magnetismus               | Magnetische Trennung        |
 | Wanderungsgeschwindigkeit | Chromatographie             |
 | Aggregatzustand           | Sublimation (fest → gas)    |
+
+## Übungen
+
+1.  Ordne die folgenden Stoffgemische als homogen oder heterogen ein und begründe deine Entscheidung: (a) mit Sand verunreinigtes Kochsalz, (b) Leitungswasser, (c) Orangensaft mit Fruchtfleisch, (d) Messing (eine Kupfer-Zink-Legierung).
+
+2.  Du hast ein Gemisch aus Eisenpulver, Sand und Kochsalz vor dir. Entwickle ein Trennverfahren in maximal drei Schritten, um alle drei Reinstoffe voneinander zu trennen. Gib an, welche physikalische Eigenschaft in jedem Schritt genutzt wird.
+
+3.  In der Dünnschichtchromatographie wandert eine Substanz $4{,}2\,\text{cm}$ weit, während die Lösungsmittelfront $7{,}0\,\text{cm}$ zurückgelegt hat. Berechne den $R_f$-Wert. Eine zweite Substanz hat einen $R_f$-Wert von $0{,}35$ bei derselben Lösungsmittelfront. Wie weit ist diese Substanz gewandert?
+
+4.  Ein Gemisch aus Ethanol (Siedepunkt $78\,^\circ\text{C}$) und Wasser (Siedepunkt $100\,^\circ\text{C}$) soll getrennt werden. Welches Trennverfahren ist geeignet? Handelt es sich um eine einfache oder fraktionierte Destillation? Begründe deine Wahl und beschreibe, was im Verlauf der Destillation in der Vorlage gesammelt wird.
+
+5.  In einem Scheidetrichter befinden sich Wasser und ein unpolares organisches Lösungsmittel (Dichlormethan) zusammen mit gelöstem Iod. Iod ist in Dichlormethan deutlich besser löslich als in Wasser. Beschreibe das Vorgehen zur Extraktion und gib an, in welcher Phase sich das Iod nach dem Ausschütteln befindet.
+
+## Verwandte Themen
+
+- [Laborgeräte und ihre Handhabung](/themenbereiche/einfuehrung-chemie/laborgeraete-handhabung/) – Übersicht über die wichtigsten Laborgeräte: Bunsenbrenner, Messzylinder, Pipette, Volumenkolben, Waage – Aufbau, Funktion und sichere Handhabung.
+- [Messtechnik und Einheiten](/themenbereiche/einfuehrung-chemie/messtechnik-und-einheiten/) – SI-Einheiten, Dezimalpräfixe, signifikante Stellen und die wichtigsten Messmethoden in der Chemie — Grundlagen für präzises Experimentieren.
+- [Sicherheit im Labor](/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/) – GHS-Gefahrstoffkennzeichnung, Schutzmaßnahmen, Verhaltensregeln und Notfallmaßnahmen — alles, was man vor dem ersten Praktikum wissen muss.
+- [Was ist Chemie?](/themenbereiche/einfuehrung-chemie/was-ist-chemie/) – Chemie ist die Lehre von den Stoffen und deren Umwandlungen. Sie erklärt, warum Stoffe so reagieren, wie sie reagieren.
+- [Wissenschaftliche Methoden in der Chemie](/themenbereiche/einfuehrung-chemie/wissenschaftliche-methoden/) – Die wissenschaftliche Methode in der Chemie: Hypothesenbildung, Experiment, Beobachtung, Auswertung und Reproduzierbarkeit.

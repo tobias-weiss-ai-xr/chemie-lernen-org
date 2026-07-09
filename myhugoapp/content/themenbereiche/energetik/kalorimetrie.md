@@ -57,6 +57,13 @@ $$
 
 3. Erkläre den Unterschied zwischen der Messung bei konstantem Volumen (Bombenkalorimeter) und konstantem Druck (offenes Kalorimeter). Warum unterscheiden sich $\Delta U$ und $\Delta H$?
 
+## Verwandte Themen
+
+- [Aktivierungsenergie und Katalysatoren](/themenbereiche/energetik/aktivierungsenergie-und-katalysatoren/) – Warum nicht alle exothermen Reaktionen spontan ablaufen, der Maxwell-Boltzmann-Ansatz, und wie Katalysatoren Reaktionswege verändern.
+- [Energie bei chemischen Reaktionen](/themenbereiche/energetik/energie-bei-reaktionen/) – Chemische Reaktionen speichern oder geben Energie frei. Exotherm → Wärmefreigabe, Endotherm → Wärmeaufnahme.
+- [Reaktionsenthalpie und Energieprofile](/themenbereiche/energetik/reaktionsenthalpie-und-energieprofile/) – Enthalpiediagramme, Bindungsenergien, Bildungsenthalpien und die Berechnung von Reaktionsenthalpien mit dem Satz von Hess.
+- [Der Satz von Hess](/themenbereiche/energetik/satz-von-hess/) – Die Reaktionsenthalpie ist unabhängig vom Reaktionsweg. Sie kann aus den Bildungsenthalpien der Produkte und Edukte berechnet werden.
+
 ## Zusammenfassung
 
 Die Kalorimetrie ist die experimentelle Grundlage der Thermochemie. Die Wärmemenge wird über die Temperaturänderung und die Wärmekapazität des Systems bestimmt. Einfache Kalorimeter messen bei konstantem Druck ($\Delta H$), Bombenkalorimeter bei konstantem Volumen ($\Delta U$). Die Kalibration mit Referenzsubstanzen ist essenziell für genaue Messungen.

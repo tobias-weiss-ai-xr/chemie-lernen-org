@@ -22,3 +22,22 @@ Verwandte Seiten: [Reaktionskinetik-Simulator](/reaktionskinetik-simulator/) | [
 Es gibt zwei Arten von Katalysatoren: **Homogene Katalysatoren** liegen in derselben Phase wie die Reaktanden (z.B. Säuren in wässriger Lösung). **Heterogene Katalysatoren** liegen in einer anderen Phase vor — meist Festkörper, auf deren Oberfläche die Reaktion abläuft (z.B. Platin in Fahrzeugkatalysatoren). Die Oberfläche des Katalysators ist entscheidend: Nanopartikel haben eine große Oberfläche und sind besonders wirksam.
 
 **Inhibitoren** sind der Gegenteil von Katalysatoren — sie erhöhen die Aktivierungsenergie oder blockieren die aktiven Zentren eines Katalysators. Lebensmittelzusatzstoffe wie Konservierungsstoffe wirken als Inhibitoren gegen oxidative Zersetzungsreaktionen.
+
+## Übungen
+
+1.  Skizziere ein Energieprofil einer exothermen Reaktion mit und ohne Katalysator. Markiere die Aktivierungsenergie $E_A$ sowie die Reaktionsenthalpie $\Delta H$. Erkläre, warum der Katalysator $\Delta H$ nicht verändert.
+
+2.  Die Aktivierungsenergie einer Reaktion beträgt $80\,\text{kJ/mol}$ bei $300\,\text{K}$. Berechne mit der RGT-Regel, um welchen Faktor die Reaktionsgeschwindigkeit steigt, wenn die Temperatur auf $310\,\text{K}$ erhöht wird. Die Reaktion folgt der Faustregel (Verdopplung pro $10\,\text{K}$). Welche Bedeutung hat dies für industrielle Prozesse?
+
+3.  Ein Katalysator senkt die Aktivierungsenergie der gleichen Reaktion von $80\,\text{kJ/mol}$ auf $50\,\text{kJ/mol}$. Erkläre mithilfe der Maxwell-Boltzmann-Verteilung, warum bereits eine moderate Senkung der $E_A$ zu einer drastischen Beschleunigung führt. Zeichne die Verteilungskurve und markiere den Anteil der Moleküle, der die Aktivierungsenergie überwinden kann.
+
+4.  Vergleiche einen homogenen mit einem heterogenen Katalysator anhand je eines konkreten Beispiels aus dem Text. Nenne jeweils Vor- und Nachteile.
+
+5.  Ein Inhibitor erhöht die Aktivierungsenergie einer Reaktion. Erläutere am Beispiel eines Lebensmittelkonservierungsstoffs, wie dieser die oxidative Zersetzung hemmt. Warum wird er als „negativer Katalysator" bezeichnet?
+
+## Verwandte Themen
+
+- [Energie bei chemischen Reaktionen](/themenbereiche/energetik/energie-bei-reaktionen/) – Chemische Reaktionen speichern oder geben Energie frei. Exotherm → Wärmefreigabe, Endotherm → Wärmeaufnahme.
+- [Kalorimetrie und Enthalpiemessung](/themenbereiche/energetik/kalorimetrie/) – Grundlagen der Kalorimetrie, Bombenkalorimeter, Bestimmung von Enthalpieänderungen, spezifische Wärmekapazität.
+- [Reaktionsenthalpie und Energieprofile](/themenbereiche/energetik/reaktionsenthalpie-und-energieprofile/) – Enthalpiediagramme, Bindungsenergien, Bildungsenthalpien und die Berechnung von Reaktionsenthalpien mit dem Satz von Hess.
+- [Der Satz von Hess](/themenbereiche/energetik/satz-von-hess/) – Die Reaktionsenthalpie ist unabhängig vom Reaktionsweg. Sie kann aus den Bildungsenthalpien der Produkte und Edukte berechnet werden.

@@ -22,3 +22,23 @@ Im **Notfall** gilt: Bei Hautkontakt sofort mit viel Wasser spülen (mindestens 
 **Chemikalienabfälle** werden getrennt gesammelt: Säureabfall, Basenabfall, organische Lösungsmittel und feste Abfälle haben eigene Sammelbehälter. Abfälle niemals in den Ausguss gießen. Die Entsorgung erfolgt nach örtlichen Vorschriften.
 
 Verwandte Seiten: [Gefahrstoffkennzeichnung](/gefahrstoffkennzeichnung/) | [Laborgeräte-Explorer](/laborgeraete-explorer/)
+
+## Übungen
+
+1.  Ordne den folgenden Gefahren die passenden GHS-Piktogramme zu: (a) eine brennbare Flüssigkeit, (b) ein ätzendes Gas, (c) ein akut toxischer Feststoff, (d) ein umweltgefährdendes Pestizid. Beschreibe jedes Piktogramm kurz.
+
+2.  Ein Experiment erfordert den Umgang mit konzentrierter Salzsäure ($\ce{HCl}$, ätzend) und Ethanol (entzündlich). Welche persönliche Schutzausrüstung (PSA) ist mindestens erforderlich? Welche Laborbereiche (Abzug, normale Werkbank) sind jeweils geeignet?
+
+3.  Beim Verdünnen von konzentrierter Schwefelsäure passiert ein Unfall: Ein Tropfen gelangt auf die Haut. Beschreibe die korrekte Erste-Hilfe-Maßnahme. Begründe, warum man beim Ansetzen der Verdünnung stets die Säure in das Wasser geben muss und nicht umgekehrt.
+
+4.  Im Labor steht ein brennender Papierkorb neben einer Werkbank, auf der sich ein Metallbrand (brennendes Magnesium) befindet. Darfst du in beiden Fällen Wasser als Löschmittel verwenden? Begründe deine Antwort.
+
+5.  Nach einem Praktikum fallen folgende Abfälle an: verdünnte Salzsäure, Natronlauge ($\ce{NaOH}$), Aceton (organisches Lösungsmittel) und gebrochene Glasgefäße. Beschreibe, wie diese Abfälle korrekt getrennt und entsorgt werden müssen.
+
+## Verwandte Themen
+
+- [Laborgeräte und ihre Handhabung](/themenbereiche/einfuehrung-chemie/laborgeraete-handhabung/) – Übersicht über die wichtigsten Laborgeräte: Bunsenbrenner, Messzylinder, Pipette, Volumenkolben, Waage – Aufbau, Funktion und sichere Handhabung.
+- [Messtechnik und Einheiten](/themenbereiche/einfuehrung-chemie/messtechnik-und-einheiten/) – SI-Einheiten, Dezimalpräfixe, signifikante Stellen und die wichtigsten Messmethoden in der Chemie — Grundlagen für präzises Experimentieren.
+- [Stoffgemische und Trennverfahren](/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/) – Stoffgemische enthalten mehrere Reinstoffe. Trennverfahren nutzen unterschiedliche physikalische Eigenschaften zur Trennung.
+- [Was ist Chemie?](/themenbereiche/einfuehrung-chemie/was-ist-chemie/) – Chemie ist die Lehre von den Stoffen und deren Umwandlungen. Sie erklärt, warum Stoffe so reagieren, wie sie reagieren.
+- [Wissenschaftliche Methoden in der Chemie](/themenbereiche/einfuehrung-chemie/wissenschaftliche-methoden/) – Die wissenschaftliche Methode in der Chemie: Hypothesenbildung, Experiment, Beobachtung, Auswertung und Reproduzierbarkeit.
