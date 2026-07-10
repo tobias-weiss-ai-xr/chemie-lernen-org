@@ -52,31 +52,7 @@ function parseFrontmatter(raw) {
   };
 }
 
-function findLastSectionHeading(content) {
-  const headingRegex = /^##\s+.+$/gm;
-  let match;
-  let lastHeading = null;
-  let lastHeadingIndex = -1;
-  while ((match = headingRegex.exec(content)) !== null) {
-    lastHeading = match[0];
-    lastHeadingIndex = match.index;
-  }
-  return { heading: lastHeading, index: lastHeadingIndex };
-}
 
-/**
- * Bestimmt, ob ein Artikel ein "Themenbereich"-Artikel ist
- * (kein _index.md, liegt direkt in einem Themenbereich-Ordner).
- */
-function isArticleFile(filePath) {
-  const basename = path.basename(filePath);
-  if (basename === '_index.md') return false;
-  const dir = path.dirname(filePath);
-  // Must be inside a subdirectory of themenbereiche
-  const parentDir = path.basename(dir);
-  if (parentDir === 'themenbereiche') return false; // direct child
-  return true;
-}
 
 /**
  * Liest alle Artikel-Dateien in einem Themenbereich-Ordner,

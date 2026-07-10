@@ -32,10 +32,7 @@ function normalizeFile(filePath) {
 
   // Find all ## sections with their content
   const sectionRegex = /^(## .+?)$/gm;
-  const sections = [];
-  let lastIndex = 0;
-  let lastHeading = null;
-  let lastHeadingIndex = -1;
+  let currentSection = null;
 
   const lines = body.split('\n');
   let currentSection = null;
