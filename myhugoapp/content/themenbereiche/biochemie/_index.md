@@ -3,12 +3,17 @@ title: 'Biochemie'
 description: 'Chemische Prozesse in Lebewesen: Proteine, Enzyme, Kohlenhydrate, Fette und Nukleinsäuren'
 date: '2026-07-09'
 last_reviewed: '2026-07-09'
-tags: '['chemie', 'biochemie', 'biologie']'
-interaktiv: 'false'
-schwierigkeit: 'mittelstufe'
-teilgebiet: '['biochemie']'
+tags:
+  - chemie
+  - biochemie
+  - biologie
+interaktiv: false
+schwierigkeit: mittelstufe
+teilgebiet:
+  - biochemie
 icon: '🧬'
-aliases: '[/article/_index/]'
+aliases:
+  - /article/_index/
 ---
 
 ## Biochemie
