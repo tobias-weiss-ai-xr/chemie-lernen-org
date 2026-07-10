@@ -11,7 +11,8 @@
     "express-rate-limit": "^8.5.2",
     "jsonwebtoken": "^9.0.3",
     "neo4j-driver": "^6.1.0",
-    "stripe": "^22.3.0",
-    "pdfkit": "^0.15.0"
+    "nodemailer": "^9.0.3",
+    "pdfkit": "^0.15.0",
+    "stripe": "^22.3.0"
   }
 }
