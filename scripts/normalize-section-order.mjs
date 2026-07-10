@@ -33,9 +33,7 @@ function normalizeFile(filePath) {
   // Find all ## sections with their content
   const sectionRegex = /^(## .+?)$/gm;
   let currentSection = null;
-
   const lines = body.split('\n');
-  let currentSection = null;
   let currentLines = [];
   const sectionMap = [];
   let nonStandardLines = [];
