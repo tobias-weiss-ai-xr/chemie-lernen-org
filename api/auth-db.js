@@ -4,6 +4,7 @@
 // ============================================================
 import path from 'path';
 import fs from 'fs';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -108,6 +109,34 @@ export function updatePassword(id, passwordHash) {
   }
 }
 
+export function createPasswordResetToken(email) {
+  const u = users.find((u) => u.email === email);
+  if (!u) return null;
+  const token = crypto.randomBytes(32).toString('hex');
+  const expires = new Date(Date.now() + 60 * 60 * 1000).toISOString(); // 1 hour
+  u.password_reset_token = token;
+  u.password_reset_expires = expires;
+  u.updated_at = new Date().toISOString();
+  save();
+  return token;
+}
+
+export function resetPassword(token, passwordHash) {
+  const u = users.find(
+    (u) =>
+      u.password_reset_token === token &&
+      u.password_reset_expires &&
+      new Date(u.password_reset_expires) > new Date()
+  );
+  if (!u) throw new Error('Ungültiger oder abgelaufener Token');
+  u.password_hash = passwordHash;
+  u.password_reset_token = null;
+  u.password_reset_expires = null;
+  u.updated_at = new Date().toISOString();
+  save();
+  return { id: u.id, email: u.email };
+}
+
 export function setPremiumTier(id, tier, premiumUntil) {
   const u = users.find((u) => u.id === id);
   if (u) {
@@ -150,7 +179,9 @@ export function setLearningProfile(id, profile) {
     level: profile.level || 'beginner',
     interests: Array.isArray(profile.interests) ? profile.interests : [],
     preferred_explanation_style: profile.preferred_explanation_style || 'simple',
-    weak_areas: Array.isArray(profile.weak_areas) ? profile.weak_areas : (u.learning_profile?.weak_areas || []),
+    weak_areas: Array.isArray(profile.weak_areas)
+      ? profile.weak_areas
+      : u.learning_profile?.weak_areas || [],
   };
   u.updated_at = new Date().toISOString();
   scheduleSave();

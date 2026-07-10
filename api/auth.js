@@ -18,6 +18,8 @@ import {
   getLearningProfile,
   getQuizResults,
   isPremium,
+  createPasswordResetToken,
+  resetPassword,
 } from './auth-db.js';
 import cookieParser from 'cookie-parser';
 
@@ -54,7 +56,16 @@ const authLimiter = rateLimit({
 function signToken(user) {
   const lp = user.learning_profile || {};
   return jwt.sign(
-    { id: user.id, email: user.email, role: user.role, tier: user.tier, learning_profile: { level: lp.level, preferred_explanation_style: lp.preferred_explanation_style } },
+    {
+      id: user.id,
+      email: user.email,
+      role: user.role,
+      tier: user.tier,
+      learning_profile: {
+        level: lp.level,
+        preferred_explanation_style: lp.preferred_explanation_style,
+      },
+    },
     JWT_SECRET,
     { expiresIn: JWT_EXPIRY }
   );
@@ -234,7 +245,9 @@ authRouter.put('/profile', requireAuth, (req, res) => {
   const validStyles = ['simple', 'detailed', 'visual'];
 
   if (learning_level && !validLevels.includes(learning_level)) {
-    return res.status(400).json({ error: 'Ungültiges Niveau. Erlaubt: beginner, intermediate, advanced' });
+    return res
+      .status(400)
+      .json({ error: 'Ungültiges Niveau. Erlaubt: beginner, intermediate, advanced' });
   }
   if (preferred_explanation_style && !validStyles.includes(preferred_explanation_style)) {
     return res.status(400).json({ error: 'Ungültiger Stil. Erlaubt: simple, detailed, visual' });
@@ -250,6 +263,62 @@ authRouter.put('/profile', requireAuth, (req, res) => {
   });
 
   res.json({ profile });
+});
+
+// POST /api/auth/forgot-password — request password reset link (no email service, logs to console)
+authRouter.post('/forgot-password', async (req, res) => {
+  try {
+    const { email: rawEmail } = req.body;
+    if (!rawEmail) {
+      return res.status(400).json({ error: 'E-Mail-Adresse erforderlich' });
+    }
+    const email = rawEmail.toLowerCase().trim();
+    const user = getUserByEmail(email);
+
+    // Always return { ok: true } regardless of whether user exists (security)
+    if (user) {
+      const token = createPasswordResetToken(email);
+      if (token) {
+        console.log(`[auth] Password reset link: /reset-password?token=${token}`);
+      }
+    }
+
+    res.json({ ok: true });
+  } catch (err) {
+    console.error('[auth] forgot-password error:', err.message);
+    res.status(500).json({ error: 'Fehler beim Zurücksetzen des Passworts' });
+  }
+});
+
+// POST /api/auth/reset-password — reset password using token
+authRouter.post('/reset-password', async (req, res) => {
+  try {
+    const { token, password } = req.body;
+
+    if (!token) {
+      return res.status(400).json({ error: 'Token erforderlich' });
+    }
+    if (!password) {
+      return res.status(400).json({ error: 'Passwort erforderlich' });
+    }
+    if (password.length < 8) {
+      return res.status(400).json({ error: 'Passwort muss mindestens 8 Zeichen lang sein' });
+    }
+    if (password.length > 128) {
+      return res.status(400).json({ error: 'Passwort zu lang (max. 128 Zeichen)' });
+    }
+
+    const passwordHash = await bcrypt.hash(password, BCRYPT_ROUNDS);
+    resetPassword(token, passwordHash);
+
+    res.json({ ok: true });
+  } catch (err) {
+    console.error('[auth] reset-password error:', err.message);
+    if (err.message === 'Ungültiger oder abgelaufener Token') {
+      return res.status(400).json({ error: err.message });
+    }
+    res.status(500).json({ error: 'Fehler beim Zurücksetzen des Passworts' });
+  }
 });
 
 // POST /api/auth/create-checkout-session — Stripe Checkout for premium subscription

@@ -82,6 +82,16 @@
         });
     },
 
+    /** Request a password reset link */
+    forgotPassword: function (email) {
+      return apiFetch('POST', '/forgot-password', { email: email });
+    },
+
+    /** Reset password using token */
+    resetPassword: function (token, password) {
+      return apiFetch('POST', '/reset-password', { token: token, password: password });
+    },
+
     /** Check if user is logged in and return their info */
     getUser: function () {
       return apiFetch('GET', '/me')
