@@ -84,12 +84,12 @@ services:
       - NEO4J_PASSWORD=chemie_knowledge_2024
       - NEO4J_DATABASE=chemie
       - JWT_SECRET=569f48d79dfa29ba065c8936e813f7dfe64a23d66ebca62415ad53383f5b6f67
-      # SMTP — set these for password-reset emails to work (uses mail.tobias-weiss.org):
-      # - SMTP_HOST=mail.tobias-weiss.org
-      # - SMTP_PORT=587
-      # - SMTP_USER=your-smtp-user
-      # - SMTP_PASSWORD=your-smtp-password
-      # - EMAIL_FROM=support@chemie-lernen.org
+      # SMTP — password-reset emails (mail.tobias-weiss.org):
+      - SMTP_HOST=mail.tobias-weiss.org
+      - SMTP_PORT=587
+      - SMTP_USER=chemie@tobias-weiss.org
+      - SMTP_PASSWORD=z6F82pS2LmN5hK9x
+      - EMAIL_FROM=support@chemie-lernen.org
       # Stripe keys — set these for premium checkout to work:
       # - STRIPE_SECRET_KEY=sk_live_...
       # - STRIPE_WEBHOOK_SECRET=whsec_...
