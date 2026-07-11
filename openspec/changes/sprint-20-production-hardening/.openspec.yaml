@@ -1,0 +1,5 @@
+schema: spec-driven
+created: 2026-07-10
+goal: Move secrets to .env/Docker secrets, restrict CORS/ CSP, implement rate
+  limit tiers, off-site backup via restic to Hetzner Storage Box, remove
+  deprecated scripts

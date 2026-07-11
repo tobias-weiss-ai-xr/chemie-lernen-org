@@ -1,6 +1,6 @@
 # OpenSpec — Capabilities Index
 
-Last updated: 2026-07-06
+Last updated: 2026-07-10
 
 ## Main capabilities (specs/)
 
@@ -21,20 +21,17 @@ Last updated: 2026-07-06
 
 ## Active changes (`changes/`)
 
-| Change               | Status         | Goal                                                                    |
-| -------------------- | -------------- | ----------------------------------------------------------------------- |
-| `lehrenden-premium`  | 8/10 tasks     | Auth (Lucia/JWT), Stripe payments, premium gating                       |
-| `open-spec-coverage` | 5/6 spec files | Create missing spec files for all capabilities                          |
-| `sprint-1`           | Spec draft     | Lehrenden-Premium go-live — Stripe integration + premium gating         |
-| `sprint-2`           | Spec draft     | Semantic RAG — embeddings + vector search in Neo4j                      |
-| `sprint-3`           | Spec draft     | Platform Hardening — security, rate limits, backup DR, monitoring       |
-| `sprint-4`           | Spec draft     | Content Expansion — 15 new articles, cross-linking improvements         |
-| `sprint-5`           | Spec draft     | Calculator Ecosystem — 3 new calculators, unit converter, i18n          |
-| `sprint-6`           | Spec draft     | PWA + Offline — service worker, manifest, offline content               |
-| `sprint-7`           | Spec draft     | Quiz Platform — quiz engine, question bank, spaced repetition           |
-| `sprint-8`           | Spec draft     | KI-Assistent Personalization — learning profile, chat history, feedback |
-| `sprint-9`           | Spec draft     | 3D Visualizations — molecule viewer, periodic table, AR (experimental)  |
-| `sprint-10`          | Spec draft     | Production Audit — security, performance, docs, monitoring              |
+| Change                                  | Status         | Goal                                                                         |
+| --------------------------------------- | -------------- | ---------------------------------------------------------------------------- |
+| `lehrenden-premium`                     | 8/10 tasks     | Auth (Lucia/JWT), Stripe payments, premium gating                            |
+| `open-spec-coverage`                    | 5/6 spec files | Create missing spec files for all capabilities                               |
+| `sprint-19-observability`               | Spec draft     | Prometheus, Grafana, Sentry, pino logging, healthchecks.io, alerting         |
+| `sprint-20-production-hardening`        | Spec draft     | Secrets migration, CORS, CSP, rate limiting, off-site backup, auth-db backup |
+| `sprint-21-ki-personalization`          | Spec draft     | Conversation memory, learning profile, adaptive chat, hints, history search  |
+| `sprint-22-quiz-exercise-ecosystem`     | Spec draft     | FSRS spaced repetition, difficulty scaling, per-topic quiz, auto-grade       |
+| `sprint-23-learning-paths-gamification` | Spec draft     | Neo4j learning paths, XP, streaks, badges, PDF certificates                  |
+| `sprint-24-3d-visualizations`           | Spec draft     | 3D periodic table, orbital viewer, element comparison, API endpoint          |
+| `sprint-25-docs-mobile-polish`          | Spec draft     | Refresh docs, PWA offline quiz cache, install banner, Lighthouse, systemd    |
 
 ## Archived changes (`changes/archive/`)
 

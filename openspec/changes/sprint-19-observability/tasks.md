@@ -1,0 +1,13 @@
+- [ ] 19.1 Add `node_exporter` sidecar to docker-compose.yml (host metrics)
+- [ ] 19.2 Add `cadvisor` sidecar to docker-compose.yml (container metrics)
+- [ ] 19.3 Add Neo4j metrics exporter sidecar (`neo4j-exporter` or built-in `/metrics` in 5.x)
+- [ ] 19.4 Install `express-prom-bundle` in `api/package.json` and wire into `api/server.js` as middleware
+- [ ] 19.5 Add Prometheus service to docker-compose.yml with scrape config for all 4 targets
+- [ ] 19.6 Add Grafana service to docker-compose.yml with provisioned datasource + dashboards (request rate, 5xx, p95, Neo4j heap/queries, container CPU/mem, disk usage)
+- [ ] 19.7 Define alert rules: 5xx spike >5% in 5min, backup failure, disk >90%, p95 latency >3000ms
+- [ ] 19.8 Install `@sentry/node` and integrate into `api/server.js` — capture unhandled errors, 5xx, rate limit hits
+- [ ] 19.9 Convert remaining `console.log/warn/error` in `api/server.js` to pino structured JSON logging (target: 100% pino coverage in server.js)
+- [ ] 19.10 Wire healthchecks.io into deploy workflow (`deploy.yml`): ping after successful smoke tests
+- [ ] 19.11 Wire healthchecks.io into backup cron: `scripts/backup-all.sh` pings on success/failure
+- [ ] 19.12 Write `docs/OBSERVABILITY.md` — stack diagram, dashboard URLs, alert runbooks, `docker logs -f <service>` quick-ref
+- [ ] 19.13 Verify: deploy workflow pings healthchecks.io, backup pings healthchecks.io, Grafana shows real metrics after 5min, Sentry captures a test error

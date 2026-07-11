@@ -1,10 +1,10 @@
 {
-  "startedAt": "2026-06-30T02:42:45.585Z",
+  "startedAt": "2026-07-11T02:42:11.262Z",
   "articlesGenerated": 0,
   "articlesFailed": 3,
   "feedErrors": 5,
   "kgErrors": 0,
-  "durationMs": 19260,
+  "durationMs": 19648,
   "model": "saia/qwen3.5-397b-a17b",
   "durationMin": "0.3"
 }

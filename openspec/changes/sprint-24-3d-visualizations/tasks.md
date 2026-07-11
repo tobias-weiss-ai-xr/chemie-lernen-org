@@ -1,0 +1,13 @@
+- [ ] 24.1 Create `static/js/visualization/orbital-viewer/orbital-data.js` — orbital metadata (name, n, l, m, node count, shape description)
+- [ ] 24.2 Create `static/js/visualization/orbital-viewer/orbital-shapes.js` — parametric surface generators for s (sphere), p (dumbbell), d (clover/donut), f (multi-lobe) orbitals
+- [ ] 24.3 Create `static/js/visualization/orbital-viewer/orbital-controls.js` — UI controls: orbital selector dropdown, electron count slider, phase toggle (±), axis labels toggle
+- [ ] 24.4 Create `static/js/visualization/orbital-viewer/orbital-viewer.js` — main Three.js scene with OrbitControls, lighting, orbital rendering, electron loading animation
+- [ ] 24.5 Add color mode buttons to existing `perioden-system-der-elemente.js`: Elektronegativität, Atomradius, Ionisierungsenergie, Elektronenkonfiguration (block s/p/d/f)
+- [ ] 24.6 Create element comparison tool at `/vergleich/` — side-by-side card layout with property bar charts + atomic radius sphere overlay (Three.js)
+- [ ] 24.7 Create `GET /api/elements` — return complete IUPAC element data as JSON array (118 elements)
+- [ ] 24.8 Create orbital lesson content pages: `/orbitalansichten/s-orbital/`, `/orbitalansichten/p-orbital/`, `/orbitalansichten/d-orbital/`, `/orbitalansichten/hybridisierung/` with embedded orbital viewer
+- [ ] 24.9 Link 3D visualizations into existing themenbereiche (periodensystem) and klassenstufen (10-12) content pages
+- [ ] 24.10 Register new visualization JS files in LazyLoader or baseof.html script loading
+- [ ] 24.11 Create `openspec/specs/3d-visualizations/spec.md` — 3D visualization capability spec
+- [ ] 24.12 Create `openspec/specs/elements-api/spec.md` — element data API capability spec
+- [ ] 24.13 Verify: periodic table color modes toggle correctly; orbital viewer renders s/p/d shapes; element comparison shows 4 side-by-side cards; `/api/elements` returns 118 elements

@@ -1,0 +1,14 @@
+- [ ] 21.1 Add `memory.conversations[]` field to user schema — stores last 10 chat session summaries (token-efficient, not full logs)
+- [ ] 21.2 On `/api/chat` (non-streaming path), prepend conversation memory to system prompt: "The user has previously discussed: {summaries}. Their weak areas include: {entities}."
+- [ ] 21.3 On `/api/chat` (streaming path), do the same memory injection into LiteLLM messages array
+- [ ] 21.4 Create `learningProfile` endpoint: `GET /api/auth/learning-profile` — returns weak area entities based on quiz results and exercise accuracy
+- [ ] 21.5 Create `POST /api/chat/hint` — accepts exercise problem text + user profile, returns step-by-step hint via LiteLLM
+- [ ] 21.6 Add chat history index to auth-db: store per-user session metadata (sessionId, date, topic summary, word count)
+- [ ] 21.7 Create `GET /api/chat/history/search?q=<query>` — full-text search across session summaries and message snippets
+- [ ] 21.8 Create `GET /api/chat/export/:sessionId` — returns session as Markdown file download
+- [ ] 21.9 Frontend: add profile strength/weakness indicator to chat sidebar
+- [ ] 21.10 Frontend: add "Hint" button next to exercise questions (calls `POST /api/chat/hint`)
+- [ ] 21.11 Frontend: add chat history search bar + results view
+- [ ] 21.12 Frontend: add "Export conversation" button in chat history view
+- [ ] 21.13 Update `openspec/specs/ai-assistant/spec.md` with personalization requirements and new endpoints
+- [ ] 21.14 Verify: chat remembers past session topics, hints reference weak areas, search finds past conversations
