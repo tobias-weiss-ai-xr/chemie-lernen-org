@@ -845,9 +845,284 @@
       .replace(/"/g, '&quot;');
   }
 
+  // =============================================================
+  // Task 21.9: Learning profile (strength/weakness) in sidebar
+  // =============================================================
+  function loadLearningProfile() {
+    var profileSection = document.getElementById('learning-profile');
+    if (!profileSection) return;
+
+    // Check if user is authenticated via AuthClient.me() or cookie
+    var checkAuth;
+    if (window.AuthClient && typeof window.AuthClient.getUser === 'function') {
+      checkAuth = window.AuthClient.getUser();
+    } else {
+      // Fallback: check for auth cookie existence
+      checkAuth = fetch('/api/auth/me', { credentials: 'same-origin' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) { return data && data.user ? data.user : null; })
+        .catch(function () { return null; });
+    }
+
+    Promise.resolve(checkAuth).then(function (user) {
+      if (!user) return;
+
+      fetch('/api/auth/learning-profile', { credentials: 'same-origin' })
+        .then(function (r) {
+          if (!r.ok) throw new Error('Profile not available');
+          return r.json();
+        })
+        .then(function (data) {
+          renderLearningProfile(data);
+          profileSection.style.display = 'block';
+        })
+        .catch(function () {
+          // Profile not available silently
+        });
+    });
+  }
+
+  function renderLearningProfile(data) {
+    var weakList = document.getElementById('weak-areas-list');
+    var strongList = document.getElementById('strong-areas-list');
+    if (!weakList || !strongList) return;
+
+    weakList.innerHTML = '';
+    strongList.innerHTML = '';
+
+    var weakAreas = data.weakAreas || data.weak_areas || [];
+    var strongAreas = data.strongAreas || data.strong_areas || [];
+
+    if (weakAreas.length === 0 && strongAreas.length === 0) {
+      // If no data yet, show a placeholder
+      weakList.innerHTML = '<li class="profile-empty">Noch keine Daten vorhanden.</li>';
+      return;
+    }
+
+    for (var wi = 0; wi < weakAreas.length; wi++) {
+      var wItem = document.createElement('li');
+      wItem.textContent = weakAreas[wi].name || weakAreas[wi];
+      weakList.appendChild(wItem);
+    }
+    if (weakAreas.length === 0) {
+      weakList.innerHTML = '<li class="profile-empty">Keine identifiziert.</li>';
+    }
+
+    for (var si = 0; si < strongAreas.length; si++) {
+      var sItem = document.createElement('li');
+      sItem.textContent = strongAreas[si].name || strongAreas[si];
+      strongList.appendChild(sItem);
+    }
+    if (strongAreas.length === 0) {
+      strongList.innerHTML = '<li class="profile-empty">Keine identifiziert.</li>';
+    }
+  }
+
+  // =============================================================
+  // Task 21.11: Chat history search
+  // =============================================================
+  function initChatSearch() {
+    var searchInput = document.getElementById('chat-search-input');
+    var searchBtn = document.getElementById('chat-search-btn');
+    var resultsDiv = document.getElementById('chat-search-results');
+    if (!searchInput || !searchBtn || !resultsDiv) return;
+
+    function doSearch() {
+      var query = searchInput.value.trim();
+      if (!query) {
+        resultsDiv.style.display = 'none';
+        return;
+      }
+
+      resultsDiv.style.display = 'block';
+      resultsDiv.innerHTML = '<p class="chat-search-loading">Suche...</p>';
+
+      fetch('/api/chat/history/search?q=' + encodeURIComponent(query), {
+        credentials: 'same-origin',
+      })
+        .then(function (r) {
+          if (!r.ok) throw new Error('Search failed');
+          return r.json();
+        })
+        .then(function (data) {
+          var results = data.results || data || [];
+          if (results.length === 0) {
+            resultsDiv.innerHTML =
+              '<p class="chat-search-empty">Keine Ergebnisse gefunden.</p>' +
+              '<button class="chat-search-close" id="chat-search-close">Schließen</button>';
+            var closeBtn = resultsDiv.querySelector('#chat-search-close');
+            if (closeBtn) {
+              closeBtn.addEventListener('click', function () {
+                resultsDiv.style.display = 'none';
+                searchInput.value = '';
+              });
+            }
+            return;
+          }
+
+          var html = '<div class="chat-search-header">' +
+            '<span>' + results.length + ' Ergebnis(se)</span>' +
+            '<button class="chat-search-close" id="chat-search-close">×</button>' +
+            '</div>';
+          for (var i = 0; i < results.length; i++) {
+            var r = results[i];
+            var preview = (r.preview || r.message || '').substring(0, 100);
+            html += '<div class="chat-search-item" data-session="' +
+              escapeHtml(r.sessionId || r.id || '') + '">' +
+              '<div class="chat-search-item-title">' +
+              escapeHtml(r.title || 'Chat ' + (i + 1)) +
+              '</div>' +
+              '<div class="chat-search-item-preview">' +
+              escapeHtml(preview) +
+              '</div>' +
+              '</div>';
+          }
+          resultsDiv.innerHTML = html;
+
+          var searchCloseBtn = resultsDiv.querySelector('#chat-search-close');
+          if (searchCloseBtn) {
+            searchCloseBtn.addEventListener('click', function () {
+              resultsDiv.style.display = 'none';
+              searchInput.value = '';
+            });
+          }
+          var items = resultsDiv.querySelectorAll('.chat-search-item');
+          for (var j = 0; j < items.length; j++) {
+            items[j].addEventListener('click', function () {
+              var sessionId = this.dataset.session;
+              if (sessionId) {
+                // Load session into chat (dispatch custom event)
+                var event = new CustomEvent('load-chat-session', {
+                  detail: { sessionId: sessionId },
+                });
+                document.dispatchEvent(event);
+                resultsDiv.style.display = 'none';
+                searchInput.value = '';
+              }
+            });
+          }
+        })
+        .catch(function () {
+          resultsDiv.innerHTML =
+            '<p class="chat-search-error">Suche fehlgeschlagen.</p>' +
+            '<button class="chat-search-close" id="chat-search-close">Schließen</button>';
+          var closeBtn = resultsDiv.querySelector('#chat-search-close');
+          if (closeBtn) {
+            closeBtn.addEventListener('click', function () {
+              resultsDiv.style.display = 'none';
+            });
+          }
+        });
+    }
+
+    searchBtn.addEventListener('click', doSearch);
+    searchInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        doSearch();
+      }
+    });
+  }
+
+  // =============================================================
+  // Task 21.12: Export conversation
+  // =============================================================
+  function updateExportButton() {
+    var exportBtn = document.getElementById('export-chat-btn');
+    if (!exportBtn) return;
+
+    if (currentSession && currentSession.sessionId) {
+      exportBtn.style.display = 'block';
+      exportBtn.onclick = function () {
+        exportSession(currentSession.sessionId);
+      };
+    } else {
+      exportBtn.style.display = 'none';
+    }
+  }
+
+  function exportSession(sessionId) {
+    var a = document.createElement('a');
+    a.href = '/api/chat/export/' + encodeURIComponent(sessionId);
+    a.download = 'chat-' + sessionId + '.md';
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  // =============================================================
+  // Task 21.10: Hint button initialization (cross-page)
+  // =============================================================
+  function initHintButtons() {
+    // Works on any page with .hint-button elements
+    var buttons = document.querySelectorAll('.hint-button');
+    if (buttons.length === 0) return;
+
+    for (var b = 0; b < buttons.length; b++) {
+      buttons[b].addEventListener('click', handleHintClick);
+    }
+  }
+
+  function handleHintClick() {
+    var btn = this;
+    var problem = btn.dataset.problem;
+    var topic = btn.dataset.topic || '';
+    var hintArea = btn.nextElementSibling;
+
+    if (!hintArea || !hintArea.classList.contains('hint-content')) {
+      hintArea = document.createElement('div');
+      hintArea.className = 'hint-content';
+      btn.parentNode.insertBefore(hintArea, btn.nextSibling);
+    }
+
+    hintArea.innerHTML = '<p class="hint-loading">Hinweis wird generiert...</p>';
+    btn.disabled = true;
+
+    fetch('/api/chat/hint', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ problem: problem, topic: topic }),
+      credentials: 'same-origin',
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error('Hint request failed');
+        return res.json();
+      })
+      .then(function (data) {
+        var hintText = data.hint || data.text || 'Kein Hinweis verfügbar.';
+        hintArea.innerHTML =
+          '<div class="hint-result">' +
+          hintText.replace(/\n/g, '<br>') +
+          '</div>';
+      })
+      .catch(function () {
+        hintArea.innerHTML =
+          '<p class="hint-error">Hinweis konnte nicht geladen werden.</p>';
+      })
+      .finally(function () {
+        btn.disabled = false;
+      });
+  }
+
+  // =============================================================
+  // Persist session for export when streaming completes
+  // =============================================================
+  // Patch: after a session is established, show export button
+  var _origAskAIStream = askAIStream;
+  if (_origAskAIStream) {
+    // Wrap askAIStream to track session ID updates
+    var _origThen = Promise.prototype.then;
+    // No clean way to patch the stream callback, so we listen for session updates
+    // via the existing initSession mechanism and updateExportButton after initSession
+  }
+
   function init() {
     kgData = loadKgData();
     makeSuggestionsClickable();
+    loadLearningProfile();
+    initChatSearch();
+    initHintButtons();
 
     initSession().then(function (_session) {
       var input = document.getElementById('chat-input');
@@ -865,6 +1140,14 @@
           }
         });
       }
+
+      updateExportButton();
+      // Also watch for session changes: poll the session ID periodically
+      setInterval(function () {
+        if (currentSession && currentSession.sessionId) {
+          updateExportButton();
+        }
+      }, 3000);
     });
   }
 

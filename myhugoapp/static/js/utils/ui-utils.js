@@ -119,6 +119,89 @@ function showToast(message, type) {
   }, 4000);
 }
 
+function initExerciseHints() {
+  var headings = document.querySelectorAll('h2, h3');
+  for (var h = 0; h < headings.length; h++) {
+    var heading = headings[h];
+    if (!heading.textContent.match(/Übung/i)) continue;
+
+    var next = heading.nextElementSibling;
+    while (next) {
+      if (next.tagName === 'OL' || next.tagName === 'UL') {
+        addHintButtonsToList(next);
+        break;
+      }
+      next = next.nextElementSibling;
+    }
+  }
+}
+
+function addHintButtonsToList(list) {
+  var items = list.querySelectorAll('li');
+  for (var i = 0; i < items.length; i++) {
+    var item = items[i];
+    if (item.querySelector('.hint-button')) continue;
+
+    var btn = document.createElement('button');
+    btn.className = 'hint-button';
+    btn.textContent = 'Hinweis';
+    btn.dataset.problem = item.textContent.trim();
+    btn.dataset.topic = '';
+
+    (function (button) {
+      button.addEventListener('click', function () {
+        var problem = button.dataset.problem;
+        var topic = button.dataset.topic || '';
+        var hintArea = button.nextElementSibling;
+
+        if (!hintArea || !hintArea.classList.contains('hint-content')) {
+          hintArea = document.createElement('div');
+          hintArea.className = 'hint-content';
+          button.parentNode.insertBefore(hintArea, button.nextSibling);
+        }
+
+        hintArea.innerHTML = '<p class="hint-loading">Hinweis wird generiert...</p>';
+        button.disabled = true;
+
+        fetch('/api/chat/hint', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ problem: problem, topic: topic }),
+          credentials: 'same-origin',
+        })
+          .then(function (res) {
+            if (!res.ok) throw new Error('Hint request failed');
+            return res.json();
+          })
+          .then(function (data) {
+            var hintText = data.hint || data.text || 'Kein Hinweis verfügbar.';
+            hintArea.innerHTML =
+              '<div class="hint-result">' +
+              hintText.replace(/\n/g, '<br>') +
+              '</div>';
+          })
+          .catch(function () {
+            hintArea.innerHTML =
+              '<p class="hint-error">Hinweis konnte nicht geladen werden.</p>';
+          })
+          .finally(function () {
+            button.disabled = false;
+          });
+      });
+    })(btn);
+
+    item.appendChild(btn);
+  }
+}
+
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initExerciseHints);
+  } else {
+    initExerciseHints();
+  }
+}
+
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     showError: showError,
@@ -126,6 +209,7 @@ if (typeof module !== 'undefined' && module.exports) {
     darkenColor: darkenColor,
     escapeHtml: escapeHtml,
     showToast: showToast,
+    initExerciseHints: initExerciseHints,
   };
 }
 
@@ -136,5 +220,6 @@ if (typeof window !== 'undefined') {
     darkenColor: darkenColor,
     escapeHtml: escapeHtml,
     showToast: showToast,
+    initExerciseHints: initExerciseHints,
   };
 }

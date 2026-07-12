@@ -1,0 +1,101 @@
+---
+title: 'Anorganische Verbindungen'
+topic: 'anorganische-verbindungen'
+target: 'themenbereiche'
+difficulty: 'mixed'
+questions:
+  - id: 'av-001'
+    type: 'multiple-choice'
+    question: 'Welche Stoffklasse entsteht bei der Neutralisation einer Säure mit einer Base?'
+    options:
+      - 'Ein Oxid'
+      - 'Ein Salz und Wasser'
+      - 'Ein Ester'
+      - 'Ein Komplex'
+    correctAnswer: 'Ein Salz und Wasser'
+    explanation: 'Bei der Neutralisation reagieren Säure und Base zu Salz und Wasser: HCl + NaOH -> NaCl + H2O.'
+
+  - id: 'av-002'
+    type: 'multiple-choice'
+    question: 'Welches Ion wird zum Nachweis von Chlorid-Ionen (Cl-) verwendet?'
+    options:
+      - 'Ba2+'
+      - 'Ag+'
+      - 'Na+'
+      - 'Cu2+'
+    correctAnswer: 'Ag+'
+    explanation: 'Silberionen (Ag+) bilden mit Chlorid-Ionen einen weißen Niederschlag von Silberchlorid (AgCl). Dieser ist in Ammoniak löslich und dient als spezifischer Nachweis.'
+
+  - id: 'av-003'
+    type: 'multiple-choice'
+    question: 'Was versteht man unter einer Fällungsreaktion?'
+    options:
+      - 'Eine Reaktion, bei der ein Gas entsteht'
+      - 'Eine Reaktion, bei der sich ein schwer löslicher Feststoff aus einer Lösung bildet'
+      - 'Eine Reaktion, bei der Wasser entsteht'
+      - 'Eine Reaktion unter Lichteinfluss'
+    correctAnswer: 'Eine Reaktion, bei der sich ein schwer löslicher Feststoff aus einer Lösung bildet'
+    explanation: 'Bei Fällungsreaktionen verbinden sich Ionen aus zwei Lösungen zu einem schwer löslichen Salz (Niederschlag). Beispiel: AgNO3 + NaCl -> AgCl (Niederschlag) + NaNO3.'
+
+  - id: 'av-004'
+    type: 'multiple-choice'
+    question: 'Welche Aussage über Ammoniak (NH3) ist richtig?'
+    options:
+      - 'Ammoniak ist eine starke Säure'
+      - 'Ammoniak ist ein farbloses Gas, das mit Wasser eine basische Lösung bildet'
+      - 'Ammoniak ist ein Feststoff bei Raumtemperatur'
+      - 'Ammoniak ist ein Edelgas'
+    correctAnswer: 'Ammoniak ist ein farbloses Gas, das mit Wasser eine basische Lösung bildet'
+    explanation: 'Ammoniak (NH3) ist ein farbloses, stechend riechendes Gas. In Wasser gelöst bildet es Ammonium- und Hydroxid-Ionen und wirkt daher basisch: NH3 + H2O <=> NH4+ + OH-.'
+
+  - id: 'av-005'
+    type: 'multiple-choice'
+    question: 'Welche Aussage zur Löslichkeit von Salzen ist richtig?'
+    options:
+      - 'Alle Chloride sind unlöslich'
+      - 'Alle Nitrate sind gut löslich'
+      - 'Alle Carbonate sind gut löslich'
+      - 'Alle Sulfate sind unlöslich'
+    correctAnswer: 'Alle Nitrate sind gut löslich'
+    explanation: 'Nitrate (NO3-) sind ausnahmslos gut wasserlöslich. Dies ist eine wichtige Regel in der analytischen Chemie. Chloride sind bis auf AgCl, PbCl2 und Hg2Cl2 löslich.'
+
+  - id: 'av-006'
+    type: 'multiple-choice'
+    question: 'Wie stellt man das Haber-Bosch-Verfahren in einer Reaktionsgleichung dar?'
+    options:
+      - '2H2 + O2 -> 2H2O'
+      - 'N2 + 3H2 -> 2NH3'
+      - 'C + O2 -> CO2'
+      - '2Na + Cl2 -> 2NaCl'
+    correctAnswer: 'N2 + 3H2 -> 2NH3'
+    explanation: 'Das Haber-Bosch-Verfahren dient der technischen Ammoniak-Synthese aus Stickstoff und Wasserstoff unter hohem Druck und Temperatur mit einem Eisenkatalysator.'
+
+  - id: 'av-007'
+    type: 'multiple-choice'
+    question: 'Welche Eigenschaft hat Schwefelsäure (H2SO4) als konzentrierte Lösung?'
+    options:
+      - 'Sie ist farblos und geruchlos, aber stark hygroskopisch'
+      - 'Sie ist eine starke Base'
+      - 'Sie ist ein Gas bei Raumtemperatur'
+      - 'Sie ist ein leicht entzündlicher Stoff'
+    correctAnswer: 'Sie ist farblos und geruchlos, aber stark hygroskopisch'
+    explanation: 'Konzentrierte Schwefelsäure ist eine farblose, ölige Flüssigkeit, die stark wasseranziehend (hygroskopisch) wirkt. Sie ist eine starke Säure und ein starkes Oxidationsmittel.'
+
+  - id: 'av-008'
+    type: 'short-answer'
+    question: 'Wie lautet die Formel von Kochsalz?'
+    referenceAnswer: 'NaCl'
+    gradingHint: 'Die Antwort "NaCl" oder "Natriumchlorid" ist korrekt. Die Formel besteht aus Na+ und Cl- im Verhältnis 1:1.'
+
+  - id: 'av-009'
+    type: 'short-answer'
+    question: 'Welches Gas entsteht, wenn man Calciumcarbonat (Kalkstein) mit Salzsäure versetzt?'
+    referenceAnswer: 'Kohlenstoffdioxid (CO2)'
+    gradingHint: 'Die Antwort "Kohlenstoffdioxid", "CO2" oder "Kohlendioxid" ist korrekt. Die Reaktion ist: CaCO3 + 2HCl -> CaCl2 + H2O + CO2.'
+
+  - id: 'av-010'
+    type: 'short-answer'
+    question: 'Was versteht man unter einem Liganden in der Komplexchemie?'
+    referenceAnswer: 'Ein Molekül oder Ion, das an ein Zentralatom (meist Metall) bindet'
+    gradingHint: 'Die Antwort sollte das Konzept beschreiben: Liganden sind Moleküle oder Ionen, die Elektronenpaare zur Bindung an ein zentrales Metallatom oder -ion bereitstellen.'
+---

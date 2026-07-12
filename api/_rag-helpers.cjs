@@ -81,6 +81,16 @@ function buildSystemPrompt(opts) {
     }
   }
 
+  if (opts.conversationMemory && opts.conversationMemory.conversations && opts.conversationMemory.conversations.length > 0) {
+    var summaries = opts.conversationMemory.conversations
+      .map(c => c.topicSummary)
+      .filter(Boolean)
+      .join(', ');
+    if (summaries) {
+      parts.push('Bisherige Themen: ' + summaries + '. Knüpfe an bekannte Konzepte an.');
+    }
+  }
+
   if (opts.currentEntity && typeof opts.currentEntity === 'string') {
     var safe = opts.currentEntity.slice(0, 120).replace(/[\r\n]+/g, ' ');
     if (lang === 'en') {

@@ -1,0 +1,101 @@
+---
+title: 'Säuren und Basen'
+topic: 'saeuren-basen'
+target: 'themenbereiche'
+difficulty: 'mixed'
+questions:
+  - id: 'sb-001'
+    type: 'multiple-choice'
+    question: 'Welche Definition von Säuren und Basen geht auf Brønsted zurück?'
+    options:
+      - 'Säuren sind Protonendonatoren, Basen sind Protonenakzeptoren'
+      - 'Säuren sind Elektronenpaarakzeptoren, Basen sind Elektronenpaardonatoren'
+      - 'Säuren schmecken sauer, Basen schmecken seifig'
+      - 'Säuren färben Lackmus rot, Basen färben Lackmus blau'
+    correctAnswer: 'Säuren sind Protonendonatoren, Basen sind Protonenakzeptoren'
+    explanation: 'Nach Brønsted (1923) ist eine Säure ein Stoff, der Protonen (H+) abgeben kann (Donator), und eine Base ein Stoff, der Protonen aufnehmen kann (Akzeptor).'
+
+  - id: 'sb-002'
+    type: 'multiple-choice'
+    question: 'Welchen pH-Wert hat eine 0,01 molare Salzsäure (HCl)?'
+    options:
+      - '1'
+      - '2'
+      - '3'
+      - '12'
+    correctAnswer: '2'
+    explanation: 'HCl ist eine starke Säure und dissoziiert vollständig. [H3O+] = 0,01 mol/L = 10^-2 mol/L. pH = -log(10^-2) = 2.'
+
+  - id: 'sb-003'
+    type: 'multiple-choice'
+    question: 'Welcher Indikator schlägt im pH-Bereich von 8,3 bis 10,0 um (farblos -> rot)?'
+    options:
+      - 'Methylorange'
+      - 'Bromthymolblau'
+      - 'Phenolphthalein'
+      - 'Universalindikator'
+    correctAnswer: 'Phenolphthalein'
+    explanation: 'Phenolphthalein ist im sauren Bereich farblos und schlägt bei pH 8,3-10,0 nach Rot um. Es wird häufig bei Säure-Base-Titrationen verwendet.'
+
+  - id: 'sb-004'
+    type: 'multiple-choice'
+    question: 'Welche Teilchen entstehen, wenn Ammoniak (NH3) in Wasser gelöst wird?'
+    options:
+      - 'NH4+ und OH-'
+      - 'NH2- und H3O+'
+      - 'N2 und H2O'
+      - 'NO3- und H+'
+    correctAnswer: 'NH4+ und OH-'
+    explanation: 'Ammoniak reagiert als Base mit Wasser: NH3 + H2O <=> NH4+ + OH-. Es entstehen Ammonium-Ionen und Hydroxid-Ionen, die Lösung wird basisch.'
+
+  - id: 'sb-005'
+    type: 'multiple-choice'
+    question: 'Was ist ein Puffer in der Chemie?'
+    options:
+      - 'Eine Lösung, die ihren pH-Wert auch bei Zugabe von Säuren oder Basen nahezu konstant hält'
+      - 'Eine Lösung, die immer neutral ist'
+      - 'Ein Stoff, der jede Säure neutralisiert'
+      - 'Eine Substanz, die Wasserstoff freisetzt'
+    correctAnswer: 'Eine Lösung, die ihren pH-Wert auch bei Zugabe von Säuren oder Basen nahezu konstant hält'
+    explanation: 'Ein Puffer besteht aus einer schwachen Säure und ihrer konjugierten Base (oder umgekehrt). Er hält den pH-Wert durch Abfangen von zugefügten H+- oder OH--Ionen stabil.'
+
+  - id: 'sb-006'
+    type: 'multiple-choice'
+    question: 'Welche Reaktionsenthalpie hat die Neutralisation einer starken Säure mit einer starken Base?'
+    options:
+      - 'ΔH = -57,6 kJ/mol'
+      - 'ΔH = +57,6 kJ/mol'
+      - 'ΔH = 0 kJ/mol'
+      - 'ΔH = -286 kJ/mol'
+    correctAnswer: 'ΔH = -57,6 kJ/mol'
+    explanation: 'Die Neutralisation von H+ + OH- -> H2O ist exotherm mit ΔH = -57,6 kJ/mol. Dieser Wert ist für starke Säuren und Basen konstant (unabhängig von der Art der Ionen).'
+
+  - id: 'sb-007'
+    type: 'multiple-choice'
+    question: 'Welcher pH-Wert ist für menschliches Blut charakteristisch?'
+    options:
+      - 'pH 5,5-6,0'
+      - 'pH 7,0'
+      - 'pH 7,35-7,45'
+      - 'pH 7,8-8,2'
+    correctAnswer: 'pH 7,35-7,45'
+    explanation: 'Menschliches Blut hat einen pH-Wert von etwa 7,35 bis 7,45 (leicht basisch). Der Blutpuffer (Kohlensäure/Hydrogencarbonat) hält diesen Wert sehr konstant.'
+
+  - id: 'sb-008'
+    type: 'short-answer'
+    question: 'Wie lautet die Formel zur Berechnung des pH-Werts?'
+    referenceAnswer: 'pH = -log10([H3O+])'
+    gradingHint: 'Die korrekte Formel ist pH = -log10([H3O+]) oder pH = -log10([H+]). Die Angabe des Logarithmus zur Basis 10 ist wichtig. "pH = -log[H+]" ohne Basis ist ebenfalls akzeptabel.'
+
+  - id: 'sb-009'
+    type: 'short-answer'
+    question: 'Nenne ein konjugiertes Säure-Base-Paar.'
+    referenceAnswer: 'HCl/Cl- (oder: NH4+/NH3, H2O/OH-, CH3COOH/CH3COO-)'
+    gradingHint: 'Jedes Paar, das sich um ein Proton (H+) unterscheidet, ist korrekt. Beispiele: HCl/Cl-, NH4+/NH3, H2O/OH-, H3O+/H2O, CH3COOH/CH3COO-.'
+
+  - id: 'sb-010'
+    type: 'short-answer'
+    question: 'Berechne den pH-Wert einer 0,001 mol/L NaOH-Lösung (starke Base).'
+    referenceAnswer: 'pH = 11'
+    gradingHint: 'pOH = -log(0,001) = 3. pH = 14 - 3 = 11. Der Lösungsweg sollte erkennbar sein. Zwischenschritte: [OH-] = 10^-3 mol/L, pOH = 3, pH = 11.'
+---

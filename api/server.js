@@ -12,6 +12,7 @@ import ragHelpers from './_rag-helpers.cjs';
 import { subsetWhere } from './scripts/_neo4j-subset-filter.mjs';
 import FileBackedSessionStore from './session-store.js';
 import authRouter, { authMiddleware, requireAuth, handleStripeWebhook } from './auth.js';
+import { getUserById, getConversationMemory, addConversationMemory, getFsrsCards, createFsrsCard, updateFsrsCard, getDueCards } from './auth-db.js';
 import * as exerciseEngine from './exercise-engine.js';
 import * as learningEngine from './learning-engine.js';
 import * as collabEngine from './collab-engine.js';
@@ -272,6 +273,57 @@ app.get('/api/chat/history', requireAuth, (req, res) => {
   res.json({ sessions });
 });
 
+// GET /api/chat/history/search?q= — full-text search across user's conversation history
+app.get('/api/chat/history/search', requireAuth, function (req, res) {
+  var q = (req.query.q || '').toLowerCase().trim();
+  if (!q) return res.json({ results: [] });
+
+  var userSessions = sessionStore.findByUserId(req.user.id);
+  var results = [];
+
+  for (var si = 0; si < userSessions.length; si++) {
+    var sid = userSessions[si].sessionId;
+    var session = sessionStore.get(sid);
+    if (!session || !session.messages) continue;
+    var text = session.messages.map(function (m) { return (m.content || ''); }).join(' ').toLowerCase();
+    if (text.indexOf(q) !== -1) {
+      results.push({
+        sessionId: sid,
+        createdAt: new Date(session.createdAt).toISOString(),
+        snippet: session.messages.slice(0, 2).map(function (m) { return (m.content || '').slice(0, 100); }),
+        messageCount: session.messages.length,
+      });
+    }
+  }
+
+  results.sort(function (a, b) { return new Date(b.createdAt) - new Date(a.createdAt); });
+  res.json({ results: results.slice(0, 10), query: q });
+});
+
+// GET /api/chat/export/:sessionId — download session as Markdown
+app.get('/api/chat/export/:sessionId', requireAuth, function (req, res) {
+  var session = sessionStore.get(req.params.sessionId);
+  if (!session || session.userId !== req.user.id) {
+    return res.status(404).json({ error: 'Session nicht gefunden' });
+  }
+
+  var md = '# KI-Assistent Chat-Verlauf\n\n';
+  md += '**Datum:** ' + new Date(session.createdAt).toLocaleDateString('de-DE') + '\n';
+  md += '**Nachrichten:** ' + session.messages.length + '\n\n';
+  md += '---\n\n';
+
+  session.messages.forEach(function (msg) {
+    var role = msg.role === 'user' ? '👤 **Du**' : '🤖 **KI-Assistent**';
+    md += '### ' + role + '\n\n';
+    md += msg.content + '\n\n';
+    md += '---\n\n';
+  });
+
+  res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
+  res.setHeader('Content-Disposition', 'attachment; filename="chat-' + req.params.sessionId + '.md"');
+  res.send(md);
+});
+
 // GET /api/chat/history/:sessionId — full conversation for a session
 app.get('/api/chat/history/:sessionId', requireAuth, (req, res) => {
   const session = sessionStore.get(req.params.sessionId);
@@ -295,6 +347,38 @@ app.get('/api/chat/history/:sessionId', requireAuth, (req, res) => {
     createdAt: new Date(session.createdAt).toISOString(),
     lastUsed: new Date(session.lastUsed).toISOString(),
     messages: session.messages,
+  });
+});
+
+// GET /api/auth/learning-profile — returns computed weak/strong areas from quiz results
+app.get('/api/auth/learning-profile', requireAuth, (req, res) => {
+  var user = getUserById(req.user.id);
+  if (!user) return res.status(404).json({ error: 'User not found' });
+
+  var quizResults = user.quiz_results || [];
+  var topicScores = {};
+
+  quizResults.forEach(function (r) {
+    if (!topicScores[r.topic]) {
+      topicScores[r.topic] = { total: 0, count: 0 };
+    }
+    topicScores[r.topic].total += r.percentage || 0;
+    topicScores[r.topic].count += 1;
+  });
+
+  var weakAreas = [];
+  var strongAreas = [];
+  Object.keys(topicScores).forEach(function (topic) {
+    var avg = topicScores[topic].total / topicScores[topic].count;
+    if (avg < 60) weakAreas.push({ topic: topic, average: Math.round(avg), attempts: topicScores[topic].count });
+    else if (avg >= 80) strongAreas.push({ topic: topic, average: Math.round(avg), attempts: topicScores[topic].count });
+  });
+
+  res.json({
+    weakAreas: weakAreas.sort(function (a, b) { return a.average - b.average; }),
+    strongAreas: strongAreas.sort(function (a, b) { return b.average - a.average; }),
+    totalQuizzes: quizResults.length,
+    lastUpdated: user.updated_at || null,
   });
 });
 
@@ -331,11 +415,13 @@ app.post('/api/chat', async (req, res) => {
       ragSources = extractSourceNames(ragContext);
     }
 
+    var conversationMemory = req.user?.id ? getConversationMemory(req.user.id) : null;
     var systemPrompt = buildSystemPrompt({
       lang: req.headers['accept-language'],
       ragContext: ragContext,
       currentEntity: currentEntity,
       learningProfile: req.user?.learningProfile || null,
+      conversationMemory: conversationMemory,
     });
 
     // Confusion detection — check if user repeated the same question
@@ -399,6 +485,17 @@ app.post('/api/chat', async (req, res) => {
       session.messages.push({ role: 'assistant', content: reply });
 
       cleanupSessionMessages(session);
+
+      if (req.user?.id && session.messages.length > 0) {
+        var firstUserMsg = session.messages.find(function (m) { return m.role === 'user'; });
+        var topicSummary = firstUserMsg ? firstUserMsg.content.slice(0, 120) : message.slice(0, 120);
+        addConversationMemory(req.user.id, {
+          sessionId: sessionId,
+          topicSummary: topicSummary,
+          messageCount: session.messages.length,
+        });
+      }
+
       res.json({
         reply,
         sources: ragSources,
@@ -509,11 +606,73 @@ app.post('/api/chat', async (req, res) => {
 
     session.messages.push({ role: 'assistant', content: replyContent });
     cleanupSessionMessages(session);
+
+    if (req.user?.id && session.messages.length > 0) {
+      var firstUserMsg = session.messages.find(function (m) { return m.role === 'user'; });
+      var topicSummary = firstUserMsg ? firstUserMsg.content.slice(0, 120) : (req.body?.message || '').slice(0, 120);
+      addConversationMemory(req.user.id, {
+        sessionId: sessionId,
+        topicSummary: topicSummary,
+        messageCount: session.messages.length,
+      });
+    }
   } catch (err) {
     logger.error(`[chat-api] Error: ${err.message}`);
     if (!res.headersSent && !res.writableEnded) {
       res.status(502).json({ error: 'Service unavailable' });
     }
+  }
+});
+
+// POST /api/chat/hint — generate step-by-step hint for an exercise
+app.post('/api/chat/hint', async (req, res) => {
+  var { problem, topic } = req.body;
+  if (!problem || typeof problem !== 'string' || problem.length > 2000) {
+    return res.status(400).json({ error: 'Problem text required (max 2000 chars)' });
+  }
+
+  var weakAreas = '';
+  if (req.user?.id) {
+    var user = getUserById(req.user.id);
+    var quizResults = user?.quiz_results || [];
+    var topicScores = {};
+    quizResults.forEach(function (r) {
+      if (!topicScores[r.topic]) topicScores[r.topic] = { total: 0, count: 0 };
+      topicScores[r.topic].total += r.percentage || 0;
+      topicScores[r.topic].count += 1;
+    });
+    weakAreas = Object.keys(topicScores)
+      .filter(function (t) { return (topicScores[t].total / topicScores[t].count) < 60; })
+      .slice(0, 3)
+      .join(', ');
+  }
+
+  var hintPrompt = 'Du bist ein Chemie-Nachhilfelehrer.';
+  if (weakAreas) hintPrompt += ' Der Schüler hat Schwierigkeiten mit: ' + weakAreas + '.';
+  hintPrompt += ' Gib einen Schritt-für-Schritt-Hinweis für folgende Aufgabe, aber verrate NICHT die endgültige Antwort: ' + problem;
+
+  try {
+    var llmRes = await fetch(LITELLM_URL + '/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: LITELLM_MODEL,
+        messages: [{ role: 'system', content: hintPrompt }],
+        max_tokens: 512,
+        temperature: 0.3,
+      }),
+    });
+    if (!llmRes.ok) {
+      var errText = await llmRes.text();
+      logger.error('[chat-api] Hint LLM error ' + llmRes.status + ': ' + errText);
+      return res.status(502).json({ error: 'Hint generation failed' });
+    }
+    var data = await llmRes.json();
+    var hint = data.choices?.[0]?.message?.content || 'Kein Hinweis verfügbar.';
+    res.json({ hint: hint });
+  } catch (err) {
+    logger.error({ err: err.message }, '[chat-api] Hint error');
+    res.status(500).json({ error: 'Hint generation failed' });
   }
 });
 
@@ -4351,6 +4510,48 @@ app.get('/api/quiz-results', async (req, res) => {
   } catch (err) {
     logger.error('[quiz-api] Error loading results:', err.message);
     res.status(500).json({ error: 'Failed to load quiz results' });
+  }
+});
+
+// ── FSRS (Free Spaced Repetition Scheduler) ─────────────────────
+
+app.get('/api/fsrs/cards', requireAuth, async (req, res) => {
+  try {
+    const cards = getDueCards(req.user.id);
+    const dueDates = cards
+      .filter((c) => c.dueDate)
+      .map((c) => c.dueDate)
+      .sort();
+    const nextDue = dueDates.length > 0 ? dueDates[0] : null;
+    res.json({ cards, total: cards.length, nextDue });
+  } catch (err) {
+    logger.error('[fsrs] Error fetching due cards:', err.message);
+    res.status(500).json({ error: 'Failed to fetch due cards' });
+  }
+});
+
+app.post('/api/fsrs/cards/:cardId/review', requireAuth, async (req, res) => {
+  try {
+    const { score } = req.body;
+    if (score === undefined || ![0, 0.33, 0.66, 1.0].includes(Number(score))) {
+      return res.status(400).json({
+        error:
+          'Invalid score. Must be one of: 0 (Again), 0.33 (Hard), 0.66 (Good), 1.0 (Easy)',
+      });
+    }
+
+    const result = updateFsrsCard(req.user.id, req.params.cardId, { score: Number(score) });
+    if (!result) {
+      return res.status(404).json({ error: 'Card not found' });
+    }
+    res.json({
+      ...result,
+      nextInterval: result.interval,
+      nextDueDate: result.dueDate,
+    });
+  } catch (err) {
+    logger.error('[fsrs] Error reviewing card:', err.message);
+    res.status(500).json({ error: 'Failed to review card' });
   }
 });
 

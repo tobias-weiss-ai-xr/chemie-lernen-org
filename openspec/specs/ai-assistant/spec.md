@@ -150,6 +150,54 @@ Eigenschaften?"
 **And** the chat still responds (no error to the user)
 **And** the answer may be less specific than with live Neo4j data
 
+### REQ-AI-7: Conversation memory
+
+Authenticated users get persistent conversation memory across sessions.
+
+- On each successful chat reply, `addConversationMemory(userId, { sessionId, topicSummary, messageCount })` is called in `auth-db.js`
+- Memory stores last 10 session summaries (FIFO eviction)
+- `buildSystemPrompt()` injects memory into the system prompt:
+  `"Bisherige Themen: X, Y, Z. Knüpfe an bekannte Konzepte an."`
+- Both streaming and non-streaming chat paths receive memory injection
+
+### REQ-AI-8: Learning profile endpoint
+
+`GET /api/auth/learning-profile` (requires auth) returns computed strengths and weaknesses:
+
+```json
+{
+  "weakAreas": [{ "topic": "oxidation", "average": 45, "attempts": 3 }],
+  "strongAreas": [{ "topic": "molare-masse", "average": 92, "attempts": 5 }],
+  "totalQuizzes": 15,
+  "lastUpdated": "2026-07-12T12:00:00Z"
+}
+```
+
+- Weak areas: topics with quiz average < 60%
+- Strong areas: topics with quiz average >= 80%
+- Data sourced from `user.quiz_results[]`
+- Frontend sidebar renders red-bordered weak areas, green-bordered strong areas
+
+### REQ-AI-9: Hint generation
+
+`POST /api/chat/hint` accepts `{ problem: string, topic?: string }` and returns step-by-step hints via LiteLLM:
+
+```json
+{ "hint": "1. Zähle die Fe-Atome auf jeder Seite...\n2. ..." }
+```
+
+- Hint prompt includes weak areas for authenticated users
+- `temperature: 0.3`, `max_tokens: 512`
+- The frontend adds hint buttons to:
+  - Dynamic exercises (`uebungsgenerator.html` via `practice-generator.js`)
+  - Static content pages with "Übungen" sections (via `ui-utils.js` `initExerciseHints()`)
+
+### REQ-AI-10: Chat history search & export
+
+- `GET /api/chat/history/search?q=<query>` returns matching sessions with message snippets (requires auth)
+- `GET /api/chat/export/:sessionId` returns session as downloadable Markdown with `Content-Disposition: attachment` (requires auth)
+- Frontend sidebar has search bar + results view and export button in chat header
+
 ## References
 
 - `api/server.js` — `/api/chat` at L143, `getRAGContext` at L502

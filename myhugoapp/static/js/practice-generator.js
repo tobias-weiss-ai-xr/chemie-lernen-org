@@ -414,6 +414,13 @@
     elements.questionText.innerHTML = q.text;
     elements.questionData.textContent = q.data;
 
+    var hintBtn = document.getElementById('hint-btn');
+    if (hintBtn) {
+      hintBtn.dataset.problem = q.text;
+      hintBtn.dataset.topic = q.topic;
+      hintBtn.style.display = 'inline-block';
+    }
+
     if (state.inputMode === 'multiple-choice') {
       showMultipleChoice(q);
     } else {
