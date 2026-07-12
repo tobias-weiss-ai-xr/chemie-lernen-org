@@ -486,7 +486,7 @@ app.post('/api/chat', async (req, res) => {
 
       cleanupSessionMessages(session);
 
-      var firstUserMsg, topicSummary;
+      var firstUserMsg = null, topicSummary = null;
       if (req.user?.id && session.messages.length > 0) {
         firstUserMsg = session.messages.find(function (m) { return m.role === 'user'; });
         topicSummary = firstUserMsg ? firstUserMsg.content.slice(0, 120) : message.slice(0, 120);
