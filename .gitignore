@@ -28,6 +28,8 @@ node_modules/
 backups/logs/
 backups/neo4j/
 backups/neo4j-leads/
+backups/chemie-kg/
+backups/auth-db/
 
 # Temporary files
 tmp/
