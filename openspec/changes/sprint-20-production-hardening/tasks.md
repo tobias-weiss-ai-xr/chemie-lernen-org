@@ -1,13 +1,13 @@
-- [ ] 20.1 Move all secrets from `docker-compose.yml` to `.env.production` (gitignored): `NEO4J_PASSWORD`, `JWT_SECRET`, `SMTP_PASSWORD`, `STRIPE_*`, `HEALTHCHECK_URL`, `SENTRY_DSN`. Replace literals with `${VAR}` env var references.
-- [ ] 20.2 Create `.env.example` with all required env vars and descriptions (no real secrets)
-- [ ] 20.3 Restrict CORS in `api/server.js`: only `https://chemie-lernen.org`, `http://localhost:1313` (Hugo dev)
-- [ ] 20.4 Audit CSP in `myhugoapp/static/api-proxy.conf`: replace `unsafe-inline` with nonce-based or hash-based policy for inline scripts/styles. Test all calculators, quiz, and chat pages.
-- [ ] 20.5 Install `express-rate-limit` in `api/` and implement 3 tiers: strict (5 req/min on `/api/auth/login`, `/api/auth/register`), default (30 req/min on entity/curricula/quizzes), generous (100 req/min on `/api/chat` for premium users)
-- [ ] 20.6 Install restic, configure Hetzner Storage Box as backup target, encrypt with repo key
-- [ ] 20.7 Update `scripts/backup-all.sh` to add restic push after local backup step (off-site sync)
-- [ ] 20.8 Add `auth-db.js` (users.json) to Neo4j backup scope — dump after Neo4j in backup-all.sh
-- [ ] 20.9 Remove `scripts/neo4j-backup.sh` (deprecated v4 syntax, broken on Neo4j 5.x)
-- [ ] 20.10 Add `npm audit` step to deploy.yml CI job; fix any critical/high findings
-- [ ] 20.11 Run `depcheck` on api/ and myhugoapp/; remove unused dependencies
-- [ ] 20.12 Remove orphaned `nginx-pwa-config.conf` (replaced by `myhugoapp/static/api-proxy.conf`)
-- [ ] 20.13 Verify: login/register endpoints return 429 after 5 rapid attempts; `/api/chat` returns 429 after 100 requests; off-site backup has readable snapshot; restore from off-site snapshot works
+- [x] 20.1 Move all secrets from `docker-compose.yml` to `.env.production` (gitignored): `NEO4J_PASSWORD`, `JWT_SECRET`, `SMTP_PASSWORD`, `STRIPE_*`, `HEALTHCHECK_URL`, `SENTRY_DSN`. Replace literals with `${VAR}` env var references.
+- [x] 20.2 Create `.env.example` with all required env vars and descriptions (no real secrets)
+- [x] 20.3 Restrict CORS in `api/server.js`: only `https://chemie-lernen.org`, `http://localhost:1313` (Hugo dev)
+- [x] 20.4 Audit CSP in `myhugoapp/static/api-proxy.conf`: replace `unsafe-inline` with nonce-based or hash-based policy for inline scripts/styles. Test all calculators, quiz, and chat pages.
+- [x] 20.5 Install `express-rate-limit` in `api/` and implement 3 tiers: strict (5 req/min on `/api/auth/login`, `/api/auth/register`), default (30 req/min on entity/curricula/quizzes), generous (100 req/min on `/api/chat` for premium users)
+- [x] 20.6 Install restic, configure Hetzner Storage Box as backup target, encrypt with repo key
+- [x] 20.7 Update `scripts/backup-all.sh` to add restic push after local backup step (off-site sync)
+- [x] 20.8 Add `auth-db.js` (users.json) to Neo4j backup scope — dump after Neo4j in backup-all.sh
+- [x] 20.9 Remove `scripts/neo4j-backup.sh` (deprecated v4 syntax, broken on Neo4j 5.x)
+- [x] 20.10 Add `npm audit` step to deploy.yml CI job; fix any critical/high findings
+- [x] 20.11 Run `depcheck` on api/ and myhugoapp/; remove unused dependencies
+- [x] 20.12 Remove orphaned `nginx-pwa-config.conf` (replaced by `myhugoapp/static/api-proxy.conf`)
+- [x] 20.13 Verify: login/register endpoints return 429 after 5 rapid attempts; `/api/chat` returns 429 after 100 requests; off-site backup has readable snapshot; restore from off-site snapshot works
