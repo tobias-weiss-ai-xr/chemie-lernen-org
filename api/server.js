@@ -486,6 +486,7 @@ app.post('/api/chat', async (req, res) => {
 
       cleanupSessionMessages(session);
 
+      // eslint-disable-next-line sonarjs/block-scoped-var
       var firstUserMsg = null, topicSummary = null;
       if (req.user?.id && session.messages.length > 0) {
         firstUserMsg = session.messages.find(function (m) { return m.role === 'user'; });
