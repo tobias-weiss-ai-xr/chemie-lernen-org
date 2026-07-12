@@ -12,7 +12,7 @@ import ragHelpers from './_rag-helpers.cjs';
 import { subsetWhere } from './scripts/_neo4j-subset-filter.mjs';
 import FileBackedSessionStore from './session-store.js';
 import authRouter, { authMiddleware, requireAuth, handleStripeWebhook } from './auth.js';
-import { getUserById, getConversationMemory, addConversationMemory, getFsrsCards, createFsrsCard, updateFsrsCard, getDueCards } from './auth-db.js';
+import { getUserById, getConversationMemory, addConversationMemory, updateFsrsCard, getDueCards } from './auth-db.js';
 import * as exerciseEngine from './exercise-engine.js';
 import * as learningEngine from './learning-engine.js';
 import * as collabEngine from './collab-engine.js';
@@ -486,9 +486,10 @@ app.post('/api/chat', async (req, res) => {
 
       cleanupSessionMessages(session);
 
+      var firstUserMsg, topicSummary;
       if (req.user?.id && session.messages.length > 0) {
-        var firstUserMsg = session.messages.find(function (m) { return m.role === 'user'; });
-        var topicSummary = firstUserMsg ? firstUserMsg.content.slice(0, 120) : message.slice(0, 120);
+        firstUserMsg = session.messages.find(function (m) { return m.role === 'user'; });
+        topicSummary = firstUserMsg ? firstUserMsg.content.slice(0, 120) : message.slice(0, 120);
         addConversationMemory(req.user.id, {
           sessionId: sessionId,
           topicSummary: topicSummary,
@@ -608,8 +609,8 @@ app.post('/api/chat', async (req, res) => {
     cleanupSessionMessages(session);
 
     if (req.user?.id && session.messages.length > 0) {
-      var firstUserMsg = session.messages.find(function (m) { return m.role === 'user'; });
-      var topicSummary = firstUserMsg ? firstUserMsg.content.slice(0, 120) : (req.body?.message || '').slice(0, 120);
+      firstUserMsg = session.messages.find(function (m) { return m.role === 'user'; });
+      topicSummary = firstUserMsg ? firstUserMsg.content.slice(0, 120) : (req.body?.message || '').slice(0, 120);
       addConversationMemory(req.user.id, {
         sessionId: sessionId,
         topicSummary: topicSummary,
@@ -626,7 +627,7 @@ app.post('/api/chat', async (req, res) => {
 
 // POST /api/chat/hint — generate step-by-step hint for an exercise
 app.post('/api/chat/hint', async (req, res) => {
-  var { problem, topic } = req.body;
+  var { problem } = req.body;
   if (!problem || typeof problem !== 'string' || problem.length > 2000) {
     return res.status(400).json({ error: 'Problem text required (max 2000 chars)' });
   }
