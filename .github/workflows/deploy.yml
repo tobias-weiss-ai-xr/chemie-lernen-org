@@ -144,6 +144,9 @@ jobs:
             fi
             echo "  ✓ /api/chat validates input (400 on empty body)"
             echo "=== Smoke tests passed ==="
+            echo "=== Pinging healthchecks.io ==="
+            curl -fsS -m 10 "https://hc-ping.com/chemi-deploy-ok" \
+              --data-raw "status=ok smoke-tests-passed $(date)" || echo "healthchecks.io ping skipped (non-fatal)"
             echo "=== Cleaning up old images ==="
             docker image prune -f
             echo "=== Deploy complete ==="

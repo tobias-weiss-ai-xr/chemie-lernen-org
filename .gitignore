@@ -32,6 +32,9 @@ backups/neo4j-leads/
 # Temporary files
 tmp/
 
+# Environment secrets
+.env
+
 # Development artifacts
 .sisyphus/
 .playwright-mcp/

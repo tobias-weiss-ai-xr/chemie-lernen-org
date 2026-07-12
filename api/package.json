@@ -13,6 +13,10 @@
     "neo4j-driver": "^6.1.0",
     "nodemailer": "^9.0.3",
     "pdfkit": "^0.15.0",
-    "stripe": "^22.3.0"
+    "stripe": "^22.3.0",
+    "express-prom-bundle": "^7.0.0",
+    "@sentry/node": "^8.0.0",
+    "pino": "^9.0.0",
+    "pino-pretty": "^11.0.0"
   }
 }

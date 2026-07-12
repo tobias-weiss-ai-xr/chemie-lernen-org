@@ -15,6 +15,17 @@ import authRouter, { authMiddleware, requireAuth, handleStripeWebhook } from './
 import * as exerciseEngine from './exercise-engine.js';
 import * as learningEngine from './learning-engine.js';
 import * as collabEngine from './collab-engine.js';
+import promBundle from 'express-prom-bundle';
+import * as Sentry from '@sentry/node';
+import pino from 'pino';
+import rateLimit from 'express-rate-limit';
+
+const logger = pino({
+  level: process.env.LOG_LEVEL || 'info',
+  ...(process.env.NODE_ENV !== 'production' && {
+    transport: { target: 'pino-pretty', options: { colorize: true } },
+  }),
+});
 
 const PORT = process.env.PORT || 3001;
 const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
@@ -35,7 +46,7 @@ function getCalcRagIndex() {
     );
     _calcRagIndex = JSON.parse(fs.readFileSync(indexPath, 'utf-8'));
   } catch (err) {
-    console.warn('[calc-rag] Failed to load calc-rag-index.json:', err.message);
+    logger.warn('[calc-rag] Failed to load calc-rag-index.json:', err.message);
     _calcRagIndex = {};
   }
   return _calcRagIndex;
@@ -65,6 +76,34 @@ function checkRateLimit(ip) {
   }
   return { allowed: true, remaining: RATE_LIMIT - entry.count };
 }
+
+// ── express-rate-limit tiers ──────────────────────────────────
+// Strict: login/register — prevent brute force
+const strictLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Zu viele Anmeldeversuche. Bitte warten Sie 15 Minuten.' },
+});
+
+// Default: general API reads (entity, curricula, quizzes)
+const defaultLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Zu viele Anfragen. Bitte langsamer machen.' },
+});
+
+// Generous: premium endpoints (chat, exercises)
+const generousLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Rate limit erreicht. Bei Bedarf upgraden.' },
+});
 
 // Periodically clean old entries (daily)
 setInterval(() => {
@@ -151,6 +190,31 @@ app.post(
 app.use(express.json({ limit: '100kb' }));
 app.use(cookieParser());
 
+// Prometheus metrics middleware (exposes /api/metrics)
+const metricsMiddleware = promBundle({
+  includeMethod: true,
+  includePath: true,
+  includeStatusCode: true,
+  promClient: {
+    collectDefaultMetrics: { timeout: 5000 },
+  },
+  customLabels: { app: 'chemie-chat-api' },
+});
+app.use('/api/metrics', metricsMiddleware.metricsMiddleware);
+app.use(metricsMiddleware.promMiddleware);
+
+// Sentry error tracking
+if (process.env.SENTRY_DSN) {
+  Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+    environment: process.env.NODE_ENV || 'development',
+    integrations: [Sentry.expressIntegration()],
+    tracesSampleRate: 0.1,
+  });
+  app.use(Sentry.Handlers.requestHandler());
+  app.use(Sentry.Handlers.tracingHandler());
+}
+
 // CORS for the chemie-lernen.org domain
 app.use((req, res, next) => {
   const origin = req.headers.origin || '';
@@ -162,6 +226,14 @@ app.use((req, res, next) => {
   if (req.method === 'OPTIONS') return res.sendStatus(204);
   next();
 });
+
+// ── Rate limiter wiring (order: most specific first) ──────────
+app.use('/api/auth/login', strictLimiter);
+app.use('/api/auth/register', strictLimiter);
+app.use('/api/admin', strictLimiter);
+app.use('/api/chat', generousLimiter);
+app.use('/api/exercises', generousLimiter);
+app.use('/api', defaultLimiter);
 
 // Auth routes — register, login, logout, me, profile
 app.use('/api/auth', authRouter);
@@ -310,7 +382,7 @@ app.post('/api/chat', async (req, res) => {
 
       if (!llmRes.ok) {
         const errText = await llmRes.text();
-        console.error(`[chat-api] LiteLLM error ${llmRes.status}: ${errText}`);
+        logger.error(`[chat-api] LiteLLM error ${llmRes.status}: ${errText}`);
         return res.status(502).json({ error: 'Upstream API error' });
       }
 
@@ -358,7 +430,7 @@ app.post('/api/chat', async (req, res) => {
 
       if (!llmRes.ok) {
         const errText = await llmRes.text();
-        console.error(`[chat-api] LiteLLM error ${llmRes.status}: ${errText}`);
+        logger.error(`[chat-api] LiteLLM error ${llmRes.status}: ${errText}`);
         throw new Error(`Stream init failed: ${errText}`);
       }
 
@@ -384,7 +456,7 @@ app.post('/api/chat', async (req, res) => {
               res.write(`data: ${JSON.stringify({ content: delta })}\n\n`);
             }
           } catch {
-            console.error(`[chat-api] Failed to parse stream chunk: ${line}`);
+            logger.error(`[chat-api] Failed to parse stream chunk: ${line}`);
           }
         }
       }
@@ -399,7 +471,7 @@ app.post('/api/chat', async (req, res) => {
         })}\n\n`
       );
     } catch (streamErr) {
-      console.error(`[chat-api] Stream failed, falling back: ${streamErr.message}`);
+      logger.error(`[chat-api] Stream failed, falling back: ${streamErr.message}`);
       while (buffer.length > 0) {
         const chunk = buffer.shift();
         if (chunk) replyContent += chunk;
@@ -438,7 +510,7 @@ app.post('/api/chat', async (req, res) => {
     session.messages.push({ role: 'assistant', content: replyContent });
     cleanupSessionMessages(session);
   } catch (err) {
-    console.error(`[chat-api] Error: ${err.message}`);
+    logger.error(`[chat-api] Error: ${err.message}`);
     if (!res.headersSent && !res.writableEnded) {
       res.status(502).json({ error: 'Service unavailable' });
     }
@@ -477,7 +549,7 @@ app.post('/api/chat/feedback', (req, res) => {
     fs.renameSync(tmp, feedbackPath);
     res.json({ ok: true });
   } catch (err) {
-    console.error('[feedback] save error:', err.message);
+    logger.error('[feedback] save error:', err.message);
     res.status(500).json({ error: 'Feedback konnte nicht gespeichert werden' });
   }
 });
@@ -505,7 +577,7 @@ app.get('/api/chat/feedback/analytics', (req, res) => {
       satisfactionRate: feedback.length > 0 ? Math.round((up / feedback.length) * 100) : 0,
     });
   } catch (err) {
-    console.error('[feedback] analytics error:', err.message);
+    logger.error('[feedback] analytics error:', err.message);
     res.status(500).json({ error: 'Analytics nicht verfügbar' });
   }
 });
@@ -804,7 +876,7 @@ async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
           { keywords: keywords }
         );
       } catch (curriculumErr) {
-        console.warn('[RAG] Curriculum typed-label query failed:', curriculumErr.message);
+        logger.warn('[RAG] Curriculum typed-label query failed:', curriculumErr.message);
       }
 
       // Also query UniversityModule nodes (international module catalogs)
@@ -830,7 +902,7 @@ async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
           { keywords: keywords }
         );
       } catch (moduleErr) {
-        console.warn('[RAG] UniversityModule query failed:', moduleErr.message);
+        logger.warn('[RAG] UniversityModule query failed:', moduleErr.message);
       }
     } finally {
       await session.close();
@@ -871,7 +943,7 @@ async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
         result.records = reranked;
         clearTimeout(semanticTimer);
       } catch (semErr) {
-        console.warn('[RAG] Semantic rerank unavailable, using keyword order:', semErr.message);
+        logger.warn('[RAG] Semantic rerank unavailable, using keyword order:', semErr.message);
       }
     }
 
@@ -987,7 +1059,7 @@ async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
         }
       }
     } catch (calcErr) {
-      console.warn('[calc-rag] Calculator lookup failed:', calcErr.message);
+      logger.warn('[calc-rag] Calculator lookup failed:', calcErr.message);
     }
 
     if (lines.length === 0) {
@@ -1080,7 +1152,7 @@ function getFallbackData() {
   try {
     _cachedFallbackData = JSON.parse(fs.readFileSync(fallbackPath, 'utf-8'));
   } catch (err) {
-    console.error('Failed to load kg_fallback.json:', err.message);
+    logger.error('Failed to load kg_fallback.json:', err.message);
     _cachedFallbackData = { articles: [], entities: [] };
   }
   return _cachedFallbackData;
@@ -1211,7 +1283,7 @@ function loadCurriculaFromStaticFiles() {
         }
       }
     } catch (e) {
-      console.warn('[kg-data] Failed to load static curricula for ' + abbr + ': ' + e.message);
+      logger.warn('[kg-data] Failed to load static curricula for ' + abbr + ': ' + e.message);
     }
   }
 
@@ -1236,7 +1308,7 @@ app.get('/api/kg-data', async (req, res) => {
   var cacheKey = getKgDataCacheKey(req);
   var cached = getCachedKgData(cacheKey);
   if (cached) {
-    console.log('[kg-data] Cache HIT for ' + cacheKey);
+    logger.info('[kg-data] Cache HIT for ' + cacheKey);
     return res.json(cached);
   }
   const startTime = Date.now();
@@ -1323,7 +1395,7 @@ app.get('/api/kg-data', async (req, res) => {
       var staticCurricula = loadCurriculaFromStaticFiles();
       if (staticCurricula.length > 0) {
         entities = staticCurricula;
-        console.log('[kg-data] Static curricula fallback: ' + entities.length + ' entities');
+        logger.info('[kg-data] Static curricula fallback: ' + entities.length + ' entities');
       }
     }
 
@@ -1372,9 +1444,9 @@ app.get('/api/kg-data', async (req, res) => {
           articleCount: 0,
         }));
         entities.push(...kmkGuidelines);
-        console.log(`[kg-data] Added ${kmkGuidelines.length} KMK guidelines`);
+        logger.info(`[kg-data] Added ${kmkGuidelines.length} KMK guidelines`);
       } catch (kmkErr) {
-        console.warn(`[kg-data] KMK guidelines query failed: ${kmkErr.message}`);
+        logger.warn(`[kg-data] KMK guidelines query failed: ${kmkErr.message}`);
       }
     }
 
@@ -1414,7 +1486,7 @@ app.get('/api/kg-data', async (req, res) => {
     await session.close();
 
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
-    console.log(
+    logger.info(
       `[kg-data] Neo4j: ${articles.length} articles, ${entities.length}/${totalEntities} entities in ${elapsed}s`
     );
 
@@ -1432,7 +1504,7 @@ app.get('/api/kg-data', async (req, res) => {
       loadTime: parseFloat(elapsed),
     });
   } catch (err) {
-    console.error(`[kg-data] Neo4j error, using fallback: ${err.message}`);
+    logger.error(`[kg-data] Neo4j error, using fallback: ${err.message}`);
 
     const fallback = getFallbackData();
     let allEntities = fallback.entities;
@@ -1452,7 +1524,7 @@ app.get('/api/kg-data', async (req, res) => {
     );
 
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
-    console.log(
+    logger.info(
       `[kg-data] Fallback: ${linkedArticles.length} articles, ${paginatedEntities.length}/${totalEntities} entities in ${elapsed}s`
     );
 
@@ -1522,7 +1594,7 @@ app.get('/api/rag-context', async (req, res) => {
         .filter(Boolean),
     });
   } catch (err) {
-    console.error(`[rag-context] Error: ${err.message}`);
+    logger.error(`[rag-context] Error: ${err.message}`);
     res.status(500).json({ error: 'Failed to retrieve RAG context' });
   }
 });
@@ -1650,7 +1722,7 @@ app.get('/api/kg-data/entity/:name', async (req, res) => {
         }));
         await curSession.close();
       } catch (e) {
-        console.warn(`[kg-data] Curriculum query failed: ${e.message}`);
+        logger.warn(`[kg-data] Curriculum query failed: ${e.message}`);
       }
 
       const existingNames = new Set(entities.map((e) => e.name));
@@ -1663,7 +1735,7 @@ app.get('/api/kg-data/entity/:name', async (req, res) => {
     }
 
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
-    console.log(
+    logger.info(
       `[kg-data] Neo4j: ${articles.length} articles, ${entities.length} entities (${curriculaEntities.length} curricula) in ${elapsed}s`
     );
 
@@ -1678,7 +1750,7 @@ app.get('/api/kg-data/entity/:name', async (req, res) => {
     setCachedKgData(cacheKey, responseData);
     return res.json(responseData);
   } catch (err) {
-    console.error(`[kg-data] Entity lookup error: ${err.message}`);
+    logger.error(`[kg-data] Entity lookup error: ${err.message}`);
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
 
     // Fallback: search in static data
@@ -1699,7 +1771,7 @@ app.get('/api/kg-data/entity/:name', async (req, res) => {
       const didaktikEntities = fallback.entities.filter((e) => e.category === 'didaktik');
       const combined = [...lehrplanEntities, ...didaktikEntities];
 
-      console.log(`[kg-data] Fallback (lehrplan): ${combined.length} entities in ${elapsed}s`);
+      logger.info(`[kg-data] Fallback (lehrplan): ${combined.length} entities in ${elapsed}s`);
       var fbLehrplanResponse = {
         source: 'fallback',
         articles: [],
@@ -1714,7 +1786,7 @@ app.get('/api/kg-data/entity/:name', async (req, res) => {
     const fallbackArticles = (fallback.articles || []).filter((a) =>
       (a.entities || []).includes(entity.name)
     );
-    console.log(
+    logger.info(
       `[kg-data] Fallback: ${fallbackArticles.length} articles, ${fallback.entities.length} entities in ${elapsed}s`
     );
 
@@ -1765,7 +1837,7 @@ async function loadContentLinks() {
     var fs = await import('fs');
     _contentLinksCache = JSON.parse(fs.readFileSync(url.pathname, 'utf8'));
   } catch (err) {
-    if (err.code !== 'ENOENT') console.warn('[content-links] load error: ' + err.message);
+    if (err.code !== 'ENOENT') logger.warn('[content-links] load error: ' + err.message);
     _contentLinksCache = {};
   }
   return _contentLinksCache;
@@ -2386,6 +2458,11 @@ function slugify(str) {
     .replace(/[^a-z0-9-]/g, '');
 }
 
+// Sentry error handler (must be last error handler)
+if (process.env.SENTRY_DSN) {
+  app.use(Sentry.Handlers.errorHandler());
+}
+
 /**
  * Graceful shutdown / error handlers
  */
@@ -2398,11 +2475,11 @@ process.on('SIGTERM', async () => {
 });
 
 process.on('unhandledRejection', (reason) => {
-  console.error('[process] UNHANDLED REJECTION:', reason);
+  logger.error({ err: reason }, 'UNHANDLED REJECTION');
 });
 
 process.on('uncaughtException', (err) => {
-  console.error('[process] UNCAUGHT EXCEPTION:', err);
+  logger.error({ err }, 'UNCAUGHT EXCEPTION');
 });
 
 /**
@@ -2456,7 +2533,7 @@ function loadArticleIndex() {
       }
     }
   } catch (err) {
-    console.warn('[article-index] load error: ' + err.message);
+    logger.warn('[article-index] load error: ' + err.message);
   }
   return _articleCache;
 }
@@ -2649,7 +2726,7 @@ app.get('/api/kg-stats', async (req, res) => {
       var contentNodeResult = await session.run(`MATCH (c:Content) RETURN count(c) AS cnt`);
       currCoverage.contentNodes = contentNodeResult.records[0].get('cnt').toNumber();
     } catch (ccErr) {
-      console.warn('[kg-stats] curriculum coverage query failed:', ccErr.message);
+      logger.warn('[kg-stats] curriculum coverage query failed:', ccErr.message);
     }
 
     await session.close();
@@ -2686,7 +2763,7 @@ app.get('/api/kg-stats', async (req, res) => {
     setCachedKgData(statsCacheKey, payload, 300);
     res.json(payload);
   } catch (err) {
-    console.error('[kg-stats] ERROR:', err.message);
+    logger.error('[kg-stats] ERROR:', err.message);
     res.status(503).json({
       error: 'kg-stats unavailable',
       message: err.message,
@@ -2739,7 +2816,7 @@ app.get('/api/content/cross-link-stats', function (req, res) {
       coveragePct: total > 0 ? Math.round(((total - orphan) / total) * 100) : 0,
     });
   } catch (err) {
-    console.error('[cross-link-stats] Error:', err.message);
+    logger.error('[cross-link-stats] Error:', err.message);
     res.status(500).json({ error: 'Failed to load cross-link data', detail: err.message });
   }
 });
@@ -2770,7 +2847,7 @@ app.get('/api/curricula/states', async (req, res) => {
     }));
     res.json({ source: 'neo4j', states, count: states.length });
   } catch (err) {
-    console.error('[curricula/states] Neo4j error:', err.message);
+    logger.error('[curricula/states] Neo4j error:', err.message);
     try {
       const fb = getFallbackData();
       const seen = {};
@@ -2861,7 +2938,7 @@ app.get('/api/curricula/topics', async (req, res) => {
     }));
     res.json({ source: 'neo4j', topics, total, limit, offset });
   } catch (err) {
-    console.error('[curricula/topics] Neo4j error:', err.message);
+    logger.error('[curricula/topics] Neo4j error:', err.message);
     try {
       const fb = getFallbackData();
       let topics = fb.curricula.map((c) => ({
@@ -2944,7 +3021,7 @@ app.get('/api/curricula/objectives', async (req, res) => {
     }));
     res.json({ source: 'neo4j', objectives, total, limit, offset });
   } catch (err) {
-    console.error('[curricula/objectives] Neo4j error:', err.message);
+    logger.error('[curricula/objectives] Neo4j error:', err.message);
     res.status(503).json({ error: 'Learning objectives unavailable' });
   }
 });
@@ -3001,7 +3078,7 @@ app.get('/api/curricula/by-state/:state', async (req, res) => {
       topics,
     });
   } catch (err) {
-    console.error('[curricula/by-state] Neo4j error:', err.message);
+    logger.error('[curricula/by-state] Neo4j error:', err.message);
     try {
       var fb = getFallbackData();
       var fTopics = fb.curricula.filter(function (c) {
@@ -3083,7 +3160,7 @@ app.get('/api/curricula/by-state/:state/grade/:grade', async (req, res) => {
       topics,
     });
   } catch (err) {
-    console.error('[curricula/by-state/grade] Neo4j error:', err.message);
+    logger.error('[curricula/by-state/grade] Neo4j error:', err.message);
     res.status(503).json({ error: 'Curriculum data unavailable' });
   }
 });
@@ -3133,7 +3210,7 @@ app.get('/api/curricula/topic/:slug/articles', async (req, res) => {
       contentLinks: row.get('contentLinks').filter((c) => c.url),
     });
   } catch (err) {
-    console.error('[curricula/topic/articles] Neo4j error:', err.message);
+    logger.error('[curricula/topic/articles] Neo4j error:', err.message);
     res.status(503).json({ error: 'Topic articles unavailable' });
   }
 });
@@ -3185,7 +3262,7 @@ app.get('/api/curricula/objective/:slug/articles', async (req, res) => {
       contentLinks: row.get('contentLinks').filter((c) => c.url),
     });
   } catch (err) {
-    console.error('[curricula/objective/articles] Neo4j error:', err.message);
+    logger.error('[curricula/objective/articles] Neo4j error:', err.message);
     res.status(503).json({ error: 'Objective articles unavailable' });
   }
 });
@@ -3253,7 +3330,7 @@ app.get('/api/entities/:name/curricula', async (req, res) => {
       },
     });
   } catch (err) {
-    console.error('[entities/curricula] Neo4j error:', err.message);
+    logger.error('[entities/curricula] Neo4j error:', err.message);
     res.status(503).json({ error: 'Curriculum context unavailable' });
   }
 });
@@ -3280,7 +3357,7 @@ app.get('/api/curricula/linked-entities', async (req, res) => {
     const names = (result.records[0]?.get('names') || []).map((n) => n);
     res.json({ names, count: names.length });
   } catch (err) {
-    console.error('[curricula/linked-entities] Neo4j error:', err.message);
+    logger.error('[curricula/linked-entities] Neo4j error:', err.message);
     res.status(503).json({ error: 'Linked entities unavailable', names: [], count: 0 });
   }
 });
@@ -3332,7 +3409,7 @@ app.get('/api/content', async (req, res) => {
     }));
     res.json({ source: 'neo4j', items, count: items.length, limit, offset });
   } catch (err) {
-    console.error('[content] Neo4j error:', err.message);
+    logger.error('[content] Neo4j error:', err.message);
     try {
       const links = await loadContentLinks();
       const seen = {};
@@ -3415,7 +3492,7 @@ app.get('/api/didaktik', async (req, res) => {
     }));
     res.json({ source: 'neo4j', items, count: items.length });
   } catch (err) {
-    console.error('[didaktik] Neo4j error:', err.message);
+    logger.error('[didaktik] Neo4j error:', err.message);
     res.status(503).json({ error: 'Didaktik data unavailable' });
   }
 });
@@ -3455,7 +3532,7 @@ app.get('/api/modulhandbuch/universities', async (req, res) => {
       universities: Array.from(seen.values()),
     });
   } catch (err) {
-    console.error('[modulhandbuch/universities] Neo4j error:', err.message);
+    logger.error('[modulhandbuch/universities] Neo4j error:', err.message);
     res.status(503).json({ error: 'University data unavailable' });
   }
 });
@@ -3507,7 +3584,7 @@ app.get('/api/modulhandbuch/university/:shortCode', async (req, res) => {
         })),
     });
   } catch (err) {
-    console.error('[modulhandbuch/university] Neo4j error:', err.message);
+    logger.error('[modulhandbuch/university] Neo4j error:', err.message);
     res.status(503).json({ error: 'University data unavailable' });
   }
 });
@@ -3563,7 +3640,7 @@ app.get('/api/modulhandbuch/module/:univCode/:moduleCode', async (req, res) => {
       offerings: r.get('offerings').filter((o) => o.semester),
     });
   } catch (err) {
-    console.error('[modulhandbuch/module] Neo4j error:', err.message);
+    logger.error('[modulhandbuch/module] Neo4j error:', err.message);
     res.status(503).json({ error: 'Module data unavailable' });
   }
 });
@@ -3617,7 +3694,7 @@ app.get('/api/modulhandbuch/search', async (req, res) => {
       offset,
     });
   } catch (err) {
-    console.error('[modulhandbuch/search] Neo4j error:', err.message);
+    logger.error('[modulhandbuch/search] Neo4j error:', err.message);
     res.status(503).json({ error: 'Search unavailable' });
   }
 });
@@ -3654,7 +3731,7 @@ app.get('/api/modulhandbuch/teaches/:entityName', async (req, res) => {
       })),
     });
   } catch (err) {
-    console.error('[modulhandbuch/teaches] Neo4j error:', err.message);
+    logger.error('[modulhandbuch/teaches] Neo4j error:', err.message);
     res.status(503).json({ error: 'Teaches data unavailable' });
   }
 });
@@ -3710,7 +3787,7 @@ app.get('/api/entities/:name/universities', async (req, res) => {
       totalModules: result.records.length,
     });
   } catch (err) {
-    console.error('[entities/name/universities] Neo4j error:', err.message);
+    logger.error('[entities/name/universities] Neo4j error:', err.message);
     res.status(503).json({ error: 'University data unavailable' });
   }
 });
@@ -4174,7 +4251,7 @@ app.get('/api/studienvergleich/compare', async (req, res) => {
       },
     });
   } catch (err) {
-    console.error('[studienvergleich/compare] Neo4j error:', err.message);
+    logger.error('[studienvergleich/compare] Neo4j error:', err.message);
     res.status(503).json({ error: 'Comparison data unavailable' });
   }
 });
@@ -4192,7 +4269,7 @@ app.get('/api/quizzes/:topic', async (req, res) => {
       const parsed = JSON.parse(raw);
       questions = parsed.questions || [];
     } catch (loadErr) {
-      console.warn('[quiz-api] Failed to load quiz questions:', loadErr.message);
+      logger.warn('[quiz-api] Failed to load quiz questions:', loadErr.message);
     }
 
     if (questions.length === 0) {
@@ -4229,7 +4306,7 @@ app.get('/api/quizzes/:topic', async (req, res) => {
       questions: sanitized,
     });
   } catch (err) {
-    console.error('[quiz-api] Error:', err.message);
+    logger.error('[quiz-api] Error:', err.message);
     res.status(500).json({ error: 'Failed to load quiz questions' });
   }
 });
@@ -4255,7 +4332,7 @@ app.put('/api/quiz-results', async (req, res) => {
     const { addQuizResult } = await import('./auth-db.js');
     const saveResult = addQuizResult(req.user.id, result);
     if (!saveResult.ok) {
-      console.warn('[quiz-api] Failed to save result:', saveResult.error);
+      logger.warn('[quiz-api] Failed to save result:', saveResult.error);
     }
   }
 
@@ -4272,7 +4349,7 @@ app.get('/api/quiz-results', async (req, res) => {
     const results = getQuizResults(req.user.id);
     res.json({ results });
   } catch (err) {
-    console.error('[quiz-api] Error loading results:', err.message);
+    logger.error('[quiz-api] Error loading results:', err.message);
     res.status(500).json({ error: 'Failed to load quiz results' });
   }
 });
@@ -4353,7 +4430,7 @@ app.post('/api/exercises/generate', requireAuth, async (req, res) => {
 
     res.json(exercise);
   } catch (err) {
-    console.error('[exercises] generate error:', err.message);
+    logger.error('[exercises] generate error:', err.message);
     res.status(500).json({ error: 'Aufgabe konnte nicht generiert werden' });
   }
 });
@@ -4386,7 +4463,7 @@ app.post('/api/exercises/answer', requireAuth, async (req, res) => {
 
     res.json(result);
   } catch (err) {
-    console.error('[exercises] answer error:', err.message);
+    logger.error('[exercises] answer error:', err.message);
     res.status(500).json({ error: 'Antwort konnte nicht ausgewertet werden' });
   }
 });
@@ -4398,7 +4475,7 @@ app.get('/api/exercises/history', requireAuth, async (req, res) => {
     const exercises = (userSession.exercises || []).slice(0, limit);
     res.json({ exercises, total: exercises.length });
   } catch (err) {
-    console.error('[exercises] history error:', err.message);
+    logger.error('[exercises] history error:', err.message);
     res.status(500).json({ error: 'Verlauf konnte nicht geladen werden' });
   }
 });
@@ -4409,7 +4486,7 @@ app.get('/api/learning-paths', requireAuth, async (req, res) => {
     const paths = await learningEngine.listPaths(neo4jDriver, sessionStore, req.user.id);
     res.json(paths);
   } catch (err) {
-    console.error('[learning-paths] list error:', err.message);
+    logger.error('[learning-paths] list error:', err.message);
     res.status(500).json({ error: 'Lernpfade konnten nicht geladen werden' });
   }
 });
@@ -4425,7 +4502,7 @@ app.get('/api/learning-paths/:slug', requireAuth, async (req, res) => {
     if (!detail) return res.status(404).json({ error: 'Lernpfad nicht gefunden' });
     res.json(detail);
   } catch (err) {
-    console.error('[learning-paths] detail error:', err.message);
+    logger.error('[learning-paths] detail error:', err.message);
     res.status(500).json({ error: 'Lernpfad-Details konnten nicht geladen werden' });
   }
 });
@@ -4435,7 +4512,7 @@ app.post('/api/learning-paths/:slug/enroll', requireAuth, async (req, res) => {
     const result = learningEngine.enrollInPath(sessionStore, req.user.id, req.params.slug);
     res.json(result);
   } catch (err) {
-    console.error('[learning-paths] enroll error:', err.message);
+    logger.error('[learning-paths] enroll error:', err.message);
     res.status(500).json({ error: 'Einschreibung fehlgeschlagen' });
   }
 });
@@ -4445,7 +4522,7 @@ app.get('/api/learning-paths/progress', requireAuth, async (req, res) => {
     const progress = learningEngine.getAggregatedProgress(sessionStore, req.user.id);
     res.json(progress);
   } catch (err) {
-    console.error('[learning-paths] progress error:', err.message);
+    logger.error('[learning-paths] progress error:', err.message);
     res.status(500).json({ error: 'Fortschritt konnte nicht geladen werden' });
   }
 });
@@ -4481,7 +4558,7 @@ app.get('/api/learning-paths/:slug/certificate', requireAuth, async (req, res) =
     );
     res.send(pdfBuffer);
   } catch (err) {
-    console.error('[learning-paths] certificate error:', err.message);
+    logger.error('[learning-paths] certificate error:', err.message);
     res.status(500).json({ error: 'Zertifikat konnte nicht erstellt werden' });
   }
 });
@@ -4493,7 +4570,7 @@ app.post('/api/check-in', requireAuth, async (req, res) => {
     learningEngine.evaluateBadges(sessionStore, req.user.id);
     res.json(result);
   } catch (err) {
-    console.error('[check-in] error:', err.message);
+    logger.error('[check-in] error:', err.message);
     res.status(500).json({ error: 'Check-in fehlgeschlagen' });
   }
 });
@@ -4503,7 +4580,7 @@ app.get('/api/check-in', requireAuth, async (req, res) => {
     const status = learningEngine.getCheckInStatus(sessionStore, req.user.id);
     res.json(status);
   } catch (err) {
-    console.error('[check-in] status error:', err.message);
+    logger.error('[check-in] status error:', err.message);
     res.status(500).json({ error: 'Status konnte nicht geladen werden' });
   }
 });
@@ -4513,7 +4590,7 @@ app.get('/api/achievements', requireAuth, async (req, res) => {
     const achievements = learningEngine.getAchievements(sessionStore, req.user.id);
     res.json(achievements);
   } catch (err) {
-    console.error('[achievements] error:', err.message);
+    logger.error('[achievements] error:', err.message);
     res.status(500).json({ error: 'Errungenschaften konnten nicht geladen werden' });
   }
 });
@@ -4530,7 +4607,7 @@ app.post('/api/collab/sessions', requireAuth, async (req, res) => {
     );
     res.status(201).json(result);
   } catch (err) {
-    console.error('[collab] create error:', err.message);
+    logger.error('[collab] create error:', err.message);
     res.status(500).json({ error: 'Sitzung konnte nicht erstellt werden' });
   }
 });
@@ -4540,7 +4617,7 @@ app.get('/api/collab/sessions', requireAuth, async (req, res) => {
     const list = collabEngine.listActiveSessions();
     res.json({ sessions: list });
   } catch (err) {
-    console.error('[collab] list error:', err.message);
+    logger.error('[collab] list error:', err.message);
     res.status(500).json({ error: 'Sitzungen konnten nicht geladen werden' });
   }
 });
@@ -4552,7 +4629,7 @@ app.get('/api/collab/sessions/:id', requireAuth, async (req, res) => {
     const participants = collabEngine.getParticipants(req.params.id);
     res.json({ ...session, participants });
   } catch (err) {
-    console.error('[collab] get error:', err.message);
+    logger.error('[collab] get error:', err.message);
     res.status(500).json({ error: 'Sitzung konnte nicht geladen werden' });
   }
 });
@@ -4567,7 +4644,7 @@ app.post('/api/collab/sessions/:id/join', requireAuth, async (req, res) => {
     if (result.error) return res.status(400).json(result);
     res.json(result);
   } catch (err) {
-    console.error('[collab] join error:', err.message);
+    logger.error('[collab] join error:', err.message);
     res.status(500).json({ error: 'Beitritt fehlgeschlagen' });
   }
 });
@@ -4578,7 +4655,7 @@ app.post('/api/collab/sessions/:id/leave', requireAuth, async (req, res) => {
     if (result.error) return res.status(400).json(result);
     res.json(result);
   } catch (err) {
-    console.error('[collab] leave error:', err.message);
+    logger.error('[collab] leave error:', err.message);
     res.status(500).json({ error: 'Austritt fehlgeschlagen' });
   }
 });
@@ -4589,7 +4666,7 @@ app.get('/api/collab/sessions/:id/messages', requireAuth, async (req, res) => {
     const messages = collabEngine.getMessages(req.params.id, since);
     res.json({ messages });
   } catch (err) {
-    console.error('[collab] messages error:', err.message);
+    logger.error('[collab] messages error:', err.message);
     res.status(500).json({ error: 'Nachrichten konnten nicht geladen werden' });
   }
 });
@@ -4606,7 +4683,7 @@ app.post('/api/collab/sessions/:id/messages', requireAuth, async (req, res) => {
     if (result.error) return res.status(400).json(result);
     res.status(201).json(result);
   } catch (err) {
-    console.error('[collab] send error:', err.message);
+    logger.error('[collab] send error:', err.message);
     res.status(500).json({ error: 'Nachricht konnte nicht gesendet werden' });
   }
 });
@@ -4616,7 +4693,7 @@ app.get('/api/collab/sessions/:id/exercises', requireAuth, async (req, res) => {
     const exercises = collabEngine.getSharedExercises(req.params.id);
     res.json({ exercises });
   } catch (err) {
-    console.error('[collab] exercises error:', err.message);
+    logger.error('[collab] exercises error:', err.message);
     res.status(500).json({ error: 'Aufgaben konnten nicht geladen werden' });
   }
 });
@@ -4629,7 +4706,7 @@ app.post('/api/collab/sessions/:id/exercises', requireAuth, async (req, res) => 
     if (result.error) return res.status(400).json(result);
     res.status(201).json(result);
   } catch (err) {
-    console.error('[collab] share exercise error:', err.message);
+    logger.error('[collab] share exercise error:', err.message);
     res.status(500).json({ error: 'Aufgabe konnte nicht geteilt werden' });
   }
 });
@@ -4648,13 +4725,13 @@ app.post(
       if (result.error) return res.status(400).json(result);
       res.json(result);
     } catch (err) {
-      console.error('[collab] complete exercise error:', err.message);
+      logger.error('[collab] complete exercise error:', err.message);
       res.status(500).json({ error: 'Aufgabe konnte nicht als erledigt markiert werden' });
     }
   }
 );
 
 app.listen(PORT, () => {
-  console.log(`[chat-api] Listening on port ${PORT}`);
-  console.log(`[chat-api] LiteLLM: ${LITELLM_URL}, Model: ${LITELLM_MODEL}`);
+  logger.info(`[chat-api] Listening on port ${PORT}`);
+  logger.info(`[chat-api] LiteLLM: ${LITELLM_URL}, Model: ${LITELLM_MODEL}`);
 });
