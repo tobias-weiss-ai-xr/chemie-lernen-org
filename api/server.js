@@ -191,8 +191,8 @@ app.post(
 app.use(express.json({ limit: '100kb' }));
 app.use(cookieParser());
 
-// Prometheus metrics middleware (exposes /api/metrics)
-const metricsMiddleware = promBundle({
+// Prometheus metrics middleware
+const promMid = promBundle({
   includeMethod: true,
   includePath: true,
   includeStatusCode: true,
@@ -200,9 +200,10 @@ const metricsMiddleware = promBundle({
     collectDefaultMetrics: { timeout: 5000 },
   },
   customLabels: { app: 'chemie-chat-api' },
+  metricsApp: app,
+  metricsPath: '/api/metrics',
 });
-app.use('/api/metrics', metricsMiddleware.metricsMiddleware);
-app.use(metricsMiddleware.promMiddleware);
+app.use(promMid);
 
 // Sentry error tracking
 if (process.env.SENTRY_DSN) {
