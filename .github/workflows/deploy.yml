@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run npm audit (critical only)
+        run: npm audit --audit-level=critical || echo '[CI] npm audit found critical/high issues (non-fatal)'
+
       - name: Run linter
         run: npm run lint
 
@@ -145,7 +148,7 @@ jobs:
             echo "  ✓ /api/chat validates input (400 on empty body)"
             echo "=== Smoke tests passed ==="
             echo "=== Pinging healthchecks.io ==="
-            curl -fsS -m 10 "https://hc-ping.com/chemi-deploy-ok" \
+            curl -fsS -m 10 "${{ secrets.HEALTHCHECKS_IO_URL || 'https://hc-ping.com/chemi-deploy-ok' }}" \
               --data-raw "status=ok smoke-tests-passed $(date)" || echo "healthchecks.io ping skipped (non-fatal)"
             echo "=== Cleaning up old images ==="
             docker image prune -f
