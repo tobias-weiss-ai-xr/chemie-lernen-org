@@ -213,8 +213,6 @@ if (process.env.SENTRY_DSN) {
     integrations: [Sentry.expressIntegration()],
     tracesSampleRate: 0.1,
   });
-  app.use(Sentry.Handlers.requestHandler());
-  app.use(Sentry.Handlers.tracingHandler());
 }
 
 // CORS for the chemie-lernen.org domain
