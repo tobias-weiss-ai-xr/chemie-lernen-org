@@ -2620,7 +2620,7 @@ function slugify(str) {
 
 // Sentry error handler (must be last error handler)
 if (process.env.SENTRY_DSN) {
-  app.use(Sentry.Handlers.errorHandler());
+  app.use(Sentry.expressErrorHandler());
 }
 
 /**
