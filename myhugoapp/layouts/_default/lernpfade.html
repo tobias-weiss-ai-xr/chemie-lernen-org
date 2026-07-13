@@ -1,0 +1,106 @@
+{{ define "main" }}
+
+<div class="lernpfade-container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- 3-Column Dashboard Grid -->
+  <div class="lernpfade-dashboard">
+
+    <!-- Left Column: Learning Path Tree -->
+    <aside class="lernpfade-column lernpfade-column-left">
+      <div class="dashboard-card">
+        <h2><i class="fa fa-sitemap"></i> Lernpfade</h2>
+        <div id="path-tree" class="path-tree">
+          <p class="text-muted"><i class="fa fa-spinner fa-spin"></i> Lade Lernpfade...</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Center Column: XP, Streak, Check-in, Log -->
+    <main class="lernpfade-column lernpfade-column-center">
+      <!-- XP Bar -->
+      <div class="dashboard-card xp-section">
+        <div class="xp-header">
+          <div class="xp-info">
+            <span class="xp-label">Erfahrungspunkte</span>
+            <span class="xp-values">
+              <strong id="xp-current">0</strong> / <span id="xp-next">500</span> XP
+            </span>
+          </div>
+          <div class="level-badge" id="level-badge">
+            <span class="level-number" id="level-number">1</span>
+            <span class="level-title" id="level-title">Chemie-Anfänger</span>
+          </div>
+        </div>
+        <div class="xp-bar-wrapper">
+          <div class="xp-bar-track">
+            <div class="xp-bar-fill" id="xp-bar-fill" style="width: 0%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Streak & Check-in -->
+      <div class="dashboard-card streak-section">
+        <div class="streak-row">
+          <div class="streak-display">
+            <span class="streak-flame" id="streak-flame" aria-hidden="true">🔥</span>
+            <span class="streak-count" id="streak-count">0</span>
+            <span class="streak-label">Tage Serie</span>
+          </div>
+          <button id="btn-checkin" class="btn btn-success btn-checkin" onclick="lernpfadeCheckIn()">
+            <i class="fa fa-check-circle"></i> Check-in
+          </button>
+        </div>
+      </div>
+
+      <!-- XP Log -->
+      <div class="dashboard-card xp-log-section">
+        <h3><i class="fa fa-clock-o"></i> Letzte Aktivitäten</h3>
+        <div id="xp-log" class="xp-log">
+          <p class="text-muted"><i class="fa fa-spinner fa-spin"></i> Lade Aktivitäten...</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right Column: Badge Showcase -->
+    <aside class="lernpfade-column lernpfade-column-right">
+      <div class="dashboard-card badge-section">
+        <h2><i class="fa fa-trophy"></i> Erfolge</h2>
+        <div id="badge-grid" class="badge-grid">
+          <p class="text-muted"><i class="fa fa-spinner fa-spin"></i> Lade Erfolge...</p>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Bottom Section: Next Recommended Topic -->
+  <div class="row" style="margin-top: 30px;">
+    <div class="col-md-12">
+      <div class="dashboard-card recommendation-card" id="recommendation-card">
+        <div id="recommendation-loading">
+          <p class="text-muted"><i class="fa fa-spinner fa-spin"></i> Empfehlung wird geladen...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<link rel="stylesheet" href="/css/lernpfade.css">
+<script src="/js/lernpfade.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  lernpfadeInit();
+});
+</script>
+
+{{ end }}
