@@ -74,6 +74,17 @@ export function createUser({ email, passwordHash, name = '', role = 'user', tier
     stripe_id: null,
     stripe_customer_id: null,
     premium_until: null,
+    gamification: {
+      xp: 0,
+      level: 0,
+      streak: 0,
+      lastCheckin: null,
+      lastCheckinDate: null,
+      badges: [],
+      completedObjectives: [],
+      checkinHistory: [],
+      xpLog: [],
+    },
     learning_profile: {
       level: 'beginner',
       interests: [],
@@ -408,7 +419,471 @@ export function getDueCards(userId) {
   if (!u) return [];
   if (!u.fsrsCards) u.fsrsCards = [];
   const today = new Date().toISOString().slice(0, 10);
-  return u.fsrsCards
-    .filter((c) => c.dueDate <= today)
-    .sort((a, b) => a.ease - b.ease);
+  return u.fsrsCards.filter((c) => c.dueDate <= today).sort((a, b) => a.ease - b.ease);
 }
+
+// ── Gamification System ──────────────────────────────────────────────
+
+/**
+ * Daily XP caps by action category.
+ * Design: quiz=200xp/day, exercise=100xp/day, checkin=20xp/day, reading=50xp/day.
+ */
+const DAILY_XP_CAPS = {
+  quiz: 200,
+  exercise: 100,
+  checkin: 20,
+  reading: 50,
+};
+
+/**
+ * Ten badge definitions with functional criteria.
+ * Each badge has an id, display name, trigger description, XP bonus,
+ * and a condition function that receives the gamification object.
+ */
+const BADGES = [
+  {
+    id: 'erste-schritte',
+    name: 'Erste Schritte',
+    trigger: 'first_quiz',
+    xpBonus: 50,
+    condition: (g) => g.xpLog.some((e) => e.action === 'quiz_submit'),
+  },
+  {
+    id: 'fruehaufsteher',
+    name: 'Frühaufsteher',
+    trigger: 'streak_7',
+    xpBonus: 200,
+    condition: (g) => g.streak >= 7,
+  },
+  {
+    id: 'chemie-fuchs',
+    name: 'Chemie-Fuchs',
+    trigger: 'streak_30',
+    xpBonus: 500,
+    condition: (g) => g.streak >= 30,
+  },
+  {
+    id: 'uebungsmeister',
+    name: 'Übungsmeister',
+    trigger: '100_exercises',
+    xpBonus: 300,
+    condition: (g) => g.xpLog.filter((e) => e.action === 'exercise_correct').length >= 100,
+  },
+  {
+    id: 'themen-experte',
+    name: 'Themen-Experte',
+    trigger: 'topic_100',
+    xpBonus: 150,
+    condition: (g) => g.completedObjectives.length >= 5,
+  },
+  {
+    id: 'pfad-absolvent',
+    name: 'Pfad-Absolvent',
+    trigger: 'path_complete',
+    xpBonus: 500,
+    condition: (g) => g.completedObjectives.length >= 15,
+  },
+  {
+    id: 'sammler',
+    name: 'Sammler',
+    trigger: '5_badges',
+    xpBonus: 200,
+    condition: (g) => g.badges.length >= 5,
+  },
+  {
+    id: 'bestaendig',
+    name: 'Beständig',
+    trigger: '30_checkins',
+    xpBonus: 250,
+    condition: (g) => g.checkinHistory.length >= 30,
+  },
+  {
+    id: 'schnellstarter',
+    name: 'Schnellstarter',
+    trigger: '3_in_one_day',
+    xpBonus: 50,
+    condition: (g) => todayCount(g.xpLog, 'exercise_correct') >= 3,
+  },
+  {
+    id: 'alleskoenner',
+    name: 'Alleskönner',
+    trigger: 'all_types',
+    xpBonus: 300,
+    condition: (g) => {
+      const types = new Set(g.xpLog.map((e) => e.action));
+      return types.size >= 5;
+    },
+  },
+];
+
+/**
+ * Count how many xpLog entries with `action` occurred today.
+ * @param {Array} xpLog
+ * @param {string} action
+ * @returns {number}
+ */
+function todayCount(xpLog, action) {
+  const today = new Date().toISOString().slice(0, 10);
+  return xpLog.filter(
+    (e) => e.action === action && e.timestamp && e.timestamp.slice(0, 10) === today
+  ).length;
+}
+
+/**
+ * Extract the action category from an action name for cap checking.
+ * @param {string} action
+ * @returns {string}
+ */
+function _getActionCategory(action) {
+  for (const cat of Object.keys(DAILY_XP_CAPS)) {
+    if (action.startsWith(cat)) return cat;
+  }
+  return 'other';
+}
+
+/**
+ * Calculate how much XP of the given category has been earned today.
+ * @param {Array} xpLog
+ * @param {string} category
+ * @returns {number}
+ */
+function _getTodayXpForCategory(xpLog, category) {
+  const today = new Date().toISOString().slice(0, 10);
+  return xpLog.reduce((sum, entry) => {
+    if (
+      entry.timestamp &&
+      entry.timestamp.slice(0, 10) === today &&
+      _getActionCategory(entry.action) === category
+    ) {
+      return sum + (entry.amount || 0);
+    }
+    return sum;
+  }, 0);
+}
+
+/**
+ * Calculate level from total XP.
+ * Level = Math.floor(xp / 500)
+ * @param {number} xp
+ * @returns {number}
+ */
+export function calculateLevel(xp) {
+  return Math.floor(xp / 500);
+}
+
+/**
+ * Lazy-init and return a user's gamification object.
+ * Follows the same pattern as getFsrsCards / getConversationMemory.
+ * @param {number} userId
+ * @returns {object|null} gamification object, or null if user not found
+ */
+export function getGamification(userId) {
+  const u = users.find((u) => u.id === userId);
+  if (!u) return null;
+  if (!u.gamification) {
+    u.gamification = {
+      xp: 0,
+      level: 0,
+      streak: 0,
+      lastCheckin: null,
+      lastCheckinDate: null,
+      badges: [],
+      completedObjectives: [],
+      checkinHistory: [],
+      xpLog: [],
+    };
+  }
+  return u.gamification;
+}
+
+/**
+ * Award XP to a user, enforcing daily category caps.
+ * Updates level, logs to xpLog, and persists.
+ *
+ * @param {number} userId
+ * @param {number} amount - XP amount to award (before cap)
+ * @param {string} source - human-readable source description (e.g. 'Quiz: Säuren und Basen')
+ * @param {string} action - action type for cap grouping (e.g. 'quiz_submit', 'exercise_correct', 'checkin', 'reading')
+ * @returns {{ awarded: number, totalXp: number, capped: boolean, newLevel: number }} result
+ */
+export function awardXp(userId, amount, source, action) {
+  const u = users.find((u) => u.id === userId);
+  if (!u) return { awarded: 0, totalXp: 0, capped: false, newLevel: 0 };
+
+  const g = getGamification(userId);
+  if (!g) return { awarded: 0, totalXp: 0, capped: false, newLevel: 0 };
+
+  const category = _getActionCategory(action);
+  const todayXp = _getTodayXpForCategory(g.xpLog, category);
+  const cap = DAILY_XP_CAPS[category];
+
+  let capped = false;
+  let awarded = amount;
+
+  if (cap !== undefined && todayXp + amount > cap) {
+    const remaining = Math.max(0, cap - todayXp);
+    if (remaining <= 0) {
+      // Daily cap already reached — no XP awarded
+      return { awarded: 0, totalXp: g.xp, capped: true, newLevel: g.level };
+    }
+    awarded = remaining;
+    capped = true;
+  }
+
+  g.xp += awarded;
+  g.level = calculateLevel(g.xp);
+
+  g.xpLog.unshift({
+    action,
+    amount: awarded,
+    source,
+    timestamp: new Date().toISOString(),
+  });
+
+  // Keep only the last 100 entries
+  if (g.xpLog.length > 100) {
+    g.xpLog.length = 100;
+  }
+
+  u.updated_at = new Date().toISOString();
+  scheduleSave();
+
+  return { awarded, totalXp: g.xp, capped, newLevel: g.level };
+}
+
+/**
+ * Get the current streak length for a user.
+ * @param {number} userId
+ * @returns {number}
+ */
+export function getStreak(userId) {
+  const g = getGamification(userId);
+  if (!g) return 0;
+  return g.streak || 0;
+}
+
+/**
+ * Record a daily check-in for the user.
+ * Manages streak logic and streak freeze (burn 100 XP if a day was missed
+ * and the user has enough XP to preserve the streak).
+ *
+ * Streak freeze: if lastCheckinDate !== yesterday && streak > 0 && xp >= 100,
+ * auto-debit 100 XP to keep streak.
+ *
+ * @param {number} userId
+ * @returns {object} { checkedIn, streak, xpEarned, totalXp, message, streakFrozen }
+ */
+export function recordCheckin(userId) {
+  const u = users.find((u) => u.id === userId);
+  if (!u)
+    return {
+      checkedIn: false,
+      streak: 0,
+      xpEarned: 0,
+      totalXp: 0,
+      message: 'User not found',
+      streakFrozen: false,
+    };
+
+  const g = getGamification(userId);
+  if (!g)
+    return {
+      checkedIn: false,
+      streak: 0,
+      xpEarned: 0,
+      totalXp: 0,
+      message: 'User not found',
+      streakFrozen: false,
+    };
+
+  const now = new Date();
+  const today = now.toISOString().slice(0, 10);
+  const yesterday = new Date(now.getTime() - 86400000).toISOString().slice(0, 10);
+
+  // Already checked in today
+  if (g.lastCheckinDate === today) {
+    return {
+      checkedIn: false,
+      streak: g.streak || 0,
+      xpEarned: 0,
+      totalXp: g.xp,
+      message: 'Bereits heute eingecheckt',
+      streakFrozen: false,
+    };
+  }
+
+  let streakFrozen = false;
+
+  // Streak logic
+  if (g.lastCheckinDate === yesterday) {
+    // Consecutive day — increment streak
+    g.streak = (g.streak || 0) + 1;
+  } else if (g.lastCheckinDate && g.streak > 0) {
+    // Gap detected: try streak freeze
+    if (g.xp >= 100) {
+      g.xp -= 100;
+      g.level = calculateLevel(g.xp);
+      streakFrozen = true;
+      // Log the freeze as a negative XP entry
+      g.xpLog.unshift({
+        action: 'streak_freeze',
+        amount: -100,
+        source: 'Streak-Freeze (verpasster Tag)',
+        timestamp: new Date().toISOString(),
+      });
+      if (g.xpLog.length > 100) g.xpLog.length = 100;
+    } else {
+      // Cannot afford freeze — reset streak
+      g.streak = 1;
+    }
+  } else {
+    // First check-in or streak already 0
+    g.streak = 1;
+  }
+
+  g.lastCheckin = now.toISOString();
+  g.lastCheckinDate = today;
+
+  // Update check-in history (keep last 60 days)
+  if (!g.checkinHistory.includes(today)) {
+    g.checkinHistory.unshift(today);
+    if (g.checkinHistory.length > 60) {
+      g.checkinHistory.length = 60;
+    }
+  }
+
+  // Award check-in XP (capped at 20/day)
+  const xpResult = awardXp(userId, 20, 'Tägliches Check-in', 'checkin');
+
+  u.updated_at = now.toISOString();
+  scheduleSave();
+
+  return {
+    checkedIn: true,
+    streak: g.streak || 0,
+    xpEarned: xpResult.awarded,
+    totalXp: g.xp,
+    message: streakFrozen ? 'Streak durch Einfrieren erhalten (-100 XP)' : null,
+    streakFrozen,
+  };
+}
+
+/**
+ * Evaluate all 10 badge criteria and unlock any that are newly earned.
+ * @param {number} userId
+ * @returns {Array} newly unlocked badges
+ */
+export function checkBadgeUnlock(userId) {
+  const g = getGamification(userId);
+  if (!g) return [];
+
+  const earnedIds = new Set(g.badges.map((b) => b.badgeId));
+  const newlyEarned = [];
+
+  for (const badge of BADGES) {
+    if (earnedIds.has(badge.id)) continue;
+
+    if (badge.condition(g)) {
+      const earnedBadge = {
+        badgeId: badge.id,
+        name: badge.name,
+        earnedAt: new Date().toISOString(),
+      };
+      g.badges.push(earnedBadge);
+      newlyEarned.push(earnedBadge);
+
+      // Award XP bonus for earning the badge
+      if (badge.xpBonus > 0) {
+        g.xp += badge.xpBonus;
+        g.level = calculateLevel(g.xp);
+        g.xpLog.unshift({
+          action: 'badge_unlock',
+          amount: badge.xpBonus,
+          source: `Abzeichen: ${badge.name}`,
+          timestamp: new Date().toISOString(),
+        });
+        if (g.xpLog.length > 100) g.xpLog.length = 100;
+      }
+    }
+  }
+
+  if (newlyEarned.length > 0) {
+    const u = users.find((u) => u.id === userId);
+    if (u) u.updated_at = new Date().toISOString();
+    scheduleSave();
+  }
+
+  return newlyEarned;
+}
+
+/**
+ * Get the status of all 10 badges (earned vs not earned).
+ * @param {number} userId
+ * @returns {Array} [{ id, name, earned, earnedAt }]
+ */
+export function getBadgeStatus(userId) {
+  const g = getGamification(userId);
+  if (!g) return BADGES.map((b) => ({ id: b.id, name: b.name, earned: false, earnedAt: null }));
+
+  const earnedMap = new Map(g.badges.map((b) => [b.badgeId, b.earnedAt]));
+
+  return BADGES.map((badge) => ({
+    id: badge.id,
+    name: badge.name,
+    earned: earnedMap.has(badge.id),
+    earnedAt: earnedMap.get(badge.id) || null,
+  }));
+}
+
+/**
+ * Mark a learning objective as completed by the user.
+ * @param {number} userId
+ * @param {string} slug - learning objective slug (e.g. 'trennverfahren-kennen')
+ * @returns {object|null} updated completedObjectives array, or null if user not found
+ */
+export function completeObjective(userId, slug) {
+  const u = users.find((u) => u.id === userId);
+  if (!u) return null;
+
+  const g = getGamification(userId);
+  if (!g) return null;
+
+  // Avoid duplicates
+  if (!g.completedObjectives.some((o) => o.slug === slug)) {
+    g.completedObjectives.push({
+      slug,
+      completedAt: new Date().toISOString(),
+    });
+
+    // Award XP for completing an objective
+    g.xp += 50;
+    g.level = calculateLevel(g.xp);
+    g.xpLog.unshift({
+      action: 'objective_complete',
+      amount: 50,
+      source: `Lernziel erfüllt: ${slug}`,
+      timestamp: new Date().toISOString(),
+    });
+    if (g.xpLog.length > 100) g.xpLog.length = 100;
+
+    u.updated_at = new Date().toISOString();
+    scheduleSave();
+  }
+
+  return g.completedObjectives;
+}
+
+/**
+ * Get the last N entries from the XP log.
+ * @param {number} userId
+ * @param {number} [limit=50]
+ * @returns {Array}
+ */
+export function getXpLog(userId, limit) {
+  const safeLimit = typeof limit === 'number' && limit > 0 ? limit : 50;
+  const g = getGamification(userId);
+  if (!g) return [];
+  return (g.xpLog || []).slice(0, safeLimit);
+}
+
+export { BADGES, DAILY_XP_CAPS };
