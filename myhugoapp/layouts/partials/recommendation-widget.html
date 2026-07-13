@@ -1,0 +1,109 @@
+<!-- Recommendation Widget — "Dein Lernpfad" on home page -->
+<!-- Populated by home-recommendation.js via /api/gamification/profile -->
+<div id="next-recommendation" class="recommendation-widget" style="display:none;">
+  <h3>Dein Lernpfad</h3>
+  <div id="recommendation-content" class="recommendation-content">
+    <p class="text-muted"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Lädt...</p>
+  </div>
+</div>
+
+<style>
+.recommendation-widget {
+  background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e9 100%);
+  border: 1px solid #c8e6c9;
+  border-radius: 12px;
+  padding: 28px 24px;
+  margin: 30px 0;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.recommendation-widget h3 {
+  margin: 0 0 12px 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-primary, #1b5e20);
+}
+
+.recommendation-widget .recommendation-content {
+  font-size: 1rem;
+  color: var(--text-primary, #2c3e50);
+}
+
+.recommendation-widget .recommendation-content p {
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.recommendation-widget .recommendation-content .btn {
+  border-radius: 20px;
+  padding: 8px 28px;
+  font-weight: 600;
+}
+
+.recommendation-widget .path-list-mini {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.recommendation-widget .path-list-mini li {
+  display: inline-block;
+}
+
+.recommendation-widget .path-list-mini a {
+  display: inline-block;
+  padding: 6px 14px;
+  background: #fff;
+  border: 1px solid #c8e6c9;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  color: var(--brand-primary, #1b5e20);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.recommendation-widget .path-list-mini a:hover {
+  background: var(--brand-primary, #1b5e20);
+  color: #fff;
+  border-color: var(--brand-primary, #1b5e20);
+}
+
+@media (prefers-color-scheme: dark) {
+  .recommendation-widget {
+    background: linear-gradient(135deg, #1a2e1a 0%, #1a3a1a 100%);
+    border-color: #2a5a2a;
+  }
+  .recommendation-widget h3 {
+    color: #81c784;
+  }
+  .recommendation-widget .recommendation-content {
+    color: #e0e0e0;
+  }
+  .recommendation-widget .path-list-mini a {
+    background: #2c2c2c;
+    border-color: #3a5a3a;
+    color: #81c784;
+  }
+  .recommendation-widget .path-list-mini a:hover {
+    background: #81c784;
+    color: #1a1a1a;
+    border-color: #81c784;
+  }
+}
+
+@media (max-width: 480px) {
+  .recommendation-widget {
+    padding: 20px 16px;
+    margin: 20px 0;
+  }
+  .recommendation-widget .path-list-mini {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>

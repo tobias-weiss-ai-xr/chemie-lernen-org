@@ -119,6 +119,110 @@ function showToast(message, type) {
   }, 4000);
 }
 
+/**
+ * Show a badge unlock toast notification
+ * Creates a floating toast bottom-right with badge icon, name, and XP bonus
+ * Auto-dismisses after 5 seconds. Triggers from gamification events.
+ *
+ * @param {Object} badge - { name, xpBonus, icon?, earnedAt? }
+ */
+function showBadgeToast(badge) {
+  if (typeof document === 'undefined') return;
+  if (!badge || !badge.name) return;
+
+  var container = document.getElementById('badge-toast-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'badge-toast-container';
+    container.style.cssText =
+      'position:fixed;bottom:24px;right:24px;z-index:10001;' +
+      'display:flex;flex-direction:column;gap:10px;max-width:380px;' +
+      'pointer-events:none;';
+    document.body.appendChild(container);
+  }
+
+  var toast = document.createElement('div');
+  toast.className = 'badge-toast';
+  toast.style.cssText =
+    'display:flex;align-items:center;gap:14px;padding:14px 18px;' +
+    'background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);' +
+    'color:#fff;border-radius:12px;' +
+    'box-shadow:0 8px 32px rgba(0,0,0,0.3);' +
+    'border-left:4px solid #f1c40f;' +
+    'transform:translateX(120%);opacity:0;' +
+    'transition:transform 0.4s cubic-bezier(0.22,1,0.36,1),opacity 0.3s ease;' +
+    'pointer-events:auto;cursor:pointer;';
+
+  var iconChar = badge.icon || 'fa-star';
+  var iconHtml = '<i class="fa ' + iconChar + '" style="font-size:1.4rem"></i>';
+  var xpText = badge.xpBonus
+    ? '<div class="badge-toast-xp" style="font-size:0.8rem;color:#f1c40f;font-weight:600;">+' +
+      badge.xpBonus +
+      ' XP</div>'
+    : '';
+
+  toast.innerHTML =
+    '<div class="badge-toast-icon" style="font-size:2rem;flex-shrink:0;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(241,196,15,0.15);border-radius:50%;">' +
+    iconHtml +
+    '</div>' +
+    '<div class="badge-toast-body" style="flex:1;min-width:0;">' +
+    '<div class="badge-toast-title" style="font-size:0.95rem;font-weight:700;">' +
+    '🎉 ' +
+    escapeHtml(badge.name) +
+    '</div>' +
+    xpText +
+    '</div>' +
+    '<button class="badge-toast-close" style="font-size:1rem;color:rgba(255,255,255,0.5);flex-shrink:0;padding:4px;border:none;background:none;cursor:pointer;" aria-label="Schließen">&times;</button>';
+
+  container.appendChild(toast);
+
+  /* Slide in */
+  requestAnimationFrame(function () {
+    toast.style.transform = 'translateX(0)';
+    toast.style.opacity = '1';
+  });
+
+  /* Click to dismiss */
+  toast.addEventListener('click', function () {
+    dismissBadgeToast(toast);
+  });
+
+  /* Close button stops propagation */
+  var closeBtn = toast.querySelector('.badge-toast-close');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      dismissBadgeToast(toast);
+    });
+  }
+
+  /* Auto-dismiss after 5 seconds */
+  var dismissTimer = setTimeout(function () {
+    dismissBadgeToast(toast);
+  }, 5000);
+
+  toast._dismissTimer = dismissTimer;
+}
+
+function dismissBadgeToast(toast) {
+  if (toast._dismissing) return;
+  toast._dismissing = true;
+
+  if (toast._dismissTimer) {
+    clearTimeout(toast._dismissTimer);
+  }
+
+  toast.style.transform = 'translateX(120%)';
+  toast.style.opacity = '0';
+  toast.style.transition = 'transform 0.3s ease-in, opacity 0.3s ease';
+
+  setTimeout(function () {
+    if (toast.parentNode) {
+      toast.parentNode.removeChild(toast);
+    }
+  }, 300);
+}
+
 function initExerciseHints() {
   var headings = document.querySelectorAll('h2, h3');
   for (var h = 0; h < headings.length; h++) {
@@ -176,13 +280,10 @@ function addHintButtonsToList(list) {
           .then(function (data) {
             var hintText = data.hint || data.text || 'Kein Hinweis verfügbar.';
             hintArea.innerHTML =
-              '<div class="hint-result">' +
-              hintText.replace(/\n/g, '<br>') +
-              '</div>';
+              '<div class="hint-result">' + hintText.replace(/\n/g, '<br>') + '</div>';
           })
           .catch(function () {
-            hintArea.innerHTML =
-              '<p class="hint-error">Hinweis konnte nicht geladen werden.</p>';
+            hintArea.innerHTML = '<p class="hint-error">Hinweis konnte nicht geladen werden.</p>';
           })
           .finally(function () {
             button.disabled = false;
@@ -209,6 +310,7 @@ if (typeof module !== 'undefined' && module.exports) {
     darkenColor: darkenColor,
     escapeHtml: escapeHtml,
     showToast: showToast,
+    showBadgeToast: showBadgeToast,
     initExerciseHints: initExerciseHints,
   };
 }
@@ -220,6 +322,7 @@ if (typeof window !== 'undefined') {
     darkenColor: darkenColor,
     escapeHtml: escapeHtml,
     showToast: showToast,
+    showBadgeToast: showBadgeToast,
     initExerciseHints: initExerciseHints,
   };
 }

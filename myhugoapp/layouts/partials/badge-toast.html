@@ -1,0 +1,106 @@
+<!-- Badge Toast Container — receives badge unlock notifications -->
+<!-- Populated by showBadgeToast() in ui-utils.js -->
+<!-- Toast appears bottom-right, slides in, auto-dismisses after 5s -->
+<div id="badge-toast-container" class="badge-toast-container" aria-live="polite" aria-atomic="true"></div>
+
+<style>
+.badge-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 380px;
+  pointer-events: none;
+}
+
+.badge-toast {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-left: 4px solid #f1c40f;
+  transform: translateX(120%);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.badge-toast.visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.badge-toast.dismissing {
+  transform: translateX(120%);
+  opacity: 0;
+  transition: transform 0.3s ease-in, opacity 0.3s ease;
+}
+
+.badge-toast-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(241, 196, 15, 0.15);
+  border-radius: 50%;
+}
+
+.badge-toast-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.badge-toast-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.badge-toast-xp {
+  font-size: 0.8rem;
+  color: #f1c40f;
+  font-weight: 600;
+}
+
+.badge-toast-close {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+  padding: 4px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.badge-toast-close:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Dark mode uses same dark gradient — already optimized for dark */
+
+/* Mobile: full-width toast */
+@media (max-width: 480px) {
+  .badge-toast-container {
+    left: 12px;
+    right: 12px;
+    max-width: none;
+    bottom: 12px;
+  }
+
+  .badge-toast {
+    padding: 12px 14px;
+  }
+}
+</style>
