@@ -11,8 +11,25 @@ import path from 'path';
 import ragHelpers from './_rag-helpers.cjs';
 import { subsetWhere } from './scripts/_neo4j-subset-filter.mjs';
 import FileBackedSessionStore from './session-store.js';
-import authRouter, { authMiddleware, requireAuth, handleStripeWebhook } from './auth.js';
-import { getUserById, getConversationMemory, addConversationMemory, updateFsrsCard, getDueCards } from './auth-db.js';
+import authRouter, {
+  authMiddleware,
+  requireAuth,
+  requirePremium,
+  handleStripeWebhook,
+} from './auth.js';
+import {
+  getUserById,
+  getConversationMemory,
+  addConversationMemory,
+  updateFsrsCard,
+  getDueCards,
+  getGamification,
+  awardXp,
+  recordCheckin,
+  checkBadgeUnlock,
+  getBadgeStatus,
+  calculateLevel,
+} from './auth-db.js';
 import * as exerciseEngine from './exercise-engine.js';
 import * as learningEngine from './learning-engine.js';
 import * as collabEngine from './collab-engine.js';
@@ -20,6 +37,7 @@ import promBundle from 'express-prom-bundle';
 import * as Sentry from '@sentry/node';
 import pino from 'pino';
 import rateLimit from 'express-rate-limit';
+import PDFDocument from 'pdfkit';
 
 const logger = pino({
   level: process.env.LOG_LEVEL || 'info',
@@ -284,18 +302,27 @@ app.get('/api/chat/history/search', requireAuth, function (req, res) {
     var sid = userSessions[si].sessionId;
     var session = sessionStore.get(sid);
     if (!session || !session.messages) continue;
-    var text = session.messages.map(function (m) { return (m.content || ''); }).join(' ').toLowerCase();
+    var text = session.messages
+      .map(function (m) {
+        return m.content || '';
+      })
+      .join(' ')
+      .toLowerCase();
     if (text.indexOf(q) !== -1) {
       results.push({
         sessionId: sid,
         createdAt: new Date(session.createdAt).toISOString(),
-        snippet: session.messages.slice(0, 2).map(function (m) { return (m.content || '').slice(0, 100); }),
+        snippet: session.messages.slice(0, 2).map(function (m) {
+          return (m.content || '').slice(0, 100);
+        }),
         messageCount: session.messages.length,
       });
     }
   }
 
-  results.sort(function (a, b) { return new Date(b.createdAt) - new Date(a.createdAt); });
+  results.sort(function (a, b) {
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
   res.json({ results: results.slice(0, 10), query: q });
 });
 
@@ -319,7 +346,10 @@ app.get('/api/chat/export/:sessionId', requireAuth, function (req, res) {
   });
 
   res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
-  res.setHeader('Content-Disposition', 'attachment; filename="chat-' + req.params.sessionId + '.md"');
+  res.setHeader(
+    'Content-Disposition',
+    'attachment; filename="chat-' + req.params.sessionId + '.md"'
+  );
   res.send(md);
 });
 
@@ -369,13 +399,27 @@ app.get('/api/auth/learning-profile', requireAuth, (req, res) => {
   var strongAreas = [];
   Object.keys(topicScores).forEach(function (topic) {
     var avg = topicScores[topic].total / topicScores[topic].count;
-    if (avg < 60) weakAreas.push({ topic: topic, average: Math.round(avg), attempts: topicScores[topic].count });
-    else if (avg >= 80) strongAreas.push({ topic: topic, average: Math.round(avg), attempts: topicScores[topic].count });
+    if (avg < 60)
+      weakAreas.push({
+        topic: topic,
+        average: Math.round(avg),
+        attempts: topicScores[topic].count,
+      });
+    else if (avg >= 80)
+      strongAreas.push({
+        topic: topic,
+        average: Math.round(avg),
+        attempts: topicScores[topic].count,
+      });
   });
 
   res.json({
-    weakAreas: weakAreas.sort(function (a, b) { return a.average - b.average; }),
-    strongAreas: strongAreas.sort(function (a, b) { return b.average - a.average; }),
+    weakAreas: weakAreas.sort(function (a, b) {
+      return a.average - b.average;
+    }),
+    strongAreas: strongAreas.sort(function (a, b) {
+      return b.average - a.average;
+    }),
     totalQuizzes: quizResults.length,
     lastUpdated: user.updated_at || null,
   });
@@ -486,9 +530,12 @@ app.post('/api/chat', async (req, res) => {
       cleanupSessionMessages(session);
 
       // eslint-disable-next-line sonarjs/block-scoped-var
-      var firstUserMsg = null, topicSummary = null;
+      var firstUserMsg = null,
+        topicSummary = null;
       if (req.user?.id && session.messages.length > 0) {
-        firstUserMsg = session.messages.find(function (m) { return m.role === 'user'; });
+        firstUserMsg = session.messages.find(function (m) {
+          return m.role === 'user';
+        });
         topicSummary = firstUserMsg ? firstUserMsg.content.slice(0, 120) : message.slice(0, 120);
         addConversationMemory(req.user.id, {
           sessionId: sessionId,
@@ -609,8 +656,12 @@ app.post('/api/chat', async (req, res) => {
     cleanupSessionMessages(session);
 
     if (req.user?.id && session.messages.length > 0) {
-      firstUserMsg = session.messages.find(function (m) { return m.role === 'user'; });
-      topicSummary = firstUserMsg ? firstUserMsg.content.slice(0, 120) : (req.body?.message || '').slice(0, 120);
+      firstUserMsg = session.messages.find(function (m) {
+        return m.role === 'user';
+      });
+      topicSummary = firstUserMsg
+        ? firstUserMsg.content.slice(0, 120)
+        : (req.body?.message || '').slice(0, 120);
       addConversationMemory(req.user.id, {
         sessionId: sessionId,
         topicSummary: topicSummary,
@@ -643,14 +694,18 @@ app.post('/api/chat/hint', async (req, res) => {
       topicScores[r.topic].count += 1;
     });
     weakAreas = Object.keys(topicScores)
-      .filter(function (t) { return (topicScores[t].total / topicScores[t].count) < 60; })
+      .filter(function (t) {
+        return topicScores[t].total / topicScores[t].count < 60;
+      })
       .slice(0, 3)
       .join(', ');
   }
 
   var hintPrompt = 'Du bist ein Chemie-Nachhilfelehrer.';
   if (weakAreas) hintPrompt += ' Der Schüler hat Schwierigkeiten mit: ' + weakAreas + '.';
-  hintPrompt += ' Gib einen Schritt-für-Schritt-Hinweis für folgende Aufgabe, aber verrate NICHT die endgültige Antwort: ' + problem;
+  hintPrompt +=
+    ' Gib einen Schritt-für-Schritt-Hinweis für folgende Aufgabe, aber verrate NICHT die endgültige Antwort: ' +
+    problem;
 
   try {
     var llmRes = await fetch(LITELLM_URL + '/v1/chat/completions', {
@@ -4536,8 +4591,7 @@ app.post('/api/fsrs/cards/:cardId/review', requireAuth, async (req, res) => {
     const { score } = req.body;
     if (score === undefined || ![0, 0.33, 0.66, 1.0].includes(Number(score))) {
       return res.status(400).json({
-        error:
-          'Invalid score. Must be one of: 0 (Again), 0.33 (Hard), 0.66 (Good), 1.0 (Easy)',
+        error: 'Invalid score. Must be one of: 0 (Again), 0.33 (Hard), 0.66 (Good), 1.0 (Easy)',
       });
     }
 
@@ -4683,26 +4737,207 @@ app.get('/api/exercises/history', requireAuth, async (req, res) => {
 });
 
 // ── Learning Path Routes ──────────────────────────────────────
-app.get('/api/learning-paths', requireAuth, async (req, res) => {
+// 23.2 — GET /api/learning-paths (public)
+app.get('/api/learning-paths', async (req, res) => {
   try {
-    const paths = await learningEngine.listPaths(neo4jDriver, sessionStore, req.user.id);
-    res.json(paths);
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+
+    let paths;
+    try {
+      const result = await session.run(
+        `MATCH (c:Curriculum)
+         OPTIONAL MATCH (c)-[:HAS_TOPIC]->(t:Topic)
+         RETURN c, count(t) AS topicCount
+         ORDER BY c.title`
+      );
+      paths = result.records.map((r) => {
+        const props = r.get('c').properties;
+        return {
+          slug: props.slug || '',
+          title: props.title || '',
+          description: props.description || '',
+          topicCount: r.get('topicCount') ? r.get('topicCount').toNumber() : 0,
+          completedTopics: 0,
+          progressPercent: 0,
+        };
+      });
+    } finally {
+      await session.close();
+    }
+
+    // Compute user progress if authenticated
+    if (req.user?.id) {
+      const g = getGamification(req.user.id);
+      const completedSlugs = new Set(((g && g.completedObjectives) || []).map((o) => o.slug));
+
+      const detailSession = driver.session({
+        database: NEO4J_DATABASE,
+        defaultAccessMode: neo4j.session.READ,
+      });
+      try {
+        const objResult = await detailSession.run(
+          `MATCH (c:Curriculum)-[:HAS_TOPIC]->(t:Topic)-[:HAS_SUBTOPIC]->(st:SubTopic)-[:COVERS]->(lo:LearningObjective)
+           RETURN c.slug AS slug, lo.id AS objectiveId`
+        );
+        const pathObjectives = {};
+        for (const r of objResult.records) {
+          const slug = r.get('slug');
+          const oid = r.get('objectiveId');
+          if (!slug || oid == null) continue;
+          if (!pathObjectives[slug]) pathObjectives[slug] = [];
+          pathObjectives[slug].push(String(oid));
+        }
+
+        paths = paths.map((p) => {
+          const objectives = pathObjectives[p.slug] || [];
+          if (objectives.length === 0) return p;
+          const completed = objectives.filter((oid) => completedSlugs.has(oid)).length;
+          return {
+            ...p,
+            completedTopics: completed,
+            progressPercent: Math.round((completed / objectives.length) * 100),
+          };
+        });
+      } finally {
+        await detailSession.close();
+      }
+    }
+
+    res.json({ paths });
   } catch (err) {
     logger.error('[learning-paths] list error:', err.message);
     res.status(500).json({ error: 'Lernpfade konnten nicht geladen werden' });
   }
 });
 
-app.get('/api/learning-paths/:slug', requireAuth, async (req, res) => {
+// 23.3 — GET /api/learning-paths/:slug (public)
+app.get('/api/learning-paths/:slug', async (req, res) => {
   try {
-    const detail = await learningEngine.getPathDetail(
-      neo4jDriver,
-      req.params.slug,
-      sessionStore,
-      req.user.id
-    );
-    if (!detail) return res.status(404).json({ error: 'Lernpfad nicht gefunden' });
-    res.json(detail);
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+
+    let tree = null;
+    try {
+      const result = await session.run(
+        `MATCH (c:Curriculum {slug: $slug})-[:HAS_TOPIC]->(t:Topic)-[:HAS_SUBTOPIC]->(st:SubTopic)-[:COVERS]->(lo:LearningObjective)
+         OPTIONAL MATCH (lo)-[:PREREQUISITE]->(pre:LearningObjective)
+         RETURN c, t, st, lo, collect(DISTINCT pre.id) AS prerequisites
+         ORDER BY t.title, st.title, lo.id`,
+        { slug: req.params.slug }
+      );
+
+      if (result.records.length === 0) {
+        // Check if curriculum exists at all
+        const existsResult = await session.run(`MATCH (c:Curriculum {slug: $slug}) RETURN c`, {
+          slug: req.params.slug,
+        });
+        if (existsResult.records.length === 0) {
+          return res.status(404).json({ error: 'Lernpfad nicht gefunden' });
+        }
+        // Exists but has no topic structure
+        const cProps = existsResult.records[0].get('c').properties;
+        tree = {
+          slug: cProps.slug || req.params.slug,
+          title: cProps.title || '',
+          description: cProps.description || '',
+          topics: [],
+          totalObjectives: 0,
+          completedObjectives: 0,
+        };
+      } else {
+        const cProps = result.records[0].get('c').properties;
+        const topicMap = {};
+
+        for (const r of result.records) {
+          const topic = r.get('t');
+          const subtopic = r.get('st');
+          const lo = r.get('lo');
+          const preReqIds = r.get('prerequisites') || [];
+
+          if (!topic) continue;
+          const tId = topic.identity.toNumber();
+          if (!topicMap[tId]) {
+            topicMap[tId] = {
+              title: topic.properties.title || '',
+              slug: topic.properties.slug || '',
+              subtopics: {},
+            };
+          }
+
+          if (subtopic) {
+            const stId = subtopic.identity.toNumber();
+            if (!topicMap[tId].subtopics[stId]) {
+              topicMap[tId].subtopics[stId] = {
+                title: subtopic.properties.title || '',
+                slug: subtopic.properties.slug || '',
+                objectives: [],
+              };
+            }
+
+            if (lo) {
+              topicMap[tId].subtopics[stId].objectives.push({
+                id: lo.properties.id || '',
+                text: lo.properties.text || lo.properties.title || '',
+                prerequisites: preReqIds.filter(Boolean).map(String),
+              });
+            }
+          }
+        }
+
+        const topics = Object.values(topicMap).map((t) => ({
+          ...t,
+          subtopics: Object.values(t.subtopics),
+        }));
+
+        // Count objectives
+        let totalObjectives = 0;
+        for (const t of topics) {
+          for (const st of t.subtopics) {
+            totalObjectives += st.objectives.length;
+          }
+        }
+
+        tree = {
+          slug: cProps.slug || req.params.slug,
+          title: cProps.title || '',
+          description: cProps.description || '',
+          topics,
+          totalObjectives,
+          completedObjectives: 0,
+        };
+
+        // Mark completed objectives if authenticated
+        if (req.user?.id) {
+          const g = getGamification(req.user.id);
+          const completedSlugs = new Set(((g && g.completedObjectives) || []).map((o) => o.slug));
+          let completedCount = 0;
+          for (const t of tree.topics) {
+            for (const st of t.subtopics) {
+              for (const obj of st.objectives) {
+                if (completedSlugs.has(obj.id)) {
+                  obj.completed = true;
+                  completedCount++;
+                } else {
+                  obj.completed = false;
+                }
+              }
+            }
+          }
+          tree.completedObjectives = completedCount;
+        }
+      }
+    } finally {
+      await session.close();
+    }
+
+    res.json(tree);
   } catch (err) {
     logger.error('[learning-paths] detail error:', err.message);
     res.status(500).json({ error: 'Lernpfad-Details konnten nicht geladen werden' });
@@ -4729,30 +4964,115 @@ app.get('/api/learning-paths/progress', requireAuth, async (req, res) => {
   }
 });
 
-app.get('/api/learning-paths/:slug/certificate', requireAuth, async (req, res) => {
+// 23.10 — POST /api/learning-paths/:slug/certificate (authenticated, requirePremium, pdfkit)
+app.post('/api/learning-paths/:slug/certificate', requirePremium, async (req, res) => {
   try {
-    const progress = learningEngine.getAggregatedProgress(sessionStore, req.user.id);
-    const pathData = progress.paths.find((p) => p.slug === req.params.slug);
-    if (!pathData || !pathData.completedAt) {
-      return res
-        .status(404)
-        .json({ error: 'Lernpfad noch nicht abgeschlossen oder nicht gefunden' });
+    // Fetch all learning objectives for this path from Neo4j
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+    let pathTitle = '';
+    let allObjectives = [];
+    try {
+      const result = await session.run(
+        `MATCH (c:Curriculum {slug: $slug})-[:HAS_TOPIC]->(t:Topic)-[:HAS_SUBTOPIC]->(st:SubTopic)-[:COVERS]->(lo:LearningObjective)
+         RETURN c.title AS pathTitle, lo.id AS objectiveId
+         ORDER BY lo.id`,
+        { slug: req.params.slug }
+      );
+      if (result.records.length === 0) {
+        return res.status(404).json({ error: 'Lernpfad nicht gefunden' });
+      }
+      pathTitle = result.records[0].get('pathTitle');
+      for (const r of result.records) {
+        const oid = r.get('objectiveId');
+        if (oid != null) allObjectives.push(String(oid));
+      }
+    } finally {
+      await session.close();
     }
-    const pathDetail = await learningEngine.getPathDetail(
-      neo4jDriver,
-      req.params.slug,
-      sessionStore,
-      req.user.id
-    );
-    if (!pathDetail) return res.status(404).json({ error: 'Lernpfad nicht gefunden' });
 
-    const pdfBuffer = await learningEngine.generateCertificate(
-      req.user.displayName || req.user.email || 'Benutzer',
-      pathDetail.title,
-      req.params.slug,
-      req.user.id,
-      pathData.completedAt
-    );
+    const g = getGamification(req.user.id);
+    const completedSlugs = new Set(((g && g.completedObjectives) || []).map((o) => o.slug));
+    const completed = allObjectives.filter((oid) => completedSlugs.has(oid)).length;
+
+    if (completed < allObjectives.length) {
+      return res.status(400).json({
+        error: 'Path not completed',
+        completed,
+        total: allObjectives.length,
+      });
+    }
+
+    // Generate PDF certificate with pdfkit
+    const doc = new PDFDocument({ layout: 'landscape', size: 'A4' });
+    const buffers = [];
+    doc.on('data', (chunk) => buffers.push(chunk));
+
+    const userName = req.user.displayName || req.user.email || 'Benutzer';
+    const today = new Date().toLocaleDateString('de-DE');
+    const certId = crypto.randomUUID();
+
+    await new Promise((resolve, reject) => {
+      doc.on('end', resolve);
+      doc.on('error', reject);
+
+      // Decorative border
+      doc.rect(30, 30, doc.page.width - 60, doc.page.height - 60).stroke('#1a5276', 3);
+      doc.rect(40, 40, doc.page.width - 80, doc.page.height - 80).stroke('#2e86c1', 1);
+
+      // Title
+      doc
+        .fontSize(36)
+        .font('Helvetica-Bold')
+        .fillColor('#1a5276')
+        .text('Zertifikat', { align: 'center' });
+
+      doc.moveDown(0.5);
+      doc
+        .fontSize(14)
+        .font('Helvetica')
+        .fillColor('#555')
+        .text('Hiermit wird bestätigt, dass', { align: 'center' });
+
+      doc.moveDown(0.8);
+      doc.fontSize(28).font('Helvetica-Bold').fillColor('#000').text(userName, { align: 'center' });
+
+      doc.moveDown(0.8);
+      doc
+        .fontSize(14)
+        .font('Helvetica')
+        .fillColor('#555')
+        .text('den Lernpfad erfolgreich abgeschlossen hat:', { align: 'center' });
+
+      doc.moveDown(0.5);
+      doc
+        .fontSize(22)
+        .font('Helvetica-Bold')
+        .fillColor('#2e86c1')
+        .text(pathTitle, { align: 'center' });
+
+      doc.moveDown(1.5);
+      doc
+        .fontSize(12)
+        .font('Helvetica')
+        .fillColor('#777')
+        .text(`Ausgestellt am ${today}`, { align: 'center' });
+
+      doc.moveDown(0.3);
+      doc
+        .fontSize(10)
+        .font('Helvetica')
+        .fillColor('#999')
+        .text(`Zertifikats-ID: ${certId}`, { align: 'center' });
+
+      doc.end();
+    });
+
+    const pdfBuffer = Buffer.concat(buffers);
+
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader(
       'Content-Disposition',
@@ -4794,6 +5114,238 @@ app.get('/api/achievements', requireAuth, async (req, res) => {
   } catch (err) {
     logger.error('[achievements] error:', err.message);
     res.status(500).json({ error: 'Errungenschaften konnten nicht geladen werden' });
+  }
+});
+
+// ── Sprint 23 Gamification Routes ────────────────────────────
+
+// 23.5 — POST /api/gamification/xp — award XP for actions, check badge unlocks
+app.post('/api/gamification/xp', requireAuth, async (req, res) => {
+  try {
+    const { action, topic } = req.body;
+    if (
+      !action ||
+      !['quiz_submit', 'exercise_correct', 'checkin', 'page_visit', 'streak_bonus'].includes(action)
+    ) {
+      return res
+        .status(400)
+        .json({
+          error:
+            'Ungültige action. Erlaubt: quiz_submit, exercise_correct, checkin, page_visit, streak_bonus',
+        });
+    }
+
+    const XP_VALUES = {
+      quiz_submit: 20,
+      exercise_correct: 15,
+      checkin: 20,
+      page_visit: 5,
+      streak_bonus: 30,
+    };
+    const amount = XP_VALUES[action];
+    const source = topic ? `${action}: ${topic}` : `Aktion: ${action}`;
+
+    const xpResult = awardXp(req.user.id, amount, source, action);
+    const newBadges = checkBadgeUnlock(req.user.id);
+
+    res.json({
+      xpAwarded: xpResult.awarded,
+      totalXp: xpResult.totalXp,
+      level: calculateLevel(xpResult.totalXp),
+      newBadges: newBadges.map((b) => ({
+        id: b.badgeId,
+        name: b.name,
+        earnedAt: b.earnedAt,
+      })),
+    });
+  } catch (err) {
+    logger.error('[gamification] xp error:', err.message);
+    res.status(500).json({ error: 'XP konnte nicht gutgeschrieben werden' });
+  }
+});
+
+// 23.6 — POST /api/gamification/checkin — daily check-in with streak + XP
+app.post('/api/gamification/checkin', requireAuth, async (req, res) => {
+  try {
+    const checkinResult = recordCheckin(req.user.id);
+    const newBadges = checkBadgeUnlock(req.user.id);
+
+    res.json({
+      checkedIn: checkinResult.checkedIn,
+      streak: checkinResult.streak,
+      xpAwarded: checkinResult.xpEarned,
+      totalXp: checkinResult.totalXp,
+      level: calculateLevel(checkinResult.totalXp),
+      newBadges: newBadges.map((b) => ({
+        id: b.badgeId,
+        name: b.name,
+        earnedAt: b.earnedAt,
+      })),
+    });
+  } catch (err) {
+    logger.error('[gamification] checkin error:', err.message);
+    res.status(500).json({ error: 'Check-in fehlgeschlagen' });
+  }
+});
+
+// 23.7 — GET /api/gamification/profile — full gamification profile
+app.get('/api/gamification/profile', requireAuth, async (req, res) => {
+  try {
+    const g = getGamification(req.user.id);
+    if (!g) return res.status(404).json({ error: 'Benutzer nicht gefunden' });
+
+    const level = calculateLevel(g.xp);
+    const xpToNextLevel = (level + 1) * 500 - g.xp;
+
+    // Compute xpBreakdown from xpLog
+    const xpLog = g.xpLog || [];
+    const xpBreakdown = { quiz: 0, exercise: 0, checkin: 0, visit: 0, bonus: 0 };
+    for (const entry of xpLog) {
+      const amt = entry.amount || 0;
+      if (
+        (entry.action && entry.action.startsWith('quiz')) ||
+        entry.action === 'objective_complete'
+      ) {
+        xpBreakdown.quiz += amt;
+      } else if (entry.action && entry.action.startsWith('exercise')) {
+        xpBreakdown.exercise += amt;
+      } else if (entry.action === 'checkin') {
+        xpBreakdown.checkin += amt;
+      } else if (entry.action === 'page_visit') {
+        xpBreakdown.visit += amt;
+      } else {
+        xpBreakdown.bonus += amt;
+      }
+    }
+
+    const badges = (g.badges || []).map((b) => ({
+      id: b.badgeId,
+      name: b.name,
+      earnedAt: b.earnedAt,
+    }));
+
+    const completedStats = {
+      count: (g.completedObjectives || []).length,
+      items: (g.completedObjectives || []).slice(-10).map((o) => ({
+        slug: o.slug,
+        completedAt: o.completedAt,
+      })),
+    };
+
+    res.json({
+      xp: g.xp,
+      level,
+      xpToNextLevel: Math.max(0, xpToNextLevel),
+      streak: g.streak || 0,
+      lastCheckin: g.lastCheckin || null,
+      badges,
+      completedObjectives: completedStats,
+      xpBreakdown,
+    });
+  } catch (err) {
+    logger.error('[gamification] profile error:', err.message);
+    res.status(500).json({ error: 'Profil konnte nicht geladen werden' });
+  }
+});
+
+// 23.8 — GET /api/gamification/badges — all 10 badges with earned status
+app.get('/api/gamification/badges', requireAuth, async (req, res) => {
+  try {
+    const badgeStatus = getBadgeStatus(req.user.id);
+
+    const BADGE_INFO = [
+      {
+        id: 'erste-schritte',
+        name: 'Erste Schritte',
+        description: 'Ersten Quiz absolviert',
+        icon: '🎯',
+        condition: 'Ersten Quiz absolviert',
+      },
+      {
+        id: 'fruehaufsteher',
+        name: 'Frühaufsteher',
+        description: '7-Tage-Serie erreicht',
+        icon: '🌅',
+        condition: '7 Tage Serienlänge',
+      },
+      {
+        id: 'chemie-fuchs',
+        name: 'Chemie-Fuchs',
+        description: '30-Tage-Serie erreicht',
+        icon: '🦊',
+        condition: '30 Tage Serienlänge',
+      },
+      {
+        id: 'uebungsmeister',
+        name: 'Übungsmeister',
+        description: '100 Übungen richtig gelöst',
+        icon: '🏆',
+        condition: '100 richtige Übungen',
+      },
+      {
+        id: 'themen-experte',
+        name: 'Themen-Experte',
+        description: '5 Lernziele abgeschlossen',
+        icon: '📚',
+        condition: '5 Lernziele abgeschlossen',
+      },
+      {
+        id: 'pfad-absolvent',
+        name: 'Pfad-Absolvent',
+        description: '15 Lernziele abgeschlossen',
+        icon: '🎓',
+        condition: '15 Lernziele abgeschlossen',
+      },
+      {
+        id: 'sammler',
+        name: 'Sammler',
+        description: '5 Abzeichen gesammelt',
+        icon: '💎',
+        condition: '5 Abzeichen erhalten',
+      },
+      {
+        id: 'bestaendig',
+        name: 'Beständig',
+        description: '30 Mal eingecheckt',
+        icon: '📅',
+        condition: '30 Check-ins',
+      },
+      {
+        id: 'schnellstarter',
+        name: 'Schnellstarter',
+        description: '3 Übungen an einem Tag',
+        icon: '⚡',
+        condition: '3 Übungen an einem Tag richtig',
+      },
+      {
+        id: 'alleskoenner',
+        name: 'Alleskönner',
+        description: 'Alle Aktionsarten genutzt',
+        icon: '🌟',
+        condition: '5 verschiedene Aktionstypen',
+      },
+    ];
+
+    const infoMap = {};
+    for (const info of BADGE_INFO) infoMap[info.id] = info;
+
+    const badges = badgeStatus.map((b) => {
+      const info = infoMap[b.id] || {};
+      return {
+        id: b.id,
+        name: info.name || b.name,
+        description: info.description || '',
+        icon: info.icon || '',
+        condition: info.condition || '',
+        earned: b.earned,
+        earnedDate: b.earnedAt || null,
+      };
+    });
+
+    res.json({ badges });
+  } catch (err) {
+    logger.error('[gamification] badges error:', err.message);
+    res.status(500).json({ error: 'Abzeichen konnten nicht geladen werden' });
   }
 });
 
