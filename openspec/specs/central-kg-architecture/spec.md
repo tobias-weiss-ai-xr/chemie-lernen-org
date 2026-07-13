@@ -22,6 +22,27 @@ Subsets currently in the KG:
 | Code-analysis           | `Variable`, `Parameter`, `Function`, `Class`, `File`, `Module`, `Interface`, `Directory`, `Repository`, `Macro`, `Struct`, `Enum`, `Episodic`        | ~683k                 | dev-agent / codebase analysis tools  |
 | Modulhandbuch (planned) | `University`, `Module`, `ModuleOffering`, `ECTS`, `Lecturer`, `Topic`, `Degree`                                                                      | TBD                   | chemie-lernen.org (top-unis feature) |
 
+### Curriculum Learning Labels (Sprint 23+)
+
+Used for structured learning paths and progression tracking.
+
+| Label               | Description                       | Key Properties                                                                                           |
+| ------------------- | --------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `Curriculum`        | A complete course/curriculum path | slug, title, grade, description                                                                          |
+| `Topic`             | A major topic within a curriculum | slug, title, order                                                                                       |
+| `SubTopic`          | A sub-topic area                  | slug, title, order                                                                                       |
+| `LearningObjective` | A measurable learning objective   | slug, description, bloomLevel (remember\|understand\|apply\|analyze\|evaluate\|create), estimatedMinutes |
+
+### Relationships
+
+| Type            | From                | To                  | Description                                    |
+| --------------- | ------------------- | ------------------- | ---------------------------------------------- |
+| `HAS_TOPIC`     | `Curriculum`        | `Topic`             | Topics belonging to a curriculum               |
+| `HAS_SUBTOPIC`  | `Topic`             | `SubTopic`          | Sub-topics within a topic                      |
+| `HAS_OBJECTIVE` | `SubTopic`          | `LearningObjective` | Learning objectives within a sub-topic         |
+| `PREREQUISITE`  | `LearningObjective` | `LearningObjective` | One objective must be completed before another |
+| `COVERED_BY`    | `LearningObjective` | `Content`           | The content page that teaches this objective   |
+
 ## Requirements
 
 ### REQ-CKG-1: Single central database
