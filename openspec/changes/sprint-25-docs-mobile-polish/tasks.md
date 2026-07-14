@@ -1,16 +1,16 @@
-- [ ] 25.1 Rewrite `docs/DEPLOYMENT.md` for current stack: Docker Compose 4 services, Traefik HTTPS, Neo4j 5.x, Node 22, self-hosted runner
-- [ ] 25.2 Create `tests/README.md` — test structure (Jest unit vs Playwright E2E), how to run each, fixture setup, CI integration
-- [ ] 25.3 Create `scripts/README.md` — inventory all scripts with purpose, usage example, dependencies (node, restic, neo4j-client)
-- [ ] 25.4 Create `myhugoapp/layouts/partials/README.md` — partial inventory: name, data contract, which templates include it
-- [ ] 25.5 Create `static/js/calculators/README.md` — calculator framework overview, shared utils (chemistry-utils.js), adding a new calculator, i18n pattern
-- [ ] 25.6 Verify `CONTRIBUTING.md` is up-to-date; add sections for PWA testing and Service Worker development
-- [ ] 25.7 Add IndexedDB quiz cache in Service Worker: intercept quiz submission, store offline in IndexedDB, register Background Sync
-- [ ] 25.8 Implement Background Sync handler: on 'sync' event, read queued submissions, POST to server, clear on success with retry backoff (30s/60s/120s max 3)
-- [ ] 25.9 Add `beforeinstallprompt` handler in `static/js/pwa-install.js` — show install banner, handle accept/dismiss, prevent duplicate prompts
-- [ ] 25.10 Run Lighthouse audit on 5 key pages (home, themenbereiche, quiz, assistent, periodensystem); document current scores
-- [ ] 25.11 Fix all Lighthouse issues below 95 target: accessibility contrast, image dimensions, meta viewport, tap targets, unused CSS
-- [ ] 25.12 Create systemd unit files: `chemie-hugo-server.service`, `chemie-chat-api.service`, `chemie-neo4j.service`, `chemie-traefik.service`
-- [ ] 25.13 Create `scripts/install-systemd.sh` — copies unit files, reloads daemon, enables + starts all 4 services
-- [ ] 25.14 Run `depcheck` on api/ and myhugoapp/; remove unused dependencies; fix any missing peer deps
-- [ ] 25.15 Create pre-flight checklist document `docs/PRE-FLIGHT.md` — process to verify deployment readiness (Sentry DSN set, healthchecks.io ping, backup tested, secrets rotated, Lighthouse passed)
-- [ ] 25.16 Verify: offline quiz submission queues in IndexedDB; Background Sync posts when online; install banner appears on mobile Chrome; all 5 Lighthouse pages meet targets; systemctl status shows 4 active services
+- [x] 25.1 Rewrite `docs/DEPLOYMENT.md` for current stack: Docker Compose 4 services, Traefik HTTPS, Neo4j 5.x, Node 22, self-hosted runner
+- [x] 25.2 Create `tests/README.md` — test structure (Jest unit vs Playwright E2E), how to run each, fixture setup, CI integration
+- [x] 25.3 Create `scripts/README.md` — inventory all scripts with purpose, usage example, dependencies (node, restic, neo4j-client)
+- [x] 25.4 Create `myhugoapp/layouts/partials/README.md` — partial inventory: name, data contract, which templates include it
+- [x] 25.5 Create `static/js/calculators/README.md` — calculator framework overview, shared utils (chemistry-utils.js), adding a new calculator, i18n pattern
+- [x] 25.6 Verify `CONTRIBUTING.md` is up-to-date; add sections for PWA testing and Service Worker development
+- [x] 25.7 Add IndexedDB quiz cache in Service Worker: intercept quiz submission, store offline in IndexedDB, register Background Sync
+- [x] 25.8 Implement Background Sync handler: on 'sync' event, read queued submissions, POST to server, clear on success with retry backoff (30s/60s/120s max 3)
+- [x] 25.9 Add `beforeinstallprompt` handler in `static/js/pwa-install.js` — show install banner, handle accept/dismiss, prevent duplicate prompts
+- [x] 25.10 Run Lighthouse audit on 5 key pages (home, themenbereiche, quiz, assistent, periodensystem); document current scores
+- [x] 25.11 Fix all Lighthouse issues below 95 target: accessibility contrast, image dimensions, meta viewport, tap targets, unused CSS
+- [x] 25.12 Create systemd unit files: `chemie-hugo-server.service`, `chemie-chat-api.service`, `chemie-neo4j.service`, `chemie-traefik.service`
+- [x] 25.13 Create `scripts/install-systemd.sh` — copies unit files, reloads daemon, enables + starts all 4 services
+- [x] 25.14 Run `depcheck` on api/ and myhugoapp/; remove unused dependencies; fix any missing peer deps
+- [x] 25.15 Create pre-flight checklist document `docs/PRE-FLIGHT.md` — process to verify deployment readiness (Sentry DSN set, healthchecks.io ping, backup tested, secrets rotated, Lighthouse passed)
+- [x] 25.16 Verify: offline quiz submission queues in IndexedDB; Background Sync posts when online; install banner appears on mobile Chrome; all 5 Lighthouse pages meet targets; systemctl status shows 4 active services
