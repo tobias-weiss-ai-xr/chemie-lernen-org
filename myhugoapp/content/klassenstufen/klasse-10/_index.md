@@ -1,11 +1,11 @@
 ---
-title: "10. Klasse"
-description: "Organische Chemie und Energetik in Klasse 10 – Kohlenwasserstoffe, Alkohole und exotherme/endotherme Reaktionen."
+title: '10. Klasse'
+description: 'Organische Chemie und Energetik in Klasse 10 – Kohlenwasserstoffe, Alkohole und exotherme/endotherme Reaktionen.'
 date: 2025-12-26
 klassenstufe: 10
-bundesland: ["BY", "BE", "BB", "HB", "HH", "HE", "MV", "NI", "NW", "RP", "SL", "SN", "ST", "SH", "TH"]
+bundesland:
+  ['BY', 'BE', 'BB', 'HB', 'HH', 'HE', 'MV', 'NI', 'NW', 'RP', 'SL', 'SN', 'ST', 'SH', 'TH']
 ---
-
 
 ## 10. Klasse Chemie
 
@@ -27,3 +27,5 @@ Einstieg in die organische Chemie und Reaktionsenergetik!
 ## Interaktiv
 
 - [Molekülstudio nutzen](/molekuel-studio/)
+- [s-Orbitale erkunden (kugelförmige Aufenthaltsräume)](/orbitalansichten/s-orbital/)
+- [p-Orbitale erkunden (hantelförmige Aufenthaltsräume)](/orbitalansichten/p-orbital/)

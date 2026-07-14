@@ -29,4 +29,5 @@ Vertiefung der organischen und physikalischen Chemie!
 ## Interaktiv
 
 - [Molekülstudio nutzen](/molekuel-studio/)
-
+- [d-Orbitale erkunden (Kleeblatt- und Donutformen)](/orbitalansichten/d-orbital/)
+- [Hybridisierung von Orbitalen (sp, sp², sp³)](/orbitalansichten/hybridisierung/)

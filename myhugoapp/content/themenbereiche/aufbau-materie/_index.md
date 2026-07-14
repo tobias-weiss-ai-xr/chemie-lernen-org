@@ -377,6 +377,8 @@ $$\ce{Zn + 2HCl -> ZnCl2 + H2}$$
 ## Interaktive Tools
 
 ⚛️ **[Periodensystem 3D](/perioden-system-der-elemente/)** - Interaktives 3D-Periodensystem mit detaillierten Informationen zu allen 118 Elementen
+🔬 **[Elementvergleich](/vergleich/)** - Vergleiche bis zu 4 Elemente nebeneinander in einer übersichtlichen Tabelle
+🌀 **[Orbital-Viewer und Orbitale verstehen](/orbitalansichten/s-orbital/)** - Erforsche s-, p- und d-Orbitale in interaktiven 3D-Visualisierungen
 
 ## Testen Sie Ihr Wissen
 

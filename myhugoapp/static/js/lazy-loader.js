@@ -44,20 +44,25 @@ const LazyLoader = {
         '/js/calculators/calc-element-lookup.js',
         '/js/calculators/calc-history.js',
       ],
-      uebungen: [
-        '/js/calculators/practice-quiz.js',
-      ],
-      tutorien: [
-        '/js/calculators/tutorials.optimized.js',
+      uebungen: ['/js/calculators/practice-quiz.js'],
+      tutorien: ['/js/calculators/tutorials.optimized.js'],
+      vergleich: ['/js/vergleich.js'],
+      visualization: [
+        '/js/perioden-system-der-elemente.js',
+        '/js/vergleich.js',
+        '/js/visualization/orbital-viewer/orbital-viewer.js',
+        '/js/visualization/orbital-viewer/orbital-shapes.js',
+        '/js/visualization/orbital-viewer/orbital-controls.js',
+        '/js/visualization/orbital-viewer/orbital-data.js',
       ],
     };
 
     var scripts = calculators[t];
     if (!scripts) return Promise.reject(new Error('Unknown calculator type: ' + t));
 
-    return scripts.reduce(function(promise, script) {
+    return scripts.reduce(function (promise, script) {
       var scriptId = script.replace(/[\/\.]/g, '-');
-      return promise.then(function() {
+      return promise.then(function () {
         return LazyLoader.loadScript(script, scriptId);
       });
     }, Promise.resolve());
@@ -73,8 +78,8 @@ const LazyLoader = {
     var container = document.querySelector('.stoichiometry-calculator-container');
     if (container && 'IntersectionObserver' in window) {
       var observer = new IntersectionObserver(
-        function(entries) {
-          entries.forEach(function(entry) {
+        function (entries) {
+          entries.forEach(function (entry) {
             if (entry.isIntersecting) {
               LazyLoader.loadCalculator('stoichiometry');
               observer.unobserve(entry.target);
