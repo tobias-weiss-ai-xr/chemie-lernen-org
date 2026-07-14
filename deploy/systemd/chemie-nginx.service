@@ -1,0 +1,21 @@
+[Unit]
+Description=Chemie-Lernen Hugo/Nginx Static Site
+After=network-online.target docker.service
+Wants=network-online.target
+Documentation=https://chemie-lernen.org
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/chemie-lernen-org
+ExecStartPre=/usr/bin/docker pull registry.chemie-lernen.org/chemie-lernen-org:latest
+ExecStart=/usr/bin/docker compose -f /opt/chemie-lernen-org/docker-compose.yml up --no-deps hugo-chemie-lernen-org
+ExecStop=/usr/bin/docker compose -f /opt/chemie-lernen-org/docker-compose.yml stop hugo-chemie-lernen-org
+ExecStopPost=/usr/bin/docker compose -f /opt/chemie-lernen-org/docker-compose.yml rm -f hugo-chemie-lernen-org
+Restart=on-failure
+RestartSec=10
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

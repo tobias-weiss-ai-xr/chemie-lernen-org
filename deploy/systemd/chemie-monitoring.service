@@ -1,0 +1,22 @@
+[Unit]
+Description=Chemie-Lernen Monitoring Stack (Prometheus + Grafana)
+After=network-online.target docker.service
+Wants=network-online.target
+Documentation=https://chemie-lernen.org
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/chemie-lernen-org
+ExecStartPre=/usr/bin/docker pull prom/prometheus:latest
+ExecStartPre=/usr/bin/docker pull grafana/grafana:latest
+ExecStart=/usr/bin/docker compose -f /opt/chemie-lernen-org/docker-compose.yml up --no-deps prometheus grafana
+ExecStop=/usr/bin/docker compose -f /opt/chemie-lernen-org/docker-compose.yml stop prometheus grafana
+ExecStopPost=/usr/bin/docker compose -f /opt/chemie-lernen-org/docker-compose.yml rm -f prometheus grafana
+Restart=on-failure
+RestartSec=10
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

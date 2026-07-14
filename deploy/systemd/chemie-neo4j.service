@@ -1,0 +1,21 @@
+[Unit]
+Description=Chemie-Lernen Neo4j Knowledge Graph
+After=network-online.target docker.service
+Wants=network-online.target
+Documentation=https://chemie-lernen.org
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/chemie-lernen-org
+ExecStartPre=/usr/bin/docker pull neo4j:5.26-community
+ExecStart=/usr/bin/docker compose -f /opt/chemie-lernen-org/docker-compose.yml up --no-deps chemie-neo4j
+ExecStop=/usr/bin/docker compose -f /opt/chemie-lernen-org/docker-compose.yml stop chemie-neo4j
+ExecStopPost=/usr/bin/docker compose -f /opt/chemie-lernen-org/docker-compose.yml rm -f chemie-neo4j
+Restart=on-failure
+RestartSec=10
+TimeoutStartSec=180
+TimeoutStopSec=60
+
+[Install]
+WantedBy=multi-user.target
