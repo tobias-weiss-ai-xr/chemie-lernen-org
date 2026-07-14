@@ -8,13 +8,17 @@ const SW_VERSION = 'v6-2026-07';
 const STATIC_CACHE = 'static-' + SW_VERSION;
 const ASSETS_CACHE = 'assets-' + SW_VERSION;
 const DYNAMIC_CACHE = 'dynamic-' + SW_VERSION;
+const QUIZ_CACHE = 'chemie-quiz-v1';
 
 // ── Cache limits ──────────────────────────────────────────
 const CACHE_LIMITS = {
   [STATIC_CACHE]: 10 * 1024 * 1024, // 10 MB pre-cached static
   [ASSETS_CACHE]: 25 * 1024 * 1024, // 25 MB CSS/images/fonts
   [DYNAMIC_CACHE]: 15 * 1024 * 1024, // 15 MB HTML/API responses
+  [QUIZ_CACHE]: 50, // 50 entries max
 };
+const QUIZ_MAX_ENTRIES = 50;
+const QUIZ_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 const TOTAL_CACHE_LIMIT = 50 * 1024 * 1024; // 50 MB global
 
 // ── Pre-cached files (installed on 'install') ────────────
@@ -29,6 +33,9 @@ const PRECACHE_FILES = [
   '/favicons/android-chrome-512x512.png',
   '/favicons/apple-touch-icon.png',
   '/icons/pwa-icon.svg',
+  '/quiz/',
+  '/lernkarten-review/',
+  '/uebungsverlauf/',
   '/css/custom.css',
   '/css/dark-mode.css',
   '/css/green-theme.css',
@@ -90,6 +97,17 @@ function isApiCall(url) {
     url.pathname.endsWith('.json') ||
     url.pathname.endsWith('.xml')
   );
+}
+
+// ── Is this a quiz API/exercise request? ──────────────────
+function isQuizRequest(url) {
+  return url.pathname.startsWith('/api/quiz/') || url.pathname.startsWith('/api/exercises/');
+}
+
+// ── Is this a quiz page HTML? ─────────────────────────────
+function isQuizPage(url) {
+  var path = url.pathname;
+  return path === '/quiz/' || path.startsWith('/quiz/');
 }
 
 // ── Is this a content page? ───────────────────────────────
@@ -306,6 +324,23 @@ self.addEventListener('fetch', function (event) {
   // ── Content pages: network-first with offline fallback ──
   if (isContentPage(url)) {
     event.respondWith(networkFirstPage(request));
+    return;
+  }
+
+  // ── Quiz API / exercise requests ────────────────────────
+  if (isQuizRequest(url)) {
+    if (request.method === 'GET') {
+      event.respondWith(quizCacheFirst(request));
+    } else {
+      // POST submissions: network-first
+      event.respondWith(quizNetworkFirst(request));
+    }
+    return;
+  }
+
+  // ── Quiz page HTML: cache-first for offline access ──────
+  if (isQuizPage(url) && request.method === 'GET') {
+    event.respondWith(quizPageCacheFirst(request));
     return;
   }
 
