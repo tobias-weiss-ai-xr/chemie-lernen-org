@@ -529,7 +529,7 @@ app.post('/api/chat', async (req, res) => {
 
       cleanupSessionMessages(session);
 
-      // eslint-disable-next-line sonarjs/block-scoped-var
+      /* eslint-disable sonarjs/block-scoped-var */
       var firstUserMsg = null,
         topicSummary = null;
       if (req.user?.id && session.messages.length > 0) {
@@ -543,6 +543,8 @@ app.post('/api/chat', async (req, res) => {
           messageCount: session.messages.length,
         });
       }
+
+      /* eslint-enable sonarjs/block-scoped-var */
 
       res.json({
         reply,
@@ -4643,6 +4645,22 @@ app.get('/api/health', async (req, res) => {
   });
 });
 
+// ── Elements API ──────────────────────────────────────────────
+app.get('/api/elements', (req, res) => {
+  try {
+    const elements = JSON.parse(
+      fs.readFileSync(
+        path.join(path.dirname(new URL(import.meta.url).pathname), 'data', 'elements.json'),
+        'utf-8'
+      )
+    );
+    res.json(elements);
+  } catch (err) {
+    logger.error({ err }, 'Failed to load elements data');
+    res.status(500).json({ error: 'Fehler beim Laden der Elementdaten' });
+  }
+});
+
 // ── Exercise Generator Routes ─────────────────────────────────
 app.post('/api/exercises/generate', requireAuth, async (req, res) => {
   try {
@@ -5127,12 +5145,10 @@ app.post('/api/gamification/xp', requireAuth, async (req, res) => {
       !action ||
       !['quiz_submit', 'exercise_correct', 'checkin', 'page_visit', 'streak_bonus'].includes(action)
     ) {
-      return res
-        .status(400)
-        .json({
-          error:
-            'Ungültige action. Erlaubt: quiz_submit, exercise_correct, checkin, page_visit, streak_bonus',
-        });
+      return res.status(400).json({
+        error:
+          'Ungültige action. Erlaubt: quiz_submit, exercise_correct, checkin, page_visit, streak_bonus',
+      });
     }
 
     const XP_VALUES = {
