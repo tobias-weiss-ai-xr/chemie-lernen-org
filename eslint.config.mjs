@@ -291,6 +291,18 @@ export default [
     },
   },
 
+  // Orbital viewer - Three.js ESM module
+  {
+    files: ['myhugoapp/static/js/visualization/orbital-viewer/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        THREE: 'readonly',
+      },
+    },
+  },
+
   // Other files with module/exports - quiz, progress tracker, etc.
   {
     files: [
