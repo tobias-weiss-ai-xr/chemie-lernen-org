@@ -1,0 +1,122 @@
+{{ define "title" }}Elementvergleich{{ end }}
+
+{{ define "css" }}
+<style>
+  .vergleich-container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+  .vergleich-container h1 { text-align: center; margin-bottom: 8px; font-size: 1.8rem; }
+  .vergleich-container p.lead { text-align: center; color: #666; margin-bottom: 24px; }
+
+  /* Search */
+  .search-wrapper { position: relative; max-width: 500px; margin: 0 auto 24px; }
+  .search-wrapper input { width: 100%; padding: 10px 14px; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; outline: none; transition: border-color .2s; }
+  .search-wrapper input:focus { border-color: #4A90D9; }
+  .autocomplete-dropdown { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #ddd; border-radius: 0 0 8px 8px; max-height: 300px; overflow-y: auto; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,.1); display: none; }
+  .autocomplete-dropdown.open { display: block; }
+  .autocomplete-item { padding: 8px 14px; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: background .15s; }
+  .autocomplete-item:hover { background: #f0f4ff; }
+  .autocomplete-item .sym { font-weight: 700; font-size: 1.05rem; min-width: 32px; }
+  .autocomplete-item .num { color: #888; font-size: .85rem; }
+  .autocomplete-item .name { color: #555; }
+
+  /* Selected elements chips */
+  .selected-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 20px; min-height: 36px; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; background: #e8f0fe; border-radius: 16px; font-size: .9rem; }
+  .chip .remove { cursor: pointer; color: #999; font-weight: 700; font-size: 1.1rem; line-height: 1; }
+  .chip .remove:hover { color: #e74c3c; }
+
+  /* Card grid */
+  .card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .comparison-card { border: 1px solid #e0e0e0; border-radius: 12px; padding: 16px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .comparison-card .symbol { font-size: 2.4rem; font-weight: 700; text-align: center; margin-bottom: 2px; }
+  .comparison-card .ename { text-align: center; color: #555; font-size: .95rem; margin-bottom: 12px; }
+  .comparison-card .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; font-size: .85rem; margin-bottom: 16px; }
+  .comparison-card .info-grid .label { color: #888; }
+  .comparison-card .info-grid .value { text-align: right; font-weight: 600; }
+
+  /* Property bars */
+  .property-bars { margin-top: 8px; }
+  .property-bar-row { margin-bottom: 10px; }
+  .property-bar-row .pbar-label { display: flex; justify-content: space-between; font-size: .78rem; margin-bottom: 3px; }
+  .property-bar-row .pbar-label .pbar-name { color: #555; }
+  .property-bar-row .pbar-label .pbar-val { font-weight: 600; }
+  .property-bar-track { height: 8px; background: #eee; border-radius: 4px; overflow: hidden; }
+  .property-bar-fill { height: 100%; border-radius: 4px; transition: width .4s ease; }
+
+  /* Sphere overlay */
+  .sphere-section { margin-top: 32px; padding-top: 24px; border-top: 1px solid #e0e0e0; }
+  .sphere-section h2 { text-align: center; font-size: 1.3rem; margin-bottom: 16px; }
+  .sphere-canvas-wrap { width: 100%; max-width: 500px; height: 360px; margin: 0 auto; position: relative; }
+
+  /* States */
+  .empty-state { text-align: center; padding: 60px 20px; color: #999; }
+  .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+  .loading-state { text-align: center; padding: 40px 20px; color: #888; }
+
+  /* Responsive */
+  @media (max-width: 900px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px) { .card-grid { grid-template-columns: 1fr; } }
+
+  /* Card placeholder */
+  .comparison-card.placeholder { display: flex; align-items: center; justify-content: center; min-height: 200px; border: 2px dashed #ddd; color: #bbb; font-size: .9rem; text-align: center; padding: 20px; background: #fafafa; }
+
+  /* Category colors for card headers */
+  .category-nichtmetall { border-top: 4px solid #2ecc71; }
+  .category-edelgas { border-top: 4px solid #9b59b6; }
+  .category-alkalimetall { border-top: 4px solid #e74c3c; }
+  .category-erdalkalimetall { border-top: 4px solid #e67e22; }
+  .category-halbmetall { border-top: 4px solid #f1c40f; }
+  .category-metall { border-top: 4px solid #3498db; }
+  .category-halogen { border-top: 4px solid #1abc9c; }
+  .category-übergangsmetall { border-top: 4px solid #e67e22; }
+  .category-lanthanoid { border-top: 4px solid #e74c3c; }
+  .category-actinoid { border-top: 4px solid #c0392b; }
+  .comparison-card { border-top: 4px solid #3498db; }
+</style>
+{{ end }}
+
+{{ define "main" }}
+<noscript>
+  <div class="alert alert-warning" role="alert">
+    <p><strong>JavaScript ist erforderlich.</strong> Dieser interaktive Rechner funktioniert nur mit aktiviertem JavaScript. Bitte aktivieren Sie JavaScript in Ihrem Browser.</p>
+  </div>
+</noscript>
+
+<div class="vergleich-container">
+  <h1>Elementvergleich</h1>
+  <p class="lead">Vergleiche bis zu 4 Elemente nebeneinander</p>
+
+  <div class="search-wrapper">
+    <input type="text" id="element-search" placeholder="Element suchen (z.B. Wasserstoff, H, 6)" autocomplete="off" aria-label="Element suchen">
+    <div class="autocomplete-dropdown" id="autocomplete-dropdown"></div>
+  </div>
+
+  <div class="selected-chips" id="selected-chips"></div>
+
+  <div id="comparison-content">
+    <div class="empty-state" id="empty-state">
+      <div class="icon">&#128269;</div>
+      <p>Suche ein Element, um zu beginnen</p>
+    </div>
+    <div class="loading-state" id="loading-state" style="display:none">
+      <p>Elemente werden geladen...</p>
+    </div>
+    <div class="card-grid" id="card-grid" style="display:none"></div>
+    <div class="sphere-section" id="sphere-section" style="display:none">
+      <h2>Atomradien-Vergleich</h2>
+      <div class="sphere-canvas-wrap" id="sphere-canvas-wrap"></div>
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{ define "js" }}
+<script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+</script>
+<script src="{{ "/js/vergleich.js" | relURL }}"></script>
+{{ end }}

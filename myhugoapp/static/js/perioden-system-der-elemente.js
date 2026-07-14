@@ -1521,6 +1521,32 @@ const TRENDS = {
       return val !== null ? val.toFixed(2) + ' g/cm\u00b3' : '\u2014';
     },
   },
+  block: {
+    label: 'Konfiguration (Block)',
+    getValue: function (e) {
+      if (e[10] === 'Lanthanoid' || e[10] === 'Actinoid') return 'f';
+      var group = e[3];
+      var match = (e[7] || '').match(
+        /([spdfg])[\u00b9\u00b2\u00b3\u2070\u2074\u2075\u2076\u2077\u2078\u2079]*$/
+      );
+      if (match) {
+        if (match[1] === 's' && group >= 3 && group <= 12) return 'd';
+        return match[1];
+      }
+      if (group <= 2) return 's';
+      if (group <= 12) return 'd';
+      if (group <= 18) return 'p';
+      return 'f';
+    },
+    getColor: function (val) {
+      var colors = { s: '#4A90D9', p: '#50B86C', d: '#E67E22', f: '#9B59B6' };
+      return colors[val] || 'rgba(100,100,100,0.5)';
+    },
+    format: function (val) {
+      var labels = { s: 's-Block', p: 'p-Block', d: 'd-Block', f: 'f-Block' };
+      return labels[val] || val;
+    },
+  },
 };
 
 var currentTrend = 'group';
