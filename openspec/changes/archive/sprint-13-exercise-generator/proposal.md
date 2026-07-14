@@ -15,10 +15,12 @@ Students need immediate, personalized practice exercises tied to the curriculum.
 ## Capabilities
 
 ### New Capabilities
+
 - `exercise-generator`: AI-powered exercise generation, grading, and history via LiteLLM and the KG
 
 ### Modified Capabilities
-*(None — no existing spec-level requirements change)*
+
+_(None — no existing spec-level requirements change)_
 
 ## Impact
 
