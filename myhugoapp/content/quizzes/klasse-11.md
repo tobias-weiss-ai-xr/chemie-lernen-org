@@ -1,0 +1,101 @@
+---
+title: 'Quiz Klasse 11'
+topic: 'klasse-11'
+target: 'klassenstufen'
+difficulty: 'hard'
+questions:
+  - id: 'k11-001'
+    type: 'multiple-choice'
+    question: 'Was ist ein Enantiomer in der organischen Chemie?'
+    options:
+      - 'Ein Molekül, das sich zu seinem Spiegelbild nicht deckungsgleich überlagern lässt (Chiralität)'
+      - 'Ein Molekül mit gleicher Summenformel aber anderer Struktur'
+      - 'Ein Molekül, das die gleiche Struktur aber andere funktionelle Gruppen hat'
+      - 'Ein Molekül mit unterschiedlicher Anzahl von Kohlenstoffatomen'
+    correctAnswer: 'Ein Molekül, das sich zu seinem Spiegelbild nicht deckungsgleich überlagern lässt (Chiralität)'
+    explanation: 'Enantiomere sind chirale Moleküle, die sich wie Bild und Spiegelbild verhalten, aber nicht deckungsgleich sind. Sie besitzen ein asymmetrisches Kohlenstoffatom (C* mit 4 verschiedenen Substituenten).'
+
+  - id: 'k11-002'
+    type: 'multiple-choice'
+    question: 'Welcher Reaktionstyp ist die elektrophile Addition an eine C=C-Doppelbindung?'
+    options:
+      - 'Ein Mechanismus, bei dem ein Elektrophil die Pi-Bindung angreift'
+      - 'Ein Mechanismus, bei dem ein Nucleophil das Kohlenstoffatom angreift'
+      - 'Ein Mechanismus, bei dem ein Radikal die Reaktion startet'
+      - 'Ein Mechanismus, bei dem ein Proton direkt abgespalten wird'
+    correctAnswer: 'Ein Mechanismus, bei dem ein Elektrophil die Pi-Bindung angreift'
+    explanation: 'Bei der elektrophilen Addition greift ein elektrophiles Teilchen (z.B. Br+ oder H+) die elektronenreiche Pi-Bindung der Doppelbindung an. Es entsteht ein Carbokation als Zwischenstufe.'
+
+  - id: 'k11-003'
+    type: 'multiple-choice'
+    question: 'Was besagt das Massenwirkungsgesetz (MWG)?'
+    options:
+      - 'Es beschreibt den Zusammenhang zwischen den Konzentrationen der Edukte und Produkte im Gleichgewicht'
+      - 'Es besagt, dass die Masse in einer chemischen Reaktion erhalten bleibt'
+      - 'Es beschreibt die Geschwindigkeit einer chemischen Reaktion'
+      - 'Es sagt voraus, ob eine Reaktion exotherm oder endotherm ist'
+    correctAnswer: 'Es beschreibt den Zusammenhang zwischen den Konzentrationen der Edukte und Produkte im Gleichgewicht'
+    explanation: 'Das MWG (nach Guldberg und Waage) beschreibt, dass im Gleichgewicht das Produkt der Produktkonzentrationen (jeweils potenziert mit ihren Koeffizienten) geteilt durch das Produkt der Eduktkonzentrationen konstant ist.'
+
+  - id: 'k11-004'
+    type: 'multiple-choice'
+    question: 'Welche Elektronenkonfiguration hat das Eisen-Ion Fe2+?'
+    options:
+      - '[Ar] 3d6'
+      - '[Ar] 3d5 4s1'
+      - '[Ar] 3d6 4s2'
+      - '[Kr] 3d6'
+    correctAnswer: '[Ar] 3d6'
+    explanation: 'Eisen (Fe) hat die Konfiguration [Ar] 3d6 4s2. Bei der Bildung von Fe2+ werden die 4s-Elektronen zuerst abgegeben, also [Ar] 3d6.'
+
+  - id: 'k11-005'
+    type: 'multiple-choice'
+    question: 'Welcher Effekt beschreibt die Stabilisierung eines Carbokations durch benachbarte Alkylgruppen?'
+    options:
+      - 'Induktiver Effekt (+I-Effekt)'
+      - 'Mesomerer Effekt (M-Effekt)'
+      - 'Sterischer Effekt'
+      - 'Elektronischer Resonanzeffekt'
+    correctAnswer: 'Induktiver Effekt (+I-Effekt)'
+    explanation: 'Alkylgruppen haben einen positiven induktiven Effekt (+I), sie schieben Elektronendichte in Richtung des Carbokations und stabilisieren es. Daher ist die Stabilität tertiär > sekundär > primär.'
+
+  - id: 'k11-006'
+    type: 'multiple-choice'
+    question: 'Was versteht man unter der Standard- Wasserstoffelektrode?'
+    options:
+      - 'Eine Referenzelektrode mit einem definierten Potential von 0 V unter Standardbedingungen'
+      - 'Eine Elektrode, die Wasserstoffgas produziert'
+      - 'Eine Elektrode aus Platin, die in Salzsäure taucht'
+      - 'Eine Elektrode, die nur in basischer Lösung funktioniert'
+    correctAnswer: 'Eine Referenzelektrode mit einem definierten Potential von 0 V unter Standardbedingungen'
+    explanation: 'Die Standard-Wasserstoffelektrode (SHE) ist die Bezugselektrode für alle elektrochemischen Potentiale. Ihr Potential ist per Definition 0 V bei pH 0, 1 bar H2 und 25°C.'
+
+  - id: 'k11-007'
+    type: 'multiple-choice'
+    question: 'Welche Hybridisierung haben die Kohlenstoffatome in Ethan (C2H6)?'
+    options:
+      - 'sp3-Hybridisierung'
+      - 'sp2-Hybridisierung'
+      - 'sp-Hybridisierung'
+      - 'Keine Hybridisierung'
+    correctAnswer: 'sp3-Hybridisierung'
+    explanation: 'In Ethan (Einfachbindungen) sind alle C-Atome sp3-hybridisiert. Sie bilden vier tetraedrisch angeordnete Bindungen mit einem Bindungswinkel von 109,5°.'
+
+  - id: 'k11-008'
+    type: 'short-answer'
+    question: 'Nenne drei Isomere mit der Summenformel C4H10.'
+    referenceAnswer: 'n-Butan und Isobutan (2-Methylpropan)'
+    gradingHint: 'C4H10 hat zwei Strukturisomere: n-Butan (CH3-CH2-CH2-CH3) und Isobutan/2-Methylpropan (CH3-CH(CH3)-CH3). Es gibt keine weiteren Isomere für C4H10.'
+
+  - id: 'k11-009'
+    type: 'short-answer'
+    question: 'Wie lautet die Henderson-Hasselbalch-Gleichung für Puffersysteme?'
+    referenceAnswer: 'pH = pKs + log([Base]/[Säure])'
+    gradingHint: 'pH = pKs + log([A-]/[HA]) oder pH = pKs + log([Base]/[Säure]). Diese Gleichung beschreibt den pH-Wert eines Puffers in Abhängigkeit vom Konzentrationsverhältnis der konjugierten Base zur Säure.'
+
+  - id: 'k11-010'
+    type: 'short-answer'
+    question: 'Welches Produkt entsteht bei der Reaktion von Propen mit Brom (Br2)?'
+    referenceAnswer: '1,2-Dibrompropan'
+    gradingHint: 'Propen (CH3-CH=CH2) + Br2 -> CH3-CHBr-CH2Br (1,2-Dibrompropan). Die Bromatome addieren sich an die Doppelbindung (elektrophile Addition). Die Bromwasser-Entfärbung dient als Nachweis für Doppelbindungen.'
+---

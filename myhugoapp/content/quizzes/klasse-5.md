@@ -1,0 +1,101 @@
+---
+title: 'Quiz Klasse 5'
+topic: 'klasse-5'
+target: 'klassenstufen'
+difficulty: 'easy'
+questions:
+  - id: 'k5-001'
+    type: 'multiple-choice'
+    question: 'In welchen drei Aggregatzuständen kann ein Stoff vorkommen?'
+    options:
+      - 'Fest, flüssig, gasförmig'
+      - 'Fest, weich, flüssig'
+      - 'Hart, weich, fließend'
+      - 'Schwer, leicht, gasförmig'
+    correctAnswer: 'Fest, flüssig, gasförmig'
+    explanation: 'Die drei klassischen Aggregatzustände sind fest (z.B. Eis), flüssig (z.B. Wasser) und gasförmig (z.B. Wasserdampf). Der Übergang erfolgt durch Energiezufuhr oder -abgabe.'
+
+  - id: 'k5-002'
+    type: 'multiple-choice'
+    question: 'Was passiert mit Wasser beim Gefrieren?'
+    options:
+      - 'Es wird von flüssig zu fest (Eis)'
+      - 'Es wird von flüssig zu gasförmig'
+      - 'Es wird von fest zu flüssig'
+      - 'Es verschwindet'
+    correctAnswer: 'Es wird von flüssig zu fest (Eis)'
+    explanation: 'Beim Gefrieren gibt Wasser Wärmeenergie ab und wird vom flüssigen in den festen Aggregatzustand (Eis) überführt. Der Gefrierpunkt von Wasser liegt bei 0°C.'
+
+  - id: 'k5-003'
+    type: 'multiple-choice'
+    question: 'Welches Gerät verwendet man im Chemielabor, um Flüssigkeiten zu erhitzen?'
+    options:
+      - 'Bunsenbrenner'
+      - 'Mikroskop'
+      - 'Waage'
+      - 'Lineal'
+    correctAnswer: 'Bunsenbrenner'
+    explanation: 'Der Bunsenbrenner wird im Chemielabor zum Erhitzen von Stoffen verwendet. Weitere Geräte sind der Gasbrenner oder der Heizpilz.'
+
+  - id: 'k5-004'
+    type: 'multiple-choice'
+    question: 'Welche Schutzmaßnahme ist im Chemielabor am wichtigsten?'
+    options:
+      - 'Eine Schutzbrille tragen'
+      - 'Handschuhe anziehen'
+      - 'Einen Laborkittel tragen'
+      - 'Geschlossene Schuhe'
+    correctAnswer: 'Eine Schutzbrille tragen'
+    explanation: 'Die Schutzbrille ist die wichtigste Schutzmaßnahme, da sie die Augen vor Spritzern, Splittern und anderen Gefahren schützt. Im Chemielabor muss sie immer getragen werden.'
+
+  - id: 'k5-005'
+    type: 'multiple-choice'
+    question: 'Wie nennt man den Vorgang, wenn ein fester Stoff in einer Flüssigkeit verschwindet und sich gleichmäßig verteilt?'
+    options:
+      - 'Lösen'
+      - 'Schmelzen'
+      - 'Verdampfen'
+      - 'Erstarren'
+    correctAnswer: 'Lösen'
+    explanation: 'Beim Lösen verteilt sich ein fester Stoff (z.B. Salz) gleichmäßig in einer Flüssigkeit (z.B. Wasser). Es entsteht eine Lösung. Der Stoff ist dabei nicht verschwunden, sondern nur fein verteilt.'
+
+  - id: 'k5-006'
+    type: 'multiple-choice'
+    question: 'Womit kann man ein Gemisch aus Sand und Wasser trennen?'
+    options:
+      - 'Mit einem Filter'
+      - 'Mit einem Magneten'
+      - 'Mit einem Sieb'
+      - 'Durch Umrühren'
+    correctAnswer: 'Mit einem Filter'
+    explanation: 'Sand ist in Wasser unlöslich. Mit einem Filter (Filterpapier) kann man den Sand als festen Rückstand vom flüssigen Wasser trennen. Das Wasser läuft als Filtrat durch.'
+
+  - id: 'k5-007'
+    type: 'multiple-choice'
+    question: 'Was ist ein Reinstoff?'
+    options:
+      - 'Ein Stoff, der nur aus einer Teilchenart besteht'
+      - 'Ein besonders sauberer Stoff'
+      - 'Ein Stoff, der aus vielen verschiedenen Teilchen besteht'
+      - 'Ein künstlich hergestellter Stoff'
+    correctAnswer: 'Ein Stoff, der nur aus einer Teilchenart besteht'
+    explanation: 'Ein Reinstoff besteht aus nur einer Teilchenart. Beispiele sind destilliertes Wasser (nur H2O-Moleküle) oder reines Kupfer (nur Cu-Atome).'
+
+  - id: 'k5-008'
+    type: 'short-answer'
+    question: 'Bei welcher Temperatur in Grad Celsius kocht Wasser auf Meereshöhe?'
+    referenceAnswer: '100°C'
+    gradingHint: 'Wasser siedet bei 100°C (auf Meereshöhe bei Normaldruck). Die Antwort "100 Grad" oder "100°C" ist korrekt.'
+
+  - id: 'k5-009'
+    type: 'short-answer'
+    question: 'Nenne zwei Beispiele für Stoffe, die sich in Wasser lösen.'
+    referenceAnswer: 'Salz (NaCl) und Zucker (Saccharose)'
+    gradingHint: 'Typische wasserlösliche Stoffe: Kochsalz (NaCl), Zucker, Ethanol, Essig. Nicht wasserlöslich: Sand, Öl, Fett, Wachs.'
+
+  - id: 'k5-010'
+    type: 'short-answer'
+    question: 'Wie heißt das wichtigste und einfachste Schutzkleidungsstück im Chemielabor?'
+    referenceAnswer: 'Schutzbrille'
+    gradingHint: 'Die Schutzbrille ist das wichtigste Schutzkleidungsstück. Laborkittel und Handschuhe sind ebenfalls wichtig, aber die Schutzbrille hat höchste Priorität.'
+---

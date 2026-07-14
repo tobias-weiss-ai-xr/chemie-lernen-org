@@ -1,0 +1,101 @@
+---
+title: 'Quiz Klasse 12'
+topic: 'klasse-12'
+target: 'klassenstufen'
+difficulty: 'hard'
+questions:
+  - id: 'k12-001'
+    type: 'multiple-choice'
+    question: 'Welcher Komplex ist ein Beispiel für einen Tetraederkomplex?'
+    options:
+      - '[NiCl4]2-'
+      - '[Co(NH3)6]3+'
+      - '[PtCl4]2-'
+      - '[Fe(CN)6]3-'
+    correctAnswer: '[NiCl4]2-'
+    explanation: '[NiCl4]2- ist ein Tetraederkomplex (Koordinationszahl 4). [Co(NH3)6]3+ ist oktaedrisch (KZ 6), [PtCl4]2- ist quadratisch-planar (KZ 4, d8-Konfiguration).'
+
+  - id: 'k12-002'
+    type: 'multiple-choice'
+    question: 'Was ist das Gemeinsame einer elektrochemischen Spannungsquelle (Galvanisches Element)?'
+    options:
+      - 'Zwei Halbzellen mit unterschiedlichen Redoxpotentialen sind leitend verbunden'
+      - 'Zwei Metalle werden in Wasser getaucht'
+      - 'Ein Metall wird in einer Säure aufgelöst'
+      - 'Strom wird durch einen Generator erzeugt'
+    correctAnswer: 'Zwei Halbzellen mit unterschiedlichen Redoxpotentialen sind leitend verbunden'
+    explanation: 'Ein galvanisches Element besteht aus zwei Halbzellen mit unterschiedlichen Elektrodenpotentialen. Durch die leitende Verbindung fließen Elektronen von der unedleren (Anode) zur edleren Elektrode (Kathode).'
+
+  - id: 'k12-003'
+    type: 'multiple-choice'
+    question: 'Welche Aussage zur Aktivierungsenergie ist richtig?'
+    options:
+      - 'Sie ist die Energiebarriere, die überwunden werden muss, damit eine Reaktion abläuft'
+      - 'Sie ist die Energie, die bei einer Reaktion freigesetzt wird'
+      - 'Sie ist die Energie, die zum Aufheizen der Reaktionspartner benötigt wird'
+      - 'Sie ist unabhängig vom Reaktionsweg'
+    correctAnswer: 'Sie ist die Energiebarriere, die überwunden werden muss, damit eine Reaktion abläuft'
+    explanation: 'Die Aktivierungsenergie (Ea) ist die minimale Energie, die bei einem Zusammenstoß von Teilchen erreicht oder überschritten werden muss, damit eine chemische Reaktion stattfinden kann.'
+
+  - id: 'k12-004'
+    type: 'multiple-choice'
+    question: 'Welcher Effekt beschreibt die Stabilisierung des Benzolrings?'
+    options:
+      - 'Die Delokalisierung der Pi-Elektronen über den gesamten Ring (Mesomerie)'
+      - 'Die hohe Elektronegativität des Kohlenstoffs'
+      - 'Die starken C-H-Bindungen'
+      - 'Die Abwesenheit von Wasserstoffatomen'
+    correctAnswer: 'Die Delokalisierung der Pi-Elektronen über den gesamten Ring (Mesomerie)'
+    explanation: 'Benzol (C6H6) hat delokalisierte Pi-Elektronen, die über den gesamten Ring verteilt sind. Diese Mesomerie führt zu einer besonderen Stabilität (aromatischer Zustand, Hückel-Regel: 4n+2 Pi-Elektronen).'
+
+  - id: 'k12-005'
+    type: 'multiple-choice'
+    question: 'Was passiert bei der Elektrolyse einer wässrigen NaCl-Lösung?'
+    options:
+      - 'An der Kathode entsteht Wasserstoff (H2), an der Anode Chlor (Cl2)'
+      - 'An der Kathode entsteht Natrium, an der Anode Sauerstoff'
+      - 'An der Kathode entsteht Chlor, an der Anode Wasserstoff'
+      - 'Es entstehen NaOH und HCl'
+    correctAnswer: 'An der Kathode entsteht Wasserstoff (H2), an der Anode Chlor (Cl2)'
+    explanation: 'Bei der NaCl-Elektrolyse entsteht an der Kathode Wasserstoff (2 H2O + 2 e- -> H2 + 2 OH-) und an der Anode Chlor (2 Cl- -> Cl2 + 2 e-). In Lösung bleibt Natronlauge (NaOH).'
+
+  - id: 'k12-006'
+    type: 'multiple-choice'
+    question: 'Welche Aussage zur Nernst-Gleichung ist richtig?'
+    options:
+      - 'Sie beschreibt die Abhängigkeit des Elektrodenpotentials von der Konzentration'
+      - 'Sie beschreibt die Geschwindigkeit einer Elektrodenreaktion'
+      - 'Sie sagt die Stromstärke einer Elektrolyse voraus'
+      - 'Sie berechnet die Masse des abgeschiedenen Metalls'
+    correctAnswer: 'Sie beschreibt die Abhängigkeit des Elektrodenpotentials von der Konzentration'
+    explanation: 'Die Nernst-Gleichung: E = E0 + (RT/(zF)) * ln(c(ox)/c(red)). Sie beschreibt, wie sich das Elektrodenpotential mit den Konzentrationen der oxidierten und reduzierten Form ändert.'
+
+  - id: 'k12-007'
+    type: 'multiple-choice'
+    question: 'Welche Orbitale sind an der sp2-Hybridisierung beteiligt?'
+    options:
+      - 'Ein s-Orbital und zwei p-Orbitale'
+      - 'Ein s-Orbital und ein p-Orbital'
+      - 'Ein s-Orbital und drei p-Orbitale'
+      - 'Zwei s-Orbitale und zwei p-Orbitale'
+    correctAnswer: 'Ein s-Orbital und zwei p-Orbitale'
+    explanation: 'Bei der sp2-Hybridisierung mischt sich ein s-Orbital mit zwei p-Orbitalen zu drei sp2-Hybridorbitalen (trigonal-planar, 120°). Das dritte p-Orbital bleibt unhybridisiert und bildet die Pi-Bindung.'
+
+  - id: 'k12-008'
+    type: 'short-answer'
+    question: 'Wie lautet die Nernst-Gleichung für ein Redox-Paar?'
+    referenceAnswer: 'E = E0 + (RT/(zF)) * ln(c(ox)/c(red))'
+    gradingHint: 'E = E0 + (RT/(zF)) * ln([ox]/[red]). Bei 25°C vereinfacht: E = E0 + (0,059/z) * log([ox]/[red]) (log zur Basis 10). R = Gaskonstante, T = Temperatur, z = Anzahl der Elektronen, F = Faraday-Konstante.'
+
+  - id: 'k12-009'
+    type: 'short-answer'
+    question: 'Was versteht man unter einem Liganden in der Komplexchemie?'
+    referenceAnswer: 'Ein Molekül oder Ion, das ein freies Elektronenpaar besitzt und an ein Zentralatom (Metall) koordiniert.'
+    gradingHint: 'Liganden sind Lewis-Basen, die ein oder mehrere freie Elektronenpaare zur Verfügung stellen und an das Zentralmetall (Lewis-Säure) koordinieren. Beispiele: H2O, NH3, Cl-, CN-.'
+
+  - id: 'k12-010'
+    type: 'short-answer'
+    question: 'Wie viele Pi-Elektronen hat Benzol (C6H6) und welche Regel bestätigt seine Aromatizität?'
+    referenceAnswer: '6 Pi-Elektronen, erfüllt die Hückel-Regel (4n+2, mit n=1).'
+    gradingHint: 'Benzol hat 6 delokalisierte Pi-Elektronen (4n+2, n=1 -> Hückel-Regel). Es erfüllt alle Kriterien für Aromatizität: planar, cyclisch, 4n+2 Pi-Elektronen, vollständig konjugiert.'
+---
