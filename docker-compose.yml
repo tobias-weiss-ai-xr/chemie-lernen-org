@@ -107,7 +107,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik-public"
-      - "traefik.http.routers.chat.rule=Host(`chemie-lernen.org`) && (PathPrefix(`/api/chat`) || PathPrefix(`/api/health`) || PathPrefix(`/api/kg-data`) || PathPrefix(`/api/kg-stats`) || PathPrefix(`/api/curriculum`) || PathPrefix(`/api/curricula`) || PathPrefix(`/api/content`) || PathPrefix(`/api/didaktik`) || PathPrefix(`/api/modulhandbuch`) || PathPrefix(`/api/entity`) || PathPrefix(`/api/article`) || PathPrefix(`/api/session`) || PathPrefix(`/api/admin`) || PathPrefix(`/api/auth`) || PathPrefix(`/api/quizzes`) || PathPrefix(`/api/quiz-results`) || PathPrefix(`/api/studienvergleich`))"
+      - "traefik.http.routers.chat.rule=(Host(`chemie-lernen.org`) || Host(`www.chemie-lernen.org`)) && (PathPrefix(`/api/chat`) || PathPrefix(`/api/health`) || PathPrefix(`/api/kg-data`) || PathPrefix(`/api/kg-stats`) || PathPrefix(`/api/curriculum`) || PathPrefix(`/api/curricula`) || PathPrefix(`/api/content`) || PathPrefix(`/api/didaktik`) || PathPrefix(`/api/modulhandbuch`) || PathPrefix(`/api/entity`) || PathPrefix(`/api/article`) || PathPrefix(`/api/session`) || PathPrefix(`/api/admin`) || PathPrefix(`/api/auth`) || PathPrefix(`/api/quizzes`) || PathPrefix(`/api/quiz-results`) || PathPrefix(`/api/studienvergleich`))"
       - "traefik.http.routers.chat.priority=100"
       - "traefik.http.routers.chat.entrypoints=websecure"
       - "traefik.http.routers.chat.tls=true"
@@ -131,7 +131,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik-public"
-      - "traefik.http.routers.chemie.rule=Host(`chemie-lernen.org`)"
+      - "traefik.http.routers.chemie.rule=Host(`chemie-lernen.org`) || Host(`www.chemie-lernen.org`)"
       - "traefik.http.routers.chemie.entrypoints=websecure"
       - "traefik.http.routers.chemie.tls=true"
       - "traefik.http.routers.chemie.tls.certresolver=mytlschallenge"

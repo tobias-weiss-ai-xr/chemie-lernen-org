@@ -108,5 +108,25 @@
     "durationMs": 19261,
     "model": "saia/qwen3.5-397b-a17b",
     "durationMin": "0.3"
+  },
+  {
+    "startedAt": "2026-07-14T02:42:39.279Z",
+    "articlesGenerated": 0,
+    "articlesFailed": 3,
+    "feedErrors": 5,
+    "kgErrors": 0,
+    "durationMs": 19766,
+    "model": "saia/qwen3.5-397b-a17b",
+    "durationMin": "0.3"
+  },
+  {
+    "startedAt": "2026-07-15T02:42:17.262Z",
+    "articlesGenerated": 0,
+    "articlesFailed": 3,
+    "feedErrors": 5,
+    "kgErrors": 0,
+    "durationMs": 23478,
+    "model": "saia/qwen3.5-397b-a17b",
+    "durationMin": "0.4"
   }
 ]

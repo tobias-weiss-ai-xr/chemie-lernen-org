@@ -234,7 +234,7 @@ self.addEventListener('install', function (event) {
 // ═══════════════════════════════════════════════════════════
 self.addEventListener('activate', function (event) {
   console.log('[SW] Activating', SW_VERSION);
-  var expectedCaches = [STATIC_CACHE, ASSETS_CACHE, DYNAMIC_CACHE];
+  var expectedCaches = [STATIC_CACHE, ASSETS_CACHE, DYNAMIC_CACHE, QUIZ_CACHE];
   event.waitUntil(
     caches
       .keys()
@@ -511,4 +511,136 @@ function syncQuizProgress() {
 function syncUserData() {
   console.log('[SW] Syncing user data');
   return Promise.resolve();
+}
+
+// ═══════════════════════════════════════════════════════════
+// QUIZ CACHE: Cache-First (GET /api/quiz/*, /api/exercises/*)
+// ═══════════════════════════════════════════════════════════
+function quizCacheFirst(request) {
+  return caches.open(QUIZ_CACHE).then(function (cache) {
+    return cache.match(request).then(function (cached) {
+      if (cached) {
+        // Check 7-day TTL
+        var dateHeader = cached.headers.get('date');
+        if (dateHeader) {
+          var age = Date.now() - new Date(dateHeader).getTime();
+          if (age > QUIZ_TTL_MS) {
+            // Expired — fetch fresh, don't return stale
+            return fetchAndCacheQuiz(request, cache);
+          }
+        }
+        return cached;
+      }
+      // Cache miss — try network, then IndexedDB fallback
+      return fetchAndCacheQuiz(request, cache).catch(function () {
+        return quizIndexedDBFallback(request);
+      });
+    });
+  });
+}
+
+function fetchAndCacheQuiz(request, cache) {
+  return fetch(request).then(function (response) {
+    if (response && response.status === 200) {
+      cache.put(request, response.clone());
+      lruEvictQuizCache();
+    }
+    return response;
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// QUIZ CACHE: Network-First (POST submissions)
+// ═══════════════════════════════════════════════════════════
+function quizNetworkFirst(request) {
+  return fetch(request)
+    .then(function (response) {
+      if (response && response.status === 200 && request.method === 'GET') {
+        var clone = response.clone();
+        caches.open(QUIZ_CACHE).then(function (cache) {
+          cache.put(request, clone);
+          lruEvictQuizCache();
+        });
+      }
+      return response;
+    })
+    .catch(function () {
+      return caches.match(request).then(function (cached) {
+        if (cached) return cached;
+        return new Response(JSON.stringify({ error: 'Offline', offline: true }), {
+          status: 503,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      });
+    });
+}
+
+// ═══════════════════════════════════════════════════════════
+// QUIZ PAGE: Cache-First for HTML pages
+// ═══════════════════════════════════════════════════════════
+function quizPageCacheFirst(request) {
+  return caches.open(STATIC_CACHE).then(function (cache) {
+    return cache.match(request).then(function (cached) {
+      if (cached) return cached;
+      return fetch(request).then(function (response) {
+        if (response && response.status === 200) {
+          cache.put(request, response.clone());
+        }
+        return response;
+      });
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// LRU Eviction for Quiz Cache (by entry count, max 50)
+// ═══════════════════════════════════════════════════════════
+function lruEvictQuizCache() {
+  return caches.open(QUIZ_CACHE).then(function (cache) {
+    return cache.keys().then(function (requests) {
+      if (requests.length <= QUIZ_MAX_ENTRIES) return;
+      var toDelete = requests.length - QUIZ_MAX_ENTRIES + 5;
+      var ops = [];
+      for (var i = 0; i < toDelete && i < requests.length; i++) {
+        ops.push(cache.delete(requests[i]));
+      }
+      return Promise.all(ops);
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// IndexedDB Fallback — try ProgressTracker DB on cache miss
+// ═══════════════════════════════════════════════════════════
+function quizIndexedDBFallback(request) {
+  return new Promise(function (resolve, reject) {
+    var openReq = indexedDB.open('ChemieLernenProgress', 1);
+    openReq.onsuccess = function () {
+      var db = openReq.result;
+      var tx = db.transaction('exercises', 'readonly');
+      var store = tx.objectStore('exercises');
+      var urlKey = 'sw:' + request.url;
+      var getReq = store.get(urlKey);
+      getReq.onsuccess = function () {
+        db.close();
+        if (getReq.result && getReq.result.data) {
+          resolve(
+            new Response(JSON.stringify(getReq.result.data), {
+              status: 200,
+              headers: { 'Content-Type': 'application/json' },
+            })
+          );
+        } else {
+          reject(new Error('Not found in IndexedDB'));
+        }
+      };
+      getReq.onerror = function () {
+        db.close();
+        reject(getReq.error);
+      };
+    };
+    openReq.onerror = function () {
+      reject(openReq.error);
+    };
+  });
 }
