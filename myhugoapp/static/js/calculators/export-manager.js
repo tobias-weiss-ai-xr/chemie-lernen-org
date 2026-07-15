@@ -11,7 +11,7 @@ const ExportManager = {
    * @param {string} filename - Output filename
    */
   exportToPDF(data, title, filename = 'calculation-results.pdf') {
-    if (typeof jsPDF === 'undefined') {
+    if (typeof window === 'undefined' || !window.jspdf || typeof window.jspdf.jsPDF === 'undefined') {
       console.error('jsPDF library not loaded');
       return false;
     }
@@ -152,6 +152,11 @@ const ExportManager = {
   exportHistoryToPDF(history, filename = 'calculation-history.pdf') {
     if (!Array.isArray(history) || history.length === 0) {
       console.error('Invalid history data');
+      return false;
+    }
+
+    if (typeof window === 'undefined' || !window.jspdf || typeof window.jspdf.jsPDF === 'undefined') {
+      console.error('jsPDF library not loaded');
       return false;
     }
 
