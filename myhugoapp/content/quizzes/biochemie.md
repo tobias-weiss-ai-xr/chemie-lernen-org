@@ -83,7 +83,7 @@ questions:
     type: 'short-answer'
     question: 'Welche Bindung wird bei der DNA-Replikation durch die DNA-Polymerase geknüpft?'
     referenceAnswer: 'Phosphodiesterbindung'
-    gradingHint: 'Die DNA-Polymerase katalysiert die Bildung einer Phosphodiesterbindung zwischen dem 3\'-OH-Ende des wachsenden Strangs und dem 5\'-Phosphat des nächsten Desoxyribonucleotides.'
+    gradingHint: 'Die DNA-Polymerase katalysiert die Bildung einer Phosphodiesterbindung zwischen dem 3''-OH-Ende des wachsenden Strangs und dem 5''-Phosphat des nächsten Desoxyribonucleotides.'
   - id: 'bc-010'
     type: 'short-answer'
     question: 'Nenne zwei Vitamine, die als Coenzyme im menschlichen Stoffwechsel wirken.'
