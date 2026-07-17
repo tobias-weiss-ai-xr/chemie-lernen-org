@@ -6646,5 +6646,324 @@
       ],
       "exercises": []
     }
+  },
+  "/themenbereiche/biochemie/enzyme-biokatalysatoren/": {
+    "title": "Enzyme und Biokatalysatoren",
+    "type": "article",
+    "topicCount": 8,
+    "topics": [
+      "Die Erkenntnisse der Biowissenschaften führen zu Perspektiven und Anwendungen, die uns Menschen",
+      "Anhand konkreter alltäglicher Beispiele wird die Wirkungsweise von Enzymen als Katalysatoren",
+      "Enzyme als Biokatalysatoren, aktives Zentrum, Schlüssel-Schloss-Prinzip"
+    ],
+    "related": {
+      "articles": [
+        {
+          "title": "Katalysatoren in der Industrie und Biologie",
+          "url": "/themenbereiche/gleichgewicht-geschwindigkeit/katalysatoren-industrie-biologie/"
+        },
+        {
+          "title": "Proteine und Aminosäuren",
+          "url": "/themenbereiche/biochemie/proteine-und-aminosaeuren/"
+        },
+        {
+          "title": "Kohlenhydrate, Zucker und Polysaccharide",
+          "url": "/themenbereiche/biochemie/kohlenhydrate-zucker-polysaccharide/"
+        },
+        {
+          "title": "Reaktionskinetik",
+          "url": "/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/"
+        }
+      ],
+      "calculators": [],
+      "exercises": []
+    }
+  },
+  "/themenbereiche/analytische-methoden/massenspektrometrie/": {
+    "title": "Massenspektrometrie",
+    "type": "article",
+    "topicCount": 6,
+    "topics": [
+      "Analysemethoden Teilchenebene in der organischen Chemie",
+      "Trennverfahren und Nachweisverfahren für Stoffgemische",
+      "Massenspektrometrie zur Strukturaufklärung"
+    ],
+    "related": {
+      "articles": [
+        {
+          "title": "Quantitative Analyse",
+          "url": "/themenbereiche/analytische-methoden/quantitative-analyse/"
+        },
+        {
+          "title": "Nachweisreaktionen",
+          "url": "/themenbereiche/analytische-methoden/nachweisreaktionen/"
+        },
+        {
+          "title": "Trennverfahren in der Analytik",
+          "url": "/themenbereiche/analytische-methoden/trennverfahren/"
+        },
+        {
+          "title": "Substitution und Addition",
+          "url": "/themenbereiche/reaktionstypen-organisch/substitution-und-addition/"
+        }
+      ],
+      "calculators": [
+        {
+          "title": "Spektroskopie-Simulator",
+          "url": "/spektroskopie-simulator/"
+        }
+      ],
+      "exercises": []
+    }
+  },
+  "/themenbereiche/aufbau-materie/isotope-anwendungen/": {
+    "title": "Isotope und Anwendungen",
+    "type": "article",
+    "topicCount": 7,
+    "topics": [
+      "Atombau: Protonen, Neutronen, Elektronen, Isotope",
+      "Radioaktivität und ionisierende Strahlung",
+      "Anwendungen von Isotopen in Medizin und Technik"
+    ],
+    "related": {
+      "articles": [
+        {
+          "title": "Atome und Moleküle",
+          "url": "/themenbereiche/aufbau-materie/atome-und-molekuele/"
+        },
+        {
+          "title": "Elektronenkonfiguration",
+          "url": "/themenbereiche/aufbau-materie/elektronenkonfiguration/"
+        },
+        {
+          "title": "Chemische Bindungen",
+          "url": "/themenbereiche/aufbau-materie/chemische-bindungen/"
+        }
+      ],
+      "calculators": [
+        {
+          "title": "Atomenergieniveaus und Linienspektren",
+          "url": "/atomenergieniveaus/"
+        },
+        {
+          "title": "Molare Masse Rechner",
+          "url": "/molare-masse-rechner/"
+        }
+      ],
+      "exercises": []
+    }
+  },
+  "/themenbereiche/redox-elektrochemie/elektrolyse-galvanik/": {
+    "title": "Elektrolyse und Galvanik",
+    "type": "article",
+    "topicCount": 8,
+    "topics": [
+      "Elektrische Energie aus chemischen Reaktionen",
+      "Elektrolyse, Galvanische Zellen, Brennstoffzellen",
+      "Redoxreaktionen in der Elektrochemie"
+    ],
+    "related": {
+      "articles": [
+        {
+          "title": "Elektrochemische Zellen",
+          "url": "/themenbereiche/redox-elektrochemie/elektrochemische-zellen/"
+        },
+        {
+          "title": "Oxidation und Reduktion",
+          "url": "/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/"
+        },
+        {
+          "title": "Spannungsreihe der Elemente",
+          "url": "/themenbereiche/redox-elektrochemie/spannungsreihe/"
+        },
+        {
+          "title": "Korrosion",
+          "url": "/themenbereiche/redox-elektrochemie/korrosion/"
+        }
+      ],
+      "calculators": [
+        {
+          "title": "Elektrochemie auf Teilchenebene",
+          "url": "/elektrochemie-teilchenebene/"
+        },
+        {
+          "title": "Redoxpotential Rechner",
+          "url": "/redox-potenzial-rechner/"
+        },
+        {
+          "title": "Redox-Titrationen",
+          "url": "/redox-titrationen/"
+        }
+      ],
+      "exercises": []
+    }
+  },
+  "/themenbereiche/energetik/kalorimetrie/": {
+    "title": "Kalorimetrie",
+    "type": "article",
+    "topicCount": 6,
+    "topics": [
+      "Energetik chemischer Reaktionen, Enthalpie",
+      "Kalorimetrische Messungen und Berechnungen",
+      "Wärmekapazität und spezifische Wärme"
+    ],
+    "related": {
+      "articles": [
+        {
+          "title": "Energie bei chemischen Reaktionen",
+          "url": "/themenbereiche/energetik/energie-bei-reaktionen/"
+        },
+        {
+          "title": "Reaktionsenthalpie und Energieprofile",
+          "url": "/themenbereiche/energetik/reaktionsenthalpie-und-energieprofile/"
+        },
+        {
+          "title": "Der Satz von Hess",
+          "url": "/themenbereiche/energetik/satz-von-hess/"
+        },
+        {
+          "title": "Aktivierungsenergie und Katalysatoren",
+          "url": "/themenbereiche/energetik/aktivierungsenergie-und-katalysatoren/"
+        }
+      ],
+      "calculators": [
+        {
+          "title": "Hess-Gesetz Rechner",
+          "url": "/hess-gesetz/"
+        },
+        {
+          "title": "Verbrennungsrechner",
+          "url": "/verbrennungsrechner/"
+        }
+      ],
+      "exercises": []
+    }
+  },
+  "/themenbereiche/anorganische-verbindungen/halogene-edelgase/": {
+    "title": "Halogene und Edelgase",
+    "type": "article",
+    "topicCount": 6,
+    "topics": [
+      "Elementgruppen des Periodensystems, Hauptgruppen",
+      "Halogene: Eigenschaften, Vorkommen, Verwendung",
+      "Edelgase: Reaktionsträgheit und Anwendungen"
+    ],
+    "related": {
+      "articles": [
+        {
+          "title": "Oxide und Hydroxide",
+          "url": "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/"
+        },
+        {
+          "title": "Säuren, Basen und Salze",
+          "url": "/themenbereiche/anorganische-verbindungen/saeuren-basen-salze/"
+        },
+        {
+          "title": "Komplexverbindungen",
+          "url": "/themenbereiche/anorganische-verbindungen/komplexverbindungen/"
+        },
+        {
+          "title": "Chemische Bindungen",
+          "url": "/themenbereiche/aufbau-materie/chemische-bindungen/"
+        }
+      ],
+      "calculators": [
+        {
+          "title": "Periodisches System der Elemente",
+          "url": "/perioden-system-der-elemente/"
+        },
+        {
+          "title": "Periodische Trends",
+          "url": "/periodische-trends/"
+        }
+      ],
+      "exercises": []
+    }
+  },
+  "/themenbereiche/produkte-organisch/aromastoffe-duftstoffe/": {
+    "title": "Aromastoffe und Duftstoffe",
+    "type": "article",
+    "topicCount": 6,
+    "topics": [
+      "Organische Chemie: Funktionelle Gruppen, Aromaten",
+      "Aromastoffe in Lebensmitteln und Duftstoffen",
+      "Synthetische und natürliche Aromastoffe"
+    ],
+    "related": {
+      "articles": [
+        {
+          "title": "Farbstoffe und Pigmente",
+          "url": "/themenbereiche/produkte-organisch/farbstoffe-pigmente/"
+        },
+        {
+          "title": "Kunststoffe und Polymere",
+          "url": "/themenbereiche/produkte-organisch/kunststoffe-und-polymere/"
+        },
+        {
+          "title": "Alkohole und Ether",
+          "url": "/themenbereiche/erdoel-organische-stoffklassen/alkohole-ether/"
+        },
+        {
+          "title": "Waschmittel und Tenside",
+          "url": "/themenbereiche/produkte-organisch/waschmittel-tenside/"
+        }
+      ],
+      "calculators": [
+        {
+          "title": "Molekülorbitale",
+          "url": "/molekuelorbitale/"
+        },
+        {
+          "title": "Molekülstudio",
+          "url": "/molekuel-studio/"
+        }
+      ],
+      "exercises": []
+    }
+  },
+  "/themenbereiche/saeuren-basen/saeurestaerke-pks/": {
+    "title": "Säurestärke und pKs-Wert",
+    "type": "article",
+    "topicCount": 7,
+    "topics": [
+      "Säure-Base-Konzepte nach Brønsted, pKs-Wert",
+      "Starke und schwache Säuren, Gleichgewichte",
+      "pH-Wert-Berechnung bei schwachen Säuren und Basen"
+    ],
+    "related": {
+      "articles": [
+        {
+          "title": "pH-Wert und Indikatoren",
+          "url": "/themenbereiche/saeuren-basen/ph-wert-und-indikatoren/"
+        },
+        {
+          "title": "Neutralisation",
+          "url": "/themenbereiche/saeuren-basen/neutralisation/"
+        },
+        {
+          "title": "Pufferlösungen",
+          "url": "/themenbereiche/saeuren-basen/pufferloesungen/"
+        },
+        {
+          "title": "Säure-Base-Titration",
+          "url": "/themenbereiche/saeuren-basen/saeure-base-titration/"
+        }
+      ],
+      "calculators": [
+        {
+          "title": "pH-Rechner",
+          "url": "/ph-rechner/"
+        },
+        {
+          "title": "Enhanced pH-Visualisierung",
+          "url": "/enhanced-ph-visualization/"
+        },
+        {
+          "title": "Säuren-Basen-Gleichgewichte",
+          "url": "/saeuren-basen-gleichgewicht/"
+        }
+      ],
+      "exercises": []
+    }
   }
 }

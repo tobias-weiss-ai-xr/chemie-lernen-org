@@ -34,15 +34,20 @@ function pickSystemPromptLang(acceptLanguageHeader) {
 }
 
 var LEARNING_LEVEL_PROMPTS = {
-  beginner: 'Der Schüler ist Anfänger (Klassenstufe 8-10). Verwende einfache Sprache, viele Beispiele und vermeide komplexe Formeln. Erkläre jedes Fachwort beim ersten Gebrauch.',
-  intermediate: 'Der Schüler hat Grundkenntnisse (Klassenstufe 10-12). Du kannst Fachbegriffe voraussetzen, aber erkläre komplexe Zusammenhänge ausführlich.',
-  advanced: 'Der Schüler ist fortgeschritten (Oberstufe / Studium). Du kannst detaillierte fachliche Erklärungen geben, Formeln und Reaktionsmechanismen verwenden.',
+  beginner:
+    'Der Schüler ist Anfänger (Klassenstufe 8-10). Verwende einfache Sprache, viele Beispiele und vermeide komplexe Formeln. Erkläre jedes Fachwort beim ersten Gebrauch.',
+  intermediate:
+    'Der Schüler hat Grundkenntnisse (Klassenstufe 10-12). Du kannst Fachbegriffe voraussetzen, aber erkläre komplexe Zusammenhänge ausführlich.',
+  advanced:
+    'Der Schüler ist fortgeschritten (Oberstufe / Studium). Du kannst detaillierte fachliche Erklärungen geben, Formeln und Reaktionsmechanismen verwenden.',
 };
 
 var STYLE_PROMPTS = {
   simple: 'Antworte kurz und prägnant. Fasse dich auf das Wesentliche.',
-  detailed: 'Antworte sehr ausführlich. Erkläre Hintergründe, nenne Beispiele und gehe auf verwandte Konzepte ein.',
-  visual: 'Verwende anschauliche Beschreibungen. Erkläre mit Analogien und bildhafter Sprache, als ob du etwas an die Tafel zeichnen würdest.',
+  detailed:
+    'Antworte sehr ausführlich. Erkläre Hintergründe, nenne Beispiele und gehe auf verwandte Konzepte ein.',
+  visual:
+    'Verwende anschauliche Beschreibungen. Erkläre mit Analogien und bildhafter Sprache, als ob du etwas an die Tafel zeichnen würdest.',
 };
 
 function buildSystemPrompt(opts) {
@@ -64,9 +69,17 @@ function buildSystemPrompt(opts) {
     if (lp.weak_areas && lp.weak_areas.length > 0) {
       var weakList = lp.weak_areas.slice(0, 3).join(', ');
       if (lang === 'en') {
-        parts.push('The user struggles with: ' + weakList + '. Pay extra attention when these topics come up.');
+        parts.push(
+          'The user struggles with: ' +
+            weakList +
+            '. Pay extra attention when these topics come up.'
+        );
       } else {
-        parts.push('Der Schüler hat Schwierigkeiten mit: ' + weakList + '. Erkläre diese Themen besonders sorgfältig.');
+        parts.push(
+          'Der Schüler hat Schwierigkeiten mit: ' +
+            weakList +
+            '. Erkläre diese Themen besonders sorgfältig.'
+        );
       }
     }
 
@@ -74,16 +87,28 @@ function buildSystemPrompt(opts) {
     if (lp.interests && lp.interests.length > 0) {
       var interests = lp.interests.slice(0, 5).join(', ');
       if (lang === 'en') {
-        parts.push('The user is particularly interested in: ' + interests + '. Prioritize examples and explanations from these areas when possible.');
+        parts.push(
+          'The user is particularly interested in: ' +
+            interests +
+            '. Prioritize examples and explanations from these areas when possible.'
+        );
       } else {
-        parts.push('Der Schüler interessiert sich besonders für: ' + interests + '. Bevorzuge Beispiele und Erklärungen aus diesen Bereichen.');
+        parts.push(
+          'Der Schüler interessiert sich besonders für: ' +
+            interests +
+            '. Bevorzuge Beispiele und Erklärungen aus diesen Bereichen.'
+        );
       }
     }
   }
 
-  if (opts.conversationMemory && opts.conversationMemory.conversations && opts.conversationMemory.conversations.length > 0) {
+  if (
+    opts.conversationMemory &&
+    opts.conversationMemory.conversations &&
+    opts.conversationMemory.conversations.length > 0
+  ) {
     var summaries = opts.conversationMemory.conversations
-      .map(c => c.topicSummary)
+      .map((c) => c.topicSummary)
       .filter(Boolean)
       .join(', ');
     if (summaries) {
@@ -109,6 +134,29 @@ function buildSystemPrompt(opts) {
     if (lang === 'en') parts.push('\n\nContext from the knowledge graph:\n' + opts.ragContext);
     else parts.push('\n\nKontext aus dem Wissensgraph:\n' + opts.ragContext);
   }
+
+  // Injected entity context (Sprint 30)
+  if (opts.entities && opts.entities.length > 0) {
+    var entityNames = opts.entities
+      .map(function (e) {
+        return e.name;
+      })
+      .join(', ');
+    var relatedNames = opts.entities
+      .slice(0, 3)
+      .map(function (e) {
+        return e.name;
+      })
+      .join(', ');
+    if (lang === 'en') {
+      parts.push('The user is asking about: ' + entityNames + '.');
+      parts.push('Related concepts: ' + relatedNames + '.');
+    } else {
+      parts.push('Der Nutzer fragt über: ' + entityNames + '.');
+      parts.push('Verwandte Konzepte: ' + relatedNames + '.');
+    }
+  }
+
   return parts.join(' ');
 }
 

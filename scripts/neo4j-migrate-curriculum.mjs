@@ -1,5 +1,13 @@
 #!/usr/bin/env node
 /**
+ * DEPRECATED: Schema A. Use scripts/import-curricula-all.mjs (Schema B) instead.
+ *
+ * Schema A chain: (:Curriculum)-[:HAS_TOPIC]->(:Topic)-[:HAS_SUBTOPIC]->(:SubTopic)-[:HAS_OBJECTIVE]->(:LearningObjective)
+ * Schema B chain: (:Curriculum)-[:HAS_SUBTOPIC]->(:SubTopic)-[:FULFILLS]->(:LearningObjective)
+
+ * See scripts/import-curricula-all.mjs for the active Schema B implementation.
+ * Schema B chain: (:Curriculum)-[:HAS_TOPIC]->(:Topic)-[:HAS_SUBTOPIC]->(:SubTopic)-[:FULFILLS]->(:LearningObjective)
+ *
  * neo4j-migrate-curriculum.mjs — Seed a sample Mittelstufe-Chemie curriculum
  * into the Neo4j knowledge graph.
  *
@@ -86,16 +94,14 @@ const CURRICULUM = {
           objectives: [
             {
               slug: 'gemischarten-unterscheiden',
-              description:
-                'Die Schüler können homogene und heterogene Gemische unterscheiden',
+              description: 'Die Schüler können homogene und heterogene Gemische unterscheiden',
               bloomLevel: 'understand',
               estimatedMinutes: 10,
               contentUrl: '/themenbereiche/stoffgemische/gemischarten/',
             },
             {
               slug: 'reinstoff-erkennen',
-              description:
-                'Die Schüler können Reinstoffe von Gemischen unterscheiden',
+              description: 'Die Schüler können Reinstoffe von Gemischen unterscheiden',
               bloomLevel: 'remember',
               estimatedMinutes: 10,
               contentUrl: '/themenbereiche/stoffgemische/',
@@ -172,8 +178,7 @@ const CURRICULUM = {
             },
             {
               slug: 'bindungen-eigenschaften-erklaeren',
-              description:
-                'Die Schüler können Stoffeigenschaften aus der Bindungsart erklären',
+              description: 'Die Schüler können Stoffeigenschaften aus der Bindungsart erklären',
               bloomLevel: 'analyze',
               estimatedMinutes: 25,
               contentUrl: '/themenbereiche/chemische-bindungen/eigenschaften/',
@@ -229,8 +234,7 @@ const CURRICULUM = {
             },
             {
               slug: 'exotherm-endotherm-unterscheiden',
-              description:
-                'Die Schüler können exotherme und endotherme Reaktionen unterscheiden',
+              description: 'Die Schüler können exotherme und endotherme Reaktionen unterscheiden',
               bloomLevel: 'understand',
               estimatedMinutes: 15,
               contentUrl: '/themenbereiche/chemische-reaktionen/energie/exotherm-endotherm/',
@@ -284,8 +288,7 @@ const CURRICULUM = {
             },
             {
               slug: 'neutralisation-berechnen',
-              description:
-                'Die Schüler können Stoffmengen bei der Neutralisation berechnen',
+              description: 'Die Schüler können Stoffmengen bei der Neutralisation berechnen',
               bloomLevel: 'apply',
               estimatedMinutes: 25,
               contentUrl: '/themenbereiche/saeuren-laugen/neutralisation/berechnen/',
@@ -326,7 +329,9 @@ const CURRICULUM = {
 
 function dryRunLog() {
   console.log('=== DRY RUN ===\n');
-  console.log(`:Curriculum {slug: '${CURRICULUM.slug}'} — ${CURRICULUM.title} (Grade ${CURRICULUM.grade})\n`);
+  console.log(
+    `:Curriculum {slug: '${CURRICULUM.slug}'} — ${CURRICULUM.title} (Grade ${CURRICULUM.grade})\n`
+  );
 
   let topicCount = 0;
   let subTopicCount = 0;
@@ -341,7 +346,9 @@ function dryRunLog() {
       subTopicCount++;
 
       for (const lo of sub.objectives) {
-        console.log(`      :LearningObjective {slug: '${lo.slug}'} — ${lo.bloomLevel} | ${lo.estimatedMinutes}min`);
+        console.log(
+          `      :LearningObjective {slug: '${lo.slug}'} — ${lo.bloomLevel} | ${lo.estimatedMinutes}min`
+        );
         if (lo.prerequisites && lo.prerequisites.length > 0) {
           console.log(`        → PREREQUISITE: ${lo.prerequisites.join(', ')}`);
         }
@@ -351,7 +358,9 @@ function dryRunLog() {
     }
   }
 
-  console.log(`\nSummary: 1 :Curriculum, ${topicCount} :Topic, ${subTopicCount} :SubTopic, ${loCount} :LearningObjective`);
+  console.log(
+    `\nSummary: 1 :Curriculum, ${topicCount} :Topic, ${subTopicCount} :SubTopic, ${loCount} :LearningObjective`
+  );
   console.log('(no Neo4j connection needed)\n');
 }
 
@@ -468,7 +477,9 @@ async function runCurriculumMigrations(session) {
   );
 
   const objCount = counts.records[0].get('objectiveCount').toNumber();
-  console.log(`\n[migrate] Done. ${objCount} learning objectives created for curriculum "${CURRICULUM.slug}".`);
+  console.log(
+    `\n[migrate] Done. ${objCount} learning objectives created for curriculum "${CURRICULUM.slug}".`
+  );
 }
 
 // ── Confirmation prompt ────────────────────────────────────────────────
@@ -510,14 +521,10 @@ async function main() {
     console.log();
   }
 
-  const driver = neo4j.driver(
-    NEO4J_URI,
-    neo4j.auth.basic(NEO4J_USER, NEO4J_PASSWORD),
-    {
-      connectionTimeout: 30000,
-      maxConnectionLifetime: 300000,
-    }
-  );
+  const driver = neo4j.driver(NEO4J_URI, neo4j.auth.basic(NEO4J_USER, NEO4J_PASSWORD), {
+    connectionTimeout: 30000,
+    maxConnectionLifetime: 300000,
+  });
 
   try {
     const session = driver.session({ database: NEO4J_DATABASE });

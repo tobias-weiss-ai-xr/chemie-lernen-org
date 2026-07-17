@@ -251,14 +251,26 @@
 }
 .entity-graph-top-link:hover { background: #667eea; color: #fff; }
 
-.entity-sort-select {
+.entity-sort-select,
+.entity-state-select {
   padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.82rem;
   border: 1.5px solid var(--border-color, #ddd); cursor: pointer;
   background: var(--bg-card, #fff); color: var(--text-muted, #666);
   transition: border-color 0.2s;
 }
-.entity-sort-select:focus {
+.entity-sort-select:focus,
+.entity-state-select:focus {
   outline: none; border-color: #667eea;
+}
+.entity-state-select option {
+  color: var(--text-primary, #333);
+  background: var(--bg-card, #fff);
+}
+
+.entity-loading {
+  font-size: 0.82rem;
+  color: #9b59b6;
+  animation: lpPulse 0.8s infinite;
 }
 
 [data-theme="dark"] .entity-card,
@@ -277,9 +289,15 @@
 .dark .entity-lehrplan-toggle,
 [data-theme="dark"] .entity-sort-select,
 .dark .entity-sort-select,
+[data-theme="dark"] .entity-state-select,
+.dark .entity-state-select,
 [data-theme="dark"] .entity-page-btn,
 .dark .entity-page-btn {
   background: #333; border-color: #555; color: #bbb;
+}
+[data-theme="dark"] .entity-state-select option,
+.dark .entity-state-select option {
+  background: #333; color: #eee;
 }
 [data-theme="dark"] .entity-related-tag,
 .dark .entity-related-tag {
@@ -304,6 +322,7 @@
   :root:not([data-theme="light"]) .entity-filter-btn,
   :root:not([data-theme="light"]) .entity-view-btn,
   :root:not([data-theme="light"]) .entity-sort-select,
+  :root:not([data-theme="light"]) .entity-state-select,
   :root:not([data-theme="light"]) .entity-page-btn { background: #333; border-color: #555; color: #bbb; }
   :root:not([data-theme="light"]) .entity-related-tag { background: #3c3c3c; color: #aaa; }
   :root:not([data-theme="light"]) .entity-card-name { color: #e0e0e0; }

@@ -606,3 +606,87 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ── State Selector (Sprint 30) ── */
+.state-selector-wrapper {
+  margin-bottom: 16px;
+}
+
+.state-selector-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted, #7f8c8d);
+  margin-bottom: 4px;
+}
+
+.state-selector {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid var(--border-color, #dee2e6);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background: var(--card-bg, #fff);
+  color: var(--text-primary, #2c3e50);
+}
+
+.state-path-header {
+  padding: 8px 0 12px;
+  border-bottom: 1px solid var(--border-color, #dee2e6);
+  margin-bottom: 12px;
+}
+
+.state-path-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--brand-primary, #1b5e20);
+}
+
+.state-path-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted, #7f8c8d);
+}
+
+.path-grade {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-color, #007bff);
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+.topic-article-link {
+  display: block;
+  padding: 8px 12px 8px 36px;
+  font-size: 0.85rem;
+  color: var(--accent-color, #007bff);
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.topic-article-link:hover {
+  background: var(--bg-primary, #f8f9fa);
+  text-decoration: underline;
+}
+
+.topic-article-link i {
+  margin-right: 6px;
+  font-size: 0.8rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .state-selector {
+    background: #3c3c3c;
+    border-color: #555;
+    color: #e0e0e0;
+  }
+
+  .state-path-header h3 {
+    color: #81c784;
+  }
+
+  .topic-article-link:hover {
+    background: #3c3c3c;
+  }
+}

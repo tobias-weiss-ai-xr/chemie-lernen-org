@@ -33,10 +33,7 @@ const TARGET = path.resolve(__dirname, '..', 'myhugoapp', 'data', 'kg_data.json'
 const LIMIT_ENTITIES = parseInt(process.env.LIMIT_ENTITIES || '5000', 10);
 const LIMIT_ARTICLES = parseInt(process.env.LIMIT_ARTICLES || '10000', 10);
 const LIMIT_CURRICULA = parseInt(process.env.LIMIT_CURRICULA || '5000', 10);
-const MAX_ARTICLES_PER_ENTITY = parseInt(
-  process.env.MAX_ARTICLES_PER_ENTITY || '20',
-  10
-);
+const MAX_ARTICLES_PER_ENTITY = parseInt(process.env.MAX_ARTICLES_PER_ENTITY || '20', 10);
 
 // ── Rate-limit helper ──────────────────────────────────────────────────
 function delay(ms) {
@@ -53,7 +50,15 @@ async function runQuery(session, cypher, params, label, retries) {
       return result;
     } catch (err) {
       if (attempt < retries && err.code && err.code === 'SessionExpired') {
-        console.warn('[export-kg-data] Session expired, retrying ' + label + ' (' + attempt + '/' + retries + ')...');
+        console.warn(
+          '[export-kg-data] Session expired, retrying ' +
+            label +
+            ' (' +
+            attempt +
+            '/' +
+            retries +
+            ')...'
+        );
         await delay(1000 * attempt);
         continue;
       }
@@ -102,15 +107,21 @@ async function main() {
         name: r.get('name'),
         category: r.get('category') || 'konzept',
         articles: [],
-        relatedEntities: (r.get('relatedEntities') || []).filter(function (n) { return n !== null; }),
-        components: (r.get('components') || []).filter(function (n) { return n !== null; }),
-        articleCount: (r.get('articleCount') || 0).toNumber ? (r.get('articleCount') || 0).toNumber() : (r.get('articleCount') || 0),
+        relatedEntities: (r.get('relatedEntities') || []).filter(function (n) {
+          return n !== null;
+        }),
+        components: (r.get('components') || []).filter(function (n) {
+          return n !== null;
+        }),
+        articleCount: neo4j.integer.toNumber(r.get('articleCount') || 0),
       };
     });
 
     // ── 2. Articles ──────────────────────────────────────────────────
     console.log('[export-kg-data] Querying articles (' + entities.length + ' entities)...');
-    var entityNames = entities.map(function (e) { return e.name; });
+    var entityNames = entities.map(function (e) {
+      return e.name;
+    });
     var articlesResult = await runQuery(
       session,
       `
@@ -128,22 +139,30 @@ async function main() {
       'articles'
     );
 
-    var articles = articlesResult.records.map(function (r, i) {
-      return {
-        id: 'a' + i,
-        title: r.get('title'),
-        url: r.get('url'),
-        type: r.get('type') || 'article',
-        entities: r.get('entities') || [],
-        date: r.get('date'),
-      };
-    });
+    var articles = articlesResult.records
+      .map(function (r, i) {
+        var url = r.get('url');
+        if (!url) return null; // skip documents without URL
+        return {
+          id: 'a' + i,
+          title: r.get('title'),
+          url: url,
+          type: r.get('type') || 'article',
+          entities: r.get('entities') || [],
+          date: r.get('date'),
+        };
+      })
+      .filter(Boolean);
 
     // Link articles to entities
     entities.forEach(function (entity) {
       entity.articles = articles
-        .filter(function (a) { return a.entities.indexOf(entity.name) !== -1; })
-        .map(function (a) { return a.title; });
+        .filter(function (a) {
+          return a.entities.indexOf(entity.name) !== -1;
+        })
+        .map(function (a) {
+          return a.title;
+        });
     });
 
     // ── 3. Curricula (lehrplan only) ──────────────────────────────────
@@ -175,10 +194,12 @@ async function main() {
           state: r.get('state'),
           grade: r.get('grade'),
           school_type: r.get('school_type'),
-          objective_count: objCount ? (objCount.toNumber ? objCount.toNumber() : objCount) : 0,
+          objective_count: neo4j.integer.toNumber(objCount || 0),
         },
         articles: [],
-        relatedEntities: (r.get('relatedEntities') || []).filter(function (n) { return n !== null; }),
+        relatedEntities: (r.get('relatedEntities') || []).filter(function (n) {
+          return n !== null;
+        }),
         articleCount: 0,
       };
     });
@@ -199,7 +220,15 @@ async function main() {
 
     fs.writeFileSync(TARGET, JSON.stringify(output, null, 2), 'utf-8');
     console.log('[export-kg-data] Written: ' + TARGET);
-    console.log('[export-kg-data] ' + entities.length + ' entities, ' + articles.length + ' articles, ' + curricula.length + ' curricula');
+    console.log(
+      '[export-kg-data] ' +
+        entities.length +
+        ' entities, ' +
+        articles.length +
+        ' articles, ' +
+        curricula.length +
+        ' curricula'
+    );
   } catch (err) {
     console.error('[export-kg-data] ERROR: ' + err.message);
     console.error('[export-kg-data] Existing file (if any) was NOT modified.');

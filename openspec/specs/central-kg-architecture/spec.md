@@ -33,15 +33,52 @@ Used for structured learning paths and progression tracking.
 | `SubTopic`          | A sub-topic area                  | slug, title, order                                                                                       |
 | `LearningObjective` | A measurable learning objective   | slug, description, bloomLevel (remember\|understand\|apply\|analyze\|evaluate\|create), estimatedMinutes |
 
-### Relationships
+### Curriculum Relationships — Schema B (Canonical, Sprint 28+)
 
-| Type            | From                | To                  | Description                                    |
-| --------------- | ------------------- | ------------------- | ---------------------------------------------- |
-| `HAS_TOPIC`     | `Curriculum`        | `Topic`             | Topics belonging to a curriculum               |
-| `HAS_SUBTOPIC`  | `Topic`             | `SubTopic`          | Sub-topics within a topic                      |
-| `HAS_OBJECTIVE` | `SubTopic`          | `LearningObjective` | Learning objectives within a sub-topic         |
-| `PREREQUISITE`  | `LearningObjective` | `LearningObjective` | One objective must be completed before another |
-| `COVERED_BY`    | `LearningObjective` | `Content`           | The content page that teaches this objective   |
+The canonical relationship schema for curriculum data uses the chain:
+`(:Curriculum) -[:HAS_TOPIC]-> (:Topic) -[:HAS_SUBTOPIC]-> (:SubTopic) -[:FULFILLS]-> (:LearningObjective)`
+
+| Type                 | From                | To                  | Description                                    |
+| -------------------- | ------------------- | ------------------- | ---------------------------------------------- |
+| `HAS_TOPIC`          | `Curriculum`        | `Topic`             | Topics belonging to a curriculum               |
+| `HAS_SUBTOPIC`       | `Topic`             | `SubTopic`          | Sub-topics within a topic                      |
+| `FULFILLS`           | `SubTopic`          | `LearningObjective` | Sub-topic fulfills/contains learning objective |
+| `PREREQUISITE`       | `LearningObjective` | `LearningObjective` | One objective must be completed before another |
+| `COVERED_BY`         | `LearningObjective` | `Content`           | The content page that teaches this objective   |
+| `FULFILLS_OBJECTIVE` | `Entity`            | `LearningObjective` | Entity (concept/term) fulfills an objective    |
+| `COVERS_TOPIC`       | `Entity`            | `Topic`             | Entity covers a curriculum topic               |
+
+### Schema A (Deprecated)
+
+Schema A used `HAS_LEARNING_OBJECTIVE` directly from `:Topic` to `:LearningObjective`,
+bypassing `:SubTopic`. This schema was used by `scripts/import-curricula.mjs` and
+`scripts/neo4j-migrate-curriculum.mjs` prior to Sprint 28.
+
+```
+(:Curriculum) -[:HAS_TOPIC]-> (:Topic) -[:HAS_LEARNING_OBJECTIVE]-> (:LearningObjective)
+```
+
+All new imports use **Schema B**. Schema A scripts are marked deprecated.
+
+### Planned / Unused Relationship Types
+
+The following relationship types were defined in older schema versions
+or the `entity-knowledge-graph` spec but are **not currently used** in
+active pipeline code:
+
+| Type                  | Source    | Notes                                        |
+| --------------------- | --------- | -------------------------------------------- |
+| `TEIL_VON`            | Entity-KG | Replaced by `HAS_SUBTOPIC` / `FULFILLS`      |
+| `FOERDERT`            | Entity-KG | Never materialized at scale                  |
+| `REAGIERT_MIT`        | Entity-KG | Never materialized at scale                  |
+| `HINDERT`             | Entity-KG | Never materialized at scale                  |
+| `IST_BESTANDTEIL_VON` | Entity-KG | Never materialized at scale                  |
+| `GEHOERT_ZU`          | Entity-KG | Used for Category membership, not curriculum |
+| `ERSETZT_DURCH`       | Entity-KG | Never materialized at scale                  |
+| `WIRD_GEBILDET_AUS`   | Entity-KG | Never materialized at scale                  |
+| `ENTHAELT`            | Entity-KG | Never materialized at scale                  |
+| `WIRD_ABGEBAUT_ZU`    | Entity-KG | Never materialized at scale                  |
+| `BESCHLEUNIGT_DURCH`  | Entity-KG | Never materialized at scale                  |
 
 ## Requirements
 
@@ -82,6 +119,7 @@ export const SUBSETS = {
     'LearningObjective',
     'DidacticGuideline',
     'GuidelineSection',
+    'LearningPath',
   ],
   codeAnalysis: [
     'Variable',

@@ -458,11 +458,16 @@ app.post('/api/chat', async (req, res) => {
       ragSources = extractSourceNames(ragContext);
     }
 
+    // Entity extraction — detect curriculum entities in user message
+    var chatEntities = loadChatEntities();
+    var matchedEntities = extractEntities(message, chatEntities);
+
     var conversationMemory = req.user?.id ? getConversationMemory(req.user.id) : null;
     var systemPrompt = buildSystemPrompt({
       lang: req.headers['accept-language'],
       ragContext: ragContext,
       currentEntity: currentEntity,
+      entities: matchedEntities,
       learningProfile: req.user?.learningProfile || null,
       conversationMemory: conversationMemory,
     });
@@ -552,6 +557,7 @@ app.post('/api/chat', async (req, res) => {
         remaining: rate.remaining,
         sessionId,
         messageCount: session.messages.length,
+        entities: matchedEntities.length > 0 ? matchedEntities : undefined,
       });
       return;
     }
@@ -615,6 +621,7 @@ app.post('/api/chat', async (req, res) => {
           remaining: rate.remaining,
           sessionId,
           messageCount: session.messages.length + 1,
+          entities: matchedEntities.length > 0 ? matchedEntities : undefined,
         })}\n\n`
       );
     } catch (streamErr) {
@@ -633,6 +640,7 @@ app.post('/api/chat', async (req, res) => {
           remaining: rate.remaining,
           sessionId,
           messageCount: session.messages.length + 1,
+          entities: matchedEntities.length > 0 ? matchedEntities : undefined,
         })}\n\n`
       );
     } finally {
@@ -986,6 +994,140 @@ const ragCache = new Map();
 const RAG_CACHE_MAX = 100;
 
 const { buildSystemPrompt, extractSourceNames } = ragHelpers;
+
+// ── Entity extraction helpers ─────────────────────────────────────────
+// Lazy-loaded entity list from static curricula data for chat entity detection
+var _cachedChatEntities = null;
+
+/**
+ * Load entity candidates from static curricula JSON files for entity extraction.
+ * Returns array of {name, category, articleCount} objects.
+ */
+function loadChatEntities() {
+  if (_cachedChatEntities) return _cachedChatEntities;
+  _cachedChatEntities = [];
+
+  // Load from curricula static files (topic names are the entities)
+  var states = [
+    'bb',
+    'be',
+    'bw',
+    'by',
+    'hb',
+    'he',
+    'hh',
+    'mv',
+    'ni',
+    'nw',
+    'rp',
+    'sh',
+    'sn',
+    'st',
+    'th',
+  ];
+  var dataDir = path.join(process.cwd(), 'myhugoapp', 'data', 'curricula');
+  for (var si = 0; si < states.length; si++) {
+    try {
+      var fp = path.join(dataDir, states[si] + '.json');
+      if (!fs.existsSync(fp)) continue;
+      var raw = JSON.parse(fs.readFileSync(fp, 'utf-8'));
+      var sCurricula = raw.school_curricula || [];
+      for (var sci = 0; sci < sCurricula.length; sci++) {
+        var gls = sCurricula[sci].grade_levels || [];
+        for (var gli = 0; gli < gls.length; gli++) {
+          var topics = gls[gli].topics || [];
+          for (var ti = 0; ti < topics.length; ti++) {
+            var subTopics = topics[ti].sub_topics || [];
+            for (var sti = 0; sti < subTopics.length; sti++) {
+              var name = subTopics[sti].title;
+              if (name && name.length >= 3) {
+                _cachedChatEntities.push({
+                  name: name,
+                  category: 'lehrplan',
+                  articleCount: (topics[ti].learning_objectives || []).length || 1,
+                });
+              }
+            }
+          }
+        }
+      }
+    } catch {
+      // skip state files that fail to parse
+    }
+  }
+
+  // Also extract topic names from content-links.json keys as entity candidates
+  try {
+    var linksPath = path.join(
+      process.cwd(),
+      'myhugoapp',
+      'data',
+      'curricula',
+      'content-links.json'
+    );
+    if (fs.existsSync(linksPath)) {
+      var links = JSON.parse(fs.readFileSync(linksPath, 'utf-8'));
+      for (var key in links) {
+        if (key.length >= 3 && key.length <= 120) {
+          _cachedChatEntities.push({
+            name: key,
+            category: 'topic',
+            articleCount: links[key].length || 1,
+          });
+        }
+      }
+    }
+  } catch {
+    // content-links.json optional
+  }
+
+  logger.info(
+    '[chat] Loaded ' + _cachedChatEntities.length + ' entity candidates from static data'
+  );
+  return _cachedChatEntities;
+}
+
+/**
+ * extractEntities — Find matching entities in a user message.
+ * @param {string} message - User message text
+ * @param {Array<{name:string, category:string, articleCount?:number}>} entities
+ * @returns {Array<{name:string, category:string, articleCount:number}>} Up to 5 matches, sorted by articleCount desc
+ */
+function extractEntities(message, entities) {
+  if (!message || !entities || entities.length === 0) return [];
+  var msgLower = message.toLowerCase();
+  var matched = [];
+
+  for (var i = 0; i < entities.length; i++) {
+    var e = entities[i];
+    if (!e.name || e.name.length < 3) continue;
+    var nameLower = e.name.toLowerCase().trim();
+    if (msgLower.indexOf(nameLower) !== -1) {
+      matched.push({
+        name: e.name,
+        category: e.category || 'konzept',
+        articleCount: e.articleCount || 0,
+      });
+    }
+    if (matched.length >= 50) break; // safety cap
+  }
+
+  // Deduplicate by name
+  var seen = {};
+  var unique = [];
+  for (var mi = 0; mi < matched.length; mi++) {
+    if (!seen[matched[mi].name]) {
+      seen[matched[mi].name] = true;
+      unique.push(matched[mi]);
+    }
+  }
+
+  // Sort by articleCount descending, take top 5
+  unique.sort(function (a, b) {
+    return (b.articleCount || 0) - (a.articleCount || 0);
+  });
+  return unique.slice(0, 5);
+}
 
 // Semantic RAG — lazy-loaded embedding pipeline
 var embeddings = null;
@@ -2923,11 +3065,25 @@ app.get('/api/kg-stats', async (req, res) => {
     );
     var duplicates = dupResult.records[0].get('n').toNumber();
 
-    // Curriculum coverage metrics
-    var currCoverage = { totalTopics: 0, totalObjectives: 0, linkedEntities: 0, contentNodes: 0 };
+    // Curriculum coverage metrics (Schema B)
+    var currCoverage = {
+      totalCurricula: 0,
+      totalTopics: 0,
+      totalSubTopics: 0,
+      totalObjectives: 0,
+      linkedEntities: 0,
+      contentNodes: 0,
+      entityObjectiveLinks: 0,
+    };
     try {
+      var curResult = await session.run(`MATCH (c:Curriculum) RETURN count(c) AS cnt`);
+      currCoverage.totalCurricula = curResult.records[0].get('cnt').toNumber();
+
       var ccResult = await session.run(`MATCH (t:Topic) RETURN count(t) AS topics`);
       currCoverage.totalTopics = ccResult.records[0].get('topics').toNumber();
+
+      var subResult = await session.run(`MATCH (st:SubTopic) RETURN count(st) AS cnt`);
+      currCoverage.totalSubTopics = subResult.records[0].get('cnt').toNumber();
 
       var objResult = await session.run(
         `MATCH (lo:LearningObjective) RETURN count(lo) AS objectives`
@@ -2935,13 +3091,19 @@ app.get('/api/kg-stats', async (req, res) => {
       currCoverage.totalObjectives = objResult.records[0].get('objectives').toNumber();
 
       var linkResult = await session.run(
-        `MATCH (e:Entity)-[:COVERS_TOPIC]->(:Topic)
+        `MATCH (e:Entity)-[:COVERS_TOPIC]->(:SubTopic)
          RETURN count(DISTINCT e) AS linked`
       );
       currCoverage.linkedEntities = linkResult.records[0].get('linked').toNumber();
 
       var contentNodeResult = await session.run(`MATCH (c:Content) RETURN count(c) AS cnt`);
       currCoverage.contentNodes = contentNodeResult.records[0].get('cnt').toNumber();
+
+      var entityLoResult = await session.run(
+        `MATCH (e:Entity)-[:FULFILLS_OBJECTIVE]->(:LearningObjective)
+         RETURN count(DISTINCT e) AS linked`
+      );
+      currCoverage.entityObjectiveLinks = entityLoResult.records[0].get('linked').toNumber();
     } catch (ccErr) {
       logger.warn('[kg-stats] curriculum coverage query failed:', ccErr.message);
     }
@@ -4756,7 +4918,54 @@ app.get('/api/exercises/history', requireAuth, async (req, res) => {
 
 // ── Learning Path Routes ──────────────────────────────────────
 // 23.2 — GET /api/learning-paths (public)
+// If ?state=BY is provided, return that state's path from learning-paths.json.
+// Otherwise return the list of all states (backward-compatible with paths field).
+var _cachedLearningPathsData = null;
+
+function loadLearningPathsJson() {
+  if (_cachedLearningPathsData) return _cachedLearningPathsData;
+  var fp = path.join(process.cwd(), 'myhugoapp', 'data', 'learning-paths.json');
+  try {
+    if (fs.existsSync(fp)) {
+      _cachedLearningPathsData = JSON.parse(fs.readFileSync(fp, 'utf-8'));
+      logger.info(
+        '[learning-paths] Loaded ' + _cachedLearningPathsData.length + ' state paths from JSON'
+      );
+    } else {
+      logger.warn('[learning-paths] learning-paths.json not found at ' + fp);
+      _cachedLearningPathsData = [];
+    }
+  } catch (err) {
+    logger.error('[learning-paths] Failed to load learning-paths.json: ' + err.message);
+    _cachedLearningPathsData = [];
+  }
+  return _cachedLearningPathsData;
+}
+
 app.get('/api/learning-paths', async (req, res) => {
+  // If ?state= is provided, return per-state path from generated JSON
+  var stateParam = (req.query.state || '').toUpperCase().trim();
+  if (stateParam.length === 2) {
+    var allData = loadLearningPathsJson();
+    var current = null;
+    for (var di = 0; di < allData.length; di++) {
+      if (allData[di].state === stateParam) {
+        current = allData[di];
+        break;
+      }
+    }
+    if (!current) {
+      return res.status(404).json({ error: 'Lernpfad für ' + stateParam + ' nicht gefunden' });
+    }
+
+    // Return states list for the selector plus the current path
+    var states = allData.map(function (s) {
+      return { state: s.state, name: s.name, grade: s.grade, topicCount: s.topicCount };
+    });
+    return res.json({ states: states, current: current });
+  }
+
+  // Legacy behavior: query Neo4j for Curriculum-based paths
   try {
     const driver = getNeo4jDriver();
     const session = driver.session({
@@ -4825,7 +5034,13 @@ app.get('/api/learning-paths', async (req, res) => {
       }
     }
 
-    res.json({ paths });
+    // Also include states list from generated JSON for the frontend state selector
+    var learningPathsData = loadLearningPathsJson();
+    var stateList = learningPathsData.map(function (s) {
+      return { state: s.state, name: s.name, grade: s.grade, topicCount: s.topicCount };
+    });
+
+    res.json({ paths: paths, states: stateList });
   } catch (err) {
     logger.error('[learning-paths] list error:', err.message);
     res.status(500).json({ error: 'Lernpfade konnten nicht geladen werden' });
@@ -5100,6 +5315,197 @@ app.post('/api/learning-paths/:slug/certificate', requirePremium, async (req, re
   } catch (err) {
     logger.error('[learning-paths] certificate error:', err.message);
     res.status(500).json({ error: 'Zertifikat konnte nicht erstellt werden' });
+  }
+});
+
+/**
+ * GET /api/didaktik — Didactic teaching tips for a given topic and state.
+ * Query params: ?topic=<slug>&state=<2-letter-code>
+ *
+ * Logic:
+ *   1. Query Neo4j for LearningObjective nodes matching the topic slug
+ *   2. Return matching objectives with curriculum context
+ *   3. If no match, search SubTopic nodes by name similarity
+ *   4. Response: { topic, objectives: [...], curricula: [...], teachingTips: [...] }
+ */
+app.get('/api/didaktik', async (req, res) => {
+  var topic = (req.query.topic || '').trim().toLowerCase();
+  var stateCode = (req.query.state || '').trim().toUpperCase();
+
+  if (!topic) {
+    return res.status(400).json({ error: 'Missing required parameter: topic' });
+  }
+
+  try {
+    var driver = getNeo4jDriver();
+    var session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+
+    var result;
+    var curriculumResult;
+    var teachingTips = [];
+
+    try {
+      // 1. Query LearningObjective nodes matching topic
+      var query = `MATCH (lo:LearningObjective)
+        MATCH (t:Topic)-[:HAS_LEARNING_OBJECTIVE]->(lo)
+        WHERE t.slug CONTAINS $topic OR toLower(t.title) CONTAINS $topic
+        OPTIONAL MATCH (c:Curriculum)-[:HAS_TOPIC]->(t)
+        RETURN lo.text AS objectiveText,
+               t.title AS topicTitle, t.slug AS topicSlug,
+               c.state_abbr AS state, c.school_type AS schoolType,
+               t.grade AS grade
+        ORDER BY c.state_abbr, t.grade
+        LIMIT 100`;
+
+      result = await session.run(query, { topic: topic });
+    } catch (queryErr) {
+      logger.warn('[didaktik] LearningObjective query failed:', queryErr.message);
+      result = { records: [] };
+    }
+
+    // 2. Get curricula context for the matching state
+    if (stateCode) {
+      try {
+        curriculumResult = await session.run(
+          `MATCH (c:Curriculum {state_abbr: $state})
+           OPTIONAL MATCH (c)-[:HAS_TOPIC]->(t:Topic)
+           OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)
+           RETURN c.slug AS curriculumSlug, c.school_type AS schoolType,
+                  t.title AS topicTitle, t.grade AS grade,
+                  collect(DISTINCT lo.text) AS objectives
+           ORDER BY t.grade, t.title
+           LIMIT 50`,
+          { state: stateCode }
+        );
+      } catch (currErr) {
+        logger.warn('[didaktik] Curriculum query failed:', currErr.message);
+        curriculumResult = { records: [] };
+      }
+    } else {
+      curriculumResult = { records: [] };
+    }
+
+    // 3. If no LearningObjective results, search SubTopic nodes by name similarity
+    if (result.records.length === 0) {
+      try {
+        var subTopicResult = await session.run(
+          `MATCH (st:SubTopic)
+           WHERE toLower(st.title) CONTAINS $topic
+           OPTIONAL MATCH (t:Topic)-[:HAS_SUB_TOPIC]->(st)
+           OPTIONAL MATCH (c:Curriculum)-[:HAS_TOPIC]->(t)
+           RETURN st.title AS subTopicTitle,
+                  t.title AS topicTitle, t.slug AS topicSlug,
+                  c.state_abbr AS state, t.grade AS grade
+           LIMIT 20`,
+          { topic: topic }
+        );
+        // Treat SubTopic results as teaching tips
+        for (var si = 0; si < subTopicResult.records.length; si++) {
+          var sr = subTopicResult.records[si];
+          teachingTips.push({
+            subTopic: sr.get('subTopicTitle'),
+            topicTitle: sr.get('topicTitle'),
+            state: sr.get('state'),
+            grade: sr.get('grade'),
+          });
+        }
+      } catch (subErr) {
+        logger.warn('[didaktik] SubTopic query failed:', subErr.message);
+      }
+    }
+
+    await session.close();
+
+    // Build response
+    var objectives = [];
+    var curriculaMap = {};
+
+    for (var ri = 0; ri < result.records.length; ri++) {
+      var rec = result.records[ri];
+      var objText = rec.get('objectiveText');
+      if (objText) {
+        objectives.push({
+          text: objText,
+          topicTitle: rec.get('topicTitle'),
+          topicSlug: rec.get('topicSlug'),
+          state: rec.get('state'),
+          schoolType: rec.get('schoolType'),
+          grade: rec.get('grade'),
+        });
+      }
+      var recState = rec.get('state');
+      if (recState && !curriculaMap[recState]) {
+        curriculaMap[recState] = {
+          state: recState,
+          topicTitle: rec.get('topicTitle'),
+          grade: rec.get('grade'),
+          schoolType: rec.get('schoolType'),
+        };
+      }
+    }
+
+    // Add curricula from curriculumResult
+    if (curriculumResult && curriculumResult.records.length > 0) {
+      for (var ci = 0; ci < curriculumResult.records.length; ci++) {
+        var cr = curriculumResult.records[ci];
+        var crState = cr.get('curriculumSlug');
+        if (crState && !curriculaMap[crState]) {
+          curriculaMap[crState] = {
+            state: crState,
+            schoolType: cr.get('schoolType'),
+            topicTitle: cr.get('topicTitle'),
+            grade: cr.get('grade'),
+          };
+        }
+      }
+    }
+
+    var curricula = Object.keys(curriculaMap).map(function (k) {
+      return curriculaMap[k];
+    });
+
+    // Fallback tips if Neo4j didn't have results
+    if (teachingTips.length === 0 && objectives.length === 0) {
+      teachingTips = [
+        {
+          note: 'Keine spezifischen didaktischen Hinweise für "' + topic + '" gefunden.',
+          suggestion: 'Versuche einen allgemeineren Themenbegriff oder überprüfe die Schreibweise.',
+        },
+      ];
+    }
+
+    res.json({
+      topic: topic,
+      state: stateCode || null,
+      objectives: objectives,
+      curricula: curricula,
+      teachingTips: teachingTips,
+      count: {
+        objectives: objectives.length,
+        curricula: curricula.length,
+        tips: teachingTips.length,
+      },
+    });
+  } catch (err) {
+    logger.error('[didaktik] Error:', err.message);
+
+    // Neo4j unavailable — return empty response gracefully
+    res.json({
+      topic: topic,
+      state: stateCode || null,
+      objectives: [],
+      curricula: [],
+      teachingTips: [
+        {
+          note: 'Didaktische Datenbank nicht verfügbar.',
+          suggestion: 'Bitte versuche es später erneut.',
+        },
+      ],
+      count: { objectives: 0, curricula: 0, tips: 1 },
+    });
   }
 });
 

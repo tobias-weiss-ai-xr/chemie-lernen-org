@@ -97,18 +97,25 @@ Didactic schema (in `didaktik.json`):
 | `:DidacticGuideline` | A KMK standard or Modulhandbuch           | `title`, `source_type`, `institution`, `url` |
 | `:GuidelineSection`  | A section within a guideline              | `title`, `order`                             |
 
-### REQ-LP-3: Relationships
+### REQ-LP-3: Relationships (Schema B — Canonical)
 
-| Type                      | From                            | To                   | Notes                    |
-| ------------------------- | ------------------------------- | -------------------- | ------------------------ |
-| `:HAS_TOPIC`              | `:Curriculum`                   | `:Topic`             | per grade                |
-| `:HAS_SUBTOPIC`           | `:Topic`                        | `:SubTopic`          | hierarchical             |
-| `:HAS_LEARNING_OBJECTIVE` | `:Topic`                        | `:LearningObjective` | per Lernbereich          |
-| `:COVERS_TOPIC`           | `:Article` / `:Document`        | `:Topic`             | article-to-topic         |
-| `:TEACHES_OBJECTIVE`      | `:Article` / `:Document`        | `:LearningObjective` | article-to-LO            |
-| `:FULFILLS` (existing)    | `:LearningObjective`            | `:Entity`            | LO-to-concept            |
-| `:FROM_GUIDELINE`         | `:LearningObjective` / `:Topic` | `:DidacticGuideline` | reference back to source |
-| `:ALIGNS_WITH`            | `:Curriculum`                   | `:DidacticGuideline` | state ↔ KMK alignment    |
+The canonical chain is:
+`(:Curriculum) -[:HAS_TOPIC]-> (:Topic) -[:HAS_SUBTOPIC]-> (:SubTopic) -[:FULFILLS]-> (:LearningObjective)`
+
+| Type                  | From                            | To                   | Notes                                                 |
+| --------------------- | ------------------------------- | -------------------- | ----------------------------------------------------- |
+| `:HAS_TOPIC`          | `:Curriculum`                   | `:Topic`             | per grade                                             |
+| `:HAS_SUBTOPIC`       | `:Topic`                        | `:SubTopic`          | hierarchical                                          |
+| `:FULFILLS`           | `:SubTopic`                     | `:LearningObjective` | sub-topic contains LO (was `:HAS_LEARNING_OBJECTIVE`) |
+| `:COVERS_TOPIC`       | `:Article` / `:Document`        | `:Topic`             | article-to-topic                                      |
+| `:TEACHES_OBJECTIVE`  | `:Article` / `:Document`        | `:LearningObjective` | article-to-LO                                         |
+| `:FULFILLS_OBJECTIVE` | `:Entity`                       | `:LearningObjective` | entity fulfills a learning obj                        |
+| `:FROM_GUIDELINE`     | `:LearningObjective` / `:Topic` | `:DidacticGuideline` | reference back to source                              |
+| `:ALIGNS_WITH`        | `:Curriculum`                   | `:DidacticGuideline` | state ↔ KMK alignment                                 |
+
+> **Schema A** (deprecated, Sprint 23 and earlier) used `:HAS_LEARNING_OBJECTIVE`
+> directly from `:Topic` to `:LearningObjective`, bypassing `:SubTopic`. All
+> new imports use Schema B. Legacy scripts are tagged `DEPRECATED`.
 
 ### REQ-LP-4: State coverage
 

@@ -1,6 +1,6 @@
 # OpenSpec — Capabilities Index
 
-Last updated: 2026-07-10
+Last updated: 2026-07-17
 
 ## Main capabilities (specs/)
 
@@ -18,20 +18,26 @@ Last updated: 2026-07-10
 | 3D Visualizations               | `3d-visualizations/spec.md`        | Active | Sisyphus | sprint-9-specs-and-fixes                                |
 | Themenbereiche (subject areas)  | `themenbereiche/spec.md`           | Active | Sisyphus | sprint-9-specs-and-fixes                                |
 | PWA (Progressive Web App)       | `pwa/spec.md`                      | Active | Sisyphus | sprint-9-specs-and-fixes                                |
+| Learning Paths & Gamification   | `learning-paths/spec.md`           | Active | Sisyphus | sprint-23-learning-paths-gamification                   |
+| Elements API                    | `elements-api/spec.md`             | Active | Sisyphus | sprint-24-3d-visualizations                             |
 
 ## Active changes (`changes/`)
 
-| Change                                  | Status         | Goal                                                                         |
-| --------------------------------------- | -------------- | ---------------------------------------------------------------------------- |
-| `lehrenden-premium`                     | 8/10 tasks     | Auth (Lucia/JWT), Stripe payments, premium gating                            |
-| `open-spec-coverage`                    | 5/6 spec files | Create missing spec files for all capabilities                               |
-| `sprint-19-observability`               | Spec draft     | Prometheus, Grafana, Sentry, pino logging, healthchecks.io, alerting         |
-| `sprint-20-production-hardening`        | Spec draft     | Secrets migration, CORS, CSP, rate limiting, off-site backup, auth-db backup |
-| `sprint-21-ki-personalization`          | Spec draft     | Conversation memory, learning profile, adaptive chat, hints, history search  |
-| `sprint-22-quiz-exercise-ecosystem`     | Spec draft     | FSRS spaced repetition, difficulty scaling, per-topic quiz, auto-grade       |
-| `sprint-23-learning-paths-gamification` | Spec draft     | Neo4j learning paths, XP, streaks, badges, PDF certificates                  |
-| `sprint-24-3d-visualizations`           | Spec draft     | 3D periodic table, orbital viewer, element comparison, API endpoint          |
-| `sprint-25-docs-mobile-polish`          | Spec draft     | Refresh docs, PWA offline quiz cache, install banner, Lighthouse, systemd    |
+| Change                                    | Status         | Goal                                                                         |
+| ----------------------------------------- | -------------- | ---------------------------------------------------------------------------- |
+| `lehrenden-premium`                       | 8/10 tasks     | Auth (Lucia/JWT), Stripe payments, premium gating                            |
+| `open-spec-coverage`                      | 5/6 spec files | Create missing spec files for all capabilities                               |
+| `sprint-19-observability`                 | 13/13 ✓        | Prometheus, Grafana, Sentry, pino logging, healthchecks.io, alerting         |
+| `sprint-20-production-hardening`          | 13/13 ✓        | Secrets migration, CORS, CSP, rate limiting, off-site backup, auth-db backup |
+| `sprint-21-ki-personalization`            | 14/14 ✓        | Conversation memory, learning profile, adaptive chat, hints, history search  |
+| `sprint-22-quiz-exercise-ecosystem`       | 16/16 ✓        | FSRS spaced repetition, difficulty scaling, per-topic quiz, auto-grade       |
+| `sprint-23-learning-paths-gamification`   | 16/16 ✓        | Neo4j learning paths, XP, streaks, badges, PDF certificates                  |
+| `sprint-24-3d-visualizations`             | 13/13 ✓        | 3D periodic table, orbital viewer, element comparison, API endpoint          |
+| `sprint-25-docs-mobile-polish`            | 16/16 ✓        | Refresh docs, PWA offline quiz cache, install banner, Lighthouse, systemd    |
+| `sprint-27-kg-pipeline-fix`               | Spec draft     | Fix export pipeline, entity page bugs, Neo4j indexes                         |
+| `sprint-28-neo4j-schema-reconciliation`   | Spec draft     | Import 16 curricula into Neo4j, reconcile schemas, entity linking            |
+| `sprint-29-curriculum-quality-gaps`       | Spec draft     | Fix BB/BE data, add Saarland, cross-link gaps, didaktik endpoint, CI gate    |
+| `sprint-30-wissensnetz-ux-learning-paths` | Spec draft     | D3 edge colors, curriculum context, per-state paths, entity-aware chat       |
 
 ## Archived changes (`changes/archive/`)
 

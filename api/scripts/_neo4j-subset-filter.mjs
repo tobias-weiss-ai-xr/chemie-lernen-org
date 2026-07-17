@@ -7,7 +7,7 @@
  *
  *   - Chemie subset: `Entity | Document | Tag | Content | Curriculum |
  *       Topic | SubTopic | LearningObjective | DidacticGuideline |
- *       GuidelineSection`
+ *       GuidelineSection | LearningPath`
  *   - Code-analysis subset: ~683k nodes (Variable, Parameter, Function,
  *       Class, File, Module, Interface, …)
  *   - Modulhandbuch subset (planned): `University | Module | …`
@@ -44,6 +44,7 @@ export const CHEMIE_LABELS = [
   'LearningObjective',
   'DidacticGuideline',
   'GuidelineSection',
+  'LearningPath',
   'University',
   'UniversityModule',
   'Lecturer',

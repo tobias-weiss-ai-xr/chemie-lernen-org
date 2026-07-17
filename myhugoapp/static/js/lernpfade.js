@@ -14,6 +14,8 @@
   var paths = [];
   var profile = null;
   var pathTreeExpanded = {};
+  var stateList = []; /* [{state, name, grade, topicCount}] from /api/learning-paths */
+  var currentState = ''; /* currently selected state code */
 
   /* ── Helpers ── */
   function apiFetch(url, opts) {
@@ -65,6 +67,11 @@
     apiFetch('/learning-paths', { signal: AbortSignal.timeout(8000) })
       .then(function (data) {
         paths = data.paths || [];
+        /* Populate state selector from the states field */
+        if (data.states && data.states.length > 0) {
+          stateList = data.states;
+          populateStateSelector(stateList);
+        }
         renderPathTree(paths);
       })
       .catch(function (err) {
@@ -111,6 +118,118 @@
         }
         console.warn('[lernpfade] loadProfile error:', err);
       });
+  }
+
+  /* ── State Selector ── */
+  function populateStateSelector(states) {
+    var sel = getEl('state-selector');
+    if (!sel) return;
+    /* Keep the "Alle" option */
+    sel.innerHTML = '<option value="">— Alle Bundesländer —</option>';
+    for (var i = 0; i < states.length; i++) {
+      var s = states[i];
+      var option = document.createElement('option');
+      option.value = s.state || '';
+      option.textContent = (s.name || s.state || '') + ' (' + (s.topicCount || 0) + ' Themen)';
+      if (s.state === currentState) option.selected = true;
+      sel.appendChild(option);
+    }
+  }
+
+  window.lernpfadeChangeState = function (stateCode) {
+    currentState = stateCode || '';
+    if (!currentState) {
+      /* Reset to full path list */
+      loadPaths();
+      return;
+    }
+    /* Fetch per-state path */
+    getEl('path-tree').innerHTML =
+      '<p class="text-muted"><i class="fa fa-spinner fa-spin"></i> Lade Lernpfad...</p>';
+
+    apiFetch('/learning-paths?state=' + encodeURIComponent(currentState), {
+      signal: AbortSignal.timeout(8000),
+    })
+      .then(function (data) {
+        if (data && data.current) {
+          renderStatePath(data.current);
+        } else {
+          getEl('path-tree').innerHTML =
+            '<p class="text-muted">Kein Lernpfad für dieses Bundesland verfügbar.</p>';
+        }
+      })
+      .catch(function (err) {
+        getEl('path-tree').innerHTML =
+          '<p class="text-muted">Lernpfad konnte nicht geladen werden.</p>';
+        console.warn('[lernpfade] changeState error:', err);
+      });
+  };
+
+  /* ── Render: Per-State Path ── */
+  function renderStatePath(pathData) {
+    var container = getEl('path-tree');
+    if (!pathData || !pathData.topics || pathData.topics.length === 0) {
+      container.innerHTML = '<p class="text-muted">Keine Themen für dieses Bundesland.</p>';
+      return;
+    }
+
+    var html = '<div class="state-path-header">';
+    html += '<h3>' + escHtml(pathData.name || pathData.state + ' Chemie Lehrplan') + '</h3>';
+    html +=
+      '<span class="state-path-meta">Klasse ' +
+      escHtml(pathData.grade || '?') +
+      ' | ' +
+      pathData.topics.length +
+      ' Themen</span>';
+    html += '</div>';
+
+    html += '<ul class="path-tree-list">';
+    for (var i = 0; i < pathData.topics.length; i++) {
+      var t = pathData.topics[i];
+      var topicId = 'state-topic-' + i;
+      html += '<li class="path-tree-item path-in-progress" data-path-id="' + topicId + '">';
+      html += '<div class="path-tree-header" onclick="lernpfadeTogglePath(\'' + topicId + '\')">';
+      html += '<span class="path-toggle-icon"><i class="fa fa-chevron-right"></i></span>';
+      html += '<span class="path-title">' + escHtml(t.name || '') + '</span>';
+      if (t.grade) {
+        html += '<span class="path-grade">Kl. ' + escHtml(t.grade) + '</span>';
+      }
+      html += '<span class="path-pct">' + (t.objectives || 0) + ' Ziele</span>';
+      html += '</div>';
+
+      /* Objectives */
+      if (t.objectiveTexts && t.objectiveTexts.length > 0) {
+        html += '<ul class="path-topics">';
+        for (var j = 0; j < t.objectiveTexts.length; j++) {
+          html += '<li class="path-topic-item topic-locked">';
+          html += '<span class="topic-title">' + escHtml(t.objectiveTexts[j]) + '</span>';
+          html += '</li>';
+        }
+        html += '</ul>';
+      }
+
+      /* Article links */
+      if (t.articles && t.articles.length > 0) {
+        html += '<ul class="path-topics">';
+        for (var k = 0; k < t.articles.length; k++) {
+          var articleTitle = (t.articleTitles && t.articleTitles[k]) || t.articles[k];
+          html += '<li class="path-topic-item topic-in-progress">';
+          html +=
+            '<a href="' +
+            escHtml(t.articles[k]) +
+            '" class="topic-article-link">' +
+            '<i class="fa fa-file-text-o"></i> ' +
+            escHtml(articleTitle) +
+            '</a>';
+          html += '</li>';
+        }
+        html += '</ul>';
+      }
+
+      html += '</li>';
+    }
+    html += '</ul>';
+    container.innerHTML = html;
   }
 
   /* ── Render: Path Tree ── */

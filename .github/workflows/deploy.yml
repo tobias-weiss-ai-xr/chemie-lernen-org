@@ -47,6 +47,9 @@ jobs:
       - name: Export KG data from Neo4j
         run: NODE_PATH=api/node_modules node scripts/export-kg-data.mjs || echo '[CI] Neo4j export skipped (non-fatal)'
 
+      - name: Validate curriculum data quality
+        run: node scripts/validate-curricula.mjs
+
       - name: Generate entity pages from KG data
         run: node scripts/generate-entity-pages.mjs
 

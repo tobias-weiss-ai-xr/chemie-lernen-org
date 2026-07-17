@@ -67,6 +67,45 @@
     return CAT_LABELS[cat] || cat;
   }
 
+  // ── Edge colors by relationship type ─────────────────────────────
+  var EDGE_COLORS = {
+    RELATED_TO: '#667eea',
+    MENTIONS: '#45b7d1',
+    FULFILLS: '#4ecdc4',
+    FULFILLS_OBJECTIVE: '#f093fb',
+    BESTEHT_AUS: '#ff9a76',
+    PREREQUISITE: '#a8a8a8',
+    ERFUELLT: '#4ecdc4',
+    HAS_SUBTOPIC: '#96ceb4',
+    TEACHES_TOPIC: '#ffeaa7',
+    RELATED_ENTITIES: '#667eea',
+    composition: '#e74c3c',
+    'entity-article': '#888',
+    article: '#ccc',
+    related: '#ddd',
+  };
+
+  // Main relationship types (higher opacity)
+  var EDGE_OPACITY_MAIN = {
+    RELATED_TO: 0.4,
+    MENTIONS: 0.4,
+    FULFILLS: 0.4,
+    FULFILLS_OBJECTIVE: 0.4,
+    BESTEHT_AUS: 0.4,
+    TEACHES_TOPIC: 0.4,
+    ERFUELLT: 0.4,
+    HAS_SUBTOPIC: 0.4,
+    composition: 0.7,
+  };
+
+  function getEdgeColor(relType) {
+    return EDGE_COLORS[relType] || '#cccccc';
+  }
+
+  function getEdgeOpacity(relType) {
+    return EDGE_OPACITY_MAIN[relType] !== undefined ? EDGE_OPACITY_MAIN[relType] : 0.15;
+  }
+
   function slugify(name) {
     return String(name)
       .toLowerCase()
@@ -326,6 +365,16 @@
 
       var g = svg.append('g');
 
+      // Zoom/pan for touch devices (pinch-zoom, one-finger pan)
+      // D3 v7 zoom() handles touch events natively
+      var egoZoom = d3
+        .zoom()
+        .scaleExtent([0.3, 5])
+        .on('zoom', function (ev) {
+          g.attr('transform', ev.transform);
+        });
+      svg.call(egoZoom).style('cursor', 'grab');
+
       var tooltip = d3
         .select(container)
         .append('div')
@@ -348,12 +397,14 @@
         .enter()
         .append('line')
         .attr('stroke', function (d) {
-          return d.type === 'article' ? '#ccc' : '#ddd';
+          return getEdgeColor(d.type || d.relType || 'RELATED_TO');
         })
         .attr('stroke-width', function (d) {
-          return d.type === 'article' ? 0.5 : 1;
+          return d.type === 'article' ? 0.5 : 1.2;
         })
-        .attr('stroke-opacity', 0.5);
+        .attr('stroke-opacity', function (d) {
+          return getEdgeOpacity(d.type || d.relType || 'RELATED_TO');
+        });
 
       // Nodes
       var node = g
@@ -610,7 +661,8 @@
             ' Verbindungen. Zoom mit Mausrad, verschieben per Drag.'
         );
 
-      // Zoom/pan
+      // Zoom/pan (D3 v7 handles touch events natively:
+      // pinch-zoom via two-finger gesture, pan via one-finger drag)
       var zoom = d3
         .zoom()
         .scaleExtent([0.1, 8])
@@ -635,12 +687,38 @@
       };
       var showArticles = true;
 
+      // Edge labels toggle (persisted)
+      var showEdgeLabels = localStorage.getItem('entityGraphShowLabels') === 'true';
+
       if (filterControls) {
         buildFilterChips(filterControls, function (state) {
           activeCategories = state.categories;
           showArticles = state.showArticles;
           updateVisibility();
         });
+        // Append edge-labels toggle button
+        var labelBtn = document.createElement('button');
+        labelBtn.className = 'kg-filter-chip' + (showEdgeLabels ? ' active' : '');
+        labelBtn.title = 'Kantenbeschriftungen ein-/ausblenden';
+        labelBtn.innerHTML = showEdgeLabels ? '🏷️ Labels' : '🏷️ Labels';
+        if (!showEdgeLabels) {
+          labelBtn.style.color = '#999';
+          labelBtn.style.borderColor = '#ddd';
+        }
+        labelBtn.addEventListener('click', function () {
+          showEdgeLabels = !showEdgeLabels;
+          localStorage.setItem('entityGraphShowLabels', showEdgeLabels);
+          labelBtn.classList.toggle('active', showEdgeLabels);
+          if (showEdgeLabels) {
+            labelBtn.style.color = '';
+            labelBtn.style.borderColor = '';
+          } else {
+            labelBtn.style.color = '#999';
+            labelBtn.style.borderColor = '#ddd';
+          }
+          updateEdgeLabels();
+        });
+        filterControls.appendChild(labelBtn);
       }
 
       function updateVisibility() {
@@ -773,7 +851,7 @@
         .enter()
         .append('line')
         .attr('stroke', function (d) {
-          return d.type === 'composition' ? '#e74c3c' : '#ccc';
+          return getEdgeColor(d.type || d.relType || 'RELATED_TO');
         })
         .attr('stroke-width', function (d) {
           return d.type === 'composition' ? 1.5 : 0.8;
@@ -782,7 +860,7 @@
           return d.type === 'composition' ? '4,2' : null;
         })
         .attr('stroke-opacity', function (d) {
-          return d.type === 'composition' ? 0.7 : 0.4;
+          return getEdgeOpacity(d.type || d.relType || 'RELATED_TO');
         });
 
       // Nodes
@@ -847,7 +925,9 @@
           link.style('stroke-opacity', function (l) {
             var s = typeof l.source === 'object' ? l.source.id : l.source;
             var t = typeof l.target === 'object' ? l.target.id : l.target;
-            return s === d.id || t === d.id ? 0.8 : 0.1;
+            return s === d.id || t === d.id
+              ? Math.min(0.8, getEdgeOpacity(l.type || l.relType || 'RELATED_TO') * 1.5)
+              : 0.05;
           });
           var connCount = Object.keys(connected).length;
           var catLabel =
@@ -878,7 +958,9 @@
             .style('opacity', 0.85);
           node.style('opacity', 0.85);
           link.style('stroke-opacity', function (d) {
-            return d.type === 'composition' ? 0.7 : 0.4;
+            return showEdgeLabels
+              ? Math.min(0.5, getEdgeOpacity(d.type || d.relType || 'RELATED_TO'))
+              : getEdgeOpacity(d.type || d.relType || 'RELATED_TO');
           });
           tooltip.style('display', 'none');
         })
@@ -923,6 +1005,35 @@
         })
         .style('pointer-events', 'none')
         .style('text-shadow', '0 0 3px var(--bg-body, #fafafa), 0 0 3px var(--bg-body, #fafafa)');
+
+      // Edge labels (relationship type labels)
+      var edgeLabels = g
+        .append('g')
+        .selectAll('text')
+        .data(links)
+        .enter()
+        .append('text')
+        .text(function (d) {
+          var t = d.type || d.relType || '';
+          return t === 'composition' ? 'Besteht aus' : t === 'entity-article' ? '' : t;
+        })
+        .attr('font-size', '7px')
+        .attr('fill', 'var(--text-muted, #999)')
+        .attr('text-anchor', 'middle')
+        .attr('dy', '-3')
+        .style('pointer-events', 'none')
+        .style('display', showEdgeLabels ? null : 'none')
+        .style('text-shadow', '0 0 2px var(--bg-body, #fafafa), 0 0 2px var(--bg-body, #fafafa)');
+
+      function updateEdgeLabels() {
+        edgeLabels.style('display', showEdgeLabels ? null : 'none');
+        // Also update link stroke opacity to not compete with labels
+        link.attr('stroke-opacity', function (d) {
+          return showEdgeLabels
+            ? Math.min(0.5, getEdgeOpacity(d.type || d.relType || 'RELATED_TO'))
+            : getEdgeOpacity(d.type || d.relType || 'RELATED_TO');
+        });
+      }
 
       // Force simulation
       var sim = d3
@@ -977,6 +1088,17 @@
             })
             .attr('y', function (d) {
               return d.y;
+            });
+          edgeLabels
+            .attr('x', function (d) {
+              var sx = typeof d.source === 'object' ? d.source.x : 0;
+              var tx = typeof d.target === 'object' ? d.target.x : 0;
+              return (sx + tx) / 2;
+            })
+            .attr('y', function (d) {
+              var sy = typeof d.source === 'object' ? d.source.y : 0;
+              var ty = typeof d.target === 'object' ? d.target.y : 0;
+              return (sy + ty) / 2;
             });
         });
 

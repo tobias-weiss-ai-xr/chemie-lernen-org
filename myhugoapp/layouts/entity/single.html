@@ -203,6 +203,67 @@
   border-color: #ffb74d;
 }
 
+/* Curriculum Panel */
+.entity-curriculum-panel {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-left: 4px solid #9b59b6;
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.entity-curriculum-panel h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.8rem;
+  color: var(--text-primary, #333);
+}
+.curriculum-stats {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.8rem;
+}
+.curriculum-stats .stat {
+  font-size: 0.88rem;
+  color: var(--text-muted, #666);
+}
+.curriculum-stats .stat strong {
+  color: var(--text-primary, #333);
+}
+.curriculum-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #f3e8ff;
+  color: #7b1fa2;
+  border-radius: 12px;
+  text-decoration: none;
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+.curriculum-badge:hover {
+  background: #e9d5ff;
+}
+@media (prefers-color-scheme: dark) {
+  .entity-curriculum-panel {
+    background: #2a2a2a;
+    border-color: #444;
+    border-left-color: #bb86fc;
+  }
+  .entity-curriculum-panel h2 { color: #e0e0e0; }
+  .curriculum-stats .stat { color: #999; }
+  .curriculum-stats .stat strong { color: #e0e0e0; }
+  .curriculum-badge {
+    background: #2a1a3a;
+    color: #ce93d8;
+  }
+  .curriculum-badge:hover {
+    background: #3a2060;
+  }
+}
+
 /* Graph Link */
 .entity-graph-link {
   display: block;
@@ -577,7 +638,7 @@
           <ul class="entity-article-list">
             {{ range $entityArticles }}
             <li class="entity-article-item">
-              <a class="entity-article-link" href="{{ .url | default "/" }}">{{ .title }}</a>
+              {{ if .url }}<a class="entity-article-link" href="{{ .url }}">{{ .title }}</a>{{ else }}<span class="entity-article-link">{{ .title }}</span>{{ end }}
               <div class="entity-article-meta">
                 {{ with .type }}{{ . }}{{ end }}{{ with .date }} · {{ . }}{{ end }}
               </div>
@@ -681,6 +742,22 @@
         </a>
       </div>
     </div>
+
+    <!-- Curriculum Panel (Lehrplan-Bezug Stats) -->
+    {{ if .Params.curricula }}
+    <div class="entity-curriculum-panel">
+      <h2>Lehrplan-Bezug</h2>
+      <div class="curriculum-stats">
+        <span class="stat">🏫 <strong>{{ .Params.curriculumStatesCount }}</strong> Bundesländer</span>
+        <span class="stat">📚 <strong>{{ .Params.curriculumGrades }}</strong> Klassenstufen</span>
+        <span class="stat">📖 <strong>{{ .Params.curriculumObjectivesCount }}</strong> Lernziele</span>
+      </div>
+      {{ range .Params.curricula }}
+      <a href="/lehrplaene/{{ .state }}/" class="curriculum-badge">{{ .state }}</a>
+      {{ end }}
+    </div>
+    {{ end }}
+
     {{ end }}
   </div>
 
@@ -817,7 +894,7 @@
       return articleIds.indexOf(a.title) !== -1 || (a.entities && a.entities.indexOf(entity.name) !== -1);
     });
 
-    var artCount = entity.articleCount || entityArticles.length || 0;
+    var artCount = Number(entity.articleCount) || entityArticles.length || 0;
 
     // Build HTML
     var html = '';
@@ -864,9 +941,12 @@
       html += '<ul class="entity-article-list">';
       for (var ai = 0; ai < entityArticles.length; ai++) {
         var a = entityArticles[ai];
-        var url = a.url || '/';
         html += '<li class="entity-article-item">';
-        html += '<a class="entity-article-link" href="' + esc(url) + '">' + esc(a.title) + '</a>';
+        if (a.url) {
+          html += '<a class="entity-article-link" href="' + esc(a.url) + '">' + esc(a.title) + '</a>';
+        } else {
+          html += '<span class="entity-article-link">' + esc(a.title) + '</span>';
+        }
         html += '<div class="entity-article-meta">';
         if (a.type) html += esc(a.type);
         if (a.date) html += ' · ' + esc(a.date);

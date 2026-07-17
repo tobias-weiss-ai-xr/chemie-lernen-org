@@ -96,6 +96,10 @@
     var sortMode = 'relations';
     var lehrplanHighlight = false;
     var lehrplanEntities = new Set();
+    var stateFilter = '';
+    var stateLinkedNames = null;
+    var _stateOptions = null;
+    var _stateFilterLoading = false;
 
     function getSortValue(e, mode) {
       switch (mode) {
@@ -104,7 +108,7 @@
         case 'relations':
           return -(e.relatedEntities || []).length;
         case 'articles':
-          return -((e.articleCount && e.articleCount.low) || 0);
+          return -(Number(e.articleCount) || 0);
         case 'category':
           return e.category || '';
         default:
@@ -115,6 +119,9 @@
     function filteredAndSorted() {
       var f = entities.filter(function (e) {
         if (activeFilter !== 'all' && e.category !== activeFilter) return false;
+        if (stateFilter && stateLinkedNames) {
+          if (!stateLinkedNames.has(e.name)) return false;
+        }
         if (searchQuery) {
           var q = searchQuery.toLowerCase();
           return (
@@ -142,7 +149,7 @@
         (catLabels[e.category] || e.category) +
         '</span>';
       var art = (e.articles || []).slice(0, 5);
-      var total = (e.articleCount && e.articleCount.low) || e.articles.length;
+      var total = Number(e.articleCount) || e.articles.length;
       h +=
         '<br><span style="font-size:0.78rem;">' +
         (e.relatedEntities || []).length +
@@ -213,6 +220,12 @@
         escapeHtml(searchQuery) +
         '">';
       h += '</div>';
+      h +=
+        '<select class="entity-state-select" id="entity-state-filter">' +
+        '<option value="">' +
+        (stateFilter ? '✅ ' + stateFilter : 'Alle Bundesländer') +
+        '</option>' +
+        '</select>';
       h += '<select class="entity-sort-select" id="entity-sort">';
       [
         { v: 'relations', l: 'Nach Relevanz' },
@@ -285,7 +298,7 @@
     function _buildCloudHtml(items) {
       var h = '<div class="entity-tagcloud">';
       items.forEach(function (e) {
-        var artCount = (e.articleCount && e.articleCount.low) || e.articles.length || 1;
+        var artCount = Number(e.articleCount) || e.articles.length || 1;
         var size = Math.max(0.8, Math.min(2.5, 0.8 + artCount * 0.15));
         var slug = toSlug(e.name);
         h +=
@@ -306,7 +319,7 @@
     function _buildEntityCardHtml(e) {
       var cat = e.category || 'other';
       var relatedCount = (e.relatedEntities || []).length;
-      var artCount = (e.articleCount && e.articleCount.low) || e.articles.length || 0;
+      var artCount = Number(e.articleCount) || e.articles.length || 0;
       var slug = toSlug(e.name);
       var h =
         '<div class="entity-card' +
@@ -392,7 +405,18 @@
       html += '<div class="entity-stats">';
       html += '<span><strong>' + entities.length + '</strong> Begriffe</span>';
       html += '<span><strong>' + articles.length + '</strong> Dokumente</span>';
-      html += '<span>' + filtered.length + ' angezeigt</span>';
+      if (_stateFilterLoading) {
+        html += '<span class="entity-loading">🔄 Lade Lehrplandaten…</span>';
+      } else if (stateFilter && filtered.length < entities.length) {
+        html +=
+          '<span><strong>' +
+          filtered.length +
+          '</strong> von ' +
+          entities.length +
+          ' Begriffen</span>';
+      } else {
+        html += '<span>' + filtered.length + ' angezeigt</span>';
+      }
       html +=
         '<span><a href="/wissennetz/" class="entity-graph-top-link">Interaktiver Graph →</a></span>';
       html += '</div></div>';
@@ -440,6 +464,68 @@
           sortMode = ev.target.value;
           currentPage = 1;
           _render();
+        });
+      }
+      var stateSelect = document.getElementById('entity-state-filter');
+      if (stateSelect) {
+        // Lazy-load state options on first focus
+        stateSelect.addEventListener('focus', function loadOptions() {
+          if (_stateOptions) return;
+          stateSelect.removeEventListener('focus', loadOptions);
+          stateSelect.options[0].text = 'Lade…';
+          fetch('/api/curricula/states', { signal: AbortSignal.timeout(10000) })
+            .then(function (r) {
+              if (!r.ok) throw new Error(r.status);
+              return r.json();
+            })
+            .then(function (d) {
+              _stateOptions = d.states || [];
+              // Rebuild options: keep placeholder, add states
+              stateSelect.innerHTML = '<option value="">Alle Bundesländer</option>';
+              _stateOptions.forEach(function (s) {
+                var opt = document.createElement('option');
+                opt.value = s.state;
+                opt.textContent = s.stateName || s.state;
+                if (s.state === stateFilter) opt.selected = true;
+                stateSelect.appendChild(opt);
+              });
+            })
+            .catch(function () {
+              stateSelect.options[0].text = 'Alle Bundesländer';
+            });
+        });
+        stateSelect.addEventListener('change', function (ev) {
+          var val = ev.target.value;
+          if (val === stateFilter) return;
+          stateFilter = val;
+          currentPage = 1;
+          if (!stateFilter) {
+            // Reset
+            stateLinkedNames = null;
+            _render();
+            return;
+          }
+          // Show loading
+          _stateFilterLoading = true;
+          _render();
+          // Fetch curriculum-linked entity names
+          fetch('/api/curricula/linked-entities', { signal: AbortSignal.timeout(10000) })
+            .then(function (r) {
+              if (!r.ok) throw new Error(r.status);
+              return r.json();
+            })
+            .then(function (d) {
+              stateLinkedNames = new Set(d.names || []);
+              _stateFilterLoading = false;
+              _render();
+            })
+            .catch(function () {
+              stateLinkedNames = null;
+              _stateFilterLoading = false;
+              stateFilter = '';
+              stateSelect.value = '';
+              _render();
+            });
         });
       }
       app.querySelectorAll('.entity-view-btn').forEach(function (btn) {

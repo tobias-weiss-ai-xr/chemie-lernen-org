@@ -1,17 +1,14 @@
 #!/usr/bin/env node
 /**
- * link-entities-to-curricula.mjs
+ * link-entities-to-curricula.mjs — Schema B (Sprint 28+)
  *
  * Creates directional semantic relationships between chemistry :Entity nodes
- * and curriculum nodes (now with typed labels):
+ * and curriculum nodes:
  *
- *   - [:COVERS_TOPIC] — entity covers a :Topic
- *   - [:FULFILLS]     — entity fulfills a :LearningObjective
+ *   - [:COVERS_TOPIC]         — entity covers a :SubTopic (by title match)
+ *   - [:FULFILLS_OBJECTIVE]   — entity fulfills a :LearningObjective (text-similarity)
  *
- * Also wires content-link mappings from pre-computed JSON files:
- *   - content-links.json — learning objective text → articles/calculators
- *
- * Schema: openspec/specs/lehrplan-curriculum/spec.md REQ-LP-3
+ * Schema: openspec/specs/lehrplan-curriculum/spec.md REQ-LP-3 (Schema B)
  * Safety: MERGE only, no DELETE, no DETACH. Exits 0 on partial.
  *
  * Usage:
@@ -45,26 +42,76 @@ function normalizeForLinking(name) {
 
 // ── Generic chemistry terms (excluded from partial matching) ────────────
 const GENERIC_WORDS = new Set([
-  'stoff', 'stoffe', 'reaktion', 'reaktionen',
-  'chemie', 'chemisch', 'chemische', 'chemischer', 'chemischen',
-  'energie', 'verfahren',
-  'verbindung', 'verbindungen', 'element', 'elemente',
-  'methode', 'methoden', 'prozess', 'prozesse',
-  'prinzip', 'prinzipien', 'konzept', 'konzepte',
-  'modell', 'modelle', 'system', 'systeme',
-  'struktur', 'strukturen', 'funktion', 'funktionen',
-  'eigenschaft', 'eigenschaften', 'aufgabe', 'aufgaben',
-  'loesung', 'loesungen', 'nachweis', 'nachweise',
-  'trennung', 'trennungen', 'wert', 'werte',
-  'zahl', 'zahlen', 'groesse', 'groessen',
-  'bereich', 'bereiche', 'thema', 'themen',
-  'physikalisch', 'physikalische', 'physikalischer',
-  'organisch', 'organische', 'organischer', 'organischen',
-  'anorganisch', 'anorganische',
-  'technisch', 'technische',
-  'biologisch', 'biologische',
-  'qualitativ', 'qualitative', 'quantitativ', 'quantitative',
-  'energetisch', 'energetische',
+  'stoff',
+  'stoffe',
+  'reaktion',
+  'reaktionen',
+  'chemie',
+  'chemisch',
+  'chemische',
+  'chemischer',
+  'chemischen',
+  'energie',
+  'verfahren',
+  'verbindung',
+  'verbindungen',
+  'element',
+  'elemente',
+  'methode',
+  'methoden',
+  'prozess',
+  'prozesse',
+  'prinzip',
+  'prinzipien',
+  'konzept',
+  'konzepte',
+  'modell',
+  'modelle',
+  'system',
+  'systeme',
+  'struktur',
+  'strukturen',
+  'funktion',
+  'funktionen',
+  'eigenschaft',
+  'eigenschaften',
+  'aufgabe',
+  'aufgaben',
+  'loesung',
+  'loesungen',
+  'nachweis',
+  'nachweise',
+  'trennung',
+  'trennungen',
+  'wert',
+  'werte',
+  'zahl',
+  'zahlen',
+  'groesse',
+  'groessen',
+  'bereich',
+  'bereiche',
+  'thema',
+  'themen',
+  'physikalisch',
+  'physikalische',
+  'physikalischer',
+  'organisch',
+  'organische',
+  'organischer',
+  'organischen',
+  'anorganisch',
+  'anorganische',
+  'technisch',
+  'technische',
+  'biologisch',
+  'biologische',
+  'qualitativ',
+  'qualitative',
+  'quantitativ',
+  'quantitative',
+  'energetisch',
+  'energetische',
 ]);
 
 // ── Matching logic ────────────────────────────────────────────────────────
@@ -94,19 +141,21 @@ function fulfillsMatch(entityNorm, objectiveNorm) {
 
 // ── Dry run ──────────────────────────────────────────────────────────
 
-function dryRunOutput(entities, topics, objectives) {
+function dryRunOutput(entities, subTopics, objectives) {
   let coversCount = 0;
   let fulfillsCount = 0;
 
   console.log('=== LINK ENTITIES TO CURRICULA — DRY RUN ===');
-  console.log(`Entities: ${entities.length}, Topics: ${topics.length}, LOs: ${objectives.length}\n`);
+  console.log(
+    `Entities: ${entities.length}, SubTopics: ${subTopics.length}, LOs: ${objectives.length}\n`
+  );
 
   const coversSamples = [];
   for (const entity of entities) {
-    for (const topic of topics) {
-      if (coversMatch(entity.norm, topic.norm)) {
+    for (const subtopic of subTopics) {
+      if (coversMatch(entity.norm, subtopic.norm)) {
         if (coversSamples.length < 15) {
-          coversSamples.push(`COVERS_TOPIC: "${entity.name}" → Topic "${topic.title}"`);
+          coversSamples.push(`COVERS_TOPIC: "${entity.name}" → SubTopic "${subtopic.title}"`);
         }
         coversCount++;
       }
@@ -118,7 +167,9 @@ function dryRunOutput(entities, topics, objectives) {
     for (const obj of objectives) {
       if (fulfillsMatch(entity.norm, obj.norm)) {
         if (fulfillsSamples.length < 15) {
-          fulfillsSamples.push(`FULFILLS: "${entity.name}" → LO "${obj.text.slice(0, 60)}..."`);
+          fulfillsSamples.push(
+            `FULFILLS_OBJECTIVE: "${entity.name}" → LO "${obj.text.slice(0, 60)}..."`
+          );
         }
         fulfillsCount++;
       }
@@ -127,9 +178,9 @@ function dryRunOutput(entities, topics, objectives) {
 
   console.log('Sample COVERS_TOPIC:');
   coversSamples.forEach((s) => console.log(`  ${s}`));
-  console.log(`\nSample FULFILLS:`);
+  console.log(`\nSample FULFILLS_OBJECTIVE:`);
   fulfillsSamples.forEach((s) => console.log(`  ${s}`));
-  console.log(`\nEstimated: ${coversCount} COVERS_TOPIC, ${fulfillsCount} FULFILLS`);
+  console.log(`\nEstimated: ${coversCount} COVERS_TOPIC, ${fulfillsCount} FULFILLS_OBJECTIVE`);
 }
 
 // ── Main ──────────────────────────────────────────────────────────────
@@ -165,15 +216,15 @@ async function main() {
       }));
       console.log(`Entities: ${entities.length}`);
 
-      const topicResult = await session.run(
-        `MATCH (t:Topic) RETURN t.slug AS slug, t.title AS title ORDER BY t.slug`
+      const subTopicResult = await session.run(
+        `MATCH (st:SubTopic) RETURN st.slug AS slug, st.title AS title ORDER BY st.slug`
       );
-      const topics = topicResult.records.map((r) => ({
+      const subTopics = subTopicResult.records.map((r) => ({
         slug: r.get('slug'),
         title: r.get('title'),
         norm: normalizeForLinking(r.get('title')),
       }));
-      console.log(`Topics: ${topics.length}`);
+      console.log(`SubTopics: ${subTopics.length}`);
 
       const loResult = await session.run(
         `MATCH (lo:LearningObjective) RETURN lo.slug AS slug, lo.text AS text ORDER BY lo.slug LIMIT 5000`
@@ -186,34 +237,34 @@ async function main() {
       console.log(`LearningObjectives: ${objectives.length}\n`);
 
       if (DRY_RUN) {
-        dryRunOutput(entities, topics, objectives);
+        dryRunOutput(entities, subTopics, objectives);
         return;
       }
 
-      // Phase 1: COVERS_TOPIC — entity → topic
-      console.log('=== Phase 1: COVERS_TOPIC ===');
+      // Phase 1: COVERS_TOPIC — entity → subtopic (Schema B)
+      console.log('=== Phase 1: COVERS_TOPIC (Entity → SubTopic) ===');
       let coversCreated = 0;
       for (let i = 0; i < entities.length; i++) {
         const entity = entities[i];
         if (i % 100 === 0 || i === entities.length - 1) {
           process.stdout.write(`\r  Entity ${i + 1}/${entities.length}...`);
         }
-        for (const topic of topics) {
-          if (coversMatch(entity.norm, topic.norm)) {
+        for (const subtopic of subTopics) {
+          if (coversMatch(entity.norm, subtopic.norm)) {
             await session.run(
               `MATCH (e:Entity {name: $entityName})
-               MATCH (t:Topic {slug: $topicSlug})
-               MERGE (e)-[:COVERS_TOPIC]->(t)`,
-              { entityName: entity.name, topicSlug: topic.slug }
+               MATCH (st:SubTopic {slug: $subtopicSlug})
+               MERGE (e)-[:COVERS_TOPIC]->(st)`,
+              { entityName: entity.name, subtopicSlug: subtopic.slug }
             );
             coversCreated++;
           }
         }
       }
-      console.log(`\n  COVERS_TOPIC: ${coversCreated}\n`);
+      console.log(`\n  COVERS_TOPIC (Entity→SubTopic): ${coversCreated}\n`);
 
-      // Phase 2: FULFILLS — entity → learning objective
-      console.log('=== Phase 2: FULFILLS ===');
+      // Phase 2: FULFILLS_OBJECTIVE — entity → learning objective (Schema B)
+      console.log('=== Phase 2: FULFILLS_OBJECTIVE (Entity → LearningObjective) ===');
       let fulfillsCreated = 0;
       for (let i = 0; i < entities.length; i++) {
         const entity = entities[i];
@@ -225,16 +276,16 @@ async function main() {
             await session.run(
               `MATCH (e:Entity {name: $entityName})
                MATCH (lo:LearningObjective {slug: $loSlug})
-               MERGE (e)-[:FULFILLS]->(lo)`,
+               MERGE (e)-[:FULFILLS_OBJECTIVE]->(lo)`,
               { entityName: entity.name, loSlug: obj.slug }
             );
             fulfillsCreated++;
           }
         }
       }
-      console.log(`\n  FULFILLS: ${fulfillsCreated}\n`);
+      console.log(`\n  FULFILLS_OBJECTIVE: ${fulfillsCreated}\n`);
 
-      console.log('Done.');
+      console.log('Done (Schema B).');
     } finally {
       await session.close();
     }
