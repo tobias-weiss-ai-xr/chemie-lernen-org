@@ -41,7 +41,7 @@
             '<div class="empty-state"><div class="empty-state-icon">🗄️</div>' +
             '<h2>Wissensnetz wird geladen</h2>' +
             '<p>Die Wissensdatenbank wird gerade aktualisiert. Bitte versuche es in wenigen Minuten erneut.</p>' +
-            '<p><a href="/wissennetz/" style="color:#667eea;">Interaktiven Graph öffnen →</a></p></div>';
+            '<p><a href="/entity/" style="color:#667eea;">Wissensnetz durchsuchen →</a></p></div>';
           return;
         }
         init(d);
@@ -58,7 +58,7 @@
     .catch(function (_err) {
       skeleton.style.display = 'none';
       app.innerHTML =
-        '<div class="empty-state"><div class="empty-state-icon">📡</div><p>Wissensnetz konnte nicht geladen werden.</p><p><a href="/wissennetz/" style="color:#667eea;">Graph-Ansicht öffnen →</a></p></div>';
+        '<div class="empty-state"><div class="empty-state-icon">📡</div><p>Wissensnetz konnte nicht geladen werden.</p><p><a href="/entity/" style="color:#667eea;">Wissensnetz durchsuchen →</a></p></div>';
     });
 
   function init(data) {
@@ -418,7 +418,7 @@
         html += '<span>' + filtered.length + ' angezeigt</span>';
       }
       html +=
-        '<span><a href="/wissennetz/" class="entity-graph-top-link">Interaktiver Graph →</a></span>';
+        '<span><a href="/entity/" class="entity-graph-top-link">Wissensnetz durchsuchen →</a></span>';
       html += '</div></div>';
 
       html += _buildToolbarHtml();

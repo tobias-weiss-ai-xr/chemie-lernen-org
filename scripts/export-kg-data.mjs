@@ -87,7 +87,7 @@ async function main() {
       session,
       `
       MATCH (e:Entity)
-      WHERE (e.kategorie IS NULL OR e.kategorie NOT IN ['lernziel', 'lehrplan', 'didaktik'])
+      WHERE (e.kategorie IS NULL OR NOT (e.kategorie IN ['lernziel', 'lehrplan', 'didaktik']))
       OPTIONAL MATCH (e)-[:RELATED_TO|ERFUELLT]-(related:Entity)
       OPTIONAL MATCH (e)-[:BESTEHT_AUS]->(component:Entity)
       RETURN e.name as name, e.kategorie as category,
