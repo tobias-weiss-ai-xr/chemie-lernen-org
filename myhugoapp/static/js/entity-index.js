@@ -2,6 +2,9 @@
   window.__entityIndexLoaded = true;
   var app = document.getElementById('entity-app');
   var skeleton = document.getElementById('entity-skeleton');
+  var graphContainer = document.getElementById('entity-graph-container');
+  var graphLoading = document.getElementById('entity-graph-loading');
+  var graphEl = document.getElementById('entity-graph');
 
   function toSlug(name) {
     return name
@@ -46,6 +49,7 @@
         }
         init(d);
         window.__initDone = true;
+        renderGraph(d);
       } catch (e) {
         console.error('[entity-index] init() failed:', e);
         window.__initError = e.message || String(e);
@@ -57,8 +61,9 @@
     })
     .catch(function (_err) {
       skeleton.style.display = 'none';
+      if (graphContainer) graphContainer.style.display = 'none';
       app.innerHTML =
-        '<div class="empty-state"><div class="empty-state-icon">📡</div><p>Wissensnetz konnte nicht geladen werden.</p><p><a href="/entity/" style="color:#667eea;">Wissensnetz durchsuchen →</a></p></div>';
+        '<div class="empty-state"><div class="empty-state-icon">📡</div><p>Wissensnetz konnte nicht geladen werden.</p></div>';
     });
 
   function init(data) {
@@ -621,5 +626,60 @@
     }
 
     _render();
+  }
+
+  function renderGraph(data) {
+    if (!globalThis.D3EgoGraph || !graphContainer || !graphEl) {
+      console.warn('[entity-index] D3EgoGraph not available or container missing');
+      if (graphContainer) graphContainer.style.display = 'none';
+      return;
+    }
+
+    try {
+      globalThis.D3EgoGraph.createFullGraph(graphEl, data, {
+        filterControls: null,
+        showLegend: false,
+        height: 700,
+      });
+
+      graphLoading.style.display = 'none';
+      graphContainer.style.display = 'block';
+      renderLegend(data);
+    } catch (e) {
+      console.error('[entity-index] renderGraph failed:', e);
+      if (graphLoading) {
+        graphLoading.innerHTML =
+          '<div class="empty-state"><div class="empty-state-icon">⚠️</div><p>Graph konnte nicht visualisiert werden.</p></div>';
+      }
+    }
+  }
+
+  function renderLegend(data) {
+    var legendEl = document.getElementById('entity-legend-items');
+    if (!legendEl) return;
+
+    var categories = [
+      { cat: 'stoff', label: 'Stoff', color: '#667eea' },
+      { cat: 'konzept', label: 'Konzept', color: '#45b7d1' },
+      { cat: 'reaktion', label: 'Reaktion', color: '#4ecdc4' },
+      { cat: 'methode', label: 'Methode', color: '#f093fb' },
+      { cat: 'person', label: 'Person', color: '#ff9a76' },
+      { cat: 'quelle', label: 'Quelle', color: '#a8a8a8' },
+    ];
+
+    var html = '';
+    categories.forEach(function (c) {
+      html +=
+        '<div class="entity-legend-item">' +
+        '<span class="entity-legend-color" style="background:' +
+        c.color +
+        '"></span>' +
+        '<span>' +
+        c.label +
+        '</span>' +
+        '</div>';
+    });
+
+    legendEl.innerHTML = html;
   }
 })();
