@@ -45,7 +45,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Export KG data from Neo4j
-        run: node scripts/export-kg-data.mjs || echo '[CI] Neo4j export skipped (non-fatal)'
+        run: NODE_PATH=api/node_modules node scripts/export-kg-data.mjs || echo '[CI] Neo4j export skipped (non-fatal)'
 
       - name: Generate entity pages from KG data
         run: node scripts/generate-entity-pages.mjs
@@ -130,13 +130,18 @@ jobs:
               echo "❌ SMOKE FAIL: /api/health missing status=ok (body: $HEALTH_BODY)"; exit 1
             fi
             echo "  ✓ /api/health status=ok"
-            # 6. /api/kg-stats returns valid JSON
-            STATS_BODY=$(curl -sf "$API/api/kg-stats" -m 30)
-            if [ -z "$STATS_BODY" ]; then echo "❌ SMOKE FAIL: /api/kg-stats empty body"; exit 1; fi
-            if ! echo "$STATS_BODY" | python3 -c 'import sys, json; json.loads(sys.stdin.read())' 2>/dev/null; then
-              echo "❌ SMOKE FAIL: /api/kg-stats not valid JSON"; exit 1
+            # 6. /api/kg-stats returns valid JSON (skip if Neo4j is down)
+            NEO4J_UP=$(echo "$HEALTH_BODY" | grep -o '"neo4j":"[^"]*"' | grep -v 'unavailable' || true)
+            if [ -n "$NEO4J_UP" ]; then
+              STATS_BODY=$(curl -sf "$API/api/kg-stats" -m 30)
+              if [ -z "$STATS_BODY" ]; then echo "❌ SMOKE FAIL: /api/kg-stats empty body"; exit 1; fi
+              if ! echo "$STATS_BODY" | python3 -c 'import sys, json; json.loads(sys.stdin.read())' 2>/dev/null; then
+                echo "❌ SMOKE FAIL: /api/kg-stats not valid JSON"; exit 1
+              fi
+              echo "  ✓ /api/kg-stats returns valid JSON"
+            else
+              echo "  ⚠ /api/kg-stats skipped (Neo4j unavailable — non-fatal)"
             fi
-            echo "  ✓ /api/kg-stats returns valid JSON"
             # 7. /api/chat rejects empty body with 400 (NOT 500)
             CHAT_CODE=$(curl -s -X POST "$API/api/chat" \
               -H "Content-Type: application/json" \

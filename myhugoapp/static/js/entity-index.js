@@ -33,6 +33,17 @@
       skeleton.style.display = 'none';
       window.__initStarted = true;
       try {
+        // Graceful fallback when Neo4j is down and returns empty data
+        var entityCount = (d.entities || []).length;
+        var articleCount = (d.articles || []).length;
+        if (entityCount === 0 && articleCount === 0) {
+          app.innerHTML =
+            '<div class="empty-state"><div class="empty-state-icon">🗄️</div>' +
+            '<h2>Wissensnetz wird geladen</h2>' +
+            '<p>Die Wissensdatenbank wird gerade aktualisiert. Bitte versuche es in wenigen Minuten erneut.</p>' +
+            '<p><a href="/wissennetz/" style="color:#667eea;">Interaktiven Graph öffnen →</a></p></div>';
+          return;
+        }
         init(d);
         window.__initDone = true;
       } catch (e) {
