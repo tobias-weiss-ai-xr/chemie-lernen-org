@@ -13,6 +13,7 @@ import neo4j from 'neo4j-driver';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { isCodeAnalysisName, excludeCodeEntities } from './_neo4j-subset-filter.mjs';
 
 // NOTE: The `:Entity` label alone is NOT sufficient — code-analysis nodes
 // (Variable, Function, Class, etc.) also carry the :Entity label. We MUST
@@ -94,6 +95,7 @@ async function main() {
       MATCH (e:Entity)
       WHERE (e.kategorie IS NULL OR NOT (e.kategorie IN ['lernziel', 'lehrplan', 'didaktik']))
         AND NONE(lbl IN labels(e) WHERE lbl IN $excludeLabels)
+        AND ${excludeCodeEntities('e')}
       OPTIONAL MATCH (e)-[:RELATED_TO|ERFUELLT]-(related:Entity)
       OPTIONAL MATCH (e)-[:BESTEHT_AUS]->(component:Entity)
       RETURN e.name as name, e.kategorie as category,
@@ -107,21 +109,26 @@ async function main() {
       'entities'
     );
 
-    var entities = entitiesResult.records.map(function (r, i) {
-      return {
-        id: 'e' + i,
-        name: r.get('name'),
-        category: r.get('category') || 'konzept',
-        articles: [],
-        relatedEntities: (r.get('relatedEntities') || []).filter(function (n) {
-          return n !== null;
-        }),
-        components: (r.get('components') || []).filter(function (n) {
-          return n !== null;
-        }),
-        articleCount: neo4j.integer.toNumber(r.get('articleCount') || 0),
-      };
-    });
+    var entities = entitiesResult.records
+      .map(function (r, i) {
+        var name = r.get('name');
+        return {
+          id: 'e' + i,
+          name: name,
+          category: r.get('category') || 'konzept',
+          articles: [],
+          relatedEntities: (r.get('relatedEntities') || []).filter(function (n) {
+            return n !== null;
+          }),
+          components: (r.get('components') || []).filter(function (n) {
+            return n !== null;
+          }),
+          articleCount: neo4j.integer.toNumber(r.get('articleCount') || 0),
+        };
+      })
+      .filter(function (e) {
+        return !isCodeAnalysisName(e.name);
+      });
 
     // ── 2. Articles ──────────────────────────────────────────────────
     console.log('[export-kg-data] Querying articles (' + entities.length + ' entities)...');
