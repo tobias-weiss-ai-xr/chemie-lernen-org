@@ -14,8 +14,9 @@
 
 #entity-graph {
   width: 100%;
-  height: 700px;
-  min-height: 500px;
+  height: 60vh;
+  min-height: 400px;
+  max-height: 800px;
 }
 
 #entity-graph-loading {
@@ -454,18 +455,22 @@
 </div>
 
 <!-- Graph container -->
-<div id="entity-graph-container" style="display:none;">
-  <div id="entity-graph-loading">
-    <div class="spinner-border text-primary mb-3" role="status"><span class="visually-hidden">Loading...</span></div>
-    <h5>Visualisiere Wissensnetz...</h5>
-    <p style="font-size:0.85rem;color:#888;margin-top:0.5rem;">Interaktiver Graph mit allen Fachbegriffen</p>
-  </div>
-  <div id="entity-graph"></div>
-  <div class="entity-graph-controls">
-    <button class="entity-graph-control-btn" id="graph-filter-all" data-filter="all">Alle</button>
-    <button class="entity-graph-control-btn" id="graph-filter-stoff" data-filter="stoff">Stoffe</button>
-    <button class="entity-graph-control-btn" id="graph-filter-konzept" data-filter="konzept">Konzepte</button>
-    <button class="entity-graph-control-btn" id="graph-filter-reaktion" data-filter="reaktion">Reaktionen</button>
+  <div id="entity-graph-container" style="display:none;">
+    <div id="entity-graph-loading">
+      <div class="spinner-border text-primary mb-3" role="status"><span class="visually-hidden">Loading...</span></div>
+      <h5>Visualisiere Wissensnetz...</h5>
+      <p id="entity-graph-progress" style="font-size:0.85rem;color:#888;margin-top:0.5rem;">Lade Daten...</p>
+    </div>
+    <div id="entity-graph"></div>
+    <div class="entity-graph-controls">
+      <button class="entity-graph-control-btn active" id="graph-filter-all" data-filter="all">Alle</button>
+      <button class="entity-graph-control-btn" id="graph-filter-stoff" data-filter="stoff">Stoffe</button>
+      <button class="entity-graph-control-btn" id="graph-filter-konzept" data-filter="konzept">Konzepte</button>
+      <button class="entity-graph-control-btn" id="graph-filter-reaktion" data-filter="reaktion">Reaktionen</button>
+      <button class="entity-graph-control-btn" id="graph-filter-methode" data-filter="methode">Methoden</button>
+      <button class="entity-graph-control-btn" id="graph-filter-person" data-filter="person">Personen</button>
+      <button class="entity-graph-control-btn" id="graph-filter-quelle" data-filter="quelle">Quellen</button>
+    </div>
   </div>
   <div class="entity-graph-legend" id="entity-graph-legend">
     <div class="entity-legend-title">Kategorien</div>

@@ -635,16 +635,25 @@
       return;
     }
 
+    var entityCount = (data.entities || []).length;
+    var articleCount = (data.articles || []).length;
+    var progressEl = document.getElementById('entity-graph-progress');
+    if (progressEl) {
+      progressEl.textContent =
+        'Lade ' + entityCount + ' Begriffe und ' + articleCount + ' Artikel...';
+    }
+
     try {
       globalThis.D3EgoGraph.createFullGraph(graphEl, data, {
         filterControls: null,
         showLegend: false,
-        height: 700,
+        height: graphEl.offsetHeight || 600,
       });
 
       graphLoading.style.display = 'none';
       graphContainer.style.display = 'block';
       renderLegend(data);
+      attachGraphFilters();
     } catch (e) {
       console.error('[entity-index] renderGraph failed:', e);
       if (graphLoading) {
@@ -658,17 +667,25 @@
     var legendEl = document.getElementById('entity-legend-items');
     if (!legendEl) return;
 
+    var entities = data.entities || [];
+    var catCounts = {};
+    entities.forEach(function (e) {
+      var c = e.category || 'other';
+      catCounts[c] = (catCounts[c] || 0) + 1;
+    });
+
     var categories = [
-      { cat: 'stoff', label: 'Stoff', color: '#667eea' },
-      { cat: 'konzept', label: 'Konzept', color: '#45b7d1' },
-      { cat: 'reaktion', label: 'Reaktion', color: '#4ecdc4' },
-      { cat: 'methode', label: 'Methode', color: '#f093fb' },
-      { cat: 'person', label: 'Person', color: '#ff9a76' },
-      { cat: 'quelle', label: 'Quelle', color: '#a8a8a8' },
+      { cat: 'stoff', label: 'Stoffe', color: '#667eea' },
+      { cat: 'konzept', label: 'Konzepte', color: '#45b7d1' },
+      { cat: 'reaktion', label: 'Reaktionen', color: '#4ecdc4' },
+      { cat: 'methode', label: 'Methoden', color: '#f093fb' },
+      { cat: 'person', label: 'Personen', color: '#ff9a76' },
+      { cat: 'quelle', label: 'Quellen', color: '#a8a8a8' },
     ];
 
     var html = '';
     categories.forEach(function (c) {
+      var count = catCounts[c.cat] || 0;
       html +=
         '<div class="entity-legend-item">' +
         '<span class="entity-legend-color" style="background:' +
@@ -676,10 +693,28 @@
         '"></span>' +
         '<span>' +
         c.label +
-        '</span>' +
+        ' (' +
+        count +
+        ')</span>' +
         '</div>';
     });
 
     legendEl.innerHTML = html;
+  }
+
+  function attachGraphFilters() {
+    var buttons = document.querySelectorAll('.entity-graph-control-btn');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        buttons.forEach(function (b) {
+          b.classList.remove('active');
+        });
+        btn.classList.add('active');
+        var filter = btn.getAttribute('data-filter');
+        if (globalThis.D3EgoGraph && globalThis.D3EgoGraph.setCategoryFilter) {
+          globalThis.D3EgoGraph.setCategoryFilter(filter === 'all' ? null : filter);
+        }
+      });
+    });
   }
 })();
