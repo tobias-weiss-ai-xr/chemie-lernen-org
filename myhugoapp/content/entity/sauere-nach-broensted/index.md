@@ -1,10 +1,10 @@
 ---
 title: 'Sauere nach Broensted'
-description: 'Fachbegriff „Sauere nach Broensted“ (Konzept) — beschrieben in [object Object] Artikeln auf chemie-lernen.org und ist mit 4 weiteren Fachbegriffen verknüpft.'
+description: 'Fachbegriff „Sauere nach Broensted“ (Konzept) — beschrieben in 3 Artikeln auf chemie-lernen.org und ist mit 4 weiteren Fachbegriffen verknüpft.'
 date: 2026-06-26
 slug: 'sauere-nach-broensted'
 category: 'konzept'
-articleCount: [object Object]
+articleCount: 3
 relatedCount: 4
 relatedEntities:
   - 'Johannes Nicolaus Broensted'
@@ -13,9 +13,3 @@ relatedEntities:
   - 'pH-Wert'
 components: []
 ---
-
-## Verknüpfte Artikel
-
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)

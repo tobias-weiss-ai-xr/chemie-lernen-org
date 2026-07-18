@@ -14,8 +14,13 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// NOTE: All queries in this file scope via :Entity / :Document labels — they are
-// already subset-restricted. No subsetWhere import needed here.
+// NOTE: The `:Entity` label alone is NOT sufficient — code-analysis nodes
+// (Variable, Function, Class, etc.) also carry the :Entity label. We MUST
+// explicitly exclude them.
+const CODE_ANALYSIS_LABELS = [
+  'Variable', 'Parameter', 'Function', 'Class', 'File', 'Module',
+  'Interface', 'Directory', 'Repository', 'Macro', 'Struct', 'Enum', 'Episodic',
+];
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -88,6 +93,7 @@ async function main() {
       `
       MATCH (e:Entity)
       WHERE (e.kategorie IS NULL OR NOT (e.kategorie IN ['lernziel', 'lehrplan', 'didaktik']))
+        AND NONE(lbl IN labels(e) WHERE lbl IN $excludeLabels)
       OPTIONAL MATCH (e)-[:RELATED_TO|ERFUELLT]-(related:Entity)
       OPTIONAL MATCH (e)-[:BESTEHT_AUS]->(component:Entity)
       RETURN e.name as name, e.kategorie as category,
@@ -97,7 +103,7 @@ async function main() {
       ORDER BY articleCount DESC
       LIMIT $limit
       `,
-      { limit: neo4j.int(LIMIT_ENTITIES) },
+      { limit: neo4j.int(LIMIT_ENTITIES), excludeLabels: CODE_ANALYSIS_LABELS },
       'entities'
     );
 

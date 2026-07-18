@@ -1523,7 +1523,15 @@ const KG_CACHE_TTL = 300000; // 5 minutes
 const KG_CACHE_MAX = 20;
 
 function getKgDataCacheKey(req) {
-  return 'kg-data-' + (req.query.lehrplan === 'true' ? 'lehrplan' : 'default');
+  var limit = req.query.limit || 'default';
+  var search = req.query.search || '';
+  var category = req.query.category || '';
+  var type = req.query.type || '';
+  var offset = req.query.offset || '0';
+  var lehrplan = req.query.lehrplan === 'true' ? 'lehrplan' : 'default';
+  return (
+    'kg-data-' + lehrplan + '-' + limit + '-' + offset + '-' + search + '-' + category + '-' + type
+  );
 }
 
 function getCachedKgData(key) {
@@ -1554,7 +1562,7 @@ function parseKGParams(req) {
   const search = (req.query.search || '').toLowerCase().trim();
   const category = (req.query.category || '').toLowerCase().trim();
   const type = (req.query.type || '').toLowerCase().trim();
-  const limit = Math.min(parseInt(req.query.limit) || 50, 500);
+  const limit = Math.min(parseInt(req.query.limit) || 200, 20000);
   const offset = parseInt(req.query.offset) || 0;
   return { search, category, type, limit, offset };
 }
@@ -1720,6 +1728,17 @@ app.get('/api/kg-data', async (req, res) => {
       LIMIT ${limit}
     `;
     const entitiesResult = await session.run(entitiesQuery, queryParams);
+    logger.info(
+      '[kg-data] RAW records length: ' +
+        entitiesResult.records.length +
+        ', constructor: ' +
+        entitiesResult.records.constructor.name
+    );
+    if (entitiesResult.records.length !== 758) {
+      logger.warn(
+        '[kg-data] Records count mismatch! Expected 758, got ' + entitiesResult.records.length
+      );
+    }
     let entities = isLehrplanMode
       ? entitiesResult.records.map((r, i) => ({
           id: `c${i}`,
@@ -1737,17 +1756,33 @@ app.get('/api/kg-data', async (req, res) => {
           components: [],
           articleCount: 0,
         }))
-      : entitiesResult.records.map((r, i) => ({
-          id: `e${offset + i}`,
-          name: r.get('name'),
-          category: r.get('category') || 'konzept',
-          articles: [],
-          relatedEntities: (r.get('relatedEntities') || [])
-            .filter((n) => n !== null)
-            .map((name) => ({ name, weight: 1 })),
-          components: (r.get('components') || []).filter((n) => n !== null),
-          articleCount: r.get('articleCount') || 0,
-        }));
+      : entitiesResult.records
+          .map((r, i) => {
+            var name = r.get('name');
+            if (!name) {
+              logger.warn('[kg-data] Skipping entity with null name at index ' + i);
+              return null;
+            }
+            return {
+              id: `e${offset + i}`,
+              name: name,
+              category: r.get('category') || 'konzept',
+              articles: [],
+              relatedEntities: (r.get('relatedEntities') || [])
+                .filter((n) => n !== null)
+                .map((name) => ({ name, weight: 1 })),
+              components: (r.get('components') || []).filter((n) => n !== null),
+              articleCount: neo4j.integer.toNumber(r.get('articleCount') || 0),
+            };
+          })
+          .filter(Boolean);
+
+    logger.info(
+      '[kg-data] Records from Neo4j: ' +
+        entitiesResult.records.length +
+        ', after JS filter: ' +
+        entities.length
+    );
 
     // Static file fallback for lehrplan mode when Neo4j returns no entities
     if (isLehrplanMode && entities.length === 0) {
@@ -3748,7 +3783,7 @@ app.get('/api/curricula/linked-entities', async (req, res) => {
 app.get('/api/content', async (req, res) => {
   const type = (req.query.type || '').trim();
   const search = (req.query.search || '').toLowerCase().trim();
-  const limit = Math.min(parseInt(req.query.limit) || 50, 500);
+  const limit = Math.min(parseInt(req.query.limit) || 200, 500);
   const offset = parseInt(req.query.offset) || 0;
 
   try {
@@ -3826,7 +3861,7 @@ app.get('/api/content', async (req, res) => {
 app.get('/api/didaktik', async (req, res) => {
   const institution = (req.query.institution || '').trim();
   const search = (req.query.search || '').toLowerCase().trim();
-  const limit = Math.min(parseInt(req.query.limit) || 50, 500);
+  const limit = Math.min(parseInt(req.query.limit) || 200, 500);
 
   try {
     const driver = getNeo4jDriver();

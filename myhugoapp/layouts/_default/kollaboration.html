@@ -28,10 +28,10 @@
           <div class="panel-heading">
             <strong><i class="fa fa-users"></i> Aktive Lernräume</strong>
             <div class="pull-right session-list-actions">
-              <button class="btn btn-xs btn-primary" onclick="Collaboration.showCreateModal(); return false;">
+              <button class="btn btn-xs btn-primary" onclick="Collaboration.showCreateModal(); event.preventDefault();">
                 <i class="fa fa-plus"></i> Neuer Lernraum
               </button>
-              <button class="btn btn-xs btn-default" onclick="Collaboration.loadSessions(); return false;">
+              <button class="btn btn-xs btn-default" onclick="Collaboration.loadSessions(); event.preventDefault();">
                 <i class="fa fa-refresh"></i> Aktualisieren
               </button>
             </div>
@@ -50,10 +50,10 @@
       <div class="panel-heading">
         <strong><i class="fa fa-comments"></i> <span id="detail-session-name">Lernraum</span></strong>
         <div class="pull-right session-detail-actions">
-          <button class="btn btn-xs btn-default" onclick="Collaboration.showSessionList(); return false;">
+          <button class="btn btn-xs btn-default" onclick="Collaboration.showSessionList(); event.preventDefault();">
             <i class="fa fa-arrow-left"></i> Zurück
           </button>
-          <button class="btn btn-xs btn-danger" onclick="Collaboration.leaveSession(); return false;">
+          <button class="btn btn-xs btn-danger" onclick="Collaboration.leaveSession(); event.preventDefault();">
             <i class="fa fa-sign-out"></i> Verlassen
           </button>
         </div>
@@ -98,7 +98,7 @@
                         placeholder="Nachricht eingeben..."
                         onkeydown="if(event.key==='Enter' && !event.shiftKey) { event.preventDefault(); Collaboration.sendMessage(); }">
                       <span class="input-group-btn">
-                        <button class="btn btn-primary" onclick="Collaboration.sendMessage(); return false;">
+                        <button class="btn btn-primary" onclick="Collaboration.sendMessage(); event.preventDefault();">
                           <i class="fa fa-send"></i> Senden
                         </button>
                       </span>
@@ -109,10 +109,10 @@
                 <!-- Exercises Tab -->
                 <div role="tabpanel" class="tab-pane" id="tab-exercises">
                   <div class="exercises-toolbar">
-                    <button class="btn btn-sm btn-primary" onclick="Collaboration.shareExercise(); return false;">
+                    <button class="btn btn-sm btn-primary" onclick="Collaboration.shareExercise(); event.preventDefault();">
                       <i class="fa fa-share"></i> Übung teilen
                     </button>
-                    <button class="btn btn-sm btn-default" onclick="Collaboration.loadExercises(); return false;">
+                    <button class="btn btn-sm btn-default" onclick="Collaboration.loadExercises(); event.preventDefault();">
                       <i class="fa fa-refresh"></i> Aktualisieren
                     </button>
                   </div>
@@ -149,7 +149,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
-        <button type="button" class="btn btn-primary" onclick="Collaboration.doCreateSession(); return false;">
+        <button type="button" class="btn btn-primary" onclick="Collaboration.doCreateSession(); event.preventDefault();">
           <i class="fa fa-check"></i> Erstellen
         </button>
       </div>

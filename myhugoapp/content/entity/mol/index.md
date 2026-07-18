@@ -1,10 +1,10 @@
 ---
 title: 'Mol'
-description: 'Fachbegriff „Mol“ (Konzept) — beschrieben in [object Object] Artikeln auf chemie-lernen.org und ist mit 25 weiteren Fachbegriffen verknüpft.'
+description: 'Fachbegriff „Mol“ (Konzept) — beschrieben in 2 Artikeln auf chemie-lernen.org und ist mit 25 weiteren Fachbegriffen verknüpft.'
 date: 2026-06-26
 slug: 'mol'
 category: 'konzept'
-articleCount: [object Object]
+articleCount: 2
 relatedCount: 25
 relatedEntities:
   - 'anionen zu wassermolekü- (reduktion) gekennzeichnet und'
@@ -34,8 +34,3 @@ relatedEntities:
   - 'Stoffmenge'
 components: []
 ---
-
-## Verknüpfte Artikel
-
-- [undefined](/)
-- [undefined](/)

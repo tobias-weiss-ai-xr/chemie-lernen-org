@@ -1,17 +1,11 @@
 ---
-title: 'Homogene Katalyse'
-description: 'Fachbegriff „Homogene Katalyse“ (Konzept) — beschrieben in [object Object] Artikeln auf chemie-lernen.org und ist mit einem weiteren Fachbegriff verknüpft.'
+title: 'homogene katalyse'
+description: 'Fachbegriff „homogene katalyse“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org.'
 date: 2026-06-26
 slug: 'homogene-katalyse'
 category: 'konzept'
-articleCount: [object Object]
-relatedCount: 1
-relatedEntities:
-  - 'katalyse'
+articleCount: 0
+relatedCount: 0
+relatedEntities: []
 components: []
 ---
-
-## Verknüpfte Artikel
-
-- [undefined](/)
-- [undefined](/)
