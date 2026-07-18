@@ -9,7 +9,7 @@ import neo4j from 'neo4j-driver';
 import fs from 'fs';
 import path from 'path';
 import ragHelpers from './_rag-helpers.cjs';
-import { subsetWhere } from './scripts/_neo4j-subset-filter.mjs';
+import { subsetWhere, excludeCodeEntities } from './scripts/_neo4j-subset-filter.mjs';
 import FileBackedSessionStore from './session-store.js';
 import authRouter, {
   authMiddleware,
@@ -1189,7 +1189,7 @@ async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
     var result;
     try {
       result = await session.run(
-        `MATCH (e) ${subsetWhere('e', ['Entity'])} AND (
+        `MATCH (e) ${subsetWhere('e', ['Entity'])} AND ${excludeCodeEntities('e')} AND (
           ANY(kw IN $keywords WHERE toLower(e.name) CONTAINS kw
            OR toLower(coalesce(e.description, "")) CONTAINS kw
            OR ANY(t IN coalesce(e.tags, []) WHERE toLower(t) CONTAINS kw))
@@ -1715,6 +1715,7 @@ app.get('/api/kg-data', async (req, res) => {
       : `
       MATCH (e:Entity)
       WHERE (e.kategorie IS NULL OR NOT (e.kategorie IN ['lernziel', 'lehrplan', 'didaktik']))
+        AND ${excludeCodeEntities('e')}
       OPTIONAL MATCH (e)-[r:RELATED_TO|ERFUELLT]-(related:Entity)
       OPTIONAL MATCH (e)-[c:BESTEHT_AUS]->(component:Entity)
       WHERE 1=1${whereClause}

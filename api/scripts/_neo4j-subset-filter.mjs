@@ -133,3 +133,83 @@ export function subsetWhere(ref, subset) {
 export function getChemieLabelsArray() {
   return CHEMIE_LABELS;
 }
+
+// ── Code-Analysis Name-Pattern Exclusion ────────────────────────────────
+// Some nodes carry only `:Entity` with no chemie-specific label and no
+// `kategorie` — these are often code-analysis entities leaked into the
+// chemie subset. These patterns serve as a heuristic fallback.
+
+export const CODE_ANALYSIS_NAME_PATTERNS = [
+  'algorithm',
+  'graph-',
+  'network-',
+  'data-structure',
+  'vertex-',
+  'edge-',
+  'sorting',
+  'traversal',
+  'binary-',
+  'hash-',
+  '-queue',
+  '-stack',
+  'heap-',
+  'tree-',
+  'breadth-first',
+  'depth-first',
+  'shortest-path',
+  'cycle-',
+  'bipartite',
+  'coloring',
+  'matching',
+  'dijkstra',
+  'bellman-ford',
+  'prim-',
+  'kruskal',
+  'floyd-warshall',
+  'topological',
+  'backtracking',
+  'divide-and-conquer',
+  'dynamic-programming',
+  'greedy-',
+  'priority-queue',
+  'priority queue',
+  'binary tree',
+  'hash table',
+  'data structure',
+  'two-sum',
+  'linked-list',
+  'linked list',
+  'linked list',
+  'big-o',
+  'time-complexity',
+  'space-complexity',
+  'bst ',
+  'avl ',
+  ' dfs ',
+  ' bfs ',
+  'lru ',
+];
+
+/**
+ * Build a Cypher predicate to exclude code-analysis entities by name pattern.
+ * @param {string} ref - The Cypher variable to scope
+ * @returns {string} Cypher predicate, e.g. "NOT (n.name =~ '.*(?i:algorithm|graph-).*')"
+ */
+export function excludeCodeEntities(ref) {
+  const joined = CODE_ANALYSIS_NAME_PATTERNS.join('|');
+  return `NOT (${ref}.name =~ '.*(?i:${joined}).*')`;
+}
+
+/**
+ * Runtime check whether an entity name matches code-analysis patterns.
+ * @param {string} name - The entity name to check
+ * @returns {boolean}
+ */
+export function isCodeAnalysisName(name) {
+  if (!name || typeof name !== 'string') return false;
+  // Strip parentheses and lowercase for matching
+  var normalized = name.replace(/[()]/g, ' ').toLowerCase();
+  return CODE_ANALYSIS_NAME_PATTERNS.some(function (p) {
+    return normalized.indexOf(p.toLowerCase()) !== -1;
+  });
+}

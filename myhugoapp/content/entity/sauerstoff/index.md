@@ -41,9 +41,3 @@ relatedEntities:
   - 'ethanol'
 components: []
 ---
-
-## Verknüpfte Artikel
-
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
