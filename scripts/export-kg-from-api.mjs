@@ -41,7 +41,7 @@ async function main() {
   console.log('[export-kg-from-api] Fetching from https://chemie-lernen.org/api/kg-data...');
 
   try {
-    const data = await httpsGet('https://chemie-lernen.org/api/kg-data');
+    const data = await httpsGet('https://chemie-lernen.org/api/kg-data?limit=20000');
 
     const output = {
       exportedAt: new Date().toISOString(),

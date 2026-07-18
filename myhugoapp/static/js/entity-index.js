@@ -26,7 +26,7 @@
   }
 
   var _data;
-  fetch('/api/kg-data', { signal: AbortSignal.timeout(15000) })
+  fetch('/api/kg-data?limit=500', { signal: AbortSignal.timeout(15000) })
     .then(function (r) {
       if (!r.ok) throw new Error(r.status);
       return r.json();

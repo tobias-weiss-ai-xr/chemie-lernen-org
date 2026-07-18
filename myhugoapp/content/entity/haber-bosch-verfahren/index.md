@@ -1,21 +1,14 @@
 ---
-title: 'Haber-Bosch-Verfahren'
-description: 'Fachbegriff „Haber-Bosch-Verfahren“ (Reaktion) — beschrieben in [object Object] Artikeln auf chemie-lernen.org und ist mit 4 weiteren Fachbegriffen verknüpft.'
+title: 'haber-bosch-verfahren'
+description: 'Fachbegriff „haber-bosch-verfahren“ (Reaktion) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 3 weiteren Fachbegriffen verknüpft.'
 date: 2026-06-26
 slug: 'haber-bosch-verfahren'
 category: 'reaktion'
-articleCount: [object Object]
-relatedCount: 4
+articleCount: 0
+relatedCount: 3
 relatedEntities:
-  - 'katalyse'
-  - 'Ammoniak (NH3)'
-  - 'Carl Bosch'
-  - 'Fritz Haber'
+  - 'Eisen'
+  - 'Wasserstoff'
+  - 'Stickstoff'
 components: []
 ---
-
-## Verknüpfte Artikel
-
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)

@@ -105,20 +105,26 @@ async function main() {
   }
 
   // Collect slugs that should exist. Anything else in the dir (besides
-  // the 3 hand-written element markdowns) is removed to keep the
-  // generated directory in sync with the data.
+  // the hand-written element markdowns and special files) is removed
+  // to keep the generated directory in sync with the data.
   const slugsToKeep = new Set(entitiesBySlug.keys());
-  // Preserve the 3 hand-written element markdowns
+  // Preserve hand-written element markdowns
   const HAND_WRITTEN = new Set(['kohlenstoff', 'palladium', 'platin']);
   HAND_WRITTEN.forEach((s) => slugsToKeep.add(s));
+  // Preserve section index files
+  const KEEP_FILES = new Set(['_index.md', '_index.html', '.gitkeep', '.gitignore']);
+  KEEP_FILES.forEach((s) => slugsToKeep.add(s));
 
   let removed = 0;
   try {
-    const entries = await (await import('node:fs/promises')).readdir(ENTITY_DIR);
+    const entries = await (await import('node:fs/promises')).readdir(ENTITY_DIR, { withFileTypes: true });
     for (const entry of entries) {
-      if (!slugsToKeep.has(entry)) {
-        await rm(join(ENTITY_DIR, entry), { recursive: true, force: true });
-        removed++;
+      if (!slugsToKeep.has(entry.name)) {
+        // Only remove directories (entity pages) and known stub files
+        if (entry.isDirectory() || entry.isFile()) {
+          await rm(join(ENTITY_DIR, entry.name), { recursive: true, force: true });
+          removed++;
+        }
       }
     }
   } catch {

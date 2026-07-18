@@ -1,10 +1,10 @@
 ---
 title: 'Aromatische Verbindungen'
-description: 'Fachbegriff „Aromatische Verbindungen“ (Konzept) — beschrieben in [object Object] Artikeln auf chemie-lernen.org und ist mit 4 weiteren Fachbegriffen verknüpft.'
+description: 'Fachbegriff „Aromatische Verbindungen“ (Konzept) — beschrieben in 3 Artikeln auf chemie-lernen.org und ist mit 4 weiteren Fachbegriffen verknüpft.'
 date: 2026-06-26
 slug: 'aromatische-verbindungen'
 category: 'konzept'
-articleCount: [object Object]
+articleCount: 3
 relatedCount: 4
 relatedEntities:
   - 'verbindungen'
@@ -13,9 +13,3 @@ relatedEntities:
   - 'Organische Chemie'
 components: []
 ---
-
-## Verknüpfte Artikel
-
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)

@@ -1,29 +1,23 @@
 ---
 title: 'Organische Chemie'
-description: 'Fachbegriff „Organische Chemie“ (Konzept) — beschrieben in [object Object] Artikeln auf chemie-lernen.org und ist mit 12 weiteren Fachbegriffen verknüpft.'
+description: 'Fachbegriff „Organische Chemie“ (Konzept) — beschrieben in 3 Artikeln auf chemie-lernen.org und ist mit 12 weiteren Fachbegriffen verknüpft.'
 date: 2026-06-26
 slug: 'organische-chemie'
 category: 'konzept'
-articleCount: [object Object]
+articleCount: 3
 relatedCount: 12
 relatedEntities:
-  - 'organische'
-  - 'organische chemie'
-  - 'chemie'
-  - 'Friedrich Wöhler'
-  - 'persistent organic pollutants'
-  - 'aldehyde'
-  - 'Funktionelle Gruppe'
   - 'Alkohole'
-  - 'Aromatische Verbindungen'
-  - 'Alkine'
-  - 'Alkene'
+  - 'Funktionelle Gruppe'
+  - 'aldehyde'
+  - 'persistent organic pollutants'
+  - 'Friedrich Wöhler'
+  - 'chemie'
+  - 'organische chemie'
+  - 'organische'
   - 'Alkane'
+  - 'Alkene'
+  - 'Alkine'
+  - 'Aromatische Verbindungen'
 components: []
 ---
-
-## Verknüpfte Artikel
-
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)

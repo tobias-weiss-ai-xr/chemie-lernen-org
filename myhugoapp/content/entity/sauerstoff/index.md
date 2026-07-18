@@ -1,10 +1,10 @@
 ---
 title: 'Sauerstoff'
-description: 'Fachbegriff „Sauerstoff“ (Stoff) — beschrieben in [object Object] Artikeln auf chemie-lernen.org und ist mit 32 weiteren Fachbegriffen verknüpft.'
+description: 'Fachbegriff „Sauerstoff“ (Stoff) — beschrieben in 3 Artikeln auf chemie-lernen.org und ist mit 32 weiteren Fachbegriffen verknüpft.'
 date: 2026-06-26
 slug: 'sauerstoff'
 category: 'stoff'
-articleCount: [object Object]
+articleCount: 3
 relatedCount: 32
 relatedEntities:
   - 'glycerin'
