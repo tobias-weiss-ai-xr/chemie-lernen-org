@@ -453,6 +453,30 @@
 }
 .entity-graph-top-link:hover { background: #667eea; color: #fff; }
 
+.entity-graph-stats {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-card, #f8f9fa);
+  border-bottom: 1px solid var(--border-color, #e0e0e0);
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.entity-graph-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted, #666);
+}
+.entity-graph-stat strong {
+  color: var(--text-primary, #333);
+  font-size: 1.1rem;
+}
+.entity-graph-stat .stat-icon {
+  font-size: 1.2rem;
+}
+
 .entity-sort-select,
 .entity-state-select {
   padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.82rem;
@@ -541,6 +565,41 @@
   .entity-skeleton-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
   .entity-toolbar { flex-direction: column; }
   .entity-toolbar-left { min-width: auto; width: 100%; }
+  
+  .entity-graph-controls {
+    top: 8px; right: 8px; left: 8px;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .entity-graph-search {
+    width: 100%;
+    order: -1;
+    margin-bottom: 0.5rem;
+  }
+  .entity-graph-search:focus { width: 100%; }
+  .entity-graph-control-btn {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  .entity-graph-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  .entity-node-details {
+    top: auto; bottom: 12px; right: 12px; left: 12px;
+    width: auto;
+    max-height: 50vh;
+  }
+  #entity-graph {
+    min-height: 300px;
+    max-height: 50vh;
+  }
+  .entity-graph-legend {
+    bottom: 8px; left: 8px;
+    font-size: 0.65rem;
+    max-width: 150px;
+  }
 }
 </style>
 {{ end }}
@@ -553,6 +612,24 @@
 
 <!-- Graph container -->
   <div id="entity-graph-container" style="display:none;">
+    <div class="entity-graph-stats" id="entity-graph-stats">
+      <div class="entity-graph-stat">
+        <span class="stat-icon">📊</span>
+        <span><strong id="stat-entities">0</strong> Begriffe</span>
+      </div>
+      <div class="entity-graph-stat">
+        <span class="stat-icon">📄</span>
+        <span><strong id="stat-articles">0</strong> Artikel</span>
+      </div>
+      <div class="entity-graph-stat">
+        <span class="stat-icon">🔗</span>
+        <span><strong id="stat-connections">0</strong> Verbindungen</span>
+      </div>
+      <div class="entity-graph-stat">
+        <span class="stat-icon">👁️</span>
+        <span><strong id="stat-visible">0</strong> sichtbar</span>
+      </div>
+    </div>
     <div id="entity-graph-loading">
       <div class="spinner-border text-primary mb-3" role="status"><span class="visually-hidden">Loading...</span></div>
       <h5>Visualisiere Wissensnetz...</h5>

@@ -637,11 +637,14 @@
 
     var entityCount = (data.entities || []).length;
     var articleCount = (data.articles || []).length;
+    var linkCount = (data.links || []).length;
     var progressEl = document.getElementById('entity-graph-progress');
     if (progressEl) {
       progressEl.textContent =
         'Lade ' + entityCount + ' Begriffe und ' + articleCount + ' Artikel...';
     }
+
+    updateStats(entityCount, articleCount, linkCount, entityCount);
 
     try {
       globalThis.D3EgoGraph.createFullGraph(graphEl, data, {
@@ -653,7 +656,7 @@
       graphLoading.style.display = 'none';
       graphContainer.style.display = 'block';
       renderLegend(data);
-      attachGraphFilters();
+      attachGraphFilters(data);
     } catch (e) {
       console.error('[entity-index] renderGraph failed:', e);
       if (graphLoading) {
@@ -661,6 +664,17 @@
           '<div class="empty-state"><div class="empty-state-icon">⚠️</div><p>Graph konnte nicht visualisiert werden.</p></div>';
       }
     }
+  }
+
+  function updateStats(entities, articles, links, visible) {
+    var el = document.getElementById('stat-entities');
+    if (el) el.textContent = entities;
+    el = document.getElementById('stat-articles');
+    if (el) el.textContent = articles;
+    el = document.getElementById('stat-connections');
+    if (el) el.textContent = links;
+    el = document.getElementById('stat-visible');
+    if (el) el.textContent = visible;
   }
 
   function renderLegend(data) {
@@ -702,7 +716,10 @@
     legendEl.innerHTML = html;
   }
 
-  function attachGraphFilters() {
+  function attachGraphFilters(data) {
+    var savedFilter = localStorage.getItem('entityGraphCategoryFilter');
+    var savedSearch = localStorage.getItem('entityGraphSearchFilter');
+
     var buttons = document.querySelectorAll('.entity-graph-control-btn');
     buttons.forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -711,19 +728,39 @@
         });
         btn.classList.add('active');
         var filter = btn.getAttribute('data-filter');
+        localStorage.setItem('entityGraphCategoryFilter', filter);
         if (globalThis.D3EgoGraph && globalThis.D3EgoGraph.setCategoryFilter) {
           globalThis.D3EgoGraph.setCategoryFilter(filter === 'all' ? null : filter);
         }
       });
     });
 
+    if (savedFilter && savedFilter !== 'all') {
+      var activeBtn = document.querySelector(
+        '.entity-graph-control-btn[data-filter="' + savedFilter + '"]'
+      );
+      if (activeBtn) {
+        buttons.forEach(function (b) {
+          b.classList.remove('active');
+        });
+        activeBtn.classList.add('active');
+        if (globalThis.D3EgoGraph && globalThis.D3EgoGraph.setCategoryFilter) {
+          globalThis.D3EgoGraph.setCategoryFilter(savedFilter);
+        }
+      }
+    }
+
     var searchInput = document.getElementById('graph-search');
     if (searchInput) {
+      if (savedSearch) {
+        searchInput.value = savedSearch;
+      }
       var searchTimeout;
       searchInput.addEventListener('input', function () {
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(function () {
           var query = searchInput.value.trim().toLowerCase();
+          localStorage.setItem('entityGraphSearchFilter', query);
           if (globalThis.D3EgoGraph && globalThis.D3EgoGraph.setSearchFilter) {
             globalThis.D3EgoGraph.setSearchFilter(query || null);
           }
