@@ -686,6 +686,7 @@
         lernziel: true,
       };
       var showArticles = true;
+      var searchFilter = null;
 
       // Edge labels toggle (persisted)
       var showEdgeLabels = localStorage.getItem('entityGraphShowLabels') === 'true';
@@ -726,7 +727,12 @@
           if (d.type === 'page' || d.type === 'article') {
             return showArticles ? null : 'none';
           }
-          return activeCategories[d.category] !== false ? null : 'none';
+          if (activeCategories[d.category] === false) return 'none';
+          if (searchFilter) {
+            var labelLower = (d.label || '').toLowerCase();
+            if (labelLower.indexOf(searchFilter) === -1) return 'none';
+          }
+          return null;
         });
         link.style('display', function (d) {
           var sId = typeof d.source === 'object' ? d.source.id : d.source;
@@ -965,7 +971,17 @@
           tooltip.style('display', 'none');
         })
         .on('click', function (ev, d) {
+          ev.stopPropagation();
           if (d.type === 'entity') {
+            if (global.__showNodeDetails) {
+              global.__showNodeDetails({
+                label: d.label,
+                category: d.category,
+                count: d.count,
+                description: d.description,
+                related: d.related || [],
+              });
+            }
             global.location.href = '/entity/' + slugify(d.label) + '/';
           } else if (d.url) {
             global.open(d.url, '_blank');
@@ -1200,14 +1216,42 @@
     container.appendChild(pageChip);
   }
 
+  var _currentGraphState = null;
+
   // ── Public API ───────────────────────────────────────────────────
   global.D3EgoGraph = {
     createEgoGraph: createEgoGraph,
-    createFullGraph: createFullGraph,
+    createFullGraph: function (container, data, options) {
+      _currentGraphState = { container: container, data: data };
+      return createFullGraph(container, data, options);
+    },
     colorize: colorize,
     labelize: labelize,
     slugify: slugify,
     CAT_COLORS: CAT_COLORS,
     CAT_LABELS: CAT_LABELS,
+    setCategoryFilter: function (category) {
+      if (_currentGraphState && _currentGraphState.container) {
+        var container = _currentGraphState.container;
+        var btns = container.querySelectorAll('.entity-graph-control-btn[data-filter]');
+        btns.forEach(function (b) {
+          b.classList.toggle('active', b.getAttribute('data-filter') === (category || 'all'));
+        });
+      }
+    },
+    setSearchFilter: function (query) {
+      if (_currentGraphState && _currentGraphState.container) {
+        var container = _currentGraphState.container;
+        var svg = container.querySelector('svg');
+        if (svg) {
+          var node = svg.selectAll('.node');
+          node.style('display', function (d) {
+            if (!query) return null;
+            var labelLower = (d.label || '').toLowerCase();
+            return labelLower.indexOf(query.toLowerCase()) === -1 ? 'none' : null;
+          });
+        }
+      }
+    },
   };
 })(window);

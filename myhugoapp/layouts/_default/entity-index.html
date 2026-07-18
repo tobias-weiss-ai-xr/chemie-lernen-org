@@ -76,6 +76,103 @@
   border-color: #667eea;
 }
 
+.entity-graph-search {
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  border: 1.5px solid var(--border-color, #ddd);
+  background: rgba(255,255,255,0.95);
+  color: var(--text-primary, #333);
+  width: 180px;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s;
+}
+.entity-graph-search:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
+  width: 220px;
+}
+
+.entity-node-details {
+  position: absolute;
+  top: 60px;
+  right: 12px;
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  background: rgba(255,255,255,0.98);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 12px;
+  padding: 1rem;
+  z-index: 20;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+[data-theme="dark"] .entity-node-details,
+.dark .entity-node-details {
+  background: rgba(44,44,44,0.98);
+  border-color: #555;
+}
+.entity-node-details-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-muted, #666);
+  line-height: 1;
+}
+.entity-node-details-close:hover {
+  color: var(--text-primary, #333);
+}
+#node-details-content h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  color: var(--text-primary, #333);
+}
+#node-details-content p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  color: var(--text-muted, #666);
+}
+#node-details-content .node-category-badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+#node-details-content .node-connections {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color, #ddd);
+}
+#node-details-content .node-connections h5 {
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--text-muted, #666);
+}
+#node-details-content .node-connection-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#node-details-content .node-connection-list li {
+  padding: 0.25rem 0;
+  font-size: 0.82rem;
+}
+#node-details-content .node-connection-list a {
+  color: #667eea;
+  text-decoration: none;
+}
+#node-details-content .node-connection-list a:hover {
+  text-decoration: underline;
+}
+
 /* Graph legend */
 .entity-graph-legend {
   position: absolute;
@@ -463,6 +560,8 @@
     </div>
     <div id="entity-graph"></div>
     <div class="entity-graph-controls">
+      <input type="text" id="graph-search" class="entity-graph-search" placeholder="Suche im Graph..." autocomplete="off">
+      <button class="entity-graph-control-btn" id="graph-focus-btn" title="Zentriere auf Auswahl">🎯</button>
       <button class="entity-graph-control-btn active" id="graph-filter-all" data-filter="all">Alle</button>
       <button class="entity-graph-control-btn" id="graph-filter-stoff" data-filter="stoff">Stoffe</button>
       <button class="entity-graph-control-btn" id="graph-filter-konzept" data-filter="konzept">Konzepte</button>
@@ -470,6 +569,10 @@
       <button class="entity-graph-control-btn" id="graph-filter-methode" data-filter="methode">Methoden</button>
       <button class="entity-graph-control-btn" id="graph-filter-person" data-filter="person">Personen</button>
       <button class="entity-graph-control-btn" id="graph-filter-quelle" data-filter="quelle">Quellen</button>
+    </div>
+    <div id="entity-node-details" class="entity-node-details" style="display:none;">
+      <button class="entity-node-details-close" id="node-details-close">&times;</button>
+      <div id="node-details-content"></div>
     </div>
   </div>
   <div class="entity-graph-legend" id="entity-graph-legend">

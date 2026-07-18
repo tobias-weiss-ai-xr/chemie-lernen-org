@@ -716,5 +716,78 @@
         }
       });
     });
+
+    var searchInput = document.getElementById('graph-search');
+    if (searchInput) {
+      var searchTimeout;
+      searchInput.addEventListener('input', function () {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(function () {
+          var query = searchInput.value.trim().toLowerCase();
+          if (globalThis.D3EgoGraph && globalThis.D3EgoGraph.setSearchFilter) {
+            globalThis.D3EgoGraph.setSearchFilter(query || null);
+          }
+        }, 300);
+      });
+    }
+
+    var detailsPanel = document.getElementById('entity-node-details');
+    var detailsContent = document.getElementById('node-details-content');
+    var closeBtn = document.getElementById('node-details-close');
+    if (detailsPanel && closeBtn) {
+      closeBtn.addEventListener('click', function () {
+        detailsPanel.style.display = 'none';
+      });
+    }
+
+    window.__showNodeDetails = function (node) {
+      if (!detailsPanel || !detailsContent) return;
+      var catLabels = {
+        stoff: 'Stoff',
+        konzept: 'Konzept',
+        reaktion: 'Reaktion',
+        methode: 'Methode',
+        person: 'Person',
+        quelle: 'Quelle',
+      };
+      var catColors = {
+        stoff: '#667eea',
+        konzept: '#45b7d1',
+        reaktion: '#4ecdc4',
+        methode: '#f093fb',
+        person: '#ff9a76',
+        quelle: '#a8a8a8',
+      };
+      var label = catLabels[node.category] || node.category;
+      var color = catColors[node.category] || '#888';
+      var html =
+        '<span class="node-category-badge" style="background:' +
+        color +
+        ';color:#fff;">' +
+        label +
+        '</span>';
+      html += '<h4>' + escapeHtml(node.label) + '</h4>';
+      if (node.count) {
+        html += '<p><strong>' + node.count + '</strong> Artikel</p>';
+      }
+      if (node.description) {
+        html += '<p>' + escapeHtml(node.description) + '</p>';
+      }
+      if (node.related && node.related.length > 0) {
+        html +=
+          '<div class="node-connections"><h5>Verwandte Begriffe</h5><ul class="node-connection-list">';
+        node.related.slice(0, 10).forEach(function (rel) {
+          html +=
+            '<li><a href="/entity/' +
+            escapeHtml(rel.slug) +
+            '/">' +
+            escapeHtml(rel.label) +
+            '</a></li>';
+        });
+        html += '</ul></div>';
+      }
+      detailsContent.innerHTML = html;
+      detailsPanel.style.display = 'block';
+    };
   }
 })();
