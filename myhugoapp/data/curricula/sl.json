@@ -1,0 +1,159 @@
+{
+  "state": "Saarland",
+  "state_abbr": "SL",
+  "school_curricula": [
+    {
+      "school_type": "Gymnasium G9",
+      "grade_levels": [
+        {
+          "grade": "8",
+          "topics": [
+            {
+              "title": "Stoffe im Alltag",
+              "learning_objectives": [
+                { "text": "Eigenschaften von Stoffen beschreiben und vergleichen" },
+                { "text": "Einfache Trennverfahren anwenden" },
+                { "text": "Aggregatzustände und ihre Änderungen erklären" },
+                { "text": "Reinstoffe und Gemische unterscheiden" },
+                { "text": "Sicherheit im Chemieraum beachten" }
+              ]
+            },
+            {
+              "title": "Luft und Wasser",
+              "learning_objectives": [
+                { "text": "Zusammensetzung der Luft beschreiben" },
+                { "text": "Eigenschaften von Wasser untersuchen" },
+                { "text": "Wasserkreislauf erklären" },
+                { "text": "Umweltaspekte von Luft und Wasser diskutieren" }
+              ]
+            },
+            {
+              "title": "Metalle",
+              "learning_objectives": [
+                { "text": "Eigenschaften von Metallen beschreiben" },
+                { "text": "Verwendung von Metallen im Alltag" },
+                { "text": "Einfache Metallnachweise durchführen" },
+                { "text": "Recycling von Metallen erklären" }
+              ]
+            },
+            {
+              "title": "Sauerstoff und Oxide",
+              "learning_objectives": [
+                { "text": "Eigenschaften von Sauerstoff beschreiben" },
+                { "text": "Verbrennungsreaktionen erklären" },
+                { "text": "Oxide von Metallen und Nichtmetallen unterscheiden" },
+                { "text": "Brandbekämpfung und Brandschutz" }
+              ]
+            },
+            {
+              "title": "Wasserstoff",
+              "learning_objectives": [
+                { "text": "Eigenschaften von Wasserstoff beschreiben" },
+                { "text": "Nachweis von Wasserstoff durchführen" },
+                { "text": "Wasserstoff als Energieträger diskutieren" }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "9",
+          "topics": [
+            {
+              "title": "Atombau und Periodensystem",
+              "learning_objectives": [
+                { "text": "Aufbau der Atome beschreiben" },
+                { "text": "Das Periodensystem der Elemente erklären" },
+                { "text": "Isotope und ihre Anwendungen" },
+                { "text": "Elektronenkonfiguration und chemische Eigenschaften" }
+              ]
+            },
+            {
+              "title": "Chemische Bindungen",
+              "learning_objectives": [
+                { "text": "Ionenbindung erklären" },
+                { "text": "Atombindung beschreiben" },
+                { "text": "Metallbindung erklären" },
+                { "text": "Zusammenhang zwischen Bindung und Eigenschaften" }
+              ]
+            },
+            {
+              "title": "Säuren und Basen",
+              "learning_objectives": [
+                { "text": "Eigenschaften von Säuren und Basen" },
+                { "text": "pH-Wert und Indikatoren" },
+                { "text": "Neutralisation erklären" },
+                { "text": "Alltagsbeispiele für Säuren und Basen" }
+              ]
+            },
+            {
+              "title": "Organische Chemie - Kohlenwasserstoffe",
+              "learning_objectives": [
+                { "text": "Alkane, Alkene, Alkine unterscheiden" },
+                { "text": "Erdöl und Erdgas als Rohstoffe" },
+                { "text": "Verbrennung von Kohlenwasserstoffen" },
+                { "text": "Umweltaspekte fossiler Brennstoffe" }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_url": "https://www.saarland.de/mbk/DE/portale/bildungsserver/bildungsthemen/lehrplaenehandreichungen/lehrplaeneallgemeinbildende/gymnasium.html",
+      "last_checked": "2026-07-18"
+    },
+    {
+      "school_type": "Gemeinschaftsschule",
+      "grade_levels": [
+        {
+          "grade": "9",
+          "topics": [
+            {
+              "title": "Chemie im Alltag",
+              "learning_objectives": [
+                { "text": "Chemische Stoffe im täglichen Leben" },
+                { "text": "Haushaltschemikalien sicher verwenden" },
+                { "text": "Umweltbewusster Umgang mit Chemikalien" }
+              ]
+            },
+            {
+              "title": "Ernährung und Chemie",
+              "learning_objectives": [
+                { "text": "Nährstoffe und ihre Funktionen" },
+                { "text": "Zusatzstoffe in Lebensmitteln" },
+                { "text": "Gesunde Ernährung" }
+              ]
+            }
+          ]
+        },
+        {
+          "grade": "10",
+          "topics": [
+            {
+              "title": "Organische Verbindungen",
+              "learning_objectives": [
+                { "text": "Alkohole und ihre Eigenschaften" },
+                { "text": "Carbonsäuren" },
+                { "text": "Ester und ihre Anwendungen" }
+              ]
+            },
+            {
+              "title": "Chemie und Umwelt",
+              "learning_objectives": [
+                { "text": "Luftverschmutzung und ihre Folgen" },
+                { "text": "Wasserqualität und Gewässerschutz" },
+                { "text": "Nachhaltige Chemie" }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_url": "https://www.saarland.de/mbk/DE/portale/bildungsserver/bildungsthemen/lehrplaenehandreichungen/lehrplaeneallgemeinbildende/gemeinschaftsschule.html",
+      "last_checked": "2026-07-18"
+    }
+  ],
+  "last_updated": "2026-07-18",
+  "source_urls": [
+    "https://www.saarland.de/mbk/DE/portale/bildungsserver/bildungsthemen/lehrplaenehandreichungen/lehrplaeneallgemeinbildende/gymnasium.html",
+    "https://www.saarland.de/mbk/DE/portale/bildungsserver/bildungsthemen/lehrplaenehandreichungen/lehrplaeneallgemeinbildende/gemeinschaftsschule.html"
+  ],
+  "_note": "Placeholder curriculum - Saarland scraper requires Playwright + BunnyCDN bypass. Topics are representative but need verification against official curriculum PDFs."
+}

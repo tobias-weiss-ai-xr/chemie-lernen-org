@@ -118,35 +118,55 @@ def _parse_joint_rlp(text: str) -> list[GradeLevel]:
 
 
 def _extract_topics(text: str) -> list[Topic]:
-    """Extract topics and learning objectives."""
+    """Extract topics and learning objectives from the joint RLP.
+
+    The PDF structure has topics numbered 3.1-3.13 under section "3 Themen und Inhalte".
+    Topic headers follow the pattern "3.X Title" where X is 1-13.
+    """
     topics: list[Topic] = []
     lines = text.split("\n")
 
     current_title: str | None = None
     current_objectives: list[str] = []
 
+    # Pattern for topic headers: "3.1", "3.2", etc. followed by title
+    topic_header_pat = re.compile(r"^\s*3\.(\d+)\s+(.{5,})")
+
     for line in lines:
         line = _clean(line)
         if not line or len(line) < 5:
             continue
-        if any(kw in line for kw in ["Seite", "Inhaltsverzeichnis"]):
+        if any(kw in line for kw in ["Seite", "Inhaltsverzeichnis", "von 45"]):
             continue
         if re.match(r"^\d+$", line):
             continue
+        # Skip Förderschule footnotes and other non-topic text
+        if "Förderschule Lernen" in line or "§ 30 BbgSchulG" in line:
+            continue
+        if "Niveaustufe" in line and "zugordnet" in line:
+            continue
 
-        m = re.match(r"^\s*(\d+)\s+(.{5,})", line)
-        if m and len(m.group(2)) > 5 and not re.match(r"^\d", m.group(2)[0]):
+        m = topic_header_pat.match(line)
+        if m:
+            topic_num = int(m.group(1))
+            topic_text = _clean(m.group(2))
+            # Skip if this looks like a duplicate header from TOC
+            if topic_text.endswith(str(int(m.group(1)) + 29)):  # Page numbers in TOC
+                continue
             if current_title and current_objectives:
                 los = [LearningObjective(text=o) for o in current_objectives]
                 topics.append(Topic(title=current_title, learning_objectives=los))
-            current_title = _clean(m.group(2))
+            current_title = topic_text
             current_objectives = []
             continue
 
         if current_title:
-            cleaned = re.sub(r"^[\s•–\- \d.()a-z)]+\s+", "", line).strip()
+            # Clean up bullet points and leading noise
+            cleaned = re.sub(r"^[\s•–\- ✦\d.()a-z)]+\s+", "", line).strip()
             if cleaned and len(cleaned) > 15:
-                current_objectives.append(cleaned)
+                # Skip page headers/footers and section markers
+                if not any(kw in cleaned for kw in ["C Chemie", "Doppeljahrgangsstufe", "Bezüge zu den Basiskonzepten", "Mögliche Kontexte", "Fachbegriffe", "Beispiele für Differenzierungsmöglichkeiten"]):
+                    current_objectives.append(cleaned)
 
     if current_title and current_objectives:
         los = [LearningObjective(text=o) for o in current_objectives]

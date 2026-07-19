@@ -1,42 +1,42 @@
 {
-  "generated": "2026-07-17T03:47:02.426Z",
-  "duration": 73,
+  "generated": "2026-07-18T07:33:40.204Z",
+  "duration": 49,
   "summary": {
     "totalStates": 16,
-    "validStates": 12,
-    "statesWithIssues": 4,
-    "totalTopics": 1788,
-    "totalObjectives": 21602,
-    "averageScore": 87
+    "validStates": 14,
+    "statesWithIssues": 2,
+    "totalTopics": 1825,
+    "totalObjectives": 21478,
+    "averageScore": 98
   },
   "states": {
     "BB": {
       "file": "bb.json",
       "state": "BB",
-      "valid": false,
-      "issues": ["Degraded: only 1 topics (min 10)"],
-      "topics": 1,
-      "objectives": 492,
-      "cleanTopics": 1,
+      "valid": true,
+      "issues": [],
+      "topics": 13,
+      "objectives": 406,
+      "cleanTopics": 13,
       "garbledTopics": 0,
       "garbledChars": 0,
-      "totalChars": 58811,
-      "score": 64,
-      "grade": "C"
+      "totalChars": 51262,
+      "score": 100,
+      "grade": "A"
     },
     "BE": {
       "file": "be.json",
       "state": "BE",
-      "valid": false,
-      "issues": ["Degraded: only 1 topics (min 10)"],
-      "topics": 1,
-      "objectives": 492,
-      "cleanTopics": 1,
+      "valid": true,
+      "issues": [],
+      "topics": 13,
+      "objectives": 406,
+      "cleanTopics": 13,
       "garbledTopics": 0,
       "garbledChars": 0,
-      "totalChars": 58806,
-      "score": 64,
-      "grade": "C"
+      "totalChars": 51257,
+      "score": 100,
+      "grade": "A"
     },
     "BW": {
       "file": "bw.json",
@@ -182,15 +182,15 @@
       "file": "sl.json",
       "state": "SL",
       "valid": false,
-      "issues": ["File not found"],
-      "topics": 0,
-      "objectives": 0,
-      "cleanTopics": 0,
+      "issues": ["Degraded: only 48 objectives (min 50)"],
+      "topics": 13,
+      "objectives": 48,
+      "cleanTopics": 13,
       "garbledTopics": 0,
       "garbledChars": 0,
-      "totalChars": 0,
-      "score": 0,
-      "grade": "F"
+      "totalChars": 6204,
+      "score": 99,
+      "grade": "A"
     },
     "SN": {
       "file": "sn.json",
