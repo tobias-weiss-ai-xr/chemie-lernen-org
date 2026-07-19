@@ -169,7 +169,7 @@ function analyze(filePath, code) {
 function main() {
   const startTime = Date.now();
 
-  // Known state codes for completeness check
+  // Known state codes for completeness check (18 Bundesländer including city-states)
   const KNOWN_STATES = [
     'bb', 'be', 'bw', 'by', 'hb', 'he', 'hh',
     'mv', 'ni', 'nw', 'rp', 'sh', 'sl', 'sn', 'st', 'th',
