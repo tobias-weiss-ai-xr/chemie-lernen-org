@@ -1,21 +1,22 @@
-// Ensure dropdowns work on all devices
+// Ensure dropdowns work on touch/mobile devices
+// On desktop (>=768px) the theme uses CSS hover, no JS needed.
+// Uses event delegation to avoid duplicate listener issues on resize.
 document.addEventListener('DOMContentLoaded', function () {
-  // Top-level dropdown toggles
-  var dropdowns = document.querySelectorAll('.dropdown-toggle');
-  dropdowns.forEach(function (dropdown) {
-    dropdown.addEventListener('click', function (e) {
+  var navbar = document.querySelector('.navbar');
+  if (!navbar) return;
+
+  navbar.addEventListener('click', function (e) {
+    if (window.innerWidth >= 768) return;
+
+    var target = e.target;
+    // Top-level .dropdown-toggle or .dropdown-submenu > a
+    if (
+      target.classList.contains('dropdown-toggle') ||
+      (target.parentElement && target.parentElement.classList.contains('dropdown-submenu'))
+    ) {
       e.preventDefault();
-      var parent = this.parentElement;
-      parent.classList.toggle('open');
-    });
-  });
-  // Submenu toggles (dropdown-submenu > a)
-  var submenus = document.querySelectorAll('.dropdown-submenu > a');
-  submenus.forEach(function (link) {
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      var parent = this.parentElement;
-      parent.classList.toggle('open');
-    });
+      var parent = target.parentElement;
+      if (parent) parent.classList.toggle('open');
+    }
   });
 });
