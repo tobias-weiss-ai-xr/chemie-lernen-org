@@ -4,6 +4,10 @@
 {{ $encodedUrl := querify "q" $url | strings.TrimPrefix "q=" }}
 {{ $encodedTitle := querify "q" $title | strings.TrimPrefix "q=" }}
 
+<style>
+.social-share-link { padding:0; border:none; background:none; color:inherit; font-size:inherit; cursor:pointer; text-decoration:none; }
+.social-share-link:hover { opacity:0.8; }
+</style>
 <div class="social-share-bar">
   <p><strong>Diesen Beitrag teilen:</strong></p>
   <p class="social-share-links">
@@ -28,9 +32,9 @@
       ✉️
     </a>
     <!-- Copy link -->
-    <a href="#" id="copy-link-btn" class="social-share-link" aria-label="Link kopieren">
+    <button type="button" id="copy-link-btn" class="social-share-link" aria-label="Link kopieren">
       🔗
-    </a>
+    </button>
   </p>
 </div>
 <script>

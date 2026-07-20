@@ -108,10 +108,10 @@
 
         <button class="btn btn-primary btn-lg btn-block" id="btn-calc-molmol">Berechnen</button>
 
-        <div id="mol-result" class="result-box" style="display:none; margin-top:20px;" aria-live="polite">
+        <div id="mol-result" class="result-box" aria-live="polite">
           <h3>Ergebnis:</h3>
           <div id="mol-calc"></div>
-          <button class="btn btn-success btn-sm" id="btn-export-molmol-pdf" style="margin-top:15px;">
+          <button class="btn btn-success btn-sm" id="btn-export-molmol-pdf">
             <i class="fa fa-file-pdf-o"></i> Als PDF exportieren
           </button>
         </div>
@@ -172,7 +172,7 @@
             <div class="well result-well">
               <h4>Ergebnis</h4>
               <div id="mass-preview" class="text-center">
-                <p style="font-size:2em; color:#007bff;">--</p>
+                <p>--</p>
                 <p>Gramm</p>
               </div>
             </div>
@@ -181,7 +181,7 @@
 
         <button class="btn btn-primary btn-lg btn-block" id="btn-calc-massmass">Berechnen</button>
 
-        <div id="mass-result" style="display:none; margin-top:20px;"></div>
+        <div id="mass-result"></div>
       </div>
     </div>
 
@@ -221,7 +221,7 @@
 
         <button class="btn btn-primary btn-lg btn-block" id="btn-calc-limiting">Bestimmen</button>
 
-        <div id="limit-result" style="display:none; margin-top:20px;"></div>
+        <div id="limit-result"></div>
       </div>
     </div>
 
@@ -253,7 +253,7 @@
 
         <button class="btn btn-primary btn-lg btn-block" id="btn-calc-yield">Berechnen</button>
 
-        <div id="yield-result" style="display:none; margin-top:20px;"></div>
+        <div id="yield-result"></div>
       </div>
     </div>
 
@@ -264,21 +264,21 @@
         <p>Berechnen Sie sequentielle chemische Reaktionen, bei denen die Produkte einer Stufe zu den Edukten der nächsten werden:</p>
 
         <!-- Step Management -->
-        <div style="margin-bottom: 20px;">
+        <div class="mb-20">
           <button class="btn btn-success" id="btn-add-step">
             <i class="fa fa-plus"></i> Reaktionsschritt hinzufügen
           </button>
           <button class="btn btn-default" id="btn-load-multistep">
             <i class="fa fa-flask"></i> Beispiel laden
           </button>
-          <button class="btn btn-danger" id="btn-clear-steps" style="margin-left: 10px;">
+          <button class="btn btn-danger" id="btn-clear-steps">
             <i class="fa fa-trash"></i> Alle Schritte löschen
           </button>
         </div>
 
         <!-- Initial Reactant Input -->
-        <div class="well" style="background: #e8f5e9; border: 2px solid #4CAF50;">
-          <h4 style="color: #2E7D32;"><i class="fa fa-play-circle"></i> Ausgangsstoff (Schritt 0)</h4>
+        <div class="well well-green">
+          <h4 class="text-green"><i class="fa fa-play-circle"></i> Ausgangsstoff (Schritt 0)</h4>
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
@@ -299,7 +299,7 @@
               </div>
             </div>
           </div>
-          <div id="initial-mass-display" style="display:none; margin-top: 10px; padding: 10px; background: rgba(255,255,255,0.7); border-radius: 4px;">
+          <div id="initial-mass-display">
             <strong>Entsprechende Masse:</strong> <span id="initial-mass-value"></span> g
           </div>
         </div>
@@ -308,14 +308,14 @@
         <div id="reaction-steps-container"></div>
 
         <!-- Calculate Button -->
-        <div style="margin-top: 20px;">
+        <div class="mt-20">
           <button class="btn btn-primary btn-lg btn-block" id="btn-calc-multistep">
             <i class="fa fa-calculator"></i> Alle Schritte berechnen
           </button>
         </div>
 
         <!-- Results Display -->
-        <div id="multistep-result" style="display:none; margin-top:20px;">
+        <div id="multistep-result">
           <div class="well result-well">
             <h3><i class="fa fa-check-circle"></i> Ergebnisse der mehrstufigen Reaktion</h3>
             <div id="multistep-results-content"></div>
@@ -331,7 +331,7 @@
         <p>Berechnen Sie Beziehungen zwischen Druck, Volumen, Stoffmenge und Temperatur von Gasen:</p>
 
         <!-- Quick STP Reference -->
-        <div style="margin-bottom: 20px;">
+        <div class="mb-20">
           <button class="btn btn-info btn-sm" id="btn-load-stp">
             <i class="fa fa-thermometer-half"></i> STPbedingungen (0°C, 1 atm)
           </button>
@@ -344,8 +344,8 @@
         </div>
 
         <!-- Variable Selection -->
-        <div class="well" style="background: #e1f5fe; border: 2px solid #03A9F4;">
-          <h4 style="color: #0277BD; margin-top: 0;">
+        <div class="well well-blue">
+          <h4 class="text-blue">
             <i class="fa fa-calculator"></i> Was möchten Sie berechnen?
           </h4>
           <div class="form-group">
@@ -360,8 +360,8 @@
         </div>
 
         <!-- Gas Constant Selection -->
-        <div class="well" style="background: #f3e5f5; border: 2px solid #9C27B0; margin-bottom: 20px;">
-          <h4 style="color: #7B1FA2; margin-top: 0;">
+        <div class="well well-purple">
+          <h4 class="text-purple">
             <i class="fa fa-cog"></i> Gaskonstante (R)
           </h4>
           <div class="form-group">
@@ -374,7 +374,7 @@
               <option value="8.2057">R = 8.2057×10⁻⁵ m³·atm/(mol·K) [Druck in atm, Volumen in m³]</option>
             </select>
           </div>
-          <p style="font-size: 14px; color: #666;">
+          <p class="text-muted-sm">
             <strong>Wichtige Hinweise:</strong>
             <br>• Temperatur muss immer in Kelvin (K) angegeben werden
             <br>• K = °C + 273.15
@@ -459,7 +459,7 @@
                   <option value="F">Fahrenheit (°F)</option>
                 </select>
               </div>
-              <div id="kelvin-display" style="margin-top: 10px; padding: 8px; background: #fff3e0; border-radius: 4px; font-size: 13px;">
+              <div id="kelvin-display">
                 <strong>In Kelvin:</strong> <span id="kelvin-value">-</span> K
               </div>
             </div>
@@ -467,19 +467,19 @@
         </div>
 
         <!-- Calculate Button -->
-        <div style="margin-top: 20px;">
+        <div class="mt-20">
           <button class="btn btn-primary btn-lg btn-block" id="btn-calc-gaslaw">
             <i class="fa fa-calculator"></i> Berechnen
           </button>
         </div>
 
         <!-- Results Display -->
-        <div id="gas-result" style="display:none; margin-top:20px;">
+        <div id="gas-result">
           <div class="well result-well">
             <h3><i class="fa fa-check-circle"></i> Ergebnis der Gasberechnung</h3>
             <div id="gas-result-content"></div>
-            <div style="margin-top: 15px; text-align: center;">
-              <button class="btn btn-success" id="btn-export-gas-pdf" style="color: white;">
+            <div class="mt-15-center">
+              <button class="btn btn-success" id="btn-export-gas-pdf">
                 <i class="fa fa-file-pdf-o"></i> Als PDF exportieren
               </button>
             </div>
@@ -487,20 +487,20 @@
         </div>
 
         <!-- Molar Volume Reference -->
-        <div style="margin-top: 30px; padding: 20px; background: #e8f5e9; border-radius: 8px; border: 2px solid #4CAF50;">
-          <h4 style="color: #2E7D32; margin-top: 0;">
+        <div class="molar-volume-box">
+          <h4 class="text-green">
             <i class="fa fa-info-circle"></i> Molares Volumen bei Standardbedingungen
           </h4>
           <div class="row">
             <div class="col-md-6">
               <p><strong>STP (0°C, 1 atm):</strong></p>
-              <p style="font-size: 18px; color: #2E7D32;">Vₘ = 22.414 L/mol</p>
-              <p style="font-size: 13px; color: #666;">Ideales Gas bei Standardbedingungen für Temperatur und Druck</p>
+              <p class="font-lg-green">Vₘ = 22.414 L/mol</p>
+              <p class="font-sm-muted">Ideales Gas bei Standardbedingungen für Temperatur und Druck</p>
             </div>
             <div class="col-md-6">
               <p><strong>SATP (25°C, 1 bar):</strong></p>
-              <p style="font-size: 18px; color: #2E7D32;">Vₘ = 24.789 L/mol</p>
-              <p style="font-size: 13px; color: #666;">Ideales Gas bei Standardambienter Temperatur und Druck</p>
+              <p class="font-lg-green">Vₘ = 24.789 L/mol</p>
+              <p class="font-sm-muted">Ideales Gas bei Standardambienter Temperatur und Druck</p>
             </div>
           </div>
         </div>
@@ -599,6 +599,39 @@
   font-size: 12px;
   margin-left: 5px;
 }
+/* Result boxes */
+#mol-result, #mass-result, #limit-result, #yield-result, #multistep-result, #gas-result { display:none; margin-top:20px; }
+
+/* Utility classes */
+.mb-20 { margin-bottom: 20px; }
+.mt-20 { margin-top: 20px; }
+.mt-15-center { margin-top: 15px; text-align: center; }
+
+/* Multi-step section */
+#btn-clear-steps { margin-left: 10px; }
+.well-green { background: #e8f5e9; border: 2px solid #4CAF50; }
+.text-green { color: #2E7D32; }
+#initial-mass-display { display:none; margin-top:10px; padding:10px; background:rgba(255,255,255,0.7); border-radius:4px; }
+
+/* Gas section */
+.well-blue { background: #e1f5fe; border: 2px solid #03A9F4; }
+.text-blue { color: #0277BD; margin-top: 0; }
+.well-purple { background: #f3e5f5; border: 2px solid #9C27B0; margin-bottom: 20px; }
+.text-purple { color: #7B1FA2; margin-top: 0; }
+.text-muted-sm { font-size: 14px; color: #666; }
+#kelvin-display { margin-top:10px; padding:8px; background:#fff3e0; border-radius:4px; font-size:13px; }
+
+/* Molar volume section */
+.molar-volume-box { margin-top:30px; padding:20px; background:#e8f5e9; border-radius:8px; border:2px solid #4CAF50; }
+.font-lg-green { font-size: 18px; color: #2E7D32; }
+.font-sm-muted { font-size: 13px; color: #666; }
+
+/* Mass preview */
+#mass-preview p { font-size:2em; color:#007bff; }
+
+/* Export buttons */
+#btn-export-molmol-pdf { margin-top:15px; }
+#btn-export-gas-pdf { color: white; }
 </style>
 {{ end }}
 
