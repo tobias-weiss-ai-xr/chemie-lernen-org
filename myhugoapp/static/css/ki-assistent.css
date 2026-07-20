@@ -248,7 +248,7 @@
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .learning-profile h3 {
@@ -305,7 +305,7 @@
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .chat-search h3 {
@@ -412,8 +412,8 @@
 
 /* ── Export Button ──────────────────────────── */
 .export-btn {
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
   font-size: 12px;
   padding: 4px 10px;
@@ -425,7 +425,18 @@
 }
 
 .export-btn:hover {
-  background: rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Session Info Display ───────────────────── */
+#session-info-display {
+  padding: 6px 12px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  color: #6c757d;
+  font-size: 12px;
+  text-align: center;
 }
 
 /* ── Hint Button Styles ─────────────────────── */

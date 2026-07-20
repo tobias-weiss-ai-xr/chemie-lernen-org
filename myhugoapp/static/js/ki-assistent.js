@@ -213,23 +213,16 @@
 
     var infoDiv = document.createElement('div');
     infoDiv.id = 'session-info-display';
-    infoDiv.style.padding = '8px 12px';
-    infoDiv.style.backgroundColor = '#f8f9fa';
-    infoDiv.style.borderRadius = '4px';
-    infoDiv.style.marginBottom = '8px';
-    infoDiv.style.color = '#6c757d';
-    infoDiv.style.fontSize = '14px';
-    infoDiv.style.textAlign = 'center';
 
-    var sessionText = 'Noch ' + remaining + ' KI-Anfragen heute übrig';
+    var sessionText = 'Noch ' + remaining + ' KI-Anfragen heute';
     if (messageCount !== undefined) {
-      sessionText += ' (' + messageCount + ' von 50 Nachrichten in dieser Sitzung)';
+      sessionText += ' (' + messageCount + '/50)';
     }
 
     infoDiv.textContent = sessionText;
-    var chatInput = document.getElementById('chat-input');
-    if (chatInput && chatInput.parentNode) {
-      chatInput.parentNode.insertBefore(infoDiv, chatInput);
+    var chatArea = document.querySelector('.chat-input-area');
+    if (chatArea && chatArea.parentNode) {
+      chatArea.parentNode.insertBefore(infoDiv, chatArea);
     }
   }
 
@@ -716,16 +709,6 @@
   function makeMessageClickable(messageDiv) {
     var links = messageDiv.querySelectorAll('a');
     links.forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        var clickText = this.textContent.trim();
-        var chatInput = document.getElementById('chat-input');
-        if (chatInput) {
-          chatInput.value = clickText;
-          chatInput.focus();
-        }
-      });
       link.style.cursor = 'pointer';
       link.style.textDecoration = 'underline';
       link.style.color = '#007bff';
@@ -859,9 +842,15 @@
     } else {
       // Fallback: check for auth cookie existence
       checkAuth = fetch('/api/auth/me', { credentials: 'same-origin' })
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (data) { return data && data.user ? data.user : null; })
-        .catch(function () { return null; });
+        .then(function (r) {
+          return r.ok ? r.json() : null;
+        })
+        .then(function (data) {
+          return data && data.user ? data.user : null;
+        })
+        .catch(function () {
+          return null;
+        });
     }
 
     Promise.resolve(checkAuth).then(function (user) {
@@ -960,15 +949,20 @@
             return;
           }
 
-          var html = '<div class="chat-search-header">' +
-            '<span>' + results.length + ' Ergebnis(se)</span>' +
+          var html =
+            '<div class="chat-search-header">' +
+            '<span>' +
+            results.length +
+            ' Ergebnis(se)</span>' +
             '<button class="chat-search-close" id="chat-search-close">×</button>' +
             '</div>';
           for (var i = 0; i < results.length; i++) {
             var r = results[i];
             var preview = (r.preview || r.message || '').substring(0, 100);
-            html += '<div class="chat-search-item" data-session="' +
-              escapeHtml(r.sessionId || r.id || '') + '">' +
+            html +=
+              '<div class="chat-search-item" data-session="' +
+              escapeHtml(r.sessionId || r.id || '') +
+              '">' +
               '<div class="chat-search-item-title">' +
               escapeHtml(r.title || 'Chat ' + (i + 1)) +
               '</div>' +
@@ -1092,13 +1086,10 @@
       .then(function (data) {
         var hintText = data.hint || data.text || 'Kein Hinweis verfügbar.';
         hintArea.innerHTML =
-          '<div class="hint-result">' +
-          hintText.replace(/\n/g, '<br>') +
-          '</div>';
+          '<div class="hint-result">' + hintText.replace(/\n/g, '<br>') + '</div>';
       })
       .catch(function () {
-        hintArea.innerHTML =
-          '<p class="hint-error">Hinweis konnte nicht geladen werden.</p>';
+        hintArea.innerHTML = '<p class="hint-error">Hinweis konnte nicht geladen werden.</p>';
       })
       .finally(function () {
         btn.disabled = false;
