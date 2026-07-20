@@ -89,6 +89,233 @@
   background: #dee2e6;
 }
 
+/* ===== Score Section ===== */
+.score-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.score-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score-section-title {
+  color: white;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.score-right {
+  text-align: right;
+  color: white;
+}
+
+.score-label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.score-label-inline {
+  font-size: 14px;
+  margin: 0;
+}
+
+.score-label-top {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.score-correct {
+  color: #90ee90;
+}
+
+.score-wrong {
+  color: #ffb6c1;
+}
+
+.score-percentage {
+  font-size: 18px;
+}
+
+.score-total {
+  font-size: 20px;
+}
+
+/* ===== Control Section ===== */
+.control-section {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.row-margin-top {
+  margin-top: 15px;
+}
+
+.difficulty-labels {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.difficulty-easy {
+  color: #28a745;
+}
+
+.difficulty-medium {
+  color: #ffc107;
+}
+
+.difficulty-hard {
+  color: #dc3545;
+}
+
+/* ===== Question Section ===== */
+#question-section {
+  display: none;
+}
+
+.question-card {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.question-title {
+  color: #667eea;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.question-number-badge {
+  background: #667eea;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.question-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.question-data {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-family: monospace;
+}
+
+#hint-btn {
+  display: none;
+}
+
+/* ===== Answer Sections ===== */
+#mc-answer-section,
+#free-input-section {
+  display: none;
+}
+
+.answer-card {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.answer-card h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.tip-text {
+  font-size: 12px;
+  color: #6c757d;
+  margin-top: 10px;
+}
+
+/* ===== Feedback Section ===== */
+#feedback-section {
+  display: none;
+}
+
+.feedback-card {
+  padding: 25px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+#feedback-title {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.feedback-message {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.feedback-explanation {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+/* ===== Next Section ===== */
+#next-section {
+  display: none;
+}
+
+/* ===== Initial State ===== */
+#initial-state {
+  text-align: center;
+  padding: 40px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#initial-state .fa-graduation-cap {
+  font-size: 4rem;
+  color: #667eea;
+  margin-bottom: 20px;
+}
+
+#initial-state h2 {
+  color: #333;
+}
+
+#initial-state p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* ===== Print Button ===== */
+#print-btn {
+  margin-left: 10px;
+}
+
 @media (max-width: 768px) {
   .mc-options-grid {
     grid-template-columns: 1fr;

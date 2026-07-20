@@ -28,10 +28,10 @@
           <div class="panel-heading">
             <strong><i class="fa fa-users"></i> Aktive Lernräume</strong>
             <div class="pull-right session-list-actions">
-              <button class="btn btn-xs btn-primary" onclick="Collaboration.showCreateModal(); event.preventDefault();">
+              <button class="btn btn-xs btn-primary" id="btn-create-modal">
                 <i class="fa fa-plus"></i> Neuer Lernraum
               </button>
-              <button class="btn btn-xs btn-default" onclick="Collaboration.loadSessions(); event.preventDefault();">
+              <button class="btn btn-xs btn-default" id="btn-refresh-sessions">
                 <i class="fa fa-refresh"></i> Aktualisieren
               </button>
             </div>
@@ -50,10 +50,10 @@
       <div class="panel-heading">
         <strong><i class="fa fa-comments"></i> <span id="detail-session-name">Lernraum</span></strong>
         <div class="pull-right session-detail-actions">
-          <button class="btn btn-xs btn-default" onclick="Collaboration.showSessionList(); event.preventDefault();">
+          <button class="btn btn-xs btn-default" id="btn-back-to-list">
             <i class="fa fa-arrow-left"></i> Zurück
           </button>
-          <button class="btn btn-xs btn-danger" onclick="Collaboration.leaveSession(); event.preventDefault();">
+          <button class="btn btn-xs btn-danger" id="btn-leave-session">
             <i class="fa fa-sign-out"></i> Verlassen
           </button>
         </div>
@@ -95,10 +95,9 @@
                   <div class="chat-input-area">
                     <div class="input-group">
                       <input type="text" id="chat-input" class="form-control"
-                        placeholder="Nachricht eingeben..."
-                        onkeydown="if(event.key==='Enter' && !event.shiftKey) { event.preventDefault(); Collaboration.sendMessage(); }">
+                        placeholder="Nachricht eingeben...">
                       <span class="input-group-btn">
-                        <button class="btn btn-primary" onclick="Collaboration.sendMessage(); event.preventDefault();">
+                        <button class="btn btn-primary" id="btn-send-message">
                           <i class="fa fa-send"></i> Senden
                         </button>
                       </span>
@@ -109,10 +108,10 @@
                 <!-- Exercises Tab -->
                 <div role="tabpanel" class="tab-pane" id="tab-exercises">
                   <div class="exercises-toolbar">
-                    <button class="btn btn-sm btn-primary" onclick="Collaboration.shareExercise(); event.preventDefault();">
+                    <button class="btn btn-sm btn-primary" id="btn-share-exercise">
                       <i class="fa fa-share"></i> Übung teilen
                     </button>
-                    <button class="btn btn-sm btn-default" onclick="Collaboration.loadExercises(); event.preventDefault();">
+                    <button class="btn btn-sm btn-default" id="btn-refresh-exercises">
                       <i class="fa fa-refresh"></i> Aktualisieren
                     </button>
                   </div>
@@ -149,7 +148,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
-        <button type="button" class="btn btn-primary" onclick="Collaboration.doCreateSession(); event.preventDefault();">
+        <button type="button" class="btn btn-primary" id="btn-do-create-session">
           <i class="fa fa-check"></i> Erstellen
         </button>
       </div>
@@ -158,5 +157,31 @@
 </div>
 
 <script src="/js/kollaboration.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  function wire(id, fn) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('click', function (e) { fn(); e.preventDefault(); });
+  }
+  wire('btn-create-modal', function () { Collaboration.showCreateModal(); });
+  wire('btn-refresh-sessions', function () { Collaboration.loadSessions(); });
+  wire('btn-back-to-list', function () { Collaboration.showSessionList(); });
+  wire('btn-leave-session', function () { Collaboration.leaveSession(); });
+  wire('btn-send-message', function () { Collaboration.sendMessage(); });
+  wire('btn-share-exercise', function () { Collaboration.shareExercise(); });
+  wire('btn-refresh-exercises', function () { Collaboration.loadExercises(); });
+  wire('btn-do-create-session', function () { Collaboration.doCreateSession(); });
+
+  var chatInput = document.getElementById('chat-input');
+  if (chatInput) {
+    chatInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        Collaboration.sendMessage();
+      }
+    });
+  }
+});
+</script>
 <link rel="stylesheet" href="/css/kollaboration.css">
 {{ end }}
