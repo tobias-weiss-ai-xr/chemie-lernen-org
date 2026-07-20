@@ -48,36 +48,7 @@
       '<button class="pwa-install-close" type="button" aria-label="Schließen">&times;</button>' +
       '</div>';
 
-    banner.style.cssText =
-      'position:fixed;bottom:0;left:0;right:0;background:#fff;' +
-      'box-shadow:0 -2px 12px rgba(0,0,0,0.12);z-index:10000;' +
-      'transform:translateY(100%);transition:transform 0.3s ease;' +
-      'font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;';
-
-    var style = document.createElement('style');
-    style.textContent =
-      '#pwa-install-banner .pwa-install-content{' +
-      'display:flex;align-items:center;gap:12px;padding:12px 16px;max-width:1200px;margin:0 auto;' +
-      '}' +
-      '#pwa-install-banner .pwa-install-icon{flex-shrink:0}' +
-      '#pwa-install-banner .pwa-install-text{flex:1;display:flex;flex-direction:column;gap:2px}' +
-      '#pwa-install-banner .pwa-install-text strong{color:#1a1a1a;font-size:14px}' +
-      '#pwa-install-banner .pwa-install-text span{color:#666;font-size:12px}' +
-      '#pwa-install-banner .pwa-install-btn{' +
-      'background:#2d6a4f;color:#fff;border:none;padding:8px 16px;border-radius:6px;' +
-      'cursor:pointer;font-size:13px;font-weight:500;white-space:nowrap}' +
-      '#pwa-install-banner .pwa-install-btn:hover{background:#245a40}' +
-      '#pwa-install-banner .pwa-install-close{' +
-      'background:none;border:none;font-size:20px;color:#999;cursor:pointer;padding:4px 8px;' +
-      'line-height:1}' +
-      '#pwa-install-banner .pwa-install-close:hover{color:#333}' +
-      '#pwa-install-banner.visible{transform:translateY(0)}' +
-      '@media(max-width:600px){' +
-      '#pwa-install-banner .pwa-install-content{padding:10px 12px;gap:8px}' +
-      '#pwa-install-banner .pwa-install-text span{display:none}' +
-      '}';
-
-    document.head.appendChild(style);
+    banner.style.display = 'block';
     document.body.appendChild(banner);
 
     var installBtn = banner.querySelector('.pwa-install-btn');
