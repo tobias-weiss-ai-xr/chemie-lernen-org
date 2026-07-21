@@ -178,5 +178,15 @@
     "durationMs": 19474,
     "model": "saia/qwen3.5-397b-a17b",
     "durationMin": "0.3"
+  },
+  {
+    "startedAt": "2026-07-21T02:42:19.548Z",
+    "articlesGenerated": 0,
+    "articlesFailed": 3,
+    "feedErrors": 6,
+    "kgErrors": 0,
+    "durationMs": 29657,
+    "model": "saia/qwen3.5-397b-a17b",
+    "durationMin": "0.5"
   }
 ]
