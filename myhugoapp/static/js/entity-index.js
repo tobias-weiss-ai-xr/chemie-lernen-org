@@ -1,3 +1,4 @@
+/* global lunr, loadD3AndEgoGraph */
 (function () {
   window.__entityIndexLoaded = true;
   var app = document.getElementById('entity-app');
@@ -42,17 +43,42 @@
   }
 
   var _data;
-  fetch('/api/kg-data?limit=500', { signal: AbortSignal.timeout(15000) })
-    .then(function (r) {
+  var _searchIndex = null;
+  var _lunrIndex = null;
+
+  function loadSearchIndex() {
+    return fetch('/search/entity-index.json', { signal: AbortSignal.timeout(5000) })
+      .then(function (r) {
+        if (!r.ok) return null;
+        return r.json();
+      })
+      .then(function (data) {
+        if (data && data.index && data.entities) {
+          _searchIndex = data.entities;
+          _lunrIndex = lunr.Index.load(data.index);
+          console.log('[entity-index] Search index loaded:', data.entityCount, 'entities');
+        }
+        return data;
+      })
+      .catch(function (err) {
+        console.warn('[entity-index] Search index not available:', err.message);
+        return null;
+      });
+  }
+
+  Promise.all([
+    fetch('/api/kg-data?limit=500', { signal: AbortSignal.timeout(15000) }).then(function (r) {
       if (!r.ok) throw new Error(r.status);
       return r.json();
-    })
-    .then(function (d) {
+    }),
+    loadSearchIndex(),
+  ])
+    .then(function (results) {
+      var d = results[0];
       _data = d;
       skeleton.style.display = 'none';
       window.__initStarted = true;
       try {
-        // Graceful fallback when Neo4j is down and returns empty data
         var entityCount = (d.entities || []).length;
         var articleCount = (d.articles || []).length;
         if (entityCount === 0 && articleCount === 0) {
@@ -138,22 +164,35 @@
     }
 
     function filteredAndSorted() {
-      var f = entities.filter(function (e) {
-        if (activeFilter !== 'all' && e.category !== activeFilter) return false;
-        if (stateFilter && stateLinkedNames) {
-          if (!stateLinkedNames.has(e.name)) return false;
-        }
-        if (searchQuery) {
-          var q = searchQuery.toLowerCase();
-          return (
-            e.name.toLowerCase().indexOf(q) !== -1 ||
-            (e.relatedEntities || []).some(function (r) {
-              return r.name.toLowerCase().indexOf(q) !== -1;
-            })
-          );
-        }
-        return true;
-      });
+      var f = entities;
+
+      if (searchQuery && _lunrIndex && _searchIndex) {
+        var lunrResults = _lunrIndex.search(searchQuery);
+        var matchedIds = lunrResults.map(function (r) {
+          return r.ref;
+        });
+        f = f.filter(function (e) {
+          return matchedIds.indexOf(toSlug(e.name)) !== -1;
+        });
+      } else {
+        f = f.filter(function (e) {
+          if (activeFilter !== 'all' && e.category !== activeFilter) return false;
+          if (stateFilter && stateLinkedNames) {
+            if (!stateLinkedNames.has(e.name)) return false;
+          }
+          if (searchQuery) {
+            var q = searchQuery.toLowerCase();
+            return (
+              e.name.toLowerCase().indexOf(q) !== -1 ||
+              (e.relatedEntities || []).some(function (r) {
+                return r.name.toLowerCase().indexOf(q) !== -1;
+              })
+            );
+          }
+          return true;
+        });
+      }
+
       f.sort(function (a, b) {
         var va = getSortValue(a, sortMode);
         var vb = getSortValue(b, sortMode);
@@ -649,8 +688,8 @@
   }
 
   function renderGraph(data) {
-    if (!globalThis.D3EgoGraph || !graphContainer || !graphEl) {
-      console.warn('[entity-index] D3EgoGraph not available or container missing');
+    if (!graphContainer || !graphEl) {
+      console.warn('[entity-index] Graph container missing');
       if (graphContainer) graphContainer.style.display = 'none';
       return;
     }
@@ -666,23 +705,43 @@
 
     updateStats(entityCount, articleCount, linkCount, entityCount);
 
-    try {
-      globalThis.D3EgoGraph.createFullGraph(graphEl, data, {
-        filterControls: null,
-        showLegend: false,
-        height: graphEl.offsetHeight || 600,
-      });
+    if (typeof loadD3AndEgoGraph === 'function') {
+      loadD3AndEgoGraph()
+        .then(function () {
+          if (!globalThis.D3EgoGraph) {
+            console.warn('[entity-index] D3EgoGraph not available after load');
+            return;
+          }
+          try {
+            globalThis.D3EgoGraph.createFullGraph(graphEl, data, {
+              filterControls: null,
+              showLegend: false,
+              height: graphEl.offsetHeight || 600,
+            });
 
-      graphLoading.style.display = 'none';
-      graphContainer.style.display = 'block';
-      renderLegend(data);
-      attachGraphFilters(data);
-    } catch (e) {
-      console.error('[entity-index] renderGraph failed:', e);
-      if (graphLoading) {
-        graphLoading.innerHTML =
-          '<div class="empty-state"><div class="empty-state-icon">⚠️</div><p>Graph konnte nicht visualisiert werden.</p></div>';
-      }
+            graphLoading.style.display = 'none';
+            graphContainer.style.display = 'block';
+            renderLegend(data);
+            attachGraphFilters(data);
+          } catch (e) {
+            console.error('[entity-index] renderGraph failed:', e);
+            if (graphLoading) {
+              graphLoading.innerHTML =
+                '<div class="empty-state"><div class="empty-state-icon">⚠️</div><p>Graph konnte nicht visualisiert werden.</p></div>';
+            }
+          }
+        })
+        .catch(function (err) {
+          console.warn('[entity-index] Failed to load D3:', err);
+          if (graphLoading) {
+            graphLoading.innerHTML =
+              '<div class="empty-state"><div class="empty-state-icon">⚠️</div><p>Graph-Bibliothek konnte nicht geladen werden.</p></div>';
+          }
+        });
+    } else {
+      console.warn('[entity-index] loadD3AndEgoGraph not available');
+      if (graphLoading) graphLoading.style.display = 'none';
+      if (graphContainer) graphContainer.style.display = 'block';
     }
   }
 

@@ -33,7 +33,7 @@
     "export:kg-data": "node scripts/export-kg-data.mjs",
     "generate:entities": "node scripts/generate-entity-pages.mjs",
     "validate:curricula": "node scripts/validate-curricula.mjs",
-    "prebuild": "(node scripts/export-kg-data.mjs || echo '[build] Neo4j export skipped (non-fatal)') && node scripts/generate-entity-pages.mjs",
+    "prebuild": "(node scripts/export-kg-data.mjs || echo '[build] Neo4j export skipped (non-fatal)') && node scripts/generate-entity-pages.mjs && (node scripts/build-search-index.mjs || echo '[build] Search index skipped (kg_data empty)')",
     "build": "docker run --rm -v \"$(pwd)/myhugoapp:/src\" -w /src hugomods/hugo:exts hugo --baseURL https://chemie-lernen.org && npx pagefind --site myhugoapp/public"
   },
   "lint-staged": {
@@ -51,6 +51,7 @@
     "@graphwiz/neo4j": "file:packages/graphwiz/graphwiz-neo4j-0.2.0.tgz",
     "@playwright/test": "^1.61.0",
     "fast-xml-parser": "^5.9.2",
+    "lunr": "2.3.9",
     "neo4j-driver": "^6.1.0"
   },
   "devDependencies": {

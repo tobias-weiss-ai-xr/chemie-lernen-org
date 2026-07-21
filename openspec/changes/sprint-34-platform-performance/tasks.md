@@ -1,10 +1,10 @@
 ## 1. Hugo Build Performance
 
-- [ ] 1.1 Measure baseline: `time npm run build` — record output
-- [ ] 1.2 Paginate entity page generation: group 700+ entities into batches of 100, skip empty entity groups
-- [ ] 1.3 Lazy-load D3.js assets: move `d3-ego-graph.js` to load only on entity detail page (not globally)
-- [ ] 1.4 Parallelize entity page writes in `generate-entity-pages.mjs` using Promise.all with chunked batches
-- [ ] 1.5 Re-measure build time — target ≤20s; report actual
+- [x] 1.1 Measure baseline: `time npm run build` — 45.6s
+- [x] 1.2 Paginate entity page generation: group 700+ entities into batches of 100, skip empty entity groups
+- [x] 1.3 Lazy-load D3.js assets: dynamic load on entity-single, entity-index, wissennetz pages
+- [x] 1.4 Parallelize entity page writes in `generate-entity-pages.mjs` using Promise.all with chunked batches
+- [x] 1.5 Re-measure build time — target ≤20s; report actual — **19.3s** (58% improvement)
 
 ## 2. Full-Text Entity Search
 

@@ -131,11 +131,14 @@ async function main() {
     // ENTITY_DIR may not exist yet — first run
   }
 
+  const BATCH_SIZE = 100;
   let generated = 0;
   let updated = 0;
-  for (const entity of entities) {
+  let skipped = 0;
+
+  async function writeEntityPage(entity) {
     const slug = slugify(entity.name);
-    if (HAND_WRITTEN.has(slug)) continue; // don't touch the 3 element markdowns
+    if (HAND_WRITTEN.has(slug)) return { type: 'skipped' };
 
     const pageDir = join(ENTITY_DIR, slug);
     const pageFile = join(pageDir, 'index.md');
@@ -146,7 +149,7 @@ async function main() {
     const relatedNames = (entity.relatedEntities || [])
       .map((r) => (typeof r === 'string' ? r : r.name))
       .filter(Boolean)
-      .slice(0, 50); // cap to keep frontmatter sane
+      .slice(0, 50);
     const components = (entity.components || []).slice(0, 20);
     const description = entity.description || defaultDescription(entity);
 
@@ -170,24 +173,41 @@ async function main() {
       articleListForBody(entity.articles || []),
     ].join('\n');
 
-    // Check if it already exists with the same content (skip needless writes)
     let existed = false;
     try {
       const existing = await readFile(pageFile, 'utf-8');
       existed = true;
-      if (existing === frontmatter) continue;
+      if (existing === frontmatter) return { type: 'skipped' };
     } catch {
       // new
     }
 
     await mkdir(pageDir, { recursive: true });
     await writeFile(pageFile, frontmatter, 'utf-8');
-    if (existed) updated++;
-    else generated++;
+    return { type: existed ? 'updated' : 'generated' };
+  }
+
+  async function processBatch(batch) {
+    const results = await Promise.all(batch.map((entity) => writeEntityPage(entity)));
+    return results;
+  }
+
+  const batches = [];
+  for (let i = 0; i < entities.length; i += BATCH_SIZE) {
+    batches.push(entities.slice(i, i + BATCH_SIZE));
+  }
+
+  for (const batch of batches) {
+    const results = await processBatch(batch);
+    for (const result of results) {
+      if (result.type === 'generated') generated++;
+      else if (result.type === 'updated') updated++;
+      else if (result.type === 'skipped') skipped++;
+    }
   }
 
   console.log(
-    `Entity pages: ${generated} new, ${updated} updated, ${removed} removed, in ${ENTITY_DIR}`
+    `Entity pages: ${generated} new, ${updated} updated, ${skipped} skipped (same content), ${removed} removed, in ${ENTITY_DIR}`
   );
 }
 

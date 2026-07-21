@@ -25,7 +25,26 @@
   </div>
 </div>
 
-<script src="{{ "/js/visualization/d3-ego-graph.js" | relURL }}"></script>
-<script src="{{ "/js/wissennetz-graph.js" | relURL }}"></script>
+<script>
+var D3_LOADED = false;
+function loadD3AndEgoGraph() {
+  if (D3_LOADED) return Promise.resolve();
+  D3_LOADED = true;
+  return new Promise(function(resolve, reject) {
+    var d3Script = document.createElement('script');
+    d3Script.src = '{{ "/js/vendor/d3.v7.min.js" | relURL }}';
+    d3Script.onload = function() {
+      var egoScript = document.createElement('script');
+      egoScript.src = '{{ "/js/visualization/d3-ego-graph.js" | relURL }}';
+      egoScript.onload = resolve;
+      egoScript.onerror = reject;
+      document.head.appendChild(egoScript);
+    };
+    d3Script.onerror = reject;
+    document.head.appendChild(d3Script);
+  });
+}
+</script>
+<script src="{{ "/js/wissennetz-graph.js" | relURL }}?v=2"></script>
 
 {{ end }}

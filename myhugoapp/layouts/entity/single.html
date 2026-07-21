@@ -772,7 +772,26 @@
   <div id="entity-content" {{ if $canSSR }}style="display:none"{{ end }}></div>
 </div>
 
-<script src="{{ "/js/visualization/d3-ego-graph.js" | relURL }}"></script>
+<script>
+var D3_LOADED = false;
+function loadD3AndEgoGraph() {
+  if (D3_LOADED) return Promise.resolve();
+  D3_LOADED = true;
+  return new Promise(function(resolve, reject) {
+    var d3Script = document.createElement('script');
+    d3Script.src = '{{ "/js/vendor/d3.v7.min.js" | relURL }}';
+    d3Script.onload = function() {
+      var egoScript = document.createElement('script');
+      egoScript.src = '{{ "/js/visualization/d3-ego-graph.js" | relURL }}';
+      egoScript.onload = resolve;
+      egoScript.onerror = reject;
+      document.head.appendChild(egoScript);
+    };
+    d3Script.onerror = reject;
+    document.head.appendChild(d3Script);
+  });
+}
+</script>
 <script>
 (function () {
   var ssrContent = document.getElementById('entity-ssr-content');
@@ -820,8 +839,14 @@
         }
         if (entity) {
           var egoContainer = document.getElementById('entity-ego-graph');
-          if (egoContainer && globalThis.D3EgoGraph) {
-            globalThis.D3EgoGraph.createEgoGraph(egoContainer, allData, { entity: entity });
+          if (egoContainer) {
+            loadD3AndEgoGraph().then(function() {
+              if (globalThis.D3EgoGraph) {
+                globalThis.D3EgoGraph.createEgoGraph(egoContainer, allData, { entity: entity });
+              }
+            }).catch(function(err) {
+              console.warn('[entity] Failed to load D3:', err);
+            });
           }
         }
       })
@@ -1036,12 +1061,16 @@
     skel.style.display = 'none';
     app.style.display = 'block';
 
-    // Start ego graph rendering via shared D3 module
-    if (globalThis.D3EgoGraph) {
-      var egoContainer = document.getElementById('entity-ego-graph');
-      if (egoContainer) {
-        globalThis.D3EgoGraph.createEgoGraph(egoContainer, data, { entity: entity });
-      }
+    // Start ego graph rendering via shared D3 module (lazy-loaded)
+    var egoContainer = document.getElementById('entity-ego-graph');
+    if (egoContainer) {
+      loadD3AndEgoGraph().then(function() {
+        if (globalThis.D3EgoGraph) {
+          globalThis.D3EgoGraph.createEgoGraph(egoContainer, data, { entity: entity });
+        }
+      }).catch(function(err) {
+        console.warn('[entity] Failed to load D3:', err);
+      });
     }
   }
 
