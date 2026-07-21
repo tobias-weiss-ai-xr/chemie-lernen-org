@@ -39,7 +39,7 @@ async function main() {
     return;
   }
 
-  const { entities, articles } = JSON.parse(raw);
+  const { entities } = JSON.parse(raw);
 
   if (!entities || entities.length === 0) {
     console.log('No entities found. Skipping search index build.');
