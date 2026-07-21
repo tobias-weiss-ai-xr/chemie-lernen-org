@@ -23,12 +23,10 @@ Last updated: 2026-07-18
 
 ## Active changes (`changes/`)
 
-| Change                           | Status        | Goal                                                                       |
-| -------------------------------- | ------------- | -------------------------------------------------------------------------- |
-| `sprint-31-cleanup-archive`      | Spec + design | Archive shipped sprints, fix code-entity leak, .env.example, update index  |
-| `sprint-32-content-data`         | Spec + design | Fix BB/BE curricula, add Saarland, cross-link audit, klassenstufen content |
-| `sprint-33-lehrenden-premium`    | Spec + design | Stripe webhooks, premium gating, subscription management UI                |
-| `sprint-34-platform-performance` | Spec + design | Hugo build perf, full-text entity search, PWA offline, mobile UX audit     |
+| Change                           | Status        | Goal                                                                   |
+| -------------------------------- | ------------- | ---------------------------------------------------------------------- |
+| `sprint-33-lehrenden-premium`    | Spec + design | Stripe webhooks, premium gating, subscription management UI            |
+| `sprint-34-platform-performance` | Spec + design | Hugo build perf, full-text entity search, PWA offline, mobile UX audit |
 
 ## Archived changes (`changes/archive/`)
 
@@ -41,13 +39,15 @@ Last updated: 2026-07-18
 | sprint-8c-rag                           | d47bd48e           | Shipped 2026-06-26                                          |
 | sprint-8-mega-kg (umbrella)             | wraps 8a/8b/8c     | Shipped 2026-06-26                                          |
 | deploy-observability (API smoke tests)  | a1a11699           | Shipped 2026-06-26                                          |
-| sprint-9-specs-and-fixes                | 20/20 tasks ✓      | Archived 2026-07-04                                         |
+| sprint-9-specs-and-fixs                 | 20/20 tasks ✓      | Archived 2026-07-04                                         |
 | extend-entity-kg-with-lehrplan          | 19/19 tasks ✓      | Archived 2026-07-05. Commit `9aeb6b5b`                      |
 | integrate-global-modulhandbuecher       | 33/33 tasks ✓      | Archived 2026-07-05. Commit `3753a6a1`                      |
 | sprint-27-kg-pipeline-fix               | 24/24 tasks ✓      | Shipped 2026-07-18 (entity pages, API bugs, Neo4j indexes)  |
 | sprint-28-neo4j-schema-reconciliation   | 13/13 tasks ✓      | Shipped 2026-07-18 (curriculum schema, entity linking)      |
 | sprint-29-curriculum-quality-gaps       | 11/11 tasks ✓      | Shipped 2026-07-18 (didaktik endpoint, klassenstufen, CI)   |
 | sprint-30-wissensnetz-ux-learning-paths | 18/18 tasks ✓      | Shipped 2026-07-18 (D3 edge colors, chat entities, filters) |
+| sprint-31-cleanup-archive               | 12/12 tasks ✓      | Archived 2026-07-21 (code-entity filter, .env.example)      |
+| sprint-32-content-data                  | 11/11 tasks ✓      | Archived 2026-07-21 (curricula repair, cross-link audit)    |
 
 ## Legacy planning artifacts (`archive/`)
 
