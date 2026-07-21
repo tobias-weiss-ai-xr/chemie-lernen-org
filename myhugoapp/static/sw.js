@@ -344,6 +344,22 @@ self.addEventListener('fetch', function (event) {
     return;
   }
 
+  // ── KG Data API: StaleWhileRevalidate for entity data ───
+  if (
+    url.pathname.startsWith('/api/kg-data') ||
+    url.pathname.startsWith('/api/content') ||
+    url.pathname.startsWith('/api/didaktik')
+  ) {
+    event.respondWith(staleWhileRevalidate(request, DYNAMIC_CACHE));
+    return;
+  }
+
+  // ── Search index: CacheFirst (rarely changes) ───────────
+  if (url.pathname === '/search/entity-index.json' || url.pathname.endsWith('/entity-index.json')) {
+    event.respondWith(cacheFirst(request, DYNAMIC_CACHE));
+    return;
+  }
+
   // ── API calls (non-auth): network-first with cache ──────
   if (isApiCall(url)) {
     event.respondWith(networkFirst(request, DYNAMIC_CACHE));
@@ -375,6 +391,29 @@ function cacheFirst(request, cacheName) {
         }
         return response;
       });
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// STRATEGY: Stale-While-Revalidate (API data)
+// ═══════════════════════════════════════════════════════════
+function staleWhileRevalidate(request, cacheName) {
+  return caches.open(cacheName).then(function (cache) {
+    return cache.match(request).then(function (cached) {
+      var fetchPromise = fetch(request)
+        .then(function (response) {
+          if (response && response.status === 200) {
+            cache.put(request, response.clone());
+            lruEvictCache(cacheName, CACHE_LIMITS[cacheName] || 10 * 1024 * 1024);
+            enforceGlobalLimit();
+          }
+          return response;
+        })
+        .catch(function () {
+          return null;
+        });
+      return cached || fetchPromise;
     });
   });
 }
