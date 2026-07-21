@@ -10,7 +10,7 @@
 
 - [x] 2.1 Create `api/middleware/premium-required.js` — check `req.user.plan === 'premium'` from session, return 402 if not
 - [x] 2.2 Remove hardcoded `config/premium-users.json` allowlist
-- [ ] 2.3 Wire premium middleware to premium-gated calculators (molekuel-studio, perioden-system, titrations-simulator)
+- [x] 2.3 Wire premium middleware to premium-gated calculators (molekuel-studio, perioden-system, titrations-simulator) — frontend gating via /api/auth/me check + locked overlays
 - [x] 2.4 Wire premium middleware to premium-gated API routes (GPT-4 chat, advanced analytics)
 
 ## 3. Subscription Management UI
@@ -22,6 +22,6 @@
 
 ## 4. Testing & Docs
 
-- [ ] 4.1 Write webhook handler tests (stripe event fixture → DB state)
-- [ ] 4.2 Write middleware tests (premium user → 200, free user → 402)
-- [ ] 4.3 Document Stripe test mode setup in `.env.example` and local dev README
+- [x] 4.1 Write webhook handler tests (stripe event fixture → DB state) — tests/stripe-premium-webhook.test.js
+- [x] 4.2 Write middleware tests (premium user → 200, free user → 402) — tests/premium-middleware.test.js
+- [x] 4.3 Document Stripe test mode setup in `.env.example` and local dev README
