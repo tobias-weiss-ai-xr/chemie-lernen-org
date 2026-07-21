@@ -49,6 +49,7 @@ const logger = pino({
 const PORT = process.env.PORT || 3001;
 const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
 const LITELLM_MODEL = process.env.LITELLM_MODEL || 'gemma-4';
+const LITELLM_MODEL_PREMIUM = process.env.LITELLM_MODEL_PREMIUM || 'gpt-4o-mini';
 const RATE_LIMIT = parseInt(process.env.RATE_LIMIT, 10) || 50; // requests per IP per day
 const SESSION_TTL = 24 * 60 * 60 * 1000; // 24 hours
 const MAX_MESSAGES_PER_SESSION = 50; // prevent infinite conversations
@@ -501,13 +502,14 @@ app.post('/api/chat', async (req, res) => {
     }
 
     const conversationHistory = [{ role: 'system', content: systemPrompt }, ...session.messages];
+    const model = req.user?.tier === 'premium' ? LITELLM_MODEL_PREMIUM : LITELLM_MODEL;
 
     if (!acceptStreaming) {
       const llmRes = await fetch(`${LITELLM_URL}/v1/chat/completions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: LITELLM_MODEL,
+          model,
           messages: conversationHistory,
           max_tokens: 2048,
           temperature: 0.5,
@@ -573,7 +575,7 @@ app.post('/api/chat', async (req, res) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: LITELLM_MODEL,
+          model,
           messages: conversationHistory,
           max_tokens: 2048,
           temperature: 0.5,

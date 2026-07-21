@@ -445,6 +445,34 @@ authRouter.post('/reset-password', async (req, res) => {
   }
 });
 
+// POST /api/auth/customer-portal — Stripe Customer Portal for subscription management
+authRouter.post('/customer-portal', requireAuth, async (req, res) => {
+  if (!stripe) {
+    return res.status(501).json({ error: 'Stripe nicht konfiguriert' });
+  }
+  try {
+    let customerId = req.user.stripeCustomerId;
+    if (!customerId) {
+      // Create customer if not exists
+      const customer = await stripe.customers.create({
+        email: req.user.email,
+        metadata: { userId: String(req.user.id) },
+      });
+      customerId = customer.id;
+      setStripeCustomerId(req.user.id, customerId);
+    }
+
+    const session = await stripe.billingPortal.sessions.create({
+      customer: customerId,
+      return_url: `${FRONTEND_URL}/premium/verwaltung/`,
+    });
+    res.json({ url: session.url });
+  } catch (err) {
+    console.error('[stripe] customer-portal error:', err.message);
+    res.status(500).json({ error: 'Kundenportal nicht verfügbar' });
+  }
+});
+
 // POST /api/auth/create-checkout-session — Stripe Checkout for premium subscription
 authRouter.post('/create-checkout-session', requireAuth, async (req, res) => {
   if (!stripe) {
@@ -588,7 +616,6 @@ export async function handleStripeWebhook(req, res) {
 
       case 'invoice.payment_succeeded': {
         const invoice = event.data.object;
-        // Extend premium_until based on subscription period
         if (invoice.lines?.data?.[0]?.period) {
           const periodEnd = new Date(invoice.lines.data[0].period.end * 1000).toISOString();
           const customerId = invoice.customer;
@@ -597,6 +624,36 @@ export async function handleStripeWebhook(req, res) {
             setPremiumTier(user.id, 'premium', periodEnd);
             console.log('[stripe] extended premium for user', user.id, 'until', periodEnd);
           }
+        }
+        break;
+      }
+
+      case 'customer.subscription.updated': {
+        const subscription = event.data.object;
+        const customerId = subscription.customer;
+        const user = getUserByStripeId(customerId);
+        if (user) {
+          const status = subscription.status;
+          if (status === 'active' || status === 'trialing') {
+            const periodEnd = new Date(subscription.current_period_end * 1000).toISOString();
+            setPremiumTier(user.id, 'premium', periodEnd);
+            console.log('[stripe] updated premium for user', user.id, 'until', periodEnd);
+          } else if (status === 'past_due') {
+            setPremiumTier(user.id, 'past_due', null);
+            console.log('[stripe] user', user.id, 'payment past due');
+          }
+        }
+        break;
+      }
+
+      case 'invoice.payment_failed': {
+        const invoice = event.data.object;
+        const customerId = invoice.customer;
+        const user = getUserByStripeId(customerId);
+        if (user) {
+          setPremiumTier(user.id, 'past_due', null);
+          console.log('[stripe] payment failed for user', user.id);
+          // HACK: Send email notification when SMTP is configured
         }
         break;
       }

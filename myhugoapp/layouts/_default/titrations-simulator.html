@@ -330,13 +330,53 @@
 
 </div>
 
+<div id="premium-locked-overlay" class="premium-locked-overlay" style="display: none;">
+  <div class="premium-locked-content">
+    <div class="premium-locked-icon">🔒</div>
+    <h2 class="premium-locked-title">Premium-Feature</h2>
+    <p class="premium-locked-desc">
+      Der Titrationssimulator ist ein Premium-Feature für Lehrkräfte.
+      Upgrade auf Premium für unbegrenzten Zugriff auf alle Simulationen.
+    </p>
+    <ul class="premium-features">
+      <li>Alle Titrationen simulieren</li>
+      <li>Interaktive pH-Kurven</li>
+      <li>Werbefreies Lernen</li>
+      <li>Zugriff auf alle Premium-Rechner</li>
+    </ul>
+    <a href="/premium/" class="premium-locked-cta">Jetzt Premium aktivieren</a>
+  </div>
+</div>
+
 <script src="{{ "js/utils/ui-utils.js" | relURL }}"></script><script src="{{ "js/utils/chemistry-utils.js" | relURL }}"></script><script src="{{ "js/titrations-simulator.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/titrations-simulator.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/premium.css" | relURL }}">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 {{ end }}
 
 {{ define "js" }}
 <script>
+(function() {
+  var overlay = document.getElementById('premium-locked-overlay');
+  if (!overlay) return;
+
+  fetch('/api/auth/me', { credentials: 'include' })
+    .then(function(r) { return r.ok ? r.json() : null; })
+    .then(function(user) {
+      var isPremium = user && (user.plan === 'premium' || user.tier === 'premium');
+      if (!isPremium) {
+        overlay.style.display = 'flex';
+        var container = document.querySelector('.titration-simulator-container');
+        if (container) container.classList.add('premium-content-locked');
+      }
+    })
+    .catch(function() {
+      overlay.style.display = 'flex';
+      var container = document.querySelector('.titration-simulator-container');
+      if (container) container.classList.add('premium-content-locked');
+    });
+})();
+
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('btn-run-titration').addEventListener('click', function() { runTitration(); });
 });

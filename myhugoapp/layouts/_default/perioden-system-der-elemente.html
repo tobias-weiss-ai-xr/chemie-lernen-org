@@ -2,6 +2,7 @@
 
 {{ define "css" }}
 <link rel="stylesheet" href="{{ "/css/perioden-system-der-elemente.css" | relURL }}">
+<link rel="stylesheet" href="{{ "/css/premium.css" | relURL }}">
 {{ end }}
 
 {{ define "main" }}
@@ -62,9 +63,49 @@
     </div>
   </div>
 </div>
+
+<div id="premium-locked-overlay" class="premium-locked-overlay" style="display: none;">
+  <div class="premium-locked-content">
+    <div class="premium-locked-icon">🔒</div>
+    <h2 class="premium-locked-title">Premium-Feature</h2>
+    <p class="premium-locked-desc">
+      Das interaktive 3D-Periodensystem ist ein Premium-Feature für Lehrkräfte.
+      Upgrade auf Premium für unbegrenzten Zugriff auf alle Visualisierungen.
+    </p>
+    <ul class="premium-features">
+      <li>Interaktives 3D-Periodensystem</li>
+      <li>Alle Element-Trends visualisieren</li>
+      <li>Werbefreies Lernen</li>
+      <li>Zugriff auf alle Premium-Rechner</li>
+    </ul>
+    <a href="/premium/" class="premium-locked-cta">Jetzt Premium aktivieren</a>
+  </div>
+</div>
 {{ end }}
 
 {{ define "js" }}
+<script>
+(function() {
+  var overlay = document.getElementById('premium-locked-overlay');
+  if (!overlay) return;
+
+  fetch('/api/auth/me', { credentials: 'include' })
+    .then(function(r) { return r.ok ? r.json() : null; })
+    .then(function(user) {
+      var isPremium = user && (user.plan === 'premium' || user.tier === 'premium');
+      if (!isPremium) {
+        overlay.style.display = 'flex';
+        var container = document.getElementById('container');
+        if (container) container.classList.add('premium-content-locked');
+      }
+    })
+    .catch(function() {
+      overlay.style.display = 'flex';
+      var container = document.getElementById('container');
+      if (container) container.classList.add('premium-content-locked');
+    });
+})();
+</script>
 <script type="importmap">
     {
         "imports": {

@@ -1,0 +1,297 @@
+{{ define "main" }}
+
+<div class="auth-page">
+  <div class="premium-management-container">
+    <div class="premium-header">
+      <h1 class="auth-title">{{ .Title }}</h1>
+      <p class="auth-subtitle">Verwalten Sie Ihr Premium-Abo und Ihre Zahlungsmethoden</p>
+    </div>
+
+    <div id="subscription-status" class="subscription-card">
+      <div class="subscription-loading">
+        <p>Lade Abo-Informationen…</p>
+      </div>
+    </div>
+
+    <div class="management-actions hidden" id="management-actions">
+      <div class="action-card">
+        <h3>Zahlungsmethode aktualisieren</h3>
+        <p>Verwalten Sie Ihre hinterlegte Zahlungsmethode im Stripe-Kundenportal.</p>
+        <button id="customer-portal-btn" class="btn btn-secondary">
+          Zum Kundenportal
+        </button>
+      </div>
+
+      <div class="action-card">
+        <h3>Abo kündigen</h3>
+        <p>Die Kündigung erfolgt ebenfalls über das Stripe-Kundenportal.</p>
+        <button id="cancel-subscription-btn" class="btn btn-danger">
+          Abo kündigen
+        </button>
+      </div>
+    </div>
+
+    <div id="upgrade-section" class="upgrade-section hidden">
+      <div class="upgrade-card">
+        <h3>Premium aktivieren</h3>
+        <p>Erhalten Sie Zugriff auf alle Premium-Features:</p>
+        <ul class="upgrade-features">
+          <li>✓ Unbegrenzte KI-Assistent-Anfragen (GPT-4)</li>
+          <li>✓ Alle Premium-Rechner (Molekül-Studio, Titration, …)</li>
+          <li>✓ 3D-Visualisierungen</li>
+          <li>✓ Werbefrei</li>
+          <li>✓ Offline-Zugriff</li>
+        </ul>
+        <button id="upgrade-btn" class="btn btn-primary">
+          Jetzt Premium kaufen (4,99 €/Monat)
+        </button>
+      </div>
+    </div>
+
+    <p class="auth-footer">
+      <a href="/premium/">← Zurück zur Premium-Übersicht</a>
+    </p>
+  </div>
+</div>
+
+<script>
+(function() {
+  var statusEl = document.getElementById('subscription-status');
+  var actionsEl = document.getElementById('management-actions');
+  var upgradeEl = document.getElementById('upgrade-section');
+
+  function loadSubscription() {
+    fetch('/api/auth/me', { credentials: 'include' })
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        var user = data.user;
+        if (!user) {
+          statusEl.innerHTML = '<div class="alert alert-warning">Bitte melden Sie sich an, um Ihr Abo zu verwalten.</div>';
+          upgradeEl.classList.remove('hidden');
+          return;
+        }
+
+        var isPremium = user.tier === 'premium';
+        var premiumUntil = user.premiumUntil || user.premium_until;
+
+        if (isPremium && premiumUntil) {
+          var expiryDate = new Date(premiumUntil);
+          var formattedDate = expiryDate.toLocaleDateString('de-DE', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+
+          statusEl.innerHTML =
+            '<div class="status-badge status-active">✓ Premium aktiv</div>' +
+            '<p class="status-details">Ihr Premium-Abo läuft bis <strong>' + formattedDate + '</strong>.</p>' +
+            '<p class="status-email">Verwaltungs-E-Mail: <strong>' + user.email + '</strong></p>';
+
+          actionsEl.classList.remove('hidden');
+        } else if (user.tier === 'past_due') {
+          statusEl.innerHTML =
+            '<div class="status-badge status-past-due">⚠ Zahlung ausstehend</div>' +
+            '<p class="status-details">Bitte aktualisieren Sie Ihre Zahlungsmethode, um Premium fortzusetzen.</p>';
+          actionsEl.classList.remove('hidden');
+        } else {
+          statusEl.innerHTML =
+            '<div class="status-badge status-free">Kostenlos-Account</div>' +
+            '<p class="status-details">Sie haben kein Premium-Abo.</p>';
+          upgradeEl.classList.remove('hidden');
+        }
+      })
+      .catch(function(err) {
+        console.error('Failed to load subscription:', err);
+        statusEl.innerHTML = '<div class="alert alert-error">Fehler beim Laden der Abo-Informationen.</div>';
+      });
+  }
+
+  document.getElementById('customer-portal-btn').addEventListener('click', function() {
+    fetch('/api/auth/customer-portal', {
+      method: 'POST',
+      credentials: 'include'
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert('Fehler: Kundenportal-Link nicht verfügbar');
+      }
+    })
+    .catch(function(err) {
+      console.error('Customer portal error:', err);
+      alert('Fehler beim Öffnen des Kundenportals');
+    });
+  });
+
+  document.getElementById('cancel-subscription-btn').addEventListener('click', function() {
+    if (confirm('Möchten Sie wirklich Ihr Abo kündigen? Dies öffnet das Stripe-Kundenportal.')) {
+      document.getElementById('customer-portal-btn').click();
+    }
+  });
+
+  document.getElementById('upgrade-btn').addEventListener('click', function() {
+    fetch('/api/auth/create-checkout-session', {
+      method: 'POST',
+      credentials: 'include'
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert('Fehler: Checkout nicht verfügbar');
+      }
+    })
+    .catch(function(err) {
+      console.error('Checkout error:', err);
+      alert('Fehler beim Starten des Checkouts');
+    });
+  });
+
+  loadSubscription();
+})();
+</script>
+
+<style>
+.premium-management-container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.premium-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.subscription-card {
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.status-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.status-active {
+  background: #d4edda;
+  color: #155724;
+}
+.status-past-due {
+  background: #fff3cd;
+  color: #856404;
+}
+.status-free {
+  background: #e9ecef;
+  color: #495057;
+}
+.status-details {
+  font-size: 16px;
+  color: #555;
+  margin: 12px 0 8px;
+}
+.status-email {
+  font-size: 14px;
+  color: #777;
+}
+.management-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.action-card {
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 12px;
+  padding: 24px;
+}
+.action-card h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+.action-card p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+.upgrade-section {
+  margin-top: 32px;
+}
+.upgrade-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+}
+.upgrade-card h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+.upgrade-features {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  text-align: left;
+  display: inline-block;
+}
+.upgrade-features li {
+  padding: 6px 0;
+  font-size: 15px;
+}
+.hidden {
+  display: none !important;
+}
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: #1a73e8;
+  color: white;
+}
+.btn-primary:hover {
+  background: #1557b0;
+}
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+.btn-secondary:hover {
+  background: #545b62;
+}
+.btn-danger {
+  background: #dc3545;
+  color: white;
+}
+.btn-danger:hover {
+  background: #c82333;
+}
+.alert {
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.alert-warning {
+  background: #fff3cd;
+  color: #856404;
+}
+.alert-error {
+  background: #f8d7da;
+  color: #721c24;
+}
+</style>
+
+{{ end }}
