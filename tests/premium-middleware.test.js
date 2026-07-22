@@ -11,6 +11,14 @@ const http = require('http');
 
 const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3001';
 
+// Guard: skip API-dependent tests unless API is running
+const runApiTests = process.env.API_RUNNING === '1' || process.env.CI === 'true';
+const describeApi = runApiTests ? describe : describe.skip;
+
+if (!runApiTests) {
+  console.warn('⚠ Skipping API-dependent tests — set API_RUNNING=1 or CI=true to enable');
+}
+
 /**
  * Helper to make GET requests to the API
  */
@@ -81,7 +89,7 @@ function postJson(url, body, headers = {}) {
   });
 }
 
-describe('Premium Middleware', () => {
+describeApi('Premium Middleware', () => {
   describe('GPT-4 Chat Endpoint (Premium-Gated)', () => {
     const chatEndpoint = `${API_BASE_URL}/api/chat`;
 

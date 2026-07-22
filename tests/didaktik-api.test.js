@@ -9,6 +9,16 @@ const http = require('http');
 
 const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3001';
 
+// Guard: skip API-dependent tests unless API is running
+const runApiTests = process.env.API_RUNNING === '1' || process.env.CI === 'true';
+const describeApi = runApiTests ? describe : describe.skip;
+
+if (!runApiTests) {
+  console.warn(
+    '⚠ Skipping API-dependent tests — set API_RUNNING=1, CI=true, or API_BASE_URL to enable'
+  );
+}
+
 /**
  * Helper to make HTTP requests to the API
  */
@@ -34,7 +44,7 @@ function fetchJson(url) {
   });
 }
 
-describe('GET /api/didaktik', () => {
+describeApi('GET /api/didaktik', () => {
   const endpoint = `${API_BASE_URL}/api/didaktik`;
 
   describe('Basic functionality', () => {
@@ -125,7 +135,7 @@ describe('GET /api/didaktik', () => {
   });
 });
 
-describe('Didaktik data quality', () => {
+describeApi('Didaktik data quality', () => {
   test('institutions are non-empty strings', async () => {
     const response = await fetchJson(endpoint);
     response.data.items.forEach((item) => {

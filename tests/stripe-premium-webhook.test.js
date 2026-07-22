@@ -12,6 +12,14 @@ const http = require('http');
 
 const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3001';
 
+// Guard: skip API-dependent tests unless API is running
+const runApiTests = process.env.API_RUNNING === '1' || process.env.CI === 'true';
+const describeApi = runApiTests ? describe : describe.skip;
+
+if (!runApiTests) {
+  console.warn('⚠ Skipping API-dependent tests — set API_RUNNING=1 or CI=true to enable');
+}
+
 /**
  * Helper to make POST requests to the API
  */
@@ -82,7 +90,7 @@ function getJson(url, headers = {}) {
   });
 }
 
-describe('Stripe Webhook Handlers', () => {
+describeApi('Stripe Webhook Handlers', () => {
   const webhookEndpoint = `${API_BASE_URL}/api/auth/stripe-webhook`;
 
   describe('Event signature validation', () => {
@@ -249,8 +257,7 @@ describe('Stripe Webhook Handlers', () => {
     });
   });
 });
-
-describe('Premium User Detection', () => {
+describeApi('Premium User Detection', () => {
   const authMeEndpoint = `${API_BASE_URL}/api/auth/me`;
 
   describe('User plan property', () => {
