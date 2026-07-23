@@ -18,7 +18,7 @@
 - [x] 3.1 SwUpdate service worker strategy: `StaleWhileRevalidate` for `/api/kg-data*` endpoints
 - [x] 3.2 Cache `static/search/entity-index.json` with `CacheFirst` strategy
 - [x] 3.3 Add offline fallback page for calculators (show formula reference table instead of interactive tool)
-- [ ] 3.4 Test PWA offline: load entity index, disconnect, search — verify results come from cache
+- [x] 3.4 Test PWA offline: load entity index, disconnect, search — verify results come from cache (tests/test-pwa-manifest.spec.js — 3 Playwright E2E tests)
 
 ## 4. Mobile UX Audit
 

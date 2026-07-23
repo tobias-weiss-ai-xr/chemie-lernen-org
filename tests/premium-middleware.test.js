@@ -158,7 +158,7 @@ describeApi('Premium Middleware', () => {
   });
 });
 
-describe('User Plan States', () => {
+describeApi('User Plan States', () => {
   const authMeEndpoint = `${API_BASE_URL}/api/auth/me`;
 
   test('user plan is one of: free, premium, past_due, null', async () => {
@@ -187,7 +187,7 @@ describe('User Plan States', () => {
   });
 });
 
-describe('Premium Feature Access', () => {
+describeApi('Premium Feature Access', () => {
   const premiumFeatures = [
     { name: 'GPT-4 Chat', endpoint: '/api/chat', method: 'POST', body: { message: 'test' } },
     { name: 'Advanced Analytics', endpoint: '/api/analytics', method: 'GET' },
@@ -204,7 +204,7 @@ describe('Premium Feature Access', () => {
   });
 });
 
-describe('Middleware Error Handling', () => {
+describeApi('Middleware Error Handling', () => {
   test('invalid JWT returns 401 or null user', async () => {
     const response = await getJson(`${API_BASE_URL}/api/auth/me`, {
       Cookie: 'auth=invalid.jwt.token',

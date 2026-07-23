@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "test": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation|modulhandbuch-api)'",
+    "test": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation)'",
+    "test:all": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation)' --verbose",
     "test:watch": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --watch",
     "test:coverage": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --coverage --forceExit",
     "test:verbose": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --verbose --forceExit",
@@ -35,6 +36,8 @@
     "validate:curricula": "node scripts/validate-curricula.mjs",
     "prebuild": "(node scripts/export-kg-data.mjs || echo '[build] Neo4j export skipped (non-fatal)') && node scripts/generate-entity-pages.mjs && (node scripts/build-search-index.mjs || echo '[build] Search index skipped (kg_data empty)')",
     "build": "docker run --rm -v \"$(pwd)/myhugoapp:/src\" -w /src hugomods/hugo:exts hugo --baseURL https://chemie-lernen.org && npx pagefind --site myhugoapp/public",
+    "dev": "echo 'Starting API and Hugo dev server... Ensure docker compose is running for the API.' && (hugo server -D --source myhugoapp --disableFastRender &) && sleep 2 && echo 'Hugo dev server started on http://localhost:1313' && wait",
+    "dev:api": "docker compose up -d chemie-chat-api && docker compose logs -f chemie-chat-api",
     "lighthouse": "lhci autorun --upload=false --collect.numberOfRuns=3 --collect.settings.chromeFlags=\"--no-sandbox\"",
     "audit:mobile": "node scripts/mobile-ux-audit.js"
   },

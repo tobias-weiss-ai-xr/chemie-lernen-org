@@ -126,7 +126,63 @@ describe('JSON data file schema validation', () => {
   });
 });
 
-describe('Neo4j data integrity (integration)', () => {
+/**
+ * Check if Neo4j is reachable by trying to open a brief connection.
+ * Allows the describeApi guard below to skip integration tests when
+ * the database is not running (CI / local dev without Docker).
+ */
+function isNeo4jReachable() {
+  try {
+    const neo4j = require('neo4j-driver');
+    const uri = process.env.NEO4J_URI || 'bolt://localhost:7687';
+    const user = process.env.NEO4J_USER || 'neo4j';
+    const password = process.env.NEO4J_PASSWORD || 'chemie_knowledge_2024';
+    const d = neo4j.driver(uri, neo4j.auth.basic(user, password), {
+      connectionTimeout: 3000,
+      maxConnectionLifetime: 5000,
+    });
+    return d.verifyConnectivity().then(function () {
+      return d.close().then(function () {
+        return true;
+      });
+    }).catch(function () {
+      return d.close().then(function () {
+        return false;
+      }).catch(function () {
+        return false;
+      });
+    });
+  } catch (_e) {
+    return Promise.resolve(false);
+  }
+}
+
+const NEO4J_REACHABLE = 'NEO4J_REACHABLE';
+let _neo4jReachable = null;
+
+/**
+ * Wraps a describe block so it only runs when Neo4j is reachable.
+ * Usage: describeApi('name', () => { ... }) in place of describe.
+ */
+function describeApi(name, fn) {
+  const runIf = process.env.API_RUNNING === '1' || process.env.CI === 'true';
+  if (runIf) {
+    // eslint-disable-next-line jest/valid-describe-callback, jest/valid-title
+    describe(name, fn);
+    return;
+  }
+  if (_neo4jReachable === null) {
+    _neo4jReachable = false;
+    beforeAll(async function () {
+      _neo4jReachable = await isNeo4jReachable();
+      if (_neo4jReachable) process.env[NEO4J_REACHABLE] = '1';
+    });
+  }
+  const describeFn = _neo4jReachable === null ? describe.skip : _neo4jReachable ? describe : describe.skip;
+  describeFn(name, fn);
+}
+
+describeApi('Neo4j data integrity (integration)', () => {
   let driver;
 
   beforeAll(() => {
