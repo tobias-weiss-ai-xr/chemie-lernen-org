@@ -124,10 +124,12 @@ function analyze(filePath, code) {
     // 40 points: topic count sufficiency
     let topicScore = result.topics >= TOPIC_MIN ? 40 : (result.topics / TOPIC_MIN) * 40;
     // 30 points: objective count sufficiency
-    let objScore = result.objectives >= OBJECTIVE_MIN ? 30 : (result.objectives / OBJECTIVE_MIN) * 30;
+    let objScore =
+      result.objectives >= OBJECTIVE_MIN ? 30 : (result.objectives / OBJECTIVE_MIN) * 30;
     // 30 points: data cleanliness (inverse of garbled ratio)
     let garbledRatio = result.totalChars > 0 ? result.garbledChars / result.totalChars : 0;
-    let cleanScore = garbledRatio <= GARBLED_RATIO_MAX ? 30 : Math.max(0, 30 * (1 - garbledRatio / 0.2));
+    let cleanScore =
+      garbledRatio <= GARBLED_RATIO_MAX ? 30 : Math.max(0, 30 * (1 - garbledRatio / 0.2));
 
     result.score = Math.round(Math.min(100, topicScore + objScore + cleanScore));
 
@@ -171,8 +173,22 @@ function main() {
 
   // Known state codes for completeness check (18 Bundesländer including city-states)
   const KNOWN_STATES = [
-    'bb', 'be', 'bw', 'by', 'hb', 'he', 'hh',
-    'mv', 'ni', 'nw', 'rp', 'sh', 'sl', 'sn', 'st', 'th',
+    'bb',
+    'be',
+    'bw',
+    'by',
+    'hb',
+    'he',
+    'hh',
+    'mv',
+    'ni',
+    'nw',
+    'rp',
+    'sh',
+    'sl',
+    'sn',
+    'st',
+    'th',
   ];
 
   const results = {};

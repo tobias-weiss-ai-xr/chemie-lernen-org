@@ -22,45 +22,45 @@ const INPUT = join(DATA_DIR, 'kg_data.json');
 const OUTPUT = join(DATA_DIR, 'kg_rich_data.json');
 
 const RELATION_TYPES = [
-  { type: 'VERALLGEMEINERT',  label: 'Verallgemeinert',  color: '#6366f1' },
-  { type: 'BESCHREIBT',       label: 'Beschreibt',       color: '#8b5cf6' },
-  { type: 'AEHNLICH_ZU',      label: 'Ähnlich zu',       color: '#06b6d4' },
-  { type: 'DEMONSTRIERT',     label: 'Demonstriert',     color: '#f59e0b' },
-  { type: 'ERZEUGT',          label: 'Erzeugt',          color: '#10b981' },
-  { type: 'ENTDECKT',         label: 'Entdeckt',         color: '#f97316' },
-  { type: 'BEINHALTET',       label: 'Beinhaltet',       color: '#3b82f6' },
-  { type: 'VERGLEICHBAR',     label: 'Vergleichbar',     color: '#14b8a6' },
-  { type: 'BETEILIGT_AN',     label: 'Beteiligt an',     color: '#a855f7' },
-  { type: 'WENDET_AN',        label: 'Wendet an',        color: '#ec4899' },
-  { type: 'QUELLE_VON',       label: 'Quelle von',       color: '#78716c' },
-  { type: 'VERWENDET',        label: 'Verwendet',        color: '#eab308' },
-  { type: 'WIRD_VERWENDET_IN',label: 'Wird verwendet in',color: '#84cc16' },
-  { type: 'RELATED_TO',       label: 'Verknüpft',        color: '#a3a3a3' },
-  { type: 'ERFUELLT',         label: 'Erfüllt',          color: '#64748b' },
-  { type: 'BESTEHT_AUS',      label: 'Besteht aus',      color: '#94a3b8' },
+  { type: 'VERALLGEMEINERT', label: 'Verallgemeinert', color: '#6366f1' },
+  { type: 'BESCHREIBT', label: 'Beschreibt', color: '#8b5cf6' },
+  { type: 'AEHNLICH_ZU', label: 'Ähnlich zu', color: '#06b6d4' },
+  { type: 'DEMONSTRIERT', label: 'Demonstriert', color: '#f59e0b' },
+  { type: 'ERZEUGT', label: 'Erzeugt', color: '#10b981' },
+  { type: 'ENTDECKT', label: 'Entdeckt', color: '#f97316' },
+  { type: 'BEINHALTET', label: 'Beinhaltet', color: '#3b82f6' },
+  { type: 'VERGLEICHBAR', label: 'Vergleichbar', color: '#14b8a6' },
+  { type: 'BETEILIGT_AN', label: 'Beteiligt an', color: '#a855f7' },
+  { type: 'WENDET_AN', label: 'Wendet an', color: '#ec4899' },
+  { type: 'QUELLE_VON', label: 'Quelle von', color: '#78716c' },
+  { type: 'VERWENDET', label: 'Verwendet', color: '#eab308' },
+  { type: 'WIRD_VERWENDET_IN', label: 'Wird verwendet in', color: '#84cc16' },
+  { type: 'RELATED_TO', label: 'Verknüpft', color: '#a3a3a3' },
+  { type: 'ERFUELLT', label: 'Erfüllt', color: '#64748b' },
+  { type: 'BESTEHT_AUS', label: 'Besteht aus', color: '#94a3b8' },
 ];
 
 const TYPE_MATRIX = {
-  'stoff__stoff':      'AEHNLICH_ZU',
-  'stoff__konzept':    'BEINHALTET',
-  'stoff__reaktion':   'BETEILIGT_AN',
-  'stoff__methode':    'WIRD_VERWENDET_IN',
-  'konzept__konzept':  'VERALLGEMEINERT',
-  'konzept__stoff':    'BESCHREIBT',
-  'konzept__reaktion': 'BESCHREIBT',
-  'reaktion__reaktion':'VERGLEICHBAR',
-  'reaktion__stoff':   'ERZEUGT',
-  'reaktion__konzept': 'DEMONSTRIERT',
-  'methode__stoff':    'VERWENDET',
-  'methode__konzept':  'WENDET_AN',
-  'person__stoff':     'ENTDECKT',
-  'person__konzept':   'ENTDECKT',
-  'person__reaktion':  'ENTDECKT',
-  'quelle__stoff':     'QUELLE_VON',
-  'quelle__konzept':   'QUELLE_VON',
-  'quelle__reaktion':  'QUELLE_VON',
-  'quelle__methode':   'QUELLE_VON',
-  'quelle__person':    'QUELLE_VON',
+  stoff__stoff: 'AEHNLICH_ZU',
+  stoff__konzept: 'BEINHALTET',
+  stoff__reaktion: 'BETEILIGT_AN',
+  stoff__methode: 'WIRD_VERWENDET_IN',
+  konzept__konzept: 'VERALLGEMEINERT',
+  konzept__stoff: 'BESCHREIBT',
+  konzept__reaktion: 'BESCHREIBT',
+  reaktion__reaktion: 'VERGLEICHBAR',
+  reaktion__stoff: 'ERZEUGT',
+  reaktion__konzept: 'DEMONSTRIERT',
+  methode__stoff: 'VERWENDET',
+  methode__konzept: 'WENDET_AN',
+  person__stoff: 'ENTDECKT',
+  person__konzept: 'ENTDECKT',
+  person__reaktion: 'ENTDECKT',
+  quelle__stoff: 'QUELLE_VON',
+  quelle__konzept: 'QUELLE_VON',
+  quelle__reaktion: 'QUELLE_VON',
+  quelle__methode: 'QUELLE_VON',
+  quelle__person: 'QUELLE_VON',
 };
 
 function inferType(srcCat, tgtCat) {
@@ -75,8 +75,9 @@ function main() {
   }
 
   let raw;
-  try { raw = JSON.parse(readFileSync(INPUT, 'utf-8')); }
-  catch (err) {
+  try {
+    raw = JSON.parse(readFileSync(INPUT, 'utf-8'));
+  } catch (err) {
     console.log('[kg-enrich] Failed to parse: ' + err.message);
     return;
   }
@@ -89,7 +90,9 @@ function main() {
     return;
   }
 
-  console.log('[kg-enrich] Processing ' + entities.length + ' entities, ' + articles.length + ' articles');
+  console.log(
+    '[kg-enrich] Processing ' + entities.length + ' entities, ' + articles.length + ' articles'
+  );
 
   // Entity index
   const eIdx = {};
@@ -98,7 +101,7 @@ function main() {
     const e = entities[i];
     eIdx[e.name] = i;
     eList.push({
-      id: e.id || ('e' + i),
+      id: e.id || 'e' + i,
       name: e.name,
       category: e.category || 'konzept',
       articleCount: e.articleCount || 0,
@@ -114,7 +117,8 @@ function main() {
     const ents = a.entities || [];
     for (let i = 0; i < ents.length; i++) {
       for (let j = i + 1; j < ents.length; j++) {
-        const src = ents[i], tgt = ents[j];
+        const src = ents[i],
+          tgt = ents[j];
         if (src === tgt) continue;
         if (!coMap[src]) coMap[src] = {};
         coMap[src][tgt] = (coMap[src][tgt] || 0) + 1;
@@ -126,7 +130,13 @@ function main() {
 
   // Enrich
   const enriched = {};
-  const stats = { totalEntities: eList.length, totalRelations: 0, byType: {}, byCategory: {}, coOccurrenceEdges: 0 };
+  const stats = {
+    totalEntities: eList.length,
+    totalRelations: 0,
+    byType: {},
+    byCategory: {},
+    coOccurrenceEdges: 0,
+  };
 
   for (const e of eList) {
     stats.byCategory[e.category] = (stats.byCategory[e.category] || 0) + 1;
@@ -135,7 +145,7 @@ function main() {
   for (const e of eList) {
     const rels = {};
 
-    for (const rn of (e.relatedEntities || [])) {
+    for (const rn of e.relatedEntities || []) {
       const ti = eIdx[rn];
       if (ti === undefined) continue;
       const t = eList[ti].category;
@@ -144,7 +154,7 @@ function main() {
       rels[rt].push({ target: rn, targetCategory: t, weight: 1 });
     }
 
-    for (const cn of (e.components || [])) {
+    for (const cn of e.components || []) {
       if (!rels['BESTEHT_AUS']) rels['BESTEHT_AUS'] = [];
       rels['BESTEHT_AUS'].push({
         target: cn,
@@ -172,7 +182,14 @@ function main() {
       stats.totalRelations += rl.length;
     }
 
-    enriched[e.name] = { id: e.id, name: e.name, category: e.category, articleCount: e.articleCount, articles: e.articles, relations: rels };
+    enriched[e.name] = {
+      id: e.id,
+      name: e.name,
+      category: e.category,
+      articleCount: e.articleCount,
+      articles: e.articles,
+      relations: rels,
+    };
   }
 
   const output = {
@@ -187,7 +204,17 @@ function main() {
   if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });
   writeFileSync(OUTPUT, JSON.stringify(output, null, 2), 'utf-8');
   console.log('[kg-enrich] Written: ' + OUTPUT);
-  console.log('[kg-enrich] ' + stats.totalEntities + ' entities, ' + stats.totalRelations + ' relations (' + Object.keys(stats.byType).length + ' types), ' + stats.coOccurrenceEdges + ' co-occurrence edges');
+  console.log(
+    '[kg-enrich] ' +
+      stats.totalEntities +
+      ' entities, ' +
+      stats.totalRelations +
+      ' relations (' +
+      Object.keys(stats.byType).length +
+      ' types), ' +
+      stats.coOccurrenceEdges +
+      ' co-occurrence edges'
+  );
 }
 
 main();

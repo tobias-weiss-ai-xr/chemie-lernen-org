@@ -14,7 +14,14 @@
 import { Router } from 'express';
 import pino from 'pino';
 import { requireAuth } from '../auth.js';
-import { getGamification, awardXp, recordCheckin, checkBadgeUnlock, getBadgeStatus, calculateLevel } from '../auth-db.js';
+import {
+  getGamification,
+  awardXp,
+  recordCheckin,
+  checkBadgeUnlock,
+  getBadgeStatus,
+  calculateLevel,
+} from '../auth-db.js';
 import * as learningEngine from '../learning-engine.js';
 import { BADGE_INFO } from '../services/badges.js';
 import { sessionStore } from '../services/session.js';

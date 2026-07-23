@@ -19,8 +19,19 @@ import { isCodeAnalysisName, excludeCodeEntities } from './_neo4j-subset-filter.
 // (Variable, Function, Class, etc.) also carry the :Entity label. We MUST
 // explicitly exclude them.
 const CODE_ANALYSIS_LABELS = [
-  'Variable', 'Parameter', 'Function', 'Class', 'File', 'Module',
-  'Interface', 'Directory', 'Repository', 'Macro', 'Struct', 'Enum', 'Episodic',
+  'Variable',
+  'Parameter',
+  'Function',
+  'Class',
+  'File',
+  'Module',
+  'Interface',
+  'Directory',
+  'Repository',
+  'Macro',
+  'Struct',
+  'Enum',
+  'Episodic',
 ];
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

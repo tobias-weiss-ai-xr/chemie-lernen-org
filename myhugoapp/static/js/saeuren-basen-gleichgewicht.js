@@ -125,10 +125,12 @@ function checkApproximation(iceTable, ka, initialConc) {
   html += `<div><span class="label"> Näherungsfehler: </span>`;
   if (isApproximationValid) {
     html += `<span class="valuehighlight valid">✓ ${percent.toFixed(2)}%</span>`;
-    html += '<p class="text-success"><small>Näherung ist gültig (< 5%). Vereinfachte Berechnung möglich.</small></p>';
+    html +=
+      '<p class="text-success"><small>Näherung ist gültig (< 5%). Vereinfachte Berechnung möglich.</small></p>';
   } else {
     html += `<span class="valuehighlight invalid">✗ ${percent.toFixed(2)}%</span>`;
-    html += '<p class="text-warning"><small>Näherung ist nicht gültig (≥ 5%). Quadratische Gleichung erforderlich.</small></p>';
+    html +=
+      '<p class="text-warning"><small>Näherung ist nicht gültig (≥ 5%). Quadratische Gleichung erforderlich.</small></p>';
   }
   html += '</div>';
 
@@ -304,10 +306,12 @@ function displayMWGExplanation(Q, ka, direction) {
 
   if (Q < ka) {
     explanation += `<p>Q (${scientificNotation(Q)}) < Kₐ (${scientificNotation(ka)})</p>`;
-    explanation += '<p>Die Reaktion läuft in Richtung der Produkte, um den Quotienten zu erhöhen.</p>';
+    explanation +=
+      '<p>Die Reaktion läuft in Richtung der Produkte, um den Quotienten zu erhöhen.</p>';
   } else if (Q > ka) {
     explanation += `<p>Q (${scientificNotation(Q)}) > Kₐ (${scientificNotation(ka)})</p>`;
-    explanation += '<p>Die Reaktion läuft in Richtung der Edukte, um den Quotienten zu verringern.</p>';
+    explanation +=
+      '<p>Die Reaktion läuft in Richtung der Edukte, um den Quotienten zu verringern.</p>';
   } else {
     explanation += `<p>Q = Kₐ = ${scientificNotation(ka)}</p>`;
     explanation += '<p>Das System befindet sich bereits im Gleichgewicht.</p>';
@@ -337,13 +341,16 @@ function calculateBufferPreparation() {
     html += `Benötigtes Verhältnis [A⁻]/[HA] = <strong>${ratio.toFixed(3)}</strong><br>`;
     html += `Das heißt: Auf <strong>1 mol HA</strong> kommen <strong>${ratio.toFixed(3)} mol A⁻</strong>.<br>`;
     if (ratio >= 0.1 && ratio <= 10) {
-      html += '<span class="text-success">✅ Dieser pH liegt im effektiven Pufferbereich (pKₐ ± 1).</span>';
+      html +=
+        '<span class="text-success">✅ Dieser pH liegt im effektiven Pufferbereich (pKₐ ± 1).</span>';
     } else {
-      html += '<span class="text-warning">⚠️ Dieser pH liegt außerhalb des effektiven Pufferbereichs. Die Pufferkapazität ist gering.</span>';
+      html +=
+        '<span class="text-warning">⚠️ Dieser pH liegt außerhalb des effektiven Pufferbereichs. Die Pufferkapazität ist gering.</span>';
     }
   } else {
     html += `Benötigtes Verhältnis [A⁻]/[HA] = <strong>${ratio.toExponential(2)}</strong><br>`;
-    html += '<span class="text-danger">⚠️ Dieses extreme Verhältnis ist praktisch nicht realisierbar. Wählen Sie einen anderen Puffer mit passendem pKₐ.</span>';
+    html +=
+      '<span class="text-danger">⚠️ Dieses extreme Verhältnis ist praktisch nicht realisierbar. Wählen Sie einen anderen Puffer mit passendem pKₐ.</span>';
   }
   html += '<hr><p class="help-block">Formel: [A⁻]/[HA] = 10<sup>(pH − pKₐ)</sup></p>';
 
@@ -377,7 +384,7 @@ function updateICETable() {
 }
 
 // Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const resultPanel = document.getElementById('ice-result');
   if (resultPanel) {
     resultPanel.style.display = 'none';

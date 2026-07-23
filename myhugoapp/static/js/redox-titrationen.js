@@ -19,7 +19,7 @@ function simulatePermanganatTitration() {
   const n_KMnO4 = 5;
   let n_analyte;
 
-  switch(targetAnalyte) {
+  switch (targetAnalyte) {
     case 'oxalate':
       n_analyte = 2;
       break;
@@ -59,7 +59,7 @@ function simulatePermanganatTitration() {
 
     dataPoints.push({
       x: volumeTitrant,
-      y: potential
+      y: potential,
     });
 
     currentVolume += stepSize;
@@ -71,7 +71,8 @@ function simulatePermanganatTitration() {
   document.getElementById('permanganat-result').style.display = 'block';
   document.getElementById('permanganat-equiv-vol').textContent = equivVolume.toFixed(1) + ' mL';
   document.getElementById('permanganat-color').textContent = colorDesc;
-  document.getElementById('permanganat-derivative').textContent = 'dE/dV ≈ ' + derivativeAtEquivalence;
+  document.getElementById('permanganat-derivative').textContent =
+    'dE/dV ≈ ' + derivativeAtEquivalence;
   document.getElementById('permanganat-details').innerHTML = `
     <p><strong>Reaktionsverlauf:</strong></p>
     <ul>
@@ -94,17 +95,19 @@ function plotPermanganatChart(dataPoints, equivVolume) {
   permanganatChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: dataPoints.map(p => p.x.toFixed(1)),
-      datasets: [{
-        label: 'Potential (V)',
-        data: dataPoints.map(p => p.y.toFixed(3)),
-        borderColor: '#e74c3c',
-        backgroundColor: 'rgba(231, 76, 60, 0.1)',
-        borderWidth: 2,
-        tension: 0.1,
-        pointRadius: 2,
-        fill: true
-      }]
+      labels: dataPoints.map((p) => p.x.toFixed(1)),
+      datasets: [
+        {
+          label: 'Potential (V)',
+          data: dataPoints.map((p) => p.y.toFixed(3)),
+          borderColor: '#e74c3c',
+          backgroundColor: 'rgba(231, 76, 60, 0.1)',
+          borderWidth: 2,
+          tension: 0.1,
+          pointRadius: 2,
+          fill: true,
+        },
+      ],
     },
     options: {
       responsive: true,
@@ -113,28 +116,28 @@ function plotPermanganatChart(dataPoints, equivVolume) {
         x: {
           title: {
             display: true,
-            text: 'Zugegebenes Volumen (mL)'
+            text: 'Zugegebenes Volumen (mL)',
           },
           grid: {
-            color: '#95a5a6'
-          }
+            color: '#95a5a6',
+          },
         },
         y: {
           title: {
             display: true,
-            text: 'Potential E (V)'
+            text: 'Potential E (V)',
           },
           grid: {
-            color: '#95a5a6'
+            color: '#95a5a6',
           },
           suggestedMax: 1.5,
-          suggestedMin: 0
-        }
+          suggestedMin: 0,
+        },
       },
       plugins: {
         legend: {
-          display: true
-        }
+          display: true,
+        },
       },
       onClick: (event, elements) => {
         if (elements.length > 0) {
@@ -142,13 +145,12 @@ function plotPermanganatChart(dataPoints, equivVolume) {
           document.getElementById('permanganat-equiv-vol').textContent =
             `x=${point.x.toFixed(1)} mL, y=${point.y.toFixed(3)} V`;
         }
-      }
-    }
+      },
+    },
   });
 }
 
-function updatePermanganatSetup() {
-}
+function updatePermanganatSetup() {}
 
 function simulateCerS4Titration() {
   const analyteConc = parseFloat(document.getElementById('cers4-analyte-conc').value);
@@ -193,7 +195,7 @@ function simulateCerS4Titration() {
 
     dataPoints.push({
       x: volumeTitrant,
-      y: Math.max(0.4, E)
+      y: Math.max(0.4, E),
     });
 
     currentVolume += stepSize;
@@ -226,17 +228,19 @@ function plotCerChart(dataPoints, equivVolume) {
   cerChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: dataPoints.map(p => p.x.toFixed(2)),
-      datasets: [{
-        label: 'Potential E (V)',
-        data: dataPoints.map(p => p.y.toFixed(4)),
-        borderColor: '#9b59b6',
-        backgroundColor: 'rgba(155, 89, 182, 0.1)',
-        borderWidth: 2,
-        tension: 0.0,
-        pointRadius: 1,
-        fill: true
-      }]
+      labels: dataPoints.map((p) => p.x.toFixed(2)),
+      datasets: [
+        {
+          label: 'Potential E (V)',
+          data: dataPoints.map((p) => p.y.toFixed(4)),
+          borderColor: '#9b59b6',
+          backgroundColor: 'rgba(155, 89, 182, 0.1)',
+          borderWidth: 2,
+          tension: 0.0,
+          pointRadius: 1,
+          fill: true,
+        },
+      ],
     },
     options: {
       responsive: true,
@@ -245,30 +249,30 @@ function plotCerChart(dataPoints, equivVolume) {
         x: {
           title: {
             display: true,
-            text: 'Zugegebenes Volumen (mL)'
+            text: 'Zugegebenes Volumen (mL)',
           },
           grid: {
-            color: '#95a5a6'
-          }
+            color: '#95a5a6',
+          },
         },
         y: {
           title: {
             display: true,
-            text: 'Potential E (V)'
+            text: 'Potential E (V)',
           },
           grid: {
-            color: '#95a5a6'
+            color: '#95a5a6',
           },
           suggestedMax: 2.0,
-          suggestedMin: 0.4
-        }
+          suggestedMin: 0.4,
+        },
       },
       plugins: {
         legend: {
-          display: true
-        }
-      }
-    }
+          display: true,
+        },
+      },
+    },
   });
 }
 
@@ -285,16 +289,15 @@ function simulateIodThiosulfat() {
   document.getElementById('iod-thio-result').style.display = 'block';
   document.getElementById('iod-thio-details').innerHTML = `
     <p><strong>Iod-Freisetzung:</strong> 5I⁻ + IO₃⁻ + 6H⁺ → 3I₂ + 3H₂O</p>
-    <p><strong>n(KIO₃):</strong> ${(kio3Conc * sampleVol / 1000).toFixed(6)} mol</p>
-    <p><strong>n(I₂) (freigesetzt):</strong> ${(3 * kio3Conc * sampleVol / 1000).toFixed(6)} mol</p>
-    <p><strong>Verbrauch S₂O₃²⁻ bis Äquivalenz:</strong> ${(6 * kio3Conc * sampleVol / thioConc).toFixed(2)} mL</p>
+    <p><strong>n(KIO₃):</strong> ${((kio3Conc * sampleVol) / 1000).toFixed(6)} mol</p>
+    <p><strong>n(I₂) (freigesetzt):</strong> ${((3 * kio3Conc * sampleVol) / 1000).toFixed(6)} mol</p>
+    <p><strong>Verbrauch S₂O₃²⁻ bis Äquivalenz:</strong> ${((6 * kio3Conc * sampleVol) / thioConc).toFixed(2)} mL</p>
     <p><strong>Stöchiometrie:</strong> 1 KIO₃ : 3 I₂ : 6 S₂O₃²⁻</p>
     <p><strong>Farbwechsel:</strong> Iod-Stärke (tiefblau) → farblos am Äquivalenzpunkt</p>
   `;
 }
 
-function updateCerS4Setup() {
-}
+function updateCerS4Setup() {}
 
 let potentialChart = null;
 
@@ -310,11 +313,11 @@ function simulatePotentiometricTitration() {
   const redoxPair = document.getElementById('potentiometry-redox-pair').value;
 
   const potentials = {
-    'ce': { E0: 1.44, n: 1 },
+    ce: { E0: 1.44, n: 1 },
     'fe2+': { E0: 0.77, n: 1 },
     'cr2+/cr3+': { E0: 0.41, n: 1 },
-    'ag/ag+': { E0: 0.80, n: 1 },
-    'i2/i-': { E0: 0.54, n: 2 }
+    'ag/ag+': { E0: 0.8, n: 1 },
+    'i2/i-': { E0: 0.54, n: 2 },
   };
 
   const { E0, n } = potentials[redoxPair];
@@ -358,17 +361,19 @@ function plotPotentialChart(dataPoints, equivVolume, E0, n) {
   potentialChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: dataPoints.map(p => p.x.toFixed(1)),
-      datasets: [{
-        label: 'Potential E (V)',
-        data: dataPoints.map(p => p.y.toFixed(4)),
-        borderColor: '#3498db',
-        backgroundColor: 'rgba(52, 152, 219, 0.1)',
-        borderWidth: 2,
-        tension: 0.1,
-        pointRadius: 1,
-        fill: true
-      }]
+      labels: dataPoints.map((p) => p.x.toFixed(1)),
+      datasets: [
+        {
+          label: 'Potential E (V)',
+          data: dataPoints.map((p) => p.y.toFixed(4)),
+          borderColor: '#3498db',
+          backgroundColor: 'rgba(52, 152, 219, 0.1)',
+          borderWidth: 2,
+          tension: 0.1,
+          pointRadius: 1,
+          fill: true,
+        },
+      ],
     },
     options: {
       responsive: true,
@@ -377,30 +382,30 @@ function plotPotentialChart(dataPoints, equivVolume, E0, n) {
         x: {
           title: {
             display: true,
-            text: 'Zugegebenes Volumen (mL)'
+            text: 'Zugegebenes Volumen (mL)',
           },
           grid: {
-            color: '#95a5a6'
-          }
+            color: '#95a5a6',
+          },
         },
         y: {
           title: {
             display: true,
-            text: 'Potential E (V)'
+            text: 'Potential E (V)',
           },
           grid: {
-            color: '#95a5a6'
+            color: '#95a5a6',
           },
           suggestedMax: 1.8,
-          suggestedMin: 0
-        }
+          suggestedMin: 0,
+        },
       },
       plugins: {
         legend: {
-          display: true
-        }
-      }
-    }
+          display: true,
+        },
+      },
+    },
   });
 
   const sharpness = E0 > 1.0 ? 'scharf' : 'mittel';

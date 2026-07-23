@@ -13,7 +13,7 @@ test.describe('Service Worker', () => {
 
     const registrations = await page.evaluate(async () => {
       const regs = await navigator.serviceWorker.getRegistrations();
-      return regs.map(r => ({
+      return regs.map((r) => ({
         scope: r.scope,
         active: !!r.active,
       }));
@@ -77,9 +77,13 @@ test.describe('Offline Caching', () => {
     await context.setOffline(true);
     await page.reload();
 
-    await expect(page.locator('#entity-index-app, .card, .entity-grid, h1, .search-box').first()).toBeVisible({ timeout: 10000 });
+    await expect(
+      page.locator('#entity-index-app, .card, .entity-grid, h1, .search-box').first()
+    ).toBeVisible({ timeout: 10000 });
 
-    const searchInput = page.locator('input[type="text"], input[placeholder*="Suche"], #search-input, .search-field');
+    const searchInput = page.locator(
+      'input[type="text"], input[placeholder*="Suche"], #search-input, .search-field'
+    );
     await expect(searchInput).toBeVisible();
 
     await context.setOffline(false);
@@ -92,7 +96,9 @@ test.describe('Offline Caching', () => {
 
     await context.setOffline(true);
 
-    const searchInput = page.locator('input[type="text"], input[placeholder*="Suche"], #search-input, .search-field');
+    const searchInput = page.locator(
+      'input[type="text"], input[placeholder*="Suche"], #search-input, .search-field'
+    );
     const inputCount = await searchInput.count();
     if (inputCount > 0) {
       await searchInput.first().fill('Wasserstoff');

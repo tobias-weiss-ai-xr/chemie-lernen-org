@@ -63,8 +63,7 @@ function defaultDescription(entity) {
   const cat = KAT_LABELS[entity.category] || entity.category || 'Fachbegriff';
   const articleCount = entity.articleCount || 0;
   const relatedCount = (entity.relatedEntities || []).length;
-  const articlePhrase =
-    articleCount === 1 ? 'einem Artikel' : `${articleCount} Artikeln`;
+  const articlePhrase = articleCount === 1 ? 'einem Artikel' : `${articleCount} Artikeln`;
   const relatedPhrase =
     relatedCount === 0
       ? ''
@@ -117,7 +116,9 @@ async function main() {
 
   let removed = 0;
   try {
-    const entries = await (await import('node:fs/promises')).readdir(ENTITY_DIR, { withFileTypes: true });
+    const entries = await (
+      await import('node:fs/promises')
+    ).readdir(ENTITY_DIR, { withFileTypes: true });
     for (const entry of entries) {
       if (!slugsToKeep.has(entry.name)) {
         // Only remove directories (entity pages) and known stub files

@@ -47,7 +47,23 @@ const stateArg = args.find((a) => a.startsWith('--state='));
 const SINGLE_STATE = stateArg ? stateArg.slice('--state='.length).toUpperCase() : null;
 
 // All 16 German Bundesländer
-const ALL_STATES = ['bb', 'be', 'bw', 'by', 'hb', 'he', 'hh', 'mv', 'ni', 'nw', 'rp', 'sh', 'sn', 'st', 'th'];
+const ALL_STATES = [
+  'bb',
+  'be',
+  'bw',
+  'by',
+  'hb',
+  'he',
+  'hh',
+  'mv',
+  'ni',
+  'nw',
+  'rp',
+  'sh',
+  'sn',
+  'st',
+  'th',
+];
 
 // ── Slugify ─────────────────────────────────────────────────────────────
 
@@ -192,7 +208,13 @@ function collectImportOps(stateData) {
 
           // Nested sub-topics
           if (sub.sub_topics && sub.sub_topics.length > 0) {
-            const nestedOps = collectNestedSubTopics(cSlug, topicName, grade, subSlug, sub.sub_topics);
+            const nestedOps = collectNestedSubTopics(
+              cSlug,
+              topicName,
+              grade,
+              subSlug,
+              sub.sub_topics
+            );
             ops.push(...nestedOps);
           }
         }
@@ -228,7 +250,13 @@ function collectNestedSubTopics(curriculumSlug, topicName, grade, parentSlug, su
       });
     }
     if (sub.sub_topics && sub.sub_topics.length > 0) {
-      const nested = collectNestedSubTopics(curriculumSlug, topicName, grade, subSlug, sub.sub_topics);
+      const nested = collectNestedSubTopics(
+        curriculumSlug,
+        topicName,
+        grade,
+        subSlug,
+        sub.sub_topics
+      );
       ops.push(...nested);
     }
   }

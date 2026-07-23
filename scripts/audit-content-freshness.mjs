@@ -35,8 +35,10 @@ function parseFrontmatter(content) {
     if (kv) {
       let val = kv[2].trim();
       // Remove surrounding quotes
-      if ((val.startsWith("'") && val.endsWith("'")) ||
-          (val.startsWith('"') && val.endsWith('"'))) {
+      if (
+        (val.startsWith("'") && val.endsWith("'")) ||
+        (val.startsWith('"') && val.endsWith('"'))
+      ) {
         val = val.slice(1, -1);
       }
       fm[kv[1]] = val;
@@ -91,16 +93,22 @@ walkDir(THEMENBEREICHE_DIR);
 
 // Summary counts
 const total = results.length;
-const missing = results.filter(r => r.status === 'missing').length;
-const stale = results.filter(r => r.status === 'stale').length;
-const fresh = results.filter(r => r.status === 'fresh').length;
+const missing = results.filter((r) => r.status === 'missing').length;
+const stale = results.filter((r) => r.status === 'stale').length;
+const fresh = results.filter((r) => r.status === 'fresh').length;
 
 if (isJson) {
-  console.log(JSON.stringify({
-    timestamp: new Date().toISOString(),
-    summary: { total, fresh, stale, missing },
-    articles: results,
-  }, null, 2));
+  console.log(
+    JSON.stringify(
+      {
+        timestamp: new Date().toISOString(),
+        summary: { total, fresh, stale, missing },
+        articles: results,
+      },
+      null,
+      2
+    )
+  );
 } else {
   console.log(`\n📋 Content Freshness Audit — ${new Date().toISOString().slice(0, 10)}\n`);
   console.log(`   Total articles: ${total}`);

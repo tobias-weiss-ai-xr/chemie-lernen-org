@@ -16,13 +16,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const THEMENBEREICHE_DIR = path.resolve(
-  __dirname,
-  '..',
-  'myhugoapp',
-  'content',
-  'themenbereiche'
-);
+const THEMENBEREICHE_DIR = path.resolve(__dirname, '..', 'myhugoapp', 'content', 'themenbereiche');
 
 /**
  * Parst YAML-Frontmatter aus einer Markdown-Datei.
@@ -51,8 +45,6 @@ function parseFrontmatter(raw) {
     raw,
   };
 }
-
-
 
 /**
  * Liest alle Artikel-Dateien in einem Themenbereich-Ordner,
@@ -89,9 +81,7 @@ function scanArticles(bereichPath, bereichName) {
 function generateVerwandteThemenBlock(article, peers) {
   const lines = ['## Verwandte Themen\n'];
   for (const peer of peers) {
-    const desc = peer.description
-      ? ` – ${peer.description}`
-      : '';
+    const desc = peer.description ? ` – ${peer.description}` : '';
     lines.push(`- [${peer.title}](${peer.urlPath})${desc}`);
   }
   lines.push(''); // trailing newline
@@ -137,11 +127,7 @@ function main() {
       let newContent;
       if (summaryMatch) {
         const insertPos = summaryMatch.index;
-        newContent =
-          content.slice(0, insertPos) +
-          block +
-          '\n' +
-          content.slice(insertPos);
+        newContent = content.slice(0, insertPos) + block + '\n' + content.slice(insertPos);
       } else {
         // Append at the end (with a blank line before)
         const trimmed = content.trimEnd();
@@ -150,13 +136,10 @@ function main() {
 
       // Write back
       const fullFile =
-        article.raw.slice(0, article.raw.indexOf(article.parsed.content)) +
-        newContent;
+        article.raw.slice(0, article.raw.indexOf(article.parsed.content)) + newContent;
       fs.writeFileSync(article.filePath, fullFile, 'utf-8');
       added++;
-      console.log(
-        `  ✅ ${bereichName}/${path.basename(article.filePath)} (${peers.length} peers)`
-      );
+      console.log(`  ✅ ${bereichName}/${path.basename(article.filePath)} (${peers.length} peers)`);
     }
   }
 

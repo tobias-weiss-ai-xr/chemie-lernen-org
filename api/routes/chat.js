@@ -68,10 +68,7 @@ router.get('/session', (req, res) => {
 // Retention: 90 days for free, 1 year for premium
 
 router.get('/chat/history', requireAuth, (req, res) => {
-  const maxAge =
-    req.user.tier === 'premium'
-      ? 365 * 24 * 60 * 60 * 1000
-      : 90 * 24 * 60 * 60 * 1000;
+  const maxAge = req.user.tier === 'premium' ? 365 * 24 * 60 * 60 * 1000 : 90 * 24 * 60 * 60 * 1000;
   const sessions = sessionStore.findByUserId(req.user.id, maxAge);
   res.json({ sessions });
 });
@@ -122,10 +119,7 @@ router.get('/chat/export/:sessionId', requireAuth, function (req, res) {
   }
 
   var md = '# KI-Assistent Chat-Verlauf\n\n';
-  md +=
-    '**Datum:** ' +
-    new Date(session.createdAt).toLocaleDateString('de-DE') +
-    '\n';
+  md += '**Datum:** ' + new Date(session.createdAt).toLocaleDateString('de-DE') + '\n';
   md += '**Nachrichten:** ' + session.messages.length + '\n\n';
   md += '---\n\n';
 
@@ -158,9 +152,7 @@ router.get('/chat/history/:sessionId', requireAuth, (req, res) => {
   if (!session.title && session.messages.length > 0) {
     const firstMsg = session.messages.find((m) => m.role === 'user');
     if (firstMsg) {
-      session.title =
-        firstMsg.content.slice(0, 80) +
-        (firstMsg.content.length > 80 ? '...' : '');
+      session.title = firstMsg.content.slice(0, 80) + (firstMsg.content.length > 80 ? '...' : '');
       sessionStore._dirty = true;
     }
   }
@@ -225,9 +217,7 @@ router.get('/auth/learning-profile', requireAuth, (req, res) => {
 router.post('/chat/hint', async (req, res) => {
   var { problem } = req.body;
   if (!problem || typeof problem !== 'string' || problem.length > 2000) {
-    return res
-      .status(400)
-      .json({ error: 'Problem text required (max 2000 chars)' });
+    return res.status(400).json({ error: 'Problem text required (max 2000 chars)' });
   }
 
   var weakAreas = '';
@@ -249,8 +239,7 @@ router.post('/chat/hint', async (req, res) => {
   }
 
   var hintPrompt = 'Du bist ein Chemie-Nachhilfelehrer.';
-  if (weakAreas)
-    hintPrompt += ' Der Schüler hat Schwierigkeiten mit: ' + weakAreas + '.';
+  if (weakAreas) hintPrompt += ' Der Schüler hat Schwierigkeiten mit: ' + weakAreas + '.';
   hintPrompt +=
     ' Gib einen Schritt-für-Schritt-Hinweis für folgende Aufgabe, aber verrate NICHT die endgültige Antwort: ' +
     problem;
@@ -286,9 +275,7 @@ router.post('/chat/hint', async (req, res) => {
 router.post('/chat/feedback', (req, res) => {
   var { sessionId, messageIndex, rating } = req.body;
   if (!sessionId || messageIndex === undefined || !rating) {
-    return res
-      .status(400)
-      .json({ error: 'sessionId, messageIndex, rating required' });
+    return res.status(400).json({ error: 'sessionId, messageIndex, rating required' });
   }
   if (rating !== 'up' && rating !== 'down') {
     return res.status(400).json({ error: 'rating must be "up" or "down"' });
@@ -339,8 +326,7 @@ router.get('/chat/feedback/analytics', (req, res) => {
       total: feedback.length,
       up: up,
       down: down,
-      satisfactionRate:
-        feedback.length > 0 ? Math.round((up / feedback.length) * 100) : 0,
+      satisfactionRate: feedback.length > 0 ? Math.round((up / feedback.length) * 100) : 0,
     });
   } catch (err) {
     logger.error('[feedback] analytics error:', err.message);

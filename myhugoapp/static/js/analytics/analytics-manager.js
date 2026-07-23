@@ -3,7 +3,6 @@
  * Tracks user learning progress and provides insights
  */
 
-
 const AnalyticsManager = {
   // Storage keys
   STORAGE_KEYS: {
@@ -11,7 +10,7 @@ const AnalyticsManager = {
     SESSIONS: 'analytics_sessions',
     ACHIEVEMENTS: 'analytics_achievements',
     MISTAKES: 'analytics_mistakes',
-    STATS: 'analytics_stats'
+    STATS: 'analytics_stats',
   },
 
   // Current session data
@@ -19,7 +18,7 @@ const AnalyticsManager = {
     startTime: null,
     calculations: [],
     practiceProblems: [],
-    mistakes: []
+    mistakes: [],
   },
 
   /**
@@ -38,7 +37,7 @@ const AnalyticsManager = {
       startTime: Date.now(),
       calculations: [],
       practiceProblems: [],
-      mistakes: []
+      mistakes: [],
     };
   },
 
@@ -51,7 +50,7 @@ const AnalyticsManager = {
     const session = {
       ...this.currentSession,
       endTime: Date.now(),
-      duration: Date.now() - this.currentSession.startTime
+      duration: Date.now() - this.currentSession.startTime,
     };
 
     const sessions = this.getSessions();
@@ -73,7 +72,7 @@ const AnalyticsManager = {
       result: data.result,
       correct: data.correct !== undefined ? data.correct : true,
       timeSpent: data.timeSpent || 0,
-      attempts: data.attempts || 1
+      attempts: data.attempts || 1,
     };
 
     this.currentSession.calculations.push(calculation);
@@ -84,7 +83,7 @@ const AnalyticsManager = {
         type: 'calculation',
         calculationType: data.type,
         inputs: data.inputs,
-        timestamp: calculation.timestamp
+        timestamp: calculation.timestamp,
       });
     }
 
@@ -102,7 +101,7 @@ const AnalyticsManager = {
       correct: data.correct,
       timeSpent: data.timeSpent || 0,
       attempts: data.attempts || 1,
-      hintsUsed: data.hintsUsed || 0
+      hintsUsed: data.hintsUsed || 0,
     };
 
     this.currentSession.practiceProblems.push(problem);
@@ -113,7 +112,7 @@ const AnalyticsManager = {
         type: 'practice',
         problemType: data.type,
         difficulty: problem.difficulty,
-        timestamp: problem.timestamp
+        timestamp: problem.timestamp,
       });
     }
 
@@ -126,7 +125,7 @@ const AnalyticsManager = {
   trackMistake(mistake) {
     const enrichedMistake = {
       ...mistake,
-      id: `mistake_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+      id: `mistake_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
     };
 
     this.currentSession.mistakes.push(enrichedMistake);
@@ -150,7 +149,7 @@ const AnalyticsManager = {
         totalAttempts: 0,
         correctAttempts: 0,
         totalTime: 0,
-        lastActivity: activity.timestamp
+        lastActivity: activity.timestamp,
       };
     }
 
@@ -256,7 +255,7 @@ const AnalyticsManager = {
     const achievements = this.getAchievements();
 
     // Check if already unlocked
-    if (achievements.find(a => a.id === achievementId)) {
+    if (achievements.find((a) => a.id === achievementId)) {
       return false;
     }
 
@@ -265,7 +264,7 @@ const AnalyticsManager = {
       title: this.getAchievementTitle(achievementId),
       description: this.getAchievementDescription(achievementId, data),
       timestamp: Date.now(),
-      data
+      data,
     };
 
     achievements.push(achievement);
@@ -273,9 +272,11 @@ const AnalyticsManager = {
 
     // Dispatch event for UI notification
     if (typeof window !== 'undefined') {
-      window.dispatchEvent(new CustomEvent('achievementUnlocked', {
-        detail: achievement
-      }));
+      window.dispatchEvent(
+        new CustomEvent('achievementUnlocked', {
+          detail: achievement,
+        })
+      );
     }
 
     return true;
@@ -294,7 +295,7 @@ const AnalyticsManager = {
       fast_solver: 'Fast Solver',
       level_up: 'Level Up!',
       category_master: 'Category Master',
-      session_marathon: 'Session Marathon'
+      session_marathon: 'Session Marathon',
     };
     return titles[achievementId] || 'Achievement Unlocked';
   },
@@ -312,7 +313,7 @@ const AnalyticsManager = {
       fast_solver: 'Solved a problem in under 30 seconds',
       level_up: `Reached level ${data.level || 2}`,
       category_master: `Mastered the ${data.category || ''} category`,
-      session_marathon: 'Studied for over an hour in one session'
+      session_marathon: 'Studied for over an hour in one session',
     };
     return descriptions[achievementId] || 'Achievement unlocked!';
   },
@@ -336,7 +337,8 @@ const AnalyticsManager = {
 
     // Session marathon
     const sessionDuration = Date.now() - this.currentSession.startTime;
-    if (sessionDuration > 3600000) { // 1 hour
+    if (sessionDuration > 3600000) {
+      // 1 hour
       this.unlockAchievement('session_marathon');
     }
 
@@ -359,7 +361,7 @@ const AnalyticsManager = {
       strongAreas: [],
       weakAreas: [],
       recommendations: [],
-      summary: ''
+      summary: '',
     };
 
     // Analyze category performance
@@ -369,13 +371,13 @@ const AnalyticsManager = {
       if (accuracy >= 0.9 && data.totalAttempts >= 10) {
         insights.strongAreas.push({
           category,
-          accuracy: (accuracy * 100).toFixed(1)
+          accuracy: (accuracy * 100).toFixed(1),
         });
       } else if (accuracy < 0.7 && data.totalAttempts >= 10) {
         insights.weakAreas.push({
           category,
           accuracy: (accuracy * 100).toFixed(1),
-          attempts: data.totalAttempts
+          attempts: data.totalAttempts,
         });
       }
     }
@@ -399,24 +401,24 @@ const AnalyticsManager = {
     const mistakePatterns = this.analyzeMistakes(mistakes);
 
     // Recommend practice for weak areas
-    weakAreas.forEach(area => {
+    weakAreas.forEach((area) => {
       recommendations.push({
         type: 'practice',
         priority: 'high',
         category: area.category,
         title: `Practice ${area.category} calculations`,
-        description: `Your accuracy is ${area.accuracy}%. Focus on ${area.category} to improve.`
+        description: `Your accuracy is ${area.accuracy}%. Focus on ${area.category} to improve.`,
       });
     });
 
     // Recommend specific topics based on mistake patterns
-    mistakePatterns.forEach(pattern => {
+    mistakePatterns.forEach((pattern) => {
       recommendations.push({
         type: 'review',
         priority: pattern.frequency > 5 ? 'high' : 'medium',
         category: pattern.category,
         title: `Review ${pattern.topic}`,
-        description: `You frequently make mistakes with ${pattern.topic}.`
+        description: `You frequently make mistakes with ${pattern.topic}.`,
       });
     });
 
@@ -426,7 +428,7 @@ const AnalyticsManager = {
         type: 'explore',
         priority: 'low',
         title: 'Explore new topics',
-        description: 'You\'re doing great! Try learning a new calculator feature.'
+        description: "You're doing great! Try learning a new calculator feature.",
       });
     }
 
@@ -441,25 +443,25 @@ const AnalyticsManager = {
 
     // Group mistakes by type and calculate
     const mistakeGroups = {};
-    mistakes.forEach(mistake => {
+    mistakes.forEach((mistake) => {
       const key = `${mistake.type}_${mistake.calculationType || mistake.problemType}`;
       if (!mistakeGroups[key]) {
         mistakeGroups[key] = {
           type: mistake.type,
           category: mistake.calculationType || mistake.problemType,
           count: 0,
-          topic: mistake.calculationType || mistake.problemType
+          topic: mistake.calculationType || mistake.problemType,
         };
       }
       mistakeGroups[key].count++;
     });
 
     // Convert to array and filter high-frequency mistakes
-    Object.values(mistakeGroups).forEach(group => {
+    Object.values(mistakeGroups).forEach((group) => {
       if (group.count >= 3) {
         patterns.push({
           ...group,
-          frequency: group.count
+          frequency: group.count,
         });
       }
     });
@@ -471,14 +473,15 @@ const AnalyticsManager = {
    * Generate progress summary
    */
   generateSummary(progress) {
-    const overallAccuracy = progress.totalAttempts > 0
-      ? ((progress.correctAttempts / progress.totalAttempts) * 100).toFixed(1)
-      : 0;
+    const overallAccuracy =
+      progress.totalAttempts > 0
+        ? ((progress.correctAttempts / progress.totalAttempts) * 100).toFixed(1)
+        : 0;
 
     const summaries = [];
 
     if (overallAccuracy >= 90) {
-      summaries.push('Excellent work! You\'re mastering the material.');
+      summaries.push("Excellent work! You're mastering the material.");
     } else if (overallAccuracy >= 70) {
       summaries.push('Good progress! Keep practicing to improve further.');
     } else {
@@ -504,7 +507,7 @@ const AnalyticsManager = {
     const recentSessions = sessions.slice(-10).reverse();
 
     for (const session of recentSessions) {
-      const dayCorrect = session.practiceProblems.filter(p => p.correct).length;
+      const dayCorrect = session.practiceProblems.filter((p) => p.correct).length;
       const dayTotal = session.practiceProblems.length;
 
       if (dayTotal > 0 && dayCorrect === dayTotal) {
@@ -516,7 +519,7 @@ const AnalyticsManager = {
 
     return {
       current: currentStreak,
-      best: progress.bestStreak || 0
+      best: progress.bestStreak || 0,
     };
   },
 
@@ -531,7 +534,7 @@ const AnalyticsManager = {
       lastActivity: null,
       level: 1,
       xp: 0,
-      categories: {}
+      categories: {},
     });
   },
 
@@ -565,7 +568,7 @@ const AnalyticsManager = {
       totalTime: 0,
       totalCalculations: 0,
       totalPracticeProblems: 0,
-      avgSessionLength: 0
+      avgSessionLength: 0,
     });
   },
 
@@ -604,7 +607,7 @@ const AnalyticsManager = {
 
     // Ensure first_calculation achievement exists if user has progress
     const progress = this.getProgress();
-    if (progress.totalAttempts > 0 && !achievements.find(a => a.id === 'first_calculation')) {
+    if (progress.totalAttempts > 0 && !achievements.find((a) => a.id === 'first_calculation')) {
       this.unlockAchievement('first_calculation');
     }
   },
@@ -619,7 +622,7 @@ const AnalyticsManager = {
       achievements: this.getAchievements(),
       mistakes: this.getMistakes(),
       stats: this.getStats(),
-      exportDate: new Date().toISOString()
+      exportDate: new Date().toISOString(),
     };
   },
 
@@ -627,7 +630,7 @@ const AnalyticsManager = {
    * Clear all analytics data
    */
   clearAllData() {
-    Object.values(this.STORAGE_KEYS).forEach(key => {
+    Object.values(this.STORAGE_KEYS).forEach((key) => {
       localStorage.removeItem(key);
     });
 
@@ -635,9 +638,9 @@ const AnalyticsManager = {
       startTime: null,
       calculations: [],
       practiceProblems: [],
-      mistakes: []
+      mistakes: [],
     };
-  }
+  },
 };
 
 // Auto-initialize if in browser

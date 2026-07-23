@@ -141,17 +141,23 @@ function isNeo4jReachable() {
       connectionTimeout: 3000,
       maxConnectionLifetime: 5000,
     });
-    return d.verifyConnectivity().then(function () {
-      return d.close().then(function () {
-        return true;
+    return d
+      .verifyConnectivity()
+      .then(function () {
+        return d.close().then(function () {
+          return true;
+        });
+      })
+      .catch(function () {
+        return d
+          .close()
+          .then(function () {
+            return false;
+          })
+          .catch(function () {
+            return false;
+          });
       });
-    }).catch(function () {
-      return d.close().then(function () {
-        return false;
-      }).catch(function () {
-        return false;
-      });
-    });
   } catch (_e) {
     return Promise.resolve(false);
   }
@@ -178,7 +184,8 @@ function describeApi(name, fn) {
       if (_neo4jReachable) process.env[NEO4J_REACHABLE] = '1';
     });
   }
-  const describeFn = _neo4jReachable === null ? describe.skip : _neo4jReachable ? describe : describe.skip;
+  const describeFn =
+    _neo4jReachable === null ? describe.skip : _neo4jReachable ? describe : describe.skip;
   describeFn(name, fn);
 }
 

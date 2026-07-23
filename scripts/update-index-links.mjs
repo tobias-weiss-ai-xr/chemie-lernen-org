@@ -33,9 +33,10 @@ function parseFrontmatter(raw) {
 }
 
 function main() {
-  const bereiche = fs.readdirSync(THEMEN_DIR, { withFileTypes: true })
-    .filter(d => d.isDirectory())
-    .map(d => d.name);
+  const bereiche = fs
+    .readdirSync(THEMEN_DIR, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name);
 
   for (const bereich of bereiche) {
     const dir = path.join(THEMEN_DIR, bereich);
@@ -46,9 +47,10 @@ function main() {
     }
 
     // Get all sub-articles
-    const articles = fs.readdirSync(dir)
-      .filter(f => f.endsWith('.md') && f !== '_index.md')
-      .map(f => {
+    const articles = fs
+      .readdirSync(dir)
+      .filter((f) => f.endsWith('.md') && f !== '_index.md')
+      .map((f) => {
         const fp = path.join(dir, f);
         const raw = fs.readFileSync(fp, 'utf-8');
         const parsed = parseFrontmatter(raw);
@@ -74,8 +76,8 @@ function main() {
       linkedSlugs.add(match[1]);
     }
 
-    const missing = articles.filter(a => !linkedSlugs.has(a.slug));
-    
+    const missing = articles.filter((a) => !linkedSlugs.has(a.slug));
+
     if (missing.length > 0) {
       console.log(`\n📋 ${bereich}/_index.md fehlt ${missing.length} Links:`);
       for (const a of missing) {
@@ -86,18 +88,27 @@ function main() {
       const weiterSection = body.match(/^## Weiterführende Themen$/m);
       if (weiterSection) {
         // Find the end of the existing Weiterführende Themen section
-        const afterWtStart = body.indexOf('## Weiterführende Themen') + '## Weiterführende Themen'.length;
+        const afterWtStart =
+          body.indexOf('## Weiterführende Themen') + '## Weiterführende Themen'.length;
         const afterSection = body.slice(afterWtStart);
         const nextSection = afterSection.match(/\n## /);
         const sectionEnd = nextSection ? afterWtStart + nextSection.index : body.length;
 
-        const newLinks = missing.map(a => {
-          const desc = a.desc ? ` – ${a.desc}` : '';
-          return `\n- [${a.title}](/themenbereiche/${bereich}/${a.slug}/)${desc}`;
-        }).join('');
+        const newLinks = missing
+          .map((a) => {
+            const desc = a.desc ? ` – ${a.desc}` : '';
+            return `\n- [${a.title}](/themenbereiche/${bereich}/${a.slug}/)${desc}`;
+          })
+          .join('');
 
         const newBody = body.slice(0, sectionEnd) + newLinks + '\n' + body.slice(sectionEnd);
-        fs.writeFileSync(indexFile, `---\n${Object.entries(fm).map(([k,v]) => `${k}: '${v}'`).join('\n')}\n---\n${newBody}`, 'utf-8');
+        fs.writeFileSync(
+          indexFile,
+          `---\n${Object.entries(fm)
+            .map(([k, v]) => `${k}: '${v}'`)
+            .join('\n')}\n---\n${newBody}`,
+          'utf-8'
+        );
         needsUpdate = true;
       }
     }

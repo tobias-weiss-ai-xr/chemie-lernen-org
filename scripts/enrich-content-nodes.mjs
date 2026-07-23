@@ -25,7 +25,13 @@ import neo4j from 'neo4j-driver';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..');
-const MAPPING_FILE = path.join(REPO_ROOT, 'myhugoapp', 'data', 'curricula', 'content-neo4j-mapping.json');
+const MAPPING_FILE = path.join(
+  REPO_ROOT,
+  'myhugoapp',
+  'data',
+  'curricula',
+  'content-neo4j-mapping.json'
+);
 
 const NEO4J_URI = process.env.NEO4J_URI || 'bolt://chemie-neo4j:7687';
 const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
@@ -58,7 +64,14 @@ async function main() {
     for (const link of links) {
       const url = link.url;
       if (!byUrl.has(url)) {
-        byUrl.set(url, { url, title: link.title, type: link.type, states: [], keywords: new Set(), maxScore: 0 });
+        byUrl.set(url, {
+          url,
+          title: link.title,
+          type: link.type,
+          states: [],
+          keywords: new Set(),
+          maxScore: 0,
+        });
       }
       const entry = byUrl.get(url);
       if (link.states) {

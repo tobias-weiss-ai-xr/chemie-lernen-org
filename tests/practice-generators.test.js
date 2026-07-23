@@ -7,7 +7,7 @@ const {
   generateMassMassProblem,
   generateLimitingProblem,
   generateYieldProblem,
-  checkAnswerTolerance
+  checkAnswerTolerance,
 } = require('../myhugoapp/static/js/calculators/practice-generators.js');
 
 describe('generateMolMolProblem', () => {

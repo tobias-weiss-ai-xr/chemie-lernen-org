@@ -23,14 +23,16 @@ function calculateMolarMass(formulaData) {
     H: 1.008,
     O: 15.999,
     N: 14.007,
-    S: 32.06
+    S: 32.06,
   };
 
-  return (formulaData.c * atomicMasses.C) +
-         (formulaData.h * atomicMasses.H) +
-         (formulaData.o * atomicMasses.O) +
-         (formulaData.n * atomicMasses.N) +
-         (formulaData.s * atomicMasses.S);
+  return (
+    formulaData.c * atomicMasses.C +
+    formulaData.h * atomicMasses.H +
+    formulaData.o * atomicMasses.O +
+    formulaData.n * atomicMasses.N +
+    formulaData.s * atomicMasses.S
+  );
 }
 
 // Calculate oxygen required for complete combustion
@@ -54,7 +56,7 @@ function calculateCombustionProducts(formulaData, fuelMoles, excessAir, efficien
   const oxygenCoeff = calculateOxygenRequired(formulaData);
 
   // Calculate actual oxygen supplied (with excess air)
-  const lambda = 1 + (excessAir / 100);
+  const lambda = 1 + excessAir / 100;
   const oxygenSupplied = oxygenCoeff * lambda * fuelMoles;
 
   // Calculate complete combustion products
@@ -65,7 +67,7 @@ function calculateCombustionProducts(formulaData, fuelMoles, excessAir, efficien
   // If incomplete combustion, some CO is formed
   const combustionCompleteness = efficiency / 100;
   const coProduced = formulaData.c * fuelMoles * (1 - combustionCompleteness);
-  const co2Adjusted = co2Produced - (coProduced); // Adjust CO2 for incomplete combustion
+  const co2Adjusted = co2Produced - coProduced; // Adjust CO2 for incomplete combustion
 
   // Remaining oxygen
   const oxygenConsumed = oxygenCoeff * fuelMoles * combustionCompleteness;
@@ -75,7 +77,7 @@ function calculateCombustionProducts(formulaData, fuelMoles, excessAir, efficien
   const nitrogenFromAir = (oxygenSupplied / 0.21) * 0.79;
 
   // NOx production (simplified, assuming small fraction)
-  const noProduced = formulaData.n * fuelMoles + (oxygenSupplied * 0.001); // Small amount of NOx
+  const noProduced = formulaData.n * fuelMoles + oxygenSupplied * 0.001; // Small amount of NOx
 
   return {
     co2: Math.max(0, co2Adjusted),
@@ -84,7 +86,7 @@ function calculateCombustionProducts(formulaData, fuelMoles, excessAir, efficien
     co: coProduced,
     o2: oxygenRemaining,
     n2: nitrogenFromAir,
-    no: noProduced
+    no: noProduced,
   };
 }
 
@@ -98,10 +100,10 @@ function calculateAirRequirements(formulaData, fuelMass, excessAir) {
 
   // Minimum air required (theoretical)
   // Air is 23.2% O2 by mass, 21% by volume
-  const minAirMass = (oxygenRequired * 32.00) / 0.232; // O2 molar mass = 32.00 g/mol
+  const minAirMass = (oxygenRequired * 32.0) / 0.232; // O2 molar mass = 32.00 g/mol
 
   // Actual air with excess
-  const lambda = 1 + (excessAir / 100);
+  const lambda = 1 + excessAir / 100;
   const actualAirMass = minAirMass * lambda;
 
   // Convert to kg
@@ -112,7 +114,7 @@ function calculateAirRequirements(formulaData, fuelMass, excessAir) {
     minAirKg: minAirKg,
     actualAirKg: actualAirKg,
     lambda: lambda,
-    fuelMoles: fuelMoles
+    fuelMoles: fuelMoles,
   };
 }
 
@@ -139,7 +141,7 @@ function calculateEnvironmentalData(formulaData, fuelMass, products) {
     co2PerKg: co2PerKg,
     carbonPerKg: carbonPerKg,
     co2PerMJ: co2PerMJ,
-    energyContent: energyContent
+    energyContent: energyContent,
   };
 }
 
@@ -154,7 +156,8 @@ function calculateHeatingValue(formulaData) {
   const sulfurContribution = formulaData.s * 9.0; // MJ/kg of S
 
   const molarMass = calculateMolarMass(formulaData);
-  const lowerHeatingValue = (carbonContribution + hydrogenContribution - oxygenDeduction + sulfurContribution) / molarMass;
+  const lowerHeatingValue =
+    (carbonContribution + hydrogenContribution - oxygenDeduction + sulfurContribution) / molarMass;
 
   // Higher heating value includes condensation of water
   const waterProduced = formulaData.h / 2;
@@ -164,7 +167,7 @@ function calculateHeatingValue(formulaData) {
 
   return {
     lower: lowerHeatingValue,
-    higher: higherHeatingValue
+    higher: higherHeatingValue,
   };
 }
 
@@ -187,7 +190,7 @@ function formatCombustionEquation(formulaData, oxygenCoeff) {
   // Format coefficient
   const o2Coeff = formatNumber(oxygenCoeff, 2);
   const co2Coeff = c > 0 ? (c > 1 ? c : '') : '';
-  const h2oCoeff = h > 0 ? (h/2 > 1 ? h/2 : '') : '';
+  const h2oCoeff = h > 0 ? (h / 2 > 1 ? h / 2 : '') : '';
   const so2Coeff = s > 0 ? (s > 1 ? s : '') : '';
 
   // Build equation
@@ -242,23 +245,48 @@ function calculateCombustion() {
     // Perform calculations
     const oxygenCoeff = calculateOxygenRequired(formulaData);
     const airRequirements = calculateAirRequirements(formulaData, fuelMass, excessAir);
-    const products = calculateCombustionProducts(formulaData, airRequirements.fuelMoles, excessAir, efficiency);
+    const products = calculateCombustionProducts(
+      formulaData,
+      airRequirements.fuelMoles,
+      excessAir,
+      efficiency
+    );
     const environmentalData = calculateEnvironmentalData(formulaData, fuelMass, products);
 
     // Display results
-    displayResults(nameInput || formulaInput, formulaData, fuelMass, excessAir, efficiency,
-                   oxygenCoeff, airRequirements, products, environmentalData);
-
+    displayResults(
+      nameInput || formulaInput,
+      formulaData,
+      fuelMass,
+      excessAir,
+      efficiency,
+      oxygenCoeff,
+      airRequirements,
+      products,
+      environmentalData
+    );
   } catch (error) {
     showError(error.message);
   }
 }
 
 // Display results
-function displayResults(fuelName, formulaData, fuelMass, excessAir, efficiency,
-                        oxygenCoeff, airRequirements, products, environmentalData) {
+function displayResults(
+  fuelName,
+  formulaData,
+  fuelMass,
+  excessAir,
+  efficiency,
+  oxygenCoeff,
+  airRequirements,
+  products,
+  environmentalData
+) {
   // Combustion equation
-  document.getElementById('combustion-equation').innerHTML = formatCombustionEquation(formulaData, oxygenCoeff);
+  document.getElementById('combustion-equation').innerHTML = formatCombustionEquation(
+    formulaData,
+    oxygenCoeff
+  );
 
   // Air requirements
   const airHtml = `
@@ -288,18 +316,26 @@ function displayResults(fuelName, formulaData, fuelMass, excessAir, efficiency,
       <span class="data-label">H₂O:</span>
       <span class="data-value">${formatNumber(products.h2o, 3)} mol</span>
     </div>
-    ${products.co > 0.001 ? `
+    ${
+      products.co > 0.001
+        ? `
     <div class="data-row">
       <span class="data-label">CO (unvollständig):</span>
       <span class="data-value value-warning">${formatNumber(products.co, 3)} mol</span>
     </div>
-    ` : ''}
-    ${products.so2 > 0.001 ? `
+    `
+        : ''
+    }
+    ${
+      products.so2 > 0.001
+        ? `
     <div class="data-row">
       <span class="data-label">SO₂:</span>
       <span class="data-value">${formatNumber(products.so2, 3)} mol</span>
     </div>
-    ` : ''}
+    `
+        : ''
+    }
     <div class="data-row">
       <span class="data-label">O₂ (überschüssig):</span>
       <span class="data-value">${formatNumber(products.o2, 3)} mol</span>
@@ -365,12 +401,21 @@ function displayResults(fuelName, formulaData, fuelMass, excessAir, efficiency,
       <h4>Stöchiometrische Berechnungen</h4>
       <p><strong>Sauerstoffbedarf:</strong> ${formatNumber(oxygenCoeff, 3)} mol O₂/mol Brennstoff</p>
       <p><strong>Verhältnis λ:</strong> ${formatNumber(airRequirements.lambda, 3)}
-         ${airRequirements.lambda === 1 ? '(stöchiometrisch)' :
-           airRequirements.lambda > 1 ? '(mager, überschüssige Luft)' :
-           '(fett, unvollständige Verbrennung)'}</p>
+         ${
+           airRequirements.lambda === 1
+             ? '(stöchiometrisch)'
+             : airRequirements.lambda > 1
+               ? '(mager, überschüssige Luft)'
+               : '(fett, unvollständige Verbrennung)'
+         }</p>
       <p><strong>Verbrennungswirkungsgrad:</strong> ${efficiency.toFixed(1)}%
-         ${efficiency === 100 ? '(vollständige Verbrennung)' :
-           efficiency < 100 ? '(unvollständige Verbrennung)' : ''}</p>
+         ${
+           efficiency === 100
+             ? '(vollständige Verbrennung)'
+             : efficiency < 100
+               ? '(unvollständige Verbrennung)'
+               : ''
+         }</p>
     </div>
     <div class="calculation-step">
       <h4>Umweltbewertung</h4>
@@ -396,10 +441,10 @@ function showResults() {
 // Show error
 
 // Setup example button handlers
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Example buttons
-  document.querySelectorAll('.example-btn').forEach(button => {
-    button.addEventListener('click', function() {
+  document.querySelectorAll('.example-btn').forEach((button) => {
+    button.addEventListener('click', function () {
       document.getElementById('fuel-formula').value = this.dataset.formula;
       document.getElementById('fuel-name').value = this.dataset.name;
     });
@@ -407,8 +452,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Enable Enter key for inputs
   const inputs = document.querySelectorAll('.form-control');
-  inputs.forEach(input => {
-    input.addEventListener('keypress', function(e) {
+  inputs.forEach((input) => {
+    input.addEventListener('keypress', function (e) {
       if (e.key === 'Enter') {
         calculateCombustion();
       }

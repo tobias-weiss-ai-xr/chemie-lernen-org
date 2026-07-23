@@ -21,7 +21,7 @@ function parseFormula(formula, options = {}) {
     const mult = multiplier ? parseInt(multiplier) : 1;
     const processedGroup = group.replace(/([A-Z][a-z]?)(\d*)/g, (m, element, count) => {
       const c = count ? parseInt(count) : 1;
-      return element + (c * mult);
+      return element + c * mult;
     });
     return processedGroup;
   });
@@ -89,14 +89,14 @@ function getCompositionDetails(composition, atomicMasses, totalMass) {
     const count = composition[element];
     const mass = atomicMasses[element];
     const contribution = count * mass;
-    const percentage = (contribution / totalMass * 100).toFixed(1);
+    const percentage = ((contribution / totalMass) * 100).toFixed(1);
 
     details.push({
       element,
       count,
       mass,
       contribution,
-      percentage
+      percentage,
     });
   }
 
@@ -127,10 +127,10 @@ function isValidFormula(formula) {
 function extractElements(formulas) {
   const elements = new Set();
 
-  formulas.forEach(formula => {
+  formulas.forEach((formula) => {
     try {
       const composition = parseFormula(formula);
-      Object.keys(composition).forEach(element => elements.add(element));
+      Object.keys(composition).forEach((element) => elements.add(element));
     } catch (error) {
       // Skip invalid formulas
       console.warn(`Failed to parse formula: ${formula}`, error);
@@ -148,7 +148,7 @@ if (typeof module !== 'undefined' && module.exports) {
     calculateMolarMass,
     getCompositionDetails,
     isValidFormula,
-    extractElements
+    extractElements,
   };
 }
 
@@ -160,6 +160,6 @@ if (typeof window !== 'undefined') {
     calculateMolarMass,
     getCompositionDetails,
     isValidFormula,
-    extractElements
+    extractElements,
   };
 }

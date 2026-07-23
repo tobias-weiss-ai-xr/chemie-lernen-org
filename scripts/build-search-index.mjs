@@ -86,9 +86,7 @@ async function main() {
   await mkdir(OUTPUT_DIR, { recursive: true });
   await writeFile(OUTPUT_FILE, JSON.stringify(indexData, null, 2), 'utf-8');
 
-  console.log(
-    `Search index built: ${entityDocuments.length} entities → ${OUTPUT_FILE}`
-  );
+  console.log(`Search index built: ${entityDocuments.length} entities → ${OUTPUT_FILE}`);
 }
 
 main().catch((err) => {

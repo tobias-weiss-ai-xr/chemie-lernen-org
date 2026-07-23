@@ -3,7 +3,6 @@
  * Handles multi-language support for the chemistry education platform
  */
 
-
 const I18nManager = {
   // Current language
   currentLocale: 'de',
@@ -20,7 +19,7 @@ const I18nManager = {
     en: 'English',
     es: 'Español',
     fr: 'Français',
-    it: 'Italiano'
+    it: 'Italiano',
   },
 
   // Translation cache
@@ -28,11 +27,11 @@ const I18nManager = {
 
   // Plural rules for different languages
   pluralRules: {
-    de: (n) => n === 1 ? 0 : 1, // German: 1 singular, other plural
-    en: (n) => n === 1 ? 0 : 1, // English: 1 singular, other plural
-    es: (n) => n === 1 ? 0 : 1, // Spanish: 1 singular, other plural
-    fr: (n) => n === 1 ? 0 : 1, // French: 1 singular, other plural
-    it: (n) => n === 1 ? 0 : 1  // Italian: 1 singular, other plural
+    de: (n) => (n === 1 ? 0 : 1), // German: 1 singular, other plural
+    en: (n) => (n === 1 ? 0 : 1), // English: 1 singular, other plural
+    es: (n) => (n === 1 ? 0 : 1), // Spanish: 1 singular, other plural
+    fr: (n) => (n === 1 ? 0 : 1), // French: 1 singular, other plural
+    it: (n) => (n === 1 ? 0 : 1), // Italian: 1 singular, other plural
   },
 
   /**
@@ -96,7 +95,9 @@ const I18nManager = {
    */
   setLocale(locale) {
     if (!this.isLocaleSupported(locale)) {
-      console.warn(`Locale '${locale}' is not supported. Supported locales: ${this.supportedLocales.join(', ')}`);
+      console.warn(
+        `Locale '${locale}' is not supported. Supported locales: ${this.supportedLocales.join(', ')}`
+      );
       return false;
     }
 
@@ -207,11 +208,14 @@ const I18nManager = {
     const defaultOptions = {
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     };
 
     try {
-      return new Date(date).toLocaleDateString(this.currentLocale, { ...defaultOptions, ...options });
+      return new Date(date).toLocaleDateString(this.currentLocale, {
+        ...defaultOptions,
+        ...options,
+      });
     } catch (error) {
       console.error('Error formatting date:', error);
       return new Date(date).toLocaleDateString();
@@ -223,11 +227,13 @@ const I18nManager = {
    */
   formatNumber(number, options = {}) {
     const defaultOptions = {
-      maximumFractionDigits: 2
+      maximumFractionDigits: 2,
     };
 
     try {
-      return new Intl.NumberFormat(this.currentLocale, { ...defaultOptions, ...options }).format(number);
+      return new Intl.NumberFormat(this.currentLocale, { ...defaultOptions, ...options }).format(
+        number
+      );
     } catch (error) {
       console.error('Error formatting number:', error);
       return number.toString();
@@ -241,11 +247,13 @@ const I18nManager = {
     const defaultOptions = {
       style: 'percent',
       minimumFractionDigits: 1,
-      maximumFractionDigits: 1
+      maximumFractionDigits: 1,
     };
 
     try {
-      return new Intl.NumberFormat(this.currentLocale, { ...defaultOptions, ...options }).format(number / 100);
+      return new Intl.NumberFormat(this.currentLocale, { ...defaultOptions, ...options }).format(
+        number / 100
+      );
     } catch (error) {
       console.error('Error formatting percentage:', error);
       return `${number}%`;
@@ -256,9 +264,9 @@ const I18nManager = {
    * Get all supported locales with their native names
    */
   getSupportedLanguages() {
-    return this.supportedLocales.map(locale => ({
+    return this.supportedLocales.map((locale) => ({
       code: locale,
-      name: this.languageNames[locale]
+      name: this.languageNames[locale],
     }));
   },
 
@@ -293,7 +301,7 @@ const I18nManager = {
 
     // Translate children
     const children = element.querySelectorAll('[data-i18n]');
-    children.forEach(child => this.translateElement(child));
+    children.forEach((child) => this.translateElement(child));
   },
 
   /**
@@ -301,7 +309,7 @@ const I18nManager = {
    */
   translatePage() {
     const elements = document.querySelectorAll('[data-i18n]');
-    elements.forEach(element => this.translateElement(element));
+    elements.forEach((element) => this.translateElement(element));
   },
 
   /**
@@ -309,7 +317,7 @@ const I18nManager = {
    */
   exportTranslations() {
     return this.translations[this.currentLocale] || {};
-  }
+  },
 };
 
 // Auto-initialize if in browser

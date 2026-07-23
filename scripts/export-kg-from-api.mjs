@@ -19,21 +19,25 @@ const TARGET = path.resolve(__dirname, '..', 'myhugoapp', 'data', 'kg_data.json'
 
 function httpsGet(url) {
   return new Promise((resolve, reject) => {
-    https.get(url, (res) => {
-      if (res.statusCode !== 200) {
-        reject(new Error(`HTTP ${res.statusCode}`));
-        return;
-      }
-      let data = '';
-      res.on('data', (chunk) => { data += chunk; });
-      res.on('end', () => {
-        try {
-          resolve(JSON.parse(data));
-        } catch {
-          reject(new Error('Invalid JSON'));
+    https
+      .get(url, (res) => {
+        if (res.statusCode !== 200) {
+          reject(new Error(`HTTP ${res.statusCode}`));
+          return;
         }
-      });
-    }).on('error', reject);
+        let data = '';
+        res.on('data', (chunk) => {
+          data += chunk;
+        });
+        res.on('end', () => {
+          try {
+            resolve(JSON.parse(data));
+          } catch {
+            reject(new Error('Invalid JSON'));
+          }
+        });
+      })
+      .on('error', reject);
   });
 }
 
@@ -58,7 +62,13 @@ async function main() {
 
     fs.writeFileSync(TARGET, JSON.stringify(output, null, 2), 'utf-8');
     console.log('[export-kg-from-api] Written: ' + TARGET);
-    console.log('[export-kg-from-api] ' + output.entities.length + ' entities, ' + output.articles.length + ' articles');
+    console.log(
+      '[export-kg-from-api] ' +
+        output.entities.length +
+        ' entities, ' +
+        output.articles.length +
+        ' articles'
+    );
   } catch (err) {
     console.error('[export-kg-from-api] ERROR: ' + err.message);
     console.error('[export-kg-from-api] Existing file (if any) was NOT modified.');

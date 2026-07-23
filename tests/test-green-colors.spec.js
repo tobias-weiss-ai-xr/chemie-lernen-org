@@ -9,267 +9,262 @@ const BASE_URL = process.env.BASE_URL || 'https://chemie-lernen.org';
 
 // Expected green colors
 const GREEN_COLORS = {
-    primary: 'rgb(76, 175, 80)',      // #4caf50
-    dark: 'rgb(56, 142, 60)',          // #388e3c
-    light: 'rgb(200, 230, 201)',       // #c8e6c9 (from dark mode CSS)
-    darker: 'rgb(200, 230, 201)',      // #c8e6c9 (navbar-brand light green)
-    medium: 'rgb(46, 125, 50)'         // #2e7d32
+  primary: 'rgb(76, 175, 80)', // #4caf50
+  dark: 'rgb(56, 142, 60)', // #388e3c
+  light: 'rgb(200, 230, 201)', // #c8e6c9 (from dark mode CSS)
+  darker: 'rgb(200, 230, 201)', // #c8e6c9 (navbar-brand light green)
+  medium: 'rgb(46, 125, 50)', // #2e7d32
 };
 
 // Blue colors that should NOT appear
 const BLUE_COLORS = [
-    'rgb(0, 123, 255)',    // #007bff
-    'rgb(0, 86, 179)',     // #0056b3
-    'rgb(59, 130, 246)',   // #3b82f6
-    'rgb(96, 165, 250)'    // #60a5fa
+  'rgb(0, 123, 255)', // #007bff
+  'rgb(0, 86, 179)', // #0056b3
+  'rgb(59, 130, 246)', // #3b82f6
+  'rgb(96, 165, 250)', // #60a5fa
 ];
 
 test.describe('Molekülstudio - Green Color Tests', () => {
+  test('Visualisieren button should be green', async ({ page }) => {
+    await page.goto(`${BASE_URL}/molekuel-studio/`);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
 
-    test('Visualisieren button should be green', async ({ page }) => {
-        await page.goto(`${BASE_URL}/molekuel-studio/`);
-        await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(1000);
+    const visualizeBtn = page.locator('#visualize-btn');
+    await expect(visualizeBtn).toBeVisible();
 
-        const visualizeBtn = page.locator('#visualize-btn');
-        await expect(visualizeBtn).toBeVisible();
-
-        const bgColor = await visualizeBtn.evaluate((el) => {
-            return window.getComputedStyle(el).backgroundColor;
-        });
-
-        expect(bgColor).toBe(GREEN_COLORS.primary);
+    const bgColor = await visualizeBtn.evaluate((el) => {
+      return window.getComputedStyle(el).backgroundColor;
     });
+
+    expect(bgColor).toBe(GREEN_COLORS.primary);
+  });
 });
 
 test.describe('Periodensystem - Green Color Tests', () => {
+  test('Active button should be green', async ({ page }) => {
+    await page.goto(`${BASE_URL}/perioden-system-der-elemente/`);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(2000); // Increased wait for WebKit
 
-    test('Active button should be green', async ({ page }) => {
-        await page.goto(`${BASE_URL}/perioden-system-der-elemente/`);
-        await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(2000); // Increased wait for WebKit
+    const activeButton = page.locator('button.active-mode');
+    await expect(activeButton).toBeVisible();
 
-        const activeButton = page.locator('button.active-mode');
-        await expect(activeButton).toBeVisible();
-
-        const bgColor = await activeButton.evaluate((el) => {
-            return window.getComputedStyle(el).backgroundColor;
-        });
-
-        // Check for green color - WebKit may have slightly different RGB values
-        // Should be greenish (high green value compared to red/blue)
-        const rgbMatch = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
-        expect(rgbMatch).toBeTruthy();
-
-        const [, r, g, b] = rgbMatch;
-        const red = parseInt(r);
-        const green = parseInt(g);
-        const blue = parseInt(b);
-
-        // Green should be the dominant color channel
-        expect(green).toBeGreaterThan(red);
-        expect(green).toBeGreaterThan(blue);
+    const bgColor = await activeButton.evaluate((el) => {
+      return window.getComputedStyle(el).backgroundColor;
     });
 
-    test('Element cards should have green shadows', async ({ page }) => {
-        await page.goto(`${BASE_URL}/perioden-system-der-elemente/`);
-        await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(2000);
+    // Check for green color - WebKit may have slightly different RGB values
+    // Should be greenish (high green value compared to red/blue)
+    const rgbMatch = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+    expect(rgbMatch).toBeTruthy();
 
-        // Wait for 3D to finish transforming
-        await page.waitForTimeout(2000);
+    const [, r, g, b] = rgbMatch;
+    const red = parseInt(r);
+    const green = parseInt(g);
+    const blue = parseInt(b);
 
-        const element = page.locator('.element').first();
-        await expect(element).toBeVisible();
+    // Green should be the dominant color channel
+    expect(green).toBeGreaterThan(red);
+    expect(green).toBeGreaterThan(blue);
+  });
 
-        const boxShadow = await element.evaluate((el) => {
-            return window.getComputedStyle(el).boxShadow;
-        });
+  test('Element cards should have green shadows', async ({ page }) => {
+    await page.goto(`${BASE_URL}/perioden-system-der-elemente/`);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(2000);
 
-        // Check for green color in box-shadow (rgba(76,175,80,*))
-        expect(boxShadow).toContain('76');
-        expect(boxShadow).toContain('175');
-        expect(boxShadow).toContain('80');
+    // Wait for 3D to finish transforming
+    await page.waitForTimeout(2000);
+
+    const element = page.locator('.element').first();
+    await expect(element).toBeVisible();
+
+    const boxShadow = await element.evaluate((el) => {
+      return window.getComputedStyle(el).boxShadow;
     });
+
+    // Check for green color in box-shadow (rgba(76,175,80,*))
+    expect(boxShadow).toContain('76');
+    expect(boxShadow).toContain('175');
+    expect(boxShadow).toContain('80');
+  });
 });
 
 test.describe('Navigation - Green Color Tests', () => {
+  test('Navigation links should be green', async ({ page }) => {
+    await page.goto(BASE_URL);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
 
-    test('Navigation links should be green', async ({ page }) => {
-        await page.goto(BASE_URL);
-        await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(1000);
+    const navLinks = page.locator('.navbar-nav > li > a');
+    const count = await navLinks.count();
+    expect(count).toBeGreaterThan(0);
 
-        const navLinks = page.locator('.navbar-nav > li > a');
-        const count = await navLinks.count();
-        expect(count).toBeGreaterThan(0);
+    for (let i = 0; i < count; i++) {
+      const link = navLinks.nth(i);
+      const color = await link.evaluate((el) => {
+        return window.getComputedStyle(el).color;
+      });
 
-        for (let i = 0; i < count; i++) {
-            const link = navLinks.nth(i);
-            const color = await link.evaluate((el) => {
-                return window.getComputedStyle(el).color;
-            });
+      // Check for green-ish color (rgb with G value higher than R and B)
+      const rgbMatch = color.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+      if (rgbMatch) {
+        const [, r, g, b] = rgbMatch.map(Number);
+        expect(g).toBeGreaterThan(r);
+        expect(g).toBeGreaterThan(b);
+      }
+    }
+  });
 
-            // Check for green-ish color (rgb with G value higher than R and B)
-            const rgbMatch = color.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
-            if (rgbMatch) {
-                const [, r, g, b] = rgbMatch.map(Number);
-                expect(g).toBeGreaterThan(r);
-                expect(g).toBeGreaterThan(b);
-            }
-        }
+  test('Site title should be dark green', async ({ page }) => {
+    await page.goto(BASE_URL);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
+
+    const brand = page.locator('.navbar-brand');
+    const color = await brand.evaluate((el) => {
+      return window.getComputedStyle(el).color;
     });
 
-    test('Site title should be dark green', async ({ page }) => {
-        await page.goto(BASE_URL);
-        await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(1000);
-
-        const brand = page.locator('.navbar-brand');
-        const color = await brand.evaluate((el) => {
-            return window.getComputedStyle(el).color;
-        });
-
-        expect(color).toBe(GREEN_COLORS.darker);
-    });
+    expect(color).toBe(GREEN_COLORS.darker);
+  });
 });
 
 test.describe('Dark Mode - Green Color Tests', () => {
+  test('Dark mode should use green text colors', async ({ page }) => {
+    await page.goto(BASE_URL);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
 
-    test('Dark mode should use green text colors', async ({ page }) => {
-        await page.goto(BASE_URL);
-        await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(1000);
+    // Enable dark mode
+    await page.evaluate(() => {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    });
+    await page.waitForTimeout(500);
 
-        // Enable dark mode
-        await page.evaluate(() => {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        });
-        await page.waitForTimeout(500);
-
-        const body = page.locator('body');
-        const color = await body.evaluate((el) => {
-            return window.getComputedStyle(el).color;
-        });
-
-        // Should be light green
-        expect(color).toBe(GREEN_COLORS.light);
+    const body = page.locator('body');
+    const color = await body.evaluate((el) => {
+      return window.getComputedStyle(el).color;
     });
 
-    test('Periodensystem dark mode should have green background', async ({ page }) => {
-        await page.goto(`${BASE_URL}/perioden-system-der-elemente/`);
-        await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(1000);
+    // Should be light green
+    expect(color).toBe(GREEN_COLORS.light);
+  });
 
-        // Enable dark mode
-        await page.evaluate(() => {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        });
-        await page.waitForTimeout(1500); // Increased wait for WebKit CSS transitions
+  test('Periodensystem dark mode should have green background', async ({ page }) => {
+    await page.goto(`${BASE_URL}/perioden-system-der-elemente/`);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
 
-        const bodyBg = await page.evaluate(() => {
-            return window.getComputedStyle(document.body).backgroundColor;
-        });
+    // Enable dark mode
+    await page.evaluate(() => {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    });
+    await page.waitForTimeout(1500); // Increased wait for WebKit CSS transitions
 
-        // Should be dark greenish - check approximate values due to browser differences
-        // WebKit may render slightly differently: rgb(49, 63, 53) instead of rgb(10, 26, 15)
-        const rgbMatch = bodyBg.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
-        expect(rgbMatch).toBeTruthy();
-
-        const [, r, g, b] = rgbMatch;
-        // Check that it's a dark greenish color (low red/blue, medium green)
-        const red = parseInt(r);
-        const green = parseInt(g);
-        const blue = parseInt(b);
-
-        expect(red).toBeLessThan(100); // Dark red
-        expect(green).toBeGreaterThan(20); // Some green
-        expect(green).toBeLessThan(100); // But not too bright
-        expect(blue).toBeLessThan(80); // Dark blue
+    const bodyBg = await page.evaluate(() => {
+      return window.getComputedStyle(document.body).backgroundColor;
     });
 
-    test('Molekülstudio dark mode buttons should be green', async ({ page }) => {
-        await page.goto(`${BASE_URL}/molekuel-studio/`);
-        await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(1000);
+    // Should be dark greenish - check approximate values due to browser differences
+    // WebKit may render slightly differently: rgb(49, 63, 53) instead of rgb(10, 26, 15)
+    const rgbMatch = bodyBg.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+    expect(rgbMatch).toBeTruthy();
 
-        // Enable dark mode
-        await page.evaluate(() => {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        });
-        await page.waitForTimeout(500);
+    const [, r, g, b] = rgbMatch;
+    // Check that it's a dark greenish color (low red/blue, medium green)
+    const red = parseInt(r);
+    const green = parseInt(g);
+    const blue = parseInt(b);
 
-        const visualizeBtn = page.locator('#visualize-btn');
-        const bgColor = await visualizeBtn.evaluate((el) => {
-            return window.getComputedStyle(el).backgroundColor;
-        });
+    expect(red).toBeLessThan(100); // Dark red
+    expect(green).toBeGreaterThan(20); // Some green
+    expect(green).toBeLessThan(100); // But not too bright
+    expect(blue).toBeLessThan(80); // Dark blue
+  });
 
-        expect(bgColor).toBe(GREEN_COLORS.primary);
+  test('Molekülstudio dark mode buttons should be green', async ({ page }) => {
+    await page.goto(`${BASE_URL}/molekuel-studio/`);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
+
+    // Enable dark mode
+    await page.evaluate(() => {
+      document.documentElement.setAttribute('data-theme', 'dark');
     });
+    await page.waitForTimeout(500);
+
+    const visualizeBtn = page.locator('#visualize-btn');
+    const bgColor = await visualizeBtn.evaluate((el) => {
+      return window.getComputedStyle(el).backgroundColor;
+    });
+
+    expect(bgColor).toBe(GREEN_COLORS.primary);
+  });
 });
 
 test.describe('Regression Tests - No Blue Colors', () => {
+  test('Homepage should not have blue buttons', async ({ page }) => {
+    await page.goto(BASE_URL);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
 
-    test('Homepage should not have blue buttons', async ({ page }) => {
-        await page.goto(BASE_URL);
-        await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(1000);
+    const buttons = page.locator('button, .btn');
+    const count = await buttons.count();
 
-        const buttons = page.locator('button, .btn');
-        const count = await buttons.count();
+    for (let i = 0; i < count; i++) {
+      const button = buttons.nth(i);
+      const bgColor = await button.evaluate((el) => {
+        return window.getComputedStyle(el).backgroundColor;
+      });
 
-        for (let i = 0; i < count; i++) {
-            const button = buttons.nth(i);
-            const bgColor = await button.evaluate((el) => {
-                return window.getComputedStyle(el).backgroundColor;
-            });
+      // Check it's not one of the known blue colors
+      BLUE_COLORS.forEach((blue) => {
+        expect(bgColor).not.toBe(blue);
+      });
+    }
+  });
 
-            // Check it's not one of the known blue colors
-            BLUE_COLORS.forEach(blue => {
-                expect(bgColor).not.toBe(blue);
-            });
-        }
-    });
+  test('Molekülstudio should not have blue interactive elements', async ({ page }) => {
+    await page.goto(`${BASE_URL}/molekuel-studio/`);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
 
-    test('Molekülstudio should not have blue interactive elements', async ({ page }) => {
-        await page.goto(`${BASE_URL}/molekuel-studio/`);
-        await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(1000);
+    const interactiveElements = page.locator('button, .suggestion-chip');
+    const count = await interactiveElements.count();
 
-        const interactiveElements = page.locator('button, .suggestion-chip');
-        const count = await interactiveElements.count();
+    for (let i = 0; i < count; i++) {
+      const element = interactiveElements.nth(i);
+      const bgColor = await element.evaluate((el) => {
+        return window.getComputedStyle(el).backgroundColor;
+      });
 
-        for (let i = 0; i < count; i++) {
-            const element = interactiveElements.nth(i);
-            const bgColor = await element.evaluate((el) => {
-                return window.getComputedStyle(el).backgroundColor;
-            });
+      // Check it's not one of the known blue colors
+      BLUE_COLORS.forEach((blue) => {
+        expect(bgColor).not.toBe(blue);
+      });
+    }
+  });
 
-            // Check it's not one of the known blue colors
-            BLUE_COLORS.forEach(blue => {
-                expect(bgColor).not.toBe(blue);
-            });
-        }
-    });
+  test('Periodensystem buttons should not be blue', async ({ page }) => {
+    await page.goto(`${BASE_URL}/perioden-system-der-elemente/`);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1500);
 
-    test('Periodensystem buttons should not be blue', async ({ page }) => {
-        await page.goto(`${BASE_URL}/perioden-system-der-elemente/`);
-        await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(1500);
+    const buttons = page.locator('#menu button');
+    const count = await buttons.count();
 
-        const buttons = page.locator('#menu button');
-        const count = await buttons.count();
+    for (let i = 0; i < count; i++) {
+      const button = buttons.nth(i);
+      const bgColor = await button.evaluate((el) => {
+        return window.getComputedStyle(el).backgroundColor;
+      });
 
-        for (let i = 0; i < count; i++) {
-            const button = buttons.nth(i);
-            const bgColor = await button.evaluate((el) => {
-                return window.getComputedStyle(el).backgroundColor;
-            });
-
-            // Check it's not one of the known blue colors
-            BLUE_COLORS.forEach(blue => {
-                expect(bgColor).not.toBe(blue);
-            });
-        }
-    });
+      // Check it's not one of the known blue colors
+      BLUE_COLORS.forEach((blue) => {
+        expect(bgColor).not.toBe(blue);
+      });
+    }
+  });
 });

@@ -33,8 +33,8 @@ const PeriodicTableViz = {
       B: { number: 5, name: 'Bor', symbol: 'B', mass: 10.81, category: 'metalloid' },
       C: { number: 6, name: 'Kohlenstoff', symbol: 'C', mass: 12.01, category: 'nonmetal' },
       N: { number: 7, name: 'Stickstoff', symbol: 'N', mass: 14.01, category: 'nonmetal' },
-      O: { number: 8, name: 'Sauerstoff', symbol: 'O', mass: 16.00, category: 'nonmetal' },
-      F: { number: 9, name: 'Fluor', symbol: 'F', mass: 19.00, category: 'halogen' },
+      O: { number: 8, name: 'Sauerstoff', symbol: 'O', mass: 16.0, category: 'nonmetal' },
+      F: { number: 9, name: 'Fluor', symbol: 'F', mass: 19.0, category: 'halogen' },
       Ne: { number: 10, name: 'Neon', symbol: 'Ne', mass: 20.18, category: 'noble' },
       Na: { number: 11, name: 'Natrium', symbol: 'Na', mass: 22.99, category: 'alkali' },
       Mg: { number: 12, name: 'Magnesium', symbol: 'Mg', mass: 24.31, category: 'alkaline' },
@@ -44,8 +44,8 @@ const PeriodicTableViz = {
       S: { number: 16, name: 'Schwefel', symbol: 'S', mass: 32.06, category: 'nonmetal' },
       Cl: { number: 17, name: 'Chlor', symbol: 'Cl', mass: 35.45, category: 'halogen' },
       Ar: { number: 18, name: 'Argon', symbol: 'Ar', mass: 39.95, category: 'noble' },
-      K: { number: 19, name: 'Kalium', symbol: 'K', mass: 39.10, category: 'alkali' },
-      Ca: { number: 20, name: 'Calcium', symbol: 'Ca', mass: 40.08, category: 'alkaline' }
+      K: { number: 19, name: 'Kalium', symbol: 'K', mass: 39.1, category: 'alkali' },
+      Ca: { number: 20, name: 'Calcium', symbol: 'Ca', mass: 40.08, category: 'alkaline' },
     };
   },
 
@@ -57,7 +57,7 @@ const PeriodicTableViz = {
       containerId,
       viewMode = 'standard', // standard, properties, trends, electronegativity
       interactive = true,
-      showLegend = true
+      showLegend = true,
     } = options;
 
     await this.initElementData();
@@ -140,10 +140,86 @@ const PeriodicTableViz = {
    */
   getPeriodicTableLayout() {
     return [
-      ['H', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'He'],
-      ['Li', 'Be', null, null, null, null, null, null, null, null, null, null, 'B', 'C', 'N', 'O', 'F', 'Ne'],
-      ['Na', 'Mg', null, null, null, null, null, null, null, null, null, null, 'Al', 'Si', 'P', 'S', 'Cl', 'Ar'],
-      ['K', 'Ca', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+      [
+        'H',
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        'He',
+      ],
+      [
+        'Li',
+        'Be',
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        'B',
+        'C',
+        'N',
+        'O',
+        'F',
+        'Ne',
+      ],
+      [
+        'Na',
+        'Mg',
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        'Al',
+        'Si',
+        'P',
+        'S',
+        'Cl',
+        'Ar',
+      ],
+      [
+        'K',
+        'Ca',
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+      ],
     ];
   },
 
@@ -199,10 +275,26 @@ const PeriodicTableViz = {
    */
   getElectronegativity(symbol) {
     const values = {
-      H: 2.20, He: null,
-      Li: 0.98, Be: 1.57, B: 2.04, C: 2.55, N: 3.04, O: 3.44, F: 3.98, Ne: null,
-      Na: 0.93, Mg: 1.31, Al: 1.61, Si: 1.90, P: 2.19, S: 2.58, Cl: 3.16, Ar: null,
-      K: 0.82, Ca: 1.00
+      H: 2.2,
+      He: null,
+      Li: 0.98,
+      Be: 1.57,
+      B: 2.04,
+      C: 2.55,
+      N: 3.04,
+      O: 3.44,
+      F: 3.98,
+      Ne: null,
+      Na: 0.93,
+      Mg: 1.31,
+      Al: 1.61,
+      Si: 1.9,
+      P: 2.19,
+      S: 2.58,
+      Cl: 3.16,
+      Ar: null,
+      K: 0.82,
+      Ca: 1.0,
     };
     return values[symbol] !== undefined ? values[symbol] : null;
   },
@@ -222,10 +314,10 @@ const PeriodicTableViz = {
         { key: 'metalloid', label: 'Metalloide' },
         { key: 'nonmetal', label: 'Nichtmetalle' },
         { key: 'halogen', label: 'Halogene' },
-        { key: 'noble', label: 'Edelgase' }
+        { key: 'noble', label: 'Edelgase' },
       ];
 
-      categories.forEach(cat => {
+      categories.forEach((cat) => {
         const item = document.createElement('div');
         item.className = 'legend-item';
         item.innerHTML = `
@@ -253,7 +345,7 @@ const PeriodicTableViz = {
   addInteractivity(table) {
     const cells = table.querySelectorAll('.pt-cell.interactive');
 
-    cells.forEach(cell => {
+    cells.forEach((cell) => {
       // Hover effect
       cell.addEventListener('mouseenter', () => {
         this.showElementTooltip(cell);
@@ -311,7 +403,7 @@ const PeriodicTableViz = {
 
     const rect = cell.getBoundingClientRect();
     tooltip.style.left = rect.left + 'px';
-    tooltip.style.top = (rect.bottom + 10) + 'px';
+    tooltip.style.top = rect.bottom + 10 + 'px';
     tooltip.classList.add('visible');
   },
 
@@ -330,7 +422,7 @@ const PeriodicTableViz = {
    */
   selectElement(cell) {
     // Remove previous selection
-    document.querySelectorAll('.pt-cell.selected').forEach(c => {
+    document.querySelectorAll('.pt-cell.selected').forEach((c) => {
       c.classList.remove('selected');
     });
 
@@ -341,8 +433,8 @@ const PeriodicTableViz = {
     const event = new CustomEvent('elementSelected', {
       detail: {
         element: cell.dataset.element,
-        data: this.elementData[cell.dataset.element]
-      }
+        data: this.elementData[cell.dataset.element],
+      },
     });
     document.dispatchEvent(event);
   },
@@ -358,7 +450,7 @@ const PeriodicTableViz = {
       metalloid: 'Metalloid',
       nonmetal: 'Nichtmetall',
       halogen: 'Halogen',
-      noble: 'Edelgas'
+      noble: 'Edelgas',
     };
     return names[category] || category;
   },
@@ -399,7 +491,7 @@ const PeriodicTableViz = {
     if (!container) return;
 
     const cells = container.querySelectorAll('.pt-cell');
-    cells.forEach(cell => {
+    cells.forEach((cell) => {
       if (category === 'all' || cell.dataset.category === category) {
         cell.classList.add('highlighted');
         cell.classList.remove('dimmed');
@@ -418,7 +510,7 @@ const PeriodicTableViz = {
     if (!container) return;
 
     const cells = container.querySelectorAll('.pt-cell');
-    cells.forEach(cell => {
+    cells.forEach((cell) => {
       cell.classList.remove('highlighted', 'dimmed');
     });
   },
@@ -636,7 +728,7 @@ const PeriodicTableViz = {
     `;
 
     document.head.appendChild(style);
-  }
+  },
 };
 
 // Export for use in other modules

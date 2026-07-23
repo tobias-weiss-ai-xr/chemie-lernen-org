@@ -31,7 +31,9 @@ export function getKgDataCacheKey(req) {
   var type = req.query.type || '';
   var offset = req.query.offset || '0';
   var lehrplan = req.query.lehrplan === 'true' ? 'lehrplan' : 'default';
-  return 'kg-data-' + lehrplan + '-' + limit + '-' + offset + '-' + search + '-' + category + '-' + type;
+  return (
+    'kg-data-' + lehrplan + '-' + limit + '-' + offset + '-' + search + '-' + category + '-' + type
+  );
 }
 
 /**
@@ -103,7 +105,23 @@ export function filterEntities(entities, { search, category, type }) {
  * @returns {Array}
  */
 export function loadCurriculaFromStaticFiles() {
-  var states = ['bb','be','bw','by','hb','he','hh','mv','ni','nw','rp','sh','sn','st','th'];
+  var states = [
+    'bb',
+    'be',
+    'bw',
+    'by',
+    'hb',
+    'he',
+    'hh',
+    'mv',
+    'ni',
+    'nw',
+    'rp',
+    'sh',
+    'sn',
+    'st',
+    'th',
+  ];
   var dataDir = path.join(process.cwd(), 'myhugoapp', 'data', 'curricula');
   var result = [];
   var idCounter = 0;

@@ -9,23 +9,28 @@ const quizDatabase = {
           question: 'Was ist die funktionelle Gruppe von Alkoholen?',
           options: ['-OH', '-COOH', '-NH2', '-CHO'],
           correct: 0,
-          explanation: 'Alkohole enthalten die Hydroxylgruppe -OH.'
+          explanation: 'Alkohole enthalten die Hydroxylgruppe -OH.',
         },
         {
           id: 2,
           question: 'Wie unterscheiden sich Ether von Alkoholen chemisch?',
-          options: ['Ether haben keine Hydroxylgruppe', 'Ether sind saurer', 'Ether haben mehr C-Atome', 'Ether sind unlöslich in Wasser'],
+          options: [
+            'Ether haben keine Hydroxylgruppe',
+            'Ether sind saurer',
+            'Ether haben mehr C-Atome',
+            'Ether sind unlöslich in Wasser',
+          ],
           correct: 0,
-          explanation: 'Im Gegensatz zu Alkoholen enthalten Ether keine Hydroxylgruppe.'
+          explanation: 'Im Gegensatz zu Alkoholen enthalten Ether keine Hydroxylgruppe.',
         },
         {
           id: 3,
           question: 'Die allgemeine Formel von Alkoholen ist:',
           options: ['R-OH', 'R-COOH', 'R-NH2', 'R-CHO'],
           correct: 0,
-          explanation: 'Alkohole haben die allgemeine Formel R-OH.'
-        }
-      ]
+          explanation: 'Alkohole haben die allgemeine Formel R-OH.',
+        },
+      ],
     },
     'carbonsaeuren-und-ester-quiz': {
       title: 'Carbonsäuren und Ester',
@@ -35,16 +40,21 @@ const quizDatabase = {
           question: 'Was ist die Säurefunktion in Carbonsäuren?',
           options: ['-COOH', '-OH', '-COOR', '-CHO'],
           correct: 0,
-          explanation: 'Carbonsäuren enthalten die Carboxylgruppe -COOH.'
+          explanation: 'Carbonsäuren enthalten die Carboxylgruppe -COOH.',
         },
         {
           id: 2,
           question: 'Ester entstehen durch die Veresterungsreaktion zwischen:',
-          options: ['Carbonsäure und Alkohol', 'Aldehyd und Keton', 'Amin und Säure', 'Aldehyd und Alkohol'],
+          options: [
+            'Carbonsäure und Alkohol',
+            'Aldehyd und Keton',
+            'Amin und Säure',
+            'Aldehyd und Alkohol',
+          ],
           correct: 0,
-          explanation: 'Ester entstehen aus Carbonsäure und Alkohol unter Wasserabspaltung.'
-        }
-      ]
+          explanation: 'Ester entstehen aus Carbonsäure und Alkohol unter Wasserabspaltung.',
+        },
+      ],
     },
     'amine-und-amide-quiz': {
       title: 'Amine und Amide',
@@ -54,23 +64,29 @@ const quizDatabase = {
           question: 'Was ist die charakteristische Gruppe von Aminen?',
           options: ['-NH2', '-OH', '-COOH', '-CHO'],
           correct: 0,
-          explanation: 'Amine enthalten die Aminogruppe -NH2.'
-        }
-      ]
-    }
+          explanation: 'Amine enthalten die Aminogruppe -NH2.',
+        },
+      ],
+    },
   },
-  'reaktionstypen': {
+  reaktionstypen: {
     'elektrophile-aromatische-substitution-quiz': {
       title: 'Elektrophile aromatische Substitution',
       questions: [
         {
           id: 1,
           question: 'Bei elektrophiler aromatischer Substitution greift ein Elektrophil an:',
-          options: ['an den π-Elektronen des Benzolringes', 'an die σ-Bindungen', 'an die Kohlenstoffketten', 'an die H-Atome'],
+          options: [
+            'an den π-Elektronen des Benzolringes',
+            'an die σ-Bindungen',
+            'an die Kohlenstoffketten',
+            'an die H-Atome',
+          ],
           correct: 0,
-          explanation: 'Das Elektrophil greift an den delokalisierten π-Elektronen des Benzolringes an.'
-        }
-      ]
+          explanation:
+            'Das Elektrophil greift an den delokalisierten π-Elektronen des Benzolringes an.',
+        },
+      ],
     },
     'radikalreaktionen-im-detail-quiz': {
       title: 'Radikalreaktionen',
@@ -78,11 +94,16 @@ const quizDatabase = {
         {
           id: 1,
           question: 'Radikalreaktionen verlaufen in drei Phasen:',
-          options: ['Initiation, Propagation, Termination', 'Oxidation, Reduktion, Neutralisation', 'Start, Fortsetzung, Ende', 'Einleiten, Fortführen, Abschließen'],
+          options: [
+            'Initiation, Propagation, Termination',
+            'Oxidation, Reduktion, Neutralisation',
+            'Start, Fortsetzung, Ende',
+            'Einleiten, Fortführen, Abschließen',
+          ],
           correct: 0,
-          explanation: 'Radikalreaktionen bestehen aus Initiation, Propagation und Termination.'
-        }
-      ]
+          explanation: 'Radikalreaktionen bestehen aus Initiation, Propagation und Termination.',
+        },
+      ],
     },
     'redoxreaktionen-elektrochemie-quiz': {
       title: 'Redoxreaktionen und Elektrochemie',
@@ -90,25 +111,35 @@ const quizDatabase = {
         {
           id: 1,
           question: 'Bei einer Redoxreaktion findet statt:',
-          options: ['gleichzeitig eine Oxidation und eine Reduktion', 'nur eine Oxidation', 'nur eine Reduktion', 'weder Oxidation noch Reduktion'],
+          options: [
+            'gleichzeitig eine Oxidation und eine Reduktion',
+            'nur eine Oxidation',
+            'nur eine Reduktion',
+            'weder Oxidation noch Reduktion',
+          ],
           correct: 0,
-          explanation: 'Redoxreaktionen sind gekoppelte Oxidations- und Reduktionsprozesse.'
-        }
-      ]
-    }
+          explanation: 'Redoxreaktionen sind gekoppelte Oxidations- und Reduktionsprozesse.',
+        },
+      ],
+    },
   },
-  'energetik': {
+  energetik: {
     'thermodynamik-gesetze-quiz': {
       title: 'Thermodynamik Gesetze',
       questions: [
         {
           id: 1,
           question: 'Der erste Hauptsatz der Thermodynamik beschreibt:',
-          options: ['Energieerhaltung', 'Entropiezunahme', 'Gleichgewicht', 'Reaktionsgeschwindigkeit'],
+          options: [
+            'Energieerhaltung',
+            'Entropiezunahme',
+            'Gleichgewicht',
+            'Reaktionsgeschwindigkeit',
+          ],
           correct: 0,
-          explanation: 'Der erste Hauptsatz ist der Energieerhaltungssatz.'
-        }
-      ]
+          explanation: 'Der erste Hauptsatz ist der Energieerhaltungssatz.',
+        },
+      ],
     },
     'gibbs-energie-und-spontaneitaet-quiz': {
       title: 'Gibbs-Energie',
@@ -116,11 +147,17 @@ const quizDatabase = {
         {
           id: 1,
           question: 'Eine Reaktion ist spontan, wenn ΔG < 0 bedeutet:',
-          options: ['freie Energie nimmt ab', 'freie Energie nimmt zu', 'Energie bleibt konstant', 'Reaktion ist nicht spontan'],
+          options: [
+            'freie Energie nimmt ab',
+            'freie Energie nimmt zu',
+            'Energie bleibt konstant',
+            'Reaktion ist nicht spontan',
+          ],
           correct: 0,
-          explanation: 'Negatives ΔG bedeutet, dass die freie Energie abnimmt und die Reaktion spontan verläuft.'
-        }
-      ]
+          explanation:
+            'Negatives ΔG bedeutet, dass die freie Energie abnimmt und die Reaktion spontan verläuft.',
+        },
+      ],
     },
     'enthalpie-und-entropie-praktisch-quiz': {
       title: 'Enthalpie und Entropie',
@@ -128,25 +165,36 @@ const quizDatabase = {
         {
           id: 1,
           question: 'Enthalpie beschreibt:',
-          options: ['den Wärmeinhalt eines Systems', 'die Unordnung eines Systems', 'die Reaktionsgeschwindigkeit', 'das Gleichgewicht'],
+          options: [
+            'den Wärmeinhalt eines Systems',
+            'die Unordnung eines Systems',
+            'die Reaktionsgeschwindigkeit',
+            'das Gleichgewicht',
+          ],
           correct: 0,
-          explanation: 'Enthalpie ist ein Maß für den Wärmeinhalt oder Energiegehalt eines Systems.'
-        }
-      ]
-    }
+          explanation:
+            'Enthalpie ist ein Maß für den Wärmeinhalt oder Energiegehalt eines Systems.',
+        },
+      ],
+    },
   },
-  'analytik': {
+  analytik: {
     'spektroskopische-methoden-quiz': {
       title: 'Spektroskopische Methoden',
       questions: [
         {
           id: 1,
           question: 'Die UV-Vis-Spektroskopie nutzt:',
-          options: ['Absorption von Licht im UV und sichtbaren Bereich', 'Infrarotstrahlung', 'Kernresonanz', 'Massenspektrometrie'],
+          options: [
+            'Absorption von Licht im UV und sichtbaren Bereich',
+            'Infrarotstrahlung',
+            'Kernresonanz',
+            'Massenspektrometrie',
+          ],
           correct: 0,
-          explanation: 'UV-Vis-Spektroskopie misst die Absorption von UV- und sichtbarem Licht.'
-        }
-      ]
+          explanation: 'UV-Vis-Spektroskopie misst die Absorption von UV- und sichtbarem Licht.',
+        },
+      ],
     },
     'chromatographie-grundlagen-quiz': {
       title: 'Chromatographie',
@@ -154,11 +202,17 @@ const quizDatabase = {
         {
           id: 1,
           question: 'Das Prinzip der Chromatographie basiert auf:',
-          options: ['unterschiedlichen Verteilungskoeffizienten', 'chemischen Reaktionen', 'elektrischen Feldern', 'Temperaturunterschieden'],
+          options: [
+            'unterschiedlichen Verteilungskoeffizienten',
+            'chemischen Reaktionen',
+            'elektrischen Feldern',
+            'Temperaturunterschieden',
+          ],
           correct: 0,
-          explanation: 'Chromatographie trennt Stoffe basierend auf unterschiedlichen Verteilungskoeffizienten zwischen zwei Phasen.'
-        }
-      ]
+          explanation:
+            'Chromatographie trennt Stoffe basierend auf unterschiedlichen Verteilungskoeffizienten zwischen zwei Phasen.',
+        },
+      ],
     },
     'elektroanalytische-verfahren-quiz': {
       title: 'Elektroanalytische Verfahren',
@@ -168,23 +222,30 @@ const quizDatabase = {
           question: 'Die Potentiometrie misst:',
           options: ['Elektrodenpotentiale', 'Stromstärke', 'Leitfähigkeit', 'Widerstand'],
           correct: 0,
-          explanation: 'Potentiometrie misst Elektrodenpotentiale, die proportional zur Ionenkonzentration sind.'
-        }
-      ]
-    }
+          explanation:
+            'Potentiometrie misst Elektrodenpotentiale, die proportional zur Ionenkonzentration sind.',
+        },
+      ],
+    },
   },
-  'anorganik': {
+  anorganik: {
     'ionenkristalle-und-gitter-quiz': {
       title: 'Ionenkristalle',
       questions: [
         {
           id: 1,
           question: 'Ionenkristalle bestehen aus:',
-          options: ['kationischen und anionischen Gitterteilchen', 'nur Kationen', 'nur Anionen', 'neutralen Atomen'],
+          options: [
+            'kationischen und anionischen Gitterteilchen',
+            'nur Kationen',
+            'nur Anionen',
+            'neutralen Atomen',
+          ],
           correct: 0,
-          explanation: 'Ionenkristalle sind aus Kationen und Anionen aufgebaut, die sich in einem Gitter anordnen.'
-        }
-      ]
+          explanation:
+            'Ionenkristalle sind aus Kationen und Anionen aufgebaut, die sich in einem Gitter anordnen.',
+        },
+      ],
     },
     'uebergangsmetalle-komplexe-quiz': {
       title: 'Übergangsmetalle',
@@ -192,11 +253,17 @@ const quizDatabase = {
         {
           id: 1,
           question: 'Komplexe von Übergangsmetallen enthalten:',
-          options: ['Zentralatom und Liganden', 'nur Zentralatom', 'nur Liganden', 'nicht-bindende Elektronen'],
+          options: [
+            'Zentralatom und Liganden',
+            'nur Zentralatom',
+            'nur Liganden',
+            'nicht-bindende Elektronen',
+          ],
           correct: 0,
-          explanation: 'Komplexe bestehen aus einem Zentralatom (meist ein Übergangsmetall) und mehreren Liganden.'
-        }
-      ]
+          explanation:
+            'Komplexe bestehen aus einem Zentralatom (meist ein Übergangsmetall) und mehreren Liganden.',
+        },
+      ],
     },
     'hauptgruppen-elemente-quiz': {
       title: 'Hauptgruppen-Elemente',
@@ -204,13 +271,18 @@ const quizDatabase = {
         {
           id: 1,
           question: 'Hauptgruppen-Elemente zeichnen sich durch:',
-          options: ['ähnliche chemische Eigenschaften innerhalb einer Gruppe', 'identische Eigenschaften', 'übergreifende Eigenschaften', 'keine Gemeinsamkeiten'],
+          options: [
+            'ähnliche chemische Eigenschaften innerhalb einer Gruppe',
+            'identische Eigenschaften',
+            'übergreifende Eigenschaften',
+            'keine Gemeinsamkeiten',
+          ],
           correct: 0,
-          explanation: 'Elemente derselben Hauptgruppe zeigen ähnliche chemische Eigenschaften.'
-        }
-      ]
-    }
-  }
+          explanation: 'Elemente derselben Hauptgruppe zeigen ähnliche chemische Eigenschaften.',
+        },
+      ],
+    },
+  },
 };
 
 // Function to get quiz by ID

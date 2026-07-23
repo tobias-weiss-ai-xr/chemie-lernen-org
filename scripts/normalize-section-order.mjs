@@ -88,28 +88,26 @@ function normalizeFile(filePath) {
   const orderedStandard = [];
   // First preserve existing content but in the right order
   for (const target of STANDARD_SECTIONS) {
-    const found = standardSections.find(s => s.heading === target);
+    const found = standardSections.find((s) => s.heading === target);
     if (found) {
       orderedStandard.push(found);
     }
   }
 
   // Also collect any standard sections not in our target order (shouldn't happen)
-  const remainingStandard = standardSections.filter(
-    s => !orderedStandard.includes(s)
-  );
+  const remainingStandard = standardSections.filter((s) => !orderedStandard.includes(s));
 
   // Build new body
   const allNonStandard = [...nonStandardLines];
-  const otherContent = otherSections.map(s => s.content);
+  const otherContent = otherSections.map((s) => s.content);
 
   const combined = [
     ...allNonStandard,
     '',
     ...otherContent,
     ...(otherContent.length > 0 && orderedStandard.length > 0 ? [''] : []),
-    ...orderedStandard.map(s => s.content),
-    ...remainingStandard.map(s => s.content),
+    ...orderedStandard.map((s) => s.content),
+    ...remainingStandard.map((s) => s.content),
   ];
 
   const newBody = combined.join('\n').replace(/\n{3,}/g, '\n\n');
@@ -124,9 +122,10 @@ function normalizeFile(filePath) {
 }
 
 function main() {
-  const bereiche = fs.readdirSync(THEMEN_DIR, { withFileTypes: true })
-    .filter(d => d.isDirectory())
-    .map(d => d.name);
+  const bereiche = fs
+    .readdirSync(THEMEN_DIR, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name);
 
   let changed = 0;
   let skipped = 0;
@@ -134,8 +133,8 @@ function main() {
 
   for (const bereich of bereiche) {
     const dir = path.join(THEMEN_DIR, bereich);
-    const files = fs.readdirSync(dir).filter(f => f.endsWith('.md') && f !== '_index.md');
-    
+    const files = fs.readdirSync(dir).filter((f) => f.endsWith('.md') && f !== '_index.md');
+
     for (const file of files) {
       const fp = path.join(dir, file);
       const raw = fs.readFileSync(fp, 'utf-8');
@@ -161,7 +160,7 @@ function main() {
         let issue = '';
         if (hasUbungen && hasVerwandte && ubPos > vtPos) issue = ' Übungen_nach_VT';
         if (hasVerwandte && hasZusammenfassung && vtPos > zfPos) issue = ' VT_nach_ZF';
-        
+
         statistics.before_after.push({
           file: `${bereich}/${file}`,
           before_issue: issue || 'OK',

@@ -73,7 +73,12 @@ function loadCurriculaTopics() {
   const files = readdirSync(CURRICULA_DIR).filter(
     (f) =>
       f.endsWith('.json') &&
-      !['index.json', 'checksums.json', 'content-links.json', 'content-neo4j-mapping.json'].includes(f),
+      ![
+        'index.json',
+        'checksums.json',
+        'content-links.json',
+        'content-neo4j-mapping.json',
+      ].includes(f)
   );
   const topics = [];
   for (const file of files) {
@@ -115,20 +120,103 @@ function tokenize(text) {
 }
 
 const STOP_WORDS = new Set([
-  'der', 'die', 'das', 'den', 'dem', 'des', 'ein', 'eine', 'einen', 'einer',
-  'eines', 'und', 'oder', 'aber', 'mit', 'von', 'fur', 'für', 'auf', 'bei',
-  'nach', 'vor', 'aus', 'durch', 'uber', 'über', 'unter', 'zum', 'zur',
-  'sich', 'auch', 'nicht', 'werden', 'wird', 'sind', 'ist', 'hat', 'haben',
-  'wurde', 'wurden', 'kann', 'konnen', 'können', 'mussen', 'müssen', 'soll',
-  'sollen', 'diese', 'dieser', 'dieses', 'allen', 'allem', 'aller', 'jeder',
-  'jedes', 'beide', 'beiden', 'ihre', 'ihren', 'ihrer', 'seine', 'seinen',
-  'seiner', 'chemie', 'wichtig', 'grundlegend', 'kompetenzbereich',
-  'kompetenzen', 'verfügen', 'anwenden', 'erlautern', 'erläutern',
-  'beschreiben', 'erklaren', 'erklären', 'nennen', 'kennen', 'zeigen',
-  'untersuchen', 'entwickeln', 'uberprufen', 'überprufen', 'uberpruefen',
-  'beurteilen', 'bewerten', 'ordnen', 'zuordnen', 'vergleichen',
-  'darstellen', 'verwenden', 'nutzen', 'begrunden', 'begründen',
-  'herstellen', 'ermitteln', 'erschließen', 'erschliessen',
+  'der',
+  'die',
+  'das',
+  'den',
+  'dem',
+  'des',
+  'ein',
+  'eine',
+  'einen',
+  'einer',
+  'eines',
+  'und',
+  'oder',
+  'aber',
+  'mit',
+  'von',
+  'fur',
+  'für',
+  'auf',
+  'bei',
+  'nach',
+  'vor',
+  'aus',
+  'durch',
+  'uber',
+  'über',
+  'unter',
+  'zum',
+  'zur',
+  'sich',
+  'auch',
+  'nicht',
+  'werden',
+  'wird',
+  'sind',
+  'ist',
+  'hat',
+  'haben',
+  'wurde',
+  'wurden',
+  'kann',
+  'konnen',
+  'können',
+  'mussen',
+  'müssen',
+  'soll',
+  'sollen',
+  'diese',
+  'dieser',
+  'dieses',
+  'allen',
+  'allem',
+  'aller',
+  'jeder',
+  'jedes',
+  'beide',
+  'beiden',
+  'ihre',
+  'ihren',
+  'ihrer',
+  'seine',
+  'seinen',
+  'seiner',
+  'chemie',
+  'wichtig',
+  'grundlegend',
+  'kompetenzbereich',
+  'kompetenzen',
+  'verfügen',
+  'anwenden',
+  'erlautern',
+  'erläutern',
+  'beschreiben',
+  'erklaren',
+  'erklären',
+  'nennen',
+  'kennen',
+  'zeigen',
+  'untersuchen',
+  'entwickeln',
+  'uberprufen',
+  'überprufen',
+  'uberpruefen',
+  'beurteilen',
+  'bewerten',
+  'ordnen',
+  'zuordnen',
+  'vergleichen',
+  'darstellen',
+  'verwenden',
+  'nutzen',
+  'begrunden',
+  'begründen',
+  'herstellen',
+  'ermitteln',
+  'erschließen',
+  'erschliessen',
 ]);
 
 function buildKeywordSet(article) {
@@ -200,19 +288,32 @@ function run() {
   const totalLinks = Object.values(sorted).flat().length;
 
   console.log(`\n[generate-clean-mapping] RESULTS (dry-run: ${isDryRun}):`);
-  console.log(`  Topics matched: ${totalTopics} / ${topics.length} (${((totalTopics / topics.length) * 100).toFixed(0)}%)`);
+  console.log(
+    `  Topics matched: ${totalTopics} / ${topics.length} (${((totalTopics / topics.length) * 100).toFixed(0)}%)`
+  );
   console.log(`  Total links: ${totalLinks}`);
   console.log(`  Avg links/topic: ${(totalLinks / totalTopics).toFixed(1)}`);
 
   // Sample matches
   console.log('\n  Sample matches:');
-  const sampleKeys = Object.keys(sorted).filter(
-    (k) => ['redoxreaktion', 'atombau', 'saeure', 'kunststoff', 'metall', 'bindung', 'kohlenwasserstoff', 'periodensystem'].some((t) => k.includes(t)),
+  const sampleKeys = Object.keys(sorted).filter((k) =>
+    [
+      'redoxreaktion',
+      'atombau',
+      'saeure',
+      'kunststoff',
+      'metall',
+      'bindung',
+      'kohlenwasserstoff',
+      'periodensystem',
+    ].some((t) => k.includes(t))
   );
   for (const key of sampleKeys.slice(0, 10)) {
     const items = sorted[key];
     console.log(`    ${key} (${items.length} links):`);
-    items.slice(0, 3).forEach((item) => console.log(`      [${item.type}] ${item.title} (${item.url})`));
+    items
+      .slice(0, 3)
+      .forEach((item) => console.log(`      [${item.type}] ${item.title} (${item.url})`));
   }
 
   if (!isDryRun) {

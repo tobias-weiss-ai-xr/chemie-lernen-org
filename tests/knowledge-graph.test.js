@@ -2,11 +2,28 @@ describe('Knowledge Graph Visualization', () => {
   let mockNodes, mockLinks;
 
   beforeEach(() => {
-    document.documentElement.innerHTML = '<div id="knowledge-graph"><svg width="800" height="600"></svg></div>';
+    document.documentElement.innerHTML =
+      '<div id="knowledge-graph"><svg width="800" height="600"></svg></div>';
 
     mockNodes = [
-      { id: 'e1', label: 'Wasser', type: 'entity', category: 'stoff', size: 15, count: 5, url: null },
-      { id: 'e2', label: 'Elektrolyse', type: 'entity', category: 'reaktion', size: 12, count: 3, url: null },
+      {
+        id: 'e1',
+        label: 'Wasser',
+        type: 'entity',
+        category: 'stoff',
+        size: 15,
+        count: 5,
+        url: null,
+      },
+      {
+        id: 'e2',
+        label: 'Elektrolyse',
+        type: 'entity',
+        category: 'reaktion',
+        size: 12,
+        count: 3,
+        url: null,
+      },
       { id: 'a1', label: 'Elektrolyse von Wasser', type: 'article', size: 8, url: '/test-article' },
     ];
 

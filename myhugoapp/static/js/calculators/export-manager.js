@@ -11,7 +11,11 @@ const ExportManager = {
    * @param {string} filename - Output filename
    */
   exportToPDF(data, title, filename = 'calculation-results.pdf') {
-    if (typeof window === 'undefined' || !window.jspdf || typeof window.jspdf.jsPDF === 'undefined') {
+    if (
+      typeof window === 'undefined' ||
+      !window.jspdf ||
+      typeof window.jspdf.jsPDF === 'undefined'
+    ) {
       console.error('jsPDF library not loaded');
       return false;
     }
@@ -72,7 +76,9 @@ const ExportManager = {
         yPos += 5;
 
         for (const [key, value] of Object.entries(data.inputs)) {
-          const displayKey = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+          const displayKey = key
+            .replace(/([A-Z])/g, ' $1')
+            .replace(/^./, (str) => str.toUpperCase());
           const displayValue = typeof value === 'number' ? value.toFixed(4) : value;
           yPos = addText(`${displayKey}: ${displayValue}`, 11);
         }
@@ -88,12 +94,16 @@ const ExportManager = {
           if (typeof value === 'object' && value !== null) {
             yPos = addText(`${key}:`, 12, true);
             for (const [subKey, subValue] of Object.entries(value)) {
-              const displaySubKey = subKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+              const displaySubKey = subKey
+                .replace(/([A-Z])/g, ' $1')
+                .replace(/^./, (str) => str.toUpperCase());
               const displaySubValue = typeof subValue === 'number' ? subValue.toFixed(4) : subValue;
               yPos = addText(`  ${displaySubKey}: ${displaySubValue}`, 10);
             }
           } else {
-            const displayKey = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+            const displayKey = key
+              .replace(/([A-Z])/g, ' $1')
+              .replace(/^./, (str) => str.toUpperCase());
             const displayValue = typeof value === 'number' ? value.toFixed(4) : value;
             yPos = addText(`${displayKey}: ${displayValue}`, 11);
           }
@@ -109,7 +119,9 @@ const ExportManager = {
         data.steps.forEach((step, index) => {
           yPos = addText(`Step ${index + 1}:`, 12, true);
           for (const [key, value] of Object.entries(step)) {
-            const displayKey = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+            const displayKey = key
+              .replace(/([A-Z])/g, ' $1')
+              .replace(/^./, (str) => str.toUpperCase());
             const displayValue = typeof value === 'number' ? value.toFixed(4) : value;
             yPos = addText(`  ${displayKey}: ${displayValue}`, 10);
           }
@@ -155,7 +167,11 @@ const ExportManager = {
       return false;
     }
 
-    if (typeof window === 'undefined' || !window.jspdf || typeof window.jspdf.jsPDF === 'undefined') {
+    if (
+      typeof window === 'undefined' ||
+      !window.jspdf ||
+      typeof window.jspdf.jsPDF === 'undefined'
+    ) {
       console.error('jsPDF library not loaded');
       return false;
     }
@@ -205,7 +221,8 @@ const ExportManager = {
               yPos = 20;
             }
             const displayKey = key.replace(/([A-Z])/g, ' $1').trim();
-            const displayValue = typeof value === 'number' ? value.toFixed(4) : String(value).substring(0, 60);
+            const displayValue =
+              typeof value === 'number' ? value.toFixed(4) : String(value).substring(0, 60);
             doc.text(`${displayKey}: ${displayValue}`, marginLeft + 5, yPos);
             yPos += 6;
           }
@@ -219,11 +236,7 @@ const ExportManager = {
       for (let i = 1; i <= totalPages; i++) {
         doc.setPage(i);
         doc.setFontSize(8);
-        doc.text(
-          `Page ${i} of ${totalPages} | chemie-lernen.org`,
-          marginLeft,
-          pageHeight - 10
-        );
+        doc.text(`Page ${i} of ${totalPages} | chemie-lernen.org`, marginLeft, pageHeight - 10);
       }
 
       doc.save(filename);
@@ -254,8 +267,8 @@ const ExportManager = {
         csv += headers.join(',') + '\n';
 
         // Rows
-        data.forEach(row => {
-          const values = headers.map(header => {
+        data.forEach((row) => {
+          const values = headers.map((header) => {
             const value = row[header];
             if (value === null || value === undefined) {
               return '';
@@ -272,7 +285,7 @@ const ExportManager = {
       } else if (typeof data === 'object') {
         // Single object
         const headers = Object.keys(data);
-        const values = Object.values(data).map(value => {
+        const values = Object.values(data).map((value) => {
           if (value === null || value === undefined) {
             return '';
           }
@@ -318,11 +331,11 @@ const ExportManager = {
       return false;
     }
 
-    const formattedData = curveData.map(point => ({
+    const formattedData = curveData.map((point) => ({
       'Volume Added (mL)': point.volumeAdded.toFixed(2),
       'Percent to Equivalence': point.percent.toFixed(1),
-      'pH': point.ph.toFixed(2),
-      'Region': point.region
+      pH: point.ph.toFixed(2),
+      Region: point.region,
     }));
 
     return this.exportToCSV(formattedData, filename);
@@ -338,10 +351,10 @@ const ExportManager = {
       return false;
     }
 
-    const formattedHistory = history.map(entry => {
+    const formattedHistory = history.map((entry) => {
       const flat = {
-        'Timestamp': entry.timestamp || new Date().toISOString(),
-        'Type': entry.type || 'Calculation'
+        Timestamp: entry.timestamp || new Date().toISOString(),
+        Type: entry.type || 'Calculation',
       };
 
       // Flatten nested objects
@@ -403,7 +416,7 @@ const ExportManager = {
       version: '1.0',
       exportDate: new Date().toISOString(),
       calculator: 'chemistry-calculator',
-      data: calculation
+      data: calculation,
     };
 
     const defaultFilename = filename || `calculation-${Date.now()}.json`;
@@ -421,7 +434,7 @@ const ExportManager = {
       exportDate: new Date().toISOString(),
       totalEntries: history.length,
       calculator: 'chemistry-calculator',
-      history
+      history,
     };
 
     return this.exportToJSON(exportData, filename, true);
@@ -464,7 +477,7 @@ const ExportManager = {
    * @returns {Promise<object>} - Imported calculation data
    */
   importCalculationFromJSON(file) {
-    return this.importFromJSON(file).then(data => {
+    return this.importFromJSON(file).then((data) => {
       if (data.calculator !== 'chemistry-calculator') {
         throw new Error('Not a valid chemistry calculator export');
       }
@@ -478,7 +491,7 @@ const ExportManager = {
    * @returns {Promise<array>} - Imported history array
    */
   importHistoryFromJSON(file) {
-    return this.importFromJSON(file).then(data => {
+    return this.importFromJSON(file).then((data) => {
       if (!Array.isArray(data.history)) {
         throw new Error('Invalid history file format');
       }
@@ -496,7 +509,7 @@ const ExportManager = {
       const storageKey = `calc_${id}`;
       const record = {
         data,
-        savedAt: new Date().toISOString()
+        savedAt: new Date().toISOString(),
       };
       localStorage.setItem(storageKey, JSON.stringify(record));
       return true;
@@ -542,14 +555,12 @@ const ExportManager = {
           calculations.push({
             id: key.replace('calc_', ''),
             ...record.data,
-            savedAt: record.savedAt
+            savedAt: record.savedAt,
           });
         }
       }
 
-      return calculations.sort((a, b) =>
-        new Date(b.savedAt) - new Date(a.savedAt)
-      );
+      return calculations.sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt));
     } catch (error) {
       console.error('Error getting all from storage:', error);
       return [];
@@ -587,7 +598,7 @@ const ExportManager = {
         }
       }
 
-      keysToRemove.forEach(key => localStorage.removeItem(key));
+      keysToRemove.forEach((key) => localStorage.removeItem(key));
       return true;
     } catch (error) {
       console.error('Error clearing storage:', error);
@@ -648,11 +659,11 @@ const ExportManager = {
     const results = {
       pdf: this.exportToPDF(data, 'Calculation Results', `${baseFilename}.pdf`),
       csv: this.exportToCSV(data, `${baseFilename}.csv`),
-      json: this.exportCalculationToJSON(data, `${baseFilename}.json`)
+      json: this.exportCalculationToJSON(data, `${baseFilename}.json`),
     };
 
     return results;
-  }
+  },
 };
 
 // Export for use in other modules

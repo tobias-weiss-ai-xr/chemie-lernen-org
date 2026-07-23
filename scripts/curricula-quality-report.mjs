@@ -16,17 +16,40 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, '..', 'myhugoapp', 'data', 'curricula');
 
 const STATE_CODES = [
-  'bb', 'be', 'bw', 'by', 'hb', 'he', 'hh',
-  'mv', 'ni', 'nw', 'rp', 'sh', 'sl', 'sn', 'st', 'th',
+  'bb',
+  'be',
+  'bw',
+  'by',
+  'hb',
+  'he',
+  'hh',
+  'mv',
+  'ni',
+  'nw',
+  'rp',
+  'sh',
+  'sl',
+  'sn',
+  'st',
+  'th',
 ];
 
 const STATE_LABELS = {
-  bb: 'Brandenburg', be: 'Berlin', bw: 'Baden-Württemberg',
-  by: 'Bayern', hb: 'Bremen', he: 'Hessen',
-  hh: 'Hamburg', mv: 'Mecklenburg-Vorpommern',
-  ni: 'Niedersachsen', nw: 'Nordrhein-Westfalen',
-  rp: 'Rheinland-Pfalz', sh: 'Schleswig-Holstein',
-  sl: 'Saarland', sn: 'Sachsen', st: 'Sachsen-Anhalt',
+  bb: 'Brandenburg',
+  be: 'Berlin',
+  bw: 'Baden-Württemberg',
+  by: 'Bayern',
+  hb: 'Bremen',
+  he: 'Hessen',
+  hh: 'Hamburg',
+  mv: 'Mecklenburg-Vorpommern',
+  ni: 'Niedersachsen',
+  nw: 'Nordrhein-Westfalen',
+  rp: 'Rheinland-Pfalz',
+  sh: 'Schleswig-Holstein',
+  sl: 'Saarland',
+  sn: 'Sachsen',
+  st: 'Sachsen-Anhalt',
   th: 'Thüringen',
 };
 
@@ -38,7 +61,9 @@ function analyzeState(code) {
     const updated = data.last_updated || '?';
     const sources = data.source_urls || [];
 
-    let schoolTypes = 0, totalTopics = 0, totalObjectives = 0;
+    let schoolTypes = 0,
+      totalTopics = 0,
+      totalObjectives = 0;
     const grades = new Set();
     const topicNames = [];
 
@@ -55,8 +80,14 @@ function analyzeState(code) {
     }
 
     return {
-      code, state, updated, sources, schoolTypes,
-      totalTopics, totalObjectives, grades: [...grades].sort(),
+      code,
+      state,
+      updated,
+      sources,
+      schoolTypes,
+      totalTopics,
+      totalObjectives,
+      grades: [...grades].sort(),
       topicNames,
       hasData: true,
     };
@@ -79,7 +110,9 @@ let errors = [];
 
 for (const r of results) {
   if (!r.hasData) {
-    console.log(`${r.code.toUpperCase().padEnd(5)}| ${(r.state||'').padEnd(20)} | ${'—'.padEnd(6)} | ${'—'.padEnd(5)} | ${'—'.padEnd(14)} | ${'—'.padEnd(5)} | ❌ KEINE DATEN`);
+    console.log(
+      `${r.code.toUpperCase().padEnd(5)}| ${(r.state || '').padEnd(20)} | ${'—'.padEnd(6)} | ${'—'.padEnd(5)} | ${'—'.padEnd(14)} | ${'—'.padEnd(5)} | ❌ KEINE DATEN`
+    );
     errors.push(`${r.code.toUpperCase()}: Keine Daten vorhanden`);
     continue;
   }
@@ -98,27 +131,29 @@ for (const r of results) {
     warnings.push(`${r.code.toUpperCase()}: Nur ${r.totalTopics} Themen (${r.state})`);
   }
 
-  console.log(`${r.code.toUpperCase().padEnd(5)}| ${r.state.padEnd(20)} | ${topicsStr} | ${objsStr} | ${gradesStr} | ${typesStr} | ${status}`);
+  console.log(
+    `${r.code.toUpperCase().padEnd(5)}| ${r.state.padEnd(20)} | ${topicsStr} | ${objsStr} | ${gradesStr} | ${typesStr} | ${status}`
+  );
 }
 
 console.log('\n--- Zusammenfassung ---');
 console.log(`Untersuchte Bundesländer: ${results.length}`);
-const withData = results.filter(r => r.hasData).length;
+const withData = results.filter((r) => r.hasData).length;
 console.log(`Mit Daten: ${withData}`);
-console.log(`Ohne Daten: ${results.filter(r => !r.hasData).length}`);
+console.log(`Ohne Daten: ${results.filter((r) => !r.hasData).length}`);
 
 if (errors.length > 0) {
   console.log(`\n❌ Kritische Probleme (${errors.length}):`);
-  errors.forEach(e => console.log(`  - ${e}`));
+  errors.forEach((e) => console.log(`  - ${e}`));
 }
 
 if (warnings.length > 0) {
   console.log(`\n⚠️  Warnungen (${warnings.length}):`);
-  warnings.forEach(w => console.log(`  - ${w}`));
+  warnings.forEach((w) => console.log(`  - ${w}`));
 }
 
-const totalTopics = results.filter(r => r.hasData).reduce((s, r) => s + r.totalTopics, 0);
-const totalObjectives = results.filter(r => r.hasData).reduce((s, r) => s + r.totalObjectives, 0);
+const totalTopics = results.filter((r) => r.hasData).reduce((s, r) => s + r.totalTopics, 0);
+const totalObjectives = results.filter((r) => r.hasData).reduce((s, r) => s + r.totalObjectives, 0);
 console.log(`\nGesamt: ${totalTopics} Themen, ${totalObjectives} Lernziele`);
 
 if (errors.length > 0 || warnings.length > 0) {

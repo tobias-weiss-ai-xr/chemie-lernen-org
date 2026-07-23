@@ -37,7 +37,7 @@ async function run() {
   const neo4j = await import('neo4j-driver');
   const driver = neo4j.default.driver(
     NEO4J_URI,
-    neo4j.default.auth.basic(NEO4J_USER, NEO4J_PASSWORD),
+    neo4j.default.auth.basic(NEO4J_USER, NEO4J_PASSWORD)
   );
 
   try {
@@ -45,7 +45,7 @@ async function run() {
 
     // Count existing Content nodes by type
     const countResult = await session.run(
-      'MATCH (c:Content) RETURN c.type AS type, count(*) AS cnt ORDER BY cnt DESC',
+      'MATCH (c:Content) RETURN c.type AS type, count(*) AS cnt ORDER BY cnt DESC'
     );
     console.log('[migrate-content-labels] Current Content nodes by type:');
     const totals = {};
@@ -81,19 +81,21 @@ async function run() {
 
       const result = await session.run(
         `MATCH (c:Content {type: $type}) SET c:${label} RETURN count(*) AS cnt`,
-        { type },
+        { type }
       );
       const updated = result.records[0].get('cnt').toNumber();
       console.log(`  Updated ${updated} nodes with :${label}`);
 
       // Create index for this sub-label
-      await session.run(`CREATE INDEX content_${label.toLowerCase()}_url IF NOT EXISTS FOR (c:${label}) ON (c.url)`);
+      await session.run(
+        `CREATE INDEX content_${label.toLowerCase()}_url IF NOT EXISTS FOR (c:${label}) ON (c.url)`
+      );
       console.log(`  INDEX created for :${label}(url)`);
     }
 
     // Verify
     const verify = await session.run(
-      'MATCH (c:Content) RETURN labels(c) AS labels, count(*) AS cnt ORDER BY cnt DESC',
+      'MATCH (c:Content) RETURN labels(c) AS labels, count(*) AS cnt ORDER BY cnt DESC'
     );
     console.log('\n[migrate-content-labels] Verification — label combinations:');
     for (const rec of verify.records) {

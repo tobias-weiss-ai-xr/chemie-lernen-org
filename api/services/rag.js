@@ -21,22 +21,167 @@ const logger = pino({
 // ── Stop words ─────────────────────────────────────────────────
 
 export const STOP_WORDS = new Set([
-  'der','die','das','den','dem','des','ein','eine','einen','einem','eines',
-  'und','oder','aber','sondern','doch','denn','also','nicht','kein','keine',
-  'ist','sind','war','wird','werden','wurde','wurden','hat','haben','hast',
-  'mit','von','aus','bei','nach','zu','zur','zum','in','im','an','am','auf',
-  'für','gegen','durch','über','unter','neben','vor','hinter','zwischen',
-  'wie','als','was','wer','wen','wem','wessen','dass','weil','wenn','ob',
-  'the','a','an','is','are','was','were','been','have','has','had','do','does',
-  'did','will','would','can','could','may','might','shall','should','of','to',
-  'for','with','by','at','from','into','onto','upon','bitte','danke','gern',
-  'gerne','sehr','vielen','viel','was','wie','wo','wann','warum','weshalb',
-  'wieso','mir','mich','dir','dich','ihm','ihn','ihr','uns','euch','diese',
-  'dieser','dieses','jene','jener','jenes','solche','solcher','man','jemand',
-  'niemand','etwas','nichts','alle','jeder','jede','jedes','aber','auch',
-  'nur','noch','schon','erst','immer','wieder','nochmal','tut','tue','tust',
-  'tun','mach','mache','machst','machen','sagen','sag','sage','sagst','sagen',
-  'meinen','mein','meine',
+  'der',
+  'die',
+  'das',
+  'den',
+  'dem',
+  'des',
+  'ein',
+  'eine',
+  'einen',
+  'einem',
+  'eines',
+  'und',
+  'oder',
+  'aber',
+  'sondern',
+  'doch',
+  'denn',
+  'also',
+  'nicht',
+  'kein',
+  'keine',
+  'ist',
+  'sind',
+  'war',
+  'wird',
+  'werden',
+  'wurde',
+  'wurden',
+  'hat',
+  'haben',
+  'hast',
+  'mit',
+  'von',
+  'aus',
+  'bei',
+  'nach',
+  'zu',
+  'zur',
+  'zum',
+  'in',
+  'im',
+  'an',
+  'am',
+  'auf',
+  'für',
+  'gegen',
+  'durch',
+  'über',
+  'unter',
+  'neben',
+  'vor',
+  'hinter',
+  'zwischen',
+  'wie',
+  'als',
+  'was',
+  'wer',
+  'wen',
+  'wem',
+  'wessen',
+  'dass',
+  'weil',
+  'wenn',
+  'ob',
+  'the',
+  'a',
+  'an',
+  'is',
+  'are',
+  'was',
+  'were',
+  'been',
+  'have',
+  'has',
+  'had',
+  'do',
+  'does',
+  'did',
+  'will',
+  'would',
+  'can',
+  'could',
+  'may',
+  'might',
+  'shall',
+  'should',
+  'of',
+  'to',
+  'for',
+  'with',
+  'by',
+  'at',
+  'from',
+  'into',
+  'onto',
+  'upon',
+  'bitte',
+  'danke',
+  'gern',
+  'gerne',
+  'sehr',
+  'vielen',
+  'viel',
+  'was',
+  'wie',
+  'wo',
+  'wann',
+  'warum',
+  'weshalb',
+  'wieso',
+  'mir',
+  'mich',
+  'dir',
+  'dich',
+  'ihm',
+  'ihn',
+  'ihr',
+  'uns',
+  'euch',
+  'diese',
+  'dieser',
+  'dieses',
+  'jene',
+  'jener',
+  'jenes',
+  'solche',
+  'solcher',
+  'man',
+  'jemand',
+  'niemand',
+  'etwas',
+  'nichts',
+  'alle',
+  'jeder',
+  'jede',
+  'jedes',
+  'aber',
+  'auch',
+  'nur',
+  'noch',
+  'schon',
+  'erst',
+  'immer',
+  'wieder',
+  'nochmal',
+  'tut',
+  'tue',
+  'tust',
+  'tun',
+  'mach',
+  'mache',
+  'machst',
+  'machen',
+  'sagen',
+  'sag',
+  'sage',
+  'sagst',
+  'sagen',
+  'meinen',
+  'mein',
+  'meine',
 ]);
 
 // ── RAG cache ──────────────────────────────────────────────────
@@ -91,7 +236,23 @@ export function loadChatEntities() {
   if (_cachedChatEntities) return _cachedChatEntities;
   _cachedChatEntities = [];
 
-  var states = ['bb','be','bw','by','hb','he','hh','mv','ni','nw','rp','sh','sn','st','th'];
+  var states = [
+    'bb',
+    'be',
+    'bw',
+    'by',
+    'hb',
+    'he',
+    'hh',
+    'mv',
+    'ni',
+    'nw',
+    'rp',
+    'sh',
+    'sn',
+    'st',
+    'th',
+  ];
   var dataDir = path.join(process.cwd(), 'myhugoapp', 'data', 'curricula');
   for (var si = 0; si < states.length; si++) {
     try {
@@ -118,22 +279,38 @@ export function loadChatEntities() {
           }
         }
       }
-    } catch { /* skip */ }
+    } catch {
+      /* skip */
+    }
   }
 
   try {
-    var linksPath = path.join(process.cwd(), 'myhugoapp', 'data', 'curricula', 'content-links.json');
+    var linksPath = path.join(
+      process.cwd(),
+      'myhugoapp',
+      'data',
+      'curricula',
+      'content-links.json'
+    );
     if (fs.existsSync(linksPath)) {
       var links = JSON.parse(fs.readFileSync(linksPath, 'utf-8'));
       for (var key in links) {
         if (key.length >= 3 && key.length <= 120) {
-          _cachedChatEntities.push({ name: key, category: 'topic', articleCount: links[key].length || 1 });
+          _cachedChatEntities.push({
+            name: key,
+            category: 'topic',
+            articleCount: links[key].length || 1,
+          });
         }
       }
     }
-  } catch { /* content-links.json optional */ }
+  } catch {
+    /* content-links.json optional */
+  }
 
-  logger.info('[chat] Loaded ' + _cachedChatEntities.length + ' entity candidates from static data');
+  logger.info(
+    '[chat] Loaded ' + _cachedChatEntities.length + ' entity candidates from static data'
+  );
   return _cachedChatEntities;
 }
 
@@ -153,7 +330,11 @@ export function extractEntities(message, entities) {
     if (!e.name || e.name.length < 3) continue;
     var nameLower = e.name.toLowerCase().trim();
     if (msgLower.indexOf(nameLower) !== -1) {
-      matched.push({ name: e.name, category: e.category || 'konzept', articleCount: e.articleCount || 0 });
+      matched.push({
+        name: e.name,
+        category: e.category || 'konzept',
+        articleCount: e.articleCount || 0,
+      });
     }
     if (matched.length >= 50) break;
   }
@@ -211,7 +392,9 @@ export function getRAGContext(message) {
     if (driver) {
       return queryNeo4jRAG(limitedKeywords, message, cacheKey);
     }
-  } catch { /* Neo4j unavailable */ }
+  } catch {
+    /* Neo4j unavailable */
+  }
 
   return getRAGContextFallback(limitedKeywords);
 }
@@ -219,7 +402,10 @@ export function getRAGContext(message) {
 async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
   try {
     var driver = getNeo4jDriver();
-    var session = driver.session({ database: NEO4J_DATABASE, defaultAccessMode: neo4j.session.READ });
+    var session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
     var curriculumResult = null;
     var moduleResult = null;
     var result;
@@ -296,7 +482,9 @@ async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
     // Semantic reranking
     if (RAG_SEMANTIC_ENABLED && result.records.length > 1) {
       try {
-        var semanticTimer = setTimeout(function () { throw new Error('Semantic rerank timed out (>2s)'); }, 2000);
+        var semanticTimer = setTimeout(function () {
+          throw new Error('Semantic rerank timed out (>2s)');
+        }, 2000);
         if (!embeddings) embeddings = require('../embeddings.js');
         var queryText = originalMessage || keywords.join(' ');
         var qEmbedding = await embeddings.embed(queryText);
@@ -352,7 +540,8 @@ async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
       var grade = rec.get('grade');
       var school = rec.get('school_type');
       var objCount = rec.get('objective_count');
-      if (state) parts.push(state + (grade ? ', Klasse ' + grade : '') + (school ? ', ' + school : ''));
+      if (state)
+        parts.push(state + (grade ? ', Klasse ' + grade : '') + (school ? ', ' + school : ''));
       if (objCount) parts.push(objCount.toNumber() + ' Lernziele');
       var desc = rec.get('description');
       if (desc && typeof desc === 'string' && desc.length > 0) {
@@ -360,7 +549,9 @@ async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
         parts.push('Definition: ' + shortDesc);
       }
       var related = rec.get('relatedEntities') || [];
-      var filteredRelated = related.filter(function (n) { return n !== null && n !== name; });
+      var filteredRelated = related.filter(function (n) {
+        return n !== null && n !== name;
+      });
       if (filteredRelated.length > 0 && filteredRelated.length <= 5) {
         parts.push('verwandt: ' + filteredRelated.join(', '));
       }
@@ -374,12 +565,21 @@ async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
         var cr = curriculumResult.records[ci];
         var cTitle = cr.get('title') || '';
         var cGrade = cr.get('grade');
-        var cObjectives = (cr.get('objectives') || []).filter(function (o) { return o != null; });
-        var cCurricula = (cr.get('curricula') || []).filter(function (c) { return c != null; });
+        var cObjectives = (cr.get('objectives') || []).filter(function (o) {
+          return o != null;
+        });
+        var cCurricula = (cr.get('curricula') || []).filter(function (c) {
+          return c != null;
+        });
         var cParts = ['- ' + cTitle];
         if (cGrade) cParts.push('Klasse ' + cGrade);
         if (cCurricula.length > 0) {
-          var cStates = cCurricula.map(function (c) { return c.state; }).filter(Boolean).join(', ');
+          var cStates = cCurricula
+            .map(function (c) {
+              return c.state;
+            })
+            .filter(Boolean)
+            .join(', ');
           if (cStates) cParts.push(cStates);
         }
         if (cObjectives.length > 0) {
@@ -392,7 +592,9 @@ async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
 
     if (moduleResult && moduleResult.records.length > 0) {
       lines.push('');
-      lines.push('Universitäre Module (internationale Modulkataloge, verknüpft mit dem Wissensgraph):');
+      lines.push(
+        'Universitäre Module (internationale Modulkataloge, verknüpft mit dem Wissensgraph):'
+      );
       for (var mi = 0; mi < moduleResult.records.length; mi++) {
         var mr = moduleResult.records[mi];
         var mName = mr.get('module_name') || '';
@@ -400,7 +602,9 @@ async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
         var mUni = mr.get('university_name') || mr.get('university_code') || '';
         var mEcts = mr.get('ects');
         var mLevel = mr.get('level') || '';
-        var mTaught = (mr.get('taughtEntities') || []).filter(function (e) { return e != null; });
+        var mTaught = (mr.get('taughtEntities') || []).filter(function (e) {
+          return e != null;
+        });
         var mParts = ['- ' + mName + ' (' + mCode + ', ' + mUni + ')'];
         if (mEcts != null) mParts.push(mEcts + ' ECTS');
         if (mLevel) mParts.push(mLevel);
@@ -435,7 +639,9 @@ async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
       return fallback2;
     }
 
-    var context = 'Folgende Entitäten aus dem Chemie-Wissensgraph sind relevant (sortiert nach Relevanz-Score):\n' + lines.join('\n');
+    var context =
+      'Folgende Entitäten aus dem Chemie-Wissensgraph sind relevant (sortiert nach Relevanz-Score):\n' +
+      lines.join('\n');
     if (ragCache.size >= RAG_CACHE_MAX) ragCache.clear();
     if (cacheKey) ragCache.set(cacheKey, context);
     return context;
@@ -460,7 +666,13 @@ function getRAGContextFallback(keywords) {
           seen[c.name] = true;
           var parts = ['- ' + c.name + ' (Lehrplan)'];
           if (c.curriculumMeta) {
-            parts.push(c.curriculumMeta.state + ', Klasse ' + c.curriculumMeta.grade + ', ' + c.curriculumMeta.school_type);
+            parts.push(
+              c.curriculumMeta.state +
+                ', Klasse ' +
+                c.curriculumMeta.grade +
+                ', ' +
+                c.curriculumMeta.school_type
+            );
             parts.push(c.curriculumMeta.objective_count + ' Lernziele');
           }
           matches.push(parts.join(' | '));

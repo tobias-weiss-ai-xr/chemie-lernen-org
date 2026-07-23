@@ -1,7 +1,7 @@
 const tutorialState = {
   currentTutorial: null,
   currentStep: 0,
-  completedTutorials: JSON.parse(localStorage.getItem('completedTutorials') || '[]')
+  completedTutorials: JSON.parse(localStorage.getItem('completedTutorials') || '[]'),
 };
 
 const tutorials = {
@@ -31,7 +31,7 @@ const tutorials = {
             </ul>
             <p>Stöchiometrie ist also das <strong"Messen von Elementen</strong> - die Berechnung der Mengenverhältnisse bei chemischen Reaktionen.</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Das Mol - Die Grundlage 📊',
@@ -67,7 +67,7 @@ const tutorials = {
             </ul>
             <p><strong>Formel:</strong> n = m / M (Stoffmenge = Masse / molare Masse)</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Chemische Gleichungen als Rezepte 📝',
@@ -105,7 +105,7 @@ const tutorials = {
             </p>
             <p>Daraus folgt: <strong>n(A) / ν₁ = n(B) / ν₂ = n(C) / ν₃ = n(D) / ν₄</strong></p>
           </div>
-        `
+        `,
       },
       {
         title: 'Warum ist Stöchiometrie wichtig? 🎯',
@@ -145,7 +145,7 @@ const tutorials = {
               <li>Photosynthese: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</li>
             </ul>
           </div>
-        `
+        `,
       },
       {
         title: 'Zusammenfassung & Quiz 📝',
@@ -184,9 +184,9 @@ const tutorials = {
           <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 20px;">
             <p style="margin: 0;"><strong>🎉 Gratulation!</strong> Du hast Tutorial 1 abgeschlossen! Klicke auf "Weiter", um fortzufahren.</p>
           </div>
-        `
-      }
-    ]
+        `,
+      },
+    ],
   },
   2: {
     title: 'Mol-Mol Umrechnung',
@@ -214,7 +214,7 @@ const tutorials = {
               <li>Reaktionspartner im richtigen Verhältnis mischen willst</li>
             </ul>
           </div>
-        `
+        `,
       },
       {
         title: 'Die Grundformel 📐',
@@ -271,7 +271,7 @@ const tutorials = {
               n₂ = n₁ × (ν₂/ν₁)
             </p>
           </div>
-        `
+        `,
       },
       {
         title: 'Beispiel 1: Wasserbildung 💧',
@@ -316,7 +316,7 @@ const tutorials = {
             <h5 style="color: #f57f17;"><i class="fa fa-eye"></i> Beobachtung</h5>
             <p>Weil beide Koeffizienten gleich sind (2 und 2), ist das Verhältnis 1:1. Die Stoffmenge bleibt gleich!</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Beispiel 2: Methanverbrennung 🔥',
@@ -358,7 +358,7 @@ const tutorials = {
             <p>Hier ist ν(H₂O) = 2:</p>
             <p style="font-size: 18px; text-align: center;">n(H₂O) = 3 mol × (2/1) = <strong>6 mol</strong></p>
           </div>
-        `
+        `,
       },
       {
         title: 'Praxis & Zusammenfassung ✅',
@@ -393,9 +393,9 @@ const tutorials = {
             <p style="margin: 0;"><strong>🎉 Super!</strong> Du kennst jetzt die Grundlage aller stöchiometrischen Berechnungen!</p>
             <p style="margin: 10px 0 0 0;">Als nächstes lernst du, wie man Massen umrechnet (Tutorial 3).</p>
           </div>
-        `
-      }
-    ]
+        `,
+      },
+    ],
   },
   3: {
     title: 'Masse-Masse Umrechnung',
@@ -428,7 +428,7 @@ const tutorials = {
           <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 20px;">
             <p><strong>💡 Merke:</strong> Mol ist die "Brücke" zwischen Massen verschiedener Stoffe!</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Die drei Schritte im Detail 📝',
@@ -467,7 +467,7 @@ const tutorials = {
               <li><strong>M</strong> = Molare Masse in g/mol</li>
             </ul>
           </div>
-        `
+        `,
       },
       {
         title: 'Beispiel: Wasserbildung berechnen 💧',
@@ -512,7 +512,7 @@ const tutorials = {
             <h5 style="color: #f57f17;"><i class="fa fa-eye"></i> Beobachtung</h5>
             <p>Die Masse hat sich fast verzehnffacht! Das liegt an der unterschiedlichen molaren Masse.</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Tipps & Tricks 💡',
@@ -543,7 +543,7 @@ const tutorials = {
               </ul>
             </div>
           </div>
-        `
+        `,
       },
       {
         title: 'Zusammenfassung & Praxis ✅',
@@ -574,9 +574,9 @@ const tutorials = {
           <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 20px;">
             <p style="margin: 0;"><strong>🎉 Ausgezeichnet!</strong> Du kannst jetzt Massen stöchiometrisch umrechnen!</p>
           </div>
-        `
-      }
-    ]
+        `,
+      },
+    ],
   },
   4: {
     title: 'Limitierendes Reagenz',
@@ -606,7 +606,7 @@ const tutorials = {
           <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin-top: 20px;">
             <p><strong>💡 Erkenntnis:</strong> Das Reagenz, das weniger Produkt erzeugen kann, bestimmt die Reaktion!</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Wie man das limitierende Reagenz findet 🔍',
@@ -639,7 +639,7 @@ const tutorials = {
             <h5 style="color: #f57f17;"><i class="fa fa-exclamation-triangle"></i> Wichtig!</h5>
             <p>Vergleiche <strong>immer n/ν</strong>, nicht nur n oder m!</p>
           </div>
-        `
+        `,
       },
       {
         title: 'Beispiel: Ammoniaksynthese 🌿',
@@ -674,7 +674,7 @@ const tutorials = {
               </div>
             </div>
           </div>
-        `
+        `,
       },
       {
         title: 'Überschuss berechnen ➗',
@@ -697,7 +697,7 @@ const tutorials = {
               <li>Der Überschuss kann recycelt werden</li>
             </ul>
           </div>
-        `
+        `,
       },
       {
         title: 'Zusammenfassung ✅',
@@ -720,9 +720,9 @@ const tutorials = {
           <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 20px;">
             <p style="margin: 0;"><strong>🎉 Perfekt!</strong> Du kannst jetzt limitierende Reagenzien finden und berechnen!</p>
           </div>
-        `
-      }
-    ]
+        `,
+      },
+    ],
   },
   5: {
     title: 'Ausbeute berechnen',
@@ -755,7 +755,7 @@ const tutorials = {
               <p>Das Verhältnis von praktischer zu theoretischer Ausbeute in Prozent.</p>
             </div>
           </div>
-        `
+        `,
       },
       {
         title: 'Die Ausbeute-Formel 📐',
@@ -774,7 +774,7 @@ const tutorials = {
               <li>Setze beide in die Formel ein</li>
             </ol>
           </div>
-        `
+        `,
       },
       {
         title: 'Beispiel: Kupferfällung 🧪',
@@ -807,7 +807,7 @@ const tutorials = {
               </div>
             </div>
           </div>
-        `
+        `,
       },
       {
         title: 'Warum nie 100% Ausbeute? 🤔',
@@ -837,7 +837,7 @@ const tutorials = {
               <li>Komplexe mehrstufige Synthesen: 10-40% (pro Schritt)</li>
             </ul>
           </div>
-        `
+        `,
       },
       {
         title: 'Zusammenfassung & Abschluss ✅',
@@ -863,10 +863,10 @@ const tutorials = {
               <li>Ausbeuteberechnung</li>
             </ul>
           </div>
-        `
-      }
-    ]
-  }
+        `,
+      },
+    ],
+  },
 };
 
 function startTutorial(tutorialId) {
@@ -894,7 +894,9 @@ function startTutorial(tutorialId) {
 function updateTutorialView() {
   const tutorial = tutorials[tutorialState.currentTutorial];
 
-  if (!tutorial) {return;}
+  if (!tutorial) {
+    return;
+  }
 
   const step = tutorial.steps[tutorialState.currentStep];
 
@@ -944,7 +946,10 @@ function completeTutorial() {
 
   updateTutorialProgress();
 
-  showToast('\ud83c\udf89 Tutorial "' + tutorials[tutorialId].title + '" abgeschlossen!', 'success');
+  showToast(
+    '\ud83c\udf89 Tutorial "' + tutorials[tutorialId].title + '" abgeschlossen!',
+    'success'
+  );
 
   closeTutorial();
 }
@@ -965,7 +970,9 @@ function updateTutorialProgress() {
 
   for (let i = 1; i <= 5; i++) {
     const statusEl = document.getElementById('status-tutorial-' + i);
-    if (!statusEl) {continue;}
+    if (!statusEl) {
+      continue;
+    }
 
     if (tutorialState.completedTutorials.includes(i)) {
       statusEl.innerHTML = '<i class="fa fa-check-circle"></i> Abgeschlossen';

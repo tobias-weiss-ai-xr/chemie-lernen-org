@@ -36,14 +36,24 @@ const ATM_TO_PA = 101325;
 
 function umrechnenDruck(wert, von, nach) {
   const toPa = {
-    Pa: 1, kPa: 1000, MPa: 1000000,
-    bar: BAR_TO_PA, mbar: 100,
-    atm: ATM_TO_PA, mmHg: PA_TO_MMHG * ATM_TO_PA, Torr: 133.322
+    Pa: 1,
+    kPa: 1000,
+    MPa: 1000000,
+    bar: BAR_TO_PA,
+    mbar: 100,
+    atm: ATM_TO_PA,
+    mmHg: PA_TO_MMHG * ATM_TO_PA,
+    Torr: 133.322,
   };
   const fromPa = {
-    Pa: 1, kPa: 1000, MPa: 1000000,
-    bar: BAR_TO_PA, mbar: 100,
-    atm: ATM_TO_PA, mmHg: PA_TO_MMHG * ATM_TO_PA, Torr: 133.322
+    Pa: 1,
+    kPa: 1000,
+    MPa: 1000000,
+    bar: BAR_TO_PA,
+    mbar: 100,
+    atm: ATM_TO_PA,
+    mmHg: PA_TO_MMHG * ATM_TO_PA,
+    Torr: 133.322,
   };
   if (!(von in toPa)) throw new Error(`Unbekannte Einheit: ${von}`);
   if (!(nach in toPa)) throw new Error(`Unbekannte Einheit: ${nach}`);
@@ -97,7 +107,7 @@ describe('Druck & Fläche Rechner', () => {
       // ρ(Hg, 0°C) ≈ 13595 kg/m³, g = 9,80665 m/s², h = 0,76 m
       // Referenzwert: 1 atm = 101.325 Pa
       const p = druckHydrostatisch(13595, 9.80665, 0.76);
-      expect(p).toBeCloseTo(101325, -1);  // Differenz < 5 Pa
+      expect(p).toBeCloseTo(101325, -1); // Differenz < 5 Pa
     });
   });
 

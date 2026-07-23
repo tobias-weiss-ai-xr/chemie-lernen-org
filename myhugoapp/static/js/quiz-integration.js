@@ -2,7 +2,7 @@
  * Quiz Integration Script for Articles
  * Loads and quizzes from quiz database and initializes them
  */
-(function() {
+(function () {
   'use strict';
 
   const quizDatabase = window.quizDatabase || {};
@@ -50,11 +50,15 @@
           </div>
           <p class="question-text">${questionData.question}</p>
           <div class="quiz-options">
-            ${questionData.options.map((option, index) => `
+            ${questionData.options
+              .map(
+                (option, index) => `
               <button class="quiz-option" data-option="${index}">
                 ${option}
               </button>
-            `).join('')}
+            `
+              )
+              .join('')}
           </div>
         </div>
       `;
@@ -67,17 +71,20 @@
       quizContent.innerHTML = renderQuestion();
 
       const options = quizContent.querySelectorAll('.quiz-option');
-      options.forEach(option => {
-        option.addEventListener('click', function() {
+      options.forEach((option) => {
+        option.addEventListener('click', function () {
           const selectedOption = parseInt(this.dataset.option);
           const questionData = quizData.questions[currentQuestion];
 
           const allOptions = quizContent.querySelectorAll('.quiz-option');
-          allOptions.forEach(opt => {
+          allOptions.forEach((opt) => {
             opt.disabled = true;
             if (parseInt(opt.dataset.option) === questionData.correct) {
               opt.classList.add('correct');
-            } else if (parseInt(opt.dataset.option) === selectedOption && selectedOption !== questionData.correct) {
+            } else if (
+              parseInt(opt.dataset.option) === selectedOption &&
+              selectedOption !== questionData.correct
+            ) {
               opt.classList.add('incorrect');
             }
           });
@@ -99,7 +106,7 @@
             const nextButton = document.createElement('button');
             nextButton.className = 'quiz-next-button';
             nextButton.textContent = 'Nächste Frage';
-            nextButton.addEventListener('click', function() {
+            nextButton.addEventListener('click', function () {
               currentQuestion++;
               quizContent.innerHTML = renderQuestion();
               initializeOptionsListeners();
@@ -109,13 +116,13 @@
             const scoreHTML = `
               <div class="quiz-score">
                 <h3>Ergebnis</h3>
-                <p>Ihr Ergebnis: ${score} von ${quizData.questions.length} richtig (${Math.round(score/quizData.questions.length * 100)}%)</p>
+                <p>Ihr Ergebnis: ${score} von ${quizData.questions.length} richtig (${Math.round((score / quizData.questions.length) * 100)}%)</p>
                 <button class="quiz-restart-button" id="restart-${quizId}">Quiz wiederholen</button>
               </div>
             `;
             quizContent.insertAdjacentHTML('beforeend', scoreHTML);
 
-            document.getElementById(`restart-${quizId}`).addEventListener('click', function() {
+            document.getElementById(`restart-${quizId}`).addEventListener('click', function () {
               currentQuestion = 0;
               score = 0;
               quizContent.innerHTML = renderQuestion();
@@ -128,17 +135,20 @@
 
     function initializeOptionsListeners() {
       const options = quizContent.querySelectorAll('.quiz-option');
-      options.forEach(option => {
-        option.addEventListener('click', function() {
+      options.forEach((option) => {
+        option.addEventListener('click', function () {
           const selectedOption = parseInt(this.dataset.option);
           const questionData = quizData.questions[currentQuestion];
 
           const allOptions = quizContent.querySelectorAll('.quiz-option');
-          allOptions.forEach(opt => {
+          allOptions.forEach((opt) => {
             opt.disabled = true;
             if (parseInt(opt.dataset.option) === questionData.correct) {
               opt.classList.add('correct');
-            } else if (parseInt(opt.dataset.option) === selectedOption && selectedOption !== questionData.correct) {
+            } else if (
+              parseInt(opt.dataset.option) === selectedOption &&
+              selectedOption !== questionData.correct
+            ) {
               opt.classList.add('incorrect');
             }
           });
@@ -160,7 +170,7 @@
             const nextButton = document.createElement('button');
             nextButton.className = 'quiz-next-button';
             nextButton.textContent = 'Nächste Frage';
-            nextButton.addEventListener('click', function() {
+            nextButton.addEventListener('click', function () {
               currentQuestion++;
               quizContent.innerHTML = renderQuestion();
               initializeOptionsListeners();
@@ -170,13 +180,13 @@
             const scoreHTML = `
               <div class="quiz-score">
                 <h3>Ergebnis</h3>
-                <p>Ihr Ergebnis: ${score} von ${quizData.questions.length} richtig (${Math.round(score/quizData.questions.length * 100)}%)</p>
+                <p>Ihr Ergebnis: ${score} von ${quizData.questions.length} richtig (${Math.round((score / quizData.questions.length) * 100)}%)</p>
                 <button class="quiz-restart-button" id="restart-${quizId}">Quiz wiederholen</button>
               </div>
             `;
             quizContent.insertAdjacentHTML('beforeend', scoreHTML);
 
-            document.getElementById(`restart-${quizId}`).addEventListener('click', function() {
+            document.getElementById(`restart-${quizId}`).addEventListener('click', function () {
               currentQuestion = 0;
               score = 0;
               quizContent.innerHTML = renderQuestion();
@@ -188,12 +198,11 @@
     }
   }
 
-  window.addEventListener('DOMContentLoaded', function() {
+  window.addEventListener('DOMContentLoaded', function () {
     const quizContainers = document.querySelectorAll('.quiz-container[id^="quiz-"]');
-    quizContainers.forEach(container => {
+    quizContainers.forEach((container) => {
       const quizId = container.id.replace('quiz-', '');
       initializeQuiz(quizId);
     });
   });
-
 })();

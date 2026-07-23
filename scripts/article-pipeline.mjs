@@ -20,63 +20,244 @@ const LITELLM_MODEL = process.env.LITELLM_MODEL || 'saia/qwen3.5-397b-a17b';
 
 // ===== CALCULATOR AUTO-LINKING =====
 const CALCULATOR_MAP = [
-  { path: '/ph-rechner/', keywords: ['ph', 'säure', 'base', 'wasserstoffionen', 'ph-wert', 'acid', 'alkalisch'] },
-  { path: '/stoechiometrie-rechner/', keywords: ['stöchiometrie', 'stoffmenge', 'mol', 'reaktionsgleichung', ' stoichiometr', 'molverhältnis'] },
-  { path: '/molare-masse-rechner/', keywords: ['molare masse', 'molekulargewicht', 'molmasse', 'molekülmasse', 'molar mass'] },
-  { path: '/konzentrationsumrechner/', keywords: ['konzentration', 'molar', 'verdünnung', 'einheiten', 'concentration', 'dilution'] },
-  { path: '/titrations-simulator/', keywords: ['titration', 'äquivalenzpunkt', 'neutralisation', 'titrieren', 'titrimetrie'] },
-  { path: '/redox-potenzial-rechner/', keywords: ['redox', 'oxidation', 'reduktion', 'spannung', 'nernst', 'potential', 'oxidat'] },
-  { path: '/loeslichkeitsprodukt-rechner/', keywords: ['löslichkeit', 'ksp', 'fällung', 'löslichkeitsprodukt', 'solubility', 'precipitate'] },
-  { path: '/gasgesetz-rechner/', keywords: ['gasgesetz', 'pvnrt', 'boyle', 'gay-lussac', 'ideales gas', 'gas law', 'pressure'] },
-  { path: '/gasgesetz-simulator/', keywords: ['gasgesetz', 'pvnrt', 'boyle', 'gay-lussac', 'ideales gas'] },
-  { path: '/verbrennungsrechner/', keywords: ['verbrennung', 'heizwert', 'brennwert', 'co2', 'emission', 'combustion'] },
-  { path: '/sauren-basen-gleichgewicht/', keywords: ['säure-base', 'gleichgewicht', 'henderson', 'hasselbalch', 'puffer', 'puffersystem', 'buffer'] },
-  { path: '/bindungspotential/', keywords: ['bindung', 'potential', 'energieprofil', 'aktivierungsenergie', 'morse', 'binding'] },
-  { path: '/hess-gesetz/', keywords: ['hess', 'enthalpie', 'thermochemie', 'reaktionswärme', 'energieerhaltung'] },
-  { path: '/reaktionskinetik-simulator/', keywords: ['kinetik', 'reaktionsgeschwindigkeit', 'arrhenius', 'reaction rate', 'kinetic'] },
-  { path: '/chemisches-gleichgewicht/', keywords: ['gleichgewicht', 'massenwirkungsgesetz', 'le chatelier', 'equilibrium', 'mwg'] },
-  { path: '/perioden-system-der-elemente/', keywords: ['periodensystem', 'pse', 'element', 'gruppen', 'perioden', 'periodic table'] },
-  { path: '/periodische-trends/', keywords: ['trends', 'atomradius', 'ionisierungsenergie', 'elektronegativität', 'periodic trends'] },
-  { path: '/molekuelorbitale/', keywords: ['orbital', 'molekülorbital', 'mo-theorie', 'hybridisierung', 'molecular orbital'] },
-  { path: '/elektrochemie-teilchenebene/', keywords: ['elektrochemie', 'elektrolyse', 'galvanisch', 'elektrode', 'electrochem'] },
-  { path: '/molekuel-studio/', keywords: ['molekül', 'molekülgeometrie', '3d', 'vsepr', 'molecular', 'molecule'] },
-  { path: '/atomenergieniveaus/', keywords: ['atom', 'energieniveau', 'bohr', 'spektrum', 'atommodell', 'electron config'] },
-  { path: '/temperatur-teilchenbewegung/', keywords: ['temperatur', 'teilchenbewegung', 'kinetisch', 'thermisch', 'wärme'] },
-  { path: '/waermeleitung/', keywords: ['wärmeleitung', 'konduktion', 'wärmeübertragung', 'thermal conduction'] },
+  {
+    path: '/ph-rechner/',
+    keywords: ['ph', 'säure', 'base', 'wasserstoffionen', 'ph-wert', 'acid', 'alkalisch'],
+  },
+  {
+    path: '/stoechiometrie-rechner/',
+    keywords: [
+      'stöchiometrie',
+      'stoffmenge',
+      'mol',
+      'reaktionsgleichung',
+      ' stoichiometr',
+      'molverhältnis',
+    ],
+  },
+  {
+    path: '/molare-masse-rechner/',
+    keywords: ['molare masse', 'molekulargewicht', 'molmasse', 'molekülmasse', 'molar mass'],
+  },
+  {
+    path: '/konzentrationsumrechner/',
+    keywords: ['konzentration', 'molar', 'verdünnung', 'einheiten', 'concentration', 'dilution'],
+  },
+  {
+    path: '/titrations-simulator/',
+    keywords: ['titration', 'äquivalenzpunkt', 'neutralisation', 'titrieren', 'titrimetrie'],
+  },
+  {
+    path: '/redox-potenzial-rechner/',
+    keywords: ['redox', 'oxidation', 'reduktion', 'spannung', 'nernst', 'potential', 'oxidat'],
+  },
+  {
+    path: '/loeslichkeitsprodukt-rechner/',
+    keywords: ['löslichkeit', 'ksp', 'fällung', 'löslichkeitsprodukt', 'solubility', 'precipitate'],
+  },
+  {
+    path: '/gasgesetz-rechner/',
+    keywords: ['gasgesetz', 'pvnrt', 'boyle', 'gay-lussac', 'ideales gas', 'gas law', 'pressure'],
+  },
+  {
+    path: '/gasgesetz-simulator/',
+    keywords: ['gasgesetz', 'pvnrt', 'boyle', 'gay-lussac', 'ideales gas'],
+  },
+  {
+    path: '/verbrennungsrechner/',
+    keywords: ['verbrennung', 'heizwert', 'brennwert', 'co2', 'emission', 'combustion'],
+  },
+  {
+    path: '/sauren-basen-gleichgewicht/',
+    keywords: [
+      'säure-base',
+      'gleichgewicht',
+      'henderson',
+      'hasselbalch',
+      'puffer',
+      'puffersystem',
+      'buffer',
+    ],
+  },
+  {
+    path: '/bindungspotential/',
+    keywords: ['bindung', 'potential', 'energieprofil', 'aktivierungsenergie', 'morse', 'binding'],
+  },
+  {
+    path: '/hess-gesetz/',
+    keywords: ['hess', 'enthalpie', 'thermochemie', 'reaktionswärme', 'energieerhaltung'],
+  },
+  {
+    path: '/reaktionskinetik-simulator/',
+    keywords: ['kinetik', 'reaktionsgeschwindigkeit', 'arrhenius', 'reaction rate', 'kinetic'],
+  },
+  {
+    path: '/chemisches-gleichgewicht/',
+    keywords: ['gleichgewicht', 'massenwirkungsgesetz', 'le chatelier', 'equilibrium', 'mwg'],
+  },
+  {
+    path: '/perioden-system-der-elemente/',
+    keywords: ['periodensystem', 'pse', 'element', 'gruppen', 'perioden', 'periodic table'],
+  },
+  {
+    path: '/periodische-trends/',
+    keywords: [
+      'trends',
+      'atomradius',
+      'ionisierungsenergie',
+      'elektronegativität',
+      'periodic trends',
+    ],
+  },
+  {
+    path: '/molekuelorbitale/',
+    keywords: ['orbital', 'molekülorbital', 'mo-theorie', 'hybridisierung', 'molecular orbital'],
+  },
+  {
+    path: '/elektrochemie-teilchenebene/',
+    keywords: ['elektrochemie', 'elektrolyse', 'galvanisch', 'elektrode', 'electrochem'],
+  },
+  {
+    path: '/molekuel-studio/',
+    keywords: ['molekül', 'molekülgeometrie', '3d', 'vsepr', 'molecular', 'molecule'],
+  },
+  {
+    path: '/atomenergieniveaus/',
+    keywords: ['atom', 'energieniveau', 'bohr', 'spektrum', 'atommodell', 'electron config'],
+  },
+  {
+    path: '/temperatur-teilchenbewegung/',
+    keywords: ['temperatur', 'teilchenbewegung', 'kinetisch', 'thermisch', 'wärme'],
+  },
+  {
+    path: '/waermeleitung/',
+    keywords: ['wärmeleitung', 'konduktion', 'wärmeübertragung', 'thermal conduction'],
+  },
   { path: '/konvektion/', keywords: ['konvektion', 'strömung', 'wärmeübertragung', 'convection'] },
-  { path: '/druck-flaechen-rechner/', keywords: ['druck', 'kraft', 'fläche', 'pascal', 'pressure', 'force'] },
-  { path: '/atmosphaerendruck-alltag/', keywords: ['luftdruck', 'atmosphärendruck', 'barometer', 'atmospheric pressure'] },
-  { path: '/saeuren-basen-gleichgewicht/', keywords: ['säure', 'base', 'gleichgewicht', 'henderson', 'hasselbalch', 'puffer'] },
-  { path: '/uebungsgenerator/', keywords: ['übung', 'aufgabe', 'quiz', 'test', 'practice', 'exercise'] },
+  {
+    path: '/druck-flaechen-rechner/',
+    keywords: ['druck', 'kraft', 'fläche', 'pascal', 'pressure', 'force'],
+  },
+  {
+    path: '/atmosphaerendruck-alltag/',
+    keywords: ['luftdruck', 'atmosphärendruck', 'barometer', 'atmospheric pressure'],
+  },
+  {
+    path: '/saeuren-basen-gleichgewicht/',
+    keywords: ['säure', 'base', 'gleichgewicht', 'henderson', 'hasselbalch', 'puffer'],
+  },
+  {
+    path: '/uebungsgenerator/',
+    keywords: ['übung', 'aufgabe', 'quiz', 'test', 'practice', 'exercise'],
+  },
   { path: '/lernpfad/', keywords: ['lernpfad', 'lernweg', 'guided', 'tour', 'tutorial'] },
   { path: '/lueckentexte/', keywords: ['lückentext', 'cloze', 'drag', 'drop', 'fill'] },
 ];
 
 // Chemistry relevance scoring
 const CHEMISTRY_KEYWORDS = [
-  'chem', 'molecul', 'atom', 'bond', 'reaction', 'cataly', 'synthesis',
-  'compound', 'element', 'periodic', 'electron', 'proton', 'neutron',
-  'ph ', 'acid', 'base', 'buffer', 'titration', 'redox', 'oxidation',
-  'reduction', 'equilibrium', 'kinetic', 'thermodynam', 'enthalpy',
-  'entropy', 'gibbs', 'gas law', 'solution', 'concentration', 'molar',
-  'spectroscop', 'nmr', 'ir ', 'mass spec', 'crystal', 'solid state',
-  'organic', 'inorganic', 'polymer', 'nanomater', 'electrochem',
-  'photochem', 'biochem', 'protein', 'enzyme', 'catalyst', 'ligand',
-  'coordination', 'ionic', 'covalent', 'metallic', 'hybrid', 'orbital',
-  'quantum chem', 'materials sci', 'battery', 'fuel cell', 'solar',
-  'perovskite', 'superconduct', 'zeolite', 'metal org',
-  'wasserstoff', 'saeure', 'base', 'salz', 'metall', 'oxid',
-  'katalys', 'synthese', 'reaktion', 'loesung', 'gleichgewicht',
-  'thermodynamik', 'kinetik', 'spektroskop', 'elektrochem',
+  'chem',
+  'molecul',
+  'atom',
+  'bond',
+  'reaction',
+  'cataly',
+  'synthesis',
+  'compound',
+  'element',
+  'periodic',
+  'electron',
+  'proton',
+  'neutron',
+  'ph ',
+  'acid',
+  'base',
+  'buffer',
+  'titration',
+  'redox',
+  'oxidation',
+  'reduction',
+  'equilibrium',
+  'kinetic',
+  'thermodynam',
+  'enthalpy',
+  'entropy',
+  'gibbs',
+  'gas law',
+  'solution',
+  'concentration',
+  'molar',
+  'spectroscop',
+  'nmr',
+  'ir ',
+  'mass spec',
+  'crystal',
+  'solid state',
+  'organic',
+  'inorganic',
+  'polymer',
+  'nanomater',
+  'electrochem',
+  'photochem',
+  'biochem',
+  'protein',
+  'enzyme',
+  'catalyst',
+  'ligand',
+  'coordination',
+  'ionic',
+  'covalent',
+  'metallic',
+  'hybrid',
+  'orbital',
+  'quantum chem',
+  'materials sci',
+  'battery',
+  'fuel cell',
+  'solar',
+  'perovskite',
+  'superconduct',
+  'zeolite',
+  'metal org',
+  'wasserstoff',
+  'saeure',
+  'base',
+  'salz',
+  'metall',
+  'oxid',
+  'katalys',
+  'synthese',
+  'reaktion',
+  'loesung',
+  'gleichgewicht',
+  'thermodynamik',
+  'kinetik',
+  'spektroskop',
+  'elektrochem',
 ];
 
 const NON_CHEMISTRY_KEYWORDS = [
-  'machine learning', 'deep learning', 'neural network', 'ai ',
-  'artificial intelligence', 'llm', 'large language model',
-  'transformer', 'reinforcement learning', 'computer vision',
-  'nlp', 'natural language', 'autonomous', 'robot',
-  'software', 'algorithm', 'data science', 'big data',
-  'cloud', 'blockchain', 'cryptocurrenc',
+  'machine learning',
+  'deep learning',
+  'neural network',
+  'ai ',
+  'artificial intelligence',
+  'llm',
+  'large language model',
+  'transformer',
+  'reinforcement learning',
+  'computer vision',
+  'nlp',
+  'natural language',
+  'autonomous',
+  'robot',
+  'software',
+  'algorithm',
+  'data science',
+  'big data',
+  'cloud',
+  'blockchain',
+  'cryptocurrenc',
 ];
 
 function chemistryScore(title, description) {
@@ -99,7 +280,9 @@ async function withRetry(fn, label, maxRetries = 3) {
     } catch (err) {
       if (attempt === maxRetries) throw err;
       const delay = Math.min(2000 * Math.pow(2, attempt - 1), 10000);
-      console.log(`[pipeline] Retry ${attempt}/${maxRetries} for "${label}" in ${delay}ms: ${err.message}`);
+      console.log(
+        `[pipeline] Retry ${attempt}/${maxRetries} for "${label}" in ${delay}ms: ${err.message}`
+      );
       await setTimeout(delay);
     }
   }
@@ -133,7 +316,9 @@ function buildRelatedSection(calculators) {
   }
   // Limit to 4
   const items = unique.slice(0, 4);
-  const links = items.map((c) => `🔬 [${c.path.replace(/\//g, ' ').trim()} →](${c.path})`).join('\n');
+  const links = items
+    .map((c) => `🔬 [${c.path.replace(/\//g, ' ').trim()} →](${c.path})`)
+    .join('\n');
   return `\n\n---\n\n### 🧪 Verwandte Rechner\n\nMit diesen interaktiven Werkzeugen können Sie das Thema vertiefen:\n\n${links}\n`;
 }
 
@@ -201,7 +386,7 @@ async function fetchFeed(url, feedErrors) {
   const headers = { 'User-Agent': FEED_UA };
   // If feed errored in last hour, skip
   const errorState = feedErrors.get(url);
-  if (errorState && (Date.now() - errorState.ts) < 3600000) {
+  if (errorState && Date.now() - errorState.ts < 3600000) {
     console.log(`[pipeline]  Skipping ${url} (had error ${errorState.diff}s ago)`);
     return null;
   }
@@ -250,15 +435,14 @@ function extractLink(item) {
 }
 
 function extractDescription(item) {
-  const raw = (
+  const raw =
     item.description ||
     item['description'] ||
     item.summary ||
     item['summary'] ||
     item['content'] ||
     item['content:encoded'] ||
-    ''
-  );
+    '';
   if (typeof raw === 'string') return raw.replace(/<[^>]*>/g, '').trim();
   if (raw['#text']) return raw['#text'].replace(/<[^>]*>/g, '').trim();
   return '';
@@ -313,12 +497,19 @@ function parseGeneratedText(text) {
   if (tagMatch) {
     tags = tagMatch[1]
       .split(',')
-      .map((t) => t.trim().replace(/^[*#\s]+|[*#]+$/g, '').toLowerCase())
+      .map((t) =>
+        t
+          .trim()
+          .replace(/^[*#\s]+|[*#]+$/g, '')
+          .toLowerCase()
+      )
       .filter(Boolean);
   }
 
   // Parse entities — supports multi-line "name | category" or comma-separated
-  const entitySection = text.match(/Entitäten?:?\s*([\s\S]*?)(?:\n\s*\n|\n(?=Tags?:|Titel:|Hintergrund:|$))/i);
+  const entitySection = text.match(
+    /Entitäten?:?\s*([\s\S]*?)(?:\n\s*\n|\n(?=Tags?:|Titel:|Hintergrund:|$))/i
+  );
   if (entitySection) {
     const raw = entitySection[1].trim();
     entities = raw
@@ -335,13 +526,20 @@ function parseGeneratedText(text) {
     if (entities.length <= 1 && raw.indexOf('\n') === -1) {
       entities = raw
         .split(',')
-        .map((e) => e.trim().replace(/^[*#\s]+|[*#]+$/g, '').toLowerCase())
+        .map((e) =>
+          e
+            .trim()
+            .replace(/^[*#\s]+|[*#]+$/g, '')
+            .toLowerCase()
+        )
         .filter((e) => e.length > 2);
     }
   }
-  
+
   // Extract first meaningful sentence as description
-  const bodyLines = text.split('\n').filter(l => !l.match(/^(Titel|Tags?|Hintergrund|Entitäten?):/i) && l.trim());
+  const bodyLines = text
+    .split('\n')
+    .filter((l) => !l.match(/^(Titel|Tags?|Hintergrund|Entitäten?):/i) && l.trim());
   for (const line of bodyLines) {
     const clean = line.replace(/[*#$]/g, '').trim();
     if (clean.length > 30) {
@@ -373,10 +571,12 @@ async function verifySource(sourceUrl) {
 
     // Only fetch body if we got a 200
     if (res.ok) {
-      const body = await (await fetch(sourceUrl, {
-        signal: AbortSignal.timeout(15000),
-        headers: { 'User-Agent': FEED_UA },
-      })).text();
+      const body = await (
+        await fetch(sourceUrl, {
+          signal: AbortSignal.timeout(15000),
+          headers: { 'User-Agent': FEED_UA },
+        })
+      ).text();
 
       // Normalize DOI URL to canonical form
       const normalizeDoiUrl = (url) => {
@@ -445,9 +645,9 @@ function buildMarkdown(frontmatter, bodyContent, relatedSection, sourceUrl, veri
       sourceSection += ` ⚠️ (Status ${verification.statusCode || 'nicht erreichbar'})`;
     }
     if (verification.paperLinks && verification.paperLinks.length > 0) {
-      sourceSection += '\n\n' + verification.paperLinks
-        .map((link) => `📄 [Original-Publikation](${link})`)
-        .join('\n');
+      sourceSection +=
+        '\n\n' +
+        verification.paperLinks.map((link) => `📄 [Original-Publikation](${link})`).join('\n');
     }
   }
 
@@ -474,7 +674,15 @@ async function run() {
   console.log(`[pipeline] Starting at ${new Date().toISOString()}`);
 
   const currentModel = process.env.LITELLM_MODEL || 'saia/qwen3.5-397b-a17b';
-  const metrics = { startedAt: new Date().toISOString(), articlesGenerated: 0, articlesFailed: 0, feedErrors: 0, kgErrors: 0, durationMs: 0, model: currentModel };
+  const metrics = {
+    startedAt: new Date().toISOString(),
+    articlesGenerated: 0,
+    articlesFailed: 0,
+    feedErrors: 0,
+    kgErrors: 0,
+    durationMs: 0,
+    model: currentModel,
+  };
 
   const feeds = JSON.parse(await readFile(FEEDS_PATH, 'utf-8'));
   const seenUrls = await loadSeenUrls();
@@ -515,12 +723,15 @@ async function run() {
 
   // Sort by chemistry relevance, then description length as tiebreaker
   candidates.sort((a, b) => {
-    const scoreDiff = chemistryScore(b.title, b.description) - chemistryScore(a.title, a.description);
+    const scoreDiff =
+      chemistryScore(b.title, b.description) - chemistryScore(a.title, a.description);
     if (scoreDiff !== 0) return scoreDiff;
     return b.description.length - a.description.length;
   });
   const selected = candidates.slice(0, MAX_ARTICLES);
-  console.log(`[pipeline] Selected ${selected.length} articles to generate (${candidates.length} total candidates)`);
+  console.log(
+    `[pipeline] Selected ${selected.length} articles to generate (${candidates.length} total candidates)`
+  );
 
   if (!existsSync(POSTS_DIR)) {
     await mkdir(POSTS_DIR, { recursive: true });
@@ -550,14 +761,22 @@ async function run() {
       if (verification.available) {
         console.log(`[pipeline]   Source is available (HTTP ${verification.statusCode})`);
         if (verification.paperLinks.length > 0) {
-          console.log(`[pipeline]   Found ${verification.paperLinks.length} paper link(s): ${verification.paperLinks.join(', ')}`);
+          console.log(
+            `[pipeline]   Found ${verification.paperLinks.length} paper link(s): ${verification.paperLinks.join(', ')}`
+          );
         }
       } else {
         console.log(`[pipeline]   Source status: ${verification.statusCode || 'unreachable'}`);
       }
 
       const frontmatter = buildFrontmatter(title, isoDateStr(), tags, description, article.url);
-      const markdown = buildMarkdown(frontmatter, generated, relatedSection, article.url, verification);
+      const markdown = buildMarkdown(
+        frontmatter,
+        generated,
+        relatedSection,
+        article.url,
+        verification
+      );
       await writeFile(join(POSTS_DIR, filename), markdown);
       await saveSeenUrl(article.url);
       console.log(`[pipeline] Wrote ${filename}`);
@@ -568,16 +787,25 @@ async function run() {
 
         // Extract entity categories from raw LLM output (format: "name|kategorie")
         const entityCategories = {};
-        const entitySection = generated.match(/Entitäten?:?\s*([\s\S]*?)(?:\n\s*\n|\n(?=Tags?:|Titel:|Hintergrund:|$))/i);
+        const entitySection = generated.match(
+          /Entitäten?:?\s*([\s\S]*?)(?:\n\s*\n|\n(?=Tags?:|Titel:|Hintergrund:|$))/i
+        );
         if (entitySection) {
-          entitySection[1].trim().split('\n').forEach((line) => {
-            const parts = line.split('|');
-            if (parts.length >= 2) {
-              const name = parts[0].trim().replace(/^[-*•\s]+|[-*]+$/g, '').trim().toLowerCase();
-              const category = parts[1].trim();
-              if (name.length > 2) entityCategories[name] = category;
-            }
-          });
+          entitySection[1]
+            .trim()
+            .split('\n')
+            .forEach((line) => {
+              const parts = line.split('|');
+              if (parts.length >= 2) {
+                const name = parts[0]
+                  .trim()
+                  .replace(/^[-*•\s]+|[-*]+$/g, '')
+                  .trim()
+                  .toLowerCase();
+                const category = parts[1].trim();
+                if (name.length > 2) entityCategories[name] = category;
+              }
+            });
         }
 
         await storeArticleWithEntities({
@@ -598,7 +826,9 @@ async function run() {
           }
         }
         if (entities.length > 0) {
-          console.log(`[pipeline]   Stored in KG with ${entities.length} entit(ies): ${entities.join(', ')}`);
+          console.log(
+            `[pipeline]   Stored in KG with ${entities.length} entit(ies): ${entities.join(', ')}`
+          );
         } else {
           console.log(`[pipeline]   Stored in KG (no entities extracted)`);
         }
@@ -623,9 +853,15 @@ async function run() {
     // Build unique entity index from all articles
     const entityMap = new Map();
     for (const a of kgDumpArticles) {
-      for (const e of (a.entities || [])) {
+      for (const e of a.entities || []) {
         if (!entityMap.has(e)) {
-          entityMap.set(e, { name: e, articleCount: 0, articles: [], category: null, relatedEntities: [] });
+          entityMap.set(e, {
+            name: e,
+            articleCount: 0,
+            articles: [],
+            category: null,
+            relatedEntities: [],
+          });
         }
         entityMap.get(e).articleCount++;
         entityMap.get(e).articles.push(a.title);
@@ -665,7 +901,9 @@ async function run() {
     const statusPath = join(REPO_ROOT, 'myhugoapp', 'static', 'data');
     await mkdir(statusPath, { recursive: true });
     await writeFile(join(statusPath, 'pipeline-status.json'), JSON.stringify(metrics, null, 2));
-    console.log(`[pipeline] Pipeline status: ${metrics.articlesGenerated} OK, ${metrics.articlesFailed} failed, ${metrics.feedErrors} feed errs, ${metrics.durationMin}min`);
+    console.log(
+      `[pipeline] Pipeline status: ${metrics.articlesGenerated} OK, ${metrics.articlesFailed} failed, ${metrics.feedErrors} feed errs, ${metrics.durationMin}min`
+    );
   } catch (statusErr) {
     console.error(`[pipeline] Status write error: ${statusErr.message}`);
   }
@@ -677,7 +915,9 @@ async function run() {
     try {
       history = JSON.parse(await readFile(historyPath, 'utf-8'));
       if (!Array.isArray(history)) history = [];
-    } catch { /* file may not exist yet */ }
+    } catch {
+      /* file may not exist yet */
+    }
     history.push(metrics);
     await mkdir(dirname(historyPath), { recursive: true });
     await writeFile(historyPath, JSON.stringify(history, null, 2));
@@ -698,7 +938,11 @@ async function run() {
   }
 
   // Close KG connection
-  try { await closeKg(); } catch { /* ignore */ }
+  try {
+    await closeKg();
+  } catch {
+    /* ignore */
+  }
 
   console.log(`[pipeline] Done`);
 }

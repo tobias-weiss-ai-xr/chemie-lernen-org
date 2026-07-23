@@ -19,7 +19,12 @@ const NEO4J_URI = process.env.NEO4J_URI || 'bolt://localhost:7687';
 const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
 const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || 'chemie';
 
-const config = { uri: NEO4J_URI, username: NEO4J_USER, password: NEO4J_PASSWORD, database: 'chemie' };
+const config = {
+  uri: NEO4J_URI,
+  username: NEO4J_USER,
+  password: NEO4J_PASSWORD,
+  database: 'chemie',
+};
 
 function parseFrontmatter(content) {
   const match = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
@@ -33,7 +38,10 @@ function parseFrontmatter(content) {
       let val = kv[2].trim();
       // Handle YAML arrays
       if (val.startsWith('[') && val.endsWith(']')) {
-        val = val.slice(1, -1).split(',').map((v) => v.trim().replace(/["']/g, ''));
+        val = val
+          .slice(1, -1)
+          .split(',')
+          .map((v) => v.trim().replace(/["']/g, ''));
       } else if (val.startsWith('"') && val.endsWith('"')) {
         val = val.slice(1, -1);
       }
@@ -75,10 +83,9 @@ async function main() {
         const icon = fm.icon || '📘';
 
         // Check if already exists
-        const existing = await session.run(
-          'MATCH (d:Document {url: $url}) RETURN d LIMIT 1',
-          { url }
-        );
+        const existing = await session.run('MATCH (d:Document {url: $url}) RETURN d LIMIT 1', {
+          url,
+        });
 
         if (existing.records.length > 0) {
           console.log(`  EXISTS ${title}`);

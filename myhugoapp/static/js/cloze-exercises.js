@@ -12,16 +12,20 @@ const CLOZE_EXERCISES = {
         text: 'Ein Atom besteht aus einem positiv geladenen ___ und einer negativ geladenen ___.',
         blanks: [
           { answer: 'Kern', alternatives: ['Atomkern'], hint: 'Zentraler Bestandteil' },
-          { answer: 'Hülle', alternatives: ['Elektronenhülle', 'Atomhülle'], hint: 'Äußerer Bereich' }
-        ]
+          {
+            answer: 'Hülle',
+            alternatives: ['Elektronenhülle', 'Atomhülle'],
+            hint: 'Äußerer Bereich',
+          },
+        ],
       },
       {
         title: 'Kernbausteine',
         text: 'Der Atomkern enthält ___ (positive Ladung) und ___ (neutrale Ladung).',
         blanks: [
           { answer: 'Protonen', alternatives: ['Proton'], hint: 'Positiv geladen' },
-          { answer: 'Neutronen', alternatives: ['Neutron'], hint: 'Neutral' }
-        ]
+          { answer: 'Neutronen', alternatives: ['Neutron'], hint: 'Neutral' },
+        ],
       },
       {
         title: 'Isotope',
@@ -29,9 +33,13 @@ const CLOZE_EXERCISES = {
         blanks: [
           { answer: 'Neutronen', alternatives: ['Neutron'], hint: 'Neutrale Teilchen' },
           { answer: 'Protonen', alternatives: ['Proton'], hint: 'Kernladung' },
-          { answer: 'Massen', alternatives: ['Nukleonen', 'Massenzahl'], hint: 'Kernbausteine gesamt' }
-        ]
-      }
+          {
+            answer: 'Massen',
+            alternatives: ['Nukleonen', 'Massenzahl'],
+            hint: 'Kernbausteine gesamt',
+          },
+        ],
+      },
     ],
     mittel: [
       {
@@ -40,8 +48,8 @@ const CLOZE_EXERCISES = {
         blanks: [
           { answer: 'Energie', alternatives: ['Elektronen', 'Atom'], hint: 'Energiezustand' },
           { answer: '2', alternatives: ['zwei'], hint: 'S-Orbital' },
-          { answer: '8', alternatives: ['acht'], hint: 'S- und P-Orbital' }
-        ]
+          { answer: '8', alternatives: ['acht'], hint: 'S- und P-Orbital' },
+        ],
       },
       {
         title: 'Radioaktivität',
@@ -49,21 +57,33 @@ const CLOZE_EXERCISES = {
         blanks: [
           { answer: 'Helium', alternatives: ['He', 'α'], hint: 'Edelgas' },
           { answer: 'Neutron', alternatives: ['Neutronen'], hint: 'Neutraler Kernbaustein' },
-          { answer: 'elektromagnetisch', alternatives: ['elektromagnetische Strahlung', 'Photonen', 'Hochenergiestrahlung'], hint: 'Wellen' }
-        ]
-      }
+          {
+            answer: 'elektromagnetisch',
+            alternatives: ['elektromagnetische Strahlung', 'Photonen', 'Hochenergiestrahlung'],
+            hint: 'Wellen',
+          },
+        ],
+      },
     ],
     schwer: [
       {
         title: 'Quantenzahlen',
         text: 'Die Hauptquantenzahl n beschreibt die ___. Der Bahndrehimpuls ℓ nimmt Werte von ___ bis n-1 an. Die magnetische Quantenzahl mℓ gibt die ___ im Raum an.',
         blanks: [
-          { answer: 'Schale', alternatives: ['Energiestufe', 'Hauptschale', 'Energieniveau'], hint: 'Entfernung vom Kern' },
+          {
+            answer: 'Schale',
+            alternatives: ['Energiestufe', 'Hauptschale', 'Energieniveau'],
+            hint: 'Entfernung vom Kern',
+          },
           { answer: '0', alternatives: ['null'], hint: 'Kleinster Wert' },
-          { answer: 'Orientierung', alternatives: ['Ausrichtung', 'Richtung'], hint: 'Räumliche Lage' }
-        ]
-      }
-    ]
+          {
+            answer: 'Orientierung',
+            alternatives: ['Ausrichtung', 'Richtung'],
+            hint: 'Räumliche Lage',
+          },
+        ],
+      },
+    ],
   },
   bindungen: {
     leicht: [
@@ -71,20 +91,28 @@ const CLOZE_EXERCISES = {
         title: 'Ionenbindung',
         text: 'Bei der Ionenbindung gibt ein Atom ___ ab und wird zum Kation. Ein anderes Atom nimmt Elektronen auf und wird zum ___.',
         blanks: [
-          { answer: 'Elektronen', alternatives: ['Elektron', 'e-'], hint: 'Negativ geladene Teilchen' },
-          { answer: 'Anion', alternatives: ['negativen Ion'], hint: 'Negativ geladenes Ion' }
-        ]
+          {
+            answer: 'Elektronen',
+            alternatives: ['Elektron', 'e-'],
+            hint: 'Negativ geladene Teilchen',
+          },
+          { answer: 'Anion', alternatives: ['negativen Ion'], hint: 'Negativ geladenes Ion' },
+        ],
       },
       {
         title: 'Eigenschaften',
         text: 'Salze haben eine hohe ___ und leiten im festen Zustand den elektrischen Strom ___.',
         blanks: [
-          { answer: 'Schmelztemperatur', alternatives: ['Schmelzpunkt', 'Schmelztemperatur'], hint: 'Hohe Temperatur' },
-          { answer: 'nicht', alternatives: ['schlecht', 'kaum'], hint: 'Gegenteil von gut' }
-        ]
-      }
-    ]
-  }
+          {
+            answer: 'Schmelztemperatur',
+            alternatives: ['Schmelzpunkt', 'Schmelztemperatur'],
+            hint: 'Hohe Temperatur',
+          },
+          { answer: 'nicht', alternatives: ['schlecht', 'kaum'], hint: 'Gegenteil von gut' },
+        ],
+      },
+    ],
+  },
 };
 
 function loadClozeExercises() {
@@ -94,7 +122,8 @@ function loadClozeExercises() {
 
   const available = CLOZE_EXERCISES[topic];
   if (!available || !available[difficulty]) {
-    area.innerHTML = '<div class="alert alert-warning"><i class="fa fa-warning"></i> Keine Übungen für dieses Thema und diesen Schwierigkeitsgrad verfügbar.</div>';
+    area.innerHTML =
+      '<div class="alert alert-warning"><i class="fa fa-warning"></i> Keine Übungen für dieses Thema und diesen Schwierigkeitsgrad verfügbar.</div>';
     return;
   }
 
@@ -111,12 +140,13 @@ function loadClozeExercises() {
 function renderExercise(exercise, index) {
   const parts = exercise.text.split(/(___)/g);
   let blankIdx = 0;
-  const renderedParts = parts.map(part => {
-    if (part === '___') {
-      const _blk = exercise.blanks[blankIdx];
-      blankIdx++;
-      const id = `cloze-blank-${index}-${blankIdx}`;
-      return `<span class="cloze-blank-wrapper">
+  const renderedParts = parts
+    .map((part) => {
+      if (part === '___') {
+        const _blk = exercise.blanks[blankIdx];
+        blankIdx++;
+        const id = `cloze-blank-${index}-${blankIdx}`;
+        return `<span class="cloze-blank-wrapper">
         <input type="text" class="cloze-input form-control" id="${id}"
           data-exercise="${index}" data-blank="${blankIdx}"
           placeholder="..." autocomplete="off"
@@ -125,9 +155,10 @@ function renderExercise(exercise, index) {
         <span class="cloze-hint" onclick="showClozeHint(${index}, ${blankIdx})"
           title="Hinweis anzeigen"><i class="fa fa-question-circle"></i></span>
       </span>`;
-    }
-    return part;
-  }).join('');
+      }
+      return part;
+    })
+    .join('');
 
   return `<div class="cloze-exercise" id="cloze-exercise-${index}">
     <h3 class="cloze-title">${index + 1}. ${exercise.title}
@@ -159,7 +190,7 @@ function checkBlank(exIdx, blankIdx) {
   const blk = blanks[blankIdx - 1];
   if (!blk) return false;
 
-  const allAnswers = [blk.answer.toLowerCase(), ...blk.alternatives.map(a => a.toLowerCase())];
+  const allAnswers = [blk.answer.toLowerCase(), ...blk.alternatives.map((a) => a.toLowerCase())];
   const isCorrect = allAnswers.includes(answer.toLowerCase());
 
   const feedback = document.getElementById(`cloze-blank-${exIdx}-${blankIdx}-feedback`);
@@ -193,10 +224,19 @@ function _checkClozeExercise(index) {
   const resultDiv = document.getElementById(`cloze-result-${index}`);
   const pct = Math.round((correct / total) * 100);
   let label, cls;
-  if (pct === 100) { label = 'Perfekt!'; cls = 'success'; }
-  else if (pct >= 67) { label = 'Gut gemacht!'; cls = 'info'; }
-  else if (pct >= 33) { label = 'Weiter so!'; cls = 'warning'; }
-  else { label = 'Nochmal versuchen'; cls = 'danger'; }
+  if (pct === 100) {
+    label = 'Perfekt!';
+    cls = 'success';
+  } else if (pct >= 67) {
+    label = 'Gut gemacht!';
+    cls = 'info';
+  } else if (pct >= 33) {
+    label = 'Weiter so!';
+    cls = 'warning';
+  } else {
+    label = 'Nochmal versuchen';
+    cls = 'danger';
+  }
 
   resultDiv.className = `cloze-result alert alert-${cls}`;
   resultDiv.innerHTML = `<strong>${label}</strong> ${correct}/${total} richtig (${pct}%)`;
@@ -207,7 +247,7 @@ function _checkClozeExercise(index) {
     ProgressTracker.saveExerciseProgress('lueckentexte', exercise.title || 'exercise', {
       total: total,
       correct: correct,
-      completed: correct === total
+      completed: correct === total,
     });
   }
 

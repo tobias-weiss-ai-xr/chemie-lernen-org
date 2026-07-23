@@ -18,7 +18,7 @@ class InteractivePHVisualization {
       acid: { r: 255, g: 0, b: 147 },
       neutral: { r: 128, g: 128, b: 128 },
       base: { r: 0, g: 255, b: 0 },
-      alkaline: { r: 0, g: 255, b: 255 }
+      alkaline: { r: 0, g: 255, b: 255 },
     };
 
     this.init();
@@ -108,7 +108,7 @@ class InteractivePHVisualization {
 
   setupInteractiveControls() {
     const phExamples = document.querySelectorAll('.example');
-    phExamples.forEach(example => {
+    phExamples.forEach((example) => {
       example.addEventListener('click', () => {
         const targetPH = parseFloat(example.dataset.ph);
         this.animateToPH(targetPH);
@@ -234,7 +234,7 @@ class InteractivePHVisualization {
         ctx.fillStyle = '#ff6b6b';
         ctx.font = 'bold 12px Arial';
         ctx.textAlign = 'center';
-        ctx.fillText('Neutral', x + 3 * scaleWidth / 14, y + scaleHeight / 2);
+        ctx.fillText('Neutral', x + (3 * scaleWidth) / 14, y + scaleHeight / 2);
       }
     }
 
@@ -244,7 +244,7 @@ class InteractivePHVisualization {
     ctx.fillStyle = '#333';
     ctx.fillText('Aktuell: ' + ph.toFixed(1), scaleStartX, markY);
 
-    const targetMark = Math.round(this.mapPHToPosition(ph) * scaleWidth / 14);
+    const targetMark = Math.round((this.mapPHToPosition(ph) * scaleWidth) / 14);
     const targetX = scaleStartX + targetMark;
 
     ctx.strokeStyle = '#ff3333';
@@ -309,11 +309,13 @@ class InteractivePHVisualization {
 
   hexToRgb(hex) {
     const result = /^#?([a-f\\d]{6})$/.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : { r: 0, g: 0, b: 0 };
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16),
+        }
+      : { r: 0, g: 0, b: 0 };
   }
 }
 

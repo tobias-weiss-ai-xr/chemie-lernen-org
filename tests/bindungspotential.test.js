@@ -26,9 +26,9 @@ describe('Bindungspotential Rechner', () => {
     test('Minimum am Gleichgewichtsabstand r = r0', () => {
       const De = 100;
       const a = 2;
-      const r0 = 0.15;  // nm
+      const r0 = 0.15; // nm
       const E = morsePotential(De, a, r0, r0);
-      expect(E).toBeCloseTo(0, 10);  // Minimum at equilibrium
+      expect(E).toBeCloseTo(0, 10); // Minimum at equilibrium
     });
 
     test('steigt bei Annäherung (Abstoßungsbereich)', () => {

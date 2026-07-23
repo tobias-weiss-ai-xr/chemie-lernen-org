@@ -34,7 +34,7 @@ const CONTENT_LINKS_PATH = join(
   'myhugoapp',
   'data',
   'curricula',
-  'content-links.json',
+  'content-links.json'
 );
 
 const isDryRun = process.argv.includes('--dry-run');
@@ -71,7 +71,7 @@ async function run() {
   const links = JSON.parse(readFileSync(CONTENT_LINKS_PATH, 'utf-8'));
   const topicNames = Object.keys(links);
   console.log(
-    `[import-content-nodes] loaded ${topicNames.length} topic keys, ${Object.values(links).flat().length} total links`,
+    `[import-content-nodes] loaded ${topicNames.length} topic keys, ${Object.values(links).flat().length} total links`
   );
 
   if (isDryRun) {
@@ -88,13 +88,19 @@ async function run() {
     console.log(`  ${uniqueUrls.size} Content nodes (${JSON.stringify(typeCounts)})`);
     console.log(`  ~${topicNames.length} MENTIONS relationships`);
     console.log('  Sample normalized topic keys (first 8):');
-    topicNames.slice(0, 8).forEach((k) => console.log('    [' + normalizeName(k).length + '] ' + normalizeName(k)));
-    console.log('  Unique normalized names: ' + new Set(topicNames.map(k => normalizeName(k))).size);
+    topicNames
+      .slice(0, 8)
+      .forEach((k) => console.log('    [' + normalizeName(k).length + '] ' + normalizeName(k)));
+    console.log(
+      '  Unique normalized names: ' + new Set(topicNames.map((k) => normalizeName(k))).size
+    );
     console.log('  Sample links for first key:');
     const first = links[topicNames[0]];
-    first.slice(0, 3).forEach((item) =>
-      console.log('    ' + item.type + ': ' + item.title + ' (' + item.url + ')'),
-    );
+    first
+      .slice(0, 3)
+      .forEach((item) =>
+        console.log('    ' + item.type + ': ' + item.title + ' (' + item.url + ')')
+      );
     console.log('[import-content-nodes] DRY RUN — no changes made');
     process.exit(0);
   }
@@ -103,7 +109,7 @@ async function run() {
   const neo4j = await import('neo4j-driver');
   const driver = neo4j.default.driver(
     NEO4J_URI,
-    neo4j.default.auth.basic(NEO4J_USER, NEO4J_PASSWORD),
+    neo4j.default.auth.basic(NEO4J_USER, NEO4J_PASSWORD)
   );
 
   try {
@@ -140,7 +146,7 @@ async function run() {
           `ON CREATE SET content.title = $title, content.type = $type${setSubLabel} ` +
           `ON MATCH SET content.title = $title, content.type = $type${setSubLabel} ` +
           'RETURN id(content)',
-        { url: c.url, title: c.title, type: c.type },
+        { url: c.url, title: c.title, type: c.type }
       );
       created++;
       if (created % 100 === 0 || created === contentEntries.length) {
@@ -168,12 +174,14 @@ async function run() {
       if (!entityName) {
         const result = await session.run(
           `MATCH (e) ${entityScope} AND e.kategorie = "lehrplan" AND e.name CONTAINS $name RETURN e.name LIMIT 1`,
-          { name: normName },
+          { name: normName }
         );
         if (result.records.length === 0) {
           errors++;
           if (errors <= 5) {
-            console.log(`  [warn] no Entity for normalized: "${normName.slice(0, 50)}" (raw: "${topicName.slice(0, 40)}")`);
+            console.log(
+              `  [warn] no Entity for normalized: "${normName.slice(0, 50)}" (raw: "${topicName.slice(0, 40)}")`
+            );
           }
           continue;
         }
@@ -190,7 +198,7 @@ async function run() {
             'MATCH (e:Entity {name: $entityName}) ' +
               'MATCH (c:Content {url: $url}) ' +
               'MERGE (e)-[:MENTIONS]->(c)',
-            { entityName, url: item.url },
+            { entityName, url: item.url }
           );
           mentionsCreated++;
         } catch (err) {

@@ -40,22 +40,22 @@ const mockCreateElement = jest.fn((tag) => ({
     restore: () => {},
     translate: () => {},
     rotate: () => {},
-    setLineDash: () => {}
+    setLineDash: () => {},
   }),
   setAttribute: () => {},
   getAttribute: () => null,
-  dataset: {}
+  dataset: {},
 }));
 
 const mockDocument = {
   createElement: mockCreateElement,
   getElementById: mockGetElementById,
   head: {
-    appendChild: () => {}
+    appendChild: () => {},
   },
   body: {
-    appendChild: () => {}
-  }
+    appendChild: () => {},
+  },
 };
 
 global.document = mockDocument;
@@ -63,28 +63,44 @@ global.window = {
   document: mockDocument,
   devicePixelRatio: 1,
   addEventListener: () => {},
-  removeEventListener: () => {}
+  removeEventListener: () => {},
 };
 global.requestAnimationFrame = (cb) => 0;
 global.cancelAnimationFrame = (id) => {};
 
 // Mock THREE
 const mockPosition = () => ({
-  x: 0, y: 0, z: 0,
-  set(x, y, z) { this.x = x; this.y = y; this.z = z; return this; },
-  copy(v) { this.x = v.x; this.y = v.y; this.z = v.z; return this; }
+  x: 0,
+  y: 0,
+  z: 0,
+  set(x, y, z) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    return this;
+  },
+  copy(v) {
+    this.x = v.x;
+    this.y = v.y;
+    this.z = v.z;
+    return this;
+  },
 });
 
 global.THREE = {
   Color: class {
-    constructor(hex) { this.hex = hex; }
+    constructor(hex) {
+      this.hex = hex;
+    }
   },
   Scene: class {
     constructor() {
       this.children = [];
     }
     background = null;
-    add(child) { this.children.push(child); }
+    add(child) {
+      this.children.push(child);
+    }
   },
   PerspectiveCamera: class {
     constructor() {}
@@ -93,18 +109,26 @@ global.THREE = {
     updateProjectionMatrix() {}
   },
   WebGLRenderer: class {
-    constructor() { this.domElement = {}; }
+    constructor() {
+      this.domElement = {};
+    }
     setSize() {}
     setPixelRatio() {}
     render() {}
   },
   AmbientLight: class {},
   DirectionalLight: class {
-    constructor() { this.position = mockPosition(); }
+    constructor() {
+      this.position = mockPosition();
+    }
   },
   Group: class {
-    constructor() { this.children = []; }
-    add(child) { this.children.push(child); }
+    constructor() {
+      this.children = [];
+    }
+    add(child) {
+      this.children.push(child);
+    }
     position = mockPosition();
     rotation = { x: 0, y: 0, z: 0 };
     scale = { x: 1, y: 1, z: 1 };
@@ -112,12 +136,16 @@ global.THREE = {
   SphereGeometry: class {},
   CylinderGeometry: class {},
   MeshPhongMaterial: class {
-    constructor(options) { this.color = options?.color || 0xffffff; }
+    constructor(options) {
+      this.color = options?.color || 0xffffff;
+    }
     color = { setHex: () => {} };
   },
   MeshBasicMaterial: class {},
   Mesh: class {
-    constructor() { this.userData = {}; }
+    constructor() {
+      this.userData = {};
+    }
     position = mockPosition();
     quaternion = { setFromUnitVectors: () => this };
     castShadow = false;
@@ -145,16 +173,30 @@ global.THREE = {
       this.y = y;
       this.z = z;
     }
-    subVectors() { return this; }
-    addVectors() { return this; }
-    multiplyScalar(n) { return this; }
-    length() { return 10; }
-    normalize() { return this; }
-    setFromUnitVectors() { return this; }
+    subVectors() {
+      return this;
+    }
+    addVectors() {
+      return this;
+    }
+    multiplyScalar(n) {
+      return this;
+    }
+    length() {
+      return 10;
+    }
+    normalize() {
+      return this;
+    }
+    setFromUnitVectors() {
+      return this;
+    }
   },
   Quaternion: class {
-    setFromUnitVectors() { return this; }
-  }
+    setFromUnitVectors() {
+      return this;
+    }
+  },
 };
 
 // Mock fetch
@@ -176,15 +218,15 @@ describe('Chart Manager', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         clientWidth: 800,
-        clientHeight: 600
+        clientHeight: 600,
       });
 
       const chart = ChartManager.createBarChart({
         containerId: 'test-container',
         data: [
           { label: 'A', value: 10 },
-          { label: 'B', value: 20 }
-        ]
+          { label: 'B', value: 20 },
+        ],
       });
 
       expect(chart).toBeDefined();
@@ -194,13 +236,13 @@ describe('Chart Manager', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         clientWidth: 800,
-        clientHeight: 600
+        clientHeight: 600,
       });
 
       const chart = ChartManager.createBarChart({
         containerId: 'test-container',
         data: [{ label: 'A', value: 10 }],
-        horizontal: true
+        horizontal: true,
       });
 
       expect(chart).toBeDefined();
@@ -210,12 +252,12 @@ describe('Chart Manager', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         clientWidth: 800,
-        clientHeight: 600
+        clientHeight: 600,
       });
 
       const chart = ChartManager.createBarChart({
         containerId: 'test-container',
-        data: []
+        data: [],
       });
 
       expect(chart).toBeDefined();
@@ -226,7 +268,7 @@ describe('Chart Manager', () => {
 
       const chart = ChartManager.createBarChart({
         containerId: 'nonexistent',
-        data: [{ label: 'A', value: 10 }]
+        data: [{ label: 'A', value: 10 }],
       });
 
       expect(chart).toBeNull();
@@ -248,7 +290,7 @@ describe('Chart Manager', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         clientWidth: 800,
-        clientHeight: 600
+        clientHeight: 600,
       });
 
       const chart = ChartManager.createLineChart({
@@ -256,8 +298,8 @@ describe('Chart Manager', () => {
         data: [
           { label: 'Jan', value: 10 },
           { label: 'Feb', value: 20 },
-          { label: 'Mar', value: 15 }
-        ]
+          { label: 'Mar', value: 15 },
+        ],
       });
 
       expect(chart).toBeDefined();
@@ -267,16 +309,16 @@ describe('Chart Manager', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         clientWidth: 800,
-        clientHeight: 600
+        clientHeight: 600,
       });
 
       const chart = ChartManager.createLineChart({
         containerId: 'test-container',
         data: [
           { label: 'A', value: 10 },
-          { label: 'B', value: 20 }
+          { label: 'B', value: 20 },
         ],
-        smooth: true
+        smooth: true,
       });
 
       expect(chart).toBeDefined();
@@ -286,12 +328,12 @@ describe('Chart Manager', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         clientWidth: 800,
-        clientHeight: 600
+        clientHeight: 600,
       });
 
       const chart = ChartManager.createLineChart({
         containerId: 'test-container',
-        data: [{ label: 'A', value: 10 }]
+        data: [{ label: 'A', value: 10 }],
       });
 
       expect(chart).toBeDefined();
@@ -303,15 +345,15 @@ describe('Chart Manager', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         clientWidth: 800,
-        clientHeight: 600
+        clientHeight: 600,
       });
 
       const chart = ChartManager.createPieChart({
         containerId: 'test-container',
         data: [
           { label: 'A', value: 30 },
-          { label: 'B', value: 70 }
-        ]
+          { label: 'B', value: 70 },
+        ],
       });
 
       expect(chart).toBeDefined();
@@ -321,13 +363,13 @@ describe('Chart Manager', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         clientWidth: 800,
-        clientHeight: 600
+        clientHeight: 600,
       });
 
       const chart = ChartManager.createPieChart({
         containerId: 'test-container',
         data: [{ label: 'A', value: 100 }],
-        showLegend: false
+        showLegend: false,
       });
 
       expect(chart).toBeDefined();
@@ -339,7 +381,7 @@ describe('Chart Manager', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         clientWidth: 800,
-        clientHeight: 600
+        clientHeight: 600,
       });
 
       const chart = ChartManager.createScatterPlot({
@@ -347,8 +389,8 @@ describe('Chart Manager', () => {
         data: [
           { x: 1, y: 2 },
           { x: 3, y: 4 },
-          { x: 5, y: 6 }
-        ]
+          { x: 5, y: 6 },
+        ],
       });
 
       expect(chart).toBeDefined();
@@ -358,7 +400,7 @@ describe('Chart Manager', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         clientWidth: 800,
-        clientHeight: 600
+        clientHeight: 600,
       });
 
       const chart = ChartManager.createScatterPlot({
@@ -366,9 +408,9 @@ describe('Chart Manager', () => {
         data: [
           { x: 1, y: 2 },
           { x: 2, y: 4 },
-          { x: 3, y: 6 }
+          { x: 3, y: 6 },
         ],
-        showTrendline: true
+        showTrendline: true,
       });
 
       expect(chart).toBeDefined();
@@ -378,12 +420,12 @@ describe('Chart Manager', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         clientWidth: 800,
-        clientHeight: 600
+        clientHeight: 600,
       });
 
       const chart = ChartManager.createScatterPlot({
         containerId: 'test-container',
-        data: [{ x: 5, y: 10 }]
+        data: [{ x: 5, y: 10 }],
       });
 
       expect(chart).toBeDefined();
@@ -445,13 +487,13 @@ describe('3D Visualizer', () => {
         clientWidth: 800,
         clientHeight: 600,
         removeChild: () => {},
-        querySelector: () => null
+        querySelector: () => null,
       };
       mockGetElementById.mockImplementation(() => mockContainer);
 
       const viewer = Visualizer3D.createMoleculeViewer({
         containerId: 'test-container',
-        formula: 'H2O'
+        formula: 'H2O',
       });
 
       expect(viewer).toBeDefined();
@@ -473,9 +515,9 @@ describe('3D Visualizer', () => {
       const molecule = Visualizer3D.parseMolecule('C6H12O6');
 
       expect(molecule.atoms).toHaveLength(24);
-      expect(molecule.atoms.filter(a => a.symbol === 'C')).toHaveLength(6);
-      expect(molecule.atoms.filter(a => a.symbol === 'H')).toHaveLength(12);
-      expect(molecule.atoms.filter(a => a.symbol === 'O')).toHaveLength(6);
+      expect(molecule.atoms.filter((a) => a.symbol === 'C')).toHaveLength(6);
+      expect(molecule.atoms.filter((a) => a.symbol === 'H')).toHaveLength(12);
+      expect(molecule.atoms.filter((a) => a.symbol === 'O')).toHaveLength(6);
     });
 
     test('generates unique positions for atoms', () => {
@@ -484,8 +526,9 @@ describe('3D Visualizer', () => {
         positions.push(Visualizer3D.generatePosition(i));
       }
 
-      const unique = positions.filter((pos, index, self) =>
-        index === self.findIndex(p => p.x === pos.x && p.y === pos.y && p.z === pos.z)
+      const unique = positions.filter(
+        (pos, index, self) =>
+          index === self.findIndex((p) => p.x === pos.x && p.y === pos.y && p.z === pos.z)
       );
 
       expect(unique).toHaveLength(10);
@@ -503,7 +546,7 @@ describe('3D Visualizer', () => {
       const atoms = [
         { position: { x: 0, y: 0, z: 0 } },
         { position: { x: 2, y: 0, z: 0 } },
-        { position: { x: 20, y: 0, z: 0 } }
+        { position: { x: 20, y: 0, z: 0 } },
       ];
 
       const bonds = Visualizer3D.generateBonds(atoms);
@@ -522,12 +565,12 @@ describe('3D Visualizer', () => {
 
     test('returns CPK color for oxygen', () => {
       const color = Visualizer3D.getAtomColor('O', 'cpk');
-      expect(color).toBe(0xFF0D0D);
+      expect(color).toBe(0xff0d0d);
     });
 
     test('returns default color for unknown element', () => {
       const color = Visualizer3D.getAtomColor('Xx', 'cpk');
-      expect(color).toBe(0xFF69B4);
+      expect(color).toBe(0xff69b4);
     });
 
     test('returns atom radius for hydrogen', () => {
@@ -546,12 +589,12 @@ describe('3D Visualizer', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         clientWidth: 800,
-        clientHeight: 600
+        clientHeight: 600,
       });
 
       const orbital = Visualizer3D.createOrbitalVisualization({
         containerId: 'test-container',
-        orbitalType: 's'
+        orbitalType: 's',
       });
 
       expect(orbital).toBeDefined();
@@ -561,12 +604,12 @@ describe('3D Visualizer', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         clientWidth: 800,
-        clientHeight: 600
+        clientHeight: 600,
       });
 
       const orbital = Visualizer3D.createOrbitalVisualization({
         containerId: 'test-container',
-        orbitalType: 'p'
+        orbitalType: 'p',
       });
 
       expect(orbital).toBeDefined();
@@ -576,12 +619,12 @@ describe('3D Visualizer', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         clientWidth: 800,
-        clientHeight: 600
+        clientHeight: 600,
       });
 
       const orbital = Visualizer3D.createOrbitalVisualization({
         containerId: 'test-container',
-        orbitalType: 'd'
+        orbitalType: 'd',
       });
 
       expect(orbital).toBeDefined();
@@ -607,12 +650,12 @@ describe('Periodic Table Visualizer', () => {
 
     test('loads element data from JSON', async () => {
       const mockData = {
-        H: { number: 1, name: 'Hydrogen', symbol: 'H', mass: 1.008, category: 'nonmetal' }
+        H: { number: 1, name: 'Hydrogen', symbol: 'H', mass: 1.008, category: 'nonmetal' },
       };
 
       global.fetch.mockResolvedValueOnce({
         ok: true,
-        json: () => Promise.resolve(mockData)
+        json: () => Promise.resolve(mockData),
       });
 
       await PeriodicTableViz.initElementData();
@@ -628,12 +671,12 @@ describe('Periodic Table Visualizer', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         querySelector: () => null,
-        querySelectorAll: () => []
+        querySelectorAll: () => [],
       });
 
       const table = await PeriodicTableViz.create({
         containerId: 'test-container',
-        viewMode: 'standard'
+        viewMode: 'standard',
       });
 
       expect(table).toBeDefined();
@@ -645,12 +688,12 @@ describe('Periodic Table Visualizer', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         querySelector: () => null,
-        querySelectorAll: () => []
+        querySelectorAll: () => [],
       });
 
       const table = await PeriodicTableViz.create({
         containerId: 'test-container',
-        viewMode: 'properties'
+        viewMode: 'properties',
       });
 
       expect(table).toBeDefined();
@@ -662,7 +705,7 @@ describe('Periodic Table Visualizer', () => {
       mockGetElementById.mockReturnValueOnce(null);
 
       const table = await PeriodicTableViz.create({
-        containerId: 'nonexistent'
+        containerId: 'nonexistent',
       });
 
       expect(table).toBeNull();
@@ -702,7 +745,7 @@ describe('Periodic Table Visualizer', () => {
 
   describe('Electronegativity', () => {
     test('returns electronegativity for known elements', () => {
-      expect(PeriodicTableViz.getElectronegativity('H')).toBe(2.20);
+      expect(PeriodicTableViz.getElectronegativity('H')).toBe(2.2);
       expect(PeriodicTableViz.getElectronegativity('O')).toBe(3.44);
       expect(PeriodicTableViz.getElectronegativity('F')).toBe(3.98);
     });
@@ -740,7 +783,7 @@ describe('Reaction Pathway Visualizer', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         querySelector: () => null,
-        querySelectorAll: () => []
+        querySelectorAll: () => [],
       });
 
       const pathway = ReactionPathway.create({
@@ -748,8 +791,8 @@ describe('Reaction Pathway Visualizer', () => {
         reaction: {
           reactants: ['A', 'B'],
           products: ['C'],
-          steps: []
-        }
+          steps: [],
+        },
       });
 
       expect(pathway).toBeDefined();
@@ -759,14 +802,14 @@ describe('Reaction Pathway Visualizer', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         querySelector: () => null,
-        querySelectorAll: () => []
+        querySelectorAll: () => [],
       });
 
       const pathway = ReactionPathway.create({
         containerId: 'test-container',
         reaction: { steps: [] },
         showEnergy: false,
-        showMechanism: true
+        showMechanism: true,
       });
 
       expect(pathway).toBeDefined();
@@ -776,14 +819,14 @@ describe('Reaction Pathway Visualizer', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         querySelector: () => null,
-        querySelectorAll: () => []
+        querySelectorAll: () => [],
       });
 
       const pathway = ReactionPathway.create({
         containerId: 'test-container',
         reaction: { steps: [] },
         showEnergy: true,
-        showMechanism: false
+        showMechanism: false,
       });
 
       expect(pathway).toBeDefined();
@@ -794,7 +837,7 @@ describe('Reaction Pathway Visualizer', () => {
 
       const pathway = ReactionPathway.create({
         containerId: 'nonexistent',
-        reaction: { steps: [] }
+        reaction: { steps: [] },
       });
 
       expect(pathway).toBeNull();
@@ -814,11 +857,7 @@ describe('Reaction Pathway Visualizer', () => {
 
     test('uses provided energy values', () => {
       const reaction = {
-        steps: [
-          { energy: 10 },
-          { energy: 50 },
-          { energy: -10 }
-        ]
+        steps: [{ energy: 10 }, { energy: 50 }, { energy: -10 }],
       };
 
       const energies = ReactionPathway.calculateEnergyProfile(reaction);
@@ -832,8 +871,8 @@ describe('Reaction Pathway Visualizer', () => {
           { type: 'reactant' },
           { type: 'transition' },
           { type: 'intermediate' },
-          { type: 'product' }
-        ]
+          { type: 'product' },
+        ],
       };
 
       const energies = ReactionPathway.calculateEnergyProfile(reaction);
@@ -848,18 +887,18 @@ describe('Reaction Pathway Visualizer', () => {
     test('creates reaction explorer', () => {
       const reactions = [
         { name: 'Reaction 1', steps: [] },
-        { name: 'Reaction 2', steps: [] }
+        { name: 'Reaction 2', steps: [] },
       ];
 
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         querySelector: () => null,
-        querySelectorAll: () => []
+        querySelectorAll: () => [],
       });
 
       const explorer = ReactionPathway.createExplorer({
         containerId: 'test-container',
-        reactions
+        reactions,
       });
 
       expect(explorer).toBeDefined();
@@ -869,12 +908,12 @@ describe('Reaction Pathway Visualizer', () => {
       mockGetElementById.mockReturnValueOnce({
         appendChild: () => {},
         querySelector: () => null,
-        querySelectorAll: () => []
+        querySelectorAll: () => [],
       });
 
       const explorer = ReactionPathway.createExplorer({
         containerId: 'test-container',
-        reactions: []
+        reactions: [],
       });
 
       expect(explorer).toBeDefined();
@@ -889,7 +928,7 @@ describe('Reaction Pathway Visualizer', () => {
         lineTo: () => {},
         stroke: () => {},
         closePath: () => {},
-        fill: () => {}
+        fill: () => {},
       };
 
       ReactionPathway.drawArrow(ctx, 0, 0, 100, 0);
@@ -905,7 +944,7 @@ describe('Reaction Pathway Visualizer', () => {
         lineTo: () => {},
         stroke: () => {},
         closePath: () => {},
-        fill: () => {}
+        fill: () => {},
       };
 
       ReactionPathway.drawArrow(ctx, 0, 0, 0, 100);

@@ -5,7 +5,7 @@
 
 // Mock window object for browser localStorage
 global.window = {
-  localStorage: {}
+  localStorage: {},
 };
 global.Storage = class Storage {
   constructor() {
@@ -27,7 +27,7 @@ global.Storage = class Storage {
 
 global.localStorage = new global.Storage();
 
-// Import the SpacedRepetitionSystem 
+// Import the SpacedRepetitionSystem
 const { SpacedRepetitionSystem } = require('../myhugoapp/static/js/spaced-repetition.js');
 
 describe('Spaced Repetition System', () => {
@@ -39,7 +39,7 @@ describe('Spaced Repetition System', () => {
     fsrs = new SpacedRepetitionSystem({
       storageKey: mockStorageKey,
       successKey: 'test-quiz-success',
-      failureKey: 'test-quiz-failure'
+      failureKey: 'test-quiz-failure',
     });
   });
 
@@ -60,21 +60,21 @@ describe('Spaced Repetition System', () => {
         interval: 5,
         reviews: 2,
         lapses: 0,
-        lastReview: new Date('2026-01-05').toISOString()
+        lastReview: new Date('2026-01-05').toISOString(),
       };
-      
+
       fsrs.cards['test-quiz-1'] = testCard;
       fsrs.saveData();
-      
+
       const fsrs2 = new SpacedRepetitionSystem({ storageKey: mockStorageKey });
       expect(fsrs2.cards['test-quiz-1']).toEqual(testCard);
     });
 
     test('should handle localStorage errors gracefully', () => {
-      jest.spyOn(Storage.prototype, 'setItem').mockImplementation(
-        () => { throw new Error('Storage error'); }
-      );
-      
+      jest.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+        throw new Error('Storage error');
+      });
+
       expect(() => fsrs.saveData()).not.toThrow();
       expect(() => fsrs.saveQuizData('test-key', {})).not.toThrow();
     });
@@ -97,7 +97,7 @@ describe('Spaced Repetition System', () => {
       const card = { difficulty: 5 };
       const newDifficultyEasy = fsrs.calculateDifficulty(card, 4);
       expect(newDifficultyEasy).toBeLessThan(card.difficulty);
-      
+
       const newDifficultyHard = fsrs.calculateDifficulty(card, 2);
       expect(newDifficultyHard).toBeGreaterThan(card.difficulty);
     });
@@ -106,7 +106,7 @@ describe('Spaced Repetition System', () => {
       const cardExtreme = { difficulty: 1 };
       const maxDifficulty = fsrs.calculateDifficulty(cardExtreme, 0);
       expect(maxDifficulty).toBeLessThanOrEqual(10);
-      
+
       const cardEasy = { difficulty: 10 };
       const minDifficulty = fsrs.calculateDifficulty(cardEasy, 5);
       expect(minDifficulty).toBeGreaterThanOrEqual(1);
@@ -115,7 +115,7 @@ describe('Spaced Repetition System', () => {
     test('should calculate interval based on stability', () => {
       const interval1 = fsrs.calculateInterval(5);
       const interval2 = fsrs.calculateInterval(10);
-      
+
       expect(interval2).toBeGreaterThan(interval1);
       expect(interval1).toBeGreaterThan(0);
     });
@@ -137,7 +137,7 @@ describe('Spaced Repetition System', () => {
     test('should create new card on first update', () => {
       const cardId = 'quiz-1-question-1';
       const updatedCard = fsrs.updateCard(cardId, 4, 15000);
-      
+
       expect(fsrs.cards[cardId]).toBeDefined();
       expect(fsrs.cards[cardId].id).toBe(cardId);
       expect(fsrs.cards[cardId].reviews).toBe(1);
@@ -147,23 +147,23 @@ describe('Spaced Repetition System', () => {
     test('should update existing card with new review data', () => {
       const cardId = 'quiz-1-question-1';
       const timeTaken = 12000;
-      
+
       fsrs.updateCard(cardId, 3, timeTaken);
       const reviews1 = fsrs.cards[cardId].reviews;
-      
+
       fsrs.updateCard(cardId, 5, timeTaken);
       const reviews2 = fsrs.cards[cardId].reviews;
-      
+
       expect(reviews2).toBe(reviews1 + 1);
       expect(fsrs.cards[cardId].timeTaken).toBe(timeTaken);
     });
 
     test('should track lapses for low quality reviews', () => {
       const cardId = 'quiz-1-question-2';
-      
+
       fsrs.updateCard(cardId, 2); // Quality < 3 = lapse
       expect(fsrs.cards[cardId].lapses).toBe(1);
-      
+
       fsrs.updateCard(cardId, 4); // Quality >= 3 = no lapse
       expect(fsrs.cards[cardId].lapses).toBe(1);
     });
@@ -171,11 +171,11 @@ describe('Spaced Repetition System', () => {
     test('should set due date based on interval', () => {
       const cardId = 'quiz-1-question-3';
       const now = new Date();
-      
+
       fsrs.updateCard(cardId, 4, 10000);
       const dueDate = new Date(fsrs.cards[cardId].dueDate);
       const interval = fsrs.cards[cardId].interval;
-      
+
       const diffDays = Math.round((dueDate - now) / (1000 * 60 * 60 * 24));
       expect(diffDays).toBe(interval);
     });
@@ -183,9 +183,9 @@ describe('Spaced Repetition System', () => {
     test('should reset card when requested', () => {
       const cardId = 'quiz-1-question-4';
       fsrs.updateCard(cardId, 4, 10000);
-      
+
       expect(fsrs.cards[cardId]).toBeDefined();
-      
+
       fsrs.resetCard(cardId);
       expect(fsrs.cards[cardId]).toBeUndefined();
     });
@@ -194,9 +194,9 @@ describe('Spaced Repetition System', () => {
       fsrs.updateCard('quiz-1-q1', 4, 10000);
       fsrs.updateCard('quiz-2-q1', 3, 15000);
       fsrs.updateCard('quiz-3-q1', 5, 8000);
-      
+
       expect(Object.keys(fsrs.cards)).toHaveLength(3);
-      
+
       fsrs.resetAll();
       expect(fsrs.cards).toEqual({});
     });
@@ -205,15 +205,15 @@ describe('Spaced Repetition System', () => {
   describe('Due Cards Management', () => {
     beforeEach(() => {
       const now = new Date();
-      
+
       fsrs.updateCard('due-now', 4, 10000);
       fsrs.cards['due-now'].dueDate = now.toISOString();
-      
+
       const yesterday = new Date(now);
       yesterday.setDate(yesterday.getDate() - 1);
       fsrs.updateCard('overdue', 3, 15000);
       fsrs.cards['overdue'].dueDate = yesterday.toISOString();
-      
+
       const tomorrow = new Date(now);
       tomorrow.setDate(tomorrow.getDate() + 1);
       fsrs.updateCard('future', 5, 8000);
@@ -223,7 +223,7 @@ describe('Spaced Repetition System', () => {
     test('should identify cards due for review', () => {
       const dueCards = fsrs.getDueCards();
       expect(dueCards).toHaveLength(2);
-      expect(dueCards.find(c => c.id === 'future')).toBeUndefined();
+      expect(dueCards.find((c) => c.id === 'future')).toBeUndefined();
     });
 
     test('should sort due cards by date (oldest first)', () => {
@@ -273,9 +273,9 @@ describe('Spaced Repetition System', () => {
       const quizId = 'saeuren-basen';
       const questionId = 'q1';
       const timeTaken = 12000;
-      
+
       const result = fsrs.recordQuizResult(quizId, questionId, true, timeTaken, 0);
-      
+
       expect(result).toBeDefined();
       expect(result.id).toBe(`${quizId}-${questionId}`);
       expect(result.timeTaken).toBe(timeTaken);
@@ -285,10 +285,10 @@ describe('Spaced Repetition System', () => {
     test('should track both success and failure data', () => {
       const quizId = 'test-quiz';
       const questionId = 'q1';
-      
+
       fsrs.recordQuizResult(quizId, questionId, true, 10000, 0);
       expect(fsrs.successData[`${quizId}-${questionId}`].count).toBe(1);
-      
+
       fsrs.recordQuizResult(quizId, questionId + 'b', false, 15000, 0);
       expect(fsrs.failureData[`${quizId}-${questionId}b`].count).toBe(1);
     });
@@ -299,15 +299,15 @@ describe('Spaced Repetition System', () => {
       fsrs.updateCard('card1', 4, 10000);
       fsrs.updateCard('card2', 3, 15000);
       fsrs.updateCard('card3', 2, 12000);
-      
+
       fsrs.cards['card1'].interval = 10;
-      
+
       fsrs.cards['card2'].dueDate = new Date('2026-01-01').toISOString();
     });
 
     test('should calculate card statistics', () => {
       const stats = fsrs.getCardStats();
-      
+
       expect(stats.total).toBe(3);
       expect(stats.learned).toBeGreaterThanOrEqual(1);
       expect(parseFloat(stats.mastery)).toBeGreaterThan(0);
@@ -318,10 +318,10 @@ describe('Spaced Repetition System', () => {
       const today = new Date();
       const yesterday = new Date(today);
       yesterday.setDate(yesterday.getDate() - 1);
-      
+
       fsrs.cards['card1'].lastReview = today.toISOString();
       fsrs.cards['card2'].lastReview = yesterday.toISOString();
-      
+
       const streak = fsrs.getStreak();
       expect(streak).toBeGreaterThanOrEqual(1);
     });
@@ -330,9 +330,9 @@ describe('Spaced Repetition System', () => {
       fsrs.cards['card1'].lapses = 0;
       fsrs.cards['card2'].lapses = 0;
       fsrs.cards['card3'].lapses = 2;
-      
+
       const stats = fsrs.getRetentionStats();
-      
+
       expect(stats.totalReviews).toBe(3);
       expect(stats.totalLapses).toBe(2);
       expect(parseFloat(stats.retentionRate)).toBeGreaterThan(0);
@@ -356,15 +356,15 @@ describe('Spaced Repetition System', () => {
 
     test('should generate practice suggestions prioritized correctly', () => {
       const suggestions = fsrs.getPracticeSuggestions(10);
-      
+
       expect(suggestions).toHaveLength(3);
-      expect(suggestions.every(s => s.cardId)).toBe(true);
-      expect(suggestions.every(s => s.dueDate)).toBe(true);
+      expect(suggestions.every((s) => s.cardId)).toBe(true);
+      expect(suggestions.every((s) => s.dueDate)).toBe(true);
     });
 
     test('should limit practice suggestions', () => {
       const suggestions = fsrs.getPracticeSuggestions(2);
-      
+
       expect(suggestions).toHaveLength(2);
     });
   });
@@ -372,9 +372,9 @@ describe('Spaced Repetition System', () => {
   describe('Data Management', () => {
     test('should export data for backup', () => {
       fsrs.updateCard('card1', 4, 10000);
-      
+
       const exported = fsrs.exportData();
-      
+
       expect(exported.fsrsData).toBeDefined();
       expect(exported.successData).toBeDefined();
       expect(exported.failureData).toBeDefined();
@@ -392,15 +392,15 @@ describe('Spaced Repetition System', () => {
             interval: 12,
             reviews: 5,
             lapses: 0,
-            lastReview: new Date().toISOString()
-          }
+            lastReview: new Date().toISOString(),
+          },
         },
         successData: {},
-        failureData: {}
+        failureData: {},
       };
-      
+
       fsrs.importData(backupData);
-      
+
       expect(fsrs.cards['imported-card']).toBeDefined();
     });
   });

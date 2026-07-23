@@ -42,7 +42,7 @@ function calculateDilutionSeries(initialConc, numSteps) {
       step: n,
       dilutionRatio: '1:' + dilutionFactor,
       concentration: conc,
-      dilutionFactor: dilutionFactor
+      dilutionFactor: dilutionFactor,
     });
   }
   return series;
@@ -52,7 +52,7 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = { calculateDilutionSeries, formatConcentration };
 }
 
-(function() {
+(function () {
   'use strict';
 
   const form = document.getElementById('verduennungsreihen-form');

@@ -47,7 +47,7 @@ const _ProgressTracker = {
       module,
       exerciseId,
       ...data,
-      lastAttempt: new Date().toISOString()
+      lastAttempt: new Date().toISOString(),
     };
     store.put(record);
     await this.updateDailyStats();
@@ -262,5 +262,5 @@ const _ProgressTracker = {
     const d = new Date();
     d.setDate(d.getDate() - 1);
     return d.toISOString().split('T')[0];
-  }
+  },
 };

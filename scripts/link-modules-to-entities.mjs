@@ -40,35 +40,83 @@ function normalize(text) {
 
 // Generic chemistry-adjacent words to exclude from entity matching
 const GENERIC_WORDS = new Set([
-  'chemie', 'chemistry', 'chemical', 'chemisch', 'chemische',
-  'organisch', 'organic', 'inorganic', 'anorganisch',
-  'physikalisch', 'physical', 'physic',
-  'biochemie', 'biochemistry',
-  'analytisch', 'analytical', 'analytic',
-  'theoretisch', 'theoretical',
-  'technisch', 'technical',
-  'allgemein', 'general', 'basic',
-  'advanced', 'vertiefung',
-  'labor', 'lab', 'praktikum',
-  'seminar', 'lecture', 'vorlesung',
-  'uebung', 'exercise', 'tutorial',
-  'experiment', 'experimental',
-  'molekular', 'molecular',
-  'quantum', 'quanten',
-  'struktur', 'structure',
-  'reaktion', 'reaction',
-  'synthese', 'synthesis',
-  'katalyse', 'catalysis',
-  'spektroskopie', 'spectroscopy',
-  'thermodynamik', 'thermodynamics',
-  'kinetik', 'kinetics',
-  'verfahren', 'process', 'method',
-  'modul', 'module', 'course', 'kurs',
-  'einfuehrung', 'introduction', 'intro', 'grundlagen', 'foundation',
-  'prinzipien', 'principles', 'konzepte', 'concepts',
-  'biologisch', 'biological',
-  'makromolekular', 'macromolecular',
-  'polymer', 'polymere',
+  'chemie',
+  'chemistry',
+  'chemical',
+  'chemisch',
+  'chemische',
+  'organisch',
+  'organic',
+  'inorganic',
+  'anorganisch',
+  'physikalisch',
+  'physical',
+  'physic',
+  'biochemie',
+  'biochemistry',
+  'analytisch',
+  'analytical',
+  'analytic',
+  'theoretisch',
+  'theoretical',
+  'technisch',
+  'technical',
+  'allgemein',
+  'general',
+  'basic',
+  'advanced',
+  'vertiefung',
+  'labor',
+  'lab',
+  'praktikum',
+  'seminar',
+  'lecture',
+  'vorlesung',
+  'uebung',
+  'exercise',
+  'tutorial',
+  'experiment',
+  'experimental',
+  'molekular',
+  'molecular',
+  'quantum',
+  'quanten',
+  'struktur',
+  'structure',
+  'reaktion',
+  'reaction',
+  'synthese',
+  'synthesis',
+  'katalyse',
+  'catalysis',
+  'spektroskopie',
+  'spectroscopy',
+  'thermodynamik',
+  'thermodynamics',
+  'kinetik',
+  'kinetics',
+  'verfahren',
+  'process',
+  'method',
+  'modul',
+  'module',
+  'course',
+  'kurs',
+  'einfuehrung',
+  'introduction',
+  'intro',
+  'grundlagen',
+  'foundation',
+  'prinzipien',
+  'principles',
+  'konzepte',
+  'concepts',
+  'biologisch',
+  'biological',
+  'makromolekular',
+  'macromolecular',
+  'polymer',
+  'polymere',
 ]);
 
 // ── Matching logic ───────────────────────────────────────────────────
@@ -112,11 +160,10 @@ async function main() {
   console.log(`NEO4J_DATABASE: ${NEO4J_DATABASE}`);
   console.log(`DRY_RUN: ${DRY_RUN}\n`);
 
-  const driver = neo4j.driver(
-    NEO4J_URI,
-    neo4j.auth.basic(NEO4J_USER, NEO4J_PASSWORD),
-    { connectionTimeout: 30000, maxConnectionLifetime: 300000 }
-  );
+  const driver = neo4j.driver(NEO4J_URI, neo4j.auth.basic(NEO4J_USER, NEO4J_PASSWORD), {
+    connectionTimeout: 30000,
+    maxConnectionLifetime: 300000,
+  });
 
   try {
     // ── Load entities ──────────────────────────────────────────────
@@ -224,7 +271,9 @@ async function main() {
       if (matchedEntities.length === 0) {
         skippedModules++;
         if (i % 50 === 0 || i === moduleRecords.length - 1) {
-          process.stdout.write(`\r  Module ${i + 1}/${moduleRecords.length}... (${created} links, ${skippedModules} skipped)`);
+          process.stdout.write(
+            `\r  Module ${i + 1}/${moduleRecords.length}... (${created} links, ${skippedModules} skipped)`
+          );
         }
         continue;
       }
@@ -247,7 +296,9 @@ async function main() {
       }
 
       if (i % 10 === 0 || i === moduleRecords.length - 1) {
-        process.stdout.write(`\r  Module ${i + 1}/${moduleRecords.length}... (${created} links, ${skippedModules} skipped)`);
+        process.stdout.write(
+          `\r  Module ${i + 1}/${moduleRecords.length}... (${created} links, ${skippedModules} skipped)`
+        );
       }
     }
 

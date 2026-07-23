@@ -8,11 +8,16 @@ const {
 
 function solveGasLaw(P_atm, V_L, n_mol, T_K, R, solveFor) {
   switch (solveFor) {
-    case 'n': return (P_atm * V_L) / (R * T_K);
-    case 'P': return (n_mol * R * T_K) / V_L;
-    case 'V': return (n_mol * R * T_K) / P_atm;
-    case 'T': return (P_atm * V_L) / (n_mol * R);
-    default: throw new Error('Unknown variable: ' + solveFor);
+    case 'n':
+      return (P_atm * V_L) / (R * T_K);
+    case 'P':
+      return (n_mol * R * T_K) / V_L;
+    case 'V':
+      return (n_mol * R * T_K) / P_atm;
+    case 'T':
+      return (P_atm * V_L) / (n_mol * R);
+    default:
+      throw new Error('Unknown variable: ' + solveFor);
   }
 }
 

@@ -19,7 +19,7 @@ class ProgressTracker {
       title: topicData.title,
       category: topicData.category || 'general',
       difficulty: topicData.difficulty || 'grundlagen',
-      url: topicData.url
+      url: topicData.url,
     });
 
     // Initialize progress if not exists
@@ -30,7 +30,7 @@ class ProgressTracker {
         quizScore: 0,
         quizAttempts: 0,
         lastVisited: null,
-        timeSpent: 0
+        timeSpent: 0,
       };
     }
   }
@@ -64,10 +64,7 @@ class ProgressTracker {
   recordQuizAttempt(topicId, score) {
     if (this.progress[topicId]) {
       this.progress[topicId].quizAttempts++;
-      this.progress[topicId].quizScore = Math.max(
-        this.progress[topicId].quizScore,
-        score
-      );
+      this.progress[topicId].quizScore = Math.max(this.progress[topicId].quizScore, score);
       if (score >= 70) {
         this.progress[topicId].completed = true;
       }
@@ -89,14 +86,16 @@ class ProgressTracker {
    * Get progress for a topic
    */
   getTopicProgress(topicId) {
-    return this.progress[topicId] || {
-      visited: false,
-      completed: false,
-      quizScore: 0,
-      quizAttempts: 0,
-      lastVisited: null,
-      timeSpent: 0
-    };
+    return (
+      this.progress[topicId] || {
+        visited: false,
+        completed: false,
+        quizScore: 0,
+        quizAttempts: 0,
+        lastVisited: null,
+        timeSpent: 0,
+      }
+    );
   }
 
   /**
@@ -104,32 +103,27 @@ class ProgressTracker {
    */
   getStatistics() {
     const totalTopics = this.topics.length;
-    const visitedTopics = Object.values(this.progress)
-      .filter(p => p.visited).length;
-    const completedTopics = Object.values(this.progress)
-      .filter(p => p.completed).length;
-    const totalQuizAttempts = Object.values(this.progress)
-      .reduce((sum, p) => sum + p.quizAttempts, 0);
+    const visitedTopics = Object.values(this.progress).filter((p) => p.visited).length;
+    const completedTopics = Object.values(this.progress).filter((p) => p.completed).length;
+    const totalQuizAttempts = Object.values(this.progress).reduce(
+      (sum, p) => sum + p.quizAttempts,
+      0
+    );
     const averageQuizScore = Object.values(this.progress)
-      .filter(p => p.quizScore > 0)
+      .filter((p) => p.quizScore > 0)
       .reduce((sum, p, _, arr) => sum + p.quizScore / arr.length, 0);
-    const totalTimeSpent = Object.values(this.progress)
-      .reduce((sum, p) => sum + p.timeSpent, 0);
+    const totalTimeSpent = Object.values(this.progress).reduce((sum, p) => sum + p.timeSpent, 0);
 
     return {
       totalTopics: totalTopics,
       visitedTopics: visitedTopics,
       completedTopics: completedTopics,
-      completionPercentage: totalTopics > 0
-        ? Math.round((completedTopics / totalTopics) * 100)
-        : 0,
-      visitPercentage: totalTopics > 0
-        ? Math.round((visitedTopics / totalTopics) * 100)
-        : 0,
+      completionPercentage: totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0,
+      visitPercentage: totalTopics > 0 ? Math.round((visitedTopics / totalTopics) * 100) : 0,
       totalQuizAttempts: totalQuizAttempts,
       averageQuizScore: Math.round(averageQuizScore),
       totalTimeSpent: totalTimeSpent,
-      totalTimeSpentHours: (totalTimeSpent / 3600).toFixed(1)
+      totalTimeSpentHours: (totalTimeSpent / 3600).toFixed(1),
     };
   }
 
@@ -139,12 +133,12 @@ class ProgressTracker {
   getProgressByCategory() {
     const categories = {};
 
-    this.topics.forEach(topic => {
+    this.topics.forEach((topic) => {
       if (!categories[topic.category]) {
         categories[topic.category] = {
           total: 0,
           visited: 0,
-          completed: 0
+          completed: 0,
         };
       }
       categories[topic.category].total++;
@@ -212,7 +206,7 @@ class ProgressTracker {
         </div>
 
         <div class="topic-list">
-          ${this.topics.map(topic => this.renderTopicItem(topic)).join('')}
+          ${this.topics.map((topic) => this.renderTopicItem(topic)).join('')}
         </div>
 
         <div class="progress-actions">
@@ -229,10 +223,12 @@ class ProgressTracker {
    */
   renderTopicItem(topic) {
     const progress = this.getTopicProgress(topic.id);
-    const statusClass = progress.completed ? 'completed' :
-                       progress.visited ? 'visited' : 'not-visited';
-    const statusIcon = progress.completed ? '✅' :
-                      progress.visited ? '📖' : '⭕';
+    const statusClass = progress.completed
+      ? 'completed'
+      : progress.visited
+        ? 'visited'
+        : 'not-visited';
+    const statusIcon = progress.completed ? '✅' : progress.visited ? '📖' : '⭕';
 
     return `
       <div class="topic-item ${statusClass}">
@@ -240,9 +236,13 @@ class ProgressTracker {
           <span class="topic-icon">${statusIcon}</span>
           <span class="topic-title">${topic.title}</span>
         </a>
-        ${progress.quizScore > 0 ? `
+        ${
+          progress.quizScore > 0
+            ? `
           <span class="topic-score">${progress.quizScore}%</span>
-        ` : ''}
+        `
+            : ''
+        }
       </div>
     `;
   }
@@ -293,7 +293,7 @@ class ProgressTracker {
         quizScore: 0,
         quizAttempts: 0,
         lastVisited: null,
-        timeSpent: 0
+        timeSpent: 0,
       };
       this.saveToStorage();
     }
@@ -302,7 +302,7 @@ class ProgressTracker {
 
 // Global progress tracker instance
 const progressTracker = new ProgressTracker({
-  storageKey: 'chemie-lernen-progress'
+  storageKey: 'chemie-lernen-progress',
 });
 
 // Initialize topics
@@ -310,71 +310,69 @@ progressTracker.registerTopic('einfuehrung-chemie', {
   title: 'Einführung in die Chemie',
   category: 'grundlagen',
   difficulty: 'grundlagen',
-  url: '/themenbereiche/einfuehrung-chemie/'
+  url: '/themenbereiche/einfuehrung-chemie/',
 });
 
 progressTracker.registerTopic('aufbau-materie', {
   title: 'Aufbau der Materie',
   category: 'grundlagen',
   difficulty: 'grundlagen',
-  url: '/themenbereiche/aufbau-materie/'
+  url: '/themenbereiche/aufbau-materie/',
 });
 
 progressTracker.registerTopic('saeuren-basen', {
   title: 'Säuren und Basen',
   category: 'anorganisch',
   difficulty: 'mittelstufe',
-  url: '/themenbereiche/saeuren-basen/'
+  url: '/themenbereiche/saeuren-basen/',
 });
 
 progressTracker.registerTopic('anorganische-verbindungen', {
   title: 'Anorganische Verbindungen',
   category: 'anorganisch',
   difficulty: 'mittelstufe',
-  url: '/themenbereiche/anorganische-verbindungen/'
+  url: '/themenbereiche/anorganische-verbindungen/',
 });
 
 progressTracker.registerTopic('redox-elektrochemie', {
   title: 'Redoxreaktionen und Elektrochemie',
   category: 'physikalisch',
   difficulty: 'mittelstufe',
-  url: '/themenbereiche/redox-elektrochemie/'
+  url: '/themenbereiche/redox-elektrochemie/',
 });
 
 progressTracker.registerTopic('gleichgewicht-geschwindigkeit', {
   title: 'Gleichgewicht und Geschwindigkeit',
   category: 'physikalisch',
   difficulty: 'fortgeschritten',
-  url: '/themenbereiche/gleichgewicht-geschwindigkeit/'
+  url: '/themenbereiche/gleichgewicht-geschwindigkeit/',
 });
 
 progressTracker.registerTopic('energetik', {
   title: 'Energetik',
   category: 'physikalisch',
   difficulty: 'fortgeschritten',
-  url: '/themenbereiche/energetik/'
+  url: '/themenbereiche/energetik/',
 });
 
 progressTracker.registerTopic('tipps-tricks', {
   title: 'Tipps und Tricks',
   category: 'allgemein',
   difficulty: 'alle',
-  url: '/themenbereiche/tipps-tricks/'
+  url: '/themenbereiche/tipps-tricks/',
 });
 
 // Auto-mark current page as visited
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const currentPath = window.location.pathname.replace(/\/$/, '');
-  const currentTopic = progressTracker.topics.find(t =>
-    t.url.replace(/\/$/, '') === currentPath
-  );
+  const currentTopic = progressTracker.topics.find((t) => t.url.replace(/\/$/, '') === currentPath);
 
   if (currentTopic) {
     progressTracker.markVisited(currentTopic.id);
 
     // Track time spent on page
     const startTime = Date.now();
-    window.addEventListener('beforeunload', function() {
+    window.addEventListener('beforeunload', function () {
       const timeSpent = Math.round((Date.now() - startTime) / 1000);
       progressTracker.addTimeSpent(currentTopic.id, timeSpent);
     });

@@ -1,1 +1,120 @@
-const elements=[{symbol:"H₂",M:2.016},{symbol:"O₂",M:32},{symbol:"N₂",M:28.02},{symbol:"Cl₂",M:70.9},{symbol:"CO₂",M:44.01},{symbol:"H₂O",M:18.02},{symbol:"NH₃",M:17.03},{symbol:"CH₄",M:16.04},{symbol:"NaCl",M:58.44},{symbol:"CaCO₃",M:100.09}];function generateMolMolProblem(e,o=null){const l=o?()=>seededRandom(o++):Math.random;let t,a,r;"easy"===e?(t=Math.floor(3*l())+1,a=Math.floor(3*l())+1,r=Math.floor(10*l())+1):"medium"===e?(t=Math.floor(5*l())+1,a=Math.floor(5*l())+1,r=(Math.floor(50*l())+1)/2):(t=Math.floor(6*l())+2,a=Math.floor(6*l())+2,r=(Math.floor(200*l())+10)/10);return{type:"mol-mol",n1:r,v1:t,v2:a,answer:r*(a/t),tolerance:.01}}function generateMassMassProblem(e,o=null){const l=o?()=>seededRandom(o++):Math.random,t=elements[Math.floor(l()*elements.length)],a=elements[Math.floor(l()*elements.length)];let r,n,m;"easy"===e?(r=1,n=1,m=10*(Math.floor(10*l())+1)):"medium"===e?(r=Math.floor(3*l())+1,n=Math.floor(3*l())+1,m=(Math.floor(100*l())+10)/2):(r=Math.floor(5*l())+2,n=Math.floor(5*l())+2,m=(Math.floor(200*l())+20)/10);const M=t.M,s=a.M,h=m/M*(n/r)*s;return{type:"mass-mass",m1:m,M1:M,M2:s,v1:r,v2:n,elem1:t.symbol,elem2:a.symbol,answer:h,tolerance:.02}}function generateLimitingProblem(e,o=null){const l=o?()=>seededRandom(o++):Math.random,t=elements[Math.floor(l()*elements.length)],a=elements[Math.floor(l()*elements.length)];let r,n,m,M;"easy"===e?(r=1,n=1,m=10*(Math.floor(10*l())+1),M=10*(Math.floor(10*l())+1)):"medium"===e?(r=Math.floor(3*l())+1,n=Math.floor(3*l())+1,m=(Math.floor(100*l())+10)/2,M=(Math.floor(100*l())+10)/2):(r=Math.floor(5*l())+2,n=Math.floor(5*l())+2,m=(Math.floor(150*l())+20)/10,M=(Math.floor(150*l())+20)/10);const s=t.M,h=a.M,f=m/s/r<M/h/n?1:2;return{type:"limiting",m1:m,M1:s,v1:r,m2:M,M2:h,v2:n,elem1:t.symbol,elem2:a.symbol,answer:f,tolerance:.02}}function generateYieldProblem(e,o=null){const l=o?()=>seededRandom(o++):Math.random;let t,a;"easy"===e?(t=10*(Math.floor(10*l())+1),a=[50,60,70,80,90,100][Math.floor(6*l())]):"medium"===e?(t=(Math.floor(100*l())+10)/2,a=Math.floor(50*l())+40):(t=(Math.floor(150*l())+20)/10,a=Math.floor(60*l())+30);return{type:"yield",theoretical:t,actual:t*a/100,answer:a,tolerance:.5}}function checkAnswerTolerance(e,o,l){return Math.abs((e-o)/o)<=l}function seededRandom(e){const o=1e4*Math.sin(e++);return o-Math.floor(o)}"undefined"!=typeof module&&module.exports&&(module.exports={elements:elements,generateMolMolProblem:generateMolMolProblem,generateMassMassProblem:generateMassMassProblem,generateLimitingProblem:generateLimitingProblem,generateYieldProblem:generateYieldProblem,checkAnswerTolerance:checkAnswerTolerance,seededRandom:seededRandom});
+const elements = [
+  { symbol: 'H₂', M: 2.016 },
+  { symbol: 'O₂', M: 32 },
+  { symbol: 'N₂', M: 28.02 },
+  { symbol: 'Cl₂', M: 70.9 },
+  { symbol: 'CO₂', M: 44.01 },
+  { symbol: 'H₂O', M: 18.02 },
+  { symbol: 'NH₃', M: 17.03 },
+  { symbol: 'CH₄', M: 16.04 },
+  { symbol: 'NaCl', M: 58.44 },
+  { symbol: 'CaCO₃', M: 100.09 },
+];
+function generateMolMolProblem(e, o = null) {
+  const l = o ? () => seededRandom(o++) : Math.random;
+  let t, a, r;
+  'easy' === e
+    ? ((t = Math.floor(3 * l()) + 1), (a = Math.floor(3 * l()) + 1), (r = Math.floor(10 * l()) + 1))
+    : 'medium' === e
+      ? ((t = Math.floor(5 * l()) + 1),
+        (a = Math.floor(5 * l()) + 1),
+        (r = (Math.floor(50 * l()) + 1) / 2))
+      : ((t = Math.floor(6 * l()) + 2),
+        (a = Math.floor(6 * l()) + 2),
+        (r = (Math.floor(200 * l()) + 10) / 10));
+  return { type: 'mol-mol', n1: r, v1: t, v2: a, answer: r * (a / t), tolerance: 0.01 };
+}
+function generateMassMassProblem(e, o = null) {
+  const l = o ? () => seededRandom(o++) : Math.random,
+    t = elements[Math.floor(l() * elements.length)],
+    a = elements[Math.floor(l() * elements.length)];
+  let r, n, m;
+  'easy' === e
+    ? ((r = 1), (n = 1), (m = 10 * (Math.floor(10 * l()) + 1)))
+    : 'medium' === e
+      ? ((r = Math.floor(3 * l()) + 1),
+        (n = Math.floor(3 * l()) + 1),
+        (m = (Math.floor(100 * l()) + 10) / 2))
+      : ((r = Math.floor(5 * l()) + 2),
+        (n = Math.floor(5 * l()) + 2),
+        (m = (Math.floor(200 * l()) + 20) / 10));
+  const M = t.M,
+    s = a.M,
+    h = (m / M) * (n / r) * s;
+  return {
+    type: 'mass-mass',
+    m1: m,
+    M1: M,
+    M2: s,
+    v1: r,
+    v2: n,
+    elem1: t.symbol,
+    elem2: a.symbol,
+    answer: h,
+    tolerance: 0.02,
+  };
+}
+function generateLimitingProblem(e, o = null) {
+  const l = o ? () => seededRandom(o++) : Math.random,
+    t = elements[Math.floor(l() * elements.length)],
+    a = elements[Math.floor(l() * elements.length)];
+  let r, n, m, M;
+  'easy' === e
+    ? ((r = 1),
+      (n = 1),
+      (m = 10 * (Math.floor(10 * l()) + 1)),
+      (M = 10 * (Math.floor(10 * l()) + 1)))
+    : 'medium' === e
+      ? ((r = Math.floor(3 * l()) + 1),
+        (n = Math.floor(3 * l()) + 1),
+        (m = (Math.floor(100 * l()) + 10) / 2),
+        (M = (Math.floor(100 * l()) + 10) / 2))
+      : ((r = Math.floor(5 * l()) + 2),
+        (n = Math.floor(5 * l()) + 2),
+        (m = (Math.floor(150 * l()) + 20) / 10),
+        (M = (Math.floor(150 * l()) + 20) / 10));
+  const s = t.M,
+    h = a.M,
+    f = m / s / r < M / h / n ? 1 : 2;
+  return {
+    type: 'limiting',
+    m1: m,
+    M1: s,
+    v1: r,
+    m2: M,
+    M2: h,
+    v2: n,
+    elem1: t.symbol,
+    elem2: a.symbol,
+    answer: f,
+    tolerance: 0.02,
+  };
+}
+function generateYieldProblem(e, o = null) {
+  const l = o ? () => seededRandom(o++) : Math.random;
+  let t, a;
+  'easy' === e
+    ? ((t = 10 * (Math.floor(10 * l()) + 1)), (a = [50, 60, 70, 80, 90, 100][Math.floor(6 * l())]))
+    : 'medium' === e
+      ? ((t = (Math.floor(100 * l()) + 10) / 2), (a = Math.floor(50 * l()) + 40))
+      : ((t = (Math.floor(150 * l()) + 20) / 10), (a = Math.floor(60 * l()) + 30));
+  return { type: 'yield', theoretical: t, actual: (t * a) / 100, answer: a, tolerance: 0.5 };
+}
+function checkAnswerTolerance(e, o, l) {
+  return Math.abs((e - o) / o) <= l;
+}
+function seededRandom(e) {
+  const o = 1e4 * Math.sin(e++);
+  return o - Math.floor(o);
+}
+'undefined' != typeof module &&
+  module.exports &&
+  (module.exports = {
+    elements: elements,
+    generateMolMolProblem: generateMolMolProblem,
+    generateMassMassProblem: generateMassMassProblem,
+    generateLimitingProblem: generateLimitingProblem,
+    generateYieldProblem: generateYieldProblem,
+    checkAnswerTolerance: checkAnswerTolerance,
+    seededRandom: seededRandom,
+  });

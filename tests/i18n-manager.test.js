@@ -17,7 +17,7 @@ global.localStorage = {
   key: (index) => {
     const keys = Array.from(mockLocalStorage.keys());
     return keys[index] || null;
-  }
+  },
 };
 
 // Mock fetch for loading translations
@@ -26,39 +26,39 @@ global.fetch = jest.fn();
 // Mock translations
 const mockTranslations = {
   de: {
-    'calculator': {
-      'title': 'Stöchiometrie-Rechner',
-      'button': {
-        'calculate': 'Berechnen'
-      }
+    calculator: {
+      title: 'Stöchiometrie-Rechner',
+      button: {
+        calculate: 'Berechnen',
+      },
     },
-    'common': {
-      'save': 'Speichern'
+    common: {
+      save: 'Speichern',
     },
-    'plural': {
-      'element': {
+    plural: {
+      element: {
         0: 'Ein Element',
-        1: 'Mehrere Elemente'
-      }
-    }
+        1: 'Mehrere Elemente',
+      },
+    },
   },
   en: {
-    'calculator': {
-      'title': 'Stoichiometry Calculator',
-      'button': {
-        'calculate': 'Calculate'
-      }
+    calculator: {
+      title: 'Stoichiometry Calculator',
+      button: {
+        calculate: 'Calculate',
+      },
     },
-    'common': {
-      'save': 'Save'
+    common: {
+      save: 'Save',
     },
-    'plural': {
-      'element': {
+    plural: {
+      element: {
         0: 'One element',
-        1: 'Multiple elements'
-      }
-    }
-  }
+        1: 'Multiple elements',
+      },
+    },
+  },
 };
 
 // Setup fetch mock to return translations
@@ -66,7 +66,7 @@ global.fetch.mockImplementation((url) => {
   const locale = url.match(/locales\/(\w+)\.json/)[1];
   return Promise.resolve({
     ok: true,
-    json: () => Promise.resolve(mockTranslations[locale] || {})
+    json: () => Promise.resolve(mockTranslations[locale] || {}),
   });
 });
 
@@ -81,7 +81,7 @@ describe('I18n Manager', () => {
     // Reset navigator to default state
     global.navigator = {
       language: 'de',
-      userLanguage: 'de'
+      userLanguage: 'de',
     };
   });
 
@@ -114,7 +114,7 @@ describe('I18n Manager', () => {
     test.skip('detects browser language', () => {
       // Skipped: Requires specific navigator setup that conflicts with auto-init
       global.navigator = {
-        language: 'en-US'
+        language: 'en-US',
       };
 
       const detected = I18nManager.detectBrowserLocale();
@@ -124,7 +124,7 @@ describe('I18n Manager', () => {
     test.skip('detects language code from full locale', () => {
       // Skipped: Requires specific navigator setup that conflicts with auto-init
       global.navigator = {
-        language: 'de-DE'
+        language: 'de-DE',
       };
 
       const detected = I18nManager.detectBrowserLocale();
@@ -134,7 +134,7 @@ describe('I18n Manager', () => {
     test.skip('returns null for unsupported language', () => {
       // Skipped: Requires specific navigator setup that conflicts with auto-init
       global.navigator = {
-        language: 'zh-CN'
+        language: 'zh-CN',
       };
 
       const detected = I18nManager.detectBrowserLocale();
@@ -204,9 +204,9 @@ describe('I18n Manager', () => {
     test('interpolates variables', () => {
       I18nManager.translations.en = {
         ...I18nManager.translations.en,
-        'test': {
-          'greeting': 'Hello {{name}}'
-        }
+        test: {
+          greeting: 'Hello {{name}}',
+        },
       };
       I18nManager.setLocale('en');
       const translation = I18nManager.t('test.greeting', { name: 'World' });
@@ -218,8 +218,8 @@ describe('I18n Manager', () => {
         ...I18nManager.translations.en,
         'plural.element': {
           0: 'One element',
-          1: 'Multiple elements'
-        }
+          1: 'Multiple elements',
+        },
       };
       I18nManager.setLocale('en');
 
@@ -320,9 +320,7 @@ describe('I18n Manager', () => {
     });
 
     test('handles fetch error gracefully', async () => {
-      global.fetch.mockImplementationOnce(() =>
-        Promise.reject(new Error('Network error'))
-      );
+      global.fetch.mockImplementationOnce(() => Promise.reject(new Error('Network error')));
 
       const translations = await I18nManager.loadTranslations('en');
       expect(translations).toEqual({});
@@ -342,15 +340,15 @@ describe('I18n Manager', () => {
 
       // Load translations with proper nested structure
       I18nManager.translations.en = {
-        'calculator': {
-          'title': 'Stoichiometry Calculator',
-          'button': {
-            'calculate': 'Calculate'
+        calculator: {
+          title: 'Stoichiometry Calculator',
+          button: {
+            calculate: 'Calculate',
           },
-          'placeholder': {
-            'formula': 'Enter chemical formula'
-          }
-        }
+          placeholder: {
+            formula: 'Enter chemical formula',
+          },
+        },
       };
       I18nManager.currentLocale = 'en';
     });
@@ -405,9 +403,9 @@ describe('I18n Manager', () => {
 
     test('handles null values in interpolation', () => {
       I18nManager.translations.en = {
-        'test': {
-          'value': 'Hello {{name}}'
-        }
+        test: {
+          value: 'Hello {{name}}',
+        },
       };
       I18nManager.currentLocale = 'en';
       const translation = I18nManager.t('test.value', { name: null });
@@ -416,9 +414,9 @@ describe('I18n Manager', () => {
 
     test('handles special characters in translations', () => {
       I18nManager.translations.en = {
-        'test': {
-          'special': 'Test <>&"\' chars'
-        }
+        test: {
+          special: 'Test <>&"\' chars',
+        },
       };
       I18nManager.currentLocale = 'en';
       const translation = I18nManager.t('test.special');
@@ -437,11 +435,11 @@ describe('I18n Manager', () => {
   describe('Export', () => {
     test('exports current translations', () => {
       I18nManager.translations.en = {
-        'test': 'value'
+        test: 'value',
       };
       I18nManager.currentLocale = 'en';
       const exported = I18nManager.exportTranslations();
-      expect(exported).toEqual({ 'test': 'value' });
+      expect(exported).toEqual({ test: 'value' });
     });
 
     test('returns empty object if no translations loaded', () => {

@@ -7,8 +7,8 @@ const BOLTZMANN = 1.380649e-23;
 
 function calculateAverageVelocity(T, molarMass) {
   // v = sqrt(3RT/M) (in m/s)
-  const M = molarMass / 1000;  // g/mol → kg/mol
-  return Math.sqrt(3 * GAS_CONSTANT * T / M);
+  const M = molarMass / 1000; // g/mol → kg/mol
+  return Math.sqrt((3 * GAS_CONSTANT * T) / M);
 }
 
 function calculateRateConstant(A, Ea, T) {
@@ -30,8 +30,8 @@ function rgtRule(T1, T2) {
 function collisionFrequency(T, concentration, crossSection, molarMass) {
   // Simplified collision frequency: Z = σ * v_rel * N/V
   const M = molarMass / 1000;
-  const avgVel = Math.sqrt(8 * GAS_CONSTANT * T / (Math.PI * M));
-  const N = concentration * 6.022e23;  // particles per m³
+  const avgVel = Math.sqrt((8 * GAS_CONSTANT * T) / (Math.PI * M));
+  const N = concentration * 6.022e23; // particles per m³
   return crossSection * avgVel * N;
 }
 
@@ -39,7 +39,7 @@ describe('Reaktionskinetik Simulator', () => {
   describe('calculateAverageVelocity', () => {
     test('Stickstoff (N₂, 28 g/mol) bei 300 K', () => {
       const v = calculateAverageVelocity(300, 28);
-      expect(v).toBeCloseTo(517, 0);  // ~517 m/s
+      expect(v).toBeCloseTo(517, 0); // ~517 m/s
     });
 
     test('höhere Temperatur → höhere Geschwindigkeit', () => {
@@ -49,8 +49,8 @@ describe('Reaktionskinetik Simulator', () => {
     });
 
     test('schwerere Moleküle → niedrigere Geschwindigkeit', () => {
-      const leicht = calculateAverageVelocity(300, 2);   // H₂
-      const schwer = calculateAverageVelocity(300, 32);  // O₂
+      const leicht = calculateAverageVelocity(300, 2); // H₂
+      const schwer = calculateAverageVelocity(300, 32); // O₂
       expect(leicht).toBeGreaterThan(schwer);
     });
   });

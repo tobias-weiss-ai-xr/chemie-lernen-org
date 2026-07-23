@@ -154,7 +154,9 @@ function main() {
   console.log('[gen-mod-pages] Layout: layouts/modulhandbuch/module.html');
 
   // Read all JSON files from the data directory
-  const jsonFiles = readdirSync(DATA_DIR).filter((f) => f.endsWith('.json')).sort();
+  const jsonFiles = readdirSync(DATA_DIR)
+    .filter((f) => f.endsWith('.json'))
+    .sort();
 
   let totalUniversities = 0;
   let totalModules = 0;
@@ -235,7 +237,7 @@ function main() {
     writeFileSync(
       join(uniDir, '_index.md'),
       `---\n${yamlify(uniFrontmatter)}---\n\n${uniBody}`,
-      'utf-8',
+      'utf-8'
     );
     console.log(`[gen-mod-pages] Uni: ${uni.name} (${uni.short_code}) — ${uniDir}/_index.md`);
     totalUniversities++;
@@ -284,14 +286,16 @@ function main() {
       writeFileSync(
         join(uniDir, `${slug}.md`),
         `---\n${yamlify(modFrontmatter)}---\n\n${modBody}`,
-        'utf-8',
+        'utf-8'
       );
       console.log(`[gen-mod-pages]   Module: ${mod.module_code} — ${slug}.md`);
       totalModules++;
     }
   }
 
-  console.log(`\n[gen-mod-pages] Done: ${totalUniversities} universities, ${totalModules} module pages generated.`);
+  console.log(
+    `\n[gen-mod-pages] Done: ${totalUniversities} universities, ${totalModules} module pages generated.`
+  );
   console.log(`[gen-mod-pages] Content in: ${CONTENT_DIR}`);
 }
 

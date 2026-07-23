@@ -8,11 +8,7 @@ const AnalyticsDashboard = {
    * Create analytics dashboard
    */
   create(options = {}) {
-    const {
-      showDetails = true,
-      showRecommendations = true,
-      showAchievements = true
-    } = options;
+    const { showDetails = true, showRecommendations = true, showAchievements = true } = options;
 
     const container = document.createElement('div');
     container.className = 'analytics-dashboard';
@@ -49,9 +45,10 @@ const AnalyticsDashboard = {
     const _stats = AnalyticsManager.getStats();
     const streak = AnalyticsManager.getStreak();
 
-    const overallAccuracy = progress.totalAttempts > 0
-      ? ((progress.correctAttempts / progress.totalAttempts) * 100).toFixed(1)
-      : 0;
+    const overallAccuracy =
+      progress.totalAttempts > 0
+        ? ((progress.correctAttempts / progress.totalAttempts) * 100).toFixed(1)
+        : 0;
 
     const card = document.createElement('div');
     card.className = 'analytics-card summary-card';
@@ -211,7 +208,7 @@ const AnalyticsDashboard = {
         <div class="breakdown-item">
           <div class="breakdown-header">
             <span class="breakdown-category">${this.formatCategoryName(category)}</span>
-            <span class="breakdown-accuracy">${((data.correctAttempts / data.totalAttempts * 100)).toFixed(1)}%</span>
+            <span class="breakdown-accuracy">${((data.correctAttempts / data.totalAttempts) * 100).toFixed(1)}%</span>
           </div>
           <div class="breakdown-stats">
             <span>${data.totalAttempts} attempts</span>
@@ -239,7 +236,10 @@ const AnalyticsDashboard = {
     card.innerHTML = `
       <h3>Personalized Recommendations</h3>
       <div class="recommendations-list">
-        ${insights.recommendations.map(rec => `
+        ${
+          insights.recommendations
+            .map(
+              (rec) => `
           <div class="recommendation-item priority-${rec.priority}">
             <div class="rec-header">
               <span class="rec-type">${rec.type}</span>
@@ -248,7 +248,10 @@ const AnalyticsDashboard = {
             <h4>${rec.title}</h4>
             <p>${rec.description}</p>
           </div>
-        `).join('') || '<p class="no-data">No recommendations yet</p>'}
+        `
+            )
+            .join('') || '<p class="no-data">No recommendations yet</p>'
+        }
       </div>
     `;
 
@@ -266,8 +269,13 @@ const AnalyticsDashboard = {
     card.innerHTML = `
       <h3>Achievements</h3>
       <div class="achievements-list">
-        ${achievements.length > 0
-          ? achievements.slice(-5).reverse().map(ach => `
+        ${
+          achievements.length > 0
+            ? achievements
+                .slice(-5)
+                .reverse()
+                .map(
+                  (ach) => `
             <div class="achievement-item">
               <div class="achievement-icon">🏆</div>
               <div class="achievement-info">
@@ -276,8 +284,10 @@ const AnalyticsDashboard = {
                 <span class="achievement-date">${new Date(ach.timestamp).toLocaleDateString()}</span>
               </div>
             </div>
-          `).join('')
-          : '<p class="no-data">No achievements yet. Keep learning!</p>'
+          `
+                )
+                .join('')
+            : '<p class="no-data">No achievements yet. Keep learning!</p>'
         }
       </div>
     `;
@@ -291,7 +301,7 @@ const AnalyticsDashboard = {
   formatCategoryName(category) {
     return category
       .split('_')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
   },
 
@@ -586,12 +596,12 @@ const AnalyticsDashboard = {
     const options = {
       showDetails: container.querySelector('.breakdown-card') !== null,
       showRecommendations: container.querySelector('.recommendations-card') !== null,
-      showAchievements: container.querySelector('.achievements-card') !== null
+      showAchievements: container.querySelector('.achievements-card') !== null,
     };
 
     container.innerHTML = '';
     this.init(containerId, options);
-  }
+  },
 };
 
 // Export for use in other modules

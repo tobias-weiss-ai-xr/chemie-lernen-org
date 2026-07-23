@@ -27,17 +27,39 @@ const args = process.argv.slice(2);
 const DRY_RUN = args.includes('--dry-run');
 
 const ALL_STATES = [
-  'bb', 'be', 'bw', 'by', 'hb', 'he', 'hh',
-  'mv', 'ni', 'nw', 'rp', 'sh', 'sn', 'st', 'th',
+  'bb',
+  'be',
+  'bw',
+  'by',
+  'hb',
+  'he',
+  'hh',
+  'mv',
+  'ni',
+  'nw',
+  'rp',
+  'sh',
+  'sn',
+  'st',
+  'th',
 ];
 
 const STATE_LABELS = {
-  bb: 'Brandenburg', be: 'Berlin', bw: 'Baden-Württemberg',
-  by: 'Bayern', hb: 'Bremen', he: 'Hessen',
-  hh: 'Hamburg', mv: 'Mecklenburg-Vorpommern',
-  ni: 'Niedersachsen', nw: 'Nordrhein-Westfalen',
-  rp: 'Rheinland-Pfalz', sh: 'Schleswig-Holstein',
-  sn: 'Sachsen', st: 'Sachsen-Anhalt', th: 'Thüringen',
+  bb: 'Brandenburg',
+  be: 'Berlin',
+  bw: 'Baden-Württemberg',
+  by: 'Bayern',
+  hb: 'Bremen',
+  he: 'Hessen',
+  hh: 'Hamburg',
+  mv: 'Mecklenburg-Vorpommern',
+  ni: 'Niedersachsen',
+  nw: 'Nordrhein-Westfalen',
+  rp: 'Rheinland-Pfalz',
+  sh: 'Schleswig-Holstein',
+  sn: 'Sachsen',
+  st: 'Sachsen-Anhalt',
+  th: 'Thüringen',
 };
 
 // ── Content-links lazy loader ─────────────────────────────────────
@@ -70,18 +92,83 @@ function findArticlesForTopic(topicName) {
     .toLowerCase()
     .replace(/[.,!?;:()"']/g, '')
     .split(/\s+/)
-    .filter(function (w) { return w.length > 2; })
     .filter(function (w) {
-      return ['der', 'die', 'das', 'den', 'dem', 'des', 'ein', 'eine',
-        'einen', 'einer', 'eines', 'mit', 'von', 'und', 'oder',
-        'fur', 'für', 'aus', 'bei', 'nach', 'zum', 'zur', 'vom',
-        'durch', 'uber', 'über', 'auch', 'nur', 'noch', 'schon',
-        'wird', 'werden', 'sich', 'ihre', 'ihrer', 'ihren', 'sein',
-        'seine', 'ist', 'sind', 'hat', 'haben', 'wurde', 'würde',
-        'kann', 'konnen', 'können', 'soll', 'sollen', 'muss',
-        'müssen', 'dass', 'diese', 'dieser', 'dieses', 'wenn',
-        'nicht', 'immer', 'nun', 'alle', 'alles', 'wie', 'zum',
-        'zur', 'beim', 'einer', 'eines', 'einem', 'einen'].indexOf(w) === -1;
+      return w.length > 2;
+    })
+    .filter(function (w) {
+      return (
+        [
+          'der',
+          'die',
+          'das',
+          'den',
+          'dem',
+          'des',
+          'ein',
+          'eine',
+          'einen',
+          'einer',
+          'eines',
+          'mit',
+          'von',
+          'und',
+          'oder',
+          'fur',
+          'für',
+          'aus',
+          'bei',
+          'nach',
+          'zum',
+          'zur',
+          'vom',
+          'durch',
+          'uber',
+          'über',
+          'auch',
+          'nur',
+          'noch',
+          'schon',
+          'wird',
+          'werden',
+          'sich',
+          'ihre',
+          'ihrer',
+          'ihren',
+          'sein',
+          'seine',
+          'ist',
+          'sind',
+          'hat',
+          'haben',
+          'wurde',
+          'würde',
+          'kann',
+          'konnen',
+          'können',
+          'soll',
+          'sollen',
+          'muss',
+          'müssen',
+          'dass',
+          'diese',
+          'dieser',
+          'dieses',
+          'wenn',
+          'nicht',
+          'immer',
+          'nun',
+          'alle',
+          'alles',
+          'wie',
+          'zum',
+          'zur',
+          'beim',
+          'einer',
+          'eines',
+          'einem',
+          'einen',
+        ].indexOf(w) === -1
+      );
     });
 
   if (keywords.length === 0) return [];
@@ -227,7 +314,9 @@ function generate() {
                 topicGroup: topic.title,
                 objectiveCount: objectives.length,
                 objectives: objectives.slice(0, 10).map(function (o) {
-                  return typeof o === 'object' && o.text ? o.text.slice(0, 200) : String(o).slice(0, 200);
+                  return typeof o === 'object' && o.text
+                    ? o.text.slice(0, 200)
+                    : String(o).slice(0, 200);
                 }),
               });
             }
@@ -242,7 +331,9 @@ function generate() {
               topicGroup: '',
               objectiveCount: objectives.length,
               objectives: objectives.slice(0, 10).map(function (o) {
-                return typeof o === 'object' && o.text ? o.text.slice(0, 200) : String(o).slice(0, 200);
+                return typeof o === 'object' && o.text
+                  ? o.text.slice(0, 200)
+                  : String(o).slice(0, 200);
               }),
             });
           }
@@ -276,8 +367,12 @@ function generate() {
         schoolType: tp.schoolType,
         objectives: tp.objectiveCount,
         objectiveTexts: tp.objectives,
-        articles: articles.map(function (a) { return a.url; }),
-        articleTitles: articles.map(function (a) { return a.title; }),
+        articles: articles.map(function (a) {
+          return a.url;
+        }),
+        articleTitles: articles.map(function (a) {
+          return a.title;
+        }),
       });
     }
 
@@ -285,9 +380,15 @@ function generate() {
       state: stateAbbr,
       name: stateName + ' Chemie Lehrplan',
       grade: gradeStr,
-      schoolTypes: schoolCurricula.map(function (sc) { return sc.school_type || ''; }).filter(Boolean),
+      schoolTypes: schoolCurricula
+        .map(function (sc) {
+          return sc.school_type || '';
+        })
+        .filter(Boolean),
       topicCount: pathTopics.length,
-      totalObjectives: pathTopics.reduce(function (s, t) { return s + t.objectives; }, 0),
+      totalObjectives: pathTopics.reduce(function (s, t) {
+        return s + t.objectives;
+      }, 0),
       topics: pathTopics,
     };
 
@@ -295,8 +396,11 @@ function generate() {
     generatedCount++;
     console.log(
       '  ✓ %s (%s): %d topics, %d objectives, grades %s',
-      stateAbbr, stateName, pathTopics.length,
-      entry.totalObjectives, gradeStr
+      stateAbbr,
+      stateName,
+      pathTopics.length,
+      entry.totalObjectives,
+      gradeStr
     );
   }
 

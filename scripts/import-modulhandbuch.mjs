@@ -28,8 +28,7 @@ const DATA_DIR = path.join(REPO_ROOT, 'myhugoapp', 'data', 'modulhandbuch');
 
 const NEO4J_URI = process.env.NEO4J_URI || 'bolt://localhost:7687';
 const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
-const NEO4J_PASSWORD =
-  process.env.NEO4J_PASSWORD || 'chemie_knowledge_2024';
+const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || 'chemie_knowledge_2024';
 const NEO4J_DATABASE = process.env.NEO4J_DATABASE || 'chemie';
 
 export const MODULHANDBUCH_LABELS = [
@@ -214,17 +213,16 @@ async function main() {
     return;
   }
 
-  const driver = neo4j.driver(
-    NEO4J_URI,
-    neo4j.auth.basic(NEO4J_USER, NEO4J_PASSWORD)
-  );
+  const driver = neo4j.driver(NEO4J_URI, neo4j.auth.basic(NEO4J_USER, NEO4J_PASSWORD));
   const total = { universities: 0, modules: 0, offerings: 0, lecturers: 0, degrees: 0, ects: 0 };
   try {
     for (const f of files) {
       console.log(`Importing ${path.basename(f)} ...`);
       const cat = await loadJson(f);
       const c = await importCatalog(driver, cat, false);
-      Object.keys(c).forEach((k) => { total[k] += c[k]; });
+      Object.keys(c).forEach((k) => {
+        total[k] += c[k];
+      });
       console.log(`  imported: ${JSON.stringify(c)}`);
     }
   } catch (e) {

@@ -18,11 +18,11 @@ class QuizSystem {
     this.hintsUsed = 0;
     this.quizSettings = {
       timedMode: false,
-      timePerQuestion: null,  // seconds
-      totalTime: null,        // seconds
+      timePerQuestion: null, // seconds
+      totalTime: null, // seconds
       allowHints: true,
       randomizeQuestions: false,
-      showExplanations: true
+      showExplanations: true,
     };
   }
 
@@ -36,7 +36,7 @@ class QuizSystem {
       questions: quizData.questions,
       passingScore: quizData.passingScore || 70,
       defaultTimePerQuestion: quizData.timePerQuestion || null,
-      defaultTotalTime: quizData.totalTime || null
+      defaultTotalTime: quizData.totalTime || null,
     };
   }
 
@@ -45,12 +45,20 @@ class QuizSystem {
    */
   configureQuiz(settings = {}) {
     this.quizSettings = {
-      timedMode: settings.timedMode !== undefined ? settings.timedMode : this.quizSettings.timedMode,
+      timedMode:
+        settings.timedMode !== undefined ? settings.timedMode : this.quizSettings.timedMode,
       timePerQuestion: settings.timePerQuestion || this.quizSettings.timePerQuestion,
       totalTime: settings.totalTime || this.quizSettings.totalTime,
-      allowHints: settings.allowHints !== undefined ? settings.allowHints : this.quizSettings.allowHints,
-      randomizeQuestions: settings.randomizeQuestions !== undefined ? settings.randomizeQuestions : this.quizSettings.randomizeQuestions,
-      showExplanations: settings.showExplanations !== undefined ? settings.showExplanations : this.quizSettings.showExplanations
+      allowHints:
+        settings.allowHints !== undefined ? settings.allowHints : this.quizSettings.allowHints,
+      randomizeQuestions:
+        settings.randomizeQuestions !== undefined
+          ? settings.randomizeQuestions
+          : this.quizSettings.randomizeQuestions,
+      showExplanations:
+        settings.showExplanations !== undefined
+          ? settings.showExplanations
+          : this.quizSettings.showExplanations,
     };
   }
 
@@ -86,7 +94,7 @@ class QuizSystem {
 
     this.currentQuiz = {
       ...quiz,
-      questions: questions
+      questions: questions,
     };
     this.currentQuestionIndex = 0;
     this.score = 0;
@@ -117,9 +125,11 @@ class QuizSystem {
       this.timeRemaining--;
 
       // Dispatch custom event for UI updates
-      window.dispatchEvent(new CustomEvent('quizTimerUpdate', {
-        detail: { timeRemaining: this.timeRemaining }
-      }));
+      window.dispatchEvent(
+        new CustomEvent('quizTimerUpdate', {
+          detail: { timeRemaining: this.timeRemaining },
+        })
+      );
 
       if (this.timeRemaining <= 0) {
         this.stopTimer();
@@ -175,7 +185,7 @@ class QuizSystem {
     return {
       success: true,
       hint: question.hint,
-      hintsUsed: this.hintsUsed
+      hintsUsed: this.hintsUsed,
     };
   }
 
@@ -198,7 +208,7 @@ class QuizSystem {
     this.answers.push({
       question: question,
       userAnswer: answer,
-      correct: isCorrect
+      correct: isCorrect,
     });
 
     if (isCorrect) {
@@ -208,7 +218,7 @@ class QuizSystem {
     return {
       correct: isCorrect,
       correctAnswer: question.correctAnswer,
-      explanation: question.explanation
+      explanation: question.explanation,
     };
   }
 
@@ -230,8 +240,10 @@ class QuizSystem {
       return userAnswer === question.correctAnswer;
     } else if (question.type === 'fill-blank') {
       // Case-insensitive comparison, trim whitespace
-      return userAnswer.toString().toLowerCase().trim() ===
-             question.correctAnswer.toString().toLowerCase().trim();
+      return (
+        userAnswer.toString().toLowerCase().trim() ===
+        question.correctAnswer.toString().toLowerCase().trim()
+      );
     }
     return false;
   }
@@ -283,8 +295,9 @@ class QuizSystem {
       passingScore: this.currentQuiz.passingScore,
       hintsUsed: this.hintsUsed,
       timeSpent: this.quizSettings.timedMode
-        ? (this.quizSettings.totalTime || this.quizSettings.timePerQuestion || 0) - this.timeRemaining
-        : null
+        ? (this.quizSettings.totalTime || this.quizSettings.timePerQuestion || 0) -
+          this.timeRemaining
+        : null,
     };
   }
 
@@ -297,7 +310,7 @@ class QuizSystem {
         attempts: 0,
         bestScore: 0,
         lastAttempt: null,
-        completed: false
+        completed: false,
       };
     }
 
@@ -319,12 +332,14 @@ class QuizSystem {
    * Get progress for a topic
    */
   getProgress(topicId) {
-    return this.progress[topicId] || {
-      attempts: 0,
-      bestScore: 0,
-      lastAttempt: null,
-      completed: false
-    };
+    return (
+      this.progress[topicId] || {
+        attempts: 0,
+        bestScore: 0,
+        lastAttempt: null,
+        completed: false,
+      }
+    );
   }
 
   /**
@@ -332,22 +347,18 @@ class QuizSystem {
    */
   getOverallProgress() {
     const totalTopics = Object.keys(this.quizzes).length;
-    const completedTopics = Object.values(this.progress)
-      .filter(p => p.completed).length;
-    const totalAttempts = Object.values(this.progress)
-      .reduce((sum, p) => sum + p.attempts, 0);
+    const completedTopics = Object.values(this.progress).filter((p) => p.completed).length;
+    const totalAttempts = Object.values(this.progress).reduce((sum, p) => sum + p.attempts, 0);
     const averageScore = Object.values(this.progress)
-      .filter(p => p.bestScore > 0)
+      .filter((p) => p.bestScore > 0)
       .reduce((sum, p, _, arr) => sum + p.bestScore / arr.length, 0);
 
     return {
       totalTopics: totalTopics,
       completedTopics: completedTopics,
-      completionPercentage: totalTopics > 0
-        ? Math.round((completedTopics / totalTopics) * 100)
-        : 0,
+      completionPercentage: totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0,
       totalAttempts: totalAttempts,
-      averageScore: Math.round(averageScore)
+      averageScore: Math.round(averageScore),
     };
   }
 
@@ -398,29 +409,39 @@ function enableQuizSwipes(containerId) {
   if (!container) return;
   var startX = 0;
   var threshold = 60;
-  container.addEventListener('touchstart', function(e) {
-    startX = e.touches[0].clientX;
-  }, { passive: true });
-  container.addEventListener('touchend', function(e) {
-    var diffX = e.changedTouches[0].clientX - startX;
-    if (Math.abs(diffX) < threshold) return;
-    var prevBtn = container.querySelector('.quiz-button-secondary:not([style*="display: none"])');
-    var nextBtn = container.querySelector('.quiz-button-primary:not([style*="display: none"]):not([onclick])');
-    if (diffX < 0 && nextBtn) nextBtn.click();
-    else if (diffX > 0 && prevBtn) prevBtn.click();
-  }, { passive: true });
+  container.addEventListener(
+    'touchstart',
+    function (e) {
+      startX = e.touches[0].clientX;
+    },
+    { passive: true }
+  );
+  container.addEventListener(
+    'touchend',
+    function (e) {
+      var diffX = e.changedTouches[0].clientX - startX;
+      if (Math.abs(diffX) < threshold) return;
+      var prevBtn = container.querySelector('.quiz-button-secondary:not([style*="display: none"])');
+      var nextBtn = container.querySelector(
+        '.quiz-button-primary:not([style*="display: none"]):not([onclick])'
+      );
+      if (diffX < 0 && nextBtn) nextBtn.click();
+      else if (diffX > 0 && prevBtn) prevBtn.click();
+    },
+    { passive: true }
+  );
 }
 
 // Auto-init swipe on all quiz containers after DOM ready
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.quiz-container[id^="quiz-"]').forEach(function(el) {
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.quiz-container[id^="quiz-"]').forEach(function (el) {
     enableQuizSwipes(el.id);
   });
 });
 
 // Global quiz instance
 const chemieQuiz = new QuizSystem({
-  storageKey: 'chemie-lernen-quiz-progress'
+  storageKey: 'chemie-lernen-quiz-progress',
 });
 
 // Export for use in other scripts

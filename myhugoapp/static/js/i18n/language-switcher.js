@@ -12,7 +12,7 @@ const LanguageSwitcher = {
       containerId = 'language-switcher',
       showFlags = true,
       showNativeNames = true,
-      onSelect = null
+      onSelect = null,
     } = options;
 
     // Get supported languages
@@ -29,7 +29,7 @@ const LanguageSwitcher = {
     select.setAttribute('aria-label', I18nManager.t('settings.language') || 'Language');
 
     // Add options
-    languages.forEach(lang => {
+    languages.forEach((lang) => {
       const option = document.createElement('option');
       option.value = lang.code;
 
@@ -88,7 +88,7 @@ const LanguageSwitcher = {
       en: '🇬🇧',
       es: '🇪🇸',
       fr: '🇫🇷',
-      it: '🇮🇹'
+      it: '🇮🇹',
     };
     return flags[locale] || '🌐';
   },
@@ -181,7 +181,7 @@ const LanguageSwitcher = {
 
     const switcher = this.create({
       ...options,
-      containerId
+      containerId,
     });
 
     container.appendChild(switcher);
@@ -197,11 +197,7 @@ const LanguageSwitcher = {
    * Create compact button version
    */
   createButton(options = {}) {
-    const {
-      showFlag = true,
-      showCode = false,
-      onClick = null
-    } = options;
+    const { showFlag = true, showCode = false, onClick = null } = options;
 
     const button = document.createElement('button');
     button.className = 'language-button';
@@ -233,7 +229,7 @@ const LanguageSwitcher = {
     });
 
     // Handle language selection
-    menu.querySelectorAll('.language-option').forEach(option => {
+    menu.querySelectorAll('.language-option').forEach((option) => {
       option.addEventListener('click', (e) => {
         const locale = e.currentTarget.dataset.locale;
         I18nManager.setLocale(locale);
@@ -269,7 +265,7 @@ const LanguageSwitcher = {
     menu.className = 'language-dropdown';
 
     const languages = I18nManager.getSupportedLanguages();
-    languages.forEach(lang => {
+    languages.forEach((lang) => {
       const option = document.createElement('div');
       option.className = 'language-option';
       option.dataset.locale = lang.code;
@@ -376,7 +372,7 @@ const LanguageSwitcher = {
     `;
 
     document.head.appendChild(style);
-  }
+  },
 };
 
 // Export for use in other modules

@@ -169,7 +169,8 @@ router.get('/api/didaktik', async (req, res) => {
         teachingTips = [
           {
             note: 'Keine spezifischen didaktischen Hinweise für "' + topic + '" gefunden.',
-            suggestion: 'Versuche einen allgemeineren Themenbegriff oder überprüfe die Schreibweise.',
+            suggestion:
+              'Versuche einen allgemeineren Themenbegriff oder überprüfe die Schreibweise.',
           },
         ];
       }

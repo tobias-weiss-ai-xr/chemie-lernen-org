@@ -23,14 +23,12 @@ var INDEXES = [
   {
     name: 'entity_name',
     description: 'Entity(name) range index',
-    cypher:
-      'CREATE RANGE INDEX entity_name IF NOT EXISTS FOR (n:Entity) ON (n.name)',
+    cypher: 'CREATE RANGE INDEX entity_name IF NOT EXISTS FOR (n:Entity) ON (n.name)',
   },
   {
     name: 'document_url',
     description: 'Document(url) range index',
-    cypher:
-      'CREATE RANGE INDEX document_url IF NOT EXISTS FOR (n:Document) ON (n.url)',
+    cypher: 'CREATE RANGE INDEX document_url IF NOT EXISTS FOR (n:Document) ON (n.url)',
   },
   {
     name: 'curriculum_state_grade',
@@ -41,8 +39,7 @@ var INDEXES = [
   {
     name: 'content_title',
     description: 'Content(title) range index',
-    cypher:
-      'CREATE RANGE INDEX content_title IF NOT EXISTS FOR (n:Content) ON (n.title)',
+    cypher: 'CREATE RANGE INDEX content_title IF NOT EXISTS FOR (n:Content) ON (n.title)',
   },
   {
     name: 'learning_objective_description',
@@ -54,17 +51,11 @@ var INDEXES = [
 
 // ── Main ───────────────────────────────────────────────────────────────
 async function main() {
-  console.log(
-    '[create-neo4j-indexes] Connecting to Neo4j: ' + NEO4J_URI
-  );
+  console.log('[create-neo4j-indexes] Connecting to Neo4j: ' + NEO4J_URI);
 
-  var driver = neo4j.driver(
-    NEO4J_URI,
-    neo4j.auth.basic(NEO4J_USER, NEO4J_PASSWORD),
-    {
-      connectionTimeout: 10000,
-    }
-  );
+  var driver = neo4j.driver(NEO4J_URI, neo4j.auth.basic(NEO4J_USER, NEO4J_PASSWORD), {
+    connectionTimeout: 10000,
+  });
 
   var session = driver.session({
     database: NEO4J_DATABASE,
@@ -76,35 +67,20 @@ async function main() {
     for (var i = 0; i < INDEXES.length; i++) {
       var idx = INDEXES[i];
       console.log(
-        '[create-neo4j-indexes] Creating index: ' +
-          idx.name +
-          ' (' +
-          idx.description +
-          ')...'
+        '[create-neo4j-indexes] Creating index: ' + idx.name + ' (' + idx.description + ')...'
       );
       try {
         await session.run(idx.cypher);
         console.log('[create-neo4j-indexes]  ✓ ' + idx.name);
       } catch (err) {
-        console.error(
-          '[create-neo4j-indexes]  ✗ ' +
-            idx.name +
-            ': ' +
-            err.message
-        );
+        console.error('[create-neo4j-indexes]  ✗ ' + idx.name + ': ' + err.message);
       }
     }
 
     // ── SHOW INDEXES verification ───────────────────────────────────
-    console.log(
-      '[create-neo4j-indexes] Verifying indexes with SHOW INDEXES...'
-    );
+    console.log('[create-neo4j-indexes] Verifying indexes with SHOW INDEXES...');
     var result = await session.run('SHOW INDEXES');
-    console.log(
-      '[create-neo4j-indexes] Existing indexes (' +
-        result.records.length +
-        '):'
-    );
+    console.log('[create-neo4j-indexes] Existing indexes (' + result.records.length + '):');
     result.records.forEach(function (rec) {
       var name = rec.get('name');
       var type = rec.get('type');
@@ -130,9 +106,7 @@ async function main() {
 
     console.log('[create-neo4j-indexes] Done.');
   } catch (err) {
-    console.error(
-      '[create-neo4j-indexes] ERROR: ' + err.message
-    );
+    console.error('[create-neo4j-indexes] ERROR: ' + err.message);
     process.exit(1);
   } finally {
     await session.close();

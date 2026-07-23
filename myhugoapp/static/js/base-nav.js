@@ -2,27 +2,27 @@
  * Vanilla JS Dropdown Implementation
  * Replaces jQuery-based dropdown behavior for better performance
  */
-(function() {
+(function () {
   'use strict';
 
   // Initialize dropdowns when DOM is ready
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     initializeDropdowns();
   });
 
   function initializeDropdowns() {
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
-    dropdownToggles.forEach(function(toggle) {
+    dropdownToggles.forEach(function (toggle) {
       // Add click handler
-      toggle.addEventListener('click', function(e) {
+      toggle.addEventListener('click', function (e) {
         // Custom mobile behavior
         if (window.innerWidth < 768) {
           e.preventDefault();
           const parent = this.parentElement;
 
           // Close all other open dropdowns
-          document.querySelectorAll('.dropdown.open').forEach(function(dropdown) {
+          document.querySelectorAll('.dropdown.open').forEach(function (dropdown) {
             if (dropdown !== parent) {
               dropdown.classList.remove('open');
             }
@@ -41,26 +41,25 @@
     });
 
     // Close dropdowns when clicking outside
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       // If click is outside all dropdowns
       const isOutsideDropdown = !e.target.closest('.dropdown');
 
       if (isOutsideDropdown) {
-        document.querySelectorAll('.dropdown.open').forEach(function(dropdown) {
+        document.querySelectorAll('.dropdown.open').forEach(function (dropdown) {
           dropdown.classList.remove('open');
         });
       }
     });
 
     // Handle window resize
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', function () {
       // Clean up open dropdowns on significant resize
       if (window.innerWidth >= 768) {
-        document.querySelectorAll('.dropdown.open').forEach(function(dropdown) {
+        document.querySelectorAll('.dropdown.open').forEach(function (dropdown) {
           dropdown.classList.toggle('open', false);
         });
       }
     });
   }
-
 })();

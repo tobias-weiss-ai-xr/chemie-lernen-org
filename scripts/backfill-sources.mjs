@@ -8,11 +8,15 @@ const POSTS_DIR = join(REPO_ROOT, 'myhugoapp', 'content', 'posts');
 
 const URL_MAP = {
   'metallfreie-carboran': 'https://phys.org/news/2026-05-metal-free-method-carborane-cancer.html',
-  'neue-quantenmethode': 'https://phys.org/news/2026-06-method-uncovers-conical-intersections-driven.html',
-  'neue-katalysatoren-reduzieren-verdampfungsverluste': 'https://phys.org/news/2026-05-catalysts-losses-liquid-hydrogen-production.html',
+  'neue-quantenmethode':
+    'https://phys.org/news/2026-06-method-uncovers-conical-intersections-driven.html',
+  'neue-katalysatoren-reduzieren-verdampfungsverluste':
+    'https://phys.org/news/2026-05-catalysts-losses-liquid-hydrogen-production.html',
   'methan-wird-mit-licht': 'https://www.sciencedaily.com/releases/2026/02/260227071916.htm',
-  'eisen-katalysator-uebertrifft-seltene-metalle': 'https://www.sciencedaily.com/releases/2026/02/260227061821.htm',
-  'wolframcarbid-katalysator-uebertrifft-platin': 'https://www.sciencedaily.com/releases/2026/01/260124003806.htm',
+  'eisen-katalysator-uebertrifft-seltene-metalle':
+    'https://www.sciencedaily.com/releases/2026/02/260227061821.htm',
+  'wolframcarbid-katalysator-uebertrifft-platin':
+    'https://www.sciencedaily.com/releases/2026/01/260124003806.htm',
 };
 
 function parseFrontmatter(content) {
@@ -23,7 +27,9 @@ function hasRealSource(fm) {
   const m = fm.match(/^source:\s*"([^"]+)"/m);
   return m && m[1] !== 'unknown' && m[1] !== '';
 }
-function hasQuelle(c) { return /### 📄 Quelle|_Quelle:/m.test(c); }
+function hasQuelle(c) {
+  return /### 📄 Quelle|_Quelle:/m.test(c);
+}
 function getSource(fm) {
   const m = fm.match(/^source:\s*"([^"]+)"/m);
   return m ? m[1] : null;
@@ -31,8 +37,7 @@ function getSource(fm) {
 
 function findUrl(file) {
   const f = file.toLowerCase();
-  for (const [key, url] of Object.entries(URL_MAP))
-    if (f.includes(key)) return url;
+  for (const [key, url] of Object.entries(URL_MAP)) if (f.includes(key)) return url;
   return null;
 }
 
@@ -44,22 +49,31 @@ function addQuelleBody(body, url) {
   if (/### 📄 Quelle/.test(body)) return body;
   const sep = '\n---\n\n### 🧪 Verwandte Rechner';
   const idx = body.indexOf(sep);
-  const block = url === 'unbekannt'
-    ? `\n\n---\n\n### 📄 Quelle\n\n*Quelle nicht verfügbar*\n`
-    : `\n\n---\n\n### 📄 Quelle\n\n[Original-Artikel](${url})\n`;
+  const block =
+    url === 'unbekannt'
+      ? `\n\n---\n\n### 📄 Quelle\n\n*Quelle nicht verfügbar*\n`
+      : `\n\n---\n\n### 📄 Quelle\n\n[Original-Artikel](${url})\n`;
   return idx !== -1 ? body.slice(0, idx) + block + body.slice(idx) : body + block;
 }
 
-const files = (await readdir(POSTS_DIR)).filter(f => f.endsWith('.md') && f !== '_index.md');
+const files = (await readdir(POSTS_DIR)).filter((f) => f.endsWith('.md') && f !== '_index.md');
 console.log(`[backfill] ${files.length} posts`);
 
-let updated = 0, skipped = 0, missing = 0;
+let updated = 0,
+  skipped = 0,
+  missing = 0;
 for (const file of files) {
   const fp = join(POSTS_DIR, file);
   let c = await readFile(fp, 'utf-8');
   const fm = parseFrontmatter(c);
-  if (!fm || !fm.includes('forschung')) { skipped++; continue; }
-  if (hasQuelle(c) && hasRealSource(fm)) { skipped++; continue; }
+  if (!fm || !fm.includes('forschung')) {
+    skipped++;
+    continue;
+  }
+  if (hasQuelle(c) && hasRealSource(fm)) {
+    skipped++;
+    continue;
+  }
 
   // Use existing source URL if it's real, otherwise try to find one
   let url = getSource(fm);
@@ -82,15 +96,15 @@ for (const file of files) {
     continue;
   }
 
-  console.log(`[backfill] ✓ ${file} → ${url.replace(/^https?:\/\//,'').slice(0,50)}...`);
-  
+  console.log(`[backfill] ✓ ${file} → ${url.replace(/^https?:\/\//, '').slice(0, 50)}...`);
+
   // Update frontmatter if needed
   const oldSource = getSource(fm);
   if (oldSource !== url) {
     const newFm = addSourceToFm(fm.replace(/^source:.*$/m, '').trim(), url);
     c = c.replace(`---\n${fm}\n---`, `---\n${newFm}\n---`);
   }
-  
+
   // Add Quelle block if missing
   if (!hasQuelle(c)) {
     const bm = c.match(/^---\n[\s\S]*?\n---\n([\s\S]*)/);

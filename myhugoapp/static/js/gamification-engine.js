@@ -111,12 +111,13 @@ const _GamificationEngine = {
         const all = await ProgressTracker.getAllProgress();
         if (all.length < 20) return false;
         const stats = await ProgressTracker.getModuleStats();
-        let total = 0, correct = 0;
+        let total = 0,
+          correct = 0;
         Object.values(stats).forEach((s) => {
           total += s.total || 0;
           correct += s.correct || 0;
         });
-        return total > 0 && (correct / total) >= 0.9;
+        return total > 0 && correct / total >= 0.9;
       },
     },
     {
@@ -236,19 +237,14 @@ const _GamificationEngine = {
 
     // Check each achievement
     for (const def of allDefs) {
-      const already = await ProgressTracker.getAchievements().then(
-        (list) => list.find((a) => a.id === def.id)
+      const already = await ProgressTracker.getAchievements().then((list) =>
+        list.find((a) => a.id === def.id)
       );
       if (already) continue;
       try {
         const earned = await def.condition();
         if (earned) {
-          await ProgressTracker.unlockAchievement(
-            def.id,
-            def.name,
-            def.description,
-            def.icon
-          );
+          await ProgressTracker.unlockAchievement(def.id, def.name, def.description, def.icon);
           await this.addXP(this.POINTS_ACHIEVEMENT);
           newlyUnlocked.push(def);
         }
@@ -259,11 +255,7 @@ const _GamificationEngine = {
 
     // Show notifications for new achievements
     newlyUnlocked.forEach((def) => {
-      this.showNotification(
-        `Erfolg freigeschaltet: ${def.name}`,
-        def.icon,
-        '#FFC107'
-      );
+      this.showNotification(`Erfolg freigeschaltet: ${def.name}`, def.icon, '#FFC107');
     });
 
     return {

@@ -14,7 +14,7 @@ const COLORS = {
   anion: '#2ecc71',
   electronPath: '#f39c12',
   ionPathBridge: '#e67e22',
-  liquid: '#bdc3c7'
+  liquid: '#bdc3c7',
 };
 
 // Animation state
@@ -24,18 +24,18 @@ const animationState = {
     frameCount: 0,
     electrons: [],
     cations: [],
-    anions: []
+    anions: [],
   },
   electrolysis: {
     isActive: false,
     voltage: 5.0,
     electrons: [],
-    anions: []
+    anions: [],
   },
   electronTransition: {
     isPlaying: false,
-    particles: []
-  }
+    particles: [],
+  },
 };
 
 // Canvas contexts
@@ -49,7 +49,7 @@ function initCanvases() {
   electronCtx = document.getElementById('electron-canvas').getContext('2d');
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   initCanvases();
   drawGalvanicCellStatic();
   drawElectrolysisStatic();
@@ -185,7 +185,7 @@ function updateGalvanicParticles(ctx) {
       x: 100,
       y: 180,
       vx: 0.3,
-      state: 'anode-to-cathode'
+      state: 'anode-to-cathode',
     });
 
     // Add salt bridge ion pairs
@@ -194,14 +194,14 @@ function updateGalvanicParticles(ctx) {
         x: 310,
         y: 180,
         vx: 0.15,
-        type: 'cation'
+        type: 'cation',
       });
 
       animationState.galvanic.anions.push({
         x: 490,
         y: 180,
         vx: -0.15,
-        type: 'anion'
+        type: 'anion',
       });
     }
   }
@@ -223,7 +223,7 @@ function updateGalvanicParticles(ctx) {
       x = 700;
       y = 50 + ((progress - 120) / 40) * 130;
     } else {
-      x = 100 + (240 - progress) / 80 * 600;
+      x = 100 + ((240 - progress) / 80) * 600;
       y = 450;
     }
 
@@ -565,17 +565,22 @@ function displayNernstInterpretation(E, E0, Q) {
   let interpretation;
 
   if (Math.abs(E - E0) < 0.001) {
-    interpretation = '<p><strong>Standardbedingungen (Q ≈ 1):</strong> Das Zellpotential ist gleich dem Standardpotential. Keine Konzentrationseffekte.</p>';
+    interpretation =
+      '<p><strong>Standardbedingungen (Q ≈ 1):</strong> Das Zellpotential ist gleich dem Standardpotential. Keine Konzentrationseffekte.</p>';
   } else if (E > E0) {
-    interpretation = '<p><strong>Hohes Q-Wert (Produkte angereichert):</strong> Das Zellpotential ist höher als E°. Die Reaktion wird weniger spontan.</p>';
+    interpretation =
+      '<p><strong>Hohes Q-Wert (Produkte angereichert):</strong> Das Zellpotential ist höher als E°. Die Reaktion wird weniger spontan.</p>';
   } else {
-    interpretation = '<p><strong>Niedriges Q-Wert (Edukt angereichert):</strong> Das Zellpotential ist niedriger als E°. Die Reaktion ist spontaner.</p>';
+    interpretation =
+      '<p><strong>Niedriges Q-Wert (Edukt angereichert):</strong> Das Zellpotential ist niedriger als E°. Die Reaktion ist spontaner.</p>';
   }
 
   if (E > 0) {
-    interpretation += '<p><strong>Reaktion ist spontan:</strong> E > 0 V, positive Reaktion treibend.</p>';
+    interpretation +=
+      '<p><strong>Reaktion ist spontan:</strong> E > 0 V, positive Reaktion treibend.</p>';
   } else if (E < 0) {
-    interpretation += '<p><strong>Reaktion ist nicht spontan:</strong> E < 0 V, negative Reaktion nicht treibend.</p>';
+    interpretation +=
+      '<p><strong>Reaktion ist nicht spontan:</strong> E < 0 V, negative Reaktion nicht treibend.</p>';
   } else {
     interpretation += '<p><strong>Gleichgewicht:</strong> E = 0 V, kein treibend.</p>';
   }

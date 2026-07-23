@@ -17,14 +17,13 @@ import fs from 'fs';
 import path from 'path';
 import neo4j from 'neo4j-driver';
 import pino from 'pino';
-import { getNeo4jDriver, NEO4J_DATABASE, closeNeo4jDriver } from '../services/neo4j.js';
+import { getNeo4jDriver, NEO4J_DATABASE } from '../services/neo4j.js';
 import {
   getCachedKgData,
   setCachedKgData,
   parseKGParams,
   filterEntities,
   getKgDataCacheKey,
-  loadCurriculaFromStaticFiles,
 } from '../services/kg-cache.js';
 import {
   getFallbackData,
@@ -32,7 +31,6 @@ import {
   escapeHtml,
   slugify,
   findContentLinks,
-  loadContentLinks,
 } from '../services/content.js';
 import { renderEntityPage } from '../templates/article.mjs';
 
@@ -108,10 +106,10 @@ router.get('/api/kg-data', async (req, res) => {
 
     var countResult;
     try {
-      countResult = await session.run(
-        `MATCH (e:Entity) WHERE ${whereStr} RETURN count(e) AS cnt`,
-        { search: params.search, category: params.category }
-      );
+      countResult = await session.run(`MATCH (e:Entity) WHERE ${whereStr} RETURN count(e) AS cnt`, {
+        search: params.search,
+        category: params.category,
+      });
     } catch (countErr) {
       logger.warn('[kg-data] Count query failed, returning fallback:', countErr.message);
       await session.close();
@@ -332,20 +330,6 @@ router.get('/api/entity/:slug', function (req, res) {
   var catLabel = CATEGORY_LABELS[entity.category] || entity.category || 'Unbekannt';
   var displayName = entity.name.charAt(0).toUpperCase() + entity.name.slice(1).replace(/-/g, ' ');
   var isCurriculum = entity.category === 'lehrplan' || !!entity.curriculumMeta;
-
-  var metaHtml = '';
-  if (isCurriculum && entity.curriculumMeta) {
-    metaHtml +=
-      '<div class="meta-row"><span class="meta-label">Schulform</span><span class="meta-value">' +
-      escapeHtml(entity.curriculumMeta.school_type) +
-      '</span></div>' +
-      '<div class="meta-row"><span class="meta-label">Klasse</span><span class="meta-value">' +
-      escapeHtml(entity.curriculumMeta.grade) +
-      '</span></div>' +
-      '<div class="meta-row"><span class="meta-label">Lernziele</span><span class="meta-value">' +
-      entity.curriculumMeta.objective_count +
-      '</span></div>';
-  }
 
   res.json({
     name: entity.name,
@@ -703,7 +687,9 @@ router.get('/api/kg-stats', async (req, res) => {
       currCoverage.totalTopics = ccResult.records[0].get('topics').toNumber();
       var subResult = await session.run(`MATCH (st:SubTopic) RETURN count(st) AS cnt`);
       currCoverage.totalSubTopics = subResult.records[0].get('cnt').toNumber();
-      var objResult = await session.run(`MATCH (lo:LearningObjective) RETURN count(lo) AS objectives`);
+      var objResult = await session.run(
+        `MATCH (lo:LearningObjective) RETURN count(lo) AS objectives`
+      );
       currCoverage.totalObjectives = objResult.records[0].get('objectives').toNumber();
       var linkResult = await session.run(
         `MATCH (e:Entity)-[:COVERS_TOPIC]->(:SubTopic) RETURN count(DISTINCT e) AS linked`

@@ -128,7 +128,11 @@ export async function findContentLinks(topicName) {
   if (words.length > 0) {
     var primary = words[0];
     for (var topic2 in links) {
-      if (topic2 !== normName && topic2.indexOf(normName) === -1 && topic2.indexOf(primary) !== -1) {
+      if (
+        topic2 !== normName &&
+        topic2.indexOf(normName) === -1 &&
+        topic2.indexOf(primary) !== -1
+      ) {
         for (var li3 = 0; li3 < links[topic2].length; li3++) {
           var item3 = links[topic2][li3];
           var key3 = item3.url + '|' + item3.title;
@@ -218,7 +222,9 @@ export function loadLearningPathsJson() {
   try {
     if (fs.existsSync(fp)) {
       _cachedLearningPathsData = JSON.parse(fs.readFileSync(fp, 'utf-8'));
-      logger.info('[learning-paths] Loaded ' + _cachedLearningPathsData.length + ' state paths from JSON');
+      logger.info(
+        '[learning-paths] Loaded ' + _cachedLearningPathsData.length + ' state paths from JSON'
+      );
     } else {
       logger.warn('[learning-paths] learning-paths.json not found at ' + fp);
       _cachedLearningPathsData = [];

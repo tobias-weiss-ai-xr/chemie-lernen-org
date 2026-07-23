@@ -1,4 +1,4 @@
-(function() {
+(function () {
   const canvas = document.getElementById('simulation-canvas');
   const ctx = canvas.getContext('2d');
   let animationId = null;
@@ -10,10 +10,16 @@
   const materials = {
     copper: { name: 'Kupfer', conductivity: 400, color: '#b87333', particleCount: 150, speed: 8 },
     iron: { name: 'Eisen', conductivity: 80, color: '#9e3816', particleCount: 120, speed: 4 },
-    silicon: { name: 'Silizium', conductivity: 150, color: '#7af9c2', particleCount: 100, speed: 6 },
+    silicon: {
+      name: 'Silizium',
+      conductivity: 150,
+      color: '#7af9c2',
+      particleCount: 100,
+      speed: 6,
+    },
     glass: { name: 'Glas', conductivity: 1, color: '#90caf9', particleCount: 60, speed: 0.5 },
     wood: { name: 'Holz', conductivity: 0.15, color: '#8d6e63', particleCount: 40, speed: 0.2 },
-    air: { name: 'Luft', conductivity: 0.025, color: '#e1f5fe', particleCount: 20, speed: 0.1 }
+    air: { name: 'Luft', conductivity: 0.025, color: '#e1f5fe', particleCount: 20, speed: 0.1 },
   };
 
   let currentMaterial = 'copper';
@@ -35,10 +41,10 @@
       particles.push({
         x: x,
         y: y,
-        vx: (Math.random() - 0.5) * material.speed * animationSpeed / 100,
-        vy: (Math.random() - 0.5) * material.speed * animationSpeed / 100,
+        vx: ((Math.random() - 0.5) * material.speed * animationSpeed) / 100,
+        vy: ((Math.random() - 0.5) * material.speed * animationSpeed) / 100,
         radius: 5 + Math.random() * 5,
-        temperature: temperature
+        temperature: temperature,
       });
     }
   }
@@ -49,7 +55,7 @@
     drawHeatSource();
     drawColdSink();
 
-    particles.forEach(p => {
+    particles.forEach((p) => {
       drawParticle(p);
     });
 
@@ -120,7 +126,7 @@
   function drawGradient() {
     const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
 
-    particles.forEach(p => {
+    particles.forEach((p) => {
       if (p.temperature > 0 && p.temperature < 1) {
         gradient.addColorStop(p.x / canvas.width, getParticleColor(p.temperature));
       }
@@ -134,9 +140,9 @@
 
   function updateParticles() {
     const material = materials[currentMaterial];
-    const speedMultiplier = material.speed * animationSpeed / 100;
+    const speedMultiplier = (material.speed * animationSpeed) / 100;
 
-    particles.forEach(p => {
+    particles.forEach((p) => {
       p.x += p.vx * speedMultiplier;
       p.y += p.vy * speedMultiplier;
 
@@ -196,10 +202,10 @@
           const ny = dy / distance;
           const overlap = minDistance - distance;
 
-          p1.x -= nx * overlap / 2;
-          p1.y -= ny * overlap / 2;
-          p2.x += nx * overlap / 2;
-          p2.y += ny * overlap / 2;
+          p1.x -= (nx * overlap) / 2;
+          p1.y -= (ny * overlap) / 2;
+          p2.x += (nx * overlap) / 2;
+          p2.y += (ny * overlap) / 2;
 
           const dvx = p1.vx - p2.vx;
           const dvy = p1.vy - p2.vy;
@@ -208,10 +214,10 @@
           const restitution = 0.95;
 
           if (dvDotN > 0) {
-            p1.vx -= dvDotN * nx / 2 * restitution;
-            p1.vy -= dvDotN * ny / 2 * restitution;
-            p2.vx += dvDotN * nx / 2 * restitution;
-            p2.vy += dvDotN * ny / 2 * restitution;
+            p1.vx -= ((dvDotN * nx) / 2) * restitution;
+            p1.vy -= ((dvDotN * ny) / 2) * restitution;
+            p2.vx += ((dvDotN * nx) / 2) * restitution;
+            p2.vy += ((dvDotN * ny) / 2) * restitution;
           }
         }
       }
@@ -304,5 +310,4 @@
   window.changeMaterial = changeMaterial;
   window.updateTemperature = updateTemperature;
   window.updateSpeed = updateSpeed;
-
 })();

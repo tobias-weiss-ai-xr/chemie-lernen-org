@@ -55,10 +55,16 @@ async function run() {
   const newSes = newDrv.session({ database: DATABASE });
 
   const entityCount = await countNodes(oldSes, 'Entity');
-  const docCount   = await countNodes(oldSes, 'Document', `WHERE n.url STARTS WITH '${CHEMIE_URL_PREFIX}'`);
-  const tagCount   = await countNodes(oldSes, 'Tag');
+  const docCount = await countNodes(
+    oldSes,
+    'Document',
+    `WHERE n.url STARTS WITH '${CHEMIE_URL_PREFIX}'`
+  );
+  const tagCount = await countNodes(oldSes, 'Tag');
   const contentCount = await countNodes(oldSes, 'Content');
-  console.log(`[migrate] Source counts: ${entityCount} Entity, ${docCount} Document, ${tagCount} Tag, ${contentCount} Content`);
+  console.log(
+    `[migrate] Source counts: ${entityCount} Entity, ${docCount} Document, ${tagCount} Tag, ${contentCount} Content`
+  );
 
   if (!DRY_RUN && !process.env.SKIP_NODES) {
     console.log('[migrate] Migrating Entity nodes...');
@@ -88,13 +94,18 @@ async function run() {
 
   console.log('[migrate] Verifying target counts...');
   const newEntityCount = await countNodes(newSes, 'Entity');
-  const newDocCount    = await countNodes(newSes, 'Document');
-  const newTagCount    = await countNodes(newSes, 'Tag');
+  const newDocCount = await countNodes(newSes, 'Document');
+  const newTagCount = await countNodes(newSes, 'Tag');
   const newContentCount = await countNodes(newSes, 'Content');
-  console.log(`[migrate] Target counts: ${newEntityCount} Entity, ${newDocCount} Document, ${newTagCount} Tag, ${newContentCount} Content`);
+  console.log(
+    `[migrate] Target counts: ${newEntityCount} Entity, ${newDocCount} Document, ${newTagCount} Tag, ${newContentCount} Content`
+  );
 
-  const nodeMatch = entityCount === newEntityCount && tagCount === newTagCount && contentCount === newContentCount;
-  console.log(`[migrate] Matching: ${nodeMatch ? 'YES' : 'Entity/Tag/Content COUNTS DIFFER (docs filtered, expected)'}`);
+  const nodeMatch =
+    entityCount === newEntityCount && tagCount === newTagCount && contentCount === newContentCount;
+  console.log(
+    `[migrate] Matching: ${nodeMatch ? 'YES' : 'Entity/Tag/Content COUNTS DIFFER (docs filtered, expected)'}`
+  );
 
   await oldSes.close();
   await newSes.close();
@@ -136,11 +147,11 @@ async function migrateLabeledNodes(oldSes, newSes, label, mergeKey, batchSize) {
       const mergeCondition = `{${mergeKey}: $keyVal}`;
 
       // Merge node with all its labels
-      const labelsStr = labels.map(l => `\`${l}\``).join(':');
-      await newSes.run(
-        `MERGE (n:${labelsStr} ${mergeCondition}) SET n = $props`,
-        { keyVal, props: cleanProps }
-      );
+      const labelsStr = labels.map((l) => `\`${l}\``).join(':');
+      await newSes.run(`MERGE (n:${labelsStr} ${mergeCondition}) SET n = $props`, {
+        keyVal,
+        props: cleanProps,
+      });
     }
 
     const done = Math.min(offset + batchSize, total);
@@ -149,7 +160,11 @@ async function migrateLabeledNodes(oldSes, newSes, label, mergeKey, batchSize) {
 }
 
 async function migrateDocuments(oldSes, newSes, batchSize) {
-  const total = await countNodes(oldSes, 'Document', `WHERE n.url STARTS WITH '${CHEMIE_URL_PREFIX}'`);
+  const total = await countNodes(
+    oldSes,
+    'Document',
+    `WHERE n.url STARTS WITH '${CHEMIE_URL_PREFIX}'`
+  );
   console.log(`  Found ${total} chemie Document nodes`);
 
   for (let offset = 0; offset < total; offset += batchSize) {
@@ -166,11 +181,11 @@ async function migrateDocuments(oldSes, newSes, batchSize) {
         cleanProps[k] = v;
       }
 
-      const labelsStr = labels.map(l => `\`${l}\``).join(':');
-      await newSes.run(
-        `MERGE (n:${labelsStr} {url: $url}) SET n = $props`,
-        { url: cleanProps.url, props: cleanProps }
-      );
+      const labelsStr = labels.map((l) => `\`${l}\``).join(':');
+      await newSes.run(`MERGE (n:${labelsStr} {url: $url}) SET n = $props`, {
+        url: cleanProps.url,
+        props: cleanProps,
+      });
     }
 
     const done = Math.min(offset + batchSize, total);
@@ -183,7 +198,7 @@ async function migrateEntityRelationships(oldSes, newSes, batchSize) {
   const typeResult = await oldSes.run(
     `MATCH (a:Entity)-[r]-(b:Entity) RETURN DISTINCT type(r) AS t ORDER BY t`
   );
-  const relTypes = typeResult.records.map(r => r.get('t'));
+  const relTypes = typeResult.records.map((r) => r.get('t'));
   console.log(`  Found ${relTypes.length} relationship types: ${relTypes.join(', ')}`);
 
   for (const relType of relTypes) {
@@ -203,9 +218,10 @@ async function migrateEntityRelationships(oldSes, newSes, batchSize) {
       const batchData = result.records.map((rec) => ({
         src: rec.get('srcName'),
         tgt: rec.get('tgtName'),
-        props: Object.keys(rec.get('rprops') || {}).length > 0
-          ? Object.fromEntries(Object.entries(rec.get('rprops')).map(([k, v]) => [k, v]))
-          : null,
+        props:
+          Object.keys(rec.get('rprops') || {}).length > 0
+            ? Object.fromEntries(Object.entries(rec.get('rprops')).map(([k, v]) => [k, v]))
+            : null,
       }));
 
       if (batchData.length > 0) {
@@ -245,9 +261,10 @@ async function migrateMentions(oldSes, newSes, batchSize) {
     const batchData = result.records.map((rec) => ({
       doc: rec.get('docUrl'),
       ent: rec.get('entityName'),
-      props: Object.keys(rec.get('rprops') || {}).length > 0
-        ? Object.fromEntries(Object.entries(rec.get('rprops')).map(([k, v]) => [k, v]))
-        : null,
+      props:
+        Object.keys(rec.get('rprops') || {}).length > 0
+          ? Object.fromEntries(Object.entries(rec.get('rprops')).map(([k, v]) => [k, v]))
+          : null,
     }));
 
     if (batchData.length > 0) {
@@ -286,9 +303,10 @@ async function migrateHasTag(oldSes, newSes, batchSize) {
     const batchData = result.records.map((rec) => ({
       tag: rec.get('tagName'),
       doc: rec.get('docUrl'),
-      props: Object.keys(rec.get('rprops') || {}).length > 0
-        ? Object.fromEntries(Object.entries(rec.get('rprops')).map(([k, v]) => [k, v]))
-        : null,
+      props:
+        Object.keys(rec.get('rprops') || {}).length > 0
+          ? Object.fromEntries(Object.entries(rec.get('rprops')).map(([k, v]) => [k, v]))
+          : null,
     }));
 
     if (batchData.length > 0) {

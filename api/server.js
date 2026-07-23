@@ -4,30 +4,29 @@
  * Modularized: routes imported from routes/, services from services/.
  */
 import express from 'express';
-import crypto from 'crypto';
 import cookieParser from 'cookie-parser';
-import neo4j from 'neo4j-driver';
-import fs from 'fs';
-import path from 'path';
-import ragHelpers from './_rag-helpers.cjs';
-import { subsetWhere, excludeCodeEntities } from './scripts/_neo4j-subset-filter.mjs';
-import authRouter, { authMiddleware, requireAuth, requirePremium, handleStripeWebhook } from './auth.js';
-import { getUserById, getConversationMemory, addConversationMemory, updateFsrsCard, getDueCards, getGamification, awardXp, recordCheckin, checkBadgeUnlock, getBadgeStatus, calculateLevel } from './auth-db.js';
-import * as exerciseEngine from './exercise-engine.js';
-import * as learningEngine from './learning-engine.js';
-import * as collabEngine from './collab-engine.js';
+import authRouter, { authMiddleware, handleStripeWebhook } from './auth.js';
+import { getConversationMemory, addConversationMemory } from './auth-db.js';
 import promBundle from 'express-prom-bundle';
 import * as Sentry from '@sentry/node';
 import pino from 'pino';
 import rateLimit from 'express-rate-limit';
-import PDFDocument from 'pdfkit';
 
 // ── Services ──────────────────────────────────────────────────
-import { getNeo4jDriver, closeNeo4jDriver, NEO4J_DATABASE } from './services/neo4j.js';
-import { getSessionId, getSession, cleanupSessionMessages, checkRateLimit, sessionStore } from './services/session.js';
-import { getRAGContext, extractEntities, loadChatEntities, buildSystemPrompt, extractSourceNames } from './services/rag.js';
-import { getCachedKgData, setCachedKgData, parseKGParams, filterEntities, getKgDataCacheKey, loadCurriculaFromStaticFiles } from './services/kg-cache.js';
-import { getFallbackData, findEntityBySlug, escapeHtml, slugify, findContentLinks, loadContentLinks, loadArticleIndex, loadLearningPathsJson } from './services/content.js';
+import { closeNeo4jDriver } from './services/neo4j.js';
+import {
+  getSessionId,
+  getSession,
+  cleanupSessionMessages,
+  checkRateLimit,
+} from './services/session.js';
+import {
+  getRAGContext,
+  extractEntities,
+  loadChatEntities,
+  buildSystemPrompt,
+  extractSourceNames,
+} from './services/rag.js';
 
 // ── Route modules ──────────────────────────────────────────────
 import chatRouter from './routes/chat.js';
@@ -54,23 +53,28 @@ const PORT = process.env.PORT || 3001;
 const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
 const LITELLM_MODEL = process.env.LITELLM_MODEL || 'gemma-4';
 const LITELLM_MODEL_PREMIUM = process.env.LITELLM_MODEL_PREMIUM || 'gpt-4o-mini';
-const RATE_LIMIT = parseInt(process.env.RATE_LIMIT, 10) || 50;
 const ADMIN_API_KEY = process.env.ADMIN_API_KEY || '';
 
 // ── express-rate-limit tiers ──────────────────────────────────
 const strictLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, max: 5,
-  standardHeaders: true, legacyHeaders: false,
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  standardHeaders: true,
+  legacyHeaders: false,
   message: { error: 'Zu viele Anmeldeversuche. Bitte warten Sie 15 Minuten.' },
 });
 const defaultLimiter = rateLimit({
-  windowMs: 60 * 1000, max: 30,
-  standardHeaders: true, legacyHeaders: false,
+  windowMs: 60 * 1000,
+  max: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
   message: { error: 'Zu viele Anfragen. Bitte langsamer machen.' },
 });
 const generousLimiter = rateLimit({
-  windowMs: 60 * 1000, max: 100,
-  standardHeaders: true, legacyHeaders: false,
+  windowMs: 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
   message: { error: 'Rate limit erreicht. Bei Bedarf upgraden.' },
 });
 
@@ -78,14 +82,20 @@ const generousLimiter = rateLimit({
 const app = express();
 
 // Stripe webhook MUST be before express.json() — needs raw body for signature verification
-app.post('/api/auth/stripe-webhook', express.raw({ type: 'application/json' }), handleStripeWebhook);
+app.post(
+  '/api/auth/stripe-webhook',
+  express.raw({ type: 'application/json' }),
+  handleStripeWebhook
+);
 
 app.use(express.json({ limit: '100kb' }));
 app.use(cookieParser());
 
 // Prometheus metrics
 const promMid = promBundle({
-  includeMethod: true, includePath: true, includeStatusCode: true,
+  includeMethod: true,
+  includePath: true,
+  includeStatusCode: true,
   promClient: { collectDefaultMetrics: { timeout: 5000 } },
   customLabels: { app: 'chemie-chat-api' },
   metricsApp: app,
@@ -136,17 +146,17 @@ app.use('/api/admin', (req, res, next) => {
 });
 
 // ── Mount route modules ───────────────────────────────────────
-app.use(chatRouter);       // chat history, session, hint, feedback, curricula/compare, admin/chat-logs
-app.use(kgDataRouter);     // kg-data, kg-stats, entities, rag-context, elements, health
-app.use(curriculaRouter);  // curricula/* endpoints
-app.use(contentRouter);    // content list, cross-link-stats, article
-app.use(didaktikRouter);   // didaktik guidelines & teaching tips
+app.use(chatRouter); // chat history, session, hint, feedback, curricula/compare, admin/chat-logs
+app.use(kgDataRouter); // kg-data, kg-stats, entities, rag-context, elements, health
+app.use(curriculaRouter); // curricula/* endpoints
+app.use(contentRouter); // content list, cross-link-stats, article
+app.use(didaktikRouter); // didaktik guidelines & teaching tips
 app.use(modulhandbuchRouter); // modulhandbuch, studienvergleich
-app.use(quizRouter);       // quizzes, quiz-results, fsrs
-app.use(exercisesRouter);  // exercise generation & answering
+app.use(quizRouter); // quizzes, quiz-results, fsrs
+app.use(exercisesRouter); // exercise generation & answering
 app.use(learningPathsRouter); // learning paths & certificates
-app.use(gamificationRouter);  // check-in, xp, achievements, badges, profile
-app.use(collabRouter);     // collaboration sessions
+app.use(gamificationRouter); // check-in, xp, achievements, badges, profile
+app.use(collabRouter); // collaboration sessions
 
 // ── POST /api/chat (kept inline — tightly coupled with RAG + session) ──
 app.post('/api/chat', async (req, res) => {
@@ -192,17 +202,29 @@ app.post('/api/chat', async (req, res) => {
     });
 
     // Confusion detection
-    var userMessages = session.messages.filter(function (m) { return m.role === 'user'; });
-    var msgWords = message.toLowerCase().replace(/[.,!?;:]/g, '').split(/\s+/).filter(function (w) { return w.length > 3; });
+    var userMessages = session.messages.filter(function (m) {
+      return m.role === 'user';
+    });
+    var msgWords = message
+      .toLowerCase()
+      .replace(/[.,!?;:]/g, '')
+      .split(/\s+/)
+      .filter(function (w) {
+        return w.length > 3;
+      });
     for (var ci = 0; ci < userMessages.length; ci++) {
-      var prev = userMessages[ci].content.toLowerCase().replace(/[.,!?;:]/g, '').split(/\s+/);
+      var prev = userMessages[ci].content
+        .toLowerCase()
+        .replace(/[.,!?;:]/g, '')
+        .split(/\s+/);
       var overlap = 0;
       for (var wi = 0; wi < msgWords.length; wi++) {
         if (prev.indexOf(msgWords[wi]) !== -1) overlap++;
       }
       var similarity = msgWords.length > 0 ? overlap / msgWords.length : 0;
       if (similarity > 0.7) {
-        systemPrompt += ' Hinweis: Der Schüler hat eine ähnliche Frage bereits gestellt. Wiederhole die Erklärung mit anderen Worten und frag, ob es diesmal klarer ist.';
+        systemPrompt +=
+          ' Hinweis: Der Schüler hat eine ähnliche Frage bereits gestellt. Wiederhole die Erklärung mit anderen Worten und frag, ob es diesmal klarer ist.';
         break;
       }
     }
@@ -210,11 +232,19 @@ app.post('/api/chat', async (req, res) => {
     const conversationHistory = [{ role: 'system', content: systemPrompt }, ...session.messages];
     const model = req.user?.tier === 'premium' ? LITELLM_MODEL_PREMIUM : LITELLM_MODEL;
 
+    var firstUserMsg = null,
+      topicSummary = null;
+
     if (!acceptStreaming) {
       const llmRes = await fetch(`${LITELLM_URL}/v1/chat/completions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model, messages: conversationHistory, max_tokens: 2048, temperature: 0.5 }),
+        body: JSON.stringify({
+          model,
+          messages: conversationHistory,
+          max_tokens: 2048,
+          temperature: 0.5,
+        }),
       });
       if (!llmRes.ok) {
         const errText = await llmRes.text();
@@ -223,18 +253,32 @@ app.post('/api/chat', async (req, res) => {
       }
       const data = await llmRes.json();
       var reply = data.choices?.[0]?.message?.content || 'Keine Antwort erhalten.';
-      var userCount = session.messages.filter(function (m) { return m.role === 'user'; }).length;
+      var userCount = session.messages.filter(function (m) {
+        return m.role === 'user';
+      }).length;
       if (userCount >= 3) reply += '\n\n---\n_War diese Antwort hilfreich? (Daumen hoch / runter)_';
       session.messages.push({ role: 'assistant', content: reply });
       cleanupSessionMessages(session);
 
-      var firstUserMsg = null, topicSummary = null;
       if (req.user?.id && session.messages.length > 0) {
-        firstUserMsg = session.messages.find(function (m) { return m.role === 'user'; });
+        firstUserMsg = session.messages.find(function (m) {
+          return m.role === 'user';
+        });
         topicSummary = firstUserMsg ? firstUserMsg.content.slice(0, 120) : message.slice(0, 120);
-        addConversationMemory(req.user.id, { sessionId, topicSummary, messageCount: session.messages.length });
+        addConversationMemory(req.user.id, {
+          sessionId,
+          topicSummary,
+          messageCount: session.messages.length,
+        });
       }
-      res.json({ reply, sources: ragSources, remaining: rate.remaining, sessionId, messageCount: session.messages.length, entities: matchedEntities.length > 0 ? matchedEntities : undefined });
+      res.json({
+        reply,
+        sources: ragSources,
+        remaining: rate.remaining,
+        sessionId,
+        messageCount: session.messages.length,
+        entities: matchedEntities.length > 0 ? matchedEntities : undefined,
+      });
       return;
     }
 
@@ -249,7 +293,13 @@ app.post('/api/chat', async (req, res) => {
       const llmRes = await fetch(`${LITELLM_URL}/v1/chat/completions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model, messages: conversationHistory, max_tokens: 2048, temperature: 0.5, stream: true }),
+        body: JSON.stringify({
+          model,
+          messages: conversationHistory,
+          max_tokens: 2048,
+          temperature: 0.5,
+          stream: true,
+        }),
       });
       if (!llmRes.ok) {
         const errText = await llmRes.text();
@@ -273,26 +323,53 @@ app.post('/api/chat', async (req, res) => {
               buffer.push(delta);
               res.write(`data: ${JSON.stringify({ content: delta })}\n\n`);
             }
-          } catch { /* skip parse errors */ }
+          } catch {
+            /* skip parse errors */
+          }
         }
       }
-      res.write(`data: ${JSON.stringify({
-        done: true, sources: ragSources, remaining: rate.remaining,
-        sessionId, messageCount: session.messages.length + 1,
-        entities: matchedEntities.length > 0 ? matchedEntities : undefined,
-      })}\n\n`);
+      res.write(
+        `data: ${JSON.stringify({
+          done: true,
+          sources: ragSources,
+          remaining: rate.remaining,
+          sessionId,
+          messageCount: session.messages.length + 1,
+          entities: matchedEntities.length > 0 ? matchedEntities : undefined,
+        })}\n\n`
+      );
     } catch (streamErr) {
       logger.error(`[chat-api] Stream failed, falling back: ${streamErr.message}`);
-      while (buffer.length > 0) { const chunk = buffer.shift(); if (chunk) replyContent += chunk; }
-      res.write(`data: ${JSON.stringify({
-        content: replyContent, fallback: true, done: true, sources: ragSources,
-        remaining: rate.remaining, sessionId, messageCount: session.messages.length + 1,
-        entities: matchedEntities.length > 0 ? matchedEntities : undefined,
-      })}\n\n`);
+      while (buffer.length > 0) {
+        const chunk = buffer.shift();
+        if (chunk) replyContent += chunk;
+      }
+      res.write(
+        `data: ${JSON.stringify({
+          content: replyContent,
+          fallback: true,
+          done: true,
+          sources: ragSources,
+          remaining: rate.remaining,
+          sessionId,
+          messageCount: session.messages.length + 1,
+          entities: matchedEntities.length > 0 ? matchedEntities : undefined,
+        })}\n\n`
+      );
     } finally {
-      var userCountA = session.messages.filter(function (m) { return m.role === 'user'; }).length;
+      var userCountA = session.messages.filter(function (m) {
+        return m.role === 'user';
+      }).length;
       if (userCountA >= 3) {
-        try { res.write('data: ' + JSON.stringify({ prompt: '_War diese Antwort hilfreich? (Daumen hoch / runter)_' }) + '\n\n'); } catch { void 0; }
+        try {
+          res.write(
+            'data: ' +
+              JSON.stringify({ prompt: '_War diese Antwort hilfreich? (Daumen hoch / runter)_' }) +
+              '\n\n'
+          );
+        } catch {
+          void 0;
+        }
       }
       res.end();
     }
@@ -300,20 +377,30 @@ app.post('/api/chat', async (req, res) => {
     session.messages.push({ role: 'assistant', content: replyContent });
     cleanupSessionMessages(session);
     if (req.user?.id && session.messages.length > 0) {
-      firstUserMsg = session.messages.find(function (m) { return m.role === 'user'; });
-      topicSummary = firstUserMsg ? firstUserMsg.content.slice(0, 120) : (req.body?.message || '').slice(0, 120);
-      addConversationMemory(req.user.id, { sessionId, topicSummary, messageCount: session.messages.length });
+      firstUserMsg = session.messages.find(function (m) {
+        return m.role === 'user';
+      });
+      topicSummary = firstUserMsg
+        ? firstUserMsg.content.slice(0, 120)
+        : (req.body?.message || '').slice(0, 120);
+      addConversationMemory(req.user.id, {
+        sessionId,
+        topicSummary,
+        messageCount: session.messages.length,
+      });
     }
   } catch (err) {
     logger.error(`[chat-api] Error: ${err.message}`);
-    if (!res.headersSent && !res.writableEnded) res.status(502).json({ error: 'Service unavailable' });
+    if (!res.headersSent && !res.writableEnded)
+      res.status(502).json({ error: 'Service unavailable' });
   }
 });
 
 // ── Global Error Handler ──────────────────────────────────────
 app.use((err, req, res, next) => {
   logger.error(`[api] Unhandled error: ${err.message}`, {
-    method: req.method, url: req.originalUrl || req.url,
+    method: req.method,
+    url: req.originalUrl || req.url,
     stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
   });
   if (res.headersSent) return next(err);
