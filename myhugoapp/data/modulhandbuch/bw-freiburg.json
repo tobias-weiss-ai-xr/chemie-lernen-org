@@ -1,0 +1,103 @@
+{
+  "university": "Albert-Ludwigs-Universität Freiburg",
+  "state": "BW",
+  "modules": [
+    {
+      "id": "FR-AC1",
+      "name": "Allgemeine und Anorganische Chemie",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Winter",
+      "description": "Atommodelle, Periodensystem, chemische Bindung, Grundlagen der Komplexchemie",
+      "topics": ["Atombau", "Periodensystem", "Chemische Bindung", "Anorganische Chemie"],
+      "url": ""
+    },
+    {
+      "id": "FR-AC2",
+      "name": "Anorganische Chemie: Haupt- und Nebengruppen",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Winter",
+      "description": "Systematik der Haupt- und Nebengruppenelemente, Komplexe, Katalyse",
+      "topics": ["Anorganische Chemie", "Komplexchemie", "Katalyse"],
+      "url": ""
+    },
+    {
+      "id": "FR-OC1",
+      "name": "Organische Chemie I",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Müller",
+      "description": "Grundlagen der organischen Chemie, Alkane, Alkene, Alkine, Aromaten, Reaktionsmechanismen",
+      "topics": ["Organische Chemie", "Reaktionsmechanismen", "Nomenklatur"],
+      "url": ""
+    },
+    {
+      "id": "FR-OC2",
+      "name": "Organische Chemie II",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Müller",
+      "description": "Carbonylchemie, Heterocyclen, Naturstoffe, Spektroskopische Strukturaufklärung",
+      "topics": ["Organische Chemie", "Spektroskopie"],
+      "url": ""
+    },
+    {
+      "id": "FR-PC1",
+      "name": "Physikalische Chemie I",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Braun",
+      "description": "Chemische Thermodynamik, Zustandsgleichungen, Hauptsätze, Kinetik",
+      "topics": ["Physikalische Chemie", "Thermodynamik", "Kinetik"],
+      "url": ""
+    },
+    {
+      "id": "FR-PC2",
+      "name": "Physikalische Chemie II",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Braun",
+      "description": "Quantenmechanik, Spektroskopie, Statistische Thermodynamik",
+      "topics": ["Physikalische Chemie", "Quantenchemie", "Spektroskopie"],
+      "url": ""
+    },
+    {
+      "id": "FR-AK",
+      "name": "Analytische Chemie",
+      "type": "Vorlesung",
+      "credits": 5,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Roth",
+      "description": "Qualitative und quantitative Methoden, Instrumentelle Analytik, Spektroskopie",
+      "topics": ["Analytische Chemie", "Spektroskopie"],
+      "url": ""
+    },
+    {
+      "id": "FR-DID",
+      "name": "Didaktik der Chemie",
+      "type": "Seminar",
+      "credits": 4,
+      "semester": "WS/SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Sommer",
+      "description": "Planung, Durchführung und Analyse von Chemieunterricht, Experimente, Schülervorstellungen",
+      "topics": [],
+      "url": ""
+    }
+  ],
+  "scrapedAt": "2026-07-23T17:32:13.193Z"
+}

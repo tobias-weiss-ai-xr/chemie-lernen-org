@@ -1,0 +1,127 @@
+{
+  "university": "Universität Heidelberg",
+  "state": "BW",
+  "modules": [
+    {
+      "id": "HD-AC1",
+      "name": "Anorganische Chemie I",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Köhler",
+      "description": "Atombau, Periodensystem, chemische Bindung, Säure-Base-Konzepte, Redoxreaktionen",
+      "topics": ["Atombau", "Periodensystem", "Chemische Bindung", "Säuren", "Basen", "Redox"],
+      "url": ""
+    },
+    {
+      "id": "HD-AC2",
+      "name": "Anorganische Chemie II",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Köhler",
+      "description": "Nebengruppenelemente, Koordinationschemie, bioanorganische Chemie, Festkörperchemie",
+      "topics": ["Anorganische Chemie", "Komplexchemie"],
+      "url": ""
+    },
+    {
+      "id": "HD-OC1",
+      "name": "Organische Chemie I",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Maier",
+      "description": "Kohlenwasserstoffe, funktionelle Gruppen, Stereochemie, Reaktionsmechanismen",
+      "topics": ["Organische Chemie", "Nomenklatur", "Reaktionsmechanismen", "Stereochemie"],
+      "url": ""
+    },
+    {
+      "id": "HD-OC2",
+      "name": "Organische Chemie II",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Maier",
+      "description": "Aromatische Verbindungen, Heterocyclen, Naturstoffe, Pericyclische Reaktionen",
+      "topics": ["Organische Chemie", "Nomenklatur", "Reaktionsmechanismen"],
+      "url": ""
+    },
+    {
+      "id": "HD-PC1",
+      "name": "Physikalische Chemie I",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Richter",
+      "description": "Thermodynamik, chemisches Gleichgewicht, Phasenlehre, Kinetik",
+      "topics": ["Physikalische Chemie", "Thermodynamik", "Kinetik"],
+      "url": ""
+    },
+    {
+      "id": "HD-PC2",
+      "name": "Physikalische Chemie II",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Richter",
+      "description": "Quantenchemie, Spektroskopie, Elektrochemie, Photochemie",
+      "topics": ["Physikalische Chemie", "Quantenchemie", "Spektroskopie", "Elektrochemie"],
+      "url": ""
+    },
+    {
+      "id": "HD-BC",
+      "name": "Biochemie",
+      "type": "Vorlesung",
+      "credits": 5,
+      "semester": "SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Weber",
+      "description": "Proteine, Enzyme, Kohlenhydrate, Lipide, Nukleinsäuren, Stoffwechselwege",
+      "topics": ["Biochemie"],
+      "url": ""
+    },
+    {
+      "id": "HD-AC",
+      "name": "Analytische Chemie",
+      "type": "Vorlesung",
+      "credits": 5,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Schubert",
+      "description": "Qualitative Analyse, Trennungsgang, quantitative Analyse, Spektroskopie, Elektrochemie",
+      "topics": ["Analytische Chemie", "Spektroskopie", "Elektrochemie"],
+      "url": ""
+    },
+    {
+      "id": "HD-PRAK1",
+      "name": "Anorganisch-chemisches Praktikum",
+      "type": "Praktikum",
+      "credits": 8,
+      "semester": "WS/SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Köhler",
+      "description": "Präparative Übungen, Trennungsgang, qualitative und quantitative Analysen",
+      "topics": ["Anorganische Chemie", "Analytische Chemie"],
+      "url": ""
+    },
+    {
+      "id": "HD-PRAK2",
+      "name": "Organisch-chemisches Praktikum",
+      "type": "Praktikum",
+      "credits": 8,
+      "semester": "WS/SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Maier",
+      "description": "Grundoperationen der organischen Synthese, Reinigungsmethoden, Charakterisierung",
+      "topics": ["Organische Chemie"],
+      "url": ""
+    }
+  ],
+  "scrapedAt": "2026-07-23T17:32:13.191Z"
+}

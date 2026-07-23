@@ -1,0 +1,111 @@
+{
+  "university": "Universität Münster",
+  "state": "NW",
+  "modules": [
+    {
+      "id": "CHEM-AC-01",
+      "name": "Anorganische Chemie I",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Rösener",
+      "description": "Grundlagen der Anorganischen Chemie: Atombau, chemische Bindung, Periodensystem, Stöchiometrie, Säure-Base-Konzepte, Redoxchemie",
+      "topics": [
+        "Atombau",
+        "Periodensystem",
+        "Chemische Bindung",
+        "Anorganische Chemie",
+        "Säuren",
+        "Basen",
+        "Redox"
+      ],
+      "url": "https://www.uni-muenster.de/Chemie/studium/modulhandbuch/"
+    },
+    {
+      "id": "CHEM-AC-02",
+      "name": "Anorganische Chemie II",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Rösener",
+      "description": "Haupt- und Nebengruppenchemie, Komplex- und Koordinationschemie, Festkörperchemie, bioanorganische Aspekte",
+      "topics": ["Anorganische Chemie", "Komplexchemie"],
+      "url": "https://www.uni-muenster.de/Chemie/studium/modulhandbuch/"
+    },
+    {
+      "id": "CHEM-OC-01",
+      "name": "Organische Chemie I",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Griesbeck",
+      "description": "Nomenklatur, Struktur und Bindung, Alkane, Alkene, Alkine, Aromaten, Stereochemie, grundlegende Reaktionsmechanismen, funktionelle Gruppen",
+      "topics": ["Organische Chemie", "Nomenklatur", "Reaktionsmechanismen", "Stereochemie"],
+      "url": "https://www.uni-muenster.de/Chemie/studium/modulhandbuch/"
+    },
+    {
+      "id": "CHEM-OC-02",
+      "name": "Organische Chemie II",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Griesbeck",
+      "description": "Carbonylchemie, Heterocyclen, Naturstoffchemie, pericyclische Reaktionen, spektroskopische Methoden zur Strukturaufklärung",
+      "topics": ["Organische Chemie", "Reaktionsmechanismen", "Spektroskopie"],
+      "url": "https://www.uni-muenster.de/Chemie/studium/modulhandbuch/"
+    },
+    {
+      "id": "CHEM-PC-01",
+      "name": "Physikalische Chemie I",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Studer",
+      "description": "Thermodynamik, chemisches Gleichgewicht, Phasenlehre, Reaktionskinetik, Transporterscheinungen",
+      "topics": ["Physikalische Chemie", "Thermodynamik", "Kinetik"],
+      "url": "https://www.uni-muenster.de/Chemie/studium/modulhandbuch/"
+    },
+    {
+      "id": "CHEM-PC-02",
+      "name": "Physikalische Chemie II",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Studer",
+      "description": "Quantenchemie, Molekülspektroskopie, Elektrochemie, Photochemie, statistische Thermodynamik",
+      "topics": ["Physikalische Chemie", "Quantenchemie", "Spektroskopie", "Elektrochemie"],
+      "url": "https://www.uni-muenster.de/Chemie/studium/modulhandbuch/"
+    },
+    {
+      "id": "CHEM-BC-01",
+      "name": "Biochemie",
+      "type": "Vorlesung",
+      "credits": 5,
+      "semester": "SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Leichert",
+      "description": "Struktur und Funktion von Biomolekülen, Enzymkinetik, Membranen, Stoffwechselwege, molekulare Genetik, Grundlagen der Gentechnik",
+      "topics": ["Biochemie"],
+      "url": "https://www.uni-muenster.de/Chemie/studium/modulhandbuch/"
+    },
+    {
+      "id": "CHEM-DID-01",
+      "name": "Fachdidaktik Chemie",
+      "type": "Seminar",
+      "credits": 4,
+      "semester": "WS/SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Lück",
+      "description": "Planung und Analyse von Chemieunterricht, Demonstrationsexperimente, Schülerübungen, Didaktische Modelle, Medien im Chemieunterricht, fächerübergreifende Ansätze",
+      "topics": [],
+      "url": "https://www.uni-muenster.de/Chemie/studium/modulhandbuch/"
+    }
+  ],
+  "scrapedAt": "2026-07-23T17:31:31.285Z"
+}

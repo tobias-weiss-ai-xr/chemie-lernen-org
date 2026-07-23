@@ -34,6 +34,8 @@
     "export:kg-data": "node scripts/export-kg-data.mjs",
     "generate:entities": "node scripts/generate-entity-pages.mjs",
     "validate:curricula": "node scripts/validate-curricula.mjs",
+    "scrape:modulhandbuch": "node scripts/modulhandbuch/_run-all.mjs",
+    "import:modulhandbuch": "node scripts/import-modulhandbuch.mjs",
     "prebuild": "(node scripts/export-kg-data.mjs || echo '[build] Neo4j export skipped (non-fatal)') && node scripts/generate-entity-pages.mjs && (node scripts/build-search-index.mjs || echo '[build] Search index skipped (kg_data empty)')",
     "build": "docker run --rm -v \"$(pwd)/myhugoapp:/src\" -w /src hugomods/hugo:exts hugo --baseURL https://chemie-lernen.org && npx pagefind --site myhugoapp/public",
     "dev": "echo 'Starting API and Hugo dev server... Ensure docker compose is running for the API.' && (hugo server -D --source myhugoapp --disableFastRender &) && sleep 2 && echo 'Hugo dev server started on http://localhost:1313' && wait",
