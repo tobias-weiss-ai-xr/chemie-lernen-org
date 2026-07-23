@@ -646,6 +646,7 @@
     if (!dateStr) return '';
     try {
       var d = new Date(dateStr);
+      if (isNaN(d.getTime())) return dateStr;
       return d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
     } catch (_e) {
       return dateStr;

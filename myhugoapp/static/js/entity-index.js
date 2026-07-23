@@ -33,7 +33,7 @@
     if (name.indexOf('titration') >= 0) return true;
     if (e.relatedEntities) {
       for (var i = 0; i < e.relatedEntities.length; i++) {
-        var r = e.relatedEntities[i].name || '';
+        var r = (e.relatedEntities[i].name || '').toLowerCase();
         if (r.indexOf('molekül') >= 0 || r.indexOf('molekuel') >= 0) return true;
         if (r.indexOf('periodensystem') >= 0 || r.indexOf('periode') >= 0) return true;
         if (r.indexOf('titration') >= 0) return true;

@@ -46,6 +46,13 @@ Last updated: 2026-07-18
 | sprint-28-neo4j-schema-reconciliation   | 13/13 tasks ✓      | Shipped 2026-07-18 (curriculum schema, entity linking)      |
 | sprint-29-curriculum-quality-gaps       | 11/11 tasks ✓      | Shipped 2026-07-18 (didaktik endpoint, klassenstufen, CI)   |
 | sprint-30-wissensnetz-ux-learning-paths | 18/18 tasks ✓      | Shipped 2026-07-18 (D3 edge colors, chat entities, filters) |
+| sprint-19-observability                 | 12/12 tasks ✓      | Archived 2026-07-22 (grafana, prometheus, loki)             |
+| sprint-20-production-hardening          | 14/14 tasks ✓      | Archived 2026-07-22 (error boundaries, input validation)    |
+| sprint-21-ki-personalization            | 10/10 tasks ✓      | Archived 2026-07-22 (learning profile, memory)              |
+| sprint-22-quiz-exercise-ecosystem       | 16/16 tasks ✓      | Archived 2026-07-22 (fsrs, quiz history, hints)             |
+| sprint-23-learning-paths-gamification   | 15/15 tasks ✓      | Archived 2026-07-22 (learning paths, badges, XP)            |
+| sprint-24-3d-visualizations             | 13/13 tasks ✓      | Archived 2026-07-22 (molekül studio, PSE in VR)             |
+| sprint-25-docs-mobile-polish            | 12/12 tasks ✓      | Archived 2026-07-22 (documentation, mobile responsive)      |
 | sprint-31-cleanup-archive               | 12/12 tasks ✓      | Archived 2026-07-21 (code-entity filter, .env.example)      |
 | sprint-32-content-data                  | 11/11 tasks ✓      | Archived 2026-07-21 (curricula repair, cross-link audit)    |
 
