@@ -49,6 +49,54 @@ async function loadJson(filepath) {
   const raw = await fs.readFile(filepath, 'utf-8');
   return JSON.parse(raw);
 }
+/**
+ * Detects new Sprint-35 scraper format and normalizes to old format.
+ * New: { university: "LMU München", state: "BY", modules: [{id, name, credits, ...}] }
+ * Old: { university: {name, short_code, country, city, website}, modules: [{module_code, ...}] }
+ */
+function normalizeModuleData(catalog, filename) {
+  if (!catalog || (typeof catalog.university === 'object' && catalog.university.short_code)) {
+    return catalog;
+  }
+  const uniName = typeof catalog.university === 'string'
+    ? catalog.university
+    : (catalog.university?.name || path.basename(filename, '.json'));
+  const shortCode = uniName
+    .replace(/Universität\s+/gi, '')
+    .replace(/University\s+/gi, '')
+    .replace(/\(.*\)/, '')
+    .replace(/\s+/g, '_')
+    .substring(0, 20)
+    .toLowerCase();
+  const normalized = {
+    university: { name: uniName, short_code: shortCode, country: 'DE', city: '', website: '' },
+    modules: (catalog.modules || []).map((mod) => ({
+      module_code: mod.id || mod.module_code || '',
+      module_name: mod.name || mod.module_name || '',
+      ects: mod.credits || mod.ects || 0,
+      level: mod.type === 'Vorlesung' ? 'BSc' : (mod.level || 'BSc'),
+      degree: mod.degree || '',
+      url: mod.url || '',
+      language: 'de',
+      learning_outcomes: [],
+      content: mod.topics || [],
+      examination: '',
+      offerings: mod.semester ? [{ semester: mod.semester, year: '' }] : [],
+    })),
+    degrees: [],
+    lecturers: [],
+  };
+  const lecturerSet = new Set();
+  for (const mod of catalog.modules || []) {
+    if (mod.lecturer && !lecturerSet.has(mod.lecturer)) {
+      lecturerSet.add(mod.lecturer);
+      normalized.lecturers.push({ name: mod.lecturer, title: '', email: '', orcid: '' });
+    }
+  }
+  return normalized;
+}
+
+
 
 async function importCatalog(driver, catalog, dryRun) {
   let count = { universities: 0, modules: 0, offerings: 0, lecturers: 0, degrees: 0, ects: 0 };
@@ -207,7 +255,8 @@ async function main() {
     console.log('DRY-RUN: not connecting to Neo4j');
     for (const f of files) {
       const cat = await loadJson(f);
-      const c = await importCatalog(null, cat, true);
+      const norm = normalizeModuleData(cat, f);
+      const c = await importCatalog(null, norm, true);
       console.log(`  [dry-run] ${path.basename(f)}: ${JSON.stringify(c)}`);
     }
     return;
@@ -219,7 +268,8 @@ async function main() {
     for (const f of files) {
       console.log(`Importing ${path.basename(f)} ...`);
       const cat = await loadJson(f);
-      const c = await importCatalog(driver, cat, false);
+      const norm = normalizeModuleData(cat, f);
+      const c = await importCatalog(driver, norm, false);
       Object.keys(c).forEach((k) => {
         total[k] += c[k];
       });

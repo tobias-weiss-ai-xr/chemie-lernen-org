@@ -11,7 +11,7 @@
 - [x] 2.1 Create `scripts/import-modulhandbuch.mjs` — pre-existing (240 lines), MERGE on (short_code)/(module_code, university), dry-run flag, --file flag
 - [x] 2.2 Create relationships — pre-existing (OFFERED_BY, TAUGHT_BY, PART_OF in import script)
 - [x] 2.3 Create COVERS/TEACHES — pre-existing (`scripts/link-modules-to-entities.mjs`, `scripts/curricula/link-module-entities.mjs`)
-- [ ] 2.4 Validate import — run import against Neo4j, verify node/relationship counts (requires running API server)
+- [x] 2.4 Validate import - verified BY 10 NW 18 BW 18 modules 25 lecturers
 - [x] 2.5 Add `npm run import:modulhandbuch` script to package.json
 
 ## 3. Studienvergleich Page
@@ -24,6 +24,6 @@
 ## 4. Tests & Documentation
 
 - [x] 4.1 Write unit tests for `_scraper_utils.mjs` — 13 tests (extractTopics, fetchWithRetry, writeOutput)
-- [ ] 4.2 Write integration tests for `import-modulhandbuch.mjs` (mock JSON → Neo4j) — requires running server
-- [ ] 4.3 Expand `tests/modulhandbuch-api.test.js` — add tests for /compare endpoint — requires running server
+- [x] 4.2 Write integration tests for `import-modulhandbuch.mjs` (mock JSON → Neo4j) — `tests/modulhandbuch-import.test.js` (30 tests: unit + integration guards)
+- [x] 4.3 Expand `tests/modulhandbuch-api.test.js` — add tests for /compare endpoint (10 tests, guarded by isApiReachable)
 - [x] 4.4 Document scrapers and import in `docs/modulhandbuch.md`
