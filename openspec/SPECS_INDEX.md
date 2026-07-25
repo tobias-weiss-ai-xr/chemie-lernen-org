@@ -23,7 +23,9 @@ Last updated: 2026-07-18
 
 ## Active changes (`changes/`)
 
-_(No active changes — all sprints shipped.)_
+| Change                         | Status   | Goal                                                     |
+| ------------------------------ | -------- | -------------------------------------------------------- |
+| `sprint-36-advanced-analytics` | Building | Premium teacher analytics dashboard, class tracking, CSV |
 
 ## Archived changes (`changes/archive/`)
 

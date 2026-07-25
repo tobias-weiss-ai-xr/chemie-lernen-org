@@ -1,0 +1,119 @@
+{{ define "main" }}
+<div class="container analytics-container" aria-label="Premium Analytics Dashboard">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Loading State -->
+  <div id="analytics-loading" class="text-center" role="status" aria-live="polite">
+    <p><i class="fa fa-spinner fa-spin fa-3x"></i></p>
+    <p>Lade Analytics-Daten...</p>
+  </div>
+
+  <!-- Error State -->
+  <div id="analytics-error" style="display:none;">
+    <div class="alert alert-danger text-center" id="analytics-error-msg"></div>
+  </div>
+
+  <!-- Dashboard Content -->
+  <div id="analytics-content" style="display:none;">
+
+    <!-- Header Row: Export Button -->
+    <div class="row" style="margin-bottom:20px;">
+      <div class="col-md-12 text-right">
+        <button id="btn-export-csv" class="btn btn-primary btn-sm" aria-label="Schülerdaten als CSV exportieren">
+          <i class="fa fa-download"></i> CSV Export
+        </button>
+      </div>
+    </div>
+
+    <!-- Overview Cards -->
+    <div class="row">
+      <div class="col-sm-6 col-md-3">
+        <div class="a-card a-card-overview">
+          <div class="a-card-value" id="ov-students">—</div>
+          <div class="a-card-label">Schüler gesamt</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="a-card a-card-overview">
+          <div class="a-card-value" id="ov-active">—</div>
+          <div class="a-card-label">Aktive diese Woche</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="a-card a-card-overview">
+          <div class="a-card-value" id="ov-xp">—</div>
+          <div class="a-card-label">Durchschnitt XP</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="a-card a-card-overview">
+          <div class="a-card-value" id="ov-streak">—</div>
+          <div class="a-card-label">Durchschnitt Streak</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Weekly Active Users Chart (pure SVG sparkline) -->
+    <div class="row" style="margin-top:25px;">
+      <div class="col-md-12">
+        <div class="a-card">
+          <h3><i class="fa fa-line-chart"></i> Wöchentliche aktive Nutzer</h3>
+          <div id="engagement-chart" class="engagement-chart" aria-label="12-Wochen Aktivitätsübersicht"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Student Table -->
+    <div class="row" style="margin-top:25px;">
+      <div class="col-md-12">
+        <div class="a-card">
+          <div class="a-card-header">
+            <h3><i class="fa fa-users"></i> Schülerübersicht</h3>
+            <div class="a-card-controls">
+              <input type="text" id="student-search" placeholder="Suche..." class="form-control input-sm" aria-label="Schüler suchen">
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped a-table" id="student-table" aria-label="Schülerfortschritt">
+              <thead>
+                <tr>
+                  <th data-sort="name" class="sortable">Name <i class="fa fa-sort"></i></th>
+                  <th data-sort="xp" class="sortable">XP <i class="fa fa-sort"></i></th>
+                  <th data-sort="level" class="sortable">Level <i class="fa fa-sort"></i></th>
+                  <th data-sort="streak" class="sortable">Streak <i class="fa fa-sort"></i></th>
+                  <th data-sort="quizCount" class="sortable">Quiz <i class="fa fa-sort"></i></th>
+                  <th data-sort="avgQuizScore" class="sortable">Quiz-Durchschnitt <i class="fa fa-sort"></i></th>
+                  <th data-sort="lastActive" class="sortable">Letzte Aktivität <i class="fa fa-sort"></i></th>
+                </tr>
+              </thead>
+              <tbody id="student-tbody"></tbody>
+            </table>
+          </div>
+          <div id="student-pagination" class="a-pagination"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Topic Performance Breakdown -->
+    <div class="row" style="margin-top:25px;">
+      <div class="col-md-12">
+        <div class="a-card">
+          <h3><i class="fa fa-book"></i> Themenperformance</h3>
+          <div id="topic-breakdown"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<link rel="stylesheet" href="/css/premium-analytics.css">
+<script src="/js/premium-analytics.js"></script>
+{{ end }}

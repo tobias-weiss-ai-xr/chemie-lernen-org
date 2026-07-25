@@ -40,6 +40,7 @@ import exercisesRouter from './routes/exercises.js';
 import learningPathsRouter from './routes/learning-paths.js';
 import gamificationRouter from './routes/gamification.js';
 import collabRouter from './routes/collab.js';
+import analyticsRouter from './routes/analytics.js';
 
 const logger = pino({
   level: process.env.LOG_LEVEL || 'info',
@@ -157,6 +158,7 @@ app.use(exercisesRouter); // exercise generation & answering
 app.use(learningPathsRouter); // learning paths & certificates
 app.use(gamificationRouter); // check-in, xp, achievements, badges, profile
 app.use(collabRouter); // collaboration sessions
+app.use(analyticsRouter); // premium teacher analytics dashboard
 
 // ── POST /api/chat (kept inline — tightly coupled with RAG + session) ──
 app.post('/api/chat', async (req, res) => {

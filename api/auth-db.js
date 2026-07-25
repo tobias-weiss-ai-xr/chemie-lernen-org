@@ -886,4 +886,188 @@ export function getXpLog(userId, limit) {
   return (g.xpLog || []).slice(0, safeLimit);
 }
 
+// ── Teacher Analytics Aggregations ────────────────────────────
+
+/**
+ * Returns all users with gamification and quiz data (no secrets).
+ * Used by premium teacher analytics dashboard.
+ * @returns {Array} User objects without password_hash, stripe_id, etc.
+ */
+export function getAllUsersDetailed() {
+  return users.map((u) => ({
+    id: u.id,
+    email: u.email,
+    name: u.name || '',
+    role: u.role,
+    tier: u.tier,
+    premium_until: u.premium_until,
+    created_at: u.created_at,
+    gamification: u.gamification || {},
+    quiz_results: u.quiz_results || [],
+  }));
+}
+
+/**
+ * Returns aggregate class statistics for the analytics dashboard.
+ * @returns {Object} Class overview stats
+ */
+export function getClassOverview() {
+  const now = new Date();
+  const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+
+  let activeThisWeek = 0;
+  let totalXp = 0;
+  let totalStreak = 0;
+  let totalLevel = 0;
+  let userCount = 0;
+  const topicScores = {};
+
+  for (const u of users) {
+    userCount++;
+    const g = u.gamification || {};
+
+    // Active this week: any xpLog entry or checkin in the last 7 days
+    const recentXp = (g.xpLog || []).some((entry) => {
+      if (!entry.timestamp) return false;
+      return new Date(entry.timestamp) >= oneWeekAgo;
+    });
+    const recentCheckin = g.lastCheckin ? new Date(g.lastCheckin) >= oneWeekAgo : false;
+    if (recentXp || recentCheckin) activeThisWeek++;
+
+    totalXp += g.xp || 0;
+    totalStreak += g.streak || 0;
+    totalLevel += calculateLevel(g.xp || 0).level;
+
+    // Topic score accumulation
+    const quizzes = u.quiz_results || [];
+    for (const q of quizzes) {
+      if (!topicScores[q.topic]) {
+        topicScores[q.topic] = { totalScore: 0, totalPossible: 0 };
+      }
+      topicScores[q.topic].totalScore += q.score || 0;
+      topicScores[q.topic].totalPossible += q.total || 1;
+    }
+  }
+
+  // Determine top and weakest topics
+  let topTopic = null;
+  let weakestTopic = null;
+  let topScore = -1;
+  let weakestScore = Infinity;
+
+  for (const [topic, scores] of Object.entries(topicScores)) {
+    const avg = scores.totalScore / Math.max(1, scores.totalPossible);
+    if (avg > topScore) {
+      topScore = avg;
+      topTopic = topic;
+    }
+    if (avg < weakestScore) {
+      weakestScore = avg;
+      weakestTopic = topic;
+    }
+  }
+
+  return {
+    totalStudents: userCount,
+    activeThisWeek,
+    avgXp: userCount > 0 ? Math.round(totalXp / userCount) : 0,
+    avgStreak: userCount > 0 ? parseFloat((totalStreak / userCount).toFixed(1)) : 0,
+    avgLevel: userCount > 0 ? parseFloat((totalLevel / userCount).toFixed(1)) : 0,
+    topTopic,
+    weakestTopic,
+  };
+}
+
+/**
+ * Returns class-wide quiz performance grouped by topic.
+ * @returns {Object} { topics: Array, weakAreas: Array }
+ */
+export function getClassTopicBreakdown() {
+  const topicMap = {};
+
+  for (const u of users) {
+    const quizzes = u.quiz_results || [];
+    const seen = new Set();
+
+    for (const q of quizzes) {
+      if (!topicMap[q.topic]) {
+        topicMap[q.topic] = { totalPercentage: 0, attempts: 0, studentSet: new Set() };
+      }
+      topicMap[q.topic].totalPercentage += q.percentage || 0;
+      topicMap[q.topic].attempts++;
+      topicMap[q.topic].studentSet.add(u.id);
+      seen.add(q.topic);
+    }
+  }
+
+  const topics = Object.entries(topicMap).map(([topic, data]) => ({
+    topic,
+    avgScore: parseFloat((data.totalPercentage / Math.max(1, data.attempts)).toFixed(1)),
+    attempts: data.attempts,
+    students: data.studentSet.size,
+  }));
+
+  // Sort by avgScore ascending to find weak areas
+  topics.sort((a, b) => a.avgScore - b.avgScore);
+
+  const WEAK_THRESHOLD = 60;
+  const weakAreas = topics.filter((t) => t.avgScore < WEAK_THRESHOLD).map((t) => t.topic);
+
+  return { topics, weakAreas };
+}
+
+/**
+ * Returns weekly active user counts for the last N weeks.
+ * Uses xpLog timestamps to determine activity.
+ * @param {number} weeks - Number of weeks to look back (default 12)
+ * @returns {Array<{ week: string, count: number }>}
+ */
+export function getEngagementTimeline(weeks) {
+  const safeWeeks = typeof weeks === 'number' && weeks > 0 ? Math.min(weeks, 52) : 12;
+  const now = new Date();
+  const weekStart = new Date(now);
+  weekStart.setHours(0, 0, 0, 0);
+  // Go to the start of the current week (Monday)
+  const dayOfWeek = weekStart.getDay() || 7;
+  weekStart.setDate(weekStart.getDate() - dayOfWeek + 1);
+
+  // Build week buckets
+  const buckets = [];
+  for (let i = safeWeeks - 1; i >= 0; i--) {
+    const start = new Date(weekStart);
+    start.setDate(start.getDate() - i * 7);
+    const end = new Date(start);
+    end.setDate(end.getDate() + 7);
+
+    // ISO week label
+    const janFirst = new Date(start.getFullYear(), 0, 1);
+    const weekNum = Math.ceil(((start - janFirst) / 86400000 + janFirst.getDay() + 1) / 7);
+    const label = `${start.getFullYear()}-W${String(weekNum).padStart(2, '0')}`;
+
+    buckets.push({ label, start, end, activeUsers: new Set() });
+  }
+
+  // Populate buckets from xpLog
+  for (const u of users) {
+    const g = u.gamification || {};
+    const entries = g.xpLog || [];
+
+    for (const entry of entries) {
+      if (!entry.timestamp) continue;
+      const ts = new Date(entry.timestamp);
+      for (const bucket of buckets) {
+        if (ts >= bucket.start && ts < bucket.end) {
+          bucket.activeUsers.add(u.id);
+          break;
+        }
+      }
+    }
+  }
+
+  return buckets.map((b) => ({
+    week: b.label,
+    count: b.activeUsers.size,
+  }));
+}
+
 export { BADGES, DAILY_XP_CAPS };
