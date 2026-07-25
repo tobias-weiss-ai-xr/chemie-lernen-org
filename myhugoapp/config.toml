@@ -30,7 +30,7 @@ enableRobotsTXT = true
   footer_description = "chemie-lernen.org - Ihre Plattform für innovatives Chemie-Lernen. Chemische Grundlagen und Konzepte greifbar und erlebbar."
 
 [params.meta]
-  keywords = "chemie-lernen.org, VR Chemieunterricht, Virtual Reality Bildung, Chemie lernen online, interaktiver Chemieunterricht, digitale Bildung, Chemie studieren, innovative Chemie, immersive Bildung"
+  keywords = "chemie-lernen.org, Chemie lernen online, interaktiver Chemieunterricht, digitale Bildung, Chemie studieren, Chemie-Rechner, Periodensystem 3D"
 
 author = "chemie-lernen.org Team"
 
@@ -349,7 +349,7 @@ author = "chemie-lernen.org Team"
     icon = "✏️"
 [[menu.main]]
     name = "Lernpfad"
-    url = "/lernpfad/"
+    url = "/lernpfade/"
     parent = "lehrende"
     weight = 83
     icon = "🗺️"

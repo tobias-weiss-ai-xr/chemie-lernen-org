@@ -5,101 +5,72 @@ description: 'Die zukünftige Entwicklungsstrategie für chemie-lernen.org'
 tags: ['roadmap', 'entwicklung']
 ---
 
-Die Plattform ist in einer stabilen Phase mit umfassenden Rechnern, Visualisierungen, dem Wissensnetz und gamifizierten Lernpfaden. Der Fokus verschiebt sich nun auf **Lehrenden-Premium-Features**, **KI-Vertiefung** und **Content-Tiefe**.
+chemie-lernen.org ist eine **kostenlose, quelloffene Lernplattform** für Chemie. Kernfeatures sind Rechner, Visualisierungen, interaktive Quiz und ein Wissensnetz. Der freiwillige **Unterstützer-Tarif** ergänzt das Angebot für Lehrende.
 
 ---
 
-## 🚀 Nächste Entwicklungsschwerpunkte (Q3-Q4 2026)
+## ✅ Bereits umgesetzt
 
-### P0 — Lehrenden-Premium-Features
+| Feature                                              | Status                 |
+| ---------------------------------------------------- | ---------------------- |
+| 21 Chemie-Rechner & Spezialrechner                   | ✅ seit 2025           |
+| Periodensystem 3D, Molekülstudio                     | ✅ kostenlos verfügbar |
+| Titrations-Simulator                                 | ✅ kostenlos verfügbar |
+| Wissensnetz mit 685+ Fachbegriffen                   | ✅                     |
+| 12 Themenbereiche mit Quiz (100+ Fragen)             | ✅                     |
+| KI-Assistent (KG-Suche)                              | ✅                     |
+| Lehrplankopplung (KMK, 4 Bundesländer)               | ✅                     |
+| Unterstützer-Seite & Stripe-Integration              | ✅                     |
+| Analytics-Dashboard (Supporter)                      | ✅ Sprint 36           |
+| Themenbereiche: Quiz-Widget + Fachbegriff-Wolke      | ✅ Sprint 37           |
+| Unterrichtsplan-Generator + Arbeitsblatt (Supporter) | ✅ Sprint 38           |
 
-| Feature                             | Beschreibung                                                                        |
-| ----------------------------------- | ----------------------------------------------------------------------------------- |
-| **📊 Advanced Analytics Dashboard** | Klassenweites Tracking, Schülerfortschritt, Export für Notenverwaltung              |
-| **📝 Premium-Lesson-Plan-Suite**    | KI-gestützte Unterrichtsplaner, automatische Arbeitsblätter, Bewertungsvorlagen     |
-| **🧪 Erweitertes Assessment**       | Unbegrenzte Quiz, automatische Benotung, individuelle Rückmeldungen                 |
-| **📚 Premium-Content-Bibliothek**   | Exklusive Lehrmaterialien, erweiterte Visualisierungen, komplette Unterrichtspakete |
+---
 
-### P1 — KI-Assistent Deepening
+## 🚀 Nächste Schritte (Q3-Q4 2026)
 
-| Feature                     | Beschreibung                                               |
-| --------------------------- | ---------------------------------------------------------- |
-| **Echter LLM-Chat**         | Aktivierung des bestehenden LLM-Proxys statt nur KG-Suche  |
-| **Konversationsgedächtnis** | Kontext über mehrere Fragen hinweg, Session-basiert        |
-| **RAG-Integration**         | Prompt-Augmentierung mit KG-Kontext und Rechnerergebnissen |
+### P0 — Kern-Erweiterungen
+
+| Feature                           | Beschreibung                                                                           |
+| --------------------------------- | -------------------------------------------------------------------------------------- |
+| **🧪 Erweitertes Assessment**     | Unbegrenzte Quiz-Generierung per KI, automatische Benotung, individuelle Rückmeldungen |
+| **📚 Premium-Content-Bibliothek** | Exklusive Lehrmaterialien für Unterstützer, erweiterte Arbeitsblatt-Vorlagen           |
+
+### P1 — KI-Assistent
+
+| Feature                     | Beschreibung                                          |
+| --------------------------- | ----------------------------------------------------- |
+| **LLM-Chat**                | Echte Konversation statt nur KG-Suche (LiteLLM-Proxy) |
+| **Konversationsgedächtnis** | Kontext über mehrere Fragen hinweg, Session-basiert   |
+| **SSE-Streaming**           | Echtzeit-Antworten statt Wartebildschirm              |
 
 ### P1 — Content-Tiefe
 
-| Feature                     | Beschreibung                                               |
-| --------------------------- | ---------------------------------------------------------- |
-| **Themenbereiche ausbauen** | Von 1-3 auf 3-5 Artikel pro Themenbereich                  |
-| **Interaktive Übungen**     | Zu jedem Themenbereich passende Quiz und Aufgaben          |
-| **Cross-Linking**           | Rechner ↔ Artikel ↔ Themenbereiche systematisch verknüpfen |
+| Feature                       | Beschreibung                              |
+| ----------------------------- | ----------------------------------------- |
+| **Themenbereiche ausbauen**   | Von 1-3 auf 3-5 Artikel pro Themenbereich |
+| **Rechner ↔ Quiz verknüpfen** | Jeder Rechner hat passende Übungen        |
 
-### P2 — Plattform-Reife
+### P2 — Plattform
 
-| Feature               | Beschreibung                                            |
-| --------------------- | ------------------------------------------------------- |
-| **Pipeline-Qualität** | Deduplizierung, Quellen-Verifikation, Qualitäts-Scoring |
-| **Barrierefreiheit**  | WCAG 2.1 AA-Audit und Überarbeitung                     |
-| **Backup/DR**         | Automatisierte Neo4j-Backups, Wiederherstellungsplan    |
-| **Lernpfad-KI**       | KG-gestützte adaptive Lernpfad-Empfehlungen             |
+| Feature                        | Beschreibung              |
+| ------------------------------ | ------------------------- |
+| **Barrierefreiheit**           | WCAG 2.1 AA-Audit         |
+| **Automatische Neo4j-Backups** | Wiederherstellungsplan    |
+| **Adaptive Lernpfade**         | KG-gestützte Empfehlungen |
 
 ---
 
-## 🥽 Immersive VR-Erweiterungen
+## 💚 Unterstützer-Tarif
 
-| Feature                     | Beschreibung                                                                                                                                                                                                       |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Subatomare Reisen**       | Atome durch Hinzufügen von Protonen/Neutronen/Elektronen in 3D aufbauen                                                                                                                                            |
-| **Molekülgalerie in VR**    | Riesige 3D-Modelle komplexer Moleküle (DNA, Koffein, Polymere)                                                                                                                                                     |
-| **Gefahrfreie Labore**      | Simulierte Extreme Experimente (Alkalimetalle in Wasser, Thermit)                                                                                                                                                  |
-| **Hybrides Lernen (WebGL)** | 2D/Browser-Modus für alle VR-Inhalte                                                                                                                                                                               |
-| **Wiki-Erweiterung**        | Theorie-Artikel zu jedem VR-Experiment                                                                                                                                                                             |
-| **🆕 Lernräume in Hubs**    | Gemeinsame 3D-Lernräume unter [hubs.chemie-lernen.org](/pages/lernraeume-in-hubs/) — Mehrspieler-Modus für Molekülmodelle, Periodensystem-Wand, Quiz-Cubes (siehe [Lernräume-Artikel](/pages/lernraeume-in-hubs/)) |
+Das gesamte Angebot ist **kostenlos**. Der Unterstützer-Tarif ergänzt optionale Lehrende-Tools:
 
----
+- **Unterrichtsplan-Generator** (KI-gestützt)
+- **Arbeitsblatt-Generator** (4 Aufgabentypen)
+- **Analytics-Dashboard** (Klassenfortschritt)
 
-## 🧑‍🏫 Lehrende & Institutionen
-
-| Feature                 | Beschreibung                                                   |
-| ----------------------- | -------------------------------------------------------------- |
-| **Unterrichtsbaupläne** | PDF-Leitfäden für 45-minütige Integration von VR/Simulationen  |
-| **Multi-User-Lab-Tage** | Geführte Sessions durch komplexe Experimente                   |
-| **Bewertungstools**     | Quiz-Integration passend zu VR-Inhalten                        |
-| **Premium-Stufen**      | Professional (€19-29/Monat) und School-Lizenz (€999-1499/Jahr) |
+[Lern mehr über das Unterstützer-Angebot →](/unterstuetzen/)
 
 ---
 
-## 🤝 Community & Zusammenarbeit
-
-| Feature                        | Beschreibung                                                        |
-| ------------------------------ | ------------------------------------------------------------------- |
-| **Benutzergenerierte Inhalte** | Lehrkräfte können eigene Übungen/Inhalte einreichen                 |
-| **Forschungsblog**             | Regelmäßige Updates zu VR-Lernwirkungen und Plattform-Erkenntnissen |
-
----
-
-## Preisgestaltung (Lehrenden-Premium)
-
-| Stufe              | Preis                        | Umfang                                                |
-| ------------------ | ---------------------------- | ----------------------------------------------------- |
-| **Free**           | €0                           | Bestehende Lehrmaterialien, Basis-Rechner             |
-| **Professional**   | €19-29/Monat (€199-249/Jahr) | Analytics, 5 Lesson-Plans/Monat, 3 Klassen/50 Schüler |
-| **School License** | €999-1499/Jahr               | Unbegrenzt, alle Features, Priority-Support           |
-
----
-
-## Technische Anforderungen
-
-| Bereich               | Standard                                                       |
-| --------------------- | -------------------------------------------------------------- |
-| **Framework**         | Hugo (Markdown + JavaScript)                                   |
-| **2D-Visualisierung** | Canvas API                                                     |
-| **3D-Visualisierung** | Three.js                                                       |
-| **Diagramme**         | Chart.js / D3.js                                               |
-| **Qualität**          | Responsive, WCAG 2.1 AA, Deutsch (Muttersprachenniveau), KaTeX |
-
----
-
-_Letzte Aktualisierung: Juni 2026_
+_Letzte Aktualisierung: Juli 2026_
