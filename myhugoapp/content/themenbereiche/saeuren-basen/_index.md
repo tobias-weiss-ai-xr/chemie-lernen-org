@@ -360,3 +360,7 @@ Versuchen Sie, diese Fragen zu beantworten:
 **Erstellt:** 27. Dezember 2025
 **Themenbereich:** Säuren und Basen
 **Schwierigkeit:** Mittelstufe
+
+{{< quiz-widget topic="saeuren-basen" title="Säuren und Basen" >}}
+
+{{< entity-cloud slug="saeuren-basen" title="Verwandte Fachbegriffe" >}}

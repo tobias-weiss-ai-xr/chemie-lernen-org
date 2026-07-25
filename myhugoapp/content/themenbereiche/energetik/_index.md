@@ -314,3 +314,7 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Kalorimetrie und Enthalpiemessung](/themenbereiche/energetik/kalorimetrie/) – Grundlagen der Kalorimetrie, Bombenkalorimeter, Bestimmung von Enthalpieänderungen, spezifische Wärmekapazität.
 - [Reaktionsenthalpie und Energieprofile](/themenbereiche/energetik/reaktionsenthalpie-und-energieprofile/) – Enthalpiediagramme, Bindungsenergien, Bildungsenthalpien und die Berechnung von Reaktionsenthalpien mit dem Satz von Hess.
 - [Der Satz von Hess](/themenbereiche/energetik/satz-von-hess/) – Die Reaktionsenthalpie ist unabhängig vom Reaktionsweg. Sie kann aus den Bildungsenthalpien der Produkte und Edukte berechnet werden.
+
+{{< quiz-widget topic="energetik" title="Energetik" >}}
+
+{{< entity-cloud slug="energetik" title="Verwandte Fachbegriffe" >}}

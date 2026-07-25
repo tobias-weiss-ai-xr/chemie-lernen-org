@@ -473,3 +473,7 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Nukleophile Substitution (SN1 und SN2)](/themenbereiche/reaktionstypen-organisch/nukleophile-substitution/) – SN1- und SN2-Mechanismen: Kinetik, Stereochemie, Lösungsmitteleffekte, Abgangsgruppen und Substrateinfluss.
 - [Oxidation und Reduktion in der Organik](/themenbereiche/reaktionstypen-organisch/oxidation-reduktion-organik/) – Oxidations- und Reduktionsreaktionen in der organischen Chemie: Von Alkoholen zu Aldehyden, Ketonen und Carbonsäuren. Mechanismen und Beispiele.
 - [Substitution und Addition](/themenbereiche/reaktionstypen-organisch/substitution-und-addition/) – Die wichtigsten Reaktionstypen in der organischen Chemie: Addition (Doppelbindung öffnet sich) und Substitution (ein Atom wird ersetzt).
+
+{{< quiz-widget topic="reaktionstypen-organisch" title="Reaktionstypen Organisch" >}}
+
+{{< entity-cloud slug="reaktionstypen-organisch" title="Verwandte Fachbegriffe" >}}

@@ -100,7 +100,9 @@ jobs:
             set -e
             echo "=== Pulling latest compose config from git ==="
             cd /opt/git/hugo-chemie-lernen-org
+            git stash --include-untracked -q 2>/dev/null || true
             git pull --quiet
+            git stash pop -q 2>/dev/null || true
             echo "=== Pulling new images from registry ==="
             docker pull ${{ env.REGISTRY }}/chemie-lernen-org:latest
             docker pull ${{ env.REGISTRY }}/chemie-chat-api:latest

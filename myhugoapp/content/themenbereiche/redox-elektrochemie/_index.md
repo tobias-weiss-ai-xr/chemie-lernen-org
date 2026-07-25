@@ -467,3 +467,7 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Korrosion und Korrosionsschutz](/themenbereiche/redox-elektrochemie/korrosion/) – Korrosion ist die unerwünschte Oxidation von Metallen. Grundlagen der elektrochemischen Korrosion und Verfahren des Korrosionsschutzes.
 - [Oxidation und Reduktion](/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/) – Oxidation = Elektronenabgabe, Reduktion = Elektronenaufnahme. Redox-Reaktionen stehen immer zusammen (Redox-Paar).
 - [Spannungsreihe der Elemente](/themenbereiche/redox-elektrochemie/spannungsreihe/) – Die Spannungsreihe ordnet Metalle nach ihrer Fähigkeit, Elektronen abzugeben. Edle Metalle geben schwer, unedle leicht Elektronen ab.
+
+{{< quiz-widget topic="redox-elektrochemie" title="Redox und Elektrochemie" >}}
+
+{{< entity-cloud slug="redox-elektrochemie" title="Verwandte Fachbegriffe" >}}

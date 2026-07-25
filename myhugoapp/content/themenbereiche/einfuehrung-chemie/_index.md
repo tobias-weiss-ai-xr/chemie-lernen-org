@@ -204,3 +204,7 @@ Nach der Einführung empfiehlt sich der Besuch folgender Themenbereiche:
 - [Stoffgemische und Trennverfahren](/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/) – Stoffgemische enthalten mehrere Reinstoffe. Trennverfahren nutzen unterschiedliche physikalische Eigenschaften zur Trennung.
 - [Was ist Chemie?](/themenbereiche/einfuehrung-chemie/was-ist-chemie/) – Chemie ist die Lehre von den Stoffen und deren Umwandlungen. Sie erklärt, warum Stoffe so reagieren, wie sie reagieren.
 - [Wissenschaftliche Methoden in der Chemie](/themenbereiche/einfuehrung-chemie/wissenschaftliche-methoden/) – Die wissenschaftliche Methode in der Chemie: Hypothesenbildung, Experiment, Beobachtung, Auswertung und Reproduzierbarkeit.
+
+{{< quiz-widget topic="einfuehrung-chemie" title="Einführung in die Chemie" >}}
+
+{{< entity-cloud slug="einfuehrung-chemie" title="Verwandte Fachbegriffe" >}}

@@ -391,3 +391,7 @@ $$\ce{Zn + 2HCl -> ZnCl2 + H2}$$
 **Erstellt:** 27. Dezember 2025
 **Themenbereich:** Aufbau der Materie
 **Schwierigkeit:** Grundlagen
+
+{{< quiz-widget topic="aufbau-materie" title="Aufbau der Materie" >}}
+
+{{< entity-cloud slug="aufbau-materie" title="Verwandte Fachbegriffe" >}}

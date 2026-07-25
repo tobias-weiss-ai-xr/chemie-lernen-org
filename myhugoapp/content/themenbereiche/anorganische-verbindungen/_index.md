@@ -462,3 +462,7 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Komplexverbindungen](/themenbereiche/anorganische-verbindungen/komplexverbindungen/) – Struktur, Nomenklatur, Bildungskonstanten und Anwendungen von Koordinationsverbindungen – für fortgeschrittene Lernende der Chemie.
 - [Oxide und Hydroxide](/themenbereiche/anorganische-verbindungen/oxide-hydroxide/) – Chemische Eigenschaften, Reaktionen und Anwendungen von Oxiden und Hydroxiden – wichtige Verbindungsklassen der anorganischen Chemie.
 - [Säuren, Basen und Salze](/themenbereiche/anorganische-verbindungen/saeuren-basen-salze/) – Säuren bilden in Wasser $H^+$-Ionen, Basen bilden $OH^-$-Ionen. Salze entstehen aus der Neutralisation.
+
+{{< quiz-widget topic="anorganische-verbindungen" title="Anorganische Verbindungen" >}}
+
+{{< entity-cloud slug="anorganische-verbindungen" title="Verwandte Fachbegriffe" >}}

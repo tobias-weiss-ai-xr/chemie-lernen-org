@@ -62,3 +62,7 @@ Nach diesem Themenbereich können Sie:
 - [Kohlenhydrate: Zucker und Polysaccharide](/themenbereiche/biochemie/kohlenhydrate-zucker-polysaccharide/) – Mono/Di/Polysaccharide, Glucose, Fructose, Saccharose, Stärke, Cellulose, Glycosidische Bindung, Nachweise (Fehling, Iodprobe)
 - [Nukleinsäuren: DNA und RNA](/themenbereiche/biochemie/nukleinsaeuren-dna-rna/) – Nukleotide, DNA-Doppelhelix, Basenpaarung (A-T, G-C), semikonservative Replikation, Transkription, Translation, RNA-Typen
 - [Proteine und Aminosäuren](/themenbereiche/biochemie/proteine-und-aminosaeuren/) – Aminosäuren als Bausteine, Peptidbindung, Primär-/Sekundär-/Tertiär-/Quartärstruktur, Protein-Funktionen (Enzyme, Strukturproteine, Transportproteine)
+
+{{< quiz-widget topic="alle" title="Biochemie" >}}
+
+{{< entity-cloud slug="biochemie" title="Verwandte Fachbegriffe" >}}

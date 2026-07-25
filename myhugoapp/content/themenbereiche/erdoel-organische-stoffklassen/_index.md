@@ -427,3 +427,7 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Funktionelle Gruppen in der Organik](/themenbereiche/erdoel-organische-stoffklassen/funktionelle-gruppen/) – Übersicht über wichtige funktionelle Gruppen (Hydroxy-, Carbonyl-, Carboxy-, Aminogruppe), ihre Eigenschaften und Nomenklatur.
 - [Kohlenwasserstoffe](/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/) – Kohlenwasserstoffe sind organische Verbindungen aus Kohlenstoff und Wasserstoff: gesättigte (Alkane), ungesättigte (Alkene, Alkine), aromatische.
 - [Kunststoffe und Polymerisation](/themenbereiche/erdoel-organische-stoffklassen/kunststoffe-polymerisation/) – Synthetische Polymere entstehen durch verschiedene Polymerisationsarten. Mechanismus der radikalischen Kettenpolymerisation, Polykondensation und Polyaddition.
+
+{{< quiz-widget topic="erdoel-organische-stoffklassen" title="Erdöl und Organische Stoffklassen" >}}
+
+{{< entity-cloud slug="erdoel-organische-stoffklassen" title="Verwandte Fachbegriffe" >}}
