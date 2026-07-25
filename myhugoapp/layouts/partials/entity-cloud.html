@@ -1,0 +1,62 @@
+{{/* entity-cloud.html — Visual entity cloud for a Themenbereich
+    Usage: {{ partial "entity-cloud.html" (dict "entities" (slice .Site.Data.themenbereich_entities "saeuren-basen") "title" "Verwandte Fachbegriffe") }}
+    Expects: .entities = [{name, slug, count}] array
+*/}}
+{{ $title := .title | default "Verwandte Fachbegriffe" }}
+{{ $entities := .entities }}
+
+{{ if $entities }}
+<div class="entity-cloud" aria-label="{{ $title }}">
+  <h4><i class="fa fa-cloud"></i> {{ $title }}</h4>
+  <div class="entity-cloud-tags">
+    {{ range $entities }}
+    <a href="/entity/{{ .slug }}/" class="entity-tag" title="{{ .name }} — in {{ .count }} Artikel{{ if gt .count 1 }}n{{ end }} erwähnt" style="font-size: {{ .size }}rem;">
+      {{ .name }}
+    </a>
+    {{ end }}
+  </div>
+</div>
+
+<style>
+.entity-cloud {
+  margin: 20px 0;
+  padding: 15px;
+  background: #f0f7ff;
+  border: 1px solid #b8daff;
+  border-radius: 10px;
+}
+.entity-cloud h4 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  color: #1a5276;
+}
+.entity-cloud-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.entity-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #fff;
+  border: 1px solid #90caf9;
+  border-radius: 20px;
+  color: #1565c0;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.entity-tag:hover {
+  background: #1565c0;
+  color: #fff;
+  border-color: #1565c0;
+  transform: translateY(-1px);
+}
+@media (prefers-color-scheme: dark) {
+  .entity-cloud { background: #1a2740; border-color: #2c4a6e; }
+  .entity-cloud h4 { color: #90caf9; }
+  .entity-tag { background: #2c3e50; border-color: #2c4a6e; color: #90caf9; }
+  .entity-tag:hover { background: #1565c0; color: #fff; }
+}
+</style>
+{{ end }}

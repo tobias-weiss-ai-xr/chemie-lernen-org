@@ -1,0 +1,6 @@
+{{/* shortcode: quiz-widget — Inline quiz widget
+    Usage in content: {{< quiz-widget topic="saeuren-basen" title="Säuren und Basen" >}}
+*/}}
+{{ $topic := .Get "topic" | default "alle" }}
+{{ $title := .Get "title" | default "Quiz" }}
+{{ partial "quiz-widget.html" (dict "topic" $topic "title" $title) }}

@@ -1,0 +1,322 @@
+{{/* quiz-widget.html — Embedded quiz widget for Themenbereiche
+    Usage: {{ partial "quiz-widget.html" (dict "topic" "saeuren-basen" "title" "Säuren und Basen") }}
+*/}}
+{{ $topic := .topic | default "alle" }}
+{{ $title := .title | default "Quiz" }}
+{{ $questionsPath := "/js/quiz-questions.js" }}
+
+<div class="quiz-widget" id="quiz-widget-{{ $topic }}" aria-label="{{ $title }} Quiz">
+  <div class="quiz-widget-header">
+    <h4><i class="fa fa-question-circle"></i> {{ $title }} — Quiz</h4>
+    <div class="quiz-widget-controls">
+      <span class="quiz-score" id="quiz-score-{{ $topic }}"></span>
+      <button class="btn btn-sm btn-default" id="quiz-reset-{{ $topic }}" aria-label="Quiz zurücksetzen">↻</button>
+    </div>
+  </div>
+
+  <div class="quiz-widget-body" id="quiz-body-{{ $topic }}">
+    <div class="quiz-placeholder">
+      <p><i class="fa fa-spinner fa-spin"></i> Lade Quiz-Fragen...</p>
+    </div>
+  </div>
+
+  <div class="quiz-widget-footer">
+    <div class="quiz-progress">
+      <div class="quiz-progress-bar" id="quiz-progress-{{ $topic }}"></div>
+    </div>
+    <span class="quiz-progress-text" id="quiz-progress-text-{{ $topic }}">0 / 0</span>
+  </div>
+</div>
+
+<style>
+.quiz-widget {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 25px 0;
+}
+.quiz-widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.quiz-widget-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+.quiz-widget-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.quiz-score {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #155724;
+}
+.quiz-widget-body {
+  min-height: 80px;
+}
+.quiz-placeholder {
+  text-align: center;
+  color: #666;
+  padding: 20px;
+}
+.quiz-question {
+  margin-bottom: 15px;
+}
+.quiz-question-text {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+.quiz-option {
+  display: block;
+  padding: 8px 12px;
+  margin: 4px 0;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 0.95rem;
+}
+.quiz-option:hover {
+  background: #e9ecef;
+}
+.quiz-option.correct {
+  background: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+}
+.quiz-option.incorrect {
+  background: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+}
+.quiz-option.disabled {
+  pointer-events: none;
+}
+.quiz-feedback {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  display: none;
+}
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct-fb { background: #d4edda; color: #155724; }
+.quiz-feedback.incorrect-fb { background: #f8d7da; color: #721c24; }
+.quiz-next-btn {
+  margin-top: 10px;
+}
+.quiz-widget-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #dee2e6;
+}
+.quiz-progress {
+  flex: 1;
+  height: 6px;
+  background: #dee2e6;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.quiz-progress-bar {
+  height: 100%;
+  background: #28a745;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+.quiz-progress-text {
+  font-size: 0.8rem;
+  color: #666;
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) {
+  .quiz-widget { background: #2c2c2c; border-color: #444; }
+  .quiz-option { background: #383838; border-color: #555; color: #ddd; }
+  .quiz-option:hover { background: #444; }
+  .quiz-option.correct { background: #1b4332; border-color: #28a745; }
+  .quiz-option.incorrect { background: #58151c; border-color: #dc3545; }
+  .quiz-placeholder { color: #aaa; }
+  .quiz-widget-footer { border-top-color: #444; }
+  .quiz-progress { background: #444; }
+}
+</style>
+
+<script>
+(function() {
+  var TOPIC = {{ $topic | jsonify }};
+  var WIDGET_ID = 'quiz-widget-' + TOPIC;
+  var BODY_ID = 'quiz-body-' + TOPIC;
+  var SCORE_ID = 'quiz-score-' + TOPIC;
+  var PROGRESS_ID = 'quiz-progress-' + TOPIC;
+  var PROGRESS_TEXT_ID = 'quiz-progress-text-' + TOPIC;
+  var RESET_ID = 'quiz-reset-' + TOPIC;
+
+  var questions = [];
+  var currentIndex = 0;
+  var score = 0;
+  var answered = false;
+
+  function loadQuiz() {
+    var script = document.createElement('script');
+    script.src = '{{ $questionsPath }}';
+    script.onload = function() {
+      if (typeof quizQuestions === 'undefined' || !quizQuestions.questions) {
+        document.getElementById(BODY_ID).innerHTML = '<p class="text-muted">Quiz-Fragen nicht verfügbar.</p>';
+        return;
+      }
+      questions = quizQuestions.questions.filter(function(q) {
+        return q.topic.toLowerCase().replace(/\s+/g, '-') === TOPIC || TOPIC === 'alle';
+      });
+      // Fallback: if no topic match, use 'Allgemeine Chemie'
+      if (questions.length === 0) {
+        questions = quizQuestions.questions.filter(function(q) {
+          return q.topic === 'Allgemeine Chemie';
+        }).slice(0, 3);
+      }
+      if (questions.length === 0) {
+        document.getElementById(BODY_ID).innerHTML = '<p class="text-muted">Keine Quiz-Fragen für dieses Thema.</p>';
+        return;
+      }
+      shuffle(questions);
+      questions = questions.slice(0, 5);
+      updateProgress();
+      renderQuestion();
+    };
+    script.onerror = function() {
+      document.getElementById(BODY_ID).innerHTML = '<p class="text-muted">Quiz konnte nicht geladen werden.</p>';
+    };
+    document.head.appendChild(script);
+  }
+
+  function shuffle(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+    }
+  }
+
+  function renderQuestion() {
+    if (currentIndex >= questions.length) {
+      renderResult();
+      return;
+    }
+    answered = false;
+    var q = questions[currentIndex];
+    var html = '<div class="quiz-question">';
+    html += '<div class="quiz-question-text">' + (currentIndex + 1) + '. ' + escapeHtml(q.question || q.text) + '</div>';
+
+    if (q.options) {
+      q.options.forEach(function(opt, i) {
+        html += '<div class="quiz-option" data-index="' + i + '" tabindex="0" role="button" aria-label="' + escapeHtml(opt) + '">' + escapeHtml(opt) + '</div>';
+      });
+    }
+
+    html += '<div class="quiz-feedback" id="feedback-' + TOPIC + '"></div>';
+    html += '<button class="btn btn-sm btn-primary quiz-next-btn" id="next-' + TOPIC + '" style="display:none;">Weiter →</button>';
+    html += '</div>';
+
+    document.getElementById(BODY_ID).innerHTML = html;
+
+    // Bind option clicks
+    document.querySelectorAll('#' + BODY_ID + ' .quiz-option').forEach(function(el) {
+      el.addEventListener('click', function() { handleAnswer(parseInt(el.getAttribute('data-index'))); });
+      el.addEventListener('keydown', function(e) { if (e.key === 'Enter') handleAnswer(parseInt(el.getAttribute('data-index'))); });
+    });
+
+    // Bind next button
+    document.getElementById('next-' + TOPIC).addEventListener('click', function() {
+      currentIndex++;
+      renderQuestion();
+    });
+  }
+
+  function handleAnswer(selectedIndex) {
+    if (answered) return;
+    answered = true;
+    var q = questions[currentIndex];
+    var correctIndex = q.correctIndex;
+    var correctAnswer = q.correctAnswer;
+    var feedback = document.getElementById('feedback-' + TOPIC);
+
+    // Determine if correct
+    var isCorrect = false;
+    if (typeof correctIndex === 'number') {
+      isCorrect = selectedIndex === correctIndex;
+    } else if (correctAnswer) {
+      var selectedText = q.options ? q.options[selectedIndex] : '';
+      isCorrect = selectedText.toLowerCase().trim() === correctAnswer.toLowerCase().trim();
+    }
+
+    // Highlight options
+    document.querySelectorAll('#' + BODY_ID + ' .quiz-option').forEach(function(el) {
+      var idx = parseInt(el.getAttribute('data-index'));
+      el.classList.add('disabled');
+      if (typeof correctIndex === 'number') {
+        if (idx === correctIndex) el.classList.add('correct');
+        if (idx === selectedIndex && !isCorrect) el.classList.add('incorrect');
+      }
+    });
+
+    if (isCorrect) score++;
+
+    // Show feedback
+    feedback.className = 'quiz-feedback show ' + (isCorrect ? 'correct-fb' : 'incorrect-fb');
+    feedback.textContent = isCorrect ? '✓ Richtig!' : '✗ Falsch.' + (correctAnswer ? ' Korrekt: ' + correctAnswer : '');
+
+    updateProgress();
+    document.getElementById('next-' + TOPIC).style.display = 'inline-block';
+  }
+
+  function renderResult() {
+    var pct = Math.round((score / questions.length) * 100);
+    var emoji = pct >= 80 ? '🌟' : pct >= 60 ? '👍' : '💪';
+    var html = '<div class="text-center" style="padding:20px;">';
+    html += '<h4>' + emoji + ' Quiz abgeschlossen!</h4>';
+    html += '<p style="font-size:1.2rem;font-weight:600;">' + score + ' von ' + questions.length + ' richtig (' + pct + '%)</p>';
+    html += '<button class="btn btn-sm btn-default" id="retry-' + TOPIC + '">Erneut versuchen</button>';
+    html += '</div>';
+    document.getElementById(BODY_ID).innerHTML = html;
+    document.getElementById('retry-' + TOPIC).addEventListener('click', resetQuiz);
+  }
+
+  function updateProgress() {
+    var pct = questions.length > 0 ? ((currentIndex + (answered ? 1 : 0)) / questions.length) * 100 : 0;
+    var bar = document.getElementById(PROGRESS_ID);
+    var text = document.getElementById(PROGRESS_TEXT_ID);
+    if (bar) bar.style.width = pct + '%';
+    if (text) text.textContent = Math.min(currentIndex + (answered ? 1 : 0), questions.length) + ' / ' + questions.length;
+    if (SCORE_ID) document.getElementById(SCORE_ID).textContent = score + ' ✓';
+  }
+
+  function resetQuiz() {
+    currentIndex = 0;
+    score = 0;
+    answered = false;
+    shuffle(questions);
+    updateProgress();
+    renderQuestion();
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str || ''));
+    return div.innerHTML;
+  }
+
+  // Reset button
+  var resetBtn = document.getElementById(RESET_ID);
+  if (resetBtn) resetBtn.addEventListener('click', resetQuiz);
+
+  // Load quiz
+  loadQuiz();
+})();
+</script>

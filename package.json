@@ -33,6 +33,7 @@
     "hugo:build": "docker run --rm -v \"$(pwd)/myhugoapp:/src\" -w /src hugomods/hugo:exts hugo",
     "export:kg-data": "node scripts/export-kg-data.mjs",
     "generate:entities": "node scripts/generate-entity-pages.mjs",
+    "generate:themenbereich-entities": "node scripts/generate-themenbereich-entities.mjs",
     "validate:curricula": "node scripts/validate-curricula.mjs",
     "scrape:modulhandbuch": "node scripts/modulhandbuch/_run-all.mjs",
     "import:modulhandbuch": "node scripts/import-modulhandbuch.mjs",

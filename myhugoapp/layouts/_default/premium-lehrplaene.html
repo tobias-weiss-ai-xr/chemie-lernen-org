@@ -1,0 +1,189 @@
+{{ define "main" }}
+<div class="container lp-container" aria-label="KI-Unterrichtsplanung">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center">{{ .Description }}</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Configuration Form -->
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="lp-card">
+        <h3><i class="fa fa-cog"></i> Unterrichtsplan konfigurieren</h3>
+        <div class="lp-form">
+          <div class="form-group">
+            <label for="lp-topic">Thema *</label>
+            <input type="text" id="lp-topic" class="form-control" placeholder="z.B. Säuren und Basen, Redoxreaktionen, Molmasse..." required>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-sm-4">
+              <label for="lp-grade">Klassenstufe</label>
+              <select id="lp-grade" class="form-control">
+                <option value="8">Klasse 8</option>
+                <option value="9">Klasse 9</option>
+                <option value="10" selected>Klasse 10</option>
+                <option value="11">Klasse 11</option>
+                <option value="12">Klasse 12</option>
+                <option value="13">Klasse 13</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="lp-duration">Dauer</label>
+              <select id="lp-duration" class="form-control">
+                <option value="15">15 Min.</option>
+                <option value="30">30 Min.</option>
+                <option value="45" selected>45 Min.</option>
+                <option value="60">60 Min.</option>
+                <option value="90">90 Min. (Doppelstunde)</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="lp-difficulty">Schwierigkeit</label>
+              <select id="lp-difficulty" class="form-control">
+                <option value="einfach">Einfach</option>
+                <option value="mittel" selected>Mittel</option>
+                <option value="fortgeschritten">Fortgeschritten</option>
+              </select>
+            </div>
+          </div>
+          <button id="lp-generate" class="btn btn-primary btn-block">
+            <i class="fa fa-magic"></i> Unterrichtsplan erstellen
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div id="lp-loading" style="display:none;" class="text-center" role="status">
+    <p><i class="fa fa-spinner fa-spin fa-3x"></i></p>
+    <p>Erstelle Unterrichtsplan...</p>
+  </div>
+
+  <!-- Error -->
+  <div id="lp-error" style="display:none;">
+    <div class="alert alert-danger" id="lp-error-msg"></div>
+  </div>
+
+  <!-- Result -->
+  <div id="lp-result" style="display:none;">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="lp-result-header">
+          <h2 id="lp-result-title"></h2>
+          <div class="lp-result-meta" id="lp-result-meta"></div>
+          <div class="lp-result-actions">
+            <button id="lp-print" class="btn btn-sm btn-default"><i class="fa fa-print"></i> Drucken</button>
+            <button id="lp-new" class="btn btn-sm btn-primary"><i class="fa fa-refresh"></i> Neuer Plan</button>
+          </div>
+        </div>
+
+        <!-- Objectives -->
+        <div class="lp-section" id="lp-objectives-section">
+          <h3><i class="fa fa-bullseye"></i> Lernziele</h3>
+          <ul id="lp-objectives"></ul>
+        </div>
+
+        <!-- Prior Knowledge -->
+        <div class="lp-section" id="lp-prerequisites-section">
+          <h3><i class="fa fa-book"></i> Voraussetzungen</h3>
+          <ul id="lp-prerequisites"></ul>
+        </div>
+
+        <!-- Materials -->
+        <div class="lp-section" id="lp-materials-section">
+          <h3><i class="fa fa-flask"></i> Materialien</h3>
+          <ul id="lp-materials"></ul>
+        </div>
+
+        <!-- Phases -->
+        <div class="lp-section" id="lp-phases-section">
+          <h3><i class="fa fa-clock-o"></i> Unterrichtsphasen</h3>
+          <div id="lp-phases"></div>
+        </div>
+
+        <!-- Assessment -->
+        <div class="lp-section" id="lp-assessment-section">
+          <h3><i class="fa fa-check-circle"></i> Leistungsfeststellung</h3>
+          <div id="lp-assessment"></div>
+        </div>
+
+        <!-- Differentiation -->
+        <div class="lp-section" id="lp-differentiation-section">
+          <h3><i class="fa fa-users"></i> Differenzierung</h3>
+          <div id="lp-differentiation"></div>
+        </div>
+
+        <!-- Tips -->
+        <div class="lp-section" id="lp-tips-section">
+          <h3><i class="fa fa-lightbulb-o"></i> Tipps</h3>
+          <p id="lp-tips"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Worksheet Generator (separate card) -->
+  <div class="row" style="margin-top:30px;">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="lp-card">
+        <h3><i class="fa fa-file-text-o"></i> Arbeitsblatt generieren</h3>
+        <div class="lp-form">
+          <div class="form-group">
+            <label for="ws-topic">Thema *</label>
+            <input type="text" id="ws-topic" class="form-control" placeholder="Thema für Übungen...">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-sm-4">
+              <label for="ws-count">Anzahl Aufgaben</label>
+              <select id="ws-count" class="form-control">
+                <option value="3">3</option>
+                <option value="5" selected>5</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-8">
+              <label>Aufgabentypen</label>
+              <div class="checkbox-group">
+                <label class="checkbox-inline"><input type="checkbox" value="multiple-choice" checked> Multiple Choice</label>
+                <label class="checkbox-inline"><input type="checkbox" value="lueckentext"> Lückentext</label>
+                <label class="checkbox-inline"><input type="checkbox" value="berechnung" checked> Berechnung</label>
+                <label class="checkbox-inline"><input type="checkbox" value="kurzantwort"> Kurzantwort</label>
+              </div>
+            </div>
+          </div>
+          <button id="ws-generate" class="btn btn-primary btn-block">
+            <i class="fa fa-file-text-o"></i> Arbeitsblatt erstellen
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Worksheet Result -->
+  <div id="ws-loading" style="display:none;" class="text-center">
+    <p><i class="fa fa-spinner fa-spin fa-2x"></i> Erstelle Arbeitsblatt...</p>
+  </div>
+  <div id="ws-error" style="display:none;">
+    <div class="alert alert-danger" id="ws-error-msg"></div>
+  </div>
+  <div id="ws-result" style="display:none;">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="lp-result-header">
+          <h2 id="ws-result-title"></h2>
+          <button id="ws-print" class="btn btn-sm btn-default"><i class="fa fa-print"></i> Drucken</button>
+        </div>
+        <div id="ws-exercises"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="/css/premium-lehrplaene.css">
+<script src="/js/premium-lehrplaene.js"></script>
+{{ end }}

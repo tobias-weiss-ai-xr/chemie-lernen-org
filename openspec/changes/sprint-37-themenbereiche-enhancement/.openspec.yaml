@@ -1,0 +1,9 @@
+name: sprint-37-themenbereiche-enhancement
+title: "Sprint 37: Themenbereiche Enhancement (Entity Links, Quiz, Cloud)"
+status: active
+created: 2026-07-25
+sprints: [37]
+capabilities:
+  - themenbereiche
+  - quiz
+  - entity-knowledge-graph
