@@ -1,0 +1,210 @@
+{{/* shortcode: quickstart-calculator — Quick molar mass + pH widget on home page */}}
+<div class="quickstart-section" id="quickstart-section">
+  <div class="quickstart-grid">
+    <div class="quickstart-card">
+      <div class="qs-icon">⚖️</div>
+      <h4>Molare Masse</h4>
+      <div class="qs-input-group">
+        <input type="text" id="qs-formula" class="form-control" placeholder="z.B. H2O, NaCl, C6H12O6" aria-label="Chemische Formel">
+        <button id="qs-molmass-btn" class="btn btn-primary">Berechnen</button>
+      </div>
+      <div id="qs-molmass-result" class="qs-result"></div>
+    </div>
+    <div class="quickstart-card">
+      <div class="qs-icon">🔬</div>
+      <h4>pH-Wert</h4>
+      <div class="qs-input-group">
+        <input type="text" id="qs-ph-input" class="form-control" placeholder="z.B. 0.01 M HCl" aria-label="Konzentration und Säure">
+        <button id="qs-ph-btn" class="btn btn-primary">Berechnen</button>
+      </div>
+      <div id="qs-ph-result" class="qs-result"></div>
+    </div>
+    <div class="quickstart-card">
+      <div class="qs-icon">⚗️</div>
+      <h4>Gleichungen ausgleichen</h4>
+      <div class="qs-input-group">
+        <input type="text" id="qs-eq-input" class="form-control" placeholder="z.B. Fe + O2 = Fe2O3" aria-label="Reaktionsgleichung">
+        <button id="qs-eq-btn" class="btn btn-primary">Ausgleichen</button>
+      </div>
+      <div id="qs-eq-result" class="qs-result"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+.quickstart-section {
+  margin: 20px 0 40px;
+  padding: 30px;
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.quickstart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.quickstart-card {
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background: var(--qs-bg, #f8f9fa);
+  border: 1px solid var(--border-color, #e0e0e0);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.quickstart-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.qs-icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+.quickstart-card h4 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+  color: var(--text-primary, #222);
+}
+.qs-input-group {
+  display: flex;
+  gap: 8px;
+}
+.qs-input-group input {
+  flex: 1;
+  font-size: 0.9rem;
+  border-radius: 8px !important;
+}
+.qs-input-group .btn {
+  border-radius: 8px;
+  white-space: nowrap;
+  font-size: 0.85rem;
+}
+.qs-result {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  min-height: 28px;
+  font-weight: 600;
+  color: var(--green-primary, #28a745);
+}
+.qs-result.error { color: #dc3545; font-weight: 400; }
+.qs-result .qs-link {
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-left: 8px;
+}
+@media (max-width: 768px) {
+  .quickstart-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .quickstart-section { background: #222; border-color: #444; }
+  .quickstart-card { background: #2c2c2c; border-color: #444; }
+  .qs-result { color: #64da72; }
+}
+</style>
+
+<script>
+(function() {
+  'use strict';
+
+  // ── Molare Masse ────────────────────────────────────────
+  var PERIODIC_TABLE = {
+    H: 1.008, He: 4.003, Li: 6.941, Be: 9.012, B: 10.81, C: 12.011,
+    N: 14.007, O: 15.999, F: 18.998, Ne: 20.180, Na: 22.990, Mg: 24.305,
+    Al: 26.982, Si: 28.086, P: 30.974, S: 32.065, Cl: 35.453, Ar: 39.948,
+    K: 39.098, Ca: 40.078, Sc: 44.956, Ti: 47.867, V: 50.942, Cr: 51.996,
+    Mn: 54.938, Fe: 55.845, Co: 58.933, Ni: 58.693, Cu: 63.546, Zn: 65.38,
+    Br: 79.904, Ag: 107.87, I: 126.90, Ba: 137.33, Au: 196.97, Pb: 207.2,
+    Pt: 195.08, Sn: 118.71, Hg: 200.59
+  };
+
+  function getMolarMass(formula) {
+    var mass = 0;
+    var regex = /([A-Z][a-z]?)(\d*(?:\.\d+)?)/g;
+    var match;
+    while ((match = regex.exec(formula)) !== null) {
+      var elem = match[1];
+      var count = match[2] ? parseFloat(match[2]) : 1;
+      if (!PERIODIC_TABLE[elem]) return null;
+      mass += PERIODIC_TABLE[elem] * count;
+    }
+    return mass > 0 ? Math.round(mass * 1000) / 1000 : null;
+  }
+
+  document.getElementById('qs-molmass-btn').addEventListener('click', function() {
+    var formula = document.getElementById('qs-formula').value.trim();
+    var resultEl = document.getElementById('qs-molmass-result');
+    if (!formula) { resultEl.className = 'qs-result error'; resultEl.textContent = 'Bitte Formel eingeben'; return; }
+    var mass = getMolarMass(formula);
+    if (mass === null) { resultEl.className = 'qs-result error'; resultEl.textContent = 'Formel nicht erkannt'; return; }
+    resultEl.className = 'qs-result';
+    resultEl.innerHTML = mass + ' g/mol <a href="/molare-masse-rechner/" class="qs-link">→ Rechner öffnen</a>';
+  });
+
+  document.getElementById('qs-formula').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') document.getElementById('qs-molmass-btn').click();
+  });
+
+  // ── pH-Wert ─────────────────────────────────────────────
+  var STRONG_ACIDS = { 'HCl': -1, 'HBr': -1, 'HI': -1, 'HClO4': -1, 'HNO3': -1, 'H2SO4': 1 };
+  var STRONG_BASES = { 'NaOH': 1, 'KOH': 1, 'Ca(OH)2': 2, 'Ba(OH)2': 2 };
+
+  document.getElementById('qs-ph-btn').addEventListener('click', function() {
+    var input = document.getElementById('qs-ph-input').value.trim();
+    var resultEl = document.getElementById('qs-ph-result');
+    if (!input) { resultEl.className = 'qs-result error'; resultEl.textContent = 'Bitte eingeben'; return; }
+
+    // Parse "0.01 M HCl" or "0.1M NaOH" etc.
+    var match = input.match(/([\d.,]+)\s*m\s*(.+)/i);
+    if (!match) { resultEl.className = 'qs-result error'; resultEl.textContent = 'Versuche: "0.01 M HCl" oder "0.1 M NaOH"'; return; }
+
+    var conc = parseFloat(match[1].replace(',', '.'));
+    var substance = match[2].trim();
+
+    var isBase = STRONG_BASES[substance];
+    var isAcid = STRONG_ACIDS[substance];
+
+    if (isAcid !== undefined) {
+      var hConc = conc;
+      if (typeof isAcid === 'number' && isAcid > 0) hConc = conc * 2; // diprotic
+      var ph = -Math.log10(hConc);
+      resultEl.className = 'qs-result';
+      resultEl.innerHTML = 'pH = ' + ph.toFixed(2) + ' <a href="/ph-rechner/" class="qs-link">→ pH-Rechner</a>';
+    } else if (isBase !== undefined) {
+      var ohConc = conc * isBase;
+      var poh = -Math.log10(ohConc);
+      var ph2 = 14 - poh;
+      resultEl.className = 'qs-result';
+      resultEl.innerHTML = 'pH = ' + ph2.toFixed(2) + ' <a href="/ph-rechner/" class="qs-link">→ pH-Rechner</a>';
+    } else {
+      resultEl.className = 'qs-result error';
+      resultEl.textContent = 'Nur starke Säuren/Basen (HCl, H2SO4, NaOH, KOH, …)';
+    }
+  });
+
+  document.getElementById('qs-ph-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') document.getElementById('qs-ph-btn').click();
+  });
+
+  // ── Gleichungen ausgleichen ──────────────────────────────
+  document.getElementById('qs-eq-btn').addEventListener('click', function() {
+    var eq = document.getElementById('qs-eq-input').value.trim();
+    var resultEl = document.getElementById('qs-eq-result');
+    if (!eq || eq.indexOf('=') === -1) {
+      resultEl.className = 'qs-result error';
+      resultEl.textContent = 'Versuche: "Fe + O2 = Fe2O3"';
+      return;
+    }
+    // Redirect to full calculator
+    resultEl.className = 'qs-result';
+    resultEl.innerHTML = '<a href="/reaktionsgleichungen-ausgleichen/?eq=' +
+      encodeURIComponent(eq) + '" class="qs-link">→ Zum Ausgleicher</a>';
+  });
+
+  document.getElementById('qs-eq-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') document.getElementById('qs-eq-btn').click();
+  });
+})();
+</script>

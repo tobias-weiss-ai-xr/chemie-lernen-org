@@ -24,6 +24,7 @@ Last updated: 2026-07-25
 ## Active changes (`changes/`)
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 | Change | Status | Goal |
 | -------------------------------------- | ------- | ---------------------------------------------------------- |
 | `sprint-37-themenbereiche-enhancement` | Shipped | Quiz widgets, entity clouds for 12 Themenbereiche |
@@ -61,8 +62,10 @@ Last updated: 2026-07-25
 | sprint-35-modulhandbuch-integration     | 16/16 tasks ✓      | Archived 2026-07-25 (3 state scrapers, 564 modules, tests)   |
 | sprint-36-advanced-analytics            | 20/20 tasks ✓      | Archived 2026-07-25 (teacher dashboard, class tracking, CSV) |
 
-=======
-_No active changes._
+# =======
+
+> > > > > > > Stashed changes
+> > > > > > > _No active changes._
 
 ## Archived changes (`changes/archive/`)
 
@@ -91,10 +94,17 @@ _No active changes._
 | sprint-25-docs-mobile-polish            | 12/12 tasks ✓      | Archived 2026-07-22 (documentation, mobile responsive)      |
 | sprint-31-cleanup-archive               | 12/12 tasks ✓      | Archived 2026-07-21 (code-entity filter, .env.example)      |
 | sprint-32-content-data                  | 11/11 tasks ✓      | Archived 2026-07-21 (curricula repair, cross-link audit)    |
-| sprint-33-lehrenden-premium             | 16/16 tasks ✓      | Archived 2026-07-24 (Stripe, gating, badges, overlays)      |
-| sprint-34-platform-performance          | 16/16 tasks ✓      | Archived 2026-07-24 (build perf, Lunr search, PWA offline)  |
-| sprint-35-modulhandbuch-integration     | 16/16 tasks ✓      | Archived 2026-07-24 (3 state scrapers, 564 modules, tests)  |
 
+<<<<<<< Updated upstream
+| sprint-33-lehrenden-premium | 16/16 tasks ✓ | Archived 2026-07-24 (Stripe, gating, badges, overlays) |
+| sprint-34-platform-performance | 16/16 tasks ✓ | Archived 2026-07-24 (build perf, Lunr search, PWA offline) |
+| sprint-35-modulhandbuch-integration | 16/16 tasks ✓ | Archived 2026-07-24 (3 state scrapers, 564 modules, tests) |
+
+> > > > > > > # Stashed changes
+> > > > > > >
+> > > > > > > | sprint-33-lehrenden-premium | 16/16 tasks ✓ | Archived 2026-07-24 (Stripe, gating, badges, overlays) |
+> > > > > > > | sprint-34-platform-performance | 16/16 tasks ✓ | Archived 2026-07-24 (build perf, Lunr search, PWA offline) |
+> > > > > > > | sprint-35-modulhandbuch-integration | 16/16 tasks ✓ | Archived 2026-07-24 (3 state scrapers, 564 modules, tests) |
 > > > > > > > Stashed changes
 
 ## Legacy planning artifacts (`archive/`)

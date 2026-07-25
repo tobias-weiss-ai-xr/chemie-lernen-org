@@ -161,6 +161,7 @@
   var RESET_ID = 'quiz-reset-' + TOPIC;
 
   var questions = [];
+  var allQuestions = [];
   var currentIndex = 0;
   var score = 0;
   var answered = false;
@@ -187,6 +188,7 @@
         return;
       }
       shuffle(questions);
+      allQuestions = questions.slice();
       questions = questions.slice(0, 5);
       updateProgress();
       renderQuestion();
@@ -282,10 +284,35 @@
     var html = '<div class="text-center" style="padding:20px;">';
     html += '<h4>' + emoji + ' Quiz abgeschlossen!</h4>';
     html += '<p style="font-size:1.2rem;font-weight:600;">' + score + ' von ' + questions.length + ' richtig (' + pct + '%)</p>';
-    html += '<button class="btn btn-sm btn-default" id="retry-' + TOPIC + '">Erneut versuchen</button>';
-    html += '</div>';
+    html += '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">';
+    html += '<button class="btn btn-sm btn-default" id="retry-' + TOPIC + '">🔄 Erneut versuchen</button>';
+    if (allQuestions.length > questions.length) {
+      html += '<button class="btn btn-sm btn-primary" id="more-' + TOPIC + '">➕ Nächste 5 Fragen</button>';
+    }
+    html += '</div></div>';
     document.getElementById(BODY_ID).innerHTML = html;
     document.getElementById('retry-' + TOPIC).addEventListener('click', resetQuiz);
+    var moreBtn = document.getElementById('more-' + TOPIC);
+    if (moreBtn) {
+      moreBtn.addEventListener('click', loadMore);
+    }
+  }
+
+  function loadMore() {
+    // Get questions not yet shown
+    var shown = new Set(questions.map(function(q) { return q.id; }));
+    var remaining = allQuestions.filter(function(q) { return !shown.has(q.id); });
+    if (remaining.length === 0) {
+      // Reset if all questions shown
+      remaining = allQuestions.slice();
+    }
+    shuffle(remaining);
+    questions = remaining.slice(0, 5);
+    currentIndex = 0;
+    score = 0;
+    answered = false;
+    updateProgress();
+    renderQuestion();
   }
 
   function updateProgress() {
