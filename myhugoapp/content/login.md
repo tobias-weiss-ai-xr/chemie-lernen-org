@@ -1,6 +1,6 @@
 ---
 title: 'Anmelden'
-description: 'Melde dich an, um auf alle Premium-Features von chemie-lernen.org zuzugreifen'
+description: 'Melde dich an oder erstelle ein Konto bei chemie-lernen.org'
 layout: 'login'
 noindex: true
 ---

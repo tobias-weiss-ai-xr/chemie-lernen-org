@@ -5,6 +5,7 @@
     <div class="premium-header">
       <h1 class="auth-title">{{ .Title }}</h1>
       <p class="auth-subtitle">{{ .Description }}</p>
+      <p class="premium-note">chemie-lernen.org ist ein kostenloses Bildungsangebot. Alle Grundfunktionen stehen offen zur Verfügung.</p>
     </div>
 
     <div class="pricing-grid">
@@ -12,41 +13,39 @@
       <div class="pricing-card">
         <div class="pricing-card-header">
           <h2 class="pricing-tier-name">Kostenlos</h2>
-          <p class="pricing-price">0 € <span class="pricing-period">/ Monat</span></p>
+          <p class="pricing-price">0 €</p>
         </div>
         <ul class="pricing-features">
           <li>✓ Alle Themenbereiche &amp; Artikel</li>
-          <li>✓ Basis-Rechner (Stöchiometrie, pH-Wert)</li>
-          <li>✓ KI-Assistent (begrenzt auf 5 Anfragen/Tag)</li>
-          <li>✗ Premium-Rechner</li>
-          <li>✗ KI-Assistent unbegrenzt</li>
-          <li>✗ Keine Werbung</li>
-          <li>✗ Offline-Zugriff</li>
+          <li>✓ Alle Rechner &amp; Visualisierungen</li>
+          <li>✓ Molekülstudio &amp; Periodensystem 3D</li>
+          <li>✓ Quiz &amp; Übungen</li>
+          <li>✓ KI-Assistent</li>
+          <li>✓ Gamification &amp; Lernpfade</li>
         </ul>
         <div class="pricing-card-footer">
-          <span class="btn btn-default btn-block" disabled>Aktuell</span>
+          <span class="btn btn-default btn-block" disabled>Vollständig nutzbar</span>
         </div>
       </div>
 
-      <!-- Premium tier -->
+      <!-- Supporter tier -->
       <div class="pricing-card pricing-card-featured">
-        <div class="pricing-badge">Empfohlen</div>
+        <div class="pricing-badge">Unterstützen</div>
         <div class="pricing-card-header">
-          <h2 class="pricing-tier-name">Premium</h2>
+          <h2 class="pricing-tier-name">Unterstützer</h2>
           <p class="pricing-price">4,99 € <span class="pricing-period">/ Monat</span></p>
         </div>
         <ul class="pricing-features">
-          <li>✓ Alle Themenbereiche &amp; Artikel</li>
-          <li>✓ Alle Rechner (Stöchiometrie, pH-Wert, Titration, …)</li>
+          <li>✓ Alles aus Kostenlos</li>
+          <li>✓ KI-Unterrichtsplanung</li>
+          <li>✓ KI-Arbeitsblatt-Generator</li>
+          <li>✓ Schüler-Dashboard &amp; Analytics</li>
           <li>✓ KI-Assistent unbegrenzt</li>
-          <li>✓ Werbefrei</li>
-          <li>✓ Offline-Zugriff</li>
-          <li>✓ Exklusive 3D-Visualisierungen</li>
           <li>✓ Bevorzugter Support</li>
         </ul>
         <div class="pricing-card-footer">
           <button id="premium-checkout-btn" class="btn btn-primary btn-block">
-            Jetzt Premium kaufen
+            Unterstützen
           </button>
         </div>
       </div>
@@ -58,7 +57,7 @@
     </div>
 
     <p class="auth-footer">
-      Bereits Premium? <a href="/konto/">Zum Konto</a>
+      Bereits Unterstützer? <a href="/konto/">Zum Konto</a>
     </p>
   </div>
 </div>
@@ -73,6 +72,12 @@
 .premium-header {
   text-align: center;
   margin-bottom: 48px;
+}
+.premium-note {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #666);
+  font-style: italic;
 }
 .pricing-grid {
   display: flex;

@@ -352,23 +352,7 @@
         <p>• Ziehen zum Drehen</p>
         <p>• Mausrad zum Zoomen</p>
     </div>
-    <div id="premium-locked-overlay" class="premium-locked-overlay" style="display: none;">
-        <div class="premium-locked-content">
-            <div class="premium-locked-icon">🔒</div>
-            <h2 class="premium-locked-title">Premium-Feature</h2>
-            <p class="premium-locked-desc">
-                Das Molekülstudio ist ein Premium-Feature für Lehrkräfte. 
-                Upgrade auf Premium für unbegrenzten Zugriff auf alle 3D-Visualisierungen.
-            </p>
-            <ul class="premium-features">
-                <li>Alle Moleküle in 3D visualisieren</li>
-                <li>Unbegrenzte Rotation und Zoom</li>
-                <li>Werbefreies Lernen</li>
-                <li>Zugriff auf alle Premium-Rechner</li>
-            </ul>
-            <a href="/premium/" class="premium-locked-cta">Jetzt Premium aktivieren</a>
-        </div>
-    </div>
+
 </div>
 {{ end }}
 
@@ -456,29 +440,7 @@
         console.log('Molecule Studio UI initialized');
     })();
 </script>
-<script>
-    // Premium gating: check user subscription status
-    (function() {
-        var overlay = document.getElementById('premium-locked-overlay');
-        if (!overlay) return;
 
-        fetch('/api/auth/me', { credentials: 'include' })
-            .then(function(r) { return r.ok ? r.json() : null; })
-            .then(function(user) {
-                var isPremium = user && (user.plan === 'premium' || user.tier === 'premium');
-                if (!isPremium) {
-                    overlay.style.display = 'flex';
-                    var container = document.getElementById('molecule-studio-container');
-                    if (container) container.classList.add('premium-content-locked');
-                }
-            })
-            .catch(function() {
-                overlay.style.display = 'flex';
-                var container = document.getElementById('molecule-studio-container');
-                if (container) container.classList.add('premium-content-locked');
-            });
-    })();
-</script>
 <script type="importmap">
 {
     "imports": {
