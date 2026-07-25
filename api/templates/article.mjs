@@ -24,7 +24,7 @@
  */
 export function renderEntityPage(opts) {
   const {
-    entity, isCurriculum, displayName, catColor, catLabel,
+    isCurriculum, displayName, catColor, catLabel,
     metaHtml, quelleHtml, kmkHtml, learningPathHtml, quizHtml,
     otherRelatedHtml, articlesHtml, slug, backLink
   } = opts;

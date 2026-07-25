@@ -43,62 +43,67 @@ export function fetchWithRetry(url, options = {}) {
     retries = 2,
     delayMs = 1000,
     timeout = 15000,
-    userAgent = 'Mozilla/5.0 (compatible; chemie-lernen-org-modulhandbuch/1.0)',
+    userAgent = 'Mozilla/5.0 (compatible; chemie-lernen-org/modulhandbuch/1.0)',
   } = options;
 
-  return _fetchWithRetryInner(url, retries, { delayMs, timeout, userAgent });
+  return new Promise((resolve, reject) => {
+    try {
+      new URL(url);
+    } catch (err) {
+      return reject(err);
+    }
+    _fetchWithRetryInner(url, retries, { delayMs, timeout, userAgent }).then(resolve);
+  });
+}
+
+function _handleRetryOrFail(url, retriesLeft, config, resolve) {
+  if (retriesLeft > 0) {
+    resolve(_retry(url, retriesLeft, config));
+  } else {
+    resolve(null);
+  }
+}
+
+function _doHttpRequest(url, retriesLeft, config, resolve) {
+  const parsedUrl = new URL(url);
+  const { timeout, userAgent } = config;
+  const mod = parsedUrl.protocol === 'https:' ? https : http;
+
+  const req = mod.get(url, { headers: { 'User-Agent': userAgent }, timeout }, (res) => {
+    // Handle redirects
+    if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+      const redirectUrl = new URL(res.headers.location, url).toString();
+      return resolve(_fetchWithRetryInner(redirectUrl, retriesLeft, config));
+    }
+
+    if (res.statusCode >= 400) {
+      return _handleRetryOrFail(url, retriesLeft, config, resolve);
+    }
+
+    let data = '';
+    res.on('data', (chunk) => (data += chunk));
+    res.on('end', () => resolve(data));
+  });
+
+  req.on('error', () => _handleRetryOrFail(url, retriesLeft, config, resolve));
+  req.on('timeout', () => {
+    req.destroy();
+    _handleRetryOrFail(url, retriesLeft, config, resolve);
+  });
 }
 
 function _fetchWithRetryInner(url, retriesLeft, config) {
-  return new Promise((resolve, reject) => {
-    const { delayMs, timeout, userAgent } = config;
+  const { delayMs } = config;
+  const parsedUrl = new URL(url);
+  const host = parsedUrl.hostname;
+  const now = Date.now();
+  const lastReq = lastRequestTime.get(host) || 0;
+  const waitMs = Math.max(0, delayMs - (now - lastReq));
 
-    // Rate limiting: wait if we hit the same host too fast
-    const parsedUrl = new URL(url);
-    const host = parsedUrl.hostname;
-    const now = Date.now();
-    const lastReq = lastRequestTime.get(host) || 0;
-    const waitMs = Math.max(0, delayMs - (now - lastReq));
-
+  return new Promise((resolve) => {
     setTimeout(() => {
       lastRequestTime.set(host, Date.now());
-
-      const mod = parsedUrl.protocol === 'https:' ? https : http;
-      const req = mod.get(url, { headers: { 'User-Agent': userAgent }, timeout }, (res) => {
-        // Handle redirects
-        if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-          const redirectUrl = new URL(res.headers.location, url).toString();
-          return resolve(_fetchWithRetryInner(redirectUrl, retriesLeft, config));
-        }
-
-        if (res.statusCode >= 400) {
-          if (retriesLeft > 0) {
-            return resolve(_retry(url, retriesLeft, config));
-          }
-          return resolve(null);
-        }
-
-        let data = '';
-        res.on('data', (chunk) => (data += chunk));
-        res.on('end', () => resolve(data));
-      });
-
-      req.on('error', () => {
-        if (retriesLeft > 0) {
-          resolve(_retry(url, retriesLeft, config));
-        } else {
-          resolve(null);
-        }
-      });
-
-      req.on('timeout', () => {
-        req.destroy();
-        if (retriesLeft > 0) {
-          resolve(_retry(url, retriesLeft, config));
-        } else {
-          resolve(null);
-        }
-      });
+      _doHttpRequest(url, retriesLeft, config, resolve);
     }, waitMs);
   });
 }
