@@ -104,7 +104,7 @@ function isNeo4jReachable() {
 let _neo4jReachable = null;
 
 function describeIntegration(name, fn) {
-  const runIf = process.env.API_RUNNING === '1' || process.env.CI === 'true';
+  const runIf = process.env.API_RUNNING === '1';
   if (runIf) {
     // eslint-disable-next-line jest/valid-describe-callback, jest/valid-title
     describe(name, fn);

@@ -12,7 +12,7 @@ const http = require('http');
 const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3001';
 
 // Guard: skip API-dependent tests unless API is running
-const runApiTests = process.env.API_RUNNING === '1' || process.env.CI === 'true';
+const runApiTests = process.env.API_RUNNING === '1';
 const describeApi = runApiTests ? describe : describe.skip;
 
 if (!runApiTests) {

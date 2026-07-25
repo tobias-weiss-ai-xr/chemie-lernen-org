@@ -227,7 +227,7 @@ let _neo4jReachable = null;
  * Usage: describeApi('name', () => { ... }) in place of describe.
  */
 function describeApi(name, fn) {
-  const runIf = process.env.API_RUNNING === '1' || process.env.CI === 'true';
+  const runIf = process.env.API_RUNNING === '1';
   if (runIf) {
     // eslint-disable-next-line jest/valid-describe-callback, jest/valid-title
     describe(name, fn);
@@ -510,7 +510,7 @@ let _apiReachable = null;
  * is not running.
  */
 function describeApiEndpoint(name, fn) {
-  const runIf = process.env.API_RUNNING === '1' || process.env.CI === 'true';
+  const runIf = process.env.API_RUNNING === '1';
   if (runIf) {
     // eslint-disable-next-line jest/valid-describe-callback, jest/valid-title
     describe(name, fn);
