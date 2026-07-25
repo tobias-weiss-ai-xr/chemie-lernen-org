@@ -174,12 +174,12 @@
         return;
       }
       questions = quizQuestions.questions.filter(function(q) {
-        return q.topic.toLowerCase().replace(/\s+/g, '-') === TOPIC || TOPIC === 'alle';
+        return (q.slug === TOPIC) || (q.topic && q.topic.toLowerCase().replace(/\s+/g, '-') === TOPIC) || TOPIC === 'alle';
       });
-      // Fallback: if no topic match, use 'Allgemeine Chemie'
+      // Fallback: if no topic match, use 'Einführung in die Chemie'
       if (questions.length === 0) {
         questions = quizQuestions.questions.filter(function(q) {
-          return q.topic === 'Allgemeine Chemie';
+          return q.slug === 'einfuehrung-chemie' || q.topic === 'Einführung in die Chemie';
         }).slice(0, 3);
       }
       if (questions.length === 0) {

@@ -23,10 +23,11 @@ Last updated: 2026-07-25
 
 ## Active changes (`changes/`)
 
-| Change                                 | Status  | Goal                                                       |
+<<<<<<< Updated upstream
+| Change | Status | Goal |
 | -------------------------------------- | ------- | ---------------------------------------------------------- |
-| `sprint-37-themenbereiche-enhancement` | Shipped | Quiz widgets, entity clouds for 12 Themenbereiche          |
-| `sprint-38-premium-lesson-plans`       | Shipped | KI lesson plan + worksheet endpoints, /premium/lehrplaene/ |
+| `sprint-37-themenbereiche-enhancement` | Shipped | Quiz widgets, entity clouds for 12 Themenbereiche |
+| `sprint-38-premium-lesson-plans` | Shipped | KI lesson plan + worksheet endpoints, /premium/lehrplaene/ |
 
 ## Archived changes (`changes/archive/`)
 
@@ -59,6 +60,42 @@ Last updated: 2026-07-25
 | sprint-34-platform-performance          | 16/16 tasks ✓      | Archived 2026-07-25 (build perf, Lunr search, PWA offline)   |
 | sprint-35-modulhandbuch-integration     | 16/16 tasks ✓      | Archived 2026-07-25 (3 state scrapers, 564 modules, tests)   |
 | sprint-36-advanced-analytics            | 20/20 tasks ✓      | Archived 2026-07-25 (teacher dashboard, class tracking, CSV) |
+
+=======
+_No active changes._
+
+## Archived changes (`changes/archive/`)
+
+| Change                                  | Commits            | Status                                                      |
+| --------------------------------------- | ------------------ | ----------------------------------------------------------- |
+| sprint-6-wissensnetz-ssr                | dea14d91, e9ad62be | Shipped 2026-06-26                                          |
+| sprint-7-wcag-a11y                      | dcb2ab18           | Shipped 2026-06-26                                          |
+| sprint-8a-d3-ego-graph                  | e9ad62be           | Shipped 2026-06-26                                          |
+| sprint-8b-neo4j-data                    | 5d5e6238           | Shipped 2026-06-26                                          |
+| sprint-8c-rag                           | d47bd48e           | Shipped 2026-06-26                                          |
+| sprint-8-mega-kg (umbrella)             | wraps 8a/8b/8c     | Shipped 2026-06-26                                          |
+| deploy-observability (API smoke tests)  | a1a11699           | Shipped 2026-06-26                                          |
+| sprint-9-specs-and-fixs                 | 20/20 tasks ✓      | Archived 2026-07-04                                         |
+| extend-entity-kg-with-lehrplan          | 19/19 tasks ✓      | Archived 2026-07-05. Commit `9aeb6b5b`                      |
+| integrate-global-modulhandbuecher       | 33/33 tasks ✓      | Archived 2026-07-05. Commit `3753a6a1`                      |
+| sprint-27-kg-pipeline-fix               | 24/24 tasks ✓      | Shipped 2026-07-18 (entity pages, API bugs, Neo4j indexes)  |
+| sprint-28-neo4j-schema-reconciliation   | 13/13 tasks ✓      | Shipped 2026-07-18 (curriculum schema, entity linking)      |
+| sprint-29-curriculum-quality-gaps       | 11/11 tasks ✓      | Shipped 2026-07-18 (didaktik endpoint, klassenstufen, CI)   |
+| sprint-30-wissensnetz-ux-learning-paths | 18/18 tasks ✓      | Shipped 2026-07-18 (D3 edge colors, chat entities, filters) |
+| sprint-19-observability                 | 12/12 tasks ✓      | Archived 2026-07-22 (grafana, prometheus, loki)             |
+| sprint-20-production-hardening          | 14/14 tasks ✓      | Archived 2026-07-22 (error boundaries, input validation)    |
+| sprint-21-ki-personalization            | 10/10 tasks ✓      | Archived 2026-07-22 (learning profile, memory)              |
+| sprint-22-quiz-exercise-ecosystem       | 16/16 tasks ✓      | Archived 2026-07-22 (fsrs, quiz history, hints)             |
+| sprint-23-learning-paths-gamification   | 15/15 tasks ✓      | Archived 2026-07-22 (learning paths, badges, XP)            |
+| sprint-24-3d-visualizations             | 13/13 tasks ✓      | Archived 2026-07-22 (molekül studio, PSE in VR)             |
+| sprint-25-docs-mobile-polish            | 12/12 tasks ✓      | Archived 2026-07-22 (documentation, mobile responsive)      |
+| sprint-31-cleanup-archive               | 12/12 tasks ✓      | Archived 2026-07-21 (code-entity filter, .env.example)      |
+| sprint-32-content-data                  | 11/11 tasks ✓      | Archived 2026-07-21 (curricula repair, cross-link audit)    |
+| sprint-33-lehrenden-premium             | 16/16 tasks ✓      | Archived 2026-07-24 (Stripe, gating, badges, overlays)      |
+| sprint-34-platform-performance          | 16/16 tasks ✓      | Archived 2026-07-24 (build perf, Lunr search, PWA offline)  |
+| sprint-35-modulhandbuch-integration     | 16/16 tasks ✓      | Archived 2026-07-24 (3 state scrapers, 564 modules, tests)  |
+
+> > > > > > > Stashed changes
 
 ## Legacy planning artifacts (`archive/`)
 
