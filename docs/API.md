@@ -382,3 +382,39 @@ Server health check.
   "litellm": "connected"
 }
 ```
+
+---
+
+## Teacher Analytics (Premium)
+
+All analytics endpoints require a valid JWT from a premium user.
+Returns `402` for free users, `401` for unauthenticated requests.
+
+### `GET /api/analytics/class-overview`
+
+Aggregate class statistics: total students, active this week, average XP/streak/level, top and weakest topics, 12-week engagement timeline.
+
+### `GET /api/analytics/students`
+
+Paginated, sortable, searchable student list.
+
+| Param  | Type   | Default | Description                                              |
+| ------ | ------ | ------- | -------------------------------------------------------- |
+| sort   | string | `xp`    | Field: xp, name, level, streak, avgQuizScore, lastActive |
+| order  | string | `desc`  | `asc` or `desc`                                          |
+| limit  | number | 50      | 1–200                                                    |
+| offset | number | 0       | Page offset                                              |
+| search | string |         | Name substring filter (case-insensitive)                 |
+
+### `GET /api/analytics/topic-breakdown`
+
+Class-wide quiz performance per topic. Identifies weak areas (average score < 60%).
+
+### `GET /api/analytics/export?format=csv`
+
+Downloads all student progress as CSV (BOM for Excel compatibility).
+Columns: Name, E-Mail, XP, Level, Streak, Quiz-Anzahl, Quiz-Durchschnitt, Letzte Aktivität.
+
+### `GET /api/analytics/engagement-timeline?weeks=12`
+
+Weekly active user counts for the last N weeks (max 52). Based on xpLog timestamps.
