@@ -14,6 +14,6 @@ components: []
 
 ## Verknüpfte Artikel
 
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
+- [Direct air capture of CO2 using amine-functionalized metal-organic frameworks](/)
+- [Photocatalytic conversion of CO2 to methane using single-atom catalysts on graphitic carbon nitride](/)
+- [Visible-light-driven CO2 reduction to formic acid using molecular cobalt catalysts](/)

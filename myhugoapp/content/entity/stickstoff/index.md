@@ -32,8 +32,8 @@ components: []
 
 ## Verknüpfte Artikel
 
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
+- [Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse](/)
+- [Photocatalytic conversion of CO2 to methane using single-atom catalysts on graphitic carbon nitride](/)
+- [Electrocatalytic nitrogen reduction to ammonia at ambient conditions](/)
+- [Electrochemical reduction of nitrate to ammonia on iron-based single-atom catalysts](/)
+- [Room-temperature superconductivity in nitrogen-doped lutetium hydride at ambient pressure](/)

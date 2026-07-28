@@ -361,6 +361,7 @@
   }
 .entity-graph-link { border-top-color: #333; }
 .entity-graph-link:hover { background: #2a2040; color: #bb86fc; }
+}
 
 /* Lehrplan-Bezug Section */
 .entity-lehrplan-card {
@@ -895,16 +896,18 @@ function loadD3AndEgoGraph() {
     var color = (globalThis.D3EgoGraph && globalThis.D3EgoGraph.colorize(cat)) || '#9b59b6';
     var label = (globalThis.D3EgoGraph && globalThis.D3EgoGraph.labelize(cat)) || cat;
 
-    // Categorize related entities
+    // Categorize related entities (API now returns category on each)
     var kmkRefs = [], quelleRefs = [], otherRefs = [];
     var refs = entity.relatedEntities || [];
     for (var ri = 0; ri < refs.length; ri++) {
       var rName = typeof refs[ri] === 'string' ? refs[ri] : refs[ri].name;
-      var rCat = '';
-      for (var ei = 0; ei < allEntities.length; ei++) {
-        if (allEntities[ei].name === rName) {
-          rCat = allEntities[ei].category || '';
-          break;
+      var rCat = typeof refs[ri] === 'string' ? '' : (refs[ri].category || '');
+      if (!rCat) {
+        for (var ei = 0; ei < allEntities.length; ei++) {
+          if (allEntities[ei].name === rName) {
+            rCat = allEntities[ei].category || '';
+            break;
+          }
         }
       }
       if (rCat === 'didaktik') kmkRefs.push(rName);
@@ -927,7 +930,7 @@ function loadD3AndEgoGraph() {
     // Header card
     html += '<div class="entity-header-card" style="--cat-color:' + color + '">';
     html += '<h1 class="entity-header-title">' + esc(entity.name) + '</h1>';
-    html += '<p class="entity-header-desc">' + esc(entityName) + '</p>';
+    html += '<p class="entity-header-desc">' + esc(entity.description || '') + '</p>';
     html += '<div><span class="entity-badge" style="background:' + color + '">' + esc(label) + '</span></div>';
     html += '<div class="entity-stats">';
     html += '<span><strong>' + artCount + '</strong> Artikel</span>';

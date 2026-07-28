@@ -12,6 +12,6 @@ components: []
 
 ## Verknüpfte Artikel
 
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
+- [Blue hydrogen production via methane pyrolysis: less carbon-intensive than gray hydrogen](/)
+- [Photocatalytic conversion of CO2 to methane using single-atom catalysts on graphitic carbon nitride](/)
+- [Kohlenwasserstoffe](/)

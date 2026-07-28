@@ -16,6 +16,6 @@ components: []
 
 ## Verknüpfte Artikel
 
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
+- [Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert](/)
+- [Polyethylene upcycling to alkylaromatics via hydroisomerization-dehydrocyclization](/)
+- [Kohlenwasserstoffe](/)

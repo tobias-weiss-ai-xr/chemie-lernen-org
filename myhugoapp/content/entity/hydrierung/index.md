@@ -12,6 +12,6 @@ components: []
 
 ## Verknüpfte Artikel
 
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
+- [Single-atom alloy catalysts break scaling relations for selective hydrogenation](/)
+- [Polyethylene upcycling to alkylaromatics via hydroisomerization-dehydrocyclization](/)
+- [Substitution und Addition](/)

@@ -77,9 +77,14 @@ function articleListForBody(articles) {
   if (!articles || articles.length === 0) return '';
   const list = articles
     .slice(0, 5)
-    .map((a) => `- [${a.title}](${a.url || '/'})`)
+    .map((a) => {
+      const title = typeof a === 'string' ? a : a.title;
+      const url = typeof a === 'string' ? '' : a.url || '';
+      return title ? `- [${title}](${url || '/'})` : null;
+    })
+    .filter(Boolean)
     .join('\n');
-  return `## Verknüpfte Artikel\n\n${list}\n`;
+  return list ? `## Verknüpfte Artikel\n\n${list}\n` : '';
 }
 
 async function main() {

@@ -32,7 +32,7 @@ components: []
 
 ## Verknüpfte Artikel
 
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
+- [50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure](/)
+- [Pufferlösungen](/)
+- [Säuren, Basen und Salze](/)
+- [pH-Wert und Indikatoren](/)

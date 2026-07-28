@@ -14,7 +14,7 @@ components: []
 
 ## Verknüpfte Artikel
 
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
+- [Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung](/)
+- [50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure](/)
+- [CRISPR-Cas9 gene editing meets chemistry: base editors and prime editing](/)
+- [AlphaFold predicts structure of almost every protein known to science](/)

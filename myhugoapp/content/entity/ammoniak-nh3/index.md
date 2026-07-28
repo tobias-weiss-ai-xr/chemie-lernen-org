@@ -13,7 +13,7 @@ components: []
 
 ## Verknüpfte Artikel
 
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
+- [Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse](/)
+- [Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion](/)
+- [Electrocatalytic nitrogen reduction to ammonia at ambient conditions](/)
+- [Electrochemical reduction of nitrate to ammonia on iron-based single-atom catalysts](/)
