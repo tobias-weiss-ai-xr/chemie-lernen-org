@@ -26,6 +26,38 @@
       .replace(/"/g, '&quot;');
   }
 
+  // Known non-chemistry entities to exclude from index
+  var NON_CHEMISTRY = [
+    'javascript',
+    'github',
+    'blockchain-technology',
+    'flatpickr',
+    'yelp-graph-query-language',
+    'four-color-theorem',
+    'euler-graph',
+    'planar-graph',
+    'yagni',
+    'haiku',
+    'sonnet',
+    'opus',
+    'caveman',
+    'resource-allocation-in-operating-systems',
+    'web-search-engine-crawlers',
+    'computer-network-security',
+    'dijkstras-algorithm',
+    'vertex-cover',
+    'acyclic-graph',
+    'add-remove-edge',
+    'add-remove-vertex',
+    'adjacency-list',
+    'adjacency-matrix',
+  ];
+
+  function isChemistryEntity(e) {
+    var slug = toSlug(e.name || '');
+    return NON_CHEMISTRY.indexOf(slug) === -1;
+  }
+
   function isPremiumEntity(e) {
     var name = (e.name || '').toLowerCase();
     if (name.indexOf('molekül') >= 0 || name.indexOf('molekuel') >= 0) return true;
@@ -165,6 +197,7 @@
 
     function filteredAndSorted() {
       var f = entities;
+      f = f.filter(isChemistryEntity);
 
       if (searchQuery && _lunrIndex && _searchIndex) {
         var lunrResults = _lunrIndex.search(searchQuery);
