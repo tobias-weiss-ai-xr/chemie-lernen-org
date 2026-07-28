@@ -98,6 +98,26 @@
     composition: 0.7,
   };
 
+  // ── Category X bands (for forceX clustering) ──────────────────
+  var CAT_INDEX = {};
+  (function () {
+    var keys = Object.keys(CAT_COLORS);
+    keys.forEach(function (k, i) {
+      CAT_INDEX[k] = i;
+    });
+  })();
+  function catX(cat, w) {
+    var idx = CAT_INDEX[cat] || 0;
+    return (w * (idx + 0.5)) / Object.keys(CAT_COLORS).length;
+  }
+
+  // Label-aware collision radius — accounts for text width
+  function labelCollisionRadius(d) {
+    var base = (d.size || 4) + 3;
+    var labelWidth = (d.label || '').length * 3.5;
+    return Math.max(base, labelWidth / 2);
+  }
+
   function getEdgeColor(relType) {
     return EDGE_COLORS[relType] || '#cccccc';
   }
@@ -539,7 +559,8 @@
           tooltip.style('display', 'none');
         });
 
-      // Force simulation
+      // Force simulation — adaptive parameters to avoid blob
+      var chargeStr = -Math.max(60, Math.min(300, nodes.length * 6));
       var sim = d3
         .forceSimulation(nodes)
         .force(
@@ -550,18 +571,22 @@
               return d.id;
             })
             .distance(function (d) {
-              return d.type === 'article' ? 80 : 60;
+              return d.type === 'article' ? 140 : 110;
             })
         )
-        .force('charge', d3.forceManyBody().strength(-100))
+        .force('charge', d3.forceManyBody().strength(chargeStr))
         .force('center', d3.forceCenter(w / 2, h / 2))
+        .force('collision', d3.forceCollide().radius(labelCollisionRadius))
         .force(
-          'collision',
-          d3.forceCollide().radius(function (d) {
-            return d.size + 5;
-          })
+          'x',
+          d3
+            .forceX(function (d) {
+              return catX(d.category, w);
+            })
+            .strength(0.15)
         )
-        .alphaDecay(0.05)
+        .force('y', d3.forceY(h / 2).strength(0.05))
+        .alphaDecay(0.025)
         .on('tick', function () {
           link
             .attr('x1', function (d) {
@@ -607,6 +632,15 @@
           var nh = container.clientHeight || 280;
           svg.attr('width', nw).attr('height', nh);
           sim.force('center', d3.forceCenter(nw / 2, nh / 2));
+          sim.force(
+            'x',
+            d3
+              .forceX(function (d) {
+                return catX(d.category, nw);
+              })
+              .strength(0.15)
+          );
+          sim.force('y', d3.forceY(nh / 2).strength(0.05));
           sim.alpha(0.3).restart();
           if (prefersReducedMotion()) {
             sim.stop();
@@ -1051,7 +1085,8 @@
         });
       }
 
-      // Force simulation
+      // Force simulation — adaptive parameters to avoid blob
+      var chargeStr = -Math.max(100, Math.min(500, nodes.length * 5));
       var sim = d3
         .forceSimulation(nodes)
         .force(
@@ -1062,21 +1097,23 @@
               return d.id;
             })
             .distance(function (d) {
-              return d.type === 'composition' ? 60 : 100;
+              return d.type === 'composition' ? 140 : 200;
             })
-            .strength(0.3)
+            .strength(0.2)
         )
-        .force('charge', d3.forceManyBody().strength(-150))
+        .force('charge', d3.forceManyBody().strength(chargeStr))
         .force('center', d3.forceCenter(w / 2, h / 2))
+        .force('collision', d3.forceCollide().radius(labelCollisionRadius))
         .force(
-          'collision',
-          d3.forceCollide().radius(function (d) {
-            return (d.size || 4) + 3;
-          })
+          'x',
+          d3
+            .forceX(function (d) {
+              return catX(d.category, w);
+            })
+            .strength(0.2)
         )
-        .force('x', d3.forceX(w / 2).strength(0.01))
-        .force('y', d3.forceY(h / 2).strength(0.01))
-        .alphaDecay(0.02)
+        .force('y', d3.forceY(h / 2).strength(0.05))
+        .alphaDecay(0.012)
         .on('tick', function () {
           link
             .attr('x1', function (d) {
@@ -1146,7 +1183,14 @@
           var nw = container.clientWidth || w;
           svg.attr('width', nw);
           sim.force('center', d3.forceCenter(nw / 2, h / 2));
-          sim.force('x', d3.forceX(nw / 2).strength(0.01));
+          sim.force(
+            'x',
+            d3
+              .forceX(function (d) {
+                return catX(d.category, nw);
+              })
+              .strength(0.2)
+          );
           sim.alpha(0.3).restart();
           if (prefersReducedMotion()) {
             sim.stop();
