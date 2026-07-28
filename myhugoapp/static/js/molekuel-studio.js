@@ -1214,8 +1214,8 @@ function visualizeMolecule(name) {
     renderMolecule(data);
     showMoleculeInfo(data);
     showLoading(false);
-    welcomeScreen.style.display = 'none';
-    controlsInfo.style.display = 'block';
+    if (welcomeScreen) welcomeScreen.style.display = 'none';
+    if (controlsInfo) controlsInfo.style.display = 'block';
     if (canvas) {
       canvas.setAttribute(
         'aria-label',
@@ -1360,8 +1360,8 @@ function calculatePerpendicular(direction) {
 }
 
 function showLoading(show) {
-  loadingScreen.style.display = show ? 'flex' : 'none';
-  visualizeBtn.disabled = show;
+  if (loadingScreen) loadingScreen.style.display = show ? 'flex' : 'none';
+  if (visualizeBtn) visualizeBtn.disabled = show;
 }
 
 function showMoleculeInfo(data) {

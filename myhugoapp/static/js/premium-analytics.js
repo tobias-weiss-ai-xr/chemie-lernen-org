@@ -42,19 +42,24 @@
     // Search
     var searchInput = document.getElementById('student-search');
     var debounceTimer = null;
-    searchInput.addEventListener('input', function () {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(function () {
-        currentSearch = searchInput.value.trim();
-        currentOffset = 0;
-        renderStudentTable();
-      }, 300);
-    });
+    if (searchInput) {
+      searchInput.addEventListener('input', function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function () {
+          currentSearch = searchInput.value.trim();
+          currentOffset = 0;
+          renderStudentTable();
+        }, 300);
+      });
+    }
 
     // Export
-    document.getElementById('btn-export-csv').addEventListener('click', function () {
-      window.location.href = API_BASE + '/api/analytics/export?format=csv';
-    });
+    var exportBtn = document.getElementById('btn-export-csv');
+    if (exportBtn) {
+      exportBtn.addEventListener('click', function () {
+        window.location.href = API_BASE + '/api/analytics/export?format=csv';
+      });
+    }
   }
 
   function updateSortIndicators() {
@@ -259,6 +264,7 @@
 
   function renderPagination() {
     var container = document.getElementById('student-pagination');
+    if (!container) return;
     var pages = Math.ceil(totalStudents / PAGE_SIZE);
     var currentPage = Math.floor(currentOffset / PAGE_SIZE);
 

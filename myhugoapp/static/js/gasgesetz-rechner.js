@@ -404,7 +404,7 @@ function displayBoyleMariotteResult(resultType, result, formula, p1, v1, p2, v2)
 }
 
 function displayGayLussacResult(lawType, resultType, result, formula, v1, t1, v2, t2) {
-  const lawName = lawType === 'isobar' ? 'Isobares Gesetz' : 'Ichores Gesetz';
+  const lawName = lawType === 'isobar' ? 'Isobares Gesetz' : 'Isochores Gesetz';
   const lawFormula =
     lawType === 'isobar' ? 'V₁/T₁ = V₂/T₂ (p = konst.)' : 'p₁/T₁ = p₂/T₂ (V = konst.)';
   const quantity = lawType === 'isobar' ? 'Volumen' : 'Druck';
@@ -564,7 +564,9 @@ document.addEventListener('DOMContentLoaded', function () {
     input.addEventListener('keypress', function (e) {
       if (e.key === 'Enter') {
         // Determine which tab is active and call appropriate function
-        const activeTab = document.querySelector('.nav-tabs li.active a').getAttribute('href');
+        const activeLink = document.querySelector('.nav-tabs li.active a');
+        if (!activeLink) return;
+        const activeTab = activeLink.getAttribute('href');
         if (activeTab === '#ideal-gas') {
           // For ideal gas, need to know which button to click
           // This is handled by the individual buttons

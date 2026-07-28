@@ -101,8 +101,8 @@ function calculateNernstPotential() {
     const anodePotential = parseNumber(anodeInput);
     const n = parseInt(nInput);
     const T = parseNumber(tempInput);
-    const [ox] = parseNumber(oxidizedInput);
-    const [red] = parseNumber(reducedInput);
+    const ox = parseNumber(oxidizedInput);
+    const red = parseNumber(reducedInput);
 
     if (n < 1 || n > 10) {
       showError('Anzahl der Elektronen muss zwischen 1 und 10 liegen.');

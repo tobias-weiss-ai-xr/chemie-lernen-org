@@ -182,6 +182,7 @@ function drawTemperatureCanvas() {
   if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
+  if (!ctx) return;
   const width = canvas.width;
   const height = canvas.height;
 
@@ -205,16 +206,17 @@ function drawTemperatureCanvas() {
 }
 
 function toggleKineticsAnimation() {
-  isKineticsAnimating = !isKineticsAnimating;
-
   if (isKineticsAnimating) {
-    domCache.temperature.btnText.textContent = 'Stopp';
-    domCache.temperature.btn.className = 'btn btn-danger';
-    animateTemperature();
-  } else {
+    isKineticsAnimating = false;
     domCache.temperature.btnText.textContent = 'Start';
     domCache.temperature.btn.className = 'btn btn-primary';
+    return;
   }
+
+  isKineticsAnimating = true;
+  domCache.temperature.btnText.textContent = 'Stopp';
+  domCache.temperature.btn.className = 'btn btn-danger';
+  animateTemperature();
 }
 
 function animateTemperature() {
