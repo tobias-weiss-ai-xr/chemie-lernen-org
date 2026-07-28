@@ -1,11 +1,11 @@
 ---
-title: 'Sauere nach Broensted'
-description: 'Fachbegriff „Sauere nach Broensted“ (Konzept) — beschrieben in 3 Artikeln auf chemie-lernen.org und ist mit 16 weiteren Fachbegriffen verknüpft.'
+title: 'Base'
+description: 'Fachbegriff „Base“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 12 weiteren Fachbegriffen verknüpft.'
 date: 2026-06-26
-slug: 'sauere-nach-broensted'
+slug: 'base'
 category: 'konzept'
-articleCount: 3
-relatedCount: 16
+articleCount: 0
+relatedCount: 12
 relatedEntities:
   - 'th: basen und basische lösungen'
   - 'th: säuren und saure lösungen'
@@ -19,9 +19,5 @@ relatedEntities:
   - 'hb: säuren, laugen und neutralisation'
   - 'ni: säuren, basen und neutralisation'
   - 'bb: säuren, basen und neutralisation'
-  - 'Johannes Nicolaus Broensted'
-  - 'Hydrolyse'
-  - 'pKS-Wert'
-  - 'pH-Wert'
 components: []
 ---

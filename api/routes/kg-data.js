@@ -122,13 +122,14 @@ router.get('/api/kg-data', async (req, res) => {
     try {
       result = await session.run(
         `MATCH (e:Entity) WHERE ${whereStr}
-         OPTIONAL MATCH (e)-[r:RELATED_TO|MENTIONS]->(target)
-         WITH e, count(DISTINCT r) AS relCount
+         OPTIONAL MATCH (e)-[r:RELATED_TO|MENTIONS]->(target:Entity)
+         WHERE target.kategorie IS NOT NULL
+         WITH e, COLLECT(DISTINCT {name: target.name, category: target.kategorie}) AS relatedEntities, count(DISTINCT r) AS relCount
          RETURN e.name AS name, e.kategorie AS category,
                 e.description AS description,
                 e.state AS state, e.grade AS grade,
                 e.school_type AS schoolType,
-                relCount,
+                relatedEntities, relCount,
                 e.objective_count AS objectiveCount
          ORDER BY e.name
          SKIP ${params.offset} LIMIT ${params.limit}`,
@@ -139,7 +140,32 @@ router.get('/api/kg-data', async (req, res) => {
       await session.close();
       return serveFallbackKgData(req, res, params, showLehrplan, cacheKey);
     }
+
+    // Fetch articles (Content nodes linked to entities)
+    var articlesResult;
+    try {
+      articlesResult = await session.run(
+        `MATCH (c:Content)
+         OPTIONAL MATCH (c)-[:MENTIONS]->(e:Entity)
+         WHERE e.kategorie IS NOT NULL
+         RETURN c.title AS title, c.url AS url, c.type AS type,
+                COLLECT(DISTINCT e.name) AS entities`
+      );
+    } catch (articleErr) {
+      logger.warn('[kg-data] Articles query failed:', articleErr.message);
+    }
     await session.close();
+
+    var articles = articlesResult
+      ? articlesResult.records.map(function (r) {
+          return {
+            title: r.get('title'),
+            url: r.get('url'),
+            type: r.get('type') || 'article',
+            entities: r.get('entities') || [],
+          };
+        })
+      : [];
 
     var entities = result.records.map(function (r) {
       var obj = {
@@ -147,6 +173,7 @@ router.get('/api/kg-data', async (req, res) => {
         category: r.get('category'),
         description: r.get('description'),
         relationCount: r.get('relCount') ? r.get('relCount').toNumber() : 0,
+        relatedEntities: r.get('relatedEntities') || [],
       };
       var state = r.get('state');
       var grade = r.get('grade');
@@ -156,6 +183,7 @@ router.get('/api/kg-data', async (req, res) => {
       if (grade) obj.grade = grade;
       if (schoolType) obj.schoolType = schoolType;
       if (objCount) obj.objectiveCount = objCount.toNumber();
+      if (obj.relatedEntities.length === 0) delete obj.relatedEntities;
       return obj;
     });
 
@@ -164,9 +192,23 @@ router.get('/api/kg-data', async (req, res) => {
       return e.name && e.name.length > 0;
     });
 
+    // Derive articleCount for each entity
+    var entityArticleCounts = {};
+    articles.forEach(function (a) {
+      (a.entities || []).forEach(function (en) {
+        entityArticleCounts[en] = (entityArticleCounts[en] || 0) + 1;
+      });
+    });
+    entities.forEach(function (e) {
+      if (entityArticleCounts[e.name]) {
+        e.articleCount = entityArticleCounts[e.name];
+      }
+    });
+
     var payload = {
       source: 'neo4j',
       entities: entities,
+      articles: articles,
       total: totalEntities,
       count: entities.length,
       offset: params.offset,

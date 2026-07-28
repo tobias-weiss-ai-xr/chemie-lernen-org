@@ -67,10 +67,11 @@ services:
     image: registry.chemie-lernen.org/chemie-chat-api:latest
     container_name: chemie-chat-api
     restart: unless-stopped
+    mem_limit: 256M
     deploy:
       resources:
         limits:
-          memory: 128M
+          memory: 256M
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://localhost:3001/api/health | grep -q '\"status\":\"ok\"' || exit 1"]
       interval: 30s
