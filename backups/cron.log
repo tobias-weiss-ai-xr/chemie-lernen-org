@@ -14747,6 +14747,7 @@ Done: 43 files, 267.2MiB processed in 1.272 seconds.
 2026-07-24 02:32:01 [WARNING] Auth DB not found at /home/weiss/git/hugo-chemie-lernen-org/api/data/users.json — skipping
 2026-07-24 02:32:01 [INFO] RESTIC_REPOSITORY / RESTIC_PASSWORD not set — skipping off-site backup
 === Complete: chemie-neo4j=0, chemie-kg=0, leads=0 ===
+<<<<<<< Updated upstream
 === Chemie Backup: Wed Jul 29 02:30:02 CEST 2026 ===
 2026-07-29 02:30:02 [INFO] === Neo4j Backup: chemie-neo4j/chemie ===
 2026-07-29 02:30:02 [INFO] Checking prerequisites...
@@ -15634,3 +15635,5 @@ Done: 43 files, 267.9MiB processed in 1.732 seconds.
 2026-07-29 02:32:07 [WARNING] Auth DB not found at /home/weiss/git/hugo-chemie-lernen-org/api/data/users.json — skipping
 2026-07-29 02:32:07 [INFO] RESTIC_REPOSITORY / RESTIC_PASSWORD not set — skipping off-site backup
 === Complete: chemie-neo4j=0, chemie-kg=0, leads=0 ===
+=======
+>>>>>>> Stashed changes

@@ -1086,11 +1086,15 @@ function loadD3AndEgoGraph() {
     })
     .then(function (d) {
       // Transform targeted endpoint response → graph-compatible shape
+      var entityObj = d.entity || {};
+      entityObj.relatedEntities = d.relatedEntities || [];
+      entityObj.articles = (d.contentLinks || []).map(function (cl) { return cl.title; });
+
       var graphData = {
         source: 'neo4j',
-        entities: d.entity ? [d.entity] : [],
+        entities: [entityObj],
         articles: (d.contentLinks || []).map(function (cl) {
-          return { title: cl.title, url: cl.url, type: cl.type || 'article', entities: [d.entity.name] };
+          return { title: cl.title, url: cl.url, type: cl.type || 'article', entities: [entityObj.name] };
         }),
       };
       render(graphData);
