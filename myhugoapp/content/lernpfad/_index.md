@@ -11,7 +11,7 @@ tags: ['Lernpfad', 'Lernweg', 'Strukturiertes Lernen', 'Lernplan']
 teilgebiet: ['allgemeine-chemie']
 weight: 1
 cascade:
-  _build:
+  build:
     list: local
     render: never
 ---
