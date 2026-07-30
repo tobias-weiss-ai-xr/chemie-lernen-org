@@ -33,7 +33,7 @@ import {
   findContentLinks,
 } from '../services/content.js';
 import { renderEntityPage } from '../templates/article.mjs';
-import { excludeCodeEntities, isCodeAnalysisName } from '../scripts/_neo4j-subset-filter.mjs';
+import { excludeCodeEntities } from '../scripts/_neo4j-subset-filter.mjs';
 
 const router = Router();
 const logger = pino({
