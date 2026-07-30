@@ -87,7 +87,10 @@ _No active changes._
 | sprint-34-platform-performance         | 16/16 tasks ✓      | Archived 2026-07-24 (build perf, Lunr search, PWA offline)    |
 | sprint-35-modulhandbuch-integration    | 16/16 tasks ✓      | Archived 2026-07-24 (3 state scrapers, 564 modules, tests)    |
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
 >>>>>>> Stashed changes
 ## Legacy planning artifacts (`archive/`)
