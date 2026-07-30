@@ -83,6 +83,12 @@ const generousLimiter = rateLimit({
 // ── App setup ──────────────────────────────────────────────────
 const app = express();
 
+// Bump max listeners to avoid MaxListenersExceededWarning (deps add exit handlers)
+process.setMaxListeners(20);
+
+// Trust proxy — behind nginx/Traefik, so req.ip returns real client IP
+app.set('trust proxy', 1);
+
 // Stripe webhook MUST be before express.json() — needs raw body for signature verification
 app.post(
   '/api/auth/stripe-webhook',

@@ -4,6 +4,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import pino from 'pino';
 
 const logger = pino({
@@ -23,7 +24,9 @@ let _cachedFallbackData = null;
  */
 export function getFallbackData() {
   if (_cachedFallbackData) return _cachedFallbackData;
-  const fallbackPath = path.join(process.cwd(), 'data', 'kg_fallback.json');
+  // Resolve relative to this module file (api/services/), not process.cwd()
+  var _moduleDir = path.dirname(fileURLToPath(import.meta.url));
+  const fallbackPath = path.resolve(_moduleDir, '..', 'data', 'kg_fallback.json');
   try {
     _cachedFallbackData = JSON.parse(fs.readFileSync(fallbackPath, 'utf-8'));
   } catch (err) {
