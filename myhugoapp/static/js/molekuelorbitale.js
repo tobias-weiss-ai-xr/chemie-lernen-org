@@ -2,8 +2,6 @@
   let scene, camera, renderer, controls;
   let moleculeGroup;
   let orbitalMeshes = [];
-  let atoms = [];
-  let bonds = [];
   let rotationEnabled = false;
   let currentMolecule = 'methane';
   let currentOrbitalType = 'sigma';

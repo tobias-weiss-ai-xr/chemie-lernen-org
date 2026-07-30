@@ -131,8 +131,6 @@ class EnhancedPHVisualization {
   initializeIndicators() {
     const phSlider = document.getElementById('ph-slider');
     const phValue = document.getElementById('ph-value');
-    // eslint-disable-next-line no-unused-vars
-    const indicatorGrid = document.getElementById('indicator-grid');
 
     phSlider.addEventListener('input', () => {
       this.currentPH = parseFloat(phSlider.value);
@@ -185,7 +183,6 @@ class EnhancedPHVisualization {
   drawPHScale(ctx, width, height) {
     const scaleY = height - 80;
     // eslint-disable-next-line no-unused-vars
-    const scaleHeight = height - 120;
     const scaleWidth = width - 100;
     const startX = 50;
 
@@ -256,8 +253,6 @@ class EnhancedPHVisualization {
   drawPHIndicator(ctx, width, height) {
     const centerX = width / 2;
     const centerY = height - 40;
-    // eslint-disable-next-line no-unused-vars
-    const radius = 25;
 
     ctx.strokeStyle = '#666';
     ctx.lineWidth = 2;

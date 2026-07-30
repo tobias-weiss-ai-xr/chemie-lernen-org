@@ -467,7 +467,7 @@
             global.location.href = '/entity/' + slugify(d.label) + '/';
           }
         })
-        .on('keydown', function (ev, d) {
+        .on('keydown', function (ev, _d) {
           // Space/Enter activates the node
           if (ev.key === 'Enter' || ev.key === ' ') {
             ev.preventDefault();
@@ -735,7 +735,7 @@
         var labelBtn = document.createElement('button');
         labelBtn.className = 'kg-filter-chip' + (showEdgeLabels ? ' active' : '');
         labelBtn.title = 'Kantenbeschriftungen ein-/ausblenden';
-        labelBtn.innerHTML = showEdgeLabels ? '🏷️ Labels' : '🏷️ Labels';
+        labelBtn.innerHTML = showEdgeLabels ? '🏷️ Label aus' : '🏷️ Label an';
         if (!showEdgeLabels) {
           labelBtn.style.color = '#999';
           labelBtn.style.borderColor = '#ddd';
@@ -1021,7 +1021,7 @@
             global.open(d.url, '_blank');
           }
         })
-        .on('keydown', function (ev, d) {
+        .on('keydown', function (ev, _d) {
           if (ev.key === 'Enter' || ev.key === ' ') {
             ev.preventDefault();
             d3.select(this).dispatch('click');

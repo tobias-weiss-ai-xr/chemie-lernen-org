@@ -56,7 +56,6 @@
   // ── Render ──────────────────────────────────────────────
   function render(data) {
     var accuracy = data.accuracy || {};
-    var overall = accuracy.overall || 0;
     var perTopic = accuracy.perTopic || {};
     var attempts = data.attempts || [];
     var totalCorrect = 0;

@@ -105,8 +105,6 @@ const ChartManager = {
 
     // Draw bars
     const barWidth = horizontal ? chartHeight / data.length - 10 : chartWidth / data.length - 10;
-    // eslint-disable-next-line no-unused-vars
-    const maxBarWidth = horizontal ? chartHeight : chartWidth;
 
     data.forEach((item, index) => {
       const barLength = (item.value / maxValue) * (horizontal ? chartWidth : chartHeight);
@@ -119,12 +117,7 @@ const ChartManager = {
 
       // Draw bar
       ctx.fillStyle = colors[index % colors.length];
-      ctx.fillRect(
-        horizontal ? x : x,
-        horizontal ? y : y,
-        horizontal ? barLength : barWidth,
-        horizontal ? barWidth : barLength
-      );
+      ctx.fillRect(x, y, horizontal ? barLength : barWidth, horizontal ? barWidth : barLength);
 
       // Draw value
       if (showValues) {

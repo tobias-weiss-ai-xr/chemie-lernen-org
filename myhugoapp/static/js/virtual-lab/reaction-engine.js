@@ -80,8 +80,7 @@ var ReactionEngine = (function () {
     ],
   };
 
-  /* How long a full observation timeline takes (ms) */
-  var OBSERVATION_DURATION = 3500;
+  // Observation duration: 3500ms
 
   /* ------------------------------------------------------------------ */
   /*  Internal state                                                     */
