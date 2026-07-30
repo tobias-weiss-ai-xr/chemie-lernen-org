@@ -357,7 +357,7 @@ router.get('/api/kg-data/entity/:name', async (req, res) => {
       }),
     });
   } catch (err) {
-    logger.error('[kg-data/entity] Neo4j error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[kg-data/entity] Neo4j error');
     res.status(503).json({ error: 'Entity detail unavailable' });
   }
 });
