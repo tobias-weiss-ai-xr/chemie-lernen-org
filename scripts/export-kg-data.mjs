@@ -104,7 +104,8 @@ async function main() {
       session,
       `
       MATCH (e:Entity)
-      WHERE (e.kategorie IS NULL OR NOT (e.kategorie IN ['lernziel', 'lehrplan', 'didaktik']))
+      WHERE e.kategorie IS NOT NULL
+        AND NOT (e.kategorie IN ['lernziel', 'lehrplan', 'didaktik'])
         AND NONE(lbl IN labels(e) WHERE lbl IN $excludeLabels)
         AND ${excludeCodeEntities('e')}
       OPTIONAL MATCH (e)-[:RELATED_TO|ERFUELLT]-(related:Entity)

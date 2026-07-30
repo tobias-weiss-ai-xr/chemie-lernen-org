@@ -98,29 +98,33 @@
       });
   }
 
-  Promise.all([
-    fetch('/api/kg-data?limit=500', { signal: AbortSignal.timeout(15000) }).then(function (r) {
+  function fetchKgData() {
+    return fetch('/api/kg-data?limit=500', { signal: AbortSignal.timeout(15000) }).then(function (r) {
       if (!r.ok) throw new Error(r.status);
       return r.json();
-    }),
-    loadSearchIndex(),
-  ])
-    .then(function (results) {
-      var d = results[0];
+    });
+  }
+
+  fetchKgData()
+    .then(function (d) {
       _data = d;
       skeleton.style.display = 'none';
       window.__initStarted = true;
+
+      var entityCount = (d.entities || []).length;
+      var articleCount = (d.articles || []).length;
+
+      if (entityCount === 0 && articleCount === 0) {
+        app.innerHTML =
+          '<div class="empty-state"><div class="empty-state-icon">🗄️</div>' +
+          '<h2>Wissensnetz wird geladen</h2>' +
+          '<p>Die Wissensdatenbank wird gerade aktualisiert. Bitte versuche es in wenigen Minuten erneut.</p>' +
+          '<p><button onclick="location.reload()" style="background:#667eea;color:#fff;border:none;border-radius:6px;padding:8px 20px;cursor:pointer;font-size:0.9rem;margin-top:8px;">🔄 Neu laden</button></p>' +
+          '<p><a href="/entity/" style="color:#667eea;">Wissensnetz durchsuchen →</a></p></div>';
+        return;
+      }
+
       try {
-        var entityCount = (d.entities || []).length;
-        var articleCount = (d.articles || []).length;
-        if (entityCount === 0 && articleCount === 0) {
-          app.innerHTML =
-            '<div class="empty-state"><div class="empty-state-icon">🗄️</div>' +
-            '<h2>Wissensnetz wird geladen</h2>' +
-            '<p>Die Wissensdatenbank wird gerade aktualisiert. Bitte versuche es in wenigen Minuten erneut.</p>' +
-            '<p><a href="/entity/" style="color:#667eea;">Wissensnetz durchsuchen →</a></p></div>';
-          return;
-        }
         init(d);
         window.__initDone = true;
         renderGraph(d);
@@ -132,12 +136,16 @@
           escapeHtml(e.message || String(e)) +
           '</strong></p><p id="debug-info"></p></div>';
       }
+
+      // Load search index in background (non-blocking for graph rendering)
+      loadSearchIndex();
     })
     .catch(function (_err) {
       skeleton.style.display = 'none';
       if (graphContainer) graphContainer.style.display = 'none';
       app.innerHTML =
-        '<div class="empty-state"><div class="empty-state-icon">📡</div><p>Wissensnetz konnte nicht geladen werden.</p></div>';
+        '<div class="empty-state"><div class="empty-state-icon">📡</div><p>Wissensnetz konnte nicht geladen werden.</p>' +
+        '<p><button onclick="location.reload()" style="background:#667eea;color:#fff;border:none;border-radius:6px;padding:8px 20px;cursor:pointer;font-size:0.9rem;margin-top:8px;">🔄 Erneut versuchen</button></p></div>';
     });
 
   function init(data) {

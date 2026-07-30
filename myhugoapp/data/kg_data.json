@@ -150,7 +150,10 @@
         "Chemisches Gleichgewicht",
         "Reaktionskinetik"
       ],
-      "relatedEntities": ["langmuir-adsorption", "katalyse"],
+      "relatedEntities": [
+        "langmuir-adsorption",
+        "katalyse"
+      ],
       "components": [],
       "articleCount": 5
     },
@@ -209,7 +212,9 @@
         "Electrocatalytic nitrogen reduction to ammonia at ambient conditions",
         "Electrochemical reduction of nitrate to ammonia on iron-based single-atom catalysts"
       ],
-      "relatedEntities": ["Haber-Bosch-Verfahren"],
+      "relatedEntities": [
+        "Haber-Bosch-Verfahren"
+      ],
       "components": [],
       "articleCount": 4
     },
@@ -247,7 +252,10 @@
         "CRISPR-Cas9 gene editing meets chemistry: base editors and prime editing",
         "AlphaFold predicts structure of almost every protein known to science"
       ],
-      "relatedEntities": ["Hydrathuelle", "Enzyme"],
+      "relatedEntities": [
+        "Hydrathuelle",
+        "Enzyme"
+      ],
       "components": [],
       "articleCount": 4
     },
@@ -388,7 +396,12 @@
         "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion",
         "Electrocatalytic nitrogen reduction to ammonia at ambient conditions"
       ],
-      "relatedEntities": ["katalyse", "Ammoniak (NH3)", "Carl Bosch", "Fritz Haber"],
+      "relatedEntities": [
+        "katalyse",
+        "Ammoniak (NH3)",
+        "Carl Bosch",
+        "Fritz Haber"
+      ],
       "components": [],
       "articleCount": 3
     },
@@ -414,7 +427,10 @@
         "Photocatalytic conversion of CO2 to methane using single-atom catalysts on graphitic carbon nitride",
         "Visible-light-driven CO2 reduction to formic acid using molecular cobalt catalysts"
       ],
-      "relatedEntities": ["Verbrennungsreaktion", "Photosynthese"],
+      "relatedEntities": [
+        "Verbrennungsreaktion",
+        "Photosynthese"
+      ],
       "components": [],
       "articleCount": 3
     },
@@ -427,7 +443,9 @@
         "Solid-state batteries with sulfide electrolytes reach 500 Wh/kg energy density",
         "AI-Guided Discovery of Solid-State Electrolytes for Lithium Batteries"
       ],
-      "relatedEntities": ["lithium-ionen-batterie"],
+      "relatedEntities": [
+        "lithium-ionen-batterie"
+      ],
       "components": [],
       "articleCount": 3
     },
@@ -449,7 +467,9 @@
       "name": "Natriumhydroxid (NaOH)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Neutralisationsreaktion"],
+      "relatedEntities": [
+        "Neutralisationsreaktion"
+      ],
       "components": [],
       "articleCount": 3
     },
@@ -551,7 +571,11 @@
       "name": "Photokatalyse",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["katalyse", "Perowskite", "Titan-Dioxid (TiO2)"],
+      "relatedEntities": [
+        "katalyse",
+        "Perowskite",
+        "Titan-Dioxid (TiO2)"
+      ],
       "components": [],
       "articleCount": 3
     },
@@ -711,7 +735,11 @@
       "name": "Additionsreaktion",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["reaktion", "Alkine", "Alkene"],
+      "relatedEntities": [
+        "reaktion",
+        "Alkine",
+        "Alkene"
+      ],
       "components": [],
       "articleCount": 2
     },
@@ -729,7 +757,10 @@
       "name": "Computational Chemistry",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["Molekulardynamik", "Dichtefunktionaltheorie (DFT)"],
+      "relatedEntities": [
+        "Molekulardynamik",
+        "Dichtefunktionaltheorie (DFT)"
+      ],
       "components": [],
       "articleCount": 2
     },
@@ -776,7 +807,11 @@
       "name": "Elektrolyse von Wasser",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["wasser", "elektro", "Elektrolyse"],
+      "relatedEntities": [
+        "wasser",
+        "elektro",
+        "Elektrolyse"
+      ],
       "components": [],
       "articleCount": 2
     },
@@ -823,7 +858,9 @@
       "name": "Homogene Katalyse",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["katalyse"],
+      "relatedEntities": [
+        "katalyse"
+      ],
       "components": [],
       "articleCount": 2
     },
@@ -905,7 +942,11 @@
       "name": "Ligand",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Chelatligand", "Komplexverbindung", "Koordinationschemie"],
+      "relatedEntities": [
+        "Chelatligand",
+        "Komplexverbindung",
+        "Koordinationschemie"
+      ],
       "components": [],
       "articleCount": 2
     },
@@ -981,7 +1022,11 @@
       "name": "Organokatalyse",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["katalyse", "David MacMillan", "Benjamin List"],
+      "relatedEntities": [
+        "katalyse",
+        "David MacMillan",
+        "Benjamin List"
+      ],
       "components": [],
       "articleCount": 2
     },
@@ -1020,7 +1065,9 @@
       "name": "Polyethylen (PE)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Polymerisation"],
+      "relatedEntities": [
+        "Polymerisation"
+      ],
       "components": [],
       "articleCount": 2
     },
@@ -1029,7 +1076,10 @@
       "name": "Prinzip von Le Chatelier",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Reaktionsgeschwindigkeit", "Chemisches Gleichgewicht"],
+      "relatedEntities": [
+        "Reaktionsgeschwindigkeit",
+        "Chemisches Gleichgewicht"
+      ],
       "components": [],
       "articleCount": 2
     },
@@ -1038,7 +1088,11 @@
       "name": "Pufferloesung",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["lösung", "pH-Wert", "Neutralisation"],
+      "relatedEntities": [
+        "lösung",
+        "pH-Wert",
+        "Neutralisation"
+      ],
       "components": [],
       "articleCount": 2
     },
@@ -1119,7 +1173,11 @@
       "name": "Sauere nach Arrhenius",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Svante Arrhenius", "Amphoter", "pH-Wert"],
+      "relatedEntities": [
+        "Svante Arrhenius",
+        "Amphoter",
+        "pH-Wert"
+      ],
       "components": [],
       "articleCount": 2
     },
@@ -1128,7 +1186,11 @@
       "name": "Schwefel",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["frasch-verfahren", "disulfide", "thioether"],
+      "relatedEntities": [
+        "frasch-verfahren",
+        "disulfide",
+        "thioether"
+      ],
       "components": [],
       "articleCount": 2
     },
@@ -1137,7 +1199,10 @@
       "name": "Schwefelsaeure (H2SO4)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["säure", "Contact-Prozess"],
+      "relatedEntities": [
+        "säure",
+        "Contact-Prozess"
+      ],
       "components": [],
       "articleCount": 2
     },
@@ -1162,7 +1227,11 @@
       "name": "Standardpotential",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Zellspannung", "Nernst-Gleichung", "Spannungsreihe"],
+      "relatedEntities": [
+        "Zellspannung",
+        "Nernst-Gleichung",
+        "Spannungsreihe"
+      ],
       "components": [],
       "articleCount": 2
     },
@@ -1171,7 +1240,12 @@
       "name": "Substitutionsreaktion",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["reaktion", "SN2-Reaktion", "SN1-Reaktion", "Alkane"],
+      "relatedEntities": [
+        "reaktion",
+        "SN2-Reaktion",
+        "SN1-Reaktion",
+        "Alkane"
+      ],
       "components": [],
       "articleCount": 2
     },
@@ -1180,7 +1254,10 @@
       "name": "Wassermolekuel (H2O)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["wasser", "Verbrennungsreaktion"],
+      "relatedEntities": [
+        "wasser",
+        "Verbrennungsreaktion"
+      ],
       "components": [],
       "articleCount": 2
     },
@@ -1204,7 +1281,10 @@
       "name": "Zellspannung",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["nersnt-gleichung", "Standardpotential"],
+      "relatedEntities": [
+        "nersnt-gleichung",
+        "Standardpotential"
+      ],
       "components": [],
       "articleCount": 2
     },
@@ -1331,7 +1411,10 @@
       "name": "Amine",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["mannich-reaktion", "amide"],
+      "relatedEntities": [
+        "mannich-reaktion",
+        "amide"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1340,7 +1423,12 @@
       "name": "Amorphe Stoffe",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["stoffe", "stoff", "glas", "Legierung"],
+      "relatedEntities": [
+        "stoffe",
+        "stoff",
+        "glas",
+        "Legierung"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1349,7 +1437,9 @@
       "name": "Amphoter",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Sauere nach Arrhenius"],
+      "relatedEntities": [
+        "Sauere nach Arrhenius"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1358,7 +1448,10 @@
       "name": "Atomradius",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Ionisierungsenergie", "Periodensystem"],
+      "relatedEntities": [
+        "Ionisierungsenergie",
+        "Periodensystem"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1367,7 +1460,9 @@
       "name": "Avogadro-Konstante",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Mol"],
+      "relatedEntities": [
+        "Mol"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1385,7 +1480,9 @@
       "name": "Benjamin List",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Organokatalyse"],
+      "relatedEntities": [
+        "Organokatalyse"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1403,7 +1500,9 @@
       "name": "Bildungsenthalpie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Enthalpie"],
+      "relatedEntities": [
+        "Enthalpie"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1433,7 +1532,10 @@
       "name": "Chlorwasserstoff (HCl)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["wasser", "stoff"],
+      "relatedEntities": [
+        "wasser",
+        "stoff"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1466,7 +1568,11 @@
       "name": "Daltonsches Partialdruckgesetz",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Henry-Gesetz", "Kinetische Gastheorie", "Van-der-Waals-Kraefte"],
+      "relatedEntities": [
+        "Henry-Gesetz",
+        "Kinetische Gastheorie",
+        "Van-der-Waals-Kraefte"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1487,7 +1593,9 @@
       "name": "Dichtefunktionaltheorie (DFT)",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["Computational Chemistry"],
+      "relatedEntities": [
+        "Computational Chemistry"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1525,7 +1633,10 @@
       "name": "Dipol-Dipol-Wechselwirkung",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["dipol", "Wasserstoffbrueckenbindung"],
+      "relatedEntities": [
+        "dipol",
+        "Wasserstoffbrueckenbindung"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1543,7 +1654,9 @@
       "name": "Dissoziation",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Elektrolyt"],
+      "relatedEntities": [
+        "Elektrolyt"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1569,7 +1682,11 @@
       "name": "Elektrophile aromatische Substitution",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["elektro", "Friedel-Crafts-Alkylierung", "Aromatische Verbindungen"],
+      "relatedEntities": [
+        "elektro",
+        "Friedel-Crafts-Alkylierung",
+        "Aromatische Verbindungen"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1578,7 +1695,11 @@
       "name": "Eliminierungsreaktion",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["reaktion", "E2-Reaktion", "E1-Reaktion"],
+      "relatedEntities": [
+        "reaktion",
+        "E2-Reaktion",
+        "E1-Reaktion"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1621,7 +1742,10 @@
       "name": "Enzymkatalyse",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["katalyse", "Enzyme"],
+      "relatedEntities": [
+        "katalyse",
+        "Enzyme"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1630,7 +1754,9 @@
       "name": "Essigsaeure (CH3COOH)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["säure"],
+      "relatedEntities": [
+        "säure"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1698,7 +1824,10 @@
       "name": "Faradaysches Gesetz",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Stromeffizienz", "Elektrolyse"],
+      "relatedEntities": [
+        "Stromeffizienz",
+        "Elektrolyse"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1716,7 +1845,11 @@
       "name": "Freie Enthalpie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["eie", "Gleichgewichtskonstante", "Entropie"],
+      "relatedEntities": [
+        "eie",
+        "Gleichgewichtskonstante",
+        "Entropie"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1725,7 +1858,9 @@
       "name": "Fuellungsreaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion"],
+      "relatedEntities": [
+        "reaktion"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1763,7 +1898,11 @@
       "name": "Halbleiter",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["aufbau von halbleitern)", "silizium", "Nanomaterialien"],
+      "relatedEntities": [
+        "aufbau von halbleitern)",
+        "silizium",
+        "Nanomaterialien"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1802,7 +1941,9 @@
       "name": "Hydrathuelle",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Proteinfaltung"],
+      "relatedEntities": [
+        "Proteinfaltung"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1811,7 +1952,9 @@
       "name": "Hydrolyse",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Sauere nach Broensted"],
+      "relatedEntities": [
+        "Sauere nach Broensted"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1902,7 +2045,10 @@
       "name": "Kinetische Gastheorie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Daltonsches Partialdruckgesetz", "Wasserstoffbrueckenbindung"],
+      "relatedEntities": [
+        "Daltonsches Partialdruckgesetz",
+        "Wasserstoffbrueckenbindung"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1911,7 +2057,10 @@
       "name": "Kondensationsreaktion",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["reaktion", "Polykondensation"],
+      "relatedEntities": [
+        "reaktion",
+        "Polykondensation"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1920,7 +2069,9 @@
       "name": "Konstitutionsisomerie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Isomerie"],
+      "relatedEntities": [
+        "Isomerie"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1929,7 +2080,11 @@
       "name": "Koordinationschemie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["chemie", "Komplexverbindung", "Ligand"],
+      "relatedEntities": [
+        "chemie",
+        "Komplexverbindung",
+        "Ligand"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -1997,7 +2152,10 @@
       "name": "Magnesium",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["chlorophyll", "grignard-reaktion"],
+      "relatedEntities": [
+        "chlorophyll",
+        "grignard-reaktion"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2006,7 +2164,9 @@
       "name": "Molare Masse",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Mol"],
+      "relatedEntities": [
+        "Mol"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2015,7 +2175,9 @@
       "name": "Molekulardynamik",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["Computational Chemistry"],
+      "relatedEntities": [
+        "Computational Chemistry"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2024,7 +2186,10 @@
       "name": "Natrium",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["castner-zelle", "downs-zelle"],
+      "relatedEntities": [
+        "castner-zelle",
+        "downs-zelle"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2042,7 +2207,10 @@
       "name": "Nebengruppen",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["redoxreaktionen der nebengruppenelemente", "Periodensystem"],
+      "relatedEntities": [
+        "redoxreaktionen der nebengruppenelemente",
+        "Periodensystem"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2051,7 +2219,10 @@
       "name": "Nernst-Gleichung",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Walther Nernst", "Standardpotential"],
+      "relatedEntities": [
+        "Walther Nernst",
+        "Standardpotential"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2076,7 +2247,9 @@
       "name": "Osmose",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Diffusion"],
+      "relatedEntities": [
+        "Diffusion"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2104,7 +2277,10 @@
       "name": "Perowskite",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["kristallstruktur", "Photokatalyse"],
+      "relatedEntities": [
+        "kristallstruktur",
+        "Photokatalyse"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2113,7 +2289,9 @@
       "name": "Polyaddition",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Polymerisation"],
+      "relatedEntities": [
+        "Polymerisation"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2122,7 +2300,9 @@
       "name": "Polykondensation",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Kondensationsreaktion"],
+      "relatedEntities": [
+        "Kondensationsreaktion"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2147,7 +2327,9 @@
       "name": "Polypropylen (PP)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Polymerisation"],
+      "relatedEntities": [
+        "Polymerisation"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2174,7 +2356,9 @@
       "name": "Polyvinylchlorid (PVC)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Polymerisation"],
+      "relatedEntities": [
+        "Polymerisation"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2183,7 +2367,9 @@
       "name": "Raoultsches Gesetz",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Henry-Gesetz"],
+      "relatedEntities": [
+        "Henry-Gesetz"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2192,7 +2378,10 @@
       "name": "Reaktionsquotient",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["reaktion", "Gleichgewichtskonstante"],
+      "relatedEntities": [
+        "reaktion",
+        "Gleichgewichtskonstante"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2201,7 +2390,9 @@
       "name": "Roestung",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Eisen(III)-oxid (Fe2O3)"],
+      "relatedEntities": [
+        "Eisen(III)-oxid (Fe2O3)"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2210,7 +2401,10 @@
       "name": "SN1-Reaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion", "Substitutionsreaktion"],
+      "relatedEntities": [
+        "reaktion",
+        "Substitutionsreaktion"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2219,7 +2413,10 @@
       "name": "SN2-Reaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion", "Substitutionsreaktion"],
+      "relatedEntities": [
+        "reaktion",
+        "Substitutionsreaktion"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2228,7 +2425,10 @@
       "name": "Saeure-Base-Reaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["säure", "reaktion"],
+      "relatedEntities": [
+        "säure",
+        "reaktion"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2237,7 +2437,10 @@
       "name": "Salpetersaeure (HNO3)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["säure", "Ostwald-Verfahren"],
+      "relatedEntities": [
+        "säure",
+        "Ostwald-Verfahren"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2246,7 +2449,10 @@
       "name": "Salzsaeure (HCl) Gaseform",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["säure", "Neutralisationsreaktion"],
+      "relatedEntities": [
+        "säure",
+        "Neutralisationsreaktion"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2255,7 +2461,9 @@
       "name": "Satz von Hess",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Enthalpie"],
+      "relatedEntities": [
+        "Enthalpie"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2264,7 +2472,9 @@
       "name": "Selbstorganisation",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Supramolekulare Chemie"],
+      "relatedEntities": [
+        "Supramolekulare Chemie"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2313,7 +2523,9 @@
       "name": "Stereoisomerie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Isomerie"],
+      "relatedEntities": [
+        "Isomerie"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2331,7 +2543,9 @@
       "name": "Supraleiter",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["kristallstruktur"],
+      "relatedEntities": [
+        "kristallstruktur"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2340,7 +2554,10 @@
       "name": "Suzuki-Kupplung",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Kreuzkupplung", "Akira Suzuki"],
+      "relatedEntities": [
+        "Kreuzkupplung",
+        "Akira Suzuki"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2349,7 +2566,9 @@
       "name": "Titan-Dioxid (TiO2)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Photokatalyse"],
+      "relatedEntities": [
+        "Photokatalyse"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2358,7 +2577,9 @@
       "name": "Van-der-Waals-Kraefte",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Daltonsches Partialdruckgesetz"],
+      "relatedEntities": [
+        "Daltonsches Partialdruckgesetz"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2367,7 +2588,10 @@
       "name": "Verbrennungsenthalpie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["verbrennung", "Enthalpie"],
+      "relatedEntities": [
+        "verbrennung",
+        "Enthalpie"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2376,7 +2600,9 @@
       "name": "Zeolithe",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["kristallstruktur"],
+      "relatedEntities": [
+        "kristallstruktur"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2394,7 +2620,10 @@
       "name": "Zink",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["amphoterie", "basilisieren"],
+      "relatedEntities": [
+        "amphoterie",
+        "basilisieren"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2420,7 +2649,12 @@
       "name": "biosensoren",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["metallcluster-moleküle", "nir", "photolumineszenz", "katalyse"],
+      "relatedEntities": [
+        "metallcluster-moleküle",
+        "nir",
+        "photolumineszenz",
+        "katalyse"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2457,7 +2691,12 @@
       "name": "cobaltferrit",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["magnetfeld", "elektrokatalyse", "ammoniak", "spinelloxid"],
+      "relatedEntities": [
+        "magnetfeld",
+        "elektrokatalyse",
+        "ammoniak",
+        "spinelloxid"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2472,21 +2711,6 @@
         "science",
         "universität des saarlandes",
         "silizium"
-      ],
-      "components": [],
-      "articleCount": 1
-    },
-    {
-      "id": "e174",
-      "name": "datenspeicherung",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [
-        "kristallstruktur",
-        "skyrmionen",
-        "magnetische ordnung",
-        "quantencomputing",
-        "florida state university"
       ],
       "components": [],
       "articleCount": 1
@@ -2668,7 +2892,12 @@
       "name": "kupferoxid",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["katalysator", "stickstoffreduktion", "ammoniak", "metallisches kupfer"],
+      "relatedEntities": [
+        "katalysator",
+        "stickstoffreduktion",
+        "ammoniak",
+        "metallisches kupfer"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2739,7 +2968,12 @@
       "name": "martin luther universität halle-wittenberg",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["proteine", "protonen", "wasser", "hydrathülle"],
+      "relatedEntities": [
+        "proteine",
+        "protonen",
+        "wasser",
+        "hydrathülle"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2748,7 +2982,13 @@
       "name": "metallcluster-moleküle",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["moleküle", "nir", "photolumineszenz", "biosensoren", "katalyse"],
+      "relatedEntities": [
+        "moleküle",
+        "nir",
+        "photolumineszenz",
+        "biosensoren",
+        "katalyse"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2771,20 +3011,11 @@
       "name": "metallisches kupfer",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["stickstoffreduktion", "ammoniak", "katalysator", "kupferoxid"],
-      "components": [],
-      "articleCount": 1
-    },
-    {
-      "id": "e194",
-      "name": "mini-modul",
-      "category": "konzept",
-      "articles": [],
       "relatedEntities": [
-        "perowskit-solarzellen",
-        "buried layer",
-        "invertierte perowskit-solarzellen",
-        "kristall-solvat-nanosaatkerne"
+        "stickstoffreduktion",
+        "ammoniak",
+        "katalysator",
+        "kupferoxid"
       ],
       "components": [],
       "articleCount": 1
@@ -2810,7 +3041,12 @@
       "name": "nir",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["metallcluster-moleküle", "katalyse", "biosensoren", "photolumineszenz"],
+      "relatedEntities": [
+        "metallcluster-moleküle",
+        "katalyse",
+        "biosensoren",
+        "photolumineszenz"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2819,7 +3055,13 @@
       "name": "organometallkatalysator",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["palladium", "eisen(i)", "luftstabilität", "platin", "sandwichliganden"],
+      "relatedEntities": [
+        "palladium",
+        "eisen(i)",
+        "luftstabilität",
+        "platin",
+        "sandwichliganden"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -2857,7 +3099,12 @@
       "name": "photolumineszenz",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["katalyse", "metallcluster-moleküle", "biosensoren", "nir"],
+      "relatedEntities": [
+        "katalyse",
+        "metallcluster-moleküle",
+        "biosensoren",
+        "nir"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -3008,7 +3255,12 @@
       "name": "spinelloxid",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["elektrokatalyse", "ammoniak", "magnetfeld", "cobaltferrit"],
+      "relatedEntities": [
+        "elektrokatalyse",
+        "ammoniak",
+        "magnetfeld",
+        "cobaltferrit"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -3017,7 +3269,13 @@
       "name": "stickstoffreduktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["stoff", "metallisches kupfer", "katalysator", "kupferoxid", "ammoniak"],
+      "relatedEntities": [
+        "stoff",
+        "metallisches kupfer",
+        "katalysator",
+        "kupferoxid",
+        "ammoniak"
+      ],
       "components": [],
       "articleCount": 1
     },
@@ -3171,7 +3429,9 @@
       "name": "-photochemie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["chemie"],
+      "relatedEntities": [
+        "chemie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3207,7 +3467,9 @@
       "name": "AFM",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["Nanomaterialien"],
+      "relatedEntities": [
+        "Nanomaterialien"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3216,34 +3478,9 @@
       "name": "Acidimetrie",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["Titration"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e224",
-      "name": "Acyclic Graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e225",
-      "name": "Add/Remove Edge",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e226",
-      "name": "Add/Remove Vertex",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "Titration"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3257,29 +3494,13 @@
       "articleCount": 0
     },
     {
-      "id": "e228",
-      "name": "Adjacency List",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e229",
-      "name": "Adjacency Matrix",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e230",
       "name": "Aequivalenzpunkt",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Titrationskurve"],
+      "relatedEntities": [
+        "Titrationskurve"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3297,7 +3518,9 @@
       "name": "Akira Suzuki",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Suzuki-Kupplung"],
+      "relatedEntities": [
+        "Suzuki-Kupplung"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3306,7 +3529,9 @@
       "name": "Aldol-Reaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion"],
+      "relatedEntities": [
+        "reaktion"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3315,7 +3540,9 @@
       "name": "Alkalimetrie",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["Titration"],
+      "relatedEntities": [
+        "Titration"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3371,7 +3598,9 @@
       "name": "Antoine Lavoisier",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Redoxreaktion"],
+      "relatedEntities": [
+        "Redoxreaktion"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3389,7 +3618,10 @@
       "name": "Atmungskette",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["oxidative phosphorylierung", "Enzyme"],
+      "relatedEntities": [
+        "oxidative phosphorylierung",
+        "Enzyme"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3467,22 +3699,15 @@
       "name": "Autokatalyse",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["katalyse"],
+      "relatedEntities": [
+        "katalyse"
+      ],
       "components": [],
       "articleCount": 0
     },
     {
       "id": "e247",
       "name": "Avogadro-Gesetz",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e248",
-      "name": "Badwaik - Graph Theory Application in CS & Technology (IOSR-JAP, 2018)",
       "category": "konzept",
       "articles": [],
       "relatedEntities": [],
@@ -3516,7 +3741,9 @@
       "name": "Basiswissen Chemie (Cornelsen)",
       "category": "quelle",
       "articles": [],
-      "relatedEntities": ["chemie"],
+      "relatedEntities": [
+        "chemie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3539,15 +3766,6 @@
       "articleCount": 0
     },
     {
-      "id": "e253",
-      "name": "Bi-Processing Task Scheduling",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e254",
       "name": "Bildung von Kochsalz",
       "category": "reaktion",
@@ -3561,7 +3779,12 @@
       "name": "Bioanorganische Chemie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["organische", "organische chemie", "chemie", "Enzyme"],
+      "relatedEntities": [
+        "organische",
+        "organische chemie",
+        "chemie",
+        "Enzyme"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3589,24 +3812,6 @@
       "id": "e257",
       "name": "Blei(II)-acetat",
       "category": "stoff",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e258",
-      "name": "Blockchain Technology",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e259",
-      "name": "Bondy & Murty - Graph Theory (Springer, 2013)",
-      "category": "konzept",
       "articles": [],
       "relatedEntities": [],
       "components": [],
@@ -3649,7 +3854,9 @@
       "name": "Buchwald-Hartwig-Kupplung",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Kreuzkupplung"],
+      "relatedEntities": [
+        "Kreuzkupplung"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3658,7 +3865,9 @@
       "name": "C-H-Aktivierung",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Kreuzkupplung"],
+      "relatedEntities": [
+        "Kreuzkupplung"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3694,7 +3903,10 @@
       "name": "Carbonsaeuren",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["säure", "Veresterung"],
+      "relatedEntities": [
+        "säure",
+        "Veresterung"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3719,16 +3931,9 @@
       "name": "Carl Bosch",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Haber-Bosch-Verfahren"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e271",
-      "name": "Check for Specific Value",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "Haber-Bosch-Verfahren"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3737,7 +3942,9 @@
       "name": "Chelatligand",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Ligand"],
+      "relatedEntities": [
+        "Ligand"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3746,7 +3953,9 @@
       "name": "Chemie Heute (Schroedel)",
       "category": "quelle",
       "articles": [],
-      "relatedEntities": ["chemie"],
+      "relatedEntities": [
+        "chemie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3769,20 +3978,13 @@
       "articleCount": 0
     },
     {
-      "id": "e275",
-      "name": "ChindanaiNaKub",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e276",
       "name": "Chlor",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["acylchloride"],
+      "relatedEntities": [
+        "acylchloride"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3828,38 +4030,13 @@
       "articleCount": 0
     },
     {
-      "id": "e281",
-      "name": "Complete Graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e282",
-      "name": "Computer Network Security",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e283",
-      "name": "Connected Graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e284",
       "name": "Contact-Prozess",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Schwefelsaeure (H2SO4)"],
+      "relatedEntities": [
+        "Schwefelsaeure (H2SO4)"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3873,29 +4050,13 @@
       "articleCount": 0
     },
     {
-      "id": "e286",
-      "name": "Cycle Graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e287",
-      "name": "Cyclic Graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e288",
       "name": "David MacMillan",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Organokatalyse"],
+      "relatedEntities": [
+        "Organokatalyse"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3909,38 +4070,16 @@
       "articleCount": 0
     },
     {
-      "id": "e290",
-      "name": "Deo - Graph Theory with Applications (Prentice Hall, 1990)",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e291",
       "name": "Diels-Alder-Reaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion", "Aromatische Verbindungen", "Kurt Alder", "Otto Diels"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e292",
-      "name": "DietrichGebert",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e293",
-      "name": "DietrichGebert/ponytail",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "reaktion",
+        "Aromatische Verbindungen",
+        "Kurt Alder",
+        "Otto Diels"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -3954,29 +4093,13 @@
       "articleCount": 0
     },
     {
-      "id": "e295",
-      "name": "Directed Graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e296",
-      "name": "Disconnected Graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e297",
       "name": "Dmitri Mendelejew",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Periodensystem"],
+      "relatedEntities": [
+        "Periodensystem"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4012,7 +4135,10 @@
       "name": "E1-Reaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion", "Eliminierungsreaktion"],
+      "relatedEntities": [
+        "reaktion",
+        "Eliminierungsreaktion"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4021,7 +4147,10 @@
       "name": "E2-Reaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion", "Eliminierungsreaktion"],
+      "relatedEntities": [
+        "reaktion",
+        "Eliminierungsreaktion"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4066,7 +4195,10 @@
       "name": "Eisen(III)-oxid (Fe2O3)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Korrosion", "Roestung"],
+      "relatedEntities": [
+        "Korrosion",
+        "Roestung"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4093,7 +4225,10 @@
       "name": "Elektrochemische Analyse",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["chemische", "elektro"],
+      "relatedEntities": [
+        "chemische",
+        "elektro"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4111,7 +4246,11 @@
       "name": "Elektronenaffinitaet",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["elektron", "elektro", "Periodensystem"],
+      "relatedEntities": [
+        "elektron",
+        "elektro",
+        "Periodensystem"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4120,7 +4259,9 @@
       "name": "Elektrophorese",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["elektro"],
+      "relatedEntities": [
+        "elektro"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4129,7 +4270,9 @@
       "name": "Elemente Chemie (Klett)",
       "category": "quelle",
       "articles": [],
-      "relatedEntities": ["chemie"],
+      "relatedEntities": [
+        "chemie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4137,15 +4280,6 @@
       "id": "e314",
       "name": "Eliminierung",
       "category": "reaktion",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e315",
-      "name": "Elumalai - Graph Theory Applications in CS & Engineering (Malaya J. Mat., 2020)",
-      "category": "konzept",
       "articles": [],
       "relatedEntities": [],
       "components": [],
@@ -4216,7 +4350,9 @@
       "name": "Ethanol (C2H5OH)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Fermentation"],
+      "relatedEntities": [
+        "Fermentation"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4248,15 +4384,6 @@
       "articleCount": 0
     },
     {
-      "id": "e326",
-      "name": "Euler Graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e327",
       "name": "Fehling-Probe",
       "category": "methode",
@@ -4270,25 +4397,9 @@
       "name": "Fermentation",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Ethanol (C2H5OH)"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e329",
-      "name": "Find Path Between Vertices",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e330",
-      "name": "Finite Graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "Ethanol (C2H5OH)"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4296,15 +4407,6 @@
       "id": "e331",
       "name": "Fischer-Tropsch-Synthese",
       "category": "reaktion",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e332",
-      "name": "Flight Networks",
-      "category": "konzept",
       "articles": [],
       "relatedEntities": [],
       "components": [],
@@ -4338,15 +4440,6 @@
       "articleCount": 0
     },
     {
-      "id": "e336",
-      "name": "Four Color Theorem",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e337",
       "name": "Fraser Stoddart",
       "category": "person",
@@ -4360,7 +4453,9 @@
       "name": "Friedel-Crafts-Alkylierung",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Elektrophile aromatische Substitution"],
+      "relatedEntities": [
+        "Elektrophile aromatische Substitution"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4369,7 +4464,9 @@
       "name": "Friedrich Wöhler",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Organische Chemie"],
+      "relatedEntities": [
+        "Organische Chemie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4378,7 +4475,9 @@
       "name": "Fritz Haber",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Haber-Bosch-Verfahren"],
+      "relatedEntities": [
+        "Haber-Bosch-Verfahren"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4396,16 +4495,9 @@
       "name": "Fällungsreaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e343",
-      "name": "GPT-5.5",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "reaktion"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4414,7 +4506,9 @@
       "name": "Gaschromatographie (GC)",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["Chromatographie"],
+      "relatedEntities": [
+        "Chromatographie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4423,16 +4517,9 @@
       "name": "Gilbert N. Lewis",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Sauere nach Lewis"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e346",
-      "name": "GitHub",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "Sauere nach Lewis"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4477,7 +4564,12 @@
       "name": "Glukose (C6H12O6)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Cellulose", "Staerke", "Photosynthese", "Glykolyse"],
+      "relatedEntities": [
+        "Cellulose",
+        "Staerke",
+        "Photosynthese",
+        "Glykolyse"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4495,7 +4587,10 @@
       "name": "Glykolyse",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Enzyme", "Glukose (C6H12O6)"],
+      "relatedEntities": [
+        "Enzyme",
+        "Glukose (C6H12O6)"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4503,15 +4598,6 @@
       "id": "e354",
       "name": "Gold (Au)",
       "category": "stoff",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e355",
-      "name": "Google Maps / Route Optimization",
-      "category": "konzept",
       "articles": [],
       "relatedEntities": [],
       "components": [],
@@ -4531,7 +4617,9 @@
       "name": "Grignard-Reaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion"],
+      "relatedEntities": [
+        "reaktion"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4540,7 +4628,9 @@
       "name": "Gustav Kirchhoff",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Spektroskopie"],
+      "relatedEntities": [
+        "Spektroskopie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4549,34 +4639,9 @@
       "name": "HPLC",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["Chromatographie"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e360",
-      "name": "Haiku",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e361",
-      "name": "HannesOberreiter",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e362",
-      "name": "Hayes - A Graph Model for Fault Tolerant Computing (IEEE Trans. Comput., 1976)",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "Chromatographie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4585,7 +4650,11 @@
       "name": "Heck-Reaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion", "Kreuzkupplung", "Richard F. Heck"],
+      "relatedEntities": [
+        "reaktion",
+        "Kreuzkupplung",
+        "Richard F. Heck"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4603,7 +4672,10 @@
       "name": "Henry-Gesetz",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Raoultsches Gesetz", "Daltonsches Partialdruckgesetz"],
+      "relatedEntities": [
+        "Raoultsches Gesetz",
+        "Daltonsches Partialdruckgesetz"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4656,7 +4728,9 @@
       "name": "Hydrolyse-Reaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion"],
+      "relatedEntities": [
+        "reaktion"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4674,7 +4748,9 @@
       "name": "IR-Spektroskopie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Spektroskopie"],
+      "relatedEntities": [
+        "Spektroskopie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4682,15 +4758,6 @@
       "id": "e372",
       "name": "Ilya Prigogine",
       "category": "person",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e373",
-      "name": "Incidence Matrix",
-      "category": "konzept",
       "articles": [],
       "relatedEntities": [],
       "components": [],
@@ -4714,15 +4781,6 @@
         "ni: säuren, basen und neutralisation",
         "bb: säuren, basen und neutralisation"
       ],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e375",
-      "name": "Infinite Graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
       "components": [],
       "articleCount": 0
     },
@@ -4767,7 +4825,9 @@
       "name": "Ionenprodukt des Wassers",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["wasser"],
+      "relatedEntities": [
+        "wasser"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4790,15 +4850,6 @@
       "articleCount": 0
     },
     {
-      "id": "e382",
-      "name": "JavaScript",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e383",
       "name": "Jean-Pierre Sauvage",
       "category": "person",
@@ -4812,7 +4863,9 @@
       "name": "Johannes Nicolaus Broensted",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Sauere nach Broensted"],
+      "relatedEntities": [
+        "Sauere nach Broensted"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -4947,7 +5000,9 @@
       "name": "Kernspinresonanz (NMR)",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["NMR-Spektroskopie"],
+      "relatedEntities": [
+        "NMR-Spektroskopie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5040,7 +5095,9 @@
       "name": "Kohlensaeure (H2CO3)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["säure"],
+      "relatedEntities": [
+        "säure"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5096,7 +5153,10 @@
       "name": "Komplexverbindung",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Koordinationschemie", "Ligand"],
+      "relatedEntities": [
+        "Koordinationschemie",
+        "Ligand"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5132,25 +5192,9 @@
       "name": "Kurt Alder",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Diels-Alder-Reaktion"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e418",
-      "name": "Königsberg Bridge Problem",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e419",
-      "name": "Lakshya77089",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "Diels-Alder-Reaktion"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5164,20 +5208,13 @@
       "articleCount": 0
     },
     {
-      "id": "e421",
-      "name": "Leonhard Euler",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e422",
       "name": "Linus Pauling",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Elektronegativitaet"],
+      "relatedEntities": [
+        "Elektronegativitaet"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5243,7 +5280,9 @@
       "name": "Mangan",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["lithium-ionen-batterie"],
+      "relatedEntities": [
+        "lithium-ionen-batterie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5261,7 +5300,10 @@
       "name": "Massenspektrometrie",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["Massenspektrometrie (MS)", "Spektroskopie"],
+      "relatedEntities": [
+        "Massenspektrometrie (MS)",
+        "Spektroskopie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5270,7 +5312,9 @@
       "name": "Massenspektrometrie (MS)",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["Massenspektrometrie"],
+      "relatedEntities": [
+        "Massenspektrometrie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5315,7 +5359,9 @@
       "name": "Molaritaet",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Stoffkonzentration"],
+      "relatedEntities": [
+        "Stoffkonzentration"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5324,16 +5370,9 @@
       "name": "Molekulare Erkennung",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Supramolekulare Chemie"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e437",
-      "name": "Multi-graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "Supramolekulare Chemie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5342,7 +5381,10 @@
       "name": "NMR-Spektroskopie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Kernspinresonanz (NMR)", "Spektroskopie"],
+      "relatedEntities": [
+        "Kernspinresonanz (NMR)",
+        "Spektroskopie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5432,7 +5474,9 @@
       "name": "Naturwissenschaften im Unterricht Chemie (Friedrich Verlag)",
       "category": "quelle",
       "articles": [],
-      "relatedEntities": ["chemie"],
+      "relatedEntities": [
+        "chemie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5450,7 +5494,9 @@
       "name": "Nichtelektrolyt",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["elektro"],
+      "relatedEntities": [
+        "elektro"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5459,7 +5505,9 @@
       "name": "Nickel",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["lithium-ionen-batterie"],
+      "relatedEntities": [
+        "lithium-ionen-batterie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5482,35 +5530,8 @@
       "articleCount": 0
     },
     {
-      "id": "e454",
-      "name": "Non-directed Graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e455",
       "name": "Nukleophil-Elektrophil-Konzept",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e456",
-      "name": "Null Graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e457",
-      "name": "Opus",
       "category": "konzept",
       "articles": [],
       "relatedEntities": [],
@@ -5531,7 +5552,10 @@
       "name": "Ostwald-Verfahren",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Salpetersaeure (HNO3)", "Wilhelm Ostwald"],
+      "relatedEntities": [
+        "Salpetersaeure (HNO3)",
+        "Wilhelm Ostwald"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5540,7 +5564,9 @@
       "name": "Otto Diels",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Diels-Alder-Reaktion"],
+      "relatedEntities": [
+        "Diels-Alder-Reaktion"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5574,15 +5600,6 @@
     {
       "id": "e464",
       "name": "PaulOgier",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e465",
-      "name": "Peer-to-Peer Networks (BitTorrent)",
       "category": "konzept",
       "articles": [],
       "relatedEntities": [],
@@ -5628,7 +5645,9 @@
       "name": "Phosphorsaeure (H3PO4)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["säure"],
+      "relatedEntities": [
+        "säure"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5637,16 +5656,11 @@
       "name": "Photosynthese",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["chlorophyll", "Kohlendioxid (CO2)", "Glukose (C6H12O6)"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e471",
-      "name": "Planar Graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "chlorophyll",
+        "Kohlendioxid (CO2)",
+        "Glukose (C6H12O6)"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5654,15 +5668,6 @@
       "id": "e472",
       "name": "Polarographie",
       "category": "methode",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e473",
-      "name": "Pseudograph",
-      "category": "konzept",
       "articles": [],
       "relatedEntities": [],
       "components": [],
@@ -5682,25 +5687,9 @@
       "name": "Quecksilber",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["castner-zelle"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e476",
-      "name": "Regular Graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e477",
-      "name": "Resource Allocation in Operating Systems",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "castner-zelle"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5709,7 +5698,9 @@
       "name": "Richard F. Heck",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Heck-Reaktion"],
+      "relatedEntities": [
+        "Heck-Reaktion"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5718,7 +5709,9 @@
       "name": "Robert Bunsen",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Spektroskopie"],
+      "relatedEntities": [
+        "Spektroskopie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5745,7 +5738,9 @@
       "name": "Roenntgenstrukturanalyse",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["XRD"],
+      "relatedEntities": [
+        "XRD"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5816,7 +5811,9 @@
       "name": "Saeulenchromatographie",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["Chromatographie"],
+      "relatedEntities": [
+        "Chromatographie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5834,7 +5831,9 @@
       "name": "Salpetersäure (HNO3)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["säure"],
+      "relatedEntities": [
+        "säure"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5852,7 +5851,9 @@
       "name": "Salzsäure (HCl)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["säure"],
+      "relatedEntities": [
+        "säure"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5861,7 +5862,9 @@
       "name": "Sauere nach Lewis",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Gilbert N. Lewis"],
+      "relatedEntities": [
+        "Gilbert N. Lewis"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5915,7 +5918,9 @@
       "name": "Schwefelsäure (H2SO4)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["säure"],
+      "relatedEntities": [
+        "säure"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5933,7 +5938,10 @@
       "name": "Schwefelwasserstoff (H2S)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["wasser", "stoff"],
+      "relatedEntities": [
+        "wasser",
+        "stoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -5941,15 +5949,6 @@
       "id": "e502",
       "name": "Selen",
       "category": "stoff",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e503",
-      "name": "Shortest Path in Road Networks",
-      "category": "konzept",
       "articles": [],
       "relatedEntities": [],
       "components": [],
@@ -5974,38 +5973,13 @@
       "articleCount": 0
     },
     {
-      "id": "e506",
-      "name": "Simple Graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e507",
-      "name": "Social Networks (Facebook, LinkedIn)",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e508",
       "name": "Solvatation",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Hydratation"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e509",
-      "name": "Sonnet",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "Hydratation"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6014,7 +5988,9 @@
       "name": "Sonogashira-Kupplung",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Kreuzkupplung"],
+      "relatedEntities": [
+        "Kreuzkupplung"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6068,7 +6044,9 @@
       "name": "Stickstoffdioxid (NO2)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["stoff"],
+      "relatedEntities": [
+        "stoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6077,7 +6055,10 @@
       "name": "Stoffkonzentration",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["stoff", "Molaritaet"],
+      "relatedEntities": [
+        "stoff",
+        "Molaritaet"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6095,7 +6076,10 @@
       "name": "Stromeffizienz",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Faradaysches Gesetz", "Elektrolyse"],
+      "relatedEntities": [
+        "Faradaysches Gesetz",
+        "Elektrolyse"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6131,7 +6115,11 @@
       "name": "Supramolekulare Chemie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["chemie", "Selbstorganisation", "Molekulare Erkennung"],
+      "relatedEntities": [
+        "chemie",
+        "Selbstorganisation",
+        "Molekulare Erkennung"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6140,7 +6128,9 @@
       "name": "Svante Arrhenius",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Sauere nach Arrhenius"],
+      "relatedEntities": [
+        "Sauere nach Arrhenius"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6176,7 +6166,9 @@
       "name": "Säure-Base-Titration",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["säure"],
+      "relatedEntities": [
+        "säure"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6270,7 +6262,9 @@
       "name": "Titan",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["ziegler-natta-verfahren"],
+      "relatedEntities": [
+        "ziegler-natta-verfahren"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6279,7 +6273,10 @@
       "name": "Titration",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["Acidimetrie", "Alkalimetrie"],
+      "relatedEntities": [
+        "Acidimetrie",
+        "Alkalimetrie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6288,16 +6285,10 @@
       "name": "Titrationskurve",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["pH-Wert", "Aequivalenzpunkt"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e534",
-      "name": "Trivial Graph",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "pH-Wert",
+        "Aequivalenzpunkt"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6306,7 +6297,9 @@
       "name": "UV-Vis-Spektroskopie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Spektroskopie"],
+      "relatedEntities": [
+        "Spektroskopie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6386,7 +6379,10 @@
       "name": "Veresterung",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Ester", "Carbonsaeuren"],
+      "relatedEntities": [
+        "Ester",
+        "Carbonsaeuren"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6395,7 +6391,9 @@
       "name": "Walther Nernst",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Nernst-Gleichung"],
+      "relatedEntities": [
+        "Nernst-Gleichung"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6404,7 +6402,9 @@
       "name": "Wasser (H2O)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["wasser"],
+      "relatedEntities": [
+        "wasser"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6440,16 +6440,10 @@
       "name": "Wasserstoffperoxid (H2O2)",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["wasser", "stoff"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e548",
-      "name": "Web Search Engine Crawlers",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "wasser",
+        "stoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6467,7 +6461,9 @@
       "name": "Wilhelm Ostwald",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Ostwald-Verfahren"],
+      "relatedEntities": [
+        "Ostwald-Verfahren"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6476,7 +6472,9 @@
       "name": "Wittig-Reaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion"],
+      "relatedEntities": [
+        "reaktion"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6484,15 +6482,6 @@
       "id": "e552",
       "name": "Wolfram",
       "category": "stoff",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e553",
-      "name": "World Wide Web",
-      "category": "konzept",
       "articles": [],
       "relatedEntities": [],
       "components": [],
@@ -6512,25 +6501,10 @@
       "name": "XRD",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["kristallstruktur", "Roenntgenstrukturanalyse"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e556",
-      "name": "YAGNI",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e557",
-      "name": "Yelp Graph Query Language",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "kristallstruktur",
+        "Roenntgenstrukturanalyse"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6593,7 +6567,10 @@
       "name": "Zitronensaeurezyklus",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["säure", "Enzyme"],
+      "relatedEntities": [
+        "säure",
+        "Enzyme"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6620,7 +6597,9 @@
       "name": "acylchloride",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Chlor"],
+      "relatedEntities": [
+        "Chlor"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6629,7 +6608,11 @@
       "name": "adrenalin",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Wasserstoff", "Sauerstoff", "Stickstoff"],
+      "relatedEntities": [
+        "Wasserstoff",
+        "Sauerstoff",
+        "Stickstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6638,7 +6621,10 @@
       "name": "aktivierungsenergie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["energie", "aktivierungsenergie. prozesse in der industrie"],
+      "relatedEntities": [
+        "energie",
+        "aktivierungsenergie. prozesse in der industrie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6647,7 +6633,10 @@
       "name": "aldehyde",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Sauerstoff", "Organische Chemie"],
+      "relatedEntities": [
+        "Sauerstoff",
+        "Organische Chemie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6656,7 +6645,9 @@
       "name": "aldol-kondensation",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Carbonylverbindungen"],
+      "relatedEntities": [
+        "Carbonylverbindungen"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6680,7 +6671,10 @@
       "name": "amide",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Amine", "Stickstoff"],
+      "relatedEntities": [
+        "Amine",
+        "Stickstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6689,7 +6683,9 @@
       "name": "amine",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Stickstoff"],
+      "relatedEntities": [
+        "Stickstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6698,7 +6694,12 @@
       "name": "aminosäuren",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["säure", "Stickstoff", "Sauerstoff", "Wasserstoff"],
+      "relatedEntities": [
+        "säure",
+        "Stickstoff",
+        "Sauerstoff",
+        "Wasserstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6707,7 +6708,10 @@
       "name": "amphoterie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Zink", "Aluminium"],
+      "relatedEntities": [
+        "Zink",
+        "Aluminium"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6716,16 +6720,9 @@
       "name": "anhydride",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Sauerstoff"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e577",
-      "name": "apardawala",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "Sauerstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6734,7 +6731,9 @@
       "name": "arrhenius-gleichung",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Aktivierungsenergie"],
+      "relatedEntities": [
+        "Aktivierungsenergie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6743,7 +6742,10 @@
       "name": "aspirin",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Sauerstoff", "Wasserstoff"],
+      "relatedEntities": [
+        "Sauerstoff",
+        "Wasserstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6777,20 +6779,15 @@
       "articleCount": 0
     },
     {
-      "id": "e583",
-      "name": "avidspartan1",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e584",
       "name": "basilisieren",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Oxidation", "Zink", "Kupfer"],
+      "relatedEntities": [
+        "Oxidation",
+        "Zink",
+        "Kupfer"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6799,7 +6796,9 @@
       "name": "baumann-villiger-oxidation",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Ester"],
+      "relatedEntities": [
+        "Ester"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6817,7 +6816,11 @@
       "name": "benzoesäure",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["säure", "Sauerstoff", "Wasserstoff"],
+      "relatedEntities": [
+        "säure",
+        "Sauerstoff",
+        "Wasserstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6835,7 +6838,9 @@
       "name": "bildungsenthalpie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Enthalpie"],
+      "relatedEntities": [
+        "Enthalpie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6844,7 +6849,9 @@
       "name": "bindungsenergie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["energie"],
+      "relatedEntities": [
+        "energie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6889,7 +6896,10 @@
       "name": "carbonsäuren",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["säure", "Sauerstoff"],
+      "relatedEntities": [
+        "säure",
+        "Sauerstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6898,16 +6908,10 @@
       "name": "castner-zelle",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Natrium", "Quecksilber"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e597",
-      "name": "caveman",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "Natrium",
+        "Quecksilber"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6925,16 +6929,10 @@
       "name": "chlorophyll",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Photosynthese", "Magnesium"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e600",
-      "name": "christophermayfield",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "Photosynthese",
+        "Magnesium"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6952,7 +6950,10 @@
       "name": "claisen-kondensation",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Carbonylverbindungen", "Ester"],
+      "relatedEntities": [
+        "Carbonylverbindungen",
+        "Ester"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6961,7 +6962,9 @@
       "name": "claude-berthollet",
       "category": "person",
       "articles": [],
-      "relatedEntities": ["Chemisches Gleichgewicht"],
+      "relatedEntities": [
+        "Chemisches Gleichgewicht"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6979,7 +6982,9 @@
       "name": "contact-prozess",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Sauerstoff"],
+      "relatedEntities": [
+        "Sauerstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -6997,7 +7002,10 @@
       "name": "disulfide",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Oxidation", "Schwefel"],
+      "relatedEntities": [
+        "Oxidation",
+        "Schwefel"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7019,7 +7027,10 @@
       "name": "downs-zelle",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Natrium", "Elektrolyse"],
+      "relatedEntities": [
+        "Natrium",
+        "Elektrolyse"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7037,7 +7048,10 @@
       "name": "elastomere",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["thermoplaste, elastomere", "el"],
+      "relatedEntities": [
+        "thermoplaste, elastomere",
+        "el"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7046,7 +7060,10 @@
       "name": "elektroanalyse",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["elektro", "el"],
+      "relatedEntities": [
+        "elektro",
+        "el"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7055,7 +7072,11 @@
       "name": "elektrolysezelle",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["el", "elektro", "Elektrolyse"],
+      "relatedEntities": [
+        "el",
+        "elektro",
+        "Elektrolyse"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7064,7 +7085,11 @@
       "name": "elektronenmikroskopie",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["elektron", "elektro", "el"],
+      "relatedEntities": [
+        "elektron",
+        "elektro",
+        "el"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7073,7 +7098,10 @@
       "name": "elektrophorese",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["el", "elektro"],
+      "relatedEntities": [
+        "el",
+        "elektro"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7082,7 +7110,10 @@
       "name": "enole",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Alkohole", "Alkene"],
+      "relatedEntities": [
+        "Alkohole",
+        "Alkene"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7091,7 +7122,9 @@
       "name": "enthalpie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Reaktionsenthalpie"],
+      "relatedEntities": [
+        "Reaktionsenthalpie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7123,7 +7156,9 @@
       "name": "enzymkinetik",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Enzyme"],
+      "relatedEntities": [
+        "Enzyme"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7132,7 +7167,11 @@
       "name": "epoxide",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Oxidation", "Alkene", "Sauerstoff"],
+      "relatedEntities": [
+        "Oxidation",
+        "Alkene",
+        "Sauerstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7141,7 +7180,12 @@
       "name": "essigsäure",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["von der essigsäure zu den estern", "säure", "Sauerstoff", "Wasserstoff"],
+      "relatedEntities": [
+        "von der essigsäure zu den estern",
+        "säure",
+        "Sauerstoff",
+        "Wasserstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7150,7 +7194,10 @@
       "name": "ester",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["von der essigsäure zu den estern", "Alkohole"],
+      "relatedEntities": [
+        "von der essigsäure zu den estern",
+        "Alkohole"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7173,7 +7220,10 @@
       "name": "ether",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Sauerstoff", "Alkohole"],
+      "relatedEntities": [
+        "Sauerstoff",
+        "Alkohole"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7191,7 +7241,10 @@
       "name": "fad",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Enzyme", "Redoxreaktion"],
+      "relatedEntities": [
+        "Enzyme",
+        "Redoxreaktion"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7205,20 +7258,13 @@
       "articleCount": 0
     },
     {
-      "id": "e629",
-      "name": "flatpickr",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e630",
       "name": "frasch-verfahren",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Schwefel"],
+      "relatedEntities": [
+        "Schwefel"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7245,7 +7291,9 @@
       "name": "galvanische zelle",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Redoxreaktion"],
+      "relatedEntities": [
+        "Redoxreaktion"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7254,7 +7302,9 @@
       "name": "gaschromatographie",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["Chromatographie"],
+      "relatedEntities": [
+        "Chromatographie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7263,7 +7313,11 @@
       "name": "gibbs-energie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["energie", "Entropie", "Enthalpie"],
+      "relatedEntities": [
+        "energie",
+        "Entropie",
+        "Enthalpie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7285,7 +7339,11 @@
       "name": "glycerin",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Alkohole", "Sauerstoff", "Wasserstoff"],
+      "relatedEntities": [
+        "Alkohole",
+        "Sauerstoff",
+        "Wasserstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7312,7 +7370,11 @@
       "name": "grignard-reaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion", "Carbonylverbindungen", "Magnesium"],
+      "relatedEntities": [
+        "reaktion",
+        "Carbonylverbindungen",
+        "Magnesium"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7321,7 +7383,11 @@
       "name": "haber-bosch-verfahren",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Eisen", "Wasserstoff", "Stickstoff"],
+      "relatedEntities": [
+        "Eisen",
+        "Wasserstoff",
+        "Stickstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7330,7 +7396,9 @@
       "name": "halbleiter",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["aufbau von halbleitern)"],
+      "relatedEntities": [
+        "aufbau von halbleitern)"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7339,7 +7407,10 @@
       "name": "hall-héroult-prozess",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Aluminium", "Elektrolyse"],
+      "relatedEntities": [
+        "Aluminium",
+        "Elektrolyse"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7357,7 +7428,12 @@
       "name": "harnstoff",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["stoff", "Sauerstoff", "Wasserstoff", "Stickstoff"],
+      "relatedEntities": [
+        "stoff",
+        "Sauerstoff",
+        "Wasserstoff",
+        "Stickstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7366,7 +7442,10 @@
       "name": "heck-reaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion", "Alkene"],
+      "relatedEntities": [
+        "reaktion",
+        "Alkene"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7375,7 +7454,9 @@
       "name": "hessscher satz",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Enthalpie"],
+      "relatedEntities": [
+        "Enthalpie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7407,20 +7488,13 @@
       "articleCount": 0
     },
     {
-      "id": "e651",
-      "name": "hooni0918",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e652",
       "name": "hplc",
       "category": "methode",
       "articles": [],
-      "relatedEntities": ["Chromatographie"],
+      "relatedEntities": [
+        "Chromatographie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7447,7 +7521,9 @@
       "name": "hydrolyse",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["pH-Wert"],
+      "relatedEntities": [
+        "pH-Wert"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7456,7 +7532,9 @@
       "name": "häm",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Eisen"],
+      "relatedEntities": [
+        "Eisen"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7465,7 +7543,9 @@
       "name": "imine",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Stickstoff"],
+      "relatedEntities": [
+        "Stickstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7501,7 +7581,9 @@
       "name": "kernchemie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["chemie"],
+      "relatedEntities": [
+        "chemie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7528,7 +7610,9 @@
       "name": "komplexverbindungen",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["verbindungen"],
+      "relatedEntities": [
+        "verbindungen"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7560,7 +7644,10 @@
       "name": "kreatin",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Wasserstoff", "Stickstoff"],
+      "relatedEntities": [
+        "Wasserstoff",
+        "Stickstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7587,7 +7674,9 @@
       "name": "lactone",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Ester"],
+      "relatedEntities": [
+        "Ester"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7596,7 +7685,9 @@
       "name": "langmuir-adsorption",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Heterogene Katalyse"],
+      "relatedEntities": [
+        "Heterogene Katalyse"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7632,7 +7723,12 @@
       "name": "lithium-ionen-batterie",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["batterie", "Mangan", "Nickel", "Lithium"],
+      "relatedEntities": [
+        "batterie",
+        "Mangan",
+        "Nickel",
+        "Lithium"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7655,15 +7751,6 @@
       "articleCount": 0
     },
     {
-      "id": "e678",
-      "name": "mandavillivijay",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e679",
       "name": "mannheim-verfahren",
       "category": "reaktion",
@@ -7677,16 +7764,11 @@
       "name": "mannich-reaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion", "Carbonylverbindungen", "Amine"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e681",
-      "name": "marking",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "reaktion",
+        "Carbonylverbindungen",
+        "Amine"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7704,16 +7786,9 @@
       "name": "massenwirkungsgesetz",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Gleichgewichtskonstante"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e684",
-      "name": "maxfelker",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "Gleichgewichtskonstante"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7722,7 +7797,10 @@
       "name": "metall-organische gerüstverbindungen",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["organische", "verbindungen"],
+      "relatedEntities": [
+        "organische",
+        "verbindungen"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7758,7 +7836,11 @@
       "name": "methanol",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Alkohole", "Sauerstoff", "Wasserstoff"],
+      "relatedEntities": [
+        "Alkohole",
+        "Sauerstoff",
+        "Wasserstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7767,7 +7849,10 @@
       "name": "michael-addition",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Carbonylverbindungen", "Alkene"],
+      "relatedEntities": [
+        "Carbonylverbindungen",
+        "Alkene"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7785,7 +7870,9 @@
       "name": "mikroplastik",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["durch mikroplastik sind einzubeziehen"],
+      "relatedEntities": [
+        "durch mikroplastik sind einzubeziehen"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7794,7 +7881,11 @@
       "name": "milchsäure",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["säure", "Sauerstoff", "Wasserstoff"],
+      "relatedEntities": [
+        "säure",
+        "Sauerstoff",
+        "Wasserstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7812,7 +7903,9 @@
       "name": "nadh",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Redoxreaktion"],
+      "relatedEntities": [
+        "Redoxreaktion"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7830,7 +7923,9 @@
       "name": "nernst-gleichung",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Galvanische Zelle"],
+      "relatedEntities": [
+        "Galvanische Zelle"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7839,7 +7934,10 @@
       "name": "nersnt-gleichung",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Zellspannung", "Galvanische Zelle"],
+      "relatedEntities": [
+        "Zellspannung",
+        "Galvanische Zelle"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7865,7 +7963,10 @@
       "name": "nicotin",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["Wasserstoff", "Stickstoff"],
+      "relatedEntities": [
+        "Wasserstoff",
+        "Stickstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7874,7 +7975,9 @@
       "name": "nitrile",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Stickstoff"],
+      "relatedEntities": [
+        "Stickstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7892,16 +7995,9 @@
       "name": "ostwald-verfahren",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Sauerstoff"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e702",
-      "name": "ousamabenyounes",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "Sauerstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7910,7 +8006,10 @@
       "name": "oxidative phosphorylierung",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Atmungskette", "Sauerstoff"],
+      "relatedEntities": [
+        "Atmungskette",
+        "Sauerstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7937,7 +8036,9 @@
       "name": "pKS-Wert",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Sauere nach Broensted"],
+      "relatedEntities": [
+        "Sauere nach Broensted"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7964,7 +8065,10 @@
       "name": "passivierung",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Chrom", "Aluminium"],
+      "relatedEntities": [
+        "Chrom",
+        "Aluminium"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7982,7 +8086,9 @@
       "name": "persistent organic pollutants",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Organische Chemie"],
+      "relatedEntities": [
+        "Organische Chemie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -7991,7 +8097,9 @@
       "name": "phenole",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Alkohole"],
+      "relatedEntities": [
+        "Alkohole"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8000,7 +8108,9 @@
       "name": "photosynthese",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Sauerstoff"],
+      "relatedEntities": [
+        "Sauerstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8009,7 +8119,11 @@
       "name": "phthalsäure",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["säure", "Sauerstoff", "Wasserstoff"],
+      "relatedEntities": [
+        "säure",
+        "Sauerstoff",
+        "Wasserstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8050,20 +8164,13 @@
       "articleCount": 0
     },
     {
-      "id": "e719",
-      "name": "ponytail",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e720",
       "name": "puffer",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["pH-Wert"],
+      "relatedEntities": [
+        "pH-Wert"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8081,7 +8188,10 @@
       "name": "reaktionsenthalpie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["reaktion", "Enthalpie"],
+      "relatedEntities": [
+        "reaktion",
+        "Enthalpie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8090,7 +8200,10 @@
       "name": "reaktionsordnung",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["reaktion", "Kinetik"],
+      "relatedEntities": [
+        "reaktion",
+        "Kinetik"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8129,15 +8242,6 @@
       "articleCount": 0
     },
     {
-      "id": "e727",
-      "name": "rygel",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
       "id": "e728",
       "name": "röntgenbeugung",
       "category": "methode",
@@ -8160,7 +8264,9 @@
       "name": "schmelzenthalpie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Enthalpie"],
+      "relatedEntities": [
+        "Enthalpie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8214,7 +8320,9 @@
       "name": "sulfonsäuren",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["säure"],
+      "relatedEntities": [
+        "säure"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8232,7 +8340,9 @@
       "name": "thermoplaste",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["thermoplaste, elastomere"],
+      "relatedEntities": [
+        "thermoplaste, elastomere"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8241,7 +8351,9 @@
       "name": "thioether",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Schwefel"],
+      "relatedEntities": [
+        "Schwefel"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8286,7 +8398,9 @@
       "name": "ulyot-Reaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion"],
+      "relatedEntities": [
+        "reaktion"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8304,7 +8418,9 @@
       "name": "vant-hoff-gleichung",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Enthalpie"],
+      "relatedEntities": [
+        "Enthalpie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8313,7 +8429,12 @@
       "name": "verbrennungsenthalpie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["verbrennung", "Sauerstoff", "Verbrennung", "Enthalpie"],
+      "relatedEntities": [
+        "verbrennung",
+        "Sauerstoff",
+        "Verbrennung",
+        "Enthalpie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8322,7 +8443,9 @@
       "name": "verdampfungsenthalpie",
       "category": "konzept",
       "articles": [],
-      "relatedEntities": ["Enthalpie"],
+      "relatedEntities": [
+        "Enthalpie"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8331,7 +8454,10 @@
       "name": "wacker-verfahren",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Kupfer", "Sauerstoff"],
+      "relatedEntities": [
+        "Kupfer",
+        "Sauerstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8357,7 +8483,11 @@
       "name": "weinsäure",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["säure", "Sauerstoff", "Wasserstoff"],
+      "relatedEntities": [
+        "säure",
+        "Sauerstoff",
+        "Wasserstoff"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8366,25 +8496,10 @@
       "name": "wittig-reaktion",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["reaktion", "Alkene"],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e753",
-      "name": "yjh8",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
-      "components": [],
-      "articleCount": 0
-    },
-    {
-      "id": "e754",
-      "name": "zamal-db",
-      "category": "konzept",
-      "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "reaktion",
+        "Alkene"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8393,7 +8508,11 @@
       "name": "ziegler-natta-verfahren",
       "category": "reaktion",
       "articles": [],
-      "relatedEntities": ["Polymerisation", "Aluminium", "Titan"],
+      "relatedEntities": [
+        "Polymerisation",
+        "Aluminium",
+        "Titan"
+      ],
       "components": [],
       "articleCount": 0
     },
@@ -8402,7 +8521,11 @@
       "name": "zitronensäure",
       "category": "stoff",
       "articles": [],
-      "relatedEntities": ["säure", "Sauerstoff", "Wasserstoff"],
+      "relatedEntities": [
+        "säure",
+        "Sauerstoff",
+        "Wasserstoff"
+      ],
       "components": [],
       "articleCount": 0
     }
@@ -8413,7 +8536,10 @@
       "title": "Energetische Baupläne diversifizieren Proteinfunktion bei konservierter Faltung",
       "url": "https://chemie-lernen.org/posts/2026-06-08-energetische-bauplaene-diversifizieren-proteinfunktion-bei-konservierter-faltung/",
       "type": "article",
-      "entities": ["Proteinfaltung", "Enzyme"],
+      "entities": [
+        "Proteinfaltung",
+        "Enzyme"
+      ],
       "date": "2026-06-08T02:43:40+02:00"
     },
     {
@@ -8421,7 +8547,12 @@
       "title": "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse",
       "url": "https://chemie-lernen.org/posts/2026-06-07-magnetfeld-verdreifacht-ammoniakausbeute-bei-elektrokatalyse/",
       "type": "article",
-      "entities": ["Wasserstoff", "Stickstoff", "Ammoniak (NH3)", "Haber-Bosch-Verfahren"],
+      "entities": [
+        "Wasserstoff",
+        "Stickstoff",
+        "Ammoniak (NH3)",
+        "Haber-Bosch-Verfahren"
+      ],
       "date": "2026-06-07T02:44:22+02:00"
     },
     {
@@ -8429,7 +8560,9 @@
       "title": "Luftstabiles Eisen(I) durch Sandwichliganden für nachhaltige Katalyse",
       "url": "https://chemie-lernen.org/posts/2026-06-07-luftstabiles-eisen-i-durch-sandwichliganden-fuer-nachhaltige-katalyse/",
       "type": "article",
-      "entities": ["Eisen"],
+      "entities": [
+        "Eisen"
+      ],
       "date": "2026-06-07T02:43:24+02:00"
     },
     {
@@ -8437,7 +8570,11 @@
       "title": "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion",
       "url": "https://chemie-lernen.org/posts/2026-06-05-kupferoxid-katalysatoren-steigern-gruene-ammoniakproduktion/",
       "type": "article",
-      "entities": ["Heterogene Katalyse", "Ammoniak (NH3)", "Haber-Bosch-Verfahren"],
+      "entities": [
+        "Heterogene Katalyse",
+        "Ammoniak (NH3)",
+        "Haber-Bosch-Verfahren"
+      ],
       "date": "2026-06-05T02:43:33+02:00"
     },
     {
@@ -8445,7 +8582,10 @@
       "title": "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert",
       "url": "https://chemie-lernen.org/posts/2026-06-05-durchbruch-erster-stabiler-siliziumbasierter-aromat-synthetisiert/",
       "type": "article",
-      "entities": ["Kovalente Bindung", "Aromatische Verbindungen"],
+      "entities": [
+        "Kovalente Bindung",
+        "Aromatische Verbindungen"
+      ],
       "date": "2026-06-05T02:43:12+02:00"
     },
     {
@@ -8453,7 +8593,11 @@
       "title": "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure",
       "url": "https://chemie-lernen.org/posts/2026-06-05-50-jahre-raetsel-proteine-verlieren-hydrathuelle-durch-saeure/",
       "type": "article",
-      "entities": ["Proteinfaltung", "Enzyme", "pH-Wert"],
+      "entities": [
+        "Proteinfaltung",
+        "Enzyme",
+        "pH-Wert"
+      ],
       "date": "2026-06-05T02:42:39+02:00"
     },
     {
@@ -8461,7 +8605,11 @@
       "title": "Lithium-sulfur batteries with solid electrolyte interphase achieve 1000 cycles",
       "url": "https://www.nature.com/articles/s41586-024-07234-0",
       "type": "article",
-      "entities": ["Galvanische Zelle", "Elektrolyt", "Lithium"],
+      "entities": [
+        "Galvanische Zelle",
+        "Elektrolyt",
+        "Lithium"
+      ],
       "date": "2024-06-10T00:00:00+02:00"
     },
     {
@@ -8469,7 +8617,11 @@
       "title": "Solid-state batteries with sulfide electrolytes reach 500 Wh/kg energy density",
       "url": "https://www.nature.com/articles/s41586-024-07196-0",
       "type": "article",
-      "entities": ["Galvanische Zelle", "Elektrolyt", "Lithium"],
+      "entities": [
+        "Galvanische Zelle",
+        "Elektrolyt",
+        "Lithium"
+      ],
       "date": "2024-05-01T00:00:00+02:00"
     },
     {
@@ -8477,7 +8629,9 @@
       "title": "Direct air capture of CO2 using amine-functionalized metal-organic frameworks",
       "url": "https://www.science.org/doi/10.1126/science.adi4731",
       "type": "article",
-      "entities": ["Kohlendioxid (CO2)"],
+      "entities": [
+        "Kohlendioxid (CO2)"
+      ],
       "date": "2024-04-01T00:00:00+02:00"
     },
     {
@@ -8485,7 +8639,11 @@
       "title": "CRISPR-Cas9 gene editing meets chemistry: base editors and prime editing",
       "url": "https://www.nature.com/articles/s41587-023-01944-1",
       "type": "article",
-      "entities": ["Proteinfaltung", "Kovalente Bindung", "Enzyme"],
+      "entities": [
+        "Proteinfaltung",
+        "Kovalente Bindung",
+        "Enzyme"
+      ],
       "date": "2024-02-01T00:00:00+01:00"
     },
     {
@@ -8493,7 +8651,10 @@
       "title": "Blue hydrogen production via methane pyrolysis: less carbon-intensive than gray hydrogen",
       "url": "https://pubs.acs.org/doi/10.1021/acs.energyfuels.3c04125",
       "type": "article",
-      "entities": ["Wasserstoff", "Methan (CH4)"],
+      "entities": [
+        "Wasserstoff",
+        "Methan (CH4)"
+      ],
       "date": "2024-01-20T00:00:00+01:00"
     },
     {
@@ -8501,7 +8662,11 @@
       "title": "Photocatalytic conversion of CO2 to methane using single-atom catalysts on graphitic carbon nitride",
       "url": "https://pubs.rsc.org/en/content/articlelanding/2024/sc/d3sc04027a",
       "type": "article",
-      "entities": ["Kohlendioxid (CO2)", "Stickstoff", "Methan (CH4)"],
+      "entities": [
+        "Kohlendioxid (CO2)",
+        "Stickstoff",
+        "Methan (CH4)"
+      ],
       "date": "2024-01-15T00:00:00+01:00"
     },
     {
@@ -8509,7 +8674,9 @@
       "title": "Visible-light-driven CO2 reduction to formic acid using molecular cobalt catalysts",
       "url": "https://onlinelibrary.wiley.com/doi/10.1002/anie.202309876",
       "type": "article",
-      "entities": ["Kohlendioxid (CO2)"],
+      "entities": [
+        "Kohlendioxid (CO2)"
+      ],
       "date": "2024-01-10T00:00:00+01:00"
     },
     {
@@ -8517,7 +8684,11 @@
       "title": "Single-atom alloy catalysts break scaling relations for selective hydrogenation",
       "url": "https://www.nature.com/articles/s41563-023-01678-9",
       "type": "article",
-      "entities": ["Hydrierung", "Wasserstoff", "Heterogene Katalyse"],
+      "entities": [
+        "Hydrierung",
+        "Wasserstoff",
+        "Heterogene Katalyse"
+      ],
       "date": "2023-11-01T00:00:00+01:00"
     },
     {
@@ -8525,7 +8696,10 @@
       "title": "Polyethylene upcycling to alkylaromatics via hydroisomerization-dehydrocyclization",
       "url": "https://www.science.org/doi/10.1126/science.abc9876",
       "type": "article",
-      "entities": ["Hydrierung", "Aromatische Verbindungen"],
+      "entities": [
+        "Hydrierung",
+        "Aromatische Verbindungen"
+      ],
       "date": "2023-10-15T00:00:00+02:00"
     },
     {
@@ -8533,7 +8707,12 @@
       "title": "Electrocatalytic nitrogen reduction to ammonia at ambient conditions",
       "url": "https://pubs.rsc.org/en/content/articlelanding/2023/ee/d3ee01234a",
       "type": "article",
-      "entities": ["Wasserstoff", "Stickstoff", "Ammoniak (NH3)", "Haber-Bosch-Verfahren"],
+      "entities": [
+        "Wasserstoff",
+        "Stickstoff",
+        "Ammoniak (NH3)",
+        "Haber-Bosch-Verfahren"
+      ],
       "date": "2023-09-01T00:00:00+02:00"
     },
     {
@@ -8541,7 +8720,11 @@
       "title": "Electrochemical reduction of nitrate to ammonia on iron-based single-atom catalysts",
       "url": "https://www.science.org/doi/10.1126/science.abc9688",
       "type": "article",
-      "entities": ["Stickstoff", "Ammoniak (NH3)", "Eisen"],
+      "entities": [
+        "Stickstoff",
+        "Ammoniak (NH3)",
+        "Eisen"
+      ],
       "date": "2023-08-01T00:00:00+02:00"
     },
     {
@@ -8549,7 +8732,11 @@
       "title": "Dual-atom catalysts for efficient oxygen reduction in fuel cells",
       "url": "https://www.nature.com/articles/s41929-023-00936-1",
       "type": "article",
-      "entities": ["Galvanische Zelle", "Heterogene Katalyse", "Eisen"],
+      "entities": [
+        "Galvanische Zelle",
+        "Heterogene Katalyse",
+        "Eisen"
+      ],
       "date": "2023-06-15T00:00:00+02:00"
     },
     {
@@ -8557,7 +8744,10 @@
       "title": "Room-temperature superconductivity in nitrogen-doped lutetium hydride at ambient pressure",
       "url": "https://www.nature.com/articles/s41586-023-05742-0",
       "type": "article",
-      "entities": ["Wasserstoff", "Stickstoff"],
+      "entities": [
+        "Wasserstoff",
+        "Stickstoff"
+      ],
       "date": "2023-03-08T00:00:00+01:00"
     },
     {
@@ -8565,7 +8755,11 @@
       "title": "AlphaFold predicts structure of almost every protein known to science",
       "url": "https://www.nature.com/articles/s41586-022-05384-4",
       "type": "article",
-      "entities": ["Proteinfaltung", "Kovalente Bindung", "Enzyme"],
+      "entities": [
+        "Proteinfaltung",
+        "Kovalente Bindung",
+        "Enzyme"
+      ],
       "date": "2022-07-28T00:00:00+02:00"
     },
     {
@@ -8573,7 +8767,10 @@
       "title": "Spannungsreihe der Elemente",
       "url": "https://chemie-lernen.org/themenbereiche/redox-elektrochemie/spannungsreihe/",
       "type": "page",
-      "entities": ["Galvanische Zelle", "Eisen"],
+      "entities": [
+        "Galvanische Zelle",
+        "Eisen"
+      ],
       "date": "2026-06-08"
     },
     {
@@ -8581,7 +8778,10 @@
       "title": "Chemische Bindungen",
       "url": "https://chemie-lernen.org/themenbereiche/aufbau-materie/chemische-bindungen/",
       "type": "page",
-      "entities": ["Elektrolyt", "Kovalente Bindung"],
+      "entities": [
+        "Elektrolyt",
+        "Kovalente Bindung"
+      ],
       "date": "2026-06-08"
     },
     {
@@ -8589,7 +8789,10 @@
       "title": "Prinzip von Le Chatelier",
       "url": "https://chemie-lernen.org/themenbereiche/gleichgewicht-geschwindigkeit/prinzip-von-le-chatelier/",
       "type": "page",
-      "entities": ["Chemisches Gleichgewicht", "Reaktionsgeschwindigkeit"],
+      "entities": [
+        "Chemisches Gleichgewicht",
+        "Reaktionsgeschwindigkeit"
+      ],
       "date": "2026-06-08"
     },
     {
@@ -8597,7 +8800,9 @@
       "title": "Pufferlösungen",
       "url": "https://chemie-lernen.org/themenbereiche/saeuren-basen/pufferloesungen/",
       "type": "page",
-      "entities": ["pH-Wert"],
+      "entities": [
+        "pH-Wert"
+      ],
       "date": "2026-06-08"
     },
     {
@@ -8605,7 +8810,9 @@
       "title": "Oxidation und Reduktion",
       "url": "https://chemie-lernen.org/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/",
       "type": "page",
-      "entities": ["Galvanische Zelle"],
+      "entities": [
+        "Galvanische Zelle"
+      ],
       "date": "2026-06-03"
     },
     {
@@ -8613,7 +8820,9 @@
       "title": "Elektrochemische Zellen",
       "url": "https://chemie-lernen.org/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
       "type": "page",
-      "entities": ["Galvanische Zelle"],
+      "entities": [
+        "Galvanische Zelle"
+      ],
       "date": "2026-06-03"
     },
     {
@@ -8621,7 +8830,9 @@
       "title": "Substitution und Addition",
       "url": "https://chemie-lernen.org/themenbereiche/reaktionstypen-organisch/substitution-und-addition/",
       "type": "page",
-      "entities": ["Hydrierung"],
+      "entities": [
+        "Hydrierung"
+      ],
       "date": "2026-06-03"
     },
     {
@@ -8642,7 +8853,10 @@
       "title": "Effektiv Chemie lernen",
       "url": "https://chemie-lernen.org/themenbereiche/tipps-tricks/effektiv-lernen/",
       "type": "page",
-      "entities": ["Chemisches Gleichgewicht", "Reaktionsgeschwindigkeit"],
+      "entities": [
+        "Chemisches Gleichgewicht",
+        "Reaktionsgeschwindigkeit"
+      ],
       "date": "2026-06-03"
     },
     {
@@ -8650,7 +8864,11 @@
       "title": "Atome und Moleküle",
       "url": "https://chemie-lernen.org/themenbereiche/aufbau-materie/atome-und-molekuele/",
       "type": "page",
-      "entities": ["Kovalente Bindung", "Wasserstoff", "Stickstoff"],
+      "entities": [
+        "Kovalente Bindung",
+        "Wasserstoff",
+        "Stickstoff"
+      ],
       "date": "2026-06-03"
     },
     {
@@ -8658,7 +8876,10 @@
       "title": "Kohlenwasserstoffe",
       "url": "https://chemie-lernen.org/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/",
       "type": "page",
-      "entities": ["Aromatische Verbindungen", "Methan (CH4)"],
+      "entities": [
+        "Aromatische Verbindungen",
+        "Methan (CH4)"
+      ],
       "date": "2026-06-03"
     },
     {
@@ -8666,7 +8887,11 @@
       "title": "Reaktionskinetik",
       "url": "https://chemie-lernen.org/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
       "type": "page",
-      "entities": ["Heterogene Katalyse", "Reaktionsgeschwindigkeit", "Aktivierungsenergie"],
+      "entities": [
+        "Heterogene Katalyse",
+        "Reaktionsgeschwindigkeit",
+        "Aktivierungsenergie"
+      ],
       "date": "2026-06-03"
     },
     {
@@ -8674,7 +8899,10 @@
       "title": "Energie bei chemischen Reaktionen",
       "url": "https://chemie-lernen.org/themenbereiche/energetik/energie-bei-reaktionen/",
       "type": "page",
-      "entities": ["Reaktionsgeschwindigkeit", "Aktivierungsenergie"],
+      "entities": [
+        "Reaktionsgeschwindigkeit",
+        "Aktivierungsenergie"
+      ],
       "date": "2026-06-03"
     },
     {
@@ -8682,7 +8910,9 @@
       "title": "Säuren, Basen und Salze",
       "url": "https://chemie-lernen.org/themenbereiche/anorganische-verbindungen/saeuren-basen-salze/",
       "type": "page",
-      "entities": ["pH-Wert"],
+      "entities": [
+        "pH-Wert"
+      ],
       "date": "2026-06-03"
     },
     {
@@ -8690,7 +8920,9 @@
       "title": "pH-Wert und Indikatoren",
       "url": "https://chemie-lernen.org/themenbereiche/saeuren-basen/ph-wert-und-indikatoren/",
       "type": "page",
-      "entities": ["pH-Wert"],
+      "entities": [
+        "pH-Wert"
+      ],
       "date": "2026-06-03"
     },
     {
@@ -8698,7 +8930,10 @@
       "title": "Electrocatalytic Nitrogen Reduction to Ammonia at Ambient Conditions",
       "url": "https://doi.org/10.1021/jacs.5c03456",
       "type": "paper",
-      "entities": ["Wasserstoff", "Stickstoff"],
+      "entities": [
+        "Wasserstoff",
+        "Stickstoff"
+      ],
       "date": "2025-05-10T00:00:00+02:00"
     },
     {
@@ -8706,7 +8941,9 @@
       "title": "AI-Guided Discovery of Solid-State Electrolytes for Lithium Batteries",
       "url": "https://doi.org/10.1126/science.adq1234",
       "type": "paper",
-      "entities": ["Lithium"],
+      "entities": [
+        "Lithium"
+      ],
       "date": "2025-04-01T00:00:00+02:00"
     },
     {
@@ -8714,7 +8951,10 @@
       "title": "Room-Temperature Superconductivity in Nitrogen-Doped Lutetium Hydride",
       "url": "https://doi.org/10.1038/s41586-024-07861-5",
       "type": "paper",
-      "entities": ["Wasserstoff", "Stickstoff"],
+      "entities": [
+        "Wasserstoff",
+        "Stickstoff"
+      ],
       "date": "2025-03-15T00:00:00+02:00"
     },
     {
@@ -8722,7 +8962,9 @@
       "title": "Molecular Dynamics of Enzyme Catalysis Revealed by XFEL",
       "url": "https://doi.org/10.1038/s41557-025-01678-9",
       "type": "paper",
-      "entities": ["Enzyme"],
+      "entities": [
+        "Enzyme"
+      ],
       "date": "2025-02-20T00:00:00+02:00"
     },
     {
@@ -8730,7 +8972,9 @@
       "title": "Photocatalytic CO2 Reduction to Methanol on Bismuth Perovskites",
       "url": "https://doi.org/10.1038/s41929-025-01234-5",
       "type": "paper",
-      "entities": ["Wasserstoff"],
+      "entities": [
+        "Wasserstoff"
+      ],
       "date": "2025-01-28T00:00:00+02:00"
     }
   ],
@@ -8774,7 +9018,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -9381,7 +9627,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Mol"],
+      "relatedEntities": [
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -9423,7 +9671,9 @@
         "objective_count": 13
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -9680,7 +9930,9 @@
         "objective_count": 15
       },
       "articles": [],
-      "relatedEntities": ["AES"],
+      "relatedEntities": [
+        "AES"
+      ],
       "articleCount": 0
     },
     {
@@ -9820,7 +10072,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["wasser"],
+      "relatedEntities": [
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -9932,7 +10186,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Mol"],
+      "relatedEntities": [
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -10016,7 +10272,10 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["Bor", "wasser"],
+      "relatedEntities": [
+        "Bor",
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -10072,7 +10331,10 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["Aktivierungsenergie", "aktivierungsenergie"],
+      "relatedEntities": [
+        "Aktivierungsenergie",
+        "aktivierungsenergie"
+      ],
       "articleCount": 0
     },
     {
@@ -10100,7 +10362,10 @@
         "objective_count": 12
       },
       "articles": [],
-      "relatedEntities": ["Alkine", "Mol"],
+      "relatedEntities": [
+        "Alkine",
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -10212,7 +10477,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Mol"],
+      "relatedEntities": [
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -10226,7 +10493,9 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -10286,7 +10555,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["AES", "TEM"],
+      "relatedEntities": [
+        "AES",
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -10300,7 +10572,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["SEM"],
+      "relatedEntities": [
+        "SEM"
+      ],
       "articleCount": 0
     },
     {
@@ -10370,7 +10644,11 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Mol", "Reduktion", "wasser"],
+      "relatedEntities": [
+        "Mol",
+        "Reduktion",
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -10412,7 +10690,9 @@
         "objective_count": 4
       },
       "articles": [],
-      "relatedEntities": ["Staerke"],
+      "relatedEntities": [
+        "Staerke"
+      ],
       "articleCount": 0
     },
     {
@@ -10731,7 +11011,12 @@
         "objective_count": 4
       },
       "articles": [],
-      "relatedEntities": ["TEM", "Perioden", "Periodensystem", "Iod"],
+      "relatedEntities": [
+        "TEM",
+        "Perioden",
+        "Periodensystem",
+        "Iod"
+      ],
       "articleCount": 0
     },
     {
@@ -10809,7 +11094,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["protonen"],
+      "relatedEntities": [
+        "protonen"
+      ],
       "articleCount": 0
     },
     {
@@ -10823,7 +11110,9 @@
         "objective_count": 16
       },
       "articles": [],
-      "relatedEntities": ["protonen"],
+      "relatedEntities": [
+        "protonen"
+      ],
       "articleCount": 0
     },
     {
@@ -10982,7 +11271,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Synthese"],
+      "relatedEntities": [
+        "Synthese"
+      ],
       "articleCount": 0
     },
     {
@@ -11087,7 +11378,11 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["wasserstoff", "Wasserstoff", "wasser"],
+      "relatedEntities": [
+        "wasserstoff",
+        "Wasserstoff",
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -11101,7 +11396,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["kohlenstoff"],
+      "relatedEntities": [
+        "kohlenstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -11189,7 +11486,10 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["Extraktion", "Chrom"],
+      "relatedEntities": [
+        "Extraktion",
+        "Chrom"
+      ],
       "articleCount": 0
     },
     {
@@ -11217,7 +11517,11 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["halbleiter", "Halbleiter", "Blei"],
+      "relatedEntities": [
+        "halbleiter",
+        "Halbleiter",
+        "Blei"
+      ],
       "articleCount": 0
     },
     {
@@ -11231,7 +11535,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["wasser"],
+      "relatedEntities": [
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -11259,7 +11565,9 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["Blei"],
+      "relatedEntities": [
+        "Blei"
+      ],
       "articleCount": 0
     },
     {
@@ -11592,7 +11900,9 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["he: ionenbindung und salze"],
+      "relatedEntities": [
+        "he: ionenbindung und salze"
+      ],
       "articleCount": 0
     },
     {
@@ -11606,7 +11916,9 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["hh: luft, sauerstoff und oxidbildung"],
+      "relatedEntities": [
+        "hh: luft, sauerstoff und oxidbildung"
+      ],
       "articleCount": 0
     },
     {
@@ -11662,7 +11974,9 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["mv: stoffe und stoffgemische"],
+      "relatedEntities": [
+        "mv: stoffe und stoffgemische"
+      ],
       "articleCount": 0
     },
     {
@@ -11727,7 +12041,9 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -12380,7 +12696,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["lithium-ionen-batterie"],
+      "relatedEntities": [
+        "lithium-ionen-batterie"
+      ],
       "articleCount": 0
     },
     {
@@ -12422,7 +12740,9 @@
         "objective_count": 7
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -12720,7 +13040,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -12817,7 +13139,11 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["neutralisation", "Neutralisationsreaktion", "Neutralisation"],
+      "relatedEntities": [
+        "neutralisation",
+        "Neutralisationsreaktion",
+        "Neutralisation"
+      ],
       "articleCount": 0
     },
     {
@@ -12845,7 +13171,10 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["Verbrennungsreaktion", "Verbrennung"],
+      "relatedEntities": [
+        "Verbrennungsreaktion",
+        "Verbrennung"
+      ],
       "articleCount": 0
     },
     {
@@ -12859,7 +13188,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Verbrennung"],
+      "relatedEntities": [
+        "Verbrennung"
+      ],
       "articleCount": 0
     },
     {
@@ -13069,7 +13400,12 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["wasserstoff", "Wasserstoffbrueckenbindung", "Wasserstoff", "wasser"],
+      "relatedEntities": [
+        "wasserstoff",
+        "Wasserstoffbrueckenbindung",
+        "Wasserstoff",
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -13153,7 +13489,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["AES"],
+      "relatedEntities": [
+        "AES"
+      ],
       "articleCount": 0
     },
     {
@@ -13482,7 +13820,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Iod"],
+      "relatedEntities": [
+        "Iod"
+      ],
       "articleCount": 0
     },
     {
@@ -13496,7 +13836,10 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["ethanol", "Destillation"],
+      "relatedEntities": [
+        "ethanol",
+        "Destillation"
+      ],
       "articleCount": 0
     },
     {
@@ -13510,7 +13853,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -13707,7 +14052,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["rna"],
+      "relatedEntities": [
+        "rna"
+      ],
       "articleCount": 0
     },
     {
@@ -13955,7 +14302,9 @@
         "objective_count": 4
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -14151,7 +14500,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["AES"],
+      "relatedEntities": [
+        "AES"
+      ],
       "articleCount": 0
     },
     {
@@ -14235,7 +14586,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -14249,7 +14602,10 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["dna", "Chrom"],
+      "relatedEntities": [
+        "dna",
+        "Chrom"
+      ],
       "articleCount": 0
     },
     {
@@ -14291,7 +14647,9 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -14627,7 +14985,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM", "Sauerstoff"],
+      "relatedEntities": [
+        "TEM",
+        "Sauerstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -14697,7 +15058,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Blei"],
+      "relatedEntities": [
+        "Blei"
+      ],
       "articleCount": 0
     },
     {
@@ -14739,7 +15102,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM", "kohlenstoff"],
+      "relatedEntities": [
+        "TEM",
+        "kohlenstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -14767,7 +15133,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Blei"],
+      "relatedEntities": [
+        "Blei"
+      ],
       "articleCount": 0
     },
     {
@@ -14921,7 +15289,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -14977,7 +15347,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Destillation", "Chrom"],
+      "relatedEntities": [
+        "Destillation",
+        "Chrom"
+      ],
       "articleCount": 0
     },
     {
@@ -15075,7 +15448,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Blei"],
+      "relatedEntities": [
+        "Blei"
+      ],
       "articleCount": 0
     },
     {
@@ -15089,7 +15464,9 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["Blei"],
+      "relatedEntities": [
+        "Blei"
+      ],
       "articleCount": 0
     },
     {
@@ -15159,7 +15536,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -15215,7 +15594,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["SEM"],
+      "relatedEntities": [
+        "SEM"
+      ],
       "articleCount": 0
     },
     {
@@ -15229,7 +15610,12 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["wasserstoff", "Sauerstoff", "Wasserstoff", "wasser"],
+      "relatedEntities": [
+        "wasserstoff",
+        "Sauerstoff",
+        "Wasserstoff",
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -15365,7 +15751,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["metalle"],
+      "relatedEntities": [
+        "metalle"
+      ],
       "articleCount": 0
     },
     {
@@ -15379,7 +15767,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Staerke"],
+      "relatedEntities": [
+        "Staerke"
+      ],
       "articleCount": 0
     },
     {
@@ -15466,7 +15856,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["glas"],
+      "relatedEntities": [
+        "glas"
+      ],
       "articleCount": 0
     },
     {
@@ -15620,7 +16012,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -15802,7 +16196,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -15858,7 +16254,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Staerke"],
+      "relatedEntities": [
+        "Staerke"
+      ],
       "articleCount": 0
     },
     {
@@ -15928,7 +16326,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Kolorimetrie"],
+      "relatedEntities": [
+        "Kolorimetrie"
+      ],
       "articleCount": 0
     },
     {
@@ -15956,7 +16356,9 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["Blei"],
+      "relatedEntities": [
+        "Blei"
+      ],
       "articleCount": 0
     },
     {
@@ -15984,7 +16386,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Alkane"],
+      "relatedEntities": [
+        "Alkane"
+      ],
       "articleCount": 0
     },
     {
@@ -16026,7 +16430,9 @@
         "objective_count": 4
       },
       "articles": [],
-      "relatedEntities": ["Eisen"],
+      "relatedEntities": [
+        "Eisen"
+      ],
       "articleCount": 0
     },
     {
@@ -16040,7 +16446,10 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["kohlenstoff", "wasser"],
+      "relatedEntities": [
+        "kohlenstoff",
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -16264,7 +16673,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["rna"],
+      "relatedEntities": [
+        "rna"
+      ],
       "articleCount": 0
     },
     {
@@ -16516,7 +16927,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Mol", "Eisen"],
+      "relatedEntities": [
+        "Mol",
+        "Eisen"
+      ],
       "articleCount": 0
     },
     {
@@ -16544,7 +16958,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Eisen"],
+      "relatedEntities": [
+        "Eisen"
+      ],
       "articleCount": 0
     },
     {
@@ -16698,7 +17114,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["SEM"],
+      "relatedEntities": [
+        "SEM"
+      ],
       "articleCount": 0
     },
     {
@@ -16726,7 +17144,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Dipol-Dipol-Wechselwirkung"],
+      "relatedEntities": [
+        "Dipol-Dipol-Wechselwirkung"
+      ],
       "articleCount": 0
     },
     {
@@ -16868,7 +17288,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -16896,7 +17318,11 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["korrosion", "Korrosion", "Bor"],
+      "relatedEntities": [
+        "korrosion",
+        "Korrosion",
+        "Bor"
+      ],
       "articleCount": 0
     },
     {
@@ -16938,7 +17364,9 @@
         "objective_count": 41
       },
       "articles": [],
-      "relatedEntities": ["mikroplastik"],
+      "relatedEntities": [
+        "mikroplastik"
+      ],
       "articleCount": 0
     },
     {
@@ -17050,7 +17478,9 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["eisen(i)"],
+      "relatedEntities": [
+        "eisen(i)"
+      ],
       "articleCount": 0
     },
     {
@@ -17064,7 +17494,9 @@
         "objective_count": 11
       },
       "articles": [],
-      "relatedEntities": ["Freie Enthalpie"],
+      "relatedEntities": [
+        "Freie Enthalpie"
+      ],
       "articleCount": 0
     },
     {
@@ -17176,7 +17608,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Verbrennung"],
+      "relatedEntities": [
+        "Verbrennung"
+      ],
       "articleCount": 0
     },
     {
@@ -17246,7 +17680,12 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["dna", "Mol", "Cellulose", "Staerke"],
+      "relatedEntities": [
+        "dna",
+        "Mol",
+        "Cellulose",
+        "Staerke"
+      ],
       "articleCount": 0
     },
     {
@@ -17358,7 +17797,9 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -17372,7 +17813,9 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -17577,7 +18020,9 @@
         "objective_count": 7
       },
       "articles": [],
-      "relatedEntities": ["Elektrolyse"],
+      "relatedEntities": [
+        "Elektrolyse"
+      ],
       "articleCount": 0
     },
     {
@@ -17605,7 +18050,11 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Elektronenaffinitaet", "Elektronegativitaet", "elektronenmikroskopie"],
+      "relatedEntities": [
+        "Elektronenaffinitaet",
+        "Elektronegativitaet",
+        "elektronenmikroskopie"
+      ],
       "articleCount": 0
     },
     {
@@ -17661,7 +18110,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["protonen"],
+      "relatedEntities": [
+        "protonen"
+      ],
       "articleCount": 0
     },
     {
@@ -17734,7 +18185,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Mol"],
+      "relatedEntities": [
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -18046,7 +18499,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Verbrennung"],
+      "relatedEntities": [
+        "Verbrennung"
+      ],
       "articleCount": 0
     },
     {
@@ -18228,7 +18683,10 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Enzyme", "enzyme"],
+      "relatedEntities": [
+        "Enzyme",
+        "enzyme"
+      ],
       "articleCount": 0
     },
     {
@@ -18312,7 +18770,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["rna"],
+      "relatedEntities": [
+        "rna"
+      ],
       "articleCount": 0
     },
     {
@@ -18424,7 +18884,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["AES"],
+      "relatedEntities": [
+        "AES"
+      ],
       "articleCount": 0
     },
     {
@@ -18704,7 +19166,10 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["entropie", "Entropie"],
+      "relatedEntities": [
+        "entropie",
+        "Entropie"
+      ],
       "articleCount": 0
     },
     {
@@ -18816,7 +19281,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["AES"],
+      "relatedEntities": [
+        "AES"
+      ],
       "articleCount": 0
     },
     {
@@ -18886,7 +19353,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Synthese"],
+      "relatedEntities": [
+        "Synthese"
+      ],
       "articleCount": 0
     },
     {
@@ -18942,7 +19411,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -18956,7 +19427,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Mol"],
+      "relatedEntities": [
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -18998,7 +19471,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Staerke"],
+      "relatedEntities": [
+        "Staerke"
+      ],
       "articleCount": 0
     },
     {
@@ -19516,7 +19991,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Sauerstoff"],
+      "relatedEntities": [
+        "Sauerstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -19586,7 +20063,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Synthese"],
+      "relatedEntities": [
+        "Synthese"
+      ],
       "articleCount": 0
     },
     {
@@ -19712,7 +20191,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["wasser"],
+      "relatedEntities": [
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -20147,7 +20628,11 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["Diffusion", "Löslichkeit", "Stoffmenge"],
+      "relatedEntities": [
+        "Diffusion",
+        "Löslichkeit",
+        "Stoffmenge"
+      ],
       "articleCount": 0
     },
     {
@@ -20327,7 +20812,12 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["Isomerie", "Homologe Reihe", "Funktionelle Gruppe", "Organische Chemie"],
+      "relatedEntities": [
+        "Isomerie",
+        "Homologe Reihe",
+        "Funktionelle Gruppe",
+        "Organische Chemie"
+      ],
       "articleCount": 0
     },
     {
@@ -20444,7 +20934,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["AES"],
+      "relatedEntities": [
+        "AES"
+      ],
       "articleCount": 0
     },
     {
@@ -20500,7 +20992,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Hydratation"],
+      "relatedEntities": [
+        "Hydratation"
+      ],
       "articleCount": 0
     },
     {
@@ -20612,7 +21106,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["AES"],
+      "relatedEntities": [
+        "AES"
+      ],
       "articleCount": 0
     },
     {
@@ -20758,7 +21254,9 @@
         "objective_count": 432
       },
       "articles": [],
-      "relatedEntities": ["AES"],
+      "relatedEntities": [
+        "AES"
+      ],
       "articleCount": 0
     },
     {
@@ -20828,7 +21326,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["AES"],
+      "relatedEntities": [
+        "AES"
+      ],
       "articleCount": 0
     },
     {
@@ -20856,7 +21356,9 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["Synthese"],
+      "relatedEntities": [
+        "Synthese"
+      ],
       "articleCount": 0
     },
     {
@@ -20898,7 +21400,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["SEM"],
+      "relatedEntities": [
+        "SEM"
+      ],
       "articleCount": 0
     },
     {
@@ -20912,7 +21416,10 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["SEM", "Eisen"],
+      "relatedEntities": [
+        "SEM",
+        "Eisen"
+      ],
       "articleCount": 0
     },
     {
@@ -20926,7 +21433,9 @@
         "objective_count": 7
       },
       "articles": [],
-      "relatedEntities": ["SEM"],
+      "relatedEntities": [
+        "SEM"
+      ],
       "articleCount": 0
     },
     {
@@ -20996,7 +21505,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["pH-Wert"],
+      "relatedEntities": [
+        "pH-Wert"
+      ],
       "articleCount": 0
     },
     {
@@ -21388,7 +21899,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Ionenbindung"],
+      "relatedEntities": [
+        "Ionenbindung"
+      ],
       "articleCount": 0
     },
     {
@@ -21434,7 +21947,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Ionisierungsenergie"],
+      "relatedEntities": [
+        "Ionisierungsenergie"
+      ],
       "articleCount": 0
     },
     {
@@ -21448,7 +21963,9 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["wasser"],
+      "relatedEntities": [
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -21664,7 +22181,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["kohlenstoff"],
+      "relatedEntities": [
+        "kohlenstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -21678,7 +22197,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["wasser", "kohlenstoff"],
+      "relatedEntities": [
+        "wasser",
+        "kohlenstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -21692,7 +22214,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["kohlenstoff"],
+      "relatedEntities": [
+        "kohlenstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -22206,7 +22730,9 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -22339,7 +22865,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -22381,7 +22909,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -22513,7 +23043,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["kohlenstoff"],
+      "relatedEntities": [
+        "kohlenstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -22583,7 +23115,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Eisen"],
+      "relatedEntities": [
+        "Eisen"
+      ],
       "articleCount": 0
     },
     {
@@ -23015,7 +23549,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Synthese"],
+      "relatedEntities": [
+        "Synthese"
+      ],
       "articleCount": 0
     },
     {
@@ -23043,7 +23579,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["luftstabilität"],
+      "relatedEntities": [
+        "luftstabilität"
+      ],
       "articleCount": 0
     },
     {
@@ -23057,7 +23595,9 @@
         "objective_count": 37
       },
       "articles": [],
-      "relatedEntities": ["wasser"],
+      "relatedEntities": [
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -23127,7 +23667,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Pufferloesung"],
+      "relatedEntities": [
+        "Pufferloesung"
+      ],
       "articleCount": 0
     },
     {
@@ -23169,7 +23711,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Mol"],
+      "relatedEntities": [
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -23267,7 +23811,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["wasser"],
+      "relatedEntities": [
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -23323,7 +23869,9 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["Mol"],
+      "relatedEntities": [
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -23379,7 +23927,10 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Metallbindung", "metalle"],
+      "relatedEntities": [
+        "Metallbindung",
+        "metalle"
+      ],
       "articleCount": 0
     },
     {
@@ -23393,7 +23944,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["metalle"],
+      "relatedEntities": [
+        "metalle"
+      ],
       "articleCount": 0
     },
     {
@@ -23459,7 +24012,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["AES"],
+      "relatedEntities": [
+        "AES"
+      ],
       "articleCount": 0
     },
     {
@@ -23487,7 +24042,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["wasser"],
+      "relatedEntities": [
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -23501,7 +24058,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["AES"],
+      "relatedEntities": [
+        "AES"
+      ],
       "articleCount": 0
     },
     {
@@ -23529,7 +24088,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Mol"],
+      "relatedEntities": [
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -23557,7 +24118,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Blei"],
+      "relatedEntities": [
+        "Blei"
+      ],
       "articleCount": 0
     },
     {
@@ -23683,7 +24246,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Mol"],
+      "relatedEntities": [
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -23697,7 +24262,10 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["Mol", "metallcluster-moleküle"],
+      "relatedEntities": [
+        "Mol",
+        "metallcluster-moleküle"
+      ],
       "articleCount": 0
     },
     {
@@ -23739,7 +24307,9 @@
         "objective_count": 10
       },
       "articles": [],
-      "relatedEntities": ["Mol"],
+      "relatedEntities": [
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -23753,7 +24323,9 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["Mol"],
+      "relatedEntities": [
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -23901,7 +24473,11 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["Ionisierungsenergie", "Elektrolyt", "Ionenbindung"],
+      "relatedEntities": [
+        "Ionisierungsenergie",
+        "Elektrolyt",
+        "Ionenbindung"
+      ],
       "articleCount": 0
     },
     {
@@ -23915,7 +24491,12 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["Diffusion", "Löslichkeit", "Stoffmenge", "b: stoffe und stoffgemische"],
+      "relatedEntities": [
+        "Diffusion",
+        "Löslichkeit",
+        "Stoffmenge",
+        "b: stoffe und stoffgemische"
+      ],
       "articleCount": 0
     },
     {
@@ -23986,7 +24567,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Bor"],
+      "relatedEntities": [
+        "Bor"
+      ],
       "articleCount": 0
     },
     {
@@ -24000,7 +24583,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["metalle"],
+      "relatedEntities": [
+        "metalle"
+      ],
       "articleCount": 0
     },
     {
@@ -24042,7 +24627,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Staerke"],
+      "relatedEntities": [
+        "Staerke"
+      ],
       "articleCount": 0
     },
     {
@@ -24171,7 +24758,11 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Neutralisationsreaktion", "Neutralisation", "neutralisation"],
+      "relatedEntities": [
+        "Neutralisationsreaktion",
+        "Neutralisation",
+        "neutralisation"
+      ],
       "articleCount": 0
     },
     {
@@ -24436,7 +25027,9 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -24581,7 +25174,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Mol"],
+      "relatedEntities": [
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -24679,7 +25274,11 @@
         "objective_count": 4
       },
       "articles": [],
-      "relatedEntities": ["Perioden", "Periodensystem", "Iod"],
+      "relatedEntities": [
+        "Perioden",
+        "Periodensystem",
+        "Iod"
+      ],
       "articleCount": 0
     },
     {
@@ -24693,7 +25292,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM", "Mol"],
+      "relatedEntities": [
+        "TEM",
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -24707,7 +25309,9 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["wasser"],
+      "relatedEntities": [
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -24735,7 +25339,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["AES"],
+      "relatedEntities": [
+        "AES"
+      ],
       "articleCount": 0
     },
     {
@@ -24763,7 +25369,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Kupfer"],
+      "relatedEntities": [
+        "Kupfer"
+      ],
       "articleCount": 0
     },
     {
@@ -24791,7 +25399,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Mol"],
+      "relatedEntities": [
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -24819,7 +25429,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["proteine", "protonen"],
+      "relatedEntities": [
+        "proteine",
+        "protonen"
+      ],
       "articleCount": 0
     },
     {
@@ -24847,7 +25460,10 @@
         "objective_count": 9
       },
       "articles": [],
-      "relatedEntities": ["enzyme", "Enzyme"],
+      "relatedEntities": [
+        "enzyme",
+        "Enzyme"
+      ],
       "articleCount": 0
     },
     {
@@ -24931,7 +25547,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["protonen"],
+      "relatedEntities": [
+        "protonen"
+      ],
       "articleCount": 0
     },
     {
@@ -24963,7 +25581,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["protonen"],
+      "relatedEntities": [
+        "protonen"
+      ],
       "articleCount": 0
     },
     {
@@ -25019,7 +25639,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["wasser"],
+      "relatedEntities": [
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -25192,7 +25814,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["metalle"],
+      "relatedEntities": [
+        "metalle"
+      ],
       "articleCount": 0
     },
     {
@@ -25329,7 +25953,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["katalysator"],
+      "relatedEntities": [
+        "katalysator"
+      ],
       "articleCount": 0
     },
     {
@@ -25455,7 +26081,9 @@
         "objective_count": 7
       },
       "articles": [],
-      "relatedEntities": ["Kupfer"],
+      "relatedEntities": [
+        "Kupfer"
+      ],
       "articleCount": 0
     },
     {
@@ -25771,7 +26399,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Sauerstoff"],
+      "relatedEntities": [
+        "Sauerstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -25869,7 +26499,9 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -26233,7 +26865,9 @@
         "objective_count": 37
       },
       "articles": [],
-      "relatedEntities": ["rna"],
+      "relatedEntities": [
+        "rna"
+      ],
       "articleCount": 0
     },
     {
@@ -26513,7 +27147,11 @@
         "objective_count": 7
       },
       "articles": [],
-      "relatedEntities": ["Atommodell", "Periodensystem", "Atombau"],
+      "relatedEntities": [
+        "Atommodell",
+        "Periodensystem",
+        "Atombau"
+      ],
       "articleCount": 0
     },
     {
@@ -26745,7 +27383,12 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["Metallbindung", "Spannungsreihe", "Redoxreaktion", "Legierung"],
+      "relatedEntities": [
+        "Metallbindung",
+        "Spannungsreihe",
+        "Redoxreaktion",
+        "Legierung"
+      ],
       "articleCount": 0
     },
     {
@@ -26882,7 +27525,12 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["Löslichkeit", "Hydratation", "Sauerstoff", "Wasserstoff"],
+      "relatedEntities": [
+        "Löslichkeit",
+        "Hydratation",
+        "Sauerstoff",
+        "Wasserstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -26925,7 +27573,12 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["Verbrennung", "Kohlendioxid", "Stickstoff", "Sauerstoff"],
+      "relatedEntities": [
+        "Verbrennung",
+        "Kohlendioxid",
+        "Stickstoff",
+        "Sauerstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -26953,7 +27606,11 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["Diffusion", "Löslichkeit", "Stoffmenge"],
+      "relatedEntities": [
+        "Diffusion",
+        "Löslichkeit",
+        "Stoffmenge"
+      ],
       "articleCount": 0
     },
     {
@@ -27036,7 +27693,12 @@
         "objective_count": 4
       },
       "articles": [],
-      "relatedEntities": ["Löslichkeit", "Hydratation", "Sauerstoff", "Wasserstoff"],
+      "relatedEntities": [
+        "Löslichkeit",
+        "Hydratation",
+        "Sauerstoff",
+        "Wasserstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -27124,7 +27786,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Synthese", "Sauerstoff"],
+      "relatedEntities": [
+        "Synthese",
+        "Sauerstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -27138,7 +27803,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Mol"],
+      "relatedEntities": [
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -27194,7 +27861,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Amorphe Stoffe"],
+      "relatedEntities": [
+        "Amorphe Stoffe"
+      ],
       "articleCount": 0
     },
     {
@@ -27450,7 +28119,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["wasser"],
+      "relatedEntities": [
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -27538,7 +28209,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Alkine"],
+      "relatedEntities": [
+        "Alkine"
+      ],
       "articleCount": 0
     },
     {
@@ -27552,7 +28225,9 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["SEM"],
+      "relatedEntities": [
+        "SEM"
+      ],
       "articleCount": 0
     },
     {
@@ -27566,7 +28241,9 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -27622,7 +28299,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["neutralisation", "Neutralisation"],
+      "relatedEntities": [
+        "neutralisation",
+        "Neutralisation"
+      ],
       "articleCount": 0
     },
     {
@@ -27748,7 +28428,9 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -27762,7 +28444,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Staerke"],
+      "relatedEntities": [
+        "Staerke"
+      ],
       "articleCount": 0
     },
     {
@@ -27776,7 +28460,9 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["Staerke"],
+      "relatedEntities": [
+        "Staerke"
+      ],
       "articleCount": 0
     },
     {
@@ -27818,7 +28504,9 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["AES"],
+      "relatedEntities": [
+        "AES"
+      ],
       "articleCount": 0
     },
     {
@@ -27860,7 +28548,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -27938,7 +28628,10 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["TEM", "Staerke"],
+      "relatedEntities": [
+        "TEM",
+        "Staerke"
+      ],
       "articleCount": 0
     },
     {
@@ -27952,7 +28645,10 @@
         "objective_count": 4
       },
       "articles": [],
-      "relatedEntities": ["TEM", "Synthese"],
+      "relatedEntities": [
+        "TEM",
+        "Synthese"
+      ],
       "articleCount": 0
     },
     {
@@ -27966,7 +28662,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -27980,7 +28678,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -27994,7 +28694,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -28008,7 +28710,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -28222,7 +28926,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -28376,7 +29082,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -28390,7 +29098,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -28404,7 +29114,9 @@
         "objective_count": 4
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -28418,7 +29130,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -28432,7 +29146,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["TEM"],
+      "relatedEntities": [
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -28475,7 +29191,12 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["Neutralisation", "pH-Wert", "Sauere nach Broensted", "Base"],
+      "relatedEntities": [
+        "Neutralisation",
+        "pH-Wert",
+        "Sauere nach Broensted",
+        "Base"
+      ],
       "articleCount": 0
     },
     {
@@ -28514,7 +29235,11 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["Diffusion", "Löslichkeit", "Stoffmenge"],
+      "relatedEntities": [
+        "Diffusion",
+        "Löslichkeit",
+        "Stoffmenge"
+      ],
       "articleCount": 0
     },
     {
@@ -28528,7 +29253,12 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["Metallbindung", "Spannungsreihe", "Redoxreaktion", "Legierung"],
+      "relatedEntities": [
+        "Metallbindung",
+        "Spannungsreihe",
+        "Redoxreaktion",
+        "Legierung"
+      ],
       "articleCount": 0
     },
     {
@@ -28749,7 +29479,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["elastomere", "thermoplaste"],
+      "relatedEntities": [
+        "elastomere",
+        "thermoplaste"
+      ],
       "articleCount": 0
     },
     {
@@ -28819,7 +29552,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["SEM"],
+      "relatedEntities": [
+        "SEM"
+      ],
       "articleCount": 0
     },
     {
@@ -28833,7 +29568,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["wasser"],
+      "relatedEntities": [
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -28875,7 +29612,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["SEM"],
+      "relatedEntities": [
+        "SEM"
+      ],
       "articleCount": 0
     },
     {
@@ -28889,7 +29628,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["AES", "TEM"],
+      "relatedEntities": [
+        "AES",
+        "TEM"
+      ],
       "articleCount": 0
     },
     {
@@ -28917,7 +29659,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Alkane", "Mol"],
+      "relatedEntities": [
+        "Alkane",
+        "Mol"
+      ],
       "articleCount": 0
     },
     {
@@ -29084,7 +29829,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM", "SEM"],
+      "relatedEntities": [
+        "TEM",
+        "SEM"
+      ],
       "articleCount": 0
     },
     {
@@ -29098,7 +29846,10 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["TEM", "SEM"],
+      "relatedEntities": [
+        "TEM",
+        "SEM"
+      ],
       "articleCount": 0
     },
     {
@@ -29112,7 +29863,10 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["TEM", "SEM"],
+      "relatedEntities": [
+        "TEM",
+        "SEM"
+      ],
       "articleCount": 0
     },
     {
@@ -29126,7 +29880,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM", "SEM"],
+      "relatedEntities": [
+        "TEM",
+        "SEM"
+      ],
       "articleCount": 0
     },
     {
@@ -29238,7 +29995,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["magnetfeld"],
+      "relatedEntities": [
+        "magnetfeld"
+      ],
       "articleCount": 0
     },
     {
@@ -29339,7 +30098,9 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["Synthese"],
+      "relatedEntities": [
+        "Synthese"
+      ],
       "articleCount": 0
     },
     {
@@ -29405,7 +30166,10 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Verbrennung", "kohlenstoff"],
+      "relatedEntities": [
+        "Verbrennung",
+        "kohlenstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -29419,7 +30183,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["TEM", "Verbrennung"],
+      "relatedEntities": [
+        "TEM",
+        "Verbrennung"
+      ],
       "articleCount": 0
     },
     {
@@ -29433,7 +30200,9 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["Verbrennung"],
+      "relatedEntities": [
+        "Verbrennung"
+      ],
       "articleCount": 0
     },
     {
@@ -29643,7 +30412,9 @@
         "objective_count": 4
       },
       "articles": [],
-      "relatedEntities": ["AES"],
+      "relatedEntities": [
+        "AES"
+      ],
       "articleCount": 0
     },
     {
@@ -29839,7 +30610,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["kohlenstoff"],
+      "relatedEntities": [
+        "kohlenstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -29867,7 +30640,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["glas"],
+      "relatedEntities": [
+        "glas"
+      ],
       "articleCount": 0
     },
     {
@@ -29895,7 +30670,11 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["essigsäure", "ester", "Ester"],
+      "relatedEntities": [
+        "essigsäure",
+        "ester",
+        "Ester"
+      ],
       "articleCount": 0
     },
     {
@@ -29909,7 +30688,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["wasser"],
+      "relatedEntities": [
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -29923,7 +30704,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["SEM"],
+      "relatedEntities": [
+        "SEM"
+      ],
       "articleCount": 0
     },
     {
@@ -30049,7 +30832,11 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["wasserstoff", "Wasserstoff", "wasser"],
+      "relatedEntities": [
+        "wasserstoff",
+        "Wasserstoff",
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -30077,7 +30864,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["wasser"],
+      "relatedEntities": [
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -30091,7 +30880,10 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["kohlenstoff", "wasser"],
+      "relatedEntities": [
+        "kohlenstoff",
+        "wasser"
+      ],
       "articleCount": 0
     },
     {
@@ -30105,7 +30897,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["dna"],
+      "relatedEntities": [
+        "dna"
+      ],
       "articleCount": 0
     },
     {
@@ -30175,7 +30969,9 @@
         "objective_count": 7
       },
       "articles": [],
-      "relatedEntities": ["metalle"],
+      "relatedEntities": [
+        "metalle"
+      ],
       "articleCount": 0
     },
     {
@@ -30287,7 +31083,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Iod"],
+      "relatedEntities": [
+        "Iod"
+      ],
       "articleCount": 0
     },
     {
@@ -30301,7 +31099,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Iod"],
+      "relatedEntities": [
+        "Iod"
+      ],
       "articleCount": 0
     },
     {
@@ -30357,7 +31157,9 @@
         "objective_count": 3
       },
       "articles": [],
-      "relatedEntities": ["Blei"],
+      "relatedEntities": [
+        "Blei"
+      ],
       "articleCount": 0
     },
     {
@@ -30539,7 +31341,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["atp"],
+      "relatedEntities": [
+        "atp"
+      ],
       "articleCount": 0
     },
     {
@@ -30805,7 +31609,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["rna"],
+      "relatedEntities": [
+        "rna"
+      ],
       "articleCount": 0
     },
     {
@@ -30847,7 +31653,9 @@
         "objective_count": 9
       },
       "articles": [],
-      "relatedEntities": ["rna"],
+      "relatedEntities": [
+        "rna"
+      ],
       "articleCount": 0
     },
     {
@@ -30889,7 +31697,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Staerke"],
+      "relatedEntities": [
+        "Staerke"
+      ],
       "articleCount": 0
     },
     {
@@ -30903,7 +31713,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["Staerke"],
+      "relatedEntities": [
+        "Staerke"
+      ],
       "articleCount": 0
     },
     {
@@ -31113,7 +31925,9 @@
         "objective_count": 2
       },
       "articles": [],
-      "relatedEntities": ["Eisen"],
+      "relatedEntities": [
+        "Eisen"
+      ],
       "articleCount": 0
     },
     {
@@ -31169,7 +31983,9 @@
         "objective_count": 1
       },
       "articles": [],
-      "relatedEntities": ["kohlenstoff"],
+      "relatedEntities": [
+        "kohlenstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -31183,7 +31999,9 @@
         "objective_count": 18
       },
       "articles": [],
-      "relatedEntities": ["Stickstoff"],
+      "relatedEntities": [
+        "Stickstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -31216,7 +32034,9 @@
         "objective_count": 17
       },
       "articles": [],
-      "relatedEntities": ["kohlenstoff"],
+      "relatedEntities": [
+        "kohlenstoff"
+      ],
       "articleCount": 0
     },
     {

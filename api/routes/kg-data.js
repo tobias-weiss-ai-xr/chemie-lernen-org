@@ -33,6 +33,7 @@ import {
   findContentLinks,
 } from '../services/content.js';
 import { renderEntityPage } from '../templates/article.mjs';
+import { excludeCodeEntities, isCodeAnalysisName } from '../scripts/_neo4j-subset-filter.mjs';
 
 const router = Router();
 const logger = pino({
@@ -101,6 +102,8 @@ router.get('/api/kg-data', async (req, res) => {
     } else if (!showLehrplan) {
       whereClauses.push("e.kategorie <> 'lehrplan'");
     }
+    // Exclude code-analysis entities by name pattern
+    whereClauses.push(excludeCodeEntities('e'));
 
     var whereStr = whereClauses.join(' AND ');
 
