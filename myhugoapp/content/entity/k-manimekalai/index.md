@@ -1,11 +1,12 @@
 ---
-title: 'K. Manimekalai'
-description: 'Fachbegriff „K. Manimekalai“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org.'
+title: "K. Manimekalai"
+description: "Fachbegriff „K. Manimekalai“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
-slug: 'k-manimekalai'
-category: 'konzept'
+slug: "k-manimekalai"
+category: "konzept"
 articleCount: 0
 relatedCount: 0
 relatedEntities: []
 components: []
 ---
+

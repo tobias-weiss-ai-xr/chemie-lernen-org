@@ -1,48 +1,49 @@
 ---
-title: 'Ionenbindung'
-description: 'Fachbegriff „Ionenbindung“ (Konzept) — beschrieben in 2 Artikeln auf chemie-lernen.org und ist mit 37 weiteren Fachbegriffen verknüpft.'
+title: "Ionenbindung"
+description: "Fachbegriff „Ionenbindung“ (Konzept) — beschrieben in 2 Artikeln auf chemie-lernen.org und ist mit 37 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-slug: 'ionenbindung'
-category: 'konzept'
+slug: "ionenbindung"
+category: "konzept"
 articleCount: 2
 relatedCount: 37
 relatedEntities:
-  - 'ionenbindung. elektronenpaarbindung an'
-  - 'sh: metalle und redoxreaktionen'
-  - 'sl: redoxreaktionen und elektrochemie'
-  - 'mv: redoxreaktionen und elektrochemie'
-  - 'hh: säuren, laugen und neutralisation'
-  - 'hb: säuren, laugen und neutralisation'
-  - 'th: chemische reaktionen'
-  - 'sl: chemische reaktionen'
-  - 'ni: chemische reaktionen'
-  - 'mv: chemische reaktionen'
-  - 'hh: chemische reaktionen'
-  - 'he: chemische reaktionen'
-  - 'hb: chemische reaktionen'
-  - 'ni: säuren, basen und neutralisation'
-  - 'bb: säuren, basen und neutralisation'
-  - 'th: redoxreaktionen'
-  - 'rp: redoxreaktionen'
-  - 'ni: redoxreaktionen'
-  - 'he: redoxreaktionen'
-  - 'bb: redoxreaktionen'
-  - 'rp: chemische reaktion und energie'
-  - 'bb: chemische reaktion und energie'
-  - 'sl: säuren, laugen und salze'
-  - 'rp: säuren, basen, salze'
-  - 'rp: metalle, salze, ionen'
-  - 'st: säuren, basen und salze'
-  - 'mv: säuren, basen und salze'
-  - 'mv: salze und ionenbindung'
-  - 'he: ionenbindung und salze'
-  - 'sh: salze und ionen'
-  - 'ni: salze und ionen'
-  - 'hb: salze und ionen'
-  - 'hh: ionen und salze'
-  - 'bb: ionen und salze'
-  - 'salzen und die ionenbindung. es ist in diesem themenfeld noch nicht notwendig, auf die'
-  - 'ionenbindung'
-  - 'Elektronegativitaet'
+  - "ionenbindung. elektronenpaarbindung an"
+  - "sh: metalle und redoxreaktionen"
+  - "sl: redoxreaktionen und elektrochemie"
+  - "mv: redoxreaktionen und elektrochemie"
+  - "hh: säuren, laugen und neutralisation"
+  - "hb: säuren, laugen und neutralisation"
+  - "th: chemische reaktionen"
+  - "sl: chemische reaktionen"
+  - "ni: chemische reaktionen"
+  - "mv: chemische reaktionen"
+  - "hh: chemische reaktionen"
+  - "he: chemische reaktionen"
+  - "hb: chemische reaktionen"
+  - "ni: säuren, basen und neutralisation"
+  - "bb: säuren, basen und neutralisation"
+  - "th: redoxreaktionen"
+  - "rp: redoxreaktionen"
+  - "ni: redoxreaktionen"
+  - "he: redoxreaktionen"
+  - "bb: redoxreaktionen"
+  - "rp: chemische reaktion und energie"
+  - "bb: chemische reaktion und energie"
+  - "sl: säuren, laugen und salze"
+  - "rp: säuren, basen, salze"
+  - "rp: metalle, salze, ionen"
+  - "st: säuren, basen und salze"
+  - "mv: säuren, basen und salze"
+  - "mv: salze und ionenbindung"
+  - "he: ionenbindung und salze"
+  - "sh: salze und ionen"
+  - "ni: salze und ionen"
+  - "hb: salze und ionen"
+  - "hh: ionen und salze"
+  - "bb: ionen und salze"
+  - "salzen und die ionenbindung. es ist in diesem themenfeld noch nicht notwendig, auf die"
+  - "ionenbindung"
+  - "Elektronegativitaet"
 components: []
 ---
+

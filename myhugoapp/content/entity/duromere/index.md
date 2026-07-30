@@ -1,11 +1,12 @@
 ---
-title: 'duromere'
-description: 'Fachbegriff „duromere“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org.'
+title: "duromere"
+description: "Fachbegriff „duromere“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
-slug: 'duromere'
-category: 'konzept'
+slug: "duromere"
+category: "konzept"
 articleCount: 0
 relatedCount: 0
 relatedEntities: []
 components: []
 ---
+

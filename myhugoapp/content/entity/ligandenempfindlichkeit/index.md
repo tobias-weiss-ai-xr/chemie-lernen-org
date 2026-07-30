@@ -1,17 +1,18 @@
 ---
-title: 'ligandenempfindlichkeit'
-description: 'Fachbegriff „ligandenempfindlichkeit“ (Konzept) — beschrieben in einem Artikel auf chemie-lernen.org und ist mit 6 weiteren Fachbegriffen verknüpft.'
+title: "ligandenempfindlichkeit"
+description: "Fachbegriff „ligandenempfindlichkeit“ (Konzept) — beschrieben in einem Artikel auf chemie-lernen.org und ist mit 6 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-slug: 'ligandenempfindlichkeit'
-category: 'konzept'
+slug: "ligandenempfindlichkeit"
+category: "konzept"
 articleCount: 1
 relatedCount: 6
 relatedEntities:
-  - 'venusfliegenfallen-domänen'
-  - 'hdx-ms'
-  - 'transportproteine'
-  - 'transkriptionsfaktoren'
-  - 'allosterie'
-  - 'nature chemistry'
+  - "venusfliegenfallen-domänen"
+  - "hdx-ms"
+  - "transportproteine"
+  - "transkriptionsfaktoren"
+  - "allosterie"
+  - "nature chemistry"
 components: []
 ---
+

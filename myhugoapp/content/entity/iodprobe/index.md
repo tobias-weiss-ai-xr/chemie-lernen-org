@@ -1,11 +1,12 @@
 ---
-title: 'Iodprobe'
-description: 'Fachbegriff „Iodprobe“ (Methode) — beschrieben in 0 Artikeln auf chemie-lernen.org.'
+title: "Iodprobe"
+description: "Fachbegriff „Iodprobe“ (Methode) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
-slug: 'iodprobe'
-category: 'methode'
+slug: "iodprobe"
+category: "methode"
 articleCount: 0
 relatedCount: 0
 relatedEntities: []
 components: []
 ---
+

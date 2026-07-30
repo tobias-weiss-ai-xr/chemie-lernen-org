@@ -1,13 +1,14 @@
 ---
-title: 'fad'
-description: 'Fachbegriff „fad“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 2 weiteren Fachbegriffen verknüpft.'
+title: "fad"
+description: "Fachbegriff „fad“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 2 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-slug: 'fad'
-category: 'stoff'
+slug: "fad"
+category: "stoff"
 articleCount: 0
 relatedCount: 2
 relatedEntities:
-  - 'Enzyme'
-  - 'Redoxreaktion'
+  - "Enzyme"
+  - "Redoxreaktion"
 components: []
 ---
+

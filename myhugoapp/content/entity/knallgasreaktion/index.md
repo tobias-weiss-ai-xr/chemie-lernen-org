@@ -1,11 +1,12 @@
 ---
-title: 'Knallgasreaktion'
-description: 'Fachbegriff „Knallgasreaktion“ (Reaktion) — beschrieben in 0 Artikeln auf chemie-lernen.org.'
+title: "Knallgasreaktion"
+description: "Fachbegriff „Knallgasreaktion“ (Reaktion) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
-slug: 'knallgasreaktion'
-category: 'reaktion'
+slug: "knallgasreaktion"
+category: "reaktion"
 articleCount: 0
 relatedCount: 0
 relatedEntities: []
 components: []
 ---
+

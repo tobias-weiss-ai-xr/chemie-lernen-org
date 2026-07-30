@@ -1,11 +1,12 @@
 ---
-title: 'John B. Goodenough'
-description: 'Fachbegriff „John B. Goodenough“ (Person) — beschrieben in 0 Artikeln auf chemie-lernen.org.'
+title: "John B. Goodenough"
+description: "Fachbegriff „John B. Goodenough“ (Person) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
-slug: 'john-b-goodenough'
-category: 'person'
+slug: "john-b-goodenough"
+category: "person"
 articleCount: 0
 relatedCount: 0
 relatedEntities: []
 components: []
 ---
+

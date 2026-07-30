@@ -1,11 +1,12 @@
 ---
-title: 'Magnesium (Mg)'
-description: 'Fachbegriff „Magnesium (Mg)“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org.'
+title: "Magnesium (Mg)"
+description: "Fachbegriff „Magnesium (Mg)“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
-slug: 'magnesium-mg'
-category: 'stoff'
+slug: "magnesium-mg"
+category: "stoff"
 articleCount: 0
 relatedCount: 0
 relatedEntities: []
 components: []
 ---
+

@@ -836,7 +836,7 @@
     legendEl.innerHTML = html;
   }
 
-  function attachGraphFilters(data) {
+  function attachGraphFilters(_data) {
     var savedFilter = localStorage.getItem('entityGraphCategoryFilter');
     var savedSearch = localStorage.getItem('entityGraphSearchFilter');
 

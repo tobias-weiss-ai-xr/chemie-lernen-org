@@ -1,12 +1,13 @@
 ---
-title: 'sulfonsäuren'
-description: 'Fachbegriff „sulfonsäuren“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit einem weiteren Fachbegriff verknüpft.'
+title: "sulfonsäuren"
+description: "Fachbegriff „sulfonsäuren“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit einem weiteren Fachbegriff verknüpft."
 date: 2026-06-26
-slug: 'sulfonsaeuren'
-category: 'konzept'
+slug: "sulfonsaeuren"
+category: "konzept"
 articleCount: 0
 relatedCount: 1
 relatedEntities:
-  - 'säure'
+  - "säure"
 components: []
 ---
+

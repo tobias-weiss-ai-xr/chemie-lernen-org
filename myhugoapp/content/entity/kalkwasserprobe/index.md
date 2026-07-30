@@ -1,11 +1,12 @@
 ---
-title: 'Kalkwasserprobe'
-description: 'Fachbegriff „Kalkwasserprobe“ (Methode) — beschrieben in 0 Artikeln auf chemie-lernen.org.'
+title: "Kalkwasserprobe"
+description: "Fachbegriff „Kalkwasserprobe“ (Methode) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
-slug: 'kalkwasserprobe'
-category: 'methode'
+slug: "kalkwasserprobe"
+category: "methode"
 articleCount: 0
 relatedCount: 0
 relatedEntities: []
 components: []
 ---
+

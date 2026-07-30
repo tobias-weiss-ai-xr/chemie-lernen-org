@@ -1,11 +1,12 @@
 ---
-title: 'Silbernitrat (AgNO3)'
-description: 'Fachbegriff „Silbernitrat (AgNO3)“ (Stoff) — beschrieben in einem Artikel auf chemie-lernen.org.'
+title: "Silbernitrat (AgNO3)"
+description: "Fachbegriff „Silbernitrat (AgNO3)“ (Stoff) — beschrieben in einem Artikel auf chemie-lernen.org."
 date: 2026-06-26
-slug: 'silbernitrat-agno3'
-category: 'stoff'
+slug: "silbernitrat-agno3"
+category: "stoff"
 articleCount: 1
 relatedCount: 0
 relatedEntities: []
 components: []
 ---
+

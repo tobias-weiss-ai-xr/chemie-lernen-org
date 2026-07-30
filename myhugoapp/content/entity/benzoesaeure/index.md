@@ -1,14 +1,15 @@
 ---
-title: 'benzoesäure'
-description: 'Fachbegriff „benzoesäure“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 3 weiteren Fachbegriffen verknüpft.'
+title: "benzoesäure"
+description: "Fachbegriff „benzoesäure“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 3 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-slug: 'benzoesaeure'
-category: 'stoff'
+slug: "benzoesaeure"
+category: "stoff"
 articleCount: 0
 relatedCount: 3
 relatedEntities:
-  - 'säure'
-  - 'Sauerstoff'
-  - 'Wasserstoff'
+  - "säure"
+  - "Sauerstoff"
+  - "Wasserstoff"
 components: []
 ---
+

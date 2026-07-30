@@ -1,13 +1,14 @@
 ---
-title: 'aktivierungsenergie'
-description: 'Fachbegriff „aktivierungsenergie“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 2 weiteren Fachbegriffen verknüpft.'
+title: "aktivierungsenergie"
+description: "Fachbegriff „aktivierungsenergie“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 2 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-slug: 'aktivierungsenergie'
-category: 'konzept'
+slug: "aktivierungsenergie"
+category: "konzept"
 articleCount: 0
 relatedCount: 2
 relatedEntities:
-  - 'energie'
-  - 'aktivierungsenergie. prozesse in der industrie'
+  - "energie"
+  - "aktivierungsenergie. prozesse in der industrie"
 components: []
 ---
+

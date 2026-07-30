@@ -1,11 +1,12 @@
 ---
-title: 'friedel-crafts-alkylierung'
-description: 'Fachbegriff „friedel-crafts-alkylierung“ (Reaktion) — beschrieben in 0 Artikeln auf chemie-lernen.org.'
+title: "friedel-crafts-alkylierung"
+description: "Fachbegriff „friedel-crafts-alkylierung“ (Reaktion) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
-slug: 'friedel-crafts-alkylierung'
-category: 'reaktion'
+slug: "friedel-crafts-alkylierung"
+category: "reaktion"
 articleCount: 0
 relatedCount: 0
 relatedEntities: []
 components: []
 ---
+

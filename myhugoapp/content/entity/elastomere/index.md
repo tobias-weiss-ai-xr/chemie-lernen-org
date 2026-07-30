@@ -1,13 +1,14 @@
 ---
-title: 'elastomere'
-description: 'Fachbegriff „elastomere“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 2 weiteren Fachbegriffen verknüpft.'
+title: "elastomere"
+description: "Fachbegriff „elastomere“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 2 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-slug: 'elastomere'
-category: 'konzept'
+slug: "elastomere"
+category: "konzept"
 articleCount: 0
 relatedCount: 2
 relatedEntities:
-  - 'thermoplaste, elastomere'
-  - 'el'
+  - "thermoplaste, elastomere"
+  - "el"
 components: []
 ---
+

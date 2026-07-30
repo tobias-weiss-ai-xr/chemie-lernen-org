@@ -1,13 +1,14 @@
 ---
-title: 'carbonsäuren'
-description: 'Fachbegriff „carbonsäuren“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 2 weiteren Fachbegriffen verknüpft.'
+title: "carbonsäuren"
+description: "Fachbegriff „carbonsäuren“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 2 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-slug: 'carbonsaeuren'
-category: 'konzept'
+slug: "carbonsaeuren"
+category: "konzept"
 articleCount: 0
 relatedCount: 2
 relatedEntities:
-  - 'säure'
-  - 'Sauerstoff'
+  - "säure"
+  - "Sauerstoff"
 components: []
 ---
+

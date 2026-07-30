@@ -1,11 +1,12 @@
 ---
-title: 'PaulOgier'
-description: 'Fachbegriff „PaulOgier“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org.'
+title: "PaulOgier"
+description: "Fachbegriff „PaulOgier“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
-slug: 'paulogier'
-category: 'konzept'
+slug: "paulogier"
+category: "konzept"
 articleCount: 0
 relatedCount: 0
 relatedEntities: []
 components: []
 ---
+

@@ -1,13 +1,14 @@
 ---
-title: 'Wasserstoffperoxid (H2O2)'
-description: 'Fachbegriff „Wasserstoffperoxid (H2O2)“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 2 weiteren Fachbegriffen verknüpft.'
+title: "Wasserstoffperoxid (H2O2)"
+description: "Fachbegriff „Wasserstoffperoxid (H2O2)“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 2 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-slug: 'wasserstoffperoxid-h2o2'
-category: 'stoff'
+slug: "wasserstoffperoxid-h2o2"
+category: "stoff"
 articleCount: 0
 relatedCount: 2
 relatedEntities:
-  - 'wasser'
-  - 'stoff'
+  - "wasser"
+  - "stoff"
 components: []
 ---
+

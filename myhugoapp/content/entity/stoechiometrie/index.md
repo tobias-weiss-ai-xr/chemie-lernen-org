@@ -1,11 +1,12 @@
 ---
-title: 'Stöchiometrie'
-description: 'Fachbegriff „Stöchiometrie“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org.'
+title: "Stöchiometrie"
+description: "Fachbegriff „Stöchiometrie“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
-slug: 'stoechiometrie'
-category: 'konzept'
+slug: "stoechiometrie"
+category: "konzept"
 articleCount: 0
 relatedCount: 0
 relatedEntities: []
 components: []
 ---
+

@@ -1,11 +1,12 @@
 ---
-title: 'replication'
-description: 'Fachbegriff „replication“ (Reaktion) — beschrieben in 0 Artikeln auf chemie-lernen.org.'
+title: "replication"
+description: "Fachbegriff „replication“ (Reaktion) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
-slug: 'replication'
-category: 'reaktion'
+slug: "replication"
+category: "reaktion"
 articleCount: 0
 relatedCount: 0
 relatedEntities: []
 components: []
 ---
+

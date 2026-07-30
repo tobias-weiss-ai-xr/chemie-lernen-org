@@ -1,11 +1,12 @@
 ---
-title: 'hundsche regel'
-description: 'Fachbegriff „hundsche regel“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org.'
+title: "hundsche regel"
+description: "Fachbegriff „hundsche regel“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
-slug: 'hundsche-regel'
-category: 'konzept'
+slug: "hundsche-regel"
+category: "konzept"
 articleCount: 0
 relatedCount: 0
 relatedEntities: []
 components: []
 ---
+

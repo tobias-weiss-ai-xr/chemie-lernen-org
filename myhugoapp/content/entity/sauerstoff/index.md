@@ -1,57 +1,58 @@
 ---
-title: 'Sauerstoff'
-description: 'Fachbegriff „Sauerstoff“ (Stoff) — beschrieben in 3 Artikeln auf chemie-lernen.org und ist mit 46 weiteren Fachbegriffen verknüpft.'
+title: "Sauerstoff"
+description: "Fachbegriff „Sauerstoff“ (Stoff) — beschrieben in 3 Artikeln auf chemie-lernen.org und ist mit 46 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-slug: 'sauerstoff'
-category: 'stoff'
+slug: "sauerstoff"
+category: "stoff"
 articleCount: 3
 relatedCount: 46
 relatedEntities:
-  - 'glycerin'
-  - 'ni: verbrennung und oxidbildung'
-  - 'mv: verbrennung und oxidbildung'
-  - 'st: bestandteile der luft'
-  - 'hh: luft, sauerstoff und oxidbildung'
-  - 'hb: luft, sauerstoff und verbrennung'
-  - 'sl: luft und verbrennung'
-  - 'sh: luft und verbrennung'
-  - 'rp: luft und verbrennung'
-  - 'he: luft und verbrennung'
-  - 'bb: luft und verbrennung'
-  - 'st: wasser als oxid'
-  - 'sl: wasser und wässrige lösungen'
-  - 'sl: organische chemie - kohlenwasserstoffe'
-  - 'he: organische chemie - kohlenwasserstoffe'
-  - 'die bindungen zwischen den atomen in wasserstoff, sauerstoff, was-'
-  - 'sauerstoff)'
-  - 'große oberflächen ermöglichen die schnelle aufnahme von kohlen- sauerstoff)'
-  - 'der aufbau der atmungsorgane, des herz-kreislauf-systems und sauerstoff'
-  - 'stoff'
-  - 'rpi metalle gegenüber sauerstoff. (chere) mithilfe geeigneter modelle. (e)'
-  - 'stoff- und energieumwandlung: fotosynthese 1 w) sauerstoffübertragungsreaktionen'
-  - 'aspirin'
-  - 'adrenalin'
-  - 'harnstoff'
-  - 'phthalsäure'
-  - 'benzoesäure'
-  - 'weinsäure'
-  - 'milchsäure'
-  - 'zitronensäure'
-  - 'essigsäure'
-  - 'aldehyde'
-  - 'carbonsäuren'
-  - 'ether'
-  - 'anhydride'
-  - 'epoxide'
-  - 'aminosäuren'
-  - 'oxidative phosphorylierung'
-  - 'photosynthese'
-  - 'contact-prozess'
-  - 'ostwald-verfahren'
-  - 'wacker-verfahren'
-  - 'korrosion'
-  - 'verbrennungsenthalpie'
-  - 'methanol'
-  - 'ethanol'
+  - "glycerin"
+  - "ni: verbrennung und oxidbildung"
+  - "mv: verbrennung und oxidbildung"
+  - "st: bestandteile der luft"
+  - "hh: luft, sauerstoff und oxidbildung"
+  - "hb: luft, sauerstoff und verbrennung"
+  - "sl: luft und verbrennung"
+  - "sh: luft und verbrennung"
+  - "rp: luft und verbrennung"
+  - "he: luft und verbrennung"
+  - "bb: luft und verbrennung"
+  - "st: wasser als oxid"
+  - "sl: wasser und wässrige lösungen"
+  - "sl: organische chemie - kohlenwasserstoffe"
+  - "he: organische chemie - kohlenwasserstoffe"
+  - "die bindungen zwischen den atomen in wasserstoff, sauerstoff, was-"
+  - "sauerstoff)"
+  - "große oberflächen ermöglichen die schnelle aufnahme von kohlen- sauerstoff)"
+  - "der aufbau der atmungsorgane, des herz-kreislauf-systems und sauerstoff"
+  - "stoff"
+  - "rpi metalle gegenüber sauerstoff. (chere) mithilfe geeigneter modelle. (e)"
+  - "stoff- und energieumwandlung: fotosynthese 1 w) sauerstoffübertragungsreaktionen"
+  - "aspirin"
+  - "adrenalin"
+  - "harnstoff"
+  - "phthalsäure"
+  - "benzoesäure"
+  - "weinsäure"
+  - "milchsäure"
+  - "zitronensäure"
+  - "essigsäure"
+  - "aldehyde"
+  - "carbonsäuren"
+  - "ether"
+  - "anhydride"
+  - "epoxide"
+  - "aminosäuren"
+  - "oxidative phosphorylierung"
+  - "photosynthese"
+  - "contact-prozess"
+  - "ostwald-verfahren"
+  - "wacker-verfahren"
+  - "korrosion"
+  - "verbrennungsenthalpie"
+  - "methanol"
+  - "ethanol"
 components: []
 ---
+

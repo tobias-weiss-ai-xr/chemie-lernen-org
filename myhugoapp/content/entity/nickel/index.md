@@ -1,12 +1,13 @@
 ---
-title: 'Nickel'
-description: 'Fachbegriff „Nickel“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit einem weiteren Fachbegriff verknüpft.'
+title: "Nickel"
+description: "Fachbegriff „Nickel“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit einem weiteren Fachbegriff verknüpft."
 date: 2026-06-26
-slug: 'nickel'
-category: 'stoff'
+slug: "nickel"
+category: "stoff"
 articleCount: 0
 relatedCount: 1
 relatedEntities:
-  - 'lithium-ionen-batterie'
+  - "lithium-ionen-batterie"
 components: []
 ---
+
