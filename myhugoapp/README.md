@@ -34,6 +34,7 @@ A fast and flexible static site generator built with love by [bep], [spf13], and
 [![Go Report Card](https://goreportcard.com/badge/github.com/gohugoio/hugo)](https://goreportcard.com/report/github.com/gohugoio/hugo)
 
 [Website] | [Installation] | [Documentation] | [Support] | [Contributing] | <a rel="me" href="https://fosstodon.org/@gohugoio">Mastodon</a>
+
 ## Overview
 
 Hugo is a [static site generator] written in [Go], optimized for speed and designed for flexibility. With its advanced templating system and fast asset pipelines, Hugo renders a complete site in seconds, often less.
@@ -103,6 +104,7 @@ Build the extended edition:
 ```text
 CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest
 ```
+
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=gohugoio/hugo&type=Timeline)](https://star-history.com/#gohugoio/hugo&Timeline)
@@ -298,4 +300,5 @@ gopkg.in/yaml.v2="v2.4.0"
 gopkg.in/yaml.v3="v3.0.1"
 software.sslmate.com/src/go-pkcs12="v0.2.0"
 ```
+
 </details>

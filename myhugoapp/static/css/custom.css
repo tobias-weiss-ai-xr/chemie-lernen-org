@@ -49,11 +49,19 @@
 }
 
 @keyframes resultPulse {
-  0% { opacity: 0.7; transform: scale(0.98); }
-  50% { opacity: 1; transform: scale(1.02); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
-
 
 .lead {
   font-size: 1.2rem;
@@ -371,7 +379,9 @@
 .calculator-panel .form-control {
   border-radius: 6px;
   border-color: #d0d0d0;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .calculator-panel .form-control:focus {
@@ -437,7 +447,9 @@
 }
 
 @keyframes calcSpin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -645,15 +657,15 @@
   }
 
   button,
-  [type="button"],
-  [type="submit"],
-  [type="reset"] {
+  [type='button'],
+  [type='submit'],
+  [type='reset'] {
     min-height: 44px;
   }
 
-  input[type="number"],
-  input[type="text"],
-  input[type="search"] {
+  input[type='number'],
+  input[type='text'],
+  input[type='search'] {
     min-height: 44px;
     font-size: 16px;
   }
@@ -697,7 +709,7 @@
     margin: 15px 0 !important;
   }
 
-  .ki-assistent-hero div[style*="font-size: 64px"] {
+  .ki-assistent-hero div[style*='font-size: 64px'] {
     font-size: 40px !important;
   }
 

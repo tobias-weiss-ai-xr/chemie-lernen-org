@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const DRUCK_EINHEITEN = {
   Pa: 1,
   kPa: 1000,
@@ -316,12 +315,10 @@ const flaecheCalculatorConfig = {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  let druckCalculator, kraftCalculator, flaecheCalculator;
-
   try {
-    druckCalculator = new ChemistryCalculator(druckCalculatorConfig);
-    kraftCalculator = new ChemistryCalculator(kraftCalculatorConfig);
-    flaecheCalculator = new ChemistryCalculator(flaecheCalculatorConfig);
+    new ChemistryCalculator(druckCalculatorConfig);
+    new ChemistryCalculator(kraftCalculatorConfig);
+    new ChemistryCalculator(flaecheCalculatorConfig);
   } catch (error) {
     console.error('Error initializing calculators:', error);
   }

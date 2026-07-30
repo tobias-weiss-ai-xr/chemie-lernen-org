@@ -29,7 +29,7 @@
     "check:updates": "npm outdated",
     "update:dependencies": "npm update",
     "security:check": "npm run audit && npm run check:updates",
-    "duplicate:check": "jscpd myhugoapp/static/js --min-lines=10 --min-tokens=50 --threshold=10 --gitignore",
+    "duplicate:check": "jscpd myhugoapp/static/js --min-lines=10 --min-tokens=50 --threshold=10 --ignore '**/*.optimized.js'",
     "hugo:build": "docker run --rm -v \"$(pwd)/myhugoapp:/src\" -w /src hugomods/hugo:exts hugo",
     "export:kg-data": "node scripts/export-kg-data.mjs",
     "generate:entities": "node scripts/generate-entity-pages.mjs",

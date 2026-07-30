@@ -145,7 +145,6 @@ function calculateHessSimple() {
 
   const calculationText = calculationSteps
     .map((step, i) => {
-      const sign = step.deltaH >= 0 ? '+' : '';
       return `${step.deltaH.toFixed(1)} kJ/mol`;
     })
     .join(' + ');
@@ -273,10 +272,6 @@ function parseReactionElements(reactionEquation) {
     if (!elements.find((e) => e.name === elementName)) {
       const inReactants = reactants.includes(elementName);
       const inProducts = products.includes(elementName);
-
-      const count =
-        (reactants.match(new RegExp(elementName, 'g')) || []).length +
-        (products.match(new RegExp(elementName, 'g')) || []).length;
 
       if (inReactants && inProducts) {
         const reactantCount = (reactants.match(new RegExp(elementName, 'g')) || []).length;

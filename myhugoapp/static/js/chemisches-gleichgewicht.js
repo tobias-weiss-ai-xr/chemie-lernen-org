@@ -135,7 +135,6 @@ function startEquilibriumSimulation() {
 function animateEquilibrium() {
   if (!isAnimating) return;
 
-  const duration = 10000;
   const steps = 200;
   let step = 0;
 

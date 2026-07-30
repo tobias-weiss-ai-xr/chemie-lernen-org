@@ -1,13 +1,10 @@
 // PWA Service Worker Registration + Update Prompt
 (function () {
   if ('serviceWorker' in navigator) {
-    var swRegistration = null;
-
     window.addEventListener('load', function () {
       navigator.serviceWorker
         .register('/sw.js')
         .then(function (registration) {
-          swRegistration = registration;
           console.log('[PWA] SW registered');
 
           // Check for updates on each page load

@@ -40,7 +40,6 @@ function applyMolarMass() {
 
   const parts = selectedValue.split(':');
   const symbol = parts[0];
-  const mass = parts[1];
   const element = elementDatabase[symbol];
 
   if (!element) {

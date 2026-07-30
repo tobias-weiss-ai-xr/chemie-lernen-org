@@ -37,11 +37,6 @@ function drawEnergyLevels() {
 
   const padding = 80;
   const graphHeight = height - 2 * padding;
-  const graphWidth = width - 2 * padding;
-
-  const minEnergy = levels[levels.length - 1].energy;
-  const maxEnergy = levels[0].energy;
-  const energyRange = maxEnergy - minEnergy;
 
   // Draw nucleus
   ctx.beginPath();
@@ -57,7 +52,6 @@ function drawEnergyLevels() {
 
   levels.forEach((level, index) => {
     const y = padding + index * levelSpacing;
-    const energyPercent = (level.energy - minEnergy) / energyRange;
 
     ctx.strokeStyle = '#2d3436';
     ctx.lineWidth = 2;
@@ -125,7 +119,6 @@ function simulateTransition() {
   const finalEnergy = -13.6 / (finalN * finalN);
 
   const deltaE = finalEnergy - initialEnergy;
-  const absDeltaE = Math.abs(deltaE);
   const wavelengthNm = calculateWavelength(initialN, finalN);
   const frequency = calculateFrequency(wavelengthNm);
 
@@ -243,7 +236,6 @@ function drawTransitionArrow(initialN, finalN, isEmission) {
 
   const ctx = canvas.getContext('2d');
   const maxN = parseInt(document.getElementById('max-n').value);
-  const levels = generateEnergyLevels(maxN);
 
   const padding = 80;
   const levelSpacing = (canvas.height - 2 * padding) / (maxN + 1);

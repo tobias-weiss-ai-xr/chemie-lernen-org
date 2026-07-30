@@ -133,11 +133,11 @@
     grid-template-columns: 1fr;
     gap: 15px;
   }
-  
+
   .example-buttons {
     justify-content: center;
   }
-  
+
   .titration-controls > div {
     justify-content: center;
     flex-direction: column;
@@ -149,20 +149,20 @@
   .example-buttons {
     gap: 5px;
   }
-  
+
   .ph-example {
     font-size: 11px;
     padding: 5px 8px;
   }
-  
+
   #titration-type {
     margin-bottom: 10px;
   }
-  
+
   .titration-controls > div {
     text-align: center;
   }
-  
+
   .titration-controls > div > div {
     margin-left: 10px;
   }
@@ -174,45 +174,45 @@
     border-color: #444;
     color: #e0e0e0;
   }
-  
+
   .indicator-controls h4 {
     color: #81c784;
   }
-  
+
   .info-message {
     background: #1e3a8a;
     border-color: #004085;
     color: #b8daff;
   }
-  
+
   .ph-example {
     background: #2c2c2c;
     color: #81c784;
     border-color: #81c784;
   }
-  
+
   .ph-example:hover {
     background: #81c784;
     color: #2c2c2c;
   }
-  
+
   .suitable-indicators .indicator-item {
     background: #1e4620;
     color: #a8dabc;
   }
-  
+
   .no-indicators {
     background: #4b3937;
     border-color: #6c757d;
     color: #f8d7da;
   }
-  
+
   #ph-scale-canvas,
   #titration-canvas {
     background: #2c2c2c;
     border-color: #444;
   }
-  
+
   #titration-type {
     background: #3c3c3c;
     border-color: #555;

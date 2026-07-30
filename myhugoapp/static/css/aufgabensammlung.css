@@ -35,7 +35,7 @@
 }
 
 .task-card:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .task-meta {
@@ -52,13 +52,25 @@
   background-color: #3498db;
 }
 
-.badge-difficulty[data-difficulty="1"] { background-color: #27ae60; }
-.badge-difficulty[data-difficulty="2"] { background-color: #f39c12; }
-.badge-difficulty[data-difficulty="3"] { background-color: #e74c3c; }
+.badge-difficulty[data-difficulty='1'] {
+  background-color: #27ae60;
+}
+.badge-difficulty[data-difficulty='2'] {
+  background-color: #f39c12;
+}
+.badge-difficulty[data-difficulty='3'] {
+  background-color: #e74c3c;
+}
 
-.badge-type[data-type="calculation"] { background-color: #9b59b6; }
-.badge-type[data-type="equation"] { background-color: #1abc9c; }
-.badge-type[data-type="multiple-choice"] { background-color: #e67e22; }
+.badge-type[data-type='calculation'] {
+  background-color: #9b59b6;
+}
+.badge-type[data-type='equation'] {
+  background-color: #1abc9c;
+}
+.badge-type[data-type='multiple-choice'] {
+  background-color: #e67e22;
+}
 
 .task-text {
   font-size: 15px;

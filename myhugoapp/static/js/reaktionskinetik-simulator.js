@@ -188,8 +188,6 @@ function drawTemperatureCanvas() {
 
   ctx.clearRect(0, 0, width, height);
 
-  const speedScale = Math.sqrt(temperature / 300);
-
   particles.forEach((particle) => {
     particle.update(temperature);
     particle.draw(ctx, width, height);
@@ -224,8 +222,6 @@ function animateTemperature() {
 
   function animate() {
     if (!isKineticsAnimating) return;
-
-    const time = Date.now() * 0.001;
 
     particles.forEach((particle) => {
       particle.update(temperature);
@@ -266,7 +262,6 @@ function drawCollisionCanvas() {
   ctx.clearRect(0, 0, width, height);
 
   const effectiveThreshold = collisionThreshold;
-  const velocityScale = Math.sqrt(temperature / 300);
 
   particles.forEach((particle) => {
     particle.update(temperature);

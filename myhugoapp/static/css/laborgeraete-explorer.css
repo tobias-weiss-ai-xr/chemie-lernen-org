@@ -30,7 +30,7 @@
 }
 
 .equipment-card:hover {
-  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
 }
 
 .equipment-card .equipment-icon {
@@ -69,10 +69,22 @@
   margin-bottom: 8px;
 }
 
-.badge-cat-glas { background: #d5f5e3; color: #1a7a3a; }
-.badge-cat-mess { background: #d4efdf; color: #1a5a7a; }
-.badge-cat-heiz { background: #fdebd0; color: #a05a1a; }
-.badge-cat-sicherheit { background: #fadbd8; color: #a01a1a; }
+.badge-cat-glas {
+  background: #d5f5e3;
+  color: #1a7a3a;
+}
+.badge-cat-mess {
+  background: #d4efdf;
+  color: #1a5a7a;
+}
+.badge-cat-heiz {
+  background: #fdebd0;
+  color: #a05a1a;
+}
+.badge-cat-sicherheit {
+  background: #fadbd8;
+  color: #a01a1a;
+}
 
 @media (max-width: 768px) {
   .laborgeraete-container {

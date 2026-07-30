@@ -42,9 +42,10 @@ yarn-error.log*
 package-lock.json
 yarn.lock
 
-# Minified files
+# Minified / optimized files
 *.min.js
 *.min.css
+*.optimized.js
 
 # Generated files
 *.generated.*

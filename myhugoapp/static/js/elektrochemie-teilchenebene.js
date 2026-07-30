@@ -177,8 +177,6 @@ function drawGalvanicCellStructure(ctx) {
 }
 
 function updateGalvanicParticles(ctx) {
-  const canvas = ctx.canvas;
-
   // Add new electron occasionally
   if (animationState.galvanic.frameCount % 30 === 0) {
     animationState.galvanic.electrons.push({
@@ -378,8 +376,6 @@ function drawElectrolysisStructure(ctx) {
 }
 
 function updateElectrolysisParticles(ctx) {
-  const speed = animationState.electrolysis.voltage * 0.05;
-
   // Anode: 2Cl⁻ → Cl₂ + 2e⁻
   // Show Cl⁻ approaching anode, then Cl₂ leaving
   ctx.fillStyle = COLORS.anion;

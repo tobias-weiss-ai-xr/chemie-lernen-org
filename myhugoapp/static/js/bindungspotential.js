@@ -384,7 +384,6 @@ function drawReactionDiagram() {
 
   const reactantEnergy = reaction.reactants;
   const productEnergy = reaction.products;
-  const deltaH = reaction.deltaH;
 
   const maxEnergy = Math.max(reactantEnergy, productEnergy) + 200;
   const minEnergy = Math.min(reactantEnergy, productEnergy) - 200;

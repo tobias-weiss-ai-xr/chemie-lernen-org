@@ -13,23 +13,27 @@ Eine innovative Lernplattform für Chemie mit interaktiven Tools, 3D-Visualisier
 ## Features
 
 ### 📚 Inhalt
+
 - **12 Themenbereiche**: Von Atombau bis Organische Chemie
 - **Professionelle Formeldarstellung**: KaTeX/LaTeX-Rendering für chemische Formeln
 - **Interaktive Quizze**: Testen Sie Ihr Wissen mit integrierten Quiz-Systemen
 - **Fortschritts-Tracking**: Verfolgen Sie Ihren Lernfortschritt
 
 ### 🧪 Interaktive Tools
+
 - **pH-Rechner**: Berechnen und visualisieren Sie pH-Werte
 - **Molare Masse Rechner**: Berechnen Sie molare Massen von Verbindungen
 - **Periodensystem 3D**: Interaktives 3D-Periodensystem mit verschiedenen Ansichten
 - **Molekülstudio**: Visualisieren Sie Moleküle in 3D
 
 ### 🥽 Immersive Erfahrungen
+
 - **VR Labore**: Virtuelle Laboratories in Mozilla Hubs
 - **3D-Modelle**: Interaktive 3D-Visualisierungen von Molekülen und Elementen
 - **Anwendungen**: Chemische Konzepte greifbar und erlebbar machen
 
 ### 🎨 Design & UX
+
 - **Responsive Design**: Optimiert für Desktop, Tablet und Mobile
 - **Dark Mode**: Automatische und manuelle Dunkelmodus-Unterstützung
 - **Grünes Farbschema**: Konsistentes grünes Design-Thema
@@ -55,6 +59,7 @@ Eine innovative Lernplattform für Chemie mit interaktiven Tools, 3D-Visualisier
 ## Entwicklung
 
 ### Voraussetzungen
+
 - Hugo (extended version)
 - Node.js 20+
 - Docker (optional)
@@ -62,12 +67,14 @@ Eine innovative Lernplattform für Chemie mit interaktiven Tools, 3D-Visualisier
 ### Lokales Development
 
 **1. Hugo Server starten:**
+
 ```bash
 cd myhugoapp
 hugo server -D
 ```
 
 **2. Tests ausführen:**
+
 ```bash
 cd tests
 npm install
@@ -76,6 +83,7 @@ npx playwright test
 ```
 
 **3. Specifische Browser testen:**
+
 ```bash
 npx playwright test --project=chromium
 npx playwright test --project=firefox
@@ -83,6 +91,7 @@ npx playwright test --project=webkit
 ```
 
 **4. Mit Docker entwickeln:**
+
 ```bash
 docker-compose up
 ```
@@ -99,15 +108,16 @@ Siehe [docs/CI_SETUP.md](docs/CI_SETUP.md) für Details.
 
 ## Test-Abdeckung
 
-| Browser | Tests | Status |
-|---------|-------|--------|
-| Chromium | 85 | ✅ 100% |
-| Firefox | 85 | ✅ 100% |
-| WebKit | 85 | ✅ 100% |
+| Browser  | Tests | Status  |
+| -------- | ----- | ------- |
+| Chromium | 85    | ✅ 100% |
+| Firefox  | 85    | ✅ 100% |
+| WebKit   | 85    | ✅ 100% |
 
 **Gesamt: 255 Tests (100% Pass Rate)**
 
 ### Getestete Features
+
 ✅ KaTeX/LaTeX-Formel-Rendering
 ✅ Interaktive Tools (pH-Rechner, Molare Masse, Periodensystem)
 ✅ Molekülstudio 3D-Visualisierung

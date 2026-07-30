@@ -37,7 +37,7 @@
 
 .element-btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .element-btn div:first-child {
@@ -187,21 +187,21 @@
     grid-template-columns: 1fr;
     gap: 15px;
   }
-  
+
   .element-grid {
     grid-template-columns: repeat(6, 1fr);
     gap: 3px;
   }
-  
+
   .element-btn {
     padding: 6px;
     font-size: 10px;
   }
-  
+
   .quick-formulas {
     flex-direction: column;
   }
-  
+
   .element-breakdown-list {
     grid-template-columns: 1fr;
   }
@@ -214,34 +214,34 @@
     border-color: #444;
     color: #e0e0e0;
   }
-  
+
   .periodic-table-mini h4,
   .molecule-visualization h4,
   .calculation-result h5,
   .element-breakdown h6 {
     color: #81c784;
   }
-  
+
   .element-btn {
     border-color: #555;
     color: #e0e0e0;
   }
-  
+
   .element-breakdown-item {
     background: #3c3c3c;
     border-color: #555;
     color: #e0e0e0;
   }
-  
+
   .element-breakdown-item > div:last-child {
     background: #2c2c2c;
   }
-  
+
   #molecule-canvas {
     background: #2c2c2c;
     border-color: #444;
   }
-  
+
   .result-details strong {
     color: #81c784;
   }

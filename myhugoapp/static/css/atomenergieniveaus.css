@@ -12,7 +12,7 @@
   border-radius: 8px;
   padding: 25px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .canvas-container {
@@ -165,7 +165,7 @@
   border-left: 4px solid #0984e3;
   padding: 20px;
   margin-bottom: 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .info-card h3 {
@@ -208,22 +208,22 @@
   .spectra-panel {
     padding: 15px;
   }
-  
+
   .controls {
     flex-direction: column;
     gap: 10px;
   }
-  
+
   .detail-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
   }
-  
+
   .detail-row .label {
     min-width: auto;
   }
-  
+
   .energy-value {
     display: block;
     text-align: center;

@@ -14,7 +14,7 @@
   background-color: #f8f9fa;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .calculator-panel h2 {
@@ -91,7 +91,9 @@
   border: 2px solid #ddd;
   border-radius: 8px;
   font-size: 16px;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
 }
 
 .form-control:focus {
@@ -125,7 +127,7 @@
   background-color: #0056b3;
   border-color: #0056b3;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
 
 .btn-lg {
@@ -166,7 +168,7 @@
   background-color: var(--accent-color);
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
 
 /* Result Cards */
@@ -174,7 +176,7 @@
   background-color: #fff;
   padding: 25px;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   animation: fadeIn 0.3s ease-in;
 }
@@ -317,7 +319,7 @@
   background-color: #fff;
   padding: 25px;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   height: 100%;
   margin-bottom: 20px;
 }

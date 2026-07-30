@@ -10,7 +10,7 @@
   border-radius: 8px;
   padding: 25px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .result-panel {
@@ -173,7 +173,7 @@
 }
 
 .example-card:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
 
@@ -196,7 +196,7 @@
   border-left: 4px solid var(--accent-color);
   padding: 20px;
   margin-bottom: 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .info-card h3 {
@@ -241,15 +241,15 @@
   .calculator-panel {
     padding: 15px;
   }
-  
+
   .result-value {
     font-size: 1.4rem;
   }
-  
+
   .formula-text {
     font-size: 1.1rem;
   }
-  
+
   .info-card {
     padding: 15px;
   }

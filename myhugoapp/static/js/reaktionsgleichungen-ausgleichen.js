@@ -57,7 +57,6 @@ function balanceEquation() {
     const elements = getAllElements(reactants, products);
 
     // Create coefficient matrix
-    const numCompounds = reactants.length + products.length;
     const matrix = [];
 
     for (let i = 0; i < elements.length; i++) {
@@ -97,9 +96,6 @@ function balanceEquation() {
 
 // Solve matrix using Gaussian elimination (simplified)
 function solveMatrix(matrix) {
-  const rows = matrix.length;
-  const cols = matrix[0].length;
-
   // For simple cases, try brute force with small integers
   // This is a simplified approach that works for most educational equations
   return solveByBruteForce(matrix);
