@@ -29,6 +29,8 @@ backups/logs/
 backups/neo4j/
 backups/neo4j-leads/
 backups/chemie-kg/
+backups/chemie-kg/*.dump
+backups/cron.log
 backups/auth-db/
 
 # Temporary files

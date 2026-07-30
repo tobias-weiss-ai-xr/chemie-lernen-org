@@ -27,7 +27,6 @@ _No active changes._
 
 ## Archived changes (`changes/archive/`)
 
-<<<<<<< Updated upstream
 | Change                                  | Commits            | Status                                                           |
 | --------------------------------------- | ------------------ | ---------------------------------------------------------------- |
 | sprint-6-wissensnetz-ssr                | dea14d91, e9ad62be | Shipped 2026-06-26                                               |
@@ -59,7 +58,6 @@ _No active changes._
 | sprint-36-advanced-analytics            | 20/20 tasks ✓      | Archived 2026-07-25 (teacher dashboard, class tracking, CSV)     |
 | sprint-37-themenbereiche-enhancement    | 7/7 tasks ✓        | Archived 2026-07-26 (quiz widgets, entity clouds, mapping test)  |
 | sprint-38-premium-lesson-plans          | 11/11 tasks ✓      | Archived 2026-07-26 (KI lesson-plan + worksheet endpoints, docs) |
-=======
 | Change                                  | Commits            | Status                                                      |
 | --------------------------------------- | ------------------ | ----------------------------------------------------------- |
 | sprint-6-wissensnetz-ssr                | dea14d91, e9ad62be | Shipped 2026-06-26                                          |
@@ -88,8 +86,6 @@ _No active changes._
 | sprint-33-lehrenden-premium            | 16/16 tasks ✓      | Archived 2026-07-24 (Stripe, gating, badges, overlays)        |
 | sprint-34-platform-performance         | 16/16 tasks ✓      | Archived 2026-07-24 (build perf, Lunr search, PWA offline)    |
 | sprint-35-modulhandbuch-integration    | 16/16 tasks ✓      | Archived 2026-07-24 (3 state scrapers, 564 modules, tests)    |
->>>>>>> Stashed changes
-
 ## Legacy planning artifacts (`archive/`)
 
 Pre-OpenSpec planning from `.omo/`, `.opencode/`, `.hermes/`, `.sisyphus/`
