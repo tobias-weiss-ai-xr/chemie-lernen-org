@@ -17,7 +17,7 @@ import fs from 'fs';
 import path from 'path';
 import neo4j from 'neo4j-driver';
 import pino from 'pino';
-import { getNeo4jDriver, NEO4J_DATABASE } from '../services/neo4j.js';
+import { getNeo4jDriver, NEO4J_DATABASE, toNumberSafe } from '../services/neo4j.js';
 import {
   getCachedKgData,
   setCachedKgData,
@@ -185,7 +185,7 @@ router.get('/api/kg-data', async (req, res) => {
       if (state) obj.state = state;
       if (grade) obj.grade = grade;
       if (schoolType) obj.schoolType = schoolType;
-      if (objCount) obj.objectiveCount = objCount.toNumber();
+      if (objCount) obj.objectiveCount = toNumberSafe(objCount);
       if (obj.relatedEntities.length === 0) delete obj.relatedEntities;
       return obj;
     });
@@ -341,7 +341,7 @@ router.get('/api/kg-data/entity/:name', async (req, res) => {
         state: rec.get('state'),
         grade: rec.get('grade'),
         schoolType: rec.get('schoolType'),
-        objectiveCount: rec.get('objectiveCount') ? rec.get('objectiveCount').toNumber() : 0,
+        objectiveCount: toNumberSafe(rec.get('objectiveCount')),
       },
       relatedEntities: (rec.get('relatedEntities') || []).filter(function (r) {
         return r.name != null;

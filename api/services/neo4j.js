@@ -36,3 +36,27 @@ export async function closeNeo4jDriver() {
 }
 
 export { NEO4J_DATABASE };
+
+/**
+ * Safely convert a Neo4j value to a JS number.
+ * Neo4j may return Integer objects (lossless), plain numbers, or floats —
+ * depending on how the property was stored. `.toNumber()` only exists on
+ * Integer objects and throws for Float/Number values, so this helper
+ * normalizes all of them.
+ * @param {*} val - Neo4j value (Integer, number, string, or null/undefined)
+ * @returns {number} numeric value or 0 for null/undefined/NaN
+ */
+export function toNumberSafe(val) {
+  if (val == null) return 0;
+  if (typeof val === 'number') return Number.isFinite(val) ? val : 0;
+  if (typeof val === 'string') {
+    const n = Number(val);
+    return Number.isFinite(n) ? n : 0;
+  }
+  if (typeof val.toNumber === 'function') {
+    const n = val.toNumber();
+    return Number.isFinite(n) ? n : 0;
+  }
+  const n = Number(val);
+  return Number.isFinite(n) ? n : 0;
+}
