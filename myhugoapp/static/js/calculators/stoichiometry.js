@@ -35,6 +35,9 @@ function calcPercentYield(r, e) {
   return (e / r) * 100;
 }
 function calcGasLaw(r, e) {
+  // Note: the stoichiometry page uses calc-gaslaw.js calculateGasLaw() for the Gas Laws
+  // tab (with unit conversions + R-select). This function is kept only for
+  // backward compatibility with any external callers.
   const t = 0.0821;
   if ('n' === e) {
     if (!r.P || !r.V || !r.T) throw new Error('P, V, and T are required to calculate n');

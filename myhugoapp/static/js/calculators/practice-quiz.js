@@ -302,7 +302,11 @@ function checkAnswer() {
   const correctAnswer = problem.answer;
   const tolerance = problem.tolerance || 0.01;
 
-  const isCorrect = Math.abs((userAnswer - correctAnswer) / correctAnswer) <= tolerance;
+  // Guard: if answer is 0 or near-zero, use absolute comparison
+  const isCorrect =
+    correctAnswer === 0
+      ? Math.abs(userAnswer) <= tolerance
+      : Math.abs((userAnswer - correctAnswer) / correctAnswer) <= tolerance;
 
   showFeedback(isCorrect, correctAnswer, userAnswer, tolerance);
   updateScore(isCorrect);
