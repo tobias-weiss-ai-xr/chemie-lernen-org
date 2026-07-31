@@ -184,6 +184,51 @@ function convertToKelvin(temp, unit) {
   }
 }
 
+/**
+ * The R-select implies a unit system (pressure/volume units must match R).
+ * Returns { pressure, volume, rLabel } for the selected R value.
+ */
+function getGasTargetUnits(R) {
+  switch (R) {
+    case 8.314:
+      return { pressure: 'Pa', volume: 'm3', rLabel: '8.314 J/(mol·K)' };
+    case 0.08314:
+      return { pressure: 'bar', volume: 'L', rLabel: '0.08314 L·bar/(mol·K)' };
+    case 62.364:
+      return { pressure: 'Torr', volume: 'L', rLabel: '62.364 L·Torr/(mol·K)' };
+    case 0.000082057:
+      return { pressure: 'atm', volume: 'm3', rLabel: '8.2057×10⁻⁵ m³·atm/(mol·K)' };
+    default:
+      return { pressure: 'atm', volume: 'L', rLabel: '0.08206 L·atm/(mol·K)' };
+  }
+}
+
+function atmToUnit(atm, unit) {
+  switch (unit) {
+    case 'Pa':
+      return atm * 101325;
+    case 'kPa':
+      return atm * 101.325;
+    case 'bar':
+      return atm * 1.01325;
+    case 'Torr':
+    case 'mmHg':
+      return atm * 760;
+    default:
+      return atm; // atm
+  }
+}
+
+function convertPressureTo(pressure, fromUnit, toUnit) {
+  const atm = convertPressureToAtm(pressure, fromUnit);
+  return atmToUnit(atm, toUnit);
+}
+
+function convertVolumeTo(volume, fromUnit, toUnit) {
+  const liters = convertVolumeToLiters(volume, fromUnit);
+  return toUnit === 'm3' ? liters / 1000 : liters;
+}
+
 function calculateGasLaw() {
   const calculateVariable = document.getElementById('gas-calculate-variable').value;
   const R = parseFloat(document.getElementById('gas-constant-select').value);
@@ -197,18 +242,25 @@ function calculateGasLaw() {
   const temperatureValue = parseFloat(document.getElementById('gas-temperature').value);
   const temperatureUnit = document.getElementById('gas-temperature-unit').value;
 
-  let P_atm, V_L, n_mol, T_K;
+  let P_c, V_c, n_mol, T_K;
+  const targetUnits = getGasTargetUnits(R);
 
   try {
-    P_atm = calculateVariable !== 'P' ? convertPressureToAtm(pressureValue, pressureUnit) : null;
-    V_L = calculateVariable !== 'V' ? convertVolumeToLiters(volumeValue, volumeUnit) : null;
+    P_c =
+      calculateVariable !== 'P'
+        ? convertPressureTo(pressureValue, pressureUnit, targetUnits.pressure)
+        : null;
+    V_c =
+      calculateVariable !== 'V'
+        ? convertVolumeTo(volumeValue, volumeUnit, targetUnits.volume)
+        : null;
     n_mol = calculateVariable !== 'n' ? convertAmountToMoles(amountValue, amountUnit) : null;
     T_K = calculateVariable !== 'T' ? convertToKelvin(temperatureValue, temperatureUnit) : null;
 
-    if (calculateVariable !== 'P' && (isNaN(P_atm) || P_atm <= 0)) {
+    if (calculateVariable !== 'P' && (isNaN(P_c) || P_c <= 0)) {
       throw new Error('Ung\u00fcltiger Druckwert');
     }
-    if (calculateVariable !== 'V' && (isNaN(V_L) || V_L <= 0)) {
+    if (calculateVariable !== 'V' && (isNaN(V_c) || V_c <= 0)) {
       throw new Error('Ung\u00fcltiges Volumenwert');
     }
     if (calculateVariable !== 'n' && (isNaN(n_mol) || n_mol <= 0)) {
@@ -223,30 +275,31 @@ function calculateGasLaw() {
 
     switch (calculateVariable) {
       case 'n':
-        result = (P_atm * V_L) / (R * T_K);
+        result = (P_c * V_c) / (R * T_K);
         resultUnit = 'mol';
         break;
       case 'P':
-        result = (n_mol * R * T_K) / V_L;
-        resultUnit = pressureUnit;
+        result = (n_mol * R * T_K) / V_c;
+        resultUnit = targetUnits.pressure;
         break;
       case 'V':
-        result = (n_mol * R * T_K) / P_atm;
-        resultUnit = volumeUnit;
+        result = (n_mol * R * T_K) / P_c;
+        resultUnit = targetUnits.volume;
         break;
       case 'T':
-        result = (P_atm * V_L) / (n_mol * R);
+        result = (P_c * V_c) / (n_mol * R);
         resultUnit = 'K';
         break;
     }
 
-    displayGasResult(calculateVariable, result, resultUnit, P_atm, V_L, n_mol, T_K, R);
+    displayGasResult(calculateVariable, result, resultUnit, P_c, V_c, n_mol, T_K, R, targetUnits);
   } catch (error) {
     showToast(error.message, 'error');
   }
 }
 
-function displayGasResult(variable, result, unit, P, V, n, T, R) {
+function displayGasResult(variable, result, unit, P, V, n, T, R, targetUnits) {
+  targetUnits = targetUnits || getGasTargetUnits(R);
   const resultDiv = document.getElementById('gas-result');
   const contentDiv = document.getElementById('gas-result-content');
 
@@ -320,10 +373,20 @@ function displayGasResult(variable, result, unit, P, V, n, T, R) {
   html += '<h4>Bekannte Werte:</h4>';
   html += '<table class="table table-bordered" style="background: white;">';
   if (variable !== 'P') {
-    html += '<tr><td><strong>Druck (P)</strong></td><td>' + P.toFixed(4) + ' atm</td></tr>';
+    html +=
+      '<tr><td><strong>Druck (P)</strong></td><td>' +
+      P.toFixed(4) +
+      ' ' +
+      targetUnits.pressure +
+      '</td></tr>';
   }
   if (variable !== 'V') {
-    html += '<tr><td><strong>Volumen (V)</strong></td><td>' + V.toFixed(4) + ' L</td></tr>';
+    html +=
+      '<tr><td><strong>Volumen (V)</strong></td><td>' +
+      V.toFixed(4) +
+      ' ' +
+      targetUnits.volume +
+      '</td></tr>';
   }
   if (variable !== 'n') {
     html += '<tr><td><strong>Stoffmenge (n)</strong></td><td>' + n.toFixed(4) + ' mol</td></tr>';
@@ -336,8 +399,7 @@ function displayGasResult(variable, result, unit, P, V, n, T, R) {
       convertFromKelvin(T).toFixed(1) +
       '\u00b0C)</td></tr>';
   }
-  html +=
-    '<tr><td><strong>Gaskonstante (R)</strong></td><td>' + R + ' L\u00b7atm/(mol\u00b7K)</td></tr>';
+  html += '<tr><td><strong>Gaskonstante (R)</strong></td><td>' + targetUnits.rLabel + '</td></tr>';
   html += '</table>';
   html += '</div>';
 
@@ -354,13 +416,23 @@ function displayGasResult(variable, result, unit, P, V, n, T, R) {
   html += '<div style="margin-top: 20px; text-align: left;">';
   if (variable === 'n') {
     const molarVolume = V / result;
-    html += '<p><strong>Molares Volumen:</strong> ' + molarVolume.toFixed(4) + ' L/mol</p>';
+    html +=
+      '<p><strong>Molares Volumen:</strong> ' +
+      molarVolume.toFixed(4) +
+      ' ' +
+      targetUnits.volume +
+      '/mol</p>';
     const massExample = result * 2.016;
     html += '<p><strong>Beispiel (H\u2082):</strong> ' + massExample.toFixed(4) + ' g</p>';
   }
   if (variable === 'V' && n > 0) {
     const molarVolumeV = result / n;
-    html += '<p><strong>Molares Volumen:</strong> ' + molarVolumeV.toFixed(4) + ' L/mol</p>';
+    html +=
+      '<p><strong>Molares Volumen:</strong> ' +
+      molarVolumeV.toFixed(4) +
+      ' ' +
+      targetUnits.volume +
+      '/mol</p>';
   }
   html += '</div>';
   html += '</div>';
