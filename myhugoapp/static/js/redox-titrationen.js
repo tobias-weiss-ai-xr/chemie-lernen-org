@@ -39,7 +39,7 @@ function simulatePermanganatTitration() {
   const equivVolume = (n_analyte * analyteConc * analyteVolume) / (n_KMnO4 * titrantConc);
 
   const dataPoints = [];
-  const totalVolume = analyteVolume * 3;
+  const totalVolume = equivVolume * 2;
   let currentVolume = 0;
 
   while (currentVolume <= totalVolume) {
@@ -173,12 +173,11 @@ function simulateCerS4Titration() {
   const equivVolume = (analyteConc * analyteVolume) / titrantConc;
 
   const dataPoints = [];
-  const totalVolume = analyteVolume * 2;
+  const totalVolume = equivVolume * 2;
   let currentVolume = 0;
 
   while (currentVolume <= totalVolume) {
     const volumeTitrant = currentVolume > 0 ? currentVolume : 0;
-    const totalVol = analyteVolume + volumeTitrant;
 
     let E;
     const fraction = volumeTitrant / equivVolume;
@@ -302,7 +301,7 @@ function updateCerS4Setup() {}
 let potentialChart = null;
 
 function updatePotentiometrySetup() {
-  const pair = document.getElementById('potentiometry-redox-pair').value;
+  // Value is read on submit (simulatePotentiometricTitration) — no live preview here.
 }
 
 function simulatePotentiometricTitration() {
@@ -324,20 +323,19 @@ function simulatePotentiometricTitration() {
   const equivVolume = (analyteConc * analyteVolume) / titrantConc;
 
   const dataPoints = [];
-  const totalVolume = analyteVolume * 3;
+  const totalVolume = equivVolume * 2;
   let currentVolume = 0;
 
   while (currentVolume <= totalVolume) {
     const volumeTitrant = currentVolume > 0 ? currentVolume : 0;
-    const totalVol = analyteVolume + volumeTitrant;
 
     if (volumeTitrant === 0) {
       dataPoints.push({ x: 0, y: E0 });
-    } else if (totalVol < equivVolume) {
+    } else if (volumeTitrant < equivVolume) {
       const ratio = (equivVolume - volumeTitrant) / volumeTitrant;
       const E = E0 + 0.0592 * Math.log10(ratio / n);
       dataPoints.push({ x: volumeTitrant, y: Math.max(0, E) });
-    } else if (Math.abs(totalVol - equivVolume) < 0.1) {
+    } else if (Math.abs(volumeTitrant - equivVolume) <= stepSize) {
       dataPoints.push({ x: volumeTitrant, y: E0 });
     } else {
       const ratio = (volumeTitrant - equivVolume) / equivVolume;
