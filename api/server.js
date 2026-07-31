@@ -121,10 +121,22 @@ if (process.env.SENTRY_DSN) {
   });
 }
 
-// CORS for chemie-lernen.org domain
+// CORS for chemie-lernen.org subdomains + dev origins
 app.use((req, res, next) => {
   const origin = req.headers.origin || '';
-  if (origin.endsWith('chemie-lernen.org') || origin.endsWith('localhost')) {
+  // Exact domain or subdomain (*.chemie-lernen.org)
+  const isChemie = origin === 'https://chemie-lernen.org' || origin.endsWith('.chemie-lernen.org');
+  // Dev: localhost / 127.0.0.1 on any port
+  const isLocal =
+    origin === 'http://localhost' ||
+    origin === 'http://127.0.0.1' ||
+    origin.startsWith('http://localhost:') ||
+    origin.startsWith('http://127.0.0.1:') ||
+    origin.startsWith('http://localhost.') ||
+    origin.startsWith('http://127.0.0.1.') ||
+    /https?:\/\/localhost[:.]/.test(origin) ||
+    /https?:\/\/127\.0\.0\.1[:.]/.test(origin);
+  if (isChemie || isLocal) {
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
