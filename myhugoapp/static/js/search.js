@@ -191,7 +191,7 @@
     SEARCH._resolveReady = resolve;
   });
 
-  fetch('/api/kg-data', { signal: AbortSignal.timeout(15000) })
+  fetch('/api/kg-data?limit=1000', { signal: AbortSignal.timeout(15000) })
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();

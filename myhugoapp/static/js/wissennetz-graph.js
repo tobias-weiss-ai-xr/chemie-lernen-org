@@ -21,14 +21,11 @@
       ? '<p><button onclick="location.reload()" style="background:#667eea;color:#fff;border:none;border-radius:6px;padding:8px 20px;cursor:pointer;font-size:0.9rem;margin-top:8px;">🔄 Erneut versuchen</button></p>'
       : '';
     container.innerHTML =
-      '<p style="padding:2em;color:#888;text-align:center;">' +
-      msg +
-      '</p>' +
-      retryBtn;
+      '<p style="padding:2em;color:#888;text-align:center;">' + msg + '</p>' + retryBtn;
   }
 
   function loadGraph() {
-    fetch('/api/kg-data', { signal: AbortSignal.timeout(20000) })
+    fetch('/api/kg-data?limit=1000', { signal: AbortSignal.timeout(20000) })
       .then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
         return r.json();
