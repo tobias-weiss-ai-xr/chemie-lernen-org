@@ -188,7 +188,7 @@ router.get('/api/didaktik', async (req, res) => {
         },
       });
     } catch (err) {
-      logger.error('[didaktik] Error:', err.message);
+      logger.error({ err: err, message: err.message || String(err) }, '[didaktik] Error');
       res.json({
         topic: topic,
         state: stateCode || null,
@@ -254,7 +254,7 @@ router.get('/api/didaktik', async (req, res) => {
     }));
     res.json({ source: 'neo4j', items, count: items.length });
   } catch (err) {
-    logger.error('[didaktik] Neo4j error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[didaktik] Neo4j error');
     res.status(503).json({ error: 'Didaktik data unavailable' });
   }
 });

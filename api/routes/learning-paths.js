@@ -129,7 +129,7 @@ router.get('/api/learning-paths', async (req, res) => {
 
     res.json({ paths: paths, states: stateList });
   } catch (err) {
-    logger.error('[learning-paths] list error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[learning-paths] list error');
     res.status(500).json({ error: 'Lernpfade konnten nicht geladen werden' });
   }
 });
@@ -257,7 +257,10 @@ router.get('/api/learning-paths/:slug', async (req, res) => {
 
     res.json(tree);
   } catch (err) {
-    logger.error('[learning-paths] detail error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[learning-paths] detail error'
+    );
     res.status(500).json({ error: 'Lernpfad-Details konnten nicht geladen werden' });
   }
 });
@@ -270,7 +273,10 @@ router.post('/api/learning-paths/:slug/enroll', requireAuth, async (req, res) =>
     const result = learningEngine.enrollInPath(sessionStore, req.user.id, req.params.slug);
     res.json(result);
   } catch (err) {
-    logger.error('[learning-paths] enroll error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[learning-paths] enroll error'
+    );
     res.status(500).json({ error: 'Einschreibung fehlgeschlagen' });
   }
 });
@@ -283,7 +289,10 @@ router.get('/api/learning-paths/progress', requireAuth, async (req, res) => {
     const progress = learningEngine.getAggregatedProgress(sessionStore, req.user.id);
     res.json(progress);
   } catch (err) {
-    logger.error('[learning-paths] progress error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[learning-paths] progress error'
+    );
     res.status(500).json({ error: 'Fortschritt konnte nicht geladen werden' });
   }
 });
@@ -403,7 +412,10 @@ router.post('/api/learning-paths/:slug/certificate', requirePremium, async (req,
     );
     res.send(pdfBuffer);
   } catch (err) {
-    logger.error('[learning-paths] certificate error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[learning-paths] certificate error'
+    );
     res.status(500).json({ error: 'Zertifikat konnte nicht erstellt werden' });
   }
 });

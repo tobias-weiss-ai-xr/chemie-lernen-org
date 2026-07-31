@@ -301,7 +301,7 @@ router.post('/chat/feedback', (req, res) => {
     fs.renameSync(tmp, feedbackPath);
     res.json({ ok: true });
   } catch (err) {
-    logger.error('[feedback] save error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[feedback] save error');
     res.status(500).json({ error: 'Feedback konnte nicht gespeichert werden' });
   }
 });
@@ -329,7 +329,7 @@ router.get('/chat/feedback/analytics', (req, res) => {
       satisfactionRate: feedback.length > 0 ? Math.round((up / feedback.length) * 100) : 0,
     });
   } catch (err) {
-    logger.error('[feedback] analytics error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[feedback] analytics error');
     res.status(500).json({ error: 'Analytics nicht verfügbar' });
   }
 });

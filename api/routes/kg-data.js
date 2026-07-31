@@ -223,7 +223,7 @@ router.get('/api/kg-data', async (req, res) => {
     setCachedKgData(cacheKey, payload);
     res.json(payload);
   } catch (err) {
-    logger.error('[kg-data] ERROR:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[kg-data] ERROR');
     serveFallbackKgData(req, res, params, showLehrplan, cacheKey);
   }
 });
@@ -268,7 +268,10 @@ function serveFallbackKgData(req, res, params, showLehrplan, cacheKey) {
     setCachedKgData(cacheKey, payload);
     res.json(payload);
   } catch (fbErr) {
-    logger.error('[kg-data] Fallback also failed:', fbErr.message);
+    logger.error(
+      { err: fbErr, message: fbErr.message || String(fbErr) },
+      '[kg-data] Fallback also failed'
+    );
     res.status(503).json({ error: 'KG data unavailable', entities: [], total: 0 });
   }
 }
@@ -289,7 +292,7 @@ router.get('/api/rag-context', async (req, res) => {
     }
     res.json({ context, found: true, query });
   } catch (err) {
-    logger.error('[rag-context] Error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[rag-context] Error');
     res.status(500).json({ error: 'RAG context retrieval failed' });
   }
 });
@@ -786,7 +789,7 @@ router.get('/api/kg-stats', async (req, res) => {
     setCachedKgData(statsCacheKey, payload, 300);
     res.json(payload);
   } catch (err) {
-    logger.error('[kg-stats] ERROR:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[kg-stats] ERROR');
     res.status(503).json({
       error: 'kg-stats unavailable',
       message: err.message,

@@ -80,7 +80,7 @@ router.get('/quizzes/:topic', async (req, res) => {
       questions: sanitized,
     });
   } catch (err) {
-    logger.error('[quiz-api] Error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[quiz-api] Error');
     res.status(500).json({ error: 'Failed to load quiz questions' });
   }
 });
@@ -121,7 +121,10 @@ router.get('/quiz-results', async (req, res) => {
     const results = getQuizResults(req.user.id);
     res.json({ results });
   } catch (err) {
-    logger.error('[quiz-api] Error loading results:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[quiz-api] Error loading results'
+    );
     res.status(500).json({ error: 'Failed to load quiz results' });
   }
 });
@@ -138,7 +141,10 @@ router.get('/fsrs/cards', requireAuth, async (req, res) => {
     const nextDue = dueDates.length > 0 ? dueDates[0] : null;
     res.json({ cards, total: cards.length, nextDue });
   } catch (err) {
-    logger.error('[fsrs] Error fetching due cards:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[fsrs] Error fetching due cards'
+    );
     res.status(500).json({ error: 'Failed to fetch due cards' });
   }
 });
@@ -162,7 +168,7 @@ router.post('/fsrs/cards/:cardId/review', requireAuth, async (req, res) => {
       nextDueDate: result.dueDate,
     });
   } catch (err) {
-    logger.error('[fsrs] Error reviewing card:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[fsrs] Error reviewing card');
     res.status(500).json({ error: 'Failed to review card' });
   }
 });

@@ -40,7 +40,7 @@ router.post('/api/check-in', requireAuth, async (req, res) => {
     learningEngine.evaluateBadges(sessionStore, req.user.id);
     res.json(result);
   } catch (err) {
-    logger.error('[check-in] error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[check-in] error');
     res.status(500).json({ error: 'Check-in fehlgeschlagen' });
   }
 });
@@ -50,7 +50,7 @@ router.get('/api/check-in', requireAuth, async (req, res) => {
     const status = learningEngine.getCheckInStatus(sessionStore, req.user.id);
     res.json(status);
   } catch (err) {
-    logger.error('[check-in] status error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[check-in] status error');
     res.status(500).json({ error: 'Status konnte nicht geladen werden' });
   }
 });
@@ -60,7 +60,7 @@ router.get('/api/achievements', requireAuth, async (req, res) => {
     const achievements = learningEngine.getAchievements(sessionStore, req.user.id);
     res.json(achievements);
   } catch (err) {
-    logger.error('[achievements] error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[achievements] error');
     res.status(500).json({ error: 'Errungenschaften konnten nicht geladen werden' });
   }
 });
@@ -102,7 +102,7 @@ router.post('/api/gamification/xp', requireAuth, async (req, res) => {
       })),
     });
   } catch (err) {
-    logger.error('[gamification] xp error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[gamification] xp error');
     res.status(500).json({ error: 'XP konnte nicht gutgeschrieben werden' });
   }
 });
@@ -125,7 +125,7 @@ router.post('/api/gamification/checkin', requireAuth, async (req, res) => {
       })),
     });
   } catch (err) {
-    logger.error('[gamification] checkin error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[gamification] checkin error');
     res.status(500).json({ error: 'Check-in fehlgeschlagen' });
   }
 });
@@ -184,7 +184,7 @@ router.get('/api/gamification/profile', requireAuth, async (req, res) => {
       xpBreakdown,
     });
   } catch (err) {
-    logger.error('[gamification] profile error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[gamification] profile error');
     res.status(500).json({ error: 'Profil konnte nicht geladen werden' });
   }
 });
@@ -211,7 +211,7 @@ router.get('/api/gamification/badges', requireAuth, async (req, res) => {
 
     res.json({ badges });
   } catch (err) {
-    logger.error('[gamification] badges error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[gamification] badges error');
     res.status(500).json({ error: 'Abzeichen konnten nicht geladen werden' });
   }
 });

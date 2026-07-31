@@ -192,7 +192,7 @@ router.post('/api/premium/lesson-plan', requirePremium, async (req, res) => {
 
     res.json({ lessonPlan, generatedAt: new Date().toISOString() });
   } catch (err) {
-    logger.error('[lesson-plan] error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[lesson-plan] error');
     res.status(500).json({ error: 'Unterrichtsplan konnte nicht erstellt werden' });
   }
 });
@@ -307,7 +307,7 @@ Variiere die Aufgabentypen gleichmäßig über die ${count} Aufgaben.`;
       generatedAt: new Date().toISOString(),
     });
   } catch (err) {
-    logger.error('[worksheet] error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[worksheet] error');
     res.status(500).json({ error: 'Arbeitsblatt konnte nicht erstellt werden' });
   }
 });

@@ -63,7 +63,10 @@ router.get('/modulhandbuch/universities', async (req, res) => {
       universities: Array.from(seen.values()),
     });
   } catch (err) {
-    logger.error('[modulhandbuch/universities] Neo4j error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[modulhandbuch/universities] Neo4j error'
+    );
     res.status(503).json({ error: 'University data unavailable' });
   }
 });
@@ -114,7 +117,10 @@ router.get('/modulhandbuch/university/:shortCode', async (req, res) => {
         })),
     });
   } catch (err) {
-    logger.error('[modulhandbuch/university] Neo4j error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[modulhandbuch/university] Neo4j error'
+    );
     res.status(503).json({ error: 'University data unavailable' });
   }
 });
@@ -169,7 +175,10 @@ router.get('/modulhandbuch/module/:univCode/:moduleCode', async (req, res) => {
       offerings: r.get('offerings').filter((o) => o.semester),
     });
   } catch (err) {
-    logger.error('[modulhandbuch/module] Neo4j error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[modulhandbuch/module] Neo4j error'
+    );
     res.status(503).json({ error: 'Module data unavailable' });
   }
 });
@@ -221,7 +230,10 @@ router.get('/modulhandbuch/search', async (req, res) => {
       offset,
     });
   } catch (err) {
-    logger.error('[modulhandbuch/search] Neo4j error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[modulhandbuch/search] Neo4j error'
+    );
     res.status(503).json({ error: 'Search unavailable' });
   }
 });
@@ -257,7 +269,10 @@ router.get('/modulhandbuch/teaches/:entityName', async (req, res) => {
       })),
     });
   } catch (err) {
-    logger.error('[modulhandbuch/teaches] Neo4j error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[modulhandbuch/teaches] Neo4j error'
+    );
     res.status(503).json({ error: 'Teaches data unavailable' });
   }
 });
@@ -311,7 +326,10 @@ router.get('/entities/:name/universities', async (req, res) => {
       totalModules: result.records.length,
     });
   } catch (err) {
-    logger.error('[entities/name/universities] Neo4j error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[entities/name/universities] Neo4j error'
+    );
     res.status(503).json({ error: 'University data unavailable' });
   }
 });
@@ -765,7 +783,10 @@ router.get('/studienvergleich/compare', async (req, res) => {
       },
     });
   } catch (err) {
-    logger.error('[studienvergleich/compare] Neo4j error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[studienvergleich/compare] Neo4j error'
+    );
     res.status(503).json({ error: 'Comparison data unavailable' });
   }
 });

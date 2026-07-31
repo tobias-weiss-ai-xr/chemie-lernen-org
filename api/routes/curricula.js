@@ -53,7 +53,10 @@ router.get('/api/curricula/states', async (req, res) => {
     }));
     res.json({ source: 'neo4j', states, count: states.length });
   } catch (err) {
-    logger.error('[curricula/states] Neo4j error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[curricula/states] Neo4j error'
+    );
     try {
       const fb = getFallbackData();
       const seen = {};
@@ -143,7 +146,10 @@ router.get('/api/curricula/topics', async (req, res) => {
     }));
     res.json({ source: 'neo4j', topics, total, limit, offset });
   } catch (err) {
-    logger.error('[curricula/topics] Neo4j error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[curricula/topics] Neo4j error'
+    );
     try {
       const fb = getFallbackData();
       let topics = fb.curricula.map((c) => ({
@@ -225,7 +231,10 @@ router.get('/api/curricula/objectives', async (req, res) => {
     }));
     res.json({ source: 'neo4j', objectives, total, limit, offset });
   } catch (err) {
-    logger.error('[curricula/objectives] Neo4j error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[curricula/objectives] Neo4j error'
+    );
     res.status(503).json({ error: 'Learning objectives unavailable' });
   }
 });
@@ -280,7 +289,10 @@ router.get('/api/curricula/by-state/:state', async (req, res) => {
       topics,
     });
   } catch (err) {
-    logger.error('[curricula/by-state] Neo4j error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[curricula/by-state] Neo4j error'
+    );
     try {
       var fb = getFallbackData();
       var fTopics = fb.curricula.filter(function (c) {
@@ -361,7 +373,10 @@ router.get('/api/curricula/by-state/:state/grade/:grade', async (req, res) => {
       topics,
     });
   } catch (err) {
-    logger.error('[curricula/by-state/grade] Neo4j error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[curricula/by-state/grade] Neo4j error'
+    );
     res.status(503).json({ error: 'Curriculum data unavailable' });
   }
 });
@@ -410,7 +425,10 @@ router.get('/api/curricula/topic/:slug/articles', async (req, res) => {
       contentLinks: row.get('contentLinks').filter((c) => c.url),
     });
   } catch (err) {
-    logger.error('[curricula/topic/articles] Neo4j error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[curricula/topic/articles] Neo4j error'
+    );
     res.status(503).json({ error: 'Topic articles unavailable' });
   }
 });
@@ -461,7 +479,10 @@ router.get('/api/curricula/objective/:slug/articles', async (req, res) => {
       contentLinks: row.get('contentLinks').filter((c) => c.url),
     });
   } catch (err) {
-    logger.error('[curricula/objective/articles] Neo4j error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[curricula/objective/articles] Neo4j error'
+    );
     res.status(503).json({ error: 'Objective articles unavailable' });
   }
 });
@@ -527,7 +548,10 @@ router.get('/api/entities/:name/curricula', async (req, res) => {
       },
     });
   } catch (err) {
-    logger.error('[entities/curricula] Neo4j error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[entities/curricula] Neo4j error'
+    );
     res.status(503).json({ error: 'Curriculum context unavailable' });
   }
 });
@@ -552,7 +576,10 @@ router.get('/api/curricula/linked-entities', async (req, res) => {
     const names = (result.records[0]?.get('names') || []).map((n) => n);
     res.json({ names, count: names.length });
   } catch (err) {
-    logger.error('[curricula/linked-entities] Neo4j error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[curricula/linked-entities] Neo4j error'
+    );
     res.status(503).json({ error: 'Linked entities unavailable', names: [], count: 0 });
   }
 });

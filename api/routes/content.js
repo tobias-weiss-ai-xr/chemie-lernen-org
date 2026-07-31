@@ -70,7 +70,7 @@ router.get('/api/content', async (req, res) => {
     }));
     res.json({ source: 'neo4j', items, count: items.length, limit, offset });
   } catch (err) {
-    logger.error('[content] Neo4j error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[content] Neo4j error');
     try {
       const links = await loadContentLinks();
       const seen = {};
@@ -145,7 +145,7 @@ router.get('/api/content/cross-link-stats', function (req, res) {
       coveragePct: total > 0 ? Math.round(((total - orphan) / total) * 100) : 0,
     });
   } catch (err) {
-    logger.error('[cross-link-stats] Error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[cross-link-stats] Error');
     res.status(500).json({ error: 'Failed to load cross-link data', detail: err.message });
   }
 });

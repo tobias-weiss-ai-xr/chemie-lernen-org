@@ -39,7 +39,10 @@ router.get('/api/analytics/class-overview', requirePremium, async (_req, res) =>
     const timeline = getEngagementTimeline(12);
     res.json({ ...overview, weeklyActiveUsers: timeline });
   } catch (err) {
-    logger.error('[analytics] class-overview error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[analytics] class-overview error'
+    );
     res.status(500).json({ error: 'Klassenübersicht konnte nicht geladen werden' });
   }
 });
@@ -135,7 +138,7 @@ router.get('/api/analytics/students', requirePremium, async (req, res) => {
 
     res.json({ students: paged, total, limit: safeLimit, offset: safeOffset });
   } catch (err) {
-    logger.error('[analytics] students error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[analytics] students error');
     res.status(500).json({ error: 'Schülerliste konnte nicht geladen werden' });
   }
 });
@@ -156,7 +159,10 @@ router.get('/api/analytics/topic-breakdown', requirePremium, async (_req, res) =
     const breakdown = getClassTopicBreakdown();
     res.json(breakdown);
   } catch (err) {
-    logger.error('[analytics] topic-breakdown error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[analytics] topic-breakdown error'
+    );
     res.status(500).json({ error: 'Themenanalyse konnte nicht geladen werden' });
   }
 });
@@ -231,7 +237,7 @@ router.get('/api/analytics/export', requirePremium, async (_req, res) => {
     res.setHeader('Content-Disposition', 'attachment; filename="klassenfortschritt-export.csv"');
     res.send(csvContent);
   } catch (err) {
-    logger.error('[analytics] export error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[analytics] export error');
     res.status(500).json({ error: 'Export fehlgeschlagen' });
   }
 });
@@ -248,7 +254,10 @@ router.get('/api/analytics/engagement-timeline', requirePremium, async (req, res
     const timeline = getEngagementTimeline(weeks);
     res.json({ timeline });
   } catch (err) {
-    logger.error('[analytics] engagement-timeline error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[analytics] engagement-timeline error'
+    );
     res.status(500).json({ error: 'Aktivitätsverlauf konnte nicht geladen werden' });
   }
 });

@@ -71,7 +71,7 @@ router.post('/api/exercises/generate', requireAuth, async (req, res) => {
 
     res.json(exercise);
   } catch (err) {
-    logger.error('[exercises] generate error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[exercises] generate error');
     res.status(500).json({ error: 'Aufgabe konnte nicht generiert werden' });
   }
 });
@@ -107,7 +107,7 @@ router.post('/api/exercises/answer', requireAuth, async (req, res) => {
 
     res.json(result);
   } catch (err) {
-    logger.error('[exercises] answer error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[exercises] answer error');
     res.status(500).json({ error: 'Antwort konnte nicht ausgewertet werden' });
   }
 });
@@ -122,7 +122,7 @@ router.get('/api/exercises/history', requireAuth, async (req, res) => {
     const exercises = (userSession.exercises || []).slice(0, limit);
     res.json({ exercises, total: exercises.length });
   } catch (err) {
-    logger.error('[exercises] history error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[exercises] history error');
     res.status(500).json({ error: 'Verlauf konnte nicht geladen werden' });
   }
 });

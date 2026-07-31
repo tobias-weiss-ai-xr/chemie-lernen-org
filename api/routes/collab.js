@@ -38,7 +38,7 @@ router.post('/api/collab/sessions', requireAuth, async (req, res) => {
     );
     res.status(201).json(result);
   } catch (err) {
-    logger.error('[collab] create error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[collab] create error');
     res.status(500).json({ error: 'Sitzung konnte nicht erstellt werden' });
   }
 });
@@ -48,7 +48,7 @@ router.get('/api/collab/sessions', requireAuth, async (req, res) => {
     const list = collabEngine.listActiveSessions();
     res.json({ sessions: list });
   } catch (err) {
-    logger.error('[collab] list error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[collab] list error');
     res.status(500).json({ error: 'Sitzungen konnten nicht geladen werden' });
   }
 });
@@ -60,7 +60,7 @@ router.get('/api/collab/sessions/:id', requireAuth, async (req, res) => {
     const participants = collabEngine.getParticipants(req.params.id);
     res.json({ ...session, participants });
   } catch (err) {
-    logger.error('[collab] get error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[collab] get error');
     res.status(500).json({ error: 'Sitzung konnte nicht geladen werden' });
   }
 });
@@ -75,7 +75,7 @@ router.post('/api/collab/sessions/:id/join', requireAuth, async (req, res) => {
     if (result.error) return res.status(400).json(result);
     res.json(result);
   } catch (err) {
-    logger.error('[collab] join error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[collab] join error');
     res.status(500).json({ error: 'Beitritt fehlgeschlagen' });
   }
 });
@@ -86,7 +86,7 @@ router.post('/api/collab/sessions/:id/leave', requireAuth, async (req, res) => {
     if (result.error) return res.status(400).json(result);
     res.json(result);
   } catch (err) {
-    logger.error('[collab] leave error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[collab] leave error');
     res.status(500).json({ error: 'Austritt fehlgeschlagen' });
   }
 });
@@ -97,7 +97,7 @@ router.get('/api/collab/sessions/:id/messages', requireAuth, async (req, res) =>
     const messages = collabEngine.getMessages(req.params.id, since);
     res.json({ messages });
   } catch (err) {
-    logger.error('[collab] messages error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[collab] messages error');
     res.status(500).json({ error: 'Nachrichten konnten nicht geladen werden' });
   }
 });
@@ -114,7 +114,7 @@ router.post('/api/collab/sessions/:id/messages', requireAuth, async (req, res) =
     if (result.error) return res.status(400).json(result);
     res.status(201).json(result);
   } catch (err) {
-    logger.error('[collab] send error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[collab] send error');
     res.status(500).json({ error: 'Nachricht konnte nicht gesendet werden' });
   }
 });
@@ -124,7 +124,7 @@ router.get('/api/collab/sessions/:id/exercises', requireAuth, async (req, res) =
     const exercises = collabEngine.getSharedExercises(req.params.id);
     res.json({ exercises });
   } catch (err) {
-    logger.error('[collab] exercises error:', err.message);
+    logger.error({ err: err, message: err.message || String(err) }, '[collab] exercises error');
     res.status(500).json({ error: 'Aufgaben konnten nicht geladen werden' });
   }
 });
@@ -137,7 +137,10 @@ router.post('/api/collab/sessions/:id/exercises', requireAuth, async (req, res) 
     if (result.error) return res.status(400).json(result);
     res.status(201).json(result);
   } catch (err) {
-    logger.error('[collab] share exercise error:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[collab] share exercise error'
+    );
     res.status(500).json({ error: 'Aufgabe konnte nicht geteilt werden' });
   }
 });
@@ -156,7 +159,10 @@ router.post(
       if (result.error) return res.status(400).json(result);
       res.json(result);
     } catch (err) {
-      logger.error('[collab] complete exercise error:', err.message);
+      logger.error(
+        { err: err, message: err.message || String(err) },
+        '[collab] complete exercise error'
+      );
       res.status(500).json({ error: 'Aufgabe konnte nicht als erledigt markiert werden' });
     }
   }
