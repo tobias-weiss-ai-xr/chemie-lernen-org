@@ -85,7 +85,7 @@
           category: e.category || 'konzept',
           _type: 'entity',
           _slug: slug,
-          _articleCount: (e.articleCount && e.articleCount.low) || e.articles.length || 0,
+          _articleCount: (e.articleCount && e.articleCount.low) || (e.articles || []).length || 0,
         };
         SEARCH._docs.push(doc);
         this.add(doc);

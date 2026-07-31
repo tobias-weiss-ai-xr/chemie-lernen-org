@@ -62,7 +62,10 @@ router.get('/api/didaktik', async (req, res) => {
 
         result = await session.run(query, { topic: topic });
       } catch (queryErr) {
-        logger.warn('[didaktik] LearningObjective query failed:', queryErr.message);
+        logger.warn(
+          { err: queryErr, message: queryErr.message || String(queryErr) },
+          '[didaktik] LearningObjective query failed'
+        );
         result = { records: [] };
       }
 
@@ -81,7 +84,10 @@ router.get('/api/didaktik', async (req, res) => {
             { state: stateCode }
           );
         } catch (currErr) {
-          logger.warn('[didaktik] Curriculum query failed:', currErr.message);
+          logger.warn(
+            { err: currErr, message: currErr.message || String(currErr) },
+            '[didaktik] Curriculum query failed'
+          );
           curriculumResult = { records: [] };
         }
       } else {
@@ -112,7 +118,10 @@ router.get('/api/didaktik', async (req, res) => {
             });
           }
         } catch (subErr) {
-          logger.warn('[didaktik] SubTopic query failed:', subErr.message);
+          logger.warn(
+            { err: subErr, message: subErr.message || String(subErr) },
+            '[didaktik] SubTopic query failed'
+          );
         }
       }
 

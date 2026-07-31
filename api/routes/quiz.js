@@ -43,7 +43,10 @@ router.get('/quizzes/:topic', async (req, res) => {
       const parsed = JSON.parse(raw);
       questions = parsed.questions || [];
     } catch (loadErr) {
-      logger.warn('[quiz-api] Failed to load quiz questions:', loadErr.message);
+      logger.warn(
+        { err: loadErr, message: loadErr.message || String(loadErr) },
+        '[quiz-api] Failed to load quiz questions'
+      );
     }
 
     if (questions.length === 0) {

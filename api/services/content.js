@@ -30,7 +30,10 @@ export function getFallbackData() {
   try {
     _cachedFallbackData = JSON.parse(fs.readFileSync(fallbackPath, 'utf-8'));
   } catch (err) {
-    logger.error('Failed to load kg_fallback.json:', err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      'Failed to load kg_fallback.json'
+    );
     _cachedFallbackData = { articles: [], entities: [], curricula: [] };
   }
   return _cachedFallbackData;

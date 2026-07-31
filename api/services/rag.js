@@ -213,7 +213,10 @@ function getCalcRagIndex() {
     );
     _calcRagIndex = JSON.parse(fs.readFileSync(indexPath, 'utf-8'));
   } catch (err) {
-    logger.warn('[calc-rag] Failed to load calc-rag-index.json:', err.message);
+    logger.warn(
+      { err: err, message: err.message || String(err) },
+      '[calc-rag] Failed to load calc-rag-index.json'
+    );
     _calcRagIndex = {};
   }
   return _calcRagIndex;
@@ -449,7 +452,10 @@ async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
           { keywords }
         );
       } catch (curriculumErr) {
-        logger.warn('[RAG] Curriculum typed-label query failed:', curriculumErr.message);
+        logger.warn(
+          { err: curriculumErr, message: curriculumErr.message || String(curriculumErr) },
+          '[RAG] Curriculum typed-label query failed'
+        );
       }
 
       try {
@@ -473,7 +479,10 @@ async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
           { keywords }
         );
       } catch (moduleErr) {
-        logger.warn('[RAG] UniversityModule query failed:', moduleErr.message);
+        logger.warn(
+          { err: moduleErr, message: moduleErr.message || String(moduleErr) },
+          '[RAG] UniversityModule query failed'
+        );
       }
     } finally {
       await session.close();
@@ -514,7 +523,10 @@ async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
         result.records = reranked;
         clearTimeout(semanticTimer);
       } catch (semErr) {
-        logger.warn('[RAG] Semantic rerank unavailable, using keyword order:', semErr.message);
+        logger.warn(
+          { err: semErr, message: semErr.message || String(semErr) },
+          '[RAG] Semantic rerank unavailable, using keyword order'
+        );
       }
     }
 
@@ -630,7 +642,10 @@ async function queryNeo4jRAG(keywords, originalMessage, cacheKey) {
         }
       }
     } catch (calcErr) {
-      logger.warn('[calc-rag] Calculator lookup failed:', calcErr.message);
+      logger.warn(
+        { err: calcErr, message: calcErr.message || String(calcErr) },
+        '[calc-rag] Calculator lookup failed'
+      );
     }
 
     if (lines.length === 0) {

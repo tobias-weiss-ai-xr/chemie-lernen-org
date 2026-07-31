@@ -144,7 +144,10 @@ router.post('/api/premium/lesson-plan', requirePremium, async (req, res) => {
         await session.close();
       }
     } catch (err) {
-      logger.warn('[lesson-plan] KG lookup failed (non-fatal):', err.message);
+      logger.warn(
+        { err: err, message: err.message || String(err) },
+        '[lesson-plan] KG lookup failed (non-fatal)'
+      );
     }
 
     const prompt = buildLessonPlanPrompt({ topic, klassenstufe, duration, difficulty }) + kgContext;
@@ -291,7 +294,10 @@ Variiere die Aufgabentypen gleichmäßig über die ${count} Aufgaben.`;
       const jsonMatch = content.match(/\[[\s\S]*\]/);
       exercises = jsonMatch ? JSON.parse(jsonMatch[0]) : JSON.parse(content);
     } catch (parseErr) {
-      logger.error('[worksheet] JSON parse error:', parseErr.message);
+      logger.error(
+        { err: parseErr, message: parseErr.message || String(parseErr) },
+        '[worksheet] JSON parse error'
+      );
       return res
         .status(502)
         .json({ error: 'Übungen konnten nicht verarbeitet werden.', raw: content });

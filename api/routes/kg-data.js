@@ -99,8 +99,13 @@ router.get('/api/kg-data', async (req, res) => {
     }
     if (params.category) {
       whereClauses.push('toLower(e.kategorie) = $category');
-    } else if (!showLehrplan) {
-      whereClauses.push("e.kategorie <> 'lehrplan'");
+    } else if (showLehrplan) {
+      // Curriculum explorer: lehrplan entities (+ everything else), no lernziel
+      // noise (12.4k objectives have no state/grade metadata anyway).
+      whereClauses.push("NOT (e.kategorie IN ['lernziel', 'didaktik'])");
+    } else {
+      // Default: the chemie subset, mirroring export-kg-data.mjs.
+      whereClauses.push("NOT (e.kategorie IN ['lehrplan', 'lernziel', 'didaktik'])");
     }
     // Exclude code-analysis entities by name pattern
     whereClauses.push(excludeCodeEntities('e'));
@@ -114,7 +119,10 @@ router.get('/api/kg-data', async (req, res) => {
         category: params.category,
       });
     } catch (countErr) {
-      logger.warn('[kg-data] Count query failed, returning fallback:', countErr.message);
+      logger.warn(
+        { err: countErr, message: countErr.message || String(countErr) },
+        '[kg-data] Count query failed, returning fallback'
+      );
       await session.close();
       return serveFallbackKgData(req, res, params, showLehrplan, cacheKey);
     }
@@ -139,7 +147,10 @@ router.get('/api/kg-data', async (req, res) => {
         { search: params.search, category: params.category }
       );
     } catch (queryErr) {
-      logger.warn('[kg-data] Main query failed:', queryErr.message);
+      logger.warn(
+        { err: queryErr, message: queryErr.message || String(queryErr) },
+        '[kg-data] Main query failed'
+      );
       await session.close();
       return serveFallbackKgData(req, res, params, showLehrplan, cacheKey);
     }
@@ -155,7 +166,10 @@ router.get('/api/kg-data', async (req, res) => {
                 COLLECT(DISTINCT e.name) AS entities`
       );
     } catch (articleErr) {
-      logger.warn('[kg-data] Articles query failed:', articleErr.message);
+      logger.warn(
+        { err: articleErr, message: articleErr.message || String(articleErr) },
+        '[kg-data] Articles query failed'
+      );
     }
     await session.close();
 
@@ -752,7 +766,10 @@ router.get('/api/kg-stats', async (req, res) => {
       );
       currCoverage.entityObjectiveLinks = entityLoResult.records[0].get('linked').toNumber();
     } catch (ccErr) {
-      logger.warn('[kg-stats] curriculum coverage query failed:', ccErr.message);
+      logger.warn(
+        { err: ccErr, message: ccErr.message || String(ccErr) },
+        '[kg-stats] curriculum coverage query failed'
+      );
     }
 
     await session.close();
