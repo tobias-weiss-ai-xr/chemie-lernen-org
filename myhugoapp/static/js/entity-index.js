@@ -99,10 +99,12 @@
   }
 
   function fetchKgData() {
-    return fetch('/api/kg-data?limit=500', { signal: AbortSignal.timeout(15000) }).then(function (r) {
-      if (!r.ok) throw new Error(r.status);
-      return r.json();
-    });
+    return fetch('/api/kg-data?limit=500', { signal: AbortSignal.timeout(15000) }).then(
+      function (r) {
+        if (!r.ok) throw new Error(r.status);
+        return r.json();
+      }
+    );
   }
 
   fetchKgData()
@@ -226,7 +228,7 @@
             return (
               e.name.toLowerCase().indexOf(q) !== -1 ||
               (e.relatedEntities || []).some(function (r) {
-                return r.name.toLowerCase().indexOf(q) !== -1;
+                return r.name && r.name.toLowerCase().indexOf(q) !== -1;
               })
             );
           }
@@ -250,7 +252,7 @@
         (catLabels[e.category] || e.category) +
         '</span>';
       var art = (e.articles || []).slice(0, 5);
-      var total = Number(e.articleCount) || e.articles.length;
+      var total = Number(e.articleCount) || (e.articles || []).length;
       h +=
         '<br><span style="font-size:0.78rem;">' +
         (e.relatedEntities || []).length +
@@ -399,7 +401,7 @@
     function _buildCloudHtml(items) {
       var h = '<div class="entity-tagcloud">';
       items.forEach(function (e) {
-        var artCount = Number(e.articleCount) || e.articles.length || 1;
+        var artCount = Number(e.articleCount) || (e.articles || []).length || 1;
         var size = Math.max(0.8, Math.min(2.5, 0.8 + artCount * 0.15));
         var slug = toSlug(e.name);
         h +=
@@ -420,7 +422,7 @@
     function _buildEntityCardHtml(e) {
       var cat = e.category || 'other';
       var relatedCount = (e.relatedEntities || []).length;
-      var artCount = Number(e.articleCount) || e.articles.length || 0;
+      var artCount = Number(e.articleCount) || (e.articles || []).length || 0;
       var slug = toSlug(e.name);
       var isPremium = isPremiumEntity(e);
       var h =

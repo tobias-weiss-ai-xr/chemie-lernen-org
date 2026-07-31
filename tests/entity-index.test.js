@@ -238,6 +238,45 @@ describe('entity-index — module loading and rendering', () => {
     expect(window.__entityIndexLoaded).toBe(true);
   });
 
+  test('search does not crash on relatedEntities with null names', async () => {
+    // Regression: API list route returned { name: null, category: null } entries
+    // (unmatched OPTIONAL MATCH rows collected). filteredAndSorted's fallback
+    // search branch called r.name.toLowerCase() on null -> TypeError.
+    const mockData = {
+      entities: [
+        {
+          name: 'Wasser',
+          category: 'stoff',
+          relatedEntities: [{ name: null, category: null }, { name: 'Eis' }],
+        },
+      ],
+      articles: [],
+    };
+
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve(mockData),
+    });
+
+    // Add the search input BEFORE loading so the module attaches its handler
+    const searchInput = document.createElement('input');
+    searchInput.id = 'entity-search';
+    document.body.appendChild(searchInput);
+
+    loadModule();
+    await new Promise((r) => setTimeout(r, 50));
+
+    // Type a query that only matches via the related-entity name, forcing the
+    // .some() loop over relatedEntities (incl. the null entry)
+    searchInput.value = 'eis';
+    searchInput.dispatchEvent(new window.Event('input', { bubbles: true }));
+
+    // The render must NOT swallow a TypeError here — page stays functional
+    expect(window.__renderError).toBeUndefined();
+
+    searchInput.remove();
+  });
+
   test('renders empty state when fetch returns zero entities and articles', async () => {
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,

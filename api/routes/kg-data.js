@@ -176,7 +176,9 @@ router.get('/api/kg-data', async (req, res) => {
         category: r.get('category'),
         description: r.get('description'),
         relationCount: r.get('relCount') ? r.get('relCount').toNumber() : 0,
-        relatedEntities: r.get('relatedEntities') || [],
+        relatedEntities: (r.get('relatedEntities') || []).filter(function (rel) {
+          return rel && rel.name != null;
+        }),
       };
       var state = r.get('state');
       var grade = r.get('grade');

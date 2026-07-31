@@ -987,7 +987,6 @@ export function getClassTopicBreakdown() {
 
   for (const u of users) {
     const quizzes = u.quiz_results || [];
-    const seen = new Set();
 
     for (const q of quizzes) {
       if (!topicMap[q.topic]) {
@@ -996,7 +995,6 @@ export function getClassTopicBreakdown() {
       topicMap[q.topic].totalPercentage += q.percentage || 0;
       topicMap[q.topic].attempts++;
       topicMap[q.topic].studentSet.add(u.id);
-      seen.add(q.topic);
     }
   }
 

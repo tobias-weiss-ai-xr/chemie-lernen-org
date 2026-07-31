@@ -21,8 +21,6 @@ window.addEventListener('unhandledrejection', (e) => {
   console.error('Unhandled promise rejection:', e.reason);
 });
 
-__debug.log('Molekülstudio script loaded');
-
 // Global flag to track initialization
 window.moleculeStudioInitialized = false;
 window.moleculeStudioError = null;

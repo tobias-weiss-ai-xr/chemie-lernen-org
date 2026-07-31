@@ -182,7 +182,6 @@ class EnhancedPHVisualization {
 
   drawPHScale(ctx, width, height) {
     const scaleY = height - 80;
-    // eslint-disable-next-line no-unused-vars
     const scaleWidth = width - 100;
     const startX = 50;
 
