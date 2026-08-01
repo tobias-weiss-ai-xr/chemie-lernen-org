@@ -195,19 +195,6 @@ router.get('/api/kg-data', async (req, res) => {
         '[kg-data] Curriculum enrichment failed'
       );
     }
-    await session.close();
-
-    var articles = articlesResult
-      ? articlesResult.records.map(function (r) {
-          return {
-            title: r.get('title'),
-            url: r.get('url'),
-            type: r.get('type') || 'article',
-            entities: r.get('entities') || [],
-          };
-        })
-      : [];
-
     // Also fetch Content nodes (calculator/tool pages) as pages in the graph
     var pagesResult;
     try {
@@ -221,6 +208,19 @@ router.get('/api/kg-data', async (req, res) => {
         '[kg-data] Pages query failed'
       );
     }
+    await session.close();
+
+    var articles = articlesResult
+      ? articlesResult.records.map(function (r) {
+          return {
+            title: r.get('title'),
+            url: r.get('url'),
+            type: r.get('type') || 'article',
+            entities: r.get('entities') || [],
+          };
+        })
+      : [];
+
     var pages = pagesResult
       ? pagesResult.records.map(function (r) {
           return {
