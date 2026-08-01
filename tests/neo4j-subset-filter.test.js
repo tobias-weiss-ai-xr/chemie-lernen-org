@@ -5,17 +5,35 @@
  * on the Cypher fragment strings that the module returns.
  */
 
+const { pathToFileURL } = require('url');
 const path = require('path');
+
+const MODULE_PATH = path.resolve(__dirname, '..', 'scripts', '_neo4j-subset-filter.mjs');
+
+/**
+ * Load the module in both Jest modes:
+ *  - bare `npx jest` (no NODE_OPTIONS): jest-transform-esm.cjs converts the
+ *    .mjs file to CJS, so require() works.
+ *  - npm scripts (NODE_OPTIONS=--experimental-vm-modules): Jest treats it as
+ *    native ESM, require() throws → fall back to dynamic import().
+ */
+function loadModule() {
+  try {
+    return require(MODULE_PATH);
+  } catch (err) {
+    if (err && /Must use import to load ES Module/.test(err.message)) {
+      return import(pathToFileURL(MODULE_PATH).href);
+    }
+    throw err;
+  }
+}
 
 describe('_neo4j-subset-filter.mjs', () => {
   let mod;
 
   beforeAll(async () => {
-    // Dynamic import from CommonJS — Jest leaves .mjs files untransformed,
-    // so Node handles the ESM syntax natively through import().
-    mod = await import(path.resolve(__dirname, '..', 'scripts', '_neo4j-subset-filter.mjs'));
+    mod = await loadModule();
   });
-
   // ── CHEMIE_LABELS ─────────────────────────────────────────────────────
 
   describe('CHEMIE_LABELS', () => {

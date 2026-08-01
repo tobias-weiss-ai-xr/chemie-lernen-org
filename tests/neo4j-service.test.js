@@ -6,13 +6,35 @@
  * is stored as a Cypher Float (e.g. 3.0) on 1394 of 1524 entities, and the
  * route called `.toNumber()` which only exists on neo4j Integer objects.
  */
+const { pathToFileURL } = require('url');
+const path = require('path');
+
+const MODULE_PATH = path.resolve(__dirname, '..', 'api', 'services', 'neo4j.js');
+
+/**
+ * Load the module in both Jest modes:
+ *  - bare `npx jest` (no NODE_OPTIONS): jest-transform-esm.cjs converts the
+ *    ESM file to CJS, so require() works.
+ *  - npm scripts (NODE_OPTIONS=--experimental-vm-modules): Jest treats the
+ *    file as native ESM, require() throws → fall back to dynamic import().
+ */
+function loadModule() {
+  try {
+    return require(MODULE_PATH);
+  } catch (err) {
+    if (err && /Must use import to load ES Module/.test(err.message)) {
+      return import(pathToFileURL(MODULE_PATH).href);
+    }
+    throw err;
+  }
+}
+
 describe('toNumberSafe (api/services/neo4j.js)', () => {
   let toNumberSafe;
 
   beforeEach(async () => {
     jest.resetModules();
-    const mod = await import('../api/services/neo4j.js');
-    toNumberSafe = mod.toNumberSafe;
+    toNumberSafe = (await loadModule()).toNumberSafe;
   });
 
   test('converts a neo4j Integer object', () => {

@@ -87,6 +87,11 @@
     "testMatch": [
       "**/tests/**/*.test.js"
     ],
+    "transform": {
+      "^.*/api/.*\\.js$": "<rootDir>/jest-transform-esm.cjs",
+      "^.+\\.mjs$": "<rootDir>/jest-transform-esm.cjs",
+      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+    },
     "collectCoverageFrom": [
       "myhugoapp/static/js/calculators/**/*.js",
       "myhugoapp/static/js/utils/**/*.js"

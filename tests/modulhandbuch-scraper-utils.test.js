@@ -3,21 +3,25 @@
  */
 const { pathToFileURL } = require('url');
 const path = require('path');
-const fs = require('fs');
-const os = require('os');
 
 const UTILS_PATH = path.resolve(__dirname, '..', 'scripts/modulhandbuch/_scraper_utils.mjs');
-const UTILS_URL = pathToFileURL(UTILS_PATH).href;
 
 /**
- * Load the ESM module, retrying once if the first import fails.
- * Needed because dynamic import in Jest can be flaky under --experimental-vm-modules.
+ * Load the module in both Jest modes:
+ *  - bare `npx jest` (no NODE_OPTIONS): jest-transform-esm.cjs converts the
+ *    .mjs file to CJS, so require() works.
+ *  - npm scripts (NODE_OPTIONS=--experimental-vm-modules): Jest treats it as
+ *    native ESM, require() throws → fall back to dynamic import().
  */
-let _modCache = null;
-async function loadModule() {
-  if (_modCache) return _modCache;
-  _modCache = await import(UTILS_URL);
-  return _modCache;
+function loadModule() {
+  try {
+    return require(UTILS_PATH);
+  } catch (err) {
+    if (err && /Must use import to load ES Module/.test(err.message)) {
+      return import(pathToFileURL(UTILS_PATH).href);
+    }
+    throw err;
+  }
 }
 
 describe('_scraper_utils.mjs — extractTopics', () => {

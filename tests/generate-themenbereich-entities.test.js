@@ -15,13 +15,25 @@ const { pathToFileURL } = require('url');
 const path = require('path');
 
 const SCRIPT_PATH = path.resolve(__dirname, '..', 'scripts/generate-themenbereich-entities.mjs');
-const SCRIPT_URL = pathToFileURL(SCRIPT_PATH).href;
 
-let _mod = null;
-async function loadModule() {
-  if (_mod) return _mod;
-  _mod = await import(SCRIPT_URL);
-  return _mod;
+/**
+ * Load the script in both Jest modes:
+ *  - bare `npx jest` (no NODE_OPTIONS): jest-transform-esm.cjs converts the
+ *    .mjs file to CJS, so require() works.
+ *  - npm scripts (NODE_OPTIONS=--experimental-vm-modules): Jest treats it as
+ *    native ESM, require() throws → fall back to dynamic import().
+ * The script's main() is guarded (isMain), so loading it here does NOT touch
+ * the filesystem or rewrite the output JSON.
+ */
+function loadModule() {
+  try {
+    return require(SCRIPT_PATH);
+  } catch (err) {
+    if (err && /Must use import to load ES Module/.test(err.message)) {
+      return import(pathToFileURL(SCRIPT_PATH).href);
+    }
+    throw err;
+  }
 }
 
 describe('generate-themenbereich-entities — scoreEntity weighting', () => {
