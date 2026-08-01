@@ -108,7 +108,7 @@ router.put('/api/quiz-results', async (req, res) => {
   if (req.user && req.user.id) {
     const saveResult = addQuizResult(req.user.id, result);
     if (!saveResult.ok) {
-      logger.warn('[quiz-api] Failed to save result:', saveResult.error);
+      logger.warn({ err: saveResult.error, message: '[quiz-api] Failed to save result' });
     }
   }
 

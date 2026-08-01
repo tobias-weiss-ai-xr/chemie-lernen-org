@@ -83,7 +83,8 @@ export async function loadContentLinks() {
     var fsMod = await import('fs');
     _contentLinksCache = JSON.parse(fsMod.readFileSync(url.pathname, 'utf8'));
   } catch (err) {
-    if (err.code !== 'ENOENT') logger.warn('[content-links] load error: ' + err.message);
+    if (err.code !== 'ENOENT')
+      logger.warn({ err, message: err.message }, '[content-links] load error');
     _contentLinksCache = {};
   }
   return _contentLinksCache;
