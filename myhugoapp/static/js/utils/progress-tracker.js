@@ -264,3 +264,9 @@ const _ProgressTracker = {
     return d.toISOString().split('T')[0];
   },
 };
+
+// Expose as browser global — consumed by fortschritt-dashboard.js,
+// cloze-exercises.js, lernpfad.js, practice-generator.js and others
+// (the const is prefixed with _ to satisfy ESLint no-unused-vars; the
+// window global is the real contract, like gamification-engine.js).
+window.ProgressTracker = _ProgressTracker;

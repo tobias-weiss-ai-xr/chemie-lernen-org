@@ -10,16 +10,16 @@ const pages = [
   { url: '/fortschritt/', name: 'fortschritt', label: 'Progress Dashboard' },
   { url: '/strassenszene/', name: 'strassenszene', label: 'Roadmap (Strassenszene)' },
   { url: '/ph-rechner/', name: 'ph-rechner', label: 'pH-Rechner Calculator' },
-  { url: '/molmasse-rechner/', name: 'molmasse-rechner', label: 'Molmasse Calculator' },
+  { url: '/molare-masse-rechner/', name: 'molare-masse-rechner', label: 'Molmasse Calculator' },
   {
-    url: '/themenbereiche/stoichiometrie/',
-    name: 'themenbereiche-stoichiometrie',
-    label: 'Themenbereich: Stoichiometrie',
+    url: '/themenbereiche/redox-elektrochemie/',
+    name: 'themenbereiche-redox-elektrochemie',
+    label: 'Themenbereich: Redox/Elektrochemie',
   },
   {
-    url: '/themenbereiche/chemische-bindungen/',
-    name: 'themenbereiche-bindungen',
-    label: 'Themenbereich: Bindungen',
+    url: '/themenbereiche/aufbau-materie/',
+    name: 'themenbereiche-aufbau-materie',
+    label: 'Themenbereich: Aufbau der Materie',
   },
   { url: '/titrations-simulator/', name: 'titrations-simulator', label: 'Titrations Simulator' },
 ];

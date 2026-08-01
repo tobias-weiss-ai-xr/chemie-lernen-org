@@ -316,3 +316,8 @@ const _GamificationEngine = {
     }, 5000);
   },
 };
+
+// Expose as browser global — consumed by fortschritt-dashboard.js and
+// progress-tracker.js (the const is prefixed with _ to satisfy ESLint's
+// no-unused-vars for a script-scope value; the global is the real contract).
+window.GamificationEngine = _GamificationEngine;

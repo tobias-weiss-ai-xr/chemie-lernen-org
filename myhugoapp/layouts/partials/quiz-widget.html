@@ -152,7 +152,7 @@
 
 <script>
 (function() {
-  var TOPIC = {{ $topic | jsonify }};
+  var TOPIC = {{ $topic | jsonify | safeJS }};
   var WIDGET_ID = 'quiz-widget-' + TOPIC;
   var BODY_ID = 'quiz-body-' + TOPIC;
   var SCORE_ID = 'quiz-score-' + TOPIC;
