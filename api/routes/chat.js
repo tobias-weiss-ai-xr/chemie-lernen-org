@@ -25,6 +25,7 @@ import { Router } from 'express';
 import fs from 'fs';
 import path from 'path';
 import pino from 'pino';
+import rateLimit from 'express-rate-limit';
 import {
   getSessionId,
   getSession,
@@ -46,6 +47,14 @@ const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
 const LITELLM_MODEL = process.env.LITELLM_MODEL || 'gemma-4';
 
 const router = Router();
+
+const hintLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Zu viele Hinweis-Anfragen. Bitte 15 Minuten warten.' },
+});
 
 // ── GET /api/session ──────────────────────────────────────────────────────
 
@@ -214,7 +223,7 @@ router.get('/api/auth/learning-profile', requireAuth, (req, res) => {
 
 // ── POST /api/chat/hint — generate step-by-step hint ─────────────────────
 
-router.post('/api/chat/hint', async (req, res) => {
+router.post('/api/chat/hint', hintLimiter, async (req, res) => {
   var { problem } = req.body;
   if (!problem || typeof problem !== 'string' || problem.length > 2000) {
     return res.status(400).json({ error: 'Problem text required (max 2000 chars)' });

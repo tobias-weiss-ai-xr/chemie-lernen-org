@@ -67,14 +67,14 @@ router.get('/api/learning-paths', async (req, res) => {
         `MATCH (c:Curriculum)
          OPTIONAL MATCH (c)-[:HAS_TOPIC]->(t:Topic)
          RETURN c, count(t) AS topicCount
-         ORDER BY c.title`
+         ORDER BY c.state_abbr`
       );
       paths = result.records.map((r) => {
         const props = r.get('c').properties;
         return {
           slug: props.slug || '',
-          title: props.title || '',
-          description: props.description || '',
+          title: props.title || props.state || props.state_abbr || '',
+          description: props.description || props.school_type || '',
           topicCount: r.get('topicCount') ? r.get('topicCount').toNumber() : 0,
           completedTopics: 0,
           progressPercent: 0,

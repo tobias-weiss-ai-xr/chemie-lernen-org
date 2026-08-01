@@ -175,7 +175,7 @@ router.post('/api/premium/lesson-plan', requirePremium, async (req, res) => {
 
     if (!llmRes.ok) {
       const errBody = await llmRes.text();
-      logger.error('[lesson-plan] LiteLLM error:', llmRes.status, errBody);
+      logger.error({ status: llmRes.status, errBody, message: '[lesson-plan] LiteLLM error' });
       return res
         .status(502)
         .json({ error: 'KI-Modell nicht verfügbar. Bitte später erneut versuchen.' });
@@ -190,7 +190,11 @@ router.post('/api/premium/lesson-plan', requirePremium, async (req, res) => {
       const jsonMatch = content.match(/\{[\s\S]*\}/);
       lessonPlan = jsonMatch ? JSON.parse(jsonMatch[0]) : JSON.parse(content);
     } catch (parseErr) {
-      logger.error('[lesson-plan] JSON parse error:', parseErr.message, content.slice(0, 200));
+      logger.error({
+        err: parseErr,
+        raw: content.slice(0, 200),
+        message: '[lesson-plan] JSON parse error',
+      });
       return res
         .status(502)
         .json({ error: 'KI-Antwort konnte nicht verarbeitet werden.', raw: content });
@@ -288,7 +292,7 @@ Variiere die Aufgabentypen gleichmäßig über die ${count} Aufgaben.`;
 
     if (!llmRes.ok) {
       const errBody = await llmRes.text();
-      logger.error('[worksheet] LiteLLM error:', llmRes.status, errBody);
+      logger.error({ status: llmRes.status, errBody, message: '[worksheet] LiteLLM error' });
       return res.status(502).json({ error: 'KI-Modell nicht verfügbar.' });
     }
 
