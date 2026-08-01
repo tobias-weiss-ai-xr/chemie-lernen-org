@@ -154,7 +154,10 @@ router.post('/api/premium/lesson-plan', requirePremium, async (req, res) => {
 
     const llmRes = await fetch(LITELLM_URL + '/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + (process.env.LITELLM_API_KEY || ''),
+      },
       body: JSON.stringify({
         model: LITELLM_MODEL,
         messages: [
@@ -264,7 +267,10 @@ Variiere die Aufgabentypen gleichmäßig über die ${count} Aufgaben.`;
 
     const llmRes = await fetch(LITELLM_URL + '/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + (process.env.LITELLM_API_KEY || ''),
+      },
       body: JSON.stringify({
         model: LITELLM_MODEL,
         messages: [

@@ -55,7 +55,10 @@ async function callLiteLLM(systemMsg, userMsg, litellmUrl, litellmModel, tempera
   temperature = temperature ?? 0.7;
   const res = await fetch(`${litellmUrl}/v1/chat/completions`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + (process.env.LITELLM_API_KEY || ''),
+    },
     body: JSON.stringify({
       model: litellmModel,
       messages: [

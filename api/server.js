@@ -260,7 +260,10 @@ app.post('/api/chat', async (req, res) => {
     if (!acceptStreaming) {
       const llmRes = await fetch(`${LITELLM_URL}/v1/chat/completions`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + (process.env.LITELLM_API_KEY || ''),
+        },
         body: JSON.stringify({
           model,
           messages: conversationHistory,
@@ -314,7 +317,10 @@ app.post('/api/chat', async (req, res) => {
     try {
       const llmRes = await fetch(`${LITELLM_URL}/v1/chat/completions`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + (process.env.LITELLM_API_KEY || ''),
+        },
         body: JSON.stringify({
           model,
           messages: conversationHistory,

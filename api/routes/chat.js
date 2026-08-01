@@ -247,7 +247,10 @@ router.post('/api/chat/hint', async (req, res) => {
   try {
     var llmRes = await fetch(LITELLM_URL + '/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + (process.env.LITELLM_API_KEY || ''),
+      },
       body: JSON.stringify({
         model: LITELLM_MODEL,
         messages: [{ role: 'system', content: hintPrompt }],
