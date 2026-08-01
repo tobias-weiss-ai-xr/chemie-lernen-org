@@ -67,6 +67,8 @@ services:
     image: registry.chemie-lernen.org/chemie-chat-api:latest
     container_name: chemie-chat-api
     restart: unless-stopped
+    volumes:
+      - ./myhugoapp/data/learning-paths.json:/app/data/learning-paths.json:ro
     mem_limit: 256M
     deploy:
       resources:
@@ -100,6 +102,7 @@ services:
       # Monitoring — set these for error tracking and uptime monitoring:
       - SENTRY_DSN=${SENTRY_DSN}
       - HEALTHCHECKS_IO_URL=${HEALTHCHECKS_IO_URL}
+      - ADMIN_API_KEY=${ADMIN_API_KEY}
     networks:
       - traefik-public
       - litellm-internal
