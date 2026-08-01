@@ -88,6 +88,7 @@ process.setMaxListeners(20);
 
 // Trust proxy — behind nginx/Traefik, so req.ip returns real client IP
 app.set('trust proxy', 1);
+app.disable('x-powered-by');
 
 // Stripe webhook MUST be before express.json() — needs raw body for signature verification
 app.post(
