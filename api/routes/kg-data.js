@@ -172,6 +172,29 @@ router.get('/api/kg-data', async (req, res) => {
         '[kg-data] Articles query failed'
       );
     }
+    // Enrich entities with curriculum connections
+    var curricLinksByEntity = {};
+    try {
+      var curricR = await session.run(
+        `MATCH (chem:Entity)<-[:COVERS_TOPIC]-(lp:Entity)
+         WHERE chem.kategorie IS NOT NULL
+           AND NOT (chem.kategorie IN ['lehrplan', 'lernziel', 'didaktik'])
+         WITH chem, count(DISTINCT lp) AS lpCount,
+              collect(DISTINCT { name: lp.name, category: lp.kategorie,
+                        grade: lp.grade, state: lp.state }) AS lehrplaene
+         RETURN chem.name AS chemName, lehrplaene
+         ORDER BY lpCount DESC
+         LIMIT 300`
+      );
+      curricR.records.forEach(function (rec) {
+        curricLinksByEntity[rec.get('chemName')] = rec.get('lehrplaene').slice(0, 10);
+      });
+    } catch (curricErr) {
+      logger.warn(
+        { err: curricErr, message: curricErr.message || String(curricErr) },
+        '[kg-data] Curriculum enrichment failed'
+      );
+    }
     await session.close();
 
     var articles = articlesResult
@@ -249,30 +272,6 @@ router.get('/api/kg-data', async (req, res) => {
         e.articleCount = entityArticleCounts[e.name];
       }
     });
-
-    // Enrich entities with curriculum connections
-    var curricLinksByEntity = {};
-    try {
-      var curricR = await session.run(
-        `MATCH (chem:Entity)<-[:COVERS_TOPIC]-(lp:Entity)
-         WHERE chem.kategorie IS NOT NULL
-           AND NOT (chem.kategorie IN ['lehrplan', 'lernziel', 'didaktik'])
-         WITH chem, count(DISTINCT lp) AS lpCount,
-              collect(DISTINCT { name: lp.name, category: lp.kategorie,
-                        grade: lp.grade, state: lp.state }) AS lehrplaene
-         RETURN chem.name AS chemName, lehrplaene
-         ORDER BY lpCount DESC
-         LIMIT 300`
-      );
-      curricR.records.forEach(function (rec) {
-        curricLinksByEntity[rec.get('chemName')] = rec.get('lehrplaene').slice(0, 10);
-      });
-    } catch (curricErr) {
-      logger.warn(
-        { err: curricErr, message: curricErr.message || String(curricErr) },
-        '[kg-data] Curriculum enrichment failed'
-      );
-    }
 
     // Apply curriculum counts
     Object.keys(curricLinksByEntity).forEach(function (name) {
