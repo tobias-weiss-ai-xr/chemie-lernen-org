@@ -69,33 +69,41 @@
 
   // ── Edge colors by relationship type ─────────────────────────────
   var EDGE_COLORS = {
-    RELATED_TO: '#667eea',
-    MENTIONS: '#45b7d1',
-    FULFILLS: '#4ecdc4',
-    FULFILLS_OBJECTIVE: '#f093fb',
-    BESTEHT_AUS: '#ff9a76',
-    PREREQUISITE: '#a8a8a8',
-    ERFUELLT: '#4ecdc4',
-    HAS_SUBTOPIC: '#96ceb4',
-    TEACHES_TOPIC: '#ffeaa7',
-    RELATED_ENTITIES: '#667eea',
+    related: '#667eea',
+    similar: '#f39c12',
     composition: '#e74c3c',
-    'entity-article': '#888',
+    describes: '#45b7d1',
+    demonstrates: '#2ecc71',
+    produces: '#e67e22',
+    discovers: '#9b59b6',
+    contains: '#1abc9c',
+    comparable: '#f1c40f',
+    involved: '#3498db',
+    applies: '#16a085',
+    source_of: '#95a5a6',
+    covers: '#8e44ad',
+    generalizes: '#d35400',
+    'entity-article': '#45b7d1',
     article: '#ccc',
-    related: '#ddd',
   };
 
   // Main relationship types (higher opacity)
   var EDGE_OPACITY_MAIN = {
-    RELATED_TO: 0.4,
-    MENTIONS: 0.4,
-    FULFILLS: 0.4,
-    FULFILLS_OBJECTIVE: 0.4,
-    BESTEHT_AUS: 0.4,
-    TEACHES_TOPIC: 0.4,
-    ERFUELLT: 0.4,
-    HAS_SUBTOPIC: 0.4,
-    composition: 0.7,
+    related: 0.45,
+    similar: 0.35,
+    composition: 0.6,
+    describes: 0.35,
+    demonstrates: 0.35,
+    produces: 0.35,
+    discovers: 0.35,
+    contains: 0.35,
+    comparable: 0.35,
+    involved: 0.35,
+    applies: 0.35,
+    source_of: 0.35,
+    covers: 0.35,
+    generalizes: 0.35,
+    'entity-article': 0.5,
   };
 
   // ── Category X bands (for forceX clustering) ──────────────────
@@ -288,12 +296,42 @@
     };
   }
 
+  // Normalize Neo4j relationship types to a shorter canonical form
+  var REL_TYPE_MAP = {
+    RELATED_TO: 'related',
+    AEHNLICH_ZU: 'similar',
+    CONSISTS_OF: 'composition',
+    BESTEHT_AUS: 'composition',
+    BESCHREIBT: 'describes',
+    DEMONSTRIERT: 'demonstrates',
+    ERZEUGT: 'produces',
+    ENTDECKT: 'discovers',
+    BEINHALTET: 'contains',
+    VERGLEICHBAR: 'comparable',
+    BETEILIGT_AN: 'involved',
+    WENDET_AN: 'applies',
+    QUELLE_VON: 'source_of',
+    COVERS_TOPIC: 'covers',
+    VERALLGEMEINERT: 'generalizes',
+  };
+  function normalizeRelType(t) {
+    return REL_TYPE_MAP[t] || t;
+  }
+
   function buildFullNodes(data) {
     var nodes = [];
     var links = [];
     var emap = {};
     var entities = data.entities || [];
     var articles = data.articles || [];
+
+    // Pre-compute article counts per entity
+    var artCounts = {};
+    articles.forEach(function (a) {
+      (a.entities || []).forEach(function (en) {
+        artCounts[en] = (artCounts[en] || 0) + 1;
+      });
+    });
 
     entities.forEach(function (e) {
       var conns = (e.relatedEntities || []).length;
@@ -302,21 +340,40 @@
         label: e.name,
         type: 'entity',
         category: e.category,
-        size: Math.max(6, Math.min(25, Math.sqrt(conns + 1) * 5 + (e.articleCount || 0) * 2)),
-        count: e.articleCount || 0,
-        components: e.components || [],
+        size: Math.max(6, Math.min(25, Math.sqrt(conns + 1) * 5 + (artCounts[e.name] || 0) * 2)),
+        count: artCounts[e.name] || 0,
+        description: e.description || '',
       };
       nodes.push(n);
       emap[e.name] = n;
     });
 
-    articles.forEach(function (a) {
+    // Entity–entity links from relatedEntities (now includes relType)
+    var seenLinks = {};
+    entities.forEach(function (e) {
+      var eNode = emap[e.name];
+      if (!eNode) return;
+      (e.relatedEntities || []).forEach(function (ref) {
+        if (!ref || !ref.name) return;
+        var tNode = emap[ref.name];
+        if (!tNode) return;
+        // Deduplicate (A→B and B→A become one link)
+        var key = eNode.id < tNode.id ? eNode.id + '|' + tNode.id : tNode.id + '|' + eNode.id;
+        if (seenLinks[key]) return;
+        seenLinks[key] = true;
+        var relType = normalizeRelType(ref.relType) || 'related';
+        links.push({ source: eNode.id, target: tNode.id, type: relType });
+      });
+    });
+
+    // Article/document links
+    articles.forEach(function (a, idx) {
       var isPage = a.type === 'page';
       var n = {
-        id: a.id || 'a-' + slugify(a.title),
+        id: a.id || 'a-' + idx + '-' + slugify(a.title || 'untitled'),
         label: a.title,
         type: isPage ? 'page' : 'article',
-        size: isPage ? 4 : 3,
+        size: isPage ? 4 : 5,
         url: a.url,
       };
       nodes.push(n);
@@ -327,19 +384,6 @@
         }
       });
     });
-
-    var compLinks = [];
-    entities.forEach(function (e) {
-      if (e.components) {
-        e.components.forEach(function (comp) {
-          var c = emap[comp];
-          if (c) {
-            compLinks.push({ source: e.id, target: c.id, type: 'composition' });
-          }
-        });
-      }
-    });
-    links = links.concat(compLinks);
 
     return { nodes: nodes, links: links };
   }
@@ -822,21 +866,31 @@
             .attr('fill', 'var(--text-graph, #555)');
           li++;
         });
-        legend
-          .append('line')
-          .attr('x1', 0)
-          .attr('y1', 6 + li * 18)
-          .attr('x2', 12)
-          .attr('y2', 6 + li * 18)
-          .attr('stroke', '#e74c3c')
-          .attr('stroke-dasharray', '3,2');
-        legend
-          .append('text')
-          .attr('x', 16)
-          .attr('y', 10 + li * 18)
-          .text('Besteht aus')
-          .attr('fill', 'var(--text-graph, #555)');
-        li++;
+        // Relationship type legend entries
+        var relLegendItems = [
+          { color: '#667eea', label: 'Verknüpft', dash: null },
+          { color: '#f39c12', label: 'Ähnlich', dash: '6,3' },
+          { color: '#e74c3c', label: 'Besteht aus', dash: '4,2' },
+          { color: '#45b7d1', label: 'Beschreibt', dash: null },
+          { color: '#2ecc71', label: 'Demonstriert', dash: null },
+        ];
+        relLegendItems.forEach(function (ri) {
+          legend
+            .append('line')
+            .attr('x1', 0)
+            .attr('y1', 6 + li * 18)
+            .attr('x2', 12)
+            .attr('y2', 6 + li * 18)
+            .attr('stroke', ri.color)
+            .attr('stroke-dasharray', ri.dash);
+          legend
+            .append('text')
+            .attr('x', 16)
+            .attr('y', 10 + li * 18)
+            .text(ri.label)
+            .attr('fill', 'var(--text-graph, #555)');
+          li++;
+        });
         legend
           .append('circle')
           .attr('cx', 6)
@@ -891,16 +945,18 @@
         .enter()
         .append('line')
         .attr('stroke', function (d) {
-          return getEdgeColor(d.type || d.relType || 'RELATED_TO');
+          return getEdgeColor(d.type || d.relType || 'related');
         })
         .attr('stroke-width', function (d) {
-          return d.type === 'composition' ? 1.5 : 0.8;
+          return d.type === 'composition' ? 1.5 : d.type === 'entity-article' ? 1.0 : 0.8;
         })
         .attr('stroke-dasharray', function (d) {
-          return d.type === 'composition' ? '4,2' : null;
+          if (d.type === 'composition') return '4,2';
+          if (d.type === 'similar') return '6,3';
+          return null;
         })
         .attr('stroke-opacity', function (d) {
-          return getEdgeOpacity(d.type || d.relType || 'RELATED_TO');
+          return getEdgeOpacity(d.type || d.relType || 'related');
         });
 
       // Nodes
@@ -1065,7 +1121,25 @@
         .append('text')
         .text(function (d) {
           var t = d.type || d.relType || '';
-          return t === 'composition' ? 'Besteht aus' : t === 'entity-article' ? '' : t;
+          // Map normalized types back to German labels for edge display
+          var labels = {
+            related: '',
+            similar: 'Ähnlich',
+            composition: 'Besteht aus',
+            describes: 'Beschreibt',
+            demonstrates: 'Demonstriert',
+            produces: 'Erzeugt',
+            discovers: 'Entdeckt',
+            contains: 'Beinhaltet',
+            comparable: 'Vergleichbar',
+            involved: 'Beteiligt',
+            applies: 'Wendet an',
+            source_of: 'Quelle von',
+            covers: 'Deckt ab',
+            generalizes: 'Verallgemeinert',
+            'entity-article': '',
+          };
+          return labels[t] || t;
         })
         .attr('font-size', '7px')
         .attr('fill', 'var(--text-muted, #999)')

@@ -133,9 +133,9 @@ router.get('/api/kg-data', async (req, res) => {
     try {
       result = await session.run(
         `MATCH (e:Entity) WHERE ${whereStr}
-         OPTIONAL MATCH (e)-[r:RELATED_TO|MENTIONS]->(target:Entity)
+         OPTIONAL MATCH (e)-[r:RELATED_TO|AEHNLICH_ZU|CONSISTS_OF|BESTEHT_AUS|BESCHREIBT|DEMONSTRIERT|ERZEUGT|ENTDECKT|BEINHALTET|VERGLEICHBAR|BETEILIGT_AN|WENDET_AN|QUELLE_VON|COVERS_TOPIC|VERALLGEMEINERT]-(target:Entity)
          WHERE target.kategorie IS NOT NULL
-         WITH e, COLLECT(DISTINCT {name: target.name, category: target.kategorie}) AS relatedEntities, count(DISTINCT r) AS relCount
+         WITH e, COLLECT(DISTINCT {name: target.name, category: target.kategorie, relType: type(r)}) AS relatedEntities, count(DISTINCT r) AS relCount
          RETURN e.name AS name, e.kategorie AS category,
                 e.description AS description,
                 e.state AS state, e.grade AS grade,
@@ -155,15 +155,16 @@ router.get('/api/kg-data', async (req, res) => {
       return serveFallbackKgData(req, res, params, showLehrplan, cacheKey);
     }
 
-    // Fetch articles (Content nodes linked to entities)
+    // Fetch articles: Document nodes with MENTIONS relationships to entities
     var articlesResult;
     try {
       articlesResult = await session.run(
-        `MATCH (c:Content)
-         OPTIONAL MATCH (c)-[:MENTIONS]->(e:Entity)
+        `MATCH (doc:Document)-[:MENTIONS]->(e:Entity)
          WHERE e.kategorie IS NOT NULL
-         RETURN c.title AS title, c.url AS url, c.type AS type,
-                COLLECT(DISTINCT e.name) AS entities`
+         RETURN doc.title AS title, doc.url AS url,
+                COALESCE(doc.type, 'article') AS type,
+                COLLECT(DISTINCT e.name) AS entities
+         ORDER BY size( collect(DISTINCT e.name) ) DESC`
       );
     } catch (articleErr) {
       logger.warn(
@@ -183,6 +184,31 @@ router.get('/api/kg-data', async (req, res) => {
           };
         })
       : [];
+
+    // Also fetch Content nodes (calculator/tool pages) as pages in the graph
+    var pagesResult;
+    try {
+      pagesResult = await session.run(
+        `MATCH (c:Content) WHERE c.title IS NOT NULL AND c.title <> 'ARTIKEL_TITEL_HIER'
+         RETURN c.title AS title, c.url AS url, c.type AS type`
+      );
+    } catch (pageErr) {
+      logger.warn(
+        { err: pageErr, message: pageErr.message || String(pageErr) },
+        '[kg-data] Pages query failed'
+      );
+    }
+    var pages = pagesResult
+      ? pagesResult.records.map(function (r) {
+          return {
+            title: r.get('title'),
+            url: r.get('url'),
+            type: 'page',
+            entities: [],
+          };
+        })
+      : [];
+    articles = articles.concat(pages);
 
     var entities = result.records.map(function (r) {
       var obj = {
@@ -328,11 +354,11 @@ router.get('/api/kg-data/entity/:name', async (req, res) => {
       result = await session.run(
         `MATCH (e:Entity)
          WHERE toLower(e.name) = $name
-         OPTIONAL MATCH (e)-[r:RELATED_TO]-(related:Entity)
+         OPTIONAL MATCH (e)-[r:RELATED_TO|AEHNLICH_ZU|CONSISTS_OF|BESTEHT_AUS|BESCHREIBT|DEMONSTRIERT|ERZEUGT|ENTDECKT|BEINHALTET|VERGLEICHBAR|BETEILIGT_AN|WENDET_AN|QUELLE_VON|COVERS_TOPIC|VERALLGEMEINERT]-(related:Entity)
          OPTIONAL MATCH (e)-[:MENTIONS]->(c:Content)
          OPTIONAL MATCH (e)-[:COVERS_TOPIC]->(t:Topic)
          OPTIONAL MATCH (e)-[:FULFILLS]->(lo:LearningObjective)
-         WITH e, COLLECT(DISTINCT { name: related.name, category: related.kategorie }) AS relatedEntities,
+         WITH e, COLLECT(DISTINCT { name: related.name, category: related.kategorie, relType: type(r) }) AS relatedEntities,
               COLLECT(DISTINCT { url: c.url, title: c.title, type: c.type }) AS contentLinks,
               COLLECT(DISTINCT { slug: t.slug, title: t.title, grade: t.grade }) AS topics,
               COLLECT(DISTINCT { slug: lo.slug, text: lo.text }) AS objectives
