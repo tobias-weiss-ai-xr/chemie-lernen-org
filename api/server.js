@@ -152,6 +152,12 @@ app.use('/api/auth/register', strictLimiter);
 app.use('/api/admin', strictLimiter);
 app.use('/api/chat', generousLimiter);
 app.use('/api/exercises', generousLimiter);
+
+// Health + KG-data endpoints (before default rate limiter so /api/health
+// and /api/kg-data are always reachable, even during CI smoke tests).
+app.use(kgDataRouter);
+
+// Default rate limit for remaining /api/* routes
 app.use('/api', defaultLimiter);
 
 // Auth routes & middleware
@@ -168,7 +174,6 @@ app.use('/api/admin', (req, res, next) => {
 
 // ── Mount route modules ───────────────────────────────────────
 app.use(chatRouter); // chat history, session, hint, feedback, curricula/compare, admin/chat-logs
-app.use(kgDataRouter); // kg-data, kg-stats, entities, rag-context, elements, health
 app.use(curriculaRouter); // curricula/* endpoints
 app.use(contentRouter); // content list, cross-link-stats, article
 app.use(didaktikRouter); // didaktik guidelines & teaching tips
