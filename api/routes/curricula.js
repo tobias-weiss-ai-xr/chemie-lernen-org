@@ -17,7 +17,7 @@
 import { Router } from 'express';
 import neo4j from 'neo4j-driver';
 import pino from 'pino';
-import { getNeo4jDriver, NEO4J_DATABASE } from '../services/neo4j.js';
+import { getNeo4jDriver, NEO4J_DATABASE, toNumberSafe } from '../services/neo4j.js';
 import { getFallbackData } from '../services/content.js';
 
 const router = Router();
@@ -142,7 +142,7 @@ router.get('/api/curricula/topics', async (req, res) => {
       state: r.get('state'),
       grade: r.get('grade'),
       schoolType: r.get('schoolType'),
-      objectiveCount: r.get('objectiveCount').toNumber(),
+      objectiveCount: toNumberSafe(r.get('objectiveCount')),
     }));
     res.json({ source: 'neo4j', topics, total, limit, offset });
   } catch (err) {
@@ -276,7 +276,7 @@ router.get('/api/curricula/by-state/:state', async (req, res) => {
         title: r.get('title'),
         grade: r.get('grade'),
         schoolType: r.get('schoolType'),
-        objectiveCount: r.get('objectiveCount').toNumber(),
+        objectiveCount: toNumberSafe(r.get('objectiveCount')),
         objectives: r.get('objectives'),
       };
     });
@@ -359,7 +359,7 @@ router.get('/api/curricula/by-state/:state/grade/:grade', async (req, res) => {
         slug: r.get('slug'),
         title: r.get('title'),
         grade: r.get('grade'),
-        objectiveCount: r.get('objectiveCount').toNumber(),
+        objectiveCount: toNumberSafe(r.get('objectiveCount')),
         objectives: r.get('objectives'),
       };
     });

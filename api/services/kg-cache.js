@@ -165,7 +165,10 @@ export function loadCurriculaFromStaticFiles() {
         }
       }
     } catch (e) {
-      logger.warn('[kg-data] Failed to load static curricula for ' + abbr + ': ' + e.message);
+      logger.warn(
+        { err: e, message: e.message || String(e), abbr },
+        '[kg-cache] Failed to load static curricula for ' + abbr
+      );
     }
   }
 

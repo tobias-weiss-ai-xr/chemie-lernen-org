@@ -210,7 +210,7 @@ export function loadArticleIndex() {
       }
     }
   } catch (err) {
-    logger.warn('[article-index] load error: ' + err.message);
+    logger.warn({ err, message: err.message || String(err) }, '[article-index] load error');
   }
   return _articleCache;
 }

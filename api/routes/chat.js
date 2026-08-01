@@ -269,7 +269,7 @@ router.post('/api/chat/hint', hintLimiter, async (req, res) => {
     });
     if (!llmRes.ok) {
       var errText = await llmRes.text();
-      logger.error('[chat-api] Hint LLM error ' + llmRes.status + ': ' + errText);
+      logger.error({ status: llmRes.status, message: errText, hint: 'Hint LLM error' });
       return res.status(502).json({ error: 'Hint generation failed' });
     }
     var data = await llmRes.json();
