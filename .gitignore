@@ -9,7 +9,8 @@ tests/playwright-report/
 tests/screenshots/
 
 # Build artifacts
-*.optimized.js
+# *.optimized.js are now TRACKED (deployment-critical: layouts load them)
+# *.optimized.js
 *.optimized.css
 
 # Hermes agent config
