@@ -340,8 +340,15 @@
         label: e.name,
         type: 'entity',
         category: e.category,
-        size: Math.max(6, Math.min(25, Math.sqrt(conns + 1) * 5 + (artCounts[e.name] || 0) * 2)),
+        size: Math.max(
+          6,
+          Math.min(
+            30,
+            Math.sqrt(conns + 1) * 5 + (artCounts[e.name] || 0) * 2 + (e.curriculumCount || 0) * 3
+          )
+        ),
         count: artCounts[e.name] || 0,
+        curriculumCount: e.curriculumCount || 0,
         description: e.description || '',
       };
       nodes.push(n);
@@ -1028,6 +1035,15 @@
           var connCount = Object.keys(connected).length;
           var catLabel =
             d.type === 'entity' ? labelize(d.category) : d.type === 'page' ? 'Seite' : 'Artikel';
+          var curricHtml = '';
+          if (d.type === 'entity' && d.curriculumCount > 0) {
+            curricHtml =
+              '<br><span style="color:#9b59b6">📚 ' +
+              d.curriculumCount +
+              ' Lehrplan' +
+              (d.curriculumCount !== 1 ? 'e' : '') +
+              '</span>';
+          }
           tooltip
             .style('display', 'block')
             .html(
@@ -1041,7 +1057,8 @@
                 ' &middot; ' +
                 connCount +
                 ' Verbindung' +
-                (connCount !== 1 ? 'en' : '')
+                (connCount !== 1 ? 'en' : '') +
+                curricHtml
             );
           var rect = container.getBoundingClientRect();
           tooltip
@@ -1096,13 +1113,14 @@
         .enter()
         .append('text')
         .text(function (d) {
-          return d.label;
+          return d.label.length > 20 ? d.label.slice(0, 19) + '…' : d.label;
         })
         .attr('font-size', function (d) {
-          return d.size >= 8 ? '10px' : '8px';
+          return d.size >= 10 ? '10px' : '8px';
         })
         .attr('dx', function (d) {
-          return d.size + 3;
+          // Smaller nodes: label below, larger nodes: label right
+          return d.size >= 12 ? d.size + 4 : -(d.size + 4);
         })
         .attr('dy', 3)
         .attr('fill', 'var(--text-graph, #444)')
@@ -1186,8 +1204,9 @@
             })
             .strength(0.2)
         )
-        .force('y', d3.forceY(h / 2).strength(0.05))
-        .alphaDecay(0.012)
+        .force('y', d3.forceY(h / 2).strength(0.03))
+        .alphaDecay(0.018)
+        .velocityDecay(0.3)
         .on('tick', function () {
           link
             .attr('x1', function (d) {

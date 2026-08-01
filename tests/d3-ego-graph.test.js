@@ -37,6 +37,9 @@ function makeMockSimulation() {
     alphaDecay: function () {
       return this;
     },
+    velocityDecay: function () {
+      return this;
+    },
     restart: function () {
       return this;
     },
