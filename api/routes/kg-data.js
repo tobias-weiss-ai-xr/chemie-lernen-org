@@ -176,7 +176,7 @@ router.get('/api/kg-data', async (req, res) => {
     var curricLinksByEntity = {};
     try {
       var curricR = await session.run(
-        `MATCH (chem:Entity)<-[:COVERS_TOPIC]-(lp:Entity)
+        `MATCH (chem:Entity)-[:COVERS_TOPIC]->(lp:Entity)
          WHERE chem.kategorie IS NOT NULL
            AND NOT (chem.kategorie IN ['lehrplan', 'lernziel', 'didaktik'])
          WITH chem, count(DISTINCT lp) AS lpCount,
