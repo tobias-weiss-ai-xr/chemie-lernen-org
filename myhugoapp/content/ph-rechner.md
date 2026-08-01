@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="related-tools">
   🧪 <strong>Erweiterte Werkzeuge:</strong>
-  <a href="/sauren-basen-gleichgewicht/">Säuren-Basen-Gleichgewicht</a>
+  <a href="/saeuren-basen-gleichgewicht/">Säuren-Basen-Gleichgewicht</a>
   <a href="/titrations-simulator/">Titration</a>
   <a href="/konzentrationsumrechner/">Konzentration umrechnen</a>
 </div>
