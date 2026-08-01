@@ -31,7 +31,7 @@ const router = Router();
 
 // -- GET /api/modulhandbuch/universities -- List all indexed universities -----
 
-router.get('/modulhandbuch/universities', async (req, res) => {
+router.get('/api/modulhandbuch/universities', async (req, res) => {
   try {
     const driver = getNeo4jDriver();
     const session = driver.session({
@@ -73,7 +73,7 @@ router.get('/modulhandbuch/universities', async (req, res) => {
 
 // -- GET /api/modulhandbuch/university/:shortCode -- Single university --------
 
-router.get('/modulhandbuch/university/:shortCode', async (req, res) => {
+router.get('/api/modulhandbuch/university/:shortCode', async (req, res) => {
   const shortCode = req.params.shortCode.toUpperCase().trim();
   try {
     const driver = getNeo4jDriver();
@@ -127,7 +127,7 @@ router.get('/modulhandbuch/university/:shortCode', async (req, res) => {
 
 // -- GET /api/modulhandbuch/module/:univCode/:moduleCode -- Single module detail -
 
-router.get('/modulhandbuch/module/:univCode/:moduleCode', async (req, res) => {
+router.get('/api/modulhandbuch/module/:univCode/:moduleCode', async (req, res) => {
   const univCode = req.params.univCode.toLowerCase().trim();
   const moduleCode = req.params.moduleCode.trim();
   try {
@@ -185,7 +185,7 @@ router.get('/modulhandbuch/module/:univCode/:moduleCode', async (req, res) => {
 
 // -- GET /api/modulhandbuch/search -- Search modules across all universities --
 
-router.get('/modulhandbuch/search', async (req, res) => {
+router.get('/api/modulhandbuch/search', async (req, res) => {
   const q = (req.query.q || '').toLowerCase().trim();
   if (!q) return res.status(400).json({ error: 'Query param "q" is required' });
   const limit = Math.min(parseInt(req.query.limit) || 20, 100);
@@ -240,7 +240,7 @@ router.get('/modulhandbuch/search', async (req, res) => {
 
 // -- GET /api/modulhandbuch/teaches/:entityName -- Modules that teach a concept -
 
-router.get('/modulhandbuch/teaches/:entityName', async (req, res) => {
+router.get('/api/modulhandbuch/teaches/:entityName', async (req, res) => {
   const entityName = req.params.entityName.toLowerCase().trim();
   try {
     const driver = getNeo4jDriver();
@@ -279,7 +279,7 @@ router.get('/modulhandbuch/teaches/:entityName', async (req, res) => {
 
 // -- GET /api/entities/:name/universities -- Univs. whose modules teach entity -
 
-router.get('/entities/:name/universities', async (req, res) => {
+router.get('/api/entities/:name/universities', async (req, res) => {
   const entityName = req.params.name.toLowerCase().trim();
   try {
     const driver = getNeo4jDriver();
@@ -336,7 +336,7 @@ router.get('/entities/:name/universities', async (req, res) => {
 
 // -- GET /api/studienvergleich/compare -- Compare modules between two univs --
 
-router.get('/studienvergleich/compare', async (req, res) => {
+router.get('/api/studienvergleich/compare', async (req, res) => {
   const u1 = (req.query.u1 || '').trim().toUpperCase();
   const u2 = (req.query.u2 || '').trim().toUpperCase();
   const levelFilter = (req.query.level || '').trim().toUpperCase();

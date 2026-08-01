@@ -32,7 +32,7 @@ const router = Router();
 
 // ── Quiz API ───────────────────────────────────────────────────
 
-router.get('/quizzes/:topic', async (req, res) => {
+router.get('/api/quizzes/:topic', async (req, res) => {
   const topic = req.params.topic.trim();
 
   try {
@@ -88,7 +88,7 @@ router.get('/quizzes/:topic', async (req, res) => {
   }
 });
 
-router.put('/quiz-results', async (req, res) => {
+router.put('/api/quiz-results', async (req, res) => {
   const { topic, score, total, answers, time } = req.body;
   if (!topic || score === undefined || !total) {
     return res.status(400).json({ error: 'Missing required fields: topic, score, total' });
@@ -115,7 +115,7 @@ router.put('/quiz-results', async (req, res) => {
   res.json({ ok: true, result });
 });
 
-router.get('/quiz-results', async (req, res) => {
+router.get('/api/quiz-results', async (req, res) => {
   if (!req.user || !req.user.id) {
     return res.status(401).json({ error: 'Authentifizierung erforderlich' });
   }
@@ -134,7 +134,7 @@ router.get('/quiz-results', async (req, res) => {
 
 // ── FSRS (Free Spaced Repetition Scheduler) ─────────────────────
 
-router.get('/fsrs/cards', requireAuth, async (req, res) => {
+router.get('/api/fsrs/cards', requireAuth, async (req, res) => {
   try {
     const cards = getDueCards(req.user.id);
     const dueDates = cards
@@ -152,7 +152,7 @@ router.get('/fsrs/cards', requireAuth, async (req, res) => {
   }
 });
 
-router.post('/fsrs/cards/:cardId/review', requireAuth, async (req, res) => {
+router.post('/api/fsrs/cards/:cardId/review', requireAuth, async (req, res) => {
   try {
     const { score } = req.body;
     if (score === undefined || ![0, 0.33, 0.66, 1.0].includes(Number(score))) {

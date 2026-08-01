@@ -224,19 +224,32 @@ var _cachedLearningPathsData = null;
  */
 export function loadLearningPathsJson() {
   if (_cachedLearningPathsData) return _cachedLearningPathsData;
-  var fp = path.join(process.cwd(), 'myhugoapp', 'data', 'learning-paths.json');
+  // Candidate locations: repo root (dev: cwd=/opt/git/...) and container
+  // (api/ context copies data into /app/data).
+  var candidates = [
+    path.join(process.cwd(), 'myhugoapp', 'data', 'learning-paths.json'),
+    path.join(process.cwd(), 'data', 'learning-paths.json'),
+  ];
+  var fp = candidates.find(function (p) {
+    return fs.existsSync(p);
+  });
   try {
-    if (fs.existsSync(fp)) {
+    if (fp) {
       _cachedLearningPathsData = JSON.parse(fs.readFileSync(fp, 'utf-8'));
       logger.info(
         '[learning-paths] Loaded ' + _cachedLearningPathsData.length + ' state paths from JSON'
       );
     } else {
-      logger.warn('[learning-paths] learning-paths.json not found at ' + fp);
+      logger.warn(
+        '[learning-paths] learning-paths.json not found (tried: ' + candidates.join(', ') + ')'
+      );
       _cachedLearningPathsData = [];
     }
   } catch (err) {
-    logger.error('[learning-paths] Failed to load learning-paths.json: ' + err.message);
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[learning-paths] Failed to load learning-paths.json'
+    );
     _cachedLearningPathsData = [];
   }
   return _cachedLearningPathsData;

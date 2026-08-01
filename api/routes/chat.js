@@ -49,7 +49,7 @@ const router = Router();
 
 // ── GET /api/session ──────────────────────────────────────────────────────
 
-router.get('/session', (req, res) => {
+router.get('/api/session', (req, res) => {
   const sessionId = getSessionId(req, res);
   const session = getSession(sessionId, req.user?.id);
 
@@ -67,7 +67,7 @@ router.get('/session', (req, res) => {
 // ── GET /api/chat/history — list past sessions for current user ───────────
 // Retention: 90 days for free, 1 year for premium
 
-router.get('/chat/history', requireAuth, (req, res) => {
+router.get('/api/chat/history', requireAuth, (req, res) => {
   const maxAge = req.user.tier === 'premium' ? 365 * 24 * 60 * 60 * 1000 : 90 * 24 * 60 * 60 * 1000;
   const sessions = sessionStore.findByUserId(req.user.id, maxAge);
   res.json({ sessions });
@@ -75,7 +75,7 @@ router.get('/chat/history', requireAuth, (req, res) => {
 
 // ── GET /api/chat/history/search?q= — full-text search ───────────────────
 
-router.get('/chat/history/search', requireAuth, function (req, res) {
+router.get('/api/chat/history/search', requireAuth, function (req, res) {
   var q = (req.query.q || '').toLowerCase().trim();
   if (!q) return res.json({ results: [] });
 
@@ -112,7 +112,7 @@ router.get('/chat/history/search', requireAuth, function (req, res) {
 
 // ── GET /api/chat/export/:sessionId — download session as Markdown ───────
 
-router.get('/chat/export/:sessionId', requireAuth, function (req, res) {
+router.get('/api/chat/export/:sessionId', requireAuth, function (req, res) {
   var session = sessionStore.get(req.params.sessionId);
   if (!session || session.userId !== req.user.id) {
     return res.status(404).json({ error: 'Session nicht gefunden' });
@@ -140,7 +140,7 @@ router.get('/chat/export/:sessionId', requireAuth, function (req, res) {
 
 // ── GET /api/chat/history/:sessionId — full conversation for a session ───
 
-router.get('/chat/history/:sessionId', requireAuth, (req, res) => {
+router.get('/api/chat/history/:sessionId', requireAuth, (req, res) => {
   const session = sessionStore.get(req.params.sessionId);
   if (!session) {
     return res.status(404).json({ error: 'Session nicht gefunden' });
@@ -167,7 +167,7 @@ router.get('/chat/history/:sessionId', requireAuth, (req, res) => {
 
 // ── GET /api/auth/learning-profile — weak/strong areas from quiz results ──
 
-router.get('/auth/learning-profile', requireAuth, (req, res) => {
+router.get('/api/auth/learning-profile', requireAuth, (req, res) => {
   var user = getUserById(req.user.id);
   if (!user) return res.status(404).json({ error: 'User not found' });
 
@@ -214,7 +214,7 @@ router.get('/auth/learning-profile', requireAuth, (req, res) => {
 
 // ── POST /api/chat/hint — generate step-by-step hint ─────────────────────
 
-router.post('/chat/hint', async (req, res) => {
+router.post('/api/chat/hint', async (req, res) => {
   var { problem } = req.body;
   if (!problem || typeof problem !== 'string' || problem.length > 2000) {
     return res.status(400).json({ error: 'Problem text required (max 2000 chars)' });
@@ -272,7 +272,7 @@ router.post('/chat/hint', async (req, res) => {
 // ── Feedback ─────────────────────────────────────────────────────────────
 
 // POST /api/chat/feedback — store per-message rating (thumb up/down)
-router.post('/chat/feedback', (req, res) => {
+router.post('/api/chat/feedback', (req, res) => {
   var { sessionId, messageIndex, rating } = req.body;
   if (!sessionId || messageIndex === undefined || !rating) {
     return res.status(400).json({ error: 'sessionId, messageIndex, rating required' });
@@ -307,7 +307,7 @@ router.post('/chat/feedback', (req, res) => {
 });
 
 // GET /api/chat/feedback/analytics — satisfaction summary
-router.get('/chat/feedback/analytics', (req, res) => {
+router.get('/api/chat/feedback/analytics', (req, res) => {
   try {
     var feedbackPath = path.join(process.cwd(), 'data', 'feedback.json');
     var feedback = [];
@@ -336,7 +336,7 @@ router.get('/chat/feedback/analytics', (req, res) => {
 
 // ── GET /api/curricula/compare?name=X — Find matching topics across states ─
 
-router.get('/curricula/compare', function (req, res) {
+router.get('/api/curricula/compare', function (req, res) {
   var q = (req.query.name || '').toLowerCase().trim();
   if (!q) {
     return res.json({ results: {}, query: q, count: 0 });
@@ -377,7 +377,7 @@ router.get('/curricula/compare', function (req, res) {
 
 // ── GET /api/admin/chat-logs — Recent chat sessions for klassencockpit ───
 
-router.get('/admin/chat-logs', function (req, res) {
+router.get('/api/admin/chat-logs', function (req, res) {
   var limit = parseInt(req.query.limit) || 20;
   var sessions = [];
   sessionStore.forEach(function (session, id) {

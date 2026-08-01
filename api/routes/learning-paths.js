@@ -135,6 +135,22 @@ router.get('/api/learning-paths', async (req, res) => {
 });
 
 /**
+ * GET /api/learning-paths/progress
+ */
+router.get('/api/learning-paths/progress', requireAuth, async (req, res) => {
+  try {
+    const progress = learningEngine.getAggregatedProgress(sessionStore, req.user.id);
+    res.json(progress);
+  } catch (err) {
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[learning-paths] progress error'
+    );
+    res.status(500).json({ error: 'Fortschritt konnte nicht geladen werden' });
+  }
+});
+
+/**
  * GET /api/learning-paths/:slug
  */
 router.get('/api/learning-paths/:slug', async (req, res) => {
@@ -278,22 +294,6 @@ router.post('/api/learning-paths/:slug/enroll', requireAuth, async (req, res) =>
       '[learning-paths] enroll error'
     );
     res.status(500).json({ error: 'Einschreibung fehlgeschlagen' });
-  }
-});
-
-/**
- * GET /api/learning-paths/progress
- */
-router.get('/api/learning-paths/progress', requireAuth, async (req, res) => {
-  try {
-    const progress = learningEngine.getAggregatedProgress(sessionStore, req.user.id);
-    res.json(progress);
-  } catch (err) {
-    logger.error(
-      { err: err, message: err.message || String(err) },
-      '[learning-paths] progress error'
-    );
-    res.status(500).json({ error: 'Fortschritt konnte nicht geladen werden' });
   }
 });
 

@@ -138,6 +138,13 @@ class FileBackedSessionStore {
     this._dirty = true;
   }
 
+  /** Iterate all sessions (Map-compatible signature: callback(session, id)). */
+  forEach(callback) {
+    for (const [id, session] of this._map) {
+      callback(session, id);
+    }
+  }
+
   has(sessionId) {
     return this._map.has(sessionId);
   }
