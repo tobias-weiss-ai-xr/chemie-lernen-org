@@ -172,22 +172,21 @@ router.get('/api/kg-data', async (req, res) => {
         '[kg-data] Articles query failed'
       );
     }
-    // Enrich entities with curriculum connections
+    // Enrich entities with curriculum connections via SubTopic nodes
     var curricLinksByEntity = {};
     try {
       var curricR = await session.run(
-        `MATCH (chem:Entity)-[:COVERS_TOPIC]->(lp:Entity)
+        `MATCH (chem:Entity)-[:COVERS_TOPIC]->(st:SubTopic)
          WHERE chem.kategorie IS NOT NULL
            AND NOT (chem.kategorie IN ['lehrplan', 'lernziel', 'didaktik'])
-         WITH chem, count(DISTINCT lp) AS lpCount,
-              collect(DISTINCT { name: lp.name, category: lp.kategorie,
-                        grade: lp.grade, state: lp.state }) AS lehrplaene
-         RETURN chem.name AS chemName, lehrplaene
-         ORDER BY lpCount DESC
+         WITH chem, count(DISTINCT st) AS topicCount,
+              collect(DISTINCT { name: st.name, type: 'SubTopic' }) AS topics
+         RETURN chem.name AS chemName, topics
+         ORDER BY topicCount DESC
          LIMIT 300`
       );
       curricR.records.forEach(function (rec) {
-        curricLinksByEntity[rec.get('chemName')] = rec.get('lehrplaene').slice(0, 10);
+        curricLinksByEntity[rec.get('chemName')] = rec.get('topics').slice(0, 10);
       });
     } catch (curricErr) {
       logger.warn(
