@@ -1,5 +1,5 @@
 # Use Playwright's official Docker image
-FROM mcr.microsoft.com/playwright:v1.52.0-jammy
+FROM mcr.microsoft.com/playwright:v1.62.0-jammy
 
 WORKDIR /app
 
