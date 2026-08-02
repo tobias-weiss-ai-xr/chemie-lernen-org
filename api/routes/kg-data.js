@@ -180,7 +180,7 @@ router.get('/api/kg-data', async (req, res) => {
          WHERE chem.kategorie IS NOT NULL
            AND NOT (chem.kategorie IN ['lehrplan', 'lernziel', 'didaktik'])
          WITH chem, count(DISTINCT st) AS topicCount,
-              collect(DISTINCT { name: st.name, type: 'SubTopic' }) AS topics
+              collect(DISTINCT { name: st.title, type: 'SubTopic' }) AS topics
          RETURN chem.name AS chemName, topics
          ORDER BY topicCount DESC
          LIMIT 300`
