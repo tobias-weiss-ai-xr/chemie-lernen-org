@@ -12,12 +12,12 @@
 
 ## File Structure
 
-| File | Purpose |
-|------|---------|
-| `scripts/feeds.json` | RSS feed URL configuration |
-| `scripts/article-pipeline.mjs` | Main pipeline script |
+| File                                                  | Purpose                          |
+| ----------------------------------------------------- | -------------------------------- |
+| `scripts/feeds.json`                                  | RSS feed URL configuration       |
+| `scripts/article-pipeline.mjs`                        | Main pipeline script             |
 | `/etc/systemd/system/chemie-article-pipeline.service` | Systemd service unit (on server) |
-| `/etc/systemd/system/chemie-article-pipeline.timer` | Systemd timer unit (on server) |
+| `/etc/systemd/system/chemie-article-pipeline.timer`   | Systemd timer unit (on server)   |
 
 No Hugo template changes needed — posts use the default single page layout, section listing is automatic.
 
@@ -26,6 +26,7 @@ No Hugo template changes needed — posts use the default single page layout, se
 ### Task 1: Create feeds.json
 
 **Files:**
+
 - Create: `scripts/feeds.json`
 
 - [ ] **Step 1: Create the feed config**
@@ -80,6 +81,7 @@ git commit -m "feat: add RSS feed config for article pipeline"
 ### Task 2: Create article pipeline script
 
 **Files:**
+
 - Create: `scripts/article-pipeline.mjs`
 
 - [ ] **Step 1: Create the pipeline script**
@@ -110,7 +112,10 @@ Füge 3-5 relevante Tags hinzu (z.B. chemie, forschung, [spezifisches Thema]).`;
 function slugify(text) {
   return text
     .toLowerCase()
-    .replace(/[ä]/g, 'ae').replace(/[ö]/g, 'oe').replace(/[ü]/g, 'ue').replace(/[ß]/g, 'ss')
+    .replace(/[ä]/g, 'ae')
+    .replace(/[ö]/g, 'oe')
+    .replace(/[ü]/g, 'ue')
+    .replace(/[ß]/g, 'ss')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '')
     .slice(0, 80);
@@ -147,7 +152,7 @@ function extractItems(parsed) {
 }
 
 function extractTitle(item) {
-  return item.title || item['title'] || (item['title$t'] || '');
+  return item.title || item['title'] || item['title$t'] || '';
 }
 
 function extractLink(item) {
@@ -175,17 +180,20 @@ async function generateArticle(title, description, sourceUrl) {
     model: 'gpt-4o-mini',
     messages: [
       { role: 'system', content: SYSTEM_PROMPT },
-      { role: 'user', content: `Quelle: ${sourceUrl}\n\nTitel: ${title}\n\nText:\n${description.slice(0, 3000)}` }
+      {
+        role: 'user',
+        content: `Quelle: ${sourceUrl}\n\nTitel: ${title}\n\nText:\n${description.slice(0, 3000)}`,
+      },
     ],
     temperature: 0.5,
-    max_tokens: 600
+    max_tokens: 600,
   };
 
   const res = await fetch(LITELLM_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
-    signal: AbortSignal.timeout(120000)
+    signal: AbortSignal.timeout(120000),
   });
 
   if (!res.ok) throw new Error(`litellm HTTP ${res.status}`);
@@ -194,7 +202,7 @@ async function generateArticle(title, description, sourceUrl) {
 }
 
 function parseGeneratedText(text) {
-  const lines = text.split('\n').filter(l => l.trim());
+  const lines = text.split('\n').filter((l) => l.trim());
   let title = '';
   let tags = [];
   let content = text;
@@ -206,7 +214,10 @@ function parseGeneratedText(text) {
 
   const tagMatch = text.match(/Tags?:\s*(.+)/i);
   if (tagMatch) {
-    tags = tagMatch[1].split(',').map(t => t.trim().replace(/^#/, '').toLowerCase()).filter(Boolean);
+    tags = tagMatch[1]
+      .split(',')
+      .map((t) => t.trim().replace(/^#/, '').toLowerCase())
+      .filter(Boolean);
   }
 
   if (!title) {
@@ -217,7 +228,7 @@ function parseGeneratedText(text) {
 }
 
 function buildFrontmatter(title, date, tags) {
-  const tagStr = tags.map(t => `  - "${t}"`).join('\n');
+  const tagStr = tags.map((t) => `  - "${t}"`).join('\n');
   return `---
 title: "${title.replace(/"/g, '\\"')}"
 date: "${date}"
@@ -231,7 +242,7 @@ draft: false
 function buildMarkdown(frontmatter, bodyContent) {
   const lines = bodyContent.split('\n');
   const body = lines
-    .filter(l => !l.match(/^(Titel|Tags?):/i))
+    .filter((l) => !l.match(/^(Titel|Tags?):/i))
     .join('\n')
     .trim();
 
@@ -244,7 +255,7 @@ async function getExistingUrls() {
   try {
     const entries = await readFile(join(POSTS_DIR, '.urls.json'), 'utf-8').catch(() => '[]');
     const parsed = JSON.parse(entries);
-    parsed.forEach(u => urls.add(u));
+    parsed.forEach((u) => urls.add(u));
   } catch {}
   return urls;
 }
@@ -302,7 +313,11 @@ async function run() {
       const slug = slugify(title);
       const today = dateStr();
       const isoDate = isoDateStr();
-      const frontmatter = buildFrontmatter(title, isoDate, tags.length ? tags : ['chemie', 'forschung']);
+      const frontmatter = buildFrontmatter(
+        title,
+        isoDate,
+        tags.length ? tags : ['chemie', 'forschung']
+      );
       const markdown = buildMarkdown(frontmatter, generated);
       const filename = `${today}-${slug}.md`;
       await writeFile(join(POSTS_DIR, filename), markdown);
@@ -316,7 +331,7 @@ async function run() {
   console.log(`[pipeline] Done`);
 }
 
-run().catch(err => {
+run().catch((err) => {
   console.error(`[pipeline] Fatal: ${err.message}`);
   process.exit(1);
 });
@@ -342,6 +357,7 @@ git commit -m "feat: add article pipeline script"
 ### Task 3: Set up systemd timer on server
 
 **Files:**
+
 - Create: `/etc/systemd/system/chemie-article-pipeline.service`
 - Create: `/etc/systemd/system/chemie-article-pipeline.timer`
 

@@ -2,6 +2,14 @@
 node_modules/
 package-lock.json
 
+# Python venvs
+**/curricula-venv/
+*.pyc
+__pycache__/
+
+# Playwright reports
+tests/playwright-report/
+
 # Build outputs
 myhugoapp/public/
 myhugoapp/resources/_gen/
@@ -10,9 +18,14 @@ myhugoapp/resources/_gen/
 coverage/
 test-results/
 .playwright-artifacts/
+playwright-report/
+data/collab/
 
 # Hugo templates (Prettier doesn't handle Hugo template syntax)
 myhugoapp/layouts/
+
+# Hugo content markdown (Prettier whitespace changes are noisy but meaningless)
+myhugoapp/content/
 myhugoapp/themes/
 
 # Hugo

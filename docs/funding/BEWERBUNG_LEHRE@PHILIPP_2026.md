@@ -121,34 +121,34 @@ Die Plattform wird kontinuierlich weiterentwickelt (letztes Update: Juni 2026). 
 
 ### 7.2 Kostenplan
 
-| Pos.  | Beschreibung                                              |     Menge | Einzelpreis |          Gesamt |
-| ----- | --------------------------------------------------------- | --------: | ----------: | --------------: |
-| **1** | **Studentische Hilfskräfte**                              |           |             |  **7.156,80 €** |
-| 1.1   | SHK – Inhaltserstellung (6 h/Woche × 12 Monate)           |     288 h |     14,20 € |      4.089,60 € |
-| 1.2   | SHK – 3D/WebXR-Entwicklung (5 h/Woche × 6 Monate)         |     120 h |     14,20 € |      1.704,00 € |
-| 1.3   | SHK – Barrierefreiheit & Testing (4 h/Woche × 6 Monate)   |      96 h |     14,20 € |      1.363,20 € |
-|       | _Zwischensumme SHK_                                       |           |             |    _7.156,80 €_ |
-| **2** | **Infrastruktur & Betrieb**                               |           |             |  **2.410,00 €** |
-| 2.1   | Server & Hosting                                          | 12 Monate |     20,00 € |        240,00 € |
-| 2.2   | KI-API-Kosten (KI-Assistent)                              | 12 Monate |     50,00 € |        600,00 € |
-| 2.3   | Domain & SSL                                              |    1 Jahr |     10,00 € |         10,00 € |
-| 2.4   | Content Delivery Network (CDN) & Optimierung (BunnyCDN)   | 12 Monate |     30,00 € |        360,00 € |
-| 2.5   | WebXR-Hosting & 3D-Infrastruktur                          | 12 Monate |    100,00 € |      1.200,00 € |
-|       | _Zwischensumme Infrastruktur_                             |           |             |    _2.410,00 €_ |
-| **3** | **Geräte & Software**                                     |           |             |  **5.150,00 €** |
-| 3.1   | VR-Entwicklungs-Workstation 1 (PC i7/RTX 4070/32GB/1TB + 27" Monitor + Maus/Tastatur) | 1 Stk. | 2.250,00 € | 2.250,00 € |
-| 3.2   | VR-Entwicklungs-Workstation 2 (PC i7/RTX 4070/32GB/1TB + 27" Monitor + Maus/Tastatur) | 1 Stk. | 2.250,00 € | 2.250,00 € |
-| 3.3   | Barrierefreiheit-Test-Suite (Screenreader, Testendgeräte) |    1 Satz |    600,00 € |        600,00 € |
-| 3.4   | 3D-Modell-Lizenzen (Science-Modelle für VR-Räume)         |    1 Satz |     50,00 € |         50,00 € |
-|       | _Zwischensumme Geräte & Software_                         |           |             |    _5.150,00 €_ |
-| **4** | **Öffentlichkeitsarbeit & Transfer**                      |           |             |    **280,00 €** |
-| 4.1   | Druck Lehrmaterialien und Flyer                           |   1 Psch. |     50,00 € |         50,00 € |
-| 4.2   | Workshop/Schulung für Lehrende (Raummiete, Catering)      |   1 Psch. |    130,00 € |        130,00 € |
-| 4.3   | Tagungsbeitrag (Tag der Lehre, GDCP-Tagung)               |   1 Psch. |    100,00 € |        100,00 € |
-|       | _Zwischensumme Öffentlichkeitsarbeit_                     |           |             |      _280,00 €_ |
-|       | **Gesamtsumme (netto)**                                   |           |             | **14.996,80 €** |
-|       | Förderhöchstbetrag                                        |           |             |     15.000,00 € |
-|       | **Differenz zum Höchstbetrag**                            |           |             |        **3,20 €** |
+| Pos.  | Beschreibung                                                                          |     Menge | Einzelpreis |          Gesamt |
+| ----- | ------------------------------------------------------------------------------------- | --------: | ----------: | --------------: |
+| **1** | **Studentische Hilfskräfte**                                                          |           |             |  **7.156,80 €** |
+| 1.1   | SHK – Inhaltserstellung (6 h/Woche × 12 Monate)                                       |     288 h |     14,20 € |      4.089,60 € |
+| 1.2   | SHK – 3D/WebXR-Entwicklung (5 h/Woche × 6 Monate)                                     |     120 h |     14,20 € |      1.704,00 € |
+| 1.3   | SHK – Barrierefreiheit & Testing (4 h/Woche × 6 Monate)                               |      96 h |     14,20 € |      1.363,20 € |
+|       | _Zwischensumme SHK_                                                                   |           |             |    _7.156,80 €_ |
+| **2** | **Infrastruktur & Betrieb**                                                           |           |             |  **2.410,00 €** |
+| 2.1   | Server & Hosting                                                                      | 12 Monate |     20,00 € |        240,00 € |
+| 2.2   | KI-API-Kosten (KI-Assistent)                                                          | 12 Monate |     50,00 € |        600,00 € |
+| 2.3   | Domain & SSL                                                                          |    1 Jahr |     10,00 € |         10,00 € |
+| 2.4   | Content Delivery Network (CDN) & Optimierung (BunnyCDN)                               | 12 Monate |     30,00 € |        360,00 € |
+| 2.5   | WebXR-Hosting & 3D-Infrastruktur                                                      | 12 Monate |    100,00 € |      1.200,00 € |
+|       | _Zwischensumme Infrastruktur_                                                         |           |             |    _2.410,00 €_ |
+| **3** | **Geräte & Software**                                                                 |           |             |  **5.150,00 €** |
+| 3.1   | VR-Entwicklungs-Workstation 1 (PC i7/RTX 4070/32GB/1TB + 27" Monitor + Maus/Tastatur) |    1 Stk. |  2.250,00 € |      2.250,00 € |
+| 3.2   | VR-Entwicklungs-Workstation 2 (PC i7/RTX 4070/32GB/1TB + 27" Monitor + Maus/Tastatur) |    1 Stk. |  2.250,00 € |      2.250,00 € |
+| 3.3   | Barrierefreiheit-Test-Suite (Screenreader, Testendgeräte)                             |    1 Satz |    600,00 € |        600,00 € |
+| 3.4   | 3D-Modell-Lizenzen (Science-Modelle für VR-Räume)                                     |    1 Satz |     50,00 € |         50,00 € |
+|       | _Zwischensumme Geräte & Software_                                                     |           |             |    _5.150,00 €_ |
+| **4** | **Öffentlichkeitsarbeit & Transfer**                                                  |           |             |    **280,00 €** |
+| 4.1   | Druck Lehrmaterialien und Flyer                                                       |   1 Psch. |     50,00 € |         50,00 € |
+| 4.2   | Workshop/Schulung für Lehrende (Raummiete, Catering)                                  |   1 Psch. |    130,00 € |        130,00 € |
+| 4.3   | Tagungsbeitrag (Tag der Lehre, GDCP-Tagung)                                           |   1 Psch. |    100,00 € |        100,00 € |
+|       | _Zwischensumme Öffentlichkeitsarbeit_                                                 |           |             |      _280,00 €_ |
+|       | **Gesamtsumme (netto)**                                                               |           |             | **14.996,80 €** |
+|       | Förderhöchstbetrag                                                                    |           |             |     15.000,00 € |
+|       | **Differenz zum Höchstbetrag**                                                        |           |             |      **3,20 €** |
 
 ### 7.3 Begründung der Mittelverwendung
 

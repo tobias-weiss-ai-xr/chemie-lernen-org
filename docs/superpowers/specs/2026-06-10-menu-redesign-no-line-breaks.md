@@ -14,11 +14,13 @@ Move Forschung, Roadmap, and Unterstützen into a new "Mehr" dropdown, reducing 
 ### Menu Structure Change
 
 **Before** (12 top-level):
+
 ```
 Themenbereiche | KI-Assistent | Wissensnetz | Rechner▾ | Simulationen▾ | Visualisierungen▾ | Lehrende▾ | Forschung | Roadmap | Unterstützen
 ```
 
 **After** (8 top-level):
+
 ```
 Themenbereiche | KI-Assistent | Wissensnetz | Rechner▾ | Simulationen▾ | Visualisierungen▾ | Lehrende▾ | Mehr▾
 ```

@@ -9,16 +9,19 @@ This repository uses GitHub Actions for automated testing and build verification
 Automated end-to-end testing using Playwright across three major browser engines.
 
 **Triggers:**
+
 - Push to `main`/`master` branches
 - Pull requests to `main`/`master` branches
 - Manual workflow dispatch
 
 **Test Matrix:**
+
 - ✅ Chromium (85 tests)
 - ✅ Firefox (85 tests)
 - ✅ WebKit (85 tests)
 
 **Total: 255 tests** validating:
+
 - KaTeX formula rendering
 - Interactive tools (pH calculator, molar mass calculator, 3D periodic table)
 - Molecule Studio 3D visualization
@@ -28,6 +31,7 @@ Automated end-to-end testing using Playwright across three major browser engines
 - Performance benchmarks
 
 **Artifacts:**
+
 - Test results (retained for 30 days)
 - Playwright HTML reports (retained for 30 days)
 
@@ -36,11 +40,13 @@ Automated end-to-end testing using Playwright across three major browser engines
 Validates that the Hugo site builds successfully.
 
 **Triggers:**
+
 - Push to `main`/`master` branches
 - Pull requests to `main`/`master` branches
 - Manual workflow dispatch
 
 **Steps:**
+
 1. Setup Hugo (extended version with Sass/SCSS support)
 2. Build site with minification
 3. Verify `index.html` is generated
@@ -110,6 +116,7 @@ If Hugo build fails:
 ## Performance
 
 **Typical CI execution times:**
+
 - Playwright tests: ~15-20 minutes (parallel across 3 browsers)
 - Hugo build: ~1-2 minutes
 
@@ -136,7 +143,7 @@ Update the Node version in `.github/workflows/playwright-tests.yml`:
 - name: Setup Node.js
   uses: actions/setup-node@v4
   with:
-    node-version: '20'  # Update this as needed
+    node-version: '20' # Update this as needed
 ```
 
 ## Contributing

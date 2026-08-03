@@ -11,21 +11,22 @@ Automated daily pipeline that fetches chemistry research/news from RSS feeds, us
 
 Config file: `scripts/feeds.json`
 
-| Feed | Lang | Category |
-|------|------|----------|
-| arXiv Chemistry (cs.CE) | en | research |
-| Chemistry World (RSC) | en | news |
-| Spektrum.de Chemie | de | news |
-| Phys.org Chemistry News | en | news |
-| C&EN (ACS) | en | news |
-| Nature Chemistry | en | research |
-| GDCh News | de | news |
+| Feed                    | Lang | Category |
+| ----------------------- | ---- | -------- |
+| arXiv Chemistry (cs.CE) | en   | research |
+| Chemistry World (RSC)   | en   | news     |
+| Spektrum.de Chemie      | de   | news     |
+| Phys.org Chemistry News | en   | news     |
+| C&EN (ACS)              | en   | news     |
+| Nature Chemistry        | en   | research |
+| GDCh News               | de   | news     |
 
 Feed config is extensible — add/remove entries via the JSON array.
 
 ## Pipeline Architecture
 
 ### Trigger: systemd timer
+
 - `chemie-article-pipeline.timer`: daily at 04:42 UTC
 - `chemie-article-pipeline.service`: executes the script
 
@@ -48,10 +49,10 @@ Füge 3-5 relevante Tags hinzu (z.B. chemie, forschung, [spezifisches Thema]).
 
 ```yaml
 ---
-title: "Titel"
-date: "2026-05-23T04:42:00+02:00"
-tags: ["chemie", "forschung", "tag3"]
-categories: ["forschung"]
+title: 'Titel'
+date: '2026-05-23T04:42:00+02:00'
+tags: ['chemie', 'forschung', 'tag3']
+categories: ['forschung']
 draft: false
 ---
 ```
@@ -59,11 +60,13 @@ draft: false
 5. **Commit & Push** — `git add`, `git commit -m "articles: YYYY-MM-DD"`, `git push`
 
 ### Deploy
+
 - Existing deploy systemd timer picks up the push and rebuilds automatically (nginx serves `public/`)
 
 ## Site Integration
 
 Minimal Hugo changes:
+
 - No new template needed — posts use the default `_default/single.html`
 - The `/posts/` section listing works automatically via Hugo's default section list
 - Existing KaTeX setup already renders any formulas in articles
@@ -71,6 +74,7 @@ Minimal Hugo changes:
 ## KG Integration (Future)
 
 The script can query the Neo4j Knowledge Graph (http://knowledge-neo4j:7687) during generation to:
+
 - Check if an entity or topic already exists in the KG
 - Retrieve related context for richer articles
 - Store generated articles back into the KG as Document nodes
