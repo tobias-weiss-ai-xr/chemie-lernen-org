@@ -39,7 +39,7 @@ install:  ## create venv and install pinned dependencies
 	@test -d $(VENV) || $(PYTHON) -m venv $(VENV)
 	$(VENV_PYTHON) -m pip install --upgrade pip wheel setuptools
 	$(VENV_PYTHON) -m pip install --require-hashes -r requirements.txt
-	$(VENV_PYTHON) -m pip install --require-hashes -r requirements-dev.txt
+	$(VENV_PYTHON) -m pip install -r requirements-dev.txt
 	@echo "OK: venv ready at $(VENV)"
 
 all: install  ## run all scrapers (idempotent)
