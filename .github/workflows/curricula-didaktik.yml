@@ -7,6 +7,7 @@ on:
       - 'myhugoapp/data/curricula/**'
       - 'myhugoapp/data/didaktik/**'
       - 'myhugoapp/data/modulhandbuch/**'
+      - '.github/workflows/curricula-didaktik.yml'
   pull_request:
   schedule:
     - cron: '0 3 * * 1'  # weekly Monday 03:00 UTC
