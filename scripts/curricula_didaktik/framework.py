@@ -366,6 +366,10 @@ def main(argv: list[str]) -> int:
 
     try:
         result = module.scrape()
+        # Some scrapers are async (e.g. marburg_modulhandbuch); await them.
+        if hasattr(result, '__await__'):
+            import asyncio
+            result = asyncio.run(result)
     except Exception as e:
         log.exception("Scraper %s raised: %s", args.source, e)
         return EXIT_PARSE_ERROR
