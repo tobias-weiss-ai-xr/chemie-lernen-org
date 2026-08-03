@@ -266,18 +266,16 @@ async function main() {
         coversPairs.slice(0, 20).forEach(p => console.log(`    ${p.entityName} → SubTopic ${p.subtopicSlug.slice(-60)}`));
       } else {
         // Bulk MERGE in batches
-        let created = 0;
         for (let i = 0; i < coversPairs.length; i += BATCH_SIZE) {
           const batch = coversPairs.slice(i, i + BATCH_SIZE);
           const rows = batch.map(p => ({ name: p.entityName, slug: p.subtopicSlug }));
-          const result = await session.run(
+          await session.run(
             `UNWIND $rows AS row
              MATCH (e:Entity {name: row.name})
              MATCH (st:SubTopic {slug: row.slug})
              MERGE (e)-[:COVERS_TOPIC]->(st)`,
             { rows }
           );
-          created += batch.length;
           process.stdout.write(`\r  Created ${i + batch.length}/${coversPairs.length}...`);
         }
         console.log(`\n  Total COVERS_TOPIC created/merged: ${coversPairs.length}\n`);
@@ -301,18 +299,16 @@ async function main() {
         console.log('  Sample matches:');
         fulfillsPairs.slice(0, 20).forEach(p => console.log(`    ${p.entityName} → LO ${p.loSlug.slice(-60)}`));
       } else {
-        let created = 0;
         for (let i = 0; i < fulfillsPairs.length; i += BATCH_SIZE) {
           const batch = fulfillsPairs.slice(i, i + BATCH_SIZE);
           const rows = batch.map(p => ({ name: p.entityName, slug: p.loSlug }));
-          const result = await session.run(
+          await session.run(
             `UNWIND $rows AS row
              MATCH (e:Entity {name: row.name})
              MATCH (lo:LearningObjective {slug: row.slug})
              MERGE (e)-[:FULFILLS_OBJECTIVE]->(lo)`,
             { rows }
           );
-          created += batch.length;
           process.stdout.write(`\r  Created ${i + batch.length}/${fulfillsPairs.length}...`);
         }
         console.log(`\n  Total FULFILLS_OBJECTIVE created/merged: ${fulfillsPairs.length}\n`);
