@@ -60,6 +60,7 @@ const ALL_STATES = [
   'nw',
   'rp',
   'sh',
+  'sl',
   'sn',
   'st',
   'th',
