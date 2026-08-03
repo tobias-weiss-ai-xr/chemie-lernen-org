@@ -886,11 +886,62 @@
         })
       );
 
+      // Sync wrong answers to server-side FSRS (evidence-based loop):
+      // wrong quiz answers become spaced-repetition cards (day 3/7/14/30).
+      syncWrongAnswersToFsrs(results);
+
       // Re-check due cards for review banner
       checkDueCards();
     } catch (e) {
       // localStorage might be full or unavailable
     }
+  }
+
+  // ── Server-side FSRS sync (evidence-based loop) ──────
+  // Wrong quiz answers become spaced-repetition cards via
+  // POST /api/fsrs/cards. Reviews happen on /lernkarten-review/.
+  function syncWrongAnswersToFsrs(results) {
+    var wrongAnswers = (results.answers || []).filter(function (a) {
+      return a && a.question && !a.correct;
+    });
+    if (wrongAnswers.length === 0) return;
+
+    // Send each wrong answer as a separate card (fire-and-forget).
+    wrongAnswers.forEach(function (wa) {
+      fetch('/api/fsrs/cards', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body: JSON.stringify({
+          topicId: currentTopic,
+          question: wa.question.question,
+          answer: buildCardAnswer(wa.question),
+          type: wa.question.type || 'flashcard',
+        }),
+      }).catch(function () {
+        // Non-fatal: offline users or anonymous users are unaffected
+      });
+    });
+  }
+
+  function buildCardAnswer(q) {
+    var answerText = '';
+    if (q.correctAnswer) {
+      answerText = String(q.correctAnswer);
+    } else if (Array.isArray(q.correctIndices)) {
+      answerText = (q.correctIndices || [])
+        .map(function (idx) {
+          return (q.options || [])[idx];
+        })
+        .filter(Boolean)
+        .join(', ');
+    } else if (q.correctIndex !== undefined && q.options) {
+      answerText = q.options[q.correctIndex] || '';
+    }
+    if (q.explanation) {
+      answerText = answerText ? answerText + ' — ' + q.explanation : q.explanation;
+    }
+    return answerText || q.question;
   }
 
   // ── Initialize ────────────────────────────────

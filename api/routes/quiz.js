@@ -19,7 +19,13 @@ import fs from 'fs';
 import path from 'path';
 import pino from 'pino';
 import { requireAuth } from '../auth.js';
-import { getDueCards, updateFsrsCard, addQuizResult, getQuizResults } from '../auth-db.js';
+import {
+  getDueCards,
+  updateFsrsCard,
+  createFsrsCard,
+  addQuizResult,
+  getQuizResults,
+} from '../auth-db.js';
 
 const logger = pino({
   level: process.env.LOG_LEVEL || 'info',
@@ -110,6 +116,45 @@ router.put('/api/quiz-results', async (req, res) => {
     if (!saveResult.ok) {
       logger.warn({ err: saveResult.error, message: '[quiz-api] Failed to save result' });
     }
+
+    // ── Evidence-based loop: wrong answers → FSRS flashcards ──
+    // Research (1,732 papers): spaced repetition + testing effect
+    // boost retention by up to 40%. Wrong quiz answers become cards
+    // that are re-visited at increasing intervals (day 3/7/14/30).
+    let cardsCreated = 0;
+    const wrongAnswers = (answers || []).filter((a) => a && a.question && a.correct === false);
+    for (const wa of wrongAnswers) {
+      const q = wa.question;
+      let answerText = '';
+      if (q.correctAnswer) {
+        answerText = String(q.correctAnswer);
+      } else if (Array.isArray(q.correctIndices)) {
+        answerText = (q.correctIndices || [])
+          .map((idx) => (q.options || [])[idx])
+          .filter(Boolean)
+          .join(', ');
+      } else if (q.correctIndex !== undefined && q.options) {
+        answerText = q.options[q.correctIndex] || '';
+      }
+      if (q.explanation) {
+        answerText = answerText ? answerText + ' — ' + q.explanation : q.explanation;
+      }
+      if (answerText) {
+        createFsrsCard(req.user.id, {
+          topicId: q.id || topic,
+          question: q.question,
+          answer: answerText,
+          type: q.type || 'multiple-choice',
+        });
+        cardsCreated++;
+      }
+    }
+    if (cardsCreated > 0) {
+      logger.info(
+        { userId: req.user.id, cardsCreated, topic },
+        '[quiz-api] Auto-created FSRS cards from wrong answers'
+      );
+    }
   }
 
   res.json({ ok: true, result });
@@ -149,6 +194,30 @@ router.get('/api/fsrs/cards', requireAuth, async (req, res) => {
       '[fsrs] Error fetching due cards'
     );
     res.status(500).json({ error: 'Failed to fetch due cards' });
+  }
+});
+
+// ── FSRS card creation ──────────────────────────────
+
+router.post('/api/fsrs/cards', requireAuth, async (req, res) => {
+  try {
+    const { topicId, question, answer, type } = req.body;
+    if (!question || !answer) {
+      return res.status(400).json({ error: 'Missing required fields: question, answer' });
+    }
+    const card = createFsrsCard(req.user.id, {
+      topicId: topicId || 'general',
+      question,
+      answer,
+      type: type || 'flashcard',
+    });
+    if (!card) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.status(201).json({ card });
+  } catch (err) {
+    logger.error({ err: err, message: err.message || String(err) }, '[fsrs] Error creating card');
+    res.status(500).json({ error: 'Failed to create card' });
   }
 });
 
