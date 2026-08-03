@@ -95,20 +95,23 @@ router.get('/api/learning-paths', async (req, res) => {
       });
       try {
         const objResult = await detailSession.run(
-          `MATCH (c:Curriculum)-[:HAS_TOPIC]->(t:Topic)-[:HAS_SUBTOPIC]->(st:SubTopic)-[:COVERS]->(lo:LearningObjective)
-           RETURN c.slug AS slug, lo.id AS objectiveId`
+          `MATCH (c:Curriculum)-[:HAS_SUBTOPIC]->(st:SubTopic)-[:FULFILLS]->(lo:LearningObjective)
+           OPTIONAL MATCH (c)-[:HAS_TOPIC]->(t:Topic)-[:HAS_SUBTOPIC]->(st2:SubTopic)-[:FULFILLS]->(lo2:LearningObjective)
+           RETURN c.slug AS slug, lo.slug AS objectiveId, lo2.slug AS objectiveId2`
         );
         const pathObjectives = {};
         for (const r of objResult.records) {
           const slug = r.get('slug');
           const oid = r.get('objectiveId');
-          if (!slug || oid == null) continue;
-          if (!pathObjectives[slug]) pathObjectives[slug] = [];
-          pathObjectives[slug].push(String(oid));
+          const oid2 = r.get('objectiveId2');
+          if (!slug) continue;
+          if (!pathObjectives[slug]) pathObjectives[slug] = new Set();
+          if (oid != null) pathObjectives[slug].add(String(oid));
+          if (oid2 != null) pathObjectives[slug].add(String(oid2));
         }
 
         paths = paths.map((p) => {
-          const objectives = pathObjectives[p.slug] || [];
+          const objectives = Array.from(pathObjectives[p.slug] || []);
           if (objectives.length === 0) return p;
           const completed = objectives.filter((oid) => completedSlugs.has(oid)).length;
           return {
@@ -163,11 +166,19 @@ router.get('/api/learning-paths/:slug', async (req, res) => {
 
     let tree = null;
     try {
+      // Combined schema query:
+      //   Schema A (legacy, majority): Curriculum→HAS_SUBTOPIC→SubTopic→FULFILLS→LO
+      //   Schema B (BY only):          Curriculum→HAS_TOPIC→Topic→HAS_SUBTOPIC→SubTopic→FULFILLS→LO
+      // Both paths are combined via OPTIONAL MATCH; LOs are deduplicated by id.
       const result = await session.run(
-        `MATCH (c:Curriculum {slug: $slug})-[:HAS_TOPIC]->(t:Topic)-[:HAS_SUBTOPIC]->(st:SubTopic)-[:COVERS]->(lo:LearningObjective)
-         OPTIONAL MATCH (lo)-[:PREREQUISITE]->(pre:LearningObjective)
-         RETURN c, t, st, lo, collect(DISTINCT pre.id) AS prerequisites
-         ORDER BY t.title, st.title, lo.id`,
+        `MATCH (c:Curriculum {slug: $slug})
+         OPTIONAL MATCH (c)-[:HAS_SUBTOPIC]->(stA:SubTopic)-[:FULFILLS]->(loA:LearningObjective)
+         OPTIONAL MATCH (c)-[:HAS_TOPIC]->(t:Topic)-[:HAS_SUBTOPIC]->(stB:SubTopic)-[:FULFILLS]->(loB:LearningObjective)
+         OPTIONAL MATCH (loA)-[:PREREQUISITE]->(preA:LearningObjective)
+         OPTIONAL MATCH (loB)-[:PREREQUISITE]->(preB:LearningObjective)
+         RETURN c, t, stA, loA, collect(DISTINCT preA.slug) AS prerequisitesA,
+                stB, loB, collect(DISTINCT preB.slug) AS prerequisitesB
+         ORDER BY t.title, stA.title, stB.title, loA.slug, loB.slug`,
         { slug: req.params.slug }
       );
 
@@ -190,43 +201,58 @@ router.get('/api/learning-paths/:slug', async (req, res) => {
       } else {
         const cProps = result.records[0].get('c').properties;
         const topicMap = {};
+        const seenLOs = new Set();
 
-        for (const r of result.records) {
-          const topic = r.get('t');
-          const subtopic = r.get('st');
-          const lo = r.get('lo');
-          const preReqIds = r.get('prerequisites') || [];
+        const addObjective = (lo, preReqIds, topic, subtopic) => {
+          if (!lo) return;
+          const loId = lo.properties.slug || '';
+          if (!loId || seenLOs.has(loId)) return;
+          seenLOs.add(loId);
 
-          if (!topic) continue;
-          const tId = topic.identity.toNumber();
+          const tId = topic ? topic.identity.toNumber() : 'schemaA';
           if (!topicMap[tId]) {
             topicMap[tId] = {
-              title: topic.properties.title || '',
-              slug: topic.properties.slug || '',
+              title: topic ? topic.properties.title || '' : cProps.title || 'Themen',
+              slug: topic ? topic.properties.slug || '' : cProps.slug || '',
               subtopics: {},
             };
           }
 
-          if (subtopic) {
-            const stId = subtopic.identity.toNumber();
-            if (!topicMap[tId].subtopics[stId]) {
-              topicMap[tId].subtopics[stId] = {
-                title: subtopic.properties.title || '',
-                slug: subtopic.properties.slug || '',
-                objectives: [],
-              };
-            }
+          const stId = subtopic
+            ? subtopic.identity.toNumber()
+            : 'stA-' + (subtopic && subtopic.properties.slug);
+          if (!topicMap[tId].subtopics[stId]) {
+            topicMap[tId].subtopics[stId] = {
+              title: subtopic ? subtopic.properties.title || '' : '',
+              slug: subtopic ? subtopic.properties.slug || '' : '',
+              objectives: [],
+            };
+          }
 
-            if (lo) {
-              topicMap[tId].subtopics[stId].objectives.push({
-                id: lo.properties.id || '',
-                text: lo.properties.text || lo.properties.title || '',
-                prerequisites: preReqIds.filter(Boolean).map(String),
-              });
-            }
+          topicMap[tId].subtopics[stId].objectives.push({
+            id: loId,
+            text: lo.properties.text || lo.properties.title || '',
+            prerequisites: preReqIds.filter(Boolean).map(String),
+          });
+        };
+
+        for (const r of result.records) {
+          // Schema A: direct subtopics
+          const stA = r.get('stA');
+          const loA = r.get('loA');
+          if (stA && loA) {
+            addObjective(loA, r.get('prerequisitesA') || [], null, stA);
+          }
+          // Schema B: topic-nested subtopics
+          const topic = r.get('t');
+          const stB = r.get('stB');
+          const loB = r.get('loB');
+          if (topic && stB && loB) {
+            addObjective(loB, r.get('prerequisitesB') || [], topic, stB);
           }
         }
 
+        // Schema A subtopics without a topic get grouped under one fallback topic
         const topics = Object.values(topicMap).map((t) => ({
           ...t,
           subtopics: Object.values(t.subtopics),
@@ -311,19 +337,25 @@ router.post('/api/learning-paths/:slug/certificate', requirePremium, async (req,
     let allObjectives = [];
     try {
       const result = await session.run(
-        `MATCH (c:Curriculum {slug: $slug})-[:HAS_TOPIC]->(t:Topic)-[:HAS_SUBTOPIC]->(st:SubTopic)-[:COVERS]->(lo:LearningObjective)
-         RETURN c.title AS pathTitle, lo.id AS objectiveId
-         ORDER BY lo.id`,
+        `MATCH (c:Curriculum {slug: $slug})
+         OPTIONAL MATCH (c)-[:HAS_SUBTOPIC]->(stA:SubTopic)-[:FULFILLS]->(loA:LearningObjective)
+         OPTIONAL MATCH (c)-[:HAS_TOPIC]->(t:Topic)-[:HAS_SUBTOPIC]->(stB:SubTopic)-[:FULFILLS]->(loB:LearningObjective)
+         RETURN c.title AS pathTitle, loA.slug AS objectiveIdA, loB.slug AS objectiveIdB
+         ORDER BY loA.slug, loB.slug`,
         { slug: req.params.slug }
       );
       if (result.records.length === 0) {
         return res.status(404).json({ error: 'Lernpfad nicht gefunden' });
       }
       pathTitle = result.records[0].get('pathTitle');
+      const objectiveSet = new Set();
       for (const r of result.records) {
-        const oid = r.get('objectiveId');
-        if (oid != null) allObjectives.push(String(oid));
+        const oidA = r.get('objectiveIdA');
+        const oidB = r.get('objectiveIdB');
+        if (oidA != null) objectiveSet.add(String(oidA));
+        if (oidB != null) objectiveSet.add(String(oidB));
       }
+      allObjectives = Array.from(objectiveSet);
     } finally {
       await session.close();
     }

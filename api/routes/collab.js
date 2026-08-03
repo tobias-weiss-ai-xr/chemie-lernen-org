@@ -168,4 +168,65 @@ router.post(
   }
 );
 
+// ── Quiz Challenges (social learning) ─────────────────────────
+
+router.get('/api/collab/sessions/:id/challenges', requireAuth, async (req, res) => {
+  try {
+    const challenges = collabEngine.getChallenges(req.params.id);
+    res.json({ challenges });
+  } catch (err) {
+    logger.error({ err: err, message: err.message || String(err) }, '[collab] challenges error');
+    res.status(500).json({ error: 'Challenges konnten nicht geladen werden' });
+  }
+});
+
+router.post('/api/collab/sessions/:id/challenges', requireAuth, async (req, res) => {
+  try {
+    const { topic, score, total, percentage, note } = req.body;
+    if (score === undefined || !total) {
+      return res.status(400).json({ error: 'score und total sind erforderlich' });
+    }
+    const result = collabEngine.postQuizChallenge(req.params.id, req.user.id, {
+      topic: topic || 'Quiz',
+      score: Number(score),
+      total: Number(total),
+      percentage: percentage !== undefined ? Number(percentage) : Math.round((score / total) * 100),
+      note: note || '',
+    });
+    if (result.error) return res.status(400).json(result);
+    res.status(201).json(result);
+  } catch (err) {
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[collab] post challenge error'
+    );
+    res.status(500).json({ error: 'Challenge konnte nicht gepostet werden' });
+  }
+});
+
+router.post(
+  '/api/collab/sessions/:id/challenges/:challengeId/reactions',
+  requireAuth,
+  async (req, res) => {
+    try {
+      const { emoji } = req.body;
+      if (!emoji) return res.status(400).json({ error: 'emoji ist erforderlich' });
+      const result = collabEngine.reactToChallenge(
+        req.params.id,
+        req.params.challengeId,
+        req.user.id,
+        String(emoji)
+      );
+      if (result.error) return res.status(400).json(result);
+      res.json(result);
+    } catch (err) {
+      logger.error(
+        { err: err, message: err.message || String(err) },
+        '[collab] challenge reaction error'
+      );
+      res.status(500).json({ error: 'Reaktion konnte nicht gespeichert werden' });
+    }
+  }
+);
+
 export default router;

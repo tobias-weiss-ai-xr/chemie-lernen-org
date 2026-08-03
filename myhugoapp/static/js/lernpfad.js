@@ -255,6 +255,7 @@ async function selectPath(pathId) {
     (path.description || '') +
     '</p>' +
     enrollmentHtml +
+    '<div id="session-plan"></div>' +
     '<div class="path-steps">' +
     steps
       .map(function (step, idx) {
@@ -263,6 +264,7 @@ async function selectPath(pathId) {
       .join('') +
     '</div>';
 
+  updateSessionPlan(path, completed);
   updateProgressSummary();
 }
 
@@ -314,6 +316,108 @@ function markStepDone(pathId, stepIdx) {
   renderPathList();
   if (currentPathId) selectPath(currentPathId);
   updateProgressSummary();
+}
+
+// ── Cognitive-load session chunking ─────────────────────────────
+// Evidence (162 papers on cognitive load theory): learners retain more
+// in short focused segments (5–7 min) with breaks. Group path steps
+// into sessions of ~10 min of work (2×5min blocks) and suggest breaks.
+const SESSION_MINUTES = 10; // target work minutes per session
+const BREAK_MINUTES = 5; // suggested break between sessions
+
+function stepMinutes(step) {
+  var m = parseInt(step.mins || step.estimatedMinutes || 5, 10);
+  return isNaN(m) || m < 1 ? 5 : m;
+}
+
+/** Group ordered steps into sessions that fit SESSION_MINUTES of work. */
+function buildSessionPlan(steps) {
+  if (!steps || steps.length === 0) return [];
+  var sessions = [];
+  var current = { steps: [], totalMinutes: 0 };
+  steps.forEach(function (step, idx) {
+    var mins = stepMinutes(step);
+    if (current.steps.length > 0 && current.totalMinutes + mins > SESSION_MINUTES) {
+      sessions.push(current);
+      current = { steps: [], totalMinutes: 0 };
+    }
+    current.steps.push(Object.assign({}, step, { index: idx, minutes: mins }));
+    current.totalMinutes += mins;
+  });
+  if (current.steps.length > 0) sessions.push(current);
+  return sessions;
+}
+
+function renderSessionPlan(sessions, completed) {
+  if (!sessions || sessions.length === 0) return '';
+  var html =
+    '<div class="session-plan panel panel-info">' +
+    '<div class="panel-heading"><strong><i class="fa fa-hourglass-half"></i> Session-Plan (Cognitive Load optimiert)</strong>' +
+    '<span class="pull-right text-muted"><i class="fa fa-clock-o"></i> 5–7 Min Blöcke, dann Pause</span></div>' +
+    '<div class="panel-body">';
+  sessions.forEach(function (s, si) {
+    var doneSteps = s.steps.filter(function (st) {
+      return completed > st.index;
+    }).length;
+    var allDone = doneSteps === s.steps.length;
+    var status = allDone
+      ? 'success'
+      : si === 0 ||
+          sessions.slice(0, si).every(function (prev) {
+            return prev.steps.every(function (st) {
+              return completed > st.index;
+            });
+          })
+        ? 'primary'
+        : 'default';
+    html +=
+      '<div class="session-item session-' +
+      status +
+      '">' +
+      '<div class="session-head"><strong>Session ' +
+      (si + 1) +
+      '</strong>' +
+      '<span class="label label-' +
+      (status === 'default' ? 'default' : status === 'success' ? 'success' : 'info') +
+      '">' +
+      doneSteps +
+      '/' +
+      s.steps.length +
+      '</span>' +
+      '<span class="text-muted pull-right">~' +
+      s.totalMinutes +
+      ' min</span></div>' +
+      '<div class="session-steps">' +
+      s.steps
+        .map(function (st) {
+          return (
+            '<span class="label ' +
+            (completed > st.index ? 'label-success' : 'label-default') +
+            '">' +
+            (st.index + 1) +
+            '. ' +
+            (st.title || '').substring(0, 28) +
+            '</span>'
+          );
+        })
+        .join(' ') +
+      '</div>' +
+      (si < sessions.length - 1 && status !== 'success'
+        ? '<div class="session-break text-muted"><i class="fa fa-coffee"></i> ' +
+          BREAK_MINUTES +
+          ' Min Pause empfohlen</div>'
+        : '') +
+      '</div>';
+  });
+  html += '</div></div>';
+  return html;
+}
+
+function updateSessionPlan(path, completed) {
+  var el = document.getElementById('session-plan');
+  if (!el || !path || !path.steps) return;
+  var sessions = buildSessionPlan(path.steps);
+  el.innerHTML = renderSessionPlan(sessions, completed);
 }
 
 function getPathProgress(pathId) {

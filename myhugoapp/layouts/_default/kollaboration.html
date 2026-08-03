@@ -84,6 +84,11 @@
                     <i class="fa fa-pencil"></i> Geteilte Übungen
                   </a>
                 </li>
+                <li role="presentation">
+                  <a href="#tab-challenges" aria-controls="tab-challenges" role="tab" data-toggle="tab">
+                    <i class="fa fa-trophy"></i> Quiz-Challenges
+                  </a>
+                </li>
               </ul>
 
               <div class="tab-content">
@@ -105,24 +110,60 @@
                   </div>
                 </div>
 
-                <!-- Exercises Tab -->
-                <div role="tabpanel" class="tab-pane" id="tab-exercises">
-                  <div class="exercises-toolbar">
-                    <button class="btn btn-sm btn-primary" id="btn-share-exercise">
-                      <i class="fa fa-share"></i> Übung teilen
+                <!-- Challenges Tab -->
+                <div role="tabpanel" class="tab-pane" id="tab-challenges">
+                  <div class="challenges-toolbar">
+                    <button class="btn btn-sm btn-primary" id="btn-post-challenge">
+                      <i class="fa fa-trophy"></i> Quiz-Ergebnis posten
                     </button>
-                    <button class="btn btn-sm btn-default" id="btn-refresh-exercises">
+                    <button class="btn btn-sm btn-default" id="btn-refresh-challenges">
                       <i class="fa fa-refresh"></i> Aktualisieren
                     </button>
                   </div>
-                  <div id="shared-exercises">
-                    <p class="text-muted">Keine geteilten Übungen.</p>
+                  <div id="challenge-list">
+                    <p class="text-muted">Noch keine Quiz-Challenges. Sei die erste Person, die ein Ergebnis teilt!</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Post Challenge Modal -->
+<div class="modal fade" id="post-challenge-modal" tabindex="-1" role="dialog" aria-labelledby="post-challenge-label">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+        <h4 class="modal-title" id="post-challenge-label"><i class="fa fa-trophy"></i> Quiz-Ergebnis posten</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="challenge-topic">Thema</label>
+          <input type="text" id="challenge-topic" class="form-control" placeholder="z.B. Redoxreaktionen">
+        </div>
+        <div class="form-group">
+          <label for="challenge-score">Punkte (score)</label>
+          <input type="number" id="challenge-score" class="form-control" min="0" placeholder="z.B. 8">
+        </div>
+        <div class="form-group">
+          <label for="challenge-total">Gesamt (total)</label>
+          <input type="number" id="challenge-total" class="form-control" min="1" placeholder="z.B. 10">
+        </div>
+        <div class="form-group">
+          <label for="challenge-note">Notiz (optional)</label>
+          <input type="text" id="challenge-note" class="form-control" placeholder="z.B. Geschafft! 🎉">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+        <button type="button" class="btn btn-primary" id="btn-do-post-challenge">
+          <i class="fa fa-check"></i> Posten
+        </button>
       </div>
     </div>
   </div>
@@ -171,6 +212,9 @@ document.addEventListener('DOMContentLoaded', function () {
   wire('btn-share-exercise', function () { Collaboration.shareExercise(); });
   wire('btn-refresh-exercises', function () { Collaboration.loadExercises(); });
   wire('btn-do-create-session', function () { Collaboration.doCreateSession(); });
+  wire('btn-post-challenge', function () { Collaboration.showPostChallengeModal(); });
+  wire('btn-refresh-challenges', function () { Collaboration.loadChallenges(); });
+  wire('btn-do-post-challenge', function () { Collaboration.doPostChallenge(); });
 
   var chatInput = document.getElementById('chat-input');
   if (chatInput) {

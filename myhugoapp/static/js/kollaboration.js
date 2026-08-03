@@ -12,6 +12,7 @@ var Collaboration = (function () {
     sessions: [],
     messages: [],
     exercises: [],
+    challenges: [],
     participants: [],
     pollTimer: null,
   };
@@ -275,6 +276,9 @@ var Collaboration = (function () {
     // Load exercises
     loadExercises();
 
+    // Load quiz challenges
+    loadChallenges();
+
     // Start polling for new messages
     startPolling();
   }
@@ -517,6 +521,160 @@ var Collaboration = (function () {
       });
   }
 
+  /* ── Quiz Challenges (social learning) ── */
+
+  function showPostChallengeModal() {
+    if (!state.currentSessionId) return;
+    var score = document.getElementById('challenge-score');
+    var total = document.getElementById('challenge-total');
+    var topic = document.getElementById('challenge-topic');
+    var note = document.getElementById('challenge-note');
+    if (score) score.value = '';
+    if (total) total.value = '';
+    if (topic) topic.value = '';
+    if (note) note.value = '';
+    if (window.jQuery && jQuery('#post-challenge-modal')) {
+      jQuery('#post-challenge-modal').modal('show');
+    }
+  }
+
+  function doPostChallenge() {
+    if (!state.currentSessionId) return;
+    var score = parseInt(document.getElementById('challenge-score').value, 10);
+    var total = parseInt(document.getElementById('challenge-total').value, 10);
+    var topic = (document.getElementById('challenge-topic').value || '').trim();
+    var note = (document.getElementById('challenge-note').value || '').trim();
+    if (isNaN(score) || isNaN(total) || total <= 0) {
+      showError('Bitte gültige Punkte und Gesamtzahl angeben.');
+      return;
+    }
+
+    apiFetch('/collab/sessions/' + encodeURIComponent(state.currentSessionId) + '/challenges', {
+      method: 'POST',
+      body: JSON.stringify({
+        topic: topic || 'Quiz',
+        score: score,
+        total: total,
+        percentage: Math.round((score / total) * 100),
+        note: note,
+      }),
+    })
+      .then(function () {
+        if (window.jQuery && jQuery('#post-challenge-modal')) {
+          jQuery('#post-challenge-modal').modal('hide');
+        }
+        loadChallenges();
+      })
+      .catch(function (err) {
+        showError('Challenge konnte nicht gepostet werden: ' + err.message);
+      });
+  }
+
+  function loadChallenges() {
+    if (!state.currentSessionId) return;
+    apiFetch('/collab/sessions/' + encodeURIComponent(state.currentSessionId) + '/challenges')
+      .then(function (data) {
+        state.challenges = (data && data.challenges) || [];
+        renderChallenges();
+      })
+      .catch(function (err) {
+        if (err.message.indexOf('401') === -1) {
+          console.error('[kollaboration] challenges fetch failed', err);
+        }
+      });
+  }
+
+  function renderChallenges() {
+    if (!state.challenges.length) {
+      setHtml(
+        'challenge-list',
+        '<p class="text-muted">Noch keine Quiz-Challenges. Sei die erste Person, die ein Ergebnis teilt!</p>'
+      );
+      return;
+    }
+
+    var html = state.challenges
+      .map(function (ch) {
+        var pctColor = ch.percentage >= 85 ? 'success' : ch.percentage >= 70 ? 'info' : 'warning';
+        var reactions = ch.reactions || {};
+        var reactionHtml =
+          Object.keys(reactions)
+            .map(function (emoji) {
+              return (
+                '<button class="btn btn-xs btn-default challenge-reaction" onclick="Collaboration.reactToChallenge(\'' +
+                ch.id +
+                "', '" +
+                emoji +
+                '\'); return false;">' +
+                emoji +
+                ' ' +
+                reactions[emoji] +
+                '</button>'
+              );
+            })
+            .join(' ') ||
+          '<button class="btn btn-xs btn-default challenge-reaction" onclick="Collaboration.reactToChallenge(\'' +
+            ch.id +
+            "', '👍'); return false;\">👍</button>";
+
+        return (
+          '<div class="challenge-card">' +
+          '<div class="challenge-header">' +
+          '<strong>' +
+          escapeHtml(ch.displayName || 'Benutzer') +
+          '</strong> · <span class="text-muted">' +
+          escapeHtml(ch.topic || 'Quiz') +
+          '</span>' +
+          '<span class="pull-right label label-' +
+          pctColor +
+          '">' +
+          ch.percentage +
+          '%</span></div>' +
+          '<div class="progress" style="height: 8px; margin: 8px 0;">' +
+          '<div class="progress-bar progress-bar-' +
+          pctColor +
+          '" style="width: ' +
+          Math.min(100, ch.percentage || 0) +
+          '%;"></div></div>' +
+          '<div class="challenge-score text-muted">' +
+          ch.score +
+          '/' +
+          ch.total +
+          ' Punkte' +
+          (ch.note ? ' — ' + escapeHtml(ch.note) : '') +
+          '</div>' +
+          '<div class="challenge-reactions">' +
+          reactionHtml +
+          '</div>' +
+          '<div class="challenge-date text-muted">' +
+          new Date(ch.createdAt).toLocaleString('de-DE') +
+          '</div>' +
+          '</div>'
+        );
+      })
+      .join('');
+
+    setHtml('challenge-list', html);
+  }
+
+  function reactToChallenge(challengeId, emoji) {
+    if (!state.currentSessionId) return;
+    apiFetch(
+      '/collab/sessions/' +
+        encodeURIComponent(state.currentSessionId) +
+        '/challenges/' +
+        encodeURIComponent(challengeId) +
+        '/reactions',
+      { method: 'POST', body: JSON.stringify({ emoji: emoji }) }
+    )
+      .then(function () {
+        loadChallenges();
+      })
+      .catch(function (err) {
+        showError('Reaktion konnte nicht gespeichert werden: ' + err.message);
+      });
+  }
+
   /* ── Init ── */
 
   function init() {
@@ -540,6 +698,10 @@ var Collaboration = (function () {
     loadExercises: loadExercises,
     shareExercise: shareExercise,
     completeExercise: completeExercise,
+    showPostChallengeModal: showPostChallengeModal,
+    doPostChallenge: doPostChallenge,
+    loadChallenges: loadChallenges,
+    reactToChallenge: reactToChallenge,
     init: init,
   };
 })();

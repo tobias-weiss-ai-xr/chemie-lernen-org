@@ -16,7 +16,8 @@ export default [
       '**/curricula-venv/**',
       'myhugoapp/static/js/third-party/**',
       'myhugoapp/static/js/vendor/**',
-      '*.min.js', 'myhugoapp/static/js/**/*.min.js',
+      '*.min.js',
+      'myhugoapp/static/js/**/*.min.js',
       '*.optimized.js',
       'myhugoapp/static/js/**/*.optimized.js',
       'myhugoapp/public/**/*.js',
@@ -183,13 +184,13 @@ export default [
         indexedDB: 'readonly',
         IDBDatabase: 'readonly',
         IDBObjectStore: 'readonly',
-         IDBTransaction: 'readonly',
-         showError: 'readonly',
-         formatNumber: 'readonly',
-         darkenColor: 'readonly',
-         escapeHtml: 'readonly',
-         showToast: 'readonly',
-       },
+        IDBTransaction: 'readonly',
+        showError: 'readonly',
+        formatNumber: 'readonly',
+        darkenColor: 'readonly',
+        escapeHtml: 'readonly',
+        showToast: 'readonly',
+      },
     },
     rules: {
       'no-console': 'off',
@@ -363,7 +364,7 @@ export default [
         formatNumber: 'readonly',
         darkenColor: 'readonly',
         escapeHtml: 'readonly',
-         showToast: 'readonly',
+        showToast: 'readonly',
       },
     },
   },
@@ -383,11 +384,11 @@ export default [
         validateFormula: 'readonly',
         Chart: 'readonly',
         showError: 'readonly',
-         formatNumber: 'readonly',
-         showToast: 'readonly',
-       },
-     },
-   },
+        formatNumber: 'readonly',
+        showToast: 'readonly',
+      },
+    },
+  },
 
   // ES Module files - override with module type
   {
@@ -408,13 +409,13 @@ export default [
 
   // Test files
   {
-    files: ['tests/**/*.test.js', 'tests/**/*.spec.js'],
+    files: ['tests/**/*.test.js', 'tests/**/*.spec.js', 'tests/**/*.test.mjs'],
     plugins: {
       jest: jestPlugin,
     },
     languageOptions: {
       ecmaVersion: 'latest',
-      sourceType: 'commonjs',
+      sourceType: 'module',
       globals: {
         ...jestPlugin.environments.globals.globals,
         describe: 'readonly',
@@ -598,7 +599,7 @@ export default [
         formatNumber: 'readonly',
         darkenColor: 'readonly',
         escapeHtml: 'readonly',
-         showToast: 'readonly',
+        showToast: 'readonly',
       },
     },
   },

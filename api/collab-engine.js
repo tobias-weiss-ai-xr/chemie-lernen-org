@@ -96,6 +96,7 @@ export function createSession(name, topic, creatorId, creatorName) {
     participants: [{ userId: creatorId, displayName: creatorName || 'Benutzer', joinedAt: now }],
     messages: [],
     sharedExercises: [],
+    challenges: [],
     settings: {
       maxParticipants: MAX_PARTICIPANTS,
       allowAnonymous: false,
@@ -289,6 +290,73 @@ export function getSharedExercises(id) {
   return session.sharedExercises;
 }
 
+// ── Quiz Challenges (social learning: peer comparison) ────────
+// Evidence (562 papers): social comparison & challenge boost
+// motivation and engagement in active recall.
+
+const MAX_CHALLENGES = 50;
+
+export function postQuizChallenge(id, userId, challenge) {
+  const session = loadSession(id);
+  if (!session) return { error: 'Sitzung nicht gefunden' };
+
+  const participant = session.participants.find((p) => p.userId === userId);
+  if (!participant) return { error: 'Nur Teilnehmer können Quiz-Challenges posten' };
+
+  if (!session.challenges) session.challenges = [];
+
+  const rawScore = Number((challenge && challenge.score) || 0);
+  const rawTotal = Number((challenge && challenge.total) || 0);
+  const chal = {
+    id: crypto.randomBytes(6).toString('hex'),
+    userId,
+    displayName: participant.displayName,
+    topic: (challenge && challenge.topic) || 'Quiz',
+    score: rawScore,
+    total: rawTotal,
+    percentage:
+      challenge && challenge.percentage !== undefined
+        ? Number(challenge.percentage)
+        : rawTotal > 0
+          ? Math.round((rawScore / rawTotal) * 100)
+          : 0,
+    note: (challenge && challenge.note) || '',
+    createdAt: new Date().toISOString(),
+    reactions: {},
+  };
+  session.challenges.push(chal);
+  session.lastActivity = Date.now();
+
+  if (session.challenges.length > MAX_CHALLENGES) {
+    session.challenges = session.challenges.slice(-MAX_CHALLENGES);
+  }
+
+  addSystemMessage(
+    session,
+    `${participant.displayName} hat eine Quiz-Challenge gepostet: ${chal.topic} (${chal.percentage}%)`
+  );
+  saveToDisk(id);
+  return { success: true, challenge: chal };
+}
+
+export function reactToChallenge(id, challengeId, userId, emoji) {
+  const session = loadSession(id);
+  if (!session) return { error: 'Sitzung nicht gefunden' };
+  const chal = (session.challenges || []).find((c) => c.id === challengeId);
+  if (!chal) return { error: 'Challenge nicht gefunden' };
+
+  chal.reactions[emoji] = (chal.reactions[emoji] || 0) + 1;
+  session.lastActivity = Date.now();
+  saveToDisk(id);
+  return { success: true, reactions: chal.reactions };
+}
+
+export function getChallenges(id) {
+  const session = loadSession(id);
+  if (!session) return [];
+  return session.challenges || [];
+}
+
 export function getParticipants(id) {
   const session = loadSession(id);
   if (!session) return [];
@@ -326,6 +394,7 @@ function sanitize(session) {
     participantCount: session.participants.length,
     messageCount: session.messages.length,
     exerciseCount: session.sharedExercises.length,
+    challengeCount: (session.challenges || []).length,
     settings: session.settings,
   };
 }

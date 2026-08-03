@@ -67,8 +67,8 @@ describe('JSON data file schema validation', () => {
   const files = fs.readdirSync(DATA_DIR).filter((f) => f.endsWith('.json'));
 
   test('has expected number of JSON files (old + new format)', () => {
-    // 15 old-format + 9 new-format Sprint-35 scraper files = 24
-    expect(files).toHaveLength(24);
+    // 24 files (old + new formats) + marburg.json (added by CI scrape)
+    expect(files).toHaveLength(25);
   });
 
   test('each known university has a JSON file', () => {
@@ -118,7 +118,7 @@ describe('JSON data file schema validation', () => {
           for (const deg of catalog.degrees) {
             expect(typeof deg.name).toBe('string');
             expect(deg.name.length).toBeGreaterThan(0);
-            expect(['BSc', 'MSc', 'PhD', '', undefined]).toContain(deg.level);
+            expect(['BSc', 'MSc', 'PhD', 'Staatsexamen', '', undefined]).toContain(deg.level);
           }
         }
       }

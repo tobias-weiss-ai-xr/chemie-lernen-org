@@ -759,6 +759,42 @@
 
     var allQuestions = window.quizQuestions || [];
 
+    // ── Adaptive difficulty (evidence-based: 70–80% sweet spot) ──
+    // Fetch per-topic recommendation before starting; show it non-blocking.
+    fetch('/api/adaptive/recommendations/' + encodeURIComponent(topic), {
+      signal: AbortSignal.timeout(4000),
+    })
+      .then(function (r) {
+        return r.ok ? r.json() : null;
+      })
+      .then(function (rec) {
+        if (rec && rec.authenticated && rec.difficulty && rec.accuracy != null) {
+          var badge = { leicht: 'success', mittel: 'warning', schwer: 'danger' };
+          var labels = { leicht: 'Leicht empfohlen', mittel: 'Optimales Niveau', schwer: 'Herausforderung empfohlen' };
+          var hint = document.getElementById('quiz-adaptive-hint');
+          if (!hint) {
+            hint = document.createElement('div');
+            hint.id = 'quiz-adaptive-hint';
+            hint.className = 'quiz-adaptive-hint';
+            quizArea.parentNode.insertBefore(hint, quizArea);
+          }
+          hint.innerHTML =
+            '<div class="alert alert-info quiz-adaptive-alert">' +
+            '<i class="fa fa-line-chart"></i> ' +
+            '<strong>Adaptive Empfehlung:</strong> ' +
+            '<span class="label label-' + (badge[rec.difficulty] || 'default') + '">' +
+            (labels[rec.difficulty] || rec.difficulty) +
+            '</span> ' +
+            '<span class="text-muted">(Trefferquote: ' + rec.accuracy + '%, ' +
+            rec.sampleSize + ' Versuche)</span>' +
+            '<button type="button" class="close" onclick="this.parentNode.remove()">&times;</button>' +
+            '</div>';
+        }
+      })
+      .catch(function () {
+        /* ignore — adaptive hint is non-critical */
+      });
+
     if (topic === 'alle') {
       startQuiz(allQuestions, 'Alle Themen');
     } else {
