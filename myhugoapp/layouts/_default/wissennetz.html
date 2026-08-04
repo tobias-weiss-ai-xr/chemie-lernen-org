@@ -1,5 +1,7 @@
 {{ define "main" }}
 
+<link rel="stylesheet" href="{{ "/css/kg-legend.css" | relURL }}">
+
 <div class="thema-container">
   <div class="thema-header">
     <div class="row">
@@ -17,8 +19,55 @@
         <article class="thema-content">
           {{ .Content }}
         </article>
+        <div id="kg-app"></div>
+        <div id="kg-controls"></div>
       </div>
       <aside class="col-md-4">
+        <div class="kg-legend-panel card mb-4">
+          <div class="card-header bg-primary text-white">
+            <strong>🗺️ Legende</strong>
+          </div>
+          <div class="card-body">
+            <div class="kg-legend-section">
+              <h5>Knoten-Typen</h5>
+              <div class="kg-legend-items">
+                <div class="kg-legend-item"><span class="kg-legend-color" style="background: #667eea"></span><span>Stoff</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-color" style="background: #45b7d1"></span><span>Konzept</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-color" style="background: #4ecdc4"></span><span>Reaktion</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-color" style="background: #f093fb"></span><span>Methode</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-color" style="background: #ff9a76"></span><span>Person</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-color" style="background: #a8a8a8"></span><span>Quelle</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-color" style="background: #9b59b6"></span><span>Lehrplan</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-color" style="background: #2e7d32"></span><span>KMK-Standard</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-color" style="background: #17a2b8"></span><span>Lernziel</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-icon">📄</span><span>Artikel</span></div>
+              </div>
+            </div>
+            <hr>
+            <div class="kg-legend-section">
+              <h5>Verknüpfungen</h5>
+              <div class="kg-legend-items">
+                <div class="kg-legend-item"><span class="kg-legend-line" style="background: #667eea"></span><span>Verknüpft</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-line kg-legend-line-dashed" style="background: #f39c12"></span><span>Ähnlich</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-line" style="background: #e74c3c"></span><span>Besteht aus</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-line" style="background: #45b7d1"></span><span>Beschreibt</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-line" style="background: #2ecc71"></span><span>Demonstriert</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-line" style="background: #e67e22"></span><span>Erzeugt</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-line" style="background: #9b59b6"></span><span>Entdeckt</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-line" style="background: #1abc9c"></span><span>Beinhaltet</span></div>
+                <div class="kg-legend-item"><span class="kg-legend-line" style="background: #f1c40f"></span><span>Vergleichbar</span></div>
+              </div>
+            </div>
+            <hr>
+            <div class="kg-legend-section">
+              <h5>Größe & Form</h5>
+              <p class="small text-muted">
+                <strong>Knotengröße:</strong> Je mehr Verbindungen und Dokumente, desto größer.<br>
+                <strong>Kreis:</strong> Entity | <strong>Kleinere Kreise:</strong> Artikel
+              </p>
+            </div>
+          </div>
+        </div>
         <div class="thema-sidebar"></div>
       </aside>
     </div>
@@ -45,6 +94,6 @@ function loadD3AndEgoGraph() {
   });
 }
 </script>
-<script src="{{ "/js/wissennetz-graph.js" | relURL }}?v=2"></script>
+<script src="{{ "/js/wissennetz-graph.js" | relURL }}"></script>
 
 {{ end }}

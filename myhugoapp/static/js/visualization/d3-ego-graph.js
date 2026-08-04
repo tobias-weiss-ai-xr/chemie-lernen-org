@@ -845,8 +845,8 @@
         });
       }
 
-      // Legend
-      if (showLegend) {
+      // Legend - skip if dedicated legend panel exists on page
+      if (showLegend && !document.querySelector('.kg-legend-panel')) {
         var legend = svg
           .append('g')
           .attr('transform', 'translate(10,10)')

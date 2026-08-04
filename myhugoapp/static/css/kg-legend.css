@@ -1,0 +1,130 @@
+/* Entity Graph Legend - chemie-lernen.org
+ * Persistent legend panel for the Wissensnetz visualization
+ */
+
+/* Legend Panel */
+.kg-legend-panel {
+  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color, #dee2e6);
+}
+
+.kg-legend-panel .card-header {
+  padding: 12px 15px;
+  border-radius: 6px 6px 0 0 !important;
+  font-size: 1rem;
+}
+
+.kg-legend-panel .card-body {
+  padding: 15px;
+}
+
+/* Legend Sections */
+.kg-legend-section {
+  margin-bottom: 15px;
+}
+
+.kg-legend-section h5 {
+  margin-bottom: 10px;
+  color: var(--text-dark, #333);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Legend Items */
+.kg-legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kg-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+/* Color indicators for nodes */
+.kg-legend-color {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color, #fff);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+/* Icon indicators for articles */
+.kg-legend-icon {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* Line indicators for relationships */
+.kg-legend-line {
+  display: inline-block;
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.kg-legend-line-dashed {
+  background: linear-gradient(to right, currentColor 50%, transparent 50%);
+  background-size: 8px 3px;
+  background-repeat: repeat-x;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .kg-legend-panel {
+    margin-top: 15px;
+  }
+
+  .kg-legend-items {
+    gap: 6px;
+  }
+
+  .kg-legend-item {
+    font-size: 0.85rem;
+    gap: 6px;
+  }
+
+  .kg-legend-color {
+    width: 12px;
+    height: 12px;
+  }
+
+  .kg-legend-line {
+    width: 20px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .kg-legend-panel .card-header {
+    background-color: var(--bg-dark-header, #2c3e50) !important;
+    border-color: var(--border-dark, #495057) !important;
+  }
+
+  .kg-legend-panel .card-body {
+    background-color: var(--bg-dark-card, #343a40);
+  }
+
+  .kg-legend-color {
+    border-color: var(--bg-dark-card, #343a40);
+  }
+
+  .kg-legend-section h5 {
+    color: var(--text-dark, #adb5bd);
+  }
+
+  .kg-legend-item {
+    color: var(--text-muted-dark, #9ca3af);
+  }
+}
