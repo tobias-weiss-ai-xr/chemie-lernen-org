@@ -13,7 +13,7 @@ const NEO4J_DATABASE = process.env.NEO4J_DATABASE || 'chemie';
 
 const DRY_RUN = process.argv.includes('--dry-run');
 const STATE = 'HE';
-const SCHOOL_TYPE = 'Gymnasium';
+// const SCHOOL_TYPE = 'Gymnasium';
 
 // Hessischer Bildungsplan Chemie - Gymnasiale Oberstufe
 // Based on: https://kultus.hessen.de/sites/kultus.hessen.de/files/docs/chemie-gymnasium-oberstufe-2024.pdf
