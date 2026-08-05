@@ -4,7 +4,7 @@
 // content pages, network-only for admin/auth API calls.
 // Cache size limited to 50 MB with LRU eviction.
 // ============================================================
-const SW_VERSION = 'v6-2026-07';
+const SW_VERSION = 'v7-2026-08';
 const STATIC_CACHE = 'static-' + SW_VERSION;
 const ASSETS_CACHE = 'assets-' + SW_VERSION;
 const DYNAMIC_CACHE = 'dynamic-' + SW_VERSION;

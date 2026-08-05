@@ -783,7 +783,7 @@ function loadD3AndEgoGraph() {
     d3Script.src = '{{ "/js/vendor/d3.v7.min.js" | relURL }}';
     d3Script.onload = function() {
       var egoScript = document.createElement('script');
-      egoScript.src = '{{ "/js/visualization/d3-ego-graph.js" | relURL }}';
+      egoScript.src = '{{ "/js/visualization/d3-ego-graph.js" | relURL }}?v=7';
       egoScript.onload = resolve;
       egoScript.onerror = reject;
       document.head.appendChild(egoScript);
