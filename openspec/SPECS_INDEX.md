@@ -58,6 +58,7 @@ _No active changes (learning-research-gaps shipped)._
 | sprint-34-platform-performance          | 16/16 tasks ✓      | Archived 2026-07-24 (build perf, Lunr search, PWA offline)                        |
 | sprint-35-modulhandbuch-integration     | 16/16 tasks ✓      | Archived 2026-07-24 (3 state scrapers, 564 modules, tests)                        |
 | learning-research-gaps                  | 4/4 gaps ✓         | Shipped 2026-08-03 (adaptive, session chunking, collab challenges, prerequisites) |
+| sprint-completion                       | A–F ✓              | Archived 2026-08-05 (premium gate fix, stripe tests, unit-converter, PWA cache)   |
 
 ## Legacy planning artifacts (`archive/`)
 
