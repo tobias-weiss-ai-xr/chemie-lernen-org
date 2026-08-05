@@ -318,7 +318,9 @@
     return REL_TYPE_MAP[t] || t;
   }
 
-  function buildFullNodes(data) {
+  function buildFullNodes(data, options) {
+    options = options || {};
+    var maxNodes = options.maxNodes || 0;
     var nodes = [];
     var links = [];
     var emap = {};
@@ -332,6 +334,17 @@
         artCounts[en] = (artCounts[en] || 0) + 1;
       });
     });
+
+    // Übersichts-Obergrenze: nur die am stärksten vernetzten Entities zeigen,
+    // damit der Graph bei 500+ Knoten lesbar bleibt (kein ununterscheidbarer Klumpen).
+    if (maxNodes > 0 && entities.length > maxNodes) {
+      entities = entities
+        .slice()
+        .sort(function (a, b) {
+          return (b.relatedEntities || []).length - (a.relatedEntities || []).length;
+        })
+        .slice(0, maxNodes);
+    }
 
     entities.forEach(function (e) {
       var conns = (e.relatedEntities || []).length;
@@ -712,7 +725,7 @@
       container.innerHTML = '';
       container.style.position = 'relative';
 
-      var built = buildFullNodes(data);
+      var built = buildFullNodes(data, options);
       var nodes = built.nodes;
       var links = built.links;
 

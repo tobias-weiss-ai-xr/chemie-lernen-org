@@ -739,6 +739,7 @@
             globalThis.D3EgoGraph.createFullGraph(graphEl, data, {
               filterControls: null,
               showLegend: false,
+              maxNodes: 120,
               height: graphEl.offsetHeight || 600,
             });
 
