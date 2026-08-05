@@ -1309,29 +1309,6 @@
       },
       showArticles: true,
     };
-    Object.keys(state.categories).forEach(function (cat) {
-      var chip = document.createElement('span');
-      chip.className = 'kg-filter-chip active';
-      chip.dataset.cat = cat;
-      chip.style.color = colorize(cat);
-      chip.style.borderColor = colorize(cat);
-      chip.innerHTML =
-        '<span class="kg-dot" style="background:' + colorize(cat) + '"></span>' + labelize(cat);
-      chip.addEventListener('click', function () {
-        state.categories[cat] = !state.categories[cat];
-        if (state.categories[cat]) {
-          chip.classList.add('active');
-          chip.style.color = colorize(cat);
-          chip.style.borderColor = colorize(cat);
-        } else {
-          chip.classList.remove('active');
-          chip.style.color = '#999';
-          chip.style.borderColor = '#ddd';
-        }
-        onChange(state);
-      });
-      container.appendChild(chip);
-    });
     var pageChip = document.createElement('span');
     pageChip.className = 'kg-filter-chip active';
     pageChip.style.color = '#2ecc71';
