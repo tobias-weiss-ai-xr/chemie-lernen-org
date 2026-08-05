@@ -247,7 +247,7 @@ router.post('/api/chat/hint', hintLimiter, async (req, res) => {
       .join(', ');
   }
 
-  var hintPrompt = 'Du bist ein Chemie-Nachhilfelehrer.';
+  var hintPrompt = 'Du bist ein Chemie-Nachhilfelehrer. Antworte in Klartext, kurz, ohne Markdown.';
   if (weakAreas) hintPrompt += ' Der Schüler hat Schwierigkeiten mit: ' + weakAreas + '.';
   hintPrompt +=
     ' Gib einen Schritt-für-Schritt-Hinweis für folgende Aufgabe, aber verrate NICHT die endgültige Antwort: ' +

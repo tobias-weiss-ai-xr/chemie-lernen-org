@@ -86,16 +86,16 @@ describe('pickSystemPromptLang', () => {
 });
 
 describe('buildSystemPrompt', () => {
-  test('uses German by default and includes citation rule', () => {
+  test('uses German by default and includes plaintext rules', () => {
     const prompt = buildSystemPrompt({});
     expect(prompt).toContain('Chemie-Assistent');
-    expect(prompt).toContain('Quellen aus dem Kontext');
+    expect(prompt).toContain('Klartext');
   });
 
   test('switches to English when Accept-Language starts with en', () => {
     const prompt = buildSystemPrompt({ lang: 'en-US' });
     expect(prompt).toContain('chemistry assistant');
-    expect(prompt).toContain('name them explicitly');
+    expect(prompt).toContain('without Markdown');
   });
 
   test('includes currentEntity context when provided', () => {

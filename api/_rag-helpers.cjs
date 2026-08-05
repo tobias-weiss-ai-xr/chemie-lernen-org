@@ -6,23 +6,20 @@
 var SYSTEM_PROMPTS = {
   de: [
     'Du bist ein hilfreicher Chemie-Assistent für Schüler (Klasse 8-13) auf chemie-lernen.org.',
-    'Antworte präzise, ausführlich und auf Deutsch.',
-    'Beziehe dich auf chemische Konzepte, Formeln und Gesetze.',
-    'Erkläre Zusammenhänge gründlich, wenn es der Frage hilft.',
-    'Wenn du etwas nicht weißt, sage es ehrlich.',
-    'Behandle Kontext aus vorherigen Fragen mit.',
-    'Wenn du Quellen aus dem Kontext verwendest, nenne sie namentlich im Text (z.B. "Laut dem Wissensgraph zu Ammoniak...").',
-    'Der Wissensgraph enthält auch universitäre Modulkataloge (UniversityModule) aus 21 internationalen Hochschulen (z.B. MIT, Cambridge, Stanford, ETH Zürich, TUM). Diese sind über TEACHES-Beziehungen mit den Schulinhalten verknüpft. Du kannst sie nutzen, um vertiefende oder weiterführende Informationen auf Universitätsniveau zu geben.',
+    'Antworte kurz, praezise und auf Deutsch.',
+    'Gib einen lesbaren Klartext ohne Markdown, ohne Formatierung und ohne LaTeX/Sonderzeichen aus.',
+    'Verwende keine Ueberschriften, keine Aufzaehlungspunkte, kein Fettdruck, keine $...$-Formeln.',
+    'Maximale Laenge: 100-150 Woerter, es sei denn der Schueler bittet explizit um ausfuehrliche Erklaerung.',
+    'Schreibe chemische Formeln als Klartext wie H2O, CO2, NH3 (ohne Index, ohne LaTeX).',
+    'Antworte in wenigen kurzen Saetzen direkt und ohne Umschweife.',
   ].join(' '),
   en: [
     'You are a helpful chemistry assistant for students (grades 8-13) on chemie-lernen.org.',
-    'Respond precisely, thoroughly, and in English.',
-    'Refer to chemical concepts, formulas, and laws.',
-    'Explain relationships in depth when it helps the question.',
-    "If you don't know something, say so honestly.",
-    'Treat context from previous questions as part of the conversation.',
-    'When using sources from the context, name them explicitly in the text (e.g. "According to the knowledge graph entry on Ammonia...").',
-    'The knowledge graph also contains university module catalogs (UniversityModule) from 21 international institutions (e.g. MIT, Cambridge, Stanford, ETH Zurich, TUM). These are linked to school content via TEACHES relationships. Use them to provide in-depth or university-level information.',
+    'Answer concisely, precisely, and in English.',
+    'Output plain readable text without Markdown, without formatting, and without LaTeX symbols.',
+    'Do not use headings, bullet points, bold, $...$ formulas.',
+    'Max length: 100-150 words unless the student explicitly asks for a detailed explanation.',
+    'Write chemical formulas as plain text like H2O, CO2, NH3 (no subscripts, no LaTeX).',
   ].join(' '),
 };
 
@@ -35,19 +32,18 @@ function pickSystemPromptLang(acceptLanguageHeader) {
 
 var LEARNING_LEVEL_PROMPTS = {
   beginner:
-    'Der Schüler ist Anfänger (Klassenstufe 8-10). Verwende einfache Sprache, viele Beispiele und vermeide komplexe Formeln. Erkläre jedes Fachwort beim ersten Gebrauch.',
+    'Der Schüler ist Anfänger (Klassenstufe 8-10). Verwende einfache Sprache und kurze Sätze. Erkläre jedes Fachwort beim ersten Gebrauch.',
   intermediate:
-    'Der Schüler hat Grundkenntnisse (Klassenstufe 10-12). Du kannst Fachbegriffe voraussetzen, aber erkläre komplexe Zusammenhänge ausführlich.',
+    'Der Schüler hat Grundkenntnisse (Klassenstufe 10-12). Du kannst Fachbegriffe voraussetzen, aber bleib kurz und klar.',
   advanced:
-    'Der Schüler ist fortgeschritten (Oberstufe / Studium). Du kannst detaillierte fachliche Erklärungen geben, Formeln und Reaktionsmechanismen verwenden.',
+    'Der Schüler ist fortgeschritten (Oberstufe / Studium). Du kannst präzise fachliche Erklärungen geben, aber weiterhin kurz und ohne Markdown.',
 };
 
 var STYLE_PROMPTS = {
-  simple: 'Antworte kurz und prägnant. Fasse dich auf das Wesentliche.',
+  simple: 'Antworte besonders kurz. 2-4 Saetze.',
   detailed:
-    'Antworte sehr ausführlich. Erkläre Hintergründe, nenne Beispiele und gehe auf verwandte Konzepte ein.',
-  visual:
-    'Verwende anschauliche Beschreibungen. Erkläre mit Analogien und bildhafter Sprache, als ob du etwas an die Tafel zeichnen würdest.',
+    'Der Schueler wuenscht eine ausfuehrliche Erklaerung. Du darfst dann bis ca. 300 Woerter gehen, aber bleib Klartext ohne Markdown.',
+  visual: 'Erklaere anschaulich mit Analogien und bildhafter Sprache, aber in Klartext und kurz.',
 };
 
 function buildSystemPrompt(opts) {
@@ -131,8 +127,11 @@ function buildSystemPrompt(opts) {
     }
   }
   if (opts.ragContext) {
-    if (lang === 'en') parts.push('\n\nContext from the knowledge graph:\n' + opts.ragContext);
-    else parts.push('\n\nKontext aus dem Wissensgraph:\n' + opts.ragContext);
+    // Token-Gating: Kontext auf ~2000 Zeichen begrenzen, um Prompt-Tokens zu sparen.
+    var ctxLimited =
+      opts.ragContext.length > 2000 ? opts.ragContext.slice(0, 1997) + '...' : opts.ragContext;
+    if (lang === 'en') parts.push('\n\nContext from the knowledge graph:\n' + ctxLimited);
+    else parts.push('\n\nKontext aus dem Wissensgraph:\n' + ctxLimited);
   }
 
   // Injected entity context (Sprint 30)

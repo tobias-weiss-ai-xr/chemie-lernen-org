@@ -259,7 +259,13 @@ app.post('/api/chat', async (req, res) => {
       }
     }
 
-    const conversationHistory = [{ role: 'system', content: systemPrompt }, ...session.messages];
+    // Token-Gating: nur die letzten ~6 Nachrichten (3 Turns) an die LLM senden,
+    // nicht die gesamte Session (bis zu 50) — senkt Kosten pro Anfrage deutlich.
+    const CHAT_HISTORY_LIMIT = 6;
+    const conversationHistory = [
+      { role: 'system', content: systemPrompt },
+      ...session.messages.slice(-CHAT_HISTORY_LIMIT),
+    ];
     const model = req.user?.tier === 'premium' ? LITELLM_MODEL_PREMIUM : LITELLM_MODEL;
 
     var firstUserMsg = null,
@@ -275,7 +281,7 @@ app.post('/api/chat', async (req, res) => {
         body: JSON.stringify({
           model,
           messages: conversationHistory,
-          max_tokens: 2048,
+          max_tokens: 512,
           temperature: 0.5,
         }),
       });
@@ -289,7 +295,7 @@ app.post('/api/chat', async (req, res) => {
       var userCount = session.messages.filter(function (m) {
         return m.role === 'user';
       }).length;
-      if (userCount >= 3) reply += '\n\n---\n_War diese Antwort hilfreich? (Daumen hoch / runter)_';
+      if (userCount >= 3) reply += '\n\nWar diese Antwort hilfreich? (Daumen hoch oder runter)';
       session.messages.push({ role: 'assistant', content: reply });
       cleanupSessionMessages(session);
 
@@ -332,7 +338,7 @@ app.post('/api/chat', async (req, res) => {
         body: JSON.stringify({
           model,
           messages: conversationHistory,
-          max_tokens: 2048,
+          max_tokens: 512,
           temperature: 0.5,
           stream: true,
         }),
@@ -400,7 +406,7 @@ app.post('/api/chat', async (req, res) => {
         try {
           res.write(
             'data: ' +
-              JSON.stringify({ prompt: '_War diese Antwort hilfreich? (Daumen hoch / runter)_' }) +
+              JSON.stringify({ prompt: 'War diese Antwort hilfreich? (Daumen hoch oder runter)' }) +
               '\n\n'
           );
         } catch {
