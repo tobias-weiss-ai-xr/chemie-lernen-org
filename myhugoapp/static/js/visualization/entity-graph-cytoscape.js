@@ -196,15 +196,37 @@
               'text-background-shape': 'roundrectangle',
               color: '#333',
               'text-zoomable': false,
-              'background-color': function (ele) {
-                return CAT_COLORS[ele.data('category')] || CAT_COLORS.other;
-              },
+              'background-color': '#95a5a6',
               width: 'mapData(size, 6, 42, 14, 60)',
               height: 'mapData(size, 6, 42, 14, 60)',
               'border-width': 1,
               'border-color': '#ffffff',
               'border-opacity': 0.8,
             },
+          },
+          {
+            selector: 'node[category = "stoff"]',
+            style: { 'background-color': '#667eea' },
+          },
+          {
+            selector: 'node[category = "konzept"]',
+            style: { 'background-color': '#45b7d1' },
+          },
+          {
+            selector: 'node[category = "reaktion"]',
+            style: { 'background-color': '#4ecdc4' },
+          },
+          {
+            selector: 'node[category = "methode"]',
+            style: { 'background-color': '#f093fb' },
+          },
+          {
+            selector: 'node[category = "person"]',
+            style: { 'background-color': '#ff9a76' },
+          },
+          {
+            selector: 'node[category = "quelle"]',
+            style: { 'background-color': '#a8a8a8' },
           },
           {
             selector: 'node[type = "article"], node[type = "page"]',
@@ -237,17 +259,17 @@
           },
         ],
         layout: {
-          name: 'concentric',
-          concentric: function (node) {
-            return node.connectedEdges().length;
-          },
-          levelWidth: function () {
-            return 3;
-          },
-          minNodeSpacing: 24,
-          padding: 40,
+          name: 'cose',
+          idealEdgeLength: 40,
+          nodeOverlap: 20,
+          nodeRepulsion: 10000,
+          edgeElasticity: 100,
+          nestingFactor: 1.2,
+          gravity: 0.6,
+          numIter: 1000,
           animate: false,
           fit: true,
+          padding: 24,
         },
         minZoom: 0.2,
         maxZoom: 3,
@@ -277,14 +299,16 @@
         }
       });
 
-      applyFilters();
+      // Initiales Anwenden von gespeicherten Filtern (kein Re-Layout nötig)
+      applyFilters(false);
 
       resolve();
     });
   }
 
-  function applyFilters() {
+  function applyFilters(relayout) {
     if (!cy) return;
+    var shouldRelayout = relayout !== false;
     cy.batch(function () {
       cy.elements().forEach(function (el) {
         var d = el.data();
@@ -308,22 +332,22 @@
           el.style('display', visible ? 'element' : 'none');
         }
       });
-      if (cy.layout) {
+      if (cy.layout && shouldRelayout) {
         // Re-layout auf sichtbare Knoten, damit gefilterte Ansicht kompakt bleibt
         var visibleNodes = cy.nodes(':visible');
         if (visibleNodes.length > 0) {
           var layout = cy.layout({
-            name: 'concentric',
-            concentric: function (node) {
-              return node.connectedEdges().length;
-            },
-            levelWidth: function () {
-              return 3;
-            },
-            minNodeSpacing: 24,
-            padding: 40,
+            name: 'cose',
+            idealEdgeLength: 40,
+            nodeOverlap: 20,
+            nodeRepulsion: 10000,
+            edgeElasticity: 100,
+            nestingFactor: 1.2,
+            gravity: 0.6,
+            numIter: 500,
             animate: false,
             fit: true,
+            padding: 24,
           });
           layout.run();
         }
@@ -354,12 +378,12 @@
 
   function setCategoryFilter(cat) {
     currentFilter = cat || null;
-    applyFilters();
+    applyFilters(true);
   }
 
   function setSearchFilter(query) {
     currentSearch = query ? String(query).toLowerCase().trim() : null;
-    applyFilters();
+    applyFilters(true);
   }
 
   window.EntityGraph = {
