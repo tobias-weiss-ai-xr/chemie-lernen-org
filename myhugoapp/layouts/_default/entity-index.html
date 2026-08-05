@@ -606,11 +606,7 @@
 
 {{ define "main" }}
 
-<div id="entity-app">
-  <!-- Header will be rendered by JS -->
-</div>
-
-<!-- Graph container -->
+<!-- Graph container — placed BEFORE the entity cards so the Wissensnetz graph is on top -->
   <div id="entity-graph-container" style="display:none;">
     <div class="entity-graph-stats" id="entity-graph-stats">
       <div class="entity-graph-stat">
@@ -651,12 +647,15 @@
       <button class="entity-node-details-close" id="node-details-close">&times;</button>
       <div id="node-details-content"></div>
     </div>
+    <div class="entity-graph-legend" id="entity-graph-legend">
+      <div class="entity-legend-title">Kategorien</div>
+      <div class="entity-legend-items" id="entity-legend-items"></div>
+    </div>
   </div>
-  <div class="entity-graph-legend" id="entity-graph-legend">
-    <div class="entity-legend-title">Kategorien</div>
-    <div class="entity-legend-items" id="entity-legend-items"></div>
+
+  <div id="entity-app">
+  <!-- Header + entity cards will be rendered by JS -->
   </div>
-</div>
 
 <div id="entity-skeleton" class="entity-skeleton-grid">
   <div class="entity-skeleton-card"><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div></div>
