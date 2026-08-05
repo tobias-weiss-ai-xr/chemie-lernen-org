@@ -211,13 +211,17 @@ function clearAuthCookie(res) {
 
 function sanitizeUser(user) {
   if (!user) return null;
+  // Call isPremium FIRST so an expired premium membership is auto-demoted
+  // before we serialize tier/premium fields. Otherwise the id-level user
+  // would still show tier='premium' and bypass requirePremium's check.
+  const isPremiumNow = isPremium(user);
   return {
     id: user.id,
     email: user.email,
     name: user.name,
     role: user.role,
     tier: user.tier,
-    isPremium: isPremium(user),
+    isPremium: isPremiumNow,
     premiumUntil: user.premium_until,
     learningProfile: user.learning_profile || null,
     createdAt: user.created_at,

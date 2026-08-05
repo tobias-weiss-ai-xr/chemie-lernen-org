@@ -37,6 +37,9 @@ backups/auth-db/
 # Temporary files
 tmp/
 
+# Runtime collaboration session data (written by collab-engine.js)
+data/collab/
+
 # Environment secrets
 .env
 

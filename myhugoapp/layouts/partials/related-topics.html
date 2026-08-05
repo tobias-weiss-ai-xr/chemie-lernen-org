@@ -1,0 +1,21 @@
+{{/* related-topics.html — Badge showing cross-link count for current page.
+   Reads content-cross-links.json to count related articles/calculators/exercises.
+   Usage: {{ partial "related-topics" . }}
+*/}}
+{{ $crossLinks := $.Site.Data.curricula.content_cross_links }}
+{{ $url := .RelPermalink }}
+{{ $links := index $crossLinks $url }}
+
+{{ if $links }}
+  {{ $rel := $links.related }}
+  {{ $total := 0 }}
+  {{ if $rel.articles }}{{ $total = add $total (len $rel.articles) }}{{ end }}
+  {{ if $rel.calculators }}{{ $total = add $total (len $rel.calculators) }}{{ end }}
+  {{ if $rel.exercises }}{{ $total = add $total (len $rel.exercises) }}{{ end }}
+
+  {{ if gt $total 0 }}
+<span class="label label-crosslink" title="{{ $total }} verknüpfte Inhalte">
+  🔗 {{ $total }} verknüpft
+</span>
+  {{ end }}
+{{ end }}
