@@ -135,7 +135,12 @@ router.get('/api/kg-data', async (req, res) => {
         `MATCH (e:Entity) WHERE ${whereStr}
          OPTIONAL MATCH (e)-[r:RELATED_TO|AEHNLICH_ZU|CONSISTS_OF|BESTEHT_AUS|BESCHREIBT|DEMONSTRIERT|ERZEUGT|ENTDECKT|BEINHALTET|VERGLEICHBAR|BETEILIGT_AN|WENDET_AN|QUELLE_VON|COVERS_TOPIC|VERALLGEMEINERT]-(target:Entity)
          WHERE target.kategorie IS NOT NULL
-         WITH e, COLLECT(DISTINCT {name: target.name, category: target.kategorie, relType: type(r)}) AS relatedEntities, count(DISTINCT r) AS relCount
+         WITH e, target, collect(DISTINCT type(r)) AS relTypes
+         WITH e, COLLECT(DISTINCT {
+           name: target.name,
+           category: target.kategorie,
+           relType: CASE WHEN size(relTypes) > 1 THEN 'related' ELSE relTypes[0] END
+         }) AS relatedEntities, count(DISTINCT target) AS relCount
          RETURN e.name AS name, e.kategorie AS category,
                 e.description AS description,
                 e.state AS state, e.grade AS grade,
