@@ -58,22 +58,6 @@
     return NON_CHEMISTRY.indexOf(slug) === -1;
   }
 
-  function isPremiumEntity(e) {
-    var name = (e.name || '').toLowerCase();
-    if (name.indexOf('molekül') >= 0 || name.indexOf('molekuel') >= 0) return true;
-    if (name.indexOf('periodensystem') >= 0 || name.indexOf('periode') >= 0) return true;
-    if (name.indexOf('titration') >= 0) return true;
-    if (e.relatedEntities) {
-      for (var i = 0; i < e.relatedEntities.length; i++) {
-        var r = (e.relatedEntities[i].name || '').toLowerCase();
-        if (r.indexOf('molekül') >= 0 || r.indexOf('molekuel') >= 0) return true;
-        if (r.indexOf('periodensystem') >= 0 || r.indexOf('periode') >= 0) return true;
-        if (r.indexOf('titration') >= 0) return true;
-      }
-    }
-    return false;
-  }
-
   var _data;
   var _searchIndex = null;
   var _lunrIndex = null;
@@ -424,7 +408,6 @@
       var relatedCount = (e.relatedEntities || []).length;
       var artCount = Number(e.articleCount) || (e.articles || []).length || 0;
       var slug = toSlug(e.name);
-      var isPremium = isPremiumEntity(e);
       var h =
         '<div class="entity-card' +
         '" data-cat="' +
@@ -434,9 +417,6 @@
         '" data-tooltip="' +
         escapeHtml(getTooltipHtml(e)) +
         '">';
-      if (isPremium) {
-        h += '<span class="premium-badge">Premium</span>';
-      }
       h +=
         '<div class="entity-card-name"><a href="/entity/' +
         slug +

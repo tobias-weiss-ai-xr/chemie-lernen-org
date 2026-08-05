@@ -5,7 +5,7 @@
  * Script-mode IIFE that renders entity cards, tag cloud, and D3 graph.
  *
  * Strategy:
- *  - Extract top-level IIFE functions (toSlug, escapeHtml, isPremiumEntity)
+ *  - Extract top-level IIFE functions (toSlug, escapeHtml)
  *    using a balanced-brace extractor since they are pure and self-contained.
  *  - For nested init() functions (_buildEntityCardHtml, getTooltipHtml, etc.),
  *    load the module with a mocked DOM/fetch and inspect rendered output.
@@ -125,49 +125,6 @@ describe('entity-index — escapeHtml', () => {
   test('passes safe text through unchanged', () => {
     expect(escapeHtml('Hello World')).toBe('Hello World');
     expect(escapeHtml('Säuren und Basen')).toBe('Säuren und Basen');
-  });
-});
-
-describe('entity-index — isPremiumEntity', () => {
-  const isPremiumEntity = evalExtracted('isPremiumEntity');
-
-  test('returns true for entities containing "Molekül" or "Molekuel"', () => {
-    expect(isPremiumEntity({ name: 'Molekülstruktur' })).toBe(true);
-    expect(isPremiumEntity({ name: 'Molekuel-Viewer' })).toBe(true);
-    expect(isPremiumEntity({ name: '3D Molekül' })).toBe(true);
-  });
-
-  test('returns true for entities containing "Periodensystem" name', () => {
-    expect(isPremiumEntity({ name: 'Periodensystem' })).toBe(true);
-    expect(isPremiumEntity({ name: 'Periodensystem der Elemente' })).toBe(true);
-  });
-
-  test('returns true for entities containing "Titration"', () => {
-    expect(isPremiumEntity({ name: 'Titration' })).toBe(true);
-    expect(isPremiumEntity({ name: 'Säure-Base-Titration' })).toBe(true);
-  });
-
-  test('returns true when relatedEntities contain premium names', () => {
-    const entity = {
-      name: 'Allgemein',
-      relatedEntities: [{ name: 'Molekülgeometrie' }],
-    };
-    expect(isPremiumEntity(entity)).toBe(true);
-  });
-
-  test('returns false for non-premium entities', () => {
-    expect(isPremiumEntity({ name: 'Wasser' })).toBe(false);
-    expect(isPremiumEntity({ name: 'Säuren' })).toBe(false);
-    expect(isPremiumEntity({ name: 'Redoxreaktion' })).toBe(false);
-  });
-
-  test('returns false for entity with no name', () => {
-    expect(isPremiumEntity({})).toBe(false);
-    expect(isPremiumEntity({ name: '' })).toBe(false);
-  });
-
-  test('handles missing relatedEntities', () => {
-    expect(isPremiumEntity({ name: 'Wasser' })).toBe(false);
   });
 });
 
@@ -332,35 +289,6 @@ describe('entity-index — module loading and rendering', () => {
     expect(app.innerHTML).toContain('entity-card');
     expect(app.innerHTML).toContain('Wasser');
     expect(app.innerHTML).toContain('Stoff');
-  });
-
-  test('renders premium badge for Molekül entities', async () => {
-    const mockData = {
-      entities: [
-        {
-          name: 'Molekülstruktur',
-          category: 'konzept',
-          articleCount: 1,
-          articles: [],
-          relatedEntities: [],
-        },
-      ],
-      articles: [],
-      links: [],
-    };
-
-    global.fetch = jest.fn().mockResolvedValue({
-      ok: true,
-      json: () => Promise.resolve(mockData),
-    });
-
-    loadModule();
-
-    await new Promise((r) => setTimeout(r, 50));
-
-    const app = document.getElementById('entity-app');
-    expect(app.innerHTML).toContain('premium-badge');
-    expect(app.innerHTML).toContain('Premium');
   });
 
   test('sets __initStarted and __initDone flags on success', async () => {

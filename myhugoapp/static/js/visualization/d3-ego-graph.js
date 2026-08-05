@@ -1178,7 +1178,7 @@
       }
 
       // Force simulation — adaptive parameters to avoid blob
-      var chargeStr = -Math.max(100, Math.min(500, nodes.length * 5));
+      var chargeStr = -Math.max(50, Math.min(300, nodes.length * 2.5));
       var sim = d3
         .forceSimulation(nodes)
         .force(
@@ -1189,9 +1189,9 @@
               return d.id;
             })
             .distance(function (d) {
-              return d.type === 'composition' ? 140 : 200;
+              return d.type === 'composition' ? 70 : 90;
             })
-            .strength(0.2)
+            .strength(0.25)
         )
         .force('charge', d3.forceManyBody().strength(chargeStr))
         .force('center', d3.forceCenter(w / 2, h / 2))
@@ -1202,11 +1202,11 @@
             .forceX(function (d) {
               return catX(d.category, w);
             })
-            .strength(0.2)
+            .strength(0.35)
         )
-        .force('y', d3.forceY(h / 2).strength(0.03))
-        .alphaDecay(0.018)
-        .velocityDecay(0.3)
+        .force('y', d3.forceY(h / 2).strength(0.35))
+        .alphaDecay(0.02)
+        .velocityDecay(0.35)
         .on('tick', function () {
           link
             .attr('x1', function (d) {
@@ -1252,6 +1252,46 @@
         sim.alpha(0).stop();
       }
 
+      // Fit the whole graph into the SVG viewport once the layout settles.
+      // Without this, large graphs spill outside the visible area and look
+      // like a single collapsed point.
+      var fitGraphToViewport = function () {
+        if (!nodes.length) return;
+        var minX = Infinity;
+        var minY = Infinity;
+        var maxX = -Infinity;
+        var maxY = -Infinity;
+        nodes.forEach(function (n) {
+          if (typeof n.x !== 'number' || isNaN(n.x)) return;
+          if (n.x < minX) minX = n.x;
+          if (n.x > maxX) maxX = n.x;
+          if (n.y < minY) minY = n.y;
+          if (n.y > maxY) maxY = n.y;
+        });
+        if (!isFinite(minX) || !isFinite(maxX)) return;
+        var vw = container.clientWidth || svg.attr('width') || w;
+        var vh = svg.attr('height') || h;
+        var pad = 24;
+        var bw = maxX - minX;
+        var bh = maxY - minY;
+        var scale = Math.min((vw - pad * 2) / bw, (vh - pad * 2) / bh);
+        scale = Math.min(Math.max(scale, 0.05), 1);
+        var tx = vw / 2 - ((minX + maxX) / 2) * scale;
+        var ty = vh / 2 - ((minY + maxY) / 2) * scale;
+        var t = d3.zoomIdentity.translate(tx, ty).scale(scale);
+        svg.call(zoom.transform, t);
+      };
+      sim.on('end', function () {
+        fitGraphToViewport();
+      });
+      if (prefersReducedMotion()) {
+        // The simulation was stopped before it could emit 'end'.
+        fitGraphToViewport();
+      } else {
+        // Safety net: fit even if the simulation never formally ends.
+        setTimeout(fitGraphToViewport, 1500);
+      }
+
       // A11y: visually-hidden fallback <ul>
       var fallback = document.createElement('ul');
       fallback.className = 'd3-ego-fallback sr-only';
@@ -1274,16 +1314,19 @@
       if (typeof ResizeObserver !== 'undefined') {
         var ro2 = new ResizeObserver(function () {
           var nw = container.clientWidth || w;
+          var nh = container.clientHeight || h;
           svg.attr('width', nw);
-          sim.force('center', d3.forceCenter(nw / 2, h / 2));
+          svg.attr('height', nh);
+          sim.force('center', d3.forceCenter(nw / 2, nh / 2));
           sim.force(
             'x',
             d3
               .forceX(function (d) {
                 return catX(d.category, nw);
               })
-              .strength(0.2)
+              .strength(0.35)
           );
+          sim.force('y', d3.forceY(nh / 2).strength(0.35));
           sim.alpha(0.3).restart();
           if (prefersReducedMotion()) {
             sim.stop();
