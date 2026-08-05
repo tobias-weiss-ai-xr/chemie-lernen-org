@@ -672,20 +672,20 @@ function loadD3AndEgoGraph() {
   if (D3_LOADED) return Promise.resolve();
   D3_LOADED = true;
   return new Promise(function(resolve, reject) {
-    var d3Script = document.createElement('script');
-    d3Script.src = '{{ "/js/vendor/d3.v7.min.js" | relURL }}';
-    d3Script.onload = function() {
-      var egoScript = document.createElement('script');
-      egoScript.src = '{{ "/js/visualization/d3-ego-graph.js" | relURL }}?v=7';
-      egoScript.onload = resolve;
-      egoScript.onerror = reject;
-      document.head.appendChild(egoScript);
+    var cyScript = document.createElement('script');
+    cyScript.src = '{{ "/js/vendor/cytoscape.min.js" | relURL }}';
+    cyScript.onload = function() {
+      var graphScript = document.createElement('script');
+      graphScript.src = '{{ "/js/visualization/entity-graph-cytoscape.js" | relURL }}?v=8';
+      graphScript.onload = resolve;
+      graphScript.onerror = reject;
+      document.head.appendChild(graphScript);
     };
-    d3Script.onerror = reject;
-    document.head.appendChild(d3Script);
+    cyScript.onerror = reject;
+    document.head.appendChild(cyScript);
   });
 }
 </script>
-<script src="{{ "/js/entity-index.js" | relURL }}?v=7"></script>
+<script src="{{ "/js/entity-index.js" | relURL }}?v=8"></script>
 
 {{ end }}

@@ -736,6 +736,9 @@
             return;
           }
           try {
+            // Container erst sichtbar machen, damit Cytoscape eine reale Größe misst
+            if (graphLoading) graphLoading.style.display = 'none';
+            if (graphContainer) graphContainer.style.display = 'block';
             globalThis.D3EgoGraph.createFullGraph(graphEl, data, {
               filterControls: null,
               showLegend: false,
@@ -743,8 +746,6 @@
               height: graphEl.offsetHeight || 600,
             });
 
-            graphLoading.style.display = 'none';
-            graphContainer.style.display = 'block';
             renderLegend(data);
             attachGraphFilters(data);
           } catch (e) {

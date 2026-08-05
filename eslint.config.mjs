@@ -288,6 +288,7 @@ export default [
         exports: 'readonly',
         require: 'readonly',
         THREE: 'readonly',
+        cytoscape: 'readonly',
       },
     },
   },
