@@ -1,0 +1,72 @@
+# ============================================================
+# KG Quality Audit — monatlich (Säule 5 der KG-Roadmap)
+# Führt das kg-quality-audit.mjs gegen chemie-kg aus und meldet
+# Regressionen. Schlägt fehl, wenn Schwellwerte überschritten sind.
+# Manuell triggerbar via workflow_dispatch.
+# ============================================================
+name: KG Quality Audit
+
+on:
+  schedule:
+    # Monatlich am 1. um 05:30 UTC
+    - cron: '30 5 1 * *'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: [self-hosted, legion]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Wait for Neo4j availability
+        run: |
+          for i in $(seq 1 30); do
+            if docker exec chemie-kg cypher-shell -u neo4j -p chemie_knowledge_2024 "RETURN 1" >/dev/null 2>&1; then
+              echo "Neo4j ready after ${i} tries"
+              exit 0
+            fi
+            echo "waiting for Neo4j (${i}/30)..."
+            sleep 10
+          done
+          echo "Neo4j not ready after 300s" >&2
+          exit 1
+
+      - name: Run KG quality audit
+        id: audit
+        run: |
+          set +e
+          cat scripts/kg-quality-audit.mjs | docker exec -i chemie-chat-api node - \
+            --fail-on isolated=1 \
+            --fail-on duplicateGroups=1 \
+            --fail-on noDescription=30 \
+            --fail-on noCurriculumLink=320 \
+            > /tmp/kg-audit-report.txt 2>&1
+          EXIT_CODE=$?
+          echo "audit_exit=$EXIT_CODE" >> "$GITHUB_OUTPUT"
+          cat /tmp/kg-audit-report.txt
+          echo "exit_code=$EXIT_CODE"
+          exit 0
+
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: kg-audit-report
+          path: /tmp/kg-audit-report.txt
+
+      - name: Create issue on regression
+        if: steps.audit.outputs.audit_exit != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.existsSync('/tmp/kg-audit-report.txt')
+              ? fs.readFileSync('/tmp/kg-audit-report.txt', 'utf8').slice(0, 4000)
+              : 'Kein Report';
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `⚠️ KG-Qualitäts-Audit fehlgeschlagen (${new Date().toISOString().slice(0,10)})`,
+              body: 'Das monatliche KG-Qualitäts-Audit hat Regressions-Schwellen überschritten.\n\n```\n' + report + '\n```\n\nSiehe Workflow-Run für Details.',
+              labels: ['kg-audit', 'data-quality'],
+            });
