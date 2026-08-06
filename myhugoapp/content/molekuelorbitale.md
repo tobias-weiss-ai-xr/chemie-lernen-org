@@ -2,6 +2,7 @@
 title: 'Molekülorbitale'
 description: 'Interaktive 3D-Visualisierung von Molekülorbitalen, σ- und π-Bindungen, Orbital-Überlappung und Hybridsierung'
 date: 2026-01-05
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'molekuelorbitale'

@@ -2,6 +2,7 @@
 title: "Reaktionsgleichungen Ausgleichen"
 description: "Gleichen Sie chemische Reaktionsgleichungen automatisch aus - interaktiver Rechner"
 date: 2025-12-26
+last_reviewed: 2026-07-09
 type: "interactive"
 interaktiv: true
 layout: "reaktionsgleichungen-ausgleichen"

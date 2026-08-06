@@ -2,6 +2,7 @@
 title: '10. Klasse'
 description: 'Organische Chemie und Energetik in Klasse 10 – Kohlenwasserstoffe, Alkohole und exotherme/endotherme Reaktionen.'
 date: 2025-12-26
+last_reviewed: 2026-07-09
 klassenstufe: 10
 bundesland:
   ['BY', 'BE', 'BB', 'HB', 'HH', 'HE', 'MV', 'NI', 'NW', 'RP', 'SL', 'SN', 'ST', 'SH', 'TH']

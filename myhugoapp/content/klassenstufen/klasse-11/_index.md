@@ -2,6 +2,7 @@
 title: '11. Klasse'
 description: 'Fortgeschrittene organische und physikalische Chemie in Klasse 11 – Reaktionsmechanismen, Thermodynamik und analytische Methoden.'
 date: 2025-12-26
+last_reviewed: 2026-07-09
 klassenstufe: 11
 bundesland:
   ['BY', 'BE', 'BB', 'HB', 'HH', 'HE', 'MV', 'NI', 'NW', 'RP', 'SL', 'SN', 'ST', 'SH', 'TH']

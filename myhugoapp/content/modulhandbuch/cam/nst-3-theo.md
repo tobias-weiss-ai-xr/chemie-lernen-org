@@ -3,6 +3,7 @@ title: Theoretical Chemistry — University of Cambridge
 description: 'Theoretical Chemistry (NST-3-THEO) an der University of Cambridge. 6 ECTS, Niveau: MSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: CAM
 uni_name: University of Cambridge
 module_code: NST-3-THEO

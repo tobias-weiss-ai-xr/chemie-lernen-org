@@ -1,6 +1,7 @@
 ---
 title: 'Roadmap: Ausbaustrategie'
 date: 2026-06-15
+last_reviewed: 2026-07-09
 description: 'Die zukünftige Entwicklungsstrategie für chemie-lernen.org'
 tags: ['roadmap', 'entwicklung']
 ---

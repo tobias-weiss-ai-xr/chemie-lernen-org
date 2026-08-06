@@ -3,6 +3,7 @@ title: Physical Chemistry II — Stanford University
 description: 'Physical Chemistry II (CHEM122) an der Stanford University. 5 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: STANF
 uni_name: Stanford University
 module_code: CHEM122

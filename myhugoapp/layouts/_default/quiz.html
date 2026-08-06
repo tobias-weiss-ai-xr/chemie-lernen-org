@@ -20,6 +20,42 @@
       <button id="quiz-start-btn" class="quiz-btn quiz-btn-primary quiz-btn-start" disabled>
         Quiz starten
       </button>
+      <button id="quiz-dashboard-btn" class="quiz-btn quiz-btn-secondary" style="margin-left:auto;">
+        Dashboard
+      </button>
+    </div>
+
+    <!-- Dashboard View -->
+    <div id="quiz-dashboard-view" class="quiz-dashboard-view hidden">
+      <div class="quiz-dashboard-grid">
+        <div class="quiz-dashboard-card" id="dash-stats-card">
+          <h3 class="quiz-dashboard-card-title">Statistik</h3>
+          <div id="dash-stats-content">
+            <p class="quiz-empty-state">Noch keine Quiz-Ergebnisse.</p>
+          </div>
+        </div>
+        <div class="quiz-dashboard-card" id="dash-recent-card">
+          <h3 class="quiz-dashboard-card-title">Letzte Ergebnisse</h3>
+          <div id="dash-recent-content">
+            <p class="quiz-empty-state">Noch keine Quiz-Ergebnisse.</p>
+          </div>
+        </div>
+        <div class="quiz-dashboard-card" id="dash-streak-card">
+          <h3 class="quiz-dashboard-card-title">Serie</h3>
+          <div id="dash-streak-content">
+            <p class="quiz-empty-state">Noch keine Daten.</p>
+          </div>
+        </div>
+        <div class="quiz-dashboard-card" id="dash-weak-card">
+          <h3 class="quiz-dashboard-card-title">Schwächen</h3>
+          <div id="dash-weak-content">
+            <p class="quiz-empty-state">Noch keine Daten.</p>
+          </div>
+        </div>
+      </div>
+      <button id="quiz-dashboard-close" class="quiz-btn quiz-btn-secondary" style="margin-top:1rem;">
+        Zurück zum Quiz
+      </button>
     </div>
 
     <!-- Review reminder banner -->
@@ -556,6 +592,131 @@
   min-height: 200px;
 }
 
+/* ── Dashboard Styles ──────────────────────────── */
+.quiz-dashboard-view {
+  margin-bottom: 1.5rem;
+}
+
+.quiz-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .quiz-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.quiz-dashboard-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+}
+
+.quiz-dashboard-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #4a90d9;
+}
+
+.dash-stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.dash-stat-value {
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.dash-recent-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.85rem;
+}
+
+.dash-recent-item:last-child {
+  border-bottom: none;
+}
+
+.dash-recent-topic {
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+}
+
+.dash-recent-score {
+  font-weight: 700;
+  margin-left: 0.5rem;
+}
+
+.dash-recent-date {
+  font-size: 0.75rem;
+  color: #999;
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
+
+.dash-weak-item {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  margin: 0.2rem;
+  background: #fff5f5;
+  border: 1px solid #fcc;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  color: #c33;
+}
+
+.dash-empty {
+  color: #999;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+@media (prefers-color-scheme: dark) {
+  .quiz-dashboard-card {
+    background: #2a2a4e;
+    border-color: #444;
+  }
+  .quiz-dashboard-card-title {
+    color: #e0e0e0;
+    border-bottom-color: #4a90d9;
+  }
+  .dash-stat-row {
+    color: #aaa;
+  }
+  .dash-stat-value {
+    color: #e0e0e0;
+  }
+  .dash-recent-item {
+    border-bottom-color: #444;
+  }
+  .dash-recent-topic {
+    color: #e0e0e0;
+  }
+  .dash-recent-date {
+    color: #888;
+  }
+  .dash-weak-item {
+    background: #3a2020;
+    border-color: #633;
+    color: #e88;
+  }
+}
+
 /* Hidden */
 .hidden {
   display: none !important;
@@ -922,10 +1083,12 @@
         })
       );
 
+      // Save to quiz history array (for dashboard)
+      saveQuizHistory(currentTopic, results);
+
       // Sync wrong answers to server-side FSRS (evidence-based loop):
       // wrong quiz answers become spaced-repetition cards (day 3/7/14/30).
       syncWrongAnswersToFsrs(results);
-
       // Re-check due cards for review banner
       checkDueCards();
     } catch (e) {
@@ -979,6 +1142,180 @@
     }
     return answerText || q.question;
   }
+
+  // ── Quiz History (for dashboard) ──────────────
+  function saveQuizHistory(topic, results) {
+    try {
+      var history = JSON.parse(localStorage.getItem('chemie-quiz-history') || '[]');
+      history.push({
+        topic: topic,
+        score: results.score,
+        total: results.total,
+        percentage: results.percentage,
+        date: new Date().toISOString(),
+      });
+      // Keep last 50 entries
+      if (history.length > 50) {
+        history = history.slice(history.length - 50);
+      }
+      localStorage.setItem('chemie-quiz-history', JSON.stringify(history));
+    } catch (e) {}
+
+    // Upload result to server if user is authenticated
+    try {
+      fetch('/api/quiz-results', {
+        method: 'PUT',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          topic: topic,
+          score: results.score,
+          total: results.total,
+          answers: results.answers || [],
+          time: results.time || 0,
+        }),
+      }).catch(function () {
+        // Silently fail — results saved locally
+      });
+    } catch (e) {}
+  }
+
+  function getQuizHistory() {
+    try {
+      return JSON.parse(localStorage.getItem('chemie-quiz-history') || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+
+  // ── Dashboard ───────────────────────────────────
+  var dashboardBtn = document.getElementById('quiz-dashboard-btn');
+  var dashboardView = document.getElementById('quiz-dashboard-view');
+  var dashboardClose = document.getElementById('quiz-dashboard-close');
+  var quizHeader = document.getElementById('quiz-header');
+  var quizAreaEl = document.getElementById('quiz-area');
+  var reviewBannerEl = document.getElementById('quiz-review-banner');
+
+  function computeStreak(history) {
+    if (history.length === 0) return 0;
+    // Sort by date ascending
+    var sorted = history.slice().sort(function (a, b) {
+      return new Date(a.date) - new Date(b.date);
+    });
+    var streak = 0;
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    for (var i = sorted.length - 1; i >= 0; i--) {
+      var d = new Date(sorted[i].date);
+      d.setHours(0, 0, 0, 0);
+      var diff = Math.round((today - d) / 86400000);
+      if (diff === streak) {
+        streak++;
+      } else if (diff > streak) {
+        break;
+      }
+    }
+    return streak;
+  }
+
+  function computeWeakAreas(history) {
+    var topicScores = {};
+    for (var i = 0; i < history.length; i++) {
+      var h = history[i];
+      if (!topicScores[h.topic]) {
+        topicScores[h.topic] = { total: 0, count: 0 };
+      }
+      topicScores[h.topic].total += h.percentage;
+      topicScores[h.topic].count++;
+    }
+    var weak = [];
+    for (var topic in topicScores) {
+      var avg = topicScores[topic].total / topicScores[topic].count;
+      if (avg < 60) weak.push(topic);
+    }
+    return weak;
+  }
+
+  function renderDashboard() {
+    var history = getQuizHistory();
+
+    // Stats
+    var statsHtml = '';
+    if (history.length === 0) {
+      statsHtml = '<p class="dash-empty">Noch keine Quiz-Ergebnisse.</p>';
+    } else {
+      var total = history.length;
+      var avgPct = 0;
+      var best = 0;
+      for (var i = 0; i < history.length; i++) {
+        avgPct += history[i].percentage;
+        if (history[i].percentage > best) best = history[i].percentage;
+      }
+      avgPct = Math.round(avgPct / history.length);
+      statsHtml =
+        '<div class="dash-stat-row"><span>Quizze gesamt</span><span class="dash-stat-value">' + total + '</span></div>' +
+        '<div class="dash-stat-row"><span>Durchschnitt</span><span class="dash-stat-value">' + avgPct + '%</span></div>' +
+        '<div class="dash-stat-row"><span>Bestes Ergebnis</span><span class="dash-stat-value">' + best + '%</span></div>';
+    }
+    document.getElementById('dash-stats-content').innerHTML = statsHtml;
+
+    // Recent results
+    var recentHtml = '';
+    if (history.length === 0) {
+      recentHtml = '<p class="dash-empty">Noch keine Quiz-Ergebnisse.</p>';
+    } else {
+      var recent = history.slice(-5).reverse();
+      for (var ri = 0; ri < recent.length; ri++) {
+        var r = recent[ri];
+        var scoreClass = r.percentage >= 80 ? '#4caf50' : r.percentage >= 50 ? '#ff9800' : '#f44336';
+        var d = new Date(r.date);
+        var dateStr = d.toLocaleDateString('de-DE');
+        recentHtml +=
+          '<div class="dash-recent-item">' +
+          '<span class="dash-recent-topic">' + escapeHtml(r.topic) + '</span>' +
+          '<span class="dash-recent-score" style="color:' + scoreClass + '">' + r.percentage + '%</span>' +
+          '<span class="dash-recent-date">' + dateStr + '</span>' +
+          '</div>';
+      }
+    }
+    document.getElementById('dash-recent-content').innerHTML = recentHtml;
+
+    // Streak
+    var streak = computeStreak(history);
+    var streakHtml = streak > 0
+      ? '<div style="text-align:center;padding:0.5rem;"><span style="font-size:2.5rem;font-weight:800;color:#ff9800;">' + streak + '</span><br><span style="font-size:0.85rem;color:#888;">Tage in Folge</span></div>'
+      : '<p class="dash-empty">Noch keine Serie.</p>';
+    document.getElementById('dash-streak-content').innerHTML = streakHtml;
+
+    // Weak areas
+    var weak = computeWeakAreas(history);
+    var weakHtml = weak.length > 0
+      ? weak.map(function (t) { return '<span class="dash-weak-item">' + escapeHtml(t) + '</span>'; }).join('')
+      : '<p class="dash-empty">Keine Schwächen erkannt. Weiter so!</p>';
+    document.getElementById('dash-weak-content').innerHTML = weakHtml;
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+
+  dashboardBtn.addEventListener('click', function () {
+    renderDashboard();
+    quizHeader.classList.add('hidden');
+    quizAreaEl.classList.add('hidden');
+    if (reviewBannerEl) reviewBannerEl.classList.add('hidden');
+    dashboardView.classList.remove('hidden');
+  });
+
+  dashboardClose.addEventListener('click', function () {
+    dashboardView.classList.add('hidden');
+    quizHeader.classList.remove('hidden');
+    quizAreaEl.classList.remove('hidden');
+    if (reviewBannerEl) reviewBannerEl.classList.remove('hidden');
+    checkDueCards();
+  });
 
   // ── Initialize ────────────────────────────────
   checkDueCards();

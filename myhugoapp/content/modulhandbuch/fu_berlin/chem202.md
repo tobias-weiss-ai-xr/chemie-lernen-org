@@ -3,6 +3,7 @@ title: 'Organische Chemie: Reaktivität — Freie Universität Berlin'
 description: 'Organische Chemie: Reaktivität (CHEM202) an der Freie Universität Berlin. 6 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: FU_BERLIN
 uni_name: Freie Universität Berlin
 module_code: CHEM202

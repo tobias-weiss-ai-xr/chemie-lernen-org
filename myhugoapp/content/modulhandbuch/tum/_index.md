@@ -3,6 +3,7 @@ title: TU München
 description: Die TU München bietet 20 Chemie-Module in 2 Studiengängen an.
 layout: uni
 date: 2026-06-28
+last_reviewed: 2026-07-09
 aliases:
   - /modulhandbuch/TUM/
 uni_code: TUM

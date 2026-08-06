@@ -3,6 +3,7 @@ title: 'Physikalische Chemie I: Thermodynamik — RWTH Aachen'
 description: 'Physikalische Chemie I: Thermodynamik (PCA1) an der RWTH Aachen. 7 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: RWTH
 uni_name: RWTH Aachen
 module_code: PCA1

@@ -3,6 +3,7 @@ title: Advanced Organic Chemistry — Freie Universität Berlin
 description: 'Advanced Organic Chemistry (CHEM402) an der Freie Universität Berlin. 6 ECTS, Niveau: MSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: FU_BERLIN
 uni_name: Freie Universität Berlin
 module_code: CHEM402

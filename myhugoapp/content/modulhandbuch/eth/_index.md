@@ -3,6 +3,7 @@ title: ETH Zürich
 description: Die ETH Zürich bietet 19 Chemie-Module in 2 Studiengängen an.
 layout: uni
 date: 2026-06-28
+last_reviewed: 2026-07-09
 aliases:
   - /modulhandbuch/ETH/
 uni_code: ETH

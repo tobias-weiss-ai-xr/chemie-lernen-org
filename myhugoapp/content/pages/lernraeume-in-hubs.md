@@ -2,6 +2,7 @@
 title: 'Lernräume in Mozilla Hubs'
 description: 'Wie 3D-Lernräume in Mozilla Hubs den Chemieunterricht ergänzen — Konzept, Beispiele und Einstieg in hubs.chemie-lernen.org'
 date: 2026-06-26
+last_reviewed: 2026-07-09
 tags: ['3d', 'webxr', 'hubs', 'lernräume', 'virtual-reality']
 menu:
   main:

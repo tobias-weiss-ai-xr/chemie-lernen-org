@@ -22,22 +22,22 @@
       <ul class="nav nav-tabs" role="tablist">
         <li class="active" role="presentation">
           <a href="#temperatur" aria-controls="temperatur" role="tab" data-toggle="tab">
-            <i class="fa fa-thermometer-half"></i> Temperatur
+            <i class="fa fa-thermometer-half"></i> <span data-i18n="unit_converter.labels.temperature">Temperatur</span>
           </a>
         </li>
         <li role="presentation">
           <a href="#druck" aria-controls="druck" role="tab" data-toggle="tab">
-            <i class="fa fa-tachometer"></i> Druck
+            <i class="fa fa-tachometer"></i> <span data-i18n="unit_converter.labels.pressure">Druck</span>
           </a>
         </li>
         <li role="presentation">
           <a href="#volumen" aria-controls="volumen" role="tab" data-toggle="tab">
-            <i class="fa fa-cube"></i> Volumen
+            <i class="fa fa-cube"></i> <span data-i18n="unit_converter.labels.volume">Volumen</span>
           </a>
         </li>
         <li role="presentation">
           <a href="#masse" aria-controls="masse" role="tab" data-toggle="tab">
-            <i class="fa fa-balance-scale"></i> Masse
+            <i class="fa fa-balance-scale"></i> <span data-i18n="unit_converter.labels.mass">Masse</span>
           </a>
         </li>
         <li role="presentation">
@@ -53,8 +53,8 @@
     <!-- Temperature Tab -->
     <div class="tab-pane active" id="temperatur" role="tabpanel">
       <div class="converter-panel">
-        <h2>Temperatur umrechnen</h2>
-        <p>Wählen Sie die Ausgangseinheit und geben Sie den Wert ein:</p>
+        <h2 data-i18n="unit_converter.title">Einheitenumrechner</h2>
+        <p data-i18n="unit_converter.description">Wählen Sie die Ausgangseinheit und geben Sie den Wert ein:</p>
 
         <div class="row">
           <div class="col-md-6">
@@ -83,17 +83,17 @@
           </div>
         </div>
 
-        <button id="btn-convert-temp" class="btn btn-primary btn-lg btn-block">
-          <i class="fa fa-exchange-alt"></i> Umrechnen
+        <button id="btn-convert-temp" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;">
+          <i class="fa fa-exchange-alt"></i> <span data-i18n="unit_converter.buttons.convert">Umrechnen</span>
         </button>
 
-        <div id="temp-result" class="result-box" aria-live="polite">
-          <h3>Ergebnis:</h3>
+        <div id="temp-result" class="result-box" style="display: none; margin-top: 20px;" aria-live="polite">
+          <h3 data-i18n="calc.result">Ergebnis:</h3>
           <p id="temp-formula" class="formula-display"></p>
         </div>
 
-        <div class="info-box">
-          <h4><i class="fa fa-info-circle"></i> Informationen zur Temperaturskala</h4>
+        <div class="info-box" style="margin-top: 30px;">
+          <h4><i class="fa fa-info-circle"></i> <span data-i18n="unit_converter.title">Informationen zur Temperaturskala</span></h4>
           <ul>
             <li><strong>Celsius (°C):</strong> Wasser gefriert bei 0°C und siedet bei 100°C</li>
             <li><strong>Fahrenheit (°F):</strong> Wasser gefriert bei 32°F und siedet bei 212°F</li>
@@ -144,17 +144,17 @@
           </div>
         </div>
 
-        <button id="btn-convert-pressure" class="btn btn-primary btn-lg btn-block">
-          <i class="fa fa-exchange-alt"></i> Umrechnen
+        <button id="btn-convert-pressure" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;">
+          <i class="fa fa-exchange-alt"></i> <span data-i18n="unit_converter.buttons.convert">Umrechnen</span>
         </button>
 
-        <div id="pressure-result" class="result-box" aria-live="polite">
-          <h3>Ergebnis:</h3>
+        <div id="pressure-result" class="result-box" style="display: none; margin-top: 20px;" aria-live="polite">
+          <h3 data-i18n="calc.result">Ergebnis:</h3>
           <p id="pressure-formula" class="formula-display"></p>
         </div>
 
-        <div class="info-box">
-          <h4><i class="fa fa-info-circle"></i> Informationen zu Druckeinheiten</h4>
+        <div class="info-box" style="margin-top: 30px;">
+          <h4><i class="fa fa-info-circle"></i> <span data-i18n="unit_converter.labels.pressure">Informationen zu Druckeinheiten</span></h4>
           <ul>
             <li><strong>bar:</strong> 1 bar = 100.000 Pa, ungefähr atmosphärischer Druck</li>
             <li><strong>Pascal (Pa):</strong> SI-Einheit, 1 Pa = 1 N/m²</li>
@@ -202,17 +202,17 @@
           </div>
         </div>
 
-        <button id="btn-convert-volume" class="btn btn-primary btn-lg btn-block">
-          <i class="fa fa-exchange-alt"></i> Umrechnen
+        <button id="btn-convert-volume" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;">
+          <i class="fa fa-exchange-alt"></i> <span data-i18n="unit_converter.buttons.convert">Umrechnen</span>
         </button>
 
-        <div id="volume-result" class="result-box" aria-live="polite">
-          <h3>Ergebnis:</h3>
+        <div id="volume-result" class="result-box" style="display: none; margin-top: 20px;" aria-live="polite">
+          <h3 data-i18n="calc.result">Ergebnis:</h3>
           <p id="volume-formula" class="formula-display"></p>
         </div>
 
-        <div class="info-box">
-          <h4><i class="fa fa-info-circle"></i> Informationen zu Volumeneinheiten</h4>
+        <div class="info-box" style="margin-top: 30px;">
+          <h4><i class="fa fa-info-circle"></i> <span data-i18n="unit_converter.labels.volume">Informationen zu Volumeneinheiten</span></h4>
           <ul>
             <li><strong>Liter (L):</strong> 1 L = 1 dm³ = 1000 cm³</li>
             <li><strong>Milliliter (mL):</strong> 1 mL = 1 cm³ = 0.001 L</li>
@@ -263,17 +263,17 @@
           <input type="number" id="molar-mass" class="form-control" placeholder="z.B. 18.015 für Wasser" step="any" aria-label="Molare Masse in g/mol">
         </div>
 
-        <button id="btn-convert-mass" class="btn btn-primary btn-lg btn-block">
-          <i class="fa fa-exchange-alt"></i> Umrechnen
+        <button id="btn-convert-mass" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;">
+          <i class="fa fa-exchange-alt"></i> <span data-i18n="unit_converter.buttons.convert">Umrechnen</span>
         </button>
 
-        <div id="mass-result" class="result-box" aria-live="polite">
-          <h3>Ergebnis:</h3>
+        <div id="mass-result" class="result-box" style="display: none; margin-top: 20px;" aria-live="polite">
+          <h3 data-i18n="calc.result">Ergebnis:</h3>
           <p id="mass-formula" class="formula-display"></p>
         </div>
 
-        <div class="info-box">
-          <h4><i class="fa fa-info-circle"></i> Informationen zu Masseneinheiten</h4>
+        <div class="info-box" style="margin-top: 30px;">
+          <h4><i class="fa fa-info-circle"></i> <span data-i18n="unit_converter.labels.mass">Informationen zu Masseneinheiten</span></h4>
           <ul>
             <li><strong>Gramm (g):</strong> 1 g = 0.001 kg</li>
             <li><strong>Kilogramm (kg):</strong> SI-Einheit</li>
@@ -322,17 +322,17 @@
           </div>
         </div>
 
-        <button id="btn-convert-energy" class="btn btn-primary btn-lg btn-block">
-          <i class="fa fa-exchange-alt"></i> Umrechnen
+        <button id="btn-convert-energy" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px;">
+          <i class="fa fa-exchange-alt"></i> <span data-i18n="unit_converter.buttons.convert">Umrechnen</span>
         </button>
 
-        <div id="energy-result" class="result-box" aria-live="polite">
-          <h3>Ergebnis:</h3>
+        <div id="energy-result" class="result-box" style="display: none; margin-top: 20px;" aria-live="polite">
+          <h3 data-i18n="calc.result">Ergebnis:</h3>
           <p id="energy-formula" class="formula-display"></p>
         </div>
 
-        <div class="info-box">
-          <h4><i class="fa fa-info-circle"></i> Informationen zu Energieeinheiten</h4>
+        <div class="info-box" style="margin-top: 30px;">
+          <h4><i class="fa fa-info-circle"></i> <span data-i18n="unit_converter.title">Informationen zu Energieeinheiten</span></h4>
           <ul>
             <li><strong>Joule (J):</strong> SI-Einheit, 1 J = 1 kg·m²/s²</li>
             <li><strong>Kalorie (cal):</strong> 1 cal ≈ 4.184 J</li>

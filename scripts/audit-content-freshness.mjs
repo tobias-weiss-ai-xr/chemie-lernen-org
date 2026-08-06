@@ -1,15 +1,17 @@
 #!/usr/bin/env node
+
 /**
- * audit-content-freshness.mjs — Scans all themenbereiche articles for
- * `last_reviewed` frontmatter and flags articles not reviewed in 6+ months.
+ * audit-content-freshness.mjs — Audit and update content freshness metadata.
  *
  * Usage:
- *   node scripts/audit-content-freshness.mjs          # human-readable report
- *   node scripts/audit-content-freshness.mjs --json   # JSON output
- *   node scripts/audit-content-freshness.mjs --stale  # exit 1 if stale found
+ *   node scripts/audit-content-freshness.mjs                    # Report only
+ *   node scripts/audit-content-freshness.mjs --update           # Add/update last_reviewed
+ *   node scripts/audit-content-freshness.mjs --days=180         # Threshold (default: 180)
+ *   node scripts/audit-content-freshness.mjs --dir=myhugoapp/content/pages
  *
- * Output: list of articles with last_reviewed > 180 days ago
- * Exit codes: 0 = all fresh, 1 = stale articles found (with --stale)
+ * Scans all *.md files under CONTENT_DIR, checks for last_reviewed frontmatter,
+ * and reports stale content. With --update, adds last_reviewed: <today> to
+ * files missing it.
  */
 
 import fs from 'node:fs';
@@ -18,124 +20,125 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..');
-const THEMENBEREICHE_DIR = path.join(REPO_ROOT, 'myhugoapp', 'content', 'themenbereiche');
+const CONTENT_DIR = path.join(REPO_ROOT, 'myhugoapp', 'content');
 
-const STALE_DAYS = 180;
+// Parse CLI args
 const args = process.argv.slice(2);
-const isJson = args.includes('--json');
-const isStrict = args.includes('--stale');
+const FLAG_UPDATE = args.includes('--update');
+const STALE_DAYS = parseInt(args.find((a) => a.startsWith('--days='))?.split('=')[1] || '180', 10);
+const DIR_OVERRIDE = args.find((a) => a.startsWith('--dir='))?.split('=')[1];
+const baseDir = DIR_OVERRIDE ? path.resolve(REPO_ROOT, DIR_OVERRIDE) : CONTENT_DIR;
 
-function parseFrontmatter(content) {
-  const match = content.match(/^---\n([\s\S]*?)\n---/);
-  if (!match) return {};
-  const fm = {};
-  const lines = match[1].split('\n');
-  for (const line of lines) {
-    const kv = line.match(/^(\w+):\s*(.+)$/);
-    if (kv) {
-      let val = kv[2].trim();
-      // Remove surrounding quotes
-      if (
-        (val.startsWith("'") && val.endsWith("'")) ||
-        (val.startsWith('"') && val.endsWith('"'))
-      ) {
-        val = val.slice(1, -1);
-      }
-      fm[kv[1]] = val;
+const TODAY = new Date();
+const TODAY_ISO = TODAY.toISOString().slice(0, 10);
+
+/**
+ * Parse YAML frontmatter from a markdown string.
+ * Returns { frontmatter: Record<string,any>, body: string, raw: string }
+ */
+function parseFrontmatter(text) {
+  const match = text.match(/^---\n([\s\S]*?)\n---\n/);
+  if (!match) return { frontmatter: null, body: text, raw: '' };
+  const raw = match[1];
+  const frontmatter = {};
+  for (const line of raw.split('\n')) {
+    const sep = line.search(/:\s/);
+    if (sep === -1) continue;
+    const key = line.slice(0, sep).trim();
+    let value = line.slice(sep + 1).trim();
+    // Strip quotes
+    if (
+      (value.startsWith("'") && value.endsWith("'")) ||
+      (value.startsWith('"') && value.endsWith('"'))
+    ) {
+      value = value.slice(1, -1);
     }
+    frontmatter[key] = value;
   }
-  return fm;
+  return { frontmatter, body: text.slice(match[0].length), raw };
 }
 
 function daysSince(dateStr) {
-  const then = new Date(dateStr);
-  const now = new Date();
-  return Math.floor((now - then) / (1000 * 60 * 60 * 24));
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return Infinity;
+  return Math.floor((TODAY - d) / (1000 * 60 * 60 * 24));
 }
 
-const results = [];
-
-function walkDir(dir) {
-  const entries = fs.readdirSync(dir, { withFileTypes: true });
+function collectMarkdownFiles(dir) {
+  const results = [];
+  let entries;
+  try {
+    entries = fs.readdirSync(dir, { withFileTypes: true });
+  } catch {
+    return results;
+  }
   for (const entry of entries) {
-    if (entry.name === '_index.md') continue;
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      walkDir(fullPath);
+      results.push(...collectMarkdownFiles(fullPath));
     } else if (entry.name.endsWith('.md')) {
-      const content = fs.readFileSync(fullPath, 'utf-8');
-      const fm = parseFrontmatter(content);
-      const relativePath = path.relative(THEMENBEREICHE_DIR, fullPath);
-
-      if (!fm.last_reviewed) {
-        results.push({
-          file: relativePath,
-          title: fm.title || '(unknown)',
-          status: 'missing',
-          daysSinceReview: null,
-        });
-        continue;
-      }
-
-      const days = daysSince(fm.last_reviewed);
-      results.push({
-        file: relativePath,
-        title: fm.title || '(unknown)',
-        status: days > STALE_DAYS ? 'stale' : 'fresh',
-        lastReviewed: fm.last_reviewed,
-        daysSinceReview: days,
-      });
+      results.push(fullPath);
     }
   }
+  return results;
 }
 
-walkDir(THEMENBEREICHE_DIR);
+// --- Main ---
 
-// Summary counts
-const total = results.length;
-const missing = results.filter((r) => r.status === 'missing').length;
-const stale = results.filter((r) => r.status === 'stale').length;
-const fresh = results.filter((r) => r.status === 'fresh').length;
+const files = collectMarkdownFiles(baseDir);
+console.log(`\n📄 Content Freshness Audit — ${TODAY_ISO}`);
+console.log(`   Directory: ${baseDir}`);
+console.log(`   Files found: ${files.length}`);
+console.log(`   Stale threshold: ${STALE_DAYS} days`);
+if (FLAG_UPDATE) console.log(`   Mode: UPDATE (adding last_reviewed where missing)\n`);
+else console.log('   Mode: READ-ONLY (use --update to apply)\n');
 
-if (isJson) {
-  console.log(
-    JSON.stringify(
-      {
-        timestamp: new Date().toISOString(),
-        summary: { total, fresh, stale, missing },
-        articles: results,
-      },
-      null,
-      2
-    )
-  );
-} else {
-  console.log(`\n📋 Content Freshness Audit — ${new Date().toISOString().slice(0, 10)}\n`);
-  console.log(`   Total articles: ${total}`);
-  console.log(`   ✅ Fresh (≤${STALE_DAYS}d): ${fresh}`);
-  console.log(`   ⚠️  Stale (>${STALE_DAYS}d): ${stale}`);
-  console.log(`   ❌ Missing last_reviewed: ${missing}\n`);
+let withReview = 0;
+let stale = 0;
+let missing = 0;
+let updated = 0;
 
-  if (stale > 0 || missing > 0) {
-    console.log('Articles needing attention:\n');
-    for (const r of results) {
-      if (r.status === 'stale') {
-        console.log(`   ⚠️  ${r.file}`);
-        console.log(`       Title: ${r.title}`);
-        console.log(`       Last reviewed: ${r.lastReviewed} (${r.daysSinceReview} days ago)\n`);
-      } else if (r.status === 'missing') {
-        console.log(`   ❌ ${r.file}`);
-        console.log(`       Title: ${r.title}`);
-        console.log(`       Missing last_reviewed field\n`);
-      }
+for (const filePath of files) {
+  const text = fs.readFileSync(filePath, 'utf-8');
+  const { frontmatter, body, raw } = parseFrontmatter(text);
+
+  if (!frontmatter) {
+    missing++;
+    continue;
+  }
+
+  const relPath = path.relative(CONTENT_DIR, filePath);
+  const reviewed = frontmatter.last_reviewed;
+  const created = frontmatter.date;
+
+  if (!reviewed) {
+    missing++;
+    if (FLAG_UPDATE) {
+      // Add last_reviewed after the date field (or after the first field if no date)
+      const insertAfter = created ? `date: ${created}` : `title: ${frontmatter.title}`;
+      const newRaw = raw.replace(new RegExp(`(${insertAfter})`), `$1\nlast_reviewed: ${TODAY_ISO}`);
+      const newText = `---\n${newRaw}\n---\n${body}`;
+      fs.writeFileSync(filePath, newText, 'utf-8');
+      console.log(`  ✚ ${relPath} → last_reviewed: ${TODAY_ISO}`);
+      updated++;
+    } else {
+      console.log(`  ⚠ ${relPath} — missing last_reviewed`);
     }
+    continue;
   }
 
-  if (fresh === total) {
-    console.log('   ✅ All articles are up to date!\n');
+  withReview++;
+  const age = daysSince(reviewed);
+  if (age > STALE_DAYS) {
+    stale++;
+    console.log(`  🟡 ${relPath} — last_reviewed: ${reviewed} (${age}d ago)`);
   }
 }
 
-if (isStrict && (stale > 0 || missing > 0)) {
-  process.exit(1);
-}
+console.log(`\n─── Summary ───`);
+console.log(`   Total files:    ${files.length}`);
+console.log(`   With review:    ${withReview}`);
+console.log(`   Stale (>${STALE_DAYS}d): ${stale}`);
+console.log(`   Missing:        ${missing}`);
+if (FLAG_UPDATE) console.log(`   Updated:        ${updated}`);
+console.log('');

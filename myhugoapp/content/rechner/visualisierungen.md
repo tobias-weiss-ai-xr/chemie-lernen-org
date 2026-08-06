@@ -2,6 +2,7 @@
 title: 'Übersicht: 3D-Visualisierungen'
 description: "Chemische Visualisierungen und Simulationen – Molekülbau, Periodensystem, Reaktionskinetik und Gleichgewichte."
 date: 2026-02-06
+last_reviewed: 2026-07-09
 draft: false
 tags: ['visualisierung', '3d', 'uebersicht']
 categories: ['rechner']

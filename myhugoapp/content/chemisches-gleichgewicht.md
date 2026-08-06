@@ -2,6 +2,7 @@
 title: 'Chemisches Gleichgewicht Rechner'
 description: 'Interaktiver Rechner für chemisches Gleichgewicht und Le Chatelier-sches Prinzip - Dynamische Gleichgewichte und Konzentrationsänderungen visualisieren'
 date: 2026-01-07
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'chemisches-gleichgewicht'

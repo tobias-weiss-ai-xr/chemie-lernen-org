@@ -2,6 +2,7 @@
 title: "Materialien und Vorbereitung"
 description: "Lehrmaterialien erstellen, Unterricht vorbereiten, Labore planen und didaktische Anleitungen für Chemielehrer"
 date: 2026-01-05
+last_reviewed: 2026-07-09
 type: "page"
 icon: "📋"
 tags: ["materialien", "vorbereitung", "labor-planung", "unterrichtsvorbereitung"]

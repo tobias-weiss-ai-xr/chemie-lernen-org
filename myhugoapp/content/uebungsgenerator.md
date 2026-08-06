@@ -2,6 +2,7 @@
 title: "Übungsgenerator"
 description: "Interaktiver Übungsgenerator für Chemie - Teste dein Wissen mit zufälligen Aufgaben aus verschiedenen Themenbereichen."
 date: 2025-12-20
+last_reviewed: 2026-07-09
 type: "calculator"
 layout: "uebungsgenerator"
 icon: "🎯"

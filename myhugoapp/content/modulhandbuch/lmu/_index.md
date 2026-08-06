@@ -3,6 +3,7 @@ title: LMU München
 description: Die LMU München bietet 23 Chemie-Module in 4 Studiengängen an.
 layout: uni
 date: 2026-06-29
+last_reviewed: 2026-07-09
 aliases:
   - /modulhandbuch/LMU/
 uni_code: LMU

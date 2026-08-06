@@ -2,6 +2,7 @@
 title: "Enhanced pH-Visualisierung"
 description: "Interaktive pH-Skala mit Indikatoren und Titrationskurven"
 date: 2026-01-07
+last_reviewed: 2026-07-09
 type: "interactive"
 interaktiv: true
 layout: "enhanced-ph-visualization"

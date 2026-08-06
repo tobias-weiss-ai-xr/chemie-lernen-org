@@ -2,6 +2,7 @@
 title: '7. Klasse'
 description: 'Vom Atom zum Periodensystem in Klasse 7 – Atombau, Elemente und erste Einführung in das Periodensystem der Elemente.'
 date: 2025-12-26
+last_reviewed: 2026-07-09
 klassenstufe: 7
 bundesland: ['BE', 'BB', 'HH', 'MV', 'NI', 'NW', 'RP', 'SN', 'ST', 'TH']
 ---

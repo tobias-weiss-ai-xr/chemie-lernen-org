@@ -3,6 +3,7 @@ title: University of Tokyo
 description: Die University of Tokyo bietet 22 Chemie-Module in 2 Studiengängen an.
 layout: uni
 date: 2026-06-29
+last_reviewed: 2026-07-09
 aliases:
   - /modulhandbuch/UTKYO/
 uni_code: UTKYO

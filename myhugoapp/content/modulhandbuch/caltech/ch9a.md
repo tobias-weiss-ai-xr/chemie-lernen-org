@@ -3,6 +3,7 @@ title: 'Organic Chemistry: Mechanisms — California Institute of Technology'
 description: 'Organic Chemistry: Mechanisms (Ch9a) an der California Institute of Technology. 6 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: CALTECH
 uni_name: California Institute of Technology
 module_code: Ch9a

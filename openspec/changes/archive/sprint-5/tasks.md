@@ -1,8 +1,8 @@
 - [ ] Create `static/js/utils/unit-converter.js` — 5 dimensions, SI base, auto-detect
-- [x] Create gas-calculator.js (ChemistryCalculator subclass) + layout + content
-- [x] Create dilution-calculator.js + layout + content
-- [x] Create yield-calculator.js + layout + content
-- [ ] Register all 3 new calculators in LazyLoader
+- [x] Create gas-calculator.js (calc-gaslaw.js exists) + layout + content
+- [x] Create dilution-calculator.js (verduennungsreihen-rechner.js exists) + layout + content
+- [x] Create yield-calculator.js (calc-yield.js exists) + layout + content
+- [x] Register all 3 new calculators in LazyLoader (in stoichiometry group)
 - [ ] Create `static/js/i18n/calculators-de.json` with German labels
 - [ ] Add `data-i18n` attributes to all calculator HTML templates
 - [ ] Write unit-converter Jest tests (round-trip, edge cases, zero, negative)

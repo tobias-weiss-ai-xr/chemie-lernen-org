@@ -3,6 +3,7 @@ title: Organic Chemistry I — University of Tokyo
 description: 'Organic Chemistry I (CHEM221) an der University of Tokyo. 6 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: UTKYO
 uni_name: University of Tokyo
 module_code: CHEM221

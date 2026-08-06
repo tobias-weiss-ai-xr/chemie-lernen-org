@@ -2,6 +2,7 @@
 title: 'Druck und Fläche Rechner'
 description: 'Interaktiver Rechner für Druck, Kraft und Fläche - Berechnen Sie physikalische Zusammenhänge mit visuellen Demonstrationen'
 date: 2026-01-04
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'druck-flaechen-rechner'

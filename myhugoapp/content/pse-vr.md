@@ -1,6 +1,7 @@
 ---
 title: 'PSE in VR - Virtuelles Periodensystem'
 date: 2026-01-04
+last_reviewed: 2026-07-09
 description: 'Erleben Sie das Periodensystem der Elemente in virtueller Realität. Eine immersive Lernumgebung für Chemie mit 118 Element-Räumen.'
 tags: ['vr', 'periodensystem', '3d', 'interaktiv', 'webxr']
 draft: false

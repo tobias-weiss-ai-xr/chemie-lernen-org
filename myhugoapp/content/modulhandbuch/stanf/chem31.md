@@ -3,6 +3,7 @@ title: Chemical Principles — Stanford University
 description: 'Chemical Principles (CHEM31) an der Stanford University. 6 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: STANF
 uni_name: Stanford University
 module_code: CHEM31

@@ -3,6 +3,7 @@ title: Heidelberg University
 description: Die Heidelberg University bietet 22 Chemie-Module in 3 Studiengängen an.
 layout: uni
 date: 2026-06-29
+last_reviewed: 2026-07-09
 aliases:
   - /modulhandbuch/HEID/
 uni_code: HEID

@@ -2,6 +2,7 @@
 title: "Der Hackprozess: Ein Überblick für Einsteiger"
 description: "Erfahren Sie, was ein Hackprozess ist, warum er wichtig ist und wie Sie erste Sicherheitslücken nachvollziehen können."
 date: 2025-07-15
+last_reviewed: 2026-07-09
 tags: ["sicherheit", "hacking", "einsteiger", "cybersecurity", "pentest"]
 interaktiv: false
 schwierigkeit: "grundlagen"

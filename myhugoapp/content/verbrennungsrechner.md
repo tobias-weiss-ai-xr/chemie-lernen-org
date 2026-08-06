@@ -2,6 +2,7 @@
 title: "Verbrennungsrechner"
 description: "Berechnen Sie Verbrennungsreaktionen, Luftbedarf, CO₂-Ausstoß und energetische Kennwerte für organische Verbindungen"
 date: 2026-01-03
+last_reviewed: 2026-07-09
 type: "interactive"
 interaktiv: true
 layout: "verbrennungsrechner"

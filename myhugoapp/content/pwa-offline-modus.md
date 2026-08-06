@@ -2,6 +2,7 @@
 title: 'PWA & Offline-Modus'
 description: 'Chemie Lernen als Progressive Web App — installieren und offline nutzen'
 date: 2026-05-28
+last_reviewed: 2026-07-09
 type: 'page'
 layout: 'single'
 icon: '📱'

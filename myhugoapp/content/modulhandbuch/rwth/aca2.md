@@ -3,6 +3,7 @@ title: 'Anorganische Chemie II: Nebengruppenchemie & Komplexe — RWTH Aachen'
 description: 'Anorganische Chemie II: Nebengruppenchemie & Komplexe (ACA2) an der RWTH Aachen. 6 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: RWTH
 uni_name: RWTH Aachen
 module_code: ACA2

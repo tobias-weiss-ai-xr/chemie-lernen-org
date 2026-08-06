@@ -2,6 +2,7 @@
 title: 'Wärmeleitung'
 description: 'Interaktive Visualisierung der Wärmeleitung durch Konduktion in verschiedenen Materialien'
 date: 2026-01-04
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'waermeleitung'

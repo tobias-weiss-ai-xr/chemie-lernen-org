@@ -3,6 +3,7 @@ title: 'Chemistry A: Atoms, Molecules & Reactions — University of Cambridge'
 description: 'Chemistry A: Atoms, Molecules & Reactions (NST-1A-CHEM) an der University of Cambridge. 12 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: CAM
 uni_name: University of Cambridge
 module_code: NST-1A-CHEM

@@ -3,6 +3,7 @@ title: 'Organische Chemie I: Grundlagen & Kohlenwasserstoffe — RWTH Aachen'
 description: 'Organische Chemie I: Grundlagen & Kohlenwasserstoffe (OCA1) an der RWTH Aachen. 7 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: RWTH
 uni_name: RWTH Aachen
 module_code: OCA1

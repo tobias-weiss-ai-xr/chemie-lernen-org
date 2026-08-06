@@ -3,6 +3,7 @@ title: Advanced Inorganic Chemistry — University of Cambridge
 description: 'Advanced Inorganic Chemistry (NST-2-AC) an der University of Cambridge. 6 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: CAM
 uni_name: University of Cambridge
 module_code: NST-2-AC

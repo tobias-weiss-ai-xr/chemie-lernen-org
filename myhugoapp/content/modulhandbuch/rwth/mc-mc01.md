@@ -3,6 +3,7 @@ title: Fortgeschrittene Polymerchemie — RWTH Aachen
 description: 'Fortgeschrittene Polymerchemie (MC-MC01) an der RWTH Aachen. 5 ECTS, Niveau: MSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: RWTH
 uni_name: RWTH Aachen
 module_code: MC-MC01

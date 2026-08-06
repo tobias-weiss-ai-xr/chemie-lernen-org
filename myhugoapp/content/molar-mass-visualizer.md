@@ -2,6 +2,7 @@
 title: "Molare Masse Visualizer"
 description: "Interaktive Visualisierung und Berechnung der molaren Masse chemischer Verbindungen"
 date: 2026-01-07
+last_reviewed: 2026-07-09
 type: "interactive"
 interaktiv: true
 layout: "molar-mass-visualizer"

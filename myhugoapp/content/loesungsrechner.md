@@ -2,6 +2,7 @@
 title: "Lösungsrechner"
 description: "Interaktiver Lösungsrechner für Chemie - Molarität, Verdünnung und Konzentrationsberechnungen"
 date: 2025-01-01
+last_reviewed: 2026-07-09
 type: "interactive"
 interaktiv: true
 layout: "loesungsrechner"

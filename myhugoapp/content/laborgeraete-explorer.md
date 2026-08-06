@@ -2,6 +2,7 @@
 title: 'Laborgeräte-Explorer'
 description: 'Interaktive Übersicht über wichtige Laborgeräte mit Beschreibungen und Verwendungszwecken'
 date: 2026-05-28
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'laborgeraete-explorer'

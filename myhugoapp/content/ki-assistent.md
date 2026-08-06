@@ -2,6 +2,7 @@
 title: 'KI-Assistent'
 description: 'Stellen Sie Fragen zur Chemie — der KI-Assistent mit Multi-Turn-Kontext durchsucht das Wissensnetz und gibt echte LLM-Antworten'
 date: 2026-06-10
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'ki-assistent'

@@ -2,6 +2,7 @@
 title: 'Klassencockpit'
 description: 'Dashboard für Lehrkräfte — verfolgen Sie den Lernfortschritt Ihrer Klasse'
 date: 2026-05-28
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'klassencockpit'

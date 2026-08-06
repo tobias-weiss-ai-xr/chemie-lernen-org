@@ -17,6 +17,8 @@ let users = [];
 let nextId = 1;
 let savePending = false;
 let saveTimeout = null;
+let writeLock = false;
+let writeQueue = [];
 
 function load() {
   try {
@@ -33,13 +35,24 @@ function load() {
 }
 
 function save() {
-  // Atomic write: write to temp file then rename
+  // Write lock: prevent interleaved writes from concurrent mutations
+  if (writeLock) {
+    // Re-run the write once the lock frees (do not just release the lock)
+    return new Promise((resolve) => writeQueue.push(() => save().then(resolve)));
+  }
+  writeLock = true;
   const tmpPath = DB_PATH + '.tmp';
   try {
     fs.writeFileSync(tmpPath, JSON.stringify({ users, nextId }, null, 2));
     fs.renameSync(tmpPath, DB_PATH);
   } catch (err) {
     console.error('[auth-db] Failed to save users.json:', err.message);
+  } finally {
+    writeLock = false;
+    if (writeQueue.length > 0) {
+      const next = writeQueue.shift();
+      next();
+    }
   }
 }
 
@@ -116,7 +129,7 @@ export function updatePassword(id, passwordHash) {
   if (u) {
     u.password_hash = passwordHash;
     u.updated_at = new Date().toISOString();
-    save();
+    scheduleSave();
   }
 }
 

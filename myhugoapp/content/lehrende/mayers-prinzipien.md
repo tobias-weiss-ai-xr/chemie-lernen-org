@@ -2,6 +2,7 @@
 title: 'Mayers 12 Prinzipien des Multimedialen Lernens - Für Lehrende'
 description: 'Lehrerhandreichung wie Richard E. Mayers Prinzipien des multimedialen Lernens für Chemielehrkräfte in der Unterrichtsgestaltung angewandt werden können'
 date: 2026-01-05
+last_reviewed: 2026-07-09
 type: 'page'
 icon: '📚'
 schwierigkeit: 'fortgeschritten'

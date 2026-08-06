@@ -2,6 +2,7 @@
 title: "Lernziele und Kompetenzen"
 description: "Nationale Bildungsstandards, Kompetenzorientierung, Lehrplan-Kompatibilität für den Chemieunterricht — mit Umsetzungsbeispielen für Sekundarstufe I und II"
 date: 2026-01-05
+last_reviewed: 2026-07-09
 type: "page"
 icon: "🎯"
 tags: ["lernziele", "kompetenzen", "bildungsstandards", "lehrplan", "chemieunterricht", "kmk"]

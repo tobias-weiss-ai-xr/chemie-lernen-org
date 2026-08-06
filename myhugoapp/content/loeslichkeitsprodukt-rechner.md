@@ -2,6 +2,7 @@
 title: "Löslichkeitsprodukt Rechner"
 description: "Berechnen Sie Löslichkeitsprodukte (Ksp) und prüfen Sie Fällungsreaktionen interaktiv"
 date: 2026-01-03
+last_reviewed: 2026-07-09
 type: "interactive"
 interaktiv: true
 layout: "loeslichkeitsprodukt-rechner"

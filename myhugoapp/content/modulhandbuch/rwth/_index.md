@@ -3,6 +3,7 @@ title: RWTH Aachen
 description: Die RWTH Aachen bietet 23 Chemie-Module in 3 Studiengängen an.
 layout: uni
 date: 2026-06-29
+last_reviewed: 2026-07-09
 aliases:
   - /modulhandbuch/RWTH/
 uni_code: RWTH

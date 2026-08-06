@@ -2,6 +2,7 @@
 title: 'Molare Masse Rechner'
 description: 'Berechnen Sie die molare Masse von chemischen Verbindungen interaktiv'
 date: 2025-12-26
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'molare-masse-rechner'

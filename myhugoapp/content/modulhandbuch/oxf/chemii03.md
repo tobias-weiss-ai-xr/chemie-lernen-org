@@ -3,6 +3,7 @@ title: Advanced Physical Chemistry — University of Oxford
 description: 'Advanced Physical Chemistry (CHEMII03) an der University of Oxford. 6 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: OXF
 uni_name: University of Oxford
 module_code: CHEMII03

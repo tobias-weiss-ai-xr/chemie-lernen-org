@@ -2,6 +2,7 @@
 title: 'Übersicht: Chemie-Rechner'
 description: "Chemie-Rechner für den Unterricht – Berechnen Sie Stoffmengen, Konzentrationen, pH-Werte und Reaktionsgleichungen."
 date: 2026-02-06
+last_reviewed: 2026-07-09
 draft: false
 tags: ['rechner', 'uebersicht']
 categories: ['rechner']

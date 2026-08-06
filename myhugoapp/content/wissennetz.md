@@ -2,6 +2,7 @@
 title: 'Wissensnetz Graph'
 description: 'Interaktive Visualisierung der Wissensverbindungen zwischen Fachbegriffen und Artikeln'
 date: 2026-06-11
+last_reviewed: 2026-07-09
 aliases: [/entity/graph/]
 weight: 10
 layout: wissennetz

@@ -2,6 +2,7 @@
 title: 'Atomenergieniveaus und Linienspektren'
 description: 'Interaktive Simulation des Bohrschen Atommodells mit Energieübergängen und Linienspektren'
 date: 2026-01-04
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'atomenergieniveaus'
