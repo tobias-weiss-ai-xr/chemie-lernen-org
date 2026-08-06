@@ -1,5 +1,6 @@
 ---
 title: 'Säuren und Basen'
+last_reviewed: 2026-08-06
 topic: 'saeuren-basen'
 target: 'themenbereiche'
 difficulty: 'mixed'

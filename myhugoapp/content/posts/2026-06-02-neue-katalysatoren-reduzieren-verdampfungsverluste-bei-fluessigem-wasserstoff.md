@@ -2,6 +2,7 @@
 title: "Neue Katalysatoren reduzieren Verdampfungsverluste bei flüssigem Wasserstoff"
 description: "Forschung an neuen Katalysatoren zur Reduzierung von Verdampfungsverlusten bei flüssigem Wasserstoff für effizientere Energiespeicherung."
 date: "2026-06-02T03:40:06+02:00"
+last_reviewed: 2026-08-06
 tags:
   - "wasserstoff"
   - "katalyse"

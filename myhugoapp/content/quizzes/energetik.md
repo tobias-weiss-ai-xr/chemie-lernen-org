@@ -1,5 +1,6 @@
 ---
 title: 'Energetik'
+last_reviewed: 2026-08-06
 topic: 'energetik'
 target: 'themenbereiche'
 difficulty: 'mixed'

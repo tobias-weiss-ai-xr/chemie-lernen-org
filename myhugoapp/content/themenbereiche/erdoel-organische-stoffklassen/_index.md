@@ -2,6 +2,7 @@
 title: 'Erdöl und organische Stoffklassen'
 description: 'Einführung in die organische Chemie - Erfahren Sie alles über Erdöl als Rohstoff, Kohlenwasserstoffe, funktionelle Gruppen und organische Stoffklassen'
 date: '2025-12-26'
+last_reviewed: 2026-08-06
 teilgebiet: 'erdoel-organische-stoffklassen'
 schwierigkeit: 'mittelstufe'
 icon: '🛢️'

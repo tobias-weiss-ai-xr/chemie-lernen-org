@@ -2,6 +2,7 @@
 title: "Datenschutzerklärung / Privacy Policy"
 description: "Datenschutzerklärung für chemie-lernen.org – Informationen zur Erhebung und Verarbeitung personenbezogener Daten."
 date: 2025-12-22T12:00:00+01:00
+last_reviewed: 2026-08-06
 draft: false
 type: "page"
 ---

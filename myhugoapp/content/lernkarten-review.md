@@ -1,5 +1,6 @@
 ---
 title: 'Lernkarten Review'
+last_reviewed: 2026-08-06
 description: 'Wiederhole Chemie-Konzepte mit FSRS-Spaced-Repetition'
 layout: 'lernkarten-review'
 type: 'page'

@@ -2,6 +2,7 @@
 title: "Verduennungsreihen-Rechner"
 description: "Berechnet die Konzentrationen einer Verduennungsreihe von 1:2-Verduennungen. Ausgangskonzentration und Verduennungsschritte."
 date: "2026-06-03"
+last_reviewed: 2026-08-06
 tags: ["chemie", "verduennung", "konzentration", "dilution"]
 interaktiv: true
 schwerigkeit: "leipht"

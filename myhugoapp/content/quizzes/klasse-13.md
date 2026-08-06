@@ -1,5 +1,6 @@
 ---
 title: 'Quiz Klasse 13'
+last_reviewed: 2026-08-06
 topic: 'klasse-13'
 target: 'klassenstufen'
 difficulty: 'hard'

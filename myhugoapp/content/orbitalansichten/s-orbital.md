@@ -1,5 +1,6 @@
 ---
 title: 's-Orbitale - Kugelförmige Aufenthaltsräume'
+last_reviewed: 2026-08-06
 layout: 'orbitalansichten'
 description: 'Lerne die kugelförmigen s-Orbitale kennen - die einfachste Orbitalform'
 orbital: '1s'

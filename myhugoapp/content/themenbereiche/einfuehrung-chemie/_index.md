@@ -2,6 +2,7 @@
 title: 'Einführung in die Chemie'
 description: 'Grundlagen der Chemie - Was ist Chemie und wie arbeiten Chemiker? Erfahren Sie mehr über chemische Reaktionen, Sicherheitsmaßnahmen und Experimente.'
 date: '2025-12-26'
+last_reviewed: 2026-08-06
 teilgebiet: 'einfuehrung-chemie'
 schwierigkeit: 'grundlagen'
 icon: '🔬'

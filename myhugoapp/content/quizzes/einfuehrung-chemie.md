@@ -1,5 +1,6 @@
 ---
 title: 'Einführung in die Chemie'
+last_reviewed: 2026-08-06
 topic: 'einfuehrung-chemie'
 target: 'themenbereiche'
 difficulty: 'mixed'

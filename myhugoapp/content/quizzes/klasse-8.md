@@ -1,5 +1,6 @@
 ---
 title: 'Quiz Klasse 8'
+last_reviewed: 2026-08-06
 topic: 'klasse-8'
 target: 'klassenstufen'
 difficulty: 'medium'

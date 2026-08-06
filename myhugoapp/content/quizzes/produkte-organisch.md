@@ -1,5 +1,6 @@
 ---
 title: 'Produkte der organischen Chemie'
+last_reviewed: 2026-08-06
 topic: 'produkte-organisch'
 target: 'themenbereiche'
 difficulty: 'mixed'

@@ -1,5 +1,6 @@
 ---
 title: 'Übungsverlauf'
+last_reviewed: 2026-08-06
 description: 'Verfolge deinen Lernfortschritt und decke Schwächen auf'
 layout: 'uebungsverlauf'
 type: 'page'

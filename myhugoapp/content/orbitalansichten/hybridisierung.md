@@ -1,5 +1,6 @@
 ---
 title: 'Hybridisierung von Orbitalen - sp, sp², sp³'
+last_reviewed: 2026-08-06
 layout: 'orbitalansichten'
 description: 'Lerne die Hybridisierung von Atomorbitalen kennen - die Grundlage der Molekülgeometrie nach dem VSEPR-Modell'
 weight: 40

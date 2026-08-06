@@ -2,6 +2,7 @@
 title: "Periodensystem"
 description: "Fachbegriff „Periodensystem“ (Konzept) — beschrieben in 3 Artikeln auf chemie-lernen.org und ist mit 23 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
+last_reviewed: 2026-08-06
 slug: "periodensystem"
 category: "konzept"
 articleCount: 3

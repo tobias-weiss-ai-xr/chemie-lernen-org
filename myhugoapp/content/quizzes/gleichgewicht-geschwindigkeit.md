@@ -1,5 +1,6 @@
 ---
 title: 'Chemisches Gleichgewicht und Reaktionsgeschwindigkeit'
+last_reviewed: 2026-08-06
 topic: 'gleichgewicht-geschwindigkeit'
 target: 'themenbereiche'
 difficulty: 'advanced'

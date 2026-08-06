@@ -1,5 +1,6 @@
 ---
 title: 'Aufbau der Materie'
+last_reviewed: 2026-08-06
 topic: 'aufbau-materie'
 target: 'themenbereiche'
 difficulty: 'mixed'

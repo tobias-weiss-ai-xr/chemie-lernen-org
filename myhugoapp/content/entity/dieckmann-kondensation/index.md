@@ -2,6 +2,7 @@
 title: "dieckmann-kondensation"
 description: "Fachbegriff „dieckmann-kondensation“ (Reaktion) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
+last_reviewed: 2026-08-06
 slug: "dieckmann-kondensation"
 category: "reaktion"
 articleCount: 0

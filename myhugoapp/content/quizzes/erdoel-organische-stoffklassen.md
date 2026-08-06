@@ -1,5 +1,6 @@
 ---
 title: 'Erdöl und organische Stoffklassen'
+last_reviewed: 2026-08-06
 topic: 'erdoel-organische-stoffklassen'
 target: 'themenbereiche'
 difficulty: 'mixed'

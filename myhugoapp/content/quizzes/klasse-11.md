@@ -1,5 +1,6 @@
 ---
 title: 'Quiz Klasse 11'
+last_reviewed: 2026-08-06
 topic: 'klasse-11'
 target: 'klassenstufen'
 difficulty: 'hard'

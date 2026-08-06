@@ -2,6 +2,7 @@
 title: "pH-Wert"
 description: "Fachbegriff „pH-Wert“ (Konzept) — beschrieben in 4 Artikeln auf chemie-lernen.org und ist mit 20 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
+last_reviewed: 2026-08-06
 slug: "ph-wert"
 category: "konzept"
 articleCount: 4

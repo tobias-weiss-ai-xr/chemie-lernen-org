@@ -2,6 +2,7 @@
 title: 'Molekülstudio: Interaktive 3D-Visualisierung von Molekülen'
 description: "Molekülstudio 3D – Interaktive 3D-Visualisierung von Molekülstrukturen für den Chemieunterricht mit WebGL-Technologie."
 date: 2025-12-24T10:00:00+01:00
+last_reviewed: 2026-08-06
 draft: false
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: 'Quiz Klasse 12'
+last_reviewed: 2026-08-06
 topic: 'klasse-12'
 target: 'klassenstufen'
 difficulty: 'hard'

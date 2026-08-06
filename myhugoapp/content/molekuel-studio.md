@@ -1,5 +1,6 @@
 ---
 title: "Molekülstudio"
+last_reviewed: 2026-08-06
 layout: "molekuel-studio"
 outputs:
   - html

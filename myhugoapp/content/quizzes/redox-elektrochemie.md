@@ -1,5 +1,6 @@
 ---
 title: 'Redoxreaktionen und Elektrochemie'
+last_reviewed: 2026-08-06
 topic: 'redox-elektrochemie'
 target: 'themenbereiche'
 difficulty: 'mixed'

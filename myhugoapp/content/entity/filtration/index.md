@@ -2,6 +2,7 @@
 title: "Filtration"
 description: "Fachbegriff „Filtration“ (Methode) — beschrieben in einem Artikel auf chemie-lernen.org."
 date: 2026-06-26
+last_reviewed: 2026-08-06
 slug: "filtration"
 category: "methode"
 articleCount: 1

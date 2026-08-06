@@ -1,5 +1,6 @@
 ---
 title: 'Quiz Klasse 7'
+last_reviewed: 2026-08-06
 topic: 'klasse-7'
 target: 'klassenstufen'
 difficulty: 'easy'

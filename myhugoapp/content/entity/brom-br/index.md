@@ -2,6 +2,7 @@
 title: "Brom (Br₂)"
 description: "Fachbegriff „Brom (Br₂)“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
+last_reviewed: 2026-08-06
 slug: "brom-br"
 category: "stoff"
 articleCount: 0

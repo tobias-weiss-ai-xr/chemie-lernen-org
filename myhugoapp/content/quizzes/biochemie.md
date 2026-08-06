@@ -1,5 +1,6 @@
 ---
 title: 'Biochemie'
+last_reviewed: 2026-08-06
 topic: 'biochemie'
 target: 'themenbereiche'
 difficulty: 'advanced'

@@ -2,6 +2,7 @@
 title: 'Energetik'
 description: 'Energieumsatz bei chemischen Reaktionen - Exotherme und endotherme Prozesse, Reaktionsenthalpien und der Hesssche Satz'
 date: '2025-12-26'
+last_reviewed: 2026-08-06
 teilgebiet: 'energetik'
 schwierigkeit: 'fortgeschritten'
 icon: '🔥'

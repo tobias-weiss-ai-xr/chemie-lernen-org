@@ -1,5 +1,6 @@
 ---
 title: 'Quiz Klasse 9'
+last_reviewed: 2026-08-06
 topic: 'klasse-9'
 target: 'klassenstufen'
 difficulty: 'medium'

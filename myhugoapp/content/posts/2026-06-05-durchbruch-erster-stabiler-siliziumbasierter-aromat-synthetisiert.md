@@ -1,6 +1,7 @@
 ---
 title: "Durchbruch: Erster stabiler siliziumbasierter Aromat synthetisiert"
 date: "2026-06-05T02:43:12+02:00"
+last_reviewed: 2026-08-06
 description: "Chemiker der Universität des Saarlandes haben einen bahnbrechenden Erfolg erzielt: Nach fast 50 Jahren erfolgloser Versuche gelang die Synthese eines stabilen"
 source: "https://www.sciencedaily.com/releases/2026/02/260224023205.htm"
 tags:

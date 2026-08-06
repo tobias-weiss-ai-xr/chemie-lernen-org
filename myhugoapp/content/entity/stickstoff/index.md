@@ -2,6 +2,7 @@
 title: "Stickstoff"
 description: "Fachbegriff „Stickstoff“ (Stoff) — beschrieben in 8 Artikeln auf chemie-lernen.org und ist mit 20 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
+last_reviewed: 2026-08-06
 slug: "stickstoff"
 category: "stoff"
 articleCount: 8

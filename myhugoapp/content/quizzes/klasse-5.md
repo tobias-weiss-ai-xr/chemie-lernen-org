@@ -1,5 +1,6 @@
 ---
 title: 'Quiz Klasse 5'
+last_reviewed: 2026-08-06
 topic: 'klasse-5'
 target: 'klassenstufen'
 difficulty: 'easy'

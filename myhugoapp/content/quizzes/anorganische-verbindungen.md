@@ -1,5 +1,6 @@
 ---
 title: 'Anorganische Verbindungen'
+last_reviewed: 2026-08-06
 topic: 'anorganische-verbindungen'
 target: 'themenbereiche'
 difficulty: 'mixed'

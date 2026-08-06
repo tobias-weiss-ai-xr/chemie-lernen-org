@@ -1,6 +1,7 @@
 ---
 title: "Computergestützte Suche nach effizienten Photokatalysatoren für solare Brennstoffe"
 date: "2026-06-07T02:43:51+02:00"
+last_reviewed: 2026-08-06
 description: "Wissenschaftler haben eine leistungsstarke neue computergestützte Methode entwickelt, welche die Suche nach Materialien der nächsten Generation beschleunigen"
 source: "https://www.sciencedaily.com/releases/2026/03/260315225149.htm"
 tags:

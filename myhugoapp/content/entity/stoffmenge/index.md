@@ -2,6 +2,7 @@
 title: "Stoffmenge"
 description: "Fachbegriff „Stoffmenge“ (Konzept) — beschrieben in 3 Artikeln auf chemie-lernen.org und ist mit 20 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
+last_reviewed: 2026-08-06
 slug: "stoffmenge"
 category: "konzept"
 articleCount: 3

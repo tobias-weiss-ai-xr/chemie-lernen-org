@@ -1,6 +1,7 @@
 ---
 title: "Neue Metall-Carben-Radikal-Kupplung durch Biokatalyse"
 date: "2026-06-17T02:43:54+02:00"
+last_reviewed: 2026-08-06
 description: "Forscher der UC Santa Barbara unter Leitung von Prof. Yang Yang haben eine neuartige Methode zur Synthese komplexer Moleküle entwickelt."
 source: "https://phys.org/news/2026-06-chemists-uncover-metal-carbene-radical.html"
 tags:

@@ -2,6 +2,7 @@
 title: "Ionisierungsenergie"
 description: "Fachbegriff „Ionisierungsenergie“ (Konzept) — beschrieben in einem Artikel auf chemie-lernen.org und ist mit 33 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
+last_reviewed: 2026-08-06
 slug: "ionisierungsenergie"
 category: "konzept"
 articleCount: 1

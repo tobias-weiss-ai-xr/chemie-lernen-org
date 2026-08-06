@@ -1,5 +1,6 @@
 ---
 title: 'Anmelden'
+last_reviewed: 2026-08-06
 description: 'Melde dich an oder erstelle ein Konto bei chemie-lernen.org'
 layout: 'login'
 noindex: true

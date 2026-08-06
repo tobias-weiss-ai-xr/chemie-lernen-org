@@ -2,6 +2,7 @@
 title: "SEM"
 description: "Fachbegriff „SEM“ (Methode) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 16 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
+last_reviewed: 2026-08-06
 slug: "sem"
 category: "methode"
 articleCount: 0

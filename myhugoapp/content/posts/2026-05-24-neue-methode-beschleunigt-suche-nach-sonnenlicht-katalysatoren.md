@@ -2,6 +2,7 @@
 title: 'Neue Methode beschleunigt Suche nach Sonnenlicht-Katalysatoren'
 description: "Neue Methode beschleunigt Suche nach Sonnenlicht-Katalysatoren – Hochdurchsatz-Screening für photokatalytische Materialien."
 date: '2026-05-24T02:42:30+02:00'
+last_reviewed: 2026-08-06
 tags:
   - '** photokatalyse'
   - 'erneuerbare energien'

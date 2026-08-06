@@ -1,6 +1,7 @@
 ---
 title: "Sekundäres Silylium-Ion ermöglicht effiziente Eintopf-Sulfonamidierung von Ketonen"
 date: "2026-06-10T02:43:49+02:00"
+last_reviewed: 2026-08-06
 description: "Forschende haben einen neuartigen Organokatalysator auf Basis eines sekundären Silylium-Ions entwickelt. Der Katalysator besteht aus einem Diethylsilylium-Ion"
 source: "https://phys.org/news/2026-06-secondary-silylium-ion-pot-ketone.html"
 tags:

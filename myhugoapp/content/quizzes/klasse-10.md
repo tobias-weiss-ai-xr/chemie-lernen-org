@@ -1,5 +1,6 @@
 ---
 title: 'Quiz Klasse 10'
+last_reviewed: 2026-08-06
 topic: 'klasse-10'
 target: 'klassenstufen'
 difficulty: 'medium'

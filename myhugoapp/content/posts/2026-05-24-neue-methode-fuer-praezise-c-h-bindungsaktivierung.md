@@ -2,6 +2,7 @@
 title: 'Neue Methode für präzise C-H-Bindungsaktivierung'
 description: "Präzise C-H-Bindungsaktivierung durch neue Synthesemethode – Effizientere Wege zu komplexen organischen Molekülen."
 date: '2026-05-24T02:42:33+02:00'
+last_reviewed: 2026-08-06
 tags:
   - '** *organische chemie'
   - 'c-h-aktivierung'

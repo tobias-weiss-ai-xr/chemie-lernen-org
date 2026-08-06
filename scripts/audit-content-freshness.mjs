@@ -37,7 +37,7 @@ const TODAY_ISO = TODAY.toISOString().slice(0, 10);
  * Returns { frontmatter: Record<string,any>, body: string, raw: string }
  */
 function parseFrontmatter(text) {
-  const match = text.match(/^---\n([\s\S]*?)\n---\n/);
+  const match = text.match(/^---\n([\s\S]*?)\n---(?:\n|$)/);
   if (!match) return { frontmatter: null, body: text, raw: '' };
   const raw = match[1];
   const frontmatter = {};
@@ -114,13 +114,23 @@ for (const filePath of files) {
   if (!reviewed) {
     missing++;
     if (FLAG_UPDATE) {
-      // Add last_reviewed after the date field (or after the first field if no date)
-      const insertAfter = created ? `date: ${created}` : `title: ${frontmatter.title}`;
-      const newRaw = raw.replace(new RegExp(`(${insertAfter})`), `$1\nlast_reviewed: ${TODAY_ISO}`);
-      const newText = `---\n${newRaw}\n---\n${body}`;
-      fs.writeFileSync(filePath, newText, 'utf-8');
-      console.log(`  ✚ ${relPath} → last_reviewed: ${TODAY_ISO}`);
-      updated++;
+      // Find the insertion point in the RAW frontmatter lines (preserving quotes)
+      const lines = raw.split('\n');
+      let insertIdx = created
+        ? lines.findIndex((l) => l.trim().startsWith('date:'))
+        : -1;
+      if (insertIdx === -1) {
+        insertIdx = lines.findIndex((l) => l.trim().startsWith('title:'));
+      }
+      if (insertIdx !== -1) {
+        lines.splice(insertIdx + 1, 0, `last_reviewed: ${TODAY_ISO}`);
+        const newText = `---\n${lines.join('\n')}\n---\n${body}`;
+        fs.writeFileSync(filePath, newText, 'utf-8');
+        console.log(`  ✚ ${relPath} → last_reviewed: ${TODAY_ISO}`);
+        updated++;
+      } else {
+        console.log(`  ⚠ ${relPath} — cannot find date: or title: line to insert after`);
+      }
     } else {
       console.log(`  ⚠ ${relPath} — missing last_reviewed`);
     }

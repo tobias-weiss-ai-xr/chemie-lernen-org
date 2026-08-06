@@ -1,5 +1,6 @@
 ---
 title: 'Reaktionstypen in der Organik'
+last_reviewed: 2026-08-06
 topic: 'reaktionstypen-organisch'
 target: 'themenbereiche'
 difficulty: 'mixed'

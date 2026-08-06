@@ -2,6 +2,7 @@
 title: "Ammoniak (NH3)"
 description: "Fachbegriff „Ammoniak (NH3)“ (Stoff) — beschrieben in 4 Artikeln auf chemie-lernen.org und ist mit einem weiteren Fachbegriff verknüpft."
 date: 2026-06-26
+last_reviewed: 2026-08-06
 slug: "ammoniak-nh3"
 category: "stoff"
 articleCount: 4

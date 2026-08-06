@@ -2,6 +2,7 @@
 title: "Kovalente Bindung"
 description: "Fachbegriff „Kovalente Bindung“ (Konzept) — beschrieben in 5 Artikeln auf chemie-lernen.org und ist mit 9 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
+last_reviewed: 2026-08-06
 slug: "kovalente-bindung"
 category: "konzept"
 articleCount: 5

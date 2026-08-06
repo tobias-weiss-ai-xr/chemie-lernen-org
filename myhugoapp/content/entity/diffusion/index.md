@@ -2,6 +2,7 @@
 title: "Diffusion"
 description: "Fachbegriff „Diffusion“ (Konzept) — beschrieben in einem Artikel auf chemie-lernen.org und ist mit 19 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
+last_reviewed: 2026-08-06
 slug: "diffusion"
 category: "konzept"
 articleCount: 1

@@ -1,5 +1,6 @@
 ---
 title: 'Tipps und Tricks'
+last_reviewed: 2026-08-06
 topic: 'tipps-tricks'
 target: 'themenbereiche'
 difficulty: 'mixed'

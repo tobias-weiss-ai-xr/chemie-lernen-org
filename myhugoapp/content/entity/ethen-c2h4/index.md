@@ -2,6 +2,7 @@
 title: "Ethen (C2H4)"
 description: "Fachbegriff „Ethen (C2H4)“ (Stoff) — beschrieben in einem Artikel auf chemie-lernen.org."
 date: 2026-06-26
+last_reviewed: 2026-08-06
 slug: "ethen-c2h4"
 category: "stoff"
 articleCount: 1

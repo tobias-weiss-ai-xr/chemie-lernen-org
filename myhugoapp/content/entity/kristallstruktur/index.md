@@ -2,6 +2,7 @@
 title: "kristallstruktur"
 description: "Fachbegriff „kristallstruktur“ (Konzept) — beschrieben in 3 Artikeln auf chemie-lernen.org und ist mit 10 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
+last_reviewed: 2026-08-06
 slug: "kristallstruktur"
 category: "konzept"
 articleCount: 3

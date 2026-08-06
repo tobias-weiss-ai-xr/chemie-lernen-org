@@ -2,6 +2,7 @@
 title: "Kohlenstoff"
 description: "Kohlenstoff (Symbol: C) ist ein chemisches Element der Nichtmetall mit der Ordnungszahl 6. Es befindet sich in der 2. Periode und der 14. Gruppe."
 date: 2026-06-03
+last_reviewed: 2026-08-06
 slug: "kohlenstoff"
 kategorie: "Nichtmetall"
 typ: "element"

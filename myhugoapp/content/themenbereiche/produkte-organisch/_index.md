@@ -2,6 +2,7 @@
 title: 'Produkte der Organischen Chemie'
 description: 'Polymere, Farbstoffe, Arzneimittel und mehr - Erfahren Sie alles über wichtige Produkte der organischen Chemie von Kunststoffen bis Arzneimitteln'
 date: '2025-12-26'
+last_reviewed: 2026-08-06
 teilgebiet: 'produkte-organisch'
 quiz: 'produkte-organisch'
 schwierigkeit: 'fortgeschritten'

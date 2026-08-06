@@ -1,5 +1,6 @@
 ---
 title: 'Analytische Methoden'
+last_reviewed: 2026-08-06
 topic: 'analytische-methoden'
 target: 'themenbereiche'
 difficulty: 'advanced'

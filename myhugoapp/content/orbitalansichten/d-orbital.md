@@ -1,5 +1,6 @@
 ---
 title: 'd-Orbitale - Kleeblatt- und Donutformen'
+last_reviewed: 2026-08-06
 layout: 'orbitalansichten'
 description: 'Lerne die fünf d-Orbitale kennen - ihre Formen, Orientierung und Bedeutung für Übergangsmetalle'
 orbital: '3dz2'

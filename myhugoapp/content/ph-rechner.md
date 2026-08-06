@@ -1,5 +1,6 @@
 ---
 title: 'pH-Rechner'
+last_reviewed: 2026-08-06
 description: 'Interaktiver pH-Rechner für Säuren und Basen – Berechnen Sie pH-Werte aus H⁺- oder OH⁻-Konzentrationen mit visualisierter pH-Skala und Erklärung.'
 interaktiv: true
 layout: 'ph-rechner'
