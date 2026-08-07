@@ -4,6 +4,71 @@
  * Enhanced with timed mode, hints, and randomization
  */
 
+/**
+ * Simple offline grade queue for AI-generated exercise answers.
+ * Stores queued submissions in localStorage under 'chemie-offline-grades'
+ * and drains them when the browser comes back online (task 7.5).
+ */
+class QuizGradeQueue {
+  constructor() {
+    this.STORAGE_KEY = 'chemie-offline-grades';
+    this.listenersAdded = false;
+    this.addOnlineListener();
+  }
+
+  addOnlineListener() {
+    if (this.listenersAdded) return;
+    this.listenersAdded = true;
+    if (typeof window !== 'undefined' && window.addEventListener) {
+      window.addEventListener('online', () => this.drain());
+      // Drain any stale queue on first construction
+      if (typeof navigator !== 'undefined' && navigator.onLine) {
+        this.drain();
+      }
+    }
+  }
+
+  enqueue(exerciseId, answer) {
+    if (typeof localStorage === 'undefined' || !localStorage.setItem) return false;
+    try {
+      var queue = JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '[]');
+      queue.push({ exerciseId: exerciseId, answer: answer, ts: Date.now() });
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(queue));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  drain() {
+    if (typeof localStorage === 'undefined' || typeof fetch !== 'function') return;
+    var queue = JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '[]');
+    if (!queue.length) return;
+
+    var self = this;
+    // Take a copy to avoid mutation while sending
+    var toSend = queue.slice();
+    localStorage.removeItem(self.STORAGE_KEY);
+    // Process one by one to avoid bulk failure
+    var next = function () {
+      if (!toSend.length) {
+        return;
+      }
+      var item = toSend.shift();
+      try {
+        fetch('/api/exercises/grade', {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ exerciseId: item.exerciseId, answer: item.answer }),
+        }).catch(function () {});
+      } catch (e) {}
+      // Give the network a breath
+      setTimeout(next, 200);
+    };
+    next();
+  }
+}
 class QuizSystem {
   constructor(options = {}) {
     this.storageKey = options.storageKey || 'chemie-lernen-quiz-progress';
@@ -24,6 +89,7 @@ class QuizSystem {
       randomizeQuestions: false,
       showExplanations: true,
     };
+    this._gradeQueue = new QuizGradeQueue();
   }
 
   /**
@@ -121,14 +187,26 @@ class QuizSystem {
    * @param {object} question - The AI question (source === 'ai')
    * @param {string|number} userAnswer - The 0-based selected option index
    */
+  _normalizeAiAnswer(question, userAnswer) {
+    // Map the UI's 0-based selected-option index to the generator's
+    // lettered option id so the backend's deterministic MCQ grader sees
+    // the same representation as the generator's correctAnswer.
+    if (!question || !question.aiOptions) return userAnswer;
+    var chosen = question.aiOptions[parseInt(userAnswer)];
+    return chosen ? chosen.id : String(userAnswer);
+  }
+
+  /**
+   * POST an AI-graded exercise answer to /api/exercises/grade best-effort.
+   * Uses normalized answers (letters for AI MCQ) so backend grader and
+   * knowledge-graph persistence see consistent representations.
+   */
   reportGradeToBackend(question, userAnswer) {
     if (!question || question.source !== 'ai' || !question.id) return;
     if (typeof window.fetch !== 'function') return;
 
-    // Map the submitted index back to the letter id so the backend's
-    // deterministic MC-grader can grade it identically to the quiz.
-    var chosen = question.aiOptions && question.aiOptions[parseInt(userAnswer)];
-    var answer = chosen ? chosen.id : String(userAnswer);
+    // Normalize: AI MCQ uses letter ids (A/B/C/D), UI submits 0-based index.
+    var answer = this._normalizeAiAnswer(question, userAnswer);
 
     try {
       fetch('/api/exercises/grade', {
@@ -355,7 +433,16 @@ class QuizSystem {
 
     // Persist AI-graded answers to the backend so the auto-grading,
     // individualized feedback and learner/teacher dashboards have data.
-    this.reportGradeToBackend(question, answer);
+    // Normalize: AI MCQ uses letter ids, UI submits index.
+    var normalized = question.source === 'ai' ? this._normalizeAiAnswer(question, answer) : answer;
+    var isOffline = typeof navigator !== 'undefined' && !navigator.onLine;
+    if (question.source === 'ai' && question.id && isOffline) {
+      // Enqueue normalized answer to sync on reconnect
+      this._gradeQueue.enqueue(question.id, normalized);
+    } else {
+      // Online or non-AI: POST immediately
+      this.reportGradeToBackend(question, normalized);
+    }
 
     if (isCorrect) {
       this.score++;
@@ -610,5 +697,5 @@ const chemieQuiz = new QuizSystem({
 
 // Export for use in other scripts
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { QuizSystem, chemieQuiz };
+  module.exports = { QuizSystem, QuizGradeQueue, chemieQuiz };
 }

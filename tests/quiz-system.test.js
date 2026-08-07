@@ -7,7 +7,7 @@
  * and backend reporting consistent.
  */
 
-const { QuizSystem } = require('../myhugoapp/static/js/quiz-system.js');
+const { QuizSystem, QuizGradeQueue } = require('../myhugoapp/static/js/quiz-system.js');
 
 describe('QuizSystem AI-graded MCQ handling', () => {
   const aiQuestion = {
