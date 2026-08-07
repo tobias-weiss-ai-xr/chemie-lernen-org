@@ -122,6 +122,12 @@ function checkRateLimit(userId) {
 
 router.post('/api/exercises/generate', requireAuth, async (req, res) => {
   try {
+    // Generating exercises hits LiteLLM — cost/load protection. The quiz
+    // fetches at most a handful per session, well below the 60/min limit.
+    if (!checkRateLimit(req.user.id)) {
+      return res.status(429).json({ error: 'rate_limit_exceeded', retryAfter: 60 });
+    }
+
     const {
       learningObjectiveSlug,
       topicSlug,
@@ -421,6 +427,11 @@ router.put('/api/assessment/feedback/:feedbackId', requireAuth, async (req, res)
 
 router.post('/api/assessment/sync', requireAuth, async (req, res) => {
   try {
+    // Bound the write-rate (each item MERGEs a node).
+    if (!checkRateLimit(req.user.id)) {
+      return res.status(429).json({ error: 'rate_limit_exceeded', retryAfter: 60 });
+    }
+
     const { batch } = req.body;
     if (!Array.isArray(batch) || batch.length === 0) {
       return res.status(400).json({ error: 'batch muss ein nicht-leeres Array sein' });
