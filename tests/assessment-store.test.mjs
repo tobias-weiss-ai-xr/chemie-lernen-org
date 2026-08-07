@@ -39,7 +39,10 @@ jest.unstable_mockModule(
 let store;
 
 function mockRecord(props) {
-  return { get: (key) => (key === 'f' || key === 'g' || key === 'a') ? { properties: props[key] } : props[key] };
+  return {
+    get: (key) =>
+      key === 'f' || key === 'g' || key === 'a' ? { properties: props[key] } : props[key],
+  };
 }
 
 function mockQueryResult(records) {
@@ -65,7 +68,9 @@ beforeEach(() => {
 describe('createAssessment', () => {
   test('creates assessment with learning objective links', async () => {
     mockSession.run.mockResolvedValue(
-      mockQueryResult([{ a: { id: 'assess-1', userId: 'user-1', topic: 'oxidation', difficulty: 'mittel' } }])
+      mockQueryResult([
+        { a: { id: 'assess-1', userId: 'user-1', topic: 'oxidation', difficulty: 'mittel' } },
+      ])
     );
 
     const result = await store.createAssessment({
@@ -87,9 +92,7 @@ describe('createAssessment', () => {
   });
 
   test('creates indexes on first call', async () => {
-    mockSession.run.mockResolvedValue(
-      mockQueryResult([{ a: { id: 'a1', userId: 'u1' } }])
-    );
+    mockSession.run.mockResolvedValue(mockQueryResult([{ a: { id: 'a1', userId: 'u1' } }]));
 
     await store.createAssessment({
       userId: 'u1',
@@ -180,7 +183,16 @@ describe('saveFeedback', () => {
 describe('teacherOverrideFeedback', () => {
   test('overrides feedback with teacher note', async () => {
     mockSession.run.mockResolvedValue(
-      mockQueryResult([{ f: { id: 'fb-1', teacherOverride: true, teacherNote: 'Besser machen!', text: 'Besser machen!' } }])
+      mockQueryResult([
+        {
+          f: {
+            id: 'fb-1',
+            teacherOverride: true,
+            teacherNote: 'Besser machen!',
+            text: 'Besser machen!',
+          },
+        },
+      ])
     );
 
     const result = await store.teacherOverrideFeedback('fb-1', 'Besser machen!');
@@ -197,14 +209,26 @@ describe('teacherOverrideFeedback', () => {
 
 describe('getLearnerResults', () => {
   test('returns paginated results with score', async () => {
-    mockSession.run
-      .mockResolvedValueOnce(mockQueryResult([{ total: 5 }]))
-      .mockResolvedValueOnce(
-        mockQueryResult([
-          { assessmentId: 'a1', topic: 'Oxidation', difficulty: 'mittel', date: '2026-08-06', correctCount: 3, totalCount: 5 },
-          { assessmentId: 'a2', topic: 'Säuren', difficulty: 'schwer', date: '2026-08-05', correctCount: 4, totalCount: 4 },
-        ])
-      );
+    mockSession.run.mockResolvedValueOnce(mockQueryResult([{ total: 5 }])).mockResolvedValueOnce(
+      mockQueryResult([
+        {
+          assessmentId: 'a1',
+          topic: 'Oxidation',
+          difficulty: 'mittel',
+          date: '2026-08-06',
+          correctCount: 3,
+          totalCount: 5,
+        },
+        {
+          assessmentId: 'a2',
+          topic: 'Säuren',
+          difficulty: 'schwer',
+          date: '2026-08-05',
+          correctCount: 4,
+          totalCount: 4,
+        },
+      ])
+    );
 
     const result = await store.getLearnerResults('user-1', 20, 0);
 
@@ -242,9 +266,18 @@ describe('getClassResults', () => {
 
     const result = await store.getClassResults('bw-gymnasium');
 
+    expect(result).toBeDefined();
     expect(result.classAverage).toBeDefined();
     expect(result.topicBreakdown).toHaveLength(2);
     expect(result.topicBreakdown[0].topic).toBe('Oxidation');
+
+    // Regression: assessments TESTS a LearningObjective, not the Topic — the
+    // query must route cur→topic→LO and then <-[:TESTS].
+    const q = mockSession.run.mock.calls[0][0];
+    expect(q).toContain('HAS_TOPIC');
+    expect(q).toContain('HAS_LEARNING_OBJECTIVE');
+    expect(q).toContain('<-[:TESTS]-(a:Assessment)');
+    expect(mockSession.run.mock.calls[0][1]).toMatchObject({ curriculumSlug: 'bw-gymnasium' });
   });
 });
 
@@ -266,6 +299,13 @@ describe('getStudentList', () => {
     expect(result).toHaveLength(2);
     expect(result[0].userId).toBe('student-a');
     expect(result[0].averageScore).toBe(95);
+
+    // Regression: the student list MUST be scoped to the given curriculum.
+    // The old version ignored the param and returned every learner in the DB.
+    const [q, params] = mockSession.run.mock.calls[0];
+    expect(q).toContain('curriculumSlug');
+    expect(q).toContain('HAS_LEARNING_OBJECTIVE');
+    expect(params).toMatchObject({ curriculumSlug: 'bw-gymnasium' });
   });
 });
 
@@ -276,7 +316,12 @@ describe('getStudentList', () => {
 describe('getFeedbackForAnswer', () => {
   test('returns feedback with referenced concepts', async () => {
     mockSession.run.mockResolvedValue(
-      mockQueryResult([{ f: { id: 'fb-1', text: 'Gut gemacht!', aiGenerated: true }, referencedConcepts: ['Oxidation'] }])
+      mockQueryResult([
+        {
+          f: { id: 'fb-1', text: 'Gut gemacht!', aiGenerated: true },
+          referencedConcepts: ['Oxidation'],
+        },
+      ])
     );
 
     const result = await store.getFeedbackForAnswer('ga-1');
@@ -303,8 +348,20 @@ describe('batchSync', () => {
     mockSession.run.mockResolvedValue(mockQueryResult([]));
 
     const batch = [
-      { assessmentId: 'a1', userId: 'u1', topic: 'oxidation', difficulty: 'mittel', type: 'auto-generated' },
-      { assessmentId: 'a2', userId: 'u1', topic: 'saeuren', difficulty: 'schwer', type: 'auto-generated' },
+      {
+        assessmentId: 'a1',
+        userId: 'u1',
+        topic: 'oxidation',
+        difficulty: 'mittel',
+        type: 'auto-generated',
+      },
+      {
+        assessmentId: 'a2',
+        userId: 'u1',
+        topic: 'saeuren',
+        difficulty: 'schwer',
+        type: 'auto-generated',
+      },
     ];
 
     const result = await store.batchSync(batch);
@@ -329,6 +386,32 @@ describe('batchSync', () => {
     expect(result.errors).toHaveLength(1);
     expect(result.errors[0]).toContain('Connection timeout');
   });
+
+  test('persists queued graded answers and feedback (no silent drops)', async () => {
+    mockSession.run.mockResolvedValue(mockQueryResult([]));
+
+    const batch = [
+      {
+        assessmentId: 'a1',
+        userId: 'u1',
+        topic: 'oxidation',
+        difficulty: 'mittel',
+        gradedAnswers: [{ id: 'ga1', exerciseId: 'e1', answer: 'A', correct: true, score: 100 }],
+        feedbacks: [{ id: 'fb1', gradedAnswerId: 'ga1', text: 'Weiter so!' }],
+      },
+    ];
+
+    const result = await store.batchSync(batch);
+
+    // 1 assessment + 1 graded answer + 1 feedback = 3 persisted records.
+    expect(result.synced).toBe(3);
+    expect(result.errors).toEqual([]);
+
+    const queries = mockSession.run.mock.calls.map((c) => c[0]);
+    expect(queries.some((q) => q.includes('MERGE (g:GradedAnswer'))).toBe(true);
+    expect(queries.some((q) => q.includes('MERGE (f:Feedback'))).toBe(true);
+    expect(queries.some((q) => q.includes('-[:FOR]->'))).toBe(true);
+  });
 });
 
 /* ------------------------------------------------------------------ */
@@ -347,5 +430,23 @@ describe('deleteUserAssessmentData', () => {
     expect(result.deletedAnswers).toBe(3);
     expect(result.deletedAssessments).toBe(2);
     expect(mockSession.close).toHaveBeenCalled();
+
+    // Regression: must issue three independent, per-layer deletes so that
+    // graded answers/assessments WITHOUT feedback are not leaked. The old
+    // single chain only matched paths through a Feedback node.
+    expect(mockSession.run).toHaveBeenCalledTimes(3);
+    const queries = mockSession.run.mock.calls.map((c) => c[0]);
+    expect(queries[0]).toContain('(f:Feedback)-[:FOR]->(g:GradedAnswer');
+    expect(queries[1]).toContain('(g:GradedAnswer {userId:');
+    expect(queries[2]).toContain('(a:Assessment {userId:');
+  });
+
+  test('delete is scoped to the given user only', async () => {
+    mockSession.run.mockResolvedValue(
+      mockQueryResult([{ deletedFeedback: 0, deletedAnswers: 0, deletedAssessments: 0 }])
+    );
+    await store.deleteUserAssessmentData('user-2');
+    const params = mockSession.run.mock.calls.map((c) => c[1]);
+    params.forEach((p) => expect(p.userId).toBe('user-2'));
   });
 });

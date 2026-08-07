@@ -86,6 +86,10 @@ export async function createAssessment({
     const id = uuid();
     const createdAt = new Date().toISOString();
 
+    // Always create the Assessment, even when no learning objective can be
+    // resolved (empty/unmatched loSlugs). Linking is best-effort: the old
+    // UNWIND+MATCH created nothing at all when loSlugs was empty, silently
+    // dropping the assessment (and therefore never persisting a graded answer).
     const result = await session.run(
       `
       CREATE (a:Assessment {
@@ -97,9 +101,9 @@ export async function createAssessment({
         createdAt: $createdAt
       })
       WITH a
-      UNWIND $loSlugs AS loSlug
-      MATCH (lo:LearningObjective {slug: loSlug})
-      CREATE (a)-[:TESTS]->(lo)
+      OPTIONAL MATCH (lo:LearningObjective) WHERE lo.slug IN $loSlugs
+      WITH a, [x IN collect(DISTINCT lo) WHERE x IS NOT NULL] AS los
+      FOREACH (lo IN los | CREATE (a)-[:TESTS]->(lo))
       RETURN a
       `,
       {
@@ -363,11 +367,14 @@ export async function getClassResults(curriculumSlug) {
   const session = driver.session({ database: NEO4J_DATABASE });
 
   try {
+    // Assessments TESTS a LearningObjective, not a Topic. The curriculum
+    // graph is (cur)-[:HAS_TOPIC]->(t)-[:HAS_LEARNING_OBJECTIVE]->(lo), so we
+    // must route through the LO — matching (t)<-[:TESTS]-(a) would never
+    // match and produced an all-empty teacher breakdown.
     const result = await session.run(
       `
-      MATCH (cur:Curriculum {slug: $curriculumSlug})
-      OPTIONAL MATCH (cur)-[:HAS_TOPIC]->(t:Topic)
-      OPTIONAL MATCH (t)<-[:TESTS]-(a:Assessment)
+      MATCH (cur:Curriculum {slug: $curriculumSlug})-[:HAS_TOPIC]->(t:Topic)
+      OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)<-[:TESTS]-(a:Assessment)
       OPTIONAL MATCH (a)<-[:PART_OF]-(g:GradedAnswer)
       WITH t, a, g
       RETURN
@@ -412,11 +419,16 @@ export async function getStudentList(curriculumSlug) {
   const session = driver.session({ database: NEO4J_DATABASE });
 
   try {
+    // Scope to the curriculum: only learners who attempted an objective in
+    // this curriculum. The old query ignored $curriculumSlug entirely and
+    // returned EVERY learner with assessment data in the whole database — a
+    // privacy/scope leak for teachers of a specific class.
     const result = await session.run(
       `
-      MATCH (a:Assessment)
-      WHERE a.userId IS NOT NULL
+      MATCH (cur:Curriculum {slug: $curriculumSlug})-[:HAS_TOPIC]->(t:Topic)
+      MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)<-[:TESTS]-(a:Assessment)
       OPTIONAL MATCH (a)<-[:PART_OF]-(g:GradedAnswer)
+      WITH DISTINCT a, g
       WITH a.userId AS userId, a, g
       RETURN
         userId,
@@ -487,7 +499,10 @@ export async function batchSync(batch) {
   try {
     for (const item of batch) {
       try {
-        // Create the assessment if it doesn't exist
+        const assessmentId = item.assessmentId;
+        const createdAt = item.createdAt || new Date().toISOString();
+
+        // Create/update the assessment if it doesn't exist
         await session.run(
           `
           MERGE (a:Assessment {id: $assessmentId})
@@ -496,17 +511,72 @@ export async function batchSync(batch) {
                         a.createdAt = $createdAt
           `,
           {
-            assessmentId: item.assessmentId,
+            assessmentId,
             userId: item.userId || '',
             topic: item.topic || '',
             difficulty: item.difficulty || 'leicht',
             type: item.type || 'auto-generated',
-            createdAt: item.createdAt || new Date().toISOString(),
+            createdAt,
           }
         );
         synced++;
+
+        // Persist the queued graded answers (the old code only merged the
+        // Assessment and silently dropped all offline answers/feedback).
+        for (const ga of item.gradedAnswers || []) {
+          const gaId = ga.id || uuid();
+          await session.run(
+            `
+            MATCH (a:Assessment {id: $assessmentId})
+            MERGE (g:GradedAnswer {id: $gaId})
+            ON CREATE SET g.userId = $userId, g.createdAt = $gaCreatedAt
+            SET g.exerciseId = $exerciseId, g.answer = $answer,
+                g.correct = $correct, g.score = $score, g.gradedBy = $gradedBy
+            WITH a, g
+            MERGE (g)-[:PART_OF]->(a)
+            `,
+            {
+              assessmentId,
+              gaId,
+              userId: item.userId || '',
+              exerciseId: ga.exerciseId || '',
+              answer: ga.answer || '',
+              correct: !!ga.correct,
+              score: toNumberSafe(ga.score),
+              gradedBy: ga.gradedBy || 'deterministic',
+              gaCreatedAt: ga.createdAt || createdAt,
+            }
+          );
+          synced++;
+        }
+
+        // Persist queued feedback, linked to their graded answers.
+        for (const fb of item.feedbacks || []) {
+          if (!fb.gradedAnswerId) continue;
+          await session.run(
+            `
+            MATCH (g:GradedAnswer {id: $gradedAnswerId})
+            MERGE (f:Feedback {id: $fbId})
+            ON CREATE SET f.createdAt = $fbCreatedAt
+            SET f.text = $fbText, f.aiGenerated = $aiGenerated,
+                f.teacherOverride = $teacherOverride, f.teacherNote = $teacherNote
+            WITH f, g
+            MERGE (f)-[:FOR]->(g)
+            `,
+            {
+              gradedAnswerId: fb.gradedAnswerId,
+              fbId: fb.id || uuid(),
+              fb: fb.text || '',
+              aiGenerated: fb.aiGenerated !== false,
+              teacherOverride: !!fb.teacherOverride,
+              teacherNote: fb.teacherNote || null,
+              fbCreatedAt: fb.createdAt || new Date().toISOString(),
+            }
+          );
+          synced++;
+        }
       } catch (err) {
-        errors.push(`Failed to sync assessment ${item.assessmentId}: ${err.message}`);
+        errors.push(`Failed to sync item ${item.assessmentId}: ${err.message}`);
       }
     }
 
@@ -529,26 +599,42 @@ export async function deleteUserAssessmentData(userId) {
   const session = driver.session({ database: NEO4J_DATABASE });
 
   try {
-    // Delete feedback linked to graded answers, then graded answers, then assessments
-    const result = await session.run(
+    // Delete in three independent steps so nothing leaks: the feedback-first
+    // chain below would have left orphan GradedAnswer/Assessment nodes when a
+    // graded answer had no Feedback (common — feedback is only written when
+    // the grader produced one). Each layer is matched by its own userId then
+    // DETACH DELETE on a single user's data (GDPR-accepted deletion).
+    const feedbackRes = await session.run(
       `
-      MATCH (f:Feedback)-[:FOR]->(g:GradedAnswer)-[:PART_OF]->(a:Assessment {userId: $userId})
+      MATCH (f:Feedback)-[:FOR]->(g:GradedAnswer {userId: $userId})
       DETACH DELETE f
-      WITH count(f) AS deletedFeedback, g, a
-      DETACH DELETE g
-      WITH count(g) AS deletedAnswers, a
-      DETACH DELETE a
-      RETURN deletedFeedback, deletedAnswers, count(a) AS deletedAssessments
+      RETURN count(f) AS deletedFeedback
       `,
       { userId }
     );
+    const deletedFeedback = toNumberSafe(feedbackRes.records[0]?.get('deletedFeedback'));
 
-    const rec = result.records[0];
-    return {
-      deletedAssessments: toNumberSafe(rec?.get('deletedAssessments')),
-      deletedAnswers: toNumberSafe(rec?.get('deletedAnswers')),
-      deletedFeedback: toNumberSafe(rec?.get('deletedFeedback')),
-    };
+    const answerRes = await session.run(
+      `
+      MATCH (g:GradedAnswer {userId: $userId})
+      DETACH DELETE g
+      RETURN count(g) AS deletedAnswers
+      `,
+      { userId }
+    );
+    const deletedAnswers = toNumberSafe(answerRes.records[0]?.get('deletedAnswers'));
+
+    const assessmentRes = await session.run(
+      `
+      MATCH (a:Assessment {userId: $userId})
+      DETACH DELETE a
+      RETURN count(a) AS deletedAssessments
+      `,
+      { userId }
+    );
+    const deletedAssessments = toNumberSafe(assessmentRes.records[0]?.get('deletedAssessments'));
+
+    return { deletedAssessments, deletedAnswers, deletedFeedback };
   } finally {
     await session.close();
   }

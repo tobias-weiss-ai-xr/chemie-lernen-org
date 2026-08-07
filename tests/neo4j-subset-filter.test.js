@@ -49,6 +49,9 @@ describe('_neo4j-subset-filter.mjs', () => {
       expect(mod.CHEMIE_LABELS).toContain('LearningObjective');
       expect(mod.CHEMIE_LABELS).toContain('DidacticGuideline');
       expect(mod.CHEMIE_LABELS).toContain('GuidelineSection');
+      expect(mod.CHEMIE_LABELS).toContain('Assessment');
+      expect(mod.CHEMIE_LABELS).toContain('GradedAnswer');
+      expect(mod.CHEMIE_LABELS).toContain('Feedback');
     });
 
     test('excludes code-analysis labels', () => {
@@ -60,8 +63,8 @@ describe('_neo4j-subset-filter.mjs', () => {
       expect(mod.CHEMIE_LABELS).not.toContain('Interface');
     });
 
-    test('has exactly 17 labels (includes modulhandbuch subset)', () => {
-      expect(mod.CHEMIE_LABELS).toHaveLength(17);
+    test('has exactly 21 labels (modulhandbuch + assessment subsets)', () => {
+      expect(mod.CHEMIE_LABELS).toHaveLength(21);
     });
   });
 
