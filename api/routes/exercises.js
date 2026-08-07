@@ -23,6 +23,9 @@ import { generateExercise, getLearningObjectivesForTopic } from '../services/exe
 import { gradeExercise } from '../services/auto-grader.js';
 import { generateFeedback } from '../services/feedback-engine.js';
 import {
+  createAssessment,
+  saveGradedAnswer,
+  saveFeedback,
   getLearnerResults,
   getClassResults,
   getStudentList,
@@ -41,6 +44,49 @@ const logger = pino({
 
 const LITELLM_URL = process.env.LITELLM_URL || 'http://litellm-proxy:4000';
 const LITELLM_MODEL = process.env.LITELLM_MODEL || 'gemma-4';
+
+/**
+ * True when the authenticated user holds a privileged (teacher/admin) role.
+ */
+const isTeacherReq = (req) =>
+  req.user && (req.user.role === 'teacher' || req.user.role === 'admin');
+
+/**
+ * Best-effort persistence of a graded answer to the knowledge graph.
+ * Dashboards (learner/teacher) read their data from here, so a graded
+ * answer that is never stored can never appear in a dashboard. Failures are
+ * logged but never surfaced to the learner, so grading never breaks.
+ */
+async function persistAssessment({ userId, exerciseId, exercise, answer, gradeResult }) {
+  const lo = exercise.learningObjective || {};
+  const loSlugs = lo.slug ? [lo.slug] : [];
+  const assessment = await createAssessment({
+    userId,
+    type: exercise.type || 'mcq',
+    topic: exercise.topic || lo.title || '',
+    difficulty: exercise.difficulty || 'mittel',
+    learningObjectiveSlugs: loSlugs,
+  });
+  if (!assessment || !assessment.id) return;
+  const gradedAnswer = await saveGradedAnswer({
+    assessmentId: assessment.id,
+    exerciseId,
+    userId,
+    answer,
+    correct: !!gradeResult.correct,
+    score: gradeResult.score || 0,
+    gradedBy: gradeResult.gradedBy || 'deterministic',
+  });
+  if (gradedAnswer && gradedAnswer.id && gradeResult.feedback) {
+    await saveFeedback({
+      gradedAnswerId: gradedAnswer.id,
+      text: gradeResult.feedback,
+      aiGenerated: gradeResult.gradedBy === 'ai',
+      conceptSlugs: [],
+      loSlugs,
+    });
+  }
+}
 
 // ── In-memory rate limiter ────────────────────────────────────────────
 // Simple per-user rate limiter for grade/feedback endpoints
@@ -181,6 +227,20 @@ router.post('/api/exercises/grade', requireAuth, async (req, res) => {
     learningEngine.awardExerciseXp(sessionStore, req.user.id, exerciseId, gradeResult.score || 0);
     learningEngine.evaluateBadges(sessionStore, req.user.id);
 
+    // Best-effort persistence to the knowledge graph (dashboards read here).
+    persistAssessment({
+      userId: req.user.id,
+      exerciseId,
+      exercise,
+      answer,
+      gradeResult,
+    }).catch((err) => {
+      logger.warn(
+        { err, message: err.message || String(err) },
+        '[exercises] assessment persistence skipped'
+      );
+    });
+
     res.json(gradeResult);
   } catch (err) {
     logger.error({ err: err, message: err.message || String(err) }, '[exercises] grade error');
@@ -285,6 +345,13 @@ router.get('/api/assessment/results', requireAuth, async (req, res) => {
     const offset = parseInt(req.query.offset) || 0;
     const userId = req.query.learnerId || req.user.id;
 
+    // Only teachers/admins may view another user's results (privacy).
+    if (req.query.learnerId && !isTeacherReq(req)) {
+      return res
+        .status(403)
+        .json({ error: 'Nicht berechtigt, Ergebnisse anderer Nutzer anzusehen' });
+    }
+
     const results = await getLearnerResults(userId, limit, offset);
     res.json(results);
   } catch (err) {
@@ -298,6 +365,11 @@ router.get('/api/assessment/results', requireAuth, async (req, res) => {
 router.get('/api/assessment/class-results', requireAuth, async (req, res) => {
   try {
     const curriculumSlug = req.query.curriculumSlug;
+
+    // Class-level results expose PII of other learners — teachers/admins only.
+    if (!isTeacherReq(req)) {
+      return res.status(403).json({ error: 'Nur für Lehrkräfte: Klassenergebnisse ansehen' });
+    }
     if (!curriculumSlug) {
       return res.status(400).json({ error: 'curriculumSlug ist erforderlich' });
     }
@@ -322,6 +394,10 @@ router.put('/api/assessment/feedback/:feedbackId', requireAuth, async (req, res)
     const { feedbackId } = req.params;
     const { teacherNote } = req.body;
 
+    // Only teachers/admins may override feedback.
+    if (!isTeacherReq(req)) {
+      return res.status(403).json({ error: 'Nur für Lehrkräfte: Feedback übersteuern' });
+    }
     if (!teacherNote) {
       return res.status(400).json({ error: 'teacherNote ist erforderlich' });
     }
@@ -350,7 +426,9 @@ router.post('/api/assessment/sync', requireAuth, async (req, res) => {
       return res.status(400).json({ error: 'batch muss ein nicht-leeres Array sein' });
     }
 
-    const result = await batchSync(batch);
+    // Enforce the user boundary: users may only sync their own assessment data.
+    const ownBatch = batch.filter((item) => item && item.userId === req.user.id);
+    const result = await batchSync(ownBatch);
     res.json(result);
   } catch (err) {
     logger.error({ err: err, message: err.message || String(err) }, '[assessment] sync error');

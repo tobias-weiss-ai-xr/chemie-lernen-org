@@ -16,6 +16,19 @@
   var ERROR_EL = 'assessment-error';
 
   /**
+   * Read the optional ?learnerId= query param (teacher drill-down).
+   * @returns {string}
+   */
+  function getLearnerIdParam() {
+    try {
+      var match = /[?&]learnerId=([^&]+)/.exec(window.location.search || '');
+      return match ? decodeURIComponent(match[1]) : '';
+    } catch (e) {
+      return '';
+    }
+  }
+
+  /**
    * Load assessment data from the API and render the dashboard.
    * Called on page load and on retry.
    */
@@ -24,8 +37,14 @@
     hideElement(CONTENT_EL);
     hideElement(ERROR_EL);
 
+    // Teacher drill-down: pass the target learner id through to the API.
+    var learnerId = getLearnerIdParam();
+    var url = learnerId
+      ? ASSESSMENT_API + '?learnerId=' + encodeURIComponent(learnerId)
+      : ASSESSMENT_API;
+
     // Return the promise chain so callers can await completion.
-    return fetch(ASSESSMENT_API, {
+    return fetch(url, {
       credentials: 'same-origin',
       headers: { Accept: 'application/json' },
     })

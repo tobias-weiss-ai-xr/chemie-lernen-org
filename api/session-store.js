@@ -133,6 +133,28 @@ class FileBackedSessionStore {
     this._dirty = true;
   }
 
+  /**
+   * Get or create a session keyed by an identifier (e.g. userId).
+   * Required by learning-engine (getProgress) and the exercise routes.
+   */
+  getSession(userId) {
+    let session = this._map.get(userId);
+    if (!session) {
+      session = {
+        userId,
+        progress: {},
+        createdAt: Date.now(),
+        lastUsed: Date.now(),
+      };
+      this._map.set(userId, session);
+      this._dirty = true;
+    } else {
+      session.lastUsed = Date.now();
+      if (userId && !session.userId) session.userId = userId;
+    }
+    return session;
+  }
+
   delete(sessionId) {
     this._map.delete(sessionId);
     this._dirty = true;

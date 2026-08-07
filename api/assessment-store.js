@@ -8,6 +8,7 @@
  * in _neo4j-subset-filter.mjs) and scoped queries.
  */
 
+import crypto from 'node:crypto';
 import { getNeo4jDriver, NEO4J_DATABASE, toNumberSafe } from './services/neo4j.js';
 
 // ── Index management ──────────────────────────────────────────────────
@@ -55,8 +56,6 @@ async function ensureIndexes(session) {
 function uuid() {
   return crypto.randomUUID();
 }
-
-import crypto from 'node:crypto';
 
 // ── Assessment operations ─────────────────────────────────────────────
 

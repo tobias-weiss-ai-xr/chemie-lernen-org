@@ -256,4 +256,31 @@ describe('renderDashboard (integration via DOM)', () => {
     const errorEl = document.getElementById('assessment-error');
     expect(errorEl.style.display).not.toBe('none');
   });
+
+  test('passes learnerId through to the API for teacher drill-down', async () => {
+    const originalUrl = window.location.href;
+    window.history.replaceState({}, '', '/assessment?learnerId=learner-42');
+
+    try {
+      await window.loadAssessmentData();
+      expect(global.fetch).toHaveBeenCalledWith(
+        '/api/assessment/results?learnerId=learner-42',
+        expect.anything()
+      );
+    } finally {
+      window.history.replaceState({}, '', originalUrl);
+    }
+  });
+
+  test('omits learnerId query when not provided (learner self-view)', async () => {
+    const originalUrl = window.location.href;
+    window.history.replaceState({}, '', '/assessment');
+
+    try {
+      await window.loadAssessmentData();
+      expect(global.fetch).toHaveBeenCalledWith('/api/assessment/results', expect.anything());
+    } finally {
+      window.history.replaceState({}, '', originalUrl);
+    }
+  });
 });
