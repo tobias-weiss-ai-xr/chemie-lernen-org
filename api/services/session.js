@@ -86,6 +86,9 @@ function getSession(sessionId, userId) {
     if (userId && !session.userId) {
       session.userId = userId;
     }
+    // Restored/legacy sessions (or ones created by other flows such as the
+    // exercise store) may lack chat state — keep chat consumers safe.
+    if (!session.messages) session.messages = [];
   }
   return session;
 }

@@ -16,12 +16,25 @@ describe('FileBackedSessionStore.getSession', () => {
 
     expect(session).toBeDefined();
     expect(session.userId).toBe('user-42');
-    expect(session.progress).toBeDefined();
+    // Chat pushes into session.messages — must be an array even for newly
+    // created sessions. Regression: exercise/session flow must not crash chat.
+    expect(Array.isArray(session.messages)).toBe(true);
+    // Progress is NOT pre-initialized here: a partial `progress: {}` would
+    // bypass learning-engine.getProgress()'s full defaulting and crash
+    // addXpEntry (xpHistory.unshift) on the first grade.
+    expect('progress' in session).toBe(false);
 
     // Same id returns the same object (no duplicate).
     expect(store.getSession('user-42')).toBe(session);
     // Different id produces a distinct session.
     expect(store.getSession('user-99')).not.toBe(session);
+  });
+
+  test('fills missing messages on restored legacy sessions', () => {
+    const store = new FileBackedSessionStore();
+    store.set('legacy-1', { userId: 'legacy-1' });
+    const session = store.getSession('legacy-1');
+    expect(Array.isArray(session.messages)).toBe(true);
   });
 
   test('set() and get() remain Map-compatible', () => {

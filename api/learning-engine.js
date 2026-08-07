@@ -79,19 +79,22 @@ const XP = {
 function getProgress(sessionStore, userId) {
   const session = sessionStore.getSession(userId);
   if (!session.progress) {
-    session.progress = {
-      xp: 0,
-      xpHistory: [],
-      earnedBadges: [],
-      paths: {},
-      streak: 0,
-      lastCheckIn: null,
-      uniqueArticlesToday: [],
-      quizzesPassed: 0,
-      exercisesCompleted: 0,
-    };
+    session.progress = {};
   }
-  return session.progress;
+  // Fill any missing sub-fields so consumers (addXpEntry's xpHistory.unshift,
+  // badge counters, streak logic) never crash on partially initialized
+  // progress (e.g. restored from disk or created by other flows).
+  const p = session.progress;
+  p.xp = p.xp || 0;
+  p.xpHistory = p.xpHistory || [];
+  p.earnedBadges = p.earnedBadges || [];
+  p.paths = p.paths || {};
+  p.streak = p.streak || 0;
+  p.lastCheckIn = p.lastCheckIn || null;
+  p.uniqueArticlesToday = p.uniqueArticlesToday || [];
+  p.quizzesPassed = p.quizzesPassed || 0;
+  p.exercisesCompleted = p.exercisesCompleted || 0;
+  return p;
 }
 
 // ── Learning Path Queries ─────────────────────────────────────

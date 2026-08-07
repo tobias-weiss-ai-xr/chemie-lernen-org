@@ -142,7 +142,7 @@ class FileBackedSessionStore {
     if (!session) {
       session = {
         userId,
-        progress: {},
+        messages: [],
         createdAt: Date.now(),
         lastUsed: Date.now(),
       };
@@ -151,7 +151,14 @@ class FileBackedSessionStore {
     } else {
       session.lastUsed = Date.now();
       if (userId && !session.userId) session.userId = userId;
+      // Restored/legacy sessions may lack chat state — never let
+      // consumers (chat pushes to session.messages) crash on it.
+      if (!session.messages) session.messages = [];
     }
+    // NOTE: no `progress` pre-initialization here on purpose —
+    // learning-engine's getProgress() is the single source of truth for the
+    // progress shape; a partial `progress: {}` here would bypass its full
+    // defaulting and crash addXpEntry (xpHistory.unshift) later.
     return session;
   }
 
