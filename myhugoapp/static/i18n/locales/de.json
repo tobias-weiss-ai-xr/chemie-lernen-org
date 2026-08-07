@@ -381,5 +381,39 @@
       "reset": "Zurücksetzen",
       "swap": "Tauschen"
     }
+  },
+  "assessment": {
+    "title": "Assessment-Übersicht",
+    "teacherTitle": "Lehrerdashboard",
+    "learnerDashboard": "Meine Lernfortschritte",
+    "recentAssessments": "Letzte Assessments",
+    "scoreTrend": "Ergebnis-Trend",
+    "weakTopics": "Übungsbedarf",
+    "strongTopics": "Starke Themen",
+    "recommendedNextSteps": "Empfohlene nächste Schritte",
+    "overallScore": "Gesamtpunktzahl",
+    "assessmentsCompleted": "Abgeschlossene Assessments",
+    "classOverview": "Klassenübersicht",
+    "topicBreakdown": "Themenübersicht",
+    "studentDetail": "Schülerdetails",
+    "feedbackOverride": "Feedback überschreiben",
+    "exportCsv": "CSV exportieren",
+    "aiGenerated": "KI-generiert",
+    "discussWithTeacher": "Mit Lehrkraft besprechen",
+    "noData": "Keine Daten verfügbar",
+    "loading": "Lade Daten...",
+    "error": "Fehler beim Laden",
+    "retry": "Erneut versuchen",
+    "difficulty": {
+      "leicht": "Leicht",
+      "mittel": "Mittel",
+      "schwer": "Schwer"
+    },
+    "filter": {
+      "all": "Alle",
+      "topic": "Thema",
+      "date": "Datum",
+      "score": "Ergebnis"
+    }
   }
 }

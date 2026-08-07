@@ -51,6 +51,10 @@ export const CHEMIE_LABELS = [
   'ModuleOffering',
   'Degree',
   'ECTS',
+  'Assessment',
+  'GradedAnswer',
+  'Feedback',
+  'AssessmentResult',
 ];
 
 // Memoize the resolved WHERE clause strings so we don't join on every call.

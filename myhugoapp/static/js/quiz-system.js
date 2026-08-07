@@ -27,7 +27,8 @@ class QuizSystem {
   }
 
   /**
-   * Register a quiz for a topic
+   * Register a quiz for a topic with support for mixed sources.
+   * Adds AI question injection (see aiQuestionsEnabled).
    */
   registerQuiz(topicId, quizData) {
     this.quizzes[topicId] = {
@@ -37,6 +38,7 @@ class QuizSystem {
       passingScore: quizData.passingScore || 70,
       defaultTimePerQuestion: quizData.timePerQuestion || null,
       defaultTotalTime: quizData.totalTime || null,
+      aiQuestionsEnabled: quizData.aiQuestionsEnabled !== false, // default: enabled
     };
   }
 
@@ -63,6 +65,148 @@ class QuizSystem {
   }
 
   /**
+   * Fetch AI-generated questions for a topic from the backend API.
+   * Mixes them with hand-authored questions.
+   * @param {string} topicId - Topic slug
+   * @param {number} [count=3] - Number of AI questions to request
+   * @returns {Promise<Array>} Array of question objects with source: 'ai'
+   */
+  async fetchAiQuestions(topicId) {
+    try {
+      var res = await fetch('/api/exercises/generate', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          topicSlug: topicId,
+          difficulty: this.getAdaptiveDifficulty(topicId),
+          type: 'mcq',
+          includeFsrsContext: true,
+        }),
+      });
+      if (!res.ok) return [];
+      var data = await res.json();
+      // Convert AI exercise to quiz question format
+      var question = {
+        id: data.id,
+        type: 'multiple-choice',
+        question: data.question,
+        options: (data.options || []).map(function (o) {
+          return o.text;
+        }),
+        correctAnswer: data.correctAnswer,
+        explanation: data.explanation || '',
+        source: 'ai',
+        aiGenerated: true,
+        learningObjective: data.learningObjective,
+        topic: topicId,
+      };
+      return [question];
+    } catch (e) {
+      console.warn('[quiz-system] Failed to fetch AI questions:', e);
+      return [];
+    }
+  }
+
+  /**
+   * Determine adaptive difficulty based on FSRS stability from localStorage.
+   * @param {string} topicId
+   * @returns {'easy'|'medium'|'hard'}
+   */
+  getAdaptiveDifficulty(topicId) {
+    try {
+      // Check FSRS data in localStorage (set by spaced-repetition.js)
+      var fsrsData = localStorage.getItem('chemie-lernen-fsrs-cache');
+      if (!fsrsData) return 'medium';
+      var fsrs = JSON.parse(fsrsData);
+      var stability = fsrs[topicId]?.stability || fsrs.global?.stability || null;
+      if (stability === null) return 'medium';
+      if (stability < 7) return 'easy';
+      if (stability > 30) return 'hard';
+      return 'medium';
+    } catch (e) {
+      return 'medium';
+    }
+  }
+
+  /**
+   * Start a quiz with optional AI-generated questions mixed in.
+   */
+  async startQuiz(topicId, settings) {
+    settings = settings || {};
+    var quiz = this.quizzes[topicId];
+    if (!quiz) {
+      console.error('Quiz for topic ' + topicId + ' not found');
+      return false;
+    }
+
+    // Apply settings
+    this.configureQuiz(settings);
+
+    // Get adaptive difficulty recommendation for tooltip
+    var adaptiveDifficulty = this.getAdaptiveDifficulty(topicId);
+    this._adaptiveDifficulty = adaptiveDifficulty;
+
+    // Fetch AI questions if enabled
+    var aiQuestions = [];
+    if (quiz.aiQuestionsEnabled) {
+      try {
+        aiQuestions = await this.fetchAiQuestions(topicId);
+      } catch (e) {
+        // Silent fail — continue with hand-authored only
+      }
+    }
+
+    // Merge hand-authored + AI questions
+    var allQuestions = [].concat(quiz.questions || []).concat(aiQuestions);
+
+    // Randomize if configured
+    var questions = this.quizSettings.randomizeQuestions
+      ? this.shuffleArray(allQuestions)
+      : allQuestions;
+
+    this.currentQuiz = {
+      id: quiz.id,
+      title: quiz.title,
+      questions: questions,
+      passingScore: quiz.passingScore || 70,
+    };
+    this.currentQuestionIndex = 0;
+    this.score = 0;
+    this.answers = [];
+    this.hintsUsed = 0;
+
+    // Initialize timer if timed mode is enabled
+    if (this.quizSettings.timedMode) {
+      var timeLimit = this.quizSettings.totalTime || this.quizSettings.timePerQuestion;
+      if (timeLimit) {
+        this.timeRemaining = timeLimit;
+        this.startTimer();
+      }
+    }
+
+    return true;
+  }
+
+  /**
+   * Get adaptive difficulty label for display.
+   */
+  getAdaptiveDifficultyLabel() {
+    var labels = { easy: 'Leicht', medium: 'Mittel', hard: 'Schwer' };
+    return labels[this._adaptiveDifficulty] || 'Mittel';
+  }
+
+  /**
+   * Get the source type of the current question.
+   * @returns {'hand-authored'|'ai'}
+   */
+  getCurrentQuestionSource() {
+    var q = this.getCurrentQuestion();
+    if (!q) return 'hand-authored';
+    return q.source === 'ai' ? 'ai' : 'hand-authored';
+  }
+
+  /**
    * Shuffle array using Fisher-Yates algorithm
    */
   shuffleArray(array) {
@@ -77,42 +221,6 @@ class QuizSystem {
   /**
    * Start a quiz
    */
-  startQuiz(topicId, settings = {}) {
-    const quiz = this.quizzes[topicId];
-    if (!quiz) {
-      console.error(`Quiz for topic ${topicId} not found`);
-      return false;
-    }
-
-    // Apply settings
-    this.configureQuiz(settings);
-
-    // Create a working copy of questions (may be randomized)
-    const questions = this.quizSettings.randomizeQuestions
-      ? this.shuffleArray(quiz.questions)
-      : quiz.questions;
-
-    this.currentQuiz = {
-      ...quiz,
-      questions: questions,
-    };
-    this.currentQuestionIndex = 0;
-    this.score = 0;
-    this.answers = [];
-    this.hintsUsed = 0;
-
-    // Initialize timer if timed mode is enabled
-    if (this.quizSettings.timedMode) {
-      const timeLimit = this.quizSettings.totalTime || this.quizSettings.timePerQuestion;
-      if (timeLimit) {
-        this.timeRemaining = timeLimit;
-        this.startTimer();
-      }
-    }
-
-    return true;
-  }
-
   /**
    * Start countdown timer
    */
@@ -223,10 +331,22 @@ class QuizSystem {
   }
 
   /**
-   * Check if answer is correct
+   * Check if answer is correct. Supports both hand-authored and AI-generated questions.
    */
   checkAnswer(question, userAnswer) {
-    if (question.type === 'multiple-choice') {
+    // AI-generated questions use 'multiple-choice' type with index-based correctAnswer
+    if (question.type === 'multiple-choice' || question.type === 'mcq') {
+      // AI questions: correctAnswer is the option ID (letter) or index
+      if (question.source === 'ai' && question.correctAnswer) {
+        var userIdx = parseInt(userAnswer);
+        var correctAsNum = parseInt(question.correctAnswer);
+        if (!isNaN(correctAsNum)) return userIdx === correctAsNum;
+        // Letter-based comparison
+        return (
+          String(userAnswer).trim().toUpperCase() ===
+          String(question.correctAnswer).trim().toUpperCase()
+        );
+      }
       return userAnswer === question.correctAnswer;
     } else if (question.type === 'multiple-select') {
       const userAnswers = Array.isArray(userAnswer) ? userAnswer : [userAnswer];

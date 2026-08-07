@@ -16,17 +16,74 @@
     return null;
   }
 
+  /**
+   * Render a badge indicating question source (AI vs hand-authored).
+   */
+  function renderSourceBadge(questionData) {
+    if (questionData.source === 'ai' || questionData.aiGenerated) {
+      return '<span class="label label-info quiz-ai-badge" title="KI-generierte Frage">KI-generiert</span>';
+    }
+    return '';
+  }
+
+  /**
+   * Render the adaptive difficulty tooltip.
+   */
+  function renderDifficultyTooltip(difficulty) {
+    var labels = { easy: 'Leicht', medium: 'Mittel', hard: 'Schwer' };
+    var label = labels[difficulty] || 'Mittel';
+    return (
+      '<span class="label label-default quiz-difficulty-tooltip" title="Basierend auf Ihren bisherigen Antworten">' +
+      'Schwierigkeit: ' +
+      label +
+      '</span>'
+    );
+  }
+
   function initializeQuiz(quizId) {
-    const quizData = loadQuiz(quizId);
+    var quizData = loadQuiz(quizId);
     if (!quizData) {
+      // Fallback: try to load from chemieQuiz (which may have AI questions)
+      if (window.chemieQuiz) {
+        var topicQuiz = window.chemieQuiz.quizzes[quizId];
+        if (topicQuiz) {
+          // Use the registered quiz data directly
+          window.chemieQuiz.startQuiz(quizId).then(function (started) {
+            if (started) renderAiQuiz(quizId);
+          });
+          return;
+        }
+      }
       console.warn('Quiz not found:', quizId);
       return;
     }
 
-    const quizContainer = document.getElementById(`quiz-${quizId}`);
+    var quizContainer = document.getElementById('quiz-' + quizId);
     if (!quizContainer) {
       console.warn('Quiz container not found:', quizId);
       return;
+    }
+
+    // Show adaptive difficulty recommendation
+    if (window.chemieQuiz) {
+      var diffLabel = window.chemieQuiz.getAdaptiveDifficultyLabel();
+      var diffTooltip = document.getElementById('quiz-difficulty-' + quizId);
+      if (diffTooltip) {
+        diffTooltip.innerHTML = renderDifficultyTooltip(
+          window.chemieQuiz._adaptiveDifficulty || 'medium'
+        );
+      }
+    }
+
+    // Show "KI-generiert" badge if any AI questions are mixed in
+    var badgeContainer = document.getElementById('quiz-badge-' + quizId);
+    if (badgeContainer) {
+      var hasAiQuestions = (quizData.questions || []).some(function (q) {
+        return q.source === 'ai' || q.aiGenerated;
+      });
+      if (hasAiQuestions) {
+        badgeContainer.innerHTML = renderSourceBadge({ source: 'ai' });
+      }
     }
 
     quizContainer.style.display = 'block';
@@ -43,28 +100,112 @@
       const questionData = quizData.questions[currentQuestion];
       const questionNumber = currentQuestion + 1;
 
-      const questionHTML = `
-        <div class="quiz-question" data-question-id="${questionData.id}">
-          <div class="quiz-progress">
-            <span>Frage ${questionNumber} von ${quizData.questions.length}</span>
-          </div>
-          <p class="question-text">${questionData.question}</p>
-          <div class="quiz-options">
-            ${questionData.options
-              .map(
-                (option, index) => `
-              <button class="quiz-option" data-option="${index}">
-                ${option}
-              </button>
-            `
-              )
-              .join('')}
-          </div>
-        </div>
-      `;
+      var badgeHtml = renderSourceBadge(questionData);
+      var questionHTML = [
+        '<div class="quiz-question" data-question-id="' + questionData.id + '">',
+        '<div class="quiz-progress">',
+        '<span>Frage ' + questionNumber + ' von ' + quizData.questions.length + '</span>',
+        badgeHtml,
+        '</div>',
+        '<p class="question-text">' + questionData.question + '</p>',
+        '<div class="quiz-options">',
+      ].join('');
 
+      for (var i = 0; i < questionData.options.length; i++) {
+        questionHTML += [
+          '<button class="quiz-option" data-option="' + i + '">',
+          questionData.options[i],
+          '</button>',
+        ].join('');
+      }
+
+      questionHTML += '</div></div>';
       return questionHTML;
     }
+
+    /**
+     * Render a quiz from AI-generated questions (no pre-existing quiz-database entry).
+     */
+    function renderAiQuiz(quizId) {
+      var quizContainer = document.getElementById('quiz-' + quizId);
+      if (!quizContainer) return;
+      quizContainer.style.display = 'block';
+
+      var currentQuiz = window.chemieQuiz.currentQuiz;
+      if (!currentQuiz || !currentQuiz.questions || currentQuiz.questions.length === 0) {
+        quizContainer.innerHTML = '<p class="text-center">Keine Fragen verfügbar.</p>';
+        return;
+      }
+
+      // Set up the quiz HTML structure
+      var badgeHtml =
+        window.chemieQuiz.getCurrentQuestionSource() === 'ai'
+          ? '<span class="label label-info quiz-ai-badge">KI-generiert</span>'
+          : '';
+
+      quizContainer.innerHTML = [
+        '<div class="quiz-content">',
+        '<div class="quiz-header">',
+        '<h3>' + (currentQuiz.title || 'Quiz') + '</h3>',
+        badgeHtml,
+        '</div>',
+        '<div class="quiz-body"></div>',
+        '<div class="quiz-footer">',
+        '<button class="btn btn-primary" id="quiz-submit-' + quizId + '">Antwort prüfen</button>',
+        '</div>',
+        '</div>',
+      ].join('');
+
+      renderAiQuestion(quizId, 0);
+    }
+
+    function renderAiQuestion(quizId, index) {
+      var currentQuiz = window.chemieQuiz.currentQuiz;
+      if (!currentQuiz || index >= currentQuiz.questions.length) return;
+
+      var question = currentQuiz.questions[index];
+      var body = document.querySelector('#quiz-' + quizId + ' .quiz-body');
+      if (!body) return;
+
+      var badge =
+        question.source === 'ai'
+          ? '<span class="label label-info quiz-ai-badge">KI-generiert</span>'
+          : '';
+      body.innerHTML = [
+        '<div class="quiz-progress">',
+        '<span>Frage ' + (index + 1) + ' von ' + currentQuiz.questions.length + '</span>',
+        badge,
+        '</div>',
+        '<p><strong>' + question.question + '</strong></p>',
+        '<div class="quiz-options">',
+      ].join('');
+
+      var options = question.options || [];
+      for (var i = 0; i < options.length; i++) {
+        body.innerHTML += [
+          '<button class="quiz-option btn btn-default" data-option="' +
+            i +
+            '" onclick="selectAiOption(this, \'' +
+            quizId +
+            "', " +
+            i +
+            ')">',
+          options[i],
+          '</button>',
+        ].join('');
+      }
+      body.innerHTML += '</div>';
+    }
+
+    // Export selectAiOption for use in onclick
+    window.selectAiOption = function (btn, quizId, selectedIdx) {
+      var allOptions = document.querySelectorAll('#quiz-' + quizId + ' .quiz-option');
+      allOptions.forEach(function (opt) {
+        opt.classList.remove('selected');
+      });
+      btn.classList.add('selected');
+      btn.dataset.selected = 'true';
+    };
 
     const quizContent = quizContainer.querySelector('.quiz-content');
     if (quizContent) {
