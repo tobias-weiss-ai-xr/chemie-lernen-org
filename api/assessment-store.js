@@ -340,6 +340,7 @@ export async function getLearnerResults(userId, limit = 20, offset = 0) {
       topic: rec.get('topic'),
       difficulty: rec.get('difficulty'),
       date: rec.get('date'),
+      weakConcepts: rec.get('weakConcepts') || [],
       score:
         rec.get('totalCount') > 0
           ? Math.round(

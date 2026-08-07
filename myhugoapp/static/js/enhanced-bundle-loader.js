@@ -38,7 +38,10 @@ class BundleManager {
       },
 
       interactive: {
-        'quiz-system': '/js/quiz-system.optimized.js',
+        // NOTE: point to the live source. quiz.html loads quiz-system.js
+        // directly; the optimized copy is a stale pre-AI-fix artifact that
+        // dropped aiOptions/reportGradeToBackend and would re-break grading.
+        'quiz-system': '/js/quiz-system.js',
         'progress-tracker': '/js/progress-tracker.optimized.js',
         'user-system': '/js/quiz-user-system.optimized.js',
       },
