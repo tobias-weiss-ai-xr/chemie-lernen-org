@@ -86,15 +86,20 @@ class QuizSystem {
       });
       if (!res.ok) return [];
       var data = await res.json();
-      // Convert AI exercise to quiz question format
+      // Convert AI exercise to quiz question format.
+      // Keep the option ids (aiOptions) so AI MCQ answers — which the UI
+      // submits as a 0-based index — can be mapped back to the generator's
+      // lettered correctAnswer and reported to the backend for grading.
+      var aiOptions = data.options || [];
       var question = {
         id: data.id,
         type: 'multiple-choice',
         question: data.question,
-        options: (data.options || []).map(function (o) {
+        options: aiOptions.map(function (o) {
           return o.text;
         }),
         correctAnswer: data.correctAnswer,
+        aiOptions: aiOptions,
         explanation: data.explanation || '',
         source: 'ai',
         aiGenerated: true,
@@ -105,6 +110,35 @@ class QuizSystem {
     } catch (e) {
       console.warn('[quiz-system] Failed to fetch AI questions:', e);
       return [];
+    }
+  }
+
+  /**
+   * Fire-and-forget report of an AI-graded quiz answer to the backend
+   * grading endpoint. Keeps the learner/teacher dashboards and the
+   * knowledge-graph persistence populated even though the quiz itself
+   * grades locally for instant feedback. Best-effort: failures are silent.
+   * @param {object} question - The AI question (source === 'ai')
+   * @param {string|number} userAnswer - The 0-based selected option index
+   */
+  reportGradeToBackend(question, userAnswer) {
+    if (!question || question.source !== 'ai' || !question.id) return;
+    if (typeof window.fetch !== 'function') return;
+
+    // Map the submitted index back to the letter id so the backend's
+    // deterministic MC-grader can grade it identically to the quiz.
+    var chosen = question.aiOptions && question.aiOptions[parseInt(userAnswer)];
+    var answer = chosen ? chosen.id : String(userAnswer);
+
+    try {
+      fetch('/api/exercises/grade', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ exerciseId: question.id, answer: answer }),
+      }).catch(function () {});
+    } catch (e) {
+      // Best-effort; never break the quiz on a network/JSON error.
     }
   }
 
@@ -319,6 +353,10 @@ class QuizSystem {
       correct: isCorrect,
     });
 
+    // Persist AI-graded answers to the backend so the auto-grading,
+    // individualized feedback and learner/teacher dashboards have data.
+    this.reportGradeToBackend(question, answer);
+
     if (isCorrect) {
       this.score++;
     }
@@ -334,18 +372,24 @@ class QuizSystem {
    * Check if answer is correct. Supports both hand-authored and AI-generated questions.
    */
   checkAnswer(question, userAnswer) {
-    // AI-generated questions use 'multiple-choice' type with index-based correctAnswer
+    // AI-generated questions are 'multiple-choice', answered by 0-based index.
     if (question.type === 'multiple-choice' || question.type === 'mcq') {
-      // AI questions: correctAnswer is the option ID (letter) or index
+      // AI questions: correctAnswer is the correct option's letter ID (e.g.
+      // 'C'); the UI submits the option's 0-based index, so map index → id
+      // before comparing. Previously a letter correctAnswer could never be
+      // matched against the index-based userAnswer — AI MCQ grading always
+      // came back wrong in the quiz.
       if (question.source === 'ai' && question.correctAnswer) {
+        var chosen = question.aiOptions && question.aiOptions[parseInt(userAnswer)];
+        var chosenLetter = chosen && String(chosen.id).trim().toUpperCase();
+        var correctLetter = String(question.correctAnswer).trim().toUpperCase();
+        if (chosenLetter) return chosenLetter === correctLetter;
+
+        // No id mapping available — fall back to numeric (index) or letter.
         var userIdx = parseInt(userAnswer);
         var correctAsNum = parseInt(question.correctAnswer);
         if (!isNaN(correctAsNum)) return userIdx === correctAsNum;
-        // Letter-based comparison
-        return (
-          String(userAnswer).trim().toUpperCase() ===
-          String(question.correctAnswer).trim().toUpperCase()
-        );
+        return String(userAnswer).trim().toUpperCase() === correctLetter;
       }
       return userAnswer === question.correctAnswer;
     } else if (question.type === 'multiple-select') {
