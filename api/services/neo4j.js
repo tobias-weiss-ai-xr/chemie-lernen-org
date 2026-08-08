@@ -38,6 +38,23 @@ export async function closeNeo4jDriver() {
 export { NEO4J_DATABASE };
 
 /**
+ * Convert a JS number to a Neo4j INTEGER parameter value.
+ *
+ * Neo4j 5.x rejects floats for LIMIT/SKIP and similar integer-only
+ * parameters. The neo4j-driver 6.x sends plain JS numbers as FLOAT
+ * (e.g. 20 → 20.0), which breaks `LIMIT $limit` with
+ * "Expected 'value' to be of type INTEGER ... but found 20.0".
+ * Use this helper for any integer-typed Cypher parameter.
+ *
+ * @param {number|string|null|undefined} val - Value to coerce to an INTEGER
+ * @returns {object} neo4j Integer instance
+ */
+export function toNeoInt(val) {
+  const n = Number.isFinite(val) ? val : Number(val);
+  return neo4j.int(Number.isFinite(n) ? n : 0);
+}
+
+/**
  * Safely convert a Neo4j value to a JS number.
  * Neo4j may return Integer objects (lossless), plain numbers, or floats —
  * depending on how the property was stored. `.toNumber()` only exists on

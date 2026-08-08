@@ -9,7 +9,7 @@
  */
 
 import crypto from 'node:crypto';
-import { getNeo4jDriver, NEO4J_DATABASE, toNumberSafe } from './services/neo4j.js';
+import { getNeo4jDriver, NEO4J_DATABASE, toNumberSafe, toNeoInt } from './services/neo4j.js';
 
 // ── Index management ──────────────────────────────────────────────────
 
@@ -332,7 +332,7 @@ export async function getLearnerResults(userId, limit = 20, offset = 0) {
       SKIP $offset
       LIMIT $limit
       `,
-      { userId, offset: toNumberSafe(offset), limit: toNumberSafe(limit) }
+      { userId, offset: toNeoInt(offset), limit: toNeoInt(limit) }
     );
 
     const results = result.records.map((rec) => ({

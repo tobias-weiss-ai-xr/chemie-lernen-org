@@ -28,6 +28,14 @@ jest.unstable_mockModule(
     getNeo4jDriver: jest.fn(() => mockDriver),
     NEO4J_DATABASE: 'chemie',
     toNumberSafe: (v) => (v == null || v === undefined ? undefined : Number(v)),
+    // Mimic neo4j-int: returns an object with isFinite()/toNumber() so
+    // queries can assert LIMIT/SKIP params are INTEGERs (not dangerous floats).
+    toNeoInt: (v) => ({
+      toNumber: () => Number(v),
+      low: Number(v),
+      high: 0,
+      isInt: true,
+    }),
   }),
   { virtual: false }
 );
@@ -237,6 +245,16 @@ describe('getLearnerResults', () => {
     expect(result.results[0].topic).toBe('Oxidation');
     expect(result.results[0].score).toBe(60); // 3/5
     expect(result.results[1].score).toBe(100); // 4/4
+
+    // Regression: Neo4j 5.x rejects float LIMIT/SKIP params. The
+    // paginated query must pass INTEGERs (mimicked isInt: true), not
+    // plain JS numbers that the driver serializes as FLOAT (20 → '20.0').
+    const [query, params] = mockSession.run.mock.calls[1];
+    expect(query).toContain('SKIP $offset');
+    expect(query).toContain('LIMIT $limit');
+    expect(params.offset.isInt).toBe(true);
+    expect(params.limit.isInt).toBe(true);
+    expect(params.limit.toNumber()).toBe(20);
   });
 
   test('handles empty results', async () => {

@@ -28,6 +28,7 @@ jest.unstable_mockModule(
     getNeo4jDriver: jest.fn(() => mockDriver),
     NEO4J_DATABASE: 'chemie',
     toNumberSafe: (v) => (v == null ? undefined : Number(v)),
+    toNeoInt: (v) => ({ toNumber: () => Number(v), low: Number(v), high: 0, isInt: true }),
   }),
   { virtual: false }
 );
