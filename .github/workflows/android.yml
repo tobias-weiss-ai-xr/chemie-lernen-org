@@ -83,14 +83,13 @@ jobs:
             mkdir -p "$HOME/.android"
             echo "${{ secrets.CHEMIE_RELEASE_KEYSTORE_B64 }}" | base64 -d > "$HOME/.android/chemie-release.jks"
             chmod 600 "$HOME/.android/chemie-release.jks"
+            echo "CHEMIE_RELEASE_STORE_FILE=$HOME/.android/chemie-release.jks" >> "$GITHUB_ENV"
             echo "SIGNING=1" >> "$GITHUB_ENV"
           else
             echo "::warning::No CHEMIE_RELEASE_KEYSTORE_B64 secret — release APK will be UNSIGNED"
           fi
 
       - name: Build release APK (prod API base URL)
-        env:
-          CHEMIE_RELEASE_STORE_FILE: ${{ runner.home }}/.android/chemie-release.jks
         run: ./gradlew assembleRelease --no-daemon
 
       - name: Verify signature (when signed)
