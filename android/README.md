@@ -39,6 +39,9 @@ export ANDROID_HOME=/path/to/android-sdk
 
 The debug APK is at `app/build/outputs/apk/debug/app-debug.apk`.
 
+CI (`.github/workflows/android.yml`) builds the debug + release (unsigned)
+APKs and uploads them as artifacts on every push/PR touching `android/**`.
+
 Override the API base URL (e.g. for a staging host):
 
 ```bash

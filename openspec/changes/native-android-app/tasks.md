@@ -46,3 +46,7 @@
 
 - [x] 7.1 `openspec validate native-android-app` passes
 - [x] 7.2 Commit + push (GitHub + Codeberg)
+
+## 8. CI
+
+- [x] 8.1 `.github/workflows/android.yml`: on push/PR touching `android/**`, runs `testDebugUnitTest` + `assembleDebug`, uploads debug APK artifact; separate job builds `assembleRelease` (prod API base URL, unsigned) and uploads it
