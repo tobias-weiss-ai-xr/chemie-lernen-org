@@ -68,19 +68,34 @@ adb install app/build/outputs/apk/debug/app-debug.apk
 
 ## Release / signing
 
-1. Create a keystore:
-   ```bash
-   keytool -genkey -v -keystore chemie-release.jks -alias chemie -keyalg RSA -keysize 2048 -validity 10000
-   ```
-2. Add to `~/.gradle/gradle.properties`:
-   ```properties
-   CHEMIE_RELEASE_STORE_FILE=/abs/path/chemie-release.jks
-   CHEMIE_RELEASE_STORE_PASSWORD=...
-   CHEMIE_RELEASE_KEY_ALIAS=chemie
-   CHEMIE_RELEASE_KEY_PASSWORD=...
-   ```
-3. Wire a `signingConfigs.release` block in `app/build.gradle.kts`
-   (not committed — secrets stay out of the repo).
+The release build type signs only when a keystore is present via **env vars**
+(or `-P` gradle properties). Without them the release APK stays unsigned
+(`app-release-unsigned.apk`):
+
+```bash
+CHEMIE_RELEASE_STORE_FILE=/abs/path/chemie-release.jks \
+CHEMIE_RELEASE_STORE_PASSWORD=... \
+CHEMIE_RELEASE_KEY_ALIAS=chemie \
+CHEMIE_RELEASE_KEY_PASSWORD=... \
+./gradlew assembleRelease
+```
+
+CI does this automatically from GitHub secrets:
+
+- `CHEMIE_RELEASE_KEYSTORE_B64` — base64 of the `.jks` file
+- `CHEMIE_RELEASE_STORE_PASSWORD`
+- `CHEMIE_RELEASE_KEY_ALIAS`
+- `CHEMIE_RELEASE_KEY_PASSWORD`
+
+The release job decodes the keystore, builds, verifies with `apksigner`
+and uploads the signed `app-release.apk` as an artifact. If the secrets are
+missing (e.g. PR from a fork), the build still succeeds as unsigned.
+
+> ⚠️ The keystore and passwords are secrets — never commit them. Back up the
+> keystore; losing it makes existing Play updates impossible (same signing
+> key required). The repo keystore used by CI lives at
+> `~/.android/chemie-release.jks` with creds in `~/.android/release-creds.txt`
+> (host: the build machine).
 
 ## Architecture
 

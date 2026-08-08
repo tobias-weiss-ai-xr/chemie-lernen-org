@@ -50,3 +50,4 @@
 ## 8. CI
 
 - [x] 8.1 `.github/workflows/android.yml`: on push/PR touching `android/**`, runs `testDebugUnitTest` + `assembleDebug`, uploads debug APK artifact; separate job builds `assembleRelease` (prod API base URL, unsigned) and uploads it
+- [x] 8.2 Release signing: unconditional-keystore signing config in `build.gradle.kts` (env/-P vars `CHEMIE_RELEASE_*`, graceful unsigned fallback); CI decodes keystore from `CHEMIE_RELEASE_KEYSTORE_B64` secret, signs, verifies with `apksigner`, uploads signed `app-release.apk`; keystore generated + registered as GitHub secrets (`keytool` PKCS12, unified store/key password)

@@ -54,12 +54,16 @@ jobs:
           retention-days: 14
 
   release:
-    name: Release APK (unsigned, debug-signed)
+    name: Release APK (signed with keystore CI secret)
     needs: build-test
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: android
+    env:
+      CHEMIE_RELEASE_STORE_PASSWORD: ${{ secrets.CHEMIE_RELEASE_STORE_PASSWORD }}
+      CHEMIE_RELEASE_KEY_ALIAS: ${{ secrets.CHEMIE_RELEASE_KEY_ALIAS }}
+      CHEMIE_RELEASE_KEY_PASSWORD: ${{ secrets.CHEMIE_RELEASE_KEY_PASSWORD }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -73,13 +77,33 @@ jobs:
       - name: Set up Gradle cache
         uses: gradle/actions/setup-gradle@v4
 
+      - name: Restore signing keystore from secrets
+        run: |
+          if [ -n "${{ secrets.CHEMIE_RELEASE_KEYSTORE_B64 }}" ]; then
+            mkdir -p "$HOME/.android"
+            echo "${{ secrets.CHEMIE_RELEASE_KEYSTORE_B64 }}" | base64 -d > "$HOME/.android/chemie-release.jks"
+            chmod 600 "$HOME/.android/chemie-release.jks"
+            echo "SIGNING=1" >> "$GITHUB_ENV"
+          else
+            echo "::warning::No CHEMIE_RELEASE_KEYSTORE_B64 secret — release APK will be UNSIGNED"
+          fi
+
       - name: Build release APK (prod API base URL)
+        env:
+          CHEMIE_RELEASE_STORE_FILE: ${{ runner.home }}/.android/chemie-release.jks
         run: ./gradlew assembleRelease --no-daemon
+
+      - name: Verify signature (when signed)
+        if: env.SIGNING == '1'
+        run: |
+          APKSIGNER="$ANDROID_HOME/build-tools/35.0.0/apksigner"
+          test -x "$APKSIGNER" || APKSIGNER="$ANDROID_SDK_ROOT/build-tools/35.0.0/apksigner"
+          "$APKSIGNER" verify --print-certs app/build/outputs/apk/release/app-release.apk
 
       - name: Upload release APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: chemie-lernen-release-apk-unsigned
-          path: android/app/build/outputs/apk/release/app-release-unsigned.apk
+          name: chemie-lernen-release-apk
+          path: android/app/build/outputs/apk/release/app-release*.apk
           if-no-files-found: error
           retention-days: 14

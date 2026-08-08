@@ -24,10 +24,43 @@ android {
         buildConfigField("String", "API_BASE_URL", "\"$apiBaseUrl\"")
     }
 
+    signingConfigs {
+        // Read keystore settings from -P props or environment (CI secrets/local shell).
+        // Only when ALL four are present AND the keystore file exists is a signing
+        // config created; otherwise release stays unsigned (app-release-unsigned.apk).
+        val storeFile = providers.gradleProperty("CHEMIE_RELEASE_STORE_FILE")
+            .orElse(providers.environmentVariable("CHEMIE_RELEASE_STORE_FILE"))
+            .orNull
+        val storePassword = providers.gradleProperty("CHEMIE_RELEASE_STORE_PASSWORD")
+            .orElse(providers.environmentVariable("CHEMIE_RELEASE_STORE_PASSWORD"))
+            .orNull
+        val keyAlias = providers.gradleProperty("CHEMIE_RELEASE_KEY_ALIAS")
+            .orElse(providers.environmentVariable("CHEMIE_RELEASE_KEY_ALIAS"))
+            .orNull
+        val keyPassword = providers.gradleProperty("CHEMIE_RELEASE_KEY_PASSWORD")
+            .orElse(providers.environmentVariable("CHEMIE_RELEASE_KEY_PASSWORD"))
+            .orNull
+        if (
+            !storeFile.isNullOrBlank() &&
+            file(storeFile).exists() &&
+            !storePassword.isNullOrBlank() &&
+            !keyAlias.isNullOrBlank() &&
+            !keyPassword.isNullOrBlank()
+        ) {
+            create("release") {
+                this.storeFile = file(storeFile)
+                this.storePassword = storePassword
+                this.keyAlias = keyAlias
+                this.keyPassword = keyPassword
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.findByName("release") // null → unsigned
         }
         debug {
             buildConfigField("String", "API_BASE_URL", "\"${project.findProperty("apiBaseUrlDev") ?: "http://10.0.2.2:3001"}\"")
