@@ -36,9 +36,22 @@ const logger = pino({
 
 router.post('/api/check-in', requireAuth, async (req, res) => {
   try {
-    const result = learningEngine.dailyCheckIn(sessionStore, req.user.id);
-    learningEngine.evaluateBadges(sessionStore, req.user.id);
-    res.json(result);
+    // Single source of truth for streak/XP: users.json (Engine B). The old
+    // learningEngine.dailyCheckIn wrote to the sessionStore — a separate
+    // store that is pruned after 24h and never surfaced in
+    // /api/gamification/profile, so check-ins "earned" nothing visible.
+    const checkinResult = recordCheckin(req.user.id);
+    const newBadges = checkBadgeUnlock(req.user.id);
+    res.json({
+      checkedIn: checkinResult.checkedIn,
+      streak: checkinResult.streak,
+      xpEarned: checkinResult.xpEarned,
+      xpTotal: checkinResult.totalXp,
+      streakBonus: 0,
+      streakFrozen: checkinResult.streakFrozen,
+      message: checkinResult.message,
+      newBadges: newBadges.map((b) => ({ id: b.badgeId, name: b.name, earnedAt: b.earnedAt })),
+    });
   } catch (err) {
     logger.error({ err: err, message: err.message || String(err) }, '[check-in] error');
     res.status(500).json({ error: 'Check-in fehlgeschlagen' });
@@ -47,8 +60,10 @@ router.post('/api/check-in', requireAuth, async (req, res) => {
 
 router.get('/api/check-in', requireAuth, async (req, res) => {
   try {
-    const status = learningEngine.getCheckInStatus(sessionStore, req.user.id);
-    res.json(status);
+    const g = getGamification(req.user.id);
+    if (!g) return res.status(404).json({ error: 'Benutzer nicht gefunden' });
+    const today = new Date().toISOString().slice(0, 10);
+    res.json({ checkedInToday: g.lastCheckinDate === today, streak: g.streak || 0 });
   } catch (err) {
     logger.error({ err: err, message: err.message || String(err) }, '[check-in] status error');
     res.status(500).json({ error: 'Status konnte nicht geladen werden' });

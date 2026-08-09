@@ -16,6 +16,7 @@
 import { Router } from 'express';
 import pino from 'pino';
 import { requireAuth } from '../auth.js';
+import { awardXp, checkBadgeUnlock } from '../auth-db.js';
 import { sessionStore } from '../services/session.js';
 import * as exerciseEngine from '../exercise-engine.js';
 import * as learningEngine from '../learning-engine.js';
@@ -229,9 +230,15 @@ router.post('/api/exercises/grade', requireAuth, async (req, res) => {
     exercise.userAnswer = answer;
     exercise.gradeResult = gradeResult;
 
-    // Award XP
+    // Award XP (learningEngine writes sessionStore — legacy achievements;
+    // awardXp writes users.json gamification so the XP/level/streak shows in
+    // /api/gamification/profile, the store the dashboards actually read).
     learningEngine.awardExerciseXp(sessionStore, req.user.id, exerciseId, gradeResult.score || 0);
     learningEngine.evaluateBadges(sessionStore, req.user.id);
+    if ((gradeResult.score || 0) > 0) {
+      awardXp(req.user.id, 15, `exercise_correct: ${exerciseId}`, 'exercise_correct');
+      checkBadgeUnlock(req.user.id);
+    }
 
     // Best-effort persistence to the knowledge graph (dashboards read here).
     // userId normalized to string — matches batchSync storage & toString()
@@ -287,6 +294,10 @@ router.post('/api/exercises/answer', requireAuth, async (req, res) => {
 
     learningEngine.awardExerciseXp(sessionStore, req.user.id, exerciseId, result.score || 0);
     learningEngine.evaluateBadges(sessionStore, req.user.id);
+    if ((result.score || 0) > 0) {
+      awardXp(req.user.id, 15, `exercise_correct: ${exerciseId}`, 'exercise_correct');
+      checkBadgeUnlock(req.user.id);
+    }
 
     res.json(result);
   } catch (err) {
