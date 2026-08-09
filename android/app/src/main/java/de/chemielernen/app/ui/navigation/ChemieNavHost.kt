@@ -3,6 +3,7 @@ package de.chemielernen.app.ui.navigation
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
+import android.net.NetworkCapabilities
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -65,16 +66,6 @@ fun ChemieNavHost(
 
     LaunchedEffect(Unit) { authViewModel.restore() }
 
-    // Connectivity observer — surface reconnect to the quiz VM.
-    DisposableEffect(context) {
-        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val callback = object : ConnectivityManager.NetworkCallback() {
-            override fun onAvailable(network: Network) = Unit
-        }
-        cm.registerDefaultNetworkCallback(callback)
-        onDispose { cm.unregisterNetworkCallback(callback) }
-    }
-
     when (authState) {
         is AuthState.LoggedIn -> MainScaffold(
             user = (authState as AuthState.LoggedIn).user,
@@ -115,6 +106,27 @@ private fun MainScaffold(
             QuizViewModel(quizRepository, gradeQueueRepository, api)
         },
     )
+
+    // Real connectivity observer — drives the offline queue drain on reconnect.
+    val context = LocalContext.current
+    DisposableEffect(context, quizViewModel) {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        fun reportOnline() {
+            val caps = cm.getNetworkCapabilities(cm.activeNetwork)
+            quizViewModel.setConnectivity(
+                caps != null && caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+            )
+        }
+        val callback = object : ConnectivityManager.NetworkCallback() {
+            override fun onAvailable(network: Network) = reportOnline()
+            override fun onLost(network: Network) = reportOnline()
+            override fun onCapabilitiesChanged(network: Network, caps: NetworkCapabilities) = reportOnline()
+        }
+        // initial state
+        reportOnline()
+        cm.registerDefaultNetworkCallback(callback)
+        onDispose { cm.unregisterNetworkCallback(callback) }
+    }
 
     var selectedTab by rememberSaveable { mutableIntStateOf(0) }
     val tabs = listOf(
@@ -159,6 +171,13 @@ private fun MainScaffold(
                 viewModel = gamificationViewModel,
                 userName = user.name ?: user.email,
                 onLogout = { authViewModel.logout() },
+                dashboard = {
+                    DashboardScreen(
+                        viewModel = dashboardViewModel,
+                        isTeacher = user.role == "teacher" || user.role == "admin",
+                        curriculumSlug = null, // learner results always; class results need a chosen class
+                    )
+                },
             )
         }
     }

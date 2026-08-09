@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -34,7 +34,7 @@ fun DashboardScreen(
         viewModel.load(isTeacher, curriculumSlug)
     }
 
-    Column(Modifier.fillMaxSize().padding(16.dp)) {
+    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp)) {
         Text("Meine Ergebnisse", style = MaterialTheme.typography.headlineSmall)
         Spacer(Modifier.height(8.dp))
         if (ui.loading) CircularProgressIndicator()
@@ -42,8 +42,8 @@ fun DashboardScreen(
             Text(ui.error.orEmpty(), color = MaterialTheme.colorScheme.error)
         }
 
-        LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            items(ui.learnerResults.results) { result ->
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            ui.learnerResults.results.forEach { result ->
                 Card(Modifier.fillMaxWidth()) {
                     Column(Modifier.padding(12.dp)) {
                         Row {

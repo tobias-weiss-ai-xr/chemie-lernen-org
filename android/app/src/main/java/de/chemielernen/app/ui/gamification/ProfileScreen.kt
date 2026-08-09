@@ -28,6 +28,7 @@ fun ProfileScreen(
     viewModel: GamificationViewModel,
     userName: String?,
     onLogout: () -> Unit,
+    dashboard: (@Composable () -> Unit)? = null,
 ) {
     val ui by viewModel.uiState.collectAsState()
 
@@ -104,6 +105,8 @@ fun ProfileScreen(
                 }
             }
         }
+
+        dashboard?.invoke()
 
         Spacer(Modifier.height(16.dp))
         Button(onClick = onLogout, modifier = Modifier.fillMaxWidth()) {
