@@ -53,9 +53,12 @@ fun ProfileScreen(
                 Text("Erfahrungspunkte: ${ui.profile.xp}", style = MaterialTheme.typography.bodyLarge)
                 Text("Serie (Streak): ${ui.profile.streak} Tage", style = MaterialTheme.typography.bodyLarge)
                 Spacer(Modifier.height(8.dp))
-                if (ui.profile.xpToNext > 0) {
+                if (ui.profile.xpToNextLevel > 0) {
                     LinearProgressIndicator(
-                        progress = { (ui.profile.xp % (ui.profile.xp + ui.profile.xpToNext)).toFloat() },
+                        progress = {
+                            val total = ui.profile.xp + ui.profile.xpToNextLevel
+                            if (total > 0) (ui.profile.xp.toFloat() / total).coerceIn(0f, 1f) else 0f
+                        },
                         modifier = Modifier.fillMaxWidth(),
                     )
                 }
@@ -83,7 +86,7 @@ fun ProfileScreen(
             ui.achievements.forEach { ach ->
                 Card(Modifier.fillMaxWidth()) {
                     Text(
-                        "${if (ach.unlocked) "🏆" else "🔒"} ${ach.name ?: ach.id ?: ""}",
+                        "${if (ach.earned) "🏆" else "🔒"} ${ach.title ?: ach.id ?: ""}",
                         modifier = Modifier.padding(12.dp),
                     )
                 }

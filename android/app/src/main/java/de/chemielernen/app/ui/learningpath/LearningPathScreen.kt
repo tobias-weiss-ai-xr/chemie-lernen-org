@@ -38,17 +38,26 @@ fun LearningPathScreen(viewModel: LearningPathViewModel) {
                     Text(path.title, style = MaterialTheme.typography.titleLarge)
                     Text(path.description ?: "", style = MaterialTheme.typography.bodyMedium)
                     Spacer(Modifier.height(8.dp))
-                    Text("Level: ${path.level ?: "-"}  ·  Dauer: ${path.duration ?: "-"}")
+                    Text(
+                        "${path.totalObjectives} Lernziele · ${path.completedObjectives} abgeschlossen",
+                        style = MaterialTheme.typography.bodySmall,
+                    )
                     Spacer(Modifier.height(8.dp))
-                    Text("Module:", style = MaterialTheme.typography.titleSmall)
-                    path.modules.forEach { module ->
-                        Text("• ${module.title}", style = MaterialTheme.typography.bodyMedium)
-                    }
-                    if (!path.isEnrolled) {
-                        Spacer(Modifier.height(8.dp))
-                        Button(onClick = { viewModel.enroll(path.slug) }, modifier = Modifier.fillMaxWidth()) {
-                            Text("Einschreiben")
+                    path.topics.forEach { topic ->
+                        Text(topic.title, style = MaterialTheme.typography.titleSmall)
+                        topic.subtopics.forEach { st ->
+                            st.objectives.forEach { obj ->
+                                Text(
+                                    "${if (obj.completed) "✅" else "•"} ${obj.text.ifBlank { obj.id }}",
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    modifier = Modifier.padding(start = 12.dp),
+                                )
+                            }
                         }
+                    }
+                    Spacer(Modifier.height(8.dp))
+                    Button(onClick = { viewModel.enroll(path.slug) }, modifier = Modifier.fillMaxWidth()) {
+                        Text("Einschreiben")
                     }
                 }
             }

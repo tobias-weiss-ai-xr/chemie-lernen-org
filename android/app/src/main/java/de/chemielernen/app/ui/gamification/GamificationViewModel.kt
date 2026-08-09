@@ -34,11 +34,18 @@ class GamificationViewModel(
             runCatching { api.gamificationProfile() }
                 .onSuccess { profile -> _uiState.value = _uiState.value.copy(profile = profile) }
             runCatching { api.badges() }
-                .onSuccess { badges -> _uiState.value = _uiState.value.copy(badges = badges) }
+                .onSuccess { badges -> _uiState.value = _uiState.value.copy(badges = badges.badges) }
             runCatching { api.achievements() }
-                .onSuccess { achievements -> _uiState.value = _uiState.value.copy(achievements = achievements) }
+                .onSuccess { achievements -> _uiState.value = _uiState.value.copy(achievements = achievements.badges) }
             runCatching { api.checkInStatus() }
-                .onSuccess { checkIn -> _uiState.value = _uiState.value.copy(checkIn = checkIn) }
+                .onSuccess { status ->
+                    _uiState.value = _uiState.value.copy(
+                        checkIn = CheckInResponse(
+                            checkedIn = status.checkedInToday,
+                            streak = status.streak,
+                        )
+                    )
+                }
             _uiState.value = _uiState.value.copy(loading = false)
         }
     }

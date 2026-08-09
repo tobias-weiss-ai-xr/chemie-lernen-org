@@ -51,9 +51,14 @@ class AuthRepository(
             return false
         }
         return runCatching {
-            val user = api.me()
-            _state.value = AuthState.LoggedIn(user)
-            true
+            val user = api.me().user
+            if (user == null) {
+                _state.value = AuthState.LoggedOut
+                false
+            } else {
+                _state.value = AuthState.LoggedIn(user)
+                true
+            }
         }.getOrElse { err ->
             // 401 → token invalid/expired
             tokenStore.clear()

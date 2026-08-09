@@ -47,7 +47,7 @@ fun FsrsScreen(viewModel: FsrsViewModel) {
                     Column(Modifier.padding(16.dp)) {
                         if (!ui.revealAnswer) {
                             Text("Frage:", style = MaterialTheme.typography.bodySmall)
-                            Text(card.question ?: card.questionId?.toString() ?: "", style = MaterialTheme.typography.titleMedium)
+                            Text(card.question ?: card.cardId ?: "", style = MaterialTheme.typography.titleMedium)
                         } else {
                             Text("Antwort:", style = MaterialTheme.typography.bodySmall)
                             Text(card.answer ?: "", style = MaterialTheme.typography.titleLarge)

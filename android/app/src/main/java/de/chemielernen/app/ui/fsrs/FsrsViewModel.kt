@@ -43,15 +43,19 @@ class FsrsViewModel(
         _uiState.value = _uiState.value.copy(revealAnswer = true)
     }
 
-    /** Submit a review rating (e.g. 1..4) and advance to the next card. */
+    /** Submit a review rating (1 Schwer → 4 Sehr leicht) and advance. */
     fun review(rating: Int) {
         val card = _uiState.value.current ?: return
         viewModelScope.launch {
             runCatching {
-                api.reviewCard(
-                    card.id ?: return@runCatching,
-                    de.chemielernen.app.data.api.FsrsReviewRequest(rating = rating),
-                )
+                val cardId = card.cardId ?: return@runCatching
+                // Backend expects FSRS score: 0 (Again), 0.33 (Hard), 0.66 (Good), 1.0 (Easy)
+                val score = when (rating) {
+                    1 -> 0.33
+                    2 -> 0.66
+                    else -> 1.0
+                }
+                api.reviewCard(cardId, de.chemielernen.app.data.api.FsrsReviewRequest(score = score))
             }
             val idx = _uiState.value.currentIndex + 1
             _uiState.value = _uiState.value.copy(

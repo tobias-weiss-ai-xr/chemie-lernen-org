@@ -6,7 +6,6 @@ import de.chemielernen.app.data.api.ObjectiveInfo
 import de.chemielernen.app.data.api.TopicInfo
 import de.chemielernen.app.data.api.asEntity
 import de.chemielernen.app.data.api.toEntity
-import de.chemielernen.app.data.db.BrowseDao
 import kotlinx.coroutines.flow.first
 
 /**
@@ -16,39 +15,54 @@ import kotlinx.coroutines.flow.first
  */
 class BrowseRepository(
     private val api: ChemieApi,
-    private val dao: BrowseDao,
+    private val dao: de.chemielernen.app.data.db.BrowseDao,
 ) {
     suspend fun loadStates(): Result<List<CurriculumState>> {
         return runCatching {
-            val states = api.states()
+            val states = api.states().states
             dao.upsertStates(states.map { it.asEntity() })
             states
         }.recoverCatching {
             // offline fallback
             dao.observeStates().first()
-                .map { CurriculumState(stateAbbr = it.stateAbbr, stateName = it.stateName, schoolType = it.schoolType) }
+                .map { CurriculumState(state = it.stateAbbr, stateName = it.stateName) }
         }
     }
 
     suspend fun loadTopics(state: String?, grade: String?): Result<List<TopicInfo>> {
         return runCatching {
-            val topics = api.topics(state = state, grade = grade, limit = 500)
+            val topics = api.topics(state = state, grade = grade, limit = 500).topics
             dao.upsertTopics(topics.map { it.toEntity() })
             topics
         }.recoverCatching {
             dao.observeTopicsByState(state.orEmpty()).first()
-                .map { TopicInfo(it.slug, it.title, it.grade, it.state, it.objectiveCount) }
+                .map {
+                    TopicInfo(
+                        slug = it.slug,
+                        title = it.title,
+                        grade = it.grade,
+                        state = it.state,
+                        objectiveCount = it.objectiveCount,
+                    )
+                }
         }
     }
 
     suspend fun loadObjectives(topicSlug: String): Result<List<ObjectiveInfo>> {
         return runCatching {
-            val objectives = api.objectives(topic = topicSlug, limit = 200)
+            val objectives = api.objectives(topic = topicSlug, limit = 200).objectives
             dao.upsertObjectives(objectives.map { it.toEntity() })
             objectives
         }.recoverCatching {
             dao.observeObjectives(topicSlug).first()
-                .map { ObjectiveInfo(it.slug, it.text, it.topicSlug, it.topicTitle) }
+                .map {
+                    ObjectiveInfo(
+                        slug = it.slug,
+                        text = it.text,
+                        topicSlug = it.topicSlug,
+                        topicTitle = it.topicTitle,
+                    )
+                }
         }
     }
 }

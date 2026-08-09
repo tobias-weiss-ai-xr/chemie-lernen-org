@@ -48,9 +48,9 @@ fun HomeScreen(
         if (ui.states.isNotEmpty() && ui.selectedState == null) {
             LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 items(ui.states) { state ->
-                    Card(Modifier.fillMaxWidth().clickable { viewModel.selectState(state.stateAbbr) }) {
+                    Card(Modifier.fillMaxWidth().clickable { viewModel.selectState(state.state ?: state.stateName.orEmpty()) }) {
                         Text(
-                            text = state.stateName ?: state.stateAbbr,
+                            text = state.stateName ?: state.state ?: "",
                             modifier = Modifier.padding(16.dp),
                             style = MaterialTheme.typography.titleMedium,
                         )

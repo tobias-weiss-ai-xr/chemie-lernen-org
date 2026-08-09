@@ -51,3 +51,8 @@
 
 - [x] 8.1 `.github/workflows/android.yml`: on push/PR touching `android/**`, runs `testDebugUnitTest` + `assembleDebug`, uploads debug APK artifact; separate job builds `assembleRelease` (prod API base URL, unsigned) and uploads it
 - [x] 8.2 Release signing: unconditional-keystore signing config in `build.gradle.kts` (env/-P vars `CHEMIE_RELEASE_*`, graceful unsigned fallback); CI decodes keystore from `CHEMIE_RELEASE_KEYSTORE_B64` secret, signs, verifies with `apksigner`, uploads signed `app-release.apk`; keystore generated + registered as GitHub secrets (`keytool` PKCS12, unified store/key password)
+
+## 9. API contract bug-hunt (2026-08)
+
+- [x] 9.1 Aligned every DTO/endpoint in the Android data layer to the REAL backend responses (verified against `api/routes/*` source): states/topics/objectives/by-state now typed to `{topics|states|objectives: [...]}` wrappers; `me()` wraps `{user}` (can be null); FSRS cards use `cardId`/`dueDate`; `reviewCard` sends `{score}` (float) not `{rating}`; check-in POST/GET split into `CheckInResponse`/`CheckInStatus`; badges/achievements wrapped + `title`/`earned` fields; learning paths use `{paths}` wrapper + tree detail + `progressPercent` etc.; `sync` uses `{batch}` with `userId` per item; `XpProfile` uses `xpToNextLevel`/`lastCheckin`; `StudentSummary` uses `assessmentsCompleted`; classAverage is Int; `UserProfile.id` tolerant to numeric ids (StringOrNumberSerializer)
+- [x] 9.2 `tests/ApiContractTest.kt`: JSON-snapshot fixtures mirroring real backend payload shapes — regression guard for future API drift (32 unit tests total, green)

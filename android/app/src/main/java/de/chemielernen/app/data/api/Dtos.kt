@@ -3,6 +3,13 @@ package de.chemielernen.app.data.api
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+// ─────────────────────────────────────────────────────────────────────
+// NOTE: field names below match the REAL backend responses (api/routes/*)
+// exactly — verified against source 2026-08. Do not "fix" them to look
+// prettier; a mismatch breaks deserialization (wrapper objects, renamed
+// keys like `state` vs `state_abbr`).
+// ─────────────────────────────────────────────────────────────────────
+
 // ── Auth ─────────────────────────────────────────────────────────────
 
 @Serializable
@@ -18,27 +25,59 @@ data class RegisterRequest(
     val name: String = "",
 )
 
+/** POST /api/auth/login|register → `{ user, token }`. */
 @Serializable
 data class AuthResponse(
     val token: String,
     val user: UserProfile,
 )
 
+/** GET /api/auth/me → `{ user }` (user may be null when no session). */
+@Serializable
+data class MeResponse(
+    val user: UserProfile? = null,
+)
+
 @Serializable
 data class UserProfile(
-    val id: String,
+    @Serializable(with = StringOrNumberSerializer::class) val id: String,
     val email: String,
     val name: String? = null,
     val role: String? = null,
     @SerialName("isPremium") val isPremium: Boolean = false,
     @SerialName("premiumUntil") val premiumUntil: String? = null,
     @SerialName("createdAt") val createdAt: String? = null,
-    @SerialName("learning_profile") val learningProfile: LearningProfile? = null,
+    @SerialName("learningProfile") val learningProfile: LearningProfile? = null,
 )
+
+/**
+ * Backend user ids are stored as numbers in users.json (`id: 1`) but some
+ * API surfaces pass them as strings. Accept both.
+ */
+object StringOrNumberSerializer : kotlinx.serialization.KSerializer<String> {
+    override val descriptor = kotlinx.serialization.descriptors.PrimitiveSerialDescriptor(
+        "StringOrNumber",
+        kotlinx.serialization.descriptors.PrimitiveKind.STRING
+    )
+
+    override fun serialize(encoder: kotlinx.serialization.encoding.Encoder, value: String) {
+        encoder.encodeString(value)
+    }
+
+    override fun deserialize(decoder: kotlinx.serialization.encoding.Decoder): String {
+        val jsonDecoder = decoder as? kotlinx.serialization.json.JsonDecoder
+            ?: return decoder.decodeString()
+        val element = jsonDecoder.decodeJsonElement()
+        if (element is kotlinx.serialization.json.JsonPrimitive) {
+            return element.content.toIntOrNull()?.toString() ?: element.content
+        }
+        return element.toString()
+    }
+}
 
 @Serializable
 data class LearningProfile(
-    @SerialName("learning_level") val learningLevel: String? = null,
+    val level: String? = null,
     val interests: List<String> = emptyList(),
     @SerialName("preferred_explanation_style") val preferredExplanationStyle: String? = null,
     @SerialName("weak_areas") val weakAreas: List<String> = emptyList(),
@@ -46,12 +85,29 @@ data class LearningProfile(
 
 // ── Curricula / Browse ───────────────────────────────────────────────
 
+/** GET /api/curricula/states → `{ source?, states, count }`. */
+@Serializable
+data class StatesResponse(
+    val states: List<CurriculumState> = emptyList(),
+    val count: Int = 0,
+)
+
+/** Single entry: `{ state, stateName, curriculumCount }`. */
 @Serializable
 data class CurriculumState(
-    @SerialName("state_abbr") val stateAbbr: String,
-    @SerialName("state_name") val stateName: String? = null,
-    @SerialName("school_type") val schoolType: String? = null,
+    val state: String? = null,
+    @SerialName("stateName") val stateName: String? = null,
+    @SerialName("curriculumCount") val curriculumCount: Int = 0,
     val slug: String? = null,
+)
+
+/** GET /api/curricula/topics → `{ source, topics, total, limit, offset }`. */
+@Serializable
+data class TopicsResponse(
+    val topics: List<TopicInfo> = emptyList(),
+    val total: Int = 0,
+    val limit: Int = 0,
+    val offset: Int = 0,
 )
 
 @Serializable
@@ -60,7 +116,17 @@ data class TopicInfo(
     val title: String,
     val grade: String? = null,
     val state: String? = null,
+    @SerialName("schoolType") val schoolType: String? = null,
     @SerialName("objectiveCount") val objectiveCount: Int = 0,
+)
+
+/** GET /api/curricula/objectives → `{ source, objectives, total, limit, offset }`. */
+@Serializable
+data class ObjectivesResponse(
+    val objectives: List<ObjectiveInfo> = emptyList(),
+    val total: Int = 0,
+    val limit: Int = 0,
+    val offset: Int = 0,
 )
 
 @Serializable
@@ -73,20 +139,17 @@ data class ObjectiveInfo(
     val grade: String? = null,
 )
 
+/** GET /api/curricula/by-state/:state → `{ source, state, topicCount, topics }`. */
 @Serializable
-data class ListResponse<T>(
-    val total: Int = 0,
-    val items: List<T> = emptyList(),
-    val results: List<T> = emptyList(),
-    val states: List<T> = emptyList(),
-    val topics: List<T> = emptyList(),
-    val objectives: List<T> = emptyList(),
-) {
-    /** Flexible accessor: whatever shape the backend used for this endpoint. */
-    fun list(): List<T> = if (items.isNotEmpty()) items else if (results.isNotEmpty()) results else if (topics.isNotEmpty()) topics else if (states.isNotEmpty()) states else if (objectives.isNotEmpty()) objectives else emptyList()
-}
+data class ByStateResponse(
+    val source: String? = null,
+    @SerialName("state") val stateName: String? = null,
+    @SerialName("topicCount") val topicCount: Int = 0,
+    @SerialName("totalObjectives") val totalObjectives: Int = 0,
+    val topics: List<TopicInfo> = emptyList(),
+)
 
-// ── Quiz (static + AI) ───────────────────────────────────────────────
+// ── Quizzes (static) ──────────────────────────────────────────────────
 
 @Serializable
 data class QuizQuestion(
@@ -98,11 +161,15 @@ data class QuizQuestion(
     val level: Int? = null,
 )
 
+/** GET /api/quizzes/:topic → `{ topic, total, questions }`. */
 @Serializable
 data class QuizResponse(
+    val topic: String? = null,
     val total: Int = 0,
     val questions: List<QuizQuestion> = emptyList(),
 )
+
+// ── AI exercises / grading ────────────────────────────────────────────
 
 @Serializable
 data class GenerateRequest(
@@ -119,6 +186,7 @@ data class AiOption(
     val text: String,
 )
 
+/** POST /api/exercises/generate → exercise (options carry lettered ids). */
 @Serializable
 data class GeneratedExercise(
     val id: String,
@@ -138,6 +206,7 @@ data class GradeRequest(
     val type: String = "mcq",
 )
 
+/** POST /api/exercises/grade → gradeResult. */
 @Serializable
 data class GradeResponse(
     val correct: Boolean = false,
@@ -147,122 +216,203 @@ data class GradeResponse(
     val explanation: String? = null,
 )
 
+/** GET /api/exercises/history → `{ exercises, total }`. */
+@Serializable
+data class ExerciseHistoryResponse(
+    val exercises: List<HistoricalExercise> = emptyList(),
+    val total: Int = 0,
+)
+
+@Serializable
+data class HistoricalExercise(
+    val id: String? = null,
+    val type: String? = null,
+    val question: String? = null,
+    val options: List<AiOption> = emptyList(),
+    @SerialName("correctAnswer") val correctAnswer: String? = null,
+    @SerialName("userAnswer") val userAnswer: String? = null,
+    @SerialName("answeredAt") val answeredAt: String? = null,
+)
+
 // ── FSRS ─────────────────────────────────────────────────────────────
 
-@Serializable
-data class FsrsCard(
-    val id: String? = null,
-    @SerialName("question_id") val questionId: Long? = null,
-    val question: String? = null,
-    val answer: String? = null,
-    val topic: String? = null,
-    val due: String? = null,
-    val interval: Long? = null,
-    val stability: Double? = null,
-    val difficulty: Double? = null,
-    val state: String? = null,
-)
-
-@Serializable
-data class FsrsReviewRequest(
-    val rating: Int,
-)
-
+/** GET /api/fsrs/cards → `{ cards, total, nextDue }`. */
 @Serializable
 data class FsrsCardsResponse(
     val cards: List<FsrsCard> = emptyList(),
     val total: Int = 0,
-    val due: Int = 0,
+    @SerialName("nextDue") val nextDue: String? = null,
+)
+
+/** A due card. Real backend key is `cardId` (not `id`) and `dueDate`. */
+@Serializable
+data class FsrsCard(
+    @SerialName("cardId") val cardId: String? = null,
+    @SerialName("topicId") val topicId: String? = null,
+    val question: String? = null,
+    val answer: String? = null,
+    val type: String? = null,
+    val interval: Int? = null,
+    val ease: Double? = null,
+    @SerialName("dueDate") val dueDate: String? = null,
+    val lapses: Int? = null,
+    @SerialName("lastReview") val lastReview: String? = null,
+    @SerialName("createdAt") val createdAt: String? = null,
+)
+
+/** POST /api/fsrs/cards/{cardId}/review → body REQUIRES `score` (float). */
+@Serializable
+data class FsrsReviewRequest(
+    val score: Double,
+)
+
+/** POST /api/fsrs/cards/{cardId}/review → response `{cardId, interval, ease, dueDate, lapses, lastReview, nextInterval, nextDueDate}`. */
+@Serializable
+data class FsrsReviewResponse(
+    @SerialName("cardId") val cardId: String? = null,
+    val interval: Int? = null,
+    val ease: Double? = null,
+    @SerialName("dueDate") val dueDate: String? = null,
+    val lapses: Int? = null,
+    @SerialName("lastReview") val lastReview: String? = null,
 )
 
 // ── Gamification ─────────────────────────────────────────────────────
 
+/** POST /api/check-in → dailyCheckIn result. */
 @Serializable
 data class CheckInResponse(
-    val ok: Boolean = false,
-    @SerialName("streak") val streak: Int = 0,
-    @SerialName("streakCount") val streakCount: Int = 0,
-    @SerialName("days") val days: List<String> = emptyList(),
-    @SerialName("xpAwarded") val xpAwarded: Int = 0,
-    val xp: Int = 0,
-    val level: Int? = null,
+    @SerialName("checkedIn") val checkedIn: Boolean = false,
+    val streak: Int = 0,
+    @SerialName("xpEarned") val xpEarned: Int = 0,
+    @SerialName("xpTotal") val xpTotal: Int = 0,
+    @SerialName("streakBonus") val streakBonus: Int = 0,
+    val message: String? = null,
 )
 
+/** GET /api/check-in → `{ checkedInToday, streak }`. */
+@Serializable
+data class CheckInStatus(
+    @SerialName("checkedInToday") val checkedInToday: Boolean = false,
+    val streak: Int = 0,
+)
+
+/** GET /api/gamification/profile → profile payload. */
 @Serializable
 data class XpProfile(
     val xp: Int = 0,
     val level: Int = 1,
-    val levelName: String? = null,
-    val nextLevelXp: Int = 0,
-    val xpToNext: Int = 0,
+    @SerialName("xpToNextLevel") val xpToNextLevel: Int = 0,
     val streak: Int = 0,
-    val rank: Int? = null,
+    @SerialName("lastCheckin") val lastCheckin: String? = null,
+    val badges: List<Badge> = emptyList(),
 )
 
+/** GET /api/gamification/badges → `{ badges }`. */
 @Serializable
-data class Achievement(
-    val id: String? = null,
-    val name: String? = null,
-    val description: String? = null,
-    val unlocked: Boolean = false,
-    @SerialName("unlockedAt") val unlockedAt: String? = null,
-    val icon: String? = null,
+data class BadgesResponse(
+    val badges: List<Badge> = emptyList(),
 )
 
 @Serializable
 data class Badge(
     val id: String? = null,
     val name: String? = null,
-    val rarity: String? = null,
+    val description: String? = null,
     val icon: String? = null,
-    @SerialName("earnedAt") val earnedAt: String? = null,
+    val earned: Boolean = false,
+    @SerialName("earnedDate") val earnedDate: String? = null,
+)
+
+/** GET /api/achievements → `{ badges: [{id, title, description, icon, earned}], ... }`. */
+@Serializable
+data class AchievementsResponse(
+    val title: String? = null,
+    val badges: List<Achievement> = emptyList(),
 )
 
 @Serializable
-data class GamificationResponse(
-    val xp: Int = 0,
-    val level: Int = 1,
-    val streak: Int = 0,
-    val achievements: List<Achievement> = emptyList(),
-    val badges: List<Badge> = emptyList(),
-    val checkIn: CheckInResponse? = null,
+data class Achievement(
+    val id: String? = null,
+    val title: String? = null,
+    val description: String? = null,
+    val icon: String? = null,
+    val earned: Boolean = false,
 )
 
 // ── Learning paths ───────────────────────────────────────────────────
+
+/** GET /api/learning-paths → `{ paths, states }`; path entry: {slug,title,description,topicCount,completedTopics,progressPercent}. */
+@Serializable
+data class LearningPathsResponse(
+    val paths: List<LearningPath> = emptyList(),
+)
 
 @Serializable
 data class LearningPath(
     val slug: String,
     val title: String,
     val description: String? = null,
-    val level: String? = null,
-    val duration: String? = null,
-    val modules: List<LearningPathModule> = emptyList(),
-    @SerialName("isEnrolled") val isEnrolled: Boolean = false,
+    @SerialName("topicCount") val topicCount: Int = 0,
+    @SerialName("completedTopics") val completedTopics: Int = 0,
+    @SerialName("progressPercent") val progressPercent: Int = 0,
 )
 
+/** GET /api/learning-paths/:slug (tree). */
 @Serializable
-data class LearningPathModule(
+data class LearningPathDetail(
     val slug: String,
     val title: String,
     val description: String? = null,
-    val tasks: List<String> = emptyList(),
+    val topics: List<LearningPathTopic> = emptyList(),
+    @SerialName("totalObjectives") val totalObjectives: Int = 0,
+    @SerialName("completedObjectives") val completedObjectives: Int = 0,
 )
 
 @Serializable
-data class LearningPathProgress(
-    val path: String? = null,
-    val slug: String? = null,
-    val progress: Double = 0.0,
-    val completedModules: Int = 0,
-    val totalModules: Int = 0,
-    @SerialName("isEnrolled") val isEnrolled: Boolean = false,
+data class LearningPathTopic(
+    val slug: String,
+    val title: String,
+    val subtopics: List<LearningPathSubtopic> = emptyList(),
 )
 
 @Serializable
-data class LearningPathsResponse(
-    val paths: List<LearningPath> = emptyList(),
-    val progress: List<LearningPathProgress> = emptyList(),
+data class LearningPathSubtopic(
+    val slug: String,
+    val title: String,
+    val objectives: List<LearningPathObjective> = emptyList(),
+)
+
+@Serializable
+data class LearningPathObjective(
+    val id: String,
+    val text: String = "",
+    val completed: Boolean = false,
+)
+
+/** GET /api/learning-paths/progress → `{ totalXp, streakDays, paths }`. */
+@Serializable
+data class LearningPathProgressResponse(
+    @SerialName("totalXp") val totalXp: Int = 0,
+    @SerialName("streakDays") val streakDays: Int = 0,
+    val paths: List<LearningPathNode> = emptyList(),
+)
+
+/** Element of `progress.paths`: slug, progressPercent, completedObjectives vh. */
+@Serializable
+data class LearningPathNode(
+    val slug: String,
+    @SerialName("progressPercent") val progressPercent: Int = 0,
+    @SerialName("completedObjectives") val completedObjectives: Int = 0,
+    @SerialName("totalObjectives") val totalObjectives: Int = 0,
+    @SerialName("completedAt") val completedAt: String? = null,
+)
+
+/** POST /api/learning-paths/:slug/enroll → `{ enrolled, enrolledAt }`. */
+@Serializable
+data class EnrollResponse(
+    val enrolled: Boolean = false,
+    @SerialName("enrolledAt") val enrolledAt: String? = null,
 )
 
 // ── Assessment dashboards ────────────────────────────────────────────
@@ -279,21 +429,17 @@ data class AssessmentResult(
     @SerialName("totalCount") val totalCount: Int = 0,
 )
 
-@Serializable
-data class LearnerResults(
-    val results: List<AssessmentResult> = emptyList(),
-    val total: Int = 0,
-)
-
+/** GET /api/assessment/results → `{ results, total }`. */
 @Serializable
 data class AssessmentResults(
     val results: List<AssessmentResult> = emptyList(),
     val total: Int = 0,
 )
 
+/** GET /api/assessment/class-results → `{ classAverage, topicBreakdown, students }`. */
 @Serializable
 data class ClassResults(
-    @SerialName("classAverage") val classAverage: Double = 0.0,
+    @SerialName("classAverage") val classAverage: Int = 0,
     @SerialName("topicBreakdown") val topicBreakdown: List<TopicBreakdown> = emptyList(),
     val students: List<StudentSummary> = emptyList(),
 )
@@ -309,29 +455,42 @@ data class TopicBreakdown(
 @Serializable
 data class StudentSummary(
     @SerialName("userId") val userId: String? = null,
-    val name: String? = null,
-    val email: String? = null,
     @SerialName("averageScore") val averageScore: Double = 0.0,
-    val assessments: Int = 0,
+    @SerialName("assessmentsCompleted") val assessmentsCompleted: Int = 0,
 )
 
+/** POST /api/assessment/sync — body MUST be `{ batch: [...] }` (each item needs userId). */
 @Serializable
 data class SyncRequest(
-    val data: List<SyncItem> = emptyList(),
+    val batch: List<SyncItem> = emptyList(),
 )
 
 @Serializable
 data class SyncItem(
+    @SerialName("userId") val userId: String,
+    @SerialName("assessmentId") val assessmentId: String,
+    @SerialName("createdAt") val createdAt: String? = null,
+    val topic: String? = null,
+    val difficulty: String? = null,
+    val type: String = "auto-generated",
+    @SerialName("gradedAnswers") val gradedAnswers: List<SyncGrade> = emptyList(),
+    @SerialName("exerciseId") val exerciseId: String? = null,
+    val answer: String? = null,
+    val correct: Boolean = false,
+    val score: Int = 0,
+)
+
+@Serializable
+data class SyncGrade(
+    val id: String? = null,
     @SerialName("exerciseId") val exerciseId: String,
     val answer: String,
-    val score: Int = 0,
     val correct: Boolean = false,
-    val timestamp: String? = null,
+    val feedback: String? = null,
 )
 
 @Serializable
 data class SyncResponse(
-    val ok: Boolean = false,
     val synced: Int = 0,
 )
 
@@ -342,12 +501,13 @@ data class ApiError(
     val error: String? = null,
     val message: String? = null,
 )
+
 // ── DB mapping helpers ───────────────────────────────────────────────
 
 fun CurriculumState.asEntity() = de.chemielernen.app.data.db.CachedState(
-    stateAbbr = stateAbbr,
+    stateAbbr = state ?: stateName.orEmpty(),
     stateName = stateName,
-    schoolType = schoolType,
+    schoolType = null,
 )
 
 fun TopicInfo.toEntity() = de.chemielernen.app.data.db.CachedTopic(
