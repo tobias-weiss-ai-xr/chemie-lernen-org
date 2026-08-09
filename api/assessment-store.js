@@ -307,17 +307,17 @@ export async function getLearnerResults(userId, limit = 20, offset = 0) {
     // Get total count
     const countResult = await session.run(
       `
-      MATCH (a:Assessment {userId: $userId})
+      MATCH (a:Assessment) WHERE toString(a.userId) = $userId
       RETURN count(a) AS total
       `,
-      { userId }
+      { userId: String(userId) }
     );
     const total = toNumberSafe(countResult.records[0]?.get('total'));
 
     // Get paginated results with weak concept analysis
     const result = await session.run(
       `
-      MATCH (a:Assessment {userId: $userId})
+      MATCH (a:Assessment) WHERE toString(a.userId) = $userId
       OPTIONAL MATCH (a)<-[:PART_OF]-(g:GradedAnswer)
       WITH a, collect(g) AS answers
       RETURN
@@ -332,7 +332,7 @@ export async function getLearnerResults(userId, limit = 20, offset = 0) {
       SKIP $offset
       LIMIT $limit
       `,
-      { userId, offset: toNeoInt(offset), limit: toNeoInt(limit) }
+      { userId: String(userId), offset: toNeoInt(offset), limit: toNeoInt(limit) }
     );
 
     const results = result.records.map((rec) => ({
@@ -380,7 +380,7 @@ export async function getClassResults(curriculumSlug) {
       WITH t, a, g
       RETURN
         t.title AS topic,
-        count(DISTINCT a.userId) AS studentCount,
+        count(DISTINCT toString(a.userId)) AS studentCount,
         count(DISTINCT a.id) AS assessmentCount,
         CASE WHEN count(g) > 0
           THEN round(avg(CASE WHEN g.correct THEN 100.0 ELSE 0.0 END))
@@ -605,33 +605,35 @@ export async function deleteUserAssessmentData(userId) {
     // graded answer had no Feedback (common — feedback is only written when
     // the grader produced one). Each layer is matched by its own userId then
     // DETACH DELETE on a single user's data (GDPR-accepted deletion).
+    // userId may be stored as Integer (online grade) or String (batch sync,
+    // Android) — match via toString() so GDPR deletion covers both.
     const feedbackRes = await session.run(
       `
-      MATCH (f:Feedback)-[:FOR]->(g:GradedAnswer {userId: $userId})
+      MATCH (f:Feedback)-[:FOR]->(g:GradedAnswer) WHERE toString(g.userId) = $userId
       DETACH DELETE f
       RETURN count(f) AS deletedFeedback
       `,
-      { userId }
+      { userId: String(userId) }
     );
     const deletedFeedback = toNumberSafe(feedbackRes.records[0]?.get('deletedFeedback'));
 
     const answerRes = await session.run(
       `
-      MATCH (g:GradedAnswer {userId: $userId})
+      MATCH (g:GradedAnswer) WHERE toString(g.userId) = $userId
       DETACH DELETE g
       RETURN count(g) AS deletedAnswers
       `,
-      { userId }
+      { userId: String(userId) }
     );
     const deletedAnswers = toNumberSafe(answerRes.records[0]?.get('deletedAnswers'));
 
     const assessmentRes = await session.run(
       `
-      MATCH (a:Assessment {userId: $userId})
+      MATCH (a:Assessment) WHERE toString(a.userId) = $userId
       DETACH DELETE a
       RETURN count(a) AS deletedAssessments
       `,
-      { userId }
+      { userId: String(userId) }
     );
     const deletedAssessments = toNumberSafe(assessmentRes.records[0]?.get('deletedAssessments'));
 

@@ -234,8 +234,11 @@ router.post('/api/exercises/grade', requireAuth, async (req, res) => {
     learningEngine.evaluateBadges(sessionStore, req.user.id);
 
     // Best-effort persistence to the knowledge graph (dashboards read here).
+    // userId normalized to string — matches batchSync storage & toString()
+    // reads (see assessment-store.js) so a user's data is not split between
+    // Integer and String properties in Neo4j.
     persistAssessment({
-      userId: req.user.id,
+      userId: String(req.user.id),
       exerciseId,
       exercise,
       answer,
@@ -437,8 +440,10 @@ router.post('/api/assessment/sync', requireAuth, async (req, res) => {
       return res.status(400).json({ error: 'batch muss ein nicht-leeres Array sein' });
     }
 
-    // Enforce the user boundary: users may only sync their own assessment data.
-    const ownBatch = batch.filter((item) => item && item.userId === req.user.id);
+    // Enforce the user boundary: users may only sync their own assessment
+    // data. userId can arrive as number (web, req.user.id) or string
+    // (Android app StringOrNumberSerializer) — normalize before comparing.
+    const ownBatch = batch.filter((item) => item && String(item.userId) === String(req.user.id));
     const result = await batchSync(ownBatch);
     res.json(result);
   } catch (err) {
@@ -453,8 +458,10 @@ router.delete('/api/assessment/user/:userId', requireAuth, async (req, res) => {
   try {
     const { userId } = req.params;
 
-    // Only allow deleting own data or teacher/admin role
-    if (userId !== req.user.id && req.user.role !== 'teacher' && req.user.role !== 'admin') {
+    // Only allow deleting own data or teacher/admin role. IDs live as
+    // numbers in users.json but arrive as strings in the URL param —
+    // compare stringified to avoid breaking self-deletion (GDPR).
+    if (String(userId) !== String(req.user.id) && !isTeacherReq(req)) {
       return res.status(403).json({ error: 'Nicht berechtigt, diese Daten zu löschen' });
     }
 

@@ -454,7 +454,8 @@ data class TopicBreakdown(
 
 @Serializable
 data class StudentSummary(
-    @SerialName("userId") val userId: String? = null,
+    @Serializable(with = StringOrNumberSerializer::class)
+    @SerialName("userId") val userId: String = "",
     @SerialName("averageScore") val averageScore: Double = 0.0,
     @SerialName("assessmentsCompleted") val assessmentsCompleted: Int = 0,
 )

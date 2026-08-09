@@ -455,8 +455,8 @@ describe('deleteUserAssessmentData', () => {
     expect(mockSession.run).toHaveBeenCalledTimes(3);
     const queries = mockSession.run.mock.calls.map((c) => c[0]);
     expect(queries[0]).toContain('(f:Feedback)-[:FOR]->(g:GradedAnswer');
-    expect(queries[1]).toContain('(g:GradedAnswer {userId:');
-    expect(queries[2]).toContain('(a:Assessment {userId:');
+    expect(queries[1]).toContain('MATCH (g:GradedAnswer) WHERE toString(g.userId) = $userId');
+    expect(queries[2]).toContain('MATCH (a:Assessment) WHERE toString(a.userId) = $userId');
   });
 
   test('delete is scoped to the given user only', async () => {

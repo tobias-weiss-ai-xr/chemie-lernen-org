@@ -32,7 +32,7 @@ import {
   sessionStore,
   MAX_MESSAGES_PER_SESSION,
 } from '../services/session.js';
-import { requireAuth } from '../auth.js';
+import { requireAuth, adminKeyMiddleware } from '../auth.js';
 import { getUserById } from '../auth-db.js';
 import { getFallbackData } from '../services/content.js';
 
@@ -284,7 +284,10 @@ router.post('/api/chat/hint', hintLimiter, async (req, res) => {
 // ── Feedback ─────────────────────────────────────────────────────────────
 
 // POST /api/chat/feedback — store per-message rating (thumb up/down)
-router.post('/api/chat/feedback', (req, res) => {
+// Authenticated: prevents anonymous spam writes to data/feedback.json.
+// (No frontend consumer exists yet — ratings are collected from logged-in
+// chat sessions only.)
+router.post('/api/chat/feedback', requireAuth, (req, res) => {
   var { sessionId, messageIndex, rating } = req.body;
   if (!sessionId || messageIndex === undefined || !rating) {
     return res.status(400).json({ error: 'sessionId, messageIndex, rating required' });
@@ -389,7 +392,7 @@ router.get('/api/curricula/compare', function (req, res) {
 
 // ── GET /api/admin/chat-logs — Recent chat sessions for klassencockpit ───
 
-router.get('/api/admin/chat-logs', function (req, res) {
+router.get('/api/admin/chat-logs', adminKeyMiddleware, function (req, res) {
   var limit = parseInt(req.query.limit) || 20;
   var sessions = [];
   sessionStore.forEach(function (session, id) {
