@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install API dependencies (api/ has its own package.json)
+        run: npm ci --prefix api
+
       - name: Run npm audit (critical only)
         run: npm audit --audit-level=critical || echo '[CI] npm audit found critical/high issues (non-fatal)'
 
