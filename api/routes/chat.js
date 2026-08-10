@@ -29,6 +29,7 @@ import rateLimit from 'express-rate-limit';
 import {
   getSessionId,
   getSession,
+  checkScopedQuota,
   sessionStore,
   MAX_MESSAGES_PER_SESSION,
 } from '../services/session.js';
@@ -54,6 +55,13 @@ const hintLimiter = rateLimit({
   legacyHeaders: false,
   message: { error: 'Zu viele Hinweis-Anfragen. Bitte 15 Minuten warten.' },
 });
+
+// Daily caps for LLM-backed hints (separate from the 50/day chat quota):
+// anonymous callers are keyed per-IP, logged-in users per user id so that
+// IP rotation cannot bypass the cap. Keeps the anonymous hint button on
+// exercise pages working while bounding LLM cost per caller.
+const HINT_DAILY_LIMIT_ANON = 20;
+const HINT_DAILY_LIMIT_USER = 30;
 
 // ── GET /api/session ──────────────────────────────────────────────────────
 
@@ -226,6 +234,19 @@ router.post('/api/chat/hint', hintLimiter, async (req, res) => {
   var { problem } = req.body;
   if (!problem || typeof problem !== 'string' || problem.length > 2000) {
     return res.status(400).json({ error: 'Problem text required (max 2000 chars)' });
+  }
+
+  // Daily quota (hint scope): 20/day per IP anonymous, 30/day per user logged-in.
+  const hintLimit = req.user?.id ? HINT_DAILY_LIMIT_USER : HINT_DAILY_LIMIT_ANON;
+  const hintSubject = req.user?.id ? `u:${req.user.id}` : req.ip;
+  const hintQuota = checkScopedQuota('hint', hintSubject, hintLimit);
+  res.setHeader('X-RateLimit-Remaining', hintQuota.remaining);
+  if (!hintQuota.allowed) {
+    return res.status(429).json({
+      error: 'Tageslimit für Hinweise erreicht',
+      message: 'Maximal ' + hintLimit + ' Hinweise pro Tag. Morgen kannst du weitermachen!',
+      remaining: 0,
+    });
   }
 
   var weakAreas = '';

@@ -46,6 +46,29 @@ function checkRateLimit(ip, rateLimit) {
 }
 
 /**
+ * Check a scoped daily quota (e.g. hint requests), independent of the chat
+ * message quota. Counters reset daily and live in the same in-memory store.
+ * @param {string} scope - quota namespace (e.g. 'hint')
+ * @param {string} subject - IP address or user id
+ * @param {number} limit - max requests per day for this scope+subject
+ * @returns {{ allowed: boolean, remaining: number }}
+ */
+function checkScopedQuota(scope, subject, limit) {
+  const today = new Date().toISOString().slice(0, 10);
+  const key = `${scope}:${subject}:${today}`;
+  const entry = rateStore.get(key);
+  if (!entry) {
+    rateStore.set(key, { count: 1 });
+    return { allowed: true, remaining: limit - 1 };
+  }
+  entry.count++;
+  if (entry.count > limit) {
+    return { allowed: false, remaining: 0 };
+  }
+  return { allowed: true, remaining: limit - entry.count };
+}
+
+/**
  * Generate or retrieve session ID from cookie.
  * @param {object} req - Express request
  * @param {object} res - Express response
@@ -125,6 +148,7 @@ export {
   getSession,
   cleanupSessionMessages,
   checkRateLimit,
+  checkScopedQuota,
   getRateKey,
   cleanupStaleEntries,
   sessionStore,
