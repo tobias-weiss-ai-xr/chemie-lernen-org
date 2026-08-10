@@ -152,7 +152,7 @@ Husky runs `npx lint-staged` — eslint + prettier on staged JS, JSON, MD, HTML,
 
 ### Minification gotcha
 
-`npm run minify` (via `scripts/minify-calculators.js`) **overwrites source files in-place** with terser output. Targets the calculator + framework scripts listed in `scripts/minify-calculators.js` (covers `stoichiometry.js`, `lazy-loader.js`, etc.). The `LazyLoader` name is preserved during mangling. (Removed dead-code targets: `practice-generators.js` was deleted in an optimization pass because nothing loads it — the live practice generator is `practice-generator.js`, singular.)
+`npm run minify` (via `scripts/minify-calculators.js`) runs terser on the scripts listed in that file and writes an `X.optimized.js` **sidecar next to each source** (sources stay untouched; templates/loaders reference the `.optimized.js` copies — see `enhanced-bundle-loader.js`). The `LazyLoader` name is preserved during mangling. Not every sidecar is loaded: `ki-assistent.js`, `dark-mode.js` and `lazy-loader.js` are served from source by templates, and their `.optimized.js` twins were deleted as unreferenced (the minify script recreates them on demand — delete again if a future sweep finds them unused). (Removed dead-code targets: `practice-generators.js` was deleted because nothing loads it — the live practice generator is `practice-generator.js`, singular.)
 
 ## Safety Rules
 
