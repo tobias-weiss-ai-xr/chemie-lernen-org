@@ -34,7 +34,6 @@ import {
 } from '../services/session.js';
 import { requireAuth, adminKeyMiddleware } from '../auth.js';
 import { getUserById } from '../auth-db.js';
-import { getFallbackData } from '../services/content.js';
 
 const logger = pino({
   level: process.env.LOG_LEVEL || 'info',
@@ -347,47 +346,6 @@ router.get('/api/chat/feedback/analytics', (req, res) => {
     logger.error({ err: err, message: err.message || String(err) }, '[feedback] analytics error');
     res.status(500).json({ error: 'Analytics nicht verfügbar' });
   }
-});
-
-// ── GET /api/curricula/compare?name=X — Find matching topics across states ─
-
-router.get('/api/curricula/compare', function (req, res) {
-  var q = (req.query.name || '').toLowerCase().trim();
-  if (!q) {
-    return res.json({ results: {}, query: q, count: 0 });
-  }
-
-  var fallback = getFallbackData();
-  var matches = [];
-  var seen = {};
-
-  // Search in fallback curricula
-  for (var ci = 0; ci < fallback.curricula.length; ci++) {
-    var c = fallback.curricula[ci];
-    if (c.name.toLowerCase().indexOf(q) !== -1) {
-      var key = c.curriculumMeta.state + '|' + c.name;
-      if (!seen[key]) {
-        seen[key] = true;
-        matches.push({
-          name: c.name,
-          state: c.curriculumMeta.state,
-          grade: c.curriculumMeta.grade,
-          school_type: c.curriculumMeta.school_type,
-          objective_count: c.curriculumMeta.objective_count,
-        });
-      }
-    }
-  }
-
-  // Group by state
-  var grouped = {};
-  for (var mi = 0; mi < matches.length; mi++) {
-    var m = matches[mi];
-    if (!grouped[m.state]) grouped[m.state] = [];
-    grouped[m.state].push(m);
-  }
-
-  res.json({ results: grouped, query: q, count: matches.length });
 });
 
 // ── GET /api/admin/chat-logs — Recent chat sessions for klassencockpit ───

@@ -152,7 +152,7 @@ Husky runs `npx lint-staged` — eslint + prettier on staged JS, JSON, MD, HTML,
 
 ### Minification gotcha
 
-`npm run minify` (via `scripts/minify-calculators.js`) **overwrites source files in-place** with terser output. Only targets: `stoichiometry.js`, `practice-generators.js`, `lazy-loader.js`. The `LazyLoader` name is preserved during mangling.
+`npm run minify` (via `scripts/minify-calculators.js`) **overwrites source files in-place** with terser output. Targets the calculator + framework scripts listed in `scripts/minify-calculators.js` (covers `stoichiometry.js`, `lazy-loader.js`, etc.). The `LazyLoader` name is preserved during mangling. (Removed dead-code targets: `practice-generators.js` was deleted in an optimization pass because nothing loads it — the live practice generator is `practice-generator.js`, singular.)
 
 ## Safety Rules
 

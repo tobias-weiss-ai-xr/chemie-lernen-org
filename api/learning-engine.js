@@ -8,9 +8,6 @@
  * All user-facing strings are in German (de-de).
  */
 
-import crypto from 'crypto';
-import PDFDocument from 'pdfkit';
-
 // ── Achievement definitions ───────────────────────────────────
 const ACHIEVEMENTS = [
   {
@@ -236,35 +233,6 @@ export function enrollInPath(sessionStore, userId, pathSlug) {
  * Call this when a user reads an article, passes a quiz, or completes an exercise
  * related to a specific learning objective.
  */
-export function markObjectiveCompleted(sessionStore, userId, pathSlug, loSlug) {
-  const progress = getProgress(sessionStore, userId);
-  if (!progress.paths || !progress.paths[pathSlug]) return null;
-
-  const pathData = progress.paths[pathSlug];
-  if (!pathData.completedLos.includes(loSlug)) {
-    pathData.completedLos.push(loSlug);
-  }
-
-  return pathData;
-}
-
-/**
- * Set progress percentage for a path (called after recalculating from topic count).
- */
-export function setPathProgress(sessionStore, userId, pathSlug, percent) {
-  const progress = getProgress(sessionStore, userId);
-  if (progress.paths && progress.paths[pathSlug]) {
-    progress.paths[pathSlug].progressPercent = Math.min(100, Math.max(0, percent));
-    if (percent >= 100) {
-      progress.paths[pathSlug].completedAt =
-        progress.paths[pathSlug].completedAt || new Date().toISOString();
-    }
-  }
-}
-
-/**
- * Get aggregated progress across all enrolled paths.
- */
 export function getAggregatedProgress(sessionStore, userId) {
   const progress = getProgress(sessionStore, userId);
   const paths = progress.paths || {};
@@ -301,44 +269,6 @@ function addXpEntry(sessionStore, userId, amount, action, metadata) {
 /**
  * Award XP for reading an article.
  */
-export function awardArticleXp(sessionStore, userId, articleSlug) {
-  const progress = getProgress(sessionStore, userId);
-  if (!progress.uniqueArticlesToday) progress.uniqueArticlesToday = [];
-
-  const today = new Date().toISOString().slice(0, 10);
-  // Reset daily counter if date changed
-  if (progress._articleDate && progress._articleDate !== today) {
-    progress.uniqueArticlesToday = [];
-  }
-  progress._articleDate = today;
-
-  if (progress.uniqueArticlesToday.includes(articleSlug)) {
-    return progress.xp;
-  }
-
-  progress.uniqueArticlesToday.push(articleSlug);
-  return addXpEntry(sessionStore, userId, XP.ARTICLE_READ, 'article_read', { articleSlug });
-}
-
-/**
- * Award XP for passing a quiz (80%+ score).
- */
-export function awardQuizXp(sessionStore, userId, quizSlug, score) {
-  const progress = getProgress(sessionStore, userId);
-  if (score >= 80) {
-    const newTotal = addXpEntry(sessionStore, userId, XP.QUIZ_PASSED, 'quiz_passed', {
-      quizSlug,
-      score,
-    });
-    progress.quizzesPassed = (progress.quizzesPassed || 0) + 1;
-    return newTotal;
-  }
-  return progress.xp;
-}
-
-/**
- * Award XP for completing an exercise.
- */
 export function awardExerciseXp(sessionStore, userId, exerciseId, score) {
   const progress = getProgress(sessionStore, userId);
   const newTotal = addXpEntry(sessionStore, userId, XP.EXERCISE_COMPLETED, 'exercise_completed', {
@@ -347,72 +277,6 @@ export function awardExerciseXp(sessionStore, userId, exerciseId, score) {
   });
   progress.exercisesCompleted = (progress.exercisesCompleted || 0) + 1;
   return newTotal;
-}
-
-// ── Daily Check-in ────────────────────────────────────────────
-
-/**
- * Perform daily check-in with streak tracking.
- * Returns { checkedIn, streak, xpEarned, streakBonus, xpTotal, message }.
- */
-export function dailyCheckIn(sessionStore, userId) {
-  const progress = getProgress(sessionStore, userId);
-  const now = new Date();
-  const today = now.toISOString().slice(0, 10);
-  const yesterday = new Date(now.getTime() - 86400000).toISOString().slice(0, 10);
-
-  if (progress.lastCheckIn === today) {
-    return {
-      checkedIn: false,
-      streak: progress.streak || 0,
-      xpEarned: 0,
-      streakBonus: 0,
-      xpTotal: progress.xp || 0,
-      message: 'Bereits heute eingecheckt',
-    };
-  }
-
-  // Streak logic
-  if (progress.lastCheckIn === yesterday) {
-    progress.streak = (progress.streak || 0) + 1;
-  } else {
-    progress.streak = 1;
-  }
-
-  progress.lastCheckIn = today;
-
-  let xpEarned = XP.CHECK_IN;
-  let streakBonus = 0;
-
-  if (progress.streak >= 30) {
-    streakBonus = XP.STREAK_BONUS_30;
-  } else if (progress.streak >= 7) {
-    streakBonus = XP.STREAK_BONUS_7;
-  }
-
-  xpEarned += streakBonus;
-  addXpEntry(sessionStore, userId, xpEarned, 'check_in', { streak: progress.streak });
-
-  return {
-    checkedIn: true,
-    streak: progress.streak,
-    xpEarned,
-    streakBonus,
-    xpTotal: progress.xp || 0,
-    message: null,
-  };
-}
-
-/**
- * Get check-in status without performing one.
- */
-export function getCheckInStatus(sessionStore, userId) {
-  const progress = getProgress(sessionStore, userId);
-  const today = new Date().toISOString().slice(0, 10);
-  return {
-    checkedInToday: progress.lastCheckIn === today,
-    streak: progress.streak || 0,
-  };
 }
 
 // ── Achievements / Badges ─────────────────────────────────────
@@ -490,102 +354,6 @@ export function getAchievements(sessionStore, userId) {
     streak: progress.streak || 0,
     xpHistory: (progress.xpHistory || []).slice(0, 50),
   };
-}
-
-// ── Certificate Generation ────────────────────────────────────
-
-/**
- * Generate a PDF certificate for a completed learning path.
- * Returns a Buffer of the PDF.
- */
-export function generateCertificate(userDisplayName, pathTitle, pathSlug, userId, completionDate) {
-  const hash = crypto
-    .createHash('sha256')
-    .update(userId + pathSlug + completionDate)
-    .digest('hex')
-    .slice(0, 12);
-
-  return new Promise((resolve, reject) => {
-    try {
-      const doc = new PDFDocument({
-        layout: 'landscape',
-        size: 'A4',
-        info: {
-          Title: `Zertifikat - ${pathTitle}`,
-          Author: 'chemie-lernen.org',
-          Subject: 'Lernpfad-Zertifikat',
-        },
-      });
-
-      const buffers = [];
-      doc.on('data', (chunk) => buffers.push(chunk));
-      doc.on('end', () => resolve(Buffer.concat(buffers)));
-      doc.on('error', reject);
-
-      const pageWidth = 841.89; // A4 landscape
-      const pageHeight = 595.28;
-
-      // Decorative border
-      doc.rect(30, 30, pageWidth - 60, pageHeight - 60).stroke('#2d6a4f');
-      doc.rect(35, 35, pageWidth - 70, pageHeight - 70).stroke('#40916c');
-
-      // Title
-      doc.fontSize(36).fillColor('#1b4332').text('Zertifikat', { align: 'center', valign: 'top' });
-      doc.moveDown(1.5);
-
-      // Body
-      doc
-        .fontSize(18)
-        .fillColor('#2d6a4f')
-        .text('Hiermit wird bestätigt, dass', { align: 'center' });
-      doc.moveDown(1);
-
-      // User name
-      doc.fontSize(28).fillColor('#081c15').text(userDisplayName, { align: 'center' });
-      doc.moveDown(1);
-
-      doc.fontSize(18).fillColor('#2d6a4f').text('den Lernpfad', { align: 'center' });
-      doc.moveDown(0.5);
-
-      // Path title
-      doc.fontSize(24).fillColor('#1b4332').text(pathTitle, { align: 'center' });
-      doc.moveDown(0.5);
-
-      doc
-        .fontSize(18)
-        .fillColor('#2d6a4f')
-        .text('erfolgreich abgeschlossen hat.', { align: 'center' });
-      doc.moveDown(2);
-
-      // Date
-      const dateStr = new Date(completionDate).toLocaleDateString('de-DE', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      });
-      doc.fontSize(14).fillColor('#555').text(`Ausgestellt am ${dateStr}`, { align: 'center' });
-      doc.moveDown(0.5);
-
-      // Verification QR alternative: hash
-      doc.fontSize(10).fillColor('#999').text(`Prüfcode: ${hash}`, { align: 'center' });
-
-      doc.end();
-    } catch (err) {
-      reject(err);
-    }
-  });
-}
-
-/**
- * Verify a certificate hash.
- */
-export function verifyCertificateHash(userId, pathSlug, completionDate, hash) {
-  const expected = crypto
-    .createHash('sha256')
-    .update(userId + pathSlug + completionDate)
-    .digest('hex')
-    .slice(0, 12);
-  return expected === hash;
 }
 
 export { ACHIEVEMENTS, XP };

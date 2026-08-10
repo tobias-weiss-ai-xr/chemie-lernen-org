@@ -71,7 +71,6 @@ Coverage collected from: `myhugoapp/static/js/calculators/**/*.js`, `myhugoapp/s
 | -------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `stoichiometry.test.js`                | `parseFormula`, `calcMolToMol`, `calcMassToMass`, `calcLimitingReactant`, `calcPercentYield`, `calcGasLaw` |
 | `chemistry-utils.test.js`              | `getMolarMass`, `parseScientificNotation`, `getElementCount`, `validateFormula`                            |
-| `practice-generators.test.js`          | `generateMolMolProblem`, `generateMassMassProblem`, `generateLimitingProblem`, `generateYieldProblem`      |
 | `advanced-calculators.test.js`         | Serial dilution and titration calculators                                                                  |
 | `calc-equation-parser.test.js`         | Chemical equation parsing                                                                                  |
 | `calc-gaslaw.test.js`                  | Gas law calculations                                                                                       |
@@ -93,8 +92,6 @@ Coverage collected from: `myhugoapp/static/js/calculators/**/*.js`, `myhugoapp/s
 | `security-utils.test.js`               | XSS prevention, input sanitization                                                                         |
 | `ui-utils.test.js`                     | UI utility functions                                                                                       |
 | `debug-logger.test.js`                 | Debug logging                                                                                              |
-| `analytics-manager.test.js`            | Analytics tracking                                                                                         |
-| `i18n-manager.test.js`                 | Internationalization                                                                                       |
 | `interactive-experiments.test.js`      | Interactive experiment logic                                                                               |
 | `knowledge-graph.test.js`              | Neo4j KG integration                                                                                       |
 | `kg-data-quality.test.js`              | KG data integrity checks                                                                                   |
@@ -102,7 +99,6 @@ Coverage collected from: `myhugoapp/static/js/calculators/**/*.js`, `myhugoapp/s
 | `rag-context.test.js`                  | RAG context assembling                                                                                     |
 | `spaced-repetition.test.js`            | Spaced repetition algorithm                                                                                |
 | `error-handler.test.js`                | Error handling utilities                                                                                   |
-| `visualization.test.js`                | D3/Three.js visualization logic                                                                            |
 | `d3-ego-graph.test.js`                 | D3 ego graph rendering                                                                                     |
 | `molare-masse-rechner.test.js`         | Molar mass calculator                                                                                      |
 | `dichte-rechner.test.js`               | Density calculator                                                                                         |

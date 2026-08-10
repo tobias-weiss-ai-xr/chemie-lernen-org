@@ -295,8 +295,8 @@
 {{/* Show the overview page with content first, then topics grid */}}
 
 {{/* Render .Content (quiz widget, entity cloud, etc.) */}}
-{{ $contentStr := .Content | strings.TrimSpace }}
-{{ if $contentStr }}
+{{ $contentStr := trim (printf "%s" .Content) " \r\n\t" }}
+{{ if ne $contentStr "" }}
 <div class="thema-content-layout">
   <div class="row">
     <div class="col-md-12">

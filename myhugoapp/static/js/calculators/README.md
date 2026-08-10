@@ -35,11 +35,10 @@ Calculator modules for chemie-lernen.org. Each calculator is a self-contained Ja
 
 ## Practice & Tutorials
 
-| File                     | Purpose                      |
-| ------------------------ | ---------------------------- |
-| `practice-generators.js` | Practice problem generators  |
-| `practice-quiz.js`       | Interactive quiz mode        |
-| `tutorials.js`           | Step-by-step tutorial system |
+| File               | Purpose                      |
+| ------------------ | ---------------------------- |
+| `practice-quiz.js` | Interactive quiz mode        |
+| `tutorials.js`     | Step-by-step tutorial system |
 
 ## Optimized Versions
 
