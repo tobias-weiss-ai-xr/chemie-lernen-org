@@ -10,6 +10,7 @@ import { Router } from 'express';
 import pino from 'pino';
 import { requirePremium } from '../auth.js';
 import { getNeo4jDriver, NEO4J_DATABASE } from '../services/neo4j.js';
+import { checkScopedQuota } from '../services/session.js';
 
 const router = Router();
 const logger = pino({
@@ -100,6 +101,16 @@ Der Unterrichtsplan MUSS als JSON-Objekt zurückgegeben werden (kein Markdown, n
 router.post('/api/premium/lesson-plan', requirePremium, async (req, res) => {
   try {
     const { topic, klassenstufe = '10', duration = '45', difficulty = 'mittel' } = req.body;
+
+    // LLM cost bound: 10 lesson plans / day / user (premium route hits LiteLLM).
+    const quota = checkScopedQuota('lesson-plan', 'u:' + req.user.id, 10);
+    if (!quota.allowed) {
+      return res.status(429).json({
+        error: 'Tageslimit für Unterrichtsentwürfe erreicht',
+        message: 'Maximal 10 Unterrichtsentwürfe pro Tag.',
+        remaining: 0,
+      });
+    }
 
     if (!topic || typeof topic !== 'string' || topic.trim().length < 2) {
       return res.status(400).json({ error: 'topic ist erforderlich (min. 2 Zeichen)' });
@@ -216,6 +227,16 @@ router.post('/api/premium/lesson-plan', requirePremium, async (req, res) => {
 router.post('/api/premium/worksheet', requirePremium, async (req, res) => {
   try {
     const { topic, exerciseCount = 5, types = ['multiple-choice', 'berechnung'] } = req.body;
+
+    // LLM cost bound: 10 worksheets / day / user (premium route hits LiteLLM).
+    const quota = checkScopedQuota('worksheet', 'u:' + req.user.id, 10);
+    if (!quota.allowed) {
+      return res.status(429).json({
+        error: 'Tageslimit für Arbeitsblätter erreicht',
+        message: 'Maximal 10 Arbeitsblätter pro Tag.',
+        remaining: 0,
+      });
+    }
 
     if (!topic || typeof topic !== 'string' || topic.trim().length < 2) {
       return res.status(400).json({ error: 'topic ist erforderlich (min. 2 Zeichen)' });
