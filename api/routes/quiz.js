@@ -122,7 +122,12 @@ router.put('/api/quiz-results', async (req, res) => {
     // boost retention by up to 40%. Wrong quiz answers become cards
     // that are re-visited at increasing intervals (day 3/7/14/30).
     let cardsCreated = 0;
-    const wrongAnswers = (answers || []).filter((a) => a && a.question && a.correct === false);
+    const wrongAnswers = (answers || [])
+      .filter((a) => a && a.question && a.correct === false)
+      // Bound per-submission work: an attacker-controlled payload of
+      // thousands of wrong answers would otherwise balloon the user's
+      // fsrsCards array (and with it users.json, rewritten on save).
+      .slice(0, 30);
     for (const wa of wrongAnswers) {
       const q = wa.question;
       let answerText = '';
@@ -141,9 +146,9 @@ router.put('/api/quiz-results', async (req, res) => {
       }
       if (answerText) {
         createFsrsCard(req.user.id, {
-          topicId: q.id || topic,
-          question: q.question,
-          answer: answerText,
+          topicId: String(q.id || topic).slice(0, 120),
+          question: String(q.question || '').slice(0, 500),
+          answer: String(answerText).slice(0, 500),
           type: q.type || 'multiple-choice',
         });
         cardsCreated++;
