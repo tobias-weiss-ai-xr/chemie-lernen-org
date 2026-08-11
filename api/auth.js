@@ -520,27 +520,9 @@ authRouter.post('/create-checkout-session', requireAuth, async (req, res) => {
   }
 });
 
-// POST /api/auth/upgrade — mark user as premium (Stripe webhook calls this)
-authRouter.post('/upgrade', (req, res) => {
-  const { userId, tier, premiumUntil } = req.body;
-  if (!userId || !tier) {
-    return res.status(400).json({ error: 'userId und tier erforderlich' });
-  }
-  const user = getUserById(userId);
-  if (!user) {
-    return res.status(404).json({ error: 'User nicht gefunden' });
-  }
-  setPremiumTier(userId, tier, premiumUntil || null);
-  res.json({
-    ok: true,
-    user: sanitizeUser({
-      ...user,
-      tier,
-      role: tier === 'free' ? 'user' : 'premium',
-      premium_until: premiumUntil || null,
-    }),
-  });
-});
+// POST /api/auth/upgrade — REMOVED (was an unauthenticated premium-for-free
+// paywall bypass). Premium is granted exclusively by the verified Stripe
+// webhook (handleStripeWebhook → setPremiumTier).
 
 // ── Middleware ───────────────────────────────────────────────
 

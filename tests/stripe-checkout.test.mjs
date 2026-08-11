@@ -494,7 +494,7 @@ describe('Premium-Flow Integration', () => {
     expect(result.premiumUntil).toBe(future);
   });
 
-  test('POST /upgrade setzt premium tier über setPremiumTier', () => {
+  test('setPremiumTier setzt premium tier (Stripe-Webhook-Pfad)', () => {
     const user = createTestUser({ tier: 'free' });
     const future = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString();
 

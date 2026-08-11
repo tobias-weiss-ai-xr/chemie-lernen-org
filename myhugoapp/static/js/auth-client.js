@@ -61,11 +61,6 @@
         });
     },
 
-    /** Upgrade current user to premium */
-    upgrade: function () {
-      return apiFetch('POST', '/upgrade');
-    },
-
     /** Create Stripe Checkout session and redirect */
     createCheckoutSession: function () {
       return apiFetch('POST', '/create-checkout-session')
