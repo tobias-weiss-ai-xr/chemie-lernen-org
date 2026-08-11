@@ -1,11 +1,12 @@
 # OpenSpec — Capabilities Index
 
-Last updated: 2026-08-03
+Last updated: 2026-08-10
 
 ## Main capabilities (specs/)
 
 | Capability                      | Spec                               | Status | Owners   | Last change                                             |
 | ------------------------------- | ---------------------------------- | ------ | -------- | ------------------------------------------------------- |
+| Native Android Application      | `native-android-app/spec.md`       | Active | pi       | native-android-app                                      |
 | Entity Knowledge Graph          | `entity-knowledge-graph/spec.md`   | Active | Sisyphus | sprint-8b-neo4j-data                                    |
 | AI Assistant (KI-Assistent)     | `ai-assistant/spec.md`             | Active | Sisyphus | sprint-8c-rag                                           |
 | WCAG 2.1 AA Compliance          | `a11y-compliance/spec.md`          | Active | Sisyphus | sprint-7-wcag-a11y                                      |
