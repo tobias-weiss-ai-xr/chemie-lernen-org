@@ -30,8 +30,14 @@ class BundleManager {
       },
 
       visualizations: {
-        'molecular-studio': '/js/molekuel-studio.optimized.js',
-        'periodic-table': '/js/perioden-system-der-elemente.optimized.js',
+        // NOTE: no 'molecular-studio' / 'periodic-table' here — both
+        // molekuel-studio.html and perioden-system-der-elemente.html load
+        // their ESM sources via <script type="module"> + importmap directly.
+        // The old optimized twins were ESM content a classic <script>
+        // (loadScript) can never execute (molecular-studio: silent
+        // SyntaxError; periodic-table: 404 — the file never existed).
+        // Source is the single source of truth, same decision as
+        // 'quiz-system' above.
         'ph-visualization': '/js/enhanced-ph-visualization.optimized.js',
         'gas-simulation': '/js/gas-law-simulator.js',
         'molar-visualizer': '/js/molar-mass-visualizer.js',
@@ -196,12 +202,6 @@ window.BundleManager = new BundleManager();
 <script>
   if (window.location.pathname.includes('/ph-rechner')) {
     window.BundleManager.preloadBundles(['ph-calculator', 'ph-visualization']);
-  }
-  if (window.location.pathname.includes('/perioden-system')) {
-    window.BundleManager.preloadBundles(['periodic-table']);
-  }
-  if (window.location.pathname.includes('/molekuel-studio')) {
-    window.BundleManager.preloadBundles(['molecular-studio']);
   }
 
   if (document.readyState === 'loading') {
