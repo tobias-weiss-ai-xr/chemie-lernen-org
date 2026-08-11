@@ -60,8 +60,15 @@ class AuthRepository(
                 true
             }
         }.getOrElse { err ->
-            // 401 → token invalid/expired
-            tokenStore.clear()
+            // Only a real 401 means the stored token is invalid/expired.
+            // On offline starts (IOException) or 5xx the session may still be
+            // valid — deleting the token here would log the user out of a
+            // perfectly good session every time the app launches without
+            // connectivity.
+            val http401 = err is retrofit2.HttpException && err.code() == 401
+            if (http401) {
+                tokenStore.clear()
+            }
             _state.value = AuthState.LoggedOut
             false
         }

@@ -54,7 +54,11 @@ class AuthRepositoryTest {
     @Test
     fun `restore with invalid token clears and logs out`() = runTest {
         coEvery { tokenStore.token } returns kotlinx.coroutines.flow.MutableStateFlow("expired")
-        coEvery { api.me() } throws RuntimeException("401 Unauthorized")
+        coEvery { api.me() } throws retrofit2.HttpException(
+            retrofit2.Response.error<Any>(401, okhttp3.ResponseBody.create(
+                null, "{}",
+            )),
+        )
         coEvery { tokenStore.clear() } answers {}
 
         val repo = AuthRepository(api, tokenStore)
@@ -63,5 +67,19 @@ class AuthRepositoryTest {
         assertThat(restored).isFalse()
         coVerify { tokenStore.clear() }
         assertThat(repo.state.value).isEqualTo(AuthState.LoggedOut)
+    }
+
+    @Test
+    fun `restore with network error keeps token (offline start)`() = runTest {
+        coEvery { tokenStore.token } returns kotlinx.coroutines.flow.MutableStateFlow("valid-token")
+        coEvery { api.me() } throws java.io.IOException("Network is unreachable")
+        coEvery { tokenStore.clear() } answers {}
+
+        val repo = AuthRepository(api, tokenStore)
+        val restored = repo.restore()
+
+        assertThat(restored).isFalse()
+        coVerify(exactly = 0) { tokenStore.clear() }
+        // UI shows logged out, but the token survives for the next attempt.
     }
 }

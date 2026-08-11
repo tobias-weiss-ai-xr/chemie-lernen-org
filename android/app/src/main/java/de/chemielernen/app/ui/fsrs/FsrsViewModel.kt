@@ -47,21 +47,32 @@ class FsrsViewModel(
     fun review(rating: Int) {
         val card = _uiState.value.current ?: return
         viewModelScope.launch {
-            runCatching {
-                val cardId = card.cardId ?: return@runCatching
-                // Backend expects FSRS score: 0 (Again), 0.33 (Hard), 0.66 (Good), 1.0 (Easy)
+            val success = runCatching {
+                val cardId = card.cardId ?: return@runCatching false
+                // Backend expects FSRS score; mirrors the web lernkarten
+                // review mapping 1:1 (lernkarten-review.js):
+                //   1 Schwer      → 0.0  (Again)
+                //   2 Gut         → 0.33 (Hard)
+                //   3 Leicht      → 0.66 (Good)
+                //   4 Sehr leicht → 1.0  (Easy)
                 val score = when (rating) {
-                    1 -> 0.33
-                    2 -> 0.66
+                    1 -> 0.0
+                    2 -> 0.33
+                    3 -> 0.66
                     else -> 1.0
                 }
                 api.reviewCard(cardId, de.chemielernen.app.data.api.FsrsReviewRequest(score = score))
+                true
+            }.getOrDefault(false)
+            if (success) {
+                // Advance only when the review reached the server — a failed
+                // network call must not silently lose the review (scheduling
+                // would never update).
+                _uiState.value = _uiState.value.copy(
+                    revealAnswer = false,
+                    currentIndex = _uiState.value.currentIndex + 1,
+                )
             }
-            val idx = _uiState.value.currentIndex + 1
-            _uiState.value = _uiState.value.copy(
-                currentIndex = idx,
-                revealAnswer = false,
-            )
         }
     }
 }

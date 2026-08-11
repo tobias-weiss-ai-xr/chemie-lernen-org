@@ -109,16 +109,16 @@ class QuizViewModel(
     fun drain() {
         viewModelScope.launch {
             val synced = gradeQueueRepository.drain()
-            if (synced > 0) {
-                _uiState.value = _uiState.value.copy(
-                    offline = false,
-                    pendingCount = gradeQueueRepository.pendingCount(),
-                )
-            }
+            val remaining = gradeQueueRepository.pendingCount()
+            // Clear the offline banner even when the queue was already empty
+            // (reconnect with nothing pending used to leave offline=true forever).
+            // Banner shows while the network is down OR unsynced work remains.
+            _uiState.value = _uiState.value.copy(
+                offline = !_online.value || remaining > 0,
+                pendingCount = remaining,
+            )
         }
     }
 
     fun observePending() = gradeQueueRepository.observePending()
 }
-
-class ApiException(message: String) : Exception(message)

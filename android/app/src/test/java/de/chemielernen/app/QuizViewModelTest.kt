@@ -88,4 +88,39 @@ class QuizViewModelTest {
         coVerify { gradeQueueRepository.enqueue("ex-1", "B") }
         assertThat(vm.uiState.value.offline).isTrue()
     }
+
+    @Test
+    fun `reconnect with empty queue clears the offline banner`() = runTest(dispatcher) {
+        coEvery { quizRepository.getAiExercise(any(), any()) } returns exercise
+        coEvery { api.grade(any()) } throws RuntimeException("offline")
+        val vm = QuizViewModel(quizRepository, gradeQueueRepository, api)
+
+        vm.loadTopic("saeure-on")
+        dispatcher.scheduler.advanceUntilIdle()
+        vm.submitAnswer(1)
+        dispatcher.scheduler.advanceUntilIdle()
+        assertThat(vm.uiState.value.offline).isTrue()
+
+        // Reconnect: everything drained → banner must clear.
+        coEvery { gradeQueueRepository.drain() } returns 1
+        coEvery { gradeQueueRepository.pendingCount() } returns 0
+        vm.setConnectivity(online = true)
+        dispatcher.scheduler.advanceUntilIdle()
+
+        assertThat(vm.uiState.value.offline).isFalse()
+        assertThat(vm.uiState.value.pendingCount).isEqualTo(0)
+    }
+
+    @Test
+    fun `failed drain keeps pending count and banner`() = runTest(dispatcher) {
+        coEvery { gradeQueueRepository.drain() } returns 0
+        coEvery { gradeQueueRepository.pendingCount() } returns 3
+        val vm = QuizViewModel(quizRepository, gradeQueueRepository, api)
+
+        vm.setConnectivity(online = true)
+        dispatcher.scheduler.advanceUntilIdle()
+
+        assertThat(vm.uiState.value.offline).isTrue()
+        assertThat(vm.uiState.value.pendingCount).isEqualTo(3)
+    }
 }

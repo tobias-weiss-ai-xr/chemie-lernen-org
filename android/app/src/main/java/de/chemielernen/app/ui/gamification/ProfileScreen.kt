@@ -20,6 +20,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
@@ -29,7 +32,21 @@ fun ProfileScreen(
     userName: String?,
     onLogout: () -> Unit,
     dashboard: (@Composable () -> Unit)? = null,
+    cards: (@Composable () -> Unit)? = null,
 ) {
+    var showCards by rememberSaveable { mutableStateOf(false) }
+    if (showCards) {
+        cards?.invoke()
+        // Back to profile after reviewing cards.
+        Button(
+            onClick = { showCards = false },
+            modifier = Modifier.padding(16.dp),
+        ) {
+            Text("Zurück zum Profil")
+        }
+        return
+    }
+
     val ui by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) { viewModel.load() }
@@ -107,6 +124,16 @@ fun ProfileScreen(
         }
 
         dashboard?.invoke()
+
+        if (cards != null) {
+            Spacer(Modifier.height(8.dp))
+            Button(
+                onClick = { showCards = true },
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text("Karteikarten wiederholen (FSRS)")
+            }
+        }
 
         Spacer(Modifier.height(16.dp))
         Button(onClick = onLogout, modifier = Modifier.fillMaxWidth()) {

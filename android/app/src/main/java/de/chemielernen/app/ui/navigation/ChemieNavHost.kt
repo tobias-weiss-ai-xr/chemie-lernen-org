@@ -4,6 +4,8 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -39,6 +41,8 @@ import de.chemielernen.app.ui.browse.BrowseViewModel
 import de.chemielernen.app.ui.browse.HomeScreen
 import de.chemielernen.app.ui.dashboard.DashboardScreen
 import de.chemielernen.app.ui.dashboard.DashboardViewModel
+import de.chemielernen.app.ui.fsrs.FsrsScreen
+import de.chemielernen.app.ui.fsrs.FsrsViewModel
 import de.chemielernen.app.ui.gamification.GamificationViewModel
 import de.chemielernen.app.ui.gamification.ProfileScreen
 import de.chemielernen.app.ui.learningpath.LearningPathScreen
@@ -106,6 +110,9 @@ private fun MainScaffold(
             QuizViewModel(quizRepository, gradeQueueRepository, api)
         },
     )
+    val fsrsViewModel: FsrsViewModel = viewModel(
+        factory = SimpleFactory { FsrsViewModel(api) },
+    )
 
     // Real connectivity observer — drives the offline queue drain on reconnect.
     val context = LocalContext.current
@@ -150,35 +157,42 @@ private fun MainScaffold(
             }
         },
     ) { innerPadding ->
-        when (selectedTab) {
-            0 -> HomeScreen(
-                viewModel = browseViewModel,
-                onTopicClick = { slug, title ->
-                    quizViewModel.loadTopic(topicSlug = slug)
-                    selectedTab = 2
-                },
-            )
-            1 -> LearningPathScreen(learningPathViewModel)
-            2 -> {
-                val quizState = quizViewModel.uiState.collectAsState().value
-                QuizScreen(
-                    viewModel = quizViewModel,
-                    topicSlug = quizState.topic,
-                    topicTitle = quizState.topic,
+        Column(
+            Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+        ) {
+            when (selectedTab) {
+                0 -> HomeScreen(
+                    viewModel = browseViewModel,
+                    onTopicClick = { slug, title ->
+                        quizViewModel.loadTopic(topicSlug = slug)
+                        selectedTab = 2
+                    },
+                )
+                1 -> LearningPathScreen(learningPathViewModel)
+                2 -> {
+                    val quizState = quizViewModel.uiState.collectAsState().value
+                    QuizScreen(
+                        viewModel = quizViewModel,
+                        topicSlug = quizState.topic,
+                        topicTitle = quizState.topic,
+                    )
+                }
+                else -> ProfileScreen(
+                    viewModel = gamificationViewModel,
+                    userName = user.name ?: user.email,
+                    onLogout = { authViewModel.logout() },
+                    dashboard = {
+                        DashboardScreen(
+                            viewModel = dashboardViewModel,
+                            isTeacher = user.role == "teacher" || user.role == "admin",
+                            curriculumSlug = null, // learner results always; class results need a chosen class
+                        )
+                    },
+                    cards = { FsrsScreen(fsrsViewModel) },
                 )
             }
-            else -> ProfileScreen(
-                viewModel = gamificationViewModel,
-                userName = user.name ?: user.email,
-                onLogout = { authViewModel.logout() },
-                dashboard = {
-                    DashboardScreen(
-                        viewModel = dashboardViewModel,
-                        isTeacher = user.role == "teacher" || user.role == "admin",
-                        curriculumSlug = null, // learner results always; class results need a chosen class
-                    )
-                },
-            )
         }
     }
 }
