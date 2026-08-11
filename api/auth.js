@@ -26,8 +26,25 @@ import cookieParser from 'cookie-parser';
 
 // ── Config ──────────────────────────────────────────────────
 const JWT_SECRET = process.env.JWT_SECRET;
+const WEAK_JWT_SECRETS = new Set([
+  'change_me_64_hex_chars_0123456789abcdef0123456789abcdef',
+  'your-jwt-secret-here',
+  'change-me',
+  'changeme',
+  'jwt-secret',
+  'secret',
+  'supersecret',
+  'jwt-secret-key',
+]);
 if (!JWT_SECRET) {
   console.error('[auth] FATAL: JWT_SECRET environment variable is required');
+  process.exit(1);
+}
+if (JWT_SECRET.length < 32 || WEAK_JWT_SECRETS.has(JWT_SECRET.toLowerCase())) {
+  console.error(
+    '[auth] FATAL: JWT_SECRET is weak or a known placeholder — tokens would be forgeable. ' +
+      'Generate a strong random secret: openssl rand -hex 64'
+  );
   process.exit(1);
 }
 const JWT_EXPIRY = process.env.JWT_EXPIRY || '7d';
@@ -231,10 +248,12 @@ function sanitizeUser(user) {
 // ── Express Router ───────────────────────────────────────────
 const authRouter = Router();
 authRouter.use(cookieParser());
-authRouter.use(authLimiter);
+// Rate limit only credential-mutating routes (register/login/forgot/reset).
+// GET /api/auth/me runs on every page/app load — a blanket limiter there
+// would false-429 (→ forced logout) on shared NATs and busy browsers.
 
 // POST /api/auth/register
-authRouter.post('/register', async (req, res) => {
+authRouter.post('/register', authLimiter, async (req, res) => {
   try {
     const { email: rawEmail, password, name: rawName } = req.body;
 
@@ -285,7 +304,7 @@ authRouter.post('/register', async (req, res) => {
 });
 
 // POST /api/auth/login
-authRouter.post('/login', async (req, res) => {
+authRouter.post('/login', authLimiter, async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -394,7 +413,7 @@ authRouter.put('/profile', requireAuth, (req, res) => {
 });
 
 // POST /api/auth/forgot-password — request password reset link (sends email)
-authRouter.post('/forgot-password', async (req, res) => {
+authRouter.post('/forgot-password', authLimiter, async (req, res) => {
   try {
     const { email: rawEmail } = req.body;
     if (!rawEmail) {
@@ -419,7 +438,7 @@ authRouter.post('/forgot-password', async (req, res) => {
 });
 
 // POST /api/auth/reset-password — reset password using token
-authRouter.post('/reset-password', async (req, res) => {
+authRouter.post('/reset-password', authLimiter, async (req, res) => {
   try {
     const { token, password } = req.body;
 
@@ -563,11 +582,12 @@ export function requirePremium(req, res, next) {
 }
 
 // adminKeyMiddleware — checks x-api-key header against ADMIN_API_KEY env var
+// Fail-CLOSED: if no key is configured the route is refused rather than opened
+// (admin routes expose PII: chat logs, class results).
 export function adminKeyMiddleware(req, res, next) {
   const apiKey = process.env.ADMIN_API_KEY;
   if (!apiKey) {
-    // No key configured — allow for backward compatibility
-    return next();
+    return res.status(503).json({ error: 'Admin-Key nicht konfiguriert' });
   }
   const provided = req.headers['x-api-key'];
   if (!provided || provided !== apiKey) {

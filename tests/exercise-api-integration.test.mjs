@@ -10,7 +10,7 @@
 import { jest, describe, test, expect, beforeAll, beforeEach } from '@jest/globals';
 
 // The route module chain imports api/auth.js, which requires JWT_SECRET.
-process.env.JWT_SECRET = process.env.JWT_SECRET || 'test-secret-for-integration';
+process.env.JWT_SECRET = process.env.JWT_SECRET || 'test-secret-for-integration-0123456789abcdef0123';
 process.env.LITELLM_URL = process.env.LITELLM_URL || 'http://localhost:4000';
 process.env.LITELLM_MODEL = process.env.LITELLM_MODEL || 'gemma-4';
 

@@ -16,7 +16,7 @@ import { jest, describe, test, expect, beforeAll, afterAll, beforeEach } from '@
 import express from 'express';
 import http from 'node:http';
 
-process.env.JWT_SECRET = process.env.JWT_SECRET || 'test-secret-for-security';
+process.env.JWT_SECRET = process.env.JWT_SECRET || 'test-secret-for-security-0123456789abcdef0123';
 process.env.LITELLM_URL = process.env.LITELLM_URL || 'http://localhost:4000';
 process.env.LITELLM_MODEL = process.env.LITELLM_MODEL || 'gemma-4';
 

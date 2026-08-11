@@ -28,6 +28,7 @@ export default [
       'myhugoapp/static/js/three/TrackballControls.js',
       'myhugoapp/static/js/addons/**',
       '*.generated.js',
+      'android/app/build/**',
       'myhugoapp/static/js/calculators/stoichiometry.js',
       'myhugoapp/static/js/calculators/practice-generators.js',
       'myhugoapp/static/js/calculators/stoichiometry-calculator-page.js',

@@ -165,12 +165,19 @@ app.use('/api', defaultLimiter);
 app.use('/api/auth', authRouter);
 app.use('/api/*', authMiddleware);
 
-// Admin API key check (optional)
+// Admin API key check — fail-CLOSED and header-only.
+// Query-string keys (?api_key=) are rejected: they leak into access logs,
+// browser history and Referer headers. With no key configured the routes
+// are refused instead of opened (they expose PII: chat logs, class results).
 app.use('/api/admin', (req, res, next) => {
-  if (!ADMIN_API_KEY) return next();
-  const provided = req.headers['x-api-key'] || req.query.api_key || '';
-  if (provided === ADMIN_API_KEY) return next();
-  res.status(401).json({ error: 'Unauthorized — gültiger API-Key erforderlich' });
+  if (!ADMIN_API_KEY) {
+    return res.status(503).json({ error: 'Admin-Key nicht konfiguriert' });
+  }
+  const provided = req.headers['x-api-key'];
+  if (!provided || provided !== ADMIN_API_KEY) {
+    return res.status(401).json({ error: 'Unauthorized — gültiger API-Key erforderlich' });
+  }
+  next();
 });
 
 // ── Mount route modules ───────────────────────────────────────
