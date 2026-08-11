@@ -453,6 +453,10 @@ app.use((err, req, res, next) => {
     stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
   });
   if (res.headersSent) return next(err);
+  // Malformed percent-encoding in the URL path (router or handler level).
+  if (err instanceof URIError) {
+    return res.status(400).json({ error: 'Ungültige URL-Kodierung' });
+  }
   const statusCode = err.statusCode || err.status || 500;
   res.status(statusCode).json({
     error: statusCode === 500 ? 'Interner Serverfehler' : err.message,

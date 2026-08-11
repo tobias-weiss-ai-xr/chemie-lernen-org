@@ -378,7 +378,13 @@ router.get('/api/rag-context', async (req, res) => {
  * GET /api/kg-data/entity/:name — Single entity detail.
  */
 router.get('/api/kg-data/entity/:name', async (req, res) => {
-  var entityName = decodeURIComponent(req.params.name).toLowerCase().trim();
+  var rawName;
+  try {
+    rawName = decodeURIComponent(req.params.name);
+  } catch {
+    return res.status(400).json({ error: 'Ungültige URL-Kodierung' });
+  }
+  var entityName = rawName.toLowerCase().trim();
   try {
     var driver = getNeo4jDriver();
     var session = driver.session({

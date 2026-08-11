@@ -385,7 +385,12 @@ router.get('/api/curricula/by-state/:state/grade/:grade', async (req, res) => {
  * GET /api/curricula/topic/:slug/articles
  */
 router.get('/api/curricula/topic/:slug/articles', async (req, res) => {
-  const slug = decodeURIComponent(req.params.slug).trim();
+  let slug;
+  try {
+    slug = decodeURIComponent(req.params.slug).trim();
+  } catch {
+    return res.status(400).json({ error: 'Ungültige URL-Kodierung' });
+  }
   if (!slug) {
     return res.status(400).json({ error: 'Topic slug required' });
   }
@@ -437,7 +442,12 @@ router.get('/api/curricula/topic/:slug/articles', async (req, res) => {
  * GET /api/curricula/objective/:slug/articles
  */
 router.get('/api/curricula/objective/:slug/articles', async (req, res) => {
-  const slug = decodeURIComponent(req.params.slug).trim();
+  let slug;
+  try {
+    slug = decodeURIComponent(req.params.slug).trim();
+  } catch {
+    return res.status(400).json({ error: 'Ungültige URL-Kodierung' });
+  }
   if (!slug) {
     return res.status(400).json({ error: 'Objective slug required' });
   }
@@ -491,7 +501,12 @@ router.get('/api/curricula/objective/:slug/articles', async (req, res) => {
  * GET /api/entities/:name/curricula
  */
 router.get('/api/entities/:name/curricula', async (req, res) => {
-  const nameParam = decodeURIComponent(req.params.name).trim();
+  let nameParam;
+  try {
+    nameParam = decodeURIComponent(req.params.name).trim();
+  } catch {
+    return res.status(400).json({ error: 'Ungültige URL-Kodierung' });
+  }
 
   try {
     const driver = getNeo4jDriver();

@@ -207,6 +207,13 @@ export function sendMessage(id, userId, displayName, text) {
   const participant = session.participants.find((p) => p.userId === userId);
   if (!participant) return { error: 'Nur Teilnehmer können Nachrichten senden' };
 
+  // Bound per-message size: unbounded text would grow memory + the disk
+  // JSON on every saveToDisk call (write amplification), and later get
+  // re-served to every participant poll.
+  if (text.length > 2000) {
+    return { error: 'Nachricht darf maximal 2000 Zeichen lang sein' };
+  }
+
   const msg = {
     id: crypto.randomBytes(6).toString('hex'),
     userId,
@@ -307,11 +314,13 @@ export function postQuizChallenge(id, userId, challenge) {
 
   const rawScore = Number((challenge && challenge.score) || 0);
   const rawTotal = Number((challenge && challenge.total) || 0);
+  const rawNote = ((challenge && challenge.note) || '').slice(0, 500);
+  const rawTopic = ((challenge && challenge.topic) || 'Quiz').slice(0, 200);
   const chal = {
     id: crypto.randomBytes(6).toString('hex'),
     userId,
     displayName: participant.displayName,
-    topic: (challenge && challenge.topic) || 'Quiz',
+    topic: rawTopic,
     score: rawScore,
     total: rawTotal,
     percentage:
@@ -320,7 +329,7 @@ export function postQuizChallenge(id, userId, challenge) {
         : rawTotal > 0
           ? Math.round((rawScore / rawTotal) * 100)
           : 0,
-    note: (challenge && challenge.note) || '',
+    note: rawNote,
     createdAt: new Date().toISOString(),
     reactions: {},
   };
