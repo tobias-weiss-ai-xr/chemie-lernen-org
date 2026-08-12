@@ -639,4 +639,239 @@ router.get('/api/curricula/compare', function (req, res) {
   res.json({ results: grouped, query: q, count: matches.length });
 });
 
+// ── Graph payload for the curricula index page ────────────────────────────
+
+// Small in-memory cache: the same scope+params are re-requested on every
+// page load / scope switch; Neo4j is read-only for this route.
+const graphCache = new Map();
+const GRAPH_CACHE_TTL_MS = 60 * 1000;
+
+/** Namespaced, stable node id helper. */
+function graphNodeId(type, key) {
+  return `${type}:${String(key).slice(0, 200)}`;
+}
+
+/**
+ * GET /api/curricula/graph — cytoscape-ready nodes/edges for the
+ * Lehrplan + Modulhandbuch subsets.
+ *
+ * Query params:
+ *   scope       all | universities | curriculum   (default: all)
+ *   university  short code filter, e.g. CAM
+ *   state       state_abbr filter, e.g. BY
+ *   limit       node cap (default 500, max 1500)
+ *   q           name substring filter
+ */
+router.get('/api/curricula/graph', async (req, res) => {
+  const scope = ['all', 'universities', 'curriculum'].includes(req.query.scope)
+    ? req.query.scope
+    : 'all';
+  const university = String(req.query.university || '')
+    .trim()
+    .toUpperCase();
+  const state = String(req.query.state || '')
+    .trim()
+    .toUpperCase();
+  const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 500, 50), 1500);
+  const q = String(req.query.q || '')
+    .trim()
+    .toLowerCase();
+
+  const cacheKey = [scope, university, state, limit, q].join('|');
+  const cached = graphCache.get(cacheKey);
+  if (cached && Date.now() - cached.at < GRAPH_CACHE_TTL_MS) {
+    return res.json(cached.payload);
+  }
+
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+      fetchSize: 2000,
+    });
+
+    const nodes = new Map(); // id -> node
+    const edges = new Map(); // "s|t|type" -> edge
+
+    const addNode = (id, type, label, meta) => {
+      if (!nodes.has(id)) {
+        nodes.set(id, { id, type, label: label || id, meta: meta || {} });
+      } else if (meta) {
+        nodes.get(id).meta = Object.assign({}, nodes.get(id).meta, meta);
+      }
+    };
+    const addEdge = (source, target, type) => {
+      const key = `${source}|${target}|${type}`;
+      if (!edges.has(key)) edges.set(key, { source, target, type });
+    };
+
+    // ── Query 1: University → UniversityModule → Entity ──
+    if (scope !== 'curriculum') {
+      const uniWhere = university ? 'WHERE u.short_code = $university' : '';
+      const uniParams = university ? { university } : {};
+      const r1 = await session.run(
+        `MATCH (u:University)-[:OFFERS]->(m:UniversityModule)
+         ${uniWhere}
+         OPTIONAL MATCH (m)-[:COVERS|TEACHES]->(e:Entity)
+         RETURN u, m, collect(DISTINCT e) AS entities
+         ORDER BY u.name, m.module_name`,
+        uniParams
+      );
+      r1.records.forEach((rec) => {
+        const u = rec.get('u');
+        const m = rec.get('m');
+        if (!u) return;
+        const uniId = graphNodeId('uni', u.properties.short_code || u.properties.name);
+        addNode(uniId, 'university', u.properties.name, {
+          shortCode: u.properties.short_code,
+          country: u.properties.country,
+          city: u.properties.city,
+          website: u.properties.website,
+        });
+        if (!m) return;
+        const modId = graphNodeId(
+          'mod',
+          `${u.properties.short_code || 'uni'}:${m.properties.module_code}`
+        );
+        addNode(modId, 'module', m.properties.module_name || m.properties.module_code, {
+          moduleCode: m.properties.module_code,
+          university: u.properties.short_code,
+          degree: m.properties.degree,
+          level: m.properties.level,
+          ects: m.properties.ects,
+          language: m.properties.language,
+          url: m.properties.url,
+        });
+        addEdge(uniId, modId, 'OFFERS');
+        const ents = rec.get('entities') || [];
+        ents.forEach((e) => {
+          if (!e || !e.properties || !e.properties.name) return;
+          const entId = graphNodeId('ent', e.properties.name);
+          addNode(entId, 'entity', e.properties.name, {
+            kategorie: e.properties.kategorie,
+            state: e.properties.state,
+            grade: e.properties.grade,
+          });
+          addEdge(modId, entId, 'COVERS');
+        });
+      });
+    }
+
+    // ── Query 2: Curriculum → Topic → SubTopic (+ objectives, capped) ──
+    if (scope !== 'universities') {
+      const curWhere = state ? 'WHERE c.state_abbr = $state' : '';
+      const curParams = state ? { state } : {};
+      const r2 = await session.run(
+        `MATCH (c:Curriculum)-[:HAS_TOPIC]->(t:Topic)
+         ${curWhere}
+         OPTIONAL MATCH (t)-[:HAS_SUBTOPIC]->(s:SubTopic)
+         OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)
+         WITH c, t, collect(DISTINCT s) AS subs, collect(DISTINCT lo) AS los
+         RETURN c.state_abbr AS stateAbbr, c.state AS stateName,
+                c.slug AS curSlug, c.school_type AS schoolType,
+                t.title AS topicTitle, t.slug AS topicSlug,
+                subs, los
+         ORDER BY c.state_abbr, t.title`,
+        curParams
+      );
+      r2.records.forEach((rec) => {
+        const curId = graphNodeId('cur', rec.get('curSlug') || rec.get('stateAbbr'));
+        addNode(curId, 'curriculum', rec.get('stateName') || rec.get('stateAbbr'), {
+          state: rec.get('stateAbbr'),
+          schoolType: rec.get('schoolType'),
+        });
+        const topicTitle = rec.get('topicTitle');
+        if (!topicTitle) return;
+        const topicId = graphNodeId('topic', rec.get('topicSlug') || topicTitle);
+        addNode(topicId, 'topic', topicTitle, { state: rec.get('stateAbbr') });
+        addEdge(curId, topicId, 'HAS_TOPIC');
+        const subs = rec.get('subs') || [];
+        subs.forEach((s) => {
+          if (!s || !s.properties || !s.properties.title) return;
+          const subId = graphNodeId('sub', s.properties.slug || s.properties.title);
+          addNode(subId, 'subtopic', s.properties.title, { state: rec.get('stateAbbr') });
+          addEdge(topicId, subId, 'HAS_SUBTOPIC');
+        });
+        // Objectives: bounded, only in scope=curriculum to keep payload sane.
+        if (scope === 'curriculum') {
+          const los = (rec.get('los') || []).slice(0, 150);
+          los.forEach((lo) => {
+            if (!lo || !lo.properties || !lo.properties.text) return;
+            const loId = graphNodeId('lo', lo.properties.slug || lo.properties.text);
+            addNode(loId, 'objective', lo.properties.text.slice(0, 140), {
+              state: rec.get('stateAbbr'),
+            });
+            addEdge(topicId, loId, 'HAS_LEARNING_OBJECTIVE');
+          });
+        }
+      });
+    }
+
+    // ── Query 3: bridge Entity → SubTopic (non-lehrplan) + page mentions ──
+    if (scope !== 'universities') {
+      const r3 = await session.run(
+        `MATCH (e:Entity)-[:COVERS_TOPIC]->(s:SubTopic)
+         WHERE e.kategorie IS NOT NULL AND e.kategorie <> 'lehrplan'
+         RETURN e.name AS entName, e.kategorie AS kategorie,
+                s.title AS subTitle, s.slug AS subSlug
+         LIMIT 400`
+      );
+      r3.records.forEach((rec) => {
+        const entId = graphNodeId('ent', rec.get('entName'));
+        addNode(entId, 'entity', rec.get('entName'), { kategorie: rec.get('kategorie') });
+        const subId = graphNodeId('sub', rec.get('subSlug') || rec.get('subTitle'));
+        addNode(subId, 'subtopic', rec.get('subTitle'));
+        addEdge(entId, subId, 'COVERS_TOPIC');
+      });
+    }
+
+    // ── Apply q filter + limit cap (prefer high-degree nodes) ──
+    let nodeList = Array.from(nodes.values());
+    if (q) {
+      nodeList = nodeList.filter((n) => n.label.toLowerCase().includes(q));
+    }
+    if (nodeList.length > limit) {
+      const degree = new Map();
+      edges.forEach((e) => {
+        degree.set(e.source, (degree.get(e.source) || 0) + 1);
+        degree.set(e.target, (degree.get(e.target) || 0) + 1);
+      });
+      nodeList.sort(
+        (a, b) =>
+          (degree.get(b.id) || 0) - (degree.get(a.id) || 0) || a.label.localeCompare(b.label)
+      );
+      const keep = new Set(nodeList.slice(0, limit).map((n) => n.id));
+      nodeList = nodeList.filter((n) => keep.has(n.id));
+      edges.forEach((e, key) => {
+        if (!keep.has(e.source) || !keep.has(e.target)) edges.delete(key);
+      });
+    }
+
+    await session.close();
+
+    const payload = {
+      source: 'neo4j',
+      scope,
+      meta: {
+        nodeCount: nodeList.length,
+        edgeCount: edges.size,
+        truncated: nodeList.length > limit,
+        filters: { university, state, q },
+      },
+      nodes: nodeList,
+      edges: Array.from(edges.values()),
+    };
+
+    graphCache.set(cacheKey, { at: Date.now(), payload });
+    return res.json(payload);
+  } catch (err) {
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[curricula/graph] Neo4j error'
+    );
+    return res.status(503).json({ error: 'Graphendaten nicht verfügbar' });
+  }
+});
+
 export default router;

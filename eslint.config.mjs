@@ -128,6 +128,7 @@ export default [
         IntersectionObserver: 'readonly',
         MutationObserver: 'readonly',
         URL: 'readonly',
+        URLSearchParams: 'readonly',
         Blob: 'readonly',
         FileReader: 'readonly',
         WebSocket: 'readonly',
@@ -290,6 +291,19 @@ export default [
         require: 'readonly',
         THREE: 'readonly',
         cytoscape: 'readonly',
+      },
+    },
+  },
+
+  // Curricula index graph page - browser globals loaded lazily
+  {
+    files: ['myhugoapp/static/js/curricula-index.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: {
+        cytoscape: 'readonly',
+        URLSearchParams: 'readonly',
       },
     },
   },

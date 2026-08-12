@@ -370,5 +370,15 @@
     }
   }
 
+  // Deep-link support: /modulhandbuch/?uni=CAM opens that university directly.
+  var uniParam = new URLSearchParams(location.search).get('uni');
+
+  function applyDeepLink() {
+    if (uniParam && !selectedUni) {
+      loadUni(uniParam.toUpperCase());
+    }
+  }
+
   load();
+  applyDeepLink();
 })();
