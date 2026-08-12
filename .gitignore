@@ -51,3 +51,6 @@ tests/__pycache__/
 curricula-venv/
 backups/
 myhugoapp/public/
+
+# dedicated graph backup git repo (own remote)
+graph-backup-repo/

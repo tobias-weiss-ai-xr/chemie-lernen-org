@@ -34,6 +34,10 @@ CHEMIE_KG_EXIT=${PIPESTATUS[0]}
 bash "${SCRIPT_DIR}/backup-leads-neo4j.sh" 2>&1 | tee -a "${LOG_DIR}/master.log"
 LEADS_EXIT=${PIPESTATUS[0]}
 
+# ── Chunked graph backup to dedicated git repo ───────────────────────
+bash "${SCRIPT_DIR}/backup-graph-git.sh" 2>&1 | tee -a "${LOG_DIR}/master.log"
+GRAPH_GIT_EXIT=${PIPESTATUS[0]}
+
 # ── Auth DB backup ──────────────────────────────────────────────────
 AUTH_DB_SRC="${PROJECT_DIR}/api/data/users.json"
 AUTH_DB_DIR="${PROJECT_DIR}/backups/auth-db"
@@ -62,8 +66,8 @@ else
 fi
 set -e
 
-TOTAL_EXIT=$((CHEMIE_EXIT + CHEMIE_KG_EXIT + LEADS_EXIT + RESTIC_EXIT))
-echo "=== Complete: chemie-neo4j=${CHEMIE_EXIT}, chemie-kg=${CHEMIE_KG_EXIT}, leads=${LEADS_EXIT} ===" | tee -a "${LOG_DIR}/master.log"
+TOTAL_EXIT=$((CHEMIE_EXIT + CHEMIE_KG_EXIT + LEADS_EXIT + GRAPH_GIT_EXIT + RESTIC_EXIT))
+echo "=== Complete: chemie-neo4j=${CHEMIE_EXIT}, chemie-kg=${CHEMIE_KG_EXIT}, leads=${LEADS_EXIT}, graph-git=${GRAPH_GIT_EXIT} ===" | tee -a "${LOG_DIR}/master.log"
 
     if [[ "$TOTAL_EXIT" -ne 0 ]]; then
     echo "WARNING: Some backups failed — check logs above." | tee -a "${LOG_DIR}/master.log"
