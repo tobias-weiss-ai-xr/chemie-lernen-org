@@ -30,6 +30,31 @@ Subset selectors are centralized in
 `scripts/_neo4j-subset-filter.mjs` (formerly `_neo4j-chemie-filter.mjs`)
 and used by all consumers (api/server.js, scripts/, tests/).
 
+## 🔒 Proprietary core (private `chemie-core` repo) — CRITICAL
+
+The **API crown jewels are NOT in this public repo**. They live in the
+private GitHub repo `tobias-weiss-ai-xr/chemie-core` (read-only deploy
+key: `~/.ssh/chemie_core_deploy`, CI secret `CORE_DEPLOY_KEY`):
+
+- `api/prompts/` — LLM prompts (exercise generation/grading)
+- `api/services/{auto-grader,exercise-generator,feedback-engine,rag,badges}.js`
+- `api/{learning-engine,collab-engine,assessment-store,auth,auth-db,session-store,embeddings}.js`
+- `api/_rag-helpers.cjs`, `api/calc-rag-index.json`
+
+`scripts/vendor-core.sh` clones the private repo into `.core/`
+(gitignored) and copies those files into place. **Run it before any
+test/build** — `npm run pretest` does this automatically. CI does the
+same in both deploy jobs. The private repo mirrors relative paths under
+`api/`; top-level files (README.md etc.) are never overwritten.
+
+Pipeline scripts (`scripts/import-*.mjs`, `link-*.mjs`, `enrich-*.mjs`,
+`generate-*.mjs`, `backfill-*.mjs`, `scripts/curricula*`) stay public —
+the CI scrape workflows depend on them. Only the API AI/engine/auth
+files are private.
+
+If `.core/` is missing (fresh clone without network), the API will fail
+imports — always run `scripts/vendor-core.sh` first.
+
 ## OpenSpec workflow (canonical for planning)
 
 This repo uses [OpenSpec](https://github.com/Fission-AI/OpenSpec) for

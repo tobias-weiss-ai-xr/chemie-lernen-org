@@ -42,7 +42,9 @@
     "dev": "echo 'Starting API and Hugo dev server... Ensure docker compose is running for the API.' && (hugo server -D --source myhugoapp --disableFastRender &) && sleep 2 && echo 'Hugo dev server started on http://localhost:1313' && wait",
     "dev:api": "docker compose up -d chemie-chat-api && docker compose logs -f chemie-chat-api",
     "lighthouse": "lhci autorun --upload=false --collect.numberOfRuns=3 --collect.settings.chromeFlags=\"--no-sandbox\"",
-    "audit:mobile": "node scripts/mobile-ux-audit.js"
+    "audit:mobile": "node scripts/mobile-ux-audit.js",
+    "vendor-core": "bash scripts/vendor-core.sh",
+    "pretest": "bash scripts/vendor-core.sh"
   },
   "lint-staged": {
     "*.js": [

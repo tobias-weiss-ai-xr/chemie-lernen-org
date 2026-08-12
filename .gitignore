@@ -54,3 +54,21 @@ myhugoapp/public/
 
 # dedicated graph backup git repo (own remote)
 graph-backup-repo/
+
+# Vendored proprietary core (private chemie-core repo — see scripts/vendor-core.sh)
+.core/
+api/prompts/
+api/services/auto-grader.js
+api/services/exercise-generator.js
+api/services/feedback-engine.js
+api/services/rag.js
+api/services/badges.js
+api/learning-engine.js
+api/collab-engine.js
+api/assessment-store.js
+api/auth.js
+api/auth-db.js
+api/session-store.js
+api/embeddings.js
+api/_rag-helpers.cjs
+api/calc-rag-index.json

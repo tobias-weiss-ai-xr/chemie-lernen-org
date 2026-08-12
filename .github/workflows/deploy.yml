@@ -19,6 +19,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Vendor proprietary core (private chemie-core repo)
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.CORE_DEPLOY_KEY }}" > ~/.ssh/chemie_core_deploy
+          chmod 600 ~/.ssh/chemie_core_deploy
+          scripts/vendor-core.sh
+
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
@@ -46,6 +53,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+
+      - name: Vendor proprietary core (private chemie-core repo)
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.CORE_DEPLOY_KEY }}" > ~/.ssh/chemie_core_deploy
+          chmod 600 ~/.ssh/chemie_core_deploy
+          scripts/vendor-core.sh
 
       - name: Export KG data from Neo4j
         run: NODE_PATH=api/node_modules node scripts/export-kg-data.mjs || echo '[CI] Neo4j export skipped (non-fatal)'

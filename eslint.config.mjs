@@ -7,6 +7,8 @@ export default [
   {
     ignores: [
       'node_modules/**',
+      '.core/**',
+      'graph-backup-repo/**',
       'myhugoapp/public/**',
       'myhugoapp/resources/_gen/**',
       'coverage/**',
