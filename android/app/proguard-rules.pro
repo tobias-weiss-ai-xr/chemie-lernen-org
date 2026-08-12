@@ -9,6 +9,9 @@
 -dontwarn okhttp3.internal.platform.**
 -dontwarn org.conscrypt.**
 -dontwarn org.bouncycastle.**
+# Tink (Jetpack Security → EncryptedSharedPreferences) references errorprone
+# annotations that are compile-time-only and absent from the runtime classpath.
+-dontwarn com.google.errorprone.annotations.**
 
 # kotlinx.serialization
 -keep,includedescriptorclasses class de.chemielernen.app.**$$serializer { *; }

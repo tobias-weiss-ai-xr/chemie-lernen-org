@@ -121,3 +121,28 @@ android/
   generated exercises per topic in Room to avoid repeated LiteLLM calls.
 - The app is a sibling of the web PWA; both share the same backend and
   data (assessments, XP, FSRS cards, learning-path progress).
+
+## Headless emulator smoke test (no KVM available)
+
+This machine's Virtuozzo container blocks `/dev/kvm` at the host device
+filter — even a privileged docker container gets EPERM — so hardware
+acceleration is impossible. The emulator runs in pure software (TCG) mode:
+
+```bash
+# one-time setup (SDK already at /opt/android-sdk)
+sdkmanager "emulator" "system-images;android-30;aosp_atd;x86_64"
+echo no | avdmanager create avd -n cit -k "system-images;android-30;aosp_atd;x86_64" -d pixel_5
+
+# build a debug APK (default API base: http://10.0.2.2:3001 = host localhost)
+./gradlew assembleDebug
+
+# boot + install + launch + dump UI texts (~8-20 min boot under TCG)
+./android/smoke-test-emulator.sh
+```
+
+Verified 2026-08-12: ATD image boots in ~8 min, `system_server` stays up,
+the app installs (push + `pm install -g` — streamed adb install breaks the
+binder pipe under slow TCG; fresh install fixes a stale resolver state) and
+the Compose login screen renders (verified via `uiautomator dump` + tap/type
+interaction). `google_apis` images are too heavy: system_server watchdog-
+crashes repeatedly under TCG.
