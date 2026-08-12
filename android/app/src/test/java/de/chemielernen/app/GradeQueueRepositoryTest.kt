@@ -13,6 +13,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
+import retrofit2.HttpException
 
 class GradeQueueRepositoryTest {
 
@@ -72,6 +73,68 @@ class GradeQueueRepositoryTest {
 
         assertThat(synced).isEqualTo(0)
         coVerify(exactly = 0) { dao.delete(any()) }
+    }
+
+    @Test
+    fun `drain drops 404 rows instead of retrying forever`() = runTest {
+        val pending = listOf(PendingGrade(id = 1, exerciseId = "ex-1", answer = "A"))
+        coEvery { dao.all() } returns pending
+        coEvery { api.grade(any()) } throws HttpException(
+            retrofit2.Response.error<Any>(
+                404,
+                okhttp3.ResponseBody.create(null, "{}"),
+            ),
+        )
+        coEvery { dao.delete(any()) } returns Unit
+        coEvery { dao.clear() } returns Unit
+
+        val repo = GradeQueueRepository(api, dao)
+        val synced = repo.drain()
+
+        // Permanently gone — not counted as synced, but never retried either.
+        assertThat(synced).isEqualTo(0)
+        coVerify(exactly = 1) { dao.delete(1) }
+    }
+
+    @Test
+    fun `drain keeps 5xx rows for retry`() = runTest {
+        val pending = listOf(PendingGrade(id = 1, exerciseId = "ex-1", answer = "A"))
+        coEvery { dao.all() } returns pending
+        coEvery { api.grade(any()) } throws HttpException(
+            retrofit2.Response.error<Any>(
+                500,
+                okhttp3.ResponseBody.create(null, "{}"),
+            ),
+        )
+        coEvery { dao.delete(any()) } returns Unit
+        coEvery { dao.clear() } returns Unit
+
+        val repo = GradeQueueRepository(api, dao)
+        val synced = repo.drain()
+
+        assertThat(synced).isEqualTo(0)
+        coVerify(exactly = 0) { dao.delete(any()) }
+    }
+
+    @Test
+    fun `drain drops rows older than the staleness cap`() = runTest {
+        val stale = System.currentTimeMillis() - 8 * 24 * 60 * 60 * 1000L
+        val pending = listOf(
+            PendingGrade(id = 1, exerciseId = "ex-old", answer = "A", ts = stale),
+            PendingGrade(id = 2, exerciseId = "ex-fresh", answer = "B"),
+        )
+        coEvery { dao.all() } returns pending
+        coEvery { api.grade(any()) } throws RuntimeException("still offline")
+        coEvery { dao.delete(any()) } returns Unit
+        coEvery { dao.clear() } returns Unit
+
+        val repo = GradeQueueRepository(api, dao)
+        val synced = repo.drain()
+
+        assertThat(synced).isEqualTo(0)
+        // Stale row dropped; fresh row kept for a later retry.
+        coVerify(exactly = 1) { dao.delete(1) }
+        coVerify(exactly = 0) { dao.delete(2) }
     }
 }
 

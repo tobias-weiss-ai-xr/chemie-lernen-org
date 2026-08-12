@@ -75,4 +75,66 @@ describe('QuizSystem AI-graded MCQ handling', () => {
       expect(global.window.fetch).not.toHaveBeenCalled();
     });
   });
+
+  describe('QuizGradeQueue.drain', () => {
+    beforeEach(() => {
+      localStorage.clear();
+    });
+
+    function enqueue(queue, exerciseId, answer, ts) {
+      queue.enqueue(exerciseId, answer);
+      const stored = JSON.parse(localStorage.getItem(queue.STORAGE_KEY));
+      if (ts) stored[stored.length - 1].ts = ts;
+      localStorage.setItem(queue.STORAGE_KEY, JSON.stringify(stored));
+    }
+
+    test('drops 404 rows permanently (backend session gone)', () => {
+      jest.useFakeTimers();
+      const queue = new QuizGradeQueue();
+      enqueue(queue, 'ex-gone', 'A');
+      global.window.fetch = jest.fn(() => Promise.resolve({ ok: false, status: 404 }));
+      global.fetch = global.window.fetch;
+
+      queue.drain();
+      jest.runAllTimers();
+
+      expect(global.window.fetch).toHaveBeenCalledTimes(1);
+      expect(JSON.parse(localStorage.getItem(queue.STORAGE_KEY))).toEqual([]);
+      jest.useRealTimers();
+    });
+
+    test('re-queues on network failure instead of losing the grade', async () => {
+      jest.useFakeTimers();
+      const queue = new QuizGradeQueue();
+      enqueue(queue, 'ex-1', 'B');
+      global.window.fetch = jest.fn(() => Promise.reject(new Error('offline')));
+      global.fetch = global.window.fetch;
+
+      queue.drain();
+      // Let the rejection travel through .then → .catch to the requeue handler.
+      await Promise.resolve();
+      await Promise.resolve();
+      await Promise.resolve();
+      jest.runAllTimers();
+
+      const remaining = JSON.parse(localStorage.getItem(queue.STORAGE_KEY));
+      expect(remaining).toHaveLength(1);
+      expect(remaining[0].exerciseId).toBe('ex-1');
+      expect(remaining[0].answer).toBe('B');
+      jest.useRealTimers();
+    });
+
+    test('drops rows older than 7 days without sending', () => {
+      const queue = new QuizGradeQueue();
+      const stale = Date.now() - 8 * 24 * 60 * 60 * 1000;
+      enqueue(queue, 'ex-stale', 'C', stale);
+      global.window.fetch = jest.fn(() => Promise.resolve({ ok: true }));
+      global.fetch = global.window.fetch;
+
+      queue.drain();
+
+      expect(global.window.fetch).not.toHaveBeenCalled();
+      expect(JSON.parse(localStorage.getItem(queue.STORAGE_KEY) || '[]')).toEqual([]);
+    });
+  });
 });

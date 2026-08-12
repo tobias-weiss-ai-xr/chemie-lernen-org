@@ -46,23 +46,52 @@ class QuizGradeQueue {
     if (!queue.length) return;
 
     var self = this;
-    // Take a copy to avoid mutation while sending
-    var toSend = queue.slice();
-    localStorage.removeItem(self.STORAGE_KEY);
+    var now = Date.now();
+    // Terminal rows: the backend prunes sessions after 24h and exercises never
+    // survive restarts, so a 404 can never be retried to success. Rows older
+    // than 7 days are equally unrecoverable. Drop those without sending.
+    var toSend = queue.filter(function (item) {
+      return now - item.ts <= 7 * 24 * 60 * 60 * 1000;
+    });
+    if (!toSend.length) {
+      localStorage.removeItem(self.STORAGE_KEY);
+      return;
+    }
+    // Remove the rows we are about to send. Failures are re-queued below, so a
+    // transient network error never loses a grade (previously the whole queue
+    // was cleared up front and failures were silently dropped).
+    var keep = queue.filter(function (item) {
+      return toSend.indexOf(item) === -1;
+    });
+    localStorage.setItem(self.STORAGE_KEY, JSON.stringify(keep));
+
     // Process one by one to avoid bulk failure
     var next = function () {
       if (!toSend.length) {
         return;
       }
       var item = toSend.shift();
-      try {
-        fetch('/api/exercises/grade', {
-          method: 'POST',
-          credentials: 'same-origin',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ exerciseId: item.exerciseId, answer: item.answer }),
-        }).catch(function () {});
-      } catch (e) {}
+      var requeue = function () {
+        var q = JSON.parse(localStorage.getItem(self.STORAGE_KEY) || '[]');
+        q.push(item);
+        localStorage.setItem(self.STORAGE_KEY, JSON.stringify(q));
+        setTimeout(next, 200);
+      };
+      fetch('/api/exercises/grade', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ exerciseId: item.exerciseId, answer: item.answer }),
+      })
+        .then(function (resp) {
+          // 404 → exercise/session gone server-side; dropping is permanent.
+          if (resp.status === 404) return;
+          // Success → recorded server-side; nothing left to do.
+          if (resp.ok) return;
+          // Other HTTP errors (429, 5xx) are transient → retry on next drain.
+          requeue();
+        })
+        .catch(requeue);
       // Give the network a breath
       setTimeout(next, 200);
     };
