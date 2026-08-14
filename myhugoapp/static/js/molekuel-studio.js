@@ -40,6 +40,18 @@ let errorMessage, welcomeScreen, loadingScreen, controlsInfo, autoRotateCheckbox
 
 // Beispieldaten für Moleküle
 const moleculeData = {
+  Wasserstoff: {
+    formula: 'H₂',
+    wikipedia: 'https://de.wikipedia.org/wiki/Wasserstoff',
+    elements: {
+      H: { radius: 0.3, color: '#FFFFFF' },
+    },
+    atoms: [
+      { id: 'H-1', element: 'H', position: [-0.4, 0.0, 0.0] },
+      { id: 'H-2', element: 'H', position: [0.4, 0.0, 0.0] },
+    ],
+    bonds: [{ atom1: 'H-1', atom2: 'H-2', type: 'single' }],
+  },
   Wasser: {
     formula: 'H₂O',
     wikipedia: 'https://de.wikipedia.org/wiki/Wasser',

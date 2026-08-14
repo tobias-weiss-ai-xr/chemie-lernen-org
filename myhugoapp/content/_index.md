@@ -6,9 +6,9 @@ description: 'Entdecken Sie innovative Chemie-Lernmethoden durch interaktive Pla
 tags: ['startseite', 'chemie', 'rechner']
 ---
 
-## 🧪 Schnellstart — Was möchtest du berechnen?
+## 🧪 Molekülstudio — Moleküle in 3D entdecken
 
-{{< quickstart-calculator >}}
+{{< molecule-studio-widget >}}
 
 ## 📚 Lerninhalte nach Themenbereichen
 
