@@ -66,6 +66,18 @@ const ALL_STATES = [
   'th',
 ];
 
+// ── Bloom taxonomy mapping ────────────────────────────────────────────────
+
+const BLOOM_ORDER = ['remember', 'understand', 'apply', 'analyze', 'evaluate', 'create'];
+
+/** Map a Bloom level string/number to its 1–6 index (null if unknown). */
+function bloomsLevelToIndex(level) {
+  if (typeof level === 'number') return level >= 1 && level <= 6 ? level : null;
+  if (!level) return null;
+  const i = BLOOM_ORDER.indexOf(String(level).toLowerCase());
+  return i >= 0 ? i + 1 : null;
+}
+
 // ── Slugify ─────────────────────────────────────────────────────────────
 
 function slugify(name) {
@@ -177,6 +189,7 @@ function collectImportOps(stateData) {
               type: 'objective',
               slug: loSlug,
               text: loText,
+              bloomsLevel: lo.blooms_level || null,
               parentSlug: subSlug,
             });
           }
@@ -203,6 +216,7 @@ function collectImportOps(stateData) {
               type: 'objective',
               slug: loSlug,
               text: loText,
+              bloomsLevel: lo.blooms_level || null,
               parentSlug: subSlug,
             });
           }
@@ -247,6 +261,7 @@ function collectNestedSubTopics(curriculumSlug, topicName, grade, parentSlug, su
         type: 'objective',
         slug: loSlug,
         text: loText,
+        bloomsLevel: lo.blooms_level || null,
         parentSlug: subSlug,
       });
     }
@@ -320,20 +335,33 @@ async function executeOps(session, ops) {
         }
 
         case 'objective': {
-          await session.run(
-            `MATCH (st:SubTopic {slug: $stSlug})
-             MERGE (lo:LearningObjective {slug: $loSlug})
-             ON CREATE SET lo.text = $text,
-                         lo.objective_id = $loSlug
-             ON MATCH SET lo.text = $text
-             MERGE (st)-[:FULFILLS]->(lo)
-             RETURN lo.slug AS slug`,
-            {
-              stSlug: op.parentSlug,
-              loSlug: op.slug,
-              text: op.text,
-            }
-          );
+          const bloomsLevel = op.bloomsLevel || null;
+          const bloomsIndex = bloomsLevelToIndex(bloomsLevel);
+          const cypher = bloomsLevel != null && bloomsIndex != null
+            ? `MATCH (st:SubTopic {slug: $stSlug})
+               MERGE (lo:LearningObjective {slug: $loSlug})
+               ON CREATE SET lo.text = $text,
+                           lo.objective_id = $loSlug,
+                           lo.blooms_level = $bloomsLevel,
+                           lo.blooms_index = $bloomsIndex
+               ON MATCH SET lo.text = $text,
+                           lo.blooms_level = $bloomsLevel,
+                           lo.blooms_index = $bloomsIndex
+               MERGE (st)-[:FULFILLS]->(lo)
+               RETURN lo.slug AS slug`
+            : `MATCH (st:SubTopic {slug: $stSlug})
+               MERGE (lo:LearningObjective {slug: $loSlug})
+               ON CREATE SET lo.text = $text,
+                           lo.objective_id = $loSlug
+               ON MATCH SET lo.text = $text
+               MERGE (st)-[:FULFILLS]->(lo)
+               RETURN lo.slug AS slug`;
+          const params = { stSlug: op.parentSlug, loSlug: op.slug, text: op.text };
+          if (bloomsLevel != null && bloomsIndex != null) {
+            params.bloomsLevel = bloomsLevel;
+            params.bloomsIndex = bloomsIndex;
+          }
+          await session.run(cypher, params);
           counts.objectives++;
           break;
         }

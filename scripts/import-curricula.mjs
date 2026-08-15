@@ -44,6 +44,18 @@ const SINGLE_STATE = stateArg ? stateArg.slice('--state='.length).toUpperCase() 
 const fileArg = args.find((a) => a.startsWith('--file='));
 const SINGLE_FILE = fileArg ? fileArg.slice('--file='.length) : null;
 
+// ── Bloom taxonomy mapping ────────────────────────────────────────────────
+
+const BLOOM_ORDER = ['remember', 'understand', 'apply', 'analyze', 'evaluate', 'create'];
+
+/** Map a Bloom level string/number to its 1–6 index (null if unknown). */
+function bloomsLevelToIndex(level) {
+  if (typeof level === 'number') return level >= 1 && level <= 6 ? level : null;
+  if (!level) return null;
+  const i = BLOOM_ORDER.indexOf(String(level).toLowerCase());
+  return i >= 0 ? i + 1 : null;
+}
+
 // ── Slugify ───────────────────────────────────────────────────────────
 
 function slugify(name) {
@@ -161,16 +173,33 @@ async function importCurricula(session, curricula) {
               const objText = obj.text || '';
               if (!objText) continue;
               const objSlug = `${subSlug}-lo-${slugify(objText).slice(0, 80)}`;
-              await session.run(
-                `MATCH (st:SubTopic {slug: $stSlug})
-                 MERGE (lo:LearningObjective {slug: $loSlug})
-                 ON CREATE SET lo.text = $text,
-                             lo.objective_id = $loSlug
-                 ON MATCH SET lo.text = $text
-                 MERGE (st)-[:FULFILLS]->(lo)
-                 RETURN lo.slug AS slug`,
-                { stSlug: subSlug, loSlug: objSlug, text: objText }
-              );
+              const bloomsLevel = obj.blooms_level || null;
+              const bloomsIndex = bloomsLevelToIndex(bloomsLevel);
+              const loCypher = bloomsLevel != null && bloomsIndex != null
+                ? `MATCH (st:SubTopic {slug: $stSlug})
+                   MERGE (lo:LearningObjective {slug: $loSlug})
+                   ON CREATE SET lo.text = $text,
+                               lo.objective_id = $loSlug,
+                               lo.blooms_level = $bloomsLevel,
+                               lo.blooms_index = $bloomsIndex
+                   ON MATCH SET lo.text = $text,
+                               lo.blooms_level = $bloomsLevel,
+                               lo.blooms_index = $bloomsIndex
+                   MERGE (st)-[:FULFILLS]->(lo)
+                   RETURN lo.slug AS slug`
+                : `MATCH (st:SubTopic {slug: $stSlug})
+                   MERGE (lo:LearningObjective {slug: $loSlug})
+                   ON CREATE SET lo.text = $text,
+                               lo.objective_id = $loSlug
+                   ON MATCH SET lo.text = $text
+                   MERGE (st)-[:FULFILLS]->(lo)
+                   RETURN lo.slug AS slug`;
+              const loParams = { stSlug: subSlug, loSlug: objSlug, text: objText };
+              if (bloomsLevel != null && bloomsIndex != null) {
+                loParams.bloomsLevel = bloomsLevel;
+                loParams.bloomsIndex = bloomsIndex;
+              }
+              await session.run(loCypher, loParams);
               counts.objectives++;
             }
           };
@@ -237,16 +266,33 @@ async function importSubTopics(session, curriculumSlug, topicName, gradeLabel, s
       const objText = obj.text || '';
       if (!objText) continue;
       const objSlug = `${subSlug}-lo-${slugify(objText).slice(0, 80)}`;
-      await session.run(
-        `MATCH (st:SubTopic {slug: $stSlug})
-         MERGE (lo:LearningObjective {slug: $loSlug})
-         ON CREATE SET lo.text = $text,
-                     lo.objective_id = $loSlug
-         ON MATCH SET lo.text = $text
-         MERGE (st)-[:FULFILLS]->(lo)
-         RETURN lo.slug AS slug`,
-        { stSlug: subSlug, loSlug: objSlug, text: objText }
-      );
+      const bloomsLevel = obj.blooms_level || null;
+      const bloomsIndex = bloomsLevelToIndex(bloomsLevel);
+      const loCypher = bloomsLevel != null && bloomsIndex != null
+        ? `MATCH (st:SubTopic {slug: $stSlug})
+           MERGE (lo:LearningObjective {slug: $loSlug})
+           ON CREATE SET lo.text = $text,
+                       lo.objective_id = $loSlug,
+                       lo.blooms_level = $bloomsLevel,
+                       lo.blooms_index = $bloomsIndex
+           ON MATCH SET lo.text = $text,
+                       lo.blooms_level = $bloomsLevel,
+                       lo.blooms_index = $bloomsIndex
+           MERGE (st)-[:FULFILLS]->(lo)
+           RETURN lo.slug AS slug`
+        : `MATCH (st:SubTopic {slug: $stSlug})
+           MERGE (lo:LearningObjective {slug: $loSlug})
+           ON CREATE SET lo.text = $text,
+                       lo.objective_id = $loSlug
+           ON MATCH SET lo.text = $text
+           MERGE (st)-[:FULFILLS]->(lo)
+           RETURN lo.slug AS slug`;
+      const loParams = { stSlug: subSlug, loSlug: objSlug, text: objText };
+      if (bloomsLevel != null && bloomsIndex != null) {
+        loParams.bloomsLevel = bloomsLevel;
+        loParams.bloomsIndex = bloomsIndex;
+      }
+      await session.run(loCypher, loParams);
       counts.objectives++;
     }
 
