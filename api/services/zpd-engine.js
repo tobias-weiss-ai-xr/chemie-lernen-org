@@ -52,9 +52,13 @@ export async function nextObjectiveInZPD(userId, pathSlug = null, thresholds = Z
     const result = await session.run(
       `MATCH (lo:LearningObjective)
        ${subsetMatch('lo')}
-       AND ($pathSlug IS NULL OR EXISTS {
-         MATCH (c:Curriculum {slug: $pathSlug})-[:HAS_TOPIC]->(:Topic)-[:HAS_SUBTOPIC]->(:SubTopic)-[:FULFILLS]->(lo)
-       })
+       AND ($pathSlug IS NULL
+            OR EXISTS {
+              MATCH (c:Curriculum {slug: $pathSlug})-[:HAS_SUBTOPIC]->(:SubTopic)-[:FULFILLS]->(lo)
+            }
+            OR EXISTS {
+              MATCH (c:Curriculum {slug: $pathSlug})-[:HAS_TOPIC]->(:Topic)-[:HAS_SUBTOPIC]->(:SubTopic)-[:FULFILLS]->(lo)
+            })
        OPTIONAL MATCH (lo)<-[:PREREQUISITE]-(pre:LearningObjective)
        OPTIONAL MATCH (s:ObjectiveState)-[:FOR]->(pre)
          WHERE s.userId = $userId
