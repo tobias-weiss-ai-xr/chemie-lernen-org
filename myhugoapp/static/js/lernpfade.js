@@ -243,7 +243,7 @@
     var html = '<ul class="path-tree-list">';
     for (var i = 0; i < paths.length; i++) {
       var p = paths[i];
-      var pct = p.progress || 0;
+      var pct = p.progressPercent || p.progress || 0;
       var statusClass;
       if (pct >= 100) {
         statusClass = 'path-completed';
@@ -252,17 +252,21 @@
       } else {
         statusClass = 'path-locked';
       }
-      var expanded = pathTreeExpanded[p.id] ? ' expanded' : '';
+      // API paths use slug (list endpoint returns {slug, progressPercent,…});
+      // the old code read p.id/p.progress — always undefined → every path
+      // rendered with data-path-id="undefined", 0% and a dead toggle.
+      var pathId = p.slug || p.id || '';
+      var expanded = pathTreeExpanded[pathId] ? ' expanded' : '';
 
       html +=
         '<li class="path-tree-item ' +
         statusClass +
         expanded +
         '" data-path-id="' +
-        escHtml(p.id) +
+        escHtml(pathId) +
         '">';
       html +=
-        '<div class="path-tree-header" onclick="lernpfadeTogglePath(\'' + escHtml(p.id) + '\')">';
+        '<div class="path-tree-header" onclick="lernpfadeTogglePath(\'' + escHtml(pathId) + '\')">';
       html += '<span class="path-toggle-icon"><i class="fa fa-chevron-right"></i></span>';
       html += '<span class="path-title">' + escHtml(p.title) + '</span>';
       html += '<span class="path-pct">' + pct + '%</span>';
@@ -340,39 +344,89 @@
     if (item) {
       item.classList.toggle('expanded');
     }
-    /* Reload from API to get fresh topic data if first expansion */
     if (pathTreeExpanded[pathId]) {
-      var hasTopics = false;
+      var p = null;
       for (var i = 0; i < paths.length; i++) {
-        if (paths[i].id === pathId && paths[i].topics && paths[i].topics.length > 0) {
-          hasTopics = true;
+        if ((paths[i].slug || paths[i].id) === pathId) {
+          p = paths[i];
           break;
         }
       }
-      if (!hasTopics) {
+      if (!p) return;
+      if (!p.topics || p.topics.length === 0) {
+        /* First expansion → fetch the detail tree (topics → subtopics → objectives).
+           The detail endpoint returns the tree directly — not {path: …} — and
+           the list endpoint returns no topics at all, so the old code always
+           hit /api/learning-paths/undefined → 404. */
+        var loading = document.createElement('div');
+        loading.className = 'path-detail-loading';
+        loading.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Lade Themen…';
+        item.appendChild(loading);
         apiFetch('/learning-paths/' + encodeURIComponent(pathId), {
           signal: AbortSignal.timeout(8000),
         })
           .then(function (data) {
-            if (data && data.path) {
-              for (var i = 0; i < paths.length; i++) {
-                if (paths[i].id === pathId) {
-                  paths[i].topics = data.path.topics || [];
-                  break;
-                }
-              }
-              renderPathTree(paths);
-              /* Re-expand the toggled path */
-              var item = document.querySelector('.path-tree-item[data-path-id="' + pathId + '"]');
-              if (item) item.classList.add('expanded');
-            }
+            p.topics = (data && data.topics) || [];
+            renderPathTopics(item, p.topics);
           })
           .catch(function () {
-            console.warn('[lernpfade] Topic detail fetch failed');
+            var ld = item.querySelector('.path-detail-loading');
+            if (ld) ld.remove();
+            item.classList.remove('expanded');
+            console.warn('[lernpfade] Topic detail fetch failed', pathId);
           });
+      } else {
+        renderPathTopics(item, p.topics);
       }
     }
   };
+
+  /* ── Render topics/subtopics/objectives of a path tree item ── */
+  function renderPathTopics(item, topics) {
+    var old = item.querySelector('.path-detail-loading');
+    if (old) old.remove();
+    var oldUl = item.querySelector('.path-topics');
+    if (oldUl) oldUl.remove();
+    if (!topics || topics.length === 0) return;
+
+    var html = '<ul class="path-topics">';
+    for (var i = 0; i < topics.length; i++) {
+      var t = topics[i];
+      var subs = t.subtopics || [];
+      html += '<li class="path-topic-item" data-topic-id="' + escHtml(t.slug || i) + '">';
+      html +=
+        '<div class="topic-header"><span class="topic-title">' +
+        escHtml(t.title || '') +
+        '</span></div>';
+      if (subs.length > 0) {
+        html += '<ul class="topic-subtopics">';
+        for (var j = 0; j < subs.length; j++) {
+          var st = subs[j];
+          var objs = st.objectives || [];
+          html += '<li class="topic-subtopic-item">';
+          html += '<span class="subtopic-title">' + escHtml(st.title || '') + '</span>';
+          if (objs.length > 0) {
+            html += '<ul class="topic-objectives">';
+            for (var k = 0; k < objs.length; k++) {
+              var o = objs[k];
+              var done = !!o.completed;
+              html +=
+                '<li class="objective-item ' + (done ? 'obj-completed' : 'obj-pending') + '">';
+              html += '<i class="fa ' + (done ? 'fa-check-circle' : 'fa-circle-o') + '"></i> ';
+              html += '<span>' + escHtml(o.text || o.title || o.id || '') + '</span>';
+              html += '</li>';
+            }
+            html += '</ul>';
+          }
+          html += '</li>';
+        }
+        html += '</ul>';
+      }
+      html += '</li>';
+    }
+    html += '</ul>';
+    item.insertAdjacentHTML('beforeend', html);
+  }
 
   /* ── Toggle topic expand ── */
   window.lernpfadeToggleTopic = function (pathId, topicId) {
