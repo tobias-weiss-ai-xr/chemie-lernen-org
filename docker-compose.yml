@@ -71,9 +71,13 @@ services:
       - ./myhugoapp/data/learning-paths.json:/app/data/learning-paths.json:ro
       # users.json must survive container recreates (every deploy) — the
       # image contains only a seed copy, and the container filesystem is
-      # ephemeral. Bind-mount the host file (untracked, uid 1000 matches the
-      # node container user) so registrations persist across deploys.
-      - ./api/data/users.json:/app/data/users.json
+      # ephemeral. Mount the whole api/data DIRECTORY (not the file): auth-db
+      # saves atomically via rename(users.json.tmp -> users.json), which
+      # fails with EBUSY on a single-file bind mount. users.json is untracked
+      # (gitignored) so deploys never clobber registrations; the other
+      # tracked data files (elements.json, kg_fallback.json, quiz-questions.json)
+      # keep syncing via the deploy's git reset. Host uid 1000 == node user.
+      - ./api/data:/app/data
     mem_limit: 256M
     deploy:
       resources:
@@ -95,6 +99,10 @@ services:
       - NEO4J_PASSWORD=${NEO4J_PASSWORD}
       - NEO4J_DATABASE=chemie
       - JWT_SECRET=${JWT_SECRET}
+      # Persist chat sessions inside the mounted api/data dir (default
+      # /data/chemie-sessions.json is root-owned and unwritable by the node
+      # user — sessions silently degraded to in-memory, lost on restart).
+      - SESSION_DATA_PATH=/app/data/chemie-sessions.json
       # SMTP — password-reset emails (mail.tobias-weiss.org):
       - SMTP_HOST=${SMTP_HOST}
       - SMTP_PORT=${SMTP_PORT}
