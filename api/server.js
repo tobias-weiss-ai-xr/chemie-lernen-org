@@ -38,6 +38,7 @@ import modulhandbuchRouter from './routes/modulhandbuch.js';
 import quizRouter from './routes/quiz.js';
 import exercisesRouter from './routes/exercises.js';
 import learningPathsRouter from './routes/learning-paths.js';
+import zpdRouter from './routes/zpd.js';
 import gamificationRouter from './routes/gamification.js';
 import collabRouter from './routes/collab.js';
 import adaptiveRouter from './routes/adaptive.js';
@@ -189,6 +190,7 @@ app.use(modulhandbuchRouter); // modulhandbuch, studienvergleich
 app.use(quizRouter); // quizzes, quiz-results, fsrs
 app.use(exercisesRouter); // exercise generation & answering
 app.use(learningPathsRouter); // learning paths & certificates
+app.use(zpdRouter); // ZPD learner-state + next-in-ZPD
 app.use(gamificationRouter); // check-in, xp, achievements, badges, profile
 app.use(collabRouter); // collaboration sessions
 app.use(adaptiveRouter); // adaptive difficulty recommendations

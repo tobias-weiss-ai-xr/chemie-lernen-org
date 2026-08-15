@@ -34,14 +34,16 @@ is _blocked_; everything else fitting the band is _in ZPD_.
 SET lo.blooms_index = 1..6          // derived from blooms_level
 
 // learner state (chemie subset only)
-(:User)-[:HAS_OBJECTIVE_STATE]->
-  (:ObjectiveState {
-     mastery: double,                // 0..1
-     bloomsMaxReached: int,          // highest Bloom index demonstrated
-     lastSeen: datetime,
-     source: string,                 // 'quiz' | 'exercise' | 'fsrs' | 'auto-grader'
-     updatedAt: datetime
-  })-[:FOR]->(:LearningObjective)
+// NOTE: users live in users.json, NOT as :User nodes in the KG, so the
+// record carries a userId property and links directly to the objective.
+(:ObjectiveState {
+   userId: string,            // = req.user.id
+   mastery: double,           // 0..1
+   bloomsMaxReached: int,     // highest Bloom index demonstrated
+   lastSeen: datetime,
+   source: string,
+   updatedAt: datetime
+})-[:FOR]->(:LearningObjective)
 ```
 
 `mastery` is aggregated by the R1 deep dive; this change only _reads/writes_

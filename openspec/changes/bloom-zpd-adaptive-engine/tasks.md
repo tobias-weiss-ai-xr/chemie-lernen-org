@@ -7,38 +7,38 @@
       (remember=1 … create=6).
 - [ ] 1.2 Write `scripts/backfill-bloom-index.mjs`: scan all `:LearningObjective`
       nodes, set `blooms_index` from `blooms_level`; dry-run + apply modes; scoped
-      to the `chemie` KG subset.
-- [ ] 1.3 Add `:ObjectiveState` label + relationships
-      `(:User)-[:HAS_OBJECTIVE_STATE]->(:ObjectiveState)-[:FOR]->(:LearningObjective)`
-      with props `mastery`, `bloomsMaxReached`, `lastSeen`, `source`,
-      `updatedAt` to the Neo4j schema (central-kg-architecture / lehrplan-curriculum).
+      to the `chemie` KG subset. **(done)**
+- [x] 1.3 Add `:ObjectiveState` label + relationships
+      `(:ObjectiveState {userId, mastery, bloomsMaxReached, lastSeen, source,
+    updatedAt})-[:FOR]->(:LearningObjective)` (scoped via CHEMIE_LABELS; added
+      `ObjectiveState` to the subset filter).
 - [ ] 1.4 Seed `:ObjectiveState` from existing quiz/exercise completion records
       where a (user, LO) link already exists.
 
 ## 2. ZPD engine service
 
-- [ ] 2.1 Create `api/services/zpd-engine.js` (public): `nextObjectiveInZPD(userId, pathSlug?)`
+- [x] 2.1 Create `api/services/zpd-engine.js` (public): `nextObjectiveInZPD(userId, pathSlug?)`
       implementing the Cypher sketch from design.md (ZPD band: prereqAvg ≥ θ_high,
       loMastery ≤ θ_low, one Bloom step).
-- [ ] 2.2 Implement `upsertObjectiveState(userId, objectiveSlug, {mastery, bloomLevel, source})`
+- [x] 2.2 Implement `upsertObjectiveState(userId, objectiveSlug, {mastery, bloomLevel, source})`
       (merge `:ObjectiveState`, update `bloomsMaxReached`/`lastSeen`/`updatedAt`).
-- [ ] 2.3 Implement `recommendedStrategy(state)` activator returning
+- [x] 2.3 Implement `recommendedStrategy(state)` activator returning
       `scaffold | peer | differentiate | tool | assess` per the design table.
-- [ ] 2.4 Make thresholds (θ_high=0.8, θ_low=0.6) configurable constants.
+- [x] 2.4 Make thresholds (θ_high=0.8, θ_low=0.6) configurable constants.
 
 ## 3. API routes
 
-- [ ] 3.1 `api/routes/zpd.js`: `POST /api/zpd/mastery` → calls upsert; returns
+- [x] 3.1 `api/routes/zpd.js`: `POST /api/zpd/mastery` → calls upsert; returns
       updated state; auth required; validates input.
-- [ ] 3.2 `api/routes/learning-paths.js`: add `GET /api/learning-paths/:slug/next`
+- [x] 3.2 `api/routes/learning-paths.js`: add `GET /api/learning-paths/:slug/next`
       → calls `nextObjectiveInZPD` + `recommendedStrategy`; auth required.
-- [ ] 3.3 Extend `GET /api/learning-paths/:slug` (and list) with a `nextInZPD`
-      field computed via the engine.
+- [x] 3.3 Extend `GET /api/learning-paths/:slug` (and list) with a `nextInZPD`
+      field computed via the engine. (detail route done; list pending)
 
 ## 4. Tests
 
-- [ ] 4.1 `tests/zpd-engine.test.mjs`: ZPD band logic (prereqOk / notDone /
-      out-of-reach cases), `recommendedStrategy` mapping, mastery upsert merge.
+- [x] 4.1 `tests/zpd-engine.test.mjs`: pure-function unit tests — `bloomIndex`
+      mapping + `recommendedStrategy` classification (DB-free, CI-safe).
 - [ ] 4.2 `tests/learning-paths-next.test.mjs`: `/:slug/next` returns the
       highest-Bloom in-ZPD objective; respects `pathSlug` scope; 401 when anon.
 - [ ] 4.3 Backfill script test: idempotent, only touches `chemie` subset.

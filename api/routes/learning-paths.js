@@ -20,6 +20,7 @@ import { getGamification } from '../auth-db.js';
 import * as learningEngine from '../learning-engine.js';
 import { loadLearningPathsJson } from '../services/content.js';
 import { sessionStore } from '../services/session.js';
+import { nextObjectiveInZPD, recommendedStrategy } from '../services/zpd-engine.js';
 
 const router = Router();
 const logger = pino({
@@ -297,6 +298,15 @@ router.get('/api/learning-paths/:slug', async (req, res) => {
       await session.close();
     }
 
+    if (req.user?.id) {
+      try {
+        const next = await nextObjectiveInZPD(req.user.id, req.params.slug);
+        tree.nextInZPD = next ? { next, recommendedStrategy: recommendedStrategy(next) } : null;
+      } catch (zpdErr) {
+        logger.warn({ err: zpdErr }, '[learning-paths] nextInZPD failed');
+      }
+    }
+
     res.json(tree);
   } catch (err) {
     logger.error(
@@ -304,6 +314,25 @@ router.get('/api/learning-paths/:slug', async (req, res) => {
       '[learning-paths] detail error'
     );
     res.status(500).json({ error: 'Lernpfad-Details konnten nicht geladen werden' });
+  }
+});
+
+/**
+ * GET /api/learning-paths/:slug/next
+ */
+router.get('/api/learning-paths/:slug/next', async (req, res) => {
+  if (!req.user?.id) {
+    return res.status(401).json({ error: 'Authentication required' });
+  }
+  try {
+    const next = await nextObjectiveInZPD(req.user.id, req.params.slug);
+    if (!next) {
+      return res.json({ inZPD: false, next: null, recommendedStrategy: null });
+    }
+    return res.json({ inZPD: true, next, recommendedStrategy: recommendedStrategy(next) });
+  } catch (err) {
+    logger.error({ err }, '[learning-paths] next error');
+    return res.status(500).json({ error: 'nextInZPD failed' });
   }
 });
 

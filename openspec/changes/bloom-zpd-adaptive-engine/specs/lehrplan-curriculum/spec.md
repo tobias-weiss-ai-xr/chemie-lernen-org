@@ -26,17 +26,19 @@ numeric `blooms_index` (1–6) for ordering.
 ### Requirement: REQ-LP-STATE-1 — Learner objective state
 
 The schema SHALL support a per-(user, objective) mastery record used for
-ZPD-aware routing:
+ZPD-aware routing. Users are authenticated via `users.json` and are **not**
+modelled as `:User` nodes in the knowledge graph, so the record carries a
+`userId` property and links directly to the objective:
 
 ```cypher
-(:User)-[:HAS_OBJECTIVE_STATE]->
-  (:ObjectiveState {
-     mastery: double,          // 0..1
-     bloomsMaxReached: int,    // highest Bloom index demonstrated
-     lastSeen: datetime,
-     source: string,           // 'quiz' | 'exercise' | 'fsrs' | 'auto-grader'
-     updatedAt: datetime
-  })-[:FOR]->(:LearningObjective)
+(:ObjectiveState {
+   userId: string,           // matches req.user.id from auth
+   mastery: double,          // 0..1
+   bloomsMaxReached: int,    // highest Bloom index demonstrated
+   lastSeen: datetime,
+   source: string,           // 'quiz' | 'exercise' | 'fsrs' | 'auto-grader'
+   updatedAt: datetime
+})-[:FOR]->(:LearningObjective)
 ```
 
 - `ObjectiveState` nodes SHALL be scoped to the `chemie` KG subset.
@@ -46,5 +48,5 @@ ZPD-aware routing:
 #### Scenario: ObjectiveState links user to objective
 
 - **WHEN** a user's mastery for an objective is recorded
-- **THEN** a `(:User)-[:HAS_OBJECTIVE_STATE]->(:ObjectiveState)-[:FOR]->(:LearningObjective)`
-  path exists with the recorded `mastery` and `source`
+- **THEN** an `(:ObjectiveState {userId})` node exists with that `userId`
+- **AND** it connects via `-[:FOR]->` to the `(:LearningObjective)`
