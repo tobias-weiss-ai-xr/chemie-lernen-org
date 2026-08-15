@@ -26,7 +26,10 @@ Last updated: 2026-08-10
 
 ## Active changes (`changes/`)
 
-_No active changes (learning-research-gaps shipped)._
+| Change                    | Status      |
+| ------------------------- | ----------- |
+| bloom-zpd-adaptive-engine | proposed    |
+| curricula-graph-viz       | in progress |
 
 ## Archived changes (`changes/archive/`)
 
