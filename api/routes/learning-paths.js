@@ -320,10 +320,7 @@ router.get('/api/learning-paths/:slug', async (req, res) => {
 /**
  * GET /api/learning-paths/:slug/next
  */
-router.get('/api/learning-paths/:slug/next', async (req, res) => {
-  if (!req.user?.id) {
-    return res.status(401).json({ error: 'Authentication required' });
-  }
+router.get('/api/learning-paths/:slug/next', requireAuth, async (req, res) => {
   try {
     const next = await nextObjectiveInZPD(req.user.id, req.params.slug);
     if (!next) {
