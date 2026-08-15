@@ -19,7 +19,7 @@
 
 import neo4j from 'neo4j-driver';
 import { getNeo4jDriver, NEO4J_DATABASE, toNumberSafe } from './neo4j.js';
-import { subsetMatch } from '../../scripts/_neo4j-subset-filter.mjs';
+import { subsetMatch } from '../scripts/_neo4j-subset-filter.mjs';
 
 export const ZPD_THRESHOLDS = { thetaHigh: 0.8, thetaLow: 0.6 };
 
