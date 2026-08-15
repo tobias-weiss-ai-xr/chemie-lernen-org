@@ -11,7 +11,9 @@ import {
   nextObjectiveInZPD,
   recommendedStrategy,
   upsertObjectiveState,
+  ZPD_THRESHOLDS,
 } from '../services/zpd-engine.js';
+import { completeObjective } from '../auth-db.js';
 
 const router = Router();
 
@@ -55,6 +57,14 @@ router.post('/api/zpd/mastery', requireAuth, async (req, res) => {
     });
     if (!state) {
       return res.status(404).json({ error: 'Learning objective not found' });
+    }
+    // Mastered (>= thetaHigh) → record persistent completion in users.json.
+    // This is the missing writer for the learning-path progress feature
+    // (completedObjectives feeds the list/detail progressPercent, the
+    // objective checkmarks and the +50 XP reward; completeObjective had no
+    // callers since the Sprint-14 writer was dropped as dead code).
+    if (m >= ZPD_THRESHOLDS.thetaHigh) {
+      completeObjective(req.user.id, objectiveSlug);
     }
     return res.json({ ok: true, data: state });
   } catch (err) {
