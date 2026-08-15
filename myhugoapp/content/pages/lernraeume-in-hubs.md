@@ -19,6 +19,10 @@ diskutieren können.
 
 [hubs]: https://hubs.chemie-lernen.org/
 
+![Gemeinsamer 3D-Lernraum in Mozilla Hubs: Avatare um ein Molekülmodell, Periodensystem-Wand, Audio- und Chat-Chips](/img/hubs-lernraum-cover.svg){width="100%"}
+
+> **Direkt loslegen:** [Raum erstellen auf hubs.chemie-lernen.org](https://hubs.chemie-lernen.org/) — kein Account, kein Download, läuft direkt im Browser.
+
 ## Was sind Lernräume in Hubs?
 
 [Mozilla Hubs][hubs] ist eine offene, browserbasierte Plattform für soziale

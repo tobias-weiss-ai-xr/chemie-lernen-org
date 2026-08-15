@@ -1,0 +1,162 @@
+{{/* shortcode: hubs-promo-widget — Hubs Lernräume Promo-Karte mit Cover-Art */}}
+<div class="hubs-promo-card">
+  <div class="hubs-promo-cover">
+    <img
+      src="{{ "/img/hubs-lernraum-cover.svg" | relURL }}"
+      alt="Artistische Darstellung eines gemeinsamen 3D-Lernraums in Mozilla Hubs: Avatare um ein Molekülmodell, Periodensystem-Wand, Sprach- und Chat-Chips"
+      width="800"
+      height="600"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="hubs-promo-content">
+    <span class="hubs-promo-badge">🆕 Beta-Betrieb</span>
+    <h3 class="hubs-promo-title">Gemeinsam in 3D lernen — im eigenen Lernraum</h3>
+    <p class="hubs-promo-text">
+      Betreten Sie mit Ihrer Klasse einen gemeinsamen virtuellen Raum auf
+      <strong>hubs.chemie-lernen.org</strong>: Molekülmodelle gemeinsam
+      betrachten, das Periodensystem als Wand erkunden oder einen
+      Versuchsaufbau durchgehen — direkt im Browser, ohne Account.
+    </p>
+    <ul class="hubs-promo-usps">
+      <li>🚪 Kein Account nötig</li>
+      <li>🌍 Läuft direkt im Browser</li>
+      <li>🇩🇪 Selbst gehostet · DSGVO-konform</li>
+    </ul>
+    <div class="hubs-promo-actions">
+      <a class="hubs-btn hubs-btn-primary" href="https://hubs.chemie-lernen.org/" target="_blank" rel="noopener" aria-label="Lernraum auf hubs.chemie-lernen.org erstellen (öffnet in neuem Tab)">
+        🚀 Raum erstellen
+      </a>
+      <a class="hubs-btn hubs-btn-secondary" href="/pages/lernraeume-in-hubs/" aria-label="Mehr über Lernräume in Mozilla Hubs erfahren">
+        Mehr über Lernräume →
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+.hubs-promo-card {
+  display: flex;
+  margin: 20px 0 40px;
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-color, #dee2e6);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.hubs-promo-cover {
+  flex: 0 0 42%;
+  min-width: 0;
+  background: #0b1220;
+}
+.hubs-promo-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hubs-promo-content {
+  flex: 1;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hubs-promo-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 4px 12px;
+  margin-bottom: 12px;
+  border-radius: 999px;
+  background: rgba(13, 148, 136, 0.14);
+  border: 1px solid rgba(13, 148, 136, 0.35);
+  color: var(--teal-strong, #0d9488);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.hubs-promo-title {
+  margin: 0 0 10px;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--text-primary, #2c3e50);
+}
+.hubs-promo-text {
+  margin: 0 0 14px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--text-primary, #2c3e50);
+}
+.hubs-promo-usps {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.hubs-promo-usps li {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--bg-primary, #f8f9fa);
+  border: 1px solid var(--border-color, #dee2e6);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary, #2c3e50);
+}
+.hubs-promo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.hubs-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 20px;
+  border-radius: 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+.hubs-btn-primary {
+  background: linear-gradient(135deg, #0d9488, #0f766e);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(13, 148, 136, 0.35);
+}
+.hubs-btn-primary:hover,
+.hubs-btn-primary:focus {
+  color: #ffffff;
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+.hubs-btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border-color, #dee2e6);
+  color: var(--text-primary, #2c3e50);
+}
+.hubs-btn-secondary:hover,
+.hubs-btn-secondary:focus {
+  color: var(--text-primary, #2c3e50);
+  border-color: var(--accent-color, #007bff);
+  background: rgba(0, 123, 255, 0.06);
+}
+
+@media (max-width: 768px) {
+  .hubs-promo-card {
+    flex-direction: column;
+  }
+  .hubs-promo-cover {
+    flex-basis: auto;
+  }
+  .hubs-promo-cover img {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+  .hubs-promo-content {
+    padding: 20px;
+  }
+}
+</style>

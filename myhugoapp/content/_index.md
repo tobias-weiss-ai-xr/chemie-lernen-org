@@ -10,6 +10,10 @@ tags: ['startseite', 'chemie', 'rechner']
 
 {{< molecule-studio-widget >}}
 
+## 🌐 Lernräume in Mozilla Hubs — gemeinsam in 3D lernen
+
+{{< hubs-promo-widget >}}
+
 ## 📚 Lerninhalte nach Themenbereichen
 
 Durchstöbern Sie unsere Chemie-Themen, organisiert nach Schwierigkeitsgrad:
