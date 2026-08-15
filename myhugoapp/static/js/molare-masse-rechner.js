@@ -103,6 +103,14 @@ function calculateMolarMass() {
   }
 
   try {
+    // Reject malformed input (leading coefficients like 2H2O, stray chars)
+    // instead of silently producing a wrong molar mass.
+    if (!window.ChemistryUtils.isValidFormula(input)) {
+      showError(
+        'Ungültiges Formelformat. Bitte eine chemische Formel eingeben, z.B. H2O oder CuSO4·5H2O.'
+      );
+      return;
+    }
     // Parse the formula using shared utility with element validation
     const composition = window.ChemistryUtils.parseFormula(input, {
       validElements: ATOMIC_MASSES,

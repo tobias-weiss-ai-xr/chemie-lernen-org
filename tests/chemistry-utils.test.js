@@ -113,6 +113,49 @@ describe('Chemistry Utils - parseFormula', () => {
     const validElements = { H: true, O: true };
     expect(() => parseFormula('H2X', { validElements })).toThrow('Unbekanntes Element');
   });
+
+  test('should parse hydrate notation with middle dot (CuSO4·5H2O)', () => {
+    const result = parseFormula('CuSO4·5H2O');
+    expect(result.Cu).toBe(1);
+    expect(result.S).toBe(1);
+    expect(result.O).toBe(9);
+    expect(result.H).toBe(10);
+  });
+
+  test('should parse hydrate notation with dot, asterisk and times (CuSO4.5H2O / CuSO4*5H2O / CuSO4×5H2O)', () => {
+    for (const f of ['CuSO4.5H2O', 'CuSO4*5H2O', 'CuSO4×5H2O']) {
+      const result = parseFormula(f);
+      expect(result.Cu).toBe(1);
+      expect(result.H).toBe(10);
+      expect(result.O).toBe(9);
+    }
+  });
+
+  test('should parse hydrate without coefficient (CuSO4·H2O)', () => {
+    const result = parseFormula('CuSO4·H2O');
+    expect(result.H).toBe(2);
+    expect(result.O).toBe(5);
+  });
+
+  test('should parse larger hydrates (FeSO4·7H2O, Na2CO3·10H2O)', () => {
+    const fe = parseFormula('FeSO4·7H2O');
+    expect(fe.Fe).toBe(1);
+    expect(fe.H).toBe(14);
+    expect(fe.O).toBe(11);
+    const na = parseFormula('Na2CO3·10H2O');
+    expect(na.Na).toBe(2);
+    expect(na.H).toBe(20);
+    expect(na.O).toBe(13);
+  });
+
+  test('should parse unicode subscript digits (H₂O, CO₂)', () => {
+    const h = parseFormula('H₂O');
+    expect(h.H).toBe(2);
+    expect(h.O).toBe(1);
+    const c = parseFormula('CO₂');
+    expect(c.C).toBe(1);
+    expect(c.O).toBe(2);
+  });
 });
 
 describe('Chemistry Utils - formatFormula', () => {
@@ -310,6 +353,34 @@ describe('Chemistry Utils - isValidFormula', () => {
 
   test('should accept formula with spaces and plus sign', () => {
     expect(isValidFormula('H2 + O2')).toBe(true);
+  });
+
+  test('should accept formula with parentheses and trailing multiplier', () => {
+    // Ca(OH)2 — trailing digits after a closing paren were previously rejected
+    expect(isValidFormula('Ca(OH)2')).toBe(true);
+    expect(isValidFormula('Al2(SO4)3')).toBe(true);
+    expect(isValidFormula('Mg(NO3)2')).toBe(true);
+  });
+
+  test('should accept hydrate notation (CuSO4·5H2O, CuSO4.5H2O)', () => {
+    expect(isValidFormula('CuSO4·5H2O')).toBe(true);
+    expect(isValidFormula('CuSO4.5H2O')).toBe(true);
+    expect(isValidFormula('FeSO4·7H2O')).toBe(true);
+  });
+
+  test('should accept unicode subscript digits (H₂O)', () => {
+    expect(isValidFormula('H₂O')).toBe(true);
+    expect(isValidFormula('CO₂')).toBe(true);
+  });
+
+  test('should reject leading coefficients (2H2O)', () => {
+    expect(isValidFormula('2H2O')).toBe(false);
+    expect(isValidFormula('2NaCl')).toBe(false);
+  });
+
+  test('should reject lone separators', () => {
+    expect(isValidFormula('H2O·')).toBe(false);
+    expect(isValidFormula('·5')).toBe(false);
   });
 
   test('should accept single element', () => {
