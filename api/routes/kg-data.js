@@ -18,6 +18,7 @@ import path from 'path';
 import neo4j from 'neo4j-driver';
 import pino from 'pino';
 import { getNeo4jDriver, NEO4J_DATABASE, toNumberSafe } from '../services/neo4j.js';
+import { getEmailStatus } from '../auth.js';
 import {
   getCachedKgData,
   setCachedKgData,
@@ -933,6 +934,7 @@ router.get('/api/health', async (req, res) => {
     entityCount: entityCount,
     litellm: litellmOk ? 'connected' : 'unavailable',
     model: LITELLM_MODEL,
+    email: getEmailStatus(),
     version: '2.0',
   });
 });

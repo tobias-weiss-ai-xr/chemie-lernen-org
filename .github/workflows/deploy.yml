@@ -162,6 +162,15 @@ jobs:
               echo "❌ SMOKE FAIL: /api/health missing status=ok (body: $HEALTH_BODY)"; exit 1
             fi
             echo "  ✓ /api/health status=ok"
+            # 5b. Email delivery status (password-reset mails) — WARN, do not block deploy
+            EMAIL_STATE=$(echo "$HEALTH_BODY" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("email",{}).get("state","missing"))' 2>/dev/null || echo missing)
+            if [ "$EMAIL_STATE" = "ready" ]; then
+              echo "  ✓ email: ready"
+            elif [ "$EMAIL_STATE" = "placeholder" ]; then
+              echo "  ⚠️ SMOKE WARN: SMTP_PASSWORD in .env is a placeholder — password-reset emails will NOT send. Set the real mailbox password (1blu panel) and redeploy."
+            else
+              echo "  ⚠️ SMOKE WARN: email state=$EMAIL_STATE — password-reset emails may not send (see /api/health email.lastError)"
+            fi
             # 6. /api/kg-stats returns valid JSON (skip if Neo4j is down)
             NEO4J_UP=$(echo "$HEALTH_BODY" | grep -o '"neo4j":"[^"]*"' | grep -v 'unavailable' || true)
             if [ -n "$NEO4J_UP" ]; then
