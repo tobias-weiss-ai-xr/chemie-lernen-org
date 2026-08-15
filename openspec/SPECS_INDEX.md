@@ -26,11 +26,15 @@ Last updated: 2026-08-15
 
 ## Active changes (`changes/`)
 
-| Change                          | Status      |
-| ------------------------------- | ----------- |
-| bloom-zpd-adaptive-engine       | proposed    |
-| curricula-graph-viz             | in progress |
-| zpd-deepdive-differentiation    | proposed    |
+| Change                            | Status      |
+| --------------------------------- | ----------- |
+| bloom-zpd-adaptive-engine         | implemented |
+| curricula-graph-viz               | in progress |
+| zpd-deepdive-formative-assessment | proposed    |
+| zpd-deepdive-scaffolding          | proposed    |
+| zpd-deepdive-peer-collaboration   | proposed    |
+| zpd-deepdive-differentiation      | proposed    |
+| zpd-deepdive-tech-integration     | proposed    |
 
 ## Archived changes (`changes/archive/`)
 

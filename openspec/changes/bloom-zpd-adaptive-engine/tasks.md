@@ -2,15 +2,15 @@
 
 ## 1. Schema & backfill
 
-- [ ] 1.1 Add `blooms_index` (int 1–6) to the `:LearningObjective` model in
+- [x] 1.1 Add `blooms_index` (int 1–6) to the `:LearningObjective` model in
       `lehrplan-curriculum` import/scripts; map `blooms_level` strings → index
-      (remember=1 … create=6).
+      (remember=1 … create=6). **(done — BZ-11 merged)**
 - [ ] 1.2 Write `scripts/backfill-bloom-index.mjs`: scan all `:LearningObjective`
       nodes, set `blooms_index` from `blooms_level`; dry-run + apply modes; scoped
       to the `chemie` KG subset. **(done)**
 - [x] 1.3 Add `:ObjectiveState` label + relationships
       `(:ObjectiveState {userId, mastery, bloomsMaxReached, lastSeen, source,
-    updatedAt})-[:FOR]->(:LearningObjective)` (scoped via CHEMIE_LABELS; added
+  updatedAt})-[:FOR]->(:LearningObjective)` (scoped via CHEMIE_LABELS; added
       `ObjectiveState` to the subset filter).
 - [ ] 1.4 Seed `:ObjectiveState` from existing quiz/exercise completion records
       where a (user, LO) link already exists.
@@ -39,9 +39,11 @@
 
 - [x] 4.1 `tests/zpd-engine.test.mjs`: pure-function unit tests — `bloomIndex`
       mapping + `recommendedStrategy` classification (DB-free, CI-safe).
-- [ ] 4.2 `tests/learning-paths-next.test.mjs`: `/:slug/next` returns the
+- [x] 4.2 `tests/learning-paths-next.test.mjs`: `/:slug/next` returns the
       highest-Bloom in-ZPD objective; respects `pathSlug` scope; 401 when anon.
-- [ ] 4.3 Backfill script test: idempotent, only touches `chemie` subset.
+      **(done — BZ-42 merged)**
+- [x] 4.3 Backfill script test: idempotent, only touches `chemie` subset.
+      **(done — BZ-43 merged)**
 
 ## 5. Spec sync & archive
 
@@ -51,17 +53,12 @@
 
 ---
 
-## Roadmap — ZPD deep dives (separate future changes, NOT in this change)
+## Roadmap — ZPD deep dives (each spun off as its own OpenSpec change — all shipped)
 
-These consume the engine above; each is its own OpenSpec change:
+These consume the engine above. Each is now a separate, validated OpenSpec change:
 
-- **R1 · Formative assessment unification** — aggregate auto-grader + quiz + FSRS
-  into one `mastery` signal; cold-start defaults; calibrate θ thresholds.
-- **R2 · Scaffolding engine** — Bloom-staircase hint generation in Exercise
-  Generator / feedback-engine (remember → create as `bloomsMaxReached` rises).
-- **R3 · Peer collaboration** — ZPD-overlap learner matching via `collab-engine`
-  - Hubs rooms (pair learners with similar next-in-ZPD objectives).
-- **R4 · Differentiation** — per-learner path variants + per-learner Bloom target
-  depth (some stop at _apply_, others reach _create_).
-- **R5 · Technology tool integration** — ZPD-aware media/tool routing
-  (3D `molekuel-studio`, calculator, `ki-assistent`) selected by Bloom level.
+- [x] **R1 · Formative assessment unification** → `zpd-deepdive-formative-assessment`
+- [x] **R2 · Scaffolding engine** → `zpd-deepdive-scaffolding`
+- [x] **R3 · Peer collaboration** → `zpd-deepdive-peer-collaboration`
+- [x] **R4 · Differentiation** → `zpd-deepdive-differentiation`
+- [x] **R5 · Technology tool integration** → `zpd-deepdive-tech-integration`
