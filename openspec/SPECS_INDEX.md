@@ -1,6 +1,6 @@
 # OpenSpec — Capabilities Index
 
-Last updated: 2026-08-10
+Last updated: 2026-08-15
 
 ## Main capabilities (specs/)
 
@@ -26,10 +26,11 @@ Last updated: 2026-08-10
 
 ## Active changes (`changes/`)
 
-| Change                    | Status      |
-| ------------------------- | ----------- |
-| bloom-zpd-adaptive-engine | proposed    |
-| curricula-graph-viz       | in progress |
+| Change                          | Status      |
+| ------------------------------- | ----------- |
+| bloom-zpd-adaptive-engine       | proposed    |
+| curricula-graph-viz             | in progress |
+| zpd-deepdive-differentiation    | proposed    |
 
 ## Archived changes (`changes/archive/`)
 
