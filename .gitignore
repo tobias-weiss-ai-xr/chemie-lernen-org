@@ -72,3 +72,6 @@ api/session-store.js
 api/embeddings.js
 api/_rag-helpers.cjs
 api/calc-rag-index.json
+
+# taskfleet worktrees (do not commit)
+.tf-worktrees/

@@ -1,12 +1,12 @@
 {
   "scripts": {
-    "test": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation)'",
-    "test:all": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation)' --verbose",
+    "test": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation|\\.tf-worktrees)'",
+    "test:all": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation|\\.tf-worktrees)' --verbose",
     "test:watch": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --watch",
     "test:coverage": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --coverage --forceExit",
     "test:verbose": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --verbose --forceExit",
     "test:integration": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathPattern='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation|visualization)'",
-    "test:unit": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation|visualization)'",
+    "test:unit": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation|visualization|\\.tf-worktrees)'",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
@@ -89,6 +89,10 @@
     "testMatch": [
       "**/tests/**/*.test.js",
       "**/tests/**/*.test.mjs"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/\\.tf-worktrees/"
     ],
     "transform": {
       "^.*/api/.*\\.js$": "<rootDir>/jest-transform-esm.cjs",
