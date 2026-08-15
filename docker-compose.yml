@@ -69,6 +69,11 @@ services:
     restart: unless-stopped
     volumes:
       - ./myhugoapp/data/learning-paths.json:/app/data/learning-paths.json:ro
+      # users.json must survive container recreates (every deploy) — the
+      # image contains only a seed copy, and the container filesystem is
+      # ephemeral. Bind-mount the host file (untracked, uid 1000 matches the
+      # node container user) so registrations persist across deploys.
+      - ./api/data/users.json:/app/data/users.json
     mem_limit: 256M
     deploy:
       resources:

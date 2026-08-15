@@ -75,3 +75,4 @@ api/calc-rag-index.json
 
 # taskfleet worktrees (do not commit)
 .tf-worktrees/
+api/data/users.json
