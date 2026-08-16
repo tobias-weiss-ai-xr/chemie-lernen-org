@@ -1,7 +1,7 @@
 ---
 title: 'Roadmap: Ausbaustrategie'
 date: 2026-06-15
-last_reviewed: 2026-07-09
+last_reviewed: 2026-08-16
 description: 'Die zukünftige Entwicklungsstrategie für chemie-lernen.org'
 tags: ['roadmap', 'entwicklung']
 ---
@@ -25,6 +25,7 @@ chemie-lernen.org ist eine **kostenlose, quelloffene Lernplattform** für Chemie
 | Analytics-Dashboard (Supporter)                      | ✅ Sprint 36           |
 | Themenbereiche: Quiz-Widget + Fachbegriff-Wolke      | ✅ Sprint 37           |
 | Unterrichtsplan-Generator + Arbeitsblatt (Supporter) | ✅ Sprint 38           |
+| Chemie Räume: Admin-Theme-Overrides (Backend-Sync)     | ✅ API `/api/theme-overrides` + WebXR-Admin-Panel, geräteübergreifend |
 
 ---
 
@@ -74,4 +75,4 @@ Das gesamte Angebot ist **kostenlos**. Der Unterstützer-Tarif ergänzt optional
 
 ---
 
-_Letzte Aktualisierung: Juli 2026_
+_Letzte Aktualisierung: August 2026_
