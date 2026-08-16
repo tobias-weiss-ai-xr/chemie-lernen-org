@@ -26,6 +26,7 @@ chemie-lernen.org ist eine **kostenlose, quelloffene Lernplattform** für Chemie
 | Themenbereiche: Quiz-Widget + Fachbegriff-Wolke      | ✅ Sprint 37           |
 | Unterrichtsplan-Generator + Arbeitsblatt (Supporter) | ✅ Sprint 38           |
 | Chemie Räume: Admin-Theme-Overrides (Backend-Sync)     | ✅ API `/api/theme-overrides` + WebXR-Admin-Panel, geräteübergreifend |
+| KI-Assistent: SSE-Streaming        | ✅ Chat-Antworten per Server-Sent-Events (Live verifiziert)         |
 
 ---
 
@@ -44,7 +45,6 @@ chemie-lernen.org ist eine **kostenlose, quelloffene Lernplattform** für Chemie
 | --------------------------- | ----------------------------------------------------- |
 | **LLM-Chat**                | Echte Konversation statt nur KG-Suche (LiteLLM-Proxy) |
 | **Konversationsgedächtnis** | Kontext über mehrere Fragen hinweg, Session-basiert   |
-| **SSE-Streaming**           | Echtzeit-Antworten statt Wartebildschirm              |
 
 ### P1 — Content-Tiefe
 
