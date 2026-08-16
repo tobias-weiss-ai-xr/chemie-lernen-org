@@ -16,6 +16,7 @@ import express from 'express';
 import http from 'node:http';
 import { unlink } from 'node:fs/promises';
 import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 
 // ── Mocks (must appear before dynamic import) ───────────────────
 
@@ -48,8 +49,9 @@ jest.unstable_mockModule(
 // ── Fixture ────────────────────────────────────────────────────
 
 process.env.ADMIN_API_KEY = 'test-admin-key-12345';
+process.env.THEME_OVERRIDES_FILE = join(tmpdir(), 'theme-overrides-integration.json');
 
-const DATA_FILE = join(import.meta.dirname, '..', 'api', 'data', 'theme-overrides.json');
+const DATA_FILE = process.env.THEME_OVERRIDES_FILE;
 
 const adminHeaders = (overrides = {}) => ({
   'x-api-key': process.env.ADMIN_API_KEY,

@@ -8,14 +8,17 @@
 
 import { Router } from 'express';
 import { adminKeyMiddleware } from '../auth.js';
-import { readFile, writeFile, rename } from 'node:fs/promises';
+import { readFile, writeFile, rename, mkdir } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { tmpdir } from 'node:os';
 import { randomUUID } from 'node:crypto';
 
 const router = Router();
 
-const DATA_FILE = join(import.meta.dirname, '..', 'data', 'theme-overrides.json');
+const DATA_FILE =
+  process.env.THEME_OVERRIDES_FILE ??
+  join(dirname(fileURLToPath(import.meta.url)), '..', 'data', 'theme-overrides.json');
 
 /**
  * Read the stored overrides map.
@@ -40,6 +43,7 @@ async function readOverrides() {
  */
 async function writeOverrides(map) {
   const dir = dirname(DATA_FILE);
+  await mkdir(dir, { recursive: true });
   const tmpFile = join(tmpdir(), `theme-overrides-${randomUUID()}.tmp`);
   await writeFile(tmpFile, JSON.stringify(map, null, 2), 'utf8');
   await rename(tmpFile, DATA_FILE);
@@ -54,7 +58,8 @@ function isValidOverridesMap(body) {
   const keys = Object.keys(body);
   if (keys.length === 0) return true; // empty map is valid
   return keys.every(
-    (k) => typeof k === 'string' && k.length > 0 && typeof body[k] === 'string' && body[k].length > 0
+    (k) =>
+      typeof k === 'string' && k.length > 0 && typeof body[k] === 'string' && body[k].length > 0
   );
 }
 
@@ -65,6 +70,7 @@ router.get('/api/theme-overrides', adminKeyMiddleware, async function (req, res)
     const overrides = await readOverrides();
     res.json(overrides);
   } catch (err) {
+    console.error('[theme-overrides] read failed:', err);
     res.status(500).json({ error: 'Could not read theme overrides' });
   }
 });
@@ -75,13 +81,15 @@ router.put('/api/theme-overrides', adminKeyMiddleware, async function (req, res)
   try {
     if (!isValidOverridesMap(req.body)) {
       return res.status(400).json({
-        error: 'Invalid body: must be an object of { "symbol": "themeKey", ... } with non-empty strings',
+        error:
+          'Invalid body: must be an object of { "symbol": "themeKey", ... } with non-empty strings',
       });
     }
     const map = Object.fromEntries(Object.entries(req.body));
     await writeOverrides(map);
     res.json(map);
   } catch (err) {
+    console.error('[theme-overrides] write failed:', err);
     res.status(500).json({ error: 'Could not write theme overrides' });
   }
 });
