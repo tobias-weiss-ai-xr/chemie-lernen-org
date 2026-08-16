@@ -44,6 +44,7 @@ import collabRouter from './routes/collab.js';
 import adaptiveRouter from './routes/adaptive.js';
 import analyticsRouter from './routes/analytics.js';
 import premiumContentRouter from './routes/premium-content.js';
+import themeOverridesRouter from './routes/theme-overrides.js';
 
 const logger = pino({
   level: process.env.LOG_LEVEL || 'info',
@@ -196,6 +197,7 @@ app.use(collabRouter); // collaboration sessions
 app.use(adaptiveRouter); // adaptive difficulty recommendations
 app.use(analyticsRouter); // premium teacher analytics dashboard
 app.use(premiumContentRouter); // premium lesson plans & worksheets
+app.use(themeOverridesRouter); // element→themeKey overrides (admin)
 
 // ── POST /api/chat (kept inline — tightly coupled with RAG + session) ──
 app.post('/api/chat', async (req, res) => {

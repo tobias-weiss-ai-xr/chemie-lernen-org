@@ -77,3 +77,4 @@ api/calc-rag-index.json
 .tf-worktrees/
 api/data/users.json
 api/data/chemie-sessions.json
+api/data/theme-overrides.json
