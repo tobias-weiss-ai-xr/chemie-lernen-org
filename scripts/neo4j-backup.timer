@@ -1,0 +1,13 @@
+[Unit]
+Description=Daily Neo4j knowledge-graph backup at 03:00
+Documentation=https://github.com/tobias-weiss-ai-xr/hugo-chemie-lernen-org
+Requires=neo4j-backup.service
+
+[Timer]
+OnCalendar=*-*-* 03:00:00
+RandomizedDelaySec=15m
+Persistent=true
+Unit=neo4j-backup.service
+
+[Install]
+WantedBy=timers.target
