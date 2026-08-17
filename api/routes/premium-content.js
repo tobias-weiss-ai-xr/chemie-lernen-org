@@ -8,7 +8,7 @@
 
 import { Router } from 'express';
 import pino from 'pino';
-import { requirePremium } from '../auth.js';
+import { requirePremium, requireAuth } from '../auth.js';
 import { getNeo4jDriver, NEO4J_DATABASE } from '../services/neo4j.js';
 import { checkScopedQuota } from '../services/session.js';
 
@@ -31,6 +31,50 @@ const VALID_DURATIONS = ['15', '30', '45', '60', '90'];
 const VALID_DIFFICULTIES = ['einfach', 'mittel', 'fortgeschritten'];
 /** Exercise types */
 const VALID_EXERCISE_TYPES = ['multiple-choice', 'lueckentext', 'berechnung', 'kurzantwort'];
+
+// ── Catalog (read-only offering) ─────────────────────────────
+
+/**
+ * Read-only premium content catalog. Surfaced to authenticated users so the
+ * frontend can render the available generators / simulators and their tiers.
+ * Kept in-code (no DB) so it is always available, even when KG/LLM are down.
+ */
+const PREMIUM_CATALOG = [
+  {
+    id: 'lesson-plan',
+    title: 'Unterrichtsentwurf',
+    description:
+      'KI-generierter, didaktisch strukturierter Unterrichtsplan mit Phasen, Lernzielen und Differenzierung.',
+    type: 'generator',
+    dailyQuota: 10,
+    tier: 'pro',
+  },
+  {
+    id: 'worksheet',
+    title: 'Arbeitsblatt',
+    description:
+      'Übungsblätter mit Multiple-Choice, Berechnungen, Lückentexten und Kurzantworten zum Thema.',
+    type: 'generator',
+    dailyQuota: 10,
+    tier: 'pro',
+  },
+  {
+    id: 'exam-simulator',
+    title: 'Prüfungssimulator',
+    description: 'Simuliert eine Klassenarbeit mit bewertbaren Aufgaben und Musterlösungen.',
+    type: 'simulator',
+    dailyQuota: 10,
+    tier: 'max',
+  },
+];
+
+/**
+ * GET /api/premium/catalog
+ * Returns the read-only premium catalog (requires authentication).
+ */
+router.get('/api/premium/catalog', requireAuth, (req, res) => {
+  res.json(PREMIUM_CATALOG);
+});
 
 // ── Lesson Plan ───────────────────────────────────────────────
 
@@ -346,6 +390,142 @@ Variiere die Aufgabentypen gleichmäßig über die ${count} Aufgaben.`;
   } catch (err) {
     logger.error({ err: err, message: err.message || String(err) }, '[worksheet] error');
     res.status(500).json({ error: 'Arbeitsblatt konnte nicht erstellt werden' });
+  }
+});
+
+// ── Exam Simulator ───────────────────────────────────────────
+
+/**
+ * Build a structured prompt for the exam simulator.
+ */
+function buildExamPrompt({ topic, klassenstufe, duration, difficulty }) {
+  return `Du bist ein Prüfungsamt für Chemie. Erstelle eine simulierte Klassenarbeit (Prüfungssimulation) zum Thema "${topic}" für die Klassenstufe ${klassenstufe} (Schwierigkeit: ${difficulty}, Dauer: ${duration} Minuten).
+
+Die Prüfung MUSS als JSON-Objekt zurückgegeben werden (kein Markdown, nur rohes JSON) mit folgender Struktur:
+{
+  "title": "Titel der Prüfung",
+  "topic": "${topic}",
+  "klassenstufe": "${klassenstufe}",
+  "duration": "${duration}",
+  "difficulty": "${difficulty}",
+  "tasks": [
+    {
+      "type": "multiple-choice",
+      "points": 4,
+      "question": "Fragetext",
+      "options": ["A", "B", "C", "D"],
+      "correctIndex": 0,
+      "explanation": "Lösung"
+    },
+    {
+      "type": "berechnung",
+      "points": 6,
+      "question": "Berechne ...",
+      "givenValues": { "substanz": "..." },
+      "formula": "Formel",
+      "solution": "Lösungsweg",
+      "answer": "Ergebnis mit Einheit",
+      "explanation": "Erklärung"
+    },
+    {
+      "type": "kurzantwort",
+      "points": 5,
+      "question": "Offene Frage",
+      "keyPoints": ["Punkt 1", "Punkt 2"],
+      "sampleAnswer": "Musterantwort"
+    }
+  ],
+  "maxPoints": 15,
+  "gradingGuide": "Bewertungshinweise"
+}`;
+}
+
+/**
+ * POST /api/premium/exam-simulator
+ * Body: { topic, klassenstufe, duration, difficulty }
+ *
+ * NOTE: intentionally has NO Neo4j lookup — the simulator is generated purely
+ * from the LLM, so it stays testable without a live knowledge graph.
+ */
+router.post('/api/premium/exam-simulator', requirePremium, async (req, res) => {
+  try {
+    const { topic, klassenstufe = '10', duration = '45', difficulty = 'mittel' } = req.body;
+
+    // LLM cost bound: 10 exam simulations / day / user.
+    const quota = checkScopedQuota('exam-simulator', 'u:' + req.user.id, 10);
+    if (!quota.allowed) {
+      return res.status(429).json({
+        error: 'Tageslimit für den Prüfungssimulator erreicht',
+        message: 'Maximal 10 Prüfungssimulationen pro Tag.',
+        remaining: 0,
+      });
+    }
+
+    if (!topic || typeof topic !== 'string' || topic.trim().length < 2) {
+      return res.status(400).json({ error: 'topic ist erforderlich (min. 2 Zeichen)' });
+    }
+    if (!VALID_GRADES.includes(String(klassenstufe))) {
+      return res.status(400).json({ error: 'Ungültige Klassenstufe. Erlaubt: 8-13' });
+    }
+    if (!VALID_DURATIONS.includes(String(duration))) {
+      return res.status(400).json({ error: 'Ungültige Dauer. Erlaubt: 15, 30, 45, 60, 90' });
+    }
+    if (!VALID_DIFFICULTIES.includes(difficulty)) {
+      return res
+        .status(400)
+        .json({ error: 'Ungültige Schwierigkeit. Erlaubt: einfach, mittel, fortgeschritten' });
+    }
+
+    const prompt = buildExamPrompt({ topic, klassenstufe, duration, difficulty });
+
+    const llmRes = await fetch(LITELLM_URL + '/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + (process.env.LITELLM_API_KEY || ''),
+      },
+      body: JSON.stringify({
+        model: LITELLM_MODEL,
+        messages: [
+          {
+            role: 'system',
+            content:
+              'Du bist ein Prüfungsamt. Antworte AUSSCHLIESSLICH mit gültigem JSON, kein Markdown.',
+          },
+          { role: 'user', content: prompt },
+        ],
+        temperature: 0.7,
+        max_tokens: 4000,
+      }),
+    });
+
+    if (!llmRes.ok) {
+      const errBody = await llmRes.text();
+      logger.error({ status: llmRes.status, errBody, message: '[exam-simulator] LiteLLM error' });
+      return res.status(502).json({ error: 'KI-Modell nicht verfügbar.' });
+    }
+
+    const llmJson = await llmRes.json();
+    const content = llmJson.choices?.[0]?.message?.content || '';
+
+    let exam;
+    try {
+      const jsonMatch = content.match(/\{[\s\S]*\}/);
+      exam = jsonMatch ? JSON.parse(jsonMatch[0]) : JSON.parse(content);
+    } catch (parseErr) {
+      logger.error(
+        { err: parseErr, message: parseErr.message || String(parseErr) },
+        '[exam-simulator] JSON parse error'
+      );
+      return res
+        .status(502)
+        .json({ error: 'Prüfung konnte nicht verarbeitet werden.', raw: content });
+    }
+
+    res.json({ exam, generatedAt: new Date().toISOString() });
+  } catch (err) {
+    logger.error({ err: err, message: err.message || String(err) }, '[exam-simulator] error');
+    res.status(500).json({ error: 'Prüfungssimulation konnte nicht erstellt werden' });
   }
 });
 
