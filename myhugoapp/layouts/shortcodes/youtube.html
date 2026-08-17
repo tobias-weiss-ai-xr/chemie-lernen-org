@@ -1,0 +1,20 @@
+{{- $id := .Get "id" -}}
+{{- $title := default "YouTube-Video" (.Get "title") -}}
+{{- if not $id -}}
+  {{- errorf "youtube shortcode requires an 'id' parameter (video ID)" -}}
+{{- end -}}
+<figure class="video-embed" itemscope itemtype="https://schema.org/VideoObject">
+  <div class="video-embed-frame">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/{{ $id }}"
+      title="{{ $title }}"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      referrerpolicy="strict-origin-when-cross-origin">
+    </iframe>
+  </div>
+  {{- with .Inner -}}
+  <figcaption class="video-embed-caption">{{ . | markdownify }}</figcaption>
+  {{- end -}}
+</figure>

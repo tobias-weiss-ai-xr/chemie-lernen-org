@@ -21,6 +21,12 @@ aliases: [/article/stoffgemische-und-trennverfahren/]
 
 **Homogene Gemische** nennt man auch **Lösungen**: Der gelöste Stoff (Solut) ist molekular oder ionar verteilt im Lösungsmittel (Solvens). Beispiel: $NaCl$ in Wasser — $Na^+$ und $Cl^-$ gleichmäßig verteilt.
 
+## 📺 Lernvideo
+
+{{< youtube id="9Rw3imR6wP0" title="From Coffee to Chemical Elements — Zig's Chemistry 42" >}}
+**Lernvideo-Illustration:** _From Coffee to Chemical Elements | The Building Blocks of Everything_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) — wie Chemiker ausgehend von einer Tasse Kaffee Stoffe trennen, analysieren und bis zu den chemischen Elementen vordringen.
+{{< /youtube >}}
+
 ## Trennverfahren
 
 ### Filtration

@@ -25,6 +25,12 @@ Wichtige Laborgeräte und ihre typische Genauigkeit: Eine **Analysenwaage** miss
 
 Der Unterschied zwischen **Genauigkeit** (Treffernähe am wahren Wert) und **Präzision** (Wiederholbarkeit der Messungen) ist fundamental. Ein Messgerät kann präzise (kleine Streuung) aber ungenau (systematischer Fehler) sein. Um beide zu verbessern, kalibriert man Geräte regelmäßig und führt mehrfache Messungen durch.
 
+## 📺 Lernvideo
+
+{{< youtube id="GsRJo8eFsmc" title="Celsius vs. Fahrenheit — Zig's Chemistry 42" >}}
+**Lernvideo-Illustration:** _Celsius vs. Fahrenheit – The Story Behind the Temperature Scales_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) — die Entstehung der Temperaturskalen und einfache Umrechnung zwischen Grad Celsius und Grad Fahrenheit.
+{{< /youtube >}}
+
 ## Übungen
 
 1.  Rechne die folgenden Größen in die angegebene Einheit um:

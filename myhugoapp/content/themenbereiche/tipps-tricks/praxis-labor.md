@@ -43,6 +43,16 @@ Sicherheit geht vor! Beachte folgende Regeln:
 - **Bürette richtig ablesen**: Auge muss auf Höhe des Meniskus sein.
 - **Indikatorwahl**: Wähle einen Indikator, der im pH-Bereich des Äquivalenzpunkts umschlägt.
 
+## 📺 Lernvideos
+
+{{< youtube id="f6NkqNaItLE" title="Video zum Praktikum" >}}
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) — ein veranschaulichendes Beispiel für die Handhabung von Geräten aus den chemischen Grundpraktika.
+{{< /youtube >}}
+
+{{< youtube id="3VOIUyhxlnI" title="Video zum Praktikum" >}}
+**Lernvideo-Illustration:** weiteres _Einführung in die Chemie, Video zum Praktikum_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) zur praktischen Laborarbeit.
+{{< /youtube >}}
+
 ## Fehlervermeidung
 
 - **Exakte Volumina abmessen**: Nutze Pipetten oder Messzylinder, keine Bechergläser.

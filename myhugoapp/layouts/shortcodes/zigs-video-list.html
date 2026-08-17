@@ -1,0 +1,22 @@
+{{- $videos := default slice (site.Data.zigs_videos.videos) -}}
+{{- $known := default slice (site.Data.zigs_known) -}}
+
+{{- if eq (len $videos) 0 -}}
+  <p class="zigs-video-empty">Derzeit sind keine Videos geladen (Daten werden beim Build aktualisiert).</p>
+{{- else -}}
+<div class="zigs-video-list" role="list">
+  {{- range $videos -}}
+    {{- $isKnown := in $known .id -}}
+    <a class="zigs-video-item" href="{{ .url }}" target="_blank" rel="noopener noreferrer" title="{{ .title }}" role="listitem">
+      <span class="zigs-video-thumb-wrap">
+        <img class="zigs-video-thumb" src="{{ .thumb }}" alt="Vorschaubild zu: {{ .title }}" loading="lazy" width="320" height="180">
+        {{- if not $isKnown -}}
+        <span class="zigs-video-new">Neu</span>
+        {{- end -}}
+      </span>
+      <span class="zigs-video-title">{{ .title }}</span>
+      <span class="zigs-video-date">{{ .published | time.AsTime | time.Format "02.01.2006" }}</span>
+    </a>
+  {{- end -}}
+</div>
+{{- end -}}
