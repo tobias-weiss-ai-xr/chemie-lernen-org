@@ -1776,9 +1776,9 @@ function init() {
     })(viewIds[vi]);
   }
 
-  transform(targets.grid, 2000);
-  var gridBtn = document.getElementById('grid');
-  if (gridBtn) setActiveButton(gridBtn);
+  transform(targets.table, 2000);
+  var tableBtn = document.getElementById('table');
+  if (tableBtn) setActiveButton(tableBtn);
 
   window.addEventListener('resize', onWindowResize);
 
@@ -1818,15 +1818,12 @@ function init() {
     })(trendBtns[ti]);
   }
 
-  // ── Wire up detail panel close ──────────────────────────
+  // ── Detail panel: persistent overlay, close only via X button ─
   var closeBtn = document.getElementById('detail-close');
   if (closeBtn) {
     closeBtn.addEventListener('click', hideDetail);
   }
-  var overlay = document.getElementById('detail-overlay');
-  if (overlay) {
-    overlay.addEventListener('click', hideDetail);
-  }
+  // No overlay close — panel stays open until user clicks X or selects another element
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') hideDetail();
   });
