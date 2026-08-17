@@ -56,11 +56,11 @@ Die **ICP-OES** (optische Emissionsspektrometrie mit induktiv gekoppeltem Plasma
 ## 📺 Lernvideos
 
 {{< youtube id="1NLIHtOvAfg" title="Praktikum: UV-vis-Spektrum" >}}
-**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – UV-vis-Spektrum_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) zeigt eine klassische spektroskopische Bestimmung im Grundpraktikum.
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – UV-vis-Spektrum_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) zeigt eine klassische spektroskopische Bestimmung im Grundpraktikum.
 {{< /youtube >}}
 
 {{< youtube id="4ofYU8aVpMI" title="Praktikum: Massanalyse" >}}
-**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Massanalyse_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) veranschaulicht ein gravimetrisches/volumetrisches Analyseverfahren.
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Massanalyse_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) veranschaulicht ein gravimetrisches/volumetrisches Analyseverfahren.
 {{< /youtube >}}
 
 ## Übungen

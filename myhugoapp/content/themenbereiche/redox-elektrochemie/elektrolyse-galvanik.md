@@ -51,11 +51,11 @@ Die Anode besteht aus Kupfer, das nachgeliefert wird: $\ce{Cu -> Cu^{2+} + 2e-}$
 ### 📺 Lernvideos
 
 {{< youtube id="h6XZ_EaReCg" title="Praktikum: Galvanisieren" >}}
-**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Galvanisieren_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) zeigt das elektrolytische Beschichten in der Praxis.
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Galvanisieren_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) zeigt das elektrolytische Beschichten in der Praxis.
 {{< /youtube >}}
 
 {{< youtube id="iZWT_xCFB-g" title="Praktikum: Schreiben mit Strom" >}}
-**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Schreiben mit Strom_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) demonstriert die Elektrolyse auf anschauliche Weise.
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Schreiben mit Strom_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) demonstriert die Elektrolyse auf anschauliche Weise.
 {{< /youtube >}}
 
 ### Industrielle Elektrolyse: Aluminiumgewinnung (Hall-Héroult)

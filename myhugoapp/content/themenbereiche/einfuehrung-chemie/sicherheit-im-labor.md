@@ -26,7 +26,7 @@ Verwandte Seiten: [Gefahrstoffkennzeichnung](/gefahrstoffkennzeichnung/) | [Labo
 ## 📺 Lernvideo
 
 {{< youtube id="xuopQTjCJlA" title="Praktikum: Handschuhe richtig verwenden" >}}
-**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Handschuhe_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) zeigt die richtige Verwendung von Schutzhandschuhen im chemischen Grundpraktikum.
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Handschuhe_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) zeigt die richtige Verwendung von Schutzhandschuhen im chemischen Grundpraktikum.
 {{< /youtube >}}
 
 ## Übungen

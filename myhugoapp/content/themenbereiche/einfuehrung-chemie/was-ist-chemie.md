@@ -65,7 +65,7 @@ Chemie begegnet uns überall:
 ## 📺 Lernvideo
 
 {{< youtube id="TSroyG95_-s" title="Why Chemistry? Don't Panic! — Zig's Chemistry 42" >}}
-**Lernvideo-Illustration:** _Why Chemistry? Don't Panic!_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) — ein sanfter Einstieg in die Chemie für alle, die sich mit dem Fach schwerer tun oder noch unsicher sind, worum es eigentlich geht.
+**Lernvideo-Illustration:** _Why Chemistry? Don't Panic!_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) — ein sanfter Einstieg in die Chemie für alle, die sich mit dem Fach schwerer tun oder noch unsicher sind, worum es eigentlich geht.
 {{< /youtube >}}
 
 ## Übungen

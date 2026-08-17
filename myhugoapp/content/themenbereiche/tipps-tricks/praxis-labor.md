@@ -46,11 +46,11 @@ Sicherheit geht vor! Beachte folgende Regeln:
 ## 📺 Lernvideos
 
 {{< youtube id="f6NkqNaItLE" title="Video zum Praktikum" >}}
-**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) — ein veranschaulichendes Beispiel für die Handhabung von Geräten aus den chemischen Grundpraktika.
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) — ein veranschaulichendes Beispiel für die Handhabung von Geräten aus den chemischen Grundpraktika.
 {{< /youtube >}}
 
 {{< youtube id="3VOIUyhxlnI" title="Video zum Praktikum" >}}
-**Lernvideo-Illustration:** weiteres _Einführung in die Chemie, Video zum Praktikum_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) zur praktischen Laborarbeit.
+**Lernvideo-Illustration:** weiteres _Einführung in die Chemie, Video zum Praktikum_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) zur praktischen Laborarbeit.
 {{< /youtube >}}
 
 ## Fehlervermeidung

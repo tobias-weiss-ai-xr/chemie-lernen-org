@@ -68,7 +68,7 @@ In den älteren Videos zeigt Prof. Schindler Versuche und Handhabungen aus den c
 ## 🏛️ Im Überblick
 
 {{< youtube id="2xnE_7WWY3A" title="Prof. Siegfried Schindler an der Justus-Liebig-Universität Gießen" >}}
-**Lernvideo:** _Prof. Siegfried Schindler an der Justus-Liebig-Universität Gießen_ – Forschung und Lehre in der Chemie an der JLU.
+**Lernvideo:** _Prof. Siegfried Schindler an der Justus-Liebig-Universität Gießen_ – Forschung und Lehre in der Chemie an der JLU. Profilvideo von [Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42) auf YouTube.
 {{< /youtube >}}
 
 ---

@@ -28,7 +28,7 @@ Der Unterschied zwischen **Genauigkeit** (Treffernähe am wahren Wert) und **Pr�
 ## 📺 Lernvideo
 
 {{< youtube id="GsRJo8eFsmc" title="Celsius vs. Fahrenheit — Zig's Chemistry 42" >}}
-**Lernvideo-Illustration:** _Celsius vs. Fahrenheit – The Story Behind the Temperature Scales_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) — die Entstehung der Temperaturskalen und einfache Umrechnung zwischen Grad Celsius und Grad Fahrenheit.
+**Lernvideo-Illustration:** _Celsius vs. Fahrenheit – The Story Behind the Temperature Scales_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) — die Entstehung der Temperaturskalen und einfache Umrechnung zwischen Grad Celsius und Grad Fahrenheit.
 {{< /youtube >}}
 
 ## Übungen
