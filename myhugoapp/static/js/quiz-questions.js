@@ -1344,7 +1344,7 @@
   ];
 
   // Expose as browser global
-  window.quizQuestions = { questions: questions };
+  window.quizQuestions = questions;
   window.quizTopics = [
     'Einführung in die Chemie',
     'Aufbau der Materie',

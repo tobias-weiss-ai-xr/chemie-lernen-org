@@ -33,7 +33,7 @@ body > .container > .wrapper {
 #container {
   position: relative !important;
   width: 100% !important;
-  height: calc(100vh - 200px) !important;
+  height: calc(100vh - 200px) !important; /* controls-bar ~200px */
   min-height: 500px !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -56,15 +56,17 @@ body > .container > .wrapper {
   height: 60px !important;
   text-align: center;
   z-index: 100;
+  /* Ensure buttons are accessible on mobile */
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
   background-color: #fafafa !important;
-  border-bottom: 1px solid #e7e7e7e7 !important;
+  border-bottom: 1px solid #e7e7e7 !important;
 }
 
+/* Footer is already part of Hugo layout, just ensure it's visible */
 .site-footer {
   background-color: #fff !important;
   border-top: 1px solid #e7e7e7 !important;
@@ -72,6 +74,7 @@ body > .container > .wrapper {
   margin: 0 !important;
 }
 
+/* Dark mode support for menu and footer on PSE page - greenish */
 [data-theme='dark'] #menu {
   background-color: #0a1a0f !important;
   border-bottom: 1px solid #1b5e20 !important;
@@ -100,6 +103,7 @@ body > .container > .wrapper {
   text-align: center;
   line-height: normal;
   cursor: default;
+  /* Better positioning */
   position: absolute;
   transform-origin: center center;
 }
@@ -137,6 +141,7 @@ body > .container > .wrapper {
   color: rgba(127, 255, 255, 0.75);
 }
 
+/* Emoji link styling */
 .element .emoji-link {
   position: absolute;
   top: 12px;
@@ -153,6 +158,7 @@ body > .container > .wrapper {
   transform: scale(1.3);
 }
 
+/* Buttons styled like navbar links - white text on dark background */
 button {
   color: #fff !important;
   background-color: #333 !important;
@@ -179,12 +185,14 @@ button:active {
   color: #fff !important;
 }
 
+/* Active button styling */
 button.active-mode {
   background-color: #4caf50 !important;
   border-color: #4caf50 !important;
   color: #fff !important;
 }
 
+/* Mobile-specific styles */
 @media (max-width: 768px) {
   #menu {
     height: auto;
@@ -192,6 +200,7 @@ button.active-mode {
     padding: 8px;
     gap: 4px;
   }
+
   button {
     padding: 6px 10px;
     margin: 2px;
@@ -199,7 +208,9 @@ button.active-mode {
     flex: 1 1 auto;
     min-width: 60px;
   }
+
   .element {
+    /* Scale down elements slightly on mobile */
     transform: scale(0.7);
   }
 }
@@ -209,12 +220,13 @@ button.active-mode {
     font-size: 10px;
     padding: 5px 8px;
   }
+
   .element {
     transform: scale(0.6);
   }
 }
 
-/* ── Controls Bar ─────────────────────────────────────────── */
+/* ── Controls Bar (menu + search + trend) ─────────────────── */
 #controls-bar {
   position: relative;
   width: 100%;
@@ -319,51 +331,34 @@ button.active-mode {
   border-color: #66bb6a !important;
 }
 
-/* ── Detail Panel — centered popup card ────────────────────── */
+/* ── Detail Panel ─────────────────────────────────────────── */
 #detail-panel {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  width: 340px;
+  height: 100vh;
   z-index: 1000;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  pointer-events: none;
 }
 
 #detail-panel:not([hidden]) {
-  animation: detail-fade-in 0.15s ease-out;
-}
-
-@keyframes detail-fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  pointer-events: auto;
 }
 
 #detail-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-  background: rgba(0, 0, 0, 0.45);
+  display: none;
 }
 
 #detail-content {
   position: relative;
   background: #fff;
-  border-radius: 16px;
-  width: 300px;
-  max-width: 90vw;
-  max-height: 80vh;
+  height: 100vh;
   overflow-y: auto;
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.25);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+  border-left: 3px solid #4caf50;
 }
 
 [data-theme='dark'] #detail-content {
@@ -373,12 +368,12 @@ button.active-mode {
 
 #detail-close {
   position: absolute;
-  top: 6px;
-  right: 8px;
-  font-size: 20px;
+  top: 8px;
+  right: 12px;
+  font-size: 24px;
   background: none !important;
   border: none !important;
-  color: #aaa !important;
+  color: #999 !important;
   cursor: pointer;
   padding: 0 6px;
   line-height: 1;
@@ -389,43 +384,43 @@ button.active-mode {
   color: #e74c3c !important;
 }
 
+#detail-close:hover {
+  color: #333 !important;
+}
+
 #detail-header {
-  padding: 18px 20px 10px;
+  padding: 24px 24px 12px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  border-radius: 16px 16px 0 0;
-  background: #4caf50;
+  gap: 12px;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+[data-theme='dark'] #detail-header {
+  border-bottom-color: #2e7d32;
 }
 
 #detail-symbol {
-  font-size: 40px;
+  font-size: 48px;
   font-weight: bold;
-  color: #fff;
   line-height: 1;
 }
 
 #detail-name {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 600;
-  color: #fff;
-}
-
-[data-theme='dark'] #detail-header {
-  background: #1b5e20;
 }
 
 #detail-body {
-  padding: 12px 20px 14px;
+  padding: 16px 24px;
 }
 
 .detail-row {
   display: flex;
   justify-content: space-between;
-  padding: 5px 0;
+  padding: 6px 0;
   border-bottom: 1px solid #f0f0f0;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 14px;
 }
 
 [data-theme='dark'] .detail-row {
@@ -435,7 +430,6 @@ button.active-mode {
 .detail-label {
   color: #888;
   font-weight: 500;
-  font-size: 12px;
 }
 
 [data-theme='dark'] .detail-label {
@@ -445,23 +439,22 @@ button.active-mode {
 .detail-value {
   font-weight: 600;
   text-align: right;
-  font-size: 13px;
 }
 
 #detail-footer {
-  padding: 8px 20px 14px;
+  padding: 12px 24px 20px;
   text-align: center;
 }
 
 #detail-footer a {
   display: inline-block;
-  padding: 8px 20px;
+  padding: 8px 24px;
   background: #4caf50;
   color: #fff;
-  border-radius: 8px;
+  border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 14px;
   transition: background 0.2s;
 }
 
@@ -470,15 +463,31 @@ button.active-mode {
   color: #fff;
 }
 
+/* Mobile detail panel — full width at bottom */
 @media (max-width: 768px) {
+  #detail-panel {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+    max-height: 55vh;
+  }
+
   #detail-content {
-    width: 92vw;
-    max-height: 70vh;
+    height: auto;
+    max-height: 55vh;
+    border-left: none;
+    border-top: 3px solid #4caf50;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
   }
+
   #detail-symbol {
-    font-size: 32px;
+    font-size: 36px;
   }
+
   #detail-name {
-    font-size: 16px;
+    font-size: 20px;
   }
 }
