@@ -48,6 +48,20 @@ Die **Analysenwaage** misst Massen mit einer Genauigkeit von 0,1 mg. Sie steht
 
 ## Praktische Anwendungen
 
+### 📺 Lernvideos: Praxis im Labor
+
+{{< youtube id="xuopQTjCJlA" title="Praktikum: Handschuhe richtig verwenden" >}}
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Handschuhe_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) zeigt die richtige Verwendung von Schutzhandschuhen — ein wichtiges Thema bei der Arbeit mit Laborgeräten und Chemikalien.
+{{< /youtube >}}
+
+{{< youtube id="f6NkqNaItLE" title="Video zum Praktikum" >}}
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) — ein veranschaulichendes Beispiel für die Handhabung von Geräten aus den chemischen Grundpraktika.
+{{< /youtube >}}
+
+{{< youtube id="3VOIUyhxlnI" title="Video zum Praktikum" >}}
+**Lernvideo-Illustration:** weiteres _Einführung in die Chemie, Video zum Praktikum_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) zur praktischen Laborarbeit.
+{{< /youtube >}}
+
 Im Schulpraktikum wird die korrekte Handhabung dieser Geräte bei folgenden Standardversuchen geübt:
 
 - **Maßanalyse (Titration):** Volumenkolben (Maßlösung ansetzen) + Vollpipette (Probe vorlegen) + Bürette (Maßlösung zutropfen)

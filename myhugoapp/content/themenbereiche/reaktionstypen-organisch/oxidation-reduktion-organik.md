@@ -45,6 +45,12 @@ Die Oxidationsstufe eines Kohlenstoffatoms lässt sich anhand der Anzahl der Bin
 
 Ein primärer Alkohol kann schrittweise oxidiert werden:
 
+### 📺 Lernvideo: Aldehyd-Nachweis (Tollens-Reaktion)
+
+{{< youtube id="Ewyp31JjIb8" title="Praktikum: Silberspiegel" >}}
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Silberspiegel_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) zeigt den bekannten Silberspiegel-Nachweis (Tollens-Reaktion) — ein klassischer Nachweis für Aldehyde, der die Oxidation sichtbar macht.
+{{< /youtube >}}
+
 1. **Primärer Alkohol → Aldehyd**
    $$
    \ce{CH3-CH2-OH ->[O] CH3-CHO + H2O}

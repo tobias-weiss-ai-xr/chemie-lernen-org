@@ -13,7 +13,15 @@ aliases: [/article/saeure-base-titration/]
 
 Die **Titration** ist eine maßanalytische Methode zur Bestimmung der Konzentration einer unbekannten Lösung (Analyt) durch schrittweise Zugabe einer Lösung mit bekannter Konzentration (Titrant). Für Säure-Base-Titrationen verwendet man eine **Bürette**, einen **Erlenmeyerkolben** mit dem Analyten und einen **Indikator** oder ein **pH-Meter**.
 
-**Durchführung**: Ein abgemessenes Volumen der Analytlösung wird in den Kolben gegeben, Indikatorlösung hinzugefügt, und der Titrant wird aus der Bürette tropfenweise zugegeben. Sobald der **Umschlagspunkt** des Indikators erreicht ist, wird die Titration gestoppt und das verbrauchte Volumen abgelesen.
+**Durchführung**: Ein abgemessenes Volumen der Analytlösung wird in den Kolben gegeben, Indikatorlösung hinzugefügt, und der Titrant wird aus der Bürette tropfenweise zugegeben.
+
+### 📺 Lernvideo: Maßanalytische Bestimmung
+
+{{< youtube id="4ofYU8aVpMI" title="Praktikum: Massanalyse" >}}
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Massanalyse_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) veranschaulicht ein gravimetrisches/volumetrisches Analyseverfahren — die praktische Umsetzung maßanalytischer Methoden im Labor.
+{{< /youtube >}}
+
+Sobald der **Umschlagspunkt** des Indikators erreicht ist, wird die Titration gestoppt und das verbrauchte Volumen abgelesen.
 
 Die Berechnung folgt dem Prinzip der Stoffmenge am Äquivalenzpunkt: $n(\text{Säure}) = n(\text{Base})$, also $c_1 \cdot V_1 = c_2 \cdot V_2$. Beispiel: 25,0 ml einer Salzsäure-Lösung werden mit 0,1 M Natronlauge titriert. Verbraucht: 20,0 ml NaOH. Dann: $c(\text{HCl}) = \frac{0,1 \cdot 20,0}{25,0} = 0,080 \, \text{mol/l}$.
 
