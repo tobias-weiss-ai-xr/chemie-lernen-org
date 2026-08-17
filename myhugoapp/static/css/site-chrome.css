@@ -203,7 +203,7 @@
   }
 
   .dropdown-menu > li > a {
-    color: #e0e0e0;
+    color: #d5d5d5;
   }
 
   .dropdown-menu > li > a:hover,
@@ -217,13 +217,13 @@
   }
 
   .navbar-nav .open .dropdown-menu > li > a {
-    color: #e0e0e0;
+    color: #d5d5d5;
   }
 
   .navbar-form .form-control {
     background-color: #3c3c3c;
     border-color: #555;
-    color: #e0e0e0;
+    color: #d5d5d5;
   }
 
   .navbar-form .form-control:focus {
@@ -395,7 +395,7 @@
   padding: 8px 0;
   margin-bottom: 0;
   font-size: 0.9rem;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #d5d5d5;
 }
 
 .breadcrumb ol {
@@ -406,21 +406,21 @@
 
 .breadcrumb-item + .breadcrumb-item::before {
   content: '›';
-  color: #6c757d;
+  color: #5a6270;
 }
 
 .breadcrumb-item a {
-  color: #007bff;
+  color: #0056b3;
   text-decoration: none;
 }
 
 .breadcrumb-item a:hover {
-  color: #0056b3;
+  color: #004080;
   text-decoration: underline;
 }
 
 .breadcrumb-item.active {
-  color: #6c757d;
+  color: #5a6270;
 }
 
 @media (prefers-color-scheme: dark) {
