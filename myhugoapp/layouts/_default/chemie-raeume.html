@@ -1,0 +1,86 @@
+{{ define "css" }}
+<style>
+.chemie-raeume-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+.cr-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 8px 10px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #0b1220;
+  background: var(--c, #888);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+  min-height: 96px;
+}
+.cr-tile:hover,
+.cr-tile:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+  filter: brightness(1.04);
+  outline: 2px solid #0d9488;
+  outline-offset: 2px;
+}
+.cr-sym {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+}
+.cr-name {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 6px;
+  text-align: center;
+  opacity: 0.85;
+}
+.cr-hub {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(13, 148, 136, 0.92);
+  color: #fff;
+  border-radius: 6px;
+  padding: 1px 6px;
+}
+.cr-tile.no-hub .cr-hub { display: none; }
+</style>
+{{ end }}
+
+{{ define "main" }}
+<section class="container py-4">
+  <nav aria-label="Breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{ "/" | relURL }}">Start</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+    </ol>
+  </nav>
+
+  <h1>{{ .Title }}</h1>
+  <p class="lead">{{ .Description }}</p>
+
+  <div class="alert alert-info d-flex align-items-center gap-2" role="alert">
+    <span aria-hidden="true">🧪</span>
+    <span>Jeder Kachel ist ein eigener Lernraum. Klicke ein Element an, um seinen
+    Raum zu betreten – farbig nach Hauptgruppe.</span>
+  </div>
+
+  <div id="chemie-raeume-grid" class="chemie-raeume-grid" aria-live="polite">
+    <p class="text-muted">Lade Elementräume…</p>
+  </div>
+</section>
+{{ end }}
+
+{{ define "js" }}
+<script src="{{ "js/chemie-raeume.js" | relURL }}" defer></script>
+{{ end }}

@@ -35,6 +35,7 @@ Last updated: 2026-08-15
 | zpd-deepdive-peer-collaboration   | proposed    |
 | zpd-deepdive-differentiation      | proposed    |
 | zpd-deepdive-tech-integration     | proposed    |
+| per-element-learning-rooms        | proposed    |
 
 ## Archived changes (`changes/archive/`)
 

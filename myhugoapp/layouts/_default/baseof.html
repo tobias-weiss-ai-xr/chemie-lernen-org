@@ -24,6 +24,16 @@
           {{ block "main" . }} {{ end }}
         </main>
         {{ if .IsPage }}{{ partial "social-share.html" . }}{{ end }}
+        {{/* Rechner ↔ Quiz verknüpfen: embed the topic quiz on calculator pages.
+            Calculators live at content-root (Section == "") and carry a
+            `teilgebiet` (Themenbereich slug) that matches quiz-questions.js
+            `slug`. The quiz-widget loads quiz-questions.js itself. */}}
+        {{ if and .IsPage .Params.teilgebiet (eq .Section "") }}
+          {{ $tb := .Params.teilgebiet }}
+          {{ $topic := "" }}
+          {{ if reflect.IsSlice $tb }}{{ $topic = index $tb 0 }}{{ else }}{{ $topic = $tb }}{{ end }}
+          {{ if $topic }}<div class="container mt-4">{{ partial "quiz-widget.html" (dict "topic" $topic "title" .Title) }}</div>{{ end }}
+        {{ end }}
       </div>
     </div>
 

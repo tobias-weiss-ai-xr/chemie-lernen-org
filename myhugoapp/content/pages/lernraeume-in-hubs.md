@@ -23,6 +23,11 @@ diskutieren können.
 
 > **Direkt loslegen:** [Raum erstellen auf hubs.chemie-lernen.org](https://hubs.chemie-lernen.org/) — kein Account, kein Download, läuft direkt im Browser.
 
+**Ein Raum pro Element:** Über [Chemie Räume](/chemie-raeume/) erreicht ihr für
+jedas Element des Periodensystems einen eigenen, thematisch gefärbten
+3D-Lernraum (Atommodell, Inhalte, Partikel). Den gleichen Raum könnt ihr für
+den Klassenverband auch in Hubs öffnen — siehe unten „Elementräume in Hubs".
+
 ## Was sind Lernräume in Hubs?
 
 [Mozilla Hubs][hubs] ist eine offene, browserbasierte Plattform für soziale

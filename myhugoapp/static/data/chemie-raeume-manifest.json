@@ -1,0 +1,1207 @@
+{
+  "generatedAt": "2026-08-17T10:48:59.317Z",
+  "appBaseUrl": "https://tobias-weiss.org/hello-webxr",
+  "count": 120,
+  "elements": [
+    {
+      "symbol": "Ac",
+      "name": "Actinium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 3,
+      "theme": "nuclear",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ac",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ag",
+      "name": "Silber",
+      "group": "transition",
+      "period": 5,
+      "groupNumber": 11,
+      "theme": "precious",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ag",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Al",
+      "name": "Aluminium",
+      "group": "metal",
+      "period": 3,
+      "groupNumber": 13,
+      "theme": "industry",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Al",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Am",
+      "name": "Americium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 3,
+      "theme": "space",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Am",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ar",
+      "name": "Argon",
+      "group": "nobleGas",
+      "period": 3,
+      "groupNumber": 18,
+      "theme": "welding",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ar",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "As",
+      "name": "Arsen",
+      "group": "metalloid",
+      "period": 4,
+      "groupNumber": 15,
+      "theme": "toxic",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=As",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "At",
+      "name": "Astatin",
+      "group": "halogen",
+      "period": 6,
+      "groupNumber": 17,
+      "theme": "research",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=At",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Au",
+      "name": "Gold",
+      "group": "transition",
+      "period": 6,
+      "groupNumber": 11,
+      "theme": "treasure",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Au",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Au",
+      "name": "Gold",
+      "group": "transition",
+      "period": 6,
+      "groupNumber": 11,
+      "theme": "treasure",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Au",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "B",
+      "name": "Bor",
+      "group": "metalloid",
+      "period": 2,
+      "groupNumber": 13,
+      "theme": "desert",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=B",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ba",
+      "name": "Barium",
+      "group": "alkalineEarth",
+      "period": 6,
+      "groupNumber": 2,
+      "theme": "medical",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ba",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Be",
+      "name": "Beryllium",
+      "group": "alkalineEarth",
+      "period": 2,
+      "groupNumber": 2,
+      "theme": "gem",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Be",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Bh",
+      "name": "Bohrium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 7,
+      "theme": "science",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Bh",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Bi",
+      "name": "Wismut",
+      "group": "metalloid",
+      "period": 6,
+      "groupNumber": 15,
+      "theme": "medical",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Bi",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Bk",
+      "name": "Berkelium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 3,
+      "theme": "research",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Bk",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Br",
+      "name": "Brom",
+      "group": "halogen",
+      "period": 4,
+      "groupNumber": 17,
+      "theme": "liquid",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Br",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "C",
+      "name": "Kohlenstoff",
+      "group": "nonmetal",
+      "period": 2,
+      "groupNumber": 14,
+      "theme": "life",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=C",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ca",
+      "name": "Calcium",
+      "group": "alkalineEarth",
+      "period": 4,
+      "groupNumber": 2,
+      "theme": "skeleton",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ca",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ca",
+      "name": "Calcium",
+      "group": "alkalineEarth",
+      "period": 4,
+      "groupNumber": 2,
+      "theme": "biological",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ca",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Cd",
+      "name": "Cadmium",
+      "group": "transition",
+      "period": 5,
+      "groupNumber": 12,
+      "theme": "toxic",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Cd",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ce",
+      "name": "Cer",
+      "group": "lanthanide",
+      "period": 6,
+      "groupNumber": 3,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ce",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Cf",
+      "name": "Californium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 3,
+      "theme": "nuclear",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Cf",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Cl",
+      "name": "Chlor",
+      "group": "halogen",
+      "period": 3,
+      "groupNumber": 17,
+      "theme": "swimming",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Cl",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Cm",
+      "name": "Curium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 3,
+      "theme": "space",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Cm",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Cn",
+      "name": "Copernicium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 8,
+      "theme": "history",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Cn",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Co",
+      "name": "Kobalt",
+      "group": "transition",
+      "period": 4,
+      "groupNumber": 9,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Co",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Cr",
+      "name": "Chrom",
+      "group": "transition",
+      "period": 4,
+      "groupNumber": 6,
+      "theme": "industry",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Cr",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Cs",
+      "name": "Cäsium",
+      "group": "alkali",
+      "period": 6,
+      "groupNumber": 1,
+      "theme": "precision",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Cs",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Cu",
+      "name": "Kupfer",
+      "group": "transition",
+      "period": 4,
+      "groupNumber": 11,
+      "theme": "electric",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Cu",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Db",
+      "name": "Dubnium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 5,
+      "theme": "research",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Db",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ds",
+      "name": "Darmstadtium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 8,
+      "theme": "research",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ds",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Dy",
+      "name": "Dysprosium",
+      "group": "lanthanide",
+      "period": 6,
+      "groupNumber": 3,
+      "theme": "nuclear",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Dy",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Er",
+      "name": "Erbium",
+      "group": "lanthanide",
+      "period": 6,
+      "groupNumber": 3,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Er",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Es",
+      "name": "Einsteinium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 3,
+      "theme": "history",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Es",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Eu",
+      "name": "Europium",
+      "group": "lanthanide",
+      "period": 6,
+      "groupNumber": 3,
+      "theme": "security",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Eu",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "F",
+      "name": "Fluor",
+      "group": "halogen",
+      "period": 2,
+      "groupNumber": 17,
+      "theme": "protection",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=F",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Fe",
+      "name": "Eisen",
+      "group": "transition",
+      "period": 4,
+      "groupNumber": 8,
+      "theme": "forge",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Fe",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Fl",
+      "name": "Flerovium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 8,
+      "theme": "science",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Fl",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Fm",
+      "name": "Fermium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 3,
+      "theme": "research",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Fm",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Fr",
+      "name": "Francium",
+      "group": "alkali",
+      "period": 7,
+      "groupNumber": 1,
+      "theme": "theoretical",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Fr",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ga",
+      "name": "Gallium",
+      "group": "metal",
+      "period": 4,
+      "groupNumber": 13,
+      "theme": "semiconductor",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ga",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Gd",
+      "name": "Gadolinium",
+      "group": "lanthanide",
+      "period": 6,
+      "groupNumber": 3,
+      "theme": "medical",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Gd",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ge",
+      "name": "Germanium",
+      "group": "metalloid",
+      "period": 4,
+      "groupNumber": 14,
+      "theme": "semiconductor",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ge",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "H",
+      "name": "Wasserstoff",
+      "group": "nonmetal",
+      "period": 1,
+      "groupNumber": 1,
+      "theme": "cosmic",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=H",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "He",
+      "name": "Helium",
+      "group": "nobleGas",
+      "period": 1,
+      "groupNumber": 18,
+      "theme": "solar",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=He",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Hf",
+      "name": "Hafnium",
+      "group": "transition",
+      "period": 6,
+      "groupNumber": 4,
+      "theme": "nuclear",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Hf",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Hg",
+      "name": "Quecksilber",
+      "group": "transition",
+      "period": 6,
+      "groupNumber": 12,
+      "theme": "historical",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Hg",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ho",
+      "name": "Holmium",
+      "group": "lanthanide",
+      "period": 6,
+      "groupNumber": 3,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ho",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Hs",
+      "name": "Hassium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 8,
+      "theme": "discovery",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Hs",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "I",
+      "name": "Jod",
+      "group": "halogen",
+      "period": 5,
+      "groupNumber": 17,
+      "theme": "biological",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=I",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "In",
+      "name": "Indium",
+      "group": "metal",
+      "period": 5,
+      "groupNumber": 13,
+      "theme": "semiconductor",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=In",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ir",
+      "name": "Iridium",
+      "group": "transition",
+      "period": 6,
+      "groupNumber": 9,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ir",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "K",
+      "name": "Kalium",
+      "group": "alkali",
+      "period": 4,
+      "groupNumber": 1,
+      "theme": "biological",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=K",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Kr",
+      "name": "Krypton",
+      "group": "nobleGas",
+      "period": 4,
+      "groupNumber": 18,
+      "theme": "lighting",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Kr",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "La",
+      "name": "Lanthan",
+      "group": "lanthanide",
+      "period": 6,
+      "groupNumber": 3,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=La",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Li",
+      "name": "Lithium",
+      "group": "alkali",
+      "period": 2,
+      "groupNumber": 1,
+      "theme": "energy",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Li",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Lr",
+      "name": "Lawrencium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 3,
+      "theme": "discovery",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Lr",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Lu",
+      "name": "Lutetium",
+      "group": "lanthanide",
+      "period": 6,
+      "groupNumber": 3,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Lu",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Lv",
+      "name": "Livermorium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 8,
+      "theme": "research",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Lv",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Mc",
+      "name": "Moscovium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 8,
+      "theme": "history",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Mc",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Md",
+      "name": "Mendelevium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 3,
+      "theme": "history",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Md",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Mg",
+      "name": "Magnesium",
+      "group": "alkalineEarth",
+      "period": 3,
+      "groupNumber": 2,
+      "theme": "light",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Mg",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Mn",
+      "name": "Mangan",
+      "group": "transition",
+      "period": 4,
+      "groupNumber": 7,
+      "theme": "industry",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Mn",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Mo",
+      "name": "Molybdän",
+      "group": "transition",
+      "period": 5,
+      "groupNumber": 6,
+      "theme": "industry",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Mo",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Mt",
+      "name": "Meitnerium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 8,
+      "theme": "history",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Mt",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "N",
+      "name": "Stickstoff",
+      "group": "nonmetal",
+      "period": 2,
+      "groupNumber": 15,
+      "theme": "atmosphere",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=N",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Na",
+      "name": "Natrium",
+      "group": "alkali",
+      "period": 3,
+      "groupNumber": 1,
+      "theme": "kitchen",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Na",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Nb",
+      "name": "Niob",
+      "group": "transition",
+      "period": 5,
+      "groupNumber": 5,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Nb",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Nd",
+      "name": "Neodym",
+      "group": "lanthanide",
+      "period": 6,
+      "groupNumber": 3,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Nd",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ne",
+      "name": "Neon",
+      "group": "nobleGas",
+      "period": 2,
+      "groupNumber": 18,
+      "theme": "lights",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ne",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Nh",
+      "name": "Nihonium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 8,
+      "theme": "research",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Nh",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ni",
+      "name": "Nickel",
+      "group": "transition",
+      "period": 4,
+      "groupNumber": 10,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ni",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "No",
+      "name": "Nobelium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 3,
+      "theme": "history",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=No",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Np",
+      "name": "Neptunium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 3,
+      "theme": "nuclear",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Np",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "O",
+      "name": "Sauerstoff",
+      "group": "nonmetal",
+      "period": 2,
+      "groupNumber": 16,
+      "theme": "breath",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=O",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Og",
+      "name": "Oganesson",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 8,
+      "theme": "discovery",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Og",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Os",
+      "name": "Osmium",
+      "group": "transition",
+      "period": 6,
+      "groupNumber": 8,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Os",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "P",
+      "name": "Phosphor",
+      "group": "nonmetal",
+      "period": 3,
+      "groupNumber": 15,
+      "theme": "fire",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=P",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Pa",
+      "name": "Protactinium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 3,
+      "theme": "research",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Pa",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Pb",
+      "name": "Blei",
+      "group": "metal",
+      "period": 6,
+      "groupNumber": 14,
+      "theme": "history",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Pb",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Pd",
+      "name": "Palladium",
+      "group": "transition",
+      "period": 5,
+      "groupNumber": 10,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Pd",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Pm",
+      "name": "Promethium",
+      "group": "lanthanide",
+      "period": 6,
+      "groupNumber": 3,
+      "theme": "space",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Pm",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Po",
+      "name": "Polonium",
+      "group": "metalloid",
+      "period": 6,
+      "groupNumber": 16,
+      "theme": "nuclear",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Po",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Pr",
+      "name": "Praseodym",
+      "group": "lanthanide",
+      "period": 6,
+      "groupNumber": 3,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Pr",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Pt",
+      "name": "Platin",
+      "group": "transition",
+      "period": 6,
+      "groupNumber": 10,
+      "theme": "precious",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Pt",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Pu",
+      "name": "Plutonium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 3,
+      "theme": "nuclear",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Pu",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ra",
+      "name": "Radium",
+      "group": "alkalineEarth",
+      "period": 7,
+      "groupNumber": 2,
+      "theme": "historical",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ra",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Rb",
+      "name": "Rubidium",
+      "group": "alkali",
+      "period": 5,
+      "groupNumber": 1,
+      "theme": "pyrotechnics",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Rb",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Re",
+      "name": "Rhenium",
+      "group": "transition",
+      "period": 6,
+      "groupNumber": 7,
+      "theme": "aerospace",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Re",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Rf",
+      "name": "Rutherfordium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 4,
+      "theme": "research",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Rf",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Rg",
+      "name": "Roentgenium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 8,
+      "theme": "medical",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Rg",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Rh",
+      "name": "Rhodium",
+      "group": "transition",
+      "period": 5,
+      "groupNumber": 9,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Rh",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Rn",
+      "name": "Radon",
+      "group": "nobleGas",
+      "period": 6,
+      "groupNumber": 18,
+      "theme": "radiation",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Rn",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ru",
+      "name": "Ruthenium",
+      "group": "transition",
+      "period": 5,
+      "groupNumber": 8,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ru",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "S",
+      "name": "Schwefel",
+      "group": "nonmetal",
+      "period": 3,
+      "groupNumber": 16,
+      "theme": "volcano",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=S",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Sb",
+      "name": "Antimon",
+      "group": "metalloid",
+      "period": 5,
+      "groupNumber": 15,
+      "theme": "industry",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Sb",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Sc",
+      "name": "Scandium",
+      "group": "transition",
+      "period": 4,
+      "groupNumber": 3,
+      "theme": "aerospace",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Sc",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Se",
+      "name": "Selen",
+      "group": "nonmetal",
+      "period": 4,
+      "groupNumber": 16,
+      "theme": "semiconductor",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Se",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Sg",
+      "name": "Seaborgium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 6,
+      "theme": "research",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Sg",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Si",
+      "name": "Silizium",
+      "group": "metalloid",
+      "period": 3,
+      "groupNumber": 14,
+      "theme": "silicon",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Si",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Sm",
+      "name": "Samarium",
+      "group": "lanthanide",
+      "period": 6,
+      "groupNumber": 3,
+      "theme": "nuclear",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Sm",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Sn",
+      "name": "Zinn",
+      "group": "metal",
+      "period": 5,
+      "groupNumber": 14,
+      "theme": "history",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Sn",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Sr",
+      "name": "Strontium",
+      "group": "alkalineEarth",
+      "period": 5,
+      "groupNumber": 2,
+      "theme": "pyrotechnics",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Sr",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ta",
+      "name": "Tantal",
+      "group": "transition",
+      "period": 6,
+      "groupNumber": 5,
+      "theme": "electronics",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ta",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Tb",
+      "name": "Terbium",
+      "group": "lanthanide",
+      "period": 6,
+      "groupNumber": 3,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Tb",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Tc",
+      "name": "Technetium",
+      "group": "transition",
+      "period": 5,
+      "groupNumber": 7,
+      "theme": "nuclear",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Tc",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Te",
+      "name": "Tellur",
+      "group": "metalloid",
+      "period": 5,
+      "groupNumber": 16,
+      "theme": "semiconductor",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Te",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Th",
+      "name": "Thorium",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 3,
+      "theme": "nuclear",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Th",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ti",
+      "name": "Titan",
+      "group": "transition",
+      "period": 4,
+      "groupNumber": 4,
+      "theme": "aerospace",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ti",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Tl",
+      "name": "Thallium",
+      "group": "metal",
+      "period": 6,
+      "groupNumber": 13,
+      "theme": "toxic",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Tl",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Tm",
+      "name": "Thulium",
+      "group": "lanthanide",
+      "period": 6,
+      "groupNumber": 3,
+      "theme": "medical",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Tm",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Ts",
+      "name": "Tennessin",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 8,
+      "theme": "research",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ts",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "U",
+      "name": "Uran",
+      "group": "actinide",
+      "period": 7,
+      "groupNumber": 3,
+      "theme": "nuclear",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=U",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "V",
+      "name": "Vanadium",
+      "group": "transition",
+      "period": 4,
+      "groupNumber": 5,
+      "theme": "industry",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=V",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "W",
+      "name": "Wolfram",
+      "group": "transition",
+      "period": 6,
+      "groupNumber": 6,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=W",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Xe",
+      "name": "Xenon",
+      "group": "nobleGas",
+      "period": 5,
+      "groupNumber": 18,
+      "theme": "space",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Xe",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Y",
+      "name": "Yttrium",
+      "group": "transition",
+      "period": 5,
+      "groupNumber": 3,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Y",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Yb",
+      "name": "Ytterbium",
+      "group": "lanthanide",
+      "period": 6,
+      "groupNumber": 3,
+      "theme": "industry",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Yb",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Zn",
+      "name": "Zink",
+      "group": "transition",
+      "period": 4,
+      "groupNumber": 12,
+      "theme": "technology",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Zn",
+      "hubRoomUrl": null
+    },
+    {
+      "symbol": "Zr",
+      "name": "Zirkonium",
+      "group": "transition",
+      "period": 5,
+      "groupNumber": 4,
+      "theme": "nuclear",
+      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Zr",
+      "hubRoomUrl": null
+    }
+  ]
+}
