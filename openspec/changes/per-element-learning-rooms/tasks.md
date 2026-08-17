@@ -1,7 +1,13 @@
 # Tasks: per-element-learning-rooms
 
 > Status: implemented (app + directory + manifest + reproducible Hubs script).
-> Remaining: live Hubs-room creation needs `HUB_API_TOKEN` (Task 4.3/4.4).
+> **Hubs-Räume live angelegt (2026-08-17)**: 120 per-Element-Räume via validated
+> reticulum flow (`TURKEY_MODE=1` + Dashboard-Key → `POST /api/v1/hubs`),
+> `hubRoomUrl`/`hubId` im Manifest (Commit `686d92ad`, deployed via CI).
+> **Remaining**: full external serving der Räume ist blockiert durch Host-Memory
+> (16GiB cgroup ceiling: neue Container `Cannot allocate memory`/iptables ENOMEM).
+> Reticulum läuft als port-freier Container (`reticulum-boot`); Stack-Start
+> (haproxy, hubs-client …) sobald Memory freigegeben oder Host erweitert.
 
 ## 1. App — robuste + aliasierte Tiefverlinkung (`hello-webxr-master`)
 
@@ -29,8 +35,8 @@
 
 - [x] 4.1 Kanonische Embed-URL: `https://tobias-weiss.org/hello-webxr/?room=<SYMBOL>`.
 - [x] 4.2 Manifest generiert `myhugoapp/static/data/chemie-raeume-manifest.json` (120 Elemente) via `scripts/generate-chemie-raeume-manifest.mjs`.
-- [x] 4.3 `scripts/create-hubs-element-rooms.mjs`: `list` (reproducible, keine Creds) + `create` (env `HUB_API_TOKEN`, idempotent, schreibt `hubRoomUrl` zurück).
-- [ ] 4.4 Live-Verifikation: Hubs-Räume anlegen sobald `HUB_API_TOKEN` vorhanden (behebt „H room → fair").
+- [x] 4.3 `scripts/create-hubs-element-rooms.mjs` (Commit `928d1278`): `list` + `create`; Auth statt `HUB_API_TOKEN` via `TURKEY_MODE=1` + `x-ret-dashboard-access-key` → `make_auth_token_for_email` → JWT → `POST /api/v1/hubs` (validiert, idempotent).
+- [x] 4.4 Live-Verifikation: **120/120 Räume angelegt** (Hub-IDs + URLs im Manifest, Commit `686d92ad`, gepusht → CI-Deploy). 3 Test-Hubs zusätzlich in `ret_dev` (harmlos).
 
 ## 5. Auffindbarkeit — Verzeichnis (`chemie-lernen.org`)
 
@@ -42,4 +48,4 @@
 
 - [x] 6.1 `tests/chemie-raeume.test.js` (render + escape) + `tests/quiz-integration.test.js` (Rechner↔Quiz-Mapping, Fallback).
 - [x] 6.2 `npm test` (neue Tests grün); `hugo --minify` + `vite build` grün.
-- [x] 6.3 Live-Check: `/chemie-raeume/` HTTP 200 + Grid; `https://tobias-weiss.org/hello-webxr/?room=H` HTTP 200 (Traefik-Routing); Deep-Link-Auflösung gegen echte Daten verifiziert.
+- [x] 6.3 Live-Check: `/chemie-raeume/` HTTP 200 + Grid; `https://chemie-lernen.org/hello-webxr/?room=H` HTTP 200 (Traefik-Routing); Deep-Link-Auflösung gegen echte Daten verifiziert.
