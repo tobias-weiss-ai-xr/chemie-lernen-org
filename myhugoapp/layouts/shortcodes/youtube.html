@@ -4,6 +4,10 @@
   {{- errorf "youtube shortcode requires an 'id' parameter (video ID)" -}}
 {{- end -}}
 <figure class="video-embed" itemscope itemtype="https://schema.org/VideoObject">
+  <meta itemprop="name" content="{{ $title }}">
+  <meta itemprop="author" content="Zig's Chemistry 42 (Prof. Siegfried Schindler)">
+  <meta itemprop="publisher" content="Zig's Chemistry 42 – YouTube">
+  <meta itemprop="isAccessibleForFree" content="True">
   <div class="video-embed-frame">
     <iframe
       src="https://www.youtube-nocookie.com/embed/{{ $id }}"

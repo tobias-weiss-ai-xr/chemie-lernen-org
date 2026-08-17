@@ -54,11 +54,11 @@ Manche Nachweise beruhen auf der Bildung farbiger Komplexverbindungen:
 ## 📺 Lernvideos
 
 {{< youtube id="dPYzv92LNg8" title="Praktikum: H₂S-Fällung" >}}
-**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – H₂S-Fällung_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) veranschaulicht die klassische Sulfid-Fällung im Grundpraktikum.
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – H₂S-Fällung_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) veranschaulicht die klassische Sulfid-Fällung im Grundpraktikum.
 {{< /youtube >}}
 
 {{< youtube id="Ewyp31JjIb8" title="Praktikum: Silberspiegel" >}}
-**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Silberspiegel_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) zeigt den bekannten Silberspiegel-Nachweis (Tollens-Reaktion).
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Silberspiegel_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) zeigt den bekannten Silberspiegel-Nachweis (Tollens-Reaktion).
 {{< /youtube >}}
 
 ## Grenzen und moderne Methoden

@@ -191,6 +191,21 @@
   color: #777;
 }
 
+.zigs-video-source {
+  margin-top: 14px;
+  font-size: 0.82rem;
+  color: #777;
+}
+
+.zigs-video-source a {
+  font-weight: 600;
+}
+
+.zigs-video-channel {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
 @media (prefers-color-scheme: dark) {
   .zigs-video-item {
     background: #2c2c2c;
@@ -198,6 +213,11 @@
 
   .zigs-video-date {
     color: #aaa;
+  }
+
+  .zigs-video-source,
+  .zigs-video-channel {
+    color: #9fd3a2;
   }
 }
 

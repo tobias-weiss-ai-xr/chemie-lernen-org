@@ -94,6 +94,12 @@ Soweit nicht anders angegeben, sind alle Bilder und Grafiken auf dieser Webseite
 
 Unless otherwise noted, all images and graphics on this website are the property of Tobias Weiß or are subject to license-free usage rights.
 
+## Lernvideos / Video Credits
+
+Die auf dieser Webseite eingebetteten Lernvideos stammen vom YouTube-Kanal **„Zig's Chemistry 42“** von **Prof. Siegfried Schindler** (Justus-Liebig-Universität Gießen): https://www.youtube.com/@ZigsChemistry42. Die Videos sind **nicht Eigentum dieser Webseite**; alle Rechte an den Videos liegen beim jeweiligen Urheber bzw. bei YouTube. Die Einbettung erfolgt ausschließlich zu Lernzwecken mit freundlicher Unterstützung des Kanals.
+
+The learning videos embedded on this website originate from the YouTube channel **“Zig's Chemistry 42”** by **Prof. Siegfried Schindler** (Justus-Liebig-Universität Gießen): https://www.youtube.com/@ZigsChemistry42. The videos are **not owned by this website**; all rights to the videos remain with the respective creator and YouTube. They are embedded solely for educational purposes with the channel's kind support.
+
 ---
 
 **Letzte Aktualisierung:** 03. Juni 2026
