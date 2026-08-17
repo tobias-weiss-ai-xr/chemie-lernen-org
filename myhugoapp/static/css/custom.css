@@ -83,6 +83,15 @@
   margin: 2rem 0;
 }
 
+/* Full-width video breakout inside thema-content-layout (col-md-8 + col-md-4) */
+@media (min-width: 768px) {
+  .thema-content > .video-embed {
+    margin-left: calc(-16.667% - 15px);
+    margin-right: calc(-16.667% - 15px);
+    max-width: none;
+  }
+}
+
 .video-embed-frame {
   position: relative;
   width: 100%;
