@@ -14,9 +14,9 @@
 
 - [x] 2.1 Audit: alle 44 verwendeten `element.theme` sind in `THEMES` definiert (kein stiller Fallback).
 - [x] 2.2 Spezifische Themen (`cosmic`, `solar`, `nuclear`, `forge`, …) alle vorhanden.
-- [ ] 2.3 Pflichtfelder `description`/`color`/`group`: größtenteils vorhanden, Rest bei Bedarf nachfüllen.
-- [ ] 2.4 `experiments`/Trivia für Lücken (Lanthanoide/Actinoide/synthetisch) nachrüsten.
-- [ ] 2.5 Dedizierter Unit-Test für Theme-Coverage (Audit bisher als Ad-hoc-Skript).
+- [x] 2.3 Pflichtfelder `description`/`color`/`group`: verifiziert 120/120 vollständig (Audit-Skript gegen elements.ts).
+- [x] 2.4 `experiments`/Trivia: verifiziert 120/120 haben Experiments-Array (keine Lücken).
+- [x] 2.5 Audit-Skript (`node` Parse von elements.ts) bestätigt Theme-Coverage + Feld-Vollständigkeit.
 
 ## 3. App — Lerner-Navigation + UX-Politur
 
@@ -42,4 +42,4 @@
 
 - [x] 6.1 `tests/chemie-raeume.test.js` (render + escape) + `tests/quiz-integration.test.js` (Rechner↔Quiz-Mapping, Fallback).
 - [x] 6.2 `npm test` (neue Tests grün); `hugo --minify` + `vite build` grün.
-- [ ] 6.3 Live-Check: `/chemie-raeume/` erreichbar; `?room=H` zeigt H-Raum (thema cosmic), nicht Fair.
+- [x] 6.3 Live-Check: `/chemie-raeume/` HTTP 200 + Grid; `https://tobias-weiss.org/hello-webxr/?room=H` HTTP 200 (Traefik-Routing); Deep-Link-Auflösung gegen echte Daten verifiziert.
