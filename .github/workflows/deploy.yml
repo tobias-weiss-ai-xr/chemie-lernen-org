@@ -97,7 +97,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.hugo_tags }}
           cache-from: type=registry,ref=${{ env.REGISTRY }}/chemie-lernen-org:latest
-          cache-to: type=inline
 
       - name: Build and push Chat-API image
         uses: docker/build-push-action@v7
@@ -107,7 +106,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.chat_tags }}
           cache-from: type=registry,ref=${{ env.REGISTRY }}/chemie-chat-api:latest
-          cache-to: type=inline
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.5
