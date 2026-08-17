@@ -9,7 +9,7 @@
  *
  * Usage:
  *   node scripts/generate-chemie-raeume-manifest.mjs [ELEMENTS_SRC] [OUT_JSON]
- *   APP_BASE_URL=https://tobias-weiss.org/hello-webxr node scripts/generate-chemie-raeume-manifest.mjs
+ *   APP_BASE_URL=https://chemie-lernen.org/hello-webxr node scripts/generate-chemie-raeume-manifest.mjs
  *
  * Re-run whenever element data changes — output is committed so the directory
  * page works without a build step.
@@ -21,7 +21,7 @@ const ELEMENTS_SRC =
   process.argv[2] ||
   process.env.ELEMENTS_SRC ||
   '/opt/git/hello-webxr-master/src/data/elements.ts';
-const APP_BASE_URL = process.env.APP_BASE_URL || 'https://tobias-weiss.org/hello-webxr';
+const APP_BASE_URL = process.env.APP_BASE_URL || 'https://chemie-lernen.org/hello-webxr';
 const OUT =
   process.argv[3] ||
   path.resolve(process.cwd(), 'myhugoapp/static/data/chemie-raeume-manifest.json');

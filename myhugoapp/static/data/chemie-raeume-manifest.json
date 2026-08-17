@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-17T10:48:59.317Z",
-  "appBaseUrl": "https://tobias-weiss.org/hello-webxr",
+  "generatedAt": "2026-08-17T16:21:26.490Z",
+  "appBaseUrl": "https://chemie-lernen.org/hello-webxr",
   "count": 120,
   "elements": [
     {
@@ -10,8 +10,9 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ac",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ac",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/LhU2hpE/chemie-lernraum-actinium-ac",
+      "hubId": "LhU2hpE"
     },
     {
       "symbol": "Ag",
@@ -20,8 +21,9 @@
       "period": 5,
       "groupNumber": 11,
       "theme": "precious",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ag",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ag",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/uy98euZ/chemie-lernraum-silber-ag",
+      "hubId": "uy98euZ"
     },
     {
       "symbol": "Al",
@@ -30,8 +32,9 @@
       "period": 3,
       "groupNumber": 13,
       "theme": "industry",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Al",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Al",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/ZjxmEhL/chemie-lernraum-aluminium-al",
+      "hubId": "ZjxmEhL"
     },
     {
       "symbol": "Am",
@@ -40,8 +43,9 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "space",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Am",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Am",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/hYVyLWi/chemie-lernraum-americium-am",
+      "hubId": "hYVyLWi"
     },
     {
       "symbol": "Ar",
@@ -50,8 +54,9 @@
       "period": 3,
       "groupNumber": 18,
       "theme": "welding",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ar",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ar",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/47nm2eq/chemie-lernraum-argon-ar",
+      "hubId": "47nm2eq"
     },
     {
       "symbol": "As",
@@ -60,8 +65,9 @@
       "period": 4,
       "groupNumber": 15,
       "theme": "toxic",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=As",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=As",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/XP7Kc5n/chemie-lernraum-arsen-as",
+      "hubId": "XP7Kc5n"
     },
     {
       "symbol": "At",
@@ -70,8 +76,9 @@
       "period": 6,
       "groupNumber": 17,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=At",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=At",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/Ey3mSyg/chemie-lernraum-astatin-at",
+      "hubId": "Ey3mSyg"
     },
     {
       "symbol": "Au",
@@ -80,8 +87,9 @@
       "period": 6,
       "groupNumber": 11,
       "theme": "treasure",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Au",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Au",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/7XtnECy/chemie-lernraum-gold-au",
+      "hubId": "7XtnECy"
     },
     {
       "symbol": "Au",
@@ -90,8 +98,9 @@
       "period": 6,
       "groupNumber": 11,
       "theme": "treasure",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Au",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Au",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/7XtnECy/chemie-lernraum-gold-au",
+      "hubId": "7XtnECy"
     },
     {
       "symbol": "B",
@@ -100,8 +109,9 @@
       "period": 2,
       "groupNumber": 13,
       "theme": "desert",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=B",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=B",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/oHzABov/chemie-lernraum-bor-b",
+      "hubId": "oHzABov"
     },
     {
       "symbol": "Ba",
@@ -110,8 +120,9 @@
       "period": 6,
       "groupNumber": 2,
       "theme": "medical",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ba",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ba",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/KekF2Xr/chemie-lernraum-barium-ba",
+      "hubId": "KekF2Xr"
     },
     {
       "symbol": "Be",
@@ -120,8 +131,9 @@
       "period": 2,
       "groupNumber": 2,
       "theme": "gem",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Be",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Be",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/baSFZ8U/chemie-lernraum-beryllium-be",
+      "hubId": "baSFZ8U"
     },
     {
       "symbol": "Bh",
@@ -130,8 +142,9 @@
       "period": 7,
       "groupNumber": 7,
       "theme": "science",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Bh",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Bh",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/zwoRoxr/chemie-lernraum-bohrium-bh",
+      "hubId": "zwoRoxr"
     },
     {
       "symbol": "Bi",
@@ -140,8 +153,9 @@
       "period": 6,
       "groupNumber": 15,
       "theme": "medical",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Bi",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Bi",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/y3jfTq8/chemie-lernraum-wismut-bi",
+      "hubId": "y3jfTq8"
     },
     {
       "symbol": "Bk",
@@ -150,8 +164,9 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Bk",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Bk",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/mLCPyDy/chemie-lernraum-berkelium-bk",
+      "hubId": "mLCPyDy"
     },
     {
       "symbol": "Br",
@@ -160,8 +175,9 @@
       "period": 4,
       "groupNumber": 17,
       "theme": "liquid",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Br",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Br",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/rrvKWJP/chemie-lernraum-brom-br",
+      "hubId": "rrvKWJP"
     },
     {
       "symbol": "C",
@@ -170,8 +186,9 @@
       "period": 2,
       "groupNumber": 14,
       "theme": "life",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=C",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=C",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/UWnQ6sP/chemie-lernraum-kohlenstoff-c",
+      "hubId": "UWnQ6sP"
     },
     {
       "symbol": "Ca",
@@ -180,8 +197,9 @@
       "period": 4,
       "groupNumber": 2,
       "theme": "skeleton",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ca",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ca",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/gux6gxu/chemie-lernraum-calcium-ca",
+      "hubId": "gux6gxu"
     },
     {
       "symbol": "Ca",
@@ -190,8 +208,9 @@
       "period": 4,
       "groupNumber": 2,
       "theme": "biological",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ca",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ca",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/gux6gxu/chemie-lernraum-calcium-ca",
+      "hubId": "gux6gxu"
     },
     {
       "symbol": "Cd",
@@ -200,8 +219,9 @@
       "period": 5,
       "groupNumber": 12,
       "theme": "toxic",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Cd",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Cd",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/dC3eW9T/chemie-lernraum-cadmium-cd",
+      "hubId": "dC3eW9T"
     },
     {
       "symbol": "Ce",
@@ -210,8 +230,9 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ce",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ce",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/iZDAEYs/chemie-lernraum-cer-ce",
+      "hubId": "iZDAEYs"
     },
     {
       "symbol": "Cf",
@@ -220,8 +241,9 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Cf",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Cf",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/kTJVZPr/chemie-lernraum-californium-cf",
+      "hubId": "kTJVZPr"
     },
     {
       "symbol": "Cl",
@@ -230,8 +252,9 @@
       "period": 3,
       "groupNumber": 17,
       "theme": "swimming",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Cl",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Cl",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/vFSqcP3/chemie-lernraum-chlor-cl",
+      "hubId": "vFSqcP3"
     },
     {
       "symbol": "Cm",
@@ -240,8 +263,9 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "space",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Cm",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Cm",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/6Ls7HLh/chemie-lernraum-curium-cm",
+      "hubId": "6Ls7HLh"
     },
     {
       "symbol": "Cn",
@@ -250,8 +274,9 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "history",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Cn",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Cn",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/TbN9cdX/chemie-lernraum-copernicium-cn",
+      "hubId": "TbN9cdX"
     },
     {
       "symbol": "Co",
@@ -260,8 +285,9 @@
       "period": 4,
       "groupNumber": 9,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Co",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Co",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/DUeAHBW/chemie-lernraum-kobalt-co",
+      "hubId": "DUeAHBW"
     },
     {
       "symbol": "Cr",
@@ -270,8 +296,9 @@
       "period": 4,
       "groupNumber": 6,
       "theme": "industry",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Cr",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Cr",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/NxtTED6/chemie-lernraum-chrom-cr",
+      "hubId": "NxtTED6"
     },
     {
       "symbol": "Cs",
@@ -280,8 +307,9 @@
       "period": 6,
       "groupNumber": 1,
       "theme": "precision",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Cs",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Cs",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/9nkiQ34/chemie-lernraum-caesium-cs",
+      "hubId": "9nkiQ34"
     },
     {
       "symbol": "Cu",
@@ -290,8 +318,9 @@
       "period": 4,
       "groupNumber": 11,
       "theme": "electric",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Cu",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Cu",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/hj6VaoK/chemie-lernraum-kupfer-cu",
+      "hubId": "hj6VaoK"
     },
     {
       "symbol": "Db",
@@ -300,8 +329,9 @@
       "period": 7,
       "groupNumber": 5,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Db",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Db",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/i4x29RF/chemie-lernraum-dubnium-db",
+      "hubId": "i4x29RF"
     },
     {
       "symbol": "Ds",
@@ -310,8 +340,9 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ds",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ds",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/kRWusX8/chemie-lernraum-darmstadtium-ds",
+      "hubId": "kRWusX8"
     },
     {
       "symbol": "Dy",
@@ -320,8 +351,9 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Dy",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Dy",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/afT6Xiz/chemie-lernraum-dysprosium-dy",
+      "hubId": "afT6Xiz"
     },
     {
       "symbol": "Er",
@@ -330,8 +362,9 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Er",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Er",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/who7KNB/chemie-lernraum-erbium-er",
+      "hubId": "who7KNB"
     },
     {
       "symbol": "Es",
@@ -340,8 +373,9 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "history",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Es",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Es",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/bF5qBtr/chemie-lernraum-einsteinium-es",
+      "hubId": "bF5qBtr"
     },
     {
       "symbol": "Eu",
@@ -350,8 +384,9 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "security",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Eu",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Eu",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/MQL4Knm/chemie-lernraum-europium-eu",
+      "hubId": "MQL4Knm"
     },
     {
       "symbol": "F",
@@ -360,8 +395,9 @@
       "period": 2,
       "groupNumber": 17,
       "theme": "protection",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=F",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=F",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/5sfYjbH/chemie-lernraum-fluor-f",
+      "hubId": "5sfYjbH"
     },
     {
       "symbol": "Fe",
@@ -370,8 +406,9 @@
       "period": 4,
       "groupNumber": 8,
       "theme": "forge",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Fe",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Fe",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/d75xdhz/chemie-lernraum-eisen-fe",
+      "hubId": "d75xdhz"
     },
     {
       "symbol": "Fl",
@@ -380,8 +417,9 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "science",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Fl",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Fl",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/3oZfVuS/chemie-lernraum-flerovium-fl",
+      "hubId": "3oZfVuS"
     },
     {
       "symbol": "Fm",
@@ -390,8 +428,9 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Fm",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Fm",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/GRyVssR/chemie-lernraum-fermium-fm",
+      "hubId": "GRyVssR"
     },
     {
       "symbol": "Fr",
@@ -400,8 +439,9 @@
       "period": 7,
       "groupNumber": 1,
       "theme": "theoretical",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Fr",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Fr",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/B3TZnLt/chemie-lernraum-francium-fr",
+      "hubId": "B3TZnLt"
     },
     {
       "symbol": "Ga",
@@ -410,8 +450,9 @@
       "period": 4,
       "groupNumber": 13,
       "theme": "semiconductor",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ga",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ga",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/VBQJdK7/chemie-lernraum-gallium-ga",
+      "hubId": "VBQJdK7"
     },
     {
       "symbol": "Gd",
@@ -420,8 +461,9 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "medical",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Gd",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Gd",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/2JSbtiR/chemie-lernraum-gadolinium-gd",
+      "hubId": "2JSbtiR"
     },
     {
       "symbol": "Ge",
@@ -430,8 +472,9 @@
       "period": 4,
       "groupNumber": 14,
       "theme": "semiconductor",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ge",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ge",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/gZrpu8A/chemie-lernraum-germanium-ge",
+      "hubId": "gZrpu8A"
     },
     {
       "symbol": "H",
@@ -440,8 +483,9 @@
       "period": 1,
       "groupNumber": 1,
       "theme": "cosmic",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=H",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=H",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/cFfy6L5/chemie-lernraum-wasserstoff-h",
+      "hubId": "cFfy6L5"
     },
     {
       "symbol": "He",
@@ -450,8 +494,9 @@
       "period": 1,
       "groupNumber": 18,
       "theme": "solar",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=He",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=He",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/UY83iRW/chemie-lernraum-helium-he",
+      "hubId": "UY83iRW"
     },
     {
       "symbol": "Hf",
@@ -460,8 +505,9 @@
       "period": 6,
       "groupNumber": 4,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Hf",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Hf",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/KiGbou9/chemie-lernraum-hafnium-hf",
+      "hubId": "KiGbou9"
     },
     {
       "symbol": "Hg",
@@ -470,8 +516,9 @@
       "period": 6,
       "groupNumber": 12,
       "theme": "historical",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Hg",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Hg",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/tTnnP2X/chemie-lernraum-quecksilber-hg",
+      "hubId": "tTnnP2X"
     },
     {
       "symbol": "Ho",
@@ -480,8 +527,9 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ho",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ho",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/v4nccn4/chemie-lernraum-holmium-ho",
+      "hubId": "v4nccn4"
     },
     {
       "symbol": "Hs",
@@ -490,8 +538,9 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "discovery",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Hs",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Hs",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/AXzPk5A/chemie-lernraum-hassium-hs",
+      "hubId": "AXzPk5A"
     },
     {
       "symbol": "I",
@@ -500,8 +549,9 @@
       "period": 5,
       "groupNumber": 17,
       "theme": "biological",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=I",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=I",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/FMV7Kgm/chemie-lernraum-jod-i",
+      "hubId": "FMV7Kgm"
     },
     {
       "symbol": "In",
@@ -510,8 +560,9 @@
       "period": 5,
       "groupNumber": 13,
       "theme": "semiconductor",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=In",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=In",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/DLgof8B/chemie-lernraum-indium-in",
+      "hubId": "DLgof8B"
     },
     {
       "symbol": "Ir",
@@ -520,8 +571,9 @@
       "period": 6,
       "groupNumber": 9,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ir",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ir",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/7weznNy/chemie-lernraum-iridium-ir",
+      "hubId": "7weznNy"
     },
     {
       "symbol": "K",
@@ -530,8 +582,9 @@
       "period": 4,
       "groupNumber": 1,
       "theme": "biological",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=K",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=K",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/qbGNqSK/chemie-lernraum-kalium-k",
+      "hubId": "qbGNqSK"
     },
     {
       "symbol": "Kr",
@@ -540,8 +593,9 @@
       "period": 4,
       "groupNumber": 18,
       "theme": "lighting",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Kr",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Kr",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/VKD7oHj/chemie-lernraum-krypton-kr",
+      "hubId": "VKD7oHj"
     },
     {
       "symbol": "La",
@@ -550,8 +604,9 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=La",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=La",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/NFPXx7Q/chemie-lernraum-lanthan-la",
+      "hubId": "NFPXx7Q"
     },
     {
       "symbol": "Li",
@@ -560,8 +615,9 @@
       "period": 2,
       "groupNumber": 1,
       "theme": "energy",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Li",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Li",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/fc7aUCD/chemie-lernraum-lithium-li",
+      "hubId": "fc7aUCD"
     },
     {
       "symbol": "Lr",
@@ -570,8 +626,9 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "discovery",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Lr",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Lr",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/aAZYpZu/chemie-lernraum-lawrencium-lr",
+      "hubId": "aAZYpZu"
     },
     {
       "symbol": "Lu",
@@ -580,8 +637,9 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Lu",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Lu",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/98Jd8P6/chemie-lernraum-lutetium-lu",
+      "hubId": "98Jd8P6"
     },
     {
       "symbol": "Lv",
@@ -590,8 +648,9 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Lv",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Lv",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/dVYmVQu/chemie-lernraum-livermorium-lv",
+      "hubId": "dVYmVQu"
     },
     {
       "symbol": "Mc",
@@ -600,8 +659,9 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "history",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Mc",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Mc",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/sjsZwd8/chemie-lernraum-moscovium-mc",
+      "hubId": "sjsZwd8"
     },
     {
       "symbol": "Md",
@@ -610,8 +670,9 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "history",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Md",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Md",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/Abdc7vv/chemie-lernraum-mendelevium-md",
+      "hubId": "Abdc7vv"
     },
     {
       "symbol": "Mg",
@@ -620,8 +681,9 @@
       "period": 3,
       "groupNumber": 2,
       "theme": "light",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Mg",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Mg",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/kc2i6Hv/chemie-lernraum-magnesium-mg",
+      "hubId": "kc2i6Hv"
     },
     {
       "symbol": "Mn",
@@ -630,8 +692,9 @@
       "period": 4,
       "groupNumber": 7,
       "theme": "industry",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Mn",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Mn",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/f4spYtp/chemie-lernraum-mangan-mn",
+      "hubId": "f4spYtp"
     },
     {
       "symbol": "Mo",
@@ -640,8 +703,9 @@
       "period": 5,
       "groupNumber": 6,
       "theme": "industry",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Mo",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Mo",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/bwTCcHT/chemie-lernraum-molybdaen-mo",
+      "hubId": "bwTCcHT"
     },
     {
       "symbol": "Mt",
@@ -650,8 +714,9 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "history",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Mt",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Mt",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/HKTeCR9/chemie-lernraum-meitnerium-mt",
+      "hubId": "HKTeCR9"
     },
     {
       "symbol": "N",
@@ -660,8 +725,9 @@
       "period": 2,
       "groupNumber": 15,
       "theme": "atmosphere",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=N",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=N",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/9Hhq4fy/chemie-lernraum-stickstoff-n",
+      "hubId": "9Hhq4fy"
     },
     {
       "symbol": "Na",
@@ -670,8 +736,9 @@
       "period": 3,
       "groupNumber": 1,
       "theme": "kitchen",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Na",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Na",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/mYpbuYp/chemie-lernraum-natrium-na",
+      "hubId": "mYpbuYp"
     },
     {
       "symbol": "Nb",
@@ -680,8 +747,9 @@
       "period": 5,
       "groupNumber": 5,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Nb",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Nb",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/roQHP7m/chemie-lernraum-niob-nb",
+      "hubId": "roQHP7m"
     },
     {
       "symbol": "Nd",
@@ -690,8 +758,9 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Nd",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Nd",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/JDu363M/chemie-lernraum-neodym-nd",
+      "hubId": "JDu363M"
     },
     {
       "symbol": "Ne",
@@ -700,8 +769,9 @@
       "period": 2,
       "groupNumber": 18,
       "theme": "lights",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ne",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ne",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/Cq6A42Q/chemie-lernraum-neon-ne",
+      "hubId": "Cq6A42Q"
     },
     {
       "symbol": "Nh",
@@ -710,8 +780,9 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Nh",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Nh",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/2TMds6r/chemie-lernraum-nihonium-nh",
+      "hubId": "2TMds6r"
     },
     {
       "symbol": "Ni",
@@ -720,8 +791,9 @@
       "period": 4,
       "groupNumber": 10,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ni",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ni",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/kUrnouZ/chemie-lernraum-nickel-ni",
+      "hubId": "kUrnouZ"
     },
     {
       "symbol": "No",
@@ -730,8 +802,9 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "history",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=No",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=No",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/znbMxa5/chemie-lernraum-nobelium-no",
+      "hubId": "znbMxa5"
     },
     {
       "symbol": "Np",
@@ -740,8 +813,9 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Np",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Np",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/GHirECf/chemie-lernraum-neptunium-np",
+      "hubId": "GHirECf"
     },
     {
       "symbol": "O",
@@ -750,8 +824,9 @@
       "period": 2,
       "groupNumber": 16,
       "theme": "breath",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=O",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=O",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/QmLAyqw/chemie-lernraum-sauerstoff-o",
+      "hubId": "QmLAyqw"
     },
     {
       "symbol": "Og",
@@ -760,8 +835,9 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "discovery",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Og",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Og",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/JDwfaaa/chemie-lernraum-oganesson-og",
+      "hubId": "JDwfaaa"
     },
     {
       "symbol": "Os",
@@ -770,8 +846,9 @@
       "period": 6,
       "groupNumber": 8,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Os",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Os",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/iADTUFV/chemie-lernraum-osmium-os",
+      "hubId": "iADTUFV"
     },
     {
       "symbol": "P",
@@ -780,8 +857,9 @@
       "period": 3,
       "groupNumber": 15,
       "theme": "fire",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=P",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=P",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/FBQrLzU/chemie-lernraum-phosphor-p",
+      "hubId": "FBQrLzU"
     },
     {
       "symbol": "Pa",
@@ -790,8 +868,9 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Pa",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Pa",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/7NuGmFB/chemie-lernraum-protactinium-pa",
+      "hubId": "7NuGmFB"
     },
     {
       "symbol": "Pb",
@@ -800,8 +879,9 @@
       "period": 6,
       "groupNumber": 14,
       "theme": "history",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Pb",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Pb",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/cU5pnrh/chemie-lernraum-blei-pb",
+      "hubId": "cU5pnrh"
     },
     {
       "symbol": "Pd",
@@ -810,8 +890,9 @@
       "period": 5,
       "groupNumber": 10,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Pd",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Pd",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/hGQyt7D/chemie-lernraum-palladium-pd",
+      "hubId": "hGQyt7D"
     },
     {
       "symbol": "Pm",
@@ -820,8 +901,9 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "space",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Pm",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Pm",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/XDimkeJ/chemie-lernraum-promethium-pm",
+      "hubId": "XDimkeJ"
     },
     {
       "symbol": "Po",
@@ -830,8 +912,9 @@
       "period": 6,
       "groupNumber": 16,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Po",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Po",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/UEHf2r9/chemie-lernraum-polonium-po",
+      "hubId": "UEHf2r9"
     },
     {
       "symbol": "Pr",
@@ -840,8 +923,9 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Pr",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Pr",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/32G3etT/chemie-lernraum-praseodym-pr",
+      "hubId": "32G3etT"
     },
     {
       "symbol": "Pt",
@@ -850,8 +934,9 @@
       "period": 6,
       "groupNumber": 10,
       "theme": "precious",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Pt",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Pt",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/p2utxvJ/chemie-lernraum-platin-pt",
+      "hubId": "p2utxvJ"
     },
     {
       "symbol": "Pu",
@@ -860,8 +945,9 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Pu",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Pu",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/DKTtYWo/chemie-lernraum-plutonium-pu",
+      "hubId": "DKTtYWo"
     },
     {
       "symbol": "Ra",
@@ -870,8 +956,9 @@
       "period": 7,
       "groupNumber": 2,
       "theme": "historical",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ra",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ra",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/nFj2vJt/chemie-lernraum-radium-ra",
+      "hubId": "nFj2vJt"
     },
     {
       "symbol": "Rb",
@@ -880,8 +967,9 @@
       "period": 5,
       "groupNumber": 1,
       "theme": "pyrotechnics",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Rb",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Rb",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/VAkKxWE/chemie-lernraum-rubidium-rb",
+      "hubId": "VAkKxWE"
     },
     {
       "symbol": "Re",
@@ -890,8 +978,9 @@
       "period": 6,
       "groupNumber": 7,
       "theme": "aerospace",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Re",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Re",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/sDyzpHN/chemie-lernraum-rhenium-re",
+      "hubId": "sDyzpHN"
     },
     {
       "symbol": "Rf",
@@ -900,8 +989,9 @@
       "period": 7,
       "groupNumber": 4,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Rf",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Rf",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/T2sWUqP/chemie-lernraum-rutherfordium-rf",
+      "hubId": "T2sWUqP"
     },
     {
       "symbol": "Rg",
@@ -910,8 +1000,9 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "medical",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Rg",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Rg",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/4TNbBCA/chemie-lernraum-roentgenium-rg",
+      "hubId": "4TNbBCA"
     },
     {
       "symbol": "Rh",
@@ -920,8 +1011,9 @@
       "period": 5,
       "groupNumber": 9,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Rh",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Rh",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/4r89duC/chemie-lernraum-rhodium-rh",
+      "hubId": "4r89duC"
     },
     {
       "symbol": "Rn",
@@ -930,8 +1022,9 @@
       "period": 6,
       "groupNumber": 18,
       "theme": "radiation",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Rn",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Rn",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/C8cqWaL/chemie-lernraum-radon-rn",
+      "hubId": "C8cqWaL"
     },
     {
       "symbol": "Ru",
@@ -940,8 +1033,9 @@
       "period": 5,
       "groupNumber": 8,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ru",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ru",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/eXHRTtD/chemie-lernraum-ruthenium-ru",
+      "hubId": "eXHRTtD"
     },
     {
       "symbol": "S",
@@ -950,8 +1044,9 @@
       "period": 3,
       "groupNumber": 16,
       "theme": "volcano",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=S",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=S",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/X2e7G54/chemie-lernraum-schwefel-s",
+      "hubId": "X2e7G54"
     },
     {
       "symbol": "Sb",
@@ -960,8 +1055,9 @@
       "period": 5,
       "groupNumber": 15,
       "theme": "industry",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Sb",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Sb",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/YmYGWRa/chemie-lernraum-antimon-sb",
+      "hubId": "YmYGWRa"
     },
     {
       "symbol": "Sc",
@@ -970,8 +1066,9 @@
       "period": 4,
       "groupNumber": 3,
       "theme": "aerospace",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Sc",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Sc",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/TnsxkSL/chemie-lernraum-scandium-sc",
+      "hubId": "TnsxkSL"
     },
     {
       "symbol": "Se",
@@ -980,8 +1077,9 @@
       "period": 4,
       "groupNumber": 16,
       "theme": "semiconductor",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Se",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Se",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/Sxum9z6/chemie-lernraum-selen-se",
+      "hubId": "Sxum9z6"
     },
     {
       "symbol": "Sg",
@@ -990,8 +1088,9 @@
       "period": 7,
       "groupNumber": 6,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Sg",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Sg",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/xtW7uox/chemie-lernraum-seaborgium-sg",
+      "hubId": "xtW7uox"
     },
     {
       "symbol": "Si",
@@ -1000,8 +1099,9 @@
       "period": 3,
       "groupNumber": 14,
       "theme": "silicon",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Si",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Si",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/VkSSESD/chemie-lernraum-silizium-si",
+      "hubId": "VkSSESD"
     },
     {
       "symbol": "Sm",
@@ -1010,8 +1110,9 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Sm",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Sm",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/CKt53kp/chemie-lernraum-samarium-sm",
+      "hubId": "CKt53kp"
     },
     {
       "symbol": "Sn",
@@ -1020,8 +1121,9 @@
       "period": 5,
       "groupNumber": 14,
       "theme": "history",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Sn",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Sn",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/GDXiVuZ/chemie-lernraum-zinn-sn",
+      "hubId": "GDXiVuZ"
     },
     {
       "symbol": "Sr",
@@ -1030,8 +1132,9 @@
       "period": 5,
       "groupNumber": 2,
       "theme": "pyrotechnics",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Sr",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Sr",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/MJPD5wV/chemie-lernraum-strontium-sr",
+      "hubId": "MJPD5wV"
     },
     {
       "symbol": "Ta",
@@ -1040,8 +1143,9 @@
       "period": 6,
       "groupNumber": 5,
       "theme": "electronics",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ta",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ta",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/vPudB4P/chemie-lernraum-tantal-ta",
+      "hubId": "vPudB4P"
     },
     {
       "symbol": "Tb",
@@ -1050,8 +1154,9 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Tb",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Tb",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/bGN345e/chemie-lernraum-terbium-tb",
+      "hubId": "bGN345e"
     },
     {
       "symbol": "Tc",
@@ -1060,8 +1165,9 @@
       "period": 5,
       "groupNumber": 7,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Tc",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Tc",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/j3mDBbX/chemie-lernraum-technetium-tc",
+      "hubId": "j3mDBbX"
     },
     {
       "symbol": "Te",
@@ -1070,8 +1176,9 @@
       "period": 5,
       "groupNumber": 16,
       "theme": "semiconductor",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Te",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Te",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/jwxrGbj/chemie-lernraum-tellur-te",
+      "hubId": "jwxrGbj"
     },
     {
       "symbol": "Th",
@@ -1080,8 +1187,9 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Th",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Th",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/wJPzTBo/chemie-lernraum-thorium-th",
+      "hubId": "wJPzTBo"
     },
     {
       "symbol": "Ti",
@@ -1090,8 +1198,9 @@
       "period": 4,
       "groupNumber": 4,
       "theme": "aerospace",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ti",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ti",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/7wyVBwS/chemie-lernraum-titan-ti",
+      "hubId": "7wyVBwS"
     },
     {
       "symbol": "Tl",
@@ -1100,8 +1209,9 @@
       "period": 6,
       "groupNumber": 13,
       "theme": "toxic",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Tl",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Tl",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/LzCEarg/chemie-lernraum-thallium-tl",
+      "hubId": "LzCEarg"
     },
     {
       "symbol": "Tm",
@@ -1110,8 +1220,9 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "medical",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Tm",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Tm",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/WbteGz2/chemie-lernraum-thulium-tm",
+      "hubId": "WbteGz2"
     },
     {
       "symbol": "Ts",
@@ -1120,8 +1231,9 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Ts",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Ts",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/Q8vsmY6/chemie-lernraum-tennessin-ts",
+      "hubId": "Q8vsmY6"
     },
     {
       "symbol": "U",
@@ -1130,8 +1242,9 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=U",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=U",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/5oCnMSQ/chemie-lernraum-uran-u",
+      "hubId": "5oCnMSQ"
     },
     {
       "symbol": "V",
@@ -1140,8 +1253,9 @@
       "period": 4,
       "groupNumber": 5,
       "theme": "industry",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=V",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=V",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/ZDddz75/chemie-lernraum-vanadium-v",
+      "hubId": "ZDddz75"
     },
     {
       "symbol": "W",
@@ -1150,8 +1264,9 @@
       "period": 6,
       "groupNumber": 6,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=W",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=W",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/UYiKX3v/chemie-lernraum-wolfram-w",
+      "hubId": "UYiKX3v"
     },
     {
       "symbol": "Xe",
@@ -1160,8 +1275,9 @@
       "period": 5,
       "groupNumber": 18,
       "theme": "space",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Xe",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Xe",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/9ccsbHX/chemie-lernraum-xenon-xe",
+      "hubId": "9ccsbHX"
     },
     {
       "symbol": "Y",
@@ -1170,8 +1286,9 @@
       "period": 5,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Y",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Y",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/t3NBDjW/chemie-lernraum-yttrium-y",
+      "hubId": "t3NBDjW"
     },
     {
       "symbol": "Yb",
@@ -1180,8 +1297,9 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "industry",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Yb",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Yb",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/KaEBw8f/chemie-lernraum-ytterbium-yb",
+      "hubId": "KaEBw8f"
     },
     {
       "symbol": "Zn",
@@ -1190,8 +1308,9 @@
       "period": 4,
       "groupNumber": 12,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Zn",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Zn",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/gwuf2KA/chemie-lernraum-zink-zn",
+      "hubId": "gwuf2KA"
     },
     {
       "symbol": "Zr",
@@ -1200,8 +1319,9 @@
       "period": 5,
       "groupNumber": 4,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss.org/hello-webxr/?room=Zr",
-      "hubRoomUrl": null
+      "roomUrl": "https://chemie-lernen.org/hello-webxr/?room=Zr",
+      "hubRoomUrl": "https://hubs.chemie-lernen.org/m9uBCFS/chemie-lernraum-zirkonium-zr",
+      "hubId": "m9uBCFS"
     }
   ]
 }
