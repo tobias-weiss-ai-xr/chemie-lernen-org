@@ -53,6 +53,16 @@ Empfindlichkeitssteigerung durch **Graphitrohr-AAS** – Nachweisgrenzen bis in 
 
 Die **ICP-OES** (optische Emissionsspektrometrie mit induktiv gekoppeltem Plasma) ermöglicht die simultane Bestimmung von bis zu 70 Elementen.
 
+## 📺 Lernvideos
+
+{{< youtube id="1NLIHtOvAfg" title="Praktikum: UV-vis-Spektrum" >}}
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – UV-vis-Spektrum_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) zeigt eine klassische spektroskopische Bestimmung im Grundpraktikum.
+{{< /youtube >}}
+
+{{< youtube id="4ofYU8aVpMI" title="Praktikum: Massanalyse" >}}
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Massanalyse_ von **Zig's Chemistry 42** (Prof. Siegfried Schindler) veranschaulicht ein gravimetrisches/volumetrisches Analyseverfahren.
+{{< /youtube >}}
+
 ## Übungen
 
 1. Bei einer Gravimetrie werden 0,4325 g BaSO₄ ($M = \pu{233.39 g/mol}$) aus einer Ba²⁺-haltigen Probe gewogen. Berechne die Masse $m(\ce{Ba})$ ($M = \pu{137.33 g/mol}$) in der Probe.

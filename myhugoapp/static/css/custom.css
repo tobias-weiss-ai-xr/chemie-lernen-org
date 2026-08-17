@@ -78,6 +78,135 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Video embed (youtube shortcode) */
+.video-embed {
+  margin: 2rem 0;
+}
+
+.video-embed-frame {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: #000;
+}
+
+.video-embed-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-embed-caption {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+  line-height: 1.5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .video-embed-caption {
+    color: #aaa;
+  }
+}
+
+/* Zig's Chemistry 42 — auto video list grid */
+.zigs-video-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin: 1.5rem 0;
+}
+
+.zigs-video-item {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none !important;
+  color: inherit;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  background: #fff;
+}
+
+.zigs-video-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.zigs-video-thumb-wrap {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+}
+
+.zigs-video-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.zigs-video-new {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #dc3545;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.zigs-video-title {
+  font-size: 0.92rem;
+  line-height: 1.4;
+  padding: 10px 12px 4px;
+  font-weight: 600;
+}
+
+.zigs-video-date {
+  font-size: 0.8rem;
+  color: #777;
+  padding: 0 12px 10px;
+}
+
+.zigs-video-empty {
+  font-style: italic;
+  color: #777;
+}
+
+@media (prefers-color-scheme: dark) {
+  .zigs-video-item {
+    background: #2c2c2c;
+  }
+
+  .zigs-video-date {
+    color: #aaa;
+  }
+}
+
+@media (max-width: 576px) {
+  .zigs-video-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Title row styling */
 .title-row {
   display: flex;

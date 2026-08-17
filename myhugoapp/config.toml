@@ -415,3 +415,10 @@ author = "chemie-lernen.org Team"
     parent = "mehr"
     weight = 94
 
+[[menu.main]]
+    name = "Lernvideos"
+    url = "/lernvideos/"
+    parent = "mehr"
+    weight = 95
+    icon = "🎬"
+
