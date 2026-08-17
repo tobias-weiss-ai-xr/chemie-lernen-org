@@ -1,4 +1,6 @@
-// @jest-environment node
+/**
+ * @jest-environment node
+ */
 
 import { jest, describe, test, expect, beforeAll } from '@jest/globals';
 import express from 'express';
