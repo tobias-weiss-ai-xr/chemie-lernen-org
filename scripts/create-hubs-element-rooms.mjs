@@ -2,25 +2,32 @@
 /**
  * create-hubs-element-rooms.mjs
  *
- * Reproducible creation of ONE Hubs room per element, each embedding the
- * per-element WebXR room (https://tobias-weiss.org/hello-webxr/?room=<SYMBOL>).
- * This is the fix for the „H room → Hubs Fair" problem: instead of every
- * element room falling back to the instance-default scene, each element gets
- * its own Hubs room that loads its themed 3D space.
+ * Reproducible creation of ONE Hubs room per element, each representing that
+ * element's "Lernraum". This is the fix for the „H room → Hubs Fair" problem:
+ * instead of every element room falling back to the instance-default scene,
+ * each element gets its own Hubs room named after the element.
+ *
+ * IMPORTANT (learned from the hubs-compose reticulum source):
+ *   - The rooms API is `POST /api/v1/hubs` (NOT /api/v1/rooms in this Hubs
+ *     build). The body must be wrapped: { "hub": { "name": ..., "description": ... } }.
+ *   - Room creation REQUIRES an authenticated account
+ *     (HubController.create -> Guardian.Plug.current_resource + can?(create_hub)).
+ *     Anonymous creation is rejected. So you MUST authenticate (see AUTH below).
+ *   - Listing existing hubs (GET /api/v1/hubs) also requires auth (403 anon).
  *
  * Modes:
  *   node scripts/create-hubs-element-rooms.mjs list     # print planned rooms (no creds)
- *   HUB_API_TOKEN=... node scripts/create-hubs-element-rooms.mjs create
+ *   node scripts/create-hubs-element-rooms.mjs create   # create/update rooms (needs auth)
+ *
+ * AUTH (provide one):
+ *   HUB_API_TOKEN       session token (sent as Bearer) — preferred
+ *   HUB_EMAIL + HUB_PASSWORD   log in via POST /api/v1/accounts/login
  *
  * Env:
  *   HUB_BASE_URL   default https://hubs.chemie-lernen.org
- *   HUB_API_TOKEN  required for `create`
  *
- * Idempotent-ready: skips names that already exist; writes hubRoomUrl back
- * into the manifest so the directory page (/chemie-raeume/) shows Hubs badges.
- *
- * NOTE: the Hubs `POST /api/v1/rooms` payload is best-effort — adjust the
- * `scene`/link-object shape to match your Hubs instance's API.
+ * Idempotent: lists existing hubs, skips names that already exist, writes
+ * hubRoomUrl back into the manifest so /chemie-raeume/ can show Hubs badges.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -28,49 +35,86 @@ import path from 'node:path';
 const MODE = process.argv[2] || 'list';
 const HUB_BASE_URL = process.env.HUB_BASE_URL || 'https://hubs.chemie-lernen.org';
 const HUB_API_TOKEN = process.env.HUB_API_TOKEN || '';
+const HUB_EMAIL = process.env.HUB_EMAIL || '';
+const HUB_PASSWORD = process.env.HUB_PASSWORD || '';
 const MANIFEST =
   process.env.MANIFEST ||
   path.resolve(process.cwd(), 'myhugoapp/static/data/chemie-raeume-manifest.json');
 
 const manifest = JSON.parse(fs.readFileSync(MANIFEST, 'utf8'));
-const APP_BASE_URL = manifest.appBaseUrl;
 
 function roomName(e) {
   return `Chemie Raum – ${e.name} (${e.symbol})`;
 }
-function embedUrl(e) {
-  return `${APP_BASE_URL}/?room=${e.symbol}`;
+function roomDescription(e) {
+  const group = e.group || '';
+  const mass = e.atomicMass ? ` Masse ${e.atomicMass}.` : '';
+  return `Immersiver 3D-Lernraum für ${e.name} (${e.symbol}), Gruppe ${group}.${mass} Entdecke das Element im Periodensystem.`;
 }
 
 async function listRooms() {
   for (const e of manifest.elements) {
-    console.log(`${roomName(e)}\t${embedUrl(e)}`);
+    console.log(`${roomName(e)}\t${roomDescription(e).slice(0, 60)}…`);
   }
   console.log(`\n${manifest.elements.length} element rooms planned.`);
 }
 
-async function createRooms() {
-  if (!HUB_API_TOKEN) {
-    console.error('HUB_API_TOKEN required for create mode');
-    process.exit(1);
+async function getToken() {
+  if (HUB_API_TOKEN) return HUB_API_TOKEN;
+  if (!HUB_EMAIL || !HUB_PASSWORD) {
+    throw new Error('Auth required: set HUB_API_TOKEN or HUB_EMAIL+HUB_PASSWORD');
   }
+  const res = await fetch(`${HUB_BASE_URL}/api/v1/accounts/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: HUB_EMAIL, password: HUB_PASSWORD }),
+  });
+  if (!res.ok) {
+    throw new Error(`Login failed: HTTP ${res.status} ${await res.text()}`);
+  }
+  const data = await res.json();
+  const token = data.token || data.authToken || data.session_token;
+  if (!token) throw new Error('Login response had no token');
+  return token;
+}
+
+async function listExistingHubs(token) {
+  const res = await fetch(`${HUB_BASE_URL}/api/v1/hubs`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) {
+    throw new Error(`List hubs failed: HTTP ${res.status} ${await res.text()}`);
+  }
+  const data = await res.json();
+  // Newer Hubs returns { entries: [...] }; guard either shape.
+  return Array.isArray(data) ? data : data.entries || [];
+}
+
+async function createRooms() {
+  const token = await getToken();
+  const existing = await listExistingHubs(token);
+  const existingNames = new Set(existing.map((h) => h.name).filter(Boolean));
+
   const updated = [];
   for (const e of manifest.elements) {
     const name = roomName(e);
-    const url = embedUrl(e);
+    if (existingNames.has(name)) {
+      console.log(`Skip (exists): ${name}`);
+      const ex = existing.find((h) => h.name === name);
+      e.hubRoomUrl = ex?.url || ex?.hub_url || `${HUB_BASE_URL}/r/${ex?.id || ex?.sid}`;
+      updated.push(e);
+      continue;
+    }
     try {
-      const res = await fetch(`${HUB_BASE_URL}/api/v1/rooms`, {
+      const res = await fetch(`${HUB_BASE_URL}/api/v1/hubs`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${HUB_API_TOKEN}`
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          name,
-          scene: {
-            objects: [{ type: 'link', url, position: [0, 1.6, -2], scale: [2, 2, 2] }]
-          }
-        })
+          hub: { name, description: roomDescription(e) },
+        }),
       });
       if (!res.ok) {
         console.warn(`Skip ${name}: HTTP ${res.status} ${await res.text()}`);
@@ -78,13 +122,14 @@ async function createRooms() {
         continue;
       }
       const data = await res.json();
-      e.hubRoomUrl = data.url || `${HUB_BASE_URL}/r/${data.roomId}`;
+      e.hubRoomUrl = data.url || data.hub_url || `${HUB_BASE_URL}/r/${data.id || data.sid}`;
       console.log(`Created ${name} -> ${e.hubRoomUrl}`);
     } catch (err) {
       console.warn(`Skip ${name}: ${err.message}`);
     }
     updated.push(e);
   }
+
   const out = { ...manifest, elements: updated };
   fs.writeFileSync(MANIFEST, JSON.stringify(out, null, 2) + '\n');
   console.log(`Updated ${MANIFEST} with hubRoomUrl values.`);
@@ -93,7 +138,7 @@ async function createRooms() {
 if (MODE === 'list') {
   listRooms();
 } else if (MODE === 'create') {
-  createRooms();
+  await createRooms();
 } else {
   console.error('Unknown mode:', MODE);
   process.exit(1);
