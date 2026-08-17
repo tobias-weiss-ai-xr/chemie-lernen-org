@@ -27,39 +27,32 @@ chemie-lernen.org ist eine **kostenlose, quelloffene Lernplattform** für Chemie
 | Unterrichtsplan-Generator + Arbeitsblatt (Supporter) | ✅ Sprint 38           |
 | Chemie Räume: Admin-Theme-Overrides (Backend-Sync)     | ✅ API `/api/theme-overrides` + WebXR-Admin-Panel, geräteübergreifend |
 | KI-Assistent: SSE-Streaming        | ✅ Chat-Antworten per Server-Sent-Events (Live verifiziert)         |
+| Erweitertes Assessment             | ✅ /api/exercises generate·grade·feedback, Auto-Benotung, indiv. Feedback, Dashboards |
+| Premium-Content-Bibliothek        | ✅ Katalog + Lesson-Plan-/Worksheet-/Exam-Simulator-Endpoints (Unterstützer) |
+| LLM-Chat                           | ✅ echte Konversation via LiteLLM-Proxy (chat.js)                  |
+| Konversationsgedächtnis            | ✅ Session-basiertes Chat-Gedächtnis (/api/chat/history)            |
+| Themenbereiche ausbauen            | ✅ 12 Bereiche, je 6–7 Artikel                                   |
+| Adaptive Lernpfade                 | ✅ KG/ZPD-Empfehlungen (/api/adaptive/recommendations)             |
+| Barrierefreiheit (WCAG 2.1 AA)     | ✅ Audit + Template-Fixes (sprint-7)                              |
+| Automatische Neo4j-Backups        | ✅ Timer `neo4j-backup.timer` aktiv, Runbook vorhanden             |
 
 ---
 
-## 🚀 Nächste Schritte (Q3-Q4 2026)
+## 🚀 Status der Roadmap (Stand August 2026)
 
-### P0 — Kern-Erweiterungen
+Die zuvor als „Nächste Schritte" gelisteten Features sind **bereits alle
+umgesetzt** (siehe Tabelle „Bereits umgesetzt" oben) — geliefert in
+abgeschlossenen OpenSpec-Changes und in `master` committed. Einzig
+**Rechner ↔ Quiz verknüpfen** ist noch offen.
 
-| Feature                           | Beschreibung                                                                           |
-| --------------------------------- | -------------------------------------------------------------------------------------- |
-| **🧪 Erweitertes Assessment**     | Unbegrenzte Quiz-Generierung per KI, automatische Benotung, individuelle Rückmeldungen |
-| **📚 Premium-Content-Bibliothek** | Exklusive Lehrmaterialien für Unterstützer, erweiterte Arbeitsblatt-Vorlagen           |
+### Noch offen
 
-### P1 — KI-Assistent
+| Feature                       | Beschreibung                                    | Status |
+| ----------------------------- | ----------------------------------------------- | ------ |
+| **Rechner ↔ Quiz verknüpfen** | Jeder Rechner zeigt passende Übungen/Quizfragen | ⏳ offen |
 
-| Feature                     | Beschreibung                                          |
-| --------------------------- | ----------------------------------------------------- |
-| **LLM-Chat**                | Echte Konversation statt nur KG-Suche (LiteLLM-Proxy) |
-| **Konversationsgedächtnis** | Kontext über mehrere Fragen hinweg, Session-basiert   |
-
-### P1 — Content-Tiefe
-
-| Feature                       | Beschreibung                              |
-| ----------------------------- | ----------------------------------------- |
-| **Themenbereiche ausbauen**   | Von 1-3 auf 3-5 Artikel pro Themenbereich |
-| **Rechner ↔ Quiz verknüpfen** | Jeder Rechner hat passende Übungen        |
-
-### P2 — Plattform
-
-| Feature                        | Beschreibung              |
-| ------------------------------ | ------------------------- |
-| **Barrierefreiheit**           | WCAG 2.1 AA-Audit         |
-| **Automatische Neo4j-Backups** | Wiederherstellungsplan    |
-| **Adaptive Lernpfade**         | KG-gestützte Empfehlungen |
+> Hinweis: „Automatische Neo4j-Backups" steht ebenfalls oben in der
+> Erledigt-Liste (Timer aktiv, Runbook vorhanden).
 
 ---
 
