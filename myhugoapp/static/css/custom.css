@@ -83,13 +83,21 @@
   margin: 2rem 0;
 }
 
-/* Full-width video breakout inside thema-content-layout (col-md-8 + col-md-4) */
+/* Full viewport width breakout — videos span edge-to-edge on article pages */
 @media (min-width: 768px) {
   .thema-content > .video-embed {
-    margin-left: calc(-16.667% - 15px);
-    margin-right: calc(-16.667% - 15px);
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
     max-width: none;
   }
+}
+
+/* Prevent horizontal scroll from 100vw breakout elements */
+body {
+  overflow-x: hidden;
 }
 
 .video-embed-frame {

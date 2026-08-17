@@ -391,10 +391,17 @@
 
 /* ==== breadcrumbs.html ==== */
 <style > .breadcrumb {
-  background-color: transparent;
+  background-color: #f5f5f5;
   padding: 8px 0;
-  margin-bottom: 10px;
+  margin-bottom: 0;
   font-size: 0.9rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.breadcrumb ol {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 8px 15px;
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
@@ -417,6 +424,11 @@
 }
 
 @media (prefers-color-scheme: dark) {
+  .breadcrumb {
+    background-color: #1e1e1e;
+    border-bottom-color: #333;
+  }
+
   .breadcrumb-item a {
     color: #66b0ff;
   }
