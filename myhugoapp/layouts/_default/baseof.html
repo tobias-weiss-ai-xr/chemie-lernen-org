@@ -17,8 +17,9 @@
 
     {{ partial "header.html" . }}
 
+    {{ partial "breadcrumbs.html" . }}
+
     <div class="container">
-      {{ partial "breadcrumbs.html" . }}
       <div class="wrapper">
         <main id="main-content" role="main">
           {{ block "main" . }} {{ end }}
