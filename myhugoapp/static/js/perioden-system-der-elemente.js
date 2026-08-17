@@ -1818,12 +1818,15 @@ function init() {
     })(trendBtns[ti]);
   }
 
-  // ── Detail panel: persistent overlay, close only via X button ─
+  // ── Detail panel: Detail panel: click overlay or X button to close
   var closeBtn = document.getElementById('detail-close');
   if (closeBtn) {
     closeBtn.addEventListener('click', hideDetail);
   }
-  // No overlay close — panel stays open until user clicks X or selects another element
+  var overlay = document.getElementById('detail-overlay');
+  if (overlay) {
+    overlay.addEventListener('click', hideDetail);
+  }
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') hideDetail();
   });
