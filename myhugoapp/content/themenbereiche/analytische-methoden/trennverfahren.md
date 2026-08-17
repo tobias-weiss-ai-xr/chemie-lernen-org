@@ -15,6 +15,12 @@ aliases: [/article/trennverfahren/]
 
 In der analytischen Chemie müssen Stoffgemische häufig in ihre **Einzelkomponenten** zerlegt werden, bevor eine Identifizierung oder Quantifizierung möglich ist. Trennverfahren nutzen dazu unterschiedliche **physikalisch-chemische Eigenschaften** wie Löslichkeit, Polarität, Größe oder Ladung.
 
+### 📺 Lernvideo: Stofftrennung anschaulich
+
+{{< youtube id="9Rw3imR6wP0" title="From Coffee to Chemical Elements — Zig's Chemistry 42" >}}
+**Lernvideo-Illustration:** _From Coffee to Chemical Elements | The Building Blocks of Everything_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) — wie Chemiker ausgehend von einer Tasse Kaffee Stoffe trennen, analysieren und bis zu den chemischen Elementen vordringen.
+{{< /youtube >}}
+
 ## Chromatographie
 
 Die **Chromatographie** beruht auf der Verteilung der Analysten zwischen einer **stationären Phase** (fest oder flüssig) und einer **mobilen Phase** (flüssig oder gasförmig). Das grundlegende Maß ist der Retentionsfaktor:

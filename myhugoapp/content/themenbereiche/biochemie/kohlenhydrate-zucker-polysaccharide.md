@@ -56,6 +56,12 @@ Wichtige Disaccharide:
 
 ## Nachweise von Kohlenhydraten
 
+### 📺 Lernvideo: Reduzierende Zucker nachweisen
+
+{{< youtube id="Ewyp31JjIb8" title="Praktikum: Silberspiegel" >}}
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Silberspiegel_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) zeigt den Silberspiegel-Nachweis (Tollens-Reaktion) — ein klassisches Verfahren zum Nachweis reduzierender Zucker wie Glucose.
+{{< /youtube >}}
+
 | Nachweis           | Reaktion                                                     | Positiver Befund        |
 | ------------------ | ------------------------------------------------------------ | ----------------------- |
 | **Fehling-Probe**  | Reduzierende Zucker reduzieren $\ce{Cu^{2+}}$ zu $\ce{Cu2O}$ | Roter Niederschlag      |

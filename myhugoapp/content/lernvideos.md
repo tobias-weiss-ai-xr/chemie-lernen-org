@@ -32,9 +32,9 @@ Die neue Kursreihe _"Zig's Chemistry 42"_ führt verständlich und locker in die
 | ----------------------------------------------- | ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | Lesson 001-A – Why Chemistry? Don't Panic!      | Warum Chemie, wozu der Kurs, keine Panik                | [Was ist Chemie?](/themenbereiche/einfuehrung-chemie/was-ist-chemie/)                                    |
 | Lesson 002-A – What about water?                | Aggregatzustände am Beispiel Wasser                     | [Atome und Moleküle](/themenbereiche/aufbau-materie/atome-und-molekuele/)                                |
-| Lesson 002-B (Bonus) – Celsius vs. Fahrenheit   | Temperaturskalen und ihre Umrechnung                    | [Messtechnik und Einheiten](/themenbereiche/einfuehrung-chemie/messtechnik-und-einheiten/)               |
+| Lesson 002-B (Bonus) – Celsius vs. Fahrenheit   | Temperaturskalen und ihre Umrechnung                    | [Messtechnik und Einheiten](/themenbereiche/einfuehrung-chemie/messtechnik-und-einheiten/) · [Kalorimetrie](/themenbereiche/energetik/kalorimetrie/)                    |
 | Lesson 003-A – Water – The Exception!           | Warum Eis schwimmt, Wasser sich ausdehnt und sublimiert | [Atome und Moleküle](/themenbereiche/aufbau-materie/atome-und-molekuele/)                                |
-| Lesson 004-A – From Coffee to Chemical Elements | Vom Kaffee zu den Bausteinen – Trennen und Analysieren  | [Stoffgemische und Trennverfahren](/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/) |
+| Lesson 004-A – From Coffee to Chemical Elements | Vom Kaffee zu den Bausteinen – Trennen und Analysieren  | [Stoffgemische und Trennverfahren](/themenbereiche/einfuehrung-chemie/stoffgemische-und-trennverfahren/) · [Trennverfahren](/themenbereiche/analytische-methoden/trennverfahren/) |
 
 ## 🧪 Videos zum chemischen Grundpraktikum
 
@@ -45,23 +45,23 @@ In den älteren Videos zeigt Prof. Schindler Versuche und Handhabungen aus den c
 | Video           | Thema                                     | Eingebettet bei                                                                    |
 | --------------- | ----------------------------------------- | ---------------------------------------------------------------------------------- |
 | H₂S-Fällung     | Sulfid-Fällung als Nachweisreaktion       | [Nachweisreaktionen](/themenbereiche/analytische-methoden/nachweisreaktionen/)     |
-| Silberspiegel   | Silberspiegel- (Tollens-) Reaktion        | [Nachweisreaktionen](/themenbereiche/analytische-methoden/nachweisreaktionen/)     |
-| UV-vis-Spektrum | Spektroskopische Bestimmung               | [Quantitative Analyse](/themenbereiche/analytische-methoden/quantitative-analyse/) |
-| Massanalyse     | Gravimetrische bzw. volumetrische Analyse | [Quantitative Analyse](/themenbereiche/analytische-methoden/quantitative-analyse/) |
+| Silberspiegel   | Silberspiegel- (Tollens-) Reaktion        | [Nachweisreaktionen](/themenbereiche/analytische-methoden/nachweisreaktionen/) · [Oxidation/Reduktion Organik](/themenbereiche/reaktionstypen-organisch/oxidation-reduktion-organik/) · [Kohlenhydrate](/themenbereiche/biochemie/kohlenhydrate-zucker-polysaccharide/)     |
+| UV-vis-Spektrum | Spektroskopische Bestimmung               | [Quantitative Analyse](/themenbereiche/analytische-methoden/quantitative-analyse/) · [Farbstoffe & Pigmente](/themenbereiche/produkte-organisch/farbstoffe-pigmente/) |
+| Massanalyse     | Gravimetrische bzw. volumetrische Analyse | [Quantitative Analyse](/themenbereiche/analytische-methoden/quantitative-analyse/) · [Säure-Base-Titration](/themenbereiche/saeuren-basen/saeure-base-titration/) |
 
 ### Elektrochemie
 
 | Video               | Thema                                | Eingebettet bei                                                                       |
 | ------------------- | ------------------------------------ | ------------------------------------------------------------------------------------- |
-| Galvanisieren       | Elektrolytisches Beschichten         | [Elektrolyse und Galvanik](/themenbereiche/redox-elektrochemie/elektrolyse-galvanik/) |
+| Galvanisieren       | Elektrolytisches Beschichten         | [Elektrolyse und Galvanik](/themenbereiche/redox-elektrochemie/elektrolyse-galvanik/) · [Korrosion](/themenbereiche/redox-elektrochemie/korrosion/) |
 | Schreiben mit Strom | Elektrolyse anschaulich demonstriert | [Elektrolyse und Galvanik](/themenbereiche/redox-elektrochemie/elektrolyse-galvanik/) |
 
 ### Sicherheit & Praxis
 
 | Video                        | Thema                                   | Eingebettet bei                                                                |
 | ---------------------------- | --------------------------------------- | ------------------------------------------------------------------------------ |
-| Handschuhe richtig verwenden | Persönliche Schutzausrüstung            | [Sicherheit im Labor](/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/) |
-| Video zum Praktikum (×2)     | Allgemeine Handhabung im Grundpraktikum | [Praxis-Tipps fürs Labor](/themenbereiche/tipps-tricks/praxis-labor/)          |
+| Handschuhe richtig verwenden | Persönliche Schutzausrüstung            | [Sicherheit im Labor](/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/) · [Laborgeräte-Handhabung](/themenbereiche/einfuehrung-chemie/laborgeraete-handhabung/) |
+| Video zum Praktikum (×2)     | Allgemeine Handhabung im Grundpraktikum | [Praxis-Tipps fürs Labor](/themenbereiche/tipps-tricks/praxis-labor/) · [Laborgeräte-Handhabung](/themenbereiche/einfuehrung-chemie/laborgeraete-handhabung/)          |
 
 ---
 
