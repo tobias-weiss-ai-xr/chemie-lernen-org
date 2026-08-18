@@ -127,6 +127,53 @@
      </div>
    </div>
 
+   <!-- Chemie-Forschung Section (aus dem Knowledge Graph) -->
+   <div class="row">
+     <div class="col-md-12">
+       <h2>Chemie-Forschung <small class="text-muted">aus dem Wissensnetz</small></h2>
+       <p class="lead">KI-generierte Artikel zu den am stärksten vernetzten chemischen Konzepten — automatisch aus dem chemie-lernen.org Knowledge Graph.</p>
+     </div>
+   </div>
+
+   <div class="row pack blog-posts-section">
+
+       {{ $cf := where .Site.RegularPages "Section" "chemie-forschung" }}
+       {{ $lastCf := first 4 $cf.ByDate.Reverse }}
+       {{ range $lastCf }}
+           <div class="col-md-4 card">
+           <a href="{{ .Permalink }}" class="index-anchor">
+              <div class="panel panel-default">
+
+                {{ if .Params.img }}
+                {{ with .Resources.Match .Params.img }}
+                  {{ range . }}
+                    <img width="100%" src="{{ .RelPermalink }}" alt="{{ .Title }}">
+                  {{ end }}
+                {{ end }}
+                {{ else }}
+                 <div style="width:100%; height:140px; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); display:flex; align-items:center; justify-content:center; color:white; font-size:48px;" aria-hidden="true">🧪</div>
+                {{ end }}
+
+                <div class="panel-body">
+                  <h3 class="panel-title pull-left">{{ .Title | truncate 60 }}</h3><span class="post-meta pull-right"><small>{{ .Date.Format "January 2, 2006" }}</small></span>
+                </div>
+
+                <div class="panel-body"><small>
+                  {{ .Summary | plainify | replaceRE `\$[^$]+\$` "" | truncate 180 }}</small>
+                </div>
+              </div>
+              </a>
+          </div>
+       {{ end }}
+   </div>
+
+   <!-- "Alle Chemie-Forschung anzeigen" Link -->
+   <div class="row text-center alle-anzeigen">
+     <div class="col-md-12">
+       <a href="/chemie-forschung/" class="btn btn-primary" aria-label="Alle Chemie-Forschung anzeigen">Alle Chemie-Forschung anzeigen →</a>
+     </div>
+   </div>
+
    <!-- Recommendation Widget (Learning Path) -->
    {{ partial "recommendation-widget" . }}
 
