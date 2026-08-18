@@ -9,7 +9,7 @@
  *   GET /api/curricula/by-state/:state/grade/:grade
  *   GET /api/curricula/topic/:slug/articles
  *   GET /api/curricula/objective/:slug/articles
- *   GET /api/entities/:name/curricula
+ *   GET /api/entity/:name/curricula
  *   GET /api/curricula/linked-entities
  *   GET /api/curricula/compare
  */
@@ -498,9 +498,9 @@ router.get('/api/curricula/objective/:slug/articles', async (req, res) => {
 });
 
 /**
- * GET /api/entities/:name/curricula
+ * GET /api/entity/:name/curricula
  */
-router.get('/api/entities/:name/curricula', async (req, res) => {
+router.get('/api/entity/:name/curricula', async (req, res) => {
   let nameParam;
   try {
     nameParam = decodeURIComponent(req.params.name).trim();
