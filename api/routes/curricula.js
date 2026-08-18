@@ -500,6 +500,11 @@ router.get('/api/curricula/objective/:slug/articles', async (req, res) => {
 /**
  * GET /api/entity/:name/curricula
  */
+// Redirect old /api/entities/ path to new /api/entity/ path
+router.get('/api/entities/:name/curricula', (req, res) => {
+  res.redirect(301, `/api/entity/${req.params.name}/curricula`);
+});
+
 router.get('/api/entity/:name/curricula', async (req, res) => {
   let nameParam;
   try {
