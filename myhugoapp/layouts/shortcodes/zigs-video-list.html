@@ -8,16 +8,22 @@
 <div class="zigs-video-list" role="list">
   {{- range $videos -}}
     {{- $isKnown := in $known .id -}}
-    <a class="zigs-video-item" href="{{ .url }}" target="_blank" rel="noopener noreferrer" title="{{ .title }} (Zig's Chemistry 42, YouTube)" role="listitem">
-      <span class="zigs-video-thumb-wrap">
-        <img class="zigs-video-thumb" src="{{ .thumb }}" alt="Vorschaubild zu: {{ .title }} (von Zig's Chemistry 42, YouTube)" loading="lazy" width="320" height="180">
-        {{- if not $isKnown -}}
-        <span class="zigs-video-new">Neu</span>
-        {{- end -}}
-      </span>
-      <span class="zigs-video-title">{{ .title }}</span>
-      <span class="zigs-video-date">{{ .published | time.AsTime | time.Format "02.01.2006" }} · <span class="zigs-video-channel">Zig's Chemistry 42</span></span>
-    </a>
+    <article class="zigs-video-item" role="listitem">
+      <a class="zigs-video-link" href="{{ .url }}" target="_blank" rel="noopener noreferrer" aria-label="Video ansehen: {{ .title }} von Zig's Chemistry 42 (öffnet YouTube)" title="{{ .title }} (Zig's Chemistry 42, YouTube)">
+        <span class="zigs-video-thumb-wrap">
+          <img class="zigs-video-thumb" src="{{ .thumb }}" alt="Vorschaubild zu: {{ .title }} (von Zig's Chemistry 42, YouTube)" loading="lazy" width="320" height="180" decoding="async">
+          {{- if not $isKnown -}}
+          <span class="zigs-video-new" aria-hidden="true">Neu</span>
+          {{- end -}}
+        </span>
+        <span class="zigs-video-title">{{ .title }}</span>
+      </a>
+      <p class="zigs-video-date">
+        <time datetime="{{ .published | time.AsTime | time.Format "2006-01-02T15:04:05Z07:00" }}">{{ .published | time.AsTime | time.Format "02.01.2006" }}</time>
+        <span aria-hidden="true"> · </span>
+        <span class="zigs-video-channel">Zig's Chemistry 42</span>
+      </p>
+    </article>
   {{- end -}}
 </div>
 <p class="zigs-video-source">🎬 Kanal: <a href="{{ $channelURL }}" target="_blank" rel="noopener noreferrer">Zig's Chemistry 42</a> von Prof. Siegfried Schindler – alle Videos stammen von diesem YouTube-Kanal und liegen in dessen Urheberrechten.</p>

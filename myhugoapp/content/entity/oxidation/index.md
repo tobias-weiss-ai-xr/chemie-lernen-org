@@ -2,7 +2,6 @@
 title: "Oxidation"
 description: "Fachbegriff „Oxidation“ (Reaktion) — beschrieben in 2 Artikeln auf chemie-lernen.org und ist mit 20 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-last_reviewed: 2026-08-06
 slug: "oxidation"
 category: "reaktion"
 articleCount: 2

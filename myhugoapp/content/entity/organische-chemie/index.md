@@ -2,7 +2,6 @@
 title: "Organische Chemie"
 description: "Fachbegriff „Organische Chemie“ (Konzept) — beschrieben in 3 Artikeln auf chemie-lernen.org und ist mit 21 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-last_reviewed: 2026-08-06
 slug: "organische-chemie"
 category: "konzept"
 articleCount: 3

@@ -2,7 +2,6 @@
 title: "Hydrierung"
 description: "Fachbegriff „Hydrierung“ (Reaktion) — beschrieben in 3 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
-last_reviewed: 2026-08-06
 slug: "hydrierung"
 category: "reaktion"
 articleCount: 3

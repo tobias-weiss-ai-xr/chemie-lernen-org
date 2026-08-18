@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-08-17T14:54:51.051Z",
+  "fetched": "2026-08-18T03:38:53.575Z",
   "channel": {
     "id": "UCAY_WdEZnN6GM2HYuPYhh_w",
     "title": "Zig's Chemistry 42",
@@ -7,6 +7,13 @@
     "url": "https://www.youtube.com/@ZigsChemistry42"
   },
   "videos": [
+    {
+      "id": "QfkBZ9EEXsM",
+      "title": "Lesson 005-A: Fire, Chemical Reactions and the Mole | General Chemistry",
+      "published": "2026-08-17T15:59:47.000Z",
+      "url": "https://www.youtube.com/watch?v=QfkBZ9EEXsM",
+      "thumb": "https://i.ytimg.com/vi/QfkBZ9EEXsM/mqdefault.jpg"
+    },
     {
       "id": "9Rw3imR6wP0",
       "title": "Lesson 004-A: From Coffee to Chemical Elements | The Building Blocks of Everything",
@@ -104,13 +111,6 @@
       "published": "2022-01-19T22:07:54.000Z",
       "url": "https://www.youtube.com/watch?v=Ewyp31JjIb8",
       "thumb": "https://i.ytimg.com/vi/Ewyp31JjIb8/mqdefault.jpg"
-    },
-    {
-      "id": "4ofYU8aVpMI",
-      "title": "Einführung in die Chemie, Video zum Praktikum, Massanalyse",
-      "published": "2022-01-19T22:05:36.000Z",
-      "url": "https://www.youtube.com/watch?v=4ofYU8aVpMI",
-      "thumb": "https://i.ytimg.com/vi/4ofYU8aVpMI/mqdefault.jpg"
     }
   ]
 }

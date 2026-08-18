@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-31T20:48:17.787Z",
+  "exportedAt": "2026-08-18T03:38:52.605Z",
   "source": "neo4j",
   "entities": [
     {
@@ -147,8 +147,8 @@
         "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion",
         "Single-atom alloy catalysts break scaling relations for selective hydrogenation",
         "Dual-atom catalysts for efficient oxygen reduction in fuel cells",
-        "Chemisches Gleichgewicht",
-        "Reaktionskinetik"
+        "Reaktionskinetik",
+        "Chemisches Gleichgewicht"
       ],
       "relatedEntities": ["langmuir-adsorption", "katalyse"],
       "components": [],
@@ -185,9 +185,9 @@
       "category": "konzept",
       "articles": [
         "Prinzip von Le Chatelier",
+        "Reaktionskinetik",
         "Chemisches Gleichgewicht",
         "Effektiv Chemie lernen",
-        "Reaktionskinetik",
         "Energie bei chemischen Reaktionen"
       ],
       "relatedEntities": [
@@ -291,8 +291,8 @@
       "name": "Aktivierungsenergie",
       "category": "konzept",
       "articles": [
-        "Chemisches Gleichgewicht",
         "Reaktionskinetik",
+        "Chemisches Gleichgewicht",
         "Energie bei chemischen Reaktionen"
       ],
       "relatedEntities": [
@@ -4769,6 +4769,15 @@
     },
     {
       "id": "e377",
+      "name": "Kunststoffe",
+      "category": "konzept",
+      "articles": [],
+      "relatedEntities": [],
+      "components": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e378",
       "name": "Kupfer (Cu)",
       "category": "stoff",
       "articles": [],
@@ -4777,7 +4786,7 @@
       "articleCount": 0
     },
     {
-      "id": "e378",
+      "id": "e379",
       "name": "Kupfersulfat (CuSO₄)",
       "category": "stoff",
       "articles": [],
@@ -4786,7 +4795,7 @@
       "articleCount": 0
     },
     {
-      "id": "e379",
+      "id": "e380",
       "name": "Kurt Alder",
       "category": "person",
       "articles": [],
@@ -4795,7 +4804,7 @@
       "articleCount": 0
     },
     {
-      "id": "e380",
+      "id": "e381",
       "name": "Leitfähigkeitsmessung",
       "category": "methode",
       "articles": [],
@@ -4804,7 +4813,7 @@
       "articleCount": 0
     },
     {
-      "id": "e381",
+      "id": "e382",
       "name": "Linus Pauling",
       "category": "person",
       "articles": [],
@@ -4813,7 +4822,7 @@
       "articleCount": 0
     },
     {
-      "id": "e382",
+      "id": "e383",
       "name": "Löschkalkreaktion",
       "category": "reaktion",
       "articles": [],
@@ -4822,7 +4831,7 @@
       "articleCount": 0
     },
     {
-      "id": "e383",
+      "id": "e384",
       "name": "Löslichkeit",
       "category": "konzept",
       "articles": [],
@@ -4852,7 +4861,7 @@
       "articleCount": 0
     },
     {
-      "id": "e384",
+      "id": "e385",
       "name": "Magnesium (Mg)",
       "category": "stoff",
       "articles": [],
@@ -4861,7 +4870,7 @@
       "articleCount": 0
     },
     {
-      "id": "e385",
+      "id": "e386",
       "name": "Mangan",
       "category": "stoff",
       "articles": [],
@@ -4870,7 +4879,7 @@
       "articleCount": 0
     },
     {
-      "id": "e386",
+      "id": "e387",
       "name": "Marie Curie",
       "category": "person",
       "articles": [],
@@ -4879,7 +4888,7 @@
       "articleCount": 0
     },
     {
-      "id": "e387",
+      "id": "e388",
       "name": "Massenspektrometrie",
       "category": "methode",
       "articles": [],
@@ -4888,7 +4897,7 @@
       "articleCount": 0
     },
     {
-      "id": "e388",
+      "id": "e389",
       "name": "Massenspektrometrie (MS)",
       "category": "methode",
       "articles": [],
@@ -4897,7 +4906,7 @@
       "articleCount": 0
     },
     {
-      "id": "e389",
+      "id": "e390",
       "name": "Massenwirkungsgesetz",
       "category": "konzept",
       "articles": [],
@@ -4906,7 +4915,7 @@
       "articleCount": 0
     },
     {
-      "id": "e390",
+      "id": "e391",
       "name": "Max Planck",
       "category": "person",
       "articles": [],
@@ -4915,7 +4924,7 @@
       "articleCount": 0
     },
     {
-      "id": "e391",
+      "id": "e392",
       "name": "Mesomerie",
       "category": "konzept",
       "articles": [],
@@ -4924,7 +4933,16 @@
       "articleCount": 0
     },
     {
-      "id": "e392",
+      "id": "e393",
+      "name": "Metall",
+      "category": "konzept",
+      "articles": [],
+      "relatedEntities": [],
+      "components": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e394",
       "name": "Methan (CH₄)",
       "category": "stoff",
       "articles": [],
@@ -4933,7 +4951,7 @@
       "articleCount": 0
     },
     {
-      "id": "e393",
+      "id": "e395",
       "name": "Molaritaet",
       "category": "konzept",
       "articles": [],
@@ -4942,7 +4960,7 @@
       "articleCount": 0
     },
     {
-      "id": "e394",
+      "id": "e396",
       "name": "Molekulare Erkennung",
       "category": "konzept",
       "articles": [],
@@ -4951,7 +4969,7 @@
       "articleCount": 0
     },
     {
-      "id": "e395",
+      "id": "e397",
       "name": "NMR-Spektroskopie",
       "category": "konzept",
       "articles": [],
@@ -4960,7 +4978,7 @@
       "articleCount": 0
     },
     {
-      "id": "e396",
+      "id": "e398",
       "name": "Natrium (Na)",
       "category": "stoff",
       "articles": [],
@@ -4969,7 +4987,7 @@
       "articleCount": 0
     },
     {
-      "id": "e397",
+      "id": "e399",
       "name": "Natriumcarbonat (Na2CO3)",
       "category": "stoff",
       "articles": [],
@@ -4978,7 +4996,7 @@
       "articleCount": 0
     },
     {
-      "id": "e398",
+      "id": "e400",
       "name": "Natriumcarbonat (Na₂CO₃)",
       "category": "stoff",
       "articles": [],
@@ -4987,7 +5005,7 @@
       "articleCount": 0
     },
     {
-      "id": "e399",
+      "id": "e401",
       "name": "Natriumchlorid",
       "category": "stoff",
       "articles": [],
@@ -4996,7 +5014,7 @@
       "articleCount": 0
     },
     {
-      "id": "e400",
+      "id": "e402",
       "name": "Natriumhypochlorit (NaOCl)",
       "category": "stoff",
       "articles": [],
@@ -5005,7 +5023,7 @@
       "articleCount": 0
     },
     {
-      "id": "e401",
+      "id": "e403",
       "name": "Natriumsulfat (Na2SO4)",
       "category": "stoff",
       "articles": [],
@@ -5014,7 +5032,7 @@
       "articleCount": 0
     },
     {
-      "id": "e402",
+      "id": "e404",
       "name": "Natriumthiosulfat (Na2S2O3)",
       "category": "stoff",
       "articles": [],
@@ -5023,7 +5041,7 @@
       "articleCount": 0
     },
     {
-      "id": "e403",
+      "id": "e405",
       "name": "Natronlauge",
       "category": "stoff",
       "articles": [],
@@ -5032,7 +5050,7 @@
       "articleCount": 0
     },
     {
-      "id": "e404",
+      "id": "e406",
       "name": "Natronlauge (NaOH)",
       "category": "stoff",
       "articles": [],
@@ -5041,7 +5059,7 @@
       "articleCount": 0
     },
     {
-      "id": "e405",
+      "id": "e407",
       "name": "Naturwissenschaften im Unterricht Chemie (Friedrich Verlag)",
       "category": "quelle",
       "articles": [],
@@ -5050,7 +5068,7 @@
       "articleCount": 0
     },
     {
-      "id": "e406",
+      "id": "e408",
       "name": "Neon",
       "category": "stoff",
       "articles": [],
@@ -5059,7 +5077,7 @@
       "articleCount": 0
     },
     {
-      "id": "e407",
+      "id": "e409",
       "name": "Nichtelektrolyt",
       "category": "konzept",
       "articles": [],
@@ -5068,7 +5086,7 @@
       "articleCount": 0
     },
     {
-      "id": "e408",
+      "id": "e410",
       "name": "Nickel",
       "category": "stoff",
       "articles": [],
@@ -5077,7 +5095,7 @@
       "articleCount": 0
     },
     {
-      "id": "e409",
+      "id": "e411",
       "name": "Niels Bohr",
       "category": "person",
       "articles": [],
@@ -5086,7 +5104,7 @@
       "articleCount": 0
     },
     {
-      "id": "e410",
+      "id": "e412",
       "name": "Nitrierung",
       "category": "reaktion",
       "articles": [],
@@ -5095,7 +5113,7 @@
       "articleCount": 0
     },
     {
-      "id": "e411",
+      "id": "e413",
       "name": "Nukleophil-Elektrophil-Konzept",
       "category": "konzept",
       "articles": [],
@@ -5104,7 +5122,7 @@
       "articleCount": 0
     },
     {
-      "id": "e412",
+      "id": "e414",
       "name": "Orbitalmodell",
       "category": "konzept",
       "articles": [],
@@ -5113,7 +5131,7 @@
       "articleCount": 0
     },
     {
-      "id": "e413",
+      "id": "e415",
       "name": "Ostwald-Verfahren",
       "category": "reaktion",
       "articles": [],
@@ -5122,7 +5140,7 @@
       "articleCount": 0
     },
     {
-      "id": "e414",
+      "id": "e416",
       "name": "Otto Diels",
       "category": "person",
       "articles": [],
@@ -5131,7 +5149,7 @@
       "articleCount": 0
     },
     {
-      "id": "e415",
+      "id": "e417",
       "name": "Ozon (O3)",
       "category": "stoff",
       "articles": [],
@@ -5140,7 +5158,7 @@
       "articleCount": 0
     },
     {
-      "id": "e416",
+      "id": "e418",
       "name": "Papierchromatographie",
       "category": "methode",
       "articles": [],
@@ -5149,7 +5167,7 @@
       "articleCount": 0
     },
     {
-      "id": "e417",
+      "id": "e419",
       "name": "Perioden",
       "category": "konzept",
       "articles": [],
@@ -5165,7 +5183,7 @@
       "articleCount": 0
     },
     {
-      "id": "e418",
+      "id": "e420",
       "name": "Periodensystem der Elemente",
       "category": "konzept",
       "articles": [],
@@ -5174,7 +5192,7 @@
       "articleCount": 0
     },
     {
-      "id": "e419",
+      "id": "e421",
       "name": "Phosphor",
       "category": "stoff",
       "articles": [],
@@ -5183,7 +5201,7 @@
       "articleCount": 0
     },
     {
-      "id": "e420",
+      "id": "e422",
       "name": "Phosphorsaeure (H3PO4)",
       "category": "stoff",
       "articles": [],
@@ -5192,7 +5210,7 @@
       "articleCount": 0
     },
     {
-      "id": "e421",
+      "id": "e423",
       "name": "Photosynthese",
       "category": "reaktion",
       "articles": [],
@@ -5201,7 +5219,7 @@
       "articleCount": 0
     },
     {
-      "id": "e422",
+      "id": "e424",
       "name": "Polarographie",
       "category": "methode",
       "articles": [],
@@ -5210,7 +5228,7 @@
       "articleCount": 0
     },
     {
-      "id": "e423",
+      "id": "e425",
       "name": "Puffersystem",
       "category": "konzept",
       "articles": [],
@@ -5219,7 +5237,7 @@
       "articleCount": 0
     },
     {
-      "id": "e424",
+      "id": "e426",
       "name": "Quecksilber",
       "category": "stoff",
       "articles": [],
@@ -5228,7 +5246,7 @@
       "articleCount": 0
     },
     {
-      "id": "e425",
+      "id": "e427",
       "name": "Richard F. Heck",
       "category": "person",
       "articles": [],
@@ -5237,7 +5255,7 @@
       "articleCount": 0
     },
     {
-      "id": "e426",
+      "id": "e428",
       "name": "Robert Bunsen",
       "category": "person",
       "articles": [],
@@ -5246,7 +5264,7 @@
       "articleCount": 0
     },
     {
-      "id": "e427",
+      "id": "e429",
       "name": "Robert Burns Woodward",
       "category": "person",
       "articles": [],
@@ -5255,7 +5273,7 @@
       "articleCount": 0
     },
     {
-      "id": "e428",
+      "id": "e430",
       "name": "Robert Grubbs",
       "category": "person",
       "articles": [],
@@ -5264,7 +5282,7 @@
       "articleCount": 0
     },
     {
-      "id": "e429",
+      "id": "e431",
       "name": "Roenntgenstrukturanalyse",
       "category": "methode",
       "articles": [],
@@ -5273,7 +5291,7 @@
       "articleCount": 0
     },
     {
-      "id": "e430",
+      "id": "e432",
       "name": "Rosalind Franklin",
       "category": "person",
       "articles": [],
@@ -5282,7 +5300,7 @@
       "articleCount": 0
     },
     {
-      "id": "e431",
+      "id": "e433",
       "name": "Ruthenium-Katalysator",
       "category": "stoff",
       "articles": [],
@@ -5291,7 +5309,7 @@
       "articleCount": 0
     },
     {
-      "id": "e432",
+      "id": "e434",
       "name": "Röntgendiffraktion",
       "category": "methode",
       "articles": [],
@@ -5300,7 +5318,7 @@
       "articleCount": 0
     },
     {
-      "id": "e433",
+      "id": "e435",
       "name": "SEM",
       "category": "methode",
       "articles": [],
@@ -5326,7 +5344,7 @@
       "articleCount": 0
     },
     {
-      "id": "e434",
+      "id": "e436",
       "name": "Saccharose (C12H22O11)",
       "category": "stoff",
       "articles": [],
@@ -5335,7 +5353,7 @@
       "articleCount": 0
     },
     {
-      "id": "e435",
+      "id": "e437",
       "name": "Saeulenchromatographie",
       "category": "methode",
       "articles": [],
@@ -5344,7 +5362,7 @@
       "articleCount": 0
     },
     {
-      "id": "e436",
+      "id": "e438",
       "name": "Salpetersäure",
       "category": "stoff",
       "articles": [],
@@ -5353,7 +5371,7 @@
       "articleCount": 0
     },
     {
-      "id": "e437",
+      "id": "e439",
       "name": "Salpetersäure (HNO3)",
       "category": "stoff",
       "articles": [],
@@ -5362,7 +5380,16 @@
       "articleCount": 0
     },
     {
-      "id": "e438",
+      "id": "e440",
+      "name": "Salz",
+      "category": "konzept",
+      "articles": [],
+      "relatedEntities": [],
+      "components": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e441",
       "name": "Salzsäure",
       "category": "stoff",
       "articles": [],
@@ -5371,7 +5398,7 @@
       "articleCount": 0
     },
     {
-      "id": "e439",
+      "id": "e442",
       "name": "Salzsäure (HCl)",
       "category": "stoff",
       "articles": [],
@@ -5380,7 +5407,7 @@
       "articleCount": 0
     },
     {
-      "id": "e440",
+      "id": "e443",
       "name": "Sauere nach Lewis",
       "category": "konzept",
       "articles": [],
@@ -5389,7 +5416,7 @@
       "articleCount": 0
     },
     {
-      "id": "e441",
+      "id": "e444",
       "name": "Sauerstoff (O₂)",
       "category": "stoff",
       "articles": [],
@@ -5398,7 +5425,7 @@
       "articleCount": 0
     },
     {
-      "id": "e442",
+      "id": "e445",
       "name": "Schwache Sauere",
       "category": "konzept",
       "articles": [],
@@ -5407,7 +5434,7 @@
       "articleCount": 0
     },
     {
-      "id": "e443",
+      "id": "e446",
       "name": "Schwefel (S)",
       "category": "stoff",
       "articles": [],
@@ -5416,7 +5443,7 @@
       "articleCount": 0
     },
     {
-      "id": "e444",
+      "id": "e447",
       "name": "Schwefeldioxid (SO2)",
       "category": "stoff",
       "articles": [],
@@ -5425,7 +5452,7 @@
       "articleCount": 0
     },
     {
-      "id": "e445",
+      "id": "e448",
       "name": "Schwefelsäure",
       "category": "stoff",
       "articles": [],
@@ -5434,7 +5461,7 @@
       "articleCount": 0
     },
     {
-      "id": "e446",
+      "id": "e449",
       "name": "Schwefelsäure (H2SO4)",
       "category": "stoff",
       "articles": [],
@@ -5443,7 +5470,7 @@
       "articleCount": 0
     },
     {
-      "id": "e447",
+      "id": "e450",
       "name": "Schwefelsäure (H₂SO₄)",
       "category": "stoff",
       "articles": [],
@@ -5452,7 +5479,7 @@
       "articleCount": 0
     },
     {
-      "id": "e448",
+      "id": "e451",
       "name": "Schwefelwasserstoff (H2S)",
       "category": "stoff",
       "articles": [],
@@ -5461,7 +5488,7 @@
       "articleCount": 0
     },
     {
-      "id": "e449",
+      "id": "e452",
       "name": "Selen",
       "category": "stoff",
       "articles": [],
@@ -5470,7 +5497,7 @@
       "articleCount": 0
     },
     {
-      "id": "e450",
+      "id": "e453",
       "name": "Silber (Ag)",
       "category": "stoff",
       "articles": [],
@@ -5479,7 +5506,7 @@
       "articleCount": 0
     },
     {
-      "id": "e451",
+      "id": "e454",
       "name": "Siliziumdioxid (SiO2)",
       "category": "stoff",
       "articles": [],
@@ -5488,7 +5515,7 @@
       "articleCount": 0
     },
     {
-      "id": "e452",
+      "id": "e455",
       "name": "Solvatation",
       "category": "konzept",
       "articles": [],
@@ -5497,7 +5524,7 @@
       "articleCount": 0
     },
     {
-      "id": "e453",
+      "id": "e456",
       "name": "Sonogashira-Kupplung",
       "category": "reaktion",
       "articles": [],
@@ -5506,7 +5533,7 @@
       "articleCount": 0
     },
     {
-      "id": "e454",
+      "id": "e457",
       "name": "Spektrum der Wissenschaft – Verständliche Forschung",
       "category": "quelle",
       "articles": [],
@@ -5515,7 +5542,7 @@
       "articleCount": 0
     },
     {
-      "id": "e455",
+      "id": "e458",
       "name": "Standardpotenzial",
       "category": "konzept",
       "articles": [],
@@ -5524,7 +5551,7 @@
       "articleCount": 0
     },
     {
-      "id": "e456",
+      "id": "e459",
       "name": "Starke Sauere",
       "category": "konzept",
       "articles": [],
@@ -5533,7 +5560,7 @@
       "articleCount": 0
     },
     {
-      "id": "e457",
+      "id": "e460",
       "name": "Stickstoff (N₂)",
       "category": "stoff",
       "articles": [],
@@ -5542,7 +5569,7 @@
       "articleCount": 0
     },
     {
-      "id": "e458",
+      "id": "e461",
       "name": "Stickstoffdioxid (NO2)",
       "category": "stoff",
       "articles": [],
@@ -5551,7 +5578,7 @@
       "articleCount": 0
     },
     {
-      "id": "e459",
+      "id": "e462",
       "name": "Stoffkonzentration",
       "category": "konzept",
       "articles": [],
@@ -5560,7 +5587,7 @@
       "articleCount": 0
     },
     {
-      "id": "e460",
+      "id": "e463",
       "name": "Stoffmenge (Mol)",
       "category": "konzept",
       "articles": [],
@@ -5569,7 +5596,7 @@
       "articleCount": 0
     },
     {
-      "id": "e461",
+      "id": "e464",
       "name": "Stromeffizienz",
       "category": "konzept",
       "articles": [],
@@ -5578,7 +5605,7 @@
       "articleCount": 0
     },
     {
-      "id": "e462",
+      "id": "e465",
       "name": "Stöchiometrie",
       "category": "konzept",
       "articles": [],
@@ -5587,7 +5614,7 @@
       "articleCount": 0
     },
     {
-      "id": "e463",
+      "id": "e466",
       "name": "Substitution",
       "category": "reaktion",
       "articles": [],
@@ -5596,7 +5623,7 @@
       "articleCount": 0
     },
     {
-      "id": "e464",
+      "id": "e467",
       "name": "Sulfonierung",
       "category": "reaktion",
       "articles": [],
@@ -5605,7 +5632,7 @@
       "articleCount": 0
     },
     {
-      "id": "e465",
+      "id": "e468",
       "name": "Supramolekulare Chemie",
       "category": "konzept",
       "articles": [],
@@ -5614,7 +5641,7 @@
       "articleCount": 0
     },
     {
-      "id": "e466",
+      "id": "e469",
       "name": "Svante Arrhenius",
       "category": "person",
       "articles": [],
@@ -5623,7 +5650,7 @@
       "articleCount": 0
     },
     {
-      "id": "e467",
+      "id": "e470",
       "name": "Synthese",
       "category": "reaktion",
       "articles": [],
@@ -5641,7 +5668,7 @@
       "articleCount": 0
     },
     {
-      "id": "e468",
+      "id": "e471",
       "name": "Säure-Base-Reaktion",
       "category": "reaktion",
       "articles": [],
@@ -5650,7 +5677,7 @@
       "articleCount": 0
     },
     {
-      "id": "e469",
+      "id": "e472",
       "name": "Säure-Base-Titration",
       "category": "methode",
       "articles": [],
@@ -5659,7 +5686,7 @@
       "articleCount": 0
     },
     {
-      "id": "e470",
+      "id": "e473",
       "name": "TEM",
       "category": "methode",
       "articles": [],
@@ -5726,7 +5753,16 @@
       "articleCount": 0
     },
     {
-      "id": "e471",
+      "id": "e474",
+      "name": "Teilchenmodell",
+      "category": "konzept",
+      "articles": [],
+      "relatedEntities": [],
+      "components": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e475",
       "name": "Thermische Zersetzung",
       "category": "reaktion",
       "articles": [],
@@ -5735,7 +5771,7 @@
       "articleCount": 0
     },
     {
-      "id": "e472",
+      "id": "e476",
       "name": "Thermodynamik",
       "category": "konzept",
       "articles": [],
@@ -5744,7 +5780,7 @@
       "articleCount": 0
     },
     {
-      "id": "e473",
+      "id": "e477",
       "name": "Titan",
       "category": "stoff",
       "articles": [],
@@ -5753,7 +5789,7 @@
       "articleCount": 0
     },
     {
-      "id": "e474",
+      "id": "e478",
       "name": "Titration",
       "category": "methode",
       "articles": [],
@@ -5762,7 +5798,7 @@
       "articleCount": 0
     },
     {
-      "id": "e475",
+      "id": "e479",
       "name": "Titrationskurve",
       "category": "konzept",
       "articles": [],
@@ -5771,7 +5807,7 @@
       "articleCount": 0
     },
     {
-      "id": "e476",
+      "id": "e480",
       "name": "UV-Vis-Spektroskopie",
       "category": "konzept",
       "articles": [],
@@ -5780,7 +5816,7 @@
       "articleCount": 0
     },
     {
-      "id": "e477",
+      "id": "e481",
       "name": "Uran",
       "category": "stoff",
       "articles": [],
@@ -5789,7 +5825,7 @@
       "articleCount": 0
     },
     {
-      "id": "e478",
+      "id": "e482",
       "name": "Van-der-Waals-Kräfte",
       "category": "konzept",
       "articles": [],
@@ -5798,7 +5834,7 @@
       "articleCount": 0
     },
     {
-      "id": "e479",
+      "id": "e483",
       "name": "Verbrennung",
       "category": "reaktion",
       "articles": [],
@@ -5827,7 +5863,7 @@
       "articleCount": 0
     },
     {
-      "id": "e480",
+      "id": "e484",
       "name": "Verbrennung von Kohlenwasserstoffen",
       "category": "reaktion",
       "articles": [],
@@ -5836,7 +5872,7 @@
       "articleCount": 0
     },
     {
-      "id": "e481",
+      "id": "e485",
       "name": "Verbrennungsreaktion",
       "category": "reaktion",
       "articles": [],
@@ -5851,7 +5887,7 @@
       "articleCount": 0
     },
     {
-      "id": "e482",
+      "id": "e486",
       "name": "Veresterung",
       "category": "reaktion",
       "articles": [],
@@ -5860,7 +5896,7 @@
       "articleCount": 0
     },
     {
-      "id": "e483",
+      "id": "e487",
       "name": "Walther Nernst",
       "category": "person",
       "articles": [],
@@ -5869,7 +5905,7 @@
       "articleCount": 0
     },
     {
-      "id": "e484",
+      "id": "e488",
       "name": "Wasser (H2O)",
       "category": "stoff",
       "articles": [],
@@ -5878,7 +5914,7 @@
       "articleCount": 0
     },
     {
-      "id": "e485",
+      "id": "e489",
       "name": "Wasser (H₂O)",
       "category": "stoff",
       "articles": [],
@@ -5887,7 +5923,7 @@
       "articleCount": 0
     },
     {
-      "id": "e486",
+      "id": "e490",
       "name": "Wasserstoff (H₂)",
       "category": "stoff",
       "articles": [],
@@ -5896,7 +5932,7 @@
       "articleCount": 0
     },
     {
-      "id": "e487",
+      "id": "e491",
       "name": "Wasserstoffbrückenbindung",
       "category": "konzept",
       "articles": [],
@@ -5905,7 +5941,7 @@
       "articleCount": 0
     },
     {
-      "id": "e488",
+      "id": "e492",
       "name": "Wasserstoffperoxid (H2O2)",
       "category": "stoff",
       "articles": [],
@@ -5914,7 +5950,7 @@
       "articleCount": 0
     },
     {
-      "id": "e489",
+      "id": "e493",
       "name": "Werner Heisenberg",
       "category": "person",
       "articles": [],
@@ -5923,7 +5959,7 @@
       "articleCount": 0
     },
     {
-      "id": "e490",
+      "id": "e494",
       "name": "Wilhelm Ostwald",
       "category": "person",
       "articles": [],
@@ -5932,7 +5968,7 @@
       "articleCount": 0
     },
     {
-      "id": "e491",
+      "id": "e495",
       "name": "Wittig-Reaktion",
       "category": "reaktion",
       "articles": [],
@@ -5941,7 +5977,7 @@
       "articleCount": 0
     },
     {
-      "id": "e492",
+      "id": "e496",
       "name": "Wolfram",
       "category": "stoff",
       "articles": [],
@@ -5950,7 +5986,7 @@
       "articleCount": 0
     },
     {
-      "id": "e493",
+      "id": "e497",
       "name": "XPS",
       "category": "methode",
       "articles": [],
@@ -5959,7 +5995,7 @@
       "articleCount": 0
     },
     {
-      "id": "e494",
+      "id": "e498",
       "name": "XRD",
       "category": "methode",
       "articles": [],
@@ -5968,7 +6004,7 @@
       "articleCount": 0
     },
     {
-      "id": "e495",
+      "id": "e499",
       "name": "Yves Chauvin",
       "category": "person",
       "articles": [],
@@ -5977,7 +6013,7 @@
       "articleCount": 0
     },
     {
-      "id": "e496",
+      "id": "e500",
       "name": "Zellatmung",
       "category": "reaktion",
       "articles": [],
@@ -5986,7 +6022,7 @@
       "articleCount": 0
     },
     {
-      "id": "e497",
+      "id": "e501",
       "name": "Zentrifugation",
       "category": "methode",
       "articles": [],
@@ -5995,7 +6031,7 @@
       "articleCount": 0
     },
     {
-      "id": "e498",
+      "id": "e502",
       "name": "Zeolith",
       "category": "stoff",
       "articles": [],
@@ -6004,7 +6040,7 @@
       "articleCount": 0
     },
     {
-      "id": "e499",
+      "id": "e503",
       "name": "Zink (Zn)",
       "category": "stoff",
       "articles": [],
@@ -6013,7 +6049,7 @@
       "articleCount": 0
     },
     {
-      "id": "e500",
+      "id": "e504",
       "name": "Zinn",
       "category": "stoff",
       "articles": [],
@@ -6022,7 +6058,7 @@
       "articleCount": 0
     },
     {
-      "id": "e501",
+      "id": "e505",
       "name": "Zitronensaeurezyklus",
       "category": "reaktion",
       "articles": [],
@@ -6031,7 +6067,7 @@
       "articleCount": 0
     },
     {
-      "id": "e502",
+      "id": "e506",
       "name": "Zwischenmolekulare Wechselwirkungen",
       "category": "konzept",
       "articles": [],
@@ -6049,7 +6085,7 @@
       "articleCount": 0
     },
     {
-      "id": "e503",
+      "id": "e507",
       "name": "acylchloride",
       "category": "konzept",
       "articles": [],
@@ -6058,7 +6094,7 @@
       "articleCount": 0
     },
     {
-      "id": "e504",
+      "id": "e508",
       "name": "adrenalin",
       "category": "stoff",
       "articles": [],
@@ -6067,7 +6103,7 @@
       "articleCount": 0
     },
     {
-      "id": "e505",
+      "id": "e509",
       "name": "aktivierungsenergie",
       "category": "konzept",
       "articles": [],
@@ -6076,7 +6112,7 @@
       "articleCount": 0
     },
     {
-      "id": "e506",
+      "id": "e510",
       "name": "aldehyde",
       "category": "konzept",
       "articles": [],
@@ -6085,7 +6121,7 @@
       "articleCount": 0
     },
     {
-      "id": "e507",
+      "id": "e511",
       "name": "aldol-kondensation",
       "category": "reaktion",
       "articles": [],
@@ -6094,7 +6130,7 @@
       "articleCount": 0
     },
     {
-      "id": "e508",
+      "id": "e512",
       "name": "alkohole",
       "category": "konzept",
       "articles": [],
@@ -6109,7 +6145,7 @@
       "articleCount": 0
     },
     {
-      "id": "e509",
+      "id": "e513",
       "name": "amide",
       "category": "konzept",
       "articles": [],
@@ -6118,7 +6154,7 @@
       "articleCount": 0
     },
     {
-      "id": "e510",
+      "id": "e514",
       "name": "amine",
       "category": "konzept",
       "articles": [],
@@ -6127,7 +6163,7 @@
       "articleCount": 0
     },
     {
-      "id": "e511",
+      "id": "e515",
       "name": "aminosäuren",
       "category": "stoff",
       "articles": [],
@@ -6136,7 +6172,7 @@
       "articleCount": 0
     },
     {
-      "id": "e512",
+      "id": "e516",
       "name": "amphoterie",
       "category": "konzept",
       "articles": [],
@@ -6145,7 +6181,7 @@
       "articleCount": 0
     },
     {
-      "id": "e513",
+      "id": "e517",
       "name": "anhydride",
       "category": "konzept",
       "articles": [],
@@ -6154,7 +6190,7 @@
       "articleCount": 0
     },
     {
-      "id": "e514",
+      "id": "e518",
       "name": "arrhenius-gleichung",
       "category": "konzept",
       "articles": [],
@@ -6163,7 +6199,7 @@
       "articleCount": 0
     },
     {
-      "id": "e515",
+      "id": "e519",
       "name": "aspirin",
       "category": "stoff",
       "articles": [],
@@ -6172,7 +6208,27 @@
       "articleCount": 0
     },
     {
-      "id": "e516",
+      "id": "e520",
+      "name": "atom",
+      "category": "konzept",
+      "articles": [],
+      "relatedEntities": [
+        "rp: atombau und periodensystem",
+        "he: atombau und periodensystem",
+        "sl: atombau und periodensystem",
+        "th: atombau und periodensystem",
+        "mv: atombau und periodensystem",
+        "hh: atombau und periodensystem",
+        "hb: atombau und periodensystem",
+        "ni: atombau und periodensystem",
+        "bb: atombau und periodensystem",
+        "b: atombau und periodensystem"
+      ],
+      "components": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e521",
       "name": "atp",
       "category": "stoff",
       "articles": [],
@@ -6183,7 +6239,7 @@
       "articleCount": 0
     },
     {
-      "id": "e517",
+      "id": "e522",
       "name": "aufbauprinzip",
       "category": "konzept",
       "articles": [],
@@ -6192,7 +6248,7 @@
       "articleCount": 0
     },
     {
-      "id": "e518",
+      "id": "e523",
       "name": "autokatalyse",
       "category": "konzept",
       "articles": [],
@@ -6201,7 +6257,7 @@
       "articleCount": 0
     },
     {
-      "id": "e519",
+      "id": "e524",
       "name": "basilisieren",
       "category": "reaktion",
       "articles": [],
@@ -6210,7 +6266,7 @@
       "articleCount": 0
     },
     {
-      "id": "e520",
+      "id": "e525",
       "name": "baumann-villiger-oxidation",
       "category": "reaktion",
       "articles": [],
@@ -6219,7 +6275,7 @@
       "articleCount": 0
     },
     {
-      "id": "e521",
+      "id": "e526",
       "name": "beckmann-umlagerung",
       "category": "reaktion",
       "articles": [],
@@ -6228,7 +6284,7 @@
       "articleCount": 0
     },
     {
-      "id": "e522",
+      "id": "e527",
       "name": "benzoesäure",
       "category": "stoff",
       "articles": [],
@@ -6237,7 +6293,7 @@
       "articleCount": 0
     },
     {
-      "id": "e523",
+      "id": "e528",
       "name": "beta-oxidation",
       "category": "reaktion",
       "articles": [],
@@ -6246,7 +6302,7 @@
       "articleCount": 0
     },
     {
-      "id": "e524",
+      "id": "e529",
       "name": "bildungsenthalpie",
       "category": "konzept",
       "articles": [],
@@ -6255,7 +6311,7 @@
       "articleCount": 0
     },
     {
-      "id": "e525",
+      "id": "e530",
       "name": "bindungsenergie",
       "category": "konzept",
       "articles": [],
@@ -6264,7 +6320,7 @@
       "articleCount": 0
     },
     {
-      "id": "e526",
+      "id": "e531",
       "name": "bioakkumulation",
       "category": "konzept",
       "articles": [],
@@ -6273,7 +6329,7 @@
       "articleCount": 0
     },
     {
-      "id": "e527",
+      "id": "e532",
       "name": "biodiesel",
       "category": "stoff",
       "articles": [],
@@ -6282,7 +6338,7 @@
       "articleCount": 0
     },
     {
-      "id": "e528",
+      "id": "e533",
       "name": "biogas",
       "category": "stoff",
       "articles": [],
@@ -6291,7 +6347,7 @@
       "articleCount": 0
     },
     {
-      "id": "e529",
+      "id": "e534",
       "name": "brønsted-theorie",
       "category": "konzept",
       "articles": [],
@@ -6300,7 +6356,7 @@
       "articleCount": 0
     },
     {
-      "id": "e530",
+      "id": "e535",
       "name": "carbonsäuren",
       "category": "konzept",
       "articles": [],
@@ -6309,7 +6365,7 @@
       "articleCount": 0
     },
     {
-      "id": "e531",
+      "id": "e536",
       "name": "castner-zelle",
       "category": "reaktion",
       "articles": [],
@@ -6318,7 +6374,7 @@
       "articleCount": 0
     },
     {
-      "id": "e532",
+      "id": "e537",
       "name": "chelatkomplexe",
       "category": "konzept",
       "articles": [],
@@ -6327,7 +6383,7 @@
       "articleCount": 0
     },
     {
-      "id": "e533",
+      "id": "e538",
       "name": "chlorophyll",
       "category": "stoff",
       "articles": [],
@@ -6336,7 +6392,7 @@
       "articleCount": 0
     },
     {
-      "id": "e534",
+      "id": "e539",
       "name": "citratzyklus",
       "category": "reaktion",
       "articles": [],
@@ -6345,7 +6401,7 @@
       "articleCount": 0
     },
     {
-      "id": "e535",
+      "id": "e540",
       "name": "claisen-kondensation",
       "category": "reaktion",
       "articles": [],
@@ -6354,7 +6410,7 @@
       "articleCount": 0
     },
     {
-      "id": "e536",
+      "id": "e541",
       "name": "claude-berthollet",
       "category": "person",
       "articles": [],
@@ -6363,7 +6419,7 @@
       "articleCount": 0
     },
     {
-      "id": "e537",
+      "id": "e542",
       "name": "coenzym a",
       "category": "stoff",
       "articles": [],
@@ -6372,7 +6428,7 @@
       "articleCount": 0
     },
     {
-      "id": "e538",
+      "id": "e543",
       "name": "contact-prozess",
       "category": "reaktion",
       "articles": [],
@@ -6381,7 +6437,7 @@
       "articleCount": 0
     },
     {
-      "id": "e539",
+      "id": "e544",
       "name": "dieckmann-kondensation",
       "category": "reaktion",
       "articles": [],
@@ -6390,7 +6446,7 @@
       "articleCount": 0
     },
     {
-      "id": "e540",
+      "id": "e545",
       "name": "disulfide",
       "category": "konzept",
       "articles": [],
@@ -6399,7 +6455,7 @@
       "articleCount": 0
     },
     {
-      "id": "e541",
+      "id": "e546",
       "name": "dna",
       "category": "stoff",
       "articles": [],
@@ -6412,7 +6468,7 @@
       "articleCount": 0
     },
     {
-      "id": "e542",
+      "id": "e547",
       "name": "downs-zelle",
       "category": "reaktion",
       "articles": [],
@@ -6421,7 +6477,7 @@
       "articleCount": 0
     },
     {
-      "id": "e543",
+      "id": "e548",
       "name": "duromere",
       "category": "konzept",
       "articles": [],
@@ -6430,7 +6486,23 @@
       "articleCount": 0
     },
     {
-      "id": "e544",
+      "id": "e549",
+      "name": "edelgas",
+      "category": "konzept",
+      "articles": [],
+      "relatedEntities": [
+        "mv: atombau und periodensystem",
+        "hh: atombau und periodensystem",
+        "hb: atombau und periodensystem",
+        "ni: atombau und periodensystem",
+        "bb: atombau und periodensystem",
+        "b: atombau und periodensystem"
+      ],
+      "components": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e550",
       "name": "elastomere",
       "category": "konzept",
       "articles": [],
@@ -6439,7 +6511,7 @@
       "articleCount": 0
     },
     {
-      "id": "e545",
+      "id": "e551",
       "name": "elektroanalyse",
       "category": "methode",
       "articles": [],
@@ -6448,7 +6520,7 @@
       "articleCount": 0
     },
     {
-      "id": "e546",
+      "id": "e552",
       "name": "elektrolysezelle",
       "category": "konzept",
       "articles": [],
@@ -6457,7 +6529,7 @@
       "articleCount": 0
     },
     {
-      "id": "e547",
+      "id": "e553",
       "name": "elektronenmikroskopie",
       "category": "methode",
       "articles": [],
@@ -6466,7 +6538,7 @@
       "articleCount": 0
     },
     {
-      "id": "e548",
+      "id": "e554",
       "name": "elektrophorese",
       "category": "methode",
       "articles": [],
@@ -6475,7 +6547,27 @@
       "articleCount": 0
     },
     {
-      "id": "e549",
+      "id": "e555",
+      "name": "element",
+      "category": "konzept",
+      "articles": [],
+      "relatedEntities": [
+        "rp: atombau und periodensystem",
+        "he: atombau und periodensystem",
+        "sl: atombau und periodensystem",
+        "th: atombau und periodensystem",
+        "mv: atombau und periodensystem",
+        "hh: atombau und periodensystem",
+        "hb: atombau und periodensystem",
+        "ni: atombau und periodensystem",
+        "bb: atombau und periodensystem",
+        "b: atombau und periodensystem"
+      ],
+      "components": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e556",
       "name": "enole",
       "category": "konzept",
       "articles": [],
@@ -6484,7 +6576,7 @@
       "articleCount": 0
     },
     {
-      "id": "e550",
+      "id": "e557",
       "name": "enthalpie",
       "category": "konzept",
       "articles": [],
@@ -6493,7 +6585,7 @@
       "articleCount": 0
     },
     {
-      "id": "e551",
+      "id": "e558",
       "name": "entropie",
       "category": "konzept",
       "articles": [],
@@ -6504,7 +6596,7 @@
       "articleCount": 0
     },
     {
-      "id": "e552",
+      "id": "e559",
       "name": "enzyme",
       "category": "konzept",
       "articles": [],
@@ -6516,7 +6608,7 @@
       "articleCount": 0
     },
     {
-      "id": "e553",
+      "id": "e560",
       "name": "enzymkinetik",
       "category": "konzept",
       "articles": [],
@@ -6525,7 +6617,7 @@
       "articleCount": 0
     },
     {
-      "id": "e554",
+      "id": "e561",
       "name": "epoxide",
       "category": "konzept",
       "articles": [],
@@ -6534,7 +6626,7 @@
       "articleCount": 0
     },
     {
-      "id": "e555",
+      "id": "e562",
       "name": "essigsäure",
       "category": "stoff",
       "articles": [],
@@ -6543,7 +6635,7 @@
       "articleCount": 0
     },
     {
-      "id": "e556",
+      "id": "e563",
       "name": "ester",
       "category": "konzept",
       "articles": [],
@@ -6552,7 +6644,7 @@
       "articleCount": 0
     },
     {
-      "id": "e557",
+      "id": "e564",
       "name": "ethanol",
       "category": "stoff",
       "articles": [],
@@ -6566,7 +6658,7 @@
       "articleCount": 0
     },
     {
-      "id": "e558",
+      "id": "e565",
       "name": "ether",
       "category": "konzept",
       "articles": [],
@@ -6575,7 +6667,7 @@
       "articleCount": 0
     },
     {
-      "id": "e559",
+      "id": "e566",
       "name": "eutrophierung",
       "category": "konzept",
       "articles": [],
@@ -6584,7 +6676,7 @@
       "articleCount": 0
     },
     {
-      "id": "e560",
+      "id": "e567",
       "name": "fad",
       "category": "stoff",
       "articles": [],
@@ -6593,7 +6685,7 @@
       "articleCount": 0
     },
     {
-      "id": "e561",
+      "id": "e568",
       "name": "fischer-indol-synthese",
       "category": "reaktion",
       "articles": [],
@@ -6602,7 +6694,7 @@
       "articleCount": 0
     },
     {
-      "id": "e562",
+      "id": "e569",
       "name": "frasch-verfahren",
       "category": "reaktion",
       "articles": [],
@@ -6611,7 +6703,7 @@
       "articleCount": 0
     },
     {
-      "id": "e563",
+      "id": "e570",
       "name": "friedel-crafts-acylierung",
       "category": "reaktion",
       "articles": [],
@@ -6620,7 +6712,7 @@
       "articleCount": 0
     },
     {
-      "id": "e564",
+      "id": "e571",
       "name": "friedel-crafts-alkylierung",
       "category": "reaktion",
       "articles": [],
@@ -6629,7 +6721,7 @@
       "articleCount": 0
     },
     {
-      "id": "e565",
+      "id": "e572",
       "name": "galvanische zelle",
       "category": "konzept",
       "articles": [],
@@ -6638,7 +6730,7 @@
       "articleCount": 0
     },
     {
-      "id": "e566",
+      "id": "e573",
       "name": "gaschromatographie",
       "category": "methode",
       "articles": [],
@@ -6647,7 +6739,26 @@
       "articleCount": 0
     },
     {
-      "id": "e567",
+      "id": "e574",
+      "name": "gemisch",
+      "category": "konzept",
+      "articles": [],
+      "relatedEntities": [
+        "hh: stoffe und ihre eigenschaften",
+        "sl: stoffe und ihre eigenschaften",
+        "th: stoffe und ihre eigenschaften",
+        "mv: stoffe und stoffgemische",
+        "he: stoffe und stofftrennverfahren",
+        "hb: stoffe und ihre eigenschaften",
+        "ni: stoffe und stoffeigenschaften",
+        "bb: stoffe und ihre eigenschaften",
+        "b: stoffe und stoffgemische"
+      ],
+      "components": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e575",
       "name": "gibbs-energie",
       "category": "konzept",
       "articles": [],
@@ -6656,7 +6767,7 @@
       "articleCount": 0
     },
     {
-      "id": "e568",
+      "id": "e576",
       "name": "glas",
       "category": "konzept",
       "articles": [],
@@ -6669,7 +6780,7 @@
       "articleCount": 0
     },
     {
-      "id": "e569",
+      "id": "e577",
       "name": "glycerin",
       "category": "stoff",
       "articles": [],
@@ -6678,7 +6789,7 @@
       "articleCount": 0
     },
     {
-      "id": "e570",
+      "id": "e578",
       "name": "glykolyse",
       "category": "reaktion",
       "articles": [],
@@ -6687,7 +6798,7 @@
       "articleCount": 0
     },
     {
-      "id": "e571",
+      "id": "e579",
       "name": "gravimetrie",
       "category": "methode",
       "articles": [],
@@ -6696,7 +6807,7 @@
       "articleCount": 0
     },
     {
-      "id": "e572",
+      "id": "e580",
       "name": "grignard-reaktion",
       "category": "reaktion",
       "articles": [],
@@ -6705,7 +6816,7 @@
       "articleCount": 0
     },
     {
-      "id": "e573",
+      "id": "e581",
       "name": "haber-bosch-verfahren",
       "category": "reaktion",
       "articles": [],
@@ -6714,7 +6825,7 @@
       "articleCount": 0
     },
     {
-      "id": "e574",
+      "id": "e582",
       "name": "halbleiter",
       "category": "konzept",
       "articles": [],
@@ -6723,7 +6834,7 @@
       "articleCount": 0
     },
     {
-      "id": "e575",
+      "id": "e583",
       "name": "hall-héroult-prozess",
       "category": "reaktion",
       "articles": [],
@@ -6732,7 +6843,7 @@
       "articleCount": 0
     },
     {
-      "id": "e576",
+      "id": "e584",
       "name": "hantzsch-dihydropyridin-synthese",
       "category": "reaktion",
       "articles": [],
@@ -6741,7 +6852,7 @@
       "articleCount": 0
     },
     {
-      "id": "e577",
+      "id": "e585",
       "name": "harnstoff",
       "category": "stoff",
       "articles": [],
@@ -6750,7 +6861,7 @@
       "articleCount": 0
     },
     {
-      "id": "e578",
+      "id": "e586",
       "name": "heck-reaktion",
       "category": "reaktion",
       "articles": [],
@@ -6759,7 +6870,7 @@
       "articleCount": 0
     },
     {
-      "id": "e579",
+      "id": "e587",
       "name": "hessscher satz",
       "category": "konzept",
       "articles": [],
@@ -6768,7 +6879,7 @@
       "articleCount": 0
     },
     {
-      "id": "e580",
+      "id": "e588",
       "name": "heterogene katalyse",
       "category": "konzept",
       "articles": [],
@@ -6777,7 +6888,7 @@
       "articleCount": 0
     },
     {
-      "id": "e581",
+      "id": "e589",
       "name": "high-spin-komplexe",
       "category": "konzept",
       "articles": [],
@@ -6786,7 +6897,7 @@
       "articleCount": 0
     },
     {
-      "id": "e582",
+      "id": "e590",
       "name": "homogene katalyse",
       "category": "konzept",
       "articles": [],
@@ -6795,7 +6906,7 @@
       "articleCount": 0
     },
     {
-      "id": "e583",
+      "id": "e591",
       "name": "hplc",
       "category": "methode",
       "articles": [],
@@ -6804,7 +6915,7 @@
       "articleCount": 0
     },
     {
-      "id": "e584",
+      "id": "e592",
       "name": "hundsche regel",
       "category": "konzept",
       "articles": [],
@@ -6813,7 +6924,7 @@
       "articleCount": 0
     },
     {
-      "id": "e585",
+      "id": "e593",
       "name": "hybridisierung",
       "category": "konzept",
       "articles": [],
@@ -6822,7 +6933,7 @@
       "articleCount": 0
     },
     {
-      "id": "e586",
+      "id": "e594",
       "name": "hydrolyse",
       "category": "reaktion",
       "articles": [],
@@ -6831,7 +6942,7 @@
       "articleCount": 0
     },
     {
-      "id": "e587",
+      "id": "e595",
       "name": "häm",
       "category": "stoff",
       "articles": [],
@@ -6840,7 +6951,7 @@
       "articleCount": 0
     },
     {
-      "id": "e588",
+      "id": "e596",
       "name": "imine",
       "category": "konzept",
       "articles": [],
@@ -6849,7 +6960,27 @@
       "articleCount": 0
     },
     {
-      "id": "e589",
+      "id": "e597",
+      "name": "ion",
+      "category": "konzept",
+      "articles": [],
+      "relatedEntities": [
+        "sl: metalle und metallgewinnung",
+        "sh: salze und ionen",
+        "th: metalle",
+        "rp: metalle, salze, ionen",
+        "mv: salze und ionenbindung",
+        "hh: ionen und salze",
+        "hb: salze und ionen",
+        "ni: salze und ionen",
+        "bb: ionen und salze",
+        "b: ionenbindung und salze"
+      ],
+      "components": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e598",
       "name": "ir-spektroskopie",
       "category": "methode",
       "articles": [],
@@ -6858,7 +6989,7 @@
       "articleCount": 0
     },
     {
-      "id": "e590",
+      "id": "e599",
       "name": "jahn-teller-effekt",
       "category": "konzept",
       "articles": [],
@@ -6867,7 +6998,7 @@
       "articleCount": 0
     },
     {
-      "id": "e591",
+      "id": "e600",
       "name": "keramik",
       "category": "konzept",
       "articles": [],
@@ -6876,7 +7007,7 @@
       "articleCount": 0
     },
     {
-      "id": "e592",
+      "id": "e601",
       "name": "kernchemie",
       "category": "konzept",
       "articles": [],
@@ -6885,7 +7016,7 @@
       "articleCount": 0
     },
     {
-      "id": "e593",
+      "id": "e602",
       "name": "ketone",
       "category": "konzept",
       "articles": [],
@@ -6894,7 +7025,7 @@
       "articleCount": 0
     },
     {
-      "id": "e594",
+      "id": "e603",
       "name": "knoevenagel-kondensation",
       "category": "reaktion",
       "articles": [],
@@ -6903,7 +7034,7 @@
       "articleCount": 0
     },
     {
-      "id": "e595",
+      "id": "e604",
       "name": "komplexverbindungen",
       "category": "konzept",
       "articles": [],
@@ -6912,7 +7043,7 @@
       "articleCount": 0
     },
     {
-      "id": "e596",
+      "id": "e605",
       "name": "koordinationszahl",
       "category": "konzept",
       "articles": [],
@@ -6921,7 +7052,7 @@
       "articleCount": 0
     },
     {
-      "id": "e597",
+      "id": "e606",
       "name": "korrosion",
       "category": "reaktion",
       "articles": [],
@@ -6935,7 +7066,7 @@
       "articleCount": 0
     },
     {
-      "id": "e598",
+      "id": "e607",
       "name": "kreatin",
       "category": "stoff",
       "articles": [],
@@ -6944,7 +7075,7 @@
       "articleCount": 0
     },
     {
-      "id": "e599",
+      "id": "e608",
       "name": "kristallfeldtheorie",
       "category": "konzept",
       "articles": [],
@@ -6953,7 +7084,7 @@
       "articleCount": 0
     },
     {
-      "id": "e600",
+      "id": "e609",
       "name": "lactame",
       "category": "konzept",
       "articles": [],
@@ -6962,7 +7093,7 @@
       "articleCount": 0
     },
     {
-      "id": "e601",
+      "id": "e610",
       "name": "lactone",
       "category": "konzept",
       "articles": [],
@@ -6971,7 +7102,7 @@
       "articleCount": 0
     },
     {
-      "id": "e602",
+      "id": "e611",
       "name": "langmuir-adsorption",
       "category": "konzept",
       "articles": [],
@@ -6980,7 +7111,27 @@
       "articleCount": 0
     },
     {
-      "id": "e603",
+      "id": "e612",
+      "name": "lauge",
+      "category": "konzept",
+      "articles": [],
+      "relatedEntities": [
+        "he: säuren und basen",
+        "th: basen und basische lösungen",
+        "rp: säuren, basen, salze",
+        "sl: säuren, laugen und salze",
+        "sh: säuren und basen",
+        "hh: säuren, laugen und neutralisation",
+        "hb: säuren, laugen und neutralisation",
+        "ni: säuren, basen und neutralisation",
+        "bb: säuren, basen und neutralisation",
+        "b: säuren, basen und neutralisation"
+      ],
+      "components": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e613",
       "name": "lewis-theorie",
       "category": "konzept",
       "articles": [],
@@ -6989,7 +7140,7 @@
       "articleCount": 0
     },
     {
-      "id": "e604",
+      "id": "e614",
       "name": "liganden",
       "category": "konzept",
       "articles": [],
@@ -6998,7 +7149,7 @@
       "articleCount": 0
     },
     {
-      "id": "e605",
+      "id": "e615",
       "name": "ligandenfeldtheorie",
       "category": "konzept",
       "articles": [],
@@ -7007,7 +7158,7 @@
       "articleCount": 0
     },
     {
-      "id": "e606",
+      "id": "e616",
       "name": "lithium-ionen-batterie",
       "category": "stoff",
       "articles": [],
@@ -7016,7 +7167,7 @@
       "articleCount": 0
     },
     {
-      "id": "e607",
+      "id": "e617",
       "name": "low-spin-komplexe",
       "category": "konzept",
       "articles": [],
@@ -7025,7 +7176,7 @@
       "articleCount": 0
     },
     {
-      "id": "e608",
+      "id": "e618",
       "name": "magnetismus",
       "category": "konzept",
       "articles": [],
@@ -7034,7 +7185,7 @@
       "articleCount": 0
     },
     {
-      "id": "e609",
+      "id": "e619",
       "name": "mannheim-verfahren",
       "category": "reaktion",
       "articles": [],
@@ -7043,7 +7194,7 @@
       "articleCount": 0
     },
     {
-      "id": "e610",
+      "id": "e620",
       "name": "mannich-reaktion",
       "category": "reaktion",
       "articles": [],
@@ -7052,7 +7203,7 @@
       "articleCount": 0
     },
     {
-      "id": "e611",
+      "id": "e621",
       "name": "massenspektrometrie",
       "category": "methode",
       "articles": [],
@@ -7061,7 +7212,7 @@
       "articleCount": 0
     },
     {
-      "id": "e612",
+      "id": "e622",
       "name": "massenwirkungsgesetz",
       "category": "konzept",
       "articles": [],
@@ -7070,7 +7221,7 @@
       "articleCount": 0
     },
     {
-      "id": "e613",
+      "id": "e623",
       "name": "metall-organische gerüstverbindungen",
       "category": "konzept",
       "articles": [],
@@ -7079,7 +7230,7 @@
       "articleCount": 0
     },
     {
-      "id": "e614",
+      "id": "e624",
       "name": "metalle",
       "category": "konzept",
       "articles": [],
@@ -7106,7 +7257,7 @@
       "articleCount": 0
     },
     {
-      "id": "e615",
+      "id": "e625",
       "name": "methanol",
       "category": "stoff",
       "articles": [],
@@ -7115,7 +7266,7 @@
       "articleCount": 0
     },
     {
-      "id": "e616",
+      "id": "e626",
       "name": "michael-addition",
       "category": "reaktion",
       "articles": [],
@@ -7124,7 +7275,7 @@
       "articleCount": 0
     },
     {
-      "id": "e617",
+      "id": "e627",
       "name": "michaelis-menten",
       "category": "konzept",
       "articles": [],
@@ -7133,7 +7284,7 @@
       "articleCount": 0
     },
     {
-      "id": "e618",
+      "id": "e628",
       "name": "mikroplastik",
       "category": "konzept",
       "articles": [],
@@ -7142,7 +7293,7 @@
       "articleCount": 0
     },
     {
-      "id": "e619",
+      "id": "e629",
       "name": "milchsäure",
       "category": "stoff",
       "articles": [],
@@ -7151,7 +7302,26 @@
       "articleCount": 0
     },
     {
-      "id": "e620",
+      "id": "e630",
+      "name": "molekül",
+      "category": "konzept",
+      "articles": [],
+      "relatedEntities": [
+        "rp: moleküle und bindungen",
+        "he: organische chemie - kohlenwasserstoffe",
+        "sl: organische chemie - kohlenwasserstoffe",
+        "bb: moleküle und zwischenmolekulare wechselwirkungen",
+        "b: elektronenpaarbindung und moleküle",
+        "hh: molekülverbindungen",
+        "he: molekülverbindungen",
+        "sl: molekülverbindungen",
+        "ni: chemische reaktionen"
+      ],
+      "components": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e631",
       "name": "molekülorbitale",
       "category": "konzept",
       "articles": [],
@@ -7160,7 +7330,7 @@
       "articleCount": 0
     },
     {
-      "id": "e621",
+      "id": "e632",
       "name": "nadh",
       "category": "stoff",
       "articles": [],
@@ -7169,7 +7339,7 @@
       "articleCount": 0
     },
     {
-      "id": "e622",
+      "id": "e633",
       "name": "nanopartikel",
       "category": "konzept",
       "articles": [],
@@ -7178,7 +7348,7 @@
       "articleCount": 0
     },
     {
-      "id": "e623",
+      "id": "e634",
       "name": "nernst-gleichung",
       "category": "konzept",
       "articles": [],
@@ -7187,7 +7357,7 @@
       "articleCount": 0
     },
     {
-      "id": "e624",
+      "id": "e635",
       "name": "nersnt-gleichung",
       "category": "konzept",
       "articles": [],
@@ -7196,7 +7366,7 @@
       "articleCount": 0
     },
     {
-      "id": "e625",
+      "id": "e636",
       "name": "neutralisation",
       "category": "reaktion",
       "articles": [],
@@ -7213,7 +7383,23 @@
       "articleCount": 0
     },
     {
-      "id": "e626",
+      "id": "e637",
+      "name": "neutron",
+      "category": "konzept",
+      "articles": [],
+      "relatedEntities": [
+        "mv: atombau und periodensystem",
+        "hh: atombau und periodensystem",
+        "hb: atombau und periodensystem",
+        "ni: atombau und periodensystem",
+        "bb: atombau und periodensystem",
+        "b: atombau und periodensystem"
+      ],
+      "components": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e638",
       "name": "nicotin",
       "category": "stoff",
       "articles": [],
@@ -7222,7 +7408,7 @@
       "articleCount": 0
     },
     {
-      "id": "e627",
+      "id": "e639",
       "name": "nitrile",
       "category": "konzept",
       "articles": [],
@@ -7231,7 +7417,7 @@
       "articleCount": 0
     },
     {
-      "id": "e628",
+      "id": "e640",
       "name": "nmr-spektroskopie",
       "category": "methode",
       "articles": [],
@@ -7240,7 +7426,7 @@
       "articleCount": 0
     },
     {
-      "id": "e629",
+      "id": "e641",
       "name": "ostwald-verfahren",
       "category": "reaktion",
       "articles": [],
@@ -7249,7 +7435,26 @@
       "articleCount": 0
     },
     {
-      "id": "e630",
+      "id": "e642",
+      "name": "oxid",
+      "category": "konzept",
+      "articles": [],
+      "relatedEntities": [
+        "sh: luft und verbrennung",
+        "th: chemische reaktionen",
+        "sl: luft und verbrennung",
+        "mv: verbrennung und oxidbildung",
+        "hh: luft, sauerstoff und oxidbildung",
+        "hb: luft, sauerstoff und verbrennung",
+        "ni: verbrennung und oxidbildung",
+        "bb: luft und verbrennung",
+        "b: luft, sauerstoff und oxidbildung"
+      ],
+      "components": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e643",
       "name": "oxidative phosphorylierung",
       "category": "reaktion",
       "articles": [],
@@ -7258,7 +7463,7 @@
       "articleCount": 0
     },
     {
-      "id": "e631",
+      "id": "e644",
       "name": "ozonloch",
       "category": "konzept",
       "articles": [],
@@ -7267,7 +7472,7 @@
       "articleCount": 0
     },
     {
-      "id": "e632",
+      "id": "e645",
       "name": "pH-Messung",
       "category": "methode",
       "articles": [],
@@ -7276,7 +7481,7 @@
       "articleCount": 0
     },
     {
-      "id": "e633",
+      "id": "e646",
       "name": "pKS-Wert",
       "category": "konzept",
       "articles": [],
@@ -7285,7 +7490,7 @@
       "articleCount": 0
     },
     {
-      "id": "e634",
+      "id": "e647",
       "name": "pOH",
       "category": "konzept",
       "articles": [],
@@ -7294,7 +7499,7 @@
       "articleCount": 0
     },
     {
-      "id": "e635",
+      "id": "e648",
       "name": "paal-knorr-synthese",
       "category": "reaktion",
       "articles": [],
@@ -7303,7 +7508,7 @@
       "articleCount": 0
     },
     {
-      "id": "e636",
+      "id": "e649",
       "name": "passivierung",
       "category": "konzept",
       "articles": [],
@@ -7312,7 +7517,7 @@
       "articleCount": 0
     },
     {
-      "id": "e637",
+      "id": "e650",
       "name": "pauli-prinzip",
       "category": "konzept",
       "articles": [],
@@ -7321,7 +7526,7 @@
       "articleCount": 0
     },
     {
-      "id": "e638",
+      "id": "e651",
       "name": "persistent organic pollutants",
       "category": "konzept",
       "articles": [],
@@ -7330,7 +7535,7 @@
       "articleCount": 0
     },
     {
-      "id": "e639",
+      "id": "e652",
       "name": "phenole",
       "category": "konzept",
       "articles": [],
@@ -7339,7 +7544,7 @@
       "articleCount": 0
     },
     {
-      "id": "e640",
+      "id": "e653",
       "name": "photosynthese",
       "category": "reaktion",
       "articles": [],
@@ -7348,7 +7553,7 @@
       "articleCount": 0
     },
     {
-      "id": "e641",
+      "id": "e654",
       "name": "phthalsäure",
       "category": "stoff",
       "articles": [],
@@ -7357,7 +7562,7 @@
       "articleCount": 0
     },
     {
-      "id": "e642",
+      "id": "e655",
       "name": "polarimetrie",
       "category": "methode",
       "articles": [],
@@ -7366,7 +7571,7 @@
       "articleCount": 0
     },
     {
-      "id": "e643",
+      "id": "e656",
       "name": "polyaddition",
       "category": "reaktion",
       "articles": [],
@@ -7375,7 +7580,7 @@
       "articleCount": 0
     },
     {
-      "id": "e644",
+      "id": "e657",
       "name": "polykondensation",
       "category": "reaktion",
       "articles": [],
@@ -7384,7 +7589,7 @@
       "articleCount": 0
     },
     {
-      "id": "e645",
+      "id": "e658",
       "name": "polymerisation",
       "category": "reaktion",
       "articles": [],
@@ -7393,7 +7598,23 @@
       "articleCount": 0
     },
     {
-      "id": "e646",
+      "id": "e659",
+      "name": "proton",
+      "category": "konzept",
+      "articles": [],
+      "relatedEntities": [
+        "mv: atombau und periodensystem",
+        "hh: atombau und periodensystem",
+        "hb: atombau und periodensystem",
+        "ni: atombau und periodensystem",
+        "bb: atombau und periodensystem",
+        "b: atombau und periodensystem"
+      ],
+      "components": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e660",
       "name": "puffer",
       "category": "konzept",
       "articles": [],
@@ -7402,7 +7623,7 @@
       "articleCount": 0
     },
     {
-      "id": "e647",
+      "id": "e661",
       "name": "quantenzahlen",
       "category": "konzept",
       "articles": [],
@@ -7411,7 +7632,7 @@
       "articleCount": 0
     },
     {
-      "id": "e648",
+      "id": "e662",
       "name": "reaktionsenthalpie",
       "category": "konzept",
       "articles": [],
@@ -7420,7 +7641,7 @@
       "articleCount": 0
     },
     {
-      "id": "e649",
+      "id": "e663",
       "name": "reaktionsordnung",
       "category": "konzept",
       "articles": [],
@@ -7429,7 +7650,7 @@
       "articleCount": 0
     },
     {
-      "id": "e650",
+      "id": "e664",
       "name": "replication",
       "category": "reaktion",
       "articles": [],
@@ -7438,7 +7659,7 @@
       "articleCount": 0
     },
     {
-      "id": "e651",
+      "id": "e665",
       "name": "rna",
       "category": "stoff",
       "articles": [],
@@ -7454,7 +7675,7 @@
       "articleCount": 0
     },
     {
-      "id": "e652",
+      "id": "e666",
       "name": "robinson-annulation",
       "category": "reaktion",
       "articles": [],
@@ -7463,7 +7684,7 @@
       "articleCount": 0
     },
     {
-      "id": "e653",
+      "id": "e667",
       "name": "röntgenbeugung",
       "category": "methode",
       "articles": [],
@@ -7472,7 +7693,7 @@
       "articleCount": 0
     },
     {
-      "id": "e654",
+      "id": "e668",
       "name": "saurer regen",
       "category": "konzept",
       "articles": [],
@@ -7481,7 +7702,7 @@
       "articleCount": 0
     },
     {
-      "id": "e655",
+      "id": "e669",
       "name": "schmelzenthalpie",
       "category": "konzept",
       "articles": [],
@@ -7490,7 +7711,7 @@
       "articleCount": 0
     },
     {
-      "id": "e656",
+      "id": "e670",
       "name": "schwingungsspektroskopie",
       "category": "konzept",
       "articles": [],
@@ -7499,7 +7720,7 @@
       "articleCount": 0
     },
     {
-      "id": "e657",
+      "id": "e671",
       "name": "smog",
       "category": "konzept",
       "articles": [],
@@ -7508,7 +7729,7 @@
       "articleCount": 0
     },
     {
-      "id": "e658",
+      "id": "e672",
       "name": "solvatisierung",
       "category": "konzept",
       "articles": [],
@@ -7517,7 +7738,7 @@
       "articleCount": 0
     },
     {
-      "id": "e659",
+      "id": "e673",
       "name": "solway-verfahren",
       "category": "reaktion",
       "articles": [],
@@ -7526,7 +7747,7 @@
       "articleCount": 0
     },
     {
-      "id": "e660",
+      "id": "e674",
       "name": "stille-kupplung",
       "category": "reaktion",
       "articles": [],
@@ -7535,7 +7756,7 @@
       "articleCount": 0
     },
     {
-      "id": "e661",
+      "id": "e675",
       "name": "sulfonsäuren",
       "category": "konzept",
       "articles": [],
@@ -7544,7 +7765,7 @@
       "articleCount": 0
     },
     {
-      "id": "e662",
+      "id": "e676",
       "name": "suzuki-kupplung",
       "category": "reaktion",
       "articles": [],
@@ -7553,7 +7774,7 @@
       "articleCount": 0
     },
     {
-      "id": "e663",
+      "id": "e677",
       "name": "thermoplaste",
       "category": "konzept",
       "articles": [],
@@ -7562,7 +7783,7 @@
       "articleCount": 0
     },
     {
-      "id": "e664",
+      "id": "e678",
       "name": "thioether",
       "category": "konzept",
       "articles": [],
@@ -7571,7 +7792,7 @@
       "articleCount": 0
     },
     {
-      "id": "e665",
+      "id": "e679",
       "name": "titration",
       "category": "methode",
       "articles": [],
@@ -7580,7 +7801,7 @@
       "articleCount": 0
     },
     {
-      "id": "e666",
+      "id": "e680",
       "name": "transkription",
       "category": "reaktion",
       "articles": [],
@@ -7589,7 +7810,7 @@
       "articleCount": 0
     },
     {
-      "id": "e667",
+      "id": "e681",
       "name": "translation",
       "category": "reaktion",
       "articles": [],
@@ -7598,7 +7819,7 @@
       "articleCount": 0
     },
     {
-      "id": "e668",
+      "id": "e682",
       "name": "treibhausgase",
       "category": "konzept",
       "articles": [],
@@ -7607,7 +7828,7 @@
       "articleCount": 0
     },
     {
-      "id": "e669",
+      "id": "e683",
       "name": "ulyot-Reaktion",
       "category": "reaktion",
       "articles": [],
@@ -7616,7 +7837,7 @@
       "articleCount": 0
     },
     {
-      "id": "e670",
+      "id": "e684",
       "name": "uv-vis-spektroskopie",
       "category": "methode",
       "articles": [],
@@ -7625,7 +7846,7 @@
       "articleCount": 0
     },
     {
-      "id": "e671",
+      "id": "e685",
       "name": "vant-hoff-gleichung",
       "category": "konzept",
       "articles": [],
@@ -7634,7 +7855,7 @@
       "articleCount": 0
     },
     {
-      "id": "e672",
+      "id": "e686",
       "name": "verbrennungsenthalpie",
       "category": "konzept",
       "articles": [],
@@ -7643,7 +7864,7 @@
       "articleCount": 0
     },
     {
-      "id": "e673",
+      "id": "e687",
       "name": "verdampfungsenthalpie",
       "category": "konzept",
       "articles": [],
@@ -7652,7 +7873,7 @@
       "articleCount": 0
     },
     {
-      "id": "e674",
+      "id": "e688",
       "name": "wacker-verfahren",
       "category": "reaktion",
       "articles": [],
@@ -7661,7 +7882,7 @@
       "articleCount": 0
     },
     {
-      "id": "e675",
+      "id": "e689",
       "name": "wasserstoff",
       "category": "stoff",
       "articles": [],
@@ -7678,7 +7899,7 @@
       "articleCount": 0
     },
     {
-      "id": "e676",
+      "id": "e690",
       "name": "weinsäure",
       "category": "stoff",
       "articles": [],
@@ -7687,7 +7908,7 @@
       "articleCount": 0
     },
     {
-      "id": "e677",
+      "id": "e691",
       "name": "wittig-reaktion",
       "category": "reaktion",
       "articles": [],
@@ -7696,7 +7917,7 @@
       "articleCount": 0
     },
     {
-      "id": "e678",
+      "id": "e692",
       "name": "ziegler-natta-verfahren",
       "category": "reaktion",
       "articles": [],
@@ -7705,7 +7926,7 @@
       "articleCount": 0
     },
     {
-      "id": "e679",
+      "id": "e693",
       "name": "zitronensäure",
       "category": "stoff",
       "articles": [],
@@ -7728,7 +7949,7 @@
       "title": "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse",
       "url": "https://chemie-lernen.org/posts/2026-06-07-magnetfeld-verdreifacht-ammoniakausbeute-bei-elektrokatalyse/",
       "type": "article",
-      "entities": ["Wasserstoff", "Stickstoff", "Ammoniak (NH3)", "Haber-Bosch-Verfahren"],
+      "entities": ["Ammoniak (NH3)", "Haber-Bosch-Verfahren", "Stickstoff", "Wasserstoff"],
       "date": "2026-06-07T02:44:22+02:00"
     },
     {
@@ -7744,7 +7965,7 @@
       "title": "Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion",
       "url": "https://chemie-lernen.org/posts/2026-06-05-kupferoxid-katalysatoren-steigern-gruene-ammoniakproduktion/",
       "type": "article",
-      "entities": ["Heterogene Katalyse", "Ammoniak (NH3)", "Haber-Bosch-Verfahren"],
+      "entities": ["Ammoniak (NH3)", "Heterogene Katalyse", "Haber-Bosch-Verfahren"],
       "date": "2026-06-05T02:43:33+02:00"
     },
     {
@@ -7792,7 +8013,7 @@
       "title": "CRISPR-Cas9 gene editing meets chemistry: base editors and prime editing",
       "url": "https://www.nature.com/articles/s41587-023-01944-1",
       "type": "article",
-      "entities": ["Proteinfaltung", "Kovalente Bindung", "Enzyme"],
+      "entities": ["Proteinfaltung", "Enzyme", "Kovalente Bindung"],
       "date": "2024-02-01T00:00:00+01:00"
     },
     {
@@ -7808,7 +8029,7 @@
       "title": "Photocatalytic conversion of CO2 to methane using single-atom catalysts on graphitic carbon nitride",
       "url": "https://pubs.rsc.org/en/content/articlelanding/2024/sc/d3sc04027a",
       "type": "article",
-      "entities": ["Kohlendioxid (CO2)", "Stickstoff", "Methan (CH4)"],
+      "entities": ["Stickstoff", "Kohlendioxid (CO2)", "Methan (CH4)"],
       "date": "2024-01-15T00:00:00+01:00"
     },
     {
@@ -7824,7 +8045,7 @@
       "title": "Single-atom alloy catalysts break scaling relations for selective hydrogenation",
       "url": "https://www.nature.com/articles/s41563-023-01678-9",
       "type": "article",
-      "entities": ["Hydrierung", "Wasserstoff", "Heterogene Katalyse"],
+      "entities": ["Hydrierung", "Heterogene Katalyse", "Wasserstoff"],
       "date": "2023-11-01T00:00:00+01:00"
     },
     {
@@ -7840,7 +8061,7 @@
       "title": "Electrocatalytic nitrogen reduction to ammonia at ambient conditions",
       "url": "https://pubs.rsc.org/en/content/articlelanding/2023/ee/d3ee01234a",
       "type": "article",
-      "entities": ["Wasserstoff", "Stickstoff", "Ammoniak (NH3)", "Haber-Bosch-Verfahren"],
+      "entities": ["Ammoniak (NH3)", "Haber-Bosch-Verfahren", "Stickstoff", "Wasserstoff"],
       "date": "2023-09-01T00:00:00+02:00"
     },
     {
@@ -7848,7 +8069,7 @@
       "title": "Electrochemical reduction of nitrate to ammonia on iron-based single-atom catalysts",
       "url": "https://www.science.org/doi/10.1126/science.abc9688",
       "type": "article",
-      "entities": ["Stickstoff", "Ammoniak (NH3)", "Eisen"],
+      "entities": ["Ammoniak (NH3)", "Eisen", "Stickstoff"],
       "date": "2023-08-01T00:00:00+02:00"
     },
     {
@@ -7864,7 +8085,7 @@
       "title": "Room-temperature superconductivity in nitrogen-doped lutetium hydride at ambient pressure",
       "url": "https://www.nature.com/articles/s41586-023-05742-0",
       "type": "article",
-      "entities": ["Wasserstoff", "Stickstoff"],
+      "entities": ["Stickstoff", "Wasserstoff"],
       "date": "2023-03-08T00:00:00+01:00"
     },
     {
@@ -7872,7 +8093,7 @@
       "title": "AlphaFold predicts structure of almost every protein known to science",
       "url": "https://www.nature.com/articles/s41586-022-05384-4",
       "type": "article",
-      "entities": ["Proteinfaltung", "Kovalente Bindung", "Enzyme"],
+      "entities": ["Proteinfaltung", "Enzyme", "Kovalente Bindung"],
       "date": "2022-07-28T00:00:00+02:00"
     },
     {
@@ -7885,22 +8106,6 @@
     },
     {
       "id": "a21",
-      "title": "Chemische Bindungen",
-      "url": "https://chemie-lernen.org/themenbereiche/aufbau-materie/chemische-bindungen/",
-      "type": "page",
-      "entities": ["Elektrolyt", "Kovalente Bindung"],
-      "date": "2026-06-08"
-    },
-    {
-      "id": "a22",
-      "title": "Prinzip von Le Chatelier",
-      "url": "https://chemie-lernen.org/themenbereiche/gleichgewicht-geschwindigkeit/prinzip-von-le-chatelier/",
-      "type": "page",
-      "entities": ["Chemisches Gleichgewicht", "Reaktionsgeschwindigkeit"],
-      "date": "2026-06-08"
-    },
-    {
-      "id": "a23",
       "title": "Pufferlösungen",
       "url": "https://chemie-lernen.org/themenbereiche/saeuren-basen/pufferloesungen/",
       "type": "page",
@@ -7908,23 +8113,23 @@
       "date": "2026-06-08"
     },
     {
+      "id": "a22",
+      "title": "Chemische Bindungen",
+      "url": "https://chemie-lernen.org/themenbereiche/aufbau-materie/chemische-bindungen/",
+      "type": "page",
+      "entities": ["Kovalente Bindung", "Elektrolyt"],
+      "date": "2026-06-08"
+    },
+    {
+      "id": "a23",
+      "title": "Prinzip von Le Chatelier",
+      "url": "https://chemie-lernen.org/themenbereiche/gleichgewicht-geschwindigkeit/prinzip-von-le-chatelier/",
+      "type": "page",
+      "entities": ["Chemisches Gleichgewicht", "Reaktionsgeschwindigkeit"],
+      "date": "2026-06-08"
+    },
+    {
       "id": "a24",
-      "title": "Oxidation und Reduktion",
-      "url": "https://chemie-lernen.org/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/",
-      "type": "page",
-      "entities": ["Galvanische Zelle"],
-      "date": "2026-06-03"
-    },
-    {
-      "id": "a25",
-      "title": "Elektrochemische Zellen",
-      "url": "https://chemie-lernen.org/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
-      "type": "page",
-      "entities": ["Galvanische Zelle"],
-      "date": "2026-06-03"
-    },
-    {
-      "id": "a26",
       "title": "Substitution und Addition",
       "url": "https://chemie-lernen.org/themenbereiche/reaktionstypen-organisch/substitution-und-addition/",
       "type": "page",
@@ -7932,60 +8137,44 @@
       "date": "2026-06-03"
     },
     {
-      "id": "a27",
-      "title": "Chemisches Gleichgewicht",
-      "url": "https://chemie-lernen.org/themenbereiche/gleichgewicht-geschwindigkeit/chemisches-gleichgewicht/",
+      "id": "a25",
+      "title": "Oxidation und Reduktion",
+      "url": "https://chemie-lernen.org/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/",
       "type": "page",
-      "entities": [
-        "Chemisches Gleichgewicht",
-        "Heterogene Katalyse",
-        "Reaktionsgeschwindigkeit",
-        "Aktivierungsenergie"
-      ],
+      "entities": ["Galvanische Zelle"],
+      "date": "2026-06-03"
+    },
+    {
+      "id": "a26",
+      "title": "Elektrochemische Zellen",
+      "url": "https://chemie-lernen.org/themenbereiche/redox-elektrochemie/elektrochemische-zellen/",
+      "type": "page",
+      "entities": ["Galvanische Zelle"],
+      "date": "2026-06-03"
+    },
+    {
+      "id": "a27",
+      "title": "Reaktionskinetik",
+      "url": "https://chemie-lernen.org/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
+      "type": "page",
+      "entities": ["Heterogene Katalyse", "Aktivierungsenergie", "Reaktionsgeschwindigkeit"],
       "date": "2026-06-03"
     },
     {
       "id": "a28",
-      "title": "Effektiv Chemie lernen",
-      "url": "https://chemie-lernen.org/themenbereiche/tipps-tricks/effektiv-lernen/",
+      "title": "Chemisches Gleichgewicht",
+      "url": "https://chemie-lernen.org/themenbereiche/gleichgewicht-geschwindigkeit/chemisches-gleichgewicht/",
       "type": "page",
-      "entities": ["Chemisches Gleichgewicht", "Reaktionsgeschwindigkeit"],
+      "entities": [
+        "Heterogene Katalyse",
+        "Chemisches Gleichgewicht",
+        "Aktivierungsenergie",
+        "Reaktionsgeschwindigkeit"
+      ],
       "date": "2026-06-03"
     },
     {
       "id": "a29",
-      "title": "Atome und Moleküle",
-      "url": "https://chemie-lernen.org/themenbereiche/aufbau-materie/atome-und-molekuele/",
-      "type": "page",
-      "entities": ["Kovalente Bindung", "Wasserstoff", "Stickstoff"],
-      "date": "2026-06-03"
-    },
-    {
-      "id": "a30",
-      "title": "Kohlenwasserstoffe",
-      "url": "https://chemie-lernen.org/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/",
-      "type": "page",
-      "entities": ["Aromatische Verbindungen", "Methan (CH4)"],
-      "date": "2026-06-03"
-    },
-    {
-      "id": "a31",
-      "title": "Reaktionskinetik",
-      "url": "https://chemie-lernen.org/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/",
-      "type": "page",
-      "entities": ["Heterogene Katalyse", "Reaktionsgeschwindigkeit", "Aktivierungsenergie"],
-      "date": "2026-06-03"
-    },
-    {
-      "id": "a32",
-      "title": "Energie bei chemischen Reaktionen",
-      "url": "https://chemie-lernen.org/themenbereiche/energetik/energie-bei-reaktionen/",
-      "type": "page",
-      "entities": ["Reaktionsgeschwindigkeit", "Aktivierungsenergie"],
-      "date": "2026-06-03"
-    },
-    {
-      "id": "a33",
       "title": "Säuren, Basen und Salze",
       "url": "https://chemie-lernen.org/themenbereiche/anorganische-verbindungen/saeuren-basen-salze/",
       "type": "page",
@@ -7993,7 +8182,7 @@
       "date": "2026-06-03"
     },
     {
-      "id": "a34",
+      "id": "a30",
       "title": "pH-Wert und Indikatoren",
       "url": "https://chemie-lernen.org/themenbereiche/saeuren-basen/ph-wert-und-indikatoren/",
       "type": "page",
@@ -8001,11 +8190,43 @@
       "date": "2026-06-03"
     },
     {
+      "id": "a31",
+      "title": "Atome und Moleküle",
+      "url": "https://chemie-lernen.org/themenbereiche/aufbau-materie/atome-und-molekuele/",
+      "type": "page",
+      "entities": ["Kovalente Bindung", "Stickstoff", "Wasserstoff"],
+      "date": "2026-06-03"
+    },
+    {
+      "id": "a32",
+      "title": "Kohlenwasserstoffe",
+      "url": "https://chemie-lernen.org/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/",
+      "type": "page",
+      "entities": ["Aromatische Verbindungen", "Methan (CH4)"],
+      "date": "2026-06-03"
+    },
+    {
+      "id": "a33",
+      "title": "Effektiv Chemie lernen",
+      "url": "https://chemie-lernen.org/themenbereiche/tipps-tricks/effektiv-lernen/",
+      "type": "page",
+      "entities": ["Chemisches Gleichgewicht", "Reaktionsgeschwindigkeit"],
+      "date": "2026-06-03"
+    },
+    {
+      "id": "a34",
+      "title": "Energie bei chemischen Reaktionen",
+      "url": "https://chemie-lernen.org/themenbereiche/energetik/energie-bei-reaktionen/",
+      "type": "page",
+      "entities": ["Aktivierungsenergie", "Reaktionsgeschwindigkeit"],
+      "date": "2026-06-03"
+    },
+    {
       "id": "a35",
       "title": "Electrocatalytic Nitrogen Reduction to Ammonia at Ambient Conditions",
       "url": "https://doi.org/10.1021/jacs.5c03456",
       "type": "paper",
-      "entities": ["Wasserstoff", "Stickstoff"],
+      "entities": ["Stickstoff", "Wasserstoff"],
       "date": "2025-05-10T00:00:00+02:00"
     },
     {
@@ -8021,7 +8242,7 @@
       "title": "Room-Temperature Superconductivity in Nitrogen-Doped Lutetium Hydride",
       "url": "https://doi.org/10.1038/s41586-024-07861-5",
       "type": "paper",
-      "entities": ["Wasserstoff", "Stickstoff"],
+      "entities": ["Stickstoff", "Wasserstoff"],
       "date": "2025-03-15T00:00:00+02:00"
     },
     {
@@ -10847,6 +11068,11 @@
       },
       "articles": [],
       "relatedEntities": [
+        "edelgas",
+        "neutron",
+        "proton",
+        "element",
+        "atom",
         "th: atombau und periodensystem",
         "st: atombau und periodensystem",
         "sl: atombau und periodensystem",
@@ -10871,7 +11097,16 @@
         "objective_count": 7
       },
       "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "reaktion",
+        "th: chemische reaktionen",
+        "ni: chemische reaktionen",
+        "mv: chemische reaktionen",
+        "hh: chemische reaktionen",
+        "he: chemische reaktionen",
+        "hb: chemische reaktionen",
+        "bb: chemische reaktion und energie"
+      ],
       "articleCount": 0
     },
     {
@@ -10885,7 +11120,14 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "molekül",
+        "bb: moleküle und zwischenmolekulare wechselwirkungen",
+        "th: molekülsubstanzen",
+        "sl: molekülverbindungen",
+        "hh: molekülverbindungen",
+        "hb: moleküle und zwischenmolekulare kräfte"
+      ],
       "articleCount": 0
     },
     {
@@ -10899,7 +11141,15 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["he: ionenbindung und salze"],
+      "relatedEntities": [
+        "ion",
+        "bb: ionen und salze",
+        "hh: ionen und salze",
+        "ni: salze und ionen",
+        "mv: salze und ionenbindung",
+        "hb: salze und ionen",
+        "he: ionenbindung und salze"
+      ],
       "articleCount": 0
     },
     {
@@ -10913,7 +11163,17 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["hh: luft, sauerstoff und oxidbildung"],
+      "relatedEntities": [
+        "oxid",
+        "hb: luft, sauerstoff und verbrennung",
+        "he: luft und verbrennung",
+        "ni: verbrennung und oxidbildung",
+        "mv: verbrennung und oxidbildung",
+        "bb: luft und verbrennung",
+        "st: bestandteile der luft",
+        "sl: luft und verbrennung",
+        "hh: luft, sauerstoff und oxidbildung"
+      ],
       "articleCount": 0
     },
     {
@@ -10928,6 +11188,12 @@
       },
       "articles": [],
       "relatedEntities": [
+        "produkte der chemie",
+        "hh: organische chemie - einführung",
+        "st: kohlenstoff und organik",
+        "th: kohlenstoff und kohlenstoffverbindungen",
+        "sl: organische chemie - kohlenwasserstoffe",
+        "he: organische chemie - kohlenwasserstoffe",
         "sh: organische chemie",
         "rp: organische chemie",
         "ni: organische chemie",
@@ -10949,6 +11215,10 @@
       },
       "articles": [],
       "relatedEntities": [
+        "produkte der chemie",
+        "mv: redoxreaktionen und elektrochemie",
+        "sl: redoxreaktionen und elektrochemie",
+        "sh: metalle und redoxreaktionen",
         "th: redoxreaktionen",
         "rp: redoxreaktionen",
         "ni: redoxreaktionen",
@@ -10969,7 +11239,18 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["mv: stoffe und stoffgemische"],
+      "relatedEntities": [
+        "gemisch",
+        "he: stoffe und stofftrennverfahren",
+        "th: stoffe und ihre eigenschaften",
+        "st: stoffe und ihre eigenschaften",
+        "sl: stoffe und ihre eigenschaften",
+        "ni: stoffe und stoffeigenschaften",
+        "hh: stoffe und ihre eigenschaften",
+        "hb: stoffe und ihre eigenschaften",
+        "bb: stoffe und ihre eigenschaften",
+        "mv: stoffe und stoffgemische"
+      ],
       "articleCount": 0
     },
     {
@@ -10984,6 +11265,11 @@
       },
       "articles": [],
       "relatedEntities": [
+        "lauge",
+        "he: säuren und basen",
+        "sl: säuren, laugen und salze",
+        "hh: säuren, laugen und neutralisation",
+        "hb: säuren, laugen und neutralisation",
         "ni: säuren, basen und neutralisation",
         "bb: säuren, basen und neutralisation"
       ],
@@ -11758,6 +12044,11 @@
       },
       "articles": [],
       "relatedEntities": [
+        "edelgas",
+        "neutron",
+        "proton",
+        "element",
+        "atom",
         "Hauptgruppen",
         "Atommodell",
         "Periodensystem",
@@ -11787,6 +12078,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "reaktion",
+        "b: chemische reaktion und energieumsatz",
         "Aktivierungsenergie",
         "Enthalpie",
         "Ionisierungsenergie",
@@ -11809,6 +12102,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "ion",
+        "b: ionenbindung und salze",
         "Ionisierungsenergie",
         "Elektrolyt",
         "Ionenbindung",
@@ -11828,6 +12123,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "oxid",
+        "b: luft, sauerstoff und oxidbildung",
         "Oxidation",
         "Verbrennung",
         "Kohlendioxid",
@@ -11852,6 +12149,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "molekül",
+        "b: elektronenpaarbindung und moleküle",
         "Zwischenmolekulare Wechselwirkungen",
         "Kovalente Bindung",
         "Chemische Bindung",
@@ -11871,6 +12170,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "produkte der chemie",
         "Isomerie",
         "Homologe Reihe",
         "Funktionelle Gruppe",
@@ -11924,6 +12224,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "gemisch",
+        "b: stoffe und stoffgemische",
         "Diffusion",
         "Löslichkeit",
         "Stoffmenge",
@@ -11948,6 +12250,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "lauge",
         "Ionisierungsenergie",
         "Ionenbindung",
         "Base",
@@ -19092,6 +19395,11 @@
       },
       "articles": [],
       "relatedEntities": [
+        "edelgas",
+        "neutron",
+        "proton",
+        "element",
+        "atom",
         "Hauptgruppen",
         "Atommodell",
         "Periodensystem",
@@ -19121,6 +19429,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "reaktion",
+        "b: chemische reaktion und energieumsatz",
         "Ionisierungsenergie",
         "Ionenbindung",
         "Endotherme Reaktion",
@@ -19146,6 +19456,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "oxid",
+        "b: luft, sauerstoff und oxidbildung",
         "Oxidation",
         "Verbrennung",
         "Kohlendioxid",
@@ -19169,6 +19481,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "b: elektronenpaarbindung und moleküle",
         "Zwischenmolekulare Wechselwirkungen",
         "Kovalente Bindung",
         "Chemische Bindung",
@@ -19213,6 +19526,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "ion",
+        "b: ionenbindung und salze",
         "Ionisierungsenergie",
         "Elektrolyt",
         "Ionenbindung",
@@ -19233,6 +19548,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "gemisch",
+        "b: stoffe und stoffgemische",
         "Diffusion",
         "Löslichkeit",
         "Stoffmenge",
@@ -19257,6 +19574,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "lauge",
+        "b: säuren, basen und neutralisation",
         "Ionisierungsenergie",
         "Ionenbindung",
         "Base",
@@ -19280,6 +19599,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "element",
+        "atom",
         "Hauptgruppen",
         "Atommodell",
         "Periodensystem",
@@ -19309,6 +19630,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "reaktion",
+        "b: chemische reaktion und energieumsatz",
         "Ionisierungsenergie",
         "Ionenbindung",
         "Endotherme Reaktion",
@@ -19353,6 +19676,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "b: luft, sauerstoff und oxidbildung",
         "Oxidation",
         "Verbrennung",
         "Kohlendioxid",
@@ -19377,6 +19701,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "molekül",
         "Zwischenmolekulare Wechselwirkungen",
         "Kovalente Bindung",
         "Chemische Bindung",
@@ -19398,7 +19723,10 @@
       },
       "articles": [],
       "relatedEntities": [
+        "b: organische chemie",
+        "produkte der chemie",
         "sl: organische chemie - kohlenwasserstoffe",
+        "molekül",
         "Diffusion",
         "Stoffmenge",
         "Alkine",
@@ -19454,7 +19782,13 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["Diffusion", "Löslichkeit", "Stoffmenge"],
+      "relatedEntities": [
+        "gemisch",
+        "b: stoffe und stoffgemische",
+        "Diffusion",
+        "Löslichkeit",
+        "Stoffmenge"
+      ],
       "articleCount": 0
     },
     {
@@ -19469,6 +19803,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "lauge",
+        "b: säuren, basen und neutralisation",
         "Base",
         "Indikatoren",
         "Neutralisation",
@@ -19518,6 +19854,11 @@
       },
       "articles": [],
       "relatedEntities": [
+        "edelgas",
+        "neutron",
+        "proton",
+        "element",
+        "atom",
         "Hauptgruppen",
         "Atommodell",
         "Periodensystem",
@@ -19547,6 +19888,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "reaktion",
+        "b: chemische reaktion und energieumsatz",
         "Ionisierungsenergie",
         "Ionenbindung",
         "Endotherme Reaktion",
@@ -19572,6 +19915,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "ion",
+        "b: ionenbindung und salze",
         "Ionisierungsenergie",
         "Elektrolyt",
         "Ionenbindung",
@@ -19591,6 +19936,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "oxid",
         "Verbrennung",
         "Kohlendioxid",
         "Stickstoff",
@@ -19614,6 +19960,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "molekül",
+        "b: elektronenpaarbindung und moleküle",
         "Zwischenmolekulare Wechselwirkungen",
         "Kovalente Bindung",
         "Chemische Bindung",
@@ -19634,7 +19982,14 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["Isomerie", "Homologe Reihe", "Funktionelle Gruppe", "Organische Chemie"],
+      "relatedEntities": [
+        "produkte der chemie",
+        "b: organische chemie",
+        "Isomerie",
+        "Homologe Reihe",
+        "Funktionelle Gruppe",
+        "Organische Chemie"
+      ],
       "articleCount": 0
     },
     {
@@ -19649,6 +20004,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "gemisch",
+        "b: stoffe und stoffgemische",
         "Diffusion",
         "Löslichkeit",
         "Stoffmenge",
@@ -19673,6 +20030,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "lauge",
+        "b: säuren, basen und neutralisation",
         "Ionisierungsenergie",
         "Ionenbindung",
         "Base",
@@ -23103,6 +23462,11 @@
       },
       "articles": [],
       "relatedEntities": [
+        "edelgas",
+        "neutron",
+        "proton",
+        "element",
+        "atom",
         "Hauptgruppen",
         "Atommodell",
         "Periodensystem",
@@ -23132,6 +23496,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "reaktion",
+        "b: chemische reaktion und energieumsatz",
         "Ionisierungsenergie",
         "Ionenbindung",
         "Endotherme Reaktion",
@@ -23157,6 +23523,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "produkte der chemie",
         "Isomerie",
         "Homologe Reihe",
         "Funktionelle Gruppe",
@@ -23182,6 +23549,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "b: redoxreaktionen",
         "Ionisierungsenergie",
         "Ionenbindung",
         "Spannungsreihe",
@@ -23208,7 +23576,13 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["Ionisierungsenergie", "Elektrolyt", "Ionenbindung"],
+      "relatedEntities": [
+        "ion",
+        "b: ionenbindung und salze",
+        "Ionisierungsenergie",
+        "Elektrolyt",
+        "Ionenbindung"
+      ],
       "articleCount": 0
     },
     {
@@ -23222,7 +23596,13 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["Diffusion", "Löslichkeit", "Stoffmenge", "b: stoffe und stoffgemische"],
+      "relatedEntities": [
+        "gemisch",
+        "Diffusion",
+        "Löslichkeit",
+        "Stoffmenge",
+        "b: stoffe und stoffgemische"
+      ],
       "articleCount": 0
     },
     {
@@ -23260,6 +23640,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "oxid",
+        "b: luft, sauerstoff und oxidbildung",
         "Sauerstoff",
         "Kohlendioxid",
         "Oxidation",
@@ -23507,6 +23889,11 @@
       },
       "articles": [],
       "relatedEntities": [
+        "edelgas",
+        "neutron",
+        "proton",
+        "element",
+        "atom",
         "Hauptgruppen",
         "Atommodell",
         "Periodensystem",
@@ -23536,6 +23923,9 @@
       },
       "articles": [],
       "relatedEntities": [
+        "molekül",
+        "reaktion",
+        "b: chemische reaktion und energieumsatz",
         "Ionisierungsenergie",
         "Ionenbindung",
         "Endotherme Reaktion",
@@ -23561,6 +23951,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "produkte der chemie",
         "Isomerie",
         "Homologe Reihe",
         "Funktionelle Gruppe",
@@ -23614,6 +24005,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "ion",
+        "b: ionenbindung und salze",
         "Ionisierungsenergie",
         "Elektrolyt",
         "Ionenbindung",
@@ -23634,6 +24027,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "gemisch",
+        "b: stoffe und stoffgemische",
         "Diffusion",
         "Löslichkeit",
         "Stoffmenge",
@@ -23653,6 +24048,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "lauge",
         "Ionisierungsenergie",
         "Ionenbindung",
         "Base",
@@ -23677,6 +24073,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "oxid",
+        "b: luft, sauerstoff und oxidbildung",
         "Sauerstoff",
         "Kohlendioxid",
         "Oxidation",
@@ -24182,7 +24580,19 @@
         "objective_count": 444
       },
       "articles": [],
-      "relatedEntities": [],
+      "relatedEntities": [
+        "b: organische chemie",
+        "sl: stoffe und ihre eigenschaften",
+        "b: redoxreaktionen",
+        "bb: organische chemie",
+        "th: kohlenstoff und kohlenstoffverbindungen",
+        "rp: organische chemie",
+        "hh: organische chemie - einführung",
+        "mv: organische chemie",
+        "he: organische chemie - kohlenwasserstoffe",
+        "sl: organische chemie - kohlenwasserstoffe",
+        "ni: organische chemie"
+      ],
       "articleCount": 0
     },
     {
@@ -24412,6 +24822,16 @@
       "articles": [],
       "relatedEntities": [
         "reaktionsenthalpie",
+        "hb: chemische reaktionen",
+        "rp: chemische reaktion und energie",
+        "mv: chemische reaktionen",
+        "he: chemische reaktionen",
+        "hh: chemische reaktionen",
+        "sl: chemische reaktionen",
+        "th: chemische reaktionen",
+        "ni: chemische reaktionen",
+        "bb: chemische reaktion und energie",
+        "b: chemische reaktion und energieumsatz",
         "ulyot-Reaktion",
         "heck-reaktion",
         "mannich-reaktion",
@@ -24791,6 +25211,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "element",
+        "atom",
         "Hauptgruppen",
         "Atommodell",
         "Periodensystem",
@@ -24820,6 +25242,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "reaktion",
         "Aktivierungsenergie",
         "Enthalpie",
         "Ionisierungsenergie",
@@ -24866,6 +25289,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "ion",
         "Metallbindung",
         "Spannungsreihe",
         "Redoxreaktion",
@@ -24888,6 +25312,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "molekül",
         "Zwischenmolekulare Wechselwirkungen",
         "Kovalente Bindung",
         "Chemische Bindung",
@@ -24908,6 +25333,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "produkte der chemie",
         "Isomerie",
         "Homologe Reihe",
         "Funktionelle Gruppe",
@@ -24986,6 +25412,7 @@
       "articles": [],
       "relatedEntities": [
         "Elektrolyt",
+        "lauge",
         "Sauere nach Broensted",
         "pH-Wert",
         "Neutralisation",
@@ -25667,6 +26094,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "oxid",
         "Oxidation",
         "Verbrennung",
         "Kohlendioxid",
@@ -25691,6 +26119,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "b: redoxreaktionen",
         "Ionisierungsenergie",
         "Metallbindung",
         "Spannungsreihe",
@@ -25761,6 +26190,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "ion",
         "Ionisierungsenergie",
         "Elektrolyt",
         "Ionenbindung",
@@ -25800,6 +26230,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "lauge",
         "Base",
         "Indikatoren",
         "Neutralisation",
@@ -25975,6 +26406,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "element",
+        "atom",
         "Hauptgruppen",
         "Atommodell",
         "Periodensystem",
@@ -26004,6 +26437,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "reaktion",
         "Ionisierungsenergie",
         "Ionenbindung",
         "Endotherme Reaktion",
@@ -26029,6 +26463,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "oxid",
+        "b: luft, sauerstoff und oxidbildung",
         "Oxidation",
         "Verbrennung",
         "Kohlendioxid",
@@ -26052,7 +26488,7 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["Metallbindung", "Spannungsreihe", "Redoxreaktion", "Legierung"],
+      "relatedEntities": ["ion", "Metallbindung", "Spannungsreihe", "Redoxreaktion", "Legierung"],
       "articleCount": 0
     },
     {
@@ -26067,6 +26503,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "molekül",
+        "b: elektronenpaarbindung und moleküle",
         "Zwischenmolekulare Wechselwirkungen",
         "Kovalente Bindung",
         "Chemische Bindung",
@@ -26089,7 +26527,10 @@
       "articles": [],
       "relatedEntities": [
         "he: organische chemie - kohlenwasserstoffe",
+        "produkte der chemie",
+        "b: organische chemie",
         "Wasserstoff",
+        "molekül",
         "Diffusion",
         "Stoffmenge",
         "Alkine",
@@ -26117,6 +26558,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "b: redoxreaktionen",
         "Ionisierungsenergie",
         "Ionenbindung",
         "Spannungsreihe",
@@ -26144,6 +26586,9 @@
       },
       "articles": [],
       "relatedEntities": [
+        "gemisch",
+        "produkte der chemie",
+        "b: stoffe und stoffgemische",
         "Diffusion",
         "Löslichkeit",
         "Stoffmenge",
@@ -26168,13 +26613,15 @@
       },
       "articles": [],
       "relatedEntities": [
-        "Elektrolyt",
-        "Ionenbindung",
-        "Base",
-        "Indikatoren",
-        "Neutralisation",
+        "b: säuren, basen und neutralisation",
+        "lauge",
+        "Sauere nach Broensted",
         "pH-Wert",
-        "Sauere nach Broensted"
+        "Neutralisation",
+        "Indikatoren",
+        "Base",
+        "Ionenbindung",
+        "Elektrolyt"
       ],
       "articleCount": 0
     },
@@ -26232,7 +26679,13 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["Verbrennung", "Kohlendioxid", "Stickstoff", "Sauerstoff"],
+      "relatedEntities": [
+        "b: luft, sauerstoff und oxidbildung",
+        "Verbrennung",
+        "Kohlendioxid",
+        "Stickstoff",
+        "Sauerstoff"
+      ],
       "articleCount": 0
     },
     {
@@ -26260,7 +26713,7 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["Diffusion", "Löslichkeit", "Stoffmenge"],
+      "relatedEntities": ["b: organische chemie", "Diffusion", "Löslichkeit", "Stoffmenge"],
       "articleCount": 0
     },
     {
@@ -26275,6 +26728,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "b: stoffe und stoffgemische",
         "Diffusion",
         "Löslichkeit",
         "Stoffmenge",
@@ -27754,6 +28208,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "element",
+        "atom",
         "Hauptgruppen",
         "Atommodell",
         "Periodensystem",
@@ -27782,7 +28238,7 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["Neutralisation", "pH-Wert", "Sauere nach Broensted", "Base"],
+      "relatedEntities": ["lauge", "Neutralisation", "pH-Wert", "Sauere nach Broensted", "Base"],
       "articleCount": 0
     },
     {
@@ -27797,6 +28253,9 @@
       },
       "articles": [],
       "relatedEntities": [
+        "oxid",
+        "reaktion",
+        "b: chemische reaktion und energieumsatz",
         "Ionisierungsenergie",
         "Ionenbindung",
         "Endotherme Reaktion",
@@ -27821,7 +28280,13 @@
         "objective_count": 6
       },
       "articles": [],
-      "relatedEntities": ["Diffusion", "Löslichkeit", "Stoffmenge"],
+      "relatedEntities": [
+        "produkte der chemie",
+        "b: organische chemie",
+        "Diffusion",
+        "Löslichkeit",
+        "Stoffmenge"
+      ],
       "articleCount": 0
     },
     {
@@ -27835,7 +28300,7 @@
         "objective_count": 5
       },
       "articles": [],
-      "relatedEntities": ["Metallbindung", "Spannungsreihe", "Redoxreaktion", "Legierung"],
+      "relatedEntities": ["ion", "Metallbindung", "Spannungsreihe", "Redoxreaktion", "Legierung"],
       "articleCount": 0
     },
     {
@@ -27850,6 +28315,7 @@
       },
       "articles": [],
       "relatedEntities": [
+        "b: elektronenpaarbindung und moleküle",
         "Zwischenmolekulare Wechselwirkungen",
         "Kovalente Bindung",
         "Chemische Bindung",
@@ -27897,6 +28363,8 @@
       },
       "articles": [],
       "relatedEntities": [
+        "gemisch",
+        "b: stoffe und stoffgemische",
         "Diffusion",
         "Löslichkeit",
         "Stoffmenge",
