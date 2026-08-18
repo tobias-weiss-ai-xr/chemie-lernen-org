@@ -1122,7 +1122,7 @@ function loadD3AndEgoGraph() {
     var entityName = section.dataset.entity;
     if (!entityName) return;
 
-    fetch('/api/entities/' + encodeURIComponent(entityName) + '/curricula', {
+    fetch('/api/entity/' + encodeURIComponent(entityName) + '/curricula', {
       signal: AbortSignal.timeout(10000),
     })
       .then(function (r) {
@@ -1212,7 +1212,7 @@ function loadD3AndEgoGraph() {
     var entityName = section.dataset.entity;
     if (!entityName) return;
 
-    fetch('/api/entities/' + encodeURIComponent(entityName) + '/universities', {
+    fetch('/api/entity/' + encodeURIComponent(entityName) + '/universities', {
       signal: AbortSignal.timeout(10000),
     })
       .then(function (r) {
