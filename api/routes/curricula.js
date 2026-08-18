@@ -519,7 +519,7 @@ router.get('/api/entity/:name/curricula', async (req, res) => {
       `MATCH (e:Entity)
        WHERE toLower(e.name) = toLower($name)
        OPTIONAL MATCH (e)-[:COVERS_TOPIC]->(t:Topic)
-       OPTIONAL MATCH (e)-[:FULFILLS]->(lo:LearningObjective)
+       OPTIONAL MATCH (e)-[:FULFILLS|FULFILLS_OBJECTIVE]->(lo:LearningObjective)
        OPTIONAL MATCH (e)-[:MENTIONS]->(c:Content)
        OPTIONAL MATCH (t2:Topic)-[:HAS_LEARNING_OBJECTIVE]->(lo)
        RETURN e.name AS name, e.kategorie AS kategorie,
