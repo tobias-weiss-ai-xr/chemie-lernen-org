@@ -95,13 +95,13 @@ Eine Förderung durch Lehre@Philipp wäre die **erste öffentliche Förderung** 
 
 ---
 
-## 6. Weitere Bemerkungen (959 / 1.000 Zeichen)
+## 6. Weitere Bemerkungen (971 / 1.000 Zeichen)
 
-**chemie-lernen.org** ist kein Konzeptpapier – die Plattform ist **produktiv im Einsatz** und unter https://chemie-lernen.org/ frei zugänglich. Alle beschriebenen Module sind live: 12 Themenbereiche, über 20 interaktive Rechner, 4 Simulationen, 3D-Visualisierungen (Three.js), der KI-Assistent mit Wissensnetz-Anbindung (Neo4j), Gamification-System, PWA-Offline-Modus und das Klassencockpit für Lehrende.
+**chemie-lernen.org** ist kein Konzeptpapier – die Plattform ist **produktiv im Einsatz** und unter https://chemie-lernen.org/ frei zugänglich. Alle beschriebenen Module sind live: 12 Themenbereiche, über 20 interaktive Rechner, 4 Simulationen, 3D-Visualisierungen, der KI-Assistent (Neo4j-Wissensnetz), Gamification, PWA-Offline-Modus und das Klassencockpit für Lehrende.
 
-Die technische Infrastruktur (CI/CD, automatisiertes Deployment, Docker-Container) ist vollständig dokumentiert und reproduzierbar. Der gesamte Quellcode ist auf GitHub unter MIT-Lizenz veröffentlicht.
+Die Infrastruktur (CI/CD, automatisiertes Deployment, Docker) ist vollständig dokumentiert und reproduzierbar, der Quellcode auf GitHub (MIT) veröffentlicht.
 
-Die Plattform wird kontinuierlich weiterentwickelt (letztes Update: Juni 2026). Die Roadmap sieht für Q3/Q4 2026 die Vertiefung des KI-Assistenten, die Erweiterung der Themenbereiche auf 3–5 Artikel pro Bereich und die Verbesserung der Barrierefreiheit (WCAG 2.1 AA) vor – alles Bereiche, die durch die Förderung deutlich beschleunigt werden könnten. Die Integration in das **Lehr- und Lernlabor** der Philipps-Universität Marburg schafft dabei den idealen Rahmen für die curriculare Einbettung und didaktische Begleitung der neu entwickelten immersiven Lernräume.
+Kontinuierliche Weiterentwicklung (Stand August 2026): 120 fächerspezifische Lernräume (Hubs/WebXR) sind live gegangen, eine KI-Wissensgraph-Pipeline liefert wöchentlich Fachartikel, und die Barrierefreiheit (WCAG-AA, PSE-Detailpanel) wurde verbessert. Die Integration in das **Lehr- und Lernlabor** der Philipps-Universität Marburg schafft den idealen Rahmen für die curriculare Einbettung der neu entwickelten immersiven Lernräume.
 
 ---
 
