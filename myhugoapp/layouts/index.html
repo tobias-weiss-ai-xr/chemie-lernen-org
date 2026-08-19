@@ -79,54 +79,6 @@
 
 </div>
 
-    <!-- Forschungsnews Section -->
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Forschung</h2>
-        <p class="lead">KI-generierte Zusammenfassungen aktueller chemischer Forschung — automatisch aus wissenschaftlichen Publikationen extrahiert.</p>
-      </div>
-    </div>
-
-    <!-- Blog Posts Section -->
-    <div class="row pack blog-posts-section">
-
-        {{ $posts := where .Site.RegularPages "Section" "posts" }}
-        {{ $lastPosts := first 4 $posts.ByDate.Reverse }}
-        {{ range $lastPosts }}
-            <div class="col-md-4 card">
-            <a href="{{ .Permalink }}" class="index-anchor">    
-               <div class="panel panel-default">
-                 
-                 {{ if .Params.img }}
-                 {{ with .Resources.Match .Params.img }}
-                   {{ range . }}
-                     <img width="100%" src="{{ .RelPermalink }}" alt="{{ .Title }}">
-                   {{ end }}
-                 {{ end }}
-                 {{ else }}
-                  <div class="post-placeholder" aria-hidden="true">🔬</div>
-                 {{ end }}
-                 
-                 <div class="panel-body">
-                   <h3 class="panel-title pull-left">{{ .Title | truncate 60 }}</h3><span class="post-meta pull-right"><small>{{ .Date.Format "January 2, 2006" }}</small></span>
-                 </div>
-                 
-                 <div class="panel-body"><small>
-                   {{ .Summary | plainify | replaceRE `\$[^$]+\$` "" | truncate 180 }}</small>
-                 </div>
-               </div>
-               </a>
-           </div>
-       
-         {{ end }}
-
-   <!-- "Alle anzeigen" Link -->
-   <div class="row text-center alle-anzeigen">
-     <div class="col-md-12">
-       <a href="/posts/" class="btn btn-primary" aria-label="Alle Forschungsnews anzeigen">Alle Forschungsnews anzeigen →</a>
-     </div>
-   </div>
-
    <!-- Chemie-Forschung Section (aus dem Knowledge Graph) -->
    <div class="row">
      <div class="col-md-12">
@@ -171,6 +123,9 @@
    <div class="row text-center alle-anzeigen">
      <div class="col-md-12">
        <a href="/chemie-forschung/" class="btn btn-primary" aria-label="Alle Chemie-Forschung anzeigen">Alle Chemie-Forschung anzeigen →</a>
+       <div class="mt-2">
+         <a href="/posts/" class="text-muted small" aria-label="Frühere Forschungsnews (Archiv) anzeigen">Frühere Forschungsnews im Archiv ansehen →</a>
+       </div>
      </div>
    </div>
 
