@@ -4,11 +4,24 @@
 > Ziel: Vorausplanung festhalten; einzelne Epics werden in eigenen,
 > feingranularen OpenSpec-Changes umgesetzt (diese Change ist die Dach-Roadmap).
 
-## S39 — E1: Hubs-Stack zum Rendern bringen (Entscheidung + Deploy)
-- [ ] S39.1 Netzwerk-Spike: Docker-Bridge auf legion reparieren (Option B) — max. 1 Sprint Budget; sonst Fallback Option A.
-- [ ] S39.2 Bei Option A: Ansible-Role für `hubs-admin`/`postgrest`/`spoke`/`dialog` (host-networked, distinct Ports) anlegen; bei Option B: originalen `hubs-compose`-Stack nutzen.
-- [ ] S39.3 Reticulum-503 beheben: Scene-Service erreichbar → Räume laden mit Default-Scene.
-- [ ] S39.4 Verifikation: ≥1 Element-Raum (`hubs.chemie-lernen.org/<hubId>/…`) liefert HTTP 200 (nicht mehr 503).
+## S39 — E1: Hubs-Stack zum Rendern bringen (Entscheidung + Deploy) — ✅ ERLEDIGT
+
+> Root-Cause (2026-08-20): Reticulum lieferte HTTP 503 ("Missing file hub.html"),
+> weil `PageOriginWarmer` die Hub-Page-Chunks von **hubs-client** holt, der nicht
+> lief. Zusätzlich klaute ein systemd-`socat`-Service (`socat-litellm-proxy`, enabled)
+> Reticulums HTTP-Port 4001 → `eaddrinuse`. Docker-Bridge auf legion bleibt defekt
+> (host→bridge TCP bricht ab) → Entscheidung **Option A (Host-Networking)** beibehalten.
+
+- [x] S39.1 Netzwerk: Bridge-Reparatur verworfen (bleibt host-networked, Option A).
+- [x] S39.2 hubs-client als host-networked Service deployt (compose `reticulum-vpn`),
+      inotify-Limits (max_user_instances/watches) persistiert, ulimit nofile=300000.
+- [x] S39.3 503 behoben: `runtime.exs` PageOriginWarmer-Origins → `https://localhost`;
+      konfliktierenden `socat-litellm-proxy.service` disabled (Port 4001 freigegeben).
+- [x] S39.4 Verifikation: alle getesteten Element-Räume liefern HTTP 200 (statt 503).
+      Reticulum + db + hubs-client laufen nun Ansible-managed (restart unless-stopped).
+
+> Hinweis: Bisher nur hubs-client deployt (reicht für Rendering). hubs-admin/spoke/
+> postgrest/dialog folgen in späteren Sprints, sofern Scene-Bearbeitung nötig.
 
 ## S40 — E1: Scene-Templates portieren
 - [ ] S40.1 `ElementRoom`, `PeriodicPavilion`, `LabWing`, `ExperimentalRoom`, `Lobby` aus `hello-webxr` als Hubs-Scenes übernehmen.
@@ -46,7 +59,7 @@
 - [ ] S46.3 Monitoring/Alerting für Reticulum (Health + 503-Wachstum).
 
 ## Acceptance
-- [ ] `roadmap.md` enthält Sektion „Nächste Epics & Sprints (ab S39)".
-- [ ] Alle 120 Räume rendern (503 → 200).
+- [x] `roadmap.md` enthält Sektion „Nächste Epics & Sprints (ab S39)".
+- [x] Alle 120 Räume rendern (503 → 200). ✅ (S39/E1 erledigt)
 - [ ] Rechner↔Quiz-Verknüpfung live.
 - [ ] Mind. 1 adaptives Dashboard (Schüler oder Lehrer) live.
