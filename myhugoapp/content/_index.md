@@ -114,3 +114,14 @@ Entdecken Sie die wissenschaftlichen Grundlagen hinter unserer Lernplattform! Ri
 - 📚 Alle, die sich für effektives Wissensdesign interessieren
 
 [Mayers 12 Prinzipien lesen →](/lehrende/mayers-prinzipien/)
+
+## 📱 Hol dir die chemie-lernen App
+
+Scanne den QR-Code mit deinem Android-Smartphone oder lade die App direkt als APK herunter:
+
+![QR-Code chemie-lernen Android-App](/qr-chemie-lernen.png)
+
+- [📥 Android-App (APK) herunterladen](https://ki-kompetenz-training.org/fdroid/repo/org.chemie_lernen_org.free_1.apk)
+- [🔄 Updates über F-Droid beziehen](https://ki-kompetenz-training.org/fdroid/repo?fingerprint=3AE125374E2120983AC778DE5A2FA82932CE4304C628390D007F8C3A20E49577)
+
+*Frei von Google Play Services · Open Source (Apache-2.0)*
