@@ -68,4 +68,48 @@ Das gesamte Angebot ist **kostenlos**. Der Unterstützer-Tarif ergänzt optional
 
 ---
 
-_Letzte Aktualisierung: August 2026_
+## 🗺 Nächste Epics & Sprints (ab ~S39)
+
+Die Roadmap oben ist nahezu vollständig umgesetzt. Die **nächste Phase** fokussiert
+auf (1) die Hubs-Lernräume produktiv zu stellen, (2) das letzte offene Item
+(Rechner ↔ Quiz) zu schließen und (3) die begonnenen Adaptive-/Curricula-Arbeiten
+zu nutzbaren Dashboards zu führen.
+
+### Epics
+
+| Epic | Bereich | Ziel |
+| ---- | ------- | ----- |
+| **E1** — Hubs-Lernräume produktiv | Hubs | 120 Räume rendern wirklich (503 → 200); Scene-Templates aus `hello-webxr` portieren |
+| **E2** — Rechner ↔ Quiz | Hugo | offenes Roadmap-Item: jeder Rechner zeigt passende Übungen/Quiz (geschlossener Lern-Loop) |
+| **E3** — Adaptive Lernpfade | Hugo | baut auf ZPD/Bloom auf: Entity-ZPD + Schüler-/Lehrer-Dashboards + Fortschritt |
+| **E4** — Forschung & Wissensnetz | Hugo/KG | mehr Entitäts-Abdeckung, Kurations-Workflow, Graph-UX |
+| **E5** — Mobile & Offline | Android/PWA | Feature-Parity + Offline-Cache (Parallel-Track) |
+| **E6** — Lehrende & Raum-Management | Hugo+Hubs | SSO/Invite-Tokens, Raum-Verwaltungs-Panel, Einbettung in Themenbereiche |
+| **E7** — Öffentlichkeit & Skalierung | Plattform | Per-Room Public-Share (Token), Perf-Budgets, Monitoring |
+
+### Sprints (2-Wochen)
+
+| Sprint | Epic | Schwerpunkt |
+| ------ | ---- | ----------- |
+| **S39** | E1 | Netzwerk-Entscheidung + Hubs-Stack deployen → 503 behoben |
+| **S40** | E1 | Scene-Templates portieren; Default-Scene pro Element |
+| **S41** | E2 | Rechner→Quiz-Mapping in KG + Quiz-Widget auf Rechner-Seiten |
+| **S42** | E3 | Entity-ZPD + Schüler-Dashboard _(parallel: E5 Android)_
+| **S43** | E3 | Teacher-Dashboard + Fortschritt _(parallel: E5 PWA Offline)_
+| **S44** | E4 | Forschungs-Pipeline-Maturity + KG-Kuration |
+| **S45** | E6 | SSO/Invite-Tokens + Raum-Verwaltung |
+| **S46** | E7 | Per-Room Public-Share + Perf/Monitoring |
+
+### Offene Entscheidungen (vor S39)
+
+1. **Hubs-Netzwerk**: Docker-Bridge auf legion reparieren (Root-Cause) **oder**
+   Full-Stack Host-Networking (pragmatisch). _Empfehlung: Bridge reparieren, sonst Host-Net._
+2. **Exposition**: Reticulum VPN-only bleiben + Token-basierter Per-Room-Share.
+3. **SSO-Umfang**: zuerst Invite-Tokens, Account-Link als Option.
+
+> Detaillierte Planung: OpenSpec-Change `roadmap-next-epics`
+> (`openspec/changes/roadmap-next-epics/`).
+
+---
+
+_Letzte Aktualisierung: August 2026 (Nächste-Epics-Sektion ergänzt)_
