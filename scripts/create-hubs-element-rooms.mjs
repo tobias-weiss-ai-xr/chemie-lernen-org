@@ -52,6 +52,10 @@ function roomDescription(e) {
   return `Immersiver 3D-Lernraum für ${e.name} (${e.symbol}), Gruppe ${group}.${mass} Entdecke das Element im Periodensystem.`;
 }
 
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
 async function listRooms() {
   for (const e of manifest.elements) {
     console.log(`${roomName(e)}\t${roomDescription(e).slice(0, 60)}…`);
@@ -106,16 +110,30 @@ async function createRooms() {
       continue;
     }
     try {
-      const res = await fetch(`${HUB_BASE_URL}/api/v1/hubs`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          hub: { name, description: roomDescription(e) },
-        }),
-      });
+      // Reticulum rate-limits hub creation; throttle + retry on 403.
+      await sleep(2000);
+      let res;
+      let attempt = 0;
+      while (attempt < 5) {
+        res = await fetch(`${HUB_BASE_URL}/api/v1/hubs`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            hub: { name, description: roomDescription(e) },
+          }),
+        });
+        if (res.ok) break;
+        if (res.status === 403 && attempt < 4) {
+          attempt++;
+          console.warn(`  retry ${name} (HTTP 403) attempt ${attempt}`);
+          await sleep(4000 * attempt);
+          continue;
+        }
+        break;
+      }
       if (!res.ok) {
         console.warn(`Skip ${name}: HTTP ${res.status} ${await res.text()}`);
         updated.push(e);
