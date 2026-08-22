@@ -17,20 +17,31 @@
 
     {{ partial "header.html" . }}
 
+    {{ partial "breadcrumbs.html" . }}
+
     <div class="container">
-      {{ partial "breadcrumbs.html" . }}
       <div class="wrapper">
         <main id="main-content" role="main">
           {{ block "main" . }} {{ end }}
         </main>
         {{ if .IsPage }}{{ partial "social-share.html" . }}{{ end }}
+        {{/* Rechner ↔ Quiz verknüpfen: embed the topic quiz on calculator pages.
+            Calculators live at content-root (Section == "") and carry a
+            `teilgebiet` (Themenbereich slug) that matches quiz-questions.js
+            `slug`. The quiz-widget loads quiz-questions.js itself. */}}
+        {{ if and .IsPage .Params.teilgebiet (eq .Section "") }}
+          {{ $tb := .Params.teilgebiet }}
+          {{ $topic := "" }}
+          {{ if reflect.IsSlice $tb }}{{ $topic = index $tb 0 }}{{ else }}{{ $topic = $tb }}{{ end }}
+          {{ if $topic }}<div class="container mt-4">{{ partial "quiz-widget.html" (dict "topic" $topic "title" .Title) }}</div>{{ end }}
+        {{ end }}
       </div>
     </div>
 
     {{ partial "footer.html" . }}    
 
   <!-- Dark Mode Toggle Script (sync: prevent flash of wrong theme) -->
-  <script src="/js/dark-mode.js"></script>
+  <script src="/js/theme-switcher.js"></script>
 
   <!-- jQuery — loaded before Bootstrap (Bootstrap depends on it) -->
   <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -42,10 +53,9 @@
   <!-- Gamification engine (only available in unoptimized form) -->
   <script defer src="/js/gamification-engine.js"></script>
 
-  <!-- Lunr.js for Client-Side Search (entity/curricula index) -->
-  <script defer src="https://unpkg.com/lunr@2.3.9/lunr.min.js"></script>
-  <script defer src="/js/search.js"></script>
-
+  <!-- Lunr.js for Client-Side Search: NO LONGER loaded globally — the site
+       search is Pagefind (header.html), and legacy search.js has no callers.
+       entity-index.html (knowledge-graph cards) loads lunr itself. -->
   <!-- KaTeX for Chemical Formula Rendering -->
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>

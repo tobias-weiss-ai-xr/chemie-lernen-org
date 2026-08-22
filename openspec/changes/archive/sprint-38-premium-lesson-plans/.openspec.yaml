@@ -1,0 +1,9 @@
+name: sprint-38-premium-lesson-plans
+title: "Sprint 38: Premium Lesson Plan Suite (AI-Assisted)"
+status: active
+created: 2026-07-25
+sprints: [38]
+capabilities:
+  - ai-assistant
+  - lehrplan-curriculum
+  - gamification

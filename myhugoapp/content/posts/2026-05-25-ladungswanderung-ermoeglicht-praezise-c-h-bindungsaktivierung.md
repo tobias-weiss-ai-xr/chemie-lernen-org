@@ -2,6 +2,7 @@
 title: "Ladungswanderung ermöglicht präzise C-H-Bindungsaktivierung"
 description: "Ladungswanderung ermöglicht präzise C-H-Bindungsaktivierung – Durchbruch in der metallorganischen Chemie für gezielte Molekülmodifikation."
 date: "2026-05-25T02:42:15+02:00"
+last_reviewed: 2026-08-06
 tags:
   - "** #chemie #organischesynthese #c-h-aktivierung #forschung #katalyse"
 categories: ["forschung"]

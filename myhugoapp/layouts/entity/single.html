@@ -203,6 +203,67 @@
   border-color: #ffb74d;
 }
 
+/* Curriculum Panel */
+.entity-curriculum-panel {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-left: 4px solid #9b59b6;
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.entity-curriculum-panel h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.8rem;
+  color: var(--text-primary, #333);
+}
+.curriculum-stats {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.8rem;
+}
+.curriculum-stats .stat {
+  font-size: 0.88rem;
+  color: var(--text-muted, #666);
+}
+.curriculum-stats .stat strong {
+  color: var(--text-primary, #333);
+}
+.curriculum-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #f3e8ff;
+  color: #7b1fa2;
+  border-radius: 12px;
+  text-decoration: none;
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+.curriculum-badge:hover {
+  background: #e9d5ff;
+}
+@media (prefers-color-scheme: dark) {
+  .entity-curriculum-panel {
+    background: #2a2a2a;
+    border-color: #444;
+    border-left-color: #bb86fc;
+  }
+  .entity-curriculum-panel h2 { color: #e0e0e0; }
+  .curriculum-stats .stat { color: #999; }
+  .curriculum-stats .stat strong { color: #e0e0e0; }
+  .curriculum-badge {
+    background: #2a1a3a;
+    color: #ce93d8;
+  }
+  .curriculum-badge:hover {
+    background: #3a2060;
+  }
+}
+
 /* Graph Link */
 .entity-graph-link {
   display: block;
@@ -300,6 +361,7 @@
   }
 .entity-graph-link { border-top-color: #333; }
 .entity-graph-link:hover { background: #2a2040; color: #bb86fc; }
+}
 
 /* Lehrplan-Bezug Section */
 .entity-lehrplan-card {
@@ -577,7 +639,7 @@
           <ul class="entity-article-list">
             {{ range $entityArticles }}
             <li class="entity-article-item">
-              <a class="entity-article-link" href="{{ .url | default "/" }}">{{ .title }}</a>
+              {{ if .url }}<a class="entity-article-link" href="{{ .url }}">{{ .title }}</a>{{ else }}<span class="entity-article-link">{{ .title }}</span>{{ end }}
               <div class="entity-article-meta">
                 {{ with .type }}{{ . }}{{ end }}{{ with .date }} · {{ . }}{{ end }}
               </div>
@@ -676,11 +738,27 @@
         </div>
 
         <!-- Graph link -->
-        <a href="/wissennetz/" class="entity-card" style="display:block;text-decoration:none;">
+        <a href="/entity/" class="entity-card" style="display:block;text-decoration:none;">
           <div class="entity-graph-link">🌐 Im interaktiven Wissensnetz-Graph anzeigen →</div>
         </a>
       </div>
     </div>
+
+    <!-- Curriculum Panel (Lehrplan-Bezug Stats) -->
+    {{ if .Params.curricula }}
+    <div class="entity-curriculum-panel">
+      <h2>Lehrplan-Bezug</h2>
+      <div class="curriculum-stats">
+        <span class="stat">🏫 <strong>{{ .Params.curriculumStatesCount }}</strong> Bundesländer</span>
+        <span class="stat">📚 <strong>{{ .Params.curriculumGrades }}</strong> Klassenstufen</span>
+        <span class="stat">📖 <strong>{{ .Params.curriculumObjectivesCount }}</strong> Lernziele</span>
+      </div>
+      {{ range .Params.curricula }}
+      <a href="/lehrplaene/{{ .state }}/" class="curriculum-badge">{{ .state }}</a>
+      {{ end }}
+    </div>
+    {{ end }}
+
     {{ end }}
   </div>
 
@@ -695,7 +773,26 @@
   <div id="entity-content" {{ if $canSSR }}style="display:none"{{ end }}></div>
 </div>
 
-<script src="{{ "/js/visualization/d3-ego-graph.js" | relURL }}"></script>
+<script>
+var D3_LOADED = false;
+function loadD3AndEgoGraph() {
+  if (D3_LOADED) return Promise.resolve();
+  D3_LOADED = true;
+  return new Promise(function(resolve, reject) {
+    var d3Script = document.createElement('script');
+    d3Script.src = '{{ "/js/vendor/d3.v7.min.js" | relURL }}';
+    d3Script.onload = function() {
+      var egoScript = document.createElement('script');
+      egoScript.src = '{{ "/js/visualization/d3-ego-graph.js" | relURL }}?v=7';
+      egoScript.onload = resolve;
+      egoScript.onerror = reject;
+      document.head.appendChild(egoScript);
+    };
+    d3Script.onerror = reject;
+    document.head.appendChild(d3Script);
+  });
+}
+</script>
 <script>
 (function () {
   var ssrContent = document.getElementById('entity-ssr-content');
@@ -713,7 +810,7 @@
     } else {
       entityName = decodeURIComponent(window.location.pathname.split('/').filter(Boolean).pop() || '');
     }
-    fetch('/api/kg-data', { signal: AbortSignal.timeout(15000) })
+    fetch('/api/kg-data?limit=1000', { signal: AbortSignal.timeout(15000) })
       .then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
         return r.json();
@@ -743,8 +840,14 @@
         }
         if (entity) {
           var egoContainer = document.getElementById('entity-ego-graph');
-          if (egoContainer && globalThis.D3EgoGraph) {
-            globalThis.D3EgoGraph.createEgoGraph(egoContainer, allData, { entity: entity });
+          if (egoContainer) {
+            loadD3AndEgoGraph().then(function() {
+              if (globalThis.D3EgoGraph) {
+                globalThis.D3EgoGraph.createEgoGraph(egoContainer, allData, { entity: entity });
+              }
+            }).catch(function(err) {
+              console.warn('[entity] Failed to load D3:', err);
+            });
           }
         }
       })
@@ -793,16 +896,18 @@
     var color = (globalThis.D3EgoGraph && globalThis.D3EgoGraph.colorize(cat)) || '#9b59b6';
     var label = (globalThis.D3EgoGraph && globalThis.D3EgoGraph.labelize(cat)) || cat;
 
-    // Categorize related entities
+    // Categorize related entities (API now returns category on each)
     var kmkRefs = [], quelleRefs = [], otherRefs = [];
     var refs = entity.relatedEntities || [];
     for (var ri = 0; ri < refs.length; ri++) {
       var rName = typeof refs[ri] === 'string' ? refs[ri] : refs[ri].name;
-      var rCat = '';
-      for (var ei = 0; ei < allEntities.length; ei++) {
-        if (allEntities[ei].name === rName) {
-          rCat = allEntities[ei].category || '';
-          break;
+      var rCat = typeof refs[ri] === 'string' ? '' : (refs[ri].category || '');
+      if (!rCat) {
+        for (var ei = 0; ei < allEntities.length; ei++) {
+          if (allEntities[ei].name === rName) {
+            rCat = allEntities[ei].category || '';
+            break;
+          }
         }
       }
       if (rCat === 'didaktik') kmkRefs.push(rName);
@@ -817,7 +922,7 @@
       return articleIds.indexOf(a.title) !== -1 || (a.entities && a.entities.indexOf(entity.name) !== -1);
     });
 
-    var artCount = entity.articleCount || entityArticles.length || 0;
+    var artCount = Number(entity.articleCount) || entityArticles.length || 0;
 
     // Build HTML
     var html = '';
@@ -825,7 +930,7 @@
     // Header card
     html += '<div class="entity-header-card" style="--cat-color:' + color + '">';
     html += '<h1 class="entity-header-title">' + esc(entity.name) + '</h1>';
-    html += '<p class="entity-header-desc">' + esc(entityName) + '</p>';
+    html += '<p class="entity-header-desc">' + esc(entity.description || '') + '</p>';
     html += '<div><span class="entity-badge" style="background:' + color + '">' + esc(label) + '</span></div>';
     html += '<div class="entity-stats">';
     html += '<span><strong>' + artCount + '</strong> Artikel</span>';
@@ -864,9 +969,12 @@
       html += '<ul class="entity-article-list">';
       for (var ai = 0; ai < entityArticles.length; ai++) {
         var a = entityArticles[ai];
-        var url = a.url || '/';
         html += '<li class="entity-article-item">';
-        html += '<a class="entity-article-link" href="' + esc(url) + '">' + esc(a.title) + '</a>';
+        if (a.url) {
+          html += '<a class="entity-article-link" href="' + esc(a.url) + '">' + esc(a.title) + '</a>';
+        } else {
+          html += '<span class="entity-article-link">' + esc(a.title) + '</span>';
+        }
         html += '<div class="entity-article-meta">';
         if (a.type) html += esc(a.type);
         if (a.date) html += ' · ' + esc(a.date);
@@ -945,7 +1053,7 @@
     html += '<div style="font-size:1.2rem;margin-bottom:4px;">🔄</div>Lade Graph...</div></div></div></div>';
 
     // Graph link
-    html += '<a href="/wissennetz/" class="entity-card" style="display:block;text-decoration:none;">';
+    html += '<a href="/entity/" class="entity-card" style="display:block;text-decoration:none;">';
     html += '<div class="entity-graph-link">🌐 Im interaktiven Wissensnetz-Graph anzeigen →</div>';
     html += '</a>';
 
@@ -956,23 +1064,40 @@
     skel.style.display = 'none';
     app.style.display = 'block';
 
-    // Start ego graph rendering via shared D3 module
-    if (globalThis.D3EgoGraph) {
-      var egoContainer = document.getElementById('entity-ego-graph');
-      if (egoContainer) {
-        globalThis.D3EgoGraph.createEgoGraph(egoContainer, data, { entity: entity });
-      }
+    // Start ego graph rendering via shared D3 module (lazy-loaded)
+    var egoContainer = document.getElementById('entity-ego-graph');
+    if (egoContainer) {
+      loadD3AndEgoGraph().then(function() {
+        if (globalThis.D3EgoGraph) {
+          globalThis.D3EgoGraph.createEgoGraph(egoContainer, data, { entity: entity });
+        }
+      }).catch(function(err) {
+        console.warn('[entity] Failed to load D3:', err);
+      });
     }
   }
 
   // ── Start client-side fetch ─────────────────────────
-  fetch('/api/kg-data', { signal: AbortSignal.timeout(15000) })
+  // Fetch only the current entity's data (lightweight) instead of the full KG
+  fetch('/api/kg-data/entity/' + encodeURIComponent(entityName), { signal: AbortSignal.timeout(15000) })
     .then(function (r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
     })
     .then(function (d) {
-      render(d);
+      // Transform targeted endpoint response → graph-compatible shape
+      var entityObj = d.entity || {};
+      entityObj.relatedEntities = d.relatedEntities || [];
+      entityObj.articles = (d.contentLinks || []).map(function (cl) { return cl.title; });
+
+      var graphData = {
+        source: 'neo4j',
+        entities: [entityObj],
+        articles: (d.contentLinks || []).map(function (cl) {
+          return { title: cl.title, url: cl.url, type: cl.type || 'article', entities: [entityObj.name] };
+        }),
+      };
+      render(graphData);
     })
     .catch(function (err) {
       skel.style.display = 'none';
@@ -997,7 +1122,7 @@
     var entityName = section.dataset.entity;
     if (!entityName) return;
 
-    fetch('/api/entities/' + encodeURIComponent(entityName) + '/curricula', {
+    fetch('/api/entity/' + encodeURIComponent(entityName) + '/curricula', {
       signal: AbortSignal.timeout(10000),
     })
       .then(function (r) {
@@ -1087,7 +1212,7 @@
     var entityName = section.dataset.entity;
     if (!entityName) return;
 
-    fetch('/api/entities/' + encodeURIComponent(entityName) + '/universities', {
+    fetch('/api/entity/' + encodeURIComponent(entityName) + '/universities', {
       signal: AbortSignal.timeout(10000),
     })
       .then(function (r) {

@@ -2,6 +2,32 @@
 <style>
 #entity-app { margin-top: 1rem; margin-bottom: 2rem; }
 
+/* Graph container */
+#entity-graph-container {
+  position: relative;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+#entity-graph {
+  width: 100%;
+  height: 62vh;
+  min-height: 520px;
+  max-height: 820px;
+}
+
+#entity-graph-loading {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: var(--bg-card, #fff);
+  z-index: 10;
+}
+
 .entity-header {
   display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;
   margin-bottom: 1.5rem; padding-bottom: 1rem;
@@ -15,6 +41,182 @@
   align-items: center;
 }
 .entity-stats strong { color: var(--text-primary, #333); }
+
+/* Graph controls overlay */
+.entity-graph-controls {
+  position: absolute;
+  top: 12px; right: 12px;
+  display: flex; gap: 0.5rem;
+  z-index: 5;
+  flex-wrap: wrap;
+}
+
+.entity-graph-control-btn {
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  border: 1.5px solid var(--border-color, #ddd);
+  cursor: pointer;
+  background: var(--bg-card, #fff);
+  color: var(--text-muted, #666);
+  transition: all 0.2s;
+  font-weight: 500;
+  backdrop-filter: blur(4px);
+}
+
+.entity-graph-control-btn:hover {
+  border-color: #667eea;
+  color: #667eea;
+  background: rgba(255,255,255,0.9);
+}
+
+.entity-graph-control-btn.active {
+  background: #667eea;
+  color: #fff;
+  border-color: #667eea;
+}
+
+.entity-graph-search {
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  border: 1.5px solid var(--border-color, #ddd);
+  background: rgba(255,255,255,0.95);
+  color: var(--text-primary, #333);
+  width: 180px;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s;
+}
+.entity-graph-search:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
+  width: 220px;
+}
+
+.entity-node-details {
+  position: absolute;
+  top: 60px;
+  right: 12px;
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  background: rgba(255,255,255,0.98);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 12px;
+  padding: 1rem;
+  z-index: 20;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+[data-theme="dark"] .entity-node-details,
+.dark .entity-node-details {
+  background: rgba(44,44,44,0.98);
+  border-color: #555;
+}
+.entity-node-details-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-muted, #666);
+  line-height: 1;
+}
+.entity-node-details-close:hover {
+  color: var(--text-primary, #333);
+}
+#node-details-content h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  color: var(--text-primary, #333);
+}
+#node-details-content p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  color: var(--text-muted, #666);
+}
+#node-details-content .node-category-badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+#node-details-content .node-connections {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color, #ddd);
+}
+#node-details-content .node-connections h5 {
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--text-muted, #666);
+}
+#node-details-content .node-connection-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#node-details-content .node-connection-list li {
+  padding: 0.25rem 0;
+  font-size: 0.82rem;
+}
+#node-details-content .node-connection-list a {
+  color: #667eea;
+  text-decoration: none;
+}
+#node-details-content .node-connection-list a:hover {
+  text-decoration: underline;
+}
+
+/* Graph legend */
+.entity-graph-legend {
+  position: absolute;
+  bottom: 12px; left: 12px;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 8px;
+  padding: 0.75rem;
+  z-index: 5;
+  font-size: 0.75rem;
+  backdrop-filter: blur(4px);
+  max-width: 200px;
+}
+
+[data-theme="dark"] .entity-graph-legend,
+.dark .entity-graph-legend {
+  background: rgba(44,44,44,0.95);
+  border-color: #555;
+}
+
+.entity-legend-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary, #333);
+}
+
+.entity-legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.entity-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.entity-legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
 
 .entity-toolbar {
   display: flex; flex-wrap: wrap; gap: 0.5rem;
@@ -251,14 +453,50 @@
 }
 .entity-graph-top-link:hover { background: #667eea; color: #fff; }
 
-.entity-sort-select {
+.entity-graph-stats {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-card, #f8f9fa);
+  border-bottom: 1px solid var(--border-color, #e0e0e0);
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.entity-graph-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted, #666);
+}
+.entity-graph-stat strong {
+  color: var(--text-primary, #333);
+  font-size: 1.1rem;
+}
+.entity-graph-stat .stat-icon {
+  font-size: 1.2rem;
+}
+
+.entity-sort-select,
+.entity-state-select {
   padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.82rem;
   border: 1.5px solid var(--border-color, #ddd); cursor: pointer;
   background: var(--bg-card, #fff); color: var(--text-muted, #666);
   transition: border-color 0.2s;
 }
-.entity-sort-select:focus {
+.entity-sort-select:focus,
+.entity-state-select:focus {
   outline: none; border-color: #667eea;
+}
+.entity-state-select option {
+  color: var(--text-primary, #333);
+  background: var(--bg-card, #fff);
+}
+
+.entity-loading {
+  font-size: 0.82rem;
+  color: #9b59b6;
+  animation: lpPulse 0.8s infinite;
 }
 
 [data-theme="dark"] .entity-card,
@@ -277,9 +515,15 @@
 .dark .entity-lehrplan-toggle,
 [data-theme="dark"] .entity-sort-select,
 .dark .entity-sort-select,
+[data-theme="dark"] .entity-state-select,
+.dark .entity-state-select,
 [data-theme="dark"] .entity-page-btn,
 .dark .entity-page-btn {
   background: #333; border-color: #555; color: #bbb;
+}
+[data-theme="dark"] .entity-state-select option,
+.dark .entity-state-select option {
+  background: #333; color: #eee;
 }
 [data-theme="dark"] .entity-related-tag,
 .dark .entity-related-tag {
@@ -304,6 +548,7 @@
   :root:not([data-theme="light"]) .entity-filter-btn,
   :root:not([data-theme="light"]) .entity-view-btn,
   :root:not([data-theme="light"]) .entity-sort-select,
+  :root:not([data-theme="light"]) .entity-state-select,
   :root:not([data-theme="light"]) .entity-page-btn { background: #333; border-color: #555; color: #bbb; }
   :root:not([data-theme="light"]) .entity-related-tag { background: #3c3c3c; color: #aaa; }
   :root:not([data-theme="light"]) .entity-card-name { color: #e0e0e0; }
@@ -320,18 +565,97 @@
   .entity-skeleton-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
   .entity-toolbar { flex-direction: column; }
   .entity-toolbar-left { min-width: auto; width: 100%; }
+  
+  .entity-graph-controls {
+    top: 8px; right: 8px; left: 8px;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .entity-graph-search {
+    width: 100%;
+    order: -1;
+    margin-bottom: 0.5rem;
+  }
+  .entity-graph-search:focus { width: 100%; }
+  .entity-graph-control-btn {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  .entity-graph-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  .entity-node-details {
+    top: auto; bottom: 12px; right: 12px; left: 12px;
+    width: auto;
+    max-height: 50vh;
+  }
+  #entity-graph {
+    min-height: 300px;
+    max-height: 50vh;
+  }
+  .entity-graph-legend {
+    bottom: 8px; left: 8px;
+    font-size: 0.65rem;
+    max-width: 150px;
+  }
 }
 </style>
 {{ end }}
 
 {{ define "main" }}
 
-<div id="entity-app">
-  <div style="text-align:center;padding:3em 1em;">
-    <div class="spinner-border text-primary mb-3" role="status"><span class="visually-hidden">Loading...</span></div>
-    <h5>Lade Wissensnetz...</h5>
+<!-- Graph container — placed BEFORE the entity cards so the Wissensnetz graph is on top -->
+  <div id="entity-graph-container" style="display:none;">
+    <div class="entity-graph-stats" id="entity-graph-stats">
+      <div class="entity-graph-stat">
+        <span class="stat-icon">📊</span>
+        <span><strong id="stat-entities">0</strong> Begriffe</span>
+      </div>
+      <div class="entity-graph-stat">
+        <span class="stat-icon">📄</span>
+        <span><strong id="stat-articles">0</strong> Artikel</span>
+      </div>
+      <div class="entity-graph-stat">
+        <span class="stat-icon">🔗</span>
+        <span><strong id="stat-connections">0</strong> Verbindungen</span>
+      </div>
+      <div class="entity-graph-stat">
+        <span class="stat-icon">👁️</span>
+        <span><strong id="stat-visible">0</strong> sichtbar</span>
+      </div>
+    </div>
+    <div id="entity-graph-loading">
+      <div class="spinner-border text-primary mb-3" role="status"><span class="visually-hidden">Loading...</span></div>
+      <h5>Visualisiere Wissensnetz...</h5>
+      <p id="entity-graph-progress" style="font-size:0.85rem;color:#888;margin-top:0.5rem;">Lade Daten...</p>
+    </div>
+    <div id="entity-graph"></div>
+    <div class="entity-graph-controls">
+      <input type="text" id="graph-search" class="entity-graph-search" placeholder="Suche im Graph..." autocomplete="off">
+      <button class="entity-graph-control-btn" id="graph-focus-btn" title="Zentriere auf Auswahl">🎯</button>
+      <button class="entity-graph-control-btn active" id="graph-filter-all" data-filter="all">Alle</button>
+      <button class="entity-graph-control-btn" id="graph-filter-stoff" data-filter="stoff">Stoffe</button>
+      <button class="entity-graph-control-btn" id="graph-filter-konzept" data-filter="konzept">Konzepte</button>
+      <button class="entity-graph-control-btn" id="graph-filter-reaktion" data-filter="reaktion">Reaktionen</button>
+      <button class="entity-graph-control-btn" id="graph-filter-methode" data-filter="methode">Methoden</button>
+      <button class="entity-graph-control-btn" id="graph-filter-person" data-filter="person">Personen</button>
+      <button class="entity-graph-control-btn" id="graph-filter-quelle" data-filter="quelle">Quellen</button>
+    </div>
+    <div id="entity-node-details" class="entity-node-details" style="display:none;">
+      <button class="entity-node-details-close" id="node-details-close">&times;</button>
+      <div id="node-details-content"></div>
+    </div>
+    <div class="entity-graph-legend" id="entity-graph-legend">
+      <div class="entity-legend-title">Kategorien</div>
+      <div class="entity-legend-items" id="entity-legend-items"></div>
+    </div>
   </div>
-</div>
+
+  <div id="entity-app">
+  <!-- Header + entity cards will be rendered by JS -->
+  </div>
 
 <div id="entity-skeleton" class="entity-skeleton-grid">
   <div class="entity-skeleton-card"><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div></div>
@@ -342,6 +666,30 @@
   <div class="entity-skeleton-card"><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div></div>
 </div>
 
-<script src="{{ "/js/entity-index.js" | relURL }}?v=2"></script>
+<script>
+var D3_LOADED = false;
+function loadD3AndEgoGraph() {
+  if (D3_LOADED) return Promise.resolve();
+  D3_LOADED = true;
+  return new Promise(function(resolve, reject) {
+    var cyScript = document.createElement('script');
+    cyScript.src = '{{ "/js/vendor/cytoscape.min.js" | relURL }}';
+    cyScript.onload = function() {
+      var graphScript = document.createElement('script');
+      graphScript.src = '{{ "/js/visualization/entity-graph-cytoscape.js" | relURL }}?v=8';
+      graphScript.onload = resolve;
+      graphScript.onerror = reject;
+      document.head.appendChild(graphScript);
+    };
+    cyScript.onerror = reject;
+    document.head.appendChild(cyScript);
+  });
+}
+</script>
+<!-- entity-index.js uses lunr.Index.load() for client-side filtering of the
+     685-entity index — lunr is only required here, not globally (site search
+     is Pagefind). Load BEFORE entity-index.js. -->
+<script defer src="https://unpkg.com/lunr@2.3.9/lunr.min.js"></script>
+<script src="{{ "/js/entity-index.js" | relURL }}?v=8"></script>
 
 {{ end }}

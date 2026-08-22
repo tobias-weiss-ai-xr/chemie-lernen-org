@@ -2,6 +2,7 @@
 title: 'Lückentexte'
 description: 'Interaktive Lückentexte für Chemie - Fülle die Lücken aus und teste dein Verständnis chemischer Konzepte.'
 date: 2025-12-21
+last_reviewed: 2026-07-09
 type: 'calculator'
 layout: 'lueckentexte'
 icon: '📝'

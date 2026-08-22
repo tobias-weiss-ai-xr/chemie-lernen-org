@@ -1,6 +1,17 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- FOUC-safe theme init: apply saved/default theme before first paint -->
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme') || 'dark';
+      if (t !== 'light' && t !== 'dark' && t !== 'contrast') t = 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
 <meta name="google-adsense-account" content="ca-pub-8452353139685392">
 
 <title>{{ .Title }}{{ if .IsPage }} - {{ .Site.Title }}{{ end }}</title>
@@ -69,11 +80,11 @@
 <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ "/index.xml" | relURL }}">
 
 <!-- Bootstrap CSS (local) -->
-<link rel="preload" href="{{ "/css/bootstrap.min.css" | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="stylesheet" href="{{ "/css/bootstrap.min.css" | relURL }}">
 <noscript><link rel="stylesheet" href="{{ "/css/bootstrap.min.css" | relURL }}"></noscript>
 
 <!-- Font Awesome CSS (local) -->
-<link rel="preload" href="{{ "/css/font-awesome.min.css" | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="stylesheet" href="{{ "/css/font-awesome.min.css" | relURL }}">
 <noscript><link rel="stylesheet" href="{{ "/css/font-awesome.min.css" | relURL }}"></noscript>
 
 {{ $sass := resources.Get "sass/main.scss" }}
@@ -90,76 +101,32 @@
 <link rel="stylesheet" href="{{ "/css/green-theme.css" | relURL }}">
 
 <link rel="stylesheet" href="{{ "/css/a11y-reduced-motion.css" | relURL }}">
+<link rel="stylesheet" href="{{ "/css/home.css" | relURL }}">
+
+<!-- Shared chrome styles (navbar responsive, breadcrumbs, badge-toast) -- previously inline per page -->
+<link rel="stylesheet" href="{{ "/css/site-chrome.css" | relURL }}">
 
 <!-- Quiz System CSS (deferred, only used on specific pages) -->
-<link rel="preload" href="{{ "/css/quiz-system.css" | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="stylesheet" href="{{ "/css/quiz-system.css" | relURL }}">
 <noscript><link rel="stylesheet" href="{{ "/css/quiz-system.css" | relURL }}"></noscript>
-<link rel="preload" href="{{ "/css/quiz-user-system.css" | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="stylesheet" href="{{ "/css/quiz-user-system.css" | relURL }}">
 <noscript><link rel="stylesheet" href="{{ "/css/quiz-user-system.css" | relURL }}"></noscript>
-<link rel="preload" href="{{ "/css/progress-tracker.css" | relURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="stylesheet" href="{{ "/css/progress-tracker.css" | relURL }}">
 <noscript><link rel="stylesheet" href="{{ "/css/progress-tracker.css" | relURL }}"></noscript>
 
 <!-- KaTeX CSS for Chemical Formulas (deferred) -->
-<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"></noscript>
 
 <!-- mhchem extension is JS-only — CSS is bundled with KaTeX. No separate mhchem CSS file exists. -->
 
 <script defer src="{{ "/js/enhanced-bundle-loader.js" | relURL }}"></script>
 
-<!-- PWA Service Worker Registration + Update Prompt -->
-<script>
-if ('serviceWorker' in navigator) {
-  var swRegistration = null;
+<!-- PWA Service Worker Registration (extracted to external file) -->
+<script defer src="{{ "/js/pwa-sw-registration.js" | relURL }}"></script>
 
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/sw.js')
-      .then(function(registration) {
-        swRegistration = registration;
-        console.log('[PWA] SW registered');
-
-        // Check for updates on each page load
-        registration.update();
-
-        // Detect waiting service worker (new version)
-        if (registration.waiting) {
-          showUpdatePrompt(registration);
-        }
-
-        // Listen for new installing workers
-        registration.addEventListener('updatefound', function() {
-          var newWorker = registration.installing;
-          newWorker.addEventListener('statechange', function() {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              showUpdatePrompt(registration);
-            }
-          });
-        });
-      })
-      .catch(function(err) {
-        console.log('[PWA] SW registration failed:', err);
-      });
-
-    // Listen for SW postMessage (version info)
-    navigator.serviceWorker.addEventListener('message', function(event) {
-      if (event.data && event.data.type === 'SW_UPDATED') {
-        console.log('[PWA] SW updated to', event.data.version);
-      }
-    });
-  });
-
-  function showUpdatePrompt(registration) {
-    // Dispatch custom event for the update banner component
-    var evt = new CustomEvent('pwa-update-ready', {
-      detail: {
-        registration: registration,
-        message: 'Neue Version verfügbar — Seite aktualisieren?'
-      }
-    });
-    document.dispatchEvent(evt);
-  }
-}
-</script>
+<!-- PWA Install Banner -->
+<script defer src="{{ "/js/pwa-install.js" | relURL }}"></script>
 
 <!-- FAQ Schema for interactive pages -->
 {{ partial "faq-schema.html" . }}
@@ -169,7 +136,6 @@ if ('serviceWorker' in navigator) {
 
 <!-- Preconnect hints for performance -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
 <!-- JSON-LD Structured Data -->

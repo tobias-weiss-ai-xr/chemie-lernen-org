@@ -1,24 +1,43 @@
 #!/usr/bin/env node
 /**
- * kg-enrich-relations.mjs — Ersetzt generische RELATED_TO durch semantische Beziehungstypen.
+ * kg-enrich-relations.mjs — Generate semantic relationships in the KG.
  *
- * Liest bestehende RELATED_TO-Beziehungen zwischen chemie-relevanten Entity-Kategorien
- * (stoff, konzept, reaktion, methode, person, quelle) und legt neue, semantisch
- * spezifische Beziehungstypen an (siehe TYPISIERUNGS_MATRIX).
+ * Three phases:
+ *   1. Typing:  Map existing RELATED_TO → semantic types (AEHNLICH_ZU, BEINHALTET, etc.)
+ *   2. Name:    Generate AEHNLICH_ZU between entities with similar names (top 1000 entities)
+ *   3. Comp:    Generate BEINHALTET from existing BESTEHT_AUS/component relationships
  *
- * Nutzung:  node scripts/kg-enrich-relations.mjs [--dry-run]
- * Env:      NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD, NEO4J_DATABASE
+ * Phases 2+3 run independently of existing RELATED_TO relationships.
+ * All operations capped at 1000 entities to keep runtime reasonable.
+ *
+ * Usage:  node scripts/kg-enrich-relations.mjs [--dry-run]
+ * Env:    NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD, NEO4J_DATABASE
  */
 
 import neo4j from 'neo4j-driver';
 
 // ── Config ──
-const NEO4J_URI = process.env.NEO4J_URI || 'bolt://localhost:7687';
+const NEO4J_URI = process.env.NEO4J_URI || 'bolt://chemie-neo4j:7687';
 const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
 const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || 'chemie_knowledge_2024';
 const NEO4J_DATABASE = process.env.NEO4J_DATABASE || 'chemie';
 
 const DRY_RUN = process.argv.includes('--dry-run');
+const MAX_ENTITIES = 1000;
+
+// ── Name normalization for comparison ─────────────────────────────────
+
+function normalize(name) {
+  return name
+    .toLowerCase()
+    .replace(/[ä]/g, 'ae')
+    .replace(/[ö]/g, 'oe')
+    .replace(/[ü]/g, 'ue')
+    .replace(/[ß]/g, 'ss')
+    .replace(/[-/\s]+/g, ' ')
+    .replace(/[^a-z0-9\s]/g, '')
+    .trim();
+}
 
 // ── Typisierungsmatrix ──
 // Quelle | Ziel | Neuer Typ | Bedeutung
@@ -52,119 +71,264 @@ function getNewType(srcCat, tgtCat) {
   return null;
 }
 
+// ── Jaccard similarity for entity names ───────────────────────────────
+
+function wordJaccard(a, b) {
+  const setA = new Set(a.split(/\s+/).filter(Boolean));
+  const setB = new Set(b.split(/\s+/).filter(Boolean));
+  if (setA.size === 0 || setB.size === 0) return 0;
+  let intersection = 0;
+  for (const w of setA) {
+    if (setB.has(w)) intersection++;
+  }
+  const union = setA.size + setB.size - intersection;
+  return union > 0 ? intersection / union : 0;
+}
+
+// ── Phase 1: Type existing RELATED_TO ─────────────────────────────────
+
+async function phaseTypeRels(session) {
+  console.log('[kg-enrich] Phase 1: Typing existing RELATED_TO...');
+
+  const result = await session.run(`
+    MATCH (e:Entity)-[r:RELATED_TO]->(e2:Entity)
+    WHERE e.kategorie IN ['stoff','konzept','reaktion','methode','person','quelle']
+      AND e2.kategorie IN ['stoff','konzept','reaktion','methode','person','quelle']
+    RETURN e.name as srcName, e.kategorie as srcCat,
+           e2.name as tgtName, e2.kategorie as tgtCat,
+           id(e) as srcId, id(e2) as tgtId
+  `);
+
+  console.log(`  RELATED_TO pairs found: ${result.records.length}`);
+
+  const toCreate = [];
+  for (const rec of result.records) {
+    const srcCat = rec.get('srcCat');
+    const tgtCat = rec.get('tgtCat');
+    const newType = getNewType(srcCat, tgtCat);
+    if (newType) {
+      toCreate.push({
+        srcId: rec.get('srcId'),
+        tgtId: rec.get('tgtId'),
+        srcName: rec.get('srcName'),
+        tgtName: rec.get('tgtName'),
+        newType,
+        srcCat,
+        tgtCat,
+      });
+    }
+  }
+
+  console.log(`  To create: ${toCreate.length} typed relationships`);
+
+  if (DRY_RUN) {
+    const byType = {};
+    for (const c of toCreate) {
+      byType[c.newType] = (byType[c.newType] || 0) + 1;
+    }
+    for (const [type, cnt] of Object.entries(byType).sort((a, b) => b[1] - a[1])) {
+      console.log(`    ${type}: ${cnt}`);
+    }
+    return 0;
+  }
+
+  let created = 0;
+  let errors = 0;
+  for (const c of toCreate) {
+    try {
+      const check = await session.run(
+        `MATCH (e:Entity)-[r:${c.newType}]->(e2:Entity)
+         WHERE id(e) = $srcId AND id(e2) = $tgtId
+         RETURN count(r) as cnt`,
+        { srcId: c.srcId, tgtId: c.tgtId }
+      );
+      if (check.records[0].get('cnt').toNumber() > 0) continue;
+
+      await session.run(
+        `MATCH (e:Entity) WHERE id(e) = $srcId
+         MATCH (e2:Entity) WHERE id(e2) = $tgtId
+         CREATE (e)-[r:${c.newType}]->(e2)`,
+        { srcId: c.srcId, tgtId: c.tgtId }
+      );
+      created++;
+    } catch (err) {
+      errors++;
+      if (errors <= 3) {
+        console.error(`  Error ${c.newType} ${c.srcName}→${c.tgtName}: ${err.message}`);
+      }
+    }
+  }
+  console.log(`  Created: ${created}, Errors: ${errors}`);
+  return created;
+}
+
+// ── Phase 2: AEHNLICH_ZU by name similarity ───────────────────────────
+
+async function phaseNameSimilarity(session) {
+  console.log('[kg-enrich] Phase 2: AEHNLICH_ZU by name similarity...');
+
+  const result = await session.run(
+    `MATCH (e:Entity)
+     WHERE e.kategorie IN ['stoff','konzept','reaktion']
+     RETURN e.name AS name, id(e) AS id
+     ORDER BY e.name
+     LIMIT ${MAX_ENTITIES}`
+  );
+  console.log(`  Entities loaded: ${result.records.length}`);
+
+  const entities = result.records.map((r) => ({
+    id: r.get('id'),
+    name: r.get('name'),
+    norm: normalize(r.get('name')),
+  }));
+
+  const pairs = [];
+  for (let i = 0; i < entities.length; i++) {
+    for (let j = i + 1; j < entities.length; j++) {
+      const sim = wordJaccard(entities[i].norm, entities[j].norm);
+      if (sim >= 0.4 && entities[i].norm !== entities[j].norm) {
+        pairs.push({ a: entities[i], b: entities[j], sim });
+      }
+    }
+  }
+
+  // Cap pairs at 1000
+  if (pairs.length > 1000) {
+    pairs.sort((a, b) => b.sim - a.sim);
+    pairs.length = 1000;
+  }
+
+  console.log(`  Similar name pairs: ${pairs.length}`);
+
+  if (DRY_RUN) {
+    for (const p of pairs.slice(0, 10)) {
+      console.log(`    AEHNLICH_ZU: "${p.a.name}" ↔ "${p.b.name}" (sim=${p.sim.toFixed(2)})`);
+    }
+    if (pairs.length > 10) console.log(`    ... and ${pairs.length - 10} more`);
+    return 0;
+  }
+
+  let created = 0;
+  let errors = 0;
+  for (const p of pairs) {
+    try {
+      // Use MERGE for both directions (bidirectional similarity)
+      await session.run(
+        `MATCH (a:Entity) WHERE id(a) = $aId
+         MATCH (b:Entity) WHERE id(b) = $bId
+         MERGE (a)-[:AEHNLICH_ZU]->(b)
+         MERGE (b)-[:AEHNLICH_ZU]->(a)`,
+        { aId: p.a.id, bId: p.b.id }
+      );
+      created++;
+    } catch (err) {
+      errors++;
+      if (errors <= 3) {
+        console.error(`  Error AEHNLICH_ZU ${p.a.name}↔${p.b.name}: ${err.message}`);
+      }
+    }
+  }
+  console.log(`  Created: ${created} bidirectional pairs, Errors: ${errors}`);
+  return created;
+}
+
+// ── Phase 3: BEINHALTET from component relationships ──────────────────
+
+async function phaseComponentBeinhaltet(session) {
+  console.log('[kg-enrich] Phase 3: BEINHALTET from component relationships...');
+
+  const result = await session.run(
+    `MATCH (e:Entity)-[r:BESTEHT_AUS]->(comp:Entity)
+     WHERE e.kategorie IN ['stoff', 'konzept']
+     RETURN e.name AS srcName, id(e) AS srcId,
+            comp.name AS tgtName, id(comp) AS tgtId,
+            e.kategorie AS srcCat, comp.kategorie AS tgtCat
+     LIMIT ${MAX_ENTITIES}`
+  );
+  console.log(`  BESTEHT_AUS pairs found: ${result.records.length}`);
+
+  const toCreate = [];
+  for (const rec of result.records) {
+    const srcCat = rec.get('srcCat');
+    const tgtCat = rec.get('tgtCat');
+    // BEINHALTET: stoff→konzept or konzept→stoff
+    if (
+      (srcCat === 'stoff' && tgtCat === 'konzept') ||
+      (srcCat === 'konzept' && tgtCat === 'stoff') ||
+      (srcCat === 'stoff' && tgtCat === 'stoff')
+    ) {
+      toCreate.push({
+        srcId: rec.get('srcId'),
+        tgtId: rec.get('tgtId'),
+        srcName: rec.get('srcName'),
+        tgtName: rec.get('tgtName'),
+      });
+    }
+  }
+  console.log(`  BEINHALTET candidates: ${toCreate.length}`);
+
+  if (DRY_RUN) {
+    for (const c of toCreate.slice(0, 10)) {
+      console.log(`    BEINHALTET: "${c.srcName}" → "${c.tgtName}"`);
+    }
+    if (toCreate.length > 10) console.log(`    ... and ${toCreate.length - 10} more`);
+    return 0;
+  }
+
+  let created = 0;
+  let errors = 0;
+  for (const c of toCreate) {
+    try {
+      await session.run(
+        `MATCH (e:Entity) WHERE id(e) = $srcId
+         MATCH (e2:Entity) WHERE id(e2) = $tgtId
+         MERGE (e)-[:BEINHALTET]->(e2)`,
+        { srcId: c.srcId, tgtId: c.tgtId }
+      );
+      created++;
+    } catch (err) {
+      errors++;
+      if (errors <= 3) {
+        console.error(`  Error BEINHALTET ${c.srcName}→${c.tgtName}: ${err.message}`);
+      }
+    }
+  }
+  console.log(`  Created: ${created}, Errors: ${errors}`);
+  return created;
+}
+
+// ── Main ───────────────────────────────────────────────────────────────
+
 async function main() {
-  console.log('[kg-enrich-relations] ' + (DRY_RUN ? 'DRY RUN' : 'LIVE') + ' — connecting to ' + NEO4J_URI);
+  console.log('[kg-enrich-relations] ' + (DRY_RUN ? 'DRY RUN' : 'LIVE') + ' — ' + NEO4J_URI);
+  console.log();
 
   const driver = neo4j.driver(NEO4J_URI, neo4j.auth.basic(NEO4J_USER, NEO4J_PASSWORD), {
-    connectionTimeout: 10000,
+    connectionTimeout: 30000,
+    maxConnectionLifetime: 300000,
   });
 
+  const mode = DRY_RUN ? neo4j.session.READ : neo4j.session.WRITE;
   const session = driver.session({
     database: NEO4J_DATABASE,
-    defaultAccessMode: DRY_RUN ? neo4j.session.READ : neo4j.session.WRITE,
+    defaultAccessMode: mode,
     fetchSize: 1000,
   });
 
   try {
-    // 1. Alle RELATED_TO zwischen chemie-relevanten Entities holen
-    console.log('[kg-enrich-relations] Fetching RELATED_TO relationships...');
-    const result = await session.run(`
-      MATCH (e:Entity)-[r:RELATED_TO]->(e2:Entity)
-      WHERE e.kategorie IN ['stoff','konzept','reaktion','methode','person','quelle']
-        AND e2.kategorie IN ['stoff','konzept','reaktion','methode','person','quelle']
-      RETURN e.name as srcName, e.kategorie as srcCat,
-             e2.name as tgtName, e2.kategorie as tgtCat,
-             id(r) as relId, id(e) as srcId, id(e2) as tgtId
-    `);
+    const p1 = await phaseTypeRels(session);
+    console.log(`  [Phase 1] Created: ${p1}\n`);
 
-    const rows = result.records;
-    console.log('[kg-enrich-relations] Found ' + rows.length + ' RELATED_TO relationships to process');
+    const p2 = await phaseNameSimilarity(session);
+    console.log(`  [Phase 2] Created: ${p2}\n`);
 
-    // 2. Typisieren
-    const toCreate = [];
-    const skipped = [];
+    const p3 = await phaseComponentBeinhaltet(session);
+    console.log(`  [Phase 3] Created: ${p3}\n`);
 
-    for (const rec of rows) {
-      const srcCat = rec.get('srcCat');
-      const tgtCat = rec.get('tgtCat');
-      const srcName = rec.get('srcName');
-      const tgtName = rec.get('tgtName');
-      const newType = getNewType(srcCat, tgtCat);
-
-      if (newType) {
-        // Prüfen ob dieser Typ bereits existiert
-        toCreate.push({
-          srcId: rec.get('srcId'),
-          tgtId: rec.get('tgtId'),
-          srcName,
-          tgtName,
-          newType,
-          srcCat,
-          tgtCat,
-        });
-      } else {
-        skipped.push({ srcName, srcCat, tgtName, tgtCat });
-      }
-    }
-
-    console.log('[kg-enrich-relations] To create: ' + toCreate.length + ' new relationships');
-    if (skipped.length > 0) {
-      console.log('[kg-enrich-relations] Skipped (no matching rule): ' + skipped.length);
-      for (const s of skipped.slice(0, 5)) {
-        console.log('  SKIP ' + s.srcName + ' (' + s.srcCat + ') → ' + s.tgtName + ' (' + s.tgtCat + ')');
-      }
-    }
-
-    if (DRY_RUN) {
-      console.log('\n[kg-enrich-relations] === DRY RUN — would create: ===');
-      const byType = {};
-      for (const c of toCreate) {
-        if (!byType[c.newType]) byType[c.newType] = 0;
-        byType[c.newType]++;
-      }
-      for (const [type, cnt] of Object.entries(byType).sort((a, b) => b[1] - a[1])) {
-        console.log('  CREATE ' + type + ': ' + cnt + ' relationships');
-      }
-      console.log('[kg-enrich-relations] Dry run complete. Pass without --dry-run to execute.');
-    } else {
-      // 3. Neue Beziehungen anlegen (MERGE vermeidet Duplikate)
-      let created = 0;
-      let errors = 0;
-
-      for (const c of toCreate) {
-        try {
-          // Prüfen ob diese Beziehung bereits existiert
-          const checkResult = await session.run(
-            'MATCH (e:Entity)-[r:' + c.newType + ']->(e2:Entity) ' +
-            'WHERE id(e) = $srcId AND id(e2) = $tgtId ' +
-            'RETURN count(r) as cnt',
-            { srcId: c.srcId, tgtId: c.tgtId }
-          );
-          const exists = checkResult.records[0].get('cnt').toNumber() > 0;
-
-          if (!exists) {
-            await session.run(
-              'MATCH (e:Entity) WHERE id(e) = $srcId ' +
-              'MATCH (e2:Entity) WHERE id(e2) = $tgtId ' +
-              'CREATE (e)-[r:' + c.newType + ']->(e2)',
-              { srcId: c.srcId, tgtId: c.tgtId }
-            );
-            created++;
-          }
-        } catch (err) {
-          errors++;
-          if (errors <= 3) {
-            console.error('[kg-enrich-relations] Error creating ' + c.newType + ' ' +
-              c.srcName + '→' + c.tgtName + ': ' + err.message);
-          }
-        }
-      }
-
-      console.log('[kg-enrich-relations] Created: ' + created + ' new relationships');
-      if (errors > 0) console.log('[kg-enrich-relations] Errors: ' + errors);
-    }
+    const total = p1 + p2 + p3;
+    console.log(`[kg-enrich-relations] Done. Total relationships created/estimated: ${total}`);
   } catch (err) {
-    console.error('[kg-enrich-relations] ERROR: ' + err.message);
+    console.error('[kg-enrich-relations] ERROR:', err.message);
     process.exit(1);
   } finally {
     await session.close();

@@ -2,6 +2,7 @@
 title: "Platin"
 description: "Platin (Symbol: Pt) ist ein chemisches Element der Übergangsmetall mit der Ordnungszahl 78. Es befindet sich in der 6. Periode und der 10. Gruppe."
 date: 2026-06-03
+last_reviewed: 2026-08-06
 slug: "platin"
 kategorie: "Übergangsmetall"
 typ: "element"

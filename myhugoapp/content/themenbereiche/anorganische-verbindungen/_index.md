@@ -2,6 +2,7 @@
 title: 'Anorganische Verbindungen'
 description: 'Salze, Säuren, Basen und ihre Reaktionen - Erfahren Sie alles über Ionenbindungen, Löslichkeit, Fällungsreaktionen und den Molaren Masse Rechner'
 date: '2025-12-26'
+last_reviewed: 2026-08-06
 teilgebiet: 'anorganische-verbindungen'
 schwierigkeit: 'mittelstufe'
 icon: '🧪'
@@ -462,3 +463,7 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Komplexverbindungen](/themenbereiche/anorganische-verbindungen/komplexverbindungen/) – Struktur, Nomenklatur, Bildungskonstanten und Anwendungen von Koordinationsverbindungen – für fortgeschrittene Lernende der Chemie.
 - [Oxide und Hydroxide](/themenbereiche/anorganische-verbindungen/oxide-hydroxide/) – Chemische Eigenschaften, Reaktionen und Anwendungen von Oxiden und Hydroxiden – wichtige Verbindungsklassen der anorganischen Chemie.
 - [Säuren, Basen und Salze](/themenbereiche/anorganische-verbindungen/saeuren-basen-salze/) – Säuren bilden in Wasser $H^+$-Ionen, Basen bilden $OH^-$-Ionen. Salze entstehen aus der Neutralisation.
+
+{{< quiz-widget topic="anorganische-verbindungen" title="Anorganische Verbindungen" >}}
+
+{{< entity-cloud slug="anorganische-verbindungen" title="Verwandte Fachbegriffe" >}}

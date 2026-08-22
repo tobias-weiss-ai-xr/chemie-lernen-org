@@ -32,7 +32,7 @@
   margin-bottom: 5px;
 }
 
-.state-item input[type="range"] {
+.state-item input[type='range'] {
   width: 100%;
   margin-bottom: 5px;
 }
@@ -86,11 +86,11 @@
   .gas-law-controls .row {
     margin-bottom: 20px;
   }
-  
+
   .state-item {
     margin-bottom: 20px;
   }
-  
+
   .formula-display {
     margin-top: 15px;
   }
@@ -102,26 +102,26 @@
     border-color: #444;
     color: #e0e0e0;
   }
-  
+
   .state-item label {
     color: #4caf50;
   }
-  
+
   .state-item span {
     color: #81c784;
   }
-  
+
   .formula-display {
     background: #3c3c3c;
     color: #e0e0e0;
   }
-  
+
   .calculation-results {
     background: #2c2c2c;
     border-color: #444;
     color: #e0e0e0;
   }
-  
+
   .calc-item {
     background: #3c3c3c;
     border-color: #555;
@@ -129,7 +129,7 @@
   }
 }
 
-.state-item input[type="range"]:focus {
+.state-item input[type='range']:focus {
   outline: 2px solid #28a745;
   outline-offset: 2px;
 }

@@ -2,6 +2,7 @@
 title: 'Spektroskopie-Simulator'
 description: 'Interaktive Visualisierung von IR-, NMR- und Massenspektren für die Strukturanalyse'
 date: 2026-05-28
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'spektroskopie-simulator'

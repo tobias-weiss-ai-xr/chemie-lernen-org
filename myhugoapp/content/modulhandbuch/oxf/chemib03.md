@@ -3,6 +3,7 @@ title: 'Physical Chemistry 2: Quantum and Spectroscopy — University of Oxford'
 description: 'Physical Chemistry 2: Quantum and Spectroscopy (CHEMIB03) an der University of Oxford. 8 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: OXF
 uni_name: University of Oxford
 module_code: CHEMIB03

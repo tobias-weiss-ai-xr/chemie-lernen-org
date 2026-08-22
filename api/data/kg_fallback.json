@@ -1,0 +1,3143 @@
+{
+  "articles": [
+    {
+      "id": "a0",
+      "title": "Energetische Baupläne diversifizieren Proteinfunktion",
+      "url": "https://chemie-lernen.org/posts/2026-06-08-energetische-bauplaene-diversifizieren-proteinfunktion-bei-konservierter-faltung/",
+      "entities": ["allosterie", "ligandenempfindlichkeit", "proteine"],
+      "date": "2026-06-08"
+    },
+    {
+      "id": "a1",
+      "title": "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen",
+      "url": "https://chemie-lernen.org/posts/2026-06-08-neuer-kristall-erzeugt-magnetische-skyrmionen-strukturen/",
+      "entities": ["kristallstruktur", "magnetische-ordnung", "kristallisation"],
+      "date": "2026-06-08"
+    },
+    {
+      "id": "a2",
+      "title": "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse",
+      "url": "https://chemie-lernen.org/posts/2026-06-07-magnetfeld-verdreifacht-ammoniakausbeute-bei-elektrokatalyse/",
+      "entities": ["ammoniak", "elektrokatalyse", "katalysator", "stickstoff", "wasserstoff"],
+      "date": "2026-06-07"
+    },
+    {
+      "id": "a3",
+      "title": "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz",
+      "url": "https://chemie-lernen.org/posts/2026-06-08-neue-kristallsaatkerne-steigern-perowskit-solarzellen-auf-23-effizienz/",
+      "entities": ["perowskit-solarzellen", "kristallisation", "energieumwandlung"],
+      "date": "2026-06-08"
+    },
+    {
+      "id": "a4",
+      "title": "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure",
+      "url": "https://chemie-lernen.org/posts/2026-06-05-50-jahre-raetsel-proteine-verlieren-hydrathuelle-durch-saeure/",
+      "entities": ["hydrathuelle", "proteine", "saure", "ph-wert", "denaturierung"],
+      "date": "2026-06-05"
+    },
+    {
+      "id": "a5",
+      "title": "Künstliche Intelligenz findet neue Katalysatoren für Wasserstoffproduktion",
+      "url": "https://chemie-lernen.org/posts/2026-06-08-ki-findet-neue-katalysatoren/",
+      "entities": ["katalysator", "wasserstoffproduktion", "katalyse"],
+      "date": "2026-06-08"
+    },
+    {
+      "id": "a6",
+      "title": "Quantencomputer berechnen Molekülstrukturen in Rekordzeit",
+      "url": "https://chemie-lernen.org/posts/2026-06-08-quantencomputer-molekuel/",
+      "entities": ["molekuelstruktur", "quantencomputer"],
+      "date": "2026-06-08"
+    },
+    {
+      "id": "a7",
+      "title": "Neue Legierung macht Motoren 30 % effizienter",
+      "url": "https://chemie-lernen.org/posts/2026-06-08-neue-legierung-motoren/",
+      "entities": ["legierung", "metallbindung", "energieumwandlung"],
+      "date": "2026-06-08"
+    },
+    {
+      "id": "a8",
+      "title": "Solarzellen aus organischem Material erreichen 18 % Wirkungsgrad",
+      "url": "https://chemie-lernen.org/posts/2026-06-08-solarzellen-organisch/",
+      "entities": ["solarzellen", "organische-chemie", "energieumwandlung"],
+      "date": "2026-06-08"
+    },
+    {
+      "id": "a9",
+      "title": "Wissenschaftler entdecken neue Art chemischer Bindung",
+      "url": "https://chemie-lernen.org/posts/2026-06-08-neue-bindung/",
+      "entities": ["chemische-bindung", "kovalente-bindung", "molekuelstruktur"],
+      "date": "2026-06-08"
+    }
+  ],
+  "entities": [
+    {
+      "id": "e0",
+      "name": "wasser",
+      "category": "stoff",
+      "components": ["wasserstoff", "sauerstoff"],
+      "relatedEntities": [
+        {
+          "name": "ph-wert",
+          "weight": 1.0
+        },
+        {
+          "name": "protolyse",
+          "weight": 0.8
+        },
+        {
+          "name": "hydrathuelle",
+          "weight": 0.7
+        },
+        {
+          "name": "polaritaet",
+          "weight": 0.8
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e1",
+      "name": "sauerstoff",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "oxidation",
+          "weight": 1.0
+        },
+        {
+          "name": "verbrennung",
+          "weight": 0.9
+        },
+        {
+          "name": "elektrolyse",
+          "weight": 0.5
+        },
+        {
+          "name": "aggregatzustaende",
+          "weight": 0.4
+        },
+        {
+          "name": "oxidationsmittel",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e2",
+      "name": "wasserstoff",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "reduktion",
+          "weight": 1.0
+        },
+        {
+          "name": "wasser",
+          "weight": 0.8
+        },
+        {
+          "name": "ph-wert",
+          "weight": 0.5
+        },
+        {
+          "name": "proton",
+          "weight": 0.8
+        },
+        {
+          "name": "reduktionsmittel",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": ["Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"],
+      "articleCount": 1
+    },
+    {
+      "id": "e3",
+      "name": "stickstoff",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "ammoniak",
+          "weight": 1.0
+        },
+        {
+          "name": "haber-bosch-verfahren",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": ["Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"],
+      "articleCount": 1
+    },
+    {
+      "id": "e4",
+      "name": "kohlenstoff",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "organische-chemie",
+          "weight": 1.0
+        },
+        {
+          "name": "kovalente-bindung",
+          "weight": 0.9
+        },
+        {
+          "name": "methan",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e5",
+      "name": "eisen",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "metallbindung",
+          "weight": 1.0
+        },
+        {
+          "name": "korrosion",
+          "weight": 0.9
+        },
+        {
+          "name": "redoxreaktion",
+          "weight": 0.8
+        },
+        {
+          "name": "legierung",
+          "weight": 0.7
+        },
+        {
+          "name": "eisenoxid",
+          "weight": 0.6
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e6",
+      "name": "natrium",
+      "category": "stoff",
+      "components": [],
+      "relatedEntities": [
+        {
+          "name": "ionesbindung",
+          "weight": 0.9
+        },
+        {
+          "name": "natriumchlorid",
+          "weight": 0.8
+        },
+        {
+          "name": "oxidation",
+          "weight": 0.7
+        },
+        {
+          "name": "natriumhydroxid",
+          "weight": 0.6
+        },
+        {
+          "name": "alkalimetalle",
+          "weight": 0.9
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e7",
+      "name": "chlor",
+      "category": "stoff",
+      "components": [],
+      "relatedEntities": [
+        {
+          "name": "reduktion",
+          "weight": 0.9
+        },
+        {
+          "name": "natriumchlorid",
+          "weight": 0.8
+        },
+        {
+          "name": "salzsaeure",
+          "weight": 0.7
+        },
+        {
+          "name": "halogene",
+          "weight": 0.9
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e8",
+      "name": "ammoniak",
+      "category": "stoff",
+      "components": ["stickstoff", "wasserstoff"],
+      "relatedEntities": [
+        {
+          "name": "base",
+          "weight": 1.0
+        },
+        {
+          "name": "haber-bosch-verfahren",
+          "weight": 0.9
+        },
+        {
+          "name": "stickstoff",
+          "weight": 0.8
+        },
+        {
+          "name": "elektrokatalyse",
+          "weight": 0.6
+        },
+        {
+          "name": "komplexbildung",
+          "weight": 0.5
+        }
+      ],
+      "articles": ["Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"],
+      "articleCount": 1
+    },
+    {
+      "id": "e9",
+      "name": "kohlendioxid",
+      "category": "stoff",
+      "components": ["kohlenstoff", "sauerstoff"],
+      "relatedEntities": [
+        {
+          "name": "saure",
+          "weight": 0.8
+        },
+        {
+          "name": "verbrennung",
+          "weight": 0.9
+        },
+        {
+          "name": "kalkreaktion",
+          "weight": 0.5
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e10",
+      "name": "natriumchlorid",
+      "category": "stoff",
+      "components": ["natrium", "chlor"],
+      "relatedEntities": [
+        {
+          "name": "ionesbindung",
+          "weight": 1.0
+        },
+        {
+          "name": "ionenkristall",
+          "weight": 0.9
+        },
+        {
+          "name": "salze",
+          "weight": 0.8
+        },
+        {
+          "name": "elektrolyse",
+          "weight": 0.6
+        },
+        {
+          "name": "osmose",
+          "weight": 0.5
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e11",
+      "name": "methan",
+      "category": "stoff",
+      "components": ["kohlenstoff", "wasserstoff"],
+      "relatedEntities": [
+        {
+          "name": "alkane",
+          "weight": 1.0
+        },
+        {
+          "name": "verbrennung",
+          "weight": 0.8
+        },
+        {
+          "name": "organische-chemie",
+          "weight": 0.7
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e12",
+      "name": "schwefelsaeure",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "saure",
+          "weight": 1.0
+        },
+        {
+          "name": "neutralisation",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e13",
+      "name": "calciumcarbonat",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "kalkreaktion",
+          "weight": 1.0
+        },
+        {
+          "name": "saure",
+          "weight": 0.8
+        },
+        {
+          "name": "faellung",
+          "weight": 0.6
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e14",
+      "name": "ethanol",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "alkohole",
+          "weight": 1.0
+        },
+        {
+          "name": "homologe-reihe",
+          "weight": 0.8
+        },
+        {
+          "name": "wasserstoffbruecke",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e15",
+      "name": "eisenoxid",
+      "category": "stoff",
+      "components": ["eisen", "sauerstoff"],
+      "relatedEntities": [
+        {
+          "name": "korrosion",
+          "weight": 1.0
+        },
+        {
+          "name": "oxidation",
+          "weight": 0.9
+        },
+        {
+          "name": "reduktion",
+          "weight": 0.8
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e16",
+      "name": "chemische-bindung",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "ionesbindung",
+          "weight": 1.0
+        },
+        {
+          "name": "kovalente-bindung",
+          "weight": 1.0
+        },
+        {
+          "name": "metallbindung",
+          "weight": 1.0
+        },
+        {
+          "name": "molekuelphysik",
+          "weight": 0.7
+        },
+        {
+          "name": "octettregel",
+          "weight": 0.8
+        },
+        {
+          "name": "elektron",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": ["Wissenschaftler entdecken neue Art chemischer Bindung"],
+      "articleCount": 1
+    },
+    {
+      "id": "e17",
+      "name": "ionesbindung",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "chemische-bindung",
+          "weight": 1.0
+        },
+        {
+          "name": "ionenkristall",
+          "weight": 0.9
+        },
+        {
+          "name": "natriumchlorid",
+          "weight": 0.8
+        },
+        {
+          "name": "elektronenuebergang",
+          "weight": 0.7
+        },
+        {
+          "name": "gitterenergie",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e18",
+      "name": "kovalente-bindung",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "chemische-bindung",
+          "weight": 1.0
+        },
+        {
+          "name": "molekuelstruktur",
+          "weight": 0.8
+        },
+        {
+          "name": "lewis-struktur",
+          "weight": 0.6
+        },
+        {
+          "name": "elektronenpaar",
+          "weight": 0.9
+        },
+        {
+          "name": "polaritaet",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": ["Wissenschaftler entdecken neue Art chemischer Bindung"],
+      "articleCount": 1
+    },
+    {
+      "id": "e19",
+      "name": "metallbindung",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "chemische-bindung",
+          "weight": 1.0
+        },
+        {
+          "name": "legierung",
+          "weight": 0.8
+        },
+        {
+          "name": "elektronengas",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": ["Neue Legierung macht Motoren 30 % effizienter"],
+      "articleCount": 1
+    },
+    {
+      "id": "e20",
+      "name": "atombau",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "periodensystem",
+          "weight": 0.9
+        },
+        {
+          "name": "proton",
+          "weight": 0.9
+        },
+        {
+          "name": "elektron",
+          "weight": 0.9
+        },
+        {
+          "name": "ordnungszahl",
+          "weight": 0.8
+        },
+        {
+          "name": "molare-masse",
+          "weight": 0.6
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e21",
+      "name": "periodensystem",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "atombau",
+          "weight": 1.0
+        },
+        {
+          "name": "ordnungszahl",
+          "weight": 0.9
+        },
+        {
+          "name": "alkalimetalle",
+          "weight": 0.8
+        },
+        {
+          "name": "halogene",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e22",
+      "name": "ph-wert",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "saure",
+          "weight": 1.0
+        },
+        {
+          "name": "base",
+          "weight": 1.0
+        },
+        {
+          "name": "protolyse",
+          "weight": 0.9
+        },
+        {
+          "name": "neutralisation",
+          "weight": 0.8
+        },
+        {
+          "name": "indicator",
+          "weight": 0.7
+        },
+        {
+          "name": "proton",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": ["50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"],
+      "articleCount": 1
+    },
+    {
+      "id": "e23",
+      "name": "redoxreaktion",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "oxidation",
+          "weight": 1.0
+        },
+        {
+          "name": "reduktion",
+          "weight": 1.0
+        },
+        {
+          "name": "oxidationszahl",
+          "weight": 0.9
+        },
+        {
+          "name": "galvanische-zelle",
+          "weight": 0.7
+        },
+        {
+          "name": "korrosion",
+          "weight": 0.6
+        },
+        {
+          "name": "elektron",
+          "weight": 0.7
+        },
+        {
+          "name": "elektronenuebergang",
+          "weight": 0.9
+        },
+        {
+          "name": "oxidationsmittel",
+          "weight": 0.8
+        },
+        {
+          "name": "reduktionsmittel",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e24",
+      "name": "oxidation",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "redoxreaktion",
+          "weight": 1.0
+        },
+        {
+          "name": "oxidationszahl",
+          "weight": 0.9
+        },
+        {
+          "name": "sauerstoff",
+          "weight": 0.7
+        },
+        {
+          "name": "alkalimetalle",
+          "weight": 0.7
+        },
+        {
+          "name": "oxidationsmittel",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e25",
+      "name": "reduktion",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "redoxreaktion",
+          "weight": 1.0
+        },
+        {
+          "name": "oxidationszahl",
+          "weight": 0.9
+        },
+        {
+          "name": "chlor",
+          "weight": 0.6
+        },
+        {
+          "name": "halogene",
+          "weight": 0.7
+        },
+        {
+          "name": "reduktionsmittel",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e26",
+      "name": "saure-base-reaktion",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "saure",
+          "weight": 1.0
+        },
+        {
+          "name": "base",
+          "weight": 1.0
+        },
+        {
+          "name": "protolyse",
+          "weight": 0.9
+        },
+        {
+          "name": "neutralisation",
+          "weight": 0.8
+        },
+        {
+          "name": "ph-wert",
+          "weight": 0.7
+        },
+        {
+          "name": "titration",
+          "weight": 0.6
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e27",
+      "name": "verbrennung",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "oxidation",
+          "weight": 1.0
+        },
+        {
+          "name": "sauerstoff",
+          "weight": 0.9
+        },
+        {
+          "name": "energieumwandlung",
+          "weight": 0.6
+        },
+        {
+          "name": "exotherm",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e28",
+      "name": "neutralisation",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "saure-base-reaktion",
+          "weight": 1.0
+        },
+        {
+          "name": "saure",
+          "weight": 0.9
+        },
+        {
+          "name": "base",
+          "weight": 0.9
+        },
+        {
+          "name": "ph-wert",
+          "weight": 0.8
+        },
+        {
+          "name": "salze",
+          "weight": 0.7
+        },
+        {
+          "name": "schwefelsaeure",
+          "weight": 0.6
+        },
+        {
+          "name": "exotherm",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e29",
+      "name": "katalyse",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "katalysator",
+          "weight": 1.0
+        },
+        {
+          "name": "aktivierungsenergie",
+          "weight": 0.9
+        },
+        {
+          "name": "reaktionsgeschwindigkeit",
+          "weight": 0.8
+        },
+        {
+          "name": "enzym",
+          "weight": 0.6
+        },
+        {
+          "name": "haber-bosch-verfahren",
+          "weight": 0.5
+        },
+        {
+          "name": "skaleneffekt",
+          "weight": 0.6
+        },
+        {
+          "name": "substrat",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": ["Künstliche Intelligenz findet neue Katalysatoren für Wasserstoffproduktion"],
+      "articleCount": 1
+    },
+    {
+      "id": "e30",
+      "name": "elektrolyse",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "redoxreaktion",
+          "weight": 1.0
+        },
+        {
+          "name": "galvanische-zelle",
+          "weight": 0.8
+        },
+        {
+          "name": "natriumchlorid",
+          "weight": 0.6
+        },
+        {
+          "name": "wasserelektrolyse",
+          "weight": 0.7
+        },
+        {
+          "name": "endotherm",
+          "weight": 0.6
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e31",
+      "name": "saure",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "ph-wert",
+          "weight": 1.0
+        },
+        {
+          "name": "base",
+          "weight": 0.9
+        },
+        {
+          "name": "protolyse",
+          "weight": 0.9
+        },
+        {
+          "name": "saure-base-reaktion",
+          "weight": 0.8
+        },
+        {
+          "name": "schwefelsaeure",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": ["50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"],
+      "articleCount": 1
+    },
+    {
+      "id": "e32",
+      "name": "base",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "ph-wert",
+          "weight": 1.0
+        },
+        {
+          "name": "saure",
+          "weight": 0.9
+        },
+        {
+          "name": "protolyse",
+          "weight": 0.9
+        },
+        {
+          "name": "ammoniak",
+          "weight": 0.8
+        },
+        {
+          "name": "saure-base-reaktion",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e33",
+      "name": "mol",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "atombau",
+          "weight": 0.6
+        },
+        {
+          "name": "molare-masse",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e34",
+      "name": "stochiometrie",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "mol",
+          "weight": 1.0
+        },
+        {
+          "name": "molare-masse",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e35",
+      "name": "reaktionsgeschwindigkeit",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "aktivierungsenergie",
+          "weight": 1.0
+        },
+        {
+          "name": "katalyse",
+          "weight": 0.8
+        },
+        {
+          "name": "konzentration",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e36",
+      "name": "chemisches-gleichgewicht",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "le-chatelier-prinzip",
+          "weight": 0.8
+        },
+        {
+          "name": "haber-bosch-verfahren",
+          "weight": 0.6
+        },
+        {
+          "name": "druck",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e37",
+      "name": "enthalpie",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "verbrennung",
+          "weight": 0.7
+        },
+        {
+          "name": "exotherm",
+          "weight": 0.9
+        },
+        {
+          "name": "endotherm",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e38",
+      "name": "molekuelstruktur",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "kovalente-bindung",
+          "weight": 1.0
+        },
+        {
+          "name": "lewis-struktur",
+          "weight": 0.8
+        },
+        {
+          "name": "vsepr-modell",
+          "weight": 0.7
+        },
+        {
+          "name": "molekuelphysik",
+          "weight": 0.7
+        },
+        {
+          "name": "quantencomputer",
+          "weight": 0.3
+        },
+        {
+          "name": "gruppentheorie",
+          "weight": 0.5
+        },
+        {
+          "name": "skalenauswertung",
+          "weight": 0.7
+        },
+        {
+          "name": "spektroskopie",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [
+        "Quantencomputer berechnen Molekülstrukturen in Rekordzeit",
+        "Wissenschaftler entdecken neue Art chemischer Bindung"
+      ],
+      "articleCount": 2
+    },
+    {
+      "id": "e39",
+      "name": "organische-chemie",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "kohlenstoff",
+          "weight": 1.0
+        },
+        {
+          "name": "funktionale-gruppe",
+          "weight": 0.9
+        },
+        {
+          "name": "homologe-reihe",
+          "weight": 0.8
+        },
+        {
+          "name": "alkane",
+          "weight": 0.7
+        },
+        {
+          "name": "alkene",
+          "weight": 0.7
+        },
+        {
+          "name": "alkohole",
+          "weight": 0.6
+        },
+        {
+          "name": "doppelbindung",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": ["Solarzellen aus organischem Material erreichen 18 % Wirkungsgrad"],
+      "articleCount": 1
+    },
+    {
+      "id": "e40",
+      "name": "katalysator",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "katalyse",
+          "weight": 1.0
+        },
+        {
+          "name": "aktivierungsenergie",
+          "weight": 0.9
+        },
+        {
+          "name": "enzym",
+          "weight": 0.6
+        }
+      ],
+      "components": [],
+      "articles": [
+        "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse",
+        "Künstliche Intelligenz findet neue Katalysatoren für Wasserstoffproduktion"
+      ],
+      "articleCount": 2
+    },
+    {
+      "id": "e41",
+      "name": "enzym",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "katalyse",
+          "weight": 1.0
+        },
+        {
+          "name": "allosterie",
+          "weight": 0.6
+        },
+        {
+          "name": "proteinstruktur",
+          "weight": 0.8
+        },
+        {
+          "name": "substrat",
+          "weight": 0.9
+        },
+        {
+          "name": "regelation",
+          "weight": 0.5
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e42",
+      "name": "proteine",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "enzym",
+          "weight": 0.9
+        },
+        {
+          "name": "denaturierung",
+          "weight": 0.7
+        },
+        {
+          "name": "hydrathuelle",
+          "weight": 0.6
+        },
+        {
+          "name": "proteinstruktur",
+          "weight": 0.9
+        },
+        {
+          "name": "makromolekuel",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": [
+        "Energetische Baupläne diversifizieren Proteinfunktion",
+        "50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"
+      ],
+      "articleCount": 2
+    },
+    {
+      "id": "e43",
+      "name": "allosterie",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "enzym",
+          "weight": 0.9
+        },
+        {
+          "name": "ligandenempfindlichkeit",
+          "weight": 0.7
+        },
+        {
+          "name": "proteinstruktur",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": ["Energetische Baupläne diversifizieren Proteinfunktion"],
+      "articleCount": 1
+    },
+    {
+      "id": "e44",
+      "name": "kristallstruktur",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "kristallisation",
+          "weight": 1.0
+        },
+        {
+          "name": "ionenkristall",
+          "weight": 0.8
+        },
+        {
+          "name": "magnetische-ordnung",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": ["Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"],
+      "articleCount": 1
+    },
+    {
+      "id": "e45",
+      "name": "elektrokatalyse",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "katalyse",
+          "weight": 1.0
+        },
+        {
+          "name": "redoxreaktion",
+          "weight": 0.9
+        },
+        {
+          "name": "elektrolyse",
+          "weight": 0.8
+        },
+        {
+          "name": "wasserstoffproduktion",
+          "weight": 0.7
+        },
+        {
+          "name": "ammoniak",
+          "weight": 0.5
+        }
+      ],
+      "components": [],
+      "articles": ["Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"],
+      "articleCount": 1
+    },
+    {
+      "id": "e46",
+      "name": "perowskit-solarzellen",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "kristallstruktur",
+          "weight": 0.8
+        },
+        {
+          "name": "energieumwandlung",
+          "weight": 0.9
+        },
+        {
+          "name": "photovoltaik",
+          "weight": 0.6
+        }
+      ],
+      "components": [],
+      "articles": ["Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"],
+      "articleCount": 1
+    },
+    {
+      "id": "e47",
+      "name": "hydrathuelle",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "wasser",
+          "weight": 1.0
+        },
+        {
+          "name": "proteine",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": ["50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"],
+      "articleCount": 1
+    },
+    {
+      "id": "e48",
+      "name": "wasserstoffproduktion",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "elektrokatalyse",
+          "weight": 0.8
+        },
+        {
+          "name": "reduktion",
+          "weight": 0.7
+        },
+        {
+          "name": "wasserelektrolyse",
+          "weight": 0.5
+        }
+      ],
+      "components": [],
+      "articles": ["Künstliche Intelligenz findet neue Katalysatoren für Wasserstoffproduktion"],
+      "articleCount": 1
+    },
+    {
+      "id": "e49",
+      "name": "molekuelphysik",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "chemische-bindung",
+          "weight": 0.8
+        },
+        {
+          "name": "molekuelstruktur",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e50",
+      "name": "legierung",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "metallbindung",
+          "weight": 1.0
+        },
+        {
+          "name": "eisen",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": ["Neue Legierung macht Motoren 30 % effizienter"],
+      "articleCount": 1
+    },
+    {
+      "id": "e51",
+      "name": "solarzellen",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "energieumwandlung",
+          "weight": 1.0
+        },
+        {
+          "name": "photovoltaik",
+          "weight": 0.8
+        },
+        {
+          "name": "perowskit-solarzellen",
+          "weight": 0.5
+        }
+      ],
+      "components": [],
+      "articles": ["Solarzellen aus organischem Material erreichen 18 % Wirkungsgrad"],
+      "articleCount": 1
+    },
+    {
+      "id": "e52",
+      "name": "protolyse",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "ph-wert",
+          "weight": 1.0
+        },
+        {
+          "name": "saure",
+          "weight": 0.9
+        },
+        {
+          "name": "base",
+          "weight": 0.9
+        },
+        {
+          "name": "wasser",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e53",
+      "name": "korrosion",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "redoxreaktion",
+          "weight": 1.0
+        },
+        {
+          "name": "eisenoxid",
+          "weight": 0.9
+        },
+        {
+          "name": "sauerstoff",
+          "weight": 0.7
+        },
+        {
+          "name": "wasser",
+          "weight": 0.6
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e54",
+      "name": "galvanische-zelle",
+      "category": "methode",
+      "relatedEntities": [
+        {
+          "name": "redoxreaktion",
+          "weight": 1.0
+        },
+        {
+          "name": "elektrolyse",
+          "weight": 0.8
+        },
+        {
+          "name": "elektronenuebergang",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e55",
+      "name": "titration",
+      "category": "methode",
+      "relatedEntities": [
+        {
+          "name": "saure-base-reaktion",
+          "weight": 1.0
+        },
+        {
+          "name": "ph-wert",
+          "weight": 0.9
+        },
+        {
+          "name": "neutralisation",
+          "weight": 0.8
+        },
+        {
+          "name": "konzentration",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e56",
+      "name": "chromatographie",
+      "category": "methode",
+      "relatedEntities": [
+        {
+          "name": "trennverfahren",
+          "weight": 1.0
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e57",
+      "name": "spektroskopie",
+      "category": "methode",
+      "relatedEntities": [],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e58",
+      "name": "destillation",
+      "category": "methode",
+      "relatedEntities": [
+        {
+          "name": "trennverfahren",
+          "weight": 1.0
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e59",
+      "name": "aktivierungsenergie",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "katalyse",
+          "weight": 1.0
+        },
+        {
+          "name": "reaktionsgeschwindigkeit",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e60",
+      "name": "oxidationszahl",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "redoxreaktion",
+          "weight": 1.0
+        },
+        {
+          "name": "oxidation",
+          "weight": 0.9
+        },
+        {
+          "name": "reduktion",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e61",
+      "name": "lewis-struktur",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "kovalente-bindung",
+          "weight": 0.8
+        },
+        {
+          "name": "octettregel",
+          "weight": 0.9
+        },
+        {
+          "name": "elektronenpaar",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e62",
+      "name": "salzsaeure",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "saure",
+          "weight": 1.0
+        },
+        {
+          "name": "chlor",
+          "weight": 0.8
+        },
+        {
+          "name": "ph-wert",
+          "weight": 0.6
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e63",
+      "name": "natriumhydroxid",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "base",
+          "weight": 1.0
+        },
+        {
+          "name": "natrium",
+          "weight": 0.8
+        },
+        {
+          "name": "neutralisation",
+          "weight": 0.6
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e64",
+      "name": "alkane",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "organische-chemie",
+          "weight": 0.8
+        },
+        {
+          "name": "homologe-reihe",
+          "weight": 1.0
+        },
+        {
+          "name": "methan",
+          "weight": 0.9
+        },
+        {
+          "name": "funktionale-gruppe",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e65",
+      "name": "alkene",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "organische-chemie",
+          "weight": 0.8
+        },
+        {
+          "name": "homologe-reihe",
+          "weight": 0.9
+        },
+        {
+          "name": "polymerisation",
+          "weight": 0.5
+        },
+        {
+          "name": "doppelbindung",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e66",
+      "name": "alkohole",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "organische-chemie",
+          "weight": 0.8
+        },
+        {
+          "name": "funktionale-gruppe",
+          "weight": 1.0
+        },
+        {
+          "name": "ethanol",
+          "weight": 0.9
+        },
+        {
+          "name": "wasserstoffbruecke",
+          "weight": 0.7
+        },
+        {
+          "name": "oxidation",
+          "weight": 0.5
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e67",
+      "name": "ionenkristall",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "ionesbindung",
+          "weight": 1.0
+        },
+        {
+          "name": "kristallstruktur",
+          "weight": 0.8
+        },
+        {
+          "name": "gitterenergie",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e68",
+      "name": "wasserelektrolyse",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "elektrolyse",
+          "weight": 1.0
+        },
+        {
+          "name": "wasser",
+          "weight": 0.9
+        },
+        {
+          "name": "wasserstoff",
+          "weight": 0.8
+        },
+        {
+          "name": "sauerstoff",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e69",
+      "name": "haber-bosch-verfahren",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "ammoniak",
+          "weight": 1.0
+        },
+        {
+          "name": "stickstoff",
+          "weight": 0.9
+        },
+        {
+          "name": "katalyse",
+          "weight": 0.8
+        },
+        {
+          "name": "chemisches-gleichgewicht",
+          "weight": 0.9
+        },
+        {
+          "name": "le-chatelier-prinzip",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e70",
+      "name": "octettregel",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "chemische-bindung",
+          "weight": 0.9
+        },
+        {
+          "name": "lewis-struktur",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e71",
+      "name": "energieumwandlung",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "verbrennung",
+          "weight": 0.8
+        },
+        {
+          "name": "enthalpie",
+          "weight": 0.9
+        },
+        {
+          "name": "photovoltaik",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": [
+        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz",
+        "Neue Legierung macht Motoren 30 % effizienter",
+        "Solarzellen aus organischem Material erreichen 18 % Wirkungsgrad"
+      ],
+      "articleCount": 3
+    },
+    {
+      "id": "e72",
+      "name": "trennverfahren",
+      "category": "methode",
+      "relatedEntities": [
+        {
+          "name": "destillation",
+          "weight": 0.9
+        },
+        {
+          "name": "chromatographie",
+          "weight": 0.9
+        },
+        {
+          "name": "kristallisation",
+          "weight": 0.7
+        },
+        {
+          "name": "filtration",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e73",
+      "name": "faellung",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "salze",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e74",
+      "name": "quantencomputer",
+      "category": "methode",
+      "relatedEntities": [
+        {
+          "name": "molekuelstruktur",
+          "weight": 0.7
+        },
+        {
+          "name": "spektroskopie",
+          "weight": 0.5
+        }
+      ],
+      "components": [],
+      "articles": ["Quantencomputer berechnen Molekülstrukturen in Rekordzeit"],
+      "articleCount": 1
+    },
+    {
+      "id": "e75",
+      "name": "komplexbildung",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "ligandenempfindlichkeit",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e76",
+      "name": "kristallisation",
+      "category": "methode",
+      "relatedEntities": [
+        {
+          "name": "kristallstruktur",
+          "weight": 0.9
+        },
+        {
+          "name": "trennverfahren",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": [
+        "Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen",
+        "Neue Kristallsaatkerne steigern Perowskit-Solarzellen auf 23 % Effizienz"
+      ],
+      "articleCount": 2
+    },
+    {
+      "id": "e77",
+      "name": "gruppentheorie",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "molekuelstruktur",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e78",
+      "name": "photovoltaik",
+      "category": "methode",
+      "relatedEntities": [
+        {
+          "name": "solarzellen",
+          "weight": 1.0
+        },
+        {
+          "name": "energieumwandlung",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e79",
+      "name": "homologe-reihe",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "organische-chemie",
+          "weight": 0.9
+        },
+        {
+          "name": "alkane",
+          "weight": 0.8
+        },
+        {
+          "name": "alkene",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e80",
+      "name": "funktionale-gruppe",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "organische-chemie",
+          "weight": 1.0
+        },
+        {
+          "name": "alkohole",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e81",
+      "name": "indicator",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "ph-wert",
+          "weight": 1.0
+        },
+        {
+          "name": "saure-base-reaktion",
+          "weight": 0.8
+        },
+        {
+          "name": "titration",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e82",
+      "name": "magnetische-ordnung",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "kristallstruktur",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": ["Neuer Kristall erzeugt magnetische Skyrmionen-Strukturen"],
+      "articleCount": 1
+    },
+    {
+      "id": "e83",
+      "name": "denaturierung",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "proteine",
+          "weight": 1.0
+        },
+        {
+          "name": "ph-wert",
+          "weight": 0.6
+        },
+        {
+          "name": "proteinstruktur",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": ["50 Jahre Rätsel: Proteine verlieren Hydrathülle durch Säure"],
+      "articleCount": 1
+    },
+    {
+      "id": "e84",
+      "name": "ligandenempfindlichkeit",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "allosterie",
+          "weight": 1.0
+        },
+        {
+          "name": "enzym",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": ["Energetische Baupläne diversifizieren Proteinfunktion"],
+      "articleCount": 1
+    },
+    {
+      "id": "e85",
+      "name": "le-chatelier-prinzip",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "chemisches-gleichgewicht",
+          "weight": 1.0
+        },
+        {
+          "name": "haber-bosch-verfahren",
+          "weight": 0.6
+        },
+        {
+          "name": "druck",
+          "weight": 0.8
+        },
+        {
+          "name": "konzentration",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e86",
+      "name": "skaleneffekt",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "katalyse",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e87",
+      "name": "polymerisation",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "alkene",
+          "weight": 0.8
+        },
+        {
+          "name": "kunststoff",
+          "weight": 1.0
+        },
+        {
+          "name": "katalyse",
+          "weight": 0.5
+        },
+        {
+          "name": "makromolekuel",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e88",
+      "name": "salze",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "neutralisation",
+          "weight": 0.9
+        },
+        {
+          "name": "ionesbindung",
+          "weight": 0.8
+        },
+        {
+          "name": "natriumchlorid",
+          "weight": 0.7
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e89",
+      "name": "aggregatzustaende",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "wasser",
+          "weight": 0.7
+        },
+        {
+          "name": "druck",
+          "weight": 0.7
+        },
+        {
+          "name": "zwischenmolekulare-kraefte",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e90",
+      "name": "vsepr-modell",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "molekuelstruktur",
+          "weight": 1.0
+        },
+        {
+          "name": "lewis-struktur",
+          "weight": 0.8
+        },
+        {
+          "name": "elektronenpaar",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e91",
+      "name": "skalenauswertung",
+      "category": "methode",
+      "relatedEntities": [
+        {
+          "name": "wasserstoffbruecke",
+          "weight": 0.8
+        },
+        {
+          "name": "spektroskopie",
+          "weight": 0.6
+        },
+        {
+          "name": "molekuelstruktur",
+          "weight": 0.5
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e92",
+      "name": "wasserstoffbruecke",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "wasser",
+          "weight": 0.8
+        },
+        {
+          "name": "alkohole",
+          "weight": 0.7
+        },
+        {
+          "name": "skalenauswertung",
+          "weight": 0.7
+        },
+        {
+          "name": "zwischenmolekulare-kraefte",
+          "weight": 0.9
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e93",
+      "name": "osmose",
+      "category": "konzept",
+      "relatedEntities": [],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e94",
+      "name": "kalkreaktion",
+      "category": "reaktion",
+      "relatedEntities": [
+        {
+          "name": "calciumcarbonat",
+          "weight": 1.0
+        },
+        {
+          "name": "saure",
+          "weight": 0.9
+        },
+        {
+          "name": "kohlendioxid",
+          "weight": 0.8
+        },
+        {
+          "name": "faellung",
+          "weight": 0.5
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e95",
+      "name": "kunststoff",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "polymerisation",
+          "weight": 1.0
+        },
+        {
+          "name": "organische-chemie",
+          "weight": 0.7
+        },
+        {
+          "name": "makromolekuel",
+          "weight": 0.8
+        }
+      ],
+      "components": [],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e101",
+      "name": "proton",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "atombau",
+          "weight": 1.0
+        },
+        {
+          "name": "wasserstoff",
+          "weight": 0.7
+        },
+        {
+          "name": "ph-wert",
+          "weight": 0.8
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e102",
+      "name": "neutron",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "atombau",
+          "weight": 1.0
+        },
+        {
+          "name": "isotop",
+          "weight": 0.8
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e103",
+      "name": "elektron",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "atombau",
+          "weight": 1.0
+        },
+        {
+          "name": "chemische-bindung",
+          "weight": 0.9
+        },
+        {
+          "name": "redoxreaktion",
+          "weight": 0.8
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e104",
+      "name": "elektronenkonfiguration",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "atombau",
+          "weight": 1.0
+        },
+        {
+          "name": "periodensystem",
+          "weight": 0.8
+        },
+        {
+          "name": "oktettregel",
+          "weight": 0.7
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e105",
+      "name": "ordnungszahl",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "periodensystem",
+          "weight": 1.0
+        },
+        {
+          "name": "atombau",
+          "weight": 0.9
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e106",
+      "name": "alkalimetalle",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "natrium",
+          "weight": 1.0
+        },
+        {
+          "name": "periodensystem",
+          "weight": 0.8
+        },
+        {
+          "name": "oxidation",
+          "weight": 0.7
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e107",
+      "name": "halogene",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "chlor",
+          "weight": 1.0
+        },
+        {
+          "name": "periodensystem",
+          "weight": 0.8
+        },
+        {
+          "name": "reduktion",
+          "weight": 0.7
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e108",
+      "name": "edelgase",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "periodensystem",
+          "weight": 1.0
+        },
+        {
+          "name": "oktettregel",
+          "weight": 0.9
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e109",
+      "name": "oktettregel",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "chemische-bindung",
+          "weight": 0.9
+        },
+        {
+          "name": "elektronenkonfiguration",
+          "weight": 0.8
+        },
+        {
+          "name": "edelgase",
+          "weight": 0.7
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e110",
+      "name": "elektronenpaar",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "kovalente-bindung",
+          "weight": 1.0
+        },
+        {
+          "name": "lewis-struktur",
+          "weight": 0.9
+        },
+        {
+          "name": "vsepr-modell",
+          "weight": 0.7
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e111",
+      "name": "molare-masse",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "mol",
+          "weight": 1.0
+        },
+        {
+          "name": "stochiometrie",
+          "weight": 0.9
+        },
+        {
+          "name": "atombau",
+          "weight": 0.5
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e112",
+      "name": "temperatur",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "reaktionsgeschwindigkeit",
+          "weight": 1.0
+        },
+        {
+          "name": "enthalpie",
+          "weight": 0.8
+        },
+        {
+          "name": "aggregatzustaende",
+          "weight": 0.7
+        },
+        {
+          "name": "le-chatelier-prinzip",
+          "weight": 0.6
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e113",
+      "name": "druck",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "chemisches-gleichgewicht",
+          "weight": 0.9
+        },
+        {
+          "name": "le-chatelier-prinzip",
+          "weight": 0.9
+        },
+        {
+          "name": "aggregatzustaende",
+          "weight": 0.6
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e114",
+      "name": "konzentration",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "reaktionsgeschwindigkeit",
+          "weight": 1.0
+        },
+        {
+          "name": "le-chatelier-prinzip",
+          "weight": 0.8
+        },
+        {
+          "name": "titration",
+          "weight": 0.6
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e115",
+      "name": "exotherm",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "enthalpie",
+          "weight": 1.0
+        },
+        {
+          "name": "verbrennung",
+          "weight": 0.9
+        },
+        {
+          "name": "neutralisation",
+          "weight": 0.7
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e116",
+      "name": "endotherm",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "enthalpie",
+          "weight": 1.0
+        },
+        {
+          "name": "elektrolyse",
+          "weight": 0.7
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e117",
+      "name": "siedepunkt",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "aggregatzustaende",
+          "weight": 1.0
+        },
+        {
+          "name": "destillation",
+          "weight": 0.9
+        },
+        {
+          "name": "wasserstoffbruecke",
+          "weight": 0.8
+        },
+        {
+          "name": "homologe-reihe",
+          "weight": 0.5
+        },
+        {
+          "name": "zwischenmolekulare-kraefte",
+          "weight": 0.8
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e118",
+      "name": "schmelzpunkt",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "aggregatzustaende",
+          "weight": 1.0
+        },
+        {
+          "name": "kristallstruktur",
+          "weight": 0.8
+        },
+        {
+          "name": "ionenkristall",
+          "weight": 0.6
+        },
+        {
+          "name": "gitterenergie",
+          "weight": 0.7
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e119",
+      "name": "aktivierungsenergie",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "katalyse",
+          "weight": 1.0
+        },
+        {
+          "name": "reaktionsgeschwindigkeit",
+          "weight": 0.9
+        },
+        {
+          "name": "temperatur",
+          "weight": 0.7
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e120",
+      "name": "elektronenuebergang",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "redoxreaktion",
+          "weight": 1.0
+        },
+        {
+          "name": "ionesbindung",
+          "weight": 0.8
+        },
+        {
+          "name": "galvanische-zelle",
+          "weight": 0.7
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e121",
+      "name": "proteinstruktur",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "proteine",
+          "weight": 1.0
+        },
+        {
+          "name": "enzym",
+          "weight": 0.9
+        },
+        {
+          "name": "denaturierung",
+          "weight": 0.8
+        },
+        {
+          "name": "allosterie",
+          "weight": 0.7
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e122",
+      "name": "gitterenergie",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "ionesbindung",
+          "weight": 0.9
+        },
+        {
+          "name": "ionenkristall",
+          "weight": 1.0
+        },
+        {
+          "name": "schmelzpunkt",
+          "weight": 0.6
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e123",
+      "name": "elektronengas",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "metallbindung",
+          "weight": 1.0
+        },
+        {
+          "name": "elektrische-leitfaehigkeit",
+          "weight": 0.8
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e124",
+      "name": "elektrische-leitfaehigkeit",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "metallbindung",
+          "weight": 0.9
+        },
+        {
+          "name": "ionenkristall",
+          "weight": 0.8
+        },
+        {
+          "name": "elektrolyse",
+          "weight": 0.6
+        },
+        {
+          "name": "elektronengas",
+          "weight": 0.8
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e125",
+      "name": "loesungsmittel",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "wasser",
+          "weight": 1.0
+        },
+        {
+          "name": "hydrathuelle",
+          "weight": 0.8
+        },
+        {
+          "name": "osmose",
+          "weight": 0.7
+        },
+        {
+          "name": "polaritaet",
+          "weight": 0.6
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e126",
+      "name": "polaritaet",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "kovalente-bindung",
+          "weight": 1.0
+        },
+        {
+          "name": "wasser",
+          "weight": 0.8
+        },
+        {
+          "name": "loesungsmittel",
+          "weight": 0.6
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e127",
+      "name": "isotop",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "atombau",
+          "weight": 0.9
+        },
+        {
+          "name": "neutron",
+          "weight": 1.0
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e128",
+      "name": "substrat",
+      "category": "stoff",
+      "relatedEntities": [
+        {
+          "name": "enzym",
+          "weight": 1.0
+        },
+        {
+          "name": "katalyse",
+          "weight": 0.7
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e129",
+      "name": "filtration",
+      "category": "methode",
+      "relatedEntities": [
+        {
+          "name": "trennverfahren",
+          "weight": 1.0
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e130",
+      "name": "doppelbindung",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "alkene",
+          "weight": 1.0
+        },
+        {
+          "name": "organische-chemie",
+          "weight": 0.7
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e131",
+      "name": "makromolekuel",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "kunststoff",
+          "weight": 1.0
+        },
+        {
+          "name": "polymerisation",
+          "weight": 0.9
+        },
+        {
+          "name": "proteine",
+          "weight": 0.6
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e132",
+      "name": "zwischenmolekulare-kraefte",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "wasserstoffbruecke",
+          "weight": 1.0
+        },
+        {
+          "name": "siedepunkt",
+          "weight": 0.8
+        },
+        {
+          "name": "aggregatzustaende",
+          "weight": 0.7
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e133",
+      "name": "oxidationsmittel",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "oxidation",
+          "weight": 1.0
+        },
+        {
+          "name": "sauerstoff",
+          "weight": 0.8
+        },
+        {
+          "name": "redoxreaktion",
+          "weight": 0.7
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e134",
+      "name": "reduktionsmittel",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "reduktion",
+          "weight": 1.0
+        },
+        {
+          "name": "wasserstoff",
+          "weight": 0.7
+        },
+        {
+          "name": "redoxreaktion",
+          "weight": 0.6
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e135",
+      "name": "spektroskopie",
+      "category": "methode",
+      "relatedEntities": [
+        {
+          "name": "molekuelstruktur",
+          "weight": 0.7
+        },
+        {
+          "name": "quantencomputer",
+          "weight": 0.4
+        },
+        {
+          "name": "skalenauswertung",
+          "weight": 0.6
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    },
+    {
+      "id": "e136",
+      "name": "regelation",
+      "category": "konzept",
+      "relatedEntities": [
+        {
+          "name": "enzym",
+          "weight": 0.8
+        }
+      ],
+      "articles": [],
+      "articleCount": 0
+    }
+  ],
+  "curricula": []
+}

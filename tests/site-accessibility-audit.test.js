@@ -62,12 +62,8 @@ describe('Site-wide Accessibility Audit - WCAG 2.1 AA', () => {
 
     // Static Pages
     {
-      name: 'About Page',
-      url: 'https://chemie-lernen.org/pages/about/',
-    },
-    {
-      name: 'Contact Page',
-      url: 'https://chemie-lernen.org/pages/contact/',
+      name: 'Barrierefreiheit',
+      url: 'https://chemie-lernen.org/pages/barrierefreiheit/',
     },
     {
       name: 'Roadmap',

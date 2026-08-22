@@ -1521,6 +1521,32 @@ const TRENDS = {
       return val !== null ? val.toFixed(2) + ' g/cm\u00b3' : '\u2014';
     },
   },
+  block: {
+    label: 'Konfiguration (Block)',
+    getValue: function (e) {
+      if (e[10] === 'Lanthanoid' || e[10] === 'Actinoid') return 'f';
+      var group = e[3];
+      var match = (e[7] || '').match(
+        /([spdfg])[\u00b9\u00b2\u00b3\u2070\u2074\u2075\u2076\u2077\u2078\u2079]*$/
+      );
+      if (match) {
+        if (match[1] === 's' && group >= 3 && group <= 12) return 'd';
+        return match[1];
+      }
+      if (group <= 2) return 's';
+      if (group <= 12) return 'd';
+      if (group <= 18) return 'p';
+      return 'f';
+    },
+    getColor: function (val) {
+      var colors = { s: '#4A90D9', p: '#50B86C', d: '#E67E22', f: '#9B59B6' };
+      return colors[val] || 'rgba(100,100,100,0.5)';
+    },
+    format: function (val) {
+      var labels = { s: 's-Block', p: 'p-Block', d: 'd-Block', f: 'f-Block' };
+      return labels[val] || val;
+    },
+  },
 };
 
 var currentTrend = 'group';
@@ -1556,6 +1582,21 @@ function getGroupColor(group) {
     20: 'rgba(255, 0, 255, 0.85)',
   };
   return colors[group] || 'rgba(52, 73, 94, 0.9)';
+}
+
+// WCAG AA: return the black/white text colour with maximum contrast for a bg.
+function readableText(bg) {
+  var m = String(bg).match(/(\d+\.?\d*)\s*,\s*(\d+\.?\d*)\s*,\s*(\d+\.?\d*)/);
+  if (!m) return '#111111';
+  var r = parseFloat(m[1]),
+    g = parseFloat(m[2]),
+    b = parseFloat(m[3]);
+  var a = [r, g, b].map(function (v) {
+    v /= 255;
+    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  });
+  var L = 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
+  return L > 0.179 ? '#111111' : '#ffffff';
 }
 
 function getElementColor(elemIdx) {
@@ -1665,6 +1706,13 @@ function init() {
     details.innerHTML = e[1] + '<br>' + e[2];
     el.appendChild(details);
 
+    // a11y: ensure tile text colour contrasts with the (category) background
+    var _tc = readableText(getGroupColor(group));
+    el.style.color = _tc;
+    [number, symbol, emojiLink, details].forEach(function (c) {
+      c.style.color = _tc;
+    });
+
     var objectCSS = new CSS3DObject(el);
     objectCSS.position.x = Math.random() * 4000 - 2000;
     objectCSS.position.y = Math.random() * 4000 - 2000;
@@ -1750,9 +1798,9 @@ function init() {
     })(viewIds[vi]);
   }
 
-  transform(targets.grid, 2000);
-  var gridBtn = document.getElementById('grid');
-  if (gridBtn) setActiveButton(gridBtn);
+  transform(targets.table, 2000);
+  var tableBtn = document.getElementById('table');
+  if (tableBtn) setActiveButton(tableBtn);
 
   window.addEventListener('resize', onWindowResize);
 
@@ -1792,15 +1840,12 @@ function init() {
     })(trendBtns[ti]);
   }
 
-  // ── Wire up detail panel close ──────────────────────────
+  // ── Detail panel: persistent overlay, close only via X button ─
   var closeBtn = document.getElementById('detail-close');
   if (closeBtn) {
     closeBtn.addEventListener('click', hideDetail);
   }
-  var overlay = document.getElementById('detail-overlay');
-  if (overlay) {
-    overlay.addEventListener('click', hideDetail);
-  }
+  // No overlay close — panel stays open until user clicks X or selects another element
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') hideDetail();
   });
@@ -1819,7 +1864,14 @@ function updateElementColors() {
   for (var i = 0; i < objects.length; i++) {
     var el = objects[i].element;
     if (el) {
-      el.style.backgroundColor = getElementColor(i);
+      var bg = getElementColor(i);
+      el.style.backgroundColor = bg;
+      var tc = readableText(bg);
+      el.style.color = tc;
+      var kids = el.querySelectorAll('.number, .symbol, .details, .emoji-link');
+      for (var k = 0; k < kids.length; k++) {
+        kids[k].style.color = tc;
+      }
     }
   }
 }

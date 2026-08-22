@@ -12,10 +12,12 @@ class SpacedRepetitionSystem {
 
     // FSRS parameters (default values from original algorithm)
     this.params = {
-      request_retention: 0.9,    // Target retention rate (0.7-0.9)
-      maximum_interval: 36500,   // Max interval in days (100 years)
-      w: [0.4, 0.6, 2.4, 5.8, 4.93, 0.94, 0.86, 0.01, 1.49, 0.14, 0.94, 2.18, 0.05,
-          0.34, 1.26, 0.29, 2.61] // Weights for memory calculations
+      request_retention: 0.9, // Target retention rate (0.7-0.9)
+      maximum_interval: 36500, // Max interval in days (100 years)
+      w: [
+        0.4, 0.6, 2.4, 5.8, 4.93, 0.94, 0.86, 0.01, 1.49, 0.14, 0.94, 2.18, 0.05, 0.34, 1.26, 0.29,
+        2.61,
+      ], // Weights for memory calculations
     };
 
     this.loadData();
@@ -84,10 +86,15 @@ class SpacedRepetitionSystem {
     let newStability;
     if (quality >= 3) {
       // Success
-      newStability = lastStability * (1 + (w[8] * (11 - lastDifficulty) * lastStability ** -0.47 +
-                   w[9] * (quality - 3) * Math.exp((2 - lastDifficulty) * 0.4) +
-                   w[10] * (11 - lastDifficulty) * lastStability ** -0.55 *
-                   Math.exp((2 - quality) * 0.4)));
+      newStability =
+        lastStability *
+        (1 +
+          (w[8] * (11 - lastDifficulty) * lastStability ** -0.47 +
+            w[9] * (quality - 3) * Math.exp((2 - lastDifficulty) * 0.4) +
+            w[10] *
+              (11 - lastDifficulty) *
+              lastStability ** -0.55 *
+              Math.exp((2 - quality) * 0.4)));
     } else {
       // Failure
       newStability = w[11] * lastDifficulty ** -0.49 * lastStability ** -0.32;
@@ -135,7 +142,7 @@ class SpacedRepetitionSystem {
         interval: 0,
         reviews: 0,
         lapses: 0,
-        lastReview: null
+        lastReview: null,
       };
     }
 
@@ -199,7 +206,7 @@ class SpacedRepetitionSystem {
   getCardStats() {
     const totalCards = Object.keys(this.cards).length;
     const dueCards = this.getDueCards();
-    const learnedCards = Object.values(this.cards).filter(c => c.interval > 0).length;
+    const learnedCards = Object.values(this.cards).filter((c) => c.interval > 0).length;
     const mastery = totalCards > 0 ? (learnedCards / totalCards) * 100 : 0;
 
     return {
@@ -208,7 +215,7 @@ class SpacedRepetitionSystem {
       learned: learnedCards,
       mastery: mastery.toFixed(1),
       lapses: Object.values(this.cards).reduce((sum, c) => sum + c.lapses, 0),
-      totalReviews: Object.values(this.cards).reduce((sum, c) => sum + c.reviews, 0)
+      totalReviews: Object.values(this.cards).reduce((sum, c) => sum + c.reviews, 0),
     };
   }
 
@@ -248,7 +255,7 @@ class SpacedRepetitionSystem {
           count: 0,
           lastSuccess: null,
           timeSpent: [],
-          streak: 0
+          streak: 0,
         };
       }
       this.successData[cardId].count++;
@@ -260,7 +267,7 @@ class SpacedRepetitionSystem {
         this.failureData[cardId] = {
           count: 0,
           lastFailure: null,
-          timeSpent: []
+          timeSpent: [],
         };
       }
       this.failureData[cardId].count++;
@@ -278,15 +285,17 @@ class SpacedRepetitionSystem {
   getPracticeSuggestions(limit = 10) {
     const dueCards = this.getDueCards(limit);
 
-    return dueCards.map(card => ({
-      cardId: card.id,
-      quizId: card.id.split('-')[0],
-      questionId: card.id.split('-').slice(1).join('-'),
-      dueDate: new Date(card.dueDate),
-      interval: card.interval,
-      difficulty: card.difficulty,
-      priority: this.calculatePriority(card)
-    })).sort((a, b) => b.priority - a.priority);
+    return dueCards
+      .map((card) => ({
+        cardId: card.id,
+        quizId: card.id.split('-')[0],
+        questionId: card.id.split('-').slice(1).join('-'),
+        dueDate: new Date(card.dueDate),
+        interval: card.interval,
+        difficulty: card.difficulty,
+        priority: this.calculatePriority(card),
+      }))
+      .sort((a, b) => b.priority - a.priority);
   }
 
   /**
@@ -303,7 +312,7 @@ class SpacedRepetitionSystem {
     // Higher priority for cards with many lapses
     const lapseFactor = Math.min(card.lapses / 5, 1);
 
-    return (difficultyFactor * 0.4) + (urgencyFactor * 0.3) + (lapseFactor * 0.3);
+    return difficultyFactor * 0.4 + urgencyFactor * 0.3 + lapseFactor * 0.3;
   }
 
   /**
@@ -330,7 +339,7 @@ class SpacedRepetitionSystem {
       fsrsData: this.cards,
       successData: this.successData,
       failureData: this.failureData,
-      exportDate: new Date().toISOString()
+      exportDate: new Date().toISOString(),
     };
   }
 
@@ -347,10 +356,10 @@ class SpacedRepetitionSystem {
       this.saveQuizData(this.successKey, this.successData);
     }
     if (data.failureData) {
-    if (data.fsrsData) {
-      this.cards = data.fsrsData;
-      this.saveData();
-    }
+      if (data.fsrsData) {
+        this.cards = data.fsrsData;
+        this.saveData();
+      }
       this.saveQuizData(this.failureKey, this.failureData);
     }
   }
@@ -367,7 +376,7 @@ class SpacedRepetitionSystem {
 
     while (true) {
       const dateStr = currentDate.toISOString().split('T')[0];
-      const hasReviews = Object.values(this.cards).some(card => {
+      const hasReviews = Object.values(this.cards).some((card) => {
         if (!card.lastReview) return false;
         const reviewDate = card.lastReview.split('T')[0];
         return reviewDate === dateStr;
@@ -390,15 +399,20 @@ class SpacedRepetitionSystem {
   getRetentionStats() {
     const totalReviews = Object.values(this.cards).reduce((sum, c) => sum + c.reviews, 0);
     const totalLapses = Object.values(this.cards).reduce((sum, c) => sum + c.lapses, 0);
-    const retentionRate = totalReviews > 0 ?
-      ((totalReviews - totalLapses) / totalReviews) * 100 : 100;
+    const retentionRate =
+      totalReviews > 0 ? ((totalReviews - totalLapses) / totalReviews) * 100 : 100;
 
     return {
       totalReviews,
       totalLapses,
       retentionRate: retentionRate.toFixed(1),
-      averageInterval: totalReviews > 0 ?
-        (Object.values(this.cards).reduce((sum, c) => sum + c.interval, 0) / Object.keys(this.cards).length).toFixed(1) : 0
+      averageInterval:
+        totalReviews > 0
+          ? (
+              Object.values(this.cards).reduce((sum, c) => sum + c.interval, 0) /
+              Object.keys(this.cards).length
+            ).toFixed(1)
+          : 0,
     };
   }
 }

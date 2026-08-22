@@ -1,6 +1,7 @@
 ---
 title: 'Anmelden'
-description: 'Melde dich an, um auf alle Premium-Features von chemie-lernen.org zuzugreifen'
+last_reviewed: 2026-08-06
+description: 'Melde dich an oder erstelle ein Konto bei chemie-lernen.org'
 layout: 'login'
 noindex: true
 ---

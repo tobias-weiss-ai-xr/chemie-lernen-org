@@ -21,7 +21,12 @@ const NEO4J_URI = process.env.NEO4J_URI || DEFAULT_URI;
 const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
 const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || 'chemie';
 
-const config = { uri: NEO4J_URI, username: NEO4J_USER, password: NEO4J_PASSWORD, database: 'chemie' };
+const config = {
+  uri: NEO4J_URI,
+  username: NEO4J_USER,
+  password: NEO4J_PASSWORD,
+  database: 'chemie',
+};
 
 export async function close() {
   closeDriver();
@@ -234,7 +239,16 @@ export async function setEntityCategories(entityCategories) {
  * Also creates entity→entity co-occurrence (RELATED_TO) relationships
  * between entities mentioned in the same article.
  */
-export async function storeArticleWithEntities({ title, source, date, description, tags, entities, url, entityCategories }) {
+export async function storeArticleWithEntities({
+  title,
+  source,
+  date,
+  description,
+  tags,
+  entities,
+  url,
+  entityCategories,
+}) {
   const d = getDriver(config);
   const session = d.session({ database: config.database });
   try {
@@ -270,7 +284,15 @@ export async function storeArticleWithEntities({ title, source, date, descriptio
         MERGE (d)-[:MENTIONS]->(e)
       RETURN d.title as title, d.url as url
       `,
-      { title, source: source || 'article-pipeline', date, description, tags: tags || [], entities: (entities || []).map((e) => e.toLowerCase()), url }
+      {
+        title,
+        source: source || 'article-pipeline',
+        date,
+        description,
+        tags: tags || [],
+        entities: (entities || []).map((e) => e.toLowerCase()),
+        url,
+      }
     );
 
     // Create entity→entity co-occurrence relationships
@@ -301,4 +323,12 @@ export async function storeArticleWithEntities({ title, source, date, descriptio
   }
 }
 
-export default { storeArticle, storeEntities, storeArticleWithEntities, findRelatedByTags, findEntities, getPopularTags, close };
+export default {
+  storeArticle,
+  storeEntities,
+  storeArticleWithEntities,
+  findRelatedByTags,
+  findEntities,
+  getPopularTags,
+  close,
+};

@@ -1,0 +1,135 @@
+{{ define "main" }}
+<div class="container assessment-dashboard" aria-label="Assessment-Dashboard">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center" data-i18n="assessment.learnerDashboard">Meine Lernfortschritte</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div id="assessment-loading" class="text-center">
+        <p><i class="fa fa-spinner fa-spin fa-3x"></i></p>
+        <p data-i18n="assessment.loading">Lade Daten...</p>
+      </div>
+
+      <div id="assessment-content" style="display:none;">
+        <!-- Overview cards -->
+        <div class="row assessment-overview">
+          <div class="col-md-4">
+            <div class="panel panel-info">
+              <div class="panel-heading text-center">
+                <h3 class="panel-title" data-i18n="assessment.overallScore">Gesamtpunktzahl</h3>
+              </div>
+              <div class="panel-body text-center">
+                <span id="overall-score" class="assessment-score-large">—</span>
+                <span>%</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="panel panel-success">
+              <div class="panel-heading text-center">
+                <h3 class="panel-title" data-i18n="assessment.strongTopics">Starke Themen</h3>
+              </div>
+              <div class="panel-body text-center">
+                <span id="strong-topics-count" class="assessment-score-large">—</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="panel panel-warning">
+              <div class="panel-heading text-center">
+                <h3 class="panel-title" data-i18n="assessment.weakTopics">Übungsbedarf</h3>
+              </div>
+              <div class="panel-body text-center">
+                <span id="weak-topics-count" class="assessment-score-large">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Score trend chart -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title" data-i18n="assessment.scoreTrend">Ergebnis-Trend</h3>
+              </div>
+              <div class="panel-body">
+                <canvas id="score-trend-chart" width="600" height="300"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent assessments table -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title" data-i18n="assessment.recentAssessments">Letzte Assessments</h3>
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table class="table table-striped" id="recent-assessments-table">
+                    <thead>
+                      <tr>
+                        <th data-i18n="assessment.filter.topic">Thema</th>
+                        <th data-i18n="assessment.difficulty.leicht">Schwierigkeit</th>
+                        <th data-i18n="assessment.overallScore">Ergebnis</th>
+                        <th data-i18n="assessment.filter.date">Datum</th>
+                      </tr>
+                    </thead>
+                    <tbody id="recent-assessments-body">
+                      <tr><td colspan="4" class="text-center" data-i18n="assessment.noData">Keine Daten verfügbar</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weak topics and recommendations -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="panel panel-danger">
+              <div class="panel-heading">
+                <h3 class="panel-title" data-i18n="assessment.weakTopics">Übungsbedarf</h3>
+              </div>
+              <div class="panel-body">
+                <ul id="weak-topics-list" class="list-group">
+                  <li class="list-group-item text-center" data-i18n="assessment.noData">Keine Daten verfügbar</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title" data-i18n="assessment.recommendedNextSteps">Empfohlene nächste Schritte</h3>
+              </div>
+              <div class="panel-body">
+                <ul id="recommendations-list" class="list-group">
+                  <li class="list-group-item text-center" data-i18n="assessment.noData">Keine Daten verfügbar</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="assessment-error" style="display:none;" class="alert alert-danger text-center">
+        <p data-i18n="assessment.error">Fehler beim Laden</p>
+        <button class="btn btn-default" onclick="loadAssessmentData()" data-i18n="assessment.retry">Erneut versuchen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ "/js/assessment-dashboard.js" | relURL }}"></script>
+{{ end }}

@@ -3,6 +3,7 @@ title: 'Organic Chemistry 2: Synthesis and Mechanism — University of Oxford'
 description: 'Organic Chemistry 2: Synthesis and Mechanism (CHEMIB02) an der University of Oxford. 8 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: OXF
 uni_name: University of Oxford
 module_code: CHEMIB02

@@ -76,6 +76,13 @@ Diese **Passivschicht** ist nur wenige Nanometer dick, aber extrem stabil. Techn
 
 - **Farblacke**: Verhindern den Zutritt von Sauerstoff und Wasser
 - **Metallüberzüge**: Verzinken (Feuerverzinkung), Verchromen, Vernickeln
+
+#### 📺 Lernvideo: Galvanisieren in der Praxis
+
+{{< youtube id="h6XZ_EaReCg" title="Praktikum: Galvanisieren" >}}
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Galvanisieren_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) zeigt das elektrolytische Beschichten in der Praxis — ein zentrales Verfahren des Korrosionsschutzes durch Metallüberzüge.
+{{< /youtube >}}
+
 - **Emaille**: Glasartige Schicht auf Stahl
 
 ### 3. Kathodischer Korrosionsschutz

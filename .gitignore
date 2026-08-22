@@ -9,7 +9,8 @@ tests/playwright-report/
 tests/screenshots/
 
 # Build artifacts
-*.optimized.js
+# *.optimized.js are now TRACKED (deployment-critical: layouts load them)
+# *.optimized.js
 *.optimized.css
 
 # Hermes agent config
@@ -28,9 +29,19 @@ node_modules/
 backups/logs/
 backups/neo4j/
 backups/neo4j-leads/
+backups/chemie-kg/
+backups/chemie-kg/*.dump
+backups/cron.log
+backups/auth-db/
 
 # Temporary files
 tmp/
+
+# Runtime collaboration session data (written by collab-engine.js)
+data/collab/
+
+# Environment secrets
+.env
 
 # Development artifacts
 .sisyphus/
@@ -38,3 +49,37 @@ tmp/
 .omo/
 tests/__pycache__/
 curricula-venv/
+backups/
+myhugoapp/public/
+
+# dedicated graph backup git repo (own remote)
+graph-backup-repo/
+
+# Vendored proprietary core (private chemie-core repo — see scripts/vendor-core.sh)
+.core/
+api/prompts/
+api/services/auto-grader.js
+api/services/exercise-generator.js
+api/services/feedback-engine.js
+api/services/rag.js
+api/services/badges.js
+api/learning-engine.js
+api/collab-engine.js
+api/assessment-store.js
+api/auth.js
+api/auth-db.js
+api/session-store.js
+api/embeddings.js
+api/_rag-helpers.cjs
+api/calc-rag-index.json
+
+api/data/users.json
+api/data/chemie-sessions.json
+api/data/theme-overrides.json
+
+# taskfleet worktrees (do not commit)
+.tf-worktrees/
+
+# transient build/hunt logs
+cb.log
+cv.log

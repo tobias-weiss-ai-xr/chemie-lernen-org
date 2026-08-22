@@ -11,6 +11,16 @@ icon: '⚛️'
 aliases: [/article/atome-und-molekuele/]
 ---
 
+## 📺 Lernvideos
+
+{{< youtube id="LE_iiSO-3EI" title="What about water? — Zig's Chemistry 42" >}}
+**Lernvideo-Illustration:** _What about water?_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) nimmt die drei Aggregatzustände (fest, flüssig, gasförmig) anhand des Wassers genauer unter die Lupe.
+{{< /youtube >}}
+
+{{< youtube id="os4SfgZ-SC4" title="Water – The Exception! — Zig's Chemistry 42" >}}
+**Lernvideo-Illustration:** _Water – The Exception!_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) — warum Wasser so anders ist: Eis schwimmt, dehnt sich beim Gefrieren aus und kann sogar sublimieren.
+{{< /youtube >}}
+
 ## Aufbau des Atoms
 
 Alle Stoffe bestehen aus Atomen. Ein **Atom** setzt sich zusammen aus:

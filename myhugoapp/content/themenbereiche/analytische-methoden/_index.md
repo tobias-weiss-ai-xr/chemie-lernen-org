@@ -2,6 +2,7 @@
 title: 'Analytische Methoden'
 description: 'Qualitative und quantitative Analyse - Erfahren Sie alles über Nachweisreaktionen, Titration, Chromatographie, Spektroskopie und moderne Verfahren'
 date: '2025-12-26'
+last_reviewed: 2026-08-06
 teilgebiet: 'analytische-methoden'
 schwierigkeit: 'fortgeschritten'
 icon: '🔍'
@@ -503,3 +504,7 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Quantitative Analyse](/themenbereiche/analytische-methoden/quantitative-analyse/) – Vertiefung in Methoden der quantitativen chemischen Analyse – Gravimetrie, Titration, Spektroskopie und Fehlerrechnung – für Fortgeschrittene.
 - [Thermische Analyse: Methoden und Anwendungen](/themenbereiche/analytische-methoden/thermische-analyse/) – Thermische Analyseverfahren untersuchen physikalische und chemische Eigenschaften von Stoffen in Abhängigkeit von der Temperatur – TG, DTA, DSC.
 - [Trennverfahren in der Analytik](/themenbereiche/analytische-methoden/trennverfahren/) – Überblick über chromatographische und elektrophoretische Trennverfahren in der Analytik – DC, GC, HPLC, Elektrophorese – für Schule und Studium.
+
+{{< quiz-widget topic="analytische-methoden" title="Analytische Methoden" >}}
+
+{{< entity-cloud slug="analytische-methoden" title="Verwandte Fachbegriffe" >}}

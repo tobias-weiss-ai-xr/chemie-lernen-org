@@ -1,6 +1,7 @@
 ---
 title: 'Torricelli-Versuch - Atmosphärischer Druck'
 date: 2026-01-04
+last_reviewed: 2026-07-09
 description: 'Entdecken Sie Torricellis historisches Experiment zur Messung des Luftdrucks mit interaktiver Simulation'
 tags: ['druck', 'atmosphaere', 'experiment', 'gasgesetze', 'geschichte']
 ---

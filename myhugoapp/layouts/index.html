@@ -19,15 +19,10 @@
       </div>
    </div>
 
-   <!-- KI-Assistent Hero -->
+   <!-- Page Content (shortcodes etc.) -->
    <div class="row">
      <div class="col-md-12">
-       <div class="ki-assistent-hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px; border-radius: 12px; margin: 30px 0; text-align: center; color: white; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);">
-         <div style="font-size: 64px; margin-bottom: 15px;" aria-hidden="true">🤖</div>
-         <h2 style="color: white; margin-top: 0; font-size: 2em;">KI-Assistent</h2>
-         <p style="font-size: 1.2em; max-width: 600px; margin: 15px auto; opacity: 0.95;">Stelle Fragen zur Chemie — der Assistent durchsucht das Wissensnetz und findet Antworten aus unseren Inhalten.</p>
-         <a href="/ki-assistent/" class="btn btn-lg" style="background: white; color: #667eea; font-weight: 700; padding: 12px 40px; border-radius: 30px; margin-top: 10px; display: inline-block; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.15);" aria-label="Zum KI-Assistent: Stelle Fragen zur Chemie">Zum KI-Assistent →</a>
-       </div>
+       {{ .Content }}
      </div>
    </div>
 
@@ -43,8 +38,8 @@
       <!-- 3D-Visualisierungen Card -->
       <div class="card">
            <a href="/rechner/visualisierungen/" class="index-anchor">
-              <div class="panel panel-default" style="border: 2px solid #4caf50;">
-                <div class="panel-body" style="background-color: #e8f5e9;">
+               <div class="panel panel-default panel-3d">
+                 <div class="panel-body panel-body-3d">
                   <h3 class="panel-title pull-left"><span aria-hidden="true">🎨</span> 3D-Visualisierungen</h3>
                 </div>
                 <div class="panel-body"><small>
@@ -57,8 +52,8 @@
       <!-- Chemie-Rechner Card -->
       <div class="card">
            <a href="/rechner/chemie-rechner/" class="index-anchor">
-              <div class="panel panel-default" style="border: 2px solid #2196F3;">
-                <div class="panel-body" style="background-color: #E3F2FD;">
+               <div class="panel panel-default panel-rechner">
+                 <div class="panel-body panel-body-rechner">
                   <h3 class="panel-title pull-left"><span aria-hidden="true">🧪</span> Chemie-Rechner</h3>
                 </div>
                 <div class="panel-body"><small>
@@ -71,8 +66,8 @@
       <!-- Spezialrechner Card -->
       <div class="card">
            <a href="/rechner/spezialrechner/" class="index-anchor">
-              <div class="panel panel-default" style="border: 2px solid #FF9800;">
-                <div class="panel-body" style="background-color: #FFF3E0;">
+               <div class="panel panel-default panel-spezial">
+                 <div class="panel-body panel-body-spezial">
                   <h3 class="panel-title pull-left"><span aria-hidden="true">🔬</span> Spezialrechner</h3>
                 </div>
                 <div class="panel-body"><small>
@@ -84,54 +79,87 @@
 
 </div>
 
-    <!-- Forschungsnews Section -->
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Forschung</h2>
-        <p class="lead">KI-generierte Zusammenfassungen aktueller chemischer Forschung — automatisch aus wissenschaftlichen Publikationen extrahiert.</p>
-      </div>
-    </div>
-
-    <!-- Blog Posts Section -->
-    <div class="row pack" style="background-color: #f9f9f9; padding: 20px; border: 1px solid #e0e0e0; border-radius: 5px; margin-top: 20px;">
-
-        {{ $posts := where .Site.RegularPages "Section" "posts" }}
-        {{ $lastPosts := first 4 $posts.ByDate.Reverse }}
-        {{ range $lastPosts }}
-            <div class="col-md-4 card">
-            <a href="{{ .Permalink }}" class="index-anchor">    
-               <div class="panel panel-default">
-                 
-                 {{ if .Params.img }}
-                 {{ with .Resources.Match .Params.img }}
-                   {{ range . }}
-                     <img width="100%" src="{{ .RelPermalink }}" alt="{{ .Title }}">
-                   {{ end }}
-                 {{ end }}
-                 {{ else }}
-                 <div style="width:100%; height:140px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display:flex; align-items:center; justify-content:center; color:white; font-size:48px;" aria-hidden="true">🔬</div>
-                 {{ end }}
-                 
-                 <div class="panel-body">
-                   <h3 class="panel-title pull-left">{{ .Title | truncate 25 }}</h3><span class="post-meta pull-right"><small>{{ .Date.Format "January 2, 2006" }}</small></span>
-                 </div>
-                 
-                 <div class="panel-body"><small>
-                   {{ .Summary | plainify | replaceRE `\$[^$]+\$` "" | truncate 180 }}</small>
-                 </div>
-               </div>
-               </a>
-           </div>
-       
-         {{ end }}
-
-   <!-- "Alle anzeigen" Link -->
-   <div class="row text-center" style="margin-top: 20px;">
+   <!-- Chemie-Forschung Section (aus dem Knowledge Graph) -->
+   <div class="row">
      <div class="col-md-12">
-       <a href="/posts/" class="btn btn-primary" aria-label="Alle Forschungsnews anzeigen">Alle Forschungsnews anzeigen →</a>
+       <h2>Chemie-Forschung <small class="text-muted">aus dem Wissensnetz</small></h2>
+       <p class="lead">KI-generierte Artikel zu den am stärksten vernetzten chemischen Konzepten — automatisch aus dem chemie-lernen.org Knowledge Graph.</p>
      </div>
    </div>
 
+   <div class="row pack blog-posts-section">
+
+       {{ $cf := where .Site.RegularPages "Section" "chemie-forschung" }}
+       {{ $lastCf := first 4 $cf.ByDate.Reverse }}
+       {{ range $lastCf }}
+           <div class="col-md-4 card">
+           <a href="{{ .Permalink }}" class="index-anchor">
+              <div class="panel panel-default">
+
+                {{ if .Params.img }}
+                {{ with .Resources.Match .Params.img }}
+                  {{ range . }}
+                    <img width="100%" src="{{ .RelPermalink }}" alt="{{ .Title }}">
+                  {{ end }}
+                {{ end }}
+                {{ else }}
+                 <div style="width:100%; height:140px; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); display:flex; align-items:center; justify-content:center; color:white; font-size:48px;" aria-hidden="true">🧪</div>
+                {{ end }}
+
+                <div class="panel-body">
+                  <h3 class="panel-title pull-left">{{ .Title | truncate 60 }}</h3><span class="post-meta pull-right"><small>{{ .Date.Format "January 2, 2006" }}</small></span>
+                </div>
+
+                <div class="panel-body"><small>
+                  {{ .Summary | plainify | replaceRE `\$[^$]+\$` "" | truncate 180 }}</small>
+                </div>
+              </div>
+              </a>
+          </div>
+       {{ end }}
+   </div>
+
+   <!-- "Alle Chemie-Forschung anzeigen" Link -->
+   <div class="row text-center alle-anzeigen">
+     <div class="col-md-12">
+       <a href="/chemie-forschung/" class="btn btn-primary" aria-label="Alle Chemie-Forschung anzeigen">Alle Chemie-Forschung anzeigen →</a>
+       <div class="mt-2">
+         <a href="/posts/" class="text-muted small" aria-label="Frühere Forschungsnews (Archiv) anzeigen">Frühere Forschungsnews im Archiv ansehen →</a>
+       </div>
+     </div>
+   </div>
+
+   <!-- Siggi's Chemistry 42 — Zig's Videos -->
+   <div class="row">
+     <div class="col-md-12">
+       <h2>🎬 Lernvideos von Zig's Chemistry 42 <small class="text-muted">mit Siggi (Prof. Siegfried Schindler)</small></h2>
+       <p class="lead">Ausgewählte Videos von Siggi – didaktisch in unsere Themenbereiche eingeordnet.</p>
+     </div>
+   </div>
+   {{ with .Site.Data.zigs_videos }}
+   <div class="row pack">
+     {{ range first 3 .videos }}
+       <div class="col-md-4 card">
+         <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="index-anchor" aria-label="Video ansehen: {{ .title }} von Zig's Chemistry 42 (YouTube)">
+           <div class="panel panel-default">
+             <img width="100%" src="{{ .thumb }}" alt="Vorschaubild: {{ .title }} (Zig's Chemistry 42)" loading="lazy" style="display:block;width:100%;height:auto;" />
+             <div class="panel-body"><h3 class="panel-title pull-left">{{ .title | truncate 60 }}</h3></div>
+           </div>
+         </a>
+       </div>
+     {{ end }}
+   </div>
+   <div class="row text-center">
+     <div class="col-md-12">
+       <a href="/lernvideos/" class="btn btn-primary" aria-label="Alle Videos von Zig's Chemistry 42 ansehen">Alle Videos von Zig's Chemistry 42 ansehen →</a>
+     </div>
+   </div>
+   {{ end }}
+
+   <!-- Recommendation Widget (Learning Path) -->
+   {{ partial "recommendation-widget" . }}
+
 </div>
 
+<script defer src="{{ "/js/home-recommendation.js" | relURL }}"></script>
 {{ end }}

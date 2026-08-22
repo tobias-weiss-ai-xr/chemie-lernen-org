@@ -52,8 +52,6 @@ function parseFrontmatter(raw) {
   };
 }
 
-
-
 /**
  * Liest alle Artikel-Dateien in einem Themenbereich-Ordner,
  * sammelt Titel und Pfad.

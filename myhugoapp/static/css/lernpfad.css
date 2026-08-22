@@ -5,7 +5,7 @@
 }
 
 .lernpfad-container .panel {
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 #path-list .list-group-item {
@@ -24,7 +24,9 @@
   margin-bottom: 12px;
   border-radius: 8px;
   border: 1px solid #dee2e6;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 }
 
 .path-step.step-done {
@@ -107,5 +109,46 @@
     flex-direction: row;
     gap: 8px;
     min-width: auto;
+  }
+}
+
+/* ── Cognitive-load session plan ───────────────────────────── */
+.session-plan {
+  margin: 16px 0;
+}
+.session-item {
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border: 1px solid #e3e3e3;
+  border-left: 4px solid #d4d4d4;
+  border-radius: 4px;
+  background: #fdfdfd;
+}
+.session-item.session-primary {
+  border-left-color: #337ab7;
+  background: #f5f9fd;
+}
+.session-item.session-success {
+  border-left-color: #27ae60;
+  background: #f4fbf6;
+}
+.session-head {
+  margin-bottom: 6px;
+}
+.session-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+.session-break {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed #ddd;
+  font-size: 12px;
+}
+@media (max-width: 768px) {
+  .session-item {
+    padding: 8px;
   }
 }

@@ -1,0 +1,35 @@
+{{- $videos := default slice (site.Data.zigs_videos.videos) -}}
+{{- $known := default slice (site.Data.zigs_known) -}}
+{{- $channelURL := "https://www.youtube.com/@ZigsChemistry42" -}}
+{{- $limit := int (default 0 (.Get "limit")) -}}
+{{- $shown := cond (and (gt $limit 0) (gt (len $videos) 0)) (first $limit $videos) $videos -}}
+
+{{- if eq (len $videos) 0 -}}
+  <p class="zigs-video-empty">Derzeit sind keine Videos geladen (Daten werden beim Build aktualisiert).</p>
+{{- else -}}
+<div class="zigs-video-list" role="list">
+  {{- range $shown -}}
+    {{- $isKnown := in $known .id -}}
+    <article class="zigs-video-item" role="listitem">
+      <a class="zigs-video-link" href="{{ .url }}" target="_blank" rel="noopener noreferrer" aria-label="Video ansehen: {{ .title }} von Zig's Chemistry 42 (öffnet YouTube)" title="{{ .title }} (Zig's Chemistry 42, YouTube)">
+        <span class="zigs-video-thumb-wrap">
+          <img class="zigs-video-thumb" src="{{ .thumb }}" alt="Vorschaubild zu: {{ .title }} (von Zig's Chemistry 42, YouTube)" loading="lazy" width="320" height="180" decoding="async">
+          {{- if not $isKnown -}}
+          <span class="zigs-video-new" aria-hidden="true">Neu</span>
+          {{- end -}}
+        </span>
+        <span class="zigs-video-title">{{ .title }}</span>
+      </a>
+      <p class="zigs-video-date">
+        <time datetime="{{ .published | time.AsTime | time.Format "2006-01-02T15:04:05Z07:00" }}">{{ .published | time.AsTime | time.Format "02.01.2006" }}</time>
+        <span aria-hidden="true"> · </span>
+        <span class="zigs-video-channel">Zig's Chemistry 42</span>
+      </p>
+    </article>
+  {{- end -}}
+</div>
+{{- if and (gt $limit 0) (gt (len $videos) $limit) -}}
+<p class="zigs-video-more"><a href="/lernvideos/">Alle {{ len $videos }} Videos von Zig's Chemistry 42 ansehen →</a></p>
+{{- end -}}
+<p class="zigs-video-source">🎬 Kanal: <a href="{{ $channelURL }}" target="_blank" rel="noopener noreferrer">Zig's Chemistry 42</a> von Prof. Siegfried Schindler – alle Videos stammen von diesem YouTube-Kanal und liegen in dessen Urheberrechten.</p>
+{{- end -}}

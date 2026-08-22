@@ -2,6 +2,7 @@
 title: 'Reaktionskinetik Simulator'
 description: 'Interaktiver Simulator für Reaktionsgeschwindigkeit und Kollisionstheorie - Particle und Temperatursimulationen'
 date: 2026-01-07
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'reaktionskinetik-simulator'

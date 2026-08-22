@@ -1,0 +1,257 @@
+{{ define "main" }}
+<div class="container teacher-dashboard" aria-label="Lehrerdashboard">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">{{ .Title }}</h1>
+      <p class="lead text-center" data-i18n="assessment.teacherTitle">Klassenübersicht und Assessment-Ergebnisse</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <!-- Curriculum selector -->
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <label for="curriculum-select" data-i18n="assessment.filter.topic">Lehrplan auswählen</label>
+            <select id="curriculum-select" class="form-control" onchange="loadTeacherData()">
+              <option value="bw-gymnasium">Baden-Württemberg Gymnasium</option>
+              <option value="by-gymnasium">Bayern Gymnasium</option>
+              <option value="be-gymnasium">Berlin Gymnasium</option>
+              <option value="he-gymnasium">Hessen Gymnasium</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="teacher-loading" class="text-center">
+        <p><i class="fa fa-spinner fa-spin fa-3x"></i></p>
+        <p data-i18n="assessment.loading">Lade Daten...</p>
+      </div>
+
+      <div id="teacher-content" style="display:none;">
+        <!-- Class average card -->
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-info">
+              <div class="panel-heading text-center">
+                <h3 class="panel-title" data-i18n="assessment.classOverview">Klassendurchschnitt</h3>
+              </div>
+              <div class="panel-body text-center">
+                <span id="class-average" class="assessment-score-large">—</span>
+                <span>%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Export button -->
+        <div class="row">
+          <div class="col-md-12 text-right">
+            <button class="btn btn-success" onclick="exportCsv()" data-i18n="assessment.exportCsv">
+              <i class="fa fa-download"></i> CSV exportieren
+            </button>
+          </div>
+        </div>
+
+        <!-- Topic breakdown table -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title" data-i18n="assessment.topicBreakdown">Themenübersicht</h3>
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table class="table table-striped" id="topic-breakdown-table">
+                    <thead>
+                      <tr>
+                        <th>Thema</th>
+                        <th>Durchschnitt</th>
+                        <th>Schüler</th>
+                        <th>Assessments</th>
+                      </tr>
+                    </thead>
+                    <tbody id="topic-breakdown-body">
+                      <tr><td colspan="4" class="text-center" data-i18n="assessment.noData">Keine Daten verfügbar</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student list -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Schülerübersicht</h3>
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table class="table table-striped" id="student-table">
+                    <thead>
+                      <tr>
+                        <th>Schüler-ID</th>
+                        <th>Durchschnitt</th>
+                        <th>Assessments</th>
+                        <th>Aktionen</th>
+                      </tr>
+                    </thead>
+                    <tbody id="student-table-body">
+                      <tr><td colspan="4" class="text-center" data-i18n="assessment.noData">Keine Daten verfügbar</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="teacher-error" style="display:none;" class="alert alert-danger text-center">
+        <p data-i18n="assessment.error">Fehler beim Laden</p>
+        <button class="btn btn-default" onclick="loadTeacherData()" data-i18n="assessment.retry">Erneut versuchen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/**
+ * Teacher dashboard logic — loads class results.
+ */
+function loadTeacherData() {
+  var curriculum = document.getElementById('curriculum-select').value;
+  document.getElementById('teacher-loading').style.display = '';
+  document.getElementById('teacher-content').style.display = 'none';
+  document.getElementById('teacher-error').style.display = 'none';
+
+  fetch('/api/assessment/class-results?curriculumSlug=' + encodeURIComponent(curriculum), {
+    credentials: 'same-origin',
+    headers: { Accept: 'application/json' },
+  })
+    .then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(function (data) {
+      renderTeacherData(data);
+    })
+    .catch(function (err) {
+      console.error('[teacher-dashboard] Error:', err);
+      document.getElementById('teacher-error').style.display = '';
+      document.getElementById('teacher-content').style.display = 'none';
+      document.getElementById('teacher-loading').style.display = 'none';
+    });
+}
+
+function renderTeacherData(data) {
+  // Class average
+  document.getElementById('class-average').textContent = data.classAverage || '—';
+
+  // Topic breakdown
+  var tbody = document.getElementById('topic-breakdown-body');
+  var topics = data.topicBreakdown || [];
+  if (topics.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4" class="text-center">Keine Daten verfügbar</td></tr>';
+  } else {
+    var html = '';
+    for (var i = 0; i < topics.length; i++) {
+      var t = topics[i];
+      var scoreClass = t.averageScore >= 60 ? 'text-success' : t.averageScore >= 40 ? 'text-warning' : 'text-danger';
+      html += '<tr>' +
+        '<td>' + escapeHtml(t.topic || '—') + '</td>' +
+        '<td class="' + scoreClass + '"><strong>' + t.averageScore + '%</strong></td>' +
+        '<td>' + t.studentCount + '</td>' +
+        '<td>' + t.assessmentCount + '</td>' +
+        '</tr>';
+    }
+    tbody.innerHTML = html;
+  }
+
+  // Student list
+  var sbody = document.getElementById('student-table-body');
+  var students = data.students || [];
+  if (students.length === 0) {
+    sbody.innerHTML = '<tr><td colspan="4" class="text-center">Keine Daten verfügbar</td></tr>';
+  } else {
+    var shtml = '';
+    for (var j = 0; j < students.length; j++) {
+      var s = students[j];
+      shtml += '<tr>' +
+        '<td>' + escapeHtml(s.userId || '—') + '</td>' +
+        '<td>' + s.averageScore + '%</td>' +
+        '<td>' + s.assessmentsCompleted + '</td>' +
+        '<td><a href="/assessment?learnerId=' + encodeURIComponent(s.userId) + '" class="btn btn-xs btn-info">Details</a></td>' +
+        '</tr>';
+    }
+    sbody.innerHTML = shtml;
+  }
+
+  document.getElementById('teacher-loading').style.display = 'none';
+  document.getElementById('teacher-content').style.display = '';
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  var div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
+/**
+ * Export class data as CSV.
+ */
+function exportCsv() {
+  var curriculum = document.getElementById('curriculum-select').value;
+  fetch('/api/assessment/class-results?curriculumSlug=' + encodeURIComponent(curriculum), {
+    credentials: 'same-origin',
+    headers: { Accept: 'application/json' },
+  })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      var rows = [];
+      // Header
+      rows.push('Thema,Durchschnitt (%),Schüleranzahl,Assessments');
+
+      var topics = data.topicBreakdown || [];
+      for (var i = 0; i < topics.length; i++) {
+        var t = topics[i];
+        rows.push('"' + (t.topic || '') + '",' + t.averageScore + ',' + t.studentCount + ',' + t.assessmentCount);
+      }
+
+      // Add student data
+      rows.push('');
+      rows.push('Schüler-ID,Durchschnitt (%),Assessments');
+      var students = data.students || [];
+      for (var j = 0; j < students.length; j++) {
+        var s = students[j];
+        rows.push('"' + (s.userId || '') + '",' + s.averageScore + ',' + s.assessmentsCompleted);
+      }
+
+      var csvContent = rows.join('\n');
+      var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      var link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'assessment-' + curriculum + '-' + new Date().toISOString().slice(0, 10) + '.csv';
+      link.click();
+    })
+    .catch(function (err) {
+      console.error('[teacher-dashboard] CSV export error:', err);
+      alert('CSV-Export fehlgeschlagen');
+    });
+}
+
+// Load on page ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', loadTeacherData);
+} else {
+  loadTeacherData();
+}
+</script>
+{{ end }}

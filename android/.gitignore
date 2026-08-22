@@ -1,0 +1,21 @@
+# Gradle
+.gradle/
+build/
+
+# Android
+local.properties
+*.apk
+*.aab
+*.jks
+*.keystore
+
+# IDE
+.idea/
+*.iml
+captures/
+
+# OS
+.DS_Store
+
+# Memory dumps / crash logs
+*.hprof

@@ -11,9 +11,35 @@
 chemie-lernen.org uses 3D and interactive visualizations to help
 German secondary-school students (Klasse 8-13) understand abstract
 chemistry concepts. These include a 3D molecule viewer, interactive
-periodic table, orbital visualizations, and graph-based knowledge
-networks. Visualizations make microscopic and theoretical concepts
-tangible through spatial representation.
+periodic table, orbital visualizations, element comparison tool,
+and graph-based knowledge networks. Visualizations make microscopic
+and theoretical concepts tangible through spatial representation.
+
+## Architecture
+
+All 3D visualizations share a common architecture:
+
+- **Three.js** (via CDN import map) for 3D rendering
+- **ES Modules** (`type="module"`) for JavaScript organization
+- **Import map** (`<script type="importmap">`) resolves Three.js and addons
+- **Lazy loading** via `LazyLoader` for route-matched script groups
+- **Responsive sizing** via `ResizeObserver` on container elements
+
+### Three.js stack
+
+| Version       | Source                                                                              |
+| ------------- | ----------------------------------------------------------------------------------- |
+| three.js      | `https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js`                  |
+| OrbitControls | `https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/controls/OrbitControls.js` |
+
+### Components
+
+- **PeriodicTableTrends** (`perioden-system-der-elemente.js`) — interactive 3D periodic table with 4 views (table, sphere, helix, grid) and trend color overlays
+- **OrbitalViewer** (`orbital-viewer/`) — 3D atomic orbital viewer with shape geometry generation, electron animation, and phase visualization
+- **ElementComparison** (`vergleich.js`) — side-by-side comparison of up to 4 elements with property bars and relative atom-sphere rendering
+- **MoleculeStudio** (`molekuel-studio.js`) — 3D molecule viewer with ball-and-stick and space-filling modes
+- **D3EgoGraph** (`d3-ego-graph.js`) — force-directed knowledge graph of entities
+- **ChartManager** (`chart-manager.js`) — reusable chart components (reaction diagrams, titration curves, trends)
 
 ## Requirements
 
@@ -135,6 +161,74 @@ Visualizations use Three.js for 3D rendering:
 - WebGL availability detection tests
 - Accessibility tests for screen reader support
 
+### REQ-VIZ-1: Orbital viewer — rendering
+
+The orbital viewer (`orbital-viewer/`) renders 3D atomic orbitals:
+
+- s-orbitals: spherical geometry with configurable radius and detail
+- p-orbitals: dumbbell (two-lobe) geometry oriented along x, y, or z axes
+- d-orbitals: clover (four-lobe) geometry for dxy/dxz/dyz/dx²−y², donut+handle for dz²
+- f-orbitals: multi-lobe geometry using coefficient tables
+- All geometries computed via parametric surface generators with vertex coloring
+
+### REQ-VIZ-2: Orbital viewer — color modes
+
+- Default mode: single-color blue (#4488ff) for all lobes
+- Phase mode: positive lobes blue (#4488ff), negative lobes red (#ff4444)
+- Phase mode toggle via button in the control panel
+- Vertex colors computed at geometry creation time
+
+### REQ-VIZ-3: Orbital viewer — controls
+
+- Orbital selector: dropdown listing all available orbitals (1s through 4f)
+- Electron count slider: 0–10 animated electron particles orbiting within the orbital volume
+- Phase toggle button: enable/disable ± color visualization
+- Axis/grid toggle: show/hide coordinate axes and grid helper
+- OrbitControls: rotate, pan, zoom via mouse/touch
+- ResizeObserver: auto-resize canvas to parent container
+
+### REQ-VIZ-4: Orbital viewer — electron animation
+
+- Electrons rendered as small emissive spheres (yellow/orange)
+- Pseudo-orbital motion around base positions within the orbital volume
+- Position generation respects orbital shape (shell surface for s, lobe-restricted for p, etc.)
+- Frame-rate-independent animation via clock delta
+
+### REQ-VIZ-5: Orbital viewer — cleanup
+
+- `initOrbitalViewer(containerId)` returns a cleanup function
+- Cleanup disposes: animation frame, Three.js scene objects, renderer, OrbitControls, UI controls, resize observer
+- Safe to call multiple times on the same page
+
+### REQ-VIZ-6: Element comparison tool
+
+`vergleich.js` provides side-by-side element comparison:
+
+- Up to 4 elements displayed in card grid
+- Autocomplete search to find and add elements
+- Property bars showing relative values (electronegativity, radius, ionization energy, density)
+- 3D sphere rendering for atomic radius comparison
+- Category-based card header coloring
+- Responsive layout (4-column → 2-column → 1-column)
+
+### REQ-VIZ-7: Content pages for orbital lessons
+
+Orbital lesson content pages at `/orbitalansichten/`:
+
+- Four pages: s-orbital, p-orbital, d-orbital, hybridization
+- Each page embeds the interactive orbital viewer
+- Frontmatter `orbital:` field defines the primary orbital
+- Viewer auto-selects the matching orbital on page load
+- Content includes learning objectives, explanations, and comprehension questions
+- Cross-linked from themenbereiche and klassenstufen pages
+
+### REQ-VIZ-8: Lazy loading for visualization scripts
+
+- `LazyLoader` has a `visualization` group matching routes `/perioden-system-der-elemente/`, `/vergleich/`, `/orbitalansichten/`, `/lernkarten-review/`
+- Visualization group preloads periodic table, comparison, and orbital viewer scripts
+- Orbital viewer scripts loaded as ES modules via import map
+- Non-critical scripts deferred until route match
+
 ## Scenarios
 
 ### S-3DV-1: Student explores molecule
@@ -187,11 +281,32 @@ to small (top-right)
 **When** they hover over Francium (Fr)
 **Then** the atomic radius value is displayed in picometers
 
+### S-3DV-6: Orbital lesson with 3D viewer
+
+**Given** a student visits an orbital lesson page (e.g., `/orbitalansichten/p-orbital/`)
+**Then** the page shows educational content about p-orbitals
+**And** the orbital viewer is rendered with 2px selected by default
+**When** they select 2pz from the dropdown
+**Then** the viewer smoothly switches to the z-oriented p-orbital
+**When** they toggle phase mode
+**Then** the positive and negative lobes are colored blue and red respectively
+
+### S-3DV-7: Element comparison
+
+**Given** a student visits `/vergleich/`
+**When** they search for "Sauerstoff" and select it
+**Then** a comparison card appears for oxygen
+**When** they add three more elements
+**Then** the card grid shows up to 4 cards side by side
+**And** property bars display relative values across all selected elements
+
 ## References
 
 - `myhugoapp/static/js/molekuel-studio.js` — 3D molecule viewer
 - `myhugoapp/static/js/perioden-system-der-elemente.js` — periodic table
+- `myhugoapp/static/js/vergleich.js` — element comparison tool
 - `myhugoapp/static/js/visualization/` — visualization modules
+- `myhugoapp/static/js/visualization/orbital-viewer/` — orbital viewer modules
 - `myhugoapp/static/js/visualization/d3-ego-graph.js` — knowledge graph viz
 - `myhugoapp/static/js/visualization/chart-manager.js` — chart components
 - `myhugoapp/static/js/visualization/periodic-table-viz.js` — trends viz
@@ -199,3 +314,4 @@ to small (top-right)
 - `myhugoapp/static/js/three/` — Three.js core and controls
 - `myhugoapp/static/js/addons/` — Three.js addons
 - `myhugoapp/layouts/` — visualization page templates
+- `myhugoapp/content/orbitalansichten/` — orbital lesson content pages

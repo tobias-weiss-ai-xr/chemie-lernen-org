@@ -55,10 +55,13 @@ for (const [url, info] of urlMap) {
       seen.add(link.url);
 
       const type =
-        link.type === 'article' ? 'articles' :
-        link.type === 'exercise' ? 'exercises' :
-        link.type === 'calculator' ? 'calculators' :
-        null;
+        link.type === 'article'
+          ? 'articles'
+          : link.type === 'exercise'
+            ? 'exercises'
+            : link.type === 'calculator'
+              ? 'calculators'
+              : null;
 
       if (!type) continue;
 

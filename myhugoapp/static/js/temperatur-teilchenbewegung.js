@@ -1,4 +1,4 @@
-(function() {
+(function () {
   const canvas = document.getElementById('particle-canvas');
   const ctx = canvas.getContext('2d');
   const distCanvas = document.getElementById('distribution-canvas');
@@ -13,7 +13,7 @@
     light: { mass: 4, name: 'Helium' },
     medium: { mass: 28, name: 'Stickstoff' },
     heavy: { mass: 32, name: 'Sauerstoff' },
-    xheavy: { mass: 131, name: 'Xenon' }
+    xheavy: { mass: 131, name: 'Xenon' },
   };
 
   let temperature = 20;
@@ -22,7 +22,7 @@
 
   function calculateAverageVelocity(tempK, massAU) {
     const R = 8.314;
-    const v = Math.sqrt((8 * R * tempK) / (Math.PI * massAU / 1000));
+    const v = Math.sqrt((8 * R * tempK) / ((Math.PI * massAU) / 1000));
     return v;
   }
 
@@ -49,7 +49,7 @@
         vy: v * Math.sin(theta) * 0.1,
         radius: 6 + Math.random() * 4,
         velocity: v,
-        color: getVelocityColor(v, avgVelocity)
+        color: getVelocityColor(v, avgVelocity),
       });
     }
 
@@ -69,7 +69,7 @@
 
     drawContainer();
 
-    particles.forEach(p => {
+    particles.forEach((p) => {
       drawParticle(p);
     });
 
@@ -194,7 +194,7 @@
   function updateParticles() {
     const avgV = calculateAverageVelocity(absoluteTemp, gasTypes[currentGas].mass);
 
-    particles.forEach(p => {
+    particles.forEach((p) => {
       const thermalScaling = Math.sqrt(absoluteTemp / 293);
       p.vx = (p.vx / thermalScaling) * thermalScaling;
       p.vy = (p.vy / thermalScaling) * thermalScaling;
@@ -225,7 +225,11 @@
       p.velocity = currentV;
       p.color = getVelocityColor(currentV, avgV);
 
-      const _nearWall = Math.abs(p.x - p.radius) < 2 || Math.abs(p.x - (canvas.width - p.radius)) < 2 || Math.abs(p.y - p.radius) < 2 || Math.abs(p.y - (canvas.height - p.radius)) < 2;
+      const _nearWall =
+        Math.abs(p.x - p.radius) < 2 ||
+        Math.abs(p.x - (canvas.width - p.radius)) < 2 ||
+        Math.abs(p.y - p.radius) < 2 ||
+        Math.abs(p.y - (canvas.height - p.radius)) < 2;
     });
   }
 
@@ -325,5 +329,4 @@
   window.updateTemperature = updateTemperature;
   window.updateParticleCount = updateParticleCount;
   window.updateGasType = updateGasType;
-
 })();

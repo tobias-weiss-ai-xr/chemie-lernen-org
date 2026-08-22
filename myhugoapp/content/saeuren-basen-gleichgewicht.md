@@ -2,6 +2,7 @@
 title: 'Säuren-Basen-Gleichgewichte'
 description: 'Interaktiver Rechner für Säuren-Basen-Gleichgewichte, ICE-Tabellen und Henderson-Hasselbalch-Gleichung'
 date: 2026-01-04
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'saeuren-basen-gleichgewicht'

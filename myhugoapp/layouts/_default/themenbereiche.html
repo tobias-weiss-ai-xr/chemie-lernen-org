@@ -292,7 +292,23 @@
 {{ $hasChildren := gt (len .Pages) 0 }}
 
 {{ if $hasChildren }}
-{{/* Show the overview page with all topics */}}
+{{/* Show the overview page with content first, then topics grid */}}
+
+{{/* Render .Content (quiz widget, entity cloud, etc.) */}}
+{{ $contentStr := trim (printf "%s" .Content) " \r\n\t" }}
+{{ if ne $contentStr "" }}
+<div class="thema-content-layout">
+  <div class="row">
+    <div class="col-md-12">
+      <article class="thema-content">
+        {{ .Content }}
+      </article>
+    </div>
+  </div>
+</div>
+<hr class="featurette-divider">
+{{ end }}
+
 <div class="themenbereiche-container">
 
   <div class="row">

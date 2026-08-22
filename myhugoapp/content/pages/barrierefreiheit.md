@@ -2,6 +2,7 @@
 title: 'Barrierefreiheitserklärung'
 description: 'Erklärung zur Barrierefreiheit und WCAG 2.1 Level AA Konformität von chemie-lernen.org'
 date: 2026-06-26
+last_reviewed: 2026-07-09
 type: 'page'
 ---
 

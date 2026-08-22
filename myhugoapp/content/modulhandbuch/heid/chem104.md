@@ -3,6 +3,7 @@ title: 'Organische Chemie 1: Grundlagen — Heidelberg University'
 description: 'Organische Chemie 1: Grundlagen (CHEM104) an der Heidelberg University. 6 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: HEID
 uni_name: Heidelberg University
 module_code: CHEM104

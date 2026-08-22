@@ -1,0 +1,205 @@
+{{/* shortcode: molecule-studio-widget — compact Molekülstudio on home page with H₂ default */}}
+<div class="molecule-widget-section" id="molecule-widget-section">
+  <div class="molecule-widget-header">
+    <h3>⚛️ Molekülstudio</h3>
+    <p class="molecule-widget-sub">Erkunden Sie Moleküle in 3D — <a href="/molekuel-studio/">zum vollen Studio →</a></p>
+  </div>
+
+  <noscript>
+    <div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 2px solid #f5c6cb;">
+      <h4>⚠️ JavaScript erforderlich</h4>
+      <p>Das Molekülstudio benötigt JavaScript für die 3D-Darstellung.</p>
+    </div>
+  </noscript>
+
+  <div id="js-loading" style="background: #fff3cd; color: #856404; padding: 10px; border-radius: 4px; margin-bottom: 10px; font-size: 13px; display: none;">
+    ⏳ 3D-Ansicht wird geladen...
+  </div>
+
+  <div class="molecule-widget-input">
+    <input type="text" id="molecule-input" placeholder="Molekülname (z.B. Wasser, Methan, Koffein)" aria-label="Molekülname eingeben" />
+    <button id="visualize-btn" aria-label="Molekül visualisieren">Visualisieren</button>
+  </div>
+
+  <div class="auto-rotate-toggle">
+    <input type="checkbox" id="auto-rotate" checked />
+    <label for="auto-rotate">Automatische Rotation</label>
+  </div>
+
+  <div class="suggestions molecule-widget-suggestions">
+    <button class="suggestion-chip" data-molecule="Wasserstoff" aria-label="Molekül auswählen: Wasserstoff (H₂)">H₂</button>
+    <button class="suggestion-chip" data-molecule="Wasser" aria-label="Molekül auswählen: Wasser (H₂O)">H₂O</button>
+    <button class="suggestion-chip" data-molecule="Methan" aria-label="Molekül auswählen: Methan (CH₄)">CH₄</button>
+    <button class="suggestion-chip" data-molecule="Kohlendioxid" aria-label="Molekül auswählen: CO₂">CO₂</button>
+    <button class="suggestion-chip" data-molecule="Benzol" aria-label="Molekül auswählen: Benzol (C₆H₆)">C₆H₆</button>
+    <button class="suggestion-chip" data-molecule="Ethanol" aria-label="Molekül auswählen: Ethanol (C₂H₅OH)">C₂H₅OH</button>
+    <button class="suggestion-chip" data-molecule="Glucose" aria-label="Molekül auswählen: Glucose (C₆H₁₂O₆)">C₆H₁₂O₆</button>
+  </div>
+
+  <div class="molecule-widget-container" id="molecule-studio-container" data-molecule-studio="true">
+    <canvas id="molecule-canvas" data-canvas="true" role="img" aria-label="3D Molekül-Visualisierung von Wasserstoff H₂"></canvas>
+    <div class="welcome-screen" id="welcome-screen" data-welcome="true" style="display:none;">
+      <div class="icon" aria-hidden="true">⚛️</div>
+      <h4>Molekülstudio</h4>
+      <p>Lädt Wasserstoff (H₂)…</p>
+    </div>
+    <div class="loading-screen" id="loading-screen" style="display: none;">
+      <div class="loading-spinner" aria-hidden="true">⚛️</div>
+      <p style="color: #666;">Molekülstruktur wird generiert...</p>
+    </div>
+    <div class="controls-info" id="controls-info" style="display: none;">
+      <p><strong>Steuerung:</strong> Ziehen zum Drehen · Mausrad zum Zoomen</p>
+    </div>
+  </div>
+
+  <div class="molecule-info" id="molecule-info" style="display: none;"></div>
+  <div class="error-message" id="error-message" style="display: none;"></div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="{{ "/js/molekuel-studio.js" | relURL }}"></script>
+<script>
+// Queue H₂ as default molecule for the home page widget
+(function () {
+  const queueMolecule = function () {
+    window.moleculeStudioQueue = window.moleculeStudioQueue || [];
+    if (window.moleculeStudioQueue.indexOf('Wasserstoff') === -1) {
+      window.moleculeStudioQueue.push('Wasserstoff');
+    }
+    // If the module is already loaded, visualize immediately
+    if (window.visualizeMolecule) {
+      window.visualizeMolecule('Wasserstoff');
+    }
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', queueMolecule);
+  } else {
+    queueMolecule();
+  }
+})();
+</script>
+
+<style>
+.molecule-widget-section {
+  margin: 20px 0 40px;
+  padding: 24px;
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.molecule-widget-header h3 {
+  margin: 0 0 4px;
+  font-size: 20px;
+  font-weight: 600;
+}
+.molecule-widget-sub {
+  margin: 0 0 14px;
+  color: #888;
+  font-size: 13px;
+}
+.molecule-widget-input {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.molecule-widget-input input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.molecule-widget-input input:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+.molecule-widget-input button {
+  padding: 8px 18px;
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.molecule-widget-input button:hover {
+  background: #388e3c;
+}
+.molecule-widget-suggestions {
+  margin-bottom: 12px;
+}
+.auto-rotate-toggle {
+  margin: 8px 0 12px;
+  font-size: 13px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.suggestion-chip {
+  margin: 3px 4px 3px 0;
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  border-radius: 14px;
+  background: #f5f5f5;
+  color: #333;
+  cursor: pointer;
+  font-size: 12px;
+}
+.suggestion-chip:hover {
+  background: #e0f2e1;
+  border-color: #4caf50;
+}
+.molecule-widget-container {
+  width: 100%;
+  height: 42vh;
+  min-height: 320px;
+  max-height: 480px;
+  position: relative;
+  background: #e8f5e9;
+  border-radius: 8px;
+  overflow: hidden;
+}
+#molecule-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+.molecule-info {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: #f0f7f0;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #333;
+}
+.error-message {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: #f8d7da;
+  color: #721c24;
+  border-radius: 6px;
+  font-size: 13px;
+}
+.controls-info {
+  position: absolute;
+  bottom: 8px;
+  left: 12px;
+  color: rgba(0, 0, 0, 0.55);
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.controls-info p { margin: 0; }
+</style>

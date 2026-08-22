@@ -9,12 +9,12 @@ Split the overloaded stoichiometry calculator page into four focused pages and e
 
 ## Page Structure
 
-| Route | Template | Purpose |
-|---|---|---|
-| `/stoechiometrie-rechner/` | `stoechiometrie-rechner.html` | 6 calculator tabs only |
+| Route                                | Template                        | Purpose                                  |
+| ------------------------------------ | ------------------------------- | ---------------------------------------- |
+| `/stoechiometrie-rechner/`           | `stoechiometrie-rechner.html`   | 6 calculator tabs only                   |
 | `/stoechiometrie-rechner/werkzeuge/` | `stoechiometrie-werkzeuge.html` | Equation parser, element lookup, history |
-| `/stoechiometrie-rechner/uebungen/` | `stoechiometrie-uebungen.html` | Practice quiz with scoring |
-| `/stoechiometrie-rechner/tutorien/` | `stoechiometrie-tutorien.html` | 5-step tutorials with progress locking |
+| `/stoechiometrie-rechner/uebungen/`  | `stoechiometrie-uebungen.html`  | Practice quiz with scoring               |
+| `/stoechiometrie-rechner/tutorien/`  | `stoechiometrie-tutorien.html`  | 5-step tutorials with progress locking   |
 
 ## JS Module Split
 
@@ -56,14 +56,16 @@ Note: The local `generateXXXProblem()` functions in practice-quiz.js (lines 1912
 ### `stoechiometrie-rechner.html` (reuse existing template)
 
 Remove from existing 1107-line HTML:
+
 - Lines 20-46: Equation Parser section
-- Lines 48-115: Periodic Table / Molar Mass Lookup  
+- Lines 48-115: Periodic Table / Molar Mass Lookup
 - Lines 117-196: Practice Mode Section
 - Lines 198-326: Interactive Tutorials
 - Lines 328-479: Student Progress Tracking
 - Lines 481-503: Calculation History
 
 Keep:
+
 - Lines 505-994: Calculator Tabs (unchanged)
 - Preset buttons within each calculator tab (they stay with the calculator)
 - jsPDF library import
@@ -72,6 +74,7 @@ Keep:
 ### `stoechiometrie-werkzeuge.html` (new)
 
 Contains:
+
 - Equation Parser (moved from lines 20-46 with improved styling)
 - Element Selector Molar Mass Lookup (moved from lines 48-115)
 - Calculation History (moved from lines 481-503)
@@ -80,6 +83,7 @@ Contains:
 ### `stoechiometrie-uebungen.html` (new)
 
 Contains:
+
 - Practice Mode (moved from lines 117-196)
 - Score display, problem generation, answer checking
 - Difficulty and problem type selection
@@ -87,6 +91,7 @@ Contains:
 ### `stoechiometrie-tutorien.html` (new)
 
 Contains:
+
 - Tutorial Selection Grid (moved from lines 198-326)
 - Tutorial Content Viewer
 - Progress indicator
@@ -94,6 +99,7 @@ Contains:
 ## Content Files to Create
 
 `myhugoapp/content/stoichiometrie/`
+
 - `werkzeuge.md`
 - `uebungen.md`
 - `tutorien.md`

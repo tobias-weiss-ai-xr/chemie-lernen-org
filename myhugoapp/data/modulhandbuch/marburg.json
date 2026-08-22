@@ -1,0 +1,30 @@
+{
+  "university": {
+    "name": "Philipps-Universität Marburg",
+    "country": "DE",
+    "city": "Marburg",
+    "website": "https://www.uni-marburg.de/",
+    "short_code": "marburg"
+  },
+  "degrees": [
+    {
+      "name": "BSc Chemie",
+      "level": "BSc",
+      "university": "marburg"
+    },
+    {
+      "name": "MSc Chemie",
+      "level": "MSc",
+      "university": "marburg"
+    },
+    {
+      "name": "Lehramt Chemie (Staatsexamen)",
+      "level": "Staatsexamen",
+      "university": "marburg"
+    }
+  ],
+  "lecturers": [],
+  "modules": [],
+  "source_url": "https://www.uni-marburg.de/de/fb15/studium/studiengaenge/lehramt-chemie",
+  "last_updated": "2026-08-20"
+}

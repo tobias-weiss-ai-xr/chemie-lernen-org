@@ -1,5 +1,6 @@
 ---
 title: 'Passwort vergessen'
+last_reviewed: 2026-08-06
 description: ''
 layout: 'forgot-password'
 noindex: true

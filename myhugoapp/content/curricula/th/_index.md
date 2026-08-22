@@ -1,5 +1,6 @@
 ---
 title: 'Lehrplan Thüringen'
+last_reviewed: 2026-08-06
 description: 'Chemie-Lehrplan für Thüringen — 0 Themen, 0 Lernziele, aufbereitet aus den amtlichen Kernlehrplänen.'
 layout: curricula-state
 params:

@@ -1,0 +1,1294 @@
+{
+  "einfuehrung-chemie": [
+    {
+      "name": "Kohlenstoff",
+      "slug": "kohlenstoff",
+      "count": 1,
+      "size": "2.0"
+    },
+    {
+      "name": "Amorphe Stoffe",
+      "slug": "amorphe-stoffe",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Aromatische Verbindungen",
+      "slug": "aromatische-verbindungen",
+      "count": 3,
+      "size": "1.0"
+    },
+    {
+      "name": "Atomabsorptionsspektrometrie",
+      "slug": "atomabsorptionsspektrometrie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Atombau",
+      "slug": "atombau",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Atombindung",
+      "slug": "atombindung",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Atommodell",
+      "slug": "atommodell",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Atomradius",
+      "slug": "atomradius",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Carbonylverbindungen",
+      "slug": "carbonylverbindungen",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Chlorwasserstoff",
+      "slug": "chlorwasserstoff-hcl",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Elemente Chemie",
+      "slug": "elemente-chemie-klett",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "harnstoff",
+      "slug": "harnstoff",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Kohlenstoff",
+      "slug": "kohlenstoff-c",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Kohlenstoffdioxid",
+      "slug": "kohlenstoffdioxid-co",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "kohlenstoffnitrid",
+      "slug": "kohlenstoffnitrid",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Komplexverbindung",
+      "slug": "komplexverbindung",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "komplexverbindungen",
+      "slug": "komplexverbindungen",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "metall-organische gerüstverbindungen",
+      "slug": "metall-organische-geruestverbindungen",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "metallcluster-moleküle",
+      "slug": "metallcluster-molekuele",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "molekülorbitale",
+      "slug": "molekuelorbitale",
+      "count": 1,
+      "size": "1.0"
+    }
+  ],
+  "aufbau-materie": [
+    {
+      "name": "Atommodell",
+      "slug": "atommodell",
+      "count": 1,
+      "size": "2.0"
+    },
+    {
+      "name": "Atomabsorptionsspektrometrie",
+      "slug": "atomabsorptionsspektrometrie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Atombau",
+      "slug": "atombau",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Atombindung",
+      "slug": "atombindung",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Atomradius",
+      "slug": "atomradius",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "bindungsenergie",
+      "slug": "bindungsenergie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Elektronegativität",
+      "slug": "elektronegativitaet",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Elektronenaffinitaet",
+      "slug": "elektronenaffinitaet",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "elektronenmikroskopie",
+      "slug": "elektronenmikroskopie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Ionenbindung",
+      "slug": "ionenbindung",
+      "count": 2,
+      "size": "1.0"
+    },
+    {
+      "name": "Ionenprodukt des Wassers",
+      "slug": "ionenprodukt-des-wassers",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Ionisierungsenergie",
+      "slug": "ionisierungsenergie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "kernchemie",
+      "slug": "kernchemie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Kernspinresonanz",
+      "slug": "kernspinresonanz-nmr",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "kristall-solvat-nanosaatkerne",
+      "slug": "kristall-solvat-nanosaatkerne",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "lithium-ionen-batterie",
+      "slug": "lithium-ionen-batterie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "metallionen",
+      "slug": "metallionen",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "molekülorbitale",
+      "slug": "molekuelorbitale",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Niels Bohr",
+      "slug": "niels-bohr",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Orbitalmodell",
+      "slug": "orbitalmodell",
+      "count": 1,
+      "size": "1.0"
+    }
+  ],
+  "energetik": [
+    {
+      "name": "bildungsenthalpie",
+      "slug": "bildungsenthalpie",
+      "count": 1,
+      "size": "2.0"
+    },
+    {
+      "name": "verbrennungsenthalpie",
+      "slug": "verbrennungsenthalpie",
+      "count": 1,
+      "size": "2.0"
+    },
+    {
+      "name": "aktivierungsenergie",
+      "slug": "aktivierungsenergie",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "enthalpie",
+      "slug": "enthalpie",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "Freie Enthalpie",
+      "slug": "freie-enthalpie",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "gibbs-energie",
+      "slug": "gibbs-energie",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "reaktionsenthalpie",
+      "slug": "reaktionsenthalpie",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "schmelzenthalpie",
+      "slug": "schmelzenthalpie",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "verdampfungsenthalpie",
+      "slug": "verdampfungsenthalpie",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "bindungsenergie",
+      "slug": "bindungsenergie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Endotherme Reaktion",
+      "slug": "endotherme-reaktion",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "entropie",
+      "slug": "entropie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Exotherme Reaktion",
+      "slug": "exotherme-reaktion",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "hessscher satz",
+      "slug": "hessscher-satz",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Ionisierungsenergie",
+      "slug": "ionisierungsenergie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Satz von Hess",
+      "slug": "satz-von-hess",
+      "count": 1,
+      "size": "1.0"
+    }
+  ],
+  "saeuren-basen": [
+    {
+      "name": "Säure-Base-Titration",
+      "slug": "saeure-base-titration",
+      "count": 1,
+      "size": "2.0"
+    },
+    {
+      "name": "neutralisation",
+      "slug": "neutralisation",
+      "count": 1,
+      "size": "1.3"
+    },
+    {
+      "name": "Neutralisationsreaktion",
+      "slug": "neutralisationsreaktion",
+      "count": 1,
+      "size": "1.3"
+    },
+    {
+      "name": "pH-Wert",
+      "slug": "ph-wert",
+      "count": 4,
+      "size": "1.3"
+    },
+    {
+      "name": "Säure-Base-Reaktion",
+      "slug": "saeure-base-reaktion",
+      "count": 1,
+      "size": "1.3"
+    },
+    {
+      "name": "titration",
+      "slug": "titration",
+      "count": 1,
+      "size": "1.3"
+    },
+    {
+      "name": "Titrationskurve",
+      "slug": "titrationskurve",
+      "count": 1,
+      "size": "1.3"
+    },
+    {
+      "name": "Alkalimetrie",
+      "slug": "alkalimetrie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "aminosäuren",
+      "slug": "aminosaeuren",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "benzoesäure",
+      "slug": "benzoesaeure",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "carbonsäuren",
+      "slug": "carbonsaeuren",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Dissoziation",
+      "slug": "dissoziation",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "essigsäure",
+      "slug": "essigsaeure",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Essigsäure",
+      "slug": "essigsaeure-ch-cooh",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Essigsaeure",
+      "slug": "essigsaeure-ch3cooh",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Indikatoren",
+      "slug": "indikatoren",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Kohlensaeure",
+      "slug": "kohlensaeure-h2co3",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "milchsäure",
+      "slug": "milchsaeure",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Natronlauge",
+      "slug": "natronlauge-naoh",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "pH-Messung",
+      "slug": "ph-messung",
+      "count": 1,
+      "size": "1.0"
+    }
+  ],
+  "redox-elektrochemie": [
+    {
+      "name": "Oxidationszahl",
+      "slug": "oxidationszahl",
+      "count": 1,
+      "size": "2.0"
+    },
+    {
+      "name": "Elektrochemische Zelle",
+      "slug": "elektrochemische-zelle",
+      "count": 2,
+      "size": "1.5"
+    },
+    {
+      "name": "elektrolysezelle",
+      "slug": "elektrolysezelle",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "galvanische zelle",
+      "slug": "galvanische-zelle",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "baumann-villiger-oxidation",
+      "slug": "baumann-villiger-oxidation",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "beta-oxidation",
+      "slug": "beta-oxidation",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "castner-zelle",
+      "slug": "castner-zelle",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "downs-zelle",
+      "slug": "downs-zelle",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Elektrochemische Analyse",
+      "slug": "elektrochemische-analyse",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Elektrolyse",
+      "slug": "elektrolyse",
+      "count": 2,
+      "size": "1.0"
+    },
+    {
+      "name": "Elektrolyse von Wasser",
+      "slug": "elektrolyse-von-wasser",
+      "count": 2,
+      "size": "1.0"
+    },
+    {
+      "name": "invertierte perowskit-solarzellen",
+      "slug": "invertierte-perowskit-solarzellen",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Katalytische Oxidation",
+      "slug": "katalytische-oxidation",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "korrosion",
+      "slug": "korrosion",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Oxidation",
+      "slug": "oxidation",
+      "count": 2,
+      "size": "1.0"
+    },
+    {
+      "name": "perowskit-solarzellen",
+      "slug": "perowskit-solarzellen",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Redoxreaktion",
+      "slug": "redoxreaktion",
+      "count": 2,
+      "size": "1.0"
+    },
+    {
+      "name": "Reduktion",
+      "slug": "reduktion",
+      "count": 2,
+      "size": "1.0"
+    },
+    {
+      "name": "Spannungsreihe",
+      "slug": "spannungsreihe",
+      "count": 3,
+      "size": "1.0"
+    },
+    {
+      "name": "Standardpotential",
+      "slug": "standardpotential",
+      "count": 2,
+      "size": "1.0"
+    }
+  ],
+  "gleichgewicht-geschwindigkeit": [
+    {
+      "name": "Prinzip von Le Chatelier",
+      "slug": "prinzip-von-le-chatelier",
+      "count": 2,
+      "size": "2.0"
+    },
+    {
+      "name": "Reaktionsgeschwindigkeit",
+      "slug": "reaktionsgeschwindigkeit",
+      "count": 5,
+      "size": "2.0"
+    },
+    {
+      "name": "aufbauprinzip",
+      "slug": "aufbauprinzip",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Chemisches Gleichgewicht",
+      "slug": "chemisches-gleichgewicht",
+      "count": 3,
+      "size": "1.0"
+    },
+    {
+      "name": "enzymkinetik",
+      "slug": "enzymkinetik",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Gleichgewichtskonstante",
+      "slug": "gleichgewichtskonstante",
+      "count": 2,
+      "size": "1.0"
+    },
+    {
+      "name": "katalysator",
+      "slug": "katalysator",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Kinetik",
+      "slug": "kinetik",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "magnetische ordnung",
+      "slug": "magnetische-ordnung",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "organometallkatalysator",
+      "slug": "organometallkatalysator",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "pauli-prinzip",
+      "slug": "pauli-prinzip",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "reaktionsordnung",
+      "slug": "reaktionsordnung",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Ruthenium-Katalysator",
+      "slug": "ruthenium-katalysator",
+      "count": 1,
+      "size": "1.0"
+    }
+  ],
+  "erdoel-organische-stoffklassen": [
+    {
+      "name": "Alkane",
+      "slug": "alkane",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "Alkene",
+      "slug": "alkene",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "Alkine",
+      "slug": "alkine",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "alkohole",
+      "slug": "alkohole",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "amine",
+      "slug": "amine",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "aminosäuren",
+      "slug": "aminosaeuren",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "Aromatische Verbindungen",
+      "slug": "aromatische-verbindungen",
+      "count": 3,
+      "size": "1.5"
+    },
+    {
+      "name": "Benjamin List",
+      "slug": "benjamin-list",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "Benzol",
+      "slug": "benzol-c-h",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "Benzol",
+      "slug": "benzol-c6h6",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "carbonsäuren",
+      "slug": "carbonsaeuren",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "Elektrophile aromatische Substitution",
+      "slug": "elektrophile-aromatische-substitution",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "ester",
+      "slug": "ester",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "Esterbildung",
+      "slug": "esterbildung-veresterung",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "ether",
+      "slug": "ether",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "Etherifizierung",
+      "slug": "etherifizierung",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "Funktionelle Gruppe",
+      "slug": "funktionelle-gruppe",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "thioether",
+      "slug": "thioether",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "Verbrennung von Kohlenwasserstoffen",
+      "slug": "verbrennung-von-kohlenwasserstoffen",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "Veresterung",
+      "slug": "veresterung",
+      "count": 1,
+      "size": "1.5"
+    }
+  ],
+  "reaktionstypen-organisch": [
+    {
+      "name": "Elektrophile aromatische Substitution",
+      "slug": "elektrophile-aromatische-substitution",
+      "count": 1,
+      "size": "2.0"
+    },
+    {
+      "name": "Nukleophil-Elektrophil-Konzept",
+      "slug": "nukleophil-elektrophil-konzept",
+      "count": 1,
+      "size": "2.0"
+    },
+    {
+      "name": "Addition",
+      "slug": "addition",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Additionsreaktion",
+      "slug": "additionsreaktion",
+      "count": 2,
+      "size": "1.0"
+    },
+    {
+      "name": "aldol-kondensation",
+      "slug": "aldol-kondensation",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "claisen-kondensation",
+      "slug": "claisen-kondensation",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Dehydrierung",
+      "slug": "dehydrierung",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "dieckmann-kondensation",
+      "slug": "dieckmann-kondensation",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Eliminierung",
+      "slug": "eliminierung",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Eliminierungsreaktion",
+      "slug": "eliminierungsreaktion",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Esterbildung",
+      "slug": "esterbildung-veresterung",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Hydrierung",
+      "slug": "hydrierung",
+      "count": 3,
+      "size": "1.0"
+    },
+    {
+      "name": "knoevenagel-kondensation",
+      "slug": "knoevenagel-kondensation",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Kondensationsreaktion",
+      "slug": "kondensationsreaktion",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "michael-addition",
+      "slug": "michael-addition",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "polyaddition",
+      "slug": "polyaddition",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "polykondensation",
+      "slug": "polykondensation",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "polymerisation",
+      "slug": "polymerisation",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Substitution",
+      "slug": "substitution",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Substitutionsreaktion",
+      "slug": "substitutionsreaktion",
+      "count": 2,
+      "size": "1.0"
+    }
+  ],
+  "produkte-organisch": [
+    {
+      "name": "Aromatische Verbindungen",
+      "slug": "aromatische-verbindungen",
+      "count": 3,
+      "size": "1.5"
+    },
+    {
+      "name": "Elektrophile aromatische Substitution",
+      "slug": "elektrophile-aromatische-substitution",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "mikroplastik",
+      "slug": "mikroplastik",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "polymerisation",
+      "slug": "polymerisation",
+      "count": 1,
+      "size": "1.5"
+    }
+  ],
+  "anorganische-verbindungen": [
+    {
+      "name": "Calciumhydroxid2)",
+      "slug": "calciumhydroxid-ca-oh-2",
+      "count": 1,
+      "size": "2.0"
+    },
+    {
+      "name": "Kaliumhydroxid",
+      "slug": "kaliumhydroxid-koh",
+      "count": 1,
+      "size": "2.0"
+    },
+    {
+      "name": "Natriumhydroxid",
+      "slug": "natriumhydroxid-naoh",
+      "count": 3,
+      "size": "2.0"
+    },
+    {
+      "name": "acylchloride",
+      "slug": "acylchloride",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Aluminiumoxid",
+      "slug": "aluminiumoxid-al2o3",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "baumann-villiger-oxidation",
+      "slug": "baumann-villiger-oxidation",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "beta-oxidation",
+      "slug": "beta-oxidation",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Bildung von Kochsalz",
+      "slug": "bildung-von-kochsalz",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Calciumcarbonat",
+      "slug": "calciumcarbonat-caco3",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Calciumoxid",
+      "slug": "calciumoxid-cao",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Calciumsulfat",
+      "slug": "calciumsulfat-caso4",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "chelatkomplexe",
+      "slug": "chelatkomplexe",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Chelatligand",
+      "slug": "chelatligand",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "disulfide",
+      "slug": "disulfide",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Eisen-sulfat",
+      "slug": "eisen-ii-sulfat-feso4",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Eisen-oxid",
+      "slug": "eisen-iii-oxid-fe2o3",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Eisenoxid",
+      "slug": "eisenoxid-fe-o",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Eisensulfid",
+      "slug": "eisensulfid-fes",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "epoxide",
+      "slug": "epoxide",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Halogenierung",
+      "slug": "halogenierung",
+      "count": 1,
+      "size": "1.0"
+    }
+  ],
+  "analytische-methoden": [
+    {
+      "name": "ir-spektroskopie",
+      "slug": "ir-spektroskopie",
+      "count": 1,
+      "size": "2.0"
+    },
+    {
+      "name": "nmr-spektroskopie",
+      "slug": "nmr-spektroskopie",
+      "count": 1,
+      "size": "2.0"
+    },
+    {
+      "name": "uv-vis-spektroskopie",
+      "slug": "uv-vis-spektroskopie",
+      "count": 1,
+      "size": "2.0"
+    },
+    {
+      "name": "Chromatographie",
+      "slug": "chromatographie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Duennschichtchromatographie",
+      "slug": "duennschichtchromatographie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Fluoreszenzspektroskopie",
+      "slug": "fluoreszenzspektroskopie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "gaschromatographie",
+      "slug": "gaschromatographie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Gaschromatographie",
+      "slug": "gaschromatographie-gc",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "gravimetrie",
+      "slug": "gravimetrie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Kernspinresonanz",
+      "slug": "kernspinresonanz-nmr",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "massenspektrometrie",
+      "slug": "massenspektrometrie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Massenspektrometrie",
+      "slug": "massenspektrometrie-ms",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Papierchromatographie",
+      "slug": "papierchromatographie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Saeulenchromatographie",
+      "slug": "saeulenchromatographie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Säure-Base-Titration",
+      "slug": "saeure-base-titration",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "schwingungsspektroskopie",
+      "slug": "schwingungsspektroskopie",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Spektroskopie",
+      "slug": "spektroskopie",
+      "count": 2,
+      "size": "1.0"
+    },
+    {
+      "name": "titration",
+      "slug": "titration",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Titrationskurve",
+      "slug": "titrationskurve",
+      "count": 1,
+      "size": "1.0"
+    }
+  ],
+  "biochemie": [
+    {
+      "name": "aminosäuren",
+      "slug": "aminosaeuren",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "atp",
+      "slug": "atp",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "coenzym a",
+      "slug": "coenzym-a",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "dna",
+      "slug": "dna",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "Enzym",
+      "slug": "enzym",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "enzyme",
+      "slug": "enzyme",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "Enzymkatalyse",
+      "slug": "enzymkatalyse",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "enzymkinetik",
+      "slug": "enzymkinetik",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "Fermentation",
+      "slug": "fermentation",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "flatpickr",
+      "slug": "flatpickr",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "photosynthese",
+      "slug": "photosynthese",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "proteine",
+      "slug": "proteine",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "Proteinfaltung",
+      "slug": "proteinfaltung",
+      "count": 4,
+      "size": "1.5"
+    },
+    {
+      "name": "rna",
+      "slug": "rna",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "transportproteine",
+      "slug": "transportproteine",
+      "count": 1,
+      "size": "1.5"
+    }
+  ],
+  "tipps-tricks": [
+    {
+      "name": "arrhenius-gleichung",
+      "slug": "arrhenius-gleichung",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "nernst-gleichung",
+      "slug": "nernst-gleichung",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "nersnt-gleichung",
+      "slug": "nersnt-gleichung",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
+      "name": "vant-hoff-gleichung",
+      "slug": "vant-hoff-gleichung",
+      "count": 1,
+      "size": "1.5"
+    }
+  ]
+}

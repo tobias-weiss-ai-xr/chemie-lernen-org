@@ -1,5 +1,6 @@
 ---
 title: 'Offline'
+last_reviewed: 2026-08-06
 description: 'Keine Internetverbindung — offline, aber Chemie-Wissen wartet'
 layout: 'offline'
 robots: 'noindex, nofollow'

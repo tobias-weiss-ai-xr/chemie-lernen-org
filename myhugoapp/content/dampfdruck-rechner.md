@@ -2,6 +2,7 @@
 title: "Dampfdruck-Rechner"
 description: "Berechnet den Dampfdruck von reinen Flüssigkeiten nach der Clausius-Clapeyron-Gleichung. Eingabetemperatur, Normaldruck, Siedetemperatur."
 date: "2026-06-03"
+last_reviewed: 2026-08-06
 tags: ["chemie", "dampfdruck", "phasenübergang", "flüssig", "gasförmig"]
 interaktiv: true
 schwerigkeit: "mittelstufe"

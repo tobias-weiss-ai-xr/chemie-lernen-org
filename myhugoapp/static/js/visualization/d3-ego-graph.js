@@ -67,6 +67,73 @@
     return CAT_LABELS[cat] || cat;
   }
 
+  // ── Edge colors by relationship type ─────────────────────────────
+  var EDGE_COLORS = {
+    related: '#667eea',
+    similar: '#f39c12',
+    composition: '#e74c3c',
+    describes: '#45b7d1',
+    demonstrates: '#2ecc71',
+    produces: '#e67e22',
+    discovers: '#9b59b6',
+    contains: '#1abc9c',
+    comparable: '#f1c40f',
+    involved: '#3498db',
+    applies: '#16a085',
+    source_of: '#95a5a6',
+    covers: '#8e44ad',
+    generalizes: '#d35400',
+    'entity-article': '#45b7d1',
+    article: '#ccc',
+  };
+
+  // Main relationship types (higher opacity)
+  var EDGE_OPACITY_MAIN = {
+    related: 0.45,
+    similar: 0.35,
+    composition: 0.6,
+    describes: 0.35,
+    demonstrates: 0.35,
+    produces: 0.35,
+    discovers: 0.35,
+    contains: 0.35,
+    comparable: 0.35,
+    involved: 0.35,
+    applies: 0.35,
+    source_of: 0.35,
+    covers: 0.35,
+    generalizes: 0.35,
+    'entity-article': 0.5,
+  };
+
+  // ── Category X bands (for forceX clustering) ──────────────────
+  var CAT_INDEX = {};
+  (function () {
+    var keys = Object.keys(CAT_COLORS);
+    keys.forEach(function (k, i) {
+      CAT_INDEX[k] = i;
+    });
+  })();
+  function catX(cat, w) {
+    var idx = CAT_INDEX[cat] || 0;
+    return (w * (idx + 0.5)) / Object.keys(CAT_COLORS).length;
+  }
+
+  // Label-aware collision radius — accounts for text width
+  function labelCollisionRadius(d) {
+    var base = (d.size || 4) + 3;
+    var labelWidth = (d.label || '').length * 3.5;
+    return Math.max(base, labelWidth / 2);
+  }
+
+  function getEdgeColor(relType) {
+    return EDGE_COLORS[relType] || '#cccccc';
+  }
+
+  function getEdgeOpacity(relType) {
+    return EDGE_OPACITY_MAIN[relType] !== undefined ? EDGE_OPACITY_MAIN[relType] : 0.15;
+  }
+
   function slugify(name) {
     return String(name)
       .toLowerCase()
@@ -229,12 +296,55 @@
     };
   }
 
-  function buildFullNodes(data) {
+  // Normalize Neo4j relationship types to a shorter canonical form
+  var REL_TYPE_MAP = {
+    RELATED_TO: 'related',
+    AEHNLICH_ZU: 'similar',
+    CONSISTS_OF: 'composition',
+    BESTEHT_AUS: 'composition',
+    BESCHREIBT: 'describes',
+    DEMONSTRIERT: 'demonstrates',
+    ERZEUGT: 'produces',
+    ENTDECKT: 'discovers',
+    BEINHALTET: 'contains',
+    VERGLEICHBAR: 'comparable',
+    BETEILIGT_AN: 'involved',
+    WENDET_AN: 'applies',
+    QUELLE_VON: 'source_of',
+    COVERS_TOPIC: 'covers',
+    VERALLGEMEINERT: 'generalizes',
+  };
+  function normalizeRelType(t) {
+    return REL_TYPE_MAP[t] || t;
+  }
+
+  function buildFullNodes(data, options) {
+    options = options || {};
+    var maxNodes = options.maxNodes || 0;
     var nodes = [];
     var links = [];
     var emap = {};
     var entities = data.entities || [];
     var articles = data.articles || [];
+
+    // Pre-compute article counts per entity
+    var artCounts = {};
+    articles.forEach(function (a) {
+      (a.entities || []).forEach(function (en) {
+        artCounts[en] = (artCounts[en] || 0) + 1;
+      });
+    });
+
+    // Übersichts-Obergrenze: nur die am stärksten vernetzten Entities zeigen,
+    // damit der Graph bei 500+ Knoten lesbar bleibt (kein ununterscheidbarer Klumpen).
+    if (maxNodes > 0 && entities.length > maxNodes) {
+      entities = entities
+        .slice()
+        .sort(function (a, b) {
+          return (b.relatedEntities || []).length - (a.relatedEntities || []).length;
+        })
+        .slice(0, maxNodes);
+    }
 
     entities.forEach(function (e) {
       var conns = (e.relatedEntities || []).length;
@@ -243,21 +353,47 @@
         label: e.name,
         type: 'entity',
         category: e.category,
-        size: Math.max(6, Math.min(25, Math.sqrt(conns + 1) * 5 + (e.articleCount || 0) * 2)),
-        count: e.articleCount || 0,
-        components: e.components || [],
+        size: Math.max(
+          6,
+          Math.min(
+            30,
+            Math.sqrt(conns + 1) * 5 + (artCounts[e.name] || 0) * 2 + (e.curriculumCount || 0) * 3
+          )
+        ),
+        count: artCounts[e.name] || 0,
+        curriculumCount: e.curriculumCount || 0,
+        description: e.description || '',
       };
       nodes.push(n);
       emap[e.name] = n;
     });
 
-    articles.forEach(function (a) {
+    // Entity–entity links from relatedEntities (now includes relType)
+    var seenLinks = {};
+    entities.forEach(function (e) {
+      var eNode = emap[e.name];
+      if (!eNode) return;
+      (e.relatedEntities || []).forEach(function (ref) {
+        if (!ref || !ref.name) return;
+        var tNode = emap[ref.name];
+        if (!tNode) return;
+        // Deduplicate (A→B and B→A become one link)
+        var key = eNode.id < tNode.id ? eNode.id + '|' + tNode.id : tNode.id + '|' + eNode.id;
+        if (seenLinks[key]) return;
+        seenLinks[key] = true;
+        var relType = normalizeRelType(ref.relType) || 'related';
+        links.push({ source: eNode.id, target: tNode.id, type: relType });
+      });
+    });
+
+    // Article/document links
+    articles.forEach(function (a, idx) {
       var isPage = a.type === 'page';
       var n = {
-        id: a.id || 'a-' + slugify(a.title),
+        id: a.id || 'a-' + idx + '-' + slugify(a.title || 'untitled'),
         label: a.title,
         type: isPage ? 'page' : 'article',
-        size: isPage ? 4 : 3,
+        size: isPage ? 4 : 5,
         url: a.url,
       };
       nodes.push(n);
@@ -268,19 +404,6 @@
         }
       });
     });
-
-    var compLinks = [];
-    entities.forEach(function (e) {
-      if (e.components) {
-        e.components.forEach(function (comp) {
-          var c = emap[comp];
-          if (c) {
-            compLinks.push({ source: e.id, target: c.id, type: 'composition' });
-          }
-        });
-      }
-    });
-    links = links.concat(compLinks);
 
     return { nodes: nodes, links: links };
   }
@@ -326,6 +449,16 @@
 
       var g = svg.append('g');
 
+      // Zoom/pan for touch devices (pinch-zoom, one-finger pan)
+      // D3 v7 zoom() handles touch events natively
+      var egoZoom = d3
+        .zoom()
+        .scaleExtent([0.3, 5])
+        .on('zoom', function (ev) {
+          g.attr('transform', ev.transform);
+        });
+      svg.call(egoZoom).style('cursor', 'grab');
+
       var tooltip = d3
         .select(container)
         .append('div')
@@ -348,12 +481,14 @@
         .enter()
         .append('line')
         .attr('stroke', function (d) {
-          return d.type === 'article' ? '#ccc' : '#ddd';
+          return getEdgeColor(d.type || d.relType || 'RELATED_TO');
         })
         .attr('stroke-width', function (d) {
-          return d.type === 'article' ? 0.5 : 1;
+          return d.type === 'article' ? 0.5 : 1.2;
         })
-        .attr('stroke-opacity', 0.5);
+        .attr('stroke-opacity', function (d) {
+          return getEdgeOpacity(d.type || d.relType || 'RELATED_TO');
+        });
 
       // Nodes
       var node = g
@@ -396,7 +531,7 @@
             global.location.href = '/entity/' + slugify(d.label) + '/';
           }
         })
-        .on('keydown', function (ev, d) {
+        .on('keydown', function (ev, _d) {
           // Space/Enter activates the node
           if (ev.key === 'Enter' || ev.key === ' ') {
             ev.preventDefault();
@@ -488,7 +623,8 @@
           tooltip.style('display', 'none');
         });
 
-      // Force simulation
+      // Force simulation — adaptive parameters to avoid blob
+      var chargeStr = -Math.max(60, Math.min(300, nodes.length * 6));
       var sim = d3
         .forceSimulation(nodes)
         .force(
@@ -499,18 +635,22 @@
               return d.id;
             })
             .distance(function (d) {
-              return d.type === 'article' ? 80 : 60;
+              return d.type === 'article' ? 140 : 110;
             })
         )
-        .force('charge', d3.forceManyBody().strength(-100))
+        .force('charge', d3.forceManyBody().strength(chargeStr))
         .force('center', d3.forceCenter(w / 2, h / 2))
+        .force('collision', d3.forceCollide().radius(labelCollisionRadius))
         .force(
-          'collision',
-          d3.forceCollide().radius(function (d) {
-            return d.size + 5;
-          })
+          'x',
+          d3
+            .forceX(function (d) {
+              return catX(d.category, w);
+            })
+            .strength(0.15)
         )
-        .alphaDecay(0.05)
+        .force('y', d3.forceY(h / 2).strength(0.05))
+        .alphaDecay(0.025)
         .on('tick', function () {
           link
             .attr('x1', function (d) {
@@ -556,6 +696,15 @@
           var nh = container.clientHeight || 280;
           svg.attr('width', nw).attr('height', nh);
           sim.force('center', d3.forceCenter(nw / 2, nh / 2));
+          sim.force(
+            'x',
+            d3
+              .forceX(function (d) {
+                return catX(d.category, nw);
+              })
+              .strength(0.15)
+          );
+          sim.force('y', d3.forceY(nh / 2).strength(0.05));
           sim.alpha(0.3).restart();
           if (prefersReducedMotion()) {
             sim.stop();
@@ -576,7 +725,7 @@
       container.innerHTML = '';
       container.style.position = 'relative';
 
-      var built = buildFullNodes(data);
+      var built = buildFullNodes(data, options);
       var nodes = built.nodes;
       var links = built.links;
 
@@ -610,7 +759,8 @@
             ' Verbindungen. Zoom mit Mausrad, verschieben per Drag.'
         );
 
-      // Zoom/pan
+      // Zoom/pan (D3 v7 handles touch events natively:
+      // pinch-zoom via two-finger gesture, pan via one-finger drag)
       var zoom = d3
         .zoom()
         .scaleExtent([0.1, 8])
@@ -634,6 +784,10 @@
         lernziel: true,
       };
       var showArticles = true;
+      var searchFilter = null;
+
+      // Edge labels toggle (persisted)
+      var showEdgeLabels = localStorage.getItem('entityGraphShowLabels') === 'true';
 
       if (filterControls) {
         buildFilterChips(filterControls, function (state) {
@@ -641,6 +795,29 @@
           showArticles = state.showArticles;
           updateVisibility();
         });
+        // Append edge-labels toggle button
+        var labelBtn = document.createElement('button');
+        labelBtn.className = 'kg-filter-chip' + (showEdgeLabels ? ' active' : '');
+        labelBtn.title = 'Kantenbeschriftungen ein-/ausblenden';
+        labelBtn.innerHTML = showEdgeLabels ? '🏷️ Label aus' : '🏷️ Label an';
+        if (!showEdgeLabels) {
+          labelBtn.style.color = '#999';
+          labelBtn.style.borderColor = '#ddd';
+        }
+        labelBtn.addEventListener('click', function () {
+          showEdgeLabels = !showEdgeLabels;
+          localStorage.setItem('entityGraphShowLabels', showEdgeLabels);
+          labelBtn.classList.toggle('active', showEdgeLabels);
+          if (showEdgeLabels) {
+            labelBtn.style.color = '';
+            labelBtn.style.borderColor = '';
+          } else {
+            labelBtn.style.color = '#999';
+            labelBtn.style.borderColor = '#ddd';
+          }
+          updateEdgeLabels();
+        });
+        filterControls.appendChild(labelBtn);
       }
 
       function updateVisibility() {
@@ -648,7 +825,12 @@
           if (d.type === 'page' || d.type === 'article') {
             return showArticles ? null : 'none';
           }
-          return activeCategories[d.category] !== false ? null : 'none';
+          if (activeCategories[d.category] === false) return 'none';
+          if (searchFilter) {
+            var labelLower = (d.label || '').toLowerCase();
+            if (labelLower.indexOf(searchFilter) === -1) return 'none';
+          }
+          return null;
         });
         link.style('display', function (d) {
           var sId = typeof d.source === 'object' ? d.source.id : d.source;
@@ -704,21 +886,31 @@
             .attr('fill', 'var(--text-graph, #555)');
           li++;
         });
-        legend
-          .append('line')
-          .attr('x1', 0)
-          .attr('y1', 6 + li * 18)
-          .attr('x2', 12)
-          .attr('y2', 6 + li * 18)
-          .attr('stroke', '#e74c3c')
-          .attr('stroke-dasharray', '3,2');
-        legend
-          .append('text')
-          .attr('x', 16)
-          .attr('y', 10 + li * 18)
-          .text('Besteht aus')
-          .attr('fill', 'var(--text-graph, #555)');
-        li++;
+        // Relationship type legend entries
+        var relLegendItems = [
+          { color: '#667eea', label: 'Verknüpft', dash: null },
+          { color: '#f39c12', label: 'Ähnlich', dash: '6,3' },
+          { color: '#e74c3c', label: 'Besteht aus', dash: '4,2' },
+          { color: '#45b7d1', label: 'Beschreibt', dash: null },
+          { color: '#2ecc71', label: 'Demonstriert', dash: null },
+        ];
+        relLegendItems.forEach(function (ri) {
+          legend
+            .append('line')
+            .attr('x1', 0)
+            .attr('y1', 6 + li * 18)
+            .attr('x2', 12)
+            .attr('y2', 6 + li * 18)
+            .attr('stroke', ri.color)
+            .attr('stroke-dasharray', ri.dash);
+          legend
+            .append('text')
+            .attr('x', 16)
+            .attr('y', 10 + li * 18)
+            .text(ri.label)
+            .attr('fill', 'var(--text-graph, #555)');
+          li++;
+        });
         legend
           .append('circle')
           .attr('cx', 6)
@@ -773,16 +965,18 @@
         .enter()
         .append('line')
         .attr('stroke', function (d) {
-          return d.type === 'composition' ? '#e74c3c' : '#ccc';
+          return getEdgeColor(d.type || d.relType || 'related');
         })
         .attr('stroke-width', function (d) {
-          return d.type === 'composition' ? 1.5 : 0.8;
+          return d.type === 'composition' ? 1.5 : d.type === 'entity-article' ? 1.0 : 0.8;
         })
         .attr('stroke-dasharray', function (d) {
-          return d.type === 'composition' ? '4,2' : null;
+          if (d.type === 'composition') return '4,2';
+          if (d.type === 'similar') return '6,3';
+          return null;
         })
         .attr('stroke-opacity', function (d) {
-          return d.type === 'composition' ? 0.7 : 0.4;
+          return getEdgeOpacity(d.type || d.relType || 'related');
         });
 
       // Nodes
@@ -847,11 +1041,22 @@
           link.style('stroke-opacity', function (l) {
             var s = typeof l.source === 'object' ? l.source.id : l.source;
             var t = typeof l.target === 'object' ? l.target.id : l.target;
-            return s === d.id || t === d.id ? 0.8 : 0.1;
+            return s === d.id || t === d.id
+              ? Math.min(0.8, getEdgeOpacity(l.type || l.relType || 'RELATED_TO') * 1.5)
+              : 0.05;
           });
           var connCount = Object.keys(connected).length;
           var catLabel =
             d.type === 'entity' ? labelize(d.category) : d.type === 'page' ? 'Seite' : 'Artikel';
+          var curricHtml = '';
+          if (d.type === 'entity' && d.curriculumCount > 0) {
+            curricHtml =
+              '<br><span style="color:#9b59b6">📚 ' +
+              d.curriculumCount +
+              ' Lehrplan' +
+              (d.curriculumCount !== 1 ? 'e' : '') +
+              '</span>';
+          }
           tooltip
             .style('display', 'block')
             .html(
@@ -865,7 +1070,8 @@
                 ' &middot; ' +
                 connCount +
                 ' Verbindung' +
-                (connCount !== 1 ? 'en' : '')
+                (connCount !== 1 ? 'en' : '') +
+                curricHtml
             );
           var rect = container.getBoundingClientRect();
           tooltip
@@ -878,18 +1084,30 @@
             .style('opacity', 0.85);
           node.style('opacity', 0.85);
           link.style('stroke-opacity', function (d) {
-            return d.type === 'composition' ? 0.7 : 0.4;
+            return showEdgeLabels
+              ? Math.min(0.5, getEdgeOpacity(d.type || d.relType || 'RELATED_TO'))
+              : getEdgeOpacity(d.type || d.relType || 'RELATED_TO');
           });
           tooltip.style('display', 'none');
         })
         .on('click', function (ev, d) {
+          ev.stopPropagation();
           if (d.type === 'entity') {
+            if (global.__showNodeDetails) {
+              global.__showNodeDetails({
+                label: d.label,
+                category: d.category,
+                count: d.count,
+                description: d.description,
+                related: d.related || [],
+              });
+            }
             global.location.href = '/entity/' + slugify(d.label) + '/';
           } else if (d.url) {
             global.open(d.url, '_blank');
           }
         })
-        .on('keydown', function (ev, d) {
+        .on('keydown', function (ev, _d) {
           if (ev.key === 'Enter' || ev.key === ' ') {
             ev.preventDefault();
             d3.select(this).dispatch('click');
@@ -908,13 +1126,14 @@
         .enter()
         .append('text')
         .text(function (d) {
-          return d.label;
+          return d.label.length > 20 ? d.label.slice(0, 19) + '…' : d.label;
         })
         .attr('font-size', function (d) {
-          return d.size >= 8 ? '10px' : '8px';
+          return d.size >= 10 ? '10px' : '8px';
         })
         .attr('dx', function (d) {
-          return d.size + 3;
+          // Smaller nodes: label below, larger nodes: label right
+          return d.size >= 12 ? d.size + 4 : -(d.size + 4);
         })
         .attr('dy', 3)
         .attr('fill', 'var(--text-graph, #444)')
@@ -924,7 +1143,55 @@
         .style('pointer-events', 'none')
         .style('text-shadow', '0 0 3px var(--bg-body, #fafafa), 0 0 3px var(--bg-body, #fafafa)');
 
-      // Force simulation
+      // Edge labels (relationship type labels)
+      var edgeLabels = g
+        .append('g')
+        .selectAll('text')
+        .data(links)
+        .enter()
+        .append('text')
+        .text(function (d) {
+          var t = d.type || d.relType || '';
+          // Map normalized types back to German labels for edge display
+          var labels = {
+            related: '',
+            similar: 'Ähnlich',
+            composition: 'Besteht aus',
+            describes: 'Beschreibt',
+            demonstrates: 'Demonstriert',
+            produces: 'Erzeugt',
+            discovers: 'Entdeckt',
+            contains: 'Beinhaltet',
+            comparable: 'Vergleichbar',
+            involved: 'Beteiligt',
+            applies: 'Wendet an',
+            source_of: 'Quelle von',
+            covers: 'Deckt ab',
+            generalizes: 'Verallgemeinert',
+            'entity-article': '',
+          };
+          return labels[t] || t;
+        })
+        .attr('font-size', '7px')
+        .attr('fill', 'var(--text-muted, #999)')
+        .attr('text-anchor', 'middle')
+        .attr('dy', '-3')
+        .style('pointer-events', 'none')
+        .style('display', showEdgeLabels ? null : 'none')
+        .style('text-shadow', '0 0 2px var(--bg-body, #fafafa), 0 0 2px var(--bg-body, #fafafa)');
+
+      function updateEdgeLabels() {
+        edgeLabels.style('display', showEdgeLabels ? null : 'none');
+        // Also update link stroke opacity to not compete with labels
+        link.attr('stroke-opacity', function (d) {
+          return showEdgeLabels
+            ? Math.min(0.5, getEdgeOpacity(d.type || d.relType || 'RELATED_TO'))
+            : getEdgeOpacity(d.type || d.relType || 'RELATED_TO');
+        });
+      }
+
+      // Force simulation — adaptive parameters to avoid blob
+      var chargeStr = -Math.max(50, Math.min(300, nodes.length * 2.5));
       var sim = d3
         .forceSimulation(nodes)
         .force(
@@ -935,21 +1202,24 @@
               return d.id;
             })
             .distance(function (d) {
-              return d.type === 'composition' ? 60 : 100;
+              return d.type === 'composition' ? 70 : 90;
             })
-            .strength(0.3)
+            .strength(0.25)
         )
-        .force('charge', d3.forceManyBody().strength(-150))
+        .force('charge', d3.forceManyBody().strength(chargeStr))
         .force('center', d3.forceCenter(w / 2, h / 2))
+        .force('collision', d3.forceCollide().radius(labelCollisionRadius))
         .force(
-          'collision',
-          d3.forceCollide().radius(function (d) {
-            return (d.size || 4) + 3;
-          })
+          'x',
+          d3
+            .forceX(function (d) {
+              return catX(d.category, w);
+            })
+            .strength(0.35)
         )
-        .force('x', d3.forceX(w / 2).strength(0.01))
-        .force('y', d3.forceY(h / 2).strength(0.01))
+        .force('y', d3.forceY(h / 2).strength(0.35))
         .alphaDecay(0.02)
+        .velocityDecay(0.35)
         .on('tick', function () {
           link
             .attr('x1', function (d) {
@@ -978,10 +1248,61 @@
             .attr('y', function (d) {
               return d.y;
             });
+          edgeLabels
+            .attr('x', function (d) {
+              var sx = typeof d.source === 'object' ? d.source.x : 0;
+              var tx = typeof d.target === 'object' ? d.target.x : 0;
+              return (sx + tx) / 2;
+            })
+            .attr('y', function (d) {
+              var sy = typeof d.source === 'object' ? d.source.y : 0;
+              var ty = typeof d.target === 'object' ? d.target.y : 0;
+              return (sy + ty) / 2;
+            });
         });
 
       if (prefersReducedMotion()) {
         sim.alpha(0).stop();
+      }
+
+      // Fit the whole graph into the SVG viewport once the layout settles.
+      // Without this, large graphs spill outside the visible area and look
+      // like a single collapsed point.
+      var fitGraphToViewport = function () {
+        if (!nodes.length) return;
+        var minX = Infinity;
+        var minY = Infinity;
+        var maxX = -Infinity;
+        var maxY = -Infinity;
+        nodes.forEach(function (n) {
+          if (typeof n.x !== 'number' || isNaN(n.x)) return;
+          if (n.x < minX) minX = n.x;
+          if (n.x > maxX) maxX = n.x;
+          if (n.y < minY) minY = n.y;
+          if (n.y > maxY) maxY = n.y;
+        });
+        if (!isFinite(minX) || !isFinite(maxX)) return;
+        var vw = container.clientWidth || svg.attr('width') || w;
+        var vh = svg.attr('height') || h;
+        var pad = 24;
+        var bw = maxX - minX;
+        var bh = maxY - minY;
+        var scale = Math.min((vw - pad * 2) / bw, (vh - pad * 2) / bh);
+        scale = Math.min(Math.max(scale, 0.05), 1);
+        var tx = vw / 2 - ((minX + maxX) / 2) * scale;
+        var ty = vh / 2 - ((minY + maxY) / 2) * scale;
+        var t = d3.zoomIdentity.translate(tx, ty).scale(scale);
+        svg.call(zoom.transform, t);
+      };
+      sim.on('end', function () {
+        fitGraphToViewport();
+      });
+      if (prefersReducedMotion()) {
+        // The simulation was stopped before it could emit 'end'.
+        fitGraphToViewport();
+      } else {
+        // Safety net: fit even if the simulation never formally ends.
+        setTimeout(fitGraphToViewport, 1500);
       }
 
       // A11y: visually-hidden fallback <ul>
@@ -1006,9 +1327,19 @@
       if (typeof ResizeObserver !== 'undefined') {
         var ro2 = new ResizeObserver(function () {
           var nw = container.clientWidth || w;
+          var nh = container.clientHeight || h;
           svg.attr('width', nw);
-          sim.force('center', d3.forceCenter(nw / 2, h / 2));
-          sim.force('x', d3.forceX(nw / 2).strength(0.01));
+          svg.attr('height', nh);
+          sim.force('center', d3.forceCenter(nw / 2, nh / 2));
+          sim.force(
+            'x',
+            d3
+              .forceX(function (d) {
+                return catX(d.category, nw);
+              })
+              .strength(0.35)
+          );
+          sim.force('y', d3.forceY(nh / 2).strength(0.35));
           sim.alpha(0.3).restart();
           if (prefersReducedMotion()) {
             sim.stop();
@@ -1034,29 +1365,6 @@
       },
       showArticles: true,
     };
-    Object.keys(state.categories).forEach(function (cat) {
-      var chip = document.createElement('span');
-      chip.className = 'kg-filter-chip active';
-      chip.dataset.cat = cat;
-      chip.style.color = colorize(cat);
-      chip.style.borderColor = colorize(cat);
-      chip.innerHTML =
-        '<span class="kg-dot" style="background:' + colorize(cat) + '"></span>' + labelize(cat);
-      chip.addEventListener('click', function () {
-        state.categories[cat] = !state.categories[cat];
-        if (state.categories[cat]) {
-          chip.classList.add('active');
-          chip.style.color = colorize(cat);
-          chip.style.borderColor = colorize(cat);
-        } else {
-          chip.classList.remove('active');
-          chip.style.color = '#999';
-          chip.style.borderColor = '#ddd';
-        }
-        onChange(state);
-      });
-      container.appendChild(chip);
-    });
     var pageChip = document.createElement('span');
     pageChip.className = 'kg-filter-chip active';
     pageChip.style.color = '#2ecc71';
@@ -1078,14 +1386,42 @@
     container.appendChild(pageChip);
   }
 
+  var _currentGraphState = null;
+
   // ── Public API ───────────────────────────────────────────────────
   global.D3EgoGraph = {
     createEgoGraph: createEgoGraph,
-    createFullGraph: createFullGraph,
+    createFullGraph: function (container, data, options) {
+      _currentGraphState = { container: container, data: data };
+      return createFullGraph(container, data, options);
+    },
     colorize: colorize,
     labelize: labelize,
     slugify: slugify,
     CAT_COLORS: CAT_COLORS,
     CAT_LABELS: CAT_LABELS,
+    setCategoryFilter: function (category) {
+      if (_currentGraphState && _currentGraphState.container) {
+        var container = _currentGraphState.container;
+        var btns = container.querySelectorAll('.entity-graph-control-btn[data-filter]');
+        btns.forEach(function (b) {
+          b.classList.toggle('active', b.getAttribute('data-filter') === (category || 'all'));
+        });
+      }
+    },
+    setSearchFilter: function (query) {
+      if (_currentGraphState && _currentGraphState.container) {
+        var container = _currentGraphState.container;
+        var svg = container.querySelector('svg');
+        if (svg) {
+          var node = svg.selectAll('.node');
+          node.style('display', function (d) {
+            if (!query) return null;
+            var labelLower = (d.label || '').toLowerCase();
+            return labelLower.indexOf(query.toLowerCase()) === -1 ? 'none' : null;
+          });
+        }
+      }
+    },
   };
 })(window);

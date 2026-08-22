@@ -2,6 +2,7 @@
 title: "Einheitenumrechner"
 description: "Interaktiver Einheitenumrechner für Chemie - Temperatur, Druck, Volumen, Masse und mehr"
 date: 2025-01-01
+last_reviewed: 2026-07-09
 type: "interactive"
 interaktiv: true
 layout: "einheitenumrechner"

@@ -2,6 +2,7 @@
 title: 'Konvektion'
 description: 'Interaktive Visualisierung der Wärmeübertragung durch Konvektion in Flüssigkeiten und Gasen'
 date: 2026-01-04
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'konvektion'

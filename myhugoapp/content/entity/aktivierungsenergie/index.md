@@ -1,22 +1,14 @@
 ---
-title: 'Aktivierungsenergie'
-description: 'Fachbegriff „Aktivierungsenergie“ (Konzept) — beschrieben in [object Object] Artikeln auf chemie-lernen.org und ist mit 5 weiteren Fachbegriffen verknüpft.'
+title: "aktivierungsenergie"
+description: "Fachbegriff „aktivierungsenergie“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 2 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-slug: 'aktivierungsenergie'
-category: 'konzept'
-articleCount: [object Object]
-relatedCount: 5
+slug: "aktivierungsenergie"
+category: "konzept"
+articleCount: 0
+relatedCount: 2
 relatedEntities:
-  - 'energie'
-  - 'aktivierungsenergie. prozesse in der industrie'
-  - 'arrhenius-gleichung'
-  - 'katalyse'
-  - 'Reaktionsgeschwindigkeit'
+  - "energie"
+  - "aktivierungsenergie. prozesse in der industrie"
 components: []
 ---
 
-## Verknüpfte Artikel
-
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)

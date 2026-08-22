@@ -1,0 +1,16 @@
+- [x] 22.1 Design and implement FSRS card schema in auth-db.js (cardId, topicId, question, answer, interval, ease, dueDate, lapses, lastReview)
+- [x] 22.2 Create `GET /api/fsrs/cards` — returns due cards (dueDate <= today) for current user, sorted by ease ascending
+- [x] 22.3 Create `POST /api/fsrs/cards/:id/review` — accepts score (0-1), runs FSRS algorithm, updates card, returns next due date
+- [x] 22.4 Enhance `POST /api/exercises/generate` with `difficulty` param (leicht/mittel/schwer) — scales question depth, distractor count, hint availability
+- [x] 22.5 Create per-topic quiz content: for each themenbereich (13) and klassenstufe (9), write a `quizzes/<slug>.md` file with 10 curated questions mixing multiple-choice and short-answer
+- [x] 22.6 Create `GET /api/quiz/:topicId` — returns quiz questions for a topic slug
+- [x] 22.7 Create `POST /api/quiz/:topicId/submit` — validates answers, returns score, creates FSRS cards for missed questions
+- [x] 22.8 Create `GET /api/quiz/topics` — returns all topics with quiz availability (hasQuestions, questionCount)
+- [x] 22.9 Create `POST /api/exercises/grade` — sends short-answer + reference to LiteLLM, returns score (0-100) + feedback
+- [x] 22.10 Create exercise history dashboard: `GET /api/exercises/history` — recent attempts, accuracy per topic, trend line
+- [x] 22.11 Frontend: FSRS review queue UI — shows due cards one-at-a-time, reveal answer, self-score (Again/Hard/Good/Easy) with next interval preview
+- [x] 22.12 Frontend: per-topic quiz pages — renders questions, handles submission, shows score + explanations
+- [x] 22.13 Frontend: exercise history page — accuracy chart, topic breakdown, recommended next topics
+- [x] 22.14 Wire quiz/exercise performance back into learning profile weak/strong areas (enhances sprint-21.4)
+- [x] 22.15 Update `openspec/specs/quiz/spec.md` with FSRS, per-topic quizzes, auto-grade pipeline
+- [x] 22.16 Verify: FSRS card created after missed quiz question; short-answer grade is within 10 points of human judgment; exercise history shows correct trend

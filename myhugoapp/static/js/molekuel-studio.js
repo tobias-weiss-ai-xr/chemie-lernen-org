@@ -21,8 +21,6 @@ window.addEventListener('unhandledrejection', (e) => {
   console.error('Unhandled promise rejection:', e.reason);
 });
 
-__debug.log('Molekülstudio script loaded');
-
 // Global flag to track initialization
 window.moleculeStudioInitialized = false;
 window.moleculeStudioError = null;
@@ -42,6 +40,18 @@ let errorMessage, welcomeScreen, loadingScreen, controlsInfo, autoRotateCheckbox
 
 // Beispieldaten für Moleküle
 const moleculeData = {
+  Wasserstoff: {
+    formula: 'H₂',
+    wikipedia: 'https://de.wikipedia.org/wiki/Wasserstoff',
+    elements: {
+      H: { radius: 0.3, color: '#FFFFFF' },
+    },
+    atoms: [
+      { id: 'H-1', element: 'H', position: [-0.4, 0.0, 0.0] },
+      { id: 'H-2', element: 'H', position: [0.4, 0.0, 0.0] },
+    ],
+    bonds: [{ atom1: 'H-1', atom2: 'H-2', type: 'single' }],
+  },
   Wasser: {
     formula: 'H₂O',
     wikipedia: 'https://de.wikipedia.org/wiki/Wasser',
@@ -1214,8 +1224,8 @@ function visualizeMolecule(name) {
     renderMolecule(data);
     showMoleculeInfo(data);
     showLoading(false);
-    welcomeScreen.style.display = 'none';
-    controlsInfo.style.display = 'block';
+    if (welcomeScreen) welcomeScreen.style.display = 'none';
+    if (controlsInfo) controlsInfo.style.display = 'block';
     if (canvas) {
       canvas.setAttribute(
         'aria-label',
@@ -1360,8 +1370,8 @@ function calculatePerpendicular(direction) {
 }
 
 function showLoading(show) {
-  loadingScreen.style.display = show ? 'flex' : 'none';
-  visualizeBtn.disabled = show;
+  if (loadingScreen) loadingScreen.style.display = show ? 'flex' : 'none';
+  if (visualizeBtn) visualizeBtn.disabled = show;
 }
 
 function showMoleculeInfo(data) {

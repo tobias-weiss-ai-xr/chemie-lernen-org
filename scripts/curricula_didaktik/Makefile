@@ -39,17 +39,22 @@ install:  ## create venv and install pinned dependencies
 	@test -d $(VENV) || $(PYTHON) -m venv $(VENV)
 	$(VENV_PYTHON) -m pip install --upgrade pip wheel setuptools
 	$(VENV_PYTHON) -m pip install --require-hashes -r requirements.txt
-	$(VENV_PYTHON) -m pip install --require-hashes -r requirements-dev.txt
+	$(VENV_PYTHON) -m pip install -r requirements-dev.txt
 	@echo "OK: venv ready at $(VENV)"
 
 all: install  ## run all scrapers (idempotent)
 	@for src in $(SOURCES); do \
 		echo "=== Running $$src ==="; \
-		$(VENV_PYTHON) -m framework $$src --output-dir $(OUTPUT_DIR) || exit 1; \
+		if [ "$$src" = "kmk" ]; then \
+			$(VENV_PYTHON) -m framework $$src --output-dir $(DIDAKTIK_OUTPUT_DIR) || exit 1; \
+		else \
+			$(VENV_PYTHON) -m framework $$src --output-dir $(OUTPUT_DIR) || exit 1; \
+		fi \
 	done
 	@echo ""
 	@echo "All scrapers done. Outputs:"
 	@ls -la $(OUTPUT_DIR)/*.json 2>/dev/null | head -10
+	@ls -la $(DIDAKTIK_OUTPUT_DIR)/*.json 2>/dev/null | head -5
 
 $(SOURCES): install  ## run a single scraper (e.g. `make eth_zurich`)
 	$(VENV_PYTHON) -m framework $@ --output-dir $(OUTPUT_DIR)

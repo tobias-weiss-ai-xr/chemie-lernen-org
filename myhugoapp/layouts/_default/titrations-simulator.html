@@ -330,13 +330,28 @@
 
 </div>
 
-<script src="{{ "js/utils/ui-utils.js" | relURL }}"></script><script src="{{ "js/utils/chemistry-utils.js" | relURL }}"></script><script src="{{ "js/titrations-simulator.js" | relURL }}"></script>
+    <h2 class="premium-locked-title">Premium-Feature</h2>
+    <p class="premium-locked-desc">
+      Der Titrationssimulator ist ein Premium-Feature für Lehrkräfte.
+      Upgrade auf Premium für unbegrenzten Zugriff auf alle Simulationen.
+    </p>
+    <ul class="premium-features">
+      <li>Alle Titrationen simulieren</li>
+      <li>Interaktive pH-Kurven</li>
+      <li>Werbefreies Lernen</li>
+      <li>Zugriff auf alle Premium-Rechner</li>
+    </ul>
+    <a href="/premium/" class="premium-locked-cta">Jetzt Premium aktivieren</a>
+  </div>
+</div>
+
+<script src="{{ "js/utils/chemistry-utils.js" | relURL }}"></script><script src="{{ "js/titrations-simulator.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/titrations-simulator.css" | relURL }}">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 {{ end }}
 
 {{ define "js" }}
-<script>
+
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('btn-run-titration').addEventListener('click', function() { runTitration(); });
 });

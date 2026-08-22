@@ -1,11 +1,12 @@
 {
   "scripts": {
-    "test": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation|modulhandbuch-api)'",
+    "test": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation|\\.tf-worktrees)'",
+    "test:all": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation|\\.tf-worktrees)' --verbose",
     "test:watch": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --watch",
     "test:coverage": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --coverage --forceExit",
     "test:verbose": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --verbose --forceExit",
     "test:integration": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathPattern='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation|visualization)'",
-    "test:unit": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation|visualization)'",
+    "test:unit": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation|visualization|\\.tf-worktrees)'",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
@@ -28,12 +29,23 @@
     "check:updates": "npm outdated",
     "update:dependencies": "npm update",
     "security:check": "npm run audit && npm run check:updates",
-    "duplicate:check": "jscpd myhugoapp/static/js --min-lines=10 --min-tokens=50 --threshold=10 --gitignore",
+    "duplicate:check": "jscpd myhugoapp/static/js --min-lines=10 --min-tokens=50 --threshold=10 --ignore '**/*.optimized.js'",
     "hugo:build": "docker run --rm -v \"$(pwd)/myhugoapp:/src\" -w /src hugomods/hugo:exts hugo",
     "export:kg-data": "node scripts/export-kg-data.mjs",
     "generate:entities": "node scripts/generate-entity-pages.mjs",
-    "prebuild": "(node scripts/export-kg-data.mjs || echo '[build] Neo4j export skipped (non-fatal)') && node scripts/generate-entity-pages.mjs",
-    "build": "docker run --rm -v \"$(pwd)/myhugoapp:/src\" -w /src hugomods/hugo:exts hugo --baseURL https://chemie-lernen.org && npx pagefind --site myhugoapp/public"
+    "generate:themenbereich-entities": "node scripts/generate-themenbereich-entities.mjs",
+    "validate:curricula": "node scripts/validate-curricula.mjs",
+    "scrape:modulhandbuch": "node scripts/modulhandbuch/_run-all.mjs",
+    "import:modulhandbuch": "node scripts/import-modulhandbuch.mjs",
+    "prebuild": "(node scripts/export-kg-data.mjs || echo '[build] Neo4j export skipped (non-fatal)') && node scripts/generate-entity-pages.mjs && (node scripts/build-search-index.mjs || echo '[build] Search index skipped (kg_data empty)') && (node scripts/fetch-zigs-videos.mjs || echo '[build] Zig video feed skipped (non-fatal)')",
+    "fetch:zigs-videos": "node scripts/fetch-zigs-videos.mjs",
+    "build": "docker run --rm -v \"$(pwd)/myhugoapp:/src\" -w /src hugomods/hugo:exts hugo --baseURL https://chemie-lernen.org && npx pagefind --site myhugoapp/public",
+    "dev": "echo 'Starting API and Hugo dev server... Ensure docker compose is running for the API.' && (hugo server -D --source myhugoapp --disableFastRender &) && sleep 2 && echo 'Hugo dev server started on http://localhost:1313' && wait",
+    "dev:api": "docker compose up -d chemie-chat-api && docker compose logs -f chemie-chat-api",
+    "lighthouse": "lhci autorun --upload=false --collect.numberOfRuns=3 --collect.settings.chromeFlags=\"--no-sandbox\"",
+    "audit:mobile": "node scripts/mobile-ux-audit.js",
+    "vendor-core": "bash scripts/vendor-core.sh",
+    "pretest": "bash scripts/vendor-core.sh"
   },
   "lint-staged": {
     "*.js": [
@@ -50,10 +62,12 @@
     "@graphwiz/neo4j": "file:packages/graphwiz/graphwiz-neo4j-0.2.0.tgz",
     "@playwright/test": "^1.61.0",
     "fast-xml-parser": "^5.9.2",
+    "lunr": "2.3.9",
     "neo4j-driver": "^6.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@lhci/cli": "^0.15.1",
     "@types/jest": "^29.5.12",
     "axe-core": "^4.12.1",
     "axios": "^1.13.2",
@@ -74,8 +88,18 @@
   "jest": {
     "testEnvironment": "jsdom",
     "testMatch": [
-      "**/tests/**/*.test.js"
+      "**/tests/**/*.test.js",
+      "**/tests/**/*.test.mjs"
     ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/\\.tf-worktrees/"
+    ],
+    "transform": {
+      "^.*/api/.*\\.js$": "<rootDir>/jest-transform-esm.cjs",
+      "^.+\\.mjs$": "<rootDir>/jest-transform-esm.cjs",
+      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+    },
     "collectCoverageFrom": [
       "myhugoapp/static/js/calculators/**/*.js",
       "myhugoapp/static/js/utils/**/*.js"

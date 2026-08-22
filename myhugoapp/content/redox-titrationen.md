@@ -2,6 +2,7 @@
 title: 'Redox-Titrationen'
 description: 'Interaktive Redox-Titrationen mit potentiometrischer Indikation und klassischen Redox-Indikatoren'
 date: 2026-01-04
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'redox-titrationen'

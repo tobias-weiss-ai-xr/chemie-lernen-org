@@ -1,5 +1,7 @@
 {{ define "main" }}
 
+<link rel="stylesheet" href="{{ "/css/kg-legend.css" | relURL }}">
+
 <div class="thema-container">
   <div class="thema-header">
     <div class="row">
@@ -13,19 +15,199 @@
 
   <div class="thema-content-layout">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <article class="thema-content">
           {{ .Content }}
         </article>
+
+        <!-- Entity Graph Legend - Positioned above the graph as part of the page -->
+        <div class="kg-legend-container card mb-4">
+          <div class="card-header bg-primary text-white">
+            <h2 class="h5 mb-0">
+              <i class="fa fa-map" aria-hidden="true"></i>
+              Wissensnetz-Legende
+            </h2>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="kg-legend-section">
+                  <h3 class="h6">Knoten-Typen</h3>
+                  <p class="small text-muted mb-2">
+                    Verschiedene Entitätstypen im Wissensgraph
+                  </p>
+                  <div class="kg-legend-items">
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-color" style="background: #667eea"></span>
+                      <span>Stoff</span>
+                    </div>
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-color" style="background: #45b7d1"></span>
+                      <span>Konzept</span>
+                    </div>
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-color" style="background: #4ecdc4"></span>
+                      <span>Reaktion</span>
+                    </div>
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-color" style="background: #f093fb"></span>
+                      <span>Methode</span>
+                    </div>
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-color" style="background: #ff9a76"></span>
+                      <span>Person</span>
+                    </div>
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-color" style="background: #a8e6cf"></span>
+                      <span>Didaktik</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="kg-legend-section">
+                  <h3 class="h6">Lehrplan-Elemente</h3>
+                  <p class="small text-muted mb-2">
+                    Strukturierte Angebote aus den Lehrplänen aller 16 Bundesländer
+                  </p>
+                  <div class="kg-legend-items">
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-color" style="background: #9b59b6"></span>
+                      <span>Lehrplan</span>
+                    </div>
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-color" style="background: #2e7d32"></span>
+                      <span>KMK-Standard</span>
+                    </div>
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-color" style="background: #17a2b8"></span>
+                      <span>Lernziel</span>
+                    </div>
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-icon">📄</span>
+                      <span>Artikel</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-3">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="kg-legend-section">
+                  <h3 class="h6">Beziehungen</h3>
+                  <p class="small text-muted mb-2">
+                    Art der Verknüpigungen zwischen den Knoten
+                  </p>
+                  <div class="kg-legend-items">
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-line" style="background: #667eea"></span>
+                      <span>Verknüpft</span>
+                    </div>
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-line kg-legend-line-dashed" style="background: #f39c12"></span>
+                      <span>Ähnlich</span>
+                    </div>
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-line" style="background: #e74c3c"></span>
+                      <span>Besteht aus</span>
+                    </div>
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-line" style="background: #45b7d1"></span>
+                      <span>Beschreibt</span>
+                    </div>
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-line" style="background: #2ecc71"></span>
+                      <span>Demonstriert</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="kg-legend-section">
+                  <h3 class="h6">&nbsp;</h3>
+                  <p class="small text-muted mb-2">&nbsp;</p>
+                  <div class="kg-legend-items">
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-line" style="background: #e67e22"></span>
+                      <span>Erzeugt</span>
+                    </div>
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-line" style="background: #9b59b6"></span>
+                      <span>Entdeckt</span>
+                    </div>
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-line" style="background: #1abc9c"></span>
+                      <span>Beinhaltet</span>
+                    </div>
+                    <div class="kg-legend-item">
+                      <span class="kg-legend-line" style="background: #f1c40f"></span>
+                      <span>Vergleichbar</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-3">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="kg-legend-section">
+                  <h3 class="h6">Darstellung</h3>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <p class="small text-muted mb-1">
+                        <strong>Knotengröße:</strong> Je mehr Verbindungen und referenzierte Dokumente eine Entität hat, desto größer wird der Knoten dargestellt.
+                      </p>
+                    </div>
+                    <div class="col-sm-6">
+                      <p class="small text-muted mb-1">
+                        <strong>Knotenform:</strong> Kreise = Entitäten, kleine Kreise = Artikel
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer bg-light small text-muted">
+            <span class="text-nowrap">
+              <i class="fa fa-info-circle"></i>
+              Bewegen Sie die Maus über Knoten, um Details zu sehen
+            </span>
+            <span class="float-right">
+              <i class="fa fa-mouse-pointer"></i>
+              Klicken Sie auf Knoten, um zu navigieren
+            </span>
+          </div>
+        </div>
+
+        <!-- Graph Container (kg-app comes from .Content in wissennetz.md) -->
+        <div id="kg-controls"></div>
       </div>
-      <aside class="col-md-4">
-        <div class="thema-sidebar"></div>
-      </aside>
     </div>
   </div>
 </div>
 
-<script src="{{ "/js/visualization/d3-ego-graph.js" | relURL }}"></script>
+<script>
+var D3_LOADED = false;
+function loadD3AndEgoGraph() {
+  if (D3_LOADED) return Promise.resolve();
+  D3_LOADED = true;
+  return new Promise(function(resolve, reject) {
+    var d3Script = document.createElement('script');
+    d3Script.src = '{{ "/js/vendor/d3.v7.min.js" | relURL }}';
+    d3Script.onload = function() {
+      var egoScript = document.createElement('script');
+      egoScript.src = '{{ "/js/visualization/d3-ego-graph.js" | relURL }}?v=7';
+      egoScript.onload = resolve;
+      egoScript.onerror = reject;
+      document.head.appendChild(egoScript);
+    };
+    d3Script.onerror = reject;
+    document.head.appendChild(d3Script);
+  });
+}
+</script>
 <script src="{{ "/js/wissennetz-graph.js" | relURL }}"></script>
 
 {{ end }}

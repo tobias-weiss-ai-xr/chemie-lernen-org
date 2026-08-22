@@ -1,11 +1,21 @@
+{{ define "title" }}Seite nicht gefunden — {{ .Site.Title }}{{ end }}
+
 {{ define "main" }}
 <div class="container" style="margin-top: 2rem;">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8 col-md-offset-2 text-center">
       <h1>Seite nicht gefunden</h1>
-      <p style="font-size: 1.1rem; color: var(--text-muted, #666);">
+      <p style="font-size: 1.1rem; color: var(--text-muted, #666); margin-bottom: 2rem;">
         Die angeforderte Seite existiert nicht oder wurde verschoben.
       </p>
+      <form action="/suche/" method="get" style="margin-bottom: 2rem;">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Thema suchen..." aria-label="Suche">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit">Suchen</button>
+          </span>
+        </div>
+      </form>
       <p>
         <a href="/">Zur Startseite</a> &middot;
         <a href="/themenbereiche/">Themenbereiche</a> &middot;

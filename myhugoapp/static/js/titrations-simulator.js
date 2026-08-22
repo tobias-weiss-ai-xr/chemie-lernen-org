@@ -148,11 +148,11 @@ function displayResults(
   const resultsHtml = `
     <div class="data-row">
       <span class="data-label">Analysenlösung:</span>
-      <span class="data-value">${typeNames[analyteType]} (${analyteConc} M, ${analyteVol} mL)</span>
+      <span class="data-value">${typeNames[analyteType] || 'Unbekannt'} (${analyteConc} M, ${analyteVol} mL)</span>
     </div>
     <div class="data-row">
       <span class="data-label">Titrationslösung:</span>
-      <span class="data-value">${typeNames[titrantType]} (${titrantConc} M)</span>
+      <span class="data-value">${typeNames[titrantType] || 'Unbekannt'} (${titrantConc} M)</span>
     </div>
     <div class="data-row">
       <span class="data-label">Äquivalenzvolumen:</span>

@@ -16,12 +16,23 @@ function parseFormula(formula, options = {}) {
   const composition = {};
   const regex = /([A-Z][a-z]?)(\d*)/g;
 
+  // Normalize unicode subscript digits (H₂O, CO₂ — common copy-paste form)
+  formula = formula.replace(/[₀-₉]/g, (d) => '0123456789'['₀₁₂₃₄₅₆₇₈₉'.indexOf(d)]);
+
+  // Expand hydrate notation: CuSO4·5H2O / CuSO4.5H2O / CuSO4*5H2O / CuSO4×5H2O
+  // (and without coefficient: CuSO4·H2O). Previously the separator and the
+  // water coefficient were silently dropped, yielding wrong compositions.
+  formula = formula.replace(/[·.×*]\s*(\d*)(H2O)/gi, (match, count) => {
+    const n = count ? parseInt(count) : 1;
+    return 'H' + 2 * n + 'O' + n;
+  });
+
   // Handle parentheses recursively
   formula = formula.replace(/\(([^()]+)\)(\d*)/g, (match, group, multiplier) => {
     const mult = multiplier ? parseInt(multiplier) : 1;
     const processedGroup = group.replace(/([A-Z][a-z]?)(\d*)/g, (m, element, count) => {
       const c = count ? parseInt(count) : 1;
-      return element + (c * mult);
+      return element + c * mult;
     });
     return processedGroup;
   });
@@ -89,14 +100,14 @@ function getCompositionDetails(composition, atomicMasses, totalMass) {
     const count = composition[element];
     const mass = atomicMasses[element];
     const contribution = count * mass;
-    const percentage = (contribution / totalMass * 100).toFixed(1);
+    const percentage = ((contribution / totalMass) * 100).toFixed(1);
 
     details.push({
       element,
       count,
       mass,
       contribution,
-      percentage
+      percentage,
     });
   }
 
@@ -114,9 +125,20 @@ function isValidFormula(formula) {
     return false;
   }
 
-  // Check if formula matches the pattern (elements and numbers, parentheses)
+  // Normalize unicode subscript digits (H₂O) so they validate like H2O
+  const normalized = formula.replace(/[₀-₉]/g, (d) => '0123456789'['₀₁₂₃₄₅₆₇₈₉'.indexOf(d)]);
+
+  // Strip hydrate segments (separator + optional coefficient + water) and
+  // parenthesized multipliers so the core can be validated with the plain
+  // element pattern. Leading coefficients (2H2O) and lone separators (H2O·)
+  // stay invalid — equation coefficients are not part of a single formula.
+  const core = normalized
+    .replace(/[·.×*]\s*\d*[A-Z][a-z]?\d*/g, '')
+    .replace(/\(([^()]*)\)\d*/g, '($1)');
+
+  // Check if the core matches the pattern (elements and numbers, parentheses)
   const validPattern = /^([A-Z][a-z]?\d*|\(|\)|\+|\s)+$/;
-  return validPattern.test(formula);
+  return validPattern.test(core);
 }
 
 /**
@@ -127,10 +149,10 @@ function isValidFormula(formula) {
 function extractElements(formulas) {
   const elements = new Set();
 
-  formulas.forEach(formula => {
+  formulas.forEach((formula) => {
     try {
       const composition = parseFormula(formula);
-      Object.keys(composition).forEach(element => elements.add(element));
+      Object.keys(composition).forEach((element) => elements.add(element));
     } catch (error) {
       // Skip invalid formulas
       console.warn(`Failed to parse formula: ${formula}`, error);
@@ -148,7 +170,7 @@ if (typeof module !== 'undefined' && module.exports) {
     calculateMolarMass,
     getCompositionDetails,
     isValidFormula,
-    extractElements
+    extractElements,
   };
 }
 
@@ -160,6 +182,6 @@ if (typeof window !== 'undefined') {
     calculateMolarMass,
     getCompositionDetails,
     isValidFormula,
-    extractElements
+    extractElements,
   };
 }

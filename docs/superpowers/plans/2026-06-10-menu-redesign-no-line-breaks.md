@@ -13,6 +13,7 @@
 ### Task 1: Consolidate Standalones into "Mehr" Dropdown
 
 **Files:**
+
 - Modify: `myhugoapp/config.toml:366-380` (current standalone entries)
 
 - [ ] **Step 1: Add "Mehr" parent entry before Forschung**
@@ -22,6 +23,7 @@ Replace the standalone Forschung, Roadmap, Unterstützen entries with a grouped 
 In `config.toml`, replace lines 366-380:
 
 Old:
+
 ```toml
 # ── Allgemeine Seiten ────────────────────────────────
 [[menu.main]]
@@ -41,6 +43,7 @@ Old:
 ```
 
 New:
+
 ```toml
 # ── Allgemeine Seiten ────────────────────────────────
 [[menu.main]]
@@ -79,6 +82,7 @@ Expected: Shows the new "Mehr" block with Forschung/Roadmap/Unterstützen as chi
 ### Task 2: CSS — Prevent Menu Line Breaks
 
 **Files:**
+
 - Modify: `myhugoapp/layouts/partials/header.html:105-124` (inline `<style>` block)
 
 - [ ] **Step 1: Add white-space: nowrap to desktop navbar items**
@@ -86,6 +90,7 @@ Expected: Shows the new "Mehr" block with Forschung/Roadmap/Unterstützen as chi
 In `myhugoapp/layouts/partials/header.html`, inside the existing `@media (min-width: 768px)` block (lines 106-124), add `white-space: nowrap` to `.navbar-nav > li > a`:
 
 Current block (lines 106-124):
+
 ```css
 @media (min-width: 768px) {
   .navbar-collapse {
@@ -109,6 +114,7 @@ Current block (lines 106-124):
 ```
 
 Replace with:
+
 ```css
 @media (min-width: 768px) {
   .navbar-collapse {

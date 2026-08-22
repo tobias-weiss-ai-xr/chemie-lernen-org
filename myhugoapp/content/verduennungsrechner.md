@@ -2,6 +2,7 @@
 title: "Verdünnungsrechner"
 description: "Berechnen Sie Volumina bei Konzentrationsverdünnungen mit dem Verdünnungsgesetz."
 date: "2026-06-03"
+last_reviewed: 2026-08-06
 type: "interactive"
 interaktiv: true
 layout: "verduennungsrechner"

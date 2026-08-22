@@ -3,6 +3,7 @@ title: University of Cambridge
 description: Die University of Cambridge bietet 18 Chemie-Module in 2 Studiengängen an.
 layout: uni
 date: 2026-06-29
+last_reviewed: 2026-07-09
 aliases:
   - /modulhandbuch/CAM/
 uni_code: CAM

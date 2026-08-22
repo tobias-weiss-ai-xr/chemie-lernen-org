@@ -2,6 +2,7 @@
 title: "Konzentrationsumrechner"
 description: "Rechnen Sie zwischen verschiedenen Konzentrationseinheiten um: Molar, Molal, Prozent, ppm, ppb und mehr"
 date: 2026-01-03
+last_reviewed: 2026-07-09
 type: "interactive"
 interaktiv: true
 layout: "konzentrationsumrechner"

@@ -3,6 +3,7 @@ title: Stanford University
 description: Die Stanford University bietet 18 Chemie-Module in 2 Studiengängen an.
 layout: uni
 date: 2026-06-29
+last_reviewed: 2026-07-09
 aliases:
   - /modulhandbuch/STANF/
 uni_code: STANF

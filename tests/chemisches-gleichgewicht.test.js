@@ -3,9 +3,10 @@
  */
 
 function calculateKc(productConcs, eductConcs, productCoeffs, eductCoeffs) {
-  if (productConcs.length !== productCoeffs.length ||
-      eductConcs.length !== eductCoeffs.length) {
-    throw new Error('Ungültige Eingabe: Konzentrationen und Koeffizienten müssen gleich viele Elemente haben');
+  if (productConcs.length !== productCoeffs.length || eductConcs.length !== eductCoeffs.length) {
+    throw new Error(
+      'Ungültige Eingabe: Konzentrationen und Koeffizienten müssen gleich viele Elemente haben'
+    );
   }
   let produktTerm = 1;
   let eduktTerm = 1;
@@ -29,10 +30,14 @@ function leChatelierConcentration(change, side) {
   // change: 'increase' or 'decrease'
   // side: 'educts' or 'products'
   if (change === 'increase') {
-    return side === 'educts' ? 'Gleichgewicht verschiebt sich nach rechts' : 'Gleichgewicht verschiebt sich nach links';
+    return side === 'educts'
+      ? 'Gleichgewicht verschiebt sich nach rechts'
+      : 'Gleichgewicht verschiebt sich nach links';
   }
   if (change === 'decrease') {
-    return side === 'educts' ? 'Gleichgewicht verschiebt sich nach links' : 'Gleichgewicht verschiebt sich nach rechts';
+    return side === 'educts'
+      ? 'Gleichgewicht verschiebt sich nach links'
+      : 'Gleichgewicht verschiebt sich nach rechts';
   }
   throw new Error('Ungültige Änderung');
 }
@@ -79,18 +84,21 @@ describe('Chemisches Gleichgewicht Rechner', () => {
 
   describe('leChatelierConcentration', () => {
     test('Erhöhung der Eduktkonzentration → Verschiebung nach rechts', () => {
-      expect(leChatelierConcentration('increase', 'educts'))
-        .toBe('Gleichgewicht verschiebt sich nach rechts');
+      expect(leChatelierConcentration('increase', 'educts')).toBe(
+        'Gleichgewicht verschiebt sich nach rechts'
+      );
     });
 
     test('Erhöhung der Produktkonzentration → Verschiebung nach links', () => {
-      expect(leChatelierConcentration('increase', 'products'))
-        .toBe('Gleichgewicht verschiebt sich nach links');
+      expect(leChatelierConcentration('increase', 'products')).toBe(
+        'Gleichgewicht verschiebt sich nach links'
+      );
     });
 
     test('Erniedrigung der Eduktkonzentration → Verschiebung nach links', () => {
-      expect(leChatelierConcentration('decrease', 'educts'))
-        .toBe('Gleichgewicht verschiebt sich nach links');
+      expect(leChatelierConcentration('decrease', 'educts')).toBe(
+        'Gleichgewicht verschiebt sich nach links'
+      );
     });
   });
 

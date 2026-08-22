@@ -42,22 +42,37 @@ for (const page of pages) {
     console.log(`  Headings: ${headings.join(' | ')}`);
 
     // Check what the main/article content actually contains (first 600 chars)
-    const mainHtml = await p.$eval('main, article, .content, #content', (el) => {
-      return el.innerHTML.substring(0, 1000);
-    }).catch(() => '(no main element found)');
+    const mainHtml = await p
+      .$eval('main, article, .content, #content', (el) => {
+        return el.innerHTML.substring(0, 1000);
+      })
+      .catch(() => '(no main element found)');
     console.log(`  Main HTML (first 1000 chars): ${mainHtml.substring(0, 400)}`);
 
     // Check for 404 indicators
     const pageText = await p.$eval('body', (el) => el.innerText);
-    const is404 = pageText.toLowerCase().includes('404') || pageText.toLowerCase().includes('seite nicht gefunden') || pageText.toLowerCase().includes('page not found');
+    const is404 =
+      pageText.toLowerCase().includes('404') ||
+      pageText.toLowerCase().includes('seite nicht gefunden') ||
+      pageText.toLowerCase().includes('page not found');
     console.log(`  Is 404: ${is404}`);
 
     // Check if the page is just showing the homepage (same title as homepage?)
     const navLinks = await p.$$eval('nav a, header a', (els) =>
-      els.slice(0, 20).map((el) => ({ text: el.innerText.trim().substring(0, 30), href: el.getAttribute('href') }))
+      els
+        .slice(0, 20)
+        .map((el) => ({
+          text: el.innerText.trim().substring(0, 30),
+          href: el.getAttribute('href'),
+        }))
     );
     const hasOwnNav = navLinks.some((l) => l.href && l.href.includes(page.url.replace(/\/$/, '')));
-    console.log(`  Navigation links: ${navLinks.slice(0, 5).map((l) => `${l.text}(${l.href})`).join(', ')}`);
+    console.log(
+      `  Navigation links: ${navLinks
+        .slice(0, 5)
+        .map((l) => `${l.text}(${l.href})`)
+        .join(', ')}`
+    );
     console.log(`  Has own nav link: ${hasOwnNav}`);
 
     // For themenbereiche, check if there's actual educational content
@@ -70,7 +85,11 @@ for (const page of pages) {
         }))
       );
       console.log(`  Content sections (${contentSections.length}):`);
-      contentSections.slice(0, 5).forEach((s) => console.log(`    <${s.tag}> (${s.children}ch) "${s.text.substring(0, 80)}"`));
+      contentSections
+        .slice(0, 5)
+        .forEach((s) =>
+          console.log(`    <${s.tag}> (${s.children}ch) "${s.text.substring(0, 80)}"`)
+        );
     }
 
     // Check the actual page URL (redirects?)
@@ -92,9 +111,10 @@ for (const page of pages) {
       );
       const gamScripts = scripts.filter((s) => s.hasGamification);
       console.log(`  GamificationEngine scripts: ${gamScripts.length}`);
-      gamScripts.forEach((s) => console.log(`    src: ${s.src}, snippet: ${s.textSnippet.substring(0, 100)}`));
+      gamScripts.forEach((s) =>
+        console.log(`    src: ${s.src}, snippet: ${s.textSnippet.substring(0, 100)}`)
+      );
     }
-
   } catch (err) {
     console.log(`  ERROR: ${err.message}`);
   }

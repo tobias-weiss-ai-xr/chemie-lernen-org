@@ -47,7 +47,7 @@ const _ProgressTracker = {
       module,
       exerciseId,
       ...data,
-      lastAttempt: new Date().toISOString()
+      lastAttempt: new Date().toISOString(),
     };
     store.put(record);
     await this.updateDailyStats();
@@ -262,5 +262,11 @@ const _ProgressTracker = {
     const d = new Date();
     d.setDate(d.getDate() - 1);
     return d.toISOString().split('T')[0];
-  }
+  },
 };
+
+// Expose as browser global — consumed by fortschritt-dashboard.js,
+// cloze-exercises.js, lernpfad.js, practice-generator.js and others
+// (the const is prefixed with _ to satisfy ESLint no-unused-vars; the
+// window global is the real contract, like gamification-engine.js).
+window.ProgressTracker = _ProgressTracker;

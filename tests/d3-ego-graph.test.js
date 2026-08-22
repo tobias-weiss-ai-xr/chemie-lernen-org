@@ -37,6 +37,9 @@ function makeMockSimulation() {
     alphaDecay: function () {
       return this;
     },
+    velocityDecay: function () {
+      return this;
+    },
     restart: function () {
       return this;
     },
@@ -438,15 +441,44 @@ describe('D3EgoGraph.createFullGraph', () => {
     expect(lis).toHaveLength(3);
   });
 
-  test('omits legend when showLegend is false', async () => {
+  test('limits nodes to top-N by connections when maxNodes is set', async () => {
     const c = makeContainer();
-    const data = { entities: [], articles: [] };
-    await window.D3EgoGraph.createFullGraph(c, data, { showLegend: false });
-    // No text element should be present (legend uses text elements)
+    const data = {
+      entities: [
+        {
+          id: 'e1',
+          name: 'Hub',
+          category: 'konzept',
+          relatedEntities: [{ name: 'a' }, { name: 'b' }, { name: 'c' }],
+        },
+        {
+          id: 'e2',
+          name: 'Zwei',
+          category: 'stoff',
+          relatedEntities: [{ name: 'x' }, { name: 'y' }],
+        },
+        { id: 'e3', name: 'Eins', category: 'stoff', relatedEntities: [{ name: 'z' }] },
+        { id: 'e4', name: 'Null', category: 'stoff', relatedEntities: [] },
+      ],
+      articles: [],
+    };
+    await window.D3EgoGraph.createFullGraph(c, data, { showLegend: false, maxNodes: 2 });
     const svg = c.querySelector('svg');
-    // We can't easily count "legend" texts without a real D3, but the
-    // module should still create the SVG.
     expect(svg).not.toBeNull();
+    expect(svg.getAttribute('aria-label')).toContain('2 Knoten');
+  });
+
+  test('keeps all nodes when maxNodes exceeds entity count', async () => {
+    const c = makeContainer();
+    const data = {
+      entities: [
+        { id: 'e1', name: 'A', category: 'stoff', relatedEntities: [] },
+        { id: 'e2', name: 'B', category: 'stoff', relatedEntities: [] },
+      ],
+      articles: [],
+    };
+    await window.D3EgoGraph.createFullGraph(c, data, { showLegend: false, maxNodes: 50 });
+    expect(c.querySelector('svg').getAttribute('aria-label')).toContain('2 Knoten');
   });
 });
 

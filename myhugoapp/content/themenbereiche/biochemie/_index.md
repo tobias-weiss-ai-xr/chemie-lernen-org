@@ -3,12 +3,17 @@ title: 'Biochemie'
 description: 'Chemische Prozesse in Lebewesen: Proteine, Enzyme, Kohlenhydrate, Fette und Nukleinsäuren'
 date: '2026-07-09'
 last_reviewed: '2026-07-09'
-tags: '['chemie', 'biochemie', 'biologie']'
-interaktiv: 'false'
-schwierigkeit: 'mittelstufe'
-teilgebiet: '['biochemie']'
+tags:
+  - chemie
+  - biochemie
+  - biologie
+interaktiv: false
+schwierigkeit: mittelstufe
+teilgebiet:
+  - biochemie
 icon: '🧬'
-aliases: '[/article/_index/]'
+aliases:
+  - /article/_index/
 ---
 
 ## Biochemie
@@ -57,3 +62,7 @@ Nach diesem Themenbereich können Sie:
 - [Kohlenhydrate: Zucker und Polysaccharide](/themenbereiche/biochemie/kohlenhydrate-zucker-polysaccharide/) – Mono/Di/Polysaccharide, Glucose, Fructose, Saccharose, Stärke, Cellulose, Glycosidische Bindung, Nachweise (Fehling, Iodprobe)
 - [Nukleinsäuren: DNA und RNA](/themenbereiche/biochemie/nukleinsaeuren-dna-rna/) – Nukleotide, DNA-Doppelhelix, Basenpaarung (A-T, G-C), semikonservative Replikation, Transkription, Translation, RNA-Typen
 - [Proteine und Aminosäuren](/themenbereiche/biochemie/proteine-und-aminosaeuren/) – Aminosäuren als Bausteine, Peptidbindung, Primär-/Sekundär-/Tertiär-/Quartärstruktur, Protein-Funktionen (Enzyme, Strukturproteine, Transportproteine)
+
+{{< quiz-widget topic="alle" title="Biochemie" >}}
+
+{{< entity-cloud slug="biochemie" title="Verwandte Fachbegriffe" >}}

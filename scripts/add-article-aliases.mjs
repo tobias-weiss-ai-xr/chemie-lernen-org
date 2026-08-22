@@ -21,7 +21,7 @@ const CONTENT_DIR = path.resolve(
   '..',
   'myhugoapp',
   'content',
-  'themenbereiche',
+  'themenbereiche'
 );
 
 /**
@@ -107,8 +107,7 @@ function run() {
     // Insert before the last frontmatter line (works for typical YAML)
     // Or just append to frontmatter (before closing ---)
     const newFrontmatter = [...frontmatterLines, aliasLine];
-    const newContent =
-      '---\n' + newFrontmatter.join('\n') + '\n---\n' + bodyLines.join('\n');
+    const newContent = '---\n' + newFrontmatter.join('\n') + '\n---\n' + bodyLines.join('\n');
 
     fs.writeFileSync(filePath, newContent, 'utf-8');
     modified++;

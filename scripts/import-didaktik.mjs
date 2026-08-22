@@ -290,8 +290,12 @@ function generateDryRun(guidelines) {
     console.log();
   }
 
-  console.log(`Total: ${guidelines.length} :DidacticGuideline + ${totalSections} :GuidelineSection nodes\n`);
-  console.log(`Linking rules: ${LINKING_RULES.length} guideline → curriculum topic keyword mappings`);
+  console.log(
+    `Total: ${guidelines.length} :DidacticGuideline + ${totalSections} :GuidelineSection nodes\n`
+  );
+  console.log(
+    `Linking rules: ${LINKING_RULES.length} guideline → curriculum topic keyword mappings`
+  );
 }
 
 // ── Main ──────────────────────────────────────────────────────────────

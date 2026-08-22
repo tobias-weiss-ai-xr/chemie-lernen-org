@@ -49,7 +49,7 @@ async function run() {
   const neo4j = await import('neo4j-driver');
   const driver = neo4j.default.driver(
     NEO4J_URI,
-    neo4j.default.auth.basic(NEO4J_USER, NEO4J_PASSWORD),
+    neo4j.default.auth.basic(NEO4J_USER, NEO4J_PASSWORD)
   );
 
   try {
@@ -60,9 +60,7 @@ async function run() {
     let created = 0;
     for (const quelle of QUELLEN) {
       if (DRY_RUN) {
-        console.log(
-          `  [dry-run] MERGE (:Entity {name: "${quelle.name}", kategorie: "quelle"})`,
-        );
+        console.log(`  [dry-run] MERGE (:Entity {name: "${quelle.name}", kategorie: "quelle"})`);
         created++;
         continue;
       }
@@ -76,12 +74,14 @@ async function run() {
           name: quelle.name,
           kategorie: 'quelle',
           description: quelle.description,
-        },
+        }
       );
       created++;
     }
 
-    console.log(`[import-quelle] DONE — ${created}/${QUELLEN.length} Quelle entities created/verified`);
+    console.log(
+      `[import-quelle] DONE — ${created}/${QUELLEN.length} Quelle entities created/verified`
+    );
     await session.close();
   } finally {
     await driver.close();

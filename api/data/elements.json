@@ -1,0 +1,4359 @@
+[
+  {
+    "symbol": "H",
+    "name": "Wasserstoff",
+    "nameEn": "Hydrogen",
+    "atomicNumber": 1,
+    "atomicMass": 1.008,
+    "category": "Nichtmetall",
+    "group": 1,
+    "period": 1,
+    "block": "s",
+    "electronConfig": "1s¹",
+    "electronConfigSemantic": "1s1",
+    "electronegativity": 2.2,
+    "atomicRadius": 53,
+    "ionizationEnergy": 13.598,
+    "electronAffinity": 0.754,
+    "density": 0.0000899,
+    "meltingPoint": 14.01,
+    "boilingPoint": 20.28,
+    "isotopes": [
+      {
+        "massNumber": 1,
+        "abundance": 99.985,
+        "neutrons": 0
+      },
+      {
+        "massNumber": 2,
+        "abundance": 0.015,
+        "neutrons": 1
+      },
+      {
+        "massNumber": 3,
+        "abundance": 0,
+        "neutrons": 2,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "He",
+    "name": "Helium",
+    "nameEn": "Helium",
+    "atomicNumber": 2,
+    "atomicMass": 4.0026,
+    "category": "Edelgas",
+    "group": 18,
+    "period": 1,
+    "block": "s",
+    "electronConfig": "1s²",
+    "electronConfigSemantic": "1s2",
+    "electronegativity": null,
+    "atomicRadius": 31,
+    "ionizationEnergy": 24.587,
+    "electronAffinity": null,
+    "density": 0.0001785,
+    "meltingPoint": 0.95,
+    "boilingPoint": 4.22,
+    "isotopes": [
+      {
+        "massNumber": 3,
+        "abundance": 0.0002,
+        "neutrons": 1
+      },
+      {
+        "massNumber": 4,
+        "abundance": 99.9998,
+        "neutrons": 2
+      }
+    ]
+  },
+  {
+    "symbol": "Li",
+    "name": "Lithium",
+    "nameEn": "Lithium",
+    "atomicNumber": 3,
+    "atomicMass": 6.94,
+    "category": "Alkalimetall",
+    "group": 1,
+    "period": 2,
+    "block": "s",
+    "electronConfig": "1s² 2s¹",
+    "electronConfigSemantic": "[He] 2s1",
+    "electronegativity": 0.98,
+    "atomicRadius": 167,
+    "ionizationEnergy": 5.392,
+    "electronAffinity": 0.618,
+    "density": 0.534,
+    "meltingPoint": 453.69,
+    "boilingPoint": 1615,
+    "isotopes": [
+      {
+        "massNumber": 6,
+        "abundance": 7.59,
+        "neutrons": 3
+      },
+      {
+        "massNumber": 7,
+        "abundance": 92.41,
+        "neutrons": 4
+      }
+    ]
+  },
+  {
+    "symbol": "Be",
+    "name": "Beryllium",
+    "nameEn": "Beryllium",
+    "atomicNumber": 4,
+    "atomicMass": 9.0122,
+    "category": "Erdalkalimetall",
+    "group": 2,
+    "period": 2,
+    "block": "s",
+    "electronConfig": "1s² 2s²",
+    "electronConfigSemantic": "[He] 2s2",
+    "electronegativity": 1.57,
+    "atomicRadius": 112,
+    "ionizationEnergy": 9.323,
+    "electronAffinity": null,
+    "density": 1.848,
+    "meltingPoint": 1560,
+    "boilingPoint": 2744,
+    "isotopes": [
+      {
+        "massNumber": 9,
+        "abundance": 100,
+        "neutrons": 5
+      }
+    ]
+  },
+  {
+    "symbol": "B",
+    "name": "Bor",
+    "nameEn": "Boron",
+    "atomicNumber": 5,
+    "atomicMass": 10.81,
+    "category": "Halbmetall",
+    "group": 13,
+    "period": 2,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p¹",
+    "electronConfigSemantic": "[He] 2s2 2p1",
+    "electronegativity": 2.04,
+    "atomicRadius": 87,
+    "ionizationEnergy": 8.298,
+    "electronAffinity": 0.277,
+    "density": 2.34,
+    "meltingPoint": 2348,
+    "boilingPoint": 4273,
+    "isotopes": [
+      {
+        "massNumber": 10,
+        "abundance": 19.9,
+        "neutrons": 5
+      },
+      {
+        "massNumber": 11,
+        "abundance": 80.1,
+        "neutrons": 6
+      }
+    ]
+  },
+  {
+    "symbol": "C",
+    "name": "Kohlenstoff",
+    "nameEn": "Carbon",
+    "atomicNumber": 6,
+    "atomicMass": 12.011,
+    "category": "Nichtmetall",
+    "group": 14,
+    "period": 2,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p²",
+    "electronConfigSemantic": "[He] 2s2 2p2",
+    "electronegativity": 2.55,
+    "atomicRadius": 67,
+    "ionizationEnergy": 11.26,
+    "electronAffinity": 1.263,
+    "density": 2.267,
+    "meltingPoint": 3823,
+    "boilingPoint": 4098,
+    "isotopes": [
+      {
+        "massNumber": 12,
+        "abundance": 98.93,
+        "neutrons": 6
+      },
+      {
+        "massNumber": 13,
+        "abundance": 1.07,
+        "neutrons": 7
+      },
+      {
+        "massNumber": 14,
+        "abundance": 0,
+        "neutrons": 8,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "N",
+    "name": "Stickstoff",
+    "nameEn": "Nitrogen",
+    "atomicNumber": 7,
+    "atomicMass": 14.007,
+    "category": "Nichtmetall",
+    "group": 15,
+    "period": 2,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p³",
+    "electronConfigSemantic": "[He] 2s2 2p3",
+    "electronegativity": 3.04,
+    "atomicRadius": 56,
+    "ionizationEnergy": 14.534,
+    "electronAffinity": -0.07,
+    "density": 0.001251,
+    "meltingPoint": 63.15,
+    "boilingPoint": 77.36,
+    "isotopes": [
+      {
+        "massNumber": 14,
+        "abundance": 99.636,
+        "neutrons": 7
+      },
+      {
+        "massNumber": 15,
+        "abundance": 0.364,
+        "neutrons": 8
+      }
+    ]
+  },
+  {
+    "symbol": "O",
+    "name": "Sauerstoff",
+    "nameEn": "Oxygen",
+    "atomicNumber": 8,
+    "atomicMass": 15.999,
+    "category": "Nichtmetall",
+    "group": 16,
+    "period": 2,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁴",
+    "electronConfigSemantic": "[He] 2s2 2p4",
+    "electronegativity": 3.44,
+    "atomicRadius": 48,
+    "ionizationEnergy": 13.618,
+    "electronAffinity": 1.461,
+    "density": 0.001429,
+    "meltingPoint": 54.36,
+    "boilingPoint": 90.2,
+    "isotopes": [
+      {
+        "massNumber": 16,
+        "abundance": 99.757,
+        "neutrons": 8
+      },
+      {
+        "massNumber": 17,
+        "abundance": 0.038,
+        "neutrons": 9
+      },
+      {
+        "massNumber": 18,
+        "abundance": 0.205,
+        "neutrons": 10
+      }
+    ]
+  },
+  {
+    "symbol": "F",
+    "name": "Fluor",
+    "nameEn": "Fluorine",
+    "atomicNumber": 9,
+    "atomicMass": 18.998,
+    "category": "Halogen",
+    "group": 17,
+    "period": 2,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁵",
+    "electronConfigSemantic": "[He] 2s2 2p5",
+    "electronegativity": 3.98,
+    "atomicRadius": 42,
+    "ionizationEnergy": 17.423,
+    "electronAffinity": 3.401,
+    "density": 0.001696,
+    "meltingPoint": 53.53,
+    "boilingPoint": 85.03,
+    "isotopes": [
+      {
+        "massNumber": 19,
+        "abundance": 100,
+        "neutrons": 10
+      }
+    ]
+  },
+  {
+    "symbol": "Ne",
+    "name": "Neon",
+    "nameEn": "Neon",
+    "atomicNumber": 10,
+    "atomicMass": 20.18,
+    "category": "Edelgas",
+    "group": 18,
+    "period": 2,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶",
+    "electronConfigSemantic": "[He] 2s2 2p6",
+    "electronegativity": null,
+    "atomicRadius": 38,
+    "ionizationEnergy": 21.565,
+    "electronAffinity": null,
+    "density": 0.0009,
+    "meltingPoint": 24.56,
+    "boilingPoint": 27.07,
+    "isotopes": [
+      {
+        "massNumber": 20,
+        "abundance": 90.48,
+        "neutrons": 10
+      },
+      {
+        "massNumber": 21,
+        "abundance": 0.27,
+        "neutrons": 11
+      },
+      {
+        "massNumber": 22,
+        "abundance": 9.25,
+        "neutrons": 12
+      }
+    ]
+  },
+  {
+    "symbol": "Na",
+    "name": "Natrium",
+    "nameEn": "Sodium",
+    "atomicNumber": 11,
+    "atomicMass": 22.99,
+    "category": "Alkalimetall",
+    "group": 1,
+    "period": 3,
+    "block": "s",
+    "electronConfig": "1s² 2s² 2p⁶ 3s¹",
+    "electronConfigSemantic": "[Ne] 3s1",
+    "electronegativity": 0.93,
+    "atomicRadius": 190,
+    "ionizationEnergy": 5.139,
+    "electronAffinity": 0.548,
+    "density": 0.968,
+    "meltingPoint": 370.87,
+    "boilingPoint": 1156,
+    "isotopes": [
+      {
+        "massNumber": 23,
+        "abundance": 100,
+        "neutrons": 12
+      }
+    ]
+  },
+  {
+    "symbol": "Mg",
+    "name": "Magnesium",
+    "nameEn": "Magnesium",
+    "atomicNumber": 12,
+    "atomicMass": 24.305,
+    "category": "Erdalkalimetall",
+    "group": 2,
+    "period": 3,
+    "block": "s",
+    "electronConfig": "1s² 2s² 2p⁶ 3s²",
+    "electronConfigSemantic": "[Ne] 3s2",
+    "electronegativity": 1.31,
+    "atomicRadius": 145,
+    "ionizationEnergy": 7.646,
+    "electronAffinity": null,
+    "density": 1.738,
+    "meltingPoint": 923,
+    "boilingPoint": 1363,
+    "isotopes": [
+      {
+        "massNumber": 24,
+        "abundance": 78.99,
+        "neutrons": 12
+      },
+      {
+        "massNumber": 25,
+        "abundance": 10,
+        "neutrons": 13
+      },
+      {
+        "massNumber": 26,
+        "abundance": 11.01,
+        "neutrons": 14
+      }
+    ]
+  },
+  {
+    "symbol": "Al",
+    "name": "Aluminium",
+    "nameEn": "Aluminium",
+    "atomicNumber": 13,
+    "atomicMass": 26.982,
+    "category": "Metall",
+    "group": 13,
+    "period": 3,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p¹",
+    "electronConfigSemantic": "[Ne] 3s2 3p1",
+    "electronegativity": 1.61,
+    "atomicRadius": 118,
+    "ionizationEnergy": 5.986,
+    "electronAffinity": 0.433,
+    "density": 2.7,
+    "meltingPoint": 933.47,
+    "boilingPoint": 2792,
+    "isotopes": [
+      {
+        "massNumber": 27,
+        "abundance": 100,
+        "neutrons": 14
+      }
+    ]
+  },
+  {
+    "symbol": "Si",
+    "name": "Silicium",
+    "nameEn": "Silicon",
+    "atomicNumber": 14,
+    "atomicMass": 28.085,
+    "category": "Halbmetall",
+    "group": 14,
+    "period": 3,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p²",
+    "electronConfigSemantic": "[Ne] 3s2 3p2",
+    "electronegativity": 1.9,
+    "atomicRadius": 111,
+    "ionizationEnergy": 8.152,
+    "electronAffinity": 1.385,
+    "density": 2.329,
+    "meltingPoint": 1687,
+    "boilingPoint": 3538,
+    "isotopes": [
+      {
+        "massNumber": 28,
+        "abundance": 92.223,
+        "neutrons": 14
+      },
+      {
+        "massNumber": 29,
+        "abundance": 4.685,
+        "neutrons": 15
+      },
+      {
+        "massNumber": 30,
+        "abundance": 3.092,
+        "neutrons": 16
+      }
+    ]
+  },
+  {
+    "symbol": "P",
+    "name": "Phosphor",
+    "nameEn": "Phosphorus",
+    "atomicNumber": 15,
+    "atomicMass": 30.974,
+    "category": "Nichtmetall",
+    "group": 15,
+    "period": 3,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p³",
+    "electronConfigSemantic": "[Ne] 3s2 3p3",
+    "electronegativity": 2.19,
+    "atomicRadius": 98,
+    "ionizationEnergy": 10.487,
+    "electronAffinity": 0.747,
+    "density": 1.823,
+    "meltingPoint": 317.3,
+    "boilingPoint": 553,
+    "isotopes": [
+      {
+        "massNumber": 31,
+        "abundance": 100,
+        "neutrons": 16
+      }
+    ]
+  },
+  {
+    "symbol": "S",
+    "name": "Schwefel",
+    "nameEn": "Sulfur",
+    "atomicNumber": 16,
+    "atomicMass": 32.06,
+    "category": "Nichtmetall",
+    "group": 16,
+    "period": 3,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁴",
+    "electronConfigSemantic": "[Ne] 3s2 3p4",
+    "electronegativity": 2.58,
+    "atomicRadius": 88,
+    "ionizationEnergy": 10.36,
+    "electronAffinity": 2.077,
+    "density": 2.067,
+    "meltingPoint": 388.36,
+    "boilingPoint": 717.87,
+    "isotopes": [
+      {
+        "massNumber": 32,
+        "abundance": 94.99,
+        "neutrons": 16
+      },
+      {
+        "massNumber": 33,
+        "abundance": 0.75,
+        "neutrons": 17
+      },
+      {
+        "massNumber": 34,
+        "abundance": 4.25,
+        "neutrons": 18
+      },
+      {
+        "massNumber": 36,
+        "abundance": 0.01,
+        "neutrons": 20
+      }
+    ]
+  },
+  {
+    "symbol": "Cl",
+    "name": "Chlor",
+    "nameEn": "Chlorine",
+    "atomicNumber": 17,
+    "atomicMass": 35.45,
+    "category": "Halogen",
+    "group": 17,
+    "period": 3,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁵",
+    "electronConfigSemantic": "[Ne] 3s2 3p5",
+    "electronegativity": 3.16,
+    "atomicRadius": 79,
+    "ionizationEnergy": 12.968,
+    "electronAffinity": 3.613,
+    "density": 0.003214,
+    "meltingPoint": 171.6,
+    "boilingPoint": 239.11,
+    "isotopes": [
+      {
+        "massNumber": 35,
+        "abundance": 75.76,
+        "neutrons": 18
+      },
+      {
+        "massNumber": 37,
+        "abundance": 24.24,
+        "neutrons": 20
+      }
+    ]
+  },
+  {
+    "symbol": "Ar",
+    "name": "Argon",
+    "nameEn": "Argon",
+    "atomicNumber": 18,
+    "atomicMass": 39.948,
+    "category": "Edelgas",
+    "group": 18,
+    "period": 3,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶",
+    "electronConfigSemantic": "[Ne] 3s2 3p6",
+    "electronegativity": null,
+    "atomicRadius": 71,
+    "ionizationEnergy": 15.76,
+    "electronAffinity": null,
+    "density": 0.001782,
+    "meltingPoint": 83.8,
+    "boilingPoint": 87.3,
+    "isotopes": [
+      {
+        "massNumber": 36,
+        "abundance": 0.3365,
+        "neutrons": 18
+      },
+      {
+        "massNumber": 38,
+        "abundance": 0.0632,
+        "neutrons": 20
+      },
+      {
+        "massNumber": 40,
+        "abundance": 99.6003,
+        "neutrons": 22
+      }
+    ]
+  },
+  {
+    "symbol": "K",
+    "name": "Kalium",
+    "nameEn": "Potassium",
+    "atomicNumber": 19,
+    "atomicMass": 39.098,
+    "category": "Alkalimetall",
+    "group": 1,
+    "period": 4,
+    "block": "s",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 4s¹",
+    "electronConfigSemantic": "[Ar] 4s1",
+    "electronegativity": 0.82,
+    "atomicRadius": 243,
+    "ionizationEnergy": 4.341,
+    "electronAffinity": 0.502,
+    "density": 0.856,
+    "meltingPoint": 336.53,
+    "boilingPoint": 1032,
+    "isotopes": [
+      {
+        "massNumber": 39,
+        "abundance": 93.2581,
+        "neutrons": 20
+      },
+      {
+        "massNumber": 40,
+        "abundance": 0.0117,
+        "neutrons": 21,
+        "unstable": true
+      },
+      {
+        "massNumber": 41,
+        "abundance": 6.7302,
+        "neutrons": 22
+      }
+    ]
+  },
+  {
+    "symbol": "Ca",
+    "name": "Calcium",
+    "nameEn": "Calcium",
+    "atomicNumber": 20,
+    "atomicMass": 40.078,
+    "category": "Erdalkalimetall",
+    "group": 2,
+    "period": 4,
+    "block": "s",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 4s²",
+    "electronConfigSemantic": "[Ar] 4s2",
+    "electronegativity": 1,
+    "atomicRadius": 194,
+    "ionizationEnergy": 6.113,
+    "electronAffinity": 0.024,
+    "density": 1.55,
+    "meltingPoint": 1115,
+    "boilingPoint": 1757,
+    "isotopes": [
+      {
+        "massNumber": 40,
+        "abundance": 96.941,
+        "neutrons": 20
+      },
+      {
+        "massNumber": 42,
+        "abundance": 0.647,
+        "neutrons": 22
+      },
+      {
+        "massNumber": 43,
+        "abundance": 0.135,
+        "neutrons": 23
+      },
+      {
+        "massNumber": 44,
+        "abundance": 2.086,
+        "neutrons": 24
+      },
+      {
+        "massNumber": 46,
+        "abundance": 0.004,
+        "neutrons": 26
+      },
+      {
+        "massNumber": 48,
+        "abundance": 0.187,
+        "neutrons": 28
+      }
+    ]
+  },
+  {
+    "symbol": "Sc",
+    "name": "Scandium",
+    "nameEn": "Scandium",
+    "atomicNumber": 21,
+    "atomicMass": 44.956,
+    "category": "Übergangsmetall",
+    "group": 3,
+    "period": 4,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹ 4s²",
+    "electronConfigSemantic": "[Ar] 3d1 4s2",
+    "electronegativity": 1.36,
+    "atomicRadius": 162,
+    "ionizationEnergy": 6.561,
+    "electronAffinity": 0.188,
+    "density": 2.985,
+    "meltingPoint": 1814,
+    "boilingPoint": 3109,
+    "isotopes": [
+      {
+        "massNumber": 45,
+        "abundance": 100,
+        "neutrons": 24
+      }
+    ]
+  },
+  {
+    "symbol": "Ti",
+    "name": "Titan",
+    "nameEn": "Titanium",
+    "atomicNumber": 22,
+    "atomicMass": 47.867,
+    "category": "Übergangsmetall",
+    "group": 4,
+    "period": 4,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d² 4s²",
+    "electronConfigSemantic": "[Ar] 3d2 4s2",
+    "electronegativity": 1.54,
+    "atomicRadius": 147,
+    "ionizationEnergy": 6.828,
+    "electronAffinity": 0.079,
+    "density": 4.506,
+    "meltingPoint": 1941,
+    "boilingPoint": 3560,
+    "isotopes": [
+      {
+        "massNumber": 46,
+        "abundance": 8.25,
+        "neutrons": 24
+      },
+      {
+        "massNumber": 47,
+        "abundance": 7.44,
+        "neutrons": 25
+      },
+      {
+        "massNumber": 48,
+        "abundance": 73.72,
+        "neutrons": 26
+      },
+      {
+        "massNumber": 49,
+        "abundance": 5.41,
+        "neutrons": 27
+      },
+      {
+        "massNumber": 50,
+        "abundance": 5.18,
+        "neutrons": 28
+      }
+    ]
+  },
+  {
+    "symbol": "V",
+    "name": "Vanadium",
+    "nameEn": "Vanadium",
+    "atomicNumber": 23,
+    "atomicMass": 50.942,
+    "category": "Übergangsmetall",
+    "group": 5,
+    "period": 4,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d³ 4s²",
+    "electronConfigSemantic": "[Ar] 3d3 4s2",
+    "electronegativity": 1.63,
+    "atomicRadius": 134,
+    "ionizationEnergy": 6.746,
+    "electronAffinity": 0.525,
+    "density": 6.11,
+    "meltingPoint": 2183,
+    "boilingPoint": 3680,
+    "isotopes": [
+      {
+        "massNumber": 50,
+        "abundance": 0.25,
+        "neutrons": 27,
+        "unstable": true
+      },
+      {
+        "massNumber": 51,
+        "abundance": 99.75,
+        "neutrons": 28
+      }
+    ]
+  },
+  {
+    "symbol": "Cr",
+    "name": "Chrom",
+    "nameEn": "Chromium",
+    "atomicNumber": 24,
+    "atomicMass": 51.996,
+    "category": "Übergangsmetall",
+    "group": 6,
+    "period": 4,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d⁵ 4s¹",
+    "electronConfigSemantic": "[Ar] 3d5 4s1",
+    "electronegativity": 1.66,
+    "atomicRadius": 128,
+    "ionizationEnergy": 6.767,
+    "electronAffinity": 0.666,
+    "density": 7.14,
+    "meltingPoint": 2180,
+    "boilingPoint": 2944,
+    "isotopes": [
+      {
+        "massNumber": 50,
+        "abundance": 4.345,
+        "neutrons": 26
+      },
+      {
+        "massNumber": 52,
+        "abundance": 83.789,
+        "neutrons": 28
+      },
+      {
+        "massNumber": 53,
+        "abundance": 9.501,
+        "neutrons": 29
+      },
+      {
+        "massNumber": 54,
+        "abundance": 2.365,
+        "neutrons": 30
+      }
+    ]
+  },
+  {
+    "symbol": "Mn",
+    "name": "Mangan",
+    "nameEn": "Manganese",
+    "atomicNumber": 25,
+    "atomicMass": 54.938,
+    "category": "Übergangsmetall",
+    "group": 7,
+    "period": 4,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d⁵ 4s²",
+    "electronConfigSemantic": "[Ar] 3d5 4s2",
+    "electronegativity": 1.55,
+    "atomicRadius": 127,
+    "ionizationEnergy": 7.434,
+    "electronAffinity": null,
+    "density": 7.47,
+    "meltingPoint": 1519,
+    "boilingPoint": 2334,
+    "isotopes": [
+      {
+        "massNumber": 55,
+        "abundance": 100,
+        "neutrons": 30
+      }
+    ]
+  },
+  {
+    "symbol": "Fe",
+    "name": "Eisen",
+    "nameEn": "Iron",
+    "atomicNumber": 26,
+    "atomicMass": 55.845,
+    "category": "Übergangsmetall",
+    "group": 8,
+    "period": 4,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d⁶ 4s²",
+    "electronConfigSemantic": "[Ar] 3d6 4s2",
+    "electronegativity": 1.83,
+    "atomicRadius": 126,
+    "ionizationEnergy": 7.902,
+    "electronAffinity": 0.153,
+    "density": 7.874,
+    "meltingPoint": 1811,
+    "boilingPoint": 3134,
+    "isotopes": [
+      {
+        "massNumber": 54,
+        "abundance": 5.845,
+        "neutrons": 28
+      },
+      {
+        "massNumber": 56,
+        "abundance": 91.754,
+        "neutrons": 30
+      },
+      {
+        "massNumber": 57,
+        "abundance": 2.119,
+        "neutrons": 31
+      },
+      {
+        "massNumber": 58,
+        "abundance": 0.282,
+        "neutrons": 32
+      }
+    ]
+  },
+  {
+    "symbol": "Co",
+    "name": "Cobalt",
+    "nameEn": "Cobalt",
+    "atomicNumber": 27,
+    "atomicMass": 58.933,
+    "category": "Übergangsmetall",
+    "group": 9,
+    "period": 4,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d⁷ 4s²",
+    "electronConfigSemantic": "[Ar] 3d7 4s2",
+    "electronegativity": 1.88,
+    "atomicRadius": 125,
+    "ionizationEnergy": 7.881,
+    "electronAffinity": 0.661,
+    "density": 8.9,
+    "meltingPoint": 1768,
+    "boilingPoint": 3200,
+    "isotopes": [
+      {
+        "massNumber": 59,
+        "abundance": 100,
+        "neutrons": 32
+      }
+    ]
+  },
+  {
+    "symbol": "Ni",
+    "name": "Nickel",
+    "nameEn": "Nickel",
+    "atomicNumber": 28,
+    "atomicMass": 58.693,
+    "category": "Übergangsmetall",
+    "group": 10,
+    "period": 4,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d⁸ 4s²",
+    "electronConfigSemantic": "[Ar] 3d8 4s2",
+    "electronegativity": 1.91,
+    "atomicRadius": 124,
+    "ionizationEnergy": 7.64,
+    "electronAffinity": 1.157,
+    "density": 8.908,
+    "meltingPoint": 1728,
+    "boilingPoint": 3186,
+    "isotopes": [
+      {
+        "massNumber": 58,
+        "abundance": 68.0769,
+        "neutrons": 30
+      },
+      {
+        "massNumber": 60,
+        "abundance": 26.2231,
+        "neutrons": 32
+      },
+      {
+        "massNumber": 61,
+        "abundance": 1.1399,
+        "neutrons": 33
+      },
+      {
+        "massNumber": 62,
+        "abundance": 3.6345,
+        "neutrons": 34
+      },
+      {
+        "massNumber": 64,
+        "abundance": 0.9256,
+        "neutrons": 36
+      }
+    ]
+  },
+  {
+    "symbol": "Cu",
+    "name": "Kupfer",
+    "nameEn": "Copper",
+    "atomicNumber": 29,
+    "atomicMass": 63.546,
+    "category": "Übergangsmetall",
+    "group": 11,
+    "period": 4,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s¹",
+    "electronConfigSemantic": "[Ar] 3d10 4s1",
+    "electronegativity": 1.9,
+    "atomicRadius": 128,
+    "ionizationEnergy": 7.726,
+    "electronAffinity": 1.235,
+    "density": 8.96,
+    "meltingPoint": 1357.77,
+    "boilingPoint": 2835,
+    "isotopes": [
+      {
+        "massNumber": 63,
+        "abundance": 69.17,
+        "neutrons": 34
+      },
+      {
+        "massNumber": 65,
+        "abundance": 30.83,
+        "neutrons": 36
+      }
+    ]
+  },
+  {
+    "symbol": "Zn",
+    "name": "Zink",
+    "nameEn": "Zinc",
+    "atomicNumber": 30,
+    "atomicMass": 65.38,
+    "category": "Metall",
+    "group": 12,
+    "period": 4,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s²",
+    "electronConfigSemantic": "[Ar] 3d10 4s2",
+    "electronegativity": 1.65,
+    "atomicRadius": 134,
+    "ionizationEnergy": 9.394,
+    "electronAffinity": null,
+    "density": 7.14,
+    "meltingPoint": 692.68,
+    "boilingPoint": 1180,
+    "isotopes": [
+      {
+        "massNumber": 64,
+        "abundance": 49.17,
+        "neutrons": 34
+      },
+      {
+        "massNumber": 66,
+        "abundance": 27.73,
+        "neutrons": 36
+      },
+      {
+        "massNumber": 67,
+        "abundance": 4.04,
+        "neutrons": 37
+      },
+      {
+        "massNumber": 68,
+        "abundance": 18.45,
+        "neutrons": 38
+      },
+      {
+        "massNumber": 70,
+        "abundance": 0.61,
+        "neutrons": 40
+      }
+    ]
+  },
+  {
+    "symbol": "Ga",
+    "name": "Gallium",
+    "nameEn": "Gallium",
+    "atomicNumber": 31,
+    "atomicMass": 69.723,
+    "category": "Metall",
+    "group": 13,
+    "period": 4,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p¹",
+    "electronConfigSemantic": "[Ar] 3d10 4s2 4p1",
+    "electronegativity": 1.81,
+    "atomicRadius": 122,
+    "ionizationEnergy": 5.999,
+    "electronAffinity": 0.43,
+    "density": 5.904,
+    "meltingPoint": 302.91,
+    "boilingPoint": 2477,
+    "isotopes": [
+      {
+        "massNumber": 69,
+        "abundance": 60.108,
+        "neutrons": 38
+      },
+      {
+        "massNumber": 71,
+        "abundance": 39.892,
+        "neutrons": 40
+      }
+    ]
+  },
+  {
+    "symbol": "Ge",
+    "name": "Germanium",
+    "nameEn": "Germanium",
+    "atomicNumber": 32,
+    "atomicMass": 72.63,
+    "category": "Halbmetall",
+    "group": 14,
+    "period": 4,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p²",
+    "electronConfigSemantic": "[Ar] 3d10 4s2 4p2",
+    "electronegativity": 2.01,
+    "atomicRadius": 122,
+    "ionizationEnergy": 7.899,
+    "electronAffinity": 1.233,
+    "density": 5.323,
+    "meltingPoint": 1211.4,
+    "boilingPoint": 3106,
+    "isotopes": [
+      {
+        "massNumber": 70,
+        "abundance": 20.57,
+        "neutrons": 38
+      },
+      {
+        "massNumber": 72,
+        "abundance": 27.45,
+        "neutrons": 40
+      },
+      {
+        "massNumber": 73,
+        "abundance": 7.75,
+        "neutrons": 41
+      },
+      {
+        "massNumber": 74,
+        "abundance": 36.5,
+        "neutrons": 42
+      },
+      {
+        "massNumber": 76,
+        "abundance": 7.73,
+        "neutrons": 44
+      }
+    ]
+  },
+  {
+    "symbol": "As",
+    "name": "Arsen",
+    "nameEn": "Arsenic",
+    "atomicNumber": 33,
+    "atomicMass": 74.922,
+    "category": "Halbmetall",
+    "group": 15,
+    "period": 4,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p³",
+    "electronConfigSemantic": "[Ar] 3d10 4s2 4p3",
+    "electronegativity": 2.18,
+    "atomicRadius": 119,
+    "ionizationEnergy": 9.815,
+    "electronAffinity": 0.81,
+    "density": 5.727,
+    "meltingPoint": 1090,
+    "boilingPoint": 887,
+    "isotopes": [
+      {
+        "massNumber": 75,
+        "abundance": 100,
+        "neutrons": 42
+      }
+    ]
+  },
+  {
+    "symbol": "Se",
+    "name": "Selen",
+    "nameEn": "Selenium",
+    "atomicNumber": 34,
+    "atomicMass": 78.971,
+    "category": "Nichtmetall",
+    "group": 16,
+    "period": 4,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁴",
+    "electronConfigSemantic": "[Ar] 3d10 4s2 4p4",
+    "electronegativity": 2.55,
+    "atomicRadius": 116,
+    "ionizationEnergy": 9.752,
+    "electronAffinity": 2.021,
+    "density": 4.809,
+    "meltingPoint": 494,
+    "boilingPoint": 958,
+    "isotopes": [
+      {
+        "massNumber": 74,
+        "abundance": 0.86,
+        "neutrons": 40
+      },
+      {
+        "massNumber": 76,
+        "abundance": 9.23,
+        "neutrons": 42
+      },
+      {
+        "massNumber": 77,
+        "abundance": 7.6,
+        "neutrons": 43
+      },
+      {
+        "massNumber": 78,
+        "abundance": 23.69,
+        "neutrons": 44
+      },
+      {
+        "massNumber": 80,
+        "abundance": 49.8,
+        "neutrons": 46
+      },
+      {
+        "massNumber": 82,
+        "abundance": 8.82,
+        "neutrons": 48
+      }
+    ]
+  },
+  {
+    "symbol": "Br",
+    "name": "Brom",
+    "nameEn": "Bromine",
+    "atomicNumber": 35,
+    "atomicMass": 79.904,
+    "category": "Halogen",
+    "group": 17,
+    "period": 4,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁵",
+    "electronConfigSemantic": "[Ar] 3d10 4s2 4p5",
+    "electronegativity": 2.96,
+    "atomicRadius": 114,
+    "ionizationEnergy": 11.814,
+    "electronAffinity": 3.365,
+    "density": 3.1028,
+    "meltingPoint": 265.8,
+    "boilingPoint": 332,
+    "isotopes": [
+      {
+        "massNumber": 79,
+        "abundance": 50.69,
+        "neutrons": 44
+      },
+      {
+        "massNumber": 81,
+        "abundance": 49.31,
+        "neutrons": 46
+      }
+    ]
+  },
+  {
+    "symbol": "Kr",
+    "name": "Krypton",
+    "nameEn": "Krypton",
+    "atomicNumber": 36,
+    "atomicMass": 83.798,
+    "category": "Edelgas",
+    "group": 18,
+    "period": 4,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶",
+    "electronConfigSemantic": "[Ar] 3d10 4s2 4p6",
+    "electronegativity": null,
+    "atomicRadius": 88,
+    "ionizationEnergy": 13.999,
+    "electronAffinity": null,
+    "density": 0.003733,
+    "meltingPoint": 115.78,
+    "boilingPoint": 119.93,
+    "isotopes": [
+      {
+        "massNumber": 78,
+        "abundance": 0.35,
+        "neutrons": 42
+      },
+      {
+        "massNumber": 80,
+        "abundance": 2.28,
+        "neutrons": 44
+      },
+      {
+        "massNumber": 82,
+        "abundance": 11.58,
+        "neutrons": 46
+      },
+      {
+        "massNumber": 83,
+        "abundance": 11.49,
+        "neutrons": 47
+      },
+      {
+        "massNumber": 84,
+        "abundance": 57,
+        "neutrons": 48
+      },
+      {
+        "massNumber": 86,
+        "abundance": 17.3,
+        "neutrons": 50
+      }
+    ]
+  },
+  {
+    "symbol": "Rb",
+    "name": "Rubidium",
+    "nameEn": "Rubidium",
+    "atomicNumber": 37,
+    "atomicMass": 85.468,
+    "category": "Alkalimetall",
+    "group": 1,
+    "period": 5,
+    "block": "s",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 5s¹",
+    "electronConfigSemantic": "[Kr] 5s1",
+    "electronegativity": 0.82,
+    "atomicRadius": 265,
+    "ionizationEnergy": 4.177,
+    "electronAffinity": 0.468,
+    "density": 1.532,
+    "meltingPoint": 312.45,
+    "boilingPoint": 961,
+    "isotopes": [
+      {
+        "massNumber": 85,
+        "abundance": 72.17,
+        "neutrons": 48
+      },
+      {
+        "massNumber": 87,
+        "abundance": 27.83,
+        "neutrons": 50,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Sr",
+    "name": "Strontium",
+    "nameEn": "Strontium",
+    "atomicNumber": 38,
+    "atomicMass": 87.62,
+    "category": "Erdalkalimetall",
+    "group": 2,
+    "period": 5,
+    "block": "s",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 5s²",
+    "electronConfigSemantic": "[Kr] 5s2",
+    "electronegativity": 0.95,
+    "atomicRadius": 219,
+    "ionizationEnergy": 5.695,
+    "electronAffinity": 0.048,
+    "density": 2.64,
+    "meltingPoint": 1050,
+    "boilingPoint": 1655,
+    "isotopes": [
+      {
+        "massNumber": 84,
+        "abundance": 0.56,
+        "neutrons": 46
+      },
+      {
+        "massNumber": 86,
+        "abundance": 9.86,
+        "neutrons": 48
+      },
+      {
+        "massNumber": 87,
+        "abundance": 7,
+        "neutrons": 49
+      },
+      {
+        "massNumber": 88,
+        "abundance": 82.58,
+        "neutrons": 50
+      }
+    ]
+  },
+  {
+    "symbol": "Y",
+    "name": "Yttrium",
+    "nameEn": "Yttrium",
+    "atomicNumber": 39,
+    "atomicMass": 88.906,
+    "category": "Übergangsmetall",
+    "group": 3,
+    "period": 5,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹ 5s²",
+    "electronConfigSemantic": "[Kr] 4d1 5s2",
+    "electronegativity": 1.22,
+    "atomicRadius": 180,
+    "ionizationEnergy": 6.217,
+    "electronAffinity": 0.307,
+    "density": 4.472,
+    "meltingPoint": 1799,
+    "boilingPoint": 3609,
+    "isotopes": [
+      {
+        "massNumber": 89,
+        "abundance": 100,
+        "neutrons": 50
+      }
+    ]
+  },
+  {
+    "symbol": "Zr",
+    "name": "Zirconium",
+    "nameEn": "Zirconium",
+    "atomicNumber": 40,
+    "atomicMass": 91.224,
+    "category": "Übergangsmetall",
+    "group": 4,
+    "period": 5,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d² 5s²",
+    "electronConfigSemantic": "[Kr] 4d2 5s2",
+    "electronegativity": 1.33,
+    "atomicRadius": 160,
+    "ionizationEnergy": 6.634,
+    "electronAffinity": 0.427,
+    "density": 6.52,
+    "meltingPoint": 2128,
+    "boilingPoint": 4682,
+    "isotopes": [
+      {
+        "massNumber": 90,
+        "abundance": 51.45,
+        "neutrons": 50
+      },
+      {
+        "massNumber": 91,
+        "abundance": 11.22,
+        "neutrons": 51
+      },
+      {
+        "massNumber": 92,
+        "abundance": 17.15,
+        "neutrons": 52
+      },
+      {
+        "massNumber": 94,
+        "abundance": 17.38,
+        "neutrons": 54
+      },
+      {
+        "massNumber": 96,
+        "abundance": 2.8,
+        "neutrons": 56
+      }
+    ]
+  },
+  {
+    "symbol": "Nb",
+    "name": "Niob",
+    "nameEn": "Niobium",
+    "atomicNumber": 41,
+    "atomicMass": 92.906,
+    "category": "Übergangsmetall",
+    "group": 5,
+    "period": 5,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d⁴ 5s¹",
+    "electronConfigSemantic": "[Kr] 4d4 5s1",
+    "electronegativity": 1.6,
+    "atomicRadius": 146,
+    "ionizationEnergy": 6.759,
+    "electronAffinity": 0.892,
+    "density": 8.57,
+    "meltingPoint": 2750,
+    "boilingPoint": 5017,
+    "isotopes": [
+      {
+        "massNumber": 93,
+        "abundance": 100,
+        "neutrons": 52
+      }
+    ]
+  },
+  {
+    "symbol": "Mo",
+    "name": "Molybdän",
+    "nameEn": "Molybdenum",
+    "atomicNumber": 42,
+    "atomicMass": 95.95,
+    "category": "Übergangsmetall",
+    "group": 6,
+    "period": 5,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d⁵ 5s¹",
+    "electronConfigSemantic": "[Kr] 4d5 5s1",
+    "electronegativity": 2.16,
+    "atomicRadius": 139,
+    "ionizationEnergy": 7.092,
+    "electronAffinity": 0.745,
+    "density": 10.28,
+    "meltingPoint": 2896,
+    "boilingPoint": 4912,
+    "isotopes": [
+      {
+        "massNumber": 92,
+        "abundance": 14.53,
+        "neutrons": 50
+      },
+      {
+        "massNumber": 94,
+        "abundance": 9.15,
+        "neutrons": 52
+      },
+      {
+        "massNumber": 95,
+        "abundance": 15.84,
+        "neutrons": 53
+      },
+      {
+        "massNumber": 96,
+        "abundance": 16.67,
+        "neutrons": 54
+      },
+      {
+        "massNumber": 97,
+        "abundance": 9.6,
+        "neutrons": 55
+      },
+      {
+        "massNumber": 98,
+        "abundance": 24.39,
+        "neutrons": 56
+      },
+      {
+        "massNumber": 100,
+        "abundance": 9.82,
+        "neutrons": 58
+      }
+    ]
+  },
+  {
+    "symbol": "Tc",
+    "name": "Technetium",
+    "nameEn": "Technetium",
+    "atomicNumber": 43,
+    "atomicMass": 98,
+    "category": "Übergangsmetall",
+    "group": 7,
+    "period": 5,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d⁵ 5s²",
+    "electronConfigSemantic": "[Kr] 4d5 5s2",
+    "electronegativity": 1.9,
+    "atomicRadius": 136,
+    "ionizationEnergy": 7.28,
+    "electronAffinity": 0.55,
+    "density": 11.5,
+    "meltingPoint": 2430,
+    "boilingPoint": 4538,
+    "isotopes": [
+      {
+        "massNumber": 97,
+        "abundance": 0,
+        "neutrons": 54,
+        "unstable": true
+      },
+      {
+        "massNumber": 98,
+        "abundance": 0,
+        "neutrons": 55,
+        "unstable": true
+      },
+      {
+        "massNumber": 99,
+        "abundance": 0,
+        "neutrons": 56,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Ru",
+    "name": "Ruthenium",
+    "nameEn": "Ruthenium",
+    "atomicNumber": 44,
+    "atomicMass": 101.07,
+    "category": "Übergangsmetall",
+    "group": 8,
+    "period": 5,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d⁷ 5s¹",
+    "electronConfigSemantic": "[Kr] 4d7 5s1",
+    "electronegativity": 2.2,
+    "atomicRadius": 134,
+    "ionizationEnergy": 7.36,
+    "electronAffinity": 1.046,
+    "density": 12.45,
+    "meltingPoint": 2607,
+    "boilingPoint": 4423,
+    "isotopes": [
+      {
+        "massNumber": 96,
+        "abundance": 5.54,
+        "neutrons": 52
+      },
+      {
+        "massNumber": 98,
+        "abundance": 1.87,
+        "neutrons": 54
+      },
+      {
+        "massNumber": 99,
+        "abundance": 12.76,
+        "neutrons": 55
+      },
+      {
+        "massNumber": 100,
+        "abundance": 12.6,
+        "neutrons": 56
+      },
+      {
+        "massNumber": 101,
+        "abundance": 17.06,
+        "neutrons": 57
+      },
+      {
+        "massNumber": 102,
+        "abundance": 31.55,
+        "neutrons": 58
+      },
+      {
+        "massNumber": 104,
+        "abundance": 18.62,
+        "neutrons": 60
+      }
+    ]
+  },
+  {
+    "symbol": "Rh",
+    "name": "Rhodium",
+    "nameEn": "Rhodium",
+    "atomicNumber": 45,
+    "atomicMass": 102.91,
+    "category": "Übergangsmetall",
+    "group": 9,
+    "period": 5,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d⁸ 5s¹",
+    "electronConfigSemantic": "[Kr] 4d8 5s1",
+    "electronegativity": 2.28,
+    "atomicRadius": 134,
+    "ionizationEnergy": 7.46,
+    "electronAffinity": 1.136,
+    "density": 12.41,
+    "meltingPoint": 2237,
+    "boilingPoint": 3968,
+    "isotopes": [
+      {
+        "massNumber": 103,
+        "abundance": 100,
+        "neutrons": 58
+      }
+    ]
+  },
+  {
+    "symbol": "Pd",
+    "name": "Palladium",
+    "nameEn": "Palladium",
+    "atomicNumber": 46,
+    "atomicMass": 106.42,
+    "category": "Übergangsmetall",
+    "group": 10,
+    "period": 5,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰",
+    "electronConfigSemantic": "[Kr] 4d10",
+    "electronegativity": 2.2,
+    "atomicRadius": 137,
+    "ionizationEnergy": 8.34,
+    "electronAffinity": 0.558,
+    "density": 12.023,
+    "meltingPoint": 1828.05,
+    "boilingPoint": 3236,
+    "isotopes": [
+      {
+        "massNumber": 102,
+        "abundance": 1.02,
+        "neutrons": 56
+      },
+      {
+        "massNumber": 104,
+        "abundance": 11.14,
+        "neutrons": 58
+      },
+      {
+        "massNumber": 105,
+        "abundance": 22.33,
+        "neutrons": 59
+      },
+      {
+        "massNumber": 106,
+        "abundance": 27.33,
+        "neutrons": 60
+      },
+      {
+        "massNumber": 108,
+        "abundance": 26.46,
+        "neutrons": 62
+      },
+      {
+        "massNumber": 110,
+        "abundance": 11.72,
+        "neutrons": 64
+      }
+    ]
+  },
+  {
+    "symbol": "Ag",
+    "name": "Silber",
+    "nameEn": "Silver",
+    "atomicNumber": 47,
+    "atomicMass": 107.87,
+    "category": "Übergangsmetall",
+    "group": 11,
+    "period": 5,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s¹",
+    "electronConfigSemantic": "[Kr] 4d10 5s1",
+    "electronegativity": 1.93,
+    "atomicRadius": 144,
+    "ionizationEnergy": 7.576,
+    "electronAffinity": 1.302,
+    "density": 10.49,
+    "meltingPoint": 1234.93,
+    "boilingPoint": 2435,
+    "isotopes": [
+      {
+        "massNumber": 107,
+        "abundance": 51.839,
+        "neutrons": 60
+      },
+      {
+        "massNumber": 109,
+        "abundance": 48.161,
+        "neutrons": 62
+      }
+    ]
+  },
+  {
+    "symbol": "Cd",
+    "name": "Cadmium",
+    "nameEn": "Cadmium",
+    "atomicNumber": 48,
+    "atomicMass": 112.41,
+    "category": "Metall",
+    "group": 12,
+    "period": 5,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s²",
+    "electronConfigSemantic": "[Kr] 4d10 5s2",
+    "electronegativity": 1.69,
+    "atomicRadius": 148,
+    "ionizationEnergy": 8.994,
+    "electronAffinity": null,
+    "density": 8.65,
+    "meltingPoint": 594.22,
+    "boilingPoint": 1040,
+    "isotopes": [
+      {
+        "massNumber": 106,
+        "abundance": 1.25,
+        "neutrons": 58
+      },
+      {
+        "massNumber": 108,
+        "abundance": 0.89,
+        "neutrons": 60
+      },
+      {
+        "massNumber": 110,
+        "abundance": 12.47,
+        "neutrons": 62
+      },
+      {
+        "massNumber": 111,
+        "abundance": 12.8,
+        "neutrons": 63
+      },
+      {
+        "massNumber": 112,
+        "abundance": 24.11,
+        "neutrons": 64
+      },
+      {
+        "massNumber": 113,
+        "abundance": 12.23,
+        "neutrons": 65
+      },
+      {
+        "massNumber": 114,
+        "abundance": 28.75,
+        "neutrons": 66
+      },
+      {
+        "massNumber": 116,
+        "abundance": 7.5,
+        "neutrons": 68
+      }
+    ]
+  },
+  {
+    "symbol": "In",
+    "name": "Indium",
+    "nameEn": "Indium",
+    "atomicNumber": 49,
+    "atomicMass": 114.82,
+    "category": "Metall",
+    "group": 13,
+    "period": 5,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 5p¹",
+    "electronConfigSemantic": "[Kr] 4d10 5s2 5p1",
+    "electronegativity": 1.78,
+    "atomicRadius": 142,
+    "ionizationEnergy": 5.786,
+    "electronAffinity": 0.404,
+    "density": 7.31,
+    "meltingPoint": 429.75,
+    "boilingPoint": 2345,
+    "isotopes": [
+      {
+        "massNumber": 113,
+        "abundance": 4.29,
+        "neutrons": 64
+      },
+      {
+        "massNumber": 115,
+        "abundance": 95.71,
+        "neutrons": 66,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Sn",
+    "name": "Zinn",
+    "nameEn": "Tin",
+    "atomicNumber": 50,
+    "atomicMass": 118.71,
+    "category": "Metall",
+    "group": 14,
+    "period": 5,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 5p²",
+    "electronConfigSemantic": "[Kr] 4d10 5s2 5p2",
+    "electronegativity": 1.96,
+    "atomicRadius": 140,
+    "ionizationEnergy": 7.344,
+    "electronAffinity": 1.112,
+    "density": 7.265,
+    "meltingPoint": 505.08,
+    "boilingPoint": 2875,
+    "isotopes": [
+      {
+        "massNumber": 112,
+        "abundance": 0.97,
+        "neutrons": 62
+      },
+      {
+        "massNumber": 114,
+        "abundance": 0.66,
+        "neutrons": 64
+      },
+      {
+        "massNumber": 115,
+        "abundance": 0.34,
+        "neutrons": 65
+      },
+      {
+        "massNumber": 116,
+        "abundance": 14.54,
+        "neutrons": 66
+      },
+      {
+        "massNumber": 117,
+        "abundance": 7.68,
+        "neutrons": 67
+      },
+      {
+        "massNumber": 118,
+        "abundance": 24.22,
+        "neutrons": 68
+      },
+      {
+        "massNumber": 119,
+        "abundance": 8.59,
+        "neutrons": 69
+      },
+      {
+        "massNumber": 120,
+        "abundance": 32.58,
+        "neutrons": 70
+      },
+      {
+        "massNumber": 122,
+        "abundance": 4.63,
+        "neutrons": 72
+      },
+      {
+        "massNumber": 124,
+        "abundance": 5.79,
+        "neutrons": 74
+      }
+    ]
+  },
+  {
+    "symbol": "Sb",
+    "name": "Antimon",
+    "nameEn": "Antimony",
+    "atomicNumber": 51,
+    "atomicMass": 121.76,
+    "category": "Halbmetall",
+    "group": 15,
+    "period": 5,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 5p³",
+    "electronConfigSemantic": "[Kr] 4d10 5s2 5p3",
+    "electronegativity": 2.05,
+    "atomicRadius": 140,
+    "ionizationEnergy": 8.608,
+    "electronAffinity": 1.046,
+    "density": 6.697,
+    "meltingPoint": 904,
+    "boilingPoint": 1860,
+    "isotopes": [
+      {
+        "massNumber": 121,
+        "abundance": 57.21,
+        "neutrons": 70
+      },
+      {
+        "massNumber": 123,
+        "abundance": 42.79,
+        "neutrons": 72
+      }
+    ]
+  },
+  {
+    "symbol": "Te",
+    "name": "Tellur",
+    "nameEn": "Tellurium",
+    "atomicNumber": 52,
+    "atomicMass": 127.6,
+    "category": "Halbmetall",
+    "group": 16,
+    "period": 5,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 5p⁴",
+    "electronConfigSemantic": "[Kr] 4d10 5s2 5p4",
+    "electronegativity": 2.1,
+    "atomicRadius": 138,
+    "ionizationEnergy": 9.01,
+    "electronAffinity": 1.971,
+    "density": 6.24,
+    "meltingPoint": 722.66,
+    "boilingPoint": 1261,
+    "isotopes": [
+      {
+        "massNumber": 120,
+        "abundance": 0.09,
+        "neutrons": 68
+      },
+      {
+        "massNumber": 122,
+        "abundance": 2.55,
+        "neutrons": 70
+      },
+      {
+        "massNumber": 124,
+        "abundance": 4.74,
+        "neutrons": 72
+      },
+      {
+        "massNumber": 125,
+        "abundance": 7.07,
+        "neutrons": 73
+      },
+      {
+        "massNumber": 126,
+        "abundance": 18.84,
+        "neutrons": 74
+      },
+      {
+        "massNumber": 128,
+        "abundance": 31.74,
+        "neutrons": 76
+      },
+      {
+        "massNumber": 130,
+        "abundance": 34.08,
+        "neutrons": 78
+      }
+    ]
+  },
+  {
+    "symbol": "I",
+    "name": "Iod",
+    "nameEn": "Iodine",
+    "atomicNumber": 53,
+    "atomicMass": 126.9,
+    "category": "Halogen",
+    "group": 17,
+    "period": 5,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 5p⁵",
+    "electronConfigSemantic": "[Kr] 4d10 5s2 5p5",
+    "electronegativity": 2.66,
+    "atomicRadius": 133,
+    "ionizationEnergy": 10.451,
+    "electronAffinity": 3.059,
+    "density": 4.933,
+    "meltingPoint": 386.85,
+    "boilingPoint": 457.4,
+    "isotopes": [
+      {
+        "massNumber": 127,
+        "abundance": 100,
+        "neutrons": 74
+      }
+    ]
+  },
+  {
+    "symbol": "Xe",
+    "name": "Xenon",
+    "nameEn": "Xenon",
+    "atomicNumber": 54,
+    "atomicMass": 131.29,
+    "category": "Edelgas",
+    "group": 18,
+    "period": 5,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 5p⁶",
+    "electronConfigSemantic": "[Kr] 4d10 5s2 5p6",
+    "electronegativity": null,
+    "atomicRadius": 108,
+    "ionizationEnergy": 12.13,
+    "electronAffinity": null,
+    "density": 0.005894,
+    "meltingPoint": 161.36,
+    "boilingPoint": 165.03,
+    "isotopes": [
+      {
+        "massNumber": 124,
+        "abundance": 0.09,
+        "neutrons": 70
+      },
+      {
+        "massNumber": 126,
+        "abundance": 0.09,
+        "neutrons": 72
+      },
+      {
+        "massNumber": 128,
+        "abundance": 1.92,
+        "neutrons": 74
+      },
+      {
+        "massNumber": 129,
+        "abundance": 26.44,
+        "neutrons": 75
+      },
+      {
+        "massNumber": 130,
+        "abundance": 4.08,
+        "neutrons": 76
+      },
+      {
+        "massNumber": 131,
+        "abundance": 21.18,
+        "neutrons": 77
+      },
+      {
+        "massNumber": 132,
+        "abundance": 26.89,
+        "neutrons": 78
+      },
+      {
+        "massNumber": 134,
+        "abundance": 10.44,
+        "neutrons": 80
+      },
+      {
+        "massNumber": 136,
+        "abundance": 8.87,
+        "neutrons": 82
+      }
+    ]
+  },
+  {
+    "symbol": "Cs",
+    "name": "Caesium",
+    "nameEn": "Cesium",
+    "atomicNumber": 55,
+    "atomicMass": 132.91,
+    "category": "Alkalimetall",
+    "group": 1,
+    "period": 6,
+    "block": "s",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 5p⁶ 6s¹",
+    "electronConfigSemantic": "[Xe] 6s1",
+    "electronegativity": 0.79,
+    "atomicRadius": 298,
+    "ionizationEnergy": 3.894,
+    "electronAffinity": 0.472,
+    "density": 1.879,
+    "meltingPoint": 301.59,
+    "boilingPoint": 944,
+    "isotopes": [
+      {
+        "massNumber": 133,
+        "abundance": 100,
+        "neutrons": 78
+      }
+    ]
+  },
+  {
+    "symbol": "Ba",
+    "name": "Barium",
+    "nameEn": "Barium",
+    "atomicNumber": 56,
+    "atomicMass": 137.33,
+    "category": "Erdalkalimetall",
+    "group": 2,
+    "period": 6,
+    "block": "s",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 5p⁶ 6s²",
+    "electronConfigSemantic": "[Xe] 6s2",
+    "electronegativity": 0.89,
+    "atomicRadius": 253,
+    "ionizationEnergy": 5.212,
+    "electronAffinity": 0.145,
+    "density": 3.51,
+    "meltingPoint": 1000,
+    "boilingPoint": 2118,
+    "isotopes": [
+      {
+        "massNumber": 130,
+        "abundance": 0.106,
+        "neutrons": 74
+      },
+      {
+        "massNumber": 132,
+        "abundance": 0.101,
+        "neutrons": 76
+      },
+      {
+        "massNumber": 134,
+        "abundance": 2.417,
+        "neutrons": 78
+      },
+      {
+        "massNumber": 135,
+        "abundance": 6.592,
+        "neutrons": 79
+      },
+      {
+        "massNumber": 136,
+        "abundance": 7.854,
+        "neutrons": 80
+      },
+      {
+        "massNumber": 137,
+        "abundance": 11.232,
+        "neutrons": 81
+      },
+      {
+        "massNumber": 138,
+        "abundance": 71.698,
+        "neutrons": 82
+      }
+    ]
+  },
+  {
+    "symbol": "La",
+    "name": "Lanthan",
+    "nameEn": "Lanthanum",
+    "atomicNumber": 57,
+    "atomicMass": 138.91,
+    "category": "Lanthanoid",
+    "group": 3,
+    "period": 6,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 5s² 5p⁶ 5d¹ 6s²",
+    "electronConfigSemantic": "[Xe] 5d1 6s2",
+    "electronegativity": 1.1,
+    "atomicRadius": 187,
+    "ionizationEnergy": 5.577,
+    "electronAffinity": 0.47,
+    "density": 6.146,
+    "meltingPoint": 1193,
+    "boilingPoint": 3737,
+    "isotopes": [
+      {
+        "massNumber": 138,
+        "abundance": 0.089,
+        "neutrons": 81,
+        "unstable": true
+      },
+      {
+        "massNumber": 139,
+        "abundance": 99.911,
+        "neutrons": 82
+      }
+    ]
+  },
+  {
+    "symbol": "Ce",
+    "name": "Cer",
+    "nameEn": "Cerium",
+    "atomicNumber": 58,
+    "atomicMass": 140.12,
+    "category": "Lanthanoid",
+    "group": 3,
+    "period": 6,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f² 5s² 5p⁶ 6s²",
+    "electronConfigSemantic": "[Xe] 4f2 6s2",
+    "electronegativity": 1.12,
+    "atomicRadius": 182,
+    "ionizationEnergy": 5.539,
+    "electronAffinity": 0.5,
+    "density": 6.77,
+    "meltingPoint": 1068,
+    "boilingPoint": 3716,
+    "isotopes": [
+      {
+        "massNumber": 136,
+        "abundance": 0.185,
+        "neutrons": 78
+      },
+      {
+        "massNumber": 138,
+        "abundance": 0.251,
+        "neutrons": 80
+      },
+      {
+        "massNumber": 140,
+        "abundance": 88.45,
+        "neutrons": 82
+      },
+      {
+        "massNumber": 142,
+        "abundance": 11.114,
+        "neutrons": 84
+      }
+    ]
+  },
+  {
+    "symbol": "Pr",
+    "name": "Praseodym",
+    "nameEn": "Praseodymium",
+    "atomicNumber": 59,
+    "atomicMass": 140.91,
+    "category": "Lanthanoid",
+    "group": 3,
+    "period": 6,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f³ 5s² 5p⁶ 6s²",
+    "electronConfigSemantic": "[Xe] 4f3 6s2",
+    "electronegativity": 1.13,
+    "atomicRadius": 182,
+    "ionizationEnergy": 5.473,
+    "electronAffinity": 0.5,
+    "density": 6.64,
+    "meltingPoint": 1208,
+    "boilingPoint": 3793,
+    "isotopes": [
+      {
+        "massNumber": 141,
+        "abundance": 100,
+        "neutrons": 82
+      }
+    ]
+  },
+  {
+    "symbol": "Nd",
+    "name": "Neodym",
+    "nameEn": "Neodymium",
+    "atomicNumber": 60,
+    "atomicMass": 144.24,
+    "category": "Lanthanoid",
+    "group": 3,
+    "period": 6,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f⁴ 5s² 5p⁶ 6s²",
+    "electronConfigSemantic": "[Xe] 4f4 6s2",
+    "electronegativity": 1.14,
+    "atomicRadius": 181,
+    "ionizationEnergy": 5.525,
+    "electronAffinity": 0.5,
+    "density": 7.01,
+    "meltingPoint": 1297,
+    "boilingPoint": 3347,
+    "isotopes": [
+      {
+        "massNumber": 142,
+        "abundance": 27.2,
+        "neutrons": 82
+      },
+      {
+        "massNumber": 143,
+        "abundance": 12.2,
+        "neutrons": 83
+      },
+      {
+        "massNumber": 144,
+        "abundance": 23.8,
+        "neutrons": 84
+      },
+      {
+        "massNumber": 145,
+        "abundance": 8.3,
+        "neutrons": 85
+      },
+      {
+        "massNumber": 146,
+        "abundance": 17.2,
+        "neutrons": 86
+      },
+      {
+        "massNumber": 148,
+        "abundance": 5.7,
+        "neutrons": 88
+      },
+      {
+        "massNumber": 150,
+        "abundance": 5.6,
+        "neutrons": 90
+      }
+    ]
+  },
+  {
+    "symbol": "Pm",
+    "name": "Promethium",
+    "nameEn": "Promethium",
+    "atomicNumber": 61,
+    "atomicMass": 145,
+    "category": "Lanthanoid",
+    "group": 3,
+    "period": 6,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f⁵ 5s² 5p⁶ 6s²",
+    "electronConfigSemantic": "[Xe] 4f5 6s2",
+    "electronegativity": 1.13,
+    "atomicRadius": 183,
+    "ionizationEnergy": 5.55,
+    "electronAffinity": 0.5,
+    "density": 7.26,
+    "meltingPoint": 1315,
+    "boilingPoint": 3273,
+    "isotopes": [
+      {
+        "massNumber": 145,
+        "abundance": 0,
+        "neutrons": 84,
+        "unstable": true
+      },
+      {
+        "massNumber": 147,
+        "abundance": 0,
+        "neutrons": 86,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Sm",
+    "name": "Samarium",
+    "nameEn": "Samarium",
+    "atomicNumber": 62,
+    "atomicMass": 150.36,
+    "category": "Lanthanoid",
+    "group": 3,
+    "period": 6,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f⁶ 5s² 5p⁶ 6s²",
+    "electronConfigSemantic": "[Xe] 4f6 6s2",
+    "electronegativity": 1.17,
+    "atomicRadius": 180,
+    "ionizationEnergy": 5.644,
+    "electronAffinity": 0.5,
+    "density": 7.353,
+    "meltingPoint": 1345,
+    "boilingPoint": 2067,
+    "isotopes": [
+      {
+        "massNumber": 144,
+        "abundance": 3.07,
+        "neutrons": 82
+      },
+      {
+        "massNumber": 147,
+        "abundance": 14.99,
+        "neutrons": 85
+      },
+      {
+        "massNumber": 148,
+        "abundance": 11.24,
+        "neutrons": 86
+      },
+      {
+        "massNumber": 149,
+        "abundance": 13.82,
+        "neutrons": 87
+      },
+      {
+        "massNumber": 150,
+        "abundance": 7.38,
+        "neutrons": 88
+      },
+      {
+        "massNumber": 152,
+        "abundance": 26.75,
+        "neutrons": 90
+      },
+      {
+        "massNumber": 154,
+        "abundance": 22.75,
+        "neutrons": 92
+      }
+    ]
+  },
+  {
+    "symbol": "Eu",
+    "name": "Europium",
+    "nameEn": "Europium",
+    "atomicNumber": 63,
+    "atomicMass": 151.96,
+    "category": "Lanthanoid",
+    "group": 3,
+    "period": 6,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f⁷ 5s² 5p⁶ 6s²",
+    "electronConfigSemantic": "[Xe] 4f7 6s2",
+    "electronegativity": 1.2,
+    "atomicRadius": 180,
+    "ionizationEnergy": 5.67,
+    "electronAffinity": 0.5,
+    "density": 5.244,
+    "meltingPoint": 1095,
+    "boilingPoint": 1802,
+    "isotopes": [
+      {
+        "massNumber": 151,
+        "abundance": 47.81,
+        "neutrons": 88
+      },
+      {
+        "massNumber": 153,
+        "abundance": 52.19,
+        "neutrons": 90
+      }
+    ]
+  },
+  {
+    "symbol": "Gd",
+    "name": "Gadolinium",
+    "nameEn": "Gadolinium",
+    "atomicNumber": 64,
+    "atomicMass": 157.25,
+    "category": "Lanthanoid",
+    "group": 3,
+    "period": 6,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f⁷ 5s² 5p⁶ 5d¹ 6s²",
+    "electronConfigSemantic": "[Xe] 4f7 5d1 6s2",
+    "electronegativity": 1.2,
+    "atomicRadius": 179,
+    "ionizationEnergy": 6.15,
+    "electronAffinity": 0.5,
+    "density": 7.9,
+    "meltingPoint": 1585,
+    "boilingPoint": 3546,
+    "isotopes": [
+      {
+        "massNumber": 152,
+        "abundance": 0.2,
+        "neutrons": 88
+      },
+      {
+        "massNumber": 154,
+        "abundance": 2.18,
+        "neutrons": 90
+      },
+      {
+        "massNumber": 155,
+        "abundance": 14.8,
+        "neutrons": 91
+      },
+      {
+        "massNumber": 156,
+        "abundance": 20.47,
+        "neutrons": 92
+      },
+      {
+        "massNumber": 157,
+        "abundance": 15.65,
+        "neutrons": 93
+      },
+      {
+        "massNumber": 158,
+        "abundance": 24.84,
+        "neutrons": 94
+      },
+      {
+        "massNumber": 160,
+        "abundance": 21.86,
+        "neutrons": 96
+      }
+    ]
+  },
+  {
+    "symbol": "Tb",
+    "name": "Terbium",
+    "nameEn": "Terbium",
+    "atomicNumber": 65,
+    "atomicMass": 158.93,
+    "category": "Lanthanoid",
+    "group": 3,
+    "period": 6,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f⁹ 5s² 5p⁶ 6s²",
+    "electronConfigSemantic": "[Xe] 4f9 6s2",
+    "electronegativity": 1.2,
+    "atomicRadius": 177,
+    "ionizationEnergy": 5.864,
+    "electronAffinity": 0.5,
+    "density": 8.219,
+    "meltingPoint": 1629,
+    "boilingPoint": 3503,
+    "isotopes": [
+      {
+        "massNumber": 159,
+        "abundance": 100,
+        "neutrons": 94
+      }
+    ]
+  },
+  {
+    "symbol": "Dy",
+    "name": "Dysprosium",
+    "nameEn": "Dysprosium",
+    "atomicNumber": 66,
+    "atomicMass": 162.5,
+    "category": "Lanthanoid",
+    "group": 3,
+    "period": 6,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁰ 5s² 5p⁶ 6s²",
+    "electronConfigSemantic": "[Xe] 4f10 6s2",
+    "electronegativity": 1.22,
+    "atomicRadius": 178,
+    "ionizationEnergy": 5.939,
+    "electronAffinity": 0.5,
+    "density": 8.551,
+    "meltingPoint": 1680,
+    "boilingPoint": 2840,
+    "isotopes": [
+      {
+        "massNumber": 156,
+        "abundance": 0.06,
+        "neutrons": 90
+      },
+      {
+        "massNumber": 158,
+        "abundance": 0.1,
+        "neutrons": 92
+      },
+      {
+        "massNumber": 160,
+        "abundance": 2.34,
+        "neutrons": 94
+      },
+      {
+        "massNumber": 161,
+        "abundance": 18.91,
+        "neutrons": 95
+      },
+      {
+        "massNumber": 162,
+        "abundance": 25.51,
+        "neutrons": 96
+      },
+      {
+        "massNumber": 163,
+        "abundance": 24.9,
+        "neutrons": 97
+      },
+      {
+        "massNumber": 164,
+        "abundance": 28.18,
+        "neutrons": 98
+      }
+    ]
+  },
+  {
+    "symbol": "Ho",
+    "name": "Holmium",
+    "nameEn": "Holmium",
+    "atomicNumber": 67,
+    "atomicMass": 164.93,
+    "category": "Lanthanoid",
+    "group": 3,
+    "period": 6,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹¹ 5s² 5p⁶ 6s²",
+    "electronConfigSemantic": "[Xe] 4f11 6s2",
+    "electronegativity": 1.23,
+    "atomicRadius": 176,
+    "ionizationEnergy": 6.022,
+    "electronAffinity": 0.5,
+    "density": 8.795,
+    "meltingPoint": 1747,
+    "boilingPoint": 2973,
+    "isotopes": [
+      {
+        "massNumber": 165,
+        "abundance": 100,
+        "neutrons": 98
+      }
+    ]
+  },
+  {
+    "symbol": "Er",
+    "name": "Erbium",
+    "nameEn": "Erbium",
+    "atomicNumber": 68,
+    "atomicMass": 167.26,
+    "category": "Lanthanoid",
+    "group": 3,
+    "period": 6,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹² 5s² 5p⁶ 6s²",
+    "electronConfigSemantic": "[Xe] 4f12 6s2",
+    "electronegativity": 1.24,
+    "atomicRadius": 176,
+    "ionizationEnergy": 6.108,
+    "electronAffinity": 0.5,
+    "density": 9.066,
+    "meltingPoint": 1802,
+    "boilingPoint": 3141,
+    "isotopes": [
+      {
+        "massNumber": 162,
+        "abundance": 0.14,
+        "neutrons": 94
+      },
+      {
+        "massNumber": 164,
+        "abundance": 1.61,
+        "neutrons": 96
+      },
+      {
+        "massNumber": 166,
+        "abundance": 33.61,
+        "neutrons": 98
+      },
+      {
+        "massNumber": 167,
+        "abundance": 22.93,
+        "neutrons": 99
+      },
+      {
+        "massNumber": 168,
+        "abundance": 26.78,
+        "neutrons": 100
+      },
+      {
+        "massNumber": 170,
+        "abundance": 14.93,
+        "neutrons": 102
+      }
+    ]
+  },
+  {
+    "symbol": "Tm",
+    "name": "Thulium",
+    "nameEn": "Thulium",
+    "atomicNumber": 69,
+    "atomicMass": 168.93,
+    "category": "Lanthanoid",
+    "group": 3,
+    "period": 6,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹³ 5s² 5p⁶ 6s²",
+    "electronConfigSemantic": "[Xe] 4f13 6s2",
+    "electronegativity": 1.25,
+    "atomicRadius": 176,
+    "ionizationEnergy": 6.184,
+    "electronAffinity": 0.5,
+    "density": 9.321,
+    "meltingPoint": 1818,
+    "boilingPoint": 2223,
+    "isotopes": [
+      {
+        "massNumber": 169,
+        "abundance": 100,
+        "neutrons": 100
+      }
+    ]
+  },
+  {
+    "symbol": "Yb",
+    "name": "Ytterbium",
+    "nameEn": "Ytterbium",
+    "atomicNumber": 70,
+    "atomicMass": 173.05,
+    "category": "Lanthanoid",
+    "group": 3,
+    "period": 6,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 6s²",
+    "electronConfigSemantic": "[Xe] 4f14 6s2",
+    "electronegativity": 1.1,
+    "atomicRadius": 176,
+    "ionizationEnergy": 6.254,
+    "electronAffinity": 0.5,
+    "density": 6.57,
+    "meltingPoint": 1097,
+    "boilingPoint": 1469,
+    "isotopes": [
+      {
+        "massNumber": 168,
+        "abundance": 0.13,
+        "neutrons": 98
+      },
+      {
+        "massNumber": 170,
+        "abundance": 3.04,
+        "neutrons": 100
+      },
+      {
+        "massNumber": 171,
+        "abundance": 14.28,
+        "neutrons": 101
+      },
+      {
+        "massNumber": 172,
+        "abundance": 21.83,
+        "neutrons": 102
+      },
+      {
+        "massNumber": 173,
+        "abundance": 16.13,
+        "neutrons": 103
+      },
+      {
+        "massNumber": 174,
+        "abundance": 31.83,
+        "neutrons": 104
+      },
+      {
+        "massNumber": 176,
+        "abundance": 12.76,
+        "neutrons": 106
+      }
+    ]
+  },
+  {
+    "symbol": "Lu",
+    "name": "Lutetium",
+    "nameEn": "Lutetium",
+    "atomicNumber": 71,
+    "atomicMass": 174.97,
+    "category": "Lanthanoid",
+    "group": 3,
+    "period": 6,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹ 6s²",
+    "electronConfigSemantic": "[Xe] 4f14 5d1 6s2",
+    "electronegativity": 1.27,
+    "atomicRadius": 174,
+    "ionizationEnergy": 5.426,
+    "electronAffinity": 0.5,
+    "density": 9.841,
+    "meltingPoint": 1925,
+    "boilingPoint": 3675,
+    "isotopes": [
+      {
+        "massNumber": 175,
+        "abundance": 97.41,
+        "neutrons": 104
+      },
+      {
+        "massNumber": 176,
+        "abundance": 2.59,
+        "neutrons": 105,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Hf",
+    "name": "Hafnium",
+    "nameEn": "Hafnium",
+    "atomicNumber": 72,
+    "atomicMass": 178.49,
+    "category": "Übergangsmetall",
+    "group": 4,
+    "period": 6,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d² 6s²",
+    "electronConfigSemantic": "[Xe] 4f14 5d2 6s2",
+    "electronegativity": 1.3,
+    "atomicRadius": 159,
+    "ionizationEnergy": 6.825,
+    "electronAffinity": 0.017,
+    "density": 13.31,
+    "meltingPoint": 2506,
+    "boilingPoint": 4876,
+    "isotopes": [
+      {
+        "massNumber": 174,
+        "abundance": 0.16,
+        "neutrons": 102
+      },
+      {
+        "massNumber": 176,
+        "abundance": 5.26,
+        "neutrons": 104
+      },
+      {
+        "massNumber": 177,
+        "abundance": 18.6,
+        "neutrons": 105
+      },
+      {
+        "massNumber": 178,
+        "abundance": 27.28,
+        "neutrons": 106
+      },
+      {
+        "massNumber": 179,
+        "abundance": 13.62,
+        "neutrons": 107
+      },
+      {
+        "massNumber": 180,
+        "abundance": 35.08,
+        "neutrons": 108
+      }
+    ]
+  },
+  {
+    "symbol": "Ta",
+    "name": "Tantal",
+    "nameEn": "Tantalum",
+    "atomicNumber": 73,
+    "atomicMass": 180.95,
+    "category": "Übergangsmetall",
+    "group": 5,
+    "period": 6,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d³ 6s²",
+    "electronConfigSemantic": "[Xe] 4f14 5d3 6s2",
+    "electronegativity": 1.5,
+    "atomicRadius": 146,
+    "ionizationEnergy": 7.89,
+    "electronAffinity": 0.322,
+    "density": 16.65,
+    "meltingPoint": 3290,
+    "boilingPoint": 5731,
+    "isotopes": [
+      {
+        "massNumber": 180,
+        "abundance": 0.012,
+        "neutrons": 107,
+        "unstable": true
+      },
+      {
+        "massNumber": 181,
+        "abundance": 99.988,
+        "neutrons": 108
+      }
+    ]
+  },
+  {
+    "symbol": "W",
+    "name": "Wolfram",
+    "nameEn": "Tungsten",
+    "atomicNumber": 74,
+    "atomicMass": 183.84,
+    "category": "Übergangsmetall",
+    "group": 6,
+    "period": 6,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d⁴ 6s²",
+    "electronConfigSemantic": "[Xe] 4f14 5d4 6s2",
+    "electronegativity": 2.36,
+    "atomicRadius": 139,
+    "ionizationEnergy": 7.98,
+    "electronAffinity": 0.815,
+    "density": 19.25,
+    "meltingPoint": 3695,
+    "boilingPoint": 5828,
+    "isotopes": [
+      {
+        "massNumber": 180,
+        "abundance": 0.12,
+        "neutrons": 106
+      },
+      {
+        "massNumber": 182,
+        "abundance": 26.5,
+        "neutrons": 108
+      },
+      {
+        "massNumber": 183,
+        "abundance": 14.31,
+        "neutrons": 109
+      },
+      {
+        "massNumber": 184,
+        "abundance": 30.64,
+        "neutrons": 110
+      },
+      {
+        "massNumber": 186,
+        "abundance": 28.43,
+        "neutrons": 112
+      }
+    ]
+  },
+  {
+    "symbol": "Re",
+    "name": "Rhenium",
+    "nameEn": "Rhenium",
+    "atomicNumber": 75,
+    "atomicMass": 186.21,
+    "category": "Übergangsmetall",
+    "group": 7,
+    "period": 6,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d⁵ 6s²",
+    "electronConfigSemantic": "[Xe] 4f14 5d5 6s2",
+    "electronegativity": 1.9,
+    "atomicRadius": 137,
+    "ionizationEnergy": 7.88,
+    "electronAffinity": 0.15,
+    "density": 21.02,
+    "meltingPoint": 3459,
+    "boilingPoint": 5869,
+    "isotopes": [
+      {
+        "massNumber": 185,
+        "abundance": 37.4,
+        "neutrons": 110
+      },
+      {
+        "massNumber": 187,
+        "abundance": 62.6,
+        "neutrons": 112,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Os",
+    "name": "Osmium",
+    "nameEn": "Osmium",
+    "atomicNumber": 76,
+    "atomicMass": 190.23,
+    "category": "Übergangsmetall",
+    "group": 8,
+    "period": 6,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d⁶ 6s²",
+    "electronConfigSemantic": "[Xe] 4f14 5d6 6s2",
+    "electronegativity": 2.2,
+    "atomicRadius": 135,
+    "ionizationEnergy": 8.44,
+    "electronAffinity": 1.078,
+    "density": 22.59,
+    "meltingPoint": 3306,
+    "boilingPoint": 5285,
+    "isotopes": [
+      {
+        "massNumber": 184,
+        "abundance": 0.02,
+        "neutrons": 108
+      },
+      {
+        "massNumber": 186,
+        "abundance": 1.59,
+        "neutrons": 110
+      },
+      {
+        "massNumber": 187,
+        "abundance": 1.96,
+        "neutrons": 111
+      },
+      {
+        "massNumber": 188,
+        "abundance": 13.24,
+        "neutrons": 112
+      },
+      {
+        "massNumber": 189,
+        "abundance": 16.15,
+        "neutrons": 113
+      },
+      {
+        "massNumber": 190,
+        "abundance": 26.26,
+        "neutrons": 114
+      },
+      {
+        "massNumber": 192,
+        "abundance": 40.78,
+        "neutrons": 116
+      }
+    ]
+  },
+  {
+    "symbol": "Ir",
+    "name": "Iridium",
+    "nameEn": "Iridium",
+    "atomicNumber": 77,
+    "atomicMass": 192.22,
+    "category": "Übergangsmetall",
+    "group": 9,
+    "period": 6,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d⁷ 6s²",
+    "electronConfigSemantic": "[Xe] 4f14 5d7 6s2",
+    "electronegativity": 2.2,
+    "atomicRadius": 136,
+    "ionizationEnergy": 8.97,
+    "electronAffinity": 1.564,
+    "density": 22.56,
+    "meltingPoint": 2719,
+    "boilingPoint": 4701,
+    "isotopes": [
+      {
+        "massNumber": 191,
+        "abundance": 37.3,
+        "neutrons": 114
+      },
+      {
+        "massNumber": 193,
+        "abundance": 62.7,
+        "neutrons": 116
+      }
+    ]
+  },
+  {
+    "symbol": "Pt",
+    "name": "Platin",
+    "nameEn": "Platinum",
+    "atomicNumber": 78,
+    "atomicMass": 195.08,
+    "category": "Übergangsmetall",
+    "group": 10,
+    "period": 6,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d⁹ 6s¹",
+    "electronConfigSemantic": "[Xe] 4f14 5d9 6s1",
+    "electronegativity": 2.28,
+    "atomicRadius": 139,
+    "ionizationEnergy": 8.96,
+    "electronAffinity": 2.125,
+    "density": 21.45,
+    "meltingPoint": 2041.4,
+    "boilingPoint": 4098,
+    "isotopes": [
+      {
+        "massNumber": 190,
+        "abundance": 0.012,
+        "neutrons": 112
+      },
+      {
+        "massNumber": 192,
+        "abundance": 0.782,
+        "neutrons": 114
+      },
+      {
+        "massNumber": 194,
+        "abundance": 32.967,
+        "neutrons": 116
+      },
+      {
+        "massNumber": 195,
+        "abundance": 33.832,
+        "neutrons": 117
+      },
+      {
+        "massNumber": 196,
+        "abundance": 25.242,
+        "neutrons": 118
+      },
+      {
+        "massNumber": 198,
+        "abundance": 7.163,
+        "neutrons": 120
+      }
+    ]
+  },
+  {
+    "symbol": "Au",
+    "name": "Gold",
+    "nameEn": "Gold",
+    "atomicNumber": 79,
+    "atomicMass": 196.97,
+    "category": "Übergangsmetall",
+    "group": 11,
+    "period": 6,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s¹",
+    "electronConfigSemantic": "[Xe] 4f14 5d10 6s1",
+    "electronegativity": 2.54,
+    "atomicRadius": 144,
+    "ionizationEnergy": 9.226,
+    "electronAffinity": 2.309,
+    "density": 19.32,
+    "meltingPoint": 1337.33,
+    "boilingPoint": 3129,
+    "isotopes": [
+      {
+        "massNumber": 197,
+        "abundance": 100,
+        "neutrons": 118
+      }
+    ]
+  },
+  {
+    "symbol": "Hg",
+    "name": "Quecksilber",
+    "nameEn": "Mercury",
+    "atomicNumber": 80,
+    "atomicMass": 200.59,
+    "category": "Metall",
+    "group": 12,
+    "period": 6,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s²",
+    "electronConfigSemantic": "[Xe] 4f14 5d10 6s2",
+    "electronegativity": 2,
+    "atomicRadius": 151,
+    "ionizationEnergy": 10.438,
+    "electronAffinity": null,
+    "density": 13.534,
+    "meltingPoint": 234.32,
+    "boilingPoint": 629.88,
+    "isotopes": [
+      {
+        "massNumber": 196,
+        "abundance": 0.15,
+        "neutrons": 116
+      },
+      {
+        "massNumber": 198,
+        "abundance": 9.97,
+        "neutrons": 118
+      },
+      {
+        "massNumber": 199,
+        "abundance": 16.87,
+        "neutrons": 119
+      },
+      {
+        "massNumber": 200,
+        "abundance": 23.1,
+        "neutrons": 120
+      },
+      {
+        "massNumber": 201,
+        "abundance": 13.18,
+        "neutrons": 121
+      },
+      {
+        "massNumber": 202,
+        "abundance": 29.86,
+        "neutrons": 122
+      },
+      {
+        "massNumber": 204,
+        "abundance": 6.87,
+        "neutrons": 124
+      }
+    ]
+  },
+  {
+    "symbol": "Tl",
+    "name": "Thallium",
+    "nameEn": "Thallium",
+    "atomicNumber": 81,
+    "atomicMass": 204.38,
+    "category": "Metall",
+    "group": 13,
+    "period": 6,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p¹",
+    "electronConfigSemantic": "[Xe] 4f14 5d10 6s2 6p1",
+    "electronegativity": 1.62,
+    "atomicRadius": 145,
+    "ionizationEnergy": 6.108,
+    "electronAffinity": 0.377,
+    "density": 11.85,
+    "meltingPoint": 577,
+    "boilingPoint": 1746,
+    "isotopes": [
+      {
+        "massNumber": 203,
+        "abundance": 29.52,
+        "neutrons": 122
+      },
+      {
+        "massNumber": 205,
+        "abundance": 70.48,
+        "neutrons": 124
+      }
+    ]
+  },
+  {
+    "symbol": "Pb",
+    "name": "Blei",
+    "nameEn": "Lead",
+    "atomicNumber": 82,
+    "atomicMass": 207.2,
+    "category": "Metall",
+    "group": 14,
+    "period": 6,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p²",
+    "electronConfigSemantic": "[Xe] 4f14 5d10 6s2 6p2",
+    "electronegativity": 1.87,
+    "atomicRadius": 154,
+    "ionizationEnergy": 7.417,
+    "electronAffinity": 0.365,
+    "density": 11.34,
+    "meltingPoint": 600.61,
+    "boilingPoint": 2022,
+    "isotopes": [
+      {
+        "massNumber": 204,
+        "abundance": 1.4,
+        "neutrons": 122
+      },
+      {
+        "massNumber": 206,
+        "abundance": 24.1,
+        "neutrons": 124
+      },
+      {
+        "massNumber": 207,
+        "abundance": 22.1,
+        "neutrons": 125
+      },
+      {
+        "massNumber": 208,
+        "abundance": 52.4,
+        "neutrons": 126
+      }
+    ]
+  },
+  {
+    "symbol": "Bi",
+    "name": "Bismut",
+    "nameEn": "Bismuth",
+    "atomicNumber": 83,
+    "atomicMass": 208.98,
+    "category": "Metall",
+    "group": 15,
+    "period": 6,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p³",
+    "electronConfigSemantic": "[Xe] 4f14 5d10 6s2 6p3",
+    "electronegativity": 2.02,
+    "atomicRadius": 143,
+    "ionizationEnergy": 7.285,
+    "electronAffinity": 0.942,
+    "density": 9.78,
+    "meltingPoint": 544.7,
+    "boilingPoint": 1837,
+    "isotopes": [
+      {
+        "massNumber": 209,
+        "abundance": 100,
+        "neutrons": 126,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Po",
+    "name": "Polonium",
+    "nameEn": "Polonium",
+    "atomicNumber": 84,
+    "atomicMass": 209,
+    "category": "Metall",
+    "group": 16,
+    "period": 6,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁴",
+    "electronConfigSemantic": "[Xe] 4f14 5d10 6s2 6p4",
+    "electronegativity": 2,
+    "atomicRadius": 135,
+    "ionizationEnergy": 8.417,
+    "electronAffinity": 1.9,
+    "density": 9.196,
+    "meltingPoint": 527,
+    "boilingPoint": 1235,
+    "isotopes": [
+      {
+        "massNumber": 209,
+        "abundance": 0,
+        "neutrons": 125,
+        "unstable": true
+      },
+      {
+        "massNumber": 210,
+        "abundance": 0,
+        "neutrons": 126,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "At",
+    "name": "Astat",
+    "nameEn": "Astatine",
+    "atomicNumber": 85,
+    "atomicMass": 210,
+    "category": "Halogen",
+    "group": 17,
+    "period": 6,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁵",
+    "electronConfigSemantic": "[Xe] 4f14 5d10 6s2 6p5",
+    "electronegativity": 2.2,
+    "atomicRadius": 127,
+    "ionizationEnergy": 9.3,
+    "electronAffinity": 2.8,
+    "density": null,
+    "meltingPoint": 575,
+    "boilingPoint": 610,
+    "isotopes": [
+      {
+        "massNumber": 210,
+        "abundance": 0,
+        "neutrons": 125,
+        "unstable": true
+      },
+      {
+        "massNumber": 211,
+        "abundance": 0,
+        "neutrons": 126,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Rn",
+    "name": "Radon",
+    "nameEn": "Radon",
+    "atomicNumber": 86,
+    "atomicMass": 222,
+    "category": "Edelgas",
+    "group": 18,
+    "period": 6,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶",
+    "electronConfigSemantic": "[Xe] 4f14 5d10 6s2 6p6",
+    "electronegativity": null,
+    "atomicRadius": 120,
+    "ionizationEnergy": 10.748,
+    "electronAffinity": null,
+    "density": 0.00973,
+    "meltingPoint": 202,
+    "boilingPoint": 211.3,
+    "isotopes": [
+      {
+        "massNumber": 220,
+        "abundance": 0,
+        "neutrons": 134,
+        "unstable": true
+      },
+      {
+        "massNumber": 222,
+        "abundance": 0,
+        "neutrons": 136,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Fr",
+    "name": "Francium",
+    "nameEn": "Francium",
+    "atomicNumber": 87,
+    "atomicMass": 223,
+    "category": "Alkalimetall",
+    "group": 1,
+    "period": 7,
+    "block": "s",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 7s¹",
+    "electronConfigSemantic": "[Rn] 7s1",
+    "electronegativity": 0.7,
+    "atomicRadius": 260,
+    "ionizationEnergy": 4.073,
+    "electronAffinity": 0.47,
+    "density": null,
+    "meltingPoint": 300,
+    "boilingPoint": 950,
+    "isotopes": [
+      {
+        "massNumber": 223,
+        "abundance": 0,
+        "neutrons": 136,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Ra",
+    "name": "Radium",
+    "nameEn": "Radium",
+    "atomicNumber": 88,
+    "atomicMass": 226,
+    "category": "Erdalkalimetall",
+    "group": 2,
+    "period": 7,
+    "block": "s",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 7s²",
+    "electronConfigSemantic": "[Rn] 7s2",
+    "electronegativity": 0.9,
+    "atomicRadius": 221,
+    "ionizationEnergy": 5.279,
+    "electronAffinity": 0.05,
+    "density": 5.5,
+    "meltingPoint": 973,
+    "boilingPoint": 1413,
+    "isotopes": [
+      {
+        "massNumber": 226,
+        "abundance": 0,
+        "neutrons": 138,
+        "unstable": true
+      },
+      {
+        "massNumber": 228,
+        "abundance": 0,
+        "neutrons": 140,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Ac",
+    "name": "Actinium",
+    "nameEn": "Actinium",
+    "atomicNumber": 89,
+    "atomicMass": 227,
+    "category": "Actinoid",
+    "group": 3,
+    "period": 7,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 6d¹ 7s²",
+    "electronConfigSemantic": "[Rn] 6d1 7s2",
+    "electronegativity": 1.1,
+    "atomicRadius": 195,
+    "ionizationEnergy": 5.17,
+    "electronAffinity": 0.35,
+    "density": 10.07,
+    "meltingPoint": 1323,
+    "boilingPoint": 3473,
+    "isotopes": [
+      {
+        "massNumber": 227,
+        "abundance": 0,
+        "neutrons": 138,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Th",
+    "name": "Thorium",
+    "nameEn": "Thorium",
+    "atomicNumber": 90,
+    "atomicMass": 232.04,
+    "category": "Actinoid",
+    "group": 3,
+    "period": 7,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 6d² 7s²",
+    "electronConfigSemantic": "[Rn] 6d2 7s2",
+    "electronegativity": 1.3,
+    "atomicRadius": 180,
+    "ionizationEnergy": 6.307,
+    "electronAffinity": null,
+    "density": 11.724,
+    "meltingPoint": 2023,
+    "boilingPoint": 5061,
+    "isotopes": [
+      {
+        "massNumber": 232,
+        "abundance": 100,
+        "neutrons": 142,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Pa",
+    "name": "Protactinium",
+    "nameEn": "Protactinium",
+    "atomicNumber": 91,
+    "atomicMass": 231.04,
+    "category": "Actinoid",
+    "group": 3,
+    "period": 7,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 5f² 6d¹ 7s²",
+    "electronConfigSemantic": "[Rn] 5f2 6d1 7s2",
+    "electronegativity": 1.5,
+    "atomicRadius": 163,
+    "ionizationEnergy": 5.89,
+    "electronAffinity": null,
+    "density": 15.37,
+    "meltingPoint": 1841,
+    "boilingPoint": 4027,
+    "isotopes": [
+      {
+        "massNumber": 231,
+        "abundance": 0,
+        "neutrons": 140,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "U",
+    "name": "Uran",
+    "nameEn": "Uranium",
+    "atomicNumber": 92,
+    "atomicMass": 238.03,
+    "category": "Actinoid",
+    "group": 3,
+    "period": 7,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 5f³ 6d¹ 7s²",
+    "electronConfigSemantic": "[Rn] 5f3 6d1 7s2",
+    "electronegativity": 1.38,
+    "atomicRadius": 175,
+    "ionizationEnergy": 6.194,
+    "electronAffinity": null,
+    "density": 19.05,
+    "meltingPoint": 1405,
+    "boilingPoint": 4404,
+    "isotopes": [
+      {
+        "massNumber": 234,
+        "abundance": 0.0054,
+        "neutrons": 142,
+        "unstable": true
+      },
+      {
+        "massNumber": 235,
+        "abundance": 0.7204,
+        "neutrons": 143,
+        "unstable": true
+      },
+      {
+        "massNumber": 238,
+        "abundance": 99.2742,
+        "neutrons": 146,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Np",
+    "name": "Neptunium",
+    "nameEn": "Neptunium",
+    "atomicNumber": 93,
+    "atomicMass": 237,
+    "category": "Actinoid",
+    "group": 3,
+    "period": 7,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 5f⁴ 6d¹ 7s²",
+    "electronConfigSemantic": "[Rn] 5f4 6d1 7s2",
+    "electronegativity": 1.36,
+    "atomicRadius": 175,
+    "ionizationEnergy": 6.266,
+    "electronAffinity": null,
+    "density": 20.45,
+    "meltingPoint": 912,
+    "boilingPoint": 4175,
+    "isotopes": [
+      {
+        "massNumber": 237,
+        "abundance": 0,
+        "neutrons": 144,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Pu",
+    "name": "Plutonium",
+    "nameEn": "Plutonium",
+    "atomicNumber": 94,
+    "atomicMass": 244,
+    "category": "Actinoid",
+    "group": 3,
+    "period": 7,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 5f⁶ 7s²",
+    "electronConfigSemantic": "[Rn] 5f6 7s2",
+    "electronegativity": 1.28,
+    "atomicRadius": 175,
+    "ionizationEnergy": 6.06,
+    "electronAffinity": null,
+    "density": 19.816,
+    "meltingPoint": 912.5,
+    "boilingPoint": 3501,
+    "isotopes": [
+      {
+        "massNumber": 238,
+        "abundance": 0,
+        "neutrons": 144,
+        "unstable": true
+      },
+      {
+        "massNumber": 239,
+        "abundance": 0,
+        "neutrons": 145,
+        "unstable": true
+      },
+      {
+        "massNumber": 240,
+        "abundance": 0,
+        "neutrons": 146,
+        "unstable": true
+      },
+      {
+        "massNumber": 242,
+        "abundance": 0,
+        "neutrons": 148,
+        "unstable": true
+      },
+      {
+        "massNumber": 244,
+        "abundance": 0,
+        "neutrons": 150,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Am",
+    "name": "Americium",
+    "nameEn": "Americium",
+    "atomicNumber": 95,
+    "atomicMass": 243,
+    "category": "Actinoid",
+    "group": 3,
+    "period": 7,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 5f⁷ 7s²",
+    "electronConfigSemantic": "[Rn] 5f7 7s2",
+    "electronegativity": 1.3,
+    "atomicRadius": 175,
+    "ionizationEnergy": 5.973,
+    "electronAffinity": null,
+    "density": 13.69,
+    "meltingPoint": 1449,
+    "boilingPoint": 2880,
+    "isotopes": [
+      {
+        "massNumber": 241,
+        "abundance": 0,
+        "neutrons": 146,
+        "unstable": true
+      },
+      {
+        "massNumber": 243,
+        "abundance": 0,
+        "neutrons": 148,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Cm",
+    "name": "Curium",
+    "nameEn": "Curium",
+    "atomicNumber": 96,
+    "atomicMass": 247,
+    "category": "Actinoid",
+    "group": 3,
+    "period": 7,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 5f⁷ 6d¹ 7s²",
+    "electronConfigSemantic": "[Rn] 5f7 6d1 7s2",
+    "electronegativity": 1.3,
+    "atomicRadius": 173,
+    "ionizationEnergy": 5.991,
+    "electronAffinity": null,
+    "density": 13.51,
+    "meltingPoint": 1613,
+    "boilingPoint": 3383,
+    "isotopes": [
+      {
+        "massNumber": 245,
+        "abundance": 0,
+        "neutrons": 149,
+        "unstable": true
+      },
+      {
+        "massNumber": 247,
+        "abundance": 0,
+        "neutrons": 151,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Bk",
+    "name": "Berkelium",
+    "nameEn": "Berkelium",
+    "atomicNumber": 97,
+    "atomicMass": 247,
+    "category": "Actinoid",
+    "group": 3,
+    "period": 7,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 5f⁹ 7s²",
+    "electronConfigSemantic": "[Rn] 5f9 7s2",
+    "electronegativity": 1.3,
+    "atomicRadius": 170,
+    "ionizationEnergy": 6.197,
+    "electronAffinity": null,
+    "density": 14.78,
+    "meltingPoint": 1259,
+    "boilingPoint": 2870,
+    "isotopes": [
+      {
+        "massNumber": 247,
+        "abundance": 0,
+        "neutrons": 150,
+        "unstable": true
+      },
+      {
+        "massNumber": 249,
+        "abundance": 0,
+        "neutrons": 152,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Cf",
+    "name": "Californium",
+    "nameEn": "Californium",
+    "atomicNumber": 98,
+    "atomicMass": 251,
+    "category": "Actinoid",
+    "group": 3,
+    "period": 7,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 5f¹⁰ 7s²",
+    "electronConfigSemantic": "[Rn] 5f10 7s2",
+    "electronegativity": 1.3,
+    "atomicRadius": 186,
+    "ionizationEnergy": 6.298,
+    "electronAffinity": null,
+    "density": 15.1,
+    "meltingPoint": 1173,
+    "boilingPoint": 1743,
+    "isotopes": [
+      {
+        "massNumber": 249,
+        "abundance": 0,
+        "neutrons": 151,
+        "unstable": true
+      },
+      {
+        "massNumber": 251,
+        "abundance": 0,
+        "neutrons": 153,
+        "unstable": true
+      },
+      {
+        "massNumber": 252,
+        "abundance": 0,
+        "neutrons": 154,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Es",
+    "name": "Einsteinium",
+    "nameEn": "Einsteinium",
+    "atomicNumber": 99,
+    "atomicMass": 252,
+    "category": "Actinoid",
+    "group": 3,
+    "period": 7,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 5f¹¹ 7s²",
+    "electronConfigSemantic": "[Rn] 5f11 7s2",
+    "electronegativity": 1.3,
+    "atomicRadius": 186,
+    "ionizationEnergy": 6.42,
+    "electronAffinity": null,
+    "density": 8.84,
+    "meltingPoint": 1133,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 252,
+        "abundance": 0,
+        "neutrons": 153,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Fm",
+    "name": "Fermium",
+    "nameEn": "Fermium",
+    "atomicNumber": 100,
+    "atomicMass": 257,
+    "category": "Actinoid",
+    "group": 3,
+    "period": 7,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 5f¹² 7s²",
+    "electronConfigSemantic": "[Rn] 5f12 7s2",
+    "electronegativity": 1.3,
+    "atomicRadius": 186,
+    "ionizationEnergy": 6.5,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": 1800,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 257,
+        "abundance": 0,
+        "neutrons": 157,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Md",
+    "name": "Mendelevium",
+    "nameEn": "Mendelevium",
+    "atomicNumber": 101,
+    "atomicMass": 258,
+    "category": "Actinoid",
+    "group": 3,
+    "period": 7,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 5f¹³ 7s²",
+    "electronConfigSemantic": "[Rn] 5f13 7s2",
+    "electronegativity": 1.3,
+    "atomicRadius": 186,
+    "ionizationEnergy": 6.58,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": 1100,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 258,
+        "abundance": 0,
+        "neutrons": 157,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "No",
+    "name": "Nobelium",
+    "nameEn": "Nobelium",
+    "atomicNumber": 102,
+    "atomicMass": 259,
+    "category": "Actinoid",
+    "group": 3,
+    "period": 7,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 5f¹⁴ 7s²",
+    "electronConfigSemantic": "[Rn] 5f14 7s2",
+    "electronegativity": 1.3,
+    "atomicRadius": 186,
+    "ionizationEnergy": 6.65,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": 1100,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 259,
+        "abundance": 0,
+        "neutrons": 157,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Lr",
+    "name": "Lawrencium",
+    "nameEn": "Lawrencium",
+    "atomicNumber": 103,
+    "atomicMass": 266,
+    "category": "Actinoid",
+    "group": 3,
+    "period": 7,
+    "block": "f",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 5f¹⁴ 7s² 7p¹",
+    "electronConfigSemantic": "[Rn] 5f14 7s2 7p1",
+    "electronegativity": 1.3,
+    "atomicRadius": 186,
+    "ionizationEnergy": null,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": 1900,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 266,
+        "abundance": 0,
+        "neutrons": 163,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Rf",
+    "name": "Rutherfordium",
+    "nameEn": "Rutherfordium",
+    "atomicNumber": 104,
+    "atomicMass": 267,
+    "category": "Übergangsmetall",
+    "group": 4,
+    "period": 7,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 6d² 7s²",
+    "electronConfigSemantic": "[Rn] 5f14 6d2 7s2",
+    "electronegativity": null,
+    "atomicRadius": null,
+    "ionizationEnergy": null,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": null,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 267,
+        "abundance": 0,
+        "neutrons": 163,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Db",
+    "name": "Dubnium",
+    "nameEn": "Dubnium",
+    "atomicNumber": 105,
+    "atomicMass": 268,
+    "category": "Übergangsmetall",
+    "group": 5,
+    "period": 7,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 6d³ 7s²",
+    "electronConfigSemantic": "[Rn] 5f14 6d3 7s2",
+    "electronegativity": null,
+    "atomicRadius": null,
+    "ionizationEnergy": null,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": null,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 268,
+        "abundance": 0,
+        "neutrons": 163,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Sg",
+    "name": "Seaborgium",
+    "nameEn": "Seaborgium",
+    "atomicNumber": 106,
+    "atomicMass": 269,
+    "category": "Übergangsmetall",
+    "group": 6,
+    "period": 7,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 6d⁴ 7s²",
+    "electronConfigSemantic": "[Rn] 5f14 6d4 7s2",
+    "electronegativity": null,
+    "atomicRadius": null,
+    "ionizationEnergy": null,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": null,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 269,
+        "abundance": 0,
+        "neutrons": 163,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Bh",
+    "name": "Bohrium",
+    "nameEn": "Bohrium",
+    "atomicNumber": 107,
+    "atomicMass": 270,
+    "category": "Übergangsmetall",
+    "group": 7,
+    "period": 7,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 6d⁵ 7s²",
+    "electronConfigSemantic": "[Rn] 5f14 6d5 7s2",
+    "electronegativity": null,
+    "atomicRadius": null,
+    "ionizationEnergy": null,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": null,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 270,
+        "abundance": 0,
+        "neutrons": 163,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Hs",
+    "name": "Hassium",
+    "nameEn": "Hassium",
+    "atomicNumber": 108,
+    "atomicMass": 277,
+    "category": "Übergangsmetall",
+    "group": 8,
+    "period": 7,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 6d⁶ 7s²",
+    "electronConfigSemantic": "[Rn] 5f14 6d6 7s2",
+    "electronegativity": null,
+    "atomicRadius": null,
+    "ionizationEnergy": null,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": null,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 277,
+        "abundance": 0,
+        "neutrons": 169,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Mt",
+    "name": "Meitnerium",
+    "nameEn": "Meitnerium",
+    "atomicNumber": 109,
+    "atomicMass": 278,
+    "category": "Übergangsmetall",
+    "group": 9,
+    "period": 7,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 6d⁷ 7s²",
+    "electronConfigSemantic": "[Rn] 5f14 6d7 7s2",
+    "electronegativity": null,
+    "atomicRadius": null,
+    "ionizationEnergy": null,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": null,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 278,
+        "abundance": 0,
+        "neutrons": 169,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Ds",
+    "name": "Darmstadtium",
+    "nameEn": "Darmstadtium",
+    "atomicNumber": 110,
+    "atomicMass": 281,
+    "category": "Übergangsmetall",
+    "group": 10,
+    "period": 7,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 6d⁸ 7s²",
+    "electronConfigSemantic": "[Rn] 5f14 6d8 7s2",
+    "electronegativity": null,
+    "atomicRadius": null,
+    "ionizationEnergy": null,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": null,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 281,
+        "abundance": 0,
+        "neutrons": 171,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Rg",
+    "name": "Roentgenium",
+    "nameEn": "Roentgenium",
+    "atomicNumber": 111,
+    "atomicMass": 282,
+    "category": "Übergangsmetall",
+    "group": 11,
+    "period": 7,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 6d⁹ 7s²",
+    "electronConfigSemantic": "[Rn] 5f14 6d9 7s2",
+    "electronegativity": null,
+    "atomicRadius": null,
+    "ionizationEnergy": null,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": null,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 282,
+        "abundance": 0,
+        "neutrons": 171,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Cn",
+    "name": "Copernicium",
+    "nameEn": "Copernicium",
+    "atomicNumber": 112,
+    "atomicMass": 285,
+    "category": "Metall",
+    "group": 12,
+    "period": 7,
+    "block": "d",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 6d¹⁰ 7s²",
+    "electronConfigSemantic": "[Rn] 5f14 6d10 7s2",
+    "electronegativity": null,
+    "atomicRadius": null,
+    "ionizationEnergy": null,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": null,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 285,
+        "abundance": 0,
+        "neutrons": 173,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Nh",
+    "name": "Nihonium",
+    "nameEn": "Nihonium",
+    "atomicNumber": 113,
+    "atomicMass": 286,
+    "category": "Metall",
+    "group": 13,
+    "period": 7,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 7s² 7p¹",
+    "electronConfigSemantic": "[Rn] 5f14 6d10 7s2 7p1",
+    "electronegativity": null,
+    "atomicRadius": null,
+    "ionizationEnergy": null,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": null,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 286,
+        "abundance": 0,
+        "neutrons": 173,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Fl",
+    "name": "Flerovium",
+    "nameEn": "Flerovium",
+    "atomicNumber": 114,
+    "atomicMass": 289,
+    "category": "Metall",
+    "group": 14,
+    "period": 7,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 7s² 7p²",
+    "electronConfigSemantic": "[Rn] 5f14 6d10 7s2 7p2",
+    "electronegativity": null,
+    "atomicRadius": null,
+    "ionizationEnergy": null,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": null,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 289,
+        "abundance": 0,
+        "neutrons": 175,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Mc",
+    "name": "Moscovium",
+    "nameEn": "Moscovium",
+    "atomicNumber": 115,
+    "atomicMass": 290,
+    "category": "Metall",
+    "group": 15,
+    "period": 7,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 7s² 7p³",
+    "electronConfigSemantic": "[Rn] 5f14 6d10 7s2 7p3",
+    "electronegativity": null,
+    "atomicRadius": null,
+    "ionizationEnergy": null,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": null,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 290,
+        "abundance": 0,
+        "neutrons": 175,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Lv",
+    "name": "Livermorium",
+    "nameEn": "Livermorium",
+    "atomicNumber": 116,
+    "atomicMass": 293,
+    "category": "Metall",
+    "group": 16,
+    "period": 7,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 7s² 7p⁴",
+    "electronConfigSemantic": "[Rn] 5f14 6d10 7s2 7p4",
+    "electronegativity": null,
+    "atomicRadius": null,
+    "ionizationEnergy": null,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": null,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 293,
+        "abundance": 0,
+        "neutrons": 177,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Ts",
+    "name": "Tenness",
+    "nameEn": "Tennessine",
+    "atomicNumber": 117,
+    "atomicMass": 294,
+    "category": "Halogen",
+    "group": 17,
+    "period": 7,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 7s² 7p⁵",
+    "electronConfigSemantic": "[Rn] 5f14 6d10 7s2 7p5",
+    "electronegativity": null,
+    "atomicRadius": null,
+    "ionizationEnergy": null,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": null,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 294,
+        "abundance": 0,
+        "neutrons": 177,
+        "unstable": true
+      }
+    ]
+  },
+  {
+    "symbol": "Og",
+    "name": "Oganesson",
+    "nameEn": "Oganesson",
+    "atomicNumber": 118,
+    "atomicMass": 294,
+    "category": "Edelgas",
+    "group": 18,
+    "period": 7,
+    "block": "p",
+    "electronConfig": "1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹⁰ 4s² 4p⁶ 4d¹⁰ 4f¹⁴ 5s² 5p⁶ 5d¹⁰ 6s² 6p⁶ 7s² 7p⁶",
+    "electronConfigSemantic": "[Rn] 5f14 6d10 7s2 7p6",
+    "electronegativity": null,
+    "atomicRadius": null,
+    "ionizationEnergy": null,
+    "electronAffinity": null,
+    "density": null,
+    "meltingPoint": null,
+    "boilingPoint": null,
+    "isotopes": [
+      {
+        "massNumber": 294,
+        "abundance": 0,
+        "neutrons": 176,
+        "unstable": true
+      }
+    ]
+  }
+]

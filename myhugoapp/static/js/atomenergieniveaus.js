@@ -37,11 +37,6 @@ function drawEnergyLevels() {
 
   const padding = 80;
   const graphHeight = height - 2 * padding;
-  const graphWidth = width - 2 * padding;
-
-  const minEnergy = levels[levels.length - 1].energy;
-  const maxEnergy = levels[0].energy;
-  const energyRange = maxEnergy - minEnergy;
 
   // Draw nucleus
   ctx.beginPath();
@@ -57,7 +52,6 @@ function drawEnergyLevels() {
 
   levels.forEach((level, index) => {
     const y = padding + index * levelSpacing;
-    const energyPercent = (level.energy - minEnergy) / energyRange;
 
     ctx.strokeStyle = '#2d3436';
     ctx.lineWidth = 2;
@@ -98,12 +92,16 @@ function drawEnergyLevels() {
 
 function displayEnergyValues(levels) {
   const display = document.getElementById('energy-values');
-  display.innerHTML = levels.map(level => `
+  display.innerHTML = levels
+    .map(
+      (level) => `
     <div class="energy-value">
       <span class="n-level">n = ${level.n}</span>
       <span class="energy">${level.energy.toFixed(2)} eV</span>
     </div>
-  `).join('');
+  `
+    )
+    .join('');
 }
 
 // ===== TRANSITION SIMULATION =====
@@ -121,7 +119,6 @@ function simulateTransition() {
   const finalEnergy = -13.6 / (finalN * finalN);
 
   const deltaE = finalEnergy - initialEnergy;
-  const absDeltaE = Math.abs(deltaE);
   const wavelengthNm = calculateWavelength(initialN, finalN);
   const frequency = calculateFrequency(wavelengthNm);
 
@@ -132,7 +129,8 @@ function simulateTransition() {
 }
 
 function calculateWavelength(initialN, finalN) {
-  const reciprocalWavelength = RYDBERG_CONSTANT * (1 / (finalN * finalN) - 1 / (initialN * initialN));
+  const reciprocalWavelength =
+    RYDBERG_CONSTANT * (1 / (finalN * finalN) - 1 / (initialN * initialN));
   const wavelengthM = 1 / reciprocalWavelength;
   return (wavelengthM * 1e9).toFixed(1);
 }
@@ -146,7 +144,8 @@ function calculateFrequency(wavelengthNm) {
 function displayTransitionResult(initialN, finalN, deltaE, wavelength, frequency, isEmission) {
   document.getElementById('transition-result').style.display = 'block';
 
-  document.getElementById('transition-arrow').textContent = `n = ${initialN} ${isEmission ? '→' : '←'} n = ${finalN}`;
+  document.getElementById('transition-arrow').textContent =
+    `n = ${initialN} ${isEmission ? '→' : '←'} n = ${finalN}`;
   document.getElementById('energy-change').textContent = `${deltaE.toFixed(3)} eV`;
   document.getElementById('wavelength').textContent = `${wavelength} nm`;
   document.getElementById('frequency').textContent = frequency;
@@ -237,7 +236,6 @@ function drawTransitionArrow(initialN, finalN, isEmission) {
 
   const ctx = canvas.getContext('2d');
   const maxN = parseInt(document.getElementById('max-n').value);
-  const levels = generateEnergyLevels(maxN);
 
   const padding = 80;
   const levelSpacing = (canvas.height - 2 * padding) / (maxN + 1);
@@ -295,11 +293,37 @@ function drawSpectrum() {
 
 function getSeriesInfo(series) {
   const info = {
-    lyman: { name: 'Lyman-Serie', range: 'Ultraviolett (UV)', color: '#9b59b6', description: 'Übergänge enden bei n = 1. Entdeckt von Theodore Lyman (1914).' },
-    balmer: { name: 'Balmer-Serie', range: 'Sichtbar', color: '#3498db', description: 'Übergänge enden bei n = 2. Dicke sichtbare Spektrallinien. Entdeckt von Johann Balmer (1885).' },
-    paschen: { name: 'Paschen-Serie', range: 'Infrarot (IR)', color: '#e74c3c', description: 'Übergänge enden bei n = 3. Entdeckt von Friedrich Paschen (1908).' },
-    bracket: { name: 'Bracket-Serie', range: 'Infrarot (IR)', color: '#c0392b', description: 'Übergänge enden bei n = 4. Entdeckt von Frederick Brackett (1922).' },
-    pfund: { name: 'Pfund-Serie', range: 'Infrarot (IR)', color: '#922b21', description: 'Übergänge enden bei n = 5. Entdeckt von August Pfund (1924).' },
+    lyman: {
+      name: 'Lyman-Serie',
+      range: 'Ultraviolett (UV)',
+      color: '#9b59b6',
+      description: 'Übergänge enden bei n = 1. Entdeckt von Theodore Lyman (1914).',
+    },
+    balmer: {
+      name: 'Balmer-Serie',
+      range: 'Sichtbar',
+      color: '#3498db',
+      description:
+        'Übergänge enden bei n = 2. Dicke sichtbare Spektrallinien. Entdeckt von Johann Balmer (1885).',
+    },
+    paschen: {
+      name: 'Paschen-Serie',
+      range: 'Infrarot (IR)',
+      color: '#e74c3c',
+      description: 'Übergänge enden bei n = 3. Entdeckt von Friedrich Paschen (1908).',
+    },
+    bracket: {
+      name: 'Bracket-Serie',
+      range: 'Infrarot (IR)',
+      color: '#c0392b',
+      description: 'Übergänge enden bei n = 4. Entdeckt von Frederick Brackett (1922).',
+    },
+    pfund: {
+      name: 'Pfund-Serie',
+      range: 'Infrarot (IR)',
+      color: '#922b21',
+      description: 'Übergänge enden bei n = 5. Entdeckt von August Pfund (1924).',
+    },
   };
   return info[series];
 }
@@ -357,11 +381,12 @@ function drawSpectralLines(ctx, lines, width, height, seriesInfo) {
   const spectrumEnd = width - 50;
   const spectrumWidth = spectrumEnd - spectrumStart;
 
-  lines.forEach(line => {
+  lines.forEach((line) => {
     const wl = parseFloat(line.wavelength);
     if (wl < minWavelength || wl > maxWavelength) return;
 
-    const x = spectrumStart + ((wl - minWavelength) / (maxWavelength - minWavelength)) * spectrumWidth;
+    const x =
+      spectrumStart + ((wl - minWavelength) / (maxWavelength - minWavelength)) * spectrumWidth;
 
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
     ctx.lineWidth = 2;
@@ -376,11 +401,12 @@ function drawSpectralLines(ctx, lines, width, height, seriesInfo) {
     ctx.fillText(`${line.wavelength}`, x, height - 90);
   });
 
-  lines.forEach(line => {
+  lines.forEach((line) => {
     const wl = parseFloat(line.wavelength);
     if (wl >= minWavelength && wl <= maxWavelength) return;
 
-    const x = spectrumStart + ((wl - minWavelength) / (maxWavelength - minWavelength)) * spectrumWidth;
+    const x =
+      spectrumStart + ((wl - minWavelength) / (maxWavelength - minWavelength)) * spectrumWidth;
 
     ctx.strokeStyle = seriesInfo.color;
     ctx.lineWidth = 2;
@@ -417,19 +443,23 @@ function displayWavelengthTable(lines, seriesInfo) {
         </tr>
       </thead>
       <tbody>
-        ${lines.map(line => `
+        ${lines
+          .map(
+            (line) => `
           <tr>
             <td>n = ${line.n} → ${line.n - 1}</td>
             <td>${line.wavelength}</td>
             <td>${line.energy.toFixed(3)}</td>
           </tr>
-        `).join('')}
+        `
+          )
+          .join('')}
       </tbody>
     </table>
   `;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   drawEnergyLevels();
   drawSpectrum();
 });

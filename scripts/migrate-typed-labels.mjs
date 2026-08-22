@@ -37,7 +37,7 @@ async function run() {
   const neo4j = await import('neo4j-driver');
   const driver = neo4j.default.driver(
     NEO4J_URI,
-    neo4j.default.auth.basic(NEO4J_USER, NEO4J_PASSWORD),
+    neo4j.default.auth.basic(NEO4J_USER, NEO4J_PASSWORD)
   );
 
   try {
@@ -46,7 +46,7 @@ async function run() {
     for (const { kategorie, label } of MAPPING) {
       const countResult = await session.run(
         'MATCH (e:Entity {kategorie: $kat}) RETURN count(e) AS cnt',
-        { kat: kategorie },
+        { kat: kategorie }
       );
       const count = countResult.records[0].get('cnt').toNumber();
       console.log(`[migrate-typed-labels] ${kategorie}: ${count} nodes → :${label}`);
@@ -60,13 +60,13 @@ async function run() {
 
       const result = await session.run(
         `MATCH (e:Entity {kategorie: $kat}) SET e:${label} RETURN count(e) AS cnt`,
-        { kat: kategorie },
+        { kat: kategorie }
       );
       const updated = result.records[0].get('cnt').toNumber();
       console.log(`  → Updated ${updated} nodes with :${label}`);
 
       await session.run(
-        `CREATE INDEX entity_${label.toLowerCase()}_name IF NOT EXISTS FOR (n:${label}) ON (n.name)`,
+        `CREATE INDEX entity_${label.toLowerCase()}_name IF NOT EXISTS FOR (n:${label}) ON (n.name)`
       );
       console.log(`  → INDEX created for :${label}(name)`);
     }
@@ -75,7 +75,7 @@ async function run() {
     console.log('\n[migrate-typed-labels] Verification:');
     for (const { label } of MAPPING) {
       const v = await session.run(
-        `MATCH (n:${label}) RETURN count(n) AS cnt, labels(n) AS ls LIMIT 1`,
+        `MATCH (n:${label}) RETURN count(n) AS cnt, labels(n) AS ls LIMIT 1`
       );
       const cnt = v.records[0].get('cnt').toNumber();
       if (cnt > 0) {

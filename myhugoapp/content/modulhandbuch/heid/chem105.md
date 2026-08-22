@@ -3,6 +3,7 @@ title: 'Physikalische Chemie 1: Thermodynamik — Heidelberg University'
 description: 'Physikalische Chemie 1: Thermodynamik (CHEM105) an der Heidelberg University. 6 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: HEID
 uni_name: Heidelberg University
 module_code: CHEM105

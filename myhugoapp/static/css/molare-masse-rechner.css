@@ -14,7 +14,7 @@
   background-color: #f8f9fa;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .calculator-panel h2 {
@@ -77,7 +77,7 @@
   background-color: #007bff;
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
 
 /* Result Cards */
@@ -85,7 +85,7 @@
   background-color: #fff;
   padding: 25px;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   animation: fadeInDown 0.3s ease-in;
 }
@@ -123,12 +123,12 @@
 
 .unit {
   font-size: 24px;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .formula-display {
   font-size: 18px;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   margin-top: 15px;
 }
 
@@ -252,7 +252,7 @@
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   height: 100%;
 }
@@ -322,12 +322,12 @@
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .element-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 .element-card .element-symbol {
@@ -341,7 +341,7 @@
 .element-card .element-name {
   display: block;
   font-size: 12px;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 5px;
 }
 
@@ -349,7 +349,7 @@
   display: block;
   font-size: 14px;
   font-weight: 600;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* Responsive */

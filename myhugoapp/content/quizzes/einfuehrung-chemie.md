@@ -1,0 +1,102 @@
+---
+title: 'Einführung in die Chemie'
+last_reviewed: 2026-08-06
+topic: 'einfuehrung-chemie'
+target: 'themenbereiche'
+difficulty: 'mixed'
+questions:
+  - id: 'ec-001'
+    type: 'multiple-choice'
+    question: 'Was versteht man in der Chemie unter einem Reinstoff?'
+    options:
+      - 'Ein Stoff, der aus mehreren verschiedenen Teilchenarten besteht'
+      - 'Ein Stoff, der nur aus einer einzigen Teilchenart besteht'
+      - 'Ein besonders reines und teures Material'
+      - 'Ein Stoff, der künstlich hergestellt wurde'
+    correctAnswer: 'Ein Stoff, der nur aus einer einzigen Teilchenart besteht'
+    explanation: 'Ein Reinstoff besteht aus nur einer Teilchenart. Beispiele sind destilliertes Wasser (H2O) oder reines Kupfer (Cu). Im Gegensatz dazu bestehen Gemische aus mehreren Reinstoffen.'
+
+  - id: 'ec-002'
+    type: 'multiple-choice'
+    question: 'Welches GHS-Symbol warnt vor ätzenden Stoffen?'
+    options:
+      - 'Ausrufezeichen'
+      - 'Totenkopf'
+      - 'Ätzwirkung (Hand/Reagenzglas)'
+      - 'Flamme'
+    correctAnswer: 'Ätzwirkung (Hand/Reagenzglas)'
+    explanation: 'Das GHS-Symbol mit der Hand und dem Reagenzglas warnt vor ätzenden Stoffen. Das Totenkopf-Symbol steht für akute Toxizität, die Flamme für entzündbare Stoffe.'
+
+  - id: 'ec-003'
+    type: 'multiple-choice'
+    question: 'Was ist ein homogenes Gemisch?'
+    options:
+      - 'Ein Gemisch, in dem die Bestandteile mit bloßem Auge erkennbar sind'
+      - 'Ein Gemisch aus festen und flüssigen Bestandteilen'
+      - 'Ein Gemisch, in dem die Bestandteile gleichmäßig verteilt sind'
+      - 'Ein Gemisch, das nur aus Gasen besteht'
+    correctAnswer: 'Ein Gemisch, in dem die Bestandteile gleichmäßig verteilt sind'
+    explanation: 'Bei einem homogenen Gemisch sind die Bestandteile auf molekularer Ebene gleichmäßig verteilt und nicht mehr unterscheidbar. Beispiele sind Salzlösungen oder Luft.'
+
+  - id: 'ec-004'
+    type: 'multiple-choice'
+    question: 'Welche Methode eignet sich zur Trennung eines Sand-Wasser-Gemisches?'
+    options:
+      - 'Destillation'
+      - 'Filtration'
+      - 'Chromatographie'
+      - 'Extraktion'
+    correctAnswer: 'Filtration'
+    explanation: 'Sand ist in Wasser unlöslich. Durch Filtration mit einem Filterpapier bleibt der Sand als Rückstand im Filter, während das Wasser als Filtrat hindurchläuft.'
+
+  - id: 'ec-005'
+    type: 'multiple-choice'
+    question: 'Was ist die erste Regel beim Experimentieren im Chemielabor?'
+    options:
+      - 'Immer leise sein'
+      - 'Schutzbrille tragen'
+      - 'Alle Chemikalien riechen'
+      - 'Schnell arbeiten'
+    correctAnswer: 'Schutzbrille tragen'
+    explanation: 'Das Tragen einer Schutzbrille ist die wichtigste Sicherheitsregel im Chemielabor, um die Augen vor Spritzern, Splittern oder anderen Gefahren zu schützen.'
+
+  - id: 'ec-006'
+    type: 'multiple-choice'
+    question: 'Welche Aussage über chemische Reaktionen ist richtig?'
+    options:
+      - 'Bei einer chemischen Reaktion bleiben die Ausgangsstoffe unverändert'
+      - 'Bei einer chemischen Reaktion entstehen aus den Edukten neue Stoffe mit neuen Eigenschaften'
+      - 'Chemische Reaktionen sind immer umkehrbar'
+      - 'Bei chemischen Reaktionen wird immer Energie verbraucht'
+    correctAnswer: 'Bei einer chemischen Reaktion entstehen aus den Edukten neue Stoffe mit neuen Eigenschaften'
+    explanation: 'Bei chemischen Reaktionen werden chemische Bindungen gelöst und neue geknüpft. Es entstehen Produkte mit anderen Eigenschaften als die Edukte.'
+
+  - id: 'ec-007'
+    type: 'multiple-choice'
+    question: 'Was ist der Unterschied zwischen einem Element und einer Verbindung?'
+    options:
+      - 'Ein Element besteht aus einer Atomart, eine Verbindung aus mindestens zwei verschiedenen Elementen'
+      - 'Elemente sind immer fest, Verbindungen sind immer flüssig'
+      - 'Eine Verbindung kann durch physikalische Methoden getrennt werden, ein Element nicht'
+      - 'Es gibt keinen Unterschied'
+    correctAnswer: 'Ein Element besteht aus einer Atomart, eine Verbindung aus mindestens zwei verschiedenen Elementen'
+    explanation: 'Ein Element (z. B. Sauerstoff O2) besteht aus Atomen derselben Atomart. Eine Verbindung (z. B. Wasser H2O) besteht aus Atomen verschiedener Elemente, die chemisch gebunden sind.'
+
+  - id: 'ec-008'
+    type: 'short-answer'
+    question: 'Nenne drei Aggregatzustände der Materie.'
+    referenceAnswer: 'Fest, flüssig, gasförmig'
+    gradingHint: 'Alle drei Begriffe müssen genannt werden. Die Reihenfolge spielt keine Rolle. Alternative Formulierungen wie "fest, flüssig, gasförmig" sind korrekt.'
+
+  - id: 'ec-009'
+    type: 'short-answer'
+    question: 'Wie lautet das deutsche Wort für den Vorgang, bei dem ein Stoff Wärme aufnimmt (z. B. beim Kochen von Wasser)?'
+    referenceAnswer: 'Endotherm (oder: endothermer Vorgang)'
+    gradingHint: 'Die korrekte Antwort ist "endotherm". "Exotherm" wäre falsch, da dies für Wärmeabgabe steht.'
+
+  - id: 'ec-010'
+    type: 'short-answer'
+    question: 'Welches Gas entsteht bei der Reaktion von Zink mit Salzsäure?'
+    referenceAnswer: 'Wasserstoff (H2)'
+    gradingHint: 'Die Nennung von "Wasserstoff" oder "H2" ist korrekt. "Zinkchlorid" oder "Salz" wäre falsch, da nach dem Gas gefragt ist.'
+---

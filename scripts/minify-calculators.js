@@ -26,7 +26,6 @@ const filesToMinify = [
   'myhugoapp/static/js/verbrennungsrechner.js',
   'myhugoapp/static/js/loeslichkeitsprodukt-rechner.js',
   'myhugoapp/static/js/calculators/stoichiometry.js',
-  'myhugoapp/static/js/calculators/practice-generators.js',
   // Quiz & tracking
   'myhugoapp/static/js/quiz-system.js',
   'myhugoapp/static/js/progress-tracker.js',

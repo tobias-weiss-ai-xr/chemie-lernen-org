@@ -16,7 +16,7 @@ describe('Debug Logger', () => {
   });
 
   afterEach(() => {
-    Object.keys(consoleSpy).forEach(method => {
+    Object.keys(consoleSpy).forEach((method) => {
       if (consoleSpy[method]) consoleSpy[method].mockRestore();
     });
   });

@@ -1,0 +1,101 @@
+{{ define "css" }}
+<link rel="stylesheet" href="{{ "/css/lernkarten-review.css" | relURL }}">
+{{ end }}
+
+{{ define "main" }}
+<noscript>
+  <div class="alert alert-warning" role="alert">
+    <p><strong>JavaScript ist erforderlich.</strong> Dieser interaktive Lernkarten-Review funktioniert nur mit aktiviertem JavaScript.</p>
+  </div>
+</noscript>
+
+<div class="lr-page">
+  <div class="lr-container">
+    <h1 class="lr-title">{{ .Title }}</h1>
+    <p class="lr-subtitle">{{ .Description }}</p>
+
+    <!-- Stats Bar -->
+    <div class="lr-stats" id="lr-stats">
+      <div class="lr-stat">
+        <span class="lr-stat-label">Heute gelernt</span>
+        <span class="lr-stat-value" id="lr-count-today">0</span>
+      </div>
+      <div class="lr-stat">
+        <span class="lr-stat-label">Ausstehend</span>
+        <span class="lr-stat-value" id="lr-count-remaining">0</span>
+      </div>
+      <div class="lr-stat">
+        <span class="lr-stat-label">Gesamt</span>
+        <span class="lr-stat-value" id="lr-count-total">0</span>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="lr-loading" class="lr-loading">
+      <p><i class="fa fa-spinner fa-spin fa-2x"></i></p>
+      <p>Lade Karten...</p>
+    </div>
+
+    <!-- Card Area -->
+    <div id="lr-card-area" class="lr-card-area" style="display:none;">
+      <!-- Card -->
+      <div class="lr-card-wrapper">
+        <div class="lr-card" id="lr-card" onclick="LernkartenReview.flipCard(event)">
+          <div class="lr-card-inner" id="lr-card-inner">
+            <div class="lr-card-front" id="lr-card-front">
+              <div class="lr-card-content">
+                <span class="lr-card-label">Frage</span>
+                <p class="lr-card-text" id="lr-question-text">—</p>
+              </div>
+              <p class="lr-card-hint">Klicke oder drücke <kbd>Space</kbd> zum Aufdecken</p>
+            </div>
+            <div class="lr-card-back" id="lr-card-back">
+              <div class="lr-card-content">
+                <span class="lr-card-label">Antwort</span>
+                <p class="lr-card-text" id="lr-answer-text">—</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Score Buttons -->
+      <div class="lr-buttons" id="lr-buttons" style="display:none;">
+        <button class="lr-btn lr-btn-wiederholen" type="button" data-score="0" onclick="LernkartenReview.submitReview(0)" title="Erneut wiederholen (sehr schwer)" aria-label="Taste 1: Wiederholen, sehr schwer">
+          <span class="lr-btn-key">1</span> Wiederholen
+        </button>
+        <button class="lr-btn lr-btn-schwer" type="button" data-score="0.33" onclick="LernkartenReview.submitReview(0.33)" title="Mit Mühe erinnert" aria-label="Taste 2: Schwer, mit Mühe erinnert">
+          <span class="lr-btn-key">2</span> Schwer
+        </button>
+        <button class="lr-btn lr-btn-gut" type="button" data-score="0.66" onclick="LernkartenReview.submitReview(0.66)" title="Nach kurzem Überlegen gewusst" aria-label="Taste 3: Gut, nach kurzem Überlegen gewusst">
+          <span class="lr-btn-key">3</span> Gut
+        </button>
+        <button class="lr-btn lr-btn-leicht" type="button" data-score="1.0" onclick="LernkartenReview.submitReview(1.0)" title="Sofort gewusst" aria-label="Taste 4: Leicht, sofort gewusst">
+          <span class="lr-btn-key">4</span> Leicht
+        </button>
+      </div>
+
+      <!-- Topic badge -->
+      <div id="lr-topic-badge" class="lr-topic-badge" style="display:none;"></div>
+    </div>
+
+    <!-- Empty State -->
+    <div id="lr-empty" class="lr-empty" style="display:none;">
+      <div class="lr-empty-icon"><i class="fa fa-check-circle"></i></div>
+      <h2 class="lr-empty-title">Alle Karten gelernt!</h2>
+      <p class="lr-empty-text">Du hast alle fälligen Wiederholungen abgeschlossen. Komm später wieder, um neue Karten zu wiederholen.</p>
+    </div>
+
+    <!-- Error State -->
+    <div id="lr-error" class="lr-error" style="display:none;">
+      <div class="lr-error-icon"><i class="fa fa-exclamation-triangle"></i></div>
+      <p id="lr-error-msg" class="lr-error-msg">Ein Fehler ist aufgetreten.</p>
+      <button class="lr-btn lr-btn-primary" onclick="LernkartenReview.loadDueCards()">Erneut versuchen</button>
+    </div>
+  </div>
+</div>
+
+<script src="/js/lernkarten-review.js"></script>
+{{ end }}
+
+{{ define "js" }}{{ end }}

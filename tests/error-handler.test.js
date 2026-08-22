@@ -7,7 +7,7 @@ const {
   getStoredErrors,
   storeError,
   showErrorBanner,
-  ERROR_STORAGE_KEY
+  ERROR_STORAGE_KEY,
 } = require('../myhugoapp/static/js/utils/error-handler.js');
 
 describe('Error Handler', () => {

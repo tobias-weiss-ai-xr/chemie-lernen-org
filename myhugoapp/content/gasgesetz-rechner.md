@@ -2,6 +2,7 @@
 title: "Gasgesetz-Rechner"
 description: "Berechnen Sie mit den Gasgesetzen: Boyle-Mariotte, Gay-Lussac, Ideales Gasgesetz und Kombiniertes Gasgesetz"
 date: 2026-01-03
+last_reviewed: 2026-07-09
 type: "interactive"
 interaktiv: true
 layout: "gasgesetz-rechner"

@@ -1,0 +1,16 @@
+[Unit]
+Description=Neo4j knowledge-graph backup for chemie-lernen.org
+Documentation=https://github.com/tobias-weiss-ai-xr/hugo-chemie-lernen-org
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/opt/git/hugo-chemie-lernen-org/scripts/neo4j-backup.sh
+StandardOutput=journal
+StandardError=journal
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

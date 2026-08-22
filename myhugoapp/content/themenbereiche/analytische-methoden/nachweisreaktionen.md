@@ -51,6 +51,16 @@ Manche Nachweise beruhen auf der Bildung farbiger Komplexverbindungen:
 - **Kupfer(II) ($\ce{Cu^{2+}}$)**: Mit $\ce{NH3}$ entsteht zunächst $\ce{Cu(OH)2}$ (hellblau), das sich im Überllschuss zu tiefblauem $\ce{[Cu(NH3)4]^{2+}}$ löst.
 - **Nickel ($\ce{Ni^{2+}}$)**: Mit Dimethylglyoxim entsteht ein himbeerroter Niederschlag.
 
+## 📺 Lernvideos
+
+{{< youtube id="dPYzv92LNg8" title="Praktikum: H₂S-Fällung" >}}
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – H₂S-Fällung_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) veranschaulicht die klassische Sulfid-Fällung im Grundpraktikum.
+{{< /youtube >}}
+
+{{< youtube id="Ewyp31JjIb8" title="Praktikum: Silberspiegel" >}}
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Silberspiegel_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) zeigt den bekannten Silberspiegel-Nachweis (Tollens-Reaktion).
+{{< /youtube >}}
+
 ## Grenzen und moderne Methoden
 
 Nachweisreaktionen sind spezifisch, aber nicht unfehlbar. Interfernzen durch andere Ionen können ähnliche Farbreaktionen hervorrufen. Sie sind jedoch billig, schnell und benötigen keine teure Geräte, weshalb sie ideal für **Ersttests** im Schülerlabor, in der Lehre und in der qualitativen Analyse sind. Für präzise quantitative Bestimmungen werden moderne Verfahren wie Spektroskopie, Gaschromatographie (GC), Flüssigkeitschromatographie (HPLC) oder Massenspektrometrie eingesetzt.

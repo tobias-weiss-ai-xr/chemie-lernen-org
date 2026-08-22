@@ -23,7 +23,7 @@ describe('Practice Quiz Module', () => {
       <input id="practice-answer" type="text" />
       <button id="submit-answer"></button>
     `;
-    
+
     // Reset global practice state
     global.practiceState = {
       score: 0,
@@ -31,7 +31,7 @@ describe('Practice Quiz Module', () => {
       incorrect: 0,
       currentProblem: null,
       problemNumber: 1,
-      active: false
+      active: false,
     };
   });
 
@@ -48,14 +48,14 @@ describe('Practice Quiz Module', () => {
       global.practiceState.correct = 5;
       global.practiceState.incorrect = 2;
       global.practiceState.score = (5 / (5 + 2)) * 100;
-      
+
       expect(global.practiceState.score).toBeCloseTo(71.43, 2);
     });
 
     test('should increment problem numbers correctly', () => {
       global.practiceState.problemNumber = 1;
       global.practiceState.problemNumber++;
-      
+
       expect(global.practiceState.problemNumber).toBe(2);
     });
   });
@@ -64,8 +64,8 @@ describe('Practice Quiz Module', () => {
     test('should support multiple problem types', () => {
       const supportedTypes = ['mol-mol', 'mass-mass', 'limiting'];
       const types = ['mol-mol', 'mass-mass', 'limiting'];
-      
-      supportedTypes.forEach(type => {
+
+      supportedTypes.forEach((type) => {
         expect(types).toContain(type);
       });
     });
@@ -75,7 +75,7 @@ describe('Practice Quiz Module', () => {
       const types = ['mol-mol', 'mass-mass', 'limiting', 'yield'];
       const selectedIndex = Math.floor(types.length * mockMathRandom());
       const selectedType = types[selectedIndex];
-      
+
       expect(['mol-mol', 'mass-mass', 'limiting', 'yield']).toContain(selectedType);
       mockMathRandom.mockRestore();
     });
@@ -83,10 +83,10 @@ describe('Practice Quiz Module', () => {
     test('should handle random problem type selection', () => {
       const type = 'random';
       const types = ['mol-mol', 'mass-mass', 'limiting', 'yield'];
-      
+
       const randomIndex = Math.floor(Math.random() * types.length);
       const problemType = types[randomIndex];
-      
+
       expect(types).toContain(problemType);
     });
   });
@@ -113,7 +113,7 @@ describe('Practice Quiz Module', () => {
       const correct = 8;
       const total = 10;
       const percentage = (correct / total) * 100;
-      
+
       expect(percentage).toBe(80);
     });
 
@@ -121,7 +121,7 @@ describe('Practice Quiz Module', () => {
       const correct = 10;
       const total = 10;
       const percentage = (correct / total) * 100;
-      
+
       expect(percentage).toBe(100);
     });
 
@@ -129,7 +129,7 @@ describe('Practice Quiz Module', () => {
       const correct = 0;
       const total = 5;
       const percentage = (correct / total) * 100;
-      
+
       expect(percentage).toBe(0);
     });
 
@@ -137,7 +137,7 @@ describe('Practice Quiz Module', () => {
       const correct = 7;
       const total = 11;
       const percentage = (correct / total) * 100;
-      
+
       expect(percentage).toBeCloseTo(63.64, 2);
     });
   });
@@ -146,10 +146,10 @@ describe('Practice Quiz Module', () => {
     test('should calculate total problems attempted', () => {
       const results = {
         correct: 5,
-        incorrect: 3
+        incorrect: 3,
       };
       const total = results.correct + results.incorrect;
-      
+
       expect(total).toBe(8);
     });
 
@@ -157,11 +157,11 @@ describe('Practice Quiz Module', () => {
       const state = {
         correct: 7,
         incorrect: 2,
-        score: 77.78
+        score: 77.78,
       };
-      
+
       const displayText = `Results: ${state.correct}/${state.correct + state.incorrect} correct (${state.score}%)`;
-      
+
       expect(displayText).toContain('Results: 7/9');
       expect(displayText).toContain('77.78%');
     });
@@ -178,7 +178,7 @@ describe('Practice Quiz Module', () => {
       for (let i = 0; i < 5; i++) {
         problemNumber++;
       }
-      
+
       expect(problemNumber).toBe(6);
     });
 
@@ -209,14 +209,14 @@ describe('Practice Quiz Module', () => {
     test('should validate supported problem types', () => {
       const validTypes = ['mol-mol', 'mass-mass', 'limiting', 'yield'];
       const testType = 'mass-mass';
-      
+
       expect(validTypes).toContain(testType);
     });
 
     test('should reject invalid problem types', () => {
       const validTypes = ['mol-mol', 'mass-mass', 'limiting', 'yield'];
       const invalidType = 'invalid-type';
-      
+
       expect(validTypes).not.toContain(invalidType);
     });
   });
@@ -226,7 +226,7 @@ describe('Practice Quiz Module', () => {
       const answer = '2.5';
       const answerInput = document.getElementById('practice-answer');
       answerInput.value = answer;
-      
+
       expect(answerInput.value).toBe(answer);
     });
 
@@ -234,7 +234,7 @@ describe('Practice Quiz Module', () => {
       const answerInput = document.getElementById('practice-answer');
       answerInput.value = 'test answer';
       answerInput.value = '';
-      
+
       expect(answerInput.value).toBe('');
     });
   });
@@ -243,17 +243,17 @@ describe('Practice Quiz Module', () => {
     test('should reset score to zero', () => {
       global.practiceState.score = 75;
       global.practiceState.score = 0;
-      
+
       expect(global.practiceState.score).toBe(0);
     });
 
     test('should reset problem counters', () => {
       global.practiceState.correct = 5;
       global.practiceState.incorrect = 2;
-      
+
       global.practiceState.correct = 0;
       global.practiceState.incorrect = 0;
-      
+
       expect(global.practiceState.correct).toBe(0);
       expect(global.practiceState.incorrect).toBe(0);
     });
@@ -261,7 +261,7 @@ describe('Practice Quiz Module', () => {
     test('should reset problem number', () => {
       global.practiceState.problemNumber = 7;
       global.practiceState.problemNumber = 1;
-      
+
       expect(global.practiceState.problemNumber).toBe(1);
     });
   });

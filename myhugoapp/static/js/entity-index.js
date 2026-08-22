@@ -1,7 +1,11 @@
+/* global lunr, loadD3AndEgoGraph */
 (function () {
   window.__entityIndexLoaded = true;
   var app = document.getElementById('entity-app');
   var skeleton = document.getElementById('entity-skeleton');
+  var graphContainer = document.getElementById('entity-graph-container');
+  var graphLoading = document.getElementById('entity-graph-loading');
+  var graphEl = document.getElementById('entity-graph');
 
   function toSlug(name) {
     return name
@@ -22,19 +26,94 @@
       .replace(/"/g, '&quot;');
   }
 
+  // Known non-chemistry entities to exclude from index
+  var NON_CHEMISTRY = [
+    'javascript',
+    'github',
+    'blockchain-technology',
+    'flatpickr',
+    'yelp-graph-query-language',
+    'four-color-theorem',
+    'euler-graph',
+    'planar-graph',
+    'yagni',
+    'haiku',
+    'sonnet',
+    'opus',
+    'caveman',
+    'resource-allocation-in-operating-systems',
+    'web-search-engine-crawlers',
+    'computer-network-security',
+    'dijkstras-algorithm',
+    'vertex-cover',
+    'acyclic-graph',
+    'add-remove-edge',
+    'add-remove-vertex',
+    'adjacency-list',
+    'adjacency-matrix',
+  ];
+
+  function isChemistryEntity(e) {
+    var slug = toSlug(e.name || '');
+    return NON_CHEMISTRY.indexOf(slug) === -1;
+  }
+
   var _data;
-  fetch('/api/kg-data', { signal: AbortSignal.timeout(15000) })
-    .then(function (r) {
-      if (!r.ok) throw new Error(r.status);
-      return r.json();
-    })
+  var _searchIndex = null;
+  var _lunrIndex = null;
+
+  function loadSearchIndex() {
+    return fetch('/search/entity-index.json', { signal: AbortSignal.timeout(5000) })
+      .then(function (r) {
+        if (!r.ok) return null;
+        return r.json();
+      })
+      .then(function (data) {
+        if (data && data.index && data.entities) {
+          _searchIndex = data.entities;
+          _lunrIndex = lunr.Index.load(data.index);
+          console.log('[entity-index] Search index loaded:', data.entityCount, 'entities');
+        }
+        return data;
+      })
+      .catch(function (err) {
+        console.warn('[entity-index] Search index not available:', err.message);
+        return null;
+      });
+  }
+
+  function fetchKgData() {
+    return fetch('/api/kg-data?limit=1000', { signal: AbortSignal.timeout(15000) }).then(
+      function (r) {
+        if (!r.ok) throw new Error(r.status);
+        return r.json();
+      }
+    );
+  }
+
+  fetchKgData()
     .then(function (d) {
       _data = d;
       skeleton.style.display = 'none';
       window.__initStarted = true;
+
+      var entityCount = (d.entities || []).length;
+      var articleCount = (d.articles || []).length;
+
+      if (entityCount === 0 && articleCount === 0) {
+        app.innerHTML =
+          '<div class="empty-state"><div class="empty-state-icon">🗄️</div>' +
+          '<h2>Wissensnetz wird geladen</h2>' +
+          '<p>Die Wissensdatenbank wird gerade aktualisiert. Bitte versuche es in wenigen Minuten erneut.</p>' +
+          '<p><button onclick="location.reload()" style="background:#667eea;color:#fff;border:none;border-radius:6px;padding:8px 20px;cursor:pointer;font-size:0.9rem;margin-top:8px;">🔄 Neu laden</button></p>' +
+          '<p><a href="/entity/" style="color:#667eea;">Wissensnetz durchsuchen →</a></p></div>';
+        return;
+      }
+
       try {
         init(d);
         window.__initDone = true;
+        renderGraph(d);
       } catch (e) {
         console.error('[entity-index] init() failed:', e);
         window.__initError = e.message || String(e);
@@ -43,11 +122,16 @@
           escapeHtml(e.message || String(e)) +
           '</strong></p><p id="debug-info"></p></div>';
       }
+
+      // Load search index in background (non-blocking for graph rendering)
+      loadSearchIndex();
     })
     .catch(function (_err) {
       skeleton.style.display = 'none';
+      if (graphContainer) graphContainer.style.display = 'none';
       app.innerHTML =
-        '<div class="empty-state"><div class="empty-state-icon">📡</div><p>Wissensnetz konnte nicht geladen werden.</p><p><a href="/wissennetz/" style="color:#667eea;">Graph-Ansicht öffnen →</a></p></div>';
+        '<div class="empty-state"><div class="empty-state-icon">📡</div><p>Wissensnetz konnte nicht geladen werden.</p>' +
+        '<p><button onclick="location.reload()" style="background:#667eea;color:#fff;border:none;border-radius:6px;padding:8px 20px;cursor:pointer;font-size:0.9rem;margin-top:8px;">🔄 Erneut versuchen</button></p></div>';
     });
 
   function init(data) {
@@ -85,6 +169,10 @@
     var sortMode = 'relations';
     var lehrplanHighlight = false;
     var lehrplanEntities = new Set();
+    var stateFilter = '';
+    var stateLinkedNames = null;
+    var _stateOptions = null;
+    var _stateFilterLoading = false;
 
     function getSortValue(e, mode) {
       switch (mode) {
@@ -93,7 +181,7 @@
         case 'relations':
           return -(e.relatedEntities || []).length;
         case 'articles':
-          return -((e.articleCount && e.articleCount.low) || 0);
+          return -(Number(e.articleCount) || 0);
         case 'category':
           return e.category || '';
         default:
@@ -102,19 +190,36 @@
     }
 
     function filteredAndSorted() {
-      var f = entities.filter(function (e) {
-        if (activeFilter !== 'all' && e.category !== activeFilter) return false;
-        if (searchQuery) {
-          var q = searchQuery.toLowerCase();
-          return (
-            e.name.toLowerCase().indexOf(q) !== -1 ||
-            (e.relatedEntities || []).some(function (r) {
-              return r.name.toLowerCase().indexOf(q) !== -1;
-            })
-          );
-        }
-        return true;
-      });
+      var f = entities;
+      f = f.filter(isChemistryEntity);
+
+      if (searchQuery && _lunrIndex && _searchIndex) {
+        var lunrResults = _lunrIndex.search(searchQuery);
+        var matchedIds = lunrResults.map(function (r) {
+          return r.ref;
+        });
+        f = f.filter(function (e) {
+          return matchedIds.indexOf(toSlug(e.name)) !== -1;
+        });
+      } else {
+        f = f.filter(function (e) {
+          if (activeFilter !== 'all' && e.category !== activeFilter) return false;
+          if (stateFilter && stateLinkedNames) {
+            if (!stateLinkedNames.has(e.name)) return false;
+          }
+          if (searchQuery) {
+            var q = searchQuery.toLowerCase();
+            return (
+              e.name.toLowerCase().indexOf(q) !== -1 ||
+              (e.relatedEntities || []).some(function (r) {
+                return r.name && r.name.toLowerCase().indexOf(q) !== -1;
+              })
+            );
+          }
+          return true;
+        });
+      }
+
       f.sort(function (a, b) {
         var va = getSortValue(a, sortMode);
         var vb = getSortValue(b, sortMode);
@@ -131,7 +236,7 @@
         (catLabels[e.category] || e.category) +
         '</span>';
       var art = (e.articles || []).slice(0, 5);
-      var total = (e.articleCount && e.articleCount.low) || e.articles.length;
+      var total = Number(e.articleCount) || (e.articles || []).length;
       h +=
         '<br><span style="font-size:0.78rem;">' +
         (e.relatedEntities || []).length +
@@ -202,6 +307,12 @@
         escapeHtml(searchQuery) +
         '">';
       h += '</div>';
+      h +=
+        '<select class="entity-state-select" id="entity-state-filter">' +
+        '<option value="">' +
+        (stateFilter ? '✅ ' + stateFilter : 'Alle Bundesländer') +
+        '</option>' +
+        '</select>';
       h += '<select class="entity-sort-select" id="entity-sort">';
       [
         { v: 'relations', l: 'Nach Relevanz' },
@@ -274,7 +385,7 @@
     function _buildCloudHtml(items) {
       var h = '<div class="entity-tagcloud">';
       items.forEach(function (e) {
-        var artCount = (e.articleCount && e.articleCount.low) || e.articles.length || 1;
+        var artCount = Number(e.articleCount) || (e.articles || []).length || 1;
         var size = Math.max(0.8, Math.min(2.5, 0.8 + artCount * 0.15));
         var slug = toSlug(e.name);
         h +=
@@ -295,7 +406,7 @@
     function _buildEntityCardHtml(e) {
       var cat = e.category || 'other';
       var relatedCount = (e.relatedEntities || []).length;
-      var artCount = (e.articleCount && e.articleCount.low) || e.articles.length || 0;
+      var artCount = Number(e.articleCount) || (e.articles || []).length || 0;
       var slug = toSlug(e.name);
       var h =
         '<div class="entity-card' +
@@ -381,9 +492,20 @@
       html += '<div class="entity-stats">';
       html += '<span><strong>' + entities.length + '</strong> Begriffe</span>';
       html += '<span><strong>' + articles.length + '</strong> Dokumente</span>';
-      html += '<span>' + filtered.length + ' angezeigt</span>';
+      if (_stateFilterLoading) {
+        html += '<span class="entity-loading">🔄 Lade Lehrplandaten…</span>';
+      } else if (stateFilter && filtered.length < entities.length) {
+        html +=
+          '<span><strong>' +
+          filtered.length +
+          '</strong> von ' +
+          entities.length +
+          ' Begriffen</span>';
+      } else {
+        html += '<span>' + filtered.length + ' angezeigt</span>';
+      }
       html +=
-        '<span><a href="/wissennetz/" class="entity-graph-top-link">Interaktiver Graph →</a></span>';
+        '<span><a href="/entity/" class="entity-graph-top-link">Wissensnetz durchsuchen →</a></span>';
       html += '</div></div>';
 
       html += _buildToolbarHtml();
@@ -429,6 +551,68 @@
           sortMode = ev.target.value;
           currentPage = 1;
           _render();
+        });
+      }
+      var stateSelect = document.getElementById('entity-state-filter');
+      if (stateSelect) {
+        // Lazy-load state options on first focus
+        stateSelect.addEventListener('focus', function loadOptions() {
+          if (_stateOptions) return;
+          stateSelect.removeEventListener('focus', loadOptions);
+          stateSelect.options[0].text = 'Lade…';
+          fetch('/api/curricula/states', { signal: AbortSignal.timeout(10000) })
+            .then(function (r) {
+              if (!r.ok) throw new Error(r.status);
+              return r.json();
+            })
+            .then(function (d) {
+              _stateOptions = d.states || [];
+              // Rebuild options: keep placeholder, add states
+              stateSelect.innerHTML = '<option value="">Alle Bundesländer</option>';
+              _stateOptions.forEach(function (s) {
+                var opt = document.createElement('option');
+                opt.value = s.state;
+                opt.textContent = s.stateName || s.state;
+                if (s.state === stateFilter) opt.selected = true;
+                stateSelect.appendChild(opt);
+              });
+            })
+            .catch(function () {
+              stateSelect.options[0].text = 'Alle Bundesländer';
+            });
+        });
+        stateSelect.addEventListener('change', function (ev) {
+          var val = ev.target.value;
+          if (val === stateFilter) return;
+          stateFilter = val;
+          currentPage = 1;
+          if (!stateFilter) {
+            // Reset
+            stateLinkedNames = null;
+            _render();
+            return;
+          }
+          // Show loading
+          _stateFilterLoading = true;
+          _render();
+          // Fetch curriculum-linked entity names
+          fetch('/api/curricula/linked-entities', { signal: AbortSignal.timeout(10000) })
+            .then(function (r) {
+              if (!r.ok) throw new Error(r.status);
+              return r.json();
+            })
+            .then(function (d) {
+              stateLinkedNames = new Set(d.names || []);
+              _stateFilterLoading = false;
+              _render();
+            })
+            .catch(function () {
+              stateLinkedNames = null;
+              _stateFilterLoading = false;
+              stateFilter = '';
+              stateSelect.value = '';
+              _render();
+            });
         });
       }
       app.querySelectorAll('.entity-view-btn').forEach(function (btn) {
@@ -524,5 +708,227 @@
     }
 
     _render();
+  }
+
+  function renderGraph(data) {
+    if (!graphContainer || !graphEl) {
+      console.warn('[entity-index] Graph container missing');
+      if (graphContainer) graphContainer.style.display = 'none';
+      return;
+    }
+
+    var entityCount = (data.entities || []).length;
+    var articleCount = (data.articles || []).length;
+    var linkCount = (data.links || []).length;
+    var progressEl = document.getElementById('entity-graph-progress');
+    if (progressEl) {
+      progressEl.textContent =
+        'Lade ' + entityCount + ' Begriffe und ' + articleCount + ' Artikel...';
+    }
+
+    updateStats(entityCount, articleCount, linkCount, entityCount);
+
+    if (typeof loadD3AndEgoGraph === 'function') {
+      loadD3AndEgoGraph()
+        .then(function () {
+          if (!globalThis.D3EgoGraph) {
+            console.warn('[entity-index] D3EgoGraph not available after load');
+            return;
+          }
+          try {
+            // Container erst sichtbar machen, damit Cytoscape eine reale Größe misst
+            if (graphLoading) graphLoading.style.display = 'none';
+            if (graphContainer) graphContainer.style.display = 'block';
+            globalThis.D3EgoGraph.createFullGraph(graphEl, data, {
+              filterControls: null,
+              showLegend: false,
+              maxNodes: 120,
+              height: graphEl.offsetHeight || 600,
+            });
+
+            renderLegend(data);
+            attachGraphFilters(data);
+          } catch (e) {
+            console.error('[entity-index] renderGraph failed:', e);
+            if (graphLoading) {
+              graphLoading.innerHTML =
+                '<div class="empty-state"><div class="empty-state-icon">⚠️</div><p>Graph konnte nicht visualisiert werden.</p></div>';
+            }
+          }
+        })
+        .catch(function (err) {
+          console.warn('[entity-index] Failed to load D3:', err);
+          if (graphLoading) {
+            graphLoading.innerHTML =
+              '<div class="empty-state"><div class="empty-state-icon">⚠️</div><p>Graph-Bibliothek konnte nicht geladen werden.</p></div>';
+          }
+        });
+    } else {
+      console.warn('[entity-index] loadD3AndEgoGraph not available');
+      if (graphLoading) graphLoading.style.display = 'none';
+      if (graphContainer) graphContainer.style.display = 'block';
+    }
+  }
+
+  function updateStats(entities, articles, links, visible) {
+    var el = document.getElementById('stat-entities');
+    if (el) el.textContent = entities;
+    el = document.getElementById('stat-articles');
+    if (el) el.textContent = articles;
+    el = document.getElementById('stat-connections');
+    if (el) el.textContent = links;
+    el = document.getElementById('stat-visible');
+    if (el) el.textContent = visible;
+  }
+
+  function renderLegend(data) {
+    var legendEl = document.getElementById('entity-legend-items');
+    if (!legendEl) return;
+
+    var entities = data.entities || [];
+    var catCounts = {};
+    entities.forEach(function (e) {
+      var c = e.category || 'other';
+      catCounts[c] = (catCounts[c] || 0) + 1;
+    });
+
+    var categories = [
+      { cat: 'stoff', label: 'Stoffe', color: '#667eea' },
+      { cat: 'konzept', label: 'Konzepte', color: '#45b7d1' },
+      { cat: 'reaktion', label: 'Reaktionen', color: '#4ecdc4' },
+      { cat: 'methode', label: 'Methoden', color: '#f093fb' },
+      { cat: 'person', label: 'Personen', color: '#ff9a76' },
+      { cat: 'quelle', label: 'Quellen', color: '#a8a8a8' },
+    ];
+
+    var html = '';
+    categories.forEach(function (c) {
+      var count = catCounts[c.cat] || 0;
+      html +=
+        '<div class="entity-legend-item">' +
+        '<span class="entity-legend-color" style="background:' +
+        c.color +
+        '"></span>' +
+        '<span>' +
+        c.label +
+        ' (' +
+        count +
+        ')</span>' +
+        '</div>';
+    });
+
+    legendEl.innerHTML = html;
+  }
+
+  function attachGraphFilters(_data) {
+    var savedFilter = localStorage.getItem('entityGraphCategoryFilter');
+    var savedSearch = localStorage.getItem('entityGraphSearchFilter');
+
+    var buttons = document.querySelectorAll('.entity-graph-control-btn');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        buttons.forEach(function (b) {
+          b.classList.remove('active');
+        });
+        btn.classList.add('active');
+        var filter = btn.getAttribute('data-filter');
+        localStorage.setItem('entityGraphCategoryFilter', filter);
+        if (globalThis.D3EgoGraph && globalThis.D3EgoGraph.setCategoryFilter) {
+          globalThis.D3EgoGraph.setCategoryFilter(filter === 'all' ? null : filter);
+        }
+      });
+    });
+
+    if (savedFilter && savedFilter !== 'all') {
+      var activeBtn = document.querySelector(
+        '.entity-graph-control-btn[data-filter="' + savedFilter + '"]'
+      );
+      if (activeBtn) {
+        buttons.forEach(function (b) {
+          b.classList.remove('active');
+        });
+        activeBtn.classList.add('active');
+        if (globalThis.D3EgoGraph && globalThis.D3EgoGraph.setCategoryFilter) {
+          globalThis.D3EgoGraph.setCategoryFilter(savedFilter);
+        }
+      }
+    }
+
+    var searchInput = document.getElementById('graph-search');
+    if (searchInput) {
+      if (savedSearch) {
+        searchInput.value = savedSearch;
+      }
+      var searchTimeout;
+      searchInput.addEventListener('input', function () {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(function () {
+          var query = searchInput.value.trim().toLowerCase();
+          localStorage.setItem('entityGraphSearchFilter', query);
+          if (globalThis.D3EgoGraph && globalThis.D3EgoGraph.setSearchFilter) {
+            globalThis.D3EgoGraph.setSearchFilter(query || null);
+          }
+        }, 300);
+      });
+    }
+
+    var detailsPanel = document.getElementById('entity-node-details');
+    var detailsContent = document.getElementById('node-details-content');
+    var closeBtn = document.getElementById('node-details-close');
+    if (detailsPanel && closeBtn) {
+      closeBtn.addEventListener('click', function () {
+        detailsPanel.style.display = 'none';
+      });
+    }
+
+    window.__showNodeDetails = function (node) {
+      if (!detailsPanel || !detailsContent) return;
+      var catLabels = {
+        stoff: 'Stoff',
+        konzept: 'Konzept',
+        reaktion: 'Reaktion',
+        methode: 'Methode',
+        person: 'Person',
+        quelle: 'Quelle',
+      };
+      var catColors = {
+        stoff: '#667eea',
+        konzept: '#45b7d1',
+        reaktion: '#4ecdc4',
+        methode: '#f093fb',
+        person: '#ff9a76',
+        quelle: '#a8a8a8',
+      };
+      var label = catLabels[node.category] || node.category;
+      var color = catColors[node.category] || '#888';
+      var html =
+        '<span class="node-category-badge" style="background:' +
+        color +
+        ';color:#fff;">' +
+        label +
+        '</span>';
+      html += '<h4>' + escapeHtml(node.label) + '</h4>';
+      if (node.count) {
+        html += '<p><strong>' + node.count + '</strong> Artikel</p>';
+      }
+      if (node.description) {
+        html += '<p>' + escapeHtml(node.description) + '</p>';
+      }
+      if (node.related && node.related.length > 0) {
+        html +=
+          '<div class="node-connections"><h5>Verwandte Begriffe</h5><ul class="node-connection-list">';
+        node.related.slice(0, 10).forEach(function (rel) {
+          html +=
+            '<li><a href="/entity/' +
+            escapeHtml(rel.slug) +
+            '/">' +
+            escapeHtml(rel.label) +
+            '</a></li>';
+        });
+        html += '</ul></div>';
+      }
+      detailsContent.innerHTML = html;
+      detailsPanel.style.display = 'block';
+    };
   }
 })();

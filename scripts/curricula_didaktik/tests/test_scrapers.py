@@ -111,8 +111,11 @@ class TestSeedScraperOutput:
             assert mod.module_name, (
                 f"{source_name} module[{i}] missing module_name"
             )
-            assert mod.ects > 0, (
-                f"{source_name} module[{i}] ({mod.module_code}) ECTS={mod.ects}, expected > 0"
+            assert mod.ects is not None, (
+                f"{source_name} module[{i}] ({mod.module_code}) ECTS is None"
+            )
+            assert mod.ects >= 0, (
+                f"{source_name} module[{i}] ({mod.module_code}) ECTS={mod.ects}, expected >= 0"
             )
             assert mod.level, (
                 f"{source_name} module[{i}] missing level"

@@ -2,6 +2,7 @@
 title: "Redoxpotential Rechner"
 description: "Berechnen Sie Redoxpotentiale, Gibbs-Energie und Gleichgewichtskonstanten für elektrochemische Reaktionen"
 date: 2026-01-03
+last_reviewed: 2026-07-09
 type: "interactive"
 interaktiv: true
 layout: "redox-potenzial-rechner"

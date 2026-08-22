@@ -1,6 +1,7 @@
 ---
 title: "Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse"
 date: "2026-06-07T02:44:22+02:00"
+last_reviewed: 2026-08-06
 description: "Ein Forschungsteam um Marcel Risch (HZB) und Sanjay Mathur (Uni Köln) hat eine innovative Methode zur Verbesserung von Elektrokatalysatoren entwickelt."
 source: "https://phys.org/news/2026-06-magnetic-field-catalyst-synthesis-triples.html"
 tags:

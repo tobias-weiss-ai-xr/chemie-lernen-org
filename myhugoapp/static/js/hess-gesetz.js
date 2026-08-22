@@ -145,7 +145,6 @@ function calculateHessSimple() {
 
   const calculationText = calculationSteps
     .map((step, i) => {
-      const sign = step.deltaH >= 0 ? '+' : '';
       return `${step.deltaH.toFixed(1)} kJ/mol`;
     })
     .join(' + ');
@@ -164,8 +163,8 @@ function calculateHessMultiPath() {
   const pathB_DH2 = parseFloat(domCache.multiPath.pathB.dh2.value) || 0;
   const pathB_Total = pathB_DH1 + pathB_DH2;
 
-  const pathACalc = `${pathA_DH1 >= 0 ? '' : ''}${pathA_DH1.toFixed(1)} + (${pathA_DH2 >= 0 ? '' : ''}${pathA_DH2.toFixed(1)}) = ${pathA_Total.toFixed(1)} kJ/mol`;
-  const pathBCalc = `${pathB_DH1 >= 0 ? '' : ''}${pathB_DH1.toFixed(1)} + (${pathB_DH2 >= 0 ? '' : ''}${pathB_DH2.toFixed(1)}) = ${pathB_Total.toFixed(1)} kJ/mol`;
+  const pathACalc = `${pathA_DH1 >= 0 ? '+' : ''}${pathA_DH1.toFixed(1)} + (${pathA_DH2 >= 0 ? '+' : ''}${pathA_DH2.toFixed(1)}) = ${pathA_Total.toFixed(1)} kJ/mol`;
+  const pathBCalc = `${pathB_DH1 >= 0 ? '+' : ''}${pathB_DH1.toFixed(1)} + (${pathB_DH2 >= 0 ? '+' : ''}${pathB_DH2.toFixed(1)}) = ${pathB_Total.toFixed(1)} kJ/mol`;
 
   const pathACalculation = document.getElementById('path-a-calculation');
   const pathBCalculation = document.getElementById('path-b-calculation');
@@ -273,10 +272,6 @@ function parseReactionElements(reactionEquation) {
     if (!elements.find((e) => e.name === elementName)) {
       const inReactants = reactants.includes(elementName);
       const inProducts = products.includes(elementName);
-
-      const count =
-        (reactants.match(new RegExp(elementName, 'g')) || []).length +
-        (products.match(new RegExp(elementName, 'g')) || []).length;
 
       if (inReactants && inProducts) {
         const reactantCount = (reactants.match(new RegExp(elementName, 'g')) || []).length;

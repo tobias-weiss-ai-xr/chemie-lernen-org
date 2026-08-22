@@ -2,6 +2,7 @@
 title: "ARTIKEL_TITEL_HIER"
 description: "BRiEF_ZWEIZEILIGE_BESCHREIBUNG"
 date: 2024-01-01
+last_reviewed: 2026-07-09
 tags: ["tag1", "tag2"]
 interaktiv: false
 schwierigkeit: "grundlagen"

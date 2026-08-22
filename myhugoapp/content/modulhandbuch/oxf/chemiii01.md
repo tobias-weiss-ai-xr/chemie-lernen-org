@@ -3,6 +3,7 @@ title: Research Project (MChem) — University of Oxford
 description: 'Research Project (MChem) (CHEMIII01) an der University of Oxford. 15 ECTS, Niveau: MSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: OXF
 uni_name: University of Oxford
 module_code: CHEMIII01

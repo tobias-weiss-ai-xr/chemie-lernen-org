@@ -1,0 +1,16 @@
+[Unit]
+Description=Weekly Blog Generation for chemie-lernen.org
+After=network.target docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/git/hugo-chemie-lernen-org
+ExecStart=/opt/git/hugo-chemie-lernen-org/scripts/marketing/weekly-blog.sh
+User=weiss
+Group=weiss
+Environment=NODE_ENV=production
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

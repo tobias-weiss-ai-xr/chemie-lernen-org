@@ -2,6 +2,7 @@
 title: 'Atmosphärendruck im Alltag'
 description: 'Interaktive Simulationen und Erklärungen zum Luftdruck im täglichen Leben - Strohhalm, Ballons und Saugnäpfe'
 date: 2026-01-04
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'atmosphaerendruck-alltag'

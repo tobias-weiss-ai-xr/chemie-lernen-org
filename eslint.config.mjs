@@ -7,6 +7,8 @@ export default [
   {
     ignores: [
       'node_modules/**',
+      '.core/**',
+      'graph-backup-repo/**',
       'myhugoapp/public/**',
       'myhugoapp/resources/_gen/**',
       'coverage/**',
@@ -16,7 +18,8 @@ export default [
       '**/curricula-venv/**',
       'myhugoapp/static/js/third-party/**',
       'myhugoapp/static/js/vendor/**',
-      '*.min.js', 'myhugoapp/static/js/**/*.min.js',
+      '*.min.js',
+      'myhugoapp/static/js/**/*.min.js',
       '*.optimized.js',
       'myhugoapp/static/js/**/*.optimized.js',
       'myhugoapp/public/**/*.js',
@@ -26,7 +29,12 @@ export default [
       'myhugoapp/static/js/three/three.core.js',
       'myhugoapp/static/js/three/TrackballControls.js',
       'myhugoapp/static/js/addons/**',
+      // Vendored proprietary core (chemie-core) — linted in its own repo;
+      // copied into place by scripts/vendor-core.sh and may carry
+      // parser/syntax styles this repo's ESLint config does not target.
+      'api/services/marketing/**',
       '*.generated.js',
+      'android/app/build/**',
       'myhugoapp/static/js/calculators/stoichiometry.js',
       'myhugoapp/static/js/calculators/practice-generators.js',
       'myhugoapp/static/js/calculators/stoichiometry-calculator-page.js',
@@ -126,6 +134,7 @@ export default [
         IntersectionObserver: 'readonly',
         MutationObserver: 'readonly',
         URL: 'readonly',
+        URLSearchParams: 'readonly',
         Blob: 'readonly',
         FileReader: 'readonly',
         WebSocket: 'readonly',
@@ -183,13 +192,13 @@ export default [
         indexedDB: 'readonly',
         IDBDatabase: 'readonly',
         IDBObjectStore: 'readonly',
-         IDBTransaction: 'readonly',
-         showError: 'readonly',
-         formatNumber: 'readonly',
-         darkenColor: 'readonly',
-         escapeHtml: 'readonly',
-         showToast: 'readonly',
-       },
+        IDBTransaction: 'readonly',
+        showError: 'readonly',
+        formatNumber: 'readonly',
+        darkenColor: 'readonly',
+        escapeHtml: 'readonly',
+        showToast: 'readonly',
+      },
     },
     rules: {
       'no-console': 'off',
@@ -287,6 +296,32 @@ export default [
         exports: 'readonly',
         require: 'readonly',
         THREE: 'readonly',
+        cytoscape: 'readonly',
+      },
+    },
+  },
+
+  // Curricula index graph page - browser globals loaded lazily
+  {
+    files: ['myhugoapp/static/js/curricula-index.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: {
+        cytoscape: 'readonly',
+        URLSearchParams: 'readonly',
+      },
+    },
+  },
+
+  // Orbital viewer - Three.js ESM module
+  {
+    files: ['myhugoapp/static/js/visualization/orbital-viewer/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        THREE: 'readonly',
       },
     },
   },
@@ -351,7 +386,7 @@ export default [
         formatNumber: 'readonly',
         darkenColor: 'readonly',
         escapeHtml: 'readonly',
-         showToast: 'readonly',
+        showToast: 'readonly',
       },
     },
   },
@@ -371,11 +406,11 @@ export default [
         validateFormula: 'readonly',
         Chart: 'readonly',
         showError: 'readonly',
-         formatNumber: 'readonly',
-         showToast: 'readonly',
-       },
-     },
-   },
+        formatNumber: 'readonly',
+        showToast: 'readonly',
+      },
+    },
+  },
 
   // ES Module files - override with module type
   {
@@ -396,13 +431,13 @@ export default [
 
   // Test files
   {
-    files: ['tests/**/*.test.js', 'tests/**/*.spec.js'],
+    files: ['tests/**/*.test.js', 'tests/**/*.spec.js', 'tests/**/*.test.mjs'],
     plugins: {
       jest: jestPlugin,
     },
     languageOptions: {
       ecmaVersion: 'latest',
-      sourceType: 'commonjs',
+      sourceType: 'module',
       globals: {
         ...jestPlugin.environments.globals.globals,
         describe: 'readonly',
@@ -586,7 +621,7 @@ export default [
         formatNumber: 'readonly',
         darkenColor: 'readonly',
         escapeHtml: 'readonly',
-         showToast: 'readonly',
+        showToast: 'readonly',
       },
     },
   },

@@ -2,6 +2,7 @@
 title: 'Säuren und Basen'
 description: 'Das saure und das basische Milieu - pH-Wert und Neutralisation. Erfahren Sie alles über Säuren, Basen, Puffersysteme und Indikatoren mit interaktiven Tools.'
 date: '2025-12-27'
+last_reviewed: 2026-08-06
 teilgebiet: 'saeuren-basen'
 schwierigkeit: 'mittelstufe'
 icon: '🔵'
@@ -360,3 +361,7 @@ Versuchen Sie, diese Fragen zu beantworten:
 **Erstellt:** 27. Dezember 2025
 **Themenbereich:** Säuren und Basen
 **Schwierigkeit:** Mittelstufe
+
+{{< quiz-widget topic="saeuren-basen" title="Säuren und Basen" >}}
+
+{{< entity-cloud slug="saeuren-basen" title="Verwandte Fachbegriffe" >}}

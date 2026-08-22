@@ -2,6 +2,7 @@
 title: 'Aufbau der Materie'
 description: 'Vom Atom bis zum Molekül: Wie Materie aufgebaut ist. Alles über Atommodelle, Elementarteilchen, Periodensystem und chemische Bindungen - interaktiv.'
 date: '2025-12-27'
+last_reviewed: 2026-08-06
 teilgebiet: 'aufbau-materie'
 schwierigkeit: 'grundlagen'
 icon: '⚛️'
@@ -377,6 +378,8 @@ $$\ce{Zn + 2HCl -> ZnCl2 + H2}$$
 ## Interaktive Tools
 
 ⚛️ **[Periodensystem 3D](/perioden-system-der-elemente/)** - Interaktives 3D-Periodensystem mit detaillierten Informationen zu allen 118 Elementen
+🔬 **[Elementvergleich](/vergleich/)** - Vergleiche bis zu 4 Elemente nebeneinander in einer übersichtlichen Tabelle
+🌀 **[Orbital-Viewer und Orbitale verstehen](/orbitalansichten/s-orbital/)** - Erforsche s-, p- und d-Orbitale in interaktiven 3D-Visualisierungen
 
 ## Testen Sie Ihr Wissen
 
@@ -389,3 +392,7 @@ $$\ce{Zn + 2HCl -> ZnCl2 + H2}$$
 **Erstellt:** 27. Dezember 2025
 **Themenbereich:** Aufbau der Materie
 **Schwierigkeit:** Grundlagen
+
+{{< quiz-widget topic="aufbau-materie" title="Aufbau der Materie" >}}
+
+{{< entity-cloud slug="aufbau-materie" title="Verwandte Fachbegriffe" >}}

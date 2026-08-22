@@ -29,8 +29,7 @@ import neo4j from 'neo4j-driver';
 
 const NEO4J_URI = process.env.NEO4J_URI || 'bolt://localhost:7687';
 const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
-const NEO4J_PASSWORD =
-  process.env.NEO4J_PASSWORD || 'chemie_knowledge_2024';
+const NEO4J_PASSWORD = process.env.NEO4J_PASSWORD || 'chemie_knowledge_2024';
 const NEO4J_DATABASE = process.env.NEO4J_DATABASE || 'chemie';
 
 const args = process.argv.slice(2);
@@ -42,25 +41,41 @@ const SOURCE_FILTER = args.find((a) => a.startsWith('--source='))?.slice('--sour
 function extractKeywords(name) {
   // Drop generic qualifiers
   const cleaned = name
-    .replace(/I{1,3}V?$/i, '')      // trailing Roman numerals
-    .replace(/^\d+\s*/i, '')         // leading course numbers
-    .replace(/:.*$/, '')             // subtitle after colon
-    .replace(/\([^)]*\)/g, '')       // parenthetical items
+    .replace(/I{1,3}V?$/i, '') // trailing Roman numerals
+    .replace(/^\d+\s*/i, '') // leading course numbers
+    .replace(/:.*$/, '') // subtitle after colon
+    .replace(/\([^)]*\)/g, '') // parenthetical items
     .trim();
 
   // Common subject-area terms found in module names
   const subjects = [];
   const deTerms = [
-    'allgemeine chemie', 'anorganische chemie', 'organische chemie',
-    'physikalische chemie', 'analytische chemie', 'biochemie',
-    'makromolekulare chemie', 'theoretische chemie', 'chemische technologie',
-    'nanotechnologie', 'supramolecular chemistry', 'chemical biology',
-    'bioorganische chemie', 'protein engineering', 'chemie',
+    'allgemeine chemie',
+    'anorganische chemie',
+    'organische chemie',
+    'physikalische chemie',
+    'analytische chemie',
+    'biochemie',
+    'makromolekulare chemie',
+    'theoretische chemie',
+    'chemische technologie',
+    'nanotechnologie',
+    'supramolecular chemistry',
+    'chemical biology',
+    'bioorganische chemie',
+    'protein engineering',
+    'chemie',
   ];
   const enTerms = [
-    'inorganic chemistry', 'organic chemistry', 'physical chemistry',
-    'analytical chemistry', 'thermodynamics', 'kinetics',
-    'quantum mechanics', 'statistical mechanics', 'biological chemistry',
+    'inorganic chemistry',
+    'organic chemistry',
+    'physical chemistry',
+    'analytical chemistry',
+    'thermodynamics',
+    'kinetics',
+    'quantum mechanics',
+    'statistical mechanics',
+    'biological chemistry',
   ];
 
   const lower = cleaned.toLowerCase();
@@ -169,10 +184,7 @@ async function main() {
   if (SOURCE_FILTER) console.log(`SOURCE_FILTER: ${SOURCE_FILTER}`);
   if (DRY_RUN) console.log('DRY RUN — no changes');
 
-  const driver = neo4j.driver(
-    NEO4J_URI,
-    neo4j.auth.basic(NEO4J_USER, NEO4J_PASSWORD)
-  );
+  const driver = neo4j.driver(NEO4J_URI, neo4j.auth.basic(NEO4J_USER, NEO4J_PASSWORD));
 
   try {
     const result = await linkModules(driver);

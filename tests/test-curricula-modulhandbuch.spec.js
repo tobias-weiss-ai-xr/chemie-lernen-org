@@ -38,9 +38,15 @@ test.describe('Curricula / Lehrpläne', () => {
     expect(response.status()).toBe(404);
   });
 
-  test('curricula index page loads API-driven tabs', async ({ page }) => {
+  test('curricula index page renders the graph visualization', async ({ page }) => {
     await page.goto(`${BASE_URL}/curricula/`);
     await expect(page.locator('#curricula-app')).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('#curricula-graph')).toBeVisible({ timeout: 20000 });
+    // cytoscape renders canvas inside the container
+    await expect(page.locator('#curricula-graph canvas').first()).toBeVisible({
+      timeout: 20000,
+    });
+    await expect(page.getByRole('button', { name: 'Universitäten' })).toBeVisible();
   });
 
   test('curricula state page (BY) loads topic cards', async ({ page }) => {

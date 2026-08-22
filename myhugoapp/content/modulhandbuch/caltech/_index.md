@@ -3,6 +3,7 @@ title: California Institute of Technology
 description: Die California Institute of Technology bietet 22 Chemie-Module in 4 Studiengängen an.
 layout: uni
 date: 2026-06-29
+last_reviewed: 2026-07-09
 aliases:
   - /modulhandbuch/CALTECH/
 uni_code: CALTECH

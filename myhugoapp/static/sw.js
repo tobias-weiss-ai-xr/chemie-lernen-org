@@ -4,17 +4,21 @@
 // content pages, network-only for admin/auth API calls.
 // Cache size limited to 50 MB with LRU eviction.
 // ============================================================
-const SW_VERSION = 'v6-2026-07';
+const SW_VERSION = 'v8-2026-08';
 const STATIC_CACHE = 'static-' + SW_VERSION;
 const ASSETS_CACHE = 'assets-' + SW_VERSION;
 const DYNAMIC_CACHE = 'dynamic-' + SW_VERSION;
+const QUIZ_CACHE = 'chemie-quiz-v1';
 
 // ── Cache limits ──────────────────────────────────────────
 const CACHE_LIMITS = {
   [STATIC_CACHE]: 10 * 1024 * 1024, // 10 MB pre-cached static
   [ASSETS_CACHE]: 25 * 1024 * 1024, // 25 MB CSS/images/fonts
   [DYNAMIC_CACHE]: 15 * 1024 * 1024, // 15 MB HTML/API responses
+  [QUIZ_CACHE]: 50, // 50 entries max
 };
+const QUIZ_MAX_ENTRIES = 50;
+const QUIZ_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 const TOTAL_CACHE_LIMIT = 50 * 1024 * 1024; // 50 MB global
 
 // ── Pre-cached files (installed on 'install') ────────────
@@ -29,11 +33,15 @@ const PRECACHE_FILES = [
   '/favicons/android-chrome-512x512.png',
   '/favicons/apple-touch-icon.png',
   '/icons/pwa-icon.svg',
+  '/quiz/',
+  '/lernkarten-review/',
+  '/uebungsverlauf/',
   '/css/custom.css',
   '/css/dark-mode.css',
   '/css/green-theme.css',
   '/css/quiz-system.css',
-  '/js/dark-mode.js',
+  '/css/site-chrome.css',
+  '/js/theme-switcher.js',
   '/js/lazy-loader.js',
   '/js/utils/chemistry-utils.js',
   '/js/utils/error-handler.js',
@@ -90,6 +98,17 @@ function isApiCall(url) {
     url.pathname.endsWith('.json') ||
     url.pathname.endsWith('.xml')
   );
+}
+
+// ── Is this a quiz API/exercise request? ──────────────────
+function isQuizRequest(url) {
+  return url.pathname.startsWith('/api/quiz/') || url.pathname.startsWith('/api/exercises/');
+}
+
+// ── Is this a quiz page HTML? ─────────────────────────────
+function isQuizPage(url) {
+  var path = url.pathname;
+  return path === '/quiz/' || path.startsWith('/quiz/');
 }
 
 // ── Is this a content page? ───────────────────────────────
@@ -216,7 +235,7 @@ self.addEventListener('install', function (event) {
 // ═══════════════════════════════════════════════════════════
 self.addEventListener('activate', function (event) {
   console.log('[SW] Activating', SW_VERSION);
-  var expectedCaches = [STATIC_CACHE, ASSETS_CACHE, DYNAMIC_CACHE];
+  var expectedCaches = [STATIC_CACHE, ASSETS_CACHE, DYNAMIC_CACHE, QUIZ_CACHE];
   event.waitUntil(
     caches
       .keys()
@@ -309,6 +328,39 @@ self.addEventListener('fetch', function (event) {
     return;
   }
 
+  // ── Quiz API / exercise requests ────────────────────────
+  if (isQuizRequest(url)) {
+    if (request.method === 'GET') {
+      event.respondWith(quizCacheFirst(request));
+    } else {
+      // POST submissions: network-first
+      event.respondWith(quizNetworkFirst(request));
+    }
+    return;
+  }
+
+  // ── Quiz page HTML: cache-first for offline access ──────
+  if (isQuizPage(url) && request.method === 'GET') {
+    event.respondWith(quizPageCacheFirst(request));
+    return;
+  }
+
+  // ── KG Data API: StaleWhileRevalidate for entity data ───
+  if (
+    url.pathname.startsWith('/api/kg-data') ||
+    url.pathname.startsWith('/api/content') ||
+    url.pathname.startsWith('/api/didaktik')
+  ) {
+    event.respondWith(staleWhileRevalidate(request, DYNAMIC_CACHE));
+    return;
+  }
+
+  // ── Search index: CacheFirst (rarely changes) ───────────
+  if (url.pathname === '/search/entity-index.json' || url.pathname.endsWith('/entity-index.json')) {
+    event.respondWith(cacheFirst(request, DYNAMIC_CACHE));
+    return;
+  }
+
   // ── API calls (non-auth): network-first with cache ──────
   if (isApiCall(url)) {
     event.respondWith(networkFirst(request, DYNAMIC_CACHE));
@@ -340,6 +392,29 @@ function cacheFirst(request, cacheName) {
         }
         return response;
       });
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// STRATEGY: Stale-While-Revalidate (API data)
+// ═══════════════════════════════════════════════════════════
+function staleWhileRevalidate(request, cacheName) {
+  return caches.open(cacheName).then(function (cache) {
+    return cache.match(request).then(function (cached) {
+      var fetchPromise = fetch(request)
+        .then(function (response) {
+          if (response && response.status === 200) {
+            cache.put(request, response.clone());
+            lruEvictCache(cacheName, CACHE_LIMITS[cacheName] || 10 * 1024 * 1024);
+            enforceGlobalLimit();
+          }
+          return response;
+        })
+        .catch(function () {
+          return null;
+        });
+      return cached || fetchPromise;
     });
   });
 }
@@ -476,4 +551,136 @@ function syncQuizProgress() {
 function syncUserData() {
   console.log('[SW] Syncing user data');
   return Promise.resolve();
+}
+
+// ═══════════════════════════════════════════════════════════
+// QUIZ CACHE: Cache-First (GET /api/quiz/*, /api/exercises/*)
+// ═══════════════════════════════════════════════════════════
+function quizCacheFirst(request) {
+  return caches.open(QUIZ_CACHE).then(function (cache) {
+    return cache.match(request).then(function (cached) {
+      if (cached) {
+        // Check 7-day TTL
+        var dateHeader = cached.headers.get('date');
+        if (dateHeader) {
+          var age = Date.now() - new Date(dateHeader).getTime();
+          if (age > QUIZ_TTL_MS) {
+            // Expired — fetch fresh, don't return stale
+            return fetchAndCacheQuiz(request, cache);
+          }
+        }
+        return cached;
+      }
+      // Cache miss — try network, then IndexedDB fallback
+      return fetchAndCacheQuiz(request, cache).catch(function () {
+        return quizIndexedDBFallback(request);
+      });
+    });
+  });
+}
+
+function fetchAndCacheQuiz(request, cache) {
+  return fetch(request).then(function (response) {
+    if (response && response.status === 200) {
+      cache.put(request, response.clone());
+      lruEvictQuizCache();
+    }
+    return response;
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// QUIZ CACHE: Network-First (POST submissions)
+// ═══════════════════════════════════════════════════════════
+function quizNetworkFirst(request) {
+  return fetch(request)
+    .then(function (response) {
+      if (response && response.status === 200 && request.method === 'GET') {
+        var clone = response.clone();
+        caches.open(QUIZ_CACHE).then(function (cache) {
+          cache.put(request, clone);
+          lruEvictQuizCache();
+        });
+      }
+      return response;
+    })
+    .catch(function () {
+      return caches.match(request).then(function (cached) {
+        if (cached) return cached;
+        return new Response(JSON.stringify({ error: 'Offline', offline: true }), {
+          status: 503,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      });
+    });
+}
+
+// ═══════════════════════════════════════════════════════════
+// QUIZ PAGE: Cache-First for HTML pages
+// ═══════════════════════════════════════════════════════════
+function quizPageCacheFirst(request) {
+  return caches.open(STATIC_CACHE).then(function (cache) {
+    return cache.match(request).then(function (cached) {
+      if (cached) return cached;
+      return fetch(request).then(function (response) {
+        if (response && response.status === 200) {
+          cache.put(request, response.clone());
+        }
+        return response;
+      });
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// LRU Eviction for Quiz Cache (by entry count, max 50)
+// ═══════════════════════════════════════════════════════════
+function lruEvictQuizCache() {
+  return caches.open(QUIZ_CACHE).then(function (cache) {
+    return cache.keys().then(function (requests) {
+      if (requests.length <= QUIZ_MAX_ENTRIES) return;
+      var toDelete = requests.length - QUIZ_MAX_ENTRIES + 5;
+      var ops = [];
+      for (var i = 0; i < toDelete && i < requests.length; i++) {
+        ops.push(cache.delete(requests[i]));
+      }
+      return Promise.all(ops);
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// IndexedDB Fallback — try ProgressTracker DB on cache miss
+// ═══════════════════════════════════════════════════════════
+function quizIndexedDBFallback(request) {
+  return new Promise(function (resolve, reject) {
+    var openReq = indexedDB.open('ChemieLernenProgress', 1);
+    openReq.onsuccess = function () {
+      var db = openReq.result;
+      var tx = db.transaction('exercises', 'readonly');
+      var store = tx.objectStore('exercises');
+      var urlKey = 'sw:' + request.url;
+      var getReq = store.get(urlKey);
+      getReq.onsuccess = function () {
+        db.close();
+        if (getReq.result && getReq.result.data) {
+          resolve(
+            new Response(JSON.stringify(getReq.result.data), {
+              status: 200,
+              headers: { 'Content-Type': 'application/json' },
+            })
+          );
+        } else {
+          reject(new Error('Not found in IndexedDB'));
+        }
+      };
+      getReq.onerror = function () {
+        db.close();
+        reject(getReq.error);
+      };
+    };
+    openReq.onerror = function () {
+      reject(openReq.error);
+    };
+  });
 }

@@ -35,6 +35,12 @@ Farbstoffe werden nach ihrer chemischen Struktur oder Anwendung klassifiziert:
 
 ### Eigenschaften von Farbstoffen
 
+### 📺 Lernvideo: Spektroskopie und Farbbestimmung
+
+{{< youtube id="1NLIHtOvAfg" title="Praktikum: UV-vis-Spektrum" >}}
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – UV-vis-Spektrum_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) zeigt eine klassische spektroskopische Bestimmung — Farbstoffe absorbieren Licht im sichtbaren Bereich, was UV-vis-Spektroskopie direkt misst.
+{{< /youtube >}}
+
 - **Löslichkeit**: Farbstoffe sind in Wasser oder organischen Lösungsmitteln löslich.
 - **Farbintensität**: Hängt von der Anzahl der Chromophore und Auxochrome ab.
 - **Lichtechtheit**: Beständigkeit gegenüber UV-Licht.

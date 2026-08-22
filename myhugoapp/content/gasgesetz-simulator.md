@@ -2,6 +2,7 @@
 title: "Gasgesetz-Simulator"
 description: "Interaktive Visualisierung der Gasgesetze mit Partikelanimationen und Echtzeitberechnungen"
 date: 2026-01-07
+last_reviewed: 2026-07-09
 type: "interactive"
 interaktiv: true
 layout: "gas-law-simulator"

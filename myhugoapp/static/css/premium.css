@@ -1,0 +1,151 @@
+/* Premium Badge Styles */
+.premium-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  color: #5c4d00;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  box-shadow: 0 1px 3px rgba(255, 215, 0, 0.3);
+  border: 1px solid rgba(255, 215, 0, 0.5);
+}
+
+.premium-badge::before {
+  content: '⭐';
+  font-size: 0.9em;
+}
+
+/* Premium card badge (for entity cards) */
+.entity-card .premium-badge,
+.tutorial-card .premium-badge,
+.calculator-card .premium-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+}
+
+/* Locked Overlay Styles */
+.premium-locked-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+  text-align: center;
+}
+
+[data-theme='dark'] .premium-locked-overlay,
+.dark .premium-locked-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.premium-locked-content {
+  max-width: 400px;
+}
+
+.premium-locked-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.premium-locked-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary, #222);
+  margin: 0 0 8px;
+}
+
+.premium-locked-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary, #666);
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+.premium-locked-cta {
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.premium-locked-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+  color: white;
+}
+
+.premium-locked-cta::before {
+  content: '👑 ';
+}
+
+/* Locked content blur effect */
+.premium-content-locked {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Premium feature list */
+.premium-features {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+  text-align: left;
+}
+
+.premium-features li {
+  padding: 6px 0 6px 24px;
+  position: relative;
+  color: var(--text-secondary, #666);
+  font-size: 0.9rem;
+}
+
+.premium-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #4caf50;
+  font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .premium-locked-overlay {
+    padding: 16px;
+  }
+
+  .premium-locked-title {
+    font-size: 1.2rem;
+  }
+
+  .premium-locked-desc {
+    font-size: 0.9rem;
+  }
+
+  .premium-locked-cta {
+    padding: 10px 24px;
+    font-size: 0.95rem;
+  }
+}

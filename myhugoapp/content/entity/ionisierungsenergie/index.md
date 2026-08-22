@@ -1,0 +1,45 @@
+---
+title: "Ionisierungsenergie"
+description: "Fachbegriff „Ionisierungsenergie“ (Konzept) — beschrieben in einem Artikel auf chemie-lernen.org und ist mit 33 weiteren Fachbegriffen verknüpft."
+date: 2026-06-26
+slug: "ionisierungsenergie"
+category: "konzept"
+articleCount: 1
+relatedCount: 33
+relatedEntities:
+  - "hb: säuren, laugen und neutralisation"
+  - "sh: metalle und redoxreaktionen"
+  - "rp: metalle, salze, ionen"
+  - "mv: salze und ionenbindung"
+  - "sl: redoxreaktionen und elektrochemie"
+  - "mv: redoxreaktionen und elektrochemie"
+  - "he: ionenbindung und salze"
+  - "hh: säuren, laugen und neutralisation"
+  - "Periodensystem"
+  - "Atomradius"
+  - "ionisierungsenergien den bau strukturen und beziehungen"
+  - "energie"
+  - "bb: chemische reaktion und energie"
+  - "rp: chemische reaktion und energie"
+  - "bb: ionen und salze"
+  - "hh: ionen und salze"
+  - "bb: redoxreaktionen"
+  - "he: redoxreaktionen"
+  - "ni: redoxreaktionen"
+  - "rp: redoxreaktionen"
+  - "th: redoxreaktionen"
+  - "bb: säuren, basen und neutralisation"
+  - "ni: säuren, basen und neutralisation"
+  - "hb: chemische reaktionen"
+  - "he: chemische reaktionen"
+  - "hh: chemische reaktionen"
+  - "mv: chemische reaktionen"
+  - "ni: chemische reaktionen"
+  - "sl: chemische reaktionen"
+  - "th: chemische reaktionen"
+  - "hb: salze und ionen"
+  - "ni: salze und ionen"
+  - "sh: salze und ionen"
+components: []
+---
+

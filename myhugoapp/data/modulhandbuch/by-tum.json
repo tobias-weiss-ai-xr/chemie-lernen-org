@@ -1,0 +1,67 @@
+{
+  "university": "Technische Universität München",
+  "state": "BY",
+  "modules": [
+    {
+      "id": "CH-001",
+      "name": "Allgemeine Chemie",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Huber",
+      "description": "Atomaufbau, Periodizität, chemische Bindung, Säuren und Basen, Redoxreaktionen",
+      "topics": ["Atombau", "Periodensystem", "Chemische Bindung", "Säuren", "Basen", "Redox"],
+      "url": ""
+    },
+    {
+      "id": "CH-002",
+      "name": "Anorganisch-chemisches Praktikum",
+      "type": "Praktikum",
+      "credits": 7,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Huber",
+      "description": "Präparative Übungen zur Anorganischen Chemie, Trennungsgang, Metallnachweise",
+      "topics": ["Anorganische Chemie", "Analytische Chemie"],
+      "url": ""
+    },
+    {
+      "id": "CH-003",
+      "name": "Organisch-chemisches Praktikum",
+      "type": "Praktikum",
+      "credits": 7,
+      "semester": "SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Engel",
+      "description": "Grundoperationen der organischen Synthese, Reinigung und Charakterisierung",
+      "topics": ["Organische Chemie"],
+      "url": ""
+    },
+    {
+      "id": "CH-004",
+      "name": "Physikalische Chemie für Lehramt",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Langer",
+      "description": "Thermodynamik, chemisches Gleichgewicht, Kinetik, Elektrochemie",
+      "topics": ["Physikalische Chemie", "Thermodynamik", "Kinetik", "Elektrochemie"],
+      "url": ""
+    },
+    {
+      "id": "CH-005",
+      "name": "Fachdidaktik Chemie",
+      "type": "Seminar",
+      "credits": 4,
+      "semester": "WS/SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Beck",
+      "description": "Didaktische Konzepte, Experimente im Chemieunterricht, Sprachbildung, Leistungsbewertung",
+      "topics": [],
+      "url": ""
+    }
+  ],
+  "scrapedAt": "2026-07-23T17:29:46.874Z"
+}

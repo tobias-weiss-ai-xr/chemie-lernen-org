@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.ChemieLernen" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#2d6a4f</item>
+    </style>
+</resources>

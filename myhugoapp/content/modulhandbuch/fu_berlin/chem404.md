@@ -3,6 +3,7 @@ title: Chemical Biology — Freie Universität Berlin
 description: 'Chemical Biology (CHEM404) an der Freie Universität Berlin. 5 ECTS, Niveau: MSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: FU_BERLIN
 uni_name: Freie Universität Berlin
 module_code: CHEM404

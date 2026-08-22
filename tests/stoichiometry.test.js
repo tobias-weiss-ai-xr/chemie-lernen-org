@@ -9,7 +9,7 @@ const {
   calcLimitingReactant,
   calcPercentYield,
   calcGasLaw,
-  convertToKelvin
+  convertToKelvin,
 } = require('../myhugoapp/static/js/calculators/stoichiometry.js');
 
 describe('parseFormula', () => {
@@ -150,12 +150,14 @@ describe('calcLimitingReactant', () => {
   test('should handle Haber process example', () => {
     const result = calcLimitingReactant(28, 28.02, 1, 10, 2.016, 3);
     expect(result.limitingReactant).toBe(1); // N2 is limiting
-    expect(result.ratio1).toBeCloseTo(1.00, 2); // n1/v1 = 0.999/1
+    expect(result.ratio1).toBeCloseTo(1.0, 2); // n1/v1 = 0.999/1
     expect(result.ratio2).toBeCloseTo(1.65, 2); // n2/v2 = 4.96/3
   });
 
   test('should throw error for non-numeric input', () => {
-    expect(() => calcLimitingReactant('abc', 2, 1, 4, 2, 1)).toThrow('All parameters must be numbers');
+    expect(() => calcLimitingReactant('abc', 2, 1, 4, 2, 1)).toThrow(
+      'All parameters must be numbers'
+    );
   });
 
   test('should throw error for zero molar mass', () => {
@@ -232,13 +234,15 @@ describe('calcGasLaw', () => {
   });
 
   test('should throw error when calculating n without P', () => {
-    expect(() => calcGasLaw({ V: 22.4, T: 273.15 }, 'n'))
-      .toThrow('P, V, and T are required to calculate n');
+    expect(() => calcGasLaw({ V: 22.4, T: 273.15 }, 'n')).toThrow(
+      'P, V, and T are required to calculate n'
+    );
   });
 
   test('should throw error for invalid calculate parameter', () => {
-    expect(() => calcGasLaw({ P: 1, V: 22.4, T: 273.15 }, 'X'))
-      .toThrow('Invalid calculate parameter');
+    expect(() => calcGasLaw({ P: 1, V: 22.4, T: 273.15 }, 'X')).toThrow(
+      'Invalid calculate parameter'
+    );
   });
 
   test('should handle decimal values', () => {

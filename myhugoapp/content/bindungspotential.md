@@ -2,6 +2,7 @@
 title: 'Bindungspotential Rechner'
 description: 'Interaktive Energie-Diagramme für chemische Bindungen - Berechnen und visualisieren Sie Bindungsenthalpien und Aktivierungsenergien'
 date: 2026-01-07
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'bindungspotential'

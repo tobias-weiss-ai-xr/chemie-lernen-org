@@ -62,6 +62,12 @@ Chemie begegnet uns überall:
 - **Umwelt:** Photosynthese ($6CO_2 + 6H_2O \xrightarrow{Licht} C_6H_{12}O_6 + 6O_2$)
 - **Technik:** Batterien, Kunststoffe, Arzneimittel, Düngemittel
 
+## 📺 Lernvideo
+
+{{< youtube id="TSroyG95_-s" title="Why Chemistry? Don't Panic! — Zig's Chemistry 42" >}}
+**Lernvideo-Illustration:** _Why Chemistry? Don't Panic!_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) — ein sanfter Einstieg in die Chemie für alle, die sich mit dem Fach schwerer tun oder noch unsicher sind, worum es eigentlich geht.
+{{< /youtube >}}
+
 ## Übungen
 
 1.  Entscheide bei den folgenden Stoffen, ob es sich um ein Element oder eine Verbindung handelt: $\ce{O2}$, $\ce{CO2}$, $\ce{Fe}$, $\ce{NaCl}$, $\ce{N2}$, $\ce{H2O}$. Begründe deine Zuordnung.

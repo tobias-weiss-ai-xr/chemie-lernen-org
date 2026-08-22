@@ -1,19 +1,54 @@
+/**
+ * curricula-index.js — Graph visualization of the Lehrplan + Modulhandbuch
+ * knowledge graph (replaces the old tabbed list/compare UI).
+ *
+ * Renders nodes fetched from GET /api/curricula/graph with cytoscape:
+ *   universities, modules, curricula, topics, subtopics, learning
+ *   objectives, entities, content pages.
+ *
+ * Controls: scope switcher (Alle / Universitäten / Lehrpläne), state
+ * and university selects, search highlight, node-click detail panel.
+ */
 (function () {
-  window.__curriculaIndexLoaded = true;
+  'use strict';
+
   var app = document.getElementById('curricula-app');
   if (!app) return;
   var skeleton = document.getElementById('curricula-skeleton');
 
-  function toSlug(name) {
-    return name
-      .toLowerCase()
-      .replace(/[üÜ]/g, 'ue')
-      .replace(/[öÖ]/g, 'oe')
-      .replace(/[äÄ]/g, 'ae')
-      .replace(/ß/g, 'ss')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
-  }
+  var CYTOSCAPE_SRC = '/js/vendor/cytoscape.min.js';
+
+  var NODE_COLORS = {
+    university: '#9C27B0',
+    module: '#2196F3',
+    curriculum: '#4CAF50',
+    topic: '#8BC34A',
+    subtopic: '#FF9800',
+    objective: '#F44336',
+    entity: '#E91E63',
+    page: '#795548',
+  };
+
+  var NODE_LABELS = {
+    university: 'Universität',
+    module: 'Modul',
+    curriculum: 'Lehrplan',
+    topic: 'Thema',
+    subtopic: 'Teilthema',
+    objective: 'Lernziel',
+    entity: 'Konzept',
+    page: 'Inhalt',
+  };
+
+  var state = {
+    scope: 'all',
+    university: '',
+    state: '',
+    q: '',
+    cy: null,
+    allNodes: [],
+    allEdges: [],
+  };
 
   function escapeHtml(s) {
     return String(s)
@@ -23,1108 +58,452 @@
       .replace(/"/g, '&quot;');
   }
 
-  var _data;
-  fetch('/api/kg-data?lehrplan=true', { signal: AbortSignal.timeout(15000) })
-    .then(function (r) {
-      if (!r.ok) throw new Error(r.status);
+  function loadCytoscape() {
+    if (window.cytoscape) return Promise.resolve();
+    return new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = CYTOSCAPE_SRC;
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+
+  function fetchGraph() {
+    var qs = new URLSearchParams();
+    qs.set('scope', state.scope);
+    if (state.university) qs.set('university', state.university);
+    if (state.state) qs.set('state', state.state);
+    qs.set('limit', '800');
+    if (state.q) qs.set('q', state.q);
+    return fetch('/api/curricula/graph?' + qs.toString(), {
+      signal: AbortSignal.timeout(20000),
+    }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
-    })
-    .then(function (d) {
-      _data = d;
-      if (skeleton) skeleton.style.display = 'none';
-      try {
-        init(d);
-      } catch (e) {
-        console.error('[curricula-index] init() failed:', e);
-        app.innerHTML =
-          '<div class="empty-state"><div class="empty-state-icon">⚠️</div><p style="color:red;">Fehler beim Laden: <strong>' +
-          escapeHtml(e.message || String(e)) +
-          '</strong></p></div>';
-      }
-    })
-    .catch(function (_err) {
-      if (skeleton) skeleton.style.display = 'none';
-      app.innerHTML =
-        '<div class="empty-state"><div class="empty-state-icon">📡</div><p>Lehrplandaten konnten nicht geladen werden.</p></div>';
     });
+  }
 
-  function init(data) {
-    var entities = data.entities || [];
-    var activeTab = 'explorer';
-    var hash = location.hash.replace('#', '');
-    if (['explorer', 'compare', 'objectives', 'content'].indexOf(hash) !== -1) activeTab = hash;
-    var searchQuery = '';
-    var currentPage = 1;
-    var perPage = 24;
-    var filterState = [];
-    var filterSchool = [];
-    var filterGrade = [];
-    var sortBy = 'name-asc';
-    var compareTopicName = '';
-    var compareResults = null;
-    var expandedCompareRow = null;
-    var objectivesData = null;
-    var objectivesSearch = '';
-    var objectivesParentTopic = '';
-    var objectivesLoading = false;
-    var contentData = null;
-    var contentSearch = '';
-    var contentType = '';
-    var contentLoading = false;
-
-    // Precompute KMK topic map from didaktik entities
-    var kmkTopicMap = {};
-    entities.forEach(function (e) {
-      if (e.category === 'didaktik' && e.relatedEntities) {
-        e.relatedEntities.forEach(function (r) {
-          var n = typeof r === 'string' ? r : r.name;
-          if (!kmkTopicMap[n]) kmkTopicMap[n] = [];
-          kmkTopicMap[n].push(e.name);
-        });
-      }
+  function buildElements(data) {
+    var elements = [];
+    var seen = {};
+    (data.nodes || []).forEach(function (n) {
+      if (seen[n.id]) return;
+      seen[n.id] = true;
+      elements.push({
+        data: {
+          id: n.id,
+          label: n.label,
+          type: n.type,
+          meta: n.meta || {},
+        },
+      });
     });
-
-    // Collect unique filter values
-    var states = {};
-    var schools = {};
-    var grades = {};
-    entities.forEach(function (e) {
-      var meta = e.curriculumMeta;
-      if (meta) {
-        if (meta.state) states[meta.state] = (states[meta.state] || 0) + 1;
-        if (meta.school_type) schools[meta.school_type] = (schools[meta.school_type] || 0) + 1;
-        if (meta.grade) {
-          var parts = String(meta.grade).split('/');
-          parts.forEach(function (g) {
-            var gKey = g.trim();
-            if (gKey) grades[gKey] = (grades[gKey] || 0) + 1;
-          });
-        }
-      }
+    var seenE = {};
+    (data.edges || []).forEach(function (e) {
+      var key = e.source + '|' + e.target + '|' + e.type;
+      if (seenE[key]) return;
+      seenE[key] = true;
+      elements.push({
+        data: { id: 'e-' + key, source: e.source, target: e.target, type: e.type },
+      });
     });
-    var stateKeys = Object.keys(states).sort();
-    var schoolKeys = Object.keys(schools).sort();
+    return elements;
+  }
 
-    var gradeOrder = [
-      '5',
-      '6',
-      '7',
-      '8',
-      '9',
-      '10',
-      '5-7',
-      '8-10',
-      '9-10',
-      '11/12',
-      '11',
-      '12',
-      '13',
-    ];
-    var gradeKeys = Object.keys(grades).sort(function (a, b) {
-      var ai = gradeOrder.indexOf(a);
-      var bi = gradeOrder.indexOf(b);
-      if (ai === -1) ai = 99;
-      if (bi === -1) bi = 99;
-      return ai - bi;
+  function metaRows(meta) {
+    var rows = [];
+    var add = function (k, v) {
+      if (v != null && v !== '') rows.push([k, v]);
+    };
+    add('Stadt', meta.city);
+    add('Land', meta.country);
+    if (meta.website)
+      add(
+        'Web',
+        '<a href="' +
+          escapeHtml(meta.website) +
+          '" rel="noopener">' +
+          escapeHtml(meta.website) +
+          '</a>'
+      );
+    add('Kürzel', meta.shortCode);
+    add('Abschluss', meta.degree);
+    add('Level', meta.level);
+    if (meta.ects != null) add('ECTS', meta.ects);
+    add('Sprache', meta.language);
+    if (meta.url)
+      add('Seite', '<a href="' + escapeHtml(meta.url) + '">' + escapeHtml(meta.url) + '</a>');
+    add('Schulform', meta.schoolType);
+    add('Kategorie', meta.kategorie);
+    add('Bundesland', meta.state);
+    add('Klasse', meta.grade);
+    return rows;
+  }
+
+  function toSlug(name) {
+    return String(name)
+      .toLowerCase()
+      .replace(/[üÜ]/g, 'ue')
+      .replace(/[öÖ]/g, 'oe')
+      .replace(/[äÄ]/g, 'ae')
+      .replace(/ß/g, 'ss')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
+
+  function detailLinks(node, meta) {
+    var links = [];
+    var type = node.data('type');
+    if (type === 'entity' || type === 'topic' || type === 'subtopic' || type === 'objective') {
+      links.push('<a href="/entity/' + toSlug(node.data('label')) + '/">Konzept-Seite öffnen</a>');
+    }
+    if (type === 'university' && meta.shortCode) {
+      links.push(
+        '<a href="/modulhandbuch/?uni=' +
+          encodeURIComponent(meta.shortCode) +
+          '">Modulhandbuch öffnen</a>'
+      );
+    }
+    return links;
+  }
+
+  function detailHtml(node) {
+    var meta = node.data('meta') || {};
+    var type = node.data('type');
+    var typeLabel = NODE_LABELS[type] || type;
+    var html = '<div class="curricula-detail-type">' + escapeHtml(typeLabel) + '</div>';
+    html += '<h3>' + escapeHtml(node.data('label')) + '</h3>';
+    metaRows(meta).forEach(function (r) {
+      html +=
+        '<div class="curricula-detail-row"><span class="curricula-detail-k">' +
+        escapeHtml(r[0]) +
+        '</span><span class="curricula-detail-v">' +
+        r[1] +
+        '</span></div>';
     });
+    var links = detailLinks(node, meta);
+    if (links.length) {
+      html += '<div class="curricula-detail-links">' + links.join(' · ') + '</div>';
+    }
+    return html;
+  }
 
-    function getFiltered() {
-      var result = entities.filter(function (e) {
-        if (e.category === 'didaktik') return false;
-        var meta = e.curriculumMeta;
-        if (!meta) return true; // entities without curriculumMeta shown unfiltered
-        if (filterState.length && filterState.indexOf(meta.state) === -1) return false;
-        if (filterSchool.length && filterSchool.indexOf(meta.school_type) === -1) return false;
-        if (filterGrade.length) {
-          var metaGrade = String(meta.grade);
-          var match = filterGrade.some(function (g) {
-            return metaGrade === g || metaGrade.indexOf(g) !== -1;
-          });
-          if (!match) return false;
-        }
-        if (searchQuery) {
-          var q = searchQuery.toLowerCase();
-          return (
-            e.name.toLowerCase().indexOf(q) !== -1 ||
-            (e.relatedEntities || []).some(function (r) {
-              return (typeof r === 'string' ? r : r.name).toLowerCase().indexOf(q) !== -1;
-            })
-          );
-        }
-        return true;
-      });
-      result.sort(function (a, b) {
-        var mA = a.curriculumMeta || {};
-        var mB = b.curriculumMeta || {};
-        switch (sortBy) {
-          case 'name-desc':
-            return b.name.localeCompare(a.name);
-          case 'state':
-            return (mA.state || '').localeCompare(mB.state || '') || a.name.localeCompare(b.name);
-          case 'grade': {
-            var gA = parseInt(mA.grade) || 999;
-            var gB = parseInt(mB.grade) || 999;
-            return gA - gB || a.name.localeCompare(b.name);
-          }
-          default:
-            return a.name.localeCompare(b.name);
-        }
-      });
-      return result;
+  function renderDetail(node) {
+    var panel = document.getElementById('curricula-node-details');
+    var content = document.getElementById('curricula-details-content');
+    if (!node) {
+      if (panel) panel.style.display = 'none';
+      return;
+    }
+    if (content) content.innerHTML = detailHtml(node);
+    if (panel) panel.style.display = 'block';
+  }
+
+  function renderGraph(data) {
+    var container = document.getElementById('curricula-graph');
+    if (!container) return;
+    container.innerHTML = '';
+
+    state.allNodes = data.nodes || [];
+    state.allEdges = data.edges || [];
+
+    var elements = buildElements(data);
+    if (!elements.length) {
+      container.innerHTML =
+        '<div class="empty-state"><div class="empty-state-icon">🔍</div>' +
+        '<p>Keine Knoten gefunden' +
+        (state.q ? ' für „' + escapeHtml(state.q) + '"' : '') +
+        '.</p></div>';
+      return;
     }
 
-    function _render() {
-      if (activeTab === 'explorer') _renderExplorer();
-      else if (activeTab === 'compare') _renderCompare();
-      else if (activeTab === 'objectives') _renderObjectives();
-      else if (activeTab === 'content') _renderContent();
-      else _renderExplorer();
-    }
-
-    // ── Explorer Tab ──
-    function _renderExplorer() {
-      var filtered = getFiltered();
-      var totalPages = Math.ceil(filtered.length / perPage);
-      if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
-      var start = (currentPage - 1) * perPage;
-      var pageItems = filtered.slice(start, start + perPage);
-
-      var html = '';
-
-      // Header with tabs
-      html += '<div class="curricula-header">';
-      html += '<h1>Lehrpläne durchsuchen</h1>';
-      html += '<div class="curricula-stats">';
-      html +=
-        '<span><strong>' +
-        entities.filter(function (e) {
-          return e.category !== 'didaktik';
-        }).length +
-        '</strong> Themen</span>';
-      html += '<span><strong>' + stateKeys.length + '</strong> Bundesländer</span>';
-      html += '<span>' + filtered.length + ' angezeigt</span>';
-      html += '</div></div>';
-
-      // Tab bar
-      html += '<div class="curricula-tabs">';
-      html +=
-        '<button class="curricula-tab' +
-        (activeTab === 'explorer' ? ' active' : '') +
-        '" data-tab="explorer">Durchsuchen</button>';
-      html +=
-        '<button class="curricula-tab' +
-        (activeTab === 'compare' ? ' active' : '') +
-        '" data-tab="compare">Ländervergleich</button>';
-      html +=
-        '<button class="curricula-tab' +
-        (activeTab === 'objectives' ? ' active' : '') +
-        '" data-tab="objectives">Lernziele</button>' +
-        '<button class="curricula-tab' +
-        (activeTab === 'content' ? ' active' : '') +
-        '" data-tab="content">Inhalte</button>';
-      html += '</div>';
-
-      // Filters
-      html += '<div class="curricula-filters">';
-      html += '<div class="curricula-filter-row">';
-      html += '<label class="curricula-filter-label">Bundesland</label>';
-      html +=
-        '<select class="curricula-select curricula-multi" id="curricula-filter-state" multiple size="1" data-placeholder="Alle Bundesländer">';
-      stateKeys.forEach(function (s) {
-        html +=
-          '<option value="' +
-          s +
-          '"' +
-          (filterState.indexOf(s) !== -1 ? ' selected' : '') +
-          '>' +
-          escapeHtml(s) +
-          ' (' +
-          states[s] +
-          ')</option>';
-      });
-      html += '</select>';
-      html += '<label class="curricula-filter-label">Schulform</label>';
-      html +=
-        '<select class="curricula-select curricula-multi" id="curricula-filter-school" multiple size="1" data-placeholder="Alle Schulformen">';
-      schoolKeys.forEach(function (s) {
-        html +=
-          '<option value="' +
-          s +
-          '"' +
-          (filterSchool.indexOf(s) !== -1 ? ' selected' : '') +
-          '>' +
-          escapeHtml(s) +
-          ' (' +
-          schools[s] +
-          ')</option>';
-      });
-      html += '</select>';
-      html += '<label class="curricula-filter-label">Klasse</label>';
-      html +=
-        '<select class="curricula-select curricula-multi" id="curricula-filter-grade" multiple size="1" data-placeholder="Alle Klassen">';
-      gradeKeys.forEach(function (g) {
-        html +=
-          '<option value="' +
-          g +
-          '"' +
-          (filterGrade.indexOf(g) !== -1 ? ' selected' : '') +
-          '>' +
-          escapeHtml(g) +
-          ' (' +
-          grades[g] +
-          ')</option>';
-      });
-      html += '</select>';
-      html += '</div>';
-      // Active filter badges
-      var activeFilters = [];
-      filterState.forEach(function (s) {
-        activeFilters.push({ type: 'state', label: s });
-      });
-      filterSchool.forEach(function (s) {
-        activeFilters.push({ type: 'school', label: s });
-      });
-      filterGrade.forEach(function (g) {
-        activeFilters.push({ type: 'grade', label: 'Klasse ' + g });
-      });
-      if (activeFilters.length > 0) {
-        html += '<div class="curricula-active-filters">';
-        activeFilters.forEach(function (f) {
-          html +=
-            '<span class="curricula-active-filter" data-type="' +
-            f.type +
-            '" data-value="' +
-            escapeHtml(f.label) +
-            '">' +
-            escapeHtml(f.label) +
-            ' <span class="curricula-active-filter-x">&times;</span></span>';
-        });
-        html +=
-          '<button class="curricula-clear-filters-btn" id="curricula-clear-filters">Alle zurücksetzen</button>';
-        html += '</div>';
-      }
-      html += '<div class="curricula-search-row" style="display:flex;gap:0.5rem;">';
-      html +=
-        '<input class="curricula-search" type="text" placeholder="Thema suchen..." id="curricula-search" value="' +
-        escapeHtml(searchQuery) +
-        '" style="flex:1;">';
-      html +=
-        '<select id="curricula-sort" class="curricula-select" style="min-width:140px;" title="Sortierung">';
-      html +=
-        '<option value="name-asc"' +
-        (sortBy === 'name-asc' ? ' selected' : '') +
-        '>Name A–Z</option>';
-      html +=
-        '<option value="name-desc"' +
-        (sortBy === 'name-desc' ? ' selected' : '') +
-        '>Name Z–A</option>';
-      html +=
-        '<option value="state"' + (sortBy === 'state' ? ' selected' : '') + '>Bundesland</option>';
-      html +=
-        '<option value="grade"' +
-        (sortBy === 'grade' ? ' selected' : '') +
-        '>Klassenstufe</option>';
-      html += '</select>';
-      html += '</div>';
-      html += '</div>';
-
-      // Cards
-      html += '<div class="curricula-grid">';
-      if (pageItems.length === 0) {
-        var filterActive =
-          filterState.length > 0 ||
-          filterSchool.length > 0 ||
-          filterGrade.length > 0 ||
-          searchQuery;
-        if (filterActive) {
-          html +=
-            '<div class="empty-state"><div class="empty-state-icon">🔍</div><p>Keine Themen gefunden. Versuche die Filter anzupassen oder die Suche zu erweitern.</p></div>';
-        } else {
-          html +=
-            '<div class="empty-state"><div class="empty-state-icon">📭</div><p>Derzeit sind noch keine Themen geladen.</p></div>';
-        }
-      } else {
-        pageItems.forEach(function (e) {
-          var meta = e.curriculumMeta;
-          var kmkStandards = kmkTopicMap[e.name] || [];
-          var slug = toSlug(e.name);
-          var relCount = (e.relatedEntities || []).length;
-
-          html += '<div class="curricula-card" data-slug="' + slug + '">';
-          // Top bar (state color)
-          html +=
-            '<div class="curricula-card-bar" style="background:' +
-            getStateColor(meta && meta.state) +
-            ';"></div>';
-          html += '<div class="curricula-card-body">';
-          html +=
-            '<div class="curricula-card-name"><a href="/entity/' +
-            slug +
-            '/">' +
-            escapeHtml(e.name) +
-            '</a></div>';
-          if (meta) {
-            html += '<div class="curricula-card-meta">';
-            html += '<span class="curricula-meta-state">' + escapeHtml(meta.state) + '</span>';
-            html +=
-              ' · <span class="curricula-meta-school">' + escapeHtml(meta.school_type) + '</span>';
-            if (meta.grade)
-              html += ' · Klasse <strong>' + escapeHtml(String(meta.grade)) + '</strong>';
-            if (meta.objective_count)
-              html += ' · <strong>' + meta.objective_count + '</strong> Lernziele';
-            html += '</div>';
-          }
-          html += '<div class="curricula-card-relations">' + relCount + ' Verknüpfungen</div>';
-          // KMK badges
-          if (kmkStandards.length > 0) {
-            html += '<div class="curricula-card-kmk">';
-            kmkStandards.forEach(function (kmk) {
-              var label = kmk.replace(/^kmk-/i, '').replace(/-/g, ' ');
-              html +=
-                '<span class="kmk-badge">✓ ' +
-                escapeHtml(
-                  label.replace(/\b\w/g, function (c) {
-                    return c.toUpperCase();
-                  })
-                ) +
-                '</span>';
-            });
-            html += '</div>';
-          }
-          html += '</div></div>';
-        });
-      }
-      html += '</div>';
-
-      // Pagination
-      if (totalPages > 1) {
-        html += '<div class="curricula-pagination">';
-        html +=
-          '<button class="curricula-page-btn" data-page="' +
-          (currentPage - 1) +
-          '"' +
-          (currentPage <= 1 ? ' disabled' : '') +
-          '>‹</button>';
-        var startPage = Math.max(1, currentPage - 3);
-        var endPage = Math.min(totalPages, currentPage + 3);
-        for (var p = startPage; p <= endPage; p++) {
-          html +=
-            '<button class="curricula-page-btn' +
-            (p === currentPage ? ' active' : '') +
-            '" data-page="' +
-            p +
-            '">' +
-            p +
-            '</button>';
-        }
-        html +=
-          '<button class="curricula-page-btn" data-page="' +
-          (currentPage + 1) +
-          '"' +
-          (currentPage >= totalPages ? ' disabled' : '') +
-          '>›</button>';
-        html += '</div>';
-      }
-      if (filtered.length > 0) {
-        var resultFrom = start + 1;
-        var resultTo = Math.min(start + perPage, filtered.length);
-        html +=
-          '<div class="curricula-result-summary">Zeige ' +
-          resultFrom +
-          '–' +
-          resultTo +
-          ' von ' +
-          filtered.length +
-          ' Themen</div>';
-      }
-
-      app.innerHTML = html;
-      _attachExplorerEvents();
-    }
-
-    function getStateColor(state) {
-      var colors = {
-        BY: '#0054a8',
-        NW: '#009640',
-        BW: '#e2001a',
-        SN: '#1d8f46',
-        NI: '#003d6b',
-        HE: '#003366',
-        TH: '#00563f',
-        RP: '#003d7a',
-        SH: '#005b9f',
-        BB: '#d52027',
-        BE: '#000000',
-        MV: '#003d7a',
-        ST: '#003366',
-        HB: '#d52027',
-        HH: '#e2001a',
-        SL: '#0054a8',
-      };
-      return colors[state] || '#9b59b6';
-    }
-
-    function _attachExplorerEvents() {
-      // Filter dropdowns
-      var selState = document.getElementById('curricula-filter-state');
-      var selSchool = document.getElementById('curricula-filter-school');
-      var selGrade = document.getElementById('curricula-filter-grade');
-      var searchInput = document.getElementById('curricula-search');
-
-      function getMultiSelectValues(sel) {
-        if (!sel) return [];
-        var vals = [];
-        for (var i = 0; i < sel.options.length; i++) {
-          if (sel.options[i].selected) vals.push(sel.options[i].value);
-        }
-        return vals;
-      }
-
-      function onFilterChange() {
-        filterState = getMultiSelectValues(selState);
-        filterSchool = getMultiSelectValues(selSchool);
-        filterGrade = getMultiSelectValues(selGrade);
-        currentPage = 1;
-        _render();
-      }
-
-      if (selState) selState.addEventListener('change', onFilterChange);
-      if (selSchool) selSchool.addEventListener('change', onFilterChange);
-      if (selGrade) selGrade.addEventListener('change', onFilterChange);
-
-      // Active filter badge click to remove
-      app.addEventListener('click', function (ev) {
-        var badge = ev.target.closest('.curricula-active-filter');
-        if (!badge) return;
-        var type = badge.getAttribute('data-type');
-        var val = badge.getAttribute('data-value');
-        _removeActiveFilterBadge(type, val);
-        currentPage = 1;
-        _render();
-      });
-
-      function _removeActiveFilterBadge(type, badgeVal) {
-        if (type === 'state') {
-          filterState = filterState.filter(function (v) {
-            return v !== badgeVal;
-          });
-          _unselectOption(selState, badgeVal);
-        } else if (type === 'school') {
-          filterSchool = filterSchool.filter(function (v) {
-            return v !== badgeVal;
-          });
-          _unselectOption(selSchool, badgeVal);
-        } else if (type === 'grade') {
-          var gradeVal = badgeVal.replace('Klasse ', '');
-          filterGrade = filterGrade.filter(function (v) {
-            return v !== gradeVal;
-          });
-          _unselectOption(selGrade, gradeVal);
-        }
-      }
-
-      function _unselectOption(sel, val) {
-        if (!sel) return;
-        for (var i = 0; i < sel.options.length; i++) {
-          if (sel.options[i].value === val) sel.options[i].selected = false;
-        }
-      }
-      if (searchInput) {
-        searchInput.addEventListener('input', function (ev) {
-          searchQuery = ev.target.value;
-          currentPage = 1;
-          _render();
-        });
-      }
-
-      // Sort handler
-      var sortSelect = document.getElementById('curricula-sort');
-      if (sortSelect) {
-        sortSelect.addEventListener('change', function () {
-          sortBy = this.value;
-          currentPage = 1;
-          _render();
-        });
-      }
-
-      // Clear all filters handler
-      var clearBtn = document.getElementById('curricula-clear-filters');
-      if (clearBtn) {
-        clearBtn.addEventListener('click', function () {
-          filterState = [];
-          filterSchool = [];
-          filterGrade = [];
-          searchQuery = '';
-          sortBy = 'name-asc';
-          currentPage = 1;
-          _render();
-        });
-      }
-
-      // Tab switching
-      app.querySelectorAll('.curricula-tab').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          activeTab = this.getAttribute('data-tab');
-          currentPage = 1;
-          location.hash = activeTab;
-          _render();
-        });
-      });
-
-      // Pagination
-      app.querySelectorAll('.curricula-page-btn').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          if (btn.disabled) return;
-          var p = parseInt(btn.getAttribute('data-page'));
-          if (p > 0) {
-            currentPage = p;
-            _render();
-          }
-        });
-      });
-    }
-
-    // ── Compare Tab ──
-    function _renderCompare() {
-      var html = '';
-      html += '<div class="curricula-header">';
-      html += '<h1>Ländervergleich</h1>';
-      html +=
-        '<p class="curricula-subtitle">Vergleiche ein Thema über alle Bundesländer hinweg.</p>';
-      html += '</div>';
-
-      html += '<div class="curricula-tabs">';
-      html +=
-        '<button class="curricula-tab' +
-        (activeTab === 'explorer' ? ' active' : '') +
-        '" data-tab="explorer">Durchsuchen</button>';
-      html +=
-        '<button class="curricula-tab' +
-        (activeTab === 'compare' ? ' active' : '') +
-        '" data-tab="compare">Ländervergleich</button>';
-      html +=
-        '<button class="curricula-tab' +
-        (activeTab === 'objectives' ? ' active' : '') +
-        '" data-tab="objectives">Lernziele</button>' +
-        '<button class="curricula-tab' +
-        (activeTab === 'content' ? ' active' : '') +
-        '" data-tab="content">Inhalte</button>';
-      html += '</div>';
-
-      html += '<div class="compare-search">';
-      html +=
-        '<input class="curricula-search" type="text" placeholder="Thema eingeben (z.B. Redoxreaktionen)..." id="compare-search" value="' +
-        escapeHtml(compareTopicName) +
-        '">';
-      html += '<button class="compare-btn" id="compare-go">Vergleichen</button>';
-      html += '</div>';
-
-      if (compareResults) {
-        var stateNames = Object.keys(compareResults);
-        if (stateNames.length > 0) {
-          // Compute majority values for diff highlighting
-          var schoolVotes = {},
-            gradeVotes = {},
-            objVotes = {};
-          stateNames.forEach(function (st) {
-            (compareResults[st] || []).forEach(function (e) {
-              schoolVotes[e.school_type || '-'] = (schoolVotes[e.school_type || '-'] || 0) + 1;
-              gradeVotes[String(e.grade || '-')] = (gradeVotes[String(e.grade || '-')] || 0) + 1;
-              objVotes[e.objective_count || 0] = (objVotes[e.objective_count || 0] || 0) + 1;
-            });
-          });
-          var majoritySchool = Object.keys(schoolVotes).reduce(function (a, b) {
-            return schoolVotes[a] > schoolVotes[b] ? a : b;
-          });
-          var majorityGrade = Object.keys(gradeVotes).reduce(function (a, b) {
-            return gradeVotes[a] > gradeVotes[b] ? a : b;
-          });
-          var majorityObj = Object.keys(objVotes).reduce(function (a, b) {
-            return objVotes[a] > objVotes[b] ? a : b;
-          });
-
-          html += '<div class="compare-results">';
-          html += '<table class="compare-table">';
-          html +=
-            '<thead><tr><th>Bundesland</th><th>Schulform</th><th>Klasse</th><th>Lernziele</th><th>KMK</th><th></th></tr></thead>';
-          html += '<tbody>';
-          stateNames.forEach(function (st) {
-            var entries = compareResults[st];
-            if (!entries || entries.length === 0) return;
-            entries.forEach(function (entry, idx) {
-              var kmkStandards = kmkTopicMap[entry.name] || [];
-              var isDiffSchool = (entry.school_type || '-') !== majoritySchool;
-              var isDiffGrade = String(entry.grade || '-') !== majorityGrade;
-              var isDiffObj = (entry.objective_count || 0) !== parseInt(majorityObj);
-              var rowId = 'compare-row-' + toSlug(st) + '-' + idx;
-              html += '<tr class="compare-row" id="' + rowId + '">';
-              if (idx === 0) {
-                html +=
-                  '<td class="compare-state-cell" rowspan="' +
-                  entries.length +
-                  '"><strong>' +
-                  escapeHtml(st) +
-                  '</strong></td>';
-              }
-              html +=
-                '<td' +
-                (isDiffSchool ? ' class="diff-cell"' : '') +
-                '>' +
-                escapeHtml(entry.school_type || '-') +
-                '</td>';
-              html +=
-                '<td' +
-                (isDiffGrade ? ' class="diff-cell"' : '') +
-                '>' +
-                escapeHtml(String(entry.grade || '-')) +
-                '</td>';
-              html +=
-                '<td class="compare-num' +
-                (isDiffObj ? ' diff-cell' : '') +
-                '">' +
-                (entry.objective_count || 0) +
-                '</td>';
-              html += '<td>' + (kmkStandards.length > 0 ? '✓' : '') + '</td>';
-              html +=
-                '<td><button class="compare-expand-btn" data-row="' +
-                rowId +
-                '" data-name="' +
-                escapeHtml(entry.name) +
-                '" title="Details anzeigen">+</button></td>';
-              html += '</tr>';
-              // Expandable detail row
-              var isExpanded = expandedCompareRow === rowId;
-              if (isExpanded) {
-                var relEntities = entry.relatedEntities || [];
-                html +=
-                  '<tr class="compare-detail-row"><td colspan="6"><div class="compare-detail">';
-                html += '<strong>Verknüpfte Begriffe:</strong> ';
-                if (relEntities.length > 0) {
-                  relEntities.forEach(function (r) {
-                    var rn = typeof r === 'string' ? r : r.name;
-                    html += '<span class="compare-detail-tag">' + escapeHtml(rn) + '</span> ';
-                  });
-                } else {
-                  html += '<em>keine</em>';
-                }
-                html += '</div></td></tr>';
-              }
-            });
-          });
-          html += '</tbody></table>';
-          html += '</div>';
-        } else {
-          html +=
-            '<div class="empty-state"><div class="empty-state-icon">🔍</div><p>Keine Ergebnisse für "' +
-            escapeHtml(compareTopicName) +
-            '" gefunden.</p></div>';
-        }
-      }
-
-      app.innerHTML = html;
-      _attachCompareEvents();
-    }
-
-    function _attachCompareEvents() {
-      // Tab switching
-      app.querySelectorAll('.curricula-tab').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          activeTab = this.getAttribute('data-tab');
-          currentPage = 1;
-          location.hash = activeTab;
-          _render();
-        });
-      });
-
-      // Expandable detail rows
-      app.addEventListener('click', function (ev) {
-        var btn = ev.target.closest('.compare-expand-btn');
-        if (!btn) return;
-        var rowId = btn.getAttribute('data-row');
-        if (expandedCompareRow === rowId) {
-          expandedCompareRow = null;
-        } else {
-          expandedCompareRow = rowId;
-        }
-        _render();
-      });
-
-      var searchInput = document.getElementById('compare-search');
-      var goBtn = document.getElementById('compare-go');
-
-      function doCompare() {
-        var val = searchInput ? searchInput.value.trim() : '';
-        if (!val) return;
-        compareTopicName = val;
-        // Search locally first for instant results
-        var q = val.toLowerCase();
-        var results = {};
-        entities.forEach(function (e) {
-          if (e.category === 'didaktik') return;
-          var meta = e.curriculumMeta;
-          if (!meta) return;
-          if (e.name.toLowerCase().indexOf(q) !== -1) {
-            if (!results[meta.state]) results[meta.state] = [];
-            results[meta.state].push({
-              name: e.name,
-              state: meta.state,
-              grade: meta.grade,
-              school_type: meta.school_type,
-              objective_count: meta.objective_count,
-            });
-          }
-        });
-        // Also try API for fallback
-        fetch('/api/curricula/compare?name=' + encodeURIComponent(val))
-          .then(function (r) {
-            return r.json();
-          })
-          .then(function (apiData) {
-            if (apiData.results && Object.keys(apiData.results).length > 0) {
-              compareResults = apiData.results;
-            } else {
-              compareResults = results;
-            }
-            _render();
-          })
-          .catch(function () {
-            compareResults = results;
-            _render();
-          });
-      }
-
-      if (goBtn) goBtn.addEventListener('click', doCompare);
-      if (searchInput) {
-        searchInput.addEventListener('keydown', function (ev) {
-          if (ev.key === 'Enter') doCompare();
-        });
-      }
-    }
-
-    // ── Objectives Tab ──
-    function _renderObjectives() {
-      var html = '';
-      html += '<div class="curricula-header">';
-      html += '<h1>Lernziele durchsuchen</h1>';
-      html +=
-        '<p class="curricula-subtitle">Alle Lernziele aus den Lehrplänen der Bundesländer.</p>';
-      html += '</div>';
-
-      html += '<div class="curricula-tabs">';
-      html +=
-        '<button class="curricula-tab' +
-        (activeTab === 'explorer' ? ' active' : '') +
-        '" data-tab="explorer">Durchsuchen</button>';
-      html +=
-        '<button class="curricula-tab' +
-        (activeTab === 'compare' ? ' active' : '') +
-        '" data-tab="compare">Ländervergleich</button>';
-      html +=
-        '<button class="curricula-tab' +
-        (activeTab === 'objectives' ? ' active' : '') +
-        '" data-tab="objectives">Lernziele</button>' +
-        '<button class="curricula-tab' +
-        (activeTab === 'content' ? ' active' : '') +
-        '" data-tab="content">Inhalte</button>';
-      html += '</div>';
-
-      html += '<div class="curricula-filters">';
-      html += '<div class="curricula-search-row">';
-      html +=
-        '<input class="curricula-search" type="text" placeholder="Lernziel suchen..." id="objectives-search" value="' +
-        escapeHtml(objectivesSearch) +
-        '">';
-      html += '</div>';
-      if (objectivesParentTopic) {
-        html += '<div class="curricula-active-filters">';
-        html +=
-          '<span class="curricula-active-filter" data-type="topic" data-value="' +
-          escapeHtml(objectivesParentTopic) +
-          '">Thema: ' +
-          escapeHtml(objectivesParentTopic) +
-          ' <span class="curricula-active-filter-x">&times;</span></span>';
-        html += '</div>';
-      }
-      html += '</div>';
-
-      if (objectivesLoading) {
-        html += '<div class="curricula-loading"><em>Lade Lernziele…</em></div>';
-        app.innerHTML = html;
-        _attachObjectivesEvents();
-        return;
-      }
-
-      if (objectivesData && objectivesData.objectives) {
-        var items = objectivesData.objectives;
-        if (items.length === 0) {
-          html +=
-            '<div class="empty-state"><div class="empty-state-icon">🎯</div><p>Keine Lernziele gefunden.</p></div>';
-        } else {
-          html +=
-            '<p style="color:var(--text-muted,#666);margin-bottom:1rem;"><strong>' +
-            objectivesData.total +
-            '</strong> Lernziele gefunden</p>';
-          html +=
-            '<div style="max-height:600px;overflow-y:auto;border:1px solid var(--border-color,#e0e0e0);border-radius:8px;">';
-          html += '<table class="compare-table" style="font-size:0.85rem;">';
-          html +=
-            '<thead><tr><th>Lernziel</th><th>Thema</th><th>Bundesland</th><th>Klasse</th></tr></thead><tbody>';
-          items.forEach(function (o) {
-            html += '<tr class="compare-row">';
-            html += '<td>' + escapeHtml(o.text || o.slug) + '</td>';
-            html +=
-              '<td>' +
-              (o.topicTitle
-                ? '<a href="/entity/' +
-                  toSlug(o.topicSlug || o.topicTitle) +
-                  '/">' +
-                  escapeHtml(o.topicTitle) +
-                  '</a>'
-                : '-') +
-              '</td>';
-            html += '<td>' + escapeHtml(o.state || '-') + '</td>';
-            html += '<td>' + escapeHtml(o.grade || '-') + '</td>';
-            html += '</tr>';
-          });
-          html += '</tbody></table></div>';
-        }
-      } else {
-        if (!objectivesLoading) {
-          setTimeout(_loadObjectives, 50);
-        }
-        html += '<div class="curricula-loading"><em>Lade Lernziele…</em></div>';
-      }
-
-      app.innerHTML = html;
-      _attachObjectivesEvents();
-    }
-
-    function _loadObjectives() {
-      objectivesLoading = true;
-      _render();
-      var qs = '';
-      if (objectivesSearch) qs += '&search=' + encodeURIComponent(objectivesSearch);
-      if (objectivesParentTopic) qs += '&topic=' + encodeURIComponent(objectivesParentTopic);
-      qs += '&limit=500';
-
-      fetch('/api/curricula/objectives?' + qs.slice(1), { signal: AbortSignal.timeout(15000) })
-        .then(function (r) {
-          if (!r.ok) throw new Error(r.status);
-          return r.json();
-        })
-        .then(function (d) {
-          objectivesData = d;
-          objectivesLoading = false;
-          _render();
-        })
-        .catch(function (_err) {
-          objectivesLoading = false;
-          objectivesData = { objectives: [] };
-          _render();
-        });
-    }
-
-    function _attachObjectivesEvents() {
-      app.querySelectorAll('.curricula-tab').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          activeTab = this.getAttribute('data-tab');
-          currentPage = 1;
-          location.hash = activeTab;
-          _render();
-        });
-      });
-
-      var searchInput = document.getElementById('objectives-search');
-      if (searchInput) {
-        searchInput.addEventListener('input', function (ev) {
-          objectivesSearch = ev.target.value;
-          _loadObjectives();
-        });
-      }
-
-      app.addEventListener('click', function (ev) {
-        var badge = ev.target.closest('.curricula-active-filter');
-        if (!badge) return;
-        var type = badge.getAttribute('data-type');
-        if (type === 'topic') {
-          objectivesParentTopic = '';
-          _loadObjectives();
-        }
-      });
-    }
-
-    // ── Content Tab ──
-    function _renderContent() {
-      var html = '';
-      html += '<div class="curricula-header">';
-      html += '<h1>Inhalte durchsuchen</h1>';
-      html +=
-        '<p class="curricula-subtitle">Artikel, Rechner und interaktive Inhalte aus dem Chemie-Portal.</p>';
-      html += '</div>';
-
-      html += '<div class="curricula-tabs">';
-      html +=
-        '<button class="curricula-tab' +
-        (activeTab === 'explorer' ? ' active' : '') +
-        '" data-tab="explorer">Durchsuchen</button>';
-      html +=
-        '<button class="curricula-tab' +
-        (activeTab === 'compare' ? ' active' : '') +
-        '" data-tab="compare">Ländervergleich</button>';
-      html +=
-        '<button class="curricula-tab' +
-        (activeTab === 'objectives' ? ' active' : '') +
-        '" data-tab="objectives">Lernziele</button>';
-      html +=
-        '<button class="curricula-tab' +
-        (activeTab === 'content' ? ' active' : '') +
-        '" data-tab="content">Inhalte</button>';
-      html += '</div>';
-
-      html += '<div class="curricula-filters">';
-      html += '<div class="curricula-filter-row">';
-      html += '<label class="curricula-filter-label">Typ</label>';
-      html += '<select class="curricula-select" id="content-type-filter">';
-      html += '<option value=""' + (!contentType ? ' selected' : '') + '>Alle Typen</option>';
-      html +=
-        '<option value="article"' +
-        (contentType === 'article' ? ' selected' : '') +
-        '>Artikel</option>';
-      html +=
-        '<option value="calculator"' +
-        (contentType === 'calculator' ? ' selected' : '') +
-        '>Rechner</option>';
-      html += '</select>';
-      html += '</div>';
-      html += '<div class="curricula-search-row">';
-      html +=
-        '<input class="curricula-search" type="text" placeholder="Inhalt suchen..." id="content-search" value="' +
-        escapeHtml(contentSearch) +
-        '">';
-      html += '</div></div>';
-
-      if (contentLoading) {
-        html += '<div class="curricula-loading"><em>Lade Inhalte…</em></div>';
-        app.innerHTML = html;
-        _attachContentEvents();
-        return;
-      }
-
-      if (contentData && contentData.items) {
-        var items = contentData.items;
-        if (items.length === 0) {
-          html +=
-            '<div class="empty-state"><div class="empty-state-icon">📄</div><p>Keine Inhalte gefunden.</p></div>';
-        } else {
-          html +=
-            '<div class="curricula-grid" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">';
-          items.forEach(function (item) {
-            var typeLabel =
-              item.type === 'calculator'
-                ? '🔬 Rechner'
-                : item.type === 'article'
-                  ? '📖 Artikel'
-                  : item.type;
-            html += '<div class="curricula-card">';
-            html += '<div class="curricula-card-body">';
-            html +=
-              '<div class="curricula-card-name"><a href="' +
-              escapeHtml(item.url) +
-              '" target="_blank" rel="noopener">' +
-              escapeHtml(item.title) +
-              '</a></div>';
-            html += '<div class="curricula-card-meta" style="margin-top:0.3rem;">';
-            html +=
-              '<span style="font-size:0.78rem;color:var(--text-muted,#999);">' +
-              typeLabel +
-              '</span>';
-            if (item.labels) {
-              item.labels.forEach(function (l) {
-                if (l !== 'Content')
-                  html +=
-                    ' <span style="display:inline-block;padding:0 6px;font-size:0.7rem;background:#e8f5e9;color:#2e7d32;border-radius:8px;">' +
-                    escapeHtml(l) +
-                    '</span>';
-              });
-            }
-            html += '</div></div></div>';
-          });
-          html += '</div>';
-        }
-      } else {
-        if (!contentLoading) {
-          setTimeout(_loadContent, 50);
-        }
-        html += '<div class="curricula-loading"><em>Lade Inhalte…</em></div>';
-      }
-
-      app.innerHTML = html;
-      _attachContentEvents();
-    }
-
-    function _loadContent() {
-      contentLoading = true;
-      _render();
-      var params = [];
-      if (contentSearch) params.push('search=' + encodeURIComponent(contentSearch));
-      if (contentType) params.push('type=' + encodeURIComponent(contentType));
-      params.push('limit=200');
-
-      fetch('/api/content?' + params.join('&'), { signal: AbortSignal.timeout(15000) })
-        .then(function (r) {
-          if (!r.ok) {
-            throw new Error(r.status);
-          }
-          return r.json();
-        })
-        .then(function (d) {
-          contentData = d;
-          contentLoading = false;
-          _render();
-        })
-        .catch(function () {
-          contentLoading = false;
-          contentData = { items: [] };
-          _render();
-        });
-    }
-
-    function _attachContentEvents() {
-      app.querySelectorAll('.curricula-tab').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          activeTab = this.getAttribute('data-tab');
-          currentPage = 1;
-          location.hash = activeTab;
-          _render();
-        });
-      });
-
-      var searchInput = document.getElementById('content-search');
-      if (searchInput) {
-        searchInput.addEventListener('input', function (ev) {
-          contentSearch = ev.target.value;
-          _loadContent();
-        });
-      }
-
-      var typeFilter = document.getElementById('content-type-filter');
-      if (typeFilter) {
-        typeFilter.addEventListener('change', function () {
-          contentType = this.value;
-          _loadContent();
-        });
-      }
-    }
-
-    window.addEventListener('hashchange', function () {
-      var h = location.hash.replace('#', '');
-      if (['explorer', 'compare', 'objectives', 'content'].indexOf(h) !== -1 && h !== activeTab) {
-        activeTab = h;
-        currentPage = 1;
-        _render();
+    var degree = {};
+    elements.forEach(function (el) {
+      if (el.data.source) {
+        degree[el.data.source] = (degree[el.data.source] || 0) + 1;
+        degree[el.data.target] = (degree[el.data.target] || 0) + 1;
       }
     });
 
-    _render();
+    state.cy = cytoscape({
+      container: container,
+      elements: elements,
+      wheelSensitivity: 0.2,
+      layout: { name: 'cose', animate: false, padding: 40, nodeRepulsion: 9000 },
+      style: [
+        {
+          selector: 'node',
+          style: {
+            label: 'data(label)',
+            'font-size': 10,
+            'text-valign': 'center',
+            'text-halign': 'center',
+            'text-wrap': 'wrap',
+            'text-max-width': 120,
+            'text-background-color': '#ffffff',
+            'text-background-opacity': 0.8,
+            'text-background-padding': 2,
+            'text-background-shape': 'roundrectangle',
+            'text-zoomable': false,
+            color: '#333',
+            width: 'mapData(degree, 0, 40, 14, 48)',
+            height: 'mapData(degree, 0, 40, 14, 48)',
+            'border-width': 1,
+            'border-color': '#fff',
+            'border-opacity': 0.8,
+            'background-color': '#95a5a6',
+          },
+        },
+        {
+          selector: 'node[type = "university"]',
+          style: { 'background-color': NODE_COLORS.university },
+        },
+        {
+          selector: 'node[type = "module"]',
+          style: { 'background-color': NODE_COLORS.module },
+        },
+        {
+          selector: 'node[type = "curriculum"]',
+          style: { 'background-color': NODE_COLORS.curriculum },
+        },
+        {
+          selector: 'node[type = "topic"]',
+          style: { 'background-color': NODE_COLORS.topic },
+        },
+        {
+          selector: 'node[type = "subtopic"]',
+          style: { 'background-color': NODE_COLORS.subtopic },
+        },
+        {
+          selector: 'node[type = "objective"]',
+          style: {
+            'background-color': NODE_COLORS.objective,
+            'font-size': 8,
+            'text-max-width': 90,
+            width: 10,
+            height: 10,
+          },
+        },
+        {
+          selector: 'node[type = "entity"]',
+          style: { 'background-color': NODE_COLORS.entity },
+        },
+        {
+          selector: 'node[type = "page"]',
+          style: { 'background-color': NODE_COLORS.page, width: 10, height: 10 },
+        },
+        {
+          selector: 'edge',
+          style: {
+            width: 1,
+            'line-color': '#ccd1d9',
+            'target-arrow-shape': 'triangle',
+            'target-arrow-color': '#ccd1d9',
+            'curve-style': 'bezier',
+            opacity: 0.65,
+            'arrow-scale': 0.7,
+          },
+        },
+        {
+          selector: 'edge[type = "HAS_LEARNING_OBJECTIVE"]',
+          style: { 'line-style': 'dotted', opacity: 0.45 },
+        },
+      ],
+    });
+
+    var searchQuery = (state.q || '').toLowerCase();
+    if (searchQuery) applySearchHighlight(searchQuery);
+    else resetHighlight();
+
+    state.cy.on('tap', 'node', function (evt) {
+      renderDetail(evt.target);
+    });
+    state.cy.on('tap', function (evt) {
+      if (evt.target === state.cy) renderDetail(null);
+    });
+  }
+
+  function resetHighlight() {
+    if (!state.cy) return;
+    state.cy.elements().forEach(function (el) {
+      el.style('opacity', 1);
+    });
+  }
+
+  function applySearchHighlight(q) {
+    if (!state.cy) return;
+    var matches = state.cy.nodes().filter(function (n) {
+      return (n.data('label') || '').toLowerCase().indexOf(q) !== -1;
+    });
+    if (!matches.length) {
+      resetHighlight();
+      return;
+    }
+    var matchIds = {};
+    matches.forEach(function (m) {
+      matchIds[m.id()] = true;
+    });
+    state.cy.elements().forEach(function (el) {
+      var isMatch = el.isNode() ? matchIds[el.id()] : false;
+      var linked = el.isEdge() && (matchIds[el.data('source')] || matchIds[el.data('target')]);
+      el.style('opacity', isMatch || linked ? 1 : 0.12);
+    });
+  }
+
+  // ── Controls ────────────────────────────────────────────────────────
+
+  function loadMeta() {
+    // Populate state + university selects from a cheap metadata fetch.
+    return Promise.all([
+      fetch('/api/curricula/states', { signal: AbortSignal.timeout(10000) }).then(function (r) {
+        return r.ok ? r.json() : { states: [] };
+      }),
+      fetch('/api/modulhandbuch/universities', {
+        signal: AbortSignal.timeout(10000),
+      }).then(function (r) {
+        return r.ok ? r.json() : { universities: [] };
+      }),
+    ]);
+  }
+
+  function populateSelects(meta) {
+    var stateSel = document.getElementById('curricula-state-select');
+    var uniSel = document.getElementById('curricula-uni-select');
+    if (stateSel) {
+      (meta[0].states || []).forEach(function (s) {
+        var opt = document.createElement('option');
+        opt.value = s.state;
+        opt.textContent = s.stateName || s.state;
+        stateSel.appendChild(opt);
+      });
+    }
+    if (uniSel) {
+      (meta[1].universities || []).forEach(function (u) {
+        var opt = document.createElement('option');
+        opt.value = u.shortCode;
+        opt.textContent = u.name + (u.city ? ' (' + u.city + ')' : '');
+        uniSel.appendChild(opt);
+      });
+    }
+  }
+
+  function wireControls() {
+    var scopeBtns = document.querySelectorAll('.curricula-scope-btn');
+    scopeBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        state.scope = this.getAttribute('data-scope');
+        scopeBtns.forEach(function (b) {
+          b.classList.toggle('active', b === btn);
+        });
+        reload();
+      });
+    });
+    var stateSel = document.getElementById('curricula-state-select');
+    if (stateSel) {
+      stateSel.addEventListener('change', function () {
+        state.state = this.value;
+        reload();
+      });
+    }
+    var uniSel = document.getElementById('curricula-uni-select');
+    if (uniSel) {
+      uniSel.addEventListener('change', function () {
+        state.university = this.value;
+        reload();
+      });
+    }
+    var search = document.getElementById('curricula-search');
+    if (search) {
+      var t;
+      search.addEventListener('input', function () {
+        clearTimeout(t);
+        var val = this.value.trim();
+        t = setTimeout(function () {
+          state.q = val;
+          if (state.cy) {
+            if (val) applySearchHighlight(val.toLowerCase());
+            else resetHighlight();
+          }
+          // Also re-fetch with q for server-side filtering when scoped.
+          reload();
+        }, 350);
+      });
+    }
+    var closeBtn = document.getElementById('curricula-details-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function () {
+        renderDetail(null);
+      });
+    }
+    var fitBtn = document.getElementById('curricula-fit');
+    if (fitBtn) {
+      fitBtn.addEventListener('click', function () {
+        if (state.cy) state.cy.fit(undefined, 40);
+      });
+    }
+  }
+
+  function showLoading() {
+    var el = document.getElementById('curricula-graph');
+    if (el) {
+      el.innerHTML =
+        '<div class="curricula-loading" role="status">Graphen-Daten werden geladen…</div>';
+    }
+  }
+
+  function reload() {
+    showLoading();
+    fetchGraph()
+      .then(renderGraph)
+      .catch(function (err) {
+        var el = document.getElementById('curricula-graph');
+        if (el) {
+          el.innerHTML =
+            '<div class="empty-state"><div class="empty-state-icon">📡</div>' +
+            '<p>Graphen-Daten konnten nicht geladen werden' +
+            (err && err.message ? ' (' + escapeHtml(err.message) + ')' : '') +
+            '.</p></div>';
+        }
+      });
+  }
+
+  // ── Init ────────────────────────────────────────────────────────────
+
+  function init() {
+    // Move the toolbar template (rendered in the JS block) into the app
+    // container so controls live with the graph.
+    var tpl = document.getElementById('curricula-toolbar-template');
+    if (tpl && app) {
+      while (tpl.firstChild) {
+        app.appendChild(tpl.firstChild);
+      }
+      tpl.remove();
+    }
+    wireControls();
+    if (skeleton) skeleton.style.display = 'none';
+    loadMeta()
+      .then(function (meta) {
+        populateSelects(meta);
+      })
+      .catch(function () {
+        /* meta is optional */
+      });
+    loadCytoscape()
+      .then(reload)
+      .catch(function () {
+        var el = document.getElementById('curricula-graph');
+        if (el) {
+          el.innerHTML =
+            '<div class="empty-state"><div class="empty-state-icon">⚠️</div>' +
+            '<p>Graph-Bibliothek konnte nicht geladen werden.</p></div>';
+        }
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
   }
 })();

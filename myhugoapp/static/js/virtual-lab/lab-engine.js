@@ -3,7 +3,7 @@
  *
  * Dependencies: THREE (r128), EquipmentManager, ReactionEngine
  */
-/* global EquipmentManager, ReactionEngine */
+/* global EquipmentManager, ReactionEngine, THREE */
 
 var LabEngine = {
   // ── Internal state ────────────────────────────────────────────────────

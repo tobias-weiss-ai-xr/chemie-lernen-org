@@ -2,6 +2,7 @@
 title: "Dichte-Rechner"
 description: "Berechnen Sie die Dichte von Stoffen aus Masse und Volumen oder finden Sie eine fehlende Größe mit interaktiver Formel."
 date: "2026-06-03"
+last_reviewed: 2026-08-06
 type: "interactive"
 interaktiv: true
 layout: "dichte-rechner"

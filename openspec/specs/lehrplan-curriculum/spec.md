@@ -97,18 +97,25 @@ Didactic schema (in `didaktik.json`):
 | `:DidacticGuideline` | A KMK standard or Modulhandbuch           | `title`, `source_type`, `institution`, `url` |
 | `:GuidelineSection`  | A section within a guideline              | `title`, `order`                             |
 
-### REQ-LP-3: Relationships
+### REQ-LP-3: Relationships (Schema B — Canonical)
 
-| Type                      | From                            | To                   | Notes                    |
-| ------------------------- | ------------------------------- | -------------------- | ------------------------ |
-| `:HAS_TOPIC`              | `:Curriculum`                   | `:Topic`             | per grade                |
-| `:HAS_SUBTOPIC`           | `:Topic`                        | `:SubTopic`          | hierarchical             |
-| `:HAS_LEARNING_OBJECTIVE` | `:Topic`                        | `:LearningObjective` | per Lernbereich          |
-| `:COVERS_TOPIC`           | `:Article` / `:Document`        | `:Topic`             | article-to-topic         |
-| `:TEACHES_OBJECTIVE`      | `:Article` / `:Document`        | `:LearningObjective` | article-to-LO            |
-| `:FULFILLS` (existing)    | `:LearningObjective`            | `:Entity`            | LO-to-concept            |
-| `:FROM_GUIDELINE`         | `:LearningObjective` / `:Topic` | `:DidacticGuideline` | reference back to source |
-| `:ALIGNS_WITH`            | `:Curriculum`                   | `:DidacticGuideline` | state ↔ KMK alignment    |
+The canonical chain is:
+`(:Curriculum) -[:HAS_TOPIC]-> (:Topic) -[:HAS_SUBTOPIC]-> (:SubTopic) -[:FULFILLS]-> (:LearningObjective)`
+
+| Type                  | From                            | To                   | Notes                                                 |
+| --------------------- | ------------------------------- | -------------------- | ----------------------------------------------------- |
+| `:HAS_TOPIC`          | `:Curriculum`                   | `:Topic`             | per grade                                             |
+| `:HAS_SUBTOPIC`       | `:Topic`                        | `:SubTopic`          | hierarchical                                          |
+| `:FULFILLS`           | `:SubTopic`                     | `:LearningObjective` | sub-topic contains LO (was `:HAS_LEARNING_OBJECTIVE`) |
+| `:COVERS_TOPIC`       | `:Article` / `:Document`        | `:Topic`             | article-to-topic                                      |
+| `:TEACHES_OBJECTIVE`  | `:Article` / `:Document`        | `:LearningObjective` | article-to-LO                                         |
+| `:FULFILLS_OBJECTIVE` | `:Entity`                       | `:LearningObjective` | entity fulfills a learning obj                        |
+| `:FROM_GUIDELINE`     | `:LearningObjective` / `:Topic` | `:DidacticGuideline` | reference back to source                              |
+| `:ALIGNS_WITH`        | `:Curriculum`                   | `:DidacticGuideline` | state ↔ KMK alignment                                 |
+
+> **Schema A** (deprecated, Sprint 23 and earlier) used `:HAS_LEARNING_OBJECTIVE`
+> directly from `:Topic` to `:LearningObjective`, bypassing `:SubTopic`. All
+> new imports use Schema B. Legacy scripts are tagged `DEPRECATED`.
 
 ### REQ-LP-4: State coverage
 
@@ -142,6 +149,9 @@ Didactic schema (in `didaktik.json`):
   a specific learning objective
 - `GET /api/didaktik` — all guidelines, filterable by `source_type` and
   `institution`
+- `GET /api/curricula/graph` — cytoscape-ready graph payload
+  (`{ nodes, edges, meta }`) for the Lehrplan + Modulhandbuch subset
+  (see REQ-LP-9)
 
 ### REQ-LP-7: Front-end integration
 
@@ -163,6 +173,53 @@ Didactic schema (in `didaktik.json`):
 - 95% of `:Curriculum` topics must have at least one
   `:LearningObjective`
 - All `:FULFILLS` from LO must point to existing `:Entity`
+
+### REQ-LP-9: Interactive curriculum graph
+
+The curricula index page SHALL render an interactive graph visualization
+of the Lehrplan + Modulhandbuch knowledge graph instead of a tabbed list.
+
+- `GET /api/curricula/graph` SHALL return cytoscape-ready
+  `{ nodes, edges, meta }`:
+  - `scope=all|universities|curriculum` (default `all`)
+  - `university=<short_code>` and `state=<state_abbr>` focus filters
+  - `limit=<n>` node cap (default 500, max 1500)
+  - `q=<substring>` name filter
+- Nodes: `University`, `UniversityModule`, `Curriculum`, `Topic`,
+  `SubTopic`, `LearningObjective`, `Entity`, `Content` (page).
+- Edges: `OFFERS`, `COVERS`, `TEACHES`, `HAS_TOPIC`, `HAS_SUBTOPIC`,
+  `HAS_LEARNING_OBJECTIVE`, `COVERS_TOPIC`, `MENTIONS`, `BEINHALTET`.
+- The index page (template `curricula-index.html` + JS) renders the
+  graph with: scope switcher, search box, legend, node click → detail
+  panel, and a "Lernziele" expansion for a focused topic.
+- The old four tabs (Durchsuchen / Ländervergleich / Lernziele /
+  Inhalte) are removed from the index page.
+
+#### Scenario: S-LP-9a: User explores the university graph
+
+- **WHEN** the user opens `/curricula/` and switches scope to
+  "Universitäten"
+- **THEN** the graph shows University → UniversityModule nodes with
+  OFFERS edges
+- **AND** selecting a university shows its modules and their linked
+  `Entity` nodes
+- **AND** clicking a module shows its metadata (degree, level, ECTS)
+  in the detail panel
+
+#### Scenario: S-LP-9b: User explores a state curriculum
+
+- **WHEN** the user switches scope to "Lehrpläne" and picks a state
+- **THEN** the graph shows Curriculum → Topic → SubTopic nodes with
+  HAS_TOPIC / HAS_SUBTOPIC edges
+- **AND** learning objectives appear as a bounded set (capped) when
+  expanding a topic
+
+#### Scenario: S-LP-9c: Search highlights
+
+- **WHEN** the user types into the search box
+- **THEN** matching nodes are highlighted and non-matching nodes fade
+- **AND** edges are shown only when they connect visible/highlighted
+  nodes
 
 ## Scenarios
 

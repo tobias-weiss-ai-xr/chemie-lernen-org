@@ -8,48 +8,49 @@ const topics = {
     articles: [
       { title: 'Alkohole und Ether', difficulty: 'grundlagen', icon: '🧪' },
       { title: 'Carbonsäuren und Ester', difficulty: 'mittel', icon: '🧴' },
-      { title: 'Amine und Amide', difficulty: 'mittel', icon: '⚗️' }
-    ]
+      { title: 'Amine und Amide', difficulty: 'mittel', icon: '⚗️' },
+    ],
   },
-  'reaktionstypen': {
+  reaktionstypen: {
     articles: [
       { title: 'Elektrophile aromatische Substitution', difficulty: 'schwer', icon: '🔬' },
       { title: 'Radikalreaktionen im Detail', difficulty: 'fortgeschritten', icon: '⚡' },
-      { title: 'Redoxreaktionen Elektrochemie', difficulty: 'mittel', icon: '🔋' }
-    ]
+      { title: 'Redoxreaktionen Elektrochemie', difficulty: 'mittel', icon: '🔋' },
+    ],
   },
-  'energetik': {
+  energetik: {
     articles: [
       { title: 'Thermodynamik Gesetze', difficulty: 'grundlagen', icon: '🌡️' },
       { title: 'Gibbs-Energie und Spontaneität', difficulty: 'schwer', icon: 'ΔG' },
-      { title: 'Enthalpie und Entropie Praktisch', difficulty: 'mittel', icon: '📊' }
-    ]
+      { title: 'Enthalpie und Entropie Praktisch', difficulty: 'mittel', icon: '📊' },
+    ],
   },
-  'analytik': {
+  analytik: {
     articles: [
       { title: 'Spektroskopische Methoden', difficulty: 'mittel', icon: '📈' },
       { title: 'Chromatographie Grundlagen', difficulty: 'grundlagen', icon: '🧬' },
-      { title: 'Elektroanalytische Verfahren', difficulty: 'schwer', icon: '⚡' }
-    ]
+      { title: 'Elektroanalytische Verfahren', difficulty: 'schwer', icon: '⚡' },
+    ],
   },
-  'anorganik': {
+  anorganik: {
     articles: [
       { title: 'Ionenkristalle und Gitter', difficulty: 'mittel', icon: '💎' },
       { title: 'Übergangsmetalle Komplexe', difficulty: 'schwer', icon: '🔩' },
-      { title: 'Hauptgruppen Elemente', difficulty: 'grundlagen', icon: '⚛️' }
-    ]
-  }
+      { title: 'Hauptgruppen Elemente', difficulty: 'grundlagen', icon: '⚛️' },
+    ],
+  },
 };
 
 function createArticle(topic, article) {
-  const articleSlug = article.title.toLowerCase()
+  const articleSlug = article.title
+    .toLowerCase()
     .replace(/[^a-z0-9äöüß\- "]+/g, '')
     .replace(/["\s]+/g, '-')
     .replace(/ß/g, 'ss')
     .replace(/ä/g, 'ae')
     .replace(/ö/g, 'oe')
     .replace(/ü/g, 'ue');
-  
+
   const content = `---
 title: "${article.title}"
 description: "Lernen Sie über ${article.title.toLowerCase()} und ihre Anwendungen in der Chemie."
@@ -91,20 +92,20 @@ Die wichtigsten Punkte sind hier zusammengefasst.
 
 function generateArticles() {
   const contentDir = path.join(__dirname, '..', 'myhugoapp/content');
-  
-  Object.keys(topics).forEach(topic => {
+
+  Object.keys(topics).forEach((topic) => {
     const topicData = topics[topic];
     const topicDir = path.join(contentDir, 'themenbereiche', topic);
-    
+
     if (!fs.existsSync(topicDir)) {
       fs.mkdirSync(topicDir, { recursive: true });
       console.log(`Created directory: ${topicDir}`);
     }
-    
-    topicData.articles.forEach(article => {
+
+    topicData.articles.forEach((article) => {
       const { slug, content } = createArticle(topic, article);
       const filePath = path.join(topicDir, `${slug}.md`);
-      
+
       if (!fs.existsSync(filePath)) {
         fs.writeFileSync(filePath, content, 'utf8');
         console.log(`Created article: ${filePath}`);

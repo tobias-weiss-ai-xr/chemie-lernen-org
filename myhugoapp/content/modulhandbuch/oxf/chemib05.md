@@ -3,6 +3,7 @@ title: Molecular Biology and Biochemistry — University of Oxford
 description: 'Molecular Biology and Biochemistry (CHEMIB05) an der University of Oxford. 6 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: OXF
 uni_name: University of Oxford
 module_code: CHEMIB05

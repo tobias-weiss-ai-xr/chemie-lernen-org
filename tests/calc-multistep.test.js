@@ -24,7 +24,13 @@ describe('Multi-Step Reaction Calculator (calc-multistep.js)', () => {
   test('Fe oxidation chain: Fe → FeO → Fe₂O₃', () => {
     const steps = [
       { coeffR: 2, coeffP: 2, product: 'FeO', molarMass: 71.844, equation: '2Fe + O2 → 2FeO' },
-      { coeffR: 2, coeffP: 1, product: 'Fe2O3', molarMass: 159.688, equation: '4FeO + O2 → 2Fe2O3' },
+      {
+        coeffR: 2,
+        coeffP: 1,
+        product: 'Fe2O3',
+        molarMass: 159.688,
+        equation: '4FeO + O2 → 2Fe2O3',
+      },
     ];
     const { results, overallYield } = calculateMultiStepPure(2, steps);
 

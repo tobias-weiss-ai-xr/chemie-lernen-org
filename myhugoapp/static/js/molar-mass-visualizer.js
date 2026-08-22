@@ -27,8 +27,8 @@ class InteractiveMolarMassVisualizer {
     this.elements.set('N', { name: 'Stickstoff', mass: 14.007, color: '#3050f8' });
     this.elements.set('O', { name: 'Sauerstoff', mass: 15.999, color: '#ff0d0d' });
     this.elements.set('F', { name: 'Fluor', mass: 18.998, color: '#90e050' });
-    this.elements.set('Ne', { name: 'Neon', mass: 20.180, color: '#b3e3f5' });
-    this.elements.set('Na', { name: 'Natrium', mass: 22.990, color: '#ab5cf2' });
+    this.elements.set('Ne', { name: 'Neon', mass: 20.18, color: '#b3e3f5' });
+    this.elements.set('Na', { name: 'Natrium', mass: 22.99, color: '#ab5cf2' });
     this.elements.set('Mg', { name: 'Magnesium', mass: 24.305, color: '#8aff00' });
     this.elements.set('Al', { name: 'Aluminium', mass: 26.982, color: '#bfa6a6' });
     this.elements.set('Si', { name: 'Silicium', mass: 28.085, color: '#f0c8a0' });
@@ -87,13 +87,38 @@ class InteractiveMolarMassVisualizer {
 
   createMiniPeriodicTable() {
     let html = '<h4>Elemente auswählen</h4>';
-    html += '<div class="element-grid" style="display: grid; grid-template-columns: repeat(9, 1fr); gap: 5px;">';
+    html +=
+      '<div class="element-grid" style="display: grid; grid-template-columns: repeat(9, 1fr); gap: 5px;">';
 
-    const commonElements = ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne',
-                         'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca',
-                         'Fe', 'Cu', 'Zn', 'Ag', 'Au'];
+    const commonElements = [
+      'H',
+      'He',
+      'Li',
+      'Be',
+      'B',
+      'C',
+      'N',
+      'O',
+      'F',
+      'Ne',
+      'Na',
+      'Mg',
+      'Al',
+      'Si',
+      'P',
+      'S',
+      'Cl',
+      'Ar',
+      'K',
+      'Ca',
+      'Fe',
+      'Cu',
+      'Zn',
+      'Ag',
+      'Au',
+    ];
 
-    commonElements.forEach(symbol => {
+    commonElements.forEach((symbol) => {
       const element = this.elements.get(symbol);
       if (element) {
         html += `
@@ -189,14 +214,14 @@ class InteractiveMolarMassVisualizer {
       }
     });
 
-    elementBtns.forEach(btn => {
+    elementBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
         const element = btn.dataset.element;
         this.addToFormula(element);
       });
     });
 
-    formulaBtns.forEach(btn => {
+    formulaBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
         const formula = btn.dataset.formula;
         document.getElementById('formula-input').value = formula;
@@ -204,7 +229,7 @@ class InteractiveMolarMassVisualizer {
       });
     });
 
-    elementBtns.forEach(btn => {
+    elementBtns.forEach((btn) => {
       btn.addEventListener('mouseenter', () => {
         btn.style.transform = 'scale(1.1)';
         btn.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
@@ -275,7 +300,6 @@ class InteractiveMolarMassVisualizer {
 
       this.displayResult();
       errorDiv.style.display = 'none';
-
     } catch (error) {
       this.showError(error.message);
     }
@@ -290,7 +314,8 @@ class InteractiveMolarMassVisualizer {
     resultFormula.textContent = this.formula;
     resultMass.textContent = this.molarMass.toFixed(3);
 
-    let breakdownHTML = '<div class="element-breakdown-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">';
+    let breakdownHTML =
+      '<div class="element-breakdown-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">';
 
     this.selectedElements.forEach((count, element) => {
       const elementData = this.elements.get(element);
@@ -407,12 +432,10 @@ class InteractiveMolarMassVisualizer {
     document.head.appendChild(style);
   }
 
-  destroy() {
-
-  }
+  destroy() {}
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.molar-mass-visualizer')) {
     const molarVisualizer = new InteractiveMolarMassVisualizer();
     window.molarVisualizer = molarVisualizer;

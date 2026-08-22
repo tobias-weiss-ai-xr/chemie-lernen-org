@@ -12,7 +12,9 @@
 
 const ProgressTracker = {
   _progress: [],
-  async getAllProgress() { return this._progress; },
+  async getAllProgress() {
+    return this._progress;
+  },
   async getModuleStats() {
     const all = await this.getAllProgress();
     const stats = {};
@@ -26,9 +28,15 @@ const ProgressTracker = {
     });
     return stats;
   },
-  async getStreak() { return 0; },
-  async getAchievements() { return []; },
-  async unlockAchievement() { return true; },
+  async getStreak() {
+    return 0;
+  },
+  async getAchievements() {
+    return [];
+  },
+  async unlockAchievement() {
+    return true;
+  },
   yesterday() {
     const d = new Date();
     d.setDate(d.getDate() - 1);
@@ -101,8 +109,8 @@ const GamificationEngine = {
     const { xp, level } = await this.addXP(xpGained);
 
     for (const def of allDefs) {
-      const already = await ProgressTracker.getAchievements().then(
-        (list) => list.find((a) => a.id === def.id)
+      const already = await ProgressTracker.getAchievements().then((list) =>
+        list.find((a) => a.id === def.id)
       );
       if (already) continue;
       try {
@@ -123,28 +131,86 @@ const GamificationEngine = {
   },
 
   showNotification(message, icon, color) {
-    const container = document.getElementById('gamification-notifications') ||
+    const container =
+      document.getElementById('gamification-notifications') ||
       (() => {
         const el = document.createElement('div');
         el.id = 'gamification-notifications';
-        el.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;max-width:400px;';
+        el.style.cssText =
+          'position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;max-width:400px;';
         document.body.appendChild(el);
         return el;
       })();
     const notif = document.createElement('div');
     notif.className = 'gamification-toast';
-    notif.innerHTML = icon ? `<i class="fa ${icon}" style="font-size:1.5em;margin-right:10px;"></i>` : '';
+    notif.innerHTML = icon
+      ? `<i class="fa ${icon}" style="font-size:1.5em;margin-right:10px;"></i>`
+      : '';
     notif.innerHTML += `<span>${message}</span>`;
     container.appendChild(notif);
   },
 
   ACHIEVEMENT_DEFS: [
-    { id: 'first_exercise', name: 'Erste Schritte', description: 'Erste Übung abgeschlossen', icon: 'fa-star', condition: async () => { const all = await ProgressTracker.getAllProgress(); return all.length >= 1; } },
-    { id: 'ten_exercises', name: 'Fleißig', description: '10 Übungen gelöst', icon: 'fa-certificate', condition: async () => { const all = await ProgressTracker.getAllProgress(); return all.length >= 10; } },
-    { id: 'fifty_exercises', name: 'Chemie-Fuchs', description: '50 Übungen gelöst', icon: 'fa-graduation-cap', condition: async () => { const all = await ProgressTracker.getAllProgress(); return all.length >= 50; } },
-    { id: 'perfect_score', name: 'Perfektion', description: '100 % in einer Übung', icon: 'fa-trophy', condition: async () => { const all = await ProgressTracker.getAllProgress(); return all.some((e) => e.total > 0 && e.correct === e.total); } },
-    { id: 'streak_3', name: 'Dranbleiben', description: '3 Tage Lernserie', icon: 'fa-fire', condition: async () => { const streak = await ProgressTracker.getStreak(); return streak >= 3; } },
-    { id: 'streak_7', name: 'Woche voll', description: '7 Tage Lernserie', icon: 'fa-calendar-check-o', condition: async () => { const streak = await ProgressTracker.getStreak(); return streak >= 7; } },
+    {
+      id: 'first_exercise',
+      name: 'Erste Schritte',
+      description: 'Erste Übung abgeschlossen',
+      icon: 'fa-star',
+      condition: async () => {
+        const all = await ProgressTracker.getAllProgress();
+        return all.length >= 1;
+      },
+    },
+    {
+      id: 'ten_exercises',
+      name: 'Fleißig',
+      description: '10 Übungen gelöst',
+      icon: 'fa-certificate',
+      condition: async () => {
+        const all = await ProgressTracker.getAllProgress();
+        return all.length >= 10;
+      },
+    },
+    {
+      id: 'fifty_exercises',
+      name: 'Chemie-Fuchs',
+      description: '50 Übungen gelöst',
+      icon: 'fa-graduation-cap',
+      condition: async () => {
+        const all = await ProgressTracker.getAllProgress();
+        return all.length >= 50;
+      },
+    },
+    {
+      id: 'perfect_score',
+      name: 'Perfektion',
+      description: '100 % in einer Übung',
+      icon: 'fa-trophy',
+      condition: async () => {
+        const all = await ProgressTracker.getAllProgress();
+        return all.some((e) => e.total > 0 && e.correct === e.total);
+      },
+    },
+    {
+      id: 'streak_3',
+      name: 'Dranbleiben',
+      description: '3 Tage Lernserie',
+      icon: 'fa-fire',
+      condition: async () => {
+        const streak = await ProgressTracker.getStreak();
+        return streak >= 3;
+      },
+    },
+    {
+      id: 'streak_7',
+      name: 'Woche voll',
+      description: '7 Tage Lernserie',
+      icon: 'fa-calendar-check-o',
+      condition: async () => {
+        const streak = await ProgressTracker.getStreak();
+        return streak >= 7;
+      },
+    },
   ],
 };
 
@@ -155,9 +221,9 @@ const GamificationEngine = {
 beforeEach(() => {
   // Mock localStorage
   const store = {};
-  jest.spyOn(Storage.prototype, 'getItem').mockImplementation((key) =>
-    store[key] !== undefined ? store[key] : null
-  );
+  jest
+    .spyOn(Storage.prototype, 'getItem')
+    .mockImplementation((key) => (store[key] !== undefined ? store[key] : null));
   jest.spyOn(Storage.prototype, 'setItem').mockImplementation((key, val) => {
     store[key] = String(val);
   });
@@ -278,7 +344,9 @@ describe('GamificationEngine', () => {
 
     test('includes message text in toast', () => {
       GamificationEngine.showNotification('Level-Aufstieg!', null, '#4CAF50');
-      expect(document.getElementById('gamification-notifications').textContent).toContain('Level-Aufstieg!');
+      expect(document.getElementById('gamification-notifications').textContent).toContain(
+        'Level-Aufstieg!'
+      );
     });
   });
 });
@@ -355,8 +423,9 @@ describe('KI-Assistent (query validation)', () => {
   });
 
   test('accepts full chemistry questions', () => {
-    ['Was ist die molare Masse von Wasser?', 'Wie funktioniert das Periodensystem?']
-      .forEach((q) => expect(q.trim().length >= 5).toBe(true));
+    ['Was ist die molare Masse von Wasser?', 'Wie funktioniert das Periodensystem?'].forEach((q) =>
+      expect(q.trim().length >= 5).toBe(true)
+    );
   });
 
   test('rejects very short input', () => {

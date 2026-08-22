@@ -81,7 +81,7 @@ class QuizUserSystem {
       lastLogin: null,
       totalScore: 0,
       quizzesCompleted: 0,
-      achievements: []
+      achievements: [],
     };
 
     this.saveUsers();
@@ -107,9 +107,11 @@ class QuizUserSystem {
     this.saveUsers();
 
     // Dispatch custom event
-    window.dispatchEvent(new CustomEvent('userLogin', {
-      detail: { username: user.username, displayName: user.displayName }
-    }));
+    window.dispatchEvent(
+      new CustomEvent('userLogin', {
+        detail: { username: user.username, displayName: user.displayName },
+      })
+    );
 
     return { success: true, message: 'Erfolgreich eingeloggt!' };
   }
@@ -122,9 +124,11 @@ class QuizUserSystem {
       const username = this.currentUser.username;
       this.currentUser = null;
 
-      window.dispatchEvent(new CustomEvent('userLogout', {
-        detail: { username: username }
-      }));
+      window.dispatchEvent(
+        new CustomEvent('userLogout', {
+          detail: { username: username },
+        })
+      );
 
       return { success: true, message: 'Erfolgreich ausgeloggt!' };
     }
@@ -169,7 +173,7 @@ class QuizUserSystem {
     let hash = 0;
     for (let i = 0; i < password.length; i++) {
       const char = password.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
+      hash = (hash << 5) - hash + char;
       hash = hash & hash; // Convert to 32bit integer
     }
     return hash.toString(16);
@@ -192,7 +196,7 @@ class QuizUserSystem {
       percentage: percentage,
       timeSpent: timeSpent,
       hintsUsed: hintsUsed,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     // Add to high scores
@@ -210,12 +214,9 @@ class QuizUserSystem {
     });
 
     // Keep only top 100 scores per topic
-    const topicScores = this.highScores.filter(s => s.topicId === topicId);
-    const otherScores = this.highScores.filter(s => s.topicId !== topicId);
-    this.highScores = [
-      ...otherScores,
-      ...topicScores.slice(0, 100)
-    ];
+    const topicScores = this.highScores.filter((s) => s.topicId === topicId);
+    const otherScores = this.highScores.filter((s) => s.topicId !== topicId);
+    this.highScores = [...otherScores, ...topicScores.slice(0, 100)];
 
     this.saveHighScores();
 
@@ -228,7 +229,11 @@ class QuizUserSystem {
 
     this.saveUsers();
 
-    return { success: true, message: 'Ergebnis gespeichert!', rank: this.getRank(topicId, scoreEntry) };
+    return {
+      success: true,
+      message: 'Ergebnis gespeichert!',
+      rank: this.getRank(topicId, scoreEntry),
+    };
   }
 
   /**
@@ -236,23 +241,22 @@ class QuizUserSystem {
    */
   getRank(topicId, scoreEntry) {
     const topicScores = this.highScores
-      .filter(s => s.topicId === topicId)
+      .filter((s) => s.topicId === topicId)
       .sort((a, b) => {
         if (b.percentage !== a.percentage) return b.percentage - a.percentage;
-        if (a.timeSpent && b.timeSpent && a.timeSpent !== b.timeSpent) return a.timeSpent - b.timeSpent;
+        if (a.timeSpent && b.timeSpent && a.timeSpent !== b.timeSpent)
+          return a.timeSpent - b.timeSpent;
         return a.hintsUsed - b.hintsUsed;
       });
 
-    return topicScores.findIndex(s => s.id === scoreEntry.id) + 1;
+    return topicScores.findIndex((s) => s.id === scoreEntry.id) + 1;
   }
 
   /**
    * Get high scores for a topic
    */
   getHighScores(topicId, limit = 10) {
-    return this.highScores
-      .filter(s => s.topicId === topicId)
-      .slice(0, limit);
+    return this.highScores.filter((s) => s.topicId === topicId).slice(0, limit);
   }
 
   /**
@@ -262,20 +266,18 @@ class QuizUserSystem {
     const user = username || this.currentUser?.username;
     if (!user) return [];
 
-    return this.highScores.filter(s => s.username === user);
+    return this.highScores.filter((s) => s.username === user);
   }
 
   /**
    * Get leaderboard
    */
   getLeaderboard(topicId = null, limit = 10) {
-    let scores = topicId
-      ? this.highScores.filter(s => s.topicId === topicId)
-      : this.highScores;
+    let scores = topicId ? this.highScores.filter((s) => s.topicId === topicId) : this.highScores;
 
     // Group by user and calculate total score
     const userTotals = {};
-    scores.forEach(score => {
+    scores.forEach((score) => {
       if (!userTotals[score.username]) {
         userTotals[score.username] = {
           username: score.username,
@@ -283,7 +285,7 @@ class QuizUserSystem {
           totalScore: 0,
           quizzesCompleted: 0,
           averagePercentage: 0,
-          totalPercentage: 0
+          totalPercentage: 0,
         };
       }
       userTotals[score.username].totalScore += score.score;
@@ -292,7 +294,7 @@ class QuizUserSystem {
     });
 
     // Calculate averages
-    Object.values(userTotals).forEach(user => {
+    Object.values(userTotals).forEach((user) => {
       user.averagePercentage = Math.round(user.totalPercentage / user.quizzesCompleted);
     });
 
@@ -317,7 +319,7 @@ class QuizUserSystem {
         id: 'first-quiz',
         title: 'Erste Schritte',
         description: 'Erstes Quiz abgeschlossen',
-        icon: '🎯'
+        icon: '🎯',
       });
     }
 
@@ -327,57 +329,56 @@ class QuizUserSystem {
         id: 'quiz-master',
         title: 'Quiz-Meister',
         description: '10 Quizze abgeschlossen',
-        icon: '🏆'
+        icon: '🏆',
       });
     }
 
     // Perfect score (100%)
-    const recentPerfectScores = this.getUserScores()
-      .filter(s => s.percentage === 100)
-      .length;
+    const recentPerfectScores = this.getUserScores().filter((s) => s.percentage === 100).length;
     if (recentPerfectScores > 0 && !achievements.includes('perfect-score')) {
       newAchievements.push({
         id: 'perfect-score',
         title: 'Perfektionist',
         description: 'Ein Quiz mit 100% abgeschlossen',
-        icon: '💯'
+        icon: '💯',
       });
     }
 
     // Speed demon (completed under time limit)
-    const fastScores = this.getUserScores()
-      .filter(s => s.timeSpent && s.timeSpent < 300 && s.percentage >= 80); // Under 5 minutes
+    const fastScores = this.getUserScores().filter(
+      (s) => s.timeSpent && s.timeSpent < 300 && s.percentage >= 80
+    ); // Under 5 minutes
     if (fastScores.length > 0 && !achievements.includes('speed-demon')) {
       newAchievements.push({
         id: 'speed-demon',
         title: 'Geschwindigkeitsdämon',
         description: 'Quiz in unter 5 Minuten mit 80%+ abgeschlossen',
-        icon: '⚡'
+        icon: '⚡',
       });
     }
 
     // No hints used
-    const noHintsScores = this.getUserScores()
-      .filter(s => s.hintsUsed === 0 && s.percentage >= 90);
+    const noHintsScores = this.getUserScores().filter(
+      (s) => s.hintsUsed === 0 && s.percentage >= 90
+    );
     if (noHintsScores.length > 0 && !achievements.includes('no-hints')) {
       newAchievements.push({
         id: 'no-hints',
         title: 'Alleinunternehmer',
         description: 'Quiz ohne Hinweise mit 90%+ abgeschlossen',
-        icon: '🧠'
+        icon: '🧠',
       });
     }
 
     // Add new achievements
     if (newAchievements.length > 0) {
-      this.currentUser.achievements = [
-        ...achievements,
-        ...newAchievements.map(a => a.id)
-      ];
+      this.currentUser.achievements = [...achievements, ...newAchievements.map((a) => a.id)];
 
-      window.dispatchEvent(new CustomEvent('achievementsUnlocked', {
-        detail: { achievements: newAchievements }
-      }));
+      window.dispatchEvent(
+        new CustomEvent('achievementsUnlocked', {
+          detail: { achievements: newAchievements },
+        })
+      );
     }
   }
 
@@ -392,34 +393,34 @@ class QuizUserSystem {
       'first-quiz': {
         title: 'Erste Schritte',
         description: 'Erstes Quiz abgeschlossen',
-        icon: '🎯'
+        icon: '🎯',
       },
       'quiz-master': {
         title: 'Quiz-Meister',
         description: '10 Quizze abgeschlossen',
-        icon: '🏆'
+        icon: '🏆',
       },
       'perfect-score': {
         title: 'Perfektionist',
         description: 'Ein Quiz mit 100% abgeschlossen',
-        icon: '💯'
+        icon: '💯',
       },
       'speed-demon': {
         title: 'Geschwindigkeitsdämon',
         description: 'Quiz in unter 5 Minuten mit 80%+ abgeschlossen',
-        icon: '⚡'
+        icon: '⚡',
       },
       'no-hints': {
         title: 'Alleinunternehmer',
         description: 'Quiz ohne Hinweise mit 90%+ abgeschlossen',
-        icon: '🧠'
-      }
+        icon: '🧠',
+      },
     };
 
     const userData = this.users[user];
     if (!userData) return [];
 
-    return (userData.achievements || []).map(id => allAchievements[id]).filter(Boolean);
+    return (userData.achievements || []).map((id) => allAchievements[id]).filter(Boolean);
   }
 
   /**
@@ -436,16 +437,18 @@ class QuizUserSystem {
     delete this.users[username];
 
     // Remove user's high scores
-    this.highScores = this.highScores.filter(s => s.username !== username);
+    this.highScores = this.highScores.filter((s) => s.username !== username);
 
     this.saveUsers();
     this.saveHighScores();
 
     this.currentUser = null;
 
-    window.dispatchEvent(new CustomEvent('userAccountDeleted', {
-      detail: { username: username }
-    }));
+    window.dispatchEvent(
+      new CustomEvent('userAccountDeleted', {
+        detail: { username: username },
+      })
+    );
 
     return { success: true, message: 'Konto gelöscht!' };
   }
@@ -453,7 +456,7 @@ class QuizUserSystem {
 
 // Global user system instance
 const quizUserSystem = new QuizUserSystem({
-  storageKey: 'chemie-lernen-users'
+  storageKey: 'chemie-lernen-users',
 });
 
 // Export for use in other scripts

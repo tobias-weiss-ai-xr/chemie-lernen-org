@@ -2,6 +2,7 @@
 title: "Imprint"
 description: "Impressum von chemie-lernen.org – Angaben gemäß §5 TMG und Kontaktinformationen."
 date: 2025-12-22T12:00:00+01:00
+last_reviewed: 2026-08-06
 draft: false
 type: "page"
 toc: false
@@ -92,6 +93,12 @@ The protection of your personal data is important to me. This website generally 
 Soweit nicht anders angegeben, sind alle Bilder und Grafiken auf dieser Webseite Eigentum von Tobias Weiß oder unterliegen Lizenzfreien Verwendungsrechten.
 
 Unless otherwise noted, all images and graphics on this website are the property of Tobias Weiß or are subject to license-free usage rights.
+
+## Lernvideos / Video Credits
+
+Die auf dieser Webseite eingebetteten Lernvideos stammen vom YouTube-Kanal **„Zig's Chemistry 42“** von **Prof. Siegfried Schindler** (Justus-Liebig-Universität Gießen): https://www.youtube.com/@ZigsChemistry42. Die Videos sind **nicht Eigentum dieser Webseite**; alle Rechte an den Videos liegen beim jeweiligen Urheber bzw. bei YouTube. Die Einbettung erfolgt ausschließlich zu Lernzwecken mit freundlicher Unterstützung des Kanals.
+
+The learning videos embedded on this website originate from the YouTube channel **“Zig's Chemistry 42”** by **Prof. Siegfried Schindler** (Justus-Liebig-Universität Gießen): https://www.youtube.com/@ZigsChemistry42. The videos are **not owned by this website**; all rights to the videos remain with the respective creator and YouTube. They are embedded solely for educational purposes with the channel's kind support.
 
 ---
 

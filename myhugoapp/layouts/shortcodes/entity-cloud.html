@@ -1,0 +1,12 @@
+{{/* shortcode: entity-cloud — Entity tag cloud for a Themenbereich
+    Usage: {{< entity-cloud slug="saeuren-basen" title="Verwandte Fachbegriffe" >}}
+    Reads from myhugoapp/data/themenbereich-entities.json
+*/}}
+{{ $slug := .Get "slug" | default "" }}
+{{ $title := .Get "title" | default "Verwandte Fachbegriffe" }}
+{{ $data := .Site.Data.themenbereich_entities }}
+{{ $entities := index $data $slug }}
+
+{{ if $entities }}
+{{ partial "entity-cloud.html" (dict "entities" $entities "title" $title) }}
+{{ end }}

@@ -1,6 +1,7 @@
 {{ define "title" }}Molekülstudio{{ end }}
 
 {{ define "css" }}
+<link rel="stylesheet" href="{{ "/css/premium.css" | relURL }}">
 <style>
     #molecule-studio-container {
         width: 100%;
@@ -351,6 +352,7 @@
         <p>• Ziehen zum Drehen</p>
         <p>• Mausrad zum Zoomen</p>
     </div>
+
 </div>
 {{ end }}
 
@@ -438,6 +440,7 @@
         console.log('Molecule Studio UI initialized');
     })();
 </script>
+
 <script type="importmap">
 {
     "imports": {

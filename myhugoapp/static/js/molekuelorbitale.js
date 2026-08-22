@@ -2,7 +2,9 @@
   let scene, camera, renderer, controls;
   let moleculeGroup;
   let orbitalMeshes = [];
+  // eslint-disable-next-line sonarjs/no-unused-collection
   let atoms = [];
+  // eslint-disable-next-line sonarjs/no-unused-collection
   let bonds = [];
   let rotationEnabled = false;
   let currentMolecule = 'methane';

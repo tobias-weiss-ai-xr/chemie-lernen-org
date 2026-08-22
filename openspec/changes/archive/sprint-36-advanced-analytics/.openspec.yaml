@@ -1,0 +1,8 @@
+name: sprint-36-advanced-analytics
+title: "Sprint 36: Advanced Analytics Dashboard (Lehrenden Premium)"
+status: active
+created: 2026-07-25
+sprints: [36]
+capabilities:
+  - analytics-dashboard
+  - gamification

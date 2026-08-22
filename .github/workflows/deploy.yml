@@ -10,7 +10,9 @@ on:
   workflow_dispatch:
 
 env:
-  REGISTRY: registry.chemie-lernen.org
+  REGISTRY: ghcr.io
+  HUGO_IMAGE: ghcr.io/${{ github.repository_owner }}/chemie-hugo
+  CHAT_IMAGE: ghcr.io/${{ github.repository_owner }}/chemie-chat-api
 
 jobs:
   test:
@@ -18,6 +20,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+
+      - name: Vendor proprietary core (private chemie-core repo)
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.CORE_DEPLOY_KEY }}" > ~/.ssh/chemie_core_deploy
+          chmod 600 ~/.ssh/chemie_core_deploy
+          scripts/vendor-core.sh
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
@@ -28,6 +37,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install API dependencies (api/ has its own package.json)
+        run: npm ci --prefix api
+
+      - name: Run npm audit (critical only)
+        run: npm audit --audit-level=critical || echo '[CI] npm audit found critical/high issues (non-fatal)'
+
       - name: Run linter
         run: npm run lint
 
@@ -37,32 +52,48 @@ jobs:
   build-and-deploy:
     needs: test
     runs-on: [self-hosted, legion]
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Vendor proprietary core (private chemie-core repo)
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.CORE_DEPLOY_KEY }}" > ~/.ssh/chemie_core_deploy
+          chmod 600 ~/.ssh/chemie_core_deploy
+          scripts/vendor-core.sh
+
       - name: Export KG data from Neo4j
-        run: node scripts/export-kg-data.mjs || echo '[CI] Neo4j export skipped (non-fatal)'
+        run: NODE_PATH=api/node_modules node scripts/export-kg-data.mjs || echo '[CI] Neo4j export skipped (non-fatal)'
+
+      - name: Validate curriculum data quality
+        run: node scripts/validate-curricula.mjs
 
       - name: Generate entity pages from KG data
         run: node scripts/generate-entity-pages.mjs
 
+      - name: Fetch Zig's Chemistry 42 videos (auto-update /lernvideos/)
+        run: node scripts/fetch-zigs-videos.mjs || echo '[CI] Zig video feed fetch skipped (non-fatal)'
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
 
-      - name: Log in to private registry
+      - name: Log in to GitHub Container Registry
         uses: docker/login-action@v4
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ secrets.REGISTRY_USER }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate image tags
         id: meta
         run: |
           SHORT_SHA="${GITHUB_SHA::7}"
-          echo "hugo_tags=${{ env.REGISTRY }}/chemie-lernen-org:latest,${{ env.REGISTRY }}/chemie-lernen-org:${SHORT_SHA}" >> "$GITHUB_OUTPUT"
-          echo "chat_tags=${{ env.REGISTRY }}/chemie-chat-api:latest,${{ env.REGISTRY }}/chemie-chat-api:${SHORT_SHA}" >> "$GITHUB_OUTPUT"
+          echo "hugo_tags=${{ env.HUGO_IMAGE }}:latest,${{ env.HUGO_IMAGE }}:${SHORT_SHA}" >> "$GITHUB_OUTPUT"
+          echo "chat_tags=${{ env.CHAT_IMAGE }}:latest,${{ env.CHAT_IMAGE }}:${SHORT_SHA}" >> "$GITHUB_OUTPUT"
 
       - name: Build and push Hugo image
         uses: docker/build-push-action@v7
@@ -70,8 +101,7 @@ jobs:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.hugo_tags }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/chemie-lernen-org:latest
-          cache-to: type=inline
+          cache-from: type=registry,ref=${{ env.HUGO_IMAGE }}:latest
 
       - name: Build and push Chat-API image
         uses: docker/build-push-action@v7
@@ -80,8 +110,17 @@ jobs:
           file: ./api/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.chat_tags }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/chemie-chat-api:latest
-          cache-to: type=inline
+          cache-from: type=registry,ref=${{ env.CHAT_IMAGE }}:latest
+
+      - name: Make ghcr images public (server pulls without registry creds)
+        run: |
+          for pkg in chemie-hugo chemie-chat-api; do
+            curl -sS -X PATCH \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/user/packages/container/$pkg/visibility" \
+              -d '{"visibility":"public"}' || echo "warn: could not set $pkg public"
+          done
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.5
@@ -94,10 +133,18 @@ jobs:
             set -e
             echo "=== Pulling latest compose config from git ==="
             cd /opt/git/hugo-chemie-lernen-org
-            git pull --quiet
-            echo "=== Pulling new images from registry ==="
-            docker pull ${{ env.REGISTRY }}/chemie-lernen-org:latest
-            docker pull ${{ env.REGISTRY }}/chemie-chat-api:latest
+            # Robust sync: fetch + hard reset never produces merge conflicts
+            # (stash/pull/pop left the tree in a conflicted state and blocked
+            # deploys for a week). Stash first so local-only files survive.
+            git fetch origin master
+            git stash push -q --include-untracked -m "deploy-sync" 2>/dev/null || true
+            git reset --hard origin/master
+            git stash pop -q 2>/dev/null || true
+            echo "=== Pulling new images from GitHub Container Registry ==="
+            docker pull ghcr.io/${{ github.repository_owner }}/chemie-hugo:latest
+            docker pull ghcr.io/${{ github.repository_owner }}/chemie-chat-api:latest
+            echo "=== Removing stale web containers (avoid name conflict on recreate) ==="
+            docker rm -f hugo-chemie-lernen-org chemie-chat-api 2>/dev/null || true
             echo "=== Recreating containers ==="
             docker compose up -d hugo-chemie-lernen-org
             docker compose up -d chemie-chat-api
@@ -127,13 +174,27 @@ jobs:
               echo "❌ SMOKE FAIL: /api/health missing status=ok (body: $HEALTH_BODY)"; exit 1
             fi
             echo "  ✓ /api/health status=ok"
-            # 6. /api/kg-stats returns valid JSON
-            STATS_BODY=$(curl -sf "$API/api/kg-stats" -m 30)
-            if [ -z "$STATS_BODY" ]; then echo "❌ SMOKE FAIL: /api/kg-stats empty body"; exit 1; fi
-            if ! echo "$STATS_BODY" | python3 -c 'import sys, json; json.loads(sys.stdin.read())' 2>/dev/null; then
-              echo "❌ SMOKE FAIL: /api/kg-stats not valid JSON"; exit 1
+            # 5b. Email delivery status (password-reset mails) — WARN, do not block deploy
+            EMAIL_STATE=$(echo "$HEALTH_BODY" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("email",{}).get("state","missing"))' 2>/dev/null || echo missing)
+            if [ "$EMAIL_STATE" = "ready" ]; then
+              echo "  ✓ email: ready"
+            elif [ "$EMAIL_STATE" = "placeholder" ]; then
+              echo "  ⚠️ SMOKE WARN: SMTP_PASSWORD in .env is a placeholder — password-reset emails will NOT send. Set the real mailbox password (1blu panel) and redeploy."
+            else
+              echo "  ⚠️ SMOKE WARN: email state=$EMAIL_STATE — password-reset emails may not send (see /api/health email.lastError)"
             fi
-            echo "  ✓ /api/kg-stats returns valid JSON"
+            # 6. /api/kg-stats returns valid JSON (skip if Neo4j is down)
+            NEO4J_UP=$(echo "$HEALTH_BODY" | grep -o '"neo4j":"[^"]*"' | grep -v 'unavailable' || true)
+            if [ -n "$NEO4J_UP" ]; then
+              STATS_BODY=$(curl -sf "$API/api/kg-stats" -m 30)
+              if [ -z "$STATS_BODY" ]; then echo "❌ SMOKE FAIL: /api/kg-stats empty body"; exit 1; fi
+              if ! echo "$STATS_BODY" | python3 -c 'import sys, json; json.loads(sys.stdin.read())' 2>/dev/null; then
+                echo "❌ SMOKE FAIL: /api/kg-stats not valid JSON"; exit 1
+              fi
+              echo "  ✓ /api/kg-stats returns valid JSON"
+            else
+              echo "  ⚠ /api/kg-stats skipped (Neo4j unavailable — non-fatal)"
+            fi
             # 7. /api/chat rejects empty body with 400 (NOT 500)
             CHAT_CODE=$(curl -s -X POST "$API/api/chat" \
               -H "Content-Type: application/json" \
@@ -144,6 +205,18 @@ jobs:
             fi
             echo "  ✓ /api/chat validates input (400 on empty body)"
             echo "=== Smoke tests passed ==="
+            echo "=== Pinging healthchecks.io ==="
+            curl -fsS -m 10 "${{ secrets.HEALTHCHECKS_IO_URL || 'https://hc-ping.com/chemi-deploy-ok' }}" \
+              --data-raw "status=ok smoke-tests-passed $(date)" || echo "healthchecks.io ping skipped (non-fatal)"
             echo "=== Cleaning up old images ==="
             docker image prune -f
             echo "=== Deploy complete ==="
+            echo "=== Ensuring Hubs stack is up (hubs.chemie-lernen.org) ==="
+            if [ -f /opt/git/hugo-chemie-lernen-org/scripts/hubs-up.sh ]; then
+              echo "Restarting Mozilla Hubs stack via hubs-up.sh (requires sudo for /etc/hosts)..."
+              cd /opt/git/hugo-chemie-lernen-org
+              export HUBS_DIR=/opt/containers/hubs-compose
+              sudo timeout 900 bash scripts/hubs-up.sh up || echo "warn: hubs-up.sh failed (non-fatal)"
+            else
+              echo "warn: scripts/hubs-up.sh not found, cannot restart hubs stack"
+            fi

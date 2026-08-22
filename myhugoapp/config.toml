@@ -25,12 +25,12 @@ enableRobotsTXT = true
 [params]
   github = "tobias-weiss-ai-xr"
   custom_css = ["css/custom.css", "css/dark-mode.css"]
-  custom_js = ["js/dark-mode.js"]
+  custom_js = ["js/theme-switcher.js"]
   defaultImage = "recent-article_001.jpg"
   footer_description = "chemie-lernen.org - Ihre Plattform für innovatives Chemie-Lernen. Chemische Grundlagen und Konzepte greifbar und erlebbar."
 
 [params.meta]
-  keywords = "chemie-lernen.org, VR Chemieunterricht, Virtual Reality Bildung, Chemie lernen online, interaktiver Chemieunterricht, digitale Bildung, Chemie studieren, innovative Chemie, immersive Bildung"
+  keywords = "chemie-lernen.org, Chemie lernen online, interaktiver Chemieunterricht, digitale Bildung, Chemie studieren, Chemie-Rechner, Periodensystem 3D"
 
 author = "chemie-lernen.org Team"
 
@@ -326,6 +326,12 @@ author = "chemie-lernen.org Team"
     parent = "visualisierungen"
     weight = 57
     icon = "⚠️"
+[[menu.main]]
+    name = "Lernräume (3D)"
+    url = "/pages/lernraeume-in-hubs/"
+    parent = "visualisierungen"
+    weight = 58
+    icon = "🕶️"
 
 # ── Lehrende ─────────────────────────────────────────
 [[menu.main]]
@@ -349,7 +355,7 @@ author = "chemie-lernen.org Team"
     icon = "✏️"
 [[menu.main]]
     name = "Lernpfad"
-    url = "/lernpfad/"
+    url = "/lernpfade/"
     parent = "lehrende"
     weight = 83
     icon = "🗺️"
@@ -408,4 +414,11 @@ author = "chemie-lernen.org Team"
     url = "/modulhandbuecher/"
     parent = "mehr"
     weight = 94
+
+[[menu.main]]
+    name = "Lernvideos"
+    url = "/lernvideos/"
+    parent = "mehr"
+    weight = 95
+    icon = "🎬"
 

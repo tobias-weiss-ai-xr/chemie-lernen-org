@@ -1,5 +1,6 @@
 ---
 title: 'Registrieren'
+last_reviewed: 2026-08-06
 description: 'Erstelle ein kostenloses Konto für chemie-lernen.org'
 layout: 'register'
 noindex: true

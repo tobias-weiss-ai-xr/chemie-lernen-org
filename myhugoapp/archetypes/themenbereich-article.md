@@ -17,6 +17,7 @@ EINLEITUNG: Warum ist dieses Thema wichtig? (2-3 Sätze)
 **Definition**: Klare Definition der zentralen Begriffe.
 
 Die wichtigsten Eigenschaften sind:
+
 - Eigenschaft 1 mit Beispiel
 - Eigenschaft 2 mit Erklärung
 - Eigenschaft 3 mit praktischer Anwendung
@@ -31,6 +32,7 @@ $$Gleichung$$
 ## Praktische Anwendung
 
 Dieses Konzept ist wichtig für:
+
 1. Anwendung im Labor
 2. Industrielle Nutzung
 3. Alltagsbezug
@@ -38,6 +40,7 @@ Dieses Konzept ist wichtig für:
 ## Lernziele
 
 Nach diesem Artikel sollten Sie:
+
 - Lernziel 1
 - Lernziel 2
 

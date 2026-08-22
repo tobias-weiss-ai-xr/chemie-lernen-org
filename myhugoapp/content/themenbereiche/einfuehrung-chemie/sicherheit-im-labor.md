@@ -23,6 +23,12 @@ Im **Notfall** gilt: Bei Hautkontakt sofort mit viel Wasser spülen (mindestens 
 
 Verwandte Seiten: [Gefahrstoffkennzeichnung](/gefahrstoffkennzeichnung/) | [Laborgeräte-Explorer](/laborgeraete-explorer/)
 
+## 📺 Lernvideo
+
+{{< youtube id="xuopQTjCJlA" title="Praktikum: Handschuhe richtig verwenden" >}}
+**Lernvideo-Illustration:** _Einführung in die Chemie, Video zum Praktikum – Handschuhe_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) zeigt die richtige Verwendung von Schutzhandschuhen im chemischen Grundpraktikum.
+{{< /youtube >}}
+
 ## Übungen
 
 1.  Ordne den folgenden Gefahren die passenden GHS-Piktogramme zu: (a) eine brennbare Flüssigkeit, (b) ein ätzendes Gas, (c) ein akut toxischer Feststoff, (d) ein umweltgefährdendes Pestizid. Beschreibe jedes Piktogramm kurz.

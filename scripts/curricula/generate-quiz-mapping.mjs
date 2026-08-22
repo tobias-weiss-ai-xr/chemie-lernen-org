@@ -15,13 +15,49 @@ const DATA_DIR = resolve(__dirname, '../../myhugoapp/data/curricula');
 
 // Cloze categories → normalized topic keywords
 const QUIZ_MAP = [
-  { category: 'atom', label: 'Atommodelle und Kernchemie', keywords: ['atom', 'kernchemie', 'radioaktivität', 'kern', 'isotop'] },
-  { category: 'bindungen', label: 'Chemische Bindungen', keywords: ['bindung', 'bindungen', 'molekül', 'orbital', 'hybridisierung'] },
-  { category: 'saeuren-basen', label: 'Säuren und Basen', keywords: ['säure', 'base', 'ph-wert', 'neutralisation', 'saeure', 'titration'] },
-  { category: 'redox', label: 'Redoxreaktionen', keywords: ['redox', 'oxidation', 'reduktion', 'elektrochemie', 'spannungsreihe', 'elektrolyse'] },
-  { category: 'stoechiometrie', label: 'Stöchiometrie', keywords: ['stöchiometrie', 'stoechiometrie', 'mol', 'molar', 'stoffmenge'] },
-  { category: 'organik', label: 'Organische Chemie', keywords: ['organisch', 'kohlenwasserstoff', 'alkohol', 'aldehyd', 'carbonsäure', 'polymer', 'kunststoff'] },
-  { category: 'pse', label: 'Periodensystem', keywords: ['periodensystem', 'pse', 'element', 'hauptgruppe', 'periode'] },
+  {
+    category: 'atom',
+    label: 'Atommodelle und Kernchemie',
+    keywords: ['atom', 'kernchemie', 'radioaktivität', 'kern', 'isotop'],
+  },
+  {
+    category: 'bindungen',
+    label: 'Chemische Bindungen',
+    keywords: ['bindung', 'bindungen', 'molekül', 'orbital', 'hybridisierung'],
+  },
+  {
+    category: 'saeuren-basen',
+    label: 'Säuren und Basen',
+    keywords: ['säure', 'base', 'ph-wert', 'neutralisation', 'saeure', 'titration'],
+  },
+  {
+    category: 'redox',
+    label: 'Redoxreaktionen',
+    keywords: ['redox', 'oxidation', 'reduktion', 'elektrochemie', 'spannungsreihe', 'elektrolyse'],
+  },
+  {
+    category: 'stoechiometrie',
+    label: 'Stöchiometrie',
+    keywords: ['stöchiometrie', 'stoechiometrie', 'mol', 'molar', 'stoffmenge'],
+  },
+  {
+    category: 'organik',
+    label: 'Organische Chemie',
+    keywords: [
+      'organisch',
+      'kohlenwasserstoff',
+      'alkohol',
+      'aldehyd',
+      'carbonsäure',
+      'polymer',
+      'kunststoff',
+    ],
+  },
+  {
+    category: 'pse',
+    label: 'Periodensystem',
+    keywords: ['periodensystem', 'pse', 'element', 'hauptgruppe', 'periode'],
+  },
 ];
 
 // Load content-links.json to find matching curriculum topics
@@ -58,5 +94,7 @@ const outPath = resolve(DATA_DIR, 'quiz-mapping.json');
 writeFileSync(outPath, JSON.stringify(result, null, 2), 'utf-8');
 console.log(`Quiz mapping generated: ${result.length} categories`);
 for (const q of result) {
-  console.log(`  ${q.category} (${q.label}): ${q.topicCount} topics → ${q.exampleTopics.join(', ')}`);
+  console.log(
+    `  ${q.category} (${q.label}): ${q.topicCount} topics → ${q.exampleTopics.join(', ')}`
+  );
 }

@@ -1,0 +1,43 @@
+# ============================================================
+# KG Quality Audit — monatlich (Säule 5 der KG-Roadmap)
+# Führt das kg-quality-audit.mjs auf dem Server (chemie-kg)
+# aus. Der Job schlägt fehl, wenn Regressions-Schwellen
+# überschritten werden (→ GitHub meldet den Fehlschlag).
+# Manuell triggerbar via workflow_dispatch.
+#
+# Läuft wie deploy.yml per SSH zum Server — die Docker-Container
+# (chemie-kg, chemie-chat-api) leben auf dem Zielhost, nicht auf
+# dem GitHub-Runner.
+# ============================================================
+name: KG Quality Audit
+
+on:
+  schedule:
+    # Monatlich am 1. um 05:30 UTC
+    - cron: '30 5 1 * *'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: [self-hosted, legion]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Run KG quality audit on server
+        uses: appleboy/ssh-action@v1.2.5
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT || '22' }}
+          command_timeout: '10m'
+          script: |
+            set -e
+            cd /opt/git/hugo-chemie-lernen-org
+            echo "=== KG Quality Audit ==="
+            cat scripts/kg-quality-audit.mjs | docker exec -i chemie-chat-api node - \
+              --fail-on isolated=1 \
+              --fail-on duplicateGroups=1 \
+              --fail-on noDescription=30 \
+              --fail-on noCurriculumLink=320

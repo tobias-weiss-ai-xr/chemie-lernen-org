@@ -113,13 +113,13 @@ function initDOMCache() {
   domCache.binding.canvas = document.getElementById('binding-canvas');
 
   domCache.reaction.typ = document.getElementById('reaktions-typ');
-  domCache.reaktion.beispiel = document.getElementById('beispiel-reaktion');
-  domCache.reaktion.formel = document.getElementById('reaktion-formel');
-  domCache.reaktion.eduktEnergie = document.getElementById('edukt-energie');
-  domCache.reaktion.produktEnergie = document.getElementById('produkt-energie');
-  domCache.reaktion.reaktionsenthalpie = document.getElementById('reaktionsenthalpie');
-  domCache.reaktion.reaktionstypText = document.getElementById('reaktionstyp-text');
-  domCache.reaktion.canvas = document.getElementById('reaction-canvas');
+  domCache.reaction.beispiel = document.getElementById('beispiel-reaktion');
+  domCache.reaction.formel = document.getElementById('reaktion-formel');
+  domCache.reaction.eduktEnergie = document.getElementById('edukt-energie');
+  domCache.reaction.produktEnergie = document.getElementById('produkt-energie');
+  domCache.reaction.reaktionsenthalpie = document.getElementById('reaktionsenthalpie');
+  domCache.reaction.reaktionstypText = document.getElementById('reaktionstyp-text');
+  domCache.reaction.canvas = document.getElementById('reaction-canvas');
 
   domCache.activation.temperatur = document.getElementById('temperatur');
   domCache.activation.tempDisplay = document.getElementById('temp-display');
@@ -329,7 +329,7 @@ function toggleGrid() {
 }
 
 function updateReactionData() {
-  const reactionType = domCache.reaktion.typ.value;
+  const reactionType = domCache.reaction.typ.value;
 
   const typeText = {
     exotherm: 'Exotherm - Energie wird freigesetzt',
@@ -337,20 +337,20 @@ function updateReactionData() {
     neutral: 'Thermoneutral - Keine Energieänderung',
   };
 
-  domCache.reaktion.reaktionstypText.textContent = typeText[reactionType];
+  domCache.reaction.reaktionstypText.textContent = typeText[reactionType];
   drawReactionDiagram();
 }
 
 function loadExampleReaction() {
-  const reactionKey = domCache.reaktion.beispiel.value;
+  const reactionKey = domCache.reaction.beispiel.value;
   const reaction = REACTION_DATA[reactionKey];
 
   if (reaction) {
-    domCache.reaktion.formel.textContent = reaction.equation;
-    domCache.reaktion.eduktEnergie.textContent = `${reaction.reactants} kJ/mol`;
-    domCache.reaktion.produktEnergie.textContent = `${reaction.products} kJ/mol`;
-    domCache.reaktion.reaktionsenthalpie.textContent = `${reaction.deltaH} kJ/mol`;
-    domCache.reaktion.reaktionsenthalpie.className =
+    domCache.reaction.formel.textContent = reaction.equation;
+    domCache.reaction.eduktEnergie.textContent = `${reaction.reactants} kJ/mol`;
+    domCache.reaction.produktEnergie.textContent = `${reaction.products} kJ/mol`;
+    domCache.reaction.reaktionsenthalpie.textContent = `${reaction.deltaH} kJ/mol`;
+    domCache.reaction.reaktionsenthalpie.className =
       reaction.deltaH < 0 ? 'value large highlight' : 'value large';
 
     const typeText =
@@ -359,14 +359,14 @@ function loadExampleReaction() {
         : reaction.type === 'endotherm'
           ? 'Endotherm - Energie wird aufgenommen'
           : 'Thermoneutral - Keine Energieänderung';
-    domCache.reaktion.reaktionstypText.textContent = typeText;
+    domCache.reaction.reaktionstypText.textContent = typeText;
 
     drawReactionDiagram();
   }
 }
 
 function drawReactionDiagram() {
-  const canvas = domCache.reaktion.canvas;
+  const canvas = domCache.reaction.canvas;
   if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
@@ -379,12 +379,11 @@ function drawReactionDiagram() {
   const graphWidth = width - 2 * padding;
   const graphHeight = height - 2 * padding;
 
-  const exampleKey = domCache.reaktion.beispiel.value;
+  const exampleKey = domCache.reaction.beispiel.value;
   const reaction = REACTION_DATA[exampleKey] || REACTION_DATA['ch4-combustion'];
 
   const reactantEnergy = reaction.reactants;
   const productEnergy = reaction.products;
-  const deltaH = reaction.deltaH;
 
   const maxEnergy = Math.max(reactantEnergy, productEnergy) + 200;
   const minEnergy = Math.min(reactantEnergy, productEnergy) - 200;

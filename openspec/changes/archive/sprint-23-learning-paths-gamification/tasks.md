@@ -1,0 +1,16 @@
+- [x] 23.1 Define Neo4j curriculum schema: create `Curriculum`, `Topic`, `SubTopic`, `LearningObjective` labels with `PREREQUISITE` and `COVERED_BY` relationships via Cypher migration script
+- [x] 23.2 Create `GET /api/learning-paths` — returns all curricula with topic count and user progress % per path
+- [x] 23.3 Create `GET /api/learning-paths/:slug` — returns full tree with objectives, prerequisites, per-objective completion status
+- [x] 23.4 Add XP field to auth-db user schema: `gamification.xp`, `gamification.level`, `gamification.streak`, `gamification.lastCheckin`, `gamification.badges[]`, `gamification.completedObjectives[]`
+- [x] 23.5 Implement XP award system: award XP on quiz submit, exercise correct, daily checkin, content page visit. Enforce daily caps.
+- [x] 23.6 Create `POST /api/gamification/checkin` — records daily check-in, manages streak (including freeze mechanic), awards +20 XP
+- [x] 23.7 Create `GET /api/gamification/profile` — returns XP, level, streak days, badge collection, completion stats
+- [x] 23.8 Create `GET /api/gamification/badges` — returns all 10 badges with unlock criteria, earned status, earned date
+- [x] 23.9 Implement badge unlock logic: check all badge criteria on XP awards and quiz completions, auto-unlock when conditions met
+- [x] 23.10 Install `pdfkit` and create `POST /api/learning-paths/:slug/certificate` — generates PDF certificate for completed paths
+- [x] 23.11 Frontend: progress dashboard page — path tree with progress bars, XP bar with level, badge grid (earned + locked), streak flame
+- [x] 23.12 Frontend: badge notification toast — popup when a new badge is unlocked with badge name + XP bonus
+- [x] 23.13 Frontend: "Next recommended topic" home page widget — suggests next learning objective based on prerequisites
+- [x] 23.14 Update `openspec/specs/central-kg-architecture/spec.md` with Curriculum/Topic/SubTopic/LearningObjective labels
+- [x] 23.15 Create `openspec/specs/learning-paths/spec.md` — learning paths capability spec
+- [x] 23.16 Verify: syntax checks, 1500/1507 tests pass, 0 ESLint errors: 100 XP earned → level 0→1; check-in 7 days in a row → badge unlocks; path with all objectives ticked → certificate PDF downloads

@@ -21,17 +21,40 @@ const CONTENT_DIR = join(ROOT, 'myhugoapp', 'content', 'curricula');
 
 // States to generate (2-letter abbreviations matching data file names)
 const STATE_CODES = [
-  'bb', 'be', 'bw', 'by', 'hb', 'he', 'hh',
-  'mv', 'ni', 'nw', 'rp', 'sh', 'sl', 'sn', 'st', 'th',
+  'bb',
+  'be',
+  'bw',
+  'by',
+  'hb',
+  'he',
+  'hh',
+  'mv',
+  'ni',
+  'nw',
+  'rp',
+  'sh',
+  'sl',
+  'sn',
+  'st',
+  'th',
 ];
 
 const STATE_LABELS = {
-  bb: 'Brandenburg', be: 'Berlin', bw: 'Baden-Württemberg',
-  by: 'Bayern', hb: 'Bremen', he: 'Hessen',
-  hh: 'Hamburg', mv: 'Mecklenburg-Vorpommern',
-  ni: 'Niedersachsen', nw: 'Nordrhein-Westfalen',
-  rp: 'Rheinland-Pfalz', sh: 'Schleswig-Holstein',
-  sl: 'Saarland', sn: 'Sachsen', st: 'Sachsen-Anhalt',
+  bb: 'Brandenburg',
+  be: 'Berlin',
+  bw: 'Baden-Württemberg',
+  by: 'Bayern',
+  hb: 'Bremen',
+  he: 'Hessen',
+  hh: 'Hamburg',
+  mv: 'Mecklenburg-Vorpommern',
+  ni: 'Niedersachsen',
+  nw: 'Nordrhein-Westfalen',
+  rp: 'Rheinland-Pfalz',
+  sh: 'Schleswig-Holstein',
+  sl: 'Saarland',
+  sn: 'Sachsen',
+  st: 'Sachsen-Anhalt',
   th: 'Thüringen',
 };
 
@@ -78,9 +101,10 @@ function generatePage(code, data) {
   const name = STATE_LABELS[code] || code.toUpperCase();
   const topicCount = countTopics(data);
   const objectiveCount = countObjectives(data);
-  const desc = topicCount > 0
-    ? `Chemie-Lehrplan für ${name} — ${topicCount} Themen, ${objectiveCount} Lernziele, aufbereitet aus den amtlichen Kernlehrplänen.`
-    : `Chemie-Lehrplan für ${name} — mit Themen, Lernzielen und verknüpften Inhalten.`;
+  const desc =
+    topicCount > 0
+      ? `Chemie-Lehrplan für ${name} — ${topicCount} Themen, ${objectiveCount} Lernziele, aufbereitet aus den amtlichen Kernlehrplänen.`
+      : `Chemie-Lehrplan für ${name} — mit Themen, Lernzielen und verknüpften Inhalten.`;
 
   const dir = join(CONTENT_DIR, code);
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
@@ -107,7 +131,9 @@ Der Chemie-Lehrplan für **${name}** mit ${topicCount} Themen und ${objectiveCou
 
   const fp = join(dir, '_index.md');
   writeFileSync(fp, content, 'utf-8');
-  console.log(`  ✓ ${code.toUpperCase()} → ${fp} (${topicCount} topics, ${objectiveCount} objectives)`);
+  console.log(
+    `  ✓ ${code.toUpperCase()} → ${fp} (${topicCount} topics, ${objectiveCount} objectives)`
+  );
   return true;
 }
 

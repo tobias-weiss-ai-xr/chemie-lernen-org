@@ -1,5 +1,6 @@
 ---
 title: 'Plattform-Status'
+last_reviewed: 2026-08-06
 description: 'Übersicht über den Betriebsstatus der chemie-lernen.org Plattform'
 layout: 'status'
 outputs:

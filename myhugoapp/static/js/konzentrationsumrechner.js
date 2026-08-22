@@ -27,14 +27,16 @@ class ConcentrationConverter {
 
   // Convert from input unit to internal format (mol/kg solution)
   fromUnit(value, unit) {
-    switch(unit) {
-      case 'M': { // Molar: mol/L solution
+    switch (unit) {
+      case 'M': {
+        // Molar: mol/L solution
         // Convert mol/L to mol/kg solution
         // 1 L solution = density kg
         return value / this.density;
       }
 
-      case 'm': { // Molal: mol/kg solvent
+      case 'm': {
+        // Molal: mol/kg solvent
         // Approximate: assuming dilute solution where kg solvent ≈ kg solution
         // For precise calculation, we'd need iterative solution
         // Using approximation: kg_solvent ≈ kg_solution - mass_solute
@@ -42,14 +44,16 @@ class ConcentrationConverter {
         return value * 0.999; // Approximate correction
       }
 
-      case 'percent_ww': { // Mass percent: g solute / 100 g solution
+      case 'percent_ww': {
+        // Mass percent: g solute / 100 g solution
         // Convert to mass fraction, then to mol/kg
         const massFraction = value / 100;
         const molesPerKg = (massFraction * 1000) / this.molarMass;
         return molesPerKg;
       }
 
-      case 'percent_vv': { // Volume percent: mL solute / 100 mL solution
+      case 'percent_vv': {
+        // Volume percent: mL solute / 100 mL solution
         // Need to assume density of pure solute ≈ molar mass / 1000 for liquids
         // This is an approximation
         const volFraction = value / 100;
@@ -58,35 +62,41 @@ class ConcentrationConverter {
         return moles / this.density; // Convert to mol/kg solution
       }
 
-      case 'percent_wv': { // Mass/volume percent: g solute / 100 mL solution
+      case 'percent_wv': {
+        // Mass/volume percent: g solute / 100 mL solution
         const massPer100mL = value; // g
         const massPerL = massPer100mL * 10; // g/L solution
         const molesPerL = massPerL / this.molarMass;
         return molesPerL / this.density;
       }
 
-      case 'ppm': { // Parts per million (mg/kg)
+      case 'ppm': {
+        // Parts per million (mg/kg)
         // Convert mg/kg to g/kg, then to mol/kg
         const gPerKg = value / 1000;
         return gPerKg / this.molarMass;
       }
 
-      case 'ppb': { // Parts per billion (µg/kg)
+      case 'ppb': {
+        // Parts per billion (µg/kg)
         const gPerKgPpb = value / 1000000;
         return gPerKgPpb / this.molarMass;
       }
 
-      case 'g_L': { // g/L
+      case 'g_L': {
+        // g/L
         const molesPerL_gL = value / this.molarMass;
         return molesPerL_gL / this.density;
       }
 
-      case 'mg_L': { // mg/L
-        const molesPerL_mgL = (value / 1000) / this.molarMass;
+      case 'mg_L': {
+        // mg/L
+        const molesPerL_mgL = value / 1000 / this.molarMass;
         return molesPerL_mgL / this.density;
       }
 
-      case 'mole_fraction': { // Mole fraction (dimensionless)
+      case 'mole_fraction': {
+        // Mole fraction (dimensionless)
         // X = n_solute / (n_solute + n_solvent)
         // For dilute solutions: X ≈ n_solute / n_solvent
         // n_solvent ≈ (1000 g - mass_solute) / 18.015 (water)
@@ -95,7 +105,8 @@ class ConcentrationConverter {
         return value / 18.015; // Rough approximation for aqueous solutions
       }
 
-      case 'normality': { // Normality (N)
+      case 'normality': {
+        // Normality (N)
         // Assume monovalent for now (valence = 1)
         // For polyvalent ions, N = M × valence
         // N ≈ M for monovalent, N = 2×M for divalent, etc.
@@ -109,54 +120,64 @@ class ConcentrationConverter {
 
   // Convert from internal format (mol/kg) to output unit
   toUnit(molesPerKg, unit) {
-    switch(unit) {
-      case 'M': { // Molar: mol/L solution
+    switch (unit) {
+      case 'M': {
+        // Molar: mol/L solution
         return molesPerKg * this.density;
       }
 
-      case 'm': { // Molal: mol/kg solvent
+      case 'm': {
+        // Molal: mol/kg solvent
         // Reverse approximation
         return molesPerKg / 0.999;
       }
 
-      case 'percent_ww': { // Mass percent
+      case 'percent_ww': {
+        // Mass percent
         const massSolute = molesPerKg * this.molarMass; // g/kg solution
         return (massSolute / 1000) * 100;
       }
 
-      case 'percent_vv': { // Volume percent
+      case 'percent_vv': {
+        // Volume percent
         // Approximation assuming ideal mixing
         const massSolute_vv = molesPerKg * this.molarMass;
         const volSolute = massSolute_vv / this.density; // mL/L solution
         return (volSolute / 1000) * 100;
       }
 
-      case 'percent_wv': { // Mass/volume percent
+      case 'percent_wv': {
+        // Mass/volume percent
         const massSolute_wv = molesPerKg * this.molarMass * this.density; // g/L solution
         return (massSolute_wv / 1000) * 100;
       }
 
-      case 'ppm': { // Parts per million
+      case 'ppm': {
+        // Parts per million
         const massSolute_ppm = molesPerKg * this.molarMass * 1000; // mg/kg
         return massSolute_ppm;
       }
 
-      case 'ppb': { // Parts per billion
+      case 'ppb': {
+        // Parts per billion
         const massSolute_ppb = molesPerKg * this.molarMass * 1000000; // µg/kg
         return massSolute_ppb;
       }
 
-      case 'g_L': { // g/L
+      case 'g_L': {
+        // g/L
         const massPerL = molesPerKg * this.molarMass * this.density;
         return massPerL;
       }
 
-      case 'mg_L': { // mg/L
+      case 'mg_L': {
+        // mg/L
         const massPerL_mg = molesPerKg * this.molarMass * this.density * 1000;
         return massPerL_mg;
       }
 
-      case 'mole_fraction': { // Mole fraction
+      case 'mole_fraction': {
+        // Mole fraction
         // Approximate for aqueous solutions
         // X_solute = n_solute / (n_solute + n_solvent)
         // n_solvent ≈ (1000 - mass_solute_g) / 18.015
@@ -166,7 +187,8 @@ class ConcentrationConverter {
         return molesPerKg / (molesPerKg + molesWater);
       }
 
-      case 'normality': { // Normality
+      case 'normality': {
+        // Normality
         // Assume monovalent
         return molesPerKg * this.density;
       }
@@ -197,16 +219,16 @@ class ConcentrationConverter {
       { id: 'g_L', name: 'Gramm pro Liter', symbol: 'g/L' },
       { id: 'mg_L', name: 'Milligramm pro Liter', symbol: 'mg/L' },
       { id: 'mole_fraction', name: 'Molenbruch', symbol: 'X' },
-      { id: 'normality', name: 'Normalität', symbol: 'N' }
+      { id: 'normality', name: 'Normalität', symbol: 'N' },
     ];
 
     const results = {};
-    units.forEach(unit => {
+    units.forEach((unit) => {
       const converted = this.toUnit(molesPerKg, unit.id);
       results[unit.id] = {
         name: unit.name,
         symbol: unit.symbol,
-        value: converted
+        value: converted,
       };
     });
 
@@ -230,7 +252,7 @@ function convertConcentration() {
   try {
     const value = parseNumber(valueInput);
     const molarMass = parseNumber(molarMassInput);
-    const density = densityInput ? parseNumber(densityInput) : 1.00;
+    const density = densityInput ? parseNumber(densityInput) : 1.0;
     const temperature = tempInput ? parseNumber(tempInput) : 20;
 
     if (molarMass <= 0) {
@@ -251,7 +273,6 @@ function convertConcentration() {
 
     // Display results
     displayResults(value, unit, allConcentrations, molarMass, density, temperature);
-
   } catch (error) {
     showError(error.message);
   }
@@ -266,10 +287,21 @@ function displayResults(inputValue, inputUnit, concentrations, molarMass, densit
   // Display all concentrations
   let html = '<div class="concentrations-grid">';
 
-  const unitOrder = ['M', 'm', 'percent_ww', 'percent_vv', 'percent_wv', 'ppm', 'ppb',
-                      'g_L', 'mg_L', 'mole_fraction', 'normality'];
+  const unitOrder = [
+    'M',
+    'm',
+    'percent_ww',
+    'percent_vv',
+    'percent_wv',
+    'ppm',
+    'ppb',
+    'g_L',
+    'mg_L',
+    'mole_fraction',
+    'normality',
+  ];
 
-  unitOrder.forEach(unitId => {
+  unitOrder.forEach((unitId) => {
     const conc = concentrations[unitId];
     const isInput = unitId === inputUnit;
     const valueClass = getValueClass(unitId, conc.value);
@@ -346,34 +378,34 @@ function displayResults(inputValue, inputUnit, concentrations, molarMass, densit
 // Helper functions
 function getDecimals(unit) {
   const decimals = {
-    'M': 4,
-    'm': 4,
-    'percent_ww': 3,
-    'percent_vv': 3,
-    'percent_wv': 3,
-    'ppm': 2,
-    'ppb': 0,
-    'g_L': 3,
-    'mg_L': 1,
-    'mole_fraction': 6,
-    'normality': 4
+    M: 4,
+    m: 4,
+    percent_ww: 3,
+    percent_vv: 3,
+    percent_wv: 3,
+    ppm: 2,
+    ppb: 0,
+    g_L: 3,
+    mg_L: 1,
+    mole_fraction: 6,
+    normality: 4,
   };
   return decimals[unit] || 4;
 }
 
 function getUnitSymbol(unit) {
   const symbols = {
-    'M': 'M',
-    'm': 'm',
-    'percent_ww': '% w/w',
-    'percent_vv': '% v/v',
-    'percent_wv': '% w/v',
-    'ppm': 'ppm',
-    'ppb': 'ppb',
-    'g_L': 'g/L',
-    'mg_L': 'mg/L',
-    'mole_fraction': 'X',
-    'normality': 'N'
+    M: 'M',
+    m: 'm',
+    percent_ww: '% w/w',
+    percent_vv: '% v/v',
+    percent_wv: '% w/v',
+    ppm: 'ppm',
+    ppb: 'ppb',
+    g_L: 'g/L',
+    mg_L: 'mg/L',
+    mole_fraction: 'X',
+    normality: 'N',
   };
   return symbols[unit] || unit;
 }
@@ -434,10 +466,10 @@ function showResults() {
 // Show error
 
 // Setup example button handlers
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Example buttons
-  document.querySelectorAll('.example-btn').forEach(button => {
-    button.addEventListener('click', function() {
+  document.querySelectorAll('.example-btn').forEach((button) => {
+    button.addEventListener('click', function () {
       document.getElementById('concentration-value').value = this.dataset.value;
       document.getElementById('concentration-unit').value = this.dataset.unit;
       document.getElementById('molar-mass').value = this.dataset.mmass;
@@ -446,8 +478,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Enable Enter key for inputs
   const inputs = document.querySelectorAll('.form-control');
-  inputs.forEach(input => {
-    input.addEventListener('keypress', function(e) {
+  inputs.forEach((input) => {
+    input.addEventListener('keypress', function (e) {
       if (e.key === 'Enter') {
         convertConcentration();
       }

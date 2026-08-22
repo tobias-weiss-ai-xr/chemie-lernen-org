@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Simple flask icon for the launcher foreground -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M42,30 L66,30 L66,38 L60,38 L60,60 L72,76 L72,78 L36,78 L36,76 L48,60 L48,38 L42,38 Z" />
+    <path
+        android:fillColor="#95D5B2"
+        android:pathData="M52,48 L56,48 L56,58 L52,58 Z M46,64 L50,64 L50,70 L46,70 Z" />
+</vector>

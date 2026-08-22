@@ -1,0 +1,102 @@
+---
+title: 'Redoxreaktionen und Elektrochemie'
+last_reviewed: 2026-08-06
+topic: 'redox-elektrochemie'
+target: 'themenbereiche'
+difficulty: 'mixed'
+questions:
+  - id: 're-001'
+    type: 'multiple-choice'
+    question: 'Was versteht man unter einer Oxidation?'
+    options:
+      - 'Aufnahme von Elektronen'
+      - 'Abgabe von Elektronen'
+      - 'Abgabe von Protonen'
+      - 'Aufnahme von Sauerstoff (nur historisch)'
+    correctAnswer: 'Abgabe von Elektronen'
+    explanation: 'Oxidation ist die Abgabe von Elektronen. Der Begriff stammt historisch von Reaktionen mit Sauerstoff, wird heute aber allgemein für Elektronenabgabe verwendet. Reduktion ist die Aufnahme von Elektronen.'
+
+  - id: 're-002'
+    type: 'multiple-choice'
+    question: 'Welche Oxidationszahl hat Sauerstoff in den meisten Verbindungen?'
+    options:
+      - '0'
+      - '+1'
+      - '-2'
+      - '+2'
+    correctAnswer: '-2'
+    explanation: 'Sauerstoff hat in den meisten Verbindungen die Oxidationszahl -2. Ausnahmen sind Peroxide (-1) und elementarer Sauerstoff (0).'
+
+  - id: 're-003'
+    type: 'multiple-choice'
+    question: 'Was passiert an der Anode einer galvanischen Zelle?'
+    options:
+      - 'Reduktion'
+      - 'Oxidation'
+      - 'Neutralisation'
+      - 'Fällung'
+    correctAnswer: 'Oxidation'
+    explanation: 'An der Anode findet die Oxidation statt (Elektronenabgabe). Die Anode ist der negative Pol. Merkhilfe: "Anode Oxidation" - beide beginnen mit A und O.'
+
+  - id: 're-004'
+    type: 'multiple-choice'
+    question: 'Welche Spannung liefert ein Daniell-Element unter Standardbedingungen?'
+    options:
+      - '0,50 V'
+      - '1,10 V'
+      - '2,05 V'
+      - '12,00 V'
+    correctAnswer: '1,10 V'
+    explanation: 'Das Daniell-Element (Zn/Zn2+ || Cu2+/Cu) liefert unter Standardbedingungen eine Spannung von 1,10 V. Die Zellreaktion ist: Zn + Cu2+ -> Zn2+ + Cu.'
+
+  - id: 're-005'
+    type: 'multiple-choice'
+    question: 'Welche Bedingungen sind für die Rostbildung von Eisen notwendig?'
+    options:
+      - 'Nur Sauerstoff'
+      - 'Nur Wasser'
+      - 'Eisen, Sauerstoff und Wasser'
+      - 'Eisen und Kohlendioxid'
+    correctAnswer: 'Eisen, Sauerstoff und Wasser'
+    explanation: 'Für die Rostbildung (Korrosion von Eisen) müssen Eisen, Sauerstoff und Wasser gleichzeitig vorhanden sein. Feuchtigkeit fungiert als Elektrolyt, Sauerstoff als Oxidationsmittel.'
+
+  - id: 're-006'
+    type: 'multiple-choice'
+    question: 'Wie groß ist die Faraday-Konstante?'
+    options:
+      - '9,65 x 10^3 C/mol'
+      - '9,65 x 10^4 C/mol'
+      - '6,022 x 10^23 C/mol'
+      - '1,602 x 10^-19 C/mol'
+    correctAnswer: '9,65 x 10^4 C/mol'
+    explanation: 'Die Faraday-Konstante beträgt 96.485 C/mol (ca. 9,65 x 10^4 C/mol). Sie gibt die Ladung eines Mols Elektronen an und berechnet sich aus F = NA * e.'
+
+  - id: 're-007'
+    type: 'multiple-choice'
+    question: 'Welche Reaktion läuft bei der Wasserstoff-Brennstoffzelle an der Kathode ab?'
+    options:
+      - 'H2 -> 2H+ + 2e-'
+      - 'O2 + 4H+ + 4e- -> 2H2O'
+      - 'H2O -> H2 + 1/2 O2'
+      - '2H+ + 2e- -> H2'
+    correctAnswer: 'O2 + 4H+ + 4e- -> 2H2O'
+    explanation: 'In der Wasserstoff-Brennstoffzelle wird an der Kathode Sauerstoff mit Protonen und Elektronen zu Wasser reduziert. An der Anode wird Wasserstoff oxidiert: H2 -> 2H+ + 2e-.'
+
+  - id: 're-008'
+    type: 'short-answer'
+    question: 'Wie lautet die Oxidationszahl von Wasserstoff in H2O?'
+    referenceAnswer: '+1'
+    gradingHint: 'Die Antwort "+1" ist korrekt. Wasserstoff hat in Verbindungen mit Nichtmetallen meist die Oxidationszahl +1 (Ausnahme: Metallhydride wie NaH, wo er -1 hat).'
+
+  - id: 're-009'
+    type: 'short-answer'
+    question: 'Nenne zwei Verfahren zum Korrosionsschutz von Eisen.'
+    referenceAnswer: 'Verzinken, Lackieren (andere korrekte: Opferanode, Passivierung, Beschichtungen, Galvanisierung)'
+    gradingHint: 'Zwei beliebige korrekte Verfahren müssen genannt werden. Mögliche Antworten: Verzinken, Lackieren, Opferanode, Galvanisierung, Phosphatierung, Emaille-Beschichtung.'
+
+  - id: 're-010'
+    type: 'short-answer'
+    question: 'Berechne die Masse an Kupfer, die in 1 Stunde bei 2 A Stromstärke aus einer CuSO4-Lösung abgeschieden wird. (F = 96485 C/mol, M(Cu) = 63,55 g/mol)'
+    referenceAnswer: '2,37 g'
+    gradingHint: 'Lösung: Q = I * t = 2 A * 3600 s = 7200 C. n = Q/(z*F) = 7200/(2*96485) = 0,0373 mol. m = 0,0373 mol * 63,55 g/mol = 2,37 g. Der Wert sollte etwa 2,3-2,4 g betragen.'
+---

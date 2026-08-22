@@ -2,6 +2,7 @@
 title: "Lehrende - Didaktik und Lehrmaterialien"
 description: "Ressourcen für Chemielehrkräfte: Didaktische Methoden, Lehrstrategien, Materialvorbereitung und kompetenzorientierter Unterricht auf Basis der Lernforschung"
 date: 2026-01-05
+last_reviewed: 2026-07-09
 type: "section"
 icon: "👨‍🏫"
 schwierigkeit: "alle"

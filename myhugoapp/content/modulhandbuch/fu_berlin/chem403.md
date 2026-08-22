@@ -3,6 +3,7 @@ title: Advanced Physical Chemistry — Freie Universität Berlin
 description: 'Advanced Physical Chemistry (CHEM403) an der Freie Universität Berlin. 6 ECTS, Niveau: MSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: FU_BERLIN
 uni_name: Freie Universität Berlin
 module_code: CHEM403

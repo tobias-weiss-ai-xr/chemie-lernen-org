@@ -1,6 +1,7 @@
 ---
 title: "Durchbruch: Methan wird mit Licht und Eisen zu Medizin umgewandelt"
 date: "2026-06-03T02:42:41+02:00"
+last_reviewed: 2026-08-06
 description: "Wissenschaftler haben eine bahnbrechende Methode entwickelt, um Erdgas statt als Brennstoff als chemischen Baustein für Medikamente zu nutzen. Ein neuartiger"
 tags:
   - "organische chemie"

@@ -1,3 +1,0 @@
-[2026-07-03 07:12:40] Starting Neo4j backup...
-[ERROR] Backup failed.
-[HINT] Ensure neo4j-admin is available and database chemie exists.

@@ -182,12 +182,11 @@ function drawTemperatureCanvas() {
   if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
+  if (!ctx) return;
   const width = canvas.width;
   const height = canvas.height;
 
   ctx.clearRect(0, 0, width, height);
-
-  const speedScale = Math.sqrt(temperature / 300);
 
   particles.forEach((particle) => {
     particle.update(temperature);
@@ -205,16 +204,17 @@ function drawTemperatureCanvas() {
 }
 
 function toggleKineticsAnimation() {
-  isKineticsAnimating = !isKineticsAnimating;
-
   if (isKineticsAnimating) {
-    domCache.temperature.btnText.textContent = 'Stopp';
-    domCache.temperature.btn.className = 'btn btn-danger';
-    animateTemperature();
-  } else {
+    isKineticsAnimating = false;
     domCache.temperature.btnText.textContent = 'Start';
     domCache.temperature.btn.className = 'btn btn-primary';
+    return;
   }
+
+  isKineticsAnimating = true;
+  domCache.temperature.btnText.textContent = 'Stopp';
+  domCache.temperature.btn.className = 'btn btn-danger';
+  animateTemperature();
 }
 
 function animateTemperature() {
@@ -222,8 +222,6 @@ function animateTemperature() {
 
   function animate() {
     if (!isKineticsAnimating) return;
-
-    const time = Date.now() * 0.001;
 
     particles.forEach((particle) => {
       particle.update(temperature);
@@ -264,7 +262,6 @@ function drawCollisionCanvas() {
   ctx.clearRect(0, 0, width, height);
 
   const effectiveThreshold = collisionThreshold;
-  const velocityScale = Math.sqrt(temperature / 300);
 
   particles.forEach((particle) => {
     particle.update(temperature);

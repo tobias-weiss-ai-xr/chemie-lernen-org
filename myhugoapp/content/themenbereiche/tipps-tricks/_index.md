@@ -2,6 +2,7 @@
 title: 'Tipps und Tricks'
 description: 'Lernstrategien, Merkhilfen und Prüfungstipps für Chemie. Erfahren Sie, wie Sie effektiv lernen, Formeln merken und sich auf Prüfungen vorbereiten.'
 date: 2025-12-27
+last_reviewed: 2026-08-06
 teilgebiet: 'tipps-tricks'
 quiz: 'tipps-tricks'
 schwierigkeit: 'alle'
@@ -474,3 +475,7 @@ Chemie ist wie eine Fremdsprache: Am Anfang ist es schwer, aber mit Übung wird 
 **Erstellt:** 27. Dezember 2025
 **Themenbereich:** Tipps und Tricks
 **Schwierigkeit:** Alle Niveaus
+
+{{< quiz-widget topic="alle" title="Tipps und Tricks" >}}
+
+{{< entity-cloud slug="tipps-tricks" title="Verwandte Fachbegriffe" >}}

@@ -2,6 +2,7 @@
 title: 'Periodische Trends'
 description: 'Interaktive Visualisierung periodischer Trends im Periodensystem: Atomradius, Ionisationsenergie, Elektronegativität'
 date: 2026-01-04
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'periodische-trends'

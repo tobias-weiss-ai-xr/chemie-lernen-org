@@ -2,6 +2,7 @@
 title: 'Gleichgewicht und Geschwindigkeit'
 description: 'Reaktionskinetik & chemisches Gleichgewicht - alles über Reaktionsgeschwindigkeit, Einflussfaktoren, Geschwindigkeitsgesetze und das Prinzip von Le Chatelier'
 date: '2025-12-26'
+last_reviewed: 2026-08-06
 teilgebiet: 'gleichgewicht-geschwindigkeit'
 schwierigkeit: 'fortgeschritten'
 icon: '⚖️'
@@ -382,3 +383,7 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Katalysatoren in der Industrie und Biologie](/themenbereiche/gleichgewicht-geschwindigkeit/katalysatoren-industrie-biologie/) – Homogene und heterogene Katalysatoren, Enzyme als biologische Katalysatoren und die industrielle Bedeutung der Katalyse.
 - [Prinzip von Le Chatelier](/themenbereiche/gleichgewicht-geschwindigkeit/prinzip-von-le-chatelier/) – Das Prinzip des kleinsten Zwanges: Ein System im Gleichgewicht reagiert auf äußere Änderungen so, dass diese teilweise rückgängig gemacht werden.
 - [Reaktionskinetik](/themenbereiche/gleichgewicht-geschwindigkeit/reaktionskinetik/) – Die Reaktionskinetik beschreibt die Geschwindigkeit, mit der chemische Reaktionen ablaufen. Faktoren: Konzentration, Temperatur, Katalysator.
+
+{{< quiz-widget topic="gleichgewicht-geschwindigkeit" title="Gleichgewicht und Kinetik" >}}
+
+{{< entity-cloud slug="gleichgewicht-geschwindigkeit" title="Verwandte Fachbegriffe" >}}

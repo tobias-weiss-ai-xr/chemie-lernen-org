@@ -1,0 +1,4 @@
+schema: spec-driven
+created: 2026-07-10
+goal: Documentation completeness, PWA offline polish, Lighthouse audits,
+  infrastructure-as-code for systemd units

@@ -5,36 +5,36 @@ const presets = {
     equation: '2H2 + O2 -> 2H2O',
     v1: 2,
     v2: 2,
-    example: 4
+    example: 4,
   },
   methane: {
     name: 'Methan-Verbrennung',
     equation: 'CH4 + 2O2 -> CO2 + 2H2O',
     v1: 1,
     v2: 1,
-    example: 2
+    example: 2,
   },
   ammonia: {
     name: 'Haber-Verfahren (Ammoniak)',
     equation: 'N2 + 3H2 -> 2NH3',
     v1: 1,
     v2: 2,
-    example: 3
+    example: 3,
   },
   sodium: {
     name: 'Natrium + Wasser',
     equation: '2Na + 2H2O -> 2NaOH + H2',
     v1: 2,
     v2: 2,
-    example: 4
+    example: 4,
   },
   photosynthesis: {
     name: 'Fotosynthese',
     equation: '6CO2 + 6H2O -> C6H12O6 + 6O2',
     v1: 6,
     v2: 1,
-    example: 6
-  }
+    example: 6,
+  },
 };
 
 const massPresets = {
@@ -44,7 +44,7 @@ const massPresets = {
     v2: 2,
     m1: 4,
     M1: 2,
-    M2: 18
+    M2: 18,
   },
   methane: {
     name: 'Methan-Verbrennung',
@@ -52,7 +52,7 @@ const massPresets = {
     v2: 1,
     m1: 16,
     M1: 16,
-    M2: 44
+    M2: 44,
   },
   ammonia: {
     name: 'Haber-Verfahren',
@@ -60,7 +60,7 @@ const massPresets = {
     v2: 2,
     m1: 28,
     M1: 28,
-    M2: 17
+    M2: 17,
   },
   sodium: {
     name: 'Natrium + Wasser',
@@ -68,7 +68,7 @@ const massPresets = {
     v2: 2,
     m1: 46,
     M1: 23,
-    M2: 40
+    M2: 40,
   },
   photosynthesis: {
     name: 'Fotosynthese',
@@ -76,14 +76,15 @@ const massPresets = {
     v2: 1,
     m1: 264,
     M1: 44,
-    M2: 180
-  }
+    M2: 180,
+  },
 };
-
 
 function loadPreset(presetKey) {
   const preset = presets[presetKey];
-  if (!preset) {return;}
+  if (!preset) {
+    return;
+  }
 
   document.getElementById('reaction-1').value = preset.equation;
   document.getElementById('mol-coeff-r').value = preset.v1;
@@ -94,10 +95,11 @@ function loadPreset(presetKey) {
   document.getElementById('mol-result').style.display = 'none';
 }
 
-
 function loadMassPreset(presetKey) {
   const preset = massPresets[presetKey];
-  if (!preset) {return;}
+  if (!preset) {
+    return;
+  }
 
   document.getElementById('mass-coeff-r').value = preset.v1;
   document.getElementById('mass-coeff-p').value = preset.v2;
@@ -106,7 +108,8 @@ function loadMassPreset(presetKey) {
   document.getElementById('mm-p').value = preset.M2;
 
   document.getElementById('mass-result').style.display = 'none';
-  document.getElementById('mass-preview').innerHTML = '<p style="font-size:2em; color:#007bff;">--</p><p>Gramm</p>';
+  document.getElementById('mass-preview').innerHTML =
+    '<p style="font-size:2em; color:#007bff;">--</p><p>Gramm</p>';
 }
 
 if (typeof module !== 'undefined' && module.exports) {

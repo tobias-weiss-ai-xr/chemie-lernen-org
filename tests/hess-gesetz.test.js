@@ -27,7 +27,7 @@ function reverseReaction(deltaH) {
   return -deltaH;
 }
 
-describe('Hess\'sches Gesetz Rechner', () => {
+describe("Hess'sches Gesetz Rechner", () => {
   describe('calculateHessLaw', () => {
     test('C + O₂ → CO₂: ΔH = -393,5 kJ/mol', () => {
       // ΔH_f°: C (0) + O₂ (0) → CO₂ (-393.5)
@@ -45,8 +45,8 @@ describe('Hess\'sches Gesetz Rechner', () => {
       // CO + ½O₂ → CO₂, ΔH = -283.0
       // C + ½O₂ → CO: ΔH = -393.5 - (-283.0) = -110.5
       const deltaH_CO = calculateHessLaw(
-        [0, 0],  // C, O₂
-        [-110.5],  // CO
+        [0, 0], // C, O₂
+        [-110.5], // CO
         [1, 0.5],
         [1]
       );
@@ -61,7 +61,7 @@ describe('Hess\'sches Gesetz Rechner', () => {
       // Gesamt: A → C, ΔH = +50
       const total = combineReactions([
         { deltaH: 100, factor: 1 },
-        { deltaH: -50, factor: 1 }
+        { deltaH: -50, factor: 1 },
       ]);
       expect(total).toBe(50);
     });
@@ -71,7 +71,7 @@ describe('Hess\'sches Gesetz Rechner', () => {
       // Step 2: B → C, ΔH = -50 (faktor 2)
       const total = combineReactions([
         { deltaH: 100, factor: 1 },
-        { deltaH: -50, factor: 2 }
+        { deltaH: -50, factor: 2 },
       ]);
       expect(total).toBe(0);
     });

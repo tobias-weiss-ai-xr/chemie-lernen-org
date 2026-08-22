@@ -2,6 +2,7 @@
 title: 'Energetik'
 description: 'Energieumsatz bei chemischen Reaktionen - Exotherme und endotherme Prozesse, Reaktionsenthalpien und der Hesssche Satz'
 date: '2025-12-26'
+last_reviewed: 2026-08-06
 teilgebiet: 'energetik'
 schwierigkeit: 'fortgeschritten'
 icon: '🔥'
@@ -314,3 +315,7 @@ Nach Abschluss dieses Themenbereichs sollten Sie:
 - [Kalorimetrie und Enthalpiemessung](/themenbereiche/energetik/kalorimetrie/) – Grundlagen der Kalorimetrie, Bombenkalorimeter, Bestimmung von Enthalpieänderungen, spezifische Wärmekapazität.
 - [Reaktionsenthalpie und Energieprofile](/themenbereiche/energetik/reaktionsenthalpie-und-energieprofile/) – Enthalpiediagramme, Bindungsenergien, Bildungsenthalpien und die Berechnung von Reaktionsenthalpien mit dem Satz von Hess.
 - [Der Satz von Hess](/themenbereiche/energetik/satz-von-hess/) – Die Reaktionsenthalpie ist unabhängig vom Reaktionsweg. Sie kann aus den Bildungsenthalpien der Produkte und Edukte berechnet werden.
+
+{{< quiz-widget topic="energetik" title="Energetik" >}}
+
+{{< entity-cloud slug="energetik" title="Verwandte Fachbegriffe" >}}

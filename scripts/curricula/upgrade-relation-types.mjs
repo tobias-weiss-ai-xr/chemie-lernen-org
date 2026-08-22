@@ -25,7 +25,7 @@ async function run() {
   const neo4j = await import('neo4j-driver');
   const driver = neo4j.default.driver(
     NEO4J_URI,
-    neo4j.default.auth.basic(NEO4J_USER, NEO4J_PASSWORD),
+    neo4j.default.auth.basic(NEO4J_USER, NEO4J_PASSWORD)
   );
 
   try {
@@ -35,7 +35,7 @@ async function run() {
     const countResult = await session.run(
       `MATCH (a)-[r:RELATED_TO]->(b)
        RETURN a.kategorie + '→' + b.kategorie AS pair, count(*) AS cnt
-       ORDER BY cnt DESC`,
+       ORDER BY cnt DESC`
     );
     console.log('[upgrade-relations] Current RELATED_TO distribution:');
     for (const rec of countResult.records) {
@@ -50,18 +50,20 @@ async function run() {
       `MATCH (a:Entity)-[r:RELATED_TO]->(b:Entity)
        WHERE (a.kategorie='didaktik' AND b.kategorie='lehrplan')
           OR (a.kategorie='lehrplan' AND b.kategorie='didaktik')
-       RETURN count(*) AS cnt`,
+       RETURN count(*) AS cnt`
     );
     console.log(`  Found ${pairCount.records[0].get('cnt')} bidirectional pairs`);
 
     if (DRY_RUN) {
       const pairs = await session.run(
         `MATCH (a:Entity {kategorie:'didaktik'})-[r:RELATED_TO]->(b:Entity {kategorie:'lehrplan'})
-         RETURN a.name AS src, b.name AS tgt LIMIT 3`,
+         RETURN a.name AS src, b.name AS tgt LIMIT 3`
       );
       console.log('  [dry-run] Would: DELETE RELATED_TO, CREATE (a)-[:ERFUELLT]->(b)');
       for (const rec of pairs.records) {
-        console.log(`    ERFUELLT: "${rec.get('src').slice(0, 50)}" ↔ "${rec.get('tgt').slice(0, 50)}"`);
+        console.log(
+          `    ERFUELLT: "${rec.get('src').slice(0, 50)}" ↔ "${rec.get('tgt').slice(0, 50)}"`
+        );
       }
     } else {
       // Replace all didaktik↔lehrplan RELATED_TO with ERFUELLT
@@ -72,7 +74,7 @@ async function run() {
          WITH a, b, r LIMIT 1000
          DELETE r
          MERGE (a)-[:ERFUELLT]->(b)
-         RETURN count(*) AS cnt`,
+         RETURN count(*) AS cnt`
       );
       console.log(`  Created ERFUELLT relationships: ${result.records[0].get('cnt')}`);
     }
@@ -81,16 +83,18 @@ async function run() {
     const remaining = await session.run(
       `MATCH (a)-[r:RELATED_TO]->(b)
        WHERE a.kategorie <> 'didaktik' OR b.kategorie <> 'lehrplan'
-       RETURN count(*) AS cnt`,
+       RETURN count(*) AS cnt`
     );
-    console.log(`\n[upgrade-relations] Remaining RELATED_TO (untouched): ${remaining.records[0].get('cnt')}`);
+    console.log(
+      `\n[upgrade-relations] Remaining RELATED_TO (untouched): ${remaining.records[0].get('cnt')}`
+    );
 
     // Summary
     const finalRels = await session.run(
       `MATCH ()-[r]->()
        RETURN type(r) AS relType, count(*) AS cnt
        ORDER BY cnt DESC
-       LIMIT 10`,
+       LIMIT 10`
     );
     console.log('\n[upgrade-relations] Final relationship distribution:');
     for (const rec of finalRels.records) {

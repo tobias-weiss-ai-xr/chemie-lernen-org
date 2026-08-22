@@ -2,6 +2,7 @@
 title: 'Fortschritt'
 description: 'Verfolge deinen Lernfortschritt - Statistiken, Erfolge und Lernserien'
 date: 2025-12-22
+last_reviewed: 2026-07-09
 type: 'calculator'
 layout: 'fortschritt'
 icon: '📊'

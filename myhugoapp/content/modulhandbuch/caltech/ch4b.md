@@ -3,6 +3,7 @@ title: 'Physical Chemistry: Quantum Mechanics — California Institute of Techno
 description: 'Physical Chemistry: Quantum Mechanics (Ch4b) an der California Institute of Technology. 8 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: CALTECH
 uni_name: California Institute of Technology
 module_code: Ch4b

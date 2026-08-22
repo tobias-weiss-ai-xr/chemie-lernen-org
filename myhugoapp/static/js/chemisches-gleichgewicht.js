@@ -47,9 +47,11 @@ function calculateKc() {
   const Q =
     (equilibriumState.concC * equilibriumState.concD) /
     (equilibriumState.concA * equilibriumState.concB);
-  equilibriumState.direction = Q === 1 ? 'equilibrium' : Q > 1 ? 'products' : 'reactants';
+  // Tolerance: float products like 0.3*0.3 vs 0.1*0.9 differ in the last bit
+  equilibriumState.direction =
+    Math.abs(Q - 1) < 1e-9 ? 'equilibrium' : Q > 1 ? 'products' : 'reactants';
   domCache.equilibrium.directionBadge.textContent =
-    Q === 1 ? 'Gleichgewicht' : Q > 1 ? 'Produkte' : 'Edukte';
+    Math.abs(Q - 1) < 1e-9 ? 'Gleichgewicht' : Q > 1 ? 'Produkte' : 'Edukte';
   domCache.equilibrium.progressDisplay.textContent = `Reaktionsfortschritt: 0%`;
 }
 
@@ -135,7 +137,6 @@ function startEquilibriumSimulation() {
 function animateEquilibrium() {
   if (!isAnimating) return;
 
-  const duration = 10000;
   const steps = 200;
   let step = 0;
 

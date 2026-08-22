@@ -1,0 +1,102 @@
+---
+title: 'Quiz Klasse 13'
+last_reviewed: 2026-08-06
+topic: 'klasse-13'
+target: 'klassenstufen'
+difficulty: 'hard'
+questions:
+  - id: 'k13-001'
+    type: 'multiple-choice'
+    question: 'Welches spektroskopische Verfahren eignet sich zur Bestimmung der Molekülstruktur eines unbekannten organischen Stoffes?'
+    options:
+      - 'Kombination aus NMR-, IR- und Massenspektroskopie'
+      - 'Nur die Messung des Schmelzpunkts'
+      - 'Nur die Elementaranalyse'
+      - 'Nur die Messung der Dichte'
+    correctAnswer: 'Kombination aus NMR-, IR- und Massenspektroskopie'
+    explanation: 'Zur vollständigen Strukturaufklärung werden mehrere Methoden kombiniert: NMR (Kohlenstoffgerüst), IR (funktionelle Gruppen), MS (Molekülmasse und Fragmentierung).'
+
+  - id: 'k13-002'
+    type: 'multiple-choice'
+    question: 'Welcher Reaktionsmechanismus liegt der nucleophilen Substitution zugrunde?'
+    options:
+      - 'Ein Nucleophil verdrängt eine Abgangsgruppe an einem Kohlenstoffatom'
+      - 'Ein Elektrophil greift ein freies Elektronenpaar an'
+      - 'Ein Radikal startet eine Kettenreaktion'
+      - 'Ein Proton wird von einer Base abstrahiert'
+    correctAnswer: 'Ein Nucleophil verdrängt eine Abgangsgruppe an einem Kohlenstoffatom'
+    explanation: 'Bei der nucleophilen Substitution (SN1/SN2) greift ein nucleophiles Teilchen (z.B. OH-) das elektrophile Kohlenstoffatom an und verdrängt die Abgangsgruppe (z.B. Halogenid).'
+
+  - id: 'k13-003'
+    type: 'multiple-choice'
+    question: 'Welche Reaktion dient zum Nachweis von Kohlenstoff-Doppelbindungen?'
+    options:
+      - 'Entfärbung von Bromwasser'
+      - 'Fällung mit Silbernitrat'
+      - 'Flammenfärbung'
+      - 'Glühprobe'
+    correctAnswer: 'Entfärbung von Bromwasser'
+    explanation: 'Bromwasser (braun) wird von Alkenen entfärbt, da Brom an die Doppelbindung addiert wird (elektrophile Addition). Dies ist ein einfacher Nachweis für C=C-Doppelbindungen.'
+
+  - id: 'k13-004'
+    type: 'multiple-choice'
+    question: 'Was versteht man unter der Gibbs-Energie (freie Enthalpie)?'
+    options:
+      - 'Die Energie, die in einer chemischen Reaktion als nutzbare Arbeit zur Verfügung steht'
+      - 'Die gesamte Wärmeenergie eines Systems'
+      - 'Die Aktivierungsenergie einer Reaktion'
+      - 'Die Bindungsenergie aller Atome im Molekül'
+    correctAnswer: 'Die Energie, die in einer chemischen Reaktion als nutzbare Arbeit zur Verfügung steht'
+    explanation: 'Die Gibbs-Energie (deltaG = deltaH - T*deltaS) gibt an, ob eine Reaktion spontan abläuft (deltaG < 0). Sie berücksichtigt Enthalpie und Entropie.'
+
+  - id: 'k13-005'
+    type: 'multiple-choice'
+    question: 'Welche Aussage zur Cheletrop-Reaktion (Cope-Umlagerung) ist richtig?'
+    options:
+      - 'Sie ist eine pericyclische Reaktion mit cyclischem Übergangszustand'
+      - 'Sie ist eine radikalische Kettenreaktion'
+      - 'Sie ist eine ionische Substitutionsreaktion'
+      - 'Sie ist eine photochemische Spaltung'
+    correctAnswer: 'Sie ist eine pericyclische Reaktion mit cyclischem Übergangszustand'
+    explanation: 'Pericyclische Reaktionen (Cope-Umlagerung, Diels-Alder-Reaktion) verlaufen über einen cyclischen Übergangszustand ohne ionische oder radikalische Zwischenstufen. Sie werden durch die Woodward-Hoffmann-Regeln beschrieben.'
+
+  - id: 'k13-006'
+    type: 'multiple-choice'
+    question: 'Welche experimentelle Methode verwendet Röntgenstrahlung zur Strukturaufklärung von Kristallen?'
+    options:
+      - 'Röntgenbeugung (XRD)'
+      - 'UV/Vis-Spektroskopie'
+      - 'Infrarotspektroskopie'
+      - 'Raman-Spektroskopie'
+    correctAnswer: 'Röntgenbeugung (XRD)'
+    explanation: 'Die Röntgenbeugung (X-ray diffraction) an Einkristallen oder Pulvern ermöglicht die Bestimmung der dreidimensionalen Anordnung von Atomen in einem Kristallgitter (Beugungsmuster -> Elektronendichtekarte).'
+
+  - id: 'k13-007'
+    type: 'multiple-choice'
+    question: 'Welches Prinzip besagt, dass die Entropie eines idealen Kristalls am absoluten Nullpunkt null ist?'
+    options:
+      - 'Der dritte Hauptsatz der Thermodynamik'
+      - 'Der zweite Hauptsatz der Thermodynamik'
+      - 'Der erste Hauptsatz der Thermodynamik'
+      - 'Das Nernstsche Wärmetheorem'
+    correctAnswer: 'Der dritte Hauptsatz der Thermodynamik'
+    explanation: 'Der dritte Hauptsatz (Nernst-Theorem) besagt: Die Entropie eines perfekten Kristalls geht bei T=0 K gegen null. Dies ermöglicht die absolute Berechnung von Entropiewerten.'
+
+  - id: 'k13-008'
+    type: 'short-answer'
+    question: 'Wie lautet die Cahn-Ingold-Prelog-Regel (CIP-Regel) für die Priorität von Substituenten?'
+    referenceAnswer: 'Höhere Ordnungszahl des direkt gebundenen Atoms ergibt höhere Priorität (R/S-Konfiguration).'
+    gradingHint: 'Nach CIP haben Substituenten mit höherer Ordnungszahl des direkt gebundenen Atoms höhere Priorität. Bei gleicher Ordnungszahl wird die nächste Atomschicht verglichen. R = rectus (im Uhrzeigersinn), S = sinister (gegen Uhrzeigersinn).'
+
+  - id: 'k13-009'
+    type: 'short-answer'
+    question: 'Was versteht man unter der Diels-Alder-Reaktion?'
+    referenceAnswer: 'Eine pericyclische [4+2]-Cycloaddition zwischen einem konjugierten Dien und einem Dienophil.'
+    gradingHint: 'Die Diels-Alder-Reaktion ist eine [4+2]-Cycloaddition, bei der ein konjugiertes Dien (4 Pi-Elektronen) mit einem Dienophil (2 Pi-Elektronen, z.B. Alken) unter Bildung eines Sechsrings reagiert. Sie verläuft stereospezifisch.'
+
+  - id: 'k13-010'
+    type: 'short-answer'
+    question: 'Welche Aussage trifft das Franck-Condon-Prinzip in der Spektroskopie?'
+    referenceAnswer: 'Elektronenübergänge erfolgen so schnell, dass sich die Kernabstände während des Übergangs nicht ändern (vertikaler Übergang).'
+    gradingHint: 'Das Franck-Condon-Prinzip besagt, dass ein Elektronenübergang (10^-15 s) viel schneller ist als die Kernbewegung (10^-13 s). Daher erfolgt der Übergang vertikal im Potentialkurven-Diagramm ohne Änderung des Kernabstands.'
+---

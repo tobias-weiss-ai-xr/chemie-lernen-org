@@ -43,6 +43,7 @@ docker run --rm -v $(pwd)/test-results:/app/test/results chemie-lernen-playwrigh
 ## Screenshots
 
 Screenshots are saved to:
+
 - `test-results/` - Full test reports with screenshots
 - `screenshots/` - Individual screenshot files
 

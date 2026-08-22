@@ -1,4 +1,4 @@
-(function() {
+(function () {
   const canvas = document.getElementById('convection-canvas');
   const ctx = canvas.getContext('2d');
   let animationId = null;
@@ -8,10 +8,38 @@
   let numParticles = 80;
 
   const fluids = {
-    water: { name: 'Wasser', density: 1.0, viscosity: 1.0, buoyancy: 3.0, particleRadius: 8, particleCount: 80 },
-    air: { name: 'Luft', density: 0.0012, viscosity: 0.1, buoyancy: 1.5, particleRadius: 5, particleCount: 60 },
-    oil: { name: 'Öl', density: 0.9, viscosity: 2.5, buoyancy: 2.5, particleRadius: 8, particleCount: 70 },
-    glycerin: { name: 'Glycerin', density: 1.26, viscosity: 5.0, buoyancy: 1.5, particleRadius: 8, particleCount: 50 }
+    water: {
+      name: 'Wasser',
+      density: 1.0,
+      viscosity: 1.0,
+      buoyancy: 3.0,
+      particleRadius: 8,
+      particleCount: 80,
+    },
+    air: {
+      name: 'Luft',
+      density: 0.0012,
+      viscosity: 0.1,
+      buoyancy: 1.5,
+      particleRadius: 5,
+      particleCount: 60,
+    },
+    oil: {
+      name: 'Öl',
+      density: 0.9,
+      viscosity: 2.5,
+      buoyancy: 2.5,
+      particleRadius: 8,
+      particleCount: 70,
+    },
+    glycerin: {
+      name: 'Glycerin',
+      density: 1.26,
+      viscosity: 5.0,
+      buoyancy: 1.5,
+      particleRadius: 8,
+      particleCount: 50,
+    },
   };
 
   let currentFluid = 'water';
@@ -40,7 +68,7 @@
         vx: (Math.random() - 0.5) * 2,
         vy: 0,
         radius: fluid.particleRadius,
-        temperature: temperature
+        temperature: temperature,
       });
     }
   }
@@ -50,7 +78,7 @@
     drawHeatSource();
     drawColdSurface();
 
-    particles.forEach(p => {
+    particles.forEach((p) => {
       drawParticle(p);
     });
 
@@ -146,14 +174,14 @@
     const fluid = fluids[currentFluid];
     const effectiveViscosity = fluid.viscosity * viscosityMultiplier;
 
-    particles.forEach(p => {
+    particles.forEach((p) => {
       const buoyancyForce = fluidBuoyancy(p.temperature, fluid.buoyancy);
       const viscosityDrag = -p.vy * effectiveViscosity * 0.1;
 
       p.vy += buoyancyForce + viscosityDrag;
       p.vy *= 0.98;
 
-      const flowX = Math.sin(p.y / canvas.height * Math.PI * 2 + elapsedTime * 0.02) * 0.5;
+      const flowX = Math.sin((p.y / canvas.height) * Math.PI * 2 + elapsedTime * 0.02) * 0.5;
       p.vx += flowX * 0.1;
       p.vx *= 0.95;
 
@@ -201,10 +229,10 @@
           const ny = dy / dist;
           const overlap = minDist - dist;
 
-          p.x -= nx * overlap / 2;
-          p.y -= ny * overlap / 2;
-          other.x += nx * overlap / 2;
-          other.y += ny * overlap / 2;
+          p.x -= (nx * overlap) / 2;
+          p.y -= (ny * overlap) / 2;
+          other.x += (nx * overlap) / 2;
+          other.y += (ny * overlap) / 2;
 
           const restitution = 0.8;
           const dvx = p.vx - other.vx;
@@ -232,8 +260,8 @@
 
   function updateParameters() {
     const fluid = fluids[currentFluid];
-    const viscosityText = fluid.viscosity < 1.5 ? 'niedrig' :
-                        fluid.viscosity < 3.0 ? 'mittel' : 'hoch';
+    const viscosityText =
+      fluid.viscosity < 1.5 ? 'niedrig' : fluid.viscosity < 3.0 ? 'mittel' : 'hoch';
 
     document.getElementById('param-material').textContent = fluid.name;
     document.getElementById('param-density').textContent = fluid.density;
@@ -297,7 +325,7 @@
     const speedValue = parseInt(document.getElementById('convection-speed').value);
     const speedLabels = ['Sehr langsam', 'Langsam', 'Normal', 'Schnell', 'Sehr schnell'];
 
-    viscosityMultiplier = 2.0 - (speedValue / 50);
+    viscosityMultiplier = 2.0 - speedValue / 50;
 
     const labelIndex = Math.min(Math.floor(speedValue / 20), speedLabels.length - 1);
     document.getElementById('speed-display').textContent = speedLabels[labelIndex];
@@ -320,5 +348,4 @@
   window.changeFluid = changeFluid;
   window.updateTemperature = updateTemperature;
   window.updateSpeed = updateSpeed;
-
 })();

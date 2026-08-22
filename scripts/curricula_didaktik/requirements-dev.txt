@@ -1,4 +1,8 @@
--r requirements.txt
+# Test-only dependencies for curricula_didaktik scrapers.
+# NOTE: Do NOT reference requirements.txt here — it uses --hash pinning,
+# which forces pip into --require-hashes mode for ALL packages.
+# CI installs requirements.txt and requirements-dev.txt separately:
+#   pip install -r requirements.txt && pip install -r requirements-dev.txt
 pytest==8.3.4
 pytest-mock==3.14.0
 responses==0.25.3

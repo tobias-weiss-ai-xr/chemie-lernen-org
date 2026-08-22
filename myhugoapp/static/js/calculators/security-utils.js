@@ -27,12 +27,7 @@ const SecurityUtils = {
    * @returns {object} - Validation result with isValid and error
    */
   validateNumber(value, options = {}) {
-    const {
-      min = -Infinity,
-      max = Infinity,
-      allowZero = true,
-      required = true
-    } = options;
+    const { min = -Infinity, max = Infinity, allowZero = true, required = true } = options;
 
     // Check if required and empty
     if (required && (value === null || value === undefined || value === '')) {
@@ -113,7 +108,7 @@ const SecurityUtils = {
       /onclick/i,
       /eval\(/i,
       /document\./i,
-      /window\./i
+      /window\./i,
     ];
 
     for (const pattern of dangerousPatterns) {
@@ -134,7 +129,7 @@ const SecurityUtils = {
     const result = this.validateNumber(value, {
       min: 0,
       max: 100,
-      required: true
+      required: true,
     });
 
     if (result.isValid) {
@@ -164,12 +159,7 @@ const SecurityUtils = {
    * @returns {object} - Validation result
    */
   validateText(text, options = {}) {
-    const {
-      maxLength = 1000,
-      minLength = 0,
-      required = false,
-      allowHTML = false
-    } = options;
+    const { maxLength = 1000, minLength = 0, required = false, allowHTML = false } = options;
 
     if (required && !text) {
       return { isValid: false, error: 'This field is required' };
@@ -209,7 +199,9 @@ const SecurityUtils = {
     const storageKey = 'ratelimit_' + key;
 
     try {
-      const data = JSON.parse(sessionStorage.getItem(storageKey) || '{"requests":[],"windowStart":' + now + '}');
+      const data = JSON.parse(
+        sessionStorage.getItem(storageKey) || '{"requests":[],"windowStart":' + now + '}'
+      );
 
       // Reset window if expired
       if (now - data.windowStart > windowMs) {
@@ -218,7 +210,9 @@ const SecurityUtils = {
       }
 
       // Remove old requests
-      data.requests = data.requests.filter((time) => { return now - time < windowMs; });
+      data.requests = data.requests.filter((time) => {
+        return now - time < windowMs;
+      });
 
       // Check limit
       if (data.requests.length >= limit) {
@@ -243,7 +237,9 @@ const SecurityUtils = {
    */
   generateCSRFToken() {
     const token = Array.from(crypto.getRandomValues(new Uint8Array(32)))
-      .map((b) => { return b.toString(16).padStart(2, '0'); })
+      .map((b) => {
+        return b.toString(16).padStart(2, '0');
+      })
       .join('');
 
     try {
@@ -268,7 +264,7 @@ const SecurityUtils = {
       console.warn('Unable to validate CSRF token:', e);
       return false;
     }
-  }
+  },
 };
 
 // Export for use in calculator modules

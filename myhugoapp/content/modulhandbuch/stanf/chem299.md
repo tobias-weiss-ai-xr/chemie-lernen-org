@@ -3,6 +3,7 @@ title: Graduate Research — Stanford University
 description: 'Graduate Research (CHEM299) an der Stanford University. 15 ECTS, Niveau: MSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: STANF
 uni_name: Stanford University
 module_code: CHEM299

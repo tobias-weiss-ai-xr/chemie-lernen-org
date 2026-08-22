@@ -17,11 +17,33 @@
   <hr class="featurette-divider">
 
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <!-- Sidebar -->
+    <div class="col-md-3">
+      <!-- Learning Profile -->
+      <div id="learning-profile" class="learning-profile" style="display:none">
+        <h3>Lernprofil</h3>
+        <div id="weak-areas" class="profile-section">
+          <h4>Schwächen</h4>
+          <ul id="weak-areas-list" class="profile-list"></ul>
+        </div>
+        <div id="strong-areas" class="profile-section">
+          <h4>Stärken</h4>
+          <ul id="strong-areas-list" class="profile-list"></ul>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- Chat Area -->
+    <div class="col-md-9">
       <div class="chat-container">
         <div class="chat-header">
           <i class="fa fa-robot"></i> Chemie-KI-Assistent
           <span class="chat-status">Online</span>
+          <button id="export-chat-btn" class="btn btn-default btn-xs export-btn" title="Chat exportieren" style="display:none; margin-left:auto;">
+            <i class="fa fa-download"></i> Exportieren
+          </button>
         </div>
         <div id="chat-messages" class="chat-messages">
           <div class="message bot">
@@ -37,7 +59,7 @@
           </div>
         </div>
         <div class="chat-input-area">
-          <input aria-label="Chat Input"type="text" id="chat-input" class="form-control" placeholder="Frage eingeben..." autocomplete="off">
+          <input aria-label="Chat Input" type="text" id="chat-input" class="form-control" placeholder="Frage eingeben..." autocomplete="off">
           <button id="chat-send-btn" class="btn btn-primary" aria-label="Nachricht senden"><i class="fa fa-send"></i></button>
         </div>
       </div>

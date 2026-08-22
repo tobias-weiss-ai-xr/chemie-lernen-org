@@ -1,4 +1,10 @@
-:root {
+/*
+ * Theme tokens. :root holds the LIGHT theme (warm paper, not stark white).
+ * Dark + High-Contrast variants live in dark-mode.css ([data-theme='dark'] / [data-theme='contrast']).
+ * theme-switcher.js + the FOUC script in <head> set data-theme on <html>.
+ */
+:root,
+[data-theme='light'] {
   --brand-primary: #1b5e20;
   --brand-secondary: #2e7d32;
   --accent-color: #007bff;
@@ -7,10 +13,79 @@
   --warning-color: #f59e0b;
   --danger-color: #e74c3c;
   --text-primary: #2c3e50;
-  --text-muted: #7f8c8d;
-  --border-color: #dee2e6;
-  --card-bg: #ffffff;
-  --bg-primary: #f8f9fa;
+  --text-muted: #6b7785;
+  --border-color: #d9dee3;
+  --card-bg: #fcfbf7;
+  --bg-primary: #f4f2ec;
+  --bg-surface: #efede6;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Light-theme page chrome — applies to the :root default and to [data-theme='light'] */
+:root body,
+[data-theme='light'] body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+:root .card,
+[data-theme='light'] .card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+:root .panel,
+:root .panel-default,
+[data-theme='light'] .panel,
+[data-theme='light'] .panel-default {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+:root .panel-body,
+:root .panel-heading,
+:root .panel-title,
+:root .panel-footer,
+[data-theme='light'] .panel-body,
+[data-theme='light'] .panel-heading,
+[data-theme='light'] .panel-title,
+[data-theme='light'] .panel-footer {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+:root .well,
+[data-theme='light'] .well {
+  background-color: var(--bg-surface);
+  border-color: var(--border-color);
+}
+
+:root .list-group-item,
+[data-theme='light'] .list-group-item {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+:root .table-bordered th,
+:root .table-bordered td,
+[data-theme='light'] .table-bordered th,
+[data-theme='light'] .table-bordered td {
+  border-color: var(--border-color);
+}
+
+:root .table-bordered th,
+[data-theme='light'] .table-bordered th {
+  background-color: var(--bg-surface);
+}
+
+:root .form-control,
+[data-theme='light'] .form-control {
+  background-color: #ffffff;
+  color: var(--text-primary);
+  border-color: var(--border-color);
 }
 
 /* Shared animation keyframes - consolidated from calculator CSS files */
@@ -49,11 +124,19 @@
 }
 
 @keyframes resultPulse {
-  0% { opacity: 0.7; transform: scale(0.98); }
-  50% { opacity: 1; transform: scale(1.02); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
-
 
 .lead {
   font-size: 1.2rem;
@@ -68,6 +151,215 @@
   margin: 2rem auto;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Video embed (youtube shortcode) */
+.video-embed {
+  margin: 2rem 0;
+}
+
+/* Full viewport width breakout — videos span edge-to-edge on article pages */
+@media (min-width: 768px) {
+  .thema-content > .video-embed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    max-width: none;
+  }
+}
+
+/* Prevent horizontal scroll from 100vw breakout elements */
+body {
+  overflow-x: hidden;
+}
+
+.video-embed-frame {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: #000;
+}
+
+.video-embed-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-embed-caption {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+  line-height: 1.5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .video-embed-caption {
+    color: #aaa;
+  }
+}
+
+/* Zig's Chemistry 42 — auto video list grid */
+.zigs-video-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.zigs-video-item {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  background: #fff;
+  height: 100%;
+}
+
+.zigs-video-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.zigs-video-item:hover .zigs-video-link {
+  text-decoration: none;
+}
+
+.zigs-video-thumb-wrap {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+}
+
+.zigs-video-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.zigs-video-new {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #dc3545;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.zigs-video-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.zigs-video-link:hover {
+  text-decoration: none;
+}
+
+.zigs-video-link:hover .zigs-video-thumb {
+  transform: scale(1.05);
+}
+
+.zigs-video-link:focus {
+  outline: 3px solid #4caf50;
+  outline-offset: 2px;
+  border-radius: 0;
+}
+
+.zigs-video-title {
+  font-size: 1rem;
+  line-height: 1.45;
+  padding: 12px 14px 6px;
+  font-weight: 600;
+}
+
+.zigs-video-date {
+  font-size: 0.85rem;
+  color: #555;
+  padding: 0 14px 12px;
+}
+
+.zigs-video-empty {
+  font-style: italic;
+  color: #777;
+}
+
+.zigs-video-source {
+  margin-top: 14px;
+  font-size: 0.82rem;
+  color: #777;
+}
+
+.zigs-video-source a {
+  font-weight: 600;
+}
+
+.zigs-video-channel {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  .zigs-video-item {
+    background: #2c2c2c;
+  }
+
+  .zigs-video-date {
+    color: #aaa;
+  }
+
+  .zigs-video-source,
+  .zigs-video-channel {
+    color: #9fd3a2;
+  }
+
+  .zigs-video-more a {
+    color: #8ab4f8;
+  }
+}
+
+@media (max-width: 640px) {
+  .zigs-video-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.zigs-video-more {
+  margin: 1rem 0 0;
+  font-weight: 600;
+}
+
+.zigs-video-more a {
+  color: var(--link-color, #1a73e8);
+  text-decoration: none;
+}
+
+.zigs-video-more a:hover {
+  text-decoration: underline;
 }
 
 /* Title row styling */
@@ -104,6 +396,93 @@
 
 .theme-toggle-header i {
   font-size: 28px;
+}
+
+/* ── Theme chooser (Hell / Dunkel / Kontrast) ── */
+.theme-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--border-color, #c8e6c9);
+}
+
+.theme-switcher-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2e7d32;
+  margin-right: 6px;
+  white-space: nowrap;
+}
+
+.theme-option {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.theme-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.theme-option-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  font-size: 0.82rem;
+  line-height: 1;
+  border-radius: 6px;
+  color: #1b5e20;
+  background: #ffffff;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.theme-option input:focus-visible + .theme-option-text {
+  outline: 3px solid #4caf50;
+  outline-offset: 2px;
+}
+
+.theme-option input:checked + .theme-option-text {
+  background: #1b5e20;
+  color: #ffffff;
+  border-color: #2e7d32;
+}
+
+[data-theme='dark'] .theme-switcher {
+  background: rgba(0, 0, 0, 0.25);
+  border-color: #3a5a45;
+}
+
+[data-theme='dark'] .theme-switcher-label {
+  color: #c8e6c9;
+}
+
+[data-theme='dark'] .theme-option-text {
+  color: #c8e6c9;
+  background: #13241a;
+  border-color: #3a5a45;
+}
+
+[data-theme='dark'] .theme-option input:checked + .theme-option-text {
+  background: #2e7d32;
+  color: #ffffff;
+  border-color: #4caf50;
 }
 
 /* Navbar styling for menu below title */
@@ -371,7 +750,9 @@
 .calculator-panel .form-control {
   border-radius: 6px;
   border-color: #d0d0d0;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .calculator-panel .form-control:focus {
@@ -437,7 +818,9 @@
 }
 
 @keyframes calcSpin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -645,15 +1028,15 @@
   }
 
   button,
-  [type="button"],
-  [type="submit"],
-  [type="reset"] {
+  [type='button'],
+  [type='submit'],
+  [type='reset'] {
     min-height: 44px;
   }
 
-  input[type="number"],
-  input[type="text"],
-  input[type="search"] {
+  input[type='number'],
+  input[type='text'],
+  input[type='search'] {
     min-height: 44px;
     font-size: 16px;
   }
@@ -697,7 +1080,7 @@
     margin: 15px 0 !important;
   }
 
-  .ki-assistent-hero div[style*="font-size: 64px"] {
+  .ki-assistent-hero div[style*='font-size: 64px'] {
     font-size: 40px !important;
   }
 

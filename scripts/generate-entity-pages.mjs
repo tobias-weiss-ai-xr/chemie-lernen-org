@@ -63,8 +63,7 @@ function defaultDescription(entity) {
   const cat = KAT_LABELS[entity.category] || entity.category || 'Fachbegriff';
   const articleCount = entity.articleCount || 0;
   const relatedCount = (entity.relatedEntities || []).length;
-  const articlePhrase =
-    articleCount === 1 ? 'einem Artikel' : `${articleCount} Artikeln`;
+  const articlePhrase = articleCount === 1 ? 'einem Artikel' : `${articleCount} Artikeln`;
   const relatedPhrase =
     relatedCount === 0
       ? ''
@@ -78,9 +77,14 @@ function articleListForBody(articles) {
   if (!articles || articles.length === 0) return '';
   const list = articles
     .slice(0, 5)
-    .map((a) => `- [${a.title}](${a.url || '/'})`)
+    .map((a) => {
+      const title = typeof a === 'string' ? a : a.title;
+      const url = typeof a === 'string' ? '' : a.url || '';
+      return title ? `- [${title}](${url || '/'})` : null;
+    })
+    .filter(Boolean)
     .join('\n');
-  return `## Verknüpfte Artikel\n\n${list}\n`;
+  return list ? `## Verknüpfte Artikel\n\n${list}\n` : '';
 }
 
 async function main() {
@@ -105,31 +109,42 @@ async function main() {
   }
 
   // Collect slugs that should exist. Anything else in the dir (besides
-  // the 3 hand-written element markdowns) is removed to keep the
-  // generated directory in sync with the data.
+  // the hand-written element markdowns and special files) is removed
+  // to keep the generated directory in sync with the data.
   const slugsToKeep = new Set(entitiesBySlug.keys());
-  // Preserve the 3 hand-written element markdowns
+  // Preserve hand-written element markdowns
   const HAND_WRITTEN = new Set(['kohlenstoff', 'palladium', 'platin']);
   HAND_WRITTEN.forEach((s) => slugsToKeep.add(s));
+  // Preserve section index files
+  const KEEP_FILES = new Set(['_index.md', '_index.html', '.gitkeep', '.gitignore']);
+  KEEP_FILES.forEach((s) => slugsToKeep.add(s));
 
   let removed = 0;
   try {
-    const entries = await (await import('node:fs/promises')).readdir(ENTITY_DIR);
+    const entries = await (
+      await import('node:fs/promises')
+    ).readdir(ENTITY_DIR, { withFileTypes: true });
     for (const entry of entries) {
-      if (!slugsToKeep.has(entry)) {
-        await rm(join(ENTITY_DIR, entry), { recursive: true, force: true });
-        removed++;
+      if (!slugsToKeep.has(entry.name)) {
+        // Only remove directories (entity pages) and known stub files
+        if (entry.isDirectory() || entry.isFile()) {
+          await rm(join(ENTITY_DIR, entry.name), { recursive: true, force: true });
+          removed++;
+        }
       }
     }
   } catch {
     // ENTITY_DIR may not exist yet — first run
   }
 
+  const BATCH_SIZE = 100;
   let generated = 0;
   let updated = 0;
-  for (const entity of entities) {
+  let skipped = 0;
+
+  async function writeEntityPage(entity) {
     const slug = slugify(entity.name);
-    if (HAND_WRITTEN.has(slug)) continue; // don't touch the 3 element markdowns
+    if (HAND_WRITTEN.has(slug)) return { type: 'skipped' };
 
     const pageDir = join(ENTITY_DIR, slug);
     const pageFile = join(pageDir, 'index.md');
@@ -140,7 +155,7 @@ async function main() {
     const relatedNames = (entity.relatedEntities || [])
       .map((r) => (typeof r === 'string' ? r : r.name))
       .filter(Boolean)
-      .slice(0, 50); // cap to keep frontmatter sane
+      .slice(0, 50);
     const components = (entity.components || []).slice(0, 20);
     const description = entity.description || defaultDescription(entity);
 
@@ -164,24 +179,41 @@ async function main() {
       articleListForBody(entity.articles || []),
     ].join('\n');
 
-    // Check if it already exists with the same content (skip needless writes)
     let existed = false;
     try {
       const existing = await readFile(pageFile, 'utf-8');
       existed = true;
-      if (existing === frontmatter) continue;
+      if (existing === frontmatter) return { type: 'skipped' };
     } catch {
       // new
     }
 
     await mkdir(pageDir, { recursive: true });
     await writeFile(pageFile, frontmatter, 'utf-8');
-    if (existed) updated++;
-    else generated++;
+    return { type: existed ? 'updated' : 'generated' };
+  }
+
+  async function processBatch(batch) {
+    const results = await Promise.all(batch.map((entity) => writeEntityPage(entity)));
+    return results;
+  }
+
+  const batches = [];
+  for (let i = 0; i < entities.length; i += BATCH_SIZE) {
+    batches.push(entities.slice(i, i + BATCH_SIZE));
+  }
+
+  for (const batch of batches) {
+    const results = await processBatch(batch);
+    for (const result of results) {
+      if (result.type === 'generated') generated++;
+      else if (result.type === 'updated') updated++;
+      else if (result.type === 'skipped') skipped++;
+    }
   }
 
   console.log(
-    `Entity pages: ${generated} new, ${updated} updated, ${removed} removed, in ${ENTITY_DIR}`
+    `Entity pages: ${generated} new, ${updated} updated, ${skipped} skipped (same content), ${removed} removed, in ${ENTITY_DIR}`
   );
 }
 

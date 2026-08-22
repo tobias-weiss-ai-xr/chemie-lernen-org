@@ -2,6 +2,7 @@
 title: 'Rechner Übersicht'
 description: "Interaktive Chemie-Rechner für Schule und Studium – pH-Rechner, Stöchiometrie, Titration, Redox und mehr."
 date: 2026-02-06
+last_reviewed: 2026-07-09
 draft: false
 tags: ['rechner', 'uebersicht']
 categories: ['rechner']

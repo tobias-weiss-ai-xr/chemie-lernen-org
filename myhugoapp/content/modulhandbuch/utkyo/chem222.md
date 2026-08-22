@@ -3,6 +3,7 @@ title: Organic Chemistry II — University of Tokyo
 description: 'Organic Chemistry II (CHEM222) an der University of Tokyo. 6 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: UTKYO
 uni_name: University of Tokyo
 module_code: CHEM222

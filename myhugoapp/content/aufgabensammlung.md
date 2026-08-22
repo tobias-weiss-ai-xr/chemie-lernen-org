@@ -2,6 +2,7 @@
 title: 'Aufgabensammlung'
 description: 'Durchsuchbare Sammlung aller Chemie-Übungen — filtern nach Thema, Schwierigkeit und Typ'
 date: 2026-05-28
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'aufgabensammlung'

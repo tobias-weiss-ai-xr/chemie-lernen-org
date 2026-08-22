@@ -2,6 +2,7 @@
 title: 'Lernräume in Mozilla Hubs'
 description: 'Wie 3D-Lernräume in Mozilla Hubs den Chemieunterricht ergänzen — Konzept, Beispiele und Einstieg in hubs.chemie-lernen.org'
 date: 2026-06-26
+last_reviewed: 2026-07-09
 tags: ['3d', 'webxr', 'hubs', 'lernräume', 'virtual-reality']
 menu:
   main:
@@ -17,6 +18,15 @@ ganze Experimentieraufbauten räumlich erleben, gemeinsam betrachten und
 diskutieren können.
 
 [hubs]: https://hubs.chemie-lernen.org/
+
+![Gemeinsamer 3D-Lernraum in Mozilla Hubs: Avatare um ein Molekülmodell, Periodensystem-Wand, Audio- und Chat-Chips](/img/hubs-lernraum-cover.svg){width="100%"}
+
+> **Direkt loslegen:** [Raum erstellen auf hubs.chemie-lernen.org](https://hubs.chemie-lernen.org/) — kein Account, kein Download, läuft direkt im Browser.
+
+**Ein Raum pro Element:** Über [Chemie Räume](/chemie-raeume/) erreicht ihr für
+jedas Element des Periodensystems einen eigenen, thematisch gefärbten
+3D-Lernraum (Atommodell, Inhalte, Partikel). Den gleichen Raum könnt ihr für
+den Klassenverband auch in Hubs öffnen — siehe unten „Elementräume in Hubs".
 
 ## Was sind Lernräume in Hubs?
 

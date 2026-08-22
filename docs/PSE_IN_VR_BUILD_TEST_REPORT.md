@@ -194,7 +194,6 @@ Verified all VR app internal references:
    - WebXR API
    - Three.js
    - WebGL
-   - Mozilla Hubs
 
 5. ✅ Compatibility
    - VR headsets list

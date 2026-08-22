@@ -2,6 +2,7 @@
 title: "Didaktische Methoden"
 description: "Methoden des Chemieunterrichts: kompetenzorientiert, handlungsorientiert, experimentell und kollaborativ lernen — mit praxisnahen Beispielen"
 date: 2026-01-05
+last_reviewed: 2026-07-09
 type: "page"
 icon: "📐"
 tags: ["didaktik", "methoden", "kompetenzorientiert", "handlungsorientiert", "experimentell", "chemieunterricht"]

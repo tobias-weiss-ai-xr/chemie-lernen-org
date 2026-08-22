@@ -14,9 +14,6 @@ Comprehensive testing infrastructure for the chemistry learning platform includi
 tests/
 ├── test-verbrennungsrechner.spec.js  # Combustion calculator tests
 ├── chemistry-utils.test.js          # Chemistry utility tests
-├── visualization.test.js           # Visualization tests
-├── analytics-manager.test.js       # Analytics tests
-├── practice-generators.test.js     # Practice generator tests
 ├── test-language-switcher.spec.js   # Language switcher tests
 ├── test-quiz-system.spec.js        # Quiz system tests
 ├── test-titrations-simulator.spec.js # Titrations simulator tests

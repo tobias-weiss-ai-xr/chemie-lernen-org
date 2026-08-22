@@ -2,6 +2,7 @@
 title: 'Arbeitsblatt-Generator'
 description: 'Erstellen Sie individuelle Chemie-Arbeitsblätter mit verschiedenen Aufgabentypen und Schwierigkeitsgraden'
 date: 2026-05-28
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'arbeitsblatt-generator'

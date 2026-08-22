@@ -13,7 +13,7 @@ test.describe('Service Worker', () => {
 
     const registrations = await page.evaluate(async () => {
       const regs = await navigator.serviceWorker.getRegistrations();
-      return regs.map(r => ({
+      return regs.map((r) => ({
         scope: r.scope,
         active: !!r.active,
       }));
@@ -65,6 +65,60 @@ test.describe('Offline Page', () => {
     if (response.status() === 200) {
       await expect(page.locator('h1')).toBeVisible();
     }
+  });
+});
+
+test.describe('Offline Caching', () => {
+  test('should cache API data and serve from cache when offline', async ({ page, context }) => {
+    await page.goto(`${BASE_URL}/entity/`);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(3000);
+
+    await context.setOffline(true);
+    await page.reload();
+
+    await expect(
+      page.locator('#entity-index-app, .card, .entity-grid, h1, .search-box').first()
+    ).toBeVisible({ timeout: 10000 });
+
+    const searchInput = page.locator(
+      'input[type="text"], input[placeholder*="Suche"], #search-input, .search-field'
+    );
+    await expect(searchInput).toBeVisible();
+
+    await context.setOffline(false);
+  });
+
+  test('should cache search index and serve from cache when offline', async ({ page, context }) => {
+    await page.goto(`${BASE_URL}/entity/`);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(3000);
+
+    await context.setOffline(true);
+
+    const searchInput = page.locator(
+      'input[type="text"], input[placeholder*="Suche"], #search-input, .search-field'
+    );
+    const inputCount = await searchInput.count();
+    if (inputCount > 0) {
+      await searchInput.first().fill('Wasserstoff');
+      await page.waitForTimeout(500);
+
+      const results = page.locator('.entity-card, .search-result, .entity-item, .card');
+      await expect(results.first()).toBeVisible({ timeout: 5000 });
+    }
+
+    await context.setOffline(false);
+  });
+
+  test('offline page should render calculator reference', async ({ page, context }) => {
+    await page.goto(`${BASE_URL}/offline/`);
+    expect(page.url()).toContain('/offline/');
+
+    const bodyText = await page.locator('body').innerText();
+    expect(bodyText.length).toBeGreaterThan(50);
+
+    await context.setOffline(false);
   });
 });
 

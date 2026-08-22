@@ -1,23 +1,13 @@
 ---
-title: 'Galvanische Zelle'
-description: 'Fachbegriff „Galvanische Zelle“ (Konzept) — beschrieben in [object Object] Artikeln auf chemie-lernen.org und ist mit 4 weiteren Fachbegriffen verknüpft.'
+title: "galvanische zelle"
+description: "Fachbegriff „galvanische zelle“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit einem weiteren Fachbegriff verknüpft."
 date: 2026-06-26
-slug: 'galvanische-zelle'
-category: 'konzept'
-articleCount: [object Object]
-relatedCount: 4
+slug: "galvanische-zelle"
+category: "konzept"
+articleCount: 0
+relatedCount: 1
 relatedEntities:
-  - 'nernst-gleichung'
-  - 'nersnt-gleichung'
-  - 'Spannungsreihe'
-  - 'Elektrochemische Zelle'
+  - "Redoxreaktion"
 components: []
 ---
 
-## Verknüpfte Artikel
-
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)

@@ -3,6 +3,7 @@ title: Biochemistry II — University of Tokyo
 description: 'Biochemistry II (CHEM242) an der University of Tokyo. 5 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: UTKYO
 uni_name: University of Tokyo
 module_code: CHEM242

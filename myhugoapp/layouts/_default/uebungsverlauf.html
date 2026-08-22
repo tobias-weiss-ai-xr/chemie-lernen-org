@@ -1,0 +1,89 @@
+{{ define "css" }}
+<link rel="stylesheet" href="{{ "/css/uebungsverlauf.css" | relURL }}">
+{{ end }}
+
+{{ define "main" }}
+<noscript>
+  <div class="alert alert-warning" role="alert">
+    <p><strong>JavaScript ist erforderlich.</strong> Diese Übersicht funktioniert nur mit aktiviertem JavaScript.</p>
+  </div>
+</noscript>
+
+<div class="uv-page">
+  <div class="uv-container">
+    <h1 class="uv-title">{{ .Title }}</h1>
+    <p class="uv-subtitle">{{ .Description }}</p>
+
+    <!-- Loading -->
+    <div id="uv-loading" class="uv-loading">
+      <p><i class="fa fa-spinner fa-spin fa-2x"></i></p>
+      <p>Lade Übungsverlauf...</p>
+    </div>
+
+    <!-- Error -->
+    <div id="uv-error" class="uv-error" style="display:none;">
+      <div class="uv-error-icon"><i class="fa fa-exclamation-triangle"></i></div>
+      <p id="uv-error-msg" class="uv-error-msg">Ein Fehler ist aufgetreten.</p>
+      <button class="uv-btn-primary" onclick="Uebungsverlauf.fetchHistory()">Erneut versuchen</button>
+    </div>
+
+    <!-- Content -->
+    <div id="uv-content" style="display:none;">
+
+      <!-- Accuracy Overview -->
+      <section class="uv-section" id="uv-accuracy-section">
+        <h2 class="uv-section-title">Genauigkeit</h2>
+        <div class="uv-accuracy-grid">
+          <div class="uv-accuracy-card uv-accuracy-correct">
+            <span class="uv-accuracy-value" id="uv-accuracy-correct-pct">0%</span>
+            <span class="uv-accuracy-label">Richtig</span>
+            <span class="uv-accuracy-count" id="uv-accuracy-correct-count">0</span>
+          </div>
+          <div class="uv-accuracy-card uv-accuracy-wrong">
+            <span class="uv-accuracy-value" id="uv-accuracy-wrong-pct">0%</span>
+            <span class="uv-accuracy-label">Falsch</span>
+            <span class="uv-accuracy-count" id="uv-accuracy-wrong-count">0</span>
+          </div>
+          <div class="uv-accuracy-card uv-accuracy-total">
+            <span class="uv-accuracy-value" id="uv-accuracy-total-num">0</span>
+            <span class="uv-accuracy-label">Gesamt</span>
+          </div>
+        </div>
+        <!-- CSS-only accuracy bar -->
+        <div class="uv-accuracy-bar-container">
+          <div class="uv-accuracy-bar" id="uv-accuracy-bar" style="width:0%;"></div>
+        </div>
+      </section>
+
+      <!-- Topic Breakdown -->
+      <section class="uv-section" id="uv-topics-section">
+        <h2 class="uv-section-title">Themen-Aufschlüsselung</h2>
+        <div id="uv-topics-list" class="uv-topics-list">
+          <p class="uv-empty-text">Keine Themendaten verfügbar.</p>
+        </div>
+      </section>
+
+      <!-- Recent Attempts -->
+      <section class="uv-section" id="uv-recent-section">
+        <h2 class="uv-section-title">Letzte Versuche</h2>
+        <div id="uv-recent-list" class="uv-recent-list">
+          <p class="uv-empty-text">Noch keine Versuche aufgezeichnet.</p>
+        </div>
+      </section>
+
+      <!-- Recommendations -->
+      <section class="uv-section" id="uv-recommendations-section">
+        <h2 class="uv-section-title">Empfehlungen</h2>
+        <div id="uv-recommendations-list" class="uv-recommendations-list">
+          <p class="uv-empty-text">Keine Empfehlungen — gut gemacht!</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script src="/js/uebungsverlauf.js"></script>
+{{ end }}
+
+{{ define "js" }}{{ end }}

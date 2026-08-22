@@ -1,0 +1,136 @@
+{
+  "university": "Universität zu Köln",
+  "state": "NW",
+  "modules": [
+    {
+      "id": "CHE-AC-I",
+      "name": "Anorganische Chemie I",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Schäfer",
+      "description": "Atombau, Periodensystem der Elemente, chemische Bindung, Molekülgeometrie (VSEPR-Modell), Säuren und Basen nach Brønsted und Lewis, Redoxreaktionen, Grundlagen der Komplexchemie",
+      "topics": [
+        "Atombau",
+        "Periodensystem",
+        "Chemische Bindung",
+        "Anorganische Chemie",
+        "Säuren",
+        "Basen",
+        "Redox",
+        "Komplexchemie"
+      ],
+      "url": "https://chemie.uni-koeln.de/studium/modulhandbuecher/ac-i.html"
+    },
+    {
+      "id": "CHE-AC-II",
+      "name": "Anorganische Chemie II",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Schäfer",
+      "description": "Nebengruppenelemente, Koordinationschemie, Metallorganyle, homogene und heterogene Katalyse, Bioanorganische Chemie",
+      "topics": ["Anorganische Chemie", "Komplexchemie", "Katalyse"],
+      "url": "https://chemie.uni-koeln.de/studium/modulhandbuecher/ac-ii.html"
+    },
+    {
+      "id": "CHE-OC-I",
+      "name": "Organische Chemie I",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Winter",
+      "description": "Nomenklatur organischer Verbindungen, Bindungstheorie, Konformation und Konfiguration, Stereochemie, Reaktionsmechanismen (SN1, SN2, E1, E2), funktionelle Gruppen, Alkane, Alkene, Alkine, Aromaten",
+      "topics": ["Organische Chemie", "Nomenklatur", "Reaktionsmechanismen", "Stereochemie"],
+      "url": "https://chemie.uni-koeln.de/studium/modulhandbuecher/oc-i.html"
+    },
+    {
+      "id": "CHE-OC-II",
+      "name": "Organische Chemie II",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Winter",
+      "description": "Carbonylchemie, Alkohole, Ether, Amine, Heterocyclen, Naturstoffe, pericyclische Reaktionen, Spektroskopie (NMR, IR, MS) zur Strukturaufklärung",
+      "topics": ["Organische Chemie", "Reaktionsmechanismen", "Spektroskopie", "Stereochemie"],
+      "url": "https://chemie.uni-koeln.de/studium/modulhandbuecher/oc-ii.html"
+    },
+    {
+      "id": "CHE-PC-I",
+      "name": "Physikalische Chemie I",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Beckmann",
+      "description": "Thermodynamik, chemisches Gleichgewicht, Phasengleichgewichte, Kinetik chemischer Reaktionen, Transportphänomene",
+      "topics": ["Physikalische Chemie", "Thermodynamik", "Kinetik"],
+      "url": "https://chemie.uni-koeln.de/studium/modulhandbuecher/pc-i.html"
+    },
+    {
+      "id": "CHE-PC-II",
+      "name": "Physikalische Chemie II",
+      "type": "Vorlesung",
+      "credits": 6,
+      "semester": "SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Beckmann",
+      "description": "Quantenchemie, Spektroskopie, Elektrochemie, Grenzflächenchemie, Kolloide",
+      "topics": ["Physikalische Chemie", "Quantenchemie", "Spektroskopie", "Elektrochemie"],
+      "url": "https://chemie.uni-koeln.de/studium/modulhandbuecher/pc-ii.html"
+    },
+    {
+      "id": "CHE-BC",
+      "name": "Biochemie",
+      "type": "Vorlesung",
+      "credits": 5,
+      "semester": "SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Neumann",
+      "description": "Aminosäuren, Proteine, Enzyme und Enzymkinetik, Kohlenhydrate, Lipide, Nukleinsäuren, Grundlagen des Stoffwechsels, Glykolyse, Citratzyklus, oxidative Phosphorylierung",
+      "topics": ["Biochemie"],
+      "url": "https://chemie.uni-koeln.de/studium/modulhandbuecher/biochemie.html"
+    },
+    {
+      "id": "CHE-AN",
+      "name": "Analytische Chemie",
+      "type": "Vorlesung",
+      "credits": 5,
+      "semester": "WS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Krüger",
+      "description": "Qualitative und quantitative Analyse, Trennungsgang, Gravimetrie, Volumetrie, Spektroskopie (AAS, AES, UV/VIS), Chromatographie (GC, HPLC), Elektroanalytik",
+      "topics": ["Analytische Chemie", "Spektroskopie", "Elektrochemie"],
+      "url": "https://chemie.uni-koeln.de/studium/modulhandbuecher/analytik.html"
+    },
+    {
+      "id": "CHE-DID",
+      "name": "Didaktik der Chemie",
+      "type": "Vorlesung",
+      "credits": 4,
+      "semester": "WS/SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Sommer",
+      "description": "Lern- und motivationstheoretische Grundlagen, didaktische Rekonstruktion, Schülervorstellungen, Experimente im Chemieunterricht, Sprachbildung und Diversität, Leistungsbewertung",
+      "topics": [],
+      "url": "https://chemie.uni-koeln.de/studium/modulhandbuecher/didaktik.html"
+    },
+    {
+      "id": "CHE-PRAK-AC",
+      "name": "Anorganisch-chemisches Praktikum",
+      "type": "Praktikum",
+      "credits": 8,
+      "semester": "WS/SS",
+      "degree": "Bachelor Lehramt Chemie",
+      "lecturer": "Prof. Dr. Schäfer",
+      "description": "Präparative anorganische Chemie, Synthesetechniken, Trennungsgang der Kationen und Anionen, Metallnachweise, Protokollführung, Arbeitssicherheit",
+      "topics": ["Anorganische Chemie", "Analytische Chemie"],
+      "url": "https://chemie.uni-koeln.de/studium/modulhandbuecher/anorganisches-praktikum.html"
+    }
+  ],
+  "scrapedAt": "2026-07-23T17:31:31.283Z"
+}

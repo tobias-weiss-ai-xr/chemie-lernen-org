@@ -1,6 +1,7 @@
 ---
 title: "Protein-Dynamik: Kombinierte Bildgebung zeigt „Atmen\" von Proteinen"
 date: "2026-06-16T02:43:03+02:00"
+last_reviewed: 2026-08-06
 description: "Die Strukturbiologie liefert zwar detaillierte molekulare Strukturen, oft jedoch nur als statische Momentaufnahmen. Da die Dynamik von Proteinen für ihre"
 source: "https://phys.org/news/2026-06-frozen-snapshots-protein-view-combined.html"
 tags:

@@ -15,6 +15,12 @@ Die **Kalorimetrie** ist die experimentelle Methode zur Messung von Wärmemengen
 
 Die grundlegende Gleichung der Kalorimetrie lautet:
 
+### 📺 Lernvideo: Temperaturskalen im Kontext
+
+{{< youtube id="GsRJo8eFsmc" title="Celsius vs. Fahrenheit — Zig's Chemistry 42" >}}
+**Lernvideo-Illustration:** _Celsius vs. Fahrenheit – The Story Behind the Temperature Scales_ von **[Zig's Chemistry 42](https://www.youtube.com/@ZigsChemistry42)** (Prof. Siegfried Schindler) — die Entstehung der Temperaturskalen, die in der Kalorimetrie die Grundlage jeder Temperaturmessung bilden.
+{{< /youtube >}}
+
 $$
 q = c \cdot m \cdot \Delta T
 $$

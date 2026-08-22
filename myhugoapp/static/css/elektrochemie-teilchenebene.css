@@ -13,7 +13,7 @@
   border-radius: 8px;
   padding: 25px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .canvas-container {
@@ -54,7 +54,7 @@
   color: #2c3e50;
 }
 
-.voltage-control input[type="range"] {
+.voltage-control input[type='range'] {
   width: 150px;
 }
 
@@ -265,7 +265,7 @@
   border-left: 4px solid #0984e3;
   padding: 20px;
   margin-bottom: 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .info-card h3 {
@@ -317,15 +317,15 @@
   .nernst-visualization {
     padding: 15px;
   }
-  
+
   .half-reactions {
     flex-direction: column;
   }
-  
+
   .example-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .result-value {
     font-size: 1.4rem;
   }

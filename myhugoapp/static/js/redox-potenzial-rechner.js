@@ -49,7 +49,9 @@ function calculateCellPotential() {
 
     // Calculate equilibrium constant
     // K = exp(-ΔG°/RT) = exp(nFE°/RT)
-    const k = Math.exp((n * FARADAY_CONSTANT * cellPotential) / (GAS_CONSTANT * STANDARD_TEMPERATURE));
+    const k = Math.exp(
+      (n * FARADAY_CONSTANT * cellPotential) / (GAS_CONSTANT * STANDARD_TEMPERATURE)
+    );
 
     // Determine spontaneity
     let spontaneity, spontaneityClass;
@@ -65,9 +67,16 @@ function calculateCellPotential() {
     }
 
     // Display results
-    displayCellPotentialResults(cathodePotential, anodePotential, cellPotential,
-                                n, deltaG, k, spontaneity, spontaneityClass);
-
+    displayCellPotentialResults(
+      cathodePotential,
+      anodePotential,
+      cellPotential,
+      n,
+      deltaG,
+      k,
+      spontaneity,
+      spontaneityClass
+    );
   } catch (error) {
     showError(error.message);
   }
@@ -92,8 +101,8 @@ function calculateNernstPotential() {
     const anodePotential = parseNumber(anodeInput);
     const n = parseInt(nInput);
     const T = parseNumber(tempInput);
-    const [ox] = parseNumber(oxidizedInput);
-    const [red] = parseNumber(reducedInput);
+    const ox = parseNumber(oxidizedInput);
+    const red = parseNumber(reducedInput);
 
     if (n < 1 || n > 10) {
       showError('Anzahl der Elektronen muss zwischen 1 und 10 liegen.');
@@ -110,7 +119,7 @@ function calculateNernstPotential() {
 
     // Calculate Nernst potential
     // E = E° - (RT/nF) · ln(Q)
-    const nernstTerm = (GAS_CONSTANT * T) / (n * FARADAY_CONSTANT) * Math.log(Q);
+    const nernstTerm = ((GAS_CONSTANT * T) / (n * FARADAY_CONSTANT)) * Math.log(Q);
     const eCell = e0 - nernstTerm;
 
     // Also calculate in log10 form (common at 25°C)
@@ -119,7 +128,6 @@ function calculateNernstPotential() {
 
     // Display results
     displayNernstResults(e0, n, T, ox, red, Q, nernstTerm, eCell, log10Term, eCellLog10);
-
   } catch (error) {
     showError(error.message);
   }
@@ -170,14 +178,22 @@ function calculateGibbsEnergy() {
 
     // Display results
     displayGibbsResults(eCell, n, T, deltaG, deltaGKJ, k, spontaneity, spontaneityClass);
-
   } catch (error) {
     showError(error.message);
   }
 }
 
 // Display cell potential calculation results
-function displayCellPotentialResults(cathodeE, anodeE, cellE, n, deltaG, k, spontaneity, spontaneityClass) {
+function displayCellPotentialResults(
+  cathodeE,
+  anodeE,
+  cellE,
+  n,
+  deltaG,
+  k,
+  spontaneity,
+  spontaneityClass
+) {
   const mainResult = document.getElementById('main-result');
   const additionalResult = document.getElementById('additional-result');
   const details = document.getElementById('calculation-details');
@@ -284,12 +300,16 @@ function displayNernstResults(e0, n, T, ox, red, Q, nernstTerm, eCell, log10Term
       <span class="additional-label">Nernst-Korrektur:</span>
       <span class="additional-value">${formatNumber(nernstTerm * 1000)} mV</span>
     </div>
-    ${Math.abs(eCell - eCellLog10) > 0.001 ? `
+    ${
+      Math.abs(eCell - eCellLog10) > 0.001
+        ? `
     <div class="additional-item">
       <span class="additional-label">E (log₁₀-Form):</span>
       <span class="additional-value">${formatNumber(eCellLog10)} V</span>
     </div>
-    ` : ''}
+    `
+        : ''
+    }
   `;
 
   // Calculation details
@@ -311,7 +331,7 @@ function displayNernstResults(e0, n, T, ox, red, Q, nernstTerm, eCell, log10Term
     <div class="calculation-step">
       <h4>Nernst-Gleichung (natürlicher Logarithmus):</h4>
       <p class="formula">E = E° - (RT/nF) · ln(Q)</p>
-      <p class="formula">E = ${formatNumber(e0)} - (${formatNumber(GAS_CONSTANT * T / (n * FARADAY_CONSTANT))}) · ln(${formatNumber(Q)})</p>
+      <p class="formula">E = ${formatNumber(e0)} - (${formatNumber((GAS_CONSTANT * T) / (n * FARADAY_CONSTANT))}) · ln(${formatNumber(Q)})</p>
       <p class="formula">E = ${formatNumber(e0)} - ${formatNumber(nernstTerm * 1000)} mV</p>
       <p class="formula">E = ${formatNumber(eCell)} V</p>
     </div>
@@ -428,10 +448,10 @@ function showResults() {
 // Show error
 
 // Setup example button handlers
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Standard cell potential examples
-  document.querySelectorAll('.example-btn').forEach(button => {
-    button.addEventListener('click', function() {
+  document.querySelectorAll('.example-btn').forEach((button) => {
+    button.addEventListener('click', function () {
       document.getElementById('cathode-potential').value = this.dataset.cathode;
       document.getElementById('anode-potential').value = this.dataset.anode;
       document.getElementById('electrons').value = this.dataset.electrons;
@@ -439,8 +459,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Nernst equation examples
-  document.querySelectorAll('.example-btn-nernst').forEach(button => {
-    button.addEventListener('click', function() {
+  document.querySelectorAll('.example-btn-nernst').forEach((button) => {
+    button.addEventListener('click', function () {
       document.getElementById('nernst-cathode').value = this.dataset.cathode;
       document.getElementById('nernst-anode').value = this.dataset.anode;
       document.getElementById('nernst-electrons').value = this.dataset.n;
@@ -451,8 +471,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Gibbs energy examples
-  document.querySelectorAll('.example-btn-gibbs').forEach(button => {
-    button.addEventListener('click', function() {
+  document.querySelectorAll('.example-btn-gibbs').forEach((button) => {
+    button.addEventListener('click', function () {
       document.getElementById('cell-potential').value = this.dataset.e;
       document.getElementById('gibbs-electrons').value = this.dataset.n;
       document.getElementById('gibbs-temp').value = this.dataset.temp;
@@ -461,8 +481,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Enable Enter key for inputs
   const inputs = document.querySelectorAll('.form-control');
-  inputs.forEach(input => {
-    input.addEventListener('keypress', function(e) {
+  inputs.forEach((input) => {
+    input.addEventListener('keypress', function (e) {
       if (e.key === 'Enter') {
         const section = this.closest('.tab-pane');
         if (section.id === 'standard-cell') {

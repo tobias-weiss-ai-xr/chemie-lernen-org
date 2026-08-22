@@ -1,30 +1,14 @@
 ---
-title: 'Enzyme'
-description: 'Fachbegriff „Enzyme“ (Konzept) — beschrieben in [object Object] Artikeln auf chemie-lernen.org und ist mit 11 weiteren Fachbegriffen verknüpft.'
+title: "enzyme"
+description: "Fachbegriff „enzyme“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 2 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-slug: 'enzyme'
-category: 'konzept'
-articleCount: [object Object]
-relatedCount: 11
+slug: "enzyme"
+category: "konzept"
+articleCount: 0
+relatedCount: 2
 relatedEntities:
-  - 'enzyme toren, die spezifische stoffwechselpro-'
-  - 'prinzip (verdauungsenzyme). antikörper-reaktion bei infektions-'
-  - 'enzymkinetik'
-  - 'fad'
-  - 'allosterie'
-  - 'Atmungskette'
-  - 'Zitronensaeurezyklus'
-  - 'Glykolyse'
-  - 'Bioanorganische Chemie'
-  - 'Proteinfaltung'
-  - 'Enzymkatalyse'
+  - "prinzip (verdauungsenzyme). antikörper-reaktion bei infektions-"
+  - "enzyme toren, die spezifische stoffwechselpro-"
 components: []
 ---
 
-## Verknüpfte Artikel
-
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)
-- [undefined](/)

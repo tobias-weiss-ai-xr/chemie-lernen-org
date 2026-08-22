@@ -3,6 +3,7 @@ title: KTH Royal Institute of Technology
 description: Die KTH Royal Institute of Technology bietet 19 Chemie-Module in 2 Studiengängen an.
 layout: uni
 date: 2026-06-29
+last_reviewed: 2026-07-09
 aliases:
   - /modulhandbuch/KTH/
 uni_code: KTH

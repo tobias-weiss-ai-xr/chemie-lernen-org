@@ -1,0 +1,80 @@
+{{ define "title" }}{{ .Title }}{{ end }}
+
+{{ define "css" }}
+<style>
+  .orbitalansichten-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .orbitalansichten-container h1 {
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 1.8rem;
+  }
+
+  .orbitalansichten-container .lead {
+    text-align: center;
+    color: #666;
+    margin-bottom: 24px;
+  }
+
+  .orbitalansichten-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+
+  .orbitalansichten-container th,
+  .orbitalansichten-container td {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    text-align: left;
+  }
+
+  .orbitalansichten-container th {
+    background: #f0f4ff;
+    font-weight: 600;
+  }
+
+  .orbital-viewer-section {
+    margin: 32px 0;
+  }
+
+  .orbital-viewer-section h2 {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .orbitalansichten-container .lead {
+      color: #aaa;
+    }
+    .orbitalansichten-container th {
+      background: #2c2c2c;
+    }
+    .orbitalansichten-container th,
+    .orbitalansichten-container td {
+      border-color: #444;
+    }
+    .orbitalansichten-container h1 {
+      color: #e0e0e0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .orbitalansichten-container {
+      padding: 10px;
+    }
+  }
+</style>
+{{ end }}
+
+{{ define "main" }}
+<article class="orbitalansichten-container">
+  {{ .Content }}
+</article>
+{{ end }}
+
+{{ define "js" }}{{ end }}

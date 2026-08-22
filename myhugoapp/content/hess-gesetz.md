@@ -2,6 +2,7 @@
 title: 'Hess-Gesetz Rechner'
 description: 'Interaktiver Rechner für das Hess-Gesetz - Berechnen Sie Reaktionsenthalpien über verschiedene Reaktionswege'
 date: 2026-01-07
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'hess-gesetz'

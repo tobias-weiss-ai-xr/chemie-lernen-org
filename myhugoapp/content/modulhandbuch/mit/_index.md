@@ -3,6 +3,7 @@ title: Massachusetts Institute of Technology
 description: Die Massachusetts Institute of Technology bietet 16 Chemie-Module in 3 Studiengängen an.
 layout: uni
 date: 2026-06-26
+last_reviewed: 2026-07-09
 aliases:
   - /modulhandbuch/MIT/
 uni_code: MIT

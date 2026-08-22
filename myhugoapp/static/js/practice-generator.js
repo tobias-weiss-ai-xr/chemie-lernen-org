@@ -3,7 +3,6 @@
  * Dynamic chemistry exercise generator with 5 exercise types
  */
 
-
 (function () {
   'use strict';
 
@@ -14,7 +13,7 @@
     currentQuestion: null,
     totalQuestions: 0,
     correctAnswers: 0,
-    answered: false
+    answered: false,
   };
 
   var elements = {};
@@ -49,7 +48,7 @@
       percentSpan: document.getElementById('score-percentage'),
       topicBadge: document.getElementById('topic-badge'),
       difficultyBadge: document.getElementById('difficulty-badge'),
-      questionNumber: document.getElementById('question-number')
+      questionNumber: document.getElementById('question-number'),
     };
 
     loadScore();
@@ -61,7 +60,9 @@
     elements.generateBtn.addEventListener('click', generateNewQuestion);
     elements.nextBtn.addEventListener('click', generateNewQuestion);
     elements.resetBtn.addEventListener('click', resetScore);
-    elements.printBtn.addEventListener('click', function () { window.print(); });
+    elements.printBtn.addEventListener('click', function () {
+      window.print();
+    });
     elements.submitFree.addEventListener('click', submitFreeInput);
     elements.freeInput.addEventListener('keypress', function (e) {
       if (e.key === 'Enter') submitFreeInput();
@@ -94,17 +95,22 @@
 
   function createQuestion(topic, difficulty) {
     var topics = ['stoichiometry', 'balancing', 'molar-mass', 'ph-calculations', 'redox'];
-    var selectedTopic = topic === 'random'
-      ? topics[Math.floor(Math.random() * topics.length)]
-      : topic;
+    var selectedTopic =
+      topic === 'random' ? topics[Math.floor(Math.random() * topics.length)] : topic;
 
     switch (selectedTopic) {
-      case 'stoichiometry': return createStoichiometryQuestion(difficulty);
-      case 'balancing': return createBalancingQuestion(difficulty);
-      case 'molar-mass': return createMolarMassQuestion(difficulty);
-      case 'ph-calculations': return createPhQuestion(difficulty);
-      case 'redox': return createRedoxQuestion(difficulty);
-      default: return createStoichiometryQuestion(difficulty);
+      case 'stoichiometry':
+        return createStoichiometryQuestion(difficulty);
+      case 'balancing':
+        return createBalancingQuestion(difficulty);
+      case 'molar-mass':
+        return createMolarMassQuestion(difficulty);
+      case 'ph-calculations':
+        return createPhQuestion(difficulty);
+      case 'redox':
+        return createRedoxQuestion(difficulty);
+      default:
+        return createStoichiometryQuestion(difficulty);
     }
   }
 
@@ -123,10 +129,14 @@
 
   function _unitStr(topic) {
     switch (topic) {
-      case 'stoichiometry': return 'mol';
-      case 'molar-mass': return 'g/mol';
-      case 'ph-calculations': return '';
-      default: return '';
+      case 'stoichiometry':
+        return 'mol';
+      case 'molar-mass':
+        return 'g/mol';
+      case 'ph-calculations':
+        return '';
+      default:
+        return '';
     }
   }
 
@@ -150,13 +160,25 @@
           var n = rand(2, 5);
           var result = m * n;
           return {
-            text: 'Wie viel ' + formula + ' (in mol) entstehen aus ' + m +
-              ' mol ' + metal + '? (Reaktionsgleichung: 2' + metal + ' + ' +
-              nonMetal + nf + ' → 2' + formula + ')',
+            text:
+              'Wie viel ' +
+              formula +
+              ' (in mol) entstehen aus ' +
+              m +
+              ' mol ' +
+              metal +
+              '? (Reaktionsgleichung: 2' +
+              metal +
+              ' + ' +
+              nonMetal +
+              nf +
+              ' → 2' +
+              formula +
+              ')',
             answer: result,
-            unit: 'mol'
+            unit: 'mol',
           };
-        }
+        },
       });
     }
 
@@ -164,15 +186,24 @@
       templates.push({
         gen: function () {
           var element = pick(['C', 'O', 'Fe', 'Cu', 'S', 'N']);
-          var mass = (diff === 2) ? rand(10, 100) : rand(1, 20);
+          var mass = diff === 2 ? rand(10, 100) : rand(1, 20);
           var gmol = getMolarMassOf(element);
           var mol = mass / gmol;
           return {
-            text: 'Wie viele mol sind ' + mass + ' g ' + element + '? (M(' + element + ') = ' + gmol + ' g/mol)',
+            text:
+              'Wie viele mol sind ' +
+              mass +
+              ' g ' +
+              element +
+              '? (M(' +
+              element +
+              ') = ' +
+              gmol +
+              ' g/mol)',
             answer: roundTo(mol, 2),
-            unit: 'mol'
+            unit: 'mol',
           };
-        }
+        },
       });
     }
 
@@ -187,13 +218,25 @@
           var gmol2 = gmol1 + 16;
           var mass2 = roundTo(mol1 * gmol2, 1);
           return {
-            text: element + ' reagiert mit Sauerstoff zu ' + compound +
-              '. Wie viel g ' + compound + ' entstehen aus ' + mass1 +
-              ' g ' + element + '? (2' + element + ' + O₂ → 2' + compound + ')',
+            text:
+              element +
+              ' reagiert mit Sauerstoff zu ' +
+              compound +
+              '. Wie viel g ' +
+              compound +
+              ' entstehen aus ' +
+              mass1 +
+              ' g ' +
+              element +
+              '? (2' +
+              element +
+              ' + O₂ → 2' +
+              compound +
+              ')',
             answer: mass2,
-            unit: 'g'
+            unit: 'g',
           };
-        }
+        },
       });
     }
 
@@ -203,12 +246,39 @@
 
   function getMolarMassOf(el) {
     var masses = {
-      H: 1.008, He: 4.003, Li: 6.941, Be: 9.012, B: 10.811, C: 12.011,
-      N: 14.007, O: 15.999, F: 18.998, Ne: 20.180, Na: 22.990, Mg: 24.305,
-      Al: 26.982, Si: 28.086, P: 30.974, S: 32.065, Cl: 35.453, Ar: 39.948,
-      K: 39.098, Ca: 40.078, Ti: 47.867, Cr: 51.996, Mn: 54.938, Fe: 55.845,
-      Cu: 63.546, Zn: 65.380, Br: 79.904, Ag: 107.868, I: 126.904, Ba: 137.327,
-      Pt: 195.084, Au: 196.967, Pb: 207.200
+      H: 1.008,
+      He: 4.003,
+      Li: 6.941,
+      Be: 9.012,
+      B: 10.811,
+      C: 12.011,
+      N: 14.007,
+      O: 15.999,
+      F: 18.998,
+      Ne: 20.18,
+      Na: 22.99,
+      Mg: 24.305,
+      Al: 26.982,
+      Si: 28.086,
+      P: 30.974,
+      S: 32.065,
+      Cl: 35.453,
+      Ar: 39.948,
+      K: 39.098,
+      Ca: 40.078,
+      Ti: 47.867,
+      Cr: 51.996,
+      Mn: 54.938,
+      Fe: 55.845,
+      Cu: 63.546,
+      Zn: 65.38,
+      Br: 79.904,
+      Ag: 107.868,
+      I: 126.904,
+      Ba: 137.327,
+      Pt: 195.084,
+      Au: 196.967,
+      Pb: 207.2,
     };
     return masses[el] || 50;
   }
@@ -221,20 +291,32 @@
       { eq: 'N₂ + H₂ → NH₃', coeffs: [1, 3, 2], display: 'N₂ + 3 H₂ → 2 NH₃' },
       { eq: 'Fe + O₂ → Fe₂O₃', coeffs: [4, 3, 2], display: '4 Fe + 3 O₂ → 2 Fe₂O₃' },
       { eq: 'CH₄ + O₂ → CO₂ + H₂O', coeffs: [1, 2, 1, 2], display: 'CH₄ + 2 O₂ → CO₂ + 2 H₂O' },
-      { eq: 'Na + Cl₂ → NaCl', coeffs: [2, 1, 2], display: '2 Na + Cl₂ → 2 NaCl' }
+      { eq: 'Na + Cl₂ → NaCl', coeffs: [2, 1, 2], display: '2 Na + Cl₂ → 2 NaCl' },
     ];
 
     if (diff >= 2) {
       reactions.push(
-        { eq: 'C₂H₆ + O₂ → CO₂ + H₂O', coeffs: [2, 7, 4, 6], display: '2 C₂H₆ + 7 O₂ → 4 CO₂ + 6 H₂O' },
+        {
+          eq: 'C₂H₆ + O₂ → CO₂ + H₂O',
+          coeffs: [2, 7, 4, 6],
+          display: '2 C₂H₆ + 7 O₂ → 4 CO₂ + 6 H₂O',
+        },
         { eq: 'Al + O₂ → Al₂O₃', coeffs: [4, 3, 2], display: '4 Al + 3 O₂ → 2 Al₂O₃' }
       );
     }
 
     if (diff >= 3) {
       reactions.push(
-        { eq: 'C₃H₈ + O₂ → CO₂ + H₂O', coeffs: [1, 5, 3, 4], display: 'C₃H₈ + 5 O₂ → 3 CO₂ + 4 H₂O' },
-        { eq: 'Fe₂O₃ + CO → Fe + CO₂', coeffs: [1, 3, 2, 3], display: 'Fe₂O₃ + 3 CO → 2 Fe + 3 CO₂' }
+        {
+          eq: 'C₃H₈ + O₂ → CO₂ + H₂O',
+          coeffs: [1, 5, 3, 4],
+          display: 'C₃H₈ + 5 O₂ → 3 CO₂ + 4 H₂O',
+        },
+        {
+          eq: 'Fe₂O₃ + CO → Fe + CO₂',
+          coeffs: [1, 3, 2, 3],
+          display: 'Fe₂O₃ + 3 CO → 2 Fe + 3 CO₂',
+        }
       );
     }
 
@@ -262,7 +344,7 @@
         { formula: 'NaCl', mass: 58.44 },
         { formula: 'CO₂', mass: 44.01 },
         { formula: 'NH₃', mass: 17.031 },
-        { formula: 'CH₄', mass: 16.043 }
+        { formula: 'CH₄', mass: 16.043 },
       ];
     } else if (diff === 2) {
       compounds = [
@@ -270,7 +352,7 @@
         { formula: 'NaOH', mass: 39.997 },
         { formula: 'H₂SO₄', mass: 98.079 },
         { formula: 'C₂H₅OH', mass: 46.069 },
-        { formula: 'KMnO₄', mass: 158.034 }
+        { formula: 'KMnO₄', mass: 158.034 },
       ];
     } else {
       compounds = [
@@ -278,7 +360,7 @@
         { formula: 'Ca(OH)₂', mass: 74.093 },
         { formula: 'Fe₂O₃', mass: 159.688 },
         { formula: '(NH₄)₂SO₄', mass: 132.141 },
-        { formula: 'C₁₂H₂₂O₁₁', mass: 342.297 }
+        { formula: 'C₁₂H₂₂O₁₁', mass: 342.297 },
       ];
     }
 
@@ -308,7 +390,7 @@
         answer: roundTo(ph, 2),
         unit: '',
         data: 'pH = -log₁₀[' + conc + ']',
-        explain: 'pH = -log(' + conc + ') = ' + ph.toFixed(2)
+        explain: 'pH = -log(' + conc + ') = ' + ph.toFixed(2),
       };
     } else if (diff === 2) {
       var concWeak = pick([0.05, 0.1, 0.2]);
@@ -317,11 +399,23 @@
       var pH2 = -Math.log10(h);
       var pka = -Math.log10(ka);
       q = {
-        text: 'Berechne den pH-Wert einer ' + concWeak + ' M Essigsäure (Kₐ = ' + ka.toExponential(1) + ')',
+        text:
+          'Berechne den pH-Wert einer ' +
+          concWeak +
+          ' M Essigsäure (Kₐ = ' +
+          ka.toExponential(1) +
+          ')',
         answer: roundTo(pH2, 2),
         unit: '',
-        data: 'pKₐ = ' + pka.toFixed(2) + '\n[H⁺] = √(Kₐ · c) = √(' + ka.toExponential(1) + ' · ' + concWeak + ')',
-        explain: 'pH = ½(pKₐ - log c) = ' + pH2.toFixed(2)
+        data:
+          'pKₐ = ' +
+          pka.toFixed(2) +
+          '\n[H⁺] = √(Kₐ · c) = √(' +
+          ka.toExponential(1) +
+          ' · ' +
+          concWeak +
+          ')',
+        explain: 'pH = ½(pKₐ - log c) = ' + pH2.toFixed(2),
       };
     } else {
       var concBase = pick([0.01, 0.02, 0.05, 0.1]);
@@ -330,11 +424,16 @@
       var pOH = -Math.log10(oh);
       var pH3 = 14 - pOH;
       q = {
-        text: 'Berechne den pH-Wert einer ' + concBase + ' M NH₃-Lösung (K_b = ' + kb.toExponential(1) + ')',
+        text:
+          'Berechne den pH-Wert einer ' +
+          concBase +
+          ' M NH₃-Lösung (K_b = ' +
+          kb.toExponential(1) +
+          ')',
         answer: roundTo(pH3, 2),
         unit: '',
         data: 'K_b = ' + kb.toExponential(1) + '\n[OH⁻] = √(K_b · c) ',
-        explain: 'pOH = ½(pK_b - log c), pH = 14 - pOH = ' + pH3.toFixed(2)
+        explain: 'pOH = ½(pK_b - log c), pH = 14 - pOH = ' + pH3.toFixed(2),
       };
     }
 
@@ -346,9 +445,21 @@
   function createRedoxQuestion(diff) {
     if (diff <= 2) {
       var simple = pick([
-        { eq: 'Zn + CuSO₄ → ZnSO₄ + Cu', answer: 'Zn → Zn²⁺ + 2e⁻ (Oxidation)', display: 'Zn wird oxidiert, Cu²⁺ wird reduziert' },
-        { eq: 'Mg + O₂ → MgO', answer: 'Mg → Mg²⁺ + 2e⁻', display: 'Mg wird oxidiert, O wird reduziert' },
-        { eq: 'Fe + CuSO₄ → FeSO₄ + Cu', answer: 'Fe → Fe²⁺ + 2e⁻', display: 'Fe wird oxidiert, Cu²⁺ wird reduziert' }
+        {
+          eq: 'Zn + CuSO₄ → ZnSO₄ + Cu',
+          answer: 'Zn → Zn²⁺ + 2e⁻ (Oxidation)',
+          display: 'Zn wird oxidiert, Cu²⁺ wird reduziert',
+        },
+        {
+          eq: 'Mg + O₂ → MgO',
+          answer: 'Mg → Mg²⁺ + 2e⁻',
+          display: 'Mg wird oxidiert, O wird reduziert',
+        },
+        {
+          eq: 'Fe + CuSO₄ → FeSO₄ + Cu',
+          answer: 'Fe → Fe²⁺ + 2e⁻',
+          display: 'Fe wird oxidiert, Cu²⁺ wird reduziert',
+        },
       ]);
 
       return formatQuestion(
@@ -367,15 +478,15 @@
         reduction: 'MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O',
         oxidation: 'Fe²⁺ → Fe³⁺ + e⁻',
         balanced: 'MnO₄⁻ + 8H⁺ + 5Fe²⁺ → Mn²⁺ + 4H₂O + 5Fe³⁺',
-        answer: 'Oxidation: Fe²⁺ → Fe³⁺ + e⁻'
+        answer: 'Oxidation: Fe²⁺ → Fe³⁺ + e⁻',
       },
       {
         eq: 'Cr₂O₇²⁻ + Fe²⁺ → Cr³⁺ + Fe³⁺',
         reduction: 'Cr₂O₇²⁻ + 14H⁺ + 6e⁻ → 2Cr³⁺ + 7H₂O',
         oxidation: 'Fe²⁺ → Fe³⁺ + e⁻',
         balanced: 'Cr₂O₇²⁻ + 14H⁺ + 6Fe²⁺ → 2Cr³⁺ + 7H₂O + 6Fe³⁺',
-        answer: 'Oxidation: Fe²⁺ → Fe³⁺ + e⁻'
-      }
+        answer: 'Oxidation: Fe²⁺ → Fe³⁺ + e⁻',
+      },
     ]);
 
     return formatQuestion(
@@ -398,7 +509,7 @@
       topic: topic,
       data: data || '',
       explanation: explanation || '',
-      tolerance: unit === 'g/mol' ? 1.0 : (unit === 'mol' || unit === 'g' ? 0.1 : 0.05)
+      tolerance: unit === 'g/mol' ? 1.0 : unit === 'mol' || unit === 'g' ? 0.1 : 0.05,
     };
   }
 
@@ -413,6 +524,13 @@
 
     elements.questionText.innerHTML = q.text;
     elements.questionData.textContent = q.data;
+
+    var hintBtn = document.getElementById('hint-btn');
+    if (hintBtn) {
+      hintBtn.dataset.problem = q.text;
+      hintBtn.dataset.topic = q.topic;
+      hintBtn.style.display = 'inline-block';
+    }
 
     if (state.inputMode === 'multiple-choice') {
       showMultipleChoice(q);
@@ -452,28 +570,28 @@
         correctAns,
         roundTo(correctNum * 0.5, 1) + ' g/mol',
         roundTo(correctNum * 1.5, 1) + ' g/mol',
-        roundTo(correctNum * 2, 1) + ' g/mol'
+        roundTo(correctNum * 2, 1) + ' g/mol',
       ];
     } else if (unit === 'g') {
       distractorSet = [
         correctAns + ' g',
         roundTo(correctNum * 0.5, 1) + ' g',
         roundTo(correctNum * 2, 1) + ' g',
-        roundTo(correctNum * 1.2, 1) + ' g'
+        roundTo(correctNum * 1.2, 1) + ' g',
       ];
     } else if (unit === 'mol') {
       distractorSet = [
         correctAns + ' mol',
         roundTo(correctNum * 0.5, 2) + ' mol',
         roundTo(correctNum * 2, 2) + ' mol',
-        roundTo(correctNum * 1.5, 2) + ' mol'
+        roundTo(correctNum * 1.5, 2) + ' mol',
       ];
     } else {
       distractorSet = [
         correctAns,
         roundTo(correctNum * (1 + Math.random() * 0.5), 1),
         roundTo(correctNum * (1 - Math.random() * 0.3), 1),
-        roundTo(correctNum * 0.5, 1)
+        roundTo(correctNum * 0.5, 1),
       ];
     }
 
@@ -493,7 +611,9 @@
     var correct = isAnswerCorrect(selected, q.answer, q.tolerance);
 
     var allBtns = elements.mcOptions.querySelectorAll('.mc-option-btn');
-    allBtns.forEach(function (b) { b.disabled = true; });
+    allBtns.forEach(function (b) {
+      b.disabled = true;
+    });
 
     if (correct) {
       btn.classList.add('correct');
@@ -525,7 +645,11 @@
     if (!val) return;
 
     state.answered = true;
-    var correct = isAnswerCorrect(val, state.currentQuestion.answer, state.currentQuestion.tolerance);
+    var correct = isAnswerCorrect(
+      val,
+      state.currentQuestion.answer,
+      state.currentQuestion.tolerance
+    );
 
     if (correct) {
       state.correctAnswers++;
@@ -578,21 +702,28 @@
         state.totalQuestions = data.total || 0;
         state.correctAnswers = data.correct || 0;
       }
-    } catch (_e) { /* localStorage unavailable */ }
+    } catch (_e) {
+      /* localStorage unavailable */
+    }
   }
 
   function saveScore() {
     try {
-      localStorage.setItem('practice-generator-score', JSON.stringify({
-        total: state.totalQuestions,
-        correct: state.correctAnswers
-      }));
-    } catch (_e) { /* localStorage unavailable */ }
+      localStorage.setItem(
+        'practice-generator-score',
+        JSON.stringify({
+          total: state.totalQuestions,
+          correct: state.correctAnswers,
+        })
+      );
+    } catch (_e) {
+      /* localStorage unavailable */
+    }
     if (typeof ProgressTracker !== 'undefined') {
       ProgressTracker.saveExerciseProgress('uebungsgenerator', 'overview', {
         total: state.totalQuestions,
         correct: state.correctAnswers,
-        completed: state.totalQuestions > 0
+        completed: state.totalQuestions > 0,
       });
     }
   }
@@ -602,9 +733,10 @@
     elements.correctSpan.textContent = state.correctAnswers;
     var incorrect = state.totalQuestions - state.correctAnswers;
     elements.incorrectSpan.textContent = incorrect;
-    var pct = state.totalQuestions > 0
-      ? Math.round((state.correctAnswers / state.totalQuestions) * 100)
-      : 0;
+    var pct =
+      state.totalQuestions > 0
+        ? Math.round((state.correctAnswers / state.totalQuestions) * 100)
+        : 0;
     elements.percentSpan.textContent = pct + '%';
     saveScore();
   }

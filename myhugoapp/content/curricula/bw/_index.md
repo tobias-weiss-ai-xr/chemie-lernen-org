@@ -1,5 +1,6 @@
 ---
 title: 'Lehrplan Baden-Württemberg'
+last_reviewed: 2026-08-06
 description: 'Chemie-Lehrplan für Baden-Württemberg — 29 Themen, 221 Lernziele, aufbereitet aus den amtlichen Kernlehrplänen.'
 layout: curricula-state
 params:

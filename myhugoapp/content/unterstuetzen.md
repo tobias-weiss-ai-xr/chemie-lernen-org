@@ -2,6 +2,7 @@
 title: "Unterstützen"
 description: "Unterstützen Sie chemie-lernen.org – eine werbefreie, offene Lernplattform für Chemie. Spenden via Liberapay oder Patreon."
 date: 2026-05-30
+last_reviewed: 2026-07-09
 type: "page"
 icon: "❤️"
 tags: ["spenden", "unterstützen", "liberapay", "patreon", "open-source"]

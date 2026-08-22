@@ -2,6 +2,7 @@
 title: 'Elektrochemie auf Teilchenebene'
 description: 'Interaktive Visualisierung von Galvanischen Zellen und Elektrolyse mit Elektronenübergängen und Ionenflüssen'
 date: 2026-01-04
+last_reviewed: 2026-07-09
 type: 'interactive'
 interaktiv: true
 layout: 'elektrochemie-teilchenebene'

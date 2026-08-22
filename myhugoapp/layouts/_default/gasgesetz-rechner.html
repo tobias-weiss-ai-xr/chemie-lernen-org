@@ -25,7 +25,7 @@
           <!-- Tabs -->
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-              <a href="#ideal-gas" aria-controls="ideal-gas" role="tab" data-toggle="tab">Ideales Gasgesetz</a>
+              <a href="#ideal-gas" aria-controls="ideal-gas" role="tab" data-toggle="tab"><span data-i18n="gaslaw.title">Ideales Gasgesetz</span></a>
             </li>
             <li role="presentation">
               <a href="#boyle-mariotte" aria-controls="boyle-mariotte" role="tab" data-toggle="tab">Boyle-Mariotte</a>
@@ -44,13 +44,13 @@
             <!-- Ideal Gas Law Tab -->
             <div role="tabpanel" class="tab-pane active" id="ideal-gas">
               <div class="panel-section">
-                <h3>Ideales Gasgesetz (pV = nRT)</h3>
-                <p class="help-block">Berechnen Sie eine unbekannte Größe aus den Gaszustandsgrößen</p>
+                <h3 data-i18n="gaslaw.title">Ideales Gasgesetz (pV = nRT)</h3>
+                <p class="help-block" data-i18n="gaslaw.description">Berechnen Sie eine unbekannte Größe aus den Gaszustandsgrößen</p>
 
                 <div class="row">
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label for="ig-pressure">Druck p:</label>
+                      <label for="ig-pressure" data-i18n="gaslaw.pressure">Druck p:</label>
                       <input type="text" id="ig-pressure" class="form-control"
                              placeholder="z.B. 1.013"
                                aria-label="Druck">
@@ -65,7 +65,7 @@
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label for="ig-volume">Volumen V:</label>
+                      <label for="ig-volume" data-i18n="gaslaw.volume">Volumen V:</label>
                       <input type="text" id="ig-volume" class="form-control"
                              placeholder="z.B. 22.4"
                                aria-label="Volumen">
@@ -79,7 +79,7 @@
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label for="ig-amount">Stoffmenge n:</label>
+                      <label for="ig-amount" data-i18n="gaslaw.amount">Stoffmenge n:</label>
                       <input type="text" id="ig-amount" class="form-control"
                              placeholder="z.B. 1"
                                aria-label="Stoffmenge">
@@ -91,7 +91,7 @@
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label for="ig-temperature">Temperatur T:</label>
+                      <label for="ig-temperature" data-i18n="gaslaw.temperature">Temperatur T:</label>
                       <input type="text" id="ig-temperature" class="form-control"
                              placeholder="z.B. 273.15"
                                value="273.15"
@@ -105,12 +105,12 @@
                 </div>
 
                 <div class="form-group">
-                  <span class="control-label">Berechnen:</span>
- <div class="btn-group" style="width: 100%;">
-                    <button class="btn btn-primary" id="btn-ideal-pressure" style="width: 25%;">Druck p</button>
-                    <button class="btn btn-primary" id="btn-ideal-volume" style="width: 25%;">Volumen V</button>
-                    <button class="btn btn-primary" id="btn-ideal-amount" style="width: 25%;">Stoffmenge n</button>
-                    <button class="btn btn-primary" id="btn-ideal-temperature" style="width: 25%;">Temp. T</button>
+                  <span class="control-label" data-i18n="calc.calculate">Berechnen:</span>
+  <div class="btn-group" style="width: 100%;">
+                    <button class="btn btn-primary" id="btn-ideal-pressure" style="width: 25%;" data-i18n="gaslaw.pressure">Druck p</button>
+                    <button class="btn btn-primary" id="btn-ideal-volume" style="width: 25%;" data-i18n="gaslaw.volume">Volumen V</button>
+                    <button class="btn btn-primary" id="btn-ideal-amount" style="width: 25%;" data-i18n="gaslaw.amount">Stoffmenge n</button>
+                    <button class="btn btn-primary" id="btn-ideal-temperature" style="width: 25%;" data-i18n="gaslaw.temperature">Temp. T</button>
                   </div>
                 </div>
 
@@ -311,16 +311,15 @@
       <div class="row">
         <div class="col-md-12">
           <div class="result-card main-result" aria-live="polite">
-            <h3>Ergebnis</h3>
+            <h3 data-i18n="calc.result">Ergebnis</h3>
             <div id="calculation-result"></div>
           </div>
-        </div>
       </div>
 
       <div class="row">
         <div class="col-md-6">
           <div class="result-card details-result" aria-live="polite">
-            <h3>Berechnungsdetails</h3>
+            <h3 data-i18n="calc.calculate">Berechnungsdetails</h3>
             <div id="calculation-details"></div>
           </div>
         </div>
@@ -340,7 +339,7 @@
         <div class="col-md-12">
           <div class="alert alert-danger">
             <i class="fa fa-exclamation-triangle"></i>
-            <strong>Fehler:</strong> <span id="error-message"></span>
+            <strong data-i18n="calc.error">Fehler:</strong> <span id="error-message"></span>
           </div>
         </div>
       </div>
@@ -496,7 +495,7 @@
 
 </div>
 
-<script src="{{ "js/utils/ui-utils.js" | relURL }}"></script><script src="{{ "js/utils/chemistry-utils.js" | relURL }}"></script><script src="{{ "js/gasgesetz-rechner.js" | relURL }}"></script>
+<script src="{{ "js/utils/chemistry-utils.js" | relURL }}"></script><script src="{{ "js/gasgesetz-rechner.js" | relURL }}"></script>
 <link rel="stylesheet" href="{{ "css/gasgesetz-rechner.css" | relURL }}">
 {{ end }}
 

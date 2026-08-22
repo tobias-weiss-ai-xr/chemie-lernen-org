@@ -1,5 +1,6 @@
 ---
 title: 'Studienvergleich'
+last_reviewed: 2026-08-06
 description: 'Vergleiche Chemie-Studiengänge verschiedener Universitäten — Modulmatrix, ECTS-Verteilung und Themenschwerpunkte im direkten Vergleich.'
 layout: studienvergleich
 outputs:

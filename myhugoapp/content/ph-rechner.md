@@ -1,8 +1,9 @@
 ---
-title: "pH-Rechner"
-description: "Interaktiver pH-Rechner für Säuren und Basen – Berechnen Sie pH-Werte aus H⁺- oder OH⁻-Konzentrationen mit visualisierter pH-Skala und Erklärung."
+title: 'pH-Rechner'
+last_reviewed: 2026-08-06
+description: 'Interaktiver pH-Rechner für Säuren und Basen – Berechnen Sie pH-Werte aus H⁺- oder OH⁻-Konzentrationen mit visualisierter pH-Skala und Erklärung.'
 interaktiv: true
-layout: "ph-rechner"
+layout: 'ph-rechner'
 ---
 
 <script src="/js/chemistry-calculator-framework.js"></script>
@@ -18,7 +19,7 @@ const phCalculator = new ChemistryCalculator({
       validation: {
         min: 0,
         max: 14,
-        errorMessage: 'Bitte geben Sie einen gültigen H⁺-Platz-Wert (0-14 Mol/L) ein.'
+        errorMessage: 'Bitte geben Sie einen gültigen H⁺-Konzentration (0-14 Mol/L) ein.'
       }
     },
     {
@@ -28,7 +29,7 @@ const phCalculator = new ChemistryCalculator({
       validation: {
         min: 0,
         max: 14,
-        errorMessage: 'Bitte geben Sie einen gültigen OH⁻-Platz-Wert (0-14 Mol/L) ein.'
+        errorMessage: 'Bitte geben Sie einen gültigen OH⁻-Konzentration (0-14 Mol/L) ein.'
       }
     }
   ],
@@ -83,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="related-tools">
   🧪 <strong>Erweiterte Werkzeuge:</strong>
-  <a href="/sauren-basen-gleichgewicht/">Säuren-Basen-Gleichgewicht</a>
+  <a href="/saeuren-basen-gleichgewicht/">Säuren-Basen-Gleichgewicht</a>
   <a href="/titrations-simulator/">Titration</a>
   <a href="/konzentrationsumrechner/">Konzentration umrechnen</a>
 </div>

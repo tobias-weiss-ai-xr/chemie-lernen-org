@@ -3,6 +3,7 @@ title: Synthesis and Characterization of Organic Compounds — California Instit
 description: 'Synthesis and Characterization of Organic Compounds (Ch3a) an der California Institute of Technology. 8 ECTS, Niveau: BSc.'
 layout: module
 date: 2026-06-29
+last_reviewed: 2026-07-09
 uni_code: CALTECH
 uni_name: California Institute of Technology
 module_code: Ch3a

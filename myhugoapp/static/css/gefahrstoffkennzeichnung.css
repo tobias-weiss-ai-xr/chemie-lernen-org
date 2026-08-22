@@ -22,7 +22,7 @@
 
 .ghs-pictogram:hover {
   border-color: #e74c3c;
-  box-shadow: 0 4px 16px rgba(231,76,60,0.2);
+  box-shadow: 0 4px 16px rgba(231, 76, 60, 0.2);
   transform: translateY(-2px);
 }
 
@@ -103,7 +103,12 @@
 }
 
 @media print {
-  .navbar, .footer, .site-header, .site-footer { display: none; }
+  .navbar,
+  .footer,
+  .site-header,
+  .site-footer {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {

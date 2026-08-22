@@ -11,7 +11,7 @@ services:
         limits:
           memory: 1G
     environment:
-      - NEO4J_AUTH=neo4j/chemie_knowledge_2024
+      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}
       - NEO4J_dbms_default__database=chemie
       - NEO4J_dbms_security_auth__minimum__password__length=4
       - NEO4J_dbms_memory_heap_initial__size=256m
@@ -20,11 +20,11 @@ services:
       - chemie_neo4j_data:/data
       - chemie_neo4j_logs:/logs
     ports:
-      - "0.0.0.0:7687:7687"
+      - "127.0.0.1:7687:7687"  # localhost-only: API/scripts use docker network; keep Bolt off the public internet
     networks:
       - traefik-web
     healthcheck:
-      test: ["CMD-SHELL", "cypher-shell -u neo4j -p chemie_knowledge_2024 \"RETURN 1\" || exit 1"]
+      test: ["CMD-SHELL", "cypher-shell -u neo4j -p ${NEO4J_PASSWORD} \"RETURN 1\" || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -44,31 +44,45 @@ services:
         limits:
           memory: 1G
     environment:
-      - NEO4J_AUTH=neo4j/chemie_knowledge_2024
+      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}
       - NEO4J_dbms_default__database=chemie
       - NEO4J_dbms_security_auth__minimum__password__length=4
       - NEO4J_dbms_memory_heap_initial__size=256m
       - NEO4J_dbms_memory_heap_max__size=512m
+    ports:
+      - "127.0.0.1:7688:7687"  # localhost-only: scripts use docker network names; keep Bolt off the public internet
     volumes:
       - chemie_kg_data:/data
       - chemie_kg_logs:/logs
     networks:
       - traefik-web
     healthcheck:
-      test: ["CMD-SHELL", "cypher-shell -u neo4j -p chemie_knowledge_2024 \"RETURN 1\" || exit 1"]
+      test: ["CMD-SHELL", "cypher-shell -u neo4j -p ${NEO4J_PASSWORD} \"RETURN 1\" || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 5
       start_period: 60s
 
   chemie-chat-api:
-    image: registry.chemie-lernen.org/chemie-chat-api:latest
+    image: ghcr.io/tobias-weiss-ai-xr/chemie-chat-api:latest
     container_name: chemie-chat-api
     restart: unless-stopped
+    volumes:
+      - ./myhugoapp/data/learning-paths.json:/app/data/learning-paths.json:ro
+      # users.json must survive container recreates (every deploy) — the
+      # image contains only a seed copy, and the container filesystem is
+      # ephemeral. Mount the whole api/data DIRECTORY (not the file): auth-db
+      # saves atomically via rename(users.json.tmp -> users.json), which
+      # fails with EBUSY on a single-file bind mount. users.json is untracked
+      # (gitignored) so deploys never clobber registrations; the other
+      # tracked data files (elements.json, kg_fallback.json, quiz-questions.json)
+      # keep syncing via the deploy's git reset. Host uid 1000 == node user.
+      - ./api/data:/app/data
+    mem_limit: 256M
     deploy:
       resources:
         limits:
-          memory: 128M
+          memory: 256M
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://localhost:3001/api/health | grep -q '\"status\":\"ok\"' || exit 1"]
       interval: 30s
@@ -77,25 +91,32 @@ services:
       start_period: 60s
     environment:
       - LITELLM_URL=http://litellm-proxy:4000
-      - LITELLM_MODEL=gemma-4
+      - LITELLM_MODEL=tud/gemma-4-31b-it
+      - LITELLM_API_KEY=${LITELLM_API_KEY}
       - PORT=3001
       - NEO4J_URI=bolt://chemie-kg:7687
       - NEO4J_USER=neo4j
-      - NEO4J_PASSWORD=chemie_knowledge_2024
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD}
       - NEO4J_DATABASE=chemie
-      - JWT_SECRET=569f48d79dfa29ba065c8936e813f7dfe64a23d66ebca62415ad53383f5b6f67
+      - JWT_SECRET=${JWT_SECRET}
+      # Persist chat sessions inside the mounted api/data dir (default
+      # /data/chemie-sessions.json is root-owned and unwritable by the node
+      # user — sessions silently degraded to in-memory, lost on restart).
+      - SESSION_DATA_PATH=/app/data/chemie-sessions.json
       # SMTP — password-reset emails (mail.tobias-weiss.org):
-      - SMTP_HOST=mail.tobias-weiss.org
-      - SMTP_PORT=587
-      - SMTP_USER=chemie@tobias-weiss.org
-      - SMTP_PASSWORD=z6F82pS2LmN5hK9x
-      - EMAIL_FROM=support@chemie-lernen.org
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - EMAIL_FROM=${EMAIL_FROM}
       # Stripe keys — set these for premium checkout to work:
-      # - STRIPE_SECRET_KEY=sk_live_...
-      # - STRIPE_WEBHOOK_SECRET=whsec_...
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - STRIPE_PRICE_ID=${STRIPE_PRICE_ID}
       # Monitoring — set these for error tracking and uptime monitoring:
-      # - SENTRY_DSN=https://xxx@oxxx.ingest.us.sentry.io/xxx
-      # - HEALTHCHECKS_IO_URL=https://hc-ping.com/xxx
+      - SENTRY_DSN=${SENTRY_DSN}
+      - HEALTHCHECKS_IO_URL=${HEALTHCHECKS_IO_URL}
+      - ADMIN_API_KEY=${ADMIN_API_KEY}
     networks:
       - traefik-public
       - litellm-internal
@@ -103,7 +124,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik-public"
-      - "traefik.http.routers.chat.rule=Host(`chemie-lernen.org`) && (PathPrefix(`/api/chat`) || PathPrefix(`/api/health`) || PathPrefix(`/api/kg-data`) || PathPrefix(`/api/kg-stats`) || PathPrefix(`/api/curriculum`) || PathPrefix(`/api/curricula`) || PathPrefix(`/api/content`) || PathPrefix(`/api/didaktik`) || PathPrefix(`/api/modulhandbuch`) || PathPrefix(`/api/entity`) || PathPrefix(`/api/article`) || PathPrefix(`/api/session`) || PathPrefix(`/api/admin`) || PathPrefix(`/api/auth`) || PathPrefix(`/api/quizzes`) || PathPrefix(`/api/quiz-results`) || PathPrefix(`/api/studienvergleich`))"
+      - "traefik.http.routers.chat.rule=(Host(`chemie-lernen.org`) || Host(`www.chemie-lernen.org`)) && (PathPrefix(`/api/chat`) || PathPrefix(`/api/health`) || PathPrefix(`/api/kg-data`) || PathPrefix(`/api/kg-stats`) || PathPrefix(`/api/curriculum`) || PathPrefix(`/api/curricula`) || PathPrefix(`/api/content`) || PathPrefix(`/api/didaktik`) || PathPrefix(`/api/modulhandbuch`) || PathPrefix(`/api/entity`) || PathPrefix(`/api/article`) || PathPrefix(`/api/session`) || PathPrefix(`/api/admin`) || PathPrefix(`/api/auth`) || PathPrefix(`/api/quizzes`) || PathPrefix(`/api/quiz-results`) || PathPrefix(`/api/studienvergleich`))"
       - "traefik.http.routers.chat.priority=100"
       - "traefik.http.routers.chat.entrypoints=websecure"
       - "traefik.http.routers.chat.tls=true"
@@ -115,7 +136,7 @@ services:
       - ./myhugoapp/static/openspec:/usr/share/nginx/html/openspec
       - ./myhugoapp/static/landscape:/usr/share/nginx/html/landscape
       - ./myhugoapp/static/api-proxy.conf:/etc/nginx/conf.d/api-proxy.conf
-    image: registry.chemie-lernen.org/chemie-lernen-org:latest
+    image: ghcr.io/tobias-weiss-ai-xr/chemie-hugo:latest
     container_name: hugo-chemie-lernen-org
     restart: unless-stopped
     deploy:
@@ -127,11 +148,61 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik-public"
-      - "traefik.http.routers.chemie.rule=Host(`chemie-lernen.org`)"
+      - "traefik.http.routers.chemie.rule=Host(`chemie-lernen.org`) || Host(`www.chemie-lernen.org`)"
       - "traefik.http.routers.chemie.entrypoints=websecure"
       - "traefik.http.routers.chemie.tls=true"
       - "traefik.http.routers.chemie.tls.certresolver=mytlschallenge"
       - "traefik.http.services.chemie.loadbalancer.server.port=80"
+
+  # ── Observability Stack ─────────────────────────────────────────
+  node_exporter:
+    image: prom/node-exporter:latest
+    container_name: node_exporter
+    restart: unless-stopped
+    network_mode: host
+    command:
+      - '--path.rootfs=/host'
+    volumes:
+      - /:/host:ro,rslave
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8081:8080"  # localhost-only: prometheus scrapes via docker network (cadvisor:8080)
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk:/dev/disk:ro
+    privileged: true
+    devices:
+      - /dev/kmsg:/dev/kmsg
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./docker/prometheus/alerts.yml:/etc/prometheus/alerts.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--storage.tsdb.retention.time=30d'
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    networks:
+      - traefik-web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-public"
+      - "traefik.http.routers.prometheus.rule=Host(`prometheus.chemie-lernen.org`)"
+      - "traefik.http.routers.prometheus.entrypoints=websecure"
+      - "traefik.http.routers.prometheus.tls=true"
+      - "traefik.http.routers.prometheus.tls.certresolver=mytlschallenge"
+      - "traefik.http.services.prometheus.loadbalancer.server.port=9090"
+
 networks:
   traefik-web:
     driver: bridge
@@ -146,3 +217,4 @@ volumes:
   chemie_neo4j_logs:
   chemie_kg_data:
   chemie_kg_logs:
+  prometheus_data:

@@ -5,7 +5,7 @@
 function calculateStrohhalmDruck(suctionStrength, liquidDensity, liquidHeight) {
   // pressure difference in Pa from suction (0-100%)
   const atmPressure = 101325;
-  const pressureDrop = (suctionStrength / 100) * 0.3 * atmPressure;  // max 30% drop
+  const pressureDrop = (suctionStrength / 100) * 0.3 * atmPressure; // max 30% drop
   const insidePressure = atmPressure - pressureDrop;
   const hydrostaticPressure = liquidDensity * 9.81 * (liquidHeight / 100);
   const canLift = insidePressure > hydrostaticPressure;
@@ -13,35 +13,36 @@ function calculateStrohhalmDruck(suctionStrength, liquidDensity, liquidHeight) {
     insidePressure,
     outsidePressure: atmPressure,
     pressureDiff: pressureDrop,
-    maxLiftHeight: insidePressure / (liquidDensity * 9.81) * 100,  // in cm
-    canLift
+    maxLiftHeight: (insidePressure / (liquidDensity * 9.81)) * 100, // in cm
+    canLift,
   };
 }
 
 function calculateBallonPressure(airAmount, temperature, tensionLevel) {
   const basePressure = 101325;
-  const tensionFactors = { low: 0.02, medium: 0.05, high: 0.10 };
+  const tensionFactors = { low: 0.02, medium: 0.05, high: 0.1 };
   const factor = tensionFactors[tensionLevel] || 0.05;
   const tempKelvin = temperature + 273.15;
-  const tempFactor = tempKelvin / 293.15;  // relative to 20°C
+  const tempFactor = tempKelvin / 293.15; // relative to 20°C
   const pressureIncrease = basePressure * factor * airAmount * tempFactor;
   const insidePressure = basePressure + pressureIncrease;
-  const burstPressure = basePressure * (1 + (tensionLevel === 'high' ? 0.5 : tensionLevel === 'medium' ? 0.8 : 1.2));
+  const burstPressure =
+    basePressure * (1 + (tensionLevel === 'high' ? 0.5 : tensionLevel === 'medium' ? 0.8 : 1.2));
   const willBurst = insidePressure > burstPressure;
-  const volume = 0.5 + (airAmount / 50) * 5 * tempFactor;  // in Litern
+  const volume = 0.5 + (airAmount / 50) * 5 * tempFactor; // in Litern
   return { insidePressure, outsidePressure: basePressure, volume, willBurst };
 }
 
 function calculateSaugnapf(sizeCm, pressurePercent, surfaceType) {
   const atmPressure = 101325;
   const insidePressure = atmPressure * (pressurePercent / 100);
-  const radius = (sizeCm / 2) / 100;  // in m
+  const radius = sizeCm / 2 / 100; // in m
   const area = Math.PI * radius * radius;
   const holdForce = (atmPressure - insidePressure) * area;
   const surfaceFactors = { glass: 1.0, tile: 0.9, wood: 0.7, concrete: 0.4 };
   const surfaceFactor = surfaceFactors[surfaceType] || 0.5;
   const effectiveForce = holdForce * surfaceFactor;
-  const loadCapacity = effectiveForce / 9.81;  // in kg
+  const loadCapacity = effectiveForce / 9.81; // in kg
   return { holdForce, effectiveForce, loadCapacity, area };
 }
 

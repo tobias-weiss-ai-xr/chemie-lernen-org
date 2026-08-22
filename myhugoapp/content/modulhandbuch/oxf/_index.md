@@ -3,6 +3,7 @@ title: University of Oxford
 description: Die University of Oxford bietet 20 Chemie-Module in 3 Studiengängen an.
 layout: uni
 date: 2026-06-29
+last_reviewed: 2026-07-09
 aliases:
   - /modulhandbuch/OXF/
 uni_code: OXF

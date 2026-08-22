@@ -1,105 +1,115 @@
 ---
 title: 'Roadmap: Ausbaustrategie'
 date: 2026-06-15
+last_reviewed: 2026-08-16
 description: 'Die zukünftige Entwicklungsstrategie für chemie-lernen.org'
 tags: ['roadmap', 'entwicklung']
 ---
 
-Die Plattform ist in einer stabilen Phase mit umfassenden Rechnern, Visualisierungen, dem Wissensnetz und gamifizierten Lernpfaden. Der Fokus verschiebt sich nun auf **Lehrenden-Premium-Features**, **KI-Vertiefung** und **Content-Tiefe**.
+chemie-lernen.org ist eine **kostenlose, quelloffene Lernplattform** für Chemie. Kernfeatures sind Rechner, Visualisierungen, interaktive Quiz und ein Wissensnetz. Der freiwillige **Unterstützer-Tarif** ergänzt das Angebot für Lehrende.
 
 ---
 
-## 🚀 Nächste Entwicklungsschwerpunkte (Q3-Q4 2026)
+## ✅ Bereits umgesetzt
 
-### P0 — Lehrenden-Premium-Features
-
-| Feature                             | Beschreibung                                                                        |
-| ----------------------------------- | ----------------------------------------------------------------------------------- |
-| **📊 Advanced Analytics Dashboard** | Klassenweites Tracking, Schülerfortschritt, Export für Notenverwaltung              |
-| **📝 Premium-Lesson-Plan-Suite**    | KI-gestützte Unterrichtsplaner, automatische Arbeitsblätter, Bewertungsvorlagen     |
-| **🧪 Erweitertes Assessment**       | Unbegrenzte Quiz, automatische Benotung, individuelle Rückmeldungen                 |
-| **📚 Premium-Content-Bibliothek**   | Exklusive Lehrmaterialien, erweiterte Visualisierungen, komplette Unterrichtspakete |
-
-### P1 — KI-Assistent Deepening
-
-| Feature                     | Beschreibung                                               |
-| --------------------------- | ---------------------------------------------------------- |
-| **Echter LLM-Chat**         | Aktivierung des bestehenden LLM-Proxys statt nur KG-Suche  |
-| **Konversationsgedächtnis** | Kontext über mehrere Fragen hinweg, Session-basiert        |
-| **RAG-Integration**         | Prompt-Augmentierung mit KG-Kontext und Rechnerergebnissen |
-
-### P1 — Content-Tiefe
-
-| Feature                     | Beschreibung                                               |
-| --------------------------- | ---------------------------------------------------------- |
-| **Themenbereiche ausbauen** | Von 1-3 auf 3-5 Artikel pro Themenbereich                  |
-| **Interaktive Übungen**     | Zu jedem Themenbereich passende Quiz und Aufgaben          |
-| **Cross-Linking**           | Rechner ↔ Artikel ↔ Themenbereiche systematisch verknüpfen |
-
-### P2 — Plattform-Reife
-
-| Feature               | Beschreibung                                            |
-| --------------------- | ------------------------------------------------------- |
-| **Pipeline-Qualität** | Deduplizierung, Quellen-Verifikation, Qualitäts-Scoring |
-| **Barrierefreiheit**  | WCAG 2.1 AA-Audit und Überarbeitung                     |
-| **Backup/DR**         | Automatisierte Neo4j-Backups, Wiederherstellungsplan    |
-| **Lernpfad-KI**       | KG-gestützte adaptive Lernpfad-Empfehlungen             |
+| Feature                                              | Status                 |
+| ---------------------------------------------------- | ---------------------- |
+| 21 Chemie-Rechner & Spezialrechner                   | ✅ seit 2025           |
+| Periodensystem 3D, Molekülstudio                     | ✅ kostenlos verfügbar |
+| Titrations-Simulator                                 | ✅ kostenlos verfügbar |
+| Wissensnetz mit 685+ Fachbegriffen                   | ✅                     |
+| 12 Themenbereiche mit Quiz (100+ Fragen)             | ✅                     |
+| KI-Assistent (KG-Suche)                              | ✅                     |
+| Lehrplankopplung (KMK, 4 Bundesländer)               | ✅                     |
+| Unterstützer-Seite & Stripe-Integration              | ✅                     |
+| Analytics-Dashboard (Supporter)                      | ✅ Sprint 36           |
+| Themenbereiche: Quiz-Widget + Fachbegriff-Wolke      | ✅ Sprint 37           |
+| Unterrichtsplan-Generator + Arbeitsblatt (Supporter) | ✅ Sprint 38           |
+| Chemie Räume: Admin-Theme-Overrides (Backend-Sync)     | ✅ API `/api/theme-overrides` + WebXR-Admin-Panel, geräteübergreifend |
+| KI-Assistent: SSE-Streaming        | ✅ Chat-Antworten per Server-Sent-Events (Live verifiziert)         |
+| Erweitertes Assessment             | ✅ /api/exercises generate·grade·feedback, Auto-Benotung, indiv. Feedback, Dashboards |
+| Premium-Content-Bibliothek        | ✅ Katalog + Lesson-Plan-/Worksheet-/Exam-Simulator-Endpoints (Unterstützer) |
+| LLM-Chat                           | ✅ echte Konversation via LiteLLM-Proxy (chat.js)                  |
+| Konversationsgedächtnis            | ✅ Session-basiertes Chat-Gedächtnis (/api/chat/history)            |
+| Themenbereiche ausbauen            | ✅ 12 Bereiche, je 6–7 Artikel                                   |
+| Adaptive Lernpfade                 | ✅ KG/ZPD-Empfehlungen (/api/adaptive/recommendations)             |
+| Barrierefreiheit (WCAG 2.1 AA)     | ✅ Audit + Template-Fixes (sprint-7)                              |
+| Automatische Neo4j-Backups        | ✅ Timer `neo4j-backup.timer` aktiv, Runbook vorhanden             |
 
 ---
 
-## 🥽 Immersive VR-Erweiterungen
+## 🚀 Status der Roadmap (Stand August 2026)
 
-| Feature                     | Beschreibung                                                                                                                                                                                                       |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Subatomare Reisen**       | Atome durch Hinzufügen von Protonen/Neutronen/Elektronen in 3D aufbauen                                                                                                                                            |
-| **Molekülgalerie in VR**    | Riesige 3D-Modelle komplexer Moleküle (DNA, Koffein, Polymere)                                                                                                                                                     |
-| **Gefahrfreie Labore**      | Simulierte Extreme Experimente (Alkalimetalle in Wasser, Thermit)                                                                                                                                                  |
-| **Hybrides Lernen (WebGL)** | 2D/Browser-Modus für alle VR-Inhalte                                                                                                                                                                               |
-| **Wiki-Erweiterung**        | Theorie-Artikel zu jedem VR-Experiment                                                                                                                                                                             |
-| **🆕 Lernräume in Hubs**    | Gemeinsame 3D-Lernräume unter [hubs.chemie-lernen.org](/pages/lernraeume-in-hubs/) — Mehrspieler-Modus für Molekülmodelle, Periodensystem-Wand, Quiz-Cubes (siehe [Lernräume-Artikel](/pages/lernraeume-in-hubs/)) |
+Die zuvor als „Nächste Schritte" gelisteten Features sind **bereits alle
+umgesetzt** (siehe Tabelle „Bereits umgesetzt" oben) — geliefert in
+abgeschlossenen OpenSpec-Changes und in `master` committed. Einzig
+**Rechner ↔ Quiz verknüpfen** ist noch offen.
 
----
+### Noch offen
 
-## 🧑‍🏫 Lehrende & Institutionen
+| Feature                       | Beschreibung                                    | Status |
+| ----------------------------- | ----------------------------------------------- | ------ |
+| **Rechner ↔ Quiz verknüpfen** | Jeder Rechner zeigt passende Übungen/Quizfragen | ⏳ offen |
 
-| Feature                 | Beschreibung                                                   |
-| ----------------------- | -------------------------------------------------------------- |
-| **Unterrichtsbaupläne** | PDF-Leitfäden für 45-minütige Integration von VR/Simulationen  |
-| **Multi-User-Lab-Tage** | Geführte Sessions durch komplexe Experimente                   |
-| **Bewertungstools**     | Quiz-Integration passend zu VR-Inhalten                        |
-| **Premium-Stufen**      | Professional (€19-29/Monat) und School-Lizenz (€999-1499/Jahr) |
+> Hinweis: „Automatische Neo4j-Backups" steht ebenfalls oben in der
+> Erledigt-Liste (Timer aktiv, Runbook vorhanden).
 
 ---
 
-## 🤝 Community & Zusammenarbeit
+## 💚 Unterstützer-Tarif
 
-| Feature                        | Beschreibung                                                        |
-| ------------------------------ | ------------------------------------------------------------------- |
-| **Benutzergenerierte Inhalte** | Lehrkräfte können eigene Übungen/Inhalte einreichen                 |
-| **Forschungsblog**             | Regelmäßige Updates zu VR-Lernwirkungen und Plattform-Erkenntnissen |
+Das gesamte Angebot ist **kostenlos**. Der Unterstützer-Tarif ergänzt optionale Lehrende-Tools:
 
----
+- **Unterrichtsplan-Generator** (KI-gestützt)
+- **Arbeitsblatt-Generator** (4 Aufgabentypen)
+- **Analytics-Dashboard** (Klassenfortschritt)
 
-## Preisgestaltung (Lehrenden-Premium)
-
-| Stufe              | Preis                        | Umfang                                                |
-| ------------------ | ---------------------------- | ----------------------------------------------------- |
-| **Free**           | €0                           | Bestehende Lehrmaterialien, Basis-Rechner             |
-| **Professional**   | €19-29/Monat (€199-249/Jahr) | Analytics, 5 Lesson-Plans/Monat, 3 Klassen/50 Schüler |
-| **School License** | €999-1499/Jahr               | Unbegrenzt, alle Features, Priority-Support           |
+[Lern mehr über das Unterstützer-Angebot →](/unterstuetzen/)
 
 ---
 
-## Technische Anforderungen
+## 🗺 Nächste Epics & Sprints (ab ~S39)
 
-| Bereich               | Standard                                                       |
-| --------------------- | -------------------------------------------------------------- |
-| **Framework**         | Hugo (Markdown + JavaScript)                                   |
-| **2D-Visualisierung** | Canvas API                                                     |
-| **3D-Visualisierung** | Three.js                                                       |
-| **Diagramme**         | Chart.js / D3.js                                               |
-| **Qualität**          | Responsive, WCAG 2.1 AA, Deutsch (Muttersprachenniveau), KaTeX |
+Die Roadmap oben ist nahezu vollständig umgesetzt. Die **nächste Phase** fokussiert
+auf (1) die Hubs-Lernräume produktiv zu stellen, (2) das letzte offene Item
+(Rechner ↔ Quiz) zu schließen und (3) die begonnenen Adaptive-/Curricula-Arbeiten
+zu nutzbaren Dashboards zu führen.
+
+### Epics
+
+| Epic | Bereich | Ziel |
+| ---- | ------- | ----- |
+| **E1** — Hubs-Lernräume produktiv | Hubs | 120 Räume rendern wirklich (503 → 200); Scene-Templates aus `hello-webxr` portieren |
+| **E2** — Rechner ↔ Quiz | Hugo | offenes Roadmap-Item: jeder Rechner zeigt passende Übungen/Quiz (geschlossener Lern-Loop) |
+| **E3** — Adaptive Lernpfade | Hugo | baut auf ZPD/Bloom auf: Entity-ZPD + Schüler-/Lehrer-Dashboards + Fortschritt |
+| **E4** — Forschung & Wissensnetz | Hugo/KG | mehr Entitäts-Abdeckung, Kurations-Workflow, Graph-UX |
+| **E5** — Mobile & Offline | Android/PWA | Feature-Parity + Offline-Cache (Parallel-Track) |
+| **E6** — Lehrende & Raum-Management | Hugo+Hubs | SSO/Invite-Tokens, Raum-Verwaltungs-Panel, Einbettung in Themenbereiche |
+| **E7** — Öffentlichkeit & Skalierung | Plattform | Per-Room Public-Share (Token), Perf-Budgets, Monitoring |
+
+### Sprints (2-Wochen)
+
+| Sprint | Epic | Schwerpunkt |
+| ------ | ---- | ----------- |
+| **S39** | E1 | Netzwerk-Entscheidung + Hubs-Stack deployen → 503 behoben |
+| **S40** | E1 | Scene-Templates portieren; Default-Scene pro Element |
+| **S41** | E2 | Rechner→Quiz-Mapping in KG + Quiz-Widget auf Rechner-Seiten |
+| **S42** | E3 | Entity-ZPD + Schüler-Dashboard _(parallel: E5 Android)_
+| **S43** | E3 | Teacher-Dashboard + Fortschritt _(parallel: E5 PWA Offline)_
+| **S44** | E4 | Forschungs-Pipeline-Maturity + KG-Kuration |
+| **S45** | E6 | SSO/Invite-Tokens + Raum-Verwaltung |
+| **S46** | E7 | Per-Room Public-Share + Perf/Monitoring |
+
+### Offene Entscheidungen (vor S39)
+
+1. **Hubs-Netzwerk**: Docker-Bridge auf legion reparieren (Root-Cause) **oder**
+   Full-Stack Host-Networking (pragmatisch). _Empfehlung: Bridge reparieren, sonst Host-Net._
+2. **Exposition**: Reticulum VPN-only bleiben + Token-basierter Per-Room-Share.
+3. **SSO-Umfang**: zuerst Invite-Tokens, Account-Link als Option.
+
+> Detaillierte Planung: OpenSpec-Change `roadmap-next-epics`
+> (`openspec/changes/roadmap-next-epics/`).
 
 ---
 
-_Letzte Aktualisierung: Juni 2026_
+_Letzte Aktualisierung: August 2026 (Nächste-Epics-Sektion ergänzt)_

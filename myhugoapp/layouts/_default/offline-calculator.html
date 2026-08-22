@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "de" }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }} - Chemie Lernen</title>
+  <meta name="theme-color" content="#2d6a4f">
+  <link rel="stylesheet" href="/css/custom.css">
+  <link rel="stylesheet" href="/css/offline-calculator.css">
+</head>
+<body class="offline-page">
+  <div class="offline-container">
+    <header class="offline-header">
+      <h1><i class="fas fa-wifi-slash"></i> Offline Modus</h1>
+      <p class="offline-status">Keine Internetverbindung - Formel-Referenz verfügbar</p>
+    </header>
+
+    <main class="offline-content">
+      <section class="formula-section">
+        <h2><i class="fas fa-flask"></i> Stöchiometrie Formeln</h2>
+        <div class="formula-grid">
+          <div class="formula-card">
+            <h3>Molare Masse</h3>
+            <div class="formula">m = n × M</div>
+            <div class="formula-desc">
+              <span>m = Masse [g]</span>
+              <span>n = Stoffmenge [mol]</span>
+              <span>M = Molare Masse [g/mol]</span>
+            </div>
+          </div>
+
+          <div class="formula-card">
+            <h3>Konzentration</h3>
+            <div class="formula">c = n / V</div>
+            <div class="formula-desc">
+              <span>c = Konzentration [mol/L]</span>
+              <span>n = Stoffmenge [mol]</span>
+              <span>V = Volumen [L]</span>
+            </div>
+          </div>
+
+          <div class="formula-card">
+            <h3>pH-Wert</h3>
+            <div class="formula">pH = -log₁₀[H⁺]</div>
+            <div class="formula-desc">
+              <span>[H⁺] = Hydroniumionen-Konzentration</span>
+              <span>pH < 7: sauer</span>
+              <span>pH = 7: neutral</span>
+              <span>pH > 7: basisch</span>
+            </div>
+          </div>
+
+          <div class="formula-card">
+            <h3>Ideal Gasgesetz</h3>
+            <div class="formula">p × V = n × R × T</div>
+            <div class="formula-desc">
+              <span>p = Druck [Pa]</span>
+              <span>V = Volumen [m³]</span>
+              <span>R = 8.314 J/(mol·K)</span>
+              <span>T = Temperatur [K]</span>
+            </div>
+          </div>
+
+          <div class="formula-card">
+            <h3>Massenwirkungsgesetz</h3>
+            <div class="formula">K = [C]ᶜ[D]ᵈ / [A]ᵃ[B]ᵇ</div>
+            <div class="formula-desc">
+              <span>K = Gleichgewichtskonstante</span>
+              <span>[A], [B] = Edukte</span>
+              <span>[C], [D] = Produkte</span>
+            </div>
+          </div>
+
+          <div class="formula-card">
+            <h3>Reaktionsausbeute</h3>
+            <div class="formula">η = (n_ist / n_soll) × 100%</div>
+            <div class="formula-desc">
+              <span>η = Ausbeute [%]</span>
+              <span>n_ist = tatsächliche Stoffmenge</span>
+              <span>n_soll = theoretische Stoffmenge</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="formula-section">
+        <h2><i class="fas fa-atom"></i> Wichtige Konstanten</h2>
+        <table class="constants-table">
+          <thead>
+            <tr>
+              <th>Konstante</th>
+              <th>Symbol</th>
+              <th>Wert</th>
+              <th>Einheit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Avogadro-Konstante</td>
+              <td>N<sub>A</sub></td>
+              <td>6.022 × 10²³</td>
+              <td>mol⁻¹</td>
+            </tr>
+            <tr>
+              <td>Gaskonstante</td>
+              <td>R</td>
+              <td>8.314</td>
+              <td>J/(mol·K)</td>
+            </tr>
+            <tr>
+              <td>Faraday-Konstante</td>
+              <td>F</td>
+              <td>96485</td>
+              <td>C/mol</td>
+            </tr>
+            <tr>
+              <td>Standarddruck</td>
+              <td>p⁰</td>
+              <td>101325</td>
+              <td>Pa</td>
+            </tr>
+            <tr>
+              <td>Standardtemperatur</td>
+              <td>T⁰</td>
+              <td>273.15</td>
+              <td>K (0°C)</td>
+            </tr>
+            <tr>
+              <td>Molares Volumen (ideal)</td>
+              <td>V<sub>m</sub></td>
+              <td>22.4</td>
+              <td>L/mol (bei STP)</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="formula-section">
+        <h2><i class="fas fa-vial"></i> Elemente (Auszug)</h2>
+        <table class="elements-table">
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Name</th>
+              <th>Ordnungszahl</th>
+              <th>Atommasse</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>H</td><td>Wasserstoff</td><td>1</td><td>1.008</td></tr>
+            <tr><td>C</td><td>Kohlenstoff</td><td>6</td><td>12.011</td></tr>
+            <tr><td>N</td><td>Stickstoff</td><td>7</td><td>14.007</td></tr>
+            <tr><td>O</td><td>Sauerstoff</td><td>8</td><td>15.999</td></tr>
+            <tr><td>Na</td><td>Natrium</td><td>11</td><td>22.990</td></tr>
+            <tr><td>Mg</td><td>Magnesium</td><td>12</td><td>24.305</td></tr>
+            <tr><td>Al</td><td>Aluminium</td><td>13</td><td>26.982</td></tr>
+            <tr><td>P</td><td>Phosphor</td><td>15</td><td>30.974</td></tr>
+            <tr><td>S</td><td>Schwefel</td><td>16</td><td>32.06</td></tr>
+            <tr><td>Cl</td><td>Chlor</td><td>17</td><td>35.45</td></tr>
+            <tr><td>K</td><td>Kalium</td><td>19</td><td>39.098</td></tr>
+            <tr><td>Ca</td><td>Calcium</td><td>20</td><td>40.078</td></tr>
+            <tr><td>Fe</td><td>Eisen</td><td>26</td><td>55.845</td></tr>
+            <tr><td>Cu</td><td>Kupfer</td><td>29</td><td>63.546</td></tr>
+            <tr><td>Zn</td><td>Zink</td><td>30</td><td>65.38</td></tr>
+            <tr><td>Ag</td><td>Silber</td><td>47</td><td>107.87</td></tr>
+            <tr><td>I</td><td>Iod</td><td>53</td><td>126.90</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="offline-actions">
+        <div class="action-card">
+          <h3><i class="fas fa-sync"></i> Verbindung prüfen</h3>
+          <p>Die Seite wird automatisch neu geladen, wenn die Internetverbindung wiederhergestellt ist.</p>
+          <button id="retry-btn" class="btn btn-primary">Jetzt erneut versuchen</button>
+        </div>
+
+        <div class="action-card">
+          <h3><i class="fas fa-download"></i> Für Offline-Nutzung speichern</h3>
+          <p>Installieren Sie die PWA für vollständigen Offline-Zugriff auf alle Rechner.</p>
+          <button id="install-pwa-btn" class="btn btn-secondary">PWA installieren</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="offline-footer">
+      <p>Chemie Lernen - Offline Referenz</p>
+      <p class="offline-tip">Tipp: Diese Seite kann ohne Internetverbindung verwendet werden</p>
+    </footer>
+  </div>
+
+  <script src="/js/offline-calculator.js"></script>
+</body>
+</html>
