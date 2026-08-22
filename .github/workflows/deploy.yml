@@ -212,12 +212,11 @@ jobs:
             docker image prune -f
             echo "=== Deploy complete ==="
             echo "=== Ensuring Hubs stack is up (hubs.chemie-lernen.org) ==="
-            if [ -d /opt/containers/hubs-compose ]; then
-              cd /opt/containers/hubs-compose
-              # Start the pre-built images (the hubs build needs mutagen/git
-              # context and is broken under plain docker compose), do NOT rebuild.
-              docker compose up -d --no-build || echo "warn: hubs stack failed to start (non-fatal)"
+            if [ -f /opt/git/hugo-chemie-lernen-org/scripts/hubs-up.sh ]; then
+              echo "Restarting Mozilla Hubs stack via hubs-up.sh (uses mutagen-compose)..."
               cd /opt/git/hugo-chemie-lernen-org
+              export HUBS_DIR=/opt/containers/hubs-compose
+              timeout 900 bash scripts/hubs-up.sh up || echo "warn: hubs-up.sh failed (non-fatal)"
             else
-              echo "warn: /opt/containers/hubs-compose not found, skipping hubs restart"
+              echo "warn: scripts/hubs-up.sh not found, cannot restart hubs stack"
             fi
