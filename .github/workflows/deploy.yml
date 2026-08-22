@@ -214,7 +214,9 @@ jobs:
             echo "=== Ensuring Hubs stack is up (hubs.chemie-lernen.org) ==="
             if [ -d /opt/containers/hubs-compose ]; then
               cd /opt/containers/hubs-compose
-              docker compose up -d || echo "warn: hubs stack failed to start (non-fatal)"
+              # Start the pre-built images (the hubs build needs mutagen/git
+              # context and is broken under plain docker compose), do NOT rebuild.
+              docker compose up -d --no-build || echo "warn: hubs stack failed to start (non-fatal)"
               cd /opt/git/hugo-chemie-lernen-org
             else
               echo "warn: /opt/containers/hubs-compose not found, skipping hubs restart"
