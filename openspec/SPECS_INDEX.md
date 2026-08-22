@@ -41,7 +41,7 @@ Last updated: 2026-08-15
 | Change                                  | Commits            | Status                                                                            |
 | --------------------------------------- | ------------------ | --------------------------------------------------------------------------------- |
 | sprint-6-wissensnetz-ssr                | dea14d91, e9ad62be | Shipped 2026-06-26                                                                |
-| curricula-graph-viz                     | —                  | Shipped 2026-08-22 (interactive curriculum/Modulhandbuch graph explorer live)     |
+| curricula-graph-viz                     | 13ec6ef6           | Shipped 2026-08-22 (interactive curriculum/Modulhandbuch graph explorer live)     |
 | sprint-7-wcag-a11y                      | dcb2ab18           | Shipped 2026-06-26                                                                |
 | sprint-8a-d3-ego-graph                  | e9ad62be           | Shipped 2026-06-26                                                                |
 | sprint-8b-neo4j-data                    | 5d5e6238           | Shipped 2026-06-26                                                                |
