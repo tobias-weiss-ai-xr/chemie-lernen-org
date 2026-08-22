@@ -64,7 +64,7 @@ services:
       start_period: 60s
 
   chemie-chat-api:
-    image: registry.chemie-lernen.org/chemie-chat-api:latest
+    image: ghcr.io/tobias-weiss-ai-xr/chemie-chat-api:latest
     container_name: chemie-chat-api
     restart: unless-stopped
     volumes:
@@ -136,7 +136,7 @@ services:
       - ./myhugoapp/static/openspec:/usr/share/nginx/html/openspec
       - ./myhugoapp/static/landscape:/usr/share/nginx/html/landscape
       - ./myhugoapp/static/api-proxy.conf:/etc/nginx/conf.d/api-proxy.conf
-    image: registry.chemie-lernen.org/chemie-lernen-org:latest
+    image: ghcr.io/tobias-weiss-ai-xr/chemie-hugo:latest
     container_name: hugo-chemie-lernen-org
     restart: unless-stopped
     deploy:

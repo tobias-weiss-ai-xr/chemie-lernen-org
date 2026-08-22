@@ -10,7 +10,9 @@ on:
   workflow_dispatch:
 
 env:
-  REGISTRY: registry.chemie-lernen.org
+  REGISTRY: ghcr.io
+  HUGO_IMAGE: ghcr.io/${{ github.repository_owner }}/chemie-hugo
+  CHAT_IMAGE: ghcr.io/${{ github.repository_owner }}/chemie-chat-api
 
 jobs:
   test:
@@ -50,6 +52,9 @@ jobs:
   build-and-deploy:
     needs: test
     runs-on: [self-hosted, legion]
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -76,19 +81,19 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
 
-      - name: Log in to private registry
+      - name: Log in to GitHub Container Registry
         uses: docker/login-action@v4
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ secrets.REGISTRY_USER }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate image tags
         id: meta
         run: |
           SHORT_SHA="${GITHUB_SHA::7}"
-          echo "hugo_tags=${{ env.REGISTRY }}/chemie-lernen-org:latest,${{ env.REGISTRY }}/chemie-lernen-org:${SHORT_SHA}" >> "$GITHUB_OUTPUT"
-          echo "chat_tags=${{ env.REGISTRY }}/chemie-chat-api:latest,${{ env.REGISTRY }}/chemie-chat-api:${SHORT_SHA}" >> "$GITHUB_OUTPUT"
+          echo "hugo_tags=${{ env.HUGO_IMAGE }}:latest,${{ env.HUGO_IMAGE }}:${SHORT_SHA}" >> "$GITHUB_OUTPUT"
+          echo "chat_tags=${{ env.CHAT_IMAGE }}:latest,${{ env.CHAT_IMAGE }}:${SHORT_SHA}" >> "$GITHUB_OUTPUT"
 
       - name: Build and push Hugo image
         uses: docker/build-push-action@v7
@@ -96,7 +101,7 @@ jobs:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.hugo_tags }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/chemie-lernen-org:latest
+          cache-from: type=registry,ref=${{ env.HUGO_IMAGE }}:latest
 
       - name: Build and push Chat-API image
         uses: docker/build-push-action@v7
@@ -105,23 +110,27 @@ jobs:
           file: ./api/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.chat_tags }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/chemie-chat-api:latest
+          cache-from: type=registry,ref=${{ env.CHAT_IMAGE }}:latest
+
+      - name: Make ghcr images public (server pulls without registry creds)
+        run: |
+          for pkg in chemie-hugo chemie-chat-api; do
+            curl -sS -X PATCH \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/user/packages/container/$pkg/visibility" \
+              -d '{"visibility":"public"}' || echo "warn: could not set $pkg public"
+          done
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.5
-        env:
-          REGISTRY_USER: ${{ secrets.REGISTRY_USER }}
-          REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT || '22' }}
-          envs: REGISTRY_USER,REGISTRY_PASSWORD
           script: |
             set -e
-            echo "=== Authenticating to private registry ==="
-            echo "$REGISTRY_PASSWORD" | docker login ${{ env.REGISTRY }} -u "$REGISTRY_USER" --password-stdin
             echo "=== Pulling latest compose config from git ==="
             cd /opt/git/hugo-chemie-lernen-org
             # Robust sync: fetch + hard reset never produces merge conflicts
@@ -131,9 +140,9 @@ jobs:
             git stash push -q --include-untracked -m "deploy-sync" 2>/dev/null || true
             git reset --hard origin/master
             git stash pop -q 2>/dev/null || true
-            echo "=== Pulling new images from registry ==="
-            docker pull ${{ env.REGISTRY }}/chemie-lernen-org:latest
-            docker pull ${{ env.REGISTRY }}/chemie-chat-api:latest
+            echo "=== Pulling new images from GitHub Container Registry ==="
+            docker pull ghcr.io/${{ github.repository_owner }}/chemie-hugo:latest
+            docker pull ghcr.io/${{ github.repository_owner }}/chemie-chat-api:latest
             echo "=== Recreating containers ==="
             docker compose up -d hugo-chemie-lernen-org
             docker compose up -d chemie-chat-api
