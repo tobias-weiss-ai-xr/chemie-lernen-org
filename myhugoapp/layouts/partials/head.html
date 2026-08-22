@@ -1,6 +1,17 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- FOUC-safe theme init: apply saved/default theme before first paint -->
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme') || 'dark';
+      if (t !== 'light' && t !== 'dark' && t !== 'contrast') t = 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
 <meta name="google-adsense-account" content="ca-pub-8452353139685392">
 
 <title>{{ .Title }}{{ if .IsPage }} - {{ .Site.Title }}{{ end }}</title>

@@ -79,3 +79,7 @@ api/data/theme-overrides.json
 
 # taskfleet worktrees (do not commit)
 .tf-worktrees/
+
+# transient build/hunt logs
+cb.log
+cv.log

@@ -41,7 +41,7 @@ const PRECACHE_FILES = [
   '/css/green-theme.css',
   '/css/quiz-system.css',
   '/css/site-chrome.css',
-  '/js/dark-mode.js',
+  '/js/theme-switcher.js',
   '/js/lazy-loader.js',
   '/js/utils/chemistry-utils.js',
   '/js/utils/error-handler.js',
