@@ -211,3 +211,11 @@ jobs:
             echo "=== Cleaning up old images ==="
             docker image prune -f
             echo "=== Deploy complete ==="
+            echo "=== Ensuring Hubs stack is up (hubs.chemie-lernen.org) ==="
+            if [ -d /opt/containers/hubs-compose ]; then
+              cd /opt/containers/hubs-compose
+              docker compose up -d || echo "warn: hubs stack failed to start (non-fatal)"
+              cd /opt/git/hugo-chemie-lernen-org
+            else
+              echo "warn: /opt/containers/hubs-compose not found, skipping hubs restart"
+            fi
