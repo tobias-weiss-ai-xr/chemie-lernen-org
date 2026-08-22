@@ -1584,6 +1584,21 @@ function getGroupColor(group) {
   return colors[group] || 'rgba(52, 73, 94, 0.9)';
 }
 
+// WCAG AA: return the black/white text colour with maximum contrast for a bg.
+function readableText(bg) {
+  var m = String(bg).match(/(\d+\.?\d*)\s*,\s*(\d+\.?\d*)\s*,\s*(\d+\.?\d*)/);
+  if (!m) return '#111111';
+  var r = parseFloat(m[1]),
+    g = parseFloat(m[2]),
+    b = parseFloat(m[3]);
+  var a = [r, g, b].map(function (v) {
+    v /= 255;
+    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  });
+  var L = 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
+  return L > 0.179 ? '#111111' : '#ffffff';
+}
+
 function getElementColor(elemIdx) {
   var e = ELEMENTS[elemIdx];
   var trend = TRENDS[currentTrend];
@@ -1690,6 +1705,13 @@ function init() {
     details.className = 'details';
     details.innerHTML = e[1] + '<br>' + e[2];
     el.appendChild(details);
+
+    // a11y: ensure tile text colour contrasts with the (category) background
+    var _tc = readableText(getGroupColor(group));
+    el.style.color = _tc;
+    [number, symbol, emojiLink, details].forEach(function (c) {
+      c.style.color = _tc;
+    });
 
     var objectCSS = new CSS3DObject(el);
     objectCSS.position.x = Math.random() * 4000 - 2000;
@@ -1842,7 +1864,14 @@ function updateElementColors() {
   for (var i = 0; i < objects.length; i++) {
     var el = objects[i].element;
     if (el) {
-      el.style.backgroundColor = getElementColor(i);
+      var bg = getElementColor(i);
+      el.style.backgroundColor = bg;
+      var tc = readableText(bg);
+      el.style.color = tc;
+      var kids = el.querySelectorAll('.number, .symbol, .details, .emoji-link');
+      for (var k = 0; k < kids.length; k++) {
+        kids[k].style.color = tc;
+      }
     }
   }
 }
