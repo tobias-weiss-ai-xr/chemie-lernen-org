@@ -213,10 +213,10 @@ jobs:
             echo "=== Deploy complete ==="
             echo "=== Ensuring Hubs stack is up (hubs.chemie-lernen.org) ==="
             if [ -f /opt/git/hugo-chemie-lernen-org/scripts/hubs-up.sh ]; then
-              echo "Restarting Mozilla Hubs stack via hubs-up.sh (uses mutagen-compose)..."
+              echo "Restarting Mozilla Hubs stack via hubs-up.sh (requires sudo for /etc/hosts)..."
               cd /opt/git/hugo-chemie-lernen-org
               export HUBS_DIR=/opt/containers/hubs-compose
-              timeout 900 bash scripts/hubs-up.sh up || echo "warn: hubs-up.sh failed (non-fatal)"
+              sudo timeout 900 bash scripts/hubs-up.sh up || echo "warn: hubs-up.sh failed (non-fatal)"
             else
               echo "warn: scripts/hubs-up.sh not found, cannot restart hubs stack"
             fi
