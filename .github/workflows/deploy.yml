@@ -136,9 +136,9 @@ jobs:
             # Robust sync: fetch + hard reset never produces merge conflicts
             # (stash/pull/pop left the tree in a conflicted state and blocked
             # deploys for a week). Stash first so local-only files survive.
-            git fetch origin master
+            git fetch origin
             git stash push -q --include-untracked -m "deploy-sync" 2>/dev/null || true
-            git reset --hard origin/master
+            git reset --hard origin/main
             git stash pop -q 2>/dev/null || true
             echo "=== Pulling new images from GitHub Container Registry ==="
             docker pull ghcr.io/${{ github.repository_owner }}/chemie-hugo:latest
