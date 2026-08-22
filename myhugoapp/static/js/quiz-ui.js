@@ -138,7 +138,10 @@
           '" ' +
           'data-option-index="' +
           j +
-          '" type="button">' +
+          '" type="button" ' +
+          'aria-label="' +
+          this._escapeHtml(question.options[j]) +
+          '">' +
           '<span class="quiz-option-key">' +
           (j + 1) +
           '</span> ' +
@@ -418,6 +421,13 @@
     html += '</div>';
 
     this.container.innerHTML = html;
+
+    // a11y: move focus to the results heading after submit
+    var resultsHeader = this.container.querySelector('.quiz-results-header');
+    if (resultsHeader) {
+      resultsHeader.setAttribute('tabindex', '-1');
+      resultsHeader.focus();
+    }
 
     // Bind retry events
     var self = this;
