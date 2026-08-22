@@ -1,4 +1,10 @@
-:root {
+/*
+ * Theme tokens. :root holds the LIGHT theme (warm paper, not stark white).
+ * Dark + High-Contrast variants live in dark-mode.css ([data-theme='dark'] / [data-theme='contrast']).
+ * theme-switcher.js + the FOUC script in <head> set data-theme on <html>.
+ */
+:root,
+[data-theme='light'] {
   --brand-primary: #1b5e20;
   --brand-secondary: #2e7d32;
   --accent-color: #007bff;
@@ -7,10 +13,79 @@
   --warning-color: #f59e0b;
   --danger-color: #e74c3c;
   --text-primary: #2c3e50;
-  --text-muted: #7f8c8d;
-  --border-color: #dee2e6;
-  --card-bg: #ffffff;
-  --bg-primary: #f8f9fa;
+  --text-muted: #6b7785;
+  --border-color: #d9dee3;
+  --card-bg: #fcfbf7;
+  --bg-primary: #f4f2ec;
+  --bg-surface: #efede6;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Light-theme page chrome — applies to the :root default and to [data-theme='light'] */
+:root body,
+[data-theme='light'] body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+:root .card,
+[data-theme='light'] .card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+:root .panel,
+:root .panel-default,
+[data-theme='light'] .panel,
+[data-theme='light'] .panel-default {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+:root .panel-body,
+:root .panel-heading,
+:root .panel-title,
+:root .panel-footer,
+[data-theme='light'] .panel-body,
+[data-theme='light'] .panel-heading,
+[data-theme='light'] .panel-title,
+[data-theme='light'] .panel-footer {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+:root .well,
+[data-theme='light'] .well {
+  background-color: var(--bg-surface);
+  border-color: var(--border-color);
+}
+
+:root .list-group-item,
+[data-theme='light'] .list-group-item {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+:root .table-bordered th,
+:root .table-bordered td,
+[data-theme='light'] .table-bordered th,
+[data-theme='light'] .table-bordered td {
+  border-color: var(--border-color);
+}
+
+:root .table-bordered th,
+[data-theme='light'] .table-bordered th {
+  background-color: var(--bg-surface);
+}
+
+:root .form-control,
+[data-theme='light'] .form-control {
+  background-color: #ffffff;
+  color: var(--text-primary);
+  border-color: var(--border-color);
 }
 
 /* Shared animation keyframes - consolidated from calculator CSS files */
@@ -261,12 +336,30 @@ body {
   .zigs-video-channel {
     color: #9fd3a2;
   }
+
+  .zigs-video-more a {
+    color: #8ab4f8;
+  }
 }
 
 @media (max-width: 640px) {
   .zigs-video-list {
     grid-template-columns: 1fr;
   }
+}
+
+.zigs-video-more {
+  margin: 1rem 0 0;
+  font-weight: 600;
+}
+
+.zigs-video-more a {
+  color: var(--link-color, #1a73e8);
+  text-decoration: none;
+}
+
+.zigs-video-more a:hover {
+  text-decoration: underline;
 }
 
 /* Title row styling */
@@ -303,6 +396,93 @@ body {
 
 .theme-toggle-header i {
   font-size: 28px;
+}
+
+/* ── Theme chooser (Hell / Dunkel / Kontrast) ── */
+.theme-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--border-color, #c8e6c9);
+}
+
+.theme-switcher-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2e7d32;
+  margin-right: 6px;
+  white-space: nowrap;
+}
+
+.theme-option {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.theme-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.theme-option-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  font-size: 0.82rem;
+  line-height: 1;
+  border-radius: 6px;
+  color: #1b5e20;
+  background: #ffffff;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.theme-option input:focus-visible + .theme-option-text {
+  outline: 3px solid #4caf50;
+  outline-offset: 2px;
+}
+
+.theme-option input:checked + .theme-option-text {
+  background: #1b5e20;
+  color: #ffffff;
+  border-color: #2e7d32;
+}
+
+[data-theme='dark'] .theme-switcher {
+  background: rgba(0, 0, 0, 0.25);
+  border-color: #3a5a45;
+}
+
+[data-theme='dark'] .theme-switcher-label {
+  color: #c8e6c9;
+}
+
+[data-theme='dark'] .theme-option-text {
+  color: #c8e6c9;
+  background: #13241a;
+  border-color: #3a5a45;
+}
+
+[data-theme='dark'] .theme-option input:checked + .theme-option-text {
+  background: #2e7d32;
+  color: #ffffff;
+  border-color: #4caf50;
 }
 
 /* Navbar styling for menu below title */

@@ -14,6 +14,12 @@ tags: ['startseite', 'chemie', 'rechner']
 
 {{< hubs-promo-widget >}}
 
+## 🎬 Lernvideos: Zig's Chemistry 42
+
+Prof. Siegfried Schindler (Justus-Liebig-Universität Gießen) erklärt die allgemeine Chemie – verständlich, locker und didaktisch durchdacht. Hier die jeweils neuesten Videos aus seinem Kanal, die bei jedem Build automatisch aktualisiert werden:
+
+{{< zigs-video-list limit=4 >}}
+
 ## 📚 Lerninhalte nach Themenbereichen
 
 Durchstöbern Sie unsere Chemie-Themen, organisiert nach Schwierigkeitsgrad:
