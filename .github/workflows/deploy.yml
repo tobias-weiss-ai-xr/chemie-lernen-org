@@ -133,6 +133,9 @@ jobs:
             set -e
             echo "=== Pulling latest compose config from git ==="
             cd /opt/git/hugo-chemie-lernen-org
+            # Docker rw mounts can leave root-owned files in the checkout that
+            # break 'git reset --hard' (Permission denied) -> normalize ownership.
+            sudo chown -R "$(id -u):$(id -g)" .
             # Robust sync: fetch + hard reset never produces merge conflicts
             # (stash/pull/pop left the tree in a conflicted state and blocked
             # deploys for a week). Stash first so local-only files survive.
