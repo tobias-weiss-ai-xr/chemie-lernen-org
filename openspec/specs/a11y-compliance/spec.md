@@ -45,6 +45,10 @@ Verified color pairings:
 - Default body text: `#212529` on white (16.78:1)
 - Link blue: `#0066cc` on white (6.44:1)
 - Source chip text: `#333` on `#f0f4f8` (12.4:1)
+- Periodic-table element tiles: text colour auto-selected black `#111` /
+  white `#fff` by relative luminance (`readableText()` in
+  `perioden-system-der-elemente.js`) on every category/trend background —
+  guarantees ≥ 4.5:1 for all 18 group colours and the continuous trend palette
 
 ### REQ-A11Y-4: prefers-reduced-motion
 
@@ -123,6 +127,23 @@ required) and verifies:
 - All `<canvas>` elements have a non-empty `aria-label`
 - The D3 ego-graph module exposes `role="img"` and `<ul>` fallback
 
+### REQ-A11Y-10: Interactive control ARIA labels & focus management
+
+All JS-generated interactive controls and custom button groups MUST expose
+an accessible name and, where they replace native controls, keyboard
+operability:
+
+- FSRS review score buttons (`lernkarten-review.html`): each `button` carries
+  `type="button"` and a descriptive `aria-label`
+  (`Taste 1: Wiederholen, sehr schwer` … `Taste 4: Leicht, sofort gewusst`).
+- Quiz (`quiz-ui.js`): answer-option buttons carry `aria-label` = the option
+  text; after submitting, focus moves to the results heading
+  (`tabindex="-1"` + `.focus()`).
+- Element comparison tool (`vergleich.html` / `vergleich.js`): the autocomplete
+  dropdown is a `role="listbox"` with `aria-label`; each suggestion is
+  `role="option"` + `aria-label`; chip "remove" controls are `role="button"`,
+  `tabindex="0"`, `aria-label`, and respond to Enter/Space.
+
 ## Scenarios
 
 ### S-A11Y-1: Screen reader user opens entity page
@@ -166,3 +187,8 @@ required) and verifies:
 - `tests/accessibility-validation.test.js` — local tests
 - `.pa11yci.json` — CI config
 - `myhugoapp/content/pages/barrierefreiheit.md` — policy page
+- `myhugoapp/static/js/perioden-system-der-elemente.js` — periodic-table tile contrast
+- `myhugoapp/static/js/quiz-ui.js` — quiz answer `aria-label` + focus-to-results
+- `myhugoapp/static/js/vergleich.js` — comparison-tool listbox / chip a11y
+- `myhugoapp/layouts/_default/lernkarten-review.html` — FSRS button labels
+- `myhugoapp/layouts/_default/vergleich.html` — comparison dropdown `role="listbox"`
