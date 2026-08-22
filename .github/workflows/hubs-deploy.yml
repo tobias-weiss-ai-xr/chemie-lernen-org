@@ -4,16 +4,12 @@
 # on the server and is started manually (scripts/hubs-up.sh). This
 # workflow restarts it via SSH so a downed backend (502 Bad Gateway
 # from Traefik) can be recovered without manual server access.
+# Trigger manually: Actions -> "Deploy Hubs" -> Run workflow.
 # ============================================================
 name: Deploy Hubs (hubs.chemie-lernen.org)
 
 on:
   workflow_dispatch:
-    inputs:
-      mode:
-        description: 'restart (fast, reuse images) or rebuild (force image build)'
-        required: false
-        default: 'restart'
 
 jobs:
   hubs-deploy:
@@ -35,13 +31,8 @@ jobs:
             cd "$HUBS_DIR"
             echo "=== Hubs stack status BEFORE ==="
             docker compose ps || true
-            if [ "${{ github.event.inputs.mode }}" = "rebuild" ]; then
-              echo "=== Rebuilding Hubs images (this can take 5-15 min) ==="
-              docker compose up -d --build
-            else
-              echo "=== Bringing Hubs stack up (restart, reuse images) ==="
-              docker compose up -d
-            fi
+            echo "=== Bringing Hubs stack up (restart, reuse images) ==="
+            docker compose up -d
             echo "=== Hubs stack status AFTER ==="
             sleep 20
             docker compose ps
