@@ -11,6 +11,9 @@ tags:
 - reduktion
 - periodensystem
 - molekül
+review_status: published
+reviewer: "auto-import"
+review_date: 2026-08-18
 draft: false
 ---
 

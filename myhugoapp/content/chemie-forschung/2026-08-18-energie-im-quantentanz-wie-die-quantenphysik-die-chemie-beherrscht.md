@@ -10,6 +10,9 @@ tags:
 - molekül
 - bindung
 - elektro
+review_status: published
+reviewer: "auto-import"
+review_date: 2026-08-18
 draft: false
 ---
 

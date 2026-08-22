@@ -10,11 +10,11 @@ erzeugt — es gibt keinen LLM-Fallback mit generierten Pseudotopics.
 
 Die Pipeline umfasst drei klar getrennte Verantwortlichkeiten:
 
-| Rolle | Repo | Aufgabe |
-|---|---|---|
-| **Generation** | `chemierecherche-runner` | KG-Abfrage, LLM-Artikel, Markdown-Output |
-| **Orchestrierung** | `next-graphwiz-ai` (Caller-Workflow) | Zeitplan, Runner-Auswahl, Secret-Injektion |
-| **Display / Deploy** | `hugo-chemie-lernen-org` | Hugo-Rendering, Nginx, Traefik |
+| Rolle                | Repo                                 | Aufgabe                                    |
+| -------------------- | ------------------------------------ | ------------------------------------------ |
+| **Generation**       | `chemierecherche-runner`             | KG-Abfrage, LLM-Artikel, Markdown-Output   |
+| **Orchestrierung**   | `next-graphwiz-ai` (Caller-Workflow) | Zeitplan, Runner-Auswahl, Secret-Injektion |
+| **Display / Deploy** | `hugo-chemie-lernen-org`             | Hugo-Rendering, Nginx, Traefik             |
 
 ## B) End-to-End-Flow
 
@@ -78,16 +78,16 @@ actions.runner.tobias-weiss-ai-xr-next-graphwiz-ai.kg-host-runner-1.service
 
 ### Konfiguration
 
-| Variable | Wert (aus `chemie-forschung.yml`) | Herkunft |
-|---|---|---|
-| `NEO4J_HOST` | `localhost` | Caller-Input (hardcodiert) |
-| `NEO4J_USER` | `neo4j` | Caller-Input (hardcodiert) |
-| `NEO4J_PASSWORD` | *(Secret)* | `secrets.NEO4J_PASSWORD` im Repo `next-graphwiz-ai` |
-| `NEO4J_DATABASE` | `chemie` | Caller-Input (hardcodiert) |
-| `LLM_BASE_URL` | `http://localhost:4000/v1` | Caller-Input (hardcodiert) |
-| `LLM_MODEL` | `deepseek-v4-flash/ai1` | Caller-Input (hardcodiert) |
-| `LLM_API_KEY` | *(Secret)* | `secrets.LLM_API_KEY` im Repo `next-graphwiz-ai` |
-| `CHEMIE_HUGO_PAT` | *(Secret)* | `secrets.CHEMIE_HUGO_PAT` im Repo `next-graphwiz-ai` |
+| Variable          | Wert (aus `chemie-forschung.yml`) | Herkunft                                             |
+| ----------------- | --------------------------------- | ---------------------------------------------------- |
+| `NEO4J_HOST`      | `localhost`                       | Caller-Input (hardcodiert)                           |
+| `NEO4J_USER`      | `neo4j`                           | Caller-Input (hardcodiert)                           |
+| `NEO4J_PASSWORD`  | _(Secret)_                        | `secrets.NEO4J_PASSWORD` im Repo `next-graphwiz-ai`  |
+| `NEO4J_DATABASE`  | `chemie`                          | Caller-Input (hardcodiert)                           |
+| `LLM_BASE_URL`    | `http://localhost:4000/v1`        | Caller-Input (hardcodiert)                           |
+| `LLM_MODEL`       | `deepseek-v4-flash/ai1`           | Caller-Input (hardcodiert)                           |
+| `LLM_API_KEY`     | _(Secret)_                        | `secrets.LLM_API_KEY` im Repo `next-graphwiz-ai`     |
+| `CHEMIE_HUGO_PAT` | _(Secret)_                        | `secrets.CHEMIE_HUGO_PAT` im Repo `next-graphwiz-ai` |
 
 Der Runner nutzt **keine** Default-Werte aus dem reusable Workflow für
 Host/URL — der Caller überschreibt `neo4j_host` mit `localhost` (statt
@@ -157,7 +157,7 @@ Einzel-Fehler ab.
 Der Generator (`article-generator.ts`) erzeugt Hugo-kompatibles
 Frontmatter. Die Hugo-Templates konsumieren diese Felder:
 
-```yaml
+````yaml
 ---
 title: 'Redoxreaktionen: Elektronenübertragung verstehen'
 description: 'Redoxreaktionen gehören zu den grundlegendsten...'
@@ -167,11 +167,38 @@ tags:
  - 'oxidation'
 date: '2026-08-18'
 last_reviewed: 2026-08-18
-draft: false
+review_status: draft      # draft | published
+reviewer: ""               # bei Freigabe gefüllt
+review_date: ""            # bei Freigabe gefüllt
+draft: true                # Hugo: nicht im Produktions-Build gerendert
 ---
 
 ## Einleitung
 ...
+
+### Curation Gate (Review/Publish)
+
+Neu erzeugte Artikel werden mit **`draft: true`** und **`review_status: draft`**
+angelegt. Hugo schließt Drafts im Produktions-Build (`hugo --minify`) aus –
+ein Artikel erscheint also **erst nach menschlicher Freigabe** öffentlich.
+
+Freigabe durch den Reviewer:
+
+```bash
+node scripts/curation/publish-article.mjs \
+  myhugoapp/content/chemie-forschung/<date>-<slug>.md --reviewer "T. Weiss"
+````
+
+Das Tool prüft Qualitäts-Heuristiken (Body-Mindestlänge, Pflichtfelder,
+keine Platzhalter) und setzt bei Erfolg `review_status: published`,
+`draft: false`, `reviewer` und `review_date` und committed die Änderung.
+
+Ein Safety-Netz (`scripts/curation/check-reviewed.mjs`) überwacht, dass keine
+`draft: false`-Artikel ohne `review_status: published` bzw. `reviewer`
+existieren – sinnvoll als CI-Schritt vor dem Deploy. Bereits vor dem Gate
+live geschaltete Artikel wurden mit `review_status: published` +
+`reviewer: "auto-import"` nachträglich versehen (Backfill).
+
 ```
 
 | Feld | Erzeugung | Konsum |
@@ -200,18 +227,20 @@ draft: false
 ## F) Klare Trennung der Verantwortlichkeiten
 
 ```
-┌─────────────────────────┐    ┌──────────────────────────┐    ┌─────────────────────────┐
-│   chemierecherche-runner │    │   next-graphwiz-ai       │    │  hugo-chemie-lernen-org  │
-│   (Generation)          │    │   (Orchestrierung)       │    │  (Display / Deploy)      │
-├─────────────────────────┤    ├──────────────────────────┤    ├─────────────────────────┤
-│ • neo4j-kg.ts           │◄──│ • chemie-forschung.yml   │───►│ • content/chemie-        │
-│ • article-generator.ts  │    │   (Caller-Workflow)      │    │   forschung/*.md         │
-│ • generate-chemistry-   │    │ • schedule + dispatch    │    │ • layouts/section/       │
-│   article.ts            │    │ • Secret-Weitergabe      │    │   chemie-forschung.html  │
-│ • generate.yml          │    │ • Host/URL-Überschreibung│    │ • layouts/index.html    │
-│   (reusable workflow)   │    │                          │    │   (Startseiten-Block)    │
-└─────────────────────────┘    └──────────────────────────┘    └─────────────────────────┘
-       KG + LLM                     Steuert WANN & WIE              Hugo → Nginx → Traefik
+
+┌─────────────────────────┐ ┌──────────────────────────┐ ┌─────────────────────────┐
+│ chemierecherche-runner │ │ next-graphwiz-ai │ │ hugo-chemie-lernen-org │
+│ (Generation) │ │ (Orchestrierung) │ │ (Display / Deploy) │
+├─────────────────────────┤ ├──────────────────────────┤ ├─────────────────────────┤
+│ • neo4j-kg.ts │◄──│ • chemie-forschung.yml │───►│ • content/chemie- │
+│ • article-generator.ts │ │ (Caller-Workflow) │ │ forschung/\*.md │
+│ • generate-chemistry- │ │ • schedule + dispatch │ │ • layouts/section/ │
+│ article.ts │ │ • Secret-Weitergabe │ │ chemie-forschung.html │
+│ • generate.yml │ │ • Host/URL-Überschreibung│ │ • layouts/index.html │
+│ (reusable workflow) │ │ │ │ (Startseiten-Block) │
+└─────────────────────────┘ └──────────────────────────┘ └─────────────────────────┘
+KG + LLM Steuert WANN & WIE Hugo → Nginx → Traefik
+
 ```
 
 - **Generation** (`chemierecherche-runner`): Enthält die gesamte
@@ -227,3 +256,4 @@ draft: false
   generierten Markdown-Dateien. Hugo rendert die Seiten, der
   Docker-Container (Traefik + Nginx) serviert sie unter
   `chemie-lernen.org` und `www.chemie-lernen.org`.
+```

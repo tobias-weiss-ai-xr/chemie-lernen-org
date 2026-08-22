@@ -9,6 +9,9 @@ tags:
   - 'elektronenuebertragung'
 date: '2026-08-18'
 last_reviewed: 2026-08-18
+review_status: published
+reviewer: "auto-import"
+review_date: '2026-08-18'
 draft: false
 ---
 
