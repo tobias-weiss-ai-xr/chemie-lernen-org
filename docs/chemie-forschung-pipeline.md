@@ -167,6 +167,7 @@ tags:
  - 'oxidation'
 date: '2026-08-18'
 last_reviewed: 2026-08-18
+entity: Redoxreaktionen        # kanonischer KG-Entitätsname (Coverage-Tracking)
 review_status: draft      # draft | published
 reviewer: ""               # bei Freigabe gefüllt
 review_date: ""            # bei Freigabe gefüllt
@@ -198,6 +199,16 @@ Ein Safety-Netz (`scripts/curation/check-reviewed.mjs`) überwacht, dass keine
 existieren – sinnvoll als CI-Schritt vor dem Deploy. Bereits vor dem Gate
 live geschaltete Artikel wurden mit `review_status: published` +
 `reviewer: "auto-import"` nachträglich versehen (Backfill).
+
+### Entitäts-Abdeckung (S44.1)
+
+Neu erzeugte Artikel tragen zusätzlich ein kanonisches `entity:`-Feld (der
+KG-Entitätsname). Die Pipeline filtert die Kandidaten aus `getHotChemistryTopics`
+(gegenüber früher auf 100 Entitäten erweitert) um bereits veröffentlichte Entitäten
+– erkannt über `entity:` bzw. Titel – heraus, bevor `--index` angewandt wird. So
+wandert die Generierung über die Laufzeit vom hochentwickelten Kern in den langen
+Schwanz der KG und erhöht die Entitäts-Abdeckung, statt die gleichen Top-Knoten
+wöchentlich neu zu erzeugen.
 
 ```
 
