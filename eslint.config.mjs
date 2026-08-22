@@ -29,6 +29,10 @@ export default [
       'myhugoapp/static/js/three/three.core.js',
       'myhugoapp/static/js/three/TrackballControls.js',
       'myhugoapp/static/js/addons/**',
+      // Vendored proprietary core (chemie-core) — linted in its own repo;
+      // copied into place by scripts/vendor-core.sh and may carry
+      // parser/syntax styles this repo's ESLint config does not target.
+      'api/services/marketing/**',
       '*.generated.js',
       'android/app/build/**',
       'myhugoapp/static/js/calculators/stoichiometry.js',

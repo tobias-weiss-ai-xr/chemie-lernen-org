@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Create the 5 themed scenes from the reticulum-hosted GLBs and save sids.
-import { readFileSync, writeFileSync } from 'node:fs';
+import { writeFileSync } from 'node:fs';
 
 const TOKEN = process.env.HUB_TOKEN;
 const BASE = process.env.HUB_BASE_URL || 'https://hubs.chemie-lernen-org';
