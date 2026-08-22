@@ -6,7 +6,7 @@ name: Deploy chemie-lernen.org
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 
 env:
