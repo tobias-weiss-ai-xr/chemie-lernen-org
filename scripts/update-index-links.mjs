@@ -85,7 +85,6 @@ function main() {
       // Add missing links before "## Weiterführende Themen" section
       const weiterSection = body.match(/^## Weiterführende Themen$/m);
       if (weiterSection) {
-        const insertIdx = body.indexOf('## Weiterführende Themen');
         // Find the end of the existing Weiterführende Themen section
         const afterWtStart = body.indexOf('## Weiterführende Themen') + '## Weiterführende Themen'.length;
         const afterSection = body.slice(afterWtStart);

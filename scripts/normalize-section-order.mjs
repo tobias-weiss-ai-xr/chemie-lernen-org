@@ -30,13 +30,6 @@ function normalizeFile(filePath) {
   const frontmatter = fmMatch[0];
   const body = raw.slice(fmMatch[0].length);
 
-  // Find all ## sections with their content
-  const sectionRegex = /^(## .+?)$/gm;
-  const sections = [];
-  let lastIndex = 0;
-  let lastHeading = null;
-  let lastHeadingIndex = -1;
-
   const lines = body.split('\n');
   let currentSection = null;
   let currentLines = [];
