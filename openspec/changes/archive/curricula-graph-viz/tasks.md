@@ -43,6 +43,6 @@
 
 ## 4. Spec sync & archive
 
-- [ ] 4.1 Sync delta spec to `openspec/specs/lehrplan-curriculum/spec.md`
+- [x] 4.1 Sync delta spec to `openspec/specs/lehrplan-curriculum/spec.md`
       and `openspec/specs/modulhandbuch-university/spec.md` (+ index).
-- [ ] 4.2 Archive the change after implementation is complete.
+- [x] 4.2 Archive the change after implementation is complete.

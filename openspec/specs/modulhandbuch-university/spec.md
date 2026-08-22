@@ -211,6 +211,21 @@ All routes scope to the `modulhandbuch` subset per
 - On entity pages: "Universitäten, die dieses Konzept vermitteln"
   with links to the relevant modules
 
+### REQ-MH-11: Module-handbook reachable from the curricula graph
+
+The curricula graph's "Universitäten" scope SHALL surface
+`UniversityModule` nodes with their degree/level/ECTS metadata
+(read from Neo4j, same subset as `/api/modulhandbuch/*`).
+
+#### Scenario: S-MH-11a: University filter
+
+- **WHEN** the user selects a university short code in the graph scope
+  controls
+- **THEN** only that university, its modules and their linked entities
+  are shown
+- **AND** the detail panel offers a link to the existing
+  `/modulhandbuch/` page for the university
+
 ## Scenarios
 
 ### S-MH-1: User browses ETH modules
