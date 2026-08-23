@@ -15,7 +15,7 @@
 # for neo4j/kg (2G) + chat-api/hugo (0.5G) + observability.
 
 services:
-  hubs-db:
+  db:
     image: postgres:14-alpine
     container_name: hubs-db
     restart: unless-stopped
@@ -60,7 +60,7 @@ services:
         limits:
           memory: 1g
     depends_on:
-      - hubs-db
+      - db
     environment:
       HTTPS_CERT_FULLCHAIN: /code/certs/live/hubs.chemie-lernen.org/fullchain.pem
       HTTPS_CERT_PRIVKEY: /code/certs/live/hubs.chemie-lernen.org/privkey.pem
@@ -163,7 +163,7 @@ services:
       - "traefik.http.services.hubs-admin.loadbalancer.server.port=8989"
       - "traefik.http.services.hubs-admin.loadbalancer.server.scheme=http"
 
-  hubs-spoke:
+  spoke:
     image: hubs-compose-spoke:latest
     container_name: hubs-spoke
     restart: unless-stopped
@@ -230,7 +230,10 @@ networks:
 volumes:
   pgdata:
     external: true
+    name: hubs-compose-pgdata
   retstorage:
     external: true
+    name: hubs-compose-retstorage
   letsencrypt:
     external: true
+    name: hubs-compose-letsencrypt

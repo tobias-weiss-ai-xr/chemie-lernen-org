@@ -218,7 +218,7 @@ jobs:
             sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml down --remove-orphans 2>/dev/null || true
             export PRIVATE_NETWORK_IP=192.168.1.1
             echo "=== Bringing up hubs stack (docker-compose.hubs.yml) ==="
-            sudo docker compose -f docker-compose.hubs.yml up -d 2>&1 | tail -30 || echo "warn: hubs up failed (non-fatal)"
+            sudo PRIVATE_NETWORK_IP=192.168.1.1 docker compose -f docker-compose.hubs.yml up -d 2>&1 | tail -30 || echo "warn: hubs up failed (non-fatal)"
             echo "--- waiting 180s for hubs apps to boot ---"
             sleep 180
             echo "--- hubs stack status ---"
