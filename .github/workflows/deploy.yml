@@ -243,9 +243,17 @@ jobs:
               echo "--- waiting 150s for apps to boot ---"
               sleep 150
               sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml ps 2>&1 | head -30 || true
-              for svc in reticulum haproxy hubs-client db postgrest; do
+              echo "--- probe reticulum directly (4003, bypass haproxy) ---"
+              curl -sk -m 10 -o /dev/null -w 'reticulum-direct=%{http_code}\n' https://localhost:4003/api/v1/rooms 2>&1 || true
+              echo "--- repair hubs-client node_modules ---"
+              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml exec -T hubs-client sh -c "ls node_modules/.bin/webpack 2>&1 | head -1; (yarn install --frozen-lockfile 2>&1 | tail -5) || (npm install 2>&1 | tail -5)" 2>&1 | tail -15 || true
+              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml restart hubs-client 2>&1 | tail -3 || true
+              echo "--- restart haproxy ---"
+              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml restart haproxy 2>&1 | tail -3 || true
+              sleep 90
+              for svc in reticulum haproxy hubs-client; do
                 echo "===== logs: $svc ====="
-                sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml logs --tail=30 "$svc" 2>&1 | tail -30 || true
+                sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml logs --tail=20 "$svc" 2>&1 | tail -20 || true
               done
               cd /opt/git/hugo-chemie-lernen-org
             fi
