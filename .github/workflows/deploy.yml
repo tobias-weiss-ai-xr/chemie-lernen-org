@@ -215,13 +215,12 @@ jobs:
             if [ -f /opt/git/hugo-chemie-lernen-org/scripts/hubs-up.sh ]; then
               echo "Repairing Hubs git repo in case of corruption (fixes build context)..."
               cd /opt/containers/hubs-compose
-              if [ -d .git ]; then
-                rm -rf .git
-              fi
-              git init
-              git remote add origin https://github.com/mozilla/hubs
-              git fetch --depth=1 origin master
-              git reset --hard origin/master
+              sudo rm -rf .git
+              sudo git init
+              sudo git remote add origin https://github.com/mozilla/hubs
+              sudo git fetch --depth=1 origin master
+              sudo git config --global --add safe.directory /opt/containers/hubs-compose
+              sudo git reset --hard origin/master
               echo "Restarting Mozilla Hubs stack via hubs-up.sh (requires sudo for /etc/hosts)..."
               cd /opt/git/hugo-chemie-lernen-org
               export HUBS_DIR=/opt/containers/hubs-compose
