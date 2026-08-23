@@ -232,7 +232,9 @@ jobs:
               export HUBS_DIR=/opt/containers/hubs-compose
               # Start stack with the already-rebuilt modern reticulum image (no slow rebuild)
               sudo mutagen daemon start || true
-              sudo mutagen-compose -f /opt/containers/hubs-compose/docker-compose.yml up -d || echo "warn: start failed (non-fatal)"
+              # Full rebuild (reticulum modern + hubs-client node_modules). Needs >15min;
+              # step budget allows ~1800s (verified earlier full rebuild completed).
+              sudo timeout 1780 bash scripts/hubs-up.sh up || echo "warn: hubs-up.sh failed (non-fatal)"
             else
               echo "warn: scripts/hubs-up.sh not found, cannot restart hubs stack"
             fi
