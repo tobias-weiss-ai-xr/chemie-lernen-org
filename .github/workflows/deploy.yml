@@ -240,15 +240,16 @@ jobs:
             echo "=== Hubs diagnostics (reticulum 500 investigation) ==="
             if [ -d /opt/containers/hubs-compose ]; then
               cd /opt/containers/hubs-compose
-              echo "--- hubs compose ps ---"
-              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml ps 2>&1 | head -40 || true
-              echo "--- reticulum image / version ---"
-              sudo docker inspect --format '{{.Config.Image}}' reticulum 2>&1 | head -3 || true
-              echo "--- reticulum env var NAMES (files/uploads/app) set? ---"
-              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml exec -T reticulum printenv 2>/dev/null | grep -iE "FILE|UPLOAD|APP|SERVER|STATIC|BUCKET|ASSET|HOST|RETICULUM|REGION" | sed -E 's/=(.*)/=<set>/' | sort || true
-              echo "--- hubs-compose .env var NAMES ---"
-              sudo test -f .env && grep -vE '^#' .env | sed -E 's/=(.*)/=<set>/' | sort || echo "(no .env)"
-              echo "--- reticulum logs: api/v1/rooms + api/v1/ + ArgumentError context ---"
-              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml logs --tail=400 reticulum 2>&1 | grep -A 18 -E "GET /api/v1/rooms|GET /api/v1/ |ArgumentError|unknown application" | tail -90 || true
+              echo "--- hubs-compose git state + submodules ---"
+              sudo git log -1 --oneline 2>&1 | head -2 || true
+              sudo git submodule status 2>&1 | head -10 || true
+              echo "--- hubs-compose .env var NAMES (present) ---"
+              sudo test -f .env && sudo grep -vE '^#|^$' .env | sed -E 's/=.*/=<set>/' | sort || echo "(no .env)"
+              echo "--- deployed reticulum router.ex (Plug.Static config) ---"
+              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml exec -T reticulum sh -c "cat /ret/lib/ret_web/router.ex 2>/dev/null | grep -n -A3 -B1 'Plug.Static\|files' | head -40" 2>&1 | head -50 || true
+              echo "--- deployed reticulum endpoint.ex (static plug) ---"
+              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml exec -T reticulum sh -c "cat /ret/lib/ret_web/endpoint.ex 2>/dev/null | grep -n -A4 'Plug.Static' | head -30" 2>&1 | head -40 || true
+              echo "--- reticulum logs: rooms + root errors ---"
+              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml logs --tail=400 reticulum 2>&1 | grep -A 18 -E "GET /api/v1/rooms|GET /api/v1/ |ArgumentError|unknown application" | tail -60 || true
               cd /opt/git/hugo-chemie-lernen-org
             fi
