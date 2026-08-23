@@ -236,3 +236,17 @@ jobs:
             else
               echo "warn: scripts/hubs-up.sh not found, cannot restart hubs stack"
             fi
+            echo ""
+            echo "=== Hubs diagnostics (reticulum 500 investigation) ==="
+            if [ -d /opt/containers/hubs-compose ]; then
+              cd /opt/containers/hubs-compose
+              echo "--- hubs compose ps ---"
+              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml ps 2>&1 | head -40 || true
+              echo "--- reticulum logs (tail 80) ---"
+              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml logs --tail=80 reticulum 2>&1 | tail -80 || true
+              echo "--- db logs (tail 30) ---"
+              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml logs --tail=30 db 2>&1 | tail -30 || true
+              echo "--- haproxy logs (tail 20) ---"
+              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml logs --tail=20 haproxy 2>&1 | tail -20 || true
+              cd /opt/git/hugo-chemie-lernen-org
+            fi
