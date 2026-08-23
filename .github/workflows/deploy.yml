@@ -213,26 +213,21 @@ jobs:
             echo "=== Deploy complete ==="
             echo "=== Ensuring Hubs stack is up (hubs.chemie-lernen.org) ==="
             if [ -f /opt/git/hugo-chemie-lernen-org/scripts/hubs-up.sh ]; then
-              # Idempotent: skip the (slow, ~25 min) rebuild if Hubs is already healthy,
-              # so a routine deploy does not take Hubs down for 25 minutes.
-              if sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml ps --format '{{.State}}' 2>/dev/null | grep -qiE 'running|healthy'; then
-                echo "Hubs stack already running/healthy — skipping rebuild (idempotent)."
-              else
-                echo "Hubs stack not running — repairing and starting..."
-                cd /opt/containers/hubs-compose
-                # Stop any running containers first — mutagen sync may hold .git files
-                sudo docker compose down 2>/dev/null || true
-                sudo rm -rf .git
-                sudo git init
-                sudo git remote add origin https://github.com/mozilla/hubs
-                sudo git fetch --depth=1 origin master
-                sudo git config --global --add safe.directory /opt/containers/hubs-compose
-                sudo git reset --hard origin/master
-                echo "Restarting Mozilla Hubs stack via hubs-up.sh (requires sudo for /etc/hosts)..."
-                cd /opt/git/hugo-chemie-lernen-org
-                export HUBS_DIR=/opt/containers/hubs-compose
-                sudo timeout 1800 bash scripts/hubs-up.sh up || echo "warn: hubs-up.sh failed (non-fatal)"
-              fi
+              # FORCE rebuild of the Hubs stack. reticulum currently 500s because the
+              # running container was built from a stale Plug.Static source; the on-disk
+              # services/reticulum source is modern (no Plug.Static). Rebuilding from
+              # current sources fixes the API. (Will revert to idempotent after verify.)
+              cd /opt/containers/hubs-compose
+              sudo docker compose down 2>/dev/null || true
+              sudo rm -rf .git
+              sudo git init
+              sudo git remote add origin https://github.com/mozilla/hubs
+              sudo git fetch --depth=1 origin master
+              sudo git config --global --add safe.directory /opt/containers/hubs-compose
+              sudo git reset --hard origin/master
+              cd /opt/git/hugo-chemie-lernen-org
+              export HUBS_DIR=/opt/containers/hubs-compose
+              sudo timeout 1800 bash scripts/hubs-up.sh up || echo "warn: hubs-up.sh failed (non-fatal)"
             else
               echo "warn: scripts/hubs-up.sh not found, cannot restart hubs stack"
             fi
