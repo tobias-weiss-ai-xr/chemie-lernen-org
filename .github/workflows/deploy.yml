@@ -215,6 +215,8 @@ jobs:
             if [ -f /opt/git/hugo-chemie-lernen-org/scripts/hubs-up.sh ]; then
               echo "Repairing Hubs git repo in case of corruption (fixes build context)..."
               cd /opt/containers/hubs-compose
+              # Stop any running containers first — mutagen sync may hold .git files
+              sudo docker compose down 2>/dev/null || true
               sudo rm -rf .git
               sudo git init
               sudo git remote add origin https://github.com/mozilla/hubs
