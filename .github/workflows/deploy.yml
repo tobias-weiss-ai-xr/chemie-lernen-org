@@ -222,8 +222,8 @@ jobs:
             echo "--- installing node deps in hubs services (source volumes lack node_modules) ---"
             for spec in "hubs-client:/code" "hubs-admin:/code/admin" "hubs-spoke:/code" "hubs-dialog:/code"; do
               svc="${spec%%:*}"; dir="${spec##*:}"
-              echo "  -> $svc (cd $dir && install)"
-              sudo docker compose -f docker-compose.hubs.yml exec -T "$svc" sh -c "cd $dir && (yarn install --frozen-lockfile 2>&1 | tail -3 || npm install 2>&1 | tail -3)" 2>&1 | tail -8 || true
+              echo "  -> $svc (cd $dir && install if needed)"
+              sudo docker compose -f docker-compose.hubs.yml exec -T "$svc" sh -c "cd $dir && yarn install --ignore-engines 2>&1 | tail -4 || npm install --ignore-engines 2>&1 | tail -4" 2>&1 | tail -10 || true
             done
             sudo docker compose -f docker-compose.hubs.yml restart hubs-client hubs-admin hubs-spoke hubs-dialog 2>&1 | tail -5 || true
             echo "--- docker volumes (hubs-related) ---"
