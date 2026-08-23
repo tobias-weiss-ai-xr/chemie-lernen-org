@@ -240,8 +240,12 @@ jobs:
             echo "=== Hubs diagnostics ==="
             if [ -d /opt/containers/hubs-compose ]; then
               cd /opt/containers/hubs-compose
+              echo "--- waiting 150s for apps to boot ---"
+              sleep 150
               sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml ps 2>&1 | head -30 || true
-              echo "--- reticulum logs tail ---"
-              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml logs --tail=20 reticulum 2>&1 | tail -20 || true
+              for svc in reticulum haproxy hubs-client db postgrest; do
+                echo "===== logs: $svc ====="
+                sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml logs --tail=30 "$svc" 2>&1 | tail -30 || true
+              done
               cd /opt/git/hugo-chemie-lernen-org
             fi
