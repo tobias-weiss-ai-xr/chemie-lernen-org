@@ -40,7 +40,7 @@ jobs:
 
   scrape:
     needs: test
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -62,4 +62,4 @@ jobs:
           git config user.name "Curricula CI"
           git add myhugoapp/data/curricula/ myhugoapp/data/didaktik/ myhugoapp/data/modulhandbuch/ 2>/dev/null || true
           git diff --staged --quiet || git commit -m "ci: scrape curricula + didaktik + modulhandbuch"
-          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/tobias-weiss-ai-xr/chemie-lernen-org.git" HEAD:master
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/tobias-weiss-ai-xr/chemie-lernen-org.git" HEAD:main

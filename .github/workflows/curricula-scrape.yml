@@ -82,4 +82,4 @@ jobs:
                      -m "Automated scrape by sisyphus-bot." \
                      -m "Ultraworked with [Sisyphus](https://github.com/code-yeongyu/oh-my-openagent)" \
                      -m "Co-authored-by: Sisyphus <clio-agent@sisyphuslabs.ai>"
-          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/tobias-weiss-ai-xr/chemie-lernen-org.git" HEAD:master
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/tobias-weiss-ai-xr/chemie-lernen-org.git" HEAD:main
