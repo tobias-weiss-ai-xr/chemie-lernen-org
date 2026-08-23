@@ -118,6 +118,7 @@ services:
       INTERNAL_HOSTNAME: hubs-client
     volumes:
       - hubs-compose_hubs:/code
+      - letsencrypt:/code/certs
     working_dir: /code
     networks:
       - hubs-net
@@ -150,6 +151,7 @@ services:
       INTERNAL_HOSTNAME: hubs-admin
     volumes:
       - hubs-compose_hubs:/code
+      - letsencrypt:/code/certs
     working_dir: /code/admin
     networks:
       - hubs-net
@@ -182,6 +184,7 @@ services:
       INTERNAL_HOSTNAME: spoke
     volumes:
       - hubs-compose_spoke:/code
+      - letsencrypt:/code/certs
     working_dir: /code
     networks:
       - hubs-net
