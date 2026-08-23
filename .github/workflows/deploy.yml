@@ -226,6 +226,12 @@ jobs:
               sudo docker compose -f docker-compose.hubs.yml run --rm "$svc" sh -c "cd $dir && yarn install --ignore-engines 2>&1 | tail -5 || npm install --ignore-engines 2>&1 | tail -5" 2>&1 | tail -12 || true
             done
             sudo docker compose -f docker-compose.hubs.yml restart hubs-client hubs-admin spoke hubs-dialog 2>&1 | tail -5 || true
+            echo "--- starting hubs node services one at a time (avoid OOM spike) ---"
+            for svc in hubs-client hubs-admin spoke hubs-dialog; do
+              echo "  starting $svc"
+              sudo docker compose -f docker-compose.hubs.yml up -d "$svc" 2>&1 | tail -3 || true
+              sleep 15
+            done
             echo "--- docker volumes (hubs-related) ---"
             sudo docker volume ls 2>/dev/null | grep -i hubs || echo "(no hubs volumes)"
             echo "--- all docker volumes ---"
