@@ -77,6 +77,20 @@
               </a>
       </div>
 
+      <!-- Lernvideos Card -->
+      <div class="card">
+           <a href="/lernvideos/" class="index-anchor">
+               <div class="panel panel-default panel-lernvideos">
+                 <div class="panel-body panel-body-lernvideos">
+                  <h3 class="panel-title pull-left"><span aria-hidden="true">🎬</span> Lernvideos</h3>
+                </div>
+                <div class="panel-body"><small>
+                  Videos von Prof. Schindler ("Zig's Chemistry 42") – didaktisch aufbereitete Inhalte zu Grundlagen und Experimente.</small>
+                </div>
+              </div>
+              </a>
+      </div>
+
 </div>
 
    <!-- Chemie-Forschung Section (aus dem Knowledge Graph) -->
@@ -129,32 +143,6 @@
      </div>
    </div>
 
-   <!-- Siggi's Chemistry 42 — Zig's Videos -->
-   <div class="row">
-     <div class="col-md-12">
-       <h2>🎬 Lernvideos von Zig's Chemistry 42 <small class="text-muted">mit Siggi (Prof. Siegfried Schindler)</small></h2>
-       <p class="lead">Ausgewählte Videos von Siggi – didaktisch in unsere Themenbereiche eingeordnet.</p>
-     </div>
-   </div>
-   {{ with .Site.Data.zigs_videos }}
-   <div class="row pack">
-     {{ range first 3 .videos }}
-       <div class="col-md-4 card">
-         <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="index-anchor" aria-label="Video ansehen: {{ .title }} von Zig's Chemistry 42 (YouTube)">
-           <div class="panel panel-default">
-             <img width="100%" src="{{ .thumb }}" alt="Vorschaubild: {{ .title }} (Zig's Chemistry 42)" loading="lazy" style="display:block;width:100%;height:auto;" />
-             <div class="panel-body"><h3 class="panel-title pull-left">{{ .title | truncate 60 }}</h3></div>
-           </div>
-         </a>
-       </div>
-     {{ end }}
-   </div>
-   <div class="row text-center">
-     <div class="col-md-12">
-       <a href="/lernvideos/" class="btn btn-primary" aria-label="Alle Videos von Zig's Chemistry 42 ansehen">Alle Videos von Zig's Chemistry 42 ansehen →</a>
-     </div>
-   </div>
-   {{ end }}
 
    <!-- Recommendation Widget (Learning Path) -->
    {{ partial "recommendation-widget" . }}
