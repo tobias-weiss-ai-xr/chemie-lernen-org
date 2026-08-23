@@ -88,7 +88,7 @@ services:
       - hubs-net
       - traefik-public
     healthcheck:
-      test: ["CMD", "curl", "-fk", "https://localhost:4000/api/v1/meta"]
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:4001/api/v1/meta"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -108,11 +108,11 @@ services:
     image: hubs-compose-hubs-client:latest
     container_name: hubs-client
     restart: unless-stopped
-    mem_limit: 1g
+    mem_limit: 2g
     deploy:
       resources:
         limits:
-          memory: 1g
+          memory: 2g
     command: npm run local
     environment:
       INTERNAL_HOSTNAME: hubs-client
@@ -135,17 +135,17 @@ services:
       - "traefik.http.routers.hubs-root.tls.certresolver=mytlschallenge"
       - "traefik.http.routers.hubs-root.priority=100"
       - "traefik.http.services.hubs-root.loadbalancer.server.port=8080"
-      - "traefik.http.services.hubs-root.loadbalancer.server.scheme=http"
+      - "traefik.http.services.hubs-root.loadbalancer.server.scheme=https"
 
   hubs-admin:
     image: hubs-compose-hubs-admin:latest
     container_name: hubs-admin
     restart: unless-stopped
-    mem_limit: 256m
+    mem_limit: 512m
     deploy:
       resources:
         limits:
-          memory: 256m
+          memory: 512m
     command: npm run local
     environment:
       INTERNAL_HOSTNAME: hubs-admin
@@ -165,17 +165,17 @@ services:
       - "traefik.http.routers.hubs-admin.tls.certresolver=mytlschallenge"
       - "traefik.http.routers.hubs-admin.priority=110"
       - "traefik.http.services.hubs-admin.loadbalancer.server.port=8989"
-      - "traefik.http.services.hubs-admin.loadbalancer.server.scheme=http"
+      - "traefik.http.services.hubs-admin.loadbalancer.server.scheme=https"
 
   spoke:
     image: hubs-compose-spoke:latest
     container_name: hubs-spoke
     restart: unless-stopped
-    mem_limit: 256m
+    mem_limit: 512m
     deploy:
       resources:
         limits:
-          memory: 256m
+          memory: 512m
     command: yarn start
     environment:
       CORS_PROXY_SERVER: "hubs.chemie-lernen.org"
@@ -198,7 +198,7 @@ services:
       - "traefik.http.routers.hubs-spoke.tls.certresolver=mytlschallenge"
       - "traefik.http.routers.hubs-spoke.priority=110"
       - "traefik.http.services.hubs-spoke.loadbalancer.server.port=9090"
-      - "traefik.http.services.hubs-spoke.loadbalancer.server.scheme=http"
+      - "traefik.http.services.hubs-spoke.loadbalancer.server.scheme=https"
 
   hubs-dialog:
     image: hubs-compose-dialog:latest
