@@ -251,16 +251,14 @@ jobs:
               sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml exec -T reticulum sh -c "grep -rn -A6 'Plug.Static' /ret/lib/ret_web/endpoint.ex /ret/lib/ret_web/router.ex 2>/dev/null | head -40" 2>&1 | head -50 || true
               echo "--- config: file_server / static from ---"
               sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml exec -T reticulum sh -c "grep -rn 'file_server\|Plug.Static\|from:' /ret/config/*.exs 2>/dev/null | head -30" 2>&1 | head -40 || true
-              echo "--- /opt/containers/hubs-compose: top-level listing ---"
-              sudo ls -la /opt/containers/hubs-compose 2>&1 | head -40 || true
-              echo "--- find docker-compose files ---"
-              sudo find /opt/containers/hubs-compose -maxdepth 2 -name 'docker-compose*.yml' 2>/dev/null | head || true
-              echo "--- .gitmodules? ---"
-              sudo test -f /opt/containers/hubs-compose/.gitmodules && sudo cat /opt/containers/hubs-compose/.gitmodules 2>&1 | head -20 || echo "(no .gitmodules)"
-              echo "--- git remote + status ---"
-              sudo git -C /opt/containers/hubs-compose remote -v 2>&1 | head -3 || true
-              sudo git -C /opt/containers/hubs-compose status -s 2>&1 | head -10 || true
-              echo "--- reticulum service def in compose ---"
-              sudo grep -n -A12 '^  reticulum:\|^  hubs-client:\|^  spoke:' /opt/containers/hubs-compose/docker-compose.yml 2>&1 | head -60 || true
+              echo "--- services/reticulum existence + nested git ---"
+              sudo ls -la /opt/containers/hubs-compose/services/ 2>&1 | head || true
+              sudo test -d /opt/containers/hubs-compose/services/reticulum && sudo git -C /opt/containers/hubs-compose/services/reticulum log -1 --format='reticulum=%H %ci %s' 2>&1 | head -2 || echo "(no nested git)"
+              echo "--- reticulum router.ex Plug.Static ---"
+              sudo grep -rn -A8 'Plug.Static' /opt/containers/hubs-compose/services/reticulum/lib/ret_web/router.ex 2>&1 | head -30 || true
+              echo "--- reticulum endpoint.ex Plug.Static ---"
+              sudo grep -rn -A8 'Plug.Static' /opt/containers/hubs-compose/services/reticulum/lib/ret_web/endpoint.ex 2>&1 | head -30 || true
+              echo "--- reticulum config: file_server / from ---"
+              sudo grep -rn 'file_server\|Plug.Static\|from:' /opt/containers/hubs-compose/services/reticulum/config/ 2>&1 | head -30 || true
               cd /opt/git/hugo-chemie-lernen-org
             fi
