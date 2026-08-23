@@ -219,6 +219,10 @@ jobs:
             export PRIVATE_NETWORK_IP=192.168.1.1
             echo "=== Bringing up hubs stack (docker-compose.hubs.yml) ==="
             sudo PRIVATE_NETWORK_IP=192.168.1.1 docker compose -f docker-compose.hubs.yml up -d 2>&1 | tail -30 || echo "warn: hubs up failed (non-fatal)"
+            echo "--- docker volumes (hubs-related) ---"
+            sudo docker volume ls 2>/dev/null | grep -i hubs || echo "(no hubs volumes)"
+            echo "--- all docker volumes ---"
+            sudo docker volume ls 2>/dev/null | head -40
             echo "--- waiting 180s for hubs apps to boot ---"
             sleep 180
             echo "--- hubs stack status ---"
