@@ -230,11 +230,15 @@ jobs:
               sudo git reset --hard origin/master
               cd /opt/git/hugo-chemie-lernen-org
               export HUBS_DIR=/opt/containers/hubs-compose
-              # Start stack with the already-rebuilt modern reticulum image (no slow rebuild)
-              sudo mutagen daemon start || true
-              # Full rebuild (reticulum modern + hubs-client node_modules). Needs >15min;
-              # step budget allows ~1800s (verified earlier full rebuild completed).
-              sudo timeout 1780 bash scripts/hubs-up.sh up || echo "warn: hubs-up.sh failed (non-fatal)"
+              # DIAGNOSTIC ONLY (no rebuild): understand hubs-client deps + haproxy certbot
+              echo "--- hubs-client Dockerfile (how deps are installed) ---"
+              sudo sed -n '1,70p' dockerfiles/hubs.Dockerfile 2>&1
+              echo "--- host services/hubs node_modules present? ---"
+              sudo ls -d services/hubs/node_modules 2>&1 | head -2
+              echo "--- compose: hubs-client service + mutagen labels ---"
+              sudo grep -n -A28 '^  hubs-client:' docker-compose.yml 2>&1 | head -40
+              echo "--- haproxy certbot accounts ---"
+              sudo docker compose exec -T haproxy sh -c "ls /etc/letsencrypt/accounts/ 2>&1; ls /etc/letsencrypt/accounts/*/ 2>&1 | head" 2>&1 | head -10
             else
               echo "warn: scripts/hubs-up.sh not found, cannot restart hubs stack"
             fi
