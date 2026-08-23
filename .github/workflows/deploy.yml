@@ -229,3 +229,7 @@ jobs:
             echo "=== hubs-client container env ==="
             sudo docker inspect --format '{{json .Config.Env}}' hubs-compose-hubs-client 2>&1 | head -c 1500
             echo ""
+            echo "=== /opt/containers/hubs-compose/files/reticulum-config.toml ==="
+            sudo cat /opt/containers/hubs-compose/files/reticulum-config.toml 2>&1 | head -120
+            echo "=== /opt/containers/hubs-compose/haproxy/haproxy.cfg ==="
+            sudo cat /opt/containers/hubs-compose/haproxy/haproxy.cfg 2>&1 | head -120
