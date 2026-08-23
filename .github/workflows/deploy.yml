@@ -240,6 +240,9 @@ jobs:
             sleep 180
             echo "--- hubs stack status ---"
             sudo docker compose -f docker-compose.hubs.yml ps 2>&1 | head -30 || true
+            echo "--- server-side direct probes (bypass Traefik) ---"
+            echo "reticulum:4001 /api/v1/meta = $(sudo docker exec hubs-reticulum curl -sk -m 10 -o /dev/null -w '%{http_code}' http://localhost:4001/api/v1/meta 2>/dev/null || echo n/a)"
+            echo "hubs-client:8080 /            = $(sudo docker exec hubs-client curl -sk -m 10 -o /dev/null -w '%{http_code}' http://localhost:8080 2>/dev/null || echo n/a)"
             echo "--- probe hubs.chemie-lernen.org (via Traefik) ---"
             echo "root:  $(curl -sk -m 20 -o /dev/null -w '%{http_code}' https://hubs.chemie-lernen.org/)"
             echo "meta:  $(curl -sk -m 20 -o /dev/null -w '%{http_code}' https://hubs.chemie-lernen.org/api/v1/meta)"

@@ -2,14 +2,14 @@
 #
 # Reuses the already-built images from the prior /opt/containers/hubs-compose
 # deployment (hubs-compose-reticulum / hubs-compose-hubs-client / …) and the
-# existing DATA volumes (pgdata, retstorage, letsencrypt). TLS for
-# hubs.chemie-lernen.org is terminated by the host Traefik (mytlschallenge);
-# the separate haproxy/certbot container is dropped.
+# existing DATA volumes (pgdata, retstorage, letsencrypt, source volumes).
+# TLS for hubs.chemie-lernen.org is terminated by the host Traefik
+# (mytlschallenge). The app source lives in the old mutagen sync volumes
+# (hubs-compose_hubs/_spoke/_dialog); node_modules are installed at deploy
+# time via `docker compose run --rm`.
 #
-# IMPORTANT: we intentionally do NOT mount the dev sync volumes (hubs,
-# reticulum, dialog, spoke). Those shadowed the baked-in image builds (which is
-# why `webpack` was missing). The images are run as-built; only data/config
-# volumes and the host reticulum config are mounted.
+# Routing mirrors the main docker-compose.yml: services sit on `traefik-public`
+# (the network Traefik's docker provider watches) plus an internal `hubs-net`.
 #
 # RAM budget: host has 16G (no swap). Totals below ≈ 3.8G, leaving headroom
 # for neo4j/kg (2G) + chat-api/hugo (0.5G) + observability.
@@ -81,13 +81,12 @@ services:
       NODE_NAME: "127.0.0.1"
     command: bash -c 'exec /ret/bin/ret start'
     volumes:
-      # config + certs + storage only — NOT the dev sync volume
       - /opt/containers/hubs-compose/files/reticulum-config.toml:/ret/config.toml:ro
       - letsencrypt:/code/certs
       - retstorage:/code/storage/dev
     networks:
       - hubs-net
-      - traefik-web
+      - traefik-public
     healthcheck:
       test: ["CMD", "curl", "-fk", "https://localhost:4000/api/v1/meta"]
       interval: 30s
@@ -96,7 +95,7 @@ services:
       start_period: 90s
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=traefik-web"
+      - "traefik.docker.network=traefik-public"
       - "traefik.http.routers.hubs-api.rule=Host(`hubs.chemie-lernen.org`) && (PathPrefix(`/api`) || PathPrefix(`/reticulum`) || PathPrefix(`/files`) || PathPrefix(`/socket`))"
       - "traefik.http.routers.hubs-api.entrypoints=websecure"
       - "traefik.http.routers.hubs-api.tls=true"
@@ -122,13 +121,13 @@ services:
     working_dir: /code
     networks:
       - hubs-net
-      - traefik-web
+      - traefik-public
     healthcheck:
       test: ["CMD", "curl", "-fk", "http://localhost:8080"]
       start_period: 4m
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=traefik-web"
+      - "traefik.docker.network=traefik-public"
       - "traefik.http.routers.hubs-root.rule=Host(`hubs.chemie-lernen.org`)"
       - "traefik.http.routers.hubs-root.entrypoints=websecure"
       - "traefik.http.routers.hubs-root.tls=true"
@@ -154,10 +153,10 @@ services:
     working_dir: /code/admin
     networks:
       - hubs-net
-      - traefik-web
+      - traefik-public
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=traefik-web"
+      - "traefik.docker.network=traefik-public"
       - "traefik.http.routers.hubs-admin.rule=Host(`hubs.chemie-lernen.org`) && PathPrefix(`/admin`)"
       - "traefik.http.routers.hubs-admin.entrypoints=websecure"
       - "traefik.http.routers.hubs-admin.tls=true"
@@ -186,10 +185,10 @@ services:
     working_dir: /code
     networks:
       - hubs-net
-      - traefik-web
+      - traefik-public
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=traefik-web"
+      - "traefik.docker.network=traefik-public"
       - "traefik.http.routers.hubs-spoke.rule=Host(`hubs.chemie-lernen.org`) && PathPrefix(`/spoke`)"
       - "traefik.http.routers.hubs-spoke.entrypoints=websecure"
       - "traefik.http.routers.hubs-spoke.tls=true"
@@ -229,7 +228,7 @@ services:
 networks:
   hubs-net:
     driver: bridge
-  traefik-web:
+  traefik-public:
     external: true
 
 # Reuse the data volumes created by the prior hubs-compose deployment.
