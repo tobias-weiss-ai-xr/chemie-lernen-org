@@ -79,7 +79,7 @@
     "husky": "^9.1.7",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
-    "jscpd": "^5.0.11",
+    "jscpd": "^5.0.16",
     "lint-staged": "^16.2.7",
     "pagefind": "^1.5.2",
     "prettier": "^3.8.5",
