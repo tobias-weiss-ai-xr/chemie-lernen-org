@@ -211,55 +211,13 @@ jobs:
             echo "=== Cleaning up old images ==="
             docker image prune -f
             echo "=== Deploy complete ==="
-            echo "=== Ensuring Hubs stack is up (hubs.chemie-lernen.org) ==="
-            if [ -f /opt/git/hugo-chemie-lernen-org/scripts/hubs-up.sh ]; then
-              cd /opt/containers/hubs-compose
-              # Free ports held by any stale containers (e.g. old hubs-client on 8081)
-              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml down --remove-orphans 2>/dev/null || true
-              for p in 8081 4003 8989 9090 6006 4000 443; do
-                for c in $(sudo docker ps -q --filter "publish=${p}" 2>/dev/null); do
-                  sudo docker rm -f "$c" 2>/dev/null || true
-                done
-              done
-              # Reset mozilla/hubs tracked tree (preserves untracked local services/ + compose)
-              sudo rm -rf .git
-              sudo git init
-              sudo git remote add origin https://github.com/mozilla/hubs
-              sudo git fetch --depth=1 origin master
-              sudo git config --global --add safe.directory /opt/containers/hubs-compose
-              sudo git reset --hard origin/master
-              cd /opt/git/hugo-chemie-lernen-org
-              export HUBS_DIR=/opt/containers/hubs-compose
-              # DIAGNOSTIC ONLY (no rebuild): understand hubs-client deps + haproxy certbot
-              echo "--- hubs-client Dockerfile (how deps are installed) ---"
-              sudo sed -n '1,70p' dockerfiles/hubs.Dockerfile 2>&1
-              echo "--- host services/hubs node_modules present? ---"
-              sudo ls -d services/hubs/node_modules 2>&1 | head -2
-              echo "--- compose: hubs-client service + mutagen labels ---"
-              sudo grep -n -A28 '^  hubs-client:' docker-compose.yml 2>&1 | head -40
-              echo "--- haproxy certbot accounts ---"
-              sudo docker compose exec -T haproxy sh -c "ls /etc/letsencrypt/accounts/ 2>&1; ls /etc/letsencrypt/accounts/*/ 2>&1 | head" 2>&1 | head -10
-            else
-              echo "warn: scripts/hubs-up.sh not found, cannot restart hubs stack"
-            fi
-            echo ""
-            echo "=== Hubs diagnostics ==="
-            if [ -d /opt/containers/hubs-compose ]; then
-              cd /opt/containers/hubs-compose
-              echo "--- waiting 150s for apps to boot ---"
-              sleep 150
-              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml ps 2>&1 | head -30 || true
-              echo "--- probe reticulum directly (4003, bypass haproxy) ---"
-              curl -sk -m 10 -o /dev/null -w 'reticulum-direct=%{http_code}\n' https://localhost:4003/api/v1/rooms 2>&1 || true
-              echo "--- repair hubs-client node_modules ---"
-              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml exec -T hubs-client sh -c "ls node_modules/.bin/webpack 2>&1 | head -1; (yarn install --frozen-lockfile 2>&1 | tail -5) || (npm install 2>&1 | tail -5)" 2>&1 | tail -15 || true
-              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml restart hubs-client 2>&1 | tail -3 || true
-              echo "--- restart haproxy ---"
-              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml restart haproxy 2>&1 | tail -3 || true
-              sleep 90
-              for svc in reticulum haproxy hubs-client; do
-                echo "===== logs: $svc ====="
-                sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml logs --tail=20 "$svc" 2>&1 | tail -20 || true
-              done
-              cd /opt/git/hugo-chemie-lernen-org
-            fi
+            # Hubs (reticulum/hubs-client/haproxy) is being moved into this host's main
+            # docker-compose.yml (managed by the standard 'docker compose up -d' below)
+            # instead of the separate /opt/containers/hubs-compose directory.
+            # --- host resource snapshot (for RAM-budgeted hubs integration) ---
+            echo "=== host RAM (free -h) ==="
+            free -h 2>&1 | head -3 || true
+            echo "=== existing hubs images on host ==="
+            sudo docker images 2>/dev/null | grep -i hubs || echo "(none)"
+            echo "=== existing hubs containers ==="
+            sudo docker ps -a 2>/dev/null | grep -i hubs || echo "(none)"
