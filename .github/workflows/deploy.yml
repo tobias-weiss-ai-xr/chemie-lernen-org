@@ -211,25 +211,23 @@ jobs:
             echo "=== Cleaning up old images ==="
             docker image prune -f
             echo "=== Deploy complete ==="
-            # Hubs (reticulum/hubs-client/haproxy) is being moved into this host's main
-            # docker-compose.yml (managed by the standard 'docker compose up -d' below)
-            # instead of the separate /opt/containers/hubs-compose directory.
-            # --- host resource snapshot (for RAM-budgeted hubs integration) ---
-            echo "=== host RAM (free -h) ==="
-            free -h 2>&1 | head -3 || true
-            echo "=== existing hubs images on host ==="
-            sudo docker images 2>/dev/null | grep -i hubs || echo "(none)"
-            echo "=== existing hubs containers ==="
-            sudo docker ps -a 2>/dev/null | grep -i hubs || echo "(none)"
-            echo "=== hubs-compose docker-compose.yml (replicate into main compose) ==="
-            sudo cat /opt/containers/hubs-compose/docker-compose.yml 2>&1 | head -260
-            echo "=== reticulum container env ==="
-            sudo docker inspect --format '{{json .Config.Env}}' hubs-compose-reticulum 2>&1 | head -c 1500
-            echo ""
-            echo "=== hubs-client container env ==="
-            sudo docker inspect --format '{{json .Config.Env}}' hubs-compose-hubs-client 2>&1 | head -c 1500
-            echo ""
-            echo "=== /opt/containers/hubs-compose/files/reticulum-config.toml ==="
-            sudo cat /opt/containers/hubs-compose/files/reticulum-config.toml 2>&1 | head -120
-            echo "=== /opt/containers/hubs-compose/haproxy/haproxy.cfg ==="
-            sudo cat /opt/containers/hubs-compose/haproxy/haproxy.cfg 2>&1 | head -120
+            # Hubs (reticulum/hubs-client/...) now runs on this host via
+            # docker-compose.hubs.yml (TLS terminated by the host Traefik).
+            # Stop the old /opt/containers/hubs-compose stack first to free ports/names.
+            echo "=== Stopping legacy hubs-compose stack ==="
+            sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml down --remove-orphans 2>/dev/null || true
+            export PRIVATE_NETWORK_IP=192.168.1.1
+            echo "=== Bringing up hubs stack (docker-compose.hubs.yml) ==="
+            sudo docker compose -f docker-compose.hubs.yml up -d 2>&1 | tail -30 || echo "warn: hubs up failed (non-fatal)"
+            echo "--- waiting 180s for hubs apps to boot ---"
+            sleep 180
+            echo "--- hubs stack status ---"
+            sudo docker compose -f docker-compose.hubs.yml ps 2>&1 | head -30 || true
+            echo "--- probe hubs.chemie-lernen.org (via Traefik) ---"
+            echo "root:  $(curl -sk -m 20 -o /dev/null -w '%{http_code}' https://hubs.chemie-lernen.org/)"
+            echo "meta:  $(curl -sk -m 20 -o /dev/null -w '%{http_code}' https://hubs.chemie-lernen.org/api/v1/meta)"
+            echo "rooms: $(curl -sk -m 20 -o /dev/null -w '%{http_code}' https://hubs.chemie-lernen.org/api/v1/rooms)"
+            for svc in hubs-reticulum hubs-client hubs-dialog; do
+              echo "===== logs: $svc ====="
+              sudo docker compose -f docker-compose.hubs.yml logs --tail=20 "$svc" 2>&1 | tail -20 || true
+            done
