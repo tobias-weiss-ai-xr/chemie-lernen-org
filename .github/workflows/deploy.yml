@@ -221,3 +221,11 @@ jobs:
             sudo docker images 2>/dev/null | grep -i hubs || echo "(none)"
             echo "=== existing hubs containers ==="
             sudo docker ps -a 2>/dev/null | grep -i hubs || echo "(none)"
+            echo "=== hubs-compose docker-compose.yml (replicate into main compose) ==="
+            sudo cat /opt/containers/hubs-compose/docker-compose.yml 2>&1 | head -260
+            echo "=== reticulum container env ==="
+            sudo docker inspect --format '{{json .Config.Env}}' hubs-compose-reticulum 2>&1 | head -c 1500
+            echo ""
+            echo "=== hubs-client container env ==="
+            sudo docker inspect --format '{{json .Config.Env}}' hubs-compose-hubs-client 2>&1 | head -c 1500
+            echo ""
