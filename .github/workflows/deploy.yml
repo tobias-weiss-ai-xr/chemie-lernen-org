@@ -251,5 +251,9 @@ jobs:
               sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml exec -T reticulum sh -c "grep -rn -A6 'Plug.Static' /ret/lib/ret_web/endpoint.ex /ret/lib/ret_web/router.ex 2>/dev/null | head -40" 2>&1 | head -50 || true
               echo "--- config: file_server / static from ---"
               sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml exec -T reticulum sh -c "grep -rn 'file_server\|Plug.Static\|from:' /ret/config/*.exs 2>/dev/null | head -30" 2>&1 | head -40 || true
+              echo "--- reticulum + hubs images on server ---"
+              sudo docker images --format '{{.Repository}}:{{.Tag}} Created={{.CreatedSince}} ID={{.ID}}' 2>&1 | grep -iE "ret|hubs" | head -30 || true
+              echo "--- current running reticulum image ID ---"
+              sudo docker inspect --format '{{.Image}} created={{.Created}}' reticulum 2>&1 | head -3 || true
               cd /opt/git/hugo-chemie-lernen-org
             fi
