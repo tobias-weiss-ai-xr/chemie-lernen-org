@@ -117,7 +117,8 @@ services:
     command: npm run local
     environment:
       INTERNAL_HOSTNAME: hubs-client
-    volumes: []   # run image as-built (has node_modules); do NOT shadow with dev sync volume
+    volumes:
+      - hubs-compose_hubs:/code
     working_dir: /code
     networks:
       - hubs-net
@@ -148,6 +149,8 @@ services:
     command: npm run local
     environment:
       INTERNAL_HOSTNAME: hubs-admin
+    volumes:
+      - hubs-compose_hubs:/code
     working_dir: /code/admin
     networks:
       - hubs-net
@@ -178,6 +181,8 @@ services:
       BASE_ASSETS_PATH: "/spoke/"
       ROUTER_BASE_PATH: "/spoke"
       INTERNAL_HOSTNAME: spoke
+    volumes:
+      - hubs-compose_spoke:/code
     working_dir: /code
     networks:
       - hubs-net
@@ -215,6 +220,7 @@ services:
       - "40000-40050:40000-40050"
       - "40000-40050:40000-40050/udp"
     volumes:
+      - hubs-compose_dialog:/code
       - letsencrypt:/code/certs
     working_dir: /code
     networks:
@@ -237,3 +243,12 @@ volumes:
   letsencrypt:
     external: true
     name: hubs-compose_letsencrypt
+  hubs-compose_hubs:
+    external: true
+    name: hubs-compose_hubs
+  hubs-compose_spoke:
+    external: true
+    name: hubs-compose_spoke
+  hubs-compose_dialog:
+    external: true
+    name: hubs-compose_dialog

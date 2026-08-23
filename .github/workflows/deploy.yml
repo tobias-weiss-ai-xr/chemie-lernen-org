@@ -219,6 +219,13 @@ jobs:
             export PRIVATE_NETWORK_IP=192.168.1.1
             echo "=== Bringing up hubs stack (docker-compose.hubs.yml) ==="
             sudo PRIVATE_NETWORK_IP=192.168.1.1 docker compose -f docker-compose.hubs.yml up -d 2>&1 | tail -30 || echo "warn: hubs up failed (non-fatal)"
+            echo "--- installing node deps in hubs services (source volumes lack node_modules) ---"
+            for spec in "hubs-client:/code" "hubs-admin:/code/admin" "hubs-spoke:/code" "hubs-dialog:/code"; do
+              svc="${spec%%:*}"; dir="${spec##*:}"
+              echo "  -> $svc (cd $dir && install)"
+              sudo docker compose -f docker-compose.hubs.yml exec -T "$svc" sh -c "cd $dir && (yarn install --frozen-lockfile 2>&1 | tail -3 || npm install 2>&1 | tail -3)" 2>&1 | tail -8 || true
+            done
+            sudo docker compose -f docker-compose.hubs.yml restart hubs-client hubs-admin hubs-spoke hubs-dialog 2>&1 | tail -5 || true
             echo "--- docker volumes (hubs-related) ---"
             sudo docker volume ls 2>/dev/null | grep -i hubs || echo "(no hubs volumes)"
             echo "--- all docker volumes ---"
