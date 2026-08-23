@@ -114,7 +114,7 @@ services:
       resources:
         limits:
           memory: 3g
-    command: sh -c 'yarn build && npm run local'
+    command: npm run local
     environment:
       INTERNAL_HOSTNAME: hubs-client
     volumes:
@@ -125,8 +125,11 @@ services:
       - hubs-net
       - traefik-public
     healthcheck:
-      test: ["CMD", "curl", "-fk", "http://localhost:8080"]
+      test: ["CMD", "curl", "-fk", "https://localhost:8080"]
       start_period: 4m
+      interval: 30s
+      timeout: 10s
+      retries: 3
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik-public"
@@ -144,18 +147,24 @@ services:
     image: hubs-compose-hubs-admin:latest
     container_name: hubs-admin
     restart: unless-stopped
-    mem_limit: 1g
+    mem_limit: 2g
     deploy:
       resources:
         limits:
-          memory: 1g
-    command: sh -c 'yarn build && npm run local'
+          memory: 2g
+    command: npm run local
     environment:
       INTERNAL_HOSTNAME: hubs-admin
     volumes:
       - hubs-compose_hubs:/code
       - letsencrypt:/code/certs
     working_dir: /code/admin
+    healthcheck:
+      test: ["CMD", "curl", "-fk", "https://localhost:8989/admin/admin.html"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 180s
     networks:
       - hubs-net
       - traefik-public
@@ -170,6 +179,10 @@ services:
       - "traefik.http.services.hubs-admin.loadbalancer.server.port=8989"
       - "traefik.http.services.hubs-admin.loadbalancer.server.scheme=https"
       - "traefik.http.services.hubs-admin.loadbalancer.serversTransport=hubs-https@file"
+      - "traefik.http.middlewares.hubs-admin-redirect.redirectRegex.regex=^https?://([^/]+)/admin/?$$"
+      - "traefik.http.middlewares.hubs-admin-redirect.redirectRegex.replacement=https://$$1/admin/admin.html"
+      - "traefik.http.middlewares.hubs-admin-redirect.redirectRegex.permanent=false"
+      - "traefik.http.routers.hubs-admin.middlewares=hubs-admin-redirect"
       - "traefik.http.serversTransports.hubs-https.insecureSkipVerify=true"
 
   spoke:
@@ -194,6 +207,12 @@ services:
     networks:
       - hubs-net
       - traefik-public
+    healthcheck:
+      test: ["CMD", "curl", "-fk", "https://localhost:9090/spoke/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik-public"
