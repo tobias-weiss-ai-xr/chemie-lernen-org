@@ -37,7 +37,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Install API dependencies (api/ has its own package.json)
-        run: bun install --frozen-lockfile --prefix api
+        run: npm ci --prefix api
 
       - name: Run bun audit (critical only)
         run: bun audit --audit-level=critical || echo '[CI] bun audit found critical/high issues (non-fatal)'
