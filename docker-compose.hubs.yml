@@ -230,10 +230,10 @@ networks:
 volumes:
   pgdata:
     external: true
-    name: hubs-compose-pgdata
+    name: hubs-compose_pgdata
   retstorage:
     external: true
-    name: hubs-compose-retstorage
+    name: hubs-compose_retstorage
   letsencrypt:
     external: true
-    name: hubs-compose-letsencrypt
+    name: hubs-compose_letsencrypt
