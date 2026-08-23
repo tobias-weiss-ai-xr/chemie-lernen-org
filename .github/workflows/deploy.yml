@@ -213,12 +213,15 @@ jobs:
             echo "=== Deploy complete ==="
             echo "=== Ensuring Hubs stack is up (hubs.chemie-lernen.org) ==="
             if [ -f /opt/git/hugo-chemie-lernen-org/scripts/hubs-up.sh ]; then
-              # FORCE rebuild of the Hubs stack. reticulum currently 500s because the
-              # running container was built from a stale Plug.Static source; the on-disk
-              # services/reticulum source is modern (no Plug.Static). Rebuilding from
-              # current sources fixes the API. (Will revert to idempotent after verify.)
               cd /opt/containers/hubs-compose
-              sudo docker compose down 2>/dev/null || true
+              # Free ports held by any stale containers (e.g. old hubs-client on 8081)
+              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml down --remove-orphans 2>/dev/null || true
+              for p in 8081 4003 8989 9090 6006 4000 443; do
+                for c in $(sudo docker ps -q --filter "publish=${p}" 2>/dev/null); do
+                  sudo docker rm -f "$c" 2>/dev/null || true
+                done
+              done
+              # Reset mozilla/hubs tracked tree (preserves untracked local services/ + compose)
               sudo rm -rf .git
               sudo git init
               sudo git remote add origin https://github.com/mozilla/hubs
@@ -227,33 +230,18 @@ jobs:
               sudo git reset --hard origin/master
               cd /opt/git/hugo-chemie-lernen-org
               export HUBS_DIR=/opt/containers/hubs-compose
-              sudo timeout 1800 bash scripts/hubs-up.sh up || echo "warn: hubs-up.sh failed (non-fatal)"
+              # Start stack with the already-rebuilt modern reticulum image (no slow rebuild)
+              sudo mutagen daemon start || true
+              sudo mutagen-compose -f /opt/containers/hubs-compose/docker-compose.yml up -d || echo "warn: start failed (non-fatal)"
             else
               echo "warn: scripts/hubs-up.sh not found, cannot restart hubs stack"
             fi
             echo ""
-            echo "=== Hubs diagnostics (reticulum 500 investigation) ==="
+            echo "=== Hubs diagnostics ==="
             if [ -d /opt/containers/hubs-compose ]; then
               cd /opt/containers/hubs-compose
-              echo "--- PWD + .env existence ---"
-              pwd
-              sudo ls -la .env 2>&1 | head -3 || true
-              echo "--- .env RAW (names + value-length, secrets masked) ---"
-              sudo test -f .env && sudo awk -F= 'NF>=2 { v=$2; gsub(/^\"|\"$/,"",v); printf "%s = <%d chars>\n", $1, length(v) }' .env 2>&1 | head -60 || echo "(no .env)"
-              echo "--- locate reticulum source in container ---"
-              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml exec -T reticulum sh -c "ls /ret/lib/ret_web/ 2>&1 | head; echo '==='; find / -name 'endpoint.ex' 2>/dev/null | head" 2>&1 | head -20 || true
-              echo "--- endpoint.ex / router.ex Plug.Static block ---"
-              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml exec -T reticulum sh -c "grep -rn -A6 'Plug.Static' /ret/lib/ret_web/endpoint.ex /ret/lib/ret_web/router.ex 2>/dev/null | head -40" 2>&1 | head -50 || true
-              echo "--- config: file_server / static from ---"
-              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml exec -T reticulum sh -c "grep -rn 'file_server\|Plug.Static\|from:' /ret/config/*.exs 2>/dev/null | head -30" 2>&1 | head -40 || true
-              echo "--- services/reticulum existence + nested git ---"
-              sudo ls -la /opt/containers/hubs-compose/services/ 2>&1 | head || true
-              sudo test -d /opt/containers/hubs-compose/services/reticulum && sudo git -C /opt/containers/hubs-compose/services/reticulum log -1 --format='reticulum=%H %ci %s' 2>&1 | head -2 || echo "(no nested git)"
-              echo "--- reticulum router.ex Plug.Static ---"
-              sudo grep -rn -A8 'Plug.Static' /opt/containers/hubs-compose/services/reticulum/lib/ret_web/router.ex 2>&1 | head -30 || true
-              echo "--- reticulum endpoint.ex Plug.Static ---"
-              sudo grep -rn -A8 'Plug.Static' /opt/containers/hubs-compose/services/reticulum/lib/ret_web/endpoint.ex 2>&1 | head -30 || true
-              echo "--- reticulum config: file_server / from ---"
-              sudo grep -rn 'file_server\|Plug.Static\|from:' /opt/containers/hubs-compose/services/reticulum/config/ 2>&1 | head -30 || true
+              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml ps 2>&1 | head -30 || true
+              echo "--- reticulum logs tail ---"
+              sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml logs --tail=20 reticulum 2>&1 | tail -20 || true
               cd /opt/git/hugo-chemie-lernen-org
             fi
