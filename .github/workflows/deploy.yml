@@ -230,6 +230,18 @@ jobs:
               echo "  -> $svc (cd $dir && yarn install --ignore-engines)"
               sudo docker compose -f docker-compose.hubs.yml run --rm "$svc" sh -c "cd $dir && yarn install --ignore-engines 2>&1 | tail -5 || npm install --ignore-engines 2>&1 | tail -5" 2>&1 | tail -12 || true
             done
+            # Build the production hubs-client bundle (dist/) that the static
+            # server (python3 /code/static-server.py) serves. Running the
+            # webpack-dev-server in prod caused the manifest 404, HMR /ws
+            # console noise and dev-server core dumps.
+            # Make the hubs-client serve a static production build (no dev server):
+            # copy the static server + apply the manifest/webpack setup idempotently.
+            echo '--- hubs-client: static server + manifest + webpack patch ---'
+            sudo docker cp scripts/hubs-static-server.py hubs-client:/code/static-server.py
+            sudo docker cp scripts/setup-hubs-client.mjs hubs-client:/code/setup-hubs-client.mjs
+            sudo docker compose -f docker-compose.hubs.yml run --rm hubs-client node /code/setup-hubs-client.mjs 2>&1 | tail -5 || echo 'warn: hubs-client setup failed (non-fatal)'
+            echo '--- building production hubs-client dist ---'
+            sudo docker compose -f docker-compose.hubs.yml run --rm hubs-client sh -c "node_modules/.bin/webpack --mode=production" 2>&1 | tail -8 || echo 'warn: hubs-client build failed (non-fatal)'
             sudo docker compose -f docker-compose.hubs.yml restart hubs-client hubs-admin spoke hubs-dialog 2>&1 | tail -5 || true
             echo "--- starting hubs node services one at a time (avoid OOM spike) ---"
             for svc in hubs-client hubs-admin spoke hubs-dialog; do

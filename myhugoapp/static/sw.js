@@ -25,7 +25,6 @@ const TOTAL_CACHE_LIMIT = 50 * 1024 * 1024; // 50 MB global
 const PRECACHE_FILES = [
   '/',
   '/offline/',
-  '/manifest.json',
   '/site.webmanifest',
   '/favicons/favicon-16x16.png',
   '/favicons/favicon-32x32.png',

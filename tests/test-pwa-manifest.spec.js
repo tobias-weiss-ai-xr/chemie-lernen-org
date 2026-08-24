@@ -43,6 +43,15 @@ test.describe('Web App Manifest', () => {
 
     const manifestLink = page.locator('link[rel="manifest"]');
     await expect(manifestLink).toHaveAttribute('href', /site\.webmanifest|manifest\.json/);
+
+    // The linked manifest must actually resolve and parse.
+    const href = await manifestLink.getAttribute('href');
+    const absolute = new URL(href, BASE_URL).href;
+    const resp = await page.request.get(absolute);
+    expect(resp.status(), `manifest at ${absolute}`).toBe(200);
+    const manifest = await resp.json();
+    expect(manifest).toHaveProperty('name');
+    expect(manifest).toHaveProperty('icons');
   });
 
   test('manifest should be fetchable', async ({ page }) => {

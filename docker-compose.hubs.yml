@@ -114,9 +114,21 @@ services:
       resources:
         limits:
           memory: 3g
-    command: npm run local
+    # Serve the production build (dist/) statically instead of the
+    # webpack-dev-server. This removes the dev-server status websocket
+    # (wss://...:8080/ws) noise, the [webpack-dev-server] console spam, and
+    # the dev-server process crashes / core dumps. dist/ is produced by
+    # `webpack --mode=production` (see deploy step / manual build).
+    command: python3 /code/static-server.py
     environment:
       INTERNAL_HOSTNAME: hubs-client
+      PORT: "8080"
+      HUBS_DIST: "/code/dist"
+      # Point the production client build at the self-hosted reticulum instead of
+      # Hubs' default dev.reticulum.io (which has an invalid cert and breaks
+      # media search). Baked into the bundle via webpack DefinePlugin.
+      RETICULUM_SERVER: "hubs.chemie-lernen.org"
+      RETICULUM_SOCKET_SERVER: "hubs.chemie-lernen.org"
     volumes:
       - hubs-compose_hubs:/code
       - letsencrypt:/code/certs
@@ -125,7 +137,7 @@ services:
       - hubs-net
       - traefik-public
     healthcheck:
-      test: ["CMD", "curl", "-fk", "https://localhost:8080"]
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
       start_period: 4m
       interval: 30s
       timeout: 10s
@@ -139,8 +151,7 @@ services:
       - "traefik.http.routers.hubs-root.tls.certresolver=mytlschallenge"
       - "traefik.http.routers.hubs-root.priority=100"
       - "traefik.http.services.hubs-root.loadbalancer.server.port=8080"
-      - "traefik.http.services.hubs-root.loadbalancer.server.scheme=https"
-      - "traefik.http.services.hubs-root.loadbalancer.serversTransport=hubs-https@file"
+      - "traefik.http.services.hubs-root.loadbalancer.server.scheme=http"
       - "traefik.http.serversTransports.hubs-https.insecureSkipVerify=true"
 
   hubs-admin:
