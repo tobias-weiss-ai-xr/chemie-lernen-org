@@ -1,0 +1,1014 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFleet Dashboard — chemie-lernen.org</title>
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #7c3aed;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --bg: #f8fafc;
+        --bg-dark: #1e293b;
+        --text: #0f172a;
+        --text-light: #94a3b8;
+        --border: #e2e8f0;
+        --card: bg: #ffffff;
+        --card: border: #e2e8f0;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .header h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+
+      .header .subtitle {
+        opacity: 0.9;
+        font-size: 0.875rem;
+      }
+
+      .nav-tabs {
+        display: flex;
+        background: var(--card-bg);
+        border-bottom: 1px solid var(--border);
+        padding: 0 2rem;
+      }
+
+      .nav-tabs button {
+        padding: 0.75rem 1.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+
+      .nav-tabs button:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      .nav-tabs button.active {
+        border-bottom-color: var(--primary);
+        color: var(--primary);
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .stat-card {
+        background: var(--card-bg);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--card: border);
+      }
+
+      .stat-card .label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-light);
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-card .value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .stat-card .status-indicator {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+
+      .stat-card.initializing .status-indicator {
+        background: var(--warning);
+      }
+      .stat-card.running .status-indicator {
+        background: var(--success);
+        animation: pulse 2s infinite;
+      }
+      .stat-card.error .status-indicator {
+        background: var(--danger);
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      .status-badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+
+      .status-badge.pending {
+        background: #fef3c7;
+        color: #92400e;
+      }
+      .status-badge.ready {
+        background: #dcfce7;
+        color: #166534;
+      }
+      .status-badge.running {
+        background: #dbeafe;
+        color: #1e40af;
+      }
+      .status-badge.completed {
+        background: #dcfce7;
+        color: #166534;
+      }
+      .status-badge.failed {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+      .status-badge.retrying {
+        background: #fef3c7;
+        color: #92400e;
+      }
+
+      .section {
+        margin-bottom: 2rem;
+      }
+
+      .section h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--text);
+      }
+
+      .section .header-actions {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: flex-end;
+      }
+
+      .btn {
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+      }
+
+      .btn-secondary {
+        background: var(--bg);
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+
+      .btn-secondary:hover {
+        background: var(--border);
+      }
+
+      .table-container {
+        background: var(--card-bg);
+        border-radius: 0.75rem;
+        border: 1px solid var(--card: border);
+        overflow: hidden;
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .table th,
+      .table td {
+        padding: 0.75rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .table th {
+        background: #f8fafc;
+        font-weight: 600;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-light);
+      }
+
+      .table tbody tr:hover {
+        background: #f8fafc;
+      }
+
+      .table tbody tr.failed {
+        background: #fee2e2;
+      }
+
+      .table tbody tr.running {
+        background: #dbeafe;
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 4px;
+        background: #e2e8f0;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .progress-bar-fill {
+        height: 100%;
+        border-radius: 2px;
+        transition: width 0.3s ease;
+      }
+
+      .progress-bar-fill.success {
+        background: var(--success);
+      }
+      .progress-bar-fill.warning {
+        background: var(--warning);
+      }
+      .progress-bar-fill.danger {
+        background: var(--danger);
+      }
+
+      .worker-card {
+        background: var(--card-bg);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        border: 1px solid var(--card: border);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .worker-card .status {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--success);
+        animation: pulse 2s infinite;
+      }
+
+      .worker-card .info {
+        flex: 1;
+      }
+
+      .worker-card .name {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+
+      .worker-card .details {
+        font-size: 0.75rem;
+        color: var(--text-light);
+      }
+
+      .loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        color: var(--text-light);
+      }
+
+      .loading::after {
+        content: '';
+        animation: dots 1.5s infinite;
+      }
+
+      @keyframes dots {
+        0%,
+        20% {
+          content: '.';
+        }
+        40% {
+          content: '..';
+        }
+        60%,
+        100% {
+          content: '...';
+        }
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 2rem;
+        color: var(--text-light);
+      }
+
+      .refresh-indicator {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-left: 8px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .filter-input {
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        width: 200px;
+      }
+
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .chart-card {
+        background: var(--card-bg);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        border: 1px solid var(--card: border);
+      }
+
+      .chart-card h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .timeline {
+        position: relative;
+        height: 200px;
+        margin-top: 1rem;
+      }
+
+      .timeline-bar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--border);
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .timelineMarker {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--primary);
+        border: 2px solid white;
+        transform: translate(-50%, -50%);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0f172a;
+          --text: #f8fafc;
+          --text-light: #94a3b8;
+          --border: #334155;
+          --card: bg: #1e293b;
+          --card: border: #334155;
+        }
+
+        .stat-card,
+        .table-container,
+        .worker-card,
+        .chart-card {
+          background: var(--card-bg);
+          border-color: var(--card: border);
+        }
+
+        .table th {
+          background: var(--card-bg);
+          color: var(--text-light);
+        }
+
+        .table tbody tr:hover {
+          background: #334155;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <h1>🚀 TaskFleet Dashboard</h1>
+      <div class="subtitle">Knowledge Graph Extension — chemie-lernen.org</div>
+    </header>
+
+    <nav class="nav-tabs">
+      <button class="active" onclick="switchTab('overview')">📊 Overview</button>
+      <button onclick="switchTab('tasks')">📋 Tasks</button>
+      <button onclick="switchTab('workers')">👷 Workers</button>
+      <button onclick="switchTab('analytics')">📈 Analytics</button>
+    </nav>
+
+    <main class="container">
+      <!-- Overview Tab -->
+      <div id="tab-overview" class="tab-content">
+        <div class="stats-grid">
+          <div class="stat-card" id="stat-total">
+            <div class="label">Total Tasks</div>
+            <div class="value" id="total-tasks">-</div>
+          </div>
+          <div class="stat-card" id="stat-ready">
+            <div class="label">Ready</div>
+            <div class="value" id="ready-tasks">-</div>
+          </div>
+          <div class="stat-card" id="stat-running">
+            <div class="label">Running</div>
+            <div class="value" id="running-tasks">-</div>
+          </div>
+          <div class="stat-card" id="stat-completed">
+            <div class="label">Completed</div>
+            <div class="value" id="completed-tasks">-</div>
+          </div>
+          <div class="stat-card" id="stat-failed">
+            <div class="label">Failed</div>
+            <div class="value" id="failed-tasks">-</div>
+          </div>
+          <div class="stat-card" id="stat-workers">
+            <div class="label">Active Workers</div>
+            <div class="value" id="active-workers">-</div>
+          </div>
+          <div class="stat-card" id="stat-uptime">
+            <div class="label">Uptime</div>
+            <div class="value" id="uptime">-</div>
+          </div>
+          <div class="stat-card" id="stat-progress">
+            <div class="label">Progress</div>
+            <div class="progress-bar">
+              <div class="progress-bar-fill success" id="progress-fill" style="width: 0%"></div>
+            </div>
+            <div id="progress-text">0%</div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="chart-card">
+            <h3>Task Status Distribution</h3>
+            <canvas id="statusChart"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Workers</h3>
+            <div id="workers-overview"></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>
+            Recent Activity
+            <span class="refresh-indicator"></span>
+          </h2>
+          <div class="table-container">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Task</th>
+                  <th>Status</th>
+                  <th>Worker</th>
+                  <th>Duration</th>
+                </tr>
+              </thead>
+              <tbody id="activity-table">
+                <tr><td colspan="5" class="loading">Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tasks Tab -->
+      <div id="tab-tasks" class="tab-content" style="display: none">
+        <div class="section header-actions">
+          <input type="text" class="filter-input" id="task-filter" placeholder="Filter tasks..." />
+          <button class="btn btn-secondary" onclick="refreshTasks()">↻ Refresh</button>
+        </div>
+
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Task ID</th>
+                <th>Status</th>
+                <th>Worker</th>
+                <th>Started</th>
+                <th>Duration</th>
+                <th>Retries</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tasks-table">
+              <tr><td colspan="7" class="loading">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Workers Tab -->
+      <div id="tab-workers" class="tab-content" style="display: none">
+        <div class="section header-actions">
+          <button class="btn btn-secondary" onclick="refreshWorkers()">↻ Refresh</button>
+        </div>
+
+        <div id="workers-list">
+          <div class="loading">Loading workers...</div>
+        </div>
+      </div>
+
+      <!-- Analytics Tab -->
+      <div id="tab-analytics" class="tab-content" style="display: none">
+        <div class="section">
+          <h2>Task Execution Timeline</h2>
+          <div class="chart-card">
+            <div class="timeline">
+              <div class="timeline-bar"></div>
+              <div id="timeline-markers"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="chart-card">
+            <h3>Tasks by Group</h3>
+            <canvas id="groupChart"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Success Rate</h3>
+            <div id="success-rate">-</div>
+            <div class="progress-bar">
+              <div class="progress-bar-fill success" id="success-rate-bar" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      // Configuration
+      const API_BASE = window.location.origin;
+      const REFRESH_INTERVAL = 2000; // 2 seconds
+
+      // State
+      let stats = {};
+      let tasks = [];
+      let workers = [];
+      let charts = {};
+      let currentTab = 'overview';
+
+      // Helper functions
+      function formatDuration(ms) {
+        if (!ms) return '-';
+        const seconds = Math.floor(ms / 1000);
+        if (seconds < 60) return `${seconds}s`;
+        const minutes = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        if (minutes < 60) return `${minutes}m ${secs}s`;
+        const hours = Math.floor(minutes / 60);
+        const mins = minutes % 60;
+        return `${hours}h ${mins}m`;
+      }
+
+      function formatTimestamp(ts) {
+        if (!ts) return '-';
+        const date = new Date(parseInt(ts));
+        return date.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      }
+
+      function formatUptime(startedAt) {
+        if (!startedAt) return '-';
+        const now = Date.now();
+        const diff = now - parseInt(startedAt);
+        const seconds = Math.floor(diff / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(minutes / 60);
+        const days = Math.floor(hours / 24);
+
+        const parts = [];
+        if (days > 0) parts.push(`${days}d`);
+        if (hours % 24 > 0) parts.push(`${hours % 24}h`);
+        if (minutes % 60 > 0) parts.push(`${minutes % 60}m`);
+        if (parts.length === 0) parts.push(`${seconds}s`);
+
+        return parts.join(' ');
+      }
+
+      function getStatusBadge(status) {
+        return `<span class="status-badge ${status}">${status}</span>`;
+      }
+
+      // Tab switching
+      function switchTab(tabName) {
+        // Hide all tabs
+        document.querySelectorAll('.tab-content').forEach((tab) => {
+          tab.style.display = 'none';
+        });
+
+        // Remove active class from all buttons
+        document.querySelectorAll('.nav-tabs button').forEach((btn) => {
+          btn.classList.remove('active');
+        });
+
+        // Show selected tab
+        document.getElementById(`tab-${tabName}`).style.display = 'block';
+        event.target.classList.add('active');
+        currentTab = tabName;
+
+        // Refresh tab content
+        if (tabName === 'tasks') refreshTasks();
+        if (tabName === 'workers') refreshWorkers();
+        if (tabName === 'analytics') refreshAnalytics();
+      }
+
+      // Fetch stats
+      async function fetchStats() {
+        try {
+          const response = await fetch(`${API_BASE}/api`);
+          if (response.ok) {
+            stats = await response.json();
+            updateStats();
+          }
+        } catch (error) {
+          console.error('Error fetching stats:', error);
+        }
+      }
+
+      // Update stats display
+      function updateStats() {
+        // Update stat cards
+        document.getElementById('total-tasks').textContent = stats.totalTasks || 0;
+        document.getElementById('ready-tasks').textContent = stats.readyQueueLength || 0;
+        document.getElementById('running-tasks').textContent = stats.activeTasks || 0;
+        document.getElementById('completed-tasks').textContent = stats.counters?.completed || 0;
+        document.getElementById('failed-tasks').textContent = stats.counters?.failed || 0;
+        document.getElementById('active-workers').textContent = stats.workerCount || 0;
+        document.getElementById('uptime').textContent = formatUptime(stats.startedAt);
+
+        // Update progress
+        const total = stats.totalTasks || 1;
+        const completed = stats.counters?.completed || 0;
+        const progress = (completed / total) * 100;
+        document.getElementById('progress-fill').style.width = `${progress}%`;
+        document.getElementById('progress-text').textContent = `${Math.round(progress)}%`;
+
+        // Update stat card states
+        const allCards = ['total', 'ready', 'running', 'completed', 'failed', 'workers', 'uptime', 'progress'];
+        allCards.forEach((id) => {
+          const card = document.getElementById(`stat-${id}`);
+          card.classList.remove('initializing', 'running', 'error');
+          card.classList.add('running');
+        });
+
+        // Update overview charts
+        updateOverviewCharts();
+      }
+
+      // Update overview charts
+      async function updateOverviewCharts() {
+        // Status distribution chart
+        const tasks = await fetchTasks();
+        const statusCounts = {};
+        tasks.forEach((task) => {
+          const status = task.status || 'unknown';
+          statusCounts[status] = (statusCounts[status] || 0) + 1;
+        });
+
+        const statusLabels = Object.keys(statusCounts);
+        const statusData = Object.values(statusCounts);
+
+        const colors = {
+          pending: '#f59e0b',
+          ready: '#10b981',
+          running: '#2563eb',
+          completed: '#16a34a',
+          failed: '#ef4444',
+          retrying: '#d97706',
+        };
+
+        if (charts.statusChart) charts.statusChart.destroy();
+
+        const ctx = document.getElementById('statusChart');
+        if (ctx) {
+          charts.statusChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+              labels: statusLabels,
+              datasets: [
+                {
+                  data: statusData,
+                  backgroundColor: statusLabels.map((l) => colors[l] || '#999999'),
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: true,
+              plugins: {
+                legend: {
+                  position: 'bottom',
+                },
+              },
+            },
+          });
+        }
+
+        // Workers overview
+        const workers = await fetchWorkers();
+        const workersHtml = workers
+          .map(
+            (w) => `
+                <div style="display: flex; justify-content: space-between; padding: 0.25rem 0; border-bottom: 1px solid #e2e8f0;">
+                    <span>${w.workerName || w.workerId}</span>
+                    <span style="color: ${w.status === 'active' ? '#10b981' : '#ef4444'};">${w.status}</span>
+                </div>
+            `
+          )
+          .join('');
+
+        document.getElementById('workers-overview').innerHTML =
+          workersHtml || '<div class="empty-state">No workers</div>';
+      }
+
+      // Fetch tasks
+      async function fetchTasks() {
+        try {
+          const response = await fetch(`${API_BASE}/api/tasks`);
+          if (response.ok) {
+            tasks = await response.json();
+            return tasks;
+          }
+        } catch (error) {
+          console.error('Error fetching tasks:', error);
+        }
+        return [];
+      }
+
+      // Refresh tasks
+      async function refreshTasks() {
+        const filter = document.getElementById('task-filter').value.toLowerCase();
+        const tasks = await fetchTasks();
+
+        const filteredTasks = tasks.filter(
+          (task) => task.id.toLowerCase().includes(filter) || JSON.stringify(task).toLowerCase().includes(filter)
+        );
+
+        const html = filteredTasks
+          .map(
+            (task) => `
+                <tr class="${task.status}">
+                    <td><code>${task.id}</code></td>
+                    <td>${getStatusBadge(task.status)}</td>
+                    <td>${task.workerName || '-'}</td>
+                    <td>${formatTimestamp(task.startedAt)}</td>
+                    <td>${formatDuration(task.durationMs)}</td>
+                    <td>${task.retries || 0}</td>
+                    <td>
+                        <button class="btn btn-secondary" onclick="viewTaskDetails('${task.id}')">View</button>
+                    </td>
+                </tr>
+            `
+          )
+          .join('');
+
+        document.getElementById('tasks-table').innerHTML =
+          html || '<tr><td colspan="7" class="empty-state">No tasks found</td></tr>';
+      }
+
+      // View task details
+      async function viewTaskDetails(taskId) {
+        const task = tasks.find((t) => t.id === taskId);
+        if (!task) {
+          alert('Task not found');
+          return;
+        }
+
+        alert(
+          `Task: ${task.id}\nStatus: ${task.status}\nWorker: ${task.workerName || 'N/A'}\nDuration: ${formatDuration(task.durationMs)}\nRetries: ${task.retries || 0}`
+        );
+      }
+
+      // Fetch workers
+      async function fetchWorkers() {
+        try {
+          const response = await fetch(`${API_BASE}/api/workers`);
+          if (response.ok) {
+            workers = await response.json();
+            return workers;
+          }
+        } catch (error) {
+          console.error('Error fetching workers:', error);
+        }
+        return [];
+      }
+
+      // Refresh workers
+      async function refreshWorkers() {
+        const workers = await fetchWorkers();
+
+        const html = workers
+          .map(
+            (worker) => `
+                <div class="worker-card">
+                    <div class="status"></div>
+                    <div class="info">
+                        <div class="name">${worker.workerName || worker.workerId}</div>
+                        <div class="details">
+                            Status: ${worker.status || 'unknown'} | 
+                            PID: ${worker.pid || 'N/A'} | 
+                            Started: ${formatTimestamp(worker.startedAt)}
+                            ${worker.lastHeartbeat ? ` | Last HB: ${formatTimestamp(worker.lastHeartbeat)}` : ''}
+                        </div>
+                    </div>
+                </div>
+            `
+          )
+          .join('');
+
+        document.getElementById('workers-list').innerHTML = html || '<div class="empty-state">No workers active</div>';
+      }
+
+      // Refresh analytics
+      async function refreshAnalytics() {
+        const tasks = await fetchTasks();
+        const workers = await fetchWorkers();
+
+        // Group tasks by group (extract from task ID or use a mapping)
+        const groupCounts = {};
+        tasks.forEach((task) => {
+          // Extract group from task ID (this is a heuristic based on the task configuration)
+          let group = 'unknown';
+          if (task.id.includes('entity')) group = 'Entity Enrichment';
+          else if (task.id.includes('content') || task.id.includes('article')) group = 'Content Indexing';
+          else if (task.id.includes('curriculum') || task.id.includes('curricula')) group = 'Curriculum Linking';
+          else if (task.id.includes('quality') || task.id.includes('audit')) group = 'Quality Assurance';
+          else if (task.id.includes('import')) group = 'Data Import';
+          else if (task.id.includes('index') || task.id.includes('search')) group = 'Index & Search';
+
+          groupCounts[group] = (groupCounts[group] || 0) + 1;
+        });
+
+        if (charts.groupChart) charts.groupChart.destroy();
+
+        const ctx = document.getElementById('groupChart');
+        if (ctx) {
+          charts.groupChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: Object.keys(groupCounts),
+              datasets: [
+                {
+                  label: 'Tasks',
+                  data: Object.values(groupCounts),
+                  backgroundColor: '#2563eb',
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: true,
+              plugins: {
+                legend: {
+                  display: false,
+                },
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                },
+              },
+            },
+          });
+        }
+
+        // Success rate
+        const completed = tasks.filter((t) => t.status === 'completed').length;
+        const total = tasks.length;
+        const successRate = total > 0 ? (completed / total) * 100 : 0;
+        document.getElementById('success-rate').textContent = `${Math.round(successRate)}%`;
+        document.getElementById('success-rate-bar').style.width = `${successRate}%`;
+      }
+
+      // Fetch recent activity
+      async function fetchRecentActivity() {
+        const tasks = await fetchTasks();
+
+        // Sort by timestamp descending
+        const sortedTasks = tasks
+          .filter((t) => t.timestamp)
+          .sort((a, b) => parseInt(b.timestamp) - parseInt(a.timestamp))
+          .slice(0, 10);
+
+        const html = sortedTasks
+          .map(
+            (task) => `
+                <tr class="${task.status}">
+                    <td>${formatTimestamp(task.timestamp)}</td>
+                    <td><code>${task.id}</code></td>
+                    <td>${getStatusBadge(task.status)}</td>
+                    <td>${task.workerName || '-'}</td>
+                    <td>${formatDuration(task.durationMs)}</td>
+                </tr>
+            `
+          )
+          .join('');
+
+        document.getElementById('activity-table').innerHTML =
+          html || '<tr><td colspan="5" class="empty-state">No recent activity</td></tr>';
+      }
+
+      // Initialize
+      async function init() {
+        // Set active tab from URL hash or use default
+        const hash = window.location.hash.slice(1);
+        if (hash) {
+          switchTab(hash);
+        }
+
+        // Initial data load
+        await fetchStats();
+        await fetchTasks();
+        await fetchWorkers();
+        await fetchRecentActivity();
+
+        // Update overview charts
+        await updateOverviewCharts();
+
+        // Set up periodic refresh
+        setInterval(fetchStats, REFRESH_INTERVAL);
+        setInterval(fetchTasks, REFRESH_INTERVAL * 2);
+        setInterval(fetchWorkers, REFRESH_INTERVAL * 3);
+        setInterval(fetchRecentActivity, REFRESH_INTERVAL * 2);
+
+        // Set up filter input
+        document.getElementById('task-filter').addEventListener('input', refreshTasks);
+      }
+
+      // Start the application
+      document.addEventListener('DOMContentLoaded', init);
+    </script>
+  </body>
+</html>

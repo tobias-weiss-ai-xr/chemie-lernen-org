@@ -4,37 +4,320 @@
     "name": "Brandenburg Chemie Lehrplan",
     "grade": "7/8",
     "schoolTypes": ["Sek I (gemeinsamer RLP Berlin/Brandenburg)"],
-    "topicCount": 1,
-    "totalObjectives": 492,
+    "topicCount": 13,
+    "totalObjectives": 406,
     "topics": [
       {
-        "name": "In Brandenburg sind diese Schülerinnen und Schüler dem Bi...",
+        "name": "Alkohole – vom Holzgeist zum Glycerin",
         "grade": "7/8",
         "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
-        "objectives": 492,
+        "objectives": 34,
         "objectiveTexts": [
-          "§ 30 BbgSchulG zugeordnet.",
-          "Der experimentellen Methode kommt aufgrund ihrer exponierten Stellung in den naturwis-",
-          "Fächern eine tragende Rolle zu. Aus diesem Grund werden für jedes The-",
-          "Experimente und Untersuchungen angegeben. Diese können entspre-",
-          "Ausstattung der Schule variiert werden, sofern die mit dem Expe-",
-          "Untersuchung verbundenen Intentionen gewahrt bleiben.",
-          "Die in den Tabellen angegebenen Fachbegriffe beschränken sich auf wichtige, unverzicht-",
-          "Begriffe des Faches.",
-          "Themenfeldern Beispiele für Differenzierungsmöglichkeiten, die den Lehrkräften helfen, das",
-          "für ihre Lerngruppe und für einzelne Schülerinnen und Schüler passende Leistungsniveau"
+          "Vergleichend zu den Kohlenwasserstoffen wird am Beispiel der Alkohole eine Stoffklasse",
+          "Chemie eingeführt, die zusätzlich Sauerstoffatome im Molekül enthält.",
+          "Erstmalig wird in Bezug auf das Struktur-Eigenschafts-Konzept die Bedeutung einer funktio-",
+          "Gruppe verdeutlicht.",
+          "Am Beispiel des Wortes Alkohol erfolgt eine Abgrenzung der Alltagssprache von der Fach-",
+          "Exemplarisch wird die physiologische Wirkung von Methanol und Ethanol diskutiert.",
+          "Anhand der Redoxbeziehungen zwischen Alkanolen und Alkanalen kann man das Struktur-",
+          "Eigenschafts-Konzept und das Konzept der chemischen Reaktion nachhaltig vertiefen. Die",
+          "Aldehyd-Gruppe wird eingeführt und damit eine Grundlage für den Übergang zum nachfol-",
+          "Themenfeld gelegt."
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Das Periodensystem der Elemente – Übersicht und Werkzeug",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 28,
+        "objectiveTexts": [
+          "Im zweiten Themenfeld wird die einfache Atomvorstellung über ein Kern-Hülle-Modell zum",
+          "Modell der Atomhülle erweitert. Jedem Element wird anhand einer charakteris-",
+          "Protonen- und Elektronenzahl eine eindeutige Identität zugewiesen.",
+          "Über das Periodensystem der Elemente (PSE) werden Merkmale des Atombaus mit chemi-",
+          "Eigenschaften verknüpft, wodurch im Weiteren eine Deutung chemischer Reaktionen",
+          "Teilchenebene ermöglicht wird.",
+          "Inhalte Experimente/Untersuchungen",
+          "Symbole – Modellexperiment zum Kern-Hülle-Modell",
+          "Atombau: Kern-Hülle-Modell (Proton,",
+          "Neutron, Elektron)"
         ],
         "articles": [
-          "/themenbereiche/analytische-methoden/trennverfahren/",
-          "/themenbereiche/erdoel-organische-stoffklassen/alkohole-ether/",
-          "/themenbereiche/erdoel-organische-stoffklassen/erdoel-entstehung-verarbeitung/",
-          "/themenbereiche/produkte-organisch/waschmittel-tenside/"
+          "/themenbereiche/aufbau-materie/elektronenkonfiguration/",
+          "/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/",
+          "/themenbereiche/redox-elektrochemie/spannungsreihe/",
+          "/perioden-system-der-elemente/",
+          "/periodische-trends/",
+          "/pse-vr/",
+          "/themenbereiche/gleichgewicht-geschwindigkeit/prinzip-von-le-chatelier/",
+          "/themenbereiche/reaktionstypen-organisch/substitution-und-addition/"
         ],
         "articleTitles": [
-          "Trennverfahren in der Analytik",
+          "Elektronenkonfiguration",
+          "Oxidation und Reduktion",
+          "Spannungsreihe der Elemente",
+          "Periodensystem der Elemente",
+          "Periodische Trends",
+          "PSE in VR - Virtuelles Periodensystem",
+          "Prinzip von Le Chatelier",
+          "Substitution und Addition"
+        ]
+      },
+      {
+        "name": "Ester – Vielfalt der Produkte aus Alkoholen und Säuren",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 41,
+        "objectiveTexts": [
+          "Die Synthese organischer Verbindungen aus Stoffen mit einer oder mehreren funktionellen",
+          "Gruppen ist der zentrale Aspekt dieses Themenfeldes. Ausgehend von einem Verständnis",
+          "über die Struktur-Eigenschafts-Beziehungen bei Alkoholen und Carbonsäuren erschließt",
+          "über die Ester die Vielfalt der organischen Verbindungen im Alltag.",
+          "Sowohl Stoffe mit affektivem Bezug (Fruchtester und Duftstoffe) wie auch die Betrachtung",
+          "Herstellung von Arzneimitteln und Seifen betonen den großen Stellenwert chemischer",
+          "Grundkenntnisse für das alltägliche Leben.",
+          "Inhalte Experimente/Untersuchungen",
+          "Eigenschaften und Verwendung von – Synthese und Hydrolyse eines organischen",
+          "Alkansäurealkylestern und Fetten Esters"
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Faszination Chemie – Feuer, Schall und Rauch",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 36,
+        "objectiveTexts": [
+          "Das Themenfeld bietet eine erste Orientierung in der Vielfalt der Stoffe sowie deren Reakti-",
+          "führt in die Chemie und naturwissenschaftliche Denk- und Arbeitsweisen ein.",
+          "Chemische Reaktionen werden exemplarisch auf der Stoffebene bearbeitet. Ihre Deutung",
+          "Teilchenebene knüpft an die Teilchenvorstellungen aus dem Fach Naturwissen-",
+          "5/6 an und führt zu einer einfachen Atomvorstellung, welche die unterschiedliche",
+          "Masse der Atome, ihre Größe und ihre Kugelform beinhaltet.",
+          "Inhalte Experimente/Untersuchungen",
+          "Reaktion (stofflich und auf – Handhabung des Brenners",
+          "Verbrennung von Metallen und Nichtme-",
+          "Energie bei chemischen Reaktionen tallen"
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Gase – zwischen lebensnotwendig und gefährlich",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 26,
+        "objectiveTexts": [
+          "Aufbauend auf Fähigkeiten zur Beschreibung von Stoffen anhand wahrnehmbarer Eigen-",
+          "Themenfeld eine Charakterisierung unsichtbarer Bestandteile der",
+          "Luft sowie weiterer technisch, chemisch und physiologisch bedeutsamer Gase.",
+          "Der Aufbau der molekularen Gase wird mithilfe der Elektronenpaarbindung erklärt.",
+          "Die Beeinflussung der Luft/Atmosphäre durch natürliche und anthropogene Faktoren wird",
+          "Ausgewählte Nachweise von Gasen bieten die Möglichkeit der Untersuchung vielfältiger",
+          "Inhalte Experimente/Untersuchungen",
+          "Eigenschaften, Verwendung und Nach- – Nachweis von Wasserstoff, Sauerstoff",
+          "Sauerstoff, Wasserstoff und Kohlenstoffdioxid",
+          "Kohlenstoffdioxid"
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Klare Verhältnisse – Quantitative Betrachtungen",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 23,
+        "objectiveTexts": [
+          "Ausgehend von den Gesetzen der konstanten Massen und Proportionen sowie Kenntnissen",
+          "Aufstellen von Reaktionsgleichungen, werden in diesem Themenfeld mathematische",
+          "Kenntnisse genutzt, um stöchiometrische Berechnungen vorzunehmen. Die Tiefe der Dis-",
+          "Sachverhalte wird um eine ökonomische Komponente erweitert. Im Mit-",
+          "Themenfelds steht die Einführung des Mols als Zählmaß für die Stoffmenge,",
+          "Voraussetzung für den Umgang mit Konzentrationsangaben",
+          "Inhalte Experimente/Untersuchungen",
+          "Stoffmenge − Vergleich der Massen verschiedener",
+          "Stoffe gleicher Stoffmenge",
+          "Atommasse und molare Masse"
+        ],
+        "articles": ["/themenbereiche/analytische-methoden/quantitative-analyse/"],
+        "articleTitles": ["Quantitative Analyse"]
+      },
+      {
+        "name": "Kohlenwasserstoffe – vom Campinggas zum Superbenzin",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 39,
+        "objectiveTexts": [
+          "Die Kohlenwasserstoffe werden als Stoffgruppe der organischen Chemie bekannt gemacht,",
+          "Verbindungen nur aus den Elementen Wasserstoff und Kohlenstoff aufgebaut sind.",
+          "Die kombinatorischen Möglichkeiten der Atome ergeben eine Vielzahl von Kohlenwasser-",
+          "Eigenschaften, deren technische Bedeutung derzeit überwiegend",
+          "Bereich der energetischen Nutzung liegt. Ausgehend von bekannten Verbindungen, wie",
+          "Sumpf- und Grubengas Methan und den bei Gaskochern verwendeten Gasen Propan",
+          "Butan, lassen sich die inhaltlichen Schwerpunkte dieses Themenfeldes exemplarisch",
+          "Inhalte Experimente/Untersuchungen",
+          "Vorkommen und Verwendung von – Verbrennung von Alkanen und Nachweis",
+          "Kohlenwasserstoffen der Reaktionsprodukte"
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Metalle – Schätze der Erde",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 30,
+        "objectiveTexts": [
+          "Ausgehend von Kenntnissen zum Atombau wird ein Zusammenhang zwischen metallischen",
+          "Eigenschaften und Bau der Metalle auf Teilchenebene hergestellt. Vergleichend mit der",
+          "Atom- und Ionenbindung werden die Kenntnisse zu Bindungstypen um das Modell der",
+          "Metallbindung erweitert. Basierend auf der Gewinnung von Metallen werden Redoxreaktio-",
+          "Reaktionstyp eingeführt.",
+          "Inhalte Experimente/Untersuchungen",
+          "Eigenschaften und Verwendung der – Versuche zur elektrischen Leitfähigkeit,",
+          "Metalle und deren Legierungen Wärmeleitfähigkeit und Verformbarkeit",
+          "Gewinnung – Verbrennung von Metallen unterschiedli-",
+          "Zerteilungsgrades"
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Organische Säuren – Salatsauce, Entkalker & Co",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 29,
+        "objectiveTexts": [
+          "Das Verständnis über die Auswirkungen funktioneller Gruppen auf die Eigenschaften von",
+          "Kohlenwasserstoffverbindungen wird in diesem Themenfeld ausgebaut.",
+          "Eine vergleichende Betrachtung der Eigenschaften organischer und anorganischer Säuren",
+          "knüpft an Kenntnisse aus Themenfeld 3.8 an. Weitere strukturbedingte Eigenschaften",
+          "Bedeutung des Struktur-Eigenschafts-Konzepts in diesem Themenfeld. Die",
+          "Betrachtung vielfältiger Verwendungsformen von Carbonsäuren im Alltag bahnt ein",
+          "Verständnis der Bedeutung dieser Stoffgruppe für die Esterbildung in Themenfeld 3.12 an.",
+          "Inhalte Experimente/Untersuchungen",
+          "Herstellung der Alkansäuren – Herstellung von Essig",
+          "Struktur von Alkansäuren, Carboxy- – Vergleichende Untersuchung zwischen"
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Salze – Gegensätze ziehen sich an",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 36,
+        "objectiveTexts": [
+          "Auf stofflicher Ebene werden Eigenschaften von Salzen beschrieben und durch Art, Anord-",
+          "Wechselwirkung der Teilchen erklärt. Auf der Grundlage der Kenntnisse zum",
+          "Atombau und der Ordnungsprinzipien des PSE wird das Ion als eine weitere Teilchenart",
+          "eingeführt. Starke Anziehungskräfte zwischen entgegengesetzt geladenen Teilchen sind die",
+          "Ursache einer Vielzahl charakteristischer Eigenschaften von Ionensubstanzen.",
+          "Salz war lange Zeit ein kostbares Tauschobjekt gegen Schmuck. Dank hochmoderner",
+          "Verfahren der Salzgewinnung wurde Salz zum preiswerten Alltagsprodukt. Weil unser",
+          "Körper Salz braucht, zu viel davon aber dem Wohlbefinden schadet, bietet es sich hier an,",
+          "Inhalte Experimente/Untersuchungen",
+          "Ion – Ionenbildung – Leitfähigkeitsuntersuchungen an"
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Säuren und Laugen – echt ätzend",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 35,
+        "objectiveTexts": [
+          "Ausgehend von Alltagsstoffen lässt sich mithilfe von Indikatoren anschaulich ein experimen-",
+          "Zugang zum Themenfeld Säuren und Laugen ermöglichen. Bei der Herstellung von",
+          "Lösungen wird der Umgang mit dem PSE intensiviert. Auf stofflicher",
+          "Ebene werden insbesondere die Eigenschaften und das Reaktionsverhalten basischer und",
+          "Lösungen betrachtet. Das Grundwissen zu den Salzen wird hier erweitert. Neben der",
+          "vielfältigen Nutzung von Säuren und Laugen im täglichen Leben werden Fragen, die den",
+          "sorgfältigen, verantwortungsvollen Umgang mit diesen Stoffen betreffen, behandelt und so-",
+          "Entwicklung eines Bewusstseins für Nachhaltigkeit beigetragen.",
+          "Inhalte Experimente/Untersuchungen",
+          "Indikatoren – Hilfsmittel zum Erkennen – Untersuchung von Haushalts- und Labor-"
+        ],
+        "articles": [
+          "/themenbereiche/anorganische-verbindungen/saeuren-basen-salze/",
+          "/themenbereiche/saeuren-basen/neutralisation/",
+          "/themenbereiche/saeuren-basen/pufferloesungen/",
+          "/enhanced-ph-visualization/",
+          "/ph-rechner/",
+          "/titrations-simulator/",
+          "/themenbereiche/saeuren-basen/ph-wert-und-indikatoren/",
+          "/saeuren-basen-gleichgewicht/"
+        ],
+        "articleTitles": [
+          "Säuren, Basen und Salze",
+          "Neutralisation",
+          "Pufferlösungen",
+          "Enhanced pH-Visualisierung",
+          "pH-Rechner",
+          "Titrationssimulator",
+          "pH-Wert und Indikatoren",
+          "Säuren-Basen-Gleichgewichte"
+        ]
+      },
+      {
+        "name": "Wahlpflichtfach",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 9,
+        "objectiveTexts": [
+          "Der Wahlpflichtunterricht stellt ein Angebot dar, das über den Regelunterricht hinausgeht und",
+          "Er dient der Vertiefung von Fachinhalten und schafft die Möglich-",
+          "keit, Fachliches und Überfachliches zu verbinden.",
+          "Im schulinternen Curriculum wird sichergestellt, dass thematische Dopplungen mit dem Re-",
+          "Vorgriffe auf Inhalte des Unterrichts in der gymnasialen Oberstufe vermie-",
+          "Grundlage für den Unterricht im Wahlpflichtfach sind die fachlichen Kompetenzbereiche.",
+          "Werden weitere Fächer hinzugezogen, gilt dies für die Kompetenzbereiche aller beteiligten",
+          "In den Fächern Biologie, Chemie und Physik kann im Wahlpflichtfach auf Themenfelder aus",
+          "Fachteil Naturwissenschaften 7 – 10 zurückgegriffen werden."
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Wasser – eine Verbindung",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 40,
+        "objectiveTexts": [
+          "Kenntnisse über chemische Reaktionen und Nachweise der Gase Sauerstoff und Wasser-",
+          "Zugang zum Themenfeld Wasser.",
+          "Die Elektronegativität ist Grundlage für das Verständnis eines differenzierten Modells der",
+          "Elektronenpaarbindung im Wassermolekül und der Ausbildung eines Dipols.",
+          "Aufbauend auf Kenntnissen über Atombau, Teilchenarten, chemische Bindung und chemi-",
+          "Symbolschreibweise wird am Beispiel der Bildung und Zerlegung von Wasser die",
+          "Reaktionsgleichung eingeführt.",
+          "Die Schülerinnen und Schüler lernen, ihr naturwissenschaftlich erworbenes Wissen im",
+          "Themenfeld Wasser anzuwenden, erkennen naturwissenschaftliche Problemstellungen",
+          "B. Wasserhaushalt, Grundwasserabsenkung, Versteppung, Versalzung) und können aus"
+        ],
+        "articles": [
+          "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+          "/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/",
+          "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+          "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+          "/themenbereiche/aufbau-materie/chemische-bindungen/",
+          "/themenbereiche/aufbau-materie/elektronenkonfiguration/",
+          "/themenbereiche/erdoel-organische-stoffklassen/alkohole-ether/",
+          "/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/"
+        ],
+        "articleTitles": [
+          "Nachweisreaktionen",
+          "Sicherheit im Labor",
+          "Oxide und Hydroxide",
+          "Atome und Moleküle",
+          "Chemische Bindungen",
+          "Elektronenkonfiguration",
           "Alkohole und Ether",
-          "Erdölentstehung und -verarbeitung",
-          "Waschmittel und Tenside"
+          "Kohlenwasserstoffe"
         ]
       }
     ]
@@ -44,37 +327,320 @@
     "name": "Berlin Chemie Lehrplan",
     "grade": "7/8",
     "schoolTypes": ["Sek I (gemeinsamer RLP Berlin/Brandenburg)"],
-    "topicCount": 1,
-    "totalObjectives": 492,
+    "topicCount": 13,
+    "totalObjectives": 406,
     "topics": [
       {
-        "name": "In Brandenburg sind diese Schülerinnen und Schüler dem Bi...",
+        "name": "Alkohole – vom Holzgeist zum Glycerin",
         "grade": "7/8",
         "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
-        "objectives": 492,
+        "objectives": 34,
         "objectiveTexts": [
-          "§ 30 BbgSchulG zugeordnet.",
-          "Der experimentellen Methode kommt aufgrund ihrer exponierten Stellung in den naturwis-",
-          "Fächern eine tragende Rolle zu. Aus diesem Grund werden für jedes The-",
-          "Experimente und Untersuchungen angegeben. Diese können entspre-",
-          "Ausstattung der Schule variiert werden, sofern die mit dem Expe-",
-          "Untersuchung verbundenen Intentionen gewahrt bleiben.",
-          "Die in den Tabellen angegebenen Fachbegriffe beschränken sich auf wichtige, unverzicht-",
-          "Begriffe des Faches.",
-          "Themenfeldern Beispiele für Differenzierungsmöglichkeiten, die den Lehrkräften helfen, das",
-          "für ihre Lerngruppe und für einzelne Schülerinnen und Schüler passende Leistungsniveau"
+          "Vergleichend zu den Kohlenwasserstoffen wird am Beispiel der Alkohole eine Stoffklasse",
+          "Chemie eingeführt, die zusätzlich Sauerstoffatome im Molekül enthält.",
+          "Erstmalig wird in Bezug auf das Struktur-Eigenschafts-Konzept die Bedeutung einer funktio-",
+          "Gruppe verdeutlicht.",
+          "Am Beispiel des Wortes Alkohol erfolgt eine Abgrenzung der Alltagssprache von der Fach-",
+          "Exemplarisch wird die physiologische Wirkung von Methanol und Ethanol diskutiert.",
+          "Anhand der Redoxbeziehungen zwischen Alkanolen und Alkanalen kann man das Struktur-",
+          "Eigenschafts-Konzept und das Konzept der chemischen Reaktion nachhaltig vertiefen. Die",
+          "Aldehyd-Gruppe wird eingeführt und damit eine Grundlage für den Übergang zum nachfol-",
+          "Themenfeld gelegt."
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Das Periodensystem der Elemente – Übersicht und Werkzeug",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 28,
+        "objectiveTexts": [
+          "Im zweiten Themenfeld wird die einfache Atomvorstellung über ein Kern-Hülle-Modell zum",
+          "Modell der Atomhülle erweitert. Jedem Element wird anhand einer charakteris-",
+          "Protonen- und Elektronenzahl eine eindeutige Identität zugewiesen.",
+          "Über das Periodensystem der Elemente (PSE) werden Merkmale des Atombaus mit chemi-",
+          "Eigenschaften verknüpft, wodurch im Weiteren eine Deutung chemischer Reaktionen",
+          "Teilchenebene ermöglicht wird.",
+          "Inhalte Experimente/Untersuchungen",
+          "Symbole – Modellexperiment zum Kern-Hülle-Modell",
+          "Atombau: Kern-Hülle-Modell (Proton,",
+          "Neutron, Elektron)"
         ],
         "articles": [
-          "/themenbereiche/analytische-methoden/trennverfahren/",
-          "/themenbereiche/erdoel-organische-stoffklassen/alkohole-ether/",
-          "/themenbereiche/erdoel-organische-stoffklassen/erdoel-entstehung-verarbeitung/",
-          "/themenbereiche/produkte-organisch/waschmittel-tenside/"
+          "/themenbereiche/aufbau-materie/elektronenkonfiguration/",
+          "/themenbereiche/redox-elektrochemie/oxidation-und-reduktion/",
+          "/themenbereiche/redox-elektrochemie/spannungsreihe/",
+          "/perioden-system-der-elemente/",
+          "/periodische-trends/",
+          "/pse-vr/",
+          "/themenbereiche/gleichgewicht-geschwindigkeit/prinzip-von-le-chatelier/",
+          "/themenbereiche/reaktionstypen-organisch/substitution-und-addition/"
         ],
         "articleTitles": [
-          "Trennverfahren in der Analytik",
+          "Elektronenkonfiguration",
+          "Oxidation und Reduktion",
+          "Spannungsreihe der Elemente",
+          "Periodensystem der Elemente",
+          "Periodische Trends",
+          "PSE in VR - Virtuelles Periodensystem",
+          "Prinzip von Le Chatelier",
+          "Substitution und Addition"
+        ]
+      },
+      {
+        "name": "Ester – Vielfalt der Produkte aus Alkoholen und Säuren",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 41,
+        "objectiveTexts": [
+          "Die Synthese organischer Verbindungen aus Stoffen mit einer oder mehreren funktionellen",
+          "Gruppen ist der zentrale Aspekt dieses Themenfeldes. Ausgehend von einem Verständnis",
+          "über die Struktur-Eigenschafts-Beziehungen bei Alkoholen und Carbonsäuren erschließt",
+          "über die Ester die Vielfalt der organischen Verbindungen im Alltag.",
+          "Sowohl Stoffe mit affektivem Bezug (Fruchtester und Duftstoffe) wie auch die Betrachtung",
+          "Herstellung von Arzneimitteln und Seifen betonen den großen Stellenwert chemischer",
+          "Grundkenntnisse für das alltägliche Leben.",
+          "Inhalte Experimente/Untersuchungen",
+          "Eigenschaften und Verwendung von – Synthese und Hydrolyse eines organischen",
+          "Alkansäurealkylestern und Fetten Esters"
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Faszination Chemie – Feuer, Schall und Rauch",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 36,
+        "objectiveTexts": [
+          "Das Themenfeld bietet eine erste Orientierung in der Vielfalt der Stoffe sowie deren Reakti-",
+          "führt in die Chemie und naturwissenschaftliche Denk- und Arbeitsweisen ein.",
+          "Chemische Reaktionen werden exemplarisch auf der Stoffebene bearbeitet. Ihre Deutung",
+          "Teilchenebene knüpft an die Teilchenvorstellungen aus dem Fach Naturwissen-",
+          "5/6 an und führt zu einer einfachen Atomvorstellung, welche die unterschiedliche",
+          "Masse der Atome, ihre Größe und ihre Kugelform beinhaltet.",
+          "Inhalte Experimente/Untersuchungen",
+          "Reaktion (stofflich und auf – Handhabung des Brenners",
+          "Verbrennung von Metallen und Nichtme-",
+          "Energie bei chemischen Reaktionen tallen"
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Gase – zwischen lebensnotwendig und gefährlich",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 26,
+        "objectiveTexts": [
+          "Aufbauend auf Fähigkeiten zur Beschreibung von Stoffen anhand wahrnehmbarer Eigen-",
+          "Themenfeld eine Charakterisierung unsichtbarer Bestandteile der",
+          "Luft sowie weiterer technisch, chemisch und physiologisch bedeutsamer Gase.",
+          "Der Aufbau der molekularen Gase wird mithilfe der Elektronenpaarbindung erklärt.",
+          "Die Beeinflussung der Luft/Atmosphäre durch natürliche und anthropogene Faktoren wird",
+          "Ausgewählte Nachweise von Gasen bieten die Möglichkeit der Untersuchung vielfältiger",
+          "Inhalte Experimente/Untersuchungen",
+          "Eigenschaften, Verwendung und Nach- – Nachweis von Wasserstoff, Sauerstoff",
+          "Sauerstoff, Wasserstoff und Kohlenstoffdioxid",
+          "Kohlenstoffdioxid"
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Klare Verhältnisse – Quantitative Betrachtungen",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 23,
+        "objectiveTexts": [
+          "Ausgehend von den Gesetzen der konstanten Massen und Proportionen sowie Kenntnissen",
+          "Aufstellen von Reaktionsgleichungen, werden in diesem Themenfeld mathematische",
+          "Kenntnisse genutzt, um stöchiometrische Berechnungen vorzunehmen. Die Tiefe der Dis-",
+          "Sachverhalte wird um eine ökonomische Komponente erweitert. Im Mit-",
+          "Themenfelds steht die Einführung des Mols als Zählmaß für die Stoffmenge,",
+          "Voraussetzung für den Umgang mit Konzentrationsangaben",
+          "Inhalte Experimente/Untersuchungen",
+          "Stoffmenge − Vergleich der Massen verschiedener",
+          "Stoffe gleicher Stoffmenge",
+          "Atommasse und molare Masse"
+        ],
+        "articles": ["/themenbereiche/analytische-methoden/quantitative-analyse/"],
+        "articleTitles": ["Quantitative Analyse"]
+      },
+      {
+        "name": "Kohlenwasserstoffe – vom Campinggas zum Superbenzin",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 39,
+        "objectiveTexts": [
+          "Die Kohlenwasserstoffe werden als Stoffgruppe der organischen Chemie bekannt gemacht,",
+          "Verbindungen nur aus den Elementen Wasserstoff und Kohlenstoff aufgebaut sind.",
+          "Die kombinatorischen Möglichkeiten der Atome ergeben eine Vielzahl von Kohlenwasser-",
+          "Eigenschaften, deren technische Bedeutung derzeit überwiegend",
+          "Bereich der energetischen Nutzung liegt. Ausgehend von bekannten Verbindungen, wie",
+          "Sumpf- und Grubengas Methan und den bei Gaskochern verwendeten Gasen Propan",
+          "Butan, lassen sich die inhaltlichen Schwerpunkte dieses Themenfeldes exemplarisch",
+          "Inhalte Experimente/Untersuchungen",
+          "Vorkommen und Verwendung von – Verbrennung von Alkanen und Nachweis",
+          "Kohlenwasserstoffen der Reaktionsprodukte"
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Metalle – Schätze der Erde",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 30,
+        "objectiveTexts": [
+          "Ausgehend von Kenntnissen zum Atombau wird ein Zusammenhang zwischen metallischen",
+          "Eigenschaften und Bau der Metalle auf Teilchenebene hergestellt. Vergleichend mit der",
+          "Atom- und Ionenbindung werden die Kenntnisse zu Bindungstypen um das Modell der",
+          "Metallbindung erweitert. Basierend auf der Gewinnung von Metallen werden Redoxreaktio-",
+          "Reaktionstyp eingeführt.",
+          "Inhalte Experimente/Untersuchungen",
+          "Eigenschaften und Verwendung der – Versuche zur elektrischen Leitfähigkeit,",
+          "Metalle und deren Legierungen Wärmeleitfähigkeit und Verformbarkeit",
+          "Gewinnung – Verbrennung von Metallen unterschiedli-",
+          "Zerteilungsgrades"
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Organische Säuren – Salatsauce, Entkalker & Co",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 29,
+        "objectiveTexts": [
+          "Das Verständnis über die Auswirkungen funktioneller Gruppen auf die Eigenschaften von",
+          "Kohlenwasserstoffverbindungen wird in diesem Themenfeld ausgebaut.",
+          "Eine vergleichende Betrachtung der Eigenschaften organischer und anorganischer Säuren",
+          "knüpft an Kenntnisse aus Themenfeld 3.8 an. Weitere strukturbedingte Eigenschaften",
+          "Bedeutung des Struktur-Eigenschafts-Konzepts in diesem Themenfeld. Die",
+          "Betrachtung vielfältiger Verwendungsformen von Carbonsäuren im Alltag bahnt ein",
+          "Verständnis der Bedeutung dieser Stoffgruppe für die Esterbildung in Themenfeld 3.12 an.",
+          "Inhalte Experimente/Untersuchungen",
+          "Herstellung der Alkansäuren – Herstellung von Essig",
+          "Struktur von Alkansäuren, Carboxy- – Vergleichende Untersuchung zwischen"
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Salze – Gegensätze ziehen sich an",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 36,
+        "objectiveTexts": [
+          "Auf stofflicher Ebene werden Eigenschaften von Salzen beschrieben und durch Art, Anord-",
+          "Wechselwirkung der Teilchen erklärt. Auf der Grundlage der Kenntnisse zum",
+          "Atombau und der Ordnungsprinzipien des PSE wird das Ion als eine weitere Teilchenart",
+          "eingeführt. Starke Anziehungskräfte zwischen entgegengesetzt geladenen Teilchen sind die",
+          "Ursache einer Vielzahl charakteristischer Eigenschaften von Ionensubstanzen.",
+          "Salz war lange Zeit ein kostbares Tauschobjekt gegen Schmuck. Dank hochmoderner",
+          "Verfahren der Salzgewinnung wurde Salz zum preiswerten Alltagsprodukt. Weil unser",
+          "Körper Salz braucht, zu viel davon aber dem Wohlbefinden schadet, bietet es sich hier an,",
+          "Inhalte Experimente/Untersuchungen",
+          "Ion – Ionenbildung – Leitfähigkeitsuntersuchungen an"
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Säuren und Laugen – echt ätzend",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 35,
+        "objectiveTexts": [
+          "Ausgehend von Alltagsstoffen lässt sich mithilfe von Indikatoren anschaulich ein experimen-",
+          "Zugang zum Themenfeld Säuren und Laugen ermöglichen. Bei der Herstellung von",
+          "Lösungen wird der Umgang mit dem PSE intensiviert. Auf stofflicher",
+          "Ebene werden insbesondere die Eigenschaften und das Reaktionsverhalten basischer und",
+          "Lösungen betrachtet. Das Grundwissen zu den Salzen wird hier erweitert. Neben der",
+          "vielfältigen Nutzung von Säuren und Laugen im täglichen Leben werden Fragen, die den",
+          "sorgfältigen, verantwortungsvollen Umgang mit diesen Stoffen betreffen, behandelt und so-",
+          "Entwicklung eines Bewusstseins für Nachhaltigkeit beigetragen.",
+          "Inhalte Experimente/Untersuchungen",
+          "Indikatoren – Hilfsmittel zum Erkennen – Untersuchung von Haushalts- und Labor-"
+        ],
+        "articles": [
+          "/themenbereiche/anorganische-verbindungen/saeuren-basen-salze/",
+          "/themenbereiche/saeuren-basen/neutralisation/",
+          "/themenbereiche/saeuren-basen/pufferloesungen/",
+          "/enhanced-ph-visualization/",
+          "/ph-rechner/",
+          "/titrations-simulator/",
+          "/themenbereiche/saeuren-basen/ph-wert-und-indikatoren/",
+          "/saeuren-basen-gleichgewicht/"
+        ],
+        "articleTitles": [
+          "Säuren, Basen und Salze",
+          "Neutralisation",
+          "Pufferlösungen",
+          "Enhanced pH-Visualisierung",
+          "pH-Rechner",
+          "Titrationssimulator",
+          "pH-Wert und Indikatoren",
+          "Säuren-Basen-Gleichgewichte"
+        ]
+      },
+      {
+        "name": "Wahlpflichtfach",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 9,
+        "objectiveTexts": [
+          "Der Wahlpflichtunterricht stellt ein Angebot dar, das über den Regelunterricht hinausgeht und",
+          "Er dient der Vertiefung von Fachinhalten und schafft die Möglich-",
+          "keit, Fachliches und Überfachliches zu verbinden.",
+          "Im schulinternen Curriculum wird sichergestellt, dass thematische Dopplungen mit dem Re-",
+          "Vorgriffe auf Inhalte des Unterrichts in der gymnasialen Oberstufe vermie-",
+          "Grundlage für den Unterricht im Wahlpflichtfach sind die fachlichen Kompetenzbereiche.",
+          "Werden weitere Fächer hinzugezogen, gilt dies für die Kompetenzbereiche aller beteiligten",
+          "In den Fächern Biologie, Chemie und Physik kann im Wahlpflichtfach auf Themenfelder aus",
+          "Fachteil Naturwissenschaften 7 – 10 zurückgegriffen werden."
+        ],
+        "articles": [],
+        "articleTitles": []
+      },
+      {
+        "name": "Wasser – eine Verbindung",
+        "grade": "7/8",
+        "schoolType": "Sek I (gemeinsamer RLP Berlin/Brandenburg)",
+        "objectives": 40,
+        "objectiveTexts": [
+          "Kenntnisse über chemische Reaktionen und Nachweise der Gase Sauerstoff und Wasser-",
+          "Zugang zum Themenfeld Wasser.",
+          "Die Elektronegativität ist Grundlage für das Verständnis eines differenzierten Modells der",
+          "Elektronenpaarbindung im Wassermolekül und der Ausbildung eines Dipols.",
+          "Aufbauend auf Kenntnissen über Atombau, Teilchenarten, chemische Bindung und chemi-",
+          "Symbolschreibweise wird am Beispiel der Bildung und Zerlegung von Wasser die",
+          "Reaktionsgleichung eingeführt.",
+          "Die Schülerinnen und Schüler lernen, ihr naturwissenschaftlich erworbenes Wissen im",
+          "Themenfeld Wasser anzuwenden, erkennen naturwissenschaftliche Problemstellungen",
+          "B. Wasserhaushalt, Grundwasserabsenkung, Versteppung, Versalzung) und können aus"
+        ],
+        "articles": [
+          "/themenbereiche/analytische-methoden/nachweisreaktionen/",
+          "/themenbereiche/einfuehrung-chemie/sicherheit-im-labor/",
+          "/themenbereiche/anorganische-verbindungen/oxide-hydroxide/",
+          "/themenbereiche/aufbau-materie/atome-und-molekuele/",
+          "/themenbereiche/aufbau-materie/chemische-bindungen/",
+          "/themenbereiche/aufbau-materie/elektronenkonfiguration/",
+          "/themenbereiche/erdoel-organische-stoffklassen/alkohole-ether/",
+          "/themenbereiche/erdoel-organische-stoffklassen/kohlenwasserstoffe/"
+        ],
+        "articleTitles": [
+          "Nachweisreaktionen",
+          "Sicherheit im Labor",
+          "Oxide und Hydroxide",
+          "Atome und Moleküle",
+          "Chemische Bindungen",
+          "Elektronenkonfiguration",
           "Alkohole und Ether",
-          "Erdölentstehung und -verarbeitung",
-          "Waschmittel und Tenside"
+          "Kohlenwasserstoffe"
         ]
       }
     ]
