@@ -194,7 +194,7 @@ services:
       resources:
         limits:
           memory: 1g
-    command: sh -c 'yarn build && yarn start'
+    command: yarn start
     environment:
       CORS_PROXY_SERVER: "hubs.chemie-lernen.org"
       BASE_ASSETS_PATH: "/spoke/"
@@ -226,7 +226,7 @@ services:
       - "traefik.http.services.hubs-spoke.loadbalancer.server.scheme=https"
       - "traefik.http.services.hubs-spoke.loadbalancer.serversTransport=hubs-https@file"
       - "traefik.http.serversTransports.hubs-https.insecureSkipVerify=true"
-      - "traefik.http.middlewares.hubs-spoke-redirect.redirectregex.regex=https://(.*)/spoke"
+      - "traefik.http.middlewares.hubs-spoke-redirect.redirectregex.regex=https://(.*)/spoke$$"
       - "traefik.http.middlewares.hubs-spoke-redirect.redirectregex.replacement=https://$${1}/spoke/"
 
   hubs-dialog:
