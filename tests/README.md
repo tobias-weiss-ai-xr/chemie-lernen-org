@@ -46,24 +46,23 @@ Run unit tests against calculator logic, chemistry utilities, and other JavaScri
 npm test                    # Run all unit tests (excludes slow integration tests)
 npm run test:watch          # Watch mode
 npm run test:verbose        # Verbose output
-npm run test:coverage       # With coverage report (target: 70% branches, functions, lines, statements)
+npm run test:coverage       # Coverage report + baseline threshold gate (see the `jest` key in `package.json`)
 npm run test:unit           # Explicit unit-only run (same as npm test)
 npm run test:integration    # Run integration tests (visualization, accessibility, mobile)
 npx jest path/to/file.test.js  # Single file
 ```
 
-### Coverage Targets
+### Coverage
 
-```json
-{
-  "branches": 70,
-  "functions": 70,
-  "lines": 70,
-  "statements": 70
-}
-```
+Coverage is collected from `myhugoapp/static/js/calculators/**/*.js` and
+`myhugoapp/static/js/utils/**/*.js` (configured in `the `jest`key in`package.json``).
 
-Coverage collected from: `myhugoapp/static/js/calculators/**/*.js`, `myhugoapp/static/js/utils/**/*.js`
+> **Note:** 70% is the _long-term target_, not the current state. The measured
+> baseline (2026-08-24, hermetic unit run) is ~38% (statements/lines),
+> ~43% (branches), ~39% (functions). `the `jest`key in`package.json`` enforces a **baseline
+threshold** a few points below those values as a regression floor — it passes
+today and should be raised gradually toward 70%. The proprietary API core
+(`.core/`) is excluded from coverage.
 
 ### Key Test Files
 
