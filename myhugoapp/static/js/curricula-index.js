@@ -342,7 +342,17 @@
       container: container,
       elements: elements,
       wheelSensitivity: 0.2,
-      layout: { name: 'cose', animate: false, padding: 40, nodeRepulsion: 9000 },
+      layout: state.curriculum
+        ? {
+            name: 'breadthfirst',
+            directed: false,
+            circle: false,
+            roots: ['cur:' + state.curriculum],
+            padding: 30,
+            spacingFactor: 1.1,
+            animate: false,
+          }
+        : { name: 'cose', animate: false, padding: 40, nodeRepulsion: 9000 },
       style: [
         {
           selector: 'node',
@@ -447,7 +457,11 @@
       var fn = state.cy.getElementById(state.focusNodeId);
       if (fn && fn.length) {
         fn.select();
-        state.cy.animate({ center: { eles: fn }, zoom: 1.25 }, { duration: 350 });
+        if (state.curriculum) {
+          state.cy.fit(undefined, 40);
+        } else {
+          state.cy.animate({ center: { eles: fn }, zoom: 1.25 }, { duration: 350 });
+        }
         renderDetail(fn);
       }
       state.focusNodeId = null;
