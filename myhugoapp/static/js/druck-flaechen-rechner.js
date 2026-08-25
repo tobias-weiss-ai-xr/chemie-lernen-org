@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /**
  * Druck und Fläche Rechner
  * Berechnet Zusammenhänge zwischen Druck, Kraft und Fläche

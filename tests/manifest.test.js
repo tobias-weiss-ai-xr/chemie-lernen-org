@@ -75,7 +75,6 @@ export const EXPERIMENTAL_ROOMS = [];
     );
 
     const env = { ...process.env, APP_BASE_URL: 'https://chemie-lernen.org/hello-webxr' };
-    // eslint-disable-next-line sonarjs/no-os-command-from-path -- running the local generator via node is intentional
     execFileSync('node', [GENERATOR, elementsSrc, outJson], { env, stdio: 'pipe' });
 
     expect(fs.existsSync(outJson)).toBe(true);

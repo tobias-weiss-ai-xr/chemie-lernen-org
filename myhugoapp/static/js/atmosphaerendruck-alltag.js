@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /**
  * Atmosphärendruck im Alltag - Interactive Simulations
  * Demonstrates atmospheric pressure in everyday situations

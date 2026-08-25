@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /**
  * Gas Law Calculator
  * Calculates with Boyle-Mariotte, Gay-Lussac, and Ideal Gas Law

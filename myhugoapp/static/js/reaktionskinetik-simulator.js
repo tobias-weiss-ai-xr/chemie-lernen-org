@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /**
  * Reaktionskinetik Simulator
  * Particle simulations and collision theory visualization
