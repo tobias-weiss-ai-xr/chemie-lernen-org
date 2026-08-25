@@ -41,13 +41,14 @@
   };
 
   var state = {
-    scope: 'all',
+    scope: 'curriculum',
     university: '',
     state: '',
     q: '',
     cy: null,
     allNodes: [],
     allEdges: [],
+    focusNodeId: null,
   };
 
   function escapeHtml(s) {
@@ -200,6 +201,94 @@
     if (panel) panel.style.display = 'block';
   }
 
+  function renderOverview(data) {
+    var el = document.getElementById('curricula-overview');
+    if (!el) return;
+    var states = (data && data.states) || [];
+    if (!states.length) {
+      el.innerHTML = '<div class="curricula-overview-empty">Keine Lehrpläne verfügbar.</div>';
+      return;
+    }
+    var html =
+      '<div class="curricula-ov-head">Lehrplan-Übersicht · ' +
+      (data.count || 0) +
+      ' Lehrpläne</div>';
+    html += '<div class="curricula-ov-list">';
+    states.forEach(function (st) {
+      html += '<div class="curricula-ov-state">';
+      html +=
+        '<button class="curricula-ov-state-head" type="button" data-state="' +
+        escapeHtml(st.state) +
+        '"><span class="curricula-ov-state-name">' +
+        escapeHtml(st.stateName || st.state) +
+        '</span><span class="curricula-ov-state-count">' +
+        st.curricula.length +
+        '</span></button>';
+      html += '<div class="curricula-ov-curricula">';
+      st.curricula.forEach(function (c) {
+        var meta = [];
+        if (c.grade) meta.push('Kl. ' + c.grade);
+        if (c.objectiveCount) meta.push(c.objectiveCount + ' LZ');
+        html +=
+          '<button class="curricula-ov-cur" type="button" data-state="' +
+          escapeHtml(st.state) +
+          '" data-slug="' +
+          escapeHtml(c.slug || '') +
+          '"><span class="curricula-ov-cur-name">' +
+          escapeHtml(c.schoolType || 'Lehrplan') +
+          '</span>' +
+          (meta.length
+            ? '<span class="curricula-ov-cur-meta">' + escapeHtml(meta.join(' · ')) + '</span>'
+            : '') +
+          '</button>';
+      });
+      html += '</div></div>';
+    });
+    html += '</div>';
+    el.innerHTML = html;
+
+    el.querySelectorAll('.curricula-ov-state-head').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        this.parentElement.classList.toggle('open');
+        focusState(this.getAttribute('data-state'), null, null);
+      });
+    });
+    el.querySelectorAll('.curricula-ov-cur').forEach(function (btn) {
+      btn.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        focusState(this.getAttribute('data-state'), null, this.getAttribute('data-slug'));
+      });
+    });
+  }
+
+  function loadCurriculaList() {
+    return fetch('/api/curricula/list', { signal: AbortSignal.timeout(10000) })
+      .then(function (r) {
+        return r.ok ? r.json() : { states: [] };
+      })
+      .then(renderOverview)
+      .catch(function () {
+        /* overview is optional */
+      });
+  }
+
+  function focusState(stateCode, school, slug) {
+    state.state = stateCode || '';
+    state.q = school || '';
+    var sel = document.getElementById('curricula-state-select');
+    if (sel) sel.value = stateCode || '';
+    var search = document.getElementById('curricula-search');
+    if (search) search.value = school || '';
+    if (state.scope !== 'curriculum') {
+      state.scope = 'curriculum';
+      document.querySelectorAll('.curricula-scope-btn').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-scope') === 'curriculum');
+      });
+    }
+    state.focusNodeId = slug ? 'cur:' + slug : null;
+    reload();
+  }
+
   function renderGraph(data) {
     var container = document.getElementById('curricula-graph');
     if (!container) return;
@@ -322,6 +411,15 @@
     state.cy.on('tap', function (evt) {
       if (evt.target === state.cy) renderDetail(null);
     });
+
+    if (state.focusNodeId) {
+      var fn = state.cy.getElementById(state.focusNodeId);
+      if (fn && fn.length) {
+        state.cy.animate({ center: { eles: fn }, zoom: 1.25 }, { duration: 350 });
+        renderDetail(fn);
+      }
+      state.focusNodeId = null;
+    }
   }
 
   function resetHighlight() {
@@ -481,6 +579,7 @@
       tpl.remove();
     }
     wireControls();
+    loadCurriculaList();
     if (skeleton) skeleton.style.display = 'none';
     loadMeta()
       .then(function (meta) {

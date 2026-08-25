@@ -94,6 +94,39 @@
   border: 1px solid rgba(0,0,0,0.15);
 }
 
+/* Curriculum overview list */
+.curricula-overview {
+  margin-bottom: 1rem; padding: 0.75rem 1rem;
+  background: var(--bg-card, #f8f9fa);
+  border: 1px solid var(--border-color, #e0e0e0); border-radius: 8px;
+}
+.curricula-ov-head { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem; color: #7b1fa2; }
+.curricula-ov-list { display: flex; flex-direction: column; gap: 2px; max-height: 360px; overflow-y: auto; }
+.curricula-ov-state { border-bottom: 1px solid var(--border-color, #eee); }
+.curricula-ov-state:last-child { border-bottom: none; }
+.curricula-ov-state-head {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  background: none; border: none; cursor: pointer; padding: 0.4rem 0.2rem;
+  font-size: 0.9rem; color: var(--text-primary, #333); text-align: left;
+}
+.curricula-ov-state-head:hover { color: #9b59b6; }
+.curricula-ov-state-count {
+  background: #9b59b6; color: #fff; font-size: 0.7rem; font-weight: 700;
+  border-radius: 10px; padding: 1px 7px; min-width: 20px; text-align: center;
+}
+.curricula-ov-curricula { display: none; flex-direction: column; padding: 0 0 0.4rem 1rem; gap: 2px; }
+.curricula-ov-state.open .curricula-ov-curricula { display: flex; }
+.curricula-ov-cur {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+  background: var(--bg-input, #fff); border: 1px solid var(--border-color, #ddd);
+  border-radius: 6px; padding: 0.35rem 0.6rem; cursor: pointer; font-size: 0.84rem;
+  color: var(--text-primary, #333); text-align: left;
+}
+.curricula-ov-cur:hover { border-color: #9b59b6; background: #f3e8ff; }
+.curricula-ov-cur-name { font-weight: 500; }
+.curricula-ov-cur-meta { color: var(--text-muted, #888); font-size: 0.76rem; }
+.curricula-overview-empty { color: var(--text-muted, #888); font-size: 0.85rem; }
+
 /* Loading / empty states */
 .curricula-loading, .empty-state {
   text-align: center; padding: 3rem 1rem; color: var(--text-muted, #888);
@@ -132,6 +165,14 @@
     background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
     background-size: 200% 100%;
   }
+  .curricula-overview { background: #2a2a2a; border-color: #444; }
+  .curricula-ov-head { color: #ce93d8; }
+  .curricula-ov-state { border-bottom-color: #333; }
+  .curricula-ov-state-head { color: #e0e0e0; }
+  .curricula-ov-state-head:hover { color: #bb86fc; }
+  .curricula-ov-cur { background: #333; border-color: #555; color: #e0e0e0; }
+  .curricula-ov-cur:hover { border-color: #bb86fc; background: #3a2060; }
+  .curricula-ov-cur-meta { color: #999; }
 }
 
 /* Responsive */
@@ -176,12 +217,13 @@
 {{ end }}
 
 {{ define "js" }}
+<div id="curricula-overview" class="curricula-overview" aria-label="Lehrplan-Übersicht"></div>
 <div id="curricula-toolbar-template" hidden>
   <div class="curricula-toolbar">
     <div class="curricula-scope-group" role="group" aria-label="Ansicht">
-      <button class="curricula-scope-btn active" data-scope="all" type="button">Alle</button>
+      <button class="curricula-scope-btn" data-scope="all" type="button">Alle</button>
       <button class="curricula-scope-btn" data-scope="universities" type="button">Universitäten</button>
-      <button class="curricula-scope-btn" data-scope="curriculum" type="button">Lehrpläne</button>
+      <button class="curricula-scope-btn active" data-scope="curriculum" type="button">Lehrpläne</button>
     </div>
     <select id="curricula-state-select" aria-label="Bundesland filtern">
       <option value="">Alle Bundesländer</option>
@@ -211,5 +253,5 @@
     <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#795548"></span>Inhalt</span>
   </div>
 </div>
-<script src="{{ "/js/curricula-index.js" | relURL }}?v=3"></script>
+<script src="{{ "/js/curricula-index.js" | relURL }}?v=4"></script>
 {{ end }}

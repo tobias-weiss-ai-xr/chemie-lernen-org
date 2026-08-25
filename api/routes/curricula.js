@@ -79,6 +79,77 @@ router.get('/api/curricula/states', async (req, res) => {
 });
 
 /**
+ * GET /api/curricula/list
+ * All curricula grouped by state — powers the always-visible overview
+ * sidebar on the Lehrpläne page.
+ */
+router.get('/api/curricula/list', async (req, res) => {
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+    const result = await session.run(
+      `MATCH (c:Curriculum)
+       OPTIONAL MATCH (c)-[:HAS_TOPIC]->(t:Topic)
+       OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)
+       WITH c, count(DISTINCT t) AS topicCount, count(DISTINCT lo) AS objectiveCount
+       RETURN c.state_abbr AS state, c.state AS stateName, c.slug AS slug,
+              c.school_type AS schoolType, c.grade AS grade,
+              topicCount, objectiveCount
+       ORDER BY c.state_abbr, c.school_type`
+    );
+    await session.close();
+    const map = new Map();
+    result.records.forEach((r) => {
+      const state = r.get('state');
+      if (!map.has(state)) {
+        map.set(state, { state, stateName: r.get('stateName'), curricula: [] });
+      }
+      map.get(state).curricula.push({
+        slug: r.get('slug'),
+        schoolType: r.get('schoolType'),
+        grade: r.get('grade'),
+        topicCount: toNumberSafe(r.get('topicCount')),
+        objectiveCount: toNumberSafe(r.get('objectiveCount')),
+      });
+    });
+    const states = Array.from(map.values());
+    res.json({
+      source: 'neo4j',
+      states,
+      count: states.reduce((s, st) => s + st.curricula.length, 0),
+    });
+  } catch (err) {
+    logger.error({ err: err, message: err.message || String(err) }, '[curricula/list] Neo4j error');
+    try {
+      const fb = getFallbackData();
+      const map = new Map();
+      (fb.curricula || []).forEach((c) => {
+        const st = c.curriculumMeta && c.curriculumMeta.state;
+        if (!st) return;
+        if (!map.has(st)) map.set(st, { state: st, stateName: st, curricula: [] });
+        map.get(st).curricula.push({
+          slug: c.name,
+          schoolType: c.curriculumMeta.school_type,
+          grade: c.curriculumMeta.grade,
+          topicCount: 0,
+          objectiveCount: c.curriculumMeta.objective_count || 0,
+        });
+      });
+      res.json({
+        source: 'fallback',
+        states: Array.from(map.values()),
+        count: fb.curricula.length,
+      });
+    } catch {
+      res.status(503).json({ error: 'Curriculum list unavailable' });
+    }
+  }
+});
+
+/**
  * GET /api/curricula/topics
  */
 router.get('/api/curricula/topics', async (req, res) => {
