@@ -126,6 +126,8 @@
 .curricula-ov-cur-name { font-weight: 500; }
 .curricula-ov-cur-meta { color: var(--text-muted, #888); font-size: 0.76rem; }
 .curricula-overview-empty { color: var(--text-muted, #888); font-size: 0.85rem; }
+.curricula-ov-cur.selected { border-color: #7b1fa2; background: #f3e8ff; font-weight: 600; }
+.curricula-ov-state-head.selected { color: #7b1fa2; font-weight: 700; }
 
 /* Loading / empty states */
 .curricula-loading, .empty-state {
@@ -173,6 +175,8 @@
   .curricula-ov-cur { background: #333; border-color: #555; color: #e0e0e0; }
   .curricula-ov-cur:hover { border-color: #bb86fc; background: #3a2060; }
   .curricula-ov-cur-meta { color: #999; }
+  .curricula-ov-cur.selected { border-color: #bb86fc; background: #3a2060; }
+  .curricula-ov-state-head.selected { color: #bb86fc; }
 }
 
 /* Responsive */
@@ -253,5 +257,5 @@
     <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#795548"></span>Inhalt</span>
   </div>
 </div>
-<script src="{{ "/js/curricula-index.js" | relURL }}?v=4"></script>
+<script src="{{ "/js/curricula-index.js" | relURL }}?v=5"></script>
 {{ end }}

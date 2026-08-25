@@ -44,6 +44,7 @@
     scope: 'curriculum',
     university: '',
     state: '',
+    curriculum: '',
     q: '',
     cy: null,
     allNodes: [],
@@ -75,6 +76,7 @@
     qs.set('scope', state.scope);
     if (state.university) qs.set('university', state.university);
     if (state.state) qs.set('state', state.state);
+    if (state.curriculum) qs.set('curriculum', state.curriculum);
     qs.set('limit', '800');
     if (state.q) qs.set('q', state.q);
     return fetch('/api/curricula/graph?' + qs.toString(), {
@@ -215,7 +217,7 @@
       ' Lehrpläne</div>';
     html += '<div class="curricula-ov-list">';
     states.forEach(function (st) {
-      html += '<div class="curricula-ov-state">';
+      html += '<div class="curricula-ov-state open">';
       html +=
         '<button class="curricula-ov-state-head" type="button" data-state="' +
         escapeHtml(st.state) +
@@ -272,9 +274,29 @@
       });
   }
 
+  function markOverviewSelection(curSlug, stateCode) {
+    var ov = document.getElementById('curricula-overview');
+    if (!ov) return;
+    ov.querySelectorAll('.selected').forEach(function (n) {
+      n.classList.remove('selected');
+    });
+    var target = null;
+    if (curSlug) {
+      ov.querySelectorAll('.curricula-ov-cur').forEach(function (b) {
+        if (b.getAttribute('data-slug') === curSlug) target = b;
+      });
+    } else if (stateCode) {
+      ov.querySelectorAll('.curricula-ov-state-head').forEach(function (b) {
+        if (b.getAttribute('data-state') === stateCode) target = b;
+      });
+    }
+    if (target) target.classList.add('selected');
+  }
+
   function focusState(stateCode, school, slug) {
     state.state = stateCode || '';
     state.q = school || '';
+    state.curriculum = slug || '';
     var sel = document.getElementById('curricula-state-select');
     if (sel) sel.value = stateCode || '';
     var search = document.getElementById('curricula-search');
@@ -286,6 +308,7 @@
       });
     }
     state.focusNodeId = slug ? 'cur:' + slug : null;
+    markOverviewSelection(slug || null, slug ? null : stateCode || null);
     reload();
   }
 
@@ -357,6 +380,14 @@
           style: { 'background-color': NODE_COLORS.curriculum },
         },
         {
+          selector: 'node:selected',
+          style: {
+            'border-width': 4,
+            'border-color': '#2c3e50',
+            'border-opacity': 1,
+          },
+        },
+        {
           selector: 'node[type = "topic"]',
           style: { 'background-color': NODE_COLORS.topic },
         },
@@ -415,6 +446,7 @@
     if (state.focusNodeId) {
       var fn = state.cy.getElementById(state.focusNodeId);
       if (fn && fn.length) {
+        fn.select();
         state.cy.animate({ center: { eles: fn }, zoom: 1.25 }, { duration: 350 });
         renderDetail(fn);
       }
@@ -491,6 +523,7 @@
     scopeBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
         state.scope = this.getAttribute('data-scope');
+        state.curriculum = '';
         scopeBtns.forEach(function (b) {
           b.classList.toggle('active', b === btn);
         });
@@ -501,6 +534,7 @@
     if (stateSel) {
       stateSel.addEventListener('change', function () {
         state.state = this.value;
+        state.curriculum = '';
         reload();
       });
     }

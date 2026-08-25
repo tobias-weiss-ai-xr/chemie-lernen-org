@@ -748,6 +748,7 @@ router.get('/api/curricula/graph', async (req, res) => {
   const state = String(req.query.state || '')
     .trim()
     .toUpperCase();
+  const curriculum = String(req.query.curriculum || '').trim();
   const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 500, 50), 1500);
   const q = String(req.query.q || '')
     .trim()
@@ -836,8 +837,12 @@ router.get('/api/curricula/graph', async (req, res) => {
 
     // ── Query 2: Curriculum → Topic → SubTopic (+ objectives, capped) ──
     if (scope !== 'universities') {
-      const curWhere = state ? 'WHERE c.state_abbr = $state' : '';
-      const curParams = state ? { state } : {};
+      const curWhere = curriculum
+        ? 'WHERE c.slug = $curriculum'
+        : state
+          ? 'WHERE c.state_abbr = $state'
+          : '';
+      const curParams = curriculum ? { curriculum } : state ? { state } : {};
       const r2 = await session.run(
         `MATCH (c:Curriculum)-[:HAS_TOPIC]->(t:Topic)
          ${curWhere}
