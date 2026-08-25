@@ -13,8 +13,8 @@
  * Safe to re-run: skips either step if already applied. Exits non-zero only if
  * the webpack.config.js structure changed and the patch can no longer apply.
  */
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 const CONFIG = '/code/webpack.config.js';
 const PUBLIC_DIR = '/code/src/public';
