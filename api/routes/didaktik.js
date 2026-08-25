@@ -23,206 +23,184 @@ const logger = pino({
 });
 
 /**
- * GET /api/didaktik
- *
- * Two modes:
- * - ?topic=<slug>&state=<code> → didactic teaching tips mode
- * - ?institution=, ?search=, ?limit= → guidelines list mode
+ * Run a Neo4j query, returning { records: [] } on failure instead of throwing.
+ * Centralises the repeated try/catch-with-logger pattern used by the tips handler.
  */
-router.get('/api/didaktik', async (req, res) => {
-  const topic = (req.query.topic || '').trim().toLowerCase();
+async function safeSessionRun(session, query, params, label) {
+  try {
+    return await session.run(query, params);
+  } catch (err) {
+    logger.warn({ err, message: err.message || String(err) }, `[didaktik] ${label} query failed`);
+    return { records: [] };
+  }
+}
 
-  // ── Mode 2: Didactic teaching tips (when topic param is present) ──
-  if (topic) {
-    var stateCode = (req.query.state || '').trim().toUpperCase();
-
-    try {
-      var driver = getNeo4jDriver();
-      var session = driver.session({
-        database: NEO4J_DATABASE,
-        defaultAccessMode: neo4j.session.READ,
-      });
-
-      var result;
-      var curriculumResult;
-      var teachingTips = [];
-
-      try {
-        // 1. Query LearningObjective nodes matching topic
-        var query = `MATCH (lo:LearningObjective)
-          MATCH (t:Topic)-[:HAS_LEARNING_OBJECTIVE]->(lo)
-          WHERE t.slug CONTAINS $topic OR toLower(t.title) CONTAINS $topic
-          OPTIONAL MATCH (c:Curriculum)-[:HAS_TOPIC]->(t)
-          RETURN lo.text AS objectiveText,
-                 t.title AS topicTitle, t.slug AS topicSlug,
-                 c.state_abbr AS state, c.school_type AS schoolType,
-                 t.grade AS grade
-          ORDER BY c.state_abbr, t.grade
-          LIMIT 100`;
-
-        result = await session.run(query, { topic: topic });
-      } catch (queryErr) {
-        logger.warn(
-          { err: queryErr, message: queryErr.message || String(queryErr) },
-          '[didaktik] LearningObjective query failed'
-        );
-        result = { records: [] };
-      }
-
-      // 2. Get curricula context for the matching state
-      if (stateCode) {
-        try {
-          curriculumResult = await session.run(
-            `MATCH (c:Curriculum {state_abbr: $state})
-             OPTIONAL MATCH (c)-[:HAS_TOPIC]->(t:Topic)
-             OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)
-             RETURN c.slug AS curriculumSlug, c.school_type AS schoolType,
-                    t.title AS topicTitle, t.grade AS grade,
-                    collect(DISTINCT lo.text) AS objectives
-             ORDER BY t.grade, t.title
-             LIMIT 50`,
-            { state: stateCode }
-          );
-        } catch (currErr) {
-          logger.warn(
-            { err: currErr, message: currErr.message || String(currErr) },
-            '[didaktik] Curriculum query failed'
-          );
-          curriculumResult = { records: [] };
-        }
-      } else {
-        curriculumResult = { records: [] };
-      }
-
-      // 3. If no LearningObjective results, search SubTopic nodes by name similarity
-      if (result.records.length === 0) {
-        try {
-          var subTopicResult = await session.run(
-            `MATCH (st:SubTopic)
-             WHERE toLower(st.title) CONTAINS $topic
-             OPTIONAL MATCH (t:Topic)-[:HAS_SUB_TOPIC]->(st)
-             OPTIONAL MATCH (c:Curriculum)-[:HAS_TOPIC]->(t)
-             RETURN st.title AS subTopicTitle,
-                    t.title AS topicTitle, t.slug AS topicSlug,
-                    c.state_abbr AS state, t.grade AS grade
-             LIMIT 20`,
-            { topic: topic }
-          );
-          for (var si = 0; si < subTopicResult.records.length; si++) {
-            var sr = subTopicResult.records[si];
-            teachingTips.push({
-              subTopic: sr.get('subTopicTitle'),
-              topicTitle: sr.get('topicTitle'),
-              state: sr.get('state'),
-              grade: sr.get('grade'),
-            });
-          }
-        } catch (subErr) {
-          logger.warn(
-            { err: subErr, message: subErr.message || String(subErr) },
-            '[didaktik] SubTopic query failed'
-          );
-        }
-      }
-
-      await session.close();
-
-      // Build response
-      var objectives = [];
-      var curriculaMap = {};
-
-      for (var ri = 0; ri < result.records.length; ri++) {
-        var rec = result.records[ri];
-        var objText = rec.get('objectiveText');
-        if (objText) {
-          objectives.push({
-            text: objText,
-            topicTitle: rec.get('topicTitle'),
-            topicSlug: rec.get('topicSlug'),
-            state: rec.get('state'),
-            schoolType: rec.get('schoolType'),
-            grade: rec.get('grade'),
-          });
-        }
-        var recState = rec.get('state');
-        if (recState && !curriculaMap[recState]) {
-          curriculaMap[recState] = {
-            state: recState,
-            topicTitle: rec.get('topicTitle'),
-            grade: rec.get('grade'),
-            schoolType: rec.get('schoolType'),
-          };
-        }
-      }
-
-      if (curriculumResult && curriculumResult.records.length > 0) {
-        for (var ci = 0; ci < curriculumResult.records.length; ci++) {
-          var cr = curriculumResult.records[ci];
-          var crState = cr.get('curriculumSlug');
-          if (crState && !curriculaMap[crState]) {
-            curriculaMap[crState] = {
-              state: crState,
-              schoolType: cr.get('schoolType'),
-              topicTitle: cr.get('topicTitle'),
-              grade: cr.get('grade'),
-            };
-          }
-        }
-      }
-
-      var curricula = Object.keys(curriculaMap).map(function (k) {
-        return curriculaMap[k];
-      });
-
-      if (teachingTips.length === 0 && objectives.length === 0) {
-        teachingTips = [
-          {
-            note: 'Keine spezifischen didaktischen Hinweise für "' + topic + '" gefunden.',
-            suggestion:
-              'Versuche einen allgemeineren Themenbegriff oder überprüfe die Schreibweise.',
-          },
-        ];
-      }
-
-      res.json({
-        topic: topic,
-        state: stateCode || null,
-        objectives: objectives,
-        curricula: curricula,
-        teachingTips: teachingTips,
-        count: {
-          objectives: objectives.length,
-          curricula: curricula.length,
-          tips: teachingTips.length,
-        },
-      });
-    } catch (err) {
-      logger.error({ err: err, message: err.message || String(err) }, '[didaktik] Error');
-      res.json({
-        topic: topic,
-        state: stateCode || null,
-        objectives: [],
-        curricula: [],
-        teachingTips: [
-          {
-            note: 'Didaktische Datenbank nicht verfügbar.',
-            suggestion: 'Bitte versuche es später erneut.',
-          },
-        ],
-        count: { objectives: 0, curricula: 0, tips: 1 },
+/** Map LearningObjective records into objectives + curricula index. */
+function mapObjectives(records) {
+  const objectives = [];
+  const curriculaMap = {};
+  for (let ri = 0; ri < records.length; ri++) {
+    const rec = records[ri];
+    const objText = rec.get('objectiveText');
+    if (objText) {
+      objectives.push({
+        text: objText,
+        topicTitle: rec.get('topicTitle'),
+        topicSlug: rec.get('topicSlug'),
+        state: rec.get('state'),
+        schoolType: rec.get('schoolType'),
+        grade: rec.get('grade'),
       });
     }
-    return;
+    const recState = rec.get('state');
+    if (recState && !curriculaMap[recState]) {
+      curriculaMap[recState] = {
+        state: recState,
+        topicTitle: rec.get('topicTitle'),
+        grade: rec.get('grade'),
+        schoolType: rec.get('schoolType'),
+      };
+    }
   }
+  return { objectives, curriculaMap };
+}
 
-  // ── Mode 1: Guidelines list (default, when no topic param) ──
+/** Merge Curriculum records into an existing curricula index (mutates curriculaMap). */
+function mergeCurricula(curriculumResult, curriculaMap) {
+  if (!curriculumResult || curriculumResult.records.length === 0) return;
+  for (let ci = 0; ci < curriculumResult.records.length; ci++) {
+    const cr = curriculumResult.records[ci];
+    const crState = cr.get('curriculumSlug');
+    if (crState && !curriculaMap[crState]) {
+      curriculaMap[crState] = {
+        state: crState,
+        schoolType: cr.get('schoolType'),
+        topicTitle: cr.get('topicTitle'),
+        grade: cr.get('grade'),
+      };
+    }
+  }
+}
+
+/** Mode 2: didactic teaching tips for a topic (with optional state context). */
+async function handleDidacticTips(req, res, topic) {
+  const stateCode = (req.query.state || '').trim().toUpperCase();
+
+  let driver;
+  let session;
+  try {
+    driver = getNeo4jDriver();
+    session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+
+    const learningQuery = `MATCH (lo:LearningObjective)
+      MATCH (t:Topic)-[:HAS_LEARNING_OBJECTIVE]->(lo)
+      WHERE t.slug CONTAINS $topic OR toLower(t.title) CONTAINS $topic
+      OPTIONAL MATCH (c:Curriculum)-[:HAS_TOPIC]->(t)
+      RETURN lo.text AS objectiveText,
+             t.title AS topicTitle, t.slug AS topicSlug,
+             c.state_abbr AS state, c.school_type AS schoolType,
+             t.grade AS grade
+      ORDER BY c.state_abbr, t.grade
+      LIMIT 100`;
+    const result = await safeSessionRun(session, learningQuery, { topic }, 'LearningObjective');
+
+    let curriculumResult = { records: [] };
+    if (stateCode) {
+      const curriculumQuery = `MATCH (c:Curriculum {state_abbr: $state})
+         OPTIONAL MATCH (c)-[:HAS_TOPIC]->(t:Topic)
+         OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)
+         RETURN c.slug AS curriculumSlug, c.school_type AS schoolType,
+                t.title AS topicTitle, t.grade AS grade,
+                collect(DISTINCT lo.text) AS objectives
+         ORDER BY t.grade, t.title
+         LIMIT 50`;
+      curriculumResult = await safeSessionRun(
+        session,
+        curriculumQuery,
+        { state: stateCode },
+        'Curriculum'
+      );
+    }
+
+    const teachingTips = [];
+    if (result.records.length === 0) {
+      const subTopicQuery = `MATCH (st:SubTopic)
+         WHERE toLower(st.title) CONTAINS $topic
+         OPTIONAL MATCH (t:Topic)-[:HAS_SUB_TOPIC]->(st)
+         OPTIONAL MATCH (c:Curriculum)-[:HAS_TOPIC]->(t)
+         RETURN st.title AS subTopicTitle,
+                t.title AS topicTitle, t.slug AS topicSlug,
+                c.state_abbr AS state, t.grade AS grade
+         LIMIT 20`;
+      const subTopicResult = await safeSessionRun(session, subTopicQuery, { topic }, 'SubTopic');
+      for (let si = 0; si < subTopicResult.records.length; si++) {
+        const sr = subTopicResult.records[si];
+        teachingTips.push({
+          subTopic: sr.get('subTopicTitle'),
+          topicTitle: sr.get('topicTitle'),
+          state: sr.get('state'),
+          grade: sr.get('grade'),
+        });
+      }
+    }
+
+    const { objectives, curriculaMap } = mapObjectives(result.records);
+    mergeCurricula(curriculumResult, curriculaMap);
+    const curricula = Object.keys(curriculaMap).map((k) => curriculaMap[k]);
+
+    if (teachingTips.length === 0 && objectives.length === 0) {
+      teachingTips.push({
+        note: 'Keine spezifischen didaktischen Hinweise für "' + topic + '" gefunden.',
+        suggestion: 'Versuche einen allgemeineren Themenbegriff oder überprüfe die Schreibweise.',
+      });
+    }
+
+    res.json({
+      topic,
+      state: stateCode || null,
+      objectives,
+      curricula,
+      teachingTips,
+      count: {
+        objectives: objectives.length,
+        curricula: curricula.length,
+        tips: teachingTips.length,
+      },
+    });
+  } catch (err) {
+    logger.error({ err, message: err.message || String(err) }, '[didaktik] Error');
+    res.json({
+      topic,
+      state: stateCode || null,
+      objectives: [],
+      curricula: [],
+      teachingTips: [
+        {
+          note: 'Didaktische Datenbank nicht verfügbar.',
+          suggestion: 'Bitte versuche es später erneut.',
+        },
+      ],
+      count: { objectives: 0, curricula: 0, tips: 1 },
+    });
+  } finally {
+    if (session) await session.close();
+  }
+}
+
+/** Mode 1: guidelines list (default, when no topic param). */
+async function handleGuidelinesList(req, res) {
   const institution = (req.query.institution || '').trim();
   const search = (req.query.search || '').toLowerCase().trim();
   const limit = Math.min(parseInt(req.query.limit) || 200, 500);
 
+  let driver;
+  let session;
   try {
-    const driver = getNeo4jDriver();
-    const session = driver.session({
+    driver = getNeo4jDriver();
+    session = driver.session({
       database: NEO4J_DATABASE,
       defaultAccessMode: neo4j.session.READ,
     });
@@ -252,7 +230,6 @@ router.get('/api/didaktik', async (req, res) => {
        LIMIT ${limit}`,
       params
     );
-    await session.close();
     const items = result.records.map((r) => ({
       name: r.get('name'),
       title: r.get('title'),
@@ -263,9 +240,17 @@ router.get('/api/didaktik', async (req, res) => {
     }));
     res.json({ source: 'neo4j', items, count: items.length });
   } catch (err) {
-    logger.error({ err: err, message: err.message || String(err) }, '[didaktik] Neo4j error');
+    logger.error({ err, message: err.message || String(err) }, '[didaktik] Neo4j error');
     res.status(503).json({ error: 'Didaktik data unavailable' });
+  } finally {
+    if (session) await session.close();
   }
+}
+
+router.get('/api/didaktik', async (req, res) => {
+  const topic = (req.query.topic || '').trim().toLowerCase();
+  if (topic) return handleDidacticTips(req, res, topic);
+  return handleGuidelinesList(req, res);
 });
 
 export default router;

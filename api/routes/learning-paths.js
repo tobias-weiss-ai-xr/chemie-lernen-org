@@ -157,6 +157,62 @@ router.get('/api/learning-paths/progress', requireAuth, async (req, res) => {
 /**
  * GET /api/learning-paths/:slug
  */
+
+/**
+ * Insert an objective node into the topic map, deduplicating by LO slug.
+ * Mutates `topicMap` and `seenLOs`.
+ */
+function addObjective(topicMap, seenLOs, lo, preReqIds, topic, subtopic, cProps) {
+  if (!lo) return;
+  const loId = lo.properties.slug || '';
+  if (!loId || seenLOs.has(loId)) return;
+  seenLOs.add(loId);
+
+  const tId = topic ? topic.identity.toNumber() : 'schemaA';
+  if (!topicMap[tId]) {
+    topicMap[tId] = {
+      title: topic ? topic.properties.title || '' : cProps.title || 'Themen',
+      slug: topic ? topic.properties.slug || '' : cProps.slug || '',
+      subtopics: {},
+    };
+  }
+
+  const stId = subtopic
+    ? subtopic.identity.toNumber()
+    : 'stA-' + (subtopic && subtopic.properties.slug);
+  if (!topicMap[tId].subtopics[stId]) {
+    topicMap[tId].subtopics[stId] = {
+      title: subtopic ? subtopic.properties.title || '' : '',
+      slug: subtopic ? subtopic.properties.slug || '' : '',
+      objectives: [],
+    };
+  }
+
+  topicMap[tId].subtopics[stId].objectives.push({
+    id: loId,
+    text: lo.properties.text || lo.properties.title || '',
+    prerequisites: preReqIds.filter(Boolean).map(String),
+  });
+}
+
+/** Mark objectives completed based on the user's completed slug set. Mutates `tree`. */
+function markCompleted(tree, completedSlugs) {
+  let completedCount = 0;
+  for (const t of tree.topics) {
+    for (const st of t.subtopics) {
+      for (const obj of st.objectives) {
+        if (completedSlugs.has(obj.id)) {
+          obj.completed = true;
+          completedCount++;
+        } else {
+          obj.completed = false;
+        }
+      }
+    }
+  }
+  tree.completedObjectives = completedCount;
+}
+
 router.get('/api/learning-paths/:slug', async (req, res) => {
   try {
     const driver = getNeo4jDriver();
@@ -204,52 +260,19 @@ router.get('/api/learning-paths/:slug', async (req, res) => {
         const topicMap = {};
         const seenLOs = new Set();
 
-        const addObjective = (lo, preReqIds, topic, subtopic) => {
-          if (!lo) return;
-          const loId = lo.properties.slug || '';
-          if (!loId || seenLOs.has(loId)) return;
-          seenLOs.add(loId);
-
-          const tId = topic ? topic.identity.toNumber() : 'schemaA';
-          if (!topicMap[tId]) {
-            topicMap[tId] = {
-              title: topic ? topic.properties.title || '' : cProps.title || 'Themen',
-              slug: topic ? topic.properties.slug || '' : cProps.slug || '',
-              subtopics: {},
-            };
-          }
-
-          const stId = subtopic
-            ? subtopic.identity.toNumber()
-            : 'stA-' + (subtopic && subtopic.properties.slug);
-          if (!topicMap[tId].subtopics[stId]) {
-            topicMap[tId].subtopics[stId] = {
-              title: subtopic ? subtopic.properties.title || '' : '',
-              slug: subtopic ? subtopic.properties.slug || '' : '',
-              objectives: [],
-            };
-          }
-
-          topicMap[tId].subtopics[stId].objectives.push({
-            id: loId,
-            text: lo.properties.text || lo.properties.title || '',
-            prerequisites: preReqIds.filter(Boolean).map(String),
-          });
-        };
-
         for (const r of result.records) {
           // Schema A: direct subtopics
           const stA = r.get('stA');
           const loA = r.get('loA');
           if (stA && loA) {
-            addObjective(loA, r.get('prerequisitesA') || [], null, stA);
+            addObjective(topicMap, seenLOs, loA, r.get('prerequisitesA') || [], null, stA, cProps);
           }
           // Schema B: topic-nested subtopics
           const topic = r.get('t');
           const stB = r.get('stB');
           const loB = r.get('loB');
           if (topic && stB && loB) {
-            addObjective(loB, r.get('prerequisitesB') || [], topic, stB);
+            addObjective(topicMap, seenLOs, loB, r.get('prerequisitesB') || [], topic, stB, cProps);
           }
         }
 
@@ -278,20 +301,7 @@ router.get('/api/learning-paths/:slug', async (req, res) => {
         if (req.user?.id) {
           const g = getGamification(req.user.id);
           const completedSlugs = new Set(((g && g.completedObjectives) || []).map((o) => o.slug));
-          let completedCount = 0;
-          for (const t of tree.topics) {
-            for (const st of t.subtopics) {
-              for (const obj of st.objectives) {
-                if (completedSlugs.has(obj.id)) {
-                  obj.completed = true;
-                  completedCount++;
-                } else {
-                  obj.completed = false;
-                }
-              }
-            }
-          }
-          tree.completedObjectives = completedCount;
+          markCompleted(tree, completedSlugs);
         }
       }
     } finally {
