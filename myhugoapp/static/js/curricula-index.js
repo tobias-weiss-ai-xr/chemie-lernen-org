@@ -538,6 +538,7 @@
       btn.addEventListener('click', function () {
         state.scope = this.getAttribute('data-scope');
         state.curriculum = '';
+        markOverviewSelection(null, null);
         scopeBtns.forEach(function (b) {
           b.classList.toggle('active', b === btn);
         });
@@ -549,6 +550,7 @@
       stateSel.addEventListener('change', function () {
         state.state = this.value;
         state.curriculum = '';
+        markOverviewSelection(null, null);
         reload();
       });
     }

@@ -164,6 +164,28 @@ describe('GET /api/curricula/graph', () => {
     expect(curCall[1]).toEqual({ state: 'BY' });
   });
 
+  test('curriculum slug filter is passed to the curriculum query (P2 drill-down)', async () => {
+    mockSession.run.mockResolvedValue({ records: [curRecord] });
+    await fetch(`${baseURL}/api/curricula/graph?scope=curriculum&curriculum=BY-gymnasium&limit=100`);
+    const calls = mockSession.run.mock.calls;
+    const curCall = calls.find((c) => c[0].includes('(c:Curriculum)'));
+    expect(curCall).toBeDefined();
+    expect(curCall[1]).toEqual({ curriculum: 'BY-gymnasium' });
+    expect(curCall[0]).toContain('WHERE c.slug = $curriculum');
+  });
+
+  test('curriculum filter takes precedence over state filter (P2)', async () => {
+    mockSession.run.mockResolvedValue({ records: [curRecord] });
+    await fetch(
+      `${baseURL}/api/curricula/graph?scope=curriculum&state=BY&curriculum=BY-gymnasium&limit=100`
+    );
+    const calls = mockSession.run.mock.calls;
+    const curCall = calls.find((c) => c[0].includes('(c:Curriculum)'));
+    expect(curCall).toBeDefined();
+    expect(curCall[0]).toContain('WHERE c.slug = $curriculum');
+    expect(curCall[0]).not.toContain('c.state_abbr');
+  });
+
   test('university filter is passed to the universities query', async () => {
     mockSession.run.mockResolvedValue({ records: [uniRecord] });
     await fetch(`${baseURL}/api/curricula/graph?scope=universities&university=CAM&limit=100`);
