@@ -40,6 +40,31 @@ Two user-reported problems on the live site (verified 2026-08-26):
 Non-goals: redesigning the Neo4j schema, rewriting the whole API, changing article content pipeline
 output format.
 
+## Didactic review (durch die didaktische Brille)
+
+The graph is a learning tool, not a data-display tool. Reviewed against cognitive-load theory
+(Mayer), inclusion (WCAG), and curriculum practice, the following principles bind the design:
+
+1. **Kognitive Entlastung vor Vollständigkeit.** Für Lernende ist ein vollständiger Graph ein
+   Overload-Risiko, kein Gewinn. Keine Ansicht darf mehr Knoten zeigen, als auf einen Blick
+   erfassbar ist (Obergrenzen unten in „Erfolgskriterien“). Vollständigkeit gibt es nur in der
+   Textliste/A11y-Alternative, nie als Standardansicht.
+2. **Vorwissen explizit machen.** Lernen knüpft an Bekanntes an: Jede Konzeptseite und jeder
+   (Sub-)Graph muss **Voraussetzungen** sichtbar machen. `components` (BESTEHT_AUS) sind aus
+   didaktischer Sicht „Was muss ich vorher können?“, `relatedEntities` sind „Was hängt damit
+   zusammen?“, verknüpfte Artikel sind „Wo lerne ich es?“ — diese drei Ebenen werden in Layout und
+   Beschriftung **unterschieden**, nicht in einen Topf geworfen.
+3. **Wenige, gewichtete Verknüpfungen statt Tag-Wolken.** 50 „Verwandte Begriffe“-Chips
+   (aktuelle Obergrenze) überfordern. Kuratierte Top-N-Verknüpfungen mit Beziehungstyp sind
+   didaktisch wertvoller als alphabetische Masse.
+4. **Nicht nur Farbe.** Kategorie-Unterscheidung muss auch über Form (und Beschriftung der Legende)
+   funktionieren — für Rot-Grün-Fehlsichtige und kontrastschwache Umgebungen (Projektor).
+5. **Struktur vor Freiheit.** Für schwächere Lernende sind strukturierte Listen/Sequenzen der
+   bessere Einstieg; Graphen sind Zusatzansicht („Grafik anzeigen“), nie der alleinige Einstieg.
+   Das gilt besonders für die Lehrplan-Seiten (Standard = Landkarte, Graph = optional).
+6. **Lernziele sichtbar machen.** Die Lehrplan-Landkarte zeigt nicht nur Themen-Namen, sondern im
+   Idealfall die zugehörigen Lernziele/Operatoren, damit klar ist, was von Lernenden erwartet wird.
+
 ## Part A — Canonical slugs, dead-link prevention, redirects
 
 ### A1. Shared slug module (single source of truth)
@@ -110,8 +135,12 @@ assert that each legacy URL returns 200/301.
 
 ### B1. `/wissennetz/` becomes a topic hub (portal landing)
 
-New JS `myhugoapp/static/js/wissennetz-hub.js`:
+New JS `myhugoapp/static/js/wissennetz-hub.js`. Didactic additions to the plain portal idea:
 
+- Portal cards are ordered to communicate a **learning path**, not alphabetic convenience:
+  einfuehrung-chemie → aufbau-materie → saeuren-basen → redox-elektrochemie → … (explicit order
+  list in the module; the 13 sections of `content/themenbereiche/` are the source set). Alphabetic
+  sorting is only a fallback/didactic:false option.
 - Fetches entities + a lightweight fetch of article → themenbereich mapping (existing article API
   data already carries section/`themenbereich` info; see data flow) and renders **portal cards**,
   one per themenbereich section (the 13 sections under `content/themenbereiche/`): card shows the
@@ -135,8 +164,19 @@ Extend `d3-ego-graph.js` with `createTopicGraph(container, data, { topic, ... })
   direct neighbors (1 hop) capped at ~80 nodes, colored by category (existing `colorize`),
   legend re-used, same zoom/pan and click-to-entity behavior as today.
 - Cluster forces: charge by category group so stoff/reaktion/konzept/methode separate visibly.
+- **Category encoding by shape as well as color:** stoff = circle, konzept = square,
+  reaktion = diamond, methode = triangle, person/quelle = small hexagon, lernziel = cross. The
+  legend lists shape + color; `aria-label` already carries the category name (existing behavior),
+  so screen readers and color-blind users both get the discrimination.
+- **Directed prerequisite layout for ego-style views:** in `createTopicGraph` and the entity-page
+  ego graph, `components` (BESTEHT_AUS = „Voraussetzungen“) nodes are placed on the left side and
+  styled with a distinct edge dash/angle, `relatedEntities` on the right — the graph reads like a
+  dependency map (Vorwissen → Konzept → Vertiefung) instead of a random scatter. (Force layout
+  with x-anchoring per group; fallback to free layout when there are no components.)
 - Node labels: show on hover/drag and when the node count is small; the existing 15-char
-  truncation and text-alternative list for a11y stay.
+  truncation and text-alternative list for a11y stay. Labels are never abbreviations.
+- On the hub, an explicit hint line "Starte mit deinen Voraussetzungen (links im Graphen)" is
+  rendered once when a topic graph first opens (dismissible), reinforcing principle 2.
 - Tests: extend `d3-ego-graph.test.js` for the new topic-filter/grouping logic (vm DOM stubs).
 
 ### B3. Search-driven ego graphs
@@ -154,9 +194,16 @@ On each `/curricula/<state>/` page (layout `curricula-state`, data from
 - Render a **structured topic map**: topics grouped by grade level, each topic row shows its
   objective count, and concept chips (via `Slugs.entityUrl`) linking to `/entity/…` pages —
   guaranteed live by Part A.
+- **Lernziele statt nur Themen-Namen (principle 6):** where the API provides objective titles
+  (extend the lehrplan query to return collected `LearningObjective.title`s, e.g.
+  `collect(o.title)` capped at 8 per topic, in addition to `objectiveCount`), each topic row
+  expands to show them as a small bulleted list („Erwartungen/Lernziele“) with the KMK-operator
+  verb highlighted. If titles are unavailable (older API), the objective count is shown and the
+  block is collapsed by default — never a dead UI element.
 - Per topic, a **collapsible compact subgraph** ("Grafik anzeigen" toggle) using
   `createTopicGraph` with the topic's curriculum topics→entities assignment
-  (`COVERS_TOPIC` in the KG; fallback: keyword match) capped at ~30 nodes.
+  (`COVERS_TOPIC` in the KG; fallback: keyword match) capped at ~30 nodes, with the same
+  Voraussetzungen-left layout as B2.
 - Klassische Liste bleibt die Standardansicht (seniorengerecht/ruhig); Graph ist eine optionale
   Zusatzansicht.
 
@@ -171,6 +218,31 @@ On each `/curricula/<state>/` page (layout `curricula-state`, data from
   `curriculumMeta` + topic data already returned.
 - Fallback: `data/kg_fallback.json` continues to serve hub/topic assignment when Neo4j is down;
   portal cards degrade to category buckets.
+
+## Entity pages: „Verwandte Begriffe“ und Voraussetzungen (didactic sharpening)
+
+Part A guarantees canonical URLs; this section sharpens information design on the entity detail
+page (inline script in `myhugoapp/layouts/entity/single.html`):
+
+- **Chip-Kappen:** „🔗 Verwandte Begriffe“ zeigt max. 10 Chips (Reihenfolge: `BESTEHT_AUS`- und
+  `MENTIONS`-Verknüpfungen zuerst, dann nach `weight` wenn vorhanden, sonst alphabetisch).
+  Verknüpfte Artikel-Liste weiterhin max. 5 (unverändert). „Quellen“ max. 8.
+- **Ebenen trennen:** Die bisherige „🧩 Bestandteile“-Karte wird zu „✅ Voraussetzungen“ („Was
+  musst du vorher können?“) und bleibt oberhalb von „🔗 Verwandte Begriffe“; unterschiedliche
+  Icon+Hintergrundfarbe, damit die drei Ebenen (Voraussetzungen / verknüpft / Artikel) nicht
+  verwechselt werden.
+- „Verwandte Begriffe“-Chips zeigen bei hover einen tooltip mit Beziehungstyp
+  („hängt zusammen“, „besteht aus“, „wird erwähnt in“). Implementierung über `title`-Attribut,
+  kein zusätzliches JS.
+
+## Erfolgskriterien (Usability, messbar)
+
+1. Von `/wissennetz/` bis zu einer Konzeptseite: **max. 3 Klicks** (Hub → Portal → Subgraph-Knoten
+   → Entity = 3; direkte Suche = 1).
+2. Knoten pro Standardansicht: Portal-Subgraph ≤ 80, Such-Ego-Graph ≤ 30, Lehrplan-Subgraph ≤ 30.
+3. „Verwandte Begriffe“-Chips ≤ 10 pro Entity; Voraussetzungen-Karte ≤ 10 Einträge.
+4. Link-Audit: 0 tote `/entity/`-Links im gebauten Site-Tree (CI-fehlerhaft).
+5. Alle Kategorien sind zusätzlich zur Farbe über Form unterscheidbar; Legende dokumentiert beide.
 
 ## Error handling
 
@@ -190,6 +262,9 @@ On each `/curricula/<state>/` page (layout `curricula-state`, data from
   labels/legend unchanged behavior.
 - `tests/kg-data-quality.test.js` (extend): entity payload now also validated for `themenbereiche`
   and `topics` array types.
+- `tests/wissennetz-hub.test.js` (new, vm DOM stubs): portal ordering (learning-path order,
+  fallback alpha), chip caps (≤10 Verwandte ≤8 Quellen), Voraussetzungen-above-Verwandte DOM
+  placement, shape-per-category mapping used by the renderer, dismissible hint text.
 - Existing suite (JS node:test + any Python) stays green; CI job runs the new audit against the
   built `public/`.
 
@@ -199,3 +274,5 @@ On each `/curricula/<state>/` page (layout `curricula-state`, data from
   already regenerates them from `kg_data.json`; Part A ensures their links are canonical.
 - The deployed API being older than `main` (observed: live `/api/kg-data` ignores `lehrplan=true`);
   verification step "deploy latest main and re-check" covers this operationally, no code change.
+- Fortschritts-Markierung („gelernt/offen“ pro Konzept, localStorage/Account) — wertvoll für
+  Selbsteinschätzung, aber eigenes Feature; als Follow-up notiert, nicht in dieser Runde.
