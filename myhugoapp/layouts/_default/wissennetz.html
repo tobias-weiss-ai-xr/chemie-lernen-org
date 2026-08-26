@@ -188,6 +188,7 @@
   </div>
 </div>
 
+<<<<<<< HEAD
 <script>
 var D3_LOADED = false;
 function loadD3AndEgoGraph() {
@@ -209,5 +210,17 @@ function loadD3AndEgoGraph() {
 }
 </script>
 <script src="{{ "/js/wissennetz-graph.js" | relURL }}"></script>
+=======
+<script src="{{ "/js/utils/slugs.js" | relURL }}"></script>
+<script src="{{ "/js/visualization/d3-ego-graph.js" | relURL }}"></script>
+<script src="{{ "/js/wissennetz-hub.js" | relURL }}"></script>
+<script>
+  // Part B: portal hub bootstraps the landing experience.
+  // slugs.js must precede d3-ego-graph.js (entityHref prefers globalThis.Slugs).
+  if (window.WissennetzHub && typeof window.WissennetzHub.init === 'function') {
+    window.WissennetzHub.init();
+  }
+</script>
+>>>>>>> 7333353c (feat(wissennetz): hub wiring — portals, search, Gesamtübersicht (Part B Task 3))
 
 {{ end }}

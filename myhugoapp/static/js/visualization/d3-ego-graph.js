@@ -132,8 +132,9 @@
 
   function getEdgeOpacity(relType) {
     return EDGE_OPACITY_MAIN[relType] !== undefined ? EDGE_OPACITY_MAIN[relType] : 0.15;
+  }
 
-// ── Category shape coding (Part B B2) ────────────────────────────
+  // ── Category shape coding (Part B B2) ────────────────────────────
   // Didactic principle „nicht nur Farbe“: every category also gets an own
   // shape (Stoff circle, Konzept square, Reaktion diamond, Methode triangle,
   // Person/Quelle hexagon, Lernziel cross). Rendering uses SVG <path> data
@@ -2041,7 +2042,7 @@
     buildSearchNodes: buildSearchNodes,
     shapeOf: shapeOf,
     nodePathD: nodePathD,
-    nodePathFor: nodePathFor,ssen layout (Part B Task 2))
+    nodePathFor: nodePathFor,
     colorize: colorize,
     labelize: labelize,
     slugify: slugify,

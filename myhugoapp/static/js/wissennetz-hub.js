@@ -565,6 +565,8 @@
                 cap: 80,
                 hintContainer: el('kg-hint'),
               });
+              var controls = el('kg-controls');
+              if (controls) controls.style.display = 'none';
               setBreadcrumb(SECTION_LABELS[section] || section);
             });
           }
@@ -592,8 +594,13 @@
           var fullBtn2 = el('kg-full-graph-btn');
           if (fullBtn2 && graph.createFullGraph) {
             fullBtn2.addEventListener('click', function () {
+              // Gesamtübersicht: repurposed category filter chips appear
+              var controls = el('kg-controls');
+              if (controls) controls.style.display = 'flex';
+              var p = el('kg-portals');
+              if (p) p.style.display = 'none';
               graph.createFullGraph(container, data, {
-                filterControls: el('kg-controls'),
+                filterControls: controls,
                 showLegend: true,
                 height: 700,
               });
@@ -633,8 +640,13 @@
   function renderPortalsFor() {
     var portals = el('kg-portals');
     var app = el('kg-app');
+    var controls = el('kg-controls');
     if (portals) portals.style.display = 'grid';
-    if (app) app.innerHTML = '';
+    if (controls) controls.style.display = 'none';
+    if (app) {
+      app.innerHTML =
+        '<p class="kg-empty">Wähle ein Themenportal oder suche nach einem Begriff, um den Graphen zu starten.</p>';
+    }
     setBreadcrumb('Wissensnetz');
   }
 
