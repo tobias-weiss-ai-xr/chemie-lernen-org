@@ -25,7 +25,7 @@
  */
 
 import neo4j from 'neo4j-driver';
-import { getPipeline, embed, embedBatch } from './embeddings.mjs.js';
+import { getPipeline, embedBatch } from './embeddings.mjs.js';
 
 const NEO4J_URI = process.env.NEO4J_URI || 'bolt://chemie-neo4j:7687';
 const NEO4J_USER = process.env.NEO4J_USER || 'neo4j';
