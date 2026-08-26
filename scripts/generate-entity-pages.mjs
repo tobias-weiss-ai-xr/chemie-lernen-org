@@ -163,20 +163,21 @@ async function main() {
     const category = entity.category || 'konzept';
     const articleCount = entity.articleCount || 0;
     const relatedCount = (entity.relatedEntities || []).length;
-    // Weight-sorted, safety-capped; the TEMPLATE applies the didactic chip
-    // caps per section (Quellen ≤ 8, Verwandte ≤ 10, KMK alle).
-    const relatedNames = (entity.relatedEntities || [])
+    // Weight-sorted; the TEMPLATE applies the didactic chip caps per section
+    // (Quellen ≤ 8, Verwandte ≤ 10, KMK alle). relatedSlugs must cover the
+    // FULL ref list (the template iterates the data list, not the capped
+    // frontmatter copy).
+    const relatedAll = (entity.relatedEntities || [])
       .map((r) =>
         typeof r === 'string'
           ? { name: r, weight: 0 }
           : { name: r.name, weight: r.weight || 0 }
       )
       .filter((r) => r.name)
-      .sort((a, b) => b.weight - a.weight)
-      .slice(0, 50)
-      .map((r) => r.name);
+      .sort((a, b) => b.weight - a.weight);
     const relatedSlugs = {};
-    for (const n of relatedNames) relatedSlugs[n] = slugify(n);
+    for (const r of relatedAll) relatedSlugs[r.name] = slugify(r.name);
+    const relatedNames = relatedAll.slice(0, 50).map((r) => r.name);
     const componentSlugs = {};
     for (const c of (entity.components || []).slice(0, 10)) {
       const cName = typeof c === 'string' ? c : c.name;

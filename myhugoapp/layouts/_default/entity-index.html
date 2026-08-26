@@ -666,7 +666,8 @@
   <div class="entity-skeleton-card"><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div><div class="entity-skeleton-line"></div></div>
 </div>
 
-<script>
+script src="{{ "/js/utils/slugs.js" | relURL }}"></script>
+script>
 var D3_LOADED = false;
 function loadD3AndEgoGraph() {
   if (D3_LOADED) return Promise.resolve();
@@ -691,5 +692,4 @@ function loadD3AndEgoGraph() {
      is Pagefind). Load BEFORE entity-index.js. -->
 <script defer src="https://unpkg.com/lunr@2.3.9/lunr.min.js"></script>
 <script src="{{ "/js/entity-index.js" | relURL }}?v=8"></script>
-
-{{ end }}
+<script src="{{ "/js/entity-index.js" | relURL }}?v=3"></script>{{ end }}

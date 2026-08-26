@@ -8,6 +8,9 @@
   var graphEl = document.getElementById('entity-graph');
 
   function toSlug(name) {
+    if (globalThis.Slugs && typeof globalThis.Slugs.slugify === 'function') {
+      return globalThis.Slugs.slugify(name);
+    }
     return name
       .toLowerCase()
       .replace(/[üÜ]/g, 'ue')

@@ -3,7 +3,6 @@ title: 'Biochemie'
 description: 'Chemische Prozesse in Lebewesen: Proteine, Enzyme, Kohlenhydrate, Fette und Nukleinsäuren'
 date: '2026-07-09'
 last_reviewed: '2026-07-09'
-<<<<<<< HEAD
 tags:
   - chemie
   - biochemie
@@ -12,12 +11,6 @@ interaktiv: false
 schwierigkeit: mittelstufe
 teilgebiet:
   - biochemie
-=======
-tags: ['chemie', 'biochemie', 'biologie']
-interaktiv: 'false'
-schwierigkeit: 'mittelstufe'
-teilgebiet: ['biochemie']
->>>>>>> 6b2eaee2 (fix(biochemie): valid YAML array syntax in themenbereich frontmatter)
 icon: '🧬'
 aliases:
   - /article/_index/

@@ -202,6 +202,18 @@
   background: #ffe0b2;
   border-color: #ffb74d;
 }
+.entity-tag-prereq {
+  background: #e8f5e9;
+  border-color: #a5d6a7;
+  color: #2e7d32;
+}
+.entity-tag-prereq:hover {
+  background: #c8e6c9;
+  border-color: #81c784;
+}
+.entity-card-prereq .entity-card-header {
+  color: #2e7d32;
+}
 
 /* Curriculum Panel */
 .entity-curriculum-panel {
@@ -530,6 +542,14 @@
     color: #81c784;
     border-color: #2e7d32;
   }
+  .entity-tag-prereq {
+    background: #1b3a24;
+    color: #a5d6a7;
+    border-color: #2e7d32;
+  }
+  .entity-card-prereq .entity-card-header {
+    color: #a5d6a7;
+  }
 }
   .entity-skeleton-card {
     background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
@@ -677,8 +697,8 @@
           <div class="entity-card-body">
             <div class="entity-rel-tags">
               {{ range $kmkRefs }}
-              {{ $rSlug := . | urlize }}
-              <a href="/entity/{{ $rSlug }}/" class="entity-tag entity-tag-kmk">{{ . }}</a>
+              {{ $rSlug := index $.Params.relatedSlugs . | default (. | urlize) }}
+              {{ if $rSlug }}<a href="/entity/{{ $rSlug }}/" class="entity-tag entity-tag-kmk" title="Didaktischer Standard">{{ . }}</a>{{ end }}
               {{ end }}
             </div>
           </div>
@@ -690,9 +710,23 @@
           <div class="entity-card-header">📚 Quellen</div>
           <div class="entity-card-body">
             <div class="entity-rel-tags">
-              {{ range $quelleRefs }}
-              {{ $rSlug := . | urlize }}
-              <a href="/entity/{{ $rSlug }}/" class="entity-tag entity-tag-quelle">{{ . }}</a>
+              {{ range first 8 $quelleRefs }}
+              {{ $rSlug := index $.Params.relatedSlugs . | default (. | urlize) }}
+              {{ if $rSlug }}<a href="/entity/{{ $rSlug }}/" class="entity-tag entity-tag-quelle" title="Quelle">{{ . }}</a>{{ end }}
+              {{ end }}
+            </div>
+          </div>
+        </div>
+        {{ end }}
+
+        {{ if $entity.components }}
+        <div class="entity-card entity-card-prereq">
+          <div class="entity-card-header">✅ Voraussetzungen</div>
+          <div class="entity-card-body">
+            <div class="entity-rel-tags">
+              {{ range first 10 $entity.components }}
+              {{ $cSlug := index $.Params.componentSlugs . }}
+              {{ if $cSlug }}<a href="/entity/{{ $cSlug }}/" class="entity-tag entity-tag-prereq" title="Voraussetzung / Bestandteil">{{ . }}</a>{{ else }}<span class="entity-tag entity-tag-prereq" title="Voraussetzung / Bestandteil">{{ . }}</span>{{ end }}
               {{ end }}
             </div>
           </div>
@@ -704,22 +738,9 @@
           <div class="entity-card-header">🔗 Verwandte Begriffe</div>
           <div class="entity-card-body">
             <div class="entity-rel-tags">
-              {{ range $otherRefs }}
-              {{ $rSlug := . | urlize }}
-              <a href="/entity/{{ $rSlug }}/" class="entity-tag">{{ . }}</a>
-              {{ end }}
-            </div>
-          </div>
-        </div>
-        {{ end }}
-
-        {{ if $entity.components }}
-        <div class="entity-card">
-          <div class="entity-card-header">🧩 Bestandteile</div>
-          <div class="entity-card-body">
-            <div class="entity-rel-tags">
-              {{ range $entity.components }}
-              <span class="entity-tag">{{ . }}</span>
+              {{ range first 10 $otherRefs }}
+              {{ $rSlug := index $.Params.relatedSlugs . | default (. | urlize) }}
+              {{ if $rSlug }}<a href="/entity/{{ $rSlug }}/" class="entity-tag" title="Verwandter Begriff">{{ . }}</a>{{ end }}
               {{ end }}
             </div>
           </div>
@@ -773,6 +794,7 @@
   <div id="entity-content" {{ if $canSSR }}style="display:none"{{ end }}></div>
 </div>
 
+<script src="{{ "/js/utils/slugs.js" | relURL }}"></script>
 <script>
 var D3_LOADED = false;
 function loadD3AndEgoGraph() {
@@ -792,14 +814,23 @@ function loadD3AndEgoGraph() {
     document.head.appendChild(d3Script);
   });
 }
-</script>
-<script>
+</script><script>
 (function () {
   var ssrContent = document.getElementById('entity-ssr-content');
   var isSSR = ssrContent && ssrContent.dataset.ssr === 'true';
 
   function esc(s) {
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // Canonical slugging — prefer the shared Slugs utility (single source of truth)
+  function slugFor(name) {
+    if (globalThis.Slugs && typeof globalThis.Slugs.slugify === 'function') {
+      return globalThis.Slugs.slugify(name);
+    }
+    return String(name).toLowerCase()
+      .replace(/[üÜ]/g, 'ue').replace(/[öÖ]/g, 'oe').replace(/[äÄ]/g, 'ae').replace(/ß/g, 'ss')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   }
 
   // ── SSR path: ego-graph only ────────────────────────────
@@ -829,9 +860,7 @@ function loadD3AndEgoGraph() {
           // Fuzzy slug matching
           var slug = window.location.pathname.split('/').filter(Boolean).pop();
           for (var i = 0; i < allEntities.length; i++) {
-            var eSlug = allEntities[i].name.toLowerCase()
-              .replace(/[üÜ]/g,'ue').replace(/[öÖ]/g,'oe').replace(/[äÄ]/g,'ae').replace(/ß/g,'ss')
-              .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+            var eSlug = slugFor(allEntities[i].name);
             if (eSlug === slug) {
               entity = allEntities[i];
               break;
@@ -873,9 +902,7 @@ function loadD3AndEgoGraph() {
     var allEntities = data.entities || [];
     for (var i = 0; i < allEntities.length; i++) {
       var eName = allEntities[i].name;
-      var eSlug = eName.toLowerCase()
-        .replace(/[üÜ]/g,'ue').replace(/[öÖ]/g,'oe').replace(/[äÄ]/g,'ae').replace(/ß/g,'ss')
-        .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+      var eSlug = slugFor(eName);
       if (eSlug === slug) {
         entity = allEntities[i];
         break;
@@ -994,10 +1021,8 @@ function loadD3AndEgoGraph() {
       html += '<div class="entity-card-body">';
       html += '<div class="entity-rel-tags">';
       for (var ki = 0; ki < kmkRefs.length; ki++) {
-        var kSlug = kmkRefs[ki].toLowerCase()
-          .replace(/[üÜ]/g,'ue').replace(/[öÖ]/g,'oe').replace(/[äÄ]/g,'ae').replace(/ß/g,'ss')
-          .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-        html += '<a href="/entity/' + esc(kSlug) + '/" class="entity-tag entity-tag-kmk">' + esc(kmkRefs[ki]) + '</a>';
+        var kSlug = slugFor(kmkRefs[ki]);
+        html += '<a href="/entity/' + esc(kSlug) + '/" class="entity-tag entity-tag-kmk" title="Didaktischer Standard">' + esc(kmkRefs[ki]) + '</a>';
       }
       html += '</div></div></div>';
     }
@@ -1008,11 +1033,9 @@ function loadD3AndEgoGraph() {
       html += '<div class="entity-card-header">📚 Quellen</div>';
       html += '<div class="entity-card-body">';
       html += '<div class="entity-rel-tags">';
-      for (var qi = 0; qi < quelleRefs.length; qi++) {
-        var qSlug = quelleRefs[qi].toLowerCase()
-          .replace(/[üÜ]/g,'ue').replace(/[öÖ]/g,'oe').replace(/[äÄ]/g,'ae').replace(/ß/g,'ss')
-          .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-        html += '<a href="/entity/' + esc(qSlug) + '/" class="entity-tag entity-tag-quelle">' + esc(quelleRefs[qi]) + '</a>';
+      for (var qi = 0; qi < Math.min(quelleRefs.length, 8); qi++) {
+        var qSlug = slugFor(quelleRefs[qi]);
+        html += '<a href="/entity/' + esc(qSlug) + '/" class="entity-tag entity-tag-quelle" title="Quelle">' + esc(quelleRefs[qi]) + '</a>';
       }
       html += '</div></div></div>';
     }
@@ -1023,23 +1046,22 @@ function loadD3AndEgoGraph() {
       html += '<div class="entity-card-header">🔗 Verwandte Begriffe</div>';
       html += '<div class="entity-card-body">';
       html += '<div class="entity-rel-tags">';
-      for (var oi = 0; oi < otherRefs.length; oi++) {
-        var oSlug = otherRefs[oi].toLowerCase()
-          .replace(/[üÜ]/g,'ue').replace(/[öÖ]/g,'oe').replace(/[äÄ]/g,'ae').replace(/ß/g,'ss')
-          .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-        html += '<a href="/entity/' + esc(oSlug) + '/" class="entity-tag">' + esc(otherRefs[oi]) + '</a>';
+      for (var oi = 0; oi < Math.min(otherRefs.length, 10); oi++) {
+        var oSlug = slugFor(otherRefs[oi]);
+        html += '<a href="/entity/' + esc(oSlug) + '/" class="entity-tag" title="Verwandter Begriff">' + esc(otherRefs[oi]) + '</a>';
       }
       html += '</div></div></div>';
     }
 
-    // Components
+    // Components → Voraussetzungen (links when a canonical page exists)
     if (entity.components && entity.components.length > 0) {
-      html += '<div class="entity-card">';
-      html += '<div class="entity-card-header">🧩 Bestandteile</div>';
+      html += '<div class="entity-card entity-card-prereq">';
+      html += '<div class="entity-card-header">✅ Voraussetzungen</div>';
       html += '<div class="entity-card-body">';
       html += '<div class="entity-rel-tags">';
-      for (var ci = 0; ci < entity.components.length; ci++) {
-        html += '<span class="entity-tag">' + esc(entity.components[ci]) + '</span>';
+      for (var ci = 0; ci < Math.min(entity.components.length, 10); ci++) {
+        var cSlug = slugFor(entity.components[ci]);
+        html += '<a href="/entity/' + esc(cSlug) + '/" class="entity-tag entity-tag-prereq" title="Voraussetzung / Bestandteil">' + esc(entity.components[ci]) + '</a>';
       }
       html += '</div></div></div>';
     }
