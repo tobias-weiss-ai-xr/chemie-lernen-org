@@ -113,16 +113,17 @@
     html += '<option value="">— Bundesland auswählen —</option>';
     if (statesData) {
       statesData.forEach(function (s) {
-        var label = STATE_NAMES[s.state] || s.stateName || s.state;
+        var st = s.state || s.state_abbr || s.stateName || '';
+        var label = STATE_NAMES[st] || s.stateName || st;
         html +=
           '<option value="' +
-          escapeHtml(s.state) +
+          escapeHtml(st) +
           '"' +
-          (selectedState === s.state ? ' selected' : '') +
+          (selectedState === st ? ' selected' : '') +
           '>' +
-          escapeHtml(s.state.toUpperCase() + ' – ' + label) +
+          escapeHtml((st || '?').toUpperCase() + ' – ' + label) +
           ' (' +
-          s.topicCount +
+          (s.topicCount || 0) +
           ' Themen)</option>';
       });
     }
