@@ -533,3 +533,228 @@ describe('D3EgoGraph — module isolation', () => {
     expect(keys).toEqual([]);
   });
 });
+
+// ════════════════════════════════════════════════════════════════════
+// Part B — shape coding, bounded topic graphs, directed Vorwissen
+// layout (x-anchored: components left, related right), ego multi-center
+// ════════════════════════════════════════════════════════════════════
+
+describe('D3EgoGraph.shapeOf (Part B)', () => {
+  test('maps every category to a distinguishable shape', () => {
+    expect(window.D3EgoGraph.shapeOf('stoff')).toBe('circle');
+    expect(window.D3EgoGraph.shapeOf('konzept')).toBe('square');
+    expect(window.D3EgoGraph.shapeOf('reaktion')).toBe('diamond');
+    expect(window.D3EgoGraph.shapeOf('methode')).toBe('triangle');
+    expect(window.D3EgoGraph.shapeOf('person')).toBe('hexagon');
+    expect(window.D3EgoGraph.shapeOf('quelle')).toBe('hexagon');
+    expect(window.D3EgoGraph.shapeOf('lernziel')).toBe('cross');
+    expect(window.D3EgoGraph.shapeOf('unknown')).toBe('circle');
+  });
+
+  test('nodePathD produces valid SVG path data for every shape', () => {
+    ['circle', 'square', 'diamond', 'triangle', 'hexagon', 'cross'].forEach((shape) => {
+      const d = window.D3EgoGraph.nodePathD(shape, 10);
+      expect(typeof d).toBe('string');
+      expect(d).toMatch(/^M/);
+      expect(d).toMatch(/Z$/);
+      expect(d).not.toContain('NaN');
+    });
+  });
+
+  test('nodePathFor resolves via category with a circle fallback', () => {
+    const d = window.D3EgoGraph.nodePathFor('stoff', 7);
+    expect(d).toMatch(/A7,7/);
+    const d2 = window.D3EgoGraph.nodePathFor('nope', 7);
+    expect(d2).toBe(d);
+  });
+});
+
+describe('D3EgoGraph.buildTopicNodes (Part B)', () => {
+  const DATA = {
+    entities: [
+      {
+        name: 'Säure',
+        category: 'konzept',
+        components: ['Base'],
+        relatedEntities: ['Salz', 'pH-Wert'],
+      },
+      { name: 'Base', category: 'konzept', components: [], relatedEntities: ['Wasser'] },
+      { name: 'Salz', category: 'stoff', components: [], relatedEntities: [] },
+      {
+        name: 'pH-Wert',
+        category: 'konzept',
+        components: ['Wasser'],
+        relatedEntities: ['Indikator'],
+      },
+      { name: 'Wasser', category: 'stoff', components: [], relatedEntities: ['Salz'] },
+      { name: 'Indikator', category: 'methode', components: [], relatedEntities: [] },
+      { name: 'Unwichtig', category: 'konzept', components: [], relatedEntities: [] },
+    ],
+    articles: [],
+  };
+
+  test('selects seed entities by canonical slug and keeps them all', () => {
+    const built = window.D3EgoGraph.buildTopicNodes(DATA, {
+      topic: 'Säure-Base-Reaktion',
+      topicSlugs: ['saeure', 'base'],
+      cap: 80,
+    });
+    const labels = built.nodes.map((n) => n.label);
+    expect(labels).toContain('Säure');
+    expect(labels).toContain('Base');
+    expect(labels).not.toContain('Unwichtig');
+  });
+
+  test('caps at the configured limit (seeds always included)', () => {
+    const built = window.D3EgoGraph.buildTopicNodes(DATA, {
+      topic: 'T',
+      topicSlugs: ['saeure', 'base', 'salz'],
+      cap: 5,
+    });
+    expect(built.nodes.length).toBeLessThanOrEqual(5);
+    for (const seed of ['Säure', 'Base', 'Salz']) {
+      expect(built.nodes.some((n) => n.label === seed)).toBe(true);
+    }
+  });
+
+  test('marks x-groups: components left, related right, seeds center', () => {
+    const built = window.D3EgoGraph.buildTopicNodes(DATA, {
+      topic: 'T',
+      topicSlugs: ['saeure'],
+      cap: 80,
+    });
+    const byLabel = Object.fromEntries(built.nodes.map((n) => [n.label, n]));
+    expect(byLabel['Säure'].xGroup).toBe('center');
+    expect(byLabel['Base'].xGroup).toBe('left'); // component of Säure
+    expect(byLabel['Salz'].xGroup).toBe('right'); // related of Säure
+    expect(byLabel['pH-Wert'].xGroup).toBe('right');
+  });
+
+  test('emits composition and related links from seeds', () => {
+    const built = window.D3EgoGraph.buildTopicNodes(DATA, {
+      topic: 'T',
+      topicSlugs: ['saeure'],
+      cap: 80,
+    });
+    const comp = built.links.filter((l) => l.type === 'composition');
+    const related = built.links.filter((l) => l.type === 'related');
+    expect(comp.length).toBeGreaterThanOrEqual(1);
+    expect(related.length).toBeGreaterThanOrEqual(2);
+  });
+
+  test('falls back to slug-entity lookup when topicSlugs is empty', () => {
+    const built = window.D3EgoGraph.buildTopicNodes(DATA, {
+      topic: 'Säure',
+      topicSlugs: [],
+      cap: 80,
+    });
+    expect(built.nodes.some((n) => n.label === 'Säure')).toBe(true);
+  });
+});
+
+describe('D3EgoGraph.createTopicGraph (Part B)', () => {
+  function makeContainer() {
+    const c = document.createElement('div');
+    c.id = 'test-topic';
+    Object.defineProperty(c, 'clientWidth', { value: 800, configurable: true });
+    Object.defineProperty(c, 'clientHeight', { value: 600, configurable: true });
+    document.body.appendChild(c);
+    return c;
+  }
+
+  test('renders an SVG with topic in the aria-label', async () => {
+    const c = makeContainer();
+    const data = {
+      entities: [
+        { name: 'Säure', category: 'konzept', components: ['Base'], relatedEntities: [] },
+        { name: 'Base', category: 'konzept', components: [], relatedEntities: [] },
+      ],
+      articles: [],
+    };
+    await window.D3EgoGraph.createTopicGraph(c, data, {
+      topic: 'Säure-Base-Reaktion',
+      topicSlugs: ['saeure'],
+      cap: 80,
+    });
+    const svg = c.querySelector('svg');
+    expect(svg).not.toBeNull();
+    expect(svg.getAttribute('role')).toBe('img');
+    expect(svg.getAttribute('aria-label')).toContain('Säure-Base-Reaktion');
+  });
+
+  test('renders a fallback ul for a11y', async () => {
+    const c = makeContainer();
+    const data = {
+      entities: [{ name: 'Base', category: 'konzept', components: [], relatedEntities: [] }],
+      articles: [],
+    };
+    await window.D3EgoGraph.createTopicGraph(c, data, {
+      topic: 'Basen',
+      topicSlugs: ['base'],
+      cap: 80,
+    });
+    const ul = c.querySelector('ul.d3-ego-fallback');
+    expect(ul).not.toBeNull();
+    expect(ul.querySelectorAll('li').length).toBeGreaterThan(0);
+  });
+
+  test('shows the dismissible Vorwissen hint when hintContainer is provided', async () => {
+    const hint = document.createElement('div');
+    hint.id = 'kg-hint';
+    document.body.appendChild(hint);
+    const c = makeContainer();
+    const data = {
+      entities: [{ name: 'Base', category: 'konzept', components: [], relatedEntities: [] }],
+      articles: [],
+    };
+    await window.D3EgoGraph.createTopicGraph(c, data, {
+      topic: 'Basen',
+      topicSlugs: ['base'],
+      cap: 80,
+      hintContainer: hint,
+    });
+    expect(hint.style.display).not.toBe('none');
+    expect(hint.textContent).toContain('Voraussetzungen');
+  });
+});
+
+describe('D3EgoGraph.createEgoGraph — multi-center search (Part B)', () => {
+  function makeContainer() {
+    const c = document.createElement('div');
+    c.id = 'test-search';
+    Object.defineProperty(c, 'clientWidth', { value: 500, configurable: true });
+    Object.defineProperty(c, 'clientHeight', { value: 300, configurable: true });
+    document.body.appendChild(c);
+    return c;
+  }
+
+  test('renders an ego graph around multiple matches', async () => {
+    const c = makeContainer();
+    const data = {
+      entities: [
+        { name: 'Säure', category: 'konzept', relatedEntities: ['Base'] },
+        { name: 'Base', category: 'konzept', relatedEntities: [] },
+        { name: 'Salz', category: 'stoff', relatedEntities: [] },
+      ],
+      articles: [],
+    };
+    await window.D3EgoGraph.createEgoGraph(c, data, { matches: ['Säure', 'Base'], cap: 30 });
+    const svg = c.querySelector('svg');
+    expect(svg).not.toBeNull();
+    expect(svg.getAttribute('aria-label')).toContain('Säure');
+    const ul = c.querySelector('ul.d3-ego-fallback');
+    expect(ul).not.toBeNull();
+  });
+
+  test('caps neighbor nodes at 30 around multiple centers', async () => {
+    const c = makeContainer();
+    const entities = [{ name: 'Zentrum', category: 'konzept', relatedEntities: [] }];
+    for (let i = 0; i < 60; i++)
+      entities.push({ name: 'N' + i, category: 'konzept', relatedEntities: [] });
+    entities[0].relatedEntities = entities.slice(1).map((e) => e.name);
+    const data = { entities, articles: [] };
+    await window.D3EgoGraph.createEgoGraph(c, data, { matches: ['Zentrum'], cap: 30 });
+    const lis = c.querySelectorAll('ul.d3-ego-fallback li');
+    expect(lis.length).toBeLessThanOrEqual(31); // 1 center + 30 neighbors
+  });
+});
