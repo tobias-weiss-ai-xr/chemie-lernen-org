@@ -83,3 +83,4 @@ api/data/theme-overrides.json
 # transient build/hunt logs
 cb.log
 cv.log
+package-lock.json
