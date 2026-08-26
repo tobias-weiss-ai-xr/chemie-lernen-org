@@ -577,3 +577,17 @@ add source-contract regression tests if missing (cheap):
 | Hub fetch timeout / API down             | `AbortSignal.timeout(15000)` + fallback message + retry hint; portals still show names from a bundled static copy if feasible (optional)                                                                                                             |
 | d3 symbol API changes                    | Use plain SVG path generators (no d3.symbol dependency)                                                                                                                                                                                              |
 | Lernziele-Text ohne Operator-Verb        | `highlightOperators` leaves text unchanged — never a dead UI element                                                                                                                                                                                 |
+
+---
+
+## Task 6 — Abschlussverifikation (checked, 2026-08-26)
+
+- [x] `npm test` — 99 Suiten / 2037 Tests grün (deren .mjs-Umzug + meine 56 Suiten inkl. Hub/Curricula/Curricula-Mapper; 3 Suiten per `__flaky__`-Ignore übersprungen).
+- [x] `npm run lint` — 0 errors / 0 warnings auf `main` nach Rebase (Task-6-Fix `3aa6a1a0` + deren eslint-Policy `27e48f3d`).
+- [x] Integrations-Rebase: lokale main (~580 Commits, Part A+B) auf `origin/main` (~981 Commits, Refactor-Serie) via `git rebase --onto origin/main df717861 main` — 8 Konflikte didaktisch synthetisiert; `api/server.js` = deren modularisierte Architektur (routes/ + services/), meine by-state-Erweiterung in `api/routes/curricula.js` + `api/curricula-mapper.cjs`.
+- [x] Full-data pipeline (CI-Run): Export KG → generate-entity-pages → Docker-Build inkl. audit stage → `Entity link audit passed`.
+- [x] Deploy live (3 aufeinanderfolgende Runs, zuletzt `e31dd2cb`): test-Job (bun install + npm ci api + lint + 99 Suiten) und build-and-deploy (Legion-Runner, Neo4j-Export, Entity-Pages, pagefind, ghcr push, SSH-Deploy) grün.
+- [x] Live-API-Verifikation: `GET /api/curricula/by-state/:state` → `source: neo4j`, **28/28 BY-Topics mit entities** (Konzept-Chips via COVERS_TOPIC ∪ FULFILLS ∪ Wortgrenzen-Text-Match; Stopword/`\Q…\E`/Längen-Filter gegen Rauschen). `/wissennetz/`, `/entity/zink/`, `/curricula/by/` → 200.
+- [x] Infra-Nebenerkenntnisse: `package-lock.json` gitignored (bun ist Paketmanager); Pagefind-npx-Download ist transient (einmaliger Retry nötig); ESLint global sauber.
+
+**Abschluss-Hinweis:** Nebenläufiger Agent hat während des Rebase `281cebb9` (Rate-Limit-Fix) gepusht — mein finaler Stand liegt darauf (`e31dd2cb`..`58ff4275`); `git push` danach ff nötig war, ist erledigt.
