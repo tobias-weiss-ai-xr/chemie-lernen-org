@@ -10,10 +10,20 @@ WORKDIR /src
 RUN hugo --minify --baseURL https://chemie-lernen.org && \
     echo "Hugo build complete: $(ls -la public/ | wc -l) entries"
 
+# ---- Stage 1b: Entity Link Audit ----
+# Fail-fast guard: no /entity/ href may point at a page that does not exist
+# (canonical entity page OR Hugo legacy alias page). Blocks the image push.
+FROM node:22-alpine AS audit
+COPY --from=hugo /src/public /site
+COPY --from=hugo /src/static /myhugoapp/static
+COPY scripts /scripts
+RUN node /scripts/audit-entity-links.mjs /site && \
+    echo "Entity link audit passed"
+
 # ---- Stage 2: Pagefind Search Index ----
 FROM node:22-alpine AS pagefind
 RUN npm install -g pagefind
-COPY --from=hugo /src/public /site
+COPY --from=audit /site /site
 RUN npx pagefind --site /site && \
     echo "Pagefind indexing complete"
 
