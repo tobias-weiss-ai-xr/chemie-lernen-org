@@ -145,6 +145,18 @@
       .replace(/^-|-$/g, '');
   }
 
+  /**
+   * Build the canonical entity detail URL for a node label.
+   * Prefers the shared Slugs utility (single source of truth) and falls
+   * back to the module-local transliteration if Slugs is not loaded.
+   */
+  function entityHref(name) {
+    if (globalThis.Slugs && typeof globalThis.Slugs.entityUrl === 'function') {
+      return globalThis.Slugs.entityUrl(name);
+    }
+    return '/entity/' + slugify(name) + '/';
+  }
+
   function esc(s) {
     return String(s)
       .replace(/&/g, '&amp;')
@@ -527,8 +539,8 @@
             // Clicking center is a no-op
             return;
           } else {
-            // Navigate to entity detail
-            global.location.href = '/entity/' + slugify(d.label) + '/';
+            // Navigate to entity detail (canonical slug — see Slugs util)
+            global.location.href = entityHref(d.label);
           }
         })
         .on('keydown', function (ev, _d) {
@@ -1102,7 +1114,7 @@
                 related: d.related || [],
               });
             }
-            global.location.href = '/entity/' + slugify(d.label) + '/';
+            global.location.href = entityHref(d.label);
           } else if (d.url) {
             global.open(d.url, '_blank');
           }
@@ -1398,6 +1410,7 @@
     colorize: colorize,
     labelize: labelize,
     slugify: slugify,
+    entityHref: entityHref,
     CAT_COLORS: CAT_COLORS,
     CAT_LABELS: CAT_LABELS,
     setCategoryFilter: function (category) {

@@ -482,6 +482,46 @@ describe('D3EgoGraph.createFullGraph', () => {
   });
 });
 
+describe('D3EgoGraph.entityHref', () => {
+  const SLUGS_PATH = path.resolve(
+    __dirname,
+    '..',
+    'myhugoapp',
+    'static',
+    'js',
+    'utils',
+    'slugs.js'
+  );
+
+  test('uses canonical Slugs.entityUrl when Slugs is loaded', () => {
+    require(SLUGS_PATH); // executes IIFE → window.Slugs
+    loadModule();
+    expect(window.D3EgoGraph.entityHref('Essigsäure')).toBe('/entity/essigsaeure/');
+    expect(window.D3EgoGraph.entityHref('Hall-Héroult-Prozess')).toBe(
+      '/entity/hall-heroult-prozess/'
+    );
+    expect(window.D3EgoGraph.entityHref('Eisen(III)-oxid (Fe2O3)')).toBe(
+      '/entity/eisen-iii-oxid-fe2o3/'
+    );
+  });
+
+  test('falls back to module-local transliteration without Slugs', () => {
+    delete window.Slugs;
+    loadModule();
+    expect(window.D3EgoGraph.entityHref('Größe')).toBe('/entity/groesse/');
+    expect(window.D3EgoGraph.entityHref('pH-Wert')).toBe('/entity/ph-wert/');
+  });
+
+  test('is the function used by the click handler (navigation contract)', () => {
+    require(SLUGS_PATH);
+    loadModule();
+    const source = fs.readFileSync(MODULE_PATH, 'utf8');
+    // The click navigation must go through entityHref, never raw slugify
+    expect(source).toMatch(/location\.href\s*=\s*entityHref\(d\.label\)/);
+    expect(source).not.toMatch(/location\.href\s*=\s*'\/entity\/'\s*\+\s*slugify\(d\.label\)/);
+  });
+});
+
 describe('D3EgoGraph — module isolation', () => {
   test('does not leak globals other than D3EgoGraph', () => {
     // Module only adds D3EgoGraph to window
