@@ -188,29 +188,6 @@
   </div>
 </div>
 
-<<<<<<< HEAD
-<script>
-var D3_LOADED = false;
-function loadD3AndEgoGraph() {
-  if (D3_LOADED) return Promise.resolve();
-  D3_LOADED = true;
-  return new Promise(function(resolve, reject) {
-    var d3Script = document.createElement('script');
-    d3Script.src = '{{ "/js/vendor/d3.v7.min.js" | relURL }}';
-    d3Script.onload = function() {
-      var egoScript = document.createElement('script');
-      egoScript.src = '{{ "/js/visualization/d3-ego-graph.js" | relURL }}?v=7';
-      egoScript.onload = resolve;
-      egoScript.onerror = reject;
-      document.head.appendChild(egoScript);
-    };
-    d3Script.onerror = reject;
-    document.head.appendChild(d3Script);
-  });
-}
-</script>
-<script src="{{ "/js/wissennetz-graph.js" | relURL }}"></script>
-=======
 <script src="{{ "/js/utils/slugs.js" | relURL }}"></script>
 <script src="{{ "/js/visualization/d3-ego-graph.js" | relURL }}"></script>
 <script src="{{ "/js/wissennetz-hub.js" | relURL }}"></script>
@@ -221,6 +198,5 @@ function loadD3AndEgoGraph() {
     window.WissennetzHub.init();
   }
 </script>
->>>>>>> 7333353c (feat(wissennetz): hub wiring — portals, search, Gesamtübersicht (Part B Task 3))
 
 {{ end }}

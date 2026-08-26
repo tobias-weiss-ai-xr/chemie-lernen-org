@@ -19,6 +19,7 @@ import neo4j from 'neo4j-driver';
 import pino from 'pino';
 import { getNeo4jDriver, NEO4J_DATABASE, toNumberSafe } from '../services/neo4j.js';
 import { getFallbackData } from '../services/content.js';
+import curriculaMapper from '../curricula-mapper.cjs';
 
 const router = Router();
 const logger = pino({
@@ -327,30 +328,10 @@ router.get('/api/curricula/by-state/:state', async (req, res) => {
       fetchSize: 5000,
     });
 
-    const result = await session.run(
-      `MATCH (c:Curriculum {state_abbr: $state})
-       OPTIONAL MATCH (c)-[:HAS_TOPIC]->(t:Topic)
-       OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)
-       WITH c, t, collect(DISTINCT lo.text) AS objectives
-       RETURN c.slug AS curriculumSlug, c.school_type AS schoolType,
-              t.slug AS slug, t.title AS title, t.grade AS grade,
-              size(objectives) AS objectiveCount,
-              [ob IN objectives WHERE ob IS NOT NULL] AS objectives
-       ORDER BY t.grade, t.title`,
-      { state }
-    );
+    const result = await session.run(curriculaMapper.buildByStateQuery(state), { state });
     await session.close();
 
-    const topics = result.records.map(function (r) {
-      return {
-        slug: r.get('slug'),
-        title: r.get('title'),
-        grade: r.get('grade'),
-        schoolType: r.get('schoolType'),
-        objectiveCount: toNumberSafe(r.get('objectiveCount')),
-        objectives: r.get('objectives'),
-      };
-    });
+    const topics = curriculaMapper.mapCurriculumTopics(result.records);
 
     res.json({
       source: 'neo4j',
@@ -384,6 +365,8 @@ router.get('/api/curricula/by-state/:state', async (req, res) => {
             displayName: c.name,
             objectiveCount: c.curriculumMeta.objective_count || 0,
             objectives: [],
+            entities: [],
+            entityCount: 0,
             contentLinks: [],
           };
         }),
