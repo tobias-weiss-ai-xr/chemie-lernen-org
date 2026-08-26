@@ -754,7 +754,7 @@ router.get('/api/curricula/graph', async (req, res) => {
     .trim()
     .toLowerCase();
 
-  const cacheKey = [scope, university, state, limit, q].join('|');
+  const cacheKey = [scope, university, state, curriculum, limit, q].join('|');
   const cached = graphCache.get(cacheKey);
   if (cached && Date.now() - cached.at < GRAPH_CACHE_TTL_MS) {
     return res.json(cached.payload);
