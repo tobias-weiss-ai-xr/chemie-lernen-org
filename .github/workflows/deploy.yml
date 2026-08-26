@@ -16,7 +16,7 @@ env:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, legion]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -28,16 +28,30 @@ jobs:
           chmod 600 ~/.ssh/chemie_core_deploy
           scripts/vendor-core.sh
 
+      - name: Cache bun dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.bun/install/cache
+            node_modules
+            api/node_modules
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb', '**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
       - name: Setup Node.js
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Install API dependencies (api/ has its own package.json)
-        run: npm ci --prefix api
+      - name: Install dependencies (cached)
+        run: |
+          if [ ! -d node_modules ]; then
+            bun install --frozen-lockfile
+          fi
+          if [ ! -d api/node_modules ]; then
+            npm ci --prefix api
+          fi
 
       - name: Run bun audit (critical only)
         run: bun audit --audit-level=critical || echo '[CI] bun audit found critical/high issues (non-fatal)'
