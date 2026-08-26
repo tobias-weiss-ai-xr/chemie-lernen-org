@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <title>Regression fixture — legacy urlize output (pre-Part-A)</title>
+    <!--
+      This fixture captures the PRE-FIX SSR output of entity/single.html,
+      where ref chips were rendered via Hugo `urlize` — which KEEPS German
+      umlauts and drops other characters inconsistently, producing hrefs
+      like /entity/essigsäure/ that no page matches (Hugo alias pages are
+      generated from the canonical name, so the umlaut URLs 404).
+
+      The link-audit must flag: essigsäure, weinsäure, friedrich-wöhler,
+      didaktik-säure-base-konzept (canonicalizable to existing slugs) while
+      accepting canonically-correct links and same-origin absolute URLs.
+      An inline <script> must never produce false positives.
+    -->
+  </head>
+  <body>
+    <h1>Essigsäure</h1>
+    <nav class="entity-breadcrumb"><a href="/entity/">Wissensnetz</a></nav>
+    <section>
+      <h2>🔗 Verwandte Begriffe</h2>
+      <div class="entity-rel-tags">
+        <a href="/entity/essigsäure/" class="entity-tag" title="Verwandter Begriff">Essigsäure</a>
+        <a href="/entity/weinsäure/" class="entity-tag" title="Verwandter Begriff">Weinsäure</a>
+        <a href="/entity/friedrich-wöhler/" class="entity-tag" title="Verwandter Begriff">Friedrich Wöhler</a>
+        <a href="/entity/didaktik-säure-base-konzept/" class="entity-tag" title="Didaktischer Standard">
+          Didaktik Säure-Base-Konzept
+        </a>
+        <a href="/entity/wasserstoff/" class="entity-tag" title="Verwandter Begriff">Wasserstoff</a>
+        <a href="https://chemie-lernen.org/entity/gilbert-n-lewis/" class="entity-tag" title="Verwandter Begriff">
+          Gilbert N. Lewis
+        </a>
+      </div>
+    </section>
+    <script>
+      // Client-side fallback code — MUST be ignored by the audit.
+      var x = "<a href='/entity/script-junk/'>";
+      var y = "<a href='/entity/noch-ein-script-link/'>";
+      document.write('<a href="/entity/'" + '+esc(kSlug)+'"/">');
+    </script>
+    <script src="/js/utils/slugs.js"></script>
+  </body>
+</html>
