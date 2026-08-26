@@ -11,8 +11,10 @@
  *   2. indirect (t)-[:HAS_LEARNING_OBJECTIVE]->(lo)<-[:FULFILLS|FULFILLS_OBJECTIVE]
  *      -(e:Entity) — observed LIVE on Zink (COVERS_TOPIC was empty there while
  *      FULFILLS produced the curricular objectives).
- *   3. text    entity whose name occurs in one of the topic's LO texts
- *      (EXISTS subquery; didactic: Lehrplantexte nennen die geforderten Konzepte).
+ *   3. text    entity whose name occurs word-boundary in one of the topic's LO
+ *      texts (EXISTS subquery; didactic: Lehrplantexte nennen die geforderten
+ *      Konzepte). Text matches are filtered by a stopword list + word bounds so
+ *      abbreviations/function words (e.g. "MIT") don't become graph chips.
  * All are de-duplicated (didactic caps: Lernziele ≤ 8, entities ≤ 12).
  */
 'use strict';
@@ -20,8 +22,24 @@
 const OBJECTIVES_CAP = 8;
 const ENTITIES_CAP = 12;
 
+/** Short function words that could false-positive as entity names in LO texts. */
+const TEXT_MATCH_STOPWORDS = new Set([
+  'mit', 'und', 'oder', 'der', 'die', 'das', 'ein', 'eine', 'einer', 'für',
+  'von', 'auf', 'bei', 'zu', 'ist', 'sind', 'soll', 'können', 'werden',
+  'nicht', 'auch', 'als', 'dass', 'es', 'im', 'am', 'in', 'den', 'dem',
+]);
+
+/** True if the entity is a meaningful text-mention candidate. */
+function isTextMatchCandidate(name) {
+  const n = String(name || '').trim();
+  if (!n) return false;
+  if (n.length < 3) return false;
+  return !TEXT_MATCH_STOPWORDS.has(n.toLowerCase());
+}
+
 /** Cypher for the by-state tree — direct COVERS_TOPIC (both directions) UNION
- *  FULFILLS via learning objectives UNION name-mentions in LO texts. */
+ *  FULFILLS via learning objectives UNION word-boundary name mentions in LO
+ *  texts. */
 function buildByStateQuery() {
   return `
 MATCH (c:Curriculum {state_abbr: $state})
@@ -31,9 +49,10 @@ OPTIONAL MATCH (t)<-[:COVERS_TOPIC]-(e:Entity)
 OPTIONAL MATCH (t)-[:COVERS_TOPIC]->(e2:Entity)
 OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo2:LearningObjective)<-[:FULFILLS|FULFILLS_OBJECTIVE]-(e3:Entity)
 OPTIONAL MATCH (e4:Entity)
-WHERE EXISTS {
+WHERE size(e4.name) >= 3 AND EXISTS {
   MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo4:LearningObjective)
-  WHERE lo4.text IS NOT NULL AND toLower(lo4.text) CONTAINS toLower(e4.name)
+  WHERE lo4.text IS NOT NULL
+    AND toLower(lo4.text) =~ '(?i)(^|[^a-zäöüß])' + toLower(e4.name) + '($|[^a-zäöüß])'
 }
 WITH c, t,
      collect(DISTINCT lo.text) AS objectives,
@@ -76,6 +95,7 @@ function mapCurriculumTopics(records) {
 module.exports = {
   buildByStateQuery,
   mapCurriculumTopics,
+  isTextMatchCandidate,
   OBJECTIVES_CAP,
   ENTITIES_CAP,
 };

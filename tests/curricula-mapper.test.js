@@ -117,3 +117,23 @@ describe('mapCurriculumTopics (Part B Task 4)', () => {
     ]);
   });
 });
+
+describe('isTextMatchCandidate — stopword/abbreviation filter', () => {
+  const { isTextMatchCandidate } = require('../api/curricula-mapper.cjs');
+
+  test('keeps meaningful concept names (word-boundary candidates)', () => {
+    expect(isTextMatchCandidate('Zink')).toBe(true);
+    expect(isTextMatchCandidate('TEM')).toBe(true);
+    expect(isTextMatchCandidate('Polyethylen (PE)')).toBe(true);
+  });
+
+  test('rejects function words and empty/short names', () => {
+    expect(isTextMatchCandidate('mit')).toBe(false);
+    expect(isTextMatchCandidate('MIT')).toBe(false);
+    expect(isTextMatchCandidate('und')).toBe(false);
+    expect(isTextMatchCandidate('Fe')).toBe(false);
+    expect(isTextMatchCandidate('  ')).toBe(false);
+    expect(isTextMatchCandidate('')).toBe(false);
+    expect(isTextMatchCandidate(null)).toBe(false);
+  });
+});
