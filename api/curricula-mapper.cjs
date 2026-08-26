@@ -34,6 +34,7 @@ function isTextMatchCandidate(name) {
   const n = String(name || '').trim();
   if (!n) return false;
   if (n.length < 3) return false;
+  if (n.length > 80) return false;
   return !TEXT_MATCH_STOPWORDS.has(n.toLowerCase());
 }
 
@@ -49,10 +50,10 @@ OPTIONAL MATCH (t)<-[:COVERS_TOPIC]-(e:Entity)
 OPTIONAL MATCH (t)-[:COVERS_TOPIC]->(e2:Entity)
 OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo2:LearningObjective)<-[:FULFILLS|FULFILLS_OBJECTIVE]-(e3:Entity)
 OPTIONAL MATCH (e4:Entity)
-WHERE size(e4.name) >= 3 AND EXISTS {
+WHERE size(e4.name) >= 3 AND size(e4.name) <= 80 AND EXISTS {
   MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo4:LearningObjective)
   WHERE lo4.text IS NOT NULL
-    AND toLower(lo4.text) =~ '(?i)(^|[^a-zäöüß])' + toLower(e4.name) + '($|[^a-zäöüß])'
+    AND toLower(lo4.text) =~ '(?i)(^|[^a-zäöüß])\\Q' + toLower(e4.name) + '\\E($|[^a-zäöüß])'
 }
 WITH c, t,
      collect(DISTINCT lo.text) AS objectives,
