@@ -134,8 +134,11 @@ test.describe('Wissensnetz KG data', () => {
   test('should have curricula data in kg export', async ({ page }) => {
     const response = await page.goto(`${BASE_URL}/api/kg-data`);
     const body = JSON.parse(await response.text());
-    expect(body).toHaveProperty('curricula');
-    expect(Array.isArray(body.curricula)).toBe(true);
+    // Curricula are represented in the KG export via curriculum-linked
+    // entities (curriculumCount > 0). The JSON endpoint returns entities +
+    // articles, not a top-level curricula array.
+    const withCurriculum = (body.entities || []).filter((e) => (e.curriculumCount || 0) > 0);
+    expect(withCurriculum.length).toBeGreaterThan(0);
   });
 });
 

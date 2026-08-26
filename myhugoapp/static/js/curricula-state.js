@@ -252,4 +252,12 @@
   }
 
   loadStates();
+
+  // Auto-load the curriculum tree for the state encoded in the URL
+  // (e.g. /curricula/by/ -> "by") so state pages display their plan
+  // directly instead of requiring a manual dropdown selection.
+  var urlState = (window.location.pathname || '').match(/\/curricula\/([a-z]{2})\/?$/);
+  if (urlState) {
+    loadTree(urlState[1]);
+  }
 })();
