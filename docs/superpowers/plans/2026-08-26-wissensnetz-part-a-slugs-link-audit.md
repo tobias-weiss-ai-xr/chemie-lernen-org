@@ -1,6 +1,6 @@
 # Wissensnetz Part A — Canonical Slugs, Entity-Link-Fix & CI Link-Audit — Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Eliminate all 20 dead `/entity/` links (17 umlaut + 3 special-character slug bugs) on chemie-lernen.org by introducing one canonical slug utility used by every link producer, and make CI fail on any dead entity link.
 
@@ -33,7 +33,7 @@
 - Create: `myhugoapp/static/js/utils/slugs.js`
 - Test: `tests/slugs.test.js`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `tests/slugs.test.js`:
 
@@ -111,12 +111,12 @@ describe('Slugs.rawSlug (legacy umlaut aliases)', () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `npx jest tests/slugs.test.js`
 Expected: FAIL with `globalThis.Slugs is undefined` (module missing).
 
-- [ ] **Step 3: Write the minimal implementation**
+- [x] **Step 3: Write the minimal implementation**
 
 `myhugoapp/static/js/utils/slugs.js`:
 
@@ -180,12 +180,12 @@ Expected: FAIL with `globalThis.Slugs is undefined` (module missing).
 })(typeof globalThis !== 'undefined' ? globalThis : this);
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `npx jest tests/slugs.test.js`
 Expected: PASS (6 describe blocks).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add myhugoapp/static/js/utils/slugs.js tests/slugs.test.js
@@ -201,7 +201,7 @@ git commit -m "feat(slugs): canonical slugify/entityUrl utility with tests"
 - Create: `scripts/lib/slugs.mjs`
 - Test: `tests/slugs-parity.test.js`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `tests/slugs-parity.test.js`:
 
@@ -273,12 +273,12 @@ describe('Slugs parity (browser ⇄ Node mirror)', () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `npx jest tests/slugs-parity.test.js`
 Expected: FAIL with `Cannot find module '../scripts/lib/slugs.mjs'`.
 
-- [ ] **Step 3: Write the minimal implementation**
+- [x] **Step 3: Write the minimal implementation**
 
 `scripts/lib/slugs.mjs`:
 
@@ -312,12 +312,12 @@ require(SHARED);
 export const { slugify, entityUrl, rawSlug, Slugs } = globalThis.Slugs;
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `npx jest tests/slugs-parity.test.js`
 Expected: PASS (3 tests).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add scripts/lib/slugs.mjs tests/slugs-parity.test.js
@@ -333,7 +333,7 @@ git commit -m "feat(slugs): Node ESM mirror with parity tests"
 - Modify: `myhugoapp/static/js/visualization/d3-ego-graph.js` (slugify region ~line 71-79 and click handler ~line 396)
 - Test: `tests/d3-ego-graph.test.js` (existing — must stay green)
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Extend `tests/d3-ego-graph.test.js` — add inside the existing describe block that exercises `createFullGraph`/`createEgoGraph` clicks (find the existing click-navigation test, e.g. one asserting `global.location.href` after click; add this sibling test):
 
@@ -358,7 +358,7 @@ it('navigates via Slugs.entityUrl when Slugs is available', () => {
 
 (If the graph module renders nodes as `<circle class="node">` SVs — inspect the rendered container in the existing tests to match the real selector; adjust the selector if needed.)
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `npx jest tests/d3-ego-graph.test.js`
 Expected: FAIL — current click handler builds `'/entity/' + slugify(d.label) + '/'` which already transliterates German umlauts, so this test may already pass. If it passes, additionally assert that an accented non-German name (`Hall-Héroult-Prozess`) resolves to `hall-heroult-prozess`:
@@ -376,7 +376,7 @@ it('navigates accented names via the canonical util', () => {
 
 Use both tests; the second one must fail before the fix (local `slugify` does not strip `é`).
 
-- [ ] **Step 3: Implement the fix**
+- [x] **Step 3: Implement the fix**
 
 In `myhugoapp/static/js/visualization/d3-ego-graph.js`:
 
@@ -398,12 +398,12 @@ and in the click handler:
 global.location.href = entityHref(d.label);
 ```
 
-- [ ] **Step 4: Run tests**
+- [x] **Step 4: Run tests**
 
 Run: `npx jest tests/d3-ego-graph.test.js tests/slugs.test.js`
 Expected: PASS (both files, including the two new navigation tests).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add myhugoapp/static/js/visualization/d3-ego-graph.js tests/d3-ego-graph.test.js
@@ -419,7 +419,7 @@ git commit -m "feat(graph): navigate entity clicks via canonical Slugs.entityUrl
 - Modify: `scripts/generate-entity-pages.mjs`
 - Test: none new (covered end-to-end by Task 6 audit + CI build); verify locally by running the generator's pure helpers.
 
-- [ ] **Step 1: Write the failing check (logic probe)**
+- [x] **Step 1: Write the failing check (logic probe)**
 
 The generator currently reads `myhugoapp/data/kg_data.json`, which is exported from Neo4j. Write a tiny probe that proves the local `slugify` is the problem against a real corpus:
 
@@ -434,7 +434,7 @@ import('./scripts/lib/slugs.mjs').then((mirror) => {
 
 Expected output: `Essigsäure -> essigsaeure`, `Aminosäuren -> aminosaeuren`, `Hydrathülle -> hydrathuelle`, `Gilbert N. Lewis -> gilbert-n-lewis`, `Eisen (I) -> eisen-i` (this is the behavior the generator must produce).
 
-- [ ] **Step 2: Modify the generator**
+- [x] **Step 2: Modify the generator**
 
 In `scripts/generate-entity-pages.mjs`:
 
@@ -500,7 +500,7 @@ c) Extend the emitted frontmatter (before the closing `'---'`), after the `compo
 
 (`relatedSlugs`/`componentSlugs` are objects — use `Object.keys(...).length` in the guards.)
 
-- [ ] **Step 3: Verify the change against real data**
+- [x] **Step 3: Verify the change against real data**
 
 ```bash
 # Sanity: slugify via the mirror on the fallback corpus (132 entities)
@@ -518,7 +518,7 @@ import('./scripts/lib/slugs.mjs').then((m) => {
 
 Expected: `entities: 132 | duplicates: 0 | non-ascii: 0` and clean sample pairs.
 
-- [ ] **Step 4: Verify Hugo template consumption (frontmatter shape)**
+- [x] **Step 4: Verify Hugo template consumption (frontmatter shape)**
 
 ```bash
 # Quick standalone check of the frontmatter snippet the generator emits for a sample entity:
@@ -535,7 +535,7 @@ import('./scripts/lib/slugs.mjs').then((m) => {
 
 Expected: canonical `essigsaeure`, alias `/entity/essigsäure/`, `Carbonsäuren -> carbonsaeuren` first (weight 0.9), `Säure-Base-Reaktion -> saeure-base-reaktion`.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add scripts/generate-entity-pages.mjs
@@ -551,7 +551,7 @@ git commit -m "feat(entities): canonical slug maps, weight caps and legacy alias
 - Modify: `myhugoapp/layouts/entity/single.html`
 - Test: `tests/link-audit.test.js` (fixture-based, written in Task 6 — the fixture here drives it)
 
-- [ ] **Step 1: Write the failing fixture (regression capture)**
+- [x] **Step 1: Write the failing fixture (regression capture)**
 
 Create `tests/fixtures/entity-page-ssr.html` — a minimal, representative snippet of the SSR refs region **as it is today (buggy `urlize`)** — to prove the audit detects it later:
 
@@ -606,7 +606,7 @@ Create `tests/fixtures/entity-page-ssr.html` — a minimal, representative snipp
 
 (The audit in Task 6 must flag every non-canonical href: `essigsäure`, `weinsäure`, `friedrich-wöhler`, `didaktik-säure-base-konzept`.)
 
-- [ ] **Step 2: Apply the template fix**
+- [x] **Step 2: Apply the template fix**
 
 In `myhugoapp/layouts/entity/single.html`, replace the **three** SSR tag blocks (`{{ if $kmkRefs }}`, `{{ if $quelleRefs }}`, `{{ if $otherRefs }}`) so each uses `relatedSlugs` with `urlize` only as a never-hit safety fallback:
 
@@ -710,7 +710,7 @@ and inside the `@media(prefers-color-scheme:dark)` block (near the existing dark
 }
 ```
 
-- [ ] **Step 3: Cap the client-side fallback tag list**
+- [x] **Step 3: Cap the client-side fallback tag list**
 
 In the same file, the client-side fallback renderer (the `if (!isSSR)` path, function `render(data)`) builds the "🔗 Verwandte Begriffe" tags in a loop over `g`. Add a cap and use the shared util:
 
@@ -736,7 +736,7 @@ for (_ = 0; _ < Math.min(g.length, 10); _++) {
 
 (after this edit, remove the old un-capped loop that built the same tags).
 
-- [ ] **Step 4: Verify template renders (Hugo build)**
+- [x] **Step 4: Verify template renders (Hugo build)**
 
 ```bash
 npm run hugo:build 2>&1 | tail -5
@@ -753,7 +753,7 @@ grep -c 'entity-card-prereq' myhugoapp/public/entity/saeure-base-reaktion/index.
 
 Expected: only `[a-z0-9-]` slugs; `entity-card-prereq` present on pages with components.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add myhugoapp/layouts/entity/single.html tests/fixtures/entity-page-ssr.html
@@ -769,7 +769,7 @@ git commit -m "feat(entity): canonical SSR link slugs, Voraussetzungen card, chi
 - Create: `scripts/audit-entity-links.mjs`
 - Test: `tests/link-audit.test.js`
 
-- [ ] **Step 1: Write the failing tests**
+- [x] **Step 1: Write the failing tests**
 
 `tests/link-audit.test.js`:
 
@@ -839,12 +839,12 @@ describe('audit-entity-links (pure functions)', () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `npx jest tests/link-audit.test.js`
 Expected: FAIL — `Cannot find module '../scripts/audit-entity-links.mjs'`.
 
-- [ ] **Step 3: Implement the audit script**
+- [x] **Step 3: Implement the audit script**
 
 `scripts/audit-entity-links.mjs`:
 
@@ -977,7 +977,7 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
 }
 ```
 
-- [ ] **Step 4: Run tests + audit against the fixture tree**
+- [x] **Step 4: Run tests + audit against the fixture tree**
 
 Run: `npx jest tests/link-audit.test.js`
 Expected: PASS (3 tests).
@@ -998,7 +998,7 @@ FIX=$(mktemp -d); for s in essigsaeure weinsaeure friedrich-woehler didaktik-sae
 
 Expected: exit=0, `OK: all entity links resolvable`.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add scripts/audit-entity-links.mjs tests/link-audit.test.js
@@ -1014,11 +1014,11 @@ git commit -m "feat(audit): link-audit script + jest tests for dead entity links
 - Modify: `Dockerfile`
 - Modify: `.github/workflows/deploy.yml`
 
-- [ ] **Step 1: Write the failing check (Docker build must fail before the fix is enforced)**
+- [x] **Step 1: Write the failing check (Docker build must fail before the fix is enforced)**
 
 Run the current build locally to confirm the audit would catch a regression only once wired in — first wire it in, then verify:
 
-- [ ] **Step 2: Add the audit stage to the Dockerfile**
+- [x] **Step 2: Add the audit stage to the Dockerfile**
 
 Modify `Dockerfile`: insert a new stage between the Hugo build and Pagefind; Pagefind now copies from the audit stage:
 
@@ -1047,12 +1047,12 @@ RUN npx pagefind --site /site && \
 
 (Diff: add the audit stage; change `COPY --from=hugo /src/public /site` to `COPY --from=audit /site /site` in the pagefind stage.)
 
-- [ ] **Step 3: Build the image locally to verify audit runs**
+- [x] **Step 3: Build the image locally to verify audit runs**
 
 Run: `docker build -t chemie-audit-check . 2>&1 | tail -25`
 Expected: image builds; output contains `Entity link audit passed`; if any `/entity/` href is currently broken in the built tree the build FAILS with the audit listing (that is the intended fail-fast; fix data/generator accordingly — the generator aliases in Task 4 should make the current tree green).
 
-- [ ] **Step 4: Add the legacy-URL smoke check to deploy.yml**
+- [x] **Step 4: Add the legacy-URL smoke check to deploy.yml**
 
 In `.github/workflows/deploy.yml`, inside the Deploy-via-SSH step's script block, after the existing smoke checks (e.g. after check #6 `/api/kg-stats`), append:
 
@@ -1063,17 +1063,17 @@ In `.github/workflows/deploy.yml`, inside the Deploy-via-SSH step's script block
             echo "  ✓ legacy umlaut entity URL redirects (200)"
 ```
 
-- [ ] **Step 5: Verify the workflow file is valid YAML**
+- [x] **Step 5: Verify the workflow file is valid YAML**
 
 Run: `python3 -c "import yaml,sys; yaml.safe_load(open('.github/workflows/deploy.yml')); print('deploy.yml OK')"`
 Expected: `deploy.yml OK` (if PyYAML is unavailable, use `ruby -ryaml -e 'YAML.load_file(".github/workflows/deploy.yml"); puts "OK"'`).
 
-- [ ] **Step 6: Run the full unit suite**
+- [x] **Step 6: Run the full unit suite**
 
 Run: `npm test`
 Expected: all tests pass (existing + new slugs/parity/link-audit tests).
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add Dockerfile .github/workflows/deploy.yml
