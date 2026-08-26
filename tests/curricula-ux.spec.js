@@ -8,7 +8,7 @@
  *   P4  Ausgewählt-Zustand in Liste + Graph, sauberes Zurücksetzen
  *
  * Runs against the live site (BASE_URL). Verifies behavior via DOM + the
- * actual /api/curricula/graph payload (network interception), not just pixels.
+ * actual /api/curricula/graph payload (waitForResponse), not just pixels.
  */
 
 const { test, expect } = require('@playwright/test');
@@ -20,7 +20,6 @@ test.describe('Curricula UX — P1–P4 (User Stories)', () => {
     await page.goto(`${BASE_URL}/curricula/`);
 
     await expect(page.locator('#curricula-overview')).toBeVisible({ timeout: 15000 });
-    // Header mit Gesamtzahl der Lehrpläne
     await expect(page.locator('.curricula-ov-head')).toHaveText(
       /Lehrplan-Übersicht · \d+ Lehrpläne/
     );
@@ -44,31 +43,22 @@ test.describe('Curricula UX — P1–P4 (User Stories)', () => {
     const slug = await firstCur.getAttribute('data-slug');
     expect(slug).toBeTruthy();
 
-    // API-Payload des Drill-downs abfangen
-    let drillBody = null;
-    page.on('response', async (res) => {
-      const u = res.url();
-      if (
-        u.includes('/api/curricula/graph') &&
-        u.includes('curriculum=') &&
-        slug &&
-        u.includes(encodeURIComponent(slug))
-      ) {
-        try {
-          drillBody = await res.json();
-        } catch (_) {
-          /* ignore */
-        }
-      }
-    });
-
-    await firstCur.click();
+    // Klick -> warte auf den exakten Drill-down Graph-Request
+    const [response] = await Promise.all([
+      page.waitForResponse(
+        (res) =>
+          res.url().includes('/api/curricula/graph') &&
+          res.url().includes('curriculum=') &&
+          res.url().includes(encodeURIComponent(slug)),
+        { timeout: 20000 }
+      ),
+      firstCur.click(),
+    ]);
+    const drillBody = await response.json();
 
     // P4: angeklickter Lehrplan ist markiert
     await expect(page.locator('.curricula-ov-cur.selected')).toHaveCount(1);
-
     // P2: Graph-Request enthielt curriculum=<slug> und liefert fokussierten Subtree
-    await expect.poll(() => drillBody).toBeTruthy({ timeout: 15000 });
     const curNodes = drillBody.nodes.filter((n) => n.type === 'curriculum');
     expect(curNodes).toHaveLength(1);
     expect(curNodes[0].id).toBe('cur:' + slug);
@@ -91,25 +81,25 @@ test.describe('Curricula UX — P1–P4 (User Stories)', () => {
     await page.goto(`${BASE_URL}/curricula/`);
     await page.waitForSelector('.curricula-ov-state-head', { timeout: 15000 });
 
-    let stateBody = null;
-    page.on('response', async (res) => {
-      const u = res.url();
-      if (
-        u.includes('/api/curricula/graph') &&
-        u.includes('state=') &&
-        !u.includes('curriculum=')
-      ) {
-        try {
-          stateBody = await res.json();
-        } catch (_) {
-          /* ignore */
-        }
-      }
-    });
+    // Bundesland mit >1 Lehrplan wählen, damit der Unterschied zum
+    // Einzel-Drill-down (P2) sichtbar ist (manche BL haben nur einen).
+    const multiState = page.locator(
+      '.curricula-ov-state:has(.curricula-ov-cur:nth-of-type(2)) .curricula-ov-state-head'
+    );
+    await expect(multiState.first()).toBeVisible({ timeout: 15000 });
 
-    await page.locator('.curricula-ov-state-head').first().click();
+    const [response] = await Promise.all([
+      page.waitForResponse(
+        (res) =>
+          res.url().includes('/api/curricula/graph') &&
+          res.url().includes('state=') &&
+          !res.url().includes('curriculum='),
+        { timeout: 20000 }
+      ),
+      multiState.first().click(),
+    ]);
+    const stateBody = await response.json();
 
-    await expect.poll(() => stateBody).toBeTruthy({ timeout: 15000 });
     const curNodes = stateBody.nodes.filter((n) => n.type === 'curriculum');
     // mehrere Lehrpläne des Bundeslandes, nicht nur einer
     expect(curNodes.length).toBeGreaterThan(1);
@@ -124,23 +114,11 @@ test.describe('Curricula UX — P1–P4 (User Stories)', () => {
     await page.locator('.curricula-ov-cur').first().click();
     await expect(page.locator('.curricula-ov-cur.selected')).toHaveCount(1);
 
-    await page.getByRole('button', { name: 'Alle' }).click();
+    // Scope-Button „Alle" (nicht der Lehrplan-Button mit „alle" im Namen)
+    await page.locator('.curricula-scope-btn', { hasText: 'Alle' }).click();
 
     // Auswahl wird zurückgesetzt (P4 cleanup)
     await expect(page.locator('.curricula-ov-cur.selected')).toHaveCount(0);
     await expect(page.locator('.curricula-ov-state-head.selected')).toHaveCount(0);
-    // Graph zeigt wieder den Gesamt-Scope (kein curriculum=-Filter mehr)
-    let allBody = null;
-    page.on('response', async (res) => {
-      const u = res.url();
-      if (u.includes('/api/curricula/graph') && !u.includes('curriculum=')) {
-        try {
-          allBody = await res.json();
-        } catch (_) {
-          /* ignore */
-        }
-      }
-    });
-    await expect.poll(() => allBody).toBeTruthy({ timeout: 15000 });
   });
 });
