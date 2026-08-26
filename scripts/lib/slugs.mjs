@@ -15,4 +15,5 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SHARED = path.resolve(__dirname, '..', '..', 'myhugoapp', 'static', 'js', 'utils', 'slugs.js');
 require(SHARED);
 
-export const { slugify, entityUrl, rawSlug, Slugs } = globalThis.Slugs;
+export const { slugify, entityUrl, rawSlug } = globalThis.Slugs;
+export const Slugs = globalThis.Slugs;
