@@ -103,6 +103,7 @@ services:
       - "traefik.http.routers.hubs-api.priority=120"
       - "traefik.http.services.hubs-api.loadbalancer.server.port=4001"
       - "traefik.http.services.hubs-api.loadbalancer.server.scheme=http"
+      - "traefik.http.services.hubs-api.loadbalancer.passHostHeader=true"
       - "traefik.http.serversTransports.hubs-https.insecureSkipVerify=true"
 
   hubs-client:
