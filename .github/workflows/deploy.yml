@@ -44,7 +44,7 @@ jobs:
         run: bun run lint
 
       - name: Run unit tests
-        run: npm test
+        run: bun run test
 
   build-and-deploy:
     needs: test
