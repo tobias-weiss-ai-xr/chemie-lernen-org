@@ -97,7 +97,7 @@ describe('molecule-data.js structural integrity', () => {
     const allowedNoH = ['Schwefelhexafluorid', 'Kohlendioxid', 'Ozon'];
     for (const [name, mol] of Object.entries(moleculeData)) {
       if (allowedNoH.includes(name)) continue;
-      expect(mol.elements.H || mol.atoms.some((a) => a.element === 'H'))).toBe(true);
+      expect(mol.elements.H || mol.atoms.some((a) => a.element === 'H')).toBe(true);
     }
   });
 

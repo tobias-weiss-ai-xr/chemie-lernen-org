@@ -71,10 +71,7 @@ jest.mock('three', () => {
   class Color {}
 
   return {
-    __esModule: true;
-
-    // Module-level state (set by init)
-    let scene, camera, renderer, moleculeGroup;
+    __esModule: true,
     default: null,
     Scene: jest.fn(() => ({
       add: jest.fn((c) => mockSceneAddCalls.push(c)),
