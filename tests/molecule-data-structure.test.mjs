@@ -13,6 +13,7 @@ describe('molecule-data.js structural integrity', () => {
 
   // ── Per-molecule validation ─────────────────────────────────
   for (const name of names) {
+    // eslint-disable-next-line jest/valid-title
     describe(name, () => {
       const mol = moleculeData[name];
 
