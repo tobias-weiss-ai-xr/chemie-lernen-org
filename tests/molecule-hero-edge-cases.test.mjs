@@ -102,7 +102,7 @@ document.getElementById = jest.fn((id) => {
   return null;
 });
 window.ResizeObserver = jest.fn().mockImplementation(() => ({ observe: jest.fn(), disconnect: jest.fn() }));
-Object.defineProperty(window, 'matchMedia', { value: jest.fn(() => ({ matches: false }), writable: true, configurable: true });
+Object.defineProperty(window, 'matchMedia', { value: jest.fn(() => ({ matches: false })), writable: true, configurable: true });
 
 describe('molecule-hero.js edge cases', () => {
   beforeEach(() => {

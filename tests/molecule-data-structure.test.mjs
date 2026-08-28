@@ -79,6 +79,7 @@ describe('molecule-data.js structural integrity', () => {
         }
       });
     });
+  }
 
   // ── Cross-molecule invariants ─────────────────────────────────
 
