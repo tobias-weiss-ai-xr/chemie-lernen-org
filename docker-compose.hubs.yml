@@ -245,6 +245,13 @@ services:
     image: hubs-compose-dialog:latest
     container_name: hubs-dialog
     restart: unless-stopped
+    # Host networking avoids docker-proxied iptables DNAT rules. The Virtuozzo VE's
+    # netfilter/numiptent kernel-memory quota is exhausted (iptables "Memory allocation
+    # problem" on container start), so bridge+NAT port publishing cannot be used for the
+    # dialog's ~100 media ports. With host networking the dialog binds 4443 + its media
+    # ports directly on the host (verified free). Dialog does not depend on docker DNS
+    # (no RETICULUM_URL) — the Hubs client reaches it via reticulum's dialog_url.
+    network_mode: host
     mem_limit: 256m
     deploy:
       resources:
@@ -258,16 +265,10 @@ services:
       MEDIASOUP_MIN_PORT: 40000
       MEDIASOUP_MAX_PORT: 40050
       MEDIASOUP_ANNOUNCED_IP: ${PRIVATE_NETWORK_IP}
-    ports:
-      - "4443:4443"
-      - "40000-40050:40000-40050"
-      - "40000-40050:40000-40050/udp"
     volumes:
       - hubs-compose_dialog:/code
       - letsencrypt:/code/certs
     working_dir: /code
-    networks:
-      - hubs-net
 
 networks:
   hubs-net:
