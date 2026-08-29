@@ -230,6 +230,12 @@ services:
     volumes:
       - hubs-compose_hubs:/code
       - letsencrypt:/code/certs
+      # Override the three missing/misconfigured static assets served from
+      # /code/dist (no full client rebuild needed). Closes the browser console
+      # warnings: favicon 404, manifest icon-size, no-op SW fetch handler.
+      - /opt/git/hubs-client-assets/favicon.ico:/code/dist/favicon.ico:ro
+      - /opt/git/hubs-client-assets/manifest.webmanifest:/code/dist/manifest.webmanifest:ro
+      - /opt/git/hubs-client-assets/hub.service.js:/code/dist/hub.service.js:ro
     working_dir: /code
     networks:
       - hubs-net

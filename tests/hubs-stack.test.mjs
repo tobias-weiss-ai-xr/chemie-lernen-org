@@ -100,11 +100,36 @@ describe('Hubs SPA root', () => {
   });
 });
 
-describe('Known client-asset bugs (require a Hubs client rebuild to fix)', () => {
-  // The built client currently lacks favicon.ico / manifest.webmanifest and
-  // registers a no-op service-worker fetch handler. Documented as todos so
-  // they are tracked and can be closed once the client is rebuilt.
-  test.todo('GET /favicon.ico should return 200 (currently 404)');
-  test.todo('GET /manifest.webmanifest should return 200 referencing a valid logo PNG');
-  test.todo('service worker must not register a no-op fetch handler (Chrome perf warning)');
+describe('Hubs client static assets (regression for console warnings)', () => {
+  // These used to be console warnings/crashes:
+  //  - /favicon.ico 404
+  //  - /manifest.webmanifest icon declared with a size that did not match the
+  //    actual PNG -> "Resource size is not correct"
+  //  - /hub.service.js registered an empty fetch handler -> Chrome perf warning
+  // They are fixed by serving corrected assets from /opt/git/hubs-client-assets
+  // (read-only bind mounts over /code/dist), so no full client rebuild is needed.
+  test('GET /favicon.ico returns an icon (was 404)', async () => {
+    const res = await fetch(`${BASE}/favicon.ico`);
+    expect(res.ok).toBe(true);
+    expect(res.headers.get('content-type') || '').not.toMatch(/^text\/html/i);
+  });
+
+  test('GET /manifest.webmanifest returns 200 with a valid icon entry', async () => {
+    const res = await fetch(`${BASE}/manifest.webmanifest`);
+    expect(res.ok).toBe(true);
+    expect(res.headers.get('content-type') || '').toMatch(/json/i);
+    const body = await res.json();
+    expect(Array.isArray(body.icons) && body.icons.length > 0).toBe(true);
+    // 'any' avoids the Chrome "Resource size is not correct" warning
+    expect(body.icons[0].sizes).toBe('any');
+    expect(body.icons[0].src.startsWith('/')).toBe(true);
+  });
+
+  test('GET /hub.service.js returns 200 and has no no-op fetch handler', async () => {
+    const res = await fetch(`${BASE}/hub.service.js`);
+    expect(res.ok).toBe(true);
+    const body = await res.text();
+    // The previous build registered an empty fetch handler (Chrome perf warning).
+    expect(body).not.toMatch(/addEventListener\(\s*["']fetch["']/);
+  });
 });
