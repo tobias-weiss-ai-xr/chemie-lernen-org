@@ -39,12 +39,14 @@ services:
         soft: 1048576
         hard: 1048576
     mem_limit: 512m
+    # NOTE: this Virtuozzo VE disables CPU *quota* (hard caps are dropped,
+    # CpuQuota stays 0), so limits.cpus/reservations.cpus are no-ops. Only
+    # relative cpu_shares (priority under contention) are honored -> use that.
+    cpu_shares: 1536
     deploy:
       resources:
         limits:
           memory: 512m
-        reservations:
-          cpus: 1.0
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -91,12 +93,11 @@ services:
         soft: 1048576
         hard: 1048576
     mem_limit: 256m
+    cpu_shares: 512
     deploy:
       resources:
         limits:
           memory: 256m
-        reservations:
-          cpus: 0.5
     networks:
       - hubs-net
 
@@ -111,12 +112,11 @@ services:
         hard: 1048576
     stop_grace_period: 30s
     mem_limit: 1g
+    cpu_shares: 2048
     deploy:
       resources:
         limits:
           memory: 1g
-        reservations:
-          cpus: 2.0
     depends_on:
       - db
     environment:
@@ -192,6 +192,9 @@ services:
       - "traefik.http.services.hubs-api.loadbalancer.server.port=4001"
       - "traefik.http.services.hubs-api.loadbalancer.server.scheme=http"
       - "traefik.http.services.hubs-api.loadbalancer.passHostHeader=true"
+      # Reuse Traefik->reticulum backend connections (idleConnTimeout 90s set in
+      # dynamic/servers-transports.yml) to compensate the VE's net.core.somaxconn=128.
+      - "traefik.http.services.hubs-api.loadbalancer.serversTransport=hubs-https@file"
       - "traefik.http.serversTransports.hubs-https.insecureSkipVerify=true"
 
   hubs-client:
@@ -204,12 +207,11 @@ services:
         soft: 1048576
         hard: 1048576
     mem_limit: 3g
+    cpu_shares: 512
     deploy:
       resources:
         limits:
           memory: 3g
-        reservations:
-          cpus: 0.5
     # Serve the production build (dist/) statically instead of the
     # webpack-dev-server. This removes the dev-server status websocket
     # (wss://...:8080/ws) noise, the [webpack-dev-server] console spam, and
@@ -260,12 +262,11 @@ services:
         soft: 1048576
         hard: 1048576
     mem_limit: 2g
+    cpu_shares: 512
     deploy:
       resources:
         limits:
           memory: 2g
-        reservations:
-          cpus: 0.5
     command: npm run local
     environment:
       INTERNAL_HOSTNAME: hubs-admin
@@ -309,12 +310,11 @@ services:
         soft: 1048576
         hard: 1048576
     mem_limit: 1g
+    cpu_shares: 512
     deploy:
       resources:
         limits:
           memory: 1g
-        reservations:
-          cpus: 0.5
     command: yarn start
     environment:
       CORS_PROXY_SERVER: "hubs.chemie-lernen.org"
@@ -368,12 +368,11 @@ services:
     # (no RETICULUM_URL) — the Hubs client reaches it via reticulum's dialog_url.
     network_mode: host
     mem_limit: 256m
+    cpu_shares: 1536
     deploy:
       resources:
         limits:
           memory: 256m
-        reservations:
-          cpus: 1.5
     environment:
       AUTH_KEY: /etc/perms.pub.pem
       HTTPS_CERT_FULLCHAIN: /code/certs/live/hubs.chemie-lernen.org/fullchain.pem
