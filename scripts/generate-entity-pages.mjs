@@ -18,23 +18,34 @@
 import { readFile, writeFile, mkdir, rm } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { slugify, rawSlug } from './lib/slugs.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, '..');
 const DATA_FILE = join(REPO_ROOT, 'myhugoapp', 'data', 'kg_data.json');
 const ENTITY_DIR = join(REPO_ROOT, 'myhugoapp', 'content', 'entity');
 
-function slugify(name) {
-  return name
-    .toLowerCase()
-    .replace(/[ä]/g, 'ae')
-    .replace(/[ö]/g, 'oe')
-    .replace(/[ü]/g, 'ue')
-    .replace(/[ß]/g, 'ss')
-    .replace(/[^a-z0-9-]/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '');
-}
+/**
+ * Legacy redirects for historical dead entity links (observed 2026-08-27):
+ * map legacy href slug → canonical entity NAME(s). The alias is only
+ * emitted on the page whose canonical slug matches slugify(targetName),
+ * so it degrades gracefully if the target entity does not exist.
+ */
+const LEGACY_ALIASES = {
+  // Legacy URLs observed as dead links (2026-08-27). Umlaut URLs of real
+  // umlaut-named entities (e.g. 'Friedrich Wöhler' → friedrich-wöhler) are
+  // auto-covered by the rawSlug aliases below; these cover names that are
+  // ASCII-normalized in the current export or use non-canonical punctuation.
+  'eiseni': ['Eisen'],
+  'gilbert-n.-lewis': ['Gilbert N. Lewis'],
+  'eiseniii-oxid-fe2o3': ['Eisen(III)-oxid (Fe2O3)'],
+  'essigsaeure': ['Essigsaeure (CH3COOH)'],
+  'essigsäure': ['Essigsaeure (CH3COOH)'],
+  'hydrathuelle': ['Hydrathuelle'],
+  'hydrathülle': ['Hydrathuelle'],
+  'carbonsaeuren': ['Carbonsaeuren'],
+  'carbonsäuren': ['Carbonsaeuren'],
+};
 
 function escapeYaml(s) {
   if (s === null || s === undefined) return '';
@@ -152,11 +163,38 @@ async function main() {
     const category = entity.category || 'konzept';
     const articleCount = entity.articleCount || 0;
     const relatedCount = (entity.relatedEntities || []).length;
-    const relatedNames = (entity.relatedEntities || [])
-      .map((r) => (typeof r === 'string' ? r : r.name))
-      .filter(Boolean)
-      .slice(0, 50);
-    const components = (entity.components || []).slice(0, 20);
+    // Weight-sorted; the TEMPLATE applies the didactic chip caps per section
+    // (Quellen ≤ 8, Verwandte ≤ 10, KMK alle). relatedSlugs must cover the
+    // FULL ref list (the template iterates the data list, not the capped
+    // frontmatter copy).
+    const relatedAll = (entity.relatedEntities || [])
+      .map((r) =>
+        typeof r === 'string'
+          ? { name: r, weight: 0 }
+          : { name: r.name, weight: r.weight || 0 }
+      )
+      .filter((r) => r.name)
+      .sort((a, b) => b.weight - a.weight);
+    const relatedSlugs = {};
+    for (const r of relatedAll) relatedSlugs[r.name] = slugify(r.name);
+    const relatedNames = relatedAll.slice(0, 50).map((r) => r.name);
+    const componentSlugs = {};
+    for (const c of (entity.components || []).slice(0, 10)) {
+      const cName = typeof c === 'string' ? c : c.name;
+      if (cName) componentSlugs[cName] = slugify(cName);
+    }
+    const components = Object.keys(componentSlugs);
+    // Legacy redirects: umlaut variant of the raw name + observed dead URLs
+    // (uses the loop-level `slug` declared below)
+    const aliases = [];
+    if (rawSlug(entity.name) !== slug) {
+      aliases.push('/entity/' + rawSlug(entity.name) + '/');
+    }
+    for (const [legacySlug, targetNames] of Object.entries(LEGACY_ALIASES)) {
+      for (const targetName of targetNames) {
+        if (slugify(targetName) === slug) aliases.push('/entity/' + legacySlug + '/');
+      }
+    }
     const description = entity.description || defaultDescription(entity);
 
     const frontmatter = [
@@ -174,6 +212,17 @@ async function main() {
       components.length > 0
         ? `components:\n${components.map((c) => `  - "${escapeYaml(c)}"`).join('\n')}`
         : 'components: []',
+      Object.keys(relatedSlugs).length > 0
+        ? `relatedSlugs:\n${relatedNames.map((n) => `  "${escapeYaml(n)}": "${relatedSlugs[n]}"`).join('\n')}`
+        : '',
+      Object.keys(componentSlugs).length > 0
+        ? `componentSlugs:\n${Object.keys(componentSlugs)
+            .map((c) => `  "${escapeYaml(c)}": "${componentSlugs[c]}"`)
+            .join('\n')}`
+        : '',
+      aliases.length > 0
+        ? `aliases:\n${aliases.map((a) => `  - "${a}"`).join('\n')}`
+        : '',
       '---',
       '',
       articleListForBody(entity.articles || []),

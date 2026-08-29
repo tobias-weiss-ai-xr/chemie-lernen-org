@@ -2,7 +2,6 @@
 title: "Reduktion"
 description: "Fachbegriff „Reduktion“ (Reaktion) — beschrieben in 2 Artikeln auf chemie-lernen.org und ist mit 10 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-last_reviewed: 2026-08-06
 slug: "reduktion"
 category: "reaktion"
 articleCount: 2

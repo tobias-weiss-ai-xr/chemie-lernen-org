@@ -480,6 +480,222 @@ router.get('/api/entity/:slug', function (req, res) {
   });
 });
 
+/** Whether `crName` (a candidate's related entity) reverse-references `entity`. */
+function isReverseRef(crName, candidate, entity) {
+  const lower = crName.toLowerCase();
+  return (
+    lower === entity.name.toLowerCase() ||
+    (candidate.category === 'quelle' && lower.indexOf(entity.name.toLowerCase()) !== -1)
+  );
+}
+
+/** Collect forward + reverse entity references, grouped by category. */
+function collectRefs(entity) {
+  const kmkRefs = [];
+  const quelleRefs = [];
+  const otherRefs = [];
+  const seenRefNames = {};
+
+  function addRef(name) {
+    if (seenRefNames[name]) return;
+    seenRefNames[name] = true;
+    const refEntity = findEntityBySlug(name);
+    if (refEntity && refEntity.category === 'didaktik') {
+      kmkRefs.push(name);
+    } else if (refEntity && refEntity.category === 'quelle') {
+      quelleRefs.push(name);
+    } else if (refEntity) {
+      otherRefs.push(name);
+    }
+  }
+
+  if (entity.relatedEntities && entity.relatedEntities.length > 0) {
+    for (let r = 0; r < entity.relatedEntities.length; r++) {
+      const ref = entity.relatedEntities[r];
+      const refName = typeof ref === 'string' ? ref : ref.name;
+      addRef(refName);
+    }
+  }
+  const data = getFallbackData();
+  for (let ei = 0; ei < data.entities.length; ei++) {
+    const candidate = data.entities[ei];
+    if (candidate.name === entity.name) continue;
+    if (candidate.relatedEntities && candidate.relatedEntities.length > 0) {
+      for (let ri = 0; ri < candidate.relatedEntities.length; ri++) {
+        const cr = candidate.relatedEntities[ri];
+        const crName = typeof cr === 'string' ? cr : cr.name;
+        if (isReverseRef(crName, candidate, entity)) {
+          addRef(candidate.name);
+          break;
+        }
+      }
+    }
+  }
+  return { kmkRefs, quelleRefs, otherRefs };
+}
+
+/** Build the curriculum meta-info HTML row (empty unless curriculum). */
+function buildMetaHtml(entity, isCurriculum) {
+  if (!isCurriculum || !entity.curriculumMeta) return '';
+  return (
+    '<div class="meta-row"><span class="meta-label">Schulform</span><span class="meta-value">' +
+    escapeHtml(entity.curriculumMeta.school_type) +
+    '</span></div>' +
+    '<div class="meta-row"><span class="meta-label">Klasse</span><span class="meta-value">' +
+    escapeHtml(entity.curriculumMeta.grade) +
+    '</span></div>' +
+    '<div class="meta-row"><span class="meta-label">Lernziele</span><span class="meta-value">' +
+    entity.curriculumMeta.objective_count +
+    '</span></div>'
+  );
+}
+
+/** Build the sources (Quellen) chip list HTML. */
+function buildQuelleHtml(quelleRefs) {
+  if (quelleRefs.length === 0) return '';
+  let html = '<h3>📚 Quellen</h3><div class="related-list">';
+  for (let qi = 0; qi < quelleRefs.length; qi++) {
+    html +=
+      '<a href="/entity/' +
+      slugify(quelleRefs[qi]) +
+      '/" class="quelle-chip">' +
+      escapeHtml(quelleRefs[qi].replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())) +
+      '</a>';
+  }
+  return html + '</div>';
+}
+
+/** Build the KMK standards chip list HTML. */
+function buildKmkHtml(kmkRefs) {
+  if (kmkRefs.length === 0) return '';
+  let html = '<h3>KMK-Bildungsstandards</h3><div class="kmk-list">';
+  for (let k = 0; k < kmkRefs.length; k++) {
+    html +=
+      '<a href="/entity/' +
+      slugify(kmkRefs[k]) +
+      '/" class="kmk-chip">' +
+      escapeHtml(
+        kmkRefs[k]
+          .replace(/^kmk-/i, 'KMK ')
+          .replace(/-/g, ' ')
+          .replace(/\b\w/g, (c) => c.toUpperCase())
+      ) +
+      '</a>';
+  }
+  return html + '</div>';
+}
+
+/** Build the "related concepts" chip list HTML. */
+function buildOtherRelatedHtml(otherRefs) {
+  if (otherRefs.length === 0) return '';
+  let html = '<h3>Verwandte Begriffe</h3><div class="related-list">';
+  for (let r2 = 0; r2 < otherRefs.length; r2++) {
+    html +=
+      '<a href="/entity/' +
+      slugify(otherRefs[r2]) +
+      '/" class="related-chip">' +
+      escapeHtml(otherRefs[r2].replace(/-/g, ' ')) +
+      '</a>';
+  }
+  return html + '</div>';
+}
+
+/** Build the articles list HTML. */
+function buildArticlesHtml(entity) {
+  if (!entity.articles || entity.articles.length === 0) return '';
+  let html = '<h3>Artikel (' + entity.articles.length + ')</h3><ul class="article-list">';
+  for (let a = 0; a < entity.articles.length; a++) {
+    html += '<li>' + escapeHtml(entity.articles[a]) + '</li>';
+  }
+  return html + '</ul>';
+}
+
+/** Build the quiz/exercise links HTML (curriculum topics only). */
+function buildQuizHtml(entity, isCurriculum) {
+  if (!isCurriculum) return '';
+  const qCategories = [
+    { kw: 'atom', label: 'Atommodelle und Kernchemie' },
+    { kw: 'bindung', label: 'Chemische Bindungen' },
+    { kw: 'saeure', label: 'Säuren und Basen' },
+    { kw: 'base', label: 'Säuren und Basen' },
+    { kw: 'redox', label: 'Redoxreaktionen' },
+    { kw: 'stoechiometrie', label: 'Stöchiometrie' },
+    { kw: 'stoffmeng', label: 'Stöchiometrie' },
+    { kw: 'organisch', label: 'Organische Chemie' },
+    { kw: 'kohlenwasserstoff', label: 'Organische Chemie' },
+    { kw: 'periodensystem', label: 'Periodensystem' },
+    { kw: 'pse', label: 'Periodensystem' },
+  ];
+  const qLinks = [];
+  const nameLower = entity.name.toLowerCase();
+  for (let qzi = 0; qzi < qCategories.length; qzi++) {
+    if (nameLower.indexOf(qCategories[qzi].kw) !== -1) {
+      if (qLinks.indexOf(qCategories[qzi].label) === -1) {
+        qLinks.push(qCategories[qzi].label);
+      }
+    }
+  }
+  if (qLinks.length === 0) return '';
+  let html = '<h3>📝 Übungen zu diesem Thema</h3><div class="quiz-links-list">';
+  for (let qzi2 = 0; qzi2 < qLinks.length; qzi2++) {
+    html +=
+      '<a href="/lueckentexte/" class="quiz-link-card" target="_blank" rel="noopener">' +
+      '<span class="quiz-link-label">' +
+      escapeHtml(qLinks[qzi2]) +
+      '</span>' +
+      '<span class="quiz-link-arrow">→</span></a>';
+  }
+  return html + '</div>';
+}
+
+/** Build the learning-path content-links HTML (curriculum topics only). */
+async function buildLearningPathHtml(entity, isCurriculum) {
+  if (!isCurriculum) return '';
+  const clinks = await findContentLinks(entity.name);
+  if (clinks.length === 0) return '';
+  const sections = { article: [], calculator: [], simulation: [], exercise: [] };
+  for (let cli2 = 0; cli2 < clinks.length; cli2++) {
+    const cl2 = clinks[cli2];
+    const t = (cl2.type || 'article').toLowerCase();
+    if (sections[t]) sections[t].push(cl2);
+    else sections.article.push(cl2);
+  }
+  const order = ['article', 'calculator', 'simulation', 'exercise'];
+  const labels = {
+    article: '📖 Artikel',
+    calculator: '🔬 Rechner',
+    simulation: '🎮 Simulationen',
+    exercise: '✏️ Übungen',
+  };
+  let html = '';
+  for (let si = 0; si < order.length; si++) {
+    const key = order[si];
+    const items = sections[key];
+    if (items.length === 0) continue;
+    const maxShow = Math.min(items.length, 8);
+    html += '<h3>' + labels[key] + ' (' + items.length + ')</h3><div class="content-links-list">';
+    for (let li = 0; li < maxShow; li++) {
+      const item = items[li];
+      html +=
+        '<a href="' +
+        escapeHtml(item.url) +
+        '" class="content-link-card" target="_blank" rel="noopener">' +
+        '<span class="content-link-title">' +
+        escapeHtml(item.title) +
+        '</span>' +
+        '<span class="content-link-type">' +
+        escapeHtml(item.type || 'article') +
+        '</span>' +
+        '</a>';
+    }
+    if (items.length > maxShow) {
+      html += '<div class="content-link-more">+' + (items.length - maxShow) + ' weitere</div>';
+    }
+    html += '</div>';
+  }
+  return html;
+}
+
 /**
  * GET /entity/:slug — SSR entity detail HTML page.
  */
@@ -495,219 +711,19 @@ router.get('/entity/:slug', async function (req, res) {
   var displayName = entity.name.charAt(0).toUpperCase() + entity.name.slice(1).replace(/-/g, ' ');
   var isCurriculum = entity.category === 'lehrplan' || !!entity.curriculumMeta;
 
-  // Build meta HTML for curriculum topics
-  var metaHtml = '';
-  if (isCurriculum && entity.curriculumMeta) {
-    metaHtml =
-      '<div class="meta-row"><span class="meta-label">Schulform</span><span class="meta-value">' +
-      escapeHtml(entity.curriculumMeta.school_type) +
-      '</span></div>' +
-      '<div class="meta-row"><span class="meta-label">Klasse</span><span class="meta-value">' +
-      escapeHtml(entity.curriculumMeta.grade) +
-      '</span></div>' +
-      '<div class="meta-row"><span class="meta-label">Lernziele</span><span class="meta-value">' +
-      entity.curriculumMeta.objective_count +
-      '</span></div>';
-  }
+  const { kmkRefs, quelleRefs, otherRefs } = collectRefs(entity);
+  const metaHtml = buildMetaHtml(entity, isCurriculum);
 
-  // Collect all related entities (forward + reverse lookup)
-  var kmkRefs = [];
-  var quelleRefs = [];
-  var otherRefs = [];
-  var seenRefNames = {};
+  const quelleHtml = buildQuelleHtml(quelleRefs);
 
-  function addRef(name) {
-    if (seenRefNames[name]) return;
-    seenRefNames[name] = true;
-    var refEntity = findEntityBySlug(name);
-    if (refEntity && refEntity.category === 'didaktik') {
-      kmkRefs.push(name);
-    } else if (refEntity && refEntity.category === 'quelle') {
-      quelleRefs.push(name);
-    } else if (refEntity) {
-      otherRefs.push(name);
-    }
-  }
+  const kmkHtml = buildKmkHtml(kmkRefs);
 
-  // Forward: entity.relatedEntities
-  if (entity.relatedEntities && entity.relatedEntities.length > 0) {
-    for (var r = 0; r < entity.relatedEntities.length; r++) {
-      var ref = entity.relatedEntities[r];
-      var refName = typeof ref === 'string' ? ref : ref.name;
-      addRef(refName);
-    }
-  }
-  // Reverse: find entities that reference this one
-  var data = getFallbackData();
-  for (var ei = 0; ei < data.entities.length; ei++) {
-    var candidate = data.entities[ei];
-    if (candidate.name === entity.name) continue;
-    if (candidate.relatedEntities && candidate.relatedEntities.length > 0) {
-      for (var ri = 0; ri < candidate.relatedEntities.length; ri++) {
-        var cr = candidate.relatedEntities[ri];
-        var crName = typeof cr === 'string' ? cr : cr.name;
-        if (
-          crName.toLowerCase() === entity.name.toLowerCase() ||
-          (candidate.category === 'quelle' &&
-            crName.toLowerCase().indexOf(entity.name.toLowerCase()) !== -1)
-        ) {
-          addRef(candidate.name);
-          break;
-        }
-      }
-    }
-  }
+  const otherRelatedHtml = buildOtherRelatedHtml(otherRefs);
 
-  var quelleHtml = '';
-  if (quelleRefs.length > 0) {
-    quelleHtml = '<h3>📚 Quellen</h3><div class="related-list">';
-    for (var qi = 0; qi < quelleRefs.length; qi++) {
-      quelleHtml +=
-        '<a href="/entity/' +
-        slugify(quelleRefs[qi]) +
-        '/" class="quelle-chip">' +
-        escapeHtml(
-          quelleRefs[qi].replace(/-/g, ' ').replace(/\b\w/g, function (c) {
-            return c.toUpperCase();
-          })
-        ) +
-        '</a>';
-    }
-    quelleHtml += '</div>';
-  }
+  const learningPathHtml = await buildLearningPathHtml(entity, isCurriculum);
+  const articlesHtml = buildArticlesHtml(entity);
 
-  var kmkHtml = '';
-  if (kmkRefs.length > 0) {
-    kmkHtml = '<h3>KMK-Bildungsstandards</h3><div class="kmk-list">';
-    for (var k = 0; k < kmkRefs.length; k++) {
-      kmkHtml +=
-        '<a href="/entity/' +
-        slugify(kmkRefs[k]) +
-        '/" class="kmk-chip">' +
-        escapeHtml(
-          kmkRefs[k]
-            .replace(/^kmk-/i, 'KMK ')
-            .replace(/-/g, ' ')
-            .replace(/\b\w/g, function (c) {
-              return c.toUpperCase();
-            })
-        ) +
-        '</a>';
-    }
-    kmkHtml += '</div>';
-  }
-
-  var otherRelatedHtml = '';
-  if (otherRefs.length > 0) {
-    otherRelatedHtml = '<h3>Verwandte Begriffe</h3><div class="related-list">';
-    for (var r2 = 0; r2 < otherRefs.length; r2++) {
-      otherRelatedHtml +=
-        '<a href="/entity/' +
-        slugify(otherRefs[r2]) +
-        '/" class="related-chip">' +
-        escapeHtml(otherRefs[r2].replace(/-/g, ' ')) +
-        '</a>';
-    }
-    otherRelatedHtml += '</div>';
-  }
-
-  var articlesHtml = '';
-
-  // Learning path: group content by type
-  var learningPathHtml = '';
-  if (isCurriculum) {
-    var clinks = await findContentLinks(entity.name);
-    if (clinks.length > 0) {
-      var sections = { article: [], calculator: [], simulation: [], exercise: [] };
-      for (var cli2 = 0; cli2 < clinks.length; cli2++) {
-        var cl2 = clinks[cli2];
-        var t = (cl2.type || 'article').toLowerCase();
-        if (sections[t]) sections[t].push(cl2);
-        else sections.article.push(cl2);
-      }
-      var order = ['article', 'calculator', 'simulation', 'exercise'];
-      var labels = {
-        article: '📖 Artikel',
-        calculator: '🔬 Rechner',
-        simulation: '🎮 Simulationen',
-        exercise: '✏️ Übungen',
-      };
-      for (var si = 0; si < order.length; si++) {
-        var key = order[si];
-        var items = sections[key];
-        if (items.length === 0) continue;
-        var maxShow = Math.min(items.length, 8);
-        learningPathHtml +=
-          '<h3>' + labels[key] + ' (' + items.length + ')</h3><div class="content-links-list">';
-        for (var li = 0; li < maxShow; li++) {
-          var item = items[li];
-          learningPathHtml +=
-            '<a href="' +
-            escapeHtml(item.url) +
-            '" class="content-link-card" target="_blank" rel="noopener">' +
-            '<span class="content-link-title">' +
-            escapeHtml(item.title) +
-            '</span>' +
-            '<span class="content-link-type">' +
-            escapeHtml(item.type || 'article') +
-            '</span>' +
-            '</a>';
-        }
-        if (items.length > maxShow) {
-          learningPathHtml +=
-            '<div class="content-link-more">+' + (items.length - maxShow) + ' weitere</div>';
-        }
-        learningPathHtml += '</div>';
-      }
-    }
-  }
-
-  if (entity.articles && entity.articles.length > 0) {
-    articlesHtml = '<h3>Artikel (' + entity.articles.length + ')</h3><ul class="article-list">';
-    for (var a = 0; a < entity.articles.length; a++) {
-      articlesHtml += '<li>' + escapeHtml(entity.articles[a]) + '</li>';
-    }
-    articlesHtml += '</ul>';
-  }
-
-  // Quiz links for curriculum topics
-  var quizHtml = '';
-  if (isCurriculum) {
-    var qCategories = [
-      { kw: 'atom', label: 'Atommodelle und Kernchemie' },
-      { kw: 'bindung', label: 'Chemische Bindungen' },
-      { kw: 'saeure', label: 'Säuren und Basen' },
-      { kw: 'base', label: 'Säuren und Basen' },
-      { kw: 'redox', label: 'Redoxreaktionen' },
-      { kw: 'stoechiometrie', label: 'Stöchiometrie' },
-      { kw: 'stoffmeng', label: 'Stöchiometrie' },
-      { kw: 'organisch', label: 'Organische Chemie' },
-      { kw: 'kohlenwasserstoff', label: 'Organische Chemie' },
-      { kw: 'periodensystem', label: 'Periodensystem' },
-      { kw: 'pse', label: 'Periodensystem' },
-    ];
-    var qLinks = [];
-    var nameLower = entity.name.toLowerCase();
-    for (var qzi = 0; qzi < qCategories.length; qzi++) {
-      if (nameLower.indexOf(qCategories[qzi].kw) !== -1) {
-        if (qLinks.indexOf(qCategories[qzi].label) === -1) {
-          qLinks.push(qCategories[qzi].label);
-        }
-      }
-    }
-    if (qLinks.length > 0) {
-      quizHtml = '<h3>📝 Übungen zu diesem Thema</h3><div class="quiz-links-list">';
-      for (var qzi2 = 0; qzi2 < qLinks.length; qzi2++) {
-        quizHtml +=
-          '<a href="/lueckentexte/" class="quiz-link-card" target="_blank" rel="noopener">' +
-          '<span class="quiz-link-label">' +
-          escapeHtml(qLinks[qzi2]) +
-          '</span>' +
-          '<span class="quiz-link-arrow">→</span></a>';
-      }
-      quizHtml += '</div>';
-    }
-  }
+  const quizHtml = buildQuizHtml(entity, isCurriculum);
 
   var backLink = isCurriculum ? '/' : '/entity/';
 

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /**
  * Bindungspotential Rechner
  * Interactive energy diagrams for chemical bonds with activation barriers

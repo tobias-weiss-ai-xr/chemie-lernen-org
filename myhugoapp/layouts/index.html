@@ -77,55 +77,72 @@
               </a>
       </div>
 
+      <!-- Lernvideos Card -->
+      <div class="card">
+           <a href="/lernvideos/" class="index-anchor">
+               <div class="panel panel-default panel-lernvideos">
+                 <div class="panel-body panel-body-lernvideos">
+                  <h3 class="panel-title pull-left"><span aria-hidden="true">🎬</span> Lernvideos</h3>
+                </div>
+                <div class="panel-body"><small>
+                  Videos von Prof. Schindler ("Zig's Chemistry 42") – didaktisch aufbereitete Inhalte zu Grundlagen und Experimente.</small>
+                </div>
+              </div>
+              </a>
+      </div>
+
 </div>
 
-    <!-- Forschungsnews Section -->
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Forschung</h2>
-        <p class="lead">KI-generierte Zusammenfassungen aktueller chemischer Forschung — automatisch aus wissenschaftlichen Publikationen extrahiert.</p>
-      </div>
-    </div>
-
-    <!-- Blog Posts Section -->
-    <div class="row pack blog-posts-section">
-
-        {{ $posts := where .Site.RegularPages "Section" "posts" }}
-        {{ $lastPosts := first 4 $posts.ByDate.Reverse }}
-        {{ range $lastPosts }}
-            <div class="col-md-4 card">
-            <a href="{{ .Permalink }}" class="index-anchor">    
-               <div class="panel panel-default">
-                 
-                 {{ if .Params.img }}
-                 {{ with .Resources.Match .Params.img }}
-                   {{ range . }}
-                     <img width="100%" src="{{ .RelPermalink }}" alt="{{ .Title }}">
-                   {{ end }}
-                 {{ end }}
-                 {{ else }}
-                  <div class="post-placeholder" aria-hidden="true">🔬</div>
-                 {{ end }}
-                 
-                 <div class="panel-body">
-                   <h3 class="panel-title pull-left">{{ .Title | truncate 60 }}</h3><span class="post-meta pull-right"><small>{{ .Date.Format "January 2, 2006" }}</small></span>
-                 </div>
-                 
-                 <div class="panel-body"><small>
-                   {{ .Summary | plainify | replaceRE `\$[^$]+\$` "" | truncate 180 }}</small>
-                 </div>
-               </div>
-               </a>
-           </div>
-       
-         {{ end }}
-
-   <!-- "Alle anzeigen" Link -->
-   <div class="row text-center alle-anzeigen">
+   <!-- Chemie-Forschung Section (aus dem Knowledge Graph) -->
+   <div class="row">
      <div class="col-md-12">
-       <a href="/posts/" class="btn btn-primary" aria-label="Alle Forschungsnews anzeigen">Alle Forschungsnews anzeigen →</a>
+       <h2>Chemie-Forschung <small class="text-muted">aus dem Wissensnetz</small></h2>
+       <p class="lead">KI-generierte Artikel zu den am stärksten vernetzten chemischen Konzepten — automatisch aus dem chemie-lernen.org Knowledge Graph.</p>
      </div>
    </div>
+
+   <div class="row pack blog-posts-section">
+
+       {{ $cf := where .Site.RegularPages "Section" "chemie-forschung" }}
+       {{ $lastCf := first 4 $cf.ByDate.Reverse }}
+       {{ range $lastCf }}
+           <div class="col-md-4 card">
+           <a href="{{ .Permalink }}" class="index-anchor">
+              <div class="panel panel-default">
+
+                {{ if .Params.img }}
+                {{ with .Resources.Match .Params.img }}
+                  {{ range . }}
+                    <img width="100%" src="{{ .RelPermalink }}" alt="{{ .Title }}">
+                  {{ end }}
+                {{ end }}
+                {{ else }}
+                 <div style="width:100%; height:140px; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); display:flex; align-items:center; justify-content:center; color:white; font-size:48px;" aria-hidden="true">🧪</div>
+                {{ end }}
+
+                <div class="panel-body">
+                  <h3 class="panel-title pull-left">{{ .Title | truncate 60 }}</h3><span class="post-meta pull-right"><small>{{ .Date.Format "January 2, 2006" }}</small></span>
+                </div>
+
+                <div class="panel-body"><small>
+                  {{ .Summary | plainify | replaceRE `\$[^$]+\$` "" | truncate 180 }}</small>
+                </div>
+              </div>
+              </a>
+          </div>
+       {{ end }}
+   </div>
+
+   <!-- "Alle Chemie-Forschung anzeigen" Link -->
+   <div class="row text-center alle-anzeigen">
+     <div class="col-md-12">
+       <a href="/chemie-forschung/" class="btn btn-primary" aria-label="Alle Chemie-Forschung anzeigen">Alle Chemie-Forschung anzeigen →</a>
+       <div class="mt-2">
+         <a href="/posts/" class="text-muted small" aria-label="Frühere Forschungsnews (Archiv) anzeigen">Frühere Forschungsnews im Archiv ansehen →</a>
+       </div>
+     </div>
+   </div>
+
 
    <!-- Recommendation Widget (Learning Path) -->
    {{ partial "recommendation-widget" . }}

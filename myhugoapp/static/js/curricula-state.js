@@ -47,6 +47,59 @@
       .replace(/^-|-$/g, '');
   }
 
+  // ── Part B Task 5 ────────────────────────────────────────────────────
+  // Canonical entity links: prefer globalThis.Slugs (loaded before this
+  // script on the page); toSlug is only the no-Slugs fallback.
+  function entityHref(name) {
+    if (globalThis.Slugs && typeof globalThis.Slugs.entityUrl === 'function') {
+      return globalThis.Slugs.entityUrl(name);
+    }
+    return '/entity/' + toSlug(name) + '/';
+  }
+
+  // KMK operator verbs (didactic pass): highlight the action verb of each
+  // Lernziel rather than relying on colour alone.
+  var KMK_OPERATORS = [
+    'nennen',
+    'benennen',
+    'beschreiben',
+    'erklären',
+    'erläutern',
+    'begründen',
+    'untersuchen',
+    'vergleichen',
+    'beurteilen',
+    'bewerten',
+    'ableiten',
+    'deuten',
+    'vorhersagen',
+    'planen',
+    'darstellen',
+    'zuordnen',
+    'berechnen',
+    'protokollieren',
+  ];
+
+  // Wraps the FIRST operator verb occurrence in <strong class="kg-operator">
+  // (word-boundary, case-insensitive). Applied AFTER HTML escaping.
+  function highlightOperators(text) {
+    if (typeof text !== 'string' || !text) return text;
+    for (var i = 0; i < KMK_OPERATORS.length; i++) {
+      var re = new RegExp('\\b' + KMK_OPERATORS[i] + '\\b', 'i');
+      var m = text.match(re);
+      if (m && m.index !== undefined) {
+        return (
+          text.slice(0, m.index) +
+          '<strong class="kg-operator">' +
+          m[0] +
+          '</strong>' +
+          text.slice(m.index + m[0].length)
+        );
+      }
+    }
+    return text;
+  }
+
   function loadStates() {
     loading = true;
     error = null;
@@ -113,16 +166,17 @@
     html += '<option value="">— Bundesland auswählen —</option>';
     if (statesData) {
       statesData.forEach(function (s) {
-        var label = STATE_NAMES[s.state] || s.stateName || s.state;
+        var st = s.state || s.state_abbr || s.stateName || '';
+        var label = STATE_NAMES[st] || s.stateName || st;
         html +=
           '<option value="' +
-          escapeHtml(s.state) +
+          escapeHtml(st) +
           '"' +
-          (selectedState === s.state ? ' selected' : '') +
+          (selectedState === st ? ' selected' : '') +
           '>' +
-          escapeHtml(s.state.toUpperCase() + ' – ' + label) +
+          escapeHtml((st || '?').toUpperCase() + ' – ' + label) +
           ' (' +
-          s.topicCount +
+          (s.topicCount || 0) +
           ' Themen)</option>';
       });
     }
@@ -184,32 +238,43 @@
           grouped[school][grade].forEach(function (topic) {
             html += '<div class="state-topic-card">';
             html +=
-              '<div class="state-topic-name"><a href="/entity/' +
-              toSlug(topic.title || topic.slug) +
-              '/">' +
+              '<div class="state-topic-name"><a href="' +
+              entityHref(topic.title || topic.slug) +
+              '">' +
               escapeHtml(topic.title || topic.slug) +
               '</a></div>';
             html +=
               '<div class="state-topic-meta">' + (topic.objectiveCount || 0) + ' Lernziele</div>';
-            // Objectives
+            // Objectives (didactic pass: max 8 visible, operator verbs highlighted)
             if (topic.objectives && topic.objectives.length > 0) {
               html += '<div style="margin-top:0.3rem;">';
-              topic.objectives.slice(0, 10).forEach(function (obj) {
+              topic.objectives.slice(0, 8).forEach(function (obj) {
                 var objText = typeof obj === 'string' ? obj : obj.text || obj.name;
                 html +=
                   '<span class="objective-chip" title="' +
                   escapeHtml(objText) +
                   '">' +
-                  escapeHtml(objText) +
+                  highlightOperators(escapeHtml(objText)) +
                   '</span>';
               });
-              if (topic.objectives.length > 10) {
+              if (topic.objectives.length > 8) {
                 html +=
                   '<span class="objective-chip" style="background:#eee;color:#666;">+' +
-                  (topic.objectives.length - 10) +
+                  (topic.objectives.length - 8) +
                   '</span>';
               }
               html += '</div>';
+            }
+            // Topic graph toggle (Part B Task 5) — lazy, one kg-data fetch
+            if (topic.entities && topic.entities.length > 0) {
+              html +=
+                '<div style="margin-top:0.4rem;"><button type="button" class="kg-graph-toggle" data-topic-slug="' +
+                escapeHtml(topic.slug) +
+                '">📊 Grafik anzeigen</button></div>';
+              html +=
+                '<div class="kg-topic-graph" data-topic-slug="' +
+                escapeHtml(topic.slug) +
+                '" style="display:none;height:420px;border:1px solid #ddd;border-radius:8px;background:#fafafa;margin-top:0.4rem;position:relative;"></div>';
             }
             // Content links
             if (topic.contentLinks && topic.contentLinks.length > 0) {
@@ -242,6 +307,85 @@
     _attachEvents();
   }
 
+  // Part B Task 5 — lazy „Grafik anzeigen“: one kg-data fetch (cached),
+  // then a bounded topic graph seeded by the API-provided entity list.
+  var kgDataPromise = null;
+  function fetchKgData() {
+    if (!kgDataPromise) {
+      kgDataPromise = fetch('/api/kg-data?limit=550', { signal: AbortSignal.timeout(15000) })
+        .then(function (r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.json();
+        })
+        .catch(function (err) {
+          kgDataPromise = null; // allow retry on next toggle
+          throw err;
+        });
+    }
+    return kgDataPromise;
+  }
+
+  function slugifyFor(name) {
+    if (globalThis.Slugs && typeof globalThis.Slugs.slugify === 'function') {
+      return globalThis.Slugs.slugify(name);
+    }
+    return toSlug(name);
+  }
+
+  function topicBySlug(slug) {
+    if (!treeData || !treeData.topics) return null;
+    for (var i = 0; i < treeData.topics.length; i++) {
+      if (treeData.topics[i].slug === slug) return treeData.topics[i];
+    }
+    return null;
+  }
+
+  function toggleTopicGraph(btn) {
+    var slug = btn.getAttribute('data-topic-slug');
+    var target = app.querySelector('.kg-topic-graph[data-topic-slug="' + slug + '"]');
+    if (!target) return;
+    if (target.style.display === 'block') {
+      target.style.display = 'none';
+      btn.textContent = '📊 Grafik anzeigen';
+      return;
+    }
+    if (target.getAttribute('data-rendered') === '1') {
+      target.style.display = 'block';
+      btn.textContent = '📊 Grafik ausblenden';
+      return;
+    }
+    if (typeof globalThis.D3EgoGraph === 'undefined' || !globalThis.D3EgoGraph.createTopicGraph)
+      return;
+    var topic = topicBySlug(slug);
+    if (!topic) return;
+    btn.disabled = true;
+    btn.textContent = '⏳ Lädt Grafik…';
+    fetchKgData()
+      .then(function (data) {
+        var slugs = (topic.entities || []).map(function (name) {
+          return slugifyFor(name);
+        });
+        if (!slugs.length) slugs = [slugifyFor(topic.title || topic.slug)];
+        return globalThis.D3EgoGraph.createTopicGraph(target, data, {
+          topic: topic.title || topic.slug,
+          topicSlugs: slugs,
+          cap: 30,
+          height: 420,
+        });
+      })
+      .then(function () {
+        target.setAttribute('data-rendered', '1');
+        target.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = '📊 Grafik ausblenden';
+        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = '📊 Grafik anzeigen (fehlgeschlagen)';
+      });
+  }
+
   function _attachEvents() {
     var select = document.getElementById('state-select');
     if (select) {
@@ -249,7 +393,28 @@
         loadTree(this.value);
       });
     }
+    // Delegated so freshly rendered toggle buttons work without rebinding
+    app.addEventListener('click', function (ev) {
+      var btn = ev.target && ev.target.closest ? ev.target.closest('.kg-graph-toggle') : null;
+      if (btn) toggleTopicGraph(btn);
+    });
   }
 
   loadStates();
+
+  // Auto-load the curriculum tree for the state encoded in the URL
+  // (e.g. /curricula/by/ -> "by") so state pages display their plan
+  // directly instead of requiring a manual dropdown selection.
+  var urlState = (window.location.pathname || '').match(/\/curricula\/([a-z]{2})\/?$/);
+  if (urlState) {
+    loadTree(urlState[1]);
+  }
+
+  // Exported pure helpers for unit tests (Part B Task 5)
+  window.CurriculaState = {
+    toSlug: toSlug,
+    entityHref: entityHref,
+    KMK_OPERATORS: KMK_OPERATORS,
+    highlightOperators: highlightOperators,
+  };
 })();

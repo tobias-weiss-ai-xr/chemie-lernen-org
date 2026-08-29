@@ -19,8 +19,9 @@ module.exports = defineConfig({
   // Fail the build on CI if you accidentally left test.only in the source code
   forbidOnly: !!process.env.CI,
 
-  // Retry on CI only
-  retries: process.env.CI ? 2 : 0,
+  // Retry transient failures. Live E2E runs against the production API,
+  // which rate-limits bursts of requests (HTTP 429) — retries absorb that.
+  retries: 2,
 
   // Opt out of parallel tests on CI
   workers: process.env.CI ? 1 : undefined,

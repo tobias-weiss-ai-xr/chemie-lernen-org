@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /**
  * Gas Law Calculator
  * Calculates with Boyle-Mariotte, Gay-Lussac, and Ideal Gas Law
@@ -49,6 +48,56 @@ function celsiusToKelvin(celsius) {
 }
 
 // Format number for display
+
+// Data-driven spec for the four ideal-gas solve directions (replaces a 4-case
+// switch with duplicated guards). compute/formula preserve the original math
+// and display strings exactly.
+const IDEAL_GAS_SPECS = {
+  pressure: {
+    required: ['volume', 'amount', 'temperature'],
+    missingMsg: 'Bitte geben Sie Volumen, Stoffmenge und Temperatur ein.',
+    unit: 'bar',
+    compute: ({ amount, volume, temperature }) => (amount * R_BAR * temperature) / volume,
+    formula: ({ amount, volume, temperature }) =>
+      `p = nRT/V = (${formatNumber(amount)} mol × ${formatNumber(R_BAR)} L·bar/(mol·K) × ${formatNumber(temperature)} K) / ${formatNumber(volume)} L`,
+  },
+  volume: {
+    required: ['pressure', 'amount', 'temperature'],
+    missingMsg: 'Bitte geben Sie Druck, Stoffmenge und Temperatur ein.',
+    unit: 'L',
+    compute: ({ amount, pressure, temperature }) => (amount * R_BAR * temperature) / pressure,
+    formula: ({ amount, pressure, temperature }) =>
+      `V = nRT/p = (${formatNumber(amount)} mol × ${formatNumber(R_BAR)} L·bar/(mol·K) × ${formatNumber(temperature)} K) / ${formatNumber(pressure)} bar`,
+  },
+  amount: {
+    required: ['pressure', 'volume', 'temperature'],
+    missingMsg: 'Bitte geben Sie Druck, Volumen und Temperatur ein.',
+    unit: 'mol',
+    compute: ({ pressure, volume, temperature }) => (pressure * volume) / (R_BAR * temperature),
+    formula: ({ pressure, volume, temperature }) =>
+      `n = pV/RT = (${formatNumber(pressure)} bar × ${formatNumber(volume)} L) / (${formatNumber(R_BAR)} L·bar/(mol·K) × ${formatNumber(temperature)} K)`,
+  },
+  temperature: {
+    required: ['pressure', 'volume', 'amount'],
+    missingMsg: 'Bitte geben Sie Druck, Volumen und Stoffmenge ein.',
+    unit: 'K',
+    compute: ({ pressure, volume, amount }) => (pressure * volume) / (amount * R_BAR),
+    formula: ({ pressure, volume, amount }) =>
+      `T = pV/nR = (${formatNumber(pressure)} bar × ${formatNumber(volume)} L) / (${formatNumber(amount)} mol × ${formatNumber(R_BAR)} L·bar/(mol·K))`,
+  },
+};
+
+// Convert parsed ideal-gas inputs to standard units (bar, L, mol, K)
+function toStandardUnits(inputs) {
+  let { pressure, pressureUnit, volume, volumeUnit, amount, amountUnit, temperature, tempUnit } =
+    inputs;
+  if (pressure !== null) pressure = convertPressureToBar(pressure, pressureUnit);
+  if (volume !== null) volume = convertVolumeToLiters(volume, volumeUnit);
+  if (amount !== null) amount = convertAmountToMoles(amount, amountUnit);
+  if (temperature !== null && tempUnit === 'C') temperature = celsiusToKelvin(temperature);
+  return { pressure, volume, amount, temperature };
+}
+
 // Ideal Gas Law Calculator
 function calculateIdealGas(calculateWhat) {
   const pressureInput = document.getElementById('ig-pressure').value.trim();
@@ -79,62 +128,33 @@ function calculateIdealGas(calculateWhat) {
     let temperature = temperatureInput ? parseFloat(temperatureInput) : null;
 
     // Convert to standard units
-    if (pressure !== null) pressure = convertPressureToBar(pressure, pressureUnit);
-    if (volume !== null) volume = convertVolumeToLiters(volume, volumeUnit);
-    if (amount !== null) amount = convertAmountToMoles(amount, amountUnit);
-    if (temperature !== null && tempUnit === 'C') temperature = celsiusToKelvin(temperature);
+    ({ pressure, volume, amount, temperature } = toStandardUnits({
+      pressure,
+      pressureUnit,
+      volume,
+      volumeUnit,
+      amount,
+      amountUnit,
+      temperature,
+      tempUnit,
+    }));
 
-    // Calculate the missing value
-    let result = null;
-    let resultUnit = '';
-    let formula = '';
-
-    switch (calculateWhat) {
-      case 'pressure':
-        if (!volume || !amount || !temperature) {
-          showError('Bitte geben Sie Volumen, Stoffmenge und Temperatur ein.');
-          return;
-        }
-        result = (amount * R_BAR * temperature) / volume;
-        resultUnit = 'bar';
-        formula = `p = nRT/V = (${formatNumber(amount)} mol × ${formatNumber(R_BAR)} L·bar/(mol·K) × ${formatNumber(temperature)} K) / ${formatNumber(volume)} L`;
-        break;
-
-      case 'volume':
-        if (!pressure || !amount || !temperature) {
-          showError('Bitte geben Sie Druck, Stoffmenge und Temperatur ein.');
-          return;
-        }
-        result = (amount * R_BAR * temperature) / pressure;
-        resultUnit = 'L';
-        formula = `V = nRT/p = (${formatNumber(amount)} mol × ${formatNumber(R_BAR)} L·bar/(mol·K) × ${formatNumber(temperature)} K) / ${formatNumber(pressure)} bar`;
-        break;
-
-      case 'amount':
-        if (!pressure || !volume || !temperature) {
-          showError('Bitte geben Sie Druck, Volumen und Temperatur ein.');
-          return;
-        }
-        result = (pressure * volume) / (R_BAR * temperature);
-        resultUnit = 'mol';
-        formula = `n = pV/RT = (${formatNumber(pressure)} bar × ${formatNumber(volume)} L) / (${formatNumber(R_BAR)} L·bar/(mol·K) × ${formatNumber(temperature)} K)`;
-        break;
-
-      case 'temperature':
-        if (!pressure || !volume || !amount) {
-          showError('Bitte geben Sie Druck, Volumen und Stoffmenge ein.');
-          return;
-        }
-        result = (pressure * volume) / (amount * R_BAR);
-        resultUnit = 'K';
-        formula = `T = pV/nR = (${formatNumber(pressure)} bar × ${formatNumber(volume)} L) / (${formatNumber(amount)} mol × ${formatNumber(R_BAR)} L·bar/(mol·K))`;
-        break;
+    const spec = IDEAL_GAS_SPECS[calculateWhat];
+    if (!spec) return;
+    const inputs = { pressure, volume, amount, temperature };
+    const missing = spec.required.find((key) => !inputs[key]);
+    if (missing) {
+      showError(spec.missingMsg);
+      return;
     }
+
+    const result = spec.compute(inputs);
+    const formula = spec.formula(inputs);
 
     displayIdealGasResult(
       calculateWhat,
       result,
-      resultUnit,
+      spec.unit,
       formula,
       pressure,
       volume,

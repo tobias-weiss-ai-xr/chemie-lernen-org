@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /**
  * Atomenergieniveaus und Linienspektren
  * Bohr atom model simulation with energy levels and spectral lines

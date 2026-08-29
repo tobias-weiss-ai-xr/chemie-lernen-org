@@ -134,6 +134,155 @@
     return EDGE_OPACITY_MAIN[relType] !== undefined ? EDGE_OPACITY_MAIN[relType] : 0.15;
   }
 
+  // ── Category shape coding (Part B B2) ────────────────────────────
+  // Didactic principle „nicht nur Farbe“: every category also gets an own
+  // shape (Stoff circle, Konzept square, Reaktion diamond, Methode triangle,
+  // Person/Quelle hexagon, Lernziel cross). Rendering uses SVG <path> data
+  // so no extra D3 symbols are needed.
+  var SHAPES = {
+    stoff: 'circle',
+    konzept: 'square',
+    reaktion: 'diamond',
+    methode: 'triangle',
+    person: 'hexagon',
+    quelle: 'hexagon',
+    lernziel: 'cross',
+  };
+
+  function shapeOf(cat) {
+    return SHAPES[cat] || 'circle';
+  }
+
+  function nodePathD(shape, size) {
+    var r = Math.max(2, Number(size) || 6);
+    var h = r * 0.866; // hexagon vertical radius factor
+    switch (shape) {
+      case 'square':
+        return (
+          'M' +
+          -r +
+          ',' +
+          -r +
+          ' L' +
+          r +
+          ',' +
+          -r +
+          ' L' +
+          r +
+          ',' +
+          r +
+          ' L' +
+          -r +
+          ',' +
+          r +
+          ' Z'
+        );
+      case 'diamond':
+        return 'M0,' + -r + ' L' + r + ',0 L0,' + r + ' L' + -r + ',0 Z';
+      case 'triangle':
+        return 'M0,' + -r + ' L' + r + ',' + r + ' L' + -r + ',' + r + ' Z';
+      case 'hexagon':
+        return (
+          'M' +
+          r +
+          ',0 L' +
+          r / 2 +
+          ',' +
+          -h +
+          ' L' +
+          -r / 2 +
+          ',' +
+          -h +
+          ' L' +
+          -r +
+          ',0 L' +
+          -r / 2 +
+          ',' +
+          h +
+          ' L' +
+          r / 2 +
+          ',' +
+          h +
+          ' Z'
+        );
+      case 'cross':
+        var k = r * 0.35;
+        return (
+          'M' +
+          -k +
+          ',' +
+          -r +
+          ' L' +
+          k +
+          ',' +
+          -r +
+          ' L' +
+          k +
+          ',' +
+          -k +
+          ' L' +
+          r +
+          ',' +
+          -k +
+          ' L' +
+          r +
+          ',' +
+          k +
+          ' L' +
+          k +
+          ',' +
+          k +
+          ' L' +
+          k +
+          ',' +
+          r +
+          ' L' +
+          -k +
+          ',' +
+          r +
+          ' L' +
+          -k +
+          ',' +
+          k +
+          ' L' +
+          -r +
+          ',' +
+          k +
+          ' L' +
+          -r +
+          ',' +
+          -k +
+          ' L' +
+          -k +
+          ',' +
+          -k +
+          ' Z'
+        );
+      default: // circle via two arcs
+        return (
+          'M' +
+          r +
+          ',0 A' +
+          r +
+          ',' +
+          r +
+          ' 0 1 1 ' +
+          -r +
+          ',0 A' +
+          r +
+          ',' +
+          r +
+          ' 0 1 1 ' +
+          r +
+          ',0 Z'
+        );
+    }
+  }
+
+  function nodePathFor(category, size) {
+    return nodePathD(shapeOf(category), size);
+  }
+
   function slugify(name) {
     return String(name)
       .toLowerCase()
@@ -143,6 +292,18 @@
       .replace(/ß/g, 'ss')
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
+  }
+
+  /**
+   * Build the canonical entity detail URL for a node label.
+   * Prefers the shared Slugs utility (single source of truth) and falls
+   * back to the module-local transliteration if Slugs is not loaded.
+   */
+  function entityHref(name) {
+    if (globalThis.Slugs && typeof globalThis.Slugs.entityUrl === 'function') {
+      return globalThis.Slugs.entityUrl(name);
+    }
+    return '/entity/' + slugify(name) + '/';
   }
 
   function esc(s) {
@@ -408,11 +569,186 @@
     return { nodes: nodes, links: links };
   }
 
+  // ── Bounded topic subgraph (Part B B2) ───────────────────────────
+  // Seeds (entities whose canonical slug matches topicSlugs) always stay;
+  // then 1-hop neighbors fill the budget — Voraussetzungen (components)
+  // first, then Verwandte (relatedEntities, weight desc, alpha asc).
+  // Every node carries an xGroup for the directed Vorwissen layout:
+  // 'left' = components, 'center' = seeds, 'right' = related entities.
+  function buildTopicNodes(data, options) {
+    options = options || {};
+    var cap = options.cap || 80;
+    var topicSlugs = options.topicSlugs || [];
+    var slugSet = {};
+    (topicSlugs || []).forEach(function (s) {
+      slugSet[s] = true;
+    });
+    var useSlugLookup = !Array.isArray(topicSlugs) || topicSlugs.length === 0;
+    var topicNorm = useSlugLookup ? slugify(options.topic) : '';
+
+    var entities = data.entities || [];
+    var seeds = [];
+    var seedsByName = {};
+    entities.forEach(function (e) {
+      var name = String((e && e.name) || '').trim();
+      if (!name) return;
+      var isSeed =
+        slugSet[slugify(name)] === true || (useSlugLookup && slugify(name) === topicNorm);
+      if (isSeed) {
+        seeds.push(e);
+        seedsByName[name] = true;
+      }
+    });
+    if (!seeds.length) return { nodes: [], links: [] };
+
+    var catFor = {};
+    entities.forEach(function (e) {
+      catFor[String((e && e.name) || '').trim()] = (e && e.category) || 'konzept';
+    });
+
+    var nodes = [];
+    var byName = {};
+    seeds.forEach(function (e, i) {
+      var name = String(e.name).trim();
+      var n = {
+        id: 'ts' + i,
+        label: name,
+        category: e.category || 'konzept',
+        size: 14,
+        isSeed: true,
+        xGroup: 'center',
+      };
+      nodes.push(n);
+      byName[name] = n;
+    });
+
+    var links = [];
+    var budget = Math.max(0, cap - seeds.length);
+    var used = 0;
+
+    function addNeighbor(name, type) {
+      name = String(name || '').trim();
+      if (!name || byName[name] || seedsByName[name] || used >= budget) return false;
+      var n = {
+        id: 'tn' + used,
+        label: name,
+        category: catFor[name] || 'konzept',
+        size: 10,
+        xGroup: type === 'composition' ? 'left' : 'right',
+      };
+      byName[name] = n;
+      nodes.push(n);
+      used += 1;
+      return true;
+    }
+
+    // Voraussetzungen first — the didactic „links im Graphen“ group.
+    seeds.forEach(function (e) {
+      (e.components || []).forEach(function (c) {
+        var cname = typeof c === 'string' ? c : c && c.name;
+        if (addNeighbor(cname, 'composition')) {
+          links.push({
+            source: 'ts' + seeds.indexOf(e),
+            target: byName[String(cname).trim()].id,
+            type: 'composition',
+          });
+        }
+      });
+    });
+    // Verwandte — weight desc, alpha asc, deterministic order.
+    seeds.forEach(function (e) {
+      var refs = (e.relatedEntities || []).slice();
+      var seedIndex = seeds.indexOf(e);
+      refs.sort(function (a, b) {
+        var wa = typeof a === 'object' && a ? Number(a.weight) || 0 : 1;
+        var wb = typeof b === 'object' && b ? Number(b.weight) || 0 : 1;
+        if (wb !== wa) return wb - wa;
+        var na = String(a && a.name != null ? a.name : a)
+          .trim()
+          .toLowerCase();
+        var nb = String(b && b.name != null ? b.name : b)
+          .trim()
+          .toLowerCase();
+        return na < nb ? -1 : na > nb ? 1 : 0;
+      });
+      refs.forEach(function (r) {
+        var rname = typeof r === 'string' ? r : r && r.name;
+        if (addNeighbor(rname, 'related')) {
+          links.push({
+            source: 'ts' + seedIndex,
+            target: byName[String(rname).trim()].id,
+            type: 'related',
+          });
+        }
+      });
+    });
+
+    return { nodes: nodes, links: links };
+  }
+
   // ── Ego graph ────────────────────────────────────────────────────
+
+  // Multi-center ego (Part B B3): top search matches become the centers,
+  // their related entities fill the budget (cap 30 by default).
+  function buildSearchNodes(data, matches, cap) {
+    cap = cap || 30;
+    var entities = data.entities || [];
+    var matched = (matches || [])
+      .map(function (name) {
+        var trimmed = String(name || '').trim();
+        for (var i = 0; i < entities.length; i++) {
+          if (String((entities[i] && entities[i].name) || '').trim() === trimmed)
+            return entities[i];
+        }
+        return null;
+      })
+      .filter(Boolean);
+    if (!matched.length) return { nodes: [], links: [] };
+
+    var nodes = [];
+    var byName = {};
+    matched.forEach(function (e, i) {
+      var n = {
+        id: 'ec' + i,
+        label: String(e.name).trim(),
+        category: e.category || 'konzept',
+        size: 15,
+        isCenter: true,
+      };
+      nodes.push(n);
+      byName[n.label] = n;
+    });
+
+    var links = [];
+    var budget = Math.max(0, cap - matched.length);
+    var used = 0;
+    var catFor = {};
+    entities.forEach(function (e) {
+      catFor[String((e && e.name) || '').trim()] = (e && e.category) || 'konzept';
+    });
+    var seen = {};
+    matched.forEach(function (e) {
+      var seedIndex = matched.indexOf(e);
+      (e.relatedEntities || []).forEach(function (r) {
+        var rname = String(typeof r === 'string' ? r : (r && r.name) || '').trim();
+        if (!rname || byName[rname] || seen[rname] || used >= budget) return;
+        seen[rname] = true;
+        var n = { id: 'ecr' + used, label: rname, category: catFor[rname] || 'konzept', size: 9 };
+        nodes.push(n);
+        byName[rname] = n;
+        used += 1;
+        links.push({ source: 'ec' + seedIndex, target: n.id, type: 'related' });
+      });
+    });
+
+    return { nodes: nodes, links: links };
+  }
+
   function createEgoGraph(container, data, options) {
     options = options || {};
     var entity = options.entity;
-    if (!entity) {
+    var multi = !!(options.matches && options.matches.length);
+    if (!entity && !multi) {
       container.innerHTML =
         '<p style="padding:1em;text-align:center;color:var(--text-muted,#888);">Kein Entity übergeben.</p>';
       return Promise.resolve();
@@ -423,10 +759,16 @@
       container.innerHTML = '';
       container.style.position = 'relative';
 
-      // Build nodes
-      var built = buildEgoNodes(data, entity);
+      var built;
+      if (multi) {
+        // Part B B3 — search-driven multi-center ego graph
+        built = buildSearchNodes(data, options.matches, options.cap || 30);
+      } else {
+        built = buildEgoNodes(data, entity);
+      }
       var nodes = built.nodes;
       var links = built.links;
+      var entityName = multi ? options.matches.join(', ') : entity.name;
 
       // Set up SVG with a11y
       var w = container.clientWidth || 280;
@@ -438,14 +780,14 @@
         .attr('width', w)
         .attr('height', h)
         .attr('role', 'img')
-        .attr('aria-label', 'Wissensgraph für ' + entity.name)
+        .attr('aria-label', 'Wissensgraph für ' + entityName)
         .attr('tabindex', '0');
 
       // SVG <title> and <desc> for screen readers
-      svg.append('title').text('Wissensgraph: ' + entity.name);
+      svg.append('title').text('Wissensgraph: ' + entityName);
       svg
         .append('desc')
-        .text('Vernetzung von ' + entity.name + ' mit ' + links.length + ' verknüpften Knoten');
+        .text('Vernetzung von ' + entityName + ' mit ' + links.length + ' verknüpften Knoten');
 
       var g = svg.append('g');
 
@@ -490,14 +832,15 @@
           return getEdgeOpacity(d.type || d.relType || 'RELATED_TO');
         });
 
-      // Nodes
+      // Nodes — shape coded per category (Part B B2)
       var node = g
-        .selectAll('circle')
+        .selectAll('path.node-shape')
         .data(nodes)
         .enter()
-        .append('circle')
-        .attr('r', function (d) {
-          return d.size;
+        .append('path')
+        .attr('class', 'node-shape')
+        .attr('d', function (d) {
+          return nodePathFor(d.category, d.size);
         })
         .attr('fill', function (d) {
           if (d.isArticle) return '#bbb';
@@ -527,8 +870,8 @@
             // Clicking center is a no-op
             return;
           } else {
-            // Navigate to entity detail
-            global.location.href = '/entity/' + slugify(d.label) + '/';
+            // Navigate to entity detail (canonical slug — see Slugs util)
+            global.location.href = entityHref(d.label);
           }
         })
         .on('keydown', function (ev, _d) {
@@ -539,7 +882,7 @@
           }
         })
         .on('mouseover', function (ev, d) {
-          safeTransition(d3.select(this)).attr('r', d.size * 1.3);
+          safeTransition(d3.select(this)).attr('d', nodePathFor(d.category, d.size * 1.3));
           node.style('opacity', function (n) {
             if (n.id === d.id) return 1;
             for (var i = 0; i < links.length; i++) {
@@ -571,7 +914,7 @@
             .style('top', ev.clientY - rect.top - 10 + 'px');
         })
         .on('mouseout', function (ev, d) {
-          d3.select(this).attr('r', d.size);
+          d3.select(this).attr('d', nodePathFor(d.category, d.size));
           node.style('opacity', 0.85);
           tooltip.style('display', 'none');
         });
@@ -665,13 +1008,9 @@
             .attr('y2', function (d) {
               return d.target.y;
             });
-          node
-            .attr('cx', function (d) {
-              return d.x;
-            })
-            .attr('cy', function (d) {
-              return d.y;
-            });
+          node.attr('transform', function (d) {
+            return 'translate(' + d.x + ',' + d.y + ')';
+          });
           g.selectAll('text')
             .attr('x', function (d) {
               return d.x;
@@ -873,10 +1212,9 @@
         });
         legendItems.forEach(function (item) {
           legend
-            .append('circle')
-            .attr('cx', 6)
-            .attr('cy', 6 + li * 18)
-            .attr('r', 5)
+            .append('path')
+            .attr('d', nodePathD(shapeOf(item.cat), 5))
+            .attr('transform', 'translate(6,' + (6 + li * 18) + ')')
             .attr('fill', item.color);
           legend
             .append('text')
@@ -979,15 +1317,16 @@
           return getEdgeOpacity(d.type || d.relType || 'related');
         });
 
-      // Nodes
+      // Nodes — shape coded per category (Part B B2)
       var node = g
         .append('g')
-        .selectAll('circle')
+        .selectAll('path.node-shape')
         .data(nodes)
         .enter()
-        .append('circle')
-        .attr('r', function (d) {
-          return d.size || 4;
+        .append('path')
+        .attr('class', 'node-shape')
+        .attr('d', function (d) {
+          return nodePathFor(d.category, d.size || 4);
         })
         .attr('fill', function (d) {
           if (d.type === 'page') return '#2ecc71';
@@ -1026,7 +1365,7 @@
       node
         .on('mouseover', function (ev, d) {
           d3.select(this)
-            .attr('r', (d.size || 4) * 1.3)
+            .attr('d', nodePathFor(d.category, (d.size || 4) * 1.3))
             .style('opacity', 1);
           var connected = {};
           links.forEach(function (l) {
@@ -1080,7 +1419,7 @@
         })
         .on('mouseout', function (ev, d) {
           d3.select(this)
-            .attr('r', d.size || 4)
+            .attr('d', nodePathFor(d.category, d.size || 4))
             .style('opacity', 0.85);
           node.style('opacity', 0.85);
           link.style('stroke-opacity', function (d) {
@@ -1102,7 +1441,7 @@
                 related: d.related || [],
               });
             }
-            global.location.href = '/entity/' + slugify(d.label) + '/';
+            global.location.href = entityHref(d.label);
           } else if (d.url) {
             global.open(d.url, '_blank');
           }
@@ -1234,13 +1573,9 @@
             .attr('y2', function (d) {
               return isNaN(d.target.y) ? 0 : d.target.y;
             });
-          node
-            .attr('cx', function (d) {
-              return isNaN(d.x) ? 0 : d.x;
-            })
-            .attr('cy', function (d) {
-              return d.y;
-            });
+          node.attr('transform', function (d) {
+            return 'translate(' + (isNaN(d.x) ? 0 : d.x) + ',' + (isNaN(d.y) ? 0 : d.y) + ')';
+          });
           labels
             .attr('x', function (d) {
               return isNaN(d.x) ? 0 : d.x;
@@ -1350,6 +1685,313 @@
     });
   }
 
+  // ── Bounded topic graph (Part B B2) ─────────────────────────────
+  // Portal landing: click a portal card → this renders the section's
+  // entities (seeds) plus their 1-hop Vorwissen/Verwandte, capped at ~80
+  // nodes. Directed Vorwissen layout: forceX anchors components LEFT,
+  // seeds CENTER, related entities RIGHT — reads like a dependency map.
+  function createTopicGraph(container, data, options) {
+    options = options || {};
+    var topic = options.topic || '';
+    var cap = options.cap || 80;
+    var hintContainer = options.hintContainer || null;
+
+    return ensureD3().then(function (d3) {
+      container.innerHTML = '';
+      container.style.position = 'relative';
+
+      var built = buildTopicNodes(data, options);
+      var nodes = built.nodes;
+      var links = built.links;
+
+      var w = container.clientWidth || 800;
+      var h = options.height || 700;
+
+      var svg = d3
+        .select(container)
+        .append('svg')
+        .attr('width', w)
+        .attr('height', h)
+        .attr('role', 'img')
+        .attr(
+          'aria-label',
+          'Themengraph ' + topic + ' — ' + nodes.length + ' Knoten, ' + links.length + ' Kanten'
+        )
+        .attr('tabindex', '0');
+
+      svg.append('title').text('Themengraph: ' + topic);
+      svg
+        .append('desc')
+        .text(
+          'Themenbereich ' +
+            topic +
+            ': ' +
+            nodes.length +
+            ' Begriffe. ' +
+            'Links stehen Voraussetzungen, rechts verwandte Begriffe. Zoom mit Mausrad, verschieben per Drag.'
+        );
+
+      var zoom = d3
+        .zoom()
+        .scaleExtent([0.1, 8])
+        .on('zoom', function (ev) {
+          g.attr('transform', ev.transform);
+        });
+      svg.call(zoom).style('cursor', 'grab');
+
+      var g = svg.append('g');
+
+      var tooltip = d3
+        .select(container)
+        .append('div')
+        .style('position', 'absolute')
+        .style('display', 'none')
+        .style('padding', '6px 10px')
+        .style('background', 'var(--bg-card, #fff)')
+        .style('border', '1px solid var(--border-color, #ddd)')
+        .style('border-radius', '4px')
+        .style('font-size', '12px')
+        .style('color', 'var(--text-graph, #333)')
+        .style('pointer-events', 'none')
+        .style('z-index', '10')
+        .style('box-shadow', '0 2px 6px rgba(0,0,0,0.15)');
+
+      // Links
+      var link = g
+        .selectAll('line')
+        .data(links)
+        .enter()
+        .append('line')
+        .attr('stroke', function (d) {
+          return d.type === 'composition' ? '#e74c3c' : '#bbb';
+        })
+        .attr('stroke-width', function (d) {
+          return d.type === 'composition' ? 1.5 : 1;
+        })
+        .attr('stroke-dasharray', function (d) {
+          return d.type === 'composition' ? '5,3' : null;
+        })
+        .attr('stroke-opacity', 0.6);
+
+      // Nodes — category shapes (Part B B2)
+      var node = g
+        .append('g')
+        .selectAll('path.node-shape')
+        .data(nodes)
+        .enter()
+        .append('path')
+        .attr('class', 'node-shape')
+        .attr('d', function (d) {
+          return nodePathFor(d.category, d.size);
+        })
+        .attr('fill', function (d) {
+          return colorize(d.category);
+        })
+        .attr('stroke', function (d) {
+          return d.isSeed ? '#fff' : 'none';
+        })
+        .attr('stroke-width', function (d) {
+          return d.isSeed ? 2 : 0;
+        })
+        .attr('tabindex', '0')
+        .attr('role', 'button')
+        .attr('aria-label', function (d) {
+          return (d.isSeed ? 'Thema: ' : labelize(d.category) + ': ') + d.label;
+        })
+        .style('cursor', 'pointer')
+        .on('click', function (ev, d) {
+          // Navigate to entity detail (canonical slug — see Slugs util)
+          global.location.href = entityHref(d.label);
+        })
+        .on('keydown', function (ev, d) {
+          if (ev.key === 'Enter' || ev.key === ' ') {
+            ev.preventDefault();
+            d3.select(this).dispatch('click');
+          }
+        })
+        .on('mouseover', function (ev, d) {
+          safeTransition(d3.select(this)).attr('d', nodePathFor(d.category, d.size * 1.3));
+          node.style('opacity', function (n) {
+            if (n.id === d.id) return 1;
+            for (var i = 0; i < links.length; i++) {
+              var l = links[i];
+              if (
+                (l.source === d.id && l.target === n.id) ||
+                (l.target === d.id && l.source === n.id)
+              )
+                return 1;
+            }
+            return 0.2;
+          });
+          tooltip
+            .style('display', 'block')
+            .html(
+              '<strong>' +
+                esc(d.label) +
+                '</strong><br><span style="color:' +
+                colorize(d.category) +
+                '">' +
+                (d.xGroup === 'left' ? '←' : d.xGroup === 'right' ? '→' : '•') +
+                ' </span>' +
+                labelize(d.category) +
+                (d.isSeed ? ' · Thema' : '')
+            );
+          var rect = container.getBoundingClientRect();
+          tooltip
+            .style('left', ev.clientX - rect.left + 12 + 'px')
+            .style('top', ev.clientY - rect.top - 10 + 'px');
+        })
+        .on('mouseout', function (ev, d) {
+          d3.select(this).attr('d', nodePathFor(d.category, d.size));
+          node.style('opacity', 0.9);
+          tooltip.style('display', 'none');
+        });
+
+      // Labels only for small graphs (≤25 nodes), else hover-only
+      var labels;
+      if (nodes.length <= 25) {
+        labels = g
+          .selectAll('text')
+          .data(nodes)
+          .enter()
+          .append('text')
+          .attr('text-anchor', 'middle')
+          .attr('dy', '0.35em')
+          .attr('pointer-events', 'none')
+          .style('font-size', '11px')
+          .text(function (d) {
+            var label = d.label.length > 15 ? d.label.slice(0, 14) + '…' : d.label;
+            return label;
+          });
+      } else {
+        labels = g.selectAll('text').data([]);
+      }
+
+      // Directed Vorwissen layout: components left, related right
+      var sim = d3
+        .forceSimulation(nodes)
+        .force(
+          'link',
+          d3
+            .forceLink(links)
+            .id(function (d) {
+              return d.id;
+            })
+            .distance(function (d) {
+              return d.type === 'composition' ? 70 : 60;
+            })
+        )
+        .force('charge', d3.forceManyBody().strength(-120))
+        .force('center', d3.forceCenter(w / 2, h / 2))
+        .force(
+          'collision',
+          d3.forceCollide().radius(function (d) {
+            return d.size + 5;
+          })
+        )
+        .force(
+          'x',
+          d3
+            .forceX(function (d) {
+              if (d.xGroup === 'left') return w * 0.22; // Voraussetzungen
+              if (d.xGroup === 'right') return w * 0.78; // Verwandte
+              return w / 2; // Seeds
+            })
+            .strength(0.12)
+        )
+        .alphaDecay(0.05)
+        .on('tick', function () {
+          link
+            .attr('x1', function (d) {
+              return d.source.x;
+            })
+            .attr('y1', function (d) {
+              return d.source.y;
+            })
+            .attr('x2', function (d) {
+              return d.target.x;
+            })
+            .attr('y2', function (d) {
+              return d.target.y;
+            });
+          node.attr('transform', function (d) {
+            return 'translate(' + d.x + ',' + d.y + ')';
+          });
+          labels
+            .attr('x', function (d) {
+              return d.x;
+            })
+            .attr('y', function (d) {
+              return d.y;
+            });
+        });
+
+      if (prefersReducedMotion()) {
+        sim.alpha(0).stop();
+      }
+
+      container.appendChild(buildFallbackList(nodes));
+
+      // Dismissible didactic hint (stored once): Vorwissen links
+      showVorwissenHint(hintContainer);
+
+      if (typeof ResizeObserver !== 'undefined') {
+        var ro = new ResizeObserver(function () {
+          var nw = container.clientWidth || 800;
+          var nh = container.clientHeight || 700;
+          svg.attr('width', nw).attr('height', nh);
+          sim.force('center', d3.forceCenter(nw / 2, nh / 2));
+          sim.force(
+            'x',
+            d3
+              .forceX(function (d) {
+                if (d.xGroup === 'left') return nw * 0.22;
+                if (d.xGroup === 'right') return nw * 0.78;
+                return nw / 2;
+              })
+              .strength(0.12)
+          );
+          sim.alpha(0.3).restart();
+          if (prefersReducedMotion()) sim.stop();
+        });
+        ro.observe(container);
+      }
+    });
+  }
+
+  // Didactic hint „Starte mit deinen Voraussetzungen (links im Graphen)“ —
+  // shown once when a topic graph opens, dismissible via localStorage.
+  function showVorwissenHint(hintContainer) {
+    if (!hintContainer) return;
+    try {
+      if (
+        typeof localStorage !== 'undefined' &&
+        localStorage.getItem('kg-hint-dismissed') === '1'
+      ) {
+        hintContainer.style.display = 'none';
+        return;
+      }
+      hintContainer.style.display = 'block';
+      hintContainer.setAttribute('role', 'note');
+      hintContainer.innerHTML =
+        '💡 <strong>Starte mit deinen Voraussetzungen (links im Graphen)</strong> — sie erklären die Grundlagen, bevor du dich nach rechts zu verwandten Begriffen vorarbeitest. ' +
+        '<button type="button" class="btn-close-sm" aria-label="Hinweis schließen">✕</button>';
+      var btn = hintContainer.querySelector('.btn-close-sm');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          hintContainer.style.display = 'none';
+          try {
+            if (typeof localStorage !== 'undefined') localStorage.setItem('kg-hint-dismissed', '1');
+          } catch (_e) {
+            /* ignore */
+          }
+        });
+      }
+    } catch (_e) {
+      /* ignore */
+    }
+  }
+
   function buildFilterChips(container, onChange) {
     var state = {
       categories: {
@@ -1395,9 +2037,16 @@
       _currentGraphState = { container: container, data: data };
       return createFullGraph(container, data, options);
     },
+    createTopicGraph: createTopicGraph,
+    buildTopicNodes: buildTopicNodes,
+    buildSearchNodes: buildSearchNodes,
+    shapeOf: shapeOf,
+    nodePathD: nodePathD,
+    nodePathFor: nodePathFor,
     colorize: colorize,
     labelize: labelize,
     slugify: slugify,
+    entityHref: entityHref,
     CAT_COLORS: CAT_COLORS,
     CAT_LABELS: CAT_LABELS,
     setCategoryFilter: function (category) {

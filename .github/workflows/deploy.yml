@@ -1,12 +1,12 @@
 # ============================================================
 # Deploy workflow - chemie-lernen.org
-# Builds Docker images, pushes to GitHub Container Registry, deploys
+# Builds Docker images, pushes to private registry, deploys
 # ============================================================
 name: Deploy chemie-lernen.org
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 
 env:
@@ -16,7 +16,7 @@ env:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, legion]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -28,16 +28,30 @@ jobs:
           chmod 600 ~/.ssh/chemie_core_deploy
           scripts/vendor-core.sh
 
+      - name: Cache bun dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.bun/install/cache
+            node_modules
+            api/node_modules
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb', '**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
       - name: Setup Node.js
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Install API dependencies (api/ has its own package.json)
-        run: cd api && bun install
+      - name: Install dependencies (cached)
+        run: |
+          if [ ! -d node_modules ]; then
+            bun install --frozen-lockfile
+          fi
+          if [ ! -d api/node_modules ]; then
+            cd api && bun install
+          fi
 
       - name: Run bun audit (critical only)
         run: bun audit --audit-level=critical || echo '[CI] bun audit found critical/high issues (non-fatal)'
@@ -132,14 +146,24 @@ jobs:
             set -e
             echo "=== Pulling latest compose config from git ==="
             cd /opt/git/hugo-chemie-lernen-org
+            # Docker rw mounts can leave root-owned files in the checkout that
+            # break 'git reset --hard' (Permission denied) -> normalize ownership.
+            sudo chown -R "$(id -u):$(id -g)" .
+            # Back up .env so a botched stash/pop can never take the API down.
+            cp -f .env /tmp/chemie.env.bak 2>/dev/null || true
             # Robust sync: fetch + hard reset never produces merge conflicts
-            git fetch origin master
+            # (stash/pull/pop left the tree in a conflicted state and blocked
+            # deploys for a week). Stash first so local-only files survive.
+            git fetch origin
             git stash push -q --include-untracked -m "deploy-sync" 2>/dev/null || true
-            git reset --hard origin/master
+            git reset --hard origin/main
             git stash pop -q 2>/dev/null || true
+            test -f .env || cp -f /tmp/chemie.env.bak .env 2>/dev/null || true
             echo "=== Pulling new images from GitHub Container Registry ==="
             docker pull ghcr.io/${{ github.repository_owner }}/chemie-hugo:latest
             docker pull ghcr.io/${{ github.repository_owner }}/chemie-chat-api:latest
+            echo "=== Removing stale web containers (avoid name conflict on recreate) ==="
+            docker rm -f hugo-chemie-lernen-org chemie-chat-api 2>/dev/null || true
             echo "=== Recreating containers ==="
             docker compose up -d hugo-chemie-lernen-org
             docker compose up -d chemie-chat-api
@@ -199,6 +223,10 @@ jobs:
               echo "❌ SMOKE FAIL: /api/chat expected 400 on empty body, got $CHAT_CODE"; exit 1
             fi
             echo "  ✓ /api/chat validates input (400 on empty body)"
+            # 8. Legacy umlaut URL redirects to its canonical entity page
+            LEGACY_CODE=$(curl -s -o /dev/null -w "%{http_code}" -L "$SITE/entity/essigs%C3%A4ure/")
+            if [ "$LEGACY_CODE" != "200" ]; then echo "❌ SMOKE FAIL: legacy /entity/essigsäure/ returned $LEGACY_CODE"; exit 1; fi
+            echo "  ✓ legacy umlaut entity URL redirects (200)"
             echo "=== Smoke tests passed ==="
             echo "=== Pinging healthchecks.io ==="
             curl -fsS -m 10 "${{ secrets.HEALTHCHECKS_IO_URL || 'https://hc-ping.com/chemi-deploy-ok' }}" \
@@ -206,3 +234,57 @@ jobs:
             echo "=== Cleaning up old images ==="
             docker image prune -f
             echo "=== Deploy complete ==="
+            # Hubs (reticulum/hubs-client/...) now runs on this host via
+            # docker-compose.hubs.yml (TLS terminated by the host Traefik).
+            # Stop the old /opt/containers/hubs-compose stack first to free ports/names.
+            echo "=== Stopping legacy hubs-compose stack ==="
+            sudo docker compose -f /opt/containers/hubs-compose/docker-compose.yml down --remove-orphans 2>/dev/null || true
+            export PRIVATE_NETWORK_IP=192.168.1.1
+            echo "=== Bringing up hubs stack (docker-compose.hubs.yml) ==="
+            sudo PRIVATE_NETWORK_IP=192.168.1.1 docker compose -f docker-compose.hubs.yml up -d 2>&1 | tail -30 || echo "warn: hubs up failed (non-fatal)"
+            echo "--- installing node deps in hubs services (source volumes lack node_modules) ---"
+            for spec in "hubs-client:/code" "hubs-admin:/code/admin" "spoke:/code" "hubs-dialog:/code"; do
+              svc="${spec%%:*}"; dir="${spec##*:}"
+              echo "  -> $svc (cd $dir && yarn install --ignore-engines)"
+              sudo docker compose -f docker-compose.hubs.yml run --rm "$svc" sh -c "cd $dir && yarn install --ignore-engines 2>&1 | tail -5 || npm install --ignore-engines 2>&1 | tail -5" 2>&1 | tail -12 || true
+            done
+            # Build the production hubs-client bundle (dist/) that the static
+            # server (python3 /code/static-server.py) serves. Running the
+            # webpack-dev-server in prod caused the manifest 404, HMR /ws
+            # console noise and dev-server core dumps.
+            # Make the hubs-client serve a static production build (no dev server):
+            # copy the static server + apply the manifest/webpack setup idempotently.
+            echo '--- hubs-client: static server + manifest + webpack patch ---'
+            sudo docker cp scripts/hubs-static-server.py hubs-client:/code/static-server.py
+            sudo docker cp scripts/setup-hubs-client.mjs hubs-client:/code/setup-hubs-client.mjs
+            sudo docker compose -f docker-compose.hubs.yml run --rm hubs-client node /code/setup-hubs-client.mjs 2>&1 | tail -5 || echo 'warn: hubs-client setup failed (non-fatal)'
+            echo '--- building production hubs-client dist ---'
+            sudo docker compose -f docker-compose.hubs.yml run --rm hubs-client sh -c "node_modules/.bin/webpack --mode=production" 2>&1 | tail -8 || echo 'warn: hubs-client build failed (non-fatal)'
+            sudo docker compose -f docker-compose.hubs.yml restart hubs-client hubs-admin spoke hubs-dialog 2>&1 | tail -5 || true
+            echo "--- starting hubs node services one at a time (avoid OOM spike) ---"
+            for svc in hubs-client hubs-admin spoke hubs-dialog; do
+              echo "  starting $svc"
+              sudo docker compose -f docker-compose.hubs.yml up -d "$svc" 2>&1 | tail -3 || true
+              sleep 15
+            done
+            echo "--- docker volumes (hubs-related) ---"
+            sudo docker volume ls 2>/dev/null | grep -i hubs || echo "(no hubs volumes)"
+            echo "--- all docker volumes ---"
+            sudo docker volume ls 2>/dev/null | head -40
+            echo "--- waiting 180s for hubs apps to boot ---"
+            sleep 180
+            echo "--- hubs stack status ---"
+            sudo docker compose -f docker-compose.hubs.yml ps 2>&1 | head -30 || true
+            echo "--- server-side direct probes (bypass Traefik) ---"
+            echo "reticulum:4001 /api/v1/meta = $(sudo docker exec hubs-reticulum curl -sk -m 10 -o /dev/null -w '%{http_code}' http://localhost:4001/api/v1/meta 2>/dev/null || echo n/a)"
+            echo "hubs-client:8080 /            = $(sudo docker exec hubs-client curl -sk -m 10 -o /dev/null -w '%{http_code}' http://localhost:8080 2>/dev/null || echo n/a)"
+            echo "--- check /code/public in hubs-client volume ---"
+            sudo docker compose -f docker-compose.hubs.yml run --rm hubs-client sh -c "ls -la /code/public/ 2>&1 | head -8" 2>&1 | tail -3 || true
+            echo "--- probe hubs.chemie-lernen.org (via Traefik) ---"
+            echo "root:  $(curl -sk -m 20 -o /dev/null -w '%{http_code}' https://hubs.chemie-lernen.org/)"
+            echo "meta:  $(curl -sk -m 20 -o /dev/null -w '%{http_code}' https://hubs.chemie-lernen.org/api/v1/meta)"
+            echo "rooms: $(curl -sk -m 20 -o /dev/null -w '%{http_code}' https://hubs.chemie-lernen.org/api/v1/rooms)"
+            for svc in hubs-reticulum hubs-client hubs-dialog; do
+              echo "===== logs: $svc ====="
+              sudo docker compose -f docker-compose.hubs.yml logs --tail=20 "$svc" 2>&1 | tail -20 || true
+            done

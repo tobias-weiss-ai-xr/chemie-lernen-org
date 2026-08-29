@@ -1507,6 +1507,9 @@ function renderAutocomplete(results, dropdown) {
     var el = results[i];
     var item = document.createElement('div');
     item.className = 'autocomplete-item';
+    item.setAttribute('role', 'option');
+    item.setAttribute('aria-selected', 'false');
+    item.setAttribute('aria-label', el.symbol + ' – ' + el.name);
     item.innerHTML =
       '<span class="sym">' +
       el.symbol +
@@ -1575,8 +1578,18 @@ function renderChips() {
       ' <span class="remove" data-symbol="' +
       sym +
       '">&times;</span>';
-    chip.querySelector('.remove').addEventListener('click', function () {
+    var rm = chip.querySelector('.remove');
+    rm.setAttribute('role', 'button');
+    rm.setAttribute('tabindex', '0');
+    rm.setAttribute('aria-label', el.symbol + ' (' + el.name + ') aus der Auswahl entfernen');
+    rm.addEventListener('click', function () {
       removeElement(this.dataset.symbol);
+    });
+    rm.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        removeElement(this.dataset.symbol);
+      }
     });
     container.appendChild(chip);
   }

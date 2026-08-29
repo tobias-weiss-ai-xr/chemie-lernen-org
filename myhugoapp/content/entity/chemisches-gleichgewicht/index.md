@@ -2,7 +2,6 @@
 title: "Chemisches Gleichgewicht"
 description: "Fachbegriff „Chemisches Gleichgewicht“ (Konzept) — beschrieben in 3 Artikeln auf chemie-lernen.org und ist mit 12 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-last_reviewed: 2026-08-06
 slug: "chemisches-gleichgewicht"
 category: "konzept"
 articleCount: 3

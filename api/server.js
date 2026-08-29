@@ -70,7 +70,11 @@ const strictLimiter = rateLimit({
 });
 const defaultLimiter = rateLimit({
   windowMs: 60 * 1000,
-  max: 30,
+  // 100/min — public read endpoints (curricula, modulhandbuch, kg graph,
+  // rag-context, ...). 30/min was too strict: it 429'd legitimate bursts
+  // (multi-page navigation, E2E suites) while adding little abuse protection
+  // for read-only GET traffic.
+  max: 100,
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Zu viele Anfragen. Bitte langsamer machen.' },

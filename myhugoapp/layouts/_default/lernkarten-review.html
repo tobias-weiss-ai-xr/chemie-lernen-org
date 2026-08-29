@@ -61,16 +61,16 @@
 
       <!-- Score Buttons -->
       <div class="lr-buttons" id="lr-buttons" style="display:none;">
-        <button class="lr-btn lr-btn-wiederholen" data-score="0" onclick="LernkartenReview.submitReview(0)" title="Erneut wiederholen (sehr schwer)">
+        <button class="lr-btn lr-btn-wiederholen" type="button" data-score="0" onclick="LernkartenReview.submitReview(0)" title="Erneut wiederholen (sehr schwer)" aria-label="Taste 1: Wiederholen, sehr schwer">
           <span class="lr-btn-key">1</span> Wiederholen
         </button>
-        <button class="lr-btn lr-btn-schwer" data-score="0.33" onclick="LernkartenReview.submitReview(0.33)" title="Mit Mühe erinnert">
+        <button class="lr-btn lr-btn-schwer" type="button" data-score="0.33" onclick="LernkartenReview.submitReview(0.33)" title="Mit Mühe erinnert" aria-label="Taste 2: Schwer, mit Mühe erinnert">
           <span class="lr-btn-key">2</span> Schwer
         </button>
-        <button class="lr-btn lr-btn-gut" data-score="0.66" onclick="LernkartenReview.submitReview(0.66)" title="Nach kurzem Überlegen gewusst">
+        <button class="lr-btn lr-btn-gut" type="button" data-score="0.66" onclick="LernkartenReview.submitReview(0.66)" title="Nach kurzem Überlegen gewusst" aria-label="Taste 3: Gut, nach kurzem Überlegen gewusst">
           <span class="lr-btn-key">3</span> Gut
         </button>
-        <button class="lr-btn lr-btn-leicht" data-score="1.0" onclick="LernkartenReview.submitReview(1.0)" title="Sofort gewusst">
+        <button class="lr-btn lr-btn-leicht" type="button" data-score="1.0" onclick="LernkartenReview.submitReview(1.0)" title="Sofort gewusst" aria-label="Taste 4: Leicht, sofort gewusst">
           <span class="lr-btn-key">4</span> Leicht
         </button>
       </div>

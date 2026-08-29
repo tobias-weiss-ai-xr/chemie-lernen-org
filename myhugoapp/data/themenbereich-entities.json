@@ -19,6 +19,12 @@
       "size": "1.0"
     },
     {
+      "name": "atom",
+      "slug": "atom",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
       "name": "Atomabsorptionsspektrometrie",
       "slug": "atomabsorptionsspektrometrie",
       "count": 1,
@@ -61,8 +67,20 @@
       "size": "1.0"
     },
     {
+      "name": "element",
+      "slug": "element",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
       "name": "Elemente Chemie",
       "slug": "elemente-chemie-klett",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "gemisch",
+      "slug": "gemisch",
       "count": 1,
       "size": "1.0"
     },
@@ -75,6 +93,12 @@
     {
       "name": "Kohlenstoff",
       "slug": "kohlenstoff-c",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
+      "name": "Kohlenstoffdioxid",
+      "slug": "kohlenstoffdioxid",
       "count": 1,
       "size": "1.0"
     },
@@ -95,30 +119,6 @@
       "slug": "komplexverbindung",
       "count": 1,
       "size": "1.0"
-    },
-    {
-      "name": "komplexverbindungen",
-      "slug": "komplexverbindungen",
-      "count": 1,
-      "size": "1.0"
-    },
-    {
-      "name": "metall-organische gerüstverbindungen",
-      "slug": "metall-organische-geruestverbindungen",
-      "count": 1,
-      "size": "1.0"
-    },
-    {
-      "name": "metallcluster-moleküle",
-      "slug": "metallcluster-molekuele",
-      "count": 1,
-      "size": "1.0"
-    },
-    {
-      "name": "molekülorbitale",
-      "slug": "molekuelorbitale",
-      "count": 1,
-      "size": "1.0"
     }
   ],
   "aufbau-materie": [
@@ -127,6 +127,12 @@
       "slug": "atommodell",
       "count": 1,
       "size": "2.0"
+    },
+    {
+      "name": "atom",
+      "slug": "atom",
+      "count": 1,
+      "size": "1.0"
     },
     {
       "name": "Atomabsorptionsspektrometrie",
@@ -231,14 +237,8 @@
       "size": "1.0"
     },
     {
-      "name": "Niels Bohr",
-      "slug": "niels-bohr",
-      "count": 1,
-      "size": "1.0"
-    },
-    {
-      "name": "Orbitalmodell",
-      "slug": "orbitalmodell",
+      "name": "neutron",
+      "slug": "neutron",
       "count": 1,
       "size": "1.0"
     }
@@ -397,6 +397,12 @@
       "size": "1.0"
     },
     {
+      "name": "Base",
+      "slug": "base",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
       "name": "benzoesäure",
       "slug": "benzoesaeure",
       "count": 1,
@@ -445,20 +451,14 @@
       "size": "1.0"
     },
     {
+      "name": "lauge",
+      "slug": "lauge",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
       "name": "milchsäure",
       "slug": "milchsaeure",
-      "count": 1,
-      "size": "1.0"
-    },
-    {
-      "name": "Natronlauge",
-      "slug": "natronlauge-naoh",
-      "count": 1,
-      "size": "1.0"
-    },
-    {
-      "name": "pH-Messung",
-      "slug": "ph-messung",
       "count": 1,
       "size": "1.0"
     }
@@ -923,6 +923,12 @@
       "size": "1.5"
     },
     {
+      "name": "Kunststoffe",
+      "slug": "kunststoffe",
+      "count": 1,
+      "size": "1.5"
+    },
+    {
       "name": "mikroplastik",
       "slug": "mikroplastik",
       "count": 1,
@@ -1021,6 +1027,12 @@
       "size": "1.0"
     },
     {
+      "name": "edelgas",
+      "slug": "edelgas",
+      "count": 1,
+      "size": "1.0"
+    },
+    {
       "name": "Eisen-sulfat",
       "slug": "eisen-ii-sulfat-feso4",
       "count": 1,
@@ -1047,12 +1059,6 @@
     {
       "name": "epoxide",
       "slug": "epoxide",
-      "count": 1,
-      "size": "1.0"
-    },
-    {
-      "name": "Halogenierung",
-      "slug": "halogenierung",
       "count": 1,
       "size": "1.0"
     }
@@ -1225,12 +1231,6 @@
     {
       "name": "Fermentation",
       "slug": "fermentation",
-      "count": 1,
-      "size": "1.5"
-    },
-    {
-      "name": "flatpickr",
-      "slug": "flatpickr",
       "count": 1,
       "size": "1.5"
     },

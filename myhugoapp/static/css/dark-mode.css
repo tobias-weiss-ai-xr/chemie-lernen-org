@@ -505,3 +505,164 @@
 [data-theme='dark'] .suggestion-chip:hover {
   background: #4caf50 !important;
 }
+
+/* ── High-Contrast Theme (WCAG AAA) ── */
+[data-theme='contrast'] {
+  color-scheme: dark;
+  --brand-primary: #ffffff;
+  --brand-secondary: #ffffff;
+  --accent-color: #ffff00;
+  --accent-hover: #ffe600;
+  --success-color: #00ff66;
+  --warning-color: #ffb000;
+  --danger-color: #ff6b6b;
+  --text-primary: #ffffff;
+  --text-secondary: #ffffff;
+  --text-muted: #e6e6e6;
+  --border-color: #ffffff;
+  --card-bg: #000000;
+  --bg-primary: #000000;
+  --bg-surface: #0a0a0a;
+  --navbar-bg: #000000;
+  --footer-bg: #000000;
+  --input-bg: #000000;
+  --shadow: rgba(255, 255, 255, 0.4);
+}
+
+[data-theme='contrast'] body {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme='contrast'] .navbar-default,
+[data-theme='contrast'] .site-header,
+[data-theme='contrast'] .title-row,
+[data-theme='contrast'] .navbar,
+[data-theme='contrast'] .site-main {
+  background-color: #000000 !important;
+  border-color: #ffffff !important;
+}
+
+[data-theme='contrast'] h1,
+[data-theme='contrast'] h2,
+[data-theme='contrast'] h3,
+[data-theme='contrast'] h4,
+[data-theme='contrast'] h5,
+[data-theme='contrast'] h6,
+[data-theme='contrast'] p,
+[data-theme='contrast'] li,
+[data-theme='contrast'] td,
+[data-theme='contrast'] small,
+[data-theme='contrast'] .text-muted {
+  color: #ffffff !important;
+}
+
+[data-theme='contrast'] a {
+  color: #ffff00 !important;
+  text-decoration: underline !important;
+}
+
+[data-theme='contrast'] .navbar-nav > li > a,
+[data-theme='contrast'] .navbar-brand {
+  color: #ffffff !important;
+}
+
+[data-theme='contrast'] .card,
+[data-theme='contrast'] .panel,
+[data-theme='contrast'] .panel-default,
+[data-theme='contrast'] .container,
+[data-theme='contrast'] .featurette,
+[data-theme='contrast'] .blog-post {
+  background-color: #000000 !important;
+  border: 1px solid #ffffff !important;
+  color: #ffffff !important;
+}
+
+[data-theme='contrast'] .panel-heading,
+[data-theme='contrast'] .panel-title,
+[data-theme='contrast'] .panel-body,
+[data-theme='contrast'] .panel-footer {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+[data-theme='contrast'] .panel-title {
+  color: #ffff00 !important;
+}
+
+[data-theme='contrast'] .well,
+[data-theme='contrast'] .list-group-item {
+  background-color: #000000 !important;
+  border: 1px solid #ffffff !important;
+  color: #ffffff !important;
+}
+
+[data-theme='contrast'] input,
+[data-theme='contrast'] textarea,
+[data-theme='contrast'] select,
+[data-theme='contrast'] .form-control {
+  background-color: #000000 !important;
+  border: 1px solid #ffffff !important;
+  color: #ffffff !important;
+}
+
+[data-theme='contrast'] input:focus,
+[data-theme='contrast'] textarea:focus,
+[data-theme='contrast'] select:focus,
+[data-theme='contrast'] .form-control:focus {
+  outline: 3px solid #ffff00 !important;
+  outline-offset: 2px !important;
+}
+
+[data-theme='contrast'] table,
+[data-theme='contrast'] th,
+[data-theme='contrast'] td {
+  background-color: #000000 !important;
+  border: 1px solid #ffffff !important;
+  color: #ffffff !important;
+}
+
+[data-theme='contrast'] pre,
+[data-theme='contrast'] code {
+  background-color: #0a0a0a !important;
+  border: 1px solid #ffffff !important;
+  color: #ffffff !important;
+}
+
+[data-theme='contrast'] .btn-primary {
+  background-color: #ffff00 !important;
+  border-color: #ffff00 !important;
+  color: #000000 !important;
+}
+
+[data-theme='contrast'] .btn-default {
+  background-color: #000000 !important;
+  border: 1px solid #ffffff !important;
+  color: #ffffff !important;
+}
+
+[data-theme='contrast'] .theme-switcher-label {
+  color: #ffffff !important;
+}
+
+[data-theme='contrast'] .theme-option-text {
+  color: #ffffff !important;
+  background: #000000 !important;
+  border: 1px solid #ffffff !important;
+}
+
+[data-theme='contrast'] .theme-option input:checked + .theme-option-text {
+  background: #ffff00 !important;
+  color: #000000 !important;
+  border-color: #ffff00 !important;
+}
+
+[data-theme='contrast'] body,
+[data-theme='contrast'] .card,
+[data-theme='contrast'] .panel {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}

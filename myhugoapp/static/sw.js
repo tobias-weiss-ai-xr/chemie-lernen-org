@@ -25,7 +25,6 @@ const TOTAL_CACHE_LIMIT = 50 * 1024 * 1024; // 50 MB global
 const PRECACHE_FILES = [
   '/',
   '/offline/',
-  '/manifest.json',
   '/site.webmanifest',
   '/favicons/favicon-16x16.png',
   '/favicons/favicon-32x32.png',
@@ -41,7 +40,7 @@ const PRECACHE_FILES = [
   '/css/green-theme.css',
   '/css/quiz-system.css',
   '/css/site-chrome.css',
-  '/js/dark-mode.js',
+  '/js/theme-switcher.js',
   '/js/lazy-loader.js',
   '/js/utils/chemistry-utils.js',
   '/js/utils/error-handler.js',

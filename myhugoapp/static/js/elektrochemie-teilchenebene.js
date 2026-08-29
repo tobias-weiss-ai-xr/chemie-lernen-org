@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* Elektrochemie auf Teilchenebene
  * Visualizes galvanic cells, electrolysis, electron transitions, and Nernst equation
  */

@@ -164,6 +164,44 @@ describe('GET /api/curricula/graph', () => {
     expect(curCall[1]).toEqual({ state: 'BY' });
   });
 
+  test('curriculum slug filter is passed to the curriculum query (P2 drill-down)', async () => {
+    mockSession.run.mockResolvedValue({ records: [curRecord] });
+    await fetch(`${baseURL}/api/curricula/graph?scope=curriculum&curriculum=BY-gymnasium&limit=100`);
+    const calls = mockSession.run.mock.calls;
+    const curCall = calls.find((c) => c[0].includes('(c:Curriculum)'));
+    expect(curCall).toBeDefined();
+    expect(curCall[1]).toEqual({ curriculum: 'BY-gymnasium' });
+    expect(curCall[0]).toContain('WHERE c.slug = $curriculum');
+  });
+
+  test('curriculum filter is part of the cache key (no collision with full scope)', async () => {
+    // Full curriculum scope (no curriculum param) caches under a key WITHOUT
+    // the curriculum value. A subsequent drill-down with a curriculum param
+    // MUST hit Neo4j again — otherwise the cache returns the wrong payload.
+    mockSession.run.mockResolvedValue({ records: [curRecord] });
+    await fetch(`${baseURL}/api/curricula/graph?scope=curriculum&limit=100`);
+    mockSession.run.mockClear();
+    const res = await fetch(
+      `${baseURL}/api/curricula/graph?scope=curriculum&curriculum=ZZ-drill-regression&limit=100`
+    );
+    expect(mockSession.run).toHaveBeenCalled();
+    const body = await res.json();
+    const curNodes = body.nodes.filter((n) => n.type === 'curriculum');
+    expect(curNodes).toHaveLength(1);
+  });
+
+  test('curriculum filter takes precedence over state filter (P2)', async () => {
+    mockSession.run.mockResolvedValue({ records: [curRecord] });
+    await fetch(
+      `${baseURL}/api/curricula/graph?scope=curriculum&state=BY&curriculum=BY-gymnasium&limit=100`
+    );
+    const calls = mockSession.run.mock.calls;
+    const curCall = calls.find((c) => c[0].includes('(c:Curriculum)'));
+    expect(curCall).toBeDefined();
+    expect(curCall[0]).toContain('WHERE c.slug = $curriculum');
+    expect(curCall[0]).not.toContain('WHERE c.state_abbr = $state');
+  });
+
   test('university filter is passed to the universities query', async () => {
     mockSession.run.mockResolvedValue({ records: [uniRecord] });
     await fetch(`${baseURL}/api/curricula/graph?scope=universities&university=CAM&limit=100`);

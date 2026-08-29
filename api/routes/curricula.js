@@ -9,7 +9,7 @@
  *   GET /api/curricula/by-state/:state/grade/:grade
  *   GET /api/curricula/topic/:slug/articles
  *   GET /api/curricula/objective/:slug/articles
- *   GET /api/entities/:name/curricula
+ *   GET /api/entity/:name/curricula
  *   GET /api/curricula/linked-entities
  *   GET /api/curricula/compare
  */
@@ -19,6 +19,7 @@ import neo4j from 'neo4j-driver';
 import pino from 'pino';
 import { getNeo4jDriver, NEO4J_DATABASE, toNumberSafe } from '../services/neo4j.js';
 import { getFallbackData } from '../services/content.js';
+import curriculaMapper from '../curricula-mapper.cjs';
 
 const router = Router();
 const logger = pino({
@@ -74,6 +75,77 @@ router.get('/api/curricula/states', async (req, res) => {
       res.json({ source: 'fallback', states, count: states.length });
     } catch {
       res.status(503).json({ error: 'Curriculum data unavailable' });
+    }
+  }
+});
+
+/**
+ * GET /api/curricula/list
+ * All curricula grouped by state — powers the always-visible overview
+ * sidebar on the Lehrpläne page.
+ */
+router.get('/api/curricula/list', async (req, res) => {
+  try {
+    const driver = getNeo4jDriver();
+    const session = driver.session({
+      database: NEO4J_DATABASE,
+      defaultAccessMode: neo4j.session.READ,
+    });
+    const result = await session.run(
+      `MATCH (c:Curriculum)
+       OPTIONAL MATCH (c)-[:HAS_TOPIC]->(t:Topic)
+       OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)
+       WITH c, count(DISTINCT t) AS topicCount, count(DISTINCT lo) AS objectiveCount
+       RETURN c.state_abbr AS state, c.state AS stateName, c.slug AS slug,
+              c.school_type AS schoolType, c.grade AS grade,
+              topicCount, objectiveCount
+       ORDER BY c.state_abbr, c.school_type`
+    );
+    await session.close();
+    const map = new Map();
+    result.records.forEach((r) => {
+      const state = r.get('state');
+      if (!map.has(state)) {
+        map.set(state, { state, stateName: r.get('stateName'), curricula: [] });
+      }
+      map.get(state).curricula.push({
+        slug: r.get('slug'),
+        schoolType: r.get('schoolType'),
+        grade: r.get('grade'),
+        topicCount: toNumberSafe(r.get('topicCount')),
+        objectiveCount: toNumberSafe(r.get('objectiveCount')),
+      });
+    });
+    const states = Array.from(map.values());
+    res.json({
+      source: 'neo4j',
+      states,
+      count: states.reduce((s, st) => s + st.curricula.length, 0),
+    });
+  } catch (err) {
+    logger.error({ err: err, message: err.message || String(err) }, '[curricula/list] Neo4j error');
+    try {
+      const fb = getFallbackData();
+      const map = new Map();
+      (fb.curricula || []).forEach((c) => {
+        const st = c.curriculumMeta && c.curriculumMeta.state;
+        if (!st) return;
+        if (!map.has(st)) map.set(st, { state: st, stateName: st, curricula: [] });
+        map.get(st).curricula.push({
+          slug: c.name,
+          schoolType: c.curriculumMeta.school_type,
+          grade: c.curriculumMeta.grade,
+          topicCount: 0,
+          objectiveCount: c.curriculumMeta.objective_count || 0,
+        });
+      });
+      res.json({
+        source: 'fallback',
+        states: Array.from(map.values()),
+        count: fb.curricula.length,
+      });
+    } catch {
+      res.status(503).json({ error: 'Curriculum list unavailable' });
     }
   }
 });
@@ -256,30 +328,10 @@ router.get('/api/curricula/by-state/:state', async (req, res) => {
       fetchSize: 5000,
     });
 
-    const result = await session.run(
-      `MATCH (c:Curriculum {state_abbr: $state})
-       OPTIONAL MATCH (c)-[:HAS_TOPIC]->(t:Topic)
-       OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)
-       WITH c, t, collect(DISTINCT lo.text) AS objectives
-       RETURN c.slug AS curriculumSlug, c.school_type AS schoolType,
-              t.slug AS slug, t.title AS title, t.grade AS grade,
-              size(objectives) AS objectiveCount,
-              [ob IN objectives WHERE ob IS NOT NULL] AS objectives
-       ORDER BY t.grade, t.title`,
-      { state }
-    );
+    const result = await session.run(curriculaMapper.buildByStateQuery(state), { state });
     await session.close();
 
-    const topics = result.records.map(function (r) {
-      return {
-        slug: r.get('slug'),
-        title: r.get('title'),
-        grade: r.get('grade'),
-        schoolType: r.get('schoolType'),
-        objectiveCount: toNumberSafe(r.get('objectiveCount')),
-        objectives: r.get('objectives'),
-      };
-    });
+    const topics = curriculaMapper.mapCurriculumTopics(result.records);
 
     res.json({
       source: 'neo4j',
@@ -313,6 +365,8 @@ router.get('/api/curricula/by-state/:state', async (req, res) => {
             displayName: c.name,
             objectiveCount: c.curriculumMeta.objective_count || 0,
             objectives: [],
+            entities: [],
+            entityCount: 0,
             contentLinks: [],
           };
         }),
@@ -498,9 +552,14 @@ router.get('/api/curricula/objective/:slug/articles', async (req, res) => {
 });
 
 /**
- * GET /api/entities/:name/curricula
+ * GET /api/entity/:name/curricula
  */
-router.get('/api/entities/:name/curricula', async (req, res) => {
+// Redirect old /api/entities/ path to new /api/entity/ path
+router.get('/api/entities/:name/curricula', (req, res) => {
+  res.redirect(301, `/api/entity/${req.params.name}/curricula`);
+});
+
+router.get('/api/entity/:name/curricula', async (req, res) => {
   let nameParam;
   try {
     nameParam = decodeURIComponent(req.params.name).trim();
@@ -519,7 +578,7 @@ router.get('/api/entities/:name/curricula', async (req, res) => {
       `MATCH (e:Entity)
        WHERE toLower(e.name) = toLower($name)
        OPTIONAL MATCH (e)-[:COVERS_TOPIC]->(t:Topic)
-       OPTIONAL MATCH (e)-[:FULFILLS]->(lo:LearningObjective)
+       OPTIONAL MATCH (e)-[:FULFILLS|FULFILLS_OBJECTIVE]->(lo:LearningObjective)
        OPTIONAL MATCH (e)-[:MENTIONS]->(c:Content)
        OPTIONAL MATCH (t2:Topic)-[:HAS_LEARNING_OBJECTIVE]->(lo)
        RETURN e.name AS name, e.kategorie AS kategorie,
@@ -672,12 +731,13 @@ router.get('/api/curricula/graph', async (req, res) => {
   const state = String(req.query.state || '')
     .trim()
     .toUpperCase();
+  const curriculum = String(req.query.curriculum || '').trim();
   const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 500, 50), 1500);
   const q = String(req.query.q || '')
     .trim()
     .toLowerCase();
 
-  const cacheKey = [scope, university, state, limit, q].join('|');
+  const cacheKey = [scope, university, state, curriculum, limit, q].join('|');
   const cached = graphCache.get(cacheKey);
   if (cached && Date.now() - cached.at < GRAPH_CACHE_TTL_MS) {
     return res.json(cached.payload);
@@ -760,8 +820,12 @@ router.get('/api/curricula/graph', async (req, res) => {
 
     // ── Query 2: Curriculum → Topic → SubTopic (+ objectives, capped) ──
     if (scope !== 'universities') {
-      const curWhere = state ? 'WHERE c.state_abbr = $state' : '';
-      const curParams = state ? { state } : {};
+      const curWhere = curriculum
+        ? 'WHERE c.slug = $curriculum'
+        : state
+          ? 'WHERE c.state_abbr = $state'
+          : '';
+      const curParams = curriculum ? { curriculum } : state ? { state } : {};
       const r2 = await session.run(
         `MATCH (c:Curriculum)-[:HAS_TOPIC]->(t:Topic)
          ${curWhere}

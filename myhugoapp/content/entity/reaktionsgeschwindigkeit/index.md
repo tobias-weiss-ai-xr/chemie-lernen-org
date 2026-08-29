@@ -2,7 +2,6 @@
 title: "Reaktionsgeschwindigkeit"
 description: "Fachbegriff „Reaktionsgeschwindigkeit“ (Konzept) — beschrieben in 5 Artikeln auf chemie-lernen.org und ist mit 4 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-last_reviewed: 2026-08-06
 slug: "reaktionsgeschwindigkeit"
 category: "konzept"
 articleCount: 5
@@ -18,7 +17,7 @@ components: []
 ## Verknüpfte Artikel
 
 - [Prinzip von Le Chatelier](/)
+- [Reaktionskinetik](/)
 - [Chemisches Gleichgewicht](/)
 - [Effektiv Chemie lernen](/)
-- [Reaktionskinetik](/)
 - [Energie bei chemischen Reaktionen](/)

@@ -1,5 +1,4 @@
 /* global Chart */
-/* eslint-disable no-unused-vars */
 
 let permanganatChart = null;
 let cerChart = null;

@@ -143,3 +143,75 @@ test.describe('Hubs link integrity', () => {
     }
   });
 });
+
+/* ──────────────────────────────────────────────────────────────
+ * D. Hubs PWA manifest + console health
+ *    Regression guards for the console errors reported on
+ *    hubs.chemie-lernen.org (manifest.webmanifest 404, uncaught errors).
+ * ────────────────────────────────────────────────────────────── */
+
+test.describe('Hubs PWA manifest', () => {
+  test('serves a valid manifest.webmanifest (no 404)', async ({ request }) => {
+    const resp = await request.get(`${HUBS_URL}/manifest.webmanifest`);
+    expect(
+      resp.status(),
+      'hubs.chemie-lernen.org/manifest.webmanifest must return 200, not 404'
+    ).toBe(200);
+    const body = await resp.text();
+    const manifest = JSON.parse(body);
+    expect(manifest).toHaveProperty('name');
+    expect(manifest).toHaveProperty('icons');
+    expect(Array.isArray(manifest.icons)).toBe(true);
+    expect(manifest.icons.length).toBeGreaterThanOrEqual(1);
+  });
+
+  test('landing page has no manifest.webmanifest 404 in console', async ({ page }) => {
+    const manifestProblems = [];
+    page.on('console', (msg) => {
+      if (msg.type() === 'error' && /manifest\.webmanifest/i.test(msg.text())) {
+        manifestProblems.push(msg.text());
+      }
+    });
+    page.on('requestfailed', (req) => {
+      if (/manifest\.webmanifest/i.test(req.url())) {
+        manifestProblems.push(`requestfailed: ${req.url()}`);
+      }
+    });
+    page.on('response', (resp) => {
+      if (/manifest\.webmanifest/i.test(resp.url()) && resp.status() >= 400) {
+        manifestProblems.push(`HTTP ${resp.status()}: ${resp.url()}`);
+      }
+    });
+
+    await page.goto(HUBS_URL, { waitUntil: 'networkidle' });
+    expect(
+      manifestProblems,
+      `manifest.webmanifest problems:\n${manifestProblems.join('\n')}`
+    ).toEqual([]);
+  });
+
+  test('a hubs room logs no manifest.webmanifest 404', async ({ page }) => {
+    const problems = [];
+    const collect = (text) => {
+      if (/manifest\.webmanifest|uncaught/i.test(text)) problems.push(text);
+    };
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') collect(msg.text());
+    });
+    page.on('requestfailed', (req) => collect(`requestfailed: ${req.url()}`));
+    page.on('response', (resp) => {
+      if (resp.status() >= 400) collect(`HTTP ${resp.status()}: ${resp.url()}`);
+    });
+
+    const resp = await page.goto(`${HUBS_URL}/V9SecZz/wasserstoff-raum`, {
+      waitUntil: 'domcontentloaded',
+    });
+    // Room may have been cleaned up; only assert when the page is reachable.
+    if (resp && resp.status() < 400) {
+      await page.waitForTimeout(4000);
+      expect(problems, `manifest/uncaught problems on room page:\n${problems.join('\n')}`).toEqual(
+        []
+      );
+    }
+  });
+});

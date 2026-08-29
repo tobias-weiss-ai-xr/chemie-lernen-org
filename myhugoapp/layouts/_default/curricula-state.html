@@ -45,6 +45,14 @@
   border-radius: 8px; text-decoration: none; white-space: nowrap;
 }
 .content-link-mini:hover { background: #bbdefb; }
+.kg-operator { font-weight: 700; color: #6a1b9a; background: #f3e8ff; padding: 0 2px; border-radius: 3px; }
+.kg-graph-toggle {
+  font-size: 0.8rem; border: 1px solid #9b59b6; color: #7b1fa2; background: #fff;
+  border-radius: 14px; padding: 3px 10px; cursor: pointer; transition: background 0.2s;
+}
+.kg-graph-toggle:hover { background: #f3e8ff; }
+.kg-graph-toggle:disabled { opacity: 0.6; cursor: wait; }
+.kg-topic-graph svg { display: block; }
 @media (prefers-color-scheme: dark) {
   #curricula-state-app .curricula-skeleton-card {
     background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
@@ -53,6 +61,9 @@
   .state-topic-card { background: #2a2a2a; border-color: #444; }
   .objective-chip { background: #3a2060; color: #ce93d8; }
   .content-link-mini { background: #1a3050; color: #90caf9; }
+  .kg-operator { background: #3a2060; color: #e1bee7; }
+  .kg-graph-toggle { background: #333; color: #ce93d8; border-color: #9b59b6; }
+  .kg-graph-toggle:hover { background: #3a2060; }
 }
 </style>
 {{ end }}
@@ -85,5 +96,7 @@
 {{ end }}
 
 {{ define "js" }}
+<script src="/js/utils/slugs.js"></script>
+<script src="/js/visualization/d3-ego-graph.js"></script>
 <script src="/js/curricula-state.js"></script>
 {{ end }}

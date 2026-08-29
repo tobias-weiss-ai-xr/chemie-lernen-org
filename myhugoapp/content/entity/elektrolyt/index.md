@@ -2,7 +2,6 @@
 title: "Elektrolyt"
 description: "Fachbegriff „Elektrolyt“ (Konzept) — beschrieben in 3 Artikeln auf chemie-lernen.org und ist mit 14 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-last_reviewed: 2026-08-06
 slug: "elektrolyt"
 category: "konzept"
 articleCount: 3

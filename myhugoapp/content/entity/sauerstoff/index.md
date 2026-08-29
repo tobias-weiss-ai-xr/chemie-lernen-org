@@ -2,7 +2,6 @@
 title: "Sauerstoff"
 description: "Fachbegriff „Sauerstoff“ (Stoff) — beschrieben in 3 Artikeln auf chemie-lernen.org und ist mit 46 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
-last_reviewed: 2026-08-06
 slug: "sauerstoff"
 category: "stoff"
 articleCount: 3

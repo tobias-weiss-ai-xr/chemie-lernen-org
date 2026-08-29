@@ -24,7 +24,7 @@ function loadQuizQuestions() {
   // Intentional: load the browser global quiz DB into a sandbox.
   // eslint-disable-next-line sonarjs/code-eval
   vm.runInContext(code, sandbox);
-  return sandbox.window.quizQuestions.questions;
+  return sandbox.window.quizQuestions;
 }
 
 function getCalculatorTeilgebiete() {

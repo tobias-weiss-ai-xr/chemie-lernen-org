@@ -7,10 +7,22 @@
         <img src="{{ "/img/chemie-lernen-logo_light.webp" | relURL }}" alt="{{ .Site.Title }}" height="75" class="d-inline-block align-top site-logo">
         <span class="site-title-label">{{ .Site.Title }}</span>
       </a>
-      <!-- Dark mode toggle next to title -->
-      <button type="button" id="theme-toggle" title="Zu dunkel wechseln" class="theme-toggle-header" aria-label="Dark Mode umschalten">
-        <i class="fa fa-moon-o" aria-hidden="true"></i>
-      </button>
+      <!-- Theme chooser (Hell / Dunkel / Kontrast) -->
+      <div class="theme-switcher theme-toggle-header" role="radiogroup" aria-label="Farbschema wählen">
+        <span class="theme-switcher-label" id="theme-switcher-label">Farbschema</span>
+        <label class="theme-option">
+          <input type="radio" name="theme" value="light">
+          <span class="theme-option-text"><i class="fa fa-sun-o" aria-hidden="true"></i> Hell</span>
+        </label>
+        <label class="theme-option">
+          <input type="radio" name="theme" value="dark">
+          <span class="theme-option-text"><i class="fa fa-moon-o" aria-hidden="true"></i> Dunkel</span>
+        </label>
+        <label class="theme-option">
+          <input type="radio" name="theme" value="contrast">
+          <span class="theme-option-text"><i class="fa fa-adjust" aria-hidden="true"></i> Kontrast</span>
+        </label>
+      </div>
     </div>
 
     <!-- Pagefind search libraries -->

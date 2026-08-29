@@ -1,12 +1,12 @@
 # ============================================================
 # Android CI - builds the native Kotlin/Compose app
-# Verified on every push/PR to master: copiles, unit tests, APK
+# Verified on every push/PR to main: copiles, unit tests, APK
 # ============================================================
 name: Android build
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - 'android/**'
       - '.github/workflows/android.yml'

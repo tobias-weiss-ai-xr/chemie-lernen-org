@@ -32,6 +32,25 @@ const VALID_DIFFICULTIES = ['einfach', 'mittel', 'fortgeschritten'];
 /** Exercise types */
 const VALID_EXERCISE_TYPES = ['multiple-choice', 'lueckentext', 'berechnung', 'kurzantwort'];
 
+/**
+ * Extract a JSON object/array from an LLM response that may be wrapped in
+ * markdown code fences or prose. Uses indexOf/lastIndexOf (no regex) which
+ * avoids super-linear backtracking on large payloads, while preserving the
+ * previous greedy-match semantics (first opening delimiter to last closing one).
+ * Returns null when no balanced delimiters are present.
+ * @param {string} content raw LLM text
+ * @param {'object'|'array'} kind which delimiter pair to look for
+ * @returns {string|null} the extracted JSON substring or null
+ */
+function extractJsonFromLlm(content, kind) {
+  const open = kind === 'array' ? '[' : '{';
+  const close = kind === 'array' ? ']' : '}';
+  const start = content.indexOf(open);
+  const end = content.lastIndexOf(close);
+  if (start === -1 || end === -1 || end < start) return null;
+  return content.slice(start, end + 1);
+}
+
 // ── Catalog (read-only offering) ─────────────────────────────
 
 /**
@@ -242,8 +261,8 @@ router.post('/api/premium/lesson-plan', requirePremium, async (req, res) => {
     // Parse JSON from response (handle markdown code blocks)
     let lessonPlan;
     try {
-      const jsonMatch = content.match(/\{[\s\S]*\}/);
-      lessonPlan = jsonMatch ? JSON.parse(jsonMatch[0]) : JSON.parse(content);
+      const rawJson = extractJsonFromLlm(content, 'object');
+      lessonPlan = rawJson ? JSON.parse(rawJson) : JSON.parse(content);
     } catch (parseErr) {
       logger.error({
         err: parseErr,
@@ -366,8 +385,8 @@ Variiere die Aufgabentypen gleichmäßig über die ${count} Aufgaben.`;
 
     let exercises;
     try {
-      const jsonMatch = content.match(/\[[\s\S]*\]/);
-      exercises = jsonMatch ? JSON.parse(jsonMatch[0]) : JSON.parse(content);
+      const rawJson = extractJsonFromLlm(content, 'array');
+      exercises = rawJson ? JSON.parse(rawJson) : JSON.parse(content);
     } catch (parseErr) {
       logger.error(
         { err: parseErr, message: parseErr.message || String(parseErr) },
@@ -510,8 +529,8 @@ router.post('/api/premium/exam-simulator', requirePremium, async (req, res) => {
 
     let exam;
     try {
-      const jsonMatch = content.match(/\{[\s\S]*\}/);
-      exam = jsonMatch ? JSON.parse(jsonMatch[0]) : JSON.parse(content);
+      const rawJson = extractJsonFromLlm(content, 'object');
+      exam = rawJson ? JSON.parse(rawJson) : JSON.parse(content);
     } catch (parseErr) {
       logger.error(
         { err: parseErr, message: parseErr.message || String(parseErr) },

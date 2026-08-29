@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /**
  * Säuren-Basen-Gleichgewicht Rechner
  * ICE-Tabelle, Henderson-Hasselbalch und Massenwirkungsgesetz

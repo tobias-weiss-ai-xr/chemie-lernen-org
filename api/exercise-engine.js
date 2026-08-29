@@ -209,6 +209,119 @@ export async function generateExercise(
  * @param {string} litellmModel - Model name
  * @returns {Promise<{correct: boolean, score: number, feedback: string}>}
  */
+/** Grade a multiple-choice answer. */
+function gradeMcq(exercise, userAnswer) {
+  const correct =
+    String(userAnswer).trim().toUpperCase() === String(exercise.correctAnswer).trim().toUpperCase();
+  const correctOption = (exercise.options || []).find(
+    (o) => o.id.toUpperCase() === String(exercise.correctAnswer).trim().toUpperCase()
+  );
+  let baseMsg;
+  if (correct) {
+    baseMsg = 'Richtig! ' + (exercise.explanation || '');
+  } else {
+    const wrongMsg =
+      exercise.explanation || 'Die richtige Antwort ist ' + exercise.correctAnswer + '.';
+    baseMsg = 'Leider nicht richtig. ' + wrongMsg;
+    if (correctOption) {
+      baseMsg += ' (' + correctOption.text + ')';
+    }
+  }
+  return { correct, score: correct ? 100 : 0, feedback: baseMsg };
+}
+
+/** Grade a numeric calculation answer with tolerance-based partial credit. */
+function gradeCalculation(exercise, userAnswer) {
+  const userNum = parseFloat(String(userAnswer).replace(',', '.'));
+  if (isNaN(userNum)) {
+    return {
+      correct: false,
+      score: 0,
+      feedback: 'Bitte gib eine gültige Zahl ein (z. B. 0.5 oder 1,23).',
+    };
+  }
+  const correctNum = parseFloat(String(exercise.correctAnswer).replace(',', '.'));
+  const tolerance =
+    typeof exercise.tolerance === 'number' && exercise.tolerance > 0 ? exercise.tolerance : 0.5;
+  const diff = Math.abs(userNum - correctNum);
+  const correct = diff <= tolerance;
+
+  let score;
+  if (correct) {
+    score = diff <= tolerance * 0.25 ? 100 : diff <= tolerance * 0.5 ? 80 : 60;
+  } else {
+    score = 0;
+  }
+
+  return {
+    correct,
+    score,
+    feedback: correct
+      ? 'Richtig! ' +
+        (exercise.explanation ||
+          'Die Antwort ' + correctNum + ' ist korrekt (Toleranz: ±' + tolerance + ').')
+      : 'Deine Antwort (' +
+        userNum +
+        ') weicht zu stark von der erwarteten Lösung (' +
+        correctNum +
+        ' ± ' +
+        tolerance +
+        ') ab. ' +
+        (exercise.explanation || 'Überprüfe deine Berechnung und Einheiten.'),
+  };
+}
+
+/** Grade a fill-blank answer (case-insensitive, trimmed direct comparison). */
+function gradeFillBlank(exercise, userAnswer) {
+  const userStr = String(userAnswer).trim().toLowerCase();
+  const correctStr = String(exercise.correctAnswer).trim().toLowerCase();
+  const correct = userStr === correctStr;
+  return {
+    correct,
+    score: correct ? 100 : 0,
+    feedback: correct
+      ? 'Richtig! ' + (exercise.explanation || '')
+      : 'Leider nicht richtig. Die korrekte Antwort ist "' +
+        exercise.correctAnswer +
+        '". ' +
+        (exercise.explanation || ''),
+  };
+}
+
+/** Grade a short-answer using the LiteLLM grading prompt. */
+async function gradeShortAnswer(exercise, userAnswer, litellmUrl, litellmModel) {
+  const template = loadPrompt('grading');
+  const filledPrompt = template
+    .replace(/\{\{question\}\}/g, exercise.question)
+    .replace(/\{\{model_answer\}\}/g, String(exercise.correctAnswer))
+    .replace(/\{\{student_answer\}\}/g, String(userAnswer))
+    .replace(/\{\{difficulty\}\}/g, exercise.difficulty || 'medium');
+
+  const systemMessage =
+    'Du bist eine Chemie-Lehrkraft, die Schülerantworten fair und nachvollziehbar bewertet. ' +
+    'Antworte NUR mit einem validen JSON-Objekt.';
+
+  const raw = await callLiteLLM(systemMessage, filledPrompt, litellmUrl, litellmModel, 0.3);
+
+  let grade;
+  try {
+    grade = parseJSON(raw);
+  } catch {
+    return {
+      correct: false,
+      score: 50,
+      feedback:
+        'Die Antwort konnte nicht automatisch bewertet werden. Ein Lehrer wird sie überprüfen.',
+    };
+  }
+
+  return {
+    correct: !!grade.correct,
+    score: typeof grade.score === 'number' ? Math.max(0, Math.min(100, grade.score)) : 50,
+    feedback: grade.feedback || 'Kein Feedback verfügbar.',
+  };
+}
+
 export async function gradeAnswer(exercise, userAnswer, litellmUrl, litellmModel) {
   if (userAnswer === undefined || userAnswer === null || userAnswer === '') {
     return {
@@ -220,118 +333,14 @@ export async function gradeAnswer(exercise, userAnswer, litellmUrl, litellmModel
 
   const type = exercise.type;
 
-  // Direct comparison for MCQ
-  if (type === 'mcq') {
-    const correct =
-      String(userAnswer).trim().toUpperCase() ===
-      String(exercise.correctAnswer).trim().toUpperCase();
-    const correctOption = (exercise.options || []).find(
-      (o) => o.id.toUpperCase() === String(exercise.correctAnswer).trim().toUpperCase()
-    );
-    var baseMsg;
-    if (correct) {
-      baseMsg = 'Richtig! ' + (exercise.explanation || '');
-    } else {
-      var wrongMsg =
-        exercise.explanation || 'Die richtige Antwort ist ' + exercise.correctAnswer + '.';
-      baseMsg = 'Leider nicht richtig. ' + wrongMsg;
-      if (correctOption) {
-        baseMsg += ' (' + correctOption.text + ')';
-      }
-    }
-    return {
-      correct: correct,
-      score: correct ? 100 : 0,
-      feedback: baseMsg,
-    };
-  }
+  if (type === 'mcq') return gradeMcq(exercise, userAnswer);
 
-  // Numeric comparison for calculation
-  if (type === 'calculation') {
-    const userNum = parseFloat(String(userAnswer).replace(',', '.'));
-    if (isNaN(userNum)) {
-      return {
-        correct: false,
-        score: 0,
-        feedback: 'Bitte gib eine gültige Zahl ein (z. B. 0.5 oder 1,23).',
-      };
-    }
-    const correctNum = parseFloat(String(exercise.correctAnswer).replace(',', '.'));
-    const tolerance =
-      typeof exercise.tolerance === 'number' && exercise.tolerance > 0 ? exercise.tolerance : 0.5;
-    const diff = Math.abs(userNum - correctNum);
-    const correct = diff <= tolerance;
+  if (type === 'calculation') return gradeCalculation(exercise, userAnswer);
 
-    // Partial credit: score based on how close the answer is
-    let score;
-    if (correct) {
-      score = diff <= tolerance * 0.25 ? 100 : diff <= tolerance * 0.5 ? 80 : 60;
-    } else {
-      score = 0;
-    }
+  if (type === 'fill-blank') return gradeFillBlank(exercise, userAnswer);
 
-    return {
-      correct,
-      score,
-      feedback: correct
-        ? 'Richtig! ' +
-          (exercise.explanation ||
-            `Die Antwort ${correctNum} ist korrekt (Toleranz: ±${tolerance}).`)
-        : `Deine Antwort (${userNum}) weicht zu stark von der erwarteten Lösung (${correctNum} ± ${tolerance}) ab. ` +
-          (exercise.explanation || 'Überprüfe deine Berechnung und Einheiten.'),
-    };
-  }
-
-  // Fill-blank: direct comparison (case-insensitive, trimmed)
-  if (type === 'fill-blank') {
-    const userStr = String(userAnswer).trim().toLowerCase();
-    const correctStr = String(exercise.correctAnswer).trim().toLowerCase();
-    const correct = userStr === correctStr;
-    return {
-      correct,
-      score: correct ? 100 : 0,
-      feedback: correct
-        ? 'Richtig! ' + (exercise.explanation || '')
-        : 'Leider nicht richtig. Die korrekte Antwort ist "' +
-          exercise.correctAnswer +
-          '". ' +
-          (exercise.explanation || ''),
-    };
-  }
-
-  // Short-answer: use LiteLLM grading prompt
-  if (type === 'short-answer') {
-    const template = loadPrompt('grading');
-    const filledPrompt = template
-      .replace(/\{\{question\}\}/g, exercise.question)
-      .replace(/\{\{model_answer\}\}/g, String(exercise.correctAnswer))
-      .replace(/\{\{student_answer\}\}/g, String(userAnswer))
-      .replace(/\{\{difficulty\}\}/g, exercise.difficulty || 'medium');
-
-    const systemMessage =
-      'Du bist eine Chemie-Lehrkraft, die Schülerantworten fair und nachvollziehbar bewertet. ' +
-      'Antworte NUR mit einem validen JSON-Objekt.';
-
-    const raw = await callLiteLLM(systemMessage, filledPrompt, litellmUrl, litellmModel, 0.3);
-
-    let grade;
-    try {
-      grade = parseJSON(raw);
-    } catch {
-      return {
-        correct: false,
-        score: 50,
-        feedback:
-          'Die Antwort konnte nicht automatisch bewertet werden. Ein Lehrer wird sie überprüfen.',
-      };
-    }
-
-    return {
-      correct: !!grade.correct,
-      score: typeof grade.score === 'number' ? Math.max(0, Math.min(100, grade.score)) : 50,
-      feedback: grade.feedback || 'Kein Feedback verfügbar.',
-    };
-  }
+  if (type === 'short-answer')
+    return gradeShortAnswer(exercise, userAnswer, litellmUrl, litellmModel);
 
   throw new Error(`Unknown exercise type: ${type}`);
 }

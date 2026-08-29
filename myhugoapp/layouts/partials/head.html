@@ -1,6 +1,17 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- FOUC-safe theme init: apply saved/default theme before first paint -->
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme') || 'dark';
+      if (t !== 'light' && t !== 'dark' && t !== 'contrast') t = 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
 <meta name="google-adsense-account" content="ca-pub-8452353139685392">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8452353139685392" crossorigin="anonymous"></script>
 
@@ -66,7 +77,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="{{ "/favicons/favicon-32x32.png" | relURL }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ "/favicons/favicon-16x16.png" | relURL }}">
 <link rel="apple-touch-icon" sizes="180x180" href="{{ "/favicons/apple-touch-icon.png" | relURL }}">
-<link rel="manifest" href="{{ "/manifest.json" | relURL }}">
+<link rel="manifest" href="{{ "/site.webmanifest" | relURL }}">
 <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ "/index.xml" | relURL }}">
 
 <!-- Bootstrap CSS (local) -->
