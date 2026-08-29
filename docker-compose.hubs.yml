@@ -236,6 +236,12 @@ services:
       - /opt/git/hubs-client-assets/favicon.ico:/code/dist/favicon.ico:ro
       - /opt/git/hubs-client-assets/manifest.webmanifest:/code/dist/manifest.webmanifest:ro
       - /opt/git/hubs-client-assets/hub.service.js:/code/dist/hub.service.js:ro
+      - /opt/git/hubs-client-assets/icon-192.png:/code/dist/assets/images/icon-192.png:ro
+      - /opt/git/hubs-client-assets/icon-512.png:/code/dist/assets/images/icon-512.png:ro
+      - /opt/git/hubs-client-assets/icon-512-maskable.png:/code/dist/assets/images/icon-512-maskable.png:ro
+      # Patched hub bundle: fixes getLayoutMap null crash (navigator.keyboard null guard)
+      # and APP ReferenceError (window.APP?. guard in bitECS newLoader check)
+      - /opt/git/hubs-client-assets/hub-c5e95cff205c291cb403.js:/code/dist/assets/js/hub-c5e95cff205c291cb403.js:ro
     working_dir: /code
     networks:
       - hubs-net

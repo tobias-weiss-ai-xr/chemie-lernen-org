@@ -143,37 +143,56 @@ describe('Property-based — pagination contract across many cursors', () => {
 /* ------------------------------------------------------------------ */
 
 describe('Asset contracts & properties', () => {
-  test('favicon.ico is a valid icon (status, image type, ICO magic)', async () => {
-    const res = await fetch(`${BASE}/favicon.ico`);
+  test('favicon.ico is a valid multi-size ICO whose declared sizes match its embedded entries', async () => {
+    const mres = await fetch(`${BASE}/manifest.webmanifest`);
+    const manifest = await mres.json();
+    const icoIcon = manifest.icons.find((i) => (i.type || '').includes('icon'));
+    expect(icoIcon).toBeDefined();
+
+    const res = await fetch(`${BASE}${icoIcon.src}`);
     expect(res.ok).toBe(true);
     expect(res.headers.get('content-type') || '').toMatch(/image\//);
     const buf = new Uint8Array(await res.arrayBuffer());
-    expect(buf.length).toBeGreaterThan(0);
     // ICO magic: 00 00 01 00 (reserved=0, type=1)
     expect([buf[0], buf[1], buf[2], buf[3]]).toEqual([0, 0, 1, 0]);
+    // Decode the ICO directory and collect embedded sizes.
+    const count = buf[4] | (buf[5] << 8);
+    const embedded = new Set();
+    for (let i = 0; i < count; i++) {
+      const o = 6 + i * 16;
+      const w = buf[o] === 0 ? 256 : buf[o];
+      embedded.add(`${w}x${w}`);
+    }
+    // Every declared size must be present in the ICO — the "Resource size is
+    // not correct" guard for the ICO entry.
+    const declared = icoIcon.sizes.split(/\s+/).filter(Boolean);
+    for (const s of declared) {
+      expect(embedded.has(s)).toBe(true);
+    }
   });
 
-  test('manifest icon PNG has real square dimensions (PWA property)', async () => {
-    const res = await fetch(`${BASE}/manifest.webmanifest`);
-    expect(res.ok).toBe(true);
-    const body = await res.json();
-    const icon = body.icons && body.icons[0];
-    expect(icon).toBeDefined();
-    expect(icon.src.startsWith('/')).toBe(true);
+  test('manifest PNG icons have real square dimensions matching declared sizes (PWA property)', async () => {
+    const mres = await fetch(`${BASE}/manifest.webmanifest`);
+    expect(mres.ok).toBe(true);
+    const manifest = await mres.json();
+    const pngIcons = (manifest.icons || []).filter((i) => (i.type || '').includes('png'));
+    expect(pngIcons.length).toBeGreaterThan(0);
 
-    const ir = await fetch(`${BASE}${icon.src}`);
-    expect(ir.ok).toBe(true);
-    const buf = new Uint8Array(await ir.arrayBuffer());
-    const { width, height } = pngDimensions(buf);
-    // PWA icons must be square (browser requirement).
-    expect(width).toBe(height);
-    // Sane, non-trivial dimensions.
-    expect(width).toBeGreaterThanOrEqual(16);
-    expect(width).toBeLessThanOrEqual(1024);
-    // If a concrete size is declared, it must match the actual pixels — this is
-    // the exact check that produced "Resource size is not correct".
-    if (icon.sizes && icon.sizes !== 'any') {
+    for (const icon of pngIcons) {
+      expect(icon.src.startsWith('/')).toBe(true);
+      const ir = await fetch(`${BASE}${icon.src}`);
+      expect(ir.ok).toBe(true);
+      const buf = new Uint8Array(await ir.arrayBuffer());
+      const { width, height } = pngDimensions(buf);
+      // pngDimensions throws on non-PNG, so reaching here means valid PNG.
+      // Icons must be square (browser/PWA requirement).
+      expect(width).toBe(height);
+      // Declared size must match actual pixels — the exact "Resource size is
+      // not correct" guard.
       expect(width).toBe(parseInt(icon.sizes, 10));
+      // PWA installability requires at least one icon >= 144px; all our PNGs
+      // are 192 or 512.
+      expect(width).toBeGreaterThanOrEqual(192);
     }
   });
 
