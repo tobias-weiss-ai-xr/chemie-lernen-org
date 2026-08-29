@@ -1,7 +1,7 @@
 # Design: Lehrpläne-Übersicht Redesign
 
 **Datum:** 2026-08-27
-**Status:** Approved
+**Status:** Implemented (2026-08-29, commit `a15ccafe`)
 
 ## Problem
 
