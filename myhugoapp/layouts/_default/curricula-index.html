@@ -11,6 +11,114 @@
 .curricula-header h1 { margin: 0; flex: 1; font-size: 1.6rem; }
 .curricula-subtitle { margin: 0; color: var(--text-muted, #666); width: 100%; }
 
+/* Tabs */
+.curricula-tabs {
+  display: flex; gap: 0.25rem; margin: 1rem 0 1.25rem;
+  border-bottom: 2px solid var(--border-color, #e0e0e0);
+}
+.curricula-tab {
+  padding: 0.6rem 1.1rem; border: none; background: none;
+  font-size: 1rem; cursor: pointer; color: var(--text-muted, #666);
+  border-bottom: 3px solid transparent; margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.curricula-tab:hover { color: #9b59b6; }
+.curricula-tab.active {
+  color: #7b1fa2; font-weight: 600; border-bottom-color: #9b59b6;
+}
+.curricula-tab-panel { margin-bottom: 2rem; }
+.curricula-tab-panel[hidden] { display: none; }
+
+/* Summary stats bar */
+.curricula-summary {
+  display: flex; flex-wrap: wrap; gap: 1.5rem;
+  margin: 0.5rem 0 1rem; padding: 0.85rem 1.1rem;
+  background: linear-gradient(135deg, #f3e8ff 0%, #ede7f6 100%);
+  border: 1px solid #e1d5f0; border-radius: 10px;
+}
+.curricula-stat { display: flex; flex-direction: column; line-height: 1.15; }
+.curricula-stat-num { font-size: 1.5rem; font-weight: 700; color: #7b1fa2; }
+.curricula-stat-label { font-size: 0.78rem; color: var(--text-muted, #666); }
+
+/* Compare bar */
+.curricula-compare-bar {
+  display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.curricula-compare-toggle {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.92rem; cursor: pointer; color: var(--text-primary, #333);
+}
+.curricula-compare-hint { font-size: 0.82rem; color: var(--text-muted, #888); }
+
+/* Card grid */
+.curricula-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.curricula-state-card {
+  display: block; width: 100%; text-align: left;
+  background: var(--bg-card, #fff); border: 1px solid var(--border-color, #e0e0e0);
+  border-left: 4px solid #9b59b6; border-radius: 10px;
+  padding: 0.9rem 1rem; cursor: pointer; color: inherit;
+  font: inherit; transition: box-shadow 0.18s, transform 0.18s, border-color 0.18s;
+}
+.curricula-state-card:hover {
+  box-shadow: 0 4px 14px rgba(155, 89, 182, 0.18);
+  transform: translateY(-2px); border-color: #9b59b6;
+}
+.curricula-card-top {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.curricula-card-name { font-size: 1.05rem; font-weight: 700; }
+.curricula-card-code {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
+  background: #9b59b6; color: #fff; border-radius: 6px; padding: 2px 7px;
+}
+.curricula-card-stats {
+  display: flex; flex-wrap: wrap; gap: 0.35rem; font-size: 0.82rem;
+  color: var(--text-muted, #555); margin-bottom: 0.5rem;
+}
+.curricula-card-stats .sep { color: #ccc; }
+.curricula-card-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.curricula-card-tags .tag {
+  font-size: 0.72rem; background: #f3e8ff; color: #7b1fa2;
+  border-radius: 8px; padding: 1px 8px;
+}
+.curricula-state-card.zero-topics {
+  border-left-color: #bbb; opacity: 0.72; background: #fafafa;
+}
+.curricula-state-card.zero-topics .curricula-card-code { background: #999; }
+
+/* Per-card compare checkbox (only shown in compare mode) */
+.curricula-card-compare {
+  display: none; margin-top: 0.6rem; font-size: 0.8rem;
+  align-items: center; gap: 0.35rem; color: var(--text-muted, #666);
+}
+.curricula-grid.compare-mode .curricula-card-compare { display: flex; }
+.curricula-state-card.selected { outline: 2px solid #9b59b6; outline-offset: 1px; }
+
+/* Compare panel */
+.curricula-compare-panel {
+  margin-top: 1.25rem; padding: 1rem 1.1rem;
+  background: var(--bg-card, #fff); border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 10px;
+}
+.curricula-compare-panel[hidden] { display: none; }
+.curricula-compare-panel h3 { margin: 0 0 0.4rem; font-size: 1.1rem; color: #7b1fa2; }
+.curricula-compare-summary {
+  font-size: 0.85rem; color: var(--text-muted, #666); margin-bottom: 0.75rem;
+}
+.curricula-compare-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.curricula-compare-table th, .curricula-compare-table td {
+  text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--border-color, #eee);
+}
+.curricula-compare-table th { color: var(--text-muted, #666); font-weight: 600; }
+.curricula-compare-table td.yes { color: #2e7d32; font-weight: 700; text-align: center; }
+.curricula-compare-table td.no { color: #ccc; text-align: center; }
+.curricula-compare-empty { color: var(--text-muted, #888); font-size: 0.88rem; }
+
 /* Graph toolbar */
 .curricula-toolbar {
   display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem;
@@ -94,7 +202,7 @@
   border: 1px solid rgba(0,0,0,0.15);
 }
 
-/* Curriculum overview list */
+/* Curriculum overview list (legacy graph sidebar, kept for compatibility) */
 .curricula-overview {
   margin-bottom: 1rem; padding: 0.75rem 1rem;
   background: var(--bg-card, #f8f9fa);
@@ -137,7 +245,7 @@
 
 /* Skeleton */
 .curricula-skeleton {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1rem;
 }
 .curricula-skeleton-card {
@@ -149,6 +257,18 @@
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
+  .curricula-tab { color: #aaa; }
+  .curricula-tab:hover { color: #bb86fc; }
+  .curricula-tab.active { color: #ce93d8; border-bottom-color: #bb86fc; }
+  .curricula-summary { background: #2a2440; border-color: #3a2f55; }
+  .curricula-stat-num { color: #ce93d8; }
+  .curricula-state-card { background: #2a2a2a; border-color: #444; }
+  .curricula-state-card:hover { border-color: #bb86fc; }
+  .curricula-card-code { background: #bb86fc; color: #000; }
+  .curricula-card-tags .tag { background: #3a2060; color: #ce93d8; }
+  .curricula-state-card.zero-topics { background: #242424; border-left-color: #555; }
+  .curricula-state-card.zero-topics .curricula-card-code { background: #666; }
+  .curricula-compare-panel { background: #2a2a2a; border-color: #444; }
   .curricula-toolbar { background: #2a2a2a; border-color: #444; }
   .curricula-scope-btn { background: #333; border-color: #555; color: #e0e0e0; }
   .curricula-scope-btn:hover { border-color: #bb86fc; }
@@ -203,16 +323,72 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div id="curricula-app">
-        <div class="curricula-skeleton" id="curricula-skeleton" aria-label="Lade Lehrplan-Graph…">
-          <div class="curricula-skeleton-card"></div>
-          <div class="curricula-skeleton-card"></div>
-          <div class="curricula-skeleton-card"></div>
-          <div class="curricula-skeleton-card"></div>
-          <div class="curricula-skeleton-card"></div>
-          <div class="curricula-skeleton-card"></div>
+  <div class="curricula-tabs" role="tablist" aria-label="Lehrpläne Ansicht">
+    <button class="curricula-tab active" id="tab-btn-overview" role="tab" aria-selected="true" aria-controls="tab-overview" type="button">Übersicht</button>
+    <button class="curricula-tab" id="tab-btn-advanced" role="tab" aria-selected="false" aria-controls="tab-advanced" type="button">Erweitert (Graph)</button>
+  </div>
+
+  <!-- Übersicht (default): card grid + comparison -->
+  <div id="tab-overview" class="curricula-tab-panel" role="tabpanel" aria-labelledby="tab-btn-overview">
+    <div class="curricula-summary" id="curricula-summary" aria-live="polite"></div>
+
+    <div class="curricula-compare-bar">
+      <label class="curricula-compare-toggle">
+        <input type="checkbox" id="curricula-compare-check" /> Bundesländer vergleichen
+      </label>
+      <span class="curricula-compare-hint" id="curricula-compare-hint">2–3 Länder auswählen, um Themen zu vergleichen.</span>
+    </div>
+
+    <div id="curricula-grid" class="curricula-grid" aria-label="Bundesländer-Lehrpläne">
+      <div class="curricula-skeleton" id="curricula-skeleton" aria-label="Lade Lehrpläne…">
+        <div class="curricula-skeleton-card"></div>
+        <div class="curricula-skeleton-card"></div>
+        <div class="curricula-skeleton-card"></div>
+        <div class="curricula-skeleton-card"></div>
+        <div class="curricula-skeleton-card"></div>
+        <div class="curricula-skeleton-card"></div>
+      </div>
+    </div>
+
+    <div class="curricula-compare-panel" id="curricula-compare-panel" hidden></div>
+  </div>
+
+  <!-- Erweitert: Cytoscape graph (lazy-initialised when shown) -->
+  <div id="tab-advanced" class="curricula-tab-panel" role="tabpanel" aria-labelledby="tab-btn-advanced" hidden>
+    <div id="curricula-app">
+      <div id="curricula-toolbar-template" hidden>
+        <div class="curricula-toolbar">
+          <div class="curricula-scope-group" role="group" aria-label="Ansicht">
+            <button class="curricula-scope-btn" data-scope="all" type="button">Alle</button>
+            <button class="curricula-scope-btn" data-scope="universities" type="button">Universitäten</button>
+            <button class="curricula-scope-btn active" data-scope="curriculum" type="button">Lehrpläne</button>
+          </div>
+          <select id="curricula-state-select" aria-label="Bundesland filtern">
+            <option value="">Alle Bundesländer</option>
+          </select>
+          <select id="curricula-uni-select" aria-label="Universität filtern">
+            <option value="">Alle Universitäten</option>
+          </select>
+          <input type="search" id="curricula-search" class="curricula-search"
+            placeholder="Suche im Graphen…" aria-label="Suche im Graphen">
+          <button type="button" class="curricula-fit-btn" id="curricula-fit">⤢ Anpassen</button>
+        </div>
+        <div class="curricula-graph-wrap">
+          <div id="curricula-graph" role="img" aria-label="Interaktiver Graph der Lehrplan- und Modulhandbuch-Daten"></div>
+          <div id="curricula-node-details" role="complementary" aria-label="Details zum ausgewählten Knoten">
+            <button class="curricula-details-close" id="curricula-details-close" aria-label="Details schließen">&times;</button>
+            <div id="curricula-details-content"></div>
+          </div>
+        </div>
+        <div class="curricula-legend" aria-label="Legende">
+          <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#9C27B0"></span>Universität</span>
+          <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#2196F3"></span>Modul</span>
+          <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#4CAF50"></span>Lehrplan</span>
+          <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#8BC34A"></span>Thema</span>
+          <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#FF9800"></span>Teilthema</span>
+          <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#F44336"></span>Lernziel</span>
+          <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#E91E63"></span>Konzept</span>
+          <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#795548"></span>Inhalt</span>
         </div>
       </div>
     </div>
@@ -221,41 +397,6 @@
 {{ end }}
 
 {{ define "js" }}
-<div id="curricula-overview" class="curricula-overview" aria-label="Lehrplan-Übersicht"></div>
-<div id="curricula-toolbar-template" hidden>
-  <div class="curricula-toolbar">
-    <div class="curricula-scope-group" role="group" aria-label="Ansicht">
-      <button class="curricula-scope-btn" data-scope="all" type="button">Alle</button>
-      <button class="curricula-scope-btn" data-scope="universities" type="button">Universitäten</button>
-      <button class="curricula-scope-btn active" data-scope="curriculum" type="button">Lehrpläne</button>
-    </div>
-    <select id="curricula-state-select" aria-label="Bundesland filtern">
-      <option value="">Alle Bundesländer</option>
-    </select>
-    <select id="curricula-uni-select" aria-label="Universität filtern">
-      <option value="">Alle Universitäten</option>
-    </select>
-    <input type="search" id="curricula-search" class="curricula-search"
-      placeholder="Suche im Graphen…" aria-label="Suche im Graphen">
-    <button type="button" class="curricula-fit-btn" id="curricula-fit">⤢ Anpassen</button>
-  </div>
-  <div class="curricula-graph-wrap">
-    <div id="curricula-graph" role="img" aria-label="Interaktiver Graph der Lehrplan- und Modulhandbuch-Daten"></div>
-    <div id="curricula-node-details" role="complementary" aria-label="Details zum ausgewählten Knoten">
-      <button class="curricula-details-close" id="curricula-details-close" aria-label="Details schließen">&times;</button>
-      <div id="curricula-details-content"></div>
-    </div>
-  </div>
-  <div class="curricula-legend" aria-label="Legende">
-    <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#9C27B0"></span>Universität</span>
-    <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#2196F3"></span>Modul</span>
-    <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#4CAF50"></span>Lehrplan</span>
-    <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#8BC34A"></span>Thema</span>
-    <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#FF9800"></span>Teilthema</span>
-    <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#F44336"></span>Lernziel</span>
-    <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#E91E63"></span>Konzept</span>
-    <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#795548"></span>Inhalt</span>
-  </div>
-</div>
-<script src="{{ "/js/curricula-index.js" | relURL }}?v=7"></script>
+<script src="{{ "/js/curricula-overview.js" | relURL }}?v=1"></script>
+<script src="{{ "/js/curricula-index.js" | relURL }}?v=8"></script>
 {{ end }}
