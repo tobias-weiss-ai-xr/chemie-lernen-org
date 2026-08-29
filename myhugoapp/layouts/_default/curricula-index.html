@@ -51,6 +51,27 @@
 }
 .curricula-compare-hint { font-size: 0.82rem; color: var(--text-muted, #888); }
 
+/* Filter bar (school type + grade) */
+.curricula-filter-bar {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  margin-bottom: 1rem; padding: 0.6rem 0.9rem;
+  background: var(--bg-card, #f8f9fa); border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+}
+.curricula-filter-bar[hidden] { display: none; }
+.curricula-filter-field {
+  font-size: 0.9rem; color: var(--text-primary, #333);
+  display: inline-flex; align-items: center; gap: 0.35rem;
+}
+.curricula-filter-field select {
+  padding: 0.35rem 0.55rem; border-radius: 6px;
+  border: 1px solid var(--border-color, #ddd); font-size: 0.88rem;
+  background: var(--bg-input, #fff); color: var(--text-primary, #333);
+}
+.curricula-filter-count { font-size: 0.8rem; color: var(--text-muted, #888); margin-left: auto; }
+.curricula-topic-link { color: #9b59b6; text-decoration: none; }
+.curricula-topic-link:hover { text-decoration: underline; }
+
 /* Card grid */
 .curricula-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -269,6 +290,10 @@
   .curricula-state-card.zero-topics { background: #242424; border-left-color: #555; }
   .curricula-state-card.zero-topics .curricula-card-code { background: #666; }
   .curricula-compare-panel { background: #2a2a2a; border-color: #444; }
+  .curricula-filter-bar { background: #2a2a2a; border-color: #444; }
+  .curricula-filter-field { color: #e0e0e0; }
+  .curricula-filter-field select { background: #333; border-color: #555; color: #e0e0e0; }
+  .curricula-topic-link { color: #ce93d8; }
   .curricula-toolbar { background: #2a2a2a; border-color: #444; }
   .curricula-scope-btn { background: #333; border-color: #555; color: #e0e0e0; }
   .curricula-scope-btn:hover { border-color: #bb86fc; }
@@ -337,6 +362,16 @@
         <input type="checkbox" id="curricula-compare-check" /> Bundesländer vergleichen
       </label>
       <span class="curricula-compare-hint" id="curricula-compare-hint">2–3 Länder auswählen, um Themen zu vergleichen.</span>
+    </div>
+
+    <div class="curricula-filter-bar" id="curricula-filter-bar" hidden>
+      <label class="curricula-filter-field">Schulform:
+        <select id="curricula-filter-school" aria-label="Schulform filtern"><option value="">Alle</option></select>
+      </label>
+      <label class="curricula-filter-field">Klasse:
+        <select id="curricula-filter-grade" aria-label="Klasse filtern"><option value="">Alle</option></select>
+      </label>
+      <span class="curricula-filter-count" id="curricula-filter-count"></span>
     </div>
 
     <div id="curricula-grid" class="curricula-grid" aria-label="Bundesländer-Lehrpläne">

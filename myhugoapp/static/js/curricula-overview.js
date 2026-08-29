@@ -28,9 +28,25 @@
       .replace(/"/g, '&quot;');
   }
 
+  // Mirror of curricula-state.js toSlug so comparison topics resolve to the
+  // same /entity/<slug>/ concept pages the per-state view links to.
+  function toSlug(name) {
+    return String(name)
+      .toLowerCase()
+      .replace(/[üÜ]/g, 'ue')
+      .replace(/[öÖ]/g, 'oe')
+      .replace(/[äÄ]/g, 'ae')
+      .replace(/ß/g, 'ss')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
+
   var byStateCache = {};
   var graphInited = false;
   var selected = []; // state codes selected for comparison
+  var ALL_STATES = []; // raw /api/curricula/list payload (for filtering)
+  var filterSchool = '';
+  var filterGrade = '';
 
   function fetchList() {
     return fetch('/api/curricula/list', { signal: AbortSignal.timeout(10000) })
@@ -89,22 +105,33 @@
     );
   }
 
-  function renderGrid(states) {
+  function matchesFilter(c) {
+    if (filterSchool && c.schoolType !== filterSchool) return false;
+    if (filterGrade && String(c.grade) !== filterGrade) return false;
+    return true;
+  }
+
+  function renderGrid() {
     var grid = document.getElementById('curricula-grid');
     if (!grid) return;
     var skeleton = document.getElementById('curricula-skeleton');
     if (skeleton) skeleton.remove();
 
+    var states = ALL_STATES || [];
     if (!states.length) {
       grid.innerHTML =
         '<div class="empty-state"><div class="empty-state-icon">📭</div>' +
         '<p>Keine Lehrplandaten verfügbar.</p></div>';
+      updateFilterCount(0);
       return;
     }
 
     var html = '';
+    var visible = 0;
     states.forEach(function (st) {
-      var curricula = st.curricula || [];
+      var curricula = (st.curricula || []).filter(matchesFilter);
+      if (!curricula.length) return; // filtered out for this state
+      visible++;
       var curriculaCount = curricula.length;
       var topics = 0;
       var objectives = 0;
@@ -153,7 +180,15 @@
         '"> vergleichen</label>' +
         '</button>';
     });
+    if (!visible) {
+      grid.innerHTML =
+        '<div class="empty-state"><div class="empty-state-icon">🔍</div>' +
+        '<p>Keine Lehrpläne für die gewählte Schulform / Klasse.</p></div>';
+      updateFilterCount(0);
+      return;
+    }
     grid.innerHTML = html;
+    updateFilterCount(visible);
 
     grid.querySelectorAll('.curricula-state-card').forEach(function (card) {
       card.addEventListener('click', function (ev) {
@@ -282,7 +317,15 @@
             return s.labels.has(label) ? '<td class="yes">✓</td>' : '<td class="no">–</td>';
           })
           .join('');
-        return '<tr><td>' + escapeHtml(label) + '</td>' + cells + '</tr>';
+        return (
+          '<tr><td><a class="curricula-topic-link" href="/entity/' +
+          toSlug(label) +
+          '/">' +
+          escapeHtml(label) +
+          '</a></td>' +
+          cells +
+          '</tr>'
+        );
       })
       .join('');
 
@@ -305,6 +348,61 @@
   var NAME_MAP = {};
   function stateName(code) {
     return NAME_MAP[code] || code;
+  }
+
+  // ── Filter bar (school type + grade) ───────────────────────────────────
+
+  function updateFilterCount(visible) {
+    var el = document.getElementById('curricula-filter-count');
+    if (!el) return;
+    var total = (ALL_STATES || []).length;
+    el.textContent =
+      visible + ' von ' + total + ' Ländern' + (filterSchool || filterGrade ? ' (gefiltert)' : '');
+  }
+
+  function buildFilterOptions() {
+    var schools = {};
+    var grades = {};
+    (ALL_STATES || []).forEach(function (st) {
+      (st.curricula || []).forEach(function (c) {
+        if (c.schoolType) schools[c.schoolType] = true;
+        if (c.grade != null && c.grade !== '') grades[String(c.grade)] = true;
+      });
+    });
+    var schoolSel = document.getElementById('curricula-filter-school');
+    var gradeSel = document.getElementById('curricula-filter-grade');
+    if (schoolSel) {
+      Object.keys(schools)
+        .sort()
+        .forEach(function (s) {
+          var opt = document.createElement('option');
+          opt.value = s;
+          opt.textContent = s;
+          schoolSel.appendChild(opt);
+        });
+      schoolSel.addEventListener('change', function () {
+        filterSchool = this.value;
+        renderGrid();
+      });
+    }
+    if (gradeSel) {
+      Object.keys(grades)
+        .sort(function (a, b) {
+          return Number(a) - Number(b);
+        })
+        .forEach(function (g) {
+          var opt = document.createElement('option');
+          opt.value = g;
+          opt.textContent = 'Klasse ' + g;
+          gradeSel.appendChild(opt);
+        });
+      gradeSel.addEventListener('change', function () {
+        filterGrade = this.value;
+        renderGrid();
+      });
+    }
+    var bar = document.getElementById('curricula-filter-bar');
+    if (bar) bar.hidden = false;
   }
 
   // ── Tabs ─────────────────────────────────────────────────────────────
@@ -383,11 +481,13 @@
     if (!grid) return;
     fetchList().then(function (data) {
       var states = data.states || [];
+      ALL_STATES = states;
       states.forEach(function (st) {
         NAME_MAP[(st.state || '').toUpperCase()] = st.stateName || st.state;
       });
       renderSummary(states, data.count);
-      renderGrid(states);
+      buildFilterOptions();
+      renderGrid();
       wireTabs();
     });
   }
