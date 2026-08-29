@@ -1,0 +1,418 @@
+# Hubs (Mozilla Hubs) stack — deployed on the chemie-lernen.org host.
+#
+# Reuses the already-built images from the prior /opt/containers/hubs-compose
+# deployment (hubs-compose-reticulum / hubs-compose-hubs-client / …) and the
+# existing DATA volumes (pgdata, retstorage, letsencrypt, source volumes).
+# TLS for hubs.chemie-lernen.org is terminated by the host Traefik
+# (mytlschallenge). The app source lives in the old mutagen sync volumes
+# (hubs-compose_hubs/_spoke/_dialog); node_modules are installed at deploy
+# time via `docker compose run --rm`.
+#
+# Routing mirrors the main docker-compose.yml: services sit on `traefik-public`
+# (the network Traefik's docker provider watches) plus an internal `hubs-net`.
+#
+# RAM budget: host has 16G (no swap). Totals below ≈ 3.8G, leaving headroom
+# for neo4j/kg (2G) + chat-api/hugo (0.5G) + observability.
+#
+# OPENVZ / Virtuozzo constraints (this VE):
+#  - netfilter `numiptent` (iptables-rule quota) is EXHAUSTED, so bridge+NAT
+#    port publishing cannot be used for media (see hubs-dialog: network_mode: host).
+#    => DO NOT add `ports:` to hubs services — each published port burns numiptent.
+#       Route via Traefik (traefik-public) or use `network_mode: host`.
+#  - Kernel sysctl (net.core.somaxconn, rmem_max/wmem_max, tcp_rmem/wmem, …) is
+#    NOT writeable from inside the VE. Raise those at the hardware node instead.
+
+x-logging: &hubs-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  db:
+    image: postgres:14-alpine
+    container_name: hubs-db
+    restart: unless-stopped
+    logging: *hubs-logging
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+    mem_limit: 512m
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+        reservations:
+          cpus: 1.0
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ret_dev
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_compression=on"
+      - "-c"
+      - "checkpoint_completion_target=0.9"
+      - "-c"
+      - "wal_buffers=16MB"
+      - "-c"
+      - "default_statistics_target=100"
+      - "-c"
+      - "random_page_cost=1.1"
+      - "-c"
+      - "effective_io_concurrency=200"
+      - "-c"
+      - "effective_cache_size=384MB"
+      - "-c"
+      - "max_wal_size=1GB"
+      - "-c"
+      - "min_wal_size=80MB"
+      - "-c"
+      - "max_connections=150"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - hubs-net
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  hubs-postgrest:
+    image: hubs-compose-postgrest:latest
+    container_name: hubs-postgrest
+    restart: unless-stopped
+    logging: *hubs-logging
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+    mem_limit: 256m
+    deploy:
+      resources:
+        limits:
+          memory: 256m
+        reservations:
+          cpus: 0.5
+    networks:
+      - hubs-net
+
+  hubs-reticulum:
+    image: hubs-compose-reticulum:latest
+    container_name: hubs-reticulum
+    restart: unless-stopped
+    logging: *hubs-logging
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+    stop_grace_period: 30s
+    mem_limit: 1g
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+        reservations:
+          cpus: 2.0
+    depends_on:
+      - db
+    environment:
+      HTTPS_CERT_FULLCHAIN: /code/certs/live/hubs.chemie-lernen.org/fullchain.pem
+      HTTPS_CERT_PRIVKEY: /code/certs/live/hubs.chemie-lernen.org/privkey.pem
+      DB_CREDENTIALS: postgres
+      DB_HOST: db
+      DIALOG_HOSTNAME: "hubs.chemie-lernen.org"
+      DIALOG_PORT: 4443
+      HUBS_ADMIN_INTERNAL_HOSTNAME: hubs-admin
+      HUBS_CLIENT_INTERNAL_HOSTNAME: hubs-client
+      POSTGREST_INTERNAL_HOSTNAME: hubs-postgrest
+      SPOKE_INTERNAL_HOSTNAME: spoke
+      TURKEY_MODE: "1"
+      ERL_FLAGS: "+sbwtvery_long +sbwtdcpuvery_long +swtvery_low +A 32 +P 5000000 +Q 5000000 +e 500000"
+      # RSA key used to sign PermsTokens (RS512) — must match dialog's AUTH_KEY (/etc/perms.pub.pem)
+      PERMS_KEY: |-
+        -----BEGIN RSA PRIVATE KEY-----
+        MIIEowIBAAKCAQEAmsUJ7e3Jc++A/DTD/QaSvkltyRvyPDr2WUqzsiKLIqNKWltn
+        BGAyVptvxs+TJdR2wBNdKCjRh7X5wBsTw34tNpmQHEcD/H4ZCyyEmMNPnH95wDXn
+        9DNs1V2C3rHBFFSRRrf9Q7U5D4SqEMsJ4HCxiC/67QMtlaoTq8VQQ5K1ZaTYV+hX
+        A+Gz1/3GjbgaMf8uKfLSraos0wFHLmTzF/Z+pG3V08pv2RZDkhUahJF59cTBDa1m
+        MmBfVXd1dldebeVMEPiG4p1rOal4SzAAqnjaovr79U3kFoVM2j6XFjGfpeDrt+Cx
+        Dff2K5MFXv1ez7/mE47hphXlcEohQffag1iLEwIDAQABAoIBAG5OYs5N/JeBqqeW
+        H91Vcv7mLLX6EgJ1b6CiSkJ6tjmAsfyGSnzm5tmtPNQwm0qKC/zHkEyQEw4rV45g
+        fgyGAEl61yggQSoS4VyCZRrPkQ0UGb0xblkw0a+cTyrS+662uzfw6DP6lGmH/wGr
+        BCYPi6hpseh8rF+P8ScqoRMYG+sNn1YrG9Js6krJifpMkuEmbeH6ZO2U/MaO4hlm
+        /VlO5YOY8/zMfFTf8iIqqlS8LgwniFMTJwCXMAQKgBZTNORVJZKCG112oDXwu7Sz
+        T3+hoqcepJ021CK380XYTNZ1tNagyVZFcSSiuMrK4omAghVLOlp51Q7LY5Jse7CC
+        YSVX8yECgYEAyXjuKkXLuIY8hLZgICMmHFgfZkCUci8IWlw5YHOU6kRlQdttEd8D
+        xiAOJcLhzrErIcb/Iv6Cz9JjvPBLSyvQgaxVduUcYsazEAIsUEeSBYEf1lZRT8Kv
+        M+eWh+1ynBQOgSOe0OlnxzsKs29aam6Ua0GoLrT/Gj9UpZkzWR10XFECgYEAxKhM
+        heJFa0l9qhuTbOiRmFY0yhj9I/doVuj/PCeEfi5PRVmsNlwtDh1OlMf23ts6yUhc
+        VgDBqnAKIl/I1K/gcGa134ElYsTDTo5lIUo6Be8iuK/EKKIlCsgB95DdxpVkV15q
+        bOB81uezBjIRgOKNUYTH1uiO/WgmUkH8orjyLCMCgYEAsqfk8mFwFJIcqkabGQRy
+        MCJIvcC4okRosNAlJQ15WQALlonAv182loMoaH3XBRWAPPScnGh6kVVskke3TNJu
+        k/7Azqy+Li0q7iAvMYU1zGHDXKqwcf0epfVQO/robdUvQ37Vv0WqfDYz+Affco/a
+        Vv4i6EAiEyFjq3Ed4oFHBPECgYB+sutySoBtCdETema2APRkkA28svLMbEZl0AE4
+        0UD0RoO963MfJq3EbS9GfbpYhCfQrHUI173uP/bXhJyQIqvX3uSIFd1vT9OA1g7j
+        rr3JOvNEx8D6aNSyqH9T75piqbcW7vZkJRFpJ6fYcwOB5PQlNAXIONZ+/s3Jq0fH
+        0p37vwKBgD2cL4CyORYs/rKZngdxjguiWoDHs7pPbU7jw4TXC5h52C8zAyhzr3io
+        WB+arRuUN1k7LCwJf+iP5CfO0FU7AMHqD6MaLXQixPKwm/mAqKo31PN6iCWVgkuf
+        cWvLPwtCseBAqnvKRBAcC54ZKWPSug34v1aUReO/VV3d4YTNWM2X
+        -----END RSA PRIVATE KEY-----
+      RELEASE_CONFIG_DIR: "/ret"
+      RELEASE_MUTABLE_DIR: "/ret/var"
+      HOME: "/ret/var"
+      REPLACE_OS_VARS: "true"
+      POD_IP: "127.0.0.1"
+      NODE_NAME: "127.0.0.1"
+    command: bash -c 'exec /ret/bin/ret start'
+    volumes:
+      - /opt/containers/hubs-compose/files/reticulum-config.toml:/ret/config.toml:ro
+      - letsencrypt:/code/certs
+      - retstorage:/code/storage/dev
+    networks:
+      - hubs-net
+      - traefik-public
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:4001/api/v1/meta"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 90s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-public"
+      - "traefik.http.routers.hubs-api.rule=Host(`hubs.chemie-lernen.org`) && (PathPrefix(`/api`) || PathPrefix(`/reticulum`) || PathPrefix(`/files`) || PathPrefix(`/socket`))"
+      - "traefik.http.routers.hubs-api.entrypoints=websecure"
+      - "traefik.http.routers.hubs-api.tls=true"
+      - "traefik.http.routers.hubs-api.tls.certresolver=mytlschallenge"
+      - "traefik.http.routers.hubs-api.priority=120"
+      - "traefik.http.services.hubs-api.loadbalancer.server.port=4001"
+      - "traefik.http.services.hubs-api.loadbalancer.server.scheme=http"
+      - "traefik.http.services.hubs-api.loadbalancer.passHostHeader=true"
+      - "traefik.http.serversTransports.hubs-https.insecureSkipVerify=true"
+
+  hubs-client:
+    image: hubs-compose-hubs-client:latest
+    container_name: hubs-client
+    restart: unless-stopped
+    logging: *hubs-logging
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+    mem_limit: 3g
+    deploy:
+      resources:
+        limits:
+          memory: 3g
+        reservations:
+          cpus: 0.5
+    # Serve the production build (dist/) statically instead of the
+    # webpack-dev-server. This removes the dev-server status websocket
+    # (wss://...:8080/ws) noise, the [webpack-dev-server] console spam, and
+    # the dev-server process crashes / core dumps. dist/ is produced by
+    # `webpack --mode=production` (see deploy step / manual build).
+    command: python3 /code/static-server.py
+    environment:
+      INTERNAL_HOSTNAME: hubs-client
+      PORT: "8080"
+      HUBS_DIST: "/code/dist"
+      # Point the production client build at the self-hosted reticulum instead of
+      # Hubs' default dev.reticulum.io (which has an invalid cert and breaks
+      # media search). Baked into the bundle via webpack DefinePlugin.
+      RETICULUM_SERVER: "hubs.chemie-lernen.org"
+      RETICULUM_SOCKET_SERVER: "hubs.chemie-lernen.org"
+    volumes:
+      - hubs-compose_hubs:/code
+      - letsencrypt:/code/certs
+    working_dir: /code
+    networks:
+      - hubs-net
+      - traefik-public
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      start_period: 4m
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-public"
+      - "traefik.http.routers.hubs-root.rule=Host(`hubs.chemie-lernen.org`)"
+      - "traefik.http.routers.hubs-root.entrypoints=websecure"
+      - "traefik.http.routers.hubs-root.tls=true"
+      - "traefik.http.routers.hubs-root.tls.certresolver=mytlschallenge"
+      - "traefik.http.routers.hubs-root.priority=100"
+      - "traefik.http.services.hubs-root.loadbalancer.server.port=8080"
+      - "traefik.http.services.hubs-root.loadbalancer.server.scheme=http"
+      - "traefik.http.serversTransports.hubs-https.insecureSkipVerify=true"
+
+  hubs-admin:
+    image: hubs-compose-hubs-admin:latest
+    container_name: hubs-admin
+    restart: unless-stopped
+    logging: *hubs-logging
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+    mem_limit: 2g
+    deploy:
+      resources:
+        limits:
+          memory: 2g
+        reservations:
+          cpus: 0.5
+    command: npm run local
+    environment:
+      INTERNAL_HOSTNAME: hubs-admin
+    volumes:
+      - hubs-compose_hubs:/code
+      - letsencrypt:/code/certs
+    working_dir: /code/admin
+    healthcheck:
+      test: ["CMD", "curl", "-fk", "https://localhost:8989/admin/admin.html"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 180s
+    networks:
+      - hubs-net
+      - traefik-public
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-public"
+      - "traefik.http.routers.hubs-admin.rule=Host(`hubs.chemie-lernen.org`) && PathPrefix(`/admin`)"
+      - "traefik.http.routers.hubs-admin.entrypoints=websecure"
+      - "traefik.http.routers.hubs-admin.tls=true"
+      - "traefik.http.routers.hubs-admin.tls.certresolver=mytlschallenge"
+      - "traefik.http.routers.hubs-admin.priority=110"
+      - "traefik.http.services.hubs-admin.loadbalancer.server.port=8989"
+      - "traefik.http.services.hubs-admin.loadbalancer.server.scheme=https"
+      - "traefik.http.services.hubs-admin.loadbalancer.serversTransport=hubs-https@file"
+      - "traefik.http.middlewares.hubs-admin-redirect.redirectRegex.regex=^https?://([^/]+)/admin/?$$"
+      - "traefik.http.middlewares.hubs-admin-redirect.redirectRegex.replacement=https://$$1/admin/admin.html"
+      - "traefik.http.middlewares.hubs-admin-redirect.redirectRegex.permanent=false"
+      - "traefik.http.routers.hubs-admin.middlewares=hubs-admin-redirect"
+      - "traefik.http.serversTransports.hubs-https.insecureSkipVerify=true"
+
+  spoke:
+    image: hubs-compose-spoke:latest
+    container_name: hubs-spoke
+    restart: unless-stopped
+    logging: *hubs-logging
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+    mem_limit: 1g
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+        reservations:
+          cpus: 0.5
+    command: yarn start
+    environment:
+      CORS_PROXY_SERVER: "hubs.chemie-lernen.org"
+      BASE_ASSETS_PATH: "/spoke/"
+      ROUTER_BASE_PATH: "/spoke"
+      INTERNAL_HOSTNAME: spoke
+    volumes:
+      - hubs-compose_spoke:/code
+      - letsencrypt:/code/certs
+    working_dir: /code
+    networks:
+      - hubs-net
+      - traefik-public
+    healthcheck:
+      test: ["CMD", "curl", "-fk", "https://localhost:9090/spoke/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-public"
+      - "traefik.http.routers.hubs-spoke.rule=Host(`hubs.chemie-lernen.org`) && PathPrefix(`/spoke`)"
+      - "traefik.http.routers.hubs-spoke.entrypoints=websecure"
+      - "traefik.http.routers.hubs-spoke.tls=true"
+      - "traefik.http.routers.hubs-spoke.tls.certresolver=mytlschallenge"
+      - "traefik.http.routers.hubs-spoke.priority=110"
+      - "traefik.http.routers.hubs-spoke.middlewares=hubs-spoke-redirect"
+      - "traefik.http.services.hubs-spoke.loadbalancer.server.port=9090"
+      - "traefik.http.services.hubs-spoke.loadbalancer.server.scheme=https"
+      - "traefik.http.services.hubs-spoke.loadbalancer.serversTransport=hubs-https@file"
+      - "traefik.http.serversTransports.hubs-https.insecureSkipVerify=true"
+      - "traefik.http.middlewares.hubs-spoke-redirect.redirectregex.regex=https://(.*)/spoke$$"
+      - "traefik.http.middlewares.hubs-spoke-redirect.redirectregex.replacement=https://$${1}/spoke/"
+
+  hubs-dialog:
+    image: hubs-compose-dialog:latest
+    container_name: hubs-dialog
+    restart: unless-stopped
+    logging: *hubs-logging
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+    stop_grace_period: 30s
+    # Host networking avoids docker-proxied iptables DNAT rules. The Virtuozzo VE's
+    # netfilter/numiptent kernel-memory quota is exhausted (iptables "Memory allocation
+    # problem" on container start), so bridge+NAT port publishing cannot be used for the
+    # dialog's ~100 media ports. With host networking the dialog binds 4443 + its media
+    # ports directly on the host (verified free). Dialog does not depend on docker DNS
+    # (no RETICULUM_URL) — the Hubs client reaches it via reticulum's dialog_url.
+    network_mode: host
+    mem_limit: 256m
+    deploy:
+      resources:
+        limits:
+          memory: 256m
+        reservations:
+          cpus: 1.5
+    environment:
+      AUTH_KEY: /etc/perms.pub.pem
+      HTTPS_CERT_FULLCHAIN: /code/certs/live/hubs.chemie-lernen.org/fullchain.pem
+      HTTPS_CERT_PRIVKEY: /code/certs/live/hubs.chemie-lernen.org/privkey.pem
+      INTERACTIVE: "false"
+      MEDIASOUP_MIN_PORT: 40000
+      # Widened 40050 -> 40150: more concurrent RTP ports (3x aggregate buffering
+      # headroom). dialog is host-networked, so this costs ZERO numiptent and only
+      # conntrack entries (171/4M available).
+      MEDIASOUP_MAX_PORT: 40150
+      MEDIASOUP_ANNOUNCED_IP: ${PRIVATE_NETWORK_IP}
+    volumes:
+      - hubs-compose_dialog:/code
+      - letsencrypt:/code/certs
+    working_dir: /code
+
+networks:
+  hubs-net:
+    driver: bridge
+  traefik-public:
+    external: true
+
+# Reuse the data volumes created by the prior hubs-compose deployment.
+volumes:
+  pgdata:
+    external: true
+    name: hubs-compose_pgdata
+  retstorage:
+    external: true
+    name: hubs-compose_retstorage
+  letsencrypt:
+    external: true
+    name: hubs-compose_letsencrypt
+  hubs-compose_hubs:
+    external: true
+    name: hubs-compose_hubs
+  hubs-compose_spoke:
+    external: true
+    name: hubs-compose_spoke
+  hubs-compose_dialog:
+    external: true
+    name: hubs-compose_dialog

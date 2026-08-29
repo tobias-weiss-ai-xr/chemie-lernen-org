@@ -87,6 +87,9 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "^three$": "<rootDir>/tests/three-fake.cjs"
+    },
     "testMatch": [
       "**/tests/**/*.test.js",
       "**/tests/**/*.test.mjs"
@@ -97,6 +100,7 @@
     ],
     "transform": {
       "^.*/api/.*\\.js$": "<rootDir>/jest-transform-esm.cjs",
+      "^.*/static/js/molecule-.*\\.js$": "<rootDir>/jest-transform-esm.cjs",
       "^.+\\.mjs$": "<rootDir>/jest-transform-esm.cjs",
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     },

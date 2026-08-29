@@ -413,6 +413,9 @@ export default [
     files: [
       'myhugoapp/static/js/perioden-system-der-elemente.js',
       'myhugoapp/static/js/molekuel-studio.js',
+      'myhugoapp/static/js/molecule-data.js',
+      'myhugoapp/static/js/molecule-hero.js',
+      'myhugoapp/static/js/molecule-geometry.js',
       'myhugoapp/static/js/three/**/*.js',
       'myhugoapp/static/js/**/*.module.js',
     ],
