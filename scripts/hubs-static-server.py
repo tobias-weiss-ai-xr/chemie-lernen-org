@@ -32,7 +32,14 @@ REWRITES = [
     (r"^/cloud", "/cloud.html"),
     (r"^/verify", "/verify.html"),
     (r"^/tokens", "/tokens.html"),
-    (r"^/[A-Za-z0-9]{7}/?$", "/hub.html"),
+    # Match 7-char hub IDs with optional slug (e.g. /raJ6mj3 or
+    # /raJ6mj3/test-room).  The slug is restricted to [A-Za-z0-9_-] so that
+    # file paths like /<hubId>/objects.gltf or /<hubId>/scene.glb do NOT
+    # match and instead get a clean 404 (serving hub.html for a .gltf
+    # request causes a SyntaxError when the glTF loader tries to parse
+    # HTML as JSON).  An optional trailing slash is allowed so that
+    # /raJ6mj3/test-room/ also serves hub.html (not index.html).
+    (r"^/[A-Za-z0-9]{7}(/[A-Za-z0-9_-]*)?/?$", "/hub.html"),
 ]
 
 class Handler(http.server.SimpleHTTPRequestHandler):
@@ -51,7 +58,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return "application/json"
         return super().guess_type(path)
 
-    def do_GET(self):
+    def _resolve_target(self):
+        """Resolve self.path to the file to serve, applying REWRITES and SPA
+        fallback.  Returns the target path, or None for 404."""
         path = self.path.split("?")[0].split("#")[0]
         target = path
         for pat, rep in REWRITES:
@@ -60,13 +69,29 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 break
         fs_path = os.path.join(DIST, target.lstrip("/"))
         if os.path.isfile(fs_path):
-            self.path = target
-            return super().do_GET()
+            return target
         # SPA fallback only for extensionless routes.
         if "." not in os.path.basename(path):
-            self.path = "/index.html"
-            return super().do_GET()
-        self.send_error(404, "Not Found: " + path)
+            return "/index.html"
+        return None
+
+    def do_GET(self):
+        target = self._resolve_target()
+        if target is None:
+            self.send_error(404, "Not Found: " + self.path)
+            return
+        self.path = target
+        return super().do_GET()
+
+    def do_HEAD(self):
+        # Mirror do_GET routing so HEAD requests to room URLs (e.g. from
+        # phoenix-adapter.js pre-flight checks) return 200, not 404.
+        target = self._resolve_target()
+        if target is None:
+            self.send_error(404, "Not Found: " + self.path)
+            return
+        self.path = target
+        return super().do_HEAD()
 
     def end_headers(self):
         self.send_header("Access-Control-Allow-Origin", "*")
