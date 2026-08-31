@@ -367,6 +367,24 @@ services:
       - "traefik.http.middlewares.hubs-spoke-redirect.redirectregex.regex=https://(.*)/spoke$$"
       - "traefik.http.middlewares.hubs-spoke-redirect.redirectregex.replacement=https://$${1}/spoke/"
 
+  hubs-coturn:
+    # TURN relay for school NATs (see services/coturn/turnserver.conf in
+    # /opt/containers/hubs-compose — volume mount below). Plain TURN on 3478
+    # tcp+udp, relay range 40200-40400 (disjoint from dialog 40000-40150).
+    # UFW: 3478/tcp+udp, 40200:40400/udp allowed. Credentials are shared-secret
+    # (lt-cred-mech), baked into the patched client bundle (hubs-client-assets).
+    # TODO after 2026-09-14 (LE pause lifted): issue turn.chemie-lernen.org cert
+    # and move to TLS-on-443 via Traefik TCP SNI passthrough.
+    image: coturn/coturn:alpine
+    container_name: hubs-coturn
+    restart: unless-stopped
+    logging: *hubs-logging
+    network_mode: host
+    mem_limit: 128m
+    cpu_shares: 256
+    volumes:
+      - /opt/containers/hubs-compose/services/coturn/turnserver.conf:/etc/coturn/turnserver.conf:ro
+
   hubs-dialog:
     image: hubs-compose-dialog:latest
     container_name: hubs-dialog
