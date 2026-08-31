@@ -170,6 +170,12 @@ services:
     command: bash -c 'exec /ret/bin/ret start'
     volumes:
       - /opt/containers/hubs-compose/files/reticulum-config.toml:/ret/config.toml:ro
+      # Patched release sys.config: Ret.Mailer tls always->never (atom-only in
+      # sys.config; TOML cannot express atoms). gen_smtp (ret 1.0.0) cannot do
+      # STARTTLS against PIPELINING servers (buffered-bytes handshake bug);
+      # reticulum instead speaks plaintext SMTP to hubs-mailrelay on :25,
+      # which relays upstream via wrappermode TLS 465.
+      - /opt/containers/hubs-compose/files/reticulum-sys.config:/ret/releases/1.0.0/sys.config:ro
       - letsencrypt:/code/certs
       - retstorage:/code/storage/dev
     networks:
@@ -247,6 +253,8 @@ services:
       # and APP ReferenceError (window.APP?. guard in bitECS newLoader check).
       # NOTE: hub.html loads hub-544153456e8422fbb129.js (NOT hub-c5e95cff…).
       - /opt/git/hubs-client-assets/hub-544153456e8422fbb129.js:/code/dist/assets/js/hub-544153456e8422fbb129.js:ro
+      # valid empty glTF: hub page A-Frame default-scene fetch -> 200 instead of 404
+      - /opt/git/hubs-client-assets/objects.gltf:/code/dist/objects.gltf:ro
     working_dir: /code
     networks:
       - hubs-net
@@ -367,6 +375,34 @@ services:
       - "traefik.http.middlewares.hubs-spoke-redirect.redirectregex.regex=https://(.*)/spoke$$"
       - "traefik.http.middlewares.hubs-spoke-redirect.redirectregex.replacement=https://$${1}/spoke/"
 
+  hubs-mailrelay:
+    # Postfix TLS bridge for reticulum mail (magic-link sign-in, Spoke publish):
+    # ret 1.0.0 gen_smtp cannot STARTTLS against PIPELINING servers (buffered
+    # bytes -> handshake 'Unexpected Message') and Bamboo here has no implicit-TLS
+    # path that works — so reticulum speaks PLAINTEXT SMTP to this relay on :25
+    # (UFW: 172.16/12 -> host:25 allowed), which relays upstream via wrappermode
+    # TLS 465 to mail.tobias-weiss.org (IP-trusted, no AUTH; verified 250-queued).
+    # LE cert mounted for the (unused-by-reticulum) STARTTLS listener option.
+    image: mwader/postfix-relay
+    container_name: hubs-mailrelay
+    restart: unless-stopped
+    logging: *hubs-logging
+    network_mode: host
+    mem_limit: 96m
+    cpu_shares: 256
+    volumes:
+      - /opt/git/docker-traefik/letsencrypt/live/hubs.chemie-lernen.org/fullchain.pem:/etc/postfix/certs/fullchain.pem:ro
+      - /opt/git/docker-traefik/letsencrypt/live/hubs.chemie-lernen.org/privkey.pem:/etc/postfix/certs/privkey.pem:ro
+    environment:
+      POSTFIX_myhostname: hubs.chemie-lernen.org
+      POSTFIX_mynetworks: "127.0.0.0/8,172.16.0.0/12,10.0.0.0/8,178.254.2.90/32"
+      POSTFIX_smtpd_tls_security_level: "may"
+      POSTFIX_smtpd_tls_cert_file: /etc/postfix/certs/fullchain.pem
+      POSTFIX_smtpd_tls_key_file: /etc/postfix/certs/privkey.pem
+      POSTFIX_smtp_tls_wrappermode: "yes"
+      POSTFIX_smtp_tls_security_level: encrypt
+      POSTFIX_relayhost: "[mail.tobias-weiss.org]:465"
+
   hubs-coturn:
     # TURN relay for school NATs (see services/coturn/turnserver.conf in
     # /opt/containers/hubs-compose — volume mount below). Plain TURN on 3478
@@ -402,12 +438,14 @@ services:
     # ports directly on the host (verified free). Dialog does not depend on docker DNS
     # (no RETICULUM_URL) — the Hubs client reaches it via reticulum's dialog_url.
     network_mode: host
-    mem_limit: 256m
+    # 512m: full class (~30 students) with cameras needs headroom above the
+    # 256m test baseline (measured ~230m under mediasoup load spikes)
+    mem_limit: 512m
     cpu_shares: 1536
     deploy:
       resources:
         limits:
-          memory: 256m
+          memory: 512m
     environment:
       AUTH_KEY: /etc/perms.pub.pem
       HTTPS_CERT_FULLCHAIN: /code/certs/live/hubs.chemie-lernen.org/fullchain.pem
