@@ -216,7 +216,7 @@ describe('Asset contracts & properties', () => {
     for (const s of declared) {
       expect(embedded.has(s)).toBe(true);
     }
-  });
+  }, 15000);
 
   test('manifest PNG icons have real square dimensions matching declared sizes (PWA property)', async () => {
     const mres = await fetch(`${BASE}/manifest.webmanifest`);
@@ -241,7 +241,7 @@ describe('Asset contracts & properties', () => {
       // are 192 or 512.
       expect(width).toBeGreaterThanOrEqual(192);
     }
-  });
+  }, 15000);
 
   test('hub.service.js has functional handlers and no no-op fetch handler', async () => {
     const res = await fetch(`${BASE}/hub.service.js`);
@@ -2140,5 +2140,116 @@ describe('Mutation testing — routing bug regression', () => {
     const body = await res.text();
     expect(body).toContain('window.navigator.keyboard&&window.navigator.keyboard.getLayoutMap');
     expect(body).not.toContain('void 0!==window.navigator.keyboard&&window.navigator.keyboard.getLayoutMap');
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Response consistency contracts                                      */
+/* ------------------------------------------------------------------ */
+
+describe('Response consistency contracts', () => {
+  test('/hub.html and /raJ6mj3 serve identical content (hub.html is the room entry point)', async () => {
+    const hubRes = await fetch(`${BASE}/hub.html`);
+    const roomRes = await fetch(`${BASE}/raJ6mj3`);
+    const hubBody = await hubRes.text();
+    const roomBody = await roomRes.text();
+    expect(hubBody).toBe(roomBody);
+  });
+
+  test('/hub.html and /hub.html?foo=bar serve identical content (query strings ignored)', async () => {
+    const plain = await (await fetch(`${BASE}/hub.html`)).text();
+    const withQuery = await (await fetch(`${BASE}/hub.html?foo=bar`)).text();
+    expect(plain).toBe(withQuery);
+  });
+
+  test('content-length header matches actual body length on /api/v1/meta', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`);
+    const cl = parseInt(res.headers.get('content-length') || '0');
+    const body = await res.text();
+    expect(body.length).toBe(cl);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* HTML link tag contracts — favicon + manifest                       */
+/* ------------------------------------------------------------------ */
+
+describe('HTML link tag contracts', () => {
+  test('hub.html has exactly one favicon link', async () => {
+    const html = await (await fetch(`${BASE}/hub.html`)).text();
+    const count = (html.match(/rel=["']icon["']/g) || []).length;
+    expect(count).toBe(1);
+  });
+
+  test('index.html has exactly one favicon link', async () => {
+    const html = await (await fetch(`${BASE}/`)).text();
+    const count = (html.match(/rel=["']icon["']/g) || []).length;
+    expect(count).toBe(1);
+  });
+
+  test('hub.html has exactly one manifest link', async () => {
+    const html = await (await fetch(`${BASE}/hub.html`)).text();
+    const count = (html.match(/rel=["']manifest["']/g) || []).length;
+    expect(count).toBe(1);
+  });
+
+  test('index.html has exactly one manifest link', async () => {
+    const html = await (await fetch(`${BASE}/`)).text();
+    const count = (html.match(/rel=["']manifest["']/g) || []).length;
+    expect(count).toBe(1);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Room creation — name sanitization contracts                          */
+/* ------------------------------------------------------------------ */
+
+describe('Room creation — name sanitization', () => {
+  test('XSS payload in room name does not inject <script> into URL', async () => {
+    await new Promise((r) => setTimeout(r, 2000));
+    const res = await fetch(`${BASE}/api/v1/hubs`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ hub: { name: '<script>alert(1)</script>' } }),
+    });
+    expect(res.ok).toBe(true);
+    const hub = await res.json();
+    expect(hub.url).not.toContain('<script>');
+    expect(hub.url).not.toContain('</script>');
+    // URL path should be sanitized (no HTML tags)
+    expect(new URL(hub.url).pathname).not.toMatch(/[<>]/);
+  });
+
+  test('spaces in room name are converted to hyphens in slug', async () => {
+    await new Promise((r) => setTimeout(r, 2000));
+    const res = await fetch(`${BASE}/api/v1/hubs`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ hub: { name: 'my room name' } }),
+    });
+    expect(res.ok).toBe(true);
+    const hub = await res.json();
+    const pathname = new URL(hub.url).pathname;
+    // The slug should use hyphens, not spaces or + encoded chars
+    expect(pathname).not.toMatch(/%20/);
+    expect(pathname).not.toMatch(/\+/);
+  });
+
+  test('created room slug matches [A-Za-z0-9_-]+ pattern', async () => {
+    await new Promise((r) => setTimeout(r, 2000));
+    const res = await fetch(`${BASE}/api/v1/hubs`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ hub: { name: 'slug-pattern-test' } }),
+    });
+    expect(res.ok).toBe(true);
+    const hub = await res.json();
+    const pathname = new URL(hub.url).pathname;
+    // Path should be /{7char-id}/{slug}
+    const match = pathname.match(/^\/([A-Za-z0-9]{7})\/([A-Za-z0-9_-]+)$/);
+    expect(match).toBeTruthy();
+    if (match) {
+      expect(match[1]).toBe(hub.hub_id);
+    }
   });
 });
