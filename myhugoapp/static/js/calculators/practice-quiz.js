@@ -490,3 +490,18 @@ function resetPractice() {
     document.getElementById('practice-problem').style.display = 'none';
   }
 }
+
+// Export pure generators for testing (Node/Jest; harmless in the browser)
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    generateProblem,
+    generateMolMolProblem,
+    generateMassMassProblem,
+    generateLimitingProblem,
+    generateYieldProblem,
+    checkAnswer,
+    skipProblem,
+    resetPractice,
+    __test: { getState: () => practiceState },
+  };
+}

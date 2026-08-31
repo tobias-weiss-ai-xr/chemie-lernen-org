@@ -270,3 +270,8 @@ const _ProgressTracker = {
 // (the const is prefixed with _ to satisfy ESLint no-unused-vars; the
 // window global is the real contract, like gamification-engine.js).
 window.ProgressTracker = _ProgressTracker;
+
+// Export for testing (Node/Jest; harmless in the browser)
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { _ProgressTracker };
+}

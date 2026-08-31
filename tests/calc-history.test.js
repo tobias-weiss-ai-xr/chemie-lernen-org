@@ -4,18 +4,21 @@
  * displayHistory, toggleHistory, updateHistoryCount, clearHistory,
  * checkForBalancedEquation, and showImportNotification.
  *
- * calc-history.js has NO module.exports — all functions are registered as
- * globals via vm.runInThisContext (emulating browser <script> tag behavior).
+ * Geladen per require() über die module.exports-Brücke — zählt für Coverage.
  */
-
-const fs = require('fs');
-const path = require('path');
-const SRC_PATH = path.join(__dirname, '..', 'myhugoapp/static/js/calculators/calc-history.js');
-
-// Evaluate source ONCE, patching function declarations to assign to globalThis
-const _code = fs.readFileSync(SRC_PATH, 'utf8');
-const _patched = _code.replace(/^function\s+(\w+)/gm, 'globalThis.$1 = function $1');
-(0, eval)(_patched);
+// require() statt eval: dieselben Funktionen, aber über die Jest-
+// Modulpipeline geladen — zählt für die Coverage-Instrumentierung.
+const {
+  saveToHistory,
+  loadHistory,
+  displayHistory,
+  toggleHistory,
+  updateHistoryCount,
+  clearHistory,
+  checkForBalancedEquation,
+  showImportNotification,
+  _escapeHtml,
+} = require('../myhugoapp/static/js/calculators/calc-history.js');
 
 beforeEach(() => {
   localStorage.clear();

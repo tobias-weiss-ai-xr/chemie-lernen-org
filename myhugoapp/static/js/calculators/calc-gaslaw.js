@@ -531,21 +531,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
+    loadSTP,
+    loadSATP,
+    loadGasExample,
+    convertTemperatureToKelvin,
     convertPressureToAtm,
     convertVolumeToLiters,
     convertAmountToMoles,
     convertToKelvin,
     convertFromKelvin,
-  };
-}
-
-// Export pure functions for testing
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    convertPressureToAtm,
-    convertVolumeToLiters,
-    convertAmountToMoles,
-    convertToKelvin,
-    convertFromKelvin,
+    getGasTargetUnits,
+    atmToUnit,
+    convertPressureTo,
+    convertVolumeTo,
+    calculateGasLaw,
   };
 }
