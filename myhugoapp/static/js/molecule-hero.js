@@ -51,6 +51,12 @@ export function init(canvasId) {
   // Re-init clears any previously rendered molecule so a fresh scene starts clean.
   moleculeGroup = null;
 
+  // Inline baseline fix: an inline canvas sits on the text baseline, which adds
+  // a few pixels of descender below it. Combined with content-driven wrapper
+  // height (e.g. stale/missing CSS) that feeds the ResizeObserver below and
+  // grows the page forever. display:block removes the descender gap entirely.
+  canvas.style.display = 'block';
+
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0xf0f7f0);
 
@@ -95,12 +101,20 @@ export function init(canvasId) {
     { passive: false }
   );
 
-  // Resize
+  // Resize (guarded: only touch the renderer when the size actually changed,
+  // so a sizing feedback loop can never build up)
+  let lastW = 0;
+  let lastH = 0;
   const ro = new ResizeObserver(() => {
     if (!wrap || !renderer || !camera) return;
-    camera.aspect = wrap.clientWidth / wrap.clientHeight || 1;
+    const w = wrap.clientWidth;
+    const h = wrap.clientHeight;
+    if (w === lastW && h === lastH) return;
+    lastW = w;
+    lastH = h;
+    camera.aspect = w / h || 1;
     camera.updateProjectionMatrix();
-    renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+    renderer.setSize(w, h);
   });
   ro.observe(wrap);
 
