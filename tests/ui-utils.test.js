@@ -4,6 +4,8 @@ var formatNumber = uiUtils.formatNumber;
 var darkenColor = uiUtils.darkenColor;
 var escapeHtml = uiUtils.escapeHtml;
 var showToast = uiUtils.showToast;
+var showBadgeToast = uiUtils.showBadgeToast;
+var initExerciseHints = uiUtils.initExerciseHints;
 
 function setupErrorDOM() {
   document.body.innerHTML =
@@ -490,5 +492,75 @@ describe('UIUtils - showToast', function () {
     expect(container.children[0].style.background).toBe('rgb(220, 53, 69)');
     expect(container.children[1].style.background).toBe('rgb(40, 167, 69)');
     expect(container.children[2].style.background).toBe('rgb(23, 162, 184)');
+  });
+});
+
+// ── showBadgeToast / initExerciseHints (jsdom) ───────────────────────
+global.requestAnimationFrame = global.requestAnimationFrame || ((cb) => setTimeout(cb, 0));
+
+describe('showBadgeToast — Badge-Benachrichtigung', () => {
+  beforeEach(() => {
+    document.body.innerHTML = '';
+  });
+
+  test('legt Container automatisch an und zeigt Badge mit Namen + XP', () => {
+    showBadgeToast({ name: 'Erster Rechner', icon: 'fa-trophy', xpBonus: 50 });
+    const container = document.getElementById('badge-toast-container');
+    expect(container).not.toBeNull();
+    const toast = container.querySelector('.badge-toast');
+    expect(toast).not.toBeNull();
+    expect(toast.innerHTML).toContain('Erster Rechner');
+    expect(toast.innerHTML).toContain('+50 XP');
+    expect(toast.innerHTML).toContain('fa-trophy');
+  });
+
+  test('ohne name → No-Op (kein Toast)', () => {
+    showBadgeToast({ icon: 'fa-star' });
+    expect(document.getElementById('badge-toast-container')).toBeNull();
+  });
+
+  test('Badge-Namen werden escaped (XSS-Schutz)', () => {
+    showBadgeToast({ name: '<script>alert(1)</script>', icon: 'fa-star' });
+    const toast = document.querySelector('.badge-toast');
+    expect(toast.innerHTML).not.toContain('<script>');
+    expect(toast.innerHTML).toContain('&lt;script&gt;');
+  });
+
+  test('zweites Badge landet im selben Container', () => {
+    showBadgeToast({ name: 'A', icon: 'fa-star' });
+    showBadgeToast({ name: 'B', icon: 'fa-star' });
+    expect(document.querySelectorAll('.badge-toast')).toHaveLength(2);
+  });
+});
+
+describe('initExerciseHints — Übungs-Hinweise in Listen', () => {
+  beforeEach(() => {
+    document.body.innerHTML =
+      '<h2>Übungsaufgaben</h2>' +
+      '<ol><li>Berechne die Molmasse von Wasser.</li><li>Stelle die Reaktionsgleichung auf.</li></ol>' +
+      '<h3>Theorie</h3><p>Grundlagen der Chemie.</p>';
+  });
+
+  test('fügt jedem Listenelement unter "Übung" einen Hinweis-Button hinzu', () => {
+    initExerciseHints();
+    const buttons = document.querySelectorAll('ol li .hint-button');
+    expect(buttons).toHaveLength(2);
+    expect(buttons[0].textContent).toBe('Hinweis');
+    expect(buttons[0].dataset.problem).toContain('Molmasse');
+  });
+
+  test('Theorie-Überschrift ohne nachfolgende Liste → keine Buttons', () => {
+    initExerciseHints();
+    // Theorie-Überschrift hat nur einen <p>, keine OL/UL → keine Buttons dort
+    const theoryButtons = document.querySelectorAll(
+      'h3 + p + ol .hint-button, h3 ~ ol .hint-button'
+    );
+    expect(theoryButtons).toHaveLength(0);
+  });
+
+  test('idempotent: zweiter Aufruf fügt keine zweiten Buttons hinzu', () => {
+    initExerciseHints();
+    initExerciseHints();
+    expect(document.querySelectorAll('ol li .hint-button')).toHaveLength(2);
   });
 });

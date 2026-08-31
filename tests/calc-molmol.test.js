@@ -94,3 +94,60 @@ describe('calc-molmol — calcMolMolValue', () => {
     expect(typeof calcMolMolValue).toBe('function');
   });
 });
+
+// ── DOM-Flows (jsdom): calcMolMol-Handler ─────────────────────────────
+const {
+  calcMolMol,
+  toggleMolMolExplanation,
+} = require('../myhugoapp/static/js/calculators/calc-molmol.js');
+global.showToast = jest.fn();
+global.saveToHistory = jest.fn();
+
+describe('calcMolMol — DOM-Handler', () => {
+  beforeEach(() => {
+    global.showToast.mockClear();
+    document.body.innerHTML = [
+      'mol-reactant',
+      'mol-coeff-r',
+      'mol-coeff-p',
+      'mol-result',
+      'mol-calc',
+      'mol-mol-explanation',
+    ]
+      .map((id) => `<div id="${id}"></div>`)
+      .join('');
+  });
+
+  test('gültige Eingaben: Ergebnispanel sichtbar, Rechenweg gefüllt', () => {
+    document.getElementById('mol-reactant').value = '2';
+    document.getElementById('mol-coeff-r').value = '2';
+    document.getElementById('mol-coeff-p').value = '3';
+    calcMolMol();
+    expect(document.getElementById('mol-result').style.display).toBe('block');
+    expect(document.getElementById('mol-calc').innerHTML).toContain('3');
+  });
+
+  test('fehlende Werte → Toast, kein Ergebnis', () => {
+    document.getElementById('mol-reactant').value = '';
+    calcMolMol();
+    expect(global.showToast).toHaveBeenCalled();
+    expect(document.getElementById('mol-result').style.display).toBe('');
+  });
+
+  test('v1 ≤ 0 → Toast mit Koeffizienten-Hinweis', () => {
+    document.getElementById('mol-reactant').value = '2';
+    document.getElementById('mol-coeff-r').value = '0';
+    document.getElementById('mol-coeff-p').value = '3';
+    calcMolMol();
+    expect(global.showToast).toHaveBeenCalledWith(expect.stringContaining('Koeffizient'), 'error');
+  });
+
+  test('toggleMolMolExplanation schaltet zwischen none/block', () => {
+    const ex = document.getElementById('mol-mol-explanation');
+    ex.style.display = 'none';
+    toggleMolMolExplanation();
+    expect(ex.style.display).toBe('block');
+    toggleMolMolExplanation();
+    expect(ex.style.display).toBe('none');
+  });
+});

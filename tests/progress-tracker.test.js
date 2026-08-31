@@ -263,3 +263,41 @@ describe('resetProgress — alles weg', () => {
     expect(s.count).toBe(1); // frischer Start
   });
 });
+
+describe('getStreak — aufeinanderfolgende Tage', () => {
+  test('heute aktiv → liefert den aktuellen Streak', async () => {
+    const t = freshTracker();
+    await t.updateDailyStats();
+    await t.updateDailyStats();
+    const streak = await t.getStreak();
+    expect(streak).toBe(1);
+  });
+
+  test('gestern aktiv, heute nicht → Streak vom gestrigen Tag', async () => {
+    const t = freshTracker();
+    const db = await t.openDB();
+    const y = new Date();
+    y.setDate(y.getDate() - 1);
+    const yKey = y.toISOString().split('T')[0];
+    db._storeObjs.stats.map.set(yKey, { date: yKey, count: 5, streak: 4 });
+    const streak = await t.getStreak();
+    expect(streak).toBe(4);
+  });
+
+  test('letzter Eintrag ist 10 Tage alt → Streak 0 (abgebrochen)', async () => {
+    const t = freshTracker();
+    const db = await t.openDB();
+    const old = new Date();
+    old.setDate(old.getDate() - 10);
+    const oldKey = old.toISOString().split('T')[0];
+    db._storeObjs.stats.map.set(oldKey, { date: oldKey, count: 3, streak: 7 });
+    const streak = await t.getStreak();
+    expect(streak).toBe(0);
+  });
+
+  test('keine Statistik → Streak 0', async () => {
+    const t = freshTracker();
+    const streak = await t.getStreak();
+    expect(streak).toBe(0);
+  });
+});

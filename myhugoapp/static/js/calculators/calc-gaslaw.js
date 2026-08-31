@@ -545,5 +545,6 @@ if (typeof module !== 'undefined' && module.exports) {
     convertPressureTo,
     convertVolumeTo,
     calculateGasLaw,
+    updateGasInputs,
   };
 }

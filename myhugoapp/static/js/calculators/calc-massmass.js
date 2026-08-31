@@ -163,5 +163,5 @@ function toggleMassMassExplanation() {
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { calcMassMassValue };
+  module.exports = { calcMassMassValue, calcMassMass, toggleMassMassExplanation };
 }

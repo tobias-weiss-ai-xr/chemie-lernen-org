@@ -243,3 +243,17 @@ describe('Preset-Loader & Kelvin-Anzeige', () => {
     expect(document.getElementById('kelvin-value').textContent).toBe('-');
   });
 });
+
+describe('updateGasInputs — Zielgröße sperrt ihr eigenes Feld', () => {
+  test.each(['P', 'V', 'n', 'T'])('Variable %s: eigenes Feld disabled, Rest frei', (variable) => {
+    setGasDOM({});
+    document.getElementById('gas-calculate-variable').value = variable;
+    calc.updateGasInputs();
+    const map = { P: 'gas-pressure', V: 'gas-volume', n: 'gas-amount', T: 'gas-temperature' };
+    expect(document.getElementById(map[variable]).disabled).toBe(true);
+    expect(document.getElementById(map[variable]).placeholder).toContain('berechnet');
+    for (const [v, id] of Object.entries(map)) {
+      if (v !== variable) expect(document.getElementById(id).disabled).toBe(false);
+    }
+  });
+});

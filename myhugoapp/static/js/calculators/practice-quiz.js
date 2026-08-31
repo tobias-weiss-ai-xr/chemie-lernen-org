@@ -502,6 +502,7 @@ if (typeof module !== 'undefined' && module.exports) {
     checkAnswer,
     skipProblem,
     resetPractice,
+    startPractice,
     __test: { getState: () => practiceState },
   };
 }

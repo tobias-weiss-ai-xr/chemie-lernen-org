@@ -216,3 +216,80 @@ describe('skipProblem / resetPractice', () => {
     expect(document.getElementById('practice-setup').style.display).toBe('block');
   });
 });
+
+describe('problemDetailHTML — lösungswegspezifisches Feedback pro Typ', () => {
+  beforeEach(() => {
+    document.body.innerHTML = DOM_IDS.map((id) => `<div id="${id}"></div>`).join('');
+    quiz.resetPractice();
+  });
+
+  test('mol-mol: Feedback enthält n₂-Formel und den Lösungsweg', () => {
+    quiz.generateMolMolProblem('easy');
+    const p = getState().currentProblem;
+    document.getElementById('practice-answer').value = String(p.answer);
+    quiz.checkAnswer();
+    const fb = document.getElementById('feedback-section').innerHTML;
+    expect(fb).toContain('Richtig');
+    expect(fb).toContain('n₂');
+    expect(fb).toContain(String(p.v1));
+  });
+
+  test('mass-mass: Feedback zeigt den Massenweg', () => {
+    quiz.generateMassMassProblem('medium');
+    const p = getState().currentProblem;
+    document.getElementById('practice-answer').value = String(p.answer);
+    quiz.checkAnswer();
+    const fb = document.getElementById('feedback-section').innerHTML;
+    expect(fb).toContain('Richtig');
+    expect(fb).toContain('Lösungsweg');
+    expect(fb).toContain(p.M1.toFixed(2));
+  });
+
+  test('limiting: Feedback nennt den Grenzreaktor', () => {
+    quiz.generateLimitingProblem('easy');
+    const p = getState().currentProblem;
+    document.getElementById('practice-answer').value = String(p.answer);
+    quiz.checkAnswer();
+    const fb = document.getElementById('feedback-section').innerHTML;
+    expect(fb).toContain('Richtig');
+    expect(fb).toContain('limitierend');
+  });
+
+  test('yield: Feedback zeigt die prozentuale Ausbeute', () => {
+    quiz.generateYieldProblem('hard');
+    const p = getState().currentProblem;
+    document.getElementById('practice-answer').value = String(p.answer);
+    quiz.checkAnswer();
+    const fb = document.getElementById('feedback-section').innerHTML;
+    expect(fb).toContain('Richtig');
+    expect(fb).toContain('%');
+  });
+
+  test('falsche Antwort zeigt Differenz in Prozent', () => {
+    quiz.generateMolMolProblem('easy');
+    document.getElementById('practice-answer').value = '999';
+    quiz.checkAnswer();
+    const fb = document.getElementById('feedback-section').innerHTML;
+    expect(fb).toContain('falsch');
+  });
+});
+
+describe('startPractice — Initialisierung', () => {
+  beforeEach(() => {
+    document.body.innerHTML = DOM_IDS.map((id) => `<div id="${id}"></div>`).join('');
+    quiz.resetPractice();
+  });
+
+  test('liest Typ & Schwierigkeit, aktiviert, generiert erste Aufgabe', () => {
+    document.getElementById('practice-type').value = 'mass-mass';
+    document.getElementById('practice-difficulty').value = 'hard';
+    document.getElementById('practice-setup').style.display = 'block';
+    document.getElementById('practice-problem').style.display = 'none';
+    quiz.startPractice();
+    expect(getState().active).toBe(true);
+    expect(getState().problemNumber).toBe(1);
+    expect(getState().currentProblem.type).toBe('mass-mass');
+    expect(document.getElementById('practice-setup').style.display).toBe('none');
+    expect(document.getElementById('practice-problem').style.display).toBe('block');
+  });
+});

@@ -195,5 +195,13 @@ function applyCoefficientsToMassMass(v1, v2) {
 
 // Export pure functions for testing (Node/Jest; harmless in the browser)
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { parseChemicalEquation, parseSide, parseCompound };
+  module.exports = {
+    parseChemicalEquation,
+    parseSide,
+    parseCompound,
+    parseEquation,
+    displayParsedCoefficients,
+    applyCoefficientsToMolMol,
+    applyCoefficientsToMassMass,
+  };
 }

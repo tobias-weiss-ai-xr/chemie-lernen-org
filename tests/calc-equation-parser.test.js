@@ -115,3 +115,58 @@ describe('parseChemicalEquation — Vollständige Gleichungen', () => {
     expect(r.reactants[1].formula).toBe('Cl⁻');
   });
 });
+
+// ── UI-Flows (jsdom) ─────────────────────────────────────────────────
+const ui = require('../myhugoapp/static/js/calculators/calc-equation-parser.js');
+global.showToast = jest.fn();
+
+describe('parseEquation — Wrapper über Eingabefeld', () => {
+  beforeEach(() => {
+    global.showToast.mockClear();
+    Element.prototype.scrollIntoView = jest.fn();
+    document.body.innerHTML =
+      '<input id="equation-parser-input" /><div id="parsed-coefficients"></div>' +
+      '<div id="apply-buttons"></div><div id="parser-result"></div>' +
+      '<div id="parsed-reactants"></div><div id="parsed-products"></div>' +
+      '<a href="#mol-mol"></a><a href="#masse-masse"></a><div class="calculator-panel"></div><div class="calculator-panel"></div>' +
+      '<input id="mol-coeff-r" /><input id="mol-coeff-p" />' +
+      '<input id="mass-coeff-r" /><input id="mass-coeff-p" />';
+  });
+
+  test('gültige Gleichung rendert Koeffizienten und Apply-Buttons', () => {
+    // Buttons erscheinen nur bei exakt 1 Edukt + 1 Produkt
+    document.getElementById('equation-parser-input').value = '2 A -> 3 B';
+    ui.parseEquation();
+    expect(document.getElementById('parsed-coefficients').innerHTML).not.toBe('');
+    expect(document.getElementById('apply-buttons').innerHTML).toContain(
+      'applyCoefficientsToMolMol'
+    );
+    expect(document.getElementById('parser-result').style.display).toBe('block');
+  });
+
+  test('leere Eingabe → Toast, kein Rendern', () => {
+    document.getElementById('equation-parser-input').value = '';
+    ui.parseEquation();
+    expect(global.showToast).toHaveBeenCalled();
+    expect(document.getElementById('parsed-coefficients').innerHTML).toBe('');
+  });
+
+  test('ungültige Gleichung → Fehler-Toast', () => {
+    document.getElementById('equation-parser-input').value = 'kein pfeil hier';
+    ui.parseEquation();
+    expect(global.showToast).toHaveBeenCalledWith(expect.stringContaining('Fehler'), 'error');
+  });
+
+  test('applyCoefficientsToMolMol schreibt ν in die Eingabefelder + Toast', () => {
+    ui.applyCoefficientsToMolMol(2, 3);
+    expect(document.getElementById('mol-coeff-r').value).toBe('2');
+    expect(document.getElementById('mol-coeff-p').value).toBe('3');
+    expect(global.showToast).toHaveBeenCalledWith(expect.stringContaining('2'), 'success');
+  });
+
+  test('applyCoefficientsToMassMass schreibt ν in die Massenfelder', () => {
+    ui.applyCoefficientsToMassMass(3, 2);
+    expect(document.getElementById('mass-coeff-r').value).toBe('3');
+    expect(document.getElementById('mass-coeff-p').value).toBe('2');
+  });
+});

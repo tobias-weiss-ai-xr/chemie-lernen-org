@@ -272,3 +272,41 @@ describe('toggleYieldExplanation', () => {
     expect(() => toggleYieldExplanation()).not.toThrow();
   });
 });
+
+// ── DOM-Flows (jsdom): calcYield-Handler ──────────────────────────────
+const {
+  calcYield,
+  toggleYieldExplanation,
+} = require('../myhugoapp/static/js/calculators/calc-yield.js');
+global.showToast = jest.fn();
+
+describe('calcYield — DOM-Handler', () => {
+  beforeEach(() => {
+    global.showToast.mockClear();
+    document.body.innerHTML = ['yield-theo', 'yield-act', 'yield-result', 'yield-explanation']
+      .map((id) => `<div id="${id}"></div>`)
+      .join('');
+  });
+
+  test('50 g real von 100 g theoretisch → 50 % werden angezeigt', () => {
+    document.getElementById('yield-theo').value = '100';
+    document.getElementById('yield-act').value = '50';
+    calcYield();
+    expect(document.getElementById('yield-result').style.display).toBe('block');
+    expect(document.getElementById('yield-result').innerHTML).toContain('50');
+  });
+
+  test('unvollständige Eingabe → Toast, kein Ergebnis', () => {
+    document.getElementById('yield-theo').value = '100';
+    document.getElementById('yield-act').value = '';
+    calcYield();
+    expect(global.showToast).toHaveBeenCalled();
+  });
+
+  test('toggleYieldExplanation wechselt die Anzeige', () => {
+    const ex = document.getElementById('yield-explanation');
+    ex.style.display = 'none';
+    toggleYieldExplanation();
+    expect(ex.style.display).toBe('block');
+  });
+});

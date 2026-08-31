@@ -317,3 +317,49 @@ describe('toggleLimitingExplanation — DOM toggle', () => {
     expect(() => toggleLimitingExplanation()).not.toThrow();
   });
 });
+
+// ── DOM-Flows (jsdom): calcLimiting-Handler ───────────────────────────
+const {
+  calcLimiting,
+  toggleLimitingExplanation,
+} = require('../myhugoapp/static/js/calculators/calc-limiting.js');
+global.showToast = jest.fn();
+
+describe('calcLimiting — DOM-Handler', () => {
+  beforeEach(() => {
+    global.showToast.mockClear();
+    document.body.innerHTML = [
+      'lim-m1',
+      'lim-mm1',
+      'lim-m2',
+      'lim-mm2',
+      'limit-result',
+      'limiting-explanation',
+    ]
+      .map((id) => `<div id="${id}"></div>`)
+      .join('');
+  });
+
+  test('Stoff 1 erschöpft zuerst → Ergebnis nennt Edukt 1 als Grenzreaktor', () => {
+    document.getElementById('lim-m1').value = '10';
+    document.getElementById('lim-mm1').value = '100'; // n₁ = 0.1
+    document.getElementById('lim-m2').value = '10';
+    document.getElementById('lim-mm2').value = '10'; // n₂ = 1
+    calcLimiting();
+    expect(document.getElementById('limit-result').style.display).toBe('block');
+    expect(document.getElementById('limit-result').innerHTML).toContain('1');
+  });
+
+  test('ungültige Eingaben → Toast', () => {
+    document.getElementById('lim-m1').value = 'x';
+    calcLimiting();
+    expect(global.showToast).toHaveBeenCalled();
+  });
+
+  test('toggleLimitingExplanation wechselt die Anzeige', () => {
+    const ex = document.getElementById('limiting-explanation');
+    ex.style.display = 'none';
+    toggleLimitingExplanation();
+    expect(ex.style.display).toBe('block');
+  });
+});

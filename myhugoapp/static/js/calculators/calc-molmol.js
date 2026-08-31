@@ -138,5 +138,5 @@ function toggleMolMolExplanation() {
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { calcMolMolValue };
+  module.exports = { calcMolMolValue, calcMolMol, toggleMolMolExplanation };
 }

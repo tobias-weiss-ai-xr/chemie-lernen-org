@@ -115,3 +115,53 @@ describe('calc-massmass — calcMassMassValue', () => {
     expect(typeof calcMassMassValue).toBe('function');
   });
 });
+
+// ── DOM-Flows (jsdom): calcMassMass-Handler ───────────────────────────
+const {
+  calcMassMass,
+  toggleMassMassExplanation,
+} = require('../myhugoapp/static/js/calculators/calc-massmass.js');
+global.showToast = jest.fn();
+global.saveToHistory = jest.fn();
+
+describe('calcMassMass — DOM-Handler', () => {
+  beforeEach(() => {
+    global.showToast.mockClear();
+    document.body.innerHTML = [
+      'mass-r',
+      'mm-r',
+      'mm-p',
+      'mass-coeff-r',
+      'mass-coeff-p',
+      'mass-result',
+      'mass-preview',
+      'mass-mass-explanation',
+    ]
+      .map((id) => `<div id="${id}"></div>`)
+      .join('');
+  });
+
+  test('m₁=10, M₁=2, M₂=4, ν=1:2 → m₂=40 wird angezeigt', () => {
+    document.getElementById('mass-r').value = '10';
+    document.getElementById('mm-r').value = '2';
+    document.getElementById('mm-p').value = '4';
+    document.getElementById('mass-coeff-r').value = '1';
+    document.getElementById('mass-coeff-p').value = '2';
+    calcMassMass();
+    expect(document.getElementById('mass-result').style.display).toBe('block');
+    expect(document.getElementById('mass-result').innerHTML).toContain('40');
+  });
+
+  test('ungültige Werte → Toast', () => {
+    document.getElementById('mass-r').value = 'abc';
+    calcMassMass();
+    expect(global.showToast).toHaveBeenCalled();
+  });
+
+  test('toggleMassMassExplanation wechselt die Anzeige', () => {
+    const ex = document.getElementById('mass-mass-explanation');
+    ex.style.display = 'none';
+    toggleMassMassExplanation();
+    expect(ex.style.display).toBe('block');
+  });
+});

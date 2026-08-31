@@ -129,5 +129,5 @@ function toggleLimitingExplanation() {
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { calcLimitingValue };
+  module.exports = { calcLimitingValue, calcLimiting, toggleLimitingExplanation };
 }
