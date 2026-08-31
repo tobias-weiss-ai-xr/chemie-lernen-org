@@ -132,5 +132,5 @@ function toggleYieldExplanation() {
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { calcYieldValue };
+  module.exports = { calcYieldValue, calcYield, toggleYieldExplanation };
 }

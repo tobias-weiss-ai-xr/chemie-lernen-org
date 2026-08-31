@@ -256,3 +256,38 @@ describe('loadMassPreset — DOM manipulation', () => {
     expect(document.getElementById('mass-coeff-r').value).toBe('');
   });
 });
+
+// ── DOM-Flows (jsdom): loadPreset / loadMassPreset ────────────────────
+const presetMod = require('../myhugoapp/static/js/calculators/calc-presets.js');
+global.showToast = jest.fn();
+
+describe('calc-presets — loadPreset / loadMassPreset', () => {
+  beforeEach(() => {
+    document.body.innerHTML =
+      '<input id="reaction-1" /><input id="mol-coeff-r" /><input id="mol-coeff-p" />' +
+      '<input id="mol-reactant" /><div id="mol-result" style="display:block" />' +
+      '<input id="mass-coeff-r" /><input id="mass-coeff-p" /><input id="mass-r" />' +
+      '<input id="mm-r" /><input id="mm-p" />' +
+      '<div id="mass-result" style="display:block" /><div id="mass-preview"></div>';
+  });
+
+  test('loadPreset("water") füllt die Mol-Felder und verbirgt das Ergebnis', () => {
+    presetMod.loadPreset('water');
+    expect(document.getElementById('reaction-1').value).toBeTruthy();
+    expect(document.getElementById('mol-coeff-r').value).not.toBe('');
+    expect(document.getElementById('mol-result').style.display).toBe('none');
+  });
+
+  test('loadPreset("gibts-nicht") ist ein No-Op (kein Crash, Felder leer)', () => {
+    presetMod.loadPreset('gibts-nicht');
+    expect(document.getElementById('reaction-1').value).toBe('');
+  });
+
+  test('loadMassPreset("methane") füllt die Massenfelder und verbirgt das Ergebnis', () => {
+    presetMod.loadMassPreset('methane');
+    expect(document.getElementById('mass-coeff-r').value).not.toBe('');
+    expect(document.getElementById('mm-r').value).not.toBe('');
+    expect(document.getElementById('mass-result').style.display).toBe('none');
+    expect(document.getElementById('mass-preview').innerHTML).not.toBe('');
+  });
+});

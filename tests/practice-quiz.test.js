@@ -1,268 +1,295 @@
 /**
- * Unit tests for practice-quiz.js - Practice quiz functionality
- * Tests quiz generation, scoring, and user interaction
+ * Unit Tests für practice-quiz.js — Aufgaben-Generatoren.
+ *
+ * Die vier Generatoren (mol-mol, mass-mass, limiting, yield) sind das
+ * Herz des Übungsgenerators: jede erzeugte Aufgabe muss rechnerisch
+ * konsistent sein (Antwort aus den gestellten Werten nachrechenbar),
+ * sonst üben Schüler an kaputten Aufgaben. Zufallsinvarianz: 200 Draws
+ * pro Typ werden gegen die jeweilige Formel verifiziert.
  */
 
-describe('Practice Quiz Module', () => {
-  beforeEach(() => {
-    // Reset practice state before each test
-    document.body.innerHTML = `
-      <div id="practice-setup"></div>
-      <div id="practice-problem" style="display: none;"></div>
-      <div id="practice-results"></div>
-      <select id="practice-type">
-        <option value="mass-mass">Mass-Mass</option>
-        <option value="mol-mol">Mol-Mol</option>
-        <option value="limiting">Limiting Reagent</option>
-      </select>
-      <select id="practice-difficulty">
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
-      </select>
-      <input id="practice-answer" type="text" />
-      <button id="submit-answer"></button>
-    `;
+const quiz = require('../myhugoapp/static/js/calculators/practice-quiz.js');
+const { getState } = quiz.__test;
 
-    // Reset global practice state
-    global.practiceState = {
-      score: 0,
-      correct: 0,
-      incorrect: 0,
-      currentProblem: null,
-      problemNumber: 1,
-      active: false,
-    };
+global.showToast = jest.fn();
+global.confirm = jest.fn(() => true);
+
+const DOM_IDS = [
+  'problem-content',
+  'problem-number',
+  'practice-answer',
+  'feedback-section',
+  'correct-count',
+  'incorrect-count',
+  'practice-problem',
+  'practice-setup',
+  'practice-score',
+  'practice-type',
+  'practice-difficulty',
+];
+
+beforeEach(() => {
+  document.body.innerHTML = DOM_IDS.map((id) => `<div id="${id}"></div>`).join('');
+  // practiceState ist modul-global und lebt über Tests hinaus —
+  // sauber zurücksetzen (confirm-Stub steht bereits auf true).
+  quiz.resetPractice();
+});
+
+const DIFFICULTIES = ['easy', 'medium', 'hard'];
+
+describe('generateMolMolProblem — n₂ = n₁ × (ν₂/ν₁)', () => {
+  test.each(DIFFICULTIES)('%s: Antwort ist für jeden Draw nachrechenbar (200×)', (difficulty) => {
+    for (let i = 0; i < 200; i++) {
+      quiz.generateMolMolProblem(difficulty);
+      const p = getState().currentProblem;
+      expect(p.type).toBe('mol-mol');
+      expect(p.n1).toBeGreaterThan(0);
+      expect(p.v1).toBeGreaterThanOrEqual(1);
+      expect(p.v2).toBeGreaterThanOrEqual(1);
+      expect(p.answer).toBeCloseTo(p.n1 * (p.v2 / p.v1), 10);
+      expect(p.tolerance).toBe(0.01);
+    }
   });
 
-  describe('Practice State Management', () => {
-    test('should initialize with default state', () => {
-      expect(global.practiceState.score).toBe(0);
-      expect(global.practiceState.correct).toBe(0);
-      expect(global.practiceState.incorrect).toBe(0);
-      expect(global.practiceState.active).toBe(false);
-      expect(global.practiceState.problemNumber).toBe(1);
-    });
-
-    test('should track correct answers', () => {
-      global.practiceState.correct = 5;
-      global.practiceState.incorrect = 2;
-      global.practiceState.score = (5 / (5 + 2)) * 100;
-
-      expect(global.practiceState.score).toBeCloseTo(71.43, 2);
-    });
-
-    test('should increment problem numbers correctly', () => {
-      global.practiceState.problemNumber = 1;
-      global.practiceState.problemNumber++;
-
-      expect(global.practiceState.problemNumber).toBe(2);
-    });
+  test('Aufgabentext wird ins DOM geschrieben, Antwortfeld geleert', () => {
+    document.getElementById('practice-answer').value = 'alt';
+    quiz.generateMolMolProblem('easy');
+    expect(document.getElementById('problem-content').innerHTML).toContain('Aufgabe');
+    expect(document.getElementById('practice-answer').value).toBe('');
   });
 
-  describe('Quiz Problem Generation', () => {
-    test('should support multiple problem types', () => {
-      const supportedTypes = ['mol-mol', 'mass-mass', 'limiting'];
-      const types = ['mol-mol', 'mass-mass', 'limiting'];
-
-      supportedTypes.forEach((type) => {
-        expect(types).toContain(type);
-      });
-    });
-
-    test('should select random problem type when "random" is chosen', () => {
-      const mockMathRandom = jest.spyOn(Math, 'random').mockReturnValue(0.5);
-      const types = ['mol-mol', 'mass-mass', 'limiting', 'yield'];
-      const selectedIndex = Math.floor(types.length * mockMathRandom());
-      const selectedType = types[selectedIndex];
-
-      expect(['mol-mol', 'mass-mass', 'limiting', 'yield']).toContain(selectedType);
-      mockMathRandom.mockRestore();
-    });
-
-    test('should handle random problem type selection', () => {
-      const type = 'random';
-      const types = ['mol-mol', 'mass-mass', 'limiting', 'yield'];
-
-      const randomIndex = Math.floor(Math.random() * types.length);
-      const problemType = types[randomIndex];
-
-      expect(types).toContain(problemType);
-    });
+  test('easy: n1 ganzzahlig ≤ 10, Koeffizienten ≤ 3', () => {
+    for (let i = 0; i < 100; i++) {
+      quiz.generateMolMolProblem('easy');
+      const p = getState().currentProblem;
+      expect(Number.isInteger(p.n1)).toBe(true);
+      expect(p.n1).toBeLessThanOrEqual(10);
+      expect(p.v1).toBeLessThanOrEqual(3);
+      expect(p.v2).toBeLessThanOrEqual(3);
+    }
   });
+});
 
-  describe('Difficulty Levels', () => {
-    test('should support easy difficulty', () => {
-      const difficulty = 'easy';
-      expect(['easy', 'medium', 'hard']).toContain(difficulty);
-    });
-
-    test('should support medium difficulty', () => {
-      const difficulty = 'medium';
-      expect(['easy', 'medium', 'hard']).toContain(difficulty);
-    });
-
-    test('should support hard difficulty', () => {
-      const difficulty = 'hard';
-      expect(['easy', 'medium', 'hard']).toContain(difficulty);
-    });
+describe('generateMassMassProblem — m₂ = m₁/M₁ × (ν₂/ν₁) × M₂', () => {
+  test.each(DIFFICULTIES)('%s: Massenweg stimmt für jeden Draw (200×)', (difficulty) => {
+    for (let i = 0; i < 200; i++) {
+      quiz.generateMassMassProblem(difficulty);
+      const p = getState().currentProblem;
+      expect(p.type).toBe('mass-mass');
+      expect(p.m1).toBeGreaterThan(0);
+      expect(p.M1).toBeGreaterThan(0);
+      expect(p.M2).toBeGreaterThan(0);
+      const expected = (p.m1 / p.M1) * (p.v2 / p.v1) * p.M2;
+      expect(p.answer).toBeCloseTo(expected, 10);
+    }
   });
+});
 
-  describe('Score Calculation', () => {
-    test('should calculate percentage correctly', () => {
-      const correct = 8;
-      const total = 10;
-      const percentage = (correct / total) * 100;
-
-      expect(percentage).toBe(80);
-    });
-
-    test('should handle perfect scores', () => {
-      const correct = 10;
-      const total = 10;
-      const percentage = (correct / total) * 100;
-
-      expect(percentage).toBe(100);
-    });
-
-    test('should handle zero correct answers', () => {
-      const correct = 0;
-      const total = 5;
-      const percentage = (correct / total) * 100;
-
-      expect(percentage).toBe(0);
-    });
-
-    test('should handle decimal precision', () => {
-      const correct = 7;
-      const total = 11;
-      const percentage = (correct / total) * 100;
-
-      expect(percentage).toBeCloseTo(63.64, 2);
-    });
+describe('generateLimitingProblem — Grenzreaktor korrekt bestimmt', () => {
+  test.each(DIFFICULTIES)('%s: answer ∈ {1,2} und matches n = m/M (200×)', (difficulty) => {
+    for (let i = 0; i < 200; i++) {
+      quiz.generateLimitingProblem(difficulty);
+      const p = getState().currentProblem;
+      expect(p.type).toBe('limiting');
+      expect(p.m1).toBeGreaterThan(0);
+      expect(p.m2).toBeGreaterThan(0);
+      const limiting = p.m1 / p.M1 < p.m2 / p.M2 ? 1 : 2;
+      expect(p.answer).toBe(limiting);
+      expect(p.tolerance).toBe(0);
+    }
   });
+});
 
-  describe('Quiz Results Display', () => {
-    test('should calculate total problems attempted', () => {
-      const results = {
-        correct: 5,
-        incorrect: 3,
-      };
-      const total = results.correct + results.incorrect;
-
-      expect(total).toBe(8);
-    });
-
-    test('should format results for display', () => {
-      const state = {
-        correct: 7,
-        incorrect: 2,
-        score: 77.78,
-      };
-
-      const displayText = `Results: ${state.correct}/${state.correct + state.incorrect} correct (${state.score}%)`;
-
-      expect(displayText).toContain('Results: 7/9');
-      expect(displayText).toContain('77.78%');
-    });
-  });
-
-  describe('Problem Numbering', () => {
-    test('should start problems from 1', () => {
-      const initialNumber = 1;
-      expect(initialNumber).toBe(1);
-    });
-
-    test('should increment problem numbers sequentially', () => {
-      let problemNumber = 1;
-      for (let i = 0; i < 5; i++) {
-        problemNumber++;
+describe('generateYieldProblem — Ausbeute% = actual/theoretisch × 100', () => {
+  test.each(DIFFICULTIES)(
+    '%s: Antwort ist die gesuchte Prozentzahl, Werte konsistent (200×)',
+    (difficulty) => {
+      for (let i = 0; i < 200; i++) {
+        quiz.generateYieldProblem(difficulty);
+        const p = getState().currentProblem;
+        expect(p.type).toBe('yield');
+        // Die Aufgabe stellt theoretisch + actual; gesucht ist die Prozentzahl.
+        expect(p.theoretical).toBeGreaterThan(0);
+        expect(p.actual).toBeGreaterThan(0);
+        expect(p.answer).toBeGreaterThan(0);
+        expect(p.answer).toBeLessThanOrEqual(100);
+        expect(p.actual).toBeCloseTo((p.theoretical * p.answer) / 100, 10);
+        expect(p.tolerance).toBe(1);
       }
+    }
+  );
+});
 
-      expect(problemNumber).toBe(6);
-    });
-
-    test('should handle large problem numbers', () => {
-      const problemNumber = 50;
-      expect(problemNumber).toBeGreaterThan(10);
-    });
+describe('generateProblem — Dispatcher', () => {
+  test('jeder explizite Typ setzt den passenden currentProblem.type', () => {
+    for (const type of ['mol-mol', 'mass-mass', 'limiting', 'yield']) {
+      quiz.generateProblem(type, 'easy');
+      expect(getState().currentProblem.type).toBe(type);
+    }
   });
 
-  describe('Quiz Active State', () => {
-    test('should start in inactive state', () => {
-      expect(global.practiceState.active).toBe(false);
-    });
-
-    test('should activate when quiz starts', () => {
-      global.practiceState.active = true;
-      expect(global.practiceState.active).toBe(true);
-    });
-
-    test('should deactivate when quiz ends', () => {
-      global.practiceState.active = true;
-      global.practiceState.active = false;
-      expect(global.practiceState.active).toBe(false);
-    });
+  test('"random" liefert über viele Draws alle vier Typen', () => {
+    const seen = new Set();
+    for (let i = 0; i < 400; i++) {
+      quiz.generateProblem('random', 'medium');
+      seen.add(getState().currentProblem.type);
+    }
+    expect(seen).toEqual(new Set(['mol-mol', 'mass-mass', 'limiting', 'yield']));
   });
 
-  describe('Problem Type Validation', () => {
-    test('should validate supported problem types', () => {
-      const validTypes = ['mol-mol', 'mass-mass', 'limiting', 'yield'];
-      const testType = 'mass-mass';
+  test('unbekannter Typ lässt den Zustand unverändert (kein Crash)', () => {
+    quiz.generateMolMolProblem('easy');
+    const before = getState().currentProblem;
+    expect(() => quiz.generateProblem('nichtda', 'easy')).not.toThrow();
+    expect(getState().currentProblem).toBe(before);
+  });
+});
 
-      expect(validTypes).toContain(testType);
-    });
-
-    test('should reject invalid problem types', () => {
-      const validTypes = ['mol-mol', 'mass-mass', 'limiting', 'yield'];
-      const invalidType = 'invalid-type';
-
-      expect(validTypes).not.toContain(invalidType);
-    });
+describe('checkAnswer — Bewertungsfluss', () => {
+  test('NaN-Eingabe → Toast, keine Wertung', () => {
+    quiz.generateMolMolProblem('easy');
+    document.getElementById('practice-answer').value = 'keine-zahl';
+    global.showToast.mockClear();
+    quiz.checkAnswer();
+    expect(global.showToast).toHaveBeenCalled();
+    expect(getState().correct).toBe(0);
+    expect(getState().incorrect).toBe(0);
   });
 
-  describe('Answer Handling', () => {
-    test('should store user answers', () => {
-      const answer = '2.5';
-      const answerInput = document.getElementById('practice-answer');
-      answerInput.value = answer;
-
-      expect(answerInput.value).toBe(answer);
-    });
-
-    test('should clear answer input after submission', () => {
-      const answerInput = document.getElementById('practice-answer');
-      answerInput.value = 'test answer';
-      answerInput.value = '';
-
-      expect(answerInput.value).toBe('');
-    });
+  test('exakt richtige Antwort (innerhalb Toleranz) → Richtig-Feedback, +10', () => {
+    quiz.generateMolMolProblem('easy');
+    document.getElementById('practice-answer').value = String(getState().currentProblem.answer);
+    quiz.checkAnswer();
+    const fb = document.getElementById('feedback-section');
+    expect(fb.style.display).toBe('block');
+    expect(fb.innerHTML).toContain('Richtig');
+    expect(getState().correct).toBe(1);
+    expect(getState().score).toBe(10);
+    expect(document.getElementById('correct-count').textContent).toBe('1');
   });
 
-  describe('Quiz Reset Functionality', () => {
-    test('should reset score to zero', () => {
-      global.practiceState.score = 75;
-      global.practiceState.score = 0;
+  test('deutlich falsche Antwort → falsch, Score nie unter 0', () => {
+    quiz.generateMolMolProblem('easy');
+    document.getElementById('practice-answer').value = '999';
+    quiz.checkAnswer();
+    expect(getState().incorrect).toBe(1);
+    // Noch zwei Fehler: Score 10-5-5-5 → clamp bei 0
+    quiz.checkAnswer();
+    quiz.checkAnswer();
+    quiz.checkAnswer();
+    expect(getState().score).toBe(0);
+    expect(document.getElementById('incorrect-count').textContent).toBe('4');
+  });
 
-      expect(global.practiceState.score).toBe(0);
-    });
+  test('relative Toleranz: 1%-Abweichung zählt als richtig', () => {
+    quiz.generateMolMolProblem('easy');
+    const p = getState().currentProblem; // tolerance 0.01
+    document.getElementById('practice-answer').value = String(p.answer * 1.005);
+    quiz.checkAnswer();
+    expect(getState().correct).toBe(1);
+  });
+});
 
-    test('should reset problem counters', () => {
-      global.practiceState.correct = 5;
-      global.practiceState.incorrect = 2;
+describe('skipProblem / resetPractice', () => {
+  test('Skip kostet 2 Punkte (mind. 0), zählt als incorrect, generiert weiter', () => {
+    quiz.generateMolMolProblem('easy');
+    document.getElementById('practice-type').value = 'mol-mol';
+    document.getElementById('practice-difficulty').value = 'easy';
+    getState().score = 5;
+    quiz.skipProblem();
+    expect(getState().score).toBe(3);
+    expect(getState().incorrect).toBe(1);
+    expect(getState().problemNumber).toBe(2);
+    expect(getState().currentProblem.type).toBe('mol-mol');
+  });
 
-      global.practiceState.correct = 0;
-      global.practiceState.incorrect = 0;
+  test('resetPractice setzt alles zurück (confirm=true)', () => {
+    quiz.generateMolMolProblem('easy');
+    document.getElementById('practice-answer').value = String(getState().currentProblem.answer);
+    quiz.checkAnswer();
+    expect(getState().score).toBe(10);
+    quiz.resetPractice();
+    expect(getState().score).toBe(0);
+    expect(getState().correct).toBe(0);
+    expect(getState().currentProblem).toBeNull();
+    expect(document.getElementById('practice-score').textContent).toBe('0');
+    expect(document.getElementById('practice-setup').style.display).toBe('block');
+  });
+});
 
-      expect(global.practiceState.correct).toBe(0);
-      expect(global.practiceState.incorrect).toBe(0);
-    });
+describe('problemDetailHTML — lösungswegspezifisches Feedback pro Typ', () => {
+  beforeEach(() => {
+    document.body.innerHTML = DOM_IDS.map((id) => `<div id="${id}"></div>`).join('');
+    quiz.resetPractice();
+  });
 
-    test('should reset problem number', () => {
-      global.practiceState.problemNumber = 7;
-      global.practiceState.problemNumber = 1;
+  test('mol-mol: Feedback enthält n₂-Formel und den Lösungsweg', () => {
+    quiz.generateMolMolProblem('easy');
+    const p = getState().currentProblem;
+    document.getElementById('practice-answer').value = String(p.answer);
+    quiz.checkAnswer();
+    const fb = document.getElementById('feedback-section').innerHTML;
+    expect(fb).toContain('Richtig');
+    expect(fb).toContain('n₂');
+    expect(fb).toContain(String(p.v1));
+  });
 
-      expect(global.practiceState.problemNumber).toBe(1);
-    });
+  test('mass-mass: Feedback zeigt den Massenweg', () => {
+    quiz.generateMassMassProblem('medium');
+    const p = getState().currentProblem;
+    document.getElementById('practice-answer').value = String(p.answer);
+    quiz.checkAnswer();
+    const fb = document.getElementById('feedback-section').innerHTML;
+    expect(fb).toContain('Richtig');
+    expect(fb).toContain('Lösungsweg');
+    expect(fb).toContain(p.M1.toFixed(2));
+  });
+
+  test('limiting: Feedback nennt den Grenzreaktor', () => {
+    quiz.generateLimitingProblem('easy');
+    const p = getState().currentProblem;
+    document.getElementById('practice-answer').value = String(p.answer);
+    quiz.checkAnswer();
+    const fb = document.getElementById('feedback-section').innerHTML;
+    expect(fb).toContain('Richtig');
+    expect(fb).toContain('limitierend');
+  });
+
+  test('yield: Feedback zeigt die prozentuale Ausbeute', () => {
+    quiz.generateYieldProblem('hard');
+    const p = getState().currentProblem;
+    document.getElementById('practice-answer').value = String(p.answer);
+    quiz.checkAnswer();
+    const fb = document.getElementById('feedback-section').innerHTML;
+    expect(fb).toContain('Richtig');
+    expect(fb).toContain('%');
+  });
+
+  test('falsche Antwort zeigt Differenz in Prozent', () => {
+    quiz.generateMolMolProblem('easy');
+    document.getElementById('practice-answer').value = '999';
+    quiz.checkAnswer();
+    const fb = document.getElementById('feedback-section').innerHTML;
+    expect(fb).toContain('falsch');
+  });
+});
+
+describe('startPractice — Initialisierung', () => {
+  beforeEach(() => {
+    document.body.innerHTML = DOM_IDS.map((id) => `<div id="${id}"></div>`).join('');
+    quiz.resetPractice();
+  });
+
+  test('liest Typ & Schwierigkeit, aktiviert, generiert erste Aufgabe', () => {
+    document.getElementById('practice-type').value = 'mass-mass';
+    document.getElementById('practice-difficulty').value = 'hard';
+    document.getElementById('practice-setup').style.display = 'block';
+    document.getElementById('practice-problem').style.display = 'none';
+    quiz.startPractice();
+    expect(getState().active).toBe(true);
+    expect(getState().problemNumber).toBe(1);
+    expect(getState().currentProblem.type).toBe('mass-mass');
+    expect(document.getElementById('practice-setup').style.display).toBe('none');
+    expect(document.getElementById('practice-problem').style.display).toBe('block');
   });
 });

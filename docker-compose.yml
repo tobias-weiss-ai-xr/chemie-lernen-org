@@ -136,6 +136,10 @@ services:
       - ./myhugoapp/static/openspec:/usr/share/nginx/html/openspec
       - ./myhugoapp/static/landscape:/usr/share/nginx/html/landscape
       - ./myhugoapp/static/api-proxy.conf:/etc/nginx/conf.d/api-proxy.conf
+      # VR-Elementzimmer: student entry point into the element-room catalog
+      # (generated from live room DB; source: files/vr-elementzimmer/ in
+      # /opt/containers/hubs-compose — regenerate via scripts/… when rooms change)
+      - /opt/containers/hubs-compose/files/vr-elementzimmer:/usr/share/nginx/html/vr-elementzimmer:ro
     image: ghcr.io/tobias-weiss-ai-xr/chemie-hugo:latest
     container_name: hugo-chemie-lernen-org
     restart: unless-stopped

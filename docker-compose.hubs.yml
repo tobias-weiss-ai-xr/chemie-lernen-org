@@ -13,13 +13,36 @@
 #
 # RAM budget: host has 16G (no swap). Totals below ≈ 3.8G, leaving headroom
 # for neo4j/kg (2G) + chat-api/hugo (0.5G) + observability.
+#
+# OPENVZ / Virtuozzo constraints (this VE):
+#  - netfilter `numiptent` (iptables-rule quota) is EXHAUSTED, so bridge+NAT
+#    port publishing cannot be used for media (see hubs-dialog: network_mode: host).
+#    => DO NOT add `ports:` to hubs services — each published port burns numiptent.
+#       Route via Traefik (traefik-public) or use `network_mode: host`.
+#  - Kernel sysctl (net.core.somaxconn, rmem_max/wmem_max, tcp_rmem/wmem, …) is
+#    NOT writeable from inside the VE. Raise those at the hardware node instead.
+
+x-logging: &hubs-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
 
 services:
   db:
     image: postgres:14-alpine
     container_name: hubs-db
     restart: unless-stopped
+    logging: *hubs-logging
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
     mem_limit: 512m
+    # NOTE: this Virtuozzo VE disables CPU *quota* (hard caps are dropped,
+    # CpuQuota stays 0), so limits.cpus/reservations.cpus are no-ops. Only
+    # relative cpu_shares (priority under contention) are honored -> use that.
+    cpu_shares: 1536
     deploy:
       resources:
         limits:
@@ -28,6 +51,28 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: ret_dev
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_compression=on"
+      - "-c"
+      - "checkpoint_completion_target=0.9"
+      - "-c"
+      - "wal_buffers=16MB"
+      - "-c"
+      - "default_statistics_target=100"
+      - "-c"
+      - "random_page_cost=1.1"
+      - "-c"
+      - "effective_io_concurrency=200"
+      - "-c"
+      - "effective_cache_size=384MB"
+      - "-c"
+      - "max_wal_size=1GB"
+      - "-c"
+      - "min_wal_size=80MB"
+      - "-c"
+      - "max_connections=150"
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
@@ -42,7 +87,13 @@ services:
     image: hubs-compose-postgrest:latest
     container_name: hubs-postgrest
     restart: unless-stopped
+    logging: *hubs-logging
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
     mem_limit: 256m
+    cpu_shares: 512
     deploy:
       resources:
         limits:
@@ -54,7 +105,14 @@ services:
     image: hubs-compose-reticulum:latest
     container_name: hubs-reticulum
     restart: unless-stopped
+    logging: *hubs-logging
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+    stop_grace_period: 30s
     mem_limit: 1g
+    cpu_shares: 2048
     deploy:
       resources:
         limits:
@@ -73,6 +131,36 @@ services:
       POSTGREST_INTERNAL_HOSTNAME: hubs-postgrest
       SPOKE_INTERNAL_HOSTNAME: spoke
       TURKEY_MODE: "1"
+      ERL_FLAGS: "+sbwtvery_long +sbwtdcpuvery_long +swtvery_low +A 32 +P 5000000 +Q 5000000 +e 500000"
+      # RSA key used to sign PermsTokens (RS512) — must match dialog's AUTH_KEY (/etc/perms.pub.pem)
+      PERMS_KEY: |-
+        -----BEGIN RSA PRIVATE KEY-----
+        MIIEowIBAAKCAQEAmsUJ7e3Jc++A/DTD/QaSvkltyRvyPDr2WUqzsiKLIqNKWltn
+        BGAyVptvxs+TJdR2wBNdKCjRh7X5wBsTw34tNpmQHEcD/H4ZCyyEmMNPnH95wDXn
+        9DNs1V2C3rHBFFSRRrf9Q7U5D4SqEMsJ4HCxiC/67QMtlaoTq8VQQ5K1ZaTYV+hX
+        A+Gz1/3GjbgaMf8uKfLSraos0wFHLmTzF/Z+pG3V08pv2RZDkhUahJF59cTBDa1m
+        MmBfVXd1dldebeVMEPiG4p1rOal4SzAAqnjaovr79U3kFoVM2j6XFjGfpeDrt+Cx
+        Dff2K5MFXv1ez7/mE47hphXlcEohQffag1iLEwIDAQABAoIBAG5OYs5N/JeBqqeW
+        H91Vcv7mLLX6EgJ1b6CiSkJ6tjmAsfyGSnzm5tmtPNQwm0qKC/zHkEyQEw4rV45g
+        fgyGAEl61yggQSoS4VyCZRrPkQ0UGb0xblkw0a+cTyrS+662uzfw6DP6lGmH/wGr
+        BCYPi6hpseh8rF+P8ScqoRMYG+sNn1YrG9Js6krJifpMkuEmbeH6ZO2U/MaO4hlm
+        /VlO5YOY8/zMfFTf8iIqqlS8LgwniFMTJwCXMAQKgBZTNORVJZKCG112oDXwu7Sz
+        T3+hoqcepJ021CK380XYTNZ1tNagyVZFcSSiuMrK4omAghVLOlp51Q7LY5Jse7CC
+        YSVX8yECgYEAyXjuKkXLuIY8hLZgICMmHFgfZkCUci8IWlw5YHOU6kRlQdttEd8D
+        xiAOJcLhzrErIcb/Iv6Cz9JjvPBLSyvQgaxVduUcYsazEAIsUEeSBYEf1lZRT8Kv
+        M+eWh+1ynBQOgSOe0OlnxzsKs29aam6Ua0GoLrT/Gj9UpZkzWR10XFECgYEAxKhM
+        heJFa0l9qhuTbOiRmFY0yhj9I/doVuj/PCeEfi5PRVmsNlwtDh1OlMf23ts6yUhc
+        VgDBqnAKIl/I1K/gcGa134ElYsTDTo5lIUo6Be8iuK/EKKIlCsgB95DdxpVkV15q
+        bOB81uezBjIRgOKNUYTH1uiO/WgmUkH8orjyLCMCgYEAsqfk8mFwFJIcqkabGQRy
+        MCJIvcC4okRosNAlJQ15WQALlonAv182loMoaH3XBRWAPPScnGh6kVVskke3TNJu
+        k/7Azqy+Li0q7iAvMYU1zGHDXKqwcf0epfVQO/robdUvQ37Vv0WqfDYz+Affco/a
+        Vv4i6EAiEyFjq3Ed4oFHBPECgYB+sutySoBtCdETema2APRkkA28svLMbEZl0AE4
+        0UD0RoO963MfJq3EbS9GfbpYhCfQrHUI173uP/bXhJyQIqvX3uSIFd1vT9OA1g7j
+        rr3JOvNEx8D6aNSyqH9T75piqbcW7vZkJRFpJ6fYcwOB5PQlNAXIONZ+/s3Jq0fH
+        0p37vwKBgD2cL4CyORYs/rKZngdxjguiWoDHs7pPbU7jw4TXC5h52C8zAyhzr3io
+        WB+arRuUN1k7LCwJf+iP5CfO0FU7AMHqD6MaLXQixPKwm/mAqKo31PN6iCWVgkuf
+        cWvLPwtCseBAqnvKRBAcC54ZKWPSug34v1aUReO/VV3d4YTNWM2X
+        -----END RSA PRIVATE KEY-----
       RELEASE_CONFIG_DIR: "/ret"
       RELEASE_MUTABLE_DIR: "/ret/var"
       HOME: "/ret/var"
@@ -82,6 +170,12 @@ services:
     command: bash -c 'exec /ret/bin/ret start'
     volumes:
       - /opt/containers/hubs-compose/files/reticulum-config.toml:/ret/config.toml:ro
+      # Patched release sys.config: Ret.Mailer tls always->never (atom-only in
+      # sys.config; TOML cannot express atoms). gen_smtp (ret 1.0.0) cannot do
+      # STARTTLS against PIPELINING servers (buffered-bytes handshake bug);
+      # reticulum instead speaks plaintext SMTP to hubs-mailrelay on :25,
+      # which relays upstream via wrappermode TLS 465.
+      - /opt/containers/hubs-compose/files/reticulum-sys.config:/ret/releases/1.0.0/sys.config:ro
       - letsencrypt:/code/certs
       - retstorage:/code/storage/dev
     networks:
@@ -104,13 +198,22 @@ services:
       - "traefik.http.services.hubs-api.loadbalancer.server.port=4001"
       - "traefik.http.services.hubs-api.loadbalancer.server.scheme=http"
       - "traefik.http.services.hubs-api.loadbalancer.passHostHeader=true"
+      # Reuse Traefik->reticulum backend connections (idleConnTimeout 90s set in
+      # dynamic/servers-transports.yml) to compensate the VE's net.core.somaxconn=128.
+      - "traefik.http.services.hubs-api.loadbalancer.serversTransport=hubs-https@file"
       - "traefik.http.serversTransports.hubs-https.insecureSkipVerify=true"
 
   hubs-client:
     image: hubs-compose-hubs-client:latest
     container_name: hubs-client
     restart: unless-stopped
+    logging: *hubs-logging
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
     mem_limit: 3g
+    cpu_shares: 512
     deploy:
       resources:
         limits:
@@ -133,6 +236,25 @@ services:
     volumes:
       - hubs-compose_hubs:/code
       - letsencrypt:/code/certs
+      # Override the three missing/misconfigured static assets served from
+      # /code/dist (no full client rebuild needed). Closes the browser console
+      # warnings: favicon 404, manifest icon-size, no-op SW fetch handler.
+      - /opt/git/hubs-client-assets/favicon.ico:/code/dist/favicon.ico:ro
+      - /opt/git/hubs-client-assets/manifest.webmanifest:/code/dist/manifest.webmanifest:ro
+      - /opt/git/hubs-client-assets/hub.service.js:/code/dist/hub.service.js:ro
+      - /opt/git/hubs-client-assets/icon-192.png:/code/dist/assets/images/icon-192.png:ro
+      - /opt/git/hubs-client-assets/icon-512.png:/code/dist/assets/images/icon-512.png:ro
+      - /opt/git/hubs-client-assets/icon-512-maskable.png:/code/dist/assets/images/icon-512-maskable.png:ro
+      # Patched static server: fixed regex for room URLs WITH slugs (e.g.
+      # /raJ6mj3/test-room) which previously fell through to index.html
+      # (landing page) instead of hub.html (room page).
+      - /opt/git/hubs-client-assets/static-server.py:/code/static-server.py:ro
+      # Patched hub bundle: fixes getLayoutMap null crash (navigator.keyboard null guard)
+      # and APP ReferenceError (window.APP?. guard in bitECS newLoader check).
+      # NOTE: hub.html loads hub-544153456e8422fbb129.js (NOT hub-c5e95cff…).
+      - /opt/git/hubs-client-assets/hub-544153456e8422fbb129.js:/code/dist/assets/js/hub-544153456e8422fbb129.js:ro
+      # valid empty glTF: hub page A-Frame default-scene fetch -> 200 instead of 404
+      - /opt/git/hubs-client-assets/objects.gltf:/code/dist/objects.gltf:ro
     working_dir: /code
     networks:
       - hubs-net
@@ -159,7 +281,13 @@ services:
     image: hubs-compose-hubs-admin:latest
     container_name: hubs-admin
     restart: unless-stopped
+    logging: *hubs-logging
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
     mem_limit: 2g
+    cpu_shares: 512
     deploy:
       resources:
         limits:
@@ -201,7 +329,13 @@ services:
     image: hubs-compose-spoke:latest
     container_name: hubs-spoke
     restart: unless-stopped
+    logging: *hubs-logging
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
     mem_limit: 1g
+    cpu_shares: 512
     deploy:
       resources:
         limits:
@@ -241,10 +375,62 @@ services:
       - "traefik.http.middlewares.hubs-spoke-redirect.redirectregex.regex=https://(.*)/spoke$$"
       - "traefik.http.middlewares.hubs-spoke-redirect.redirectregex.replacement=https://$${1}/spoke/"
 
+  hubs-mailrelay:
+    # Postfix TLS bridge for reticulum mail (magic-link sign-in, Spoke publish):
+    # ret 1.0.0 gen_smtp cannot STARTTLS against PIPELINING servers (buffered
+    # bytes -> handshake 'Unexpected Message') and Bamboo here has no implicit-TLS
+    # path that works — so reticulum speaks PLAINTEXT SMTP to this relay on :25
+    # (UFW: 172.16/12 -> host:25 allowed), which relays upstream via wrappermode
+    # TLS 465 to mail.tobias-weiss.org (IP-trusted, no AUTH; verified 250-queued).
+    # LE cert mounted for the (unused-by-reticulum) STARTTLS listener option.
+    image: mwader/postfix-relay
+    container_name: hubs-mailrelay
+    restart: unless-stopped
+    logging: *hubs-logging
+    network_mode: host
+    mem_limit: 96m
+    cpu_shares: 256
+    volumes:
+      - /opt/git/docker-traefik/letsencrypt/live/hubs.chemie-lernen.org/fullchain.pem:/etc/postfix/certs/fullchain.pem:ro
+      - /opt/git/docker-traefik/letsencrypt/live/hubs.chemie-lernen.org/privkey.pem:/etc/postfix/certs/privkey.pem:ro
+    environment:
+      POSTFIX_myhostname: hubs.chemie-lernen.org
+      POSTFIX_mynetworks: "127.0.0.0/8,172.16.0.0/12,10.0.0.0/8,178.254.2.90/32"
+      POSTFIX_smtpd_tls_security_level: "may"
+      POSTFIX_smtpd_tls_cert_file: /etc/postfix/certs/fullchain.pem
+      POSTFIX_smtpd_tls_key_file: /etc/postfix/certs/privkey.pem
+      POSTFIX_smtp_tls_wrappermode: "yes"
+      POSTFIX_smtp_tls_security_level: encrypt
+      POSTFIX_relayhost: "[mail.tobias-weiss.org]:465"
+
+  hubs-coturn:
+    # TURN relay for school NATs (see services/coturn/turnserver.conf in
+    # /opt/containers/hubs-compose — volume mount below). Plain TURN on 3478
+    # tcp+udp, relay range 40200-40400 (disjoint from dialog 40000-40150).
+    # UFW: 3478/tcp+udp, 40200:40400/udp allowed. Credentials are shared-secret
+    # (lt-cred-mech), baked into the patched client bundle (hubs-client-assets).
+    # TODO after 2026-09-14 (LE pause lifted): issue turn.chemie-lernen.org cert
+    # and move to TLS-on-443 via Traefik TCP SNI passthrough.
+    image: coturn/coturn:alpine
+    container_name: hubs-coturn
+    restart: unless-stopped
+    logging: *hubs-logging
+    network_mode: host
+    mem_limit: 128m
+    cpu_shares: 256
+    volumes:
+      - /opt/containers/hubs-compose/services/coturn/turnserver.conf:/etc/coturn/turnserver.conf:ro
+
   hubs-dialog:
     image: hubs-compose-dialog:latest
     container_name: hubs-dialog
     restart: unless-stopped
+    logging: *hubs-logging
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
+    stop_grace_period: 30s
     # Host networking avoids docker-proxied iptables DNAT rules. The Virtuozzo VE's
     # netfilter/numiptent kernel-memory quota is exhausted (iptables "Memory allocation
     # problem" on container start), so bridge+NAT port publishing cannot be used for the
@@ -252,18 +438,24 @@ services:
     # ports directly on the host (verified free). Dialog does not depend on docker DNS
     # (no RETICULUM_URL) — the Hubs client reaches it via reticulum's dialog_url.
     network_mode: host
-    mem_limit: 256m
+    # 512m: full class (~30 students) with cameras needs headroom above the
+    # 256m test baseline (measured ~230m under mediasoup load spikes)
+    mem_limit: 512m
+    cpu_shares: 1536
     deploy:
       resources:
         limits:
-          memory: 256m
+          memory: 512m
     environment:
       AUTH_KEY: /etc/perms.pub.pem
       HTTPS_CERT_FULLCHAIN: /code/certs/live/hubs.chemie-lernen.org/fullchain.pem
       HTTPS_CERT_PRIVKEY: /code/certs/live/hubs.chemie-lernen.org/privkey.pem
       INTERACTIVE: "false"
       MEDIASOUP_MIN_PORT: 40000
-      MEDIASOUP_MAX_PORT: 40050
+      # Widened 40050 -> 40150: more concurrent RTP ports (3x aggregate buffering
+      # headroom). dialog is host-networked, so this costs ZERO numiptent and only
+      # conntrack entries (171/4M available).
+      MEDIASOUP_MAX_PORT: 40150
       MEDIASOUP_ANNOUNCED_IP: ${PRIVATE_NETWORK_IP}
     volumes:
       - hubs-compose_dialog:/code

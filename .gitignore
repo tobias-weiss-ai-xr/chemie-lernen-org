@@ -84,3 +84,4 @@ api/data/theme-overrides.json
 cb.log
 cv.log
 package-lock.json
+coverage/

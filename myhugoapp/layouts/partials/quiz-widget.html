@@ -153,6 +153,22 @@
 <script>
 (function() {
   var TOPIC = {{ $topic | jsonify | safeJS }};
+  // Slug-Aliase: historische teilgebiet-Werte aus Content-Frontmatter, die
+  // in quiz-questions.js keine eigenen Fragen haben. Map → kanonischer Slug.
+  var TOPIC_ALIASES = {
+    allgemein: 'alle',
+    'allgemeine-chemie': 'einfuehrung-chemie',
+    atombau: 'aufbau-materie',
+    molekuel: 'aufbau-materie',
+    'physikalische-chemie': 'energetik',
+    organik: 'analytische-methoden',
+    'organische-chemie': 'erdoel-organische-stoffklassen',
+    'reaktionen-energetik': 'energetik',
+    'reaktionen-kinetik': 'gleichgewicht-geschwindigkeit',
+    thermodynamik: 'energetik',
+    redox: 'redox-elektrochemie',
+  };
+  var QUIZ_TOPIC = TOPIC_ALIASES[TOPIC] || TOPIC;
   var WIDGET_ID = 'quiz-widget-' + TOPIC;
   var BODY_ID = 'quiz-body-' + TOPIC;
   var SCORE_ID = 'quiz-score-' + TOPIC;
@@ -170,16 +186,19 @@
     var script = document.createElement('script');
     script.src = '{{ $questionsPath }}';
     script.onload = function() {
-      if (typeof quizQuestions === 'undefined' || !quizQuestions.questions) {
+      if (typeof quizQuestions === 'undefined' || (!quizQuestions.questions && !quizQuestions.length)) {
         document.getElementById(BODY_ID).innerHTML = '<p class="text-muted">Quiz-Fragen nicht verfügbar.</p>';
         return;
       }
-      questions = quizQuestions.questions.filter(function(q) {
-        return (q.slug === TOPIC) || (q.topic && q.topic.toLowerCase().replace(/\s+/g, '-') === TOPIC) || TOPIC === 'alle';
+      // quiz-questions.js exposes the bank as a plain array (window.quizQuestions
+      // = questions); tolerate a {questions:[…]} wrapper for robustness.
+      var bank = quizQuestions.questions || quizQuestions;
+      questions = bank.filter(function(q) {
+        return (q.slug === QUIZ_TOPIC) || (q.topic && q.topic.toLowerCase().replace(/\s+/g, '-') === QUIZ_TOPIC) || QUIZ_TOPIC === 'alle';
       });
       // Fallback: if no topic match, use 'Einführung in die Chemie'
       if (questions.length === 0) {
-        questions = quizQuestions.questions.filter(function(q) {
+        questions = bank.filter(function(q) {
           return q.slug === 'einfuehrung-chemie' || q.topic === 'Einführung in die Chemie';
         }).slice(0, 3);
       }

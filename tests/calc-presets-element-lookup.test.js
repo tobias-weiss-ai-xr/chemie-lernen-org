@@ -123,3 +123,55 @@ describe('Element Database (calc-element-lookup.js)', () => {
     expect(elementDatabase.Cl.number).toBe(17);
   });
 });
+
+// ── DOM-Flows (jsdom): Element-Lookup ────────────────────────────────
+const lookup = require('../myhugoapp/static/js/calculators/calc-element-lookup.js');
+global.showToast = jest.fn();
+
+describe('Element-Lookup — applyMolarMass / showElementInfo / applyMolarMassToCalculator', () => {
+  beforeEach(() => {
+    global.showToast.mockClear();
+    Element.prototype.scrollIntoView = jest.fn();
+    document.body.innerHTML =
+      '<select id="element-selector"></select>' +
+      '<div id="molar-mass-info" style="display:none"></div>' +
+      '<div id="molar-mass-details"></div>' +
+      '<input id="mm-r" /><input id="mm-p" />' +
+      '<a href="#masse-masse"></a>' +
+      '<div class="calculator-panel"></div><div class="calculator-panel"></div>';
+  });
+
+  test('applyMolarMass mit gültigem Element zeigt Infos + übernimmt molare Masse ins leere Feld', () => {
+    const sel = document.getElementById('element-selector');
+    sel.innerHTML = '<option value="H:Wasserstoff">Wasserstoff</option>';
+    sel.value = 'H:Wasserstoff';
+    lookup.applyMolarMass();
+    expect(document.getElementById('molar-mass-info').style.display).toBe('block');
+    expect(document.getElementById('molar-mass-details').innerHTML).toContain('Wasserstoff');
+    expect(document.getElementById('molar-mass-details').innerHTML).toContain('1.008');
+    expect(document.getElementById('mm-r').value).toBe('1.008');
+    expect(global.showToast).toHaveBeenCalledWith(
+      expect.stringContaining('Wasserstoff'),
+      'success'
+    );
+  });
+
+  test('applyMolarMass ohne Auswahl → Toast, kein Rendern', () => {
+    document.getElementById('element-selector').value = '';
+    lookup.applyMolarMass();
+    expect(global.showToast).toHaveBeenCalledWith(expect.stringContaining('wählen'), 'error');
+    expect(document.getElementById('molar-mass-info').style.display).toBe('none');
+  });
+
+  test('applyMolarMassToCalculator: beides leer → nur Edukt-Feld gesetzt', () => {
+    lookup.applyMolarMassToCalculator({ symbol: 'O', name: 'Sauerstoff', mass: 15.999, number: 8 });
+    expect(document.getElementById('mm-r').value).toBe('15.999');
+    expect(document.getElementById('mm-p').value).toBe('');
+  });
+
+  test('applyMolarMassToCalculator: Edukt belegt → Produkt-Feld gesetzt', () => {
+    document.getElementById('mm-r').value = '2';
+    lookup.applyMolarMassToCalculator({ symbol: 'O', name: 'Sauerstoff', mass: 15.999, number: 8 });
+    expect(document.getElementById('mm-p').value).toBe('15.999');
+  });
+});

@@ -380,9 +380,9 @@ body {
 }
 
 .theme-toggle-header {
-  font-size: 20px;
+  font-size: 14px;
   color: #333 !important;
-  padding: 8px !important;
+  padding: 2px !important;
   background: transparent !important;
   border: none !important;
   display: flex;
@@ -395,25 +395,25 @@ body {
 }
 
 .theme-toggle-header i {
-  font-size: 28px;
+  font-size: 18px;
 }
 
 /* ── Theme chooser (Hell / Dunkel / Kontrast) ── */
 .theme-switcher {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px;
-  border-radius: 8px;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 7px;
   background: rgba(255, 255, 255, 0.55);
   border: 1px solid var(--border-color, #c8e6c9);
 }
 
 .theme-switcher-label {
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: #2e7d32;
-  margin-right: 6px;
+  margin-right: 4px;
   white-space: nowrap;
 }
 
@@ -439,11 +439,11 @@ body {
 .theme-option-text {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  font-size: 0.82rem;
-  line-height: 1;
-  border-radius: 6px;
+  gap: 4px;
+  padding: 3px 8px;
+  font-size: 0.74rem;
+  line-height: 1.2;
+  border-radius: 5px;
   color: #1b5e20;
   background: #ffffff;
   border: 1px solid transparent;

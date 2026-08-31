@@ -8,7 +8,10 @@ tags: ['startseite', 'chemie', 'rechner']
 
 ## 🧪 Molekülstudio — Moleküle in 3D entdecken
 
-{{< molecule-studio-widget >}}
+Oben auf der Startseite dreht sich ein 3D-Molekül automatisch — tippe einfach
+auf einen der Stoffe unter dem Modell, um es zu wechseln. Das volle
+Molekülstudio mit Suchfeld, freier Rotation und Zoom findest du hier:
+[Molekülstudio öffnen →](/molekuel-studio/)
 
 ## 🌐 Lernräume in Mozilla Hubs — gemeinsam in 3D lernen
 

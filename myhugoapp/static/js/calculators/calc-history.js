@@ -206,3 +206,18 @@ function showImportNotification(data) {
     }, 500);
   }, 5000);
 }
+
+// Export for testing (Node/Jest; harmless in the browser)
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    saveToHistory,
+    loadHistory,
+    displayHistory,
+    toggleHistory,
+    updateHistoryCount,
+    clearHistory,
+    checkForBalancedEquation,
+    showImportNotification,
+    _escapeHtml,
+  };
+}

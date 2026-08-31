@@ -7,6 +7,7 @@ tags: ["sicherheit", "hacking", "einsteiger", "cybersecurity", "pentest"]
 interaktiv: false
 schwierigkeit: "grundlagen"
 teilgebiet: ["cybersicherheit"]
+quiz: false
 icon: "🔐"
 ---
 

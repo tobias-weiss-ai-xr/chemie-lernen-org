@@ -116,5 +116,7 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     presets: presets,
     massPresets: massPresets,
+    loadPreset: loadPreset,
+    loadMassPreset: loadMassPreset,
   };
 }

@@ -111,3 +111,93 @@ describe('Multi-Step Reaction Calculator (calc-multistep.js)', () => {
     });
   });
 });
+
+// ── DOM-Flows (jsdom): calculateMultiStep-Handler ─────────────────────
+const {
+  calculateMultiStep,
+  displayMultiStepResults,
+} = require('../myhugoapp/static/js/calculators/calc-multistep.js');
+global.showToast = jest.fn();
+global.saveToHistory = jest.fn();
+
+function stepHtml(r, p, mm, product) {
+  return (
+    '<div class="reaction-step">' +
+    `<input class="step-coeff-r" value="${r}" />` +
+    `<input class="step-coeff-p" value="${p}" />` +
+    `<input class="step-molar-mass" value="${mm}" />` +
+    `<input class="step-product" value="${product}" />` +
+    '<input class="step-equation" value="" />' +
+    '</div>'
+  );
+}
+
+describe('calculateMultiStep — DOM-Handler', () => {
+  beforeEach(() => {
+    global.showToast.mockClear();
+    document.body.innerHTML =
+      '<input id="initial-amount" /><input id="initial-molar-mass" /><input id="initial-compound" />' +
+      '<div id="multistep-result"></div><div id="multistep-results-content"></div>';
+  });
+
+  test('ungültige Ausgangsstoffmenge → Toast, kein Ergebnis', () => {
+    document.getElementById('initial-amount').value = '-1';
+    document.getElementById('initial-molar-mass').value = '100';
+    calculateMultiStep();
+    expect(global.showToast).toHaveBeenCalled();
+    expect(document.getElementById('multistep-results-content').innerHTML).toBe('');
+  });
+
+  test('kein Reaktionsschritt → Toast', () => {
+    document.getElementById('initial-amount').value = '10';
+    document.getElementById('initial-molar-mass').value = '100';
+    calculateMultiStep();
+    expect(global.showToast).toHaveBeenCalledWith(
+      expect.stringContaining('Reaktionsschritt'),
+      'error'
+    );
+  });
+
+  test('Koeffizient 0 in Schritt 1 → Fehler mit Schrittnummer', () => {
+    document.getElementById('initial-amount').value = '10';
+    document.getElementById('initial-molar-mass').value = '100';
+    document.body.insertAdjacentHTML('beforeend', stepHtml('0', '1', '50', 'Zwischenprodukt'));
+    calculateMultiStep();
+    expect(global.showToast).toHaveBeenCalledWith(expect.stringContaining('Schritt 1'), 'error');
+    expect(document.getElementById('multistep-results-content').innerHTML).toBe('');
+  });
+
+  test('Happy Path 2 Schritte: 10 mol → ×3/1 → ×1/2, Gesamtausbeute 15 %', () => {
+    document.getElementById('initial-amount').value = '10';
+    document.getElementById('initial-molar-mass').value = '100';
+    document.getElementById('initial-compound').value = 'Start';
+    document.body.insertAdjacentHTML(
+      'beforeend',
+      stepHtml('1', '3', '50', 'A') + stepHtml('2', '1', '25', 'B')
+    );
+    calculateMultiStep();
+    const html = document.getElementById('multistep-results-content').innerHTML;
+    expect(html).toContain('Schritt 1');
+    expect(html).toContain('Schritt 2');
+    expect(html).toContain('15'); // 10 → 30 → 15 => 15 %
+  });
+
+  test('XSS-Schutz: Verbindungsnamen werden escaped', () => {
+    displayMultiStepResults(10, 100, '<script>alert(1)</script>', [
+      {
+        stepNumber: 1,
+        productAmount: 5,
+        product: 'A',
+        reactantAmount: 10,
+        coeffR: 1,
+        coeffP: 1,
+        molarMass: 0,
+        productMass: null,
+        equation: '',
+      },
+    ]);
+    const html = document.getElementById('multistep-results-content').innerHTML;
+    expect(html).not.toContain('<script>');
+    expect(html).toContain('&lt;script&gt;');
+  });
+});

@@ -348,12 +348,12 @@ function displayMultiStepResults(initialAmount, initialMolarMass, initialCompoun
     '<div style="margin-top: 20px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px;">' +
     '<h3 style="margin-top: 0;"><i class="fa fa-flag-checkered"></i> Gesamtergebnis</h3>' +
     '<p style="font-size: 16px;"><strong>Ausgangsstoff:</strong> ' +
-    initialCompound +
+    _escapeHtml(initialCompound) +
     ' (' +
     initialAmount.toFixed(4) +
     ' mol)</p>' +
     '<p style="font-size: 16px;"><strong>Endprodukt:</strong> ' +
-    finalResult.product +
+    _escapeHtml(finalResult.product) +
     ' (' +
     finalResult.productAmount.toFixed(4) +
     ' mol)</p>' +
@@ -514,5 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     calculateMultiStepPure: calculateMultiStepPure,
+    calculateMultiStep: calculateMultiStep,
+    displayMultiStepResults: displayMultiStepResults,
   };
 }

@@ -2,10 +2,24 @@
 
 <div class="home">
 
-  <!-- Featured Image -->
-  <div class="row">
-    <div class="col-md-12">
-      <img src="{{ "/images/recent-article_001.webp" | relURL }}" alt="chemie-lernen.org teaser" class="img-responsive center-block featured-image" />
+  <!-- 3D Molecule Hero (single 3D instance on the home page) -->
+  <div class="molecule-hero">
+    <div class="molecule-hero-stage">
+      <canvas id="molecule-hero-canvas" role="img" aria-label="3D-Visualisierung eines Moleküls"></canvas>
+      <div id="molecule-hero-loading">⏳ 3D-Molekül wird geladen…</div>
+      <div id="molecule-hero-info" class="molecule-hero-info"></div>
+    </div>
+    <div class="molecule-hero-chips">
+      <button class="molecule-hero-chip" data-molecule="Koffein" aria-label="Molekül anzeigen: Koffein">Koffein</button>
+      <button class="molecule-hero-chip" data-molecule="Aspirin" aria-label="Molekül anzeigen: Aspirin">Aspirin</button>
+      <button class="molecule-hero-chip" data-molecule="Benzol" aria-label="Molekül anzeigen: Benzol">Benzol</button>
+      <button class="molecule-hero-chip" data-molecule="Ethanol" aria-label="Molekül anzeigen: Ethanol">Ethanol</button>
+      <button class="molecule-hero-chip" data-molecule="Glucose" aria-label="Molekül anzeigen: Glucose">Glucose</button>
+      <button class="molecule-hero-chip" data-molecule="Adrenalin" aria-label="Molekül anzeigen: Adrenalin">Adrenalin</button>
+      <button class="molecule-hero-chip" data-molecule="Nikotin" aria-label="Molekül anzeigen: Nikotin">Nikotin</button>
+      <button class="molecule-hero-chip" data-molecule="Serotonin" aria-label="Molekül anzeigen: Serotonin">Serotonin</button>
+      <button class="molecule-hero-chip" data-molecule="Dopamin" aria-label="Molekül anzeigen: Dopamin">Dopamin</button>
+      <button class="molecule-hero-chip" data-molecule="Methan" aria-label="Molekül anzeigen: Methan">Methan</button>
     </div>
   </div>
 
@@ -149,5 +163,28 @@
 
 </div>
 
+<!-- Single import map for the whole page: the 3D hero is the only module that
+     resolves `three`. Three is self-hosted (vendor) so the hero works even
+     when third-party CDNs are blocked. -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "{{ "/js/vendor/three.module.min.js" | relURL }}"
+  }
+}
+</script>
+<!-- Watchdog: if the 3D module never initialises (old browser, WebGL off),
+     replace the eternal loading spinner with a graceful fallback. -->
+<script>
+  window.setTimeout(function () {
+    var loading = document.getElementById('molecule-hero-loading');
+    var info = document.getElementById('molecule-hero-info');
+    if (loading && loading.style.display !== 'none' && (!info || !info.textContent)) {
+      loading.innerHTML =
+        '3D-Darstellung nicht verfügbar – <a href="{{ "/molekuel-studio/" | relURL }}" style="color:inherit;">Zum Molekül-Studio →</a>';
+    }
+  }, 8000);
+</script>
+<script type="module" src="{{ "/js/molecule-hero.js" | relURL }}"></script>
 <script defer src="{{ "/js/home-recommendation.js" | relURL }}"></script>
 {{ end }}

@@ -1,0 +1,245 @@
+/* Home page styles — extracted from inline styles for CSP compliance */
+
+/* KI-Assistent Hero */
+.ki-assistent-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px;
+  border-radius: 12px;
+  margin: 30px 0;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+.ki-assistent-hero .hero-emoji {
+  font-size: 64px;
+  margin-bottom: 15px;
+}
+.ki-assistent-hero h2 {
+  color: white;
+  margin-top: 0;
+  font-size: 2em;
+}
+.ki-assistent-hero p {
+  font-size: 1.2em;
+  max-width: 600px;
+  margin: 15px auto;
+  opacity: 0.95;
+}
+.ki-assistent-hero .btn-hero {
+  background: white;
+  color: #667eea;
+  font-weight: 700;
+  padding: 12px 40px;
+  border-radius: 30px;
+  margin-top: 10px;
+  display: inline-block;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.ki-assistent-hero .btn-hero:hover {
+  background: #f0f0f0;
+  color: #667eea;
+}
+
+/* Category Cards */
+.card .panel-3d {
+  border: 2px solid #4caf50;
+}
+.card .panel-body-3d {
+  background-color: #e8f5e9;
+}
+.card .panel-rechner {
+  border: 2px solid #2196f3;
+}
+.card .panel-body-rechner {
+  background-color: #e3f2fd;
+}
+.card .panel-spezial {
+  border: 2px solid #ff9800;
+}
+.card .panel-body-spezial {
+  background-color: #fff3e0;
+}
+
+/* Blog Posts Section */
+.blog-posts-section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.post-placeholder {
+  width: 100%;
+  height: 140px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 48px;
+}
+.alle-anzeigen {
+  margin-top: 20px;
+}
+
+/* PWA Install Banner */
+#pwa-install-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.12);
+  z-index: 10000;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    sans-serif;
+}
+#pwa-install-banner.visible {
+  transform: translateY(0);
+}
+#pwa-install-banner .pwa-install-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+#pwa-install-banner .pwa-install-icon {
+  flex-shrink: 0;
+}
+#pwa-install-banner .pwa-install-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+#pwa-install-banner .pwa-install-text strong {
+  color: #1a1a1a;
+  font-size: 14px;
+}
+#pwa-install-banner .pwa-install-text span {
+  color: #666;
+  font-size: 12px;
+}
+#pwa-install-banner .pwa-install-btn {
+  background: #2d6a4f;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+#pwa-install-banner .pwa-install-btn:hover {
+  background: #245a40;
+}
+#pwa-install-banner .pwa-install-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #999;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+}
+#pwa-install-banner .pwa-install-close:hover {
+  color: #333;
+}
+@media (max-width: 600px) {
+  #pwa-install-banner .pwa-install-content {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  #pwa-install-banner .pwa-install-text span {
+    display: none;
+  }
+}
+
+/* 3D Molecule Hero (homepage) — single 3D instance on the page */
+.molecule-hero {
+  margin: 20px 0 30px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0f1b14;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+}
+.molecule-hero-stage {
+  position: relative;
+  width: 100%;
+  height: 56vh;
+  min-height: 360px;
+  max-height: 560px;
+  background: radial-gradient(circle at 50% 40%, #16321f 0%, #0a140e 100%);
+}
+#molecule-hero-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+#molecule-hero-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cfe8d8;
+  font-size: 15px;
+  pointer-events: none;
+}
+.molecule-hero-info {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #173a26;
+  max-width: calc(100% - 32px);
+}
+.molecule-hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 12px 14px;
+  background: #eef6f0;
+  border-top: 1px solid #d7e8dc;
+}
+.molecule-hero-chip {
+  padding: 5px 12px;
+  border: 1px solid #bcd9c4;
+  border-radius: 16px;
+  background: #fff;
+  color: #1f5135;
+  cursor: pointer;
+  font-size: 13px;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.molecule-hero-chip:hover {
+  background: #e3f2e8;
+}
+.molecule-hero-chip.active {
+  background: #2e7d4f;
+  color: #fff;
+  border-color: #2e7d4f;
+}
+@media (max-width: 600px) {
+  .molecule-hero-stage {
+    height: 44vh;
+    min-height: 300px;
+  }
+}

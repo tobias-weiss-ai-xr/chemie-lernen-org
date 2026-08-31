@@ -192,3 +192,16 @@ function applyCoefficientsToMassMass(v1, v2) {
 
   showToast('Koeffizienten übernommen: Edukt ν₁=' + v1 + ', Produkt ν₂=' + v2, 'success');
 }
+
+// Export pure functions for testing (Node/Jest; harmless in the browser)
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    parseChemicalEquation,
+    parseSide,
+    parseCompound,
+    parseEquation,
+    displayParsedCoefficients,
+    applyCoefficientsToMolMol,
+    applyCoefficientsToMassMass,
+  };
+}

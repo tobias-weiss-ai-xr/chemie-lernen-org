@@ -31,7 +31,7 @@
             Calculators live at content-root (Section == "") and carry a
             `teilgebiet` (Themenbereich slug) that matches quiz-questions.js
             `slug`. The quiz-widget loads quiz-questions.js itself. */}}
-        {{ if and .IsPage .Params.teilgebiet (eq .Section "") }}
+        {{ if and .IsPage .Params.teilgebiet (ne .Params.quiz false) (eq .Section "") }}
           {{ $tb := .Params.teilgebiet }}
           {{ $topic := "" }}
           {{ if reflect.IsSlice $tb }}{{ $topic = index $tb 0 }}{{ else }}{{ $topic = $tb }}{{ end }}

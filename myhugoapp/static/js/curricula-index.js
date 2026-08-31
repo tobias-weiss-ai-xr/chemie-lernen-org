@@ -203,115 +203,6 @@
     if (panel) panel.style.display = 'block';
   }
 
-  function renderOverview(data) {
-    var el = document.getElementById('curricula-overview');
-    if (!el) return;
-    var states = (data && data.states) || [];
-    if (!states.length) {
-      el.innerHTML = '<div class="curricula-overview-empty">Keine Lehrpläne verfügbar.</div>';
-      return;
-    }
-    var html =
-      '<div class="curricula-ov-head">Lehrplan-Übersicht · ' +
-      (data.count || 0) +
-      ' Lehrpläne</div>';
-    html += '<div class="curricula-ov-list">';
-    states.forEach(function (st) {
-      html += '<div class="curricula-ov-state open">';
-      html +=
-        '<button class="curricula-ov-state-head" type="button" data-state="' +
-        escapeHtml(st.state) +
-        '"><span class="curricula-ov-state-name">' +
-        escapeHtml(st.stateName || st.state) +
-        '</span><span class="curricula-ov-state-count">' +
-        st.curricula.length +
-        '</span></button>';
-      html += '<div class="curricula-ov-curricula">';
-      st.curricula.forEach(function (c) {
-        var meta = [];
-        if (c.grade) meta.push('Kl. ' + c.grade);
-        if (c.objectiveCount) meta.push(c.objectiveCount + ' LZ');
-        html +=
-          '<button class="curricula-ov-cur" type="button" data-state="' +
-          escapeHtml(st.state) +
-          '" data-slug="' +
-          escapeHtml(c.slug || '') +
-          '"><span class="curricula-ov-cur-name">' +
-          escapeHtml(c.schoolType || 'Lehrplan') +
-          '</span>' +
-          (meta.length
-            ? '<span class="curricula-ov-cur-meta">' + escapeHtml(meta.join(' · ')) + '</span>'
-            : '') +
-          '</button>';
-      });
-      html += '</div></div>';
-    });
-    html += '</div>';
-    el.innerHTML = html;
-
-    el.querySelectorAll('.curricula-ov-state-head').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        this.parentElement.classList.toggle('open');
-        focusState(this.getAttribute('data-state'), null, null);
-      });
-    });
-    el.querySelectorAll('.curricula-ov-cur').forEach(function (btn) {
-      btn.addEventListener('click', function (ev) {
-        ev.stopPropagation();
-        focusState(this.getAttribute('data-state'), null, this.getAttribute('data-slug'));
-      });
-    });
-  }
-
-  function loadCurriculaList() {
-    return fetch('/api/curricula/list', { signal: AbortSignal.timeout(10000) })
-      .then(function (r) {
-        return r.ok ? r.json() : { states: [] };
-      })
-      .then(renderOverview)
-      .catch(function () {
-        /* overview is optional */
-      });
-  }
-
-  function markOverviewSelection(curSlug, stateCode) {
-    var ov = document.getElementById('curricula-overview');
-    if (!ov) return;
-    ov.querySelectorAll('.selected').forEach(function (n) {
-      n.classList.remove('selected');
-    });
-    var target = null;
-    if (curSlug) {
-      ov.querySelectorAll('.curricula-ov-cur').forEach(function (b) {
-        if (b.getAttribute('data-slug') === curSlug) target = b;
-      });
-    } else if (stateCode) {
-      ov.querySelectorAll('.curricula-ov-state-head').forEach(function (b) {
-        if (b.getAttribute('data-state') === stateCode) target = b;
-      });
-    }
-    if (target) target.classList.add('selected');
-  }
-
-  function focusState(stateCode, school, slug) {
-    state.state = stateCode || '';
-    state.q = school || '';
-    state.curriculum = slug || '';
-    var sel = document.getElementById('curricula-state-select');
-    if (sel) sel.value = stateCode || '';
-    var search = document.getElementById('curricula-search');
-    if (search) search.value = school || '';
-    if (state.scope !== 'curriculum') {
-      state.scope = 'curriculum';
-      document.querySelectorAll('.curricula-scope-btn').forEach(function (b) {
-        b.classList.toggle('active', b.getAttribute('data-scope') === 'curriculum');
-      });
-    }
-    state.focusNodeId = slug ? 'cur:' + slug : null;
-    markOverviewSelection(slug || null, slug ? null : stateCode || null);
-    reload();
-  }
-
   function renderGraph(data) {
     var container = document.getElementById('curricula-graph');
     if (!container) return;
@@ -538,7 +429,6 @@
       btn.addEventListener('click', function () {
         state.scope = this.getAttribute('data-scope');
         state.curriculum = '';
-        markOverviewSelection(null, null);
         scopeBtns.forEach(function (b) {
           b.classList.toggle('active', b === btn);
         });
@@ -550,7 +440,6 @@
       stateSel.addEventListener('change', function () {
         state.state = this.value;
         state.curriculum = '';
-        markOverviewSelection(null, null);
         reload();
       });
     }
@@ -618,9 +507,12 @@
 
   // ── Init ────────────────────────────────────────────────────────────
 
+  var initialized = false;
   function init() {
-    // Move the toolbar template (rendered in the JS block) into the app
-    // container so controls live with the graph.
+    if (initialized) return;
+    initialized = true;
+    // Move the toolbar template (rendered inside the advanced tab) into the
+    // app container so controls live with the graph.
     var tpl = document.getElementById('curricula-toolbar-template');
     if (tpl && app) {
       while (tpl.firstChild) {
@@ -629,7 +521,6 @@
       tpl.remove();
     }
     wireControls();
-    loadCurriculaList();
     if (skeleton) skeleton.style.display = 'none';
     loadMeta()
       .then(function (meta) {
@@ -650,9 +541,14 @@
       });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  // Exposed for the tab controller in curricula-overview.js, which lazily
+  // initialises the graph only when the "Erweitert" tab becomes visible
+  // (rendering cytoscape into a hidden container yields a 0-sized canvas).
+  window.curriculaGraphInit = init;
+  window.curriculaGraphResize = function () {
+    if (state.cy) {
+      state.cy.resize();
+      state.cy.fit(undefined, 40);
+    }
+  };
 })();
