@@ -1212,3 +1212,331 @@ describe('API routing — reticulum path contracts', () => {
     expect(isHtml(res)).toBe(false);
   });
 });
+
+/* ------------------------------------------------------------------ */
+/* API method contracts — GET vs POST                                 */
+/* ------------------------------------------------------------------ */
+
+describe('API method contracts', () => {
+  test('GET /api/v1/hubs returns 404 (only POST is supported for room creation)', async () => {
+    const res = await fetch(`${BASE}/api/v1/hubs`);
+    expect(res.status).toBe(404);
+    expect(isHtml(res)).toBe(false);
+  });
+
+  test('GET /api/v1/hubs/ (trailing slash) returns 404', async () => {
+    const res = await fetch(`${BASE}/api/v1/hubs/`);
+    expect(res.status).toBe(404);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Static file routing edge cases                                     */
+/* ------------------------------------------------------------------ */
+
+describe('Static file routing edge cases', () => {
+  test('/hub.html/ (trailing slash on file) falls back to index.html (not hub.html)', async () => {
+    const res = await fetch(`${BASE}/hub.html/`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    // Python SimpleHTTPRequestHandler treats /hub.html/ as a directory path
+    // that doesn't exist → SPA fallback → index.html
+    expect(isIndexPage(html)).toBe(true);
+    expect(isHubPage(html)).toBe(false);
+  });
+
+  test('/manifest.webmanifest/ (trailing slash) falls back to index.html (not JSON)', async () => {
+    const res = await fetch(`${BASE}/manifest.webmanifest/`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    // A trailing slash on the manifest path means it's not served as JSON
+    expect(isIndexPage(html)).toBe(true);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Deep path routing                                                  */
+/* ------------------------------------------------------------------ */
+
+describe('Deep path routing', () => {
+  test('/raJ6mj3/a/b/c (deep nesting) falls back to index.html (not hub.html)', async () => {
+    const res = await fetch(`${BASE}/raJ6mj3/a/b/c`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    // The room-ID regex only allows one optional slug segment
+    // (/[A-Za-z0-9_-]*), so multi-level paths fall to SPA fallback
+    expect(isIndexPage(html)).toBe(true);
+    expect(isHubPage(html)).toBe(false);
+  });
+
+  test('/raJ6mj3/a/b (two segments) falls back to index.html', async () => {
+    const res = await fetch(`${BASE}/raJ6mj3/a/b`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(isIndexPage(html)).toBe(true);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Asset property tests                                               */
+/* ------------------------------------------------------------------ */
+
+describe('Asset property — cache-control on static assets', () => {
+  test('all JS bundles have cache-control: no-cache', async () => {
+    const res = await fetch(`${BASE}/hub.html`);
+    const html = await res.text();
+    const scripts = [...html.matchAll(/<script[^>]+src="([^"]+)"/g)].map((m) => m[1]);
+    const localScripts = scripts.filter((s) => s.startsWith('/'));
+    expect(localScripts.length).toBeGreaterThan(0);
+    for (const src of localScripts) {
+      const r = await fetch(`${BASE}${src}`);
+      const cc = r.headers.get('cache-control') || '';
+      if (!cc.match(/no-cache/i)) console.error(`script ${src} cache-control: ${cc}`);
+      expect(cc).toMatch(/no-cache/i);
+    }
+  });
+
+  test('all CSS bundles have cache-control: no-cache', async () => {
+    const res = await fetch(`${BASE}/hub.html`);
+    const html = await res.text();
+    const links = [...html.matchAll(/<link[^>]+href="([^"]+)"/g)].map((m) => m[1]);
+    const cssLinks = links.filter((h) => h.startsWith('/') && h.endsWith('.css'));
+    expect(cssLinks.length).toBeGreaterThan(0);
+    for (const href of cssLinks) {
+      const r = await fetch(`${BASE}${href}`);
+      const cc = r.headers.get('cache-control') || '';
+      if (!cc.match(/no-cache/i)) console.error(`css ${href} cache-control: ${cc}`);
+      expect(cc).toMatch(/no-cache/i);
+    }
+  });
+});
+
+describe('Asset property — CORS on static assets', () => {
+  test('JS bundles have access-control-allow-origin: *', async () => {
+    const res = await fetch(`${BASE}/assets/js/frontend-b15f0d3a8e669ae5e13d.js`);
+    expect(res.headers.get('access-control-allow-origin')).toBeTruthy();
+  });
+
+  test('CSS bundles have access-control-allow-origin: *', async () => {
+    const res = await fetch(`${BASE}/assets/stylesheets/hub-177db13c35c3313eda13.css`);
+    expect(res.headers.get('access-control-allow-origin')).toBeTruthy();
+  });
+
+  test('HTML pages have access-control-allow-origin: *', async () => {
+    const res = await fetch(`${BASE}/hub.html`);
+    expect(res.headers.get('access-control-allow-origin')).toBeTruthy();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Service worker structural contract                                  */
+/* ------------------------------------------------------------------ */
+
+describe('Service worker structural contract', () => {
+  test('hub.service.js uses self.addEventListener (not bare addEventListener)', async () => {
+    const res = await fetch(`${BASE}/hub.service.js`);
+    const body = await res.text();
+    expect(body).toMatch(/self\.addEventListener/);
+    // Must NOT use bare addEventListener (should be self.addEventListener)
+    expect(body).not.toMatch(/[^.]addEventListener\("install"/);
+  });
+
+  test('hub.service.js does NOT contain a no-op addEventListener("fetch")', async () => {
+    const res = await fetch(`${BASE}/hub.service.js`);
+    const body = await res.text();
+    // The service worker intentionally has no fetch handler
+    expect(body).not.toMatch(/addEventListener\(\s*["']fetch["']/);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* HTML structural contracts                                           */
+/* ------------------------------------------------------------------ */
+
+describe('HTML structural contracts', () => {
+  test('hub.html starts with <!DOCTYPE html>', async () => {
+    const html = await (await fetch(`${BASE}/hub.html`)).text();
+    expect(html.startsWith('<!DOCTYPE html>')).toBe(true);
+  });
+
+  test('index.html starts with <!DOCTYPE html>', async () => {
+    const html = await (await fetch(`${BASE}/`)).text();
+    expect(html.startsWith('<!DOCTYPE html>')).toBe(true);
+  });
+
+  test('hub.html has <meta charset="utf-8">', async () => {
+    const html = await (await fetch(`${BASE}/hub.html`)).text();
+    expect(html).toMatch(/<meta[^>]*charset=["']?utf-?8["']?/i);
+  });
+
+  test('index.html has <meta charset="utf-8">', async () => {
+    const html = await (await fetch(`${BASE}/`)).text();
+    expect(html).toMatch(/<meta[^>]*charset=["']?utf-?8["']?/i);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Room URL structural invariants                                      */
+/* ------------------------------------------------------------------ */
+
+describe('Room URL structural invariants', () => {
+  test('all room URL variants return identical byte length', async () => {
+    const urls = ['/raJ6mj3', '/raJ6mj3/', '/raJ6mj3/test-room', '/raJ6mj3/test-room/'];
+    const sizes = [];
+    for (const url of urls) {
+      const res = await fetch(`${BASE}${url}`);
+      const body = await res.text();
+      sizes.push(body.length);
+    }
+    // All variants must return the same hub.html
+    expect(new Set(sizes).size).toBe(1);
+    expect(sizes[0]).toBeGreaterThan(10000);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* hub.html meta tag contracts                                        */
+/* ------------------------------------------------------------------ */
+
+describe('hub.html meta tag contracts', () => {
+  test('hub.html has <link rel="manifest" href="/manifest.webmanifest">', async () => {
+    const html = await (await fetch(`${BASE}/hub.html`)).text();
+    expect(html).toMatch(/<link[^>]+rel=["']manifest["'][^>]+href=["']\/manifest\.webmanifest["']/i);
+  });
+
+  test('hub.html favicon link includes sizes with 48x48', async () => {
+    const html = await (await fetch(`${BASE}/hub.html`)).text();
+    const match = html.match(/<link[^>]+rel=["']icon["'][^>]+sizes=["']([^"']*)["']/i);
+    expect(match).toBeTruthy();
+    if (match) {
+      expect(match[1]).toMatch(/48x48/);
+    }
+  });
+
+  test('hub.html favicon link includes all 5 sizes (16, 24, 32, 48, 64)', async () => {
+    const html = await (await fetch(`${BASE}/hub.html`)).text();
+    const match = html.match(/<link[^>]+rel=["']icon["'][^>]+sizes=["']([^"']*)["']/i);
+    expect(match).toBeTruthy();
+    if (match) {
+      const sizes = match[1];
+      expect(sizes).toMatch(/16x16/);
+      expect(sizes).toMatch(/24x24/);
+      expect(sizes).toMatch(/32x32/);
+      expect(sizes).toMatch(/48x48/);
+      expect(sizes).toMatch(/64x64/);
+    }
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Asset content-type matrix                                           */
+/* ------------------------------------------------------------------ */
+
+describe('Asset content-type matrix', () => {
+  test('CSS file has content-type: text/css', async () => {
+    const res = await fetch(`${BASE}/assets/stylesheets/hub-177db13c35c3313eda13.css`);
+    expect(res.ok).toBe(true);
+    expect(res.headers.get('content-type') || '').toMatch(/text\/css/i);
+  });
+
+  test('JS file has content-type: application/javascript or text/javascript', async () => {
+    const res = await fetch(`${BASE}/assets/js/frontend-b15f0d3a8e669ae5e13d.js`);
+    expect(res.ok).toBe(true);
+    const ct = res.headers.get('content-type') || '';
+    expect(ct).toMatch(/javascript/i);
+  });
+
+  test('hub.service.js has content-type: application/javascript or text/javascript', async () => {
+    const res = await fetch(`${BASE}/hub.service.js`);
+    expect(res.ok).toBe(true);
+    const ct = res.headers.get('content-type') || '';
+    expect(ct).toMatch(/javascript/i);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Room URL slug character class contracts                            */
+/* ------------------------------------------------------------------ */
+
+describe('Room URL slug character class contracts', () => {
+  test('slug with only underscores serves hub.html', async () => {
+    const res = await fetch(`${BASE}/raJ6mj3/___`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(isHubPage(html)).toBe(true);
+  });
+
+  test('slug with only hyphens serves hub.html', async () => {
+    const res = await fetch(`${BASE}/raJ6mj3/---`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(isHubPage(html)).toBe(true);
+  });
+
+  test('slug with all valid chars (letters, digits, underscore, hyphen) serves hub.html', async () => {
+    const res = await fetch(`${BASE}/raJ6mj3/AbCdEfG_0123-`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(isHubPage(html)).toBe(true);
+  });
+
+  test('slug with digits only serves hub.html', async () => {
+    const res = await fetch(`${BASE}/raJ6mj3/12345`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(isHubPage(html)).toBe(true);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* API consistency under load                                        */
+/* ------------------------------------------------------------------ */
+
+describe('API consistency under load', () => {
+  test('5 consecutive /api/v1/meta calls all return 200 with Cowboy server', async () => {
+    const results = [];
+    for (let i = 0; i < 5; i++) {
+      const res = await fetch(`${BASE}/api/v1/meta`);
+      results.push({ status: res.status, server: res.headers.get('server') });
+    }
+    results.forEach((r, i) => {
+      if (r.status !== 200) console.error(`call ${i}: status=${r.status} server=${r.server}`);
+      expect(r.status).toBe(200);
+      expect(r.server).toBe('Cowboy');
+    });
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Property-based: slug character class invariants                   */
+/* ------------------------------------------------------------------ */
+
+describe('Property — slug character class invariants', () => {
+  const VALID_SLUG_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-';
+  const INVALID_SLUG_CHARS = '.';
+
+  function randString(len, chars) {
+    let s = '';
+    for (let i = 0; i < len; i++) s += chars[Math.floor(Math.random() * chars.length)];
+    return s;
+  }
+
+  test('random slugs from [A-Za-z0-9_-] always serve hub.html', async () => {
+    for (let i = 0; i < 5; i++) {
+      const slug = randString(5 + Math.floor(Math.random() * 10), VALID_SLUG_CHARS);
+      const res = await fetch(`${BASE}/raJ6mj3/${slug}`);
+      if (!res.ok) console.error(`slug "${slug}" returned ${res.status}`);
+      expect(res.ok).toBe(true);
+      const html = await res.text();
+      expect(isHubPage(html)).toBe(true);
+    }
+  });
+
+  test('random slugs containing dots always return 404', async () => {
+    for (let i = 0; i < 5; i++) {
+      const slug = randString(3 + Math.floor(Math.random() * 3), VALID_SLUG_CHARS) + '.xyz';
+      const res = await fetch(`${BASE}/raJ6mj3/${slug}`);
+      expect(res.status).toBe(404);
+    }
+  });
+});
