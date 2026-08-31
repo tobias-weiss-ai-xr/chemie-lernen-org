@@ -953,7 +953,7 @@
     // analytische-methoden (Analytische Methoden)
     // ══════════════════════════════════════════════════════════
     {
-      id: 'am-1',
+      id: 'anam-1',
       topic: 'Analytische Methoden',
       slug: 'analytische-methoden',
       type: 'multiple-choice',
@@ -964,7 +964,7 @@
         'Chromatographie trennt Stoffe durch unterschiedliche Verteilung zwischen stationärer und mobiler Phase.',
     },
     {
-      id: 'am-2',
+      id: 'anam-2',
       topic: 'Analytische Methoden',
       slug: 'analytische-methoden',
       type: 'multiple-choice',
@@ -975,7 +975,7 @@
         'Ein Photometer misst die Absorption von Licht bei einer bestimmten Wellenlänge (Lambert-Beer-Gesetz).',
     },
     {
-      id: 'am-3',
+      id: 'anam-3',
       topic: 'Analytische Methoden',
       slug: 'analytische-methoden',
       type: 'true-false',
@@ -985,7 +985,7 @@
       explanation: 'Bei der Papierchromatographie ist das Papier (Cellulose) die stationäre Phase.',
     },
     {
-      id: 'am-4',
+      id: 'anam-4',
       topic: 'Analytische Methoden',
       slug: 'analytische-methoden',
       type: 'multiple-choice',
@@ -996,7 +996,7 @@
         'Lambert-Beer: Die Absorption A ist proportional zur Konzentration c und Schichtdicke d.',
     },
     {
-      id: 'am-5',
+      id: 'anam-5',
       topic: 'Analytische Methoden',
       slug: 'analytische-methoden',
       type: 'multiple-choice',
@@ -1007,7 +1007,7 @@
         'AgNO₃ + Cl⁻ → AgCl↓ (weißer Niederschlag). Der Silbernitrat-Nachweis ist spezifisch für Halogenide.',
     },
     {
-      id: 'am-6',
+      id: 'anam-6',
       topic: 'Analytische Methoden',
       slug: 'analytische-methoden',
       type: 'fill-in-blank',
@@ -1020,7 +1020,7 @@
         'Titration ist eine quantitative Bestimmungsmethode durch Zutropfen einer Maßlösung.',
     },
     {
-      id: 'am-7',
+      id: 'anam-7',
       topic: 'Analytische Methoden',
       slug: 'analytische-methoden',
       type: 'multiple-choice',
@@ -1036,7 +1036,7 @@
         'UV-Vis-Spektroskopie nutzt ultraviolettes und sichtbares Licht zur Analyse von Verbindungen.',
     },
     {
-      id: 'am-8',
+      id: 'anam-8',
       topic: 'Analytische Methoden',
       slug: 'analytische-methoden',
       type: 'multiple-choice',

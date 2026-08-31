@@ -1,4 +1,5 @@
 ---
+draft: true
 title: "ARTIKEL_TITEL_HIER"
 description: "BRiEF_ZWEIZEILIGE_BESCHREIBUNG"
 date: 2024-01-01

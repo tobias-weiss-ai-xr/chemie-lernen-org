@@ -476,6 +476,6 @@ Chemie ist wie eine Fremdsprache: Am Anfang ist es schwer, aber mit Übung wird 
 **Themenbereich:** Tipps und Tricks
 **Schwierigkeit:** Alle Niveaus
 
-{{< quiz-widget topic="alle" title="Tipps und Tricks" >}}
+{{< quiz-widget topic="tipps-tricks" title="Tipps und Tricks" >}}
 
 {{< entity-cloud slug="tipps-tricks" title="Verwandte Fachbegriffe" >}}
