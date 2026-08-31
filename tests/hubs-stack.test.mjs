@@ -713,3 +713,502 @@ describe('Resilience — non-existent room IDs', () => {
     expect(isHubPage(html)).toBe(true);
   });
 });
+
+/* ------------------------------------------------------------------ */
+/* Link integrity — all referenced assets resolve                     */
+/* ------------------------------------------------------------------ */
+
+describe('Link integrity — hub.html assets', () => {
+  test('all script src tags in hub.html resolve to 200', async () => {
+    const res = await fetch(`${BASE}/raJ6mj3/test-room`);
+    const html = await res.text();
+    const scripts = [...html.matchAll(/<script[^>]+src="([^"]+)"/g)].map((m) => m[1]);
+    expect(scripts.length).toBeGreaterThan(0);
+    for (const src of scripts) {
+      const r = await fetch(`${BASE}${src}`);
+      if (!r.ok) console.error(`hub.html script ${src} returned ${r.status}`);
+      expect(r.ok).toBe(true);
+    }
+  });
+
+  test('all internal link href tags in hub.html resolve to 200', async () => {
+    const res = await fetch(`${BASE}/raJ6mj3/test-room`);
+    const html = await res.text();
+    const links = [...html.matchAll(/<link[^>]+href="([^"]+)"/g)]
+      .map((m) => m[1])
+      .filter((href) => href.startsWith('/')); // skip external (fonts.gstatic.com etc.)
+    expect(links.length).toBeGreaterThan(0);
+    for (const href of links) {
+      const r = await fetch(`${BASE}${href}`);
+      if (!r.ok) console.error(`hub.html link ${href} returned ${r.status}`);
+      expect(r.ok).toBe(true);
+    }
+  });
+});
+
+describe('Link integrity — index.html assets', () => {
+  test('all script src tags in index.html resolve to 200', async () => {
+    const res = await fetch(`${BASE}/`);
+    const html = await res.text();
+    const scripts = [...html.matchAll(/<script[^>]+src="([^"]+)"/g)].map((m) => m[1]);
+    expect(scripts.length).toBeGreaterThan(0);
+    for (const src of scripts) {
+      const r = await fetch(`${BASE}${src}`);
+      if (!r.ok) console.error(`index.html script ${src} returned ${r.status}`);
+      expect(r.ok).toBe(true);
+    }
+  });
+
+  test('all internal link href tags in index.html resolve to 200', async () => {
+    const res = await fetch(`${BASE}/`);
+    const html = await res.text();
+    const links = [...html.matchAll(/<link[^>]+href="([^"]+)"/g)]
+      .map((m) => m[1])
+      .filter((href) => href.startsWith('/'));
+    expect(links.length).toBeGreaterThan(0);
+    for (const href of links) {
+      const r = await fetch(`${BASE}${href}`);
+      if (!r.ok) console.error(`index.html link ${href} returned ${r.status}`);
+      expect(r.ok).toBe(true);
+    }
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Manifest icon link integrity                                       */
+/* ------------------------------------------------------------------ */
+
+describe('Manifest icon link integrity', () => {
+  test('every manifest icon URL resolves to 200 with correct content-type', async () => {
+    const res = await fetch(`${BASE}/manifest.webmanifest`);
+    const manifest = await res.json();
+    const icons = manifest.icons || [];
+    expect(icons.length).toBeGreaterThan(0);
+    for (const icon of icons) {
+      const iconRes = await fetch(`${BASE}${icon.src}`);
+      if (!iconRes.ok) console.error(`manifest icon ${icon.src} returned ${iconRes.status}`);
+      expect(iconRes.ok).toBe(true);
+      const ct = iconRes.headers.get('content-type') || '';
+      if (icon.type && icon.type.includes('png')) {
+        expect(ct).toMatch(/image\/png/i);
+      } else if (icon.type && icon.type.includes('icon')) {
+        expect(ct).toMatch(/image\//i);
+      }
+    }
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Security — path traversal, method rejection, headers              */
+/* ------------------------------------------------------------------ */
+
+describe('Security — path traversal protection', () => {
+  test('directory traversal /../../../etc/passwd serves index.html (not /etc/passwd)', async () => {
+    const res = await fetch(`${BASE}/../../../etc/passwd`);
+    expect(res.ok).toBe(true);
+    const body = await res.text();
+    expect(body.includes('root:')).toBe(false);
+    expect(isIndexPage(body)).toBe(true);
+  });
+
+  test('encoded traversal /%2e%2e/%2e%2e/etc/passwd serves index.html', async () => {
+    const res = await fetch(`${BASE}/%2e%2e/%2e%2e/etc/passwd`);
+    expect(res.ok).toBe(true);
+    const body = await res.text();
+    expect(body.includes('root:')).toBe(false);
+    expect(isIndexPage(body)).toBe(true);
+  });
+
+  test('direct /etc/passwd serves index.html (not passwd file content)', async () => {
+    const res = await fetch(`${BASE}/etc/passwd`);
+    expect(res.ok).toBe(true);
+    const body = await res.text();
+    expect(body.includes('root:')).toBe(false);
+    expect(isIndexPage(body)).toBe(true);
+  });
+});
+
+describe('Security — HTTP method rejection', () => {
+  test('PUT to / returns 501 (method not allowed)', async () => {
+    const res = await fetch(`${BASE}/`, { method: 'PUT', body: 'test' });
+    expect(res.status).toBe(501);
+  });
+
+  test('DELETE to / returns 501', async () => {
+    const res = await fetch(`${BASE}/`, { method: 'DELETE' });
+    expect(res.status).toBe(501);
+  });
+
+  test('POST to / returns 501', async () => {
+    const res = await fetch(`${BASE}/`, { method: 'POST', body: 'test' });
+    expect(res.status).toBe(501);
+  });
+});
+
+describe('Security — API security headers', () => {
+  test('/api/v1/meta has x-content-type-options: nosniff', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`);
+    expect(res.headers.get('x-content-type-options')).toBe('nosniff');
+  });
+
+  test('/api/v1/meta has x-frame-options: SAMEORIGIN', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`);
+    expect(res.headers.get('x-frame-options')).toBe('SAMEORIGIN');
+  });
+
+  test('/api/v1/meta has x-xss-protection header', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`);
+    expect(res.headers.get('x-xss-protection')).toBeTruthy();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* CORS preflight                                                     */
+/* ------------------------------------------------------------------ */
+
+describe('CORS preflight', () => {
+  test('OPTIONS /api/v1/meta returns 204 with CORS headers', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`, { method: 'OPTIONS' });
+    expect(res.status).toBe(204);
+    expect(res.headers.get('access-control-allow-origin')).toBeTruthy();
+    expect(res.headers.get('access-control-allow-methods')).toBeTruthy();
+  });
+
+  test('OPTIONS /api/v1/meta with Origin returns allow-origin:* + credentials:true', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`, {
+      method: 'OPTIONS',
+      headers: { Origin: BASE, 'Access-Control-Request-Method': 'GET' },
+    });
+    expect(res.status).toBe(204);
+    expect(res.headers.get('access-control-allow-origin')).toBe('*');
+    expect(res.headers.get('access-control-allow-credentials')).toBe('true');
+  });
+
+  test('OPTIONS /api/v1/media/search returns 204 with CORS headers', async () => {
+    const res = await fetch(`${BASE}/api/v1/media/search?source=rooms&filter=public&cursor=0`, {
+      method: 'OPTIONS',
+      headers: { Origin: BASE, 'Access-Control-Request-Method': 'GET' },
+    });
+    expect(res.status).toBe(204);
+    expect(res.headers.get('access-control-allow-origin')).toBeTruthy();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Room URL edge cases (extended)                                     */
+/* ------------------------------------------------------------------ */
+
+describe('Room URL routing — extended edge cases', () => {
+  test('trailing slash with slug (/raJ6mj3/test-room/) serves hub.html', async () => {
+    const res = await fetch(`${BASE}/raJ6mj3/test-room/`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(isHubPage(html)).toBe(true);
+  });
+
+  test('slug with dot (/raJ6mj3/test.room) returns 404', async () => {
+    const res = await fetch(`${BASE}/raJ6mj3/test.room`);
+    expect(res.status).toBe(404);
+  });
+
+  test('slug with underscore (/raJ6mj3/test_room) serves hub.html', async () => {
+    const res = await fetch(`${BASE}/raJ6mj3/test_room`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(isHubPage(html)).toBe(true);
+  });
+
+  test('very long slug (200 chars) serves hub.html', async () => {
+    const res = await fetch(`${BASE}/raJ6mj3/${'a'.repeat(200)}`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(isHubPage(html)).toBe(true);
+  });
+
+  test('mixed case room ID (AbCdEfG) serves hub.html', async () => {
+    const res = await fetch(`${BASE}/AbCdEfG`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(isHubPage(html)).toBe(true);
+  });
+
+  test('digits-only room ID (1234567) serves hub.html', async () => {
+    const res = await fetch(`${BASE}/1234567`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(isHubPage(html)).toBe(true);
+  });
+
+  test('encoded space in slug (/raJ6mj3/test%20room) falls back to index.html', async () => {
+    const res = await fetch(`${BASE}/raJ6mj3/test%20room`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(isIndexPage(html)).toBe(true);
+  });
+
+  test('double slash (//raJ6mj3) serves hub.html (path normalization)', async () => {
+    const res = await fetch(`${BASE}//raJ6mj3`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(isHubPage(html)).toBe(true);
+  });
+
+  test('single-character slug (/raJ6mj3/a) serves hub.html', async () => {
+    const res = await fetch(`${BASE}/raJ6mj3/a`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(isHubPage(html)).toBe(true);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Admin redirect                                                      */
+/* ------------------------------------------------------------------ */
+
+describe('Admin redirect', () => {
+  test('/admin returns 302 redirect to /admin/admin.html', async () => {
+    const res = await fetch(`${BASE}/admin`, { redirect: 'manual' });
+    expect(res.status).toBe(302);
+    const location = res.headers.get('location') || '';
+    expect(location).toMatch(/\/admin\/admin\.html$/);
+  });
+
+  test('/admin/admin.html returns 200 with admin content', async () => {
+    const res = await fetch(`${BASE}/admin/admin.html`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(html).toMatch(/admin/i);
+  });
+
+  test('/admin/ (trailing slash) returns 302 redirect to /admin/admin.html', async () => {
+    const res = await fetch(`${BASE}/admin/`, { redirect: 'manual' });
+    expect(res.status).toBe(302);
+    const location = res.headers.get('location') || '';
+    expect(location).toMatch(/\/admin\/admin\.html$/);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Health endpoints (SPA fallback)                                    */
+/* ------------------------------------------------------------------ */
+
+describe('Health endpoints (SPA fallback)', () => {
+  test('/health returns 200 with index.html (SPA fallback)', async () => {
+    const res = await fetch(`${BASE}/health`);
+    expect(res.ok).toBe(true);
+    expect(isHtml(res)).toBe(true);
+    const html = await res.text();
+    expect(isIndexPage(html)).toBe(true);
+  });
+
+  test('/healthz returns 200 — note: 7 chars matches room-ID regex so serves hub.html', async () => {
+    const res = await fetch(`${BASE}/healthz`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    // "healthz" is exactly 7 alphanumeric chars → matches the room-ID regex → hub.html
+    expect(html).toMatch(/<title>Room | App/);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Room lifecycle — multiple room creation                            */
+/* ------------------------------------------------------------------ */
+
+describe('Room lifecycle — multiple room creation', () => {
+  test('create 3 rooms with delays, verify unique hub_ids and hub.html serving', async () => {
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+    const hubIds = [];
+    for (let i = 0; i < 3; i++) {
+      const res = await fetch(`${BASE}/api/v1/hubs`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ hub: { name: `e2e-lifecycle-${i}` } }),
+      });
+      expect(res.ok).toBe(true);
+      expect(isHtml(res)).toBe(false);
+      const hub = await res.json();
+      const result = HubCreatedSchema.safeParse(hub);
+      if (!result.success) console.error(`room ${i} contract violated:`, result.error?.issues);
+      expect(result.success).toBe(true);
+      hubIds.push(hub.hub_id);
+      // The room URL must serve hub.html
+      const pageRes = await fetch(hub.url);
+      expect(pageRes.ok).toBe(true);
+      const html = await pageRes.text();
+      expect(isHubPage(html)).toBe(true);
+      if (i < 2) await sleep(2000); // avoid rate-limit
+    }
+    expect(new Set(hubIds).size).toBe(3);
+  }, 20000);
+});
+
+/* ------------------------------------------------------------------ */
+/* API error contracts                                                 */
+/* ------------------------------------------------------------------ */
+
+describe('API error contracts', () => {
+  test('/api/v1/avatars returns 404 (reticulum does not route this)', async () => {
+    const res = await fetch(`${BASE}/api/v1/avatars`);
+    expect(res.status).toBe(404);
+    expect(isHtml(res)).toBe(false);
+  });
+
+  test('/api/v1/scenes returns 404 (reticulum does not route this)', async () => {
+    const res = await fetch(`${BASE}/api/v1/scenes`);
+    expect(res.status).toBe(404);
+    expect(isHtml(res)).toBe(false);
+  });
+
+  test('/api/v1/media/search?source=invalid returns 400 (bad source)', async () => {
+    const res = await fetch(`${BASE}/api/v1/media/search?source=invalid`);
+    expect(res.status).toBe(400);
+    expect(isHtml(res)).toBe(false);
+  });
+
+  test('POST /api/v1/meta returns 404', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: '{}',
+    });
+    expect(res.status).toBe(404);
+  });
+
+  test('PUT /api/v1/meta returns 404', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`, {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json' },
+      body: '{}',
+    });
+    expect(res.status).toBe(404);
+  });
+
+  test('DELETE /api/v1/meta returns 404', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`, { method: 'DELETE' });
+    expect(res.status).toBe(404);
+  });
+
+  test('PATCH /api/v1/meta returns 404', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`, {
+      method: 'PATCH',
+      headers: { 'content-type': 'application/json' },
+      body: '{}',
+    });
+    expect(res.status).toBe(404);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Server identity                                                    */
+/* ------------------------------------------------------------------ */
+
+describe('Server identity', () => {
+  test('/api/v1/meta is served by Cowboy (reticulum/Erlang)', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`);
+    expect(res.headers.get('server')).toBe('Cowboy');
+  });
+
+  test('/ is served by Python SimpleHTTP (static server)', async () => {
+    const res = await fetch(`${BASE}/`);
+    expect(res.headers.get('server')).toMatch(/SimpleHTTP/i);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Content-type contracts (additional)                                 */
+/* ------------------------------------------------------------------ */
+
+describe('Content-type contracts (additional)', () => {
+  test('/api/v1/meta returns text/plain (Cowboy JSON-as-text, not application/json)', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`);
+    const ct = res.headers.get('content-type') || '';
+    expect(ct).toMatch(/text\/plain/i);
+    expect(ct).not.toMatch(/text\/html/i);
+  });
+
+  test('POST /api/v1/hubs returns application/vnd.pgrst.object+json', async () => {
+    // Small delay to avoid rate-limit with room lifecycle tests
+    await new Promise((r) => setTimeout(r, 2000));
+    const res = await fetch(`${BASE}/api/v1/hubs`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ hub: { name: 'e2e-content-type-test' } }),
+    });
+    expect(res.ok).toBe(true);
+    const ct = res.headers.get('content-type') || '';
+    expect(ct).toMatch(/application\/vnd\.pgrst\.object\+json/i);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* A-Frame structure                                                  */
+/* ------------------------------------------------------------------ */
+
+describe('A-Frame structure', () => {
+  test('hub.html contains <a-scene> element', async () => {
+    const res = await fetch(`${BASE}/raJ6mj3/test-room`);
+    const html = await res.text();
+    expect(html).toMatch(/<a-scene/i);
+  });
+
+  test('index.html does NOT contain <a-scene> element', async () => {
+    const res = await fetch(`${BASE}/`);
+    const html = await res.text();
+    expect(html).not.toMatch(/<a-scene/i);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* SPA fallback — additional                                        */
+/* ------------------------------------------------------------------ */
+
+describe('SPA fallback — additional paths', () => {
+  test('nested unknown path /foo/bar serves index.html', async () => {
+    const res = await fetch(`${BASE}/foo/bar`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(isIndexPage(html)).toBe(true);
+  });
+
+  test('/signin?redirect=/rooms serves Sign In page (query param routing)', async () => {
+    const res = await fetch(`${BASE}/signin?redirect=/rooms`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(html).toMatch(/<title>Sign In<\/title>/);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* HEAD /api requests                                                 */
+/* ------------------------------------------------------------------ */
+
+describe('HEAD /api request', () => {
+  test('HEAD /api/v1/meta returns 200', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`, { method: 'HEAD' });
+    expect(res.status).toBe(200);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* API routing — reticulum paths                                      */
+/* ------------------------------------------------------------------ */
+
+describe('API routing — reticulum path contracts', () => {
+  test('/socket returns 404 (reticulum, not HTML, not SPA)', async () => {
+    const res = await fetch(`${BASE}/socket`);
+    expect(res.status).toBe(404);
+    expect(isHtml(res)).toBe(false);
+  });
+
+  test('/reticulum returns 404 (reticulum, not HTML, not SPA)', async () => {
+    const res = await fetch(`${BASE}/reticulum`);
+    expect(res.status).toBe(404);
+    expect(isHtml(res)).toBe(false);
+  });
+
+  test('/files returns 404 (reticulum, not HTML, not SPA)', async () => {
+    const res = await fetch(`${BASE}/files`);
+    expect(res.status).toBe(404);
+    expect(isHtml(res)).toBe(false);
+  });
+});
