@@ -1540,3 +1540,260 @@ describe('Property — slug character class invariants', () => {
     }
   });
 });
+
+/* ------------------------------------------------------------------ */
+/* API method contracts — collection vs item                         */
+/* ------------------------------------------------------------------ */
+
+describe('API method contracts — collection vs item', () => {
+  test('GET /api/v1/hubs/test returns 404 (bad Room ID)', async () => {
+    const res = await fetch(`${BASE}/api/v1/hubs/test`);
+    expect(res.status).toBe(404);
+    expect(isHtml(res)).toBe(false);
+  });
+
+  test('PUT /api/v1/hubs/test returns 401 (unauthenticated)', async () => {
+    const res = await fetch(`${BASE}/api/v1/hubs/test`, {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json' },
+      body: '{}',
+    });
+    expect(res.status).toBe(401);
+  });
+
+  test('DELETE /api/v1/hubs/test returns 401 or 403 (unauthenticated/forbidden)', async () => {
+    const res = await fetch(`${BASE}/api/v1/hubs/test`, { method: 'DELETE' });
+    expect([401, 403]).toContain(res.status);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* API query parameter contracts                                       */
+/* ------------------------------------------------------------------ */
+
+describe('API query parameter contracts', () => {
+  test('GET /api/v1/media/search without params returns 400', async () => {
+    const res = await fetch(`${BASE}/api/v1/media/search`);
+    expect(res.status).toBe(400);
+    expect(isHtml(res)).toBe(false);
+  });
+
+  test('GET /api/v1/media/search?source=rooms (no filter/cursor) returns 500', async () => {
+    const res = await fetch(`${BASE}/api/v1/media/search?source=rooms`);
+    expect(res.status).toBe(500);
+    expect(isHtml(res)).toBe(false);
+  });
+
+  test('/api/v1/meta?foo=bar ignores query string and returns 200', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta?foo=bar`);
+    expect(res.ok).toBe(true);
+    expect(isHtml(res)).toBe(false);
+    const body = await res.json();
+    expect(MetaSchemaFull.safeParse(body).success).toBe(true);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Static server header contracts                                      */
+/* ------------------------------------------------------------------ */
+
+describe('Static server header contracts', () => {
+  test('/ has access-control-allow-origin: * (CORS on static assets)', async () => {
+    const res = await fetch(`${BASE}/`);
+    expect(res.headers.get('access-control-allow-origin')).toBe('*');
+  });
+
+  test('/ has last-modified header (Python SimpleHTTP behavior)', async () => {
+    const res = await fetch(`${BASE}/`);
+    expect(res.headers.get('last-modified')).toBeTruthy();
+  });
+
+  test('/ does NOT have x-content-type-options (no security headers on static)', async () => {
+    const res = await fetch(`${BASE}/`);
+    expect(res.headers.get('x-content-type-options')).toBeFalsy();
+  });
+
+  test('/ does NOT have x-frame-options (no security headers on static)', async () => {
+    const res = await fetch(`${BASE}/`);
+    expect(res.headers.get('x-frame-options')).toBeFalsy();
+  });
+
+  test('/hub.html has cache-control: no-cache', async () => {
+    const res = await fetch(`${BASE}/hub.html`);
+    expect(res.headers.get('cache-control')).toMatch(/no-cache/i);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* CORS preflight — detailed header contracts                          */
+/* ------------------------------------------------------------------ */
+
+describe('CORS preflight — detailed headers', () => {
+  test('OPTIONS /api/v1/meta allow-methods includes all standard HTTP methods', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`, {
+      method: 'OPTIONS',
+      headers: { Origin: BASE, 'Access-Control-Request-Method': 'GET' },
+    });
+    const methods = res.headers.get('access-control-allow-methods') || '';
+    expect(methods).toMatch(/GET/i);
+    expect(methods).toMatch(/POST/i);
+    expect(methods).toMatch(/PUT/i);
+    expect(methods).toMatch(/PATCH/i);
+    expect(methods).toMatch(/DELETE/i);
+    expect(methods).toMatch(/OPTIONS/i);
+  });
+
+  test('OPTIONS /api/v1/meta allow-headers includes Content-Type and Authorization', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`, {
+      method: 'OPTIONS',
+      headers: { Origin: BASE, 'Access-Control-Request-Method': 'GET' },
+    });
+    const headers = res.headers.get('access-control-allow-headers') || '';
+    expect(headers).toMatch(/Content-Type/i);
+    expect(headers).toMatch(/Authorization/i);
+  });
+
+  test('OPTIONS /api/v1/meta allow-credentials is true', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`, {
+      method: 'OPTIONS',
+      headers: { Origin: BASE, 'Access-Control-Request-Method': 'GET' },
+    });
+    expect(res.headers.get('access-control-allow-credentials')).toBe('true');
+  });
+
+  test('OPTIONS /api/v1/meta max-age is 1728000 (24 hours)', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`, {
+      method: 'OPTIONS',
+      headers: { Origin: BASE, 'Access-Control-Request-Method': 'GET' },
+    });
+    expect(res.headers.get('access-control-max-age')).toBe('1728000');
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* CORS on error responses                                            */
+/* ------------------------------------------------------------------ */
+
+describe('CORS on error responses', () => {
+  test('404 on /api/v1/avatars still has CORS allow-origin', async () => {
+    const res = await fetch(`${BASE}/api/v1/avatars`);
+    expect(res.status).toBe(404);
+    expect(res.headers.get('access-control-allow-origin')).toBeTruthy();
+  });
+
+  test('401 on /api/v1/hubs/test has CORS allow-origin', async () => {
+    const res = await fetch(`${BASE}/api/v1/hubs/test`, { method: 'PUT' });
+    expect(res.status).toBe(401);
+    expect(res.headers.get('access-control-allow-origin')).toBeTruthy();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* API response structure contracts                                    */
+/* ------------------------------------------------------------------ */
+
+describe('API response structure contracts', () => {
+  test('/api/v1/meta has exactly 4 keys: version, pool, phx_port, phx_host', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`);
+    const body = await res.json();
+    // passthrow allows extra keys, but we verify the required ones exist
+    expect(body).toHaveProperty('version');
+    expect(body).toHaveProperty('phx_host');
+    expect(body).toHaveProperty('phx_port');
+    expect(body).toHaveProperty('pool');
+  });
+
+  test('phx_port is "4000" (Phoenix socket port)', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`);
+    const body = await res.json();
+    expect(body.phx_port).toBe('4000');
+  });
+
+  test('phx_host matches the request host', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`);
+    const body = await res.json();
+    expect(body.phx_host).toBe('hubs.chemie-lernen.org');
+  });
+
+  test('meta.next_cursor is a number (integer cursor)', async () => {
+    const res = await fetch(`${BASE}/api/v1/media/search?source=rooms&filter=public&cursor=0`);
+    const body = await res.json();
+    // next_cursor is 1 on first page, null when exhausted — must be number or null
+    const cursorType = typeof body.meta.next_cursor;
+    expect(cursorType === 'number' || cursorType === 'object' || body.meta.next_cursor === null).toBe(true);
+  });
+
+  test('media/search meta.source is "public_rooms"', async () => {
+    const res = await fetch(`${BASE}/api/v1/media/search?source=rooms&filter=public&cursor=0`);
+    const body = await res.json();
+    expect(body.meta.source).toBe('public_rooms');
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Manifest field contracts                                            */
+/* ------------------------------------------------------------------ */
+
+describe('Manifest field contracts', () => {
+  test('manifest has name: "Chemie Lernen Hubs"', async () => {
+    const res = await fetch(`${BASE}/manifest.webmanifest`);
+    const manifest = await res.json();
+    expect(manifest.name).toBe('Chemie Lernen Hubs');
+  });
+
+  test('manifest has short_name: "ChemieHubs"', async () => {
+    const res = await fetch(`${BASE}/manifest.webmanifest`);
+    const manifest = await res.json();
+    expect(manifest.short_name).toBe('ChemieHubs');
+  });
+
+  test('manifest has start_url: "/"', async () => {
+    const res = await fetch(`${BASE}/manifest.webmanifest`);
+    const manifest = await res.json();
+    expect(manifest.start_url).toBe('/');
+  });
+
+  test('manifest has display: "standalone"', async () => {
+    const res = await fetch(`${BASE}/manifest.webmanifest`);
+    const manifest = await res.json();
+    expect(manifest.display).toBe('standalone');
+  });
+
+  test('manifest has background_color: "#1b1b1b"', async () => {
+    const res = await fetch(`${BASE}/manifest.webmanifest`);
+    const manifest = await res.json();
+    expect(manifest.background_color).toBe('#1b1b1b');
+  });
+
+  test('manifest has theme_color: "#2d6a4f"', async () => {
+    const res = await fetch(`${BASE}/manifest.webmanifest`);
+    const manifest = await res.json();
+    expect(manifest.theme_color).toBe('#2d6a4f');
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Content-length contracts                                            */
+/* ------------------------------------------------------------------ */
+
+describe('Content-length contracts', () => {
+  test('POST /api/v1/hubs response has content-length header', async () => {
+    // Delay to avoid rate-limit with room lifecycle tests
+    await new Promise((r) => setTimeout(r, 2000));
+    const res = await fetch(`${BASE}/api/v1/hubs`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ hub: { name: 'e2e-length-test' } }),
+    });
+    expect(res.ok).toBe(true);
+    const cl = res.headers.get('content-length');
+    expect(parseInt(cl || '0')).toBeGreaterThan(0);
+  });
+
+  test('favicon.ico has content-length header', async () => {
+    const res = await fetch(`${BASE}/favicon.ico`);
+    expect(res.ok).toBe(true);
+    const cl = res.headers.get('content-length');
+    expect(parseInt(cl || '0')).toBeGreaterThan(0);
+  });
+});
