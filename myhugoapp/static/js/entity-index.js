@@ -65,6 +65,22 @@
   var _searchIndex = null;
   var _lunrIndex = null;
 
+  // Resilience: lunr.min.js is loaded deferred before this script, but a
+  // transient failure (SW cache takeover, blocked request) must not leave
+  // search permanently dead for the whole page session. Load on demand.
+  function ensureLunr() {
+    if (window.lunr) return Promise.resolve();
+    return new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = '/js/vendor/lunr.min.js';
+      s.onload = resolve;
+      s.onerror = function () {
+        reject(new Error('lunr.min.js could not be loaded'));
+      };
+      document.head.appendChild(s);
+    });
+  }
+
   function loadSearchIndex() {
     return fetch('/search/entity-index.json', { signal: AbortSignal.timeout(5000) })
       .then(function (r) {
@@ -73,9 +89,12 @@
       })
       .then(function (data) {
         if (data && data.index && data.entities) {
-          _searchIndex = data.entities;
-          _lunrIndex = lunr.Index.load(data.index);
-          console.log('[entity-index] Search index loaded:', data.entityCount, 'entities');
+          return ensureLunr().then(function () {
+            _searchIndex = data.entities;
+            _lunrIndex = lunr.Index.load(data.index);
+            console.log('[entity-index] Search index loaded:', data.entityCount, 'entities');
+            return data;
+          });
         }
         return data;
       })
