@@ -1797,3 +1797,348 @@ describe('Content-length contracts', () => {
     expect(parseInt(cl || '0')).toBeGreaterThan(0);
   });
 });
+
+/* ------------------------------------------------------------------ */
+/* API input validation contracts                                      */
+/* ------------------------------------------------------------------ */
+
+describe('API input validation contracts', () => {
+  test('POST /api/v1/hubs with empty name {} returns 400', async () => {
+    await new Promise((r) => setTimeout(r, 2000));
+    const res = await fetch(`${BASE}/api/v1/hubs`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: '{}',
+    });
+    expect(res.status).toBe(400);
+    expect(isHtml(res)).toBe(false);
+  });
+
+  test('POST /api/v1/hubs with invalid JSON body returns 400', async () => {
+    await new Promise((r) => setTimeout(r, 2000));
+    const res = await fetch(`${BASE}/api/v1/hubs`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: 'not json',
+    });
+    expect(res.status).toBe(400);
+  });
+
+  test('POST /api/v1/hubs with empty room name returns 422', async () => {
+    await new Promise((r) => setTimeout(r, 2000));
+    const res = await fetch(`${BASE}/api/v1/hubs`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ hub: { name: '' } }),
+    });
+    expect(res.status).toBe(422);
+  });
+
+  test('POST /api/v1/hubs with very long name returns 422', async () => {
+    await new Promise((r) => setTimeout(r, 2000));
+    const res = await fetch(`${BASE}/api/v1/hubs`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ hub: { name: 'x'.repeat(500) } }),
+    });
+    expect(res.status).toBe(422);
+  });
+
+  test('POST /api/v1/hubs without content-type header returns 400', async () => {
+    await new Promise((r) => setTimeout(r, 2000));
+    const res = await fetch(`${BASE}/api/v1/hubs`, {
+      method: 'POST',
+      body: JSON.stringify({ hub: { name: 'no-ct-test' } }),
+    });
+    expect(res.status).toBe(400);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Room creation response contracts                                    */
+/* ------------------------------------------------------------------ */
+
+describe('Room creation response contracts', () => {
+  test('created room URL starts with https://', async () => {
+    await new Promise((r) => setTimeout(r, 2000));
+    const res = await fetch(`${BASE}/api/v1/hubs`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ hub: { name: 'e2e-https-url-test' } }),
+    });
+    expect(res.ok).toBe(true);
+    const hub = await res.json();
+    expect(hub.url).toMatch(/^https:\/\//);
+  });
+
+  test('created room hub_id is exactly 7 characters', async () => {
+    await new Promise((r) => setTimeout(r, 2000));
+    const res = await fetch(`${BASE}/api/v1/hubs`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ hub: { name: 'e2e-7char-test' } }),
+    });
+    expect(res.ok).toBe(true);
+    const hub = await res.json();
+    expect(hub.hub_id).toHaveLength(7);
+  });
+
+  test('created room URL path starts with /{hub_id}/', async () => {
+    await new Promise((r) => setTimeout(r, 2000));
+    const res = await fetch(`${BASE}/api/v1/hubs`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ hub: { name: 'e2e-url-pattern' } }),
+    });
+    expect(res.ok).toBe(true);
+    const hub = await res.json();
+    const url = new URL(hub.url);
+    expect(url.pathname).toMatch(new RegExp('^/' + hub.hub_id + '/'));
+  });
+
+  test('created room response has no Location header (not REST-style)', async () => {
+    await new Promise((r) => setTimeout(r, 2000));
+    const res = await fetch(`${BASE}/api/v1/hubs`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ hub: { name: 'e2e-no-location' } }),
+    });
+    expect(res.headers.get('location')).toBeFalsy();
+  });
+
+  test('created room page has identical structure to /raJ6mj3/test-room', async () => {
+    await new Promise((r) => setTimeout(r, 2000));
+    const res = await fetch(`${BASE}/api/v1/hubs`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ hub: { name: 'e2e-page-struct' } }),
+    });
+    expect(res.ok).toBe(true);
+    const hub = await res.json();
+    const roomRes = await fetch(hub.url);
+    expect(roomRes.ok).toBe(true);
+    const html = await roomRes.text();
+    expect(isHubPage(html)).toBe(true);
+    // Should have the same HTML structure as /raJ6mj3/test-room
+    const refRes = await fetch(`${BASE}/raJ6mj3/test-room`);
+    const refHtml = await refRes.text();
+    // Both should reference the same hub bundle
+    expect(html).toMatch(/hub-544153456e8422fbb129\.js/);
+    expect(refHtml).toMatch(/hub-544153456e8422fbb129\.js/);
+    // Both should have <a-scene>
+    expect(html).toMatch(/<a-scene/i);
+    expect(refHtml).toMatch(/<a-scene/i);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* API error response content-type matrix                             */
+/* ------------------------------------------------------------------ */
+
+describe('API error response content-type matrix', () => {
+  test('404 on /api/v1/avatars has text/plain content-type', async () => {
+    const res = await fetch(`${BASE}/api/v1/avatars`);
+    expect(res.status).toBe(404);
+    expect(res.headers.get('content-type') || '').toMatch(/text\/plain/i);
+  });
+
+  test('400 on /api/v1/media/search?source=invalid has vnd.pgrst content-type', async () => {
+    const res = await fetch(`${BASE}/api/v1/media/search?source=invalid`);
+    expect(res.status).toBe(400);
+    expect(res.headers.get('content-type') || '').toMatch(/application\/vnd\.pgrst/i);
+  });
+
+  test('400 on POST /api/v1/hubs with invalid JSON has text/html content-type', async () => {
+    await new Promise((r) => setTimeout(r, 2000));
+    const res = await fetch(`${BASE}/api/v1/hubs`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: 'not json',
+    });
+    expect(res.status).toBe(400);
+    // Bug detection: invalid JSON returns text/html, not JSON
+    expect(res.headers.get('content-type') || '').toMatch(/text\/html/i);
+  });
+
+  test('401 on PUT /api/v1/hubs/test has text/plain content-type', async () => {
+    const res = await fetch(`${BASE}/api/v1/hubs/test`, {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json' },
+      body: '{}',
+    });
+    expect(res.status).toBe(401);
+    expect(res.headers.get('content-type') || '').toMatch(/text\/plain/i);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Server identity — extended                                        */
+/* ------------------------------------------------------------------ */
+
+describe('Server identity — extended', () => {
+  test('/api/v1/meta has x-request-id header (Cowboy request tracking)', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`);
+    expect(res.headers.get('x-request-id')).toBeTruthy();
+  });
+
+  test('/api/v1/meta has cross-origin-window-policy: deny', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`);
+    expect(res.headers.get('cross-origin-window-policy')).toBe('deny');
+  });
+
+  test('/api/v1/meta has x-download-options: noopen', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`);
+    expect(res.headers.get('x-download-options')).toBe('noopen');
+  });
+
+  test('/api/v1/meta has x-permitted-cross-domain-policies: none', async () => {
+    const res = await fetch(`${BASE}/api/v1/meta`);
+    expect(res.headers.get('x-permitted-cross-domain-policies')).toBe('none');
+  });
+
+  test('/ does NOT have x-request-id (Python server, not Cowboy)', async () => {
+    const res = await fetch(`${BASE}/`);
+    expect(res.headers.get('x-request-id')).toBeFalsy();
+  });
+
+  test('/ does NOT have content-security-policy (Python static server)', async () => {
+    const res = await fetch(`${BASE}/`);
+    expect(res.headers.get('content-security-policy')).toBeFalsy();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* HTML structural completeness                                       */
+/* ------------------------------------------------------------------ */
+
+describe('HTML structural completeness', () => {
+  test('hub.html has closing </html> tag', async () => {
+    const html = await (await fetch(`${BASE}/hub.html`)).text();
+    expect(html).toMatch(/<\/html>/i);
+  });
+
+  test('index.html has closing </html> tag', async () => {
+    const html = await (await fetch(`${BASE}/`)).text();
+    expect(html).toMatch(/<\/html>/i);
+  });
+
+  test('index.html has closing </body> tag', async () => {
+    const html = await (await fetch(`${BASE}/`)).text();
+    expect(html).toMatch(/<\/body>/i);
+  });
+
+  test('hub.html has meta charset=utf-8', async () => {
+    const html = await (await fetch(`${BASE}/hub.html`)).text();
+    expect(html).toMatch(/<meta charset="utf-8">/i);
+  });
+
+  test('index.html has meta charset=utf-8', async () => {
+    const html = await (await fetch(`${BASE}/`)).text();
+    expect(html).toMatch(/<meta charset="utf-8">/i);
+  });
+
+  test('hub.html has a-scene with networked-scene attribute', async () => {
+    const html = await (await fetch(`${BASE}/hub.html`)).text();
+    expect(html).toMatch(/<a-scene[^>]*networked-scene/i);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Static asset property tests                                        */
+/* ------------------------------------------------------------------ */
+
+describe('Static asset property tests', () => {
+  test('all JS bundles have content-length > 0', async () => {
+    const res = await fetch(`${BASE}/hub.html`);
+    const html = await res.text();
+    const scripts = [...html.matchAll(/<script[^>]+src="([^"]+)"/g)].map((m) => m[1]);
+    for (const src of scripts) {
+      const r = await fetch(`${BASE}${src}`);
+      const cl = r.headers.get('content-length');
+      if (!cl || parseInt(cl) <= 0) console.error(`JS ${src} content-length: ${cl}`);
+      expect(parseInt(cl || '0')).toBeGreaterThan(0);
+    }
+  });
+
+  test('all CSS bundles have content-length > 0', async () => {
+    const res = await fetch(`${BASE}/hub.html`);
+    const html = await res.text();
+    const links = [...html.matchAll(/<link[^>]+href="([^"]+)"/g)].map((m) => m[1]);
+    const cssLinks = links.filter((h) => h.startsWith('/') && h.endsWith('.css'));
+    for (const href of cssLinks) {
+      const r = await fetch(`${BASE}${href}`);
+      const cl = r.headers.get('content-length');
+      if (!cl || parseInt(cl) <= 0) console.error(`CSS ${href} content-length: ${cl}`);
+      expect(parseInt(cl || '0')).toBeGreaterThan(0);
+    }
+  });
+
+  test('hub.service.js has content-length > 0 and is a valid service worker', async () => {
+    const res = await fetch(`${BASE}/hub.service.js`);
+    expect(res.ok).toBe(true);
+    const cl = res.headers.get('content-length');
+    expect(parseInt(cl || '0')).toBeGreaterThan(0);
+    const body = await res.text();
+    expect(body).toMatch(/self\.addEventListener/);
+    // Must NOT match the old no-op pattern (even in comments)
+    expect(body).not.toMatch(/addEventListener\(\s*["']fetch["']/);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Mutation testing — negative proof of routing bug                    */
+/* ------------------------------------------------------------------ */
+
+describe('Mutation testing — routing bug regression', () => {
+  test('IF regex were greedy (.*)?, .gltf files would serve hub.html — verify they do NOT', async () => {
+    // This is the key regression test for the greedy regex bug.
+    // The old greedy regex ^/[A-Za-z0-9]{7}(/.*)?$ would match
+    // /<hubId>/objects.gltf and serve hub.html (HTML) to the glTF
+    // loader, causing SyntaxError: Unexpected token '<'.
+    const res = await fetch(`${BASE}/KGsQjXJ/objects.gltf`);
+    expect(res.status).toBe(404);
+    const body = await res.text();
+    // The response must NOT be hub.html (which would cause a JS SyntaxError)
+    expect(body).not.toMatch(/<title>Room \| App/);
+    expect(body.length).toBeLessThan(1000);
+  });
+
+  test('IF regex lacked slug support, room+slug URLs would serve index.html — verify they serve hub.html', async () => {
+    // This is the key regression test for the redirect-loop bug.
+    // The old regex ^/[A-Za-z0-9]{7}/?$ would NOT match /raJ6mj3/test-room
+    // and would fall through to index.html (landing page) instead of
+    // hub.html (room page), causing a redirect loop.
+    const res = await fetch(`${BASE}/raJ6mj3/test-room`);
+    expect(res.ok).toBe(true);
+    const html = await res.text();
+    expect(html).toMatch(/<title>Room \| App/);
+  });
+
+  test('IF do_HEAD lacked _resolve_target, HEAD to room URL would return 404 — verify it returns 200', async () => {
+    const res = await fetch(`${BASE}/raJ6mj3/test-room`, { method: 'HEAD' });
+    expect(res.status).toBe(200);
+  });
+
+  test('IF manifest lacked 48x48 in sizes, Chrome would warn "Resource size is not correct" — verify 48x48 present', async () => {
+    const html = await (await fetch(`${BASE}/hub.html`)).text();
+    const match = html.match(/<link[^>]+rel=["']icon["'][^>]+sizes=["']([^"']*)["']/i);
+    expect(match).toBeTruthy();
+    if (match) {
+      expect(match[1]).toMatch(/48x48/);
+    }
+  });
+
+  test('IF bundle lacked window.APP?. guard, APP ReferenceError would crash GLTF loader — verify fix present', async () => {
+    const res = await fetch(`${BASE}/assets/js/hub-544153456e8422fbb129.js`);
+    const body = await res.text();
+    expect(body).toContain('window.APP?.hub?.user_data?.hubs_use_bitecs_based_client');
+    expect(body).not.toContain('APP.hub?.user_data?.hubs_use_bitecs_based_client');
+  });
+
+  test('IF bundle lacked getLayoutMap truthy check, keyboard API null would crash A-Frame — verify fix present', async () => {
+    const res = await fetch(`${BASE}/assets/js/hub-544153456e8422fbb129.js`);
+    const body = await res.text();
+    expect(body).toContain('window.navigator.keyboard&&window.navigator.keyboard.getLayoutMap');
+    expect(body).not.toContain('void 0!==window.navigator.keyboard&&window.navigator.keyboard.getLayoutMap');
+  });
+});
