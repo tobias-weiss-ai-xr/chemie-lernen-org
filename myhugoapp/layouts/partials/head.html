@@ -23,6 +23,12 @@
 <!-- Canonical URL -->
 <link rel="canonical" href="{{ .Permalink }}">
 
+<!-- Geo Meta -->
+<meta name="geo.region" content="DE-BW">
+<meta name="geo.placename" content="Rottweil">
+<meta name="geo.position" content="48.1634;8.6167">
+<meta name="ICBM" content="48.1634, 8.6167">
+
 {{- with .Site.Author }}
 <meta name="author" content="{{ . }}">
 {{- end -}}
@@ -133,17 +139,50 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "{{ .Site.Title }}",
-  "url": "{{ .Site.BaseURL }}",
-  "description": "{{ .Site.Params.footer_description }}",
-   "inLanguage": "de-DE",
-   "potentialAction": {
-     "@type": "SearchAction",
-     "target": "{{ .Site.BaseURL }}pages/suche/?q={search_term_string}",
-     "query-input": "required name=search_term_string"
-   }
- }
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ .Site.BaseURL }}#organization",
+      "name": "chemie-lernen.org",
+      "url": "{{ .Site.BaseURL }}",
+      "description": "chemie-lernen.org - Ihre Plattform für innovatives Chemie-Lernen. Chemische Grundlagen und Konzepte greifbar und erlebbar.",
+      "inLanguage": "de-DE",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Rottweil",
+        "addressRegion": "Baden-Württemberg",
+        "postalCode": "78628",
+        "addressCountry": "DE"
+      },
+      "sameAs": [
+        "https://github.com/tobias-weiss-ai-xr/chemie-lernen-org"
+      ],
+      "knowsAbout": [
+        "Chemie",
+        "Chemieunterricht",
+        "Molekulare Chemie",
+        "Periodensystem",
+        "Anorganische Chemie",
+        "Organische Chemie",
+        "Physikalische Chemie"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ .Site.BaseURL }}#website",
+      "name": "{{ .Site.Title }}",
+      "url": "{{ .Site.BaseURL }}",
+      "description": "{{ .Site.Params.footer_description }}",
+      "inLanguage": "de-DE",
+      "publisher": { "@id": "{{ .Site.BaseURL }}#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ .Site.BaseURL }}pages/suche/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
 </script>
 
 {{ if and .IsPage (ne .Section "entity") }}
