@@ -103,7 +103,7 @@
     "jscpd": "^5.0.11",
     "jsdom": "26.0.0",
     "jsonwebtoken": "^9.0.3",
-    "lint-staged": "^16.2.7",
+    "lint-staged": "^17.4.1",
     "nodemailer": "^9.0.5",
     "pagefind": "^1.5.2",
     "pdfkit": "^0.20.1",
