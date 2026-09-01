@@ -19,6 +19,13 @@
 
 import { vi, beforeEach, afterAll } from 'vitest';
 
+// ── Jest compatibility global ──
+// Vitest 4.x no longer exposes `jest` as a global. Many legacy test files use
+// jest.fn(), jest.mock(), etc. Alias `jest` to `vi` for backward compatibility.
+if (typeof globalThis !== 'undefined' && typeof globalThis.jest === 'undefined') {
+  globalThis.jest = vi;
+}
+
 // ── fetch polyfill ──
 const defaultFetch = async (url, opts = {}) => {
   return {
@@ -27,7 +34,9 @@ const defaultFetch = async (url, opts = {}) => {
     json: async () => ({}),
     text: async () => '',
     headers: new Map(),
-    clone: function () { return this; },
+    clone: function () {
+      return this;
+    },
   };
 };
 
@@ -39,9 +48,15 @@ class MockResponse {
     this.ok = this.status < 400;
     this.headers = opts.headers || new Map();
   }
-  async json() { return typeof this.body === 'string' ? JSON.parse(this.body) : this.body; }
-  async text() { return typeof this.body === 'string' ? this.body : JSON.stringify(this.body); }
-  clone() { return new MockResponse(this.body, { status: this.status, headers: this.headers }); }
+  async json() {
+    return typeof this.body === 'string' ? JSON.parse(this.body) : this.body;
+  }
+  async text() {
+    return typeof this.body === 'string' ? this.body : JSON.stringify(this.body);
+  }
+  clone() {
+    return new MockResponse(this.body, { status: this.status, headers: this.headers });
+  }
 }
 
 // Request polyfill
@@ -52,7 +67,13 @@ class MockRequest {
     this.headers = opts.headers || new Map();
     this.body = opts.body;
   }
-  clone() { return new MockRequest(this.url, { method: this.method, headers: this.headers, body: this.body }); }
+  clone() {
+    return new MockRequest(this.url, {
+      method: this.method,
+      headers: this.headers,
+      body: this.body,
+    });
+  }
 }
 
 // Set on global/globalThis (Node.js context — for eval'd code and direct calls)

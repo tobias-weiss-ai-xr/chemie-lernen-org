@@ -1,6 +1,18 @@
 import { defineConfig } from 'vitest/config';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  resolve: {
+    alias: [
+      // Map 'three' to the dependency-free test fake (replaces Jest's moduleNameMapper)
+      { find: /^three$/, replacement: resolve(__dirname, 'tests/three-fake.cjs') },
+      // Map '@jest/globals' to 'vitest' for Jest-compatible test imports
+      { find: '@jest/globals', replacement: 'vitest' },
+    ],
+  },
   test: {
     // Match the same test files as the old Jest config
     include: ['tests/**/*.test.js', 'tests/**/*.test.mjs'],

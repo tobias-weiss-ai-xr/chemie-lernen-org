@@ -1,5 +1,5 @@
 /**
- * @jest-environment node
+ * @vitest-environment node
  *
  * Hubs deployment tests using modern paradigms:
  *   - Contract testing       : zod schemas pin the exact response shape the
@@ -88,7 +88,8 @@ const SLUG_CHARS = 'abcdefghijklmnopqrstuvwxyz0123456789-';
 
 function randomRoomId(len = 7) {
   let s = '';
-  for (let i = 0; i < len; i++) s += ROOM_ID_CHARS[Math.floor(Math.random() * ROOM_ID_CHARS.length)];
+  for (let i = 0; i < len; i++)
+    s += ROOM_ID_CHARS[Math.floor(Math.random() * ROOM_ID_CHARS.length)];
   return s;
 }
 
@@ -267,10 +268,7 @@ describe('Resilience / semantic monitoring', () => {
   });
 
   test('generic guard: no /api/* response is HTML (would crash the client)', async () => {
-    const paths = [
-      '/api/v1/meta',
-      '/api/v1/media/search?source=rooms&filter=public&cursor=0',
-    ];
+    const paths = ['/api/v1/meta', '/api/v1/media/search?source=rooms&filter=public&cursor=0'];
     for (const p of paths) {
       const res = await fetch(`${BASE}${p}`);
       expect(isHtml(res)).toBe(false);
@@ -353,7 +351,8 @@ describe('Room URL routing — redirect-loop fix', () => {
       const res = await fetch(`${BASE}/${id}`);
       expect(res.ok).toBe(true);
       const html = await res.text();
-      if (!isHubPage(html)) console.error(`room ID ${id} served non-hub page (${html.length} bytes)`);
+      if (!isHubPage(html))
+        console.error(`room ID ${id} served non-hub page (${html.length} bytes)`);
       expect(isHubPage(html)).toBe(true);
     }
   });
@@ -366,7 +365,8 @@ describe('Room URL routing — redirect-loop fix', () => {
       const res = await fetch(`${BASE}/${id}/${slug}`);
       expect(res.ok).toBe(true);
       const html = await res.text();
-      if (!isHubPage(html)) console.error(`room ${id}/${slug} served non-hub page (${html.length} bytes)`);
+      if (!isHubPage(html))
+        console.error(`room ${id}/${slug} served non-hub page (${html.length} bytes)`);
       expect(isHubPage(html)).toBe(true);
     }
   });
@@ -498,7 +498,9 @@ describe('Bundle integrity — patch verification', () => {
     // Truthy check: window.navigator.keyboard (no `void 0!==` prefix)
     expect(body).toContain('window.navigator.keyboard&&window.navigator.keyboard.getLayoutMap');
     // Old bug pattern must NOT be present
-    expect(body).not.toContain('void 0!==window.navigator.keyboard&&window.navigator.keyboard.getLayoutMap');
+    expect(body).not.toContain(
+      'void 0!==window.navigator.keyboard&&window.navigator.keyboard.getLayoutMap'
+    );
   });
 
   test('served hub bundle has APP ReferenceError fix (window.APP?. guard)', async () => {
@@ -1401,7 +1403,9 @@ describe('Room URL structural invariants', () => {
 describe('hub.html meta tag contracts', () => {
   test('hub.html has <link rel="manifest" href="/manifest.webmanifest">', async () => {
     const html = await (await fetch(`${BASE}/hub.html`)).text();
-    expect(html).toMatch(/<link[^>]+rel=["']manifest["'][^>]+href=["']\/manifest\.webmanifest["']/i);
+    expect(html).toMatch(
+      /<link[^>]+rel=["']manifest["'][^>]+href=["']\/manifest\.webmanifest["']/i
+    );
   });
 
   test('hub.html favicon link includes sizes with 48x48', async () => {
@@ -1720,7 +1724,9 @@ describe('API response structure contracts', () => {
     const body = await res.json();
     // next_cursor is 1 on first page, null when exhausted — must be number or null
     const cursorType = typeof body.meta.next_cursor;
-    expect(cursorType === 'number' || cursorType === 'object' || body.meta.next_cursor === null).toBe(true);
+    expect(
+      cursorType === 'number' || cursorType === 'object' || body.meta.next_cursor === null
+    ).toBe(true);
   });
 
   test('media/search meta.source is "public_rooms"', async () => {
@@ -2139,7 +2145,9 @@ describe('Mutation testing — routing bug regression', () => {
     const res = await fetch(`${BASE}/assets/js/hub-544153456e8422fbb129.js`);
     const body = await res.text();
     expect(body).toContain('window.navigator.keyboard&&window.navigator.keyboard.getLayoutMap');
-    expect(body).not.toContain('void 0!==window.navigator.keyboard&&window.navigator.keyboard.getLayoutMap');
+    expect(body).not.toContain(
+      'void 0!==window.navigator.keyboard&&window.navigator.keyboard.getLayoutMap'
+    );
   });
 });
 
