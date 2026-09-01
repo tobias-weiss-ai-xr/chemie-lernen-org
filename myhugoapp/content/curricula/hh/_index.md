@@ -1,15 +1,19 @@
 ---
 title: 'Lehrplan Hamburg'
-last_reviewed: 2026-08-06
-description: 'Chemie-Lehrplan für Hamburg — 0 Themen, 0 Lernziele, aufbereitet aus den amtlichen Kernlehrplänen.'
+last_reviewed: '2026-06-22'
+description: 'Chemie-Lehrplan für Hamburg — 10 Themen, 2422 Lernziele, aufbereitet aus den amtlichen Kernlehrplänen.'
 layout: curricula-state
 params:
   state: 'hh'
   stateName: 'Hamburg'
-  topicCount: 0
-  objectiveCount: 0
+  topicCount: 10
+  objectiveCount: 2422
 outputs:
   - html
+menu:
+  main:
+    parent: 'lehrende'
+    weight: 110
 ---
 
 Der Chemie-Lehrplan für **Hamburg** mit 10 Themen und 2422 Lernzielen.

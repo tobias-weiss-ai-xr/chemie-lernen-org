@@ -76,11 +76,27 @@ jobs:
           chmod 600 ~/.ssh/chemie_core_deploy
           scripts/vendor-core.sh
 
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            api/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
       - name: Export KG data from Neo4j
-        run: NODE_PATH=api/node_modules node scripts/export-kg-data.mjs || echo '[CI] Neo4j export skipped (non-fatal)'
+        run: node scripts/export-kg-data.mjs || echo '[CI] Neo4j export skipped (non-fatal)'
 
       - name: Validate curriculum data quality
         run: node scripts/validate-curricula.mjs
+
+      - name: Generate curricula pages
+        run: node scripts/generate-curricula-pages.mjs
 
       - name: Generate entity pages from KG data
         run: node scripts/generate-entity-pages.mjs

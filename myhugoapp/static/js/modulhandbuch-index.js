@@ -180,8 +180,13 @@
           escapeHtml(u.shortCode) +
           '">';
         html += '<h3>' + flag + ' ' + escapeHtml(u.name) + '</h3>';
-        html +=
-          '<div class="mh-meta">' + escapeHtml(u.city) + ', ' + escapeHtml(u.country) + '</div>';
+        var metaParts = [];
+        if (u.city) metaParts.push(escapeHtml(u.city));
+        if (u.country) metaParts.push(escapeHtml(u.country));
+        if (u.moduleCount) {
+          metaParts.push(u.moduleCount + (u.moduleCount === 1 ? ' Modul' : ' Module'));
+        }
+        html += '<div class="mh-meta">' + metaParts.join(' · ') + '</div>';
         html += '</div>';
       });
     } else if (searchResults) {

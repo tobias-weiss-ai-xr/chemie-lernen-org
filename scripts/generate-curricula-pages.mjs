@@ -101,6 +101,7 @@ function generatePage(code, data) {
   const name = STATE_LABELS[code] || code.toUpperCase();
   const topicCount = countTopics(data);
   const objectiveCount = countObjectives(data);
+  const lastUpdated = data.last_updated || new Date().toISOString().slice(0, 10);
   const desc =
     topicCount > 0
       ? `Chemie-Lehrplan für ${name} — ${topicCount} Themen, ${objectiveCount} Lernziele, aufbereitet aus den amtlichen Kernlehrplänen.`
@@ -111,6 +112,7 @@ function generatePage(code, data) {
 
   const content = `---
 title: 'Lehrplan ${name}'
+last_reviewed: '${lastUpdated}'
 description: '${desc}'
 layout: curricula-state
 params:
