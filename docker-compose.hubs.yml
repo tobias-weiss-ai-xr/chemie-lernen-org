@@ -253,6 +253,13 @@ services:
       # and APP ReferenceError (window.APP?. guard in bitECS newLoader check).
       # NOTE: hub.html loads hub-544153456e8422fbb129.js (NOT hub-c5e95cff…).
       - /opt/git/hubs-client-assets/hub-544153456e8422fbb129.js:/code/dist/assets/js/hub-544153456e8422fbb129.js:ro
+      # Patched index bundle (home page): populate fallbackImages map so
+      # configs.image("logo"), configs.image("home_background"), etc. return
+      # valid asset URLs. The built bundle shipped with an empty fallback object
+      # (var p={}) because the chemie-lernen branding patch in configs.js was
+      # never compiled (no-swap host, no webpack rebuild). Without this the
+      # home-page logo <img> and hero background are empty (black area).
+      - /opt/git/hubs-client-assets/index-19b3ec05dc199afecec2.js:/code/dist/assets/js/index-19b3ec05dc199afecec2.js:ro
       # valid empty glTF: hub page A-Frame default-scene fetch -> 200 instead of 404
       - /opt/git/hubs-client-assets/objects.gltf:/code/dist/objects.gltf:ro
     working_dir: /code
