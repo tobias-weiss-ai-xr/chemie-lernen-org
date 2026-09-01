@@ -96,6 +96,9 @@ export default [
       'sonarjs/no-redundant-assignments': 'off',
       'sonarjs/no-clear-text-protocols': 'off',
       'sonarjs/duplicates-in-character-class': 'off',
+      // New in eslint-plugin-sonarjs 4.x — too noisy for existing test suites
+      'sonarjs/parameterized-tests': 'off',
+      'sonarjs/no-fixed-wait-in-tests': 'off',
     },
   },
 
