@@ -6,6 +6,51 @@
   padding: 20px;
 }
 
+/* ── Chat centering ─────────────────────────── */
+/* Sidebar is hidden by default; the chat fills the container and is
+   centered. Only when a learning profile loads does JS add the
+   `has-profile` class to switch to a two-column layout. */
+.ki-assistent-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.ki-assistent-sidebar {
+  display: none;
+}
+
+.ki-assistent-chat {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+/* Two-column layout when a learning profile is active.
+   On mobile the sidebar stacks above the chat (full width);
+   on desktop (≥992px) it sits beside the chat (25% / 75%). */
+.ki-assistent-row.has-profile .ki-assistent-sidebar {
+  display: block;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.ki-assistent-row.has-profile .ki-assistent-chat {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 992px) {
+  .ki-assistent-row.has-profile .ki-assistent-sidebar {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .ki-assistent-row.has-profile .ki-assistent-chat {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+}
+
 .chat-container {
   border: 1px solid #ddd;
   border-radius: 8px;

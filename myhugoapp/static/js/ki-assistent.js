@@ -864,6 +864,8 @@
         .then(function (data) {
           renderLearningProfile(data);
           profileSection.style.display = 'block';
+          var chatRow = document.querySelector('.ki-assistent-row');
+          if (chatRow) chatRow.classList.add('has-profile');
         })
         .catch(function () {
           // Profile not available silently
