@@ -40,12 +40,9 @@ router.get('/api/modulhandbuch/universities', async (req, res) => {
     });
     const result = await session.run(
       `MATCH (u:University)
-       WHERE EXISTS {
-         MATCH (m:UniversityModule {university: u.short_code})
-         WHERE m.module_code IS NOT NULL
-       }
+       MATCH (m:UniversityModule {university: u.short_code})
+       WHERE m.module_code IS NOT NULL
        WITH u, count(DISTINCT m) AS moduleCount
-       WHERE moduleCount > 0
        RETURN u.short_code AS shortCode, u.name AS name, u.country AS country,
               u.city AS city, u.website AS website,
               moduleCount AS moduleCount
