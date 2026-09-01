@@ -1,5 +1,5 @@
 /**
- * @jest-environment node
+ * @vitest-environment node
  *
  * Route-level tests for GET /api/curricula/graph — the cytoscape-ready
  * payload behind the curricula index graph visualization.
@@ -14,33 +14,31 @@
  *  - malformed scope falls back to 'all'
  */
 
-import { jest, describe, test, expect, beforeAll, afterAll, beforeEach } from '@jest/globals';
+import { vi, describe, test, expect, beforeAll, afterAll, beforeEach } from 'vitest';
 import express from 'express';
 import http from 'node:http';
 
 const mockSession = {
-  run: jest.fn().mockResolvedValue({ records: [] }),
-  close: jest.fn().mockResolvedValue(undefined),
+  run: vi.fn().mockResolvedValue({ records: [] }),
+  close: vi.fn().mockResolvedValue(undefined),
 };
-const mockDriver = { session: jest.fn(() => mockSession) };
+const mockDriver = { session: vi.fn(() => mockSession) };
 
-jest.unstable_mockModule(
+vi.mock(
   '../api/services/neo4j.js',
   () => ({
     getNeo4jDriver: () => mockDriver,
     NEO4J_DATABASE: 'chemie',
     toNumberSafe: (v) => (v == null ? undefined : Number(v)),
     toNeoInt: (v) => ({ toNumber: () => Number(v), low: Number(v), high: 0, isInt: true }),
-  }),
-  { virtual: false }
+  })
 );
 
-jest.unstable_mockModule(
+vi.mock(
   '../api/services/content.js',
   () => ({
     getFallbackData: () => ({ curricula: [] }),
-  }),
-  { virtual: false }
+  })
 );
 
 let app;

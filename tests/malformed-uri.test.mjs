@@ -1,5 +1,5 @@
 /**
- * @jest-environment node
+ * @vitest-environment node
  *
  * Malformed percent-encoding (e.g. /%e4) must return 400 — not throw an
  * uncaught URIError inside an Express 4 async handler (which would hang
@@ -7,7 +7,7 @@
  * the kg-data + curricula routes.
  */
 
-import { jest, describe, test, expect, beforeAll, afterAll } from '@jest/globals';
+import { vi, describe, test, expect, beforeAll, afterAll } from 'vitest';
 import express from 'express';
 import http from 'node:http';
 
@@ -15,20 +15,19 @@ process.env.JWT_SECRET = process.env.JWT_SECRET || 'test-secret-for-urldecode-01
 process.env.LITELLM_URL = process.env.LITELLM_URL || 'http://localhost:4000';
 
 const mockSession = {
-  run: jest.fn().mockResolvedValue({ records: [] }),
-  close: jest.fn().mockResolvedValue(undefined),
+  run: vi.fn().mockResolvedValue({ records: [] }),
+  close: vi.fn().mockResolvedValue(undefined),
 };
-const mockDriver = { session: jest.fn(() => mockSession) };
+const mockDriver = { session: vi.fn(() => mockSession) };
 
-jest.unstable_mockModule(
+vi.mock(
   '../api/services/neo4j.js',
   () => ({
     getNeo4jDriver: () => mockDriver,
     NEO4J_DATABASE: 'chemie',
     toNumberSafe: (v) => (v == null ? undefined : Number(v)),
     toNeoInt: (v) => ({ toNumber: () => Number(v), low: Number(v), high: 0, isInt: true }),
-  }),
-  { virtual: false }
+  })
 );
 
 let app;

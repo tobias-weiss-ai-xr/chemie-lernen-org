@@ -55,7 +55,7 @@ describe('QuizSystem AI-graded MCQ handling', () => {
   describe('reportGradeToBackend', () => {
     test('POSTs the lettered answer id to /api/exercises/grade', () => {
       const calls = [];
-      global.window.fetch = jest.fn(() => Promise.resolve({ ok: true }));
+      global.window.fetch = vi.fn(() => Promise.resolve({ ok: true }));
       global.fetch = global.window.fetch;
 
       engine.reportGradeToBackend(aiQuestion, 2);
@@ -69,7 +69,7 @@ describe('QuizSystem AI-graded MCQ handling', () => {
     });
 
     test('does nothing for non-AI questions', () => {
-      global.window.fetch = jest.fn(() => Promise.resolve({}));
+      global.window.fetch = vi.fn(() => Promise.resolve({}));
       global.fetch = global.window.fetch;
       engine.reportGradeToBackend({ id: '1', type: 'multiple-choice', source: 'hand' }, 1);
       expect(global.window.fetch).not.toHaveBeenCalled();
@@ -89,25 +89,25 @@ describe('QuizSystem AI-graded MCQ handling', () => {
     }
 
     test('drops 404 rows permanently (backend session gone)', () => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
       const queue = new QuizGradeQueue();
       enqueue(queue, 'ex-gone', 'A');
-      global.window.fetch = jest.fn(() => Promise.resolve({ ok: false, status: 404 }));
+      global.window.fetch = vi.fn(() => Promise.resolve({ ok: false, status: 404 }));
       global.fetch = global.window.fetch;
 
       queue.drain();
-      jest.runAllTimers();
+      vi.runAllTimers();
 
       expect(global.window.fetch).toHaveBeenCalledTimes(1);
       expect(JSON.parse(localStorage.getItem(queue.STORAGE_KEY))).toEqual([]);
-      jest.useRealTimers();
+      vi.useRealTimers();
     });
 
     test('re-queues on network failure instead of losing the grade', async () => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
       const queue = new QuizGradeQueue();
       enqueue(queue, 'ex-1', 'B');
-      global.window.fetch = jest.fn(() => Promise.reject(new Error('offline')));
+      global.window.fetch = vi.fn(() => Promise.reject(new Error('offline')));
       global.fetch = global.window.fetch;
 
       queue.drain();
@@ -115,20 +115,20 @@ describe('QuizSystem AI-graded MCQ handling', () => {
       await Promise.resolve();
       await Promise.resolve();
       await Promise.resolve();
-      jest.runAllTimers();
+      vi.runAllTimers();
 
       const remaining = JSON.parse(localStorage.getItem(queue.STORAGE_KEY));
       expect(remaining).toHaveLength(1);
       expect(remaining[0].exerciseId).toBe('ex-1');
       expect(remaining[0].answer).toBe('B');
-      jest.useRealTimers();
+      vi.useRealTimers();
     });
 
     test('drops rows older than 7 days without sending', () => {
       const queue = new QuizGradeQueue();
       const stale = Date.now() - 8 * 24 * 60 * 60 * 1000;
       enqueue(queue, 'ex-stale', 'C', stale);
-      global.window.fetch = jest.fn(() => Promise.resolve({ ok: true }));
+      global.window.fetch = vi.fn(() => Promise.resolve({ ok: true }));
       global.fetch = global.window.fetch;
 
       queue.drain();

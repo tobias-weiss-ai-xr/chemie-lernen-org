@@ -1,5 +1,5 @@
 /**
- * @jest-environment node
+ * @vitest-environment node
  *
  * Integration tests for /api/exercises/grade and /api/exercises/feedback endpoints.
  *
@@ -7,7 +7,7 @@
  * Requires NODE_OPTIONS=--experimental-vm-modules (run via 'npm test').
  */
 
-import { jest, describe, test, expect, beforeAll, beforeEach } from '@jest/globals';
+import { vi, describe, test, expect, beforeAll, beforeEach } from 'vitest';
 
 // The route module chain imports api/auth.js, which requires JWT_SECRET.
 process.env.JWT_SECRET = process.env.JWT_SECRET || 'test-secret-for-integration-0123456789abcdef0123';
@@ -19,22 +19,21 @@ process.env.LITELLM_MODEL = process.env.LITELLM_MODEL || 'gemma-4';
 /* ------------------------------------------------------------------ */
 
 // Mock Neo4j
-const mockSession = { run: jest.fn(), close: jest.fn().mockResolvedValue(undefined) };
-const mockDriver = { session: jest.fn(() => mockSession) };
+const mockSession = { run: vi.fn(), close: vi.fn().mockResolvedValue(undefined) };
+const mockDriver = { session: vi.fn(() => mockSession) };
 
-jest.unstable_mockModule(
+vi.mock(
   '../api/services/neo4j.js',
   () => ({
-    getNeo4jDriver: jest.fn(() => mockDriver),
+    getNeo4jDriver: vi.fn(() => mockDriver),
     NEO4J_DATABASE: 'chemie',
     toNumberSafe: (v) => (v == null ? undefined : Number(v)),
     toNeoInt: (v) => ({ toNumber: () => Number(v), low: Number(v), high: 0, isInt: true }),
-  }),
-  { virtual: false }
+  })
 );
 
 // Mock LiteLLM fetch for generate/grade
-const mockFetch = jest.fn();
+const mockFetch = vi.fn();
 global.fetch = mockFetch;
 
 /* ------------------------------------------------------------------ */
@@ -50,7 +49,7 @@ beforeAll(async () => {
 });
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
   mockSession.run.mockReset();
   mockSession.close.mockReset().mockResolvedValue(undefined);
   mockFetch.mockReset();
@@ -71,11 +70,11 @@ function mockExpress() {
   };
 
   const res = {
-    status: jest.fn().mockReturnThis(),
-    json: jest.fn().mockReturnThis(),
-    send: jest.fn().mockReturnThis(),
-    setHeader: jest.fn().mockReturnThis(),
-    end: jest.fn().mockReturnThis(),
+    status: vi.fn().mockReturnThis(),
+    json: vi.fn().mockReturnThis(),
+    send: vi.fn().mockReturnThis(),
+    setHeader: vi.fn().mockReturnThis(),
+    end: vi.fn().mockReturnThis(),
   };
 
   return { req, res };

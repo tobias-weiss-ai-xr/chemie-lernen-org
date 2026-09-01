@@ -227,15 +227,15 @@ beforeEach(() => {
     window.matchMedia.mockClear && window.matchMedia.mockClear();
   }
   // Ensure matchMedia is the default in jsdom (returns matches: false)
-  window.matchMedia = jest.fn().mockImplementation((query) => ({
+  window.matchMedia = vi.fn().mockImplementation((query) => ({
     matches: false,
     media: query,
     onchange: null,
-    addListener: jest.fn(),
-    removeListener: jest.fn(),
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
   }));
   loadModule();
 });
@@ -375,14 +375,14 @@ describe('D3EgoGraph.createEgoGraph', () => {
   });
 
   test('skips d3.transition when prefers-reduced-motion is reduce', async () => {
-    window.matchMedia = jest.fn().mockImplementation((q) => ({
+    window.matchMedia = vi.fn().mockImplementation((q) => ({
       matches: q.includes('reduce'),
       media: q,
-      addListener: jest.fn(),
-      removeListener: jest.fn(),
-      addEventListener: jest.fn(),
-      removeEventListener: jest.fn(),
-      dispatchEvent: jest.fn(),
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
     }));
     const c = makeContainer();
     const data = { entities: [], articles: [] };

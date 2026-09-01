@@ -8,7 +8,7 @@ const path = require('path');
 describe('chemie-raeume directory', () => {
   beforeEach(() => {
     document.body.innerHTML = '<div id="chemie-raeume-grid"></div>';
-    jest.resetModules();
+    vi.resetModules();
     require(path.resolve(__dirname, '../myhugoapp/static/js/chemie-raeume.js'));
   });
 

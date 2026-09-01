@@ -425,7 +425,7 @@ describe('Chemistry Utils - extractElements', () => {
   });
 
   test('should skip invalid formulas and warn', () => {
-    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     // Use null to trigger an error in parseFormula
     const formulas = ['H2O', null, 'CO2'];
     const result = extractElements(formulas);

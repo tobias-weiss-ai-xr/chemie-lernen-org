@@ -1,5 +1,5 @@
 /**
- * @jest-environment node
+ * @vitest-environment node
  *
  * Regression tests for learning-engine XP awarding against sessions with
  * missing/partial progress — the crash class that a pre-initialized
@@ -7,17 +7,16 @@
  * (addXpEntry: Cannot read properties of undefined (reading 'unshift')).
  */
 
-import { jest, describe, test, expect } from '@jest/globals';
+import { vi, describe, test, expect } from 'vitest';
 
-jest.unstable_mockModule(
+vi.mock(
   'pdfkit',
   () => ({
     default: function () {
-      return { pipe: jest.fn(), end: jest.fn() };
+      return { pipe: vi.fn(), end: vi.fn() };
     },
     __esModule: true,
-  }),
-  { virtual: true }
+  })
 );
 
 const engine = await import('../api/learning-engine.js');
@@ -25,7 +24,7 @@ const engine = await import('../api/learning-engine.js');
 /** Minimal sessionStore whose getSession returns a session WITHOUT progress. */
 function makeStore(session) {
   return {
-    getSession: jest.fn(() => session),
+    getSession: vi.fn(() => session),
   };
 }
 

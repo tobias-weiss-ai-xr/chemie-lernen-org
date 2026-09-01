@@ -7,6 +7,7 @@
  *   GET /api/article/:slug
  */
 
+import { fileURLToPath } from 'node:url';
 import { Router } from 'express';
 import fs from 'fs';
 import path from 'path';
@@ -107,7 +108,7 @@ router.get('/api/content', async (req, res) => {
 router.get('/api/content/cross-link-stats', function (req, res) {
   try {
     var crossLinksPath = path.join(
-      path.dirname(new URL(import.meta.url).pathname),
+      path.dirname(fileURLToPath(import.meta.url)),
       '..',
       'myhugoapp',
       'data',

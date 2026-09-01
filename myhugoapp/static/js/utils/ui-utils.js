@@ -82,7 +82,7 @@ function showToast(message, type) {
     info: { bg: '#17a2b8', border: '#117a8b' },
   };
 
-  if (!_toastContainer) {
+  if (!_toastContainer || !_toastContainer.isConnected) {
     _toastContainer = document.createElement('div');
     _toastContainer.id = 'toast-container';
     _toastContainer.style.cssText =

@@ -8,7 +8,7 @@
  */
 
 /**
- * @jest-environment jsdom
+ * @vitest-environment jsdom
  */
 
 const fs = require('fs');
@@ -188,7 +188,7 @@ describe('renderDashboard (integration via DOM)', () => {
   beforeAll(() => {
     // Set up Chart.js mock globally
     global.Chart = function (ctx, config) {
-      this.destroy = jest.fn();
+      this.destroy = vi.fn();
       this.data = config.data;
       this.options = config.options;
     };
@@ -196,7 +196,7 @@ describe('renderDashboard (integration via DOM)', () => {
 
   beforeEach(() => {
     origFetch = global.fetch;
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: async () => ({
         total: 3,
@@ -249,7 +249,7 @@ describe('renderDashboard (integration via DOM)', () => {
   });
 
   test('handles fetch error gracefully', async () => {
-    global.fetch = jest.fn().mockRejectedValue(new Error('Network error'));
+    global.fetch = vi.fn().mockRejectedValue(new Error('Network error'));
 
     await window.loadAssessmentData();
 

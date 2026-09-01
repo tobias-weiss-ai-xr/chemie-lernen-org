@@ -262,7 +262,7 @@ describe('lernpfade — DOM rendering via window globals', () => {
   });
 
   test('lernpfadeInit calls fetch for paths and profile', () => {
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve({ paths: [], states: [] }),
     });
@@ -272,7 +272,7 @@ describe('lernpfade — DOM rendering via window globals', () => {
   });
 
   test('loadProfile renders XP bar with profile data', () => {
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () =>
         Promise.resolve({
@@ -295,7 +295,7 @@ describe('lernpfade — DOM rendering via window globals', () => {
   });
 
   test('renders empty badge grid when no badges', () => {
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () =>
         Promise.resolve({
@@ -327,7 +327,7 @@ describe('lernpfade — DOM rendering via window globals', () => {
   });
 
   test('lernpfadeCheckIn calls fetch POST', () => {
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve({}),
     });
@@ -343,7 +343,7 @@ describe('lernpfade — DOM rendering via window globals', () => {
   });
 
   test('lernpfadeTogglePath toggles expanded class', () => {
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve({ paths: [{ id: 'path1', title: 'Test', progress: 0 }] }),
     });
@@ -361,7 +361,7 @@ describe('lernpfade — DOM rendering via window globals', () => {
   });
 
   test('lernpfadeChangeState re-fetches paths', () => {
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve({ paths: [] }),
     });
@@ -377,7 +377,7 @@ describe('lernpfade — DOM rendering via window globals', () => {
   });
 
   test('handles unauthorized API response gracefully', () => {
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       status: 401,
       ok: false,
       json: () => Promise.resolve({ error: 'unauthorized' }),

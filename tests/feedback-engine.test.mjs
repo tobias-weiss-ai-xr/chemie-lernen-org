@@ -5,7 +5,7 @@
  *         applyTeacherOverride, clearFeedbackCache, getFeedbackCacheSize.
  */
 
-import { jest, describe, test, expect, beforeEach } from '@jest/globals';
+import { vi, describe, test, expect, beforeEach } from 'vitest';
 
 let feedbackEngine;
 

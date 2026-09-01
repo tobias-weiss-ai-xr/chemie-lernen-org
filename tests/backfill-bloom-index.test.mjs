@@ -1,5 +1,5 @@
 /**
- * @jest-environment node
+ * @vitest-environment node
  *
  * Idempotent unit tests for scripts/backfill-bloom-index.mjs — pure logic
  * (toIndex) and backfill loop with mocked Neo4j sessions (no real DB).
@@ -7,10 +7,10 @@
  * Task BZ-43 · bloom-zpd-adaptive-engine
  */
 
-import { describe, it, expect, beforeEach } from '@jest/globals';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { toIndex, BLOOM_ORDER, backfillBloomIndex } from '../scripts/backfill-bloom-index.mjs';
 
-// ── Lightweight mock helpers (avoids jest.fn() cross-mode issues) ──
+// ── Lightweight mock helpers (avoids vi.fn() cross-mode issues) ──
 
 function spyFn(impl) {
   const calls = [];

@@ -7,13 +7,14 @@
  * All exercise content is in German (de-de).
  */
 
+import { fileURLToPath } from 'node:url';
 import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 
 // ── Prompt loading (cached) ──────────────────────────────────
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROMPT_DIR = path.join(__dirname, 'prompts');
 
 let _genPrompt = null;

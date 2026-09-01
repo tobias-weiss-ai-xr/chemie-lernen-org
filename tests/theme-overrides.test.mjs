@@ -1,5 +1,5 @@
 /**
- * @jest-environment node
+ * @vitest-environment node
  *
  * Unit test: GET/PUT theme-overrides route with auth.js + neo4j mocked.
  *
@@ -10,7 +10,7 @@
  *   - Admin key enforcement: 401 missing/wrong key, 503 unconfigured
  */
 
-import { jest, describe, test, expect, beforeAll, afterAll, afterEach } from '@jest/globals';
+import { vi, describe, test, expect, beforeAll, afterAll, afterEach } from 'vitest';
 import express from 'express';
 import http from 'node:http';
 import { unlink } from 'node:fs/promises';
@@ -19,7 +19,7 @@ import { tmpdir } from 'node:os';
 
 // ── Mocks (must appear before dynamic import) ───────────────────
 
-jest.unstable_mockModule(
+vi.mock(
   '../api/auth.js',
   () => ({
     adminKeyMiddleware: (req, res, next) => {
@@ -28,21 +28,19 @@ jest.unstable_mockModule(
       if (req.headers['x-api-key'] !== key) return res.status(401).json({ error: 'Unauthorized' });
       next();
     },
-  }),
-  { virtual: true },
+  })
 );
 
-jest.unstable_mockModule(
+vi.mock(
   '../api/services/neo4j.js',
   () => ({
     getNeo4jDriver: () => ({
       session: () => ({
-        run: jest.fn().mockResolvedValue({ records: [] }),
-        close: jest.fn().mockResolvedValue(undefined),
+        run: vi.fn().mockResolvedValue({ records: [] }),
+        close: vi.fn().mockResolvedValue(undefined),
       }),
     }),
-  }),
-  { virtual: false },
+  })
 );
 
 // ── Fixture ────────────────────────────────────────────────────

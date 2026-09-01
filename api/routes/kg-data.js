@@ -12,6 +12,7 @@
  *   GET /api/health
  */
 
+import { fileURLToPath } from 'node:url';
 import { Router } from 'express';
 import fs from 'fs';
 import path from 'path';
@@ -907,7 +908,7 @@ router.get('/api/elements', (req, res) => {
   try {
     const elements = JSON.parse(
       fs.readFileSync(
-        path.join(path.dirname(new URL(import.meta.url).pathname), '..', 'data', 'elements.json'),
+        path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'data', 'elements.json'),
         'utf-8'
       )
     );

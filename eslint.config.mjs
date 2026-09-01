@@ -1,5 +1,4 @@
 import js from '@eslint/js';
-import jestPlugin from 'eslint-plugin-jest';
 import sonarjs from 'eslint-plugin-sonarjs';
 
 export default [
@@ -435,31 +434,33 @@ export default [
   // Test files
   {
     files: ['tests/**/*.test.js', 'tests/**/*.spec.js', 'tests/**/*.test.mjs'],
-    plugins: {
-      jest: jestPlugin,
-    },
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
       globals: {
-        ...jestPlugin.environments.globals.globals,
+        // Vitest globals (same names as Jest globals)
         describe: 'readonly',
         test: 'readonly',
+        it: 'readonly',
         expect: 'readonly',
         beforeAll: 'readonly',
         afterAll: 'readonly',
         beforeEach: 'readonly',
         afterEach: 'readonly',
+        vi: 'readonly',
+        // Node.js globals
         require: 'readonly',
         module: 'readonly',
         exports: 'readonly',
         process: 'readonly',
         console: 'readonly',
+        // jsdom globals
         document: 'readonly',
         window: 'readonly',
       },
     },
     rules: {
+<<<<<<< Updated upstream
       ...jestPlugin.configs.recommended.rules,
       'jest/no-disabled-tests': 'warn',
       'jest/no-focused-tests': 'error',
@@ -469,6 +470,8 @@ export default [
       'jest/no-conditional-expect': 'off',
       'jest/expect-expect': 'off',
       'jest/no-done-callback': 'warn',
+=======
+>>>>>>> Stashed changes
       'no-unused-vars': 'off',
       'no-undef': 'off',
       'no-redeclare': ['error', { builtinGlobals: false }],

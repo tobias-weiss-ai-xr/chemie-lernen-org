@@ -1,8 +1,8 @@
 /**
- * @jest-environment node
+ * @vitest-environment node
  */
 
-import { jest, describe, test, expect, beforeAll } from '@jest/globals';
+import { vi, describe, test, expect, beforeAll } from 'vitest';
 import express from 'express';
 import http from 'node:http';
 
@@ -11,20 +11,19 @@ process.env.LITELLM_URL = process.env.LITELLM_URL || 'http://localhost:4000';
 process.env.LITELLM_MODEL = process.env.LITELLM_MODEL || 'gemma-4';
 
 const mockSession = {
-  run: jest.fn().mockResolvedValue({ records: [] }),
-  close: jest.fn().mockResolvedValue(undefined),
+  run: vi.fn().mockResolvedValue({ records: [] }),
+  close: vi.fn().mockResolvedValue(undefined),
 };
-const mockDriver = { session: jest.fn(() => mockSession) };
+const mockDriver = { session: vi.fn(() => mockSession) };
 
-jest.unstable_mockModule(
+vi.mock(
   '../api/services/neo4j.js',
   () => ({
     getNeo4jDriver: () => mockDriver,
     NEO4J_DATABASE: 'chemie',
     toNumberSafe: (v) => (v == null ? undefined : Number(v)),
     toNeoInt: (v) => ({ toNumber: () => Number(v), low: Number(v), high: 0, isInt: true }),
-  }),
-  { virtual: false }
+  })
 );
 
 const authUser = { id: 'premium-1', role: 'premium', tier: 'premium' };

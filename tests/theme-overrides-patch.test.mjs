@@ -1,5 +1,5 @@
 /**
- * @jest-environment node
+ * @vitest-environment node
  *
  * Tests for PATCH/DELETE single-key endpoints on /api/theme-overrides.
  * Auth + neo4j are mocked; the route uses an isolated temp data file.
@@ -12,14 +12,14 @@
  *   - admin key enforced (401 missing/wrong, 503 unconfigured)
  */
 
-import { jest, describe, test, expect, beforeAll, afterAll, afterEach } from '@jest/globals';
+import { vi, describe, test, expect, beforeAll, afterAll, afterEach } from 'vitest';
 import express from 'express';
 import http from 'node:http';
 import { unlink } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 
-jest.unstable_mockModule(
+vi.mock(
   '../api/auth.js',
   () => ({
     adminKeyMiddleware: (req, res, next) => {
@@ -28,18 +28,16 @@ jest.unstable_mockModule(
       if (req.headers['x-api-key'] !== key) return res.status(401).json({ error: 'Unauthorized' });
       next();
     },
-  }),
-  { virtual: true },
+  })
 );
 
-jest.unstable_mockModule(
+vi.mock(
   '../api/services/neo4j.js',
   () => ({
     getNeo4jDriver: () => ({
-      session: () => ({ run: jest.fn().mockResolvedValue({ records: [] }), close: jest.fn() }),
+      session: () => ({ run: vi.fn().mockResolvedValue({ records: [] }), close: vi.fn() }),
     }),
-  }),
-  { virtual: false },
+  })
 );
 
 process.env.ADMIN_API_KEY = 'test-admin-key-patch-TO6';

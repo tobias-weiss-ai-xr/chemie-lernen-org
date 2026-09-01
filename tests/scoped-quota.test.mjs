@@ -1,12 +1,12 @@
 /**
- * @jest-environment node
+ * @vitest-environment node
  *
  * Unit tests for checkScopedQuota — the daily per-scope quota used to bound
  * LLM-backed hint requests (/api/chat/hint) independently of the 50/day
  * chat message quota.
  */
 
-import { describe, test, expect } from '@jest/globals';
+import { describe, test, expect } from 'vitest';
 import { checkScopedQuota } from '../api/services/session.js';
 
 describe('checkScopedQuota', () => {

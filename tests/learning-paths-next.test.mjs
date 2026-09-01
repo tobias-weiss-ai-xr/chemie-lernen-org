@@ -1,5 +1,5 @@
 /**
- * @jest-environment node
+ * @vitest-environment node
  *
  * DB-free unit tests for GET /api/learning-paths/:slug/next
  *
@@ -10,7 +10,7 @@
  * - returns proper JSON structure with inZPD, next, recommendedStrategy
  */
 
-import { jest, describe, test, expect, beforeAll, beforeEach } from '@jest/globals';
+import { vi, describe, test, expect, beforeAll, beforeEach } from 'vitest';
 import express from 'express';
 
 /* ------------------------------------------------------------------ */
@@ -18,89 +18,89 @@ import express from 'express';
 /* ------------------------------------------------------------------ */
 
 // Mock pdfkit (used by certificate route)
-jest.unstable_mockModule('pdfkit', () => ({
+vi.mock('pdfkit', () => ({
   default: function () {
-    return { pipe: jest.fn(), end: jest.fn() };
+    return { pipe: vi.fn(), end: vi.fn() };
   },
   __esModule: true,
-}), { virtual: true });
+}));
 
 // Mock pino (used for logging)
-jest.unstable_mockModule('pino', () => ({
-  default: jest.fn(() => ({
-    error: jest.fn(),
-    warn: jest.fn(),
-    info: jest.fn(),
-    debug: jest.fn(),
+vi.mock('pino', () => ({
+  default: vi.fn(() => ({
+    error: vi.fn(),
+    warn: vi.fn(),
+    info: vi.fn(),
+    debug: vi.fn(),
   })),
-}), { virtual: true });
+}));
 
 // Mock crypto
-jest.unstable_mockModule('crypto', () => ({
+vi.mock('crypto', () => ({
   default: {
-    randomUUID: jest.fn(() => 'test-uuid'),
+    randomUUID: vi.fn(() => 'test-uuid'),
   },
-}), { virtual: true });
+}));
 
 // Mock neo4j-driver (not directly used but imported)
-jest.unstable_mockModule('neo4j-driver', () => ({
+vi.mock('neo4j-driver', () => ({
   default: {},
   session: { READ: 'READ' },
-}), { virtual: true });
+}));
 
 // Mock auth.js - requireAuth checks for authenticated user
-jest.unstable_mockModule('../api/auth.js', () => ({
-  requireAuth: jest.fn((req, res, next) => {
+vi.mock('../api/auth.js', () => ({
+  requireAuth: vi.fn((req, res, next) => {
     if (!req.user?.id) {
       // Return 401 to match the real behavior
       return res.status(401).json({ error: 'Authentication required' });
     }
     next();
   }),
-  requirePremium: jest.fn((req, res, next) => next()),
-}), { virtual: false });
+  requirePremium: vi.fn((req, res, next) => next()),
+}));
 
 // Mock services that learning-paths.js imports but we don't need for this endpoint
-jest.unstable_mockModule('../api/services/neo4j.js', () => ({
-  getNeo4jDriver: jest.fn(),
+vi.mock('../api/services/neo4j.js', () => ({
+  getNeo4jDriver: vi.fn(),
   NEO4J_DATABASE: 'chemie',
   toNumberSafe: (v) => (v == null ? undefined : Number(v)),
-}), { virtual: false });
+}));
 
-jest.unstable_mockModule('../api/auth-db.js', () => ({
-  getGamification: jest.fn(() => ({})),
-}), { virtual: false });
+vi.mock('../api/auth-db.js', () => ({
+  getGamification: vi.fn(() => ({})),
+}));
 
-jest.unstable_mockModule('../api/learning-engine.js', () => ({
-  getAggregatedProgress: jest.fn(() => ({})),
-  enrollInPath: jest.fn(() => ({})),
-}), { virtual: false });
+vi.mock('../api/learning-engine.js', () => ({
+  getAggregatedProgress: vi.fn(() => ({})),
+  enrollInPath: vi.fn(() => ({})),
+}));
 
-jest.unstable_mockModule('../api/services/content.js', () => ({
-  loadLearningPathsJson: jest.fn(() => []),
-}), { virtual: false });
+vi.mock('../api/services/content.js', () => ({
+  loadLearningPathsJson: vi.fn(() => []),
+}));
 
-jest.unstable_mockModule('../api/services/session.js', () => ({
+vi.mock('../api/services/session.js', () => ({
   sessionStore: {},
-}), { virtual: false });
+}));
 
 // Mock the subset filter
-jest.unstable_mockModule('../scripts/_neo4j-subset-filter.mjs', () => ({
+vi.mock('../scripts/_neo4j-subset-filter.mjs', () => ({
   subsetMatch: () => '1=1',
-}), { virtual: false });
+}));
 
 /* ------------------------------------------------------------------ */
 /*  Mock the zpd-engine module - the key one we're testing through    */
 /* ------------------------------------------------------------------ */
 
-const mockNextObjectiveInZPD = jest.fn();
-const mockRecommendedStrategy = jest.fn();
+const mockNextObjectiveInZPD = vi.fn();
+const mockRecommendedStrategy = vi.fn();
 
-jest.unstable_mockModule('../api/services/zpd-engine.js', () => ({
+vi.mock('../api/services/zpd-engine.js', () => ({
   nextObjectiveInZPD: mockNextObjectiveInZPD,
   recommendedStrategy: mockRecommendedStrategy,
   ZPD_THRESHOLDS: { thetaHigh: 0.8, thetaLow: 0.6 },
-}), { virtual: false });
+}));
 
 /* ------------------------------------------------------------------ */
 /*  Import the module under test                                        */
@@ -114,7 +114,7 @@ beforeAll(async () => {
 });
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
   mockNextObjectiveInZPD.mockReset();
   mockRecommendedStrategy.mockReset();
 });

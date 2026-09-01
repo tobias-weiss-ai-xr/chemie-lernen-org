@@ -71,7 +71,7 @@ describe('Spaced Repetition System', () => {
     });
 
     test('should handle localStorage errors gracefully', () => {
-      jest.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+      vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
         throw new Error('Storage error');
       });
 

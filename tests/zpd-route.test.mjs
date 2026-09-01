@@ -7,43 +7,40 @@
  * detail progressPercent and objective checkmarks were permanently stuck at 0.
  * The ZPD mastery endpoint is the natural writer for the feature.
  *
- * @jest-environment node
+ * @vitest-environment node
  */
 
-import { jest, describe, test, expect, beforeEach, afterEach } from '@jest/globals';
+import { vi, describe, test, expect, beforeEach, afterEach } from 'vitest';
 import express from 'express';
 
-const mockCompleteObjective = jest.fn();
-const mockUpsert = jest.fn();
+const mockCompleteObjective = vi.fn();
+const mockUpsert = vi.fn();
 
-jest.unstable_mockModule(
+vi.mock(
   '../api/auth.js',
   () => ({
-    requireAuth: jest.fn((req, res, next) => {
+    requireAuth: vi.fn((req, res, next) => {
       if (!req.user?.id) return res.status(401).json({ error: 'Authentication required' });
       next();
     }),
-  }),
-  { virtual: false }
+  })
 );
 
-jest.unstable_mockModule(
+vi.mock(
   '../api/services/zpd-engine.js',
   () => ({
-    nextObjectiveInZPD: jest.fn(),
-    recommendedStrategy: jest.fn(),
+    nextObjectiveInZPD: vi.fn(),
+    recommendedStrategy: vi.fn(),
     upsertObjectiveState: mockUpsert,
     ZPD_THRESHOLDS: { thetaHigh: 0.8, thetaLow: 0.6 },
-  }),
-  { virtual: false }
+  })
 );
 
-jest.unstable_mockModule(
+vi.mock(
   '../api/auth-db.js',
   () => ({
     completeObjective: mockCompleteObjective,
-  }),
-  { virtual: false }
+  })
 );
 
 const { default: router } = await import('../api/routes/zpd.js');

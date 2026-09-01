@@ -291,16 +291,16 @@ describe('ki-assistent — Chat UI', () => {
 
   beforeEach(() => {
     setupChatDOM();
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve({ sessionId: 'test-session' }),
     });
     // Mock Audio for potential sound effects
-    global.Audio = jest.fn().mockImplementation(() => ({ play: jest.fn() }));
+    global.Audio = vi.fn().mockImplementation(() => ({ play: vi.fn() }));
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
     delete global.Audio;
   });
 
@@ -335,7 +335,7 @@ describe('ki-assistent — Chat UI', () => {
     input.value = 'Test Frage';
 
     // Need fetch to resolve for the bot message
-    global.fetch = jest.fn().mockImplementation((url) => {
+    global.fetch = vi.fn().mockImplementation((url) => {
       if (url.includes('/api/chat')) {
         return Promise.resolve({
           ok: true,
@@ -407,7 +407,7 @@ describe('ki-assistent — Chat UI', () => {
   test('loading indicator shows during typing', () => {
     // Set up minimal DOM that triggers init
     setupChatDOM();
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve({ sessionId: 'test-session' }),
     });

@@ -160,8 +160,8 @@ describe('entity-index — module loading and rendering', () => {
     // Mock lunr
     window.lunr = {
       Index: {
-        load: jest.fn().mockReturnValue({
-          search: jest.fn().mockReturnValue([]),
+        load: vi.fn().mockReturnValue({
+          search: vi.fn().mockReturnValue([]),
         }),
       },
     };
@@ -185,7 +185,7 @@ describe('entity-index — module loading and rendering', () => {
 
   test('sets __entityIndexLoaded flag', () => {
     // Make fetch return empty data immediately so the module doesn't hang
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve({ entities: [], articles: [] }),
     });
@@ -210,7 +210,7 @@ describe('entity-index — module loading and rendering', () => {
       articles: [],
     };
 
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve(mockData),
     });
@@ -235,7 +235,7 @@ describe('entity-index — module loading and rendering', () => {
   });
 
   test('renders empty state when fetch returns zero entities and articles', async () => {
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve({ entities: [], articles: [] }),
     });
@@ -250,7 +250,7 @@ describe('entity-index — module loading and rendering', () => {
   });
 
   test('renders network error state when fetch rejects', async () => {
-    global.fetch = jest.fn().mockRejectedValue(new Error('Network error'));
+    global.fetch = vi.fn().mockRejectedValue(new Error('Network error'));
 
     loadModule();
 
@@ -276,7 +276,7 @@ describe('entity-index — module loading and rendering', () => {
       links: [],
     };
 
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve(mockData),
     });
@@ -305,7 +305,7 @@ describe('entity-index — module loading and rendering', () => {
       articles: [],
     };
 
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve(mockData),
     });
@@ -338,7 +338,7 @@ describe('entity-index — module loading and rendering', () => {
       articles: [],
     };
 
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve(mockData),
     });
@@ -378,8 +378,8 @@ describe('entity-index — renderGraph', () => {
     delete window.__entityIndexLoaded;
     window.lunr = {
       Index: {
-        load: jest.fn().mockReturnValue({
-          search: jest.fn().mockReturnValue([]),
+        load: vi.fn().mockReturnValue({
+          search: vi.fn().mockReturnValue([]),
         }),
       },
     };
@@ -393,10 +393,10 @@ describe('entity-index — renderGraph', () => {
   });
 
   test('calls loadD3AndEgoGraph when available', async () => {
-    const loadD3Mock = jest.fn().mockResolvedValue(undefined);
+    const loadD3Mock = vi.fn().mockResolvedValue(undefined);
     window.loadD3AndEgoGraph = loadD3Mock;
     window.D3EgoGraph = {
-      createFullGraph: jest.fn(),
+      createFullGraph: vi.fn(),
     };
 
     const mockData = {
@@ -405,7 +405,7 @@ describe('entity-index — renderGraph', () => {
       links: [],
     };
 
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve(mockData),
     });
@@ -421,7 +421,7 @@ describe('entity-index — renderGraph', () => {
   });
 
   test('shows error in graph-loading when D3EgoGraph not available after load', async () => {
-    window.loadD3AndEgoGraph = jest.fn().mockResolvedValue(undefined);
+    window.loadD3AndEgoGraph = vi.fn().mockResolvedValue(undefined);
 
     const mockData = {
       entities: [],
@@ -429,7 +429,7 @@ describe('entity-index — renderGraph', () => {
       links: [],
     };
 
-    global.fetch = jest.fn().mockResolvedValue({
+    global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve(mockData),
     });

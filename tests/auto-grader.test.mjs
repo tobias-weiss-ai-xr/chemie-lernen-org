@@ -5,7 +5,7 @@
  *         gradeShortAnswer, gradeExercise (dispatcher).
  */
 
-import { jest, describe, test, expect } from '@jest/globals';
+import { vi, describe, test, expect } from 'vitest';
 
 // The auto-grader imports native node modules only (crypto, fs, path),
 // so we can import directly without mocking.

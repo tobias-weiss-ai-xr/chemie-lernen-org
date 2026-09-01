@@ -1,7 +1,7 @@
 /**
  * Mobile Responsiveness Test Suite
  * Tests all pages across multiple mobile viewport sizes
- * @jest-environment node
+ * @vitest-environment node
  */
 
 const { chromium } = require('playwright');

@@ -84,11 +84,11 @@ describe('offline-calculator — PWA offline page', () => {
 
   describe('online event', () => {
     beforeEach(() => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
     });
 
     afterEach(() => {
-      jest.useRealTimers();
+      vi.useRealTimers();
     });
 
     test('attempts reload after 1s timeout when coming back online', () => {
@@ -102,7 +102,7 @@ describe('offline-calculator — PWA offline page', () => {
 
       // The online handler calls location.reload() after 1s timeout.
       // In jsdom reload() throws, so verify no error before the timeout.
-      jest.advanceTimersByTime(999);
+      vi.advanceTimersByTime(999);
     });
   });
 
@@ -125,8 +125,8 @@ describe('offline-calculator — PWA offline page', () => {
       loadModule();
 
       const promptEvent = new Event('beforeinstallprompt');
-      promptEvent.preventDefault = jest.fn();
-      promptEvent.prompt = jest.fn();
+      promptEvent.preventDefault = vi.fn();
+      promptEvent.prompt = vi.fn();
       promptEvent.userChoice = Promise.resolve({ outcome: 'accepted' });
       window.dispatchEvent(promptEvent);
 
@@ -141,9 +141,9 @@ describe('offline-calculator — PWA offline page', () => {
 
       loadModule();
 
-      const mockPrompt = jest.fn();
+      const mockPrompt = vi.fn();
       const promptEvent = new Event('beforeinstallprompt');
-      promptEvent.preventDefault = jest.fn();
+      promptEvent.preventDefault = vi.fn();
       promptEvent.prompt = mockPrompt;
       promptEvent.userChoice = Promise.resolve({ outcome: 'accepted' });
       window.dispatchEvent(promptEvent);
@@ -157,7 +157,7 @@ describe('offline-calculator — PWA offline page', () => {
       btn.id = 'install-pwa-btn';
       document.body.appendChild(btn);
 
-      const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => {});
+      const alertMock = vi.spyOn(window, 'alert').mockImplementation(() => {});
 
       loadModule();
       // Don't dispatch beforeinstallprompt, so deferredPrompt remains null
@@ -190,11 +190,11 @@ describe('offline-calculator — PWA offline page', () => {
 
   describe('initial online check', () => {
     beforeEach(() => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
     });
 
     afterEach(() => {
-      jest.useRealTimers();
+      vi.useRealTimers();
     });
 
     test('attempts reload after 2s timeout when initially online', () => {
@@ -211,7 +211,7 @@ describe('offline-calculator — PWA offline page', () => {
       loadModule();
       // The IIFE registers a setTimeout for 2000ms that calls reload().
       // Advance to just before it fires.
-      jest.advanceTimersByTime(1999);
+      vi.advanceTimersByTime(1999);
     });
 
     test('does not reload when initially offline', () => {

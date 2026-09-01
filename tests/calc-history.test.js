@@ -181,12 +181,12 @@ describe('saveToHistory', () => {
   test('does not throw on malformed stored data (JSON.parse catch)', () => {
     // Fill localStorage with invalid JSON so JSON.parse throws
     const invalid = 'not valid json array';
-    jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => invalid);
+    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => invalid);
 
     // The catch in saveToHistory should handle it gracefully
     expect(() => saveToHistory('test', 'data')).not.toThrow();
 
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 });
 
@@ -449,7 +449,7 @@ describe('clearHistory', () => {
   });
 
   test('clears history when confirm returns true', () => {
-    global.confirm = jest.fn(() => true);
+    global.confirm = vi.fn(() => true);
 
     // Pre-populate history
     saveToHistory('test', 'data');
@@ -463,7 +463,7 @@ describe('clearHistory', () => {
   });
 
   test('does not clear when confirm returns false', () => {
-    global.confirm = jest.fn(() => false);
+    global.confirm = vi.fn(() => false);
 
     saveToHistory('test', 'data');
     expect(JSON.parse(localStorage.getItem('stoichHistory'))).toHaveLength(1);
@@ -475,7 +475,7 @@ describe('clearHistory', () => {
   });
 
   test('calls confirm with German message', () => {
-    global.confirm = jest.fn(() => false);
+    global.confirm = vi.fn(() => false);
     clearHistory();
 
     expect(global.confirm).toHaveBeenCalledWith(
@@ -545,7 +545,7 @@ describe('checkForBalancedEquation', () => {
   });
 
   test('warns on invalid data structure (no reactants)', () => {
-    const spy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const spy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     sessionStorage.setItem(
       'balancedEquation',
       JSON.stringify({ products: [{ formula: 'H2O', coefficient: 2 }] })
@@ -558,7 +558,7 @@ describe('checkForBalancedEquation', () => {
   });
 
   test('warns on invalid data structure (no products)', () => {
-    const spy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const spy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     sessionStorage.setItem(
       'balancedEquation',
       JSON.stringify({ reactants: [{ formula: 'H2', coefficient: 2 }] })
@@ -571,7 +571,7 @@ describe('checkForBalancedEquation', () => {
   });
 
   test('warns on empty reactants array', () => {
-    const spy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const spy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     sessionStorage.setItem(
       'balancedEquation',
       JSON.stringify({ reactants: [], products: [{ formula: 'H2O', coefficient: 2 }] })
@@ -607,12 +607,12 @@ describe('checkForBalancedEquation', () => {
 
 describe('showImportNotification', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     document.body.innerHTML = '';
   });
 
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   test('appends notification to body', () => {
@@ -650,9 +650,9 @@ describe('showImportNotification', () => {
     expect(document.body.children).toHaveLength(1);
 
     // Advance past the first timeout (5000ms for slideOut)
-    jest.advanceTimersByTime(5000);
+    vi.advanceTimersByTime(5000);
     // Advance past the second timeout (500ms for remove)
-    jest.advanceTimersByTime(600);
+    vi.advanceTimersByTime(600);
 
     expect(document.body.children).toHaveLength(0);
   });

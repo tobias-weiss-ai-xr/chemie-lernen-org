@@ -23,8 +23,8 @@ beforeEach(() => {
   const _patched = _noExport.replace(/^function\s+(\w+)/gm, 'globalThis.$1 = function $1');
   (0, eval)(_patched);
 
-  global.showToast = jest.fn();
-  global.saveToHistory = jest.fn();
+  global.showToast = vi.fn();
+  global.saveToHistory = vi.fn();
 });
 
 afterEach(() => {

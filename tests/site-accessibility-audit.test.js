@@ -1,7 +1,7 @@
 /**
  * Comprehensive Site Accessibility Audit
  * Tests WCAG 2.1 AA compliance across all major pages
- * @jest-environment node
+ * @vitest-environment node
  */
 
 const axios = require('axios');

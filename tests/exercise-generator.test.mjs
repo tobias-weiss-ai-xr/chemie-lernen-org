@@ -5,7 +5,7 @@
  *         clearGenerationCache, and generateExercise with mocked Neo4j + LiteLLM.
  */
 
-import { jest, describe, test, expect, beforeAll, beforeEach, afterEach } from '@jest/globals';
+import { vi, describe, test, expect, beforeAll, beforeEach, afterEach } from 'vitest';
 
 /* ------------------------------------------------------------------ */
 /*  Mocks for ESM dependencies                                         */
@@ -18,22 +18,21 @@ const mockNeo4jResult = (records) => ({
 });
 
 const mockSession = {
-  run: jest.fn(),
-  close: jest.fn().mockResolvedValue(undefined),
+  run: vi.fn(),
+  close: vi.fn().mockResolvedValue(undefined),
 };
 
 const mockDriver = {
-  session: jest.fn(() => mockSession),
+  session: vi.fn(() => mockSession),
 };
 
-jest.unstable_mockModule(
+vi.mock(
   '../api/services/neo4j.js',
   () => ({
-    getNeo4jDriver: jest.fn(() => mockDriver),
+    getNeo4jDriver: vi.fn(() => mockDriver),
     NEO4J_DATABASE: 'chemie',
     toNumberSafe: (v) => (v == null ? undefined : Number(v)),
-  }),
-  { virtual: false }
+  })
 );
 
 /* ------------------------------------------------------------------ */
@@ -49,7 +48,7 @@ beforeAll(async () => {
 });
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 
   // Default Neo4j session mock: return some learning objectives
   mockSession.run.mockImplementation((query, params) => {
@@ -491,7 +490,7 @@ describe('generateExercise', () => {
       explanation: 'Test',
     });
 
-    const fetchMock = jest.fn().mockResolvedValue({
+    const fetchMock = vi.fn().mockResolvedValue({
       ok: true,
       json: async () => ({
         choices: [{ message: { content: mockResponse } }],

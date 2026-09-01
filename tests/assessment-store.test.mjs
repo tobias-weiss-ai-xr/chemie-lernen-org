@@ -6,26 +6,26 @@
  *         batchSync, deleteUserAssessmentData.
  */
 
-import { jest, describe, test, expect, beforeAll, beforeEach } from '@jest/globals';
+import { vi, describe, test, expect, beforeAll, beforeEach } from 'vitest';
 
 /* ------------------------------------------------------------------ */
 /*  Mock Neo4j driver                                                  */
 /* ------------------------------------------------------------------ */
 
 const mockSession = {
-  run: jest.fn(),
-  close: jest.fn().mockResolvedValue(undefined),
+  run: vi.fn(),
+  close: vi.fn().mockResolvedValue(undefined),
 };
 
 const mockDriver = {
-  session: jest.fn(() => mockSession),
+  session: vi.fn(() => mockSession),
 };
 
 // Mock called via import from '../services/neo4j.js'
-jest.unstable_mockModule(
+vi.mock(
   '../api/services/neo4j.js',
   () => ({
-    getNeo4jDriver: jest.fn(() => mockDriver),
+    getNeo4jDriver: vi.fn(() => mockDriver),
     NEO4J_DATABASE: 'chemie',
     toNumberSafe: (v) => (v == null || v === undefined ? undefined : Number(v)),
     // Mimic neo4j-int: returns an object with isFinite()/toNumber() so
@@ -36,8 +36,7 @@ jest.unstable_mockModule(
       high: 0,
       isInt: true,
     }),
-  }),
-  { virtual: false }
+  })
 );
 
 /* ------------------------------------------------------------------ */
@@ -62,7 +61,7 @@ beforeAll(async () => {
 });
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
   mockSession.run.mockReset();
   mockSession.close.mockReset().mockResolvedValue(undefined);
   // Reset index bookkeeping so each test observes fresh index creation

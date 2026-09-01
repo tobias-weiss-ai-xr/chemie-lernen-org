@@ -1,12 +1,12 @@
 /**
- * @jest-environment node
+ * @vitest-environment node
  *
  * Unit tests for FileBackedSessionStore#getSession — the missing method that
  * learning-engine and the exercise routes call. Regresses the root-cause bug
  * where sessionStore.getSession was `is not a function`.
  */
 
-import { describe, test, expect } from '@jest/globals';
+import { describe, test, expect } from 'vitest';
 import FileBackedSessionStore from '../api/session-store.js';
 
 describe('FileBackedSessionStore.getSession', () => {

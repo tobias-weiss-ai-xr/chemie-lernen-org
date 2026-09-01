@@ -1,7 +1,7 @@
 /**
  * Accessibility Validation Test
  * Validates that WCAG 2.1 AA improvements are present
- * @jest-environment node
+ * @vitest-environment node
  */
 
 const axios = require('axios');

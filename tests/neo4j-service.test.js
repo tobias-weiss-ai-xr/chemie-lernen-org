@@ -33,7 +33,7 @@ describe('toNumberSafe (api/services/neo4j.js)', () => {
   let toNumberSafe;
 
   beforeEach(async () => {
-    jest.resetModules();
+    vi.resetModules();
     toNumberSafe = (await loadModule()).toNumberSafe;
   });
 

@@ -66,19 +66,19 @@ describe('Debug Logger', () => {
 
   describe('logging methods (disabled)', () => {
     test('log does not call console.log when disabled', () => {
-      consoleSpy.log = jest.spyOn(console, 'log').mockImplementation(() => {});
+      consoleSpy.log = vi.spyOn(console, 'log').mockImplementation(() => {});
       debug.log('test message');
       expect(consoleSpy.log).not.toHaveBeenCalled();
     });
 
     test('error does not call console.error when disabled', () => {
-      consoleSpy.error = jest.spyOn(console, 'error').mockImplementation(() => {});
+      consoleSpy.error = vi.spyOn(console, 'error').mockImplementation(() => {});
       debug.error('test error');
       expect(consoleSpy.error).not.toHaveBeenCalled();
     });
 
     test('warn does not call console.warn when disabled', () => {
-      consoleSpy.warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+      consoleSpy.warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
       debug.warn('test warning');
       expect(consoleSpy.warn).not.toHaveBeenCalled();
     });
@@ -90,31 +90,31 @@ describe('Debug Logger', () => {
     });
 
     test('log calls console.log when enabled', () => {
-      consoleSpy.log = jest.spyOn(console, 'log').mockImplementation(() => {});
+      consoleSpy.log = vi.spyOn(console, 'log').mockImplementation(() => {});
       debug.log('test message');
       expect(consoleSpy.log).toHaveBeenCalledWith('test message');
     });
 
     test('error calls console.error when enabled', () => {
-      consoleSpy.error = jest.spyOn(console, 'error').mockImplementation(() => {});
+      consoleSpy.error = vi.spyOn(console, 'error').mockImplementation(() => {});
       debug.error('test error');
       expect(consoleSpy.error).toHaveBeenCalledWith('test error');
     });
 
     test('warn calls console.warn when enabled', () => {
-      consoleSpy.warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+      consoleSpy.warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
       debug.warn('test warning');
       expect(consoleSpy.warn).toHaveBeenCalledWith('test warning');
     });
 
     test('info calls console.info when enabled', () => {
-      consoleSpy.info = jest.spyOn(console, 'info').mockImplementation(() => {});
+      consoleSpy.info = vi.spyOn(console, 'info').mockImplementation(() => {});
       debug.info('test info');
       expect(consoleSpy.info).toHaveBeenCalledWith('test info');
     });
 
     test('log passes multiple arguments', () => {
-      consoleSpy.log = jest.spyOn(console, 'log').mockImplementation(() => {});
+      consoleSpy.log = vi.spyOn(console, 'log').mockImplementation(() => {});
       debug.log('msg', 42, { key: 'val' });
       expect(consoleSpy.log).toHaveBeenCalledWith('msg', 42, { key: 'val' });
     });

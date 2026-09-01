@@ -13,19 +13,18 @@
  * BOTH chains are present — mirroring the detail route in learning-paths.js.
  */
 
-import { jest, describe, test, expect, beforeEach } from '@jest/globals';
+import { vi, describe, test, expect, beforeEach } from 'vitest';
 
 let captured = null;
 
-jest.unstable_mockModule(
+vi.mock(
   'neo4j-driver',
   () => ({
     default: { session: { READ: 'READ' } },
-  }),
-  { virtual: true }
+  })
 );
 
-jest.unstable_mockModule(
+vi.mock(
   '../api/services/neo4j.js',
   () => ({
     getNeo4jDriver: () => ({
@@ -39,16 +38,14 @@ jest.unstable_mockModule(
     }),
     NEO4J_DATABASE: 'chemie',
     toNumberSafe: (v) => (v == null ? undefined : Number(v)),
-  }),
-  { virtual: false }
+  })
 );
 
-jest.unstable_mockModule(
+vi.mock(
   '../scripts/_neo4j-subset-filter.mjs',
   () => ({
     subsetMatch: () => 'WHERE (lo:LearningObjective)',
-  }),
-  { virtual: false }
+  })
 );
 
 const { nextObjectiveInZPD } = await import('../api/services/zpd-engine.js');

@@ -4,13 +4,13 @@
  * Covers: auth.js middleware (requireAuth, requirePremium, sanitizeUser),
  * auth-db.js premium functions (isPremium, setPremiumTier, expireStalePremiums).
  *
- * Uses jest.unstable_mockModule() to mock Stripe SDK and other ESM deps
+ * Uses vi.mock() to mock Stripe SDK and other ESM deps
  * while importing the real auth modules via dynamic import().
  */
 
 // Native ESM runs under NODE_OPTIONS=--experimental-vm-modules (npm test),
-// where the jest global is not auto-injected — import it from @jest/globals.
-import { jest, describe, test, expect, beforeAll, afterEach } from '@jest/globals';
+// where the vitest global is not auto-injected — import it from 'vitest'.
+import { vi, describe, test, expect, beforeAll, afterEach } from 'vitest';
 
 /* ------------------------------------------------------------------ */
 /*  Environment — must be set before module loads                      */
@@ -26,109 +26,101 @@ process.env.FRONTEND_URL = 'http://localhost:3000';
 /* ------------------------------------------------------------------ */
 
 // Must be called before any dynamic import() of the mocked modules
-jest.unstable_mockModule(
+vi.mock(
   'stripe',
   () => ({
     default: class MockStripe {
       constructor(key) {
         this._key = key;
-        this.checkout = { sessions: { create: jest.fn() } };
-        this.webhooks = { constructEvent: jest.fn() };
+        this.checkout = { sessions: { create: vi.fn() } };
+        this.webhooks = { constructEvent: vi.fn() };
       }
     },
-  }),
-  { virtual: true }
+  })
 );
 
-jest.unstable_mockModule(
+vi.mock(
   'express',
   () => {
     const mockRouter = {
-      use: jest.fn().mockReturnThis(),
-      post: jest.fn().mockReturnThis(),
-      get: jest.fn().mockReturnThis(),
-      put: jest.fn().mockReturnThis(),
+      use: vi.fn().mockReturnThis(),
+      post: vi.fn().mockReturnThis(),
+      get: vi.fn().mockReturnThis(),
+      put: vi.fn().mockReturnThis(),
     };
-    return { Router: jest.fn(() => mockRouter) };
-  },
-  { virtual: true }
+    return { Router: vi.fn(() => mockRouter) };
+  }
 );
 
-jest.unstable_mockModule(
+vi.mock(
   'express-rate-limit',
   () => ({
-    default: jest.fn(() => (req, res, next) => next()),
-  }),
-  { virtual: true }
+    default: vi.fn(() => (req, res, next) => next()),
+  })
 );
 
-jest.unstable_mockModule(
+vi.mock(
   'bcryptjs',
   () => ({
     default: {
-      hash: jest.fn(() => Promise.resolve('$2a$12$mocked_hash_for_testing')),
-      compare: jest.fn(() => Promise.resolve(true)),
+      hash: vi.fn(() => Promise.resolve('$2a$12$mocked_hash_for_testing')),
+      compare: vi.fn(() => Promise.resolve(true)),
     },
-    hash: jest.fn(() => Promise.resolve('$2a$12$mocked_hash_for_testing')),
-    compare: jest.fn(() => Promise.resolve(true)),
-  }),
-  { virtual: true }
+    hash: vi.fn(() => Promise.resolve('$2a$12$mocked_hash_for_testing')),
+    compare: vi.fn(() => Promise.resolve(true)),
+  })
 );
 
-jest.unstable_mockModule(
+vi.mock(
   'nodemailer',
   () => ({
     default: {
-      createTransport: jest.fn(() => ({
-        sendMail: jest.fn(() => Promise.resolve({ messageId: 'mock-mail-id' })),
+      createTransport: vi.fn(() => ({
+        sendMail: vi.fn(() => Promise.resolve({ messageId: 'mock-mail-id' })),
       })),
     },
-  }),
-  { virtual: true }
+  })
 );
 
-jest.unstable_mockModule(
+vi.mock(
   'jsonwebtoken',
   () => ({
     default: {
-      sign: jest.fn(() => 'mock-jwt-token-for-testing'),
-      verify: jest.fn(() => ({
+      sign: vi.fn(() => 'mock-jwt-token-for-testing'),
+      verify: vi.fn(() => ({
         id: 1,
         email: 'test@example.com',
         role: 'user',
         tier: 'free',
       })),
     },
-  }),
-  { virtual: true }
+  })
 );
 
-jest.unstable_mockModule(
+vi.mock(
   'cookie-parser',
   () => ({
-    default: jest.fn(() => (req, res, next) => next()),
-  }),
-  { virtual: true }
+    default: vi.fn(() => (req, res, next) => next()),
+  })
 );
 
 // Mock Node built-in fs to prevent actual disk I/O from auth-db.js
-jest.unstable_mockModule(
+vi.mock(
   'fs',
   () => ({
     default: {
-      existsSync: jest.fn(() => false),
-      readFileSync: jest.fn(),
-      writeFileSync: jest.fn(),
-      renameSync: jest.fn(),
-      mkdirSync: jest.fn(),
+      existsSync: vi.fn(() => false),
+      readFileSync: vi.fn(),
+      writeFileSync: vi.fn(),
+      renameSync: vi.fn(),
+      mkdirSync: vi.fn(),
     },
-    existsSync: jest.fn(() => false),
-    readFileSync: jest.fn(),
-    writeFileSync: jest.fn(),
-    renameSync: jest.fn(),
-    mkdirSync: jest.fn(),
-  }),
-  { virtual: true }
+    existsSync: vi.fn(() => false),
+    readFileSync: vi.fn(),
+    writeFileSync: vi.fn(),
+    renameSync: vi.fn(),
+    mkdirSync: vi.fn(),
+  })
 );
 
 /* ------------------------------------------------------------------ */
@@ -145,10 +137,10 @@ let auth;
 /** Create a mock Express req/res/next trio for middleware testing. */
 function mockReqRes(user) {
   const req = { user: user || null };
-  const json = jest.fn();
-  const status = jest.fn(() => ({ json }));
+  const json = vi.fn();
+  const status = vi.fn(() => ({ json }));
   const res = { status, json };
-  const next = jest.fn();
+  const next = vi.fn();
   return { req, res, next, json, status };
 }
 

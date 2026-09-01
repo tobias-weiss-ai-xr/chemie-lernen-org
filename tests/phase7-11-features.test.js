@@ -221,13 +221,13 @@ const GamificationEngine = {
 beforeEach(() => {
   // Mock localStorage
   const store = {};
-  jest
+  vi
     .spyOn(Storage.prototype, 'getItem')
     .mockImplementation((key) => (store[key] !== undefined ? store[key] : null));
-  jest.spyOn(Storage.prototype, 'setItem').mockImplementation((key, val) => {
+  vi.spyOn(Storage.prototype, 'setItem').mockImplementation((key, val) => {
     store[key] = String(val);
   });
-  jest.spyOn(Storage.prototype, 'removeItem').mockImplementation((key) => {
+  vi.spyOn(Storage.prototype, 'removeItem').mockImplementation((key) => {
     delete store[key];
   });
 
@@ -236,7 +236,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  jest.restoreAllMocks();
+  vi.restoreAllMocks();
 });
 
 /* ================================================================== */

@@ -395,18 +395,18 @@ describe('UIUtils - showToast', function () {
   });
 
   function freshShowToast() {
-    jest.resetModules();
+    vi.resetModules();
     return require('../myhugoapp/static/js/utils/ui-utils.js').showToast;
   }
 
   beforeEach(function () {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     document.body.innerHTML = '';
     showToast = freshShowToast();
   });
 
   afterEach(function () {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   test('creates toast container and appends to body', function () {
@@ -461,7 +461,7 @@ describe('UIUtils - showToast', function () {
   test('animates toast in via requestAnimationFrame', function () {
     showToast('Animate');
     var toast = document.getElementById('toast-container').children[0];
-    jest.advanceTimersByTime(20);
+    vi.advanceTimersByTime(20);
     expect(toast.style.opacity).toBe('1');
     expect(toast.style.transform).toBe('translateX(0)');
   });
@@ -470,10 +470,10 @@ describe('UIUtils - showToast', function () {
     showToast('Cleanup test');
     var container = document.getElementById('toast-container');
     expect(container.children).toHaveLength(1);
-    jest.advanceTimersByTime(20);
-    jest.advanceTimersByTime(4000);
+    vi.advanceTimersByTime(20);
+    vi.advanceTimersByTime(4000);
     expect(container.children[0].style.opacity).toBe('0');
-    jest.advanceTimersByTime(300);
+    vi.advanceTimersByTime(300);
     expect(container.children).toHaveLength(0);
   });
 

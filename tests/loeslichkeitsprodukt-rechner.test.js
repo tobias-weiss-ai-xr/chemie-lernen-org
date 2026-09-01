@@ -5,7 +5,7 @@
 // Mock ChemistryUtils
 global.window = {
   ChemistryUtils: {
-    parseFormula: jest.fn((formula) => {
+    parseFormula: vi.fn((formula) => {
       const regex = /([A-Z][a-z]?)(\d*)/g;
       const result = {};
       let match;
@@ -16,7 +16,7 @@ global.window = {
       }
       return result;
     }),
-    formatFormula: jest.fn((formula) => {
+    formatFormula: vi.fn((formula) => {
       return formula.replace(/(\d+)/g, '<sub>$1</sub>');
     }),
   },

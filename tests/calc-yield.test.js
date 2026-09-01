@@ -24,8 +24,8 @@ beforeEach(() => {
   (0, eval)(_patched);
 
   // Stub external dependencies
-  global.showToast = jest.fn();
-  global.saveToHistory = jest.fn();
+  global.showToast = vi.fn();
+  global.saveToHistory = vi.fn();
 });
 
 afterEach(() => {
