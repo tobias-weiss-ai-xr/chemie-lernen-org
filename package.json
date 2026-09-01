@@ -1,12 +1,13 @@
 {
   "scripts": {
-    "test": "vitest run --exclude '**/complete-site-audit*' --exclude '**/site-accessibility*' --exclude '**/mobile-responsiveness*' --exclude '**/accessibility-validation*' --exclude '**/.tf-worktrees/**'",
+    "test": "vitest run --exclude '**/complete-site-audit*' --exclude '**/site-accessibility*' --exclude '**/mobile-responsiveness*' --exclude '**/accessibility-validation*' --exclude '**/hubs-stack*' --exclude '**/.tf-worktrees/**'",
     "test:all": "vitest run --exclude '**/.tf-worktrees/**' --reporter=verbose",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:verbose": "vitest run --reporter=verbose",
     "test:integration": "vitest run --testNamePattern='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation|visualization)'",
-    "test:unit": "vitest run --exclude '**/complete-site-audit*' --exclude '**/site-accessibility*' --exclude '**/mobile-responsiveness*' --exclude '**/accessibility-validation*' --exclude '**/visualization*' --exclude '**/.tf-worktrees/**'",
+    "test:unit": "vitest run --exclude '**/complete-site-audit*' --exclude '**/site-accessibility*' --exclude '**/mobile-responsiveness*' --exclude '**/accessibility-validation*' --exclude '**/hubs-stack*' --exclude '**/visualization*' --exclude '**/.tf-worktrees/**'",
+    "test:hubs": "vitest run tests/hubs-stack.test.mjs",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
