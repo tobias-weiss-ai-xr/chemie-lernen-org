@@ -28,27 +28,26 @@ jobs:
           chmod 600 ~/.ssh/chemie_core_deploy
           scripts/vendor-core.sh
 
-      - name: Cache bun dependencies
+      - name: Cache dependencies
         uses: actions/cache@v4
         with:
           path: |
             ~/.bun/install/cache
+            ~/.npm
             node_modules
             api/node_modules
-          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb', '**/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
           restore-keys: |
-            ${{ runner.os }}-bun-
+            ${{ runner.os }}-node-
 
       - name: Setup Node.js
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
-      - name: Install dependencies (cached)
+      - name: Install dependencies
         run: |
-          if [ ! -d node_modules ]; then
-            bun install --frozen-lockfile
-          fi
+          npm install --no-audit --no-fund
           if [ ! -d api/node_modules ]; then
             cd api && bun install
           fi
