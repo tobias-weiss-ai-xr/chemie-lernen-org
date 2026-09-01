@@ -33,7 +33,6 @@ jobs:
         with:
           path: |
             ~/.bun/install/cache
-            ~/.npm
             node_modules
             api/node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
