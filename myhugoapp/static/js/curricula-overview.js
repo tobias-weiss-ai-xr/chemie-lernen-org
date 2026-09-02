@@ -271,6 +271,7 @@
       if (card) card.classList.remove('selected');
     }
     renderCompare();
+    updateUrl();
   }
 
   function renderCompare() {
@@ -294,6 +295,44 @@
       });
       if (codes.join('|') !== selected.join('|')) return;
       panel.innerHTML = buildCompareTable(datas);
+      // UXF-007: Toolbar verdrahten
+      var onlyCommonCb = panel.querySelector('#curricula-compare-only-common');
+      if (onlyCommonCb) {
+        onlyCommonCb.addEventListener('change', function () {
+          window.curriculaCompareOnlyCommon = this.checked;
+          renderCompare();
+        });
+      }
+      var csvBtn = panel.querySelector('#curricula-compare-csv');
+      if (csvBtn) {
+        csvBtn.addEventListener('click', function () {
+          if (!window.CurriculaUtils) return;
+          var exportSets = datas.map(function (d) {
+            return { code: (d.state || '').toUpperCase(), labels: topicLabels(d) };
+          });
+          var union = {};
+          exportSets.forEach(function (s) {
+            s.labels.forEach(function (l) {
+              union[l] = true;
+            });
+          });
+          var allLabels = Object.keys(union).sort(function (a, b) {
+            return a.localeCompare(b, 'de');
+          });
+          var csv = window.CurriculaUtils.buildCompareCsv(exportSets, allLabels, stateName);
+          window.CurriculaUtils.downloadCsv(
+            'lehrplan-vergleich-' +
+              exportSets
+                .map(function (s) {
+                  return s.code;
+                })
+                .join('-')
+                .toLowerCase() +
+              '.csv',
+            csv
+          );
+        });
+      }
     });
   }
 
@@ -370,6 +409,61 @@
       })
       .join('');
 
+    // UXF-007: "Nur gemeinsame Themen"-Filter + CSV-Export
+    var onlyCommon = window.curriculaCompareOnlyCommon === true;
+    var visibleRows = onlyCommon
+      ? all.filter(function (label) {
+          return sets.every(function (s) {
+            return s.labels.has(label);
+          });
+        })
+      : all;
+    var rowsFiltered = all
+      .map(function (label) {
+        var present = sets.filter(function (s) {
+          return s.labels.has(label);
+        });
+        var cells = sets
+          .map(function (s) {
+            return s.labels.has(label) ? '<td class="yes">✓</td>' : '<td class="no">–</td>';
+          })
+          .join('');
+        return { label: label, cells: cells, present: present.length };
+      })
+      .filter(function (r) {
+        return !onlyCommon || r.present === sets.length;
+      });
+    var rowsHtml = rowsFiltered
+      .map(function (r) {
+        return (
+          '<tr><td><a class="curricula-topic-link" href="/entity/' +
+          toSlug(r.label) +
+          '/">' +
+          escapeHtml(r.label) +
+          '</a></td>' +
+          r.cells +
+          '</tr>'
+        );
+      })
+      .join('');
+
+    var toolbar =
+      '<div class="curricula-compare-toolbar">' +
+      '<label class="curricula-compare-only-common">' +
+      '<input type="checkbox" id="curricula-compare-only-common"' +
+      (onlyCommon ? ' checked' : '') +
+      ' /> Nur gemeinsame Themen (' +
+      common +
+      ')</label>' +
+      '<button type="button" class="btn btn-secondary curricula-compare-csv" id="curricula-compare-csv">' +
+      '⬇ CSV-Export</button>' +
+      '<span class="curricula-compare-visible">' +
+      rowsFiltered.length +
+      ' von ' +
+      all.length +
+      ' Themen</span>' +
+      '</div>';
+
     return (
       '<h3>Vergleich: ' +
       escapeHtml(names) +
@@ -377,10 +471,11 @@
       '<div class="curricula-compare-summary">' +
       summaryParts.join(' · ') +
       '</div>' +
+      toolbar +
       '<table class="curricula-compare-table"><thead><tr>' +
       head +
       '</tr></thead><tbody>' +
-      rows +
+      rowsHtml +
       '</tbody></table>'
     );
   }
@@ -424,6 +519,7 @@
       schoolSel.addEventListener('change', function () {
         filterSchool = this.value;
         renderGrid();
+        updateUrl();
       });
     }
     if (gradeSel) {
@@ -440,6 +536,7 @@
       gradeSel.addEventListener('change', function () {
         filterGrade = this.value;
         renderGrid();
+        updateUrl();
       });
     }
     var bar = document.getElementById('curricula-filter-bar');
@@ -447,6 +544,65 @@
   }
 
   // ── Tabs ─────────────────────────────────────────────────────────────
+
+  // ── UXF-002: URL-State (Deep-Links) ───────────────────────────────
+
+  function applyUrlState() {
+    if (!window.CurriculaUtils) return;
+    var us = window.CurriculaUtils.parseUrlState();
+    // Filter VOR renderGrid() anwenden (Selects sind von buildFilterOptions gefüllt)
+    if (us.schulform) {
+      filterSchool = us.schulform;
+      var schoolSel = document.getElementById('curricula-filter-school');
+      if (schoolSel) schoolSel.value = us.schulform;
+    }
+    if (us.klasse) {
+      filterGrade = us.klasse;
+      var gradeSel = document.getElementById('curricula-filter-grade');
+      if (gradeSel) gradeSel.value = us.klasse;
+    }
+  }
+
+  // UXF-002: Compare/Tab-State NACH renderGrid()+wireTabs() anwenden —
+  // braucht die gerenderten Checkboxen.
+  function applyUrlCompareState() {
+    if (!window.CurriculaUtils) return;
+    var us = window.CurriculaUtils.parseUrlState();
+    if (us.tab === 'advanced') showTab('advanced');
+    if (us.vergleich && us.vergleich.length >= 2) {
+      selected = us.vergleich.slice(0, 3);
+      var check = document.getElementById('curricula-compare-check');
+      if (check && !check.checked) {
+        check.checked = true;
+        var grid = document.getElementById('curricula-grid');
+        if (grid) grid.classList.add('compare-mode');
+      }
+      // Checkboxen in den Cards spiegeln
+      selected.forEach(function (code) {
+        var cb = document.querySelector('.curricula-compare-cb[value="' + code + '"]');
+        if (cb) {
+          cb.checked = true;
+          var card = cb.closest('.curricula-state-card');
+          if (card) card.classList.add('selected');
+        }
+      });
+      renderCompare();
+    }
+  }
+
+  function updateUrl() {
+    if (!window.CurriculaUtils || !window.history || !window.history.replaceState) return;
+    var compareCheck = document.getElementById('curricula-compare-check');
+    var tab = document.getElementById('tab-advanced');
+    var isAdvanced = tab && !tab.hidden;
+    var url = window.CurriculaUtils.buildUrl({
+      tab: isAdvanced ? 'advanced' : null,
+      schulform: filterSchool || null,
+      klasse: filterGrade || null,
+      vergleich: compareCheck && compareCheck.checked ? selected : [],
+    });
+    window.history.replaceState(null, '', url);
+  }
 
   function showTab(which) {
     var overview = document.getElementById('tab-overview');
@@ -465,6 +621,8 @@
       btnA.classList.toggle('active', isAdvanced);
       btnA.setAttribute('aria-selected', String(isAdvanced));
     }
+
+    updateUrl();
 
     if (isAdvanced) {
       if (!graphInited) {
@@ -528,8 +686,11 @@
       });
       renderSummary(states, data.count);
       buildFilterOptions();
+      // UXF-002: Filter vor renderGrid, Compare/Tab danach (braucht DOM)
+      applyUrlState();
       renderGrid();
       wireTabs();
+      applyUrlCompareState();
     });
   }
 

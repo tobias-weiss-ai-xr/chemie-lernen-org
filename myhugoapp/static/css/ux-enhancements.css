@@ -454,3 +454,271 @@ html {
   background-color: rgba(255, 235, 59, 0.2);
   outline-color: #ffeb3b;
 }
+
+/* UXF-001: Themen-Suche über alle Bundesländer */
+.curricula-topic-search {
+  margin: 1rem 0 1.5rem;
+  position: relative;
+}
+.curricula-topic-search-input {
+  width: 100%;
+  max-width: 560px;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 10px;
+  font-size: 1rem;
+  background: var(--bg-card, #fff);
+  color: var(--text-primary, #333);
+}
+.curricula-topic-search-input:focus-visible {
+  outline: 3px solid var(--accent-color, #1b5e20);
+  outline-offset: 1px;
+}
+.curricula-topic-results {
+  margin-top: 0.75rem;
+}
+.cts-status {
+  color: var(--text-muted, #777);
+  padding: 0.5rem 0;
+}
+.cts-status.cts-error {
+  color: #c62828;
+}
+.cts-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted, #888);
+  margin-bottom: 0.4rem;
+}
+.cts-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cts-item {
+  border: 1px solid var(--border-color, #eee);
+  border-radius: 8px;
+  margin-bottom: 6px;
+  background: var(--bg-card, #fff);
+  transition:
+    box-shadow 0.15s,
+    border-color 0.15s;
+}
+.cts-item.active,
+.cts-item:hover {
+  border-color: var(--accent-color, #1b5e20);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.cts-item {
+  display: flex;
+  align-items: center;
+}
+.cts-item > a:first-child {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  color: var(--text-primary, #333);
+  text-decoration: none;
+  flex-wrap: wrap;
+  min-height: 44px;
+}
+.cts-state-link {
+  padding: 10px 12px;
+  font-size: 0.8rem;
+  color: var(--brand-primary, #1b5e20);
+  text-decoration: none;
+  white-space: nowrap;
+  border-left: 1px solid var(--border-color, #eee);
+  display: inline-flex;
+  align-items: center;
+}
+.cts-state-link:hover {
+  text-decoration: underline;
+}
+.cts-title {
+  flex: 1;
+  min-width: 200px;
+  font-weight: 500;
+}
+.cts-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.cts-badge {
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--bg-surface, #f0ede4);
+  color: var(--text-muted, #666);
+  white-space: nowrap;
+}
+.cts-badge.cts-state {
+  background: var(--brand-primary, #1b5e20);
+  color: #fff;
+  font-weight: 600;
+}
+.cts-badge.cts-obj {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+[data-theme='dark'] .cts-badge {
+  background: var(--bg-tertiary, #123d25);
+  color: #a5d6a7;
+}
+[data-theme='dark'] .cts-badge.cts-state {
+  background: var(--accent-color, #4caf50);
+  color: #0a1a0f;
+}
+[data-theme='dark'] .cts-badge.cts-obj {
+  background: #1b3d22;
+  color: #a5d6a7;
+}
+[data-theme='contrast'] .cts-badge {
+  background: #333;
+  color: #fff;
+}
+[data-theme='contrast'] .cts-badge.cts-state {
+  background: #ffeb3b;
+  color: #000;
+}
+
+/* UXF-005: Interaktive Graph-Legende */
+.curricula-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.82rem;
+  color: var(--text-primary, #444);
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.curricula-legend-item:hover {
+  background: var(--bg-surface, #f0ede4);
+  border-color: var(--border-color, #ddd);
+}
+.curricula-legend-item.active {
+  background: var(--bg-surface, #e8f5e9);
+  border-color: var(--accent-color, #1b5e20);
+  font-weight: 600;
+}
+.curricula-legend-item:focus-visible {
+  outline: 3px solid var(--accent-color, #1b5e20);
+  outline-offset: 1px;
+}
+.curricula-legend-reset {
+  color: #c62828;
+  font-size: 0.78rem;
+}
+.curricula-legend-reset.active {
+  background: #fdecea;
+}
+[data-theme='dark'] .curricula-legend-item {
+  color: var(--text-primary, #c8e6c9);
+}
+[data-theme='dark'] .curricula-legend-item.active {
+  background: var(--bg-tertiary, #123d25);
+  border-color: var(--accent-color, #4caf50);
+}
+[data-theme='contrast'] .curricula-legend-item {
+  color: #fff;
+}
+[data-theme='contrast'] .curricula-legend-item.active {
+  background: #333;
+  border-color: #ffeb3b;
+}
+
+/* UXF-003/004/008: State-Seite — Ausklappen + Sprungnavi */
+.curricula-jump-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 1.25rem;
+}
+.curricula-jump-chip {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--bg-surface, #f0ede4);
+  border: 1px solid var(--border-color, #ddd);
+  color: var(--text-primary, #333);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+.curricula-jump-chip:hover {
+  border-color: var(--accent-color, #1b5e20);
+  background: #e8f5e9;
+}
+.school-type-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  text-align: left;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary, #333);
+  cursor: pointer;
+}
+.school-type-toggle:hover {
+  border-color: var(--accent-color, #1b5e20);
+}
+.school-type-toggle .school-topic-count {
+  font-weight: 400;
+  font-size: 0.82rem;
+  color: var(--text-muted, #888);
+}
+.school-type-toggle:focus-visible {
+  outline: 3px solid var(--accent-color, #1b5e20);
+  outline-offset: 1px;
+}
+.objective-more-btn {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: #eee;
+  color: #555;
+  border: 1px dashed #bbb;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+.objective-more-btn:hover {
+  background: #e0e0e0;
+  color: #222;
+}
+
+/* UXF-007: Vergleichs-Toolbar */
+.curricula-compare-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 0.75rem 0;
+}
+.curricula-compare-only-common {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.curricula-compare-visible {
+  font-size: 0.8rem;
+  color: var(--text-muted, #888);
+}
+.curricula-compare-csv {
+  font-size: 0.85rem;
+}

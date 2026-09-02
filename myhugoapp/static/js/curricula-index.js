@@ -335,7 +335,10 @@
 
     var searchQuery = (state.q || '').toLowerCase();
     if (searchQuery) applySearchHighlight(searchQuery);
+    else if (state.activeTypeFilter) applyTypeHighlight(state.activeTypeFilter);
     else resetHighlight();
+    // UXF-005: Legende nach jedem Render verdrahten (wird per Template eingefügt)
+    wireLegend();
 
     state.cy.on('tap', 'node', function (evt) {
       renderDetail(evt.target);
@@ -366,6 +369,61 @@
     });
   }
 
+  // ── UXF-005: Legende interaktiv — Knotentyp hervorheben ──────────
+  // state.activeTypeFilter: string|null (Typ-Name oder null = alles sichtbar)
+  state.activeTypeFilter = null;
+
+  function applyTypeHighlight(type) {
+    if (!state.cy) return;
+    state.activeTypeFilter = type;
+    state.cy.elements().forEach(function (el) {
+      var isType = el.isNode() && el.data('type') === type;
+      var linked =
+        el.isEdge() &&
+        (state.cy.getElementById(el.data('source')).data('type') === type ||
+          state.cy.getElementById(el.data('target')).data('type') === type);
+      el.style('opacity', isType || linked ? 1 : 0.08);
+    });
+    document.querySelectorAll('.curricula-legend-item').forEach(function (item) {
+      var isActive = item.getAttribute('data-type') === type;
+      item.classList.toggle('active', isActive);
+      if (item.hasAttribute('data-type')) {
+        item.setAttribute('aria-pressed', String(isActive));
+      }
+    });
+  }
+
+  function clearTypeHighlight() {
+    state.activeTypeFilter = null;
+    resetHighlight();
+    document.querySelectorAll('.curricula-legend-item').forEach(function (item) {
+      item.classList.remove('active');
+      if (item.hasAttribute('data-type')) {
+        item.setAttribute('aria-pressed', 'false');
+      }
+    });
+  }
+
+  var legendWired = false;
+  function wireLegend() {
+    // Legende-Buttons sind statisch (Layout) — nur EINMAL verdrahten,
+    // sonst stapeln sich Listener bei jedem Graph-Render.
+    if (legendWired) return;
+    legendWired = true;
+    document.querySelectorAll('.curricula-legend-item').forEach(function (item) {
+      var type = item.getAttribute('data-type');
+      if (!type) return;
+      item.addEventListener('click', function () {
+        if (state.activeTypeFilter === type) clearTypeHighlight();
+        else applyTypeHighlight(type);
+      });
+    });
+    var resetBtn = document.getElementById('curricula-legend-reset');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', clearTypeHighlight);
+    }
+  }
+
   function applySearchHighlight(q) {
     if (!state.cy) return;
     var matches = state.cy.nodes().filter(function (n) {
@@ -379,10 +437,12 @@
     matches.forEach(function (m) {
       matchIds[m.id()] = true;
     });
+    var typeFilter = state.activeTypeFilter || null;
     state.cy.elements().forEach(function (el) {
       var isMatch = el.isNode() ? matchIds[el.id()] : false;
       var linked = el.isEdge() && (matchIds[el.data('source')] || matchIds[el.data('target')]);
-      el.style('opacity', isMatch || linked ? 1 : 0.12);
+      var typeOk = !typeFilter || (el.isNode() && el.data('type') === typeFilter);
+      el.style('opacity', (isMatch || linked) && typeOk ? 1 : 0.08);
     });
   }
 
@@ -453,18 +513,24 @@
     var search = document.getElementById('curricula-search');
     if (search) {
       var t;
+      // UXF-006: Tippen → nur client-seitiges Highlighting (kein Reload).
       search.addEventListener('input', function () {
         clearTimeout(t);
         var val = this.value.trim();
         t = setTimeout(function () {
-          state.q = val;
           if (state.cy) {
             if (val) applySearchHighlight(val.toLowerCase());
-            else resetHighlight();
+            else if (!state.activeTypeFilter) resetHighlight();
           }
-          // Also re-fetch with q for server-side filtering when scoped.
+        }, 200);
+      });
+      // UXF-006: Enter → server-seitige Suche (Re-Fetch mit q).
+      search.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          state.q = this.value.trim();
           reload();
-        }, 350);
+        }
       });
     }
     var closeBtn = document.getElementById('curricula-details-close');

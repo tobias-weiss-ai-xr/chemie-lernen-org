@@ -357,6 +357,16 @@
   <div id="tab-overview" class="curricula-tab-panel" role="tabpanel" aria-labelledby="tab-btn-overview">
     <div class="curricula-summary" id="curricula-summary" aria-live="polite"></div>
 
+    <!-- UXF-001: Themen-Suche über alle Bundesländer -->
+    <div class="curricula-topic-search" id="curricula-topic-search-wrap">
+      <input type="search" id="curricula-topic-search" class="curricula-topic-search-input"
+        placeholder="Themen durchsuchen — z. B. „Säure-Base“, „Redox“ …"
+        aria-label="Lehrplan-Themen über alle Bundesländer durchsuchen"
+        autocomplete="off" />
+      <div id="curricula-topic-results" class="curricula-topic-results" aria-live="polite"></div>
+    </div>
+
+
     <div class="curricula-compare-bar">
       <label class="curricula-compare-toggle">
         <input type="checkbox" id="curricula-compare-check" /> Bundesländer vergleichen
@@ -416,6 +426,8 @@
           </div>
         </div>
         <div class="curricula-legend" aria-label="Legende">
+          <button type="button" class="curricula-legend-item" data-type="university" aria-pressed="false"><span class="curricula-legend-dot" style="background:#9C27B0"></span>Universität</button><button type="button" class="curricula-legend-item" data-type="module" aria-pressed="false"><span class="curricula-legend-dot" style="background:#2196F3"></span>Modul</button><button type="button" class="curricula-legend-item" data-type="curriculum" aria-pressed="false"><span class="curricula-legend-dot" style="background:#4CAF50"></span>Lehrplan</button><button type="button" class="curricula-legend-item" data-type="topic" aria-pressed="false"><span class="curricula-legend-dot" style="background:#8BC34A"></span>Thema</button><button type="button" class="curricula-legend-item" data-type="subtopic" aria-pressed="false"><span class="curricula-legend-dot" style="background:#FF9800"></span>Teilthema</button><button type="button" class="curricula-legend-item" data-type="objective" aria-pressed="false"><span class="curricula-legend-dot" style="background:#F44336"></span>Lernziel</button><button type="button" class="curricula-legend-item" data-type="entity" aria-pressed="false"><span class="curricula-legend-dot" style="background:#E91E63"></span>Konzept</button><button type="button" class="curricula-legend-item" data-type="page" aria-pressed="false"><span class="curricula-legend-dot" style="background:#795548"></span>Inhalt</button>
+          <button type="button" class="curricula-legend-item curricula-legend-reset" id="curricula-legend-reset">✕ Filter zurücksetzen</button>
           <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#9C27B0"></span>Universität</span>
           <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#2196F3"></span>Modul</span>
           <span class="curricula-legend-item"><span class="curricula-legend-dot" style="background:#4CAF50"></span>Lehrplan</span>
@@ -432,6 +444,8 @@
 {{ end }}
 
 {{ define "js" }}
+<script src="{{ "/js/utils/curricula-utils.js" | relURL }}"></script>
 <script src="{{ "/js/curricula-overview.js" | relURL }}?v=1"></script>
+<script src="{{ "/js/curricula-topic-search.js" | relURL }}?v=1"></script>
 <script src="{{ "/js/curricula-index.js" | relURL }}?v=8"></script>
 {{ end }}
