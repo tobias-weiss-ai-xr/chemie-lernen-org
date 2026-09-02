@@ -722,3 +722,40 @@ html {
 .curricula-compare-csv {
   font-size: 0.85rem;
 }
+
+/* UXF-010/013: Live-Filter (State-Seite + Modulhandbuch) */
+.state-topic-filter,
+.mh-module-filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 0 0 1rem;
+}
+.state-topic-filter-input,
+.mh-module-filter .mh-search {
+  flex: 1;
+  min-width: 220px;
+  max-width: 420px;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  background: var(--bg-card, #fff);
+  color: var(--text-primary, #333);
+}
+.state-topic-filter-input:focus-visible,
+.mh-module-filter .mh-search:focus-visible {
+  outline: 3px solid var(--accent-color, #1b5e20);
+  outline-offset: 1px;
+}
+.state-topic-count,
+.mh-module-stats {
+  font-size: 0.82rem;
+  color: var(--text-muted, #777);
+  white-space: nowrap;
+}
+.cts-more {
+  margin: 0.75rem auto 0;
+  display: block;
+}

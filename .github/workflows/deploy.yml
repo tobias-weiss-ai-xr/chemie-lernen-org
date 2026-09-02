@@ -101,6 +101,9 @@ jobs:
       - name: Generate entity pages from KG data
         run: node scripts/generate-entity-pages.mjs
 
+      - name: "Generate entity slug manifest (UXF-011: 404-sichere Topic-Links)"
+        run: node scripts/generate-entity-slug-manifest.mjs
+
       - name: Fetch Zig's Chemistry 42 videos (auto-update /lernvideos/)
         run: node scripts/fetch-zigs-videos.mjs || echo '[CI] Zig video feed fetch skipped (non-fatal)'
 

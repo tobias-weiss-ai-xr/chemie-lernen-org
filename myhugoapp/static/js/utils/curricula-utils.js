@@ -8,9 +8,9 @@
   'use strict';
 
   /**
-   * Liest den Curricula-URL-State aus Location (UXF-002).
+   * Liest den Curricula-URL-State aus Location (UXF-002 + UXF-012).
    * Unterstützt: ?tab=overview|advanced, ?schulform=, ?klasse=,
-   *              #vergleich=BB,BY (auch als ?vergleich=)
+   *              ?sort=az|topics|objectives, #vergleich=BB,BY (auch ?vergleich=)
    * @param {string} [search] - Location.search (Default: window)
    * @param {string} [hash]   - Location.hash   (Default: window)
    * @returns {{tab: string|null, schulform: string|null, klasse: string|null, vergleich: string[]}}
@@ -20,7 +20,7 @@
       search = window.location.search;
       hash = window.location.hash;
     }
-    var out = { tab: null, schulform: null, klasse: null, vergleich: [] };
+    var out = { tab: null, schulform: null, klasse: null, vergleich: [], sort: null };
     try {
       var qs = new URLSearchParams(search || '');
       var tab = qs.get('tab');
@@ -29,6 +29,8 @@
       if (sf) out.schulform = sf;
       var kl = qs.get('klasse');
       if (kl) out.klasse = kl;
+      var so = qs.get('sort');
+      if (so === 'az' || so === 'topics' || so === 'objectives') out.sort = so;
       var vg = qs.get('vergleich') || (hash || '').replace(/^#vergleich=/, '');
       if (vg) {
         out.vergleich = vg
@@ -65,7 +67,9 @@
       qs.delete(k);
     });
     qs.delete('vergleich');
+    qs.delete('sort');
     if (state.tab) qs.set('tab', state.tab);
+    if (state.sort) qs.set('sort', state.sort);
     if (state.schulform) qs.set('schulform', state.schulform);
     if (state.klasse) qs.set('klasse', String(state.klasse));
     if (state.vergleich && state.vergleich.length >= 2) {

@@ -14,6 +14,7 @@ describe('CurriculaUtils.parseUrlState (UXF-002)', () => {
       schulform: null,
       klasse: null,
       vergleich: [],
+      sort: null,
     });
   });
 
@@ -137,5 +138,34 @@ describe('CurriculaUtils.buildCompareCsv (UXF-007)', () => {
   test('ohne nameFor → Code-Fallback', () => {
     const csv = buildCompareCsv(sets, all, undefined);
     expect(csv.split('\r\n')[0]).toBe('Thema;BB;BY');
+  });
+});
+
+describe('CurriculaUtils.sort-Support (UXF-012)', () => {
+  test('sort=topics wird erkannt', () => {
+    expect(parseUrlState('?sort=topics', '').sort).toBe('topics');
+  });
+
+  test('sort=objectives wird erkannt', () => {
+    expect(parseUrlState('?sort=objectives', '').sort).toBe('objectives');
+  });
+
+  test('sort=az wird erkannt', () => {
+    expect(parseUrlState('?sort=az', '').sort).toBe('az');
+  });
+
+  test('ungültiger sort → null', () => {
+    expect(parseUrlState('?sort=hack', '').sort).toBeNull();
+  });
+
+  test('buildUrl schreibt sort', () => {
+    const url = buildUrl({ sort: 'topics' }, 'https://x.org/c/');
+    const qs = new URLSearchParams(url.split('?')[1]);
+    expect(qs.get('sort')).toBe('topics');
+  });
+
+  test('buildUrl entfernt leeren sort', () => {
+    const url = buildUrl({ sort: null }, 'https://x.org/c/?sort=topics');
+    expect(url).toBe('https://x.org/c/');
   });
 });

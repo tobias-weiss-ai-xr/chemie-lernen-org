@@ -41,10 +41,14 @@ describe('curricula-state page — script order (Part B Task 5)', () => {
 describe('curricula-state.js — entity link + KMK contracts (Part B Task 5)', () => {
   const src = fs.readFileSync(SCRIPT, 'utf8');
 
-  test('topic links route through entityHref (globalThis.Slugs first)', () => {
-    expect(src).toMatch(/entityHref\(topic\.title \|\| topic\.slug\)/);
-    expect(src).toMatch(/globalThis\.Slugs\s*&&\s*typeof globalThis\.Slugs\.entityUrl/);
-    // No raw /entity/ string building with toSlug anymore
+  test('topic links are 404-safe (UXF-011a: searchHref-Fallback + Entity-Rewrite)', () => {
+    // Seit UXF-011a: Fallback ist die Pagefind-Suche (Topic-Slugs sind keine
+    // Entity-URLs); existierende Entity-Seiten werden nach dem Rendern durch
+    // utils/entity-links.js (Manifest) in hrefs umgeschrieben.
+    expect(src).toMatch(/searchHref\(topic\.title \|\| topic\.slug\)/);
+    expect(src).toMatch(/data-entity-name=/);
+    expect(src).toMatch(/CurriculaEntityLinks/);
+    // Kein rohes /entity/-String-Building mehr
     expect(src).not.toMatch(/href="\/entity\/"\s*\+/);
     expect(src).not.toMatch(/href='\/entity\/'\s*\+/);
   });

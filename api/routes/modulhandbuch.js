@@ -79,7 +79,9 @@ router.get('/api/modulhandbuch/universities', async (req, res) => {
 // -- GET /api/modulhandbuch/university/:shortCode -- Single university --------
 
 router.get('/api/modulhandbuch/university/:shortCode', async (req, res) => {
-  const shortCode = req.params.shortCode.toUpperCase().trim();
+  // UXF-009: KEIN toUpperCase — Codes sind mixed-case ('albert-ludwigs-freib'
+  // vs 'CALTECH'). Vergleich case-insensitive im Cypher (unten).
+  const shortCode = req.params.shortCode.trim();
   try {
     const driver = getNeo4jDriver();
     const session = driver.session({
@@ -87,9 +89,12 @@ router.get('/api/modulhandbuch/university/:shortCode', async (req, res) => {
       defaultAccessMode: neo4j.session.READ,
     });
     const result = await session.run(
-      `MATCH (u:University {short_code: $code})
+      // UXF-009: toLower statt exakter Property-Match (mixed-case Codes)
+      `MATCH (u:University)
+       WHERE toLower(u.short_code) = toLower($code)
        OPTIONAL MATCH (u)-[:OFFERS_DEGREE]->(d:Degree)
-       OPTIONAL MATCH (m:UniversityModule {university: $code})
+       OPTIONAL MATCH (m:UniversityModule)
+       WHERE toLower(m.university) = toLower($code)
        RETURN u, collect(DISTINCT d{.*}) AS degrees,
               collect(DISTINCT m{.*}) AS modules`,
       { code: shortCode }
@@ -133,7 +138,8 @@ router.get('/api/modulhandbuch/university/:shortCode', async (req, res) => {
 // -- GET /api/modulhandbuch/module/:univCode/:moduleCode -- Single module detail -
 
 router.get('/api/modulhandbuch/module/:univCode/:moduleCode', async (req, res) => {
-  const univCode = req.params.univCode.toLowerCase().trim();
+  // UXF-009: KEIN toLowerCase — bricht Uppercase-Codes ('CALTECH', 'FU_BERLIN')
+  const univCode = req.params.univCode.trim();
   const moduleCode = req.params.moduleCode.trim();
   try {
     const driver = getNeo4jDriver();
@@ -142,10 +148,14 @@ router.get('/api/modulhandbuch/module/:univCode/:moduleCode', async (req, res) =
       defaultAccessMode: neo4j.session.READ,
     });
     const result = await session.run(
-      `MATCH (m:UniversityModule {module_code: $code, university: $univ})
+      // UXF-009: toLower statt exakter Property-Match
+      `MATCH (m:UniversityModule)
+       WHERE m.module_code = $code AND toLower(m.university) = toLower($univ)
        OPTIONAL MATCH (m)-[:CARRIES]->(e:ECTS)
        OPTIONAL MATCH (m)-[:PART_OF]->(d:Degree)
-       OPTIONAL MATCH (off:ModuleOffering {module_code: $code, university: $univ})-[:TAUGHT_BY]->(l:Lecturer)
+       OPTIONAL MATCH (off:ModuleOffering)
+       WHERE off.module_code = $code AND toLower(off.university) = toLower($univ)
+       OPTIONAL MATCH (off)-[:TAUGHT_BY]->(l:Lecturer)
        RETURN m, e{.*} AS ects, d{.*} AS degree,
               collect(DISTINCT {semester: off.semester, year: off.year, lecturer: l.name}) AS offerings`,
       { code: moduleCode, univ: univCode }
@@ -342,9 +352,11 @@ router.get('/api/entities/:name/universities', async (req, res) => {
 // -- GET /api/studienvergleich/compare -- Compare modules between two univs --
 
 router.get('/api/studienvergleich/compare', async (req, res) => {
-  const u1 = (req.query.u1 || '').trim().toUpperCase();
-  const u2 = (req.query.u2 || '').trim().toUpperCase();
-  const levelFilter = (req.query.level || '').trim().toUpperCase();
+  // UXF-009: KEIN toUpperCase — mixed-case Codes ('albert-ludwigs-freib'
+  // vs 'CALTECH'); Vergleich case-insensitive im Cypher (unten).
+  const u1 = (req.query.u1 || '').trim();
+  const u2 = (req.query.u2 || '').trim();
+  const levelFilter = (req.query.level || '').trim();
   const keyword = (req.query.topic || '').trim().toLowerCase();
 
   if (!u1 || !u2) {
@@ -360,8 +372,9 @@ router.get('/api/studienvergleich/compare', async (req, res) => {
 
     // Fetch modules for both universities
     const baseCypher = `
-      MATCH (m:UniversityModule {university: $univ})
-      ${levelFilter ? 'WHERE toUpper(m.level) = toUpper($level)' : ''}
+      MATCH (m:UniversityModule)
+      WHERE toLower(m.university) = toLower($univ)
+      ${levelFilter ? 'AND toUpper(m.level) = toUpper($level)' : ''}
       RETURN m.module_code AS code, m.module_name AS name,
              m.ects AS ects, m.level AS level, m.degree AS degree,
              m.url AS url, m.language AS language

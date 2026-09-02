@@ -176,6 +176,100 @@
       });
   }
 
+  // ── UXF-010: Live-Text-Filter für Themen ──────────────────────────
+  var topicFilterQ = '';
+  var filterDebounceTimer = null;
+
+  function searchHref(name) {
+    return '/pages/suche/?q=' + encodeURIComponent(name || '');
+  }
+
+  function applyTopicFilter() {
+    var app = document.getElementById('curricula-state-app');
+    if (!app) return;
+    var q = topicFilterQ.toLowerCase();
+    var cards = app.querySelectorAll('.state-topic-card');
+    var visible = 0;
+    cards.forEach(function (card) {
+      var text = card.getAttribute('data-search') || '';
+      var show = !q || text.indexOf(q) !== -1;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    // Leere Klassen- und Schulform-Gruppen ausblenden
+    app.querySelectorAll('.grade-group').forEach(function (gg) {
+      var any = gg.querySelector('.state-topic-card:not([style*="display: none"])');
+      gg.style.display = any ? '' : 'none';
+    });
+    app.querySelectorAll('.school-type-group').forEach(function (sg) {
+      var any = sg.querySelector('.grade-group:not([style*="display: none"])');
+      sg.style.display = any ? '' : 'none';
+      // Bei aktivem Filter: Gruppen aufklappen (ohne localStorage zu ändern)
+      var toggle = sg.querySelector('.school-type-toggle');
+      if (toggle && q) {
+        toggle.classList.remove('collapsed');
+        toggle.setAttribute('aria-expanded', 'true');
+        var icon = toggle.querySelector('.school-toggle-icon');
+        if (icon) icon.textContent = '▾';
+      }
+    });
+    var counter = document.getElementById('state-topic-count');
+    if (counter) {
+      if (q) {
+        counter.textContent = visible + ' von ' + cards.length + ' Themen sichtbar';
+        counter.style.display = '';
+      } else {
+        counter.style.display = 'none';
+      }
+    }
+  }
+
+  function restoreCollapseState() {
+    // Nach dem Leeren des Filters: gespeicherten Zustand anwenden
+    var app = document.getElementById('curricula-state-app');
+    if (!app) return;
+    var collapsedSet = _collapsedSet();
+    app.querySelectorAll('.school-type-group').forEach(function (sg) {
+      var toggle = sg.querySelector('.school-type-toggle');
+      var school = toggle ? toggle.getAttribute('data-school') : null;
+      var isCollapsed = school ? !!collapsedSet[school] : false;
+      if (toggle) {
+        toggle.classList.toggle('collapsed', isCollapsed);
+        toggle.setAttribute('aria-expanded', String(!isCollapsed));
+        var icon = toggle.querySelector('.school-toggle-icon');
+        if (icon) icon.textContent = isCollapsed ? '▸' : '▾';
+      }
+      sg.querySelectorAll('.school-group-content').forEach(function (content) {
+        content.style.display = isCollapsed ? 'none' : '';
+      });
+      sg.style.display = '';
+    });
+    app.querySelectorAll('.grade-group').forEach(function (gg) {
+      gg.style.display = '';
+    });
+  }
+
+  function bindTopicFilterInput() {
+    var filterInput = document.getElementById('state-topic-filter-input');
+    if (!filterInput) return;
+    filterInput.addEventListener('input', function () {
+      clearTimeout(filterDebounceTimer);
+      var val = this.value;
+      filterDebounceTimer = setTimeout(function () {
+        topicFilterQ = val.trim();
+        if (topicFilterQ) applyTopicFilter();
+        else restoreCollapseState();
+      }, 150);
+    });
+    filterInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        this.value = '';
+        topicFilterQ = '';
+        restoreCollapseState();
+      }
+    });
+  }
+
   // ── UXF-004: Collapsible Schulform-Gruppen (localStorage) ──
   var COLLAPSE_KEY = 'curriculaStateCollapsed';
   function _collapsedSet() {
@@ -270,6 +364,17 @@
         '</strong> Lernziele';
       html += '</div>';
 
+      // UXF-010: Filter-UI über den Gruppen
+      html +=
+        '<div class="state-topic-filter">' +
+        '<input type="search" id="state-topic-filter-input" class="state-topic-filter-input" ' +
+        'placeholder="Themen filtern — z. B. „Säure“ …" aria-label="Themen nach Stichwort filtern" ' +
+        'autocomplete="off" value="' +
+        escapeHtml(topicFilterQ) +
+        '" />' +
+        '<span class="state-topic-count" id="state-topic-count" role="status" style="display:none;"></span>' +
+        '</div>';
+
       // UXF-008: Sprungnavigation zu Schulform-Gruppen
       if (schoolOrder.length > 1) {
         html += '<nav class="curricula-jump-nav" aria-label="Springe zu Schulform">';
@@ -320,10 +425,18 @@
             '>';
           html += '<h3>Klasse ' + escapeHtml(grade) + '</h3>';
           grouped[school][grade].forEach(function (topic) {
-            html += '<div class="state-topic-card">';
+            html +=
+              '<div class="state-topic-card" data-search="' +
+              escapeHtml(String(topic.title || topic.slug || '').toLowerCase()) +
+              '">';
             html +=
               '<div class="state-topic-name"><a href="' +
-              entityHref(topic.title || topic.slug) +
+              // UXF-011a: Fallback = Suche (Entity-Seite existiert oft nicht);
+              // entity-links.js rewritet existierende /entity/-Links später.
+              searchHref(topic.title || topic.slug) +
+              '" data-entity-name="' +
+              escapeHtml(topic.title || topic.slug) +
+              '" data-fallback="1' +
               '">' +
               escapeHtml(topic.title || topic.slug) +
               '</a></div>';
@@ -394,6 +507,13 @@
 
     app.innerHTML = html;
     _attachEvents();
+    // UXF-011a: Entity-Links auflösen (Manifest → /entity/, sonst Suche bleibt)
+    if (window.CurriculaEntityLinks && app.querySelector('a[data-entity-name]')) {
+      window.CurriculaEntityLinks.rewriteWhenReady(app);
+    }
+    // UXF-010: Filter-Input binden + gespeicherten Filter anwenden
+    bindTopicFilterInput();
+    if (topicFilterQ) applyTopicFilter();
   }
 
   // Part B Task 5 — lazy „Grafik anzeigen“: one kg-data fetch (cached),

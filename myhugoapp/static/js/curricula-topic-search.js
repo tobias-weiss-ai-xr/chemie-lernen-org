@@ -36,6 +36,8 @@
   };
 
   var activeIndex = -1;
+  var currentQuery = '';
+  var currentTotal = 0; // UXF-014: für „Mehr laden"
   var currentToken = 0; // bricht veraltete Antworten ab
   var debounceTimer = null;
   var MIN_CHARS = 2;
@@ -71,6 +73,8 @@
 
   function clear() {
     resultsEl.innerHTML = '';
+    currentTotal = 0;
+    currentQuery = '';
     reset();
   }
 
@@ -99,16 +103,34 @@
     }
   }
 
-  function renderResults(topics, q) {
-    if (!topics.length) {
+  // UXF-014: „Mehr laden"-Button, wenn noch Treffer übrig sind
+  function buildMoreButton(shownTotal) {
+    if (currentTotal > shownTotal) {
+      return (
+        '<button type="button" class="btn btn-secondary cts-more" id="cts-more-btn">' +
+        'Mehr laden (' +
+        (currentTotal - shownTotal) +
+        ' weitere)</button>'
+      );
+    }
+    return '';
+  }
+
+  function renderResults(topics, q, append) {
+    if (!topics.length && !append) {
       renderEmpty(q);
       return;
     }
-    var html =
-      '<div class="cts-meta" role="status">' +
-      topics.length +
-      (topics.length >= LIMIT ? '+' : '') +
-      ' Treffer</div>';
+    // UXF-014: bei append nur Items bauen (Meta/Liste stehen schon)
+    var loaded = resultsEl.querySelectorAll('.cts-item').length;
+    var shownTotal = loaded + topics.length;
+    var html = '';
+    if (!append)
+      html =
+        '<div class="cts-meta" role="status">' +
+        shownTotal +
+        (currentTotal > shownTotal ? ' von ' + currentTotal : '') +
+        ' Treffer</div>';
     html += '<ul class="cts-list" role="listbox" aria-label="Themen-Treffer">';
     topics.forEach(function (t) {
       var stateName = STATE_NAMES[(t.state || '').toUpperCase()] || t.state;
@@ -151,7 +173,18 @@
           : '') +
         '</li>';
     });
+    if (append) {
+      // UXF-014: neue Items in bestehende Liste einfügen, Button erneuern
+      var list = resultsEl.querySelector('.cts-list');
+      if (list) list.insertAdjacentHTML('beforeend', html);
+      var oldMore = document.getElementById('cts-more-btn');
+      if (oldMore) oldMore.remove();
+      resultsEl.insertAdjacentHTML('beforeend', buildMoreButton(shownTotal));
+      reset();
+      return;
+    }
     html += '</ul>';
+    html += buildMoreButton(shownTotal);
     resultsEl.innerHTML = html;
     reset();
 
@@ -163,29 +196,50 @@
     });
   }
 
-  function run(q) {
+  function run(q, offset) {
     if (q.length < MIN_CHARS) {
       clear();
       return;
     }
-    renderLoading();
+    // UXF-014: offset für „Mehr laden"-Pagination
+    offset = offset || 0;
+    currentQuery = q;
+    if (offset === 0) renderLoading();
     var token = ++currentToken;
-    fetch('/api/curricula/topics?search=' + encodeURIComponent(q) + '&limit=' + LIMIT, {
-      signal: AbortSignal.timeout(10000),
-    })
+    fetch(
+      '/api/curricula/topics?search=' +
+        encodeURIComponent(q) +
+        '&limit=' +
+        LIMIT +
+        '&offset=' +
+        offset,
+      {
+        signal: AbortSignal.timeout(10000),
+      }
+    )
       .then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
         return r.json();
       })
       .then(function (d) {
         if (token !== currentToken) return; // veraltet
-        renderResults(d.topics || [], q);
+        currentTotal = d.total || 0;
+        renderResults(d.topics || [], q, offset > 0);
       })
       .catch(function () {
         if (token !== currentToken) return;
-        renderError(true);
+        if (offset === 0) renderError(true);
       });
   }
+
+  // UXF-014: „Mehr laden"
+  resultsEl.addEventListener('click', function (ev) {
+    if (ev.target && ev.target.id === 'cts-more-btn') {
+      ev.target.disabled = true;
+      ev.target.textContent = 'Lade…';
+      run(currentQuery, resultsEl.querySelectorAll('.cts-item').length);
+    }
+  });
 
   input.addEventListener('input', function () {
     clearTimeout(debounceTimer);

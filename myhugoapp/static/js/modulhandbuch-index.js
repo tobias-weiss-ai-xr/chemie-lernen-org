@@ -24,6 +24,8 @@
 
   var universities = [];
   var selectedUni = null;
+  var moduleFilterQ = ''; // UXF-013: Client-Filter für Modul-Listen
+  var moduleFilterTimer = null;
   var modulesCache = {};
   var moduleDetail = null;
   var searchQ = '';
@@ -61,6 +63,7 @@
 
   function loadUni(code) {
     selectedUni = code;
+    moduleFilterQ = ''; // UXF-013: Filter pro Universität neu
     moduleDetail = null;
     if (code && !modulesCache[code]) {
       fetch('/api/modulhandbuch/university/' + encodeURIComponent(code), {
@@ -313,8 +316,46 @@
       // Module list for a university
       var data = modulesCache[selectedUni];
       if (data && data.modules && data.modules.length > 0) {
+        // UXF-013: Client-Filter + ECTS-Summen
+        var q = moduleFilterQ.toLowerCase();
+        var matchesFilter = function (m) {
+          if (!q) return true;
+          return (
+            String(m.code || '')
+              .toLowerCase()
+              .indexOf(q) !== -1 ||
+            String(m.name || '')
+              .toLowerCase()
+              .indexOf(q) !== -1
+          );
+        };
+        var shown = data.modules.filter(matchesFilter);
+        var sumEcts = function (list) {
+          var s = 0;
+          list.forEach(function (m) {
+            s += Number(m.ects) || 0;
+          });
+          return s;
+        };
+        html +=
+          '<div class="mh-module-filter">' +
+          '<input type="search" id="mh-module-filter-input" class="mh-search" ' +
+          'placeholder="Module filtern — Code oder Name …" aria-label="Module nach Code oder Name filtern" ' +
+          'autocomplete="off" value="' +
+          escapeHtml(moduleFilterQ) +
+          '" />' +
+          '<span class="mh-module-stats" role="status">' +
+          shown.length +
+          ' von ' +
+          data.modules.length +
+          ' Modulen · Σ ' +
+          sumEcts(shown) +
+          ' / ' +
+          sumEcts(data.modules) +
+          ' ECTS</span>' +
+          '</div>';
         var byDegree = {};
-        data.modules.forEach(function (m) {
+        shown.forEach(function (m) {
           var deg = m.degree || 'Allgemein';
           if (!byDegree[deg]) byDegree[deg] = [];
           byDegree[deg].push(m);
@@ -385,6 +426,26 @@
         }
       });
     });
+
+    // UXF-013: Modul-Filter (debounced Re-Render)
+    var moduleFilterInput = document.getElementById('mh-module-filter-input');
+    if (moduleFilterInput) {
+      moduleFilterInput.addEventListener('input', function () {
+        clearTimeout(moduleFilterTimer);
+        var val = this.value;
+        moduleFilterTimer = setTimeout(function () {
+          moduleFilterQ = val.trim();
+          render();
+        }, 150);
+      });
+      moduleFilterInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          this.value = '';
+          moduleFilterQ = '';
+          render();
+        }
+      });
+    }
 
     // Search
     var searchInput = document.getElementById('mh-search-input');
