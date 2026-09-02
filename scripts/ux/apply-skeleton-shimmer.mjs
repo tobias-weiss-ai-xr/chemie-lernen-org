@@ -13,7 +13,8 @@ import path from 'node:path';
 
 const REPO_ROOT = path.resolve(import.meta.dirname, '../..');
 const CSS_FILE = path.join(REPO_ROOT, 'myhugoapp/static/css/ux-enhancements.css');
-const BASEOF_FILE = path.join(REPO_ROOT, 'myhugoapp/layouts/_default/baseof.html');
+// UX CSS gehört ins <head> — der steht im head.html-Partial, nicht in baseof.html
+const HEAD_FILE = path.join(REPO_ROOT, 'myhugoapp/layouts/partials/head.html');
 
 const SHIMMER_CSS = `/* ==== UX Enhancements — applied by TaskFleet ==== */
 
@@ -94,23 +95,24 @@ function applySkeletonShimmer() {
     console.log('[UX-001] Skeleton shimmer CSS added to ux-enhancements.css');
   }
 
-  // 2. Add stylesheet to baseof.html (after custom.css)
-  let baseof = fs.readFileSync(BASEOF_FILE, 'utf-8');
+  // 2. Add stylesheet to head.html (after a11y-reduced-motion.css)
+  let head = fs.readFileSync(HEAD_FILE, 'utf-8');
   const LINK_TAG = '<link rel="stylesheet" href="{{ "/css/ux-enhancements.css" | relURL }}">';
 
-  if (baseof.includes('ux-enhancements.css')) {
-    console.log('[UX-001] ux-enhancements.css already linked in baseof.html');
+  if (head.includes('ux-enhancements.css')) {
+    console.log('[UX-001] ux-enhancements.css already linked in head.html');
   } else {
-    // Insert after custom.css link
-    const customCssPattern = /(\{\{[^}]*css\/custom\.css[^}]*\}\})/;
-    if (customCssPattern.test(baseof)) {
-      baseof = baseof.replace(customCssPattern, `$1\n  ${LINK_TAG}`);
+    const anchor = '<link rel="stylesheet" href="{{ "/css/a11y-reduced-motion.css" | relURL }}">';
+    if (head.includes(anchor)) {
+      head = head.replace(
+        anchor,
+        anchor + '\n<!-- UX Enhancements: Skeleton-Shimmer, Toast, Touch-Targets, Focus-Rings (TaskFleet UX-001/002/006/007) -->\n' + LINK_TAG
+      );
+      fs.writeFileSync(HEAD_FILE, head);
+      console.log('[UX-001] ux-enhancements.css linked in head.html');
     } else {
-      // Fallback: insert before </head>
-      baseof = baseof.replace('</head>', `  ${LINK_TAG}\n</head>`);
+      throw new Error('[UX-001] anchor (a11y-reduced-motion.css link) not found in head.html — insert CSS link manually');
     }
-    fs.writeFileSync(BASEOF_FILE, baseof);
-    console.log('[UX-001] ux-enhancements.css linked in baseof.html');
   }
 
   console.log('[UX-001] ✓ Skeleton shimmer applied');
