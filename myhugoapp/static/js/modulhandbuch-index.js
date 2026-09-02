@@ -26,6 +26,7 @@
   var selectedUni = null;
   var moduleFilterQ = ''; // UXF-013: Client-Filter für Modul-Listen
   var moduleFilterTimer = null;
+  var moduleSortBy = 'az'; // UXF-024: 'az' | 'ects'
 
   // UXF-018: URL-State für Universität + Modul (?uni=X&modul=CODE)
   var pendingModule = null; // Modul-Deep-Link, wartet auf den Uni-Load
@@ -355,6 +356,12 @@
           );
         };
         var shown = data.modules.filter(matchesFilter);
+        // UXF-024: Sortierung (innerhalb der Abschluss-Gruppen wirksam)
+        if (moduleSortBy === 'ects') {
+          shown = shown.slice().sort(function (a, b) {
+            return (Number(b.ects) || 0) - (Number(a.ects) || 0);
+          });
+        }
         var sumEcts = function (list) {
           var s = 0;
           list.forEach(function (m) {
@@ -369,6 +376,15 @@
           'autocomplete="off" value="' +
           escapeHtml(moduleFilterQ) +
           '" />' +
+          '<label class="mh-module-sort" style="font-size:0.85rem;">Sortieren: ' +
+          '<select id="mh-module-sort" style="margin-left:4px; padding:4px 6px;" aria-label="Modul-Liste sortieren">' +
+          '<option value="az"' +
+          (moduleSortBy === 'az' ? ' selected' : '') +
+          '>A–Z</option>' +
+          '<option value="ects"' +
+          (moduleSortBy === 'ects' ? ' selected' : '') +
+          '>ECTS absteigend</option>' +
+          '</select></label>' +
           '<span class="mh-module-stats" role="status">' +
           shown.length +
           ' von ' +
@@ -451,6 +467,15 @@
         }
       });
     });
+
+    // UXF-024: Modul-Sortierung
+    var moduleSortSel = document.getElementById('mh-module-sort');
+    if (moduleSortSel) {
+      moduleSortSel.addEventListener('change', function () {
+        moduleSortBy = this.value;
+        render();
+      });
+    }
 
     // UXF-013: Modul-Filter (debounced Re-Render)
     var moduleFilterInput = document.getElementById('mh-module-filter-input');

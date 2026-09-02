@@ -412,6 +412,11 @@
       html += '</div>';
     }
 
+    // UXF-023: Ergebnis teilen/kopieren
+    html +=
+      '<button class="quiz-btn quiz-btn-secondary" data-quiz-share type="button">' +
+      '🔗 Ergebnis kopieren</button>';
+
     // Retry / topic selection buttons
     html += '<div class="quiz-results-actions">';
     html +=
@@ -445,6 +450,50 @@
       wiederholenBtn.addEventListener('click', function () {
         if (self.options.onWiederholen) {
           self.options.onWiederholen(results.reviewItems);
+        }
+      });
+    }
+
+    // UXF-023: Ergebnis-Text in die Zwischenablage
+    var shareBtn = this.container.querySelector('[data-quiz-share]');
+    if (shareBtn) {
+      shareBtn.addEventListener('click', function () {
+        var quizTitle =
+          document.querySelector('.quiz-title, h1') &&
+          document.querySelector('.quiz-title, h1').textContent
+            ? document.querySelector('.quiz-title, h1').textContent.trim()
+            : 'Chemie-Quiz';
+        var text =
+          'Quiz „' +
+          quizTitle +
+          '": ' +
+          results.percentage +
+          '% (' +
+          results.score +
+          '/' +
+          results.total +
+          ' Punkte) — ' +
+          window.location.origin +
+          '/quiz/';
+        var restore = shareBtn.textContent;
+        var done = function () {
+          shareBtn.textContent = '✓ Kopiert!';
+          if (window.UIToast && window.UIToast.success) {
+            window.UIToast.success('Ergebnis in die Zwischenablage kopiert');
+          }
+          setTimeout(function () {
+            shareBtn.textContent = restore;
+          }, 2000);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(text)
+            .then(done)
+            .catch(function () {
+              window.prompt('Ergebnis zum Kopieren (Strg+C):', text);
+            });
+        } else {
+          window.prompt('Ergebnis zum Kopieren (Strg+C):', text);
         }
       });
     }

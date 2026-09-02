@@ -1193,10 +1193,24 @@ function loadD3AndEgoGraph() {
         var topicKeys = Object.keys(byTopic);
         topicKeys.forEach(function (key, idx) {
           var topic = byTopic[key];
+          // UXF-022: Topic → klickbarer Link auf die State-Lehrplan-Seite
+          var stateHref = topic.state
+            ? '<a href="/curricula/' + esc(String(topic.state).toLowerCase()) + '/">'
+            : '';
+          var stateHrefEnd = topic.state ? '</a>' : '';
           h += '<div class="entity-lehrplan-topic">';
           h += '<div class="entity-lehrplan-topic-title">';
-          h += esc(topic.title);
-          if (topic.state) h += '<span class="entity-lehrplan-state-badge">' + esc(topic.state) + '</span>';
+          h +=
+            stateHref +
+            esc(topic.title) +
+            stateHrefEnd;
+          if (topic.state) {
+            h +=
+              '<a class="entity-lehrplan-state-badge" href="/curricula/' +
+              esc(String(topic.state).toLowerCase()) +
+              '/" title="Lehrplan ' + esc(String(topic.state).toUpperCase()) + ' öffnen">' +
+              esc(topic.state) + '</a>';
+          }
           h += '</div>';
           if (topic.grade) {
             h += '<div class="entity-lehrplan-topic-meta">Klasse ' + esc(topic.grade) + '</div>';
