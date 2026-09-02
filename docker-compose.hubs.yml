@@ -195,6 +195,7 @@ services:
       - "traefik.http.routers.hubs-api.tls=true"
       - "traefik.http.routers.hubs-api.tls.certresolver=mytlschallenge"
       - "traefik.http.routers.hubs-api.priority=120"
+      - "traefik.http.routers.hubs-api.middlewares=hubs-security-headers@docker"
       - "traefik.http.services.hubs-api.loadbalancer.server.port=4001"
       - "traefik.http.services.hubs-api.loadbalancer.server.scheme=http"
       - "traefik.http.services.hubs-api.loadbalancer.passHostHeader=true"
@@ -280,6 +281,19 @@ services:
       - "traefik.http.routers.hubs-root.tls=true"
       - "traefik.http.routers.hubs-root.tls.certresolver=mytlschallenge"
       - "traefik.http.routers.hubs-root.priority=100"
+      # Security headers for the whole hubs site. Defined HERE (hubs-client)
+      # because the shared security-headers@file middleware is unusable for
+      # Hubs: it sets permissionsPolicy camera=()/microphone=() (breaks voice
+      # chat + avatar capture) and stsIncludeSubdomains/preload (nearspark.
+      # hubs.chemie-lernen.org must stay out of an HSTS rollout decision).
+      # X-Frame-Options=SAMEORIGIN (not DENY) keeps Hubs' own iframe uses
+      # (scene viewer, room embeds) working.
+      - "traefik.http.middlewares.hubs-security-headers.headers.customframeoptionsvalue=SAMEORIGIN"
+      - "traefik.http.middlewares.hubs-security-headers.headers.contenttypenosniff=true"
+      - "traefik.http.middlewares.hubs-security-headers.headers.forcestsheader=true"
+      - "traefik.http.middlewares.hubs-security-headers.headers.stsseconds=31536000"
+      - "traefik.http.middlewares.hubs-security-headers.headers.referrerpolicy=strict-origin-when-cross-origin"
+      - "traefik.http.routers.hubs-root.middlewares=hubs-security-headers"
       - "traefik.http.services.hubs-root.loadbalancer.server.port=8080"
       - "traefik.http.services.hubs-root.loadbalancer.server.scheme=http"
       - "traefik.http.serversTransports.hubs-https.insecureSkipVerify=true"
@@ -329,7 +343,7 @@ services:
       - "traefik.http.middlewares.hubs-admin-redirect.redirectRegex.regex=^https?://([^/]+)/admin/?$$"
       - "traefik.http.middlewares.hubs-admin-redirect.redirectRegex.replacement=https://$$1/admin/admin.html"
       - "traefik.http.middlewares.hubs-admin-redirect.redirectRegex.permanent=false"
-      - "traefik.http.routers.hubs-admin.middlewares=hubs-admin-redirect"
+      - "traefik.http.routers.hubs-admin.middlewares=hubs-security-headers@docker,hubs-admin-redirect"
       - "traefik.http.serversTransports.hubs-https.insecureSkipVerify=true"
 
   spoke:
@@ -374,7 +388,7 @@ services:
       - "traefik.http.routers.hubs-spoke.tls=true"
       - "traefik.http.routers.hubs-spoke.tls.certresolver=mytlschallenge"
       - "traefik.http.routers.hubs-spoke.priority=110"
-      - "traefik.http.routers.hubs-spoke.middlewares=hubs-spoke-redirect"
+      - "traefik.http.routers.hubs-spoke.middlewares=hubs-security-headers@docker,hubs-spoke-redirect"
       - "traefik.http.services.hubs-spoke.loadbalancer.server.port=9090"
       - "traefik.http.services.hubs-spoke.loadbalancer.server.scheme=https"
       - "traefik.http.services.hubs-spoke.loadbalancer.serversTransport=hubs-https@file"
