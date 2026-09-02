@@ -77,11 +77,24 @@
     showRedirectHint('/pages/suche/?q=' + encodeURIComponent(q), 'Suche nach „' + q + '“');
   }
 
-  // Ungültige Curricula-Pfade: /curricula/{xy}/ mit xy ≠ State-Code
+  // Curricula-Pfade: valider State (+ beliebige Tiefe) → State-Seite,
+  // unbekanntes Segment → Übersicht (UXF-025)
   var STATES = ['bb','be','bw','by','hb','he','hh','mv','ni','nw','rp','sh','sl','sn','st','th'];
-  var curMatch = path.match(/^\/curricula\/([^\/]+)\/?$/);
-  if (curMatch && curMatch[1] && STATES.indexOf(curMatch[1].toLowerCase()) === -1) {
-    showRedirectHint('/curricula/', 'Lehrplan-Übersicht');
+  var curMatch = path.match(/^\/curricula\/([^\/]+)(?:\/(.*))?\/?$/);
+  if (curMatch && curMatch[1] && curMatch[1] !== 'index.html') {
+    var stateSeg = curMatch[1].toLowerCase();
+    var deepSeg = curMatch[2] || '';
+    if (STATES.indexOf(stateSeg) !== -1) {
+      // State ok — tiefe Pfade (alte generierte Seiten) zur State-Übersicht
+      if (deepSeg && deepSeg !== 'index.html') {
+        showRedirectHint(
+          '/curricula/' + stateSeg + '/',
+          'Lehrplan ' + stateSeg.toUpperCase()
+        );
+      }
+    } else {
+      showRedirectHint('/curricula/', 'Lehrplan-Übersicht');
+    }
   }
 
   // ── UXF-020b: Pagefind-Instanzsuche ────────────────────────────────

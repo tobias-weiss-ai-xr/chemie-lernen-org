@@ -15,11 +15,29 @@
   function sanitizeAiHtml(html) {
     if (typeof html !== 'string') return '';
     html = html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+    // UXF-027: form/base entfernen (Phishing-Umlenkung), srcdoc strippen
+    // (srcdoc-Inhalt wird vom Browser dekodiert → umgeht script-Regex)
+    html = html.replace(/<\s*(form|base)\b[\s\S]*?(<\/\s*\1\s*>|\/?>)/gi, '');
+    html = html.replace(/\ssrcdoc\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+    // iframe nur mit http(s)/protokollrelativer src behalten
+    html = html.replace(/<\s*iframe\b([^>]*)>/gi, function (m, attrs) {
+      var srcM = /\ssrc\s*=\s*("([^"]*)"|'([^']*)'|([^\s>]+))/i.exec(attrs || '');
+      var srcVal = srcM ? srcM[2] || srcM[3] || srcM[4] || '' : '';
+      if (!/^(https?:)?\/\//i.test(srcVal) && srcVal.charAt(0) !== '/') {
+        return '';
+      }
+      return m;
+    });
     html = html.replace(/\son\w+\s*=\s*"[^"]*"/gi, '');
     html = html.replace(/\son\w+\s*=\s*'[^']*'/gi, '');
     html = html.replace(/\son\w+\s*=\s*[^\s>]+/gi, '');
     html = html.replace(
       /(href|src)\s*=\s*("javascript:[^"]*"|'javascript:[^']*'|javascript:[^\s>]+)/gi,
+      '$1="#"'
+    );
+    // UXF-027: data:/vbscript:-URIs blocken (data:text/html führt JS aus)
+    html = html.replace(
+      /(href|src)\s*=\s*("(?:data|vbscript):[^"]*"|'(?:data|vbscript):[^']*'|(?:data|vbscript):[^\s>]+)/gi,
       '$1="#"'
     );
     html = html.replace(

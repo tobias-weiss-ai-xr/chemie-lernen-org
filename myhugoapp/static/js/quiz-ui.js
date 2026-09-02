@@ -458,11 +458,16 @@
     var shareBtn = this.container.querySelector('[data-quiz-share]');
     if (shareBtn) {
       shareBtn.addEventListener('click', function () {
+        // UXF-028: echter Thema-Name aus der Option (Fallback: Seiten-h1)
+        // Achtung: im click-Handler zeigt this auf den Button — self ist
+        // die QuizUI-Instanz (var self = this in renderResults).
         var quizTitle =
-          document.querySelector('.quiz-title, h1') &&
+          (self.options && self.options.quizTitle ? String(self.options.quizTitle).trim() : '') ||
+          (document.querySelector('.quiz-title, h1') &&
           document.querySelector('.quiz-title, h1').textContent
             ? document.querySelector('.quiz-title, h1').textContent.trim()
-            : 'Chemie-Quiz';
+            : '') ||
+          'Chemie-Quiz';
         var text =
           'Quiz „' +
           quizTitle +

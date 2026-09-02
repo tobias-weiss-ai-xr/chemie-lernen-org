@@ -158,8 +158,10 @@ router.get('/api/curricula/topics', async (req, res) => {
   const grade = (req.query.grade || '').trim();
   const schoolType = (req.query.schoolType || '').trim();
   const search = (req.query.search || '').toLowerCase().trim();
-  const limit = Math.min(parseInt(req.query.limit) || 200, 1000);
-  const offset = parseInt(req.query.offset) || 0;
+  // UXF-026: Negativ-/Unsinn-Werte clampen (LIMIT -1 / SKIP -5 war
+  // ein Neo4j-Fehler → leere Fallback-Antwort statt 200 Topics)
+  const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 200, 1), 1000);
+  const offset = Math.max(parseInt(req.query.offset, 10) || 0, 0);
 
   try {
     const driver = getNeo4jDriver();
@@ -250,8 +252,10 @@ router.get('/api/curricula/topics', async (req, res) => {
 router.get('/api/curricula/objectives', async (req, res) => {
   const topic = (req.query.topic || '').trim();
   const search = (req.query.search || '').toLowerCase().trim();
-  const limit = Math.min(parseInt(req.query.limit) || 200, 1000);
-  const offset = parseInt(req.query.offset) || 0;
+  // UXF-026: Negativ-/Unsinn-Werte clampen (LIMIT -1 / SKIP -5 war
+  // ein Neo4j-Fehler → leere Fallback-Antwort statt 200 Topics)
+  const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 200, 1), 1000);
+  const offset = Math.max(parseInt(req.query.offset, 10) || 0, 0);
 
   try {
     const driver = getNeo4jDriver();

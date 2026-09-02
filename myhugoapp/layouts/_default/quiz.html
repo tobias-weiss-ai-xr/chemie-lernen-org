@@ -987,6 +987,7 @@
     quizArea.innerHTML = ''; // clear area
 
     quizUI = new QuizUI(quizArea, {
+      quizTitle: currentTopic || '', // UXF-028: echter Thema-Name für Share
       onRetry: function () {
         startQuiz(currentQuestions, currentTopic);
       },
