@@ -243,7 +243,14 @@ function displayResults(reactants, products, coefficients, elements) {
 
 // Format formula with subscript numbers
 function formatFormula(formula) {
-  return formula.replace(/(\d+)/g, '<sub>$1</sub>');
+  // UXF-029: escapen vor <sub> (rohe User-Eingabe ging ins innerHTML)
+  const safe = String(formula)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+  return safe.replace(/(\d+)/g, '<sub>$1</sub>');
 }
 
 // Show error message

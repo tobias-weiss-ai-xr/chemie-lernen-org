@@ -414,7 +414,9 @@
 
     // UXF-023: Ergebnis teilen/kopieren
     html +=
-      '<button class="quiz-btn quiz-btn-secondary" data-quiz-share type="button">' +
+      '<button class="quiz-btn quiz-btn-secondary" data-quiz-share type="button" data-quiz-title="' +
+      this._escapeHtml((this.options && this.options.quizTitle) || '') +
+      '">' +
       '🔗 Ergebnis kopieren</button>';
 
     // Retry / topic selection buttons

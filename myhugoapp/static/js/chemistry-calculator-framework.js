@@ -280,3 +280,7 @@ class ChemistryCalculator {
 
 // Export for global use
 window.ChemistryCalculator = ChemistryCalculator;
+// Dual export for Node.js/vitest tests (same pattern as lazy-loader.js)
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = ChemistryCalculator;
+}

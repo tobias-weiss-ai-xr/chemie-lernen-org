@@ -462,3 +462,48 @@ describe('Chemistry Utils - extractElements', () => {
     expect(result).toContain('O');
   });
 });
+
+describe('formatFormula XSS-Schutz (UXF-029)', () => {
+  test('legitime Formeln bleiben unverändert (nur <sub>)', () => {
+    expect(formatFormula('H2O')).toBe('H<sub>2</sub>O');
+    expect(formatFormula('Ca(OH)2')).toBe('Ca(OH)<sub>2</sub>');
+    expect(formatFormula('CuSO4·5H2O')).toBe('CuSO<sub>4</sub>·<sub>5</sub>H<sub>2</sub>O');
+  });
+
+  test('HTML-Payloads werden escaped (DOM-XSS via innerHTML)', () => {
+    const out = formatFormula('<img src=x onerror=alert(1)>');
+    // Ohne legitime <sub>-Tags darf kein rohes '<' überleben:
+    expect(out.replace(/<\/?sub>/g, '')).not.toContain('<');
+  });
+
+  test('script/svg/onmouseover-Payloads neutralisiert', () => {
+    for (const p of [
+      'H2O<script>x</script>',
+      'H<svg onload=alert(1)>2',
+      '" onmouseover="alert(1)',
+      "H2O' onclick='x",
+    ]) {
+      const out = formatFormula(p).replace(/<\/?sub>/g, '');
+      expect(out).not.toContain('<');
+      expect(out).not.toContain('"');
+      expect(out).not.toContain("'");
+    }
+  });
+
+  test('& wird doppelt-sicher escaped (kein Entity-Trick)', () => {
+    // "&lt;img&gt;" als INPUT soll als Text erscheinen, nicht als <img>-Element
+    const out = formatFormula('&lt;img&gt;');
+    expect(out.replace(/<\/?sub>/g, '')).not.toContain('<');
+  });
+
+  test('lokale formatFormula-Kopie in reaktionsgleichungen ebenfalls escaped', () => {
+    const fs = require('fs');
+    const path = require('node:path');
+    const src = fs.readFileSync(
+      path.join(__dirname, '../myhugoapp/static/js/reaktionsgleichungen-ausgleichen.js'),
+      'utf8'
+    );
+    // Die lokale Kopie muss das Escape-Muster enthalten
+    expect(src).toContain("'&amp;'");
+  });
+});

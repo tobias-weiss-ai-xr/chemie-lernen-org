@@ -65,7 +65,16 @@ function parseFormula(formula, options = {}) {
  * @returns {string} HTML formatted formula (e.g., "H<sub>2</sub>O")
  */
 function formatFormula(formula) {
-  return formula.replace(/(\d+)/g, '<sub>$1</sub>');
+  // UXF-029: Eingabe escapen, bevor <sub>-Markup ergänzt wird. parseFormula
+  // validiert nur gefundene Element-Symbole — unbekannte Zeichen (z. B.
+  // "<img ...>") liefen zuvor roh ins innerHTML (DOM-XSS).
+  const safe = String(formula)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+  return safe.replace(/(\d+)/g, '<sub>$1</sub>');
 }
 
 /**
