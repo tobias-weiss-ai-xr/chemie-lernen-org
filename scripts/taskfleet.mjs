@@ -600,7 +600,7 @@ class TaskFleet {
 
 async function loadConfig(configPath) {
   try {
-    const configModule = await import(path.toFileURL(configPath).href);
+    const configModule = await import(path.toFileURL(path.resolve(configPath)).href);
     return configModule.default || configModule;
   } catch (error) {
     // If config file doesn't exist, use default tasks

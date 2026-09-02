@@ -42,6 +42,57 @@
       }
     }
 
+    // UX-004: Tastaturnavigation durch Suchergebnisse
+    var activeIndex = -1;
+
+    function getVisibleResults() {
+      return Array.prototype.slice.call(searchResults.querySelectorAll('.search-result-item'));
+    }
+
+    function setActive(index) {
+      var items = getVisibleResults();
+      if (!items.length) return;
+      if (index >= items.length) index = items.length - 1;
+      if (index < 0) index = items.length - 1;
+      activeIndex = index;
+      items.forEach(function (item, i) {
+        item.classList.toggle('active', i === activeIndex);
+        if (i === activeIndex) {
+          item.setAttribute('aria-selected', 'true');
+          searchInput.setAttribute('aria-activedescendant', item.id || '');
+        } else {
+          item.removeAttribute('aria-selected');
+        }
+      });
+    }
+
+    function handleKeyboardNavigation(e) {
+      var items = getVisibleResults();
+      if (!items.length) return;
+
+      switch (e.key) {
+        case 'ArrowDown':
+          e.preventDefault();
+          setActive(activeIndex + 1 >= items.length ? 0 : activeIndex + 1);
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          setActive(activeIndex - 1 < 0 ? items.length - 1 : activeIndex - 1);
+          break;
+        case 'Enter':
+          if (activeIndex >= 0 && items[activeIndex]) {
+            e.preventDefault();
+            var link = items[activeIndex].querySelector('a');
+            if (link) link.click();
+          }
+          break;
+        case 'Escape':
+          hideResults();
+          searchInput.blur();
+          break;
+      }
+    }
+
     var debouncedSearch = debounce(performSearch, 300);
 
     function getResultCategory(url) {
@@ -114,12 +165,19 @@
       searchOverlay.classList.remove('hidden');
     }
 
+    function resetActiveIndex() {
+      activeIndex = -1;
+    }
+
     function hideResults() {
       searchResults.classList.add('hidden');
       searchOverlay.classList.add('hidden');
+      resetActiveIndex();
     }
 
+    searchInput.addEventListener('keydown', handleKeyboardNavigation);
     searchInput.addEventListener('input', function () {
+      resetActiveIndex();
       debouncedSearch(this.value);
     });
 

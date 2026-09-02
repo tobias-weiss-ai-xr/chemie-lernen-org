@@ -1,4 +1,24 @@
 (function () {
+  'use strict';
+
+  // UX-003: Einheitlicher Fehlerzustand mit Retry-Button
+  function renderErrorState(container, message, retryFn) {
+    if (!container) return;
+    container.innerHTML =
+      '<div class="empty-state">' +
+      '<div class="empty-state-icon">⚠️</div>' +
+      '<p>' +
+      message +
+      '</p>' +
+      '<button type="button" class="btn btn-primary ux-retry-btn" aria-label="Erneut versuchen">' +
+      '<i class="fa fa-refresh" aria-hidden="true"></i> Erneut versuchen</button>' +
+      '</div>';
+    var btn = container.querySelector('.ux-retry-btn');
+    if (btn && typeof retryFn === 'function') {
+      btn.addEventListener('click', retryFn);
+    }
+  }
+
   var app = document.getElementById('curricula-state-app');
   if (!app) return;
   var skeleton = document.getElementById('state-skeleton');
@@ -194,7 +214,12 @@
       html +=
         '<div class="empty-state"><div class="empty-state-icon">⚠️</div><p>Fehler beim Laden: ' +
         escapeHtml(error) +
-        '</p></div>';
+        '</p>' +
+        '<button type="button" class="btn btn-primary ux-retry-btn" data-retry-state="' +
+        escapeHtml(selectedState) +
+        '">' +
+        '<i class="fa fa-refresh" aria-hidden="true"></i> Erneut versuchen</button>' +
+        '</div>';
       app.innerHTML = html;
       _attachEvents();
       return;
@@ -397,6 +422,9 @@
     app.addEventListener('click', function (ev) {
       var btn = ev.target && ev.target.closest ? ev.target.closest('.kg-graph-toggle') : null;
       if (btn) toggleTopicGraph(btn);
+      // UX-003: Retry-Button für Fehlerzustände
+      var retry = ev.target && ev.target.closest ? ev.target.closest('.ux-retry-btn') : null;
+      if (retry) loadTree(retry.getAttribute('data-retry-state') || selectedState);
     });
   }
 

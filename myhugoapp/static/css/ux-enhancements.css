@@ -1,0 +1,456 @@
+/* ==== UX Enhancements — applied by TaskFleet ==== */
+
+/* UX-001: Skeleton-Shimmer-Animation
+ * Fügt allen Skeleton-Loadern eine Shimmer-Animation hinzu.
+ * WCAG 2.2.2: Animation kann via prefers-reduced-motion deaktiviert werden.
+ */
+@keyframes ux-skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.curricula-skeleton-card,
+.entity-skeleton-card,
+.quiz-skeleton-card,
+.ux-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-surface, #efede6) 25%,
+    var(--bg-primary, #f4f2ec) 50%,
+    var(--bg-surface, #efede6) 75%
+  ) !important;
+  background-size: 200% 100% !important;
+  animation: ux-skeleton-shimmer 1.5s ease-in-out infinite !important;
+  border-radius: 8px;
+}
+
+/* Dark theme skeleton */
+[data-theme='dark'] .curricula-skeleton-card,
+[data-theme='dark'] .entity-skeleton-card,
+[data-theme='dark'] .quiz-skeleton-card,
+[data-theme='dark'] .ux-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-secondary, #0d2a1a) 25%,
+    var(--bg-tertiary, #123d25) 50%,
+    var(--bg-secondary, #0d2a1a) 75%
+  ) !important;
+  background-size: 200% 100% !important;
+}
+
+/* Contrast theme skeleton */
+[data-theme='contrast'] .curricula-skeleton-card,
+[data-theme='contrast'] .entity-skeleton-card,
+[data-theme='contrast'] .quiz-skeleton-card,
+[data-theme='contrast'] .ux-skeleton {
+  background: linear-gradient(90deg, #1a1a1a 25%, #333 50%, #1a1a1a 75%) !important;
+  background-size: 200% 100% !important;
+}
+
+/* Reduced motion: disable shimmer */
+@media (prefers-reduced-motion: reduce) {
+  .curricula-skeleton-card,
+  .entity-skeleton-card,
+  .quiz-skeleton-card,
+  .ux-skeleton {
+    animation: none !important;
+  }
+}
+
+/* UX-003: Retry-Button für Fehlerzustände */
+.ux-retry-btn {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.ux-retry-btn i {
+  margin-right: 4px;
+}
+.empty-state .ux-retry-btn {
+  background-color: var(--brand-primary, #1b5e20);
+  border-color: var(--brand-primary, #1b5e20);
+  color: #fff;
+}
+.empty-state .ux-retry-btn:hover {
+  background-color: var(--brand-secondary, #2e7d32);
+  border-color: var(--brand-secondary, #2e7d32);
+}
+[data-theme='dark'] .empty-state .ux-retry-btn {
+  background-color: var(--accent-color, #4caf50);
+  border-color: var(--accent-color, #4caf50);
+  color: #0a1a0f;
+}
+[data-theme='contrast'] .empty-state .ux-retry-btn {
+  background-color: #ffeb3b;
+  border-color: #ffeb3b;
+  color: #000;
+}
+
+/* UX-002: Toast-Notification-System */
+.ux-toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 360px;
+  pointer-events: none;
+}
+
+.ux-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  color: #2c3e50;
+  opacity: 0;
+  transform: translateX(100%);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  pointer-events: auto;
+}
+
+.ux-toast.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.ux-toast.dismissing {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.ux-toast i {
+  font-size: 1.2rem;
+  margin-top: 2px;
+}
+
+.ux-toast-success i {
+  color: #2e7d32;
+}
+.ux-toast-error i {
+  color: #c62828;
+}
+.ux-toast-warning i {
+  color: #f57c00;
+}
+.ux-toast-info i {
+  color: #1565c0;
+}
+
+.ux-toast-success {
+  border-left: 4px solid #2e7d32;
+}
+.ux-toast-error {
+  border-left: 4px solid #c62828;
+}
+.ux-toast-warning {
+  border-left: 4px solid #f57c00;
+}
+.ux-toast-info {
+  border-left: 4px solid #1565c0;
+}
+
+.ux-toast-body {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.ux-toast-close {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #999;
+  padding: 0 2px;
+}
+.ux-toast-close:hover {
+  color: #333;
+}
+
+/* Dark theme */
+[data-theme='dark'] .ux-toast {
+  background-color: var(--bg-tertiary, #123d25);
+  color: var(--text-primary, #c8e6c9);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+[data-theme='dark'] .ux-toast-close {
+  color: var(--text-muted, #81c784);
+}
+[data-theme='dark'] .ux-toast-close:hover {
+  color: var(--text-primary, #c8e6c9);
+}
+
+/* Contrast theme */
+[data-theme='contrast'] .ux-toast {
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #ffeb3b;
+}
+
+/* Mobile: full-width toast at bottom */
+@media (max-width: 640px) {
+  .ux-toast-container {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    max-width: none;
+  }
+  .ux-toast {
+    transform: translateY(100%);
+  }
+  .ux-toast.visible {
+    transform: translateY(0);
+  }
+  .ux-toast.dismissing {
+    transform: translateY(100%);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .ux-toast {
+    transition: opacity 0.01ms;
+    transform: none;
+  }
+}
+
+/* UX-008: Quiz-Widget Loading-State
+ * Skeleton-Placeholder statt einfachem Spinner-Text.
+ */
+.quiz-skeleton-card {
+  background: var(--bg-surface, #efede6);
+  border-radius: 8px;
+  height: 60px;
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.quiz-skeleton-line {
+  background: var(--bg-surface, #efede6);
+  border-radius: 4px;
+  height: 16px;
+  margin-bottom: 8px;
+  width: 80%;
+}
+
+.quiz-skeleton-line.short {
+  width: 50%;
+}
+
+.quiz-loading-state {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+.quiz-loading-state .quiz-skeleton-card {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  height: auto;
+  min-height: 60px;
+}
+
+.quiz-loading-state .quiz-skeleton-card .quiz-skeleton-line {
+  margin-bottom: 0;
+}
+
+/* UX-006: Touch-Targets für Mobile (WCAG 2.5.5)
+ * Mindestgröße 44x44px für alle interaktiven Elemente auf Touch-Geräten.
+ */
+@media (max-width: 768px) {
+  /* Buttons */
+  .btn,
+  .search-submit,
+  .search-clear,
+  .quiz-widget-controls .btn,
+  .theme-option input[type='radio'] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Nav links */
+  .navbar-nav > li > a,
+  .dropdown-menu > li > a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  /* Theme switcher radios */
+  .theme-option {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Form inputs */
+  .form-control,
+  .search-input,
+  input[type='text'],
+  input[type='search'],
+  input[type='number'],
+  select,
+  textarea {
+    min-height: 44px;
+  }
+
+  /* Card links */
+  #card-grid .card .index-anchor,
+  .card a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Footer links */
+  .footer-link,
+  .footer-legal-links a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 4px;
+  }
+
+  /* Quiz answer buttons */
+  .quiz-answer-btn,
+  .quiz-option {
+    min-height: 44px;
+    padding: 12px 16px;
+  }
+
+  /* Tab navigation */
+  .nav-tabs > li > a,
+  .nav-pills > li > a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+  }
+}
+
+/* UX-007: Fokus-Konsistenz
+ * Einheitliche Focus-Rings für Tastaturnavigation.
+ * WCAG 2.4.7 (Focus Visible) + 2.4.11 (Focus Not Obscured).
+ */
+:focus-visible {
+  outline: 3px solid var(--accent-color, #007bff);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Remove default outline only when :focus-visible is supported */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Links */
+a:focus-visible,
+.navbar-nav > li > a:focus-visible,
+.dropdown-menu > li > a:focus-visible,
+.footer-link:focus-visible,
+.card a:focus-visible {
+  outline: 3px solid var(--accent-color, #007bff);
+  outline-offset: 2px;
+  border-radius: 3px;
+  background-color: rgba(0, 123, 255, 0.08);
+}
+
+/* Buttons */
+.btn:focus-visible,
+.search-submit:focus-visible,
+.search-clear:focus-visible,
+.quiz-widget-controls .btn:focus-visible,
+.quiz-answer-btn:focus-visible,
+.quiz-option:focus-visible {
+  outline: 3px solid var(--accent-color, #007bff);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3);
+}
+
+/* Form inputs */
+.form-control:focus-visible,
+.search-input:focus-visible,
+input[type='text']:focus-visible,
+input[type='search']:focus-visible,
+input[type='number']:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--accent-color, #007bff);
+  outline-offset: 2px;
+  border-color: var(--accent-color, #007bff);
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+/* Theme switcher */
+.theme-option input[type='radio']:focus-visible + .theme-option-text {
+  outline: 3px solid var(--accent-color, #007bff);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Tabs */
+.nav-tabs > li > a:focus-visible,
+.nav-pills > li > a:focus-visible {
+  outline: 3px solid var(--accent-color, #007bff);
+  outline-offset: 2px;
+}
+
+/* Dark theme */
+[data-theme='dark'] :focus-visible {
+  outline-color: var(--accent-color, #4caf50);
+}
+[data-theme='dark'] a:focus-visible,
+[data-theme='dark'] .btn:focus-visible {
+  background-color: rgba(76, 175, 80, 0.12);
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
+}
+
+/* Contrast theme */
+[data-theme='contrast'] :focus-visible {
+  outline: 4px solid #ffeb3b;
+  outline-offset: 2px;
+}
+[data-theme='contrast'] a:focus-visible,
+[data-theme='contrast'] .btn:focus-visible {
+  background-color: rgba(255, 235, 59, 0.15);
+  box-shadow: 0 0 0 3px rgba(255, 235, 59, 0.4);
+}
+
+/* Ensure focus is not obscured by sticky headers */
+html {
+  scroll-padding-top: 80px;
+}
+
+/* UX-004: Aktive Markierung für Tastaturnavigation in Suchergebnissen */
+.search-result-item.active {
+  background-color: rgba(0, 123, 255, 0.1);
+  outline: 2px solid var(--accent-color, #007bff);
+  outline-offset: -2px;
+  border-radius: 6px;
+}
+[data-theme='dark'] .search-result-item.active {
+  background-color: rgba(76, 175, 80, 0.15);
+  outline-color: var(--accent-color, #4caf50);
+}
+[data-theme='contrast'] .search-result-item.active {
+  background-color: rgba(255, 235, 59, 0.2);
+  outline-color: #ffeb3b;
+}

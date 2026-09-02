@@ -1,4 +1,24 @@
 (function () {
+  'use strict';
+
+  // UX-003: Einheitlicher Fehlerzustand mit Retry-Button
+  function renderErrorState(container, message, retryFn) {
+    if (!container) return;
+    container.innerHTML =
+      '<div class="empty-state">' +
+      '<div class="empty-state-icon">⚠️</div>' +
+      '<p>' +
+      message +
+      '</p>' +
+      '<button type="button" class="btn btn-primary ux-retry-btn" aria-label="Erneut versuchen">' +
+      '<i class="fa fa-refresh" aria-hidden="true"></i> Erneut versuchen</button>' +
+      '</div>';
+    var btn = container.querySelector('.ux-retry-btn');
+    if (btn && typeof retryFn === 'function') {
+      btn.addEventListener('click', retryFn);
+    }
+  }
+
   var app = document.getElementById('mh-app');
   if (!app) return;
 
@@ -166,10 +186,15 @@
         return;
       }
       if (universities.length === 0) {
-        html +=
-          '<div class="empty-state"><div class="empty-state-icon">🏫</div><p>Keine Universitäten gefunden.</p></div>';
-        app.innerHTML = html;
-        attachEvents();
+        renderErrorState(
+          app,
+          'Keine Universitäten gefunden. Bitte prüfe deine Internetverbindung.',
+          function () {
+            loading = true;
+            render();
+            load();
+          }
+        );
         return;
       }
       universities.forEach(function (u) {

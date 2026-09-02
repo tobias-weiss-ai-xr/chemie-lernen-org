@@ -12,6 +12,26 @@
 (function () {
   'use strict';
 
+  // UX-003: Einheitlicher Fehlerzustand mit Retry-Button
+  function renderErrorState(container, message, retryFn) {
+    if (!container) return;
+    container.innerHTML =
+      '<div class="empty-state">' +
+      '<div class="empty-state-icon">⚠️</div>' +
+      '<p>' +
+      message +
+      '</p>' +
+      '<button type="button" class="btn btn-primary ux-retry-btn" aria-label="Erneut versuchen">' +
+      '<i class="fa fa-refresh" aria-hidden="true"></i> Erneut versuchen</button>' +
+      '</div>';
+    var btn = container.querySelector('.ux-retry-btn');
+    if (btn && typeof retryFn === 'function') {
+      btn.addEventListener('click', retryFn);
+    }
+  }
+
+  ('use strict');
+
   function ready(fn) {
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', fn);
@@ -48,12 +68,20 @@
   var filterSchool = '';
   var filterGrade = '';
 
+  var listFetchFailed = false; // UX-003: track fetch errors for retry UI
+
   function fetchList() {
+    listFetchFailed = false;
     return fetch('/api/curricula/list', { signal: AbortSignal.timeout(10000) })
       .then(function (r) {
-        return r.ok ? r.json() : { states: [], count: 0 };
+        if (!r.ok) {
+          listFetchFailed = true;
+          return { states: [], count: 0 };
+        }
+        return r.json();
       })
       .catch(function () {
+        listFetchFailed = true;
         return { states: [], count: 0 };
       });
   }
@@ -119,9 +147,22 @@
 
     var states = ALL_STATES || [];
     if (!states.length) {
-      grid.innerHTML =
-        '<div class="empty-state"><div class="empty-state-icon">📭</div>' +
-        '<p>Keine Lehrplandaten verfügbar.</p></div>';
+      if (listFetchFailed) {
+        // UX-003: Ladefehler → Retry anbieten
+        renderErrorState(grid, 'Lehrplandaten konnten nicht geladen werden.', function () {
+          grid.innerHTML = '<div class="curricula-loading"><em>Lade Lehrpläne…</em></div>';
+          fetchList().then(function (data) {
+            ALL_STATES = (data && data.states) || [];
+            renderSummary(ALL_STATES, data && data.count);
+            buildFilterOptions();
+            renderGrid();
+          });
+        });
+      } else {
+        grid.innerHTML =
+          '<div class="empty-state"><div class="empty-state-icon">📭</div>' +
+          '<p>Keine Lehrplandaten verfügbar.</p></div>';
+      }
       updateFilterCount(0);
       return;
     }

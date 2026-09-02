@@ -15,8 +15,10 @@
   </div>
 
   <div class="quiz-widget-body" id="quiz-body-{{ $topic }}">
-    <div class="quiz-placeholder">
-      <p><i class="fa fa-spinner fa-spin"></i> Lade Quiz-Fragen...</p>
+    <div class="quiz-loading-state" aria-label="Quiz wird geladen">
+      <div class="quiz-skeleton-card"><div class="quiz-skeleton-line"></div></div>
+      <div class="quiz-skeleton-card"><div class="quiz-skeleton-line"></div><div class="quiz-skeleton-line short"></div></div>
+      <div class="quiz-skeleton-card"><div class="quiz-skeleton-line short"></div></div>
     </div>
   </div>
 
