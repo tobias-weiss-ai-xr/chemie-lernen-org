@@ -326,6 +326,32 @@
           renderCompare();
         });
       }
+      // UXF-019: Vergleichs-Auswahl als Link teilen
+      var shareBtn = panel.querySelector('#curricula-compare-share');
+      if (shareBtn) {
+        shareBtn.addEventListener('click', function () {
+          var base = window.location.href.split('#')[0].split('?')[0];
+          var url = base + '?tab=advanced';
+          if (selected.length) url += '&vergleich=' + selected.join(',');
+          var restore = shareBtn.textContent;
+          var done = function () {
+            shareBtn.textContent = '✓ Kopiert!';
+            setTimeout(function () {
+              shareBtn.textContent = restore;
+            }, 2000);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard
+              .writeText(url)
+              .then(done)
+              .catch(function () {
+                window.prompt('Link zum Kopieren (Strg+C):', url);
+              });
+          } else {
+            window.prompt('Link zum Kopieren (Strg+C):', url);
+          }
+        });
+      }
       var csvBtn = panel.querySelector('#curricula-compare-csv');
       if (csvBtn) {
         csvBtn.addEventListener('click', function () {
@@ -483,6 +509,8 @@
       ')</label>' +
       '<button type="button" class="btn btn-secondary curricula-compare-csv" id="curricula-compare-csv">' +
       '⬇ CSV-Export</button>' +
+      '<button type="button" class="btn btn-secondary" id="curricula-compare-share">' +
+      '🔗 Link kopieren</button>' +
       '<span class="curricula-compare-visible">' +
       rowsFiltered.length +
       ' von ' +

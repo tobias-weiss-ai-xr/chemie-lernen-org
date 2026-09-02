@@ -144,22 +144,30 @@
     return rows;
   }
 
-  function toSlug(name) {
-    return String(name)
-      .toLowerCase()
-      .replace(/[üÜ]/g, 'ue')
-      .replace(/[öÖ]/g, 'oe')
-      .replace(/[äÄ]/g, 'ae')
-      .replace(/ß/g, 'ss')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
-  }
-
   function detailLinks(node, meta) {
     var links = [];
     var type = node.data('type');
     if (type === 'entity' || type === 'topic' || type === 'subtopic' || type === 'objective') {
-      links.push('<a href="/entity/' + toSlug(node.data('label')) + '/">Konzept-Seite öffnen</a>');
+      // UXF-015: 404-sicher — Topic-Nodes verlinken den State-Lehrplan
+      // (meta.state), Konzept-Links bekommen Search-Fallback +
+      // data-entity-name für das Manifest-Rewrite (in renderDetail).
+      var label = node.data('label');
+      if ((type === 'topic' || type === 'subtopic') && meta.state) {
+        links.push(
+          '<a href="/curricula/' +
+            encodeURIComponent(String(meta.state).toLowerCase()) +
+            '/">Im Lehrplan ' +
+            escapeHtml(String(meta.state).toUpperCase()) +
+            ' ansehen</a>'
+        );
+      }
+      links.push(
+        '<a href="/pages/suche/?q=' +
+          encodeURIComponent(label) +
+          '" data-entity-name="' +
+          escapeHtml(label) +
+          '">Konzept-Seite öffnen</a>'
+      );
     }
     if (type === 'university' && meta.shortCode) {
       links.push(
@@ -200,6 +208,10 @@
       return;
     }
     if (content) content.innerHTML = detailHtml(node);
+    // UXF-015: existierende Entity-Seiten via Manifest auflösen
+    if (window.CurriculaEntityLinks && content && content.querySelector('a[data-entity-name]')) {
+      window.CurriculaEntityLinks.rewriteWhenReady(content);
+    }
     if (panel) panel.style.display = 'block';
   }
 

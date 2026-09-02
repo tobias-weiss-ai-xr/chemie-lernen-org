@@ -184,6 +184,59 @@
     return '/pages/suche/?q=' + encodeURIComponent(name || '');
   }
 
+  // UXF-016: Filter-Zustand in die URL schreiben (?thema=…) — teilbar
+  function updateUrlFilter() {
+    try {
+      var qs = topicFilterQ ? '?thema=' + encodeURIComponent(topicFilterQ) : '';
+      window.history.replaceState(null, '', window.location.pathname + qs);
+    } catch (e) {
+      /* noop */
+    }
+  }
+
+  // UXF-017: Drucken — vor dem Druck alles sichtbar machen, danach zurück
+  var printSaved = null;
+  window.addEventListener('beforeprint', function () {
+    var app = document.getElementById('curricula-state-app');
+    if (!app || !app.querySelector('.state-topic-card')) return;
+    printSaved = { q: topicFilterQ, collapsed: {} };
+    app.querySelectorAll('.school-type-toggle').forEach(function (t) {
+      var school = t.getAttribute('data-school');
+      if (school) printSaved.collapsed[school] = t.classList.contains('collapsed');
+    });
+    topicFilterQ = '';
+    applyTopicFilter();
+    app.querySelectorAll('.school-type-toggle').forEach(function (t) {
+      t.classList.remove('collapsed');
+      t.setAttribute('aria-expanded', 'true');
+      var icon = t.querySelector('.school-toggle-icon');
+      if (icon) icon.textContent = '▾';
+    });
+    app.querySelectorAll('.school-group-content').forEach(function (c) {
+      c.style.display = '';
+    });
+    // „+N Lernziele" aufklappen (reuse der bestehenden Expand-Logik)
+    app.querySelectorAll('.objective-more-btn').forEach(function (b) {
+      b.click();
+    });
+    var filterInput = document.getElementById('state-topic-filter-input');
+    if (filterInput) filterInput.value = '';
+  });
+  window.addEventListener('afterprint', function () {
+    if (!printSaved) return;
+    topicFilterQ = printSaved.q;
+    try {
+      localStorage.setItem('curriculaStateCollapsed', JSON.stringify(printSaved.collapsed));
+    } catch (e) {
+      /* noop */
+    }
+    applyTopicFilter();
+    restoreCollapseState();
+    var filterInput = document.getElementById('state-topic-filter-input');
+    if (filterInput) filterInput.value = topicFilterQ;
+    printSaved = null;
+  });
+
   function applyTopicFilter() {
     var app = document.getElementById('curricula-state-app');
     if (!app) return;
@@ -259,6 +312,7 @@
         topicFilterQ = val.trim();
         if (topicFilterQ) applyTopicFilter();
         else restoreCollapseState();
+        updateUrlFilter(); // UXF-016
       }, 150);
     });
     filterInput.addEventListener('keydown', function (e) {
@@ -266,6 +320,7 @@
         this.value = '';
         topicFilterQ = '';
         restoreCollapseState();
+        updateUrlFilter(); // UXF-016
       }
     });
   }
@@ -657,10 +712,26 @@
 
   loadStates();
 
+  // UXF-017: Druck-Button
+  var printBtn = document.getElementById('state-print-btn');
+  if (printBtn) {
+    printBtn.addEventListener('click', function () {
+      window.print();
+    });
+  }
+
   // Auto-load the curriculum tree for the state encoded in the URL
   // (e.g. /curricula/by/ -> "by") so state pages display their plan
   // directly instead of requiring a manual dropdown selection.
   var urlState = (window.location.pathname || '').match(/\/curricula\/([a-z]{2})\/?$/);
+  // UXF-016: Filter aus geteilter URL übernehmen (?thema=…) — der Render-
+  // Pfad (bindTopicFilterInput + applyTopicFilter) wendet ihn an.
+  try {
+    var urlFilterQ = new URLSearchParams(window.location.search).get('thema');
+    if (urlFilterQ) topicFilterQ = urlFilterQ.trim();
+  } catch (e) {
+    /* noop */
+  }
   if (urlState) {
     loadTree(urlState[1]);
   }

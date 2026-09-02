@@ -759,3 +759,33 @@ html {
   margin: 0.75rem auto 0;
   display: block;
 }
+
+/* UXF-017: Druckansicht State-Lehrplan (Lehrer-Use-Case) */
+@media print {
+  header.navbar,
+  footer,
+  nav,
+  .state-topic-filter,
+  #state-print-btn,
+  .objective-more-btn,
+  .cts-more {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .state-topic-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+  .school-type-group {
+    break-inside: avoid-page;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}

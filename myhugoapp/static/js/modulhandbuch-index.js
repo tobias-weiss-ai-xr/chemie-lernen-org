@@ -26,6 +26,22 @@
   var selectedUni = null;
   var moduleFilterQ = ''; // UXF-013: Client-Filter für Modul-Listen
   var moduleFilterTimer = null;
+
+  // UXF-018: URL-State für Universität + Modul (?uni=X&modul=CODE)
+  var pendingModule = null; // Modul-Deep-Link, wartet auf den Uni-Load
+  function updateMhUrl() {
+    try {
+      var params = new URLSearchParams();
+      if (selectedUni) params.set('uni', selectedUni);
+      if (moduleDetail && moduleDetail.module && moduleDetail.module.code) {
+        params.set('modul', moduleDetail.module.code);
+      }
+      var qs = params.toString();
+      window.history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : ''));
+    } catch (e) {
+      /* noop */
+    }
+  }
   var modulesCache = {};
   var moduleDetail = null;
   var searchQ = '';
@@ -78,6 +94,13 @@
         .then(function (d) {
           modulesCache[code] = d;
           render();
+          updateMhUrl(); // UXF-018
+          // UXF-018: wartenden Modul-Deep-Link auflösen
+          if (pendingModule) {
+            var pm = pendingModule;
+            pendingModule = null;
+            loadModule(code, pm);
+          }
         })
         .catch(function () {
           render();
@@ -104,6 +127,7 @@
       .then(function (d) {
         moduleDetail = d;
         render();
+        updateMhUrl(); // UXF-018
       })
       .catch(function () {
         moduleDetail = null;
@@ -147,6 +171,7 @@
   function showModules(code) {
     selectedUni = code;
     moduleDetail = null;
+    updateMhUrl(); // UXF-018
     loadUni(code);
   }
 
@@ -462,11 +487,17 @@
   }
 
   // Deep-link support: /modulhandbuch/?uni=CAM opens that university directly.
-  var uniParam = new URLSearchParams(location.search).get('uni');
+  // UXF-018: ?uni=X&modul=CODE öffnet zusätzlich das Modul-Detail.
+  var deepParams = new URLSearchParams(location.search);
+  var uniParam = deepParams.get('uni');
+  var modulParam = deepParams.get('modul');
 
   function applyDeepLink() {
     if (uniParam && !selectedUni) {
-      loadUni(uniParam.toUpperCase());
+      // KEIN toUpperCase mehr — API matcht case-insensitive (UXF-009),
+      // und die Original-Schreibweise ist die korrekte Echo-Basis.
+      if (modulParam) pendingModule = modulParam.trim();
+      loadUni(uniParam.trim());
     }
   }
 
