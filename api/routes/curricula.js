@@ -159,8 +159,10 @@ router.get('/api/curricula/topics', async (req, res) => {
   const schoolType = (req.query.schoolType || '').trim();
   const search = (req.query.search || '').toLowerCase().trim();
   // UXF-026: Negativ-/Unsinn-Werte clampen (LIMIT -1 / SKIP -5 war
-  // ein Neo4j-Fehler → leere Fallback-Antwort statt 200 Topics)
-  const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 200, 1), 1000);
+  // ein Neo4j-Fehler → leere Fallback-Antwort statt 200 Topics).
+  // Negativ → Default (nicht auf 1 clampen).
+  const limitNum = parseInt(req.query.limit, 10);
+  const limit = Math.min(limitNum > 0 ? limitNum : 200, 1000);
   const offset = Math.max(parseInt(req.query.offset, 10) || 0, 0);
 
   try {
@@ -253,8 +255,10 @@ router.get('/api/curricula/objectives', async (req, res) => {
   const topic = (req.query.topic || '').trim();
   const search = (req.query.search || '').toLowerCase().trim();
   // UXF-026: Negativ-/Unsinn-Werte clampen (LIMIT -1 / SKIP -5 war
-  // ein Neo4j-Fehler → leere Fallback-Antwort statt 200 Topics)
-  const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 200, 1), 1000);
+  // ein Neo4j-Fehler → leere Fallback-Antwort statt 200 Topics).
+  // Negativ → Default (nicht auf 1 clampen).
+  const limitNum = parseInt(req.query.limit, 10);
+  const limit = Math.min(limitNum > 0 ? limitNum : 200, 1000);
   const offset = Math.max(parseInt(req.query.offset, 10) || 0, 0);
 
   try {

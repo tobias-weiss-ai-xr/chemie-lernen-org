@@ -104,17 +104,20 @@ console.log('[verify-r6] 3/4 Logik-Tests');
   const api = fs.readFileSync(path.join(REPO_ROOT, 'api/routes/curricula.js'), 'utf-8');
   const clampOk =
     (api.match(/Math\.max\(parseInt\(req\.query\.offset, 10\) \|\| 0, 0\)/g) || []).length === 2 &&
-    (api.match(/Math\.min\(Math\.max\(parseInt\(req\.query\.limit, 10\) \|\| 200, 1\), 1000\)/g) || []).length === 2;
+    (api.match(/limitNum > 0 \? limitNum : 200, 1000\)/g) || []).length === 2;
   if (clampOk) console.log('  ✓ API-Clamp an beiden Routen (limit [1,1000], offset ≥ 0)');
   else {
     console.error('  ✗ API-Clamp unvollständig');
     ok = false;
   }
   // Simulierte Clamp-Logik
-  const clamp = (v) => Math.min(Math.max(parseInt(v, 10) || 200, 1), 1000);
+  const clamp = (v) => {
+    const n = parseInt(v, 10);
+    return Math.min(n > 0 ? n : 200, 1000);
+  };
   const clampOff = (v) => Math.max(parseInt(v, 10) || 0, 0);
   const cases = [
-    [clamp('-1'), 1], [clamp('abc'), 200], [clamp('99999999'), 1000], [clamp('50'), 50],
+    [clamp('-1'), 200], [clamp('abc'), 200], [clamp('99999999'), 1000], [clamp('50'), 50],
     [clampOff('-5'), 0], [clampOff('10'), 10], [clampOff('abc'), 0],
   ];
   const bad = cases.filter(([got, want]) => got !== want);
