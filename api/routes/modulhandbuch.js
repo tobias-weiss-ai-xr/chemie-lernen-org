@@ -165,6 +165,11 @@ router.get('/api/modulhandbuch/module/:univCode/:moduleCode', async (req, res) =
     const r = result.records[0];
     const m = r.get('m');
     if (!m) return res.status(404).json({ error: 'Module not found' });
+    // UXF-009-Fix: d{.*}/e{.*} sind NULL, wenn OPTIONAL MATCH nichts findet —
+    // direkter .name/.credits-Zugriff warf TypeError → 503 (latenter Bug,
+    // erst durch das case-insensitive Matching erreichbar geworden).
+    const ectsRaw = r.get('ects');
+    const degreeRaw = r.get('degree');
     res.json({
       source: 'neo4j',
       module: {
@@ -183,10 +188,11 @@ router.get('/api/modulhandbuch/module/:univCode/:moduleCode', async (req, res) =
         examination: m.properties.examination,
         url: m.properties.url,
       },
-      ects: r.get('ects').credits
-        ? { credits: r.get('ects').credits, workloadHours: r.get('ects').workload_hours }
-        : null,
-      degree: r.get('degree').name ? r.get('degree') : null,
+      ects:
+        ectsRaw && ectsRaw.credits
+          ? { credits: ectsRaw.credits, workloadHours: ectsRaw.workload_hours }
+          : null,
+      degree: degreeRaw && degreeRaw.name ? degreeRaw : null,
       offerings: r.get('offerings').filter((o) => o.semester),
     });
   } catch (err) {
