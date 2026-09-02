@@ -31,9 +31,7 @@ const REPO_ROOT = path.resolve(import.meta.dirname, '../..');
 const FILE = path.join(REPO_ROOT, 'myhugoapp/layouts/404.html');
 const LEGACY = path.join(REPO_ROOT, 'myhugoapp/layouts/_default/404.html');
 
-const content = `{{ define "title" }}Seite nicht gefunden — {{ .Site.Title }}{{ end }}
-
-{{ define "main" }}
+const content = `{{ define "main" }}
 <div class="container" style="margin-top: 2rem; margin-bottom: 3rem;">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
