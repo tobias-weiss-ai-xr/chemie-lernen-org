@@ -1,3 +1,4 @@
+/* global document */
 /**
  * Diagnose-Skript: 3D-Umgebungen + Spoke — Konsole, PageErrors,
  * fehlgeschlagene Requests, Canvas/WebGL-Status.
