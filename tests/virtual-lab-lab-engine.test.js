@@ -82,6 +82,25 @@ describe('LabEngine (virtuelles Labor)', () => {
         update() {}
       },
       Raycaster: class {},
+      GridHelper: class {
+        constructor() {
+          this.isGridHelper = true;
+          this.position = new Vec3();
+        }
+      },
+      PlaneGeometry: class {
+        constructor() {}
+      },
+      MeshStandardMaterial: class {
+        constructor() {}
+      },
+      Mesh: class {
+        constructor() {
+          this.isMesh = true;
+          this.rotation = new Vec3();
+        }
+      },
+      DoubleSide: 2,
     };
   }
 
@@ -180,5 +199,24 @@ describe('LabEngine (virtuelles Labor)', () => {
     LabEngine = require('../myhugoapp/static/js/virtual-lab/lab-engine.js');
     LabEngine.init('lab-canvas', 'loading-lab');
     expect(() => LabEngine.reset()).not.toThrow();
+  });
+
+  test('UXF-040: init() rendert einen sichtbaren Boden (kein Void)', () => {
+    installDom({ selectValue: 'freestyle' });
+    LabEngine = require('../myhugoapp/static/js/virtual-lab/lab-engine.js');
+    LabEngine.init('lab-canvas', 'loading-lab');
+    const children = LabEngine._scene.children;
+    expect(children.some((c) => c && c.isGridHelper)).toBe(true);
+    expect(children.some((c) => c && c.isMesh)).toBe(true);
+  });
+
+  test('UXF-040: init() schreibt einen Bedien-Hinweis ins Log', () => {
+    installDom({ selectValue: 'freestyle' });
+    LabEngine = require('../myhugoapp/static/js/virtual-lab/lab-engine.js');
+    LabEngine.init('lab-canvas', 'loading-lab');
+    const log = document.getElementById('observation-log');
+    expect(log.children.length).toBeGreaterThan(0);
+    const texts = [...log.children].map((c) => c.textContent || '');
+    expect(texts.some((t) => t.includes('ziehe') || t.includes('Wähle'))).toBe(true);
   });
 });

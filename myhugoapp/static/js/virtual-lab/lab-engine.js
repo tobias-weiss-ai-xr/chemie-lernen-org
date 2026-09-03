@@ -125,6 +125,19 @@ var LabEngine = {
       loadingEl.style.display = 'none';
     }
 
+    // ── UXF-040: Sichtbarer Lab-Boden ──────────────────────────────
+    // Vorher war die Szene ein dunkler Void — das las sich als „kaputt".
+    var floor = new THREE.Mesh(
+      new THREE.PlaneGeometry(20, 20),
+      new THREE.MeshStandardMaterial({ color: 0x22223a, roughness: 0.9 })
+    );
+    floor.rotation.x = -Math.PI / 2;
+    floor.receiveShadow = true;
+    this._scene.add(floor);
+    var grid = new THREE.GridHelper(20, 20, 0x444466, 0x333348);
+    grid.position.y = 0.001;
+    this._scene.add(grid);
+
     // ── UXF-037: Initiales Experiment laden ────────────────────────
     // Vorher blieb die Szene leer (dunkler Hintergrund + unsichtbare
     // Bodenebene = „black plane"), bis der Nutzer das Dropdown änderte.
@@ -138,6 +151,10 @@ var LabEngine = {
     if (initialId) {
       self.loadExperiment(initialId);
     }
+    self.addObservation(
+      'Wähle oben ein Experiment oder ziehe Geräte aus der Leiste in den Raum.',
+      'info'
+    );
   },
 
   // ── Animation loop ────────────────────────────────────────────────────

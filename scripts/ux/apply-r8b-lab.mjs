@@ -97,6 +97,51 @@ if (src.includes('UXF-038')) {
   console.log('[UXF-038] ✓ reset() stellt aktuelles Experiment wieder her');
 }
 
+// ── UXF-040: Sichtbarer Boden + Bedien-Hinweis (kein Void) ──────────
+if (src.includes('UXF-040')) {
+  console.log('[UXF-040] Boden + Hinweis bereits vorhanden');
+} else {
+  const a4 = `    // ── UXF-037: Initiales Experiment laden ────────────────────────`;
+  if (!src.includes(a4)) throw new Error('[UXF-040] Anker a4 nicht gefunden');
+  src = src.replace(
+    a4,
+    `    // ── UXF-040: Sichtbarer Lab-Boden ──────────────────────────────
+    // Vorher war die Szene ein dunkler Void — das las sich als „kaputt".
+    var floor = new THREE.Mesh(
+      new THREE.PlaneGeometry(20, 20),
+      new THREE.MeshStandardMaterial({ color: 0x22223a, roughness: 0.9 })
+    );
+    floor.rotation.x = -Math.PI / 2;
+    floor.receiveShadow = true;
+    this._scene.add(floor);
+    var grid = new THREE.GridHelper(20, 20, 0x444466, 0x333348);
+    grid.position.y = 0.001;
+    this._scene.add(grid);
+
+    // ── UXF-037: Initiales Experiment laden ────────────────────────`
+  );
+
+  // Bedien-Hinweis NACH dem initialen Experiment-Load (loadExperiment
+  // leert das Log).
+  const a5 = `    if (initialId) {
+      self.loadExperiment(initialId);
+    }
+  },`;
+  if (!src.includes(a5)) throw new Error('[UXF-040] Anker a5 nicht gefunden');
+  src = src.replace(
+    a5,
+    `    if (initialId) {
+      self.loadExperiment(initialId);
+    }
+    self.addObservation(
+      'Wähle oben ein Experiment oder ziehe Geräte aus der Leiste in den Raum.',
+      'info'
+    );
+  },`
+  );
+  console.log('[UXF-040] ✓ sichtbarer Boden (Floor + Grid) und Bedien-Hinweis');
+}
+
 // ── UXF-039: Dual-Export für Tests ───────────────────────────────────
 if (src.includes('UXF-039')) {
   console.log('[UXF-039] module.exports bereits vorhanden');
