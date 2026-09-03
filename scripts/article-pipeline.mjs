@@ -928,7 +928,12 @@ async function run() {
   if (selected.length > 0) {
     try {
       console.log(`[pipeline] Committing and pushing...`);
-      execSync('git add -A', { cwd: REPO_ROOT, stdio: 'pipe' });
+      // Targeted add: never sweep unrelated working-tree junk (coverage/,
+      // logs/, *.bak, ...) into the auto-commit.
+      execSync(
+        'git add myhugoapp/content/posts myhugoapp/static/data myhugoapp/data',
+        { cwd: REPO_ROOT, stdio: 'pipe' }
+      );
       execSync(`git commit -m "articles: ${dateStr()}"`, { cwd: REPO_ROOT, stdio: 'pipe' });
       execSync('git push', { cwd: REPO_ROOT, stdio: 'pipe' });
       console.log(`[pipeline] Pushed successfully`);
