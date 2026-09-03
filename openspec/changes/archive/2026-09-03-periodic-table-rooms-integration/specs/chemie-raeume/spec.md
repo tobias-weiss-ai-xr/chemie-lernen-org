@@ -3,7 +3,7 @@
 Delta-Spec: Die „Chemie Räume" verweisen auf das begehbare 3D-Periodensystem
 (GitHub Pages) statt auf die Hubs-Instanz.
 
-## MODIFIED Requirements
+## ADDED Requirements
 
 ### Requirement: Element-Kacheln verlinken die aktuelle 3D-Oberfläche
 
