@@ -20,6 +20,7 @@ import socketserver
 import os
 import re
 import sys
+from urllib.parse import unquote
 
 DIST = os.environ.get("HUBS_DIST", "/code/dist")
 
@@ -47,7 +48,13 @@ REWRITES = [
     # request causes a SyntaxError when the glTF loader tries to parse
     # HTML as JSON).  An optional trailing slash is allowed so that
     # /raJ6mj3/test-room/ also serves hub.html (not index.html).
-    (r"^/[A-Za-z0-9]{7}(/[A-Za-z0-9_-]*)?/?$", "/hub.html"),
+    #
+    # NOTE: matching happens on the PERCENT-DECODED path (see
+    # _resolve_target) and slugs accept any character except '/', '.' and
+    # '?': recovered legion rooms have unicode slugs like
+    # /JQLHx3e/chemie-raum-–-wasserstoff-h (en-dash from the German
+    # element-room names).  Dot-paths still never match (they contain '.').
+    (r"^/[A-Za-z0-9]{7}(?:/[^./?]*|/)?$", "/hub.html"),
 ]
 
 class Handler(http.server.SimpleHTTPRequestHandler):
@@ -69,7 +76,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def _resolve_target(self):
         """Resolve self.path to the file to serve, applying REWRITES and SPA
         fallback.  Returns the target path, or None for 404."""
-        path = self.path.split("?")[0].split("#")[0]
+        path = unquote(self.path.split("?")[0].split("#")[0])
         target = path
         for pat, rep in REWRITES:
             if re.match(pat, path):

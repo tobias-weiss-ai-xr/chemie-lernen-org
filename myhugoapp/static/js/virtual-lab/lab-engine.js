@@ -124,6 +124,20 @@ var LabEngine = {
     if (loadingEl) {
       loadingEl.style.display = 'none';
     }
+
+    // ── UXF-037: Initiales Experiment laden ────────────────────────
+    // Vorher blieb die Szene leer (dunkler Hintergrund + unsichtbare
+    // Bodenebene = „black plane"), bis der Nutzer das Dropdown änderte.
+    var select = document.getElementById('experiment-select');
+    var initialId =
+      select && select.value
+        ? select.value
+        : window.experiments && window.experiments.freestyle
+          ? 'freestyle'
+          : null;
+    if (initialId) {
+      self.loadExperiment(initialId);
+    }
   },
 
   // ── Animation loop ────────────────────────────────────────────────────
@@ -385,6 +399,7 @@ var LabEngine = {
    * Reset the scene: remove all equipment, clear observations, hide info.
    */
   reset: function () {
+    var hadExperiment = this._currentExperimentId;
     if (typeof EquipmentManager !== 'undefined') {
       EquipmentManager.clear();
     }
@@ -392,6 +407,11 @@ var LabEngine = {
     this.hideInfo();
     this._isRunning = false;
     this._setRunButtonDisabled(false);
+    // UXF-038: Szene wiederherstellen — vorher blieb nach dem Reset die
+    // leere Szene stehen („black plane") bis zur Neu-Auswahl.
+    if (hadExperiment) {
+      this.loadExperiment(hadExperiment);
+    }
   },
 
   // ── Drag-and-drop (2D panel → 3D scene) ───────────────────────────────
@@ -624,3 +644,7 @@ var LabEngine = {
     this._dragState = null;
   },
 };
+// UXF-039: Dual-Export für Tests (Browser behält das globale var LabEngine)
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = LabEngine;
+}
