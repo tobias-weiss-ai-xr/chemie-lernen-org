@@ -226,23 +226,25 @@ router.get('/api/modulhandbuch/search', async (req, res) => {
       defaultAccessMode: neo4j.session.READ,
       fetchSize: 200,
     });
-    const [result, totalResult] = await Promise.all([
-      session.run(
-        `MATCH (m:UniversityModule)
-         WHERE toLower(m.module_name) CONTAINS $q OR toLower(m.module_code) CONTAINS $q
-         RETURN m.module_code AS code, m.module_name AS name, m.university AS university,
-                m.ects AS ects, m.level AS level, m.degree AS degree
-         ORDER BY m.university, m.module_name
-         SKIP ${offset} LIMIT ${limit}`,
-        { q }
-      ),
-      session.run(
-        `MATCH (m:UniversityModule)
-         WHERE toLower(m.module_name) CONTAINS $q OR toLower(m.module_code) CONTAINS $q
-         RETURN count(m) AS total`,
-        { q }
-      ),
-    ]);
+    // UXF-036: Zwei Queries auf EINER Session dürfen NICHT parallel
+    // laufen ("Queries cannot be run directly on a session with ongoing
+    // work") — das ließ /search dauerhaft mit 503 scheitern. Jetzt
+    // sequenziell auf derselben Session.
+    const result = await session.run(
+      `MATCH (m:UniversityModule)
+       WHERE toLower(m.module_name) CONTAINS $q OR toLower(m.module_code) CONTAINS $q
+       RETURN m.module_code AS code, m.module_name AS name, m.university AS university,
+              m.ects AS ects, m.level AS level, m.degree AS degree
+       ORDER BY m.university, m.module_name
+       SKIP ${offset} LIMIT ${limit}`,
+      { q }
+    );
+    const totalResult = await session.run(
+      `MATCH (m:UniversityModule)
+       WHERE toLower(m.module_name) CONTAINS $q OR toLower(m.module_code) CONTAINS $q
+       RETURN count(m) AS total`,
+      { q }
+    );
     await session.close();
     res.json({
       source: 'neo4j',
