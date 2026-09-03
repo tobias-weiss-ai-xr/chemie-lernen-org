@@ -1,0 +1,9 @@
+[Unit]
+Description=Daily chemistry article pipeline at 04:42 server local time
+
+[Timer]
+OnCalendar=*-*-* 04:42:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

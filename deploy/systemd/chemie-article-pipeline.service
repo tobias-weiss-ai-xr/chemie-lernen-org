@@ -1,0 +1,25 @@
+[Unit]
+Description=Chemistry article pipeline for chemie-lernen.org (RSS -> LLM -> Hugo posts -> Neo4j KG)
+After=network-online.target docker.service
+Wants=network-online.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+User=weiss
+# Secrets + endpoints (LITELLM_API_KEY, LITELLM_BASE_URL, LITELLM_MODEL,
+# NEO4J_URI/USER/PASSWORD/DATABASE). Template: deploy/pipeline.env.example
+EnvironmentFile=/opt/litellm/pipeline.env
+WorkingDirectory=/opt/git/hugo-chemie-lernen-org
+# Node pipeline (scripts/article-pipeline.mjs): chemistryScore() relevance
+# ranking, source verification + DOI extraction, calculator auto-linking,
+# Neo4j KG entity storage, pipeline-status/history writing, git auto-commit.
+#
+# Do NOT switch ExecStart back to the knowledge_extractor Python
+# orchestrator (run-chemie-pipeline.sh): its _select_best() ranks candidates
+# by content length only — no chemistry relevance filter — and has published
+# off-topic articles (materials ML, stock prediction) in the past.
+ExecStart=/usr/bin/node scripts/article-pipeline.mjs
+ExecStopPost=/opt/git/hugo-chemie-lernen-org/scripts/healthcheck.sh
+StandardOutput=journal
+StandardError=journal
