@@ -142,6 +142,62 @@ if (src.includes('UXF-040')) {
   console.log('[UXF-040] ✓ sichtbarer Boden (Floor + Grid) und Bedien-Hinweis');
 }
 
+// ── UXF-041: Katalog-Auflösung — Array ODER Objekt ───────────────────
+if (src.includes('UXF-041')) {
+  console.log('[UXF-041] Katalog-Auflösung bereits vorhanden');
+} else {
+  // 1. loadExperiment: window.experiments ist produktiv ein ARRAY
+  //    (var experiments = [...]), nicht ein Objekt — der alte Zugriff
+  //    window.experiments[experimentId] war daher IMMER undefined:
+  //    Experimente konnten noch nie geladen werden!
+  const a6 = `    // Load config
+    var config =
+      window.experiments && window.experiments[experimentId]
+        ? window.experiments[experimentId]
+        : null;`;
+  if (!src.includes(a6)) throw new Error('[UXF-041] Anker a6 nicht gefunden');
+  src = src.replace(
+    a6,
+    `    // UXF-041: Katalog-Auflösung — produktives experiments.js exponiert
+    // ein ARRAY; der alte Objekt-Zugriff war immer undefined.
+    var catalog = window.experiments;
+    var config = null;
+    if (catalog) {
+      if (Array.isArray(catalog)) {
+        for (var ci = 0; ci < catalog.length; ci++) {
+          if (catalog[ci] && catalog[ci].id === experimentId) {
+            config = catalog[ci];
+            break;
+          }
+        }
+      } else if (catalog[experimentId]) {
+        config = catalog[experimentId];
+      }
+    }`
+  );
+
+  // 2. init()-Fallback: „freestyle"-Existenz-Check funktioniert auf
+  //    Arrays nicht — der Select-Wert reicht (loadExperiment validiert).
+  const a7 = `    var select = document.getElementById('experiment-select');
+    var initialId =
+      select && select.value
+        ? select.value
+        : window.experiments && window.experiments.freestyle
+          ? 'freestyle'
+          : null;`;
+  if (src.includes(a7)) {
+    src = src.replace(
+      a7,
+      `    var select = document.getElementById('experiment-select');
+    var hasCatalog =
+      window.experiments &&
+      (Array.isArray(window.experiments) || window.experiments.freestyle);
+    var initialId = select && select.value ? select.value : hasCatalog ? 'freestyle' : null;`
+    );
+  }
+  console.log('[UXF-041] ✓ Katalog-Auflösung (Array + Objekt) in loadExperiment/init');
+}
+
 // ── UXF-039: Dual-Export für Tests ───────────────────────────────────
 if (src.includes('UXF-039')) {
   console.log('[UXF-039] module.exports bereits vorhanden');

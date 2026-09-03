@@ -142,12 +142,9 @@ var LabEngine = {
     // Vorher blieb die Szene leer (dunkler Hintergrund + unsichtbare
     // Bodenebene = „black plane"), bis der Nutzer das Dropdown änderte.
     var select = document.getElementById('experiment-select');
-    var initialId =
-      select && select.value
-        ? select.value
-        : window.experiments && window.experiments.freestyle
-          ? 'freestyle'
-          : null;
+    var hasCatalog =
+      window.experiments && (Array.isArray(window.experiments) || window.experiments.freestyle);
+    var initialId = select && select.value ? select.value : hasCatalog ? 'freestyle' : null;
     if (initialId) {
       self.loadExperiment(initialId);
     }
@@ -251,11 +248,22 @@ var LabEngine = {
     this._clearObservations();
     this.hideInfo();
 
-    // Load config
-    var config =
-      window.experiments && window.experiments[experimentId]
-        ? window.experiments[experimentId]
-        : null;
+    // UXF-041: Katalog-Auflösung — produktives experiments.js exponiert
+    // ein ARRAY; der alte Objekt-Zugriff war immer undefined.
+    var catalog = window.experiments;
+    var config = null;
+    if (catalog) {
+      if (Array.isArray(catalog)) {
+        for (var ci = 0; ci < catalog.length; ci++) {
+          if (catalog[ci] && catalog[ci].id === experimentId) {
+            config = catalog[ci];
+            break;
+          }
+        }
+      } else if (catalog[experimentId]) {
+        config = catalog[experimentId];
+      }
+    }
 
     if (!config) {
       this.addObservation('Experiment "' + experimentId + '" nicht gefunden.', 'warning');

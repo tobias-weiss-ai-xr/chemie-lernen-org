@@ -219,4 +219,26 @@ describe('LabEngine (virtuelles Labor)', () => {
     const texts = [...log.children].map((c) => c.textContent || '');
     expect(texts.some((t) => t.includes('ziehe') || t.includes('Wähle'))).toBe(true);
   });
+
+  test('UXF-041: Katalog als ARRAY (produktive experiments.js) wird aufgelöst', () => {
+    installDom({ selectValue: 'titration' });
+    global.window.experiments = [
+      { id: 'freestyle', name: 'Freier Aufbau', equipment: [] },
+      { id: 'titration', name: 'Titration', equipment: ['beaker', 'burner'] },
+    ];
+    LabEngine = require('../myhugoapp/static/js/virtual-lab/lab-engine.js');
+    LabEngine.init('lab-canvas', 'loading-lab');
+    // Vor dem Fix: window.experiments['titration'] === undefined → „nicht gefunden"
+    expect(LabEngine._currentExperimentId).toBe('titration');
+    expect(equipmentCalls.place).toEqual(['beaker', 'burner']);
+  });
+
+  test('UXF-041: loadExperiment findet Array-Eintrag auch nachträglich', () => {
+    installDom({ selectValue: 'freestyle' });
+    global.window.experiments = [{ id: 'freestyle', name: 'Frei', equipment: [] }];
+    LabEngine = require('../myhugoapp/static/js/virtual-lab/lab-engine.js');
+    LabEngine.init('lab-canvas', 'loading-lab');
+    expect(() => LabEngine.loadExperiment('freestyle')).not.toThrow();
+    expect(LabEngine._currentExperimentId).toBe('freestyle');
+  });
 });
