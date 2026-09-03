@@ -20,7 +20,10 @@ import socketserver
 import os
 import re
 import sys
+import json
+import ssl
 from urllib.parse import unquote
+from urllib.request import urlopen
 
 DIST = os.environ.get("HUBS_DIST", "/code/dist")
 
@@ -41,21 +44,42 @@ REWRITES = [
     (r"^/cloud", "/cloud.html"),
     (r"^/verify", "/verify.html"),
     (r"^/tokens", "/tokens.html"),
-    # Match 7-char hub IDs with optional slug (e.g. /raJ6mj3 or
-    # /raJ6mj3/test-room).  The slug is restricted to [A-Za-z0-9_-] so that
-    # file paths like /<hubId>/objects.gltf or /<hubId>/scene.glb do NOT
-    # match and instead get a clean 404 (serving hub.html for a .gltf
-    # request causes a SyntaxError when the glTF loader tries to parse
-    # HTML as JSON).  An optional trailing slash is allowed so that
-    # /raJ6mj3/test-room/ also serves hub.html (not index.html).
-    #
-    # NOTE: matching happens on the PERCENT-DECODED path (see
-    # _resolve_target) and slugs accept any character except '/', '.' and
-    # '?': recovered legion rooms have unicode slugs like
-    # /JQLHx3e/chemie-raum-–-wasserstoff-h (en-dash from the German
-    # element-room names).  Dot-paths still never match (they contain '.').
+# Match 7-char hub IDs with optional slug (e.g. /raJ6mj3 or
+# /raJ6mj3/test-room).  The slug is restricted to [A-Za-z0-9_-] so that
+# file paths like /<hubId>/objects.gltf or /<hubId>/scene.glb do NOT
+# match and instead get a clean 404 (serving hub.html for a .gltf
+# request causes a SyntaxError when the glTF loader tries to parse
+# HTML as JSON).  An optional trailing slash is allowed so that
+# /raJ6mj3/test-room/ also serves hub.html (not index.html).
+#
+# NOTE: matching happens on the PERCENT-DECODED path (see
+# _resolve_target) and slugs accept any character except '/', '.' and
+# '?': recovered legion rooms have unicode slugs like
+# /JQLHx3e/chemie-raum-–-wasserstoff-h (en-dash from the German
+# element-room names).  Dot-paths still never match (they contain '.').
     (r"^/[A-Za-z0-9]{7}(?:/[^./?]*|/)?$", "/hub.html"),
 ]
+
+# Reticulum per-room content that must NOT be 404'd by the dot-path rule:
+# the client fetches /<hubId>/objects.gltf (pinned room objects / spawn
+# points) on every room load.  A 404 here makes the client log "Releasing
+# uncached gltf #spawn-point" and can break the entry flow (black room).
+# We proxy to reticulum (same docker network) and fall back to an empty
+# spec-valid glTF if reticulum is unreachable.
+ROOM_OBJECTS_RE = re.compile(r"^/[A-Za-z0-9]{7}/objects\.gltf$")
+RETICULUM_ORIGIN = os.environ.get("RETICULUM_ORIGIN", "https://hubs-reticulum:4000")
+# reticulum's internal endpoint uses a self-signed cert — skip verification
+_SSL_CTX = ssl.create_default_context()
+_SSL_CTX.check_hostname = False
+_SSL_CTX.verify_mode = ssl.CERT_NONE
+EMPTY_GLTF = json.dumps(
+    {
+        "asset": {"version": "2.0", "generator": "hubs-client-assets static server"},
+        "scene": 0,
+        "scenes": [{"name": "scene", "nodes": []}],
+        "nodes": [],
+    }
+).encode("utf-8")
 
 class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -103,7 +127,29 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             target += "?" + query
         return target
 
+    def _serve_room_objects(self):
+        """Proxy /<hubId>/objects.gltf to reticulum; fall back to an empty
+        spec-valid glTF if reticulum is unreachable. Returns True if handled."""
+        if not ROOM_OBJECTS_RE.match(self.path.split("?")[0]):
+            return False
+        self.send_response(200)
+        self.send_header("Content-Type", "model/gltf+json; charset=utf-8")
+        try:
+            upstream = urlopen(RETICULUM_ORIGIN + self.path, timeout=5, context=_SSL_CTX)
+            body = upstream.read()
+            length = len(body)
+        except Exception:
+            body, length = EMPTY_GLTF, len(EMPTY_GLTF)
+        self.send_header("Content-Length", str(length))
+        self.send_header("Cache-Control", "no-cache")
+        self.end_headers()
+        if self.command != "HEAD":
+            self.wfile.write(body)
+        return True
+
     def do_GET(self):
+        if self._serve_room_objects():
+            return
         redirect = self._legacy_redirect_target()
         if redirect is not None:
             self.send_response(301)
@@ -120,6 +166,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def do_HEAD(self):
         # Mirror do_GET routing so HEAD requests to room URLs (e.g. from
         # phoenix-adapter.js pre-flight checks) return 200, not 404.
+        if self._serve_room_objects():
+            return
         redirect = self._legacy_redirect_target()
         if redirect is not None:
             self.send_response(301)
