@@ -21,6 +21,14 @@ import { getNeo4jDriver, NEO4J_DATABASE, toNumberSafe } from '../services/neo4j.
 import { getFallbackData } from '../services/content.js';
 import curriculaMapper from '../curricula-mapper.cjs';
 
+// UXF-034: Query-Params koerzieren — Express macht ?x=a&x=b zu Arrays,
+// .trim()/.toLowerCase() auf Arrays wirft TypeError (500). qs() nimmt bei
+// Arrays das erste Element und koerziert alles zu String (null → '').
+function qs(v) {
+  if (Array.isArray(v)) return v.length ? String(v[0]) : '';
+  return v == null ? '' : String(v);
+}
+
 const router = Router();
 const logger = pino({
   level: process.env.LOG_LEVEL || 'info',
@@ -154,10 +162,10 @@ router.get('/api/curricula/list', async (req, res) => {
  * GET /api/curricula/topics
  */
 router.get('/api/curricula/topics', async (req, res) => {
-  const state = (req.query.state || '').trim();
-  const grade = (req.query.grade || '').trim();
-  const schoolType = (req.query.schoolType || '').trim();
-  const search = (req.query.search || '').toLowerCase().trim();
+  const state = qs(req.query.state).trim();
+  const grade = qs(req.query.grade).trim();
+  const schoolType = qs(req.query.schoolType).trim();
+  const search = qs(req.query.search).toLowerCase().trim();
   // UXF-026: Negativ-/Unsinn-Werte clampen (LIMIT -1 / SKIP -5 war
   // ein Neo4j-Fehler → leere Fallback-Antwort statt 200 Topics).
   // Negativ → Default (nicht auf 1 clampen).
@@ -252,8 +260,8 @@ router.get('/api/curricula/topics', async (req, res) => {
  * GET /api/curricula/objectives
  */
 router.get('/api/curricula/objectives', async (req, res) => {
-  const topic = (req.query.topic || '').trim();
-  const search = (req.query.search || '').toLowerCase().trim();
+  const topic = qs(req.query.topic).trim();
+  const search = qs(req.query.search).toLowerCase().trim();
   // UXF-026: Negativ-/Unsinn-Werte clampen (LIMIT -1 / SKIP -5 war
   // ein Neo4j-Fehler → leere Fallback-Antwort statt 200 Topics).
   // Negativ → Default (nicht auf 1 clampen).
@@ -670,7 +678,7 @@ router.get('/api/curricula/linked-entities', async (req, res) => {
  * GET /api/curricula/compare
  */
 router.get('/api/curricula/compare', function (req, res) {
-  var q = (req.query.name || '').toLowerCase().trim();
+  var q = qs(req.query.name).toLowerCase().trim();
   if (!q) {
     return res.json({ results: {}, query: q, count: 0 });
   }
@@ -733,17 +741,11 @@ router.get('/api/curricula/graph', async (req, res) => {
   const scope = ['all', 'universities', 'curriculum'].includes(req.query.scope)
     ? req.query.scope
     : 'all';
-  const university = String(req.query.university || '')
-    .trim()
-    .toUpperCase();
-  const state = String(req.query.state || '')
-    .trim()
-    .toUpperCase();
-  const curriculum = String(req.query.curriculum || '').trim();
+  const university = String(qs(req.query.university)).trim().toUpperCase();
+  const state = String(qs(req.query.state)).trim().toUpperCase();
+  const curriculum = String(qs(req.query.curriculum)).trim();
   const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 500, 50), 1500);
-  const q = String(req.query.q || '')
-    .trim()
-    .toLowerCase();
+  const q = String(qs(req.query.q)).trim().toLowerCase();
 
   const cacheKey = [scope, university, state, curriculum, limit, q].join('|');
   const cached = graphCache.get(cacheKey);

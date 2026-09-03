@@ -37,6 +37,14 @@ import {
 import { renderEntityPage } from '../templates/article.mjs';
 import { excludeCodeEntities } from '../scripts/_neo4j-subset-filter.mjs';
 
+// UXF-034: Query-Params koerzieren — Express macht ?x=a&x=b zu Arrays,
+// .trim()/.toLowerCase() auf Arrays wirft TypeError (500). qs() nimmt bei
+// Arrays das erste Element und koerziert alles zu String (null → '').
+function qs(v) {
+  if (Array.isArray(v)) return v.length ? String(v[0]) : '';
+  return v == null ? '' : String(v);
+}
+
 const router = Router();
 const logger = pino({
   level: process.env.LOG_LEVEL || 'info',
@@ -361,7 +369,7 @@ function serveFallbackKgData(req, res, params, showLehrplan, cacheKey) {
 router.get('/api/rag-context', async (req, res) => {
   try {
     var { getRAGContext } = await import('../services/rag.js');
-    var query = (req.query.q || '').trim();
+    var query = qs(req.query.q).trim();
     if (!query) {
       return res.status(400).json({ error: 'Query parameter q is required' });
     }

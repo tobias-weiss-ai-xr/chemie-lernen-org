@@ -5,10 +5,12 @@
 
 // Parse equation into reactants and products
 function parseEquation(equation) {
-  // Split by = or ->
-  const parts = equation.split(/[=→]/);
+  // Split by =, →, ⇌ oder -> (UXF-031: Gleichgewichtsreaktionen erlaubt)
+  const parts = equation.split(/[=→⇌]|->/);
   if (parts.length !== 2) {
-    throw new Error('Ungültiges Format. Verwenden Sie "=" zwischen Edukten und Produkten.');
+    throw new Error(
+      'Ungültiges Format. Verwenden Sie "=", "->" oder "⇌" zwischen Edukten und Produkten.'
+    );
   }
 
   const reactants = parts[0]
@@ -22,6 +24,17 @@ function parseEquation(equation) {
 
   if (reactants.length === 0 || products.length === 0) {
     throw new Error('Die Gleichung muss Edukte und Produkte enthalten.');
+  }
+
+  // UXF-032: Vorhandene Koeffizienten wurden stillschweigend ignoriert
+  // (parseFormula lässt führende Ziffern fallen) — irreführend. Jetzt
+  // explicit ablehnen.
+  for (const part of [...reactants, ...products]) {
+    if (/^\d/.test(part)) {
+      throw new Error(
+        'Bitte keine Koeffizienten angeben (z. B. "2 H2O"). Der Rechner berechnet sie selbst.'
+      );
+    }
   }
 
   return { reactants, products };
@@ -51,6 +64,14 @@ function balanceEquation() {
   try {
     // Parse equation
     const { reactants, products } = parseEquation(input);
+
+    // UXF-033a: Der Brute-Force-Solver braucht 12^Stoffe Versuche — bei
+    // mehr als 7 Stoffen würde der Browser-Tab einfrieren.
+    if (reactants.length + products.length > 7) {
+      throw new Error(
+        'Diese Gleichung hat mehr als 7 beteiligte Stoffe und ist zu komplex für den Ausgleicher.'
+      );
+    }
 
     // Get all elements
     const elements = getAllElements(reactants, products);
@@ -105,8 +126,10 @@ function solveByBruteForce(matrix) {
   const rows = matrix.length;
   const cols = matrix[0].length;
 
-  // Try coefficient values from 1 to 12
-  const maxCoeff = 12;
+  // UXF-033b: adaptiver Maximal-Koeffizient nach Stoffanzahl (12 war
+  // zu klein: KMnO4 + HCl braucht 16). Worst-Case bleibt begrenzt:
+  // 24^4=331k, 20^5=3.2M, 16^6=16.7M, 12^7=35.8M Kombinationen.
+  const maxCoeff = cols <= 4 ? 24 : cols <= 5 ? 20 : cols <= 6 ? 16 : 12;
 
   // Generate all possible combinations
   function* generateCombinations(n, max) {
@@ -320,3 +343,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+// UXF-035: Dual-Export für Tests (parseEquation/getAllElements/solveByBruteForce)
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { parseEquation, getAllElements, solveByBruteForce };
+}

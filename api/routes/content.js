@@ -16,6 +16,14 @@ import pino from 'pino';
 import { getNeo4jDriver, NEO4J_DATABASE } from '../services/neo4j.js';
 import { loadContentLinks, loadArticleIndex } from '../services/content.js';
 
+// UXF-034: Query-Params koerzieren — Express macht ?x=a&x=b zu Arrays,
+// .trim()/.toLowerCase() auf Arrays wirft TypeError (500). qs() nimmt bei
+// Arrays das erste Element und koerziert alles zu String (null → '').
+function qs(v) {
+  if (Array.isArray(v)) return v.length ? String(v[0]) : '';
+  return v == null ? '' : String(v);
+}
+
 const router = Router();
 const logger = pino({
   level: process.env.LOG_LEVEL || 'info',
@@ -29,8 +37,8 @@ const logger = pino({
  * Query params: ?type= (article|calculator), ?search=, ?limit=, ?offset=
  */
 router.get('/api/content', async (req, res) => {
-  const type = (req.query.type || '').trim();
-  const search = (req.query.search || '').toLowerCase().trim();
+  const type = qs(req.query.type).trim();
+  const search = qs(req.query.search).toLowerCase().trim();
   const limit = Math.min(parseInt(req.query.limit) || 200, 500);
   const offset = parseInt(req.query.offset) || 0;
 

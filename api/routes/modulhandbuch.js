@@ -27,6 +27,14 @@ const logger = pino({
   }),
 });
 
+// UXF-034: Query-Params koerzieren — Express macht ?x=a&x=b zu Arrays,
+// .trim()/.toLowerCase() auf Arrays wirft TypeError (500). qs() nimmt bei
+// Arrays das erste Element und koerziert alles zu String (null → '').
+function qs(v) {
+  if (Array.isArray(v)) return v.length ? String(v[0]) : '';
+  return v == null ? '' : String(v);
+}
+
 const router = Router();
 
 // -- GET /api/modulhandbuch/universities -- List all indexed universities -----
@@ -207,7 +215,7 @@ router.get('/api/modulhandbuch/module/:univCode/:moduleCode', async (req, res) =
 // -- GET /api/modulhandbuch/search -- Search modules across all universities --
 
 router.get('/api/modulhandbuch/search', async (req, res) => {
-  const q = (req.query.q || '').toLowerCase().trim();
+  const q = qs(req.query.q).toLowerCase().trim();
   if (!q) return res.status(400).json({ error: 'Query param "q" is required' });
   const limit = Math.min(parseInt(req.query.limit) || 20, 100);
   const offset = parseInt(req.query.offset) || 0;
@@ -360,10 +368,10 @@ router.get('/api/entities/:name/universities', async (req, res) => {
 router.get('/api/studienvergleich/compare', async (req, res) => {
   // UXF-009: KEIN toUpperCase — mixed-case Codes ('albert-ludwigs-freib'
   // vs 'CALTECH'); Vergleich case-insensitive im Cypher (unten).
-  const u1 = (req.query.u1 || '').trim();
-  const u2 = (req.query.u2 || '').trim();
-  const levelFilter = (req.query.level || '').trim();
-  const keyword = (req.query.topic || '').trim().toLowerCase();
+  const u1 = qs(req.query.u1).trim();
+  const u2 = qs(req.query.u2).trim();
+  const levelFilter = qs(req.query.level).trim();
+  const keyword = qs(req.query.topic).trim().toLowerCase();
 
   if (!u1 || !u2) {
     return res.status(400).json({ error: 'Both u1 and u2 query params are required' });

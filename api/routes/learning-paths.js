@@ -22,6 +22,14 @@ import { loadLearningPathsJson } from '../services/content.js';
 import { sessionStore } from '../services/session.js';
 import { nextObjectiveInZPD, recommendedStrategy } from '../services/zpd-engine.js';
 
+// UXF-034: Query-Params koerzieren — Express macht ?x=a&x=b zu Arrays,
+// .trim()/.toLowerCase() auf Arrays wirft TypeError (500). qs() nimmt bei
+// Arrays das erste Element und koerziert alles zu String (null → '').
+function qs(v) {
+  if (Array.isArray(v)) return v.length ? String(v[0]) : '';
+  return v == null ? '' : String(v);
+}
+
 const router = Router();
 const logger = pino({
   level: process.env.LOG_LEVEL || 'info',
@@ -34,7 +42,7 @@ const logger = pino({
  * GET /api/learning-paths
  */
 router.get('/api/learning-paths', async (req, res) => {
-  var stateParam = (req.query.state || '').toUpperCase().trim();
+  var stateParam = qs(req.query.state).toUpperCase().trim();
   if (stateParam.length === 2) {
     var allData = loadLearningPathsJson();
     var current = null;
