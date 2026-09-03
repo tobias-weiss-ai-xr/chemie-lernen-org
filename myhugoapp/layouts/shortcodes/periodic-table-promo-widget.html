@@ -1,0 +1,168 @@
+{{/* shortcode: periodic-table-promo-widget — Promo-Karte für den begehbaren 3D-Periodensystem-Raum (GitHub Pages) */}}
+<div class="pt-promo-card">
+  <div class="pt-promo-hero" aria-hidden="true">
+    <span class="pt-promo-hero-glyph">⚛️</span>
+    <span class="pt-promo-hero-caption">118 · Elemente</span>
+  </div>
+  <div class="pt-promo-content">
+    <span class="pt-promo-badge">🕶️ 3D &amp; WebXR</span>
+    <h3 class="pt-promo-title">Das Periodensystem als begehbarer 3D-Raum</h3>
+    <p class="pt-promo-text">
+      Fliegen Sie durch einen raumgroßen Gallery-Raum aus allen 118 Elementen:
+      pro Element ein Atommodell und ein eigener Raum zum Eintauchen —
+      direkt im Browser, optional mit VR-Brille, ohne Account.
+    </p>
+    <ul class="pt-promo-usps">
+      <li>🚪 Kein Account nötig</li>
+      <li>🌍 Läuft direkt im Browser</li>
+      <li>🥽 WebXR / VR-Unterstützung</li>
+      <li>🔬 Pro Element ein eigener Raum</li>
+    </ul>
+    <div class="pt-promo-actions">
+      <a class="pt-btn pt-btn-primary" href="https://tobias-weiss-ai-xr.github.io/periodic-table/" target="_blank" rel="noopener" aria-label="Den begehbaren 3D-Periodensystem-Raum öffnen (öffnet in neuem Tab)">
+        🚀 3D-Periodensystem öffnen
+      </a>
+      <a class="pt-btn pt-btn-secondary" href="/chemie-raeume/" aria-label="Alle Elementräume im Verzeichnis entdecken">
+        🧪 Elementräume entdecken
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+.pt-promo-card {
+  display: flex;
+  margin: 20px 0 40px;
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-color, #dee2e6);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.pt-promo-hero {
+  flex: 0 0 30%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(63, 224, 255, 0.25), transparent 55%),
+    radial-gradient(circle at 75% 70%, rgba(255, 207, 92, 0.22), transparent 55%),
+    #0b1220;
+  padding: 28px 16px;
+}
+.pt-promo-hero-glyph {
+  font-size: 64px;
+  line-height: 1;
+  filter: drop-shadow(0 0 18px rgba(63, 224, 255, 0.45));
+}
+.pt-promo-hero-caption {
+  color: #9fb3c8;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.pt-promo-content {
+  flex: 1;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.pt-promo-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 4px 12px;
+  margin-bottom: 12px;
+  border-radius: 999px;
+  background: rgba(13, 148, 136, 0.14);
+  border: 1px solid rgba(13, 148, 136, 0.35);
+  color: var(--teal-strong, #0d9488);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.pt-promo-title {
+  margin: 0 0 10px;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--text-primary, #2c3e50);
+}
+.pt-promo-text {
+  margin: 0 0 14px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--text-primary, #2c3e50);
+}
+.pt-promo-usps {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pt-promo-usps li {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--bg-primary, #f8f9fa);
+  border: 1px solid var(--border-color, #dee2e6);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary, #2c3e50);
+}
+.pt-promo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.pt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 20px;
+  border-radius: 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+.pt-btn-primary {
+  background: linear-gradient(135deg, #0d9488, #0f766e);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(13, 148, 136, 0.35);
+}
+.pt-btn-primary:hover,
+.pt-btn-primary:focus {
+  color: #ffffff;
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+.pt-btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border-color, #dee2e6);
+  color: var(--text-primary, #2c3e50);
+}
+.pt-btn-secondary:hover,
+.pt-btn-secondary:focus {
+  color: var(--text-primary, #2c3e50);
+  border-color: var(--accent-color, #007bff);
+  background: rgba(0, 123, 255, 0.06);
+}
+
+@media (max-width: 768px) {
+  .pt-promo-card {
+    flex-direction: column;
+  }
+  .pt-promo-hero {
+    flex-basis: auto;
+    padding: 20px;
+  }
+  .pt-promo-content {
+    padding: 20px;
+  }
+}
+</style>

@@ -13,9 +13,9 @@ auf einen der Stoffe unter dem Modell, um es zu wechseln. Das volle
 Molekülstudio mit Suchfeld, freier Rotation und Zoom findest du hier:
 [Molekülstudio öffnen →](/molekuel-studio/)
 
-## 🌐 Lernräume in Mozilla Hubs — gemeinsam in 3D lernen
+## 🌐 Periodensystem in 3D — begehbarer Lernraum
 
-{{< hubs-promo-widget >}}
+{{< periodic-table-promo-widget >}}
 
 ## 📚 Lerninhalte nach Themenbereichen
 

@@ -7,6 +7,13 @@ tags: ['hubs', 'audio', 'mikrofon', 'sprachchat', 'anleitung']
 type: 'page'
 ---
 
+> **ℹ️ Status-Hinweis (September 2026):** Die eigene Hubs-Instanz
+> (hubs.chemie-lernen.org) wird derzeit **nicht mehr aktiv beworben** — sie
+> bleibt vorerst erreichbar, steht aber nicht im Fokus. Aktueller Einstieg in
+> 3D-Lernräume: das [begehbare 3D-Periodensystem](https://tobias-weiss-ai-xr.github.io/periodic-table/)
+> und das [Elementräume-Verzeichnis](/chemie-raeume/).
+
+
 # Audio & Mikrofon in Hubs-Lernräumen
 
 Der Sprachchat ist das wichtigste Kommunikationsmittel in unseren

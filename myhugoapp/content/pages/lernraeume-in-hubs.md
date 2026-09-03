@@ -4,11 +4,14 @@ description: 'Wie 3D-Lernräume in Mozilla Hubs den Chemieunterricht ergänzen �
 date: 2026-06-26
 last_reviewed: 2026-07-09
 tags: ['3d', 'webxr', 'hubs', 'lernräume', 'virtual-reality']
-menu:
-  main:
-    parent: 'mehr'
-    weight: 220
+type: 'page'
 ---
+
+> **ℹ️ Status-Hinweis (September 2026):** Die eigene Hubs-Instanz
+> (hubs.chemie-lernen.org) wird derzeit **nicht mehr aktiv beworben** — sie
+> bleibt vorerst erreichbar, steht aber nicht im Fokus. Aktueller Einstieg in
+> 3D-Lernräume: das [begehbare 3D-Periodensystem](https://tobias-weiss-ai-xr.github.io/periodic-table/)
+> und das [Elementräume-Verzeichnis](/chemie-raeume/).
 
 Chemie ist eine dreidimensionale Wissenschaft — Moleküle, Kristallgitter,
 Reaktionsmechanismen lassen sich nur schwer in Fließtext und 2D-Diagrammen

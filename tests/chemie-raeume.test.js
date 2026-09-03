@@ -1,7 +1,8 @@
 /**
  * chemie-raeume directory — render test (jsdom).
- * Verifies every manifest element becomes its own tile linking to its room,
- * and that the Hubs badge only appears when a hubRoomUrl exists.
+ * Verifies every manifest element becomes its own tile linking to its
+ * per-element room on the GitHub Pages periodic table. Hubs links were
+ * removed (deprecated for promotion) — none may be rendered.
  */
 const path = require('path');
 
@@ -19,25 +20,41 @@ describe('chemie-raeume directory', () => {
           symbol: 'H',
           name: 'Wasserstoff',
           group: 'nonmetal',
-          roomUrl: 'https://app/?room=H',
-          hubRoomUrl: null,
+          roomUrl: 'https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/001-hydrogen.html',
         },
         {
           symbol: 'He',
           name: 'Helium',
           group: 'nobleGas',
-          roomUrl: 'https://app/?room=He',
-          hubRoomUrl: 'https://hubs/?he',
+          roomUrl: 'https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/002-helium.html',
         },
       ],
     };
     window.ChemieRaeume.render(manifest);
     const tiles = document.querySelectorAll('#chemie-raeume-grid .cr-tile');
     expect(tiles).toHaveLength(2);
-    expect(tiles[0].getAttribute('href')).toBe('https://app/?room=H');
+    expect(tiles[0].getAttribute('href')).toBe(
+      'https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/001-hydrogen.html'
+    );
     expect(tiles[0].querySelector('.cr-sym').textContent).toBe('H');
-    expect(tiles[0].classList.contains('no-hub')).toBe(true);
-    expect(document.querySelector('.cr-hub')).not.toBeNull();
+  });
+
+  test('renders no Hubs badges or hubs links (deprecated)', () => {
+    // Even if a stale manifest still carries hubRoomUrl, nothing may render it.
+    const manifest = {
+      elements: [
+        {
+          symbol: 'He',
+          name: 'Helium',
+          group: 'nobleGas',
+          roomUrl: 'https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/002-helium.html',
+          hubRoomUrl: 'https://hubs.chemie-lernen.org/62gXwd7/chemie-raum',
+        },
+      ],
+    };
+    window.ChemieRaeume.render(manifest);
+    expect(document.querySelector('.cr-hub')).toBeNull();
+    expect(document.querySelector('a[href*="hubs.chemie-lernen.org"]')).toBeNull();
   });
 
   test('empty manifest shows a friendly message', () => {
@@ -54,8 +71,7 @@ describe('chemie-raeume directory', () => {
           symbol: 'X',
           name: '"><img src=x>',
           group: 'metal',
-          roomUrl: 'https://app/?room=X',
-          hubRoomUrl: null,
+          roomUrl: 'https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/000-x.html',
         },
       ],
     };

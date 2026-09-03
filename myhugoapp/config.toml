@@ -328,7 +328,7 @@ author = "chemie-lernen.org Team"
     icon = "⚠️"
 [[menu.main]]
     name = "Lernräume (3D)"
-    url = "/pages/lernraeume-in-hubs/"
+    url = "/chemie-raeume/"
     parent = "visualisierungen"
     weight = 58
     icon = "🕶️"
