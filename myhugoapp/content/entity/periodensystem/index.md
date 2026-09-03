@@ -1,12 +1,24 @@
 ---
 title: "Periodensystem"
-description: "Fachbegriff „Periodensystem“ (Konzept) — beschrieben in 3 Artikeln auf chemie-lernen.org und ist mit 23 weiteren Fachbegriffen verknüpft."
+description: "Fachbegriff „Periodensystem“ (Konzept) — beschrieben in 3 Artikeln auf chemie-lernen.org und ist mit 35 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
 slug: "periodensystem"
 category: "konzept"
 articleCount: 3
-relatedCount: 23
+relatedCount: 35
 relatedEntities:
+  - "Brom"
+  - "Barium"
+  - "Wolfram"
+  - "Uran"
+  - "Selen"
+  - "Neon"
+  - "Iridium"
+  - "Helium"
+  - "Gold"
+  - "Fluor"
+  - "Cobalt"
+  - "Argon"
   - "sh: teilchenmodell und atombau"
   - "th: atombau und periodensystem"
   - "st: atombau und periodensystem"
@@ -31,5 +43,43 @@ relatedEntities:
   - "Ionisierungsenergie"
   - "Elektronenaffinitaet"
 components: []
+relatedSlugs:
+  "Brom": "brom"
+  "Barium": "barium"
+  "Wolfram": "wolfram"
+  "Uran": "uran"
+  "Selen": "selen"
+  "Neon": "neon"
+  "Iridium": "iridium"
+  "Helium": "helium"
+  "Gold": "gold"
+  "Fluor": "fluor"
+  "Cobalt": "cobalt"
+  "Argon": "argon"
+  "sh: teilchenmodell und atombau": "sh-teilchenmodell-und-atombau"
+  "th: atombau und periodensystem": "th-atombau-und-periodensystem"
+  "st: atombau und periodensystem": "st-atombau-und-periodensystem"
+  "sl: atombau und periodensystem": "sl-atombau-und-periodensystem"
+  "rp: atombau und periodensystem": "rp-atombau-und-periodensystem"
+  "ni: atombau und periodensystem": "ni-atombau-und-periodensystem"
+  "mv: atombau und periodensystem": "mv-atombau-und-periodensystem"
+  "hh: atombau und periodensystem": "hh-atombau-und-periodensystem"
+  "he: atombau und periodensystem": "he-atombau-und-periodensystem"
+  "hb: atombau und periodensystem": "hb-atombau-und-periodensystem"
+  "bb: atombau und periodensystem": "bb-atombau-und-periodensystem"
+  "Dmitri Mendelejew": "dmitri-mendelejew"
+  "atombau und gekürztes periodensystem": "atombau-und-gekuerztes-periodensystem"
+  "atombau und periodensystem der elemente": "atombau-und-periodensystem-der-elemente"
+  "perioden": "perioden"
+  "elektronen in einem atom in periodensystem der elemente verhalte unter verwendung der": "elektronen-in-einem-atom-in-periodensystem-der-elemente-verhalte-unter-verwendung-der"
+  "symbole und die nutzung bestimmter ordnungsprinzipien wie dem periodensystem der elemente be-": "symbole-und-die-nutzung-bestimmter-ordnungsprinzipien-wie-dem-periodensystem-der-elemente-be"
+  "Perioden": "perioden"
+  "Hauptgruppen": "hauptgruppen"
+  "Nebengruppen": "nebengruppen"
+  "Atomradius": "atomradius"
+  "Ionisierungsenergie": "ionisierungsenergie"
+  "Elektronenaffinitaet": "elektronenaffinitaet"
+
+
 ---
 

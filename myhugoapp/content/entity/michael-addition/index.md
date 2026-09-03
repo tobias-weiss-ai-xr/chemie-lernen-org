@@ -10,5 +10,10 @@ relatedEntities:
   - "Carbonylverbindungen"
   - "Alkene"
 components: []
+relatedSlugs:
+  "Carbonylverbindungen": "carbonylverbindungen"
+  "Alkene": "alkene"
+
+
 ---
 

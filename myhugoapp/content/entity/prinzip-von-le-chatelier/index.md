@@ -10,5 +10,10 @@ relatedEntities:
   - "Reaktionsgeschwindigkeit"
   - "Chemisches Gleichgewicht"
 components: []
+relatedSlugs:
+  "Reaktionsgeschwindigkeit": "reaktionsgeschwindigkeit"
+  "Chemisches Gleichgewicht": "chemisches-gleichgewicht"
+
+
 ---
 

@@ -12,5 +12,12 @@ relatedEntities:
   - "Chemisches Gleichgewicht"
   - "Freie Enthalpie"
 components: []
+relatedSlugs:
+  "massenwirkungsgesetz": "massenwirkungsgesetz"
+  "Reaktionsquotient": "reaktionsquotient"
+  "Chemisches Gleichgewicht": "chemisches-gleichgewicht"
+  "Freie Enthalpie": "freie-enthalpie"
+
+
 ---
 

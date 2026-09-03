@@ -12,5 +12,12 @@ relatedEntities:
   - "polyheptazin-imide"
   - "metallionen"
 components: []
+relatedSlugs:
+  "kohlenstoffnitrid": "kohlenstoffnitrid"
+  "wasserstoffproduktion": "wasserstoffproduktion"
+  "polyheptazin-imide": "polyheptazin-imide"
+  "metallionen": "metallionen"
+
+
 ---
 

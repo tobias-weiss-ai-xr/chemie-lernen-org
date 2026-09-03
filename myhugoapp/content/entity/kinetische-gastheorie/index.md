@@ -10,5 +10,10 @@ relatedEntities:
   - "Daltonsches Partialdruckgesetz"
   - "Wasserstoffbrueckenbindung"
 components: []
+relatedSlugs:
+  "Daltonsches Partialdruckgesetz": "daltonsches-partialdruckgesetz"
+  "Wasserstoffbrueckenbindung": "wasserstoffbrueckenbindung"
+
+
 ---
 

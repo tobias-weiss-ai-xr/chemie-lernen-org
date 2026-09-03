@@ -11,5 +11,11 @@ relatedEntities:
   - "pH-Wert"
   - "Neutralisation"
 components: []
+relatedSlugs:
+  "lösung": "loesung"
+  "pH-Wert": "ph-wert"
+  "Neutralisation": "neutralisation"
+
+
 ---
 

@@ -13,5 +13,13 @@ relatedEntities:
   - "ammoniak"
   - "spinelloxid"
 components: []
+relatedSlugs:
+  "ursache des generatorprinzips verstanden: bewegte magnetfelder verursachen eine elekt-": "ursache-des-generatorprinzips-verstanden-bewegte-magnetfelder-verursachen-eine-elekt"
+  "elektrokatalyse": "elektrokatalyse"
+  "cobaltferrit": "cobaltferrit"
+  "ammoniak": "ammoniak"
+  "spinelloxid": "spinelloxid"
+
+
 ---
 

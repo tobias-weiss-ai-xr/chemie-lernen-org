@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Stickstoff"
 components: []
+relatedSlugs:
+  "Stickstoff": "stickstoff"
+
+
 ---
 

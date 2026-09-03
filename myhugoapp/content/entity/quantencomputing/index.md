@@ -13,5 +13,13 @@ relatedEntities:
   - "magnetische ordnung"
   - "datenspeicherung"
 components: []
+relatedSlugs:
+  "florida state university": "florida-state-university"
+  "skyrmionen": "skyrmionen"
+  "kristallstruktur": "kristallstruktur"
+  "magnetische ordnung": "magnetische-ordnung"
+  "datenspeicherung": "datenspeicherung"
+
+
 ---
 

@@ -13,5 +13,13 @@ relatedEntities:
   - "platin"
   - "sandwichliganden"
 components: []
+relatedSlugs:
+  "palladium": "palladium"
+  "eisen(i)": "eisen-i"
+  "luftstabilität": "luftstabilitaet"
+  "platin": "platin"
+  "sandwichliganden": "sandwichliganden"
+
+
 ---
 

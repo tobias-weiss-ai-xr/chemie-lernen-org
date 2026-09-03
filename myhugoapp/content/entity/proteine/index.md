@@ -8,10 +8,18 @@ articleCount: 1
 relatedCount: 5
 relatedEntities:
   - "pr"
-  - "protonen"
-  - "hydrathülle"
-  - "martin luther universität halle-wittenberg"
   - "wasser"
+  - "martin luther universität halle-wittenberg"
+  - "hydrathülle"
+  - "protonen"
 components: []
+relatedSlugs:
+  "pr": "pr"
+  "wasser": "wasser"
+  "martin luther universität halle-wittenberg": "martin-luther-universitaet-halle-wittenberg"
+  "hydrathülle": "hydrathuelle"
+  "protonen": "protonen"
+
+
 ---
 

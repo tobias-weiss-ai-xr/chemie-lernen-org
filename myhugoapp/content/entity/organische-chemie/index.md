@@ -29,5 +29,29 @@ relatedEntities:
   - "Alkine"
   - "Aromatische Verbindungen"
 components: []
+relatedSlugs:
+  "Alkohole": "alkohole"
+  "hh: organische chemie - einführung": "hh-organische-chemie-einfuehrung"
+  "sl: organische chemie - kohlenwasserstoffe": "sl-organische-chemie-kohlenwasserstoffe"
+  "he: organische chemie - kohlenwasserstoffe": "he-organische-chemie-kohlenwasserstoffe"
+  "sh: organische chemie": "sh-organische-chemie"
+  "rp: organische chemie": "rp-organische-chemie"
+  "ni: organische chemie": "ni-organische-chemie"
+  "mv: organische chemie": "mv-organische-chemie"
+  "hb: organische chemie": "hb-organische-chemie"
+  "bb: organische chemie": "bb-organische-chemie"
+  "Funktionelle Gruppe": "funktionelle-gruppe"
+  "aldehyde": "aldehyde"
+  "persistent organic pollutants": "persistent-organic-pollutants"
+  "Friedrich Wöhler": "friedrich-woehler"
+  "chemie": "chemie"
+  "organische chemie": "organische-chemie"
+  "organische": "organische"
+  "Alkane": "alkane"
+  "Alkene": "alkene"
+  "Alkine": "alkine"
+  "Aromatische Verbindungen": "aromatische-verbindungen"
+
+
 ---
 

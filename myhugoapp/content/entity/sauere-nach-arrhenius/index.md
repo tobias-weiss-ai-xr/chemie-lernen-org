@@ -11,5 +11,11 @@ relatedEntities:
   - "Amphoter"
   - "pH-Wert"
 components: []
+relatedSlugs:
+  "Svante Arrhenius": "svante-arrhenius"
+  "Amphoter": "amphoter"
+  "pH-Wert": "ph-wert"
+
+
 ---
 

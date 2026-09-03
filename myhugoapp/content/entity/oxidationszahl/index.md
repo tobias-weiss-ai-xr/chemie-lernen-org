@@ -17,5 +17,17 @@ relatedEntities:
   - "ni: redoxreaktionen"
   - "Redoxreaktion"
 components: []
+relatedSlugs:
+  "rp: redoxreaktionen": "rp-redoxreaktionen"
+  "sh: metalle und redoxreaktionen": "sh-metalle-und-redoxreaktionen"
+  "sl: redoxreaktionen und elektrochemie": "sl-redoxreaktionen-und-elektrochemie"
+  "mv: redoxreaktionen und elektrochemie": "mv-redoxreaktionen-und-elektrochemie"
+  "th: redoxreaktionen": "th-redoxreaktionen"
+  "bb: redoxreaktionen": "bb-redoxreaktionen"
+  "he: redoxreaktionen": "he-redoxreaktionen"
+  "ni: redoxreaktionen": "ni-redoxreaktionen"
+  "Redoxreaktion": "redoxreaktion"
+
+
 ---
 

@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "ziegler-natta-verfahren"
 components: []
+relatedSlugs:
+  "ziegler-natta-verfahren": "ziegler-natta-verfahren"
+
+
 ---
 

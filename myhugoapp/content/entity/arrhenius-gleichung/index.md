@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Aktivierungsenergie"
 components: []
+relatedSlugs:
+  "Aktivierungsenergie": "aktivierungsenergie"
+
+
 ---
 

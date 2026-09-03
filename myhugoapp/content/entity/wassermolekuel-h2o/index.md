@@ -10,5 +10,10 @@ relatedEntities:
   - "wasser"
   - "Verbrennungsreaktion"
 components: []
+relatedSlugs:
+  "wasser": "wasser"
+  "Verbrennungsreaktion": "verbrennungsreaktion"
+
+
 ---
 

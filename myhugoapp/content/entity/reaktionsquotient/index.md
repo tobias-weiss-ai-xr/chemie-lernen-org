@@ -10,5 +10,10 @@ relatedEntities:
   - "reaktion"
   - "Gleichgewichtskonstante"
 components: []
+relatedSlugs:
+  "reaktion": "reaktion"
+  "Gleichgewichtskonstante": "gleichgewichtskonstante"
+
+
 ---
 

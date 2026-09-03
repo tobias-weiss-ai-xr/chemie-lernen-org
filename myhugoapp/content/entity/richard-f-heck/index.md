@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Heck-Reaktion"
 components: []
+relatedSlugs:
+  "Heck-Reaktion": "heck-reaktion"
+
+
 ---
 

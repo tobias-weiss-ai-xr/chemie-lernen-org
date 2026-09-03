@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Computational Chemistry"
 components: []
+relatedSlugs:
+  "Computational Chemistry": "computational-chemistry"
+
+
 ---
 

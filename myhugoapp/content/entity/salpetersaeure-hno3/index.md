@@ -9,5 +9,10 @@ relatedCount: 1
 relatedEntities:
   - "säure"
 components: []
+relatedSlugs:
+  "säure": "saeure"
+
+aliases:
+  - "/entity/salpetersäure-hno3/"
 ---
 

@@ -13,5 +13,14 @@ relatedEntities:
   - "cyclopentadienid"
   - "science"
 components: []
+relatedSlugs:
+  "pentasilacyclopentadienid": "pentasilacyclopentadienid"
+  "silizium": "silizium"
+  "kohlenstoff": "kohlenstoff"
+  "cyclopentadienid": "cyclopentadienid"
+  "science": "science"
+
+aliases:
+  - "/entity/universität-des-saarlandes/"
 ---
 

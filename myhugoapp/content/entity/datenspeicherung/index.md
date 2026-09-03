@@ -13,5 +13,13 @@ relatedEntities:
   - "quantencomputing"
   - "florida state university"
 components: []
+relatedSlugs:
+  "kristallstruktur": "kristallstruktur"
+  "skyrmionen": "skyrmionen"
+  "magnetische ordnung": "magnetische-ordnung"
+  "quantencomputing": "quantencomputing"
+  "florida state university": "florida-state-university"
+
+
 ---
 

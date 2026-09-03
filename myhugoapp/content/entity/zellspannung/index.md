@@ -10,5 +10,10 @@ relatedEntities:
   - "nersnt-gleichung"
   - "Standardpotential"
 components: []
+relatedSlugs:
+  "nersnt-gleichung": "nersnt-gleichung"
+  "Standardpotential": "standardpotential"
+
+
 ---
 

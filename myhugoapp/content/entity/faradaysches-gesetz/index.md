@@ -10,5 +10,10 @@ relatedEntities:
   - "Stromeffizienz"
   - "Elektrolyse"
 components: []
+relatedSlugs:
+  "Stromeffizienz": "stromeffizienz"
+  "Elektrolyse": "elektrolyse"
+
+
 ---
 

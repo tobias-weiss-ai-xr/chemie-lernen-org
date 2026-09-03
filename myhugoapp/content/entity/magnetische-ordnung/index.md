@@ -13,5 +13,13 @@ relatedEntities:
   - "datenspeicherung"
   - "quantencomputing"
 components: []
+relatedSlugs:
+  "kristallstruktur": "kristallstruktur"
+  "florida state university": "florida-state-university"
+  "skyrmionen": "skyrmionen"
+  "datenspeicherung": "datenspeicherung"
+  "quantencomputing": "quantencomputing"
+
+
 ---
 

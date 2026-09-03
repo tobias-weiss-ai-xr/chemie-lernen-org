@@ -1,12 +1,16 @@
 ---
-title: "Benzol (C6H6)"
-description: "Fachbegriff „Benzol (C6H6)“ (Stoff) — beschrieben in einem Artikel auf chemie-lernen.org."
+title: "Benzol (C₆H₆)"
+description: "Fachbegriff „Benzol (C₆H₆)“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
 slug: "benzol-c6h6"
 category: "stoff"
-articleCount: 1
+articleCount: 0
 relatedCount: 0
 relatedEntities: []
 components: []
+
+
+aliases:
+  - "/entity/benzol-c-h/"
 ---
 

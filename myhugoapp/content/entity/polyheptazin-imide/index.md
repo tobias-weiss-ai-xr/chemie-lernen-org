@@ -12,5 +12,12 @@ relatedEntities:
   - "metallionen"
   - "kohlenstoffnitrid"
 components: []
+relatedSlugs:
+  "co2-umwandlung": "co2-umwandlung"
+  "wasserstoffproduktion": "wasserstoffproduktion"
+  "metallionen": "metallionen"
+  "kohlenstoffnitrid": "kohlenstoffnitrid"
+
+
 ---
 

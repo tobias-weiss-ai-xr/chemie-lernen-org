@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Galvanische Zelle"
 components: []
+relatedSlugs:
+  "Galvanische Zelle": "galvanische-zelle"
+
+
 ---
 

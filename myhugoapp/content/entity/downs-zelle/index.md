@@ -10,5 +10,10 @@ relatedEntities:
   - "Natrium"
   - "Elektrolyse"
 components: []
+relatedSlugs:
+  "Natrium": "natrium"
+  "Elektrolyse": "elektrolyse"
+
+
 ---
 

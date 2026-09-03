@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Heterogene Katalyse"
 components: []
+relatedSlugs:
+  "Heterogene Katalyse": "heterogene-katalyse"
+
+
 ---
 

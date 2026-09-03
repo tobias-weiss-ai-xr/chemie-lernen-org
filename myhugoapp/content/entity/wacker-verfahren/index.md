@@ -10,5 +10,10 @@ relatedEntities:
   - "Kupfer"
   - "Sauerstoff"
 components: []
+relatedSlugs:
+  "Kupfer": "kupfer"
+  "Sauerstoff": "sauerstoff"
+
+
 ---
 

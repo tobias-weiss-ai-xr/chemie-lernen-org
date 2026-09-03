@@ -7,16 +7,29 @@ category: "konzept"
 articleCount: 0
 relatedCount: 10
 relatedEntities:
-  - "rp: atombau und periodensystem"
-  - "he: atombau und periodensystem"
-  - "sl: atombau und periodensystem"
-  - "th: atombau und periodensystem"
-  - "mv: atombau und periodensystem"
-  - "hh: atombau und periodensystem"
-  - "hb: atombau und periodensystem"
-  - "ni: atombau und periodensystem"
-  - "bb: atombau und periodensystem"
   - "b: atombau und periodensystem"
+  - "bb: atombau und periodensystem"
+  - "ni: atombau und periodensystem"
+  - "hb: atombau und periodensystem"
+  - "hh: atombau und periodensystem"
+  - "mv: atombau und periodensystem"
+  - "th: atombau und periodensystem"
+  - "sl: atombau und periodensystem"
+  - "he: atombau und periodensystem"
+  - "rp: atombau und periodensystem"
 components: []
+relatedSlugs:
+  "b: atombau und periodensystem": "b-atombau-und-periodensystem"
+  "bb: atombau und periodensystem": "bb-atombau-und-periodensystem"
+  "ni: atombau und periodensystem": "ni-atombau-und-periodensystem"
+  "hb: atombau und periodensystem": "hb-atombau-und-periodensystem"
+  "hh: atombau und periodensystem": "hh-atombau-und-periodensystem"
+  "mv: atombau und periodensystem": "mv-atombau-und-periodensystem"
+  "th: atombau und periodensystem": "th-atombau-und-periodensystem"
+  "sl: atombau und periodensystem": "sl-atombau-und-periodensystem"
+  "he: atombau und periodensystem": "he-atombau-und-periodensystem"
+  "rp: atombau und periodensystem": "rp-atombau-und-periodensystem"
+
+
 ---
 

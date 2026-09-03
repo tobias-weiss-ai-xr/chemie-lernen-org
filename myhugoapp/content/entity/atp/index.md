@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "wird mehr energie durch nahrung zugeführt als für die lebens- atp (im sinne eines"
 components: []
+relatedSlugs:
+  "wird mehr energie durch nahrung zugeführt als für die lebens- atp (im sinne eines": "wird-mehr-energie-durch-nahrung-zugefuehrt-als-fuer-die-lebens-atp-im-sinne-eines"
+
+
 ---
 

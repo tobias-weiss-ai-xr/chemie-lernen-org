@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Organische Chemie"
 components: []
+relatedSlugs:
+  "Organische Chemie": "organische-chemie"
+
+
 ---
 

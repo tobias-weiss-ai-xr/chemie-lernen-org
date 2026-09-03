@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Sauere nach Arrhenius"
 components: []
+relatedSlugs:
+  "Sauere nach Arrhenius": "sauere-nach-arrhenius"
+
+
 ---
 

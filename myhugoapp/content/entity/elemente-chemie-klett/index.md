@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "chemie"
 components: []
+relatedSlugs:
+  "chemie": "chemie"
+
+
 ---
 

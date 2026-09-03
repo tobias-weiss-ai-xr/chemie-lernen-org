@@ -7,11 +7,19 @@ category: "stoff"
 articleCount: 1
 relatedCount: 5
 relatedEntities:
-  - "regel katalysatoren eingesetzt. (e) katalysator"
-  - "kupferoxid"
-  - "stickstoffreduktion"
-  - "metallisches kupfer"
   - "ammoniak"
+  - "metallisches kupfer"
+  - "stickstoffreduktion"
+  - "kupferoxid"
+  - "regel katalysatoren eingesetzt. (e) katalysator"
 components: []
+relatedSlugs:
+  "ammoniak": "ammoniak"
+  "metallisches kupfer": "metallisches-kupfer"
+  "stickstoffreduktion": "stickstoffreduktion"
+  "kupferoxid": "kupferoxid"
+  "regel katalysatoren eingesetzt. (e) katalysator": "regel-katalysatoren-eingesetzt-e-katalysator"
+
+
 ---
 

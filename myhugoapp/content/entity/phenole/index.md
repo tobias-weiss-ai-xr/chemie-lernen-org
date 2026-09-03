@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Alkohole"
 components: []
+relatedSlugs:
+  "Alkohole": "alkohole"
+
+
 ---
 

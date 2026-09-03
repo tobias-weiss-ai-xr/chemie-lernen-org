@@ -10,5 +10,10 @@ relatedEntities:
   - "kristallstruktur"
   - "Roenntgenstrukturanalyse"
 components: []
+relatedSlugs:
+  "kristallstruktur": "kristallstruktur"
+  "Roenntgenstrukturanalyse": "roenntgenstrukturanalyse"
+
+
 ---
 

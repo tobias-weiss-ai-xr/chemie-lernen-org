@@ -13,5 +13,13 @@ relatedEntities:
   - "metallionen"
   - "polyheptazin-imide"
 components: []
+relatedSlugs:
+  "stoff": "stoff"
+  "wasserstoffproduktion": "wasserstoffproduktion"
+  "co2-umwandlung": "co2-umwandlung"
+  "metallionen": "metallionen"
+  "polyheptazin-imide": "polyheptazin-imide"
+
+
 ---
 

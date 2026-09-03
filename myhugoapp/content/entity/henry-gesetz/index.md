@@ -10,5 +10,10 @@ relatedEntities:
   - "Raoultsches Gesetz"
   - "Daltonsches Partialdruckgesetz"
 components: []
+relatedSlugs:
+  "Raoultsches Gesetz": "raoultsches-gesetz"
+  "Daltonsches Partialdruckgesetz": "daltonsches-partialdruckgesetz"
+
+
 ---
 

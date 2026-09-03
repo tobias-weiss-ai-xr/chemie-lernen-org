@@ -10,5 +10,13 @@ relatedEntities:
   - "säure"
   - "Sauerstoff"
 components: []
+relatedSlugs:
+  "säure": "saeure"
+  "Sauerstoff": "sauerstoff"
+
+aliases:
+  - "/entity/carbonsäuren/"
+  - "/entity/carbonsaeuren/"
+  - "/entity/carbonsäuren/"
 ---
 

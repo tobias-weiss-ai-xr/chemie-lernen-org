@@ -1,16 +1,38 @@
 ---
-title: "Kupfer"
-description: "Fachbegriff „Kupfer“ (Stoff) — beschrieben in einem Artikel auf chemie-lernen.org und ist mit 4 weiteren Fachbegriffen verknüpft."
+title: "kupfer"
+description: "Fachbegriff „kupfer“ (Stoff) — beschrieben in einem Artikel auf chemie-lernen.org und ist mit 8 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
 slug: "kupfer"
 category: "stoff"
 articleCount: 1
-relatedCount: 4
+relatedCount: 8
 relatedEntities:
-  - "phänomene begegnen und dem namen nach bekannt sind (z. b. kupfererze, pet), können"
-  - "rolle. wozu gewinnt man überhaupt z. b. kupfer in größeren mengen? auch gesellschaftli-"
-  - "basilisieren"
-  - "wacker-verfahren"
+  - "co2-reduktion"
+  - "single-atom-catalysis"
+  - "kohlenstoffdioxid"
+  - "kohlenmonoxid"
+  - "bariumtitanat"
+  - "universität osaka"
+  - "metal-organic framework"
+  - "piezokatalyse"
 components: []
+relatedSlugs:
+  "co2-reduktion": "co2-reduktion"
+  "single-atom-catalysis": "single-atom-catalysis"
+  "kohlenstoffdioxid": "kohlenstoffdioxid"
+  "kohlenmonoxid": "kohlenmonoxid"
+  "bariumtitanat": "bariumtitanat"
+  "universität osaka": "universitaet-osaka"
+  "metal-organic framework": "metal-organic-framework"
+  "piezokatalyse": "piezokatalyse"
+
+
+---
+
+upt-z-b-kupfer-in-groesseren-mengen-auch-gesellschaftli"
+  "basilisieren": "basilisieren"
+  "wacker-verfahren": "wacker-verfahren"
+
+
 ---
 

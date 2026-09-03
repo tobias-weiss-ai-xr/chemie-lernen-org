@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Diels-Alder-Reaktion"
 components: []
+relatedSlugs:
+  "Diels-Alder-Reaktion": "diels-alder-reaktion"
+
+
 ---
 

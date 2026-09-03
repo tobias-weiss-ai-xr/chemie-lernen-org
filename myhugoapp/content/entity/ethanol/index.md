@@ -12,5 +12,12 @@ relatedEntities:
   - "Sauerstoff"
   - "Alkohole"
 components: []
+relatedSlugs:
+  "bioethanol durch gärung, destillation und industrie verantwortung abbaubarkeit": "bioethanol-durch-gaerung-destillation-und-industrie-verantwortung-abbaubarkeit"
+  "Wasserstoff": "wasserstoff"
+  "Sauerstoff": "sauerstoff"
+  "Alkohole": "alkohole"
+
+
 ---
 

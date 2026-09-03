@@ -10,5 +10,10 @@ relatedEntities:
   - "von der essigsäure zu den estern"
   - "Alkohole"
 components: []
+relatedSlugs:
+  "von der essigsäure zu den estern": "von-der-essigsaeure-zu-den-estern"
+  "Alkohole": "alkohole"
+
+
 ---
 

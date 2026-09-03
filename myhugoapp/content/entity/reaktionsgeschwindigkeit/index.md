@@ -12,12 +12,19 @@ relatedEntities:
   - "Prinzip von Le Chatelier"
   - "Aktivierungsenergie"
 components: []
+relatedSlugs:
+  "reaktion": "reaktion"
+  "katalyse": "katalyse"
+  "Prinzip von Le Chatelier": "prinzip-von-le-chatelier"
+  "Aktivierungsenergie": "aktivierungsenergie"
+
+
 ---
 
 ## Verknüpfte Artikel
 
 - [Prinzip von Le Chatelier](/)
-- [Reaktionskinetik](/)
 - [Chemisches Gleichgewicht](/)
 - [Effektiv Chemie lernen](/)
+- [Reaktionskinetik](/)
 - [Energie bei chemischen Reaktionen](/)

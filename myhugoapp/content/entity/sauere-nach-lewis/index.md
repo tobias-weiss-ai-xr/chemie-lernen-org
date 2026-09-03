@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Gilbert N. Lewis"
 components: []
+relatedSlugs:
+  "Gilbert N. Lewis": "gilbert-n-lewis"
+
+
 ---
 

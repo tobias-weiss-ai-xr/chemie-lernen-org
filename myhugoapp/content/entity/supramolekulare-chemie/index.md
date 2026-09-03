@@ -11,5 +11,11 @@ relatedEntities:
   - "Selbstorganisation"
   - "Molekulare Erkennung"
 components: []
+relatedSlugs:
+  "chemie": "chemie"
+  "Selbstorganisation": "selbstorganisation"
+  "Molekulare Erkennung": "molekulare-erkennung"
+
+
 ---
 

@@ -11,5 +11,11 @@ relatedEntities:
   - "E2-Reaktion"
   - "E1-Reaktion"
 components: []
+relatedSlugs:
+  "reaktion": "reaktion"
+  "E2-Reaktion": "e2-reaktion"
+  "E1-Reaktion": "e1-reaktion"
+
+
 ---
 

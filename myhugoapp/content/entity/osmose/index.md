@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Diffusion"
 components: []
+relatedSlugs:
+  "Diffusion": "diffusion"
+
+
 ---
 

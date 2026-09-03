@@ -12,5 +12,12 @@ relatedEntities:
   - "ziegler-natta-verfahren"
   - "hall-héroult-prozess"
 components: []
+relatedSlugs:
+  "passivierung": "passivierung"
+  "amphoterie": "amphoterie"
+  "ziegler-natta-verfahren": "ziegler-natta-verfahren"
+  "hall-héroult-prozess": "hall-heroult-prozess"
+
+
 ---
 

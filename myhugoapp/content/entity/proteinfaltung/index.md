@@ -1,15 +1,22 @@
 ---
 title: "Proteinfaltung"
-description: "Fachbegriff „Proteinfaltung“ (Konzept) — beschrieben in 4 Artikeln auf chemie-lernen.org und ist mit 2 weiteren Fachbegriffen verknüpft."
+description: "Fachbegriff „Proteinfaltung“ (Konzept) — beschrieben in 4 Artikeln auf chemie-lernen.org und ist mit 3 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
 slug: "proteinfaltung"
 category: "konzept"
 articleCount: 4
-relatedCount: 2
+relatedCount: 3
 relatedEntities:
+  - "Enzym"
   - "Hydrathuelle"
   - "Enzyme"
 components: []
+relatedSlugs:
+  "Enzym": "enzym"
+  "Hydrathuelle": "hydrathuelle"
+  "Enzyme": "enzyme"
+
+
 ---
 
 ## Verknüpfte Artikel

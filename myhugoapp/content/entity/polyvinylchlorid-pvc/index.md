@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Polymerisation"
 components: []
+relatedSlugs:
+  "Polymerisation": "polymerisation"
+
+
 ---
 

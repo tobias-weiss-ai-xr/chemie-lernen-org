@@ -11,5 +11,11 @@ relatedEntities:
   - "Aluminium"
   - "Titan"
 components: []
+relatedSlugs:
+  "Polymerisation": "polymerisation"
+  "Aluminium": "aluminium"
+  "Titan": "titan"
+
+
 ---
 

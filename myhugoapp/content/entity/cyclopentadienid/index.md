@@ -13,5 +13,13 @@ relatedEntities:
   - "universität des saarlandes"
   - "silizium"
 components: []
+relatedSlugs:
+  "pentasilacyclopentadienid": "pentasilacyclopentadienid"
+  "kohlenstoff": "kohlenstoff"
+  "science": "science"
+  "universität des saarlandes": "universitaet-des-saarlandes"
+  "silizium": "silizium"
+
+
 ---
 

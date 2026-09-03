@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Chlor"
 components: []
+relatedSlugs:
+  "Chlor": "chlor"
+
+
 ---
 

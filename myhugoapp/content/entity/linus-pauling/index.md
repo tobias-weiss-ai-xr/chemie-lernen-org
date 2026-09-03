@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Elektronegativitaet"
 components: []
+relatedSlugs:
+  "Elektronegativitaet": "elektronegativitaet"
+
+
 ---
 

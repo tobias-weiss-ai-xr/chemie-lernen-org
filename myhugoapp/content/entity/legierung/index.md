@@ -15,5 +15,15 @@ relatedEntities:
   - "kristallstruktur"
   - "Amorphe Stoffe"
 components: []
+relatedSlugs:
+  "th: metalle": "th-metalle"
+  "st: stoffklasse der metalle": "st-stoffklasse-der-metalle"
+  "sl: metalle und metallgewinnung": "sl-metalle-und-metallgewinnung"
+  "sh: metalle und redoxreaktionen": "sh-metalle-und-redoxreaktionen"
+  "rp: metalle, salze, ionen": "rp-metalle-salze-ionen"
+  "kristallstruktur": "kristallstruktur"
+  "Amorphe Stoffe": "amorphe-stoffe"
+
+
 ---
 

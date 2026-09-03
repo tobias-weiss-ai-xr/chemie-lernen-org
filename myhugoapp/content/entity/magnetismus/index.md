@@ -1,12 +1,17 @@
 ---
 title: "magnetismus"
-description: "Fachbegriff „magnetismus“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org."
+description: "Fachbegriff „magnetismus“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit einem weiteren Fachbegriff verknüpft."
 date: 2026-06-26
 slug: "magnetismus"
 category: "konzept"
 articleCount: 0
-relatedCount: 0
-relatedEntities: []
+relatedCount: 1
+relatedEntities:
+  - "Elektronenaffinitaet"
 components: []
+relatedSlugs:
+  "Elektronenaffinitaet": "elektronenaffinitaet"
+
+
 ---
 

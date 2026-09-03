@@ -11,5 +11,11 @@ relatedEntities:
   - "Carbonylverbindungen"
   - "Amine"
 components: []
+relatedSlugs:
+  "reaktion": "reaktion"
+  "Carbonylverbindungen": "carbonylverbindungen"
+  "Amine": "amine"
+
+
 ---
 

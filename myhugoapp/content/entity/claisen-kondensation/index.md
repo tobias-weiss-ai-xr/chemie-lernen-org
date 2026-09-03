@@ -10,5 +10,10 @@ relatedEntities:
   - "Carbonylverbindungen"
   - "Ester"
 components: []
+relatedSlugs:
+  "Carbonylverbindungen": "carbonylverbindungen"
+  "Ester": "ester"
+
+
 ---
 

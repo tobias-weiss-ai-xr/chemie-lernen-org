@@ -7,15 +7,27 @@ category: "konzept"
 articleCount: 0
 relatedCount: 9
 relatedEntities:
-  - "hh: organische chemie - einführung"
-  - "sl: organische chemie - kohlenwasserstoffe"
-  - "he: organische chemie - kohlenwasserstoffe"
-  - "sh: organische chemie"
-  - "rp: organische chemie"
-  - "ni: organische chemie"
-  - "mv: organische chemie"
-  - "hb: organische chemie"
   - "bb: organische chemie"
+  - "hb: organische chemie"
+  - "mv: organische chemie"
+  - "ni: organische chemie"
+  - "rp: organische chemie"
+  - "sh: organische chemie"
+  - "he: organische chemie - kohlenwasserstoffe"
+  - "sl: organische chemie - kohlenwasserstoffe"
+  - "hh: organische chemie - einführung"
 components: []
+relatedSlugs:
+  "bb: organische chemie": "bb-organische-chemie"
+  "hb: organische chemie": "hb-organische-chemie"
+  "mv: organische chemie": "mv-organische-chemie"
+  "ni: organische chemie": "ni-organische-chemie"
+  "rp: organische chemie": "rp-organische-chemie"
+  "sh: organische chemie": "sh-organische-chemie"
+  "he: organische chemie - kohlenwasserstoffe": "he-organische-chemie-kohlenwasserstoffe"
+  "sl: organische chemie - kohlenwasserstoffe": "sl-organische-chemie-kohlenwasserstoffe"
+  "hh: organische chemie - einführung": "hh-organische-chemie-einfuehrung"
+
+
 ---
 

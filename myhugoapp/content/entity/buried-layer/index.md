@@ -12,5 +12,12 @@ relatedEntities:
   - "perowskit-solarzellen"
   - "kristall-solvat-nanosaatkerne"
 components: []
+relatedSlugs:
+  "mini-modul": "mini-modul"
+  "invertierte perowskit-solarzellen": "invertierte-perowskit-solarzellen"
+  "perowskit-solarzellen": "perowskit-solarzellen"
+  "kristall-solvat-nanosaatkerne": "kristall-solvat-nanosaatkerne"
+
+
 ---
 

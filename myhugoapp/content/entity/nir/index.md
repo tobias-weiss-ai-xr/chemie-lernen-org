@@ -12,5 +12,12 @@ relatedEntities:
   - "biosensoren"
   - "photolumineszenz"
 components: []
+relatedSlugs:
+  "metallcluster-moleküle": "metallcluster-molekuele"
+  "katalyse": "katalyse"
+  "biosensoren": "biosensoren"
+  "photolumineszenz": "photolumineszenz"
+
+
 ---
 

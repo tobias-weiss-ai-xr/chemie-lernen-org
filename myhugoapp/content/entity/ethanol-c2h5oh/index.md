@@ -1,13 +1,23 @@
 ---
-title: "Ethanol (C2H5OH)"
-description: "Fachbegriff „Ethanol (C2H5OH)“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit einem weiteren Fachbegriff verknüpft."
+title: "Ethanol (C₂H₅OH)"
+description: "Fachbegriff „Ethanol (C₂H₅OH)“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
 slug: "ethanol-c2h5oh"
 category: "stoff"
 articleCount: 0
-relatedCount: 1
-relatedEntities:
-  - "Fermentation"
+relatedCount: 0
+relatedEntities: []
 components: []
+
+
+aliases:
+  - "/entity/ethanol-c-h-oh/"
+---
+
+ponents: []
+relatedSlugs:
+  "Fermentation": "fermentation"
+
+
 ---
 

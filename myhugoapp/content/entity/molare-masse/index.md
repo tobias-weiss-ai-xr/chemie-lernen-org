@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Mol"
 components: []
+relatedSlugs:
+  "Mol": "mol"
+
+
 ---
 

@@ -10,5 +10,10 @@ relatedEntities:
   - "Wasserstoff"
   - "Stickstoff"
 components: []
+relatedSlugs:
+  "Wasserstoff": "wasserstoff"
+  "Stickstoff": "stickstoff"
+
+
 ---
 

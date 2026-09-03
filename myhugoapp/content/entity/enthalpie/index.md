@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Reaktionsenthalpie"
 components: []
+relatedSlugs:
+  "Reaktionsenthalpie": "reaktionsenthalpie"
+
+
 ---
 

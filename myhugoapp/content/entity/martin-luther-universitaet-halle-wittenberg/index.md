@@ -12,5 +12,13 @@ relatedEntities:
   - "wasser"
   - "hydrathülle"
 components: []
+relatedSlugs:
+  "proteine": "proteine"
+  "protonen": "protonen"
+  "wasser": "wasser"
+  "hydrathülle": "hydrathuelle"
+
+aliases:
+  - "/entity/martin-luther-universität-halle-wittenberg/"
 ---
 

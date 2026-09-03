@@ -18,5 +18,18 @@ relatedEntities:
   - "he: luft und verbrennung"
   - "bb: luft und verbrennung"
 components: []
+relatedSlugs:
+  "ni: verbrennung und oxidbildung": "ni-verbrennung-und-oxidbildung"
+  "mv: verbrennung und oxidbildung": "mv-verbrennung-und-oxidbildung"
+  "st: bestandteile der luft": "st-bestandteile-der-luft"
+  "hh: luft, sauerstoff und oxidbildung": "hh-luft-sauerstoff-und-oxidbildung"
+  "hb: luft, sauerstoff und verbrennung": "hb-luft-sauerstoff-und-verbrennung"
+  "sl: luft und verbrennung": "sl-luft-und-verbrennung"
+  "sh: luft und verbrennung": "sh-luft-und-verbrennung"
+  "rp: luft und verbrennung": "rp-luft-und-verbrennung"
+  "he: luft und verbrennung": "he-luft-und-verbrennung"
+  "bb: luft und verbrennung": "bb-luft-und-verbrennung"
+
+
 ---
 

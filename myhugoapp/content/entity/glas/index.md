@@ -11,5 +11,11 @@ relatedEntities:
   - "die erste frage führt uns über einfache entscheidungen wie „ist das glas oder diamant?“"
   - "Amorphe Stoffe"
 components: []
+relatedSlugs:
+  "vom reagenzglas zum produkte der chem. industrie": "vom-reagenzglas-zum-produkte-der-chem-industrie"
+  "die erste frage führt uns über einfache entscheidungen wie „ist das glas oder diamant?“": "die-erste-frage-fuehrt-uns-ueber-einfache-entscheidungen-wie-ist-das-glas-oder-diamant"
+  "Amorphe Stoffe": "amorphe-stoffe"
+
+
 ---
 

@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Chromatographie"
 components: []
+relatedSlugs:
+  "Chromatographie": "chromatographie"
+
+
 ---
 

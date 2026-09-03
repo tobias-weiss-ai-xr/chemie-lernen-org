@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "durch mikroplastik sind einzubeziehen"
 components: []
+relatedSlugs:
+  "durch mikroplastik sind einzubeziehen": "durch-mikroplastik-sind-einzubeziehen"
+
+
 ---
 

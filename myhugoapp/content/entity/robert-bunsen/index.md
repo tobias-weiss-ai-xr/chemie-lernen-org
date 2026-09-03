@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Spektroskopie"
 components: []
+relatedSlugs:
+  "Spektroskopie": "spektroskopie"
+
+
 ---
 

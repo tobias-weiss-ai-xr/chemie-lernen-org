@@ -11,5 +11,11 @@ relatedEntities:
   - "Carbonylverbindungen"
   - "Magnesium"
 components: []
+relatedSlugs:
+  "reaktion": "reaktion"
+  "Carbonylverbindungen": "carbonylverbindungen"
+  "Magnesium": "magnesium"
+
+
 ---
 

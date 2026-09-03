@@ -10,5 +10,10 @@ relatedEntities:
   - "elektro"
   - "el"
 components: []
+relatedSlugs:
+  "elektro": "elektro"
+  "el": "el"
+
+
 ---
 

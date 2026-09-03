@@ -11,5 +11,11 @@ relatedEntities:
   - "Nernst-Gleichung"
   - "Spannungsreihe"
 components: []
+relatedSlugs:
+  "Zellspannung": "zellspannung"
+  "Nernst-Gleichung": "nernst-gleichung"
+  "Spannungsreihe": "spannungsreihe"
+
+
 ---
 

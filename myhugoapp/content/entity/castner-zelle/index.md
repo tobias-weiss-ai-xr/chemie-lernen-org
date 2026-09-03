@@ -10,5 +10,10 @@ relatedEntities:
   - "Natrium"
   - "Quecksilber"
 components: []
+relatedSlugs:
+  "Natrium": "natrium"
+  "Quecksilber": "quecksilber"
+
+
 ---
 

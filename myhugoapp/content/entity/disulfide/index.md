@@ -10,5 +10,10 @@ relatedEntities:
   - "Oxidation"
   - "Schwefel"
 components: []
+relatedSlugs:
+  "Oxidation": "oxidation"
+  "Schwefel": "schwefel"
+
+
 ---
 

@@ -1,13 +1,14 @@
 ---
 title: "Löslichkeit"
-description: "Fachbegriff „Löslichkeit“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 20 weiteren Fachbegriffen verknüpft."
+description: "Fachbegriff „Löslichkeit“ (Konzept) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit 23 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
 slug: "loeslichkeit"
 category: "konzept"
 articleCount: 0
-relatedCount: 20
+relatedCount: 23
 relatedEntities:
   - "he: organische chemie - kohlenwasserstoffe"
+  - "Salz"
   - "th: kohlenstoff und kohlenstoffverbindungen"
   - "st: stoffklasse der metalle"
   - "st: kohlenstoff und organik"
@@ -27,6 +28,35 @@ relatedEntities:
   - "st: wasser als oxid"
   - "sl: wasser und wässrige lösungen"
   - "sl: organische chemie - kohlenwasserstoffe"
+  - "Hydratation"
+  - "solvatisierung"
 components: []
+relatedSlugs:
+  "he: organische chemie - kohlenwasserstoffe": "he-organische-chemie-kohlenwasserstoffe"
+  "Salz": "salz"
+  "th: kohlenstoff und kohlenstoffverbindungen": "th-kohlenstoff-und-kohlenstoffverbindungen"
+  "st: stoffklasse der metalle": "st-stoffklasse-der-metalle"
+  "st: kohlenstoff und organik": "st-kohlenstoff-und-organik"
+  "sh: stoffe und stoffeigenschaften": "sh-stoffe-und-stoffeigenschaften"
+  "ni: stoffe und stoffeigenschaften": "ni-stoffe-und-stoffeigenschaften"
+  "mv: stoffe und stoffgemische": "mv-stoffe-und-stoffgemische"
+  "hh: luft, sauerstoff und oxidbildung": "hh-luft-sauerstoff-und-oxidbildung"
+  "he: stoffe und stofftrennverfahren": "he-stoffe-und-stofftrennverfahren"
+  "hb: luft, sauerstoff und verbrennung": "hb-luft-sauerstoff-und-verbrennung"
+  "th: stoffe und ihre eigenschaften": "th-stoffe-und-ihre-eigenschaften"
+  "st: stoffe und ihre eigenschaften": "st-stoffe-und-ihre-eigenschaften"
+  "sl: stoffe und ihre eigenschaften": "sl-stoffe-und-ihre-eigenschaften"
+  "rp: stoffe und ihre eigenschaften": "rp-stoffe-und-ihre-eigenschaften"
+  "hh: stoffe und ihre eigenschaften": "hh-stoffe-und-ihre-eigenschaften"
+  "hb: stoffe und ihre eigenschaften": "hb-stoffe-und-ihre-eigenschaften"
+  "bb: stoffe und ihre eigenschaften": "bb-stoffe-und-ihre-eigenschaften"
+  "st: wasser als oxid": "st-wasser-als-oxid"
+  "sl: wasser und wässrige lösungen": "sl-wasser-und-waessrige-loesungen"
+  "sl: organische chemie - kohlenwasserstoffe": "sl-organische-chemie-kohlenwasserstoffe"
+  "Hydratation": "hydratation"
+  "solvatisierung": "solvatisierung"
+
+aliases:
+  - "/entity/löslichkeit/"
 ---
 

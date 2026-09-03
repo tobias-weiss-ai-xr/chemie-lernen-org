@@ -9,5 +9,10 @@ relatedCount: 1
 relatedEntities:
   - "Sauere nach Lewis"
 components: []
+relatedSlugs:
+  "Sauere nach Lewis": "sauere-nach-lewis"
+
+aliases:
+  - "/entity/gilbert-n.-lewis/"
 ---
 

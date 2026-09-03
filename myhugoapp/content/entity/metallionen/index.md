@@ -12,5 +12,12 @@ relatedEntities:
   - "wasserstoffproduktion"
   - "co2-umwandlung"
 components: []
+relatedSlugs:
+  "polyheptazin-imide": "polyheptazin-imide"
+  "kohlenstoffnitrid": "kohlenstoffnitrid"
+  "wasserstoffproduktion": "wasserstoffproduktion"
+  "co2-umwandlung": "co2-umwandlung"
+
+
 ---
 

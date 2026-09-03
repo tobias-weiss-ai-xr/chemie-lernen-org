@@ -9,5 +9,10 @@ relatedCount: 1
 relatedEntities:
   - "Eisen"
 components: []
+relatedSlugs:
+  "Eisen": "eisen"
+
+aliases:
+  - "/entity/häm/"
 ---
 

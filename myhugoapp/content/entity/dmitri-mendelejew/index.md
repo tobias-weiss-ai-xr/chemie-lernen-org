@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Periodensystem"
 components: []
+relatedSlugs:
+  "Periodensystem": "periodensystem"
+
+
 ---
 

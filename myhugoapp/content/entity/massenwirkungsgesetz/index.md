@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Gleichgewichtskonstante"
 components: []
+relatedSlugs:
+  "Gleichgewichtskonstante": "gleichgewichtskonstante"
+
+
 ---
 

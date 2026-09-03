@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "NMR-Spektroskopie"
 components: []
+relatedSlugs:
+  "NMR-Spektroskopie": "nmr-spektroskopie"
+
+
 ---
 

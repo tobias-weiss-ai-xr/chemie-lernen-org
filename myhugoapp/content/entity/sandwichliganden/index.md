@@ -13,5 +13,13 @@ relatedEntities:
   - "palladium"
   - "platin"
 components: []
+relatedSlugs:
+  "eisen(i)": "eisen-i"
+  "organometallkatalysator": "organometallkatalysator"
+  "luftstabilität": "luftstabilitaet"
+  "palladium": "palladium"
+  "platin": "platin"
+
+
 ---
 

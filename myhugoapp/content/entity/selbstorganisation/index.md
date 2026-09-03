@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Supramolekulare Chemie"
 components: []
+relatedSlugs:
+  "Supramolekulare Chemie": "supramolekulare-chemie"
+
+
 ---
 

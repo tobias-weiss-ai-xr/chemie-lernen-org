@@ -33,5 +33,33 @@ relatedEntities:
   - "Molare Masse"
   - "Stoffmenge"
 components: []
+relatedSlugs:
+  "anionen zu wassermolekü- (reduktion) gekennzeichnet und": "anionen-zu-wassermolekue-reduktion-gekennzeichnet-und"
+  "eine vergleichende betrachtung mit natürlichen makromolekülen (stärke, cellulose, dna)": "eine-vergleichende-betrachtung-mit-natuerlichen-makromolekuelen-staerke-cellulose-dna"
+  "elektronenpaarbindungen und intermolekulare wechselwir-": "elektronenpaarbindungen-und-intermolekulare-wechselwir"
+  "polymere sind makromoleküle, die aus vielen mehr oder we- polymer, polyreaktion": "polymere-sind-makromolekuele-die-aus-vielen-mehr-oder-we-polymer-polyreaktion"
+  "als monomere kommen moleküle mit einer mehrfachbindung": "als-monomere-kommen-molekuele-mit-einer-mehrfachbindung"
+  "makromolekül": "makromolekuel"
+  "abhängigkeit von der größe des moleküls. (sef)": "abhaengigkeit-von-der-groesse-des-molekuels-sef"
+  "um stoffkenntnisse zu erweitern, kann hier bereits die homologe reihe der alkane eingeführt": "um-stoffkenntnisse-zu-erweitern-kann-hier-bereits-die-homologe-reihe-der-alkane-eingefuehrt"
+  "stoff- und energieumwandlungen werden modellhaft auf veränderun- molekül": "stoff-und-energieumwandlungen-werden-modellhaft-auf-veraenderun-molekuel"
+  "molekül (tf3) stoffe bestehen": "molekuel-tf3-stoffe-bestehen"
+  "für das verständnis von molekülen ist es notwendig, auf die struktur der elektronenhülle": "fuer-das-verstaendnis-von-molekuelen-ist-es-notwendig-auf-die-struktur-der-elektronenhuelle"
+  "die tatsache, dass man heute z. t. einzelne moleküle nachweisen kann, führt zu betrach-": "die-tatsache-dass-man-heute-z-t-einzelne-molekuele-nachweisen-kann-fuehrt-zu-betrach"
+  "komplementäre basenpaare bilden die molekularen funktions-": "komplementaere-basenpaare-bilden-die-molekularen-funktions"
+  "organebene, mikroskopische und molekulare ebene. letztere beruht auf der existenz ge-": "organebene-mikroskopische-und-molekulare-ebene-letztere-beruht-auf-der-existenz-ge"
+  "pflanzen bauen aus energiearmen, niedermolekularen stoffen energie- ökosystem": "pflanzen-bauen-aus-energiearmen-niedermolekularen-stoffen-energie-oekosystem"
+  "molekülverbindungen": "molekuelverbindungen"
+  "molekülstruktur und stoffeigenschaften erklären diese und ziehen geeignete schlussfolgerungen. (e)": "molekuelstruktur-und-stoffeigenschaften-erklaeren-diese-und-ziehen-geeignete-schlussfolgerungen-e"
+  "alkine und alkanole in homologen erklären diese und ziehen geeignete schlussfolgerungen. (e)": "alkine-und-alkanole-in-homologen-erklaeren-diese-und-ziehen-geeignete-schlussfolgerungen-e"
+  "merkmalsausprägungen bei. die vertiefung auf molekularer ebene (bau": "merkmalsauspraegungen-bei-die-vertiefung-auf-molekularer-ebene-bau"
+  "mit dem zunehmenden einsatz molekularbiologischer, biochemischer, physikalischer und informations-": "mit-dem-zunehmenden-einsatz-molekularbiologischer-biochemischer-physikalischer-und-informations"
+  "5 7 molekülen an": "5-7-molekuelen-an"
+  "moleküle": "molekuele"
+  "Avogadro-Konstante": "avogadro-konstante"
+  "Molare Masse": "molare-masse"
+  "Stoffmenge": "stoffmenge"
+
+
 ---
 

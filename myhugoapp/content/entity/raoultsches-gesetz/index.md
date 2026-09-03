@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Henry-Gesetz"
 components: []
+relatedSlugs:
+  "Henry-Gesetz": "henry-gesetz"
+
+
 ---
 

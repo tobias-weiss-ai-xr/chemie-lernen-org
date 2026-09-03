@@ -10,5 +10,11 @@ relatedEntities:
   - "Korrosion"
   - "Roestung"
 components: []
+relatedSlugs:
+  "Korrosion": "korrosion"
+  "Roestung": "roestung"
+
+aliases:
+  - "/entity/eiseniii-oxid-fe2o3/"
 ---
 

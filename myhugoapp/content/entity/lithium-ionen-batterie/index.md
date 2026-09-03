@@ -12,5 +12,12 @@ relatedEntities:
   - "Nickel"
   - "Lithium"
 components: []
+relatedSlugs:
+  "batterie": "batterie"
+  "Mangan": "mangan"
+  "Nickel": "nickel"
+  "Lithium": "lithium"
+
+
 ---
 

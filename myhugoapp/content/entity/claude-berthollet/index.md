@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Chemisches Gleichgewicht"
 components: []
+relatedSlugs:
+  "Chemisches Gleichgewicht": "chemisches-gleichgewicht"
+
+
 ---
 

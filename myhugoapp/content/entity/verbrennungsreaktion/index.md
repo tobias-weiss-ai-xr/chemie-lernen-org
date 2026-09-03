@@ -13,5 +13,13 @@ relatedEntities:
   - "Wassermolekuel (H2O)"
   - "Kohlendioxid (CO2)"
 components: []
+relatedSlugs:
+  "bei der submikroskopischen betrachtung der brennstoffe und verbrennungsreaktionen kann ein": "bei-der-submikroskopischen-betrachtung-der-brennstoffe-und-verbrennungsreaktionen-kann-ein"
+  "reaktion": "reaktion"
+  "verbrennung": "verbrennung"
+  "Wassermolekuel (H2O)": "wassermolekuel-h2o"
+  "Kohlendioxid (CO2)": "kohlendioxid-co2"
+
+
 ---
 

@@ -10,5 +10,10 @@ relatedEntities:
   - "reaktion"
   - "Alkene"
 components: []
+relatedSlugs:
+  "reaktion": "reaktion"
+  "Alkene": "alkene"
+
+
 ---
 

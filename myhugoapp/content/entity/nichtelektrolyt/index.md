@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "elektro"
 components: []
+relatedSlugs:
+  "elektro": "elektro"
+
+
 ---
 

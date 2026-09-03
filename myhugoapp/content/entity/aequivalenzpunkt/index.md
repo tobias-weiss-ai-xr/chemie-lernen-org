@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Titrationskurve"
 components: []
+relatedSlugs:
+  "Titrationskurve": "titrationskurve"
+
+
 ---
 

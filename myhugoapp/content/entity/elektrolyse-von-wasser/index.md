@@ -11,5 +11,11 @@ relatedEntities:
   - "elektro"
   - "Elektrolyse"
 components: []
+relatedSlugs:
+  "wasser": "wasser"
+  "elektro": "elektro"
+  "Elektrolyse": "elektrolyse"
+
+
 ---
 

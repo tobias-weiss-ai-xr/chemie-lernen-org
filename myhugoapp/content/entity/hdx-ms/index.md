@@ -14,5 +14,14 @@ relatedEntities:
   - "nature chemistry"
   - "transportproteine"
 components: []
+relatedSlugs:
+  "ligandenempfindlichkeit": "ligandenempfindlichkeit"
+  "transkriptionsfaktoren": "transkriptionsfaktoren"
+  "venusfliegenfallen-domänen": "venusfliegenfallen-domaenen"
+  "allosterie": "allosterie"
+  "nature chemistry": "nature-chemistry"
+  "transportproteine": "transportproteine"
+
+
 ---
 

@@ -10,5 +10,10 @@ relatedEntities:
   - "Zellspannung"
   - "Galvanische Zelle"
 components: []
+relatedSlugs:
+  "Zellspannung": "zellspannung"
+  "Galvanische Zelle": "galvanische-zelle"
+
+
 ---
 

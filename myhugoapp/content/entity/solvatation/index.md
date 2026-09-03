@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Hydratation"
 components: []
+relatedSlugs:
+  "Hydratation": "hydratation"
+
+
 ---
 

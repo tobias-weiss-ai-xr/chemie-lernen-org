@@ -12,5 +12,12 @@ relatedEntities:
   - "katalysator"
   - "kupferoxid"
 components: []
+relatedSlugs:
+  "stickstoffreduktion": "stickstoffreduktion"
+  "ammoniak": "ammoniak"
+  "katalysator": "katalysator"
+  "kupferoxid": "kupferoxid"
+
+
 ---
 

@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Ostwald-Verfahren"
 components: []
+relatedSlugs:
+  "Ostwald-Verfahren": "ostwald-verfahren"
+
+
 ---
 

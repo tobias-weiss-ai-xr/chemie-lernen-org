@@ -1,12 +1,17 @@
 ---
 title: "Ethin (C2H2)"
-description: "Fachbegriff „Ethin (C2H2)“ (Stoff) — beschrieben in einem Artikel auf chemie-lernen.org."
+description: "Fachbegriff „Ethin (C2H2)“ (Stoff) — beschrieben in einem Artikel auf chemie-lernen.org und ist mit einem weiteren Fachbegriff verknüpft."
 date: 2026-06-26
 slug: "ethin-c2h2"
 category: "stoff"
 articleCount: 1
-relatedCount: 0
-relatedEntities: []
+relatedCount: 1
+relatedEntities:
+  - "Alkine"
 components: []
+relatedSlugs:
+  "Alkine": "alkine"
+
+
 ---
 

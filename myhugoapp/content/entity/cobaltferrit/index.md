@@ -12,5 +12,12 @@ relatedEntities:
   - "ammoniak"
   - "spinelloxid"
 components: []
+relatedSlugs:
+  "magnetfeld": "magnetfeld"
+  "elektrokatalyse": "elektrokatalyse"
+  "ammoniak": "ammoniak"
+  "spinelloxid": "spinelloxid"
+
+
 ---
 

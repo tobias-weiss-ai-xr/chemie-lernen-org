@@ -10,5 +10,11 @@ relatedEntities:
   - "organische"
   - "verbindungen"
 components: []
+relatedSlugs:
+  "organische": "organische"
+  "verbindungen": "verbindungen"
+
+aliases:
+  - "/entity/metall-organische-gerüstverbindungen/"
 ---
 

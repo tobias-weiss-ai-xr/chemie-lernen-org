@@ -10,5 +10,10 @@ relatedEntities:
   - "Molekulardynamik"
   - "Dichtefunktionaltheorie (DFT)"
 components: []
+relatedSlugs:
+  "Molekulardynamik": "molekulardynamik"
+  "Dichtefunktionaltheorie (DFT)": "dichtefunktionaltheorie-dft"
+
+
 ---
 

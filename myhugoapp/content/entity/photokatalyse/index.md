@@ -11,5 +11,11 @@ relatedEntities:
   - "Perowskite"
   - "Titan-Dioxid (TiO2)"
 components: []
+relatedSlugs:
+  "katalyse": "katalyse"
+  "Perowskite": "perowskite"
+  "Titan-Dioxid (TiO2)": "titan-dioxid-tio2"
+
+
 ---
 

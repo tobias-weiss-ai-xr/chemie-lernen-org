@@ -1,12 +1,17 @@
 ---
 title: "stille-kupplung"
-description: "Fachbegriff „stille-kupplung“ (Reaktion) — beschrieben in 0 Artikeln auf chemie-lernen.org."
+description: "Fachbegriff „stille-kupplung“ (Reaktion) — beschrieben in 0 Artikeln auf chemie-lernen.org und ist mit einem weiteren Fachbegriff verknüpft."
 date: 2026-06-26
 slug: "stille-kupplung"
 category: "reaktion"
 articleCount: 0
-relatedCount: 0
-relatedEntities: []
+relatedCount: 1
+relatedEntities:
+  - "Kreuzkupplung"
 components: []
+relatedSlugs:
+  "Kreuzkupplung": "kreuzkupplung"
+
+
 ---
 

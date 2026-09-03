@@ -10,5 +10,10 @@ relatedEntities:
   - "Atmungskette"
   - "Sauerstoff"
 components: []
+relatedSlugs:
+  "Atmungskette": "atmungskette"
+  "Sauerstoff": "sauerstoff"
+
+
 ---
 

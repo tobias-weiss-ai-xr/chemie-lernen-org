@@ -10,5 +10,10 @@ relatedEntities:
   - "Chrom"
   - "Aluminium"
 components: []
+relatedSlugs:
+  "Chrom": "chrom"
+  "Aluminium": "aluminium"
+
+
 ---
 

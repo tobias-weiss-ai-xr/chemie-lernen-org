@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "stoff"
 components: []
+relatedSlugs:
+  "stoff": "stoff"
+
+
 ---
 

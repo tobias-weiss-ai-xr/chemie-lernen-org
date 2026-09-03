@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Nernst-Gleichung"
 components: []
+relatedSlugs:
+  "Nernst-Gleichung": "nernst-gleichung"
+
+
 ---
 

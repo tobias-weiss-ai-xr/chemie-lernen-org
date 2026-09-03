@@ -10,5 +10,10 @@ relatedEntities:
   - "Sauerstoff"
   - "Organische Chemie"
 components: []
+relatedSlugs:
+  "Sauerstoff": "sauerstoff"
+  "Organische Chemie": "organische-chemie"
+
+
 ---
 

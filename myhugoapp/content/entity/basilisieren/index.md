@@ -11,5 +11,11 @@ relatedEntities:
   - "Zink"
   - "Kupfer"
 components: []
+relatedSlugs:
+  "Oxidation": "oxidation"
+  "Zink": "zink"
+  "Kupfer": "kupfer"
+
+
 ---
 

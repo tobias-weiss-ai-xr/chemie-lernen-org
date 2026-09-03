@@ -35,5 +35,35 @@ relatedEntities:
   - "korrosion"
   - "donator-akzeptor-konzept und reversibilität chemischer reaktionen bei elektronenübergängen: redoxreaktionen"
 components: []
+relatedSlugs:
+  "donator-akzeptor-konzept und reversibilität chemischer reaktionen bei redoxreaktionen in wässriger lösung": "donator-akzeptor-konzept-und-reversibilitaet-chemischer-reaktionen-bei-redoxreaktionen-in-waessriger-loesung"
+  "th: metalle": "th-metalle"
+  "st: stoffklasse der metalle": "st-stoffklasse-der-metalle"
+  "sl: metalle und metallgewinnung": "sl-metalle-und-metallgewinnung"
+  "rp: metalle, salze, ionen": "rp-metalle-salze-ionen"
+  "sh: metalle und redoxreaktionen": "sh-metalle-und-redoxreaktionen"
+  "sl: redoxreaktionen und elektrochemie": "sl-redoxreaktionen-und-elektrochemie"
+  "mv: redoxreaktionen und elektrochemie": "mv-redoxreaktionen-und-elektrochemie"
+  "th: redoxreaktionen": "th-redoxreaktionen"
+  "rp: redoxreaktionen": "rp-redoxreaktionen"
+  "ni: redoxreaktionen": "ni-redoxreaktionen"
+  "he: redoxreaktionen": "he-redoxreaktionen"
+  "bb: redoxreaktionen": "bb-redoxreaktionen"
+  "redoxreaktionen der nebengruppenelemente": "redoxreaktionen-der-nebengruppenelemente"
+  "redoxreaktion": "redoxreaktion"
+  "nutzung von redoxreaktionen für mobile energiequellen kennen und erhalten einen über-": "nutzung-von-redoxreaktionen-fuer-mobile-energiequellen-kennen-und-erhalten-einen-ueber"
+  "reaktion": "reaktion"
+  "• redoxreaktion redoxreaktion ist im engeren sinne als reakti-": "redoxreaktion-redoxreaktion-ist-im-engeren-sinne-als-reakti"
+  "Oxidation": "oxidation"
+  "Reduktion": "reduktion"
+  "Oxidationszahl": "oxidationszahl"
+  "Antoine Lavoisier": "antoine-lavoisier"
+  "nadh": "nadh"
+  "fad": "fad"
+  "galvanische zelle": "galvanische-zelle"
+  "korrosion": "korrosion"
+  "donator-akzeptor-konzept und reversibilität chemischer reaktionen bei elektronenübergängen: redoxreaktionen": "donator-akzeptor-konzept-und-reversibilitaet-chemischer-reaktionen-bei-elektronenuebergaengen-redoxreaktionen"
+
+
 ---
 

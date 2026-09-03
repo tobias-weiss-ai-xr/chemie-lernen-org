@@ -13,5 +13,13 @@ relatedEntities:
   - "magnetische ordnung"
   - "florida state university"
 components: []
+relatedSlugs:
+  "kristallstruktur": "kristallstruktur"
+  "quantencomputing": "quantencomputing"
+  "datenspeicherung": "datenspeicherung"
+  "magnetische ordnung": "magnetische-ordnung"
+  "florida state university": "florida-state-university"
+
+
 ---
 

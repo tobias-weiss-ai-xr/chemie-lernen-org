@@ -14,5 +14,14 @@ relatedEntities:
   - "Elektrolyse"
   - "Galvanische Zelle"
 components: []
+relatedSlugs:
+  "sl: redoxreaktionen und elektrochemie": "sl-redoxreaktionen-und-elektrochemie"
+  "mv: redoxreaktionen und elektrochemie": "mv-redoxreaktionen-und-elektrochemie"
+  "chemische": "chemische"
+  "elektro": "elektro"
+  "Elektrolyse": "elektrolyse"
+  "Galvanische Zelle": "galvanische-zelle"
+
+
 ---
 

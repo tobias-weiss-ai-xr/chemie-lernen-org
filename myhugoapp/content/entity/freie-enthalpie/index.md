@@ -11,5 +11,11 @@ relatedEntities:
   - "Gleichgewichtskonstante"
   - "Entropie"
 components: []
+relatedSlugs:
+  "eie": "eie"
+  "Gleichgewichtskonstante": "gleichgewichtskonstante"
+  "Entropie": "entropie"
+
+
 ---
 

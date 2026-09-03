@@ -1,13 +1,16 @@
 ---
 title: "Oxidation"
-description: "Fachbegriff „Oxidation“ (Reaktion) — beschrieben in 2 Artikeln auf chemie-lernen.org und ist mit 20 weiteren Fachbegriffen verknüpft."
+description: "Fachbegriff „Oxidation“ (Reaktion) — beschrieben in 2 Artikeln auf chemie-lernen.org und ist mit 23 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
 slug: "oxidation"
 category: "reaktion"
 articleCount: 2
-relatedCount: 20
+relatedCount: 23
 relatedEntities:
   - "disulfide"
+  - "Natriumhypochlorit (NaOCl)"
+  - "Kaliumdichromat (K2Cr2O7)"
+  - "Disproportionierung"
   - "ni: verbrennung und oxidbildung"
   - "mv: verbrennung und oxidbildung"
   - "hb: luft, sauerstoff und verbrennung"
@@ -28,5 +31,31 @@ relatedEntities:
   - "basilisieren"
   - "Redoxreaktion"
 components: []
+relatedSlugs:
+  "disulfide": "disulfide"
+  "Natriumhypochlorit (NaOCl)": "natriumhypochlorit-naocl"
+  "Kaliumdichromat (K2Cr2O7)": "kaliumdichromat-k2cr2o7"
+  "Disproportionierung": "disproportionierung"
+  "ni: verbrennung und oxidbildung": "ni-verbrennung-und-oxidbildung"
+  "mv: verbrennung und oxidbildung": "mv-verbrennung-und-oxidbildung"
+  "hb: luft, sauerstoff und verbrennung": "hb-luft-sauerstoff-und-verbrennung"
+  "sl: luft und verbrennung": "sl-luft-und-verbrennung"
+  "sh: luft und verbrennung": "sh-luft-und-verbrennung"
+  "rp: luft und verbrennung": "rp-luft-und-verbrennung"
+  "he: luft und verbrennung": "he-luft-und-verbrennung"
+  "bb: luft und verbrennung": "bb-luft-und-verbrennung"
+  "sh: metalle und redoxreaktionen": "sh-metalle-und-redoxreaktionen"
+  "sl: redoxreaktionen und elektrochemie": "sl-redoxreaktionen-und-elektrochemie"
+  "mv: redoxreaktionen und elektrochemie": "mv-redoxreaktionen-und-elektrochemie"
+  "th: redoxreaktionen": "th-redoxreaktionen"
+  "rp: redoxreaktionen": "rp-redoxreaktionen"
+  "ni: redoxreaktionen": "ni-redoxreaktionen"
+  "he: redoxreaktionen": "he-redoxreaktionen"
+  "bb: redoxreaktionen": "bb-redoxreaktionen"
+  "epoxide": "epoxide"
+  "basilisieren": "basilisieren"
+  "Redoxreaktion": "redoxreaktion"
+
+
 ---
 

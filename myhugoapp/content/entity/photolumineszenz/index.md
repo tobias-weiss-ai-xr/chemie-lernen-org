@@ -12,5 +12,12 @@ relatedEntities:
   - "biosensoren"
   - "nir"
 components: []
+relatedSlugs:
+  "katalyse": "katalyse"
+  "metallcluster-moleküle": "metallcluster-molekuele"
+  "biosensoren": "biosensoren"
+  "nir": "nir"
+
+
 ---
 

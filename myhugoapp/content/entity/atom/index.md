@@ -18,5 +18,18 @@ relatedEntities:
   - "bb: atombau und periodensystem"
   - "b: atombau und periodensystem"
 components: []
+relatedSlugs:
+  "rp: atombau und periodensystem": "rp-atombau-und-periodensystem"
+  "he: atombau und periodensystem": "he-atombau-und-periodensystem"
+  "sl: atombau und periodensystem": "sl-atombau-und-periodensystem"
+  "th: atombau und periodensystem": "th-atombau-und-periodensystem"
+  "mv: atombau und periodensystem": "mv-atombau-und-periodensystem"
+  "hh: atombau und periodensystem": "hh-atombau-und-periodensystem"
+  "hb: atombau und periodensystem": "hb-atombau-und-periodensystem"
+  "ni: atombau und periodensystem": "ni-atombau-und-periodensystem"
+  "bb: atombau und periodensystem": "bb-atombau-und-periodensystem"
+  "b: atombau und periodensystem": "b-atombau-und-periodensystem"
+
+
 ---
 

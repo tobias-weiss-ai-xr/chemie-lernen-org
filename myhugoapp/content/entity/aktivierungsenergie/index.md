@@ -7,8 +7,13 @@ category: "konzept"
 articleCount: 0
 relatedCount: 2
 relatedEntities:
-  - "energie"
   - "aktivierungsenergie. prozesse in der industrie"
+  - "energie"
 components: []
+relatedSlugs:
+  "aktivierungsenergie. prozesse in der industrie": "aktivierungsenergie-prozesse-in-der-industrie"
+  "energie": "energie"
+
+
 ---
 

@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Organokatalyse"
 components: []
+relatedSlugs:
+  "Organokatalyse": "organokatalyse"
+
+
 ---
 

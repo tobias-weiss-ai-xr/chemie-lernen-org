@@ -14,5 +14,15 @@ relatedEntities:
   - "sandwichliganden"
   - "eisen(i)"
 components: []
+relatedSlugs:
+  "luft": "luft"
+  "platin": "platin"
+  "organometallkatalysator": "organometallkatalysator"
+  "palladium": "palladium"
+  "sandwichliganden": "sandwichliganden"
+  "eisen(i)": "eisen-i"
+
+aliases:
+  - "/entity/luftstabilität/"
 ---
 

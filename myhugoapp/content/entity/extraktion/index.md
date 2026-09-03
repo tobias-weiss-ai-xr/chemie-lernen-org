@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "auf stofflicher ebene können alltagsbezogen andere trennverfahren (extraktion, chromatogra-"
 components: []
+relatedSlugs:
+  "auf stofflicher ebene können alltagsbezogen andere trennverfahren (extraktion, chromatogra-": "auf-stofflicher-ebene-koennen-alltagsbezogen-andere-trennverfahren-extraktion-chromatogra"
+
+
 ---
 

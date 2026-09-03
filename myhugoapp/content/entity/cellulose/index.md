@@ -10,5 +10,10 @@ relatedEntities:
   - "eine vergleichende betrachtung mit natürlichen makromolekülen (stärke, cellulose, dna)"
   - "Glukose (C6H12O6)"
 components: []
+relatedSlugs:
+  "eine vergleichende betrachtung mit natürlichen makromolekülen (stärke, cellulose, dna)": "eine-vergleichende-betrachtung-mit-natuerlichen-makromolekuelen-staerke-cellulose-dna"
+  "Glukose (C6H12O6)": "glukose-c6h12o6"
+
+
 ---
 

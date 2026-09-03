@@ -13,5 +13,13 @@ relatedEntities:
   - "skyrmionen"
   - "datenspeicherung"
 components: []
+relatedSlugs:
+  "kristallstruktur": "kristallstruktur"
+  "quantencomputing": "quantencomputing"
+  "magnetische ordnung": "magnetische-ordnung"
+  "skyrmionen": "skyrmionen"
+  "datenspeicherung": "datenspeicherung"
+
+
 ---
 

@@ -16,5 +16,16 @@ relatedEntities:
   - "cobaltferrit"
   - "spinelloxid"
 components: []
+relatedSlugs:
+  "elektro": "elektro"
+  "el": "el"
+  "Wasserstoff": "wasserstoff"
+  "katalyse": "katalyse"
+  "ammoniak": "ammoniak"
+  "magnetfeld": "magnetfeld"
+  "cobaltferrit": "cobaltferrit"
+  "spinelloxid": "spinelloxid"
+
+
 ---
 

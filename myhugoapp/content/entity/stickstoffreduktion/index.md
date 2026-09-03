@@ -13,5 +13,13 @@ relatedEntities:
   - "kupferoxid"
   - "ammoniak"
 components: []
+relatedSlugs:
+  "stoff": "stoff"
+  "metallisches kupfer": "metallisches-kupfer"
+  "katalysator": "katalysator"
+  "kupferoxid": "kupferoxid"
+  "ammoniak": "ammoniak"
+
+
 ---
 

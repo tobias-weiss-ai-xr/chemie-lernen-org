@@ -12,6 +12,13 @@ relatedEntities:
   - "Elektrophile aromatische Substitution"
   - "Organische Chemie"
 components: []
+relatedSlugs:
+  "verbindungen": "verbindungen"
+  "Diels-Alder-Reaktion": "diels-alder-reaktion"
+  "Elektrophile aromatische Substitution": "elektrophile-aromatische-substitution"
+  "Organische Chemie": "organische-chemie"
+
+
 ---
 
 ## Verknüpfte Artikel

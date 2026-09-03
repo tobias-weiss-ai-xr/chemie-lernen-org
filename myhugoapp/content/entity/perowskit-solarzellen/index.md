@@ -12,5 +12,12 @@ relatedEntities:
   - "invertierte perowskit-solarzellen"
   - "buried layer"
 components: []
+relatedSlugs:
+  "mini-modul": "mini-modul"
+  "kristall-solvat-nanosaatkerne": "kristall-solvat-nanosaatkerne"
+  "invertierte perowskit-solarzellen": "invertierte-perowskit-solarzellen"
+  "buried layer": "buried-layer"
+
+
 ---
 

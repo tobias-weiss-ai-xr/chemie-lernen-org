@@ -11,5 +11,12 @@ relatedEntities:
   - "Sauerstoff"
   - "Wasserstoff"
 components: []
+relatedSlugs:
+  "säure": "saeure"
+  "Sauerstoff": "sauerstoff"
+  "Wasserstoff": "wasserstoff"
+
+aliases:
+  - "/entity/milchsäure/"
 ---
 

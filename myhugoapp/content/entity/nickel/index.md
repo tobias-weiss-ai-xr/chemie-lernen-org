@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "lithium-ionen-batterie"
 components: []
+relatedSlugs:
+  "lithium-ionen-batterie": "lithium-ionen-batterie"
+
+
 ---
 

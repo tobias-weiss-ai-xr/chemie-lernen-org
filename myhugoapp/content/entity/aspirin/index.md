@@ -10,5 +10,10 @@ relatedEntities:
   - "Sauerstoff"
   - "Wasserstoff"
 components: []
+relatedSlugs:
+  "Sauerstoff": "sauerstoff"
+  "Wasserstoff": "wasserstoff"
+
+
 ---
 

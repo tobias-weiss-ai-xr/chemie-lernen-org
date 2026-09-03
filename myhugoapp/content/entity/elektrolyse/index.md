@@ -20,5 +20,20 @@ relatedEntities:
   - "elektrolysezelle"
   - "Elektrochemische Zelle"
 components: []
+relatedSlugs:
+  "Faradaysches Gesetz": "faradaysches-gesetz"
+  "sl: redoxreaktionen und elektrochemie": "sl-redoxreaktionen-und-elektrochemie"
+  "mv: redoxreaktionen und elektrochemie": "mv-redoxreaktionen-und-elektrochemie"
+  "elektrolyse und industrie verantwortung recycling": "elektrolyse-und-industrie-verantwortung-recycling"
+  "elektro": "elektro"
+  "Stromeffizienz": "stromeffizienz"
+  "Elektrolyse von Wasser": "elektrolyse-von-wasser"
+  "hall-héroult-prozess": "hall-heroult-prozess"
+  "downs-zelle": "downs-zelle"
+  "wasserstoff": "wasserstoff"
+  "elektrolysezelle": "elektrolysezelle"
+  "Elektrochemische Zelle": "elektrochemische-zelle"
+
+
 ---
 

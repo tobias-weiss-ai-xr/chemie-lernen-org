@@ -1,19 +1,16 @@
 ---
-title: "Ammoniak (NH3)"
-description: "Fachbegriff „Ammoniak (NH3)“ (Stoff) — beschrieben in 4 Artikeln auf chemie-lernen.org und ist mit einem weiteren Fachbegriff verknüpft."
+title: "Ammoniak (NH₃)"
+description: "Fachbegriff „Ammoniak (NH₃)“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
 slug: "ammoniak-nh3"
 category: "stoff"
-articleCount: 4
-relatedCount: 1
-relatedEntities:
-  - "Haber-Bosch-Verfahren"
+articleCount: 0
+relatedCount: 0
+relatedEntities: []
 components: []
+
+
+aliases:
+  - "/entity/ammoniak-nh/"
 ---
 
-## Verknüpfte Artikel
-
-- [Magnetfeld verdreifacht Ammoniakausbeute bei Elektrokatalyse](/)
-- [Kupferoxid-Katalysatoren steigern grüne Ammoniakproduktion](/)
-- [Electrocatalytic nitrogen reduction to ammonia at ambient conditions](/)
-- [Electrochemical reduction of nitrate to ammonia on iron-based single-atom catalysts](/)

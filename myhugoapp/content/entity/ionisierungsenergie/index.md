@@ -1,13 +1,14 @@
 ---
 title: "Ionisierungsenergie"
-description: "Fachbegriff „Ionisierungsenergie“ (Konzept) — beschrieben in einem Artikel auf chemie-lernen.org und ist mit 33 weiteren Fachbegriffen verknüpft."
+description: "Fachbegriff „Ionisierungsenergie“ (Konzept) — beschrieben in einem Artikel auf chemie-lernen.org und ist mit 34 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
 slug: "ionisierungsenergie"
 category: "konzept"
 articleCount: 1
-relatedCount: 33
+relatedCount: 34
 relatedEntities:
   - "hb: säuren, laugen und neutralisation"
+  - "quantenzahlen"
   - "sh: metalle und redoxreaktionen"
   - "rp: metalle, salze, ionen"
   - "mv: salze und ionenbindung"
@@ -41,5 +42,42 @@ relatedEntities:
   - "ni: salze und ionen"
   - "sh: salze und ionen"
 components: []
+relatedSlugs:
+  "hb: säuren, laugen und neutralisation": "hb-saeuren-laugen-und-neutralisation"
+  "quantenzahlen": "quantenzahlen"
+  "sh: metalle und redoxreaktionen": "sh-metalle-und-redoxreaktionen"
+  "rp: metalle, salze, ionen": "rp-metalle-salze-ionen"
+  "mv: salze und ionenbindung": "mv-salze-und-ionenbindung"
+  "sl: redoxreaktionen und elektrochemie": "sl-redoxreaktionen-und-elektrochemie"
+  "mv: redoxreaktionen und elektrochemie": "mv-redoxreaktionen-und-elektrochemie"
+  "he: ionenbindung und salze": "he-ionenbindung-und-salze"
+  "hh: säuren, laugen und neutralisation": "hh-saeuren-laugen-und-neutralisation"
+  "Periodensystem": "periodensystem"
+  "Atomradius": "atomradius"
+  "ionisierungsenergien den bau strukturen und beziehungen": "ionisierungsenergien-den-bau-strukturen-und-beziehungen"
+  "energie": "energie"
+  "bb: chemische reaktion und energie": "bb-chemische-reaktion-und-energie"
+  "rp: chemische reaktion und energie": "rp-chemische-reaktion-und-energie"
+  "bb: ionen und salze": "bb-ionen-und-salze"
+  "hh: ionen und salze": "hh-ionen-und-salze"
+  "bb: redoxreaktionen": "bb-redoxreaktionen"
+  "he: redoxreaktionen": "he-redoxreaktionen"
+  "ni: redoxreaktionen": "ni-redoxreaktionen"
+  "rp: redoxreaktionen": "rp-redoxreaktionen"
+  "th: redoxreaktionen": "th-redoxreaktionen"
+  "bb: säuren, basen und neutralisation": "bb-saeuren-basen-und-neutralisation"
+  "ni: säuren, basen und neutralisation": "ni-saeuren-basen-und-neutralisation"
+  "hb: chemische reaktionen": "hb-chemische-reaktionen"
+  "he: chemische reaktionen": "he-chemische-reaktionen"
+  "hh: chemische reaktionen": "hh-chemische-reaktionen"
+  "mv: chemische reaktionen": "mv-chemische-reaktionen"
+  "ni: chemische reaktionen": "ni-chemische-reaktionen"
+  "sl: chemische reaktionen": "sl-chemische-reaktionen"
+  "th: chemische reaktionen": "th-chemische-reaktionen"
+  "hb: salze und ionen": "hb-salze-und-ionen"
+  "ni: salze und ionen": "ni-salze-und-ionen"
+  "sh: salze und ionen": "sh-salze-und-ionen"
+
+
 ---
 

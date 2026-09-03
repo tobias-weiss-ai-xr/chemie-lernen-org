@@ -1,13 +1,18 @@
 ---
-title: "Essigsaeure (CH3COOH)"
-description: "Fachbegriff „Essigsaeure (CH3COOH)“ (Stoff) — beschrieben in einem Artikel auf chemie-lernen.org und ist mit einem weiteren Fachbegriff verknüpft."
+title: "Essigsäure (CH₃COOH)"
+description: "Fachbegriff „Essigsäure (CH₃COOH)“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
 slug: "essigsaeure-ch3cooh"
 category: "stoff"
-articleCount: 1
-relatedCount: 1
-relatedEntities:
-  - "säure"
+articleCount: 0
+relatedCount: 0
+relatedEntities: []
 components: []
+
+
+aliases:
+  - "/entity/essigsäure-ch-cooh/"
+  - "/entity/essigsaeure/"
+  - "/entity/essigsäure/"
 ---
 

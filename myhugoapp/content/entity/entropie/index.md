@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "falls als energieträger die entropie (in phänomenologischer deutung) eingeführt wird, kann"
 components: []
+relatedSlugs:
+  "falls als energieträger die entropie (in phänomenologischer deutung) eingeführt wird, kann": "falls-als-energietraeger-die-entropie-in-phaenomenologischer-deutung-eingefuehrt-wird-kann"
+
+
 ---
 

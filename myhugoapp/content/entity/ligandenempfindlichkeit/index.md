@@ -14,5 +14,14 @@ relatedEntities:
   - "allosterie"
   - "nature chemistry"
 components: []
+relatedSlugs:
+  "venusfliegenfallen-domänen": "venusfliegenfallen-domaenen"
+  "hdx-ms": "hdx-ms"
+  "transportproteine": "transportproteine"
+  "transkriptionsfaktoren": "transkriptionsfaktoren"
+  "allosterie": "allosterie"
+  "nature chemistry": "nature-chemistry"
+
+
 ---
 

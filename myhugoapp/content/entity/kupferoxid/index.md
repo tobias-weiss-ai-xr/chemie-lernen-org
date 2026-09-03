@@ -12,5 +12,12 @@ relatedEntities:
   - "ammoniak"
   - "metallisches kupfer"
 components: []
+relatedSlugs:
+  "katalysator": "katalysator"
+  "stickstoffreduktion": "stickstoffreduktion"
+  "ammoniak": "ammoniak"
+  "metallisches kupfer": "metallisches-kupfer"
+
+
 ---
 

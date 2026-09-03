@@ -10,5 +10,10 @@ relatedEntities:
   - "Zink"
   - "Aluminium"
 components: []
+relatedSlugs:
+  "Zink": "zink"
+  "Aluminium": "aluminium"
+
+
 ---
 

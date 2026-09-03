@@ -12,5 +12,13 @@ relatedEntities:
   - "Sauerstoff"
   - "Wasserstoff"
 components: []
+relatedSlugs:
+  "säure": "saeure"
+  "Stickstoff": "stickstoff"
+  "Sauerstoff": "sauerstoff"
+  "Wasserstoff": "wasserstoff"
+
+aliases:
+  - "/entity/aminosäuren/"
 ---
 

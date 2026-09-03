@@ -10,5 +10,10 @@ relatedEntities:
   - "Faradaysches Gesetz"
   - "Elektrolyse"
 components: []
+relatedSlugs:
+  "Faradaysches Gesetz": "faradaysches-gesetz"
+  "Elektrolyse": "elektrolyse"
+
+
 ---
 

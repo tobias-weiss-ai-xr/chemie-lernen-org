@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Schwefel"
 components: []
+relatedSlugs:
+  "Schwefel": "schwefel"
+
+
 ---
 

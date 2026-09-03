@@ -14,5 +14,14 @@ relatedEntities:
   - "pentasilacyclopentadienid"
   - "cyclopentadienid"
 components: []
+relatedSlugs:
+  "Halbleiter": "halbleiter"
+  "kohlenstoff": "kohlenstoff"
+  "universität des saarlandes": "universitaet-des-saarlandes"
+  "science": "science"
+  "pentasilacyclopentadienid": "pentasilacyclopentadienid"
+  "cyclopentadienid": "cyclopentadienid"
+
+
 ---
 

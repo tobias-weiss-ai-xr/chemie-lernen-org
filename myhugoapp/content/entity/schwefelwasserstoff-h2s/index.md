@@ -10,5 +10,10 @@ relatedEntities:
   - "wasser"
   - "stoff"
 components: []
+relatedSlugs:
+  "wasser": "wasser"
+  "stoff": "stoff"
+
+
 ---
 

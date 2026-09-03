@@ -10,5 +10,10 @@ relatedEntities:
   - "Alkohole"
   - "Alkene"
 components: []
+relatedSlugs:
+  "Alkohole": "alkohole"
+  "Alkene": "alkene"
+
+
 ---
 

@@ -10,5 +10,10 @@ relatedEntities:
   - "Amine"
   - "Stickstoff"
 components: []
+relatedSlugs:
+  "Amine": "amine"
+  "Stickstoff": "stickstoff"
+
+
 ---
 

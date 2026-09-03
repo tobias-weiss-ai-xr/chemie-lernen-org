@@ -12,5 +12,12 @@ relatedEntities:
   - "Verbrennung"
   - "Enthalpie"
 components: []
+relatedSlugs:
+  "verbrennung": "verbrennung"
+  "Sauerstoff": "sauerstoff"
+  "Verbrennung": "verbrennung"
+  "Enthalpie": "enthalpie"
+
+
 ---
 

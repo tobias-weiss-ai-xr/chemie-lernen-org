@@ -10,5 +10,10 @@ relatedEntities:
   - "stoff"
   - "Molaritaet"
 components: []
+relatedSlugs:
+  "stoff": "stoff"
+  "Molaritaet": "molaritaet"
+
+
 ---
 

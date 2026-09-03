@@ -14,5 +14,14 @@ relatedEntities:
   - "transkriptionsfaktoren"
   - "hdx-ms"
 components: []
+relatedSlugs:
+  "transportproteine": "transportproteine"
+  "venusfliegenfallen-domänen": "venusfliegenfallen-domaenen"
+  "allosterie": "allosterie"
+  "ligandenempfindlichkeit": "ligandenempfindlichkeit"
+  "transkriptionsfaktoren": "transkriptionsfaktoren"
+  "hdx-ms": "hdx-ms"
+
+
 ---
 

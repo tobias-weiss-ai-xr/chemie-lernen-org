@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "castner-zelle"
 components: []
+relatedSlugs:
+  "castner-zelle": "castner-zelle"
+
+
 ---
 

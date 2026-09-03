@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Sauere nach Broensted"
 components: []
+relatedSlugs:
+  "Sauere nach Broensted": "sauere-nach-broensted"
+
+
 ---
 

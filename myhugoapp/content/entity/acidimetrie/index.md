@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Titration"
 components: []
+relatedSlugs:
+  "Titration": "titration"
+
+
 ---
 

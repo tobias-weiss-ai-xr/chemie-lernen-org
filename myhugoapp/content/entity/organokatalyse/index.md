@@ -11,5 +11,11 @@ relatedEntities:
   - "David MacMillan"
   - "Benjamin List"
 components: []
+relatedSlugs:
+  "katalyse": "katalyse"
+  "David MacMillan": "david-macmillan"
+  "Benjamin List": "benjamin-list"
+
+
 ---
 

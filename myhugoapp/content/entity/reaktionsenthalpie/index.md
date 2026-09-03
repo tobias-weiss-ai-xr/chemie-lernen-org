@@ -10,5 +10,10 @@ relatedEntities:
   - "reaktion"
   - "Enthalpie"
 components: []
+relatedSlugs:
+  "reaktion": "reaktion"
+  "Enthalpie": "enthalpie"
+
+
 ---
 

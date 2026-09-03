@@ -15,5 +15,15 @@ relatedEntities:
   - "rp: metalle, salze, ionen"
   - "Elektronegativitaet"
 components: []
+relatedSlugs:
+  "metalle bestehen aus einem gitter von metallatomen, de- metallbindung": "metalle-bestehen-aus-einem-gitter-von-metallatomen-de-metallbindung"
+  "th: metalle": "th-metalle"
+  "st: stoffklasse der metalle": "st-stoffklasse-der-metalle"
+  "sl: metalle und metallgewinnung": "sl-metalle-und-metallgewinnung"
+  "sh: metalle und redoxreaktionen": "sh-metalle-und-redoxreaktionen"
+  "rp: metalle, salze, ionen": "rp-metalle-salze-ionen"
+  "Elektronegativitaet": "elektronegativitaet"
+
+
 ---
 

@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Sauerstoff"
 components: []
+relatedSlugs:
+  "Sauerstoff": "sauerstoff"
+
+
 ---
 

@@ -14,5 +14,15 @@ relatedEntities:
   - "allosterie"
   - "transkriptionsfaktoren"
 components: []
+relatedSlugs:
+  "nature chemistry": "nature-chemistry"
+  "ligandenempfindlichkeit": "ligandenempfindlichkeit"
+  "transportproteine": "transportproteine"
+  "hdx-ms": "hdx-ms"
+  "allosterie": "allosterie"
+  "transkriptionsfaktoren": "transkriptionsfaktoren"
+
+aliases:
+  - "/entity/venusfliegenfallen-domänen/"
 ---
 

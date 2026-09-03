@@ -10,5 +10,10 @@ relatedEntities:
   - "dipol"
   - "Wasserstoffbrueckenbindung"
 components: []
+relatedSlugs:
+  "dipol": "dipol"
+  "Wasserstoffbrueckenbindung": "wasserstoffbrueckenbindung"
+
+
 ---
 

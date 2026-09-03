@@ -10,5 +10,10 @@ relatedEntities:
   - "Photosynthese"
   - "Magnesium"
 components: []
+relatedSlugs:
+  "Photosynthese": "photosynthese"
+  "Magnesium": "magnesium"
+
+
 ---
 

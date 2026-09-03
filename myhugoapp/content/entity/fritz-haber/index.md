@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Haber-Bosch-Verfahren"
 components: []
+relatedSlugs:
+  "Haber-Bosch-Verfahren": "haber-bosch-verfahren"
+
+
 ---
 

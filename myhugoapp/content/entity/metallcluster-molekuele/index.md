@@ -13,5 +13,14 @@ relatedEntities:
   - "biosensoren"
   - "katalyse"
 components: []
+relatedSlugs:
+  "moleküle": "molekuele"
+  "nir": "nir"
+  "photolumineszenz": "photolumineszenz"
+  "biosensoren": "biosensoren"
+  "katalyse": "katalyse"
+
+aliases:
+  - "/entity/metallcluster-moleküle/"
 ---
 

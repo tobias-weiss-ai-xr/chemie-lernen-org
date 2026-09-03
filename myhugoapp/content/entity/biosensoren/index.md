@@ -12,5 +12,12 @@ relatedEntities:
   - "photolumineszenz"
   - "katalyse"
 components: []
+relatedSlugs:
+  "metallcluster-moleküle": "metallcluster-molekuele"
+  "nir": "nir"
+  "photolumineszenz": "photolumineszenz"
+  "katalyse": "katalyse"
+
+
 ---
 

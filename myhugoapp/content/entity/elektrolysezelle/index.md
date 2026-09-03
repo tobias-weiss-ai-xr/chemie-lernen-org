@@ -11,5 +11,11 @@ relatedEntities:
   - "elektro"
   - "Elektrolyse"
 components: []
+relatedSlugs:
+  "el": "el"
+  "elektro": "elektro"
+  "Elektrolyse": "elektrolyse"
+
+
 ---
 

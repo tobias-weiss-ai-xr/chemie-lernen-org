@@ -11,5 +11,11 @@ relatedEntities:
   - "Sauerstoff"
   - "Wasserstoff"
 components: []
+relatedSlugs:
+  "Alkohole": "alkohole"
+  "Sauerstoff": "sauerstoff"
+  "Wasserstoff": "wasserstoff"
+
+
 ---
 

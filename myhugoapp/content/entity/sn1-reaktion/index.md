@@ -10,5 +10,10 @@ relatedEntities:
   - "reaktion"
   - "Substitutionsreaktion"
 components: []
+relatedSlugs:
+  "reaktion": "reaktion"
+  "Substitutionsreaktion": "substitutionsreaktion"
+
+
 ---
 

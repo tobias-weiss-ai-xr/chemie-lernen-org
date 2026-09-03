@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "pH-Wert"
 components: []
+relatedSlugs:
+  "pH-Wert": "ph-wert"
+
+
 ---
 

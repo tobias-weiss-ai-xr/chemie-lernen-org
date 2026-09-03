@@ -9,5 +9,10 @@ relatedCount: 1
 relatedEntities:
   - "reaktion"
 components: []
+relatedSlugs:
+  "reaktion": "reaktion"
+
+aliases:
+  - "/entity/fällungsreaktion/"
 ---
 

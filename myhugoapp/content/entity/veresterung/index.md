@@ -10,5 +10,10 @@ relatedEntities:
   - "Ester"
   - "Carbonsaeuren"
 components: []
+relatedSlugs:
+  "Ester": "ester"
+  "Carbonsaeuren": "carbonsaeuren"
+
+
 ---
 

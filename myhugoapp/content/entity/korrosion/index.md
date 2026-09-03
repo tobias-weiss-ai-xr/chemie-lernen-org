@@ -12,5 +12,12 @@ relatedEntities:
   - "Eisen"
   - "Sauerstoff"
 components: []
+relatedSlugs:
+  "durch beobachtungen im alltag oder in laborsituationen (z. b. korrosion, verwitterung, ver-": "durch-beobachtungen-im-alltag-oder-in-laborsituationen-z-b-korrosion-verwitterung-ver"
+  "Redoxreaktion": "redoxreaktion"
+  "Eisen": "eisen"
+  "Sauerstoff": "sauerstoff"
+
+
 ---
 

@@ -11,5 +11,11 @@ relatedEntities:
   - "Alkene"
   - "Sauerstoff"
 components: []
+relatedSlugs:
+  "Oxidation": "oxidation"
+  "Alkene": "alkene"
+  "Sauerstoff": "sauerstoff"
+
+
 ---
 

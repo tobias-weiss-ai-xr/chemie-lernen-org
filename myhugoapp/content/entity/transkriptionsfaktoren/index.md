@@ -14,5 +14,14 @@ relatedEntities:
   - "venusfliegenfallen-domänen"
   - "allosterie"
 components: []
+relatedSlugs:
+  "transportproteine": "transportproteine"
+  "ligandenempfindlichkeit": "ligandenempfindlichkeit"
+  "hdx-ms": "hdx-ms"
+  "nature chemistry": "nature-chemistry"
+  "venusfliegenfallen-domänen": "venusfliegenfallen-domaenen"
+  "allosterie": "allosterie"
+
+
 ---
 

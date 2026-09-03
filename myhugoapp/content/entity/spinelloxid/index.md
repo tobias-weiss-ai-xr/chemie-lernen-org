@@ -12,5 +12,12 @@ relatedEntities:
   - "magnetfeld"
   - "cobaltferrit"
 components: []
+relatedSlugs:
+  "elektrokatalyse": "elektrokatalyse"
+  "ammoniak": "ammoniak"
+  "magnetfeld": "magnetfeld"
+  "cobaltferrit": "cobaltferrit"
+
+
 ---
 

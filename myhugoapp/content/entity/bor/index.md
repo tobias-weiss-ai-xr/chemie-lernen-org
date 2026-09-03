@@ -12,5 +12,12 @@ relatedEntities:
   - "durch beobachtungen im alltag oder in laborsituationen (z. b. korrosion, verwitterung, ver-"
   - "umgang mit säuren im haushalt und labor gefahrgutkennzeichnung der behälter und"
 components: []
+relatedSlugs:
+  "möglichkeiten eines labors weit überschreitet. allerdings kann man nicht einfach dieselben": "moeglichkeiten-eines-labors-weit-ueberschreitet-allerdings-kann-man-nicht-einfach-dieselben"
+  "abwasser aus industrie und labor": "abwasser-aus-industrie-und-labor"
+  "durch beobachtungen im alltag oder in laborsituationen (z. b. korrosion, verwitterung, ver-": "durch-beobachtungen-im-alltag-oder-in-laborsituationen-z-b-korrosion-verwitterung-ver"
+  "umgang mit säuren im haushalt und labor gefahrgutkennzeichnung der behälter und": "umgang-mit-saeuren-im-haushalt-und-labor-gefahrgutkennzeichnung-der-behaelter-und"
+
+
 ---
 

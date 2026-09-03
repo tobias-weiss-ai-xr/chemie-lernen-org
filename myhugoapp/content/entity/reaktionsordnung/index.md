@@ -10,5 +10,10 @@ relatedEntities:
   - "reaktion"
   - "Kinetik"
 components: []
+relatedSlugs:
+  "reaktion": "reaktion"
+  "Kinetik": "kinetik"
+
+
 ---
 

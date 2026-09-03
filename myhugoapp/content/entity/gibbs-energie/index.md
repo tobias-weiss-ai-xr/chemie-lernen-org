@@ -11,5 +11,11 @@ relatedEntities:
   - "Entropie"
   - "Enthalpie"
 components: []
+relatedSlugs:
+  "energie": "energie"
+  "Entropie": "entropie"
+  "Enthalpie": "enthalpie"
+
+
 ---
 

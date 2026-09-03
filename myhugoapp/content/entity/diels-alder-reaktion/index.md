@@ -12,5 +12,12 @@ relatedEntities:
   - "Kurt Alder"
   - "Otto Diels"
 components: []
+relatedSlugs:
+  "reaktion": "reaktion"
+  "Aromatische Verbindungen": "aromatische-verbindungen"
+  "Kurt Alder": "kurt-alder"
+  "Otto Diels": "otto-diels"
+
+
 ---
 

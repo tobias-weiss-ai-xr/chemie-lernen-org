@@ -10,5 +10,10 @@ relatedEntities:
   - "kristallstruktur"
   - "Photokatalyse"
 components: []
+relatedSlugs:
+  "kristallstruktur": "kristallstruktur"
+  "Photokatalyse": "photokatalyse"
+
+
 ---
 

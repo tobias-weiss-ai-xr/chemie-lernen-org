@@ -11,5 +11,11 @@ relatedEntities:
   - "watson und crick: vom modell zur dna-struktur geschichte"
   - "das chromosom ist die transportform der dna. bei der vertei-"
 components: []
+relatedSlugs:
+  "eine vergleichende betrachtung mit natürlichen makromolekülen (stärke, cellulose, dna)": "eine-vergleichende-betrachtung-mit-natuerlichen-makromolekuelen-staerke-cellulose-dna"
+  "watson und crick: vom modell zur dna-struktur geschichte": "watson-und-crick-vom-modell-zur-dna-struktur-geschichte"
+  "das chromosom ist die transportform der dna. bei der vertei-": "das-chromosom-ist-die-transportform-der-dna-bei-der-vertei"
+
+
 ---
 

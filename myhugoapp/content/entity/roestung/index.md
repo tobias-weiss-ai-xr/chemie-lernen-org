@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Eisen(III)-oxid (Fe2O3)"
 components: []
+relatedSlugs:
+  "Eisen(III)-oxid (Fe2O3)": "eisen-iii-oxid-fe2o3"
+
+
 ---
 

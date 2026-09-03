@@ -19,5 +19,19 @@ relatedEntities:
   - "Konstitutionsisomerie"
   - "Stereoisomerie"
 components: []
+relatedSlugs:
+  "bb: organische chemie": "bb-organische-chemie"
+  "hh: organische chemie - einführung": "hh-organische-chemie-einfuehrung"
+  "sl: organische chemie - kohlenwasserstoffe": "sl-organische-chemie-kohlenwasserstoffe"
+  "he: organische chemie - kohlenwasserstoffe": "he-organische-chemie-kohlenwasserstoffe"
+  "sh: organische chemie": "sh-organische-chemie"
+  "rp: organische chemie": "rp-organische-chemie"
+  "ni: organische chemie": "ni-organische-chemie"
+  "mv: organische chemie": "mv-organische-chemie"
+  "hb: organische chemie": "hb-organische-chemie"
+  "Konstitutionsisomerie": "konstitutionsisomerie"
+  "Stereoisomerie": "stereoisomerie"
+
+
 ---
 

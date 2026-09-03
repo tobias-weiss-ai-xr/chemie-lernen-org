@@ -10,5 +10,10 @@ relatedEntities:
   - "redoxreaktionen der nebengruppenelemente"
   - "Periodensystem"
 components: []
+relatedSlugs:
+  "redoxreaktionen der nebengruppenelemente": "redoxreaktionen-der-nebengruppenelemente"
+  "Periodensystem": "periodensystem"
+
+
 ---
 

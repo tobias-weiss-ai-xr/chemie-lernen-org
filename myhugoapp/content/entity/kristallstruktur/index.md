@@ -18,5 +18,18 @@ relatedEntities:
   - "skyrmionen"
   - "quantencomputing"
 components: []
+relatedSlugs:
+  "XRD": "xrd"
+  "Legierung": "legierung"
+  "Perowskite": "perowskite"
+  "Zeolithe": "zeolithe"
+  "Supraleiter": "supraleiter"
+  "florida state university": "florida-state-university"
+  "magnetische ordnung": "magnetische-ordnung"
+  "datenspeicherung": "datenspeicherung"
+  "skyrmionen": "skyrmionen"
+  "quantencomputing": "quantencomputing"
+
+
 ---
 

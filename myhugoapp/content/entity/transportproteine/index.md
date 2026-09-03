@@ -14,5 +14,14 @@ relatedEntities:
   - "venusfliegenfallen-domänen"
   - "hdx-ms"
 components: []
+relatedSlugs:
+  "nature chemistry": "nature-chemistry"
+  "transkriptionsfaktoren": "transkriptionsfaktoren"
+  "allosterie": "allosterie"
+  "ligandenempfindlichkeit": "ligandenempfindlichkeit"
+  "venusfliegenfallen-domänen": "venusfliegenfallen-domaenen"
+  "hdx-ms": "hdx-ms"
+
+
 ---
 

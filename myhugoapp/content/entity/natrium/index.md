@@ -10,5 +10,10 @@ relatedEntities:
   - "castner-zelle"
   - "downs-zelle"
 components: []
+relatedSlugs:
+  "castner-zelle": "castner-zelle"
+  "downs-zelle": "downs-zelle"
+
+
 ---
 

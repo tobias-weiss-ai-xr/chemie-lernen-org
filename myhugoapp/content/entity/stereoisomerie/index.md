@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Isomerie"
 components: []
+relatedSlugs:
+  "Isomerie": "isomerie"
+
+
 ---
 

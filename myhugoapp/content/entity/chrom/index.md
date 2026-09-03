@@ -12,5 +12,12 @@ relatedEntities:
   - "destillation und chromatografie"
   - "passivierung"
 components: []
+relatedSlugs:
+  "auf stofflicher ebene können alltagsbezogen andere trennverfahren (extraktion, chromatogra-": "auf-stofflicher-ebene-koennen-alltagsbezogen-andere-trennverfahren-extraktion-chromatogra"
+  "das chromosom ist die transportform der dna. bei der vertei-": "das-chromosom-ist-die-transportform-der-dna-bei-der-vertei"
+  "destillation und chromatografie": "destillation-und-chromatografie"
+  "passivierung": "passivierung"
+
+
 ---
 

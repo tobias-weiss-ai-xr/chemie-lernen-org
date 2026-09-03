@@ -14,5 +14,14 @@ relatedEntities:
   - "polyheptazin-imide"
   - "metallionen"
 components: []
+relatedSlugs:
+  "wasser": "wasser"
+  "stoff": "stoff"
+  "kohlenstoffnitrid": "kohlenstoffnitrid"
+  "co2-umwandlung": "co2-umwandlung"
+  "polyheptazin-imide": "polyheptazin-imide"
+  "metallionen": "metallionen"
+
+
 ---
 

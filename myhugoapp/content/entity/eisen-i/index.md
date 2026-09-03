@@ -14,5 +14,14 @@ relatedEntities:
   - "luftstabilität"
   - "platin"
 components: []
+relatedSlugs:
+  "ei": "ei"
+  "palladium": "palladium"
+  "sandwichliganden": "sandwichliganden"
+  "organometallkatalysator": "organometallkatalysator"
+  "luftstabilität": "luftstabilitaet"
+  "platin": "platin"
+
+
 ---
 

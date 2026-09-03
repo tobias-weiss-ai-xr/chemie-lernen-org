@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Ethanol (C2H5OH)"
 components: []
+relatedSlugs:
+  "Ethanol (C2H5OH)": "ethanol-c2h5oh"
+
+
 ---
 

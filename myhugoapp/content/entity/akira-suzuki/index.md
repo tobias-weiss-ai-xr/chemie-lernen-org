@@ -9,5 +9,9 @@ relatedCount: 1
 relatedEntities:
   - "Suzuki-Kupplung"
 components: []
+relatedSlugs:
+  "Suzuki-Kupplung": "suzuki-kupplung"
+
+
 ---
 

@@ -10,5 +10,10 @@ relatedEntities:
   - "reaktion"
   - "Eliminierungsreaktion"
 components: []
+relatedSlugs:
+  "reaktion": "reaktion"
+  "Eliminierungsreaktion": "eliminierungsreaktion"
+
+
 ---
 

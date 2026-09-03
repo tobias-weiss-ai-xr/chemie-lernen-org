@@ -12,5 +12,12 @@ relatedEntities:
   - "glas"
   - "Legierung"
 components: []
+relatedSlugs:
+  "stoffe": "stoffe"
+  "stoff": "stoff"
+  "glas": "glas"
+  "Legierung": "legierung"
+
+
 ---
 
