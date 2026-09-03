@@ -30,43 +30,8 @@
     "category": "news"
   },
   {
-    "url": "https://feeds.newscientist.com/chemistry",
-    "lang": "en",
-    "category": "news"
-  },
-  {
     "url": "https://www.spektrum.de/alias/rss/spektrum-der-wissenschaft-rss-feed/982623",
     "lang": "de",
     "category": "wissenschaft"
-  },
-  {
-    "url": "https://www.chemanager-online.com/rss",
-    "lang": "en",
-    "category": "industrie"
-  },
-  {
-    "url": "https://www.chemistryworld.com/feeds/feed",
-    "lang": "en",
-    "category": "news"
-  },
-  {
-    "url": "https://www.nachrichten-chemie.de/feed",
-    "lang": "de",
-    "category": "news"
-  },
-  {
-    "url": "https://feeds.feedburner.com/acs_industry",
-    "lang": "en",
-    "category": "industrie"
-  },
-  {
-    "url": "https://www.rsc.org/rss/chemcomm.rss",
-    "lang": "en",
-    "category": "forschung"
-  },
-  {
-    "url": "https://pubs.rsc.org/en/journals/rss/SC",
-    "lang": "en",
-    "category": "forschung"
   }
 ]
