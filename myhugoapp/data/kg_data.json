@@ -1,5 +1,459 @@
 {
-  "articles": [],
-  "entities": [],
-  "updatedAt": "2026-09-03T15:30:32+02:00"
+  "articles": [
+    {
+      "title": "Durchbruch: Lichtaktivierter Eisenkatalysator verwandelt Methan in Arzneistoffe",
+      "url": "https://www.sciencedaily.com/releases/2026/02/260227071916.htm",
+      "description": "Wissenschaftler haben ein Verfahren vorgestellt, mit dem sich Erdgas, das bislang vor allem als Brennstoff abgefackelt oder verbrannt wurde, in wertvolle chemische Bausteine für Medikamente und andere",
+      "tags": ["c"],
+      "entities": [
+        "methan",
+        "erdgas",
+        "dimestrol",
+        "eisenkatalysator",
+        "led-photokatalyse",
+        "c-h-aktivierung",
+        "methanfunktionalisierung",
+        "dampfreformierung"
+      ],
+      "date": "2026-09-03T13:28:28.000Z"
+    },
+    {
+      "title": "Elektronenspin steuert Wasserstoffreaktionen an Oberflächen magnetisch",
+      "url": "https://phys.org/news/2026-09-electron-magnetic-hydrogen-surface-reactions.html",
+      "description": "Chemische Reaktionen an Oberflächen spielen eine zentrale Rolle in vielen Prozessen, darunter Katalyse und Materialsynthese. Lange galt als gesichert, dass deren Ergebnis durch die translatorische, vi",
+      "tags": ["e"],
+      "entities": [
+        "elektronenspin",
+        "wasserstoff",
+        "oberflächenreaktion",
+        "katalyse",
+        "heterogene katalyse",
+        "pauli-prinzip",
+        "spin-chemie",
+        "magnetische reaktionskontrolle"
+      ],
+      "date": "2026-09-03T13:30:32.000Z"
+    },
+    {
+      "title": "Ultraschall-Katalysator wandelt CO₂ fünfmal schneller in CO um",
+      "url": "https://phys.org/news/2026-08-mof-coated-catalyst-faster-ultrasonic.html",
+      "description": "Forscher der Universität Osaka haben einen neuartigen Katalysator entwickelt, der Kohlenstoffdioxid (CO_2) mithilfe mechanischer Schwingungen zu Kohlenmonoxid (CO) umwandelt – einem wichtigen Ausgangs",
+      "tags": ["p"],
+      "entities": [
+        "bariumtitanat",
+        "metal-organic framework",
+        "kohlenstoffdioxid",
+        "kohlenmonoxid",
+        "kupfer",
+        "piezokatalyse",
+        "single-atom-catalysis",
+        "co2-reduktion",
+        "universität osaka"
+      ],
+      "date": "2026-09-03T13:29:24.000Z"
+    }
+  ],
+  "entities": [
+    {
+      "name": "methan",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Lichtaktivierter Eisenkatalysator verwandelt Methan in Arzneistoffe"
+      ],
+      "category": "stoff",
+      "relatedEntities": [
+        "erdgas",
+        "dimestrol",
+        "eisenkatalysator",
+        "led-photokatalyse",
+        "c-h-aktivierung",
+        "methanfunktionalisierung",
+        "dampfreformierung"
+      ]
+    },
+    {
+      "name": "erdgas",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Lichtaktivierter Eisenkatalysator verwandelt Methan in Arzneistoffe"
+      ],
+      "category": "stoff",
+      "relatedEntities": [
+        "methan",
+        "dimestrol",
+        "eisenkatalysator",
+        "led-photokatalyse",
+        "c-h-aktivierung",
+        "methanfunktionalisierung",
+        "dampfreformierung"
+      ]
+    },
+    {
+      "name": "dimestrol",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Lichtaktivierter Eisenkatalysator verwandelt Methan in Arzneistoffe"
+      ],
+      "category": "stoff",
+      "relatedEntities": [
+        "methan",
+        "erdgas",
+        "eisenkatalysator",
+        "led-photokatalyse",
+        "c-h-aktivierung",
+        "methanfunktionalisierung",
+        "dampfreformierung"
+      ]
+    },
+    {
+      "name": "eisenkatalysator",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Lichtaktivierter Eisenkatalysator verwandelt Methan in Arzneistoffe"
+      ],
+      "category": "stoff",
+      "relatedEntities": [
+        "methan",
+        "erdgas",
+        "dimestrol",
+        "led-photokatalyse",
+        "c-h-aktivierung",
+        "methanfunktionalisierung",
+        "dampfreformierung"
+      ]
+    },
+    {
+      "name": "led-photokatalyse",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Lichtaktivierter Eisenkatalysator verwandelt Methan in Arzneistoffe"
+      ],
+      "category": "methode",
+      "relatedEntities": [
+        "methan",
+        "erdgas",
+        "dimestrol",
+        "eisenkatalysator",
+        "c-h-aktivierung",
+        "methanfunktionalisierung",
+        "dampfreformierung"
+      ]
+    },
+    {
+      "name": "c-h-aktivierung",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Lichtaktivierter Eisenkatalysator verwandelt Methan in Arzneistoffe"
+      ],
+      "category": "reaktion",
+      "relatedEntities": [
+        "methan",
+        "erdgas",
+        "dimestrol",
+        "eisenkatalysator",
+        "led-photokatalyse",
+        "methanfunktionalisierung",
+        "dampfreformierung"
+      ]
+    },
+    {
+      "name": "methanfunktionalisierung",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Lichtaktivierter Eisenkatalysator verwandelt Methan in Arzneistoffe"
+      ],
+      "category": "reaktion",
+      "relatedEntities": [
+        "methan",
+        "erdgas",
+        "dimestrol",
+        "eisenkatalysator",
+        "led-photokatalyse",
+        "c-h-aktivierung",
+        "dampfreformierung"
+      ]
+    },
+    {
+      "name": "dampfreformierung",
+      "articleCount": 1,
+      "articles": [
+        "Durchbruch: Lichtaktivierter Eisenkatalysator verwandelt Methan in Arzneistoffe"
+      ],
+      "category": "reaktion",
+      "relatedEntities": [
+        "methan",
+        "erdgas",
+        "dimestrol",
+        "eisenkatalysator",
+        "led-photokatalyse",
+        "c-h-aktivierung",
+        "methanfunktionalisierung"
+      ]
+    },
+    {
+      "name": "elektronenspin",
+      "articleCount": 1,
+      "articles": ["Elektronenspin steuert Wasserstoffreaktionen an Oberflächen magnetisch"],
+      "category": "konzept",
+      "relatedEntities": [
+        "wasserstoff",
+        "oberflächenreaktion",
+        "katalyse",
+        "heterogene katalyse",
+        "pauli-prinzip",
+        "spin-chemie",
+        "magnetische reaktionskontrolle"
+      ]
+    },
+    {
+      "name": "wasserstoff",
+      "articleCount": 1,
+      "articles": ["Elektronenspin steuert Wasserstoffreaktionen an Oberflächen magnetisch"],
+      "category": "stoff",
+      "relatedEntities": [
+        "elektronenspin",
+        "oberflächenreaktion",
+        "katalyse",
+        "heterogene katalyse",
+        "pauli-prinzip",
+        "spin-chemie",
+        "magnetische reaktionskontrolle"
+      ]
+    },
+    {
+      "name": "oberflächenreaktion",
+      "articleCount": 1,
+      "articles": ["Elektronenspin steuert Wasserstoffreaktionen an Oberflächen magnetisch"],
+      "category": "reaktion",
+      "relatedEntities": [
+        "elektronenspin",
+        "wasserstoff",
+        "katalyse",
+        "heterogene katalyse",
+        "pauli-prinzip",
+        "spin-chemie",
+        "magnetische reaktionskontrolle"
+      ]
+    },
+    {
+      "name": "katalyse",
+      "articleCount": 1,
+      "articles": ["Elektronenspin steuert Wasserstoffreaktionen an Oberflächen magnetisch"],
+      "category": "konzept",
+      "relatedEntities": [
+        "elektronenspin",
+        "wasserstoff",
+        "oberflächenreaktion",
+        "heterogene katalyse",
+        "pauli-prinzip",
+        "spin-chemie",
+        "magnetische reaktionskontrolle"
+      ]
+    },
+    {
+      "name": "heterogene katalyse",
+      "articleCount": 1,
+      "articles": ["Elektronenspin steuert Wasserstoffreaktionen an Oberflächen magnetisch"],
+      "category": "konzept",
+      "relatedEntities": [
+        "elektronenspin",
+        "wasserstoff",
+        "oberflächenreaktion",
+        "katalyse",
+        "pauli-prinzip",
+        "spin-chemie",
+        "magnetische reaktionskontrolle"
+      ]
+    },
+    {
+      "name": "pauli-prinzip",
+      "articleCount": 1,
+      "articles": ["Elektronenspin steuert Wasserstoffreaktionen an Oberflächen magnetisch"],
+      "category": "konzept",
+      "relatedEntities": [
+        "elektronenspin",
+        "wasserstoff",
+        "oberflächenreaktion",
+        "katalyse",
+        "heterogene katalyse",
+        "spin-chemie",
+        "magnetische reaktionskontrolle"
+      ]
+    },
+    {
+      "name": "spin-chemie",
+      "articleCount": 1,
+      "articles": ["Elektronenspin steuert Wasserstoffreaktionen an Oberflächen magnetisch"],
+      "category": "konzept",
+      "relatedEntities": [
+        "elektronenspin",
+        "wasserstoff",
+        "oberflächenreaktion",
+        "katalyse",
+        "heterogene katalyse",
+        "pauli-prinzip",
+        "magnetische reaktionskontrolle"
+      ]
+    },
+    {
+      "name": "magnetische reaktionskontrolle",
+      "articleCount": 1,
+      "articles": ["Elektronenspin steuert Wasserstoffreaktionen an Oberflächen magnetisch"],
+      "category": "konzept",
+      "relatedEntities": [
+        "elektronenspin",
+        "wasserstoff",
+        "oberflächenreaktion",
+        "katalyse",
+        "heterogene katalyse",
+        "pauli-prinzip",
+        "spin-chemie"
+      ]
+    },
+    {
+      "name": "bariumtitanat",
+      "articleCount": 1,
+      "articles": ["Ultraschall-Katalysator wandelt CO₂ fünfmal schneller in CO um"],
+      "category": "stoff",
+      "relatedEntities": [
+        "metal-organic framework",
+        "kohlenstoffdioxid",
+        "kohlenmonoxid",
+        "kupfer",
+        "piezokatalyse",
+        "single-atom-catalysis",
+        "co2-reduktion",
+        "universität osaka"
+      ]
+    },
+    {
+      "name": "metal-organic framework",
+      "articleCount": 1,
+      "articles": ["Ultraschall-Katalysator wandelt CO₂ fünfmal schneller in CO um"],
+      "category": "stoff",
+      "relatedEntities": [
+        "bariumtitanat",
+        "kohlenstoffdioxid",
+        "kohlenmonoxid",
+        "kupfer",
+        "piezokatalyse",
+        "single-atom-catalysis",
+        "co2-reduktion",
+        "universität osaka"
+      ]
+    },
+    {
+      "name": "kohlenstoffdioxid",
+      "articleCount": 1,
+      "articles": ["Ultraschall-Katalysator wandelt CO₂ fünfmal schneller in CO um"],
+      "category": "stoff",
+      "relatedEntities": [
+        "bariumtitanat",
+        "metal-organic framework",
+        "kohlenmonoxid",
+        "kupfer",
+        "piezokatalyse",
+        "single-atom-catalysis",
+        "co2-reduktion",
+        "universität osaka"
+      ]
+    },
+    {
+      "name": "kohlenmonoxid",
+      "articleCount": 1,
+      "articles": ["Ultraschall-Katalysator wandelt CO₂ fünfmal schneller in CO um"],
+      "category": "stoff",
+      "relatedEntities": [
+        "bariumtitanat",
+        "metal-organic framework",
+        "kohlenstoffdioxid",
+        "kupfer",
+        "piezokatalyse",
+        "single-atom-catalysis",
+        "co2-reduktion",
+        "universität osaka"
+      ]
+    },
+    {
+      "name": "kupfer",
+      "articleCount": 1,
+      "articles": ["Ultraschall-Katalysator wandelt CO₂ fünfmal schneller in CO um"],
+      "category": "stoff",
+      "relatedEntities": [
+        "bariumtitanat",
+        "metal-organic framework",
+        "kohlenstoffdioxid",
+        "kohlenmonoxid",
+        "piezokatalyse",
+        "single-atom-catalysis",
+        "co2-reduktion",
+        "universität osaka"
+      ]
+    },
+    {
+      "name": "piezokatalyse",
+      "articleCount": 1,
+      "articles": ["Ultraschall-Katalysator wandelt CO₂ fünfmal schneller in CO um"],
+      "category": "konzept",
+      "relatedEntities": [
+        "bariumtitanat",
+        "metal-organic framework",
+        "kohlenstoffdioxid",
+        "kohlenmonoxid",
+        "kupfer",
+        "single-atom-catalysis",
+        "co2-reduktion",
+        "universität osaka"
+      ]
+    },
+    {
+      "name": "single-atom-catalysis",
+      "articleCount": 1,
+      "articles": ["Ultraschall-Katalysator wandelt CO₂ fünfmal schneller in CO um"],
+      "category": "konzept",
+      "relatedEntities": [
+        "bariumtitanat",
+        "metal-organic framework",
+        "kohlenstoffdioxid",
+        "kohlenmonoxid",
+        "kupfer",
+        "piezokatalyse",
+        "co2-reduktion",
+        "universität osaka"
+      ]
+    },
+    {
+      "name": "co2-reduktion",
+      "articleCount": 1,
+      "articles": ["Ultraschall-Katalysator wandelt CO₂ fünfmal schneller in CO um"],
+      "category": "reaktion",
+      "relatedEntities": [
+        "bariumtitanat",
+        "metal-organic framework",
+        "kohlenstoffdioxid",
+        "kohlenmonoxid",
+        "kupfer",
+        "piezokatalyse",
+        "single-atom-catalysis",
+        "universität osaka"
+      ]
+    },
+    {
+      "name": "universität osaka",
+      "articleCount": 1,
+      "articles": ["Ultraschall-Katalysator wandelt CO₂ fünfmal schneller in CO um"],
+      "category": "person",
+      "relatedEntities": [
+        "bariumtitanat",
+        "metal-organic framework",
+        "kohlenstoffdioxid",
+        "kohlenmonoxid",
+        "kupfer",
+        "piezokatalyse",
+        "single-atom-catalysis",
+        "co2-reduktion"
+      ]
+    }
+  ],
+  "updatedAt": "2026-09-03T15:37:08.780Z"
 }
