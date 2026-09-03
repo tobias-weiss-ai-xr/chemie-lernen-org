@@ -2,7 +2,11 @@
 
 ## Purpose
 
-TBD - created by archiving change periodic-table-rooms-integration. Update Purpose after archive.
+Das Verzeichnis der per-Element-3D-Lernräume (`/chemie-raeume/`) und sein
+Manifest: Jedes Element bekommt eine Kachel mit Deep-Link in den eigenen
+Raum des begehbaren 3D-Periodensystems (GitHub Pages,
+tobias-weiss-ai-xr/periodic-table). Die Hubs-Instanz wird nicht mehr
+beworben; archivierte Hubs-Seiten bleiben mit Status-Hinweis erreichbar.
 
 ## Requirements
 
