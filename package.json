@@ -82,7 +82,7 @@
     "fast-xml-parser": "^5.9.2",
     "lunr": "2.3.9",
     "neo4j-driver": "^6.1.0",
-    "redis": "^4.7.0"
+    "redis": "^6.2.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
