@@ -38,8 +38,12 @@ MEM_FREE=$(free -m | awk '/Mem:/ {print int($7/$2 * 100)}')
 NEO4J_OK="false"
 NEO4J_PW=$(grep -E '^NEO4J_PASSWORD=' /opt/git/hugo-chemie-lernen-org/.env 2>/dev/null | head -1 | cut -d= -f2- || echo "")
 if docker inspect chemie-neo4j >/dev/null 2>&1 && [ -n "$NEO4J_PW" ]; then
-  NEO4J_RESULT=$(docker exec chemie-neo4j cypher-shell -u neo4j -p "$NEO4J_PW" "RETURN 1" 2>/dev/null || echo "FAIL")
-  [ "$NEO4J_RESULT" = "1" ] && NEO4J_OK="true"
+  # cypher-shell prints a header row AND the result ("1\n1") — match the
+  # result row, don't compare the whole output (pre-existing bug: neo4j was
+  # ALWAYS false in health.json)
+  if docker exec chemie-neo4j cypher-shell -u neo4j -p "$NEO4J_PW" "RETURN 1" 2>/dev/null | grep -q '^1$'; then
+    NEO4J_OK="true"
+  fi
 fi
 
 SITE_OK=$([ "$HTTP_STATUS" = "200" ] && echo "true" || echo "false")
