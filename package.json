@@ -78,7 +78,7 @@
     "@graphwiz/neo4j": "file:packages/graphwiz/graphwiz-neo4j-0.2.0.tgz",
     "@playwright/test": "^1.61.0",
     "cors": "^2.8.5",
-    "express": "^4.21.1",
+    "express": "^5.2.1",
     "fast-xml-parser": "^5.9.2",
     "lunr": "2.3.9",
     "neo4j-driver": "^6.1.0",
