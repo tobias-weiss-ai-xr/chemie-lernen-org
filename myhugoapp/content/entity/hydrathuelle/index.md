@@ -1,25 +1,20 @@
 ---
-title: "hydrathülle"
-description: "Fachbegriff „hydrathülle“ (Konzept) — beschrieben in einem Artikel auf chemie-lernen.org und ist mit 4 weiteren Fachbegriffen verknüpft."
+title: "Hydrathuelle"
+description: "Fachbegriff „Hydrathuelle“ (Konzept) — beschrieben in einem Artikel auf chemie-lernen.org und ist mit 2 weiteren Fachbegriffen verknüpft."
 date: 2026-06-26
 slug: "hydrathuelle"
 category: "konzept"
 articleCount: 1
-relatedCount: 4
+relatedCount: 2
 relatedEntities:
-  - "proteine"
-  - "wasser"
-  - "protonen"
-  - "martin luther universität halle-wittenberg"
+  - "solvatisierung"
+  - "Proteinfaltung"
 components: []
 relatedSlugs:
-  "proteine": "proteine"
-  "wasser": "wasser"
-  "protonen": "protonen"
-  "martin luther universität halle-wittenberg": "martin-luther-universitaet-halle-wittenberg"
+  "solvatisierung": "solvatisierung"
+  "Proteinfaltung": "proteinfaltung"
 
 aliases:
-  - "/entity/hydrathülle/"
   - "/entity/hydrathuelle/"
   - "/entity/hydrathülle/"
 ---

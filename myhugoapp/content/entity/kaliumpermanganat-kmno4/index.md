@@ -1,6 +1,6 @@
 ---
-title: "Kaliumpermanganat (KMnO₄)"
-description: "Fachbegriff „Kaliumpermanganat (KMnO₄)“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org."
+title: "Kaliumpermanganat (KMnO4)"
+description: "Fachbegriff „Kaliumpermanganat (KMnO4)“ (Stoff) — beschrieben in 0 Artikeln auf chemie-lernen.org."
 date: 2026-06-26
 slug: "kaliumpermanganat-kmno4"
 category: "stoff"
@@ -10,7 +10,6 @@ relatedEntities: []
 components: []
 
 
-aliases:
-  - "/entity/kaliumpermanganat-kmno/"
+
 ---
 

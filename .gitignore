@@ -2,6 +2,11 @@
 myhugoapp/public/
 myhugoapp/resources/
 
+# Article-pipeline per-run artifact (article-scoped KG snapshot). The canonical
+# full-graph export is myhugoapp/data/kg_data.json — the pipeline MUST NOT
+# overwrite it (doing so prunes ~620 entity pages in CI). See scripts/article-pipeline.mjs.
+myhugoapp/data/kg_data.run.json
+
 # Playwright test artifacts
 test-results/
 tests/test-results/
