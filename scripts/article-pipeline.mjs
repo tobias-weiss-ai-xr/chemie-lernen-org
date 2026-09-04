@@ -846,7 +846,13 @@ async function run() {
     }
   }
 
-  // Write KG data dump for Hugo frontend
+  // Write KG data dump for Hugo frontend — NOTE: this is an article-scoped
+  // snapshot for THIS run only; it MUST NOT overwrite myhugoapp/data/kg_data.json,
+  // which is the canonical full-graph build-time input consumed by
+  // generate-entity-pages.mjs. Overwriting it with the run's 3 articles once
+  // collapsed entities 715 -> 0 and made the next CI build PRUNE ~620 entity
+  // pages in production (2026-09-04). The full export is refreshed separately
+  // via scripts/export-kg-data.mjs.
   try {
     const kgDataDir = join(REPO_ROOT, 'myhugoapp', 'data');
     await mkdir(kgDataDir, { recursive: true });
@@ -888,8 +894,10 @@ async function run() {
       entities: [...entityMap.values()].sort((a, b) => b.articleCount - a.articleCount),
       updatedAt: isoDateStr(),
     };
-    await writeFile(join(kgDataDir, 'kg_data.json'), JSON.stringify(kgDump, null, 2));
-    console.log(`[pipeline] Wrote kg_data.json (${kgDumpArticles.length} articles)`);
+    await writeFile(join(kgDataDir, 'kg_data.run.json'), JSON.stringify(kgDump, null, 2));
+    console.log(
+      '[pipeline] Wrote kg_data.run.json (article-scoped snapshot; full export untouched)'
+    );
   } catch (dumpErr) {
     console.error(`[pipeline] KG dump error: ${dumpErr.message}`);
   }
@@ -930,10 +938,10 @@ async function run() {
       console.log(`[pipeline] Committing and pushing...`);
       // Targeted add: never sweep unrelated working-tree junk (coverage/,
       // logs/, *.bak, ...) into the auto-commit.
-      execSync(
-        'git add myhugoapp/content/posts myhugoapp/static/data myhugoapp/data',
-        { cwd: REPO_ROOT, stdio: 'pipe' }
-      );
+      execSync('git add myhugoapp/content/posts myhugoapp/static/data myhugoapp/data', {
+        cwd: REPO_ROOT,
+        stdio: 'pipe',
+      });
       execSync(`git commit -m "articles: ${dateStr()}"`, { cwd: REPO_ROOT, stdio: 'pipe' });
       execSync('git push', { cwd: REPO_ROOT, stdio: 'pipe' });
       console.log(`[pipeline] Pushed successfully`);
