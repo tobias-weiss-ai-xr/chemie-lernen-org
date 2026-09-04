@@ -20,4 +20,4 @@
 
 ## 4. Archive
 
-- [ ] 4.1 Nach Validierung durch echten Pipeline-Lauf: Spec syncen + archivieren
+- [x] 4.1 Nach Validierung durch echten Pipeline-Lauf: Spec syncen + archivieren (Pipeline verified end-to-end 2026-09-04)

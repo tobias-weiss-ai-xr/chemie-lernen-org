@@ -1,9 +1,10 @@
-# Capability: chemie-forschung-curation
+# chemie-forschung-curation Specification
 
-Research articles in the Chemie-Forschung rubric MUST pass a human
-review/publish gate before they appear on the production site.
+## Purpose
 
-## ADDED Requirements
+TBD - created by archiving change kg-curation-gate. Update Purpose after archive.
+
+## Requirements
 
 ### Requirement: REQ-CF-1: Draft-by-default generation
 
@@ -14,6 +15,15 @@ Chemie-Forschung articles with `draft: true` and `review_status: draft`.
   SHALL NOT be rendered publicly until a human publishes them.
 - The generator SHALL also emit empty `reviewer: ""` and
   `review_date: ""` fields.
+
+#### Scenario: New article is invisible until reviewed
+
+- **GIVEN** the research pipeline generated a new article
+- **WHEN** its front matter is inspected
+- **THEN** it contains `draft: true`, `review_status: draft`,
+  `reviewer: ""` and `review_date: ""`
+- **AND** the article is not rendered on the production site (Hugo
+  excludes drafts)
 
 ### Requirement: REQ-CF-2: Publish action stamps provenance
 
@@ -65,3 +75,10 @@ empty.
 
 `docs/chemie-forschung-pipeline.md` SHALL document the curation gate,
 including the draft-by-default behaviour and the publish command.
+
+#### Scenario: Editor looks up how to publish a reviewed article
+
+- **GIVEN** an editor wants to publish a reviewed research article
+- **WHEN** they open `docs/chemie-forschung-pipeline.md`
+- **THEN** they find the draft-by-default behaviour explained and the
+  exact publish command to run

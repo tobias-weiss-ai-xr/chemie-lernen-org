@@ -5,7 +5,7 @@
 - [x] 1.1 `src/lib/article-generator.ts`: `draft: false` → `draft: true`
 - [x] 1.2 Frontmatter um `review_status: draft`, `reviewer: ""`,
       `review_date: ""` ergänzen (nach `tags`, vor `draft`)
-- [ ] 1.3 Commit im `chemierecherche-runner`-Repo
+- [x] 1.3 Commit im `chemierecherche-runner`-Repo (verified 2026-09-04: 9a955d4)
 
 ## 2. Publish-Tool (dieses Repo)
 
@@ -27,4 +27,4 @@
 ## 5. Spec & Archive
 
 - [x] 5.1 Delta-Spec `chemie-forschung-curation` pflegen
-- [ ] 5.2 Nach Implementierung: Spec in `openspec/specs/` syncen + archivieren
+- [x] 5.2 Nach Implementierung: Spec in `openspec/specs/` syncen + archivieren

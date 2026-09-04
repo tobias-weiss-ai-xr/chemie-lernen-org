@@ -1,40 +1,44 @@
 # OpenSpec — Capabilities Index
 
-Last updated: 2026-08-15
+Last updated: 2026-09-04
 
 ## Main capabilities (specs/)
 
-| Capability                      | Spec                               | Status | Owners   | Last change                                             |
-| ------------------------------- | ---------------------------------- | ------ | -------- | ------------------------------------------------------- |
-| Native Android Application      | `native-android-app/spec.md`       | Active | pi       | native-android-app                                      |
-| Entity Knowledge Graph          | `entity-knowledge-graph/spec.md`   | Active | Sisyphus | sprint-8b-neo4j-data                                    |
-| AI Assistant (KI-Assistent)     | `ai-assistant/spec.md`             | Active | Sisyphus | sprint-8c-rag                                           |
-| WCAG 2.1 AA Compliance          | `a11y-compliance/spec.md`          | Active | Sisyphus | sprint-7-wcag-a11y                                      |
-| Wissensnetz Full-Graph          | `wissensnetz-graph/spec.md`        | Active | Sisyphus | sprint-8a-d3-ego-graph                                  |
-| Central KG Architecture         | `central-kg-architecture/spec.md`  | Active | Sisyphus | sprint-9-specs-and-fixes                                |
-| Lehrplan + Didaktik (curricula) | `lehrplan-curriculum/spec.md`      | Active | Sisyphus | sprint-d-import (15 states + 5 KMK guidelines imported) |
-| Modulhandbuch (universities)    | `modulhandbuch-university/spec.md` | Active | Sisyphus | sprint-c-scrapers (ETH+TUM working, 7 stubs)            |
-| Calculators                     | `calculators/spec.md`              | Active | Sisyphus | sprint-9-specs-and-fixes                                |
-| Exercise Generator              | `exercise-generator/spec.md`       | Active | Sisyphus | sprint-13-exercise-generator                            |
-| Gamification                    | `gamification/spec.md`             | Active | Sisyphus | sprint-14-learning-paths-gamification                   |
-| Quiz & Exercises                | `quiz/spec.md`                     | Active | Sisyphus | sprint-9-specs-and-fixes                                |
-| 3D Visualizations               | `3d-visualizations/spec.md`        | Active | Sisyphus | sprint-9-specs-and-fixes                                |
-| Themenbereiche (subject areas)  | `themenbereiche/spec.md`           | Active | Sisyphus | sprint-9-specs-and-fixes                                |
-| PWA (Progressive Web App)       | `pwa/spec.md`                      | Active | Sisyphus | sprint-9-specs-and-fixes                                |
-| Learning Paths & Gamification   | `learning-paths/spec.md`           | Active | Sisyphus | sprint-23-learning-paths-gamification                   |
-| Elements API                    | `elements-api/spec.md`             | Active | Sisyphus | sprint-24-3d-visualizations                             |
+| Capability                      | Spec                                | Status | Owners   | Last change                                             |
+| ------------------------------- | ----------------------------------- | ------ | -------- | ------------------------------------------------------- |
+| Native Android Application      | `native-android-app/spec.md`        | Active | pi       | native-android-app                                      |
+| Entity Knowledge Graph          | `entity-knowledge-graph/spec.md`    | Active | Sisyphus | sprint-8b-neo4j-data                                    |
+| AI Assistant (KI-Assistent)     | `ai-assistant/spec.md`              | Active | Sisyphus | sprint-8c-rag                                           |
+| WCAG 2.1 AA Compliance          | `a11y-compliance/spec.md`           | Active | Sisyphus | sprint-7-wcag-a11y                                      |
+| Wissensnetz Full-Graph          | `wissensnetz-graph/spec.md`         | Active | Sisyphus | sprint-8a-d3-ego-graph                                  |
+| Central KG Architecture         | `central-kg-architecture/spec.md`   | Active | Sisyphus | sprint-9-specs-and-fixes                                |
+| Lehrplan + Didaktik (curricula) | `lehrplan-curriculum/spec.md`       | Active | Sisyphus | sprint-d-import (15 states + 5 KMK guidelines imported) |
+| Modulhandbuch (universities)    | `modulhandbuch-university/spec.md`  | Active | Sisyphus | sprint-c-scrapers (ETH+TUM working, 7 stubs)            |
+| Calculators                     | `calculators/spec.md`               | Active | Sisyphus | sprint-9-specs-and-fixes                                |
+| Exercise Generator              | `exercise-generator/spec.md`        | Active | Sisyphus | sprint-13-exercise-generator                            |
+| Gamification                    | `gamification/spec.md`              | Active | Sisyphus | sprint-14-learning-paths-gamification                   |
+| Quiz & Exercises                | `quiz/spec.md`                      | Active | Sisyphus | sprint-9-specs-and-fixes                                |
+| 3D Visualizations               | `3d-visualizations/spec.md`         | Active | Sisyphus | sprint-9-specs-and-fixes                                |
+| Themenbereiche (subject areas)  | `themenbereiche/spec.md`            | Active | Sisyphus | sprint-9-specs-and-fixes                                |
+| PWA (Progressive Web App)       | `pwa/spec.md`                       | Active | Sisyphus | sprint-9-specs-and-fixes                                |
+| Learning Paths & Gamification   | `learning-paths/spec.md`            | Active | Sisyphus | sprint-23-learning-paths-gamification                   |
+| Elements API                    | `elements-api/spec.md`              | Active | Sisyphus | sprint-24-3d-visualizations                             |
+| Research Pipeline (Forschung)   | `chemie-forschung-pipeline/spec.md` | Active | pi       | research-entity-coverage                                |
+| Research Curation Gate          | `chemie-forschung-curation/spec.md` | Active | pi       | kg-curation-gate                                        |
 
 ## Active changes (`changes/`)
 
-| Change                            | Status      |
-| --------------------------------- | ----------- |
-| bloom-zpd-adaptive-engine         | implemented |
-| zpd-deepdive-formative-assessment | proposed    |
-| zpd-deepdive-scaffolding          | proposed    |
-| zpd-deepdive-peer-collaboration   | proposed    |
-| zpd-deepdive-differentiation      | proposed    |
-| zpd-deepdive-tech-integration     | proposed    |
-| per-element-learning-rooms        | proposed    |
+| Change                            | Tasks | Status                                   |
+| --------------------------------- | ----- | ---------------------------------------- |
+| roadmap-next-epics                | 6/29  | roadmap                                  |
+| zpd-deepdive-differentiation      | 0/43  | proposed                                 |
+| zpd-deepdive-formative-assessment | 0/19  | proposed                                 |
+| zpd-deepdive-peer-collaboration   | 0/13  | proposed                                 |
+| zpd-deepdive-tech-integration     | 0/11  | proposed                                 |
+| bloom-zpd-adaptive-engine         | 17/21 | in-progress                              |
+| per-element-learning-rooms        | 22/23 | in-progress (a11y labels open)           |
+| hubs-scene-templates              | 19/20 | in-progress (visual pass = human review) |
+| zpd-deepdive-scaffolding          | 0/7   | proposed                                 |
 
 ## Archived changes (`changes/archive/`)
 
@@ -96,3 +100,20 @@ openspec archive my-feature
 ```
 
 See `openspec/README.md` for the full workflow.
+
+## Housekeeping notes
+
+- **Legacy archive validation failures are accepted**: ~24 archived
+  changes (July-era sprints, bulk-migrated from the legacy `.omo`
+  planning dirs) fail `openspec validate --archived` because their task
+  checkboxes were never ticked, although the work itself shipped long
+  ago. Do NOT retro-tick those boxes (that would falsify history) and
+  do NOT delete the archives. New archives must validate cleanly.
+- 2026-09-04: archived `a11y-interactive-contrast` (spec content was
+  already synced manually to the main spec), `research-entity-coverage`
+  (pipeline verified end-to-end), `kg-curation-gate` (created
+  `chemie-forschung-curation` spec), `theme-switcher-a11y` (optional
+  Lighthouse pass waived — pa11y CI audits weekly).
+- 2026-09-04: merged dependabot PRs #44 (lint-staged 17), #48 (redis 6),
+  #49 (express 5) — root lockfile was already at the new versions; full
+  unit suite (2447 tests) green on the bumped stack.
