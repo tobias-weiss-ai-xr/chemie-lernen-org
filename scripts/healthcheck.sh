@@ -36,7 +36,7 @@ MEM_FREE=$(free -m | awk '/Mem:/ {print int($7/$2 * 100)}')
 # Neo4j check (chemie-neo4j container) — password comes from the server
 # .env (deploy syncs it), NOT hardcoded (the real password differs)
 NEO4J_OK="false"
-NEO4J_PW=$(grep -E '^NEO4J_PASSWORD=' /opt/git/hugo-chemie-lernen-org/.env 2>/dev/null | head -1 | cut -d= -f2- | tr -d "\"'" || echo "")
+NEO4J_PW=$(grep -E '^NEO4J_PASSWORD=' /opt/git/hugo-chemie-lernen-org/.env 2>/dev/null | head -1 | cut -d= -f2- || echo "")
 if docker inspect chemie-neo4j >/dev/null 2>&1 && [ -n "$NEO4J_PW" ]; then
   NEO4J_RESULT=$(docker exec chemie-neo4j cypher-shell -u neo4j -p "$NEO4J_PW" "RETURN 1" 2>/dev/null || echo "FAIL")
   [ "$NEO4J_RESULT" = "1" ] && NEO4J_OK="true"
