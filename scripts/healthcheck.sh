@@ -41,9 +41,10 @@ if docker inspect chemie-neo4j >/dev/null 2>&1 && [ -n "$NEO4J_PW" ]; then
   # cypher-shell prints a header row AND the result ("1\n1") — match the
   # result row, don't compare the whole output (pre-existing bug: neo4j was
   # ALWAYS false in health.json)
-  if docker exec chemie-neo4j cypher-shell -u neo4j -p "$NEO4J_PW" "RETURN 1" 2>/dev/null | grep -q '^1$'; then
-    NEO4J_OK="true"
-  fi
+  # capture fully, then match in bash (grep -q would early-exit and EPIPE
+  # cypher-shell on the 2nd output line — pipefail then fails the pipeline)
+  NEO4J_RESULT=$(docker exec chemie-neo4j cypher-shell -u neo4j -p "$NEO4J_PW" "RETURN 1" 2>/dev/null || echo "FAIL")
+  [[ "$NEO4J_RESULT" == 1* ]] && NEO4J_OK="true"
 fi
 
 SITE_OK=$([ "$HTTP_STATUS" = "200" ] && echo "true" || echo "false")
