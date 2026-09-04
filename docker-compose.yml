@@ -136,6 +136,10 @@ services:
       - ./myhugoapp/static/openspec:/usr/share/nginx/html/openspec
       - ./myhugoapp/static/landscape:/usr/share/nginx/html/landscape
       - ./myhugoapp/static/api-proxy.conf:/etc/nginx/conf.d/api-proxy.conf
+      # Healthcheck JSON (written by scripts/healthcheck.sh via the
+      # chemie-healthcheck.timer, OUTSIDE the repo so deploy sync never
+      # stashes it). Served at https://chemie-lernen.org/health/health.json
+      - /home/weiss/health:/usr/share/nginx/html/health:ro
       # VR-Elementzimmer: student entry point into the element-room catalog
       # (generated from live room DB; source: files/vr-elementzimmer/ in
       # /opt/containers/hubs-compose — regenerate via scripts/… when rooms change)
