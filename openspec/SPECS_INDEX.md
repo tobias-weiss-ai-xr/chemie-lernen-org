@@ -109,6 +109,13 @@ See `openspec/README.md` for the full workflow.
   checkboxes were never ticked, although the work itself shipped long
   ago. Do NOT retro-tick those boxes (that would falsify history) and
   do NOT delete the archives. New archives must validate cleanly.
+- **Legacy main specs (15 of 20) fail requirement-scenario validation**:
+  they predate the strict format and use prose/bullets instead of
+  `#### Scenario:` blocks under each requirement. Converting them means
+  authoring new content — deferred until a spec is next actively
+  revised. All specs created/synced from 2026-09-04 onward are strict.
+  The 5 passing specs: chemie-forschung-pipeline, chemie-forschung-curation,
+  sprint-7-wcag-era specs not included — see `openspec validate --specs`.
 - 2026-09-04: archived `a11y-interactive-contrast` (spec content was
   already synced manually to the main spec), `research-entity-coverage`
   (pipeline verified end-to-end), `kg-curation-gate` (created
