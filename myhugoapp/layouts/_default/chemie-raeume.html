@@ -21,7 +21,21 @@
        DIREKTE EINBETTUNG: 3D-Periodensystem-Räume
        ============================================================ -->
   <section class="periodic-table-container">
-    
+
+    <!-- Die PSE-App bindet ihre Elementsuche an #search-input (getElementById).
+         Das Site-Header-Suchfeld trägt dieselbe ID und steht früher im DOM —
+         es würde die Bindung an sich reißen. Es wird umbenannt und hier
+         ausgeblendet; die PSE-Suche ersetzt es auf dieser Seite. -->
+    <script>
+      (function () {
+        var s = document.getElementById('search-input');
+        if (s && s.closest('.search-wrapper')) {
+          s.id = 'site-search-input';
+          s.closest('.search-wrapper').style.display = 'none';
+        }
+      })();
+    </script>
+
     <!-- Three.js Importmap (wird von der App benötigt) -->
     <script type="importmap">
       {
