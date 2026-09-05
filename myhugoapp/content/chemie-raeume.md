@@ -5,13 +5,13 @@ type: 'page'
 layout: 'chemie-raeume'
 ---
 
-Jedes Element des Periodensystems bekommt hier seinen **eigenen Lernraum**:
-eine begehbare 3D-Szene mit Atommodell und den wichtigsten Informationen.
-So wird aus dem Periodensystem ein Ort zum Entdecken – Element für Element.
+Hier findest du ein **interaktives 3D-Periodensystem**, in dem **jedes Element seinen eigenen begehbaren Lernraum** hat.
+Jeder Raum zeigt das Element mit Atommodell, Themengrafik und den wichtigsten chemischen Informationen – als immersives Erlebnis direkt im Browser.
 
-Wähle einfach ein Element aus dem Raster unten. Der Raum öffnet sich direkt im
-Browser (WebXR-fähig für VR-Brillen). Das komplette Periodensystem als
-begehbaren Gesamtraum findest du außerdem im
-[Periodic Table Room](/periodic-table/)
-– dort kannst du zwischen den Elementen umherfliegen und per Klick in dessen
-Raum eintauchen.
+### So funktioniert es:
+- **Klicke auf ein Element** im Raster unten, um direkt in dessen Raum zu springen
+- **Fliege mit WASD** durch den Gesamtraum und klicke auf Elemente, um sie zu erkunden
+- **Mit VR-Brille** (WebXR) kannst du die Räume in 3D betreten
+- **Ohne JavaScript** siehst du unten ein einfaches Raster mit Links zu allen Element-Räumen
+
+Das Periodensystem wird als **DVD durchsuchbarer Gesamtraum** dargestellt – perfekt zum Stöbern und Lernen!
