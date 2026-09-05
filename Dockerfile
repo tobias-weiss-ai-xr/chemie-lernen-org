@@ -41,7 +41,6 @@ RUN apk add --no-cache nodejs npm
 RUN rm -f /etc/nginx/conf.d/default.conf
 COPY --from=pagefind /site /usr/share/nginx/html
 COPY myhugoapp/static/api-proxy.conf /etc/nginx/conf.d/api-proxy.conf
-COPY myhugoapp/static/periodic-table-cache.conf /etc/nginx/conf.d/periodic-table-cache.conf
 COPY --from=api-builder /app /app
 COPY docker-entrypoint-api.sh /docker-entrypoint.d/99-api-server.sh
 RUN chmod +x /docker-entrypoint.d/99-api-server.sh
