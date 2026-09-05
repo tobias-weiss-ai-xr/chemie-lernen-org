@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-09-03T20:26:25.627Z",
-  "roomsBaseUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table",
+  "roomsBaseUrl": "/periodic-table",
   "count": 120,
   "elements": [
     {
@@ -10,7 +10,7 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/089-actinium.html"
+      "roomUrl": "/periodic-table/rooms/089-actinium.html"
     },
     {
       "symbol": "Ag",
@@ -19,7 +19,7 @@
       "period": 5,
       "groupNumber": 11,
       "theme": "precious",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/047-silver.html"
+      "roomUrl": "/periodic-table/rooms/047-silver.html"
     },
     {
       "symbol": "Al",
@@ -28,7 +28,7 @@
       "period": 3,
       "groupNumber": 13,
       "theme": "industry",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/013-aluminium.html"
+      "roomUrl": "/periodic-table/rooms/013-aluminium.html"
     },
     {
       "symbol": "Am",
@@ -37,7 +37,7 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "space",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/095-americium.html"
+      "roomUrl": "/periodic-table/rooms/095-americium.html"
     },
     {
       "symbol": "Ar",
@@ -46,7 +46,7 @@
       "period": 3,
       "groupNumber": 18,
       "theme": "welding",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/018-argon.html"
+      "roomUrl": "/periodic-table/rooms/018-argon.html"
     },
     {
       "symbol": "As",
@@ -55,7 +55,7 @@
       "period": 4,
       "groupNumber": 15,
       "theme": "toxic",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/033-arsenic.html"
+      "roomUrl": "/periodic-table/rooms/033-arsenic.html"
     },
     {
       "symbol": "At",
@@ -64,7 +64,7 @@
       "period": 6,
       "groupNumber": 17,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/085-astatine.html"
+      "roomUrl": "/periodic-table/rooms/085-astatine.html"
     },
     {
       "symbol": "Au",
@@ -73,7 +73,7 @@
       "period": 6,
       "groupNumber": 11,
       "theme": "treasure",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/079-gold.html"
+      "roomUrl": "/periodic-table/rooms/079-gold.html"
     },
     {
       "symbol": "Au",
@@ -82,7 +82,7 @@
       "period": 6,
       "groupNumber": 11,
       "theme": "treasure",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/079-gold.html"
+      "roomUrl": "/periodic-table/rooms/079-gold.html"
     },
     {
       "symbol": "B",
@@ -91,7 +91,7 @@
       "period": 2,
       "groupNumber": 13,
       "theme": "desert",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/005-boron.html"
+      "roomUrl": "/periodic-table/rooms/005-boron.html"
     },
     {
       "symbol": "Ba",
@@ -100,7 +100,7 @@
       "period": 6,
       "groupNumber": 2,
       "theme": "medical",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/056-barium.html"
+      "roomUrl": "/periodic-table/rooms/056-barium.html"
     },
     {
       "symbol": "Be",
@@ -109,7 +109,7 @@
       "period": 2,
       "groupNumber": 2,
       "theme": "gem",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/004-beryllium.html"
+      "roomUrl": "/periodic-table/rooms/004-beryllium.html"
     },
     {
       "symbol": "Bh",
@@ -118,7 +118,7 @@
       "period": 7,
       "groupNumber": 7,
       "theme": "science",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/107-bohrium.html"
+      "roomUrl": "/periodic-table/rooms/107-bohrium.html"
     },
     {
       "symbol": "Bi",
@@ -127,7 +127,7 @@
       "period": 6,
       "groupNumber": 15,
       "theme": "medical",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/083-bismuth.html"
+      "roomUrl": "/periodic-table/rooms/083-bismuth.html"
     },
     {
       "symbol": "Bk",
@@ -136,7 +136,7 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/097-berkelium.html"
+      "roomUrl": "/periodic-table/rooms/097-berkelium.html"
     },
     {
       "symbol": "Br",
@@ -145,7 +145,7 @@
       "period": 4,
       "groupNumber": 17,
       "theme": "liquid",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/035-bromine.html"
+      "roomUrl": "/periodic-table/rooms/035-bromine.html"
     },
     {
       "symbol": "C",
@@ -154,7 +154,7 @@
       "period": 2,
       "groupNumber": 14,
       "theme": "life",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/006-carbon.html"
+      "roomUrl": "/periodic-table/rooms/006-carbon.html"
     },
     {
       "symbol": "Ca",
@@ -163,7 +163,7 @@
       "period": 4,
       "groupNumber": 2,
       "theme": "skeleton",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/020-calcium.html"
+      "roomUrl": "/periodic-table/rooms/020-calcium.html"
     },
     {
       "symbol": "Ca",
@@ -172,7 +172,7 @@
       "period": 4,
       "groupNumber": 2,
       "theme": "biological",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/020-calcium.html"
+      "roomUrl": "/periodic-table/rooms/020-calcium.html"
     },
     {
       "symbol": "Cd",
@@ -181,7 +181,7 @@
       "period": 5,
       "groupNumber": 12,
       "theme": "toxic",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/048-cadmium.html"
+      "roomUrl": "/periodic-table/rooms/048-cadmium.html"
     },
     {
       "symbol": "Ce",
@@ -190,7 +190,7 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/058-cerium.html"
+      "roomUrl": "/periodic-table/rooms/058-cerium.html"
     },
     {
       "symbol": "Cf",
@@ -199,7 +199,7 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/098-californium.html"
+      "roomUrl": "/periodic-table/rooms/098-californium.html"
     },
     {
       "symbol": "Cl",
@@ -208,7 +208,7 @@
       "period": 3,
       "groupNumber": 17,
       "theme": "swimming",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/017-chlorine.html"
+      "roomUrl": "/periodic-table/rooms/017-chlorine.html"
     },
     {
       "symbol": "Cm",
@@ -217,7 +217,7 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "space",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/096-curium.html"
+      "roomUrl": "/periodic-table/rooms/096-curium.html"
     },
     {
       "symbol": "Cn",
@@ -226,7 +226,7 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "history",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/112-copernicium.html"
+      "roomUrl": "/periodic-table/rooms/112-copernicium.html"
     },
     {
       "symbol": "Co",
@@ -235,7 +235,7 @@
       "period": 4,
       "groupNumber": 9,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/027-cobalt.html"
+      "roomUrl": "/periodic-table/rooms/027-cobalt.html"
     },
     {
       "symbol": "Cr",
@@ -244,7 +244,7 @@
       "period": 4,
       "groupNumber": 6,
       "theme": "industry",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/024-chromium.html"
+      "roomUrl": "/periodic-table/rooms/024-chromium.html"
     },
     {
       "symbol": "Cs",
@@ -253,7 +253,7 @@
       "period": 6,
       "groupNumber": 1,
       "theme": "precision",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/055-cesium.html"
+      "roomUrl": "/periodic-table/rooms/055-cesium.html"
     },
     {
       "symbol": "Cu",
@@ -262,7 +262,7 @@
       "period": 4,
       "groupNumber": 11,
       "theme": "electric",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/029-copper.html"
+      "roomUrl": "/periodic-table/rooms/029-copper.html"
     },
     {
       "symbol": "Db",
@@ -271,7 +271,7 @@
       "period": 7,
       "groupNumber": 5,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/105-dubnium.html"
+      "roomUrl": "/periodic-table/rooms/105-dubnium.html"
     },
     {
       "symbol": "Ds",
@@ -280,7 +280,7 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/110-darmstadtium.html"
+      "roomUrl": "/periodic-table/rooms/110-darmstadtium.html"
     },
     {
       "symbol": "Dy",
@@ -289,7 +289,7 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/066-dysprosium.html"
+      "roomUrl": "/periodic-table/rooms/066-dysprosium.html"
     },
     {
       "symbol": "Er",
@@ -298,7 +298,7 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/068-erbium.html"
+      "roomUrl": "/periodic-table/rooms/068-erbium.html"
     },
     {
       "symbol": "Es",
@@ -307,7 +307,7 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "history",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/099-einsteinium.html"
+      "roomUrl": "/periodic-table/rooms/099-einsteinium.html"
     },
     {
       "symbol": "Eu",
@@ -316,7 +316,7 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "security",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/063-europium.html"
+      "roomUrl": "/periodic-table/rooms/063-europium.html"
     },
     {
       "symbol": "F",
@@ -325,7 +325,7 @@
       "period": 2,
       "groupNumber": 17,
       "theme": "protection",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/009-fluorine.html"
+      "roomUrl": "/periodic-table/rooms/009-fluorine.html"
     },
     {
       "symbol": "Fe",
@@ -334,7 +334,7 @@
       "period": 4,
       "groupNumber": 8,
       "theme": "forge",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/026-iron.html"
+      "roomUrl": "/periodic-table/rooms/026-iron.html"
     },
     {
       "symbol": "Fl",
@@ -343,7 +343,7 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "science",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/114-flerovium.html"
+      "roomUrl": "/periodic-table/rooms/114-flerovium.html"
     },
     {
       "symbol": "Fm",
@@ -352,7 +352,7 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/100-fermium.html"
+      "roomUrl": "/periodic-table/rooms/100-fermium.html"
     },
     {
       "symbol": "Fr",
@@ -361,7 +361,7 @@
       "period": 7,
       "groupNumber": 1,
       "theme": "theoretical",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/087-francium.html"
+      "roomUrl": "/periodic-table/rooms/087-francium.html"
     },
     {
       "symbol": "Ga",
@@ -370,7 +370,7 @@
       "period": 4,
       "groupNumber": 13,
       "theme": "semiconductor",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/031-gallium.html"
+      "roomUrl": "/periodic-table/rooms/031-gallium.html"
     },
     {
       "symbol": "Gd",
@@ -379,7 +379,7 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "medical",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/064-gadolinium.html"
+      "roomUrl": "/periodic-table/rooms/064-gadolinium.html"
     },
     {
       "symbol": "Ge",
@@ -388,7 +388,7 @@
       "period": 4,
       "groupNumber": 14,
       "theme": "semiconductor",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/032-germanium.html"
+      "roomUrl": "/periodic-table/rooms/032-germanium.html"
     },
     {
       "symbol": "H",
@@ -397,7 +397,7 @@
       "period": 1,
       "groupNumber": 1,
       "theme": "cosmic",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/001-hydrogen.html"
+      "roomUrl": "/periodic-table/rooms/001-hydrogen.html"
     },
     {
       "symbol": "He",
@@ -406,7 +406,7 @@
       "period": 1,
       "groupNumber": 18,
       "theme": "solar",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/002-helium.html"
+      "roomUrl": "/periodic-table/rooms/002-helium.html"
     },
     {
       "symbol": "Hf",
@@ -415,7 +415,7 @@
       "period": 6,
       "groupNumber": 4,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/072-hafnium.html"
+      "roomUrl": "/periodic-table/rooms/072-hafnium.html"
     },
     {
       "symbol": "Hg",
@@ -424,7 +424,7 @@
       "period": 6,
       "groupNumber": 12,
       "theme": "historical",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/080-mercury.html"
+      "roomUrl": "/periodic-table/rooms/080-mercury.html"
     },
     {
       "symbol": "Ho",
@@ -433,7 +433,7 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/067-holmium.html"
+      "roomUrl": "/periodic-table/rooms/067-holmium.html"
     },
     {
       "symbol": "Hs",
@@ -442,7 +442,7 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "discovery",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/108-hassium.html"
+      "roomUrl": "/periodic-table/rooms/108-hassium.html"
     },
     {
       "symbol": "I",
@@ -451,7 +451,7 @@
       "period": 5,
       "groupNumber": 17,
       "theme": "biological",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/053-iodine.html"
+      "roomUrl": "/periodic-table/rooms/053-iodine.html"
     },
     {
       "symbol": "In",
@@ -460,7 +460,7 @@
       "period": 5,
       "groupNumber": 13,
       "theme": "semiconductor",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/049-indium.html"
+      "roomUrl": "/periodic-table/rooms/049-indium.html"
     },
     {
       "symbol": "Ir",
@@ -469,7 +469,7 @@
       "period": 6,
       "groupNumber": 9,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/077-iridium.html"
+      "roomUrl": "/periodic-table/rooms/077-iridium.html"
     },
     {
       "symbol": "K",
@@ -478,7 +478,7 @@
       "period": 4,
       "groupNumber": 1,
       "theme": "biological",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/019-potassium.html"
+      "roomUrl": "/periodic-table/rooms/019-potassium.html"
     },
     {
       "symbol": "Kr",
@@ -487,7 +487,7 @@
       "period": 4,
       "groupNumber": 18,
       "theme": "lighting",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/036-krypton.html"
+      "roomUrl": "/periodic-table/rooms/036-krypton.html"
     },
     {
       "symbol": "La",
@@ -496,7 +496,7 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/057-lanthanum.html"
+      "roomUrl": "/periodic-table/rooms/057-lanthanum.html"
     },
     {
       "symbol": "Li",
@@ -505,7 +505,7 @@
       "period": 2,
       "groupNumber": 1,
       "theme": "energy",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/003-lithium.html"
+      "roomUrl": "/periodic-table/rooms/003-lithium.html"
     },
     {
       "symbol": "Lr",
@@ -514,7 +514,7 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "discovery",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/103-lawrencium.html"
+      "roomUrl": "/periodic-table/rooms/103-lawrencium.html"
     },
     {
       "symbol": "Lu",
@@ -523,7 +523,7 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/071-lutetium.html"
+      "roomUrl": "/periodic-table/rooms/071-lutetium.html"
     },
     {
       "symbol": "Lv",
@@ -532,7 +532,7 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/116-livermorium.html"
+      "roomUrl": "/periodic-table/rooms/116-livermorium.html"
     },
     {
       "symbol": "Mc",
@@ -541,7 +541,7 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "history",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/115-moscovium.html"
+      "roomUrl": "/periodic-table/rooms/115-moscovium.html"
     },
     {
       "symbol": "Md",
@@ -550,7 +550,7 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "history",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/101-mendelevium.html"
+      "roomUrl": "/periodic-table/rooms/101-mendelevium.html"
     },
     {
       "symbol": "Mg",
@@ -559,7 +559,7 @@
       "period": 3,
       "groupNumber": 2,
       "theme": "light",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/012-magnesium.html"
+      "roomUrl": "/periodic-table/rooms/012-magnesium.html"
     },
     {
       "symbol": "Mn",
@@ -568,7 +568,7 @@
       "period": 4,
       "groupNumber": 7,
       "theme": "industry",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/025-manganese.html"
+      "roomUrl": "/periodic-table/rooms/025-manganese.html"
     },
     {
       "symbol": "Mo",
@@ -577,7 +577,7 @@
       "period": 5,
       "groupNumber": 6,
       "theme": "industry",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/042-molybdenum.html"
+      "roomUrl": "/periodic-table/rooms/042-molybdenum.html"
     },
     {
       "symbol": "Mt",
@@ -586,7 +586,7 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "history",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/109-meitnerium.html"
+      "roomUrl": "/periodic-table/rooms/109-meitnerium.html"
     },
     {
       "symbol": "N",
@@ -595,7 +595,7 @@
       "period": 2,
       "groupNumber": 15,
       "theme": "atmosphere",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/007-nitrogen.html"
+      "roomUrl": "/periodic-table/rooms/007-nitrogen.html"
     },
     {
       "symbol": "Na",
@@ -604,7 +604,7 @@
       "period": 3,
       "groupNumber": 1,
       "theme": "kitchen",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/011-sodium.html"
+      "roomUrl": "/periodic-table/rooms/011-sodium.html"
     },
     {
       "symbol": "Nb",
@@ -613,7 +613,7 @@
       "period": 5,
       "groupNumber": 5,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/041-niobium.html"
+      "roomUrl": "/periodic-table/rooms/041-niobium.html"
     },
     {
       "symbol": "Nd",
@@ -622,7 +622,7 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/060-neodymium.html"
+      "roomUrl": "/periodic-table/rooms/060-neodymium.html"
     },
     {
       "symbol": "Ne",
@@ -631,7 +631,7 @@
       "period": 2,
       "groupNumber": 18,
       "theme": "lights",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/010-neon.html"
+      "roomUrl": "/periodic-table/rooms/010-neon.html"
     },
     {
       "symbol": "Nh",
@@ -640,7 +640,7 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/113-nihonium.html"
+      "roomUrl": "/periodic-table/rooms/113-nihonium.html"
     },
     {
       "symbol": "Ni",
@@ -649,7 +649,7 @@
       "period": 4,
       "groupNumber": 10,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/028-nickel.html"
+      "roomUrl": "/periodic-table/rooms/028-nickel.html"
     },
     {
       "symbol": "No",
@@ -658,7 +658,7 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "history",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/102-nobelium.html"
+      "roomUrl": "/periodic-table/rooms/102-nobelium.html"
     },
     {
       "symbol": "Np",
@@ -667,7 +667,7 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/093-neptunium.html"
+      "roomUrl": "/periodic-table/rooms/093-neptunium.html"
     },
     {
       "symbol": "O",
@@ -676,7 +676,7 @@
       "period": 2,
       "groupNumber": 16,
       "theme": "breath",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/008-oxygen.html"
+      "roomUrl": "/periodic-table/rooms/008-oxygen.html"
     },
     {
       "symbol": "Og",
@@ -685,7 +685,7 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "discovery",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/118-oganesson.html"
+      "roomUrl": "/periodic-table/rooms/118-oganesson.html"
     },
     {
       "symbol": "Os",
@@ -694,7 +694,7 @@
       "period": 6,
       "groupNumber": 8,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/076-osmium.html"
+      "roomUrl": "/periodic-table/rooms/076-osmium.html"
     },
     {
       "symbol": "P",
@@ -703,7 +703,7 @@
       "period": 3,
       "groupNumber": 15,
       "theme": "fire",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/015-phosphorus.html"
+      "roomUrl": "/periodic-table/rooms/015-phosphorus.html"
     },
     {
       "symbol": "Pa",
@@ -712,7 +712,7 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/091-protactinium.html"
+      "roomUrl": "/periodic-table/rooms/091-protactinium.html"
     },
     {
       "symbol": "Pb",
@@ -721,7 +721,7 @@
       "period": 6,
       "groupNumber": 14,
       "theme": "history",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/082-lead.html"
+      "roomUrl": "/periodic-table/rooms/082-lead.html"
     },
     {
       "symbol": "Pd",
@@ -730,7 +730,7 @@
       "period": 5,
       "groupNumber": 10,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/046-palladium.html"
+      "roomUrl": "/periodic-table/rooms/046-palladium.html"
     },
     {
       "symbol": "Pm",
@@ -739,7 +739,7 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "space",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/061-promethium.html"
+      "roomUrl": "/periodic-table/rooms/061-promethium.html"
     },
     {
       "symbol": "Po",
@@ -748,7 +748,7 @@
       "period": 6,
       "groupNumber": 16,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/084-polonium.html"
+      "roomUrl": "/periodic-table/rooms/084-polonium.html"
     },
     {
       "symbol": "Pr",
@@ -757,7 +757,7 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/059-praseodymium.html"
+      "roomUrl": "/periodic-table/rooms/059-praseodymium.html"
     },
     {
       "symbol": "Pt",
@@ -766,7 +766,7 @@
       "period": 6,
       "groupNumber": 10,
       "theme": "precious",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/078-platinum.html"
+      "roomUrl": "/periodic-table/rooms/078-platinum.html"
     },
     {
       "symbol": "Pu",
@@ -775,7 +775,7 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/094-plutonium.html"
+      "roomUrl": "/periodic-table/rooms/094-plutonium.html"
     },
     {
       "symbol": "Ra",
@@ -784,7 +784,7 @@
       "period": 7,
       "groupNumber": 2,
       "theme": "historical",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/088-radium.html"
+      "roomUrl": "/periodic-table/rooms/088-radium.html"
     },
     {
       "symbol": "Rb",
@@ -793,7 +793,7 @@
       "period": 5,
       "groupNumber": 1,
       "theme": "pyrotechnics",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/037-rubidium.html"
+      "roomUrl": "/periodic-table/rooms/037-rubidium.html"
     },
     {
       "symbol": "Re",
@@ -802,7 +802,7 @@
       "period": 6,
       "groupNumber": 7,
       "theme": "aerospace",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/075-rhenium.html"
+      "roomUrl": "/periodic-table/rooms/075-rhenium.html"
     },
     {
       "symbol": "Rf",
@@ -811,7 +811,7 @@
       "period": 7,
       "groupNumber": 4,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/104-rutherfordium.html"
+      "roomUrl": "/periodic-table/rooms/104-rutherfordium.html"
     },
     {
       "symbol": "Rg",
@@ -820,7 +820,7 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "medical",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/111-roentgenium.html"
+      "roomUrl": "/periodic-table/rooms/111-roentgenium.html"
     },
     {
       "symbol": "Rh",
@@ -829,7 +829,7 @@
       "period": 5,
       "groupNumber": 9,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/045-rhodium.html"
+      "roomUrl": "/periodic-table/rooms/045-rhodium.html"
     },
     {
       "symbol": "Rn",
@@ -838,7 +838,7 @@
       "period": 6,
       "groupNumber": 18,
       "theme": "radiation",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/086-radon.html"
+      "roomUrl": "/periodic-table/rooms/086-radon.html"
     },
     {
       "symbol": "Ru",
@@ -847,7 +847,7 @@
       "period": 5,
       "groupNumber": 8,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/044-ruthenium.html"
+      "roomUrl": "/periodic-table/rooms/044-ruthenium.html"
     },
     {
       "symbol": "S",
@@ -856,7 +856,7 @@
       "period": 3,
       "groupNumber": 16,
       "theme": "volcano",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/016-sulfur.html"
+      "roomUrl": "/periodic-table/rooms/016-sulfur.html"
     },
     {
       "symbol": "Sb",
@@ -865,7 +865,7 @@
       "period": 5,
       "groupNumber": 15,
       "theme": "industry",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/051-antimony.html"
+      "roomUrl": "/periodic-table/rooms/051-antimony.html"
     },
     {
       "symbol": "Sc",
@@ -874,7 +874,7 @@
       "period": 4,
       "groupNumber": 3,
       "theme": "aerospace",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/021-scandium.html"
+      "roomUrl": "/periodic-table/rooms/021-scandium.html"
     },
     {
       "symbol": "Se",
@@ -883,7 +883,7 @@
       "period": 4,
       "groupNumber": 16,
       "theme": "semiconductor",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/034-selenium.html"
+      "roomUrl": "/periodic-table/rooms/034-selenium.html"
     },
     {
       "symbol": "Sg",
@@ -892,7 +892,7 @@
       "period": 7,
       "groupNumber": 6,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/106-seaborgium.html"
+      "roomUrl": "/periodic-table/rooms/106-seaborgium.html"
     },
     {
       "symbol": "Si",
@@ -901,7 +901,7 @@
       "period": 3,
       "groupNumber": 14,
       "theme": "silicon",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/014-silicon.html"
+      "roomUrl": "/periodic-table/rooms/014-silicon.html"
     },
     {
       "symbol": "Sm",
@@ -910,7 +910,7 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/062-samarium.html"
+      "roomUrl": "/periodic-table/rooms/062-samarium.html"
     },
     {
       "symbol": "Sn",
@@ -919,7 +919,7 @@
       "period": 5,
       "groupNumber": 14,
       "theme": "history",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/050-tin.html"
+      "roomUrl": "/periodic-table/rooms/050-tin.html"
     },
     {
       "symbol": "Sr",
@@ -928,7 +928,7 @@
       "period": 5,
       "groupNumber": 2,
       "theme": "pyrotechnics",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/038-strontium.html"
+      "roomUrl": "/periodic-table/rooms/038-strontium.html"
     },
     {
       "symbol": "Ta",
@@ -937,7 +937,7 @@
       "period": 6,
       "groupNumber": 5,
       "theme": "electronics",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/073-tantalum.html"
+      "roomUrl": "/periodic-table/rooms/073-tantalum.html"
     },
     {
       "symbol": "Tb",
@@ -946,7 +946,7 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/065-terbium.html"
+      "roomUrl": "/periodic-table/rooms/065-terbium.html"
     },
     {
       "symbol": "Tc",
@@ -955,7 +955,7 @@
       "period": 5,
       "groupNumber": 7,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/043-technetium.html"
+      "roomUrl": "/periodic-table/rooms/043-technetium.html"
     },
     {
       "symbol": "Te",
@@ -964,7 +964,7 @@
       "period": 5,
       "groupNumber": 16,
       "theme": "semiconductor",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/052-tellurium.html"
+      "roomUrl": "/periodic-table/rooms/052-tellurium.html"
     },
     {
       "symbol": "Th",
@@ -973,7 +973,7 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/090-thorium.html"
+      "roomUrl": "/periodic-table/rooms/090-thorium.html"
     },
     {
       "symbol": "Ti",
@@ -982,7 +982,7 @@
       "period": 4,
       "groupNumber": 4,
       "theme": "aerospace",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/022-titanium.html"
+      "roomUrl": "/periodic-table/rooms/022-titanium.html"
     },
     {
       "symbol": "Tl",
@@ -991,7 +991,7 @@
       "period": 6,
       "groupNumber": 13,
       "theme": "toxic",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/081-thallium.html"
+      "roomUrl": "/periodic-table/rooms/081-thallium.html"
     },
     {
       "symbol": "Tm",
@@ -1000,7 +1000,7 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "medical",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/069-thulium.html"
+      "roomUrl": "/periodic-table/rooms/069-thulium.html"
     },
     {
       "symbol": "Ts",
@@ -1009,7 +1009,7 @@
       "period": 7,
       "groupNumber": 8,
       "theme": "research",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/117-tennessine.html"
+      "roomUrl": "/periodic-table/rooms/117-tennessine.html"
     },
     {
       "symbol": "U",
@@ -1018,7 +1018,7 @@
       "period": 7,
       "groupNumber": 3,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/092-uranium.html"
+      "roomUrl": "/periodic-table/rooms/092-uranium.html"
     },
     {
       "symbol": "V",
@@ -1027,7 +1027,7 @@
       "period": 4,
       "groupNumber": 5,
       "theme": "industry",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/023-vanadium.html"
+      "roomUrl": "/periodic-table/rooms/023-vanadium.html"
     },
     {
       "symbol": "W",
@@ -1036,7 +1036,7 @@
       "period": 6,
       "groupNumber": 6,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/074-tungsten.html"
+      "roomUrl": "/periodic-table/rooms/074-tungsten.html"
     },
     {
       "symbol": "Xe",
@@ -1045,7 +1045,7 @@
       "period": 5,
       "groupNumber": 18,
       "theme": "space",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/054-xenon.html"
+      "roomUrl": "/periodic-table/rooms/054-xenon.html"
     },
     {
       "symbol": "Y",
@@ -1054,7 +1054,7 @@
       "period": 5,
       "groupNumber": 3,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/039-yttrium.html"
+      "roomUrl": "/periodic-table/rooms/039-yttrium.html"
     },
     {
       "symbol": "Yb",
@@ -1063,7 +1063,7 @@
       "period": 6,
       "groupNumber": 3,
       "theme": "industry",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/070-ytterbium.html"
+      "roomUrl": "/periodic-table/rooms/070-ytterbium.html"
     },
     {
       "symbol": "Zn",
@@ -1072,7 +1072,7 @@
       "period": 4,
       "groupNumber": 12,
       "theme": "technology",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/030-zinc.html"
+      "roomUrl": "/periodic-table/rooms/030-zinc.html"
     },
     {
       "symbol": "Zr",
@@ -1081,7 +1081,7 @@
       "period": 5,
       "groupNumber": 4,
       "theme": "nuclear",
-      "roomUrl": "https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/040-zirconium.html"
+      "roomUrl": "/periodic-table/rooms/040-zirconium.html"
     }
   ]
 }
