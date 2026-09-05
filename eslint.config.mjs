@@ -29,7 +29,7 @@ export default [
       'myhugoapp/static/js/three/three.core.js',
       'myhugoapp/static/js/three/TrackballControls.js',
       'myhugoapp/static/js/addons/**',
-      'myhugoapp/static/periodic-table/lib/**',
+      'myhugoapp/static/periodic-table/**',
       // Vendored proprietary core (chemie-core) — linted in its own repo;
       // copied into place by scripts/vendor-core.sh and may carry
       // parser/syntax styles this repo's ESLint config does not target.
