@@ -1,11 +1,1 @@
-// =========================================================================
-//  lib/util.js — tiny shared math / format helpers
-// =========================================================================
-
-export const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
-export const lerp = (a, b, t) => a + (b - a) * t;
-export const easeInOutCubic = (t) =>
-  t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-/** Zero-pad a number for room file names ("7" -> "007"). */
-export const pad = (n, width = 3) => String(n).padStart(width, '0');
+export const clamp=(t,a,o)=>Math.max(a,Math.min(o,t));export const lerp=(t,a,o)=>t+(a-t)*o;export const easeInOutCubic=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;export const pad=(t,a=3)=>String(t).padStart(a,"0");

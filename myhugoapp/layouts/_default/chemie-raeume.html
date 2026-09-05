@@ -1,5 +1,12 @@
 {{ define "main" }}
 
+<!-- Preload kritische Ressourcen für schnelles Rendering -->
+<link rel="preload" href="/periodic-table/lib/three.module.js" as="script" crossorigin>
+<link rel="preload" href="/periodic-table/assets/app.js" as="script" crossorigin>
+<link rel="preload" href="/periodic-table/assets/elements-data.js" as="script" crossorigin>
+<link rel="preload" href="/periodic-table/assets/style.css" as="style" crossorigin>
+<link rel="preload" href="/periodic-table/assets/room.css" as="style" crossorigin>
+
 <article class="page chemie-raeume-page">
   <header class="page-header">
     <h1>{{ .Title }}</h1>
