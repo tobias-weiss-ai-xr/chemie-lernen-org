@@ -24,6 +24,7 @@ enableRobotsTXT = true
 
 [params]
   github = "tobias-weiss-ai-xr"
+  author = "chemie-lernen.org Team"
   custom_css = ["css/custom.css?v=2", "css/dark-mode.css?v=2"]
   custom_js = ["js/theme-switcher.js"]
   defaultImage = "recent-article_001.jpg"
