@@ -12,6 +12,6 @@ So wird aus dem Periodensystem ein Ort zum Entdecken – Element für Element.
 Wähle einfach ein Element aus dem Raster unten. Der Raum öffnet sich direkt im
 Browser (WebXR-fähig für VR-Brillen). Das komplette Periodensystem als
 begehbaren Gesamtraum findest du außerdem im
-[Periodic Table Room](https://tobias-weiss-ai-xr.github.io/periodic-table/)
+[Periodic Table Room](/periodic-table/)
 – dort kannst du zwischen den Elementen umherfliegen und per Klick in dessen
 Raum eintauchen.
