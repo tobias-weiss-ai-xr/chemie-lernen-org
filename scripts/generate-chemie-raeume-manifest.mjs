@@ -3,11 +3,11 @@
  * generate-chemie-raeume-manifest.mjs
  *
  * Regenerates the "Chemie Räume" element-room manifest consumed by
- * /chemie-raeume/ (chemie-raeume.js). Every element tile deep-links into the
- * per-element room of the walkable 3D periodic table hosted on GitHub Pages
- * (repo tobias-weiss-ai-xr/periodic-table):
+ * /chemie-raeume/. Every element tile deep-links into the per-element room of
+ * the walkable 3D periodic table self-hosted under /periodic-table/ (mirror
+ * of repo tobias-weiss-ai-xr/periodic-table):
  *
- *   https://tobias-weiss-ai-xr.github.io/periodic-table/rooms/<NNN>-<name>.html
+ *   /periodic-table/rooms/<NNN>-<name>.html
  *
  * NOTE (2026-09): the self-hosted hubs.chemie-lernen.org rooms are no longer
  * advertised — the instance stays up but is deprecated for promotion. The
@@ -25,8 +25,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOMS_BASE_URL =
-  process.env.ROOMS_BASE_URL || 'https://tobias-weiss-ai-xr.github.io/periodic-table';
+const ROOMS_BASE_URL = process.env.ROOMS_BASE_URL || '/periodic-table';
 
 const IN_MANIFEST =
   process.argv[2] ||
@@ -173,7 +172,16 @@ const roomHref = (n, en) => `rooms/${pad3(n)}-${en.toLowerCase()}.html`;
 
 const old = JSON.parse(fs.readFileSync(IN_MANIFEST, 'utf8'));
 
-const elements = (old.elements || [])
+// Dedupe by symbol: upstream data has historically contained exact duplicate
+// rows (e.g. Au and Ca), which would render duplicate tiles in the grid.
+const seen = new Set();
+const uniqueElements = (old.elements || []).filter((e) => {
+  if (seen.has(e.symbol)) return false;
+  seen.add(e.symbol);
+  return true;
+});
+
+const elements = uniqueElements
   .map((e) => {
     const pt = PERIODIC_TABLE[e.symbol];
     return {

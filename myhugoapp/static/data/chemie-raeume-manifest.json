@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-03T20:26:25.627Z",
+  "generatedAt": "2026-09-05T18:40:20.891Z",
   "roomsBaseUrl": "/periodic-table",
-  "count": 120,
+  "count": 118,
   "elements": [
     {
       "symbol": "Ac",
@@ -65,15 +65,6 @@
       "groupNumber": 17,
       "theme": "research",
       "roomUrl": "/periodic-table/rooms/085-astatine.html"
-    },
-    {
-      "symbol": "Au",
-      "name": "Gold",
-      "group": "transition",
-      "period": 6,
-      "groupNumber": 11,
-      "theme": "treasure",
-      "roomUrl": "/periodic-table/rooms/079-gold.html"
     },
     {
       "symbol": "Au",
@@ -163,15 +154,6 @@
       "period": 4,
       "groupNumber": 2,
       "theme": "skeleton",
-      "roomUrl": "/periodic-table/rooms/020-calcium.html"
-    },
-    {
-      "symbol": "Ca",
-      "name": "Calcium",
-      "group": "alkalineEarth",
-      "period": 4,
-      "groupNumber": 2,
-      "theme": "biological",
       "roomUrl": "/periodic-table/rooms/020-calcium.html"
     },
     {
