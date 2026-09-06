@@ -10,10 +10,7 @@ params:
   objectiveCount: 406
 outputs:
   - html
-menu:
-  main:
-    parent: 'lehrende'
-    weight: 110
+
 ---
 
 Der Chemie-Lehrplan für **Berlin** mit 13 Themen und 406 Lernzielen.

@@ -10,10 +10,7 @@ params:
   objectiveCount: 2422
 outputs:
   - html
-menu:
-  main:
-    parent: 'lehrende'
-    weight: 110
+
 ---
 
 Der Chemie-Lehrplan für **Hamburg** mit 10 Themen und 2422 Lernzielen.

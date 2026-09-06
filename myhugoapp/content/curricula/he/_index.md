@@ -10,10 +10,7 @@ params:
   objectiveCount: 874
 outputs:
   - html
-menu:
-  main:
-    parent: 'lehrende'
-    weight: 110
+
 ---
 
 Der Chemie-Lehrplan für **Hessen** mit 2 Themen und 874 Lernzielen.

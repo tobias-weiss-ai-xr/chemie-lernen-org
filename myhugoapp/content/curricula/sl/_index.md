@@ -10,10 +10,7 @@ params:
   objectiveCount: 48
 outputs:
   - html
-menu:
-  main:
-    parent: 'lehrende'
-    weight: 110
+
 ---
 
 Der Chemie-Lehrplan für **Saarland** mit 13 Themen und 48 Lernzielen.

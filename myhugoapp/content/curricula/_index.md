@@ -8,7 +8,7 @@ outputs:
 menu:
   main:
     parent: 'lehrende'
-    weight: 100
+    weight: 80
 ---
 
 Die folgende Übersicht zeigt die **Lehrpläne für das Fach Chemie** aus allen 16 deutschen Bundesländern. Grundlage sind die jeweils gültigen Kernlehrpläne, Fachanforderungen oder Bildungspläne der Kultusministerien.

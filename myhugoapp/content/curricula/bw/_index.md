@@ -10,10 +10,7 @@ params:
   objectiveCount: 221
 outputs:
   - html
-menu:
-  main:
-    parent: 'lehrende'
-    weight: 110
+
 ---
 
 Der Chemie-Lehrplan für **Baden-Württemberg** mit 29 Themen und 221 Lernzielen.

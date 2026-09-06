@@ -10,10 +10,7 @@ params:
   objectiveCount: 2921
 outputs:
   - html
-menu:
-  main:
-    parent: 'lehrende'
-    weight: 110
+
 ---
 
 Der Chemie-Lehrplan für **Niedersachsen** mit 479 Themen und 2921 Lernzielen.
