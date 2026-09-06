@@ -330,6 +330,34 @@
   #curricula-graph { min-height: 460px; height: 60vh; }
   #curricula-node-details { width: 100%; max-width: none; height: auto; max-height: 50vh; }
 }
+
+/* UXF-043 Dropdown */
+.curricula-grid.bundesland-dropdown { max-width: 420px; }
+.bundesland-dropdown label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+.bundesland-dropdown select {
+  width: 100%; padding: 0.75rem 1.1rem; border: 2px solid var(--border-color,#e0e0e0);
+  border-radius: 10px; font-size: 1.05rem; background: var(--bg-input,#fff);
+  cursor: pointer; transition: border-color 0.2s;
+}
+.bundesland-dropdown select:hover { border-color: #9b59b6; }
+.bundesland-dropdown select:focus {
+  outline: none; border-color: #9b59b6;
+  box-shadow: 0 0 0 4px rgba(155,89,182,.12);
+}
+
+/* UXF-043 Dropdown */
+.curricula-grid.bundesland-dropdown { max-width: 420px; }
+.bundesland-dropdown label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+.bundesland-dropdown select {
+  width: 100%; padding: 0.75rem 1.1rem; border: 2px solid var(--border-color,#e0e0e0);
+  border-radius: 10px; font-size: 1.05rem; background: var(--bg-input,#fff);
+  cursor: pointer; transition: border-color 0.2s;
+}
+.bundesland-dropdown select:hover { border-color: #9b59b6; }
+.bundesland-dropdown select:focus {
+  outline: none; border-color: #9b59b6;
+  box-shadow: 0 0 0 4px rgba(155,89,182,.12);
+}
 </style>
 {{ end }}
 
@@ -384,15 +412,27 @@
       <span class="curricula-filter-count" id="curricula-filter-count"></span>
     </div>
 
-    <div id="curricula-grid" class="curricula-grid" aria-label="Bundesländer-Lehrpläne" aria-live="polite" aria-relevant="additions removals">
-      <div class="curricula-skeleton" id="curricula-skeleton" aria-label="Lade Lehrpläne…">
-        <div class="curricula-skeleton-card"></div>
-        <div class="curricula-skeleton-card"></div>
-        <div class="curricula-skeleton-card"></div>
-        <div class="curricula-skeleton-card"></div>
-        <div class="curricula-skeleton-card"></div>
-        <div class="curricula-skeleton-card"></div>
-      </div>
+    <div id="curricula-grid" class="curricula-grid bundesland-dropdown" aria-label="Bundesländer-Lehrpläne">
+      <label for="state-select">Bundesland auswählen:</label>
+      <select id="state-select" onchange="if(this.value)location.href='/curricula/'+this.value+'/'" aria-label="Bundesland Lehrplan auswählen">
+        <option value="" selected disabled>-- Bundesland auswählen --</option>
+        <option value="bw">Baden-Württemberg</option>
+        <option value="be">Berlin</option>
+        <option value="bb">Brandenburg</option>
+        <option value="by">Bayern</option>
+        <option value="hb">Bremen</option>
+        <option value="hh">Hamburg</option>
+        <option value="he">Hessen</option>
+        <option value="mv">Mecklenburg-Vorpommern</option>
+        <option value="ni">Niedersachsen</option>
+        <option value="nw">Nordrhein-Westfalen</option>
+        <option value="rp">Rheinland-Pfalz</option>
+        <option value="sl">Saarland</option>
+        <option value="sn">Sachsen</option>
+        <option value="st">Sachsen-Anhalt</option>
+        <option value="sh">Schleswig-Holstein</option>
+        <option value="th">Thüringen</option>
+      </select>
     </div>
 
     <div class="curricula-compare-panel" id="curricula-compare-panel" hidden></div>
