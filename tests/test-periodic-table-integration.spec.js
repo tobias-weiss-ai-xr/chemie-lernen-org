@@ -228,6 +228,41 @@ test.describe('PSE interactive runtime', () => {
     await expect(page.locator('#fps')).toContainText(/\d/i, { timeout: 20_000 });
     expect(errors).toEqual([]);
   });
+
+  test('rooms boot across all nine lattice types (lattice-regression sample)', async ({ page }) => {
+    test.setTimeout(120_000);
+    // One representative per mo.t type — the CUBE.forEach lattice bug broke
+    // every sc/bcc/fcc/diamond room at once, so sample all nine types.
+    const samples = [
+      '001-hydrogen.html', // dumbbell
+      '002-helium.html', // atom
+      '003-lithium.html', // bcc
+      '004-beryllium.html', // hcp
+      '006-carbon.html', // diamond
+      '013-aluminium.html', // fcc
+      '015-phosphorus.html', // tetra
+      '016-sulfur.html', // ring8
+      '084-polonium.html', // sc
+    ];
+    for (const room of samples) {
+      const errors = collectErrors(page);
+      await page.goto(`${PT}/rooms/${room}`, { waitUntil: 'domcontentloaded' });
+      await expect
+        .poll(
+          () =>
+            page.evaluate(
+              () =>
+                !document.getElementById('loading') &&
+                !!document.querySelector('canvas#room') &&
+                document.querySelector('canvas#room').width > 0
+            ),
+          { timeout: 30_000 }
+        )
+        .toBe(true);
+      expect(errors, room).toEqual([]);
+      errors.length = 0;
+    }
+  });
 });
 
 /* ──────────────────────────────────────────────────────────────
