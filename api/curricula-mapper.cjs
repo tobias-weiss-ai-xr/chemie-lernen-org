@@ -44,11 +44,11 @@ function isTextMatchCandidate(name) {
 function buildByStateQuery() {
   return `
 MATCH (c:Curriculum {state_abbr: $state})
-OPTIONAL MATCH (c)-[:HAS_TOPIC]->(t:Topic)
-OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)
+OPTIONAL MATCH (c)-[:HAS_SUBTOPIC]->(t:SubTopic)
+OPTIONAL MATCH (t)-[:FULFILLS]->(lo:LearningObjective)
 OPTIONAL MATCH (t)<-[:COVERS_TOPIC]-(e:Entity)
 OPTIONAL MATCH (t)-[:COVERS_TOPIC]->(e2:Entity)
-OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo2:LearningObjective)<-[:FULFILLS|FULFILLS_OBJECTIVE]-(e3:Entity)
+OPTIONAL MATCH (t)-[:FULFILLS]->(lo2:LearningObjective)<-[:FULFILLS|FULFILLS_OBJECTIVE]-(e3:Entity)
 OPTIONAL MATCH (e4:Entity)
 WHERE size(e4.name) >= 3 AND size(e4.name) <= 80 AND EXISTS {
   MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo4:LearningObjective)

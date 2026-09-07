@@ -101,8 +101,8 @@ router.get('/api/curricula/list', async (req, res) => {
     });
     const result = await session.run(
       `MATCH (c:Curriculum)
-       OPTIONAL MATCH (c)-[:HAS_TOPIC]->(t:Topic)
-       OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo:LearningObjective)
+       OPTIONAL MATCH (c)-[:HAS_TOPIC|HAS_SUBTOPIC]->(t)
+       OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE|FULFILLS]->(lo)
        WITH c, count(DISTINCT t) AS topicCount, count(DISTINCT lo) AS objectiveCount
        RETURN c.state_abbr AS state, c.state AS stateName, c.slug AS slug,
               c.school_type AS schoolType, c.grade AS grade,
