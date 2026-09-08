@@ -23,17 +23,16 @@ test.describe('UXF-042/043: Lehrpläne Curricula Dropdown & Menu', () => {
       await page.goto(BASE_URL);
 
       // Warte auf Menü-Ladung
-      await page.waitForSelector('nav[aria-label="Hauptnavigation"]', { timeout: 10000 });
+      await page.waitForSelector('nav.navbar', { timeout: 10000 });
 
-      // Finde alle Menüpunkte unter "Lehrende"
-      const lehrendeLink = page.getByRole('link', { name: /Lehrende/i });
-      await lehrendeLink.first().hover();
-
-      // Warte auf Submenu
+      // Der Dropdown-Toggle ist ein <a role=button> mit aria-label.
+      // Öffnet NUR per Bootstrap-JS-Klick (kein CSS-Hover auf Top-Level)
+      const lehrendeToggle = page.locator('a.dropdown-toggle[aria-label*="Lehrende"]');
+      await lehrendeToggle.click();
       await page.waitForTimeout(500);
 
-      // Prüfe dass "Lehrpläne & Curricula" existiert
-      const curriculaLink = page.getByRole('link', { name: /Lehrpläne & Curricula/i });
+      // Prüfe dass "Lehrpläne & Curricula" existiert (Submenu-Links sind role=menuitem)
+      const curriculaLink = page.getByRole('menuitem', { name: /Lehrpläne & Curricula/i });
       await expect(curriculaLink.first()).toBeVisible();
 
       // Prüfe dass KEINE individuellen Bundesland-Links existieren
@@ -65,11 +64,11 @@ test.describe('UXF-042/043: Lehrpläne Curricula Dropdown & Menu', () => {
     test('"Lehrpläne & Curricula" sollte zu /curricula/ navigieren', async ({ page }) => {
       await page.goto(BASE_URL);
 
-      const lehrendeLink = page.getByRole('link', { name: /Lehrende/i });
-      await lehrendeLink.first().hover();
+      const lehrendeToggle = page.locator('a.dropdown-toggle[aria-label*="Lehrende"]');
+      await lehrendeToggle.click();
       await page.waitForTimeout(500);
 
-      const curriculaLink = page.getByRole('link', { name: /Lehrpläne & Curricula/i });
+      const curriculaLink = page.getByRole('menuitem', { name: /Lehrpläne & Curricula/i });
       await curriculaLink.first().click();
 
       await expect(page).toHaveURL(/\/curricula\/?$/);
@@ -132,8 +131,10 @@ test.describe('UXF-042/043: Lehrpläne Curricula Dropdown & Menu', () => {
       ];
 
       for (const code of bundeslandCodes) {
-        const option = page.locator(`#state-select option[value="${code}"]`);
-        await expect(option).toBeVisible();
+        // <option> in geschlossenem <select> ist für Playwright nicht
+        // "sichtbar" — daher Werte via DOM auslesen
+        const values = await dropdown.locator('option').evaluateAll((os) => os.map((o) => o.value));
+        expect(values).toContain(code);
       }
     });
 
