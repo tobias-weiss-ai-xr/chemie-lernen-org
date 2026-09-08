@@ -24,16 +24,25 @@ enableRobotsTXT = true
 
 [params]
   github = "tobias-weiss-ai-xr"
-  author = "chemie-lernen.org Team"
   custom_css = ["css/custom.css?v=2", "css/dark-mode.css?v=2"]
   custom_js = ["js/theme-switcher.js"]
   defaultImage = "recent-article_001.jpg"
   footer_description = "chemie-lernen.org - Ihre Plattform für innovatives Chemie-Lernen. Chemische Grundlagen und Konzepte greifbar und erlebbar."
 
+# params.author MUSS eine Map sein: das interne RSS-Template (rss.xml)
+# greift auf site.Params.author.email zu — ein String crasht den Build
+# mit "can't evaluate field email in type string" (Hugo 0.120).
+[params.author]
+  name = "chemie-lernen.org Team"
+  email = "info@chemie-lernen.org"
+
 [params.meta]
   keywords = "chemie-lernen.org, Chemie lernen online, interaktiver Chemieunterricht, digitale Bildung, Chemie studieren, Chemie-Rechner, Periodensystem 3D"
 
-author = "chemie-lernen.org Team"
+# Legacy: author map (deprecated) — siehe [params.author] oben
+[author]
+  name = "chemie-lernen.org Team"
+  email = "info@chemie-lernen.org"
 
 # Search Index Configuration
 [outputs]

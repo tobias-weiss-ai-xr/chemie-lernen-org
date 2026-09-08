@@ -1,7 +1,7 @@
 ---
 title: "Single-Atom-Katalysator: Indium wandelt CO2 effizient in Methanol um"
-date: "2026-09-07T02:43:32+02:00"
-description: "Forschende haben einen neuartigen Single-Atom-Katalysator entwickelt, der \mathrm{CO_2} effizienter als je zuvor in Methanol (\mathrm{CH_3OH}) umwandelt. Statt auf Metallclustern oder Nanopartikeln zu"
+date: '2026-09-07T02:43:32+02:00'
+description: "Forschende haben einen neuartigen Single-Atom-Katalysator entwickelt, der \\mathrm{CO_2} effizienter als je zuvor in Methanol (\\mathrm{CH_3OH}) umwandelt. Statt auf Metallclustern oder Nanopartikeln zu"
 source: "https://www.sciencedaily.com/releases/2026/03/260319044703.htm"
 tags:
   - "katalyse"
