@@ -45,7 +45,7 @@ function main() {
       </div>
     </div>`;
 
-  const newDropdown = `<div id="curricula-grid" class="curricula-grid bundesland-dropdown" aria-label="Bundesländer-Lehrpläne">
+  const newDropdown = `<div id="bundesland-select-wrap" class="curricula-grid bundesland-dropdown" aria-label="Bundesländer-Lehrpläne">
       <label for="state-select">Bundesland auswählen:</label>
       <select id="state-select" onchange="if(this.value)location.href='/curricula/'+this.value+'/'" aria-label="Bundesland Lehrplan auswählen">
         <option value="" selected disabled>-- Bundesland auswählen --</option>
