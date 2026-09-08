@@ -53,6 +53,10 @@ export default defineConfig({
   // NUR .spec-Dateien — .test.js gehört vitest (sonst lädt Playwright jsdom-Tests)
   testMatch: '**/*.spec.{js,ts}',
 
+  // Quarantäne: Specs für (noch) nicht gebaute/deployte Features — siehe
+  // tests/e2e/quarantine/README.md. Mit E2E_INCLUDE_QUARANTINE=1 reaktivieren.
+  testIgnore: process.env.E2E_INCLUDE_QUARANTINE ? [] : ['**/quarantine/**'],
+
   // Timeout per Test
   timeout: 30_000,
 
