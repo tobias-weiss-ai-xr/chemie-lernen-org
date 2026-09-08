@@ -10,7 +10,6 @@ params:
   objectiveCount: 2606
 outputs:
   - html
-
 ---
 
 Der Chemie-Lehrplan für **Rheinland-Pfalz** mit 936 Themen und 2606 Lernzielen.

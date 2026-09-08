@@ -10,7 +10,6 @@ params:
   objectiveCount: 1035
 outputs:
   - html
-
 ---
 
 Der Chemie-Lehrplan für **Schleswig-Holstein** mit 92 Themen und 1035 Lernzielen.

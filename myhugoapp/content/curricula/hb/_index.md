@@ -10,7 +10,6 @@ params:
   objectiveCount: 971
 outputs:
   - html
-
 ---
 
 Der Chemie-Lehrplan für **Bremen** mit 23 Themen und 971 Lernzielen.

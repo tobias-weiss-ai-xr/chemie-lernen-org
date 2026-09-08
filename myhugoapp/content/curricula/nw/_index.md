@@ -10,7 +10,6 @@ params:
   objectiveCount: 3400
 outputs:
   - html
-
 ---
 
 Der Chemie-Lehrplan für **Nordrhein-Westfalen** mit 40 Themen und 3400 Lernzielen.

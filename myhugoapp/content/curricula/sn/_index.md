@@ -10,7 +10,6 @@ params:
   objectiveCount: 332
 outputs:
   - html
-
 ---
 
 Der Chemie-Lehrplan für **Sachsen** mit 51 Themen und 332 Lernzielen.

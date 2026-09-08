@@ -110,6 +110,10 @@ function generatePage(code, data) {
   const dir = join(CONTENT_DIR, code);
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
 
+  // UXF-042: KEIN menu-Block pro Bundesland generieren! Nur der
+  // aggregierte Eintrag in content/curricula/_index.md (parent:
+  // lehrende, weight: 80) — sonst enthält die Nav wieder alle 16
+  // Einzel-Links nach jedem CI-Regenerierungslauf.
   const content = `---
 title: 'Lehrplan ${name}'
 last_reviewed: '${lastUpdated}'
@@ -122,10 +126,6 @@ params:
   objectiveCount: ${objectiveCount}
 outputs:
   - html
-menu:
-  main:
-    parent: 'lehrende'
-    weight: 110
 ---
 
 Der Chemie-Lehrplan für **${name}** mit ${topicCount} Themen und ${objectiveCount} Lernzielen.

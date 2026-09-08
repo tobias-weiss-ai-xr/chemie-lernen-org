@@ -10,7 +10,6 @@ params:
   objectiveCount: 1666
 outputs:
   - html
-
 ---
 
 Der Chemie-Lehrplan für **Sachsen-Anhalt** mit 11 Themen und 1666 Lernzielen.

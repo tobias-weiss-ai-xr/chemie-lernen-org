@@ -10,7 +10,6 @@ params:
   objectiveCount: 1091
 outputs:
   - html
-
 ---
 
 Der Chemie-Lehrplan für **Mecklenburg-Vorpommern** mit 30 Themen und 1091 Lernzielen.
