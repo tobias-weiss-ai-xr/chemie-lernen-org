@@ -52,7 +52,9 @@ data/collab/
 .sisyphus/
 .playwright-mcp/
 .omo/
-tests/__pycache__/
+__pycache__/
+logs/
+*.bak
 curricula-venv/
 backups/
 myhugoapp/public/

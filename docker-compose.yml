@@ -78,8 +78,9 @@ services:
       # tracked data files (elements.json, kg_fallback.json, quiz-questions.json)
       # keep syncing via the deploy's git reset. Host uid 1000 == node user.
       - ./api/data:/app/data
-      - ./api/curricula-mapper.cjs:/app/curricula-mapper.cjs:ro
-      - ./api/routes/curricula.js:/app/routes/curricula.js:ro
+      # curricula-mapper.cjs + routes/curricula.js sind seit dem
+      # Image-Rebuild (2026-09-08, Deploy 34272500135) Teil des Images —
+      # die früheren :ro-Hotfix-Mounts sind entfernt.
     mem_limit: 256M
     deploy:
       resources:
