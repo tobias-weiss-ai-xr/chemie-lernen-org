@@ -82,9 +82,9 @@ cd myhugoapp && hugo server -D
 
 # Unit tests (Jest, jsdom environment)
 npm test
-npm run test:coverage          # with coverage (70% threshold)
+npm run test:coverage          # with coverage
 npm run test:unit              # skip slow integration tests
-npx jest tests/chemistry-utils.test.js  # single file
+npx vitest run tests/chemistry-utils.test.js  # single file
 
 # E2E tests (Playwright — runs against live production site, NOT local dev)
 npx playwright test                          # chromium only (default)
@@ -93,7 +93,7 @@ E2E_BROWSERS=mobile npx playwright test --project="Mobile Chrome"
 E2E_BROWSERS=desktop npx playwright test     # Firefox + WebKit
 E2E_BROWSERS=all npx playwright test         # everything (5x load on live API!)
 npx playwright test --project=chromium       # explicit project filter
-npx playwright test tests/playwright/curricula-dropdown.spec.js  # single file
+npx playwright test tests/e2e/curricula-dropdown.spec.js  # single file
 
 # Lint & format (pre-commit hook runs lint-staged automatically)
 npm run lint
@@ -148,7 +148,8 @@ Most JS files use `sourceType: 'script'` (global scope, `<script>` tags). Only T
 | `myhugoapp/static/js/visualization/` | 3D/periodic table visualizations                                     |
 | `myhugoapp/layouts/_default/`        | Hugo templates — one `.html` per calculator/page                     |
 | `myhugoapp/layouts/partials/`        | Shared template partials (head, header, footer, quiz)                |
-| `tests/`                             | Jest unit tests (`*.test.js`) + Playwright E2E tests (`*.spec.js`)   |
+| `tests/`                             | vitest unit tests (`*.test.js`, `*.test.mjs`)                        |
+| `tests/e2e/`                         | Playwright E2E tests (`*.spec.js`, run against live production)      |
 
 ## Testing
 
@@ -164,8 +165,8 @@ Only `*.spec.js` files are picked up — `*.test.js` belongs to vitest.
 
 ### Test file naming
 
-- `*.test.js` → Jest unit tests (jsdom environment, match `**/tests/**/*.test.js`)
-- `*.spec.js` → Playwright E2E tests (match `**/*.spec.js`)
+- `*.test.js` / `*.test.mjs` → vitest unit tests (jsdom environment, match `tests/**/*.test.{js,mjs}`; `tests/setup.mjs` aliases `globalThis.jest` → `vi` for legacy tests)
+- `*.spec.js` → Playwright E2E tests (live in `tests/e2e/`, match `**/*.spec.{js,ts}` via root `playwright.config.mjs`)
 
 ### CI
 

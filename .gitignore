@@ -90,3 +90,4 @@ cb.log
 cv.log
 package-lock.json
 coverage/
+playwright-report/

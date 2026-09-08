@@ -47,8 +47,8 @@ const projects = wanted.flatMap((key) => {
 });
 
 export default defineConfig({
-  // Alle Playwright-Specs liegen unter tests/ (Unit-Tests sind vitest: *.test.js)
-  testDir: './tests',
+  // Alle Playwright-Specs liegen unter tests/e2e/ (Unit-Tests sind vitest: *.test.js)
+  testDir: './tests/e2e',
 
   // NUR .spec-Dateien — .test.js gehört vitest (sonst lädt Playwright jsdom-Tests)
   testMatch: '**/*.spec.{js,ts}',

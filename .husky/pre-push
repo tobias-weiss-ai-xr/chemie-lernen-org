@@ -1,0 +1,19 @@
+# Husky pre-push: Hugo-Build-Check (--renderToMemory, ~10-20s, kein Docker).
+#
+# Warum: Der Hugo-RSS-Crash (params.author als String) blockierte ALLE
+# CI-Deploys wochenlang STILL — der Build-Error wäre hier vor dem Push
+# aufgefallen. Full `npm test` läuft ohnehin im CI (lint + vitest) und
+# war für jeden Push zu langsam (daher das alte pre-push.disabled).
+#
+# Umgehen in Ausnahmefällen: git push --no-verify
+
+echo "husky(pre-push): Hugo build check (--renderToMemory)..."
+
+if ! hugo --renderToMemory --quiet -s myhugoapp; then
+  echo ""
+  echo "❌ pre-push: Hugo build FAILED — siehe Fehler oben. Nicht pushen bis gefixt"
+  echo "   (CI würde den Deploy erneut still fehlschlagen lassen)."
+  exit 1
+fi
+
+echo "husky(pre-push): Hugo build OK ✓"

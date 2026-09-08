@@ -3,7 +3,7 @@
     "test": "vitest run --exclude '**/complete-site-audit*' --exclude '**/site-accessibility*' --exclude '**/mobile-responsiveness*' --exclude '**/accessibility-validation*' --exclude '**/hubs-stack*' --exclude '**/.tf-worktrees/**'",
     "test:all": "vitest run --exclude '**/.tf-worktrees/**' --reporter=verbose",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
+    "test:coverage": "vitest run --coverage --exclude '**/complete-site-audit*' --exclude '**/site-accessibility*' --exclude '**/mobile-responsiveness*' --exclude '**/accessibility-validation*' --exclude '**/hubs-stack*' --exclude '**/.tf-worktrees/**'",
     "test:verbose": "vitest run --reporter=verbose",
     "test:integration": "vitest run --testNamePattern='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation|visualization)'",
     "test:unit": "vitest run --exclude '**/complete-site-audit*' --exclude '**/site-accessibility*' --exclude '**/mobile-responsiveness*' --exclude '**/accessibility-validation*' --exclude '**/hubs-stack*' --exclude '**/visualization*' --exclude '**/.tf-worktrees/**'",
@@ -11,8 +11,8 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
-    "test:e2e:pwa": "playwright test tests/test-pwa-manifest.spec.js",
-    "test:e2e:visual": "playwright test tests/test-molecule-studio-visual.spec.js tests/test-green-colors.spec.js",
+    "test:e2e:pwa": "playwright test tests/e2e/test-pwa-manifest.spec.js",
+    "test:e2e:visual": "playwright test tests/e2e/test-molecule-studio-visual.spec.js tests/e2e/test-green-colors.spec.js",
     "lint": "eslint . --ext .js",
     "lint:fix": "eslint . --ext .js --fix",
     "lint:calculators": "eslint myhugoapp/static/js/calculators/",
@@ -53,7 +53,8 @@
     "tf:monitor": "node scripts/taskfleet-monitor.mjs",
     "tf:coordinator": "node scripts/taskfleet-coordinator.mjs",
     "tf:worker": "node scripts/taskfleet-worker.mjs",
-    "tf:docker": "bash scripts/taskfleet-docker.sh"
+    "tf:docker": "bash scripts/taskfleet-docker.sh",
+    "test:e2e:smoke": "playwright test tests/e2e/test-pages.features.spec.js"
   },
   "lint-staged": {
     "*.js": [
