@@ -55,6 +55,7 @@ data/collab/
 __pycache__/
 logs/
 *.bak
+.env.bak*
 curricula-venv/
 backups/
 myhugoapp/public/
