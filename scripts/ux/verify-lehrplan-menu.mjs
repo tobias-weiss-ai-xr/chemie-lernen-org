@@ -9,8 +9,22 @@ const REPO = process.cwd();
 const STATES_DIR = resolve(REPO, 'myhugoapp/content/curricula');
 
 const STATES = [
-  'bb', 'be', 'bw', 'by', 'hb', 'he', 'hh', 'mv',
-  'ni', 'nw', 'rp', 'sh', 'sl', 'sn', 'st', 'th'
+  'bb',
+  'be',
+  'bw',
+  'by',
+  'hb',
+  'he',
+  'hh',
+  'mv',
+  'ni',
+  'nw',
+  'rp',
+  'sh',
+  'sl',
+  'sn',
+  'st',
+  'th',
 ];
 
 let ok = true;
@@ -21,7 +35,8 @@ console.log('[verify-lehrplan-menu]\n');
 for (const state of STATES) {
   const src = readFileSync(resolve(STATES_DIR, state, '_index.md'), 'utf-8');
   if (src.includes('menu:') && src.includes('lehrende')) {
-    console.log(`  ✗ ${state}: noch Menu-Eintrag vorhanden`); ok = false;
+    console.log(`  ✗ ${state}: noch Menu-Eintrag vorhanden`);
+    ok = false;
   }
 }
 console.log('  ✅ Alle State-Pages: kein Menu-Eintrag mehr');
@@ -29,16 +44,20 @@ console.log('  ✅ Alle State-Pages: kein Menu-Eintrag mehr');
 // 2. Curricula-Index hat weight 80
 const indexSrc = readFileSync(resolve(STATES_DIR, '_index.md'), 'utf-8');
 if (!indexSrc.includes('weight: 80')) {
-  console.log('  ✗ curricula/_index.md: weight nicht auf 80'); ok = false;
+  console.log('  ✗ curricula/_index.md: weight nicht auf 80');
+  ok = false;
 } else {
   console.log('  ✅ curricula/_index.md: weight = 80');
 }
 
 // 3. Hugo-Build für Curricula-Seiten funktioniert
 try {
-  execSync('cd myhugoapp && /usr/bin/hugo --minify -s . -d /tmp/hugo-verify-lehrplan 2>/dev/null || true', { cwd: REPO, timeout: 60000 });
+  execSync(
+    'cd myhugoapp && /usr/bin/hugo --minify -s . -d /tmp/hugo-verify-lehrplan 2>/dev/null || true',
+    { cwd: REPO, timeout: 60000 }
+  );
   console.log('  ✅ Hugo-Build erfolgreich');
-} catch (e) {
+} catch {
   console.log('  ⚠️  Hugo-Build timeout/skip (optional, wenn bereits CI-geprüft)');
 }
 
