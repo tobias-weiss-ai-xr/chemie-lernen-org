@@ -87,9 +87,13 @@ npm run test:unit              # skip slow integration tests
 npx jest tests/chemistry-utils.test.js  # single file
 
 # E2E tests (Playwright — runs against live production site, NOT local dev)
-npx playwright test
-npx playwright test --project=chromium
-npx playwright test --project="Mobile Chrome"
+npx playwright test                          # chromium only (default)
+E2E_BROWSERS=mobile npx playwright test      # Mobile Chrome + Mobile Safari
+E2E_BROWSERS=mobile npx playwright test --project="Mobile Chrome"
+E2E_BROWSERS=desktop npx playwright test     # Firefox + WebKit
+E2E_BROWSERS=all npx playwright test         # everything (5x load on live API!)
+npx playwright test --project=chromium       # explicit project filter
+npx playwright test tests/playwright/curricula-dropdown.spec.js  # single file
 
 # Lint & format (pre-commit hook runs lint-staged automatically)
 npm run lint
@@ -150,7 +154,13 @@ Most JS files use `sourceType: 'script'` (global scope, `<script>` tags). Only T
 
 ### Playwright config
 
-`tests/playwright.config.js` — the canonical config. Tests against the **live production site** (`BASE_URL` defaults to `https://chemie-lernen.org`). There is no local webServer config — E2E tests require the site to be deployed.
+`playwright.config.mjs` (repo root — the canonical config; the old
+`tests/playwright.config.js` was never loaded by the CLI and is deleted).
+Browser sets are selected via `E2E_BROWSERS` (default `chromium`; see the
+config header comment). Tests against the **live production site**
+(`BASE_URL` defaults to `https://chemie-lernen.org`). There is no local
+webServer config — E2E tests require the site to be deployed.
+Only `*.spec.js` files are picked up — `*.test.js` belongs to vitest.
 
 ### Test file naming
 

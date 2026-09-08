@@ -11,16 +11,8 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
-    "test:calculators": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathPatterns='(calc-|stoichiometry|molare-masse|advanced-calculators|ph-rechner|dampfdruck|verduennung|konzentrationsumrechner|dichte|druck-flaechen|loeslichkeitsprodukt|chemisches-gleichgewicht|hess-gesetz|reaktionskinetik|redox-potenzial|atmosphaerendruck|bindungspotential)'",
-    "test:chemistry": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathPatterns='chemistry-utils'",
-    "test:kg": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathPatterns='(neo4j|knowledge-graph|curricula|kg-|entity-index|generate-themenbereich|blooms|api-import|malformed-uri|modulhandbuch)'",
-    "test:api": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathPatterns='(auto-grader|exercise-|feedback|learning-|session-store|assessment-|rag|zpd|didaktik|premium-|security-utils|modulhandbuch-api|neo4j-service|theme-overrides|stripe)'",
-    "test:ui": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathPatterns='(ui-utils|debug-logger|error-handler|dropdown|export-manager|quiz|practice|lesson-plan|session-plan|adaptive|fsrs|spaced|offline|ki-assistent|d3-ego|tutorials|progress)'",
-    "test:hermetic": "NODE_OPTIONS=\"--experimental-vm-modules\" jest --forceExit --testPathIgnorePatterns='(complete-site-audit|site-accessibility|mobile-responsiveness|accessibility-validation|\\.tf-worktrees|\\.test\\.mjs$)'",
-    "test:e2e:hubs": "playwright test tests/test-hubs-integration.spec.js",
     "test:e2e:pwa": "playwright test tests/test-pwa-manifest.spec.js",
-    "test:e2e:visual": "playwright test test-molecule-studio-visual.spec.js test-green-colors.spec.js",
-    "test:e2e:smoke": "playwright test test-pages.features.spec.js",
+    "test:e2e:visual": "playwright test tests/test-molecule-studio-visual.spec.js tests/test-green-colors.spec.js",
     "lint": "eslint . --ext .js",
     "lint:fix": "eslint . --ext .js --fix",
     "lint:calculators": "eslint myhugoapp/static/js/calculators/",
@@ -100,7 +92,6 @@
     "express-prom-bundle": "^8.0.0",
     "express-rate-limit": "^8.6.2",
     "husky": "^9.1.7",
-    "jest": "^30.4.2",
     "jscpd": "^5.0.11",
     "jsdom": "26.0.0",
     "jsonwebtoken": "^9.0.3",
@@ -114,45 +105,6 @@
     "stripe": "^22.5.0",
     "terser": "^5.48.0",
     "vitest": "4.1.11"
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "testMatch": [
-      "**/tests/**/*.test.js",
-      "**/tests/**/*.test.mjs"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/\\.tf-worktrees/",
-      "<rootDir>/tests/__flaky__/"
-    ],
-    "transform": {
-      "^.*/api/.*\\.js$": "<rootDir>/jest-transform-esm.cjs",
-      "^.+\\.mjs$": "<rootDir>/jest-transform-esm.cjs",
-      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
-    },
-    "collectCoverageFrom": [
-      "myhugoapp/static/js/calculators/**/*.js",
-      "myhugoapp/static/js/utils/**/*.js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "\\.optimized\\.js$",
-      "\\.min\\.js$",
-      "\\.core",
-      "__flaky__"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(three|three-orbitcontrols|three-js-camera)/)"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 35,
-        "branches": 40,
-        "functions": 35,
-        "lines": 37
-      }
-    }
   },
   "packageManager": "bun@1.3.11"
 }

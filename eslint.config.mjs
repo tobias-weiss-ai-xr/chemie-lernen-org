@@ -442,6 +442,12 @@ export default [
     plugins: {
       jest: jestPlugin,
     },
+    // jest als devDependency ist entfernt (Tests laufen unter vitest, setup.mjs
+    // aliast globalThis.jest -> vi). eslint-plugin-jest braucht trotzdem eine
+    // Versionsangabe für 'jest/no-deprecated-functions' → explizit pinnen.
+    settings: {
+      jest: { version: 30 },
+    },
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -481,6 +487,25 @@ export default [
       'no-unused-vars': 'off',
       'no-undef': 'off',
       'no-redeclare': ['error', { builtinGlobals: false }],
+    },
+  },
+
+  // Root config files (playwright.config.mjs etc.) — Node.js ESM context
+  {
+    files: ['*.config.mjs', '*.config.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        process: 'readonly',
+        console: 'readonly',
+        URL: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+      },
+    },
+    rules: {
+      'no-console': 'off',
     },
   },
 
