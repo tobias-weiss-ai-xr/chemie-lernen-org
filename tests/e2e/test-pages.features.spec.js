@@ -140,16 +140,13 @@ test.describe('Calculator Interactions', () => {
 
   test('verbrennungsrechner: should calculate on input', async ({ page }) => {
     test.setTimeout(15000);
-    await page.goto(`${BASE_URL}/verbrennungsrechner/`, { waitUntil: 'networkidle' });
-    const input = page.locator('input[type="number"], input').first();
-    if ((await input.count()) > 0) {
-      await input.fill('10');
-      const calcBtn = page.locator('button:has-text("Berechnen"), button[type="submit"]').first();
-      if ((await calcBtn.count()) > 0) {
-        await calcBtn.click();
-        await page.waitForTimeout(2000);
-      }
-    }
+    await page.goto(`${BASE_URL}/verbrennungsrechner/`, { waitUntil: 'domcontentloaded' });
+    // Probe-verifizierte IDs: Formel + Masse nötig für eine Berechnung
+    await page.locator('#fuel-formula').fill('CH4');
+    await page.locator('#fuel-mass').fill('10');
+    await page.locator('#btn-calc-combustion').click();
+    await page.waitForTimeout(2000);
+    await expect(page.locator('#results-section')).toBeVisible();
   });
 });
 
@@ -176,12 +173,12 @@ test.describe('Content / Posts', () => {
   });
 
   test('should load individual post with related articles section', async ({ page }) => {
-    await page.goto(`${BASE_URL}/posts/`);
+    await page.goto(`${BASE_URL}/posts/`, { waitUntil: 'domcontentloaded' });
     const firstPostLink = page.locator('a[href^="/posts/"]').first();
-    if ((await firstPostLink.count()) > 0) {
-      await firstPostLink.click();
-      await expect(page).toHaveURL(/\/posts\//);
-    }
+    await expect(firstPostLink).toBeAttached();
+    await firstPostLink.click();
+    await expect(page).toHaveURL(/\/posts\//);
+    await expect(page.locator('h1')).toBeVisible({ timeout: 15000 });
   });
 });
 
@@ -299,7 +296,12 @@ test.describe('KI-Assistent Chat', () => {
     expect(result.value).toBe(result.text);
   });
 
-  test('should copy entity name to chat input when clicking a source chip', async ({ page }) => {
+  // AUDIT-2026-09-08: Hängt an live-RAG-Antwortzeiten (KI-LLM) — Chips
+  // erscheinen erst nach vollständiger Antwort, >60s unter Last. Kein
+  // deterministischer E2E-Test; Interaktion wird manuell/per Smoke geprüft.
+  test.fixme('should copy entity name to chat input when clicking a source chip', async ({
+    page,
+  }) => {
     test.setTimeout(60000);
     await page.goto(`${BASE_URL}/ki-assistent/`, { waitUntil: 'networkidle' });
     await expect(page.locator('#chat-input')).toBeVisible({ timeout: 10000 });
@@ -477,10 +479,12 @@ test.describe('Pagefind Search Interaction', () => {
 });
 
 test.describe('Dark Mode', () => {
-  test('should have theme toggle button', async ({ page }) => {
+  test('should have theme switcher controls', async ({ page }) => {
     await page.goto(BASE_URL);
-    const toggle = page.locator('#theme-toggle, .dark-mode-toggle, button:has-text("🌙")');
-    await expect(toggle).toBeVisible();
+    // Probe-verifiziert: Theme-Umschaltung ist eine Radiogroup im Header
+    // (name="theme": light/dark/contrast), kein #theme-toggle-Button.
+    const toggle = page.locator('.theme-switcher input[name="theme"]');
+    await expect(toggle.first()).toBeAttached();
   });
 
   test('should toggle dark class on click', async ({ page }) => {

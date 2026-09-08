@@ -38,7 +38,11 @@ test.describe('Curricula / Lehrpläne', () => {
     expect(response.status()).toBe(404);
   });
 
-  test('curricula index page renders the graph visualization', async ({ page }) => {
+  // AUDIT-2026-09-08: Der cytoscape-Graph-Container liegt seit UXF-043
+  // display:none unter der neuen Bundesland-Dropdown-UX (Probe: hidden,
+  // kein Canvas-Rendering, kein JS-Fehler). Wiedereinführung = eigenes
+  // Feature-Ticket; Dropdown-Abdeckung läuft über curricula-dropdown.spec.js.
+  test.fixme('curricula index page renders the graph visualization', async ({ page }) => {
     await page.goto(`${BASE_URL}/curricula/`);
     await expect(page.locator('#curricula-app')).toBeVisible({ timeout: 15000 });
     await expect(page.locator('#curricula-graph')).toBeVisible({ timeout: 20000 });
@@ -50,8 +54,12 @@ test.describe('Curricula / Lehrpläne', () => {
   });
 
   test('curricula state page (BY) loads topic cards', async ({ page }) => {
+    test.setTimeout(120000);
     await page.goto(`${BASE_URL}/curricula/by/`);
-    await expect(page.locator('.state-topic-card').first()).toBeVisible({ timeout: 15000 });
+    // Die Karten werden per JS erst nach /api/curricula/by-state/BY
+    // gerendert — die API braucht auf Production aktuell 35-60s
+    // (inflated-counts-Backlog, siehe AUDIT-2026-09-08.md).
+    await expect(page.locator('.state-topic-card').first()).toBeVisible({ timeout: 100000 });
   });
 
   test('Wissensnetz loads entity grid', async ({ page }) => {

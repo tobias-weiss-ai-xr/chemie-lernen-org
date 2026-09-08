@@ -110,7 +110,9 @@ test.describe('Quiz System', () => {
   test('should display quiz score', async ({ page }) => {
     await page.goto(`${BASE_URL}/`);
 
-    const score = page.locator('.score, .quiz-score, text=/Punkte|Score/');
+    // Nur CSS-Selektoren mit :visible — text= im Komma-Selector verträgt
+    // sich nicht mit count()-Chains (CSS-Parse-Fehler)
+    const score = page.locator('.score:visible, .quiz-score:visible');
 
     const submitBtn = page.locator('button:has-text("Absenden"), .quiz-submit');
     const hasButton = (await await submitBtn.count()) > 0;
@@ -124,7 +126,7 @@ test.describe('Quiz System', () => {
       }
     }
 
-    const hasScore = (await await score.count()) > 0;
+    const hasScore = (await score.count()) > 0;
     if (hasScore) {
       await expect(score.first()).toBeVisible();
     }

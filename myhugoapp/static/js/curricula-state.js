@@ -156,7 +156,7 @@
     treeData = null;
     _render();
     fetch('/api/curricula/by-state/' + encodeURIComponent(state), {
-      signal: AbortSignal.timeout(20000),
+      signal: AbortSignal.timeout(90000), // by-state API dauert aktuell 30s+ (inflated-counts-Backlog)
     })
       .then(function (r) {
         if (!r.ok) {

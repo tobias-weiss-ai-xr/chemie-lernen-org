@@ -18,94 +18,73 @@ test.describe('Verbrennungsrechner', () => {
   test('should have fuel input field', async ({ page }) => {
     await page.goto(`${BASE_URL}/verbrennungsrechner/`);
 
-    const input = page.locator(
-      'input[name*="fuel"], input[name*="treibstoff"], #fuel, input[placeholder*="Kraftstoff"]'
-    );
+    // Probe-verifiziert: Freitext-Formel-Eingabe statt name-Attributen:
+    // #fuel-formula, #fuel-name, #fuel-mass.
+    const input = page.locator('#fuel-formula');
     const hasInput = (await await input.count()) > 0;
 
     expect(hasInput).toBeTruthy();
   });
 
-  test('should have fuel type selector', async ({ page }) => {
+  test('should have fuel mass and name inputs', async ({ page }) => {
     await page.goto(`${BASE_URL}/verbrennungsrechner/`);
 
-    const select = page.locator('select[name*="fuel"], select[name*="type"], #fuel-type');
-    const hasSelect = (await await select.count()) > 0;
-
-    expect(hasSelect).toBeTruthy();
+    // Kein <select> für Brennstoff-Typen — Brennstoff wird als
+    // Summenformel (#fuel-formula) eingegeben, Presets via
+    // .quick-examples-Buttons (siehe presets-Test).
+    await expect(page.locator('#fuel-name')).toBeVisible();
+    await expect(page.locator('#fuel-mass')).toBeVisible();
   });
 
   test('should calculate combustion results', async ({ page }) => {
     await page.goto(`${BASE_URL}/verbrennungsrechner/`);
 
-    // Enter fuel amount
-    const fuelInput = page.locator('input[name*="fuel"], input[name*="amount"], #fuel-amount');
-    if ((await fuelInput.count()) > 0) {
-      await fuelInput.fill('1');
-    }
+    // Enter fuel formula + mass, then calculate
+    await page.locator('#fuel-formula').fill('CH4');
+    await page.locator('#fuel-mass').fill('16');
 
-    // Select fuel type
-    const fuelSelect = page.locator('select[name*="fuel"], #fuel-type');
-    if ((await fuelSelect.count()) > 0) {
-      await fuelSelect.selectOption({ index: 0 });
-    }
+    // Click calculate (Button heißt "Verbrennung analysieren")
+    await page.locator('#btn-calc-combustion').click();
+    await page.waitForTimeout(1500);
 
-    // Click calculate
-    const calculateBtn = page.locator('button:has-text("Berechnen"), button:has-text("Calculate")');
-    const hasButton = (await await calculateBtn.count()) > 0;
-
-    if (hasButton) {
-      await calculateBtn.click();
-      await page.waitForTimeout(1000);
-    }
-
-    // Should show results
-    const result = page.locator('.result, .combustion-result, #result');
-    const hasResult = (await await result.count()) > 0;
-
-    if (hasResult) {
-      await expect(result.first()).toBeVisible();
-    }
+    // Should show results (probe-verifiziert: Verbrennungsgleichung etc.)
+    const result = page.locator('#results-section');
+    await expect(result).toBeVisible();
   });
 
   test('should display combustion equation', async ({ page }) => {
     await page.goto(`${BASE_URL}/verbrennungsrechner/`);
 
-    const equation = page.locator('.equation, .reaction-equation, .chemical-equation');
-    const hasEquation = (await await equation.count()) > 0;
+    // Erst CH4 verbrennen — die Gleichung ist initial leer
+    await page.locator('#fuel-formula').fill('CH4');
+    await page.locator('#btn-calc-combustion').click();
+    await page.waitForTimeout(1500);
 
-    if (hasEquation) {
-      await expect(equation.first()).toBeVisible();
-    }
+    // Probe-verifiziert: "CH4 + 2.00 O₂ → CO₂ + 2H₂O"
+    const equation = page.locator('#combustion-equation');
+    await expect(equation).toBeVisible();
+    await expect(equation).toContainText(/CH4|CH₄/);
   });
 
-  test('should show energy released', async ({ page }) => {
+  // AUDIT-2026-09-08: Heizwert-/Energieanzeige existiert nicht in den
+  // Ergebnis-Karten (probe-verifiziert: kein kJ in #results-section).
+  // Reaktivieren, sobald Energie-Betrachtung eingebaut ist.
+  test.fixme('should show energy released', async ({ page }) => {
     await page.goto(`${BASE_URL}/verbrennungsrechner/`);
 
-    const energyDisplay = page.locator('.energy, .enthalpy, #energy, text=/kilojoule|kJ|Energie/');
+    await page.locator('#fuel-formula').fill('CH4');
+    await page.locator('#fuel-mass').fill('16');
+    await page.locator('#btn-calc-combustion').click();
+    await page.waitForTimeout(1500);
 
-    const calculateBtn = page.locator('button:has-text("Berechnen"), button:has-text("Calculate")');
-    if ((await calculateBtn.count()) > 0) {
-      const input = page.locator('input[name*="fuel"], input[name*="amount"]');
-      if ((await input.count()) > 0) {
-        await input.fill('1');
-        await calculateBtn.click();
-        await page.waitForTimeout(1000);
-      }
-    }
-
-    const hasEnergy = (await await energyDisplay.count()) > 0;
-    if (hasEnergy) {
-      await expect(energyDisplay.first()).toBeVisible();
-    }
+    const energyDisplay = page.locator('text=/kilojoule|Heizwert|Energiefreisetzung/');
+    await expect(energyDisplay.first()).toBeVisible();
   });
 
   test('should have common fuel presets', async ({ page }) => {
     await page.goto(`${BASE_URL}/verbrennungsrechner/`);
 
-    const presets = page.locator(
-      '.preset, .fuel-preset, button:has-text("Benzin"), button:has-text("Diesel"), button:has-text("Erdgas")'
-    );
+    const presets = page.locator('.quick-examples button, .preset, .fuel-preset');
     const hasPresets = (await await presets.count()) > 0;
 
     expect(hasPresets).toBeTruthy();
@@ -114,34 +93,28 @@ test.describe('Verbrennungsrechner', () => {
   test('should show stoichiometric coefficients', async ({ page }) => {
     await page.goto(`${BASE_URL}/verbrennungsrechner/`);
 
-    const coefficients = page.locator('.coefficient, .stoichiometry, text=/C.*H.*O/');
+    // Probe-verifiziert: Gleichung nach CH4-Analyse → "CH4 + 2.00 O₂ → CO₂…"
+    await page.locator('#fuel-formula').fill('CH4');
+    await page.locator('#fuel-mass').fill('16');
+    await page.locator('#btn-calc-combustion').click();
+    await page.waitForTimeout(1500);
 
-    const calculateBtn = page.locator('button:has-text("Berechnen"), button:has-text("Calculate")');
-    if ((await calculateBtn.count()) > 0) {
-      const input = page.locator('input[name*="fuel"]');
-      if ((await input.count()) > 0) {
-        await input.fill('octane');
-        await calculateBtn.click();
-        await page.waitForTimeout(1000);
-      }
-    }
-
+    const coefficients = page.locator('#combustion-equation');
     const hasCoefficients = (await await coefficients.count()) > 0;
     if (hasCoefficients) {
-      await expect(coefficients.first()).toBeVisible();
+      await expect(coefficients).toBeVisible();
+      await expect(coefficients).toContainText(/O₂|O2/);
     }
   });
 
   test('should validate input for negative values', async ({ page }) => {
     await page.goto(`${BASE_URL}/verbrennungsrechner/`);
 
-    const input = page.locator('input[name*="fuel"], input[name*="amount"]');
+    const input = page.locator('#fuel-mass');
     if ((await input.count()) > 0) {
       await input.fill('-1');
 
-      const calculateBtn = page.locator(
-        'button:has-text("Berechnen"), button:has-text("Calculate")'
-      );
+      const calculateBtn = page.locator('#btn-calc-combustion');
       if ((await calculateBtn.count()) > 0) {
         await calculateBtn.click();
         await page.waitForTimeout(500);
@@ -160,19 +133,23 @@ test.describe('Verbrennungsrechner', () => {
 
     const emissions = page.locator('.emissions, .co2, text=/CO2|Kohlenstoffdioxid/');
 
-    const calculateBtn = page.locator('button:has-text("Berechnen"), button:has-text("Calculate")');
+    const calculateBtn = page.locator('#btn-calc-combustion');
     if ((await calculateBtn.count()) > 0) {
-      const input = page.locator('input[name*="fuel"]');
+      const input = page.locator('#fuel-formula');
       if ((await input.count()) > 0) {
-        await input.fill('1');
+        await input.fill('CH4');
+        await page.locator('#fuel-mass').fill('16');
         await calculateBtn.click();
-        await page.waitForTimeout(1000);
+        await page.waitForTimeout(1500);
       }
     }
 
-    const hasEmissions = (await await emissions.count()) > 0;
+    // Probe-verifiziert: #environmental-data ("Umweltkennwerte") nennt CO₂
+    const envData = page.locator('#environmental-data');
+    const hasEmissions = (await envData.count()) > 0 || (await emissions.count()) > 0;
     if (hasEmissions) {
-      await expect(emissions.first()).toBeVisible();
+      const target = (await envData.count()) > 0 ? envData : emissions.first();
+      await expect(target).toBeVisible();
     }
   });
 

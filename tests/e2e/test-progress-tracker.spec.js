@@ -88,8 +88,8 @@ test.describe('Progress Tracker', () => {
   test('should show percentage completion', async ({ page }) => {
     await page.goto(`${BASE_URL}/`);
 
-    const percentage = page.locator('.percentage, text=/%/, [class*="percent"]');
-    const hasPercentage = (await await percentage.count()) > 0;
+    const percentage = page.locator('.percentage:visible, [class*="percent"]:visible');
+    const hasPercentage = (await percentage.count()) > 0;
 
     if (hasPercentage) {
       await expect(percentage.first()).toBeVisible();
