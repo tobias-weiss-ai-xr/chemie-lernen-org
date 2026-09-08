@@ -255,12 +255,7 @@ jobs:
             if ! echo "$CURR_HTML" | grep -q 'state-select'; then
               echo "❌ SMOKE FAIL: /curricula/ missing #state-select dropdown (UXF-043)"; exit 1
             fi
-            STATE_OPTS=$(echo "$CURR_HTML" | python3 -c '
-import sys, re
-html = sys.stdin.read()
-m = re.search(r"<select[^>]*id=\"?state-select\"?[^>]*>(.*?)</select>", html, re.S | re.I)
-opts = re.findall(r"value=\"?([a-z]{2})\"?", m.group(1)) if m else []
-print(len(set(opts)))' 2>/dev/null || echo 0)
+            STATE_OPTS=$(echo "$CURR_HTML" | python3 -c 'import sys, re; html = sys.stdin.read(); m = re.search(r"<select[^>]*id=\"?state-select\"?[^>]*>(.*?)</select>", html, re.S | re.I); print(len(set(re.findall(r"value=\"?([a-z]{2})\"?", m.group(1) if m else ""))))' 2>/dev/null || echo 0)
             if [ "$STATE_OPTS" -ne 16 ]; then
               echo "❌ SMOKE FAIL: dropdown has $STATE_OPTS state options (expected 16)"; exit 1
             fi
@@ -277,23 +272,11 @@ print(len(set(opts)))' 2>/dev/null || echo 0)
             echo "  ✓ nav aggregation intact (1 entry, 0 individual links)"
             # 11. /api/curricula/list: all 16 states present (empty state = warn, not fail)
             LIST_JSON=$(curl -sf "$API/api/curricula/list" -m 30 || true)
-            STATE_COUNT=$(echo "$LIST_JSON" | python3 -c '
-import sys, json
-try:
-    d = json.load(sys.stdin)
-    print(len(d.get("states", [])))
-except Exception:
-    print(0)' 2>/dev/null || echo 0)
+            STATE_COUNT=$(echo "$LIST_JSON" | python3 -c 'import sys, json; d = json.load(sys.stdin); print(len(d.get("states", [])))' 2>/dev/null || echo 0)
             if [ "$STATE_COUNT" -ne 16 ]; then
               echo "❌ SMOKE FAIL: /api/curricula/list returned $STATE_COUNT states (expected 16)"; exit 1
             fi
-            EMPTY_STATES=$(echo "$LIST_JSON" | python3 -c '
-import sys, json
-try:
-    d = json.load(sys.stdin)
-    print(sum(1 for s in d.get("states", []) if not s.get("curricula")))
-except Exception:
-    print(-1)' 2>/dev/null || echo -1)
+            EMPTY_STATES=$(echo "$LIST_JSON" | python3 -c 'import sys, json; d = json.load(sys.stdin); print(sum(1 for s in d.get("states", []) if not s.get("curricula")))' 2>/dev/null || echo -1)
             if [ "$EMPTY_STATES" -gt 0 ]; then
               echo "  ⚠ SMOKE WARN: /api/curricula/list has $EMPTY_STATES state(s) without curricula"
             else
