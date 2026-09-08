@@ -17,7 +17,8 @@ const path = require('path');
 const { test, expect } = require('@playwright/test');
 
 const BASE_URL = process.env.BASE_URL || 'https://chemie-lernen.org';
-const SW_PATH = path.join(__dirname, '..', 'myhugoapp', 'static', 'sw.js');
+// Pfad zum Repo-sw.js — tests/e2e/ liegt EINE Ebene unter tests/, daher '..','..' bis repo-root
+const SW_PATH = path.join(__dirname, '..', '..', 'myhugoapp', 'static', 'sw.js');
 
 function repoVersion() {
   const m = fs.readFileSync(SW_PATH, 'utf8').match(/SW_VERSION\s*=\s*'([^']+)'/);

@@ -65,7 +65,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
     await expect(errorElement).toContainText('nicht gefunden');
 
     // Take screenshot
-    await page.screenshot({ path: 'test-results/molecule-studio-error-state.webp' });
+    await page.screenshot({ path: 'test-results/molecule-studio-error-state.png' });
   });
 
   test('Suggestion chip - Wasser (H2O)', async ({ page }) => {
@@ -92,7 +92,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
     await expect(page.locator('#molecule-input')).toHaveValue('Wasser');
 
     // Take screenshot
-    await page.screenshot({ path: 'test-results/molecule-studio-wasser.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/molecule-studio-wasser.png', fullPage: true });
   });
 
   test('Suggestion chip - Methan (CH4)', async ({ page }) => {
@@ -113,7 +113,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
     await expect(page.locator('#molecule-input')).toHaveValue('Methan');
 
     // Take screenshot
-    await page.screenshot({ path: 'test-results/molecule-studio-methan.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/molecule-studio-methan.png', fullPage: true });
   });
 
   test('Suggestion chip - Ammoniak (NH3)', async ({ page }) => {
@@ -134,7 +134,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
     await expect(page.locator('#molecule-input')).toHaveValue('Ammoniak');
 
     // Take screenshot
-    await page.screenshot({ path: 'test-results/molecule-studio-ammoniak.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/molecule-studio-ammoniak.png', fullPage: true });
   });
 
   test('Suggestion chip - Kohlendioxid (CO2)', async ({ page }) => {
@@ -155,7 +155,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
     await expect(page.locator('#molecule-input')).toHaveValue('Kohlendioxid');
 
     // Take screenshot
-    await page.screenshot({ path: 'test-results/molecule-studio-co2.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/molecule-studio-co2.png', fullPage: true });
   });
 
   test('Suggestion chip - Ethen (C2H4)', async ({ page }) => {
@@ -176,7 +176,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
     await expect(page.locator('#molecule-input')).toHaveValue('Ethen');
 
     // Take screenshot
-    await page.screenshot({ path: 'test-results/molecule-studio-ethen.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/molecule-studio-ethen.png', fullPage: true });
   });
 
   test('Visualize button with input field - Enter key', async ({ page }) => {
@@ -197,7 +197,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
     expect(inputValue).toBe('Wasser');
 
     // Take screenshot for visual verification
-    await page.screenshot({ path: 'test-results/molecule-studio-enter-key.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/molecule-studio-enter-key.png', fullPage: true });
   });
 
   test('Visualize button - Click button after typing', async ({ page }) => {
@@ -217,7 +217,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
 
     // Take screenshot
     await page.screenshot({
-      path: 'test-results/molecule-studio-button-click.webp',
+      path: 'test-results/molecule-studio-button-click.png',
       fullPage: true,
     });
   });
@@ -237,7 +237,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
     await expect(page.locator('#auto-rotate')).not.toBeChecked();
 
     // Take screenshot
-    await page.screenshot({ path: 'test-results/molecule-studio-rotate-off.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/molecule-studio-rotate-off.png', fullPage: true });
   });
 
   test('Auto-rotate toggle - Re-enable rotation', async ({ page }) => {
@@ -256,7 +256,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
     await expect(page.locator('#auto-rotate')).toBeChecked();
 
     // Take screenshot
-    await page.screenshot({ path: 'test-results/molecule-studio-rotate-on.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/molecule-studio-rotate-on.png', fullPage: true });
   });
 
   test('Mouse drag - Manual rotation stops auto-rotate', async ({ page }) => {
@@ -301,7 +301,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
 
     // Take screenshot
     await page.screenshot({
-      path: 'test-results/molecule-studio-manual-rotate.webp',
+      path: 'test-results/molecule-studio-manual-rotate.png',
       fullPage: true,
     });
   });
@@ -320,14 +320,14 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
     await page.waitForTimeout(200);
 
     // Take screenshot after zoom in
-    await page.screenshot({ path: 'test-results/molecule-studio-zoom-in.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/molecule-studio-zoom-in.png', fullPage: true });
 
     // Zoom out (positive delta)
     await page.mouse.wheel(0, 100);
     await page.waitForTimeout(200);
 
     // Take screenshot after zoom out
-    await page.screenshot({ path: 'test-results/molecule-studio-zoom-out.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/molecule-studio-zoom-out.png', fullPage: true });
   });
 
   test('All suggestion chips have correct labels', async ({ page }) => {
@@ -355,7 +355,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
 
     // Take screenshot
     await page.screenshot({
-      path: 'test-results/molecule-studio-switch-1-water.webp',
+      path: 'test-results/molecule-studio-switch-1-water.png',
       fullPage: true,
     });
 
@@ -366,7 +366,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
 
     // Take screenshot
     await page.screenshot({
-      path: 'test-results/molecule-studio-switch-2-methan.webp',
+      path: 'test-results/molecule-studio-switch-2-methan.png',
       fullPage: true,
     });
 
@@ -377,7 +377,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
 
     // Take screenshot
     await page.screenshot({
-      path: 'test-results/molecule-studio-switch-3-co2.webp',
+      path: 'test-results/molecule-studio-switch-3-co2.png',
       fullPage: true,
     });
   });
@@ -392,7 +392,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
 
     if (isVisible) {
       // Take screenshot of loading state if captured
-      await page.screenshot({ path: 'test-results/molecule-studio-loading.webp', fullPage: true });
+      await page.screenshot({ path: 'test-results/molecule-studio-loading.png', fullPage: true });
     }
 
     // Wait for completion
@@ -451,7 +451,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
     await page.waitForTimeout(600);
 
     // Take screenshot for mobile view
-    await page.screenshot({ path: 'test-results/molecule-studio-mobile.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/molecule-studio-mobile.png', fullPage: true });
 
     // Check all elements are still visible
     await expect(page.locator('#molecule-studio-container')).toBeVisible();
@@ -468,7 +468,7 @@ test.describe('Molecule Studio - Visual Button Tests', () => {
     );
 
     // Take screenshot of welcome state
-    await page.screenshot({ path: 'test-results/molecule-studio-welcome.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/molecule-studio-welcome.png', fullPage: true });
   });
 
   test('Canvas touch action is set correctly', async ({ page }) => {
@@ -556,7 +556,7 @@ test.describe('Molecule Studio - Visual Regression', () => {
 
       // Take screenshot
       await page.screenshot({
-        path: `test-results/molecule-studio-regression-${molecule.toLowerCase()}.webp`,
+        path: `test-results/molecule-studio-regression-${molecule.toLowerCase()}.png`,
         fullPage: true,
       });
     }
@@ -590,7 +590,7 @@ test.describe('Periodensystem - Layout Tests', () => {
     expect(containerBox.height).toBeGreaterThan(0);
 
     // Take screenshot for visual verification
-    await page.screenshot({ path: 'test-results/pse-no-overlap.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/pse-no-overlap.png', fullPage: true });
   });
 
   test('Header is hidden on PSE page', async ({ page }) => {
@@ -601,7 +601,7 @@ test.describe('Periodensystem - Layout Tests', () => {
     expect(isVisible).toBeFalsy();
 
     // Take screenshot to verify header is not visible
-    await page.screenshot({ path: 'test-results/pse-no-header.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/pse-no-header.png', fullPage: true });
   });
 
   test('PSE container fills available space', async ({ page }) => {
@@ -636,7 +636,7 @@ test.describe('Periodensystem - Layout Tests', () => {
     }
 
     // Take screenshot
-    await page.screenshot({ path: 'test-results/pse-menu-visible.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/pse-menu-visible.png', fullPage: true });
   });
 
   test('Footer is visible below menu', async ({ page }) => {
@@ -656,7 +656,7 @@ test.describe('Periodensystem - Layout Tests', () => {
     expect(footerBox.y).toBeGreaterThan(menuBox.y + menuBox.height);
 
     // Take screenshot for visual verification
-    await page.screenshot({ path: 'test-results/pse-footer-below-menu.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/pse-footer-below-menu.png', fullPage: true });
   });
 
   test('Footer does not overlay PSE container', async ({ page }) => {
@@ -683,7 +683,7 @@ test.describe('Periodensystem - Layout Tests', () => {
     expect(footerBox.width).toBeGreaterThan(0);
 
     // Take screenshot
-    await page.screenshot({ path: 'test-results/pse-no-footer-overlay.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/pse-no-footer-overlay.png', fullPage: true });
   });
 
   test('PSE elements remain clickable with footer present', async ({ page }) => {
@@ -704,7 +704,7 @@ test.describe('Periodensystem - Layout Tests', () => {
     expect(hydrogenBox.height).toBeGreaterThan(0);
 
     // Screenshot for visual verification
-    await page.screenshot({ path: 'test-results/pse-elements-clickable.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/pse-elements-clickable.png', fullPage: true });
   });
 
   test('Dark mode - no white stripe on PSE page', async ({ page }) => {
@@ -738,7 +738,7 @@ test.describe('Periodensystem - Layout Tests', () => {
     expect(menuBg).not.toBe('rgb(255, 255, 255)');
 
     // Take screenshot for visual verification
-    await page.screenshot({ path: 'test-results/pse-dark-mode-no-stripe.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/pse-dark-mode-no-stripe.png', fullPage: true });
   });
 });
 
@@ -767,7 +767,7 @@ test.describe('Periodensystem - Mobile View Tests', () => {
     }
 
     // Take screenshot
-    await page.screenshot({ path: 'test-results/pse-mobile-buttons.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/pse-mobile-buttons.png', fullPage: true });
   });
 
   test('Mobile viewport - container fills available space', async ({ page }) => {
@@ -784,7 +784,7 @@ test.describe('Periodensystem - Mobile View Tests', () => {
     expect(containerBox.height).toBeGreaterThan(300); // Should be substantial
 
     // Screenshot
-    await page.screenshot({ path: 'test-results/pse-mobile-container.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/pse-mobile-container.png', fullPage: true });
   });
 
   test('Mobile viewport - mode switching works', async ({ page }) => {
@@ -811,7 +811,7 @@ test.describe('Periodensystem - Mobile View Tests', () => {
     }
 
     // Screenshot final state
-    await page.screenshot({ path: 'test-results/pse-mobile-mode-switch.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/pse-mobile-mode-switch.png', fullPage: true });
   });
 
   test('Mobile viewport - footer visible below menu', async ({ page }) => {
@@ -832,7 +832,7 @@ test.describe('Periodensystem - Mobile View Tests', () => {
     expect(footerBox.y).toBeGreaterThan(menuBox.y + menuBox.height);
 
     // Screenshot
-    await page.screenshot({ path: 'test-results/pse-mobile-footer.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/pse-mobile-footer.png', fullPage: true });
   });
 
   test('Mobile dark mode - no white stripe', async ({ page }) => {
@@ -861,7 +861,7 @@ test.describe('Periodensystem - Mobile View Tests', () => {
     expect(containerBg).not.toBe('rgb(255, 255, 255)');
 
     // Screenshot
-    await page.screenshot({ path: 'test-results/pse-mobile-dark-mode.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/pse-mobile-dark-mode.png', fullPage: true });
   });
 
   test('Tablet viewport - proper layout', async ({ page }) => {
@@ -882,7 +882,7 @@ test.describe('Periodensystem - Mobile View Tests', () => {
     expect(containerBox.width).toBeGreaterThan(0);
 
     // Screenshot
-    await page.screenshot({ path: 'test-results/pse-tablet-layout.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/pse-tablet-layout.png', fullPage: true });
   });
 });
 
@@ -893,22 +893,23 @@ test.describe('Periodensystem - Active Button Tests', () => {
     await page.waitForTimeout(1500); // Wait for initial animation
   });
 
-  test('Grid button is active on page load', async ({ page }) => {
+  test('Table button is active on page load', async ({ page }) => {
     const gridButton = page.locator('#grid');
     const tableButton = page.locator('#table');
     const sphereButton = page.locator('#sphere');
     const helixButton = page.locator('#helix');
 
-    // Grid button should have active class
-    await expect(gridButton).toHaveClass(/active-mode/);
+    // Der initiale View ist die Tabellenansicht (setActiveButton(tableBtn)
+    // im PSE-Init) — NICHT grid.
+    await expect(tableButton).toHaveClass(/active-mode/);
 
     // Other buttons should not have active class
-    await expect(tableButton).not.toHaveClass(/active-mode/);
+    await expect(gridButton).not.toHaveClass(/active-mode/);
     await expect(sphereButton).not.toHaveClass(/active-mode/);
     await expect(helixButton).not.toHaveClass(/active-mode/);
 
     // Screenshot
-    await page.screenshot({ path: 'test-results/pse-active-grid-button.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/pse-active-grid-button.png', fullPage: true });
   });
 
   test('Active button changes when clicking different modes', async ({ page }) => {
@@ -938,12 +939,16 @@ test.describe('Periodensystem - Active Button Tests', () => {
     }
 
     // Screenshot final state
-    await page.screenshot({ path: 'test-results/pse-active-button-changes.webp', fullPage: true });
+    await page.screenshot({ path: 'test-results/pse-active-button-changes.png', fullPage: true });
   });
 
   test('Active button has different visual style', async ({ page }) => {
     const gridButton = page.locator('#grid');
     const tableButton = page.locator('#table');
+
+    // Erst in den Grid-Modus schalten — der initiale View ist table.
+    await page.click('#grid');
+    await page.waitForTimeout(2500); // View-Animation abwarten
 
     // Get background colors
     const gridBg = await gridButton.evaluate((el) => {
@@ -962,7 +967,7 @@ test.describe('Periodensystem - Active Button Tests', () => {
 
     // Screenshot
     await page.screenshot({
-      path: 'test-results/pse-active-button-visual-style.webp',
+      path: 'test-results/pse-active-button-visual-style.png',
       fullPage: true,
     });
   });

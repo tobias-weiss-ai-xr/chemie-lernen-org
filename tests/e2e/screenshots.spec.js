@@ -12,21 +12,21 @@ test.describe('Screenshot Tests', () => {
     await page.goto(BASE_URL);
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000);
-    await page.screenshot({ path: 'screenshots/homepage.webp', fullPage: true });
+    await page.screenshot({ path: 'screenshots/homepage.png', fullPage: true });
   });
 
   test('Periodensystem - full page screenshot', async ({ page }) => {
     await page.goto(`${BASE_URL}/perioden-system-der-elemente/`);
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(2000); // Wait for 3D to load
-    await page.screenshot({ path: 'screenshots/periodensystem.webp', fullPage: true });
+    await page.screenshot({ path: 'screenshots/periodensystem.png', fullPage: true });
   });
 
   test('Molekülstudio - full page screenshot', async ({ page }) => {
     await page.goto(`${BASE_URL}/molekuel-studio/`);
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000);
-    await page.screenshot({ path: 'screenshots/molekuel-studio.webp', fullPage: true });
+    await page.screenshot({ path: 'screenshots/molekuel-studio.png', fullPage: true });
   });
 
   test('Molekülstudio - with molecule loaded', async ({ page }) => {
@@ -42,7 +42,7 @@ test.describe('Screenshot Tests', () => {
     await wasserChip.click();
     await page.waitForTimeout(2000); // Wait for molecule to render
 
-    await page.screenshot({ path: 'screenshots/molekuel-studio-wasser.webp', fullPage: true });
+    await page.screenshot({ path: 'screenshots/molekuel-studio-wasser.png', fullPage: true });
   });
 
   test('Periodensystem - dark mode', async ({ page }) => {
@@ -56,7 +56,7 @@ test.describe('Screenshot Tests', () => {
     });
     await page.waitForTimeout(500);
 
-    await page.screenshot({ path: 'screenshots/periodensystem-dark.webp', fullPage: true });
+    await page.screenshot({ path: 'screenshots/periodensystem-dark.png', fullPage: true });
   });
 
   test('Mobile view - homepage', async ({ page }) => {
@@ -64,7 +64,7 @@ test.describe('Screenshot Tests', () => {
     await page.goto(BASE_URL);
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000);
-    await page.screenshot({ path: 'screenshots/mobile-homepage.webp', fullPage: true });
+    await page.screenshot({ path: 'screenshots/mobile-homepage.png', fullPage: true });
   });
 
   test('Mobile view - Periodensystem', async ({ page }) => {
@@ -72,7 +72,7 @@ test.describe('Screenshot Tests', () => {
     await page.goto(`${BASE_URL}/perioden-system-der-elemente/`);
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(2000);
-    await page.screenshot({ path: 'screenshots/mobile-periodensystem.webp', fullPage: true });
+    await page.screenshot({ path: 'screenshots/mobile-periodensystem.png', fullPage: true });
   });
 
   test('Mobile view - Molekülstudio', async ({ page }) => {
@@ -80,6 +80,6 @@ test.describe('Screenshot Tests', () => {
     await page.goto(`${BASE_URL}/molekuel-studio/`);
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000);
-    await page.screenshot({ path: 'screenshots/mobile-molekuel-studio.webp', fullPage: true });
+    await page.screenshot({ path: 'screenshots/mobile-molekuel-studio.png', fullPage: true });
   });
 });

@@ -163,6 +163,11 @@ config header comment). Tests against the **live production site**
 webServer config — E2E tests require the site to be deployed.
 Only `*.spec.js` files are picked up — `*.test.js` belongs to vitest.
 
+Specs for features that are **not built/deployed yet** live in
+`tests/e2e/quarantine/` (ignored by default; re-enable with
+`E2E_INCLUDE_QUARANTINE=1`). Audit report + remaining selector-drift
+backlog: `tests/e2e/AUDIT-2026-09-08.md`.
+
 ### Test file naming
 
 - `*.test.js` / `*.test.mjs` → vitest unit tests (jsdom environment, match `tests/**/*.test.{js,mjs}`; `tests/setup.mjs` aliases `globalThis.jest` → `vi` for legacy tests)
