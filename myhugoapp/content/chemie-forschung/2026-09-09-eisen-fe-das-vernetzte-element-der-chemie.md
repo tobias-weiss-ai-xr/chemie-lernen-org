@@ -12,10 +12,10 @@ tags:
 - reduktion
 - säure
 - periodensystem
-review_status: draft
-reviewer: ""
-review_date: ""
-draft: true
+review_status: published
+reviewer: "pi-agent (KG-Review, Batch 2026-09-09)"
+review_date: 2026-09-09
+draft: false
 ---
 
 # Eisen (Fe): Das vernetzte Element der Chemie
