@@ -1102,3 +1102,13 @@ body {
     border-radius: 6px;
   }
 }
+
+/* Footer: Altersfreigaben-Logos klein + in einer Reihe.
+   Die globale Regel img{height:auto;max-width:100%} (sass/main.css) hätte
+   sonst Vorrang vor dem height-Attribut — die SVGs haben intrinsische
+   Root-Größen bis 1406px und würden riesig gerendert. */
+.footer-ratings img {
+  height: 20px !important;
+  width: auto !important;
+  display: inline-block;
+}
