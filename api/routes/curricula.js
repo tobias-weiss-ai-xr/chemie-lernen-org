@@ -21,6 +21,34 @@ import { getNeo4jDriver, NEO4J_DATABASE, toNumberSafe } from '../services/neo4j.
 import { getFallbackData } from '../services/content.js';
 import curriculaMapper from '../curricula-mapper.cjs';
 
+// PERF-2026-09-08: In-Memory-TTL-Cache für die teuren Lese-Endpoints.
+// Curricula-Daten ändern sich nur beim (Re-)Import, und der API-Container
+// wird bei jedem Deploy neu erstellt — 10 min TTL ist also immer frisch.
+// Cache-Size-Bound: max 16 Bundesländer × 2 Varianten + states/list —
+// eine feste Map mit Max-Größe reicht hier völlig.
+const CURRICULA_CACHE_TTL_MS = 10 * 60 * 1000;
+const CURRICULA_CACHE_MAX = 64;
+const curriculaCache = new Map(); // key -> { expires, body }
+
+function cacheGet(key) {
+  const hit = curriculaCache.get(key);
+  if (!hit) return undefined;
+  if (Date.now() > hit.expires) {
+    curriculaCache.delete(key);
+    return undefined;
+  }
+  return hit.body;
+}
+
+function cacheSet(key, body) {
+  if (curriculaCache.size >= CURRICULA_CACHE_MAX) {
+    // ältesten Eintrag verwerfen (Map iteriert in Insertion-Order)
+    const oldest = curriculaCache.keys().next().value;
+    if (oldest !== undefined) curriculaCache.delete(oldest);
+  }
+  curriculaCache.set(key, { expires: Date.now() + CURRICULA_CACHE_TTL_MS, body });
+}
+
 // UXF-034: Query-Params koerzieren — Express macht ?x=a&x=b zu Arrays,
 // .trim()/.toLowerCase() auf Arrays wirft TypeError (500). qs() nimmt bei
 // Arrays das erste Element und koerziert alles zu String (null → '').
@@ -42,6 +70,9 @@ const logger = pino({
  */
 router.get('/api/curricula/states', async (req, res) => {
   try {
+    const cached = cacheGet('states');
+    if (cached) return res.json(cached);
+
     const driver = getNeo4jDriver();
     const session = driver.session({
       database: NEO4J_DATABASE,
@@ -60,7 +91,9 @@ router.get('/api/curricula/states', async (req, res) => {
       stateName: r.get('stateName'),
       curriculumCount: r.get('curriculumCount').toNumber(),
     }));
-    res.json({ source: 'neo4j', states, count: states.length });
+    const body = { source: 'neo4j', states, count: states.length };
+    cacheSet('states', body);
+    res.json(body);
   } catch (err) {
     logger.error(
       { err: err, message: err.message || String(err) },
@@ -94,6 +127,9 @@ router.get('/api/curricula/states', async (req, res) => {
  */
 router.get('/api/curricula/list', async (req, res) => {
   try {
+    const cached = cacheGet('list');
+    if (cached) return res.json(cached);
+
     const driver = getNeo4jDriver();
     const session = driver.session({
       database: NEO4J_DATABASE,
@@ -125,11 +161,13 @@ router.get('/api/curricula/list', async (req, res) => {
       });
     });
     const states = Array.from(map.values());
-    res.json({
+    const body = {
       source: 'neo4j',
       states,
       count: states.reduce((s, st) => s + st.curricula.length, 0),
-    });
+    };
+    cacheSet('list', body);
+    res.json(body);
   } catch (err) {
     logger.error({ err: err, message: err.message || String(err) }, '[curricula/list] Neo4j error');
     try {
@@ -337,6 +375,12 @@ router.get('/api/curricula/by-state/:state', async (req, res) => {
   }
 
   try {
+    const cacheKey = 'by-state:' + state;
+    const cached = cacheGet(cacheKey);
+    if (cached) {
+      return res.json(cached);
+    }
+
     var driver = getNeo4jDriver();
     var session = driver.session({
       database: NEO4J_DATABASE,
@@ -349,13 +393,15 @@ router.get('/api/curricula/by-state/:state', async (req, res) => {
 
     const topics = curriculaMapper.mapCurriculumTopics(result.records);
 
-    res.json({
+    const body = {
       source: 'neo4j',
       state,
       topicCount: topics.length,
       totalObjectives: topics.reduce((s, t) => s + t.objectiveCount, 0),
       topics,
-    });
+    };
+    cacheSet(cacheKey, body);
+    res.json(body);
   } catch (err) {
     logger.error(
       { err: err, message: err.message || String(err) },
@@ -949,3 +995,9 @@ router.get('/api/curricula/graph', async (req, res) => {
 });
 
 export default router;
+
+/** Test-Hook: Cache zwischen Tests leeren (mock-basierte Tests zählen
+ *  mockSessionRun-Aufrufe — ein persistierender Cache würde sie aushebeln). */
+export function __clearCurriculaCache() {
+  curriculaCache.clear();
+}

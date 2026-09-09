@@ -40,8 +40,27 @@ function isTextMatchCandidate(name) {
 
 /** Cypher for the by-state tree — direct COVERS_TOPIC (both directions) UNION
  *  FULFILLS via learning objectives UNION word-boundary name mentions in LO
- *  texts. */
+ *  texts.
+ *
+ *  PERF-2026-09-08: Das alte Text-Fallback-Matching war ein kartesisches
+ *  Produkt Topic × Entity (321×14730 bei BY) mit einer pro-Paar
+ *  EXISTS-Regex-Subquery — 15,8s / 44M DbHits für BY allein. Die neue
+ *  Form bildet pro Topic EIN Token-Set aus den Lernziel-Texten (lower- +
+ *  original-cased, damit Akronyme wie "H2O" treffen) und matched über
+ *  `e4.name IN toks` mit dem entity_name_unique RANGE-Index → 0,64s /
+ *  137k DbHits (24× schneller, ~320× weniger Hits). Semantik bleibt
+ *  "Entity-Name als ganzes Wort in den Lernzielen" — der vorherige
+ *  Regex verlangte ebenfalls Wortgrenzen; Ziffern/Bindestriche gelten
+ *  als Grenze, Interpunktion wird durch replace zu Space. Textbasis ist
+ *  die objectives-Sammlung (:FULFILLS) — Chips passen also zu den
+ *  angezeigten Lernzielen. */
 function buildByStateQuery() {
+  // Interpunktion → Space, damit split(' ') ganze Wörter liefert
+  // (äquivalent zur alten Wortgrenzen-Klasse [^a-zäöüß]).
+  const PUNCT = ['.', ',', ';', ':', '!', '?', '(', ')', '"', "'", '/', '-', '–', '»', '«', '%'];
+  const punctToSpace = (expr) =>
+    PUNCT.reduce((acc, ch) => `replace(${acc}, '${ch === "'" ? "\\'" : ch}', ' ')`, expr);
+
   return `
 MATCH (c:Curriculum {state_abbr: $state})
 OPTIONAL MATCH (c)-[:HAS_SUBTOPIC]->(t:SubTopic)
@@ -49,20 +68,23 @@ OPTIONAL MATCH (t)-[:FULFILLS]->(lo:LearningObjective)
 OPTIONAL MATCH (t)<-[:COVERS_TOPIC]-(e:Entity)
 OPTIONAL MATCH (t)-[:COVERS_TOPIC]->(e2:Entity)
 OPTIONAL MATCH (t)-[:FULFILLS]->(lo2:LearningObjective)<-[:FULFILLS|FULFILLS_OBJECTIVE]-(e3:Entity)
-OPTIONAL MATCH (e4:Entity)
-WHERE size(e4.name) >= 3 AND size(e4.name) <= 80 AND EXISTS {
-  MATCH (t)-[:HAS_LEARNING_OBJECTIVE]->(lo4:LearningObjective)
-  WHERE lo4.text IS NOT NULL
-    AND toLower(lo4.text) =~ '(?i)(^|[^a-zäöüß])\\Q' + toLower(e4.name) + '\\E($|[^a-zäöüß])'
-}
 WITH c, t,
      collect(DISTINCT lo.text) AS objectives,
-     collect(DISTINCT e.name) + collect(DISTINCT e2.name) + collect(DISTINCT e3.name) + collect(DISTINCT e4.name) AS entities
+     collect(DISTINCT e.name) + collect(DISTINCT e2.name) + collect(DISTINCT e3.name) AS entities,
+     reduce(s = '', x IN collect(DISTINCT lo.text) | CASE WHEN x IS NULL THEN s ELSE s + ' ' + x END) AS rawO,
+     reduce(s = '', x IN collect(DISTINCT lo.text) | CASE WHEN x IS NULL THEN s ELSE s + ' ' + toLower(x) END) AS rawL
+WITH c, t, objectives, entities,
+     [tok IN split(${punctToSpace('rawL')}, ' ') WHERE size(tok) >= 3 AND size(tok) <= 80 | trim(tok)] +
+     [tok IN split(${punctToSpace('rawO')}, ' ') WHERE size(tok) >= 3 AND size(tok) <= 80 | trim(tok)] AS toks
+OPTIONAL MATCH (e4:Entity)
+WHERE e4.name IN toks
+WITH c, t, objectives, entities, collect(DISTINCT e4.name) AS textEnt
+WITH c, t, objectives, entities + textEnt AS allEnt
 RETURN c.slug AS curriculumSlug, c.school_type AS schoolType,
        t.slug AS slug, t.title AS title, t.grade AS grade,
        size([ob IN objectives WHERE ob IS NOT NULL]) AS objectiveCount,
        [ob IN objectives WHERE ob IS NOT NULL] AS objectives,
-       [en IN entities WHERE en IS NOT NULL AND en <> ''] AS entities
+       [en IN allEnt WHERE en IS NOT NULL AND en <> ''] AS entities
 ORDER BY t.grade, t.title`;
 }
 

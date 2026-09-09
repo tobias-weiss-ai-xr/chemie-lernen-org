@@ -41,7 +41,9 @@ vi.mock('../../api/services/content.js', () => ({
   getFallbackData: vi.fn(() => ({ curricula: [] })),
 }));
 
-const { default: router } = await import('../../api/routes/curricula.js');
+const { default: router, __clearCurriculaCache } = await import(
+  '../../api/routes/curricula.js'
+);
 const curriculaMapper = (await import('../../api/curricula-mapper.cjs')).default;
 const { getFallbackData } = await import('../../api/services/content.js');
 
@@ -55,6 +57,7 @@ let baseUrl;
 
 beforeEach(() => {
   vi.clearAllMocks();
+  __clearCurriculaCache(); // Perf-Cache würde mockSessionRun-Zählungen aushebeln
   const app = express();
   app.disable('x-powered-by');
   app.use('/', router);
@@ -195,6 +198,16 @@ describe('GET /api/curricula/by-state/:state', () => {
       objectives,
       entities,
     });
+
+  test('PERF-CACHE: 2. identischer Request kommt aus dem Cache (kein 2. Neo4j-Call)', async () => {
+    mockSessionRun.mockResolvedValue({
+      records: [TOPIC_RECORD('thema-1', 'Thema 1', ['LZ'], [], undefined)],
+    });
+    await fetch(`${baseUrl}/api/curricula/by-state/BW`);
+    await fetch(`${baseUrl}/api/curricula/by-state/BW`);
+
+    expect(mockSessionRun).toHaveBeenCalledTimes(1); // 2. Request → Cache-Hit
+  });
 
   test('nutzt curriculaMapper.buildByStateQuery + Schema B (SubTopic/FULFILLS)', async () => {
     mockSessionRun.mockResolvedValue({ records: [] });
