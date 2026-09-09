@@ -95,6 +95,7 @@ services:
     environment:
       - LITELLM_URL=http://litellm-proxy:4000
       - LITELLM_MODEL=tud/gemma-4-31b-it
+      - LITELLM_MODEL_PREMIUM=deepseek-v4-flash/local
       - LITELLM_API_KEY=${LITELLM_API_KEY}
       - PORT=3001
       - NEO4J_URI=bolt://chemie-kg:7687
