@@ -10,10 +10,10 @@ tags:
 - reaktion
 - molekül
 - elektro
-review_status: draft
-reviewer: ""
-review_date: ""
-draft: true
+review_status: published
+reviewer: "pi-agent (KG-Review, 122b-Testbatch)"
+review_date: 2026-09-09
+draft: false
 ---
 
 # Die Sprache der Materie: Kompetenzen und Inhalte als Schlüssel zum Verständnis der chemischen Welt
