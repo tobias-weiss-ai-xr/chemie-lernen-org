@@ -2,9 +2,12 @@
  * API-Contract-Tests: /api/curricula/* (UXF-042/043-Datenkette)
  *
  * Regression-Guards aus der Bug-Session 2026-09-08:
- *  - Der /list-Query muss BEIDE Neo4j-Schemata matchen
- *    (HAS_TOPIC|HAS_SUBTOPIC und HAS_LEARNING_OBJECTIVE|FULFILLS) —
- *    ein einziges Schema lieferte leere Bundesländer.
+ *  - Der /list-Query zählt nur den kanonischen Schema-B-Baum
+ *    (HAS_SUBTOPIC/FULFILLS) — das Legacy-Schema (HAS_TOPIC, Alt-Import)
+ *    spiegelt dieselben Inhalte 1:1 und inflatierte die Counts ~2x.
+ *    (Ursprünglich invers gebaut: "BEIDE Schemata matchen" gegen leere
+ *    Bundesländer; seit allen 16 Länder unter Schema B importiert sind,
+ *    schützt die einschränkende Variante vor Phantom-Zählungen.)
  *  - by-state nutzt Schema B (HAS_SUBTOPIC/FULFILLS) via curricula-mapper.
  *  - MAPPER-Caps: OBJECTIVES_CAP=8, ENTITIES_CAP=12 (UI verlässt sich drauf).
  *  - /list-Invariante: kein State wird je mit leerem curricula-Array
@@ -126,14 +129,22 @@ describe('GET /api/curricula/list', () => {
     });
   });
 
-  test('REGRESSION: Query matcht BEIDE Schemata (HAS_TOPIC|HAS_SUBTOPIC, HAS_LEARNING_OBJECTIVE|FULFILLS)', async () => {
+  test('REGRESSION: Query zählt nur den kanonischen Schema-B-Baum (SubTopic/FULFILLS)', async () => {
     mockSessionRun.mockResolvedValue({ records: [] });
     await fetch(`${baseUrl}/api/curricula/list`);
 
     expect(mockSessionRun).toHaveBeenCalledTimes(1);
     const query = mockSessionRun.mock.calls[0][0];
-    expect(query).toMatch(/HAS_TOPIC\|HAS_SUBTOPIC/);
-    expect(query).toMatch(/HAS_LEARNING_OBJECTIVE\|FULFILLS/);
+    // DATA-2026-09-08: Das Legacy-Schema (HAS_TOPIC + HAS_LEARNING_OBJECTIVE,
+    // Alt-Import) spiegelt die SubTopics 1:1 und ließ die Zählungen ~2x zu
+    // hoch ausfallen (RP 1634 statt 811). by-state rendert ebenfalls nur
+    // Schema B — die list-Query muss konsistent bleiben.
+    expect(query).toMatch(/HAS_SUBTOPIC/);
+    expect(query).not.toMatch(/HAS_TOPIC\|/);
+    expect(query).toMatch(/:SubTopic/);
+    expect(query).toMatch(/FULFILLS/);
+    expect(query).not.toMatch(/\[:HAS_LEARNING_OBJECTIVE/);
+    expect(query).not.toMatch(/\[:HAS_TOPIC/);
     // DISTINCT-Zählung gegen Duplikat-Knoten (inflated counts Bug)
     expect(query).toMatch(/count\(DISTINCT t\)/);
     expect(query).toMatch(/count\(DISTINCT lo\)/);

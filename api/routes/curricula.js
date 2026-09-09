@@ -137,8 +137,14 @@ router.get('/api/curricula/list', async (req, res) => {
     });
     const result = await session.run(
       `MATCH (c:Curriculum)
-       OPTIONAL MATCH (c)-[:HAS_TOPIC|HAS_SUBTOPIC]->(t)
-       OPTIONAL MATCH (t)-[:HAS_LEARNING_OBJECTIVE|FULFILLS]->(lo)
+       // PERF/DATA-2026-09-08: Nur der kanonische Schema-B-Baum (HAS_SUBTOPIC/
+       // FULFILLS, von import-curricula*.mjs erzeugt). Das parallele Legacy-
+       // Schema (HAS_TOPIC + HAS_LEARNING_OBJECTIVE, Alt-Import) spiegelt die
+       // selben Inhalte 1:1 (RP: 811 SubTopics vs 823 Legacy-Topics) und ließ
+       // die Overview-Zählungen ~2x zu hoch ausfallen (RP 1634 statt 811).
+       // by-state rendert ebenfalls nur Schema B — Counts sind jetzt konsistent.
+       OPTIONAL MATCH (c)-[:HAS_SUBTOPIC]->(t:SubTopic)
+       OPTIONAL MATCH (t)-[:FULFILLS]->(lo:LearningObjective)
        WITH c, count(DISTINCT t) AS topicCount, count(DISTINCT lo) AS objectiveCount
        RETURN c.state_abbr AS state, c.state AS stateName, c.slug AS slug,
               c.school_type AS schoolType, c.grade AS grade,
