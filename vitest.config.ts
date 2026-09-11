@@ -36,10 +36,7 @@ export default defineConfig({
     // leicht unter Ist-Stand 2026-09-08: 62.2/61.7/70.7/64.3)
     coverage: {
       provider: 'v8',
-      include: [
-        'myhugoapp/static/js/calculators/**/*.js',
-        'myhugoapp/static/js/utils/**/*.js',
-      ],
+      include: ['myhugoapp/static/js/calculators/**/*.js', 'myhugoapp/static/js/utils/**/*.js'],
       reporter: ['text', 'lcov'],
       thresholds: {
         statements: 60,

@@ -221,9 +221,9 @@ const GamificationEngine = {
 beforeEach(() => {
   // Mock localStorage
   const store = {};
-  vi
-    .spyOn(Storage.prototype, 'getItem')
-    .mockImplementation((key) => (store[key] !== undefined ? store[key] : null));
+  vi.spyOn(Storage.prototype, 'getItem').mockImplementation((key) =>
+    store[key] !== undefined ? store[key] : null
+  );
   vi.spyOn(Storage.prototype, 'setItem').mockImplementation((key, val) => {
     store[key] = String(val);
   });
