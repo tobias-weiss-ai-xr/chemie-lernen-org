@@ -10,7 +10,7 @@ layout: wissennetz
 
 
 <style>
-#kg-breadcrumb{display:block;font-size:0.85rem;color:#777;margin-bottom:8px;}
+#kg-breadcrumb{display:block;font-size:0.85rem;color:#626e7b;margin-bottom:8px;}
 #kg-hint{display:none;position:relative;padding:10px 14px;border:1px solid #b8d4f0;background:#eef6fd;border-radius:8px;margin-bottom:12px;font-size:0.95rem;color:#1a3a5c;}
 #kg-hint .btn-close-sm{position:absolute;top:8px;right:10px;border:none;background:none;font-size:14px;cursor:pointer;color:#558;}
 .kg-search-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:stretch;}
@@ -35,7 +35,7 @@ layout: wissennetz
 .kg-portal-link:hover{text-decoration:underline;}
 .kg-empty{color:#626e7b;font-style:italic;padding:1em 0;}
 [data-theme='dark']{
-#kg-breadcrumb{color:#999;}
+#kg-breadcrumb{color:#a5d6a7;}
 #kg-hint{background:#1e2a38;border-color:#2e4a66;color:#cfe3f5;}
 #kg-search{background:#2a2a2a;border-color:#555;color:#eee;}
 #kg-controls{background:#2a2a2a;}

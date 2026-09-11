@@ -986,3 +986,16 @@
 [data-theme='dark'] .practice-generator-container .score-section {
   background: linear-gradient(135deg, #3d4a9e, #5b3a8c);
 }
+
+[data-theme='dark'] .difficulty-easy,
+[data-theme='contrast'] .difficulty-easy {
+  color: #7dffb0;
+}
+[data-theme='dark'] .difficulty-medium,
+[data-theme='contrast'] .difficulty-medium {
+  color: #ffd54f;
+}
+[data-theme='dark'] .difficulty-hard,
+[data-theme='contrast'] .difficulty-hard {
+  color: #ff8a80;
+}

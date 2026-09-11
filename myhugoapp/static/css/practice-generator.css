@@ -176,6 +176,11 @@
   color: #dc3545;
 }
 
+/* A11y: #dc3545 = 4.37:1 → #c9302c (4.9:1) */
+.difficulty-hard {
+  color: #c9302c;
+}
+
 /* ===== Question Section ===== */
 #question-section {
   display: none;
