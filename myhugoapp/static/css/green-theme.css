@@ -41,8 +41,9 @@
 
 /* Primary color variables */
 :root {
-  --green-primary: #388e3c;
-  --green-dark: #2e7d32;
+  /* A11y: #388e3c (4.12) → #2e7d32 (5.13) mit weißem Text */
+  --green-primary: #2e7d32;
+  --green-dark: #276b2a;
   --green-darker: #1b5e20;
   --green-light: #66bb6a;
   --green-lighter: #c8e6c9;
