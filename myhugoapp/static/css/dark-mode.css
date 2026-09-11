@@ -945,6 +945,20 @@
   background: var(--card-bg);
   border-color: var(--border-color);
 }
+[data-theme='dark'] .quiz-widget .quiz-score,
+[data-theme='dark'] .quiz-widget .quiz-feedback.correct-fb {
+  color: #7dffb0;
+}
+[data-theme='dark'] .quiz-widget .quiz-progress-text,
+[data-theme='dark'] .quiz-widget .quiz-placeholder {
+  color: #a5d6a7;
+}
+[data-theme='dark'] .quiz-widget .quiz-feedback.correct-fb {
+  background-color: #14452c;
+}
+[data-theme='dark'] .filter-controls label {
+  color: var(--text-primary);
+}
 [data-theme='dark'] .panel-footer {
   background-color: var(--score-bg);
   border-color: var(--border-color);
