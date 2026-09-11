@@ -170,3 +170,42 @@ describe('A11y-Pass 2: WCAG-Werte (light Theme)', () => {
     }
   });
 });
+
+// Runde 5-9 Guards: green-theme-Vars, Inline-Panels, Gradient-Flächen
+describe('A11y Runde 5-9: green-theme + Gradient-Flächen thematisiert', () => {
+  const read = (p) => fs.readFileSync(path.join(MY, p), 'utf8');
+
+  test('green-theme --green-primary ist AA (#2e7d32)', () => {
+    const css = read('static/css/green-theme.css');
+    expect(css).toContain('--green-primary: #2e7d32');
+    expect(css).not.toContain('--green-primary: #388e3c');
+  });
+
+  test('score-section/recommendation-widget nutzen --score-bg statt Gradient', () => {
+    const pg = read('static/css/practice-generator.css');
+    expect(pg).not.toMatch(/score-section\s*{[^}]*linear-gradient/);
+    expect(pg).toMatch(/score-section\s*{[^}]*var\(--score-bg/);
+    const rw = read('layouts/partials/recommendation-widget.html');
+    expect(rw).toContain('background: var(--score-bg, #f1f8e9)');
+  });
+
+  test('Rechner-Layouts haben keine #f8f9fa-Hardcodes mehr in Panels', () => {
+    for (const f of [
+      'verduennungsrechner.html',
+      'dichte-rechner.html',
+      'loesungsrechner.html',
+      'stoechiometrie-rechner.html',
+      'einheitenumrechner.html',
+    ]) {
+      const src = read(`layouts/_default/${f}`);
+      expect(src).not.toMatch(/background(-color)?:\s*#f8f9fa/);
+    }
+  });
+
+  test('Dark: difficulty + card-grid smalls + pt-btn-farbe gesetzt', () => {
+    const dark = read('static/css/dark-mode.css');
+    expect(dark).toContain("[data-theme='dark'] .difficulty-easy");
+    expect(dark).toContain('#card-grid .card .panel-body small');
+    expect(dark).toContain('.pt-btn.pt-btn-primary');
+  });
+});
