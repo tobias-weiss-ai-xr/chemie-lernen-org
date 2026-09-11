@@ -115,6 +115,29 @@
         'Immer erst Wasser, dann Säure! Sonst kann es durch die Reaktionswärme zum Verspritzen kommen.',
     },
 
+    {
+      id: 'ec-9',
+      topic: 'Einführung in die Chemie',
+      slug: 'einfuehrung-chemie',
+      type: 'multiple-choice',
+      question: 'Ein Stoff, der ausschließlich aus einer Teilchenart besteht, wird genannt?',
+      options: ['Reinstoff', 'Gemisch', 'Lösung', 'Emulsion'],
+      correctIndex: 0,
+      explanation:
+        'Reinstoffe bestehen nur aus einer Teilchenart; Gemische (auch Lösungen und Emulsionen) enthalten mindestens zwei.',
+    },
+    {
+      id: 'ec-10',
+      topic: 'Einführung in die Chemie',
+      slug: 'einfuehrung-chemie',
+      type: 'true-false',
+      question: 'Bei einer chemischen Reaktion werden Atome vernichtet oder neu erzeugt.',
+      options: ['Richtig', 'Falsch'],
+      correctIndex: 1,
+      explanation:
+        'Atome bleiben erhalten und werden nur neu angeordnet — das ist die Massenerhaltung (Lavoisier).',
+    },
+
     // ══════════════════════════════════════════════════════════
     // aufbau-materie (Aufbau der Materie)
     // ══════════════════════════════════════════════════════════
@@ -228,6 +251,30 @@
         'Metalle zeichnen sich durch niedrige Ionisierungsenergien aus — sie geben leicht Elektronen ab.',
     },
 
+    {
+      id: 'am-9',
+      topic: 'Aufbau der Materie',
+      slug: 'aufbau-materie',
+      type: 'fill-in-blank',
+      question: 'Die Anzahl der Protonen in einem Atomkern wird auch als ________ bezeichnet.',
+      options: [],
+      correctAnswer: 'Ordnungszahl',
+      acceptedAnswers: ['Ordnungszahl', 'ordnungszahl', 'Kernladungszahl', 'kernladungszahl'],
+      explanation:
+        'Die Ordnungszahl (= Kernladungszahl) legt fest, um welches chemische Element es sich handelt.',
+    },
+    {
+      id: 'am-10',
+      topic: 'Aufbau der Materie',
+      slug: 'aufbau-materie',
+      type: 'multiple-select',
+      question: 'Welche Teilchen gehören zum Atomkern?',
+      options: ['Protonen', 'Elektronen', 'Neutronen', 'Photonen'],
+      correctIndices: [0, 2],
+      explanation:
+        'Der Kern besteht aus Protonen und Neutronen (Nukleonen). Elektronen halten sich in der Hülle auf, Photonen sind Lichtteilchen.',
+    },
+
     // ══════════════════════════════════════════════════════════
     // anorganische-verbindungen (Anorganische Verbindungen)
     // ══════════════════════════════════════════════════════════
@@ -314,6 +361,28 @@
       correctIndex: 2,
       explanation:
         'Das Ionenprodukt des Wassens ist Kw = [H⁺][OH⁻] = 10⁻¹⁴ mol²/L² bei 25 °C. Daraus folgt pKw = 14.',
+    },
+
+    {
+      id: 'anam-9',
+      topic: 'Anorganische Verbindungen',
+      slug: 'anorganische-verbindungen',
+      type: 'multiple-choice',
+      question: 'Was entsteht beim Kalklöschen — der Reaktion von Calciumoxid mit Wasser?',
+      options: ['Calciumhydroxid', 'Calciumcarbonat', 'Calciumchlorid', 'Calciumsulfat'],
+      correctIndex: 0,
+      explanation:
+        'CaO + H₂O → Ca(OH)₂ (stark exotherm). Calciumcarbonat entsteht erst durch nachträgliche CO₂-Aufnahme.',
+    },
+    {
+      id: 'anam-10',
+      topic: 'Anorganische Verbindungen',
+      slug: 'anorganische-verbindungen',
+      type: 'true-false',
+      question: 'Ammoniak (NH₃) ist eine Base, weil es ein Proton aufnehmen kann.',
+      options: ['Richtig', 'Falsch'],
+      correctIndex: 0,
+      explanation: 'NH₃ + H₂O → NH₄⁺ + OH⁻. Nach Brønsted ist eine Base ein Protonenakzeptor.',
     },
 
     // ══════════════════════════════════════════════════════════
@@ -416,6 +485,30 @@
       correctIndices: [0, 2, 4],
       explanation:
         'NaOH (Natronlauge), Ca(OH)₂ (Kalkwasser) und NH₃ (Ammoniak) sind Basen. HCl und CH₃COOH sind Säuren.',
+    },
+
+    {
+      id: 'sb-9',
+      topic: 'Säuren und Basen',
+      slug: 'saeuren-basen',
+      type: 'fill-in-blank',
+      question: 'Nach Brønsted sind Säuren Protonen-________.',
+      options: [],
+      correctAnswer: 'Donatoren',
+      acceptedAnswers: ['Donatoren', 'donatoren', 'Donator', 'donator'],
+      explanation:
+        'Brønsted-Säure = Protonendonator, Brønsted-Base = Protonenakzeptor. Beispiel: HCl gibt ein Proton an Wasser ab.',
+    },
+    {
+      id: 'sb-10',
+      topic: 'Säuren und Basen',
+      slug: 'saeuren-basen',
+      type: 'multiple-choice',
+      question: 'Welcher pH-Wert entspricht bei 25 °C einer neutralen Lösung?',
+      options: ['0', '7', '14', '1'],
+      correctIndex: 1,
+      explanation:
+        'Bei 25 °C ist eine neutrale Lösung exakt pH 7 — H₃O⁺- und OH⁻-Konzentration sind gleich groß.',
     },
 
     // ══════════════════════════════════════════════════════════
@@ -537,6 +630,35 @@
         'Die Nernst-Gleichung berechnet das Elektrodenpotential unter Nicht-Standardbedingungen.',
     },
 
+    {
+      id: 're-9',
+      topic: 'Redoxreaktionen und Elektrochemie',
+      slug: 'redox-elektrochemie',
+      type: 'multiple-choice',
+      question: 'An welcher Elektrode einer galvanischen Zelle läuft die Oxidation ab?',
+      options: [
+        'An der positiven Elektrode',
+        'An der negativen Elektrode',
+        'An beiden Elektroden',
+        'In der Salzbrücke',
+      ],
+      correctIndex: 1,
+      explanation:
+        'In der galvanischen Zelle ist die Elektrode, an der oxidiert wird (Anode), der Minuspol. Bei der Elektrolyse ist die Anode dagegen positiv.',
+    },
+    {
+      id: 're-10',
+      topic: 'Redoxreaktionen und Elektrochemie',
+      slug: 'redox-elektrochemie',
+      type: 'fill-in-blank',
+      question: 'Gibt ein Metall in einer Redoxreaktion Elektronen ab, so wird es ________.',
+      options: [],
+      correctAnswer: 'oxidiert',
+      acceptedAnswers: ['oxidiert', 'Oxidiert'],
+      explanation:
+        'Elektronenabgabe wird als Oxidation bezeichnet, Elektronenaufnahme als Reduktion.',
+    },
+
     // ══════════════════════════════════════════════════════════
     // erdoel-organische-stoffklassen (Erdöl und organische Stoffklassen)
     // ══════════════════════════════════════════════════════════
@@ -634,6 +756,34 @@
         'Glucose, Cellulose und Stärke sind Kohlenhydrate. Ethanol ist ein Alkohol, Essigsäure eine Carbonsäure.',
     },
 
+    {
+      id: 'eo-9',
+      topic: 'Erdöl und organische Stoffklassen',
+      slug: 'erdoel-organische-stoffklassen',
+      type: 'multiple-choice',
+      question: 'Welche Stoffklasse entspricht der allgemeinen Formel CₙH₂ₙ₊₂?',
+      options: ['Alkene', 'Alkine', 'Alkane', 'Alkohole'],
+      correctIndex: 2,
+      explanation:
+        'Alkane sind gesättigte Kohlenwasserstoffe (CₙH₂ₙ₊₂); Alkene haben CₙH₂ₙ, Alkine CₙH₂ₙ₋₂.',
+    },
+    {
+      id: 'eo-10',
+      topic: 'Erdöl und organische Stoffklassen',
+      slug: 'erdoel-organische-stoffklassen',
+      type: 'multiple-select',
+      question: 'Welche Aussagen über Erdöl sind richtig?',
+      options: [
+        'Erdöl ist ein Gemisch aus vielen Kohlenwasserstoffen',
+        'Erdöl lässt sich durch fraktionierte Destillation trennen',
+        'Erdöl ist eine chemisch reine Verbindung',
+        'Leicht siedende Anteile steigen oben im Trennturm auf',
+      ],
+      correctIndices: [0, 1, 3],
+      explanation:
+        'Erdöl ist ein Stoffgemisch — deshalb funktioniert die fraktionierte Destillation: Fraktionen mit niedrigem Siedepunkt sammeln sich oben im Turm.',
+    },
+
     // ══════════════════════════════════════════════════════════
     // biochemie
     // ══════════════════════════════════════════════════════════
@@ -728,6 +878,28 @@
       correctIndices: [0, 2, 3],
       explanation:
         'DNA, Proteine und Cellulose sind Biopolymere. Glucose und Wasser sind kleine Moleküle.',
+    },
+
+    {
+      id: 'bc-9',
+      topic: 'Biochemie',
+      slug: 'biochemie',
+      type: 'multiple-choice',
+      question: 'Aus welchen Bausteinen sind Proteine (Eiweiße) aufgebaut?',
+      options: ['Fettsäuren', 'Monosacchariden', 'Aminosäuren', 'Nukleotiden'],
+      correctIndex: 2,
+      explanation: 'Proteine sind Ketten aus Aminosäuren, die über Peptidbindungen verknüpft sind.',
+    },
+    {
+      id: 'bc-10',
+      topic: 'Biochemie',
+      slug: 'biochemie',
+      type: 'true-false',
+      question: 'Enzyme senken die Aktivierungsenergie der Reaktionen, die sie katalysieren.',
+      options: ['Richtig', 'Falsch'],
+      correctIndex: 0,
+      explanation:
+        'Enzyme sind Biokatalysatoren: Sie beschleunigen Reaktionen, indem sie die Aktivierungsenergie herabsetzen — substratspezifisch nach dem Schlüssel-Schloss-Prinzip.',
     },
 
     // ══════════════════════════════════════════════════════════
@@ -843,6 +1015,32 @@
         'Die Entropie (S) ist ein Maß für die Unordnung bzw. die Anzahl der Mikrozustände eines Systems.',
     },
 
+    {
+      id: 'gg-9',
+      topic: 'Gleichgewicht und Geschwindigkeit',
+      slug: 'gleichgewicht-geschwindigkeit',
+      type: 'fill-in-blank',
+      question:
+        'Läuft Hin- und Rückreaktion gleich schnell ab, spricht man von einem chemischen ________.',
+      options: [],
+      correctAnswer: 'Gleichgewicht',
+      acceptedAnswers: ['Gleichgewicht', 'gleichgewicht'],
+      explanation:
+        'Im dynamischen Gleichgewicht bleiben die Konzentrationen konstant, obwohl beide Reaktionen weiterlaufen.',
+    },
+    {
+      id: 'gg-10',
+      topic: 'Gleichgewicht und Geschwindigkeit',
+      slug: 'gleichgewicht-geschwindigkeit',
+      type: 'multiple-choice',
+      question:
+        'Das Gleichgewicht N₂ + 3 H₂ ⇌ 2 NH₃ wird unter erhöhtem Druck gesetzt. Wohin verschiebt es sich?',
+      options: ['Zu den Edukten', 'Zum Ammoniak', 'Gar nicht', 'Es wechselt ständig'],
+      correctIndex: 1,
+      explanation:
+        'Nach dem Prinzip von Le Chatelier weicht das Gleichgewicht dem Druck aus: zur Seite mit weniger Gasteilchen — hier zu NH₃ (4 → 2 Moleküle).',
+    },
+
     // ══════════════════════════════════════════════════════════
     // energetik
     // ══════════════════════════════════════════════════════════
@@ -949,6 +1147,31 @@
         'Enthalpie hat die Einheit Joule (J) oder Kiljoule (kJ), wie alle Energieformen.',
     },
 
+    {
+      id: 'en-9',
+      topic: 'Energetik',
+      slug: 'energetik',
+      type: 'multiple-choice',
+      question: 'Eine Reaktion mit ΔH < 0 ist …',
+      options: ['endotherm', 'exotherm', 'athermisch', 'energieneutral'],
+      correctIndex: 1,
+      explanation:
+        'Ein negatives ΔH bedeutet: Es wird Energie frei — die Reaktion ist exotherm (z. B. Verbrennungen).',
+    },
+    {
+      id: 'en-10',
+      topic: 'Energetik',
+      slug: 'energetik',
+      type: 'fill-in-blank',
+      question:
+        'Die Energiebarriere, die überwunden werden muss, damit eine Reaktion ablaufen kann, heißt ________.',
+      options: [],
+      correctAnswer: 'Aktivierungsenergie',
+      acceptedAnswers: ['Aktivierungsenergie', 'aktivierungsenergie'],
+      explanation:
+        'Die Aktivierungsenergie startet den Reaktionsablauf. Katalysatoren (auch Enzyme) senken sie.',
+    },
+
     // ══════════════════════════════════════════════════════════
     // analytische-methoden (Analytische Methoden)
     // ══════════════════════════════════════════════════════════
@@ -1050,6 +1273,30 @@
       correctIndex: 2,
       explanation:
         'Am Äquivalenzpunkt ist genau so viel Säure wie Base zugefügt — vollständige Neutralisation.',
+    },
+
+    {
+      id: 'av-9',
+      topic: 'Analytische Methoden',
+      slug: 'analytische-methoden',
+      type: 'multiple-choice',
+      question:
+        'Welches Trennverfahren nutzt eine stationäre und eine mobile Phase für farbige Stoffe?',
+      options: ['Destillation', 'Chromatographie', 'Filtration', 'Zentrifugation'],
+      correctIndex: 1,
+      explanation:
+        'Bei der Chromatographie wandern Stoffe unterschiedlich schnell mit dem Laufmittel — sichtbar als getrennte Farbflecken (Rf-Wert).',
+    },
+    {
+      id: 'av-10',
+      topic: 'Analytische Methoden',
+      slug: 'analytische-methoden',
+      type: 'true-false',
+      question: 'Bei der Flammenprobe färbt Natrium die Flamme gelb-orange.',
+      options: ['Richtig', 'Falsch'],
+      correctIndex: 0,
+      explanation:
+        'Natrium färbt die Flamme gelb-orange; Kalium violett, Kupfer grün, Calcium rot-orange.',
     },
 
     // ══════════════════════════════════════════════════════════
@@ -1155,6 +1402,40 @@
         'Temperatur, Katalysator, Konzentration und Druck beeinflussen die Geschwindigkeit. Die Farbe ist irrelevant.',
     },
 
+    {
+      id: 'ro-9',
+      topic: 'Reaktionstypen der Organischen Chemie',
+      slug: 'reaktionstypen-organisch',
+      type: 'multiple-choice',
+      question:
+        'Welcher Mechanismus liegt der Halogenierung von Alkanen unter Lichteinfluss zugrunde?',
+      options: [
+        'Elektrophile Addition',
+        'Radikalische Substitution',
+        'Nukleophile Substitution',
+        'Kondensation',
+      ],
+      correctIndex: 1,
+      explanation:
+        'Licht spaltet das Halogenmolekül in Radikale — ein H-Atom am Alkan wird durch ein Halogen ersetzt (radikalische Substitution).',
+    },
+    {
+      id: 'ro-10',
+      topic: 'Reaktionstypen der Organischen Chemie',
+      slug: 'reaktionstypen-organisch',
+      type: 'multiple-select',
+      question: 'Welche Reaktionen sind Additionsreaktionen?',
+      options: [
+        'Hydratisierung von Ethen zu Ethanol',
+        'Chlorierung von Ethan zu Chlorethan',
+        'Hydrierung von Ethen zu Ethan',
+        'Veresterung einer Carbonsäure mit einem Alkohol',
+      ],
+      correctIndices: [0, 2],
+      explanation:
+        'Additionen setzen ungesättigte C=C-Bindungen voraus: Hydratisierung und Hydrierung des Ethens sind Additionen. Die Ethan-Chlorierung ist eine Substitution, die Veresterung eine Kondensation.',
+    },
+
     // ══════════════════════════════════════════════════════════
     // produkte-organisch (Produkte der Organischen Chemie)
     // ══════════════════════════════════════════════════════════
@@ -1250,6 +1531,36 @@
         'Polyethen und Nylon sind synthetische Polymere. Cellulose, Seide und Naturkautschuk sind natürlich.',
     },
 
+    {
+      id: 'po-9',
+      topic: 'Produkte der Organischen Chemie',
+      slug: 'produkte-organisch',
+      type: 'multiple-choice',
+      question: 'Welcher Kunststoff entsteht durch Polymerisation von Ethen?',
+      options: ['Polystyrol', 'Polyethylenterephthalat', 'Polyethylen', 'Polyvinylchlorid'],
+      correctIndex: 2,
+      explanation:
+        'Viele Ethen-Moleküle polymerisieren zu Polyethylen (PE). Styrol ergibt PS, Vinylchlorid PVC, Terephthalsäure + Ethylenglykol PET.',
+    },
+    {
+      id: 'po-10',
+      topic: 'Produkte der Organischen Chemie',
+      slug: 'produkte-organisch',
+      type: 'fill-in-blank',
+      question: 'Glycerin verestert mit drei Fettsäuren zu ________ (Fette).',
+      options: [],
+      correctAnswer: 'Triglyceriden',
+      acceptedAnswers: [
+        'Triglyceriden',
+        'triglyceriden',
+        'Triglyceride',
+        'triglyceride',
+        'Neutralfetten',
+      ],
+      explanation:
+        'Ein Glycerin-Molekül verestert mit drei Fettsäure-Molekülen zu einem Triglycerid (Neutralfett).',
+    },
+
     // ══════════════════════════════════════════════════════════
     // tipps-tricks (Tipps und Tricks)
     // ══════════════════════════════════════════════════════════
@@ -1340,6 +1651,28 @@
       correctIndex: 0,
       explanation:
         'Methan(1), Ethan(2), Propan(3), Butan(4), Pentan(5), Hexan(6), Heptan(7), Octan(8), Nonan(9), Decan(10).',
+    },
+    {
+      id: 'tt-7',
+      topic: 'Tipps und Tricks',
+      slug: 'tipps-tricks',
+      type: 'multiple-choice',
+      question: 'Was bedeutet der Zustandsbuchstabe (aq) in einer Reaktionsgleichung?',
+      options: ['gasförmig', 'in Wasser gelöst', 'fest', 'flüssig (rein)'],
+      correctIndex: 1,
+      explanation:
+        '(aq) = aquatisiert: Der Stoff ist in Wasser gelöst. Daneben stehen (s) für fest, (l) für flüssig und (g) für gasförmig.',
+    },
+    {
+      id: 'tt-8',
+      topic: 'Tipps und Tricks',
+      slug: 'tipps-tricks',
+      type: 'true-false',
+      question:
+        'Die tiefgestellten Zahlen in Summenformeln geben das Anzahlverhältnis der Atome an.',
+      options: ['Richtig', 'Falsch'],
+      correctIndex: 0,
+      explanation: 'Beispiel H₂SO₄: 2 Wasserstoff-, 1 Schwefel- und 4 Sauerstoffatome pro Molekül.',
     },
   ];
 
