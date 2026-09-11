@@ -977,8 +977,12 @@
 }
 
 [data-theme='dark'] .panel-body small,
+[data-theme='dark'] #card-grid .card .panel-body small,
 [data-theme='dark'] .card h2 a {
   color: #a5d6a7;
+}
+[data-theme='contrast'] #card-grid .card .panel-body small {
+  color: #ffff00;
 }
 [data-theme='dark'] .practice-generator-container .control-section {
   background: var(--card-bg);
