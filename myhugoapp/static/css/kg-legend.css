@@ -176,7 +176,7 @@
 }
 
 /* Dark mode support */
-@media (prefers-color-scheme: dark) {
+[data-theme='dark'] {
   .kg-legend-container .card-header {
     background: linear-gradient(135deg, #343a40 0%, #212529 100%);
     border-color: var(--border-dark, #495057) !important;

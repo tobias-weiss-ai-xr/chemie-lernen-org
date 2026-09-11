@@ -34,7 +34,7 @@ layout: wissennetz
 .kg-portal-link{align-self:flex-start;font-size:0.85rem;color:#667eea;text-decoration:none;border-bottom:1px dotted #667eea;}
 .kg-portal-link:hover{text-decoration:underline;}
 .kg-empty{color:#888;font-style:italic;padding:1em 0;}
-@media(prefers-color-scheme:dark){
+[data-theme='dark']{
 #kg-breadcrumb{color:#999;}
 #kg-hint{background:#1e2a38;border-color:#2e4a66;color:#cfe3f5;}
 #kg-search{background:#2a2a2a;border-color:#555;color:#eee;}

@@ -104,14 +104,14 @@
 }
 
 .score-section-title {
-  color: white;
+  color: var(--text-primary, #2c3e50);
   margin-top: 0;
   margin-bottom: 5px;
 }
 
 .score-right {
   text-align: right;
-  color: white;
+  color: var(--text-primary, #2c3e50);
 }
 
 .score-label {
@@ -130,11 +130,11 @@
 }
 
 .score-correct {
-  color: #90ee90;
+  color: #1e7e34;
 }
 
 .score-wrong {
-  color: #ffb6c1;
+  color: #b71c1c;
 }
 
 .score-percentage {
@@ -165,11 +165,11 @@
 }
 
 .difficulty-easy {
-  color: #28a745;
+  color: #1e7e34;
 }
 
 .difficulty-medium {
-  color: #ffc107;
+  color: #7a6000;
 }
 
 .difficulty-hard {

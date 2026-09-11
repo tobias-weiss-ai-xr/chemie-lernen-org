@@ -268,13 +268,13 @@ export class OrbitalControls {
         text-align: center;
         font-weight: 600;
         font-size: 13px;
-        color: #1a73e8;
+        color: var(--accent-solid, #1b6aa5);
       }
       .ov-toggle {
         padding: 4px 12px;
         border: 1px solid #ccc;
         border-radius: 4px;
-        background: #f5f5f5;
+        background: var(--header-bg, #f5f5f5);
         font-size: 13px;
         cursor: pointer;
         transition: background 0.15s, border-color 0.15s;
@@ -284,9 +284,9 @@ export class OrbitalControls {
         background: #e8e8e8;
       }
       .ov-toggle.ov-active {
-        background: #1a73e8;
+        background: var(--accent-solid, #1b6aa5);
         color: #fff;
-        border-color: #1a73e8;
+        border-color: var(--accent-solid, #1b6aa5);
       }
       .ov-info-group {
         flex: 1 1 100%;

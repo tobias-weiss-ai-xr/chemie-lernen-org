@@ -774,3 +774,119 @@
   color: #ffff00;
   border: 2px solid #ffff00;
 }
+
+/* ===== A11y-Pass 2 (2026-09-11): fehlende Flächen-/Text-Vars je Theme ===== */
+[data-theme='dark'] {
+  --item-bg: #0f3221;
+  --item-hover: #14452c;
+  --overview-bg: #0d2a1a;
+  --circle-bg: #0f3221;
+  --score-bg: #0f3221;
+  --score-text: #c8e6c9;
+  --achievement-bg: #0f3221;
+  --header-bg: #0f3221;
+  --row-hover: #14452c;
+  --detail-bg: #0d2a1a;
+  --review-bg: #0f3221;
+  --bg-input: #0f3221;
+  --bg-hover: #14452c;
+  --bg-tag: #0f3221;
+  --qs-bg: #0d2a1a;
+  --skel-from: #14452c;
+  --skel-to: #0d2a1a;
+  --tag-bg: #0f3221;
+  --tag-fg: #a5d6a7;
+  --tag-border: #4d7d61;
+  --tag-bg-hover: #14452c;
+  --badge-color: #a5d6a7;
+  --blue-primary: #1b6aa5;
+  --teal-strong: #4dd0c4;
+  --link-color: #66bb6a;
+  --text-graph: #c8e6c9;
+  --bg-body: #0d2a1a;
+  --alert-warning-bg: #33290d;
+}
+[data-theme='dark'] .text-muted {
+  color: #a5d6a7;
+}
+[data-theme='dark'] .card-body small {
+  color: #a5d6a7;
+}
+[data-theme='dark'] main h2 {
+  color: var(--text-primary);
+}
+[data-theme='dark'] .site-main-heading {
+  color: var(--text-primary);
+}
+[data-theme='dark'] .path-pct {
+  color: #a5d6a7;
+}
+[data-theme='dark'] .alert-warning {
+  background-color: var(--alert-warning-bg);
+  border-color: #5c4a10;
+  color: #ffd54f;
+}
+[data-theme='dark'] .alert-info {
+  background-color: #0d3050;
+  border-color: #1b4a7a;
+  color: #90caf9;
+}
+[data-theme='dark'] .btn-primary,
+[data-theme='dark'] .btn-success,
+[data-theme='dark'] .btn-danger {
+  color: #ffffff;
+}
+[data-theme='dark'] .btn-filter,
+[data-theme='dark'] .btn-type-filter {
+  background-color: transparent;
+  color: #a5d6a7;
+  border-color: #4d7d61;
+}
+[data-theme='dark'] .btn-filter.active,
+[data-theme='dark'] .btn-type-filter.active {
+  background-color: #14452c;
+  color: #c8e6c9;
+}
+[data-theme='dark'] .btn-outline-primary {
+  background-color: transparent;
+  color: #a5d6a7;
+  border-color: #4d7d61;
+}
+[data-theme='dark'] .theme-option-text {
+  background: var(--card-bg);
+  color: var(--text-primary);
+}
+[data-theme='dark'] .quiz-btn-skip:hover {
+  background: #14452c;
+  color: #a5d6a7;
+}
+[data-theme='contrast'] {
+  --item-bg: #000000;
+  --item-hover: #1a1a1a;
+  --overview-bg: #000000;
+  --circle-bg: #1a1a1a;
+  --score-bg: #1a1a1a;
+  --score-text: #ffffff;
+  --achievement-bg: #1a1a1a;
+  --header-bg: #1a1a1a;
+  --row-hover: #1a1a1a;
+  --detail-bg: #000000;
+  --review-bg: #1a1a1a;
+  --bg-input: #000000;
+  --bg-hover: #1a1a1a;
+  --bg-tag: #1a1a1a;
+  --qs-bg: #000000;
+  --skel-from: #1a1a1a;
+  --skel-to: #000000;
+  --tag-bg: #000000;
+  --tag-fg: #ffffff;
+  --tag-border: #ffffff;
+  --tag-bg-hover: #1a1a1a;
+  --badge-color: #ffff00;
+  --blue-primary: #1b6aa5;
+  --teal-strong: #4dd0c4;
+  --link-color: #ffff00;
+  --text-graph: #ffffff;
+  --bg-body: #000000;
+  --alert-warning-bg: #1a1a1a;
+}
