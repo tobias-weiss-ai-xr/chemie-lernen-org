@@ -975,3 +975,14 @@
 [data-theme='contrast'] .panel-footer {
   background-color: #1a1a1a;
 }
+
+[data-theme='dark'] .panel-body small,
+[data-theme='dark'] .card h2 a {
+  color: #a5d6a7;
+}
+[data-theme='dark'] .practice-generator-container .control-section {
+  background: var(--card-bg);
+}
+[data-theme='dark'] .practice-generator-container .score-section {
+  background: linear-gradient(135deg, #3d4a9e, #5b3a8c);
+}

@@ -147,7 +147,7 @@
 
 /* ===== Control Section ===== */
 .control-section {
-  background: white;
+  background: var(--card-bg, #fff);
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 20px;
