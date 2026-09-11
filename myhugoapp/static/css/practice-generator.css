@@ -14,9 +14,9 @@
   display: block;
   width: 100%;
   padding: 14px 20px;
-  border: 2px solid #dee2e6;
+  border: 2px solid var(--border-color, #767676);
   border-radius: 8px;
-  background: #fff;
+  background: var(--card-bg, #fff);
   font-size: 1rem;
   text-align: left;
   cursor: pointer;

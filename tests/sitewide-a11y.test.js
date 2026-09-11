@@ -140,6 +140,22 @@ describe('A11y-Pass 2: WCAG-Werte (light Theme)', () => {
     expect(contrast(fg, bg)).toBeGreaterThanOrEqual(min);
   });
 
+  test('Runde 2: Hardcodes bleiben ersetzt', () => {
+    const dash = read(path.join('static', 'css', 'progress-dashboard.css'));
+    expect(dash).not.toMatch(/#7f8c8d|#95a5a6|background:\s*#fff;/);
+    expect(custom).toMatch(/color: var\(--text-muted, #626e7b\) !important/);
+    expect(custom).toMatch(/\.calculator-panel\s*\{\s*background: var\(--card-bg/);
+    const promo = read(path.join('layouts', 'shortcodes', 'periodic-table-promo-widget.html'));
+    expect(promo).toMatch(/\.pt-promo-badge\s*\{[^}]*background: #0c6b62/s);
+    expect(promo).not.toMatch(/0d9488, #0f766e/);
+    const wissen = read(path.join('content', 'wissennetz.md'));
+    expect(wissen).not.toMatch(/kg-portal-count\{[^}]*#888/);
+  });
+
+  test('Screen-Reader-Utilities vorhanden (Navbar-Label/Loading-Leaks)', () => {
+    expect(custom).toMatch(/\.sr-only,\s*\.visually-hidden\s*\{/);
+  });
+
   test('dark: Karten-Text ≥ 4.5:1 auf Dark-Flächen', () => {
     const card = DARK['--card-bg'];
     const surface = DARK['--item-bg'];

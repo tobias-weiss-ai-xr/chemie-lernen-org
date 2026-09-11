@@ -5,7 +5,7 @@
 }
 
 .stat-card {
-  background: #fff;
+  background: var(--card-bg, #fff);
   border-radius: 8px;
   padding: 24px;
   text-align: center;
@@ -23,7 +23,7 @@
 }
 
 .xp-bar-container {
-  background: #ecf0f1;
+  background: var(--score-bg, #ecf0f1);
   border-radius: 10px;
   height: 10px;
   margin-top: 8px;
@@ -59,13 +59,13 @@
 
 .stat-label {
   font-size: 0.9rem;
-  color: #7f8c8d;
+  color: var(--text-muted, #626e7b);
   margin-top: 4px;
 }
 
 .module-progress-item {
   margin-bottom: 16px;
-  background: #fff;
+  background: var(--card-bg, #fff);
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
@@ -80,7 +80,7 @@
 .progress {
   height: 24px;
   border-radius: 12px;
-  background: #ecf0f1;
+  background: var(--score-bg, #ecf0f1);
 }
 
 .progress-bar {
@@ -96,7 +96,7 @@
 }
 
 .achievement-card {
-  background: #fff;
+  background: var(--card-bg, #fff);
   border: 2px solid #dee2e6;
   border-radius: 8px;
   padding: 16px;
@@ -107,7 +107,7 @@
 
 .achievement-card.earned {
   border-color: #f1c40f;
-  background: #fffef5;
+  background: var(--card-bg, #fffef5);
 }
 
 .achievement-card.locked {
@@ -121,11 +121,11 @@
 }
 
 .achievement-card.locked .achievement-icon {
-  color: #bdc3c7;
+  color: var(--text-muted, #626e7b);
 }
 
 .achievement-progress-container {
-  background: #ecf0f1;
+  background: var(--score-bg, #ecf0f1);
   border-radius: 8px;
   height: 6px;
   margin: 8px 0 4px;
@@ -145,7 +145,7 @@
 
 .achievement-progress-text {
   font-size: 0.75rem;
-  color: #95a5a6;
+  color: var(--text-muted, #626e7b);
 }
 
 .achievement-name {
@@ -156,7 +156,7 @@
 
 .achievement-desc {
   font-size: 0.8rem;
-  color: #7f8c8d;
+  color: var(--text-muted, #626e7b);
 }
 
 .achievement-badge {
@@ -168,7 +168,7 @@
 }
 
 .achievement-badge.locked {
-  color: #bdc3c7;
+  color: var(--text-muted, #626e7b);
 }
 
 #recent-activity .list-group {

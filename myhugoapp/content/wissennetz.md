@@ -30,10 +30,10 @@ layout: wissennetz
 .kg-portal-top{display:flex;align-items:center;gap:8px;}
 .kg-portal-swatch{width:12px;height:12px;border-radius:50%;flex:0 0 auto;}
 .kg-portal-name{font-weight:700;font-size:1rem;line-height:1.25;}
-.kg-portal-count{font-size:0.8rem;color:#888;}
-.kg-portal-link{align-self:flex-start;font-size:0.85rem;color:#667eea;text-decoration:none;border-bottom:1px dotted #667eea;}
+.kg-portal-count{font-size:0.8rem;color:#626e7b;}
+.kg-portal-link{align-self:flex-start;font-size:0.85rem;color:#1b6aa5;text-decoration:none;border-bottom:1px dotted #1b6aa5;}
 .kg-portal-link:hover{text-decoration:underline;}
-.kg-empty{color:#888;font-style:italic;padding:1em 0;}
+.kg-empty{color:#626e7b;font-style:italic;padding:1em 0;}
 [data-theme='dark']{
 #kg-breadcrumb{color:#999;}
 #kg-hint{background:#1e2a38;border-color:#2e4a66;color:#cfe3f5;}
@@ -57,7 +57,7 @@ layout: wissennetz
 </div>
 <div id="kg-controls"><label>Kategorien:</label></div>
 <div id="kg-portals" class="kg-portals" aria-label="Themenportale"></div>
-<div id="kg-app" style="width:100%;height:700px;border:1px solid #ddd;border-radius:8px;background:#fafafa;position:relative;">
+<div id="kg-app" style="width:100%;height:700px;border:1px solid var(--border-color,#767676);border-radius:8px;background:var(--score-bg,#fafafa);position:relative;">
 <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;">
 <div class="spinner-border text-primary mb-3" role="status"><span class="visually-hidden">Loading...</span></div>
 <h5>Lade Wissensnetz...</h5>
