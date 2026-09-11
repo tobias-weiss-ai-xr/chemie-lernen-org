@@ -294,3 +294,12 @@
     border-color: #888;
   }
 }
+
+/* A11y: Header-Flaeche thematisiert (war transparent -> weisse h2) */
+.kg-legend-container .card-header {
+  background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+  border-bottom: none;
+}
+.kg-legend-container .card-header h2 {
+  color: #ffffff;
+}

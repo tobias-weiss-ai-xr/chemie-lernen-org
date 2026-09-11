@@ -887,7 +887,7 @@ body {
 }
 
 .table-bordered th {
-  background: #f8f9fa;
+  background: var(--header-bg, #f8f9fa);
   font-weight: bold;
   color: var(--text-primary);
 }
@@ -1144,6 +1144,7 @@ body {
   --bg-body: #ffffff;
   --alert-warning-bg: #fff3cd;
   --alert-warning-text: #856404;
+  --alert-warning-border: #ffeeba;
   --brand-primary: #1b5e20;
   --brand-secondary: #2e7d32;
 }
@@ -1198,4 +1199,22 @@ a.sr-only-focusable:focus {
   clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
+}
+
+/* Kaskaden-Boost: Theme-Bootstrap lädt nach custom.css */
+.btn.btn-primary,
+.btn.btn-success {
+  background-color: #2e7d32;
+  border-color: #2e7d32;
+}
+.btn.btn-primary:hover,
+.btn.btn-primary:focus,
+.btn.btn-success:hover,
+.btn.btn-success:focus {
+  background-color: #276b2a;
+  border-color: #276b2a;
+}
+.label.label-primary {
+  background-color: #2e7d32;
+  color: #ffffff;
 }

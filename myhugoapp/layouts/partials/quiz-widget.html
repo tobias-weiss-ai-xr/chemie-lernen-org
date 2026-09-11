@@ -32,8 +32,8 @@
 
 <style>
 .quiz-widget {
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: var(--card-bg, #f8f9fa);
+  border: 1px solid var(--border-color, #767676);
   border-radius: 10px;
   padding: 20px;
   margin: 25px 0;
@@ -114,6 +114,7 @@
   margin-top: 10px;
 }
 .quiz-widget-footer {
+  background-color: var(--score-bg, transparent);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -147,7 +148,8 @@
   .quiz-option.correct { background: #1b4332; border-color: #28a745; }
   .quiz-option.incorrect { background: #58151c; border-color: #dc3545; }
   .quiz-placeholder { color: #aaa; }
-  .quiz-widget-footer { border-top-color: #444; }
+  .quiz-widget-footer {
+  background-color: var(--score-bg, transparent); border-top-color: #444; }
   .quiz-progress { background: #444; }
 }
 </style>
