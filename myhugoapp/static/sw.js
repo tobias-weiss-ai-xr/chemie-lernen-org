@@ -4,7 +4,7 @@
 // content pages, network-only for admin/auth API calls.
 // Cache size limited to 50 MB with LRU eviction.
 // ============================================================
-const SW_VERSION = 'v9-2026-08';
+const SW_VERSION = 'v10-2026-09';
 const STATIC_CACHE = 'static-' + SW_VERSION;
 const ASSETS_CACHE = 'assets-' + SW_VERSION;
 const DYNAMIC_CACHE = 'dynamic-' + SW_VERSION;
@@ -88,6 +88,11 @@ function isStaticAsset(url) {
 // ── Is this a JS file? ────────────────────────────────────
 function isJavaScript(url) {
   return url.pathname.startsWith('/js/') && url.pathname.endsWith('.js');
+}
+
+// ── Is this a stylesheet? ─────────────────────────────────
+function isCss(url) {
+  return url.pathname.startsWith('/css/') && url.pathname.endsWith('.css');
 }
 
 // ── Is this an API call? ──────────────────────────────────
@@ -309,8 +314,8 @@ self.addEventListener('fetch', function (event) {
     return;
   }
 
-  // ── JS files: network-first (fresh code = fewer bugs) ───
-  if (isJavaScript(url)) {
+  // ── JS & CSS files: network-first (fresh code = fewer bugs) ──
+  if (isJavaScript(url) || isCss(url)) {
     event.respondWith(networkFirst(request, ASSETS_CACHE));
     return;
   }
@@ -618,17 +623,10 @@ function quizNetworkFirst(request) {
 // QUIZ PAGE: Cache-First for HTML pages
 // ═══════════════════════════════════════════════════════════
 function quizPageCacheFirst(request) {
-  return caches.open(STATIC_CACHE).then(function (cache) {
-    return cache.match(request).then(function (cached) {
-      if (cached) return cached;
-      return fetch(request).then(function (response) {
-        if (response && response.status === 200) {
-          cache.put(request, response.clone());
-        }
-        return response;
-      });
-    });
-  });
+  // Stale-While-Revalidate: Offline-Fallback aus dem Cache, aber bei
+  // Online-Besuchen wird die Seite im Hintergrund aktualisiert
+  // (Fix 2026-09-11: Nutzer sahen wochenlang den alten Quiz-Stand).
+  return staleWhileRevalidate(request, STATIC_CACHE);
 }
 
 // ═══════════════════════════════════════════════════════════
