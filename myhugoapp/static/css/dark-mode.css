@@ -666,3 +666,107 @@
     color 0.3s ease,
     border-color 0.3s ease;
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   Quiz-Themen (quiz-system.css / quiz-user-system.css)
+   Kontrast-Prüfung 2026-09-11 (WCAG 2.1 AA, Themes light/dark/contrast): Alle Text-Paare ≥ 4.5:1,
+   UI-Paare ≥ 3:1. Details: tests/quiz-contrast.test.js
+   ═══════════════════════════════════════════════════════════════════ */
+[data-theme='dark'] {
+  --question-bg: #0f3221;
+  --question-text: #e8f5e9;
+  --option-bg: #0d2a1a;
+  --option-hover: #16382a;
+  --option-selected: #1c4a35;
+  --option-border: #4d7d61;
+  --accent-solid: #1b6aa5;
+  --timer-bg: #33290d;
+  --timer-text: #ffd54f;
+  --timer-warning-bg: #3d1414;
+  --timer-warning-text: #ef9a9a;
+  --critical-bg: #9c2020;
+  --critical-text: #ffffff;
+  --hint-bg: #10241d;
+  --settings-bg: #0f3221;
+  --progress-bg: #2e5940;
+  --correct-bg: #0f3d24;
+  --correct-border: #66bb6a;
+  --correct-border-soft: #2e5940;
+  --correct-text: #c8e6c9;
+  --correct-text-strong: #c8e6c9;
+  --incorrect-bg: #3d1414;
+  --incorrect-border: #ef9a9a;
+  --incorrect-border-soft: #5c2a2a;
+  --incorrect-text: #ffcdd2;
+  --incorrect-text-strong: #ffcdd2;
+  --secondary-bg: #455a64;
+  --badge-bg: #16382a;
+  --border-color: #4d7d61;
+  --primary-color: #e8f5e9;
+  --text-color: #e8f5e9;
+  --text-secondary: #a5d6a7;
+  --accent-color: #4caf50;
+  --accent-dark: #256e29;
+}
+
+[data-theme='dark'] .notification-title {
+  color: var(--primary-color);
+}
+
+/* ── Quiz im Hochkontrast-Theme: schwarze Flächen, Akzente nur als
+   Rahmen/Text — Buttons weiß auf schwarz (21:1) ─────────────────── */
+[data-theme='contrast'] {
+  --question-bg: #000000;
+  --question-text: #ffffff;
+  --option-bg: #000000;
+  --option-hover: #1a1a1a;
+  --option-selected: #262626;
+  --option-border: #ffffff;
+  --timer-bg: #000000;
+  --timer-text: #ffff00;
+  --timer-warning-bg: #000000;
+  --timer-warning-text: #ff9e9e;
+  --critical-bg: #7a0000;
+  --critical-text: #ffffff;
+  --hint-bg: #000000;
+  --settings-bg: #000000;
+  --progress-bg: #333333;
+  --correct-bg: #000000;
+  --correct-border: #00ff66;
+  --correct-border-soft: #005a26;
+  --correct-text: #7dffb0;
+  --correct-text-strong: #7dffb0;
+  --incorrect-bg: #000000;
+  --incorrect-border: #ff6b6b;
+  --incorrect-border-soft: #7a2020;
+  --incorrect-text: #ffb3b3;
+  --incorrect-text-strong: #ff9e9e;
+  --secondary-bg: #444444;
+  --badge-bg: #1a1a1a;
+  --accent-solid: #000000;
+  --primary-color: #ffffff;
+  --text-color: #ffffff;
+  --text-secondary: #e6e6e6;
+}
+
+[data-theme='contrast'] .quiz-button-primary {
+  background: #ffffff;
+  color: #000000;
+  border: 2px solid #ffff00;
+}
+
+[data-theme='contrast'] .quiz-button-primary:hover {
+  background: #ffff00;
+  color: #000000;
+}
+
+[data-theme='contrast'] .quiz-hint-button {
+  background: #ffffff;
+  color: #000000;
+}
+
+[data-theme='contrast'] .question-number {
+  background: #000000;
+  color: #ffff00;
+  border: 2px solid #ffff00;
+}

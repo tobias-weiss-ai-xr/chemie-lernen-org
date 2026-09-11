@@ -26,14 +26,14 @@
   align-items: center;
   gap: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 2px solid var(--border-color, #e0e0e0);
+  border-bottom: 2px solid var(--border-color, #767676);
   margin-bottom: 1rem;
 }
 
 .user-avatar {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, var(--accent-color, #3498db), var(--accent-dark, #2980b9));
+  background: linear-gradient(135deg, var(--accent-color, #1b6aa5), var(--accent-dark, #14568a));
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -92,7 +92,7 @@
 .auth-input {
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid var(--border-color, #e0e0e0);
+  border: 2px solid var(--border-color, #767676);
   border-radius: 8px;
   font-size: 1rem;
   transition: border-color 0.2s ease;
@@ -100,13 +100,13 @@
 
 .auth-input:focus {
   outline: none;
-  border-color: var(--accent-color, #3498db);
+  border-color: var(--accent-color, #1b6aa5);
 }
 
 .auth-button {
   width: 100%;
   padding: 0.75rem;
-  background: var(--accent-color, #3498db);
+  background: var(--accent-color, #1b6aa5);
   color: white;
   border: none;
   border-radius: 8px;
@@ -118,7 +118,7 @@
 }
 
 .auth-button:hover {
-  background: var(--accent-dark, #2980b9);
+  background: var(--accent-dark, #14568a);
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -136,7 +136,7 @@
 }
 
 .auth-switch a {
-  color: var(--accent-color, #3498db);
+  color: var(--accent-color, #1b6aa5);
   text-decoration: none;
   font-weight: 500;
 }
@@ -156,7 +156,7 @@
 .high-scores-table td {
   padding: 0.75rem;
   text-align: left;
-  border-bottom: 1px solid var(--border-color, #e0e0e0);
+  border-bottom: 1px solid var(--border-color, #767676);
 }
 
 .high-scores-table th {
@@ -195,17 +195,17 @@
 
 .rank-badge.gold {
   background: linear-gradient(135deg, #ffd700, #ffb347);
-  color: white;
+  color: #6b5300;
 }
 
 .rank-badge.silver {
   background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
-  color: white;
+  color: #333333;
 }
 
 .rank-badge.bronze {
   background: linear-gradient(135deg, #cd7f32, #a0522d);
-  color: white;
+  color: #4a2e12;
 }
 
 /* Leaderboard */
@@ -238,9 +238,9 @@
 }
 
 .leaderboard-item.current-user {
-  background: var(--accent-color, #3498db);
+  background: var(--accent-color, #1b6aa5);
   color: white;
-  border-left: 4px solid var(--accent-dark, #2980b9);
+  border-left: 4px solid var(--accent-dark, #14568a);
 }
 
 .leaderboard-rank {
@@ -248,7 +248,7 @@
   font-weight: bold;
   min-width: 40px;
   text-align: center;
-  color: var(--accent-color, #3498db);
+  color: var(--accent-color, #1b6aa5);
 }
 
 .leaderboard-item.current-user .leaderboard-rank {
@@ -276,7 +276,7 @@
 .leaderboard-score {
   font-size: 1.25rem;
   font-weight: bold;
-  color: var(--accent-color, #3498db);
+  color: var(--accent-color, #1b6aa5);
 }
 
 .leaderboard-item.current-user .leaderboard-score {
@@ -313,7 +313,7 @@
 .achievement-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  border-color: var(--accent-color, #3498db);
+  border-color: var(--accent-color, #1b6aa5);
 }
 
 .achievement-icon {
@@ -342,7 +342,7 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  background: white;
+  background: var(--card-bg, #ffffff);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   padding: 1rem 1.5rem;
@@ -360,7 +360,7 @@
 }
 
 .user-notification.info {
-  border-left: 4px solid var(--accent-color, #3498db);
+  border-left: 4px solid var(--accent-color, #1b6aa5);
 }
 
 .notification-title {
