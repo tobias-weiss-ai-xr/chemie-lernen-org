@@ -1,16 +1,21 @@
 {{ define "css" }}
 <style>
+/* A11y 2026-09-11: Akzente theme-fähig (--mh-accent), Karte folgt
+   --card-bg; Details: tests/modulhandbuch-contrast.test.js */
+:root { --mh-accent: #9b59b6; }
+[data-theme='dark'] { --mh-accent: #ce93d8; }
+@media (prefers-color-scheme: dark) { :root { --mh-accent: #ce93d8; } }
 .mod-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;}
 .mod-header h1{margin:0;font-size:1.4rem;}
-.mod-code{font-family:monospace;color:#9b59b6;font-size:1rem;}
-.mod-meta{display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1.5rem;font-size:0.9rem;background:var(--bg-card,#fff);border:1px solid var(--border-color,#e0e0e0);border-radius:8px;padding:1rem;margin-bottom:1.5rem;}
-.mod-meta dt{color:var(--text-muted,#888);font-weight:600;}
+.mod-code{font-family:monospace;color:var(--mh-accent);font-size:1rem;}
+.mod-meta{display:grid;grid-template-columns:auto 1fr;gap:0.5rem 1.5rem;font-size:0.9rem;background:var(--card-bg,#fff);border:1px solid var(--border-color,#767676);border-radius:8px;padding:1rem;margin-bottom:1.5rem;}
+.mod-meta dt{color:var(--text-muted,#767676);font-weight:600;}
 .mod-meta dd{margin:0;}
 .mod-section{margin-bottom:1.5rem;}
-.mod-section h3{font-size:1.05rem;color:var(--text-primary,#333);border-bottom:1px solid var(--border-color,#e0e0e0);padding-bottom:0.3rem;margin-bottom:0.8rem;}
+.mod-section h3{font-size:1.05rem;color:var(--text-primary,#333);border-bottom:1px solid var(--border-color,#767676);padding-bottom:0.3rem;margin-bottom:0.8rem;}
 .mod-section ul{padding-left:1.2rem;}
-.mod-section li{margin-bottom:0.3rem;color:#555;font-size:0.9rem;}
-.back-link{font-size:0.85rem;color:#9b59b6;}
+.mod-section li{margin-bottom:0.3rem;color:var(--text-primary,#555);font-size:0.9rem;}
+.back-link{font-size:0.85rem;color:var(--mh-accent);}
 @media(prefers-color-scheme:dark){
 .mod-meta{background:#2a2a2a;border-color:#444;}
 }

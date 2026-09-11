@@ -707,6 +707,8 @@
   --text-secondary: #a5d6a7;
   --accent-color: #4caf50;
   --accent-dark: #256e29;
+  --bg-card: #0d2a1a;
+  --bg-card-header: #0f3221;
 }
 
 [data-theme='dark'] .notification-title {
@@ -744,6 +746,8 @@
   --secondary-bg: #444444;
   --badge-bg: #1a1a1a;
   --accent-solid: #000000;
+  --bg-card: #000000;
+  --bg-card-header: #1a1a1a;
   --primary-color: #ffffff;
   --text-color: #ffffff;
   --text-secondary: #e6e6e6;
