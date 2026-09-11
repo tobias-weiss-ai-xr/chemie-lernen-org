@@ -1003,3 +1003,13 @@
 [data-theme='contrast'] .difficulty-hard {
   color: #ff8a80;
 }
+
+[data-theme='dark'] .pt-btn.pt-btn-primary,
+[data-theme='contrast'] .pt-btn.pt-btn-primary {
+  color: #ffffff;
+}
+[data-theme='dark'] .score-label,
+[data-theme='dark'] .score-label-inline,
+[data-theme='dark'] .score-label-top {
+  color: #a5d6a7;
+}
