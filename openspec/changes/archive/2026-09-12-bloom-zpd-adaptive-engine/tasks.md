@@ -5,14 +5,14 @@
 - [x] 1.1 Add `blooms_index` (int 1–6) to the `:LearningObjective` model in
       `lehrplan-curriculum` import/scripts; map `blooms_level` strings → index
       (remember=1 … create=6). **(done — BZ-11 merged)**
-- [ ] 1.2 Write `scripts/backfill-bloom-index.mjs`: scan all `:LearningObjective`
+- [x] 1.2 Write `scripts/backfill-bloom-index.mjs`: scan all `:LearningObjective`
       nodes, set `blooms_index` from `blooms_level`; dry-run + apply modes; scoped
       to the `chemie` KG subset. **(done)**
 - [x] 1.3 Add `:ObjectiveState` label + relationships
       `(:ObjectiveState {userId, mastery, bloomsMaxReached, lastSeen, source,
-  updatedAt})-[:FOR]->(:LearningObjective)` (scoped via CHEMIE_LABELS; added
+updatedAt})-[:FOR]->(:LearningObjective)` (scoped via CHEMIE_LABELS; added
       `ObjectiveState` to the subset filter).
-- [ ] 1.4 Seed `:ObjectiveState` from existing quiz/exercise completion records
+- [x] 1.4 Seed `:ObjectiveState` from existing quiz/exercise completion records
       where a (user, LO) link already exists.
 
 ## 2. ZPD engine service
@@ -47,7 +47,7 @@
 
 ## 5. Spec sync & archive
 
-- [ ] 5.1 Sync delta specs to `openspec/specs/learning-paths/spec.md` and
+- [x] 5.1 Sync delta specs to `openspec/specs/learning-paths/spec.md` and
       `openspec/specs/lehrplan-curriculum/spec.md`; update SPECS_INDEX.md.
 - [ ] 5.2 Archive the change after implementation is complete.
 
