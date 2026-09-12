@@ -150,34 +150,53 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    /* Fetch profile + paths in parallel */
-    Promise.all([
-      apiFetch('/gamification/profile').catch(function () {
-        return null;
-      }),
-      apiFetch('/learning-paths').catch(function () {
-        return null;
-      }),
-    ])
-      .then(function (results) {
-        var profile = results[0];
-        var pathsData = results[1];
-        var paths = (pathsData && pathsData.paths) || [];
+    /* UXF-045: anonymous visitors never hit /gamification/profile (401 noise) */
+    function loadRecommendations() {
+      /* Fetch profile + paths in parallel */
+      Promise.all([
+        apiFetch('/gamification/profile').catch(function () {
+          return null;
+        }),
+        apiFetch('/learning-paths').catch(function () {
+          return null;
+        }),
+      ])
+        .then(function (results) {
+          var profile = results[0];
+          var pathsData = results[1];
+          var paths = (pathsData && pathsData.paths) || [];
 
-        if (!profile) {
-          /* Not logged in — show generic widget with path list */
+          if (!profile) {
+            /* Not logged in — show generic widget with path list */
+            showWidget();
+            renderAnonymousPaths();
+            return;
+          }
+
+          showWidget();
+          var next = findNextFromProfile(profile, paths);
+          renderRecommended(next);
+        })
+        .catch(function () {
+          /* API completely unavailable — hide widget gracefully */
+          hideWidget();
+        });
+    }
+
+    var auth = window.AuthClient;
+    if (auth && typeof auth.getUser === 'function') {
+      auth.getUser().then(function (user) {
+        if (user) {
+          loadRecommendations();
+        } else {
+          /* Not logged in — skip the doomed profile call entirely */
           showWidget();
           renderAnonymousPaths();
-          return;
         }
-
-        showWidget();
-        var next = findNextFromProfile(profile, paths);
-        renderRecommended(next);
-      })
-      .catch(function () {
-        /* API completely unavailable — hide widget gracefully */
-        hideWidget();
       });
+    } else {
+      /* AuthClient nicht geladen (alter Cache) — Legacy-Verhalten */
+      loadRecommendations();
+    }
   });
 })();
