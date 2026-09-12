@@ -16,6 +16,15 @@ const nodeGlobs = readFileSync(new URL('./tests/node-env-files.txt', import.meta
   .filter(Boolean)
   .map((f) => `**/tests/${f}`);
 
+// Leichtgewichtige DOM-Files (keine <script>-Injection) laufen in happy-dom —
+// Setup ~4x schneller als jsdom. Liste regenerierbar: Files des jsdom-Projekts
+// MINUS die mit createElement('script')/window.eval/appendChild.
+const happyGlobs = readFileSync(new URL('./tests/happy-dom-files.txt', import.meta.url), 'utf8')
+  .split('\n')
+  .map((l) => l.trim())
+  .filter(Boolean)
+  .map((f) => `**/tests/${f}`);
+
 // Live-Integrations-Suiten (echte HTTP-Calls gegen chemie-lernen.org /
 // hubs.chemie-lernen.org — Flakiness je Serverzustand): nur in `test:all` /
 // `--project slow`, NICHT in `npm test` (So war es auch vorher via CLI-Excludes).
@@ -77,13 +86,25 @@ export default defineConfig({
       {
         resolve: { alias },
         test: {
+          name: 'dom',
+          environment: 'happy-dom',
+          globals: true,
+          setupFiles: ['tests/setup.mjs'],
+          testTimeout: 30000,
+          include: happyGlobs,
+          exclude: defaultExcludes,
+        },
+      },
+      {
+        resolve: { alias },
+        test: {
           name: 'jsdom',
           environment: 'jsdom',
           globals: true,
           setupFiles: ['tests/setup.mjs'],
           testTimeout: 30000,
           include: ['**/tests/**/*.test.js', '**/tests/**/*.test.mjs'],
-          exclude: [...defaultExcludes, ...SLOW_GLOBS, ...nodeGlobs],
+          exclude: [...defaultExcludes, ...SLOW_GLOBS, ...nodeGlobs, ...happyGlobs],
           environmentOptions: jsdomEnvOptions,
         },
       },
