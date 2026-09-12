@@ -52,7 +52,20 @@
   /* ── Public entry point ── */
   window.lernpfadeInit = function () {
     loadPaths();
-    loadProfile();
+    /* UXF-047: anonymous visitors never hit /gamification/profile (401 noise) */
+    var auth = window.AuthClient;
+    if (auth && typeof auth.getUser === 'function') {
+      auth.getUser().then(function (user) {
+        if (user) {
+          loadProfile();
+        } else {
+          renderLoginPrompt();
+        }
+      });
+    } else {
+      /* AuthClient nicht geladen (alter Cache) — Legacy-Verhalten */
+      loadProfile();
+    }
   };
 
   window.lernpfadeCheckIn = function () {
@@ -86,6 +99,25 @@
       });
   }
 
+  /* UXF-047: versteckt Gamification-Elemente und zeigt den Login-Prompt */
+  function renderLoginPrompt() {
+    var els = document.querySelectorAll(
+      '.xp-section, .streak-section, .badge-section, .xp-log-section'
+    );
+    for (var i = 0; i < els.length; i++) {
+      els[i].style.display = 'none';
+    }
+    var rec = getEl('recommendation-card');
+    if (rec) {
+      rec.innerHTML =
+        '<div class="recommendation-login-prompt">' +
+        '<h3><i class="fa fa-user"></i> Dein Lernpfad</h3>' +
+        '<p>Melde dich an, um personalisierte Lernempfehlungen zu erhalten.</p>' +
+        '<a href="/login/" class="btn btn-primary">Anmelden</a>' +
+        '</div>';
+    }
+  }
+
   function loadProfile() {
     apiFetch('/gamification/profile', { signal: AbortSignal.timeout(8000) })
       .then(function (data) {
@@ -98,22 +130,8 @@
       })
       .catch(function (err) {
         if (err.message === 'unauthorized') {
-          /* Hide gamification elements, show login prompt */
-          var els = document.querySelectorAll(
-            '.xp-section, .streak-section, .badge-section, .xp-log-section'
-          );
-          for (var i = 0; i < els.length; i++) {
-            els[i].style.display = 'none';
-          }
-          var rec = getEl('recommendation-card');
-          if (rec) {
-            rec.innerHTML =
-              '<div class="recommendation-login-prompt">' +
-              '<h3><i class="fa fa-user"></i> Dein Lernpfad</h3>' +
-              '<p>Melde dich an, um personalisierte Lernempfehlungen zu erhalten.</p>' +
-              '<a href="/login/" class="btn btn-primary">Anmelden</a>' +
-              '</div>';
-          }
+          /* UXF-047: geteilter Anmelde-Prompt (auch für anonyme Besucher) */
+          renderLoginPrompt();
           return;
         }
         console.warn('[lernpfade] loadProfile error:', err);

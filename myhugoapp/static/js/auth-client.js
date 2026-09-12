@@ -32,6 +32,9 @@
   }
 
   // ══ Public API ══════════════════════════════════════════════
+  /* UXF-046: memoized /me — jeder Besucher lud /auth/me 2-3x pro Seitenlast */
+  var currentUserPromise = null;
+
   window.AuthClient = {
     /** Register a new user */
     register: function (email, password, name) {
@@ -40,11 +43,16 @@
 
     /** Login */
     login: function (email, password) {
-      return apiFetch('POST', '/login', { email: email, password: password });
+      return apiFetch('POST', '/login', { email: email, password: password }).then(function (data) {
+        /* UXF-046: Auth-State geändert — Memo verwerfen */
+        currentUserPromise = null;
+        return data;
+      });
     },
 
     /** Logout */
     logout: function () {
+      currentUserPromise = null; /* UXF-046: Memo verwerfen */
       return apiFetch('POST', '/logout').then(function () {
         window.location.href = '/';
       });
@@ -52,13 +60,7 @@
 
     /** Get current user (null if not logged in) */
     me: function () {
-      return apiFetch('GET', '/me')
-        .then(function (data) {
-          return data.user || null;
-        })
-        .catch(function () {
-          return null;
-        });
+      return this.getUser();
     },
 
     /** Create Stripe Checkout session and redirect */
@@ -89,13 +91,17 @@
 
     /** Check if user is logged in and return their info */
     getUser: function () {
-      return apiFetch('GET', '/me')
-        .then(function (data) {
-          return data.user || null;
-        })
-        .catch(function () {
-          return null;
-        });
+      /* UXF-046: memoized — 1x /me pro Seitenlast statt 2-3x */
+      if (!currentUserPromise) {
+        currentUserPromise = apiFetch('GET', '/me')
+          .then(function (data) {
+            return data.user || null;
+          })
+          .catch(function () {
+            return null;
+          });
+      }
+      return currentUserPromise;
     },
   };
 

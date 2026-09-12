@@ -1,4 +1,7 @@
 ---
+aliases:
+  - "/stoechiometrie/"
+  - "/stoichiometrie/"
 title: "Stöchiometrie-Rechner"
 description: "Interaktiver Stöchiometrie-Rechner für chemische Reaktionen - Mol-Masse-Umrechnungen"
 date: 2025-12-27
