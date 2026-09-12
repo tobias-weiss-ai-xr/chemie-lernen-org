@@ -1,10 +1,10 @@
 {
-  "startedAt": "2026-09-11T02:42:01.164Z",
+  "startedAt": "2026-09-12T02:42:42.471Z",
   "articlesGenerated": 3,
   "articlesFailed": 0,
   "feedErrors": 0,
   "kgErrors": 0,
-  "durationMs": 110522,
+  "durationMs": 141930,
   "model": "glm-5.2",
-  "durationMin": "1.8"
+  "durationMin": "2.4"
 }
