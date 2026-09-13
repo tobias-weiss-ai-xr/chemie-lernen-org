@@ -1,7 +1,7 @@
 ---
 title: "Molekulares Katapult: Elektronen überqueren Solarmaterialien in 18 Femtosekunden"
 date: "2026-09-13T02:44:39+02:00"
-description: "Forscher der University of Cambridge haben beobachtet, dass Elektronen (e^-) in Solarmaterialien eine molekulare Grenzfläche in nur 18 Femtosekunden (18 \cdot 10^{-15} s) überqueren können — nahezu so"
+description: "Forscher der University of Cambridge haben beobachtet, dass Elektronen (e^-) in Solarmaterialien eine molekulare Grenzfläche in nur 18 Femtosekunden (18 × 10^-15 s) überqueren können — nahezu so"
 source: "https://www.sciencedaily.com/releases/2026/03/260305223219.htm"
 tags:
   - "elektronentransfer"
