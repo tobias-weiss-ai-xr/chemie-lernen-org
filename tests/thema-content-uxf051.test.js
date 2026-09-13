@@ -22,6 +22,11 @@ describe('UXF-051..054: thema-content Fixes', () => {
     expect(custom).not.toMatch(/\.thema-content > \.video-embed[^}]*100vw/s);
   });
 
+  test('UXF-051/055: Videos in Artikeln auf 640px begrenzt + zentriert', () => {
+    expect(custom).toMatch(/\.thema-content > \.video-embed\s*{[\s\S]*?max-width:\s*640px/);
+    expect(custom).toMatch(/\.thema-content > \.video-embed\s*{[\s\S]*?margin-left:\s*auto/);
+  });
+
   test('UXF-052: Tabellen in thema-content auf volle Breite', () => {
     expect(custom).toMatch(/\.thema-content table\s*{\s*width:\s*100%/);
     expect(custom).toMatch(
