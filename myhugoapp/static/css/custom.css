@@ -1229,3 +1229,11 @@ a.sr-only-focusable:focus {
   background-color: #2e7d32;
   color: #ffffff;
 }
+
+/* UXF-055: QR-Code der App-Box auf der Startseite — 240px statt volle
+   Bildbreite (540px); auf schmalen Screens responsiv verkleinern */
+.qr-app {
+  width: 240px;
+  height: auto;
+  max-width: 100%;
+}
