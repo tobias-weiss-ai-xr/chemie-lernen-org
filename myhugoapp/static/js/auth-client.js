@@ -171,19 +171,30 @@
     init();
   }
 
-  function init() {
-    window.AuthClient.getUser().then(function (user) {
-      if (user) {
-        addAuthUI(user);
-      } else {
-        addAuthUI(null);
+  /* UXF-050: getUser ist memoiziert — init verursacht genau 1 /me-Call */
+  function applyAuthUI() {
+    window.AuthClient.getUser().then(addAuthUI);
+  }
+
+  /* UXF-050: statt blindem 200ms-Retry beobachten wir das DOM — sobald eine
+     .navbar-nav ohne .auth-menu-item auftaucht (initial oder nach Re-Render),
+     wird der Auth-Eintrag ohne Netz-Call nachgesetzt. */
+  function watchDynamicNav() {
+    if (typeof MutationObserver === 'undefined') return;
+    var observer = new MutationObserver(function () {
+      var nav = document.querySelector('.navbar-nav');
+      if (nav && !nav.querySelector('.auth-menu-item')) {
+        applyAuthUI();
       }
     });
-    // Also try again in 100ms (for dynamic nav loading)
+    observer.observe(document.body, { childList: true, subtree: true });
     setTimeout(function () {
-      window.AuthClient.getUser().then(function (user) {
-        addAuthUI(user);
-      });
-    }, 200);
+      observer.disconnect();
+    }, 10000);
+  }
+
+  function init() {
+    applyAuthUI();
+    watchDynamicNav();
   }
 })();
