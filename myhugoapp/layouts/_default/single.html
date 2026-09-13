@@ -338,17 +338,19 @@
   font-size: 0.9rem;
 }
 
-/* Difficulty Labels */
-.label-difficulty.grundlagen {
+/* Difficulty Labels — UXF-053: Selektoren an die tatsächlichen Klassen
+   (label-grundlagen etc.) angepasst. Vorher matchte kein Selektor →
+   transparenter Badge mit weißem Text auf Seitenhintergrund (1.12:1). */
+.label-difficulty.label-grundlagen {
   background-color: #1e7e34;
 }
 
-.label-difficulty.mittelstufe {
+.label-difficulty.label-mittelstufe {
   background-color: #ffc107;
   color: #333;
 }
 
-.label-difficulty.fortgeschritten {
+.label-difficulty.label-fortgeschritten {
   background-color: #a71d2a;
 }
 

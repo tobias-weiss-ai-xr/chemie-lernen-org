@@ -158,16 +158,27 @@
   margin: 2rem 0;
 }
 
-/* Full viewport width breakout — videos span edge-to-edge on article pages */
-@media (min-width: 768px) {
-  .thema-content > .video-embed {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    max-width: none;
-  }
+/* UXF-051: Videos bleiben in der Textbreite des Artikels
+   (vorher 100vw-Breakout — Video war bis zu 1440px breit). */
+.thema-content > .video-embed {
+  max-width: 100%;
+}
+
+/* UXF-052: Tabellen nutzen die volle Textbreite (vorher ~483px gequetscht) */
+.thema-content table {
+  width: 100%;
+}
+
+.thema-content th,
+.thema-content td {
+  padding: 10px 14px;
+  vertical-align: top;
+}
+
+/* UXF-054: Überschriften-Anker erben die Überschriftenfarbe
+   (vorher .text-muted-Grau #777 auf hellem Grund — 4.25:1) */
+.thema-content h3 a {
+  color: inherit;
 }
 
 /* Prevent horizontal scroll from 100vw breakout elements */
@@ -198,7 +209,7 @@ body {
 .video-embed-caption {
   margin-top: 0.6rem;
   font-size: 0.9rem;
-  color: #666;
+  color: #595959; /* UXF-054: #666 → #595959 (7.0:1 auf Weiß) */
   text-align: center;
   line-height: 1.5;
 }
@@ -305,13 +316,13 @@ body {
 
 .zigs-video-empty {
   font-style: italic;
-  color: #777;
+  color: #595959; /* UXF-054 */
 }
 
 .zigs-video-source {
   margin-top: 14px;
   font-size: 0.82rem;
-  color: #777;
+  color: #595959; /* UXF-054 */
 }
 
 .zigs-video-source a {

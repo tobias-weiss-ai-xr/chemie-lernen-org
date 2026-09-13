@@ -1013,3 +1013,12 @@
 [data-theme='dark'] .score-label-top {
   color: #a5d6a7;
 }
+
+/* UXF-054: Video-Caption + zigs-Metatexte im Dark-Theme lesbar */
+[data-theme='dark'] .video-embed-caption {
+  color: var(--text-secondary);
+}
+[data-theme='dark'] .zigs-video-source,
+[data-theme='dark'] .zigs-video-empty {
+  color: var(--text-secondary);
+}
