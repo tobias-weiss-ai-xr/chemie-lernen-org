@@ -95,3 +95,4 @@ package-lock.json
 coverage/
 playwright-report/
 screenshots/
+*.tmp.mjs
