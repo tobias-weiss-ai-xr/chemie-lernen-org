@@ -83,7 +83,7 @@ Virtuelle und erweiterte Realität eröffnen neue Dimensionen für den Chemieunt
 
 - **[PSE-VR](/pse-vr/):** Das Periodensystem in einer virtuellen 3D-Umgebung mit Pico 4 VR-Brillen (auch als Desktop-Version nutzbar)
 - **[Molekül-Studio](/molekuel-studio/):** 3D-Ansichten für Desktop und VR
-- **VR-Kooperation:** Fächerübergreifende VR-Projekte (mehr dazu in den [Forschungsnachrichten](/posts/interdisciplinary-vr-cooperation/))
+- **VR-Kooperation:** Fächerübergreifende VR-Projekte (begehbar in den [Chemie-Räumen](/chemie-raeume/))
 
 ### Voraussetzungen für VR-Einsatz
 

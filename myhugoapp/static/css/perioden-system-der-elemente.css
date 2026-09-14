@@ -253,7 +253,7 @@ button.active-mode {
   max-width: 500px;
 }
 
-#search-input {
+#pse-search-input {
   flex: 1;
   padding: 8px 14px;
   border: 2px solid #4caf50;
@@ -265,13 +265,13 @@ button.active-mode {
   transition: border-color 0.2s;
 }
 
-[data-theme='dark'] #search-input {
+[data-theme='dark'] #pse-search-input {
   background: #1b5e20;
   color: #c8e6c9;
   border-color: #66bb6a;
 }
 
-#search-input:focus {
+#pse-search-input:focus {
   border-color: #388e3c;
 }
 

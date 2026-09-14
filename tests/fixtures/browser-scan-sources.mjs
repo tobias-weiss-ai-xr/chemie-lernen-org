@@ -226,3 +226,38 @@ export const UX_CHECKS_SRC = `(() => {
   }
   return out;
 })()`;
+
+/**
+ * UXF-060: Mobile-Viewport-Check (375px) — horizontaler Overflow plus
+ * die Elemente, die selbst breiter als der Viewport sind (Top-Offender).
+ */
+export const OVERFLOW_SRC = `(() => {
+  const out = [];
+  const vw = window.innerWidth;
+  const doc = document.documentElement;
+  if (doc.scrollWidth <= vw + 1) return out;
+  out.push('scrollWidth ' + doc.scrollWidth + 'px > viewport ' + vw + 'px');
+  const describe = (el) => {
+    let p = el, path = [];
+    for (let i = 0; p && i < 4; i++, p = p.parentElement) {
+      const cls = p.className && typeof p.className === 'string' ? '.' + p.className.trim().split(/\\s+/).slice(0, 2).join('.') : '';
+      path.unshift(p.tagName.toLowerCase() + cls);
+    }
+    return path.join(' > ');
+  };
+  let found = 0;
+  for (const el of document.querySelectorAll('body *')) {
+    if (found >= 5) break;
+    const cs = getComputedStyle(el);
+    if (cs.display === 'none' || cs.visibility === 'hidden' || parseFloat(cs.opacity) < 0.05) continue;
+    if (el.closest('script, style, noscript, [aria-hidden="true"]')) continue;
+    const r = el.getBoundingClientRect();
+    if (r.width < 48 || r.right <= vw + 1) continue;
+    // Nur Elemente melden, die selbst den Viewport ragen — nicht Eltern, die nur ein breites Kind umschließen
+    const parent = el.parentElement;
+    if (parent && parent.getBoundingClientRect().width >= r.width && parent !== document.body) continue;
+    out.push(describe(el) + ' [Breite ' + Math.round(r.width) + 'px]');
+    found++;
+  }
+  return out;
+})()`;

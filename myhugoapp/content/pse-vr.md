@@ -440,7 +440,7 @@ Superheavy Element Lab: Teilchenbeschleuniger, Millisekunden-Halbwertszeiten, No
 
 - [Interaktives Periodensystem 3D](/perioden-system-der-elemente/)
 - [Molekülstudio](/molekuel-studio/)
-- [Artikel: Interdisziplinäre VR-Kooperation](/posts/interdisciplinary-vr-cooperation/)
+- [Begehbare Element-Räume erkunden](/chemie-raeume/)
 - [Roadmap](/pages/roadmap/)
 
 

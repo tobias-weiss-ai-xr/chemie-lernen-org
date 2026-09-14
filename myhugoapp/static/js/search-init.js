@@ -1,7 +1,7 @@
 // Search functionality
 (function () {
   async function initSearch() {
-    var searchInput = document.getElementById('search-input');
+    var searchInput = document.getElementById('header-search-input');
     var searchForm = document.getElementById('search-form');
     var searchClear = document.getElementById('search-clear');
     var searchResults = document.getElementById('search-results');

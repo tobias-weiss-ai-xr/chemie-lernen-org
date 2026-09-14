@@ -22,15 +22,15 @@
        ============================================================ -->
   <section class="periodic-table-container">
 
-    <!-- Die PSE-App bindet ihre Elementsuche an #search-input (getElementById).
-         Das Site-Header-Suchfeld trägt dieselbe ID und steht früher im DOM —
-         es würde die Bindung an sich reißen. Es wird umbenannt und hier
-         ausgeblendet; die PSE-Suche ersetzt es auf dieser Seite. -->
+    <!-- UXF-060: Die PSE-App bindet ihre Elementsuche an #search-input
+         (getElementById). Das Site-Header-Suchfeld heißt seitdem
+         #header-search-input — keine Kollision mehr. Auf dieser Seite wird
+         der Header-Suchschlitz trotzdem ausgeblendet, weil die PSE-Suche
+         an seiner Stelle tritt. -->
     <script>
       (function () {
-        var s = document.getElementById('search-input');
+        var s = document.getElementById('header-search-input');
         if (s && s.closest('.search-wrapper')) {
-          s.id = 'site-search-input';
           s.closest('.search-wrapper').style.display = 'none';
         }
       })();

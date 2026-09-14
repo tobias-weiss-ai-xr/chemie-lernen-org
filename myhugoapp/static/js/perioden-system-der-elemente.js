@@ -1805,8 +1805,8 @@ function init() {
   window.addEventListener('resize', onWindowResize);
 
   // ── Wire up search ──────────────────────────────────────
-  var searchInput = document.getElementById('search-input');
-  var searchClear = document.getElementById('search-clear');
+  var searchInput = document.getElementById('pse-search-input');
+  var searchClear = document.getElementById('pse-search-clear');
   if (searchInput) {
     searchInput.addEventListener('input', function () {
       searchQuery = searchInput.value;

@@ -12,7 +12,7 @@
   <!-- Login notice -->
   <div id="login-notice" style="display:none;" class="alert alert-warning text-center">
     <i class="fa fa-sign-in"></i>
-    Bitte <a href="/login">anmelden</a>, um an Lernräumen teilzunehmen.
+    Bitte <a href="/login/">anmelden</a>, um an Lernräumen teilzunehmen.
   </div>
 
   <!-- Error display -->
@@ -107,6 +107,14 @@
                         </button>
                       </span>
                     </div>
+                  </div>
+                </div>
+
+                <!-- Geteilte Übungen Tab (UXF-060: Pane ergänzt — der Tab-Link
+                     existierte, der Ziel-Tab aber nicht) -->
+                <div role="tabpanel" class="tab-pane" id="tab-exercises">
+                  <div class="exercises-list" id="exercises-list">
+                    <p class="text-muted text-center">Noch keine geteilten Übungen — erstelle eine Übung im <a href="/quiz/">Quiz</a> und teile sie mit dem Raum.</p>
                   </div>
                 </div>
 

@@ -18,7 +18,7 @@ layout: 'search'
     </div>
   </div>
 
-  <div id="search-results">
+  <div id="page-search-results">
     <p class="search-loading">Lade Suchindex...</p>
   </div>
 
@@ -164,7 +164,7 @@ async function loadSearchIndex() {
 // Perform search
 async function performSearch() {
   const query = document.getElementById('search-input').value.toLowerCase().trim();
-  const resultsContainer = document.getElementById('search-results');
+  const resultsContainer = document.getElementById('page-search-results');
   const statsContainer = document.getElementById('search-stats');
 
   if (!query) {
@@ -266,7 +266,7 @@ function escapeRegExp(string) {
 
 // Initialize search on page load
 document.addEventListener('DOMContentLoaded', async () => {
-  const resultsContainer = document.getElementById('search-results');
+  const resultsContainer = document.getElementById('page-search-results');
 
   // Pre-load search index in background
   const indexLoaded = await loadSearchIndex();

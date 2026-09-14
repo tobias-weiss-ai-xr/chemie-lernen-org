@@ -80,3 +80,6 @@ zpd-route.test.mjs
 contrast-rendered.test.mjs
 prefers-theme-duality.test.mjs
 ux-rendered.test.mjs
+site-structure.test.mjs
+mobile-rendered.test.mjs
+calculators-rendered.test.mjs
