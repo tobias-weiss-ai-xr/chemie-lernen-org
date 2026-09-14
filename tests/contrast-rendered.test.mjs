@@ -25,7 +25,7 @@ import path from 'node:path';
 import { chromium } from 'playwright';
 // Browser-seitige Quellen (DOM-Strings) liegen in der Fixture — node-env-Files
 // dürfen laut tests/vitest-project-lists.test.js keine DOM-Referenzen enthalten.
-import { SCAN_SRC, INJECT_QUIZ_FEEDBACK, themeInitSrc } from './fixtures/contrast-browser.mjs';
+import { SCAN_SRC, INJECT_QUIZ_FEEDBACK, themeInitSrc } from './fixtures/browser-scan-sources.mjs';
 
 const SITE_ROOT = path.resolve('node_modules/.cache/hugo-contrast');
 
@@ -53,9 +53,21 @@ const COMBOS = [
 ];
 
 const PAGES = [
+  // Repräsentativ für jede Layout-Familie der Site (UXF-059 ausgeweitet)
   { path: '/', wait: 1500 }, // Startseite: 3D-Hero-Init abwarten
-  { path: '/themenbereiche/einfuehrung-chemie/was-ist-chemie/', wait: 500 },
+  { path: '/themenbereiche/', wait: 500 }, // Themen-Index
+  { path: '/themenbereiche/einfuehrung-chemie/was-ist-chemie/', wait: 500 }, // Thema-Artikel
   { path: '/quiz/', wait: 500, injectQuizFeedback: true },
+  { path: '/lernpfade/', wait: 500 },
+  { path: '/lernvideos/', wait: 500 },
+  { path: '/molare-masse-rechner/', wait: 500 }, // Rechner-Layout
+  { path: '/ph-rechner/', wait: 500 }, // Rechner-Layout (2.)
+  { path: '/stoechiometrie-rechner/', wait: 500 }, // Rechner-Verzeichnis
+  { path: '/ki-assistent/', wait: 800 }, // Chat-UI
+  { path: '/curricula/', wait: 500 },
+  { path: '/modulhandbuecher/', wait: 500 },
+  { path: '/dashboard/', wait: 500 }, // (Login-Gate erlaubt — Layout zählt)
+  { path: '/impressum/', wait: 500 }, // Plaintext-Seite
 ];
 
 let server;
@@ -118,39 +130,57 @@ afterAll(async () => {
 });
 
 describe('Kontrast-Ganzseiten-Scan (gerendert, WCAG AA)', () => {
-  for (const [dataTheme, osScheme] of COMBOS) {
-    it(`[data-theme=${dataTheme} / prefers=${osScheme}] 0 AA-Verletzungen auf ${PAGES.length} Seiten`, async (ctx) => {
-      if (skipped) return ctx.skip();
-      expect(browser, 'Chromium verfügbar').toBeTruthy();
-      const context = await browser.newContext({ colorScheme: osScheme });
-      const page = await context.newPage();
-      const violations = [];
-      try {
-        await page.addInitScript(themeInitSrc(dataTheme));
-        for (const p of PAGES) {
-          await page
-            .goto(`http://127.0.0.1:${port}${p.path}`, {
-              waitUntil: 'load',
-              timeout: 20000,
-            })
-            .catch(() => {});
-          await page.waitForTimeout(p.wait);
-          if (p.injectQuizFeedback) {
-            await page.evaluate(INJECT_QUIZ_FEEDBACK).catch(() => {});
+  it(`0 AA-Verletzungen auf ${PAGES.length} Seiten × ${COMBOS.length} Theme-Kombis (parallel)`, async (ctx) => {
+    if (skipped) return ctx.skip();
+    expect(browser, 'Chromium verfügbar').toBeTruthy();
+    // Kombis parallel scannen (eigener Context je Combo) — halbiert die Laufzeit
+    const perCombo = await Promise.all(
+      COMBOS.map(async ([dataTheme, osScheme]) => {
+        const context = await browser.newContext({ colorScheme: osScheme });
+        const page = await context.newPage();
+        const violations = [];
+        try {
+          await page.addInitScript(themeInitSrc(dataTheme));
+          for (const p of PAGES) {
+            const res = await page
+              .goto(`http://127.0.0.1:${port}${p.path}`, {
+                waitUntil: 'load',
+                timeout: 25000,
+              })
+              .catch(() => null);
+            if (!res || res.status() >= 400) {
+              violations.push({
+                page: p.path,
+                selector: `HTTP ${res ? res.status() : 'network-error'}`,
+                text: 'Seite nicht erreichbar — Route prüfen',
+                fg: '-',
+                bg: '-',
+                ratio: 0,
+                need: '-',
+              });
+              continue;
+            }
+            await page.waitForTimeout(p.wait);
+            if (p.injectQuizFeedback) {
+              await page.evaluate(INJECT_QUIZ_FEEDBACK).catch(() => {});
+            }
+            const found = await page.evaluate(SCAN_SRC);
+            for (const v of found)
+              violations.push({ combo: `${dataTheme}/${osScheme}`, page: p.path, ...v });
           }
-          const found = await page.evaluate(SCAN_SRC);
-          for (const v of found) violations.push({ page: p.path, ...v });
+        } finally {
+          await context.close();
         }
-      } finally {
-        await context.close();
-      }
-      const report = violations
-        .map(
-          (v) =>
-            `[${v.page}] ${v.selector} "${v.text}" ${v.fg} auf ${v.bg} = ${v.ratio}:1 (nötig ${v.need}:1)`
-        )
-        .join('\n');
-      expect(violations, `${violations.length} Kontrast-Verletzungen:\n${report}`).toEqual([]);
-    }, 120000);
-  }
+        return violations;
+      })
+    );
+    const violations = perCombo.flat();
+    const report = violations
+      .map(
+        (v) =>
+          `[${v.combo} ${v.page}] ${v.selector} "${v.text}" ${v.fg} auf ${v.bg} = ${v.ratio}:1 (nötig ${v.need}:1)`
+      )
+      .join('\n');
+    expect(violations, `${violations.length} Kontrast-Verletzungen:\n${report}`).toEqual([]);
+  }, 240000);
 });

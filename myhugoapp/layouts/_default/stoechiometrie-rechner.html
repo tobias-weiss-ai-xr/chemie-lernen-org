@@ -82,7 +82,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="well">
-              <h4>Edukt</h4>
+              <h3 class="panel-subtitle">Edukt</h3>
               <div class="form-group">
                 <label for="mol-coeff-r">Koeffizient (ν₁):</label>
 <input type="number" id="mol-coeff-r" class="form-control" value="2" step="any" aria-label="Koeffizient Reaktant">
@@ -96,7 +96,7 @@
           </div>
           <div class="col-md-6">
             <div class="well">
-              <h4>Produkt</h4>
+              <h3 class="panel-subtitle">Produkt</h3>
               <div class="form-group">
                 <label for="mol-coeff-p">Koeffizient (ν₂):</label>
 <input type="number" id="mol-coeff-p" class="form-control" value="2" step="any" aria-label="Koeffizient Produkt">
@@ -138,7 +138,7 @@
         <div class="row">
           <div class="col-md-4">
             <div class="well">
-              <h4>Edukt</h4>
+              <h3 class="panel-subtitle">Edukt</h3>
               <div class="form-group">
                 <label for="mass-coeff-r">Koeffizient (ν₁):</label>
 <input type="number" id="mass-coeff-r" class="form-control" value="1" step="any" aria-label="Massenkoeffizient Reaktant">
@@ -156,7 +156,7 @@
           </div>
           <div class="col-md-4">
             <div class="well">
-              <h4>Produkt</h4>
+              <h3 class="panel-subtitle">Produkt</h3>
               <div class="form-group">
                 <label for="mass-coeff-p">Koeffizient (ν₂):</label>
 <input type="number" id="mass-coeff-p" class="form-control" value="1" step="any" aria-label="Massenkoeffizient Produkt">
@@ -170,7 +170,7 @@
           </div>
           <div class="col-md-4">
             <div class="well result-well">
-              <h4>Ergebnis</h4>
+              <h3 class="panel-subtitle">Ergebnis</h3>
               <div id="mass-preview" class="text-center">
                 <p>--</p>
                 <p>Gramm</p>
@@ -193,7 +193,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="well">
-              <h4>Reagenz 1</h4>
+              <h3 class="panel-subtitle">Reagenz 1</h3>
               <div class="form-group">
                 <label for="lim-m1">Masse (g):</label>
 <input type="number" id="lim-m1" class="form-control" step="any" aria-label="Masse Reagenz 1">
@@ -206,7 +206,7 @@
           </div>
           <div class="col-md-6">
             <div class="well">
-              <h4>Reagenz 2</h4>
+              <h3 class="panel-subtitle">Reagenz 2</h3>
               <div class="form-group">
                 <label for="lim-m2">Masse (g):</label>
 <input type="number" id="lim-m2" class="form-control" step="any" aria-label="Masse Reagenz 2">
@@ -233,7 +233,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="well">
-              <h4>Theoretisch</h4>
+              <h3 class="panel-subtitle">Theoretisch</h3>
               <div class="form-group">
                 <label for="yield-theo">Masse (g):</label>
 <input type="number" id="yield-theo" class="form-control" step="any" aria-label="Theoretische Ausbeute">
@@ -242,7 +242,7 @@
           </div>
           <div class="col-md-6">
             <div class="well">
-              <h4>Praktisch</h4>
+              <h3 class="panel-subtitle">Praktisch</h3>
               <div class="form-group">
                 <label for="yield-act">Masse (g):</label>
 <input type="number" id="yield-act" class="form-control" step="any" aria-label="Tatsächliche Ausbeute">
@@ -278,7 +278,7 @@
 
         <!-- Initial Reactant Input -->
         <div class="well well-green">
-          <h4 class="text-green"><i class="fa fa-play-circle"></i> Ausgangsstoff (Schritt 0)</h4>
+          <h3 class="panel-subtitle text-green"><i class="fa fa-play-circle"></i> Ausgangsstoff (Schritt 0)</h3>
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
@@ -345,9 +345,9 @@
 
         <!-- Variable Selection -->
         <div class="well well-blue">
-          <h4 class="text-blue">
+          <h3 class="panel-subtitle text-blue">
             <i class="fa fa-calculator"></i> Was möchten Sie berechnen?
-          </h4>
+          </h3>
           <div class="form-group">
             <label for="gas-calculate-variable">Wähle die Variable:</label>
 <select id="gas-calculate-variable" class="form-control" aria-label="Berechnungsvariable">
@@ -361,9 +361,9 @@
 
         <!-- Gas Constant Selection -->
         <div class="well well-purple">
-          <h4 class="text-purple">
+          <h3 class="panel-subtitle text-purple">
             <i class="fa fa-cog"></i> Gaskonstante (R)
-          </h4>
+          </h3>
           <div class="form-group">
             <label for="gas-constant-select">Wähle die Einheiten:</label>
 <select id="gas-constant-select" class="form-control" aria-label="Gaskonstante">
@@ -386,7 +386,7 @@
           <!-- Pressure Input -->
           <div class="col-md-3">
             <div class="well">
-              <h4>Druck (P)</h4>
+              <h3 class="panel-subtitle">Druck (P)</h3>
               <div class="form-group">
                 <label for="gas-pressure">Wert:</label>
 <input type="number" id="gas-pressure" class="form-control" step="any" placeholder="z.B. 1" aria-label="Druck">
@@ -408,7 +408,7 @@
           <!-- Volume Input -->
           <div class="col-md-3">
             <div class="well">
-              <h4>Volumen (V)</h4>
+              <h3 class="panel-subtitle">Volumen (V)</h3>
               <div class="form-group">
                 <label for="gas-volume">Wert:</label>
 <input type="number" id="gas-volume" class="form-control" step="any" placeholder="z.B. 22.4" aria-label="Volumen">
@@ -428,7 +428,7 @@
           <!-- Amount Input -->
           <div class="col-md-3">
             <div class="well">
-              <h4>Stoffmenge (n)</h4>
+              <h3 class="panel-subtitle">Stoffmenge (n)</h3>
               <div class="form-group">
                 <label for="gas-amount">Wert:</label>
 <input type="number" id="gas-amount" class="form-control" step="any" placeholder="z.B. 1" aria-label="Stoffmenge">
@@ -446,7 +446,7 @@
           <!-- Temperature Input -->
           <div class="col-md-3">
             <div class="well">
-              <h4>Temperatur (T)</h4>
+              <h3 class="panel-subtitle">Temperatur (T)</h3>
               <div class="form-group">
                 <label for="gas-temperature">Wert:</label>
 <input type="number" id="gas-temperature" class="form-control" step="any" placeholder="z.B. 273.15" aria-label="Temperatur">
@@ -488,9 +488,9 @@
 
         <!-- Molar Volume Reference -->
         <div class="molar-volume-box">
-          <h4 class="text-green">
+          <h3 class="panel-subtitle text-green">
             <i class="fa fa-info-circle"></i> Molares Volumen bei Standardbedingungen
-          </h4>
+          </h3>
           <div class="row">
             <div class="col-md-6">
               <p><strong>STP (0°C, 1 atm):</strong></p>
@@ -524,6 +524,15 @@
 .result-box { background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px; padding: 20px; }
 .result-box h3 { color: #155724; margin-top: 0; }
 
+/* UXF-059: Panel-Titel — h3 statt h4 (Hierarchie), Optik bleibt (Bootstrap-h4-Maß) */
+.panel-subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.1;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 /* Preset buttons styling */
 .preset-buttons {
   display: flex;
@@ -535,7 +544,7 @@
 .preset-buttons button {
   background-color: #e3f2fd;
   border: 1px solid #2196F3;
-  color: #1976D2;
+  color: #0d47a1;
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;

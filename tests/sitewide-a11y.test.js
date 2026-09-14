@@ -134,7 +134,7 @@ describe('A11y-Pass 2: WCAG-Werte (light Theme)', () => {
     ['weiß auf btn-danger #c9302c', '#ffffff', '#c9302c', 4.5],
     ['weiß auf label-info #14808c', '#ffffff', '#14808c', 4.5],
     ['weiß auf skip-link #1b6aa5', '#ffffff', '#1b6aa5', 4.5],
-    ['--text-muted #626e7b auf Karten-Weiß', '#626e7b', '#fcfbf7', 4.5],
+    ['--text-muted #56616f auf Karten-Weiß', '#56616f', '#fcfbf7', 4.5],
   ];
   test.each(cases)('%s ≥ 4.5:1', (_label, fg, bg, min) => {
     expect(contrast(fg, bg)).toBeGreaterThanOrEqual(min);
@@ -143,7 +143,7 @@ describe('A11y-Pass 2: WCAG-Werte (light Theme)', () => {
   test('Runde 2: Hardcodes bleiben ersetzt', () => {
     const dash = read(path.join('static', 'css', 'progress-dashboard.css'));
     expect(dash).not.toMatch(/#7f8c8d|#95a5a6|background:\s*#fff;/);
-    expect(custom).toMatch(/color: var\(--text-muted, #626e7b\) !important/);
+    expect(custom).toMatch(/color: var\(--text-muted, #56616f\) !important/);
     expect(custom).toMatch(/\.calculator-panel\s*\{\s*background: var\(--card-bg/);
     const promo = read(path.join('layouts', 'shortcodes', 'periodic-table-promo-widget.html'));
     expect(promo).toMatch(/\.pt-promo-badge\s*\{[^}]*background: #0c6b62/s);

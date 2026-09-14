@@ -13,7 +13,7 @@
   --warning-color: #f59e0b;
   --danger-color: #e74c3c;
   --text-primary: #2c3e50;
-  --text-muted: #626e7b;
+  --text-muted: #56616f;
   --border-color: #d9dee3;
   --card-bg: #fcfbf7;
   --bg-primary: #f4f2ec;
@@ -970,7 +970,7 @@ body {
 
 /* Shared text utility overrides (consolidated from 8+ CSS files) */
 .text-muted {
-  color: var(--text-muted, #626e7b) !important;
+  color: var(--text-muted, #56616f) !important;
 }
 
 .text-primary {
@@ -1173,6 +1173,15 @@ body {
    Die globale Regel img{height:auto;max-width:100%} (sass/main.css) hätte
    sonst Vorrang vor dem height-Attribut — die SVGs haben intrinsische
    Root-Größen bis 1406px und würden riesig gerendert. */
+/* UXF-059: Footer-Hierarchie — h2 statt h4, Optik bleibt (Bootstrap-h4-Maß) */
+.site-footer h2.footer-heading {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.1;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .footer-ratings img {
   height: 20px !important;
   width: auto !important;

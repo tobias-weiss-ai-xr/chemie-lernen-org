@@ -214,6 +214,19 @@
   background-color: var(--table-hover);
 }
 
+/* UXF-059: Bootstrap-Striped-Zeilen behielten ihr helles #f9f9f9 */
+[data-theme='dark'] .table-striped > tbody > tr:nth-of-type(odd),
+[data-theme='dark'] .table-striped > tbody > tr:nth-of-type(odd) > td {
+  background-color: var(--table-bg);
+}
+
+/* UXF-059: Tab-Links behielten Hellgrün auf dunklem Panel
+   ([href] hebt die Spezifität über green-theme.css' Attr-Selektoren) */
+[data-theme='dark'] .nav-tabs > li > a[href],
+[data-theme='dark'] .nav-tabs > li > a[href]:hover {
+  color: #a5d6a7;
+}
+
 /* Code Blocks */
 [data-theme='dark'] pre,
 [data-theme='dark'] code {

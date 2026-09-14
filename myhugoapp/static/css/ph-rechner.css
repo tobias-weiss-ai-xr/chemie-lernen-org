@@ -379,7 +379,7 @@
     color: #e0e0e0;
   }
   html:not([data-theme]) .info-card h3 {
-    color: #0069d9;
+    color: #79b8ff;
   }
   html:not([data-theme]) .info-card p,
   html:not([data-theme]) .info-card li {
@@ -400,6 +400,15 @@
   }
   html:not([data-theme]) .ph-mark small {
     color: #b0b0b0;
+  }
+  html:not([data-theme]) #current-ph {
+    color: #7cb3ff;
+  }
+  html:not([data-theme]) #ph-description {
+    color: #b8b8b8;
+  }
+  html:not([data-theme]) .info-card .formula {
+    color: #d6d6d6;
   }
 }
 /* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
@@ -430,7 +439,7 @@
   color: #e0e0e0;
 }
 [data-theme='dark'] .info-card h3 {
-  color: #0069d9;
+  color: #79b8ff;
 }
 [data-theme='dark'] .info-card p,
 [data-theme='dark'] .info-card li {
@@ -451,4 +460,13 @@
 }
 [data-theme='dark'] .ph-mark small {
   color: #b0b0b0;
+}
+[data-theme='dark'] #current-ph {
+  color: #7cb3ff;
+}
+[data-theme='dark'] #ph-description {
+  color: #b8b8b8;
+}
+[data-theme='dark'] .info-card .formula {
+  color: #d6d6d6;
 }

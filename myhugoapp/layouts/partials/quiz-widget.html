@@ -7,7 +7,7 @@
 
 <div class="quiz-widget" id="quiz-widget-{{ $topic }}" aria-label="{{ $title }} Quiz">
   <div class="quiz-widget-header">
-    <h4><i class="fa fa-question-circle"></i> {{ $title }} — Quiz</h4>
+    <h2><i class="fa fa-question-circle"></i> {{ $title }} — Quiz</h2>
     <div class="quiz-widget-controls">
       <span class="quiz-score" id="quiz-score-{{ $topic }}"></span>
       <button class="btn btn-sm btn-default" id="quiz-reset-{{ $topic }}" aria-label="Quiz zurücksetzen">↻</button>
@@ -44,7 +44,7 @@
   align-items: center;
   margin-bottom: 15px;
 }
-.quiz-widget-header h4 {
+.quiz-widget-header h2 {
   margin: 0;
   font-size: 1.1rem;
 }
@@ -301,7 +301,7 @@
     var pct = Math.round((score / questions.length) * 100);
     var emoji = pct >= 80 ? '🌟' : pct >= 60 ? '👍' : '💪';
     var html = '<div class="text-center" style="padding:20px;">';
-    html += '<h4>' + emoji + ' Quiz abgeschlossen!</h4>';
+    html += '<h3>' + emoji + ' Quiz abgeschlossen!</h3>';
     html += '<p style="font-size:1.2rem;font-weight:600;">' + score + ' von ' + questions.length + ' richtig (' + pct + '%)</p>';
     html += '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">';
     html += '<button class="btn btn-sm btn-default" id="retry-' + TOPIC + '">🔄 Erneut versuchen</button>';

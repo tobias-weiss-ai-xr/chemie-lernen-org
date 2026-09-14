@@ -79,3 +79,4 @@ zpd-engine.test.mjs
 zpd-route.test.mjs
 contrast-rendered.test.mjs
 prefers-theme-duality.test.mjs
+ux-rendered.test.mjs

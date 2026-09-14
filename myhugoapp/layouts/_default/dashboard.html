@@ -41,7 +41,7 @@
         <div class="row" style="margin-top:30px;">
           <div class="col-md-12">
             <div class="detail-card">
-              <h3>Letzter Durchlauf</h3>
+              <h2 class="dashboard-section-title">Letzter Durchlauf</h2>
               <table class="table table-striped" aria-live="polite">
                 <tr><td>Gestartet</td><td id="detail-started">—</td></tr>
                 <tr><td>Artikel generiert</td><td id="detail-generated">—</td></tr>
@@ -64,7 +64,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="detail-card">
-                <h3>Inhaltsentwicklung</h3>
+                <h2 class="dashboard-section-title">Inhaltsentwicklung</h2>
                 <canvas id="chart-growth" height="200" role="img" aria-label="Lernfortschritt Diagramm"></canvas>
               </div>
             </div>
@@ -72,13 +72,13 @@
           <div class="row" style="margin-top:20px;">
             <div class="col-md-6">
               <div class="detail-card">
-                <h3>Fehlertrends</h3>
+                <h2 class="dashboard-section-title">Fehlertrends</h2>
                 <canvas id="chart-errors" height="200" role="img" aria-label="Fehleranalyse Diagramm"></canvas>
               </div>
             </div>
             <div class="col-md-6">
               <div class="detail-card">
-                <h3>Pipeline-Laufzeit</h3>
+                <h2 class="dashboard-section-title">Pipeline-Laufzeit</h2>
                 <canvas id="chart-duration" height="200" role="img" aria-label="Lernzeit Diagramm"></canvas>
               </div>
             </div>
@@ -110,6 +110,8 @@
   height: 100%;
 }
 .stat-value { font-size: 2.5rem; font-weight: 700; color: #1a5276; }
+/* UXF-059: Abschnitts-Titel — h2 statt h3 (Hierarchie), Optik bleibt (Bootstrap-h3-Maß) */
+.dashboard-section-title { font-size: 24px; font-weight: 500; line-height: 1.1; margin-top: 20px; margin-bottom: 10px; }
 .stat-label { font-size: 0.9rem; color: #666; margin-top: 5px; }
 .detail-card {
   background: #fff;
@@ -118,10 +120,10 @@
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
-@media (prefers-color-scheme: dark) {html:not([data-theme]) .stat-card, html:not([data-theme]) .detail-card { background: #2c2c2c; border-color: #444; }html:not([data-theme]) .stat-label { color: #bbb; }
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .stat-card, html:not([data-theme]) .detail-card { background: #2c2c2c; border-color: #444; }html:not([data-theme]) .stat-label { color: #bbb; }html:not([data-theme]) .stat-value { color: #7cb3ff; }
 }
 /* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
-[data-theme='dark'] .stat-card, [data-theme='dark'] .detail-card { background: #2c2c2c; border-color: #444; }[data-theme='dark'] .stat-label { color: #bbb; }
+[data-theme='dark'] .stat-card, [data-theme='dark'] .detail-card { background: #2c2c2c; border-color: #444; }[data-theme='dark'] .stat-label { color: #bbb; }[data-theme='dark'] .stat-value { color: #7cb3ff; }
 
 </style>
 
