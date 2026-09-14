@@ -491,7 +491,8 @@
 
 /* ── Export Button ──────────────────────────── */
 .export-btn {
-  background: rgba(255, 255, 255, 0.15);
+  /* UXF-059: dunkle Glasur statt heller — weiß bleibt >= 4.5:1 auf dem Header-Gradient */
+  background: rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
   font-size: 12px;
@@ -504,7 +505,7 @@
 }
 
 .export-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 /* ── Session Info Display ───────────────────── */
