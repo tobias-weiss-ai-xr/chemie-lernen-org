@@ -10,12 +10,11 @@
       <label for="quiz-topic-select" class="quiz-topic-label">Thema auswählen:</label>
       <select id="quiz-topic-select" class="quiz-topic-select">
         <option value="">— Bitte wählen —</option>
-        <option value="Allgemeine Chemie">Allgemeine Chemie</option>
-        <option value="Anorganische Chemie">Anorganische Chemie</option>
-        <option value="Organische Chemie">Organische Chemie</option>
-        <option value="Physikalische Chemie">Physikalische Chemie</option>
-        <option value="Biochemie">Biochemie</option>
-        <option value="alle">Alle Themen (30 Fragen)</option>
+        <!-- UXF-056: Themen-Optionen werden dynamisch aus window.quizQuestions
+             befüllt (drift-sicher) — vorher hardcodierte Kategorien, die mit
+             den Frage-Topics („Anorganische Verbindungen“ etc.) nicht
+             matchten → „Keine Fragen verfügbar“ bei fast jeder Wahl -->
+        <option value="alle">Alle Themen</option>
       </select>
       <button id="quiz-start-btn" class="quiz-btn quiz-btn-primary quiz-btn-start" disabled>
         Quiz starten
@@ -911,6 +910,29 @@
   });
 
   // ── Topic selection ───────────────────────────
+  // UXF-056: Optionen dynamisch aus der Frage-DB — die Frage-Topics sind
+  // die einzige Wahrheit; hardcodierte Kategorien lieferten leere Treffer.
+  (function populateQuizTopics() {
+    var qs = window.quizQuestions || [];
+    var topics = [];
+    qs.forEach(function (q) {
+      if (q.topic && topics.indexOf(q.topic) === -1) topics.push(q.topic);
+    });
+    topics.sort(function (a, b) {
+      return a.localeCompare(b, 'de');
+    });
+    var alleOption = topicSelect.querySelector('option[value="alle"]');
+    topics.forEach(function (t) {
+      var opt = document.createElement('option');
+      opt.value = t;
+      opt.textContent = t;
+      topicSelect.insertBefore(opt, alleOption);
+    });
+    if (alleOption) {
+      alleOption.textContent = 'Alle Themen (' + qs.length + ' Fragen)';
+    }
+  })();
+
   topicSelect.addEventListener('change', function () {
     startBtn.disabled = !this.value;
   });
