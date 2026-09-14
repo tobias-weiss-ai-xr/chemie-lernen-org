@@ -66,7 +66,10 @@ let skipped = false;
 function hugoAvailable() {
   try {
     const r = spawnSync('hugo', ['version'], { timeout: 10000 });
-    return r.status === 0;
+    if (r.status !== 0) return false;
+    // Der Build braucht hugo-EXTENDED (SCSS/libsass, sass/main.scss).
+    // Ohne extended (z.B. Ubuntu-Runner) wird der gerenderte Scan geskippt.
+    return /extended/i.test(String(r.stdout));
   } catch {
     return false;
   }
