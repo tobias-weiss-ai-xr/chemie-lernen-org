@@ -77,3 +77,5 @@ verduennungsrechner.test.js
 zpd-engine-query.test.mjs
 zpd-engine.test.mjs
 zpd-route.test.mjs
+contrast-rendered.test.mjs
+prefers-theme-duality.test.mjs

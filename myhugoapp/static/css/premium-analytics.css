@@ -197,56 +197,87 @@
 /* ── Dark Mode ─────────────────────────────────────────── */
 
 @media (prefers-color-scheme: dark) {
-  .a-card,
-  .a-card-overview {
+  html:not([data-theme]) .a-card,
+  html:not([data-theme]) .a-card-overview {
     background: #2c2c2c;
     border-color: #444;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
-
-  .a-card-value {
+  html:not([data-theme]) .a-card-value {
     color: #64b5f6;
   }
-
-  .a-card-label,
-  .topic-meta,
-  .a-pagination small {
+  html:not([data-theme]) .a-card-label,
+  html:not([data-theme]) .topic-meta,
+  html:not([data-theme]) .a-pagination small {
     color: #aaa;
   }
-
-  .a-table thead th {
+  html:not([data-theme]) .a-table thead th {
     color: #bbb;
     border-bottom-color: #555;
   }
-
-  .a-table tbody td {
+  html:not([data-theme]) .a-table tbody td {
     color: #ddd;
     border-bottom-color: #444;
   }
-
-  .a-pagination {
+  html:not([data-theme]) .a-pagination {
     border-top-color: #444;
   }
-
-  .topic-info {
+  html:not([data-theme]) .topic-info {
     color: #ddd;
   }
-
-  .topic-row {
+  html:not([data-theme]) .topic-row {
     border-bottom-color: #3a3a3a;
   }
-
-  .topic-bar {
+  html:not([data-theme]) .topic-bar {
     background: #444;
   }
-
-  .topic-name {
+  html:not([data-theme]) .topic-name {
     color: #eee;
   }
-
-  .engagement-chart svg text {
+  html:not([data-theme]) .engagement-chart svg text {
     fill: #bbb;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .a-card,
+[data-theme='dark'] .a-card-overview {
+  background: #2c2c2c;
+  border-color: #444;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+[data-theme='dark'] .a-card-value {
+  color: #64b5f6;
+}
+[data-theme='dark'] .a-card-label,
+[data-theme='dark'] .topic-meta,
+[data-theme='dark'] .a-pagination small {
+  color: #aaa;
+}
+[data-theme='dark'] .a-table thead th {
+  color: #bbb;
+  border-bottom-color: #555;
+}
+[data-theme='dark'] .a-table tbody td {
+  color: #ddd;
+  border-bottom-color: #444;
+}
+[data-theme='dark'] .a-pagination {
+  border-top-color: #444;
+}
+[data-theme='dark'] .topic-info {
+  color: #ddd;
+}
+[data-theme='dark'] .topic-row {
+  border-bottom-color: #3a3a3a;
+}
+[data-theme='dark'] .topic-bar {
+  background: #444;
+}
+[data-theme='dark'] .topic-name {
+  color: #eee;
+}
+[data-theme='dark'] .engagement-chart svg text {
+  fill: #bbb;
 }
 
 /* ── Mobile ─────────────────────────────────────────────── */

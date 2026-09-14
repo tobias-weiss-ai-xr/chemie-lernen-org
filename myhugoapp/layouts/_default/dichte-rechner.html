@@ -219,36 +219,45 @@
   border-left: 3px solid #667eea;
 }
 
-@media (prefers-color-scheme: dark) {
-  .calculator-panel {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .calculator-panel {
     background: #2c2c2c;
     border-color: #444;
     color: #e0e0e0;
-  }
-
-  .calculator-panel h2 {
+  }html:not([data-theme]) .calculator-panel h2 {
     color: #e0e0e0;
-  }
-
-  .form-group label {
+  }html:not([data-theme]) .form-group label {
     color: #bbb;
-  }
-
-  .info-card {
+  }html:not([data-theme]) .info-card {
     background: #2c2c2c;
     border-color: #444;
     color: #e0e0e0;
-  }
-
-  .info-card h3 {
+  }html:not([data-theme]) .info-card h3 {
     color: #8899ff;
-  }
-
-  .example-item {
+  }html:not([data-theme]) .example-item {
     background: #3c3c3c;
     color: #e0e0e0;
   }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .calculator-panel {
+    background: #2c2c2c;
+    border-color: #444;
+    color: #e0e0e0;
+  }[data-theme='dark'] .calculator-panel h2 {
+    color: #e0e0e0;
+  }[data-theme='dark'] .form-group label {
+    color: #bbb;
+  }[data-theme='dark'] .info-card {
+    background: #2c2c2c;
+    border-color: #444;
+    color: #e0e0e0;
+  }[data-theme='dark'] .info-card h3 {
+    color: #8899ff;
+  }[data-theme='dark'] .example-item {
+    background: #3c3c3c;
+    color: #e0e0e0;
+  }
+
 </style>
 
 <script src="/js/dichte-rechner.js"></script>

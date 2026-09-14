@@ -5,9 +5,11 @@
    aufgehellt — Details: tests/modulhandbuch-contrast.test.js) */
 #mh-app { --mh-accent: #9b59b6; --mh-accent-soft: #f3e8ff; --mh-accent-text: #7b1fa2; }
 [data-theme='dark'] #mh-app { --mh-accent: #ce93d8; --mh-accent-soft: #3a2060; --mh-accent-text: #ce93d8; }
-@media (prefers-color-scheme: dark) {
-  #mh-app { --mh-accent: #ce93d8; --mh-accent-soft: #3a2060; --mh-accent-text: #ce93d8; }
+@media (prefers-color-scheme: dark) {html:not([data-theme]) #mh-app { --mh-accent: #ce93d8; --mh-accent-soft: #3a2060; --mh-accent-text: #ce93d8; }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] #mh-app { --mh-accent: #ce93d8; --mh-accent-soft: #3a2060; --mh-accent-text: #ce93d8; }
+
 #mh-app .curricula-skeleton { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
 #mh-app .curricula-skeleton-card { height: 80px; border-radius: 10px; background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%); background-size: 200% 100%; animation: shim 1.5s infinite; }
 @keyframes shim { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
@@ -24,11 +26,11 @@
 .mh-detail dt { color: var(--text-muted,#767676); font-weight: 600; }
 .mh-detail dd { margin: 0; }
 .mh-search { padding: 0.6rem 1rem; border-radius: 8px; border: 1px solid var(--border-color,#767676); font-size: 1rem; width: 100%; max-width: 400px; margin-bottom: 1rem; }
-@media (prefers-color-scheme: dark) {
-  #mh-app .curricula-skeleton-card { background: linear-gradient(90deg,#333 25%,#3a3a3a 50%,#333 75%); background-size: 200% 100%; }
-  .mh-card { background: var(--card-bg,#2a2a2a); border-color: #444; }
-  .mh-chip { background: var(--mh-accent-soft,#3a2060); color: var(--mh-accent-text,#ce93d8); }
+@media (prefers-color-scheme: dark) {html:not([data-theme]) #mh-app .curricula-skeleton-card { background: linear-gradient(90deg,#333 25%,#3a3a3a 50%,#333 75%); background-size: 200% 100%; }html:not([data-theme]) .mh-card { background: var(--card-bg,#2a2a2a); border-color: #444; }html:not([data-theme]) .mh-chip { background: var(--mh-accent-soft,#3a2060); color: var(--mh-accent-text,#ce93d8); }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] #mh-app .curricula-skeleton-card { background: linear-gradient(90deg,#333 25%,#3a3a3a 50%,#333 75%); background-size: 200% 100%; }[data-theme='dark'] .mh-card { background: var(--card-bg,#2a2a2a); border-color: #444; }[data-theme='dark'] .mh-chip { background: var(--mh-accent-soft,#3a2060); color: var(--mh-accent-text,#ce93d8); }
+
 </style>
 {{ end }}
 

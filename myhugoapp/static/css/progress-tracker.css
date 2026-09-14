@@ -214,28 +214,43 @@
 
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
-  .progress-widget {
+  html:not([data-theme]) .progress-widget {
     --card-bg: #1e1e1e;
     --primary-color: #e0e0e0;
     --text-color: #e0e0e0;
     --text-secondary: #a0a0a0;
   }
-
-  .circle-bg {
+  html:not([data-theme]) .circle-bg {
     stroke: #3a3a3a;
   }
-
-  .topic-item {
+  html:not([data-theme]) .topic-item {
     background: #2a2a2a;
   }
-
-  .topic-item:hover {
+  html:not([data-theme]) .topic-item:hover {
     background: #3a3a3a;
   }
-
-  .detail-item {
+  html:not([data-theme]) .detail-item {
     border-bottom-color: #3a3a3a;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .progress-widget {
+  --card-bg: #1e1e1e;
+  --primary-color: #e0e0e0;
+  --text-color: #e0e0e0;
+  --text-secondary: #a0a0a0;
+}
+[data-theme='dark'] .circle-bg {
+  stroke: #3a3a3a;
+}
+[data-theme='dark'] .topic-item {
+  background: #2a2a2a;
+}
+[data-theme='dark'] .topic-item:hover {
+  background: #3a3a3a;
+}
+[data-theme='dark'] .detail-item {
+  border-bottom-color: #3a3a3a;
 }
 
 /* Animations */

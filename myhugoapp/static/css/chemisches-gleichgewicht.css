@@ -552,117 +552,189 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .chemisches-gleichgewicht-container {
+  html:not([data-theme]) .chemisches-gleichgewicht-container {
     color: #e0e0e0;
   }
-
-  .calculator-panel,
-  .example,
-  .principle-examples {
+  html:not([data-theme]) .calculator-panel,
+  html:not([data-theme]) .example,
+  html:not([data-theme]) .principle-examples {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .calculator-panel h2,
-  .principle-examples h2,
-  .educational-content h2 {
+  html:not([data-theme]) .calculator-panel h2,
+  html:not([data-theme]) .principle-examples h2,
+  html:not([data-theme]) .educational-content h2 {
     color: #e0e0e0;
   }
-
-  .formula-text {
+  html:not([data-theme]) .formula-text {
     background: #2c2c2c;
     color: #64b5f6;
     border-color: #0d47a1;
   }
-
-  .control-group label {
+  html:not([data-theme]) .control-group label {
     color: #e0e0e0;
   }
-
-  .control-group input[type='range'],
-  .control-group input[type='number'] {
+  html:not([data-theme]) .control-group input[type='range'],
+  html:not([data-theme]) .control-group input[type='number'] {
     background: #2c2c2c;
     color: #e0e0e0;
     border-color: #555;
   }
-
-  .control-group input[type='range']:focus {
+  html:not([data-theme]) .control-group input[type='range']:focus {
     outline-color: #64b5f6;
     border-color: #555;
   }
-
-  .control-group input[type='number']:focus {
+  html:not([data-theme]) .control-group input[type='number']:focus {
     outline-color: #64b5f6;
     border-color: #555;
   }
-
-  .equilibrium-results,
-  .plot-container {
+  html:not([data-theme]) .equilibrium-results,
+  html:not([data-theme]) .plot-container {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .equilibrium-display .formula-text {
+  html:not([data-theme]) .equilibrium-display .formula-text {
     background: #1a3c5e;
     border-color: #0d47a1;
   }
-
-  .direction-info {
+  html:not([data-theme]) .direction-info {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .value-display {
+  html:not([data-theme]) .value-display {
     color: #64b5f6;
   }
-
-  .badge.equilibrium {
+  html:not([data-theme]) .badge.equilibrium {
     background: #1a3c5e;
   }
-
-  .badge.reactants {
+  html:not([data-theme]) .badge.reactants {
     background: #74c3c;
   }
-
-  .badge.products {
+  html:not([data-theme]) .badge.products {
     background: #2ecc71;
   }
-
-  .legend-line {
+  html:not([data-theme]) .legend-line {
     background: #4a90e2;
   }
-
-  .result-box,
-  .calculation-steps,
-  .example {
+  html:not([data-theme]) .result-box,
+  html:not([data-theme]) .calculation-steps,
+  html:not([data-theme]) .example {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .example h5,
-  .rule-of-thumb h4 {
+  html:not([data-theme]) .example h5,
+  html:not([data-theme]) .rule-of-thumb h4 {
     color: #64b5f6;
   }
-
-  .alert-info {
+  html:not([data-theme]) .alert-info {
     background: #1a3c5e;
     border-color: #0d47a1;
     color: #b8daff;
   }
-
-  .alert-success {
+  html:not([data-theme]) .alert-success {
     background: #1a3c5e;
     border-color: #0d47a1;
     color: #90caf9;
   }
-
-  .alert-warning {
+  html:not([data-theme]) .alert-warning {
     background: #1a3c5e;
     border-color: #0d47a1;
     color: #ffc107;
   }
-
-  .text-success {
+  html:not([data-theme]) .text-success {
     color: #90caf9;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .chemisches-gleichgewicht-container {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .calculator-panel,
+[data-theme='dark'] .example,
+[data-theme='dark'] .principle-examples {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .calculator-panel h2,
+[data-theme='dark'] .principle-examples h2,
+[data-theme='dark'] .educational-content h2 {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .formula-text {
+  background: #2c2c2c;
+  color: #64b5f6;
+  border-color: #0d47a1;
+}
+[data-theme='dark'] .control-group label {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .control-group input[type='range'],
+[data-theme='dark'] .control-group input[type='number'] {
+  background: #2c2c2c;
+  color: #e0e0e0;
+  border-color: #555;
+}
+[data-theme='dark'] .control-group input[type='range']:focus {
+  outline-color: #64b5f6;
+  border-color: #555;
+}
+[data-theme='dark'] .control-group input[type='number']:focus {
+  outline-color: #64b5f6;
+  border-color: #555;
+}
+[data-theme='dark'] .equilibrium-results,
+[data-theme='dark'] .plot-container {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .equilibrium-display .formula-text {
+  background: #1a3c5e;
+  border-color: #0d47a1;
+}
+[data-theme='dark'] .direction-info {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .value-display {
+  color: #64b5f6;
+}
+[data-theme='dark'] .badge.equilibrium {
+  background: #1a3c5e;
+}
+[data-theme='dark'] .badge.reactants {
+  background: #74c3c;
+}
+[data-theme='dark'] .badge.products {
+  background: #2ecc71;
+}
+[data-theme='dark'] .legend-line {
+  background: #4a90e2;
+}
+[data-theme='dark'] .result-box,
+[data-theme='dark'] .calculation-steps,
+[data-theme='dark'] .example {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .example h5,
+[data-theme='dark'] .rule-of-thumb h4 {
+  color: #64b5f6;
+}
+[data-theme='dark'] .alert-info {
+  background: #1a3c5e;
+  border-color: #0d47a1;
+  color: #b8daff;
+}
+[data-theme='dark'] .alert-success {
+  background: #1a3c5e;
+  border-color: #0d47a1;
+  color: #90caf9;
+}
+[data-theme='dark'] .alert-warning {
+  background: #1a3c5e;
+  border-color: #0d47a1;
+  color: #ffc107;
+}
+[data-theme='dark'] .text-success {
+  color: #90caf9;
 }

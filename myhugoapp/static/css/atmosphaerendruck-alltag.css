@@ -430,130 +430,205 @@
 
 /* ===== Dark Mode Support ===== */
 @media (prefers-color-scheme: dark) {
-  .atmosphaerendruck-container .intro-section {
+  html:not([data-theme]) .atmosphaerendruck-container .intro-section {
     background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
   }
-
-  .atmosphaerendruck-container .experiment-panel {
+  html:not([data-theme]) .atmosphaerendruck-container .experiment-panel {
     background: #1a1a1a;
     color: #e0e0e0;
     border-color: #404040;
   }
-
-  .atmosphaerendruck-container .experiment-panel h2 {
+  html:not([data-theme]) .atmosphaerendruck-container .experiment-panel h2 {
     color: #e0e0e0;
   }
-
-  .atmosphaerendruck-container .canvas-container {
+  html:not([data-theme]) .atmosphaerendruck-container .canvas-container {
     background: #0a0a0a;
     border-color: #404040;
   }
-
-  .atmosphaerendruck-container canvas {
+  html:not([data-theme]) .atmosphaerendruck-container canvas {
     border-color: #404040;
   }
-
-  .atmosphaerendruck-container .simulation-controls {
+  html:not([data-theme]) .atmosphaerendruck-container .simulation-controls {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .atmosphaerendruck-container .control-group label {
+  html:not([data-theme]) .atmosphaerendruck-container .control-group label {
     color: #e0e0e0;
   }
-
-  .atmosphaerendruck-container .control-group input[type='range'] {
+  html:not([data-theme]) .atmosphaerendruck-container .control-group input[type='range'] {
     background: #404040;
   }
-
-  .atmosphaerendruck-container .control-group select {
+  html:not([data-theme]) .atmosphaerendruck-container .control-group select {
     background: #2c2c2c;
     color: #e0e0e0;
     border-color: #555;
   }
-
-  .atmosphaerendruck-container .control-value {
+  html:not([data-theme]) .atmosphaerendruck-container .control-value {
     color: #e0e0e0;
   }
-
-  .atmosphaerendruck-container .pressure-display {
+  html:not([data-theme]) .atmosphaerendruck-container .pressure-display {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .atmosphaerendruck-container .pressure-value {
+  html:not([data-theme]) .atmosphaerendruck-container .pressure-value {
     background: #2c2c2c;
     border-left-color: #5a67d8;
   }
-
-  .atmosphaerendruck-container .pressure-value .label {
+  html:not([data-theme]) .atmosphaerendruck-container .pressure-value .label {
     color: #e0e0e0;
   }
-
-  .atmosphaerendruck-container .pressure-value .value {
+  html:not([data-theme]) .atmosphaerendruck-container .pressure-value .value {
     color: #e0e0e0;
   }
-
-  .atmosphaerendruck-container .info-card {
+  html:not([data-theme]) .atmosphaerendruck-container .info-card {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .atmosphaerendruck-container .info-card h3 {
+  html:not([data-theme]) .atmosphaerendruck-container .info-card h3 {
     color: #e0e0e0;
   }
-
-  .atmosphaerendruck-container .info-card p,
-  .atmosphaerendruck-container .info-card li {
+  html:not([data-theme]) .atmosphaerendruck-container .info-card p,
+  html:not([data-theme]) .atmosphaerendruck-container .info-card li {
     color: #c0c0c0;
   }
-
-  .atmosphaerendruck-container .comparison-table {
+  html:not([data-theme]) .atmosphaerendruck-container .comparison-table {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .atmosphaerendruck-container .comparison-table th {
+  html:not([data-theme]) .atmosphaerendruck-container .comparison-table th {
     background: #5a67d8;
     border-color: #4854aa;
     color: #ffffff;
   }
-
-  .atmosphaerendruck-container .comparison-table td {
+  html:not([data-theme]) .atmosphaerendruck-container .comparison-table td {
     border-color: #404040;
     color: #e0e0e0;
   }
-
-  .atmosphaerendruck-container .comparison-table tr:hover {
+  html:not([data-theme]) .atmosphaerendruck-container .comparison-table tr:hover {
     background: #2c2c2c;
   }
-
-  .atmosphaerendruck-container .nav-tabs {
+  html:not([data-theme]) .atmosphaerendruck-container .nav-tabs {
     border-bottom-color: #5a67d8;
   }
-
-  .atmosphaerendruck-container .nav-tabs > li > a {
+  html:not([data-theme]) .atmosphaerendruck-container .nav-tabs > li > a {
     color: #e0e0e0;
   }
-
-  .atmosphaerendruck-container .nav-tabs > li > a:hover,
-  .atmosphaerendruck-container .nav-tabs > li > a:focus {
+  html:not([data-theme]) .atmosphaerendruck-container .nav-tabs > li > a:hover,
+  html:not([data-theme]) .atmosphaerendruck-container .nav-tabs > li > a:focus {
     background-color: #2c2c2c;
     border-color: #5a67d8;
     color: #ffffff;
   }
-
-  .atmosphaerendruck-container .nav-tabs > li.active > a,
-  .atmosphaerendruck-container .nav-tabs > li.active > a:hover,
-  .atmosphaerendruck-container .nav-tabs > li.active > a:focus {
+  html:not([data-theme]) .atmosphaerendruck-container .nav-tabs > li.active > a,
+  html:not([data-theme]) .atmosphaerendruck-container .nav-tabs > li.active > a:hover,
+  html:not([data-theme]) .atmosphaerendruck-container .nav-tabs > li.active > a:focus {
     color: #ffffff;
     background-color: #1a1a1a;
     border-color: #5a67d8;
   }
-
-  .atmosphaerendruck-container .control-group input[type='range']:focus {
+  html:not([data-theme]) .atmosphaerendruck-container .control-group input[type='range']:focus {
     background: #404040;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .atmosphaerendruck-container .intro-section {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+[data-theme='dark'] .atmosphaerendruck-container .experiment-panel {
+  background: #1a1a1a;
+  color: #e0e0e0;
+  border-color: #404040;
+}
+[data-theme='dark'] .atmosphaerendruck-container .experiment-panel h2 {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .atmosphaerendruck-container .canvas-container {
+  background: #0a0a0a;
+  border-color: #404040;
+}
+[data-theme='dark'] .atmosphaerendruck-container canvas {
+  border-color: #404040;
+}
+[data-theme='dark'] .atmosphaerendruck-container .simulation-controls {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .atmosphaerendruck-container .control-group label {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .atmosphaerendruck-container .control-group input[type='range'] {
+  background: #404040;
+}
+[data-theme='dark'] .atmosphaerendruck-container .control-group select {
+  background: #2c2c2c;
+  color: #e0e0e0;
+  border-color: #555;
+}
+[data-theme='dark'] .atmosphaerendruck-container .control-value {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .atmosphaerendruck-container .pressure-display {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .atmosphaerendruck-container .pressure-value {
+  background: #2c2c2c;
+  border-left-color: #5a67d8;
+}
+[data-theme='dark'] .atmosphaerendruck-container .pressure-value .label {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .atmosphaerendruck-container .pressure-value .value {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .atmosphaerendruck-container .info-card {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .atmosphaerendruck-container .info-card h3 {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .atmosphaerendruck-container .info-card p,
+[data-theme='dark'] .atmosphaerendruck-container .info-card li {
+  color: #c0c0c0;
+}
+[data-theme='dark'] .atmosphaerendruck-container .comparison-table {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .atmosphaerendruck-container .comparison-table th {
+  background: #5a67d8;
+  border-color: #4854aa;
+  color: #ffffff;
+}
+[data-theme='dark'] .atmosphaerendruck-container .comparison-table td {
+  border-color: #404040;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .atmosphaerendruck-container .comparison-table tr:hover {
+  background: #2c2c2c;
+}
+[data-theme='dark'] .atmosphaerendruck-container .nav-tabs {
+  border-bottom-color: #5a67d8;
+}
+[data-theme='dark'] .atmosphaerendruck-container .nav-tabs > li > a {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .atmosphaerendruck-container .nav-tabs > li > a:hover,
+[data-theme='dark'] .atmosphaerendruck-container .nav-tabs > li > a:focus {
+  background-color: #2c2c2c;
+  border-color: #5a67d8;
+  color: #ffffff;
+}
+[data-theme='dark'] .atmosphaerendruck-container .nav-tabs > li.active > a,
+[data-theme='dark'] .atmosphaerendruck-container .nav-tabs > li.active > a:hover,
+[data-theme='dark'] .atmosphaerendruck-container .nav-tabs > li.active > a:focus {
+  color: #ffffff;
+  background-color: #1a1a1a;
+  border-color: #5a67d8;
+}
+[data-theme='dark'] .atmosphaerendruck-container .control-group input[type='range']:focus {
+  background: #404040;
 }
 
 /* ===== Responsive Design ===== */

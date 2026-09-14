@@ -132,41 +132,47 @@
 }
 
 /* Dark mode */
-@media (prefers-color-scheme: dark) {
-  .curriculum-header:hover {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .curriculum-header:hover {
     background-color: #3a3a3a;
-  }
-
-  .topic-item {
+  }html:not([data-theme]) .topic-item {
     background-color: #2c2c2c;
     border-left-color: #28a745;
-  }
-
-  .topic-item strong {
+  }html:not([data-theme]) .topic-item strong {
     color: #e0e0e0;
-  }
-
-  .objective-list {
+  }html:not([data-theme]) .objective-list {
     color: #ccc;
-  }
-
-  .curricula-stats {
+  }html:not([data-theme]) .curricula-stats {
     background-color: #2c2c2c;
-  }
-
-  .curriculum-header h3 small {
+  }html:not([data-theme]) .curriculum-header h3 small {
     color: #adb5bd;
-  }
-
-  .school-type-section h4 {
+  }html:not([data-theme]) .school-type-section h4 {
     color: #e0e0e0;
     border-bottom-color: #0056b3;
-  }
-
-  .grade-section h5 {
+  }html:not([data-theme]) .grade-section h5 {
     color: #adb5bd;
   }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .curriculum-header:hover {
+    background-color: #3a3a3a;
+  }[data-theme='dark'] .topic-item {
+    background-color: #2c2c2c;
+    border-left-color: #28a745;
+  }[data-theme='dark'] .topic-item strong {
+    color: #e0e0e0;
+  }[data-theme='dark'] .objective-list {
+    color: #ccc;
+  }[data-theme='dark'] .curricula-stats {
+    background-color: #2c2c2c;
+  }[data-theme='dark'] .curriculum-header h3 small {
+    color: #adb5bd;
+  }[data-theme='dark'] .school-type-section h4 {
+    color: #e0e0e0;
+    border-bottom-color: #0056b3;
+  }[data-theme='dark'] .grade-section h5 {
+    color: #adb5bd;
+  }
+
 
 /* Responsive */
 @media (max-width: 768px) {

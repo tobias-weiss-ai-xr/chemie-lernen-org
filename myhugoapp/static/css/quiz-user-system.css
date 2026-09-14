@@ -14,10 +14,15 @@
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
-  .user-panel {
+  html:not([data-theme]) .user-panel {
     --card-bg: #1e1e1e;
     color: #e0e0e0;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .user-panel {
+  --card-bg: #1e1e1e;
+  color: #e0e0e0;
 }
 
 /* User Info Header */

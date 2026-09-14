@@ -73,28 +73,41 @@
   border-color: var(--brand-primary, #1b5e20);
 }
 
-@media (prefers-color-scheme: dark) {
-  .recommendation-widget {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .recommendation-widget {
     background: linear-gradient(135deg, #1a2e1a 0%, #1a3a1a 100%);
     border-color: #2a5a2a;
-  }
-  .recommendation-widget h3 {
+  }html:not([data-theme]) .recommendation-widget h3 {
     color: #81c784;
-  }
-  .recommendation-widget .recommendation-content {
+  }html:not([data-theme]) .recommendation-widget .recommendation-content {
     color: #e0e0e0;
-  }
-  .recommendation-widget .path-list-mini a {
+  }html:not([data-theme]) .recommendation-widget .path-list-mini a {
     background: #2c2c2c;
     border-color: #3a5a3a;
     color: #81c784;
-  }
-  .recommendation-widget .path-list-mini a:hover {
+  }html:not([data-theme]) .recommendation-widget .path-list-mini a:hover {
     background: #81c784;
     color: #1a1a1a;
     border-color: #81c784;
   }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .recommendation-widget {
+    background: linear-gradient(135deg, #1a2e1a 0%, #1a3a1a 100%);
+    border-color: #2a5a2a;
+  }[data-theme='dark'] .recommendation-widget h3 {
+    color: #81c784;
+  }[data-theme='dark'] .recommendation-widget .recommendation-content {
+    color: #e0e0e0;
+  }[data-theme='dark'] .recommendation-widget .path-list-mini a {
+    background: #2c2c2c;
+    border-color: #3a5a3a;
+    color: #81c784;
+  }[data-theme='dark'] .recommendation-widget .path-list-mini a:hover {
+    background: #81c784;
+    color: #1a1a1a;
+    border-color: #81c784;
+  }
+
 
 @media (max-width: 480px) {
   .recommendation-widget {

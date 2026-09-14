@@ -282,17 +282,29 @@
   display: inline-block;
 }
 @media (prefers-color-scheme: dark) {
-  #kg-controls {
+  html:not([data-theme]) #kg-controls {
     background: #2a2a2a;
   }
-  .kg-filter-chip {
+  html:not([data-theme]) .kg-filter-chip {
     background: #333;
     border-color: #555;
     color: #ddd;
   }
-  .kg-filter-chip:hover {
+  html:not([data-theme]) .kg-filter-chip:hover {
     border-color: #888;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] #kg-controls {
+  background: #2a2a2a;
+}
+[data-theme='dark'] .kg-filter-chip {
+  background: #333;
+  border-color: #555;
+  color: #ddd;
+}
+[data-theme='dark'] .kg-filter-chip:hover {
+  border-color: #888;
 }
 
 /* A11y: Header-Flaeche thematisiert (war transparent -> weisse h2) */

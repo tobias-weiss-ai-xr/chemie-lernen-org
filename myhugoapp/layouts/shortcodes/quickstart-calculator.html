@@ -98,11 +98,11 @@
     grid-template-columns: 1fr;
   }
 }
-@media (prefers-color-scheme: dark) {
-  .quickstart-section { background: #222; border-color: #444; }
-  .quickstart-card { background: #2c2c2c; border-color: #444; }
-  .qs-result { color: #64da72; }
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .quickstart-section { background: #222; border-color: #444; }html:not([data-theme]) .quickstart-card { background: #2c2c2c; border-color: #444; }html:not([data-theme]) .qs-result { color: #64da72; }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .quickstart-section { background: #222; border-color: #444; }[data-theme='dark'] .quickstart-card { background: #2c2c2c; border-color: #444; }[data-theme='dark'] .qs-result { color: #64da72; }
+
 </style>
 
 <script>

@@ -141,17 +141,13 @@
   color: var(--text-muted, #626e7b);
   white-space: nowrap;
 }
-@media (prefers-color-scheme: dark) {
-  .quiz-widget { background: #2c2c2c; border-color: #444; }
-  .quiz-option { background: #383838; border-color: #555; color: #ddd; }
-  .quiz-option:hover { background: #444; }
-  .quiz-option.correct { background: #1b4332; border-color: #28a745; }
-  .quiz-option.incorrect { background: #58151c; border-color: #dc3545; }
-  .quiz-placeholder { color: #aaa; }
-  .quiz-widget-footer {
-  background-color: var(--score-bg, transparent); border-top-color: #444; }
-  .quiz-progress { background: #444; }
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .quiz-widget { background: #2c2c2c; border-color: #444; }html:not([data-theme]) .quiz-option { background: #383838; border-color: #555; color: #ddd; }html:not([data-theme]) .quiz-option:hover { background: #444; }html:not([data-theme]) .quiz-option.correct { background: #1b4332; border-color: #28a745; }html:not([data-theme]) .quiz-option.incorrect { background: #58151c; border-color: #dc3545; }html:not([data-theme]) .quiz-placeholder { color: #aaa; }html:not([data-theme]) .quiz-widget-footer {
+  background-color: var(--score-bg, transparent); border-top-color: #444; }html:not([data-theme]) .quiz-progress { background: #444; }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .quiz-widget { background: #2c2c2c; border-color: #444; }[data-theme='dark'] .quiz-option { background: #383838; border-color: #555; color: #ddd; }[data-theme='dark'] .quiz-option:hover { background: #444; }[data-theme='dark'] .quiz-option.correct { background: #1b4332; border-color: #28a745; }[data-theme='dark'] .quiz-option.incorrect { background: #58151c; border-color: #dc3545; }[data-theme='dark'] .quiz-placeholder { color: #aaa; }[data-theme='dark'] .quiz-widget-footer {
+  background-color: var(--score-bg, transparent); border-top-color: #444; }[data-theme='dark'] .quiz-progress { background: #444; }
+
 </style>
 
 <script>

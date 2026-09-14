@@ -71,24 +71,31 @@
   color: var(--text-muted, #999);
   font-size: 0.9rem;
 }
-@media (prefers-color-scheme: dark) {
-  .entity-universitaeten-card {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .entity-universitaeten-card {
     background: #2a2a2a;
     border-color: #444;
-  }
-  .entity-universitaeten-card .entity-card-header {
+  }html:not([data-theme]) .entity-universitaeten-card .entity-card-header {
     background: #1a3a1a;
     border-bottom-color: #2a4a2a;
     color: #81c784;
-  }
-  .entity-universitaeten-uni { border-bottom-color: #333; }
-  .entity-universitaeten-uni-name { color: #e0e0e0; }
-  .entity-universitaeten-uni-name a { color: #e0e0e0; }
-  .entity-universitaeten-uni-name a:hover { color: #81c784; }
-  .entity-universitaeten-module-tag {
+  }html:not([data-theme]) .entity-universitaeten-uni { border-bottom-color: #333; }html:not([data-theme]) .entity-universitaeten-uni-name { color: #e0e0e0; }html:not([data-theme]) .entity-universitaeten-uni-name a { color: #e0e0e0; }html:not([data-theme]) .entity-universitaeten-uni-name a:hover { color: #81c784; }html:not([data-theme]) .entity-universitaeten-module-tag {
     background: #1b3a1b;
     color: #81c784;
     border-color: #2e7d32;
   }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .entity-universitaeten-card {
+    background: #2a2a2a;
+    border-color: #444;
+  }[data-theme='dark'] .entity-universitaeten-card .entity-card-header {
+    background: #1a3a1a;
+    border-bottom-color: #2a4a2a;
+    color: #81c784;
+  }[data-theme='dark'] .entity-universitaeten-uni { border-bottom-color: #333; }[data-theme='dark'] .entity-universitaeten-uni-name { color: #e0e0e0; }[data-theme='dark'] .entity-universitaeten-uni-name a { color: #e0e0e0; }[data-theme='dark'] .entity-universitaeten-uni-name a:hover { color: #81c784; }[data-theme='dark'] .entity-universitaeten-module-tag {
+    background: #1b3a1b;
+    color: #81c784;
+    border-color: #2e7d32;
+  }
+
 </style>

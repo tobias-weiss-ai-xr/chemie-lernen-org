@@ -4,7 +4,9 @@
    --card-bg; Details: tests/modulhandbuch-contrast.test.js */
 :root { --mh-accent: #9b59b6; }
 [data-theme='dark'] { --mh-accent: #ce93d8; }
-@media (prefers-color-scheme: dark) { :root { --mh-accent: #ce93d8; } }
+@media (prefers-color-scheme: dark) {html:not([data-theme]) :root { --mh-accent: #ce93d8; } }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] :root { --mh-accent: #ce93d8; } 
 .mod-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;}
 .mod-header h1{margin:0;font-size:1.4rem;}
 .mod-code{font-family:monospace;color:var(--mh-accent);font-size:1rem;}
@@ -16,9 +18,11 @@
 .mod-section ul{padding-left:1.2rem;}
 .mod-section li{margin-bottom:0.3rem;color:var(--text-primary,#555);font-size:0.9rem;}
 .back-link{font-size:0.85rem;color:var(--mh-accent);}
-@media(prefers-color-scheme:dark){
-.mod-meta{background:#2a2a2a;border-color:#444;}
+@media(prefers-color-scheme:dark){html:not([data-theme]) .mod-meta{background:#2a2a2a;border-color:#444;}
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .mod-meta{background:#2a2a2a;border-color:#444;}
+
 </style>
 {{ end }}
 

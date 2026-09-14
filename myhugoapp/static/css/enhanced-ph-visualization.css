@@ -169,55 +169,89 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .indicator-controls {
+  html:not([data-theme]) .indicator-controls {
     background: #2c2c2c;
     border-color: #444;
     color: #e0e0e0;
   }
-
-  .indicator-controls h4 {
+  html:not([data-theme]) .indicator-controls h4 {
     color: #81c784;
   }
-
-  .info-message {
+  html:not([data-theme]) .info-message {
     background: #1e3a8a;
     border-color: #004085;
     color: #b8daff;
   }
-
-  .ph-example {
+  html:not([data-theme]) .ph-example {
     background: #2c2c2c;
     color: #81c784;
     border-color: #81c784;
   }
-
-  .ph-example:hover {
+  html:not([data-theme]) .ph-example:hover {
     background: #81c784;
     color: #2c2c2c;
   }
-
-  .suitable-indicators .indicator-item {
+  html:not([data-theme]) .suitable-indicators .indicator-item {
     background: #1e4620;
     color: #a8dabc;
   }
-
-  .no-indicators {
+  html:not([data-theme]) .no-indicators {
     background: #4b3937;
     border-color: #6c757d;
     color: #f8d7da;
   }
-
-  #ph-scale-canvas,
-  #titration-canvas {
+  html:not([data-theme]) #ph-scale-canvas,
+  html:not([data-theme]) #titration-canvas {
     background: #2c2c2c;
     border-color: #444;
   }
-
-  #titration-type {
+  html:not([data-theme]) #titration-type {
     background: #3c3c3c;
     border-color: #555;
     color: #e0e0e0;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .indicator-controls {
+  background: #2c2c2c;
+  border-color: #444;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .indicator-controls h4 {
+  color: #81c784;
+}
+[data-theme='dark'] .info-message {
+  background: #1e3a8a;
+  border-color: #004085;
+  color: #b8daff;
+}
+[data-theme='dark'] .ph-example {
+  background: #2c2c2c;
+  color: #81c784;
+  border-color: #81c784;
+}
+[data-theme='dark'] .ph-example:hover {
+  background: #81c784;
+  color: #2c2c2c;
+}
+[data-theme='dark'] .suitable-indicators .indicator-item {
+  background: #1e4620;
+  color: #a8dabc;
+}
+[data-theme='dark'] .no-indicators {
+  background: #4b3937;
+  border-color: #6c757d;
+  color: #f8d7da;
+}
+[data-theme='dark'] #ph-scale-canvas,
+[data-theme='dark'] #titration-canvas {
+  background: #2c2c2c;
+  border-color: #444;
+}
+[data-theme='dark'] #titration-type {
+  background: #3c3c3c;
+  border-color: #555;
+  color: #e0e0e0;
 }
 
 .ph-example:focus {

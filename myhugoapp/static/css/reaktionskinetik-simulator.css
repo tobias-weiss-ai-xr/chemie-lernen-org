@@ -586,131 +586,207 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .reaktionskinetik-container {
+  html:not([data-theme]) .reaktionskinetik-container {
     color: #e0e0e0;
   }
-
-  .calculator-panel,
-  .info-card {
+  html:not([data-theme]) .calculator-panel,
+  html:not([data-theme]) .info-card {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .calculator-panel h2,
-  .educational-content h2 {
+  html:not([data-theme]) .calculator-panel h2,
+  html:not([data-theme]) .educational-content h2 {
     color: #e0e0e0;
   }
-
-  .form-group label {
+  html:not([data-theme]) .form-group label {
     color: #e0e0e0;
   }
-
-  .form-control {
+  html:not([data-theme]) .form-control {
     background: #2c2c2c;
     color: #e0e0e0;
     border-color: #555;
   }
-
-  .simulation-canvas,
-  .simulation-controls,
-  .plot-container,
-  .result-box,
-  .example {
+  html:not([data-theme]) .simulation-canvas,
+  html:not([data-theme]) .simulation-controls,
+  html:not([data-theme]) .plot-container,
+  html:not([data-theme]) .result-box,
+  html:not([data-theme]) .example {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .simulation-canvas canvas {
+  html:not([data-theme]) .simulation-canvas canvas {
     border-color: #555;
     background: #000;
   }
-
-  .control-group input[type='range'] {
+  html:not([data-theme]) .control-group input[type='range'] {
     background: #2c2c2c;
     border-color: #555;
   }
-
-  .control-group button {
+  html:not([data-theme]) .control-group button {
     color: white;
   }
-
-  .info-row .label {
+  html:not([data-theme]) .info-row .label {
     color: #c0c0c0;
   }
-
-  .info-row .value {
+  html:not([data-theme]) .info-row .value {
     color: #64b5f6;
   }
-
-  .info-row .value.highlight {
+  html:not([data-theme]) .info-row .value.highlight {
     color: #ff6b6b;
   }
-
-  .stat-card {
+  html:not([data-theme]) .stat-card {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .stat-card h5 {
+  html:not([data-theme]) .stat-card h5 {
     color: #64b5f6;
   }
-
-  .stat-card .value {
+  html:not([data-theme]) .stat-card .value {
     color: #64b5f6;
   }
-
-  .stat-card .value.large {
+  html:not([data-theme]) .stat-card .value.large {
     color: #ff6b6b;
   }
-
-  .formula-text {
+  html:not([data-theme]) .formula-text {
     background: #2c2c2c;
     color: #64b5f6;
     border-color: #0d47a1;
   }
-
-  .calculation-summary .calc-row {
+  html:not([data-theme]) .calculation-summary .calc-row {
     background: #2c2c2c;
     border-color: #404040;
   }
-
-  .result-box h4 {
+  html:not([data-theme]) .result-box h4 {
     color: #64b5f6;
   }
-
-  .plot-wrapper canvas {
+  html:not([data-theme]) .plot-wrapper canvas {
     border-color: #555;
     background: #1a1a1a;
   }
-
-  .badge {
+  html:not([data-theme]) .badge {
     background: #1a3c5e;
   }
-
-  .arrhenius-results .result-box {
+  html:not([data-theme]) .arrhenius-results .result-box {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .example {
+  html:not([data-theme]) .example {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .example h5 {
+  html:not([data-theme]) .example h5 {
     color: #64b5f6;
   }
-
-  .rule-of-thumb {
+  html:not([data-theme]) .rule-of-thumb {
     background: #1a3c5e;
     border-color: #0d47a1;
   }
-
-  .rule-of-thumb h4 {
+  html:not([data-theme]) .rule-of-thumb h4 {
     color: #ffc107;
   }
-
-  .example .text-success {
+  html:not([data-theme]) .example .text-success {
     color: #90caf9;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .reaktionskinetik-container {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .calculator-panel,
+[data-theme='dark'] .info-card {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .calculator-panel h2,
+[data-theme='dark'] .educational-content h2 {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .form-group label {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .form-control {
+  background: #2c2c2c;
+  color: #e0e0e0;
+  border-color: #555;
+}
+[data-theme='dark'] .simulation-canvas,
+[data-theme='dark'] .simulation-controls,
+[data-theme='dark'] .plot-container,
+[data-theme='dark'] .result-box,
+[data-theme='dark'] .example {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .simulation-canvas canvas {
+  border-color: #555;
+  background: #000;
+}
+[data-theme='dark'] .control-group input[type='range'] {
+  background: #2c2c2c;
+  border-color: #555;
+}
+[data-theme='dark'] .control-group button {
+  color: white;
+}
+[data-theme='dark'] .info-row .label {
+  color: #c0c0c0;
+}
+[data-theme='dark'] .info-row .value {
+  color: #64b5f6;
+}
+[data-theme='dark'] .info-row .value.highlight {
+  color: #ff6b6b;
+}
+[data-theme='dark'] .stat-card {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .stat-card h5 {
+  color: #64b5f6;
+}
+[data-theme='dark'] .stat-card .value {
+  color: #64b5f6;
+}
+[data-theme='dark'] .stat-card .value.large {
+  color: #ff6b6b;
+}
+[data-theme='dark'] .formula-text {
+  background: #2c2c2c;
+  color: #64b5f6;
+  border-color: #0d47a1;
+}
+[data-theme='dark'] .calculation-summary .calc-row {
+  background: #2c2c2c;
+  border-color: #404040;
+}
+[data-theme='dark'] .result-box h4 {
+  color: #64b5f6;
+}
+[data-theme='dark'] .plot-wrapper canvas {
+  border-color: #555;
+  background: #1a1a1a;
+}
+[data-theme='dark'] .badge {
+  background: #1a3c5e;
+}
+[data-theme='dark'] .arrhenius-results .result-box {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .example {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .example h5 {
+  color: #64b5f6;
+}
+[data-theme='dark'] .rule-of-thumb {
+  background: #1a3c5e;
+  border-color: #0d47a1;
+}
+[data-theme='dark'] .rule-of-thumb h4 {
+  color: #ffc107;
+}
+[data-theme='dark'] .example .text-success {
+  color: #90caf9;
 }

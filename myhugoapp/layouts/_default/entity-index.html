@@ -542,21 +542,11 @@
 [data-theme="dark"] .entity-graph-top-link,
 .dark .entity-graph-top-link { background: rgba(102,126,234,0.15); }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .entity-card { background: #2c2c2c; border-color: #444; }
-  :root:not([data-theme="light"]) .entity-search { background: #333; border-color: #555; color: #eee; }
-  :root:not([data-theme="light"]) .entity-filter-btn,
-  :root:not([data-theme="light"]) .entity-view-btn,
-  :root:not([data-theme="light"]) .entity-sort-select,
-  :root:not([data-theme="light"]) .entity-state-select,
-  :root:not([data-theme="light"]) .entity-page-btn { background: #333; border-color: #555; color: #bbb; }
-  :root:not([data-theme="light"]) .entity-related-tag { background: #3c3c3c; color: #aaa; }
-  :root:not([data-theme="light"]) .entity-card-name { color: #e0e0e0; }
-  :root:not([data-theme="light"]) .entity-card-meta { color: #999; }
-  :root:not([data-theme="light"]) .entity-skeleton-line { background: #444; }
-  :root:not([data-theme="light"]) .entity-tooltip { background: #2c2c2c; border-color: #444; }
-  :root:not([data-theme="light"]) .entity-graph-top-link { background: rgba(102,126,234,0.15); }
+@media (prefers-color-scheme: dark) {html:not([data-theme]) :root:not([data-theme="light"]) .entity-card { background: #2c2c2c; border-color: #444; }html:not([data-theme]) :root:not([data-theme="light"]) .entity-search { background: #333; border-color: #555; color: #eee; }html:not([data-theme]) :root:not([data-theme="light"]) .entity-filter-btn, html:not([data-theme]) :root:not([data-theme="light"]) .entity-view-btn, html:not([data-theme]) :root:not([data-theme="light"]) .entity-sort-select, html:not([data-theme]) :root:not([data-theme="light"]) .entity-state-select, html:not([data-theme]) :root:not([data-theme="light"]) .entity-page-btn { background: #333; border-color: #555; color: #bbb; }html:not([data-theme]) :root:not([data-theme="light"]) .entity-related-tag { background: #3c3c3c; color: #aaa; }html:not([data-theme]) :root:not([data-theme="light"]) .entity-card-name { color: #e0e0e0; }html:not([data-theme]) :root:not([data-theme="light"]) .entity-card-meta { color: #999; }html:not([data-theme]) :root:not([data-theme="light"]) .entity-skeleton-line { background: #444; }html:not([data-theme]) :root:not([data-theme="light"]) .entity-tooltip { background: #2c2c2c; border-color: #444; }html:not([data-theme]) :root:not([data-theme="light"]) .entity-graph-top-link { background: rgba(102,126,234,0.15); }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] :root:not([data-theme="light"]) .entity-card { background: #2c2c2c; border-color: #444; }[data-theme='dark'] :root:not([data-theme="light"]) .entity-search { background: #333; border-color: #555; color: #eee; }[data-theme='dark'] :root:not([data-theme="light"]) .entity-filter-btn, [data-theme='dark'] :root:not([data-theme="light"]) .entity-view-btn, [data-theme='dark'] :root:not([data-theme="light"]) .entity-sort-select, [data-theme='dark'] :root:not([data-theme="light"]) .entity-state-select, [data-theme='dark'] :root:not([data-theme="light"]) .entity-page-btn { background: #333; border-color: #555; color: #bbb; }[data-theme='dark'] :root:not([data-theme="light"]) .entity-related-tag { background: #3c3c3c; color: #aaa; }[data-theme='dark'] :root:not([data-theme="light"]) .entity-card-name { color: #e0e0e0; }[data-theme='dark'] :root:not([data-theme="light"]) .entity-card-meta { color: #999; }[data-theme='dark'] :root:not([data-theme="light"]) .entity-skeleton-line { background: #444; }[data-theme='dark'] :root:not([data-theme="light"]) .entity-tooltip { background: #2c2c2c; border-color: #444; }[data-theme='dark'] :root:not([data-theme="light"]) .entity-graph-top-link { background: rgba(102,126,234,0.15); }
+
 
 @media (max-width: 768px) {
   .entity-header { flex-direction: column; align-items: flex-start; }

@@ -76,16 +76,21 @@
   color: #666;
 }
 
-@media (prefers-color-scheme: dark) {
-  .result-box {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .result-box {
     background-color: #2c2c2c;
     border-color: var(--green-primary);
-  }
-
-  .comparison-text {
+  }html:not([data-theme]) .comparison-text {
     color: #bbb;
   }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .result-box {
+    background-color: #2c2c2c;
+    border-color: var(--green-primary);
+  }[data-theme='dark'] .comparison-text {
+    color: #bbb;
+  }
+
 </style>
 
 <script src="/js/calculators/dampfdruck-rechner.js"></script>

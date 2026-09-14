@@ -53,18 +53,17 @@
 .kg-graph-toggle:hover { background: #f3e8ff; }
 .kg-graph-toggle:disabled { opacity: 0.6; cursor: wait; }
 .kg-topic-graph svg { display: block; }
-@media (prefers-color-scheme: dark) {
-  #curricula-state-app .curricula-skeleton-card {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) #curricula-state-app .curricula-skeleton-card {
     background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
     background-size: 200% 100%;
-  }
-  .state-topic-card { background: #2a2a2a; border-color: #444; }
-  .objective-chip { background: #3a2060; color: #ce93d8; }
-  .content-link-mini { background: #1a3050; color: #90caf9; }
-  .kg-operator { background: #3a2060; color: #e1bee7; }
-  .kg-graph-toggle { background: #333; color: #ce93d8; border-color: #9b59b6; }
-  .kg-graph-toggle:hover { background: #3a2060; }
+  }html:not([data-theme]) .state-topic-card { background: #2a2a2a; border-color: #444; }html:not([data-theme]) .objective-chip { background: #3a2060; color: #ce93d8; }html:not([data-theme]) .content-link-mini { background: #1a3050; color: #90caf9; }html:not([data-theme]) .kg-operator { background: #3a2060; color: #e1bee7; }html:not([data-theme]) .kg-graph-toggle { background: #333; color: #ce93d8; border-color: #9b59b6; }html:not([data-theme]) .kg-graph-toggle:hover { background: #3a2060; }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] #curricula-state-app .curricula-skeleton-card {
+    background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
+    background-size: 200% 100%;
+  }[data-theme='dark'] .state-topic-card { background: #2a2a2a; border-color: #444; }[data-theme='dark'] .objective-chip { background: #3a2060; color: #ce93d8; }[data-theme='dark'] .content-link-mini { background: #1a3050; color: #90caf9; }[data-theme='dark'] .kg-operator { background: #3a2060; color: #e1bee7; }[data-theme='dark'] .kg-graph-toggle { background: #333; color: #ce93d8; border-color: #9b59b6; }[data-theme='dark'] .kg-graph-toggle:hover { background: #3a2060; }
+
 </style>
 {{ end }}
 

@@ -208,43 +208,69 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .molar-controls,
-  .calculation-result {
+  html:not([data-theme]) .molar-controls,
+  html:not([data-theme]) .calculation-result {
     background: #2c2c2c;
     border-color: #444;
     color: #e0e0e0;
   }
-
-  .periodic-table-mini h4,
-  .molecule-visualization h4,
-  .calculation-result h5,
-  .element-breakdown h6 {
+  html:not([data-theme]) .periodic-table-mini h4,
+  html:not([data-theme]) .molecule-visualization h4,
+  html:not([data-theme]) .calculation-result h5,
+  html:not([data-theme]) .element-breakdown h6 {
     color: #81c784;
   }
-
-  .element-btn {
+  html:not([data-theme]) .element-btn {
     border-color: #555;
     color: #e0e0e0;
   }
-
-  .element-breakdown-item {
+  html:not([data-theme]) .element-breakdown-item {
     background: #3c3c3c;
     border-color: #555;
     color: #e0e0e0;
   }
-
-  .element-breakdown-item > div:last-child {
+  html:not([data-theme]) .element-breakdown-item > div:last-child {
     background: #2c2c2c;
   }
-
-  #molecule-canvas {
+  html:not([data-theme]) #molecule-canvas {
     background: #2c2c2c;
     border-color: #444;
   }
-
-  .result-details strong {
+  html:not([data-theme]) .result-details strong {
     color: #81c784;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .molar-controls,
+[data-theme='dark'] .calculation-result {
+  background: #2c2c2c;
+  border-color: #444;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .periodic-table-mini h4,
+[data-theme='dark'] .molecule-visualization h4,
+[data-theme='dark'] .calculation-result h5,
+[data-theme='dark'] .element-breakdown h6 {
+  color: #81c784;
+}
+[data-theme='dark'] .element-btn {
+  border-color: #555;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .element-breakdown-item {
+  background: #3c3c3c;
+  border-color: #555;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .element-breakdown-item > div:last-child {
+  background: #2c2c2c;
+}
+[data-theme='dark'] #molecule-canvas {
+  background: #2c2c2c;
+  border-color: #444;
+}
+[data-theme='dark'] .result-details strong {
+  color: #81c784;
 }
 
 .element-btn:focus {

@@ -280,31 +280,42 @@
 
 .toc-content nav ul ul li a {
   font-size: 0.9rem;
-  color: #777;
+  color: #595959;
 }
 
-@media (prefers-color-scheme: dark) {
-  .toc-wrapper {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .toc-wrapper {
     background: #2c2c2c;
     border-color: #444;
     border-left-color: #667eea;
-  }
-  .toc-summary {
+  }html:not([data-theme]) .toc-summary {
     color: #e0e0e0;
-  }
-  .toc-summary:hover {
+  }html:not([data-theme]) .toc-summary:hover {
     color: #8899ff;
-  }
-  .toc-content nav ul li a {
+  }html:not([data-theme]) .toc-content nav ul li a {
     color: #bbb;
-  }
-  .toc-content nav ul li a:hover {
+  }html:not([data-theme]) .toc-content nav ul li a:hover {
     color: #8899ff;
-  }
-  .toc-content nav ul ul li a {
-    color: #999;
+  }html:not([data-theme]) .toc-content nav ul ul li a {
+    color: #b8b8b8;
   }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .toc-wrapper {
+    background: #2c2c2c;
+    border-color: #444;
+    border-left-color: #667eea;
+  }[data-theme='dark'] .toc-summary {
+    color: #e0e0e0;
+  }[data-theme='dark'] .toc-summary:hover {
+    color: #8899ff;
+  }[data-theme='dark'] .toc-content nav ul li a {
+    color: #bbb;
+  }[data-theme='dark'] .toc-content nav ul li a:hover {
+    color: #8899ff;
+  }[data-theme='dark'] .toc-content nav ul ul li a {
+    color: #b8b8b8;
+  }
+
 
 /* Container */
 .thema-container {
@@ -512,50 +523,57 @@
 }
 
 /* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  .thema-content h2 {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .thema-content h2 {
     color: #e0e0e0;
-  }
-
-  .interactive-section {
+  }html:not([data-theme]) .interactive-section {
     background-color: #2c2c2c;
     border-left-color: #3395ff;
-  }
-
-  .sidebar-section {
+  }html:not([data-theme]) .sidebar-section {
     background-color: #2c2c2c;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  }
-
-  .sidebar-section h3 {
+  }html:not([data-theme]) .sidebar-section h3 {
     border-bottom-color: #3395ff;
     color: #e0e0e0;
-  }
-
-  .related-topic {
+  }html:not([data-theme]) .related-topic {
     background-color: #3c3c3c;
-  }
-
-  .related-topic:hover {
+  }html:not([data-theme]) .related-topic:hover {
     background-color: #4c4c4c;
-  }
-
-  .related-topic a {
+  }html:not([data-theme]) .related-topic a {
     color: #e0e0e0;
-  }
-
-  .tags-section {
+  }html:not([data-theme]) .tags-section {
     border-top-color: #555;
-  }
-
-  .thema-content {
+  }html:not([data-theme]) .thema-content {
     color: #e0e0e0;
-  }
-
-  .thema-header h1 {
+  }html:not([data-theme]) .thema-header h1 {
     color: #e0e0e0;
   }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .thema-content h2 {
+    color: #e0e0e0;
+  }[data-theme='dark'] .interactive-section {
+    background-color: #2c2c2c;
+    border-left-color: #3395ff;
+  }[data-theme='dark'] .sidebar-section {
+    background-color: #2c2c2c;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }[data-theme='dark'] .sidebar-section h3 {
+    border-bottom-color: #3395ff;
+    color: #e0e0e0;
+  }[data-theme='dark'] .related-topic {
+    background-color: #3c3c3c;
+  }[data-theme='dark'] .related-topic:hover {
+    background-color: #4c4c4c;
+  }[data-theme='dark'] .related-topic a {
+    color: #e0e0e0;
+  }[data-theme='dark'] .tags-section {
+    border-top-color: #555;
+  }[data-theme='dark'] .thema-content {
+    color: #e0e0e0;
+  }[data-theme='dark'] .thema-header h1 {
+    color: #e0e0e0;
+  }
+
 
 /* Responsive */
 @media (max-width: 768px) {

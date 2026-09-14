@@ -185,48 +185,91 @@
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
-  .session-card {
+  html:not([data-theme]) .session-card {
     border-color: #444;
   }
-  .session-card:hover {
+  html:not([data-theme]) .session-card:hover {
     background: #333;
   }
-  .session-card .session-meta {
+  html:not([data-theme]) .session-card .session-meta {
     color: #bbb;
   }
-  .chat-messages {
+  html:not([data-theme]) .chat-messages {
     background: #2c2c2c;
     border-color: #444;
   }
-  .message-bubble.message-own {
+  html:not([data-theme]) .message-bubble.message-own {
     background: #1a4d2e;
     color: #e0e0e0;
   }
-  .message-bubble.message-other {
+  html:not([data-theme]) .message-bubble.message-other {
     background: #333;
     border-color: #555;
     color: #e0e0e0;
   }
-  .message-author {
+  html:not([data-theme]) .message-author {
     color: #ddd;
   }
-  .message-time {
+  html:not([data-theme]) .message-time {
     color: #888;
   }
-  .exercise-card {
+  html:not([data-theme]) .exercise-card {
     border-color: #444;
     background: #2c2c2c;
   }
-  .exercise-card:hover {
+  html:not([data-theme]) .exercise-card:hover {
     border-color: #666;
   }
-  .exercise-card.exercise-completed {
+  html:not([data-theme]) .exercise-card.exercise-completed {
     background: #1a3d1a;
     border-color: #2d6a2d;
   }
-  .participant-item {
+  html:not([data-theme]) .participant-item {
     color: #e0e0e0;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .session-card {
+  border-color: #444;
+}
+[data-theme='dark'] .session-card:hover {
+  background: #333;
+}
+[data-theme='dark'] .session-card .session-meta {
+  color: #bbb;
+}
+[data-theme='dark'] .chat-messages {
+  background: #2c2c2c;
+  border-color: #444;
+}
+[data-theme='dark'] .message-bubble.message-own {
+  background: #1a4d2e;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .message-bubble.message-other {
+  background: #333;
+  border-color: #555;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .message-author {
+  color: #ddd;
+}
+[data-theme='dark'] .message-time {
+  color: #888;
+}
+[data-theme='dark'] .exercise-card {
+  border-color: #444;
+  background: #2c2c2c;
+}
+[data-theme='dark'] .exercise-card:hover {
+  border-color: #666;
+}
+[data-theme='dark'] .exercise-card.exercise-completed {
+  background: #1a3d1a;
+  border-color: #2d6a2d;
+}
+[data-theme='dark'] .participant-item {
+  color: #e0e0e0;
 }
 
 /* Responsive */

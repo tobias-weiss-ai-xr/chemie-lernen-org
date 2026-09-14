@@ -52,11 +52,10 @@
   border-color: #1565c0;
   transform: translateY(-1px);
 }
-@media (prefers-color-scheme: dark) {
-  .entity-cloud { background: #1a2740; border-color: #2c4a6e; }
-  .entity-cloud h4 { color: #90caf9; }
-  .entity-tag { background: #2c3e50; border-color: #2c4a6e; color: #90caf9; }
-  .entity-tag:hover { background: #1565c0; color: #fff; }
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .entity-cloud { background: #1a2740; border-color: #2c4a6e; }html:not([data-theme]) .entity-cloud h4 { color: #90caf9; }html:not([data-theme]) .entity-tag { background: #2c3e50; border-color: #2c4a6e; color: #90caf9; }html:not([data-theme]) .entity-tag:hover { background: #1565c0; color: #fff; }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .entity-cloud { background: #1a2740; border-color: #2c4a6e; }[data-theme='dark'] .entity-cloud h4 { color: #90caf9; }[data-theme='dark'] .entity-tag { background: #2c3e50; border-color: #2c4a6e; color: #90caf9; }[data-theme='dark'] .entity-tag:hover { background: #1565c0; color: #fff; }
+
 </style>
 {{ end }}

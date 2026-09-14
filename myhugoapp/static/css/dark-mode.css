@@ -1022,3 +1022,24 @@
 [data-theme='dark'] .zigs-video-empty {
   color: var(--text-secondary);
 }
+
+/* UXF-058: Hint-Buttons (via ui-utils.js auf jeder Seite injiziert) —
+   ki-assistent.css lädt nur auf der KI-Seite, daher hier global.
+   Ohne Regel: Chrome-UA Dark-ButtonFace #6b6b6b + geerbter Hellgrün-Text = 3.2:1. */
+[data-theme='dark'] .hint-button {
+  background: #2a3a5e;
+  color: #7cb3ff;
+  border-color: #3a5a8e;
+}
+[data-theme='dark'] .hint-button:hover {
+  background: #3a4a7e;
+}
+[data-theme='dark'] .hint-button:disabled {
+  opacity: 0.6;
+}
+
+/* UXF-058: Schwierigkeits-Badges im Dark-Theme — weißer Text auf
+   farbigem Badge-BG (analog Light); vorher Hellgrün auf Grün = 3.1:1. */
+[data-theme='dark'] .label-difficulty {
+  color: #ffffff;
+}

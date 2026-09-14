@@ -4,7 +4,9 @@
    --card-bg; Details: tests/modulhandbuch-contrast.test.js */
 :root { --mh-accent: #9b59b6; }
 [data-theme='dark'] { --mh-accent: #ce93d8; }
-@media (prefers-color-scheme: dark) { :root { --mh-accent: #ce93d8; } }
+@media (prefers-color-scheme: dark) {html:not([data-theme]) :root { --mh-accent: #ce93d8; } }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] :root { --mh-accent: #ce93d8; } 
 .uni-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;}
 .uni-header h1{margin:0;font-size:1.6rem;}
 .uni-meta{font-size:0.9rem;color:var(--text-muted,#767676);}
@@ -18,10 +20,11 @@
 .module-card a:hover{color:var(--mh-accent);}
 .module-card .code{font-family:monospace;color:var(--mh-accent);font-size:0.85rem;}
 .module-card .ects{font-size:0.8rem;color:var(--text-muted,#767676);white-space:nowrap;}
-@media(prefers-color-scheme:dark){
-.module-card{background:#2a2a2a;border-color:#444;}
-.module-card a{color:#ddd;}
+@media(prefers-color-scheme:dark){html:not([data-theme]) .module-card{background:#2a2a2a;border-color:#444;}html:not([data-theme]) .module-card a{color:#ddd;}
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .module-card{background:#2a2a2a;border-color:#444;}[data-theme='dark'] .module-card a{color:#ddd;}
+
 </style>
 {{ end }}
 

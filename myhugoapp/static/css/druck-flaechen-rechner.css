@@ -520,162 +520,257 @@
 
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
-  .druck-flaeche-calculator-container {
+  html:not([data-theme]) .druck-flaeche-calculator-container {
     color: #e0e0e0;
   }
-
-  .calculator-panel {
+  html:not([data-theme]) .calculator-panel {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .calculator-panel h2,
-  .visual-demo h3,
-  .hydraulic-examples h2,
-  .educational-info h2 {
+  html:not([data-theme]) .calculator-panel h2,
+  html:not([data-theme]) .visual-demo h3,
+  html:not([data-theme]) .hydraulic-examples h2,
+  html:not([data-theme]) .educational-info h2 {
     color: #e0e0e0;
   }
-
-  .formula-text {
+  html:not([data-theme]) .formula-text {
     background: #2c2c2c;
     color: #64b5f6;
     border-color: #64b5f6;
   }
-
-  .form-group label {
+  html:not([data-theme]) .form-group label {
     color: #e0e0e0;
   }
-
-  .input-group input[type='number'],
-  .input-group select,
-  .result-value select {
+  html:not([data-theme]) .input-group input[type='number'],
+  html:not([data-theme]) .input-group select,
+  html:not([data-theme]) .result-value select {
     background: #2c2c2c;
     color: #e0e0e0;
     border-color: #555;
   }
-
-  .result-panel {
+  html:not([data-theme]) .result-panel {
     background: #2c2c2c;
     border-left-color: #64b5f6;
     border-color: #404040;
   }
-
-  .result-panel h3 {
+  html:not([data-theme]) .result-panel h3 {
     color: #64b5f6;
   }
-
-  .result-value .label {
+  html:not([data-theme]) .result-value .label {
     color: #e0e0e0;
   }
-
-  .result-value .value-highlight {
+  html:not([data-theme]) .result-value .value-highlight {
     color: #64b5f6;
   }
-
-  .comparison-info {
+  html:not([data-theme]) .comparison-info {
     background: #2c2c2c;
     border-left-color: #2e7d32;
     border-color: #404040;
   }
-
-  .comparison-info p {
+  html:not([data-theme]) .comparison-info p {
     color: #e0e0e0;
   }
-
-  .example-card,
-  .info-card {
+  html:not([data-theme]) .example-card,
+  html:not([data-theme]) .info-card {
     background: #1a1a1a;
     border-left-color: #64b5f6;
     border-color: #404040;
   }
-
-  .example-card h3,
-  .info-card h3 {
+  html:not([data-theme]) .example-card h3,
+  html:not([data-theme]) .info-card h3 {
     color: #64b5f6;
   }
-
-  .example-values {
+  html:not([data-theme]) .example-values {
     background: #2c2c2c;
     border-color: #404040;
   }
-
-  .example-values p,
-  .example-values strong {
+  html:not([data-theme]) .example-values p,
+  html:not([data-theme]) .example-values strong {
     color: #e0e0e0;
   }
-
-  .visual-demo {
+  html:not([data-theme]) .visual-demo {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  #piston-canvas {
+  html:not([data-theme]) #piston-canvas {
     border-color: #404040;
   }
-
-  .piston-controls label {
+  html:not([data-theme]) .piston-controls label {
     color: #e0e0e0;
   }
-
-  .piston-controls input[type='range'] {
+  html:not([data-theme]) .piston-controls input[type='range'] {
     background: #404040;
   }
-
-  .piston-controls span {
+  html:not([data-theme]) .piston-controls span {
     color: #64b5f6;
   }
-
-  .pressure-bar {
+  html:not([data-theme]) .pressure-bar {
     background: #404040;
     border-color: #555;
   }
-
-  .pressure-indicator p {
+  html:not([data-theme]) .pressure-indicator p {
     color: #e0e0e0;
   }
-
-  .area-visual {
+  html:not([data-theme]) .area-visual {
     background: #2c2c2c;
     border-color: #404040;
   }
-
-  .square-demo {
+  html:not([data-theme]) .square-demo {
     border-color: #64b5f6;
     background: rgba(100, 181, 246, 0.1);
   }
-
-  .hydraulic-examples p.lead {
+  html:not([data-theme]) .hydraulic-examples p.lead {
     color: #c0c0c0;
   }
-
-  .info-card li {
+  html:not([data-theme]) .info-card li {
     color: #c0c0c0;
   }
-
-  .table {
+  html:not([data-theme]) .table {
     background: #1a1a1a;
     border-color: #404040;
     color: #e0e0e0;
   }
-
-  .table thead {
+  html:not([data-theme]) .table thead {
     background: #0d47a1;
   }
-
-  .table th {
+  html:not([data-theme]) .table th {
     border-color: #0d47a1;
   }
-
-  .table td {
+  html:not([data-theme]) .table td {
     border-color: #404040;
     color: #e0e0e0;
   }
-
-  .table-striped tbody tr:nth-of-type(odd) {
+  html:not([data-theme]) .table-striped tbody tr:nth-of-type(odd) {
     background: rgba(100, 181, 246, 0.1);
   }
-
-  .table tbody tr:hover {
+  html:not([data-theme]) .table tbody tr:hover {
     background: rgba(100, 181, 246, 0.15);
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .druck-flaeche-calculator-container {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .calculator-panel {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .calculator-panel h2,
+[data-theme='dark'] .visual-demo h3,
+[data-theme='dark'] .hydraulic-examples h2,
+[data-theme='dark'] .educational-info h2 {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .formula-text {
+  background: #2c2c2c;
+  color: #64b5f6;
+  border-color: #64b5f6;
+}
+[data-theme='dark'] .form-group label {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .input-group input[type='number'],
+[data-theme='dark'] .input-group select,
+[data-theme='dark'] .result-value select {
+  background: #2c2c2c;
+  color: #e0e0e0;
+  border-color: #555;
+}
+[data-theme='dark'] .result-panel {
+  background: #2c2c2c;
+  border-left-color: #64b5f6;
+  border-color: #404040;
+}
+[data-theme='dark'] .result-panel h3 {
+  color: #64b5f6;
+}
+[data-theme='dark'] .result-value .label {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .result-value .value-highlight {
+  color: #64b5f6;
+}
+[data-theme='dark'] .comparison-info {
+  background: #2c2c2c;
+  border-left-color: #2e7d32;
+  border-color: #404040;
+}
+[data-theme='dark'] .comparison-info p {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .example-card,
+[data-theme='dark'] .info-card {
+  background: #1a1a1a;
+  border-left-color: #64b5f6;
+  border-color: #404040;
+}
+[data-theme='dark'] .example-card h3,
+[data-theme='dark'] .info-card h3 {
+  color: #64b5f6;
+}
+[data-theme='dark'] .example-values {
+  background: #2c2c2c;
+  border-color: #404040;
+}
+[data-theme='dark'] .example-values p,
+[data-theme='dark'] .example-values strong {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .visual-demo {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] #piston-canvas {
+  border-color: #404040;
+}
+[data-theme='dark'] .piston-controls label {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .piston-controls input[type='range'] {
+  background: #404040;
+}
+[data-theme='dark'] .piston-controls span {
+  color: #64b5f6;
+}
+[data-theme='dark'] .pressure-bar {
+  background: #404040;
+  border-color: #555;
+}
+[data-theme='dark'] .pressure-indicator p {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .area-visual {
+  background: #2c2c2c;
+  border-color: #404040;
+}
+[data-theme='dark'] .square-demo {
+  border-color: #64b5f6;
+  background: rgba(100, 181, 246, 0.1);
+}
+[data-theme='dark'] .hydraulic-examples p.lead {
+  color: #c0c0c0;
+}
+[data-theme='dark'] .info-card li {
+  color: #c0c0c0;
+}
+[data-theme='dark'] .table {
+  background: #1a1a1a;
+  border-color: #404040;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .table thead {
+  background: #0d47a1;
+}
+[data-theme='dark'] .table th {
+  border-color: #0d47a1;
+}
+[data-theme='dark'] .table td {
+  border-color: #404040;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .table-striped tbody tr:nth-of-type(odd) {
+  background: rgba(100, 181, 246, 0.1);
+}
+[data-theme='dark'] .table tbody tr:hover {
+  background: rgba(100, 181, 246, 0.15);
 }

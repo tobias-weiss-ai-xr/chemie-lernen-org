@@ -217,9 +217,13 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  .video-embed-caption {
+  html:not([data-theme]) .video-embed-caption {
     color: #aaa;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .video-embed-caption {
+  color: #aaa;
 }
 
 /* Zig's Chemistry 42 — auto video list grid */
@@ -337,22 +341,33 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  .zigs-video-item {
+  html:not([data-theme]) .zigs-video-item {
     background: #2c2c2c;
   }
-
-  .zigs-video-date {
+  html:not([data-theme]) .zigs-video-date {
     color: #aaa;
   }
-
-  .zigs-video-source,
-  .zigs-video-channel {
+  html:not([data-theme]) .zigs-video-source,
+  html:not([data-theme]) .zigs-video-channel {
     color: #9fd3a2;
   }
-
-  .zigs-video-more a {
+  html:not([data-theme]) .zigs-video-more a {
     color: #8ab4f8;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .zigs-video-item {
+  background: #2c2c2c;
+}
+[data-theme='dark'] .zigs-video-date {
+  color: #aaa;
+}
+[data-theme='dark'] .zigs-video-source,
+[data-theme='dark'] .zigs-video-channel {
+  color: #9fd3a2;
+}
+[data-theme='dark'] .zigs-video-more a {
+  color: #8ab4f8;
 }
 
 @media (max-width: 640px) {
@@ -837,43 +852,81 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  .calculator-panel {
+  html:not([data-theme]) .calculator-panel {
     background: #2c2c2c;
     border-color: #444;
   }
-  .calculator-panel h2,
-  .calculator-panel h3 {
+  html:not([data-theme]) .calculator-panel h2,
+  html:not([data-theme]) .calculator-panel h3 {
     color: #81c784;
   }
-  .calculator-panel .form-control {
+  html:not([data-theme]) .calculator-panel .form-control {
     background: #3c3c3c;
     border-color: #555;
     color: #e0e0e0;
   }
-  .calculator-panel .form-control:focus {
+  html:not([data-theme]) .calculator-panel .form-control:focus {
     border-color: #81c784;
     box-shadow: 0 0 0 3px rgba(129, 199, 132, 0.2);
   }
-  .calculator-result {
+  html:not([data-theme]) .calculator-result {
     background: #263238;
     border-color: #37474f;
   }
-  .calculator-result .result-value {
+  html:not([data-theme]) .calculator-result .result-value {
     color: #81c784;
   }
-  .calculator-result .result-unit {
+  html:not([data-theme]) .calculator-result .result-unit {
     color: #aaa;
   }
-  .calculator-result .result-label {
+  html:not([data-theme]) .calculator-result .result-label {
     color: #999;
   }
-  .calculator-result.calculator-error {
+  html:not([data-theme]) .calculator-result.calculator-error {
     background: #2c1a1a;
     border-color: #4a2020;
   }
-  .calculator-result.calculator-error .result-value {
+  html:not([data-theme]) .calculator-result.calculator-error .result-value {
     color: #ef9a9a;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .calculator-panel {
+  background: #2c2c2c;
+  border-color: #444;
+}
+[data-theme='dark'] .calculator-panel h2,
+[data-theme='dark'] .calculator-panel h3 {
+  color: #81c784;
+}
+[data-theme='dark'] .calculator-panel .form-control {
+  background: #3c3c3c;
+  border-color: #555;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .calculator-panel .form-control:focus {
+  border-color: #81c784;
+  box-shadow: 0 0 0 3px rgba(129, 199, 132, 0.2);
+}
+[data-theme='dark'] .calculator-result {
+  background: #263238;
+  border-color: #37474f;
+}
+[data-theme='dark'] .calculator-result .result-value {
+  color: #81c784;
+}
+[data-theme='dark'] .calculator-result .result-unit {
+  color: #aaa;
+}
+[data-theme='dark'] .calculator-result .result-label {
+  color: #999;
+}
+[data-theme='dark'] .calculator-result.calculator-error {
+  background: #2c1a1a;
+  border-color: #4a2020;
+}
+[data-theme='dark'] .calculator-result.calculator-error .result-value {
+  color: #ef9a9a;
 }
 
 @media (max-width: 767px) {

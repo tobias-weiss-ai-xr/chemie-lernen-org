@@ -118,10 +118,11 @@
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
-@media (prefers-color-scheme: dark) {
-  .stat-card, .detail-card { background: #2c2c2c; border-color: #444; }
-  .stat-label { color: #bbb; }
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .stat-card, html:not([data-theme]) .detail-card { background: #2c2c2c; border-color: #444; }html:not([data-theme]) .stat-label { color: #bbb; }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .stat-card, [data-theme='dark'] .detail-card { background: #2c2c2c; border-color: #444; }[data-theme='dark'] .stat-label { color: #bbb; }
+
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>

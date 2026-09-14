@@ -500,65 +500,101 @@
 
 /* ── Dark Mode ── */
 @media (prefers-color-scheme: dark) {
-  .dashboard-card {
+  html:not([data-theme]) .dashboard-card {
     background: #2c2c2c;
     border-color: #444;
   }
-
-  .dashboard-card h2,
-  .dashboard-card h3 {
+  html:not([data-theme]) .dashboard-card h2,
+  html:not([data-theme]) .dashboard-card h3 {
     color: #81c784;
   }
-
-  .path-tree-header:hover,
-  .topic-header:hover {
+  html:not([data-theme]) .path-tree-header:hover,
+  html:not([data-theme]) .topic-header:hover {
     background: #3c3c3c;
   }
-
-  .path-title,
-  .topic-title,
-  .objective-item {
+  html:not([data-theme]) .path-title,
+  html:not([data-theme]) .topic-title,
+  html:not([data-theme]) .objective-item {
     color: #e0e0e0;
   }
-
-  .path-topic-item {
+  html:not([data-theme]) .path-topic-item {
     border-top-color: #444;
   }
-
-  .xp-values strong {
+  html:not([data-theme]) .xp-values strong {
     color: #81c784;
   }
-
-  .xp-bar-track {
+  html:not([data-theme]) .xp-bar-track {
     background: #444;
   }
-
-  .badge-card.earned {
+  html:not([data-theme]) .badge-card.earned {
     background: #3c3820;
     border-color: #9a7d0a;
   }
-
-  .badge-name {
+  html:not([data-theme]) .badge-name {
     color: #e0e0e0;
   }
-
-  .xp-log-item {
+  html:not([data-theme]) .xp-log-item {
     border-bottom-color: #3c3c3c;
   }
-
-  .xp-log-action {
+  html:not([data-theme]) .xp-log-action {
     color: #e0e0e0;
   }
-
-  .btn-checkin.disabled-checkin {
+  html:not([data-theme]) .btn-checkin.disabled-checkin {
     background: #3c3c3c;
     color: #777;
     border-color: #555;
   }
-
-  .recommendation-topic h4 {
+  html:not([data-theme]) .recommendation-topic h4 {
     color: #e0e0e0;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .dashboard-card {
+  background: #2c2c2c;
+  border-color: #444;
+}
+[data-theme='dark'] .dashboard-card h2,
+[data-theme='dark'] .dashboard-card h3 {
+  color: #81c784;
+}
+[data-theme='dark'] .path-tree-header:hover,
+[data-theme='dark'] .topic-header:hover {
+  background: #3c3c3c;
+}
+[data-theme='dark'] .path-title,
+[data-theme='dark'] .topic-title,
+[data-theme='dark'] .objective-item {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .path-topic-item {
+  border-top-color: #444;
+}
+[data-theme='dark'] .xp-values strong {
+  color: #81c784;
+}
+[data-theme='dark'] .xp-bar-track {
+  background: #444;
+}
+[data-theme='dark'] .badge-card.earned {
+  background: #3c3820;
+  border-color: #9a7d0a;
+}
+[data-theme='dark'] .badge-name {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .xp-log-item {
+  border-bottom-color: #3c3c3c;
+}
+[data-theme='dark'] .xp-log-action {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .btn-checkin.disabled-checkin {
+  background: #3c3c3c;
+  color: #777;
+  border-color: #555;
+}
+[data-theme='dark'] .recommendation-topic h4 {
+  color: #e0e0e0;
 }
 
 /* ── Responsive: Stack on <768px ── */
@@ -676,17 +712,27 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .state-selector {
+  html:not([data-theme]) .state-selector {
     background: #3c3c3c;
     border-color: #555;
     color: #e0e0e0;
   }
-
-  .state-path-header h3 {
+  html:not([data-theme]) .state-path-header h3 {
     color: #81c784;
   }
-
-  .topic-article-link:hover {
+  html:not([data-theme]) .topic-article-link:hover {
     background: #3c3c3c;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .state-selector {
+  background: #3c3c3c;
+  border-color: #555;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .state-path-header h3 {
+  color: #81c784;
+}
+[data-theme='dark'] .topic-article-link:hover {
+  background: #3c3c3c;
 }

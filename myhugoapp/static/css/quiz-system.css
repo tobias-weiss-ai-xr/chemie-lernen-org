@@ -14,10 +14,15 @@
 
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
-  .quiz-container {
+  html:not([data-theme]) .quiz-container {
     --card-bg: #1e1e1e;
     color: #e0e0e0;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .quiz-container {
+  --card-bg: #1e1e1e;
+  color: #e0e0e0;
 }
 
 /* Quiz Header */

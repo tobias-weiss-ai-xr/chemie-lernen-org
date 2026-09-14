@@ -277,52 +277,25 @@
 @keyframes shim { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
 /* Dark mode */
-@media (prefers-color-scheme: dark) {
-  .curricula-tab { color: #aaa; }
-  .curricula-tab:hover { color: #bb86fc; }
-  .curricula-tab.active { color: #ce93d8; border-bottom-color: #bb86fc; }
-  .curricula-summary { background: #2a2440; border-color: #3a2f55; }
-  .curricula-stat-num { color: #ce93d8; }
-  .curricula-state-card { background: #2a2a2a; border-color: #444; }
-  .curricula-state-card:hover { border-color: #bb86fc; }
-  .curricula-card-code { background: #bb86fc; color: #000; }
-  .curricula-card-tags .tag { background: #3a2060; color: #ce93d8; }
-  .curricula-state-card.zero-topics { background: #242424; border-left-color: #555; }
-  .curricula-state-card.zero-topics .curricula-card-code { background: #666; }
-  .curricula-compare-panel { background: #2a2a2a; border-color: #444; }
-  .curricula-filter-bar { background: #2a2a2a; border-color: #444; }
-  .curricula-filter-field { color: #e0e0e0; }
-  .curricula-filter-field select { background: #333; border-color: #555; color: #e0e0e0; }
-  .curricula-topic-link { color: #ce93d8; }
-  .curricula-toolbar { background: #2a2a2a; border-color: #444; }
-  .curricula-scope-btn { background: #333; border-color: #555; color: #e0e0e0; }
-  .curricula-scope-btn:hover { border-color: #bb86fc; }
-  .curricula-scope-btn.active { background: #bb86fc; color: #000; border-color: #bb86fc; }
-  .curricula-toolbar select, .curricula-search {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .curricula-tab { color: #aaa; }html:not([data-theme]) .curricula-tab:hover { color: #bb86fc; }html:not([data-theme]) .curricula-tab.active { color: #ce93d8; border-bottom-color: #bb86fc; }html:not([data-theme]) .curricula-summary { background: #2a2440; border-color: #3a2f55; }html:not([data-theme]) .curricula-stat-num { color: #ce93d8; }html:not([data-theme]) .curricula-state-card { background: #2a2a2a; border-color: #444; }html:not([data-theme]) .curricula-state-card:hover { border-color: #bb86fc; }html:not([data-theme]) .curricula-card-code { background: #bb86fc; color: #000; }html:not([data-theme]) .curricula-card-tags .tag { background: #3a2060; color: #ce93d8; }html:not([data-theme]) .curricula-state-card.zero-topics { background: #242424; border-left-color: #555; }html:not([data-theme]) .curricula-state-card.zero-topics .curricula-card-code { background: #666; }html:not([data-theme]) .curricula-compare-panel { background: #2a2a2a; border-color: #444; }html:not([data-theme]) .curricula-filter-bar { background: #2a2a2a; border-color: #444; }html:not([data-theme]) .curricula-filter-field { color: #e0e0e0; }html:not([data-theme]) .curricula-filter-field select { background: #333; border-color: #555; color: #e0e0e0; }html:not([data-theme]) .curricula-topic-link { color: #ce93d8; }html:not([data-theme]) .curricula-toolbar { background: #2a2a2a; border-color: #444; }html:not([data-theme]) .curricula-scope-btn { background: #333; border-color: #555; color: #e0e0e0; }html:not([data-theme]) .curricula-scope-btn:hover { border-color: #bb86fc; }html:not([data-theme]) .curricula-scope-btn.active { background: #bb86fc; color: #000; border-color: #bb86fc; }html:not([data-theme]) .curricula-toolbar select, html:not([data-theme]) .curricula-search {
     background: #333; border-color: #555; color: #e0e0e0;
-  }
-  .curricula-fit-btn { background: #333; border-color: #555; color: #e0e0e0; }
-  .curricula-fit-btn:hover { border-color: #bb86fc; }
-  #curricula-graph, #curricula-node-details {
+  }html:not([data-theme]) .curricula-fit-btn { background: #333; border-color: #555; color: #e0e0e0; }html:not([data-theme]) .curricula-fit-btn:hover { border-color: #bb86fc; }html:not([data-theme]) #curricula-graph, html:not([data-theme]) #curricula-node-details {
     background: #2a2a2a; border-color: #444;
-  }
-  .curricula-detail-type { background: #3a2060; color: #ce93d8; }
-  .curricula-detail-row { border-bottom-color: #333; }
-  .curricula-skeleton-card {
+  }html:not([data-theme]) .curricula-detail-type { background: #3a2060; color: #ce93d8; }html:not([data-theme]) .curricula-detail-row { border-bottom-color: #333; }html:not([data-theme]) .curricula-skeleton-card {
     background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
     background-size: 200% 100%;
-  }
-  .curricula-overview { background: #2a2a2a; border-color: #444; }
-  .curricula-ov-head { color: #ce93d8; }
-  .curricula-ov-state { border-bottom-color: #333; }
-  .curricula-ov-state-head { color: #e0e0e0; }
-  .curricula-ov-state-head:hover { color: #bb86fc; }
-  .curricula-ov-cur { background: #333; border-color: #555; color: #e0e0e0; }
-  .curricula-ov-cur:hover { border-color: #bb86fc; background: #3a2060; }
-  .curricula-ov-cur-meta { color: #999; }
-  .curricula-ov-cur.selected { border-color: #bb86fc; background: #3a2060; }
-  .curricula-ov-state-head.selected { color: #bb86fc; }
+  }html:not([data-theme]) .curricula-overview { background: #2a2a2a; border-color: #444; }html:not([data-theme]) .curricula-ov-head { color: #ce93d8; }html:not([data-theme]) .curricula-ov-state { border-bottom-color: #333; }html:not([data-theme]) .curricula-ov-state-head { color: #e0e0e0; }html:not([data-theme]) .curricula-ov-state-head:hover { color: #bb86fc; }html:not([data-theme]) .curricula-ov-cur { background: #333; border-color: #555; color: #e0e0e0; }html:not([data-theme]) .curricula-ov-cur:hover { border-color: #bb86fc; background: #3a2060; }html:not([data-theme]) .curricula-ov-cur-meta { color: #999; }html:not([data-theme]) .curricula-ov-cur.selected { border-color: #bb86fc; background: #3a2060; }html:not([data-theme]) .curricula-ov-state-head.selected { color: #bb86fc; }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .curricula-tab { color: #aaa; }[data-theme='dark'] .curricula-tab:hover { color: #bb86fc; }[data-theme='dark'] .curricula-tab.active { color: #ce93d8; border-bottom-color: #bb86fc; }[data-theme='dark'] .curricula-summary { background: #2a2440; border-color: #3a2f55; }[data-theme='dark'] .curricula-stat-num { color: #ce93d8; }[data-theme='dark'] .curricula-state-card { background: #2a2a2a; border-color: #444; }[data-theme='dark'] .curricula-state-card:hover { border-color: #bb86fc; }[data-theme='dark'] .curricula-card-code { background: #bb86fc; color: #000; }[data-theme='dark'] .curricula-card-tags .tag { background: #3a2060; color: #ce93d8; }[data-theme='dark'] .curricula-state-card.zero-topics { background: #242424; border-left-color: #555; }[data-theme='dark'] .curricula-state-card.zero-topics .curricula-card-code { background: #666; }[data-theme='dark'] .curricula-compare-panel { background: #2a2a2a; border-color: #444; }[data-theme='dark'] .curricula-filter-bar { background: #2a2a2a; border-color: #444; }[data-theme='dark'] .curricula-filter-field { color: #e0e0e0; }[data-theme='dark'] .curricula-filter-field select { background: #333; border-color: #555; color: #e0e0e0; }[data-theme='dark'] .curricula-topic-link { color: #ce93d8; }[data-theme='dark'] .curricula-toolbar { background: #2a2a2a; border-color: #444; }[data-theme='dark'] .curricula-scope-btn { background: #333; border-color: #555; color: #e0e0e0; }[data-theme='dark'] .curricula-scope-btn:hover { border-color: #bb86fc; }[data-theme='dark'] .curricula-scope-btn.active { background: #bb86fc; color: #000; border-color: #bb86fc; }[data-theme='dark'] .curricula-toolbar select, [data-theme='dark'] .curricula-search {
+    background: #333; border-color: #555; color: #e0e0e0;
+  }[data-theme='dark'] .curricula-fit-btn { background: #333; border-color: #555; color: #e0e0e0; }[data-theme='dark'] .curricula-fit-btn:hover { border-color: #bb86fc; }[data-theme='dark'] #curricula-graph, [data-theme='dark'] #curricula-node-details {
+    background: #2a2a2a; border-color: #444;
+  }[data-theme='dark'] .curricula-detail-type { background: #3a2060; color: #ce93d8; }[data-theme='dark'] .curricula-detail-row { border-bottom-color: #333; }[data-theme='dark'] .curricula-skeleton-card {
+    background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
+    background-size: 200% 100%;
+  }[data-theme='dark'] .curricula-overview { background: #2a2a2a; border-color: #444; }[data-theme='dark'] .curricula-ov-head { color: #ce93d8; }[data-theme='dark'] .curricula-ov-state { border-bottom-color: #333; }[data-theme='dark'] .curricula-ov-state-head { color: #e0e0e0; }[data-theme='dark'] .curricula-ov-state-head:hover { color: #bb86fc; }[data-theme='dark'] .curricula-ov-cur { background: #333; border-color: #555; color: #e0e0e0; }[data-theme='dark'] .curricula-ov-cur:hover { border-color: #bb86fc; background: #3a2060; }[data-theme='dark'] .curricula-ov-cur-meta { color: #999; }[data-theme='dark'] .curricula-ov-cur.selected { border-color: #bb86fc; background: #3a2060; }[data-theme='dark'] .curricula-ov-state-head.selected { color: #bb86fc; }
+
 
 /* Responsive */
 @media (max-width: 768px) {

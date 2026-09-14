@@ -52,7 +52,12 @@ function darkRules() {
       if (depth === 0) break;
     }
   }
-  const block = quizHtml.slice(blockBegin + 1, i).replace(/\/\*[\s\S]*?\*\//g, '');
+  // UXF-058: Theme-Präfixe strippen, damit die Regel-Keys wieder klassisch sind
+  const block = quizHtml
+    .slice(blockBegin + 1, i)
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/html:not\(\[data-theme\]\)\s*/g, '')
+    .replace(/\[data-theme='dark'\]\s*/g, '');
   const rules = {};
   const re = /([^{}]+)\{([^{}]*)\}/g;
   let m;

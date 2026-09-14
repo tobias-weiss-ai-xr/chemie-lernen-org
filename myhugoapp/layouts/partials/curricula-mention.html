@@ -107,17 +107,16 @@
 .curricula-mention-more a {
   color: #7b1fa2;
 }
-@media (prefers-color-scheme: dark) {
-  .curricula-mention {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .curricula-mention {
     background: #2a1a3e;
     border-color: #6a3a9e;
-  }
-  .curricula-mention h3 { color: #c9a0e8; }
-  .curricula-mention-desc { color: #aaa; }
-  .curricula-mention-item { border-bottom-color: #3a2a4e; }
-  .curricula-topic-name { color: #e0e0e0; }
-  .curricula-grade { color: #999; }
-  .curricula-mention-more a { color: #c9a0e8; }
+  }html:not([data-theme]) .curricula-mention h3 { color: #c9a0e8; }html:not([data-theme]) .curricula-mention-desc { color: #aaa; }html:not([data-theme]) .curricula-mention-item { border-bottom-color: #3a2a4e; }html:not([data-theme]) .curricula-topic-name { color: #e0e0e0; }html:not([data-theme]) .curricula-grade { color: #999; }html:not([data-theme]) .curricula-mention-more a { color: #c9a0e8; }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .curricula-mention {
+    background: #2a1a3e;
+    border-color: #6a3a9e;
+  }[data-theme='dark'] .curricula-mention h3 { color: #c9a0e8; }[data-theme='dark'] .curricula-mention-desc { color: #aaa; }[data-theme='dark'] .curricula-mention-item { border-bottom-color: #3a2a4e; }[data-theme='dark'] .curricula-topic-name { color: #e0e0e0; }[data-theme='dark'] .curricula-grade { color: #999; }[data-theme='dark'] .curricula-mention-more a { color: #c9a0e8; }
+
 </style>
 {{ end }}

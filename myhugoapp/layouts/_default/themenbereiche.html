@@ -186,59 +186,71 @@
 }
 
 /* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  .thema-content {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .thema-content {
     color: #e0e0e0;
-  }
-
-  .thema-content h2 {
+  }html:not([data-theme]) .thema-content h2 {
     border-bottom-color: #0056b3;
-  }
-
-  .panel {
+  }html:not([data-theme]) .panel {
     background-color: #3c3c3c;
     border-color: #555;
     color: #e0e0e0;
-  }
-
-  .panel-body {
+  }html:not([data-theme]) .panel-body {
     color: #e0e0e0;
     border-color: #555;
-  }
-
-  .filter-controls {
+  }html:not([data-theme]) .filter-controls {
     background-color: #2c2c2c;
-  }
-
-  .filter-group label {
+  }html:not([data-theme]) .filter-group label {
     color: #e0e0e0;
-  }
-
-  .search-group input {
+  }html:not([data-theme]) .search-group input {
     background-color: #3c3c3c;
     border-color: #555;
     color: #e0e0e0;
-  }
-
-  .search-group input::placeholder {
+  }html:not([data-theme]) .search-group input::placeholder {
     color: #999;
-  }
-
-  .search-group input:focus {
+  }html:not([data-theme]) .search-group input:focus {
     background-color: #4c4c4c;
     border-color: #007bff;
     color: #fff;
-  }
-
-  .panel-footer {
+  }html:not([data-theme]) .panel-footer {
     background-color: #333;
     border-top-color: #555;
-  }
-
-  .card .panel:hover {
+  }html:not([data-theme]) .card .panel:hover {
     box-shadow: 0 6px 16px rgba(255,255,255,0.1);
   }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .thema-content {
+    color: #e0e0e0;
+  }[data-theme='dark'] .thema-content h2 {
+    border-bottom-color: #0056b3;
+  }[data-theme='dark'] .panel {
+    background-color: #3c3c3c;
+    border-color: #555;
+    color: #e0e0e0;
+  }[data-theme='dark'] .panel-body {
+    color: #e0e0e0;
+    border-color: #555;
+  }[data-theme='dark'] .filter-controls {
+    background-color: #2c2c2c;
+  }[data-theme='dark'] .filter-group label {
+    color: #e0e0e0;
+  }[data-theme='dark'] .search-group input {
+    background-color: #3c3c3c;
+    border-color: #555;
+    color: #e0e0e0;
+  }[data-theme='dark'] .search-group input::placeholder {
+    color: #999;
+  }[data-theme='dark'] .search-group input:focus {
+    background-color: #4c4c4c;
+    border-color: #007bff;
+    color: #fff;
+  }[data-theme='dark'] .panel-footer {
+    background-color: #333;
+    border-top-color: #555;
+  }[data-theme='dark'] .card .panel:hover {
+    box-shadow: 0 6px 16px rgba(255,255,255,0.1);
+  }
+
 
 /* Responsive */
 @media (max-width: 768px) {

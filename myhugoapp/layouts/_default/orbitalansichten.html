@@ -47,21 +47,27 @@
     margin-bottom: 16px;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .orbitalansichten-container .lead {
+  @media (prefers-color-scheme: dark) {html:not([data-theme]) .orbitalansichten-container .lead {
       color: #aaa;
-    }
-    .orbitalansichten-container th {
+    }html:not([data-theme]) .orbitalansichten-container th {
       background: #2c2c2c;
-    }
-    .orbitalansichten-container th,
-    .orbitalansichten-container td {
+    }html:not([data-theme]) .orbitalansichten-container th, html:not([data-theme]) .orbitalansichten-container td {
       border-color: #444;
-    }
-    .orbitalansichten-container h1 {
+    }html:not([data-theme]) .orbitalansichten-container h1 {
       color: #e0e0e0;
     }
   }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .orbitalansichten-container .lead {
+      color: #aaa;
+    }[data-theme='dark'] .orbitalansichten-container th {
+      background: #2c2c2c;
+    }[data-theme='dark'] .orbitalansichten-container th, [data-theme='dark'] .orbitalansichten-container td {
+      border-color: #444;
+    }[data-theme='dark'] .orbitalansichten-container h1 {
+      color: #e0e0e0;
+    }
+  
 
   @media (max-width: 768px) {
     .orbitalansichten-container {

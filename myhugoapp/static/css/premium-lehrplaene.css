@@ -253,54 +253,103 @@
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
-  .lp-card {
+  html:not([data-theme]) .lp-card {
     background: #2c2c2c;
     border-color: #444;
   }
-  .lp-section {
+  html:not([data-theme]) .lp-section {
     background: #232323;
     border-left-color: #64b5f6;
   }
-  .lp-section h3 {
+  html:not([data-theme]) .lp-section h3 {
     color: #90caf9;
   }
-  .lp-result-header {
+  html:not([data-theme]) .lp-result-header {
     border-bottom-color: #64b5f6;
   }
-  .lp-result-header h2 {
+  html:not([data-theme]) .lp-result-header h2 {
     color: #90caf9;
   }
-  .lp-phase-num {
+  html:not([data-theme]) .lp-phase-num {
     background: #1565c0;
   }
-  .lp-phase-name {
+  html:not([data-theme]) .lp-phase-name {
     color: #90caf9;
   }
-  .lp-phase-body {
+  html:not([data-theme]) .lp-phase-body {
     background: #2c2c2c;
     border-color: #444;
   }
-  .ws-exercise {
+  html:not([data-theme]) .ws-exercise {
     background: #2c2c2c;
     border-color: #444;
   }
-  .ws-exercise-num {
+  html:not([data-theme]) .ws-exercise-num {
     color: #90caf9;
   }
-  .ws-type-badge {
+  html:not([data-theme]) .ws-type-badge {
     background: #1a2740;
     color: #90caf9;
   }
-  .ws-blank {
+  html:not([data-theme]) .ws-blank {
     border-bottom-color: #aaa;
   }
-  .ws-given-item {
+  html:not([data-theme]) .ws-given-item {
     background: #3a3a3a;
   }
-  .ws-footer {
+  html:not([data-theme]) .ws-footer {
     border-top-color: #444;
     color: #777;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .lp-card {
+  background: #2c2c2c;
+  border-color: #444;
+}
+[data-theme='dark'] .lp-section {
+  background: #232323;
+  border-left-color: #64b5f6;
+}
+[data-theme='dark'] .lp-section h3 {
+  color: #90caf9;
+}
+[data-theme='dark'] .lp-result-header {
+  border-bottom-color: #64b5f6;
+}
+[data-theme='dark'] .lp-result-header h2 {
+  color: #90caf9;
+}
+[data-theme='dark'] .lp-phase-num {
+  background: #1565c0;
+}
+[data-theme='dark'] .lp-phase-name {
+  color: #90caf9;
+}
+[data-theme='dark'] .lp-phase-body {
+  background: #2c2c2c;
+  border-color: #444;
+}
+[data-theme='dark'] .ws-exercise {
+  background: #2c2c2c;
+  border-color: #444;
+}
+[data-theme='dark'] .ws-exercise-num {
+  color: #90caf9;
+}
+[data-theme='dark'] .ws-type-badge {
+  background: #1a2740;
+  color: #90caf9;
+}
+[data-theme='dark'] .ws-blank {
+  border-bottom-color: #aaa;
+}
+[data-theme='dark'] .ws-given-item {
+  background: #3a3a3a;
+}
+[data-theme='dark'] .ws-footer {
+  border-top-color: #444;
+  color: #777;
 }
 
 /* Print */

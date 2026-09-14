@@ -686,36 +686,51 @@
   font-style: italic;
 }
 
-@media (prefers-color-scheme: dark) {
-  .quiz-dashboard-card {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .quiz-dashboard-card {
     background: #2a2a4e;
     border-color: #444;
-  }
-  .quiz-dashboard-card-title {
+  }html:not([data-theme]) .quiz-dashboard-card-title {
     color: #e0e0e0;
     border-bottom-color: var(--accent-solid, #1b6aa5);
-  }
-  .dash-stat-row {
+  }html:not([data-theme]) .dash-stat-row {
     color: #aaa;
-  }
-  .dash-stat-value {
+  }html:not([data-theme]) .dash-stat-value {
     color: #e0e0e0;
-  }
-  .dash-recent-item {
+  }html:not([data-theme]) .dash-recent-item {
     border-bottom-color: #444;
-  }
-  .dash-recent-topic {
+  }html:not([data-theme]) .dash-recent-topic {
     color: #e0e0e0;
-  }
-  .dash-recent-date {
+  }html:not([data-theme]) .dash-recent-date {
     color: #888;
-  }
-  .dash-weak-item {
+  }html:not([data-theme]) .dash-weak-item {
     background: #3a2020;
     border-color: #633;
     color: #e88;
   }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .quiz-dashboard-card {
+    background: #2a2a4e;
+    border-color: #444;
+  }[data-theme='dark'] .quiz-dashboard-card-title {
+    color: #e0e0e0;
+    border-bottom-color: var(--accent-solid, #1b6aa5);
+  }[data-theme='dark'] .dash-stat-row {
+    color: #aaa;
+  }[data-theme='dark'] .dash-stat-value {
+    color: #e0e0e0;
+  }[data-theme='dark'] .dash-recent-item {
+    border-bottom-color: #444;
+  }[data-theme='dark'] .dash-recent-topic {
+    color: #e0e0e0;
+  }[data-theme='dark'] .dash-recent-date {
+    color: #888;
+  }[data-theme='dark'] .dash-weak-item {
+    background: #3a2020;
+    border-color: #633;
+    color: #e88;
+  }
+
 
 /* Hidden */
 .hidden {
@@ -723,119 +738,171 @@
 }
 
 /* ── Dark Mode ────────────────────────────────── */
-@media (prefers-color-scheme: dark) {
-  .quiz-container {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .quiz-container {
     background: #16213e;
-  }
-  .quiz-title {
+  }html:not([data-theme]) .quiz-title {
     color: #e0e0e0;
-  }
-  .quiz-subtitle {
+  }html:not([data-theme]) .quiz-subtitle {
     color: var(--text-muted, #626e7b);
-  }
-  .quiz-header {
+  }html:not([data-theme]) .quiz-header {
     background: #1a1a3e;
-  }
-  .quiz-topic-label {
+  }html:not([data-theme]) .quiz-topic-label {
     color: #ccc;
-  }
-  .quiz-topic-select {
+  }html:not([data-theme]) .quiz-topic-select {
     background: #2a2a4e;
     color: #e0e0e0;
     border-color: #444;
-  }
-  .quiz-topic-select:focus {
+  }html:not([data-theme]) .quiz-topic-select:focus {
     border-color: var(--accent-solid, #1b6aa5);
-  }
-  .quiz-question-text {
+  }html:not([data-theme]) .quiz-question-text {
     color: #e0e0e0;
-  }
-  .quiz-option {
+  }html:not([data-theme]) .quiz-option {
     background: #2a2a4e;
     border-color: #444;
     color: #e0e0e0;
-  }
-  .quiz-option:hover {
+  }html:not([data-theme]) .quiz-option:hover {
     border-color: var(--accent-solid, #1b6aa5);
     background: #3a3a6e;
-  }
-  .quiz-option-selected {
+  }html:not([data-theme]) .quiz-option-selected {
     border-color: var(--accent-solid, #1b6aa5);
     background: #2a3a5e;
     color: #7cb3ff;
-  }
-  .quiz-option-key {
+  }html:not([data-theme]) .quiz-option-key {
     background: #444;
     color: #aaa;
-  }
-  .quiz-option-selected .quiz-option-key {
+  }html:not([data-theme]) .quiz-option-selected .quiz-option-key {
     background: var(--accent-solid, #1b6aa5);
     color: #fff;
-  }
-  .quiz-progress-bar {
+  }html:not([data-theme]) .quiz-progress-bar {
     background: #333;
-  }
-  .quiz-topic-badge {
+  }html:not([data-theme]) .quiz-topic-badge {
     background: #2a3a5e;
     color: #7cb3ff;
-  }
-  .quiz-results-header h2 {
+  }html:not([data-theme]) .quiz-results-header h2 {
     color: #e0e0e0;
-  }
-  .quiz-score-pct {
+  }html:not([data-theme]) .quiz-score-pct {
     color: #e0e0e0;
-  }
-  .quiz-stat {
+  }html:not([data-theme]) .quiz-stat {
     background: #2a2a4e;
-  }
-  .quiz-stat-value {
+  }html:not([data-theme]) .quiz-stat-value {
     color: #e0e0e0;
-  }
-  .quiz-stat-label {
+  }html:not([data-theme]) .quiz-stat-label {
     color: var(--text-muted, #626e7b);
-  }
-  .quiz-review-item {
+  }html:not([data-theme]) .quiz-review-item {
     background: #2a2a4e;
-  }
-  .quiz-review-question {
+  }html:not([data-theme]) .quiz-review-question {
     color: #e0e0e0;
-  }
-  .quiz-fill-input {
+  }html:not([data-theme]) .quiz-fill-input {
     background: #2a2a4e;
     color: #e0e0e0;
     border-color: #444;
-  }
-  .quiz-fill-input:focus {
+  }html:not([data-theme]) .quiz-fill-input:focus {
     border-color: var(--accent-solid, #1b6aa5);
-  }
-  .quiz-feedback-label {
+  }html:not([data-theme]) .quiz-feedback-label {
     color: #e0e0e0;
-  }
-  /* UXF-057: Feedback-Boxen im OS-Dark mit abdunkeln — vorher blieb der
+  }html:not([data-theme]) /* UXF-057: Feedback-Boxen im OS-Dark mit abdunkeln — vorher blieb der
      helle Box-Hintergrund (#fff5f5/#e8f5e9) während das Label auf
      hellgrau (#e0e0e0) gestellt wurde → ~1.5:1 bei „Falsch · 0/10 Punkte“. */
   .quiz-feedback-correct {
     background: #1b3a1e;
     border-color: #4caf50;
-  }
-  .quiz-feedback-wrong {
+  }html:not([data-theme]) .quiz-feedback-wrong {
     background: #3d1a1a;
     border-color: #f44336;
-  }
-  .quiz-feedback-explanation {
+  }html:not([data-theme]) .quiz-feedback-explanation {
     color: #cfd8dc;
-  }
-  .quiz-feedback-correct .quiz-feedback-icon {
+  }html:not([data-theme]) .quiz-feedback-correct .quiz-feedback-icon {
     color: #81c784;
-  }
-  .quiz-feedback-wrong .quiz-feedback-icon {
+  }html:not([data-theme]) .quiz-feedback-wrong .quiz-feedback-icon {
     color: #ff8a80;
-  }
-  .quiz-timer {
+  }html:not([data-theme]) .quiz-timer {
     background: #2a2a4e;
     color: var(--text-muted, #626e7b);
   }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .quiz-container {
+    background: #16213e;
+  }[data-theme='dark'] .quiz-title {
+    color: #e0e0e0;
+  }[data-theme='dark'] .quiz-subtitle {
+    color: var(--text-muted, #626e7b);
+  }[data-theme='dark'] .quiz-header {
+    background: #1a1a3e;
+  }[data-theme='dark'] .quiz-topic-label {
+    color: #ccc;
+  }[data-theme='dark'] .quiz-topic-select {
+    background: #2a2a4e;
+    color: #e0e0e0;
+    border-color: #444;
+  }[data-theme='dark'] .quiz-topic-select:focus {
+    border-color: var(--accent-solid, #1b6aa5);
+  }[data-theme='dark'] .quiz-question-text {
+    color: #e0e0e0;
+  }[data-theme='dark'] .quiz-option {
+    background: #2a2a4e;
+    border-color: #444;
+    color: #e0e0e0;
+  }[data-theme='dark'] .quiz-option:hover {
+    border-color: var(--accent-solid, #1b6aa5);
+    background: #3a3a6e;
+  }[data-theme='dark'] .quiz-option-selected {
+    border-color: var(--accent-solid, #1b6aa5);
+    background: #2a3a5e;
+    color: #7cb3ff;
+  }[data-theme='dark'] .quiz-option-key {
+    background: #444;
+    color: #aaa;
+  }[data-theme='dark'] .quiz-option-selected .quiz-option-key {
+    background: var(--accent-solid, #1b6aa5);
+    color: #fff;
+  }[data-theme='dark'] .quiz-progress-bar {
+    background: #333;
+  }[data-theme='dark'] .quiz-topic-badge {
+    background: #2a3a5e;
+    color: #7cb3ff;
+  }[data-theme='dark'] .quiz-results-header h2 {
+    color: #e0e0e0;
+  }[data-theme='dark'] .quiz-score-pct {
+    color: #e0e0e0;
+  }[data-theme='dark'] .quiz-stat {
+    background: #2a2a4e;
+  }[data-theme='dark'] .quiz-stat-value {
+    color: #e0e0e0;
+  }[data-theme='dark'] .quiz-stat-label {
+    color: var(--text-muted, #626e7b);
+  }[data-theme='dark'] .quiz-review-item {
+    background: #2a2a4e;
+  }[data-theme='dark'] .quiz-review-question {
+    color: #e0e0e0;
+  }[data-theme='dark'] .quiz-fill-input {
+    background: #2a2a4e;
+    color: #e0e0e0;
+    border-color: #444;
+  }[data-theme='dark'] .quiz-fill-input:focus {
+    border-color: var(--accent-solid, #1b6aa5);
+  }[data-theme='dark'] .quiz-feedback-label {
+    color: #e0e0e0;
+  }[data-theme='dark'] /* UXF-057: Feedback-Boxen im OS-Dark mit abdunkeln — vorher blieb der
+     helle Box-Hintergrund (#fff5f5/#e8f5e9) während das Label auf
+     hellgrau (#e0e0e0) gestellt wurde → ~1.5:1 bei „Falsch · 0/10 Punkte“. */
+  .quiz-feedback-correct {
+    background: #1b3a1e;
+    border-color: #4caf50;
+  }[data-theme='dark'] .quiz-feedback-wrong {
+    background: #3d1a1a;
+    border-color: #f44336;
+  }[data-theme='dark'] .quiz-feedback-explanation {
+    color: #cfd8dc;
+  }[data-theme='dark'] .quiz-feedback-correct .quiz-feedback-icon {
+    color: #81c784;
+  }[data-theme='dark'] .quiz-feedback-wrong .quiz-feedback-icon {
+    color: #ff8a80;
+  }[data-theme='dark'] .quiz-timer {
+    background: #2a2a4e;
+    color: var(--text-muted, #626e7b);
+  }
+
 </style>
 
 <script src="/js/quiz-engine.js"></script>

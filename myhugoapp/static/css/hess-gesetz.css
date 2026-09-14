@@ -736,188 +736,301 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .hess-gesetz-container {
+  html:not([data-theme]) .hess-gesetz-container {
     color: #e0e0e0;
   }
-
-  .calculator-panel,
-  .info-card {
+  html:not([data-theme]) .calculator-panel,
+  html:not([data-theme]) .info-card {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .calculator-panel h2,
-  .educational-content h2 {
+  html:not([data-theme]) .calculator-panel h2,
+  html:not([data-theme]) .educational-content h2 {
     color: #e0e0e0;
   }
-
-  .form-group label {
+  html:not([data-theme]) .form-group label {
     color: #e0e0e0;
   }
-
-  .form-control {
+  html:not([data-theme]) .form-control {
     background: #2c2c2c;
     color: #e0e0e0;
     border-color: #555;
   }
-
-  .steps-container,
-  .path-selector,
-  .enthalpy-inputs,
-  .calculation-method,
-  .formation-display {
+  html:not([data-theme]) .steps-container,
+  html:not([data-theme]) .path-selector,
+  html:not([data-theme]) .enthalpy-inputs,
+  html:not([data-theme]) .calculation-method,
+  html:not([data-theme]) .formation-display {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .steps-container h3,
-  .path-selector h3,
-  .calculation-method h3 {
+  html:not([data-theme]) .steps-container h3,
+  html:not([data-theme]) .path-selector h3,
+  html:not([data-theme]) .calculation-method h3 {
     color: #64b5f6;
   }
-
-  .step-input {
+  html:not([data-theme]) .step-input {
     background: #2c2c2c;
     border-left-color: #64b5f6;
   }
-
-  .result-panel {
+  html:not([data-theme]) .result-panel {
     background: #1a3c5e;
     border-left-color: #64b5f6;
     border-color: #0d47a1;
   }
-
-  .result-panel h3 {
+  html:not([data-theme]) .result-panel h3 {
     color: #64b5f6;
   }
-
-  .calculation-display,
-  .reaction-path {
+  html:not([data-theme]) .calculation-display,
+  html:not([data-theme]) .reaction-path {
     background: #2c2c2c;
     border-color: #404040;
   }
-
-  .formula {
+  html:not([data-theme]) .formula {
     background: #2c2c2c;
     color: #64b5f6;
     border-color: #0d47a1;
   }
-
-  .calculation-details,
-  .path-details p,
-  .calculation-steps p {
+  html:not([data-theme]) .calculation-details,
+  html:not([data-theme]) .path-details p,
+  html:not([data-theme]) .calculation-steps p {
     color: #e0e0e0;
   }
-
-  .final-result .label {
+  html:not([data-theme]) .final-result .label {
     color: #c0c0c0;
   }
-
-  .final-result .value {
+  html:not([data-theme]) .final-result .value {
     color: #64b5f6;
   }
-
-  .final-result .value.highlight {
+  html:not([data-theme]) .final-result .value.highlight {
     text-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
   }
-
-  .path-comparison {
+  html:not([data-theme]) .path-comparison {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .path-comparison h4 {
+  html:not([data-theme]) .path-comparison h4 {
     color: #64b5f6;
   }
-
-  .path-details .formula {
+  html:not([data-theme]) .path-details .formula {
     background: #2c2c2c;
     color: #64b5f6;
     border-color: #0d47a1;
   }
-
-  .example-card,
-  .conclusion {
+  html:not([data-theme]) .example-card,
+  html:not([data-theme]) .conclusion {
     background: #1a1a1a;
     border-color: #404040;
   }
-
-  .example-card h3 {
+  html:not([data-theme]) .example-card h3 {
     color: #64b5f6;
   }
-
-  .reaction-path {
+  html:not([data-theme]) .reaction-path {
     background: #2c2c2c;
     border-color: #404040;
   }
-
-  .enthalpy-value {
+  html:not([data-theme]) .enthalpy-value {
     color: #64b5f6;
   }
-
-  .enthalpy-total {
+  html:not([data-theme]) .enthalpy-total {
     color: #ff6b6b;
   }
-
-  .element-checkbox {
+  html:not([data-theme]) .element-checkbox {
     background: #2c2c2c;
     border-color: #404040;
   }
-
-  .element-checkbox label {
+  html:not([data-theme]) .element-checkbox label {
     color: #e0e0e0;
   }
-
-  .formation-enthalpy {
+  html:not([data-theme]) .formation-enthalpy {
     color: #999;
   }
-
-  .table {
+  html:not([data-theme]) .table {
     background: #1a1a1a;
     border-color: #404040;
     color: #e0e0e0;
   }
-
-  .table thead {
+  html:not([data-theme]) .table thead {
     background: #0d47a1;
   }
-
-  .table th {
+  html:not([data-theme]) .table th {
     border-color: #0d47a1;
   }
-
-  .table td {
+  html:not([data-theme]) .table td {
     border-color: #404040;
     color: #e0e0e0;
   }
-
-  .table-striped tbody tr:nth-of-type(odd) {
+  html:not([data-theme]) .table-striped tbody tr:nth-of-type(odd) {
     background: rgba(100, 181, 246, 0.1);
   }
-
-  .table tbody tr:hover {
+  html:not([data-theme]) .table tbody tr:hover {
     background: rgba(100, 181, 246, 0.15);
   }
-
-  .alert-info {
+  html:not([data-theme]) .alert-info {
     background: #1a3c5e;
     border-color: #0d47a1;
     color: #b8daff;
   }
-
-  .alert-success {
+  html:not([data-theme]) .alert-success {
     background: #1a3c5e;
     border-color: #0d47a1;
     color: #90caf9;
   }
-
-  .alert-warning {
+  html:not([data-theme]) .alert-warning {
     background: #1a3c5e;
     border-color: #0d47a1;
     color: #ffc107;
   }
-
-  .text-success {
+  html:not([data-theme]) .text-success {
     color: #90caf9;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .hess-gesetz-container {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .calculator-panel,
+[data-theme='dark'] .info-card {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .calculator-panel h2,
+[data-theme='dark'] .educational-content h2 {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .form-group label {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .form-control {
+  background: #2c2c2c;
+  color: #e0e0e0;
+  border-color: #555;
+}
+[data-theme='dark'] .steps-container,
+[data-theme='dark'] .path-selector,
+[data-theme='dark'] .enthalpy-inputs,
+[data-theme='dark'] .calculation-method,
+[data-theme='dark'] .formation-display {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .steps-container h3,
+[data-theme='dark'] .path-selector h3,
+[data-theme='dark'] .calculation-method h3 {
+  color: #64b5f6;
+}
+[data-theme='dark'] .step-input {
+  background: #2c2c2c;
+  border-left-color: #64b5f6;
+}
+[data-theme='dark'] .result-panel {
+  background: #1a3c5e;
+  border-left-color: #64b5f6;
+  border-color: #0d47a1;
+}
+[data-theme='dark'] .result-panel h3 {
+  color: #64b5f6;
+}
+[data-theme='dark'] .calculation-display,
+[data-theme='dark'] .reaction-path {
+  background: #2c2c2c;
+  border-color: #404040;
+}
+[data-theme='dark'] .formula {
+  background: #2c2c2c;
+  color: #64b5f6;
+  border-color: #0d47a1;
+}
+[data-theme='dark'] .calculation-details,
+[data-theme='dark'] .path-details p,
+[data-theme='dark'] .calculation-steps p {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .final-result .label {
+  color: #c0c0c0;
+}
+[data-theme='dark'] .final-result .value {
+  color: #64b5f6;
+}
+[data-theme='dark'] .final-result .value.highlight {
+  text-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+}
+[data-theme='dark'] .path-comparison {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .path-comparison h4 {
+  color: #64b5f6;
+}
+[data-theme='dark'] .path-details .formula {
+  background: #2c2c2c;
+  color: #64b5f6;
+  border-color: #0d47a1;
+}
+[data-theme='dark'] .example-card,
+[data-theme='dark'] .conclusion {
+  background: #1a1a1a;
+  border-color: #404040;
+}
+[data-theme='dark'] .example-card h3 {
+  color: #64b5f6;
+}
+[data-theme='dark'] .reaction-path {
+  background: #2c2c2c;
+  border-color: #404040;
+}
+[data-theme='dark'] .enthalpy-value {
+  color: #64b5f6;
+}
+[data-theme='dark'] .enthalpy-total {
+  color: #ff6b6b;
+}
+[data-theme='dark'] .element-checkbox {
+  background: #2c2c2c;
+  border-color: #404040;
+}
+[data-theme='dark'] .element-checkbox label {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .formation-enthalpy {
+  color: #999;
+}
+[data-theme='dark'] .table {
+  background: #1a1a1a;
+  border-color: #404040;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .table thead {
+  background: #0d47a1;
+}
+[data-theme='dark'] .table th {
+  border-color: #0d47a1;
+}
+[data-theme='dark'] .table td {
+  border-color: #404040;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .table-striped tbody tr:nth-of-type(odd) {
+  background: rgba(100, 181, 246, 0.1);
+}
+[data-theme='dark'] .table tbody tr:hover {
+  background: rgba(100, 181, 246, 0.15);
+}
+[data-theme='dark'] .alert-info {
+  background: #1a3c5e;
+  border-color: #0d47a1;
+  color: #b8daff;
+}
+[data-theme='dark'] .alert-success {
+  background: #1a3c5e;
+  border-color: #0d47a1;
+  color: #90caf9;
+}
+[data-theme='dark'] .alert-warning {
+  background: #1a3c5e;
+  border-color: #0d47a1;
+  color: #ffc107;
+}
+[data-theme='dark'] .text-success {
+  color: #90caf9;
 }

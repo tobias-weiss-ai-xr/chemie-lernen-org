@@ -258,23 +258,29 @@
 .curriculum-badge:hover {
   background: #e9d5ff;
 }
-@media (prefers-color-scheme: dark) {
-  .entity-curriculum-panel {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .entity-curriculum-panel {
     background: #2a2a2a;
     border-color: #444;
     border-left-color: #bb86fc;
-  }
-  .entity-curriculum-panel h2 { color: #e0e0e0; }
-  .curriculum-stats .stat { color: #999; }
-  .curriculum-stats .stat strong { color: #e0e0e0; }
-  .curriculum-badge {
+  }html:not([data-theme]) .entity-curriculum-panel h2 { color: #e0e0e0; }html:not([data-theme]) .curriculum-stats .stat { color: #999; }html:not([data-theme]) .curriculum-stats .stat strong { color: #e0e0e0; }html:not([data-theme]) .curriculum-badge {
     background: #2a1a3a;
     color: #ce93d8;
-  }
-  .curriculum-badge:hover {
+  }html:not([data-theme]) .curriculum-badge:hover {
     background: #3a2060;
   }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .entity-curriculum-panel {
+    background: #2a2a2a;
+    border-color: #444;
+    border-left-color: #bb86fc;
+  }[data-theme='dark'] .entity-curriculum-panel h2 { color: #e0e0e0; }[data-theme='dark'] .curriculum-stats .stat { color: #999; }[data-theme='dark'] .curriculum-stats .stat strong { color: #e0e0e0; }[data-theme='dark'] .curriculum-badge {
+    background: #2a1a3a;
+    color: #ce93d8;
+  }[data-theme='dark'] .curriculum-badge:hover {
+    background: #3a2060;
+  }
+
 
 /* Graph Link */
 .entity-graph-link {
@@ -324,56 +330,71 @@
 }
 
 /* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  .entity-header-card {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .entity-header-card {
     background: #2a2a2a;
     border-color: #444;
-  }
-  .entity-header-title { color: #e0e0e0; }
-  .entity-header-desc { color: #999; }
-  .entity-stats { border-top-color: #333; }
-  .entity-stats strong { color: #e0e0e0; }
-  .entity-card {
+  }html:not([data-theme]) .entity-header-title { color: #e0e0e0; }html:not([data-theme]) .entity-header-desc { color: #999; }html:not([data-theme]) .entity-stats { border-top-color: #333; }html:not([data-theme]) .entity-stats strong { color: #e0e0e0; }html:not([data-theme]) .entity-card {
     background: #2a2a2a;
     border-color: #444;
-  }
-  .entity-card-header {
+  }html:not([data-theme]) .entity-card-header {
     background: #333;
     border-bottom-color: #444;
     color: #e0e0e0;
-  }
-  .entity-article-item { border-bottom-color: #333; }
-  .entity-article-link { color: #e0e0e0; }
-  .entity-article-link:hover { color: #bb86fc; }
-  .entity-tag {
+  }html:not([data-theme]) .entity-article-item { border-bottom-color: #333; }html:not([data-theme]) .entity-article-link { color: #e0e0e0; }html:not([data-theme]) .entity-article-link:hover { color: #bb86fc; }html:not([data-theme]) .entity-tag {
     background: #3a3a3a;
     border-color: #555;
     color: #ccc;
-  }
-  .entity-tag:hover {
+  }html:not([data-theme]) .entity-tag:hover {
     border-color: #bb86fc;
     background: #2a2040;
-  }
-  .entity-tag-kmk {
+  }html:not([data-theme]) .entity-tag-kmk {
     background: #1b3a1b;
     border-color: #2e7d32;
     color: #81c784;
-  }
-  .entity-tag-kmk:hover {
+  }html:not([data-theme]) .entity-tag-kmk:hover {
     background: #1b4a1b;
     border-color: #388e3c;
-  }
-  .entity-tag-quelle {
+  }html:not([data-theme]) .entity-tag-quelle {
     background: #3a2000;
     border-color: #6d4c00;
     color: #ffb74d;
-  }
-  .entity-tag-quelle:hover {
+  }html:not([data-theme]) .entity-tag-quelle:hover {
     background: #4a3000;
-  }
-.entity-graph-link { border-top-color: #333; }
-.entity-graph-link:hover { background: #2a2040; color: #bb86fc; }
+  }html:not([data-theme]) .entity-graph-link { border-top-color: #333; }html:not([data-theme]) .entity-graph-link:hover { background: #2a2040; color: #bb86fc; }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .entity-header-card {
+    background: #2a2a2a;
+    border-color: #444;
+  }[data-theme='dark'] .entity-header-title { color: #e0e0e0; }[data-theme='dark'] .entity-header-desc { color: #999; }[data-theme='dark'] .entity-stats { border-top-color: #333; }[data-theme='dark'] .entity-stats strong { color: #e0e0e0; }[data-theme='dark'] .entity-card {
+    background: #2a2a2a;
+    border-color: #444;
+  }[data-theme='dark'] .entity-card-header {
+    background: #333;
+    border-bottom-color: #444;
+    color: #e0e0e0;
+  }[data-theme='dark'] .entity-article-item { border-bottom-color: #333; }[data-theme='dark'] .entity-article-link { color: #e0e0e0; }[data-theme='dark'] .entity-article-link:hover { color: #bb86fc; }[data-theme='dark'] .entity-tag {
+    background: #3a3a3a;
+    border-color: #555;
+    color: #ccc;
+  }[data-theme='dark'] .entity-tag:hover {
+    border-color: #bb86fc;
+    background: #2a2040;
+  }[data-theme='dark'] .entity-tag-kmk {
+    background: #1b3a1b;
+    border-color: #2e7d32;
+    color: #81c784;
+  }[data-theme='dark'] .entity-tag-kmk:hover {
+    background: #1b4a1b;
+    border-color: #388e3c;
+  }[data-theme='dark'] .entity-tag-quelle {
+    background: #3a2000;
+    border-color: #6d4c00;
+    color: #ffb74d;
+  }[data-theme='dark'] .entity-tag-quelle:hover {
+    background: #4a3000;
+  }[data-theme='dark'] .entity-graph-link { border-top-color: #333; }[data-theme='dark'] .entity-graph-link:hover { background: #2a2040; color: #bb86fc; }
+
 
 /* Lehrplan-Bezug Section */
 .entity-lehrplan-card {
@@ -507,50 +528,65 @@
   font-size: 0.9rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  .entity-lehrplan-card {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .entity-lehrplan-card {
     background: #2a2a2a;
     border-color: #444;
-  }
-  .entity-lehrplan-card .entity-card-header {
+  }html:not([data-theme]) .entity-lehrplan-card .entity-card-header {
     background: #2a1a3a;
     border-bottom-color: #3a2060;
     color: #ce93d8;
-  }
-  .entity-lehrplan-topic { border-bottom-color: #333; }
-  .entity-lehrplan-topic-title { color: #e0e0e0; }
-  .entity-lehrplan-lo { color: #bbb; }
-  .entity-lehrplan-state-badge {
+  }html:not([data-theme]) .entity-lehrplan-topic { border-bottom-color: #333; }html:not([data-theme]) .entity-lehrplan-topic-title { color: #e0e0e0; }html:not([data-theme]) .entity-lehrplan-lo { color: #bbb; }html:not([data-theme]) .entity-lehrplan-state-badge {
     background: #1b3a1b;
     color: #81c784;
-  }
-  .entity-universitaeten-card {
+  }html:not([data-theme]) .entity-universitaeten-card {
     background: #2a2a2a;
     border-color: #444;
-  }
-  .entity-universitaeten-card .entity-card-header {
+  }html:not([data-theme]) .entity-universitaeten-card .entity-card-header {
     background: #1a3a1a;
     border-bottom-color: #2a4a2a;
     color: #81c784;
-  }
-  .entity-universitaeten-uni { border-bottom-color: #333; }
-  .entity-universitaeten-uni-name { color: #e0e0e0; }
-  .entity-universitaeten-uni-name a { color: #e0e0e0; }
-  .entity-universitaeten-uni-name a:hover { color: #81c784; }
-  .entity-universitaeten-module-tag {
+  }html:not([data-theme]) .entity-universitaeten-uni { border-bottom-color: #333; }html:not([data-theme]) .entity-universitaeten-uni-name { color: #e0e0e0; }html:not([data-theme]) .entity-universitaeten-uni-name a { color: #e0e0e0; }html:not([data-theme]) .entity-universitaeten-uni-name a:hover { color: #81c784; }html:not([data-theme]) .entity-universitaeten-module-tag {
     background: #1b3a1b;
     color: #81c784;
     border-color: #2e7d32;
-  }
-  .entity-tag-prereq {
+  }html:not([data-theme]) .entity-tag-prereq {
     background: #1b3a24;
     color: #a5d6a7;
     border-color: #2e7d32;
-  }
-  .entity-card-prereq .entity-card-header {
+  }html:not([data-theme]) .entity-card-prereq .entity-card-header {
     color: #a5d6a7;
   }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .entity-lehrplan-card {
+    background: #2a2a2a;
+    border-color: #444;
+  }[data-theme='dark'] .entity-lehrplan-card .entity-card-header {
+    background: #2a1a3a;
+    border-bottom-color: #3a2060;
+    color: #ce93d8;
+  }[data-theme='dark'] .entity-lehrplan-topic { border-bottom-color: #333; }[data-theme='dark'] .entity-lehrplan-topic-title { color: #e0e0e0; }[data-theme='dark'] .entity-lehrplan-lo { color: #bbb; }[data-theme='dark'] .entity-lehrplan-state-badge {
+    background: #1b3a1b;
+    color: #81c784;
+  }[data-theme='dark'] .entity-universitaeten-card {
+    background: #2a2a2a;
+    border-color: #444;
+  }[data-theme='dark'] .entity-universitaeten-card .entity-card-header {
+    background: #1a3a1a;
+    border-bottom-color: #2a4a2a;
+    color: #81c784;
+  }[data-theme='dark'] .entity-universitaeten-uni { border-bottom-color: #333; }[data-theme='dark'] .entity-universitaeten-uni-name { color: #e0e0e0; }[data-theme='dark'] .entity-universitaeten-uni-name a { color: #e0e0e0; }[data-theme='dark'] .entity-universitaeten-uni-name a:hover { color: #81c784; }[data-theme='dark'] .entity-universitaeten-module-tag {
+    background: #1b3a1b;
+    color: #81c784;
+    border-color: #2e7d32;
+  }[data-theme='dark'] .entity-tag-prereq {
+    background: #1b3a24;
+    color: #a5d6a7;
+    border-color: #2e7d32;
+  }[data-theme='dark'] .entity-card-prereq .entity-card-header {
+    color: #a5d6a7;
+  }
+
   .entity-skeleton-card {
     background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
   }

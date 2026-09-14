@@ -251,39 +251,73 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .message-sources {
+  html:not([data-theme]) .message-sources {
     border-top-color: #444;
   }
-  .sources-title {
+  html:not([data-theme]) .sources-title {
     color: #999;
   }
-  .source-chip {
+  html:not([data-theme]) .source-chip {
     background: #1a1a3e;
     color: #7cb3ff;
     border-color: #2a2a5e;
   }
-  .source-chip:hover {
+  html:not([data-theme]) .source-chip:hover {
     background: #2a2a5e;
   }
-  .source-curriculum {
+  html:not([data-theme]) .source-curriculum {
     background: #2a1040;
     color: #b388ff;
     border-color: #4a2070;
   }
-  .source-curriculum:hover {
+  html:not([data-theme]) .source-curriculum:hover {
     background: #3a1860;
   }
-  .source-didaktik {
+  html:not([data-theme]) .source-didaktik {
     background: #1b3a1b;
     color: #81c784;
     border-color: #2e7d32;
   }
-  .source-didaktik:hover {
+  html:not([data-theme]) .source-didaktik:hover {
     background: #2a4a2a;
   }
-  .source-cat {
+  html:not([data-theme]) .source-cat {
     background: rgba(255, 255, 255, 0.1);
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .message-sources {
+  border-top-color: #444;
+}
+[data-theme='dark'] .sources-title {
+  color: #999;
+}
+[data-theme='dark'] .source-chip {
+  background: #1a1a3e;
+  color: #7cb3ff;
+  border-color: #2a2a5e;
+}
+[data-theme='dark'] .source-chip:hover {
+  background: #2a2a5e;
+}
+[data-theme='dark'] .source-curriculum {
+  background: #2a1040;
+  color: #b388ff;
+  border-color: #4a2070;
+}
+[data-theme='dark'] .source-curriculum:hover {
+  background: #3a1860;
+}
+[data-theme='dark'] .source-didaktik {
+  background: #1b3a1b;
+  color: #81c784;
+  border-color: #2e7d32;
+}
+[data-theme='dark'] .source-didaktik:hover {
+  background: #2a4a2a;
+}
+[data-theme='dark'] .source-cat {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* ── Sidebar Styles ─────────────────────────── */
@@ -570,66 +604,123 @@
 
 /* ── Dark mode ──────────────────────────────── */
 @media (prefers-color-scheme: dark) {
-  .learning-profile {
+  html:not([data-theme]) .learning-profile {
     background: #1a1a3e;
     border-color: #333;
   }
-  .learning-profile h3 {
+  html:not([data-theme]) .learning-profile h3 {
     color: #7cb3ff;
     border-bottom-color: #7cb3ff;
   }
-  .profile-section h4 {
+  html:not([data-theme]) .profile-section h4 {
     color: #aaa;
   }
-  .profile-list li {
+  html:not([data-theme]) .profile-list li {
     background: #2a2a4e;
     color: #e0e0e0;
   }
-  .profile-empty {
+  html:not([data-theme]) .profile-empty {
     color: #777;
   }
-
-  .chat-search {
+  html:not([data-theme]) .chat-search {
     background: #1a1a3e;
     border-color: #333;
   }
-  .chat-search h3 {
+  html:not([data-theme]) .chat-search h3 {
     color: #7cb3ff;
     border-bottom-color: #7cb3ff;
   }
-  .chat-search-results {
+  html:not([data-theme]) .chat-search-results {
     background: #2a2a4e;
     border-color: #444;
   }
-  .chat-search-header {
+  html:not([data-theme]) .chat-search-header {
     background: #333;
     color: #aaa;
   }
-  .chat-search-item {
+  html:not([data-theme]) .chat-search-item {
     border-bottom-color: #444;
   }
-  .chat-search-item:hover {
+  html:not([data-theme]) .chat-search-item:hover {
     background: #3a3a6e;
   }
-  .chat-search-item-title {
+  html:not([data-theme]) .chat-search-item-title {
     color: #e0e0e0;
   }
-
-  .export-btn {
+  html:not([data-theme]) .export-btn {
     color: #e0e0e0;
   }
-
-  .hint-button {
+  html:not([data-theme]) .hint-button {
     background: #2a3a5e;
     color: #7cb3ff;
     border-color: #3a5a8e;
   }
-  .hint-button:hover {
+  html:not([data-theme]) .hint-button:hover {
     background: #3a4a7e;
   }
-  .hint-content {
+  html:not([data-theme]) .hint-content {
     background: #3a3a1e;
     border-color: #6a6a2e;
     color: #e0e0e0;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .learning-profile {
+  background: #1a1a3e;
+  border-color: #333;
+}
+[data-theme='dark'] .learning-profile h3 {
+  color: #7cb3ff;
+  border-bottom-color: #7cb3ff;
+}
+[data-theme='dark'] .profile-section h4 {
+  color: #aaa;
+}
+[data-theme='dark'] .profile-list li {
+  background: #2a2a4e;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .profile-empty {
+  color: #777;
+}
+[data-theme='dark'] .chat-search {
+  background: #1a1a3e;
+  border-color: #333;
+}
+[data-theme='dark'] .chat-search h3 {
+  color: #7cb3ff;
+  border-bottom-color: #7cb3ff;
+}
+[data-theme='dark'] .chat-search-results {
+  background: #2a2a4e;
+  border-color: #444;
+}
+[data-theme='dark'] .chat-search-header {
+  background: #333;
+  color: #aaa;
+}
+[data-theme='dark'] .chat-search-item {
+  border-bottom-color: #444;
+}
+[data-theme='dark'] .chat-search-item:hover {
+  background: #3a3a6e;
+}
+[data-theme='dark'] .chat-search-item-title {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .export-btn {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .hint-button {
+  background: #2a3a5e;
+  color: #7cb3ff;
+  border-color: #3a5a8e;
+}
+[data-theme='dark'] .hint-button:hover {
+  background: #3a4a7e;
+}
+[data-theme='dark'] .hint-content {
+  background: #3a3a1e;
+  border-color: #6a6a2e;
+  color: #e0e0e0;
 }

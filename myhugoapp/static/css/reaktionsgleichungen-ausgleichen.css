@@ -316,65 +316,103 @@
 
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
-  .calculator-panel,
-  .educational-section {
+  html:not([data-theme]) .calculator-panel,
+  html:not([data-theme]) .educational-section {
     background-color: #2c2c2c;
     color: #e0e0e0;
   }
-
-  .calculator-panel h2,
-  .educational-section h2 {
+  html:not([data-theme]) .calculator-panel h2,
+  html:not([data-theme]) .educational-section h2 {
     color: #e0e0e0;
   }
-
-  .calculator-panel p {
+  html:not([data-theme]) .calculator-panel p {
     color: #b0b0b0;
   }
-
-  .result-card {
+  html:not([data-theme]) .result-card {
     background-color: #3c3c3c;
     color: #e0e0e0;
   }
-
-  .result-card h3 {
+  html:not([data-theme]) .result-card h3 {
     color: #0069d9;
   }
-
-  .info-card {
+  html:not([data-theme]) .info-card {
     background-color: #3c3c3c;
     color: #e0e0e0;
   }
-
-  .info-card h3 {
+  html:not([data-theme]) .info-card h3 {
     color: #0069d9;
   }
-
-  .info-card p,
-  .info-card li {
+  html:not([data-theme]) .info-card p,
+  html:not([data-theme]) .info-card li {
     color: #b0b0b0;
   }
-
-  .info-card .formula {
+  html:not([data-theme]) .info-card .formula {
     background-color: #4c4c4c;
     color: #e0e0e0;
   }
-
-  .compound-formula {
+  html:not([data-theme]) .compound-formula {
     color: #e0e0e0;
   }
-
-  .coefficient-item {
+  html:not([data-theme]) .coefficient-item {
     background-color: #4c4c4c;
   }
-
-  .input-group-lg input {
+  html:not([data-theme]) .input-group-lg input {
     background-color: #3c3c3c;
     border-color: #555;
     color: #e0e0e0;
   }
-
-  .input-group-lg input:focus {
+  html:not([data-theme]) .input-group-lg input:focus {
     background-color: #4c4c4c;
     border-color: #0069d9;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .calculator-panel,
+[data-theme='dark'] .educational-section {
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .calculator-panel h2,
+[data-theme='dark'] .educational-section h2 {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .calculator-panel p {
+  color: #b0b0b0;
+}
+[data-theme='dark'] .result-card {
+  background-color: #3c3c3c;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .result-card h3 {
+  color: #0069d9;
+}
+[data-theme='dark'] .info-card {
+  background-color: #3c3c3c;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .info-card h3 {
+  color: #0069d9;
+}
+[data-theme='dark'] .info-card p,
+[data-theme='dark'] .info-card li {
+  color: #b0b0b0;
+}
+[data-theme='dark'] .info-card .formula {
+  background-color: #4c4c4c;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .compound-formula {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .coefficient-item {
+  background-color: #4c4c4c;
+}
+[data-theme='dark'] .input-group-lg input {
+  background-color: #3c3c3c;
+  border-color: #555;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .input-group-lg input:focus {
+  background-color: #4c4c4c;
+  border-color: #0069d9;
 }

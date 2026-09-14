@@ -664,35 +664,41 @@ document.addEventListener('DOMContentLoaded', function() {
   margin-top: 15px;
 }
 
-@media(prefers-color-scheme: dark) {
-  .converter-panel {
+@media(prefers-color-scheme: dark) {html:not([data-theme]) .converter-panel {
     background-color: #2c2c2c;
     color: #e0e0e0;
-  }
-
-  .converter-panel h2 {
+  }html:not([data-theme]) .converter-panel h2 {
     color: #66b0ff;
-  }
-
-  .result-box {
+  }html:not([data-theme]) .result-box {
     background-color: #1b4d3f;
     border-color: #2d6a4f;
-  }
-
-  .result-box h3,
-  .formula-display {
+  }html:not([data-theme]) .result-box h3, html:not([data-theme]) .formula-display {
     color: #a7f3d0;
-  }
-
-  .info-box {
+  }html:not([data-theme]) .info-box {
     background-color: #423d0f;
     border-color: #6b5f0f;
-  }
-
-  .info-box h4 {
+  }html:not([data-theme]) .info-box h4 {
     color: #fde68a;
   }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .converter-panel {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+  }[data-theme='dark'] .converter-panel h2 {
+    color: #66b0ff;
+  }[data-theme='dark'] .result-box {
+    background-color: #1b4d3f;
+    border-color: #2d6a4f;
+  }[data-theme='dark'] .result-box h3, [data-theme='dark'] .formula-display {
+    color: #a7f3d0;
+  }[data-theme='dark'] .info-box {
+    background-color: #423d0f;
+    border-color: #6b5f0f;
+  }[data-theme='dark'] .info-box h4 {
+    color: #fde68a;
+  }
+
 </style>
 
 {{ end }}

@@ -97,21 +97,27 @@
   background-color: #f2f2f2;
 }
 
-@media (prefers-color-scheme: dark) {
-  .result-box {
+@media (prefers-color-scheme: dark) {html:not([data-theme]) .result-box {
     background-color: #2c2c2c;
     border-color: var(--green-primary);
-  }
-
-  .table thead {
+  }html:not([data-theme]) .table thead {
     background-color: #2c2c2c;
     color: #e0e0e0;
-  }
-
-  .table tbody tr:nth-child(even) {
+  }html:not([data-theme]) .table tbody tr:nth-child(even) {
     background-color: #3c3c3c;
   }
 }
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .result-box {
+    background-color: #2c2c2c;
+    border-color: var(--green-primary);
+  }[data-theme='dark'] .table thead {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+  }[data-theme='dark'] .table tbody tr:nth-child(even) {
+    background-color: #3c3c3c;
+  }
+
 </style>
 
 <script src="/js/calculators/verduennungsreihen-rechner.js"></script>

@@ -310,62 +310,95 @@
 
 /* ── Dark Mode ────────────────────────────────────────── */
 @media (prefers-color-scheme: dark) {
-  .lr-container {
+  html:not([data-theme]) .lr-container {
     background: #1a1a2e;
   }
-
-  .lr-title {
+  html:not([data-theme]) .lr-title {
     color: #e0e0e0;
   }
-
-  .lr-subtitle {
+  html:not([data-theme]) .lr-subtitle {
     color: #999;
   }
-
-  .lr-stats {
+  html:not([data-theme]) .lr-stats {
     background: #1e1e3a;
   }
-
-  .lr-stat-value {
+  html:not([data-theme]) .lr-stat-value {
     color: #7cb3ff;
   }
-
-  .lr-card-front {
+  html:not([data-theme]) .lr-card-front {
     background: #2a2a4e;
     border-color: #444;
   }
-
-  .lr-card-back {
+  html:not([data-theme]) .lr-card-back {
     background: #1a3a1a;
     border-color: #2d7d2d;
   }
-
-  .lr-card-text {
+  html:not([data-theme]) .lr-card-text {
     color: #e0e0e0;
   }
-
-  .lr-card-back .lr-card-label {
+  html:not([data-theme]) .lr-card-back .lr-card-label {
     background: #1a3a1a;
     color: #7bc97b;
   }
-
-  .lr-card-label {
+  html:not([data-theme]) .lr-card-label {
     background: #333;
     color: #aaa;
   }
-
-  .lr-empty-title {
+  html:not([data-theme]) .lr-empty-title {
     color: #e0e0e0;
   }
-
-  .lr-topic-badge {
+  html:not([data-theme]) .lr-topic-badge {
     background: #2a3a5e;
     color: #7cb3ff;
   }
-
-  .lr-error-msg {
+  html:not([data-theme]) .lr-error-msg {
     color: #e0e0e0;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .lr-container {
+  background: #1a1a2e;
+}
+[data-theme='dark'] .lr-title {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .lr-subtitle {
+  color: #999;
+}
+[data-theme='dark'] .lr-stats {
+  background: #1e1e3a;
+}
+[data-theme='dark'] .lr-stat-value {
+  color: #7cb3ff;
+}
+[data-theme='dark'] .lr-card-front {
+  background: #2a2a4e;
+  border-color: #444;
+}
+[data-theme='dark'] .lr-card-back {
+  background: #1a3a1a;
+  border-color: #2d7d2d;
+}
+[data-theme='dark'] .lr-card-text {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .lr-card-back .lr-card-label {
+  background: #1a3a1a;
+  color: #7bc97b;
+}
+[data-theme='dark'] .lr-card-label {
+  background: #333;
+  color: #aaa;
+}
+[data-theme='dark'] .lr-empty-title {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .lr-topic-badge {
+  background: #2a3a5e;
+  color: #7cb3ff;
+}
+[data-theme='dark'] .lr-error-msg {
+  color: #e0e0e0;
 }
 
 /* ── Responsive ────────────────────────────────────────── */

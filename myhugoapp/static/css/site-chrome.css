@@ -197,44 +197,69 @@
 
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
-  .dropdown-menu {
+  html:not([data-theme]) .dropdown-menu {
     background-color: #2c2c2c;
     border-color: #444;
   }
-
-  .dropdown-menu > li > a {
+  html:not([data-theme]) .dropdown-menu > li > a {
     color: #d5d5d5;
   }
-
-  .dropdown-menu > li > a:hover,
-  .dropdown-menu > li > a:focus {
+  html:not([data-theme]) .dropdown-menu > li > a:hover,
+  html:not([data-theme]) .dropdown-menu > li > a:focus {
     background-color: #3c3c3c;
     color: #fff;
   }
-
-  .navbar-nav .open .dropdown-menu {
+  html:not([data-theme]) .navbar-nav .open .dropdown-menu {
     background-color: #2c2c2c;
   }
-
-  .navbar-nav .open .dropdown-menu > li > a {
+  html:not([data-theme]) .navbar-nav .open .dropdown-menu > li > a {
     color: #d5d5d5;
   }
-
-  .navbar-form .form-control {
+  html:not([data-theme]) .navbar-form .form-control {
     background-color: #3c3c3c;
     border-color: #555;
     color: #d5d5d5;
   }
-
-  .navbar-form .form-control:focus {
+  html:not([data-theme]) .navbar-form .form-control:focus {
     background-color: #4c4c4c;
     border-color: #007bff;
     color: #fff;
   }
-
-  .navbar-form .form-control::placeholder {
+  html:not([data-theme]) .navbar-form .form-control::placeholder {
     color: #999;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .dropdown-menu {
+  background-color: #2c2c2c;
+  border-color: #444;
+}
+[data-theme='dark'] .dropdown-menu > li > a {
+  color: #d5d5d5;
+}
+[data-theme='dark'] .dropdown-menu > li > a:hover,
+[data-theme='dark'] .dropdown-menu > li > a:focus {
+  background-color: #3c3c3c;
+  color: #fff;
+}
+[data-theme='dark'] .navbar-nav .open .dropdown-menu {
+  background-color: #2c2c2c;
+}
+[data-theme='dark'] .navbar-nav .open .dropdown-menu > li > a {
+  color: #d5d5d5;
+}
+[data-theme='dark'] .navbar-form .form-control {
+  background-color: #3c3c3c;
+  border-color: #555;
+  color: #d5d5d5;
+}
+[data-theme='dark'] .navbar-form .form-control:focus {
+  background-color: #4c4c4c;
+  border-color: #007bff;
+  color: #fff;
+}
+[data-theme='dark'] .navbar-form .form-control::placeholder {
+  color: #999;
 }
 
 /* Search form styling */
@@ -424,22 +449,33 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .breadcrumb {
+  html:not([data-theme]) .breadcrumb {
     background-color: #1e1e1e;
     border-bottom-color: #333;
   }
-
-  .breadcrumb-item a {
+  html:not([data-theme]) .breadcrumb-item a {
     color: #66b0ff;
   }
-
-  .breadcrumb-item a:hover {
+  html:not([data-theme]) .breadcrumb-item a:hover {
     color: #3395ff;
   }
-
-  .breadcrumb-item.active {
+  html:not([data-theme]) .breadcrumb-item.active {
     color: #adb5bd;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .breadcrumb {
+  background-color: #1e1e1e;
+  border-bottom-color: #333;
+}
+[data-theme='dark'] .breadcrumb-item a {
+  color: #66b0ff;
+}
+[data-theme='dark'] .breadcrumb-item a:hover {
+  color: #3395ff;
+}
+[data-theme='dark'] .breadcrumb-item.active {
+  color: #adb5bd;
 }
 
 /* ==== badge-toast.html ==== */

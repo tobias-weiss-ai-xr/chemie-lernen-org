@@ -97,36 +97,57 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .gas-law-controls {
+  html:not([data-theme]) .gas-law-controls {
     background: #2c2c2c;
     border-color: #444;
     color: #e0e0e0;
   }
-
-  .state-item label {
+  html:not([data-theme]) .state-item label {
     color: #4caf50;
   }
-
-  .state-item span {
+  html:not([data-theme]) .state-item span {
     color: #81c784;
   }
-
-  .formula-display {
+  html:not([data-theme]) .formula-display {
     background: #3c3c3c;
     color: #e0e0e0;
   }
-
-  .calculation-results {
+  html:not([data-theme]) .calculation-results {
     background: #2c2c2c;
     border-color: #444;
     color: #e0e0e0;
   }
-
-  .calc-item {
+  html:not([data-theme]) .calc-item {
     background: #3c3c3c;
     border-color: #555;
     color: #e0e0e0;
   }
+}
+/* UXF-058: data-theme=dark-Zwilling des obigen prefers-Blocks */
+[data-theme='dark'] .gas-law-controls {
+  background: #2c2c2c;
+  border-color: #444;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .state-item label {
+  color: #4caf50;
+}
+[data-theme='dark'] .state-item span {
+  color: #81c784;
+}
+[data-theme='dark'] .formula-display {
+  background: #3c3c3c;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .calculation-results {
+  background: #2c2c2c;
+  border-color: #444;
+  color: #e0e0e0;
+}
+[data-theme='dark'] .calc-item {
+  background: #3c3c3c;
+  border-color: #555;
+  color: #e0e0e0;
 }
 
 .state-item input[type='range']:focus {
