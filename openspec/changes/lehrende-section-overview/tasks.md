@@ -30,5 +30,4 @@
 
 ## Deployment
 
-- [ ] **D1** Commit (deutsch/conventional), Push, Deploy und Live-Verify der
-      `/lehrende/`-Übersicht in Produktion.
+- [x] **D1** Commit `17ad273a` (deutsch/conventional), Push, Deploy `34942755934` success; Live-Verify der `/lehrende/`-Übersicht in Produktion grün (14 Cards: 5 Didaktik + 9 Tools, Split-Dropdown, Kontrast light 6.80/dark 8.39/contrast 21.00 : 1).
