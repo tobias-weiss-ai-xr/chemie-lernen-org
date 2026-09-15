@@ -37,7 +37,7 @@ Last updated: 2026-09-04
 | zpd-deepdive-tech-integration     | 0/11  | proposed                                                         |
 | per-element-learning-rooms        | 22/23 | in-progress (3.3 a11y: hello-webxr-master nicht auf diesem Host) |
 | hubs-scene-templates              | 19/20 | in-progress (visual pass = human review)                         |
-| zpd-deepdive-scaffolding          | 0/7   | proposed                                                         |
+| zpd-deepdive-scaffolding          | 6/7   | in-progress                                                      |
 
 ## Archived changes (`changes/archive/`)
 

@@ -59,6 +59,8 @@ reaktionskinetik-simulator.test.js
 redox-potenzial-rechner.test.js
 redox-titrationen.test.js
 scoped-quota.test.mjs
+scaffolding-engine.test.mjs
+scaffolding-route.test.mjs
 session-plan.test.js
 session-store.test.mjs
 sitewide-a11y.test.js
